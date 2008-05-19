@@ -1,5 +1,14 @@
 2008-05-19  Stephane Delcroix  <sdelcroix@novell.com>
 
+	* src/Makefile.am:
+	* src/UI.Dialog/RepairDbDialog.cs:
+	* src/MainWindow.cs:
+	* src/Core.cs:
+	* po/POTFILES.in: new RepairDbDialog, handle more db errors, like
+	in bgo #529380.
+
+2008-05-19  Stephane Delcroix  <sdelcroix@novell.com>
+
 	* src/Widgets/FindBar.cs: make operators work on localized versions.
 	Patch from Jordi Mas, bgo #466946.
 

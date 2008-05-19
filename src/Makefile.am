@@ -157,7 +157,6 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/ProgressDialog.cs		\
 	$(srcdir)/RatingFilter.cs		\
 	$(srcdir)/QueuedSqliteDatabase.cs	\
-	$(srcdir)/RepairDialog.cs		\
 	$(srcdir)/RotateCommand.cs		\
 	$(srcdir)/RollStore.cs			\
 	$(srcdir)/SendEmail.cs                  \
@@ -186,6 +185,7 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/UI.Dialog/HigMessageDialog.cs	\
 	$(srcdir)/UI.Dialog/PreferenceDialog.cs		\
 	$(srcdir)/UI.Dialog/SelectionRatioDialog.cs	\
+	$(srcdir)/UI.Dialog/RepairDbDialog.cs	\
 	$(srcdir)/Updater.cs			\
 	$(srcdir)/UriCollection.cs		\
 	$(srcdir)/Util.cs			\

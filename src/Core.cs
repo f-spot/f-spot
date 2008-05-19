@@ -4,6 +4,8 @@ using Mono.Unix;
 using NDesk.DBus;
 using org.freedesktop.DBus;
 
+using FSpot.UI.Dialog;
+
 namespace FSpot {
 	[Interface ("org.gnome.FSpot.Core")]
 	public interface ICore {
@@ -45,7 +47,12 @@ namespace FSpot {
 						Directory.CreateDirectory (base_directory);
 					
 					db = new Db ();
-					db.Init (Path.Combine (base_directory, "photos.db"), true);
+					try {
+						db.Init (Path.Combine (base_directory, "photos.db"), true);
+					} catch (System.Exception e) {
+						new RepairDbDialog (e, db.Repair (), null);
+						db.Init (Path.Combine (base_directory, "photos.db"), true);
+					}
 				}
 				return db; 
 			}

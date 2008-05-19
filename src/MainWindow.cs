@@ -326,7 +326,7 @@ public class MainWindow {
 			query = new FSpot.PhotoQuery (db.Photos);
 		} catch (System.Exception e) {
 			//FIXME assume any exception here is due to a corrupt db and handle that.
-			RestoreDb (e);
+			new RepairDbDialog (e, db.Repair (), main_window);
 			query = new FSpot.PhotoQuery (db.Photos);
 		}
 
@@ -868,21 +868,6 @@ public class MainWindow {
 		TagPopup popup = new TagPopup ();
 		popup.Activate (null, null, tag_selection_widget.TagHighlight);
 		args.RetVal = true;
-	}
-
-	void RestoreDb (System.Exception e)
-	{
-		string backup = db.Repair ();
-		string short_msg = Catalog.GetString ("Error loading database.");
-		string long_msg = Catalog.GetString ("F-Spot encountered an error while loading the photo database. " + 
-								"The old database has be moved to {0} and a new database has been created.");
-
-		HigMessageDialog md = new HigMessageDialog (main_window, DialogFlags.DestroyWithParent, 
-							    MessageType.Error, ButtonsType.Ok, 
-							    short_msg, String.Format (long_msg, backup));
-		Console.WriteLine (e);
-		md.Run ();
-		md.Destroy ();
 	}
 
 	void HandleTagSelectionDragBegin (object sender, DragBeginArgs args)
