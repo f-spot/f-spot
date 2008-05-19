@@ -1,3 +1,11 @@
+2008-01-12  Roland Mas  <lolando@debian.org>
+
+	* src/CameraFileSelectionDialog.cs: Sort available files in camera
+	import dialog.
+
+	* src/GPhotoCamera.cs: Implemented the IComparable interface for
+	the GPhotoCameraFile class.
+
 2008-05-19  Stephane Delcroix  <sdelcroix@novell.com>
 
 	* configure.in: install screensaver in the right directory. 

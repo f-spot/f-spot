@@ -139,7 +139,9 @@ namespace FSpot {
 				
 				int index = 0;
 				bool load_thumb = true;
-				foreach (GPhotoCameraFile file in camera.FileList) {
+				System.Collections.ArrayList sfiles = camera.FileList;
+				sfiles.Sort ();
+				foreach (GPhotoCameraFile file in sfiles) {
 					string msg = String.Format (Catalog.GetString ("Downloading Preview of {0}"), 
 								    file.FileName);
 					

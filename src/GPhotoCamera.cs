@@ -251,7 +251,7 @@ public class GPhotoCamera
 }
 
 	
-public class GPhotoCameraFile
+public class GPhotoCameraFile : IComparable
 {
 	string directory;
 	string filename;
@@ -297,12 +297,21 @@ public class GPhotoCameraFile
 		}
 	}
 	
-	public void ReleaseGPhotoResources()
+	public void ReleaseGPhotoResources ()
 	{
 		if (normal != null) 
 			normal.Dispose ();
 
 		if (preview != null) 
 			preview.Dispose ();
+	}
+
+	public int CompareTo (object obj)
+	{
+		GPhotoCameraFile f2 = obj as GPhotoCameraFile;
+		int result = Directory.CompareTo (f2.Directory);
+		if (result == 0)
+			result = FileName.CompareTo (f2.FileName);
+		return result;
 	}
 }
