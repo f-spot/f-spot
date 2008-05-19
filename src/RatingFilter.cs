@@ -13,9 +13,10 @@ using Gnome;
 using FSpot;
 using FSpot.Query;
 using FSpot.Widgets;
+using FSpot.UI.Dialog;
 
 public class RatingFilter {
-	public class Set : FSpot.GladeDialog {
+	public class Set : GladeDialog {
 		FSpot.PhotoQuery query;
 		Gtk.Window parent_window;
 

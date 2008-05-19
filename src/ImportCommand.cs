@@ -26,7 +26,7 @@ using FSpot;
 using FSpot.Utils;
 using FSpot.UI.Dialog;
 
-public class ImportCommand : FSpot.GladeDialog
+public class ImportCommand : GladeDialog
 {
 	internal class SourceItem : ImageMenuItem
 	{

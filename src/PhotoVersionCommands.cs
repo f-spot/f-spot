@@ -5,9 +5,9 @@ using Mono.Unix;
 using FSpot;
 using FSpot.UI.Dialog;
 
-public class PhotoVersionCommands {
-
-	private class VersionNameRequest : FSpot.GladeDialog {
+public class PhotoVersionCommands
+{
+	private class VersionNameRequest : GladeDialog {
 		private Photo photo;
 
 		[Glade.Widget] private Button ok_button;

@@ -86,7 +86,7 @@ namespace FSpot.UI.Dialog
 				Console.WriteLine (e);
 				License = "GPL v2";
 			}
-			Logo = PixbufUtils.LoadFromAssembly ("f-spot-logo.svg");
+			Logo = new Gdk.Pixbuf (System.Reflection.Assembly.GetEntryAssembly (), "f-spot-logo.svg");
 	#if !GTK_2_11
 			Name = "F-Spot";
 	#endif

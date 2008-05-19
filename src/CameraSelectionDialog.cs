@@ -3,6 +3,7 @@ using Gtk;
 using Glade;
 using LibGPhoto2;
 using Mono.Unix;
+using FSpot.UI.Dialog;
 
 namespace FSpot {
 	public class CameraSelectionDialog : GladeDialog

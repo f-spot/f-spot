@@ -4,6 +4,7 @@ using System;
 using Mono.Unix;
 
 using FSpot.Utils;
+using FSpot.UI.Dialog;
 
 namespace FSpot {
 	public class SingleView {

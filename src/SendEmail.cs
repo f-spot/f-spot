@@ -20,7 +20,7 @@ using FSpot.UI.Dialog;
 using Mono.Unix;
 
 namespace FSpot {
-	public class SendEmail : FSpot.GladeDialog {
+	public class SendEmail : GladeDialog {
 		PhotoQuery query;
 		Gtk.Window parent_window;
 

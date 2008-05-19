@@ -26,7 +26,7 @@ public class TagCommands {
 		Category
 	}
 
-	public class Create : FSpot.GladeDialog {
+	public class Create : GladeDialog {
 		TagStore tag_store;
 
 
@@ -172,7 +172,7 @@ public class TagCommands {
 		}
 	}
 
-	public class Edit : FSpot.GladeDialog {
+	public class Edit : GladeDialog {
 		Db db;
 		Gtk.Window parent_window;
 		Tag tag;
@@ -318,7 +318,7 @@ public class TagCommands {
 		}
 	}
 
-	public class EditIcon : FSpot.GladeDialog {
+	public class EditIcon : GladeDialog {
 		Db db;
 		Gtk.Window parent_window;
 		FSpot.PhotoQuery query;

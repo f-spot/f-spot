@@ -3,7 +3,7 @@ using Gdk;
 using Gtk;
 using Glade;
 
-namespace FSpot {
+namespace FSpot.UI.Dialog {
 	public class TagSelectionDialog : GladeDialog 
 	{
 		[Widget] Gtk.ScrolledWindow tag_selection_scrolled;

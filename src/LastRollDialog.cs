@@ -13,9 +13,10 @@ using System;
 using Gtk;
 using Gnome;
 using FSpot.Query;
+using FSpot.UI.Dialog;
 
 namespace FSpot {
-	public class LastRolls : FSpot.GladeDialog {
+	public class LastRolls : GladeDialog {
 		FSpot.PhotoQuery query;
 		RollStore rollstore;
 		Gtk.Window parent_window;

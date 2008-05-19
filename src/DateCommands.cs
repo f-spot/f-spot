@@ -15,9 +15,10 @@ using System;
 using Mono.Unix;
 using FSpot;
 using FSpot.Query;
+using FSpot.UI.Dialog;
 
 public class DateCommands {
-	public class Set : FSpot.GladeDialog {
+	public class Set : GladeDialog {
 		FSpot.PhotoQuery query;
 		Gtk.Window parent_window;
 

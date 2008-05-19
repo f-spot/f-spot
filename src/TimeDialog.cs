@@ -4,6 +4,7 @@ using Gnome;
 using System.Collections;
 using Mono.Unix;
 using FSpot.Widgets;
+using FSpot.UI.Dialog;
 
 namespace FSpot {
 	public class TimeChangedEventArgs : DbItemEventArgs {
