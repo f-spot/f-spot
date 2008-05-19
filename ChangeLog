@@ -1,3 +1,8 @@
+2008-05-19  Stephane Delcroix  <sdelcroix@novell.com>
+
+	* src/Widgets/FindBar.cs: make operators work on localized versions.
+	Patch from Jordi Mas, bgo #466946.
+
 2008-01-12  Roland Mas  <lolando@debian.org>
 
 	* src/CameraFileSelectionDialog.cs: Sort available files in camera

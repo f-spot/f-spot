@@ -199,7 +199,7 @@ namespace FSpot.Widgets {
 
 		// OPS The operators we support, case insensitive
 		//private static string op_str = "(?'Ops' or | and |, | \\s+ )";
-		private static string op_str = "(?'Ops' or | and |, )";
+		private static string op_str = "(?'Ops' "+ Catalog.GetString ("or") + " | "+ Catalog.GetString ("and")  + " |, )";
 
 		// Match literals, eg tags or other text to search on
 		private static string literal_str = "[^{0}{1}]+?";
