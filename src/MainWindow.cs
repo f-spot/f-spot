@@ -2066,7 +2066,7 @@ public class MainWindow {
 
 	void HandleViewFullscreen (object sender, EventArgs args)
 	{
-		int active = Math.Max (ActiveIndex (), 0);
+		int active = (selection.Count > 0 ? SelectedIds() [0] : 0);
 		if (fsview == null) {
 			fsview = new FSpot.FullScreenView (query, main_window);
 			fsview.Destroyed += HandleFullScreenViewDestroy;
