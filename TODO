@@ -62,10 +62,6 @@ Editing:
         Daylight/Incandescent/Fluorescent etc.  I think it should be
         possible to build the profile with some sliders then save it
         with lcms to be loaded later as a preset.
-      * Add red eye removal effect.  There are a couple of fairly simple
-        algorithms floating around, for now it doesn't have to be
-        perfect it should just be implemented and can be improved later
-        as a plug-in.
       * Add brightness/contrast auto-correction.  The gimp plug-ins are
         a good source for this.  Pick some good ones and implment them
         as pluggable effects.
