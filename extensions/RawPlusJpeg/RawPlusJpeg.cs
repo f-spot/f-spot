@@ -104,6 +104,7 @@ namespace RawPlusJpegExtension
 						Console.WriteLine (e);
 					}
 				}
+				raw.AddTag (jpeg.Tags);
 				uint [] version_ids = jpeg.VersionIds;
 				Array.Reverse (version_ids);
 				foreach (uint version_id in version_ids) {
