@@ -1,10 +1,22 @@
+/*
+ * FSpot.UI.Dialog.RepairDialog
+ *
+ * Author(s):
+ *	Larry Ewing  <lewing@novell.com>
+ *
+ * This is free software. See COPYING for details.
+ *
+ */
+
 using Gtk;
 using System;
 using System.IO;
 using FSpot.Widgets;
 
-namespace FSpot {
-	public class RepairDialog : GladeDialog {
+namespace FSpot.UI.Dialog 
+{
+	public class RepairDialog : GladeDialog
+	{
 		[Glade.Widget] ScrolledWindow view_scrolled;
 		
 		IBrowsableCollection source;
@@ -34,6 +46,5 @@ namespace FSpot {
 					missing.Add (item);
 			}
 		}
-
 	}
 }
