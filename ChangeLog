@@ -1,5 +1,10 @@
 2008-05-19  Stephane Delcroix  <sdelcroix@novell.com>
 
+	* configure.in: install screensaver in the right directory. 
+	Fixes bgo #348323.
+
+2008-05-19  Stephane Delcroix  <sdelcroix@novell.com>
+
 	* src/main.cs:
 	* src/GConfPreferenceBackend.cs: call Gnome.Program ctor prior to 
 	GConf.Client. Remove the need for g_type_init call.
