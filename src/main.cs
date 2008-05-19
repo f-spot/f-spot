@@ -73,6 +73,10 @@ public class Driver {
 		//LogFunc logFunc = new GLib.LogFunc (GLib.Log.PrintTraceLogFunction);
 		//Log.SetLogHandler ("GdkPixbuf", GLib.LogLevelFlags.Critical, logFunc);
 
+		program = new Program (Defines.PACKAGE, 
+				       Defines.VERSION, 
+				       Modules.UI, args);		
+		
 		FSpot.Global.PhotoDirectory = (string) Preferences.Get(Preferences.STORAGE_PATH);
 
 		for (int i = 0; i < args.Length && !shutdown; i++) {
@@ -158,9 +162,6 @@ public class Driver {
 		if (slideshow == true) {
 			Catalog.Init ("f-spot", Defines.LOCALE_DIR);
 				
-			program = new Program (Defines.PACKAGE, 
-					       Defines.VERSION, 
-					       Modules.UI, args);
 			Core core = new Core ();
 			core.ShowSlides (null);
 			program.Run ();
@@ -175,14 +176,6 @@ public class Driver {
 			} catch (Exception e) {
 				throw new ApplicationException ("F-Spot cannot find the Dbus session bus.  Make sure dbus is configured properly or start a new session for f-spot using \"dbus-launch f-spot\"", e);
 			}
-			/* 
-			 * FIXME we need to inialize gobject before making the dbus calls, we'll go 
-			 * ahead and do it like this for now.
-			 */ 
-			program = new Program (Defines.PACKAGE, 
-					       Defines.VERSION, 
-					       Modules.UI, args);		
-			
 			Console.WriteLine ("Initializing Mono.Addins");
 			AddinManager.Initialize (FSpot.Global.BaseDirectory);
 			AddinManager.Registry.Update (null);
@@ -301,7 +294,6 @@ public class Driver {
 			System.Console.WriteLine ("exiting");
 		} catch (System.Exception e) {
 			Console.Error.WriteLine(e);
-			Gtk.Application.Init();
 			ExceptionDialog dlg = new ExceptionDialog(e);
 			dlg.Run();
 			dlg.Destroy();

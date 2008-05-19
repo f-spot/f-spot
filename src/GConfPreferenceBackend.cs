@@ -13,21 +13,11 @@ namespace FSpot
 {
 	public class GConfPreferenceBackend : IPreferenceBackend
 	{
-#if !GCONF_SHARP_2_20_2
-		[DllImport("libgobject-2.0-0.dll")]
-		static extern void g_type_init ();
-#endif
-
 		private static GConf.Client client;
 		private GConf.Client Client {
 			get {
-				if (client == null) {
-#if !GCONF_SHARP_2_20_2
-					//workaround for bgo #481741, fixed upstream
-					g_type_init ();
-#endif
+				if (client == null)
 					client = new GConf.Client ();
-				}
 				return client;	
 			}
 		}
