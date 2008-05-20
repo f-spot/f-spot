@@ -117,7 +117,7 @@ namespace FSpot.UI.Dialog {
 			foreach (string path in search)
 				if (Directory.Exists (path)) 
 					foreach (string dir in Directory.GetDirectories (path))
-						if (File.Exists (Path.Combine (dir, gtkrc)))
+						if (File.Exists (Path.Combine (dir, gtkrc)) && !theme_list.ContainsKey (Path.GetFileName (dir)))
 							theme_list.Add (Path.GetFileName (dir), Path.Combine (dir, gtkrc));
 			
 			foreach (string theme in theme_list.Keys)
