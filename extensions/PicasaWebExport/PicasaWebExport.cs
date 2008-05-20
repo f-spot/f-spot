@@ -705,7 +705,7 @@ namespace FSpotGoogleExport {
 			progress_dialog.ButtonLabel = Gtk.Stock.Ok;
 
 			if (browser) {
-				GnomeUtil.UrlShow (null, album.Link);
+				GnomeUtil.UrlShow (album.Link);
 			}
 		}
 

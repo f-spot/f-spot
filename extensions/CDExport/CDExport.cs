@@ -99,7 +99,7 @@ namespace FSpotCDExport {
 			ListAll (((listwindow.Child as Gtk.ScrolledWindow).Child as Gtk.TextView).Buffer, dest);
 			listwindow.ShowAll ();
 #else
-			GnomeUtil.UrlShow (null, dest.ToString ());
+			GnomeUtil.UrlShow (dest.ToString ());
 #endif
 		}
 

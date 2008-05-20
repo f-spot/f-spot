@@ -379,7 +379,7 @@ namespace FSpotFlickrExport {
 					first = false;
 				}
 
-				GnomeUtil.UrlShow (progress_dialog, view_url);
+				GnomeUtil.UrlShow (view_url);
 			}
 		}
 		

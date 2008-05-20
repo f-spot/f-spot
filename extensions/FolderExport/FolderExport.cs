@@ -257,7 +257,7 @@ namespace FSpotFolderExport {
 				}
 
 				if (open) {
-					GnomeUtil.UrlShow (null, target.ToString ());
+					GnomeUtil.UrlShow (target.ToString ());
 				}
 
 				// Save these settings for next time

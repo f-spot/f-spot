@@ -772,7 +772,7 @@ namespace G2Export {
 			progress_dialog.ButtonLabel = Gtk.Stock.Ok;
 			
 			if (browser) {
-				GnomeUtil.UrlShow (null, album.GetUrl());
+				GnomeUtil.UrlShow (album.GetUrl());
 			}
 		}
 		
