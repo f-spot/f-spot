@@ -6,9 +6,11 @@ CMS_CSDISTFILES =				\
 	$(srcdir)/Cms/CctTable.cs
 
 CORE_CSDISTFILES =				\
+	$(srcdir)/Core/Animator.cs		\
 	$(srcdir)/Core/BrowsablePointer.cs	\
 	$(srcdir)/Core/Category.cs		\
 	$(srcdir)/Core/DbItem.cs		\
+	$(srcdir)/Core/Delay.cs			\
 	$(srcdir)/Core/Tag.cs			\
 	$(srcdir)/Core/Global.cs		\
 	$(srcdir)/Core/IBrowsableItem.cs	\
@@ -56,8 +58,6 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/DateCommands.cs		\
 	$(srcdir)/Db.cs				\
 	$(srcdir)/DBusProxy.cs			\
-	$(srcdir)/Core/Animator.cs		\
-	$(srcdir)/Core/Delay.cs			\
 	$(srcdir)/DependentListStore.cs		\
 	$(srcdir)/DirectoryAdaptor.cs		\
 	$(srcdir)/DirectoryCollection.cs	\
