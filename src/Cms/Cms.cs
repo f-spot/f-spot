@@ -7,6 +7,7 @@ using System.IO;
 using System.Collections;
 using System.Runtime.InteropServices;
 using System.Reflection;
+using System.Runtime.Serialization;
 
 namespace Cms {
 	public enum Format : uint {
@@ -121,7 +122,7 @@ namespace Cms {
 
 		public static ColorCIExyY D50 {
 			get {
-				IntPtr ptr = NativeMethods.CmsD50_xyY ();
+				IntPtr ptr = NativeMethods.CmsD50xyY ();
 				return (ColorCIExyY) Marshal.PtrToStructure (ptr, typeof (ColorCIExyY));
 			}
 		}
@@ -172,7 +173,7 @@ namespace Cms {
 
 		public static ColorCIEXYZ D50 {
 			get {
-				IntPtr ptr = NativeMethods.CmsD50_XYZ ();
+				IntPtr ptr = NativeMethods.CmsD50XYZ ();
 				return (ColorCIEXYZ) Marshal.PtrToStructure (ptr, typeof (ColorCIEXYZ));
 			}
 		}
@@ -318,13 +319,13 @@ namespace Cms {
 
 		public int Count {
 			get {
-				return NativeMethods.f_cms_gamma_table_get_count (handle);
+				return NativeMethods.FCmsGammaTableGetCount (handle);
 			}
 		}
 
 		public IntPtr Values {
 			get {
-				return NativeMethods.f_cms_gamma_table_get_values (handle);
+				return NativeMethods.FCmsGammaTableGetValues (handle);
 			}
 		}
 
@@ -332,7 +333,7 @@ namespace Cms {
 			get {
 				unsafe {
 					if (handle.Handle == (IntPtr)0)
-						throw new ArgumentException ();
+						throw new Exception ();
 					
 					if (index < 0 || index >= Count)
 						throw new ArgumentOutOfRangeException (String.Format ("index {0} outside of count {1} for {2}", index, Count, handle.Handle));
@@ -344,7 +345,7 @@ namespace Cms {
 			set {
 				unsafe {
 					if (handle.Handle == (IntPtr)0)
-						throw new ArgumentException ();
+						throw new Exception ();
 					
 					if (index < 0 || index >= Count)
 						throw new ArgumentOutOfRangeException (String.Format ("index {0} outside of count {1} for handle {2}", index, Count, handle.Handle));
@@ -359,7 +360,7 @@ namespace Cms {
 		public GammaTable (ushort [] values, int start_offset, int length)
 		{
 #if true
-			handle = new HandleRef (this, NativeMethods.f_cms_gamma_table_new (values, start_offset, length));
+			handle = new HandleRef (this, NativeMethods.FCmsGammaTableNew (values, start_offset, length));
 			//System.Console.WriteLine ("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXhandle = {0}", handle.Handle);
 #else
 			handle = new HandleRef (this, cmsAllocGamma (length));
@@ -444,7 +445,7 @@ namespace Cms {
 	}
 
 	public class Profile : IDisposable {
-		static Profile srgb = new Profile (cmsCreate_sRGBProfile());
+		static Profile srgb = new Profile (NativeMethods.CmsCreateSRGBProfile());
 
 		static Profile ()
 		{
@@ -458,16 +459,10 @@ namespace Cms {
 			}
 		}
 
-		[DllImport("liblcms-1.0.0.dll")]
-		static extern IntPtr _cmsCreateProfilePlaceholder ();
-		
-		private Profile () : this (_cmsCreateProfilePlaceholder ())
+		private Profile () : this (NativeMethods.CmsCreateProfilePlaceholder ())
 		{
 			
 		}
-
-		[DllImport("liblcms-1.0.0.dll")]
-		static extern IntPtr cmsCreate_sRGBProfile ();
 
 		public static Profile CreateSRgb () 
 		{
@@ -497,40 +492,27 @@ namespace Cms {
 			return new Profile (wp, primaries, gamma);
 		}
 
-		[DllImport ("liblcms-1.0.0.dll")]
-		static extern IntPtr cmsCreateLabProfile (out ColorCIExyY WhitePoint);
-
 		public static Profile CreateLab (ColorCIExyY wp)
 		{
-			return new Profile (cmsCreateLabProfile (out wp));
+			return new Profile (NativeMethods.CmsCreateLabProfile (out wp));
 		}			
-
-		[DllImport ("liblcms-1.0.0.dll")]
-		static extern IntPtr cmsCreateLabProfile (IntPtr foo);
 
 		public static Profile CreateLab ()
 		{
-			return new Profile (cmsCreateLabProfile (IntPtr.Zero));
+			return new Profile (NativeMethods.CmsCreateLabProfile (IntPtr.Zero));
 		}			
 
-		[DllImport ("liblcms-1.0.0.dll")]
-		static extern IntPtr cmsCreateGrayProfile (ref ColorCIExyY white_point,
-							   HandleRef transfer_function);
-		
 		public static Profile CreateGray (ColorCIExyY white_point, GammaTable transfer)
 		{
 			if (transfer == null)
-				return new Profile (cmsCreateGrayProfile (ref white_point, new GammaTable (4096, 2.2).Handle));
+				return new Profile (NativeMethods.CmsCreateGrayProfile (ref white_point, new GammaTable (4096, 2.2).Handle));
 			else
-				return new Profile (cmsCreateGrayProfile (ref white_point, transfer.Handle));
+				return new Profile (NativeMethods.CmsCreateGrayProfile (ref white_point, transfer.Handle));
 		}
-
-		[DllImport ("libfspot")]
-		static extern IntPtr f_screen_get_profile (IntPtr screen);
 
 		public static Profile GetScreenProfile (Gdk.Screen screen)
 		{
-			IntPtr profile = f_screen_get_profile (screen.Handle);
+			IntPtr profile = NativeMethods.FScreenGetProfile (screen.Handle);
 			
 			if (profile == IntPtr.Zero)
 				return null;
@@ -539,26 +521,7 @@ namespace Cms {
 		}
 
 
-//		[DllImport("liblcms-1.0.0.dll")]
-//		static extern IntPtr cmsCreateBCHSWabstractProfile(int nLUTPoints,
-//								   double Bright, 
-//								   double Contrast,
-//								   double Hue,
-//								   double Saturation,
-//								   int TempSrc, 
-//								   int TempDest);
-
-		[DllImport("libfspot")]
-		static extern IntPtr f_cmsCreateBCHSWabstractProfile(int nLUTPoints,
-								     double Exposure,
-								     double Bright, 
-								     double Contrast,
-								     double Hue,
-								     double Saturation,
-								     ref ColorCIExyY src_wp, 
-								     ref ColorCIExyY dest_wp,
-								     HandleRef [] tables);
-		
+	
 		public static Profile CreateAbstract (int nLUTPoints,
 						      double Exposure,
 						      double Bright,
@@ -606,7 +569,7 @@ namespace Cms {
 			System.Console.WriteLine ("h {0}", Hue);
 			System.Console.WriteLine ("s {0} {1} {2}", Saturation, src_wp, dest_wp);
 			*/
-			return new Profile (f_cmsCreateBCHSWabstractProfile (nLUTPoints,
+			return new Profile (NativeMethods.FCmsCreateBCHSWabstractProfile (nLUTPoints,
 									     Exposure,
 									     0.0, //Bright,
 									     Contrast,
@@ -617,12 +580,9 @@ namespace Cms {
 									     CopyHandles (tables)));
 		}
 
-		[DllImport("liblcms-1.0.0.dll")]
-		static extern IntPtr cmsCreateLinearizationDeviceLink (IccColorSpace color_space, HandleRef [] tables);
-		
 		public Profile (IccColorSpace color_space, GammaTable [] gamma)
 		{
-			handle = new HandleRef (this, cmsCreateLinearizationDeviceLink (color_space, CopyHandles (gamma)));
+			handle = new HandleRef (this, NativeMethods.CmsCreateLinearizationDeviceLink (color_space, CopyHandles (gamma)));
 		}
 
 		private static HandleRef [] CopyHandles (GammaTable [] gamma)
@@ -637,42 +597,27 @@ namespace Cms {
 			return gamma_handles;
 		}
 
-		[DllImport("liblcms-1.0.0.dll")]
-		static extern IntPtr cmsCreateRGBProfile (out ColorCIExyY whitepoint, 
-						          out ColorCIExyYTriple primaries,
-							  HandleRef [] gamma_table);
-
 		public Profile (ColorCIExyY whitepoint, ColorCIExyYTriple primaries, GammaTable [] gamma)
 		{
-			handle = new HandleRef (this, cmsCreateRGBProfile (out whitepoint, out primaries, CopyHandles (gamma)));
+			handle = new HandleRef (this, NativeMethods.CmsCreateRGBProfile (out whitepoint, out primaries, CopyHandles (gamma)));
 		}
-
-		[DllImport("liblcms-1.0.0.dll")]
-		static extern int cmsCloseProfile (HandleRef hprofile);
-
-		[DllImport("liblcms-1.0.0.dll")]
-		static extern IntPtr cmsOpenProfileFromFile (string ICCProfile, string sAccess);
 
 		public Profile (string path) 
 		{
-			handle = new HandleRef (this, cmsOpenProfileFromFile (path, "r"));
+			handle = new HandleRef (this, NativeMethods.CmsOpenProfileFromFile (path, "r"));
 
 			if (handle.Handle == IntPtr.Zero)
 				throw new Exception ("Error opening ICC profile in file " + path);
 		}
 
-
-		[DllImport("liblcms-1.0.0.dll")]
-		static extern unsafe bool _cmsSaveProfileToMem (HandleRef profile, byte *mem, ref uint length);
-
 		public byte [] Save ()
 		{
 			unsafe {
 				uint length = 0;
-				if (_cmsSaveProfileToMem (this.Handle, null, ref length)) {
+				if (NativeMethods.CmsSaveProfileToMem (this.Handle, null, ref length)) {
 					byte [] data = new byte [length];
 					fixed (byte * data_p = &data [0]) {
-						if (_cmsSaveProfileToMem (this.Handle, data_p, ref length)) {
+						if (NativeMethods.CmsSaveProfileToMem (this.Handle, data_p, ref length)) {
 							return data;
 						}
 					}
@@ -680,9 +625,6 @@ namespace Cms {
 			}
 			throw new SaveException ("Error Saving Profile");
 		}
-
-		[DllImport("liblcms-1.0.0.dll")]
-		static extern unsafe IntPtr cmsOpenProfileFromMem (byte *data, uint length);
 
 		public Profile (byte [] data) : this (data, 0, data.Length) {}
 
@@ -700,7 +642,7 @@ namespace Cms {
 			IntPtr profileh;
 			unsafe {
 				fixed (byte * start = & data [start_offset]) {
-					profileh = cmsOpenProfileFromMem (start, (uint)length);
+					profileh = NativeMethods.CmsOpenProfileFromMem (start, (uint)length);
 				}
 			}
 			
@@ -710,72 +652,55 @@ namespace Cms {
 				this.handle = new HandleRef (this, profileh);
 		}
 
-		[DllImport("liblcms-1.0.0.dll", EntryPoint = "cmsTakeMediaWhitePoint")]
-		extern static bool CmsTakeMediaWhitePoint (out ColorCIEXYZ wp, HandleRef handle);
-		
 		public ColorCIEXYZ MediaWhitePoint {
 			get {
 				ColorCIEXYZ wp;
-				if (!CmsTakeMediaWhitePoint (out wp, handle))
+				if (!NativeMethods.CmsTakeMediaWhitePoint (out wp, handle))
 					throw new ApplicationException ("unable to retrieve white point from profile");
 				return wp;
 			}
 		}
 
-		[DllImport("liblcms-1.0.0.dll", EntryPoint = "cmsTakeMediaBlackPoint")]
-		extern static bool CmsTakeMediaBlackPoint (out ColorCIEXYZ black, HandleRef handle);
-		
 		public ColorCIEXYZ MediaBlackPoint {
 			get {
 				ColorCIEXYZ black;
-				if (!CmsTakeMediaBlackPoint (out black, handle))
+				if (!NativeMethods.CmsTakeMediaBlackPoint (out black, handle))
 					throw new ApplicationException ("unable to retrieve white point from profile");
 				
 				return black;
 			}
 		}
 		
-		[DllImport("liblcms-1.0.0.dll", EntryPoint = "cmsTakeColorants")]
-		extern static bool CmsTakeColorants (out ColorCIEXYZTriple colors, HandleRef handle);
-
 		public ColorCIEXYZTriple Colorants {
 			get {
 				ColorCIEXYZTriple colors;
-				if (! CmsTakeColorants (out colors, handle))
+				if (!NativeMethods.CmsTakeColorants (out colors, handle))
 					throw new ApplicationException ("Unable to retrieve profile colorants");
 				
 				return colors;
 			}				
 		}
 		
-		[DllImport("liblcms-1.0.0.dll", EntryPoint = "cmsTakeModel")]
-		extern static IntPtr CmsTakeModel (HandleRef handle);
-		
 		public string Model {
 			get {
 				lock (srgb) {
-					return Marshal.PtrToStringAnsi (CmsTakeModel (handle));
+					return Marshal.PtrToStringAnsi (NativeMethods.CmsTakeModel (handle));
 				}
 			}
 		}
-
-		[DllImport("liblcms-1.0.0.dll", EntryPoint = "cmsTakeProductName")]
-		extern static IntPtr CmsTakeProductName (HandleRef handle);
 
 		public string ProductName {
 			get {
 				lock (srgb) {
-					return Marshal.PtrToStringAnsi (CmsTakeProductName (handle));
+					return Marshal.PtrToStringAnsi (NativeMethods.CmsTakeProductName (handle));
 				}
 			}
 		}
-		[DllImport("liblcms-1.0.0.dll")]
-		extern static IntPtr cmsTakeProductDesc (HandleRef handle);
 
 		public string ProductDescription {
 			get {
 				lock (srgb) {
-					return Marshal.PtrToStringAnsi (cmsTakeProductDesc (handle));
+					return Marshal.PtrToStringAnsi (NativeMethods.CmsTakeProductDesc (handle));
 				}
 			}
 		}
@@ -786,12 +711,9 @@ namespace Cms {
 			Ignore
 		}
 
-		[DllImport("liblcms-1.0.0.dll")]
-		static extern void cmsErrorAction (ErrorAction action);
-
 		private static void SetErrorAction (ErrorAction act)
 		{
-			cmsErrorAction (act);
+			NativeMethods.CmsErrorAction ((int) act);
 		}
 
 		public override string ToString ()
@@ -813,7 +735,7 @@ namespace Cms {
 
 		protected virtual void Cleanup ()
 		{
-			if (cmsCloseProfile (this.Handle) == 0)
+			if (NativeMethods.CmsCloseProfile (this.Handle) == 0)
 				throw new Exception ("Error closing Handle");
 
 		}
@@ -827,6 +749,18 @@ namespace Cms {
 
 	public class SaveException : System.Exception {
 		public SaveException (string message) : base (message)
+		{
+		}
+
+		protected SaveException (SerializationInfo info, StreamingContext context) : base (info, context)
+		{
+		}
+
+		public SaveException (string message, Exception innerException) : base (message, innerException)
+		{
+		}
+
+		public SaveException () : base ()
 		{
 		}
 	}
