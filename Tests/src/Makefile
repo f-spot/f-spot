@@ -7,7 +7,8 @@ SOURCES = 				\
 	PhotoStore.cs			\
 	TagStore.cs			\
 	ThumbnailGenerator.cs		\
-	Query/LogicalTerm.cs		
+	Query/LogicalTerm.cs		\
+	Cms/Cms.cs
 
 PKGS = 					\
 	-pkg:mono-nunit			\
@@ -20,6 +21,7 @@ REFS =					\
 	-r:../../src/FSpot.Core.dll	\
 	-r:../../src/FSpot.Query.dll	\
 	-r:../../src/FSpot.Utils.dll	\
+	-r:../../src/Cms.dll		\
 	-r:../../semweb/SemWeb.dll
 
 RESOURCES =							\

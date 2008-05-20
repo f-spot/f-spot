@@ -5,7 +5,8 @@ EXTRAFLAGS = -d:TEST_METADATA -d:BROKEN_RSVG $(NUNIT_DEFINES) $(BEAGLE_DEFINES) 
 
 CMS_CSDISTFILES =				\
 	$(srcdir)/Cms/Cms.cs			\
-	$(srcdir)/Cms/CctTable.cs
+	$(srcdir)/Cms/CctTable.cs		\
+	$(srcdir)/Cms/NativeMethods.cs
 
 CORE_CSDISTFILES =				\
 	$(srcdir)/Core/Animator.cs		\

@@ -5,12 +5,8 @@
 using System;
 using System.IO;
 using System.Collections;
-using System.Reflection;
 using System.Runtime.InteropServices;
-
-#if ENABLE_NUNIT
-using NUnit.Framework;
-#endif
+using System.Reflection;
 
 namespace Cms {
 	public enum Format : uint {
@@ -83,13 +79,10 @@ namespace Cms {
 			return new ColorCIExyY (x, y, 1.0);
 		}
 
-		[DllImport("liblcms-1.0.0.dll")]
-		static extern bool cmsWhitePointFromTemp(int TempSrc,  out ColorCIExyY white_point);
-
 		public static ColorCIExyY WhitePointFromTemperatureCIE (int temp)
 		{
 			ColorCIExyY wp;
-			cmsWhitePointFromTemp (temp, out wp);
+			NativeMethods.CmsWhitePointFromTemp (temp, out wp);
 			return wp;
 		}
 
@@ -118,23 +111,17 @@ namespace Cms {
 			}			
 		}
 
-		[DllImport("liblcms-1.0.0.dll")]
-		static extern void cmsxyY2XYZ (out ColorCIEXYZ dest, ref ColorCIExyY src);
-
 		public ColorCIEXYZ ToXYZ ()
 		{
 			ColorCIEXYZ dest;
-			cmsxyY2XYZ (out dest, ref this);
+			NativeMethods.CmsxyY2XYZ (out dest, ref this);
 			
 			return dest;
 		}
 
-		[DllImport("liblcms-1.0.0.dll")]
-		static extern IntPtr cmsD50_xyY();
-
 		public static ColorCIExyY D50 {
 			get {
-				IntPtr ptr = cmsD50_xyY ();
+				IntPtr ptr = NativeMethods.CmsD50_xyY ();
 				return (ColorCIExyY) Marshal.PtrToStructure (ptr, typeof (ColorCIExyY));
 			}
 		}
@@ -153,34 +140,6 @@ namespace Cms {
 		{
 			return String.Format ("(x={0}, y={1}, Y={2})", x, y, Y);
 		}
-		
-#if ENABLE_NUNIT
-		[TestFixture]
-		public class Tests {
-			[Test]
-			public void TestTempTable1000 ()
-			{
-				ColorCIExyY wp = WhitePointFromTemperature (1000);
-				Assert.AreEqual (0.652756059, wp.x);
-				Assert.AreEqual (0.344456906, wp.y);
-			}
-
-			[Test]
-			public void TestTempReader ()
-			{
-				for (int i = 1000; i <= 25000; i += 10000)
-					WhitePointFromTemperature (i);
-			}
-			
-			[Test]
-			public void TestTempTable10000 ()
-			{
-				ColorCIExyY wp = WhitePointFromTemperature (10000);
-				Assert.AreEqual (0.280635904, wp.x);
-				Assert.AreEqual (0.288290916, wp.y);
-			}
-		}
-#endif
 	}
 
 	public struct ColorCIEXYZ {
@@ -195,34 +154,25 @@ namespace Cms {
 			this.z = z;
 		}
 
-		[DllImport("liblcms-1.0.0.dll")]
-		static extern void cmsXYZ2xyY (out ColorCIExyY dest, ref ColorCIEXYZ source);
-		
 		public ColorCIExyY ToxyY ()
 		{
 			ColorCIExyY dest;
-			cmsXYZ2xyY (out dest, ref this);
+			NativeMethods.CmsXYZ2xyY (out dest, ref this);
 			
 			return dest;
 		}
 
-		[DllImport("liblcms-1.0.0.dll")]
-		static extern void cmsXYZ2Lab (ref ColorCIEXYZ wp, out ColorCIELab lab, ref ColorCIEXYZ xyz);
-
 		public ColorCIELab ToLab (ColorCIEXYZ wp)
 		{
 			ColorCIELab lab;
-			cmsXYZ2Lab (ref wp, out lab, ref this);
+			NativeMethods.CmsXYZ2Lab (ref wp, out lab, ref this);
 
 			return lab;
 		}
 
-		[DllImport("liblcms-1.0.0.dll")]
-		static extern IntPtr cmsD50_XYZ();
-
 		public static ColorCIEXYZ D50 {
 			get {
-				IntPtr ptr = cmsD50_XYZ ();
+				IntPtr ptr = NativeMethods.CmsD50_XYZ ();
 				return (ColorCIEXYZ) Marshal.PtrToStructure (ptr, typeof (ColorCIEXYZ));
 			}
 		}
@@ -245,24 +195,18 @@ namespace Cms {
 		public double a;
 		public double b;
 
-		[DllImport("liblcms-1.0.0.dll")]
-		static extern void cmsLab2LCh (out ColorCIELCh lch, ref ColorCIELab lab);
-
 		public ColorCIELCh ToLCh ()
 		{
 			ColorCIELCh lch;
-			cmsLab2LCh (out lch, ref this);
+			NativeMethods.CmsLab2LCh (out lch, ref this);
 
 			return lch;
 		}
 
-		[DllImport("liblcms-1.0.0.dll")]
-		static extern void cmsLab2XYZ (ref ColorCIEXYZ wp, out ColorCIEXYZ xyz, ref ColorCIELab lab);
-		
 		public ColorCIEXYZ ToXYZ (ColorCIEXYZ wp)
 		{
 			ColorCIEXYZ xyz;
-			cmsLab2XYZ (ref wp, out xyz, ref this);
+			NativeMethods.CmsLab2XYZ (ref wp, out xyz, ref this);
 
 			return xyz;
 		}
@@ -278,13 +222,10 @@ namespace Cms {
 		public double C;
 		public double h;
 		
-		[DllImport("liblcms-1.0.0.dll")]
-		static extern void cmsLCh2Lab (out ColorCIELab lab, ref ColorCIELCh lch);
-		
 		public ColorCIELab ToLab ()
 		{
 			ColorCIELab lab;
-			cmsLCh2Lab (out lab, ref this);
+			NativeMethods.CmsLCh2Lab (out lab, ref this);
 
 			return lab;
 		}
@@ -329,12 +270,9 @@ namespace Cms {
 //			public ushort StartOfData;  // ushort array Count entries long
 //		}
 
-		[DllImport("liblcms-1.0.0.dll")]
-		static extern IntPtr cmsBuildGamma (int entry_count, double gamma);
-
 		public GammaTable (int count, double gamma)
 		{
-			handle = new HandleRef (this, cmsBuildGamma (count, gamma));
+			handle = new HandleRef (this, NativeMethods.CmsBuildGamma (count, gamma));
 		}
 
 		/*
@@ -368,26 +306,11 @@ namespace Cms {
 		*/
 
 		// FIXME type should be an enum
-		[DllImport("liblcms-1.0.0.dll")]
-		static extern IntPtr cmsBuildParametricGamma (int entry_count, int type, double [] values);
-		
 		public GammaTable (int entry_count, int type, double [] values)
 		{
-			handle = new HandleRef (this, cmsBuildParametricGamma (entry_count, type, values));
+			handle = new HandleRef (this, NativeMethods.CmsBuildParametricGamma (entry_count, type, values));
 		}
 		
-
-//		[DllImport("liblcms-1.0.0.dll")]
-//		static extern IntPtr cmsAllocGamma (int entry_count);
-
-		[DllImport ("libfspot")]
-		static extern IntPtr f_cms_gamma_table_new (ushort [] values, int start, int length);
-
-		[DllImport ("libfspot")]
-		static extern IntPtr f_cms_gamma_table_get_values (HandleRef table);
-
-		[DllImport ("libfspot")]
-		static extern int f_cms_gamma_table_get_count (HandleRef table);
 
 		public GammaTable (ushort [] values) : this (values, 0, values.Length)
 		{
@@ -395,13 +318,13 @@ namespace Cms {
 
 		public int Count {
 			get {
-				return f_cms_gamma_table_get_count (handle);
+				return NativeMethods.f_cms_gamma_table_get_count (handle);
 			}
 		}
 
 		public IntPtr Values {
 			get {
-				return f_cms_gamma_table_get_values (handle);
+				return NativeMethods.f_cms_gamma_table_get_values (handle);
 			}
 		}
 
@@ -436,7 +359,7 @@ namespace Cms {
 		public GammaTable (ushort [] values, int start_offset, int length)
 		{
 #if true
-			handle = new HandleRef (this, f_cms_gamma_table_new (values, start_offset, length));
+			handle = new HandleRef (this, NativeMethods.f_cms_gamma_table_new (values, start_offset, length));
 			//System.Console.WriteLine ("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXhandle = {0}", handle.Handle);
 #else
 			handle = new HandleRef (this, cmsAllocGamma (length));
@@ -446,12 +369,9 @@ namespace Cms {
 #endif
 		}
 
-		[DllImport("liblcms-1.0.0.dll")]
-		static extern void cmsFreeGamma (HandleRef handle);
-		
 		protected virtual void Cleanup ()
 		{
-			cmsFreeGamma (handle);
+			NativeMethods.CmsFreeGamma (handle);
 		}
 		
 		public void Dispose ()
@@ -464,23 +384,6 @@ namespace Cms {
 		{
 			Cleanup ();
 		}
-
-
-#if ENABLE_NUNIT
-		[TestFixture]
-		public class Tests {
-			[Test]
-			public void TestAlloc ()
-			{
-				ushort [] values = new ushort [] { 0, 0x00ff, 0xffff };
-				GammaTable t = new GammaTable (values);
-				for (int i = 0; i < values.Length; i++) {
-					Assert.AreEqual (t[i], values [i]);
-				}
-			} 
-		}
-#endif 
-
 	}
 	
 	public class Transform : IDisposable {
@@ -490,14 +393,6 @@ namespace Cms {
 				return handle;
 			}
 		}
-
-		[DllImport("liblcms-1.0.0.dll")]
-		static extern IntPtr cmsCreateMultiprofileTransform (HandleRef [] hProfiles,
-								     int nProfiles,
-								     Format InputFormat,
-								     Format OutputFormat,
-								     int Intent,
-								     uint dwFlags);
 
 		public Transform (Profile [] profiles,
 				  Format input_format,
@@ -509,40 +404,26 @@ namespace Cms {
 				handles [i] = profiles [i].Handle;
 			}
 			
-			this.handle = new HandleRef (this, cmsCreateMultiprofileTransform (handles, handles.Length, 
+			this.handle = new HandleRef (this, NativeMethods.CmsCreateMultiprofileTransform (handles, handles.Length, 
 											   input_format,
 											   output_format, 
 											   (int)intent, flags));
 		}
 		
-		[DllImport("liblcms-1.0.0.dll")]
-		static extern IntPtr cmsCreateTransform(HandleRef Input,
-							Format InputFormat,
-							HandleRef Output,
-							Format OutputFormat,
-							int Intent,
-							uint dwFlags);
-
 		public Transform (Profile input, Format input_format,
 				  Profile output, Format output_format,
 				  Intent intent, uint flags)
 		{
-			this.handle = new HandleRef (this, cmsCreateTransform (input.Handle, input_format,
+			this.handle = new HandleRef (this, NativeMethods.CmsCreateTransform (input.Handle, input_format,
 									       output.Handle, output_format,
 									       (int)intent, flags));
 		}
 		
-		[DllImport("liblcms-1.0.0.dll")]
-		static extern void cmsDoTransform (HandleRef hTransform, IntPtr InputBuffer, IntPtr OutputBuffer, uint size);
-		
 		// Fixme this should probably be more type stafe 
 		public void Apply (IntPtr input, IntPtr output, uint size)
 		{
-			cmsDoTransform (Handle, input, output, size);
+			NativeMethods.CmsDoTransform (Handle, input, output, size);
 		}
-		
-		[DllImport("liblcms-1.0.0.dll")]
-		static extern void cmsDeleteTransform(HandleRef hTransform);
 		
 		public void Dispose () 
 		{
@@ -552,7 +433,7 @@ namespace Cms {
 		
 		protected virtual void Cleanup ()
 		{
-			cmsDeleteTransform (this.handle);
+			NativeMethods.CmsDeleteTransform (this.handle);
 		}
 		
 		~Transform () 
@@ -829,62 +710,62 @@ namespace Cms {
 				this.handle = new HandleRef (this, profileh);
 		}
 
-		[DllImport("liblcms-1.0.0.dll")]
-		extern static bool cmsTakeMediaWhitePoint (out ColorCIEXYZ wp, HandleRef handle);
+		[DllImport("liblcms-1.0.0.dll", EntryPoint = "cmsTakeMediaWhitePoint")]
+		extern static bool CmsTakeMediaWhitePoint (out ColorCIEXYZ wp, HandleRef handle);
 		
 		public ColorCIEXYZ MediaWhitePoint {
 			get {
 				ColorCIEXYZ wp;
-				if (!cmsTakeMediaWhitePoint (out wp, handle))
+				if (!CmsTakeMediaWhitePoint (out wp, handle))
 					throw new ApplicationException ("unable to retrieve white point from profile");
 				return wp;
 			}
 		}
 
-		[DllImport("liblcms-1.0.0.dll")]
-		extern static bool cmsTakeMediaBlackPoint (out ColorCIEXYZ black, HandleRef handle);
+		[DllImport("liblcms-1.0.0.dll", EntryPoint = "cmsTakeMediaBlackPoint")]
+		extern static bool CmsTakeMediaBlackPoint (out ColorCIEXYZ black, HandleRef handle);
 		
 		public ColorCIEXYZ MediaBlackPoint {
 			get {
 				ColorCIEXYZ black;
-				if (!cmsTakeMediaBlackPoint (out black, handle))
+				if (!CmsTakeMediaBlackPoint (out black, handle))
 					throw new ApplicationException ("unable to retrieve white point from profile");
 				
 				return black;
 			}
 		}
 		
-		[DllImport("liblcms-1.0.0.dll")]
-		extern static bool cmsTakeColorants (out ColorCIEXYZTriple colors, HandleRef handle);
+		[DllImport("liblcms-1.0.0.dll", EntryPoint = "cmsTakeColorants")]
+		extern static bool CmsTakeColorants (out ColorCIEXYZTriple colors, HandleRef handle);
 
 		public ColorCIEXYZTriple Colorants {
 			get {
 				ColorCIEXYZTriple colors;
-				if (! cmsTakeColorants (out colors, handle))
+				if (! CmsTakeColorants (out colors, handle))
 					throw new ApplicationException ("Unable to retrieve profile colorants");
 				
 				return colors;
 			}				
 		}
 		
-		[DllImport("liblcms-1.0.0.dll")]
-		extern static IntPtr cmsTakeModel (HandleRef handle);
+		[DllImport("liblcms-1.0.0.dll", EntryPoint = "cmsTakeModel")]
+		extern static IntPtr CmsTakeModel (HandleRef handle);
 		
 		public string Model {
 			get {
 				lock (srgb) {
-					return Marshal.PtrToStringAnsi (cmsTakeModel (handle));
+					return Marshal.PtrToStringAnsi (CmsTakeModel (handle));
 				}
 			}
 		}
 
-		[DllImport("liblcms-1.0.0.dll")]
-		extern static IntPtr cmsTakeProductName (HandleRef handle);
+		[DllImport("liblcms-1.0.0.dll", EntryPoint = "cmsTakeProductName")]
+		extern static IntPtr CmsTakeProductName (HandleRef handle);
 
 		public string ProductName {
 			get {
 				lock (srgb) {
-					return Marshal.PtrToStringAnsi (cmsTakeProductName (handle));
+					return Marshal.PtrToStringAnsi (CmsTakeProductName (handle));
 				}
 			}
 		}
@@ -942,22 +823,6 @@ namespace Cms {
 			Cleanup ();
 		}
 
-#if ENABLE_NUNIT
-		[TestFixture]
-		public class Tests {
-			[Test]
-			public void LoadSave ()
-			{
-				Profile srgb = CreateStandardRgb ();
-				byte [] data = srgb.Save ();
-				Assert.IsNotNull (data);
-				Profile result = new Profile (data);
-				Assert.AreEqual (result.ProductName, srgb.ProductName);
-				Assert.AreEqual (result.ProductDescription, srgb.ProductDescription);
-				Assert.AreEqual (result.Model, srgb.Model);
-			}
-		}
-#endif 		
 	}
 
 	public class SaveException : System.Exception {
