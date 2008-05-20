@@ -95,7 +95,6 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/GConfPreferenceBackend.cs	\
 	$(srcdir)/GdkGlx.cs			\
 	$(srcdir)/GlTransition.cs		\
-	$(srcdir)/GladeDialog.cs		\
 	$(srcdir)/GroupAdaptor.cs		\
 	$(srcdir)/GroupSelector.cs		\
 	$(srcdir)/Accelerometer.cs		\
@@ -182,6 +181,7 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/UI.Dialog/ColorDialog.cs	\
 	$(srcdir)/UI.Dialog/EditExceptionDialog.cs	\
 	$(srcdir)/UI.Dialog/ExceptionDialog.cs	\
+	$(srcdir)/UI.Dialog/GladeDialog.cs	\
 	$(srcdir)/UI.Dialog/HigMessageDialog.cs	\
 	$(srcdir)/UI.Dialog/PreferenceDialog.cs		\
 	$(srcdir)/UI.Dialog/SelectionRatioDialog.cs	\
