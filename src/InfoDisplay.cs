@@ -60,7 +60,7 @@ namespace FSpot {
                                 url = "file://" + url;
                         }
                         
-                        GnomeUtil.UrlShow (null, url);
+                        GnomeUtil.UrlShow (url);
 		}
 		
 		protected override void OnStyleSet (Gtk.Style previous)

@@ -32,7 +32,6 @@ namespace FSpot
 		uint interval;
 
 		private event GLib.IdleHandler op;
-		private Gtk.Object obj;
 
 		private bool HandleOperation ()
 		{

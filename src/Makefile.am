@@ -1,5 +1,7 @@
 include $(top_srcdir)/Makefile.include
-EXTRAFLAGS = -unsafe -nowarn:0169 -nowarn:0612 -nowarn:0414 -d:TEST_METADATA -d:BROKEN_RSVG $(NUNIT_DEFINES) $(BEAGLE_DEFINES) $(CSC_DEFINES)
+UNSAFE = -unsafe
+NOWARN = -nowarn:0169 -nowarn:0612 -nowarn:0414  
+EXTRAFLAGS = -d:TEST_METADATA -d:BROKEN_RSVG $(NUNIT_DEFINES) $(BEAGLE_DEFINES) $(CSC_DEFINES)
 
 CMS_CSDISTFILES =				\
 	$(srcdir)/Cms/Cms.cs			\
@@ -343,7 +345,7 @@ F_SPOT_CSFILES = $(F_SPOT_CSDISTFILES)	\
 
 Cms.dll: $(CMS_CSFILES)
 	@echo -e "\n*** Compiling $@"
-	$(CSC_LIB) -out:$@ $(EXTRAFLAGS) $(CMS_CSFILES) $(CMS_ASSEMBLIES)
+	$(CSC_LIB) -out:$@ $(EXTRAFLAGS) $(UNSAFE) $(CMS_CSFILES) $(CMS_ASSEMBLIES)
 
 FSpot.Core.dll: $(CORE_CSFILES) FSpot.Utils.dll Cms.dll
 	@echo -e "\n*** Compiling $@"
@@ -367,7 +369,7 @@ FSpot.Widgets.dll: $(WIDGETS_CSFILES) FSpot.Utils.dll FSpot.Core.dll
 
 f-spot.exe: $(F_SPOT_CSFILES) FSpot.Utils.dll FSpot.Core.dll FSpot.Query.dll FSpot.JobScheduler.dll FSpot.Widgets.dll Cms.dll $(F_SPOT_RESOURCES)
 	@echo -e "\n*** Compiling $@"
-	$(CSC) -target:winexe -out:$@ $(EXTRAFLAGS) $(F_SPOT_CSFILES) $(F_SPOT_ASSEMBLIES) $(RESOURCES)
+	$(CSC) -target:winexe -out:$@ $(EXTRAFLAGS) $(UNSAFE) $(NOWARN) $(F_SPOT_CSFILES) $(F_SPOT_ASSEMBLIES) $(RESOURCES)
 
 all: f-spot.exe
 

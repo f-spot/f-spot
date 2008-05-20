@@ -12,12 +12,10 @@ using System;
 namespace FSpot.Utils
 {
 	public class GnomeUtil {
-		Gtk.Window window;
 		string url;
 		
-		private GnomeUtil (Gtk.Window window, string url)
+		private GnomeUtil (string url)
 		{
-			this.window = window;
 			this.url = url;
 		}
 			
@@ -30,9 +28,9 @@ namespace FSpot.Utils
 		       	}
 		}
 	
-		public static void UrlShow (Gtk.Window owner_window, string url)
+		public static void UrlShow (string url)
 		{
-			GnomeUtil disp = new GnomeUtil (owner_window, url);
+			GnomeUtil disp = new GnomeUtil (url);
 			Gtk.Application.Invoke (disp, null, delegate (object sender, EventArgs args) { ((GnomeUtil) disp).Show (); });
 		}
 	
