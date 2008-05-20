@@ -43,6 +43,14 @@ JOBSCHEDULER_CSDISTFILES =				\
 	$(srcdir)/JobScheduler/JobStatus.cs		\
 	$(srcdir)/JobScheduler/Scheduler.cs
 
+WIDGETS_CSDISTFILES =				\
+	$(srcdir)/Widgets/ComplexMenuItem.cs	\
+	$(srcdir)/Widgets/CustomPrintWidget.cs	\
+	$(srcdir)/Widgets/Rating.cs		\
+	$(srcdir)/Widgets/SaneTreeView.cs	\
+	$(srcdir)/Widgets/ScrolledView.cs	\
+	$(srcdir)/Widgets/TagView.cs
+
 F_SPOT_CSDISTFILES =				\
 	$(srcdir)/AsyncPixbufLoader.cs		\
 	$(srcdir)/BeagleNotifier.cs		\
@@ -199,9 +207,7 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/CameraFileSelectionDialog.cs	\
 	$(srcdir)/TagSelectionDialog.cs		\
 	$(srcdir)/Widgets/CairoUtils.cs		\
-	$(srcdir)/Widgets/ComplexMenuItem.cs	\
 	$(srcdir)/Widgets/CompositeUtils.cs	\
-	$(srcdir)/Widgets/CustomPrintWidget.cs	\
 	$(srcdir)/Widgets/Dissolve.cs		\
 	$(srcdir)/Widgets/Filmstrip.cs		\
 	$(srcdir)/Widgets/FindBar.cs		\
@@ -215,15 +221,11 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/Widgets/PanZoom.cs		\
 	$(srcdir)/Widgets/Push.cs		\
 	$(srcdir)/Widgets/QueryView.cs		\
-	$(srcdir)/Widgets/Rating.cs		\
 	$(srcdir)/Widgets/RatingMenuItem.cs	\
 	$(srcdir)/Widgets/Reveal.cs		\
-	$(srcdir)/Widgets/SaneTreeView.cs	\
 	$(srcdir)/Widgets/ScalingIconView.cs	\
-	$(srcdir)/Widgets/ScrolledView.cs	\
 	$(srcdir)/Widgets/SoftFocus.cs		\
 	$(srcdir)/Widgets/TagEntry.cs		\
-	$(srcdir)/Widgets/TagView.cs		\
 	$(srcdir)/Widgets/Tilt.cs		\
 	$(srcdir)/Widgets/TrayView.cs		\
 	$(srcdir)/Widgets/Wipe.cs		\
@@ -259,6 +261,13 @@ UTILS_ASSEMBLIES =				\
 
 JOBSCHEDULER_ASSEMBLIES =
 
+WIDGETS_ASSEMBLIES =				\
+	-pkg:gtk-sharp-2.0			\
+	-pkg:gnome-sharp-2.0			\
+	-r:Mono.Posix				\
+	-r:FSpot.Core.dll			\
+	-r:FSpot.Utils.dll
+
 F_SPOT_ASSEMBLIES = 				\
 	$(LINK_DBUS)				\
 	$(LINK_GPHOTO2)				\
@@ -282,6 +291,7 @@ F_SPOT_ASSEMBLIES = 				\
 	-r:FSpot.Query.dll			\
 	-r:FSpot.Utils.dll			\
 	-r:FSpot.JobScheduler.dll		\
+	-r:FSpot.Widgets.dll			\
 	-r:Cms.dll				\
 	$(NUNIT_PKG)				\
 	$(GCONF_PKG)				\
@@ -326,6 +336,8 @@ UTILS_CSFILES = $(UTILS_CSDISTFILES)
 
 JOBSCHEDULER_CSFILES = $(JOBSCHEDULER_CSDISTFILES)
 
+WIDGETS_CSFILES = $(WIDGETS_CSDISTFILES)
+
 F_SPOT_CSFILES = $(F_SPOT_CSDISTFILES)	\
 	AssemblyInfo.cs
 
@@ -349,7 +361,11 @@ FSpot.JobScheduler.dll: $(JOBSCHEUDLER_CSFILES)
 	@echo -e "\n*** Compiling $@"
 	$(CSC_LIB) -out:$@ $(EXTRAFLAGS) $(JOBSCHEDULER_CSFILES) $(JOBSCHEDULER_ASSEMBLIES)
 
-f-spot.exe: $(F_SPOT_CSFILES) FSpot.Utils.dll FSpot.Core.dll FSpot.Query.dll FSpot.JobScheduler.dll Cms.dll $(F_SPOT_RESOURCES)
+FSpot.Widgets.dll: $(WIDGETS_CSFILES) FSpot.Utils.dll FSpot.Core.dll
+	@echo -e "\n*** Compiling $@"
+	$(CSC_LIB) -out:$@ $(EXTRAFLAGS) $(WIDGETS_CSFILES) $(WIDGETS_ASSEMBLIES)
+
+f-spot.exe: $(F_SPOT_CSFILES) FSpot.Utils.dll FSpot.Core.dll FSpot.Query.dll FSpot.JobScheduler.dll FSpot.Widgets.dll Cms.dll $(F_SPOT_RESOURCES)
 	@echo -e "\n*** Compiling $@"
 	$(CSC) -target:winexe -out:$@ $(EXTRAFLAGS) $(F_SPOT_CSFILES) $(F_SPOT_ASSEMBLIES) $(RESOURCES)
 
@@ -361,6 +377,7 @@ EXTRA_DIST =					\
 	$(CORE_CSDISTFILES)			\
 	$(QUERY_CSDISTFILES)			\
 	$(JOBSCHEDULER_CSDISTFILES)		\
+	$(WIDGETS_CSDISTFILES)			\
 	$(F_SPOT_CSDISTFILES)			\
 	$(F_SPOT_DISTRESOURCES)			\
 	f-spot.exe.config.in			\
@@ -382,6 +399,8 @@ CLEANFILES =					\
 	FSpot.Core.dll				\
 	FSpot.JobScheduler.dll			\
 	FSpot.JobScheduler.dll.mdb		\
+	FSpot.Widgets.dll			\
+	FSpot.Widgets.dll.mdb			\
 	Cms.dll.config
 
 
