@@ -58,6 +58,7 @@ namespace FSpot {
 			comma2_label.Visible = false;
 			box.PackStart (comma2_label, false, false, 0);
 
+			// Note for translators: 'Import roll' is no command, it means 'Roll that has been imported' 
 			rollfilter = new Gtk.Label (Catalog.GetString ("Import roll"));	
 			rollfilter.Visible = false;
 			box.PackStart (rollfilter, false, false, 0);
