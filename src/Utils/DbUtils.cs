@@ -12,8 +12,8 @@ using System;
 
 namespace FSpot.Utils
 {
-	public class DbUtils {
-	#if USE_CORRECT_FUNCTION
+	public static class DbUtils {
+#if USE_CORRECT_FUNCTION
 		public static DateTime DateTimeFromUnixTime (long unix_time)
 		{
 			DateTime date_time = new DateTime (1970, 1, 1);
@@ -24,7 +24,7 @@ namespace FSpot.Utils
 		{
 			return (long) (date_time.ToUniversalTime () - new DateTime (1970, 1, 1)).TotalSeconds;
 		}
-	#else
+#else
 		public static DateTime DateTimeFromUnixTime (long unix_time)
 		{
 			DateTime date_time = new DateTime (1970, 1, 1).ToLocalTime ();
@@ -35,6 +35,6 @@ namespace FSpot.Utils
 		{
 			return (long) (date_time - new DateTime (1970, 1, 1).ToLocalTime ()).TotalSeconds;
 		}
-	#endif
+#endif
 	}
 }

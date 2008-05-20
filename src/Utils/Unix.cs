@@ -1,24 +1,27 @@
 using System.Runtime.InteropServices;
 
 namespace FSpot.Utils {
-	public class Unix {
-
-		[DllImport ("libc")]
-		static extern int rename (string oldpath, string newpath);
-		
-		public static int Rename (string oldpath, string newpath)
+	public static class Unix {
+		internal static class NativeMethods
 		{
-			return rename (oldpath, newpath);
+			[DllImport ("libc", EntryPoint="rename", CharSet = CharSet.Auto)]
+			public static extern int Rename (string oldpath, string newpath);
+
+			[DllImport ("libc", EntryPoint="mkstemp")]
+			public static extern int MkSTemp (byte []template);
 		}
 
-		[DllImport ("libc")]
-		static extern int mkstemp (byte []template);
+		public static int Rename (string oldpath, string newpath)
+		{
+			return NativeMethods.Rename (oldpath, newpath);
+		}
+
 
 		public static Mono.Unix.UnixStream MakeSafeTemp (ref string template)
 		{
 			byte [] template_bytes = System.Text.Encoding.UTF8.GetBytes (template + ".XXXXXX\0");
 
-			int fd = mkstemp (template_bytes);
+			int fd = NativeMethods.MkSTemp (template_bytes);
 
 			if (fd < 0) {
 				//Mono.Unix.Error error = Mono.Unix.Stdlib.GetLastError ();

@@ -12,7 +12,7 @@ using System;
 
 namespace FSpot.Utils
 {
-	public class GtkUtil {
+	public static class GtkUtil {
 		public static Gtk.MenuItem MakeMenuItem (Gtk.Menu menu, string l, EventHandler e)
 		{
 			return MakeMenuItem (menu, l, e, true);

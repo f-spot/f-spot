@@ -13,7 +13,7 @@ using System.IO;
 
 namespace FSpot.Utils
 {
-	public class UriUtils
+	public static class UriUtils
 	{
 		public static string UriToStringEscaped (Uri uri)
 		{
