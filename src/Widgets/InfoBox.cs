@@ -133,7 +133,7 @@ namespace FSpot.Widgets
 			date_label.Text = Environment.NewLine;
 			exposure_info_label.Text = Environment.NewLine;
 	
-			tag_view = new TagView ();
+			tag_view = new TagView (MainWindow.ToolTips);
 			table.Attach (tag_view, 0, 2, 5, 6, AttachOptions.Fill, AttachOptions.Fill, TABLE_XPADDING, TABLE_YPADDING);
 			tag_view.Show ();
 			table.ShowAll ();
