@@ -967,7 +967,6 @@ namespace FSpot {
 		{
 			requisition.Width = 500;
 			requisition.Height = (int) (LegendHeight () + glass.handle_height + 3 * border);
-			base.OnSizeRequested (ref requisition);
 		}
 
 		// FIXME I can't find a c# wrapper for the C PANGO_PIXELS () macro

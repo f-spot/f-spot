@@ -322,7 +322,6 @@ namespace FSpot.Widgets
 				requisition.Width += BackgroundTile.Width - min_length % BackgroundTile.Width;	
 
 			requisition.Height = BackgroundTile.Height + (2 * y_offset);
-			base.OnSizeRequested(ref requisition);
 		}
 
 		Pixbuf background_pixbuf;
@@ -531,7 +530,15 @@ namespace FSpot.Widgets
 
 		~Filmstrip ()
 		{
-			this.Dispose ();
+			Log.DebugFormat ("Finalizer called on {0}. Should be Disposed", GetType ());		
+			lock (this) {
+				if (background_pixbuf != null)
+					background_pixbuf.Dispose ();
+				if (background_tile != null)
+					background_tile.Dispose ();
+			}
+			background_pixbuf = null;
+			background_tile = null;
 		}
 			
 		public override void Dispose ()

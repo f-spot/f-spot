@@ -609,7 +609,6 @@ namespace FSpot {
 		{
 			Layout ();
 			requisition = Bounds;
-			base.OnSizeRequested (ref requisition);
 		}
 
 		protected virtual void BuildUI ()
