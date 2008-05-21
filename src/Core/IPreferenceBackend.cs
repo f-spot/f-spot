@@ -7,6 +7,9 @@
  * This is free software. See COPYING for details.
  */
 
+using System;
+using System.Runtime.Serialization;
+
 namespace FSpot
 {
 	public class NotifyEventArgs : System.EventArgs
@@ -28,13 +31,21 @@ namespace FSpot
 		}
 	}
 
-	public class NoSuchKeyException : System.Exception
+	public class NoSuchKeyException : Exception
 	{
 		public NoSuchKeyException () : base ()
 		{
 		}
 
 		public NoSuchKeyException (string key) : base (key)
+		{
+		}
+
+		public NoSuchKeyException (string key, Exception e) : base (key, e)
+		{
+		}
+
+		protected NoSuchKeyException (SerializationInfo info, StreamingContext context) : base (info, context)
 		{
 		}
 	}

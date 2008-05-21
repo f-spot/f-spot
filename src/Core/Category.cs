@@ -1,5 +1,5 @@
 /*
- * FSpot.Tag
+ * FSpot.Category.cs
  * 
  * Author(s):
  *	Larry Ewing  <lewing@novell.com>

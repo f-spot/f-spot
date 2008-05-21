@@ -9,6 +9,7 @@
 
 using System;
 using System.Collections.Generic;
+using FSpot.Utils;
 
 namespace FSpot.Query
 {
@@ -17,7 +18,7 @@ namespace FSpot.Query
 		public abstract string SqlClause ();
 	}
 
-	public class TagTerm : LogicalTerm
+	public class TagTerm : LogicalTerm, IDisposable
 	{
 		Tag tag;
 		public Tag Tag {
@@ -50,6 +51,20 @@ namespace FSpot.Query
 				return String.Format (" (photos.id IN (SELECT photo_id FROM photo_tags WHERE tag_id = {0})) ", tagids[0]);
 			else
 				return String.Format (" (photos.id IN (SELECT photo_id FROM photo_tags WHERE tag_id IN ({0}))) ", String.Join (", ", tagids));
+		}
+
+		public void Dispose ()
+		{
+			if (tag != null)
+				tag.Dispose ();
+			System.GC.SuppressFinalize (this);
+		}
+
+		~TagTerm ()
+		{
+			Log.DebugFormat ("Finalizer called on {0}. Should be Disposed", GetType ());
+			if (tag != null)
+				tag.Dispose ();
 		}
 	}
 
@@ -118,7 +133,7 @@ namespace FSpot.Query
 			return ls.ToArray ();
 		}
 
-		public string SqlClause (string op, string[] items)
+		public static string SqlClause (string op, string[] items)
 		{
 			if (items.Length == 1)
 				return items [0];

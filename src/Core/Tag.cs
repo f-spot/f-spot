@@ -14,7 +14,7 @@ using FSpot.Utils;
 
 namespace FSpot
 {
-	public class Tag : DbItem, IComparable {
+	public class Tag : DbItem, IComparable, IDisposable {
 		private string name;
 		public string Name {
 			set {
@@ -153,6 +153,28 @@ namespace FSpot
 			}
 	
 			return false;
+		}
+
+		public void Dispose ()
+		{
+			if (icon != null)
+				icon.Dispose ();
+			if (cached_icon != null)
+				cached_icon.Dispose ();
+			if (category != null)
+				category.Dispose ();
+			System.GC.SuppressFinalize (this);
+		}
+
+		~Tag ()
+		{
+			Log.DebugFormat ("Finalizer called on {0}. Should be Disposed", GetType ());		
+			if (icon != null)
+				icon.Dispose ();
+			if (cached_icon != null)
+				cached_icon.Dispose ();
+			if (category != null)
+				category.Dispose ();
 		}
 	}
 }
