@@ -123,8 +123,8 @@ namespace FSpot.UI.Dialog {
 			string active_theme = Preferences.Get (Preferences.GTK_RC) as string;
 			int it = 0;
 			foreach (string theme in theme_list.Keys) {
-				themelist_combo.AppendText (System.IO.Path.GetFileName (theme));
-				if (active_theme.Contains (System.IO.Path.DirectorySeparatorChar + System.IO.Path.GetFileName (theme) + System.IO.Path.DirectorySeparatorChar))
+				themelist_combo.AppendText (Path.GetFileName (theme));
+				if (active_theme.Contains (Path.DirectorySeparatorChar + Path.GetFileName (theme) + Path.DirectorySeparatorChar))
 					themelist_combo.Active = it;
 				it ++;
 			}
@@ -133,7 +133,7 @@ namespace FSpot.UI.Dialog {
 			themelist_combo.Changed += HandleThemeComboChanged;
 			themelist_combo.Show ();
 			themelist_combo.Sensitive = theme_filechooser.Sensitive = themecustom_radio.Active; 
-			if (System.IO.File.Exists (active_theme))
+			if (File.Exists (active_theme))
 				theme_filechooser.SetFilename (Preferences.Get (Preferences.GTK_RC) as string);
 			theme_filechooser.SelectionChanged += HandleThemeFileActivated;
 			themecustom_radio.Active = (active_theme != String.Empty);	
