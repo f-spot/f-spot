@@ -120,17 +120,23 @@ namespace FSpot.UI.Dialog {
 						if (File.Exists (Path.Combine (dir, gtkrc)) && !theme_list.ContainsKey (Path.GetFileName (dir)))
 							theme_list.Add (Path.GetFileName (dir), Path.Combine (dir, gtkrc));
 			
-			foreach (string theme in theme_list.Keys)
+			string active_theme = Preferences.Get (Preferences.GTK_RC) as string;
+			int it = 0;
+			foreach (string theme in theme_list.Keys) {
 				themelist_combo.AppendText (System.IO.Path.GetFileName (theme));
+				if (active_theme.Contains (System.IO.Path.DirectorySeparatorChar + System.IO.Path.GetFileName (theme) + System.IO.Path.DirectorySeparatorChar))
+					themelist_combo.Active = it;
+				it ++;
+			}
 			
 			theme_table.Attach (themelist_combo, 2, 3, 0, 1);
 			themelist_combo.Changed += HandleThemeComboChanged;
 			themelist_combo.Show ();
 			themelist_combo.Sensitive = theme_filechooser.Sensitive = themecustom_radio.Active; 
-			if (System.IO.File.Exists (Preferences.Get (Preferences.GTK_RC) as string))
+			if (System.IO.File.Exists (active_theme))
 				theme_filechooser.SetFilename (Preferences.Get (Preferences.GTK_RC) as string);
 			theme_filechooser.SelectionChanged += HandleThemeFileActivated;
-			themecustom_radio.Active = (Preferences.Get (Preferences.GTK_RC) as string != String.Empty);	
+			themecustom_radio.Active = (active_theme != String.Empty);	
 
 #if GTK_2_12_2
 			restartlabel.Visible = false;
