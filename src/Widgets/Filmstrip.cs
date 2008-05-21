@@ -18,6 +18,8 @@ using System.Collections;
 using Gtk;
 using Gdk;
 
+using FSpot.Utils;
+
 namespace FSpot.Widgets
 {
 	public class Filmstrip : EventBox, IDisposable
