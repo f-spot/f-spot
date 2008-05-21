@@ -305,7 +305,7 @@ namespace FSpot {
 
 		private void PhotoItemChanged (BrowsablePointer item, BrowsablePointerChangedArgs args) 
 		{
-			System.Console.WriteLine ("item changed");
+			Log.Debug ("PhotoImageView::item changed");
 			// If it is just the position that changed fall out
 			if (args != null && 
 			    args.PreviousItem != null &&

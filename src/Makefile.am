@@ -39,9 +39,11 @@ QUERY_CSDISTFILES =				\
 	$(srcdir)/Query/UntaggedCondition.cs
 
 UTILS_CSDISTFILES =				\
+	$(srcdir)/Utils/ConsoleCrayon.cs	\
 	$(srcdir)/Utils/DbUtils.cs		\
 	$(srcdir)/Utils/GnomeUtil.cs		\
 	$(srcdir)/Utils/GtkUtil.cs		\
+	$(srcdir)/Utils/Log.cs			\
 	$(srcdir)/Utils/Unix.cs			\
 	$(srcdir)/Utils/UriUtils.cs		\
 	$(srcdir)/Utils/ScreenSaver.cs

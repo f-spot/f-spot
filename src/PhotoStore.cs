@@ -661,7 +661,7 @@ public class PhotoStore : DbStore {
 			query_builder.Append (String.Join (" AND ", ((String []) where_clauses.ToArray (typeof(String)))));
 		}
 		query_builder.Append (" ORDER BY photos.time");
-		Console.WriteLine ("Query: {0}", query_builder.ToString());
+		Log.DebugFormat ("Query: {0}", query_builder.ToString());
 		return Query (query_builder.ToString ());
 	}
 }

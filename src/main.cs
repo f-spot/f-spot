@@ -142,7 +142,10 @@ public class Driver {
 				Version ();
 				return 0;
 			
-			case "--debug": case "--trace": case "--profile": case "--uninstalled": case "--gdb":
+			case "--debug":
+				Log.Debugging = true;
+				break;
+			case "--trace": case "--profile": case "--uninstalled": case "--gdb":
 				break;
 
 			default:
@@ -176,7 +179,7 @@ public class Driver {
 			} catch (Exception e) {
 				throw new ApplicationException ("F-Spot cannot find the Dbus session bus.  Make sure dbus is configured properly or start a new session for f-spot using \"dbus-launch f-spot\"", e);
 			}
-			Console.WriteLine ("Initializing Mono.Addins");
+			Log.Information ("Initializing Mono.Addins");
 			AddinManager.Initialize (FSpot.Global.BaseDirectory);
 			AddinManager.Registry.Update (null);
 			SetupService setupService = new SetupService (AddinManager.Registry);
@@ -193,11 +196,11 @@ public class Driver {
 			while (control == null) {
 				try {
 					control = Core.FindInstance ();
-					System.Console.WriteLine ("Found active FSpot server: {0}", control);
+					Log.InformationFormat ("Found active FSpot server: {0}", control);
 					program = null;
 				} catch (System.Exception) { 
 					if (!shutdown)
-						System.Console.WriteLine ("Starting new FSpot server");
+						Log.Information ("Starting new FSpot server");
 				}
 				
 				Core core = null;

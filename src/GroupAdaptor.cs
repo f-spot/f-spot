@@ -45,7 +45,7 @@ namespace FSpot {
 
 		protected void HandleQueryChanged (IBrowsableCollection sender)
 		{
-			System.Console.WriteLine ("Reloading" );
+			Log.Debug ("GroupAdaptor::Reloading" );
 			Reload ();
 		}
 
