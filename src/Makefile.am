@@ -4,9 +4,18 @@ NOWARN = -nowarn:0169 -nowarn:0612 -nowarn:0414
 EXTRAFLAGS = -d:TEST_METADATA -d:BROKEN_RSVG $(NUNIT_DEFINES) $(BEAGLE_DEFINES) $(CSC_DEFINES)
 
 CMS_CSDISTFILES =				\
-	$(srcdir)/Cms/Cms.cs			\
 	$(srcdir)/Cms/CctTable.cs		\
-	$(srcdir)/Cms/NativeMethods.cs
+	$(srcdir)/Cms/ColorCIELab.cs		\
+	$(srcdir)/Cms/ColorCIELCh.cs		\
+	$(srcdir)/Cms/ColorCIExyY.cs		\
+	$(srcdir)/Cms/ColorCIEXYZ.cs		\
+	$(srcdir)/Cms/Format.cs			\
+	$(srcdir)/Cms/GammaTable.cs		\
+	$(srcdir)/Cms/IccColorSpace.cs		\
+	$(srcdir)/Cms/Intent.cs			\
+	$(srcdir)/Cms/NativeMethods.cs		\
+	$(srcdir)/Cms/Profile.cs		\
+	$(srcdir)/Cms/Transform.cs
 
 CORE_CSDISTFILES =				\
 	$(srcdir)/Core/Animator.cs		\
