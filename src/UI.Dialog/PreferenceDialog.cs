@@ -113,7 +113,7 @@ namespace FSpot.UI.Dialog {
 			themelist_combo = ComboBox.NewText ();
 			theme_list = new Dictionary<string, string> ();
 			string gtkrc = Path.Combine ("gtk-2.0", "gtkrc");
-			string [] search = {"/usr/share/themes", Path.Combine (Global.HomeDirectory, ".themes")};
+			string [] search = {Path.Combine (Global.HomeDirectory, ".themes"), "/usr/share/themes"};
 			foreach (string path in search)
 				if (Directory.Exists (path)) 
 					foreach (string dir in Directory.GetDirectories (path))
