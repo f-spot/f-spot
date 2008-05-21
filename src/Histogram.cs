@@ -1,5 +1,10 @@
 /* 
- *  
+ * FSpot.Histogram.cs
+ *
+ * Author(s):
+ *	Larry Ewing  <lewing@novell.com>
+ *
+ * This is free software, See COPYING for details.
  */
 
 using System;

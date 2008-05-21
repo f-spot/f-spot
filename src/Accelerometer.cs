@@ -22,7 +22,7 @@ namespace FSpot {
 
 		private static Orient current_orientation;
 
-		public Orient CurrentOrientation {
+		public static Orient CurrentOrientation {
 			get {
 				return current_orientation;
 			}

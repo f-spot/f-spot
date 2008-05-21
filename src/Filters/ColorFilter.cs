@@ -1,5 +1,5 @@
 /*
- * Filters/RotateFilter.cs
+ * FSpot.Filters.ColorFilter.cs
  *
  * Author(s)
  *

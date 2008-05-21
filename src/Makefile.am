@@ -151,7 +151,6 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/Imaging/Tiff.cs		\
 	$(srcdir)/JobStore.cs			\
 	$(srcdir)/Jobs/SyncMetadataJob.cs	\
-	$(srcdir)/LastRollDialog.cs		\
 	$(srcdir)/Loupe.cs			\
 	$(srcdir)/MainWindow.cs			\
 	$(srcdir)/MemorySurface.cs		\
@@ -206,6 +205,7 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/UI.Dialog/ExceptionDialog.cs	\
 	$(srcdir)/UI.Dialog/GladeDialog.cs	\
 	$(srcdir)/UI.Dialog/HigMessageDialog.cs	\
+	$(srcdir)/UI.Dialog/LastRollDialog.cs		\
 	$(srcdir)/UI.Dialog/PreferenceDialog.cs		\
 	$(srcdir)/UI.Dialog/SelectionRatioDialog.cs	\
 	$(srcdir)/UI.Dialog/RepairDbDialog.cs	\

@@ -45,6 +45,5 @@ namespace FSpot {
 			req.SendAsync ();
 		}
 	}
-
 }
 #endif

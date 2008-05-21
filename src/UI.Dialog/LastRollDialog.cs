@@ -15,7 +15,7 @@ using Gnome;
 using FSpot.Query;
 using FSpot.UI.Dialog;
 
-namespace FSpot {
+namespace FSpot.UI.Dialog {
 	public class LastRolls : GladeDialog {
 		FSpot.PhotoQuery query;
 		RollStore rollstore;
