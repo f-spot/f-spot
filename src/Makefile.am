@@ -269,7 +269,7 @@ UTILS_ASSEMBLIES =				\
 	-pkg:gtk-sharp-2.0			\
 	-pkg:gnome-sharp-2.0			\
 	-r:Mono.Posix				\
-	-r:MCairo=Mono.Cairo			\
+	-r:Mono.Cairo				\
 	$(GCONF_PKG)				\
 	$(LINK_DBUS)
 
@@ -299,7 +299,6 @@ F_SPOT_ASSEMBLIES = 				\
 	-r:Mono.Data.SqliteClient		\
 	-r:Mono.Posix				\
 	-r:Mono.Security			\
-	-r:MCairo=Mono.Cairo			\
 	-r:Mono.Cairo				\
 	-r:ICSharpCode.SharpZipLib		\
 	-r:FSpot.Core.dll			\

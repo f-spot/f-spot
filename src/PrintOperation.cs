@@ -8,7 +8,7 @@
  */
 
 #if GTK_2_10
-extern alias MCairo;
+using Cairo;
 using System;
 using System.Runtime.InteropServices;
 
@@ -60,9 +60,9 @@ namespace FSpot
 		protected void OnCustomWidgetChanged (Gtk.Widget widget)
 		{
 			OnCustomWidgetApply (widget);
-			using (MCairo::Cairo.ImageSurface surface = new MCairo::Cairo.ImageSurface (MCairo::Cairo.Format.ARGB32, 360, 254)) {
-				using (MCairo::Cairo.Context gr = new MCairo::Cairo.Context (surface)) {
-					gr.Color = new MCairo::Cairo.Color (1, 1, 1);
+			using (ImageSurface surface = new ImageSurface (Format.ARGB32, 360, 254)) {
+				using (Context gr = new Context (surface)) {
+					gr.Color = new Color (1, 1, 1);
 					gr.Rectangle (0, 0, 360, 254);
 					gr.Fill ();
 					using (Gdk.Pixbuf pixbuf = Gdk.Pixbuf.LoadFromResource ("flower.png")) {
@@ -76,7 +76,7 @@ namespace FSpot
 		protected override void OnDrawPage (Gtk.PrintContext context, int page_nr)
 		{
 			base.OnDrawPage (context, page_nr);
-			MCairo::Cairo.Context cr = context.CairoContext;	
+			Context cr = context.CairoContext;	
 
 			int ppx, ppy;
 			switch (photos_per_page) {
@@ -131,10 +131,10 @@ namespace FSpot
 			base.OnRequestPageSetup (context, page_nr, setup);
 		}
 
-		private void DrawCropMarks (MCairo::Cairo.Context cr, double x, double y, double length)
+		private void DrawCropMarks (Context cr, double x, double y, double length)
 		{
 			cr.Save ();
-			cr.Color = new MCairo::Cairo.Color (0, 0, 0);
+			cr.Color = new Color (0, 0, 0);
 			cr.MoveTo (x - length/2, y);
 			cr.LineTo (x + length/2, y);
 			cr.MoveTo (x, y - length/2);
@@ -150,7 +150,7 @@ namespace FSpot
 			if (comment == null || comment == String.Empty)
 				return;
 
-			MCairo::Cairo.Context cr = context.CairoContext;
+			Context cr = context.CairoContext;
 			cr.Save ();
 			Pango.Layout layout = context.CreatePangoLayout ();
 			Pango.FontDescription desc = Pango.FontDescription.FromString ("sans 14");
@@ -171,7 +171,7 @@ namespace FSpot
 		}
 	
 
-		private void DrawImage (MCairo::Cairo.Context cr, Gdk.Pixbuf pixbuf, double x, double y, double w, double h)
+		private void DrawImage (Context cr, Gdk.Pixbuf pixbuf, double x, double y, double w, double h)
 		{
 			double scalex, scaley;
 			switch (fit) {
@@ -205,7 +205,7 @@ namespace FSpot
 
 			if (white_borders) {
 				cr.Rectangle (0, 0 ,rectw, recth);
-				cr.Color = new MCairo::Cairo.Color (0, 0, 0);
+				cr.Color = new Color (0, 0, 0);
 				cr.LineWidth = 1 / scalex;
 				cr.Stroke ();
 			}
@@ -215,7 +215,7 @@ namespace FSpot
 		[DllImport("libfspot")]
 		static extern IntPtr f_pixbuf_from_cairo_surface (IntPtr handle);
 		
-		private static Gdk.Pixbuf CreatePixbuf (MCairo::Cairo.Surface s)
+		private static Gdk.Pixbuf CreatePixbuf (Surface s)
 		{
 			IntPtr result = f_pixbuf_from_cairo_surface (s.Handle);
 			return (Gdk.Pixbuf) GLib.Object.GetObject (result, true);

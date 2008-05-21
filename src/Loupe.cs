@@ -1,8 +1,4 @@
-#if CAIRO_1_2_5
-extern alias MCairo;
-#else
 using Cairo;
-#endif
 
 using Gtk;
 using Gdk;
@@ -309,7 +305,7 @@ namespace FSpot {
 							    Allocation.Height, 1);
 			
 #if CAIRO_1_2_5
-			MCairo::Cairo.Context g = CairoHelper.Create (bitmap);
+			Context g = CairoHelper.Create (bitmap);
 #else			
 			Context g = CairoUtils.CreateContext (bitmap);
 #endif			
@@ -321,7 +317,7 @@ namespace FSpot {
 				ShapeCombineMask (bitmap, 0, 0);
 			else {
 #if CAIRO_1_2_5			 
-				MCairo::Cairo.Context rgba = CairoHelper.Create (GdkWindow);
+				Cairo.Context rgba = CairoHelper.Create (GdkWindow);
 #else				
 				Context rgba = CairoUtils.CreateContext (GdkWindow);
 #endif				
@@ -356,23 +352,14 @@ namespace FSpot {
 			hotspot.Y = (int) Math.Ceiling (Center.Y + y_proj);
 		}
 	
-#if CAIRO_1_2_5		
-		private void DrawShape (MCairo::Cairo.Context g, int width, int height)
-#else
 		private void DrawShape (Context g, int width, int height)
-#endif				
 		{
 			int inner_x = radius + border + inner;
 			int cx = Center.X;
 			int cy = Center.Y;
 		
-#if CAIRO_1_2_5			
-			g.Operator = MCairo::Cairo.Operator.Source;
-			g.Source = new MCairo::Cairo.SolidPattern (new MCairo::Cairo.Color (0,0,0,0));
-#else
 			g.Operator = Operator.Source;
 			g.Source = new SolidPattern (new Cairo.Color (0,0,0,0));
-#endif						
 			g.Rectangle (0, 0, width, height);
 			g.Paint ();
 
@@ -380,25 +367,15 @@ namespace FSpot {
 			g.Translate (cx, cy);
 			g.Rotate (angle);
 
-#if CAIRO_1_2_5			
-			g.Source = new MCairo::Cairo.SolidPattern (new MCairo::Cairo.Color (0.2, 0.2, 0.2, .6));
-			g.Operator = MCairo::Cairo.Operator.Over;
-#else
 			g.Source = new SolidPattern (new Cairo.Color (0.2, 0.2, 0.2, .6));
 			g.Operator = Operator.Over;
-#endif						
 			g.Rectangle (0, - (border + inner), inner_x, 2 * (border + inner));
 			g.Arc (inner_x, 0, inner + border, 0, 2 * Math.PI);
 			g.Arc (0, 0, radius + border, 0, 2 * Math.PI);
 			g.Fill ();
 
-#if CAIRO_1_2_5
-			g.Source = new MCairo::Cairo.SolidPattern (new MCairo::Cairo.Color (0, 0, 0, 1.0));
-			g.Operator = MCairo::Cairo.Operator.DestOut;
-#else
 			g.Source = new SolidPattern (new Cairo.Color (0, 0, 0, 1.0));
 			g.Operator = Operator.DestOut;
-#endif						
 			g.Arc (inner_x, 0, inner, 0, 2 * Math.PI);
 #if true			
 			g.Fill ();
@@ -414,19 +391,14 @@ namespace FSpot {
 			g.Fill ();
 			rg.Destroy ();
 #endif
-#if CAIRO_1_2_5			
-			g.Operator = MCairo::Cairo.Operator.Over;
-			g.Matrix = new MCairo::Cairo.Matrix ();
-#else			
 			g.Operator = Operator.Over;
 			g.Matrix = new Matrix ();
-#endif			
 			g.Translate (cx, cy);
 			if (source != null)
 #if CAIRO_1_2_5			 
-				CairoHelper.SetSourcePixbuf (g, source, -source.Width / 2, -source.Height / 2);
+			CairoHelper.SetSourcePixbuf (g, source, -source.Width / 2, -source.Height / 2);
 #else
-				SetSourcePixbuf (g, source, -source.Width / 2, -source.Height / 2);
+			SetSourcePixbuf (g, source, -source.Width / 2, -source.Height / 2);
 #endif								
 
 			g.Arc (0, 0, radius, 0, 2 * Math.PI);
@@ -442,11 +414,7 @@ namespace FSpot {
 				g.Arc (0, 0, radius, angle, angle + Math.PI);
 				g.ClosePath ();
 				g.FillPreserve ();
-#if CAIRO_1_2_5				
-				g.Source = new MCairo::Cairo.SolidPattern (new MCairo::Cairo.Color (1.0, 1.0, 1.0, 1.0));
-#else
 				g.Source = new SolidPattern (new Cairo.Color (1.0, 1.0, 1.0, 1.0));
-#endif								
 				g.Stroke ();
 			}
 		}
@@ -468,7 +436,7 @@ namespace FSpot {
 		protected override bool OnExposeEvent (Gdk.EventExpose args)
 		{
 #if CAIRO_1_2_5		 
-			MCairo::Cairo.Context g = CairoHelper.Create (GdkWindow);
+			Context g = CairoHelper.Create (GdkWindow);
 #else
 			Context g = CairoUtils.CreateContext (GdkWindow);			
 #endif						
@@ -483,11 +451,7 @@ namespace FSpot {
                 [DllImport ("libcairo-2.dll")]
                 static extern void cairo_user_to_device (IntPtr cr, ref double x, ref double y);
 
-#if CAIRO_1_2_5
-		static void UserToDevice (MCairo::Cairo.Context ctx, ref double x, ref double y)
-#else		
 		static void UserToDevice (Context ctx, ref double x, ref double y)
-#endif		
 		{
 			cairo_user_to_device (ctx.Handle, ref x, ref y);
 		}
