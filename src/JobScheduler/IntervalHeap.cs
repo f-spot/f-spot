@@ -187,12 +187,12 @@ namespace Banshee.Kernel
             return -1;
         }
         
-        private int GetLeftChildIndex(int index)
+        private static int GetLeftChildIndex(int index)
         {
             return index * 2 + 1;
         }
         
-        private int GetParentIndex(int index)
+        private static int GetParentIndex(int index)
         {
             return (index - 1) / 2;
         }
@@ -275,9 +275,14 @@ namespace Banshee.Kernel
             public int Priority { 
                 get { return priority; }
             }
+	
+	   public override int GetHashCode ()
+	   {
+		return priority.GetHashCode () ^ item.GetHashCode ();
+	   }
         }
         
-        private class SyncIntervalHeap : IntervalHeap<T>
+        private sealed class SyncIntervalHeap : IntervalHeap<T>
         {
             private IntervalHeap<T> heap;
             
@@ -349,7 +354,7 @@ namespace Banshee.Kernel
             }
         }
     
-        private class IntervalHeapEnumerator : IEnumerator<T>, IEnumerator
+        private sealed class IntervalHeapEnumerator : IEnumerator<T>, IEnumerator
         {
             private IntervalHeap<T> heap;
             private int index;

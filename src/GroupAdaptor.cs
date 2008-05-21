@@ -1,4 +1,4 @@
-
+using FSpot.Utils;
 
 namespace FSpot {
 	public interface ILimitable {

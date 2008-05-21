@@ -24,7 +24,7 @@ namespace FSpot.Utils
 			try {
 				Gnome.Url.Show (url);
 			} catch (Exception ge) {
-		       		System.Console.WriteLine (ge.ToString ());
+		       		Log.Exception (ge);
 		       	}
 		}
 	
@@ -43,11 +43,11 @@ namespace FSpot.Utils
 						filename,
 						link_id,
 						screen);
-			} catch {
-				Console.WriteLine (Mono.Unix.Catalog.GetString ("The \"F-Spot Manual\" could " +
+			} catch (Exception e) {
+				Log.Exception (Mono.Unix.Catalog.GetString ("The \"F-Spot Manual\" could " +
 						"not be found.  Please verify " +
 						"that your installation has been " +
-						"completed successfully."));
+						"completed successfully."), e);
 			}
 		}
 

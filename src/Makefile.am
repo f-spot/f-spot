@@ -273,7 +273,8 @@ UTILS_ASSEMBLIES =				\
 	$(GCONF_PKG)				\
 	$(LINK_DBUS)
 
-JOBSCHEDULER_ASSEMBLIES =
+JOBSCHEDULER_ASSEMBLIES =			\
+	-r:FSpot.Utils.dll
 
 WIDGETS_ASSEMBLIES =				\
 	-pkg:gtk-sharp-2.0			\
@@ -372,7 +373,7 @@ FSpot.Utils.dll: $(UTILS_CSFILES)
 	@echo -e "\n*** Compiling $@"
 	$(CSC_LIB) -out:$@ $(EXTRAFLAGS) $(UTILS_CSFILES) $(UTILS_ASSEMBLIES)
 
-FSpot.JobScheduler.dll: $(JOBSCHEUDLER_CSFILES)
+FSpot.JobScheduler.dll: $(JOBSCHEDULER_CSFILES) FSpot.Utils.dll
 	@echo -e "\n*** Compiling $@"
 	$(CSC_LIB) -out:$@ $(EXTRAFLAGS) $(JOBSCHEDULER_CSFILES) $(JOBSCHEDULER_ASSEMBLIES)
 

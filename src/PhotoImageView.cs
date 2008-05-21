@@ -1,5 +1,6 @@
 using System;
 using FSpot.Editors;
+using FSpot.Utils;
 
 namespace FSpot {
 	public enum ProgressType {

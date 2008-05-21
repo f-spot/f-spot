@@ -41,12 +41,12 @@ namespace FSpot.Utils
 			if (inhibited)
 				return cookie;
 
-			Console.WriteLine ("Inhibit screensaver for slideshow");
+			Log.Information ("Inhibit screensaver for slideshow");
 			try {
 				cookie = GnomeScreenSaver.Inhibit ("f-spot", reason);
 				inhibited = true;
 			} catch (Exception ex) {
-				Console.WriteLine ("Error Inhibiting the screenserver: {0}", ex.Message);
+				Log.Exception ("Error Inhibiting the screenserver", ex);
 			}	
 			return cookie;
 		}
@@ -55,12 +55,12 @@ namespace FSpot.Utils
 			if (!inhibited)
 				return;
 
-			Console.WriteLine ("UnInhibit screensaver");
+			Log.Information ("UnInhibit screensaver");
 			try {
 				GnomeScreenSaver.UnInhibit (cookie);
 				inhibited = false;
 			} catch (Exception ex) {
-				Console.WriteLine("Error UnInhibiting the screenserver: {0}", ex.Message);
+				Log.Exception ("Error UnInhibiting the screenserver", ex);
 			}
 		}
 	}

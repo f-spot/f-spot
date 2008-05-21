@@ -213,7 +213,7 @@ namespace Banshee.Kernel
                     
                 lock(this_mutex) {
                     if(disposed) {
-                        Console.WriteLine("execution thread destroyed, dispose requested");
+                        FSpot.Utils.Log.Debug ("execution thread destroyed, dispose requested");
                         return;
                     }
                 

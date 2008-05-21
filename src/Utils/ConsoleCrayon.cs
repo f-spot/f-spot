@@ -28,7 +28,7 @@
 
 using System;
 
-namespace FSpot
+namespace FSpot.Utils
 {
     public static class ConsoleCrayon
     {
@@ -194,6 +194,7 @@ namespace FSpot
 
 #region Tests
 
+#if FALSE
         public static void Test ()
         {
             TestSelf ();
@@ -244,7 +245,7 @@ namespace FSpot
                 Console.WriteLine ();
             }
         }
-
+#endif
 #endregion
 
     }

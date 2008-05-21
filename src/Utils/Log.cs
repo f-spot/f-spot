@@ -30,15 +30,15 @@ using System;
 using System.Text;
 using System.Collections.Generic;
 
-namespace FSpot
+namespace FSpot.Utils
 {
-    public delegate void LogNotifyHandler (LogNotifyArgs args);
+    public delegate void LogNotifyHandler (LogNotifyEventArgs args);
 
-    public class LogNotifyArgs : EventArgs
+    public class LogNotifyEventArgs : EventArgs
     {
         private LogEntry entry;
         
-        public LogNotifyArgs (LogEntry entry)
+        public LogNotifyEventArgs (LogEntry entry)
         {
             this.entry = entry;
         }
@@ -147,7 +147,7 @@ namespace FSpot
         {
             LogNotifyHandler handler = Notify;
             if (handler != null) {
-                handler (new LogNotifyArgs (entry));
+                handler (new LogNotifyEventArgs (entry));
             }
         }
         
@@ -398,6 +398,10 @@ namespace FSpot
             Log.Warning (message ?? "Caught an exception", builder.ToString (), false);
         }
         
+	public static void ExceptionFormat (Exception e, string format, params object [] args)
+	{
+		Exception (String.Format (format, args), e);
+	}
         #endregion
     }
 }
