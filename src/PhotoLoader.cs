@@ -57,7 +57,7 @@ namespace FSpot {
 
 			if (pixbuf != null && thumbnail != null) {
 				if (!ThumbnailIsValid (uri, thumbnail)) {
-					System.Console.WriteLine ("regnerating thumbnail");
+					Log.DebugFormat ("regenerating thumbnail for {0}", uri);
 					FSpot.ThumbnailGenerator.Default.Request (uri, 0, 256, 256);
 				}
 

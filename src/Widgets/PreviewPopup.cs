@@ -12,6 +12,7 @@ using System;
 using Cairo;
 using Gdk;
 using FSpot.Widgets;
+using FSpot.Utils;
 
 namespace FSpot {
 	public class PreviewPopup : Gtk.Window {
@@ -26,17 +27,17 @@ namespace FSpot {
 				return show_histogram;
 			}
 			set {
-				if (value != show_histogram) {	
-					preview_cache.Dispose ();
-					preview_cache = new ThumbnailCache (50);
-					item = -1;
-				}
+			//	if (value != show_histogram) {	
+			//		preview_cache.Dispose ();
+			//		preview_cache = new DisposableCache<string, Pixbuf> (50);
+			//		item = -1;
+			//	}
 				show_histogram = value;
 			}
 		}
 					
 		private FSpot.Histogram hist;
-		private ThumbnailCache preview_cache = new ThumbnailCache (50);
+		private DisposableCache<string, Pixbuf> preview_cache = new DisposableCache<string, Pixbuf> (50);
 
 		private int item = -1;
 		new public int Item {
@@ -111,7 +112,7 @@ namespace FSpot {
 			
 			string orig_path = item.DefaultVersionUri.LocalPath;
 
-			Gdk.Pixbuf pixbuf = preview_cache.GetThumbnailForPath (orig_path);
+			Gdk.Pixbuf pixbuf = PixbufUtils.ShallowCopy (preview_cache.Get (orig_path + show_histogram.ToString ()));
 			if (pixbuf == null) {
 				// A bizarre pixbuf = hack to try to deal with cinematic displays, etc.
 				int preview_size = ((this.Screen.Width + this.Screen.Height)/2)/3;
@@ -125,7 +126,7 @@ namespace FSpot {
 				}
 
 				if (pixbuf != null) {
-					preview_cache.AddThumbnail (orig_path, pixbuf);
+					preview_cache.Add (orig_path, pixbuf + show_histogram.ToString ());
 					AddHistogram (pixbuf);
 					image.Pixbuf = pixbuf;
 				} else {

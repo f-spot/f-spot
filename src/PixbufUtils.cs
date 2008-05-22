@@ -185,6 +185,8 @@ public class PixbufUtils {
 
 	public static Pixbuf ShallowCopy (Pixbuf pixbuf)
 	{
+		if (pixbuf == null)
+			return null;
 		Pixbuf result = new Pixbuf (pixbuf, 0, 0, pixbuf.Width, pixbuf.Height);
 		CopyThumbnailOptions (pixbuf, result);
 		return result;

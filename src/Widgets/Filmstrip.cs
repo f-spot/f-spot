@@ -300,7 +300,7 @@ namespace FSpot.Widgets
 		}
 
 		FSpot.BrowsablePointer selection;
-		ThumbnailCache thumb_cache;
+		DisposableCache<string, Pixbuf> thumb_cache;
 
 		public Filmstrip (FSpot.BrowsablePointer selection) : this (selection, true) { }
 
@@ -312,7 +312,7 @@ namespace FSpot.Widgets
 			this.selection.Collection.Changed += HandleCollectionChanged;
 			this.selection.Collection.ItemsChanged += HandleCollectionItemsChanged;
 			this.squared_thumbs = squared_thumbs;
-			thumb_cache = new ThumbnailCache (30);
+			thumb_cache = new DisposableCache<string, Pixbuf> (30);
 			ThumbnailGenerator.Default.OnPixbufLoaded += delegate (PixbufLoader pl, string path, int order, Pixbuf p) {QueueDraw ();};
 		}
 	
@@ -462,7 +462,7 @@ namespace FSpot.Widgets
 
 			//invalidate the thumbs cache
 			thumb_cache.Dispose ();
-			thumb_cache = new ThumbnailCache (30);
+			thumb_cache = new DisposableCache<string, Pixbuf> (30);
 			QueueDraw ();
 		}
 
@@ -494,7 +494,7 @@ namespace FSpot.Widgets
 			Pixbuf current;
 			try {
 				thumb_path = FSpot.ThumbnailGenerator.ThumbnailPath ((selection.Collection [i]).DefaultVersionUri);
-				current = thumb_cache.GetThumbnailForPath (thumb_path);
+				current = PixbufUtils.ShallowCopy (thumb_cache.Get (thumb_path));
 			} catch (IndexOutOfRangeException) {
 				thumb_path = null;
 				current = null;
@@ -509,7 +509,7 @@ namespace FSpot.Widgets
 						current = PixbufUtils.IconFromPixbuf (current, ThumbSize);
 					} else 
 						current = new Pixbuf (thumb_path, -1, ThumbSize);
-					thumb_cache.AddThumbnail (thumb_path, current);
+					thumb_cache.Add (thumb_path, current);
 				} catch {
 					try {
 						current = FSpot.Global.IconTheme.LoadIcon ("gtk-missing-image", ThumbSize, (Gtk.IconLookupFlags)0);

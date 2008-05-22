@@ -1,7 +1,22 @@
+/*
+ * FSpot.ThumbnailCache.cs
+ *
+ * Author(s):
+ * 	Ettore Perazzoli
+ *	Larry Ewing  <lewing@novell.com>
+ *	Staphen Delcroix  <stephane@delcroix.org>
+ *
+ * This is free software. See COPYING for details.
+ */
+
 using System;
 using System.Collections;
 using Gdk;
 
+using FSpot.Utils;
+
+namespace FSpot
+{
 public class ThumbnailCache : IDisposable {
 
 	// Types.
@@ -65,14 +80,7 @@ public class ThumbnailCache : IDisposable {
 		pixbuf_mru.Remove (item);
 		pixbuf_mru.Insert (0, item);
 
-		// Shallow Copy
-		Pixbuf copy = new Pixbuf (item.pixbuf, 0, 0, 
-					  item.pixbuf.Width,
-					  item.pixbuf.Height);
-
-		PixbufUtils.CopyThumbnailOptions (item.pixbuf, copy);
-
-		return copy;
+		return PixbufUtils.ShallowCopy (item.pixbuf);
 	}
 
 	public void RemoveThumbnailForPath (string path)
@@ -96,6 +104,18 @@ public class ThumbnailCache : IDisposable {
 			thumb.pixbuf.Dispose ();
 		}
 		pixbuf_mru.Clear ();
+		System.GC.SuppressFinalize (this);
+	}
+
+	~ThumbnailCache ()
+	{
+		Log.DebugFormat ("Finalizer called on {0}. Should be Disposed", GetType ());		
+		foreach (object item in pixbuf_mru) {
+			Thumbnail thumb = item as Thumbnail;
+			pixbuf_hash.Remove (thumb.path);
+			thumb.pixbuf.Dispose ();
+		}
+		pixbuf_mru.Clear ();
 	}
 
 	// Private utility methods.
@@ -111,4 +131,5 @@ public class ThumbnailCache : IDisposable {
 			thumbnail.pixbuf.Dispose ();
 		}
 	}
+}
 }
