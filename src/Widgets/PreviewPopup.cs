@@ -27,11 +27,8 @@ namespace FSpot {
 				return show_histogram;
 			}
 			set {
-			//	if (value != show_histogram) {	
-			//		preview_cache.Dispose ();
-			//		preview_cache = new DisposableCache<string, Pixbuf> (50);
-			//		item = -1;
-			//	}
+				if (value != show_histogram)	
+					item = -1;
 				show_histogram = value;
 			}
 		}
@@ -126,7 +123,7 @@ namespace FSpot {
 				}
 
 				if (pixbuf != null) {
-					preview_cache.Add (orig_path, pixbuf + show_histogram.ToString ());
+					preview_cache.Add (orig_path + show_histogram.ToString (), pixbuf);
 					AddHistogram (pixbuf);
 					image.Pixbuf = pixbuf;
 				} else {
