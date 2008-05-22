@@ -172,7 +172,6 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/PixbufCache.cs		\
 	$(srcdir)/PixelBuffer.cs		\
 	$(srcdir)/Preferences.cs 		\
-	$(srcdir)/PreviewPopup.cs 		\
 	$(srcdir)/PrintDialog.cs		\
 	$(srcdir)/PrintOperation.cs		\
 	$(srcdir)/ProgressDialog.cs		\
@@ -233,6 +232,7 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/Widgets/ImageInfo.cs		\
 	$(srcdir)/Widgets/InfoBox.cs		\
 	$(srcdir)/Widgets/PanZoom.cs		\
+	$(srcdir)/Widgets/PreviewPopup.cs 	\
 	$(srcdir)/Widgets/Push.cs		\
 	$(srcdir)/Widgets/QueryView.cs		\
 	$(srcdir)/Widgets/RatingMenuItem.cs	\
