@@ -2,6 +2,8 @@ using System.Xml;
 using System.Collections;
 using SemWeb;
 
+using FSpot.Utils;
+
 namespace FSpot.Xmp {
 	public class XmpFile : SemWeb.StatementSource, SemWeb.StatementSink
 	{
@@ -35,7 +37,7 @@ namespace FSpot.Xmp {
 				store.Import (reader);
 				//Dump ();
 			} catch (System.Exception e) {
-				System.Console.WriteLine (e.ToString ());
+				Log.DebugFormat ("Caught an exception :{0}", e.ToString ());
 			}
 		}
 

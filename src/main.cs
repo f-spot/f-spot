@@ -173,12 +173,14 @@ public class Driver {
 		
 		try {
 
+			uint timer = Log.InformationTimerStart ("Initializing DBUs");
 			try {
 				NDesk.DBus.BusG.Init();
 			} catch (Exception e) {
 				throw new ApplicationException ("F-Spot cannot find the Dbus session bus.  Make sure dbus is configured properly or start a new session for f-spot using \"dbus-launch f-spot\"", e);
 			}
-			Log.Information ("Initializing Mono.Addins");
+			Log.DebugTimerPrint (timer, "DBusInitialization took {0}");
+			uint ma_timer = Log.InformationTimerStart ("Initializing Mono.Addins");
 			AddinManager.Initialize (FSpot.Global.BaseDirectory);
 			AddinManager.Registry.Update (null);
 			SetupService setupService = new SetupService (AddinManager.Registry);
@@ -189,6 +191,7 @@ public class Driver {
 					setupService.Repositories.RemoveRepository (repo.Url);
 				}
 			setupService.Repositories.RegisterRepository (null, "http://addins.f-spot.org/" + maj_version, false);
+			Log.DebugTimerPrint (ma_timer, "Mono.Addins Initialization took {0}");
 
 			bool create = true;
 			int retry_count = 0;
