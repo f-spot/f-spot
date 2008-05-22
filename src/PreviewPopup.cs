@@ -26,8 +26,7 @@ namespace FSpot {
 				return show_histogram;
 			}
 			set {
-				if (value != show_histogram) {
-					
+				if (value != show_histogram) {	
 					preview_cache.Dispose ();
 					preview_cache = new ThumbnailCache (50);
 					item = -1;
@@ -39,7 +38,7 @@ namespace FSpot {
 		private FSpot.Histogram hist;
 		private ThumbnailCache preview_cache = new ThumbnailCache (50);
 
-		private int item;
+		private int item = -1;
 		new public int Item {
 			get {
 				return item;
@@ -188,7 +187,6 @@ namespace FSpot {
 			int item = view.CellAtPosition (x, y);
 			if (item >= 0) {
 				this.Item = item;
-				UpdatePosition ();
 				Show ();
 			} else {
 				this.Hide ();
