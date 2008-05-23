@@ -5,6 +5,7 @@ using System;
 using Banshee.Database;
 using System.Diagnostics;
 using FSpot;
+using FSpot.Utils;
 
 public class DbItemEventArgs {
 	private DbItem [] items;
@@ -222,6 +223,7 @@ public class Db : IDisposable {
 
 	public void Init (string path, bool create_if_missing)
 	{
+		uint timer = Log.DebugTimerStart ();
 		bool new_db = ! File.Exists (path);
 		this.path = path;
 
@@ -251,6 +253,7 @@ public class Db : IDisposable {
 		Database.CommitTransaction ();
 
 		empty = new_db;
+		Log.DebugTimerPrint (timer, "Db Initialization took {0}");
 	}
 
 	public void EmitDown () {

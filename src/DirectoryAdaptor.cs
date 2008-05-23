@@ -124,8 +124,8 @@ namespace FSpot {
 			return 0;
 		}
 
-		public DirectoryAdaptor (PhotoQuery query)
-			: base (query)
+		public DirectoryAdaptor (PhotoQuery query, bool order_ascending)
+			: base (query, order_ascending)
 		{ }
 	}
 }

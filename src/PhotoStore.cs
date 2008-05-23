@@ -517,6 +517,7 @@ public class PhotoStore : DbStore {
 
 	public Photo [] Query (string query)
 	{
+		uint timer = Log.DebugTimerStart ("Query: " + query);
 		SqliteDataReader reader = Database.Query(query);
 
 		ArrayList version_list = new ArrayList ();
@@ -562,6 +563,7 @@ public class PhotoStore : DbStore {
 			//Console.WriteLine ("Skipped Loading Data");
 		}
 
+		Log.DebugTimerPrint (timer, "Query took {0}");
 		return id_list.ToArray (typeof (Photo)) as Photo [];
 	}
 
@@ -661,7 +663,6 @@ public class PhotoStore : DbStore {
 			query_builder.Append (String.Join (" AND ", ((String []) where_clauses.ToArray (typeof(String)))));
 		}
 		query_builder.Append (" ORDER BY photos.time");
-		Log.DebugFormat ("Query: {0}", query_builder.ToString());
 		return Query (query_builder.ToString ());
 	}
 }

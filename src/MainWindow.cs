@@ -344,7 +344,7 @@ public class MainWindow {
 #endif
 
 		group_selector = new FSpot.GroupSelector ();
-		group_selector.Adaptor = new FSpot.TimeAdaptor (query);
+		group_selector.Adaptor = new FSpot.TimeAdaptor (query, (bool)Preferences.Get (Preferences.GROUP_ADAPTOR_ORDER_ASC));
 
 		group_selector.ShowAll ();
 		
@@ -1458,6 +1458,9 @@ public class MainWindow {
 	
 	public void HandleRatingMenuSelected (int r) 
 	{
+		if (view_mode == ModeType.PhotoView)
+			this.photo_view.UpdateRating(r);
+
 		uint timer = Log.DebugTimerStart ();
 		Photo p;
 		db.BeginTransaction ();
@@ -1467,7 +1470,6 @@ public class MainWindow {
 			query.Commit (num);
 		}
 		db.CommitTransaction ();
-		this.photo_view.UpdateRating();
 		Log.DebugTimerPrint (timer, "HandleRating took {0}");
 	}
 
@@ -1739,7 +1741,7 @@ public class MainWindow {
 
 		group_selector.Adaptor.GlassSet -= HandleAdaptorGlassSet;
 		group_selector.Adaptor.Changed -= HandleAdaptorChanged;
-		group_selector.Adaptor = new FSpot.TimeAdaptor (query);
+		group_selector.Adaptor = new FSpot.TimeAdaptor (query, reverse_order.Active);
 
 		group_selector.Mode = FSpot.GroupSelector.RangeType.Min;
 		group_selector.Adaptor.GlassSet += HandleAdaptorGlassSet;
@@ -1760,7 +1762,7 @@ public class MainWindow {
 
 		group_selector.Adaptor.GlassSet -= HandleAdaptorGlassSet;
 		group_selector.Adaptor.Changed -= HandleAdaptorChanged;
-		group_selector.Adaptor = new FSpot.DirectoryAdaptor (query); 	
+		group_selector.Adaptor = new FSpot.DirectoryAdaptor (query, reverse_order.Active); 	
 
 		group_selector.Mode = FSpot.GroupSelector.RangeType.Min;
 		group_selector.Adaptor.GlassSet += HandleAdaptorGlassSet;

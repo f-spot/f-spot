@@ -173,7 +173,7 @@ public class Driver {
 		
 		try {
 
-			uint timer = Log.InformationTimerStart ("Initializing DBUs");
+			uint timer = Log.InformationTimerStart ("Initializing DBus");
 			try {
 				NDesk.DBus.BusG.Init();
 			} catch (Exception e) {

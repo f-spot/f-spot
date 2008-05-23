@@ -13,7 +13,7 @@ namespace FSpot {
 			}
 		}
 
-		protected bool order_ascending = true;
+		protected bool order_ascending = false;
 		public bool OrderAscending {
 			get {
 				return order_ascending;
@@ -54,8 +54,9 @@ namespace FSpot {
 			this.query.PreChanged -= HandleQueryChanged; 
 		}
 
-		protected GroupAdaptor (PhotoQuery query)
+		protected GroupAdaptor (PhotoQuery query, bool order_ascending)
 		{
+			this.order_ascending = order_ascending;
 			this.query = query;
 			this.query.PreChanged += HandleQueryChanged;
 

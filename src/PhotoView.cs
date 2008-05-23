@@ -172,9 +172,14 @@ namespace FSpot {
 	
 		public void UpdateRating ()
 		{
-			rating.Changed -= HandleRatingChanged;
 			if (Item.IsValid)
-				rating.Value = (int)Item.Current.Rating;
+				UpdateRating ((int)Item.Current.Rating);
+		}
+
+		public void UpdateRating (int r)
+		{
+			rating.Changed -= HandleRatingChanged;
+			rating.Value = r;
 			rating.Changed += HandleRatingChanged;
 		}
 

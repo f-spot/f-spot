@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using FSpot.Query;
+using FSpot.Utils;
 
 namespace FSpot {
 	public class TimeAdaptor : GroupAdaptor, FSpot.ILimitable {
@@ -197,6 +198,7 @@ namespace FSpot {
 			years.Clear ();
 
 			Photo [] photos = query.Store.Query ((Tag [])null, null, null, null, null);
+
 			Array.Sort (query.Photos);
 			Array.Sort (photos);
 
@@ -235,8 +237,8 @@ namespace FSpot {
 		}
 
 
-		public TimeAdaptor (PhotoQuery query) 
-			: base (query)
+		public TimeAdaptor (PhotoQuery query, bool order_ascending) 
+			: base (query, order_ascending)
 		{ }
 	}
 }
