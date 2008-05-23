@@ -1458,6 +1458,7 @@ public class MainWindow {
 	
 	public void HandleRatingMenuSelected (int r) 
 	{
+		uint timer = Log.DebugTimerStart ();
 		Photo p;
 		db.BeginTransaction ();
 		foreach (int num in SelectedIds ()) {
@@ -1467,6 +1468,7 @@ public class MainWindow {
 		}
 		db.CommitTransaction ();
 		this.photo_view.UpdateRating();
+		Log.DebugTimerPrint (timer, "HandleRating took {0}");
 	}
 
 	//
