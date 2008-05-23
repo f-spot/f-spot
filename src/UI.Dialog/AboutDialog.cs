@@ -64,7 +64,7 @@ namespace FSpot.UI.Dialog
 				"In memory Of",
 				"\tEttore Perazzoli",
 			};
-			Comments = "Photo management for GNOME";
+			Comments = Catalog.GetString ("Photo management for GNOME");
 			Copyright = Catalog.GetString ("Copyright \x00a9 2003-2008 Novell Inc.");
 			Documenters = new string[] {
 				"Aaron Bockover",
