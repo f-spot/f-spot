@@ -177,6 +177,8 @@ namespace FSpot {
 				opacity -= .04;
 			if (Visible)
 				CompositeUtils.SetWinOpacity (this, opacity);
+			else
+				Hide ();
 			return true;
 		}
 
@@ -295,7 +297,6 @@ namespace FSpot {
 		public void Dismiss ()
 		{
 			Visibility = VisibilityType.None;
-			Hide ();
 			dismiss.Start ();
 		}
 
