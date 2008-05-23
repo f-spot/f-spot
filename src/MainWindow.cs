@@ -1191,10 +1191,50 @@ public class MainWindow {
 
 	void HandleIconViewKeyPressEvent (object sender, Gtk.KeyPressEventArgs args)
 	{
-		if (args.Event.Key == Gdk.Key.Delete) {
+		bool alt = ModifierType.Mod1Mask == (args.Event.State & ModifierType.Mod1Mask);
+
+		switch (args.Event.Key) {
+		case Gdk.Key.Delete:
 			HandleRemoveCommand (sender, (EventArgs) args);
+			args.RetVal = true;
+			break;
+		case Gdk.Key.Key_0:
+			if (alt) {
+				HandleRatingMenuSelected (0);
+				args.RetVal = true;
+			}
+			break;
+		case Gdk.Key.Key_1:
+			if (alt) {
+				HandleRatingMenuSelected (1);
+				args.RetVal = true;
+			}
+			break;
+		case Gdk.Key.Key_2:
+			if (alt) {
+				HandleRatingMenuSelected (2);
+				args.RetVal = true;
+			}
+			break;
+		case Gdk.Key.Key_3:
+			if (alt) {
+				HandleRatingMenuSelected (3);
+				args.RetVal = true;
+			}
+			break;
+		case Gdk.Key.Key_4:
+			if (alt) {
+				HandleRatingMenuSelected (4);
+				args.RetVal = true;
+			}
+			break;
+		case Gdk.Key.Key_5:
+			if (alt) {
+				HandleRatingMenuSelected (5);
+				args.RetVal = true;
+			}
+			break;
 		}
-		UpdateStatusLabel();		
 	}
 
 	public void ImportUriList (UriList list, bool copy) 
@@ -1304,6 +1344,7 @@ public class MainWindow {
 	
 	void HandlePhotoViewKeyPressEvent (object sender, Gtk.KeyPressEventArgs args)
 	{
+		bool alt = ModifierType.Mod1Mask == (args.Event.State & ModifierType.Mod1Mask);
 		switch (args.Event.Key) {
 		case Gdk.Key.F:
 		case Gdk.Key.f:
@@ -1317,6 +1358,42 @@ public class MainWindow {
 		case Gdk.Key.Delete:
 			HandleRemoveCommand (sender, (EventArgs) args);
 			args.RetVal = true;
+			break;
+		case Gdk.Key.Key_0:
+			if (alt) {
+				HandleRatingMenuSelected (0);
+				args.RetVal = true;
+			}
+			break;
+		case Gdk.Key.Key_1:
+			if (alt) {
+				HandleRatingMenuSelected (1);
+				args.RetVal = true;
+			}
+			break;
+		case Gdk.Key.Key_2:
+			if (alt) {
+				HandleRatingMenuSelected (2);
+				args.RetVal = true;
+			}
+			break;
+		case Gdk.Key.Key_3:
+			if (alt) {
+				HandleRatingMenuSelected (3);
+				args.RetVal = true;
+			}
+			break;
+		case Gdk.Key.Key_4:
+			if (alt) {
+				HandleRatingMenuSelected (4);
+				args.RetVal = true;
+			}
+			break;
+		case Gdk.Key.Key_5:
+			if (alt) {
+				HandleRatingMenuSelected (5);
+				args.RetVal = true;
+			}
 			break;
 		default:
 			break;
@@ -2106,21 +2183,17 @@ public class MainWindow {
 
 	private void UpdateStatusLabel ()
 	{
-		switch (view_mode) {
-		case ModeType.PhotoView:
-			break;
-		case ModeType.IconView:		
-			int total_photos = Database.Photos.TotalPhotos;
-			if (total_photos != query.Count)
-				status_label.Text = String.Format (Catalog.GetPluralString ("{0} Photo out of {1}", "{0} Photos out of {1}", query.Count), query.Count, total_photos);
-			else
-				status_label.Text = String.Format (Catalog.GetPluralString ("{0} Photo", "{0} Photos", query.Count), query.Count);
+		//uint timer = Log.DebugTimerStart ();
+		int total_photos = Database.Photos.TotalPhotos;
+		if (total_photos != query.Count)
+			status_label.Text = String.Format (Catalog.GetPluralString ("{0} Photo out of {1}", "{0} Photos out of {1}", query.Count), query.Count, total_photos);
+		else
+			status_label.Text = String.Format (Catalog.GetPluralString ("{0} Photo", "{0} Photos", query.Count), query.Count);
 	
-			if ((selection != null) && (selection.Count > 0))
-				status_label.Text += String.Format (Catalog.GetPluralString (" ({0} selected)", " ({0} selected)", selection.Count), selection.Count);
-			break;
-		}
+		if ((selection != null) && (selection.Count > 0))
+			status_label.Text += String.Format (Catalog.GetPluralString (" ({0} selected)", " ({0} selected)", selection.Count), selection.Count);
 		status_label.UseMarkup = true;
+		//Log.DebugTimerPrint (timer, "UpdateStatusLabel took {0}");
 	}
 	
 	void HandleZoomChanged (object sender, System.EventArgs args)

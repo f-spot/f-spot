@@ -417,6 +417,8 @@ namespace FSpot {
 		[GLib.ConnectBefore]
 		private void HandleKeyPressEvent (object sender, Gtk.KeyPressEventArgs args)
 		{
+			bool alt = Gdk.ModifierType.Mod1Mask == (args.Event.State & Gdk.ModifierType.Mod1Mask);
+
 			// FIXME I really need to figure out why overriding is not working
 			// for any of the default handlers.
 			args.RetVal = true;
@@ -465,15 +467,24 @@ namespace FSpot {
 				break;
 			case Gdk.Key.Key_0:
 			case Gdk.Key.KP_0:
-				this.Fit = true;
+				if (alt) 
+					args.RetVal = false;
+				else
+					this.Fit = true;
 				break;
 			case Gdk.Key.Key_1:
 			case Gdk.Key.KP_1:
-				this.Zoom =  1.0;
+				if (alt)
+					args.RetVal = false;
+				else
+					this.Zoom =  1.0;
 				break;
 			case Gdk.Key.Key_2:
 			case Gdk.Key.KP_2:
-				this.Zoom = 2.0;
+				if (alt) 
+					args.RetVal = false;
+				else
+					this.Zoom = 2.0;
 				break;
 			case Gdk.Key.minus:
 			case Gdk.Key.KP_Subtract:
