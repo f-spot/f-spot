@@ -16,6 +16,7 @@ using Tao.OpenGl;
 using Cairo;
 using System.Runtime.InteropServices;
 using FSpot.Widgets;
+using FSpot.Utils;
 
 namespace FSpot {
 	public class TextureException : System.Exception {
@@ -87,7 +88,7 @@ namespace FSpot {
 			int max_size;
 			Gl.glGetIntegerv (Gl.GL_MAX_RECTANGLE_TEXTURE_SIZE_ARB, out max_size);
 			float scale = (float)Math.Min (1.0, max_size / (double) Math.Max (width, height));
-			System.Console.WriteLine ("max texture size {0} scaling to {1}", max_size, scale);
+			//Log.DebugFormat ("max texture size {0} scaling to {1}", max_size, scale);
 			
 			if (surface.DataPtr == IntPtr.Zero)
 				throw new TextureException ("Surface has no data");
@@ -101,7 +102,7 @@ namespace FSpot {
 				int swidth = (int)(width * scale);
 				int sheight = (int) (height * scale);
 				tmp = Marshal.AllocHGlobal (swidth * sheight * 4);
-				System.Console.WriteLine ("scaling image {0} x {1}", swidth, sheight);
+				//LogDebugFormat ("scaling image {0} x {1}", swidth, sheight);
 
 				Glu.gluScaleImage (Gl.GL_BGRA,
 						  width,
@@ -132,7 +133,7 @@ namespace FSpot {
 				Marshal.FreeHGlobal (tmp);
 
 			if (Gl.glGetError () != Gl.GL_NO_ERROR)
-				System.Console.WriteLine ("unable to allocate texture");
+				Log.Warning ("unable to allocate texture");
 			//	throw new TextureException ("Unable to allocate texture resources");
 
 			return texture_id;
@@ -140,10 +141,10 @@ namespace FSpot {
 
 		protected void Close ()
 		{
-			System.Console.WriteLine ("Disposing {0} IsTexture {1}", texture_id, Gl.glIsTexture (texture_id));
+			//Log.DebugFormat ("Disposing {0} IsTexture {1}", texture_id, Gl.glIsTexture (texture_id));
 			int [] ids = new int [] { texture_id };
 			Gl.glDeleteTextures (1, ids);
-			System.Console.WriteLine ("Done Disposing {0}", ids [0]);
+			//Log.DebugFormat ("Done Disposing {0}", ids [0]);
 		}
 
 		public void Dispose ()
