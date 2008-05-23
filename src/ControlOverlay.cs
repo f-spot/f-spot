@@ -163,7 +163,7 @@ namespace FSpot {
 		}
 
 		double target;
-		double opacity;
+		double opacity = 0;
 
 		bool FadeToTarget ()
 		{
@@ -175,7 +175,8 @@ namespace FSpot {
 				opacity += .04;
 			else
 				opacity -= .04;
-			CompositeUtils.SetWinOpacity (this, opacity);
+			if (Visible)
+				CompositeUtils.SetWinOpacity (this, opacity);
 			return true;
 		}
 
@@ -185,7 +186,6 @@ namespace FSpot {
 			Realize ();
 			this.target = target;
 			fade.Start ();
-			//Visible = true;
 
 			if (target > 0.0)
 				hide.Restart ();
