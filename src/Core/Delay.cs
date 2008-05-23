@@ -81,5 +81,11 @@ namespace FSpot
 				}
 			}
 		}
+
+		public void Restart ()
+		{
+			Stop ();
+			Start ();
+		}
 	}
 }

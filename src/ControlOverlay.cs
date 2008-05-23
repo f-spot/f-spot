@@ -13,6 +13,7 @@ using Cairo;
 using System;
 using Gtk;
 using FSpot.Widgets;
+using FSpot.Utils;
 
 namespace FSpot {
 	public class ControlOverlay : Window {
@@ -23,6 +24,7 @@ namespace FSpot {
 		double target_opacity;
 		int round = 12;
 		Delay hide; 
+		Delay fade;
 		Delay dismiss;
 		bool auto_hide = true;
 		double x_align = 0.5;
@@ -54,9 +56,7 @@ namespace FSpot {
 		
 		public bool AutoHide {
 			get { return auto_hide; }
-			set { 
-				auto_hide = false;
-			}
+			set { auto_hide = value; }
 		}
 
 		public VisibilityType Visibility {
@@ -65,8 +65,7 @@ namespace FSpot {
 				if (dismiss.IsPending && value != VisibilityType.None)
 					return;
 
-				visibility = value;
-				switch (visibility) {
+				switch (value) {
 				case VisibilityType.None:
 					FadeToTarget (0.0);
 					break;
@@ -77,6 +76,7 @@ namespace FSpot {
 					FadeToTarget (0.8);
 					break;
 				}
+				visibility = value;
 			}
 
 		}
@@ -100,12 +100,14 @@ namespace FSpot {
 			
 			AddEvents ((int) (Gdk.EventMask.PointerMotionMask));
 			hide = new Delay (2000, HideControls);
+			fade = new Delay (40, FadeToTarget);
 			dismiss = new Delay (2000, delegate { /* do nothing */ return false; });
 		}
 
 		protected override void OnDestroyed ()
 		{
 			hide.Stop ();
+			fade.Stop ();
 			base.OnDestroyed ();
 		}
 
@@ -126,10 +128,10 @@ namespace FSpot {
 			}
 
 			hide.Stop ();
-			Hide ();
 			Visibility = VisibilityType.None;
 			return false;
 		}
+
 		protected virtual void ShapeSurface (Context cr, Cairo.Color color)
 		{
 			cr.Operator = Operator.Source;
@@ -160,16 +162,33 @@ namespace FSpot {
 			cr.Fill ();			
 		}
 
+		double target;
+		double opacity;
+
+		bool FadeToTarget ()
+		{
+			//Log.DebugFormat ("op {0}\ttarget{1}", opacity, target);
+			Visible = (opacity > 0.05);
+			if (Math.Abs (target - opacity) < .05)
+				return false;
+			if (target > opacity)
+				opacity += .04;
+			else
+				opacity -= .04;
+			CompositeUtils.SetWinOpacity (this, opacity);
+			return true;
+		}
+
 		bool FadeToTarget (double target)
 		{
+			//Log.DebugFormat ("FadeToTarget {0}", target);
 			Realize ();
-			CompositeUtils.SetWinOpacity (this, target);
-			Visible = target > 0.0;
+			this.target = target;
+			fade.Start ();
+			//Visible = true;
 
-			if (Visible) {
-				hide.Stop ();
-				hide.Start ();
-			}
+			if (target > 0.0)
+				hide.Restart ();
 
 			return false;
 		}

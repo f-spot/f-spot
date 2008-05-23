@@ -1,5 +1,9 @@
 2008-05-23  Stephane Delcroix  <sdelcroix@novell.com>
 
+	* src/ControlOverlay.cs: fading widgets for fullscreen
+
+2008-05-23  Stephane Delcroix  <sdelcroix@novell.com>
+
 	* src/PhotoImageView.cs:
 	* src/MainWindow.cs: use Alt-0 through Alt-5 to quick rate in browse and edit 
 	modes. Fixes bgo #534255. Shortcut might be changed, speak up.
