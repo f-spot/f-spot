@@ -115,6 +115,9 @@ namespace FSpot {
 			}
 			
 			set {
+				if (extra_condition == value)
+					return;
+
 				extra_condition = value;
 
 				if (value != null)
