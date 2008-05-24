@@ -15,7 +15,7 @@ SOURCES = \
 	$(ADDIN).cs
 
 $(ADDIN).dll: $(SOURCES) $(ADDIN).addin.xml
-	gmcs -target:library $(SOURCES) $(PACKAGES) $(ASSEMBLIES) $(RESOURCES)
+	gmcs -target:library -o:$@ $(SOURCES) $(PACKAGES) $(ASSEMBLIES) $(RESOURCES)
 
 clean:
 	rm -f *.dll *~ *.bak *.mpack
