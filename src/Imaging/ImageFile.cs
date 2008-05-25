@@ -226,6 +226,7 @@ namespace FSpot {
 				".dng",
 				".mrw",
 				".nef",
+				".orf", 
 				".pef", 
 				".raw",
 			};
