@@ -11,6 +11,7 @@
 using Cairo;
 using System;
 using System.Runtime.InteropServices;
+using Mono.Unix;
 
 using FSpot.Widgets;
 
@@ -27,6 +28,7 @@ namespace FSpot
 		public PrintOperation (IBrowsableItem [] selected_photos) : base ()
 		{
 			this.selected_photos = selected_photos;
+			CustomTabLabel = Catalog.GetString ("Image Settings");
 			NPages = selected_photos.Length;
 		}
 
@@ -37,7 +39,7 @@ namespace FSpot
 
 		protected override Gtk.Widget OnCreateCustomWidget ()
 		{
-			Gtk.Widget widget = new CustomPrintWidget ();
+			Gtk.Widget widget = new CustomPrintWidget (this);
 			widget.ShowAll ();
 			(widget as CustomPrintWidget).Changed += OnCustomWidgetChanged;
 			OnCustomWidgetChanged (widget);
