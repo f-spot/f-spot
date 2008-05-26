@@ -1,3 +1,10 @@
+2008-05-25  Lorenzo Milesi <maxxer@yetopen.it>
+
+	* SmugMugExport/SmugMugNet/SmugMugApi.cs: export connected property
+	* SmugMugExport/SmugMugExport.addin.xml: Bump version to 0.4.4.1.
+	* SmugMugExport/SmugMugExport.cs: better check if account is
+	connected. fix bgo#534104.
+
 2008-05-18  Ruben Vermeersch  <ruben@savanne.be>
 
 	* DevelopInUFraw/DevelopInUFRaw.addin.xml: Depend on the new Core version.

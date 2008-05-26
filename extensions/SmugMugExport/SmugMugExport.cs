@@ -58,7 +58,7 @@ namespace FSpotSmugMugExport {
 
 		public bool Connected {
 			get {
-				return (smugmug_proxy != null);
+				return smugmug_proxy.Connected;
 			}
 		}
 

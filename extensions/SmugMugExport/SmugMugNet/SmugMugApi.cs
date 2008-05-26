@@ -102,6 +102,11 @@ namespace SmugMugNet
 		private const string VERSION = "1.1.1";
 		private Category[] categories;
 
+		public bool Connected
+		{
+			get { return connected; }
+		}
+
 		public SmugMugApi (string email_address, string password)
 		{
 			this.username = email_address;
