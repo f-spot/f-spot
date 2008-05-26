@@ -8,6 +8,7 @@
  */
 
 using System;
+using Mono.Unix;
 using Gtk;
 
 namespace FSpot.Widgets
@@ -89,7 +90,7 @@ namespace FSpot.Widgets
 			preview_image = new Gtk.Image ();
 			upper.PackStart (preview_image, false, false, 0);
 
-			Frame ppp_frame = new Frame ("Photos per page");
+			Frame ppp_frame = new Frame (Catalog.GetString ("Photos per page"));
 			VBox vb = new VBox ();
 
 			vb.PackStart (ppp1 = new RadioButton ("1"), false, false, 0);
@@ -101,30 +102,30 @@ namespace FSpot.Widgets
 //			ppp4.Toggled += TriggerChanged;
 //			ppp9.Toggled += TriggerChanged;
 
-			vb.PackStart (repeat = new CheckButton ("Repeat"), false, false, 0);
-			vb.PackStart (crop_marks = new CheckButton ("Print cut marks"), false, false, 0);
+			vb.PackStart (repeat = new CheckButton (Catalog.GetString ("Repeat")), false, false, 0);
+			vb.PackStart (crop_marks = new CheckButton (Catalog.GetString ("Print cut marks")), false, false, 0);
 //			crop_marks.Toggled += TriggerChanged;
 
 			ppp_frame.Child = vb;
 			upper.PackStart (ppp_frame, true, true, 0);
 
 			this.PackStart (upper, true, true, 0);
-			this.PackStart (fullpage = new CheckButton ("Full Page (no margin)"), false, false, 0);
+			this.PackStart (fullpage = new CheckButton (Catalog.GetString ("Full Page (no margin)")), false, false, 0);
 			
 			HBox hb = new HBox ();
-			hb.PackStart (zoom = new RadioButton ("Zoom"), false, false, 0);
-			hb.PackStart (fill = new RadioButton (zoom, "Fill"), false, false, 0);
-			hb.PackStart (scaled = new RadioButton (zoom, "Scaled"), false, false, 0);
+			hb.PackStart (zoom = new RadioButton (Catalog.GetString ("Zoom")), false, false, 0);
+			hb.PackStart (fill = new RadioButton (zoom, Catalog.GetString ("Fill")), false, false, 0);
+			hb.PackStart (scaled = new RadioButton (zoom, Catalog.GetString ("Scaled")), false, false, 0);
 			this.PackStart (hb, false, false, 0);
 			zoom.Toggled += TriggerChanged;
 			fill.Toggled += TriggerChanged;
 			scaled.Toggled += TriggerChanged;
 
-			this.PackStart (white_border = new CheckButton ("White borders"), false, false, 0);
+			this.PackStart (white_border = new CheckButton (Catalog.GetString ("White borders")), false, false, 0);
 			white_border.Toggled += TriggerChanged;
 
 			hb = new HBox ();
-			hb.PackStart (new Label ("Custom Text: "), false, false, 0);
+			hb.PackStart (new Label (Catalog.GetString ("Custom Text: ")), false, false, 0);
 
 			hb.PackStart (custom_text = new Entry (), true, true, 0);
 			this.PackStart (hb, false, false, 0);
