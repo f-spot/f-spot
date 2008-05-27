@@ -111,6 +111,9 @@ AC_SUBST(PATH_GIO)
 if pkg-config --atleast-version=2.10 gtk-sharp-2.0; then
    CSC_DEFINES="$CSC_DEFINES -d:GTK_2_10"
 fi
+if pkg-config --atleast-version=2.10.3 gtk-sharp-2.0; then
+   CSC_DEFINES="$CSC_DEFINES -d:GTK_2_10_3"
+fi
 if pkg-config --atleast-version=2.11 gtk-sharp-2.0; then
    CSC_DEFINES="$CSC_DEFINES -d:GTK_2_11"
 fi
