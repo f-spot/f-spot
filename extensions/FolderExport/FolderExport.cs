@@ -736,6 +736,7 @@ namespace FSpotFolderExport {
 		string altstylesheet = "f-spot-simple-white.css";
 		string javascript = "f-spot.js";
 
+		//Note for translators: light as clear, opposite as dark
 		static string light = Catalog.GetString("Light");
 		static string dark = Catalog.GetString("Dark");
 		
