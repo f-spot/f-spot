@@ -965,6 +965,8 @@ namespace FSpot {
 			
 		protected override void OnSizeRequested (ref Requisition requisition)
 		{
+			left.SizeRequest ();
+			right.SizeRequest ();
 			requisition.Width = 500;
 			requisition.Height = (int) (LegendHeight () + glass.handle_height + 3 * border);
 		}
