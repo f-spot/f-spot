@@ -23,9 +23,8 @@ namespace FSpot.Extensions
 	{
 		public PhotoSelectionCondition()
 		{
-			MainWindow.Toplevel.Selection.Changed += delegate {
-				NotifyChanged ();
-			};
+			if (MainWindow.Toplevel != null)
+				MainWindow.Toplevel.Selection.Changed += delegate { NotifyChanged ();};
 		}
 
 		public override bool Evaluate (NodeElement conditionNode)
