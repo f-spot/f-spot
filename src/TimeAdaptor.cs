@@ -50,7 +50,7 @@ namespace FSpot {
 		
 		public void SetLimits (int min, int max) 
 		{
-			Console.WriteLine ("min {0} max {1}", min, max);
+			//Console.WriteLine ("min {0} max {1}", min, max);
 			DateTime start = DateFromIndex (min);
 
 			DateTime end = DateFromIndex(max);
@@ -65,7 +65,7 @@ namespace FSpot {
 
 		public void SetLimits (DateTime start, DateTime end)
 		{
-			Console.WriteLine ("{0} {1}", start, end);
+			//Console.WriteLine ("{0} {1}", start, end);
 			if (start > end)
 				query.Range = new DateRange (end, start);
 			else 
