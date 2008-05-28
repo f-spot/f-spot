@@ -1,3 +1,36 @@
+2008-05-28  Ruben Vermeersch  <ruben@savanne.be>
+
+	This commit adds the sidebar patch, as it is found in bugzilla. It
+	provides the groundwork for my Summer of Code project and will be highly
+	modified during the coming weeks. Stay Tuned!
+
+	* src/InfoOverlay.cs: Switch to delayed updating.
+
+	* src/MainWindow.cs: Show the new sidebar.
+
+	* src/Makefile.am: Add the new files.
+
+	* src/MetadataDisplay.cs: Added. Shows EXIF information (should probably
+	be moved to the FSpot.Widgets namespace).
+
+	* src/Preferences.cs: Add the (hidden) preference which stores the last
+	displayed sidebar pane.
+
+	* src/SingleView.cs: Show the sidebar in single view.
+
+	* src/Widgets/InfoBox.cs: This brings the info box back into the stone
+	age, with some modifications. The next step for my GSoC is to bring
+	everything that happened to the InfoBox between July 2007 and now back.
+
+	* src/Widgets/InfoVBox.cs: Added.
+
+	* src/Widgets/MenuButton.cs: Added.
+
+	* src/Widgets/Sidebar.cs: Added. A new switchable sidebar.
+
+	* src/f-spot.glade: Nuke sidebar bits from the glade file, using pure GTK#
+	now.
+
 2008-05-28  Stephane Delcroix  <sdelcroix@novell.com>
 
 	* src/GroupSelector.cs: hide the gdk window on UnMap.

@@ -5,14 +5,16 @@ using Mono.Unix;
 
 using FSpot.Utils;
 using FSpot.UI.Dialog;
+using FSpot.Widgets;
 
 namespace FSpot {
 	public class SingleView {
 		[Glade.Widget] Gtk.HBox toolbar_hbox;
 		[Glade.Widget] Gtk.VBox info_vbox;
 		[Glade.Widget] Gtk.ScrolledWindow image_scrolled;
-		[Glade.Widget] Gtk.ScrolledWindow directory_scrolled;
 		[Glade.Widget] Gtk.HPaned info_hpaned;
+
+		Gtk.ScrolledWindow directory_scrolled;
 
 		[Glade.Widget] Gtk.CheckMenuItem side_pane_item;
 		[Glade.Widget] Gtk.CheckMenuItem toolbar_item;
@@ -27,13 +29,16 @@ namespace FSpot {
 
 		[Glade.Widget] Label status_label;
 
+		Sidebar sidebar;
+
 		protected Glade.XML xml;
 		private Gtk.Window window;
 		PhotoImageView image_view;
 		FSpot.Widgets.IconView directory_view;
 		private Uri uri;
 		
-		InfoDialog metadata_dialog;
+		InfoBox info_box;
+		MetadataDisplay info_display;
 		
 		UriCollection collection;
 		
@@ -108,7 +113,24 @@ namespace FSpot {
 			directory_view.DisplayTags = false;
 			directory_view.DisplayDates = false;
 			directory_view.DisplayRatings = false;
+
+			directory_scrolled = new ScrolledWindow();
 			directory_scrolled.Add (directory_view);
+
+			sidebar = new Sidebar ();
+
+			info_vbox.Add (sidebar);
+			sidebar.AppendPage (directory_scrolled, Catalog.GetString ("Folder"), "gtk-directory");
+
+			info_display = new MetadataDisplay ();
+			info_display.ParentSidebar = sidebar;
+			sidebar.AppendPage (info_display, Catalog.GetString ("Exif"), "gtk-index");
+ 		
+			info_box = new InfoBox ();
+			info_box.ParentSidebar = sidebar;
+			sidebar.AppendPage (info_box, Catalog.GetString ("Information"), "gtk-info");
+			sidebar.CloseRequested += HandleHideSidePane;
+			sidebar.Show ();
 
 			ThumbnailGenerator.Default.OnPixbufLoaded += delegate { directory_view.QueueDraw (); };
 
@@ -140,6 +162,23 @@ namespace FSpot {
 			window.DeleteEvent += HandleDeleteEvent;
 			
 			collection.Changed += HandleCollectionChanged;
+
+			// wrap the methods to fit to the delegate
+			image_view.Item.Changed += delegate (BrowsablePointer pointer, BrowsablePointerChangedArgs old) {
+															IBrowsableItem [] item = {pointer.Current};
+															PhotoArray item_array = new PhotoArray (item);
+															info_display.HandleSelectionChanged (item_array);
+													};
+			
+			image_view.Item.Changed += delegate (BrowsablePointer pointer, BrowsablePointerChangedArgs old) {
+															IBrowsableItem [] item = {pointer.Current};
+															PhotoArray item_array = new PhotoArray (item);
+															info_box.HandleSelectionChanged (item_array);
+													};
+
+			image_view.Item.Collection.ItemsChanged += info_box.HandleSelectionItemsChanged;
+			image_view.Item.Collection.ItemsChanged += info_display.HandleSelectionItemsChanged;
+
 			UpdateStatusLabel ();
 			
 			if (collection.Count > 0)
@@ -225,8 +264,6 @@ namespace FSpot {
 				image_view.Item.Index = ((FSpot.Widgets.IconView.SelectionCollection)selection).Ids[0];
 
 				zoom_scale.Value = image_view.NormalizedZoom;
-				if (metadata_dialog != null)
-					metadata_dialog.InfoDisplay.Photo = image_view.Item.Current;
 			}
 			UpdateStatusLabel ();
 		}
@@ -274,20 +311,6 @@ namespace FSpot {
 			fsview.PlayPause ();
 		}
 	
-		private void HandleViewMetadata (object sender, System.EventArgs args)
-		{
-			if (metadata_dialog != null) {
-				metadata_dialog.Present ();
-				return;
-			}
-			
-			metadata_dialog = new InfoDialog (window);
-			metadata_dialog.InfoDisplay.Photo = image_view.Item.Current;
-			
-			metadata_dialog.ShowAll ();
-			metadata_dialog.Destroyed += HandleMetadataDestroyed;
-		}
-
 		private void HandleViewFilenames (object sender, System.EventArgs args)
 		{
 			directory_view.DisplayFilenames = filenames_item.Active; 
@@ -344,11 +367,6 @@ namespace FSpot {
 			chooser.Destroy ();
 		}
 
-		private void HandleMetadataDestroyed (object sender, System.EventArgs args)
-		{
-			metadata_dialog = null;
-		}
-	
 		private bool SlideShow ()
 		{
 			IBrowsableItem [] items = new IBrowsableItem [collection.Count];

@@ -48,6 +48,7 @@ namespace FSpot
 		public const string GROUP_ADAPTOR_ORDER_ASC = "/apps/f-spot/ui/group_adaptor_sort_asc";
 		
 		public const string SIDEBAR_POSITION = "/apps/f-spot/ui/sidebar_size";
+		public const string SIDEBAR_TOP_ENTRY = "/apps/f-spot/ui/sidebar_top_entry";
 		public const string ZOOM = "/apps/f-spot/ui/zoom";
 
 		public const string EXPORT_EMAIL_SIZE = "/apps/f-spot/export/email/size";
@@ -146,6 +147,7 @@ namespace FSpot
 				return (int) Tag.IconSize.Large;
 		
 			case SIDEBAR_POSITION:
+			case SIDEBAR_TOP_ENTRY:
 			case ZOOM:
 				return null;
 

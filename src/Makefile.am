@@ -158,6 +158,7 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/MemorySurface.cs		\
 	$(srcdir)/MetaStore.cs			\
 	$(srcdir)/MetadataStore.cs		\
+	$(srcdir)/MetadataDisplay.cs		\
 	$(srcdir)/NullPreferenceBackend.cs	\
 	$(srcdir)/Operation.cs			\
 	$(srcdir)/PhotoImageView.cs		\
@@ -233,6 +234,8 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/Widgets/ImageDisplay.cs	\
 	$(srcdir)/Widgets/ImageInfo.cs		\
 	$(srcdir)/Widgets/InfoBox.cs		\
+	$(srcdir)/Widgets/InfoVBox.cs		\
+	$(srcdir)/Widgets/MenuButton.cs		\
 	$(srcdir)/Widgets/PanZoom.cs		\
 	$(srcdir)/Widgets/PreviewPopup.cs 	\
 	$(srcdir)/Widgets/Push.cs		\
@@ -240,6 +243,7 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/Widgets/RatingMenuItem.cs	\
 	$(srcdir)/Widgets/Reveal.cs		\
 	$(srcdir)/Widgets/ScalingIconView.cs	\
+	$(srcdir)/Widgets/Sidebar.cs	\
 	$(srcdir)/Widgets/SoftFocus.cs		\
 	$(srcdir)/Widgets/TagEntry.cs		\
 	$(srcdir)/Widgets/Tilt.cs		\

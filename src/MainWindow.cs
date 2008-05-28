@@ -28,6 +28,8 @@ public class MainWindow {
 
 	Db db;
 
+	Sidebar sidebar;
+
 	TagSelectionWidget tag_selection_widget;
 	[Glade.Widget] Gtk.Window main_window;
 
@@ -41,7 +43,8 @@ public class MainWindow {
 	[Glade.Widget] ScrolledWindow icon_view_scrolled;
 	[Glade.Widget] Box photo_box;
 	[Glade.Widget] Notebook view_notebook;
-	[Glade.Widget] ScrolledWindow tag_selection_scrolled;
+	
+	ScrolledWindow tag_selection_scrolled;
 
 	[Glade.Widget] Label status_label;
 
@@ -75,8 +78,6 @@ public class MainWindow {
 	[Glade.Widget] MenuItem remove_tag;
 
 	// View
-	[Glade.Widget] MenuItem exif_data;
-	
 	[Glade.Widget] CheckMenuItem display_toolbar;
 	[Glade.Widget] CheckMenuItem display_sidebar;
 	[Glade.Widget] CheckMenuItem display_timeline;
@@ -125,6 +126,7 @@ public class MainWindow {
 
 	[Glade.Widget] Gtk.HBox tagbar;
 	[Glade.Widget] Gtk.VBox tag_entry_container;
+	[Glade.Widget] Gtk.VBox tag_vbox;
 	TagEntry tag_entry;
 
 	Gtk.Toolbar toolbar;
@@ -137,7 +139,7 @@ public class MainWindow {
 	Gtk.ToggleToolButton edit_button;
 
 	InfoBox info_box;
-	FSpot.InfoDisplay info_display;
+	MetadataDisplay info_display;
 	QueryView icon_view;
 	PhotoView photo_view;
 	FSpot.FullScreenView fsview;
@@ -295,9 +297,27 @@ public class MainWindow {
 		ss_button.Clicked += HandleViewSlideShow;
 		ss_button.SetTooltip (ToolTips, Catalog.GetString ("View photos in a slideshow"), null);
 		toolbar.Insert (ss_button, -1);
+
+		sidebar = new Sidebar ();
+		tag_vbox.Add (sidebar);
+
+		tag_selection_scrolled = new ScrolledWindow ();
 		
 		tag_selection_widget = new TagSelectionWidget (db.Tags);
 		tag_selection_scrolled.Add (tag_selection_widget);
+
+		sidebar.AppendPage (tag_selection_scrolled, Catalog.GetString ("Tags"), "gtk-new");
+
+		info_display = new MetadataDisplay ();
+		info_display.ParentSidebar = sidebar;
+		sidebar.AppendPage (info_display, Catalog.GetString ("Exif"), "gtk-index");
+ 		
+		info_box = new InfoBox ();
+		info_box.ParentSidebar = sidebar;
+		info_box.VersionIdChanged += HandleInfoBoxVersionIdChange;
+		sidebar.AppendPage (info_box, Catalog.GetString ("Information"), "gtk-info");
+		sidebar.CloseRequested += HideSidebar;
+		sidebar.Show ();
 		
 		tag_selection_widget.Selection.Changed += HandleTagSelectionChanged;
 		tag_selection_widget.DragDataGet += HandleTagSelectionDragDataGet;
@@ -317,10 +337,6 @@ public class MainWindow {
 		tag_selection_widget.RowActivated += HandleTagSelectionRowActivated;
 		
 		LoadPreference (Preferences.TAG_ICON_SIZE);
-
-		info_box = new InfoBox ();
-		info_box.VersionIdChanged += HandleInfoBoxVersionIdChange;
-		left_vbox.PackStart (info_box, false, true, 0);
 		
 		try {
 			query = new FSpot.PhotoQuery (db.Photos);
@@ -439,6 +455,10 @@ public class MainWindow {
 		this.selection = new MainSelection (this);
 		this.selection.Changed += HandleSelectionChanged;
 		this.selection.ItemsChanged += HandleSelectionItemsChanged;
+		this.selection.Changed += info_box.HandleSelectionChanged;
+		this.selection.ItemsChanged += info_box.HandleSelectionItemsChanged;
+		this.selection.Changed += info_display.HandleSelectionChanged;
+		this.selection.ItemsChanged += info_display.HandleSelectionItemsChanged;
 
 		Mono.Addins.AddinManager.ExtensionChanged += PopulateExtendableMenus;
 		PopulateExtendableMenus (null, null);
@@ -452,6 +472,7 @@ public class MainWindow {
 
 		UpdateFindByTagMenu ();
 
+		LoadPreference (Preferences.SIDEBAR_TOP_ENTRY);
 		LoadPreference (Preferences.SHOW_TOOLBAR);
 		LoadPreference (Preferences.SHOW_SIDEBAR);
 		LoadPreference (Preferences.SHOW_TIMELINE);
@@ -744,10 +765,6 @@ public class MainWindow {
 
 	private void HandleSelectionChanged (IBrowsableCollection collection)
 	{
-		info_box.Photo = CurrentPhoto;
-		if (info_display != null)
-			info_display.Photo = CurrentPhoto;
-
 		UpdateMenus ();
 		UpdateTagEntryFromSelection ();
 		UpdateStatusLabel();	
@@ -757,7 +774,6 @@ public class MainWindow {
 	{
 		UpdateMenus ();
 		UpdateTagEntryFromSelection ();
-		info_box.Update ();
 	}
 
 
@@ -1634,28 +1650,6 @@ public class MainWindow {
 		Mono.Addins.Gui.AddinManagerWindow.Run (main_window);
 	}
 	
-	void HandleViewFullExif (object sender, EventArgs args)
-	{
-		if (info_display_window != null) {
-			info_display_window.Present ();
-			return;
-		}
-
-		info_display = new FSpot.InfoDisplay ();
-		info_display_window = new Gtk.Dialog (Catalog.GetString ("Metadata Browser"), 
-						      main_window, 
-						      Gtk.DialogFlags.NoSeparator | Gtk.DialogFlags.DestroyWithParent);
-		info_display_window.SetDefaultSize (400, 400);
-		Gtk.ScrolledWindow scroll = new ScrolledWindow ();
-		info_display_window.VBox.PackStart (scroll);
-		scroll.Add (info_display);
-
-		info_display.Photo = CurrentPhoto;
-	       
-		info_display_window.ShowAll ();
-		info_display_window.Destroyed += HandleInfoDisplayDestroy;
-	}
-
 	void HandleViewDirectory (object sender, EventArgs args)
 	{
 		Gtk.Window win = new Gtk.Window ("Directory View");
@@ -2671,6 +2665,10 @@ public class MainWindow {
 				main_hpaned.Position = (int) val;
 			break;
 
+		case Preferences.SIDEBAR_TOP_ENTRY:
+			sidebar.SwitchTo ((string) val);
+			break;
+
 		case Preferences.TAG_ICON_SIZE:
 			int s = (int) val;
 			tag_icon_hidden.Active = (s == (int) Tag.IconSize.Hidden);
@@ -2869,7 +2867,6 @@ public class MainWindow {
 		print.Sensitive = active_selection;
 		select_none.Sensitive = active_selection;
 		copy_location.Sensitive = active_selection;
-		exif_data.Sensitive = active_selection;
 		remove_from_catalog.Sensitive = active_selection;
 		
 		clear_rating_filter.Sensitive = (query.RatingRange != null);
@@ -3176,6 +3173,10 @@ public class MainWindow {
 		
 		query_widget.ShowBar ();
 		return;
+	}
+
+	public void HideSidebar (object o, EventArgs args) {
+		display_sidebar.Active = false;
 	}
 	
 	public void HandleKeyPressEvent (object sender, Gtk.KeyPressEventArgs args)

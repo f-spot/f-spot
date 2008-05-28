@@ -3419,15 +3419,6 @@ Photo Details</property>
                       </widget>
                     </child>
                     <child>
-                      <widget class="GtkMenuItem" id="exif_data">
-                        <property name="visible">True</property>
-                        <property name="label" translatable="yes">_Metadata Browser</property>
-                        <property name="use_underline">True</property>
-                        <signal name="activate" handler="HandleViewFullExif"/>
-                        <accelerator key="i" modifiers="GDK_CONTROL_MASK" signal="activate"/>
-                      </widget>
-                    </child>
-                    <child>
                       <widget class="GtkSeparatorMenuItem" id="separator18">
                         <property name="visible">True</property>
                       </widget>
@@ -4002,21 +3993,6 @@ Photo Details</property>
                         <property name="visible">True</property>
                         <child>
                           <placeholder/>
-                        </child>
-                        <child>
-                          <widget class="GtkScrolledWindow" id="tag_selection_scrolled">
-                            <property name="visible">True</property>
-                            <property name="can_focus">True</property>
-                            <property name="hscrollbar_policy">GTK_POLICY_AUTOMATIC</property>
-                            <property name="vscrollbar_policy">GTK_POLICY_AUTOMATIC</property>
-                            <property name="shadow_type">GTK_SHADOW_IN</property>
-                            <child>
-                              <placeholder/>
-                            </child>
-                          </widget>
-                          <packing>
-                            <property name="position">1</property>
-                          </packing>
                         </child>
                       </widget>
                     </child>
@@ -5184,15 +5160,6 @@ Photo Details</property>
                       </widget>
                     </child>
                     <child>
-                      <widget class="GtkMenuItem" id="metadata_browser">
-                        <property name="visible">True</property>
-                        <property name="label" translatable="yes">_Metadata Browser</property>
-                        <property name="use_underline">True</property>
-                        <signal name="activate" handler="HandleViewMetadata"/>
-                        <accelerator key="I" modifiers="GDK_CONTROL_MASK" signal="activate"/>
-                      </widget>
-                    </child>
-                    <child>
                       <widget class="GtkSeparatorMenuItem" id="separator26">
                         <property name="visible">True</property>
                       </widget>
@@ -5300,80 +5267,6 @@ Photo Details</property>
             <child>
               <widget class="GtkVBox" id="info_vbox">
                 <property name="visible">True</property>
-                <child>
-                  <widget class="GtkHBox" id="hbox66">
-                    <property name="visible">True</property>
-                    <child>
-                      <widget class="GtkButton" id="button24">
-                        <property name="visible">True</property>
-                        <property name="can_focus">True</property>
-                        <property name="relief">GTK_RELIEF_NONE</property>
-                        <property name="response_id">0</property>
-                        <child>
-                          <widget class="GtkHBox" id="hbox70">
-                            <property name="visible">True</property>
-                            <child>
-                              <widget class="GtkLabel" id="sidebar_label">
-                                <property name="visible">True</property>
-                                <property name="xalign">0</property>
-                                <property name="label" translatable="yes">Folder</property>
-                              </widget>
-                            </child>
-                            <child>
-                              <widget class="GtkArrow" id="arrow1">
-                                <property name="visible">True</property>
-                                <property name="arrow_type">GTK_ARROW_DOWN</property>
-                              </widget>
-                              <packing>
-                                <property name="expand">False</property>
-                                <property name="fill">False</property>
-                                <property name="position">1</property>
-                              </packing>
-                            </child>
-                          </widget>
-                        </child>
-                      </widget>
-                    </child>
-                    <child>
-                      <widget class="GtkButton" id="button23">
-                        <property name="visible">True</property>
-                        <property name="can_focus">True</property>
-                        <property name="relief">GTK_RELIEF_NONE</property>
-                        <property name="response_id">0</property>
-                        <signal name="clicked" handler="HandleHideSidePane"/>
-                        <child>
-                          <widget class="GtkImage" id="image20">
-                            <property name="visible">True</property>
-                            <property name="stock">gtk-close</property>
-                          </widget>
-                        </child>
-                      </widget>
-                      <packing>
-                        <property name="expand">False</property>
-                        <property name="fill">False</property>
-                        <property name="position">1</property>
-                      </packing>
-                    </child>
-                  </widget>
-                  <packing>
-                    <property name="expand">False</property>
-                    <property name="fill">False</property>
-                  </packing>
-                </child>
-                <child>
-                  <widget class="GtkScrolledWindow" id="directory_scrolled">
-                    <property name="visible">True</property>
-                    <property name="can_focus">True</property>
-                    <property name="hscrollbar_policy">GTK_POLICY_NEVER</property>
-                    <property name="shadow_type">GTK_SHADOW_IN</property>
-                    <child>
-                      <placeholder/>
-                    </child>
-                  </widget>
-                  <packing>
-                    <property name="position">1</property>
-                  </packing>
-                </child>
               </widget>
               <packing>
                 <property name="resize">False</property>
