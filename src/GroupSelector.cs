@@ -910,6 +910,14 @@ namespace FSpot {
 			if (event_window != null)
 				event_window.Show ();
 		}
+
+		protected override void OnUnmapped ()
+		{
+			base.OnUnmapped ();
+			if (event_window != null)
+				event_window.Hide ();
+			
+		}
 		
 		protected override bool OnExposeEvent (Gdk.EventExpose args)
 		{
