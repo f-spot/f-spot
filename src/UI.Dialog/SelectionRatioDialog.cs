@@ -1,5 +1,5 @@
 /*
- * FSpot.UI.Dialog.SelectionRatioDailog.cs
+ * FSpot.UI.Dialog.SelectionRatioDialog.cs
  *
  * Author(s):
  *	Stephane Delcroix  <stephane@delcroix.org>

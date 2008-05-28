@@ -1359,7 +1359,7 @@
   </widget>
   <widget class="GtkDialog" id="print_dialog">
     <property name="visible">True</property>
-    <property name="title" translatable="yes">Print</property>
+    <property name="title" translatable="yes">Print...</property>
     <property name="type_hint">GDK_WINDOW_TYPE_HINT_DIALOG</property>
     <property name="has_separator">False</property>
     <child internal-child="vbox">

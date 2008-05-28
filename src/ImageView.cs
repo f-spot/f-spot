@@ -76,13 +76,14 @@ public class ImageView : Layout {
 	[DllImport ("libfspot")]
 	static extern double f_image_view_get_selection_xy_ratio (IntPtr image_view);
 
+	double delayed_ratio = -2;
 	public double SelectionXyRatio {
-		get {
-			return f_image_view_get_selection_xy_ratio (Handle);
-		}
-		set {
-			if (Pixbuf != null)
+		get { return f_image_view_get_selection_xy_ratio (Handle); }
+		set { 
+			if (Pixbuf != null) 
 				f_image_view_set_selection_xy_ratio (Handle, value);
+			else
+				delayed_ratio = value;
 		}
 	}
 
@@ -149,8 +150,13 @@ public class ImageView : Layout {
 		set {
 			if (value == null)
 				image_view_set_pixbuf (Handle, IntPtr.Zero);
-			else
+			else {
 				image_view_set_pixbuf (Handle, value.Handle);
+				if (delayed_ratio != -2) {
+					SelectionXyRatio = delayed_ratio;
+					delayed_ratio = -2;
+				}
+			}
 		}
 	}
 
