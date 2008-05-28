@@ -61,6 +61,7 @@ JOBSCHEDULER_CSDISTFILES =				\
 WIDGETS_CSDISTFILES =				\
 	$(srcdir)/Widgets/ComplexMenuItem.cs	\
 	$(srcdir)/Widgets/CustomPrintWidget.cs	\
+	$(srcdir)/Widgets/HighlightedBox.cs	\
 	$(srcdir)/Widgets/Rating.cs		\
 	$(srcdir)/Widgets/SaneTreeView.cs	\
 	$(srcdir)/Widgets/ScrolledView.cs	\
