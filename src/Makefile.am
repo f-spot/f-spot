@@ -62,6 +62,7 @@ WIDGETS_CSDISTFILES =				\
 	$(srcdir)/Widgets/ComplexMenuItem.cs	\
 	$(srcdir)/Widgets/CustomPrintWidget.cs	\
 	$(srcdir)/Widgets/HighlightedBox.cs	\
+	$(srcdir)/Widgets/MenuButton.cs		\
 	$(srcdir)/Widgets/Rating.cs		\
 	$(srcdir)/Widgets/SaneTreeView.cs	\
 	$(srcdir)/Widgets/ScrolledView.cs	\
@@ -235,7 +236,6 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/Widgets/ImageInfo.cs		\
 	$(srcdir)/Widgets/InfoBox.cs		\
 	$(srcdir)/Widgets/InfoVBox.cs		\
-	$(srcdir)/Widgets/MenuButton.cs		\
 	$(srcdir)/Widgets/PanZoom.cs		\
 	$(srcdir)/Widgets/PreviewPopup.cs 	\
 	$(srcdir)/Widgets/Push.cs		\
