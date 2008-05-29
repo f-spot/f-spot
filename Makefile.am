@@ -19,7 +19,7 @@ SUBDIRS = 		\
 	extensions
 
 DIST_SUBDIRS = 		\
-	$(subdirs)	\
+	gio-sharp	\
 	semweb		\
 	dbus-sharp	\
 	dbus-sharp-glib	\
@@ -89,12 +89,12 @@ UPDATE_DESKTOP = \
 install-data-hook: 
 	$(UPDATE_DESKTOP)
 	if [ "x$(DIR_GIO)" != "x" ] ; then \
-		$(install_sh_DATA) $(top_builddir)/gio-sharp/gio/gio-sharp.dll $(libdir)/f-spot/; \
-		$(install_sh_DATA) $(top_builddir)/gio-sharp/gio/gio-sharp.dll.config $(libdir)/f-spot/; \
+		$(install_sh_DATA) $(top_builddir)/gio-sharp/gio/gio-sharp.dll $(DESTDIR)$(libdir)/f-spot/; \
+		$(install_sh_DATA) $(top_builddir)/gio-sharp/gio/gio-sharp.dll.config $(DESTDIR)$(libdir)/f-spot/; \
 	fi
 
 uninstall-hook: 
 	$(UPDATE_DESKTOP)
 	if [ "x$(DIR_GIO)" != "x" ] ; then \
-		rm -f $(libdir)/f-spot/gio-sharp.dll $(libdir)/f-spot/gio-sharp.dll.config; \
+		rm -f $(DESTDIR)$(libdir)/f-spot/gio-sharp.dll $(DESTDIR)$(libdir)/f-spot/gio-sharp.dll.config; \
 	fi
