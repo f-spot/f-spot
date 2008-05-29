@@ -70,7 +70,7 @@ namespace FSpot.Widgets
 			hbox.Show ();
 		}
 
-		protected override void OnClicked ()
+		protected override void OnPressed ()
 		{
 			if (popup_menu == null)
 				return;
