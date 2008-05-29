@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: f-spot.HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-05-23 17:29+0000\n"
-"PO-Revision-Date: 2008-05-24 14:12+0200\n"
+"POT-Creation-Date: 2008-05-28 12:35+0000\n"
+"PO-Revision-Date: 2008-05-29 20:55+0200\n"
 "Last-Translator: Jorge González <jorgegonz@svn.gnome.org>\n"
 "Language-Team: Español <gnome-es-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -403,7 +403,7 @@ msgid "File"
 msgstr "Archivo"
 
 #: ../src/CameraFileSelectionDialog.cs:80
-#: ../extensions/FolderExport/FolderExport.cs:885
+#: ../extensions/FolderExport/FolderExport.cs:886
 msgid "Index"
 msgstr "Índice"
 
@@ -970,7 +970,7 @@ msgid "Rotate Right"
 msgstr "Rotar a la derecha"
 
 #: ../src/ItemAction.cs:104 ../src/f-spot.glade.h:137
-#: ../extensions/FolderExport/FolderExport.cs:888
+#: ../extensions/FolderExport/FolderExport.cs:889
 msgid "Next"
 msgstr "Siguiente"
 
@@ -1576,6 +1576,10 @@ msgstr "Tasas personalizadas…"
 msgid "Photos"
 msgstr "Fotos"
 
+#: ../src/PrintOperation.cs:31
+msgid "Image Settings"
+msgstr "Ajustes de la imagen"
+
 #. This indicates the current photo is photo {0} of {1} out of photos
 #: ../src/ProgressDialog.cs:82 ../src/TimeDialog.cs:142
 #: ../extensions/CDExport/CDExport.cs:221
@@ -1890,7 +1894,7 @@ msgstr " o "
 
 #. OPS The operators we support, case insensitive
 #. private static string op_str = "(?'Ops' or | and |, | \\s+ )";
-#: ../src/Term.cs:379 ../src/Widgets/FindBar.cs:202 ../src/f-spot.glade.h:290
+#: ../src/Term.cs:379 ../src/Widgets/FindBar.cs:176 ../src/f-spot.glade.h:290
 msgid "or"
 msgstr "o"
 
@@ -1981,6 +1985,56 @@ msgstr ""
 "No se encontró el «Manual de F-Spot». Compruebe que su instalación se ha "
 "completado correctamente."
 
+#: ../src/Widgets/CustomPrintWidget.cs:98
+msgid "Page Setup"
+msgstr "Configuración de página"
+
+#: ../src/Widgets/CustomPrintWidget.cs:100
+#: ../src/Widgets/CustomPrintWidget.cs:105
+#, csharp-format
+msgid "Paper Size: {0} x {1} mm"
+msgstr "Tamaño del papel: {0} x {1} mm"
+
+#: ../src/Widgets/CustomPrintWidget.cs:115
+msgid "Photos per page"
+msgstr "Fotos por página"
+
+#. ppp1.Toggled += TriggerChanged;
+#. ppp2.Toggled += TriggerChanged;
+#. ppp4.Toggled += TriggerChanged;
+#. ppp9.Toggled += TriggerChanged;
+#: ../src/Widgets/CustomPrintWidget.cs:127
+msgid "Repeat"
+msgstr "Repetir"
+
+#: ../src/Widgets/CustomPrintWidget.cs:128
+msgid "Print cut marks"
+msgstr "Imprimir marcas de recorte"
+
+#: ../src/Widgets/CustomPrintWidget.cs:136
+msgid "Full Page (no margin)"
+msgstr "Página completa (sin márgenes)"
+
+#: ../src/Widgets/CustomPrintWidget.cs:139
+msgid "Zoom"
+msgstr "Ampliar"
+
+#: ../src/Widgets/CustomPrintWidget.cs:140
+msgid "Fill"
+msgstr "Rellenar"
+
+#: ../src/Widgets/CustomPrintWidget.cs:141
+msgid "Scaled"
+msgstr "Escalar"
+
+#: ../src/Widgets/CustomPrintWidget.cs:147
+msgid "White borders"
+msgstr "Bordes blancos"
+
+#: ../src/Widgets/CustomPrintWidget.cs:151
+msgid "Custom Text: "
+msgstr "Texto personalizado: "
+
 #: ../src/Widgets/InfoBox.cs:104
 msgid "name"
 msgstr "nombre"
@@ -2009,11 +2063,11 @@ msgstr "(Desconocido)"
 msgid "Rating:"
 msgstr "Puntuación:"
 
-#: ../src/Widgets/FindBar.cs:83
+#: ../src/Widgets/FindBar.cs:57
 msgid "Find:"
 msgstr "Buscar:"
 
-#: ../src/Widgets/FindBar.cs:202 ../src/f-spot.glade.h:282
+#: ../src/Widgets/FindBar.cs:176 ../src/f-spot.glade.h:282
 msgid "and"
 msgstr "y"
 
@@ -2663,12 +2717,12 @@ msgid "Preferences"
 msgstr "Preferencias"
 
 #: ../src/f-spot.glade.h:158
-msgid "Print"
-msgstr "Imprimir"
-
-#: ../src/f-spot.glade.h:159
 msgid "Print crop _marks"
 msgstr "Imprimir _marcas de recorte"
+
+#: ../src/f-spot.glade.h:159
+msgid "Print..."
+msgstr "Imprimir…"
 
 #: ../src/f-spot.glade.h:160
 msgid "Re_fresh Thumbnail"
@@ -2753,7 +2807,6 @@ msgid "Show or hide the toolbar"
 msgstr "Mostrar u ocultar la barra de herramientas"
 
 #: ../src/f-spot.glade.h:186
-#, fuzzy
 msgid "Side _pane"
 msgstr "_Panel lateral"
 
@@ -3332,8 +3385,8 @@ msgid ""
 "F-Spot was unable to log on to {0}.  Make sure you have given the "
 "authentication using {0} web browser interface."
 msgstr ""
-"F-Spot no pudo iniciar sesión en {0}. Asegúrese de que ha concedido "
-"la autenticación usando la interfaz web de {0}."
+"F-Spot no pudo iniciar sesión en {0}. Asegúrese de que ha concedido la "
+"autenticación usando la interfaz web de {0}."
 
 #: ../extensions/FlickrExport/FlickrExport.cs:459
 #: ../extensions/GalleryExport/GalleryExport.cs:693
@@ -3357,8 +3410,8 @@ msgid ""
 "Spot the authorization. "
 msgstr ""
 "F-Spot necesita su autorización para poder subir fotos a su cuenta en {0}. "
-"Pulse el botón «Autorizar» para abrir un navegador web y dar la autorización a "
-"F-Spot."
+"Pulse el botón «Autorizar» para abrir un navegador web y dar la autorización "
+"a F-Spot."
 
 #: ../extensions/FlickrExport/FlickrExport.glade.h:9
 msgid "Ignore _top level tags"
@@ -3405,34 +3458,35 @@ msgstr "Construiyendo galería"
 msgid "Error uploading picture \"{0}\" to Gallery:{2}{1}"
 msgstr "Error al subir la imagen «{0}» a la galería: {2}{1}"
 
-#: ../extensions/FolderExport/FolderExport.cs:739
+#. Note for translators: light as clear, opposite as dark
+#: ../extensions/FolderExport/FolderExport.cs:740
 msgid "Light"
 msgstr "Luminoso"
 
-#: ../extensions/FolderExport/FolderExport.cs:740
+#: ../extensions/FolderExport/FolderExport.cs:741
 msgid "Dark"
 msgstr "Oscuro"
 
 #. Abbreviation of previous
-#: ../extensions/FolderExport/FolderExport.cs:883
+#: ../extensions/FolderExport/FolderExport.cs:884
 msgid "Prev"
 msgstr "Anterior"
 
-#: ../extensions/FolderExport/FolderExport.cs:941
-#: ../extensions/FolderExport/FolderExport.cs:1114
+#: ../extensions/FolderExport/FolderExport.cs:942
+#: ../extensions/FolderExport/FolderExport.cs:1115
 msgid "Show Styles"
 msgstr "Mostrar estilos"
 
-#: ../extensions/FolderExport/FolderExport.cs:942
-#: ../extensions/FolderExport/FolderExport.cs:1115
+#: ../extensions/FolderExport/FolderExport.cs:943
+#: ../extensions/FolderExport/FolderExport.cs:1116
 msgid "Hide Styles"
 msgstr "Ocultar estilos"
 
-#: ../extensions/FolderExport/FolderExport.cs:999
+#: ../extensions/FolderExport/FolderExport.cs:1000
 msgid "Gallery generated by"
 msgstr "Galería generada por"
 
-#: ../extensions/FolderExport/FolderExport.cs:1044
+#: ../extensions/FolderExport/FolderExport.cs:1045
 msgid "Page:"
 msgstr "Página:"
 
@@ -3478,7 +3532,7 @@ msgstr "_Guardar sólo estos archivos"
 
 #: ../extensions/GalleryExport/GalleryExport.addin.xml.h:1
 msgid "Web _Gallery..."
-msgstr "Web _Gallery..."
+msgstr "Web _Gallery…"
 
 #: ../extensions/GalleryExport/GalleryExport.cs:384
 msgid "Invalid URL"
@@ -3704,18 +3758,6 @@ msgstr "<b>Exportar a PicasaWeb</b>"
 #: ../extensions/PicasaWebExport/PicasaWebExport.glade.h:17
 msgid "_Autorotate"
 msgstr "_Autorotar"
-
-#: ../extensions/PicasaWebExport/google-sharp/CaptchaException.cs:58
-msgid "url"
-msgstr "URL"
-
-#: ../extensions/PicasaWebExport/google-sharp/CaptchaException.cs:59
-msgid "token"
-msgstr "token"
-
-#: ../extensions/PicasaWebExport/google-sharp/CaptchaException.cs:60
-msgid "captcha_url"
-msgstr ""
 
 #: ../extensions/SmugMugExport/SmugMugExport.glade.h:3
 msgid "<b>SmugMug Export</b>"
