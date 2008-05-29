@@ -472,8 +472,6 @@ namespace FSpotSmugMugExport {
 		[Glade.Widget] Gtk.OptionMenu gallery_optionmenu;
 		[Glade.Widget] Gtk.OptionMenu album_optionmenu;
 		
-		[Glade.Widget] Gtk.Label status_label;
-
 		[Glade.Widget] Gtk.CheckButton browser_check;
 		[Glade.Widget] Gtk.CheckButton scale_check;
 		[Glade.Widget] Gtk.CheckButton rotate_check;
@@ -680,7 +678,6 @@ namespace FSpotSmugMugExport {
 
 				PopulateAlbumOptionMenu (account.SmugMug);
 
-				status_label.Text = String.Empty;
 				album_button.Sensitive = false;
 				
 				new SmugMugAccountDialog (this.Dialog, account);
