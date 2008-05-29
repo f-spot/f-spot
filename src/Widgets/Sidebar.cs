@@ -32,7 +32,7 @@ namespace FSpot.Widgets {
 			
 			notebook = new Notebook ();
 			notebook.ShowTabs = false;
-            notebook.ShowBorder = false;
+			notebook.ShowBorder = false;
 			PackStart (notebook, true, true, 0);
 			
 			Button button = new Button ();
@@ -46,7 +46,6 @@ namespace FSpot.Widgets {
 					
 			eventBox = new EventBox ();
 			eventBox.Add (choose_button);
-			choose_button.ButtonPressEvent += HandleMouseScrollEvent;
 						
 			button_box.PackStart (eventBox, true, true, 0);
 			
@@ -99,11 +98,6 @@ namespace FSpot.Widgets {
 				CloseRequested (this, args);
 		}
 		
-		public void HandleMouseScrollEvent (object o, EventArgs args)
-		{
-			System.Console.Out.WriteLine ("Hallo Welt");
-		}
-		
 		public void SwitchTo (int n)
 		{
 			if (n != notebook.CurrentPage)
@@ -111,8 +105,12 @@ namespace FSpot.Widgets {
 				notebook.CurrentPage = n;
 				choose_button.Label = menu_list [n];
 				choose_button.Image.IconName = image_list [n];
-				Preferences.Set (Preferences.SIDEBAR_TOP_ENTRY, menu_list [n]);
 			}
+		}
+
+		public int CurrentPage
+		{
+			get { return notebook.CurrentPage; }
 		}
 
 		public void SwitchTo (string name)

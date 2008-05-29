@@ -1818,6 +1818,7 @@ public class MainWindow {
 
 		Preferences.Set (Preferences.SHOW_TOOLBAR,		toolbar.Visible);
 		Preferences.Set (Preferences.SHOW_SIDEBAR,		info_vbox.Visible);
+		Preferences.Set (Preferences.SIDEBAR_TOP_ENTRY,		sidebar.CurrentPage);
 		Preferences.Set (Preferences.SHOW_TIMELINE,		display_timeline.Active);
 		Preferences.Set (Preferences.SHOW_FILMSTRIP,		display_filmstrip.Active);
 		Preferences.Set (Preferences.SHOW_TAGS,			icon_view.DisplayTags);
@@ -2666,7 +2667,11 @@ public class MainWindow {
 			break;
 
 		case Preferences.SIDEBAR_TOP_ENTRY:
-			sidebar.SwitchTo ((string) val);
+			try {
+				sidebar.SwitchTo ((int) val);
+			} catch {
+				sidebar.SwitchTo (0);
+			}
 			break;
 
 		case Preferences.TAG_ICON_SIZE:
