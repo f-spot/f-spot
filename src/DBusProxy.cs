@@ -65,7 +65,7 @@ namespace FSpot {
 			if (photo_remote != null)
 			 	Bus.Session.Unregister (SERVICE_PATH, new ObjectPath (PHOTO_PROXY_PATH));
 
-			bool dbus_readonly = (bool)Preferences.Get (Preferences.DBUS_READ_ONLY);
+			bool dbus_readonly = Preferences.Get<bool> (Preferences.DBUS_READ_ONLY);
 
 			if (dbus_readonly)
 				tag_remote = new ReadOnlyTagRemoteControl (db.Tags);

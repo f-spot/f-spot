@@ -68,7 +68,7 @@ namespace FSpot {
 				large_size.Sensitive = false;
 				x_large_size.Sensitive = false;
 			} else  
-				switch ((int) Preferences.Get (Preferences.EXPORT_EMAIL_SIZE)) {
+				switch (Preferences.Get<int> (Preferences.EXPORT_EMAIL_SIZE)) {
 					case 0 :  original_size.Active = true; break;
 					case 1 :  tiny_size.Active = true; break;
 					case 2 :  small_size.Active = true; break;
@@ -78,7 +78,7 @@ namespace FSpot {
 					default: break;
 				}
 
-			rotate_check.Active = (bool) Preferences.Get (Preferences.EXPORT_EMAIL_ROTATE);
+			rotate_check.Active = Preferences.Get<bool> (Preferences.EXPORT_EMAIL_ROTATE);
 			rotate_check.Sensitive = original_size.Active && tiny_size.Sensitive;
 			
 			tray_scrolled.Add (new TrayView (selection));
@@ -243,7 +243,7 @@ namespace FSpot {
 			
 			// evaluate mailto command and define attachment args for cli
 			System.Text.StringBuilder attach_arg = new System.Text.StringBuilder ();
-			switch (Preferences.Get (Preferences.GNOME_MAILTO_COMMAND) as string) {
+			switch (Preferences.Get<string> (Preferences.GNOME_MAILTO_COMMAND)) {
 				case "thunderbird %s":
 				case "mozilla-thunderbird %s":
 				case "seamonkey -mail -compose %s":
@@ -325,7 +325,7 @@ namespace FSpot {
 			else {		
 				// Send the mail :)
 				string mail_subject = Catalog.GetString("my photos");
-				switch (Preferences.Get (Preferences.GNOME_MAILTO_COMMAND) as string) {
+				switch (Preferences.Get<string> (Preferences.GNOME_MAILTO_COMMAND)) {
 					// openSuSE
 					case "thunderbird %s":
 						System.Diagnostics.Process.Start("thunderbird", " -compose \"subject=" + mail_subject + ",attachment='" + mail_attach + "'\"");
@@ -351,7 +351,7 @@ namespace FSpot {
 				if (tmp_paths.Count > 0) {
 					// Fetch timeout value from preferences. In seconds. Needs to be multiplied with 1000 to get msec
 					uint delete_timeout;
-					delete_timeout = (uint) ( (int) Preferences.Get (Preferences.EXPORT_EMAIL_DELETE_TIMEOUT_SEC) );
+					delete_timeout = (uint) (Preferences.Get<int> (Preferences.EXPORT_EMAIL_DELETE_TIMEOUT_SEC));
 					delete_timeout = delete_timeout * 1000; // to get milliseconds.
 
 					// Start a timer and when it occurs, delete the temp files.

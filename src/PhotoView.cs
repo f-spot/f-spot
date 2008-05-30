@@ -334,7 +334,7 @@ namespace FSpot {
 					Gdk.Rectangle area = new Gdk.Rectangle (x, y, width, height);
 					edited = PixbufUtils.RemoveRedeye (original_pixbuf, 
 									   area,
-									   (int) Preferences.Get (Preferences.EDIT_REDEYE_THRESHOLD));
+									   Preferences.Get<int> (Preferences.EDIT_REDEYE_THRESHOLD));
 				} else { // Crop (I told you it was ugly)
 					edited = new Pixbuf (original_pixbuf.Colorspace, 
 							     original_pixbuf.HasAlpha, original_pixbuf.BitsPerSample,
@@ -605,14 +605,12 @@ namespace FSpot {
 	
 		private void LoadPreference (String key)
 		{
-			object val = Preferences.Get (key);
-	
 			switch (key) {
 			case Preferences.CUSTOM_CROP_RATIOS:
 				custom_constraints = new List<SelectionRatioDialog.SelectionConstraint> ();
-				if (val != null && val is string[]) {
+				if (Preferences.Get<string[]> (key) != null) {
 					XmlSerializer serializer = new XmlSerializer (typeof(SelectionRatioDialog.SelectionConstraint));
-					foreach (string xml in val as string[])
+					foreach (string xml in Preferences.Get<string[]> (key))
 						custom_constraints.Add ((SelectionRatioDialog.SelectionConstraint)serializer.Deserialize (new StringReader (xml)));
 				}
 				PopulateConstraints ();

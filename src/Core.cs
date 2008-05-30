@@ -158,14 +158,14 @@ namespace FSpot {
 				if (name != null)
 					tag = Database.Tags.GetTagByName (name);
 				else {
-					int id = (int) Preferences.Get (Preferences.SCREENSAVER_TAG);
+					int id = Preferences.Get<int> (Preferences.SCREENSAVER_TAG);
 					tag = Database.Tags.GetTagById (id);
 				}
 				
 				Photo [] photos;
 				if (tag != null)
 					photos = Database.Photos.Query (new Tag [] { tag } );
- 				else if ((int) Preferences.Get (Preferences.SCREENSAVER_TAG) == 0)
+ 				else if (Preferences.Get<int> (Preferences.SCREENSAVER_TAG) == 0)
  					photos = db.Photos.Query (new Tag [] {});
 				else
 					photos = new Photo [0];
