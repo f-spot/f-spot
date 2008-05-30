@@ -1,7 +1,8 @@
 NAME = BeagleService
 
 SOURCES = \
-	BeagleService.cs
+	BeagleService.cs 	\
+	BeagleNotifier.cs
 
 PACKAGES = \
 	-pkg:f-spot

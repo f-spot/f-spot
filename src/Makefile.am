@@ -71,7 +71,6 @@ WIDGETS_CSDISTFILES =				\
 
 F_SPOT_CSDISTFILES =				\
 	$(srcdir)/AsyncPixbufLoader.cs		\
-	$(srcdir)/BeagleNotifier.cs		\
 	$(srcdir)/BlockProcessor.cs		\
 	$(srcdir)/BitConverter.cs		\
 	$(srcdir)/PhotoArray.cs 		\
