@@ -144,21 +144,21 @@ else
   fi
 fi
 
-AC_SUBST(CSC_DEFINES)
 
 PKG_CHECK_MODULES(BEAGLE, beagle-0.0 >= $BEAGLE_REQUIRED,
 [
 	dnl this is a work around to avoid linking against beagles Util.dll
 	BEAGLE_DIR=`$PKG_CONFIG --variable=dlldir beagle-0.0`	
 	LINK_BEAGLE="-r:$BEAGLE_DIR/Beagle"
-	BEAGLE_DEFINES='-d:ENABLE_BEAGLE'
+	CSC_DEFINES="$CSC_DEFINES -d:ENABLE_BEAGLE"
 ],
 [
 	AC_MSG_RESULT([beagle not found])
 ])
 AC_SUBST(BEAGLE_DIR)
-AC_SUBST(BEAGLE_DEFINES)
 AC_SUBST(LINK_BEAGLE)
+
+AC_SUBST(CSC_DEFINES)
 
 dnl -- dbus-sharp: link or bundle ?
 PKG_CHECK_MODULES(NDESK_DBUS, ndesk-dbus-1.0 >= $NDESK_DBUS_REQUIRED ndesk-dbus-glib-1.0 >= $NDESK_DBUS_GLIB_REQUIRED,
@@ -354,6 +354,7 @@ Tao/Tao.OpenGl.Glu/Makefile
 Tao/Tao.GlPostProcess/Makefile
 Tao/Tao.OpenGl.ExtensionLoader/Makefile
 extensions/Makefile
+extensions/BeagleService/Makefile
 extensions/CDExport/Makefile
 extensions/DefaultExporters/Makefile
 extensions/FlickrExport/Makefile

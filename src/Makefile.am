@@ -1,7 +1,7 @@
 include $(top_srcdir)/Makefile.include
 UNSAFE = -unsafe
 NOWARN = -nowarn:0169 -nowarn:0612 -nowarn:0414  
-EXTRAFLAGS = -d:TEST_METADATA -d:BROKEN_RSVG $(NUNIT_DEFINES) $(BEAGLE_DEFINES) $(CSC_DEFINES)
+EXTRAFLAGS = -d:TEST_METADATA -d:BROKEN_RSVG $(NUNIT_DEFINES) $(CSC_DEFINES)
 
 CMS_CSDISTFILES =				\
 	$(srcdir)/Cms/CctTable.cs		\
@@ -300,7 +300,6 @@ F_SPOT_ASSEMBLIES = 				\
 	$(LINK_SMUGMUG)				\
 	$(LINK_TAO)				\
 	$(LINK_SEMWEB)				\
-	$(LINK_BEAGLE)				\
 	-r:System.Data				\
 	-r:System.Web				\
 	-r:Mono.Data.SqliteClient		\
