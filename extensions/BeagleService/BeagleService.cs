@@ -9,6 +9,7 @@
  */
 
 using System;
+using FSpot;
 using FSpot.Extensions;
 using FSpot.Utils;
 
@@ -18,6 +19,11 @@ namespace BeagleService {
 		public bool Start ()
 		{
 			uint timer = Log.InformationTimerStart ("Starting BeagleService");
+			try {
+				Core.Database.Photos.ItemsChanged += HandleDbItemsChanged;
+			} catch {
+				Log.Warning ("unable to hook the BeagleNotifier. are you running --view mode?");
+			}
 			Log.DebugTimerPrint (timer, "BeagleService startup took {0}");
 			return true;
 		}
@@ -27,6 +33,17 @@ namespace BeagleService {
 			uint timer = Log.InformationTimerStart ("Starting BeagleService");
 			Log.DebugTimerPrint (timer, "BeagleService startup took {0}");	
 			return true;
+		}
+
+		private void HandleDbItemsChanged (object sender, DbItemEventArgs args)
+		{
+			Log.Warning ("Notifying beagle");
+#if ENABLE_BEAGLE
+			foreach (DbItem item in args.Items) {
+				if (item as Photo != null)
+					BeagleNotifier.SendUpdate (item as Photo);
+			}
+#endif
 		}
 	}
 }

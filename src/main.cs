@@ -194,11 +194,7 @@ public class Driver {
 			setupService.Repositories.RegisterRepository (null, "http://addins.f-spot.org/" + maj_version, false);
 			Log.DebugTimerPrint (ma_timer, "Mono.Addins Initialization took {0}");
 			
-			foreach (ServiceNode service in AddinManager.GetExtensionNodes ("/FSpot/Services")) {
-				service.Initialize ();
-				service.Start ();
-			}
-			
+		
 
 			bool create = true;
 			int retry_count = 0;
@@ -240,8 +236,7 @@ public class Driver {
 
 						core = new Core (view);
 						core.RegisterServer ();
-						
-						
+
 						empty = view || Core.Database.Empty;
 						control = core;
 					}
@@ -298,6 +293,11 @@ public class Driver {
 			if (import_uri != null || !view) {
 				control.Organize ();
 				Gdk.Global.NotifyStartupComplete ();
+						foreach (ServiceNode service in AddinManager.GetExtensionNodes ("/FSpot/Services")) {
+							service.Initialize ();
+							service.Start ();
+						}		
+
 			}			
 
 			if (program != null)
