@@ -68,7 +68,7 @@ namespace FSpot.UI.Dialog {
 			LoadPreference (Preferences.METADATA_EMBED_IN_IMAGE);
 			LoadPreference (Preferences.SCREENSAVER_TAG);
 			LoadPreference (Preferences.GNOME_SCREENSAVER_THEME);
-			if (Global.PhotoDirectory == (string)Preferences.Get(Preferences.STORAGE_PATH)) {
+			if (Global.PhotoDirectory == Preferences.Get<string> (Preferences.STORAGE_PATH)) {
 				photosdir_chooser.CurrentFolderChanged += HandlePhotosdirChanged;
 				photosdir_chooser.SetCurrentFolder (Global.PhotoDirectory);
 			} else {
@@ -120,7 +120,7 @@ namespace FSpot.UI.Dialog {
 						if (File.Exists (Path.Combine (dir, gtkrc)) && !theme_list.ContainsKey (Path.GetFileName (dir)))
 							theme_list.Add (Path.GetFileName (dir), Path.Combine (dir, gtkrc));
 			
-			string active_theme = Preferences.Get (Preferences.GTK_RC) as string;
+			string active_theme = Preferences.Get<string> (Preferences.GTK_RC);
 			int it = 0;
 			foreach (string theme in theme_list.Keys) {
 				themelist_combo.AppendText (Path.GetFileName (theme));
@@ -134,7 +134,7 @@ namespace FSpot.UI.Dialog {
 			themelist_combo.Show ();
 			themelist_combo.Sensitive = theme_filechooser.Sensitive = themecustom_radio.Active; 
 			if (File.Exists (active_theme))
-				theme_filechooser.SetFilename (Preferences.Get (Preferences.GTK_RC) as string);
+				theme_filechooser.SetFilename (Preferences.Get<string> (Preferences.GTK_RC));
 			theme_filechooser.SelectionChanged += HandleThemeFileActivated;
 			themecustom_radio.Active = (active_theme != String.Empty);	
 
@@ -211,7 +211,7 @@ namespace FSpot.UI.Dialog {
 			else
 				File.SetLastWriteTime (Path.Combine (Global.BaseDirectory, "gtkrc"), DateTime.Now);
 			Gtk.Rc.DefaultFiles = Global.DefaultRcFiles;
-			Gtk.Rc.AddDefaultFile (Preferences.Get (Preferences.GTK_RC) as string);
+			Gtk.Rc.AddDefaultFile (Preferences.Get<string> (Preferences.GTK_RC));
 			foreach (string s in Rc.DefaultFiles)
 			Console.WriteLine (s);
 			Gtk.Rc.ReparseAll ();
@@ -220,7 +220,7 @@ namespace FSpot.UI.Dialog {
 
 		void HandleThemeFileActivated (object o, EventArgs e)
 		{
-			if (theme_filechooser.Filename != null && theme_filechooser.Filename != Preferences.Get (Preferences.GTK_RC)) {
+			if (theme_filechooser.Filename != null && theme_filechooser.Filename != Preferences.Get<string> (Preferences.GTK_RC)) {
 				Preferences.Set (Preferences.GTK_RC, theme_filechooser.Filename);	
 #if GTK_2_12_2
 				if (!File.Exists (Path.Combine (Global.BaseDirectory, "gtkrc")))
@@ -228,7 +228,7 @@ namespace FSpot.UI.Dialog {
 				else
 					File.SetLastWriteTime (Path.Combine (Global.BaseDirectory, "gtkrc"), DateTime.Now);
 				Gtk.Rc.DefaultFiles = Global.DefaultRcFiles;
-				Gtk.Rc.AddDefaultFile (Preferences.Get (Preferences.GTK_RC) as string);
+				Gtk.Rc.AddDefaultFile (Preferences.Get<string> (Preferences.GTK_RC));
 				foreach (string s in Rc.DefaultFiles)
 				Console.WriteLine (s);
 				Gtk.Rc.ReparseAll ();
@@ -262,17 +262,15 @@ namespace FSpot.UI.Dialog {
 
 		void LoadPreference (string key)
 		{
-			object val = Preferences.Get (key);
-
 			switch (key) {
 			case Preferences.METADATA_EMBED_IN_IMAGE:
-				bool active = (bool) val;
+				bool active = Preferences.Get<bool> (key);
 				if (metadata_check.Active != active)
 					metadata_check.Active = active;
 				break;
 			case Preferences.SCREENSAVER_TAG:
 				try {
-					screensaver_tag = (int) val;
+					screensaver_tag = Preferences.Get<int> (key);
 				} catch (System.Exception e) {
 					Console.WriteLine (e);
 					screensaver_tag = 0;
@@ -286,8 +284,8 @@ namespace FSpot.UI.Dialog {
 				break;
 			case Preferences.GNOME_SCREENSAVER_THEME:
 			case Preferences.GNOME_SCREENSAVER_MODE:
-				string [] theme = (string []) Preferences.Get (Preferences.GNOME_SCREENSAVER_THEME);
-				string mode = (string) Preferences.Get (Preferences.GNOME_SCREENSAVER_MODE);
+				string [] theme = Preferences.Get<string []> (Preferences.GNOME_SCREENSAVER_THEME);
+				string mode = Preferences.Get<string> (Preferences.GNOME_SCREENSAVER_MODE);
 				
 				bool sensitive = mode != SaverMode;
 				sensitive |= (theme == null || theme.Length != 1 || theme [0] != SaverCommand);
@@ -295,16 +293,16 @@ namespace FSpot.UI.Dialog {
 				set_saver_button.Sensitive = sensitive;
 				break;
 			case Preferences.STORAGE_PATH:
-				photosdir_chooser.SetCurrentFolder ((string)val);
+				photosdir_chooser.SetCurrentFolder (Preferences.Get<string> (key));
 				break;
 			case Preferences.DBUS_READ_ONLY:
-				dbus_check.Active = !((bool)val);
+				dbus_check.Active = !(Preferences.Get<bool> (key));
 				break;
 			case Preferences.GTK_RC:
-				themenone_radio.Active = (val as string == String.Empty);
-				themecustom_radio.Active = (val as string != String.Empty);
+				themenone_radio.Active = (Preferences.Get<string> (key) == String.Empty);
+				themecustom_radio.Active = (Preferences.Get<string> (key) != String.Empty);
 				if (theme_filechooser.Sensitive)
-					theme_filechooser.SetFilename (val as string);
+					theme_filechooser.SetFilename (Preferences.Get<string> (key));
 				break;
 			}
 		}

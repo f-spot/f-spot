@@ -538,14 +538,9 @@ namespace FSpot {
 
 		void LoadPreference (String key)
 		{
-			object val = Preferences.Get (key);
-
-			if (val == null)
-				return;
-			
 			switch (key) {
 			case Preferences.VIEWER_MAXIMIZED:
-				if ((bool) val)
+				if (Preferences.Get<bool> (key))
 					window.Maximize ();
 				else
 					window.Unmaximize ();
@@ -553,43 +548,43 @@ namespace FSpot {
 
 			case Preferences.VIEWER_WIDTH:
 			case Preferences.VIEWER_HEIGHT:
-				window.SetDefaultSize((int) Preferences.Get(Preferences.VIEWER_WIDTH),
-						(int) Preferences.Get(Preferences.VIEWER_HEIGHT));
+				window.SetDefaultSize(Preferences.Get<int> (Preferences.VIEWER_WIDTH),
+						      Preferences.Get<int> (Preferences.VIEWER_HEIGHT));
 
 				window.ReshowWithInitialSize();
 				break;
 			
 			case Preferences.VIEWER_SHOW_TOOLBAR:
-				if (toolbar_item.Active != (bool) val)
-					toolbar_item.Active = (bool) val;
+				if (toolbar_item.Active != Preferences.Get<bool> (key))
+					toolbar_item.Active = Preferences.Get<bool> (key);
 
-				toolbar_hbox.Visible = (bool) val;
+				toolbar_hbox.Visible = Preferences.Get<bool> (key);
 				break;
 
 			case Preferences.VIEWER_INTERPOLATION:
-				if ((bool) val)
+				if (Preferences.Get<bool> (key))
 					image_view.Interpolation = Gdk.InterpType.Bilinear;
 				else
 					image_view.Interpolation = Gdk.InterpType.Nearest;
 				break;
 
 			case Preferences.VIEWER_SHOW_FILENAMES:
-				if (filenames_item.Active != (bool) val)
-					filenames_item.Active = (bool) val;
+				if (filenames_item.Active != Preferences.Get<bool> (key))
+					filenames_item.Active = Preferences.Get<bool> (key);
 				break;
 
 			case Preferences.VIEWER_TRANSPARENCY:
-				if (val as string == "CHECK_PATTERN")
+				if (Preferences.Get<string> (key) == "CHECK_PATTERN")
 					image_view.SetCheckSize (2);
-				else if (val as string == "COLOR")
-					image_view.SetTransparentColor (Preferences.Get(Preferences.VIEWER_TRANS_COLOR) as string);
+				else if (Preferences.Get<string> (key) == "COLOR")
+					image_view.SetTransparentColor (Preferences.Get<string> (Preferences.VIEWER_TRANS_COLOR));
 				else // NONE
 					image_view.SetTransparentColor (image_view.Style.BaseColors [(int)Gtk.StateType.Normal]);
 				break;
 
 			case Preferences.VIEWER_TRANS_COLOR:
-				if (Preferences.Get(Preferences.VIEWER_TRANSPARENCY) as string == "COLOR")
-					image_view.SetTransparentColor (val as string);
+				if (Preferences.Get<string> (Preferences.VIEWER_TRANSPARENCY) == "COLOR")
+					image_view.SetTransparentColor (Preferences.Get<string> (key));
 				break;
 			}
 		}
@@ -666,17 +661,13 @@ namespace FSpot {
 
 			void LoadPreference (string key)
 			{
-				object val = Preferences.Get (key);
-
-				if (val == null)
-					return;
-			
+		
 				switch (key) {
 				case Preferences.VIEWER_INTERPOLATION:
-					interpolation_check.Active = (bool) val;
+					interpolation_check.Active = Preferences.Get<bool> (key);
 					break;
 				case Preferences.VIEWER_TRANSPARENCY:
-					switch ((string) val) {
+					switch (Preferences.Get<string> (key)) {
 					case "COLOR":
 						as_color_radio.Active = true;
 						break;
@@ -690,9 +681,9 @@ namespace FSpot {
 					break;
 				case Preferences.VIEWER_TRANS_COLOR:
 					color_button.Color = new Gdk.Color (
-						Byte.Parse ((val as string).Substring (1,2), System.Globalization.NumberStyles.AllowHexSpecifier),
-						Byte.Parse ((val as string).Substring (3,2), System.Globalization.NumberStyles.AllowHexSpecifier),
-						Byte.Parse ((val as string).Substring (5,2), System.Globalization.NumberStyles.AllowHexSpecifier));
+						Byte.Parse (Preferences.Get<string> (key).Substring (1,2), System.Globalization.NumberStyles.AllowHexSpecifier),
+						Byte.Parse (Preferences.Get<string> (key).Substring (3,2), System.Globalization.NumberStyles.AllowHexSpecifier),
+						Byte.Parse (Preferences.Get<string> (key).Substring (5,2), System.Globalization.NumberStyles.AllowHexSpecifier));
 					break;
 				}
 			}

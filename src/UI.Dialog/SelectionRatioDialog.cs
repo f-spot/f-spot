@@ -72,7 +72,7 @@ namespace FSpot.UI.Dialog {
 			constraints_store = new ListStore (typeof (string), typeof (double));
 			content_treeview.Model = constraints_store;
 			XmlSerializer serializer = new XmlSerializer (typeof(SelectionConstraint));
-			string [] vals = Preferences.Get (Preferences.CUSTOM_CROP_RATIOS) as string[];
+			string [] vals = Preferences.Get<string []> (Preferences.CUSTOM_CROP_RATIOS);
 			if (vals != null) 
 				foreach (string xml in vals) {
 					SelectionConstraint constraint = (SelectionConstraint)serializer.Deserialize (new StringReader (xml));
@@ -87,8 +87,6 @@ namespace FSpot.UI.Dialog {
 	
 		private void LoadPreference (String key)
 		{
-			object val = Preferences.Get (key);
-	
 			switch (key) {
 			case Preferences.CUSTOM_CROP_RATIOS:
 				Populate ();

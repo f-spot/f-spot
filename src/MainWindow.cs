@@ -360,7 +360,7 @@ public class MainWindow {
 #endif
 
 		group_selector = new FSpot.GroupSelector ();
-		group_selector.Adaptor = new FSpot.TimeAdaptor (query, (bool)Preferences.Get (Preferences.GROUP_ADAPTOR_ORDER_ASC));
+		group_selector.Adaptor = new FSpot.TimeAdaptor (query, Preferences.Get<bool> (Preferences.GROUP_ADAPTOR_ORDER_ASC));
 
 		group_selector.ShowAll ();
 		
@@ -2575,16 +2575,9 @@ public class MainWindow {
 
 	void LoadPreference (String key)
 	{
-		object val = Preferences.Get (key);
-
-		if (val == null)
-			return;
-		
-		//System.Console.WriteLine("Setting {0} to {1}", key, val);
-
 		switch (key) {
 		case Preferences.MAIN_WINDOW_MAXIMIZED:
-			if ((bool) val)
+			if (Preferences.Get<bool> (key))
 				main_window.Maximize ();
 			else
 				main_window.Unmaximize ();
@@ -2592,61 +2585,61 @@ public class MainWindow {
 
 		case Preferences.MAIN_WINDOW_X:
 		case Preferences.MAIN_WINDOW_Y:
-			main_window.Move((int) Preferences.Get(Preferences.MAIN_WINDOW_X),
-					(int) Preferences.Get(Preferences.MAIN_WINDOW_Y));
+			main_window.Move(Preferences.Get<int> (Preferences.MAIN_WINDOW_X),
+					 Preferences.Get<int> (Preferences.MAIN_WINDOW_Y));
 			break;
 		
 		case Preferences.MAIN_WINDOW_WIDTH:
 		case Preferences.MAIN_WINDOW_HEIGHT:
-			main_window.Resize((int) Preferences.Get(Preferences.MAIN_WINDOW_WIDTH),
-					(int) Preferences.Get(Preferences.MAIN_WINDOW_HEIGHT));
+			main_window.Resize(Preferences.Get<int> (Preferences.MAIN_WINDOW_WIDTH),
+					   Preferences.Get<int> (Preferences.MAIN_WINDOW_HEIGHT));
 
 			break;
 		
 		case Preferences.SHOW_TOOLBAR:
-			if (display_toolbar.Active != (bool) val)
-				display_toolbar.Active = (bool) val;
+			if (display_toolbar.Active != Preferences.Get<bool> (key))
+				display_toolbar.Active = Preferences.Get<bool> (key);
 			break;
 		
 		case Preferences.SHOW_SIDEBAR:
-			if (display_sidebar.Active != (bool) val)
-				display_sidebar.Active = (bool) val;
+			if (display_sidebar.Active != Preferences.Get<bool> (key))
+				display_sidebar.Active = Preferences.Get<bool> (key);
 			break;
 		
 		case Preferences.SHOW_TIMELINE:
-			if (display_timeline.Active != (bool) val)
-				display_timeline.Active = (bool) val;
+			if (display_timeline.Active != Preferences.Get<bool> (key))
+				display_timeline.Active = Preferences.Get<bool> (key);
 			break;
 		
 		case Preferences.SHOW_FILMSTRIP:
-			if (display_filmstrip.Active != (bool) val)
-				display_filmstrip.Active = (bool) val;
+			if (display_filmstrip.Active != Preferences.Get<bool> (key))
+				display_filmstrip.Active = Preferences.Get<bool> (key);
 			break;
 		
 		case Preferences.SHOW_TAGS:
-			if (display_tags_menu_item.Active != (bool) val)
-				display_tags_menu_item.Active = (bool) val;
+			if (display_tags_menu_item.Active != Preferences.Get<bool> (key))
+				display_tags_menu_item.Active = Preferences.Get<bool> (key);
 			break;
 		
 		case Preferences.SHOW_DATES:
-			if (display_dates_menu_item.Active != (bool) val)
-				display_dates_menu_item.Active = (bool) val;
+			if (display_dates_menu_item.Active != Preferences.Get<bool> (key))
+				display_dates_menu_item.Active = Preferences.Get<bool> (key);
 				//display_dates_menu_item.Toggle ();
 			break;
 		
 		case Preferences.SHOW_RATINGS:
-			if (display_ratings_menu_item.Active != (bool) val)
-				display_ratings_menu_item.Active = (bool) val;
+			if (display_ratings_menu_item.Active != Preferences.Get<bool> (key))
+				display_ratings_menu_item.Active = Preferences.Get<bool> (key);
 			break;
 		
 		case Preferences.GROUP_ADAPTOR:
-			if ((int) val == 1)
+			if (Preferences.Get<int> (key) == 1)
 				directory.Active = true;
 			break;
 
 		case Preferences.GROUP_ADAPTOR_ORDER_ASC:
-			group_selector.Adaptor.OrderAscending = (bool) val;
-			reverse_order.Active = (bool) val;
+			group_selector.Adaptor.OrderAscending = Preferences.Get<bool> (key);
+			reverse_order.Active = Preferences.Get<bool> (key);
 			break;
 
 		case Preferences.GLASS_POSITION:
@@ -2654,7 +2647,7 @@ public class MainWindow {
 				// If the database has changed since this pref was saved, this could cause
 				// an exception to be thrown.
 				try {
-					IBrowsableItem photo = group_selector.Adaptor.PhotoFromIndex ((int) val);
+					IBrowsableItem photo = group_selector.Adaptor.PhotoFromIndex (Preferences.Get<int> (key));
 					
 					if (photo != null)
 						JumpTo (query.IndexOf (photo));
@@ -2662,8 +2655,8 @@ public class MainWindow {
 			}
 			break;
 		case Preferences.SIDEBAR_POSITION:
-			if (main_hpaned.Position != (int) val)
-				main_hpaned.Position = (int) val;
+			if (main_hpaned.Position !=Preferences.Get<int> (key) )
+				main_hpaned.Position = Preferences.Get<int> (key);
 			break;
 
 		case Preferences.SIDEBAR_TOP_ENTRY:
@@ -2671,7 +2664,7 @@ public class MainWindow {
 			break;
 
 		case Preferences.TAG_ICON_SIZE:
-			int s = (int) val;
+			int s = Preferences.Get<int> (key);
 			tag_icon_hidden.Active = (s == (int) Tag.IconSize.Hidden);
 			tag_icon_small.Active = (s == (int) Tag.IconSize.Small);
 			tag_icon_medium.Active = (s == (int) Tag.IconSize.Medium);
@@ -2680,14 +2673,14 @@ public class MainWindow {
 			break;
 
 		case Preferences.ZOOM:
-			icon_view.Zoom = (double) val;
+			icon_view.Zoom = Preferences.Get<double> (key);
 			break;
 		
 		case Preferences.METADATA_EMBED_IN_IMAGE:
-			write_metadata = (bool) val;
+			write_metadata =Preferences.Get<bool> (key) ;
 			break;
 		case Preferences.GNOME_MAILTO_ENABLED:
-			send_mail.Visible = (bool) val;
+			send_mail.Visible = Preferences.Get<bool> (key);
 			break;
 		}
 	}

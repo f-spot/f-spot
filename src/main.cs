@@ -76,7 +76,7 @@ public class Driver {
 				       Defines.VERSION, 
 				       Modules.UI, args);		
 		
-		FSpot.Global.PhotoDirectory = (string) Preferences.Get(Preferences.STORAGE_PATH);
+		FSpot.Global.PhotoDirectory = Preferences.Get<string> (Preferences.STORAGE_PATH);
 
 		for (int i = 0; i < args.Length && !shutdown; i++) {
 			switch (args [i]) {
@@ -211,14 +211,14 @@ public class Driver {
 						create = false;
 						Gnome.Vfs.Vfs.Initialize ();
 
-						if (File.Exists (Preferences.Get (Preferences.GTK_RC) as string)) {
+						if (File.Exists (Preferences.Get<string> (Preferences.GTK_RC))) {
 #if GTK_2_12_2
 							if (!File.Exists (Path.Combine (Global.BaseDirectory, "gtkrc")))
 								(File.Create (Path.Combine (Global.BaseDirectory, "gtkrc"))).Dispose ();
 							Gtk.Rc.AddDefaultFile (Path.Combine (Global.BaseDirectory, "gtkrc"));
 							Global.DefaultRcFiles = Gtk.Rc.DefaultFiles;
 #endif
-							Gtk.Rc.AddDefaultFile (Preferences.Get (Preferences.GTK_RC) as string);
+							Gtk.Rc.AddDefaultFile (Preferences.Get<string> (Preferences.GTK_RC));
 						}
 						
 						Catalog.Init ("f-spot", Defines.LOCALE_DIR);

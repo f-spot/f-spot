@@ -109,7 +109,7 @@ namespace FSpot
 		}
 		private static Dictionary<string, object> cache = new Dictionary<string, object>();
 
-		public static object GetDefault (string key)
+		static object GetDefault (string key)
 		{
 			switch (key) {
 			case MAIN_WINDOW_X:
@@ -206,14 +206,23 @@ namespace FSpot
 
 		public static T Get<T> (string key)
 		{
-					FSpot.Utils.Log.Debug (key);
-			T val;
-			try {
-				val = (T)Get (key);
-			} catch (InvalidCastException) {
-				val = (T)GetDefault (key);
+			lock (cache) {
+				T val = default (T);
+				object o;
+				if (cache.TryGetValue (key, out o)) 
+					return (T)o;
+
+				try {
+					val = (T) Backend.Get (key);
+				} catch (NoSuchKeyException) {
+					val = (T) GetDefault (key);
+				} catch (InvalidCastException) {
+					val = (T) GetDefault (key);
+				}
+				
+				cache.Add (key, val);
+				return val;
 			}
-			return val;
 		}
 
 		public static void Set (string key, object value)
@@ -248,20 +257,20 @@ namespace FSpot
 		{
 			WebProxy proxy = null;
 			
-			if ((bool) Preferences.Get (PROXY_USE_PROXY))
+			if (Preferences.Get<bool> (PROXY_USE_PROXY))
 				return null;
 
 			try {
 				string host;
 				int    port;
 				
-				host = (string) Preferences.Get (PROXY_HOST);
-				port = (int) Preferences.Get (PROXY_PORT);
+				host = Preferences.Get<string> (PROXY_HOST);
+				port = Preferences.Get<int> (PROXY_PORT);
 				
 				string uri = "http://" + host + ":" + port.ToString ();
 				proxy = new WebProxy (uri);
 
-				string [] bypass_list = (string []) Preferences.Get (PROXY_BYPASS_LIST);
+				string [] bypass_list = Preferences.Get<string[]> (PROXY_BYPASS_LIST);
 				if (bypass_list != null) {
 					for (int i = 0; i < bypass_list.Length; i++) {
 						bypass_list [i] = "http://" + bypass_list [i];
@@ -269,8 +278,8 @@ namespace FSpot
 					proxy.BypassList = bypass_list;
 				}
 
-				string username = (string) Preferences.Get (PROXY_USER);
-				string password = (string) Preferences.Get (PROXY_PASSWORD);
+				string username = Preferences.Get<string> (PROXY_USER);
+				string password = Preferences.Get<string> (PROXY_PASSWORD);
 
 				proxy.Credentials = new NetworkCredential (username, password);
 			} catch (Exception) {

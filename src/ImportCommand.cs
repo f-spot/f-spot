@@ -589,11 +589,11 @@ public class ImportCommand : GladeDialog
 		this.Dialog.WindowPosition = Gtk.WindowPosition.CenterOnParent;
 		this.Dialog.Response += HandleDialogResponse;
 
- 		if ((int) FSpot.Preferences.Get (FSpot.Preferences.IMPORT_WINDOW_WIDTH) > 0)
- 			this.Dialog.Resize ((int) FSpot.Preferences.Get (FSpot.Preferences.IMPORT_WINDOW_WIDTH), (int) FSpot.Preferences.Get(FSpot.Preferences.IMPORT_WINDOW_HEIGHT));
+ 		if (FSpot.Preferences.Get<int> (FSpot.Preferences.IMPORT_WINDOW_WIDTH) > 0)
+ 			this.Dialog.Resize (FSpot.Preferences.Get<int> (FSpot.Preferences.IMPORT_WINDOW_WIDTH), FSpot.Preferences.Get<int> (FSpot.Preferences.IMPORT_WINDOW_HEIGHT));
 
- 		if ((int) FSpot.Preferences.Get (FSpot.Preferences.IMPORT_WINDOW_PANE_POSITION) > 0)
-			import_hpaned.Position = (int) FSpot.Preferences.Get (FSpot.Preferences.IMPORT_WINDOW_PANE_POSITION);
+ 		if (FSpot.Preferences.Get<int> (FSpot.Preferences.IMPORT_WINDOW_PANE_POSITION) > 0)
+			import_hpaned.Position = FSpot.Preferences.Get<int> (FSpot.Preferences.IMPORT_WINDOW_PANE_POSITION);
 
 	        AllowFinish = false;
 		
