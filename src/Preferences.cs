@@ -147,7 +147,6 @@ namespace FSpot
 				return (int) Tag.IconSize.Large;
 		
 			case SIDEBAR_POSITION:
-			case SIDEBAR_TOP_ENTRY:
 			case ZOOM:
 				return null;
 
@@ -174,6 +173,7 @@ namespace FSpot
 
 			case PROXY_USE_PROXY:
 				return false;
+			case SIDEBAR_TOP_ENTRY:
 			case PROXY_PORT:
 				return 0;
 			case PROXY_USER:
@@ -185,6 +185,7 @@ namespace FSpot
 			}
 		}
 		
+		[Obsolete ("use Get<T> (string key) instead")]
 		public static object Get (string key)
 		{
 			lock (cache) {
@@ -201,6 +202,18 @@ namespace FSpot
 				cache.Add (key, val);
 				return val;
 			}
+		}
+
+		public static T Get<T> (string key)
+		{
+					FSpot.Utils.Log.Debug (key);
+			T val;
+			try {
+				val = (T)Get (key);
+			} catch (InvalidCastException) {
+				val = (T)GetDefault (key);
+			}
+			return val;
 		}
 
 		public static void Set (string key, object value)

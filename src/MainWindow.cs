@@ -2667,11 +2667,7 @@ public class MainWindow {
 			break;
 
 		case Preferences.SIDEBAR_TOP_ENTRY:
-			try {
-				sidebar.SwitchTo ((int) val);
-			} catch {
-				sidebar.SwitchTo (0);
-			}
+			sidebar.SwitchTo (Preferences.Get<int> (key));
 			break;
 
 		case Preferences.TAG_ICON_SIZE:

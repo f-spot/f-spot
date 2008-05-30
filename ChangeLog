@@ -1,3 +1,8 @@
+2008-05-30  Stephane Delcroix  <sdelcroix@novell.com>
+
+	* src/Preferences.cs: new Get<T> (string key) method. the other one
+	is now deprecated.
+
 2008-05-28  Ruben Vermeersch  <ruben@savanne.be>
 
 	This commit adds the sidebar patch, as it is found in bugzilla. It
