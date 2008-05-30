@@ -1,6 +1,6 @@
 <Addin namespace = "FSpot" 
        id = "Core" 
-       version = "0.4.4.0"
+       version = "0.4.4.2"
        compatVersion = "0.4.4.0" 
        isroot="true">
 
@@ -10,6 +10,10 @@
 
 	<ExtensionPoint path = "/FSpot/Menus">
 		<ExtensionNode type="FSpot.Extensions.SubmenuNode"/>
+	</ExtensionPoint>
+
+	<ExtensionPoint path = "/FSpot/Services">
+		<ExtensionNode name="Service" type="FSpot.Extensions.ServiceNode"/>
 	</ExtensionPoint>
 
 	<Extension path = "/FSpot/Menus">
@@ -24,7 +28,7 @@
 		<Menu id = "PhotoPopup" />
 	</Extension>
 
-    <ConditionType id="PhotoSelection" type="FSpot.Extensions.PhotoSelectionCondition" />
+	<ConditionType id="PhotoSelection" type="FSpot.Extensions.PhotoSelectionCondition" />
 
 	<Extension path = "/FSpot/Menus/PhotoPopup">
 		<Command id = "CopyLocation" _label = "Copy Photo Locat_ion" command_type = "FSpot.Extensions.CopyLocation" />

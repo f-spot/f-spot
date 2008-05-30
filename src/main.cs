@@ -12,6 +12,7 @@ using Mono.Addins;
 using Mono.Addins.Setup;
 using FSpot.Utils;
 using FSpot.UI.Dialog;
+using FSpot.Extensions;
 
 namespace FSpot 
 {
@@ -192,6 +193,12 @@ public class Driver {
 				}
 			setupService.Repositories.RegisterRepository (null, "http://addins.f-spot.org/" + maj_version, false);
 			Log.DebugTimerPrint (ma_timer, "Mono.Addins Initialization took {0}");
+			
+			foreach (ServiceNode service in AddinManager.GetExtensionNodes ("/FSpot/Services")) {
+				service.Initialize ();
+				service.Start ();
+			}
+			
 
 			bool create = true;
 			int retry_count = 0;

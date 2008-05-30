@@ -95,12 +95,14 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/Extensions/IExporter.cs	\
 	$(srcdir)/Extensions/ICommand.cs	\
 	$(srcdir)/Extensions/IMenuGenerator.cs	\
+	$(srcdir)/Extensions/IService.cs	\
 	$(srcdir)/Extensions/MenuNode.cs	\
 	$(srcdir)/Extensions/OpenWithMenu.cs	\
 	$(srcdir)/Extensions/CommandMenuItemNode.cs	\
 	$(srcdir)/Extensions/ComplexMenuItemNode.cs	\
 	$(srcdir)/Extensions/PhotoSelectionCondition.cs	\
 	$(srcdir)/Extensions/PopupCommands.cs	\
+	$(srcdir)/Extensions/ServiceNode.cs	\
 	$(srcdir)/Fader.cs			\
 	$(srcdir)/FileImportBackend.cs		\
 	$(srcdir)/FileBrowsableItem.cs		\
