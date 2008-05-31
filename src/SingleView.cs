@@ -167,7 +167,7 @@ namespace FSpot {
 			image_view.Item.Changed += delegate (BrowsablePointer pointer, BrowsablePointerChangedArgs old) {
 															IBrowsableItem [] item = {pointer.Current};
 															PhotoArray item_array = new PhotoArray (item);
-															info_display.HandleSelectionChanged (item_array);
+															//info_display.HandleSelectionChanged (item_array);
 													};
 			
 			image_view.Item.Changed += delegate (BrowsablePointer pointer, BrowsablePointerChangedArgs old) {
