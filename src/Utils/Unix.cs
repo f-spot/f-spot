@@ -1,3 +1,4 @@
+using System;
 using System.Runtime.InteropServices;
 
 namespace FSpot.Utils {
@@ -9,6 +10,9 @@ namespace FSpot.Utils {
 
 			[DllImport ("libc", EntryPoint="mkstemp")]
 			public static extern int MkSTemp (byte []template);
+
+			[DllImport("libc", EntryPoint="prctl")]
+			public static extern int PrCtl(int option, string name, ulong arg3, ulong arg4, ulong arg5);
 		}
 
 		public static int Rename (string oldpath, string newpath)
@@ -30,6 +34,18 @@ namespace FSpot.Utils {
 
 			template = System.Text.Encoding.UTF8.GetString (template_bytes, 0, template_bytes.Length - 1);
 			return new Mono.Unix.UnixStream (fd);
+		}
+
+		public static void SetProcessName (string name)
+		{
+			try {
+				if (NativeMethods.PrCtl(15 /* PR_SET_NAME */, name, 0, 0, 0) != 0)
+					Log.Warning ("Error setting process name: " + Mono.Unix.Native.Stdlib.GetLastError());
+			} catch (DllNotFoundException) {
+				/* noop */
+			} catch (EntryPointNotFoundException) {
+		    		/* noop */
+			}
 		}
 	}
 }

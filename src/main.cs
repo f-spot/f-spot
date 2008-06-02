@@ -61,7 +61,7 @@ public class Driver {
 		Program program = null;
 		ICore control = null;
 		List<string> uris = new List<string> ();
-		SetProcessName (Defines.PACKAGE);
+		Unix.SetProcessName (Defines.PACKAGE);
 
 		// Options and Option parsing
 		bool shutdown = false;
@@ -86,31 +86,31 @@ public class Driver {
 				return 0;
 			
 			case "-shutdown": case "--shutdown":
-				System.Console.WriteLine ("Shutting down existing F-Spot server...");
+				Log.Information ("Shutting down existing F-Spot server...");
 				shutdown = true;
 				break;
 
 			case "-b": case "-basedir": case "--basedir":
 				if (i+1 == args.Length || args[i+1].StartsWith ("-")) {
-					Console.WriteLine ("f-spot: -basedir option takes one argument");
+					Log.Error ("f-spot: -basedir option takes one argument");
 					return 1;
 				}
 				FSpot.Global.BaseDirectory = args [++i];
-				System.Console.WriteLine ("BaseDirectory is now {0}", FSpot.Global.BaseDirectory);
+				Log.InformationFormat ("BaseDirectory is now {0}", FSpot.Global.BaseDirectory);
 				break;
 
 			case "-p": case "-photodir": case "--photodir":
 				if (i+1 == args.Length || args[i+1].StartsWith ("-")) {
-					Console.WriteLine ("f-spot: -photodir option takes one argument");
+					Log.Error ("f-spot: -photodir option takes one argument");
 					return 1;
 				}
 				FSpot.Global.PhotoDirectory = System.IO.Path.GetFullPath (args [++i]);
-				System.Console.WriteLine ("PhotoDirectory is now {0}", FSpot.Global.PhotoDirectory);
+				Log.InformationFormat ("PhotoDirectory is now {0}", FSpot.Global.PhotoDirectory);
 				break;
 
 			case "-i": case "-import": case "--import":
 				if (i+1 == args.Length) {
-					Console.WriteLine ("f-spot: -import option takes one argument");
+					Log.Error ("f-spot: -import option takes one argument");
 					return 1;
 				}
 				import_uri = args [++i];
@@ -122,7 +122,7 @@ public class Driver {
 
 			case "-v": case "-view": case "--view":
 				if (i+1 == args.Length || args[i+1].StartsWith ("-")) {
-					Console.WriteLine ("f-spot: -view option takes (at least) one argument");
+					Log.Error ("f-spot: -view option takes (at least) one argument");
 					return 1;
 				}
 				view = true;
@@ -158,7 +158,7 @@ public class Driver {
 		if ( (import_uri != null && (view || shutdown || slideshow)) || 
 		     (view && (shutdown || slideshow)) ||
 		     (shutdown && slideshow) ) {
-			Console.WriteLine ("Can't mix -import, -view, -shutdown or -slideshow");
+			Log.Error ("Can't mix -import, -view, -shutdown or -slideshow");
 			return 1;
 		}
 
@@ -168,7 +168,7 @@ public class Driver {
 			Core core = new Core ();
 			core.ShowSlides (null);
 			program.Run ();
-			System.Console.WriteLine ("done");
+			Log.Debug ("done");
 			return 0;
 		}
 		
@@ -188,7 +188,7 @@ public class Driver {
 			string maj_version = String.Join (".", Defines.VERSION.Split ('.'), 0, 3);
 			foreach (AddinRepository repo in setupService.Repositories.GetRepositories ())
 				if (repo.Url.StartsWith ("http://addins.f-spot.org/") && !repo.Url.StartsWith ("http://addins.f-spot.org/" + maj_version)) {
-					Console.WriteLine ("Unregistering {0}", repo.Url);
+					Log.InformationFormat ("Unregistering {0}", repo.Url);
 					setupService.Repositories.RemoveRepository (repo.Url);
 				}
 			setupService.Repositories.RegisterRepository (null, "http://addins.f-spot.org/" + maj_version, false);
@@ -253,9 +253,9 @@ public class Driver {
 					}
 				}
 				if (control == null) {
-					System.Console.WriteLine ("Can't get a connection to the dbus. Trying again...");
+					Log.Warning ("Can't get a connection to the dbus. Trying again...");
 					if (++ retry_count > 5) {
-						System.Console.WriteLine ("Sorry, couldn't start F-Spot");
+						Log.Error ("Sorry, couldn't start F-Spot");
 						return 1;
 					}
 				}
@@ -303,9 +303,9 @@ public class Driver {
 			if (program != null)
 				program.Run ();
 			
-			System.Console.WriteLine ("exiting");
+			Log.Information ("exiting");
 		} catch (System.Exception e) {
-			Console.Error.WriteLine(e);
+			Log.Exception (e);
 			ExceptionDialog dlg = new ExceptionDialog(e);
 			dlg.Run();
 			dlg.Destroy();
@@ -313,25 +313,5 @@ public class Driver {
 		}
 		return 0;
 	}
-
-	[DllImport("libc")]
-	private static extern int prctl(int option, string name, ulong arg3,
-					ulong arg4, ulong arg5);
-	
-	public static void SetProcessName(string name)
-	{
-		try {
-			if(prctl(15 /* PR_SET_NAME */, name,
-				 0, 0, 0) != 0) {
-				Console.WriteLine ("Error setting process name: " +
-						   Mono.Unix.Native.Stdlib.GetLastError());
-			}
-		} catch (DllNotFoundException) {
-			/* noop */
-		} catch (EntryPointNotFoundException) {
-		    	/* noop */
-		}
-	}
 }
-
 }
