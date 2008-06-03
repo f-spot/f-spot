@@ -3,6 +3,7 @@ using System;
 using Gtk;
 using Cairo;
 using Tao.OpenGl;
+using FSpot.Utils;
 
 namespace FSpot.Editors {
 	public abstract class Editor {
@@ -222,7 +223,7 @@ namespace FSpot.Editors {
 		[GLib.ConnectBefore]
 		public virtual void ExposeEvent (object sender, ExposeEventArgs args)
 		{
-			Context ctx = Widgets.CairoUtils.CreateContext (view.GdkWindow);
+			Context ctx = CairoUtils.CreateContext (view.GdkWindow);
 			Gdk.Color c = view.Style.Background (view.State);
 			ctx.Source = new SolidPattern (c.Red / (float) ushort.MaxValue,
 						       c.Blue / (float) ushort.MaxValue, 

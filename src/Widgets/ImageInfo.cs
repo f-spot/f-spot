@@ -10,6 +10,7 @@ using System;
 using Cairo;
 using Gdk;
 using Gtk;
+using FSpot.Utils;
 
 namespace FSpot.Widgets {
 	public class ImageInfo : IDisposable {
@@ -77,7 +78,7 @@ namespace FSpot.Widgets {
 		
 		private void SetPixbuf (Pixbuf pixbuf)
 		{
-			Surface = CairoUtils.CreateSurface (pixbuf);
+			Surface = MemorySurface.CreateSurface (pixbuf);
 			Bounds.Width = pixbuf.Width;
 			Bounds.Height = pixbuf.Height;
 		}

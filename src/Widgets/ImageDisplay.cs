@@ -15,6 +15,7 @@ using Gdk;
 using System;
 using Cairo;
 using FSpot;
+using FSpot.Utils;
 
 namespace FSpot.Widgets {
 	[Binding(Gdk.Key.Up, "Up")]

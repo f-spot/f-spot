@@ -40,9 +40,11 @@ QUERY_CSDISTFILES =				\
 
 UTILS_CSDISTFILES =				\
 	$(srcdir)/Utils/Cache.cs		\
+	$(srcdir)/Widgets/CairoUtils.cs		\
 	$(srcdir)/Utils/ConsoleCrayon.cs	\
 	$(srcdir)/Utils/DbUtils.cs		\
 	$(srcdir)/Utils/GnomeUtil.cs		\
+	$(srcdir)/Widgets/GdkUtils.cs		\
 	$(srcdir)/Utils/GtkUtil.cs		\
 	$(srcdir)/Utils/Log.cs			\
 	$(srcdir)/Utils/Unix.cs			\
@@ -225,12 +227,10 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/CameraSelectionDialog.cs	\
 	$(srcdir)/CameraFileSelectionDialog.cs	\
 	$(srcdir)/TagSelectionDialog.cs		\
-	$(srcdir)/Widgets/CairoUtils.cs		\
 	$(srcdir)/Widgets/CompositeUtils.cs	\
 	$(srcdir)/Widgets/Dissolve.cs		\
 	$(srcdir)/Widgets/Filmstrip.cs		\
 	$(srcdir)/Widgets/FindBar.cs		\
-	$(srcdir)/Widgets/GdkUtils.cs		\
 	$(srcdir)/Widgets/IEffect.cs		\
 	$(srcdir)/Widgets/ITransition.cs	\
 	$(srcdir)/Widgets/IconView.cs		\
@@ -277,6 +277,7 @@ UTILS_ASSEMBLIES =				\
 	-pkg:gnome-sharp-2.0			\
 	-r:Mono.Posix				\
 	-r:Mono.Cairo				\
+	$(LINK_GLITZ)				\
 	$(GCONF_PKG)				\
 	$(LINK_DBUS)
 
@@ -295,7 +296,6 @@ F_SPOT_ASSEMBLIES = 				\
 	$(LINK_GPHOTO2)				\
 	$(LINK_MONO_ADDINS)			\
 	$(LINK_FLICKR)				\
-	$(LINK_GLITZ)				\
 	$(LINK_KEYRING)				\
 	$(LINK_SMUGMUG)				\
 	$(LINK_TAO)				\

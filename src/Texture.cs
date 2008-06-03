@@ -56,7 +56,7 @@ namespace FSpot {
 		public Texture (Gdk.Pixbuf pixbuf) 
 			: this (pixbuf.Width, pixbuf.Height)
 		{
-			MemorySurface surface = CairoUtils.CreateSurface (pixbuf);
+			MemorySurface surface = MemorySurface.CreateSurface (pixbuf);
 			CopyFromSurface (surface);
 			surface.Destroy ();
 		}

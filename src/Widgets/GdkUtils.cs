@@ -2,7 +2,7 @@ using System;
 using Gdk;
 using System.Runtime.InteropServices;
 
-namespace FSpot.Widgets {
+namespace FSpot.Utils {
 	public class GdkUtils {
 
 		[DllImport("libgdk-2.0-0.dll")]

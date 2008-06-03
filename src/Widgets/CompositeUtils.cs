@@ -2,6 +2,7 @@ using System;
 using System.Runtime.InteropServices;
 using Gdk;
 using Gtk;
+using FSpot.Utils;
 
 namespace FSpot.Widgets {
 	public class CompositeUtils {

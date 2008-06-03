@@ -1,3 +1,16 @@
+2008-06-03  Stephane Delcroix  <sdelcroix@novell.com>
+
+	* src/MemorySurface.cs:
+	* src/Widgets/ImageInfo.cs:
+	* src/Widgets/SoftFocus.cs:
+	* src/Widgets/CairoUtils.cs:
+	* src/Editors/SoftFocus.cs:
+	* src/Utils/Unix.cs:
+	* src/Texture.cs:
+	* src/Filters/TiltFilter.cs:
+	* src/Makefile.am: move CairoUtils and GdkUtils in the Utils.dll assembly,
+	move the MemorySurface related methods from CairoUtils to MemorySurface.
+
 2008-05-30  Stephane Delcroix  <sdelcroix@novell.com>
 
 	* src/Preferences.cs: new Get<T> (string key) method. the other one

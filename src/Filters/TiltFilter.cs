@@ -48,7 +48,7 @@ namespace FSpot.Filters {
 						ctx.Paint ();
 						((IDisposable)ctx).Dispose ();
 						p.Destroy ();
-						using (Pixbuf result = CairoUtils.CreatePixbuf (surface)) {
+						using (Pixbuf result = MemorySurface.CreatePixbuf (surface)) {
 							using (Stream output = File.OpenWrite (dest.LocalPath)) {
 								img.Save (result, output);
 							}

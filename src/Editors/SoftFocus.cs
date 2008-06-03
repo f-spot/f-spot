@@ -88,7 +88,7 @@ namespace FSpot.Editors {
 					((IDisposable)ctx).Dispose ();
 
 					string tmp = ImageFile.TempPath (item.Current.DefaultVersionUri.LocalPath);
-					using (Gdk.Pixbuf output = Widgets.CairoUtils.CreatePixbuf (dest)) {
+					using (Gdk.Pixbuf output = MemorySurface.CreatePixbuf (dest)) {
 						using (System.IO.Stream stream = System.IO.File.OpenWrite (tmp)) {
 							img.Save (output, stream);
 						

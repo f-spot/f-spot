@@ -91,7 +91,7 @@ namespace FSpot.Widgets {
 			ctx.Paint ();
 			p.Destroy ();
 			((IDisposable)ctx).Dispose ();
-			Gdk.Pixbuf normal = CairoUtils.CreatePixbuf (image);
+			Gdk.Pixbuf normal = MemorySurface.CreatePixbuf (image);
 			Gdk.Pixbuf blur = PixbufUtils.Blur (normal, 3);
 			ImageInfo overlay = new ImageInfo (blur);
 			blur.Dispose ();

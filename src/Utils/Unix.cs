@@ -3,7 +3,7 @@ using System.Runtime.InteropServices;
 
 namespace FSpot.Utils {
 	public static class Unix {
-		internal static class NativeMethods
+		static class NativeMethods
 		{
 			[DllImport ("libc", EntryPoint="rename", CharSet = CharSet.Auto)]
 			public static extern int Rename (string oldpath, string newpath);
