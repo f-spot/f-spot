@@ -40,11 +40,11 @@ QUERY_CSDISTFILES =				\
 
 UTILS_CSDISTFILES =				\
 	$(srcdir)/Utils/Cache.cs		\
-	$(srcdir)/Widgets/CairoUtils.cs		\
+	$(srcdir)/Utils/CairoUtils.cs		\
 	$(srcdir)/Utils/ConsoleCrayon.cs	\
 	$(srcdir)/Utils/DbUtils.cs		\
 	$(srcdir)/Utils/GnomeUtil.cs		\
-	$(srcdir)/Widgets/GdkUtils.cs		\
+	$(srcdir)/Utils/GdkUtils.cs		\
 	$(srcdir)/Utils/GtkUtil.cs		\
 	$(srcdir)/Utils/Log.cs			\
 	$(srcdir)/Utils/Unix.cs			\
