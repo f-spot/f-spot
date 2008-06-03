@@ -448,13 +448,13 @@ namespace FSpot {
 
 		}
 		
-                [DllImport ("libcairo-2.dll")]
-                static extern void cairo_user_to_device (IntPtr cr, ref double x, ref double y);
-
-		static void UserToDevice (Context ctx, ref double x, ref double y)
-		{
-			cairo_user_to_device (ctx.Handle, ref x, ref y);
-		}
+//                [DllImport ("libcairo-2.dll")]
+//                static extern void cairo_user_to_device (IntPtr cr, ref double x, ref double y);
+//
+//		private static void UserToDevice (Context ctx, ref double x, ref double y)
+//		{
+//			cairo_user_to_device (ctx.Handle, ref x, ref y);
+//		}
 
 		
 		bool dragging = false;
