@@ -1,7 +1,7 @@
 include $(top_srcdir)/Makefile.include
 UNSAFE = -unsafe
 NOWARN = -nowarn:0169 -nowarn:0612 -nowarn:0414  
-EXTRAFLAGS = -d:TEST_METADATA -d:BROKEN_RSVG $(NUNIT_DEFINES) $(CSC_DEFINES)
+EXTRAFLAGS = -d:TEST_METADATA -d:BROKEN_RSVG $(CSC_DEFINES)
 
 CMS_CSDISTFILES =				\
 	$(srcdir)/Cms/CctTable.cs		\
@@ -389,7 +389,7 @@ FSpot.Widgets.dll: $(WIDGETS_CSFILES) FSpot.Utils.dll FSpot.Core.dll
 
 f-spot.exe: $(F_SPOT_CSFILES) FSpot.Utils.dll FSpot.Core.dll FSpot.Query.dll FSpot.JobScheduler.dll FSpot.Widgets.dll Cms.dll $(F_SPOT_RESOURCES)
 	@echo -e "\n*** Compiling $@"
-	$(CSC) -target:winexe -out:$@ $(EXTRAFLAGS) $(UNSAFE) $(NOWARN) $(F_SPOT_CSFILES) $(F_SPOT_ASSEMBLIES) $(RESOURCES)
+	$(CSC) -target:winexe -out:$@ $(EXTRAFLAGS) $(UNSAFE) $(NOWARN) $(NUNIT_DEFINES) $(F_SPOT_CSFILES) $(F_SPOT_ASSEMBLIES) $(RESOURCES)
 
 all: f-spot.exe
 

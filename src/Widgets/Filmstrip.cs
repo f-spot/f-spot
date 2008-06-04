@@ -42,11 +42,11 @@ namespace FSpot.Widgets
 					return;
 
 				throw new NotImplementedException ();
-				if (OrientationChanged != null) {
-					OrientationChangedArgs args = new OrientationChangedArgs ();
-					//args.Orientation = value;
-					//OrientationChanged (this, args);
-				}
+//				if (OrientationChanged != null) {
+//					OrientationChangedArgs args = new OrientationChangedArgs ();
+//					//args.Orientation = value;
+//					//OrientationChanged (this, args);
+//				}
 			}
 		}
 
@@ -432,6 +432,24 @@ namespace FSpot.Widgets
 			case Gdk.ScrollDirection.Down:
 			case Gdk.ScrollDirection.Left:
 				Position += shift;
+				return true;
+			}
+			return false;
+		}
+
+		protected override bool OnKeyPressEvent (Gdk.EventKey ek)
+		{
+			switch (ek.Key) {
+			case Gdk.Key.Page_Down:
+			case Gdk.Key.Down:
+			case Gdk.Key.Right:
+				Position ++;
+				return true;
+				
+			case Gdk.Key.Page_Up:
+			case Gdk.Key.Up:
+			case Gdk.Key.Left:
+				Position --;
 				return true;
 			}
 			return false;
