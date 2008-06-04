@@ -1,5 +1,10 @@
 2008-06-04  Ruben Vermeersch  <ruben@savanne.be>
 
+	* src/MainWindow.cs: 
+	* src/f-spot.glade: Rename tag_vbox to the more meaningful sidebar_vbox.
+
+2008-06-04  Ruben Vermeersch  <ruben@savanne.be>
+
 	* src/Widgets/InfoBox.cs: Not using capitals is not cool! My excuses to
 	the translators, this is going to cause some fuzzy strings.
 

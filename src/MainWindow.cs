@@ -126,7 +126,7 @@ public class MainWindow {
 
 	[Glade.Widget] Gtk.HBox tagbar;
 	[Glade.Widget] Gtk.VBox tag_entry_container;
-	[Glade.Widget] Gtk.VBox tag_vbox;
+	[Glade.Widget] Gtk.VBox sidebar_vbox;
 	TagEntry tag_entry;
 
 	Gtk.Toolbar toolbar;
@@ -299,7 +299,7 @@ public class MainWindow {
 		toolbar.Insert (ss_button, -1);
 
 		sidebar = new Sidebar ();
-		tag_vbox.Add (sidebar);
+		sidebar_vbox.Add (sidebar);
 
 		tag_selection_scrolled = new ScrolledWindow ();
 		
@@ -318,7 +318,7 @@ public class MainWindow {
 		info_box = new InfoBox ();
 		info_box.VersionIdChanged += HandleInfoBoxVersionIdChange;
 		info_box.ShowTags = true;
-		tag_vbox.PackEnd (info_box, false, false, 0);
+		sidebar_vbox.PackEnd (info_box, false, false, 0);
 		info_box.Show ();
 		
 		tag_selection_widget.Selection.Changed += HandleTagSelectionChanged;
@@ -2151,7 +2151,26 @@ public class MainWindow {
 			ColorDialog.SwitchViews (photo_view.View);
 		}
 	}
-	
+
+	void HandleViewFullscreenBrowser (object sender, EventArgs args)
+	{
+		int width = 0;
+		int height = 0;
+		Gdk.Screen screen = main_window.Screen;
+		
+		main_window.GetSize(out width, out height);
+		
+		if (screen.Width == width && screen.Height == height)
+			/* FIXME: After quiting the application while in Fullscreen mode,
+			 *        Unfullscreen does not restore the window dimentions to
+			 *        the previous dimentions. It restores the window borders,
+			 *        but the window is still the size of the screen. 
+			 */
+			main_window.Unfullscreen ();
+		else
+			main_window.Fullscreen ();
+	}
+
 	void HandleZoomScaleValueChanged (object sender, System.EventArgs args)
 	{
 		switch (view_mode) {
