@@ -312,12 +312,13 @@ public class MainWindow {
 		info_display.ParentSidebar = sidebar;
 		sidebar.AppendPage (info_display, Catalog.GetString ("Exif"), "gtk-index");
  		
-		info_box = new InfoBox ();
-		info_box.ParentSidebar = sidebar;
-		info_box.VersionIdChanged += HandleInfoBoxVersionIdChange;
-		sidebar.AppendPage (info_box, Catalog.GetString ("Information"), "gtk-info");
 		sidebar.CloseRequested += HideSidebar;
 		sidebar.Show ();
+
+		info_box = new InfoBox ();
+		info_box.VersionIdChanged += HandleInfoBoxVersionIdChange;
+		tag_vbox.PackEnd (info_box, false, false, 0);
+		info_box.Show ();
 		
 		tag_selection_widget.Selection.Changed += HandleTagSelectionChanged;
 		tag_selection_widget.DragDataGet += HandleTagSelectionDragDataGet;
@@ -455,8 +456,6 @@ public class MainWindow {
 		this.selection = new MainSelection (this);
 		this.selection.Changed += HandleSelectionChanged;
 		this.selection.ItemsChanged += HandleSelectionItemsChanged;
-		this.selection.Changed += info_box.HandleSelectionChanged;
-		this.selection.ItemsChanged += info_box.HandleSelectionItemsChanged;
 		this.selection.Changed += info_display.HandleSelectionChanged;
 		this.selection.ItemsChanged += info_display.HandleSelectionItemsChanged;
 
@@ -762,6 +761,8 @@ public class MainWindow {
 
 	private void HandleSelectionChanged (IBrowsableCollection collection)
 	{
+		info_box.Photo = CurrentPhoto;
+
 		UpdateMenus ();
 		UpdateTagEntryFromSelection ();
 		UpdateStatusLabel();	
@@ -771,6 +772,8 @@ public class MainWindow {
 	{
 		UpdateMenus ();
 		UpdateTagEntryFromSelection ();
+
+		info_box.Update ();
 	}
 
 

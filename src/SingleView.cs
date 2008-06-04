@@ -126,9 +126,6 @@ namespace FSpot {
 			info_display.ParentSidebar = sidebar;
 			sidebar.AppendPage (info_display, Catalog.GetString ("Exif"), "gtk-index");
  		
-			info_box = new InfoBox ();
-			info_box.ParentSidebar = sidebar;
-			sidebar.AppendPage (info_box, Catalog.GetString ("Information"), "gtk-info");
 			sidebar.CloseRequested += HandleHideSidePane;
 			sidebar.Show ();
 
@@ -170,13 +167,6 @@ namespace FSpot {
 															//info_display.HandleSelectionChanged (item_array);
 													};
 			
-			image_view.Item.Changed += delegate (BrowsablePointer pointer, BrowsablePointerChangedArgs old) {
-															IBrowsableItem [] item = {pointer.Current};
-															PhotoArray item_array = new PhotoArray (item);
-															info_box.HandleSelectionChanged (item_array);
-													};
-
-			image_view.Item.Collection.ItemsChanged += info_box.HandleSelectionItemsChanged;
 			image_view.Item.Collection.ItemsChanged += info_display.HandleSelectionItemsChanged;
 
 			UpdateStatusLabel ();

@@ -1,319 +1,371 @@
 /*
- * InfoBox.cs
+ * FSpot.Widgets.InfoBox
  *
  * Author(s)
  * 	Ettore Perazzoli
  * 	Larry Ewing  <lewing@novell.com>
  * 	Gabriel Burt
  *	Stephane Delcroix  <stephane@delcroix.org>
- * 	Mike Gemuende <mike@gemuende.de>
- * 	Ruben Vermeersch <ruben@savanne.be>
+ *	Ruben Vermeersch <ruben@savanne.be>
  *
  * This is free software. See COPYING for details.
  */
- 
+
+
 using Gtk;
 using System;
 using System.IO;
-using FSpot.Utils;
-using FSpot.Widgets;
+using FSpot;
+using SemWeb;
 using Mono.Unix;
 
 
-namespace FSpot {
-	
 // FIXME TODO: We want to use something like EClippedLabel here throughout so it handles small sizes
 // gracefully using ellipsis.
 
-	public class InfoBox : ScrolledWindow {
+namespace FSpot.Widgets
+{
+	public class InfoBox : VBox {
 		Delay update_delay;
-		bool up_to_date = false;
-		Sidebar sidebar;
-		
-		
-		private IBrowsableCollection collection;
-		
-		public IBrowsableCollection Collection {
+	
+		private IBrowsableItem photo;
+		public IBrowsableItem Photo {
 			set {
-				collection = value;
-				
-				if (sidebar != null && !sidebar.isActive (this))
-					up_to_date = false;
-				else
-					update_delay.Start ();
+				photo = value;
+				update_delay.Start ();
 			}
-			
-			get {
-				return collection;
+		}
+	
+		private bool show_tags = false;
+		public bool ShowTags {
+			get { return show_tags; }
+			set {
+				if (show_tags == value)
+					return;
+
+				show_tags = value;
+				tag_view.Visible = show_tags;
 			}
 		}
 
-		public Sidebar ParentSidebar {
-			set {
-				this.sidebar = value;
-			}
-		}
-		
 		public delegate void VersionIdChangedHandler (InfoBox info_box, uint version_id);
 		public event VersionIdChangedHandler VersionIdChanged;
-		
-		// Widgetry.
-		private VBox main_vbox;
-		
-		private InfoVBox info_vbox;
-		private VBox locations_vbox;
-		private VBox tags_vbox;
-		
-		private int thumbnail_size = 32;
-		
-		private void HandleExposeEvent (object sender, ExposeEventArgs args)
-		{
-			if (!up_to_date)
-			{
-				update_delay.Start ();
-			}
-		}
+	
+	
+		// Widgetry.	
+		private Label name_label;
+		private Label date_label;
+		private Label size_label;
+		private Label exposure_info_label;
+		private OptionMenu version_option_menu;
+		private TagView tag_view;
 
-		private void HandleInfoVBoxVersionIdChanged (InfoVBox info_vbox, uint version_id)
+		private void HandleVersionIdChanged (PhotoVersionMenu menu)
 		{
 			if (VersionIdChanged != null)
-				VersionIdChanged (this, version_id);
+				VersionIdChanged (this, menu.VersionId);
 		}
-
+	
+		private Label CreateRightAlignedLabel (string text)
+		{
+			Label label = new Label ();
+			label.UseMarkup = true;
+			label.Markup = text;
+			label.Xalign = 1;
+	
+			return label;
+		}
+	
+		const int TABLE_XPADDING = 3;
+		const int TABLE_YPADDING = 3;
+		static private Label AttachLabel (Table table, int row_num, Widget entry)
+		{
+			Label label = new Label (String.Empty);
+			label.Xalign = 0;
+			label.Selectable = true;
+			label.Ellipsize = Pango.EllipsizeMode.End;
+			label.Show ();
+	
+			table.Attach (label, 1, 2, (uint) row_num, (uint) row_num + 1,
+				      AttachOptions.Expand | AttachOptions.Fill, AttachOptions.Expand | AttachOptions.Fill,
+				      (uint) entry.Style.XThickness + TABLE_XPADDING, (uint) entry.Style.YThickness);
+	
+			return label;
+		}
+	
+		private string default_exposure_string;
+		private Label exposure_name_label;
 		private void SetupWidgets ()
 		{
-			main_vbox = new VBox ();
-			main_vbox.Spacing = 48;
+			Table table = new Table (6, 2, false);
+			table.BorderWidth = 0;
+	
+			string name_pre = "<b>";
+			string name_post = "</b>";
+			table.Attach (CreateRightAlignedLabel (name_pre + Catalog.GetString ("name") + name_post), 0, 1, 0, 1,
+				      AttachOptions.Fill, AttachOptions.Fill, TABLE_XPADDING, TABLE_YPADDING);
+			table.Attach (CreateRightAlignedLabel (name_pre + Catalog.GetString ("version") + name_post), 0, 1, 1, 2,
+				      AttachOptions.Fill, AttachOptions.Fill, TABLE_XPADDING, TABLE_YPADDING);
+			table.Attach (CreateRightAlignedLabel (name_pre + Catalog.GetString ("date") + name_post + Environment.NewLine), 0, 1, 2, 3,
+				      AttachOptions.Fill, AttachOptions.Fill, TABLE_XPADDING, TABLE_YPADDING);
+			table.Attach (CreateRightAlignedLabel (name_pre + Catalog.GetString ("size") + name_post), 0, 1, 3, 4,
+				      AttachOptions.Fill, AttachOptions.Fill, TABLE_XPADDING, TABLE_YPADDING);
+			default_exposure_string = name_pre + Catalog.GetString ("exposure") + name_post;
+			exposure_name_label = CreateRightAlignedLabel (default_exposure_string);
+			table.Attach (exposure_name_label, 0, 1, 4, 5,
+				      AttachOptions.Fill, AttachOptions.Fill, TABLE_XPADDING, TABLE_YPADDING);
+	
+			name_label = new Label ();
+			name_label.Ellipsize = Pango.EllipsizeMode.Middle;
+			name_label.Justify = Gtk.Justification.Left;
+			name_label.Selectable = true;
+			name_label.Xalign = 0;
+			table.Attach (name_label, 1, 2, 0, 1,
+				      AttachOptions.Fill | AttachOptions.Expand, AttachOptions.Fill,
+				      3, 0);
 			
-			AddWithViewport (main_vbox);
-			((Viewport) Child).ShadowType = ShadowType.None;
-			BorderWidth = 3;
-			
-			info_vbox = new InfoVBox ();
-			info_vbox.VersionIdChanged += HandleInfoVBoxVersionIdChanged;
-			
-			VBox vbox = new VBox ();
-			vbox.Spacing = 12;
-			Label title = new Label (String.Format ("<b>{0}</b>", Catalog.GetString ("Image")));
-			title.UseMarkup = true;
-			title.Xalign = 0;
-			vbox.PackStart (title, false, false, 3);
-			vbox.PackStart (info_vbox, false, false, 3);
-			main_vbox.PackStart (vbox, false, false, 0);
-			
-			vbox = new VBox ();
-			vbox.Spacing = 12;
-
-			title = new Label (String.Format ("<b>{0}</b>", Catalog.GetString ("Exported Locations")));
-			title.UseMarkup = true;
-			title.Xalign = 0;
-			vbox.PackStart (title, false, false, 3);
-			
-			locations_vbox = new VBox ();
-			vbox.PackStart (locations_vbox, false, false, 3);
-			main_vbox.PackStart (vbox, false, false, 0);
-			
-			vbox = new VBox ();
-			vbox.Spacing = 12;
-			
-			title = new Label (String.Format ("<b>{0}</b>", Catalog.GetString ("Tags")));
-			title.UseMarkup = true;
-			title.Xalign = 0;
-			vbox.PackStart (title, false, false, 3);
-			
-			tags_vbox = new VBox ();
-			tags_vbox.Spacing = 3;
-			vbox.PackStart (tags_vbox, false, false, 3);
-			
-			main_vbox.PackStart (vbox, false, false, 0);
-			main_vbox.ShowAll ();
+			date_label = AttachLabel (table, 2, name_label);
+			size_label = AttachLabel (table, 3, name_label);
+			exposure_info_label = AttachLabel (table, 4, name_label);
+	
+			version_option_menu = new OptionMenu ();
+			table.Attach (version_option_menu, 1, 2, 1, 2, AttachOptions.Fill, AttachOptions.Fill, TABLE_XPADDING, TABLE_YPADDING);
+	
+			date_label.Text = Environment.NewLine;
+			exposure_info_label.Text = Environment.NewLine;
+	
+			tag_view = new TagView (MainWindow.ToolTips);
+			table.Attach (tag_view, 0, 2, 5, 6, AttachOptions.Fill, AttachOptions.Fill, TABLE_XPADDING, TABLE_YPADDING);
+			tag_view.Show ();
+			table.ShowAll ();
+	
+			Add (table);
 		}
-		
-		public void HandleSelectionChanged (IBrowsableCollection collection) {
-			Collection = collection;
-		}
-
-		public void HandleSelectionItemsChanged (IBrowsableCollection collection, BrowsableEventArgs args) {
-			if (sidebar != null && !sidebar.isActive (this))
-				up_to_date = false;
-			else
-				update_delay.Start ();
-		}
-
+	
 		private void Clear ()
 		{
-			locations_vbox.Hide ();
-			tags_vbox.Hide ();
-		}		
-		
+			name_label.Sensitive = false;
+	
+			version_option_menu.Sensitive = false;
+			version_option_menu.Menu = new Menu ();	// GTK doesn't like NULL here although that's what we want.
+	
+			name_label.Text = String.Empty;
+			date_label.Text = Environment.NewLine;
+			size_label.Text = String.Empty;
+			exposure_info_label.Text = Environment.NewLine;
+		}
+	
+		private class ImageInfo : StatementSink {
+			string width;
+			string height;
+			string aperture;
+			string fnumber;
+			string exposure;
+			string iso_speed;
+			bool add = true;
+			Resource iso_anon;
+	
+			MemoryStore store;
+			
+	#if USE_EXIF_DATE
+			DateTime date;
+	#endif
+			public ImageInfo (ImageFile img) 
+			{
+				// FIXME We use the memory store to hold the anonymous statements
+				// as they are added so that we can query for them later to 
+				// resolve anonymous nodes.
+				store = new MemoryStore ();
+	
+				if (img == null) 
+					return;
+	
+				if (img is StatementSource) {
+					SemWeb.StatementSource source = (SemWeb.StatementSource)img;
+					source.Select (this);
+	
+					// If we couldn't find the ISO speed because of the ordering
+					// search the memory store for the values
+					if (iso_speed == null && iso_anon != null) {
+						add = false;
+						store.Select (this);
+					}
+				}
+	
+				if (img is JpegFile) {
+					int real_width;
+					int real_height;
+	
+					JpegUtils.GetSize (img.Uri.LocalPath, out real_width, out real_height);
+					width = real_width.ToString ();
+					height = real_height.ToString ();
+				}
+	#if USE_EXIF_DATE
+				date = img.Date.ToLocalTime ();
+	#endif
+			}
+	
+			public bool Add (SemWeb.Statement stmt)
+			{
+				if (stmt.Predicate == MetadataStore.Namespaces.Resolve ("tiff:ImageWidth")) {
+					if (width == null)
+						width = ((SemWeb.Literal)stmt.Object).Value;
+					} else if (stmt.Predicate == MetadataStore.Namespaces.Resolve ("tiff:ImageLength")) {
+					if (height == null)
+						height = ((SemWeb.Literal)stmt.Object).Value;
+				} else if (stmt.Predicate == MetadataStore.Namespaces.Resolve ("exif:PixelXDimension"))
+					width = ((SemWeb.Literal)stmt.Object).Value;						      
+				else if (stmt.Predicate == MetadataStore.Namespaces.Resolve ("exif:PixelYDimension"))
+					height = ((SemWeb.Literal)stmt.Object).Value;
+				else if (stmt.Predicate == MetadataStore.Namespaces.Resolve ("exif:ExposureTime"))
+					exposure = ((SemWeb.Literal)stmt.Object).Value;
+				else if (stmt.Predicate == MetadataStore.Namespaces.Resolve ("exif:ApertureValue"))
+					aperture = ((SemWeb.Literal)stmt.Object).Value;
+				else if (stmt.Predicate == MetadataStore.Namespaces.Resolve ("exif:FNumber"))
+					fnumber = ((SemWeb.Literal)stmt.Object).Value;
+				else if (stmt.Predicate == MetadataStore.Namespaces.Resolve ("exif:ISOSpeedRatings"))
+					iso_anon = stmt.Object;
+				else if (stmt.Subject == iso_anon && stmt.Predicate == MetadataStore.Namespaces.Resolve ("rdf:li"))
+					iso_speed = ((SemWeb.Literal)stmt.Object).Value;
+				else if (add && stmt.Subject.Uri == null)
+					store.Add (stmt);
+	
+				if (width == null || height == null || exposure == null || aperture == null || iso_speed == null)
+					return true;
+				else
+					return false;
+			}
+	
+			public string ExposureInfo {
+				get {
+					string info = String.Empty;
+	
+					if  (fnumber != null && fnumber != String.Empty) {
+						FSpot.Tiff.Rational rat = new FSpot.Tiff.Rational (fnumber);
+						info += String.Format ("f/{0:.0} ", rat.Value);
+					} else if (aperture != null && aperture != String.Empty) {
+						// Convert from APEX to fnumber
+						FSpot.Tiff.Rational rat = new FSpot.Tiff.Rational (aperture);
+						info += String.Format ("f/{0:.0} ", Math.Pow (2, rat.Value / 2));
+					}
+	
+					if (exposure != null && exposure != String.Empty)
+						info += exposure + " sec ";
+	
+					if (iso_speed != null && iso_speed != String.Empty)
+						info += Environment.NewLine + "ISO " + iso_speed;
+					
+					if (info == String.Empty)
+						return Catalog.GetString ("(None)");
+					
+					return info;
+				}
+			}
+	
+			public string Dimensions {
+				get {
+					if (width != null && height != null)
+						return String.Format ("{0}x{1}", width, height);
+					else 
+						return Catalog.GetString ("(Unknown)");
+				}
+			}
+	#if USE_EXIF_DATE
+			public string Date {
+				get {
+					if (date > DateTime.MinValue && date < DateTime.MaxValue)
+						return date.ToShortDateString () + Environment.NewLine + date.ToShortTimeString ();
+					else 
+						return Catalog.GetString ("(Unknown)");
+				}
+			}
+	#endif
+		}
+			
+	
 		public bool Update ()
 		{
-			up_to_date = true;
-			if (collection != null && collection.Count > 0)
-			{
-				if (collection.Count == 1)
-					UpdateSingleSelection (collection [0]);
-				else
-					UpdateMultipleSelection ();
-			} else {
-				info_vbox.Clear ();
-				Clear ();
-			}
-			return false;
-		}
-		
-		public void UpdateMultipleSelection ()
-		{
-			locations_vbox.Hide ();
-			tags_vbox.Hide ();
-			info_vbox.UpdateMultipleSelection (collection);
-		}
-			
-		public void UpdateSingleSelection (IBrowsableItem photo)
-		{
-			info_vbox.UpdateSingleSelection (photo);
-			
+			ImageInfo info;
+	
 			if (photo == null) {
 				Clear ();
-				return;
+				return false;
 			}
 			
+			name_label.Text = photo.Name != null ? System.Uri.UnescapeDataString(photo.Name) : String.Empty;
+			try {
+				//using (new Timer ("building info")) {
+					using (ImageFile img = ImageFile.Create (photo.DefaultVersionUri))
+					{
+						info = new ImageInfo (img);
+					}
+					//}
+			} catch (System.Exception e) {
+				System.Console.WriteLine (e);
+				info = new ImageInfo (null);			
+			}
+	
+	
+			name_label.Sensitive = true;
+			exposure_info_label.Text = info.ExposureInfo;
+			if (exposure_info_label.Text.IndexOf (Environment.NewLine) != -1)
+				exposure_name_label.Markup = default_exposure_string + Environment.NewLine;
+			else
+				exposure_name_label.Markup = default_exposure_string;
+	
+			size_label.Text = info.Dimensions;
+	#if USE_EXIF_DATE
+			date_label.Text = info.Date;
+	#else
+			DateTime local_time = photo.Time.ToLocalTime ();
+			date_label.Text = String.Format ("{0}{2}{1}",
+				local_time.ToShortDateString (),
+				local_time.ToShortTimeString (),
+				Environment.NewLine
+			);
+	#endif
+			
+	
 			Photo p = photo as Photo;
-			if (p != null) {			
-				if (Core.Database != null)
-				{
-					foreach (Widget widget in locations_vbox.Children) {
-						locations_vbox.Remove (widget);
-					}
+			if (p != null) {
+				version_option_menu.Visible = true;
+				version_option_menu.Sensitive = true;
+				PhotoVersionMenu menu = new PhotoVersionMenu (p);
+				menu.VersionIdChanged += new PhotoVersionMenu.VersionIdChangedHandler (HandleVersionIdChanged);
+				menu.WidthRequest = version_option_menu.Allocation.Width;
+				version_option_menu.Menu = menu;
 				
-					foreach (ExportItem export in Core.Database.Exports.GetByImageId (p.Id, p.DefaultVersionId)) {
-						string url = GetExportUrl (export);
-						string label = GetExportLabel (export);
-						if (url == null || label == null)
-							continue;
-
-						if (url.StartsWith ("/"))
-						{
-	            	    	// do a lame job of creating a URI out of local paths
-	            	    	url  = "file://" + url;
-	            	    }
-	            	    	LinkButton lb = new Gtk.LinkButton (label);
-		
-							lb.Relief = ReliefStyle.None;
-						
-							lb.Uri = url;
-							lb.Clicked += OnLinkButtonClicked;
-							locations_vbox.PackStart (lb, false, false, 0);
-	            	}
-	            }
-	            	    
-	            foreach (Widget widget in tags_vbox.Children) {
-	            	tags_vbox.Remove (widget);
-				}
-				
-				foreach (Tag tag in photo.Tags) {
-					HBox hbox = new HBox ();
-					hbox.Spacing = 6;
-					
-					Label label = new Label (tag.Name);
-					label.Xalign = 0;
-
-					Gdk.Pixbuf icon = tag.Icon;
-
-					Category category = tag.Category;
-					while (icon == null && category != null) {
-						icon = category.Icon;
-						category = category.Category;
+				uint i = 0;
+				foreach (uint version_id in p.VersionIds) {
+					if (version_id == p.DefaultVersionId) {
+						// FIXME GTK# why not just .History = i ?
+						version_option_menu.SetHistory (i);
+						break;
 					}
-					
-					if (icon == null)
-						continue;
-					
-					Gdk.Pixbuf scaled_icon;
-					if (icon.Width == thumbnail_size) {
-						scaled_icon = icon;
-					} else {
-						scaled_icon = icon.ScaleSimple (thumbnail_size, thumbnail_size, Gdk.InterpType.Bilinear);
-					}
-					
-					hbox.PackStart (new Image (scaled_icon), false, false, 0);
-					hbox.PackStart (label, false, false, 0);
-					
-					tags_vbox.PackStart (hbox, false, false, 0);
+					i++;
 				}
-	            	    
+				if (show_tags)
+					tag_view.Current = p;
+			} else {
+				version_option_menu.Visible = false;
+				version_option_menu.Sensitive = false;
+				version_option_menu.Menu = null;
 			}
-			
-			if (locations_vbox.Children.Length != 0)
-				locations_vbox.ShowAll ();
-			else
-				locations_vbox.Hide ();
-
-			if (tags_vbox.Children.Length != 0)
-				tags_vbox.ShowAll ();
-			else
-				tags_vbox.Hide ();
+	
+	
+			return false;
 		}
-		
-		static void OnLinkButtonClicked (object o, EventArgs args)
-	    {
-	    	GnomeUtil.UrlShow ((o as LinkButton).Uri);
-	    }
-		
-		private static string GetExportLabel (ExportItem export)
-		{
-			switch (export.ExportType) {
-			case ExportStore.FlickrExportType:
-				string[] split_token = export.ExportToken.Split (':');
-				return String.Format ("Flickr ({0})", split_token[1]);
-			case ExportStore.OldFolderExportType:	//Obsolete, remove after db rev4
-				return Catalog.GetString ("Folder");
-			case ExportStore.FolderExportType:
-				return Catalog.GetString ("Folder");
-			case ExportStore.PicasaExportType:
-				return Catalog.GetString ("Picasaweb");
-			case ExportStore.SmugMugExportType:
-				return Catalog.GetString ("SmugMug");
-			case ExportStore.Gallery2ExportType:
-				return Catalog.GetString ("Gallery2");
-			default:
-				return null;
-			}
-		}
-			
-		private static string GetExportUrl (ExportItem export)
-		{
-			switch (export.ExportType) {
-			case ExportStore.FlickrExportType:
-				string[] split_token = export.ExportToken.Split (':');
-				return String.Format ("http://www.{0}/photos/{1}/{2}/", split_token[2],
-	                                                     split_token[0], split_token[3]);
-			case ExportStore.FolderExportType:
-				Gnome.Vfs.Uri uri = new Gnome.Vfs.Uri (export.ExportToken);
-				return (uri.HasParent) ? uri.Parent.ToString () : export.ExportToken;
-			case ExportStore.Gallery2ExportType:
-				string[] split_item = export.ExportToken.Split (':');
-				return String.Format ("{0}:{1}?g2_itemId={2}",split_item[0], split_item[1], split_item[2]);
-			case ExportStore.OldFolderExportType:	//This is obsolete and meant to be removed once db reach rev4
-			case ExportStore.PicasaExportType:
-			case ExportStore.SmugMugExportType:
-				return export.ExportToken;
-			default:
-				return null;
-			}
-		}
-
+	
+	
 		// Constructor.
-		public InfoBox ()
+	
+		public InfoBox () : base (false, 0)
 		{
 			SetupWidgets ();
 			update_delay = new Delay (Update);
 			update_delay.Start ();
-			ExposeEvent += HandleExposeEvent;
-			
-			BorderWidth = 6;
+	
+			BorderWidth = 2;
 		}
-
 	}
 }
-			

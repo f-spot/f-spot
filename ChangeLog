@@ -1,3 +1,12 @@
+2008-06-04  Ruben Vermeersch  <ruben@savanne.be>
+
+	* src/MainWindow.cs: Hook in the InfoBox. Nuke the information pane on the
+	sidebar.
+
+	* src/SingleView.cs: Nuke the sidebar pane (box to be added).
+
+	* src/Widgets/InfoBox.cs: Bring back the old InfoBox.
+
 2008-06-03  Stephane Delcroix  <sdelcroix@novell.com>
 
 	* src/MemorySurface.cs:
