@@ -37,7 +37,6 @@ namespace FSpot {
 		FSpot.Widgets.IconView directory_view;
 		private Uri uri;
 		
-		InfoBox info_box;
 		MetadataDisplay info_display;
 		
 		UriCollection collection;

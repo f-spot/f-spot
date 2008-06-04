@@ -11,33 +11,24 @@ using Gtk;
 using FSpot.Widgets;
 
 namespace FSpot {
-	public class InfoItem : InfoVBox {
+	public class InfoItem : InfoBox {
 		BrowsablePointer item;
-		Delay update_delay;
 		
 		public InfoItem (BrowsablePointer item)
 		{
-			update_delay = new Delay (Update);
 			this.item = item;
 			item.Changed += HandleItemChanged;
 			HandleItemChanged (item, null);
 			VersionIdChanged += HandleVersionIdChanged;
-			//ShowTags = true;
+			ShowTags = true;
 		}
 		
-		public bool Update () {
-			UpdateSingleSelection (item.Current);
-			return false;
-		}
-
 		private void HandleItemChanged (BrowsablePointer sender, BrowsablePointerChangedArgs args)
 		{
-			update_delay.Start ();
-			//this.UpdateSingleSelection (item.Current);
-			//Photo = item.Current;
+			Photo = item.Current;
 		}
 
-		private void HandleVersionIdChanged (InfoVBox box, uint version_id)
+		private void HandleVersionIdChanged (InfoBox box, uint version_id)
 		{
 			Photo p = item.Current as Photo;
 			PhotoQuery q = item.Collection as PhotoQuery;

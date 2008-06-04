@@ -317,6 +317,7 @@ public class MainWindow {
 
 		info_box = new InfoBox ();
 		info_box.VersionIdChanged += HandleInfoBoxVersionIdChange;
+		info_box.ShowTags = true;
 		tag_vbox.PackEnd (info_box, false, false, 0);
 		info_box.Show ();
 		

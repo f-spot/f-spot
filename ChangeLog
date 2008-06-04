@@ -1,5 +1,11 @@
 2008-06-04  Ruben Vermeersch  <ruben@savanne.be>
 
+	* src/InfoOverlay.cs: Switch back to the old overlay.
+
+	* src/MainWindow.cs: Show tags.
+
+2008-06-04  Ruben Vermeersch  <ruben@savanne.be>
+
 	* src/MainWindow.cs: Hook in the InfoBox. Nuke the information pane on the
 	sidebar.
 
