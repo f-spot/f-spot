@@ -135,13 +135,21 @@ namespace FSpot {
 		protected virtual void ShapeSurface (Context cr, Cairo.Color color)
 		{
 			cr.Operator = Operator.Source;
+#if MONO_1_2_5
 			Cairo.Pattern p = new Cairo.SolidPattern (new Cairo.Color (0, 0, 0, 0));
+#else
+			Cairo.Pattern p = new Cairo.SolidPattern (new Cairo.Color (0, 0, 0, 0), true);
+#endif
 			cr.Source = p;
 			p.Destroy ();
 			cr.Paint ();
 			cr.Operator = Operator.Over;
 
+#if MONO_1_2_5
 			Cairo.Pattern r = new SolidPattern (color);
+#else
+			Cairo.Pattern r = new SolidPattern (color, true);
+#endif
 			cr.Source = r;
 			r.Destroy ();
 			cr.MoveTo (round, 0);

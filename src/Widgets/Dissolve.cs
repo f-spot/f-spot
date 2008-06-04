@@ -73,7 +73,11 @@ namespace FSpot.Widgets {
 			ctx.Operator = Operator.Over;
 			ctx.Matrix = end_buffer.Fill (allocation);
 			SurfacePattern sur = new SurfacePattern (end_buffer.Surface);
+#if MONO_1_2_5
 			Pattern black = new SolidPattern (new Cairo.Color (0.0, 0.0, 0.0, opacity));
+#else
+			Pattern black = new SolidPattern (new Cairo.Color (0.0, 0.0, 0.0, opacity), true);
+#endif
 			//ctx.Source = black;
 			//ctx.Fill ();
 			sur.Filter = Filter.Fast;

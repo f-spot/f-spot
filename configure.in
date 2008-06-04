@@ -59,7 +59,7 @@ LIBGNOMEUI_REQUIRED=2.2
 LIBEXIF_REQUIRED_MIN=0.5.7
 LIBEXIF_REQUIRED_MAX=0.7.0
 GTKSHARP_REQUIRED=2.8
-MONO_REQUIRED=1.2.5
+MONO_REQUIRED=1.2.4
 GTK_REQUIRED=2.6
 BEAGLE_REQUIRED=0.3.0
 NDESK_DBUS_REQUIRED=0.4.2
@@ -119,6 +119,9 @@ if pkg-config --atleast-version=2.11 gtk-sharp-2.0; then
 fi
 if pkg-config --atleast-version=2.12.2 gtk-sharp-2.0; then
    CSC_DEFINES="$CSC_DEFINES -d:GTK_2_12_2"
+fi
+if pkg-config --atleast-version=1.2.5 mono; then
+   CSC_DEFINES="$CSC_DEFINES -d:MONO_1_2_5"
 fi
 if pkg-config --atleast-version=2.0 mono; then
    CSC_DEFINES="$CSC_DEFINES -d:MONO_2_0"
