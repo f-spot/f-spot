@@ -237,7 +237,6 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/Widgets/ImageDisplay.cs	\
 	$(srcdir)/Widgets/ImageInfo.cs		\
 	$(srcdir)/Widgets/InfoBox.cs		\
-	$(srcdir)/Widgets/InfoVBox.cs		\
 	$(srcdir)/Widgets/PanZoom.cs		\
 	$(srcdir)/Widgets/PreviewPopup.cs 	\
 	$(srcdir)/Widgets/Push.cs		\

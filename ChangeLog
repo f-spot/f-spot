@@ -1,5 +1,12 @@
 2008-06-04  Ruben Vermeersch  <ruben@savanne.be>
 
+	* src/Makefile.am: Removed InfoVBox.cs. This file duplicates a lot of
+	stuff from InfoBox.cs and is no longer needed.
+
+	* src/Widgets/InfoVBox.cs: Removed.
+
+2008-06-04  Ruben Vermeersch  <ruben@savanne.be>
+
 	* src/InfoOverlay.cs: Switch back to the old overlay.
 
 	* src/MainWindow.cs: Show tags.
