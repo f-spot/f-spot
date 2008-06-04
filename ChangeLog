@@ -1,5 +1,10 @@
 2008-06-04  Ruben Vermeersch  <ruben@savanne.be>
 
+	* src/Widgets/InfoBox.cs: Not using capitals is not cool! My excuses to
+	the translators, this is going to cause some fuzzy strings.
+
+2008-06-04  Ruben Vermeersch  <ruben@savanne.be>
+
 	* src/Makefile.am: Removed InfoVBox.cs. This file duplicates a lot of
 	stuff from InfoBox.cs and is no longer needed.
 

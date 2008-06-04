@@ -102,15 +102,15 @@ namespace FSpot.Widgets
 	
 			string name_pre = "<b>";
 			string name_post = "</b>";
-			table.Attach (CreateRightAlignedLabel (name_pre + Catalog.GetString ("name") + name_post), 0, 1, 0, 1,
+			table.Attach (CreateRightAlignedLabel (name_pre + Catalog.GetString ("Name") + name_post), 0, 1, 0, 1,
 				      AttachOptions.Fill, AttachOptions.Fill, TABLE_XPADDING, TABLE_YPADDING);
-			table.Attach (CreateRightAlignedLabel (name_pre + Catalog.GetString ("version") + name_post), 0, 1, 1, 2,
+			table.Attach (CreateRightAlignedLabel (name_pre + Catalog.GetString ("Version") + name_post), 0, 1, 1, 2,
 				      AttachOptions.Fill, AttachOptions.Fill, TABLE_XPADDING, TABLE_YPADDING);
-			table.Attach (CreateRightAlignedLabel (name_pre + Catalog.GetString ("date") + name_post + Environment.NewLine), 0, 1, 2, 3,
+			table.Attach (CreateRightAlignedLabel (name_pre + Catalog.GetString ("Date") + name_post + Environment.NewLine), 0, 1, 2, 3,
 				      AttachOptions.Fill, AttachOptions.Fill, TABLE_XPADDING, TABLE_YPADDING);
-			table.Attach (CreateRightAlignedLabel (name_pre + Catalog.GetString ("size") + name_post), 0, 1, 3, 4,
+			table.Attach (CreateRightAlignedLabel (name_pre + Catalog.GetString ("Size") + name_post), 0, 1, 3, 4,
 				      AttachOptions.Fill, AttachOptions.Fill, TABLE_XPADDING, TABLE_YPADDING);
-			default_exposure_string = name_pre + Catalog.GetString ("exposure") + name_post;
+			default_exposure_string = name_pre + Catalog.GetString ("Exposure") + name_post;
 			exposure_name_label = CreateRightAlignedLabel (default_exposure_string);
 			table.Attach (exposure_name_label, 0, 1, 4, 5,
 				      AttachOptions.Fill, AttachOptions.Fill, TABLE_XPADDING, TABLE_YPADDING);
