@@ -1,5 +1,11 @@
 2008-06-04  Ruben Vermeersch  <ruben@savanne.be>
 
+	* src/Widgets/Sidebar.cs: Prevent a crasher caused by the preference
+	loading. Because the information panel no longer exists, an invalid panel
+	was chosen.
+
+2008-06-04  Ruben Vermeersch  <ruben@savanne.be>
+
 	* src/MainWindow.cs: 
 	* src/f-spot.glade: Rename tag_vbox to the more meaningful sidebar_vbox.
 

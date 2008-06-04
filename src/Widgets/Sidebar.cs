@@ -100,6 +100,10 @@ namespace FSpot.Widgets {
 		
 		public void SwitchTo (int n)
 		{
+            if (n >= notebook.Children.Length) {
+                n = 0;
+            }
+
 			if (n != notebook.CurrentPage)
 			{				
 				notebook.CurrentPage = n;
