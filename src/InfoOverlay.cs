@@ -25,7 +25,7 @@ namespace FSpot {
 		
 		private void HandleItemChanged (BrowsablePointer sender, BrowsablePointerChangedArgs args)
 		{
-			Photo = item.Current;
+			Photo = item.Current as Photo;
 		}
 
 		private void HandleVersionIdChanged (InfoBox box, uint version_id)

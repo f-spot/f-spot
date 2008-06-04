@@ -28,11 +28,22 @@ namespace FSpot.Widgets
 	public class InfoBox : VBox {
 		Delay update_delay;
 	
-		private IBrowsableItem photo;
-		public IBrowsableItem Photo {
+		private Photo [] photos = new Photo[0];
+		public Photo [] Photos {
 			set {
-				photo = value;
+				photos = value;
 				update_delay.Start ();
+			}
+			private get {
+				return photos;
+			}
+		}
+
+		public Photo Photo {
+			set {
+				if (value != null) {
+					Photos = new Photo[] { value };
+				}
 			}
 		}
 	
@@ -54,11 +65,22 @@ namespace FSpot.Widgets
 	
 		// Widgetry.	
 		private Label name_label;
-		private Label date_label;
-		private Label size_label;
-		private Label exposure_info_label;
+		private Label name_value_label;
+
+		private Label version_label;
 		private OptionMenu version_option_menu;
+
+		private Label date_label;
+		private Label date_value_label;
+
+		private Label size_label;
+		private Label size_value_label;
+
+		private Label exposure_label;
+		private Label exposure_value_label;
+
 		private TagView tag_view;
+		private string default_exposure_string;
 
 		private void HandleVersionIdChanged (PhotoVersionMenu menu)
 		{
@@ -93,8 +115,6 @@ namespace FSpot.Widgets
 			return label;
 		}
 	
-		private string default_exposure_string;
-		private Label exposure_name_label;
 		private void SetupWidgets ()
 		{
 			Table table = new Table (6, 2, false);
@@ -102,37 +122,39 @@ namespace FSpot.Widgets
 	
 			string name_pre = "<b>";
 			string name_post = "</b>";
-			table.Attach (CreateRightAlignedLabel (name_pre + Catalog.GetString ("Name") + name_post), 0, 1, 0, 1,
-				      AttachOptions.Fill, AttachOptions.Fill, TABLE_XPADDING, TABLE_YPADDING);
-			table.Attach (CreateRightAlignedLabel (name_pre + Catalog.GetString ("Version") + name_post), 0, 1, 1, 2,
-				      AttachOptions.Fill, AttachOptions.Fill, TABLE_XPADDING, TABLE_YPADDING);
-			table.Attach (CreateRightAlignedLabel (name_pre + Catalog.GetString ("Date") + name_post + Environment.NewLine), 0, 1, 2, 3,
-				      AttachOptions.Fill, AttachOptions.Fill, TABLE_XPADDING, TABLE_YPADDING);
-			table.Attach (CreateRightAlignedLabel (name_pre + Catalog.GetString ("Size") + name_post), 0, 1, 3, 4,
-				      AttachOptions.Fill, AttachOptions.Fill, TABLE_XPADDING, TABLE_YPADDING);
+
+			name_label = CreateRightAlignedLabel (name_pre + Catalog.GetString ("Name") + name_post);
+			table.Attach (name_label, 0, 1, 0, 1, AttachOptions.Fill, AttachOptions.Fill, TABLE_XPADDING, TABLE_YPADDING);
+
+			version_label = CreateRightAlignedLabel (name_pre + Catalog.GetString ("Version") + name_post); 
+			table.Attach (version_label, 0, 1, 1, 2, AttachOptions.Fill, AttachOptions.Fill, TABLE_XPADDING, TABLE_YPADDING);
+
+			date_label = CreateRightAlignedLabel (name_pre + Catalog.GetString ("Date") + name_post + Environment.NewLine);
+			table.Attach (date_label, 0, 1, 2, 3, AttachOptions.Fill, AttachOptions.Fill, TABLE_XPADDING, TABLE_YPADDING);
+
+			size_label = CreateRightAlignedLabel (name_pre + Catalog.GetString ("Size") + name_post);
+			table.Attach (size_label, 0, 1, 3, 4, AttachOptions.Fill, AttachOptions.Fill, TABLE_XPADDING, TABLE_YPADDING);
+
 			default_exposure_string = name_pre + Catalog.GetString ("Exposure") + name_post;
-			exposure_name_label = CreateRightAlignedLabel (default_exposure_string);
-			table.Attach (exposure_name_label, 0, 1, 4, 5,
-				      AttachOptions.Fill, AttachOptions.Fill, TABLE_XPADDING, TABLE_YPADDING);
+			exposure_label = CreateRightAlignedLabel (default_exposure_string);
+			table.Attach (exposure_label, 0, 1, 4, 5, AttachOptions.Fill, AttachOptions.Fill, TABLE_XPADDING, TABLE_YPADDING);
 	
-			name_label = new Label ();
-			name_label.Ellipsize = Pango.EllipsizeMode.Middle;
-			name_label.Justify = Gtk.Justification.Left;
-			name_label.Selectable = true;
-			name_label.Xalign = 0;
-			table.Attach (name_label, 1, 2, 0, 1,
-				      AttachOptions.Fill | AttachOptions.Expand, AttachOptions.Fill,
-				      3, 0);
+			name_value_label = new Label ();
+			name_value_label.Ellipsize = Pango.EllipsizeMode.Middle;
+			name_value_label.Justify = Gtk.Justification.Left;
+			name_value_label.Selectable = true;
+			name_value_label.Xalign = 0;
+			table.Attach (name_value_label, 1, 2, 0, 1, AttachOptions.Fill | AttachOptions.Expand, AttachOptions.Fill, 3, 0);
 			
-			date_label = AttachLabel (table, 2, name_label);
-			size_label = AttachLabel (table, 3, name_label);
-			exposure_info_label = AttachLabel (table, 4, name_label);
+			date_value_label = AttachLabel (table, 2, name_value_label);
+			size_value_label = AttachLabel (table, 3, name_value_label);
+			exposure_value_label = AttachLabel (table, 4, name_value_label);
 	
 			version_option_menu = new OptionMenu ();
 			table.Attach (version_option_menu, 1, 2, 1, 2, AttachOptions.Fill, AttachOptions.Fill, TABLE_XPADDING, TABLE_YPADDING);
 	
-			date_label.Text = Environment.NewLine;
-			exposure_info_label.Text = Environment.NewLine;
+			date_value_label.Text = Environment.NewLine;
+			exposure_value_label.Text = Environment.NewLine;
 	
 			tag_view = new TagView (MainWindow.ToolTips);
 			table.Attach (tag_view, 0, 2, 5, 6, AttachOptions.Fill, AttachOptions.Fill, TABLE_XPADDING, TABLE_YPADDING);
@@ -140,19 +162,6 @@ namespace FSpot.Widgets
 			table.ShowAll ();
 	
 			Add (table);
-		}
-	
-		private void Clear ()
-		{
-			name_label.Sensitive = false;
-	
-			version_option_menu.Sensitive = false;
-			version_option_menu.Menu = new Menu ();	// GTK doesn't like NULL here although that's what we want.
-	
-			name_label.Text = String.Empty;
-			date_label.Text = Environment.NewLine;
-			size_label.Text = String.Empty;
-			exposure_info_label.Text = Environment.NewLine;
 		}
 	
 		private class ImageInfo : StatementSink {
@@ -285,14 +294,24 @@ namespace FSpot.Widgets
 	
 		public bool Update ()
 		{
-			ImageInfo info;
-	
-			if (photo == null) {
-				Clear ();
-				return false;
+			if (Photos == null || Photos.Length == 0) {
+				Hide ();
+			} else if (Photos.Length == 1) {
+				UpdateSingle ();
+			} else if (Photos.Length > 1) {
+				UpdateMultiple ();
 			}
-			
-			name_label.Text = photo.Name != null ? System.Uri.UnescapeDataString(photo.Name) : String.Empty;
+			return false;
+		}	
+	
+		private void UpdateSingle () 
+		{
+			ImageInfo info;
+
+			Photo photo = Photos[0];
+
+			name_label.Visible = true;
+			name_value_label.Text = photo.Name != null ? System.Uri.UnescapeDataString(photo.Name) : String.Empty;
 			try {
 				//using (new Timer ("building info")) {
 					using (ImageFile img = ImageFile.Create (photo.DefaultVersionUri))
@@ -304,21 +323,24 @@ namespace FSpot.Widgets
 				System.Console.WriteLine (e);
 				info = new ImageInfo (null);			
 			}
-	
-	
-			name_label.Sensitive = true;
-			exposure_info_label.Text = info.ExposureInfo;
-			if (exposure_info_label.Text.IndexOf (Environment.NewLine) != -1)
-				exposure_name_label.Markup = default_exposure_string + Environment.NewLine;
+
+			exposure_value_label.Text = info.ExposureInfo;
+			if (exposure_value_label.Text.IndexOf (Environment.NewLine) != -1)
+				exposure_label.Markup = default_exposure_string + Environment.NewLine;
 			else
-				exposure_name_label.Markup = default_exposure_string;
+				exposure_label.Markup = default_exposure_string;
+			exposure_label.Visible = true;
+			exposure_value_label.Visible = true;
 	
-			size_label.Text = info.Dimensions;
+			size_value_label.Text = info.Dimensions;
+			size_label.Visible = true;
+			size_value_label.Visible = true;
+
 	#if USE_EXIF_DATE
-			date_label.Text = info.Date;
+			date_value_label.Text = info.Date;
 	#else
 			DateTime local_time = photo.Time.ToLocalTime ();
-			date_label.Text = String.Format ("{0}{2}{1}",
+			date_value_label.Text = String.Format ("{0}{2}{1}",
 				local_time.ToShortDateString (),
 				local_time.ToShortTimeString (),
 				Environment.NewLine
@@ -326,34 +348,54 @@ namespace FSpot.Widgets
 	#endif
 			
 	
-			Photo p = photo as Photo;
-			if (p != null) {
-				version_option_menu.Visible = true;
-				version_option_menu.Sensitive = true;
-				PhotoVersionMenu menu = new PhotoVersionMenu (p);
-				menu.VersionIdChanged += new PhotoVersionMenu.VersionIdChangedHandler (HandleVersionIdChanged);
-				menu.WidthRequest = version_option_menu.Allocation.Width;
-				version_option_menu.Menu = menu;
-				
-				uint i = 0;
-				foreach (uint version_id in p.VersionIds) {
-					if (version_id == p.DefaultVersionId) {
-						// FIXME GTK# why not just .History = i ?
-						version_option_menu.SetHistory (i);
-						break;
-					}
-					i++;
+			version_label.Visible = true;
+			version_option_menu.Visible = true;
+			PhotoVersionMenu menu = new PhotoVersionMenu (photo);
+			menu.VersionIdChanged += new PhotoVersionMenu.VersionIdChangedHandler (HandleVersionIdChanged);
+			menu.WidthRequest = version_option_menu.Allocation.Width;
+			version_option_menu.Menu = menu;
+			
+			uint i = 0;
+			foreach (uint version_id in photo.VersionIds) {
+				if (version_id == photo.DefaultVersionId) {
+					// FIXME GTK# why not just .History = i ?
+					version_option_menu.SetHistory (i);
+					break;
 				}
-				if (show_tags)
-					tag_view.Current = p;
-			} else {
-				version_option_menu.Visible = false;
-				version_option_menu.Sensitive = false;
-				version_option_menu.Menu = null;
+				i++;
 			}
+			if (show_tags)
+				tag_view.Current = photo;
 	
-	
-			return false;
+            Show ();
+		}
+
+		private void UpdateMultiple ()
+		{
+			name_label.Visible = false;
+			name_value_label.Text = String.Format(Catalog.GetString("{0} Photos"), Photos.Length);
+
+			version_label.Visible = false;
+			version_option_menu.Visible = false;
+
+			exposure_label.Visible = false;
+			exposure_value_label.Visible = false;
+
+			Photo first = Photos[Photos.Length-1];
+			Photo last = Photos[0];
+			if (first.Time.Date == last.Time.Date) {
+				date_value_label.Text = String.Format(Catalog.GetString("On {0} between \n{1} and {2}"), 
+						first.Time.ToLocalTime ().ToShortDateString (),
+						first.Time.ToLocalTime ().ToShortTimeString (),
+						last.Time.ToLocalTime ().ToShortTimeString ());
+			} else {
+				date_value_label.Text = String.Format(Catalog.GetString("Between {0} \nand {1}"),
+						first.Time.ToLocalTime ().ToShortDateString (),
+						last.Time.ToLocalTime ().ToShortDateString ());
+			}
+
+			size_label.Visible = false;
+			size_value_label.Visible = false;
 		}
 	
 	
@@ -366,6 +408,7 @@ namespace FSpot.Widgets
 			update_delay.Start ();
 	
 			BorderWidth = 2;
+            Hide ();
 		}
 	}
 }

@@ -3408,24 +3408,9 @@ Photo Details</property>
                         <property name="label" translatable="yes">_Fullscreen</property>
                         <property name="use_underline">True</property>
                         <signal name="activate" handler="HandleViewFullscreen"/>
-                        <child internal-child="image">
-                          <widget class="GtkImage" id="image50">
-                            <property name="visible">True</property>
-                            <property name="icon_size">1</property>
-                            <property name="icon_name">view-fullscreen</property>
-                          </widget>
-                        </child>
-                      </widget>
-                    </child>
-                    <child>
-                      <widget class="GtkImageMenuItem" id="fullscreen_browser">
-                        <property name="visible">True</property>
-                        <property name="label" translatable="yes">Fullscreen _Browser</property>
-                        <property name="use_underline">True</property>
-                        <signal name="activate" handler="HandleViewFullscreenBrowser"/>
                         <accelerator key="F11" modifiers="" signal="activate"/>
                         <child internal-child="image">
-                          <widget class="GtkImage" id="menu-item-image29">
+                          <widget class="GtkImage" id="image50">
                             <property name="visible">True</property>
                             <property name="icon_size">1</property>
                             <property name="icon_name">view-fullscreen</property>

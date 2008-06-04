@@ -1,5 +1,17 @@
 2008-06-04  Ruben Vermeersch  <ruben@savanne.be>
 
+	* src/InfoOverlay.cs: Supply Photo to InfoBox, instead of IBrowsableItem.
+
+	* src/MainWindow.cs: Signal updates of all selection changes.
+
+	* src/Widgets/InfoBox.cs: Show useful info when selecting multiple
+	pictures. A bit empty, but it's a start.
+
+	* src/f-spot.glade: Revert the fullscreen browser patch which accidentaly
+	got committed.
+
+2008-06-04  Ruben Vermeersch  <ruben@savanne.be>
+
 	* src/Widgets/Sidebar.cs: Prevent a crasher caused by the preference
 	loading. Because the information panel no longer exists, an invalid panel
 	was chosen.
