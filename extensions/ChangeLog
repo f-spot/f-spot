@@ -1,5 +1,11 @@
 2008-06-05  Stephane Delcroix  <sdelcroix@novell.com>
 
+	* GalleryExport/*: Fixes 536661, handle more exceptions at login
+
+	* BeagleService: reduce the debug verbosity.
+
+2008-06-05  Stephane Delcroix  <sdelcroix@novell.com>
+
 	* FolderExport/FolderExport.cs: No longer crash on missing SHARPEN
 	keyy. Fixes bgo #536707.
 

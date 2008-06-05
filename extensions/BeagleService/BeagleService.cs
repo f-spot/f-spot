@@ -37,8 +37,8 @@ namespace BeagleService {
 
 		private void HandleDbItemsChanged (object sender, DbItemEventArgs args)
 		{
-			Log.Warning ("Notifying beagle");
 #if ENABLE_BEAGLE
+			Log.Debug ("Notifying beagle");
 			foreach (DbItem item in args.Items) {
 				if (item as Photo != null)
 					BeagleNotifier.SendUpdate (item as Photo);

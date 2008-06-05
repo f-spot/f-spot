@@ -366,6 +366,10 @@ namespace G2Export {
 					    uri.Scheme != Uri.UriSchemeHttps)
 						throw new System.UriFormatException ();
 					
+					//Check for name uniqueness
+					foreach (GalleryAccount acc in GalleryAccountManager.GetInstance ().GetAccounts ())
+						if (acc.Name == name)
+							throw new ArgumentException ("name");
 					GalleryAccount created = new GalleryAccount (name, 
 										     url, 
 										     username,
@@ -401,6 +405,18 @@ namespace G2Export {
 					md.Run ();
 					md.Destroy ();
 					return;
+				} catch (ArgumentException ae) {
+					HigMessageDialog md = 
+						new HigMessageDialog (add_dialog, 
+								      Gtk.DialogFlags.Modal |
+								      Gtk.DialogFlags.DestroyWithParent,
+								      Gtk.MessageType.Error, Gtk.ButtonsType.Ok,
+								      Catalog.GetString ("A Gallery with this name already exists"),
+								      String.Format (Catalog.GetString ("There is already a Gallery with the same name in your registered Galleries. Please choose a unique name.")));
+					System.Console.WriteLine (ae);
+					md.Run ();
+					md.Destroy ();
+					return;
 				} catch (System.Net.WebException we) {
 					HigMessageDialog md = 
 						new HigMessageDialog (add_dialog, 
@@ -409,6 +425,18 @@ namespace G2Export {
 								      Gtk.MessageType.Error, Gtk.ButtonsType.Ok,
 								      Catalog.GetString ("Error while connecting to Gallery"),
 								      String.Format (Catalog.GetString ("The following error was encountered while attempting to log in: {0}"), we.Message));
+					md.Run ();
+					md.Destroy ();
+					return;
+				} catch (System.Exception se) {
+					HigMessageDialog md = 
+						new HigMessageDialog (add_dialog, 
+								      Gtk.DialogFlags.Modal |
+								      Gtk.DialogFlags.DestroyWithParent,
+								      Gtk.MessageType.Error, Gtk.ButtonsType.Ok,
+								      Catalog.GetString ("Error while connecting to Gallery"),
+								      String.Format (Catalog.GetString ("The following error was encountered while attempting to log in: {0}"), se.Message));
+					Console.WriteLine (se);
 					md.Run ();
 					md.Destroy ();
 					return;
