@@ -355,16 +355,31 @@ namespace SmugMugNet
 
 				NameValueCollection queryStringCollection = new NameValueCollection ();
 				queryStringCollection.Add ("AlbumID", album_id.ToString());
-				queryStringCollection.Add ("ResponseType", "REST");
+				// Temporarily disabled because rest doesn't seem to return the ImageID anymore
+				// queryStringCollection.Add ("ResponseType", "REST");
+				// luckily JSON still holds it
+				queryStringCollection.Add ("ResponseType", "JSON");
 				client.QueryString = queryStringCollection;
 
 				byte[] responseArray = client.UploadFile ("http://upload.smugmug.com/photos/xmladd.mg", "POST", file.FullName);
 				string response = Encoding.ASCII.GetString (responseArray);
 
-				XmlDocument doc = new XmlDocument ();
-				doc.LoadXml (response);
+				// JSon approach
+				Regex id_regex = new Regex ("\\\"id\\\": (?<image_id>\\d+),");
+				Match m  = id_regex.Match (response);
 
-				return int.Parse (doc.SelectSingleNode ("/rsp/ImageID").InnerText);
+				int id = -1;
+
+				if (m.Success)
+					id = int.Parse (m.Groups["image_id"].Value);
+
+				return id;
+
+				// REST approach, disabled for now
+				//XmlDocument doc = new XmlDocument ();
+				//doc.LoadXml (response);
+				// return int.Parse (doc.SelectSingleNode ("/rsp/ImageID").InnerText);
+
 			}
 			catch (Exception ex)
 			{

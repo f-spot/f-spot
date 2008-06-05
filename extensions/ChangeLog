@@ -1,3 +1,11 @@
+2008-05-29  Lorenzo Milesi <maxxer@yetopen.it>
+
+	* SmugMugExport/SmugMugExport.addin.xml: Bump version to 0.4.4.3.
+	* SmugMugExport/SmugMugExport.cs: fix div by 0. Check if returned
+	photo_id is valid. fix connection check.
+	* SmugMugExport/SmugMugNet/SmugMugApi.cs: use JSON instead of REST.
+	Code by Thomas Van Machelen. fix bgo#534902.
+
 2008-06-05  Stephane Delcroix  <sdelcroix@novell.com>
 
 	* GalleryExport/*: Fixes 536661, handle more exceptions at login

@@ -58,7 +58,7 @@ namespace FSpotSmugMugExport {
 
 		public bool Connected {
 			get {
-				return smugmug_proxy.Connected;
+				return (smugmug_proxy != null && smugmug_proxy.Connected);
 			}
 		}
 
@@ -579,7 +579,7 @@ namespace FSpotSmugMugExport {
 						approx_size = sent_bytes * items.Length / (photo_index - 1);
 
 					int image_id = account.SmugMug.Upload (request.Current.LocalPath, album.AlbumID);
-					if (Core.Database != null && item is Photo)
+					if (Core.Database != null && item is Photo && image_id >= 0)
 						Core.Database.Exports.Create ((item as Photo).Id,
 									      (item as Photo).DefaultVersionId,
 									      ExportStore.SmugMugExportType,
@@ -595,8 +595,11 @@ namespace FSpotSmugMugExport {
 					progress_dialog.ProgressText = Mono.Unix.Catalog.GetString ("Error");
 					System.Console.WriteLine (e);
 
-					if (progress_dialog.PerformRetrySkip ())
+					if (progress_dialog.PerformRetrySkip ()) {
 					 	photo_index--;
+						if (photo_index == 0)
+							approx_size = 0;
+					}
 				}
 			}
 				
