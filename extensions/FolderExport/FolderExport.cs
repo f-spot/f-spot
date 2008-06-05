@@ -503,7 +503,16 @@ namespace FSpotFolderExport {
 				
 						FilterSet req_set = new FilterSet ();
 						req_set.Add (new ResizeFilter ((uint)Math.Max (req.Width, req.Height)));
-						if ((bool)Preferences.Get (FolderExport.SHARPEN_KEY)) {
+
+						bool sharpen;
+						try {
+							sharpen = (bool)Preferences.Get (FolderExport.SHARPEN_KEY);
+						} catch (NullReferenceException) {
+							sharpen = true;
+							Preferences.Set (FolderExport.SHARPEN_KEY, true);
+						}
+
+						if (sharpen) {
 							if (req.Name == "lq")
 								req_set.Add (new SharpFilter (0.1, 2, 4));
 							if (req.Name == "thumbs")

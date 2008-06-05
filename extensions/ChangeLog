@@ -1,3 +1,8 @@
+2008-06-05  Stephane Delcroix  <sdelcroix@novell.com>
+
+	* FolderExport/FolderExport.cs: No longer crash on missing SHARPEN
+	keyy. Fixes bgo #536707.
+
 2008-05-30  Stephane Delcroix  <sdelcroix@novell.com>
 
 	* BeagleService/*: new (empty for now) addin for notifying Beagle of
