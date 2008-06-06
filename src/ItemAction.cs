@@ -91,7 +91,7 @@ namespace FSpot {
 				RotateDirection.Clockwise,
 				"RotateItemRight", 
 				Catalog.GetString ("Rotate Right"), 
-				Catalog.GetString ("Rotate picture left"),
+				Catalog.GetString ("Rotate picture right"),
 				"object-rotate-right")
 		{
 		}
