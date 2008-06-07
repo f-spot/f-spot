@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: f-spot.HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-05-29 18:56+0000\n"
-"PO-Revision-Date: 2008-05-31 00:51+0200\n"
+"POT-Creation-Date: 2008-06-06 23:46+0000\n"
+"PO-Revision-Date: 2008-06-07 14:32+0200\n"
 "Last-Translator: Jorge González <jorgegonz@svn.gnome.org>\n"
 "Language-Team: Español <gnome-es-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -127,6 +127,7 @@ msgid "Extension"
 msgstr "Extensión"
 
 #: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinTreeWidget.cs:112
+#: ../src/Widgets/InfoBox.cs:129
 msgid "Version"
 msgstr "Versión"
 
@@ -135,6 +136,7 @@ msgid "Other"
 msgstr "Otro"
 
 #: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/ManageSitesDialog.cs:51
+#: ../src/Widgets/InfoBox.cs:126
 msgid "Name"
 msgstr "Nombre"
 
@@ -242,7 +244,7 @@ msgstr "Desactivar"
 #: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.ErrorDialog.cs:40
 #: ../extensions/FlickrExport/FlickrExport.cs:359
 #: ../extensions/FolderExport/FolderExport.cs:223
-#: ../extensions/GalleryExport/GalleryExport.cs:760
+#: ../extensions/GalleryExport/GalleryExport.cs:788
 #: ../extensions/PicasaWebExport/PicasaWebExport.cs:694
 #: ../extensions/SmugMugExport/SmugMugExport.cs:595
 msgid "Error"
@@ -403,7 +405,7 @@ msgid "File"
 msgstr "Archivo"
 
 #: ../src/CameraFileSelectionDialog.cs:80
-#: ../extensions/FolderExport/FolderExport.cs:886
+#: ../extensions/FolderExport/FolderExport.cs:895
 msgid "Index"
 msgstr "Índice"
 
@@ -587,12 +589,12 @@ msgstr "Abrir _con"
 msgid "Rem_ove Tag"
 msgstr "Q_uitar etiqueta"
 
-#: ../src/FSpot.addin.xml.h:5 ../src/SingleView.cs:445
+#: ../src/FSpot.addin.xml.h:5 ../src/SingleView.cs:434
 #: ../src/f-spot.glade.h:164
 msgid "Rotate _Left"
 msgstr "Rotar a la _izquierda"
 
-#: ../src/FSpot.addin.xml.h:6 ../src/SingleView.cs:446
+#: ../src/FSpot.addin.xml.h:6 ../src/SingleView.cs:435
 #: ../src/f-spot.glade.h:165
 msgid "Rotate _Right"
 msgstr "Rotar a la _derecha"
@@ -656,7 +658,7 @@ msgid "Exit fullscreen"
 msgstr "Salir de pantalla completa"
 
 #: ../src/FullScreenView.cs:81 ../src/MainWindow.cs:296
-#: ../src/SingleView.cs:98
+#: ../src/SingleView.cs:97
 msgid "Slideshow"
 msgstr "Diapositivas"
 
@@ -878,7 +880,7 @@ msgstr "Género intelectual del objeto"
 msgid "Unknown IIM DataSet"
 msgstr "Conjunto de datos IIM desconocido"
 
-#: ../src/ImportCommand.cs:49 ../src/SingleView.cs:351
+#: ../src/ImportCommand.cs:49 ../src/SingleView.cs:340
 msgid "Select Folder"
 msgstr "Seleccionar la carpeta"
 
@@ -920,20 +922,19 @@ msgstr "Examinador de metadatos"
 
 #. Obsolete, remove after db rev4
 #: ../src/InfoDisplay.cs:135 ../src/InfoDisplay.cs:137
-#: ../src/SingleView.cs:123 ../src/Widgets/InfoBox.cs:270
-#: ../src/Widgets/InfoBox.cs:272 ../src/f-spot.glade.h:115
+#: ../src/SingleView.cs:122 ../src/f-spot.glade.h:115
 msgid "Folder"
 msgstr "Carpeta"
 
-#: ../src/InfoDisplay.cs:139 ../src/Widgets/InfoBox.cs:274
+#: ../src/InfoDisplay.cs:139
 msgid "Picasaweb"
 msgstr "Picasaweb"
 
-#: ../src/InfoDisplay.cs:141 ../src/Widgets/InfoBox.cs:276
+#: ../src/InfoDisplay.cs:141
 msgid "SmugMug"
 msgstr "SmugMug"
 
-#: ../src/InfoDisplay.cs:143 ../src/Widgets/InfoBox.cs:278
+#: ../src/InfoDisplay.cs:143
 msgid "Gallery2"
 msgstr "Galería2"
 
@@ -941,7 +942,7 @@ msgstr "Galería2"
 msgid "Extended Metadata"
 msgstr "Metadatos extendidos"
 
-#: ../src/InfoDisplay.cs:271 ../src/Widgets/InfoBox.cs:107
+#: ../src/InfoDisplay.cs:271
 msgid "Exported Locations"
 msgstr "Lugares exportados"
 
@@ -958,20 +959,24 @@ msgstr "La fotografía «{0}» no existe"
 msgid "No metadata available"
 msgstr "No hay metadatos disponibles"
 
-#: ../src/ItemAction.cs:81 ../src/MainWindow.cs:263 ../src/SingleView.cs:81
+#: ../src/ItemAction.cs:81 ../src/MainWindow.cs:263 ../src/SingleView.cs:80
 msgid "Rotate Left"
 msgstr "Rotar a la izquierda"
 
-#: ../src/ItemAction.cs:82 ../src/ItemAction.cs:94
+#: ../src/ItemAction.cs:82
 msgid "Rotate picture left"
 msgstr "Rotar la fotografía a la izquierda"
 
-#: ../src/ItemAction.cs:93 ../src/MainWindow.cs:267 ../src/SingleView.cs:86
+#: ../src/ItemAction.cs:93 ../src/MainWindow.cs:267 ../src/SingleView.cs:85
 msgid "Rotate Right"
 msgstr "Rotar a la derecha"
 
+#: ../src/ItemAction.cs:94
+msgid "Rotate picture right"
+msgstr "Rotar la fotografía a la derecha"
+
 #: ../src/ItemAction.cs:104 ../src/f-spot.glade.h:137
-#: ../extensions/FolderExport/FolderExport.cs:889
+#: ../extensions/FolderExport/FolderExport.cs:898
 msgid "Next"
 msgstr "Siguiente"
 
@@ -1062,35 +1067,31 @@ msgstr "Editar imagen"
 msgid "View and edit a photo"
 msgstr "Ver y editar una foto"
 
-#: ../src/MainWindow.cs:291 ../src/SingleView.cs:93
+#: ../src/MainWindow.cs:291 ../src/SingleView.cs:92
 msgid "Fullscreen"
 msgstr "Pantalla completa"
 
-#: ../src/MainWindow.cs:293 ../src/SingleView.cs:95
+#: ../src/MainWindow.cs:293 ../src/SingleView.cs:94
 msgid "View photos fullscreen"
 msgstr "Ver fotos en pantalla completa"
 
-#: ../src/MainWindow.cs:298 ../src/SingleView.cs:100
+#: ../src/MainWindow.cs:298 ../src/SingleView.cs:99
 msgid "View photos in a slideshow"
 msgstr "Ver fotos como diapositivas"
 
-#: ../src/MainWindow.cs:309 ../src/Widgets/InfoBox.cs:119
+#: ../src/MainWindow.cs:309
 msgid "Tags"
 msgstr "Etiquetas"
 
-#: ../src/MainWindow.cs:313 ../src/SingleView.cs:127
+#: ../src/MainWindow.cs:313 ../src/SingleView.cs:126
 msgid "Exif"
 msgstr "EXIF"
 
-#: ../src/MainWindow.cs:318 ../src/SingleView.cs:131
-msgid "Information"
-msgstr "Información"
-
-#: ../src/MainWindow.cs:1574
+#: ../src/MainWindow.cs:1573
 msgid "No cameras detected."
 msgstr "No se detectó ninguna cámara."
 
-#: ../src/MainWindow.cs:1575
+#: ../src/MainWindow.cs:1574
 msgid ""
 "F-Spot was unable to find any cameras attached to this system.  Double check "
 "that the camera is connected and has power"
@@ -1098,24 +1099,24 @@ msgstr ""
 "F-Spot fue incapaz de detectar ninguna cámara conectada en este equipo.  "
 "Compruebe que la cámara está conectada y tiene alimentación"
 
-#: ../src/MainWindow.cs:1615
+#: ../src/MainWindow.cs:1614
 msgid "Error connecting to camera"
 msgstr "Error al conectar con la cámara"
 
-#: ../src/MainWindow.cs:1616
+#: ../src/MainWindow.cs:1615
 #, csharp-format
 msgid "Received error \"{0}\" while connecting to camera"
 msgstr "Se recibió el error «{0}» al conectar con la cámara"
 
 #. Translators, The singular case will never happen here.
-#: ../src/MainWindow.cs:1962
+#: ../src/MainWindow.cs:1961
 #, csharp-format
 msgid "Merge the selected tag"
 msgid_plural "Merge the {0} selected tags?"
 msgstr[0] "Combinar la etiqueta seleccionada"
 msgstr[1] "¿Combinar las {0} etiquetas seleccionadas?"
 
-#: ../src/MainWindow.cs:1989
+#: ../src/MainWindow.cs:1988
 msgid ""
 "This operation will merge the selected tags and any sub-tags into a single "
 "tag."
@@ -1123,57 +1124,57 @@ msgstr ""
 "Esta operación combinará las etiquetas seleccionadas y cualquier subetiqueta "
 "en una sola etiqueta."
 
-#: ../src/MainWindow.cs:1991
+#: ../src/MainWindow.cs:1990
 msgid "_Merge Tags"
 msgstr "_Combinar etiquetas"
 
-#: ../src/MainWindow.cs:2188
+#: ../src/MainWindow.cs:2187
 #, csharp-format
 msgid "{0} Photo out of {1}"
 msgid_plural "{0} Photos out of {1}"
 msgstr[0] "Fotografía {0} de {1}"
 msgstr[1] "Fotografía {0} de {1}"
 
-#: ../src/MainWindow.cs:2190 ../src/SingleView.cs:488
+#: ../src/MainWindow.cs:2189 ../src/SingleView.cs:477
 #, csharp-format
 msgid "{0} Photo"
 msgid_plural "{0} Photos"
 msgstr[0] "{0} foto"
 msgstr[1] "{0} fotos"
 
-#: ../src/MainWindow.cs:2193
+#: ../src/MainWindow.cs:2192
 #, csharp-format
 msgid " ({0} selected)"
 msgid_plural " ({0} selected)"
 msgstr[0] " ({0} seleccionada)"
 msgstr[1] " ({0} seleccionadas)"
 
-#: ../src/MainWindow.cs:2274
+#: ../src/MainWindow.cs:2273
 msgid "_Ok"
 msgstr "_Aceptar"
 
-#: ../src/MainWindow.cs:2275
+#: ../src/MainWindow.cs:2274
 msgid "Error Deleting Picture"
 msgstr "Error al borrar la fotografía"
 
-#: ../src/MainWindow.cs:2280
+#: ../src/MainWindow.cs:2279
 #, csharp-format
 msgid "No permission to delete the file:{1}{0}"
 msgstr "No tiene permisos para borrar el archivo: {1}{0}"
 
-#: ../src/MainWindow.cs:2284
+#: ../src/MainWindow.cs:2283
 #, csharp-format
 msgid "An error of type {0} occurred while deleting the file:{2}{1}"
 msgstr "Ocurrió un error del tipo {0} al borrar el archivo: {2}{1}"
 
-#: ../src/MainWindow.cs:2310
+#: ../src/MainWindow.cs:2309
 #, csharp-format
 msgid "Delete the selected photo permanently?"
 msgid_plural "Delete the {0} selected photos permanently?"
 msgstr[0] "¿Borrar permanentemente la fotografía seleccionada?"
 msgstr[1] "¿Borrar permanentemente las {0} fotografías seleccionadas?"
 
-#: ../src/MainWindow.cs:2314
+#: ../src/MainWindow.cs:2313
 msgid "This deletes all versions of the selected photo from your drive."
 msgid_plural "This deletes all versions of the selected photos from your drive."
 msgstr[0] "Esto borrará de su unidad todas las versiones de la fotografía seleccionada."
@@ -1181,20 +1182,20 @@ msgstr[1] ""
 "Esto borrará de su unidad todas las versiones de las fotografías "
 "seleccionadas."
 
-#: ../src/MainWindow.cs:2317
+#: ../src/MainWindow.cs:2316
 msgid "_Delete photo"
 msgid_plural "_Delete photos"
 msgstr[0] "_Borrar la fotografía"
 msgstr[1] "_Borrar las fotografías"
 
-#: ../src/MainWindow.cs:2348
+#: ../src/MainWindow.cs:2347
 #, csharp-format
 msgid "Remove the selected photo from F-Spot?"
 msgid_plural "Remove the {0} selected photos from F-Spot?"
 msgstr[0] "¿Quitar la fotografía seleccionada de F-Spot?"
 msgstr[1] "¿Quitar las {0} fotografías seleccionadas de F-Spot?"
 
-#: ../src/MainWindow.cs:2353
+#: ../src/MainWindow.cs:2352
 msgid ""
 "If you remove photos from the F-Spot catalog all tag information will be "
 "lost. The photos remain on your computer and can be imported into F-Spot "
@@ -1204,45 +1205,45 @@ msgstr ""
 "etiquetas se perderá. Las fotos seguirán en su equipo y podrá volverlas a "
 "importar de nuevo en F-Spot."
 
-#: ../src/MainWindow.cs:2354
+#: ../src/MainWindow.cs:2353
 msgid "_Remove from Catalog"
 msgstr "_Quitar del catálogo"
 
-#: ../src/MainWindow.cs:2417
+#: ../src/MainWindow.cs:2416
 #, csharp-format
 msgid "Delete tag \"{0}\"?"
 msgstr "¿Borrar etiqueta {0}?"
 
-#: ../src/MainWindow.cs:2419
+#: ../src/MainWindow.cs:2418
 #, csharp-format
 msgid "Delete the {0} selected tags?"
 msgstr "¿Borrar las {0} etiquetas seleccionadas?"
 
-#: ../src/MainWindow.cs:2424
+#: ../src/MainWindow.cs:2423
 msgid "photo"
 msgid_plural "photos"
 msgstr[0] "foto"
 msgstr[1] "fotos"
 
-#: ../src/MainWindow.cs:2426
+#: ../src/MainWindow.cs:2425
 #, csharp-format
 msgid "If you delete this tag, the association with {0} {1} will be lost."
 msgid_plural "If you delete these tags, the association with {0} {1} will be lost."
 msgstr[0] "Si borra esta etiqueta se perderá la asociación {0} {1}."
 msgstr[1] "Si borra estas etiquetas se perderá la asociación {0} {1}."
 
-#: ../src/MainWindow.cs:2431
+#: ../src/MainWindow.cs:2430
 msgid "_Delete tag"
 msgid_plural "_Delete tags"
 msgstr[0] "_Borrar etiqueta"
 msgstr[1] "_Borrar etiquetas"
 
 #. A Category is not empty. Can not delete it.
-#: ../src/MainWindow.cs:2445
+#: ../src/MainWindow.cs:2444
 msgid "Tag is not empty"
 msgstr "La etiqueta no está vacía"
 
-#: ../src/MainWindow.cs:2446
+#: ../src/MainWindow.cs:2445
 #, csharp-format
 msgid ""
 "Can not delete tags that have tags within them.  Please delete tags under "
@@ -1251,39 +1252,39 @@ msgstr ""
 "No se pueden borrar etiquetas que tengan etiquetas dentro de ellas. Borre "
 "antes las etiquetas de «{0}»"
 
-#: ../src/MainWindow.cs:2905
+#: ../src/MainWindow.cs:2893
 msgid "Rotate selected photo left"
 msgid_plural "Rotate selected photos left"
 msgstr[0] "Rotar la fotografía seleccionada a la izquierda"
 msgstr[1] "Rotar las fotografías seleccionadas a la izquierda"
 
-#: ../src/MainWindow.cs:2918
+#: ../src/MainWindow.cs:2906
 msgid "Rotate selected photo right"
 msgid_plural "Rotate selected photos right"
 msgstr[0] "Rotar la fotografía seleccionada a la derecha"
 msgstr[1] "Rotar las fotografías seleccionadas a la derecha"
 
-#: ../src/MainWindow.cs:2926
+#: ../src/MainWindow.cs:2914
 #, csharp-format
 msgid "Find _Selected Tag"
 msgid_plural "Find _Selected Tags"
 msgstr[0] "Encontrar la etiqueta_seleccionada"
 msgstr[1] "Encontrar las etiquetas _seleccionadas"
 
-#: ../src/MainWindow.cs:2930
+#: ../src/MainWindow.cs:2918
 #, csharp-format
 msgid "Find Selected Tag _With"
 msgid_plural "Find Selected Tags _With"
 msgstr[0] "Encontrar la etiqueta seleccionada c_on"
 msgstr[1] "Encontrar las etiquetas seleccionadas c_on"
 
-#: ../src/MainWindow.cs:2968
+#: ../src/MainWindow.cs:2956
 msgid "Create New Version?"
 msgid_plural "Create New Versions?"
 msgstr[0] "¿Crear una nueva versión?"
 msgstr[1] "¿Crear nuevas versiones?"
 
-#: ../src/MainWindow.cs:2970
+#: ../src/MainWindow.cs:2958
 #, csharp-format
 msgid ""
 "Before launching {1}, should F-Spot create a new version of the selected "
@@ -1573,19 +1574,19 @@ msgstr "Foto anterior"
 msgid "Next photo"
 msgstr "Siguiente foto"
 
-#: ../src/PhotoView.cs:627
+#: ../src/PhotoView.cs:625
 msgid "No Constraint"
 msgstr "Sin restricción"
 
-#: ../src/PhotoView.cs:628
+#: ../src/PhotoView.cs:626
 msgid "Same as photo"
 msgstr "El mismo que la foto"
 
-#: ../src/PhotoView.cs:633
+#: ../src/PhotoView.cs:631
 msgid "Custom Ratios..."
 msgstr "Tasas personalizadas…"
 
-#: ../src/Preferences.cs:160
+#: ../src/Preferences.cs:159
 msgid "Photos"
 msgstr "Fotos"
 
@@ -1598,7 +1599,7 @@ msgstr "Ajustes de la imagen"
 #: ../extensions/CDExport/CDExport.cs:221
 #: ../extensions/FlickrExport/FlickrExport.cs:338
 #: ../extensions/FolderExport/FolderExport.cs:218
-#: ../extensions/GalleryExport/GalleryExport.cs:744
+#: ../extensions/GalleryExport/GalleryExport.cs:772
 #, csharp-format
 msgid "{0} of {1}"
 msgstr "{0} de {1}"
@@ -1715,19 +1716,19 @@ msgstr "Ocurrió un error al procesar «{0}»: {1}"
 msgid "my photos"
 msgstr "mis fotos"
 
-#: ../src/SingleView.cs:83
+#: ../src/SingleView.cs:82
 msgid "Rotate photo left"
 msgstr "Rotar la fotografía a la izquierda"
 
-#: ../src/SingleView.cs:88
+#: ../src/SingleView.cs:87
 msgid "Rotate photo right"
 msgstr "Rotar la fotografía a la derecha"
 
-#: ../src/SingleView.cs:348
+#: ../src/SingleView.cs:337
 msgid "Open"
 msgstr "Abrir"
 
-#: ../src/SingleView.cs:448
+#: ../src/SingleView.cs:437
 msgid "Set as Background"
 msgstr "Establecer como fondo"
 
@@ -1888,7 +1889,7 @@ msgid "Events"
 msgstr "Acontecimientos"
 
 #. The label for the root category is used in new and edit tag dialogs
-#: ../src/TagStore.cs:266
+#: ../src/TagStore.cs:266 ../src/Widgets/InfoBox.cs:268
 msgid "(None)"
 msgstr "(Ninguno)"
 
@@ -1986,7 +1987,7 @@ msgstr ""
 "actualiza. Esto puede llevar algo de tiempo."
 
 #. Mono.Unix.Error error = Mono.Unix.Stdlib.GetLastError ();
-#: ../src/Utils/Unix.cs:28
+#: ../src/Utils/Unix.cs:32
 msgid "Unable to create temporary file"
 msgstr "Imposible crear el archivo temporal"
 
@@ -1998,17 +1999,17 @@ msgstr ""
 "No se encontró el «Manual de F-Spot». Compruebe que su instalación se ha "
 "completado correctamente."
 
-#: ../src/Widgets/CustomPrintWidget.cs:98
+#: ../src/Widgets/CustomPrintWidget.cs:99
 msgid "Page Setup"
 msgstr "Configuración de página"
 
-#: ../src/Widgets/CustomPrintWidget.cs:100
-#: ../src/Widgets/CustomPrintWidget.cs:105
+#: ../src/Widgets/CustomPrintWidget.cs:101
+#: ../src/Widgets/CustomPrintWidget.cs:106
 #, csharp-format
 msgid "Paper Size: {0} x {1} mm"
 msgstr "Tamaño del papel: {0} x {1} mm"
 
-#: ../src/Widgets/CustomPrintWidget.cs:115
+#: ../src/Widgets/CustomPrintWidget.cs:116
 msgid "Photos per page"
 msgstr "Fotos por página"
 
@@ -2016,41 +2017,74 @@ msgstr "Fotos por página"
 #. ppp2.Toggled += TriggerChanged;
 #. ppp4.Toggled += TriggerChanged;
 #. ppp9.Toggled += TriggerChanged;
-#: ../src/Widgets/CustomPrintWidget.cs:127
+#: ../src/Widgets/CustomPrintWidget.cs:128
 msgid "Repeat"
 msgstr "Repetir"
 
-#: ../src/Widgets/CustomPrintWidget.cs:128
+#: ../src/Widgets/CustomPrintWidget.cs:129
 msgid "Print cut marks"
 msgstr "Imprimir marcas de recorte"
 
-#: ../src/Widgets/CustomPrintWidget.cs:136
+#: ../src/Widgets/CustomPrintWidget.cs:137
 msgid "Full Page (no margin)"
 msgstr "Página completa (sin márgenes)"
 
-#: ../src/Widgets/CustomPrintWidget.cs:139
+#: ../src/Widgets/CustomPrintWidget.cs:140
 msgid "Zoom"
 msgstr "Ampliar"
 
-#: ../src/Widgets/CustomPrintWidget.cs:140
+#: ../src/Widgets/CustomPrintWidget.cs:141
 msgid "Fill"
 msgstr "Rellenar"
 
-#: ../src/Widgets/CustomPrintWidget.cs:141
+#: ../src/Widgets/CustomPrintWidget.cs:142
 msgid "Scaled"
 msgstr "Escalar"
 
-#: ../src/Widgets/CustomPrintWidget.cs:147
+#: ../src/Widgets/CustomPrintWidget.cs:148
 msgid "White borders"
 msgstr "Bordes blancos"
 
-#: ../src/Widgets/CustomPrintWidget.cs:151
+#: ../src/Widgets/CustomPrintWidget.cs:152
 msgid "Custom Text: "
 msgstr "Texto personalizado: "
 
-#: ../src/Widgets/InfoBox.cs:97
-msgid "Image"
-msgstr "Imagen"
+#: ../src/Widgets/InfoBox.cs:132
+msgid "Date"
+msgstr "Fecha"
+
+#: ../src/Widgets/InfoBox.cs:135 ../extensions/CDExport/CDExport.glade.h:5
+msgid "Size"
+msgstr "Tamaño"
+
+#: ../src/Widgets/InfoBox.cs:138
+msgid "Exposure"
+msgstr "Exposición"
+
+#: ../src/Widgets/InfoBox.cs:279 ../src/Widgets/InfoBox.cs:288
+msgid "(Unknown)"
+msgstr "(Desconocido)"
+
+#: ../src/Widgets/InfoBox.cs:376
+#, csharp-format
+msgid "{0} Photos"
+msgstr "{0} Fotos"
+
+#: ../src/Widgets/InfoBox.cs:387
+#, csharp-format
+msgid ""
+"On {0} between \n"
+"{1} and {2}"
+msgstr ""
+
+#: ../src/Widgets/InfoBox.cs:392
+#, csharp-format
+msgid ""
+"Between {0} \n"
+"and {1}"
+msgstr ""
+"Entre {0} \n"
+"y {1}"
 
 #: ../src/Widgets/RatingMenuItem.cs:48
 msgid "Rating:"
@@ -2433,7 +2467,7 @@ msgstr "Adjuntar etiqueta:"
 
 #: ../src/f-spot.glade.h:80 ../extensions/CDExport/CDExport.glade.h:3
 #: ../extensions/FolderExport/FolderExport.glade.h:7
-#: ../extensions/GalleryExport/GalleryExport.glade.h:9
+#: ../extensions/GalleryExport/GalleryExport.glade.h:7
 #: ../extensions/SmugMugExport/SmugMugExport.glade.h:5
 msgid "Autorotate"
 msgstr "Autorotar"
@@ -2545,7 +2579,7 @@ msgid "Estimated new size"
 msgstr "Tamaño nuevo estimado"
 
 #: ../src/f-spot.glade.h:108 ../extensions/FlickrExport/FlickrExport.glade.h:6
-#: ../extensions/GalleryExport/GalleryExport.glade.h:10
+#: ../extensions/GalleryExport/GalleryExport.glade.h:8
 #: ../extensions/PicasaWebExport/PicasaWebExport.glade.h:9
 #: ../extensions/SmugMugExport/SmugMugExport.glade.h:6
 msgid "Export"
@@ -2976,7 +3010,7 @@ msgid "_Export to"
 msgstr "_Exportar a"
 
 #: ../src/f-spot.glade.h:233
-#: ../extensions/GalleryExport/GalleryExport.glade.h:23
+#: ../extensions/GalleryExport/GalleryExport.glade.h:15
 #: ../extensions/PicasaWebExport/PicasaWebExport.glade.h:21
 #: ../extensions/SmugMugExport/SmugMugExport.glade.h:12
 msgid "_Export to Album:"
@@ -3081,7 +3115,7 @@ msgstr "_Renombrar la versión"
 #: ../src/f-spot.glade.h:259
 #: ../extensions/FlickrExport/FlickrExport.glade.h:16
 #: ../extensions/FolderExport/FolderExport.glade.h:15
-#: ../extensions/GalleryExport/GalleryExport.glade.h:28
+#: ../extensions/GalleryExport/GalleryExport.glade.h:20
 #: ../extensions/PicasaWebExport/PicasaWebExport.glade.h:24
 #: ../extensions/SmugMugExport/SmugMugExport.glade.h:14
 msgid "_Resize to: "
@@ -3193,7 +3227,7 @@ msgstr "min. Iniciando en {0}"
 #: ../src/f-spot.glade.h:290
 #: ../extensions/FlickrExport/FlickrExport.glade.h:18
 #: ../extensions/FolderExport/FolderExport.glade.h:17
-#: ../extensions/GalleryExport/GalleryExport.glade.h:31
+#: ../extensions/GalleryExport/GalleryExport.glade.h:23
 #: ../extensions/PicasaWebExport/PicasaWebExport.glade.h:26
 #: ../extensions/SmugMugExport/SmugMugExport.glade.h:16
 msgid "pixels"
@@ -3223,9 +3257,9 @@ msgstr "Transfiriendo fotografía «{0}» al CD"
 #: ../extensions/CDExport/CDExport.cs:246
 #: ../extensions/FlickrExport/FlickrExport.cs:368
 #: ../extensions/FolderExport/FolderExport.cs:249
-#: ../extensions/GalleryExport/GalleryExport.cs:769
+#: ../extensions/GalleryExport/GalleryExport.cs:797
 #: ../extensions/PicasaWebExport/PicasaWebExport.cs:702
-#: ../extensions/SmugMugExport/SmugMugExport.cs:603
+#: ../extensions/SmugMugExport/SmugMugExport.cs:606
 msgid "Done Sending Photos"
 msgstr "Finalizó el envío de fotos"
 
@@ -3269,10 +3303,6 @@ msgstr "<b>Fotografías para grabar</b>"
 #: ../extensions/CDExport/CDExport.glade.h:4
 msgid "Create CD"
 msgstr "Crear CD"
-
-#: ../extensions/CDExport/CDExport.glade.h:5
-msgid "Size"
-msgstr "Tamaño"
 
 #: ../extensions/CDExport/CDExport.glade.h:6
 msgid "Size of the exported selection :"
@@ -3347,7 +3377,7 @@ msgstr "Esperando respuesta {0} de {1}"
 
 #: ../extensions/FlickrExport/FlickrExport.cs:333
 #: ../extensions/FolderExport/FolderExport.cs:215
-#: ../extensions/GalleryExport/GalleryExport.cs:740
+#: ../extensions/GalleryExport/GalleryExport.cs:768
 #, csharp-format
 msgid "Uploading picture \"{0}\""
 msgstr "Cargando foto «{0}»"
@@ -3358,9 +3388,9 @@ msgid "Error Uploading To {0}: {1}"
 msgstr "Error al cargar en {0}: {1}"
 
 #: ../extensions/FlickrExport/FlickrExport.cs:370
-#: ../extensions/GalleryExport/GalleryExport.cs:771
+#: ../extensions/GalleryExport/GalleryExport.cs:799
 #: ../extensions/PicasaWebExport/PicasaWebExport.cs:704
-#: ../extensions/SmugMugExport/SmugMugExport.cs:605
+#: ../extensions/SmugMugExport/SmugMugExport.cs:608
 msgid "Upload Complete"
 msgstr "Carga completada"
 
@@ -3378,7 +3408,7 @@ msgstr ""
 "autenticación usando la interfaz web de {0}."
 
 #: ../extensions/FlickrExport/FlickrExport.cs:459
-#: ../extensions/GalleryExport/GalleryExport.cs:693
+#: ../extensions/GalleryExport/GalleryExport.cs:721
 #: ../extensions/PicasaWebExport/PicasaWebExport.cs:598
 #: ../extensions/SmugMugExport/SmugMugExport.cs:521
 msgid "Uploading Pictures"
@@ -3448,34 +3478,34 @@ msgid "Error uploading picture \"{0}\" to Gallery:{2}{1}"
 msgstr "Error al subir la imagen «{0}» a la galería: {2}{1}"
 
 #. Note for translators: light as clear, opposite as dark
-#: ../extensions/FolderExport/FolderExport.cs:740
+#: ../extensions/FolderExport/FolderExport.cs:749
 msgid "Light"
 msgstr "Luminoso"
 
-#: ../extensions/FolderExport/FolderExport.cs:741
+#: ../extensions/FolderExport/FolderExport.cs:750
 msgid "Dark"
 msgstr "Oscuro"
 
 #. Abbreviation of previous
-#: ../extensions/FolderExport/FolderExport.cs:884
+#: ../extensions/FolderExport/FolderExport.cs:893
 msgid "Prev"
 msgstr "Anterior"
 
-#: ../extensions/FolderExport/FolderExport.cs:942
-#: ../extensions/FolderExport/FolderExport.cs:1115
+#: ../extensions/FolderExport/FolderExport.cs:951
+#: ../extensions/FolderExport/FolderExport.cs:1124
 msgid "Show Styles"
 msgstr "Mostrar estilos"
 
-#: ../extensions/FolderExport/FolderExport.cs:943
-#: ../extensions/FolderExport/FolderExport.cs:1116
+#: ../extensions/FolderExport/FolderExport.cs:952
+#: ../extensions/FolderExport/FolderExport.cs:1125
 msgid "Hide Styles"
 msgstr "Ocultar estilos"
 
-#: ../extensions/FolderExport/FolderExport.cs:1000
+#: ../extensions/FolderExport/FolderExport.cs:1009
 msgid "Gallery generated by"
 msgstr "Galería generada por"
 
-#: ../extensions/FolderExport/FolderExport.cs:1045
+#: ../extensions/FolderExport/FolderExport.cs:1054
 msgid "Page:"
 msgstr "Página:"
 
@@ -3523,34 +3553,49 @@ msgstr "_Guardar sólo estos archivos"
 msgid "Web _Gallery..."
 msgstr "Web _Gallery…"
 
-#: ../extensions/GalleryExport/GalleryExport.cs:384
+#: ../extensions/GalleryExport/GalleryExport.cs:388
 msgid "Invalid URL"
 msgstr "URL no válida"
 
-#: ../extensions/GalleryExport/GalleryExport.cs:385
+#: ../extensions/GalleryExport/GalleryExport.cs:389
 msgid "The gallery URL entry does not appear to be a valid URL"
 msgstr "El URL de la galería no parece ser un URL válido"
 
-#: ../extensions/GalleryExport/GalleryExport.cs:395
-#: ../extensions/GalleryExport/GalleryExport.cs:410
+#: ../extensions/GalleryExport/GalleryExport.cs:399
+#: ../extensions/GalleryExport/GalleryExport.cs:426
+#: ../extensions/GalleryExport/GalleryExport.cs:437
 msgid "Error while connecting to Gallery"
 msgstr "Error al conectar con Gallery"
 
-#: ../extensions/GalleryExport/GalleryExport.cs:396
-#: ../extensions/GalleryExport/GalleryExport.cs:411
+#: ../extensions/GalleryExport/GalleryExport.cs:400
+#: ../extensions/GalleryExport/GalleryExport.cs:427
+#: ../extensions/GalleryExport/GalleryExport.cs:438
 #, csharp-format
 msgid "The following error was encountered while attempting to log in: {0}"
 msgstr "Se encontró el siguiente error al intentar iniciar sesión: {0}"
 
-#: ../extensions/GalleryExport/GalleryExport.cs:497
+#: ../extensions/GalleryExport/GalleryExport.cs:414
+msgid "A Gallery with this name already exists"
+msgstr "Ya existe una galería con este nombre"
+
+#: ../extensions/GalleryExport/GalleryExport.cs:415
+#, csharp-format
+msgid ""
+"There is already a Gallery with the same name in your registered Galleries. "
+"Please choose a unique name."
+msgstr ""
+"Ya existe una galería con el mismo nombre en sus galerías registradas. "
+"Elija un nombre único."
+
+#: ../extensions/GalleryExport/GalleryExport.cs:525
 msgid "(TopLevel)"
 msgstr "(Nivel superior)"
 
-#: ../extensions/GalleryExport/GalleryExport.cs:559
+#: ../extensions/GalleryExport/GalleryExport.cs:587
 msgid "Invalid Gallery name"
 msgstr "Nombre de galería no válido"
 
-#: ../extensions/GalleryExport/GalleryExport.cs:560
+#: ../extensions/GalleryExport/GalleryExport.cs:588
 msgid ""
 "The gallery name contains invalid characters.\n"
 "Only letters, numbers, - and _ are allowed"
@@ -3558,32 +3603,32 @@ msgstr ""
 "El nombre de la galería contiene caracteres no válidos.\n"
 "Sólo se permiten letras, nombres, «-» y «_»"
 
-#: ../extensions/GalleryExport/GalleryExport.cs:759
+#: ../extensions/GalleryExport/GalleryExport.cs:787
 #, csharp-format
 msgid "Error uploading picture \"{0}\" to Gallery: {1}"
 msgstr "Error al subir la imagen «{0}» a Gallery: {1}"
 
-#: ../extensions/GalleryExport/GalleryExport.cs:787
+#: ../extensions/GalleryExport/GalleryExport.cs:815
 #: ../extensions/PicasaWebExport/PicasaWebExport.cs:725
-#: ../extensions/SmugMugExport/SmugMugExport.cs:626
+#: ../extensions/SmugMugExport/SmugMugExport.cs:629
 msgid "(No Gallery)"
 msgstr "(No hay ninguna galería)"
 
-#: ../extensions/GalleryExport/GalleryExport.cs:874
+#: ../extensions/GalleryExport/GalleryExport.cs:902
 #: ../extensions/PicasaWebExport/PicasaWebExport.cs:852
-#: ../extensions/SmugMugExport/SmugMugExport.cs:722
+#: ../extensions/SmugMugExport/SmugMugExport.cs:725
 msgid "(Not Connected)"
 msgstr "(Desconectado)"
 
-#: ../extensions/GalleryExport/GalleryExport.cs:875
+#: ../extensions/GalleryExport/GalleryExport.cs:903
 #: ../extensions/PicasaWebExport/PicasaWebExport.cs:853
-#: ../extensions/SmugMugExport/SmugMugExport.cs:723
+#: ../extensions/SmugMugExport/SmugMugExport.cs:726
 msgid "(No Albums)"
 msgstr "(No hay álbumes)"
 
-#: ../extensions/GalleryExport/GalleryExport.cs:927
+#: ../extensions/GalleryExport/GalleryExport.cs:955
 #: ../extensions/PicasaWebExport/PicasaWebExport.cs:912
-#: ../extensions/SmugMugExport/SmugMugExport.cs:764
+#: ../extensions/SmugMugExport/SmugMugExport.cs:767
 msgid "No account selected"
 msgstr "No se seleccionó ninguna cuenta"
 
@@ -3592,92 +3637,59 @@ msgstr "No se seleccionó ninguna cuenta"
 msgid "<span weight='bold' size='larger'>Error Connecting to Gallery</span>\n"
 msgstr "<span weight='bold' size='larger'>Error al conectar con la Gallery</span>\n"
 
-#: ../extensions/GalleryExport/GalleryExport.glade.h:7
-#: ../extensions/PicasaWebExport/PicasaWebExport.glade.h:7
-msgid "<span weight='bold' size='larger'>Your Google Account is locked</span>\n"
-msgstr "<span weight='bold' size='larger'>Su cuenta de Google está bloqueada</span>\n"
-
-#: ../extensions/GalleryExport/GalleryExport.glade.h:11
+#: ../extensions/GalleryExport/GalleryExport.glade.h:9
 msgid "Export _titles and comments"
 msgstr "Exportar _títulos y comentarios"
 
-#: ../extensions/GalleryExport/GalleryExport.glade.h:12
+#: ../extensions/GalleryExport/GalleryExport.glade.h:10
 #: ../extensions/PicasaWebExport/PicasaWebExport.glade.h:10
 #: ../extensions/SmugMugExport/SmugMugExport.glade.h:7
 msgid "Open _album in browser when done uploading"
 msgstr "Abrir el _álbum en el navegador cuando se termine de subir"
 
-#: ../extensions/GalleryExport/GalleryExport.glade.h:13
+#: ../extensions/GalleryExport/GalleryExport.glade.h:11
 #: ../extensions/PicasaWebExport/PicasaWebExport.glade.h:11
 msgid "Please verify that the settings for this gallery are correct."
 msgstr "Compruebe que los ajustes para esta galería son correctos."
 
-#: ../extensions/GalleryExport/GalleryExport.glade.h:14
-#: ../extensions/PicasaWebExport/PicasaWebExport.glade.h:12
-msgid ""
-"Please verify that the settings for this gallery are correct.\n"
-"Enter the letters as they are shown in the image in\n"
-"the 'Captcha' field. <i>Letters are not case-sensitive</i>"
-msgstr ""
-"Compruebe que los ajustes para esta galería son correctos.\n"
-"Introduzca las letras tal y como se muestran en la imagen\n"
-"en el campo «Captcha». <i>Las letras no diferencian las mayúsculas</i>"
-
-#: ../extensions/GalleryExport/GalleryExport.glade.h:17
-#: ../extensions/PicasaWebExport/PicasaWebExport.glade.h:15
-#: ../extensions/SmugMugExport/SmugMugExport.glade.h:8
-msgid "Public Album"
-msgstr "Álbum público"
-
-#: ../extensions/GalleryExport/GalleryExport.glade.h:18
+#: ../extensions/GalleryExport/GalleryExport.glade.h:12
 msgid "U_RL:"
 msgstr "U_RL:"
 
-#: ../extensions/GalleryExport/GalleryExport.glade.h:19
+#: ../extensions/GalleryExport/GalleryExport.glade.h:13
 msgid "_Album Name:"
 msgstr "Nombre del _álbum:"
 
-#: ../extensions/GalleryExport/GalleryExport.glade.h:20
-#: ../extensions/PicasaWebExport/PicasaWebExport.glade.h:16
-#: ../extensions/SmugMugExport/SmugMugExport.glade.h:10
-msgid "_Album Title:"
-msgstr "Título del _álbum:"
-
-#: ../extensions/GalleryExport/GalleryExport.glade.h:21
-#: ../extensions/PicasaWebExport/PicasaWebExport.glade.h:18
-msgid "_Captcha:"
-msgstr "«_Captcha»:"
-
-#: ../extensions/GalleryExport/GalleryExport.glade.h:22
+#: ../extensions/GalleryExport/GalleryExport.glade.h:14
 #: ../extensions/PicasaWebExport/PicasaWebExport.glade.h:19
 #: ../extensions/SmugMugExport/SmugMugExport.glade.h:11
 msgid "_Description:"
 msgstr "_Descripción:"
 
-#: ../extensions/GalleryExport/GalleryExport.glade.h:24
+#: ../extensions/GalleryExport/GalleryExport.glade.h:16
 msgid "_Gallery Name:"
 msgstr "Nombre de la _Galería:"
 
-#: ../extensions/GalleryExport/GalleryExport.glade.h:25
+#: ../extensions/GalleryExport/GalleryExport.glade.h:17
 #: ../extensions/PicasaWebExport/PicasaWebExport.glade.h:22
 msgid "_Gallery:"
 msgstr "_Galería:"
 
-#: ../extensions/GalleryExport/GalleryExport.glade.h:26
+#: ../extensions/GalleryExport/GalleryExport.glade.h:18
 msgid "_Parent Album:"
 msgstr "Álbum pa_dre:"
 
-#: ../extensions/GalleryExport/GalleryExport.glade.h:27
+#: ../extensions/GalleryExport/GalleryExport.glade.h:19
 #: ../extensions/PicasaWebExport/PicasaWebExport.glade.h:23
 #: ../extensions/SmugMugExport/SmugMugExport.glade.h:13
 msgid "_Password:"
 msgstr "Contrase_ña:"
 
-#: ../extensions/GalleryExport/GalleryExport.glade.h:29
+#: ../extensions/GalleryExport/GalleryExport.glade.h:21
 msgid "_Title:"
 msgstr "_Título:"
 
-#: ../extensions/GalleryExport/GalleryExport.glade.h:30
+#: ../extensions/GalleryExport/GalleryExport.glade.h:22
 #: ../extensions/PicasaWebExport/PicasaWebExport.glade.h:25
 #: ../extensions/SmugMugExport/SmugMugExport.glade.h:15
 msgid "_Username:"
@@ -3744,9 +3756,37 @@ msgstr ""
 msgid "<b>PicasaWeb Export</b>"
 msgstr "<b>Exportar a PicasaWeb</b>"
 
+#: ../extensions/PicasaWebExport/PicasaWebExport.glade.h:7
+msgid "<span weight='bold' size='larger'>Your Google Account is locked</span>\n"
+msgstr "<span weight='bold' size='larger'>Su cuenta de Google está bloqueada</span>\n"
+
+#: ../extensions/PicasaWebExport/PicasaWebExport.glade.h:12
+msgid ""
+"Please verify that the settings for this gallery are correct.\n"
+"Enter the letters as they are shown in the image in\n"
+"the 'Captcha' field. <i>Letters are not case-sensitive</i>"
+msgstr ""
+"Compruebe que los ajustes para esta galería son correctos.\n"
+"Introduzca las letras tal y como se muestran en la imagen\n"
+"en el campo «Captcha». <i>Las letras no diferencian las mayúsculas</i>"
+
+#: ../extensions/PicasaWebExport/PicasaWebExport.glade.h:15
+#: ../extensions/SmugMugExport/SmugMugExport.glade.h:8
+msgid "Public Album"
+msgstr "Álbum público"
+
+#: ../extensions/PicasaWebExport/PicasaWebExport.glade.h:16
+#: ../extensions/SmugMugExport/SmugMugExport.glade.h:10
+msgid "_Album Title:"
+msgstr "Título del _álbum:"
+
 #: ../extensions/PicasaWebExport/PicasaWebExport.glade.h:17
 msgid "_Autorotate"
 msgstr "_Autorotar"
+
+#: ../extensions/PicasaWebExport/PicasaWebExport.glade.h:18
+msgid "_Captcha:"
+msgstr "«_Captcha»:"
 
 #: ../extensions/SmugMugExport/SmugMugExport.glade.h:3
 msgid "<b>SmugMug Export</b>"
