@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: f-spot.HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-06-06 23:46+0000\n"
-"PO-Revision-Date: 2008-06-07 14:32+0200\n"
+"POT-Creation-Date: 2008-06-07 13:28+0000\n"
+"PO-Revision-Date: 2008-06-08 20:48+0200\n"
 "Last-Translator: Jorge González <jorgegonz@svn.gnome.org>\n"
 "Language-Team: Español <gnome-es-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -491,12 +491,12 @@ msgstr ""
 #. Note for translators: Reparented is a picture becoming a version of another one
 #: ../src/Core/Photo.cs:418
 msgid "Reparented"
-msgstr ""
+msgstr "Se ha cambiado el padre/la madre"
 
 #: ../src/Core/Photo.cs:418
 #, csharp-format
 msgid "Reparented ({0})"
-msgstr ""
+msgstr "Se ha cambiado el padre/la madre ({0})"
 
 #: ../src/Core/Photo.cs:435
 #, csharp-format
@@ -3584,8 +3584,8 @@ msgid ""
 "There is already a Gallery with the same name in your registered Galleries. "
 "Please choose a unique name."
 msgstr ""
-"Ya existe una galería con el mismo nombre en sus galerías registradas. "
-"Elija un nombre único."
+"Ya existe una galería con el mismo nombre en sus galerías registradas. Elija "
+"un nombre único."
 
 #: ../extensions/GalleryExport/GalleryExport.cs:525
 msgid "(TopLevel)"
