@@ -229,8 +229,17 @@ namespace FSpotFolderExport {
 				}
 
 				//create the zip tarballs for original
-				if (gallery is OriginalGallery && (bool)Preferences.Get(INCLUDE_TARBALLS_KEY))
-					(gallery as OriginalGallery).CreateZip ();
+				if (gallery is OriginalGallery) {
+					bool include_tarballs;
+					try {
+						include_tarballs = (bool)Preferences.Get (INCLUDE_TARBALLS_KEY);
+					} catch (NullReferenceException){
+						include_tarballs = true;
+						Preferences.Set (INCLUDE_TARBALLS_KEY, true);
+					}
+					if (include_tarballs)
+						(gallery as OriginalGallery).CreateZip ();
+				}
 
 				// we've created the structure, now if the destination was local we are done
 				// otherwise we xfer 

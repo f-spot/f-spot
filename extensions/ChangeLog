@@ -1,3 +1,8 @@
+2008-06-09  Stephane Delcroix  <sdelcroix@novell.com>
+
+	* FolderExport/: Fix exception on missing gconf key for original.
+	bgo #537331.
+
 2008-05-29  Lorenzo Milesi <maxxer@yetopen.it>
 
 	* SmugMugExport/SmugMugExport.addin.xml: Bump version to 0.4.4.3.
