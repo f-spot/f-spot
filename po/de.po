@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: f-spot\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-06-09 13:25+0200\n"
-"PO-Revision-Date: 2008-06-09 13:34+0200\n"
+"POT-Creation-Date: 2008-06-09 14:19+0200\n"
+"PO-Revision-Date: 2008-06-09 14:23+0200\n"
 "Last-Translator: Hanno Böck <hanno@hboeck.de>\n"
 "Language-Team: German GNOME Translators <gnome-de@gnome.org >\n"
 "MIME-Version: 1.0\n"
@@ -127,9 +127,8 @@ msgstr "Nach Endung"
 
 #: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinTreeWidget.cs:112
 #: ../src/Widgets/InfoBox.cs:129
-#, fuzzy
 msgid "Version"
-msgstr "_Version"
+msgstr "Version"
 
 #: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinTreeWidget.cs:168
 #, fuzzy
@@ -138,9 +137,8 @@ msgstr "Rastern"
 
 #: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/ManageSitesDialog.cs:51
 #: ../src/Widgets/InfoBox.cs:126
-#, fuzzy
 msgid "Name"
-msgstr "Name:"
+msgstr "Name"
 
 #: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/ManageSitesDialog.cs:52
 msgid "Url"
@@ -207,9 +205,8 @@ msgid "Overall Progress:"
 msgstr "Fortschritt insgesamt:"
 
 #: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:374
-#, fuzzy
 msgid "Downloading extensions..."
-msgstr "Vorschaubilder werden heruntergeladen"
+msgstr "Erweiterungen werden heruntergeladen …"
 
 #: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallerDialog.cs:36
 #: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:58
@@ -244,9 +241,8 @@ msgid "_Uninstall..."
 msgstr "_Drucken …"
 
 #: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:236
-#, fuzzy
 msgid "Enable"
-msgstr "blub"
+msgstr "Aktivieren"
 
 #: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:262
 msgid "Disable"
@@ -293,9 +289,8 @@ msgid "Register a local repository"
 msgstr "Eine lokale Softwarequelle registrieren"
 
 #: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.NewSiteDialog.cs:155
-#, fuzzy
 msgid "Path:"
-msgstr "Pfad"
+msgstr "Pfad:"
 
 #: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.NewSiteDialog.cs:179
 #, fuzzy
@@ -569,9 +564,8 @@ msgid "Previous Week (Mon-Sun)"
 msgstr "Vergangene Woche (Mo-So)"
 
 #: ../src/DateCommands.cs:87 ../src/f-spot.glade.h:72
-#, fuzzy
 msgid "All Images"
-msgstr "Bild öffnen"
+msgstr "Alle Bilder"
 
 #: ../src/DateCommands.cs:89
 #, fuzzy
@@ -687,9 +681,8 @@ msgid "Slideshow"
 msgstr "Diashow"
 
 #: ../src/FullScreenView.cs:82
-#, fuzzy
 msgid "Start slideshow"
-msgstr "Diashow"
+msgstr "Diashow starten"
 
 #: ../src/FullScreenView.cs:147
 #, fuzzy
@@ -1130,9 +1123,8 @@ msgid "Fullscreen"
 msgstr "Vollbild"
 
 #: ../src/MainWindow.cs:293 ../src/SingleView.cs:94
-#, fuzzy
 msgid "View photos fullscreen"
-msgstr "Vollbild verlassen"
+msgstr "Fotos im Vollbild anzeigen"
 
 #: ../src/MainWindow.cs:298 ../src/SingleView.cs:99
 msgid "View photos in a slideshow"
@@ -1284,11 +1276,10 @@ msgid "Delete the {0} selected tags?"
 msgstr "Die {0} ausgewählten Markierungen löschen?"
 
 #: ../src/MainWindow.cs:2423
-#, fuzzy
 msgid "photo"
 msgid_plural "photos"
-msgstr[0] "Nächstes Foto"
-msgstr[1] "Nächstes Foto"
+msgstr[0] "Foto"
+msgstr[1] "Fotos"
 
 #: ../src/MainWindow.cs:2425
 #, fuzzy, csharp-format
@@ -1323,11 +1314,10 @@ msgstr ""
 "beinhalten. Bitte löschen Sie zuerst die Markierungen unterhalb von »{0}«."
 
 #: ../src/MainWindow.cs:2893
-#, fuzzy
 msgid "Rotate selected photo left"
 msgid_plural "Rotate selected photos left"
-msgstr[0] "Das ausgewählte Foto aus F-Spot entfernen?"
-msgstr[1] "Die {0} ausgewählten Fotos aus F-Spot entfernen?"
+msgstr[0] "Ausgewähltes Foto nach links rotieren"
+msgstr[1] "Ausgewählte Fotos nach links rotieren"
 
 #: ../src/MainWindow.cs:2906
 #, fuzzy
@@ -1519,9 +1509,8 @@ msgid "Cancel"
 msgstr "Abbrechen"
 
 #: ../src/PhotoVersionCommands.cs:139
-#, fuzzy
 msgid "Delete"
-msgstr "Markierung löschen"
+msgstr "Löschen"
 
 #: ../src/PhotoVersionCommands.cs:143
 #, csharp-format
@@ -1673,9 +1662,8 @@ msgid "Custom Ratios..."
 msgstr ""
 
 #: ../src/Preferences.cs:159
-#, fuzzy
 msgid "Photos"
-msgstr "Foto bearbeiten"
+msgstr "Fotos"
 
 #: ../src/PrintOperation.cs:31
 #, fuzzy
@@ -1818,21 +1806,18 @@ msgid "my photos"
 msgstr "Fotos importieren"
 
 #: ../src/SingleView.cs:82
-#, fuzzy
 msgid "Rotate photo left"
-msgstr "Das ausgewählte Foto aus F-Spot entfernen?"
+msgstr "Foto nach links rotieren"
 
 #: ../src/SingleView.cs:87
-#, fuzzy
 msgid "Rotate photo right"
-msgstr "Das ausgewählte Foto aus F-Spot entfernen?"
+msgstr "Foto nach rechts rotieren"
 
 #: ../src/SingleView.cs:337
 msgid "Open"
 msgstr "Öffnen"
 
 #: ../src/SingleView.cs:437
-#, fuzzy
 msgid "Set as Background"
 msgstr "Als Hintergrund_bild verwenden"
 
@@ -1858,9 +1843,8 @@ msgid "Tag Name:"
 msgstr "Markierungsname:"
 
 #: ../src/TagCommands.cs:388
-#, fuzzy
 msgid "Unable to load image"
-msgstr "Anmeldung fehlgeschlagen."
+msgstr "Konnte Bild nicht laden"
 
 #: ../src/TagCommands.cs:389
 #, csharp-format
@@ -1892,6 +1876,12 @@ msgid ""
 " with this tag. Please tag a photo as '{0}' and return here\n"
 " to use it as an icon."
 msgstr ""
+"\n"
+"<b>Aus Foto</b>\n"
+" Sie können eines der Fotos ihrer Sammlung als Symbol für\n"
+" diesen Tag benutzen. Dazu benötigen Sie jedoch mindestens\n"
+" ein Foto mit diesem Tag. Bitte taggen Sie ein Foto als »{0}« und\n"
+" kommen Sie hier zurück um es als Symbol auszuwählen."
 
 #: ../src/TagMenu.cs:91 ../src/TagPopup.cs:36
 #, fuzzy
@@ -2003,21 +1993,18 @@ msgstr " und "
 
 #. operators.Add (Catalog.GetString (" && "));
 #: ../src/Term.cs:299
-#, fuzzy
 msgid ", "
-msgstr " "
+msgstr " , "
 
 #: ../src/Term.cs:355
-#, fuzzy
 msgid " or "
-msgstr "{0} von {1}"
+msgstr " oder "
 
 #. OPS The operators we support, case insensitive
 #. private static string op_str = "(?'Ops' or | and |, | \\s+ )";
 #: ../src/Term.cs:379 ../src/Widgets/FindBar.cs:176 ../src/f-spot.glade.h:289
-#, fuzzy
 msgid "or"
-msgstr "Anschluss"
+msgstr "oder"
 
 #: ../src/ThreadProgressDialog.cs:66
 msgid "Retry"
@@ -2035,7 +2022,7 @@ msgstr "Fotoverwaltung"
 
 #: ../src/UI.Dialog/AboutDialog.cs:68
 msgid "Copyright © 2003-2008 Novell Inc."
-msgstr ""
+msgstr "Copyright © 2003-2008 Novell Inc."
 
 #: ../src/UI.Dialog/AboutDialog.cs:93
 msgid "translator-credits"
@@ -2073,6 +2060,8 @@ msgid ""
 "F-Spot encountered an error while loading the photo database. The old "
 "database has be moved to {0} and a new database has been created."
 msgstr ""
+"Ein Fehler trat beim Laden der Foto-Datenbank auf. Die alte Datenbank wurde "
+"nach »{0}« verschoben und eine neue Datenbank wurde erstellt."
 
 #: ../src/UI.Dialog/SelectionRatioDialog.cs:60
 #, fuzzy
@@ -2092,6 +2081,8 @@ msgid ""
 "Please wait while your F-Spot gallery's database is updated. This may take "
 "some time."
 msgstr ""
+"Bitte warten Sie, während die Datenbank ihrer F-Spot Galerie aktualisiert "
+"wird. Dies kann einige Zeit dauern."
 
 #. Mono.Unix.Error error = Mono.Unix.Stdlib.GetLastError ();
 #: ../src/Utils/Unix.cs:32
@@ -2103,6 +2094,8 @@ msgid ""
 "The \"F-Spot Manual\" could not be found.  Please verify that your "
 "installation has been completed successfully."
 msgstr ""
+"Die »F-Spot Dokumentation« konnte nicht gefunden werden. Bitte überprüfen "
+"Sie, ob die Installation erfolgreich durchgeführt wurde."
 
 #: ../src/Widgets/CustomPrintWidget.cs:99
 msgid "Page Setup"
@@ -2159,19 +2152,16 @@ msgid "Custom Text: "
 msgstr "Individueller Text:"
 
 #: ../src/Widgets/InfoBox.cs:132
-#, fuzzy
 msgid "Date"
-msgstr "Datum:"
+msgstr "Datum"
 
 #: ../src/Widgets/InfoBox.cs:135 ../extensions/CDExport/CDExport.glade.h:5
-#, fuzzy
 msgid "Size"
-msgstr "G_röße"
+msgstr "Größe"
 
 #: ../src/Widgets/InfoBox.cs:138
-#, fuzzy
 msgid "Exposure"
-msgstr "Belichtung:"
+msgstr "Belichtung"
 
 #: ../src/Widgets/InfoBox.cs:279 ../src/Widgets/InfoBox.cs:288
 msgid "(Unknown)"
@@ -2188,6 +2178,8 @@ msgid ""
 "On {0} between \n"
 "{1} and {2}"
 msgstr ""
+"Auf {0} zwischen \n"
+"{1} und {2}"
 
 #: ../src/Widgets/InfoBox.cs:392
 #, csharp-format
@@ -2195,6 +2187,8 @@ msgid ""
 "Between {0} \n"
 "and {1}"
 msgstr ""
+"Zwischen {0} \n"
+"und {1}"
 
 #: ../src/Widgets/RatingMenuItem.cs:48
 #, fuzzy
@@ -2216,9 +2210,8 @@ msgid "Location"
 msgstr "Adresse kop_ieren"
 
 #: ../src/XmpTagsImporter.cs:89
-#, fuzzy
 msgid "Country"
-msgstr "Kontrast"
+msgstr "Land"
 
 #: ../src/XmpTagsImporter.cs:90
 msgid "City"
@@ -2430,9 +2423,8 @@ msgid "<b>Style</b>"
 msgstr "<b>Stil</b>"
 
 #: ../src/f-spot.glade.h:45
-#, fuzzy
 msgid "<b>Summary</b>"
-msgstr "<b>Galerie</b>"
+msgstr "<b>Zusammenfassung</b>"
 
 #: ../src/f-spot.glade.h:46
 #, fuzzy
@@ -2601,9 +2593,8 @@ msgid "Autorotate"
 msgstr "Automatisch drehen"
 
 #: ../src/f-spot.glade.h:82
-#, fuzzy
 msgid "By _Date"
-msgstr "_Datum anzeigen"
+msgstr "Nach _Datum"
 
 #: ../src/f-spot.glade.h:83
 msgid "By _Import Roll"
@@ -2670,9 +2661,8 @@ msgid "Crop photo to _fit"
 msgstr "Bild _passend zuschneiden"
 
 #: ../src/f-spot.glade.h:98
-#, fuzzy
 msgid "Current date:"
-msgstr "Weitere Zeitpunkte"
+msgstr "Aktuelles Datum:"
 
 #: ../src/f-spot.glade.h:99
 #, fuzzy
@@ -2789,9 +2779,8 @@ msgid "Include subfolders"
 msgstr "Unterordner einbeziehen"
 
 #: ../src/f-spot.glade.h:131
-#, fuzzy
 msgid "Large"
-msgstr "_Groß"
+msgstr "Groß"
 
 #: ../src/f-spot.glade.h:132
 msgid "Make F-Spot your screensaver"
@@ -2890,7 +2879,6 @@ msgid "Print crop _marks"
 msgstr "Schnitt_markierungen drucken"
 
 #: ../src/f-spot.glade.h:159
-#, fuzzy
 msgid "Print..."
 msgstr "_Drucken …"
 
@@ -2908,7 +2896,6 @@ msgid "Reset"
 msgstr ""
 
 #: ../src/f-spot.glade.h:166
-#, fuzzy
 msgid "Select A Folder"
 msgstr "Ordner wählen"
 
@@ -2993,7 +2980,6 @@ msgid "Side_bar"
 msgstr "_Seitenleiste anzeigen"
 
 #: ../src/f-spot.glade.h:188
-#, fuzzy
 msgid "Small"
 msgstr "_Klein"
 
@@ -3040,7 +3026,7 @@ msgstr "Markierungen: "
 
 #: ../src/f-spot.glade.h:200
 msgid "Thumbnail _elements"
-msgstr "Vorschauordner"
+msgstr ""
 
 #: ../src/f-spot.glade.h:201
 msgid "Tiny"
@@ -3183,9 +3169,8 @@ msgid "_Flickr"
 msgstr "_Flickr"
 
 #: ../src/f-spot.glade.h:236
-#, fuzzy
 msgid "_Folder"
-msgstr "_Ordneradresse:"
+msgstr "_Ordner"
 
 #: ../src/f-spot.glade.h:237
 msgid "_Fullscreen"
@@ -3221,7 +3206,6 @@ msgid "_Interpolate image on zoom"
 msgstr "Bild beim Zoomen _interpolieren"
 
 #: ../src/f-spot.glade.h:245
-#, fuzzy
 msgid "_Large"
 msgstr "_Groß"
 
@@ -3230,7 +3214,6 @@ msgid "_Last Import Roll"
 msgstr ""
 
 #: ../src/f-spot.glade.h:247
-#, fuzzy
 msgid "_Medium"
 msgstr "_Mittel"
 
@@ -3255,9 +3238,8 @@ msgid "_Output:"
 msgstr "_Ausgabe:"
 
 #: ../src/f-spot.glade.h:253
-#, fuzzy
 msgid "_Photo"
-msgstr "Foto bearbeiten"
+msgstr "_Foto"
 
 #: ../src/f-spot.glade.h:254
 msgid "_Quit"
@@ -3317,7 +3299,6 @@ msgid "_Slideshow"
 msgstr "_Diashow"
 
 #: ../src/f-spot.glade.h:268
-#, fuzzy
 msgid "_Small"
 msgstr "_Klein"
 
@@ -3497,9 +3478,8 @@ msgid "_23hq..."
 msgstr ""
 
 #: ../extensions/FlickrExport/FlickrExport.addin.xml.h:2
-#, fuzzy
 msgid "_Flickr..."
-msgstr "_Flickr"
+msgstr "_Flickr …"
 
 #: ../extensions/FlickrExport/FlickrExport.cs:97
 #: ../extensions/FlickrExport/FlickrExport.glade.h:5
@@ -3640,9 +3620,8 @@ msgid "_View photos in browser when done uploading"
 msgstr "Die Fotos nach dem Hochladen im Browser an_zeigen"
 
 #: ../extensions/FolderExport/FolderExport.addin.xml.h:1
-#, fuzzy
 msgid "F_older..."
-msgstr "_Ordneradresse:"
+msgstr "_Ordner …"
 
 #: ../extensions/FolderExport/FolderExport.cs:132
 #, fuzzy
@@ -3757,8 +3736,7 @@ msgstr "Fehler beim Verbinden zur Kamera"
 #, csharp-format
 msgid "The following error was encountered while attempting to log in: {0}"
 msgstr ""
-"Der folgende Fehler ist beim Versuch, ein Album anzulegen, aufgetreten: "
-"{0}"
+"Der folgende Fehler ist beim Versuch, ein Album anzulegen, aufgetreten: {0}"
 
 #: ../extensions/GalleryExport/GalleryExport.cs:414
 msgid "A Gallery with this name already exists"
@@ -3911,9 +3889,9 @@ msgid "{0} Sent"
 msgstr "{0} Gesendet"
 
 #: ../extensions/PicasaWebExport/PicasaWebExport.cs:623
-#, fuzzy, csharp-format
+#, csharp-format
 msgid "{0} of approx. {1}"
-msgstr "{0} von {1}"
+msgstr "{0} von ca. {1}"
 
 #: ../extensions/PicasaWebExport/PicasaWebExport.cs:661
 #: ../extensions/SmugMugExport/SmugMugExport.cs:564
@@ -3964,9 +3942,8 @@ msgstr "Öffentliches Album"
 
 #: ../extensions/PicasaWebExport/PicasaWebExport.glade.h:16
 #: ../extensions/SmugMugExport/SmugMugExport.glade.h:10
-#, fuzzy
 msgid "_Album Title:"
-msgstr "Name des _Albums:"
+msgstr "Titel des _Albums:"
 
 #: ../extensions/PicasaWebExport/PicasaWebExport.glade.h:17
 msgid "_Autorotate"
@@ -3982,9 +3959,8 @@ msgid "<b>SmugMug Export</b>"
 msgstr "<b>Belichtung</b>"
 
 #: ../extensions/SmugMugExport/SmugMugExport.glade.h:9
-#, fuzzy
 msgid "_Account:"
-msgstr "Betrag:"
+msgstr "_Benutzerkonto:"
 
 #: ../extensions/SmugMugExport/SmugMugExport.addin.xml.h:1
 msgid "_SmugMug..."
