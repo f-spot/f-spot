@@ -384,6 +384,7 @@ namespace FSpot.Widgets
 			Photo first = Photos[Photos.Length-1];
 			Photo last = Photos[0];
 			if (first.Time.Date == last.Time.Date) {
+				//Note for translators: {0} is a date, {1} and {2} are times.
 				date_value_label.Text = String.Format(Catalog.GetString("On {0} between \n{1} and {2}"), 
 						first.Time.ToLocalTime ().ToShortDateString (),
 						first.Time.ToLocalTime ().ToShortTimeString (),
