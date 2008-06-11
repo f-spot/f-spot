@@ -881,6 +881,9 @@ namespace FSpotGoogleExport {
 		
 		public void HandleAlbumOptionMenuChanged (object sender, System.EventArgs args)
 		{
+			if (albums == null)
+				return;
+
 			PicasaAlbum a = albums [album_optionmenu.History];
 			export_button.Sensitive = a.PicturesRemaining >= items.Length;
 			if (album_status_label.Visible = !export_button.Sensitive) {
