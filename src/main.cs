@@ -145,10 +145,14 @@ public class Driver {
 			case "--debug":
 				Log.Debugging = true;
 				break;
-			case "--trace": case "--profile": case "--uninstalled": case "--gdb":
+			case "--uninstalled": case "--gdb":
 				break;
-
 			default:
+				if (args [i].StartsWith ("--profile"))
+					break;
+				if (args [i].StartsWith ("--trace"))
+					break;
+				Log.DebugFormat ("Unparsed argument >>{0}<<", args [i]);
 				Help ();
 				return 1;
 			}
