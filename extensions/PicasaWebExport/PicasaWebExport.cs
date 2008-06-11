@@ -662,18 +662,18 @@ namespace FSpotGoogleExport {
 										 item.Name, photo_index+1, items.Length);
 					photo_index++;
 					
-					FilterRequest request = new FilterRequest (item.DefaultVersionUri);
+					PicasaPicture picture;
+					using (FilterRequest request = new FilterRequest (item.DefaultVersionUri)) {
+						filters.Convert (request);
+						file_info = new FileInfo (request.Current.LocalPath);
 
-					filters.Convert (request);
-
-					file_info = new FileInfo (request.Current.LocalPath);
-
-					if (approx_size == 0) //first image
-						approx_size = file_info.Length * items.Length;
-					else
-						approx_size = sent_bytes * items.Length / (photo_index - 1);
-
-					PicasaPicture picture = album.UploadPicture (request.Current.LocalPath, Path.ChangeExtension (item.Name, "jpg"), item.Description);
+						if (approx_size == 0) //first image
+							approx_size = file_info.Length * items.Length;
+						else
+							approx_size = sent_bytes * items.Length / (photo_index - 1);
+	
+						picture = album.UploadPicture (request.Current.LocalPath, Path.ChangeExtension (item.Name, "jpg"), item.Description);
+					}
 					if (Core.Database != null && item is Photo)
 						Core.Database.Exports.Create ((item as Photo).Id,
 									      (item as Photo).DefaultVersionId,
@@ -681,13 +681,10 @@ namespace FSpotGoogleExport {
 									      picture.Link);
 
 					sent_bytes += file_info.Length;
-
-					request.Dispose ();
 					//tagging
 					if (item.Tags != null && export_tag)
 						foreach (Tag tag in item.Tags)
 							picture.AddTag (tag.Name);
-
 				} catch (System.Exception e) {
 					progress_dialog.Message = String.Format (Catalog.GetString ("Error Uploading To Gallery: {0}"),
 										 e.Message);
