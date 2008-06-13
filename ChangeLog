@@ -1,3 +1,8 @@
+2008-06-13  Stephane Delcroix  <sdelcroix@novell.com>
+
+	* src/MainWindow.cs:
+	* src/PhotoQuery.cs: Speed up tagging (and untagging).
+
 2008-06-04  Ruben Vermeersch  <ruben@savanne.be>
 
 	* src/InfoOverlay.cs: Supply Photo to InfoBox, instead of IBrowsableItem.

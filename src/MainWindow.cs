@@ -595,8 +595,7 @@ public class MainWindow {
 	private void HandleTagsChanged (object sender, DbItemEventArgs args)
 	{
 		icon_view.QueueDraw ();
-		UpdateTagEntryFromSelection ();
-		
+		UpdateTagEntryFromSelection ();	
 	}
 
 	void HandleViewNotebookSwitchPage (object sender, SwitchPageArgs args)
@@ -835,22 +834,25 @@ public class MainWindow {
 	//
 	// Tag Selection Drag Handlers
 	//
-
+	[Obsolete ("Use AddTagExtended (int [], Tag []) instead")]
 	public void AddTagExtended (int num, Tag [] tags)
 	{
-		Photo p = query.Photos [num];
+		AddTagExtended (new int [] {num}, tags);
+	}
 
-		p.AddTag (tags);
-		query.Commit (num);
+	public void AddTagExtended (int [] nums, Tag [] tags)
+	{
+		foreach (int num in nums)
+			query.Photos [num].AddTag (tags);
+		query.Commit (nums);
 
 		foreach (Tag t in tags) {
 			if (t.Icon != null)
 				continue;
-
 			// FIXME this needs a lot more work.
 			Pixbuf icon = null;
 			try {
-				Pixbuf tmp = FSpot.PhotoLoader.LoadAtMaxSize (query.Items [num], 128, 128);
+				Pixbuf tmp = FSpot.PhotoLoader.LoadAtMaxSize (query.Items [nums[0]], 128, 128);
 				icon = PixbufUtils.TagIconFromPixbuf (tmp);
 				tmp.Dispose ();
 			} catch {
@@ -860,6 +862,13 @@ public class MainWindow {
 			t.Icon = icon;
 			db.Tags.Commit (t);
 		}
+	}
+
+	public void RemoveTags (int [] nums, Tag [] tags)
+	{
+		foreach (int num in nums)
+			query.Photos [num].RemoveTag (tags);
+		query.Commit (nums);
 	}
 
 	void HandleTagSelectionRowActivated (object sender, RowActivatedArgs args)
@@ -978,9 +987,7 @@ public class MainWindow {
 		switch (args.Info) {
 		case (uint)TargetType.PhotoList:
 			db.BeginTransaction ();
-			foreach (int num in SelectedIds ()) {
-				AddTagExtended (num, new Tag[] {tag});
-			}
+			AddTagExtended (SelectedIds (), new Tag[] {tag});
 			db.CommitTransaction ();
 			query_widget.PhotoTagsChanged (new Tag[] {tag});
 			break;
@@ -1476,7 +1483,6 @@ public class MainWindow {
 		if (view_mode == ModeType.PhotoView)
 			this.photo_view.UpdateRating(r);
 
-		uint timer = Log.DebugTimerStart ();
 		Photo p;
 		db.BeginTransaction ();
 		foreach (int num in SelectedIds ()) {
@@ -1485,7 +1491,6 @@ public class MainWindow {
 			query.Commit (num);
 		}
 		db.CommitTransaction ();
-		Log.DebugTimerPrint (timer, "HandleRating took {0}");
 	}
 
 	//
@@ -1505,9 +1510,7 @@ public class MainWindow {
 	public void HandleAttachTagMenuSelected (Tag t) 
 	{
 		db.BeginTransaction ();
-		foreach (int num in SelectedIds ()) {
-			AddTagExtended (num, new Tag [] {t});
-		}
+		AddTagExtended (SelectedIds (), new Tag [] {t});
 		db.CommitTransaction ();
 		query_widget.PhotoTagsChanged (new Tag[] {t});
 	}
@@ -1526,10 +1529,7 @@ public class MainWindow {
 	public void HandleRemoveTagMenuSelected (Tag t)
 	{
 		db.BeginTransaction ();
-		foreach (int num in SelectedIds ()) {
-			query.Photos [num].RemoveTag (t);
-			query.Commit (num);
-		}
+		RemoveTags (SelectedIds (), new Tag [] {t});
 		db.CommitTransaction ();
 		query_widget.PhotoTagsChanged (new Tag [] {t});
 	}
@@ -1910,9 +1910,7 @@ public class MainWindow {
 	void AttachTags (Tag [] tags, int [] ids) 
 	{
 		db.BeginTransaction ();
-		foreach (int num in ids) {
-			AddTagExtended (num, tags);
-		}
+		AddTagExtended (ids, tags);
 		db.CommitTransaction ();
 		query_widget.PhotoTagsChanged (tags);
 	}
@@ -1922,13 +1920,7 @@ public class MainWindow {
 		Tag [] tags = this.tag_selection_widget.TagHighlight;
 
 		db.BeginTransaction ();
-		foreach (int num in SelectedIds ()) {
-			Photo p = query.Photos [num];
-
-			p.RemoveTag (tags);
-
-			query.Commit (num);
-		}
+		RemoveTags (SelectedIds (), tags);
 		db.CommitTransaction ();
 		query_widget.PhotoTagsChanged (tags);
 	}
@@ -3079,7 +3071,8 @@ public class MainWindow {
 			else
 				default_category = selection [0].Category;
 		}
-
+		Tag [] tags = new Tag [new_tags.Length];
+		int i = 0;
 		db.BeginTransaction ();
 		foreach (string tagname in new_tags) {
 			Tag t = db.Tags.GetTagByName (tagname);
@@ -3087,13 +3080,9 @@ public class MainWindow {
 				t = db.Tags.CreateCategory (default_category, tagname) as Tag;
 				db.Tags.Commit (t);
 			}
-
-			Tag [] tags = new Tag [1];
-			tags [0] = t;
-
-			foreach (int num in selected_photos)
-				AddTagExtended (num, tags);
+			tags [i++] = t;
 		}
+		AddTagExtended (selected_photos, tags);
 		db.CommitTransaction ();
 	}
 
@@ -3103,12 +3092,9 @@ public class MainWindow {
 		if (selected_photos == null || remove_tags == null || remove_tags.Length == 0)
 			return;
 
-		foreach (Tag t in remove_tags) {
-			foreach (int num in selected_photos) {
-				query.Photos [num].RemoveTag (t);
-				query.Commit (num);
-			}
-		}
+		db.BeginTransaction ();
+		RemoveTags (selected_photos, remove_tags);
+		db.CommitTransaction ();
 	}
 
 	private void HideTagbar ()

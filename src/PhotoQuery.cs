@@ -184,15 +184,21 @@ namespace FSpot {
 			return System.Array.IndexOf (photos, photo);
 		}
 		
-		public void Commit (int index) 
+		public void Commit (params int [] indexes)
 		{
-			store.Commit (photos[index]);
-			MarkChanged (index);
+			foreach (int index in indexes)
+				store.Commit (photos[index]);
+			MarkChanged (indexes);
 		}
-		
+
 		public void MarkChanged (int index)
 		{
-			ItemsChanged (this, new BrowsableEventArgs (index));
+			MarkChanged (new int [] {index});
+		}
+
+		public void MarkChanged (params int [] indexes)
+		{
+			ItemsChanged (this, new BrowsableEventArgs (indexes));
 		}
 	}
 }
