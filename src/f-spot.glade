@@ -6614,8 +6614,15 @@ Custom
                             <property name="position">2</property>
                           </packing>
                         </child>
-              <child>
-                          <placeholder/>
+                        <child>
+                          <widget class="GtkButton" id="refreshtheme_button">
+                            <property name="label" translatable="yes">gtk-refresh</property>
+                            <property name="use_stock">True</property>
+                            <signal name="clicked" handler="HandleRefreshTheme"/>
+                          </widget>
+                          <packing>
+                            <property name="position">3</property>
+                          </packing>
                         </child>
                       </widget>
                     </child>

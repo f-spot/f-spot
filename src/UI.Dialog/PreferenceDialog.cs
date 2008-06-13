@@ -53,6 +53,7 @@ namespace FSpot.UI.Dialog {
 		[Glade.Widget] private Label restartlabel;
 		[Glade.Widget] private FileChooserButton theme_filechooser;
 		[Glade.Widget] private Table theme_table;
+		[Glade.Widget] private Button refreshtheme_button;
 		private ComboBox themelist_combo;
 
 
@@ -140,6 +141,10 @@ namespace FSpot.UI.Dialog {
 
 #if GTK_2_12_2
 			restartlabel.Visible = false;
+#endif
+
+#if DEBUGTHEMES
+			refreshtheme_button = true;
 #endif
 
 			Preferences.SettingChanged += OnPreferencesChanged;
@@ -230,7 +235,7 @@ namespace FSpot.UI.Dialog {
 				Gtk.Rc.DefaultFiles = Global.DefaultRcFiles;
 				Gtk.Rc.AddDefaultFile (Preferences.Get<string> (Preferences.GTK_RC));
 				foreach (string s in Rc.DefaultFiles)
-				Console.WriteLine (s);
+					Console.WriteLine (s);
 				Gtk.Rc.ReparseAll ();
 #endif
 			}
@@ -258,6 +263,14 @@ namespace FSpot.UI.Dialog {
 		{
 			Preferences.Set (Preferences.STORAGE_PATH, photosdir_chooser.Filename);
 			Global.PhotoDirectory = photosdir_chooser.Filename;
+		}
+
+
+		void HandleRefreshTheme (object o, EventArgs e)
+		{
+#if GTK_2_12_2
+			Gtk.Rc.ReparseAll ();	
+#endif
 		}
 
 		void LoadPreference (string key)
