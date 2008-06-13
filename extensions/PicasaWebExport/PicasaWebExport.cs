@@ -685,6 +685,9 @@ namespace FSpotGoogleExport {
 					if (item.Tags != null && export_tag)
 						foreach (Tag tag in item.Tags)
 							picture.AddTag (tag.Name);
+ 				} catch (System.Threading.ThreadAbortException te) {
+ 					Log.Exception (te);
+ 					System.Threading.Thread.ResetAbort ();
 				} catch (System.Exception e) {
 					progress_dialog.Message = String.Format (Catalog.GetString ("Error Uploading To Gallery: {0}"),
 										 e.Message);
