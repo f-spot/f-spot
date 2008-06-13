@@ -116,8 +116,6 @@ namespace FSpot
 			case MAIN_WINDOW_Y:
 			case MAIN_WINDOW_HEIGHT:
 			case MAIN_WINDOW_WIDTH:
-				return null;
-				
 			case IMPORT_WINDOW_HEIGHT:
 			case IMPORT_WINDOW_WIDTH:
 			case IMPORT_WINDOW_PANE_POSITION:
@@ -213,11 +211,15 @@ namespace FSpot
 					return (T)o;
 
 				try {
-					val = (T) Backend.Get (key);
-				} catch (NoSuchKeyException) {
-					val = (T) GetDefault (key);
-				} catch (InvalidCastException) {
-					val = (T) GetDefault (key);
+					try {
+						val = (T) Backend.Get (key);
+					} catch (NoSuchKeyException) {
+						val = (T) GetDefault (key);
+					} catch (InvalidCastException) {
+						val = (T) GetDefault (key);
+					}
+				} catch {
+					val = default(T);
 				}
 				
 				cache.Add (key, val);
