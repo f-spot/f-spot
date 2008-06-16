@@ -673,6 +673,7 @@ namespace FSpotGoogleExport {
 							approx_size = sent_bytes * items.Length / (photo_index - 1);
 	
 						picture = album.UploadPicture (request.Current.LocalPath, Path.ChangeExtension (item.Name, "jpg"), item.Description);
+						sent_bytes += file_info.Length;
 					}
 					if (Core.Database != null && item is Photo)
 						Core.Database.Exports.Create ((item as Photo).Id,
@@ -680,7 +681,6 @@ namespace FSpotGoogleExport {
 									      ExportStore.PicasaExportType,
 									      picture.Link);
 
-					sent_bytes += file_info.Length;
 					//tagging
 					if (item.Tags != null && export_tag)
 						foreach (Tag tag in item.Tags)
