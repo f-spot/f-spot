@@ -4711,7 +4711,7 @@ Photo Details</property>
                     <child>
                       <widget class="GtkLabel" id="import_label">
                         <property name="visible">True</property>
-                        <property name="label" translatable="yes">Import Source:</property>
+                        <property name="label" translatable="yes" comments="Translators: this string means 'source of import'">Import Source:</property>
                       </widget>
                       <packing>
                         <property name="expand">False</property>
