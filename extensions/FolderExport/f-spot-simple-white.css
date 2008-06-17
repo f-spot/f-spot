@@ -39,6 +39,7 @@ div.navi {
 
 div.navilabel {
 	padding: 3px 10px 0px 0px;
+	margin-right: 10px;
 }
 
 div.navi div {
@@ -66,7 +67,9 @@ div#index a:hover, div#prev a:hover, div#next a:hover {
 /* index page navigation */
 div.navi div.navipage a, div.navi div.navipage-current a {
 	display: block;
-	width: 20px;
+	width: auto;
+	padding-left: 6px;
+	padding-right: 6px;
 	height: 17px;
 	-moz-border-radius: 3px;
 	border: 1px solid #444;
@@ -133,12 +136,44 @@ div#gallery_description {
 	padding: 10px 12px 0px 12px;
 }
 
-div.photo img { 
+div.photo img.picture { 
   padding: 16px;
   border: 1px solid #555;
 	-moz-border-radius: 7px;
 	background-color: #333;
 	margin: 20px;
+}
+
+ul#innertagbox {
+  display: inline;
+  margin: 0px;
+  padding: 0px;
+}
+div#tagbox {
+  -moz-border-radius: 7px;
+  border: 1px solid #555;
+  background-color: #333;
+  padding: 5px;
+  margin-top: 2em;
+  display: inline-block;
+}
+
+div#tagbox h1 {
+  margin-left: 1em;
+}
+
+div#tagbox li {
+  display: block;
+  margin: 3px;
+}
+
+div#tagbox img.tag {
+  margin: 5px;
+}
+
+div#tagbox .tagtext-icon {
+  position:relative;
+  top: -22px;
 }
 
 div.thumbs a:hover {
@@ -177,3 +212,11 @@ div#styleboxcontainer {
 	padding-left: 0px;
 }
 
+/* tags list */
+#tagbox h1 {
+	font-size: large;
+}
+
+#tagbox .tag {
+	margin-left: 1em;
+}

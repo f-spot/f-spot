@@ -1,3 +1,13 @@
+2008-06-17  Lorenzo Milesi <maxxer@yetopen.it>
+
+	* FolderExport/FolderExport.addin.xml:
+	* FolderExport/FolderExport.cs:
+	* FolderExport/f-spot-simple-white.css:
+	* FolderExport/f-spot-simple.css:
+	* FolderExport/FolderExport.glade: optionally export tag and tag
+	icons. Fix bgo#538543 and bgo#336178. 
+	Patches from Leon Barret and Jean-Christophe Dubacq.
+
 2008-06-11  Lorenzo Milesi <maxxer@yetopen.it>
 
 	* PicasaWebExport/PicasaExport.addin.xml: bump version to 0.4.4.1.

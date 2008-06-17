@@ -22,6 +22,7 @@
 using System;
 using System.IO;
 using System.Runtime.InteropServices;
+using System.Collections;
 
 using Mono.Unix;
 
@@ -46,6 +47,8 @@ namespace FSpotFolderExport {
 		//[Glade.Widget] Gtk.CheckButton meta_check;
 		[Glade.Widget] Gtk.CheckButton scale_check;
 		[Glade.Widget] Gtk.CheckButton rotate_check;
+		[Glade.Widget] Gtk.CheckButton export_tags_check;
+		[Glade.Widget] Gtk.CheckButton export_tag_icons_check;
 		[Glade.Widget] Gtk.CheckButton open_check;
 		
 		[Glade.Widget] Gtk.RadioButton static_radio;
@@ -61,6 +64,8 @@ namespace FSpotFolderExport {
 		public const string SIZE_KEY = Preferences.APP_FSPOT_EXPORT + EXPORT_SERVICE + "size";
 		public const string OPEN_KEY = Preferences.APP_FSPOT_EXPORT + EXPORT_SERVICE + "browser";
 		public const string ROTATE_KEY = Preferences.APP_FSPOT_EXPORT + EXPORT_SERVICE + "rotate";
+		public const string EXPORT_TAGS_KEY = Preferences.APP_FSPOT_EXPORT + EXPORT_SERVICE + "export_tags";
+		public const string EXPORT_TAG_ICONS_KEY = Preferences.APP_FSPOT_EXPORT + EXPORT_SERVICE + "export_tag_icons";
 		public const string METHOD_KEY = Preferences.APP_FSPOT_EXPORT + EXPORT_SERVICE + "method";
 		public const string URI_KEY = Preferences.APP_FSPOT_EXPORT + EXPORT_SERVICE + "uri";
 		public const string SHARPEN_KEY = Preferences.APP_FSPOT_EXPORT + EXPORT_SERVICE + "sharpen";
@@ -75,6 +80,8 @@ namespace FSpotFolderExport {
 		bool open;
 		bool scale;
 		bool rotate;
+		bool exportTags;
+		bool exportTagIcons;
 		int size;
 		
 		string description;
@@ -150,12 +157,25 @@ namespace FSpotFolderExport {
 			LoadPreference (SIZE_KEY);
 			LoadPreference (OPEN_KEY);
 			LoadPreference (ROTATE_KEY);
+			LoadPreference (EXPORT_TAGS_KEY);
+			LoadPreference (EXPORT_TAG_ICONS_KEY);
 			LoadPreference (METHOD_KEY);
 		}
 
 		public void HandleSizeActive (object sender, System.EventArgs args)
 		{
 			size_spin.Sensitive = scale_check.Active;
+		}
+
+		public void HandleStandaloneActive (object sender, System.EventArgs args)
+		{
+			export_tags_check.Sensitive = static_radio.Active;
+			HandleExportTagsActive (sender, args);
+		}
+
+		public void HandleExportTagsActive (object sender, System.EventArgs args)
+		{
+			export_tag_icons_check.Sensitive = export_tags_check.Active && static_radio.Active;
 		}
 
 		public void Upload ()
@@ -197,6 +217,12 @@ namespace FSpotFolderExport {
 					System.Console.WriteLine ("Exporting rotated image");
 					gallery.SetRotate();
 				}
+
+				if (exportTags)
+					gallery.SetExportTags ();
+
+				if (exportTagIcons)
+					gallery.SetExportTagIcons ();
 
 				gallery.Description = description;
 
@@ -274,6 +300,8 @@ namespace FSpotFolderExport {
 				Preferences.Set (SIZE_KEY, size);
 				Preferences.Set (OPEN_KEY, open);
 				Preferences.Set (ROTATE_KEY, rotate);
+				Preferences.Set (EXPORT_TAGS_KEY, exportTags);
+				Preferences.Set (EXPORT_TAG_ICONS_KEY, exportTagIcons);
 				Preferences.Set (METHOD_KEY, static_radio.Active ? "static" : original_radio.Active ? "original" : "folder" );
 				Preferences.Set (URI_KEY, uri_chooser.Uri);
 			} catch (System.Exception e) {
@@ -348,6 +376,8 @@ namespace FSpotFolderExport {
 			open = open_check.Active;
 			scale = scale_check.Active;
 			rotate = rotate_check.Active;
+			exportTags = export_tags_check.Active;
+			exportTagIcons = export_tag_icons_check.Active;
 
 			gallery_name = name_entry.Text;
 
@@ -397,6 +427,17 @@ namespace FSpotFolderExport {
 				if (rotate_check.Active != (bool) val)
 					rotate_check.Active = (bool) val;
 				break;
+			
+			case EXPORT_TAGS_KEY:
+				if (export_tags_check.Active != (bool) val)
+					export_tags_check.Active = (bool) val;
+				break;
+
+			case EXPORT_TAG_ICONS_KEY:
+				if (export_tag_icons_check.Active != (bool) val)
+					export_tag_icons_check.Active = (bool) val;
+				break;
+
 			case METHOD_KEY:
 				static_radio.Active = (string) val == "static";
 				original_radio.Active = (string) val == "original";
@@ -423,6 +464,8 @@ namespace FSpotFolderExport {
 		protected bool scale;
 		protected int size;
 		protected bool rotate;
+		protected bool exportTags;
+		protected bool exportTagIcons;
 		protected string description;
 		protected string language;
 		protected System.Uri destination;
@@ -606,6 +649,14 @@ namespace FSpotFolderExport {
 			this.rotate = true;
 		}
 
+		public void SetExportTags () {
+			this.exportTags = true;
+		}
+
+		public void SetExportTagIcons () {
+			this.exportTagIcons = true;
+		}
+
 		private string GetLanguage()
 		{
 			string language;
@@ -757,6 +808,10 @@ namespace FSpotFolderExport {
 		//Note for translators: light as clear, opposite as dark
 		static string light = Catalog.GetString("Light");
 		static string dark = Catalog.GetString("Dark");
+
+		ArrayList allTagNames = new ArrayList ();
+		Hashtable allTags = new Hashtable ();
+		Hashtable tagSets = new Hashtable ();
 		
 		public HtmlGallery (IBrowsableCollection selection, string path, string name) : base (selection, path, name) 
 		{ 
@@ -785,6 +840,34 @@ namespace FSpotFolderExport {
 			
 			for (i = 0; i < PageCount; i++)
 				SaveHtmlIndex (i);
+
+			if (exportTags) {
+				// identify tags present in these photos
+				i = 0;
+				foreach (IBrowsableItem photo in photos) {
+					foreach (Tag tag in photo.Tags) {
+						if (!tagSets.ContainsKey (tag.Name)) {
+							tagSets.Add (tag.Name, new ArrayList ());
+							allTags.Add (tag.Name, tag);
+						}
+						((ArrayList) tagSets [tag.Name]).Add (i);
+					}
+					i++;
+				}
+				allTagNames = new ArrayList (tagSets.Keys);
+				allTagNames.Sort ();
+
+				// create tag pages
+				SaveTagsPage ();
+				foreach (string tag in allTagNames) {
+					for (i = 0; i < TagPageCount (tag); i++)
+						SaveTagIndex (tag, i);
+				}	
+			}
+
+			if (exportTags && exportTagIcons) {
+				SaveTagIcons ();
+			}
 			
 			MakeDir (SubdirPath ("style"));
 			System.Reflection.Assembly assembly = System.Reflection.Assembly.GetCallingAssembly ();
@@ -830,6 +913,11 @@ namespace FSpotFolderExport {
 			get {
 				return 	(int) System.Math.Ceiling (collection.Items.Length / (double)perpage);
 			}
+		}
+
+		public int TagPageCount (string tag)
+		{
+			return (int) System.Math.Ceiling (((ArrayList) tagSets [tag]).Count / (double)perpage);
 		}
 		
 		public string PhotoThumbPath (int item) 
@@ -902,6 +990,9 @@ namespace FSpotFolderExport {
 				WritePageNav (writer, "prev", PhotoIndexPath (i - 1), Catalog.GetString("Prev"));
 
 			WritePageNav (writer, "index", IndexPath (i / perpage), Catalog.GetString("Index"));
+
+			if (exportTags)
+				WritePageNav (writer, "tagpage", TagsIndexPath (), Catalog.GetString ("Tags"));
 			
 			if (i < collection.Count -1)
 				WritePageNav (writer, "next", PhotoIndexPath (i + 1), Catalog.GetString("Next"));
@@ -918,49 +1009,22 @@ namespace FSpotFolderExport {
 			
 			writer.AddAttribute ("src", PhotoWebPath (i));
 			writer.AddAttribute ("alt", "#");
+			writer.AddAttribute ("class", "picture");
 			writer.RenderBeginTag ("img");
-			writer.RenderEndTag ();
-			writer.RenderEndTag (); // a
+			writer.RenderEndTag (); //img
+			writer.RenderEndTag (); //a
 			
 			writer.AddAttribute ("id", "description");
 			writer.RenderBeginTag ("div");
 			writer.Write (collection [i].Description);
-			writer.RenderEndTag ();
+			writer.RenderEndTag (); //div#description
 
-			writer.RenderEndTag ();
+			writer.RenderEndTag (); //div.photo
+
+			WriteTagsLinks (writer, collection [i].Tags);
 			
-		  //Style Selection Box
-			writer.AddAttribute ("id", "styleboxcontainer");
-			writer.RenderBeginTag ("div");
-			writer.AddAttribute ("id", "stylebox");
-			writer.AddAttribute ("style", "display: none;");
-			writer.RenderBeginTag ("div");
-			writer.RenderBeginTag("ul");
-			writer.RenderBeginTag("li");
-			writer.AddAttribute ("href", "#");
-			writer.AddAttribute ("title", dark);
-			writer.AddAttribute ("onclick", "setActiveStyleSheet('" + dark + "')");
-			writer.RenderBeginTag("a");
-			writer.Write (dark);
-			writer.RenderEndTag (); //a
-			writer.RenderEndTag (); //li
-			writer.RenderBeginTag("li");
-			writer.AddAttribute ("href", "#");
-			writer.AddAttribute ("title", light);
-			writer.AddAttribute ("onclick", "setActiveStyleSheet('" + light + "')");
-			writer.RenderBeginTag("a");
-			writer.Write (light);
-			writer.RenderEndTag (); //a
-			writer.RenderEndTag (); //li
-			writer.RenderEndTag (); //ul
-			writer.RenderEndTag (); //div stylebox
-			writer.RenderBeginTag ("div");
-			writer.Write ("<span class=\"style_toggle\">"); 
-			writer.Write ("<a href=\"javascript:toggle_stylebox()\">");
-			writer.Write ("<span id=\"showlink\">" + Catalog.GetString ("Show Styles") + "</span><span id=\"hidelink\" ");
-			writer.Write ("style=\"display:none;\">" + Catalog.GetString ("Hide Styles") + "</span></a></span>" + Environment.NewLine);
-			writer.RenderEndTag (); //div toggle
-			writer.RenderEndTag (); //div styleboxcontainer
+			WriteStyleSelectionBox (writer);
+
 			writer.RenderEndTag (); //container1	
 
 			WriteFooter (writer);
@@ -979,6 +1043,21 @@ namespace FSpotFolderExport {
 			else
 				return String.Format ("index{0}.html", page_num);
 		}
+
+		public static string TagsIndexPath ()
+		{
+			return "tags.html";
+		}
+		
+		public static string TagIndexPath (string tag, int page_num)
+		{
+			string name = "tag_"+tag;
+			name = name.Replace ("/", "_").Replace (" ","_");
+			if (page_num == 0)
+				return name + ".html";
+			else
+				return name + String.Format ("_{0}.html", page_num);
+		}
 		
 		static string IndexTitle (int page)
 		{
@@ -987,12 +1066,17 @@ namespace FSpotFolderExport {
 
 		public void WriteHeader (System.Web.UI.HtmlTextWriter writer)
 		{
+			WriteHeader (writer, "");
+		}
+
+		public void WriteHeader (System.Web.UI.HtmlTextWriter writer, string titleExtension)
+		{
 			writer.RenderBeginTag ("head");
 			/* It seems HtmlTextWriter always uses UTF-8, unless told otherwise */
 			writer.Write ("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\" />");
 			writer.WriteLine ();
 			writer.RenderBeginTag ("title");
-			writer.Write (gallery_name);
+			writer.Write (gallery_name + titleExtension);
 			writer.RenderEndTag ();
 
 			writer.Write ("<link type=\"text/css\" rel=\"stylesheet\" href=\"");
@@ -1023,6 +1107,287 @@ namespace FSpotFolderExport {
 			writer.RenderEndTag ();
 
 			writer.RenderEndTag ();
+		}
+
+		public static void WriteStyleSelectionBox (System.Web.UI.HtmlTextWriter writer)
+		{
+			//Style Selection Box
+			writer.AddAttribute ("id", "styleboxcontainer");
+			writer.RenderBeginTag ("div");
+			writer.AddAttribute ("id", "stylebox");
+			writer.AddAttribute ("style", "display: none;");
+			writer.RenderBeginTag ("div");
+			writer.RenderBeginTag ("ul");
+			writer.RenderBeginTag ("li");
+			writer.AddAttribute ("href", "#");
+			writer.AddAttribute ("title", dark);
+			writer.AddAttribute ("onclick", "setActiveStyleSheet('" + dark + "')");
+			writer.RenderBeginTag ("a");
+			writer.Write (dark);
+			writer.RenderEndTag (); //a
+			writer.RenderEndTag (); //li
+			writer.RenderBeginTag ("li");
+			writer.AddAttribute ("href", "#");
+			writer.AddAttribute ("title", light);
+			writer.AddAttribute ("onclick", "setActiveStyleSheet('" + light + "')");
+			writer.RenderBeginTag ("a");
+			writer.Write (light);
+			writer.RenderEndTag (); //a
+			writer.RenderEndTag (); //li
+			writer.RenderEndTag (); //ul
+			writer.RenderEndTag (); //div stylebox
+			writer.RenderBeginTag ("div");
+			writer.Write ("<span class=\"style_toggle\">"); 
+			writer.Write ("<a href=\"javascript:toggle_stylebox()\">");
+			writer.Write ("<span id=\"showlink\">" + Catalog.GetString("Show Styles") + "</span><span id=\"hidelink\" ");
+			writer.Write ("style=\"display:none;\">" + Catalog.GetString("Hide Styles") + "</span></a></span>" + Environment.NewLine);
+			writer.RenderEndTag (); //div toggle
+			writer.RenderEndTag (); //div styleboxcontainer
+		}
+
+		public void WriteTagsLinks (System.Web.UI.HtmlTextWriter writer, Tag[] tags)
+		{
+			ArrayList tagsList = new ArrayList (tags.Length);
+			foreach (Tag tag in tags) {
+				tagsList.Add (tag);
+			}
+			WriteTagsLinks (writer, tagsList);
+		}
+
+		public void WriteTagsLinks (System.Web.UI.HtmlTextWriter writer, System.Collections.ICollection tags)
+		{
+
+			// check if we should write tags
+			if (!exportTags && tags.Count>0)
+				return;
+
+			writer.AddAttribute ("id", "tagbox");
+			writer.RenderBeginTag ("div");
+			writer.RenderBeginTag ("h1");
+			writer.Write (Catalog.GetString ("Tags"));
+			writer.RenderEndTag (); //h1
+			writer.AddAttribute ("id", "innertagbox");
+			writer.RenderBeginTag ("ul");
+			foreach (Tag tag in tags) {
+				writer.AddAttribute ("class", "tag");
+				writer.RenderBeginTag ("li");
+				writer.AddAttribute ("href", TagIndexPath (tag.Name, 0));
+				writer.RenderBeginTag ("a");
+				if (exportTagIcons) {
+					writer.AddAttribute ("alt", tag.Name);
+					writer.AddAttribute ("longdesc", Mono.Posix.Catalog.GetString ("Tags: ")+tag.Name);
+					writer.AddAttribute ("title", Mono.Posix.Catalog.GetString ("Tags: ")+tag.Name);
+					writer.AddAttribute ("src", TagPath (tag));
+					writer.RenderBeginTag ("img");
+					writer.RenderEndTag ();
+				}
+				writer.Write(" ");
+				if (exportTagIcons)
+					writer.AddAttribute ("class", "tagtext-icon");
+				else
+					writer.AddAttribute ("class", "tagtext-noicon");
+				writer.RenderBeginTag ("span");
+				writer.Write (tag.Name);
+				writer.RenderEndTag (); //span.tagtext
+				writer.RenderEndTag (); //a href
+				writer.RenderEndTag (); //div.tag
+			}
+			writer.RenderEndTag (); //div#tagbox
+		}
+
+		public void SaveTagsPage ()
+		{
+			System.IO.StreamWriter stream = System.IO.File.CreateText (SubdirPath (TagsIndexPath ()));
+			System.Web.UI.HtmlTextWriter writer = new System.Web.UI.HtmlTextWriter (stream);
+
+			writer.WriteLine ("<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\">");
+			writer.AddAttribute ("xmlns", "http://www.w3.org/1999/xhtml");
+			writer.AddAttribute ("xml:lang", this.Language);
+			writer.RenderBeginTag ("html");
+			string titleExtension = " " + Catalog.GetString ("Tags");
+			WriteHeader (writer, titleExtension);
+			
+			writer.AddAttribute ("onload", "checkForTheme()");
+			writer.AddAttribute ("id", "tagpage");
+			writer.RenderBeginTag ("body");
+
+			writer.AddAttribute ("class", "container1");
+			writer.RenderBeginTag ("div");
+
+			writer.AddAttribute ("class", "header");
+			writer.RenderBeginTag ("div");
+
+			writer.AddAttribute ("id", "title");
+			writer.RenderBeginTag ("div");
+			writer.Write (gallery_name + titleExtension);
+			writer.RenderEndTag (); //title div
+			
+			writer.AddAttribute ("class", "navi");
+			writer.RenderBeginTag ("div");
+
+			writer.AddAttribute ("class", "navipage");
+			writer.RenderBeginTag ("div");
+			
+			writer.AddAttribute ("href", IndexPath (0));
+			writer.RenderBeginTag ("a");
+			writer.Write (Catalog.GetString ("Index"));
+			writer.RenderEndTag (); //a
+			
+			writer.RenderEndTag (); //navipage
+			writer.RenderEndTag (); //navi
+			writer.RenderEndTag (); //header
+			
+			WriteTagsLinks (writer, allTags.Values);
+			
+			WriteStyleSelectionBox (writer);
+
+			writer.RenderEndTag (); //container1
+
+			WriteFooter (writer);
+			
+			writer.RenderEndTag (); //body
+			writer.RenderEndTag (); //html
+			
+			writer.Close ();
+			stream.Close ();
+		}
+
+		public void SaveTagIndex (string tag, int page_num)
+		{
+			System.IO.StreamWriter stream = System.IO.File.CreateText (SubdirPath (TagIndexPath (tag, page_num)));
+			System.Web.UI.HtmlTextWriter writer = new System.Web.UI.HtmlTextWriter (stream);
+
+			writer.WriteLine ("<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\">");
+			writer.AddAttribute ("xmlns", "http://www.w3.org/1999/xhtml");
+			writer.AddAttribute ("xml:lang", this.Language);
+			writer.RenderBeginTag ("html");
+			string titleExtension = ": " + tag;
+			WriteHeader (writer, titleExtension);
+			
+			writer.AddAttribute ("onload", "checkForTheme()");
+			writer.RenderBeginTag ("body");
+
+			writer.AddAttribute ("class", "container1");
+			writer.RenderBeginTag ("div");
+
+			writer.AddAttribute ("class", "header");
+			writer.RenderBeginTag ("div");
+
+			writer.AddAttribute ("id", "title");
+			writer.RenderBeginTag ("div");
+			writer.Write (gallery_name + titleExtension);
+			writer.RenderEndTag (); //title div
+			
+			writer.AddAttribute ("class", "navi");
+			writer.RenderBeginTag ("div");
+			
+			// link to all photos
+			writer.AddAttribute ("class", "navipage");
+			writer.RenderBeginTag ("div");
+			
+			writer.AddAttribute ("href", IndexPath (0));
+			writer.RenderBeginTag ("a");
+			writer.Write ("Index");
+			writer.RenderEndTag (); //a
+			
+			writer.RenderEndTag (); //navipage
+			// end link to all photos
+
+			// link to all tags
+			writer.AddAttribute ("class", "navipage");
+			writer.RenderBeginTag ("div");
+			
+			writer.AddAttribute ("href", TagsIndexPath ());
+			writer.RenderBeginTag ("a");
+			writer.Write ("Tags");
+			writer.RenderEndTag (); //a
+			
+			writer.RenderEndTag (); //navipage
+			// end link to all tags
+
+			writer.AddAttribute ("class", "navilabel");
+			writer.RenderBeginTag ("div");
+			writer.Write (Catalog.GetString ("Page:"));
+			writer.RenderEndTag (); //pages div
+
+			int i;
+			for (i = 0; i < TagPageCount (tag); i++) {
+				writer.AddAttribute ("class", i == page_num ? "navipage-current" : "navipage");
+				writer.RenderBeginTag ("div");
+				
+				writer.AddAttribute ("href", TagIndexPath (tag, i));
+				writer.RenderBeginTag ("a");
+				writer.Write (IndexTitle (i));
+				writer.RenderEndTag (); //a
+				
+				writer.RenderEndTag (); //navipage
+			}
+			writer.RenderEndTag (); //navi
+			writer.RenderEndTag (); //header
+			
+			writer.AddAttribute ("class", "thumbs");
+			writer.RenderBeginTag ("div");
+			
+			int start = page_num * perpage;
+			ArrayList tagSet = (ArrayList) tagSets [tag];
+			int end = Math.Min (start + perpage, tagSet.Count);
+			for (i = start; i < end; i++) {
+				writer.AddAttribute ("href", PhotoIndexPath ((int) tagSet [i]));
+				writer.RenderBeginTag ("a");
+				
+				writer.AddAttribute  ("src", PhotoThumbPath ((int) tagSet [i]));
+				writer.AddAttribute  ("alt", "#");
+				writer.RenderBeginTag ("img");
+				writer.RenderEndTag ();
+				
+				writer.RenderEndTag (); //a
+			}
+			
+			writer.RenderEndTag (); //thumbs
+			
+			writer.AddAttribute ("id", "gallery_description");
+			writer.RenderBeginTag ("div");
+			writer.Write (description);
+			writer.RenderEndTag (); //description
+			
+			WriteStyleSelectionBox (writer);
+
+			writer.RenderEndTag (); //container1
+
+			WriteFooter (writer);
+			
+			writer.RenderEndTag (); //body
+			writer.RenderEndTag (); //html
+			
+			writer.Close ();
+			stream.Close ();
+		}
+
+		public void SaveTagIcons ()
+		{
+			MakeDir (SubdirPath ("tags"));
+			foreach (Tag tag in allTags.Values)
+				SaveTagIcon (tag);
+		}
+
+		public void SaveTagIcon (Tag tag) {
+			Gdk.Pixbuf icon = tag.Icon;
+			Gdk.Pixbuf scaled = null;
+			if (icon.Height != 52 || icon.Width != 52) {
+				scaled=icon.ScaleSimple(52,52,Gdk.InterpType.Bilinear);
+			} else
+				scaled=icon;
+			scaled.Save (SubdirPath("tags",TagName(tag)), "png");			
+		}
+ 		
+		public string TagPath (Tag tag) 
+		{
+			return System.IO.Path.Combine("tags",TagName(tag));
+		}
+
+		public string TagName (Tag tag) 
+		{
+			return "tag_"+ ((DbItem)tag).Id+".png";
 		}
 
 		public void SaveHtmlIndex (int page_num)
@@ -1057,12 +1422,26 @@ namespace FSpotFolderExport {
 			
 			writer.AddAttribute ("class", "navi");
 			writer.RenderBeginTag ("div");
+			
+			if (exportTags) {
+				// link to all tags
+				writer.AddAttribute ("class", "navipage");
+				writer.RenderBeginTag ("div");
+
+				writer.AddAttribute ("href", TagsIndexPath ());
+				writer.RenderBeginTag ("a");
+				writer.Write ("Tags");
+				writer.RenderEndTag (); //a
+
+				writer.RenderEndTag (); //navipage
+				// end link to all tags
+			}
 
 			writer.AddAttribute ("class", "navilabel");
 			writer.RenderBeginTag ("div");
 			writer.Write (Catalog.GetString ("Page:"));
 			writer.RenderEndTag (); //pages div
-			
+
 			int i;
 			for (i = 0; i < PageCount; i++) {
 				writer.AddAttribute ("class", i == page_num ? "navipage-current" : "navipage");
@@ -1102,38 +1481,8 @@ namespace FSpotFolderExport {
 			writer.Write (description);
 			writer.RenderEndTag (); //description
 			
-      //Style Selection Box
-			writer.AddAttribute ("id", "styleboxcontainer");
-			writer.RenderBeginTag ("div");
-			writer.AddAttribute ("id", "stylebox");
-			writer.AddAttribute ("style", "display: none;");
-			writer.RenderBeginTag ("div");
-			writer.RenderBeginTag("ul");
-			writer.RenderBeginTag("li");
-			writer.AddAttribute ("href", "#");
-			writer.AddAttribute ("title", dark);
-			writer.AddAttribute ("onclick", "setActiveStyleSheet('" + dark + "')");
-			writer.RenderBeginTag("a");
-			writer.Write (dark);
-			writer.RenderEndTag (); //a
-			writer.RenderEndTag (); //li
-			writer.RenderBeginTag("li");
-			writer.AddAttribute ("href", "#");
-			writer.AddAttribute ("title", light);
-			writer.AddAttribute ("onclick", "setActiveStyleSheet('" + light + "')");
-			writer.RenderBeginTag("a");
-			writer.Write (light);
-			writer.RenderEndTag (); //a
-			writer.RenderEndTag (); //li
-			writer.RenderEndTag (); //ul
-			writer.RenderEndTag (); //div stylebox
-			writer.RenderBeginTag ("div");
-			writer.Write ("<span class=\"style_toggle\">"); 
-			writer.Write ("<a href=\"javascript:toggle_stylebox()\">");
-			writer.Write ("<span id=\"showlink\">" + Catalog.GetString("Show Styles") + "</span><span id=\"hidelink\" ");
-			writer.Write ("style=\"display:none;\">" + Catalog.GetString("Hide Styles") + "</span></a></span>" + Environment.NewLine);
-			writer.RenderEndTag (); //div toggle
-			writer.RenderEndTag (); //div styleboxcontainer
+			WriteStyleSelectionBox (writer);
+
 			writer.RenderEndTag (); //container1
 
 			WriteFooter (writer);
