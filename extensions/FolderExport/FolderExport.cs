@@ -1175,8 +1175,8 @@ namespace FSpotFolderExport {
 				writer.RenderBeginTag ("a");
 				if (exportTagIcons) {
 					writer.AddAttribute ("alt", tag.Name);
-					writer.AddAttribute ("longdesc", Mono.Posix.Catalog.GetString ("Tags: ")+tag.Name);
-					writer.AddAttribute ("title", Mono.Posix.Catalog.GetString ("Tags: ")+tag.Name);
+					writer.AddAttribute ("longdesc", Catalog.GetString ("Tags: ")+tag.Name);
+					writer.AddAttribute ("title", Catalog.GetString ("Tags: ")+tag.Name);
 					writer.AddAttribute ("src", TagPath (tag));
 					writer.RenderBeginTag ("img");
 					writer.RenderEndTag ();
