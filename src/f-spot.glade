@@ -6616,7 +6616,7 @@ Custom
                         </child>
                         <child>
                           <widget class="GtkButton" id="refreshtheme_button">
-                            <property name="label" translatable="yes">gtk-refresh</property>
+                            <property name="label">gtk-refresh</property>
                             <property name="use_stock">True</property>
                             <signal name="clicked" handler="HandleRefreshTheme"/>
                           </widget>
