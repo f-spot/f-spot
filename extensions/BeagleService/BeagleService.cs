@@ -41,7 +41,11 @@ namespace BeagleService {
 			Log.Debug ("Notifying beagle");
 			foreach (DbItem item in args.Items) {
 				if (item as Photo != null)
-					BeagleNotifier.SendUpdate (item as Photo);
+					try {
+						BeagleNotifier.SendUpdate (item as Photo);
+					} catch (Exception e) {
+						Log.DebugFormat ("BeagleNotifier.SendUpdate failed with {0}", e.Message);
+					}
 			}
 #endif
 		}
