@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: F-Spot\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-06-12 20:07+0200\n"
-"PO-Revision-Date: 2008-06-12 21:15+0100\n"
+"PO-Revision-Date: 2008-06-22 10:47+0100\n"
 "Last-Translator: Jordi Mas <jmas@softcatala.org>\n"
 "Language-Team: Catalan\n"
 "MIME-Version: 1.0\n"
@@ -717,7 +717,7 @@ msgstr "Surt del mode de pantalla completa"
 #: ../src/FullScreenView.cs:81 ../src/MainWindow.cs:296
 #: ../src/SingleView.cs:97
 msgid "Slideshow"
-msgstr "Presentació de diapositives"
+msgstr "Projecció de diapositives"
 
 #
 #: ../src/FullScreenView.cs:82
@@ -735,7 +735,7 @@ msgstr "Dissol"
 
 #: ../src/GlTransition.cs:104
 msgid "Flip"
-msgstr "Reflexa"
+msgstr "Inverteix"
 
 #: ../src/GlTransition.cs:147
 msgid "Cover"
@@ -744,7 +744,7 @@ msgstr "Cobreix"
 #
 #: ../src/GlTransition.cs:174
 msgid "Reveal"
-msgstr "Mostra"
+msgstr "Descobreix"
 
 #: ../src/GlTransition.cs:201
 msgid "Wipe"
@@ -756,8 +756,9 @@ msgstr "Descomposa"
 
 #
 #: ../src/GlTransition.cs:370
+# N.T.: Nom d'efecte de transició entre imatges
 msgid "Push"
-msgstr "Prem"
+msgstr "Empenta"
 
 #: ../src/GroupSelector.cs:57 ../src/GroupSelector.cs:58
 msgid "More dates"
@@ -1055,7 +1056,7 @@ msgstr "Gira a la dreta"
 #: ../src/ItemAction.cs:94
 #
 msgid "Rotate picture right"
-msgstr "Gira la fotografia cap a l'esquerra"
+msgstr "Gira la fotografia cap a la dreta"
 
 #: ../src/ItemAction.cs:104 ../src/f-spot.glade.h:137
 #: ../extensions/FolderExport/FolderExport.cs:907
@@ -2994,9 +2995,9 @@ msgstr "Seleccioneu una carpeta"
 
 #
 #: ../src/f-spot.glade.h:167
-#, fuzzy
+#
 msgid "Select A gtkrc File"
-msgstr "Seleccioneu una carpeta"
+msgstr "Seleccioneu un fitxer gtkrc"
 
 #: ../src/f-spot.glade.h:168
 msgid "Select Photos to Copy From Camera..."
@@ -3517,7 +3518,7 @@ msgstr "x"
 
 #: ../tools/f-spot-screensaver.desktop.in.h:1
 msgid "Display a slideshow from F-Spot"
-msgstr "Mostra una presentació de diapositives des de l'F-Spot"
+msgstr "Mostra una projecció de diapositives des de l'F-Spot"
 
 #
 #: ../tools/f-spot-screensaver.desktop.in.h:2
@@ -3652,7 +3653,7 @@ msgstr "Entreu com a un usuari diferent"
 #: ../extensions/FlickrExport/FlickrExport.cs:123
 #, csharp-format
 msgid "Used {0} of your allowed {1} monthly quota"
-msgstr ""
+msgstr "Utilitzats {0} dels {1} permesos a la vostra quota mensual"
 
 #: ../extensions/FlickrExport/FlickrExport.cs:286
 #
@@ -3726,7 +3727,7 @@ msgstr ""
 
 #: ../extensions/FlickrExport/FlickrExport.glade.h:9
 msgid "Ignore _top level tags"
-msgstr ""
+msgstr "_Ignora les etiquetes de nivell superior"
 
 #: ../extensions/FlickrExport/FlickrExport.glade.h:10
 msgid "Private"
