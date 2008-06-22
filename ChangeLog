@@ -1,3 +1,9 @@
+2008-06-22  Ruben Vermeersch  <ruben@savanne.be>
+
+	* src/Makefile.am: Update build file.
+	* src/Widgets/MetadataDisplay.cs: Renamed from src/MetadataDisplay.cs.
+	This is a widget, move it to the FSpot.Widgets namespace.
+
 2008-06-19  Claude Paroz  <claude@2xlibre.net>
 
 	* src/f-spot.glade: Removed translatable property on stock label.

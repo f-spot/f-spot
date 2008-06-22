@@ -13,11 +13,10 @@ using System.IO;
 using System.Text;
 using System.Collections.Generic;
 using Gtk;
-using FSpot.Widgets;
 
 using Mono.Unix;
 
-namespace FSpot {
+namespace FSpot.Widgets {
 	public class MetadataDisplay : ScrolledWindow {
 		Delay update_delay;
 		
