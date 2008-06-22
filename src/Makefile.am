@@ -228,6 +228,7 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/TagSelectionDialog.cs		\
 	$(srcdir)/Widgets/CompositeUtils.cs	\
 	$(srcdir)/Widgets/Dissolve.cs		\
+	$(srcdir)/Widgets/EditorPage.cs		\
 	$(srcdir)/Widgets/Filmstrip.cs		\
 	$(srcdir)/Widgets/FindBar.cs		\
 	$(srcdir)/Widgets/IEffect.cs		\

@@ -139,7 +139,6 @@ public class MainWindow {
 	Gtk.ToggleToolButton edit_button;
 
 	InfoBox info_box;
-	MetadataDisplay info_display;
 	QueryView icon_view;
 	PhotoView photo_view;
 	FSpot.FullScreenView fsview;
@@ -308,9 +307,8 @@ public class MainWindow {
 
 		sidebar.AppendPage (tag_selection_scrolled, Catalog.GetString ("Tags"), "gtk-new");
 
-		info_display = new MetadataDisplay ();
-		info_display.ParentSidebar = sidebar;
-		sidebar.AppendPage (info_display, Catalog.GetString ("Exif"), "gtk-index");
+		sidebar.AppendPage (new MetadataDisplayPage ());
+//		sidebar.AppendPage (new EditorPage ());
  		
 		sidebar.CloseRequested += HideSidebar;
 		sidebar.Show ();
@@ -455,8 +453,8 @@ public class MainWindow {
 		this.selection = new MainSelection (this);
 		this.selection.Changed += HandleSelectionChanged;
 		this.selection.ItemsChanged += HandleSelectionItemsChanged;
-		this.selection.Changed += info_display.HandleSelectionChanged;
-		this.selection.ItemsChanged += info_display.HandleSelectionItemsChanged;
+		this.selection.Changed += sidebar.HandleSelectionChanged;
+		this.selection.ItemsChanged += sidebar.HandleSelectionItemsChanged;
 
 		Mono.Addins.AddinManager.ExtensionChanged += PopulateExtendableMenus;
 		PopulateExtendableMenus (null, null);
@@ -519,6 +517,8 @@ public class MainWindow {
 		PhotoView
 	};
 
+	public event EventHandler ViewModeChanged;
+
 	public void SetViewMode (ModeType value)
 	{
 		if (view_mode == value)
@@ -554,6 +554,8 @@ public class MainWindow {
 		}
 		Selection.MarkChanged ();
 		UpdateToolbar ();
+		if (ViewModeChanged != null) 
+			ViewModeChanged (this, null);
 	}
 	
 	void UpdateToolbar ()
@@ -1636,7 +1638,6 @@ public class MainWindow {
 	public void HandleInfoDisplayDestroy (object sender, EventArgs args)
 	{
 		info_display_window = null;
-		info_display = null;
 	}
 
 	public void HandlePreferences (object sender, EventArgs args)

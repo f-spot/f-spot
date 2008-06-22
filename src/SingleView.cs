@@ -37,8 +37,6 @@ namespace FSpot {
 		FSpot.Widgets.IconView directory_view;
 		private Uri uri;
 		
-		MetadataDisplay info_display;
-		
 		UriCollection collection;
 		
 		FullScreenView fsview;
@@ -121,9 +119,7 @@ namespace FSpot {
 			info_vbox.Add (sidebar);
 			sidebar.AppendPage (directory_scrolled, Catalog.GetString ("Folder"), "gtk-directory");
 
-			info_display = new MetadataDisplay ();
-			info_display.ParentSidebar = sidebar;
-			sidebar.AppendPage (info_display, Catalog.GetString ("Exif"), "gtk-index");
+			sidebar.AppendPage (new MetadataDisplayPage ());
  		
 			sidebar.CloseRequested += HandleHideSidePane;
 			sidebar.Show ();
@@ -163,10 +159,10 @@ namespace FSpot {
 			image_view.Item.Changed += delegate (BrowsablePointer pointer, BrowsablePointerChangedArgs old) {
 															IBrowsableItem [] item = {pointer.Current};
 															PhotoArray item_array = new PhotoArray (item);
-															//info_display.HandleSelectionChanged (item_array);
+															sidebar.HandleSelectionChanged (item_array);
 													};
 			
-			image_view.Item.Collection.ItemsChanged += info_display.HandleSelectionItemsChanged;
+			image_view.Item.Collection.ItemsChanged += sidebar.HandleSelectionItemsChanged;
 
 			UpdateStatusLabel ();
 			

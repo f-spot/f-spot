@@ -1,8 +1,9 @@
 /*
- * Widgets.Sidebar.cs
+ * Widgets.MetadataDisplay.cs
  *
  * Author(s)
  * 	Mike Gemuende <mike@gemuende.de>
+ * 	Ruben Vermeersch <ruben@savanne.be>
  *
  * This is free software. See COPYING for details.
  */
@@ -17,7 +18,22 @@ using Gtk;
 using Mono.Unix;
 
 namespace FSpot.Widgets {
-	public class MetadataDisplay : ScrolledWindow {
+	public class MetadataDisplayPage : SidebarPage {
+		public MetadataDisplayPage() : base(new MetadataDisplayWidget(), 
+											Catalog.GetString ("Exif"), 
+											"gtk-index") {
+			(SidebarWidget as MetadataDisplayWidget).Page = this;
+		}
+
+		protected override void AddedToSidebar ()
+		{
+			MetadataDisplayWidget widget = SidebarWidget as MetadataDisplayWidget;
+			Sidebar.SelectionChanged += widget.HandleSelectionChanged;
+			Sidebar.SelectionItemsChanged += widget.HandleSelectionItemsChanged;
+		}
+	}
+
+	public class MetadataDisplayWidget : ScrolledWindow {
 		Delay update_delay;
 		
 		/* 	This VBox only contains exif-data,
@@ -28,7 +44,11 @@ namespace FSpot.Widgets {
 		Label exif_message;
 		State display;
 		
-		Sidebar sidebar;
+		private MetadataDisplayPage page;
+		public MetadataDisplayPage Page {
+			set { page = value; }
+			get { return page; }
+		}
 		
 		// stores list of the expanded expanders
 		List<string> open_list;
@@ -42,7 +62,7 @@ namespace FSpot.Widgets {
 			message
 		};
 		
-		public MetadataDisplay ()
+		public MetadataDisplayWidget ()
 		{
 			main_vbox = new VBox ();
 			main_vbox.Spacing = 6;
@@ -92,12 +112,6 @@ namespace FSpot.Widgets {
 			update_delay.Start ();
 		}
 		
-		public Sidebar ParentSidebar {
-			set {
-				this.sidebar = value;
-			}
-		}
-		
 		private Exif.ExifData exif_info;
 
 		private IBrowsableItem photo;
@@ -118,7 +132,7 @@ namespace FSpot.Widgets {
 					exif_info = null;
 				}
 				
-				if (sidebar != null && !sidebar.isActive (this)) {
+				if (!Page.IsActive) {
 					up_to_date = false;
 				} else {
 					update_delay.Start ();
@@ -134,15 +148,15 @@ namespace FSpot.Widgets {
 			}
 		}
 		
-		public void HandleSelectionChanged (IBrowsableCollection collection) {
+		internal void HandleSelectionChanged (IBrowsableCollection collection) {
 			if (collection != null && collection.Count == 1)
 				Photo = collection [0];
 			else
 				Photo = null;
 		}
 		
-		public void HandleSelectionItemsChanged (IBrowsableCollection collection, BrowsableEventArgs args) {
-			if (sidebar != null && !sidebar.isActive (this))
+		internal void HandleSelectionItemsChanged (IBrowsableCollection collection, BrowsableEventArgs args) {
+			if (!Page.IsActive)
 				up_to_date = false;
 			else
 				update_delay.Start ();
@@ -455,6 +469,5 @@ namespace FSpot.Widgets {
 				}
 			}
 		}
-		
 	}
 }

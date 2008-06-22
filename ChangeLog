@@ -1,5 +1,30 @@
 2008-06-22  Ruben Vermeersch  <ruben@savanne.be>
 
+	* src/MainWindow.cs: Append the new EditorPage (commented for now, as it
+	doesn't do much yet), send out an event when the view mode changes (will
+	be used for switching intelligently).
+
+	* src/Makefile.am: Add EditorPage.cs.
+
+	* src/SingleView.cs: Attach the new MetadataDisplayPage.
+
+	* src/Widgets/EditorPage.cs: Added. Currently still empty. Has code for
+	making it unselectable, but it turned out we do not want that.
+
+	* src/Widgets/MetadataDisplay.cs: Wrap in a SidebarPage, get events from
+	the page.
+
+	* src/Widgets/Sidebar.cs: Introduce a new SidebarPage class, which
+	currently wraps the parameters for adding a sidebar page. This class will
+	encapsulate common functionality between sidebar pages (like making
+	certain pages unavailable if needed). Reduces coupling between 
+	MainWindow / Singleview and the sidebar pages, by putting all event
+	handlers in one place. This means that aside adding the page itself, no
+	changes are needed (setting up handlers, references, etc) when adding a
+	new page. 
+
+2008-06-22  Ruben Vermeersch  <ruben@savanne.be>
+
 	* src/Makefile.am: Update build file.
 	* src/Widgets/MetadataDisplay.cs: Renamed from src/MetadataDisplay.cs.
 	This is a widget, move it to the FSpot.Widgets namespace.
