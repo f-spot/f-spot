@@ -575,7 +575,7 @@ public class PhotoStore : DbStore {
 	[Obsolete ("No longer make any sense with uris...")]
 	public Photo [] Query (System.IO.DirectoryInfo dir)
 	{
-		string query_string = String.Format (
+		return Query (new DbCommand (
 			"SELECT photos.id, "			+
 				"photos.time, "			+
 				"photos.uri, "			+
@@ -584,10 +584,9 @@ public class PhotoStore : DbStore {
 				"photos.default_version_id, "	+
 				"photos.rating "		+
 			"FROM photos " 				+
-			"WHERE uri LIKE \"file://{0}%\" "	+
-			"AND uri NOT LIKE \"file://{0}/%/%\"" , dir.FullName);
-
-		return Query (query_string);
+			"WHERE uri LIKE \"file://:dir%\" "	+
+			"AND uri NOT LIKE \"file://:dir/%/%\"",
+			"dir", dir.FullName ));
 	}
 
 	[Obsolete ("drop this, use IQueryCondition correctly instead")]
