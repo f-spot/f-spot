@@ -517,7 +517,12 @@ public class PhotoStore : DbStore {
 
 	public Photo [] Query (string query)
 	{
-		uint timer = Log.DebugTimerStart ("Query: " + query);
+		return Query (new DbCommand (query));
+	}
+
+	public Photo [] Query (DbCommand query)
+	{
+		uint timer = Log.DebugTimerStart ("Query: " + query.CommandText);
 		SqliteDataReader reader = Database.Query(query);
 
 		ArrayList version_list = new ArrayList ();
