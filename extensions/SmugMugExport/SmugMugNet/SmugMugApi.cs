@@ -366,7 +366,7 @@ namespace SmugMugNet
 				string response = Encoding.ASCII.GetString (responseArray);
 
 				// JSon approach
-				Regex id_regex = new Regex ("\\\"id\\\": (?<image_id>\\d+),");
+				Regex id_regex = new Regex ("\\\"id\\\":( )?(?<image_id>\\d+),");
 				Match m  = id_regex.Match (response);
 
 				int id = -1;
