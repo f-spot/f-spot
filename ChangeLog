@@ -1,5 +1,10 @@
 2008-06-24  Ruben Vermeersch  <ruben@savanne.be>
 
+	* Widgets/MetadataDisplay.cs: Fix the InvalidCastException occuring with
+	sde's Nikon RAWs.
+
+2008-06-24  Ruben Vermeersch  <ruben@savanne.be>
+
 	* PhotoView.cs: PhotoQuery is no longer needed, as all data happens
 	through the View.
 

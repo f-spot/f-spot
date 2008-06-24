@@ -449,7 +449,7 @@ namespace FSpot.Widgets {
 			}
 			
 			foreach (Statement sub in substore) {
-				if (sub.Object is Literal) {
+				if (sub.Object is SemWeb.Literal) {
 					string title;
 					string value = ((SemWeb.Literal)sub.Object).Value;
 					
