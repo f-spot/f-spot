@@ -1349,24 +1349,20 @@ msgid "Resolution Unit"
 msgstr "Одиниця роздільної здатності"
 
 #: ../src/MetadataStore.cs:32
-#, fuzzy
 msgid "Exposure Program"
 msgstr "Програма експозиції"
 
 #: ../src/MetadataStore.cs:34
-#, fuzzy
 msgid "Metering Mode"
-msgstr "Режим вимірювання"
+msgstr "Режим вимірювання експозиції"
 
 #: ../src/MetadataStore.cs:36
-#, fuzzy
 msgid "Exposure Mode"
-msgstr "Режим експозиції"
+msgstr "Режим вибору експозиції"
 
 #: ../src/MetadataStore.cs:38
-#, fuzzy
 msgid "Custom Rendered"
-msgstr "Створений SVG"
+msgstr "Додаткова обробка"
 
 #: ../src/MetadataStore.cs:40
 #, fuzzy
@@ -1374,22 +1370,18 @@ msgid "Components Configuration"
 msgstr "Конфігурація GTK"
 
 #: ../src/MetadataStore.cs:42
-#, fuzzy
 msgid "Light Source"
 msgstr "Джерело світла"
 
 #: ../src/MetadataStore.cs:44
-#, fuzzy
 msgid "Sensing Method"
-msgstr "Метод відтворення звуку"
+msgstr "Тип сенсору"
 
 #: ../src/MetadataStore.cs:46
-#, fuzzy
 msgid "Color Space"
-msgstr "Ре_жим:"
+msgstr "Кольоровий простір"
 
 #: ../src/MetadataStore.cs:48
-#, fuzzy
 msgid "White Balance"
 msgstr "Баланс білого"
 
@@ -1399,9 +1391,8 @@ msgid "Focal Plane Resolution Unit"
 msgstr "Зміна роздільної здатності"
 
 #: ../src/MetadataStore.cs:52
-#, fuzzy
 msgid "File Source Type"
-msgstr "Невідомий тип файла"
+msgstr "Тип джерела файла"
 
 #: ../src/MetadataStore.cs:54
 #, fuzzy
@@ -1409,12 +1400,10 @@ msgid "Scene Capture Type"
 msgstr "Зйомка цього типу не підтримується"
 
 #: ../src/MetadataStore.cs:56
-#, fuzzy
 msgid "Gain Control"
-msgstr "Загальний регулятор підсилення"
+msgstr "Підвищення яскравості"
 
 #: ../src/MetadataStore.cs:58
-#, fuzzy
 msgid "Contrast"
 msgstr "Контрастність"
 
@@ -1423,40 +1412,34 @@ msgid "Saturation"
 msgstr "Насиченість"
 
 #: ../src/MetadataStore.cs:62
-#, fuzzy
 msgid "Sharpness"
-msgstr "Чіткість"
+msgstr "Різкість"
 
 #: ../src/MetadataStore.cs:64
-#, fuzzy
 msgid "Scene Type"
-msgstr "Тип DCC"
+msgstr "Тип сцени"
 
 #. Fixme this should really set parent menu
 #. items insensitve
 #: ../src/PhotoTagMenu.cs:74
-#, fuzzy
 msgid "(No Tags)"
-msgstr "EXIF теги:"
+msgstr "(без позначок)"
 
 #: ../src/PhotoVersionCommands.cs:57
-#, fuzzy
 msgid "Create New Version"
-msgstr "Доступна нова версія"
+msgstr "Створити нову версію"
 
 #: ../src/PhotoVersionCommands.cs:58
 msgid "Name:"
 msgstr "Назва:"
 
 #: ../src/PhotoVersionCommands.cs:62
-#, fuzzy
 msgid "Rename Version"
-msgstr "Приховувати версію"
+msgstr "Перейменувати версію"
 
 #: ../src/PhotoVersionCommands.cs:63
-#, fuzzy
 msgid "New name:"
-msgstr "Нове ім'я:"
+msgstr "Нова назва:"
 
 #: ../src/PhotoVersionCommands.cs:109
 #, fuzzy
@@ -1469,23 +1452,21 @@ msgid "Received exception \"{0}\". Unable to create version \"{1}\""
 msgstr ""
 
 #: ../src/PhotoVersionCommands.cs:137
-#, fuzzy
 msgid "Really Delete?"
-msgstr "Справді видалити %s %s?"
+msgstr "Дійсно видалити?"
 
 #: ../src/PhotoVersionCommands.cs:138
 msgid "Cancel"
 msgstr "Скасувати"
 
 #: ../src/PhotoVersionCommands.cs:139
-#, fuzzy
 msgid "Delete"
 msgstr "Видалити"
 
 #: ../src/PhotoVersionCommands.cs:143
-#, fuzzy, csharp-format
+#, csharp-format
 msgid "Really delete version \"{0}\"?"
-msgstr "Видалення версії"
+msgstr "Дійсно видалити версію \"{0}\"?"
 
 #. FIXME show error dialog.
 #: ../src/PhotoVersionCommands.cs:153
@@ -1509,46 +1490,40 @@ msgid "Received exception \"{0}\". Unable to rename version to \"{1}\""
 msgstr ""
 
 #: ../src/PhotoVersionMenu.cs:67
-#, fuzzy
 msgid "(No Edits)"
-msgstr "Автономних змін не знайдено"
+msgstr "(без редагування)"
 
 #: ../src/PhotoView.cs:75
-#, fuzzy
 msgid "4 x 3 (Book)"
-msgstr "Книга"
+msgstr "4 x 3 (книга)"
 
 #: ../src/PhotoView.cs:76
-#, fuzzy
 msgid "4 x 6 (Postcard)"
 msgstr "4 x 6 (поштова картка)"
 
 #: ../src/PhotoView.cs:77
 msgid "5 x 7 (L, 2L)"
-msgstr ""
+msgstr "5 x 7 (L, 2L)"
 
 #: ../src/PhotoView.cs:78
-#, fuzzy
 msgid "8 x 10"
 msgstr "8 x 10"
 
 #: ../src/PhotoView.cs:79
 msgid "Square"
-msgstr "Квадратний"
+msgstr "Квадрат"
 
 #: ../src/PhotoView.cs:126
 msgid "Crop photo to selected area"
-msgstr ""
+msgstr "Кадрувати за виділенням"
 
 #: ../src/PhotoView.cs:127
-#, fuzzy
 msgid "Remove redeye from selected area"
-msgstr "Видалити виділені файли з альбому"
+msgstr "Прибрати ефект червоних очей з виділеної області"
 
 #: ../src/PhotoView.cs:129
-#, fuzzy
 msgid "Select an area to crop"
-msgstr "Перейти до області стовпців"
+msgstr "Виберіть область кадрування"
 
 #: ../src/PhotoView.cs:130
 #, fuzzy
@@ -1556,14 +1531,12 @@ msgid "Select an area to remove redeye"
 msgstr "Виділіть <b>текст</b> для видалення ручного кернінгу."
 
 #: ../src/PhotoView.cs:260 ../src/UI.Dialog/EditExceptionDialog.cs:38
-#, fuzzy
 msgid "Error editing photo"
-msgstr "Помилка майстра друку фотографій"
+msgstr "Помилка при редагуванні знімку"
 
 #: ../src/PhotoView.cs:312
-#, fuzzy
 msgid "No selection available"
-msgstr "Вибір мов відсутній"
+msgstr "Нічого не виділено"
 
 #: ../src/PhotoView.cs:313
 msgid ""
@@ -1572,7 +1545,6 @@ msgid ""
 msgstr ""
 
 #: ../src/PhotoView.cs:501
-#, fuzzy
 msgid "Comment:"
 msgstr "Коментар:"
 
@@ -1586,14 +1558,12 @@ msgid "Crop"
 msgstr "Кадрування"
 
 #: ../src/PhotoView.cs:539
-#, fuzzy
 msgid "Reduce Red-Eye"
-msgstr "Запобігання червоним очам"
+msgstr "Прибрати ефект червоних очей"
 
 #: ../src/PhotoView.cs:543
-#, fuzzy
 msgid "Adjust Colors"
-msgstr "Кольори mIRC:"
+msgstr "Коригувати кольори"
 
 #: ../src/PhotoView.cs:545
 #, fuzzy
@@ -1610,9 +1580,8 @@ msgid "Convert the photo to black and white"
 msgstr "Запит на запуск у чорно-білому режимі"
 
 #: ../src/PhotoView.cs:553
-#, fuzzy
 msgid "Sepia Tone"
-msgstr "Сепія"
+msgstr "Тонувати у сепію"
 
 #: ../src/PhotoView.cs:555
 #, fuzzy
@@ -1620,24 +1589,20 @@ msgid "Convert the photo to sepia tones"
 msgstr "Перетворення зображення у відтінки сірого"
 
 #: ../src/PhotoView.cs:585
-#, fuzzy
 msgid "Previous photo"
-msgstr "Фотопапір"
+msgstr "Попередній знімок"
 
 #: ../src/PhotoView.cs:590
-#, fuzzy
 msgid "Next photo"
-msgstr "Фотопапір"
+msgstr "Наступний знімок"
 
 #: ../src/PhotoView.cs:625
-#, fuzzy
 msgid "No Constraint"
-msgstr "(Немає обмеження)"
+msgstr "Вільне виділення"
 
 #: ../src/PhotoView.cs:626
-#, fuzzy
 msgid "Same as photo"
-msgstr "(як для системи)"
+msgstr "Як у знімку"
 
 #: ../src/PhotoView.cs:631
 #, fuzzy
@@ -1645,12 +1610,10 @@ msgid "Custom Ratios..."
 msgstr "Вказаний розмір полотна"
 
 #: ../src/Preferences.cs:157
-#, fuzzy
 msgid "Photos"
 msgstr "Фотографії"
 
 #: ../src/PrintOperation.cs:31
-#, fuzzy
 msgid "Image Settings"
 msgstr "Параметри зображення"
 
@@ -1662,38 +1625,32 @@ msgstr "Параметри зображення"
 #: ../extensions/GalleryExport/GalleryExport.cs:772
 #, csharp-format
 msgid "{0} of {1}"
-msgstr ""
+msgstr "{0} з {1}"
 
 #: ../src/QueryWidget.cs:40
-#, fuzzy
 msgid "Find: "
 msgstr "Знайти: "
 
 #: ../src/QueryWidget.cs:45
-#, fuzzy
 msgid "Untagged photos"
-msgstr "Імпортування фотознімків"
+msgstr "Не віднесені до категорій знімки"
 
 #: ../src/QueryWidget.cs:53
-#, fuzzy
 msgid "Rated photos"
-msgstr "Імпортування фотознімків"
+msgstr "Знімки з оцінкою"
 
 #. Note for translators: 'Import roll' is no command, it means 'Roll that has been imported'
 #: ../src/QueryWidget.cs:62
-#, fuzzy
 msgid "Import roll"
-msgstr "Барабанна подача"
+msgstr "Сеанс імпорту"
 
 #: ../src/QueryWidget.cs:82
-#, fuzzy
 msgid "Clear search"
-msgstr "Очистити рядок запиту"
+msgstr "Очистити результат пошуку"
 
 #: ../src/QueryWidget.cs:89
-#, fuzzy
 msgid "Refresh search"
-msgstr "Знайти текст..."
+msgstr "Оновити результат пошуку"
 
 #: ../src/QueryWidget.cs:91
 #, fuzzy
@@ -1791,9 +1748,8 @@ msgstr ""
 
 #. Send the mail :)
 #: ../src/SendEmail.cs:327
-#, fuzzy
 msgid "my photos"
-msgstr "Імпортування фотознімків"
+msgstr "мї знімки"
 
 #: ../src/SingleView.cs:80
 #, fuzzy
@@ -1810,9 +1766,8 @@ msgid "Open"
 msgstr "_Відкрити..."
 
 #: ../src/SingleView.cs:433
-#, fuzzy
 msgid "Set as Background"
-msgstr "Зробити фоновим малюнком"
+msgstr "Помістити на робочий стіл"
 
 #: ../src/TagCommands.cs:92 ../src/TagCommands.cs:220
 #: ../src/TagSelectionWidget.cs:508
@@ -1821,24 +1776,20 @@ msgid "This name is already in use"
 msgstr "Цей розділ вже використовується"
 
 #: ../src/TagCommands.cs:139
-#, fuzzy
 msgid "Create New Tag"
-msgstr "Створити новий шар"
+msgstr "Створити нову позначку"
 
 #: ../src/TagCommands.cs:140
-#, fuzzy
 msgid "Name of New Tag:"
-msgstr "Назва тегу _нового репозиторію:"
+msgstr "Назва нової позначки:"
 
 #: ../src/TagCommands.cs:279
-#, fuzzy
 msgid "Edit Tag"
-msgstr "Змінити тег..."
+msgstr "Змінити позначку..."
 
 #: ../src/TagCommands.cs:280
-#, fuzzy
 msgid "Tag Name:"
-msgstr "Назва ярлика"
+msgstr "Назва позначки:"
 
 #: ../src/TagCommands.cs:388
 #, fuzzy
@@ -1853,9 +1804,9 @@ msgid "Unable to load \"{0}\" as icon for the tag"
 msgstr ""
 
 #: ../src/TagCommands.cs:427
-#, fuzzy, csharp-format
+#, csharp-format
 msgid "Photo {0} of {1}"
-msgstr "Фотографія"
+msgstr "Фотографія {0} з {1}"
 
 #: ../src/TagCommands.cs:457
 #, fuzzy, csharp-format
@@ -1921,9 +1872,8 @@ msgstr[1] "Видалення плаваючого виділення"
 msgstr[2] "Видалення плаваючого виділення"
 
 #: ../src/TagPopup.cs:62
-#, fuzzy
 msgid "Merge Tags"
-msgstr "EXIF теги:"
+msgstr "Об'єднати теги:"
 
 #: ../src/TagQueryWidget.cs:32
 #, fuzzy, csharp-format
@@ -1936,9 +1886,8 @@ msgid "Exclude Photos Tagged \"{0}\""
 msgstr "Жодної позиції не вибрано."
 
 #: ../src/TagQueryWidget.cs:42
-#, fuzzy
 msgid "Remove From Search"
-msgstr "Видалити цей критерій з пошуку"
+msgstr "Видалити з пошуку"
 
 #: ../src/TagQueryWidget.cs:86
 #, fuzzy, csharp-format
@@ -1949,14 +1898,13 @@ msgstr[1] ""
 msgstr[2] ""
 
 #: ../src/TagQueryWidget.cs:112
-#, fuzzy
 msgid "All"
-msgstr "Всі"
+msgstr "Усіма"
 
 #: ../src/TagQueryWidget.cs:147 ../src/Term.cs:591
-#, fuzzy, csharp-format
+#, csharp-format
 msgid "Not {0}"
-msgstr "НІ"
+msgstr "Не {0}"
 
 #: ../src/TagQueryWidget.cs:277
 msgid "Drag tags here to search for them"
@@ -1968,27 +1916,22 @@ msgid "Error renaming tag"
 msgstr "Помилка перейменування %s у %s\n"
 
 #: ../src/TagStore.cs:230
-#, fuzzy
 msgid "Favorites"
 msgstr "Улюблене"
 
 #: ../src/TagStore.cs:235
-#, fuzzy
 msgid "Hidden"
-msgstr "приховані"
+msgstr "Приховане"
 
 #: ../src/TagStore.cs:243
-#, fuzzy
 msgid "People"
 msgstr "Люди"
 
 #: ../src/TagStore.cs:248
-#, fuzzy
 msgid "Places"
 msgstr "Місця"
 
 #: ../src/TagStore.cs:253
-#, fuzzy
 msgid "Events"
 msgstr "Події"
 
@@ -1998,37 +1941,32 @@ msgid "(None)"
 msgstr "(Немає)"
 
 #: ../src/Term.cs:297
-#, fuzzy
 msgid " and "
 msgstr " та "
 
 #. operators.Add (Catalog.GetString (" && "));
 #: ../src/Term.cs:299
-#, fuzzy
 msgid ", "
 msgstr ", "
 
 #: ../src/Term.cs:355
-#, fuzzy
 msgid " or "
 msgstr " або "
 
 #. OPS The operators we support, case insensitive
 #. private static string op_str = "(?'Ops' or | and |, | \\s+ )";
 #: ../src/Term.cs:379 ../src/Widgets/FindBar.cs:176 ../src/f-spot.glade.h:290
-#, fuzzy
 msgid "or"
-msgstr "or"
+msgstr "або"
 
 #: ../src/ThreadProgressDialog.cs:66
-#, fuzzy
 msgid "Retry"
-msgstr "Повторити"
+msgstr "Спробувати знову"
 
 #: ../src/TimeDialog.cs:125 ../src/f-spot.glade.h:183
-#, fuzzy, csharp-format
+#, csharp-format
 msgid "Shift all photos by {0}"
-msgstr ": використовується на всіх слайдах"
+msgstr "Зсунути усі знімки на {0}"
 
 #: ../src/UI.Dialog/AboutDialog.cs:67
 #, fuzzy
@@ -2036,20 +1974,16 @@ msgid "Photo management for GNOME"
 msgstr "Програма керування проектами для середовища GNOME"
 
 #: ../src/UI.Dialog/AboutDialog.cs:68
-#, fuzzy
 msgid "Copyright © 2003-2008 Novell Inc."
-msgstr "Copyright (C) 2003 Фундація Вільного Програмного Забезпечення.\n"
+msgstr "Авторські права © 2003-2008 Novell Inc."
 
 #: ../src/UI.Dialog/AboutDialog.cs:93
 msgid "translator-credits"
-msgstr ""
-"Юрій Сирота\n"
-"Максим Дзюманенко <dziumanenko@gmail.com>"
+msgstr "Максим Дзюманенко <dziumanenko@gmail.com>"
 
 #: ../src/UI.Dialog/AboutDialog.cs:98
-#, fuzzy
 msgid "F-Spot Website"
-msgstr "Веб-сайт інвестицій"
+msgstr "Веб-сайт F-Spot"
 
 #: ../src/UI.Dialog/ColorDialog.cs:211
 #, fuzzy
@@ -2062,7 +1996,6 @@ msgid "F-Spot Encountered a Fatal Error"
 msgstr "Критична помилка переміщення %s у %s"
 
 #: ../src/UI.Dialog/ExceptionDialog.cs:60
-#, fuzzy
 msgid "Error Details"
 msgstr "Відомості про помилку"
 
@@ -2084,19 +2017,16 @@ msgid ""
 msgstr ""
 
 #: ../src/UI.Dialog/SelectionRatioDialog.cs:60
-#, fuzzy
 msgid "Label"
-msgstr "Позначка"
+msgstr "Назва"
 
 #: ../src/UI.Dialog/SelectionRatioDialog.cs:64
-#, fuzzy
 msgid "Ratio"
 msgstr "Відношення"
 
 #: ../src/Updater.cs:284
-#, fuzzy
 msgid "Updating F-Spot Database"
-msgstr "Оновлюється база даних відкладених запитів."
+msgstr "Оновлюється база даних F-Spot"
 
 #: ../src/Updater.cs:285
 msgid ""
@@ -2106,9 +2036,8 @@ msgstr ""
 
 #. Mono.Unix.Error error = Mono.Unix.Stdlib.GetLastError ();
 #: ../src/Utils/Unix.cs:32
-#, fuzzy
 msgid "Unable to create temporary file"
-msgstr "Неможливо відкрити тимчасовий файл!"
+msgstr "Неможливо створити тимчасовий файл"
 
 #: ../src/Utils/GnomeUtil.cs:47
 msgid ""
@@ -2117,29 +2046,26 @@ msgid ""
 msgstr ""
 
 #: ../src/Widgets/CustomPrintWidget.cs:99
-#, fuzzy
 msgid "Page Setup"
-msgstr "Настройки сторінки"
+msgstr "Параметри сторінки"
 
 #: ../src/Widgets/CustomPrintWidget.cs:101
 #: ../src/Widgets/CustomPrintWidget.cs:106
-#, fuzzy, csharp-format
+#, csharp-format
 msgid "Paper Size: {0} x {1} mm"
-msgstr "Конверт #9"
+msgstr "Розмір паперу: {0} x {1} мм"
 
 #: ../src/Widgets/CustomPrintWidget.cs:116
-#, fuzzy
 msgid "Photos per page"
-msgstr "Зображень на сторінку:"
+msgstr "Зображень на сторінку"
 
 #. ppp1.Toggled += TriggerChanged;
 #. ppp2.Toggled += TriggerChanged;
 #. ppp4.Toggled += TriggerChanged;
 #. ppp9.Toggled += TriggerChanged;
 #: ../src/Widgets/CustomPrintWidget.cs:128
-#, fuzzy
 msgid "Repeat"
-msgstr "Повтор..."
+msgstr "Повторити"
 
 #: ../src/Widgets/CustomPrintWidget.cs:129
 #, fuzzy
@@ -2156,27 +2082,22 @@ msgid "Zoom"
 msgstr "Масштаб"
 
 #: ../src/Widgets/CustomPrintWidget.cs:141
-#, fuzzy
 msgid "Fill"
 msgstr "Заповнення"
 
 #: ../src/Widgets/CustomPrintWidget.cs:142
-#, fuzzy
 msgid "Scaled"
 msgstr "Масштабувати"
 
 #: ../src/Widgets/CustomPrintWidget.cs:148
-#, fuzzy
 msgid "White borders"
-msgstr "Малювати межі"
+msgstr "Білі краї"
 
 #: ../src/Widgets/CustomPrintWidget.cs:152
-#, fuzzy
 msgid "Custom Text: "
-msgstr "Текст:"
+msgstr "Власний текст:"
 
 #: ../src/Widgets/InfoBox.cs:132
-#, fuzzy
 msgid "Date"
 msgstr "Дата"
 
@@ -2185,341 +2106,287 @@ msgid "Size"
 msgstr "Розмір"
 
 #: ../src/Widgets/InfoBox.cs:138
-#, fuzzy
 msgid "Exposure"
 msgstr "Експозиція"
 
 #: ../src/Widgets/InfoBox.cs:279 ../src/Widgets/InfoBox.cs:288
-#, fuzzy
 msgid "(Unknown)"
-msgstr "(Немає даних)"
+msgstr "(Невідомо)"
 
 #: ../src/Widgets/InfoBox.cs:376
-#, fuzzy, csharp-format
+#, csharp-format
 msgid "{0} Photos"
-msgstr "Фотографії"
+msgstr "{0} Фотографій"
 
 #. Note for translators: {0} is a date, {1} and {2} are times.
 #: ../src/Widgets/InfoBox.cs:388
-#, fuzzy, csharp-format
+#, csharp-format
 msgid ""
 "On {0} between \n"
 "{1} and {2}"
-msgstr "число між 0 та 1"
+msgstr ""
+"{0} між \n"
+"{1} та {2}"
 
 #: ../src/Widgets/InfoBox.cs:393
-#, fuzzy, csharp-format
+#, csharp-format
 msgid ""
 "Between {0} \n"
 "and {1}"
-msgstr "ключ І-НІ"
+msgstr ""
+"Між {0} \n"
+"та {1}"
 
 #: ../src/Widgets/RatingMenuItem.cs:48
-#, fuzzy
 msgid "Rating:"
 msgstr "Оцінка:"
 
 #: ../src/Widgets/FindBar.cs:57
-#, fuzzy
 msgid "Find:"
 msgstr "Знайти:"
 
 #: ../src/Widgets/FindBar.cs:176 ../src/f-spot.glade.h:282
-#, fuzzy
 msgid "and"
 msgstr "та"
 
 #: ../src/XmpTagsImporter.cs:88
-#, fuzzy
 msgid "Location"
 msgstr "Розташування"
 
 #: ../src/XmpTagsImporter.cs:89
-#, fuzzy
 msgid "Country"
 msgstr "Країна"
 
 #: ../src/XmpTagsImporter.cs:90
-#, fuzzy
 msgid "City"
 msgstr "Місто"
 
 #: ../src/XmpTagsImporter.cs:91
-#, fuzzy
 msgid "State"
 msgstr "Область"
 
 #. namespace
 #: ../src/f-spot.glade.h:1
-#, fuzzy
 msgid " "
 msgstr " "
 
 #: ../src/f-spot.glade.h:2
-#, fuzzy
 msgid " From List : "
-msgstr "Видалити зі списку"
+msgstr " Зі списку : "
 
 #: ../src/f-spot.glade.h:3
-#, fuzzy
 msgid " From gtkrc File : "
-msgstr "_Завантажити з файлу..."
+msgstr "З файлу gtkrc:"
 
 #: ../src/f-spot.glade.h:4
-#, fuzzy
 msgid "0000:00:00 00:00:00"
-msgstr "Жов 00 0000, 00:00 ПП"
+msgstr "0000:00:00 00:00:00"
 
 #: ../src/f-spot.glade.h:5
-#, fuzzy
 msgid "00:00:00"
 msgstr "00:00:00"
 
 #: ../src/f-spot.glade.h:6
 msgid "1 of 1"
-msgstr ""
+msgstr "1 з 1"
 
 #: ../src/f-spot.glade.h:7
-#, fuzzy
 msgid "1024 px"
-msgstr "Великий (1024 х 768)"
+msgstr "1024 px"
 
 #: ../src/f-spot.glade.h:8
-#, fuzzy
 msgid "320 px"
-msgstr "320 КБ/с"
+msgstr "320 px"
 
 #: ../src/f-spot.glade.h:9
-#, fuzzy
 msgid "480 px"
-msgstr "Середній (640 х 480)"
+msgstr "480 px"
 
 #: ../src/f-spot.glade.h:10
-#, fuzzy
 msgid "5"
 msgstr "5"
 
 #: ../src/f-spot.glade.h:11
-#, fuzzy
 msgid "640 px"
-msgstr "Середній (640 х 480)"
+msgstr "640 px"
 
 #: ../src/f-spot.glade.h:12
-#, fuzzy
 msgid "800 px"
-msgstr "800 x 600"
+msgstr "800 px"
 
 #: ../src/f-spot.glade.h:13
 msgid "<b></b>"
-msgstr ""
+msgstr "<b></b>"
 
 #: ../src/f-spot.glade.h:14 ../extensions/FlickrExport/FlickrExport.glade.h:1
-#, fuzzy
 msgid "<b>Account</b>"
-msgstr "Обліковий рахунок"
+msgstr "<b>Обліковий рахунок</b>"
 
 #: ../src/f-spot.glade.h:15
-#, fuzzy
 msgid "<b>Action</b>"
-msgstr "Дія"
+msgstr "<b>Дія</b>"
 
 #: ../src/f-spot.glade.h:16
 #: ../extensions/GalleryExport/GalleryExport.glade.h:1
 #: ../extensions/PicasaWebExport/PicasaWebExport.glade.h:1
 #: ../extensions/SmugMugExport/SmugMugExport.glade.h:1
-#, fuzzy
 msgid "<b>Album</b>"
 msgstr "<b>Альбом</b>"
 
 #: ../src/f-spot.glade.h:17
-#, fuzzy
 msgid "<b>Co_rrections</b>"
-msgstr "_Колір"
+msgstr "<b>_Зміни</b>"
 
 #: ../src/f-spot.glade.h:18
-#, fuzzy
 msgid "<b>Color Management</b>"
-msgstr "Керування кольором"
+msgstr "<b>Керування кольором</b>"
 
 #: ../src/f-spot.glade.h:19
-#, fuzzy
 msgid "<b>Color Temperature</b>"
-msgstr "Кольорова температура"
+msgstr "<b>Кольорова температура</b>"
 
 #: ../src/f-spot.glade.h:20 ../extensions/FolderExport/FolderExport.glade.h:3
-#, fuzzy
 msgid "<b>Destination</b>"
 msgstr "<b>Ціль</b>"
 
 #: ../src/f-spot.glade.h:21
-#, fuzzy
 msgid "<b>End Date</b>"
-msgstr "Дата завершення"
+msgstr "<b>Дата завершення</b>"
 
 #: ../src/f-spot.glade.h:22
-#, fuzzy
 msgid "<b>Exposure</b>"
-msgstr "Експозиція"
+msgstr "<b>Експозиція</b>"
 
 #: ../src/f-spot.glade.h:23
-#, fuzzy
 msgid "<b>From External Photo</b>"
-msgstr "Вставка даних із зовнішньої бази даних"
+msgstr "<b>Із зовнішнього знімку</b>"
 
 #: ../src/f-spot.glade.h:24
-#, fuzzy
 msgid "<b>From Photo</b>"
-msgstr "Фотопапір"
+msgstr "<b>Із знімку</b>"
 
 #: ../src/f-spot.glade.h:25
 #: ../extensions/GalleryExport/GalleryExport.glade.h:2
-#, fuzzy
 msgid "<b>Gallery</b>"
-msgstr "Колекція"
+msgstr "<b>Галерея</b>"
 
 #: ../src/f-spot.glade.h:26
-#, fuzzy
 msgid "<b>Histo_gram</b>"
-msgstr "Перевірку граматики завершено"
+msgstr "<b>_Гістограма</b>"
 
 #: ../src/f-spot.glade.h:27
-#, fuzzy
 msgid "<b>Histogram</b>"
-msgstr "_Гістограма"
+msgstr "<b>ГІстограма</b>"
 
 #: ../src/f-spot.glade.h:28
-#, fuzzy
 msgid "<b>Image Interpolation</b>"
-msgstr "<b>Інтерполяція зображення</b>"
+msgstr "<b>Інтерполяція знімку</b>"
 
 #: ../src/f-spot.glade.h:29
-#, fuzzy
 msgid "<b>Import Settings</b>"
-msgstr "_Імпортувати параметри..."
+msgstr "<b>Параметри імпорту</b>"
 
 #: ../src/f-spot.glade.h:30
-#, fuzzy
 msgid "<b>Interoperability</b>"
-msgstr "Каталог сумісності"
+msgstr "<b>Взаємодія</b>"
 
 #: ../src/f-spot.glade.h:31
-#, fuzzy
 msgid "<b>Max Rating</b>"
-msgstr "Моя оцінка:"
+msgstr "<b>Макс. оцінка</b>"
 
 #: ../src/f-spot.glade.h:32
-#, fuzzy
 msgid "<b>Metadata</b>"
-msgstr "<b>Інформація про пісню та виконавця</b>"
+msgstr "<b>Метадані</b>"
 
 #: ../src/f-spot.glade.h:33
-#, fuzzy
 msgid "<b>Min Rating</b>"
-msgstr "Моя оцінка:"
+msgstr "<b>Мін. оцінка</b>"
 
 #: ../src/f-spot.glade.h:34
-#, fuzzy
 msgid "<b>Photograph Layout</b>"
-msgstr "&Закріпити позицію"
+msgstr "<b>Вид фотографії</b>"
 
 #: ../src/f-spot.glade.h:35 ../extensions/FlickrExport/FlickrExport.glade.h:2
 #: ../extensions/FolderExport/FolderExport.glade.h:5
 #: ../extensions/GalleryExport/GalleryExport.glade.h:3
 #: ../extensions/PicasaWebExport/PicasaWebExport.glade.h:2
 #: ../extensions/SmugMugExport/SmugMugExport.glade.h:2
-#, fuzzy
 msgid "<b>Photos</b>"
-msgstr "Фотографії"
+msgstr "<b>Знімки</b>"
 
 #: ../src/f-spot.glade.h:36
-#, fuzzy
 msgid "<b>Predefined</b>"
-msgstr "Готові уподобання:"
+msgstr "<b>Встановлено заздалегідь</b>"
 
 #: ../src/f-spot.glade.h:37
-#, fuzzy
 msgid "<b>Preview</b>"
 msgstr "<b>Попередній перегляд</b>"
 
 #: ../src/f-spot.glade.h:38
-#, fuzzy
 msgid "<b>Printer Details</b>"
-msgstr "<b>Подробиці про сайт</b>"
+msgstr "<b>Подробиці про принтер</b>"
 
 #: ../src/f-spot.glade.h:39
-#, fuzzy
 msgid "<b>Reference Photo</b>"
-msgstr "Фотопапір"
+msgstr "<b>Первинний знімок</b>"
 
 #: ../src/f-spot.glade.h:40
-#, fuzzy
 msgid "<b>Screensaver</b>"
-msgstr "Зберігання екрану"
+msgstr "<b>Збереження екрану</b>"
 
 #: ../src/f-spot.glade.h:41
-#, fuzzy
 msgid "<b>Select period</b>"
-msgstr "Термін оплати [T]"
+msgstr "<b>Виберіть період</b>"
 
 #: ../src/f-spot.glade.h:42
-#, fuzzy
 msgid "<b>Size</b>"
 msgstr "<b>Розмір</b>"
 
 #: ../src/f-spot.glade.h:43
-#, fuzzy
 msgid "<b>Start Date</b>"
-msgstr "Дата початку"
+msgstr "<b>Початкова дата</b>"
 
 #: ../src/f-spot.glade.h:44 ../extensions/FlickrExport/FlickrExport.glade.h:3
 #: ../extensions/FolderExport/FolderExport.glade.h:6
 #: ../extensions/GalleryExport/GalleryExport.glade.h:4
 #: ../extensions/PicasaWebExport/PicasaWebExport.glade.h:4
 #: ../extensions/SmugMugExport/SmugMugExport.glade.h:4
-#, fuzzy
 msgid "<b>Style</b>"
-msgstr "_Стиль: "
+msgstr "<b>Стиль</b>"
 
 #: ../src/f-spot.glade.h:45
-#, fuzzy
 msgid "<b>Summary</b>"
-msgstr "Зведення: %s"
+msgstr "<b>Зведення</b>"
 
 #: ../src/f-spot.glade.h:46
-#, fuzzy
 msgid "<b>Theming</b>"
-msgstr "Теми інтерфейсу, що використовують Cairo 1.2"
+msgstr "<b>Стиль оформлення</b>"
 
 #: ../src/f-spot.glade.h:47
-#, fuzzy
 msgid "<b>Transparent Parts</b>"
-msgstr "<b>Прозорі елементи</b>"
+msgstr "<b>Прозорі області відображаються</b>"
 
 #: ../src/f-spot.glade.h:48
-#, fuzzy
 msgid "<b>View all pictures imported</b>"
-msgstr "до всіх малюнків документа"
+msgstr "<b>Переглядати усі імпортовані знімки</b>"
 
 #: ../src/f-spot.glade.h:49
-#, fuzzy
 msgid "<b>_White Balance</b>"
-msgstr "_Баланс білого"
+msgstr "<b>_Баланс білого</b>"
 
 #: ../src/f-spot.glade.h:50
-#, fuzzy
 msgid "<small> </small>"
-msgstr "маленькі"
+msgstr "<small> </small>"
 
 #: ../src/f-spot.glade.h:51
-#, fuzzy
 msgid "<small></small>"
-msgstr "маленькі"
+msgstr "<small></small>"
 
 #: ../src/f-spot.glade.h:52
 msgid ""
 "<small><i>Choose the folder where F-Spot should store newly imported photos</"
 "i></small>"
-msgstr ""
+msgstr "<small><i>Виберіть теку, у якій F-Spot буде зберігати імпортовані знімки</i></small>"
 
 #: ../src/f-spot.glade.h:53
 msgid ""
@@ -2560,290 +2427,242 @@ msgid ""
 msgstr ""
 
 #: ../src/f-spot.glade.h:60
-#, fuzzy
 msgid "<small>C_ontrast:</small>"
-msgstr "<small>Випадковість:</small>"
+msgstr "<small>_Контрастність:</small>"
 
 #: ../src/f-spot.glade.h:61
-#, fuzzy
 msgid "<small>Te_mp:</small>"
-msgstr "&Форматування "
+msgstr "<small>Те_мпература:</small>"
 
 #: ../src/f-spot.glade.h:62
-#, fuzzy
 msgid "<small>_Brightness:</small>"
-msgstr "Яскравість зображення"
+msgstr "<small>_Яскравість:</small>"
 
 #: ../src/f-spot.glade.h:63
-#, fuzzy
 msgid "<small>_Exposure:</small>"
-msgstr "Розголошення учасників"
+msgstr "<small>_Експозиція:</small>"
 
 #: ../src/f-spot.glade.h:64
-#, fuzzy
 msgid "<small>_Hue:</small>"
-msgstr "Відтінок - Насиченість"
+msgstr "<small>_Відтінок:</small>"
 
 #: ../src/f-spot.glade.h:65
-#, fuzzy
 msgid "<small>_Saturation:</small>"
-msgstr "Функція насичення"
+msgstr "<small>_Насиченість:</small>"
 
 #: ../src/f-spot.glade.h:66
-#, fuzzy
 msgid "<small>_Tint:</small>"
-msgstr "Прозорість з відтінком"
+msgstr "<small>_Інтенсивність:</small>"
 
 #: ../src/f-spot.glade.h:67
-#, fuzzy
 msgid "Ad_just Color..."
-msgstr "_Встановити дату й час..."
+msgstr "Коригувати _кольори..."
 
 #: ../src/f-spot.glade.h:68
-#, fuzzy
 msgid "Adjust Color"
-msgstr "Налаштовування кольору"
+msgstr "Коригувати кольори"
 
 #: ../src/f-spot.glade.h:69
-#, fuzzy
 msgid "Adjust Time"
-msgstr "Настройка дати й часу"
+msgstr "Коригувати час"
 
 #: ../src/f-spot.glade.h:70
-#, fuzzy
 msgid "Adjust _Time..."
-msgstr "Настройка дати й часу"
+msgstr "Коригувати _час..."
 
 #: ../src/f-spot.glade.h:71
-#, fuzzy
 msgid "Adjusted date: "
-msgstr "без дати"
+msgstr "Новий час"
 
 #: ../src/f-spot.glade.h:73
 msgid "Allow other programs to manipulate F-Spot"
-msgstr ""
+msgstr "Інші програми можуть керувати F-Spot"
 
 #: ../src/f-spot.glade.h:74
-#, fuzzy
 msgid "Arrange _by"
-msgstr "Упорядкувати за"
+msgstr "С_ортувати за"
 
 #: ../src/f-spot.glade.h:75
-#, fuzzy
 msgid "As _background"
-msgstr "Колір _тла"
+msgstr "Кольором _тла"
 
 #: ../src/f-spot.glade.h:76
-#, fuzzy
 msgid "As _custom color: "
-msgstr "Власний колір"
+msgstr "_Вказаним кольором: "
 
 #: ../src/f-spot.glade.h:77
-#, fuzzy
 msgid "As check _pattern"
-msgstr "_Шахівниця"
+msgstr "_Шаховими клітинами"
 
 #: ../src/f-spot.glade.h:78
-#, fuzzy
 msgid "Attach Tags:"
-msgstr "EXIF теги:"
+msgstr "Призначити позначки:"
 
 #: ../src/f-spot.glade.h:79
-#, fuzzy
 msgid "Attach tag:"
-msgstr "Відповідає _тег"
+msgstr "Призначити позначку:"
 
 #: ../src/f-spot.glade.h:80 ../extensions/CDExport/CDExport.glade.h:3
 #: ../extensions/FolderExport/FolderExport.glade.h:7
 #: ../extensions/GalleryExport/GalleryExport.glade.h:7
 #: ../extensions/SmugMugExport/SmugMugExport.glade.h:5
-#, fuzzy
 msgid "Autorotate"
-msgstr "Автозавантаження"
+msgstr "Автоматично обернути"
 
 #: ../src/f-spot.glade.h:82
-#, fuzzy
 msgid "By _Date"
-msgstr "за датою"
+msgstr "за _датою"
 
 #: ../src/f-spot.glade.h:83
-#, fuzzy
 msgid "By _Import Roll"
-msgstr "4-дюймовий рулон паперу"
+msgstr "за сеансом _імпорту"
 
 #: ../src/f-spot.glade.h:84
-#, fuzzy
 msgid "By _Rating"
-msgstr "Випадкове за рейтингом"
+msgstr "за _оцінкою"
 
 #: ../src/f-spot.glade.h:85
-#, fuzzy
 msgid "CD"
 msgstr "CD"
 
 #: ../src/f-spot.glade.h:86
-#, fuzzy
 msgid "C_aption:"
 msgstr "_Підпис"
 
 #: ../src/f-spot.glade.h:87
-#, fuzzy
 msgid "C_ontrast:"
 msgstr "_Контраст:"
 
 #: ../src/f-spot.glade.h:88
-#, fuzzy
 msgid "Camera Selection"
-msgstr "Виділення скасовано."
+msgstr "Вибір фотоапарату"
 
 #: ../src/f-spot.glade.h:89
-#, fuzzy
 msgid "Cancel, do not change the current timeline. "
-msgstr "Додати цей канал до виділеної області"
+msgstr "Скасувати, нічого не міняти у шкалі часу времени"
 
 #: ../src/f-spot.glade.h:90
-#, fuzzy
 msgid "Co_nfigure"
 msgstr "На_лаштувати"
 
 #: ../src/f-spot.glade.h:91
-#, fuzzy
 msgid "Copy Locat_ion"
-msgstr "Копіювати виділений текст"
+msgstr "Копіювати _місцерозташування"
 
 #: ../src/f-spot.glade.h:92
-#, fuzzy
 msgid "Copy files to the Photos folder"
-msgstr "Виберіть папку, до якої слід витягнути файли."
+msgstr "Копіювати файли у теку Photos"
 
 #: ../src/f-spot.glade.h:93
-#, fuzzy
 msgid "Create Mail"
 msgstr "Створити поштове повідомлення"
 
 #: ../src/f-spot.glade.h:94
-#, fuzzy
 msgid "Create New _Tag..."
-msgstr "Створити новий шар"
+msgstr "Створити _нову позначку..."
 
 #: ../src/f-spot.glade.h:95
-#, fuzzy
 msgid "Create _New Version..."
-msgstr "Доступна нова версія"
+msgstr "Створити _нову версію..."
 
 #: ../src/f-spot.glade.h:96
 msgid "Create a mail with the selected photos (possibly resized) attached"
-msgstr ""
+msgstr "Створити поштове повідомлення з вкладеними обраними знімками (за потреби — зменшеного розміру)"
 
 #: ../src/f-spot.glade.h:97
-#, fuzzy
 msgid "Crop photo to _fit"
-msgstr "розтягувати до розмірів вікна"
+msgstr "Обрізати, _щоб умістити"
 
 #: ../src/f-spot.glade.h:98
-#, fuzzy
 msgid "Current date:"
 msgstr "Поточна дата"
 
 #: ../src/f-spot.glade.h:99
-#, fuzzy
 msgid "Custom Theme"
-msgstr "Інша тема"
+msgstr "Інший стиль оформлення"
 
 #: ../src/f-spot.glade.h:100
-#, fuzzy
 msgid "Display File _Names"
-msgstr "Показувати імена файлів"
+msgstr "Показувати _імена файлів"
 
 #: ../src/f-spot.glade.h:101
 msgid "Display only those photos that were imported in specified Rolls."
-msgstr ""
+msgstr "Показувати лише ті знімки, що були імпортовані у певний момент часу"
 
 #: ../src/f-spot.glade.h:102
-#, fuzzy
 msgid "Do not send a mail"
-msgstr "Не надсилати"
+msgstr "Не надсилати повідомлення"
 
 #: ../src/f-spot.glade.h:103
-#, fuzzy
 msgid "E-_Mail:"
-msgstr "Ел.пошта:"
+msgstr "Ел._пошта:"
 
 #: ../src/f-spot.glade.h:104
-#, fuzzy
 msgid "E_xport titles and comments"
-msgstr "примітки та зміни"
+msgstr "_Експортувати назви та коментарі"
 
 #: ../src/f-spot.glade.h:105
-#, fuzzy
 msgid "Edit Tag Icon"
-msgstr "Невідомий тип піктограми: %s\n"
+msgstr "Змінити значок позначки"
 
 #: ../src/f-spot.glade.h:106
-#, fuzzy
 msgid "Edit icon"
-msgstr "Значок користувача"
+msgstr "Змінити значок"
 
 #: ../src/f-spot.glade.h:107
-#, fuzzy
 msgid "Estimated new size"
-msgstr "Новий розмір (Мб):"
+msgstr "Обчислений новий розмір"
 
 #: ../src/f-spot.glade.h:108 ../extensions/FlickrExport/FlickrExport.glade.h:6
 #: ../extensions/GalleryExport/GalleryExport.glade.h:8
 #: ../extensions/PicasaWebExport/PicasaWebExport.glade.h:9
 #: ../extensions/SmugMugExport/SmugMugExport.glade.h:6
-#, fuzzy
 msgid "Export"
 msgstr "Експорт"
 
 #: ../src/f-spot.glade.h:109
-#, fuzzy
 msgid "Extra large"
-msgstr "Величезний"
+msgstr "Дуже великий"
 
 #: ../src/f-spot.glade.h:110
-#, fuzzy
 msgid "F-Spot"
-msgstr "Точечний"
+msgstr "F-Spot"
 
 #: ../src/f-spot.glade.h:111
-#, fuzzy
 msgid "F-Spot View"
-msgstr "Переглянути _журнал"
+msgstr "Перегляд у F-Spot"
 
 #: ../src/f-spot.glade.h:113
-#, fuzzy
 msgid "Filter on selected rolls"
-msgstr "Перемістити вибраний фільтр вниз"
+msgstr "Фільтр за вибраними сеансам імпорту"
 
 #: ../src/f-spot.glade.h:114
-#, fuzzy
 msgid "Fin_d"
-msgstr "Фін"
+msgstr "З_найти"
 
 #: ../src/f-spot.glade.h:116
-#, fuzzy
 msgid ""
 "From Screen\n"
 "Standard RGB"
-msgstr "Усередину з центру екрана"
+msgstr ""
+"З екрану\n"
+"Standard RGB"
 
 #: ../src/f-spot.glade.h:118
-#, fuzzy
 msgid ""
 "Full Page\n"
 "Standard - 4x6"
-msgstr "Відбиток факсу на всю сторінку:"
+msgstr ""
+"Ціла сторінка\n"
+"Стандарт - 4x6"
 
 #: ../src/f-spot.glade.h:120
 msgid "G_allery:"
-msgstr ""
+msgstr "_Галерея:"
 
 #: ../src/f-spot.glade.h:121
-#, fuzzy
 msgid "Gallery"
-msgstr "Колекція"
+msgstr "Галерея"
 
 #: ../src/f-spot.glade.h:122
 msgid ""
@@ -2852,20 +2671,21 @@ msgid ""
 "0.5\"\n"
 "1\"\n"
 msgstr ""
+"Волос\n"
+"0.25\"\n"
+"0.5\"\n"
+"1\"\n"
 
 #: ../src/f-spot.glade.h:127
-#, fuzzy
 msgid "Images tagged with:"
-msgstr "Відкрити виділені зображення програмою"
+msgstr "Позначені знімки:"
 
 #. Translators: this string means 'source of import'
 #: ../src/f-spot.glade.h:130
-#, fuzzy
 msgid "Import Source:"
-msgstr "Джерело імпорту до обраного"
+msgstr "Звідки додати:"
 
 #: ../src/f-spot.glade.h:131
-#, fuzzy
 msgid "Include subfolders"
 msgstr "Включати підтеки"
 
@@ -2874,32 +2694,28 @@ msgid "Large"
 msgstr "Великий"
 
 #: ../src/f-spot.glade.h:133
-#, fuzzy
 msgid "Make F-Spot your screensaver"
-msgstr "Встановити параметри збереження екрану"
+msgstr "Зробити F-Spot програмою зберігання екрану"
 
 #: ../src/f-spot.glade.h:134
-#, fuzzy
 msgid "Manage _Extensions"
-msgstr "Про розширення..."
+msgstr "Налаштувати роз_ширення"
 
 #: ../src/f-spot.glade.h:135
 msgid "Manage your custom selection ratios"
-msgstr ""
+msgstr "Керування набором відношень сторін"
 
 #: ../src/f-spot.glade.h:136
 msgid "Medium"
 msgstr "Середній"
 
 #: ../src/f-spot.glade.h:137
-#, fuzzy
 msgid "N_umber of Copies:"
 msgstr "_Кількість копій:"
 
 #: ../src/f-spot.glade.h:139
-#, fuzzy
 msgid "No _image"
-msgstr "Немає зображень"
+msgstr "Немає _зображень"
 
 #: ../src/f-spot.glade.h:140
 msgid ""
@@ -2909,178 +2725,155 @@ msgid ""
 "Date\n"
 "Photo Details"
 msgstr ""
+"Нічого\n"
+"Назва\n"
+"Назва файлу\n"
+"Дата\n"
+"Подробиці про знімок"
 
 #: ../src/f-spot.glade.h:145
-#, fuzzy
 msgid "Number of photos in selected rolls :"
-msgstr "Зміна кількості колонок у виділених розділах"
+msgstr "Знімків у вибраних сеансах імпорту:"
 
 #: ../src/f-spot.glade.h:146
-#, fuzzy
 msgid "Number of pictures"
-msgstr "Кількість зображень: %d"
+msgstr "Кількість знімків"
 
 #: ../src/f-spot.glade.h:147
 msgid "Only photos taken within these dates will be displayed."
-msgstr ""
+msgstr "Будуть показані фотографії лише за вказаний період часу"
 
 #: ../src/f-spot.glade.h:148
-#, fuzzy
 msgid "Open _Folder..."
-msgstr "_Відкрити теку"
+msgstr "Відкрити _теку..."
 
 #: ../src/f-spot.glade.h:150
 msgid "Original size (possible very large file size)"
-msgstr ""
+msgstr "Первинний розмір (розмір файлу може бути дуже великим)"
 
 #: ../src/f-spot.glade.h:151
-#, fuzzy
 msgid "P_arent Tag:"
-msgstr "Відповідає _тег"
+msgstr "_Батьківська позначка:"
 
 #: ../src/f-spot.glade.h:152
-#, fuzzy
 msgid "P_hoto Source:"
-msgstr "Неправильний вихідний файл: %s: %s\n"
+msgstr "_Джерело знімків:"
 
 #: ../src/f-spot.glade.h:153
-#, fuzzy
 msgid "Page 1 of 3"
-msgstr "_Сторінка"
+msgstr "Сторінка 1 з 3"
 
 #: ../src/f-spot.glade.h:154
-#, fuzzy
 msgid "Pause"
-msgstr "Призупинити"
+msgstr "Пауза"
 
 #: ../src/f-spot.glade.h:155
-#, fuzzy
 msgid "Photo 0 of 0"
-msgstr "Фотографія"
+msgstr "Знімок 0 з 0"
 
 #: ../src/f-spot.glade.h:156
-#, fuzzy
 msgid "Photo _Size:"
-msgstr "Маленьке фото"
+msgstr "_Розмір знімку:"
 
 #: ../src/f-spot.glade.h:157
 msgid "Preferences"
 msgstr "Параметри"
 
 #: ../src/f-spot.glade.h:159
-#, fuzzy
 msgid "Print crop _marks"
-msgstr "Недруковані &символи"
+msgstr "Надрукувати знімки під о_брізку"
 
 #: ../src/f-spot.glade.h:160
-#, fuzzy
 msgid "Print..."
 msgstr "Друк..."
 
 #: ../src/f-spot.glade.h:161
-#, fuzzy
 msgid "Re_fresh Thumbnail"
-msgstr "_Оновити вигляд"
+msgstr "_Оновити ескіз"
 
 #: ../src/f-spot.glade.h:163
-#, fuzzy
 msgid "Repair"
 msgstr "Відновити"
 
 #: ../src/f-spot.glade.h:164
-#, fuzzy
 msgid "Reset"
 msgstr "Скинути"
 
 #: ../src/f-spot.glade.h:167
-#, fuzzy
 msgid "Select A Folder"
-msgstr "Вибір теки"
+msgstr "Виберіть теку"
 
 #: ../src/f-spot.glade.h:168
-#, fuzzy
 msgid "Select A gtkrc File"
-msgstr "Виберіть файл з зображенням"
+msgstr "Виберіть файл gtkrc"
 
 #: ../src/f-spot.glade.h:169
-#, fuzzy
 msgid "Select Photos to Copy From Camera..."
-msgstr "Вибрати інший _колір..."
+msgstr "Виберіть знімки для копіювання з камери..."
 
 #: ../src/f-spot.glade.h:171
-#, fuzzy
 msgid "Select _None"
-msgstr "/Виділення/Нічого"
+msgstr "_Зняти виділення"
 
 #: ../src/f-spot.glade.h:172
-#, fuzzy
 msgid "Select a Tag..."
-msgstr "Виділити тег"
+msgstr "Виберіть позначку..."
 
 #: ../src/f-spot.glade.h:173
 msgid "Select the camera from which you want to transfer files"
-msgstr ""
+msgstr "Виберіть фотоапарат, з якого треба забрати знімки"
 
 #: ../src/f-spot.glade.h:174
-#, fuzzy
 msgid "Selected Camera: "
-msgstr "Зведення про апарат:"
+msgstr "Вибраний фотоапарат: "
 
 #: ../src/f-spot.glade.h:175
-#, fuzzy
 msgid ""
 "Selection\n"
 "Gallery\n"
 "Viewport"
-msgstr "Показувати позначку виділення"
+msgstr ""
+"Вибране\n"
+"Галерея\n"
+"Область перегляду"
 
 #: ../src/f-spot.glade.h:178
-#, fuzzy
 msgid "Selection Constraints"
-msgstr "Виділення скасовано."
+msgstr "Відношення сторін"
 
 #: ../src/f-spot.glade.h:179
-#, fuzzy
 msgid "Send by _Mail..."
-msgstr "Надіслати електронною поштою"
+msgstr "Надіслати по_штою..."
 
 #: ../src/f-spot.glade.h:180
-#, fuzzy
 msgid "Set Rating Filter"
-msgstr "Правило спам-фільтру %(i)d"
+msgstr "Фільтр оцінки"
 
 #: ../src/f-spot.glade.h:181
-#, fuzzy
 msgid "Set as _Background"
-msgstr "Встановити як _тло"
+msgstr "Помістити на _робочий стіл"
 
 #: ../src/f-spot.glade.h:182
-#, fuzzy
 msgid "Set date range"
-msgstr "Установка проміжку часу"
+msgstr "Встановіть діапазон дат"
 
 #: ../src/f-spot.glade.h:184
-#, fuzzy
 msgid "Show all photos."
-msgstr "/Вигляд/Показати вс_е"
+msgstr "Показувати всі знімки."
 
 #: ../src/f-spot.glade.h:185
-#, fuzzy
 msgid "Show or hide the side pane"
 msgstr "Показати чи сховати бічну панель"
 
 #: ../src/f-spot.glade.h:186
-#, fuzzy
 msgid "Show or hide the toolbar"
 msgstr "Показати/сховати панель інструментів"
 
 #: ../src/f-spot.glade.h:187
-#, fuzzy
 msgid "Side _pane"
 msgstr "_Бічна панель"
 
 #: ../src/f-spot.glade.h:188
-#, fuzzy
 msgid "Side_bar"
 msgstr "Бічна _панель"
 
@@ -3089,20 +2882,18 @@ msgid "Small"
 msgstr "Малий"
 
 #: ../src/f-spot.glade.h:190
-#, fuzzy
 msgid "So_urce Temp"
-msgstr "C"
+msgstr "_Первинна температура"
 
 #: ../src/f-spot.glade.h:191
-#, fuzzy
 msgid "Space all photos by"
-msgstr ": використовується на всіх слайдах"
+msgstr "Встановити часовий інтервал між знімками у"
 
 #: ../src/f-spot.glade.h:192
 msgid ""
 "Specify if an original size picture should be rotated or not. Smaller sizes "
 "are automatically rotated."
-msgstr ""
+msgstr "Вкажіть, чи обертати знімок первинного розміру. Знімки меншого розміру обертаються автоматично."
 
 #: ../src/f-spot.glade.h:193
 msgid ""
@@ -3110,69 +2901,62 @@ msgid ""
 "Image Profile\n"
 "Custom\n"
 msgstr ""
+"sRGB\n"
+"Профіль знімку\n"
+"Інший профіль\n"
 
 #: ../src/f-spot.glade.h:197
-#, fuzzy
 msgid "Strip image _metadata"
-msgstr "Обробка метаданих від : %s"
+msgstr "П_рибрати метадані знімку"
 
 #: ../src/f-spot.glade.h:198
-#, fuzzy
 msgid "System Theme"
-msgstr "_Немає (системна тема)"
+msgstr "Системний стиль оформлення"
 
 #: ../src/f-spot.glade.h:199
-#, fuzzy
 msgid "T_ags"
-msgstr "_Зображення"
+msgstr "_Позначки"
 
 #: ../src/f-spot.glade.h:200 ../extensions/FolderExport/FolderExport.cs:1178
 #: ../extensions/FolderExport/FolderExport.cs:1179
-#, fuzzy
 msgid "Tags: "
-msgstr "Теги"
+msgstr "Позкачки: "
 
 #: ../src/f-spot.glade.h:201
-#, fuzzy
 msgid "Thumbnail _elements"
-msgstr "_Елементи дизайну"
+msgstr "Ескізи містять"
 
 #: ../src/f-spot.glade.h:202
 msgid "Tiny"
 msgstr "Крихітний"
 
 #: ../src/f-spot.glade.h:203
-#, fuzzy
 msgid "Too_lbar"
-msgstr "закороткий"
+msgstr "_Панель інструментів"
 
 #: ../src/f-spot.glade.h:204
-#, fuzzy
 msgid "Total original size"
-msgstr "Показувати _початковий розмір"
+msgstr "Загальний розмір оригіналів"
 
 #: ../src/f-spot.glade.h:205
 msgid "View"
-msgstr "Перегляд"
+msgstr "Виглад"
 
 #: ../src/f-spot.glade.h:206
 msgid "Will print using: US Letter size on Generic Postscript"
-msgstr ""
+msgstr "Надрукує: на папері US Letter у Generic Postscript"
 
 #: ../src/f-spot.glade.h:207
-#, fuzzy
 msgid "Write _metadata to file"
-msgstr "Не вдається записати у файл:"
+msgstr "Записувати _метадані у файли"
 
 #: ../src/f-spot.glade.h:208
-#, fuzzy
 msgid "Zoom _in"
-msgstr "Збільшити"
+msgstr "З_більшити"
 
 #: ../src/f-spot.glade.h:209
-#, fuzzy
 msgid "Zoom _out"
-msgstr "Зменшити"
+msgstr "З_меншити"
 
 #: ../src/f-spot.glade.h:210
 msgid "Zoom in"
@@ -3183,12 +2967,10 @@ msgid "Zoom out"
 msgstr "Зменшити"
 
 #: ../src/f-spot.glade.h:213
-#, fuzzy
 msgid "_Attach Tag to Selection"
-msgstr "Виділіть повідомлення, що додаєте!"
+msgstr "_Призначити позначку виділеному"
 
 #: ../src/f-spot.glade.h:214
-#, fuzzy
 msgid "_Border:"
 msgstr "_Рамка:"
 
@@ -3197,127 +2979,105 @@ msgid "_Brightness:"
 msgstr "_Яскравість:"
 
 #: ../src/f-spot.glade.h:217
-#, fuzzy
 msgid "_Clear Rating Filter"
-msgstr "Правило спам-фільтру %(i)d"
+msgstr "_Прибрати фільтр оцінки"
 
 #: ../src/f-spot.glade.h:218
-#, fuzzy
 msgid "_Clear Roll Filter"
-msgstr "Правило спам-фільтру %(i)d"
+msgstr "_Прибрати фільтр сеансів імпорту"
 
 #: ../src/f-spot.glade.h:219
-#, fuzzy
 msgid "_Components"
-msgstr "Компоненти"
+msgstr "П_анелі"
 
 #: ../src/f-spot.glade.h:220
-#, fuzzy
 msgid "_Contents"
 msgstr "_Зміст"
 
 #: ../src/f-spot.glade.h:221
-#, fuzzy
 msgid "_Create"
-msgstr "С_творити"
+msgstr "_Створити"
 
 #: ../src/f-spot.glade.h:222
-#, fuzzy
 msgid "_Create Mail"
-msgstr "Створити поштове повідомлення"
+msgstr "_Створити повідомлення"
 
 #: ../src/f-spot.glade.h:223
-#, fuzzy
 msgid "_Dates"
-msgstr "Дати"
+msgstr "_Дату"
 
 #: ../src/f-spot.glade.h:225
-#, fuzzy
 msgid "_Delete Selected Tag"
-msgstr "Видалити виділені вузли"
+msgstr "В_идалити вибрану позначку"
 
 #: ../src/f-spot.glade.h:226
-#, fuzzy
 msgid "_Delete Version"
-msgstr "Видалення версії"
+msgstr "В_идалити версію"
 
 #: ../src/f-spot.glade.h:227
-#, fuzzy
 msgid "_Destination Temp"
-msgstr "Каталог тимчасових файлів"
+msgstr "Н_овая температура"
 
 #: ../src/f-spot.glade.h:228
-#, fuzzy
 msgid "_Display:"
-msgstr "<b>Відображення</b>"
+msgstr "_Відображення:"
 
 #: ../src/f-spot.glade.h:229
 msgid "_Edit"
 msgstr "_Правка"
 
 #: ../src/f-spot.glade.h:230
-#, fuzzy
 msgid "_Edit Selected Tag..."
-msgstr "Правити виділений ключ"
+msgstr "_Змінити виділену позначку..."
 
 #: ../src/f-spot.glade.h:231
-#, fuzzy
 msgid "_Export"
-msgstr "_Експорт"
+msgstr "_Експортувати"
 
 #: ../src/f-spot.glade.h:232
 #: ../extensions/FlickrExport/FlickrExport.glade.h:15
 #: ../extensions/PicasaWebExport/PicasaWebExport.glade.h:20
-#, fuzzy
 msgid "_Export tags"
-msgstr "EXIF теги:"
+msgstr "Е_кспортувати позначки"
 
 #: ../src/f-spot.glade.h:233
-#, fuzzy
 msgid "_Export to"
-msgstr "Експорт до"
+msgstr "_Експортувати до"
 
 #: ../src/f-spot.glade.h:234
 #: ../extensions/GalleryExport/GalleryExport.glade.h:15
 #: ../extensions/PicasaWebExport/PicasaWebExport.glade.h:21
 #: ../extensions/SmugMugExport/SmugMugExport.glade.h:12
-#, fuzzy
 msgid "_Export to Album:"
-msgstr "Перейти до альбому"
+msgstr "Експортувати до _альбому:"
 
 #: ../src/f-spot.glade.h:235
-#, fuzzy
 msgid "_Filmstrip"
-msgstr "Діафільм"
+msgstr "_Фотострічка"
 
 #: ../src/f-spot.glade.h:236
-#, fuzzy
 msgid "_Flickr"
 msgstr "_Дзеркало"
 
 #: ../src/f-spot.glade.h:237
-#, fuzzy
 msgid "_Folder"
 msgstr "_Тека"
 
 #: ../src/f-spot.glade.h:238
-#, fuzzy
 msgid "_Fullscreen"
 msgstr "На весь _екран"
 
 #: ../src/f-spot.glade.h:239
-#, fuzzy
 msgid "_Gallery"
-msgstr "Колекція"
+msgstr "_Галерея"
 
 #: ../src/f-spot.glade.h:240
 msgid "_Help"
 msgstr "_Довідка"
 
 #: ../src/f-spot.glade.h:241
-#, fuzzy
 msgid "_Hidden"
-msgstr "Прих_ована"
+msgstr "_Приховані"
 
 #: ../src/f-spot.glade.h:242
 msgid "_Hue:"
@@ -3328,74 +3088,64 @@ msgid "_Icon:"
 msgstr "_Значок:"
 
 #: ../src/f-spot.glade.h:244
-#, fuzzy
 msgid "_Import..."
 msgstr "_Імпорт..."
 
 #: ../src/f-spot.glade.h:245
-#, fuzzy
 msgid "_Interpolate image on zoom"
-msgstr "Інтерполювати при зміні _масштабу"
+msgstr "_Виконати інтерполяцію при зміні масштабу"
 
 #: ../src/f-spot.glade.h:246
 msgid "_Large"
-msgstr "_Великий"
+msgstr "_Великі"
 
 #: ../src/f-spot.glade.h:247
-#, fuzzy
 msgid "_Last Import Roll"
-msgstr "4-дюймовий рулон паперу"
+msgstr "_Останній сеанс імпорту"
 
 #: ../src/f-spot.glade.h:248
 msgid "_Medium"
-msgstr "_Середній"
+msgstr "_Середні"
 
 #: ../src/f-spot.glade.h:249
-#, fuzzy
 msgid "_Month"
-msgstr "Місяць"
+msgstr "_Місяць"
 
 #: ../src/f-spot.glade.h:250
-#, fuzzy
 msgid "_New Window"
-msgstr "_Створити вікно"
+msgstr "_Нове вікно"
 
 #: ../src/f-spot.glade.h:251
 msgid "_Open album in browser when done uploading"
-msgstr ""
+msgstr "Відкрити _альбом у оглядачі при завершені завантаження"
 
 #: ../src/f-spot.glade.h:252
 msgid "_Open destination when done exporting"
-msgstr ""
+msgstr "Відкрити _каталог при завершенні експорту"
 
 #: ../src/f-spot.glade.h:253
-#, fuzzy
 msgid "_Output:"
-msgstr "В_ихід:"
+msgstr "На _виході:"
 
 #: ../src/f-spot.glade.h:254
-#, fuzzy
 msgid "_Photo"
-msgstr "Фотографія"
+msgstr "_Фото"
 
 #: ../src/f-spot.glade.h:255
 msgid "_Quit"
 msgstr "Ви_йти"
 
 #: ../src/f-spot.glade.h:256
-#, fuzzy
 msgid "_Ratings"
-msgstr "оцінки недоступні"
+msgstr "О_цінки"
 
 #: ../src/f-spot.glade.h:258
-#, fuzzy
 msgid "_Remove Tag From Selection"
-msgstr "Видалити з добірки"
+msgstr "Зняти _позначку з виділеного"
 
 #: ../src/f-spot.glade.h:259
-#, fuzzy
 msgid "_Rename Version"
-msgstr "Приховувати версію"
+msgstr "Перей_менувати версію"
 
 #: ../src/f-spot.glade.h:260
 #: ../extensions/FlickrExport/FlickrExport.glade.h:16
@@ -3403,9 +3153,8 @@ msgstr "Приховувати версію"
 #: ../extensions/GalleryExport/GalleryExport.glade.h:20
 #: ../extensions/PicasaWebExport/PicasaWebExport.glade.h:24
 #: ../extensions/SmugMugExport/SmugMugExport.glade.h:14
-#, fuzzy
 msgid "_Resize to: "
-msgstr "Зміна розміру тексту"
+msgstr "_Масштабувати до: "
 
 #: ../src/f-spot.glade.h:262
 msgid "_Saturation:"
@@ -3413,30 +3162,25 @@ msgstr "_Насиченість:"
 
 #: ../src/f-spot.glade.h:263
 msgid "_Scale photos to no larger than: "
-msgstr ""
+msgstr "_Масштабувати знімок до не більш ніж: "
 
 #: ../src/f-spot.glade.h:264
-#, fuzzy
 msgid "_Select Import Rolls..."
-msgstr "Укажіть файл імпорту"
+msgstr "_Вибрати сеанси імпорту..."
 
 #: ../src/f-spot.glade.h:265
-#, fuzzy
 msgid "_Set Date Range..."
-msgstr "Установка проміжку часу"
+msgstr "_Встановити діапазон дат..."
 
 #: ../src/f-spot.glade.h:266
-#, fuzzy
 msgid "_Set Rating filter..."
-msgstr "Правило спам-фільтру %(i)d"
+msgstr "_Увімкнути фільтр оцінок..."
 
 #: ../src/f-spot.glade.h:267
-#, fuzzy
 msgid "_Sharpen..."
-msgstr "Підвищення _різкості..."
+msgstr "_Підвищити _різкості..."
 
 #: ../src/f-spot.glade.h:268
-#, fuzzy
 msgid "_Slideshow"
 msgstr "Показ _слайдів"
 
@@ -3445,86 +3189,75 @@ msgid "_Small"
 msgstr "_Малий"
 
 #: ../src/f-spot.glade.h:270
-#, fuzzy
 msgid "_Strip metadata"
-msgstr "<b>Інші метадані</b>"
+msgstr "_Прибрати метадані"
 
 #: ../src/f-spot.glade.h:271
-#, fuzzy
 msgid "_Tag Icons"
-msgstr "Оновити значки"
+msgstr "Значки _позначок"
 
 #: ../src/f-spot.glade.h:272
-#, fuzzy
 msgid "_Tag Name:"
-msgstr "Назва ярлика"
+msgstr "Назва _позначки:"
 
 #: ../src/f-spot.glade.h:273
-#, fuzzy
 msgid "_Tags"
-msgstr "Теги"
+msgstr "_Позначки"
 
 #: ../src/f-spot.glade.h:274
-#, fuzzy
 msgid "_Timeline"
-msgstr "Часова шкала"
+msgstr "_Шкала часу"
 
 #: ../src/f-spot.glade.h:275
-#, fuzzy
 msgid "_Toolbar"
 msgstr "Панель _інструментів"
 
 #: ../src/f-spot.glade.h:276
 msgid "_Tools"
-msgstr "_Інструменти"
+msgstr "С_ервіс"
 
 #: ../src/f-spot.glade.h:277
-#, fuzzy
 msgid "_URI:"
-msgstr "URI"
+msgstr "_URI:"
 
 #: ../src/f-spot.glade.h:278
-#, fuzzy
 msgid "_Untagged Photos"
-msgstr "Імпортування фотознімків"
+msgstr "Знімки _без категорій"
 
 #: ../src/f-spot.glade.h:279
-#, fuzzy
 msgid "_Version"
-msgstr "Версія"
+msgstr "_Версія"
 
 #: ../src/f-spot.glade.h:280
 msgid "_View"
 msgstr "_Вигляд"
 
 #: ../src/f-spot.glade.h:281
-#, fuzzy
 msgid "_Virtual Filesystem"
-msgstr "Віртуальна файлова система GNOME"
+msgstr "_Віртуальна файлова система"
 
 #. at, or after a date, or between dates
 #: ../src/f-spot.glade.h:284
-#, fuzzy
 msgid ""
 "at\n"
 "after\n"
 "between"
-msgstr "**** ЗАКІНЧУЄТЬСЯ ВХІД НА %s\n"
+msgstr ""
+"під час\n"
+"після\n"
+"між"
 
 #: ../src/f-spot.glade.h:287
-#, fuzzy
 msgid "difference:"
-msgstr "Р_ізниця"
+msgstr "з різницею у:"
 
 #: ../src/f-spot.glade.h:288
-#, fuzzy
 msgid "img_000.jpg"
-msgstr "Файли JPEG (*.jpg, *.jpeg)"
+msgstr "img_000.jpg"
 
 #: ../src/f-spot.glade.h:289
-#, fuzzy
 msgid "min. Starting at {0}"
-msgstr "починаючи з клітинки"
+msgstr "хв. Починаючи з {0}"
 
 #: ../src/f-spot.glade.h:291
 #: ../extensions/FlickrExport/FlickrExport.glade.h:18
@@ -3536,29 +3269,25 @@ msgid "pixels"
 msgstr "точок"
 
 #: ../src/f-spot.glade.h:292
-#, fuzzy
 msgid "x"
 msgstr "x"
 
 #: ../tools/f-spot-screensaver.desktop.in.h:1
-#, fuzzy
 msgid "Display a slideshow from F-Spot"
-msgstr "Показує слайд-шоу зображень з теки малюнків"
+msgstr "Показ слайдів за допомогою F-Spot"
 
 #: ../tools/f-spot-screensaver.desktop.in.h:2
-#, fuzzy
 msgid "F-Spot photos"
-msgstr "Імпортування фотознімків"
+msgstr "Знімки у F-Spot"
 
 #: ../extensions/CDExport/CDExport.addin.xml.h:1
-#, fuzzy
 msgid "_CD..."
-msgstr "CD"
+msgstr "_CD..."
 
 #: ../extensions/CDExport/CDExport.cs:219
-#, fuzzy, csharp-format
+#, csharp-format
 msgid "Transferring picture \"{0}\" To CD"
-msgstr "Запис звуку на компакт-диск"
+msgstr "Триває копіювання знімку \"{0}\" на CD"
 
 #: ../extensions/CDExport/CDExport.cs:246
 #: ../extensions/FlickrExport/FlickrExport.cs:368
@@ -3566,85 +3295,72 @@ msgstr "Запис звуку на компакт-диск"
 #: ../extensions/GalleryExport/GalleryExport.cs:797
 #: ../extensions/PicasaWebExport/PicasaWebExport.cs:702
 #: ../extensions/SmugMugExport/SmugMugExport.cs:606
-#, fuzzy
 msgid "Done Sending Photos"
-msgstr "Фотографії та музика"
+msgstr "Надсилання знімків завершено"
 
 #: ../extensions/CDExport/CDExport.cs:248
 #: ../extensions/FolderExport/FolderExport.cs:286
-#, fuzzy
 msgid "Transfer Complete"
-msgstr "Передачу завершено."
+msgstr "Передачу завершено"
 
 #: ../extensions/CDExport/CDExport.cs:255
 #: ../extensions/FolderExport/FolderExport.cs:291
-#, fuzzy
 msgid "Error While Transferring"
-msgstr "%s: помилка %d при декомпресії! %p(%d)\n"
+msgstr "Помилка при передачі файлів"
 
 #: ../extensions/CDExport/CDExport.cs:262
 #: ../extensions/FolderExport/FolderExport.cs:310
-#, fuzzy
 msgid "Error Transferring"
-msgstr "Передача звіту..."
+msgstr "Помилка при передачі файлів"
 
 #: ../extensions/CDExport/CDExport.cs:280
-#, fuzzy
 msgid "copying..."
-msgstr "Копіюється '%s'"
+msgstr "копіюється..."
 
 #: ../extensions/CDExport/CDExport.cs:296
 #: ../extensions/FolderExport/FolderExport.cs:332
-#, fuzzy
 msgid "Error: Error while transferring; Aborting"
-msgstr "Помилка на зчитуванні... переривання"
+msgstr "Помилка: помилка при передачі; виконання перервано"
 
 #: ../extensions/CDExport/CDExport.cs:299
 #: ../extensions/FolderExport/FolderExport.cs:335
-#, fuzzy
 msgid "Error: File Already Exists; Aborting"
-msgstr "Файл журналу вже існує. Перезаписати?"
+msgstr "Помилка: файл вже існує; виконання перевано"
 
 #: ../extensions/CDExport/CDExport.glade.h:1
 msgid "<b><i>There is some previously scheduled items to write</i></b>"
-msgstr ""
+msgstr "<b><i>Чи є раніше заплановані для запису елементи</i></b>"
 
 #: ../extensions/CDExport/CDExport.glade.h:2
-#, fuzzy
 msgid "<b>Photos to Burn</b>"
-msgstr "Штамп для запису"
+msgstr "<b>Знімки, що записуються на диск</b>"
 
 #: ../extensions/CDExport/CDExport.glade.h:4
-#, fuzzy
 msgid "Create CD"
-msgstr "Створити звуковий компакт-диск"
+msgstr "Створити CD"
 
 #: ../extensions/CDExport/CDExport.glade.h:6
-#, fuzzy
 msgid "Size of the exported selection :"
-msgstr "Зменшення розміру знаків у виділеному фрагменті"
+msgstr "Обсяг експортованих знімків: "
 
 #: ../extensions/CDExport/CDExport.glade.h:7
 msgid "_Browse Previously Scheduled Files"
 msgstr ""
 
 #: ../extensions/CDExport/CDExport.glade.h:8
-#, fuzzy
 msgid "_Write only these photos to CD"
-msgstr "Записати ці файли на компакт-диск зараз"
+msgstr "_Записати лише ці знімки на CD"
 
 #: ../extensions/FlickrExport/FlickrExport.addin.xml.h:1
 msgid "_23hq..."
-msgstr ""
+msgstr "_23hq..."
 
 #: ../extensions/FlickrExport/FlickrExport.addin.xml.h:2
-#, fuzzy
 msgid "_Flickr..."
-msgstr "_Калібрувати"
+msgstr "_Flickr"
 
 #: ../extensions/FlickrExport/FlickrExport.cs:97
 #: ../extensions/FlickrExport/FlickrExport.glade.h:5
-#, fuzzy
 msgid "Authorize"
 msgstr "Авторизувати"
 
@@ -3656,29 +3372,27 @@ msgid ""
 msgstr ""
 
 #: ../extensions/FlickrExport/FlickrExport.cs:104
-#, fuzzy
 msgid "Complete Authorization"
-msgstr "Помилка доступу."
+msgstr "Завершити авторизацію"
 
 #: ../extensions/FlickrExport/FlickrExport.cs:109
-#, fuzzy, csharp-format
+#, csharp-format
 msgid "Logging into {0}"
-msgstr "Вхід до ''%s''..."
+msgstr "Обертається знімок \"{0}\""
 
 #: ../extensions/FlickrExport/FlickrExport.cs:110
-#, fuzzy
 msgid "Checking credentials..."
-msgstr "2. Облікові відомості"
+msgstr "Перевірка посвідчень..."
 
 #: ../extensions/FlickrExport/FlickrExport.cs:117
-#, fuzzy, csharp-format
+#, csharp-format
 msgid "Welcome {0} you are connected to {1}"
-msgstr "Ви дійсно бажаєте видалити %s?"
+msgstr "Ласкаво просимо {0} ви з'єдналися з {1}"
 
 #: ../extensions/FlickrExport/FlickrExport.cs:120
-#, fuzzy, csharp-format
+#, csharp-format
 msgid "Sign in as a different user"
-msgstr "Виконання вибраних команд від імені іншого користувача."
+msgstr "Підписати іншого користувача"
 
 #: ../extensions/FlickrExport/FlickrExport.cs:123
 #, csharp-format
@@ -3686,39 +3400,36 @@ msgid "Used {0} of your allowed {1} monthly quota"
 msgstr ""
 
 #: ../extensions/FlickrExport/FlickrExport.cs:286
-#, fuzzy
 msgid "Unable to log on"
-msgstr "Не вдається ввійти до системи:"
+msgstr "Не вдається увійти до системи"
 
 #: ../extensions/FlickrExport/FlickrExport.cs:306
-#, fuzzy, csharp-format
+#, csharp-format
 msgid "Waiting for response {0} of {1}"
-msgstr "Очікування відповіді..."
+msgstr "Очікування відповіді {0} з {1}"
 
 #: ../extensions/FlickrExport/FlickrExport.cs:333
 #: ../extensions/FolderExport/FolderExport.cs:241
 #: ../extensions/GalleryExport/GalleryExport.cs:768
-#, fuzzy, csharp-format
+#, csharp-format
 msgid "Uploading picture \"{0}\""
-msgstr "Вставити зображення"
+msgstr "Вивантажується знімок \"{0}\""
 
 #: ../extensions/FlickrExport/FlickrExport.cs:356
-#, fuzzy, csharp-format
+#, csharp-format
 msgid "Error Uploading To {0}: {1}"
-msgstr "Помилка перейменування %s у %s\n"
+msgstr "Помилка при вивантаженні до {0}: {1}"
 
 #: ../extensions/FlickrExport/FlickrExport.cs:370
 #: ../extensions/GalleryExport/GalleryExport.cs:799
 #: ../extensions/PicasaWebExport/PicasaWebExport.cs:704
 #: ../extensions/SmugMugExport/SmugMugExport.cs:608
-#, fuzzy
 msgid "Upload Complete"
-msgstr "Транзакція завершена"
+msgstr "Вивантаження завершено"
 
 #: ../extensions/FlickrExport/FlickrExport.cs:438
-#, fuzzy
 msgid "Unable to log on."
-msgstr "Не вдається ввійти до системи:"
+msgstr "Не вдається увійти до системи."
 
 #: ../extensions/FlickrExport/FlickrExport.cs:439
 #, csharp-format
@@ -3731,19 +3442,16 @@ msgstr ""
 #: ../extensions/GalleryExport/GalleryExport.cs:721
 #: ../extensions/PicasaWebExport/PicasaWebExport.cs:598
 #: ../extensions/SmugMugExport/SmugMugExport.cs:521
-#, fuzzy
 msgid "Uploading Pictures"
-msgstr "Керівні піктограми"
+msgstr "Триває вивантаження знімків"
 
 #: ../extensions/FlickrExport/FlickrExport.glade.h:4
-#, fuzzy
 msgid "<b>Viewing permissions</b>"
-msgstr "Права групи:"
+msgstr "<b>Доступ до перегляду</b>"
 
 #: ../extensions/FlickrExport/FlickrExport.glade.h:7
-#, fuzzy
 msgid "Export tag _hierarchy"
-msgstr "Синхронізація ієрархії папок"
+msgstr "_Експортувати ієрархію позначок"
 
 #: ../extensions/FlickrExport/FlickrExport.glade.h:8
 msgid ""
@@ -3753,165 +3461,136 @@ msgid ""
 msgstr ""
 
 #: ../extensions/FlickrExport/FlickrExport.glade.h:9
-#, fuzzy
 msgid "Ignore _top level tags"
-msgstr "@file{mkinstalldirs} верхнього рівня"
+msgstr "Ігнорувати позначки _верхнього рівня"
 
 #: ../extensions/FlickrExport/FlickrExport.glade.h:10
-#, fuzzy
 msgid "Private"
 msgstr "Приватний"
 
 #: ../extensions/FlickrExport/FlickrExport.glade.h:11
-#, fuzzy
 msgid "Public"
-msgstr "Суспільний"
+msgstr "Публічний"
 
 #: ../extensions/FlickrExport/FlickrExport.glade.h:12
-#, fuzzy
 msgid "Strip _metadata"
-msgstr "<b>Інші метадані</b>"
+msgstr "_Прибрати метадані"
 
 #: ../extensions/FlickrExport/FlickrExport.glade.h:13
-#, fuzzy
 msgid "Visible to Family"
-msgstr "Відображувані стилі:"
+msgstr "Видимі членам родини"
 
 #: ../extensions/FlickrExport/FlickrExport.glade.h:14
-#, fuzzy
 msgid "Visible to Friends"
-msgstr "Відображувані стилі:"
+msgstr "Видимі друзям"
 
 #: ../extensions/FlickrExport/FlickrExport.glade.h:17
 msgid "_View photos in browser when done uploading"
-msgstr ""
+msgstr "Відкрити _альбом у оглядачі при завершені завантаження"
 
 #: ../extensions/FolderExport/FolderExport.addin.xml.h:1
-#, fuzzy
 msgid "F_older..."
-msgstr "_Тека"
+msgstr "_Тека..."
 
 #: ../extensions/FolderExport/FolderExport.cs:139
-#, fuzzy
 msgid "Select Export Folder"
-msgstr "Експортувати з папки:"
+msgstr "Виберіть теку для експорту"
 
 #: ../extensions/FolderExport/FolderExport.cs:197
-#, fuzzy
 msgid "Building Gallery"
-msgstr "Колекція фотографій   "
+msgstr "Створення галереї"
 
 #: ../extensions/FolderExport/FolderExport.cs:247
 #, csharp-format
 msgid "Error uploading picture \"{0}\" to Gallery:{2}{1}"
-msgstr ""
+msgstr "Помилка при вивантаженні знімку \"{0}\" до галереї:{2}{1}"
 
 #. Note for translators: light as clear, opposite as dark
 #: ../extensions/FolderExport/FolderExport.cs:809
-#, fuzzy
 msgid "Light"
 msgstr "Світлий"
 
 #: ../extensions/FolderExport/FolderExport.cs:810
-#, fuzzy
 msgid "Dark"
-msgstr "Темні"
+msgstr "Темний"
 
 #. Abbreviation of previous
 #: ../extensions/FolderExport/FolderExport.cs:990
-#, fuzzy
 msgid "Prev"
-msgstr "Попередня"
+msgstr "Попередній"
 
 #: ../extensions/FolderExport/FolderExport.cs:1102
-#, fuzzy
 msgid "Gallery generated by"
-msgstr "Сортування списку користувачів"
+msgstr "Галерею створено"
 
 #: ../extensions/FolderExport/FolderExport.cs:1142
-#, fuzzy
 msgid "Show Styles"
-msgstr "Не показувати стилі"
+msgstr "Показувати стилі"
 
 #: ../extensions/FolderExport/FolderExport.cs:1143
-#, fuzzy
 msgid "Hide Styles"
-msgstr "Множинні стилі"
+msgstr "Сховати стилі"
 
 #: ../extensions/FolderExport/FolderExport.cs:1310
 #: ../extensions/FolderExport/FolderExport.cs:1442
-#, fuzzy
 msgid "Page:"
 msgstr "Сторінка:"
 
 #: ../extensions/FolderExport/FolderExport.glade.h:1
-#, fuzzy
 msgid "\n"
 msgstr "\n"
 
 #: ../extensions/FolderExport/FolderExport.glade.h:4
-#, fuzzy
 msgid "<b>Export Method</b>"
-msgstr "Метод відтворення звуку"
+msgstr "<b>Спосіб екпорту</b>"
 
 #: ../extensions/FolderExport/FolderExport.glade.h:8
-#, fuzzy
 msgid "Create _gallery using \"Original\""
-msgstr "Вставити, зберігаючи вихідний формат таблиці"
+msgstr "_Створити галерею використовуючи Original"
 
 #: ../extensions/FolderExport/FolderExport.glade.h:9
-#, fuzzy
 msgid "Create standalone _web gallery"
-msgstr "Створити оновлюваний веб-запит..."
+msgstr "Створити окрему _веб-галерею..."
 
 #: ../extensions/FolderExport/FolderExport.glade.h:10
-#, fuzzy
 msgid "D_escription:"
 msgstr "О_пис:"
 
 #: ../extensions/FolderExport/FolderExport.glade.h:11
-#, fuzzy
 msgid "Export _tags"
-msgstr "EXIF теги:"
+msgstr "Експортувати _позначки"
 
 #: ../extensions/FolderExport/FolderExport.glade.h:12
-#, fuzzy
 msgid "Export tag _icons"
-msgstr "Показувати з_начки користувачів"
+msgstr "Експортувати _значки позначок"
 
 #: ../extensions/FolderExport/FolderExport.glade.h:13
-#, fuzzy
 msgid "Folder Export"
-msgstr "Експорт \"%1\" з папки: "
+msgstr "Експорту до теки"
 
 #: ../extensions/FolderExport/FolderExport.glade.h:14
-#, fuzzy
 msgid "G_allery Name:"
-msgstr "Повне ім'я "
+msgstr "_Назва галереї:"
 
 #: ../extensions/FolderExport/FolderExport.glade.h:15
 msgid "Open _destination when done exporting"
-msgstr ""
+msgstr "Відкрити _сторінку з галереєю при завершенні експорту"
 
 #: ../extensions/FolderExport/FolderExport.glade.h:16
-#, fuzzy
 msgid "_Folder:"
 msgstr "_Тека:"
 
 #: ../extensions/FolderExport/FolderExport.glade.h:18
-#, fuzzy
 msgid "_Save the files only"
-msgstr "Лише локальні файли"
+msgstr "З_берегти лише файли"
 
 #: ../extensions/GalleryExport/GalleryExport.addin.xml.h:1
-#, fuzzy
 msgid "Web _Gallery..."
-msgstr "Колекція фотографій   "
+msgstr "_Веб-галерея..."
 
 #: ../extensions/GalleryExport/GalleryExport.cs:388
-#, fuzzy
 msgid "Invalid URL"
-msgstr "Неправильний обробник URL"
+msgstr "Неправильний URL"
 
 #: ../extensions/GalleryExport/GalleryExport.cs:389
 msgid "The gallery URL entry does not appear to be a valid URL"
@@ -3920,9 +3599,8 @@ msgstr ""
 #: ../extensions/GalleryExport/GalleryExport.cs:399
 #: ../extensions/GalleryExport/GalleryExport.cs:426
 #: ../extensions/GalleryExport/GalleryExport.cs:437
-#, fuzzy
 msgid "Error while connecting to Gallery"
-msgstr "Помилка під час з'єднання з вузлом."
+msgstr "Помилка під час з'єднання з галереєю"
 
 #: ../extensions/GalleryExport/GalleryExport.cs:400
 #: ../extensions/GalleryExport/GalleryExport.cs:427
