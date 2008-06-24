@@ -271,35 +271,29 @@ namespace FSpot {
 	
 		private void HandleSepiaButtonClicked (object sender, EventArgs args)
 		{
-			PhotoQuery pq = query as PhotoQuery;
-	
-			if (pq == null)
-				return;
+			Photo photo = View.Item.Current as Photo;
 	
 			try {
-				FSpot.SepiaTone sepia = new FSpot.SepiaTone ((Photo)View.Item.Current);
+				FSpot.SepiaTone sepia = new FSpot.SepiaTone (photo);
 				sepia.Image = View.CompletePixbuf ();
 				sepia.Adjust ();
-				pq.Commit (Item.Index);
+				Core.Database.Photos.Commit (photo);
 			} catch (System.Exception e) {
-				ShowError (e, (Photo)View.Item.Current); 
+				ShowError (e, photo); 
 			}
 		}
 	
 		private void HandleDesaturateButtonClicked (object sender, EventArgs args)
 		{
-			PhotoQuery pq = query as PhotoQuery;
-	
-			if (pq == null)
-				return;
+			Photo photo = View.Item.Current as Photo;
 	
 			try {
-				FSpot.Desaturate desaturate = new FSpot.Desaturate ((Photo) View.Item.Current);
+				FSpot.Desaturate desaturate = new FSpot.Desaturate (photo);
 				desaturate.Image = View.CompletePixbuf ();
 				desaturate.Adjust ();
-				pq.Commit (Item.Index);
+				Core.Database.Photos.Commit (photo);
 			} catch (System.Exception e) {
-				ShowError (e, (Photo)View.Item.Current);
+				ShowError (e, photo);
 			}
 		}
 	

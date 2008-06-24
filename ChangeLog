@@ -1,5 +1,10 @@
 2008-06-24  Ruben Vermeersch  <ruben@savanne.be>
 
+	* PhotoView.cs: PhotoQuery is no longer needed, as all data happens
+	through the View.
+
+2008-06-24  Ruben Vermeersch  <ruben@savanne.be>
+
 	* PhotoQuery.cs: Make sure PhotoQuery gets notified of all updates in the
 	PhotoStore. This ensures that PhotoQuery is always up-to-date. Changed the
 	MarkChanged event chain to trigger on the PhotoStore events.
