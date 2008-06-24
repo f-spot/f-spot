@@ -29,6 +29,7 @@ namespace FSpot {
 			// 	 photos that were added or removed over dbus
 			this.store.ItemsAddedOverDBus += delegate { RequestReload(); };
 			this.store.ItemsRemovedOverDBus += delegate { RequestReload(); };
+			this.store.ItemsChanged += MarkChanged;
 
 			photos = store.Query ((Tag [])null, null, Range, RollSet, RatingRange);
 		}
@@ -188,7 +189,22 @@ namespace FSpot {
 		{
 			foreach (int index in indexes)
 				store.Commit (photos[index]);
-			MarkChanged (indexes);
+		}
+
+		private void MarkChanged (object sender, DbItemEventArgs args)
+		{
+			List<int> indexes = new List<int>();
+			foreach (DbItem item in args.Items) {
+				Photo photo = item as Photo;
+				int index = IndexOf (photo);
+
+				// Ignore photos that are not in the query
+				if (index > -1) 
+					indexes.Add (index);
+			}
+
+			if (indexes.Count > 0) 
+				MarkChanged (indexes.ToArray ());
 		}
 
 		public void MarkChanged (int index)

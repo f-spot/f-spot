@@ -1,5 +1,11 @@
 2008-06-24  Ruben Vermeersch  <ruben@savanne.be>
 
+	* PhotoQuery.cs: Make sure PhotoQuery gets notified of all updates in the
+	PhotoStore. This ensures that PhotoQuery is always up-to-date. Changed the
+	MarkChanged event chain to trigger on the PhotoStore events.
+
+2008-06-24  Ruben Vermeersch  <ruben@savanne.be>
+
 	* src/ColorAdjustment.cs: Clean up ColorAdjustment a little, document what
 	appears to be a clever optimization.
 
