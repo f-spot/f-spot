@@ -277,6 +277,8 @@ namespace GalleryRemote {
 			}
 		}
 
+		public bool expect_continue = true;
+
 		protected CookieContainer cookies = null;
 		public FSpot.ProgressItem Progress = null;
 
@@ -759,7 +761,8 @@ namespace GalleryRemote {
 			client.Add ("force_filename", filename);
 			client.Add ("auto_rotate", autorotate ? "yes" : "no");
 			client.Add ("userfile", new FileInfo (path));
-			
+			client.expect_continue = expect_continue;
+
 			return ParseAddItem (client.Submit (uri, Progress));
 		}
 		
@@ -975,6 +978,7 @@ namespace GalleryRemote {
 			client.Add ("g2_form[force_filename]", filename);
 			client.Add ("g2_form[auto_rotate]", autorotate ? "yes" : "no");
 			client.Add ("g2_userfile", new FileInfo (path));
+			client.expect_continue = expect_continue;
 			AddG2Specific (client);
 			
 			return ParseAddItem (client.Submit (uri, Progress));

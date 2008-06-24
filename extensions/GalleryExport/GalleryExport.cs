@@ -33,10 +33,12 @@ namespace G2Export {
 			}
 		}
 
+		public const string EXPORT_SERVICE = "gallery/";
+		public const string LIGHTTPD_WORKAROUND_KEY = Preferences.APP_FSPOT_EXPORT + EXPORT_SERVICE + "lighttpd_workaround";
+
 		public Gallery Connect ()
 		{
-			//System.Console.WriteLine ("GalleryAccount.Connect()");
-			
+			//System.Console.WriteLine ("GalleryAccount.Connect()");	
 			Gallery gal = null;
 
 			if (version == GalleryVersion.VersionUnknown)
@@ -56,6 +58,10 @@ namespace G2Export {
 
 			gallery = gal;
 			connected = true;
+			
+			object val = Preferences.Get (LIGHTTPD_WORKAROUND_KEY);
+			if (val != null)
+				gallery.expect_continue = !(bool)val;
 
 			return gallery;
 		}
@@ -641,14 +647,15 @@ namespace G2Export {
 			LoadPreference (META_KEY);
 			LoadPreference (ROTATE_KEY);
 		}
-		
+
 		public const string EXPORT_SERVICE = "gallery/";
 		public const string SCALE_KEY = Preferences.APP_FSPOT_EXPORT + EXPORT_SERVICE + "scale";
 		public const string SIZE_KEY = Preferences.APP_FSPOT_EXPORT + EXPORT_SERVICE + "size";
 		public const string BROWSER_KEY = Preferences.APP_FSPOT_EXPORT + EXPORT_SERVICE + "browser";
 		public const string META_KEY = Preferences.APP_FSPOT_EXPORT + EXPORT_SERVICE + "meta";
 		public const string ROTATE_KEY = Preferences.APP_FSPOT_EXPORT + EXPORT_SERVICE + "rotate";
-
+		public const string LIGHTTPD_WORKAROUND_KEY = Preferences.APP_FSPOT_EXPORT + EXPORT_SERVICE + "lighttpd_workaround";
+	
 		private bool scale;
 		private bool rotate;
 		private int size;
