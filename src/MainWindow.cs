@@ -1220,11 +1220,10 @@ public class MainWindow {
 
 		switch (args.Event.Key) {
 		case Gdk.Key.Delete:
-			if (shift) {
+			if (shift)
 				HandleDeleteCommand (sender, (EventArgs) args);
-			} else {
+			else
 				HandleRemoveCommand (sender, (EventArgs) args);
-			}
 			args.RetVal = true;
 			break;
 		case Gdk.Key.Key_0:
@@ -1374,6 +1373,8 @@ public class MainWindow {
 	void HandlePhotoViewKeyPressEvent (object sender, Gtk.KeyPressEventArgs args)
 	{
 		bool alt = ModifierType.Mod1Mask == (args.Event.State & ModifierType.Mod1Mask);
+		bool shift = ModifierType.ShiftMask == (args.Event.State & ModifierType.ShiftMask);
+		
 		switch (args.Event.Key) {
 		case Gdk.Key.F:
 		case Gdk.Key.f:
@@ -1385,7 +1386,10 @@ public class MainWindow {
 			args.RetVal = true;
 			break;
 		case Gdk.Key.Delete:
-			HandleRemoveCommand (sender, (EventArgs) args);
+			if (shift)
+				HandleDeleteCommand (sender, (EventArgs) args);
+			else
+				HandleRemoveCommand (sender, (EventArgs) args);
 			args.RetVal = true;
 			break;
 		case Gdk.Key.Key_0:
