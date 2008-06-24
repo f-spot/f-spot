@@ -278,7 +278,7 @@ namespace FSpot {
 	
 			try {
 				FSpot.SepiaTone sepia = new FSpot.SepiaTone ((Photo)View.Item.Current);
-				sepia.Pixbuf = View.CompletePixbuf ();
+				sepia.Image = View.CompletePixbuf ();
 				sepia.Adjust ();
 				pq.Commit (Item.Index);
 			} catch (System.Exception e) {
@@ -295,7 +295,7 @@ namespace FSpot {
 	
 			try {
 				FSpot.Desaturate desaturate = new FSpot.Desaturate ((Photo) View.Item.Current);
-				desaturate.Pixbuf = View.CompletePixbuf ();
+				desaturate.Image = View.CompletePixbuf ();
 				desaturate.Adjust ();
 				pq.Commit (Item.Index);
 			} catch (System.Exception e) {

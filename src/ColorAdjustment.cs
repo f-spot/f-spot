@@ -24,8 +24,23 @@ namespace FSpot {
 		protected int nsteps = 20;
 		protected Cms.Intent intent = Cms.Intent.Perceptual;
 
-		public Gdk.Pixbuf Pixbuf {
-			get { return image; }
+		// This is the input pixbuf, on which the adjustment will be performed.
+		//
+		// If it is not assigned, it will be loaded from the photo given when
+		// constructing the ColorAdjustment. However, assigning it (if you
+		// already have a copy in memory) avoids doing a duplicate load.
+		public Gdk.Pixbuf Image {
+			get {
+				if (image == null) {
+					using (ImageFile img = ImageFile.Create (photo.DefaultVersionUri)) {
+						image = img.Load ();
+
+						if (image_profile == null)
+							image_profile = img.GetProfile ();
+					}
+				}
+				return image;
+			}
 			set { image = value; }
 		}
 
@@ -44,13 +59,6 @@ namespace FSpot {
 		public void Adjust ()
 		{
 			bool create_version = photo.DefaultVersion.IsProtected;
-			using (ImageFile img = ImageFile.Create (photo.DefaultVersionUri)) {
-				if (image == null)
-					image = img.Load ();
-			
-				if (image_profile == null)
-					image_profile = img.GetProfile ();
-			}
 
 			if (image_profile == null)
 				image_profile = Cms.Profile.CreateStandardRgb ();
@@ -60,33 +68,33 @@ namespace FSpot {
 
 			Gdk.Pixbuf final = new Gdk.Pixbuf (Gdk.Colorspace.Rgb,
 							   false, 8,
-							   image.Width, 
-							   image.Height);
+							   Image.Width,
+							   Image.Height);
 			profiles = new List <Cms.Profile> (4);
 			profiles.Add (image_profile);
 			GenerateAdjustments ();
 			profiles.Add (destination_profile);
 			Cms.Profile [] list = profiles.ToArray ();
 			
-			if (image.HasAlpha) {
-				Pixbuf alpha = PixbufUtils.Flatten (image);
+			if (Image.HasAlpha) {
+				Pixbuf alpha = PixbufUtils.Flatten (Image);
 				Transform transform = new Transform (list,
 								     PixbufUtils.PixbufCmsFormat (alpha),
 								     PixbufUtils.PixbufCmsFormat (final),
 								     intent, 0x0000);
 				PixbufUtils.ColorAdjust (alpha, final, transform);
-				PixbufUtils.ReplaceColor (final, image);
+				PixbufUtils.ReplaceColor (final, Image);
 				alpha.Dispose ();
 				final.Dispose ();
-				final = image;
+				final = Image;
 			} else {
 				Cms.Transform transform = new Cms.Transform (list,
-									     PixbufUtils.PixbufCmsFormat (image),
+									     PixbufUtils.PixbufCmsFormat (Image),
 									     PixbufUtils.PixbufCmsFormat (final),
 									     intent, 0x0000);
 				
-				PixbufUtils.ColorAdjust (image, final, transform);
-				image.Dispose ();
+				PixbufUtils.ColorAdjust (Image, final, transform);
+				Image.Dispose ();
 			}
 				
 			photo.SaveVersion (final, create_version);
