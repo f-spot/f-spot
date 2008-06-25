@@ -6,13 +6,13 @@ using Tao.OpenGl;
 using FSpot.Utils;
 
 namespace FSpot.Editors {
-	public abstract class Editor {
+	public abstract class OldEditor {
 		protected PhotoImageView view;
 		protected Gtk.Window controls;
-		
+
 		public event EventHandler Done;
 
-		public Editor (PhotoImageView view)
+		public OldEditor (PhotoImageView view)
 		{
 			SetView (view);
 		}
@@ -52,7 +52,7 @@ namespace FSpot.Editors {
 				controls = win;
 #endif
 			}
-			
+
 		}
 
 		protected virtual Widget CreateControls ()
@@ -67,7 +67,7 @@ namespace FSpot.Editors {
 
 		protected virtual void Close ()
 		{
-			
+
 			if (controls != null)
 				controls.Destroy ();
 
@@ -78,7 +78,7 @@ namespace FSpot.Editors {
 		}
 	}
 
-	public class GlEditor : Editor {
+	public class GlEditor : OldEditor {
 		protected GlTransition transition;
 		protected Scale scale;
 		protected Texture texture;
@@ -120,8 +120,8 @@ namespace FSpot.Editors {
 			Gl.glEnable (Gl.GL_CONVOLUTION_2D);
 			Gdk.Color c = view.Style.Background (view.State);
 			Gl.glClearColor (c.Red / (float) ushort.MaxValue,
-					 c.Blue / (float) ushort.MaxValue, 
-					 c.Green / (float) ushort.MaxValue, 
+					 c.Blue / (float) ushort.MaxValue,
+					 c.Green / (float) ushort.MaxValue,
 					 1.0f);
 
 			if (texture == null) {
@@ -134,21 +134,21 @@ namespace FSpot.Editors {
 				if (!supported) {
 					System.Console.WriteLine ("GL_ARB_imaging not supported");
 					return;
-				}	
+				}
 #else
 				GlExtensionLoader.LoadAllExtensions ();
 #endif
-				
+
 				Gl.glConvolutionParameteri (Gl.GL_CONVOLUTION_2D,
 							    Gl.GL_CONVOLUTION_BORDER_MODE,
 							    Gl.GL_REPLICATE_BORDER);
 
 				Gl.glConvolutionFilter2D (Gl.GL_CONVOLUTION_2D,
-							  Gl.GL_INTENSITY, 
-							  3, 
+							  Gl.GL_INTENSITY,
+							  3,
 							  3,
 							  Gl.GL_INTENSITY,
-							  Gl.GL_FLOAT, 
+							  Gl.GL_FLOAT,
 							  kernel);
 
 				texture = new Texture (view.CompletePixbuf ());
@@ -157,17 +157,17 @@ namespace FSpot.Editors {
 			Gl.glShadeModel(Gl.GL_FLAT);
 
 			Gl.glColor3f(1.0f, 1.0f, 1.0f);
-			
+
 			Gl.glEnable (Gl.GL_DEPTH_TEST);
 			Gl.glEnable (Gl.GL_NORMALIZE);
 			Gl.glShadeModel (Gl.GL_FLAT);
 			Gl.glEnable (Gl.GL_TEXTURE_RECTANGLE_ARB);
 			Gl.glClear (Gl.GL_COLOR_BUFFER_BIT | Gl.GL_DEPTH_BUFFER_BIT);
 
-			
+
 
 			transition.Draw (view.Allocation, texture, texture);
-			
+
 			view.Glx.SwapBuffers (view.GdkWindow);
 			args.RetVal = true;
 			Gl.glDisable (Gl.GL_CONVOLUTION_2D);
@@ -185,12 +185,12 @@ namespace FSpot.Editors {
 				view.Glx.MakeCurrent (view.GdkWindow);
 				texture.Dispose ();
 			}
-			
+
 			base.Close ();
 		}
 	}
 
-	public class EffectEditor : Editor {
+	public class EffectEditor : OldEditor {
 		protected IEffect effect;
 		protected Widgets.ImageInfo info;
 		bool double_buffer;
@@ -198,7 +198,7 @@ namespace FSpot.Editors {
 		public EffectEditor (PhotoImageView view) : base (view)
 		{
 		}
-		
+
 		protected override void SetView (PhotoImageView value)
 		{
 			if (view != null) {
@@ -226,13 +226,13 @@ namespace FSpot.Editors {
 			Context ctx = CairoUtils.CreateContext (view.GdkWindow);
 			Gdk.Color c = view.Style.Background (view.State);
 			ctx.Source = new SolidPattern (c.Red / (float) ushort.MaxValue,
-						       c.Blue / (float) ushort.MaxValue, 
+						       c.Blue / (float) ushort.MaxValue,
 						       c.Green / (float) ushort.MaxValue);
 
 			ctx.Paint ();
 
 			effect.OnExpose (ctx, view.Allocation);
-			
+
 			args.RetVal = true;
 		}
 
@@ -243,12 +243,11 @@ namespace FSpot.Editors {
 			if (effect != null)
 				effect.Dispose ();
 			effect = null;
-			
+
 			if (info != null)
 				info.Dispose ();
 			info = null;
-			
+
 		}
 	}
 }
-

@@ -19,7 +19,7 @@ namespace FSpot {
 		ProgressType load_async = ProgressType.Full;
 		bool progressive_display;
 		public GdkGlx.Context Glx;
-		private Editor editor;
+		private OldEditor editor;
 
 		public PhotoImageView (IBrowsableCollection query) : this (new BrowsablePointer (query, -1))
 		{
@@ -77,7 +77,7 @@ namespace FSpot {
 #endif
 		}
 
-		public Editor Editor {
+		public OldEditor Editor {
 			get { return editor; }
 			set {
 				value.Done += HandleEditorDone;
@@ -91,7 +91,7 @@ namespace FSpot {
 
 		private void HandleEditorDone (object sender, EventArgs args)
 		{
-			Editor old = sender as Editor;
+			OldEditor old = sender as OldEditor;
 
 			old.Done -= HandleEditorDone;
 				

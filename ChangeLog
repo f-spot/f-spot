@@ -1,5 +1,15 @@
 2008-06-25  Ruben Vermeersch  <ruben@savanne.be>
 
+	Move Editor to OldEditor, clearing up room for the new one. First patch in
+	a large row, even though it doesn't have much effect, I'd like to keep the
+	delta between my tree and HEAD small (currently 18 commits).
+
+	* src/Editors/Editor.cs: Replaced with src/Editors/OldEditor.cs.
+	* src/Makefile.am: Update build accordingly.
+	* src/PhotoImageView.cs: Update references.
+
+2008-06-25  Ruben Vermeersch  <ruben@savanne.be>
+
 	* ColorAdjustment.cs: Fix a small regression where an input profile might
 	be missed. This is fixed in a nasty way, but fixed in the clean way in my
 	(refactored) tree.
