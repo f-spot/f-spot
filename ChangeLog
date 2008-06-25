@@ -1,5 +1,11 @@
 2008-06-25  Ruben Vermeersch  <ruben@savanne.be>
 
+	* GConfPreferenceBackend.cs, Imaging/JpegHeader.cs, RotateCommand.cs,
+	TagCommands.cs, UI.Dialog/PreferenceDialog.cs: Silence some warnings, am
+	tired of them.
+
+2008-06-25  Ruben Vermeersch  <ruben@savanne.be>
+
 	* InfoDisplay.cs, MetadataStore.cs: Fix invalid type comparisons.
 
 2008-06-24  Ruben Vermeersch  <ruben@savanne.be>

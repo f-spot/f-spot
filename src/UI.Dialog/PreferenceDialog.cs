@@ -78,10 +78,10 @@ namespace FSpot.UI.Dialog {
 			}
 			LoadPreference (Preferences.DBUS_READ_ONLY);
 
+#if FALSE
 			Gtk.CellRendererText name_cell = new Gtk.CellRendererText ();
 			Gtk.CellRendererText desc_cell = new Gtk.CellRendererText ();
 			
-#if FALSE
 			display_combo.Model = new ProfileList ();
 			display_combo.PackStart (desc_cell, false);
 			display_combo.PackStart (name_cell, true);

@@ -384,7 +384,7 @@ public class TagCommands {
 						PreviewPixbuf = PixbufUtils.TagIconFromPixbuf (external_image);
 					}
 				}
-			} catch (Exception e) {
+			} catch (Exception) {
 				string caption = Catalog.GetString ("Unable to load image");
 				string message = String.Format (Catalog.GetString ("Unable to load \"{0}\" as icon for the tag"), 
 									external_photo_chooser.Uri.ToString ());

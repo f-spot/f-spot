@@ -329,7 +329,7 @@ public class JpegHeader : SemWeb.StatementSource {
 
 	public string GetJFIFComment ()
 	{
-		string name = ComSignature.Name;
+		//string name = ComSignature.Name;
 		Marker marker = FindMarker (ComSignature);
 
 		if (marker == null)

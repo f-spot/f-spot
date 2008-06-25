@@ -30,7 +30,7 @@ namespace FSpot
 		{
 			try {
 				return Client.Get (key);
-			} catch (GConf.NoSuchKeyException e) {
+			} catch (GConf.NoSuchKeyException) {
 				throw new NoSuchKeyException (key);
 			}
 		}
