@@ -379,7 +379,7 @@ namespace FSpot {
 				string fg = InfoDisplay.Color (info.Style.Foreground (Gtk.StateType.Active));
 
 				//if (MetadataStore.Namespaces.GetPrefix (path) != null) {
-				if (stmt.Object is Literal) {
+				if (stmt.Object is SemWeb.Literal) {
 					stream.Write ("<tr><td valign=top align=right bgcolor=\""+ bg + "\"><font color=\"" + fg + "\">");
 					stream.Write (title);
 					stream.Write ("</font></td><td>");

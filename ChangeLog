@@ -1,3 +1,7 @@
+2008-06-25  Ruben Vermeersch  <ruben@savanne.be>
+
+	* InfoDisplay.cs, MetadataStore.cs: Fix invalid type comparisons.
+
 2008-06-24  Ruben Vermeersch  <ruben@savanne.be>
 
 	* Widgets/MetadataDisplay.cs: Fix the InvalidCastException occuring with

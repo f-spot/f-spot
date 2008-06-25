@@ -105,7 +105,7 @@ namespace FSpot {
 
 			if (d != null) {
 				label = d.title;
-				if (d.formater != null && stmt.Object is Literal)
+				if (d.formater != null && stmt.Object is SemWeb.Literal)
 					value = d.formater.GetValue (store, (SemWeb.Literal)stmt.Object);
 
 			} else {
