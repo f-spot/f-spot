@@ -1,5 +1,15 @@
 2008-06-25  Ruben Vermeersch  <ruben@savanne.be>
 
+	Move old files out of the way, as I'm going to add a lot of new files
+	here.
+
+	* src/Editors/OldEditor.cs: Replaced with src/Editors/Old/OldEditor.cs.
+	* src/Editors/SoftFocus.cs: Replaced with src/Editors/Old/SoftFocus.cs.
+	* src/Editors/Tilt.cs: Replaced with src/Editors/Old/Tilt.cs.
+	* src/Makefile.am: Update build.
+
+2008-06-25  Ruben Vermeersch  <ruben@savanne.be>
+
 	Move Editor to OldEditor, clearing up room for the new one. First patch in
 	a large row, even though it doesn't have much effect, I'd like to keep the
 	delta between my tree and HEAD small (currently 18 commits).

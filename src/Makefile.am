@@ -88,9 +88,9 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/DependentListStore.cs		\
 	$(srcdir)/DirectoryAdaptor.cs		\
 	$(srcdir)/DirectoryCollection.cs	\
-	$(srcdir)/Editors/OldEditor.cs		\
-	$(srcdir)/Editors/SoftFocus.cs		\
-	$(srcdir)/Editors/Tilt.cs		\
+	$(srcdir)/Editors/Old/OldEditor.cs		\
+	$(srcdir)/Editors/Old/SoftFocus.cs		\
+	$(srcdir)/Editors/Old/Tilt.cs		\
 	$(srcdir)/ExportStore.cs		\
 	$(srcdir)/Extensions/ExportMenuItemNode.cs	\
 	$(srcdir)/Extensions/IExporter.cs	\

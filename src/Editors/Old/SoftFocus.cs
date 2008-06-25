@@ -18,10 +18,10 @@ using FSpot.UI.Dialog;
 using FSpot.Utils;
 namespace FSpot.Editors {
 	public class SoftFocus : EffectEditor {
-		Widgets.SoftFocus soft; 
+		Widgets.SoftFocus soft;
 		Scale scale;
 		bool double_buffer;
-		
+
 		protected override string GetTitle ()
 		{
 			return Catalog.GetString ("Soft Focus");
@@ -34,7 +34,7 @@ namespace FSpot.Editors {
 		protected override void SetView (PhotoImageView value)
 		{
 			base.SetView (value);
-			
+
 			if (value == null)
 				return;
 
@@ -62,7 +62,7 @@ namespace FSpot.Editors {
 			actions.PackStart (apply);
 			box.PackStart (actions);
 
-			return box;	
+			return box;
 		}
 
 		private void HandleCancel (object sender, EventArgs args)
@@ -74,7 +74,7 @@ namespace FSpot.Editors {
 		{
 			BrowsablePointer item = view.Item;
 			EditTarget target = new EditTarget (item);
-			try { 
+			try {
 				using (ImageFile img = ImageFile.Create (item.Current.DefaultVersionUri)) {
 
 					Cairo.Format format = view.CompletePixbuf ().HasAlpha ? Cairo.Format.Argb32 : Cairo.Format.Rgb24;
@@ -91,7 +91,7 @@ namespace FSpot.Editors {
 					using (Gdk.Pixbuf output = MemorySurface.CreatePixbuf (dest)) {
 						using (System.IO.Stream stream = System.IO.File.OpenWrite (tmp)) {
 							img.Save (output, stream);
-						
+
 						}
 					}
 
@@ -105,8 +105,8 @@ namespace FSpot.Editors {
 					Gnome.Vfs.Xfer.XferUri (new Gnome.Vfs.Uri (UriUtils.PathToFileUri (tmp).ToString ()),
 						new Gnome.Vfs.Uri (target.Uri.ToString ()),
 						Gnome.Vfs.XferOptions.Default,
-						Gnome.Vfs.XferErrorMode.Abort, 
-						Gnome.Vfs.XferOverwriteMode.Replace, 
+						Gnome.Vfs.XferErrorMode.Abort,
+						Gnome.Vfs.XferOverwriteMode.Replace,
 						delegate {
 							System.Console.Write (".");
 							return 1;
