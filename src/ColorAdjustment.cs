@@ -31,14 +31,9 @@ namespace FSpot {
 		// already have a copy in memory) avoids doing a duplicate load.
 		public Gdk.Pixbuf Image {
 			get {
-				if (image == null) {
-					using (ImageFile img = ImageFile.Create (photo.DefaultVersionUri)) {
+				if (image == null)
+					using (ImageFile img = ImageFile.Create (photo.DefaultVersionUri))
 						image = img.Load ();
-
-						if (image_profile == null)
-							image_profile = img.GetProfile ();
-					}
-				}
 				return image;
 			}
 			set { image = value; }
@@ -59,6 +54,10 @@ namespace FSpot {
 		public void Adjust ()
 		{
 			bool create_version = photo.DefaultVersion.IsProtected;
+
+			if (image_profile == null)
+				using (ImageFile img = ImageFile.Create (photo.DefaultVersionUri))
+					image_profile = img.GetProfile ();
 
 			if (image_profile == null)
 				image_profile = Cms.Profile.CreateStandardRgb ();

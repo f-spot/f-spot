@@ -1,5 +1,11 @@
 2008-06-25  Ruben Vermeersch  <ruben@savanne.be>
 
+	* ColorAdjustment.cs: Fix a small regression where an input profile might
+	be missed. This is fixed in a nasty way, but fixed in the clean way in my
+	(refactored) tree.
+
+2008-06-25  Ruben Vermeersch  <ruben@savanne.be>
+
 	* GConfPreferenceBackend.cs, Imaging/JpegHeader.cs, RotateCommand.cs,
 	TagCommands.cs, UI.Dialog/PreferenceDialog.cs: Silence some warnings, am
 	tired of them.
