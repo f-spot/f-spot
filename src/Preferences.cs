@@ -142,7 +142,7 @@ namespace FSpot
 				return true;
 			
 			case TAG_ICON_SIZE:
-				return (int) Tag.IconSize.Large;
+				return (int) Tag.IconSize.Medium;
 		
 			case SIDEBAR_POSITION:
 			case ZOOM:
