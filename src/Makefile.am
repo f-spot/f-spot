@@ -70,6 +70,7 @@ WIDGETS_CSDISTFILES =				\
 	$(srcdir)/Widgets/SaneTreeView.cs	\
 	$(srcdir)/Widgets/ScrolledView.cs	\
 	$(srcdir)/Widgets/Sidebar.cs		\
+	$(srcdir)/Widgets/TagMenu.cs		\
 	$(srcdir)/Widgets/TagView.cs
 
 F_SPOT_CSDISTFILES =				\
@@ -191,7 +192,6 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/SingleView.cs			\
 	$(srcdir)/SimpleCalendar.cs		\
 	$(srcdir)/TagCommands.cs		\
-	$(srcdir)/TagMenu.cs			\
 	$(srcdir)/TagPopup.cs			\
 	$(srcdir)/TagQueryWidget.cs		\
 	$(srcdir)/TagSelectionWidget.cs		\
