@@ -19,6 +19,7 @@ CMS_CSDISTFILES =				\
 
 CORE_CSDISTFILES =				\
 	$(srcdir)/Core/Animator.cs		\
+	$(srcdir)/Core/BrowsableEventArgs.cs	\
 	$(srcdir)/Core/BrowsablePointer.cs	\
 	$(srcdir)/Core/Category.cs		\
 	$(srcdir)/Core/DbItem.cs		\

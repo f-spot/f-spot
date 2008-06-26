@@ -420,7 +420,7 @@ public class MainWindow {
 		photo_view = new PhotoView (query);
 		photo_box.Add (photo_view);
 
-		photo_view.ButtonPressEvent += HandlePhotoViewButtonPressEvent;
+		photo_view.DoubleClicked += HandleDoubleClicked;
 		photo_view.KeyPressEvent += HandlePhotoViewKeyPressEvent;
 		photo_view.UpdateStarted += HandlePhotoViewUpdateStarted;
 		photo_view.UpdateFinished += HandlePhotoViewUpdateFinished;
@@ -1360,10 +1360,17 @@ public class MainWindow {
 	// IconView event handlers
 	// 
 
-	void HandleDoubleClicked (FSpot.Widgets.IconView icon_view, int clicked_item)
+	void HandleDoubleClicked (Widget widget, BrowsableEventArgs args)
 	{
-		icon_view.FocusCell = clicked_item;
-		SetViewMode (ModeType.PhotoView);
+		switch (ViewMode) {
+		case ModeType.IconView:
+			icon_view.FocusCell = args.Items[0];
+			SetViewMode (ModeType.PhotoView);
+			break;
+		case ModeType.PhotoView:
+			SetViewMode (ModeType.IconView);
+			break;
+		}
 	}
 
 	//
@@ -1432,12 +1439,6 @@ public class MainWindow {
 			break;
 		}
 		return;
-	}
-
-	void HandlePhotoViewButtonPressEvent (object sender, Gtk.ButtonPressEventArgs args)
-	{
-		if (args.Event.Type == EventType.TwoButtonPress && args.Event.Button == 1)
-			SetViewMode (ModeType.IconView);
 	}
 
 	void HandlePhotoViewUpdateStarted (PhotoView sender)

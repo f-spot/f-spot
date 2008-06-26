@@ -194,7 +194,7 @@ namespace FSpot.Widgets
 		private int click_count;
 
 		// Public events.
-		public delegate void DoubleClickedHandler (IconView view, int clicked_item);
+		public delegate void DoubleClickedHandler (Widget widget, BrowsableEventArgs args);
 		public event DoubleClickedHandler DoubleClicked;
 
 		public delegate void ZoomChangedHandler (object sender, System.EventArgs args);
@@ -1427,7 +1427,7 @@ namespace FSpot.Widgets
 				| ModifierType.ShiftMask)) != 0)
 				return;
 				if (DoubleClicked != null)
-					DoubleClicked (this, cell_num);
+					DoubleClicked (this, new BrowsableEventArgs (cell_num));
 				return;
 
 			case EventType.ButtonPress:
@@ -1544,7 +1544,7 @@ namespace FSpot.Widgets
 			case Gdk.Key.Return:
 				if (DoubleClicked == null)
 					break;
-				DoubleClicked (this, FocusCell);
+				DoubleClicked (this, new BrowsableEventArgs (FocusCell));
 				break;
 			default:
 				args.RetVal = false;

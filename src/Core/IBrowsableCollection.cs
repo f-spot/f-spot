@@ -12,24 +12,6 @@ namespace FSpot
 	public delegate void IBrowsableCollectionChangedHandler (IBrowsableCollection collection);
 	public delegate void IBrowsableCollectionItemsChangedHandler (IBrowsableCollection collection, BrowsableEventArgs args);
 
-	public class BrowsableEventArgs : System.EventArgs {
-		int [] items;
-
-		public int [] Items {
-			get { return items; }
-		}
-
-		public BrowsableEventArgs (int num)
-		{
-			items = new int [] { num };
-		}
-
-		public BrowsableEventArgs (int [] items)
-		{
-			this.items = items;
-		}
-	}
-
 	public interface IBrowsableCollection {
 		// FIXME this should really be ToArray ()
 		IBrowsableItem [] Items {

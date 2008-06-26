@@ -62,6 +62,9 @@ namespace FSpot {
 	
 		public delegate void UpdateFinishedHandler (PhotoView view);
 		public event UpdateFinishedHandler UpdateFinished;
+
+		public delegate void DoubleClickedHandler (Widget widget, BrowsableEventArgs args);
+		public event DoubleClickedHandler DoubleClicked;
 	
 		public enum ConstraintType {
 			Normal,
@@ -221,6 +224,8 @@ namespace FSpot {
 		// Event handlers.
 		private void HandleButtonPressEvent (object sender, ButtonPressEventArgs args)
 		{
+			if (args.Event.Type == EventType.TwoButtonPress && args.Event.Button == 1 && DoubleClicked != null)
+				DoubleClicked (this, null);
 			if (args.Event.Type == EventType.ButtonPress
 			    && args.Event.Button == 3) {
 				PhotoPopup popup = new PhotoPopup ();
@@ -478,11 +483,11 @@ namespace FSpot {
 			photo_view.SelectionChanged += HandleSelectionChanged;
 	
 			photo_view_scrolled = new ScrolledWindow (null, null);
-	
+
 			photo_view_scrolled.SetPolicy (PolicyType.Automatic, PolicyType.Automatic);
 			photo_view_scrolled.ShadowType = ShadowType.None;
 			photo_view_scrolled.Add (photo_view);
-			photo_view_scrolled.ButtonPressEvent += HandleButtonPressEvent;
+			photo_view_scrolled.Child.ButtonPressEvent += HandleButtonPressEvent;
 			photo_view.AddEvents ((int) EventMask.KeyPressMask);
 			inner_vbox.PackStart (photo_view_scrolled, true, true, 0);
 			

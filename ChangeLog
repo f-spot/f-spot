@@ -1,3 +1,13 @@
+2008-06-26  Stephane Delcroix  <sdelcroix@novell.com>
+
+	* Core/BrowsableEventArgs.cs:
+	* Core/IBrowsableCollection.cs:
+	* MainWindow.cs:
+	* Makefile.am:
+	* PhotoView.cs:
+	* Widgets/IconView.cs: Share the DoubleClick Handler between modes. Don't
+	catch button press events on scollbars. Fixes bgo #419087.
+
 2008-06-25  Ruben Vermeersch  <ruben@savanne.be>
 
 	Move old files out of the way, as I'm going to add a lot of new files
