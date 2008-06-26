@@ -248,16 +248,10 @@ public class Db : IDisposable {
 		job_store = new JobStore (Database, new_db);
  		photo_store = new PhotoStore (Database, new_db);
 
-		FSpot.DBusProxyFactory.Load (this);
-		
 		Database.CommitTransaction ();
 
 		empty = new_db;
 		Log.DebugTimerPrint (timer, "Db Initialization took {0}");
-	}
-
-	public void EmitDown () {
-		FSpot.DBusProxyFactory.EmitRemoteDown ();
 	}
 
 	public bool Empty {

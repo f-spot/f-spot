@@ -1,4 +1,14 @@
-2008-06-23  Thomas Van Machelen <thomas.vanmachelen@gmail.com>:
+2008-06-26  Thomas Van Machelen <thomas.vanmachelen@gmail.com>
+
+	* extensions/DBusService
+	* extensions/DBusService/DBusService.cs
+	* extensions/DBusService/DBusProxy.cs
+	* extensions/DBusService/Makefile.am
+	* extensions/DBusService/DBusService.addin.xml: Refactor DBus api to
+	be a Service extension.  Fixes bgo #539183
+	
+
+2008-06-23  Thomas Van Machelen <thomas.vanmachelen@gmail.com>
 
 	* SmugMugExport/SmugMugNet/SmugMugApi.cs:  Fix regex so it gets the id
 	out nicely. Fixes bgo #538460

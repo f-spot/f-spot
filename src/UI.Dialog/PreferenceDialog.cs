@@ -76,8 +76,6 @@ namespace FSpot.UI.Dialog {
 				photosdir_chooser.SetCurrentFolder(Global.PhotoDirectory);
 				photosdir_chooser.Sensitive = false;
 			}
-			LoadPreference (Preferences.DBUS_READ_ONLY);
-
 #if FALSE
 			Gtk.CellRendererText name_cell = new Gtk.CellRendererText ();
 			Gtk.CellRendererText desc_cell = new Gtk.CellRendererText ();
@@ -251,14 +249,6 @@ namespace FSpot.UI.Dialog {
 			Preferences.Set (Preferences.METADATA_EMBED_IN_IMAGE, metadata_check.Active);
 		}
 
-		void DBusReadOnlyToggled (object sender, System.EventArgs args)
-		{
-			Preferences.Set (Preferences.DBUS_READ_ONLY, !dbus_check.Active); 
-
-			DBusProxyFactory.EmitRemoteDown ();
-			DBusProxyFactory.Load (MainWindow.Toplevel.Database);
-		}
-
 		void HandlePhotosdirChanged (object sender, System.EventArgs args)
 		{
 			Preferences.Set (Preferences.STORAGE_PATH, photosdir_chooser.Filename);
@@ -307,9 +297,6 @@ namespace FSpot.UI.Dialog {
 				break;
 			case Preferences.STORAGE_PATH:
 				photosdir_chooser.SetCurrentFolder (Preferences.Get<string> (key));
-				break;
-			case Preferences.DBUS_READ_ONLY:
-				dbus_check.Active = !(Preferences.Get<bool> (key));
 				break;
 			case Preferences.GTK_RC:
 				themenone_radio.Active = (Preferences.Get<string> (key) == String.Empty);

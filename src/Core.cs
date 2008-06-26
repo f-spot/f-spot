@@ -269,8 +269,6 @@ namespace FSpot {
 		{
 			toplevels.Remove (sender);
 			if (toplevels.Count == 0) {
-				if (db != null)
-					db.EmitDown ();
 				// FIXME
 				// Should use Application.Quit(), but for that to work we need to terminate the threads
 				// first too.

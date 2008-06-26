@@ -57,8 +57,6 @@ namespace FSpot
 
 		public const string IMPORT_GUI_ROLL_HISTORY = "/apps/f-spot/import/gui_roll_history";
 
-		public const string DBUS_READ_ONLY = "/apps/f-spot/dbus/read_only";
-
 		public const string SCREENSAVER_TAG = "/apps/f-spot/screensaver/tag_id";
 
 		public const string STORAGE_PATH = "/apps/f-spot/import/storage_path";
@@ -138,8 +136,6 @@ namespace FSpot
 			case SHOW_DATES:
 			case SHOW_RATINGS:
 			case VIEWER_SHOW_FILENAMES:
-			case DBUS_READ_ONLY:
-				return true;
 			
 			case TAG_ICON_SIZE:
 				return (int) Tag.IconSize.Medium;

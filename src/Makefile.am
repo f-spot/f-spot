@@ -85,7 +85,6 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/Core/PhotoVersion.cs		\
 	$(srcdir)/DateCommands.cs		\
 	$(srcdir)/Db.cs				\
-	$(srcdir)/DBusProxy.cs			\
 	$(srcdir)/DependentListStore.cs		\
 	$(srcdir)/DirectoryAdaptor.cs		\
 	$(srcdir)/DirectoryCollection.cs	\

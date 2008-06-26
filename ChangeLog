@@ -1,3 +1,16 @@
+2008-06-26  Thomas Van Machelen <thomas.vamachelen@gmail.com>
+
+	* src/f-spot.glade:
+	* src/PhotoStore.cs:
+	* src/Preferences.cs:
+	* src/UI.Dialog/PreferenceDialog.cs:
+	* src/Db.cs:
+	* src/Core.cs:
+	* src/Makefile.am:
+	* src/DBusProxy.cs: Remove the DBus api out of F-Spot core. Fixes 
+	bgo #539183.
+
+
 2008-06-26  Stephane Delcroix  <sdelcroix@novell.com>
 
 	* Core/BrowsableEventArgs.cs:

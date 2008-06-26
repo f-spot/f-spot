@@ -462,14 +462,14 @@ public class PhotoStore : DbStore {
 	public event ItemsAddedHandler ItemsAddedOverDBus;
 	public event ItemsRemovedHandler ItemsRemovedOverDBus;
 
-	internal Photo CreateOverDBus (string new_path, string orig_path, uint roll_id, out Gdk.Pixbuf pixbuf)  {
+	public Photo CreateOverDBus (string new_path, string orig_path, uint roll_id, out Gdk.Pixbuf pixbuf)  {
 		Photo photo = Create (new_path, orig_path, roll_id, out pixbuf);
 		EmitAddedOverDBus (photo);
 
 		return photo;
 	}
 
-	internal void RemoveOverDBus (Photo photo) {
+	public void RemoveOverDBus (Photo photo) {
 	 	Remove (photo);
 		EmitRemovedOverDBus (photo);
 	}

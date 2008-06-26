@@ -1,5 +1,6 @@
 SUBDIRS = 			\
 	BeagleService		\
+	DBusService		\
 	CDExport		\
 	GalleryExport		\
 	FlickrExport		\

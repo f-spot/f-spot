@@ -2,9 +2,11 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
+
+using FSpot;
 using NDesk.DBus;
 
-namespace FSpot {
+namespace DBusService {
 	public delegate void RemoteUp();
 	public delegate void RemoteDown();
 
@@ -33,12 +35,6 @@ namespace FSpot {
 			if (RemoteDown != null)
 			 	RemoteDown (); 
 		}
-
-		public virtual bool IsReadOnly() 
-		{
-			return true; 
-		}
-
 	}
 
 	public class DBusProxyFactory {
@@ -46,40 +42,16 @@ namespace FSpot {
 		private const string TAG_PROXY_PATH = "/org/gnome/FSpot/TagRemoteControl";
 		private const string PHOTO_PROXY_PATH = "/org/gnome/FSpot/PhotoRemoteControl";
 
-		private static ReadOnlyTagProxy tag_remote;
-		private static ReadOnlyPhotoProxy photo_remote;
-
-		public static ReadOnlyPhotoProxy PhotoRemote {
-			get { return photo_remote; } 
-		}
-
-		public static ReadOnlyTagProxy TagRemote {
-			get { return tag_remote; } 
-		}
+		private static TagProxy tag_remote;
+		private static PhotoProxy photo_remote;
 
 		public static void Load (Db db) 
 		{
-		 	if (tag_remote != null)
-			 	Bus.Session.Unregister (SERVICE_PATH, new ObjectPath (TAG_PROXY_PATH));
-
-			if (photo_remote != null)
-			 	Bus.Session.Unregister (SERVICE_PATH, new ObjectPath (PHOTO_PROXY_PATH));
-
-			bool dbus_readonly = Preferences.Get<bool> (Preferences.DBUS_READ_ONLY);
-
-			if (dbus_readonly)
-				tag_remote = new ReadOnlyTagRemoteControl (db.Tags);
-			else
-				tag_remote = new TagRemoteControl (db.Tags);
-
+			tag_remote = new TagProxy (db.Tags);
 			Bus.Session.Register (SERVICE_PATH, new ObjectPath (TAG_PROXY_PATH), tag_remote);
 			tag_remote.OnRemoteUp ();
 
-			if (dbus_readonly)
-				photo_remote = new ReadOnlyPhotoRemoteControl (db);
-			else
-			 	photo_remote = new PhotoRemoteControl (db);
-
+			photo_remote = new PhotoProxy (db);
 			Bus.Session.Register (SERVICE_PATH, new ObjectPath (PHOTO_PROXY_PATH), photo_remote);
 			photo_remote.OnRemoteUp ();
 		} 
@@ -92,28 +64,10 @@ namespace FSpot {
 	 
 	}
 
- 	[Interface ("org.gnome.FSpot.TagRemoteControl")]
-	public interface IReadOnlyTagRemoteControl {
-		// info; i'd rather have property but dbus-python doesn't like it :-(
-		bool IsReadOnly ();
-
-	 	// get all
-		string[] GetTagNames ();
-		uint[] GetTagIds ();
-
-		// get info for one tag
-		IDictionary<string, object> GetTagByName (string name);
-		IDictionary<string, object> GetTagById (int id);
-
-		event RemoteUp RemoteUp;
-		event RemoteDown RemoteDown;
-	}
-
- 	// Ideally this should simply inherit from the readonly interface
-	// but unfortunately ndesk-dbus does not pick up the inherited definitions
 	[Interface ("org.gnome.FSpot.TagRemoteControl")]
 	public interface ITagRemoteControl {
-		// info
+		// info, included for backward compatibility with times
+		// where this was embedded in f-spot core
 		bool IsReadOnly ();
 
 	 	// get all
@@ -136,33 +90,24 @@ namespace FSpot {
 		bool RemoveTagById (int id);
 	}
 
-	// we only implement interface at highest level to keep dbus-sharp happy
-	public class ReadOnlyTagRemoteControl : ReadOnlyTagProxy, IReadOnlyTagRemoteControl {
-		internal ReadOnlyTagRemoteControl (TagStore store) 
-			: base (store)
-		{ }
-	}
-
-	public class TagRemoteControl : TagProxy, ITagRemoteControl {
-		internal TagRemoteControl (TagStore store) 
-			: base (store)
-		{ } 
-	}
-
 	// Class exposing all photos on the dbus
-	public class ReadOnlyTagProxy : DBusProxy {
+	public class TagProxy : DBusProxy, ITagRemoteControl {
 		protected TagStore tag_store;
 
 		public TagStore Store {
 			get { return tag_store; } 
 		}
 
-		protected ReadOnlyTagProxy (TagStore store) 
+		internal TagProxy (TagStore store) 
 		{
 		 	tag_store = store;
 		}
 
 		#region Interface methods
+		public bool IsReadOnly () {
+			return false; 
+		}
+
 		public string[] GetTagNames () 
 		{
 		 	List<string> tags = new List<string> ();
@@ -198,6 +143,35 @@ namespace FSpot {
 
 			return CreateDictFromTag (t);
 		}
+
+		public int CreateTag (string name) 
+		{
+		 	return CreateTagPriv (null, name);
+		}
+
+		public int CreateTagWithParent (string parent, string name) 
+		{
+			Tag parent_tag = tag_store.GetTagByName (parent); 
+
+			if (!(parent_tag is Category))
+			 	parent_tag = null;
+
+		 	return CreateTagPriv (parent_tag as Category, name);
+		}
+
+		public bool RemoveTagByName (string name) 
+		{
+		 	Tag tag = tag_store.GetTagByName (name);
+
+			return RemoveTag (tag);
+		}
+
+		public bool RemoveTagById (int id) 
+		{
+			Tag tag = tag_store.GetTagById (id);
+			
+			return RemoveTag (tag); 
+		}	 
 
 		#endregion
 
@@ -246,50 +220,7 @@ namespace FSpot {
 
 			return result;
 		}
-		#endregion
-	}
 
-	public class TagProxy : ReadOnlyTagProxy {
-		protected TagProxy (TagStore store)
-			: base(store) 
-		{ }
-
-		# region Interface implemenatations
-		public override bool IsReadOnly (){
-			return false; 
-		}
-
-		public int CreateTag (string name) 
-		{
-		 	return CreateTagPriv (null, name);
-		}
-
-		public int CreateTagWithParent (string parent, string name) 
-		{
-			Tag parent_tag = tag_store.GetTagByName (parent); 
-
-			if (!(parent_tag is Category))
-			 	parent_tag = null;
-
-		 	return CreateTagPriv (parent_tag as Category, name);
-		}
-
-		public bool RemoveTagByName (string name) 
-		{
-		 	Tag tag = tag_store.GetTagByName (name);
-
-			return RemoveTag (tag);
-		}
-
-		public bool RemoveTagById (int id) 
-		{
-			Tag tag = tag_store.GetTagById (id);
-			
-			return RemoveTag (tag); 
-		}	 
-		#endregion
-	 
-	 	#region Helper methods
 		private int CreateTagPriv (Category parent_tag, string name)
 		{
 			try {
@@ -308,7 +239,7 @@ namespace FSpot {
 				
 			try {
 			 	// remove tags from photos first
-			 	DBusProxyFactory.PhotoRemote.Database.Photos.Remove (new Tag [] { t });
+			 	Core.Database.Photos.Remove (new Tag [] { t });
 				// then remove tag
 				tag_store.Remove (t);
 				return true; 
@@ -320,29 +251,11 @@ namespace FSpot {
 		#endregion
 	}
 
- 	[Interface ("org.gnome.FSpot.PhotoRemoteControl")]
-	public interface IReadOnlyPhotoRemoteControl { 
-		// info
-		bool IsReadOnly ();
-
-	 	// get all
-		uint[] GetPhotoIds ();
-
-		// photo properties
-		IDictionary<string, object> GetPhotoProperties (uint id); 
-
-		// query
-		uint[] Query (string []tags);
-
-		// events
-		event RemoteUp RemoteUp;
-		event RemoteDown RemoteDown;
-	}
-
 
  	[Interface ("org.gnome.FSpot.PhotoRemoteControl")]
 	public interface IPhotoRemoteControl {
-		// info
+		// info; included for backward compatibility
+		// with previous version where this was embedded in f-spot
 		bool IsReadOnly ();
 
 	 	// get all
@@ -369,30 +282,23 @@ namespace FSpot {
 		event RemoteDown RemoteDown;
 	}
 
-	// we only implement interface at highest level to keep dbus-sharp happy
-	public class ReadOnlyPhotoRemoteControl : ReadOnlyPhotoProxy, IReadOnlyPhotoRemoteControl {
-		internal ReadOnlyPhotoRemoteControl (Db db)
-			: base (db)
-		{ }
-	}
-
-	public class PhotoRemoteControl : PhotoProxy, IPhotoRemoteControl {
-		internal PhotoRemoteControl (Db db)
-			: base (db)
-		{ } 
-	}
-
 	// Class exposing all photos on the dbus
-	public class ReadOnlyPhotoProxy : DBusProxy {
+	public class PhotoProxy : DBusProxy, IPhotoRemoteControl {
 		protected Db db;
+		private Roll current_roll;
 
 		public Db Database {
 			get { return db; } 
 		}
 
-		protected ReadOnlyPhotoProxy (Db db) 
+		internal PhotoProxy (Db db) 
 		{
 			this.db = db;
+		}
+
+		public bool IsReadOnly () 
+		{
+			return false;
 		}
 
 		public uint[] GetPhotoIds () 
@@ -468,19 +374,6 @@ namespace FSpot {
 
 			return tag_list;
 		}
- 	}
-
-	public class PhotoProxy : ReadOnlyPhotoProxy {
-		private Roll current_roll = null;
-
-		protected PhotoProxy (Db db) 
-			: base (db)
-		{}
-
-		public override bool IsReadOnly () 
-		{
-			return false;
-		}
 
 		public void PrepareRoll () 
 		{
@@ -550,5 +443,5 @@ namespace FSpot {
 
 			db.Photos.RemoveOverDBus (p);
 		} 
-	}
+ 	}
 }
