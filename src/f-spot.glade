@@ -6169,7 +6169,7 @@ supported image formats.&lt;/i&gt;&lt;/small&gt;</property>
                           </widget>
                         </child>
                         <child>
-                          <widget class="GtkHBox" id="hbox6">
+                          <widget class="GtkHBox" id="tagselectionhbox">
                             <property name="visible">True</property>
                             <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
                             <child>
@@ -6189,14 +6189,7 @@ supported image formats.&lt;/i&gt;&lt;/small&gt;</property>
                               </packing>
                             </child>
                             <child>
-                              <widget class="GtkOptionMenu" id="tag_option">
-                                <property name="visible">True</property>
-                                <property name="can_focus">True</property>
-                                <property name="response_id">0</property>
-                              </widget>
-                              <packing>
-                                <property name="position">1</property>
-                              </packing>
+                              <placeholder/>
                             </child>
                           </widget>
                           <packing>

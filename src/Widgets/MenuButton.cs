@@ -39,13 +39,16 @@ namespace FSpot.Widgets
 		}
 
 		public MenuButton () : this (null)
-		{}
+		{
+		}
 
 		public MenuButton (string label) : this (label, null)
-		{}
+		{
+		}
 
 		public MenuButton (string label, Menu menu) : this (label, menu, ArrowType.Down)
-		{}
+		{
+		}
 
 		public MenuButton (string label, Menu menu, ArrowType arrow_type) : base ()
 		{

@@ -13,6 +13,8 @@ using System.IO;
 using System.Collections.Generic;
 using Gtk;
 
+using FSpot.Widgets;
+
 namespace FSpot.UI.Dialog {
 #if FALSE
 	public class ProfileList : TreeStore {
@@ -41,7 +43,7 @@ namespace FSpot.UI.Dialog {
 		[Glade.Widget] private ComboBox display_combo;
 		[Glade.Widget] private ComboBox destination_combo;
 #endif
-		[Glade.Widget] private OptionMenu tag_option;
+		[Glade.Widget] private HBox tagselectionhbox;
 		[Glade.Widget] private Button set_saver_button;
 		[Glade.Widget] private FileChooserButton photosdir_chooser;
 		[Glade.Widget] private RadioButton screensaverall_radio;
@@ -55,7 +57,7 @@ namespace FSpot.UI.Dialog {
 		[Glade.Widget] private Table theme_table;
 		[Glade.Widget] private Button refreshtheme_button;
 		private ComboBox themelist_combo;
-
+		private MenuButton tag_button;
 
 
 		private static PreferenceDialog prefs = null;
@@ -66,6 +68,7 @@ namespace FSpot.UI.Dialog {
 
 		public PreferenceDialog () : base ("main_preferences")
 		{
+			tag_button = new MenuButton ();
 			LoadPreference (Preferences.METADATA_EMBED_IN_IMAGE);
 			LoadPreference (Preferences.SCREENSAVER_TAG);
 			LoadPreference (Preferences.GNOME_SCREENSAVER_THEME);
@@ -94,15 +97,13 @@ namespace FSpot.UI.Dialog {
 			destination_combo.SetCellDataFunc (desc_cell, new CellLayoutDataFunc (ProfileList.ProfileDescriptionDataFunc));
 			destination_combo.Changed += HandleDisplayChanged;
 #endif
-			Tag t = MainWindow.Toplevel.Database.Tags.GetTagById (screensaver_tag);
 			TagMenu tagmenu = new TagMenu (null, MainWindow.Toplevel.Database.Tags);
 	
-			tagmenu.Populate (true);
-			tag_option.Menu = tagmenu;
+			tagmenu.Populate (false);
 
-			int history = tagmenu.GetPosition (t);
-			if (history >= 0)
-				tag_option.SetHistory ((uint)history);
+			tag_button.Menu = tagmenu;
+			tag_button.ShowAll ();
+			tagselectionhbox.Add (tag_button);
 
 			tagmenu.TagSelected += HandleTagMenuSelected;
 			set_saver_button.Clicked += HandleUseFSpot;
@@ -166,6 +167,7 @@ namespace FSpot.UI.Dialog {
 #endif
 		private void HandleTagMenuSelected (Tag t)
 		{
+			tag_button.Label = t.Name;
 			screensaver_tag = (int) t.Id;
 			Preferences.Set (Preferences.SCREENSAVER_TAG, (int) t.Id);
 		}
@@ -178,11 +180,11 @@ namespace FSpot.UI.Dialog {
 
 		private void ToggleTagRadio (object o, System.EventArgs e)
 		{
-			tag_option.Sensitive = (screensavertagged_radio.Active);
+			tag_button.Sensitive = (screensavertagged_radio.Active);
 			if (screensaverall_radio.Active)
 				Preferences.Set (Preferences.SCREENSAVER_TAG, 0);
 			else
-				HandleTagMenuSelected (((tag_option.Menu as Menu).Active as TagMenu.TagMenuItem).Value);
+				HandleTagMenuSelected (((tag_button.Menu as Menu).Active as TagMenu.TagMenuItem).Value);
 		}
 
 		void ToggleThemeRadio (object o, EventArgs e)
@@ -280,9 +282,11 @@ namespace FSpot.UI.Dialog {
 				}
 				if (screensaver_tag == 0) {
 					screensaverall_radio.Active = true;
-					tag_option.Sensitive = false;
+					tag_button.Sensitive = false;
 				} else {
 					screensavertagged_radio.Active = true;
+					Tag t = MainWindow.Toplevel.Database.Tags.GetTagById (screensaver_tag);
+					tag_button.Label = t.Name;
 				}
 				break;
 			case Preferences.GNOME_SCREENSAVER_THEME:
