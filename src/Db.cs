@@ -262,7 +262,27 @@ public class Db : IDisposable {
 
 	public void Dispose ()
 	{
-		Database.Dispose ();
+		Dispose (true);
+		GC.SuppressFinalize (this);
+	}
+
+	bool already_disposed = false;
+	protected virtual void Dispose (bool is_disposing)
+	{
+		if (already_disposed)
+			return;
+		if (is_disposing) {//Free managed resources
+			Database.Dispose ();
+		}
+		//Free eunmanaged resources
+
+		already_disposed = true;
+	}
+
+	~Db ()
+	{
+		Log.DebugFormat ("Finalizer called on {0}. Should be Disposed", GetType ());
+		Dispose (false);
 	}
 
 	public void BeginTransaction()

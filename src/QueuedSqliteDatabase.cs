@@ -32,6 +32,8 @@ using System.Threading;
 using System.Collections.Generic;
 using Mono.Data.SqliteClient;
 
+using FSpot.Utils;
+
 namespace Banshee.Database
 {
     /// <summary>
@@ -87,13 +89,33 @@ namespace Banshee.Database
             queue_thread.IsBackground = true;
             queue_thread.Start();
         }
+
+	~QueuedSqliteDatabase ()
+	{
+		Log.DebugFormat ("Finalizer called on {0}. Should be Disposed", GetType ());
+		Dispose (false);
+	}
         
         public void Dispose()
         {
-            dispose_requested = true;
-            queue_signal.Set();
-            queue_thread.Join();
-        }
+	    Dispose (true);
+	    GC.SuppressFinalize (this);
+	}
+
+	bool already_disposed = false;
+	protected virtual void Dispose (bool is_disposing)
+	{
+		if (already_disposed)
+			return;
+		if (is_disposing) { //Free managed resources
+			dispose_requested = true;
+        		queue_signal.Set();
+			queue_thread.Join();
+		}
+		//Free unmanaged resources
+
+		already_disposed = true;
+       }
         
         private void WaitForConnection()
         {

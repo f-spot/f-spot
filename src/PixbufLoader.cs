@@ -198,33 +198,37 @@ public class PixbufLoader {
 	/* The worker thread's main function.  */
 	private void WorkerThread ()
 	{
-		while (true) {
-			lock (processed_requests) {
-				if (current_request != null) {
-					processed_requests.Enqueue (current_request);
-					
-					if (! pending_notify_notified) {
-						pending_notify.WakeupMain ();
-						pending_notify_notified = true;
+		try {
+			while (true) {
+				lock (processed_requests) {
+					if (current_request != null) {
+						processed_requests.Enqueue (current_request);
+						
+						if (! pending_notify_notified) {
+							pending_notify.WakeupMain ();
+							pending_notify_notified = true;
+						}
+						
+						current_request = null;
 					}
-					
-					current_request = null;
 				}
-			}
-
-			lock (queue) {
+	
+				lock (queue) {
+					
+					while (queue.Count == 0 || block_count > 0)
+						Monitor.Wait (queue);
+					
+					int pos = queue.Count - 1;
+	
+					current_request = queue [pos] as RequestItem;
+					queue.RemoveAt (pos);
+					requests_by_path.Remove (current_request.path);
+				}
 				
-				while (queue.Count == 0 || block_count > 0)
-					Monitor.Wait (queue);
-				
-				int pos = queue.Count - 1;
-
-				current_request = queue [pos] as RequestItem;
-				queue.RemoveAt (pos);
-				requests_by_path.Remove (current_request.path);
+				ProcessRequest (current_request);
 			}
-			
-			ProcessRequest (current_request);
+		} catch (ThreadAbortException) {
+			//Aborting
 		}
 	}
 	

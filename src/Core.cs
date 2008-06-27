@@ -5,6 +5,7 @@ using NDesk.DBus;
 using org.freedesktop.DBus;
 
 using FSpot.UI.Dialog;
+using FSpot.Utils;
 
 namespace FSpot {
 	[Interface ("org.gnome.FSpot.Core")]
@@ -267,11 +268,13 @@ namespace FSpot {
 
 		public void HandleDestroyed (object sender, System.EventArgs args)
 		{
+			Log.Information ("Exiting");
 			toplevels.Remove (sender);
 			if (toplevels.Count == 0) {
-				// FIXME
-				// Should use Application.Quit(), but for that to work we need to terminate the threads
-				// first too.
+				Banshee.Kernel.Scheduler.Dispose ();
+				Core.Database.Dispose ();
+				PixbufLoader.Cleanup ();
+				Gtk.Application.Quit ();
 				System.Environment.Exit (0);
 			}
 			if (organizer != null && organizer.Window == sender)

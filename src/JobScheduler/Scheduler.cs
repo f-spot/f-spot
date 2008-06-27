@@ -177,7 +177,7 @@ namespace Banshee.Kernel
                 disposed = true;
             }
         }
-        
+
         private static bool IsDisposed()
         {
             if(disposed) {

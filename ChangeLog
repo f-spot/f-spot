@@ -1,3 +1,12 @@
+2008-06-27  Stephane delcroix  <sdelcroix@novell.com>
+
+	* Core.cs:
+	* Db.cs:
+	* JobScheduler/Scheduler.cs:
+	* PixbufLoader.cs:
+	* QueuedSqliteDatabase.cs: Finalize the running threads before calling 
+	Gtk.Application.Exit (). Fixes bgo #528474.
+
 2008-06-26  Thomas Van Machelen <thomas.vamachelen@gmail.com>
 
 	* src/f-spot.glade:
