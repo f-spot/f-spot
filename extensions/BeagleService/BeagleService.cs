@@ -30,8 +30,8 @@ namespace BeagleService {
 
 		public bool Stop ()
 		{
-			uint timer = Log.InformationTimerStart ("Starting BeagleService");
-			Log.DebugTimerPrint (timer, "BeagleService startup took {0}");	
+			uint timer = Log.InformationTimerStart ("Stopping BeagleService");
+			Log.DebugTimerPrint (timer, "BeagleService shutdown took {0}");	
 			return true;
 		}
 
