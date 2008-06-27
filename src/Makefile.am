@@ -70,7 +70,6 @@ WIDGETS_CSDISTFILES =				\
 	$(srcdir)/Widgets/SaneTreeView.cs	\
 	$(srcdir)/Widgets/ScrolledView.cs	\
 	$(srcdir)/Widgets/Sidebar.cs		\
-	$(srcdir)/Widgets/TagMenu.cs		\
 	$(srcdir)/Widgets/TagView.cs
 
 F_SPOT_CSDISTFILES =				\
@@ -247,6 +246,7 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/Widgets/ScalingIconView.cs	\
 	$(srcdir)/Widgets/SoftFocus.cs		\
 	$(srcdir)/Widgets/TagEntry.cs		\
+	$(srcdir)/Widgets/TagMenu.cs		\
 	$(srcdir)/Widgets/Tilt.cs		\
 	$(srcdir)/Widgets/TrayView.cs		\
 	$(srcdir)/Widgets/Wipe.cs		\
