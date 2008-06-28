@@ -227,6 +227,7 @@ namespace FSpot {
 		
 		private void ExitAction (object sender, System.EventArgs args)
 		{
+			display.Dispose ();
 			this.Destroy ();
 		}
 

@@ -98,6 +98,12 @@ namespace FSpot {
 			flip.RunWhenStarted = false;
 		}
 
+		public override void Dispose ()
+		{
+			if (glx != null)
+				glx.Destroy ();
+		}
+
 		GlTransition [] transitions = new GlTransition []
 			{
 				new GlTransition.Dissolve (),
