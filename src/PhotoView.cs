@@ -146,9 +146,9 @@ namespace FSpot {
 				count_label.Text = String.Empty;
 			else {
 				if (query.Count == 0)
-					count_label.Text = String.Format ("{0} of {1}", 0, 0);
+					count_label.Text = String.Format (Catalog.GetString ("{0} of {1}"), 0, 0);
 				else 
-					count_label.Text = String.Format ("{0} of {1}", Item.Index + 1, Query.Count);
+					count_label.Text = String.Format (Catalog.GetString ("{0} of {1}"), Item.Index + 1, Query.Count);
 			}
 		}
 	
