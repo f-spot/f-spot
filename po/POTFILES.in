@@ -30,8 +30,6 @@ src/CameraSelectionDialog.cs
 src/Core.cs
 src/Core/Photo.cs
 src/DateCommands.cs
-src/Editors/SoftFocus.cs
-src/Editors/Tilt.cs
 src/Extensions/OpenWithMenu.cs
 src/FSpot.addin.xml
 src/FileImportBackend.cs
@@ -64,7 +62,6 @@ src/RotateCommand.cs
 src/SendEmail.cs
 src/SingleView.cs
 src/TagCommands.cs
-src/TagMenu.cs
 src/TagPopup.cs
 src/TagQueryWidget.cs
 src/TagSelectionWidget.cs
@@ -83,9 +80,12 @@ src/Util.cs
 src/Utils/Unix.cs
 src/Utils/GnomeUtil.cs
 src/Widgets/CustomPrintWidget.cs
+src/Widgets/FindBar.cs
 src/Widgets/InfoBox.cs
 src/Widgets/RatingMenuItem.cs
-src/Widgets/FindBar.cs
+src/Widgets/SoftFocus.cs
+src/Widgets/TagMenu.cs
+src/Widgets/Tilt.cs
 src/XmpTagsImporter.cs
 src/f-spot.glade
 tools/f-spot-screensaver.desktop.in
