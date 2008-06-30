@@ -129,7 +129,7 @@ public class Driver {
 				while (!(i+1 == args.Length) && !args[i+1].StartsWith ("-"))
 					uris.Add (args [++i]);
 //				if (!System.IO.Directory.Exists (args[i+1]) && !System.IO.File.Exists (args[i+1])) {
-//					Console.WriteLine ("f-spot: -view argument must be an existing file or directory");
+//					Log.Error ("f-spot: -view argument must be an existing file or directory");
 //					return 1;
 //				}
 				break;

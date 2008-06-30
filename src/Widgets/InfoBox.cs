@@ -18,7 +18,7 @@ using System.IO;
 using FSpot;
 using SemWeb;
 using Mono.Unix;
-
+using FSpot.Utils;
 
 // FIXME TODO: We want to use something like EClippedLabel here throughout so it handles small sizes
 // gracefully using ellipsis.
@@ -320,7 +320,7 @@ namespace FSpot.Widgets
 					}
 					//}
 			} catch (System.Exception e) {
-				System.Console.WriteLine (e);
+				Log.Debug (e.StackTrace);
 				info = new ImageInfo (null);			
 			}
 

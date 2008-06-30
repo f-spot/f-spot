@@ -39,8 +39,6 @@ namespace FSpot.Widgets
 				width = cell_width - 2 * cell_border_width;
 				cell_height = (int)(width / ThumbnailRatio) + 2 * cell_border_width;
 				total_rows = (int) System.Math.Ceiling (collection.Items.Length / (double)cells_per_row);
-				//total_rows = collection.Items.Length / cells_per_row;
-				//System.Console.WriteLine ("cells per row {0} {1} {2}", cells_per_row, total_rows, width)
 				cells_per_row ++;
 			} while (total_rows > Allocation.Height / cell_height);
 			cells_per_row --;

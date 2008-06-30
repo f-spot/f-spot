@@ -105,7 +105,6 @@ namespace FSpot.Widgets
 		
 		private int RatingFromPosition (double x)
 		{
-			//System.Console.WriteLine ("Rating from position >>{0}<<", (int) (x / (double)(IconRated.Width)));
 			int pos = (int) (x / (double) IconRated.Width);
 			
 			return pos;
@@ -202,7 +201,6 @@ namespace FSpot.Widgets
 		protected override bool OnMotionNotifyEvent (Gdk.EventMotion evnt)
 		{
 			if (editable) {
-				System.Console.WriteLine ("OnMotionNotifyEvent");
 				// TODO draw highlights onmouseover a rating? (and clear on leaveNotify)
 				if (evnt.State != Gdk.ModifierType.Button1Mask)
 					return false;
@@ -215,14 +213,12 @@ namespace FSpot.Widgets
 		[GLib.ConnectBefore]
 		protected override bool OnFocusInEvent (Gdk.EventFocus evnt)
 		{
-			System.Console.WriteLine ("OnFocusInEvent");
 			return true;
 		}
 		
 		[GLib.ConnectBefore]
 		protected override bool OnFocused (DirectionType direction)
 		{
-			System.Console.WriteLine ("OnFocus");
 			return true;
 		}
 
@@ -247,7 +243,6 @@ namespace FSpot.Widgets
 			get { return rating; }
 			
 			set {
-				//Console.WriteLine ("Set Rating to >>{0}<<", value);
 				// Same rating
 				if (rating == value)
 					return;

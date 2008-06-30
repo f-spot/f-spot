@@ -87,7 +87,7 @@ namespace FSpot.Widgets {
 			ctx.Operator = Operator.Source;
 			Pattern p = new SurfacePattern (source.Surface);
 			ctx.Source = p;
-			Console.WriteLine (small);
+			//Log.Debug (small);
 			ctx.Paint ();
 			p.Destroy ();
 			((IDisposable)ctx).Dispose ();

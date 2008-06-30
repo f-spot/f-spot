@@ -153,7 +153,7 @@ public class TagMenu : Menu {
 			if (t != null)
 				TagSelected (t.Value);
 			else 
-				Console.WriteLine ("Item was not a TagMenuItem");
+				Log.Debug ("TagMenu.HandleActivate: Item was not a TagMenuItem");
 		}
 	}
 }

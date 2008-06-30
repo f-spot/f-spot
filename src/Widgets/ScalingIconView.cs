@@ -13,7 +13,7 @@ namespace FSpot.Widgets {
 		
 		protected override void UpdateLayout ()
 		{
-			System.Console.WriteLine ("in update layout {0}", Allocation.ToString ());
+			//Log.DebugFormat ("in update layout {0}", Allocation.ToString ());
 
 			int num_thumbnails;
 			if (collection != null)

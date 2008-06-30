@@ -17,6 +17,7 @@ using FSpot.Xmp;
 using SemWeb;
 using SemWeb.Util;
 using Mono.Unix;
+using FSpot.Utils;
 
 namespace FSpot.Xmp {
         internal class XmpTagsImporter {
@@ -156,7 +157,6 @@ namespace FSpot.Xmp {
 			foreach (Statement stmt in store) {
 				//StatementList list = null;
 				
-				//System.Console.WriteLine ("processing {0}", stmt);
 				switch (stmt.Predicate.Uri) {
 
 				case Caption:
@@ -198,7 +198,7 @@ namespace FSpot.Xmp {
 							tmp_ui = System.Convert.ToUInt32 (l.Value);
 						} catch {
 							// Set rating to 0, and continue
-							System.Console.WriteLine ("Found illegal rating >{0}< in predicate {1}. Rating cleared",
+							Log.DebugFormat ("Found illegal rating >{0}< in predicate {1}. Rating cleared",
 										 l.Value, stmt.Predicate.Uri);
 							tmp_ui = 0;
 						}
