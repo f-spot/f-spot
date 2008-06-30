@@ -159,7 +159,7 @@ namespace Banshee.Database
         }
 
         public bool InTransaction {
-            get { return current_transaction_thread == null; }
+            get { return current_transaction_thread != null; }
         }
         
         public void BeginTransaction()
