@@ -144,12 +144,9 @@ namespace FSpot {
 		{
 			if (query == null)
 				count_label.Text = String.Empty;
-			else {
-				if (query.Count == 0)
-					count_label.Text = String.Format (Catalog.GetString ("{0} of {1}"), 0, 0);
-				else 
-					count_label.Text = String.Format (Catalog.GetString ("{0} of {1}"), Item.Index + 1, Query.Count);
-			}
+			else
+				// Note for translators: This indicates the current photo is photo {0} of {1} out of photos
+				count_label.Text = String.Format (Catalog.GetString ("{0} of {1}"), query.Count == 0 ? 0 : Item.Index + 1, query.Count == 0 ? 0 : query.Count);
 		}
 	
 		private void UpdateDescriptionEntry ()

@@ -138,7 +138,7 @@ namespace FSpot {
 				old_label.Text = item.Time.ToLocalTime ().ToString ();
 				
 				int i = collection.Count > 0 ? Item.Index + 1: 0;
-				// This indicates the current photo is photo {0} of {1} out of photos
+				// Note for translators: This indicates the current photo is photo {0} of {1} out of photos
 				count_label.Text = System.String.Format (Catalog.GetString ("{0} of {1}"), i, collection.Count);
 
 				DateTime actual = item.Time;
