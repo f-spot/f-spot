@@ -1,5 +1,11 @@
 2008-06-30  Ruben Vermeersch  <ruben@savanne.be>
 
+	* src/PhotoQuery.cs: Fix a stupid bug that caused way too much commits.
+
+	* src/PhotoStore.cs: Move the EmitChanged call out of the transaction.
+
+2008-06-30  Ruben Vermeersch  <ruben@savanne.be>
+
 	* src/PhotoQuery.cs: Batch all photos into one save operation.
 
 	* src/PhotoStore.cs: Avoid recursive transactions.

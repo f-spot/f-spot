@@ -418,10 +418,10 @@ public class PhotoStore : DbStore {
 		foreach (DbItem item in items)
 			Update ((Photo)item);
 		
-		EmitChanged (items, args);
-
 		if (use_transactions)
 			Database.CommitTransaction ();
+
+		EmitChanged (items, args);
 	}
 	
 	private void Update (Photo photo) {

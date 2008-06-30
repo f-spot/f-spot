@@ -190,7 +190,7 @@ namespace FSpot {
 			List<Photo> to_commit = new List<Photo>();
 			foreach (int index in indexes)
 				to_commit.Add (photos [index]);
-			store.Commit (photos);
+			store.Commit (to_commit.ToArray ());
 		}
 
 		private void MarkChanged (object sender, DbItemEventArgs args)
