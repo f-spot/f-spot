@@ -187,8 +187,10 @@ namespace FSpot {
 		
 		public void Commit (params int [] indexes)
 		{
+			List<Photo> to_commit = new List<Photo>();
 			foreach (int index in indexes)
-				store.Commit (photos[index]);
+				to_commit.Add (photos [index]);
+			store.Commit (photos);
 		}
 
 		private void MarkChanged (object sender, DbItemEventArgs args)

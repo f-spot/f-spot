@@ -401,9 +401,18 @@ public class PhotoStore : DbStore {
 		Commit (args.Items, args);
 	}
 
+	public void Commit (Photo [] items)
+	{
+		DbItemEventArgs args = new DbItemEventArgs (items);
+		Commit (args.Items, args);
+	}
+
 	public void Commit (DbItem [] items, DbItemEventArgs args)
 	{
-		if (items.Length > 1)
+		// Only use a transaction for multiple saves. Avoids recursive transactions.
+		bool use_transactions = !Database.InTransaction && items.Length > 1;
+
+		if (use_transactions)
 			Database.BeginTransaction ();
 
 		foreach (DbItem item in items)
@@ -411,7 +420,7 @@ public class PhotoStore : DbStore {
 		
 		EmitChanged (items, args);
 
-		if (items.Length > 1)
+		if (use_transactions)
 			Database.CommitTransaction ();
 	}
 	

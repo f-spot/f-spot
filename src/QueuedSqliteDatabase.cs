@@ -90,31 +90,31 @@ namespace Banshee.Database
             queue_thread.Start();
         }
 
-	~QueuedSqliteDatabase ()
-	{
-		Log.DebugFormat ("Finalizer called on {0}. Should be Disposed", GetType ());
-		Dispose (false);
-	}
+        ~QueuedSqliteDatabase ()
+        {
+            Log.DebugFormat ("Finalizer called on {0}. Should be Disposed", GetType ());
+            Dispose (false);
+        }
         
         public void Dispose()
         {
-	    Dispose (true);
-	    GC.SuppressFinalize (this);
-	}
+            Dispose (true);
+            GC.SuppressFinalize (this);
+        }
 
-	bool already_disposed = false;
-	protected virtual void Dispose (bool is_disposing)
-	{
-		if (already_disposed)
-			return;
-		if (is_disposing) { //Free managed resources
-			dispose_requested = true;
-        		queue_signal.Set();
-			queue_thread.Join();
-		}
-		//Free unmanaged resources
+        bool already_disposed = false;
+        protected virtual void Dispose (bool is_disposing)
+        {
+            if (already_disposed)
+                return;
+            if (is_disposing) { //Free managed resources
+                dispose_requested = true;
+                queue_signal.Set();
+                queue_thread.Join();
+            }
+            //Free unmanaged resources
 
-		already_disposed = true;
+            already_disposed = true;
        }
         
         private void WaitForConnection()
@@ -156,6 +156,10 @@ namespace Banshee.Database
         public SqliteDataReader Query(object command)
         {
             return Query(new DbCommand(command.ToString()));
+        }
+
+        public bool InTransaction {
+            get { return current_transaction_thread == null; }
         }
         
         public void BeginTransaction()

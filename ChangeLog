@@ -1,3 +1,12 @@
+2008-06-30  Ruben Vermeersch  <ruben@savanne.be>
+
+	* src/PhotoQuery.cs: Batch all photos into one save operation.
+
+	* src/PhotoStore.cs: Avoid recursive transactions.
+
+	* src/QueuedSqliteDatabase.cs: Add boolean flag showing whether we are in
+	a transaction or not, clean up indentation a bit.
+
 2008-06-28 Jordi Mas <jmas@softcatala.org>
 	
 	* src/PhotoView.cs: Make strings localizable
