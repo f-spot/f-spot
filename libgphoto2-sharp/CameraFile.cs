@@ -214,21 +214,21 @@ namespace LibGPhoto2
 		}
 		
 		[DllImport ("libgphoto2.so")]
-		internal static extern ErrorCode gp_file_get_data_and_size (HandleRef file, out IntPtr data, out ulong size);
+		internal static extern ErrorCode gp_file_get_data_and_size (HandleRef file, out IntPtr data, out IntPtr size);
 
 		public byte[] GetDataAndSize ()
 		{
-			ulong size;
+			IntPtr size;
 			byte[] data;
-			unsafe
-			{
-				IntPtr data_addr = IntPtr.Zero;
-				Error.CheckError (gp_file_get_data_and_size (this.Handle, out data_addr, out size));
-				data = new byte[size];
-				if (data_addr != IntPtr.Zero && size > 0)
-					Marshal.Copy(data_addr, data, 0, (int)size);
-			}
-			
+			IntPtr data_addr;
+
+			Error.CheckError (gp_file_get_data_and_size (this.Handle, out data_addr, out size));
+
+			if(data_addr == IntPtr.Zero || size.ToInt32() == 0)
+				return new byte[0];
+
+			data = new byte[size.ToInt32()];
+			Marshal.Copy(data_addr, data, 0, (int)size.ToInt32());
 			return data;
 		}
 	}

@@ -1,3 +1,8 @@
+2008-07-01  Stephane Delcroix  <stephane@delcroix>
+
+	* libgphoto2-sharp/CameraFile.cs: pull GetDataAndSize from upstream.
+	Fixes bgo #505822. Thx to Tim Retout for his proposed patch.
+
 2008-06-30  Ruben Vermeersch  <ruben@savanne.be>
 
 	* src/PhotoQuery.cs: Fix a stupid bug that caused way too much commits.
