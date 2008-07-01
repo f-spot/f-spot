@@ -117,7 +117,7 @@ namespace DPAP {
         }
 
         internal ContentNode ToNode () {
-			Console.WriteLine("Entering ContentCodeBag ToNode()");
+		//	Console.WriteLine("Entering ContentCodeBag ToNode()");
             ArrayList nodes = new ArrayList ();
             
             foreach (int number in codes.Keys) {
@@ -133,12 +133,12 @@ namespace DPAP {
             }
 
             ContentNode status = new ContentNode ("dmap.status", 200);
-			Console.WriteLine("Leaving ContentCodeBag ToNode()");
+			//Console.WriteLine("Leaving ContentCodeBag ToNode()");
             return new ContentNode ("dmap.contentcodesresponse", status, nodes);
         }
 
         public static ContentCodeBag ParseCodes (byte[] buffer) {
-			Console.WriteLine("Entering ContentCodeBag ParseCodes(byte[])");
+			//Console.WriteLine("Entering ContentCodeBag ParseCodes(byte[])");
             ContentCodeBag bag = new ContentCodeBag ();
 
             // add some codes to bootstrap us
@@ -152,11 +152,12 @@ namespace DPAP {
             // some photo-specific codes
             bag.AddCode ("ppro", "dpap.protocolversion", ContentType.Long);
             bag.AddCode ("pret", "dpap.blah", ContentType.Container);
-
+			bag.AddCode ("avdb", "dpap.serverdatabases", ContentType.Container);
+			
             ContentNode node = ContentParser.Parse (bag, buffer);
 
             foreach (ContentNode dictNode in (node.Value as ContentNode[])) {
-				Console.Write(node.Name + ' ' + node.Value + ' ');
+			//	Console.Write(node.Name + ' ' + node.Value + ' ');
 				if (dictNode.Name != "dmap.dictionary") {
                     continue;
                 }
@@ -179,7 +180,7 @@ namespace DPAP {
 
                 bag.codes[code.Number] = code;
             }
-            Console.WriteLine("Leaving ContentCodeBag ParseCodes(byte[])");
+           // Console.WriteLine("Leaving ContentCodeBag ParseCodes(byte[])");
             return bag;
         }
     }

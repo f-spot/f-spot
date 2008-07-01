@@ -117,14 +117,14 @@ namespace DPAP
 
             try {
                 bag = ContentCodeBag.ParseCodes (fetcher.Fetch ("/content-codes"));
-				Console.WriteLine("DEBUG LOGIN !");
+				
                 ContentNode node = ContentParser.Parse (bag, fetcher.Fetch ("/login"));
                 ParseSessionId (node);
-				byte[] db_reply = fetcher.Fetch ("/databases");
+				//byte[] db_reply = fetcher.Fetch ("/databases");
 				
-				Console.Write(BitConverter.ToString(db_reply));
-            //ContentNode dbnode = ContentParser.Parse (bag, fetcher.Fetch ("/databases"));
-              //  FetchDatabases ();
+				//Console.Write(BitConverter.ToString(db_reply));
+			//	ContentNode dbnode = ContentParser.Parse (bag, fetcher.Fetch ("/databases"));
+                FetchDatabases ();
                // Refresh ();
                 
                /* if (serverInfo.SupportsUpdate) {
@@ -164,6 +164,7 @@ namespace DPAP
 
                 foreach (ContentNode item in (ContentNode[]) child.Value) {
                     Database db = new Database (this, item);
+					Console.WriteLine("Adding database {0} with {1} items." , db.Name,db.TrackCount);
                     databases.Add (db);
                 }
             }

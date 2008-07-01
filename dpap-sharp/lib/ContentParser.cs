@@ -108,16 +108,17 @@ namespace DPAP {
 
         public static ContentNode Parse (ContentCodeBag bag, byte[] buffer, string root,
                                          ref int offset) {
-			Console.WriteLine("Entering ContentNode Pares (...)");
+			//Console.WriteLine("Entering ContentNode Parse (...)");
             ContentNode node = new ContentNode ();
 //System.Console.WriteLine("debug1!");
             int num = IPAddress.NetworkToHostOrder (BitConverter.ToInt32 (buffer, offset));
 	//		System.Console.WriteLine("debug2!");
             ContentCode code = bag.Lookup (num);
-			Console.Write(code.Name);
-		//	System.Console.WriteLine("debug3!");
+			//Console.WriteLine("Code number: "+num);
+			//System.Console.WriteLine("debug3!");
             if (code.Equals (ContentCode.Zero)) {
                 // probably a buggy server.  fallback to our internal code bag
+				Console.WriteLine("fallback to internal code bag");
                 code = ContentCodeBag.Default.Lookup (num);
             }
 			
@@ -130,7 +131,7 @@ namespace DPAP {
             }
 
             node.Name = code.Name;
-
+			//Console.WriteLine("Code=" +code.Type.ToString());
             switch (code.Type) {
             case ContentType.Char:
                 node.Value = (byte) buffer[offset + 8];
@@ -167,7 +168,7 @@ namespace DPAP {
             }
 
             offset += length + 8;
-Console.WriteLine("Leaving ContentNode Pares (...)");
+			//Console.WriteLine("Leaving ContentNode Parse (...)");
             if (root != null) {
                 ContentNode rootNode = node.GetChild (root);
 
