@@ -1,3 +1,10 @@
+2008-07-02  Stephane Delcroix  <stephane@delcroix.org>
+
+	* configure.in:
+	* dpap-sharp/Makefile.am:
+	* dpap-sharp/lib/Makefile.am: add dpap-sharp into the build.
+	Currently commented out in configure.in
+
 2008-07-01  Stephane Delcroix  <stephane@delcroix.org>
 
 	* libgphoto2-sharp/CameraFile.cs: pull GetDataAndSize from upstream.
