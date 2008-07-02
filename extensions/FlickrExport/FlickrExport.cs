@@ -273,7 +273,7 @@ namespace FSpotFlickrExport {
 				fr = new FlickrRemote (token, current_service);
 				fr.TryWebLogin();
 				CurrentState = State.Connected;
-			} catch (FlickrException e) {
+			} catch (FlickrApiException e) {
 				if (e.Code == 98) {
 					Logout ();
 					Login ();

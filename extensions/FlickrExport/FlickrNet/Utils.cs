@@ -1,14 +1,16 @@
 using System;
 using System.IO;
-using System.IO.IsolatedStorage;
 using System.Collections;
+using System.Text;
+using System.Text.RegularExpressions;
+using System.Xml.Serialization;
 
 namespace FlickrNet
 {
 	/// <summary>
 	/// Internal class providing certain utility functions to other classes.
 	/// </summary>
-	public sealed class Utils
+	internal sealed class Utils
 	{
 		private static readonly DateTime unixStartDate = new DateTime(1970, 1, 1, 0, 0, 0);
 
@@ -16,6 +18,7 @@ namespace FlickrNet
 		{
 		}
 
+#if !WindowsCE
 		internal static string UrlEncode(string oldString)
 		{
 			if( oldString == null ) return null;
@@ -26,13 +29,39 @@ namespace FlickrNet
 			a = a.Replace(" ", "%20");
 			return a;
 		}
+#else
+        internal static string UrlEncode(string oldString)
+        {
+            if (oldString == null) return String.Empty;
+            StringBuilder sb = new StringBuilder(oldString.Length * 2);
+            Regex reg = new Regex("[a-zA-Z0-9$-_.+!*'(),]");
+
+            foreach (char c in oldString)
+            {
+                if (reg.IsMatch(c.ToString()))
+                {
+                    sb.Append(c);
+                }
+                else
+                {
+                    sb.Append(ToHex(c));
+                }
+            }
+            return sb.ToString();
+        }
+
+        private static string ToHex(char c)
+        {
+            return ((int)c).ToString("X");
+        }
+#endif
 
 		/// <summary>
 		/// Converts a <see cref="DateTime"/> object into a unix timestamp number.
 		/// </summary>
 		/// <param name="date">The date to convert.</param>
 		/// <returns>A long for the number of seconds since 1st January 1970, as per unix specification.</returns>
-		public static long DateToUnixTimestamp(DateTime date)
+		internal static long DateToUnixTimestamp(DateTime date)
 		{
 			TimeSpan ts = date - unixStartDate;
 			return (long)ts.TotalSeconds;
@@ -43,7 +72,7 @@ namespace FlickrNet
 		/// </summary>
 		/// <param name="timestamp">The timestamp, as a string.</param>
 		/// <returns>The <see cref="DateTime"/> object the time represents.</returns>
-		public static DateTime UnixTimestampToDate(string timestamp)
+		internal static DateTime UnixTimestampToDate(string timestamp)
 		{
 			if( timestamp == null || timestamp.Length == 0 ) return DateTime.MinValue;
 
@@ -55,7 +84,7 @@ namespace FlickrNet
 		/// </summary>
 		/// <param name="timestamp">The unix timestamp.</param>
 		/// <returns>The <see cref="DateTime"/> object the time represents.</returns>
-		public static DateTime UnixTimestampToDate(long timestamp)
+		internal static DateTime UnixTimestampToDate(long timestamp)
 		{
 			return unixStartDate.AddSeconds(timestamp);
 		}
@@ -65,15 +94,15 @@ namespace FlickrNet
 		/// </summary>
 		/// <example>
 		/// <code>
-        ///     PhotoSearchExtras extras = PhotoSearchExtras.DateTaken &amp; PhotoSearchExtras.IconServer;
+		///     PhotoSearchExtras extras = PhotoSearchExtras.DateTaken &amp; PhotoSearchExtras.IconServer;
 		///     string val = Utils.ExtrasToString(extras);
 		///     Console.WriteLine(val);
-        /// </code>
-        /// outputs: "date_taken,icon_server";
+		/// </code>
+		/// outputs: "date_taken,icon_server";
 		/// </example>
 		/// <param name="extras"></param>
-        /// <returns></returns>
-		public static string ExtrasToString(PhotoSearchExtras extras)
+		/// <returns></returns>
+		internal static string ExtrasToString(PhotoSearchExtras extras)
 		{
 			System.Text.StringBuilder sb = new System.Text.StringBuilder();
 			if( (extras & PhotoSearchExtras.DateTaken) == PhotoSearchExtras.DateTaken )
@@ -230,5 +259,93 @@ namespace FlickrNet
 			}
 			return new string(chars);
 		}
+	
+		private const string photoUrl = "http://farm{0}.static.flickr.com/{1}/{2}_{3}{4}.{5}";
+
+		internal static string UrlFormat(Photo p, string size, string format)
+		{
+			if( size == "_o" )
+				return UrlFormat(photoUrl, p.Farm, p.Server, p.PhotoId, p.OriginalSecret, size, format);
+			else
+				return UrlFormat(photoUrl, p.Farm, p.Server, p.PhotoId, p.Secret, size, format);
+		}
+
+		internal static string UrlFormat(PhotoInfo p, string size, string format)
+		{
+			if( size == "_o" )
+				return UrlFormat(photoUrl, p.Farm, p.Server, p.PhotoId, p.OriginalSecret, size, format);
+			else
+				return UrlFormat(photoUrl, p.Farm, p.Server, p.PhotoId, p.Secret, size, format);
+		}
+
+		internal static string UrlFormat(Photoset p, string size, string format)
+		{
+			return UrlFormat(photoUrl, p.Farm, p.Server, p.PrimaryPhotoId, p.Secret, size, format);
+		}
+
+		private static string UrlFormat(string format, params object[] parameters)
+		{
+			return String.Format(format, parameters);
+		}
+
+		private static readonly Hashtable _serializers = new Hashtable();
+
+		private static XmlSerializer GetSerializer(Type type)
+		{
+			if( _serializers.ContainsKey(type.Name) )
+				return (XmlSerializer)_serializers[type.Name];
+			else
+			{
+				XmlSerializer s = new XmlSerializer(type);
+				_serializers.Add(type.Name, s);
+				return s;
+			}
+		}
+		/// <summary>
+		/// Converts the response string (in XML) into the <see cref="Response"/> object.
+		/// </summary>
+		/// <param name="responseString">The response from Flickr.</param>
+		/// <returns>A <see cref="Response"/> object containing the details of the </returns>
+		internal static Response Deserialize(string responseString)
+		{
+			XmlSerializer serializer = GetSerializer(typeof(FlickrNet.Response));
+			try
+			{
+				// Deserialise the web response into the Flickr response object
+				StringReader responseReader = new StringReader(responseString);
+				FlickrNet.Response response = (FlickrNet.Response)serializer.Deserialize(responseReader);
+				responseReader.Close();
+
+				return response;
+			}
+			catch(InvalidOperationException ex)
+			{
+				// Serialization error occurred!
+				throw new ResponseXmlException("Invalid response received from Flickr.", ex);
+			}
+		}
+
+		internal static object Deserialize(System.Xml.XmlNode node, Type type)
+		{
+			XmlSerializer serializer = GetSerializer(type);
+			try
+			{
+				// Deserialise the web response into the Flickr response object
+				System.Xml.XmlNodeReader reader = new System.Xml.XmlNodeReader(node);
+				object o = serializer.Deserialize(reader);
+				reader.Close();
+
+				return o;
+			}
+			catch(InvalidOperationException ex)
+			{
+				// Serialization error occurred!
+				throw new ResponseXmlException("Invalid response received from Flickr.", ex);
+			}
+		}
+
+
+
 	}
+
 }

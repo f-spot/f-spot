@@ -29,6 +29,7 @@ namespace FlickrNet
 	/// <summary>
 	/// Used to specify where all tags must be matched or any tag to be matched.
 	/// </summary>
+	[Serializable]
 	public enum TagMode
 	{
 		/// <summary>
@@ -49,10 +50,99 @@ namespace FlickrNet
 		Boolean
 	}
 
+	/// <summary>
+	/// What type of content is the upload representing.
+	/// </summary>
+	[Serializable]
+	public enum ContentType
+	{
+		/// <summary>
+		/// No content type specified.
+		/// </summary>
+		None = 0,
+		/// <summary>
+		/// For normal photographs.
+		/// </summary>
+		Photo = 1,
+		/// <summary>
+		/// For screenshots.
+		/// </summary>
+		Screenshot = 2,
+		/// <summary>
+		/// For other uploads, such as artwork.
+		/// </summary>
+		Other = 3
+	}
+
+	/// <summary>
+	/// Safety level of the photographic image.
+	/// </summary>
+	[Serializable]
+	public enum SafetyLevel
+	{
+		/// <summary>
+		/// No safety level specified.
+		/// </summary>
+		None = 0,
+		/// <summary>
+		/// Very safe (suitable for a global family audience).
+		/// </summary>
+		Safe = 1,
+		/// <summary>
+		/// Moderate (the odd articstic nude is ok, but thats the limit).
+		/// </summary>
+		Moderate = 2,
+		/// <summary>
+		/// Restricted (suitable for over 18s only).
+		/// </summary>
+		Restricted = 3
+	}
+
+	/// <summary>
+	/// Determines weither the photo is visible in public searches. The default is 1, Visible.
+	/// </summary>
+	[Serializable]
+	public enum HiddenFromSearch
+	{
+		/// <summary>
+		/// No preference specified, defaults to your preferences on Flickr.
+		/// </summary>
+		None = 0,
+		/// <summary>
+		/// Photo is visible to public searches.
+		/// </summary>
+		Visible = 1,
+		/// <summary>
+		/// photo is hidden from public searches.
+		/// </summary>
+		Hidden = 2
+	}
+
+
+	/// <summary>
+	/// Used to specify where all tags must be matched or any tag to be matched.
+	/// </summary>
+	[Serializable]
+	public enum MachineTagMode
+	{
+		/// <summary>
+		/// No tag mode specified.
+		/// </summary>
+		None,
+		/// <summary>
+		/// Any tag must match, but not all.
+		/// </summary>
+		AnyTag,
+		/// <summary>
+		/// All tags must be found.
+		/// </summary>
+		AllTags
+	}
 
 	/// <summary>
 	/// When searching for photos you can filter on the privacy of the photos.
 	/// </summary>
+	[Serializable]
 	public enum PrivacyFilter
 	{
 		/// <summary>
@@ -64,13 +154,13 @@ namespace FlickrNet
 		/// </summary>
 		PublicPhotos = 1,
 		/// <summary>
-		/// Show photos which are marked as private but viewable by family contacts.
-		/// </summary>
-		PrivateVisibleToFamily = 2,
-		/// <summary>
 		/// Show photos which are marked as private but viewable by friends.
 		/// </summary>
-		PrivateVisibleToFriends = 3,
+		PrivateVisibleToFriends = 2,
+		/// <summary>
+		/// Show photos which are marked as private but viewable by family contacts.
+		/// </summary>
+		PrivateVisibleToFamily = 3,
 		/// <summary>
 		/// Show photos which are marked as private but viewable by friends and family contacts.
 		/// </summary>
@@ -84,6 +174,7 @@ namespace FlickrNet
 	/// <summary>
 	/// An enumeration defining who can add comments.
 	/// </summary>
+	[Serializable]
 	public enum PermissionComment
 	{
 		/// <summary>

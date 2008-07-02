@@ -4,7 +4,11 @@ ASSEMBLY_NAME = FlickrNet
 
 ASSEMBLY_SOURCES =				\
 	$(srcdir)/AssemblyInfo.cs 		\
+	$(srcdir)/ActivityEvent.cs		\
+	$(srcdir)/ActivityItem.cs		\
+	$(srcdir)/ApiKeyRequiredException.cs	\
 	$(srcdir)/Auth.cs 			\
+	$(srcdir)/AuthenticationRequiredException.cs		\
 	$(srcdir)/Blogs.cs 			\
 	$(srcdir)/BoundaryBox.cs 		\
 	$(srcdir)/Cache.cs 			\
@@ -16,6 +20,8 @@ ASSEMBLY_SOURCES =				\
 	$(srcdir)/Enums.cs 			\
 	$(srcdir)/ExifPhoto.cs 			\
 	$(srcdir)/Flickr.cs 			\
+	$(srcdir)/FlickrApiException.cs		\
+	$(srcdir)/FlickrWebException.cs		\
 	$(srcdir)/FlickrConfigurationManager.cs	\
 	$(srcdir)/FlickrConfigurationSettings.cs\
 	$(srcdir)/FlickrException.cs 		\
@@ -41,12 +47,16 @@ ASSEMBLY_SOURCES =				\
 	$(srcdir)/PhotoSets.cs 			\
 	$(srcdir)/Photos.cs 			\
 	$(srcdir)/Response.cs 			\
+	$(srcdir)/ResponseXmlException.cs	\
+	$(srcdir)/SafeNativeMethods.cs		\
+	$(srcdir)/SignatureRequiredException.cs	\
 	$(srcdir)/Sizes.cs 			\
 	$(srcdir)/Tags.cs 			\
 	$(srcdir)/Uploader.cs 			\
 	$(srcdir)/UploadProgressEvent.cs 	\
 	$(srcdir)/User.cs 			\
 	$(srcdir)/Utils.cs 
+
 
 REFS =  -r:System.Web.dll	\
 	-r:System.Drawing.dll

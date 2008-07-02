@@ -15,7 +15,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Sam Judson")]
 [assembly: AssemblyProduct("Flickr .Net Api Library")]
-[assembly: AssemblyCopyright("http://www.gnu.org/copyleft/lesser.html")]
+[assembly: AssemblyCopyright("See website http://www.wackylabs.net/flickr")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -30,7 +30,7 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Revision and Build Numbers 
 // by using the '*' as shown below:
 
-[assembly: AssemblyVersion("2.1.2.*")]
+[assembly: AssemblyVersion("2.1.5.*")]
 
 //
 // In order to sign your assembly you must specify a key to use. Refer to the 
@@ -57,12 +57,11 @@ using System.Runtime.InteropServices;
 //   (*) Delay Signing is an advanced option - see the Microsoft .NET Framework
 //       documentation for more information on this.
 //
-//[assembly: AssemblyDelaySign(false)]
-//[assembly: AssemblyKeyFile("FlickrNet.snk")]
-//[assembly: AssemblyKeyName("")]
+[assembly: AssemblyDelaySign(false)]
+[assembly: AssemblyKeyName("")]
 
 [assembly: AllowPartiallyTrustedCallers()]
 [assembly: SecurityPermission(SecurityAction.RequestMinimum, Execution = true)]
 
 [assembly: CLSCompliantAttribute(true)]
-//[assembly: ComVisible(false)]
+[assembly: ComVisible(false)]

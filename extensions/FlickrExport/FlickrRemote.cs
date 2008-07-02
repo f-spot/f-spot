@@ -65,7 +65,7 @@ public class FlickrRemote {
 		if (licenses == null) {
 			try {
 				licenses = flickr.PhotosLicensesGetInfo(); 
-			} catch (FlickrNet.FlickrException e ) {
+			} catch (FlickrNet.FlickrApiException e ) {
 				Console.WriteLine ( e.Code + ": " + e.Verbose );
 				return null;
 			}
@@ -118,7 +118,7 @@ public class FlickrRemote {
 				flickr.AuthToken = token;
 
 				return auth;
-			} catch (FlickrNet.FlickrException ex) {
+			} catch (FlickrNet.FlickrApiException ex) {
 				Console.WriteLine ("ERROR: Problems login in Flickr - "+ex.Verbose);
 
 				return null;

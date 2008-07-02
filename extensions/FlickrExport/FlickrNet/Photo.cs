@@ -9,12 +9,11 @@ namespace FlickrNet
 	public class Photo 
 	{
     
-		private const string photoUrl = "http://static.flickr.com/{0}/{1}_{2}{3}.{4}";
-
 		private string _photoId;
 		private string _userId;
 		private string _secret;
 		private string _server;
+		private string _farm;
 		private string _title;
 		private int _isPublic;
 		private int _isFriend;
@@ -24,7 +23,9 @@ namespace FlickrNet
 		private string _ownerName;
 		private string _iconServer;
 		private string _originalFormat;
+		private string _originalSecret;
 		private string _cleanTags;
+		private string _machineTags;
 		private decimal _latitude;
 		private decimal _longitude;
 		private GeoAccuracy _accuracy;
@@ -44,6 +45,10 @@ namespace FlickrNet
 		/// <remarks/>
 		[XmlAttribute("server", Form=XmlSchemaForm.Unqualified)]
 		public string Server { get { return _server; } set { _server = value; } }
+    
+		/// <remarks/>
+		[XmlAttribute("farm", Form=XmlSchemaForm.Unqualified)]
+		public string Farm { get { return _farm; } set { _farm = value; } }
     
 		/// <remarks/>
 		[XmlAttribute("title", Form=XmlSchemaForm.Unqualified)]
@@ -144,16 +149,29 @@ namespace FlickrNet
 		public string OriginalFormat { get { return _originalFormat; } set { _originalFormat = value; } }
 
 		/// <summary>
+		/// Optional extra field containing the original 'secret' of the 
+		/// photo used for forming the Url.
+		/// </summary>
+		[XmlAttribute("originalsecret", Form=XmlSchemaForm.Unqualified)]
+		public string OriginalSecret { get { return _originalSecret; } set { _originalSecret = value; } }
+
+		/// <summary>
 		/// Undocumented tags atrribute. Renamed to CleanTags.
 		/// </summary>
 		[Obsolete("Renamed to CleanTags, as the tags are clean, not raw")]
 		public string RawTags { get { return _cleanTags; } set { _cleanTags = value; } }
 
 		/// <summary>
-		/// Undocumented tags attribute
+		/// Tags, in their clean format (exception is machine tags which retain their machine encoding).
 		/// </summary>
 		[XmlAttribute("tags", Form=XmlSchemaForm.Unqualified)]
 		public string CleanTags { get { return _cleanTags; } set { _cleanTags = value; } }
+
+		/// <summary>
+		/// Machine tags
+		/// </summary>
+		[XmlAttribute("machine_tags", Form=XmlSchemaForm.Unqualified)]
+		public string MachineTags { get { return _machineTags; } set { _machineTags = value; } }
 
 		/// <summary>
 		/// The url to the web page for this photo. Uses the users userId, not their web alias, but
@@ -171,7 +189,7 @@ namespace FlickrNet
 		[XmlIgnore()]
 		public string SquareThumbnailUrl
 		{
-			get { return string.Format(photoUrl, Server, PhotoId, Secret, "_s", "jpg"); }
+			get { return Utils.UrlFormat(this, "_s", "jpg"); }
 		}
 
 		/// <summary>
@@ -180,7 +198,7 @@ namespace FlickrNet
 		[XmlIgnore()]
 		public string ThumbnailUrl
 		{
-			get { return string.Format(photoUrl, Server, PhotoId, Secret, "_t", "jpg"); }
+			get { return Utils.UrlFormat(this, "_t", "jpg"); }
 		}
 
 		/// <summary>
@@ -189,7 +207,7 @@ namespace FlickrNet
 		[XmlIgnore()]
 		public string SmallUrl
 		{
-			get { return string.Format(photoUrl, Server, PhotoId, Secret, "_m", "jpg"); }
+			get { return Utils.UrlFormat(this, "_m", "jpg"); }
 		}
 
 		/// <summary>
@@ -200,7 +218,7 @@ namespace FlickrNet
 		[XmlIgnore()]
 		public string MediumUrl
 		{
-			get { return string.Format(photoUrl, Server, PhotoId, Secret, "", "jpg"); }
+			get { return Utils.UrlFormat(this, "", "jpg"); }
 		}
 
 		/// <summary>
@@ -211,7 +229,7 @@ namespace FlickrNet
 		[XmlIgnore()]
 		public string LargeUrl
 		{
-			get { return string.Format(photoUrl, Server, PhotoId, Secret, "_b", "jpg"); }
+			get { return Utils.UrlFormat(this, "_b", "jpg"); }
 		}
 
 		/// <summary>
@@ -225,7 +243,7 @@ namespace FlickrNet
 				if( OriginalFormat == null || OriginalFormat.Length == 0 )
 					throw new InvalidOperationException("No original format information available.");
 
-				return string.Format(photoUrl, Server, PhotoId, Secret, "_o", OriginalFormat);
+				return Utils.UrlFormat(this, "_o", OriginalFormat);
 			}
 		}
 

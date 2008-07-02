@@ -5,11 +5,14 @@ namespace FlickrNet
 	/// <summary>
 	/// Summary description for PhotoSearchOptions.
 	/// </summary>
+	[Serializable]
 	public class PhotoSearchOptions
 	{
 		private string _userId;
 		private string _tags;
 		private TagMode _tagMode = TagMode.None;
+		private string _machineTags;
+		private MachineTagMode _machineTagMode = MachineTagMode.None;
 		private string _text;
 		private DateTime _minUploadDate = DateTime.MinValue;
 		private DateTime _maxUploadDate = DateTime.MinValue;
@@ -117,11 +120,52 @@ namespace FlickrNet
 					case TagMode.Boolean:
 						return "bool";
 					default:
-						return "all";
+						return "";
 				}
 			}
 		}
-	
+
+		/// <summary>
+		/// Search for the given machine tags.
+		/// </summary>
+		/// <remarks>
+		/// See http://www.flickr.com/services/api/flickr.photos.search.html for details 
+		/// on how to search for machine tags.
+		/// </remarks>
+		public string MachineTags
+		{
+			get { return _machineTags; } set { _machineTags = value; }
+		}
+
+		/// <summary>
+		/// The machine tag mode. 
+		/// </summary>
+		/// <remarks>
+		/// Allowed values are any and all. It defaults to any if none specified.
+		/// </remarks>
+		public MachineTagMode MachineTagMode
+		{
+			get { return _machineTagMode; } set { _machineTagMode = value; }
+		}
+
+		internal string MachineTagModeString
+		{
+			get
+			{
+				switch(_machineTagMode)
+				{
+					case MachineTagMode.None:
+						return "";
+					case MachineTagMode.AllTags:
+						return "all";
+					case MachineTagMode.AnyTag:
+						return "any";
+					default:
+						return "";
+				}
+			}
+		}
+
 		/// <summary>
 		/// Search for the given text in photo titles and descriptions.
 		/// </summary>
@@ -250,7 +294,7 @@ namespace FlickrNet
 			get { return _page; }
 			set 
 			{
-				if( value < 0 ) throw new ArgumentOutOfRangeException("Page", value, "Must be greater than 0");
+				if( value < 0 ) throw new ArgumentOutOfRangeException("Page", "Must be greater than 0");
 				_page = value; 
 			}
 		}

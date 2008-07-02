@@ -15,6 +15,7 @@ namespace FlickrNet
 	/// </code>
 	/// </example>
 	[Flags]
+	[Serializable]
 	public enum PhotoSearchExtras
 	{
 		/// <summary>
@@ -50,7 +51,7 @@ namespace FlickrNet
 		/// </summary>
 		LastUpdated = 64,
 		/// <summary>
-		/// Undocumented Tags extra
+		/// Returns Tags attribute
 		/// </summary>
 		Tags = 128,
 		/// <summary>
@@ -58,8 +59,12 @@ namespace FlickrNet
 		/// </summary>
 		Geo = 256,
 		/// <summary>
+		/// Machine encoded tags
+		/// </summary>
+		MachineTags = 512,
+		/// <summary>
 		/// Returns all the above information.
 		/// </summary>
-		All = License | DateUploaded | DateTaken | OwnerName | IconServer | OriginalFormat | LastUpdated | Tags | Geo
+		All = License | DateUploaded | DateTaken | OwnerName | IconServer | OriginalFormat | LastUpdated | Tags | Geo | MachineTags
 	}
 }
