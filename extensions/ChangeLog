@@ -1,3 +1,9 @@
+2008-07-02  Lorenzo Milesi <maxxer@yetopen.it>
+ 
+ 	* PicasaWeb/PicasaWebExport.addin.xml: bump version
+ 	* PicasaWeb/PicasaWebExport.cs: check that there's at least one album
+ 	on change. Fix bgo#541140.
+ 
 2008-07-02  Stephane Delcroix  <stephane@delcroix.org>
 
 	* FlickrExport/: update to flickrnet 1.2.5

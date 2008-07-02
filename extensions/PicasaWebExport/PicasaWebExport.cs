@@ -884,7 +884,7 @@ namespace FSpotGoogleExport {
 		
 		public void HandleAlbumOptionMenuChanged (object sender, System.EventArgs args)
 		{
-			if (albums == null)
+			if (albums == null || albums.Count == 0)
 				return;
 
 			PicasaAlbum a = albums [album_optionmenu.History];
