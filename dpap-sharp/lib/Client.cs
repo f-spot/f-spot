@@ -117,7 +117,8 @@ namespace DPAP
 
             try {
                 bag = ContentCodeBag.ParseCodes (fetcher.Fetch ("/content-codes"));
-				
+			//	ContentNode n = bag.ToNode();
+			//	n.Dump();
                 ContentNode node = ContentParser.Parse (bag, fetcher.Fetch ("/login"));
                 ParseSessionId (node);
 				//byte[] db_reply = fetcher.Fetch ("/databases");

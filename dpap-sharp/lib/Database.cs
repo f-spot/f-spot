@@ -341,38 +341,47 @@ namespace DPAP {
         }
 
         private void RefreshTracks (string revquery) {
-            byte[] tracksData = client.Fetcher.Fetch (String.Format ("/databases/{0}/items", id),
-                                                     TrackQuery + "&" + revquery);
-            ContentNode tracksNode = ContentParser.Parse (client.Bag, tracksData);
+			foreach (Playlist pl in playlists){
+	            byte[] tracksData = client.Fetcher.Fetch (String.Format ("/databases/{0}/containers/{1}/items", id,pl.getId()),
+	                                                     TrackQuery);
+	            ContentNode tracksNode = ContentParser.Parse (client.Bag, tracksData);
 
-            if (IsUpdateResponse (tracksNode))
-                return;
+	            if (IsUpdateResponse (tracksNode))
+	                return;
 
-            // handle track additions/changes
-            foreach (ContentNode trackNode in (ContentNode[]) tracksNode.GetChild ("dmap.listing").Value) {
-                Track track = Track.FromNode (trackNode);
-                Track existing = LookupTrackById (track.Id);
+	            // handle track additions/changes
+	            foreach (ContentNode trackNode in (ContentNode[]) tracksNode.GetChild ("dmap.listing").Value) {
+					//trackNode.Dump();
+	                Track track = Track.FromNode (trackNode);
+					
+	                Track existing = LookupTrackById (track.Id);
+					
+	                if (existing == null){
+						Console.WriteLine("adding " + track.Title);
+	                    AddTrack (track);
+					}
+	                else
+					{
+						Console.WriteLine("updating " + existing.Title);
+	                    existing.Update (track);
+					}
+	            }
 
-                if (existing == null)
-                    AddTrack (track);
-                else
-                    existing.Update (track);
-            }
+	            if ((byte) tracksNode.GetChild ("dmap.updatetype").Value == 1) {
 
-            if ((byte) tracksNode.GetChild ("dmap.updatetype").Value == 1) {
+	                // handle track deletions
+	                ContentNode deleteList = tracksNode.GetChild ("dmap.deletedidlisting");
 
-                // handle track deletions
-                ContentNode deleteList = tracksNode.GetChild ("dmap.deletedidlisting");
+	                if (deleteList != null) {
+	                    foreach (ContentNode deleted in (ContentNode[]) deleteList.Value) {
+	                        Track track = LookupTrackById ((int) deleted.Value);
 
-                if (deleteList != null) {
-                    foreach (ContentNode deleted in (ContentNode[]) deleteList.Value) {
-                        Track track = LookupTrackById ((int) deleted.Value);
-
-                        if (track != null)
-                            RemoveTrack (track);
-                    }
-                }
-            }
+	                        if (track != null)
+	                            RemoveTrack (track);
+	                    }
+	                }
+				}
+			}
         }
 
         internal void Refresh (int newrev) {
@@ -383,9 +392,9 @@ namespace DPAP {
 
             if (client.Revision != 0)
                 revquery = String.Format ("revision-number={0}&delta={1}", newrev, newrev - client.Revision);
-
-            RefreshTracks ("");
+            
             RefreshPlaylists ("");
+			RefreshTracks ("");
         }
 
         private HttpWebResponse FetchTrack (Track track, long offset) {

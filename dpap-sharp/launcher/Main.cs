@@ -39,7 +39,21 @@ namespace DPAP {
 
 			System.Console.WriteLine("Connecting to {0} at {1}:{2}", service.Name, service.Address, service.Port);
 		    client = new Client( service );
-			Console.ReadLine();
+			foreach (Database d in client.Databases){
+
+				Console.WriteLine("Database " + d.Name);
+				
+				foreach (Playlist pl in d.Playlists)
+					Console.WriteLine("\tAlbum: "+pl.Name + ", id=" + pl.getId() + " number of items:" + pl.Tracks.Count);
+				
+				foreach (Track tr in d.Tracks) 
+					if(tr != null)
+						Console.WriteLine("\t\tFile: " + tr.Title);
+				
+			}
+			client.Logout();
+			Console.WriteLine("Press <enter> to exit...");
+			//Console.ReadLine();
 	//		});
         /*            //client.Updated += OnClientUpdated;
                     if(client.AuthenticationMethod == AuthenticationMethod.None) {

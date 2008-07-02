@@ -110,7 +110,7 @@ namespace DPAP {
             code.Number = GetIntFormat (num);
             code.Name = name;
             code.Type = type;
-			Console.Write(name + ' ');
+			//Console.Write(name + ' ');
 			
             codes[code.Number] = code;
 	//		Console.WriteLine("Leaving ContentCodeBag AddCode(string,string,ContentType)");

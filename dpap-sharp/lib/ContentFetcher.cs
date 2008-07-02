@@ -151,13 +151,13 @@ namespace DPAP {
 
             string hash = Hasher.GenerateHash (3, builder.Uri.PathAndQuery, 2, requestId);
 
-            request.UserAgent = "iPhoto/4.01 (Macintosh; PPC)";
+            request.UserAgent = "iPhoto/5.0.2 (Macintosh; PPC)";
             request.Headers.Set ("Client-DMAP-Version", "1.0");
-			request.Headers.Set ("Client-DPAP-Version", "1.0");
+			request.Headers.Set ("Client-DPAP-Version", "1.1");
             /*request.Headers.Set ("Client-DPAP-Validation", hash);
             request.Headers.Set ("Client-DPAP-Access-Index", "2");
 			*/
-			Console.Write(path + query);
+			Console.Write(path + "?"+query);
 			Console.Write(request.Headers);
 			
             if (requestId >= 0)
@@ -171,7 +171,8 @@ namespace DPAP {
                     requests.Add (request);
                 }
                 HttpWebResponse response = (HttpWebResponse) request.GetResponse ();
-				Console.Write(response.StatusCode);
+				//if(!response.StatusCode.Equals("OK"))
+				//	Console.Write(response.StatusCode);
                 return response;
             } finally {
                 lock (requests) {

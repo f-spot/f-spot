@@ -70,7 +70,7 @@ namespace DPAP {
         internal Playlist () {
             id = nextid++;
         }
-
+		
         public Playlist (string name) : this () {
             this.name = name;
         }
@@ -208,6 +208,10 @@ namespace DPAP {
         internal int LookupIndexByContainerId (int id) {
             return containerIds.IndexOf (id);
         }
+
+		public int getId() {
+			return Id;
+		}
     }
 
 }
