@@ -58,20 +58,12 @@ namespace DPAP {
     public class Database : ICloneable {
 
         private const int ChunkLength = 8192;
-        private const string TrackQuery = "meta=dmap.itemid,dmap.itemname,dmap.itemkind,dmap.persistentid," +
-                                         "daap.songalbum,daap.songgrouping,daap.songartist,daap.songbitrate," +
-                                         "daap.songbeatsperminute,daap.songcomment,daap.songcodectype," +
-                                         "daap.songcodecsubtype,daap.songcompilation,daap.songcomposer," +
-                                         "daap.songdateadded,daap.songdatemodified,daap.songdisccount," +
-                                         "daap.songdiscnumber,daap.songdisabled,daap.songeqpreset," +
-                                         "daap.songformat,daap.songgenre,daap.songdescription," +
-                                         "daap.songsamplerate,daap.songsize,daap.songstarttime," +
-                                         "daap.songstoptime,daap.songtime,daap.songtrackcount," +
-                                         "daap.songtracknumber,daap.songuserrating,daap.songyear," +
-                                         "daap.songdatakind,daap.songdataurl,com.apple.itunes.norm-volume," +
-                                         "com.apple.itunes.itms-songid,com.apple.itunes.itms-artistid," +
-                                         "com.apple.itunes.itms-playlistid,com.apple.itunes.itms-composerid," +
-                                         "com.apple.itunes.itms-genreid";
+		
+        private const string TrackQuery = "meta=dpap.aspectratio,dmap.itemid,dmap.itemname,dpap.imagefilename," +
+			"dpap.imagefilesize,dpap.creationdate,dpap.imagepixelwidth," +
+			"dpap.imagepixelheight,dpap.imageformat,dpap.imagerating," +
+			"dpap.imagecomments,dpap.imagelargefilesize&type=photo"; 
+			
 
         private static int nextid = 1;
         private Client client;
@@ -392,8 +384,8 @@ namespace DPAP {
             if (client.Revision != 0)
                 revquery = String.Format ("revision-number={0}&delta={1}", newrev, newrev - client.Revision);
 
-            RefreshTracks (revquery);
-            RefreshPlaylists (revquery);
+            RefreshTracks ("");
+            RefreshPlaylists ("");
         }
 
         private HttpWebResponse FetchTrack (Track track, long offset) {

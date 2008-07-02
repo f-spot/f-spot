@@ -114,11 +114,13 @@ namespace DPAP {
             int num = IPAddress.NetworkToHostOrder (BitConverter.ToInt32 (buffer, offset));
 	//		System.Console.WriteLine("debug2!");
             ContentCode code = bag.Lookup (num);
-			//Console.WriteLine("Code number: "+num);
+			
 			//System.Console.WriteLine("debug3!");
             if (code.Equals (ContentCode.Zero)) {
                 // probably a buggy server.  fallback to our internal code bag
 				Console.WriteLine("fallback to internal code bag");
+				Console.WriteLine("Code number: "+num);
+				return null;
                 code = ContentCodeBag.Default.Lookup (num);
             }
 			

@@ -150,10 +150,28 @@ namespace DPAP {
             bag.AddCode ("mstt", "dmap.status", ContentType.Long);
 
             // some photo-specific codes
+			// shouldn't those be automatically added when /content-codes is requested ?
             bag.AddCode ("ppro", "dpap.protocolversion", ContentType.Long);
             bag.AddCode ("pret", "dpap.blah", ContentType.Container);
 			bag.AddCode ("avdb", "dpap.serverdatabases", ContentType.Container);
-			
+			bag.AddCode ("aply", "dpap.databaseplaylists", ContentType.Container);
+			bag.AddCode ("abpl", "dpap.baseplaylist", ContentType.Char);
+			bag.AddCode ("apso", "dpap.playlistsongs", ContentType.Container);
+			bag.AddCode ("pasp", "dpap.aspectratio", ContentType.String);
+			bag.AddCode ("adbs", "daap.databasesongs", ContentType.Container);
+			bag.AddCode ("picd", "dpap.creationdate", ContentType.Long);
+			bag.AddCode ("pifs", "dpap.imagefilesize", ContentType.Long);
+			bag.AddCode ("pwth", "dpap.imagepixelwidth", ContentType.Long);
+			bag.AddCode ("phgt", "dpap.imagepixelheight", ContentType.Long);
+			bag.AddCode ("pcmt", "dpap.imagecomments", ContentType.String);
+			bag.AddCode ("prat", "dpap.imagerating", ContentType.Long);
+			bag.AddCode ("pimf", "dpap.imagefilename", ContentType.String);
+			bag.AddCode ("pfmt", "dpap.imageformat", ContentType.String);
+			bag.AddCode ("plsz", "dpap.imagelargefilesize", ContentType.Long);
+            //bag.AddCode ("pfdt", "dpap.filedata", ContentType.);
+            
+            
+
             ContentNode node = ContentParser.Parse (bag, buffer);
 
             foreach (ContentNode dictNode in (node.Value as ContentNode[])) {

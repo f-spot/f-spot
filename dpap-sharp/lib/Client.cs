@@ -125,7 +125,7 @@ namespace DPAP
 				//Console.Write(BitConverter.ToString(db_reply));
 			//	ContentNode dbnode = ContentParser.Parse (bag, fetcher.Fetch ("/databases"));
                 FetchDatabases ();
-               // Refresh ();
+                Refresh ();
                 
                /* if (serverInfo.SupportsUpdate) {
                     updateRunning = true;
@@ -164,7 +164,7 @@ namespace DPAP
 
                 foreach (ContentNode item in (ContentNode[]) child.Value) {
                     Database db = new Database (this, item);
-					Console.WriteLine("Adding database {0} with {1} items." , db.Name,db.TrackCount);
+					Console.WriteLine("Adding database {0} with id={1} and roll count={2}." , db.Name,db.Id,db.Playlists.Count); 
                     databases.Add (db);
                 }
             }
@@ -183,9 +183,9 @@ namespace DPAP
         }
 
         private void Refresh () {
-            int newrev = revision;
+            int newrev = 0;
 
-            if (serverInfo.SupportsUpdate) {
+           /* if (serverInfo.SupportsUpdate) {
                 if (revision == 0)
                     newrev = GetCurrentRevision ();
                 else
@@ -194,7 +194,7 @@ namespace DPAP
                 if (newrev == revision)
                     return;
             }
-                
+             */   
             // Console.WriteLine ("Got new revision: " + newrev);
             foreach (Database db in databases) {
                 db.Refresh (newrev);
