@@ -1,5 +1,10 @@
 2008-07-03  Ruben Vermeersch  <ruben@savanne.be>
 
+	* src/PhotoStore.cs: Make it really obvious that you are doing the wrong
+	thing.
+
+2008-07-03  Ruben Vermeersch  <ruben@savanne.be>
+
 	* src/FSpot.addin.xml: Bump the extension API version because of the
 	changed PhotoStore.
 
