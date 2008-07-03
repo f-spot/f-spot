@@ -1,3 +1,35 @@
+2008-07-03  Ruben Vermeersch  <ruben@savanne.be>
+
+	Fix bgo #170956. Adds flags in various places to designate what caused the
+	change. This avoids photo reloads when adding a tag.
+
+	* src/Core/BrowsableEventArgs.cs: Add MetadataChanged and ContentChanged
+	flags to show what changed.
+
+	* src/Core/BrowsablePointer.cs: Add flags as well.
+
+	* src/FileImportBackend.cs, src/ImportCommand.cs, src/InfoOverlay.cs,
+	src/ItemAction.cs, src/MainWindow.cs, src/PhotoVersionCommands.cs,
+	src/PhotoView.cs, src/UI.Dialog/ColorDialog.cs: Change the way changes are
+	marked and committed, to supply the extra needed metadata.
+
+	* src/PhotoImageView.cs: Don't reload if the image didn't change at all.
+
+	* src/PhotoQuery.cs: Allow passing flags through PhotoQuery. Propagate the
+	ones from the PhotoEventArgs. Always pass the Changed events through the
+	store, makes sure everyone receives them.
+
+	* src/PhotoStore.cs: Add PhotoEventArgs. Deprecate normal Commit
+	operations, instead force the usage of metadata aware Commit methods.
+	Provide new EmitChanged methods to signal changes to photos.
+
+	* src/TimeDialog.cs: Change TimeChangedEventArgs to inherit from
+	PhotoEventArgs.
+
+	* src/Widgets/Filmstrip.cs, src/Widgets/IconView.cs,
+	src/Widgets/MetadataDisplay.cs: Correctly handle events, based on what
+	actually happened.
+
 2008-07-02  Stephane Delcroix  <stephane@delcroix.org>
 
 	* configure.in:

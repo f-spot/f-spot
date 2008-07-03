@@ -827,10 +827,8 @@ public class MainWindow {
 		RotateCommand command = new RotateCommand (parent);
 		
 		int [] selected_ids = SelectedIds ();
-		if (command.Execute (direction, SelectedPhotos (selected_ids))) {
-			foreach (int num in selected_ids)
-				query.MarkChanged (num);
-		}
+		if (command.Execute (direction, SelectedPhotos (selected_ids)))
+			query.MarkChanged (selected_ids, true, true);
 	}
 
 	//
@@ -846,7 +844,7 @@ public class MainWindow {
 	{
 		foreach (int num in nums)
 			query.Photos [num].AddTag (tags);
-		query.Commit (nums);
+		query.Commit (nums, true, false);
 
 		foreach (Tag t in tags) {
 			if (t.Icon != null)
@@ -870,7 +868,7 @@ public class MainWindow {
 	{
 		foreach (int num in nums)
 			query.Photos [num].RemoveTag (tags);
-		query.Commit (nums);
+		query.Commit (nums, true, false);
 	}
 
 	void HandleTagSelectionRowActivated (object sender, RowActivatedArgs args)
@@ -1006,7 +1004,7 @@ public class MainWindow {
 				
 				// FIXME this should really follow the AddTagsExtended path too
 				photo.AddTag (new Tag[] {tag});
-				db.Photos.Commit (photo);
+				db.Photos.Commit (photo, true, false);
 			}
 			db.CommitTransaction ();
 			InvalidateViews ();
@@ -1497,11 +1495,12 @@ public class MainWindow {
 
 		Photo p;
 		db.BeginTransaction ();
-		foreach (int num in SelectedIds ()) {
+		int [] selected_photos = SelectedIds ();
+		foreach (int num in selected_photos) {
 			p = query.Photos [num];
 			p.Rating = (uint) r;
-			query.Commit (num);
 		}
+		query.Commit (selected_photos, true, false);
 		db.CommitTransaction ();
 	}
 
@@ -1852,7 +1851,7 @@ public class MainWindow {
 		PhotoVersionCommands.Create cmd = new PhotoVersionCommands.Create ();
 
 		if (cmd.Execute (db.Photos, CurrentPhoto, GetToplevel (null))) {
-			query.MarkChanged (ActiveIndex ());
+			query.MarkChanged (ActiveIndex (), true, false);
 		}
 	}
 
@@ -1861,7 +1860,7 @@ public class MainWindow {
 		PhotoVersionCommands.Delete cmd = new PhotoVersionCommands.Delete ();
 
 		if (cmd.Execute (db.Photos, CurrentPhoto, GetToplevel (null))) {
-			query.MarkChanged (ActiveIndex ());
+			query.MarkChanged (ActiveIndex (), true, true);
 		}
 	}
 
@@ -1885,7 +1884,7 @@ public class MainWindow {
 		PhotoVersionCommands.Rename cmd = new PhotoVersionCommands.Rename ();
 
 		if (cmd.Execute (db.Photos, CurrentPhoto, main_window)) {
-			query.MarkChanged (ActiveIndex ());
+			query.MarkChanged (ActiveIndex (), true, false);
 		}
 	}
 	
@@ -2466,7 +2465,7 @@ public class MainWindow {
 		int [] selected_ids = SelectedIds ();
 		if (command.Execute (SelectedPhotos (selected_ids))) {
 			foreach (int num in selected_ids)
-				query.MarkChanged (num);
+				query.MarkChanged (num, false, true);
 		}
 	}
 
@@ -2694,7 +2693,7 @@ public class MainWindow {
 		CurrentPhoto.DefaultVersionId = version_id;
 		int active = ActiveIndex ();
 		
-		query.Commit (active);
+		query.Commit (active, true, false);
 	}
 
 	void HandleVersionIdChanged (PhotoVersionMenu menu)
@@ -2992,7 +2991,7 @@ public class MainWindow {
 					uint version = photo.CreateNamedVersion (mime_application.Name, photo.DefaultVersionId, true);
 					photo.DefaultVersionId = version;
 				}
-				query.MarkChanged (query.IndexOf (photo));
+				query.MarkChanged (query.IndexOf (photo), true, true);
 			} catch (Exception e) {
 				errors.Add (new EditException (photo, e));
 			}
@@ -3008,7 +3007,7 @@ public class MainWindow {
 		}
 
 		if (create_new_versions) {
-			db.Photos.Commit (selected, new DbItemEventArgs (selected));
+			db.Photos.Commit (selected, true, false);
 		}
 
 		mime_application.Launch (uri_list);

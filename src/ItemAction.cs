@@ -179,7 +179,7 @@ namespace FSpot {
 			PhotoQuery q = item.Collection as PhotoQuery;
 			if (photo != null && q != null) {
 				photo.DefaultVersionId = version;
-				q.Commit (item.Index);
+				q.Commit (item.Index, true, true);
 			} else {
 				item.Collection.MarkChanged (item.Index);
 			}

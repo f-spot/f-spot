@@ -104,7 +104,7 @@ public class PhotoVersionCommands
 
 			try {
 				photo.DefaultVersionId = photo.CreateVersion (name, photo.DefaultVersionId, true);
-				store.Commit (photo);
+				store.Commit (photo, true, false);
 			} catch (Exception e) {
 					string msg = Catalog.GetString ("Could not create a new version");
 					string desc = String.Format (Catalog.GetString ("Received exception \"{0}\". Unable to create version \"{1}\""),
@@ -147,7 +147,7 @@ public class PhotoVersionCommands
 			if (dialog.Run () == (int) ResponseType.Ok) {
 				try {
 					photo.DeleteVersion (photo.DefaultVersionId);
-					store.Commit (photo);
+					store.Commit (photo, true, true);
 				} catch (Exception e) {
 					// FIXME show error dialog.
 					string msg = Catalog.GetString ("Could not delete a version");
@@ -190,7 +190,7 @@ public class PhotoVersionCommands
 
 			try {
 				photo.RenameVersion (photo.DefaultVersionId, new_name);
-				store.Commit (photo);
+				store.Commit (photo, true, false);
 			} catch (Exception e) {
 					string msg = Catalog.GetString ("Could not rename a version");
 					string desc = String.Format (Catalog.GetString ("Received exception \"{0}\". Unable to rename version to \"{1}\""),
@@ -218,7 +218,7 @@ public class PhotoVersionCommands
 				foreach (uint version_id in photo.VersionIds) {
 					try {
 						new_parent.DefaultVersionId = new_parent.CreateReparentedVersion (photo.GetVersion (version_id) as PhotoVersion);
-						store.Commit (new_parent);
+						store.Commit (new_parent, true, false);
 					} catch (Exception e) {
 						Console.WriteLine (e);	
 					}
@@ -232,7 +232,7 @@ public class PhotoVersionCommands
 						Console.WriteLine(e);
 					}
 				}
-				store.Commit (photo);
+				store.Commit (photo, true, false);
 				MainWindow.Toplevel.Database.Photos.Remove (photo);
 			}
 			return true;

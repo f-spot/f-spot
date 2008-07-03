@@ -478,7 +478,10 @@ namespace FSpot.Widgets
 		{
 			//FIXME: need to be smarter here...
 
-			//invalidate the thumbs cache
+			if (!args.DataChanged)
+				return;
+
+			// Invalidate the thumbs cache
 			thumb_cache.Dispose ();
 			thumb_cache = new DisposableCache<string, Pixbuf> (30);
 			QueueDraw ();

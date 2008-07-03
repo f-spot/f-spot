@@ -7,10 +7,11 @@ using FSpot.Widgets;
 using FSpot.UI.Dialog;
 
 namespace FSpot {
-	public class TimeChangedEventArgs : DbItemEventArgs {
+	public class TimeChangedEventArgs : PhotoEventArgs {
 		TimeSpan span;
 
-		public TimeChangedEventArgs (DbItem [] items, TimeSpan span) : base (items)
+		public TimeChangedEventArgs (Photo [] items, TimeSpan span)
+			: base (items, true, false)
 		{
 			this.span = span;
 		}

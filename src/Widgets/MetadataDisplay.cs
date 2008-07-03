@@ -156,6 +156,9 @@ namespace FSpot.Widgets {
 		}
 		
 		internal void HandleSelectionItemsChanged (IBrowsableCollection collection, BrowsableEventArgs args) {
+			if (!args.MetadataChanged)
+				return;
+
 			if (!Page.IsActive)
 				up_to_date = false;
 			else

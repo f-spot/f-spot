@@ -258,7 +258,8 @@ namespace FSpot.Widgets
 		private void HandleItemsChanged (FSpot.IBrowsableCollection sender, BrowsableEventArgs args)
 		{
 			foreach (int item in args.Items) {
-				UpdateThumbnail (item);
+				if (args.DataChanged)
+					UpdateThumbnail (item);
 				InvalidateCell (item);
 			}
 		}
@@ -351,7 +352,8 @@ namespace FSpot.Widgets
 				if (local_ids.Count == 0)
 					return;
 
-				ItemsChanged (this, new BrowsableEventArgs ((int [])local_ids.ToArray (typeof (int))));
+				int [] items = (int [])local_ids.ToArray (typeof (int));
+				ItemsChanged (this, new BrowsableEventArgs (items, args.MetadataChanged, args.DataChanged));
 			}
 
 			public int [] Ids {
@@ -1427,7 +1429,7 @@ namespace FSpot.Widgets
 				| ModifierType.ShiftMask)) != 0)
 				return;
 				if (DoubleClicked != null)
-					DoubleClicked (this, new BrowsableEventArgs (cell_num));
+					DoubleClicked (this, new BrowsableEventArgs (cell_num, false, false));
 				return;
 
 			case EventType.ButtonPress:
@@ -1544,7 +1546,7 @@ namespace FSpot.Widgets
 			case Gdk.Key.Return:
 				if (DoubleClicked == null)
 					break;
-				DoubleClicked (this, new BrowsableEventArgs (FocusCell));
+				DoubleClicked (this, new BrowsableEventArgs (FocusCell, false, false));
 				break;
 			default:
 				args.RetVal = false;

@@ -29,6 +29,29 @@ using FSpot.Utils;
 
 using Banshee.Database;
 
+public class PhotoEventArgs : DbItemEventArgs {
+	private readonly bool metadata_changed;
+	public bool MetadataChanged {
+		get { return metadata_changed; }
+	}
+
+	private readonly bool data_changed;
+	public bool DataChanged {
+		get { return data_changed; }
+	}
+
+	public PhotoEventArgs (Photo photo, bool metadata_changed, bool data_changed)
+		: this (new Photo [] { photo }, metadata_changed, data_changed)
+	{
+	}
+
+	public PhotoEventArgs (Photo [] items, bool metadata_changed, bool data_changed)
+		: base (items)
+	{
+		this.metadata_changed = metadata_changed;
+		this.data_changed = data_changed;
+	}
+}
 
 public class PhotoStore : DbStore {
 	public int TotalPhotos {
@@ -365,7 +388,7 @@ public class PhotoStore : DbStore {
 
 		foreach (Photo photo in photos) {
 			photo.RemoveCategory (tags);
-			Commit (photo);
+			Commit (photo, true, false);
 		}
 		
 		foreach (Tag tag in tags)
@@ -395,19 +418,25 @@ public class PhotoStore : DbStore {
 		Remove (new Photo [] { (Photo)item });
 	}
 
+// Marking this obsolete causes a warning: Obsolete member `PhotoStore.Commit(FSpot.DbItem)' overrides non-obsolete member `DbStore.Commit(FSpot.DbItem)'.
+//	[Obsolete("WARNING! You should not use this one for photos, the events are not specific enough")]
 	public override void Commit (DbItem item)
 	{
-		DbItemEventArgs args = new DbItemEventArgs (item);
-		Commit (args.Items, args);
+		Log.Warning ("You should not use PhotoStore.Commit(DbItem) for photos, the events are not specific enough");
+		Commit (item as Photo, true, true);
 	}
 
-	public void Commit (Photo [] items)
+	public void Commit (Photo photo, bool metadata_changed, bool data_changed)
 	{
-		DbItemEventArgs args = new DbItemEventArgs (items);
-		Commit (args.Items, args);
+		Commit (new Photo [] { photo }, metadata_changed, data_changed);
 	}
 
-	public void Commit (DbItem [] items, DbItemEventArgs args)
+	public void Commit (Photo [] items, bool metadata_changed, bool data_changed)
+	{
+		Commit (items, new PhotoEventArgs (items, metadata_changed, data_changed));
+	}
+
+	public void Commit (Photo [] items, PhotoEventArgs args)
 	{
 		// Only use a transaction for multiple saves. Avoids recursive transactions.
 		bool use_transactions = !Database.InTransaction && items.Length > 1;
@@ -417,16 +446,25 @@ public class PhotoStore : DbStore {
 
 		foreach (DbItem item in items)
 			Update ((Photo)item);
-		
+
 		if (use_transactions)
 			Database.CommitTransaction ();
 
 		EmitChanged (items, args);
 	}
+
+	public void EmitChanged (Photo photo, bool metadata_changed, bool data_changed)
+	{
+		EmitChanged (new Photo [] { photo }, metadata_changed, data_changed);
+	}
+
+	public void EmitChanged (Photo [] items, bool metadata_changed, bool data_changed)
+	{
+		EmitChanged (items, new PhotoEventArgs (items, metadata_changed, data_changed));
+	}
 	
 	private void Update (Photo photo) {
 		// Update photo.
-
 		Database.ExecuteNonQuery (new DbCommand (
 			"UPDATE photos SET description = :description, " + 
 			"default_version_id = :default_version_id, " + 

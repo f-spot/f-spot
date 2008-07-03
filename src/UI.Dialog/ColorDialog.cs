@@ -205,7 +205,7 @@ namespace FSpot.UI.Dialog {
 							 transform);
 				
 				photo.SaveVersion (final, create_version);
-				((PhotoQuery)view.Query).Commit (view.Item.Index);
+				((PhotoQuery)view.Query).Commit (view.Item.Index, true, true);
 				final.Dispose ();
 			} catch (System.Exception e) {
 				string msg = Catalog.GetString ("Error saving adjusted photo");
