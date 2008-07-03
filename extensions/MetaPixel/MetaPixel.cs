@@ -215,7 +215,7 @@ namespace MetaPixelExtension {
 				}
 				
 				p.DefaultVersionId = p.AddVersion (mosaic, name, true);
-				Core.Database.Photos.Commit (p);
+				Core.Database.Photos.Commit (p, true, true);
 
 			} //Finished creating mosaics
 			if (progress_dialog != null)

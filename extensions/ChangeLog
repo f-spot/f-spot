@@ -1,3 +1,28 @@
+2008-07-03  Ruben Vermeersch  <ruben@savanne.be>
+
+	* BeagleService/BeagleService.addin.xml:
+	* CDExport/CDExport.addin.xml:
+	* DBusService/DBusProxy.cs:
+	* DBusService/DBusService.addin.xml:
+	* DefaultExporters/DefaultExporters.addin.xml:
+	* DevelopInUFraw/DevelopInUFRaw.addin.xml:
+	* DevelopInUFraw/DevelopInUFRaw.cs:
+	* FacebookExport/FacebookExport.addin.xml:
+	* FlickrExport/FlickrExport.addin.xml:
+	* FolderExport/FolderExport.addin.xml:
+	* GalleryExport/GalleryExport.addin.xml:
+	* LightTable/LightTable.addin.xml:
+	* MetaPixel/MetaPixel.addin.xml:
+	* MetaPixel/MetaPixel.cs:
+	* PicasaWebExport/PicasaWebExport.addin.xml:
+	* PictureTile/PictureTile.addin.xml:
+	* RawPlusJpeg/RawPlusJpeg.addin.xml:
+	* RawPlusJpeg/RawPlusJpeg.cs:
+	* SmugMugExport/SmugMugExport.addin.xml:
+	* SyncCatalog/SyncCatalog.addin.xml:
+	* ZipExport/ZipExport.addin.xml: Bump versions to 0.4.4.99, because of
+	changed PhotoStore API. Fix calls to Commit where needed.
+
 2008-07-02  Lorenzo Milesi <maxxer@yetopen.it>
  
  	* PicasaWeb/PicasaWebExport.addin.xml: bump version

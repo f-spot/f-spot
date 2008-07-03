@@ -1,5 +1,12 @@
 2008-07-03  Ruben Vermeersch  <ruben@savanne.be>
 
+	* src/FSpot.addin.xml: Bump the extension API version because of the
+	changed PhotoStore.
+
+	* configure.in: Bump the version to 0.4.5.
+
+2008-07-03  Ruben Vermeersch  <ruben@savanne.be>
+
 	Fix bgo #170956. Adds flags in various places to designate what caused the
 	change. This avoids photo reloads when adding a tag.
 

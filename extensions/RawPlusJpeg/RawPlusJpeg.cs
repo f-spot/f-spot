@@ -114,7 +114,7 @@ namespace RawPlusJpegExtension
 						Console.WriteLine (e);
 					}
 				}	
-				Core.Database.Photos.Commit (raw);
+				Core.Database.Photos.Commit (raw, true, true);
 				Core.Database.Photos.Remove (jpeg);
 			}
 		}

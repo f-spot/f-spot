@@ -1,3 +1,9 @@
+2008-07-01  Ruben Vermeersch  <ruben@savanne.be>
+
+	* ChangePhotoPath.addin.xml:
+	* ChangePhotoPathController.cs: Bump versions to 0.4.4.99, because of
+	changed PhotoStore API. Fix calls to Commit where needed.
+
 2008-05-10  Bengt Thuree <bengt@thuree.com>
 
 	* ChangePhotoPathController.cs : Updated to latest version of F-Spot. 0.4.3.1.
