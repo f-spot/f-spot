@@ -46,9 +46,14 @@ namespace DPAP {
 				foreach (Playlist pl in d.Playlists)
 					Console.WriteLine("\tAlbum: "+pl.Name + ", id=" + pl.getId() + " number of items:" + pl.Tracks.Count);
 				
-				foreach (Track tr in d.Tracks) 
+				foreach (Track tr in d.Tracks)
+				{
 					if(tr != null)
-						Console.WriteLine("\t\tFile: " + tr.Title);
+					{
+						Console.WriteLine("\t\tFile: " + tr.FileName + " format = " + tr.Format + "size=" + tr.Width +"x" +tr.Height + " ID=" + tr.Id);
+						d.DownloadTrack(tr,"./"+tr.FileName);
+					}
+				}
 				
 			}
 			client.Logout();

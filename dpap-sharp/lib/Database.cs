@@ -398,8 +398,10 @@ namespace DPAP {
         }
 
         private HttpWebResponse FetchTrack (Track track, long offset) {
-            return client.Fetcher.FetchFile (String.Format ("/databases/{0}/items/{1}.{2}", id, track.Id, track.Format),
-                                             offset);
+            return client.Fetcher.FetchResponse (String.Format ("/databases/{0}/items",id), offset, 
+			                                     String.Format("meta=dpap.filedata&query=('dmap.itemid:{0}')",track.Id),
+			                                     null, 1, true);
+                                             
         }
 
         public Stream StreamTrack (Track track, out long length) {
@@ -422,6 +424,11 @@ namespace DPAP {
                     int count = 0;
                     byte[] buf = new byte[ChunkLength];
                     
+					count = reader.Read(buf,0,89);
+					
+					if(count < 89)
+						count+=reader.Read(buf,0,89-count);
+					
                     do {
                         count = reader.Read (buf, 0, ChunkLength);
                         writer.Write (buf, 0, count);

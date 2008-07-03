@@ -32,6 +32,8 @@ namespace DPAP {
         private TimeSpan duration;
         private int id;
         private int size;
+		private int width;
+		private int height;
         private string genre;
         private int trackNumber;
         private int trackCount;
@@ -134,6 +136,22 @@ namespace DPAP {
             }
         }
         
+		public int Width {
+			get { return width; }
+			set {
+				width = value;
+				EmitUpdated ();
+			}
+		}
+		
+		public int Height {
+			get { return height; }
+			set {
+				height = value;
+				EmitUpdated ();
+			}
+		}
+		
         public DateTime DateAdded {
             get { return dateAdded; }
             set {
@@ -315,42 +333,24 @@ namespace DPAP {
                 case "dmap.itemid":
                     track.id = (int) field.Value;
                     break;
-                case "daap.songartist":
-                    track.artist = (string) field.Value;
-                    break;
                 case "dmap.itemname":
                     track.title = (string) field.Value;
                     break;
-                case "daap.songalbum":
-                    track.album = (string) field.Value;
-                    break;
-                case "daap.songtime":
-                    track.duration = TimeSpan.FromMilliseconds ((int) field.Value);
-                    break;
-                case "daap.songformat":
+                case "dpap.imageformat":
                     track.format = (string) field.Value;
                     break;
-                case "daap.songgenre":
-                    track.genre = (string) field.Value;
-                    break;
-                case "daap.songsize":
+                case "dpap.imagefilename":
+					track.fileName = (string) field.Value;
+					break;
+                case "dpap.imagefilesize":
                     track.size = (int) field.Value;
                     break;
-                case "daap.songtrackcount":
-                    track.trackCount = (short) field.Value;
-                    break;
-                case "daap.songtracknumber":
-                    track.trackNumber = (short) field.Value;
-                    break;
-                case "daap.bitrate":
-                    track.bitrate = (short) field.Value;
-                    break;
-                case "daap.songdateadded":
-                    track.dateAdded = (DateTime) field.Value;
-                    break;
-                case "daap.songdatemodified":
-                    track.dateModified = (DateTime) field.Value;
-                    break;
+                case "dpap.imagepixelwidth":
+					track.width = (int) field.Value;
+					break;
+				case "dpap.imagepixelheight":
+					track.height = (int) field.Value;
+					break;
                 default:
                     break;
                 }
