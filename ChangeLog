@@ -1,5 +1,17 @@
 2008-07-04  Stephane Delcroix  <stephane@delcroix.org>
 
+	* src/PhotoView.cs: implement a Dispose pattern
+
+	* src/PixbufCache.cs:
+	* src/PixbufLoader.cs:
+	* src/ThumbnailGenerator.cs: switch to Uri
+
+	* src/Utils/Cache.cs: Contains method
+
+	* src/Widgets/Filmstrip.cs: avoid unecessary redraw on PixbufLoaded
+
+2008-07-04  Stephane Delcroix  <stephane@delcroix.org>
+
 	* MainWindow.cs: send DataChanged on version switching.
 
 2008-07-03  Ruben Vermeersch  <ruben@savanne.be>

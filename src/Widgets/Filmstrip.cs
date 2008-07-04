@@ -8,7 +8,6 @@
  */
 
 //TODO:
-//	* deal with vertical orientations (medium)
 //	* only redraw required parts on ExposeEvents (low)
 //	* Handle orientation changes (low) (require gtk# changes, so I can trigger an OrientationChanged event)
 
@@ -209,7 +208,7 @@ namespace FSpot.Widgets
 			}
 		}
 
-		int x_offset = 2, y_offset = 2;
+		int x_offset = 2;
 		public int XOffset {
 			get { return x_offset; }
 			set { 
@@ -219,6 +218,7 @@ namespace FSpot.Widgets
 			}
 		}
 
+		int y_offset = 2;
 		public int YOffset {
 			get { return y_offset; }
 			set { 
@@ -276,7 +276,16 @@ namespace FSpot.Widgets
 
 		public int ActiveItem {
 			get { return selection.Index; }
-			set { selection.Index = value; }
+			set {
+				if (value == selection.Index)
+					return;
+				if (value < 0)
+					value = 0;
+				if (value > selection.Collection.Count - 1)
+					value = selection.Collection.Count - 1;
+
+				selection.Index = value;
+			}
 		}
 
 		float position;
@@ -302,7 +311,9 @@ namespace FSpot.Widgets
 		FSpot.BrowsablePointer selection;
 		DisposableCache<string, Pixbuf> thumb_cache;
 
-		public Filmstrip (FSpot.BrowsablePointer selection) : this (selection, true) { }
+		public Filmstrip (FSpot.BrowsablePointer selection) : this (selection, true)
+		{
+		}
 
 		public Filmstrip (FSpot.BrowsablePointer selection, bool squared_thumbs) : base ()
 		{
@@ -313,7 +324,7 @@ namespace FSpot.Widgets
 			this.selection.Collection.ItemsChanged += HandleCollectionItemsChanged;
 			this.squared_thumbs = squared_thumbs;
 			thumb_cache = new DisposableCache<string, Pixbuf> (30);
-			ThumbnailGenerator.Default.OnPixbufLoaded += delegate (PixbufLoader pl, string path, int order, Pixbuf p) {QueueDraw ();};
+			ThumbnailGenerator.Default.OnPixbufLoaded += HandlePixbufLoaded;
 		}
 	
 		int min_length = 400;
@@ -354,7 +365,6 @@ namespace FSpot.Widgets
 			}
 		}
 
-	
 		Hashtable start_indexes;
 		int filmstrip_end_pos;
 		protected override bool OnExposeEvent (EventExpose evnt)
@@ -443,13 +453,13 @@ namespace FSpot.Widgets
 			case Gdk.Key.Page_Down:
 			case Gdk.Key.Down:
 			case Gdk.Key.Right:
-				Position ++;
+				ActiveItem ++;
 				return true;
 				
 			case Gdk.Key.Page_Up:
 			case Gdk.Key.Up:
 			case Gdk.Key.Left:
-				Position --;
+				ActiveItem --;
 				return true;
 			}
 			return false;
@@ -463,28 +473,38 @@ namespace FSpot.Widgets
 			QueueDraw ();
 		}
 
-		public void HandlePointerChanged (BrowsablePointer pointer, BrowsablePointerChangedArgs old)
+		void HandlePointerChanged (BrowsablePointer pointer, BrowsablePointerChangedArgs old)
 		{
 			Position = ActiveItem;
 		}
 
-		public void HandleCollectionChanged (IBrowsableCollection coll)
+		void HandleCollectionChanged (IBrowsableCollection coll)
 		{
 			Position = ActiveItem;
 			QueueDraw ();
 		}
 
-		public void HandleCollectionItemsChanged (IBrowsableCollection coll, BrowsableEventArgs args)
+		void HandleCollectionItemsChanged (IBrowsableCollection coll, BrowsableEventArgs args)
 		{
-			//FIXME: need to be smarter here...
-
 			if (!args.DataChanged)
 				return;
+			foreach (int item in args.Items)
+				thumb_cache.TryRemove (FSpot.ThumbnailGenerator.ThumbnailPath ((selection.Collection [item]).DefaultVersionUri));
 
-			// Invalidate the thumbs cache
-			thumb_cache.Dispose ();
-			thumb_cache = new DisposableCache<string, Pixbuf> (30);
+			//FIXME call QueueDrawArea
 			QueueDraw ();
+		}
+
+		void HandlePixbufLoaded (PixbufLoader pl, Uri uri, int order, Pixbuf p) {
+			if (!thumb_cache.Contains (FSpot.ThumbnailGenerator.ThumbnailPath (uri))) {
+				return;
+			}
+			
+			//FIXME use QueueDrawArea
+			//FIXME only invalidate if displayed
+			QueueDraw ();
+			
+
 		}
 
 		protected override bool OnButtonPressEvent (EventButton evnt)
@@ -537,9 +557,11 @@ namespace FSpot.Widgets
 					} catch {
 						current = null;
 					}
+					thumb_cache.Add (thumb_path, null);
 				}
-			}
 
+			}
+			
 			if (!highlighted)
 				return current;
 
@@ -554,27 +576,35 @@ namespace FSpot.Widgets
 		~Filmstrip ()
 		{
 			Log.DebugFormat ("Finalizer called on {0}. Should be Disposed", GetType ());		
-			lock (this) {
-				if (background_pixbuf != null)
-					background_pixbuf.Dispose ();
-				if (background_tile != null)
-					background_tile.Dispose ();
-			}
-			background_pixbuf = null;
-			background_tile = null;
+			Dispose (false);
 		}
 			
 		public override void Dispose ()
 		{
-			lock (this) {
+			Dispose (true);
+			base.Dispose ();
+			System.GC.SuppressFinalize (this);
+		}
+
+		bool is_disposed = false;
+		protected virtual void Dispose (bool disposing)
+		{
+			if (is_disposed)
+				return;
+			if (disposing) {
+				this.selection.Changed -= HandlePointerChanged;
+				this.selection.Collection.Changed -= HandleCollectionChanged;
+				this.selection.Collection.ItemsChanged -= HandleCollectionItemsChanged;
+				ThumbnailGenerator.Default.OnPixbufLoaded -= HandlePixbufLoaded;
 				if (background_pixbuf != null)
 					background_pixbuf.Dispose ();
 				if (background_tile != null)
 					background_tile.Dispose ();
+				thumb_cache.Dispose ();
 			}
-			background_pixbuf = null;
-			background_tile = null;
-			System.GC.SuppressFinalize (this);
+			//Free unmanaged resources
+
+			is_disposed = true;
 		}
 
 		public interface IAnimator

@@ -1,3 +1,13 @@
+/*
+ * FSpot.PixbufCache.cs
+ *
+ * Author(s):
+ * 	Larry Ewing <lewing@novell.com>
+ *
+ * This is free software. See COPYING for details.
+ */
+
+using System;
 using System.Collections;
 using System.Threading;
 
@@ -24,9 +34,9 @@ namespace FSpot {
 			ThumbnailGenerator.Default.OnPixbufLoaded += HandleThumbnailLoaded;
 		}
 		
-		public void HandleThumbnailLoaded (PixbufLoader loader, string path, int order, Gdk.Pixbuf result)
+		public void HandleThumbnailLoaded (PixbufLoader loader, Uri uri, int order, Gdk.Pixbuf result)
 		{
-			string thumb_path = ThumbnailGenerator.ThumbnailPath (new System.Uri (path));
+			string thumb_path = ThumbnailGenerator.ThumbnailPath (uri);
 			
 			if (result != null)
 				Reload (thumb_path);

@@ -1,8 +1,20 @@
+/*
+ * PixbufLoader.cs
+ *
+ * Author(s):
+ *	Ettore Perazzoli <ettore@perazzoli.org>
+ *	Larry Ewing <lewing@novell.com>
+ *
+ * This is free software. See COPYING for details
+ */
 using Gdk;
 using Gtk;
 using System.Collections;
+using System.Collections.Generic;
 using System.Threading;
 using System;
+
+using FSpot.Utils;
 
 public class PixbufLoader {
 
@@ -10,7 +22,7 @@ public class PixbufLoader {
 
 	protected class RequestItem {
 		/* The path to the image.  */
-		public string path;
+		public Uri uri;
 
 		/* Order value; requests with a lower value get performed first.  */
 		public int order;
@@ -22,8 +34,8 @@ public class PixbufLoader {
 		public int width;
 		public int height;
 
-		public RequestItem (string path, int order, int width, int height) {
-			this.path = path;
+		public RequestItem (Uri uri, int order, int width, int height) {
+			this.uri = uri;
 			this.order = order;
 			this.width = width;
 			this.height = height;
@@ -43,11 +55,12 @@ public class PixbufLoader {
 	   needs to be locked prior to access.  */
 	private ArrayList queue;
 
-	/* A hash of all the requests; note that the current request
-	   isn't in the hash.  */
-	private Hashtable requests_by_path;
+	/* A dict of all the requests; note that the current request
+	   isn't in the dict.  */
+	Dictionary<Uri, RequestItem> requests_by_uri;
+//	private Hashtable requests_by_path;
 
-	/* Current requeust.  Request currently being handled by the
+	/* Current request.  Request currently being handled by the
 	   auxiliary thread.  Should be modified only by the auxiliary
 	   thread (the GTK thread can only read it).  */
 	private RequestItem current_request;
@@ -66,13 +79,14 @@ public class PixbufLoader {
 
 	// Public API.
 
-	public delegate void PixbufLoadedHandler (PixbufLoader loader, string path, int order, Pixbuf result);
+	public delegate void PixbufLoadedHandler (PixbufLoader loader, Uri uri, int order, Pixbuf result);
 	public event PixbufLoadedHandler OnPixbufLoaded;
 
 	public PixbufLoader ()
 	{
 		queue = new ArrayList ();
-		requests_by_path = Hashtable.Synchronized (new Hashtable ());
+		requests_by_uri = new Dictionary<Uri, RequestItem> ();
+//		requests_by_path = Hashtable.Synchronized (new Hashtable ());
 		processed_requests = new Queue ();
 		
 		pending_notify = new ThreadNotify (new Gtk.ReadyEvent (HandleProcessedRequests));
@@ -105,35 +119,25 @@ public class PixbufLoader {
 			t.Abort ();
 	}
 
-	public void Request (string path, int order)
-	{
-		Request (path, order, 0, 0);
-	}
-
-	public void Request (string path, int order, int width, int height)
-	{
-		lock (queue) {
-			if (InsertRequest (path, order, width, height))
-				Monitor.Pulse (queue);
-		}
-	}
-
 	public void Request (Uri uri, int order)
 	{
-		Request (uri.ToString (), order);
+		Request (uri, order, 0, 0);
 	}
 
 	public void Request (Uri uri, int order, int width, int height)
 	{
-		Request (uri.ToString (), order, width, height);
+		lock (queue) {
+			if (InsertRequest (uri, order, width, height))
+				Monitor.Pulse (queue);
+		}
 	}
 
-	public void Cancel (string path)
+	public void Cancel (Uri uri)
 	{
 		lock (queue) {
-			RequestItem r = requests_by_path [path] as RequestItem;
+			RequestItem r = requests_by_uri [uri];
 			if (r != null) {
-				requests_by_path.Remove (path);
+				requests_by_uri.Remove (uri);
 				queue.Remove (r);
 			}
 		}
@@ -145,7 +149,7 @@ public class PixbufLoader {
 	{
 		Pixbuf orig_image;
 		try {
-			using (FSpot.ImageFile img = System.IO.File.Exists (request.path) ? FSpot.ImageFile.Create (request.path) : FSpot.ImageFile.Create (new Uri (request.path))) {
+			using (FSpot.ImageFile img = FSpot.ImageFile.Create (request.uri)) {
 				if (request.width > 0) {
 					orig_image = img.Load (request.width, request.height);
 				} else {
@@ -166,20 +170,20 @@ public class PixbufLoader {
 	/* Insert the request in the queue, return TRUE if the queue actually grew.
 	   NOTE: Lock the queue before calling.  */
 
-	private bool InsertRequest (string path, int order, int width, int height)
+	private bool InsertRequest (Uri uri, int order, int width, int height)
 	{
 		/* Check if this is the same as the request currently being processed.  */
 		lock(processed_requests) {
-			if (current_request != null && current_request.path == path)
+			if (current_request != null && current_request.uri == uri)
 				return false;
 		}
 		/* Check if a request for this path has already been queued.  */
-		RequestItem existing_request = requests_by_path [path] as RequestItem;
-		if (existing_request != null) {
+		RequestItem existing_request;
+		if (requests_by_uri.TryGetValue (uri, out existing_request)) {
 			/* FIXME: At least for now, this shouldn't happen.  */
 			if (existing_request.order != order)
-				Console.WriteLine ("BUG: Filing another request of order {0} (previously {1}) for `{2}'",
-						   order, existing_request.order, path);
+				Log.WarningFormat ("BUG: Filing another request of order {0} (previously {1}) for `{2}'",
+						   order, existing_request.order, uri);
 
 			queue.Remove (existing_request);
 			queue.Add (existing_request);
@@ -187,11 +191,13 @@ public class PixbufLoader {
 		}
 
 		/* New request, just put it on the queue with the right order.  */
-		RequestItem new_request = new RequestItem (path, order, width, height);
+		RequestItem new_request = new RequestItem (uri, order, width, height);
 
 		queue.Add (new_request);
 
-		requests_by_path.Add (path, new_request);
+		lock (queue) {
+			requests_by_uri.Add (uri, new_request);
+		}
 		return true;
 	}
 
@@ -222,7 +228,7 @@ public class PixbufLoader {
 	
 					current_request = queue [pos] as RequestItem;
 					queue.RemoveAt (pos);
-					requests_by_path.Remove (current_request.path);
+					requests_by_uri.Remove (current_request.uri);
 				}
 				
 				ProcessRequest (current_request);
@@ -236,7 +242,7 @@ public class PixbufLoader {
 	{
 		if (OnPixbufLoaded != null) {
 			foreach (RequestItem r in results)
-				OnPixbufLoaded (this, r.path, r.order, r.result);
+				OnPixbufLoaded (this, r.uri, r.order, r.result);
 		}
 	}
 

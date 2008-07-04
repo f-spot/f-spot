@@ -77,6 +77,21 @@ namespace FSpot.Utils
 				hash.Remove (key);
 			}
 		}
+
+		public bool TryRemove (TKey key)
+		{
+			try {
+				Remove (key);
+				return true;
+			} catch (KeyNotFoundException) {
+				return false;
+			}
+		}
+
+		public bool Contains (TKey key)
+		{
+			return mru.Contains (key);
+		}
 	}
 
 	public class DisposableCache<TKey, TValue> : Cache<TKey, TValue>, IDisposable

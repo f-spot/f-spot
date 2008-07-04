@@ -433,6 +433,7 @@ namespace FSpot {
 		private void HandleDestroy (object sender, System.EventArgs args)
 		{
 			CommitPendingChanges ();
+			Dispose ();
 		}
 	
 		public bool FilmStripVisibility {
@@ -593,7 +594,32 @@ namespace FSpot {
 			Realized += delegate (object o, EventArgs e) {SetColors ();};
 			Preferences.SettingChanged += OnPreferencesChanged;
 		}
+
+		~PhotoView ()
+		{
+			FSpot.Utils.Log.DebugFormat ("Finalizer called on {0}. Should be Disposed", GetType ());		
+			Dispose (false);	
+		}
+
+		public override void Dispose ()
+		{
+			Dispose (true);
+			base.Dispose ();
+			System.GC.SuppressFinalize (this);
+		}
 	
+		bool is_disposed = false;
+		protected virtual void Dispose (bool disposing)
+		{
+			if (is_disposed)
+				return;
+			if (disposing) { //Free managed resources
+				filmstrip.Dispose ();	
+			}
+
+			is_disposed = true;
+		}
+
 		private void OnPreferencesChanged (object sender, NotifyEventArgs args)
 		{
 			LoadPreference (args.Key);

@@ -1,3 +1,12 @@
+/*
+ * FSpot.ThumbnailGenerator.cs
+ *
+ * Author(s)
+ * 	Larry Ewing  <lewing@novell.com>
+ *
+ * This is free software. See COPYING for details.
+ */
+
 using System;
 using System.IO;
 using FSpot.Utils;
@@ -57,6 +66,7 @@ namespace FSpot {
 			return large_path;
 		}
 
+		[Obsolete ("Use ThumbnailPath (System.Uri) instead")]
 		public static string ThumbnailPath (string path) 
 		{
 			return ThumbnailPath (UriUtils.PathToFileUri (path));
@@ -108,15 +118,8 @@ namespace FSpot {
 				base.ProcessRequest (request);
 
 				Gdk.Pixbuf image = request.result;
-				if (image != null) {
-					Uri uri;
-					if (File.Exists (request.path))
-						uri = UriUtils.PathToFileUri (request.path);
-					else
-						uri = new Uri (request.path);
-
-					Save (image, uri);
-				}
+				if (image != null)
+					Save (image, request.uri);
 
 				System.Threading.Thread.Sleep (75);
 			} catch (System.Exception e) {
