@@ -144,7 +144,7 @@ namespace FSpot {
 #endif
 
 				t_item = new ToolItem ();
-				t_item.Child = new Label (Catalog.GetString ("Slide transition: "));
+				t_item.Child = new Label (Catalog.GetString ("Slide transition:"));
 				tbar.Insert (t_item, -1);
 
 				display = new TextureDisplay (view.Item);

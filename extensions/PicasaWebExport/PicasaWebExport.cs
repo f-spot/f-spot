@@ -773,7 +773,7 @@ namespace FSpotGoogleExport {
 					long ql = account.Picasa.QuotaLimit;
 
 					StringBuilder sb = new StringBuilder("<small>");
-					sb.Append(Catalog.GetString("Available space :"));
+					sb.Append(Catalog.GetString("Available space:"));
 					sb.Append(SizeUtil.ToHumanReadable (ql - qu));
 					sb.Append(" (");
 					sb.Append(100 * qu / ql);
