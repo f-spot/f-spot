@@ -353,8 +353,11 @@ public class PhotoStore : DbStore {
 	{
 		Photo photo = null;
 
-		SqliteDataReader reader = Database.Query (new DbCommand ("SELECT id, time, description, roll_id, default_version_id, rating FROM photos "
-                + "WHERE uri = :uri", "uri", uri.ToString ()));
+		uint timer = Log.DebugTimerStart ();
+		SqliteDataReader reader = Database.Query (new DbCommand ("SELECT id, time, description, roll_id, default_version_id, rating " + 
+									 " FROM photos " +
+									 " JOIN photo_versions AS pv ON photos.id = pv.photo_id" +
+							                 " WHERE photos.uri = :uri OR pv.uri = :uri", "uri", uri.ToString ()));
 
 		if (reader.Read ()) {
 			photo = new Photo (Convert.ToUInt32 (reader [0]),
@@ -367,6 +370,7 @@ public class PhotoStore : DbStore {
 			photo.Rating = Convert.ToUInt32 (reader [5]);
 		}
 	        reader.Close();
+		Log.DebugTimerPrint (timer, "GetByUri query took {0}");
 
 		if (photo == null)
 			return null;
