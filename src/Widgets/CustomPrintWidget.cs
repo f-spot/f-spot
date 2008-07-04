@@ -137,6 +137,7 @@ namespace FSpot.Widgets
 			this.PackStart (fullpage = new CheckButton (Catalog.GetString ("Full Page (no margin)")), false, false, 0);
 			
 			HBox hb = new HBox ();
+			// Note for translators: "Zoom" is a Fit Mode
 			hb.PackStart (zoom = new RadioButton (Catalog.GetString ("Zoom")), false, false, 0);
 			hb.PackStart (fill = new RadioButton (zoom, Catalog.GetString ("Fill")), false, false, 0);
 			hb.PackStart (scaled = new RadioButton (zoom, Catalog.GetString ("Scaled")), false, false, 0);
