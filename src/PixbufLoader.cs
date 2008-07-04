@@ -124,7 +124,7 @@ public class PixbufLoader {
 		Request (uri, order, 0, 0);
 	}
 
-	public void Request (Uri uri, int order, int width, int height)
+	public virtual void Request (Uri uri, int order, int width, int height)
 	{
 		lock (queue) {
 			if (InsertRequest (uri, order, width, height))

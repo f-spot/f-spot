@@ -112,6 +112,17 @@ namespace FSpot {
 				
 		}
 
+		public override void Request (Uri uri, int order, int width, int height)
+		{
+			if (!uri.IsFile)
+				Log.Debug ("FIXME: compute timestamp on non file uri too");
+			if (uri.IsFile && System.IO.File.Exists (ThumbnailPath (uri)) 
+				&& System.IO.File.GetLastWriteTime (ThumbnailPath (uri)) >= System.IO.File.GetLastWriteTime (uri.AbsolutePath))
+				return;
+
+			base.Request (uri, order, width, height);
+		}
+
 		protected override void ProcessRequest (RequestItem request)
 		{
 			try {
