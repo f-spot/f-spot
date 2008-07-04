@@ -1,3 +1,7 @@
+2008-07-04  Stephane Delcroix  <stephane@delcroix.org>
+
+	* MainWindow.cs: send DataChanged on version switching.
+
 2008-07-03  Ruben Vermeersch  <ruben@savanne.be>
 
 	* src/PhotoStore.cs: Make it really obvious that you are doing the wrong

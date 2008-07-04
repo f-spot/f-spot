@@ -314,7 +314,7 @@ public class MainWindow {
 		sidebar.Show ();
 
 		info_box = new InfoBox ();
-		info_box.VersionIdChanged += HandleInfoBoxVersionIdChange;
+		info_box.VersionIdChanged += delegate (InfoBox box, uint version_id) { UpdateForVersionIdChange (version_id);};
 		sidebar_vbox.PackEnd (info_box, false, false, 0);
 		
 		tag_selection_widget.Selection.Changed += HandleTagSelectionChanged;
@@ -2691,21 +2691,8 @@ public class MainWindow {
 	void UpdateForVersionIdChange (uint version_id)
 	{
 		CurrentPhoto.DefaultVersionId = version_id;
-		int active = ActiveIndex ();
-		
-		query.Commit (active, true, false);
+		query.Commit (ActiveIndex (), true, true);
 	}
-
-	void HandleVersionIdChanged (PhotoVersionMenu menu)
-	{
-		UpdateForVersionIdChange (menu.VersionId);
-	}
-
-	void HandleInfoBoxVersionIdChange (InfoBox box, uint version_id)
-	{
-		UpdateForVersionIdChange (version_id);
-	}
-
 
 	// Queries.
 
@@ -2840,7 +2827,7 @@ public class MainWindow {
 			}
 
 			versions_submenu = new PhotoVersionMenu (CurrentPhoto);
-			versions_submenu.VersionIdChanged += new PhotoVersionMenu.VersionIdChangedHandler (HandleVersionIdChanged);
+			versions_submenu.VersionIdChanged += delegate (PhotoVersionMenu menu) { UpdateForVersionIdChange (menu.VersionId);};
 			version_menu_item.Submenu = versions_submenu;
 
 			sharpen.Sensitive = (view_mode == ModeType.IconView ? false : true);
