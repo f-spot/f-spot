@@ -1,3 +1,7 @@
+2008-07-05  Ruben Vermeersch  <ruben@savanne.be>
+
+	* src/PhotoStore.cs: Die with an exception, rather than warning.
+
 2008-07-04  Lorenzo Milesi <maxxer@yetopen.it>
 
 	* src/PhotoStore.cs: extend GetByUri to search in photo versions too.

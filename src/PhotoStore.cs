@@ -426,9 +426,7 @@ public class PhotoStore : DbStore {
 //	[Obsolete("WARNING! You should not use this one for photos, the events are not specific enough")]
 	public override void Commit (DbItem item)
 	{
-		Log.Warning ("You should not use PhotoStore.Commit(DbItem) for photos, the events are not specific enough");
-		Log.Warning (Environment.StackTrace);
-		Commit (item as Photo, true, true);
+		throw new NotImplementedException("You should not use PhotoStore.Commit(DbItem) for photos, the events are not specific enough");
 	}
 
 	public void Commit (Photo photo, bool metadata_changed, bool data_changed)
