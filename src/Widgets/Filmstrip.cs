@@ -24,7 +24,7 @@ namespace FSpot.Widgets
 	public class Filmstrip : EventBox, IDisposable
 	{
 
-		public event OrientationChangedHandler OrientationChanged;
+//		public event OrientationChangedHandler OrientationChanged;
 		public event EventHandler PositionChanged;
 
 		bool extendable = true;

@@ -28,12 +28,14 @@ namespace FSpot.Utils
 		       	}
 		}
 	
+		[Obsolete ("use gtk_show_uri as soon as we can depend on gtk 2.13.1")]
 		public static void UrlShow (string url)
 		{
 			GnomeUtil disp = new GnomeUtil (url);
 			Gtk.Application.Invoke (disp, null, delegate (object sender, EventArgs args) { ((GnomeUtil) disp).Show (); });
 		}
 	
+		[Obsolete ("use gtk_show_uri as soon as we can depend on gtk 2.13.1")]
 		public static void ShowHelp (string filename, string link_id, string help_directory, Gdk.Screen screen)
 		{
 			try {
