@@ -1,3 +1,8 @@
+2008-07-07  Stephane Delcroix  <sdelcroix@novell.com>
+
+	* src/TagCommands.cs: embed the Commit in a transaction to keep
+	the app responsive if "Write Metadata" is checked
+
 2008-07-05  Ruben Vermeersch  <ruben@savanne.be>
 
 	* src/PhotoStore.cs: Die with an exception, rather than warning.
