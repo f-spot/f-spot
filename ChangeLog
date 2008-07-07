@@ -1,5 +1,13 @@
 2008-07-07  Stephane Delcroix  <sdelcroix@novell.com>
 
+	* TagCommands.cs:
+	* TagSelectionWidget.cs:
+	* TagStore.cs: create the transaction at the TagStore level, move
+	the EmitChanged call out of the transaction. Update the metadata
+	on tag renaming with F2, fixes bgo 517612.
+
+2008-07-07  Stephane Delcroix  <sdelcroix@novell.com>
+
 	* src/TagCommands.cs: embed the Commit in a transaction to keep
 	the app responsive if "Write Metadata" is checked
 

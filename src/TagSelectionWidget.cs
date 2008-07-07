@@ -514,7 +514,7 @@ public class TagSelectionWidget : FSpot.Widgets.SaneTreeView {
 		}
 
 		tag.Name = args.NewText;
-		tag_store.Commit (tag);
+		tag_store.Commit (tag, true);
 
 		text_render.Edited -= HandleTagNameEdited;
 

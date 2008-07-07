@@ -298,11 +298,7 @@ public class TagCommands {
 				try {
 					t.Name = last_valid_name;
 					t.Category = categories [category_option_menu.History] as Category;
-
-					db.BeginTransaction ();
 					db.Tags.Commit (t, orig_name != t.Name);
-					db.CommitTransaction ();
-
 					success = true;
 				} catch (Exception ex) {
 					// FIXME error dialog.
