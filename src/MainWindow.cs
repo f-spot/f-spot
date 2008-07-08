@@ -108,8 +108,6 @@ public class MainWindow {
 
 	[Glade.Widget] CheckMenuItem find_untagged;
 	
-	[Glade.Widget] MenuItem last_roll;
-	[Glade.Widget] MenuItem select_rolls;
 	[Glade.Widget] MenuItem clear_roll_filter;	
 	
 	// Tags
@@ -2542,7 +2540,7 @@ public class MainWindow {
 	}
 
 	void HandleSelectLastRoll (object sender, EventArgs args) {
-		query.RollSet = new RollSet (db.Rolls.GetRolls (1)[0]);
+		query.RollSet = new RollSet (db.Rolls.GetRolls (1));
 	}
 
 	void HandleSelectRolls (object sender, EventArgs args) {
@@ -2853,8 +2851,6 @@ public class MainWindow {
 		
 		clear_rating_filter.Sensitive = (query.RatingRange != null);
 
-		last_roll.Sensitive = (db.Rolls.GetRolls (1).Length > 0);
-		select_rolls.Sensitive = (db.Rolls.GetRolls (2).Length > 1);
 		clear_roll_filter.Sensitive = (query.RollSet != null);
 		
 		delete_selected_tag.Sensitive = tag_sensitive;
