@@ -224,10 +224,7 @@ namespace FSpot {
 
 		public void MarkChanged (int [] indexes, bool metadata_changed, bool data_changed)
 		{
-			List<Photo> to_emit = new List<Photo> ();
-			foreach (int index in indexes)
-				to_emit.Add (photos [index]);
-			store.EmitChanged (to_emit.ToArray (), metadata_changed, data_changed);
+			ItemsChanged (this, new BrowsableEventArgs(indexes, metadata_changed, data_changed));
 		}
 
 		[Obsolete ("You should provide info on what changed!")]
