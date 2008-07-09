@@ -30,6 +30,8 @@ src/CameraSelectionDialog.cs
 src/Core.cs
 src/Core/Photo.cs
 src/DateCommands.cs
+src/Editors/Old/SoftFocus.cs
+src/Editors/Old/Tilt.cs
 src/Extensions/OpenWithMenu.cs
 src/FSpot.addin.xml
 src/FileImportBackend.cs
@@ -41,6 +43,7 @@ src/FullScreenView.cs
 src/GlTransition.cs
 src/GroupSelector.cs
 src/Imaging/Exif.cs
+src/Imaging/ImageFile.cs
 src/Imaging/IptcFile.cs
 src/ImportCommand.cs
 src/InfoDisplay.cs
@@ -80,8 +83,10 @@ src/Util.cs
 src/Utils/Unix.cs
 src/Utils/GnomeUtil.cs
 src/Widgets/CustomPrintWidget.cs
+src/Widgets/EditorPage.cs
 src/Widgets/FindBar.cs
 src/Widgets/InfoBox.cs
+src/Widgets/MetadataDisplay.cs
 src/Widgets/RatingMenuItem.cs
 src/Widgets/SoftFocus.cs
 src/Widgets/TagMenu.cs
