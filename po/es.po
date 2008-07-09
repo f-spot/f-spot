@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: f-spot.HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-07-04 12:38+0000\n"
-"PO-Revision-Date: 2008-07-04 15:44+0200\n"
+"POT-Creation-Date: 2008-07-09 14:30+0000\n"
+"PO-Revision-Date: 2008-07-09 23:31+0200\n"
 "Last-Translator: Jorge González <jorgegonz@svn.gnome.org>\n"
 "Language-Team: Español <gnome-es-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -562,6 +562,14 @@ msgstr "Todas las imágenes"
 msgid "Customized Range"
 msgstr "Rango personalizado"
 
+#: ../src/Editors/Old/SoftFocus.cs:27 ../src/ItemAction.cs:342
+msgid "Soft Focus"
+msgstr "Foco suave"
+
+#: ../src/Editors/Old/Tilt.cs:28 ../src/ItemAction.cs:326
+msgid "Straighten"
+msgstr "Enderezar"
+
 #: ../src/Extensions/OpenWithMenu.cs:93
 msgid "No applications available"
 msgstr "No hay ninguna aplicación disponible"
@@ -650,7 +658,7 @@ msgstr "Información de la imagen"
 msgid "Exit fullscreen"
 msgstr "Salir de pantalla completa"
 
-#: ../src/FullScreenView.cs:81 ../src/MainWindow.cs:295
+#: ../src/FullScreenView.cs:81 ../src/MainWindow.cs:293
 #: ../src/SingleView.cs:95
 msgid "Slideshow"
 msgstr "Diapositivas"
@@ -742,6 +750,10 @@ msgstr "Carpeta de interoperatibilidad"
 #: ../src/Imaging/Exif.cs:238
 msgid "Unknown Directory"
 msgstr "Carpeta desconocida"
+
+#: ../src/Imaging/ImageFile.cs:87
+msgid "Writing to this file format is not implemented"
+msgstr "Escribir este formato de archivo no está implementado"
 
 #: ../src/Imaging/IptcFile.cs:145
 msgid "IPTC Information Interchange Model (IIM) Version number"
@@ -915,23 +927,24 @@ msgstr "Examinador de metadatos"
 
 #. Obsolete, remove after db rev4
 #: ../src/InfoDisplay.cs:135 ../src/InfoDisplay.cs:137
-#: ../src/SingleView.cs:120 ../src/f-spot.glade.h:110
+#: ../src/SingleView.cs:120 ../src/Widgets/MetadataDisplay.cs:219
+#: ../src/Widgets/MetadataDisplay.cs:221 ../src/f-spot.glade.h:110
 msgid "Folder"
 msgstr "Carpeta"
 
-#: ../src/InfoDisplay.cs:139
+#: ../src/InfoDisplay.cs:139 ../src/Widgets/MetadataDisplay.cs:223
 msgid "Picasaweb"
 msgstr "Picasaweb"
 
-#: ../src/InfoDisplay.cs:141
+#: ../src/InfoDisplay.cs:141 ../src/Widgets/MetadataDisplay.cs:225
 msgid "SmugMug"
 msgstr "SmugMug"
 
-#: ../src/InfoDisplay.cs:143
+#: ../src/InfoDisplay.cs:143 ../src/Widgets/MetadataDisplay.cs:227
 msgid "Gallery2"
 msgstr "Galería2"
 
-#: ../src/InfoDisplay.cs:239
+#: ../src/InfoDisplay.cs:239 ../src/Widgets/MetadataDisplay.cs:104
 msgid "Extended Metadata"
 msgstr "Metadatos extendidos"
 
@@ -939,20 +952,20 @@ msgstr "Metadatos extendidos"
 msgid "Exported Locations"
 msgstr "Lugares exportados"
 
-#: ../src/InfoDisplay.cs:294
+#: ../src/InfoDisplay.cs:294 ../src/Widgets/MetadataDisplay.cs:405
 msgid "No active photo"
 msgstr "No hay una foto activa"
 
-#: ../src/InfoDisplay.cs:296
+#: ../src/InfoDisplay.cs:296 ../src/Widgets/MetadataDisplay.cs:407
 #, csharp-format
 msgid "The photo \"{0}\" does not exist"
 msgstr "La fotografía «{0}» no existe"
 
-#: ../src/InfoDisplay.cs:302
+#: ../src/InfoDisplay.cs:302 ../src/Widgets/MetadataDisplay.cs:410
 msgid "No metadata available"
 msgstr "No hay metadatos disponibles"
 
-#: ../src/ItemAction.cs:81 ../src/MainWindow.cs:262 ../src/SingleView.cs:78
+#: ../src/ItemAction.cs:81 ../src/MainWindow.cs:260 ../src/SingleView.cs:78
 msgid "Rotate Left"
 msgstr "Rotar a la izquierda"
 
@@ -960,7 +973,7 @@ msgstr "Rotar a la izquierda"
 msgid "Rotate picture left"
 msgstr "Rotar la fotografía a la izquierda"
 
-#: ../src/ItemAction.cs:93 ../src/MainWindow.cs:266 ../src/SingleView.cs:83
+#: ../src/ItemAction.cs:93 ../src/MainWindow.cs:264 ../src/SingleView.cs:83
 msgid "Rotate Right"
 msgstr "Rotar a la derecha"
 
@@ -1001,17 +1014,9 @@ msgstr "Aplicar enderezamiento"
 msgid "Apply straightening to image"
 msgstr "Aplicar enderezamiento a la imagen"
 
-#: ../src/ItemAction.cs:326
-msgid "Straighten"
-msgstr "Enderezar"
-
 #: ../src/ItemAction.cs:327
 msgid "Adjust the angle of the image to straighten the horizon"
 msgstr "Ajustar el ángulo de la imagen para enderezar el horizonte"
-
-#: ../src/ItemAction.cs:342
-msgid "Soft Focus"
-msgstr "Foco suave"
 
 #: ../src/ItemAction.cs:343
 msgid "Create a soft focus visual effect"
@@ -1044,53 +1049,53 @@ msgstr "Radio:"
 msgid "Threshold:"
 msgstr "Umbral:"
 
-#: ../src/MainWindow.cs:255 ../src/f-spot.glade.h:125
+#: ../src/MainWindow.cs:253 ../src/f-spot.glade.h:125
 msgid "Import"
 msgstr "Importar"
 
-#: ../src/MainWindow.cs:257
+#: ../src/MainWindow.cs:255
 msgid "Import new images"
 msgstr "Importar imágenes nuevas"
 
-#: ../src/MainWindow.cs:273 ../src/f-spot.glade.h:76
+#: ../src/MainWindow.cs:271 ../src/f-spot.glade.h:76
 msgid "Browse"
 msgstr "Examinar"
 
-#: ../src/MainWindow.cs:277
+#: ../src/MainWindow.cs:275
 msgid "Browse many photos simultaneously"
 msgstr "Examinar varias fotos simultáneamente"
 
-#: ../src/MainWindow.cs:281
+#: ../src/MainWindow.cs:279
 msgid "Edit Image"
 msgstr "Editar imagen"
 
-#: ../src/MainWindow.cs:285
+#: ../src/MainWindow.cs:283
 msgid "View and edit a photo"
 msgstr "Ver y editar una foto"
 
-#: ../src/MainWindow.cs:290 ../src/SingleView.cs:90
+#: ../src/MainWindow.cs:288 ../src/SingleView.cs:90
 msgid "Fullscreen"
 msgstr "Pantalla completa"
 
-#: ../src/MainWindow.cs:292 ../src/SingleView.cs:92
+#: ../src/MainWindow.cs:290 ../src/SingleView.cs:92
 msgid "View photos fullscreen"
 msgstr "Ver fotos en pantalla completa"
 
-#: ../src/MainWindow.cs:297 ../src/SingleView.cs:97
+#: ../src/MainWindow.cs:295 ../src/SingleView.cs:97
 msgid "View photos in a slideshow"
 msgstr "Ver fotos como diapositivas"
 
-#: ../src/MainWindow.cs:308 ../extensions/FolderExport/FolderExport.cs:995
+#: ../src/MainWindow.cs:306 ../extensions/FolderExport/FolderExport.cs:995
 #: ../extensions/FolderExport/FolderExport.cs:1167
 #: ../extensions/FolderExport/FolderExport.cs:1207
 msgid "Tags"
 msgstr "Etiquetas"
 
-#: ../src/MainWindow.cs:1584
+#: ../src/MainWindow.cs:1582
 msgid "No cameras detected."
 msgstr "No se detectó ninguna cámara."
 
-#: ../src/MainWindow.cs:1585
+#: ../src/MainWindow.cs:1583
 msgid ""
 "F-Spot was unable to find any cameras attached to this system.  Double check "
 "that the camera is connected and has power"
@@ -1098,24 +1103,24 @@ msgstr ""
 "F-Spot fue incapaz de detectar ninguna cámara conectada en este equipo.  "
 "Compruebe que la cámara está conectada y tiene alimentación"
 
-#: ../src/MainWindow.cs:1625
+#: ../src/MainWindow.cs:1623
 msgid "Error connecting to camera"
 msgstr "Error al conectar con la cámara"
 
-#: ../src/MainWindow.cs:1626
+#: ../src/MainWindow.cs:1624
 #, csharp-format
 msgid "Received error \"{0}\" while connecting to camera"
 msgstr "Se recibió el error «{0}» al conectar con la cámara"
 
 #. Translators, The singular case will never happen here.
-#: ../src/MainWindow.cs:1963
+#: ../src/MainWindow.cs:1961
 #, csharp-format
 msgid "Merge the selected tag"
 msgid_plural "Merge the {0} selected tags?"
 msgstr[0] "Combinar la etiqueta seleccionada"
 msgstr[1] "¿Combinar las {0} etiquetas seleccionadas?"
 
-#: ../src/MainWindow.cs:1990
+#: ../src/MainWindow.cs:1988
 msgid ""
 "This operation will merge the selected tags and any sub-tags into a single "
 "tag."
@@ -1123,57 +1128,57 @@ msgstr ""
 "Esta operación combinará las etiquetas seleccionadas y cualquier subetiqueta "
 "en una sola etiqueta."
 
-#: ../src/MainWindow.cs:1992
+#: ../src/MainWindow.cs:1990
 msgid "_Merge Tags"
 msgstr "_Combinar etiquetas"
 
-#: ../src/MainWindow.cs:2189
+#: ../src/MainWindow.cs:2187
 #, csharp-format
 msgid "{0} Photo out of {1}"
 msgid_plural "{0} Photos out of {1}"
 msgstr[0] "Fotografía {0} de {1}"
 msgstr[1] "Fotografía {0} de {1}"
 
-#: ../src/MainWindow.cs:2191 ../src/SingleView.cs:473
+#: ../src/MainWindow.cs:2189 ../src/SingleView.cs:473
 #, csharp-format
 msgid "{0} Photo"
 msgid_plural "{0} Photos"
 msgstr[0] "{0} foto"
 msgstr[1] "{0} fotos"
 
-#: ../src/MainWindow.cs:2194
+#: ../src/MainWindow.cs:2192
 #, csharp-format
 msgid " ({0} selected)"
 msgid_plural " ({0} selected)"
 msgstr[0] " ({0} seleccionada)"
 msgstr[1] " ({0} seleccionadas)"
 
-#: ../src/MainWindow.cs:2275
+#: ../src/MainWindow.cs:2273
 msgid "_Ok"
 msgstr "_Aceptar"
 
-#: ../src/MainWindow.cs:2276
+#: ../src/MainWindow.cs:2274
 msgid "Error Deleting Picture"
 msgstr "Error al borrar la fotografía"
 
-#: ../src/MainWindow.cs:2281
+#: ../src/MainWindow.cs:2279
 #, csharp-format
 msgid "No permission to delete the file:{1}{0}"
 msgstr "No tiene permisos para borrar el archivo: {1}{0}"
 
-#: ../src/MainWindow.cs:2285
+#: ../src/MainWindow.cs:2283
 #, csharp-format
 msgid "An error of type {0} occurred while deleting the file:{2}{1}"
 msgstr "Ocurrió un error del tipo {0} al borrar el archivo: {2}{1}"
 
-#: ../src/MainWindow.cs:2311
+#: ../src/MainWindow.cs:2309
 #, csharp-format
 msgid "Delete the selected photo permanently?"
 msgid_plural "Delete the {0} selected photos permanently?"
 msgstr[0] "¿Borrar permanentemente la fotografía seleccionada?"
 msgstr[1] "¿Borrar permanentemente las {0} fotografías seleccionadas?"
 
-#: ../src/MainWindow.cs:2315
+#: ../src/MainWindow.cs:2313
 msgid "This deletes all versions of the selected photo from your drive."
 msgid_plural "This deletes all versions of the selected photos from your drive."
 msgstr[0] "Esto borrará de su unidad todas las versiones de la fotografía seleccionada."
@@ -1181,20 +1186,20 @@ msgstr[1] ""
 "Esto borrará de su unidad todas las versiones de las fotografías "
 "seleccionadas."
 
-#: ../src/MainWindow.cs:2318
+#: ../src/MainWindow.cs:2316
 msgid "_Delete photo"
 msgid_plural "_Delete photos"
 msgstr[0] "_Borrar la fotografía"
 msgstr[1] "_Borrar las fotografías"
 
-#: ../src/MainWindow.cs:2349
+#: ../src/MainWindow.cs:2347
 #, csharp-format
 msgid "Remove the selected photo from F-Spot?"
 msgid_plural "Remove the {0} selected photos from F-Spot?"
 msgstr[0] "¿Quitar la fotografía seleccionada de F-Spot?"
 msgstr[1] "¿Quitar las {0} fotografías seleccionadas de F-Spot?"
 
-#: ../src/MainWindow.cs:2354
+#: ../src/MainWindow.cs:2352
 msgid ""
 "If you remove photos from the F-Spot catalog all tag information will be "
 "lost. The photos remain on your computer and can be imported into F-Spot "
@@ -1204,45 +1209,45 @@ msgstr ""
 "etiquetas se perderá. Las fotos seguirán en su equipo y podrá volverlas a "
 "importar de nuevo en F-Spot."
 
-#: ../src/MainWindow.cs:2355
+#: ../src/MainWindow.cs:2353
 msgid "_Remove from Catalog"
 msgstr "_Quitar del catálogo"
 
-#: ../src/MainWindow.cs:2418
+#: ../src/MainWindow.cs:2416
 #, csharp-format
 msgid "Delete tag \"{0}\"?"
 msgstr "¿Borrar etiqueta {0}?"
 
-#: ../src/MainWindow.cs:2420
+#: ../src/MainWindow.cs:2418
 #, csharp-format
 msgid "Delete the {0} selected tags?"
 msgstr "¿Borrar las {0} etiquetas seleccionadas?"
 
-#: ../src/MainWindow.cs:2425
+#: ../src/MainWindow.cs:2423
 msgid "photo"
 msgid_plural "photos"
 msgstr[0] "foto"
 msgstr[1] "fotos"
 
-#: ../src/MainWindow.cs:2427
+#: ../src/MainWindow.cs:2425
 #, csharp-format
 msgid "If you delete this tag, the association with {0} {1} will be lost."
 msgid_plural "If you delete these tags, the association with {0} {1} will be lost."
 msgstr[0] "Si borra esta etiqueta se perderá la asociación {0} {1}."
 msgstr[1] "Si borra estas etiquetas se perderá la asociación {0} {1}."
 
-#: ../src/MainWindow.cs:2432
+#: ../src/MainWindow.cs:2430
 msgid "_Delete tag"
 msgid_plural "_Delete tags"
 msgstr[0] "_Borrar etiqueta"
 msgstr[1] "_Borrar etiquetas"
 
 #. A Category is not empty. Can not delete it.
-#: ../src/MainWindow.cs:2446
+#: ../src/MainWindow.cs:2444
 msgid "Tag is not empty"
 msgstr "La etiqueta no está vacía"
 
-#: ../src/MainWindow.cs:2447
+#: ../src/MainWindow.cs:2445
 #, csharp-format
 msgid ""
 "Can not delete tags that have tags within them.  Please delete tags under "
@@ -1251,39 +1256,39 @@ msgstr ""
 "No se pueden borrar etiquetas que tengan etiquetas dentro de ellas. Borre "
 "antes las etiquetas de «{0}»"
 
-#: ../src/MainWindow.cs:2882
+#: ../src/MainWindow.cs:2878
 msgid "Rotate selected photo left"
 msgid_plural "Rotate selected photos left"
 msgstr[0] "Rotar la fotografía seleccionada a la izquierda"
 msgstr[1] "Rotar las fotografías seleccionadas a la izquierda"
 
-#: ../src/MainWindow.cs:2895
+#: ../src/MainWindow.cs:2891
 msgid "Rotate selected photo right"
 msgid_plural "Rotate selected photos right"
 msgstr[0] "Rotar la fotografía seleccionada a la derecha"
 msgstr[1] "Rotar las fotografías seleccionadas a la derecha"
 
-#: ../src/MainWindow.cs:2903
+#: ../src/MainWindow.cs:2899
 #, csharp-format
 msgid "Find _Selected Tag"
 msgid_plural "Find _Selected Tags"
 msgstr[0] "Encontrar la etiqueta_seleccionada"
 msgstr[1] "Encontrar las etiquetas _seleccionadas"
 
-#: ../src/MainWindow.cs:2907
+#: ../src/MainWindow.cs:2903
 #, csharp-format
 msgid "Find Selected Tag _With"
 msgid_plural "Find Selected Tags _With"
 msgstr[0] "Encontrar la etiqueta seleccionada c_on"
 msgstr[1] "Encontrar las etiquetas seleccionadas c_on"
 
-#: ../src/MainWindow.cs:2945
+#: ../src/MainWindow.cs:2941
 msgid "Create New Version?"
 msgid_plural "Create New Versions?"
 msgstr[0] "¿Crear una nueva versión?"
 msgstr[1] "¿Crear nuevas versiones?"
 
-#: ../src/MainWindow.cs:2947
+#: ../src/MainWindow.cs:2943
 #, csharp-format
 msgid ""
 "Before launching {1}, should F-Spot create a new version of the selected "
@@ -1752,30 +1757,30 @@ msgstr "Editar etiqueta"
 msgid "Tag Name:"
 msgstr "Nombre de la etiqueta:"
 
-#: ../src/TagCommands.cs:388
+#: ../src/TagCommands.cs:387
 msgid "Unable to load image"
 msgstr "No se pudo cargar la imagen"
 
-#: ../src/TagCommands.cs:389
+#: ../src/TagCommands.cs:388
 #, csharp-format
 msgid "Unable to load \"{0}\" as icon for the tag"
 msgstr "No se pudo cargar «{0}» como icono para la etiqueta"
 
-#: ../src/TagCommands.cs:427
+#: ../src/TagCommands.cs:426
 #, csharp-format
 msgid "Photo {0} of {1}"
 msgstr "Fotografía {0} de {1}"
 
-#: ../src/TagCommands.cs:457
+#: ../src/TagCommands.cs:456
 #, csharp-format
 msgid "Edit Icon for Tag {0}"
 msgstr "Editar el icono para la etiqueta {0}"
 
-#: ../src/TagCommands.cs:473
+#: ../src/TagCommands.cs:472
 msgid "Select Photo from file"
 msgstr "Seleccionar foto desde archivo"
 
-#: ../src/TagCommands.cs:496
+#: ../src/TagCommands.cs:495
 #, csharp-format
 msgid ""
 "\n"
@@ -1990,7 +1995,7 @@ msgstr ""
 msgid "Unable to create temporary file"
 msgstr "Imposible crear el archivo temporal"
 
-#: ../src/Utils/GnomeUtil.cs:47
+#: ../src/Utils/GnomeUtil.cs:49
 msgid ""
 "The \"F-Spot Manual\" could not be found.  Please verify that your "
 "installation has been completed successfully."
@@ -2028,25 +2033,30 @@ msgstr "Imprimir marcas de recorte"
 msgid "Full Page (no margin)"
 msgstr "Página completa (sin márgenes)"
 
-#: ../src/Widgets/CustomPrintWidget.cs:140
+#. Note for translators: "Zoom" is a Fit Mode
+#: ../src/Widgets/CustomPrintWidget.cs:141
 msgid "Zoom"
 msgstr "Ampliar"
 
-#: ../src/Widgets/CustomPrintWidget.cs:141
+#: ../src/Widgets/CustomPrintWidget.cs:142
 msgid "Fill"
 msgstr "Rellenar"
 
-#: ../src/Widgets/CustomPrintWidget.cs:142
+#: ../src/Widgets/CustomPrintWidget.cs:143
 msgid "Scaled"
 msgstr "Escalar"
 
-#: ../src/Widgets/CustomPrintWidget.cs:148
+#: ../src/Widgets/CustomPrintWidget.cs:149
 msgid "White borders"
 msgstr "Bordes blancos"
 
-#: ../src/Widgets/CustomPrintWidget.cs:152
+#: ../src/Widgets/CustomPrintWidget.cs:153
 msgid "Custom Text: "
 msgstr "Texto personalizado: "
+
+#: ../src/Widgets/EditorPage.cs:18
+msgid "Edit"
+msgstr "Editar"
 
 #: ../src/Widgets/FindBar.cs:58
 msgid "Find:"
@@ -2095,6 +2105,15 @@ msgid ""
 msgstr ""
 "Entre {0} \n"
 "y {1}"
+
+#: ../src/Widgets/MetadataDisplay.cs:23
+msgid "Exif"
+msgstr "EXIF"
+
+#. clear Extended Metadata
+#: ../src/Widgets/MetadataDisplay.cs:387
+msgid "No Extended Metadata Available"
+msgstr "No hay metadatos adicionales disponibles"
 
 #: ../src/Widgets/RatingMenuItem.cs:48
 msgid "Rating:"
