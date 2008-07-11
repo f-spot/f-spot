@@ -117,7 +117,7 @@ namespace FSpot {
 
 		public void Reload ()
 		{
-			if (!Item.IsValid)
+			if (Item == null || !Item.IsValid)
 				return;
 			
 			PhotoItemChanged (Item, null);

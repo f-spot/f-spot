@@ -356,7 +356,7 @@ public class PhotoStore : DbStore {
 		uint timer = Log.DebugTimerStart ();
 		SqliteDataReader reader = Database.Query (new DbCommand ("SELECT id, time, description, roll_id, default_version_id, rating " + 
 									 " FROM photos " +
-									 " JOIN photo_versions AS pv ON photos.id = pv.photo_id" +
+									 " LEFT JOIN photo_versions AS pv ON photos.id = pv.photo_id" +
 							                 " WHERE photos.uri = :uri OR pv.uri = :uri", "uri", uri.ToString ()));
 
 		if (reader.Read ()) {
