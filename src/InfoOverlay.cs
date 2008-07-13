@@ -35,7 +35,7 @@ namespace FSpot {
 
 			if (p !=  null && q != null) {
 				p.DefaultVersionId  = version_id;
-				q.Commit (item.Index, true, false);
+				q.Commit (item.Index);
 			}
 		}
 	}

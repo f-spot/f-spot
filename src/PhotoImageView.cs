@@ -315,8 +315,8 @@ namespace FSpot {
 				return;
 
 			// Don't reload if the image didn't change at all.
-			if (!args.DataChanged &&
-			    args != null &&
+			if (args != null && args.Changes != null &&
+			    !args.Changes.DataChanged &&
 			    args.PreviousItem != null &&
 			    Item.IsValid &&
 			    this.Item.Current.DefaultVersionUri == args.PreviousItem.DefaultVersionUri)

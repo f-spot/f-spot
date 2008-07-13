@@ -62,7 +62,7 @@ namespace FSpot {
 				
 				while (op.Step ());
 				
-				item.Collection.MarkChanged (item.Index);
+				item.Collection.MarkChanged (item.Index, FullInvalidate.Instance);
 			} catch (Exception e) {
 				Dialog d = new EditExceptionDialog (null, e, item.Current);
 				d.Show ();
@@ -179,9 +179,10 @@ namespace FSpot {
 			PhotoQuery q = item.Collection as PhotoQuery;
 			if (photo != null && q != null) {
 				photo.DefaultVersionId = version;
-				q.Commit (item.Index, true, true);
+				photo.Changes.DataChanged = true;
+				q.Commit (item.Index);
 			} else {
-				item.Collection.MarkChanged (item.Index);
+				item.Collection.MarkChanged (item.Index, FullInvalidate.Instance);
 			}
 		}
 		

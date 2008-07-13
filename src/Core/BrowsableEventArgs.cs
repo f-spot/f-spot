@@ -17,36 +17,19 @@ namespace FSpot
 			get { return items; }
 		}
 
-		private readonly bool metadata_changed;
-		public bool MetadataChanged {
-			get { return metadata_changed; }
+		IBrowsableItemChanges changes;
+		public IBrowsableItemChanges Changes {
+			get { return changes; }
 		}
 
-		private readonly bool data_changed;
-		public bool DataChanged {
-			get { return data_changed; }
-		}
-
-		public BrowsableEventArgs (int num, bool metadata_changed, bool data_changed)
-			: this (new int [] { num }, metadata_changed, data_changed)
+		public BrowsableEventArgs (int item, IBrowsableItemChanges changes) : this (new int[] {item}, changes)
 		{
 		}
 
-		public BrowsableEventArgs (int [] items, bool metadata_changed, bool data_changed)
+		public BrowsableEventArgs (int[] items, IBrowsableItemChanges changes)
 		{
 			this.items = items;
-			this.metadata_changed = metadata_changed;
-			this.data_changed = data_changed;
-		}
-
-		[Obsolete ("You should be smarter and provide info about what changed!")]
-		public BrowsableEventArgs (int num) : this (new int [] { num }, true, true)
-		{
-		}
-
-		[Obsolete ("You should be smarter and provide info about what changed!")]
-		public BrowsableEventArgs (int [] items) : this (items, true, true)
-		{
+			this.changes = changes;
 		}
 	}
 }

@@ -7,21 +7,21 @@ using FSpot.Widgets;
 using FSpot.UI.Dialog;
 
 namespace FSpot {
-	public class TimeChangedEventArgs : PhotoEventArgs {
-		TimeSpan span;
-
-		public TimeChangedEventArgs (Photo [] items, TimeSpan span)
-			: base (items, true, false)
-		{
-			this.span = span;
-		}
-
-		public TimeSpan TimeSpan {
-			get {
-				return span;
-			}
-		}
-	}
+//	public class TimeChangedEventArgs : PhotoEventArgs {
+//		TimeSpan span;
+//
+//		public TimeChangedEventArgs (Photo [] items, TimeSpan span)
+//			: base (items, true, false)
+//		{
+//			this.span = span;
+//		}
+//
+//		public TimeSpan TimeSpan {
+//			get {
+//				return span;
+//			}
+//		}
+//	}
 
 	public class TimeDialog : GladeDialog 
 	{
@@ -169,7 +169,7 @@ namespace FSpot {
 				System.Console.WriteLine ("XXXXX old: {0} new: {1} span: {2}", time, p.Time, span);
 			}
 			
-			db.Photos.Commit (photos, new TimeChangedEventArgs (photos, span));
+			db.Photos.Commit (photos);
 		}
 
 		private void SpaceByInterval ()
@@ -193,7 +193,7 @@ namespace FSpot {
 				accum += span;
 			}
 			
-			db.Photos.Commit (photos, new TimeChangedEventArgs (photos, span));
+			db.Photos.Commit (photos);
 		}
 
 		void HandleSpinChanged (object sender, EventArgs args)

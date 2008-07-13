@@ -185,17 +185,17 @@ namespace FSpot {
 			return System.Array.IndexOf (photos, photo);
 		}
 		
-		public void Commit (int index, bool metadata_changed, bool data_changed)
+		public void Commit (int index)
 		{
-			Commit (new int [] {index}, metadata_changed, data_changed);
+			Commit (new int [] {index});
 		}
 
-		public void Commit (int [] indexes, bool metadata_changed, bool data_changed)
+		public void Commit (int [] indexes)
 		{
 			List<Photo> to_commit = new List<Photo>();
 			foreach (int index in indexes)
 				to_commit.Add (photos [index]);
-			store.Commit (to_commit.ToArray (), metadata_changed, data_changed);
+			store.Commit (to_commit.ToArray ());
 		}
 
 		private void MarkChanged (object sender, DbItemEventArgs args)
@@ -210,33 +210,18 @@ namespace FSpot {
 					indexes.Add (index);
 			}
 
-			PhotoEventArgs photo_args = args as PhotoEventArgs;
-
 			if (indexes.Count > 0 && ItemsChanged != null)
-				ItemsChanged (this, new BrowsableEventArgs(indexes.ToArray (),
-							photo_args.MetadataChanged, photo_args.DataChanged));
+				ItemsChanged (this, new BrowsableEventArgs(indexes.ToArray (), (args as PhotoEventArgs).Changes));
 		}
 
-		public void MarkChanged (int index, bool metadata_changed, bool data_changed)
+		public void MarkChanged (int index, IBrowsableItemChanges changes)
 		{
-			MarkChanged (new int [] {index}, metadata_changed, data_changed);
+			MarkChanged (new int [] {index}, changes);
 		}
 
-		public void MarkChanged (int [] indexes, bool metadata_changed, bool data_changed)
+		public void MarkChanged (int [] indexes, IBrowsableItemChanges changes)
 		{
-			ItemsChanged (this, new BrowsableEventArgs(indexes, metadata_changed, data_changed));
-		}
-
-		[Obsolete ("You should provide info on what changed!")]
-		public void MarkChanged (int index)
-		{
-			MarkChanged (new int [] {index});
-		}
-
-		[Obsolete ("You should provide info on what changed!")]
-		private void MarkChanged (params int [] indexes)
-		{
-			ItemsChanged (this, new BrowsableEventArgs (indexes));
+			ItemsChanged (this, new BrowsableEventArgs (indexes, changes));
 		}
 	}
 }

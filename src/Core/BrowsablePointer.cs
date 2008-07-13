@@ -10,38 +10,6 @@
 namespace FSpot
 {
 	public delegate void ItemChangedHandler (BrowsablePointer pointer, BrowsablePointerChangedArgs old);
-
-	public class BrowsablePointerChangedArgs {
-		private readonly IBrowsableItem previous_item;
-		public IBrowsableItem PreviousItem {
-			get { return previous_item; }
-		}
-
-		private readonly int previous_index;
-		public int PreviousIndex {
-			get { return previous_index; }
-		}
-
-		private readonly bool metadata_changed;
-		public bool MetadataChanged {
-			get { return metadata_changed; }
-		}
-
-		private readonly bool data_changed;
-		public bool DataChanged {
-			get { return data_changed; }
-		}
-
-		public BrowsablePointerChangedArgs (IBrowsableItem previous_item, int previous_index,
-				bool metadata_changed, bool data_changed)
-		{
-			this.previous_item = previous_item;
-			this.previous_index = previous_index;
-			this.metadata_changed = metadata_changed;
-			this.data_changed = data_changed;
-		}
-	}
-
 	public class BrowsablePointer {
 		IBrowsableCollection collection;
 		IBrowsableItem item;
@@ -126,17 +94,21 @@ namespace FSpot
 			get { return index; }
 			set {
 				if (index != value) {
-					SetIndex (value, false, false);
+					SetIndex (value);
 				}				
 			}
 		}
 
-		private void SetIndex (int value, bool metadata_changed, bool data_changed)
+		private void SetIndex (int value)
+		{
+			SetIndex (value, null);
+		}
+
+		private void SetIndex (int value, IBrowsableItemChanges changes)
 		{
 			BrowsablePointerChangedArgs args;
 			
-			args = new BrowsablePointerChangedArgs (Current, index,
-					metadata_changed, data_changed);
+			args = new BrowsablePointerChangedArgs (Current, index, changes);
 			
 			index = value;
 			item = Current;
@@ -150,7 +122,7 @@ namespace FSpot
 		{
 			foreach (int item in event_args.Items)
 				if (item == Index) 
-					SetIndex (Index, event_args.MetadataChanged, event_args.DataChanged);
+					SetIndex (Index, event_args.Changes);
 		}
 		
 		protected void HandleCollectionChanged (IBrowsableCollection collection)
@@ -160,17 +132,17 @@ namespace FSpot
 			
 			if (old_location == next_location) {
 				if (! Valid (next_location))
-					SetIndex (0, false, false);
+					SetIndex (0, null);
 
 				return;
 			}
 			
 			if (Valid (next_location))
-				SetIndex (next_location, false, false);
+				SetIndex (next_location);
 			else if (Valid (old_location))
-				SetIndex (old_location, false, false);
+				SetIndex (old_location);
 			else
-				SetIndex (0, false, false);
+				SetIndex (0);
 		}
 	}
 }

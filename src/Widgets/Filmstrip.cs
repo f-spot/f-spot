@@ -486,7 +486,7 @@ namespace FSpot.Widgets
 
 		void HandleCollectionItemsChanged (IBrowsableCollection coll, BrowsableEventArgs args)
 		{
-			if (!args.DataChanged)
+			if (!args.Changes.DataChanged)
 				return;
 			foreach (int item in args.Items)
 				thumb_cache.TryRemove (FSpot.ThumbnailGenerator.ThumbnailPath ((selection.Collection [item]).DefaultVersionUri));

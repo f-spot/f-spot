@@ -1,3 +1,47 @@
+2008-07-13  Stephane Delcroix  <stephane@delcroix.org>
+
+	* configure.in: detect mono 1.9
+
+	* src/Core/BrowsableEventArgs.cs:
+	* src/Core/BrowsablePointer.cs:
+	* src/Core/BrowsablePointerEventArgs.cs:
+	* src/Core/DbItem.cs:
+	* src/Core/IBrowsableCollection.cs:
+	* src/Core/IBrowsableItemChanges.cs
+	* src/Core/Photo.cs:
+	* src/Core/PhotoChanges.cs:
+	* src/Core/PhotosChanges.cs:
+	* src/Db.cs:
+	* src/FileImportBackend.cs:
+	* src/ImportCommand.cs:
+	* src/InfoOverlay.cs:
+	* src/ItemAction.cs:
+	* src/MainWindow.cs:
+	* src/Makefile.am:
+	* src/PhotoArray.cs:
+	* src/PhotoEventArgs.cs:
+	* src/PhotoImageView.cs:
+	* src/PhotoList.cs:
+	* src/PhotoQuery.cs:
+	* src/PhotoStore.cs:
+	* src/PhotoVersionCommands.cs:
+	* src/PhotoView.cs:
+	* src/QueuedSqliteDatabase.cs:
+	* src/SingleView.cs:
+	* src/TagStore.cs:
+	* src/TimeDialog.cs:
+	* src/UI.Dialog/ColorDialog.cs:
+	* src/Updater.cs:
+	* src/UriCollection.cs:
+	* src/Widgets/Filmstrip.cs:
+	* src/Widgets/IconView.cs:
+	* src/Widgets/MetadataDisplay.cs:
+	* src/Widgets/TagEntry.cs: Keep a list of things changed between 
+	Commit's in Photo, only update the things that really changed, then
+	send the list of what changed along with the fired events. On normal
+	usage, 2-3 versions per image, 2-3 tags per image, it reduces the 
+	number of db request by 90%...
+
 2008-07-08  Jakub Steiner <jimmac@ximian.com>
 
 	* icons/mode-image-edit-32.png:

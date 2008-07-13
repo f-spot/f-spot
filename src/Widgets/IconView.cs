@@ -258,7 +258,7 @@ namespace FSpot.Widgets
 		private void HandleItemsChanged (FSpot.IBrowsableCollection sender, BrowsableEventArgs args)
 		{
 			foreach (int item in args.Items) {
-				if (args.DataChanged)
+				if (args.Changes.DataChanged)
 					UpdateThumbnail (item);
 				InvalidateCell (item);
 			}
@@ -326,11 +326,11 @@ namespace FSpot.Widgets
 
 			}
 
-			public void MarkChanged (int item)
+			public void MarkChanged (int item, IBrowsableItemChanges changes)
 			{
 				// Forward the change event up to our parent
 				// we'll fire the event when the parent calls us back
-				parent.MarkChanged ((int) selected_cells [item]);
+				parent.MarkChanged ((int) selected_cells [item], changes);
 			}
 
 			private void HandleParentItemsChanged (IBrowsableCollection collection, BrowsableEventArgs args)
@@ -353,7 +353,7 @@ namespace FSpot.Widgets
 					return;
 
 				int [] items = (int [])local_ids.ToArray (typeof (int));
-				ItemsChanged (this, new BrowsableEventArgs (items, args.MetadataChanged, args.DataChanged));
+				ItemsChanged (this, new BrowsableEventArgs (items, args.Changes));
 			}
 
 			public int [] Ids {
@@ -1424,12 +1424,11 @@ namespace FSpot.Widgets
 
 			switch (args.Event.Type) {
 			case EventType.TwoButtonPress:
-				if (args.Event.Button != 1
-					|| (args.Event.State &  (ModifierType.ControlMask
-				| ModifierType.ShiftMask)) != 0)
-				return;
+				if (args.Event.Button != 1 ||
+						(args.Event.State &  (ModifierType.ControlMask | ModifierType.ShiftMask)) != 0)
+					return;
 				if (DoubleClicked != null)
-					DoubleClicked (this, new BrowsableEventArgs (cell_num, false, false));
+					DoubleClicked (this, new BrowsableEventArgs (cell_num, null));
 				return;
 
 			case EventType.ButtonPress:
@@ -1544,9 +1543,8 @@ namespace FSpot.Widgets
 				ToggleCell (FocusCell);
 				break;
 			case Gdk.Key.Return:
-				if (DoubleClicked == null)
-					break;
-				DoubleClicked (this, new BrowsableEventArgs (FocusCell, false, false));
+				if (DoubleClicked != null)
+					DoubleClicked (this, new BrowsableEventArgs (FocusCell, null));
 				break;
 			default:
 				args.RetVal = false;

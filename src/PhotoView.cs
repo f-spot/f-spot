@@ -279,7 +279,8 @@ namespace FSpot {
 				FSpot.SepiaTone sepia = new FSpot.SepiaTone (photo);
 				sepia.Image = View.CompletePixbuf ();
 				sepia.Adjust ();
-				Core.Database.Photos.Commit (photo, true, true);
+				photo.Changes.DataChanged = true;
+				Core.Database.Photos.Commit (photo);
 			} catch (System.Exception e) {
 				ShowError (e, photo); 
 			}
@@ -293,7 +294,8 @@ namespace FSpot {
 				FSpot.Desaturate desaturate = new FSpot.Desaturate (photo);
 				desaturate.Image = View.CompletePixbuf ();
 				desaturate.Adjust ();
-				Core.Database.Photos.Commit (photo, true, true);
+				photo.Changes.DataChanged = true;
+				Core.Database.Photos.Commit (photo);
 			} catch (System.Exception e) {
 				ShowError (e, photo);
 			}
@@ -341,7 +343,8 @@ namespace FSpot {
 				
 				bool create_version = photo.DefaultVersion.IsProtected;
 				photo.SaveVersion (edited, create_version);
-				((PhotoQuery)query).Commit (Item.Index, true, true);
+				photo.Changes.DataChanged = true;
+				((PhotoQuery)query).Commit (Item.Index);
 	
 				// FIXME the fact that the selection doesn't go away is a bug in ImageView, it should
 				// be fixed there.
@@ -368,7 +371,7 @@ namespace FSpot {
 		{
 			if (commit_delay.IsPending) {
 				commit_delay.Stop ();
-				((PhotoQuery)query).Commit (changed_photo, true, false);
+				((PhotoQuery)query).Commit (changed_photo);
 			}
 			return true;
 		}

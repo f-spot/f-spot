@@ -7,24 +7,6 @@ using System.Diagnostics;
 using FSpot;
 using FSpot.Utils;
 
-public class DbItemEventArgs {
-	private DbItem [] items;
-	
-	public DbItem [] Items {
-		get { return items; }
-	}
-	
-	public DbItemEventArgs (DbItem [] items)
-	{
-		this.items = items;
-	}
-	
-	public DbItemEventArgs (DbItem item)
-	{
-		this.items = new DbItem [] { item };
-	}
-}
-
 // A Store maps to a SQL table.  We have separate stores (i.e. SQL tables) for tags, photos and imports.
 
 public delegate void ItemsAddedHandler (object sender, DbItemEventArgs args);

@@ -74,9 +74,9 @@ namespace FSpot
 			return string.Compare (photo1.Name, photo2.Name);
 		}
 	
-		public class CompareDateName : IComparer
+		public class CompareDateName : IComparer<IBrowsableItem>
 		{
-			public int Compare (object obj1, object obj2)
+			public int Compare (IBrowsableItem obj1, IBrowsableItem obj2)
 			{
 				Photo p1 = (Photo)obj1;
 				Photo p2 = (Photo)obj2;
@@ -116,11 +116,26 @@ namespace FSpot
 			}
 		}
 	
+		PhotoChanges changes = new PhotoChanges ();
+		internal PhotoChanges Changes {
+			get{ return changes; }
+			set {
+				if (value != null)
+					throw new ArgumentException ("The only valid value is null");
+				changes = new PhotoChanges ();
+			}
+		}
+
 		// The time is always in UTC.
 		private DateTime time;
 		public DateTime Time {
 			get { return time; }
-			set { time = value; }
+			set {
+				if (time == value)
+					return;
+				time = value;
+				changes.TimeChanged = true;
+			}
 		}
 	
 		public string Name {
@@ -157,21 +172,33 @@ namespace FSpot
 		private string description;
 		public string Description {
 			get { return description; }
-			set { description = value; }
+			set {
+				if (description == value)
+					return;
+				description = value;
+				changes.DescriptionChanged = true;
+			}
 		}
 	
 		private uint roll_id = 0;
 		public uint RollId {
 			get { return roll_id; }
-			set { roll_id = value; }
+			set {
+				if (roll_id == value)
+					return;
+				roll_id = value;
+				changes.RollIdChanged = true;
+			}
 		}
 	
 		private uint rating;
 		public uint Rating {
 			get { return rating; }
 			set {
-				if (value >= 0 && value <= 5)
-					rating = value;
+				if (rating == value || value < 0 || value > 5)
+					return;
+				rating = value;
+				changes.RatingChanged = true;
 			}
 		}
 	
@@ -211,7 +238,12 @@ namespace FSpot
 		private uint default_version_id = OriginalVersionId;
 		public uint DefaultVersionId {
 			get { return default_version_id; }
-			set { default_version_id = value; }
+			set {
+				if (default_version_id == value)
+					return;
+				default_version_id = value;
+				changes.DefaultVersionIdChanged = true;
+			}
 		}
 	
 		// This doesn't check if a version of that name already exists, 
@@ -221,6 +253,7 @@ namespace FSpot
 			Versions [version_id] = new PhotoVersion (this, version_id, uri, name, is_protected);
 	
 			highest_version_id = Math.Max (version_id, highest_version_id);
+			changes.AddVersion (version_id);
 		}
 	
 		public uint AddVersion (System.Uri uri, string name)
@@ -234,6 +267,8 @@ namespace FSpot
 				throw new ApplicationException ("A version with that name already exists");
 			highest_version_id ++;
 			Versions [highest_version_id] = new PhotoVersion (this, highest_version_id, uri, name, is_protected);
+
+			changes.AddVersion (highest_version_id);
 			return highest_version_id;
 		}
 	
@@ -350,7 +385,9 @@ namespace FSpot
 				PhotoStore.DeleteThumbnail (uri);
 			}
 			Versions.Remove (version_id);
-	
+
+			changes.RemoveVersion (version_id);
+
 			do {
 				version_id --;
 				if (Versions.ContainsKey (version_id)) {
@@ -400,6 +437,8 @@ namespace FSpot
 			}
 			highest_version_id ++;
 			Versions [highest_version_id] = new PhotoVersion (this, highest_version_id, new_uri, name, is_protected);
+
+			changes.AddVersion (highest_version_id);
 	
 			return highest_version_id;
 		}
@@ -422,7 +461,9 @@ namespace FSpot
 	
 				highest_version_id ++;
 				Versions [highest_version_id] = new PhotoVersion (this, highest_version_id, version.Uri, name, is_protected);
-	
+
+				changes.AddVersion (highest_version_id);
+
 				return highest_version_id;
 			}
 		}
@@ -473,6 +514,8 @@ namespace FSpot
 				throw new Exception ("This name already exists");
 	
 			(GetVersion (version_id) as PhotoVersion).Name = new_name;
+
+			changes.ChangeVersion (version_id);
 	
 			//TODO: rename file too ???
 	
@@ -493,6 +536,7 @@ namespace FSpot
 				tags = new ArrayList ();
 	
 			tags.Add (tag);
+			changes.AddTag (tag);
 		}
 	
 		// This on the other hand does, but is O(n) with n being the number of existing tags.
@@ -514,8 +558,11 @@ namespace FSpot
 	
 		public void RemoveTag (Tag tag)
 		{
-			if (HasTag (tag))
-				tags.Remove (tag);
+			if (!HasTag (tag))
+				return;
+
+			tags.Remove (tag);
+			changes.RemoveTag (tag);
 		}
 	
 		public void RemoveTag (Tag []taglist)

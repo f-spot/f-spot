@@ -219,6 +219,9 @@ namespace FSpot.Widgets {
 				if (tagnames [i].Length == 0)
 					continue;
 
+				if (selected_photos_tagnames.Contains (tagnames [i]))
+					continue;
+
 				Tag t = tag_store.GetTagByName (tagnames [i]);
 
 				if (t != null) // Correct for capitalization differences

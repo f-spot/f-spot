@@ -38,7 +38,7 @@ namespace FSpot
 		event IBrowsableCollectionChangedHandler Changed;
 		event IBrowsableCollectionItemsChangedHandler ItemsChanged;
 
-		void MarkChanged (int index);
+		void MarkChanged (int index, IBrowsableItemChanges changes);
 	}
 }
 

@@ -29,29 +29,6 @@ using FSpot.Utils;
 
 using Banshee.Database;
 
-public class PhotoEventArgs : DbItemEventArgs {
-	private readonly bool metadata_changed;
-	public bool MetadataChanged {
-		get { return metadata_changed; }
-	}
-
-	private readonly bool data_changed;
-	public bool DataChanged {
-		get { return data_changed; }
-	}
-
-	public PhotoEventArgs (Photo photo, bool metadata_changed, bool data_changed)
-		: this (new Photo [] { photo }, metadata_changed, data_changed)
-	{
-	}
-
-	public PhotoEventArgs (Photo [] items, bool metadata_changed, bool data_changed)
-		: base (items)
-	{
-		this.metadata_changed = metadata_changed;
-		this.data_changed = data_changed;
-	}
-}
 
 public class PhotoStore : DbStore {
 	public int TotalPhotos {
@@ -149,21 +126,21 @@ public class PhotoStore : DbStore {
 
 
 		Database.ExecuteNonQuery (
-			"CREATE TABLE photo_tags (     " +
-			"	photo_id      INTEGER, " +
-			"       tag_id        INTEGER  " +
+			"CREATE TABLE photo_tags (        " +
+			"	photo_id      INTEGER,    " +
+			"       tag_id        INTEGER,    " +
+			"       UNIQUE (photo_id, tag_id) " +
 			")");
 
 
 		Database.ExecuteNonQuery (
-			//WARNING: if you change this schema, reflect your changes 
-			//to Updater.cs, at revision 8.0
-			"CREATE TABLE photo_versions (    	" +
-			"       photo_id        INTEGER,  	" +
-			"       version_id      INTEGER,  	" +
-			"       name            STRING,    	" +
+			"CREATE TABLE photo_versions (		"+
+			"	photo_id	INTEGER,	" +
+			"	version_id	INTEGER,	" +
+			"	name		STRING,		" +
 			"	uri		STRING NOT NULL," +
-			"	protected	BOOLEAN		" +
+			"	protected	BOOLEAN, 	" +
+			"	UNIQUE (photo_id, version_id)	" +
 			")");
 	}
 
@@ -390,11 +367,10 @@ public class PhotoStore : DbStore {
 	{
 		Photo [] photos = Query (tags, String.Empty, null, null);	
 
-		foreach (Photo photo in photos) {
+		foreach (Photo photo in photos)
 			photo.RemoveCategory (tags);
-			Commit (photo, true, false);
-		}
-		
+		Commit (photos);
+
 		foreach (Tag tag in tags)
 			Core.Database.Tags.Remove (tag);
 		
@@ -422,24 +398,12 @@ public class PhotoStore : DbStore {
 		Remove (new Photo [] { (Photo)item });
 	}
 
-// Marking this obsolete causes a warning: Obsolete member `PhotoStore.Commit(FSpot.DbItem)' overrides non-obsolete member `DbStore.Commit(FSpot.DbItem)'.
-//	[Obsolete("WARNING! You should not use this one for photos, the events are not specific enough")]
 	public override void Commit (DbItem item)
 	{
-		throw new NotImplementedException("You should not use PhotoStore.Commit(DbItem) for photos, the events are not specific enough");
+		Commit (new Photo [] {item as Photo});
 	}
 
-	public void Commit (Photo photo, bool metadata_changed, bool data_changed)
-	{
-		Commit (new Photo [] { photo }, metadata_changed, data_changed);
-	}
-
-	public void Commit (Photo [] items, bool metadata_changed, bool data_changed)
-	{
-		Commit (items, new PhotoEventArgs (items, metadata_changed, data_changed));
-	}
-
-	public void Commit (Photo [] items, PhotoEventArgs args)
+	public void Commit (Photo [] items)
 	{
 		// Only use a transaction for multiple saves. Avoids recursive transactions.
 		bool use_transactions = !Database.InTransaction && items.Length > 1;
@@ -447,65 +411,85 @@ public class PhotoStore : DbStore {
 		if (use_transactions)
 			Database.BeginTransaction ();
 
+		PhotosChanges changes = new PhotosChanges ();
 		foreach (DbItem item in items)
-			Update ((Photo)item);
+			changes |= Update ((Photo)item);
 
 		if (use_transactions)
 			Database.CommitTransaction ();
 
-		EmitChanged (items, args);
+		EmitChanged (items, new PhotoEventArgs (items, changes));
 	}
 
-	public void EmitChanged (Photo photo, bool metadata_changed, bool data_changed)
-	{
-		EmitChanged (new Photo [] { photo }, metadata_changed, data_changed);
-	}
-
-	public void EmitChanged (Photo [] items, bool metadata_changed, bool data_changed)
-	{
-		EmitChanged (items, new PhotoEventArgs (items, metadata_changed, data_changed));
-	}
-	
-	private void Update (Photo photo) {
+	private PhotoChanges Update (Photo photo) {
+		PhotoChanges changes = photo.Changes;
 		// Update photo.
-		Database.ExecuteNonQuery (new DbCommand (
-			"UPDATE photos SET description = :description, " + 
-			"default_version_id = :default_version_id, " + 
-			"time = :time, " + 
-			"uri = :uri, " +
-			"rating = :rating " +
-			"WHERE id = :id ",
-			"description", photo.Description,
-			"default_version_id", photo.DefaultVersionId,
-			"time", DbUtils.UnixTimeFromDateTime (photo.Time),
-			"uri", photo.VersionUri (Photo.OriginalVersionId).OriginalString,
-			"rating", String.Format ("{0}", photo.Rating),
-			"id", photo.Id));
+		if (changes.DescriptionChanged || changes.DefaultVersionIdChanged || changes.TimeChanged || changes.UriChanged || changes.RatingChanged )
+			Database.ExecuteNonQuery (new DbCommand (
+				"UPDATE photos SET description = :description, " +
+				"default_version_id = :default_version_id, " +
+				"time = :time, " +
+				"uri = :uri, " +
+				"rating = :rating " +
+				"WHERE id = :id ",
+				"description", photo.Description,
+				"default_version_id", photo.DefaultVersionId,
+				"time", DbUtils.UnixTimeFromDateTime (photo.Time),
+				"uri", photo.VersionUri (Photo.OriginalVersionId).OriginalString,
+				"rating", String.Format ("{0}", photo.Rating),
+				"id", photo.Id));
 
 		// Update tags.
+		if (changes.TagsRemoved != null)
+			foreach (Tag tag in changes.TagsRemoved)
+				Database.ExecuteNonQuery (new DbCommand (
+					"DELETE FROM photo_tags WHERE photo_id = :photo_id AND tag_id = :tag_id",
+					"photo_id", photo.Id,
+					"tag_id", tag.Id));
 
-		Database.ExecuteNonQuery (new DbCommand ("DELETE FROM photo_tags WHERE photo_id = :id", "id", photo.Id));
-
-		foreach (Tag tag in photo.Tags) {
-			Database.ExecuteNonQuery (new DbCommand ("INSERT INTO photo_tags (photo_id, tag_id) " +
-                                         " VALUES (:photo_id, :tag_id)",
-                                         "photo_id", photo.Id, "tag_id", tag.Id));
-		}
+		if (changes.TagsAdded != null)
+			foreach (Tag tag in changes.TagsAdded)
+				Database.ExecuteNonQuery (new DbCommand (
+					"INSERT OR IGNORE INTO photo_tags (photo_id, tag_id) " +
+					"VALUES (:photo_id, :tag_id)",
+					"photo_id", photo.Id,
+					"tag_id", tag.Id));
 
 		// Update versions.
+		if (changes.VersionsRemoved != null)
+			foreach (uint version_id in changes.VersionsRemoved)
+				Database.ExecuteNonQuery (new DbCommand (
+					"DELETE FROM photo_versions WHERE photo_id = :photo_id AND version_id = :version_id",
+					"photo_id", photo.Id,
+					"version_id", version_id));
 
-		Database.ExecuteNonQuery (new DbCommand ("DELETE FROM photo_versions WHERE photo_id = :id", "id", photo.Id));
-
-		foreach (uint version_id in photo.VersionIds) {
-			if (version_id == Photo.OriginalVersionId)
-				continue;
-			PhotoVersion version = photo.GetVersion (version_id) as PhotoVersion;
-
-			Database.ExecuteNonQuery(new DbCommand ("INSERT INTO photo_versions (photo_id, version_id, name, uri, protected) " +
-							     "       VALUES (:photo_id, :version_id, :name, :uri, :is_protected)",
-							     "photo_id", photo.Id, "version_id", version.VersionId,
-							     "name", version.Name, "uri", version.Uri.ToString (), "is_protected", version.IsProtected));
-		}
+		if (changes.VersionsAdded != null)
+			foreach (uint version_id in changes.VersionsAdded) {
+				PhotoVersion version = photo.GetVersion (version_id) as PhotoVersion;
+				Database.ExecuteNonQuery (new DbCommand (
+					"INSERT OR IGNORE INTO photo_versions (photo_id, version_id, name, uri, protected) " +
+					"VALUES (:photo_id, :version_id, :name, :uri, :is_protected)",
+					"photo_id", photo.Id,
+					"version_id", version_id,
+					"name", version.Name,
+					"uri", version.Uri.ToString (),
+					"is_protected", version.IsProtected));
+			}
+		if (changes.VersionsModified != null)
+			foreach (uint version_id in changes.VersionsModified) {
+				PhotoVersion version = photo.GetVersion (version_id) as PhotoVersion;
+				Database.ExecuteNonQuery (new DbCommand (
+					"UPDATE photo_versions SET name = :name, " +
+					"uri = :uri, protected = :protected " +
+					"WHERE photo_id = :photo_id AND version_id = :version_id",
+					"name", version.Name,
+					"uri", version.Uri.ToString (),
+					"protected", version.IsProtected,
+					"photo_id", photo.Id,
+					"version_id", version_id));
+			}
+		photo.Changes = null;
+		return changes;
 	}
 	
 	// Dbus
@@ -594,7 +578,6 @@ public class PhotoStore : DbStore {
 				photo.RollId = Convert.ToUInt32 (reader[4]);
 				photo.DefaultVersionId = Convert.ToUInt32 (reader[5]);
 				photo.Rating = Convert.ToUInt32 (reader [6]);
-				
 				version_list.Add (photo);
 			}
 
@@ -617,6 +600,8 @@ public class PhotoStore : DbStore {
 		} else {
 			//Console.WriteLine ("Skipped Loading Data");
 		}
+		foreach (Photo photo in version_list)
+			photo.Changes = null;
 
 		Log.DebugTimerPrint (timer, "Query took {0}");
 		return id_list.ToArray (typeof (Photo)) as Photo [];

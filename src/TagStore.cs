@@ -11,6 +11,7 @@ using Banshee.Database;
 using FSpot;
 using FSpot.Jobs;
 using FSpot.Query;
+using FSpot.Utils;
 
 // FIXME: This is to workaround the currently busted GTK# bindings.
 using System.Runtime.InteropServices;
@@ -156,7 +157,7 @@ public class TagStore : DbStore {
 
 		// Pass 1, get all the tags.
 
-		SqliteDataReader reader = Database.Query("SELECT id, name, is_category, sort_priority, icon FROM tags");
+		SqliteDataReader reader = Database.Query ("SELECT id, name, is_category, sort_priority, icon FROM tags");
 
 		while (reader.Read ()) {
 			uint id = Convert.ToUInt32 (reader [0]);
@@ -201,8 +202,11 @@ public class TagStore : DbStore {
 
 		//Pass 3, set popularity
 		reader = Database.Query ("SELECT tag_id, COUNT (*) as popularity FROM photo_tags GROUP BY tag_id");
-		while (reader.Read ())
-			(Get (Convert.ToUInt32 (reader [0])) as Tag).Popularity = Convert.ToInt32 (reader [1]);
+		while (reader.Read ()) {
+			Tag t = Get (Convert.ToUInt32 (reader [0])) as Tag;
+			if (t != null)
+				t.Popularity = Convert.ToInt32 (reader [1]);
+		}
 		reader.Close ();
 
 		if (FSpot.Core.Database.Meta.HiddenTagId.Value != null)

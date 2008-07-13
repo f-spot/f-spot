@@ -1,111 +1,14 @@
-using System.Collections;
+/*
+ * FSpot.PhotoArray.cs
+ *
+ * Author(s):
+ *	Larry Ewing
+ *
+ * This is free software, See COPYING for details
+ */
 
-namespace FSpot {
-	public class PhotoList : IBrowsableCollection {
-		protected System.Collections.ArrayList list;
-		IBrowsableItem [] cache;
-
-		public PhotoList (IBrowsableItem [] photos)
-		{
-			list = new System.Collections.ArrayList (photos);
-		}
-
-		public PhotoList () 
-		{
-			list = new System.Collections.ArrayList ();
-		}
-
-		public int Count {
-			get {
-				return list.Count;
-			}
-		}
-
-		public void Clear ()
-		{
-			list.Clear ();
-			Reload ();
-		}
-
-		public int Capacity {
-			set {
-				list.Capacity = value;
-			}
-		}
-
-		public void Add (IBrowsableItem photo)
-		{
-			list.Add (photo);
-			Reload ();
-		}
-
-		public void Add (IBrowsableItem [] items)
-		{
-			list.AddRange (items);
-			Reload ();
-		}
-		
-		public int IndexOf (IBrowsableItem item)
-		{
-			return list.IndexOf (item);
-		}
-		
-		public bool Contains (IBrowsableItem item)
-		{
-			return list.Contains (item);
-		}
-
-		public IBrowsableItem this [int index] {
-			get {
-				return (IBrowsableItem) list [index];
-			}
-			set {
-				list [index] = value;
-				MarkChanged (index);
-			}
-		}
-		
-		public void Sort (IComparer compare)
-		{
-			list.Sort (compare);
-			Reload ();
-		}
-		
-		public void Reload ()
-		{
-			cache = null;
-			if (Changed != null)
-				Changed (this);
-		}
-		
-		public void MarkChanged (int num)
-		{
-			MarkChanged (new BrowsableEventArgs (num));
-		}
-
-		public void MarkChanged (BrowsableEventArgs args)
-		{
-			if (ItemsChanged != null)
-				ItemsChanged (this, args);
-		}
-
-		public IBrowsableItem [] Items {
-			get {
-				if (cache == null)
-					cache = (IBrowsableItem []) list.ToArray (typeof (IBrowsableItem));
-
-				return cache;
-			}
-			set {
-				list.Clear ();
-				Add (value);
-			}
-		}
-
-		public event IBrowsableCollectionChangedHandler Changed;
-		public event IBrowsableCollectionItemsChangedHandler ItemsChanged;
-	}
-
+namespace FSpot
+{
 	public class PhotoArray : IBrowsableCollection {
 		IBrowsableItem [] photos;
 
@@ -115,9 +18,7 @@ namespace FSpot {
 		}
 
 		public int Count {
-			get {
-				return photos.Length;
-			}
+			get { return photos.Length; }
 		}
 
 		/*
@@ -135,15 +36,11 @@ namespace FSpot {
 
 		// IBrowsableCollection
 		public IBrowsableItem [] Items {
-			get {
-				return photos;
-			}
+			get { return photos; }
 		}
 
 		public IBrowsableItem this [int index] {
-			get {
-				return photos [index];
-			}
+			get { return photos [index]; }
 		}
 		
 		public int IndexOf (IBrowsableItem item)
@@ -156,10 +53,10 @@ namespace FSpot {
 			return IndexOf (item) >= 0;
 		}
 
-		public void MarkChanged (int item)
+		public void MarkChanged (int item, IBrowsableItemChanges changes)
 		{
 			if (ItemsChanged != null)
-				ItemsChanged (this, new BrowsableEventArgs (item));
+				ItemsChanged (this, new BrowsableEventArgs (item, changes));
 		}
 
 		public void Reload ()

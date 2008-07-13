@@ -246,6 +246,34 @@ namespace FSpot.Database {
 				Execute ("UPDATE photos SET rating = 0 WHERE rating IS NULL");
 			});
 
+			// Update to version 15.0
+			AddUpdate (new Version (15,0), delegate () {
+				string tmp_photo_tags = MoveTableToTemp ("photo_tags");
+				Execute (
+					"CREATE TABLE photo_tags (        " +
+					"	photo_id      INTEGER,    " +
+					"       tag_id        INTEGER,    " +
+					"       UNIQUE (photo_id, tag_id) " +
+					")");
+				Execute (String.Format (
+					"INSERT OR IGNORE INTO photo_tags (photo_id, tag_id) " +
+					"SELECT photo_id, tag_id FROM {0}", tmp_photo_tags));
+				string tmp_photo_versions = MoveTableToTemp ("photo_versions");
+				Execute (
+					"CREATE TABLE photo_versions (		"+
+					"	photo_id	INTEGER,	" +
+					"	version_id	INTEGER,	" +
+					"	name		STRING,		" +
+					"	uri		STRING NOT NULL," +
+					"	protected	BOOLEAN, 	" +
+					"	UNIQUE (photo_id, version_id)	" +
+					")");
+				Execute (String.Format (
+					"INSERT OR IGNORE INTO photo_versions 		" +
+					"(photo_id, version_id, name, uri, protected)	" +
+					"SELECT photo_id, version_id, name, uri, protected FROM {0}", tmp_photo_versions));
+			});
+
 			// Update to version 14.0
 			//AddUpdate (new Version (14,0),delegate () {
 			//	do update here

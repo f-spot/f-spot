@@ -21,14 +21,18 @@ CORE_CSDISTFILES =				\
 	$(srcdir)/Core/Animator.cs		\
 	$(srcdir)/Core/BrowsableEventArgs.cs	\
 	$(srcdir)/Core/BrowsablePointer.cs	\
+	$(srcdir)/Core/BrowsablePointerEventArgs.cs	\
 	$(srcdir)/Core/Category.cs		\
 	$(srcdir)/Core/DbItem.cs		\
 	$(srcdir)/Core/Delay.cs			\
 	$(srcdir)/Core/Tag.cs			\
 	$(srcdir)/Core/Global.cs		\
 	$(srcdir)/Core/IBrowsableItem.cs	\
+	$(srcdir)/Core/IBrowsableItemChanges.cs	\
 	$(srcdir)/Core/IBrowsableCollection.cs	\
 	$(srcdir)/Core/IPreferenceBackend.cs	\
+	$(srcdir)/Core/PhotoChanges.cs		\
+	$(srcdir)/Core/PhotosChanges.cs		\
 	$(srcdir)/Core/Roll.cs
 
 QUERY_CSDISTFILES =				\
@@ -77,6 +81,7 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/BlockProcessor.cs		\
 	$(srcdir)/BitConverter.cs		\
 	$(srcdir)/PhotoArray.cs 		\
+	$(srcdir)/PhotoList.cs 		\
 	$(srcdir)/ColorAdjustment.cs		\
 	$(srcdir)/CompatFileChooser.cs		\
 	$(srcdir)/ControlOverlay.cs		\
@@ -165,6 +170,7 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/MetadataStore.cs		\
 	$(srcdir)/NullPreferenceBackend.cs	\
 	$(srcdir)/Operation.cs			\
+	$(srcdir)/PhotoEventArgs.cs		\
 	$(srcdir)/PhotoImageView.cs		\
 	$(srcdir)/PhotoLoader.cs		\
 	$(srcdir)/PhotoPopup.cs			\

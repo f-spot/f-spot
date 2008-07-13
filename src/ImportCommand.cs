@@ -689,7 +689,7 @@ public class ImportCommand : GladeDialog
 						continue;
 					
 					p.AddTag ((Tag [])tags_selected.ToArray(typeof(Tag)));
-					store.Commit (p, true, true);
+					store.Commit (p);
 				}
 			}
 

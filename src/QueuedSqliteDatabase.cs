@@ -282,6 +282,7 @@ namespace Banshee.Database
                     lock(command_queue) {
                         command = command_queue.Dequeue();
                     }
+		    //Log.Debug (command.CommandText);
                     command.Execute();
                 }
 

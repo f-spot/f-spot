@@ -244,7 +244,7 @@ public class FileImportBackend : ImportBackend {
 			needs_commit |= xmptags.Import (photo, info.DestinationPath, info.OriginalPath);
 
 			if (needs_commit)
-				store.Commit(photo, true, true);
+				store.Commit(photo);
 			
 			info.Photo = photo;
 		} catch (System.Exception e) {

@@ -11,6 +11,7 @@
 using System;
 using System.IO;
 using System.Collections;
+using System.Collections.Generic;
 using System.Xml;
 
 namespace FSpot {
@@ -143,7 +144,7 @@ namespace FSpot {
 
 		protected void LoadItems (FileInfo [] files)
 		{
-			ArrayList items = new ArrayList ();
+			List<IBrowsableItem> items = new List<IBrowsableItem> ();
 			foreach (FileInfo f in files) {
 				if (FSpot.ImageFile.HasLoader (f.FullName)) {
 					Console.WriteLine (f.FullName);
