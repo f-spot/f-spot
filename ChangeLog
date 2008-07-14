@@ -1,3 +1,15 @@
+2008-07-14  Ruben Vermeersch  <ruben@savanne.be>
+
+	Add monodevelop build files, seems to work, but someone with more
+	knowledge should step in and really fix it.
+
+	* F-Spot.mds: Removed.
+	* dpap-sharp/launcher/dpap-launcher.mdp: Removed.
+	* dpap-sharp/lib/dpap-sharp.mdp: Removed.
+	* f-spot.csproj: Added.
+	* f-spot.sln: Added.
+	* src/F-Spot.mdp: Removed.
+
 2008-07-13  Stephane Delcroix  <stephane@delcroix.org>
 
 	* configure.in: detect mono 1.9
