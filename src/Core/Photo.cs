@@ -117,7 +117,7 @@ namespace FSpot
 		}
 	
 		PhotoChanges changes = new PhotoChanges ();
-		internal PhotoChanges Changes {
+		public PhotoChanges Changes {
 			get{ return changes; }
 			set {
 				if (value != null)
