@@ -194,7 +194,7 @@ namespace ChangePhotoPath
 				if (gui_controller.UpdateProgressBar ("Reverting changes to database", "Reverting photo", last_index)) 
 					{} // do nothing, ignore trying to abort the revert...
 				if ( (photo != null) && !StillOnSamePhotoId (k+1, k, photo_id_array) ) {
-					photo_store.Commit (photo, true, false);
+					photo_store.Commit (photo);
 					photo = null;
 				}
 
@@ -202,7 +202,7 @@ namespace ChangePhotoPath
 				System.Console.WriteLine ("R : {0} - {1}", k, old_path_array[k]);
 			}
 			if (photo != null)
-				photo_store.Commit (photo, true, false);
+				photo_store.Commit (photo);
 			System.Console.WriteLine ("Changing path failed due to above error. Have reverted any modification that took place.");
 		}
 

@@ -424,7 +424,7 @@ namespace DBusService {
 				// attach tags we got
 				if (tag_list.Count > 0) {
 				 	created.AddTag (tag_list.ToArray ());
-					db.Photos.Commit (created, true, true);
+					db.Photos.Commit (created);
 				}
 
 				return (int)created.Id;

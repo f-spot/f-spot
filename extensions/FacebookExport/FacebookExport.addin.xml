@@ -1,13 +1,13 @@
 <Addin 	namespace="FSpot"
 	id="FacebookExport"
-	version="0.4.4.99"
+	version="0.4.4.100"
 	name="FacebookExport"
 	description="Export pictures to facebook"
 	author="George Talusan"
 	url="http://f-spot.org/Extensions"
 	category="Export">
 	<Dependencies>
-		<Addin id="Core" version="0.4.4.99"/>
+		<Addin id="Core" version="0.4.4.100"/>
 	</Dependencies>
 	<Runtime>
 		<Import file="Mono.Facebook.dll" />
