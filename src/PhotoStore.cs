@@ -559,8 +559,8 @@ public class PhotoStore : DbStore {
 		uint timer = Log.DebugTimerStart ("Query: " + query.CommandText);
 		SqliteDataReader reader = Database.Query(query);
 
-		ArrayList version_list = new ArrayList ();
-		ArrayList id_list = new ArrayList ();
+		List<Photo> new_photos = new List<Photo> ();
+		List<Photo> query_result = new List<Photo> ();
 		while (reader.Read ()) {
 			uint id = Convert.ToUInt32 (reader [0]);
 			Photo photo = LookupInCache (id) as Photo;
@@ -578,15 +578,15 @@ public class PhotoStore : DbStore {
 				photo.RollId = Convert.ToUInt32 (reader[4]);
 				photo.DefaultVersionId = Convert.ToUInt32 (reader[5]);
 				photo.Rating = Convert.ToUInt32 (reader [6]);
-				version_list.Add (photo);
+				new_photos.Add (photo);
 			}
 
-			id_list.Add (photo);
+			query_result.Add (photo);
 		}
 		reader.Close();
 
 		bool need_load = false;
-		foreach (Photo photo in version_list) {
+		foreach (Photo photo in new_photos) {
 			AddToCache (photo);
 			need_load |= !photo.Loaded;
 		}
@@ -594,17 +594,16 @@ public class PhotoStore : DbStore {
 		if (need_load) {
 			GetAllTags ();
 			GetAllVersions ();
-			foreach (Photo photo in version_list) {
+			foreach (Photo photo in new_photos)
 				photo.Loaded = true;
-			}
 		} else {
 			//Console.WriteLine ("Skipped Loading Data");
 		}
-		foreach (Photo photo in version_list)
+		foreach (Photo photo in new_photos)
 			photo.Changes = null;
 
 		Log.DebugTimerPrint (timer, "Query took {0}");
-		return id_list.ToArray (typeof (Photo)) as Photo [];
+		return query_result.ToArray ();
 	}
 
 	[Obsolete ("No longer make any sense with uris...")]

@@ -166,7 +166,13 @@ namespace FSpot
 		private bool loaded = false;
 		public bool Loaded {
 			get { return loaded; }
-			set { loaded = value; }
+			set { 
+				if (value) {
+					if (DefaultVersionId != OriginalVersionId && !Versions.ContainsKey (DefaultVersionId)) 
+						DefaultVersionId = OriginalVersionId;	
+				}
+				loaded = value; 
+			}
 		}
 	
 		private string description;
