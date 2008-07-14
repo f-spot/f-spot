@@ -77,7 +77,7 @@ namespace FSpot
 		List<uint> versions_added = null;
 		public uint [] VersionsAdded {
 			get {
-				if (versions_added != null)
+				if (versions_added == null)
 					return null;
 				if (versions_added.Count == 0)
 					return null;
