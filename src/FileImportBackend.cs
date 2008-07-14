@@ -74,20 +74,19 @@ public class FileImportBackend : ImportBackend {
 
 	private void GetListing (System.IO.DirectoryInfo dirinfo, System.IO.FileInfo [] files, bool recurse)
 	{
-		System.Console.WriteLine ("Scanning {0}", dirinfo.FullName);
+		Log.DebugFormat ("Scanning {0} for new photos", dirinfo.FullName);
 		List<Uri> existing_entries = new List<Uri> ();
 
-		foreach (Photo p in store.Query (dirinfo)) {
+		foreach (Photo p in store.Query (new Uri (dirinfo.FullName)))
 			foreach (uint id in p.VersionIds) {
+				Log.DebugFormat ("found {0}", p.VersionUri (id));
 				existing_entries.Add (p.VersionUri (id));
 			}
-		}
 
-		foreach (System.IO.FileInfo f in files) {
+		foreach (System.IO.FileInfo f in files)
 			if (! existing_entries.Contains (UriUtils.PathToFileUri (f.FullName)) && !f.Name.StartsWith (".")) {
 				AddPath (f.FullName);
 			}
-		}
 
 		if (recurse) {
 			foreach (System.IO.DirectoryInfo d in dirinfo.GetDirectories ()){

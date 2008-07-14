@@ -606,9 +606,26 @@ public class PhotoStore : DbStore {
 		return query_result.ToArray ();
 	}
 
-	[Obsolete ("No longer make any sense with uris...")]
-	public Photo [] Query (System.IO.DirectoryInfo dir)
+//	[Obsolete ("No longer make any sense with uris...")]
+//	public Photo [] Query (System.IO.DirectoryInfo dir)
+//	{
+//		return Query (new DbCommand (
+//			"SELECT photos.id, "			+
+//				"photos.time, "			+
+//				"photos.uri, "			+
+//				"photos.description, "		+
+//				"photos.roll_id, "		+
+//				"photos.default_version_id, "	+
+//				"photos.rating "		+
+//			"FROM photos " 				+
+//			"WHERE uri LIKE \"file://:dir%\" "	+
+//			"AND uri NOT LIKE \"file://:dir/%/%\"",
+//			"dir", dir.FullName ));
+//	}
+
+	public Photo [] Query (System.Uri uri)
 	{
+		Log.DebugFormat ("Query Uri {0}", uri);
 		return Query (new DbCommand (
 			"SELECT photos.id, "			+
 				"photos.time, "			+
@@ -618,9 +635,10 @@ public class PhotoStore : DbStore {
 				"photos.default_version_id, "	+
 				"photos.rating "		+
 			"FROM photos " 				+
-			"WHERE uri LIKE \"file://:dir%\" "	+
-			"AND uri NOT LIKE \"file://:dir/%/%\"",
-			"dir", dir.FullName ));
+			"WHERE uri LIKE :uri "		+
+			"AND uri NOT LIKE :uri_",
+			"uri", uri.ToString () + "%",
+			"uri_", uri.ToString () + "/%/%"));
 	}
 
 	[Obsolete ("drop this, use IQueryCondition correctly instead")]
