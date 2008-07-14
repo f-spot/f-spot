@@ -78,10 +78,8 @@ public class FileImportBackend : ImportBackend {
 		List<Uri> existing_entries = new List<Uri> ();
 
 		foreach (Photo p in store.Query (new Uri (dirinfo.FullName)))
-			foreach (uint id in p.VersionIds) {
-				Log.DebugFormat ("found {0}", p.VersionUri (id));
+			foreach (uint id in p.VersionIds)
 				existing_entries.Add (p.VersionUri (id));
-			}
 
 		foreach (System.IO.FileInfo f in files)
 			if (! existing_entries.Contains (UriUtils.PathToFileUri (f.FullName)) && !f.Name.StartsWith (".")) {
