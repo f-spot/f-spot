@@ -138,7 +138,6 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/ImageTest.cs			\
 	$(srcdir)/ImportBackend.cs		\
 	$(srcdir)/ImportCommand.cs		\
-	$(srcdir)/InfoDisplay.cs		\
 	$(srcdir)/InfoOverlay.cs		\
 	$(srcdir)/InternalProcess.cs		\
 	$(srcdir)/IOChannel.cs			\
@@ -323,6 +322,7 @@ F_SPOT_ASSEMBLIES = 				\
 	$(GCONF_PKG)				\
 	$(GTKHTML_SHARP_PKG)			\
 	-pkg:glade-sharp-2.0			\
+	-pkg:gnome-sharp-2.0			\
 	-pkg:gnome-vfs-sharp-2.0
 
 F_SPOT_DISTRESOURCES =			\

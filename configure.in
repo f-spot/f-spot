@@ -75,15 +75,6 @@ AC_SUBST(F_LIBS)
 
 CSC_DEFINES=""
 PKG_CHECK_MODULES(GNOME_SHARP, gnome-sharp-2.0 >= 2.8)
-if pkg-config --atleast-version=2.19.90 gnome-sharp-2.0; then
-	PKG_CHECK_MODULES(GTKHTML_SHARP, gtkhtml-sharp-3.14 >= 2.19.90)
-	GTKHTML_SHARP_PKG="-pkg:gtkhtml-sharp-3.14 -pkg:gnome-sharp-2.0"
-	CSC_DEFINES="$CSC_DEFINES -d:GTKHTML_3_14"
-else
-	PKG_CHECK_MODULES(GTKHTML_SHARP, gtkhtml-sharp-2.0 >= 2.8)
-	GTKHTML_SHARP_PKG="-pkg:gtkhtml-sharp-2.0"
-fi
-AC_SUBST(GTKHTML_SHARP_PKG)
 
 dnl -- gio-sharp: needed if gnome >= 2.22. link or bundle ?
 if pkg-config --atleast-version=2.22 libgnome-2.0; then
