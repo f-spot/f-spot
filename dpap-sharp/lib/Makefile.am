@@ -4,6 +4,7 @@ ASSEMBLY_NAME = dpap-sharp
 
 ASSEMBLY_SOURCES =				\
 	$(srcdir)/AssemblyInfo.cs		\
+	$(srcdir)/Album.cs			\
 	$(srcdir)/AuthenticationException.cs	\
 	$(srcdir)/BrokenMD5.cs			\
 	$(srcdir)/Client.cs			\
@@ -15,6 +16,7 @@ ASSEMBLY_SOURCES =				\
 	$(srcdir)/Discovery.cs			\
 	$(srcdir)/Hasher.cs			\
 	$(srcdir)/LoginException.cs		\
+	$(srcdir)/Photo.cs			\
 	$(srcdir)/Playlist.cs			\
 	$(srcdir)/Server.cs			\
 	$(srcdir)/ServerInfo.cs			\
