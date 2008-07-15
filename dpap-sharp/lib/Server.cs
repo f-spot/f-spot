@@ -1,5 +1,5 @@
 /*
- * daap-sharp
+ * dpap-sharp
  * Copyright (C) 2005  James Willcox <snorp@snorp.net>
  * 
  * This library is free software; you can redistribute it and/or
@@ -125,7 +125,7 @@ namespace DPAP {
             
             using (BinaryWriter writer = new BinaryWriter (new NetworkStream (client, false))) {
                 writer.Write (Encoding.UTF8.GetBytes (String.Format ("HTTP/1.1 {0} {1}\r\n", (int) code, code.ToString ())));
-                writer.Write (Encoding.UTF8.GetBytes ("DAAP-Server: daap-sharp\r\n"));
+                writer.Write (Encoding.UTF8.GetBytes ("DPAP-Server: dpap-sharp\r\n"));
                 writer.Write (Encoding.UTF8.GetBytes ("Content-Type: application/x-dmap-tagged\r\n"));
                 writer.Write (Encoding.UTF8.GetBytes (String.Format ("Content-Length: {0}\r\n", body.Length)));
                 writer.Write (Encoding.UTF8.GetBytes ("\r\n"));
@@ -267,8 +267,8 @@ namespace DPAP {
                 } else {
                     try {
                         string path = splitRequest[1];
-                        if (!path.StartsWith ("daap://")) {
-                            path = String.Format ("daap://localhost{0}", path);
+                        if (!path.StartsWith ("dpap://")) {
+                            path = String.Format ("dpap://localhost{0}", path);
                         }
 
                         Uri uri = new Uri (path);
@@ -394,12 +394,12 @@ namespace DPAP {
         }
     }
 
-    public class TrackRequestedArgs : EventArgs {
+    public class PhotoRequestedArgs : EventArgs {
 
         private string user;
         private IPAddress host;
         private Database db;
-        private Track track;
+        private Photo photo;
 
         public string UserName {
             get { return user; }
@@ -413,26 +413,26 @@ namespace DPAP {
             get { return db; }
         }
 
-        public Track Track {
-            get { return track; }
+        public Photo Photo {
+            get { return photo; }
         }
         
-        public TrackRequestedArgs (string user, IPAddress host, Database db, Track track) {
+        public PhotoRequestedArgs (string user, IPAddress host, Database db, Photo photo) {
             this.user = user;
             this.host = host;
             this.db = db;
-            this.track = track;
+            this.photo = photo;
         }
     }
 
-    public delegate void TrackRequestedHandler (object o, TrackRequestedArgs args);
+    public delegate void PhotoRequestedHandler (object o, PhotoRequestedArgs args);
 
     public class Server {
 
         internal static readonly TimeSpan DefaultTimeout = TimeSpan.FromMinutes (30);
         
         private static Regex dbItemsRegex = new Regex ("/databases/([0-9]*?)/items$");
-        private static Regex dbTrackRegex = new Regex ("/databases/([0-9]*?)/items/([0-9]*).*");
+        private static Regex dbPhotoRegex = new Regex ("/databases/([0-9]*?)/items/([0-9]*).*");
         private static Regex dbContainersRegex = new Regex ("/databases/([0-9]*?)/containers$");
         private static Regex dbContainerItemsRegex = new Regex ("/databases/([0-9]*?)/containers/([0-9]*?)/items$");
         
@@ -440,7 +440,7 @@ namespace DPAP {
         private ArrayList databases = new ArrayList ();
         private Dictionary<int, User> sessions = new Dictionary<int, User> ();
         private Random random = new Random ();
-        private UInt16 port = 3689;
+        private UInt16 port = 8770;
         private ServerInfo serverInfo = new ServerInfo ();
         private bool publish = true;
         private int maxUsers = 0;
@@ -453,7 +453,7 @@ namespace DPAP {
         private RevisionManager revmgr = new RevisionManager ();
 
         public event EventHandler Collision;
-        public event TrackRequestedHandler TrackRequested;
+        public event PhotoRequestedHandler PhotoRequested;
         public event UserHandler UserLogin;
         public event UserHandler UserLogout;
 
@@ -586,7 +586,7 @@ namespace DPAP {
                 
                 zc_service = new RegisterService ();
                 zc_service.Name = serverInfo.Name;
-                zc_service.RegType = "_daap._tcp";
+                zc_service.RegType = "_dpap._tcp";
                 zc_service.Port = (short)ws.BoundPort;
                 zc_service.TxtRecord = new TxtRecord ();
                 zc_service.TxtRecord.Add ("Password", auth);
@@ -597,6 +597,8 @@ namespace DPAP {
                 }
                 
                 zc_service.TxtRecord.Add ("txtvers", "1");
+				zc_service.TxtRecord.Add ("Version", "65537");
+				zc_service.ReplyDomain = "local.";
                 zc_service.Response += OnRegisterServiceResponse;
                 zc_service.Register ();
             }
@@ -664,12 +666,12 @@ namespace DPAP {
                 session = Int32.Parse (query["session-id"]);
             }
 
-            if (!sessions.ContainsKey (session) && path != "/server-info" && path != "/content-codes" &&
+/*            if (!sessions.ContainsKey (session) && path != "/server-info" && path != "/content-codes" &&
                 path != "/login") {
                 ws.WriteResponse (client, HttpStatusCode.Forbidden, "invalid session id");
                 return true;
             }
-
+*/
             if (session != 0) {
                 sessions[session].LastActionTime = DateTime.Now;
             }
@@ -683,7 +685,7 @@ namespace DPAP {
             if (query["delta"] != null) {
                 delta = Int32.Parse (query["delta"]);
             }
-
+			Console.WriteLine("Before returning resources");
             if (path == "/server-info") {
                 ws.WriteResponse (client, GetServerInfoNode ());
             } else if (path == "/content-codes") {
@@ -734,20 +736,20 @@ namespace DPAP {
                     Database olddb = revmgr.GetDatabase (clientRev - delta, dbid);
 
                     if (olddb != null) {
-                        foreach (Track track in olddb.Tracks) {
-                            if (curdb.LookupTrackById (track.Id) == null)
-                                deletedIds.Add (track.Id);
+                        foreach (Photo photo in olddb.Photos) {
+                            if (curdb.LookupPhotoById (photo.Id) == null)
+                                deletedIds.Add (photo.Id);
                         }
                     }
                 }
 
-                ContentNode node = curdb.ToTracksNode (query["meta"].Split (','),
+                ContentNode node = curdb.ToPhotosNode (query["meta"].Split (','),
                                                       (int[]) deletedIds.ToArray (typeof (int)));
                 ws.WriteResponse (client, node);
-            } else if (dbTrackRegex.IsMatch (path)) {
-                Match match = dbTrackRegex.Match (path);
+            } else if (dbPhotoRegex.IsMatch (path)) {
+                Match match = dbPhotoRegex.Match (path);
                 int dbid = Int32.Parse (match.Groups[1].Value);
-                int trackid = Int32.Parse (match.Groups[2].Value);
+                int photoid = Int32.Parse (match.Groups[2].Value);
 
                 Database db = revmgr.GetDatabase (clientRev, dbid);
                 if (db == null) {
@@ -755,28 +757,28 @@ namespace DPAP {
                     return true;
                 }
 
-                Track track = db.LookupTrackById (trackid);
-                if (track == null) {
-                    ws.WriteResponse (client, HttpStatusCode.BadRequest, "invalid track id");
+                Photo photo = db.LookupPhotoById (photoid);
+                if (photo == null) {
+                    ws.WriteResponse (client, HttpStatusCode.BadRequest, "invalid photo id");
                     return true;
                 }
 
                 try {
                     try {
-                        if (TrackRequested != null)
-                            TrackRequested (this, new TrackRequestedArgs (username,
+                        if (PhotoRequested != null)
+                            PhotoRequested (this, new PhotoRequestedArgs (username,
                                                                         (client.RemoteEndPoint as IPEndPoint).Address,
-                                                                        db, track));
+                                                                        db, photo));
                     } catch {}
                     
-                    if (track.FileName != null) {
-                        ws.WriteResponseFile (client, track.FileName, range);
+                    if (photo.FileName != null) {
+                        ws.WriteResponseFile (client, photo.FileName, range);
                     } else if (db.Client != null) {
-                        long trackLength = 0;
-                        Stream trackStream = db.StreamTrack (track, out trackLength);
+                        long photoLength = 0;
+                        Stream photoStream = db.StreamPhoto (photo, out photoLength);
                         
                         try {
-                            ws.WriteResponseStream (client, trackStream, trackLength);
+                            ws.WriteResponseStream (client, photoStream, photoLength);
                         } catch (IOException) {
                         }
                     } else {
@@ -794,7 +796,7 @@ namespace DPAP {
                     return true;
                 }
 
-                ws.WriteResponse (client, db.ToPlaylistsNode ());
+                ws.WriteResponse (client, db.ToAlbumsNode ());
             } else if (dbContainerItemsRegex.IsMatch (path)) {
                 Match match = dbContainerItemsRegex.Match (path);
                 int dbid = Int32.Parse (match.Groups[1].Value);
@@ -806,7 +808,7 @@ namespace DPAP {
                     return true;
                 }
 
-                Playlist curpl = curdb.LookupPlaylistById (plid);
+                Album curpl = curdb.LookupAlbumById (plid);
                 if (curdb == null) {
                     ws.WriteResponse (client, HttpStatusCode.BadRequest, "invalid playlist id");
                     return true;
@@ -817,11 +819,11 @@ namespace DPAP {
                     Database olddb = revmgr.GetDatabase (clientRev - delta, dbid);
 
                     if (olddb != null) {
-                        Playlist oldpl = olddb.LookupPlaylistById (plid);
+                        Album oldpl = olddb.LookupAlbumById (plid);
 
                         if (oldpl != null) {
-                            IList<Track> oldplTracks = oldpl.Tracks;
-                            for (int i = 0; i < oldplTracks.Count; i++) {
+                            IList<Photo> oldplPhotos = oldpl.Photos;
+                            for (int i = 0; i < oldplPhotos.Count; i++) {
                                 int id = oldpl.GetContainerId (i);
                                 if (curpl.LookupIndexByContainerId (id) < 0) {
                                     deletedIds.Add (id);
@@ -831,7 +833,7 @@ namespace DPAP {
                     }
                 }
                     
-                ws.WriteResponse (client, curpl.ToTracksNode ((int[]) deletedIds.ToArray (typeof (int))));
+                ws.WriteResponse (client, curpl.ToPhotosNode ((int[]) deletedIds.ToArray (typeof (int))));
             } else if (path == "/update") {
                 int retrev;
                 
@@ -863,7 +865,8 @@ namespace DPAP {
         }
 
         private ContentNode GetServerInfoNode () {
-            return serverInfo.ToNode (databases.Count);
+			
+            return serverInfo.ToNode(databases.Count);
         }
 
         private ContentNode GetDatabasesNode () {
@@ -876,7 +879,7 @@ namespace DPAP {
                 }
             }
 
-            ContentNode node = new ContentNode ("daap.serverdatabases",
+            ContentNode node = new ContentNode ("dpap.serverdatabases",
                                                 new ContentNode ("dmap.status", 200),
                                                 new ContentNode ("dmap.updatetype", (byte) 0),
                                                 new ContentNode ("dmap.specifiedtotalcount", databases.Count),

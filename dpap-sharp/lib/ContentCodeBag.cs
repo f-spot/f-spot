@@ -55,10 +55,12 @@ namespace DPAP {
 
         public static ContentCodeBag Default {
             get {
+				Console.WriteLine("getting default content codebag");
                 if (defaultBag == null) {
 
                     // this is crappy
                     foreach (string name in Assembly.GetExecutingAssembly().GetManifestResourceNames()) {
+						Console.WriteLine("resource " +name);
                         using (BinaryReader reader = new BinaryReader(Assembly.GetExecutingAssembly().GetManifestResourceStream(name))) {
                             MemoryStream buf = new MemoryStream();
                             byte[] bytes = null;

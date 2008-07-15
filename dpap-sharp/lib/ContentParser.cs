@@ -120,8 +120,8 @@ namespace DPAP {
                 // probably a buggy server.  fallback to our internal code bag
 				Console.WriteLine("fallback to internal code bag");
 				Console.WriteLine("Code number: "+num);
-				return null;
-                code = ContentCodeBag.Default.Lookup (num);
+				throw new Exception("Content code not found!");
+                //code = ContentCodeBag.Default.Lookup (num);
             }
 			
 			//System.Console.WriteLine("debug!4");

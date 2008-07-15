@@ -21,11 +21,35 @@ namespace DPAP {
 		
 		public static void Main(string[] args)
 		{
+			Console.WriteLine("Starting DPAP server");
+			DPAP.Database database = new DPAP.Database("DPAP");
+			DPAP.Server server = new Server("DPAP");
+			server.AuthenticationMethod = AuthenticationMethod.None;
+			int collision_count = 0;
+			server.Collision += delegate {
+				server.Name = "DPAP" + " [" + ++collision_count + "]";
+			};
+            
+			server.AddDatabase(database);
+			//server.GetServerInfoNode();			
+			try {
+                server.Start();
+            } catch (System.Net.Sockets.SocketException) {
+                server.Port = 0;
+                server.Start();
+            }
+        
+             //DaapPlugin.ServerEnabledSchema.Set(true);
+            
+          //  if(!initial_db_committed) {
+                server.Commit();
+          //      initial_db_committed = true;
+          //  }
 			
 			ServiceDiscovery sd = new ServiceDiscovery();
 			sd.Found += OnServiceFound;			
 			sd.Start();
-
+			
 			
 //			sd.Services[0];
 			Console.ReadLine();
@@ -39,19 +63,20 @@ namespace DPAP {
 
 			System.Console.WriteLine("Connecting to {0} at {1}:{2}", service.Name, service.Address, service.Port);
 		    client = new Client( service );
+	return;		
 			foreach (Database d in client.Databases){
 
 				Console.WriteLine("Database " + d.Name);
 				
-				foreach (Playlist pl in d.Playlists)
-					Console.WriteLine("\tAlbum: "+pl.Name + ", id=" + pl.getId() + " number of items:" + pl.Tracks.Count);
+				foreach (Album alb in d.Albums)
+					Console.WriteLine("\tAlbum: "+alb.Name + ", id=" + alb.getId() + " number of items:" + alb.Photos.Count);
 				
-				foreach (Track tr in d.Tracks)
+				foreach (Photo ph in d.Photos)
 				{
-					if(tr != null)
+					if(ph != null)
 					{
-						Console.WriteLine("\t\tFile: " + tr.FileName + " format = " + tr.Format + "size=" + tr.Width +"x" +tr.Height + " ID=" + tr.Id);
-						d.DownloadTrack(tr,"./"+tr.FileName);
+						Console.WriteLine("\t\tFile: " + ph.FileName + " format = " + ph.Format + "size=" + ph.Width +"x" +ph.Height + " ID=" + ph.Id);
+						d.DownloadPhoto(ph,"./"+ph.FileName);
 					}
 				}
 				

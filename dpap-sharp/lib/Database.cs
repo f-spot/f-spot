@@ -27,30 +27,30 @@ using System.Threading;
 
 namespace DPAP {
 
-    public delegate void TrackHandler (object o, TrackArgs args);
+    public delegate void PhotoHandler (object o, PhotoArgs args);
 
-    public class TrackArgs : EventArgs {
-        private Track track;
+    public class PhotoArgs : EventArgs {
+        private Photo photo;
 
-        public Track Track {
-            get { return track; }
+        public Photo Photo {
+            get { return photo; }
         }
         
-        public TrackArgs (Track track) {
-            this.track = track;
+        public PhotoArgs (Photo photo) {
+            this.photo = photo;
         }
     }
         
-    public delegate void PlaylistHandler (object o, PlaylistArgs args);
+    public delegate void AlbumHandler (object o, AlbumArgs args);
 
-    public class PlaylistArgs : EventArgs {
-        private Playlist pl;
+    public class AlbumArgs : EventArgs {
+        private Album pl;
 
-        public Playlist Playlist {
+        public Album Album {
             get { return pl; }
         }
         
-        public PlaylistArgs (Playlist pl) {
+        public AlbumArgs (Album pl) {
             this.pl = pl;
         }
     }
@@ -59,7 +59,7 @@ namespace DPAP {
 
         private const int ChunkLength = 8192;
 		
-        private const string TrackQuery = "meta=dpap.aspectratio,dmap.itemid,dmap.itemname,dpap.imagefilename," +
+        private const string PhotoQuery = "meta=dpap.aspectratio,dmap.itemid,dmap.itemname,dpap.imagefilename," +
 			"dpap.imagefilesize,dpap.creationdate,dpap.imagepixelwidth," +
 			"dpap.imagepixelheight,dpap.imageformat,dpap.imagerating," +
 			"dpap.imagecomments,dpap.imagelargefilesize&type=photo"; 
@@ -71,15 +71,15 @@ namespace DPAP {
         private long persistentId;
         private string name;
 
-        private List<Track> tracks = new List<Track> ();
-        private List<Playlist> playlists = new List<Playlist> ();
-        private Playlist basePlaylist = new Playlist ();
-        private int nextTrackId = 1;
+        private List<Photo> photos = new List<Photo> ();
+        private List<Album> playlists = new List<Album> ();
+        private Album baseAlbum = new Album ();
+        private int nextPhotoId = 1;
 
-        public event TrackHandler TrackAdded;
-        public event TrackHandler TrackRemoved;
-        public event PlaylistHandler PlaylistAdded;
-        public event PlaylistHandler PlaylistRemoved;
+        public event PhotoHandler PhotoAdded;
+        public event PhotoHandler PhotoRemoved;
+        public event AlbumHandler AlbumAdded;
+        public event AlbumHandler AlbumRemoved;
 
         public int Id {
             get { return id; }
@@ -89,28 +89,28 @@ namespace DPAP {
             get { return name; }
             set {
                 name = value;
-                basePlaylist.Name = value;
+                baseAlbum.Name = value;
             }
         }
         
-        public IList<Track> Tracks {
+        public IList<Photo> Photos {
             get {
-                return new ReadOnlyCollection<Track> (tracks);
+                return new ReadOnlyCollection<Photo> (photos);
             }
         }
         
-        public int TrackCount {
-            get { return tracks.Count; }
+        public int PhotoCount {
+            get { return photos.Count; }
         }
 
-        public Track TrackAt(int index)
+        public Photo PhotoAt(int index)
         {
-            return tracks[index] as Track;
+            return photos[index] as Photo;
         }
 
-        public IList<Playlist> Playlists {
+        public IList<Album> Albums {
             get {
-                return new ReadOnlyCollection<Playlist> (playlists);
+                return new ReadOnlyCollection<Album> (playlists);
             }
         }
 
@@ -151,20 +151,20 @@ namespace DPAP {
             }
         }
 
-        public Track LookupTrackById (int id) {
-            foreach (Track track in tracks) {
-                if (track.Id == id)
-                    return track;
+        public Photo LookupPhotoById (int id) {
+            foreach (Photo photo in photos) {
+                if (photo.Id == id)
+                    return photo;
             }
 
             return null;
         }
 
-        public Playlist LookupPlaylistById (int id) {
-            if (id == basePlaylist.Id)
-                return basePlaylist;
+        public Album LookupAlbumById (int id) {
+            if (id == baseAlbum.Id)
+                return baseAlbum;
 
-            foreach (Playlist pl in playlists) {
+            foreach (Album pl in playlists) {
                 if (pl.Id == id)
                     return pl;
             }
@@ -172,11 +172,11 @@ namespace DPAP {
             return null;
         }
 
-        internal ContentNode ToTracksNode (string[] fields, int[] deletedIds) {
+        internal ContentNode ToPhotosNode (string[] fields, int[] deletedIds) {
 
-            ArrayList trackNodes = new ArrayList ();
-            foreach (Track track in tracks) {
-                trackNodes.Add (track.ToNode (fields));
+            ArrayList photoNodes = new ArrayList ();
+            foreach (Photo photo in photos) {
+                photoNodes.Add (photo.ToNode (fields));
             }
 
             ArrayList deletedNodes = null;
@@ -192,9 +192,9 @@ namespace DPAP {
             ArrayList children = new ArrayList ();
             children.Add (new ContentNode ("dmap.status", 200));
             children.Add (new ContentNode ("dmap.updatetype", deletedNodes == null ? (byte) 0 : (byte) 1));
-            children.Add (new ContentNode ("dmap.specifiedtotalcount", tracks.Count));
-            children.Add (new ContentNode ("dmap.returnedcount", tracks.Count));
-            children.Add (new ContentNode ("dmap.listing", trackNodes));
+            children.Add (new ContentNode ("dmap.specifiedtotalcount", photos.Count));
+            children.Add (new ContentNode ("dmap.returnedcount", photos.Count));
+            children.Add (new ContentNode ("dmap.listing", photoNodes));
 
             if (deletedNodes != null) {
                 children.Add (new ContentNode ("dmap.deletedidlisting", deletedNodes));
@@ -203,16 +203,16 @@ namespace DPAP {
             return new ContentNode ("daap.databasesongs", children);
         }
 
-        internal ContentNode ToPlaylistsNode () {
+        internal ContentNode ToAlbumsNode () {
             ArrayList nodes = new ArrayList ();
 
-            nodes.Add (basePlaylist.ToNode (true));
+            nodes.Add (baseAlbum.ToNode (true));
             
-            foreach (Playlist pl in playlists) {
+            foreach (Album pl in playlists) {
                 nodes.Add (pl.ToNode (false));
             }
 
-            return new ContentNode ("daap.databaseplaylists",
+            return new ContentNode ("dpap.databaseplaylists",
                                     new ContentNode ("dmap.status", 200),
                                     new ContentNode ("dmap.updatetype", (byte) 0),
                                     new ContentNode ("dmap.specifiedtotalcount", nodes.Count),
@@ -225,7 +225,7 @@ namespace DPAP {
                                     new ContentNode ("dmap.itemid", id),
                                     new ContentNode ("dmap.persistentid", (long) id),
                                     new ContentNode ("dmap.itemname", name),
-                                    new ContentNode ("dmap.itemcount", tracks.Count),
+                                    new ContentNode ("dmap.itemcount", photos.Count),
                                     new ContentNode ("dmap.containercount", playlists.Count + 1));
         }
 
@@ -233,19 +233,19 @@ namespace DPAP {
             if (client != null)
                 throw new InvalidOperationException ("cannot clear client databases");
 
-            ClearPlaylists ();
-            ClearTracks ();
+            ClearAlbums ();
+            ClearPhotos ();
         }
 
-        private void ClearPlaylists () {
-            foreach (Playlist pl in new List<Playlist> (playlists)) {
-                RemovePlaylist (pl);
+        private void ClearAlbums () {
+            foreach (Album pl in new List<Album> (playlists)) {
+                RemoveAlbum (pl);
             }
         }
 
-        private void ClearTracks () {
-            foreach (Track track in new List<Track> (tracks)) {
-                RemoveTrack (track);
+        private void ClearPhotos () {
+            foreach (Photo photo in new List<Photo> (photos)) {
+                RemovePhoto (photo);
             }
         }
 
@@ -253,7 +253,7 @@ namespace DPAP {
             return node.Name == "dmap.updateresponse";
         }
 
-        private void RefreshPlaylists (string revquery) {
+        private void RefreshAlbums (string revquery) {
             byte[] playlistsData;
 
             try {
@@ -271,14 +271,14 @@ namespace DPAP {
             ArrayList plids = new ArrayList ();
             
             foreach (ContentNode playlistNode in (ContentNode[]) playlistsNode.GetChild ("dmap.listing").Value) {
-                Playlist pl = Playlist.FromNode (playlistNode);
+                Album pl = Album.FromNode (playlistNode);
 
                 if (pl != null) {
                     plids.Add (pl.Id);
-                    Playlist existing = LookupPlaylistById (pl.Id);
+                    Album existing = LookupAlbumById (pl.Id);
 
                     if (existing == null) {
-                        AddPlaylist (pl);
+                        AddAlbum (pl);
                     } else {
                         existing.Update (pl);
                     }
@@ -286,27 +286,27 @@ namespace DPAP {
             }
 
             // delete playlists that no longer exist
-            foreach (Playlist pl in new List<Playlist> (playlists)) {
+            foreach (Album pl in new List<Album> (playlists)) {
                 if (!plids.Contains (pl.Id)) {
-                    RemovePlaylist (pl);
+                    RemoveAlbum (pl);
                 }
             }
 
             plids = null;
 
-            // add/remove tracks in the playlists
-            foreach (Playlist pl in playlists) {
-                byte[] playlistTracksData = client.Fetcher.Fetch (String.Format ("/databases/{0}/containers/{1}/items",
+            // add/remove photos in the playlists
+            foreach (Album pl in playlists) {
+                byte[] playlistPhotosData = client.Fetcher.Fetch (String.Format ("/databases/{0}/containers/{1}/items",
                                                                                 id, pl.Id), revquery);
-                ContentNode playlistTracksNode = ContentParser.Parse (client.Bag, playlistTracksData);
+                ContentNode playlistPhotosNode = ContentParser.Parse (client.Bag, playlistPhotosData);
 
-                if (IsUpdateResponse (playlistTracksNode))
+                if (IsUpdateResponse (playlistPhotosNode))
                     return;
 
-                if ((byte) playlistTracksNode.GetChild ("dmap.updatetype").Value == 1) {
+                if ((byte) playlistPhotosNode.GetChild ("dmap.updatetype").Value == 1) {
 
-                    // handle playlist track deletions
-                    ContentNode deleteList = playlistTracksNode.GetChild ("dmap.deletedidlisting");
+                    // handle playlist photo deletions
+                    ContentNode deleteList = playlistPhotosNode.GetChild ("dmap.deletedidlisting");
 
                     if (deleteList != null) {
                         foreach (ContentNode deleted in (ContentNode[]) deleteList.Value) {
@@ -320,19 +320,19 @@ namespace DPAP {
                     }
                 }
 
-                // add new tracks, or reorder existing ones
+                // add new photos, or reorder existing ones
 
                 int plindex = 0;
-                foreach (ContentNode plTrackNode in (ContentNode[]) playlistTracksNode.GetChild ("dmap.listing").Value) {
-                    Track pltrack = null;
+                foreach (ContentNode plPhotoNode in (ContentNode[]) playlistPhotosNode.GetChild ("dmap.listing").Value) {
+                    Photo plphoto = null;
                     int containerId = 0;
-                    Track.FromPlaylistNode (this, plTrackNode, out pltrack, out containerId);
+                    Photo.FromAlbumNode (this, plPhotoNode, out plphoto, out containerId);
 
                     if (pl[plindex] != null && pl.GetContainerId (plindex) != containerId) {
                         pl.RemoveAt (plindex);
-                        pl.InsertTrack (plindex, pltrack, containerId);
+                        pl.InsertPhoto (plindex, plphoto, containerId);
                     } else if (pl[plindex] == null) {
-                        pl.InsertTrack (plindex, pltrack, containerId);
+                        pl.InsertPhoto (plindex, plphoto, containerId);
                     }
 
                     plindex++;
@@ -340,44 +340,44 @@ namespace DPAP {
             }
         }
 
-        private void RefreshTracks (string revquery) {
-			foreach (Playlist pl in playlists){
-	            byte[] tracksData = client.Fetcher.Fetch (String.Format ("/databases/{0}/containers/{1}/items", id,pl.getId()),
-	                                                     TrackQuery);
-	            ContentNode tracksNode = ContentParser.Parse (client.Bag, tracksData);
+        private void RefreshPhotos (string revquery) {
+			foreach (Album pl in playlists){
+	            byte[] photosData = client.Fetcher.Fetch (String.Format ("/databases/{0}/containers/{1}/items", id,pl.getId()),
+	                                                     PhotoQuery);
+	            ContentNode photosNode = ContentParser.Parse (client.Bag, photosData);
 
-	            if (IsUpdateResponse (tracksNode))
+	            if (IsUpdateResponse (photosNode))
 	                return;
 
-	            // handle track additions/changes
-	            foreach (ContentNode trackNode in (ContentNode[]) tracksNode.GetChild ("dmap.listing").Value) {
-					//trackNode.Dump();
-	                Track track = Track.FromNode (trackNode);
+	            // handle photo additions/changes
+	            foreach (ContentNode photoNode in (ContentNode[]) photosNode.GetChild ("dmap.listing").Value) {
+					//photoNode.Dump();
+	                Photo photo = Photo.FromNode (photoNode);
 					
-	                Track existing = LookupTrackById (track.Id);
+	                Photo existing = LookupPhotoById (photo.Id);
 					
 	                if (existing == null){
-						Console.WriteLine("adding " + track.Title);
-	                    AddTrack (track);
+						Console.WriteLine("adding " + photo.Title);
+	                    AddPhoto (photo);
 					}
 	                else
 					{
 						Console.WriteLine("updating " + existing.Title);
-	                    existing.Update (track);
+	                    existing.Update (photo);
 					}
 	            }
 
-	            if ((byte) tracksNode.GetChild ("dmap.updatetype").Value == 1) {
+	            if ((byte) photosNode.GetChild ("dmap.updatetype").Value == 1) {
 
-	                // handle track deletions
-	                ContentNode deleteList = tracksNode.GetChild ("dmap.deletedidlisting");
+	                // handle photo deletions
+	                ContentNode deleteList = photosNode.GetChild ("dmap.deletedidlisting");
 
 	                if (deleteList != null) {
 	                    foreach (ContentNode deleted in (ContentNode[]) deleteList.Value) {
-	                        Track track = LookupTrackById ((int) deleted.Value);
+	                        Photo photo = LookupPhotoById ((int) deleted.Value);
 
-	                        if (track != null)
-	                            RemoveTrack (track);
+	                        if (photo != null)
+	                            RemovePhoto (photo);
 	                    }
 	                }
 				}
@@ -393,34 +393,34 @@ namespace DPAP {
             if (client.Revision != 0)
                 revquery = String.Format ("revision-number={0}&delta={1}", newrev, newrev - client.Revision);
             
-            RefreshPlaylists ("");
-			RefreshTracks ("");
+            RefreshAlbums ("");
+			RefreshPhotos ("");
         }
 
-        private HttpWebResponse FetchTrack (Track track, long offset) {
+        private HttpWebResponse FetchPhoto (Photo photo, long offset) {
             return client.Fetcher.FetchResponse (String.Format ("/databases/{0}/items",id), offset, 
-			                                     String.Format("meta=dpap.filedata&query=('dmap.itemid:{0}')",track.Id),
+			                                     String.Format("meta=dpap.filedata&query=('dmap.itemid:{0}')",photo.Id),
 			                                     null, 1, true);
                                              
         }
 
-        public Stream StreamTrack (Track track, out long length) {
-            return StreamTrack (track, -1, out length);
+        public Stream StreamPhoto (Photo photo, out long length) {
+            return StreamPhoto (photo, -1, out length);
         }
         
-        public Stream StreamTrack (Track track, long offset, out long length) {
-            HttpWebResponse response = FetchTrack (track, offset);
+        public Stream StreamPhoto (Photo photo, long offset, out long length) {
+            HttpWebResponse response = FetchPhoto (photo, offset);
             length = response.ContentLength;
             return response.GetResponseStream ();
         }
 
-        public void DownloadTrack (Track track, string dest) {
+        public void DownloadPhoto (Photo photo, string dest) {
 
             BinaryWriter writer = new BinaryWriter (File.Open (dest, FileMode.Create));
 
             try {
                 long len;
-                using (BinaryReader reader = new BinaryReader (StreamTrack (track, out len))) {
+                using (BinaryReader reader = new BinaryReader (StreamPhoto (photo, out len))) {
                     int count = 0;
                     byte[] buf = new byte[ChunkLength];
                     
@@ -439,50 +439,50 @@ namespace DPAP {
             }
         }
 
-        public void AddTrack (Track track) {
-            if (track.Id == 0)
-                track.SetId (nextTrackId++);
+        public void AddPhoto (Photo photo) {
+            if (photo.Id == 0)
+                photo.SetId (nextPhotoId++);
             
-            tracks.Add (track);
-            basePlaylist.AddTrack (track);
+            photos.Add (photo);
+            baseAlbum.AddPhoto (photo);
 
-            if (TrackAdded != null)
-                TrackAdded (this, new TrackArgs (track));
+            if (PhotoAdded != null)
+                PhotoAdded (this, new PhotoArgs (photo));
         }
 
-        public void RemoveTrack (Track track) {
-            tracks.Remove (track);
-            basePlaylist.RemoveTrack (track);
+        public void RemovePhoto (Photo photo) {
+            photos.Remove (photo);
+            baseAlbum.RemovePhoto (photo);
 
-            foreach (Playlist pl in playlists) {
-                pl.RemoveTrack (track);
+            foreach (Album pl in playlists) {
+                pl.RemovePhoto (photo);
             }
 
-            if (TrackRemoved != null)
-                TrackRemoved (this, new TrackArgs (track));
+            if (PhotoRemoved != null)
+                PhotoRemoved (this, new PhotoArgs (photo));
         }
 
-        public void AddPlaylist (Playlist pl) {
+        public void AddAlbum (Album pl) {
             playlists.Add (pl);
 
-            if (PlaylistAdded != null)
-                PlaylistAdded (this, new PlaylistArgs (pl));
+            if (AlbumAdded != null)
+                AlbumAdded (this, new AlbumArgs (pl));
         }
 
-        public void RemovePlaylist (Playlist pl) {
+        public void RemoveAlbum (Album pl) {
             playlists.Remove (pl);
 
-            if (PlaylistRemoved != null)
-                PlaylistRemoved (this, new PlaylistArgs (pl));
+            if (AlbumRemoved != null)
+                AlbumRemoved (this, new AlbumArgs (pl));
         }
 
-        private Playlist ClonePlaylist (Database db, Playlist pl) {
-            Playlist clonePl = new Playlist (pl.Name);
+        private Album CloneAlbum (Database db, Album pl) {
+            Album clonePl = new Album (pl.Name);
             clonePl.Id = pl.Id;
 
-            IList<Track> pltracks = pl.Tracks;
-            for (int i = 0; i < pltracks.Count; i++) {
-                clonePl.AddTrack (db.LookupTrackById (pltracks[i].Id), pl.GetContainerId (i));
+            IList<Photo> plphotos = pl.Photos;
+            for (int i = 0; i < plphotos.Count; i++) {
+                clonePl.AddPhoto (db.LookupPhotoById (plphotos[i].Id), pl.GetContainerId (i));
             }
 
             return clonePl;
@@ -493,20 +493,20 @@ namespace DPAP {
             db.id = id;
             db.persistentId = persistentId;
 
-            List<Track> cloneTracks = new List<Track> ();
-            foreach (Track track in tracks) {
-                cloneTracks.Add ((Track) track.Clone ());
+            List<Photo> clonePhotos = new List<Photo> ();
+            foreach (Photo photo in photos) {
+                clonePhotos.Add ((Photo) photo.Clone ());
             }
 
-            db.tracks = cloneTracks;
+            db.photos = clonePhotos;
 
-            List<Playlist> clonePlaylists = new List<Playlist> ();
-            foreach (Playlist pl in playlists) {
-                clonePlaylists.Add (ClonePlaylist (db, pl));
+            List<Album> cloneAlbums = new List<Album> ();
+            foreach (Album pl in playlists) {
+                cloneAlbums.Add (CloneAlbum (db, pl));
             }
 
-            db.playlists = clonePlaylists;
-            db.basePlaylist = ClonePlaylist (db, basePlaylist);
+            db.playlists = cloneAlbums;
+            db.baseAlbum = CloneAlbum (db, baseAlbum);
             return db;
         }
     }

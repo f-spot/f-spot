@@ -1,56 +1,43 @@
-/*
- * daap-sharp
- * Copyright (C) 2005  James Willcox <snorp@snorp.net>
- * 
- * This library is free software; you can redistribute it and/or
- * modify it under the terms of the GNU Lesser General Public
- * License as published by the Free Software Foundation; either
- * version 2.1 of the License, or (at your option) any later version.
- * 
- * This library is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- * Lesser General Public License for more details.
- * 
- * You should have received a copy of the GNU Lesser General Public
- * License along with this library; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
- */
+// Album.cs created with MonoDevelop
+// User: andrzej at 11:41 2008-07-15
+//
+// To change standard headers go to Edit->Preferences->Coding->Standard Headers
+//
 
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
-namespace DPAP {
-
-    public delegate void PlaylistTrackHandler (object o, int index, Track track);
-
-    public class Playlist {
-
-        private static int nextid = 1;
+namespace DPAP
+{
+	public delegate void AlbumPhotoHandler (object o, int index, Photo track);
+	
+	public class Album
+	{
+		private static int nextid = 1;
         
         private int id;
         private string name = String.Empty;
-        private List<Track> tracks = new List<Track> ();
+        private List<Photo> photos = new List<Photo> ();
         private List<int> containerIds = new List<int> ();
-
-        public event PlaylistTrackHandler TrackAdded;
-        public event PlaylistTrackHandler TrackRemoved;
+		
+        public event AlbumPhotoHandler PhotoAdded;
+        public event AlbumPhotoHandler PhotoRemoved;
         public event EventHandler NameChanged;
 
-        public Track this[int index] {
+        public Photo this[int index] {
             get {
-                if (tracks.Count > index)
-                    return tracks[index];
+                if (photos.Count > index)
+                    return photos[index];
                 else
                     return null;
             }
-            set { tracks[index] = value; }
+            set { photos[index] = value; }
         }
         
-        public IList<Track> Tracks {
-            get { return new ReadOnlyCollection<Track> (tracks); }
+        public IList<Photo> Photos {
+            get { return new ReadOnlyCollection<Photo> (photos); }
         }
 
         internal int Id {
@@ -67,56 +54,56 @@ namespace DPAP {
             }
         }
 
-        internal Playlist () {
+        internal Album () {
             id = nextid++;
         }
 		
-        public Playlist (string name) : this () {
+        public Album (string name) : this () {
             this.name = name;
         }
 
-        public void InsertTrack (int index, Track track) {
-            InsertTrack (index, track, tracks.Count + 1);
+        public void InsertPhoto (int index, Photo photo) {
+            InsertPhoto (index, photo, photos.Count + 1);
         }
 
-        internal void InsertTrack (int index, Track track, int id) {
-            tracks.Insert (index, track);
+        internal void InsertPhoto (int index, Photo photo, int id) {
+            photos.Insert (index, photo);
             containerIds.Insert (index, id);
 
-            if (TrackAdded != null)
-                TrackAdded (this, index, track);
+            if (PhotoAdded != null)
+                PhotoAdded (this, index, photo);
         }
 
         public void Clear () {
-            tracks.Clear ();
+            photos.Clear ();
         }
 
-        public void AddTrack (Track track) {
-            AddTrack (track, tracks.Count + 1);
+        public void AddPhoto (Photo photo) {
+            AddPhoto (photo, photos.Count + 1);
         }
         
-        internal void AddTrack (Track track, int id) {
-            tracks.Add (track);
+        internal void AddPhoto (Photo photo, int id) {
+            photos.Add (photo);
             containerIds.Add (id);
 
-            if (TrackAdded != null)
-                TrackAdded (this, tracks.Count - 1, track);
+            if (PhotoAdded != null)
+                PhotoAdded (this, photos.Count - 1, photo);
         }
 
         public void RemoveAt (int index) {
-            Track track = (Track) tracks[index];
-            tracks.RemoveAt (index);
+            Photo photo = (Photo) photos[index];
+            photos.RemoveAt (index);
             containerIds.RemoveAt (index);
             
-            if (TrackRemoved != null)
-                TrackRemoved (this, index, track);
+            if (PhotoRemoved != null)
+                PhotoRemoved (this, index, photo);
         }
 
-        public bool RemoveTrack (Track track) {
+        public bool RemovePhoto (Photo photo) {
             int index;
             bool ret = false;
             
-            while ((index = IndexOf (track)) >= 0) {
+            while ((index = IndexOf (photo)) >= 0) {
                 ret = true;
                 RemoveAt (index);
             }
@@ -124,20 +111,20 @@ namespace DPAP {
             return ret;
         }
 
-        public int IndexOf (Track track) {
-            return tracks.IndexOf (track);
+        public int IndexOf (Photo photo) {
+            return photos.IndexOf (photo);
         }
 
         internal int GetContainerId (int index) {
             return (int) containerIds[index];
         }
 
-        internal ContentNode ToTracksNode (int[] deletedIds) {
-            ArrayList trackNodes = new ArrayList ();
+        internal ContentNode ToPhotosNode (int[] deletedIds) {
+            ArrayList photoNodes = new ArrayList ();
 
-            for (int i = 0; i < tracks.Count; i++) {
-                Track track = tracks[i] as Track;
-                trackNodes.Add (track.ToPlaylistNode ((int) containerIds[i]));
+            for (int i = 0; i < photos.Count; i++) {
+                Photo photo = photos[i] as Photo;
+                photoNodes.Add (photo.ToAlbumNode ((int) containerIds[i]));
             }
 
             ArrayList deletedNodes = null;
@@ -152,9 +139,9 @@ namespace DPAP {
             ArrayList children = new ArrayList ();
             children.Add (new ContentNode ("dmap.status", 200));
             children.Add (new ContentNode ("dmap.updatetype", deletedNodes == null ? (byte) 0 : (byte) 1));
-            children.Add (new ContentNode ("dmap.specifiedtotalcount", tracks.Count));
-            children.Add (new ContentNode ("dmap.returnedcount", tracks.Count));
-            children.Add (new ContentNode ("dmap.listing", trackNodes));
+            children.Add (new ContentNode ("dmap.specifiedtotalcount", photos.Count));
+            children.Add (new ContentNode ("dmap.returnedcount", photos.Count));
+            children.Add (new ContentNode ("dmap.listing", photoNodes));
 
             if (deletedNodes != null)
                 children.Add (new ContentNode ("dmap.deletedidlisting", deletedNodes));
@@ -163,22 +150,22 @@ namespace DPAP {
             return new ContentNode ("dpap.playlistsongs", children);
         }
 
-        internal ContentNode ToNode (bool basePlaylist) {
+        internal ContentNode ToNode (bool baseAlbum) {
 
             ArrayList nodes = new ArrayList ();
 
             nodes.Add (new ContentNode ("dmap.itemid", id));
             nodes.Add (new ContentNode ("dmap.persistentid", (long) id));
             nodes.Add (new ContentNode ("dmap.itemname", name));
-            nodes.Add (new ContentNode ("dmap.itemcount", tracks.Count));
-            if (basePlaylist)
+            nodes.Add (new ContentNode ("dmap.itemcount", photos.Count));
+            if (baseAlbum)
                 nodes.Add (new ContentNode ("dpap.baseplaylist", (byte) 1));
             
             return new ContentNode ("dmap.listingitem", nodes);
         }
 
-        internal static Playlist FromNode (ContentNode node) {
-            Playlist pl = new Playlist ();
+        internal static Album FromNode (ContentNode node) {
+            Album pl = new Album ();
 
             foreach (ContentNode child in (ContentNode[]) node.Value) {
                 switch (child.Name) {
@@ -198,7 +185,7 @@ namespace DPAP {
             return pl;
         }
 
-        internal void Update (Playlist pl) {
+        internal void Update (Album pl) {
             if (pl.Name == name)
                 return;
 

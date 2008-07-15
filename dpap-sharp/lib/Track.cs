@@ -375,7 +375,7 @@ namespace DPAP {
             foreach (ContentNode field in (ContentNode[]) node.Value) {
                 switch (field.Name) {
                 case "dmap.itemid":
-                    track = db.LookupTrackById ((int) field.Value);
+                  //  track = db.LookupTrackById ((int) field.Value);
                     break;
                 case "dmap.containeritemid":
                     containerId = (int) field.Value;

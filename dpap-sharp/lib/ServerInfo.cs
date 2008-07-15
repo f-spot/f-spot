@@ -77,7 +77,7 @@ namespace DPAP {
             return new ContentNode ("dmap.serverinforesponse",
                                     new ContentNode ("dmap.status", 200),
                                     new ContentNode ("dmap.protocolversion", new Version (2, 0, 2)),
-                                    new ContentNode ("daap.protocolversion", new Version (3, 0, 2)),
+                                    //new ContentNode ("dpap.protocolversion", new Version (3, 0, 2)),
                                     new ContentNode ("dmap.itemname", name),
                                     new ContentNode ("dmap.loginrequired", (byte) 1),
                                     new ContentNode ("dmap.authenticationmethod", (byte) authMethod),

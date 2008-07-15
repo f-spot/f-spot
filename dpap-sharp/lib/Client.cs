@@ -165,7 +165,7 @@ namespace DPAP
 
                 foreach (ContentNode item in (ContentNode[]) child.Value) {
                     Database db = new Database (this, item);
-					Console.WriteLine("Adding database {0} with id={1} and roll count={2}." , db.Name,db.Id,db.Playlists.Count); 
+					Console.WriteLine("Adding database {0} with id={1} and roll count={2}." , db.Name,db.Id,db.Albums.Count); 
                     databases.Add (db);
                 }
             }
