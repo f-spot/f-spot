@@ -11,6 +11,7 @@ using System;
 using System.IO;
 
 using FSpot;
+using FSpot.Utils;
 using FSpot.Extensions;
 using Mono.Unix;
 
@@ -24,7 +25,7 @@ namespace DevelopInUFRawExtension
 
 		public override void Run (object o, EventArgs e)
 		{
-			Console.WriteLine ("EXECUTING DEVELOP IN UFRAW EXTENSION");
+			Log.Information ("Executing DevelopInUFRaw extension");
 			
 			foreach (Photo p in MainWindow.Toplevel.SelectedPhotos ()) {
 				DevelopPhoto (p);
@@ -44,7 +45,7 @@ namespace DevelopInUFRawExtension
 														ProgressDialog.CancelButtonType.Cancel,
 														MainWindow.Toplevel.SelectedPhotos ().Length,
 														MainWindow.Toplevel.Window);
-			Console.WriteLine ("EXECUTING DEVELOP IN UFRAW EXTENSION");
+			Log.Information ("Executing DevelopInUFRaw extension in batch mode");
 			
 			foreach (Photo p in MainWindow.Toplevel.SelectedPhotos ()) {
 				bool cancelled = pdialog.Update(String.Format(Catalog.GetString ("Developing {0}"), p.Name));
@@ -75,7 +76,7 @@ namespace DevelopInUFRawExtension
 		{
 			PhotoVersion raw = p.GetVersion (Photo.OriginalVersionId) as PhotoVersion;
 			if (!ImageFile.IsRaw (raw.Uri.AbsolutePath)) {
-				Console.WriteLine ("The Original version of this image is not a (supported) RAW file");
+				Log.Warning ("The original version of this image is not a (supported) RAW file");
 				return;
 			}
 
@@ -92,12 +93,12 @@ namespace DevelopInUFRawExtension
 				idfile,
 				CheapEscape (developed.LocalPath),
 				CheapEscape (raw.Uri.ToString ()));
-			Console.WriteLine (executable+" " + args);
+			Log.Debug (executable + " " + args);
 
 			System.Diagnostics.Process ufraw = System.Diagnostics.Process.Start (executable, args); 
 			ufraw.WaitForExit ();
 			if (!(new Gnome.Vfs.Uri (developed.ToString ())).Exists) {
-				Console.WriteLine ("UFraw didn't ended well. Check that you have UFRaw 0.13 (or CVS newer than 2007-09-06). Or did you simply clicked on Cancel ?");
+				Log.Warning ("UFRaw quit with an error. Check that you have UFRaw 0.13 or newer. Or did you simply clicked on Cancel?");
 				return;
 			}
 
