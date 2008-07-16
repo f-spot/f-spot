@@ -74,15 +74,17 @@ public class PhotoStore : DbStore {
 			try {
 				thumbnail = ((FSpot.IThumbnailContainer)img).GetEmbeddedThumbnail ();
 			} catch (Exception e) {
-				System.Console.WriteLine (e.ToString ());
+				Log.DebugFormat ("Exception while loading embedded thumbail {0}", e.ToString ());
 			}
 		}
 
 		// Save embedded thumbnails in a silightly invalid way so that we know to regnerate them later.
-		if (thumbnail != null) 
+		if (thumbnail != null) {
 			PixbufUtils.SaveAtomic (thumbnail, FSpot.ThumbnailGenerator.ThumbnailPath (uri), 
 						"png", new string [] { null} , new string [] { null});
-		else 
+			//FIXME with gio, set it to uri time minus a few sec
+			System.IO.File.SetLastWriteTime (FSpot.ThumbnailGenerator.ThumbnailPath (uri), new DateTime (1980, 1, 1));
+		} else 
 			thumbnail = FSpot.ThumbnailGenerator.Create (uri);
 		
 		return thumbnail;
