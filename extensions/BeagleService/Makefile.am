@@ -37,8 +37,7 @@ plugin_DATA =			\
 
 EXTRA_DIST = 			\
 	$(PLUGIN_SOURCES)	\
-	$(PLUGIN_MANIFEST)	\
-	$(PLUGIN_NAME).glade
+	$(PLUGIN_MANIFEST)
 
 CLEANFILES =			\
 	$(PLUGIN_ASSEMBLY)	\
