@@ -65,6 +65,16 @@ namespace DevelopInUFRawExtension
 		// The executable used for developing RAWs
 		private string executable;
 
+		public const string APP_FSPOT_EXTENSION = Preferences.APP_FSPOT + "extension/";
+		public const string EXTENSION_DEVELOPINUFRAW = "developinufraw/";
+		public const string UFRAW_JPEG_QUALITY_KEY = APP_FSPOT_EXTENSION + EXTENSION_DEVELOPINUFRAW + "ufraw_jpeg_quality";
+		public const string UFRAW_ARGUMENTS_KEY = APP_FSPOT_EXTENSION + EXTENSION_DEVELOPINUFRAW + "ufraw_arguments";
+		public const string UFRAW_BATCH_ARGUMENTS_KEY = APP_FSPOT_EXTENSION + EXTENSION_DEVELOPINUFRAW + "ufraw_batch_arguments";
+			
+		int ufraw_jpeg_quality;
+		string ufraw_args;
+		string ufraw_batch_args;
+
 		public AbstractDevelopInUFRaw(string executable) 
 		{
 			this.executable = executable;
@@ -74,6 +84,10 @@ namespace DevelopInUFRawExtension
 
 		protected void DevelopPhoto (Photo p)
 		{
+			LoadPreference (UFRAW_JPEG_QUALITY_KEY);
+			LoadPreference (UFRAW_ARGUMENTS_KEY);
+			LoadPreference (UFRAW_BATCH_ARGUMENTS_KEY);
+
 			PhotoVersion raw = p.GetVersion (Photo.OriginalVersionId) as PhotoVersion;
 			if (!ImageFile.IsRaw (raw.Uri.AbsolutePath)) {
 				Log.Warning ("The original version of this image is not a (supported) RAW file");
@@ -89,7 +103,23 @@ namespace DevelopInUFRawExtension
 				idfile = "--conf=" + Path.ChangeExtension (raw.Uri.LocalPath, ".ufraw");
 			}
 
-			string args = String.Format("--overwrite --create-id=also --compression=98 --out-type=jpeg {0} --output={1} {2}", 
+			if (ufraw_jpeg_quality < 1 || ufraw_jpeg_quality > 100) {
+				Log.Debug ("Invalid JPEG quality specified, defaulting to quality 98");
+				ufraw_jpeg_quality = 98;
+			}
+
+			string args = "";
+			switch (executable) {
+				case "ufraw":
+					args += ufraw_args;
+					break;
+				case "ufraw-batch":
+					args += ufraw_batch_args;
+					break;
+			}
+
+			args += String.Format(" --overwrite --create-id=also --compression={0} --out-type=jpeg {1} --output={2} {3}", 
+				ufraw_jpeg_quality,
 				idfile,
 				CheapEscape (developed.LocalPath),
 				CheapEscape (raw.Uri.ToString ()));
@@ -149,5 +179,28 @@ namespace DevelopInUFRawExtension
 			System.Uri uri = p.VersionUri (Photo.OriginalVersionId);
 			return uri.Scheme + "://" + uri.Host + System.IO.Path.GetDirectoryName (uri.AbsolutePath);
 		}
+
+		void LoadPreference (string key)
+		{
+			object val = Preferences.Get (key);
+
+			if (val == null)
+				return;
+			
+			Log.Debug (String.Format ("Setting {0} to {1}", key, val));
+
+			switch (key) {
+				case UFRAW_JPEG_QUALITY_KEY:
+					ufraw_jpeg_quality = (int) val;
+					break;
+				case UFRAW_ARGUMENTS_KEY:
+					ufraw_args = (string) val;
+					break;
+				case UFRAW_BATCH_ARGUMENTS_KEY:
+					ufraw_batch_args = (string) val;
+					break;
+			}
+		}
+
 	}
 }
