@@ -98,10 +98,6 @@ namespace DevelopInUFRawExtension
 			System.Uri developed = GetUriForVersionName (p, name);
 			string idfile = "";
 
-			if (new Gnome.Vfs.Uri (Path.ChangeExtension (raw.Uri.ToString (), ".ufraw")).Exists) {
-				// We found an ID file, use that instead of the raw file
-				idfile = "--conf=" + Path.ChangeExtension (raw.Uri.LocalPath, ".ufraw");
-			}
 
 			if (ufraw_jpeg_quality < 1 || ufraw_jpeg_quality > 100) {
 				Log.Debug ("Invalid JPEG quality specified, defaulting to quality 98");
@@ -112,9 +108,17 @@ namespace DevelopInUFRawExtension
 			switch (executable) {
 				case "ufraw":
 					args += ufraw_args;
+					if (new Gnome.Vfs.Uri (Path.ChangeExtension (raw.Uri.ToString (), ".ufraw")).Exists) {
+						// We found an ID file, use that instead of the raw file
+						idfile = "--conf=" + Path.ChangeExtension (raw.Uri.LocalPath, ".ufraw");
+					}
 					break;
 				case "ufraw-batch":
 					args += ufraw_batch_args;
+					if (new Gnome.Vfs.Uri (Path.Combine (FSpot.Global.BaseDirectory, "batch.ufraw")).Exists) {
+						// We found an ID file, use that instead of the raw file
+						idfile = "--conf=" + Path.Combine (FSpot.Global.BaseDirectory, "batch.ufraw");
+					}
 					break;
 			}
 
@@ -133,9 +137,12 @@ namespace DevelopInUFRawExtension
 			}
 
 			if (new Gnome.Vfs.Uri (Path.ChangeExtension (developed.ToString (), ".ufraw")).Exists) {
-				if (new Gnome.Vfs.Uri (Path.ChangeExtension (raw.Uri.ToString (), ".ufraw")).Exists) {
-					File.Delete (Path.ChangeExtension (raw.Uri.LocalPath, ".ufraw"));
-				}
+				// We save our own copy of the last ufraw settings, as ufraw can overwrite it's own last used settings outside f-spot
+				File.Delete (Path.Combine (FSpot.Global.BaseDirectory, "batch.ufraw"));
+				File.Copy (Path.ChangeExtension (developed.LocalPath, ".ufraw"), Path.Combine (FSpot.Global.BaseDirectory, "batch.ufraw"));
+
+				// Rename the ufraw file to match the original RAW filename, instead of the (Developed In UFRaw) filename
+				File.Delete (Path.ChangeExtension (raw.Uri.LocalPath, ".ufraw"));
 				File.Move (Path.ChangeExtension (developed.LocalPath, ".ufraw"), Path.ChangeExtension (raw.Uri.LocalPath, ".ufraw"));
 			}
 
