@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: f-spot.HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-02-29 15:51+0000\n"
-"PO-Revision-Date: 2008-03-19 03:42+0100\n"
+"POT-Creation-Date: 2008-07-09 14:30+0000\n"
+"PO-Revision-Date: 2008-07-19 18:11+0200\n"
 "Last-Translator: Gabor Kelemen <kelemeng@gnome.hu>\n"
 "Language-Team: Hungarian <gnome@fsf.hu>\n"
 "MIME-Version: 1.0\n"
@@ -51,7 +51,9 @@ msgstr "A következő csomagok kerülnek eltávolításra:"
 msgid ""
 "There are other extensions that depend on the previous ones which will also "
 "be uninstalled:"
-msgstr "Más kiterjesztések függenek az előzőktől, amelyek szintén el lesznek távolítva:"
+msgstr ""
+"Más kiterjesztések függenek az előzőktől, amelyek szintén el lesznek "
+"távolítva:"
 
 #: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:384
 msgid ""
@@ -120,6 +122,7 @@ msgid "Extension"
 msgstr "Kiterjesztés"
 
 #: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinTreeWidget.cs:112
+#: ../src/Widgets/InfoBox.cs:129
 msgid "Version"
 msgstr "Verzió"
 
@@ -128,6 +131,7 @@ msgid "Other"
 msgstr "Egyéb"
 
 #: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/ManageSitesDialog.cs:51
+#: ../src/Widgets/InfoBox.cs:126
 msgid "Name"
 msgstr "Név"
 
@@ -151,7 +155,9 @@ msgstr "Kiterjesztés telepítése"
 
 #: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:136
 msgid "<b>Select the extensions to install and click on Next</b>"
-msgstr "<b>Válassza ki a telepítendő kiterjesztéseket és kattintson a Tovább gombra</b>"
+msgstr ""
+"<b>Válassza ki a telepítendő kiterjesztéseket és kattintson a Tovább gombra</"
+"b>"
 
 #: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:150
 msgid "Install from:"
@@ -160,7 +166,7 @@ msgstr "Telepítés innen:"
 #: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:179
 #: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:180
 msgid "_Repositories..."
-msgstr "_Tárolók..."
+msgstr "_Tárolók…"
 
 #: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:220
 msgid "Show all packages"
@@ -179,7 +185,7 @@ msgid "_Unselect All"
 msgstr "Kijelölések _megszüntetése"
 
 #: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:259
-#: ../src/f-spot.glade.h:162
+#: ../src/f-spot.glade.h:167
 msgid "Select _All"
 msgstr "Min_dent kijelöl"
 
@@ -193,7 +199,7 @@ msgstr "Teljes folyamat:"
 
 #: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:374
 msgid "Downloading extensions..."
-msgstr "Kiterjesztések letöltése..."
+msgstr "Kiterjesztések letöltése…"
 
 #: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallerDialog.cs:36
 #: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:58
@@ -218,11 +224,11 @@ msgstr "Jelenleg a következő kiterjesztések vannak telepítve:"
 
 #: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:165
 msgid "_Install Extensions..."
-msgstr "Kiterjesztések _telepítése..."
+msgstr "Kiterjesztések _telepítése…"
 
 #: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:210
 msgid "_Uninstall..."
-msgstr "_Eltávolítás..."
+msgstr "_Eltávolítás…"
 
 #: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:236
 msgid "Enable"
@@ -233,8 +239,11 @@ msgid "Disable"
 msgstr "Tiltás"
 
 #: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.ErrorDialog.cs:40
-#: ../extensions/FlickrExport/FlickrExport.cs:343
-#: ../extensions/SmugMugExport/SmugMugExport.cs:616
+#: ../extensions/FlickrExport/FlickrExport.cs:359
+#: ../extensions/FolderExport/FolderExport.cs:249
+#: ../extensions/GalleryExport/GalleryExport.cs:795
+#: ../extensions/PicasaWebExport/PicasaWebExport.cs:694
+#: ../extensions/SmugMugExport/SmugMugExport.cs:595
 msgid "Error"
 msgstr "Hiba"
 
@@ -274,7 +283,7 @@ msgstr "Útvonal:"
 
 #: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.NewSiteDialog.cs:179
 msgid "Browse..."
-msgstr "Tallózás..."
+msgstr "Tallózás…"
 
 #: ../mono-addins/Mono.Addins/Mono.Addins.Description/AssemblyDependency.cs:79
 #, csharp-format
@@ -300,508 +309,6 @@ msgstr "A szükséges „{0}” kiterjesztés le van tiltva."
 msgid "The required extension '{0}' is not installed."
 msgstr "A szükséges „{0}” kiterjesztés nincs telepítve."
 
-#: ../extensions/FlickrExport/FlickrExport.addin.xml.h:1
-msgid "_23hq..."
-msgstr "_23hq..."
-
-#: ../extensions/FlickrExport/FlickrExport.addin.xml.h:2
-msgid "_Flickr..."
-msgstr "_Flickr..."
-
-#: ../extensions/FlickrExport/FlickrExport.cs:92
-#: ../extensions/FlickrExport/FlickrExport.glade.h:5
-msgid "Authorize"
-msgstr "Felhatalmazás"
-
-#: ../extensions/FlickrExport/FlickrExport.cs:97
-#, csharp-format
-msgid ""
-"Return to this window after you have finished the authorization process on "
-"{0} and click the \"Complete Authorization\" button below"
-msgstr ""
-"Térjen vissza ehhez az ablakhoz a felhatalmazási eljárás a(z) {0} helyen "
-"történő befejezése után és kattintson az alábbi „Felhatalmazás befejezése” "
-"gombra"
-
-#: ../extensions/FlickrExport/FlickrExport.cs:98
-msgid "Complete Authorization"
-msgstr "Felhatalmazás befejezése"
-
-#: ../extensions/FlickrExport/FlickrExport.cs:102
-#, csharp-format
-msgid "Logging into {0}"
-msgstr "Bejelentkezés a következőre: {0}"
-
-#: ../extensions/FlickrExport/FlickrExport.cs:103
-msgid "Checking credentials..."
-msgstr "Hitelesítési adatok ellenőrzése..."
-
-#: ../extensions/FlickrExport/FlickrExport.cs:109
-#, csharp-format
-msgid "Welcome {0} you are connected to {1}"
-msgstr "Üdvözlöm {0}, sikeresen csatlakozott a következőre: {1}"
-
-#: ../extensions/FlickrExport/FlickrExport.cs:112
-#, csharp-format
-msgid "Sign in as a different user"
-msgstr "Jelentkezzen be egy másik felhasználóként"
-
-#: ../extensions/FlickrExport/FlickrExport.cs:266
-msgid "Unable to log on"
-msgstr "Nem lehet bejelentkezni"
-
-#: ../extensions/FlickrExport/FlickrExport.cs:286
-#, csharp-format
-msgid "Waiting for response {0} of {1}"
-msgstr "{0}/{1} válaszra várakozás"
-
-#: ../extensions/FlickrExport/FlickrExport.cs:313
-#, csharp-format
-msgid "Uploading picture \"{0}\""
-msgstr "„{0}” kép feltöltése"
-
-#. This indicates the current photo is photo {0} of {1} out of photos
-#: ../extensions/FlickrExport/FlickrExport.cs:318 ../src/ProgressDialog.cs:82
-#: ../src/TimeDialog.cs:141
-#, csharp-format
-msgid "{0} of {1}"
-msgstr "{0}/{1}"
-
-#: ../extensions/FlickrExport/FlickrExport.cs:335
-#: ../extensions/SmugMugExport/SmugMugExport.cs:624
-msgid "Done Sending Photos"
-msgstr "Fényképek küldése kész"
-
-#: ../extensions/FlickrExport/FlickrExport.cs:337
-#: ../extensions/SmugMugExport/SmugMugExport.cs:626
-msgid "Upload Complete"
-msgstr "Feltöltés befejezve"
-
-#: ../extensions/FlickrExport/FlickrExport.cs:340
-#, csharp-format
-msgid "Error Uploading To {0}: {1}"
-msgstr "Hiba a(z) {0} helyre feltöltés közben: {1}"
-
-#: ../extensions/FlickrExport/FlickrExport.cs:408
-msgid "Unable to log on."
-msgstr "Nem lehet bejelentkezni."
-
-#: ../extensions/FlickrExport/FlickrExport.cs:409
-#, csharp-format
-msgid ""
-"F-Spot was unable to log on to {0}.  Make sure you have given the "
-"authentication using {0} web browser interface."
-msgstr ""
-"Az F-Spot nem tudott bejelentkezni a(z) {0} helyre. Győződjön meg, hogy "
-"megadta a felhatalmazást a(z) {0} webböngésző felületének használatával."
-
-#: ../extensions/FlickrExport/FlickrExport.cs:427
-#: ../extensions/SmugMugExport/SmugMugExport.cs:542
-msgid "Uploading Pictures"
-msgstr "Képek feltöltése"
-
-#: ../extensions/FlickrExport/FlickrExport.glade.h:1 ../src/f-spot.glade.h:12
-msgid "<b>Account</b>"
-msgstr "<b>Felhasználói fiók</b>"
-
-#: ../extensions/FlickrExport/FlickrExport.glade.h:2
-#: ../extensions/SmugMugExport/SmugMugExport.glade.h:2
-#: ../src/f-spot.glade.h:33
-msgid "<b>Photos</b>"
-msgstr "<b>Fényképek</b>"
-
-#: ../extensions/FlickrExport/FlickrExport.glade.h:3
-#: ../extensions/SmugMugExport/SmugMugExport.glade.h:4
-#: ../src/f-spot.glade.h:42
-msgid "<b>Style</b>"
-msgstr "<b>Stílus</b>"
-
-#: ../extensions/FlickrExport/FlickrExport.glade.h:4
-msgid "<b>Viewing permissions</b>"
-msgstr "<b>Jogosultságok megtekintése</b>"
-
-#: ../extensions/FlickrExport/FlickrExport.glade.h:6
-#: ../extensions/SmugMugExport/SmugMugExport.glade.h:6
-#: ../src/f-spot.glade.h:103
-msgid "Export"
-msgstr "Exportálás"
-
-#: ../extensions/FlickrExport/FlickrExport.glade.h:7
-msgid ""
-"F-Spot needs your authorization in order to upload photos to your {0} "
-"account. Press the \"Authorize\" button to open a web browser and give F-"
-"Spot the authorization. "
-msgstr ""
-"Az F-Spot az Ön felhatalmazását igényli a fényképek feltöltéséhez az Ön {0}"
-"felhasználói fiókjába. Nyomja meg a „Felhatalmazás” gombot egy böngésző "
-"megnyitásához és a felhatalmazás megadásához. "
-
-#: ../extensions/FlickrExport/FlickrExport.glade.h:8
-msgid "Private"
-msgstr "Személyes"
-
-#: ../extensions/FlickrExport/FlickrExport.glade.h:9
-msgid "Public"
-msgstr "Nyilvános"
-
-#: ../extensions/FlickrExport/FlickrExport.glade.h:10
-msgid "Strip _metadata"
-msgstr "_Metaadatok eltávolítása"
-
-#: ../extensions/FlickrExport/FlickrExport.glade.h:11
-msgid "Visible to Family"
-msgstr "Látható a család számára"
-
-#: ../extensions/FlickrExport/FlickrExport.glade.h:12
-msgid "Visible to Friends"
-msgstr "Látható a barátok számára"
-
-#: ../extensions/FlickrExport/FlickrExport.glade.h:13
-#: ../src/f-spot.glade.h:221
-msgid "_Export tags"
-msgstr "Címkék ex_portálása"
-
-#: ../extensions/FlickrExport/FlickrExport.glade.h:14
-#: ../extensions/SmugMugExport/SmugMugExport.glade.h:14
-#: ../src/f-spot.glade.h:249
-msgid "_Resize to: "
-msgstr "Át_méretezés: "
-
-#: ../extensions/FlickrExport/FlickrExport.glade.h:15
-msgid "_View photos in browser when done uploading"
-msgstr "Fényképek _megtekintése böngészőben a feltöltés befejezésekor"
-
-#: ../extensions/FlickrExport/FlickrExport.glade.h:16
-#: ../extensions/SmugMugExport/SmugMugExport.glade.h:16
-#: ../src/f-spot.glade.h:280
-msgid "pixels"
-msgstr "képpontra"
-
-#: ../extensions/MetaPixel/MetaPixel.addin.xml.h:1
-msgid "Create p_hotomosaic"
-msgstr "Fényképmo_zaik létrehozása"
-
-#: ../extensions/MetaPixel/MetaPixel.cs:44
-#: ../extensions/PictureTile/PictureTile.cs:50 ../src/PhotoView.cs:326
-msgid "No selection available"
-msgstr "Nem áll rendelkezésre kijelölés"
-
-#: ../extensions/MetaPixel/MetaPixel.cs:45
-#: ../extensions/PictureTile/PictureTile.cs:51
-msgid ""
-"This tool requires an active selection. Please select one or more pictures "
-"and try again"
-msgstr "Ez az eszköz aktív kijelölést igényel. Jelöljön ki néhány fényképet és próbálja újra"
-
-#: ../extensions/MetaPixel/MetaPixel.cs:64
-msgid "Metapixel not available"
-msgstr "A Metapixel nem érhető el"
-
-#: ../extensions/MetaPixel/MetaPixel.cs:65
-msgid ""
-"The metapixel executable was not found in path. Please check that you have "
-"it installed and that you have permissions to execute it"
-msgstr "A metapixel végrehajtható fájl nem található az elérési úton. Ellenőrizze, hogy telepítve van-e és jogosult végrehajtani."
-
-#. There is no photo for the selected tags! :(
-#: ../extensions/MetaPixel/MetaPixel.cs:120
-msgid "No photos for the selection"
-msgstr "Nincsenek fotók a kijelöléshez"
-
-#: ../extensions/MetaPixel/MetaPixel.cs:121
-msgid "The tags selected provided no pictures. Please select different tags"
-msgstr "A kijelölt címkék nem adtak vissza képeket. Válasszon másik címkéket."
-
-#: ../extensions/MetaPixel/MetaPixel.cs:128
-msgid "Creating miniatures"
-msgstr "Bélyegképek létrehozása"
-
-#: ../extensions/MetaPixel/MetaPixel.cs:139
-#, csharp-format
-msgid "Preparing photo \"{0}\""
-msgstr "„{0}” fénykép előkészítése"
-
-#: ../extensions/MetaPixel/MetaPixel.cs:177
-msgid "Creating photomosaics"
-msgstr "Fényképmozaikok létrehozása"
-
-#: ../extensions/MetaPixel/MetaPixel.cs:184
-#: ../extensions/PictureTile/PictureTile.cs:119
-#, csharp-format
-msgid "Processing \"{0}\""
-msgstr "„{0}” feldolgozása"
-
-#: ../extensions/MetaPixel/MetaPixel.cs:229
-msgid "PhotoMosaics generated!"
-msgstr "A fényképmozaikok előállítva!"
-
-#: ../extensions/MetaPixel/MetaPixel.cs:247
-#, csharp-format
-msgid "PhotoMosaic"
-msgid_plural "PhotoMosaic ({0})"
-msgstr[0] "Fényképmozaik"
-msgstr[1] "Fényképmozaikok ({0})"
-
-#: ../extensions/MetaPixel/MetaPixel.glade.h:1
-msgid "<b>Generate miniatures from</b>"
-msgstr "<b>Bélyegképek előállítása</b>"
-
-#: ../extensions/MetaPixel/MetaPixel.glade.h:2
-msgid "Generate the miniatures from a selection of tags. No tags mean ALL pictures"
-msgstr "Bélyegképek előállítása kiválasztott címkékből. A címkék hiánya az összes képet jelenti"
-
-#: ../extensions/MetaPixel/MetaPixel.glade.h:3
-msgid "MetaPixel photomosaics"
-msgstr "MetaPixel fényképmozaikok"
-
-#: ../extensions/MetaPixel/MetaPixel.glade.h:4
-msgid "Miniatures _size"
-msgstr "Bélyegképek _mérete"
-
-#: ../extensions/MetaPixel/MetaPixel.glade.h:5
-msgid "Miniatures can be generated from the current main view"
-msgstr "A jelenlegi fő nézetből bélyegképek állíthatók elő"
-
-#: ../extensions/MetaPixel/MetaPixel.glade.h:6
-msgid "Size of the miniatures composing the mosaic"
-msgstr "A mozaikot alkotó bélyegképek mérete"
-
-#: ../extensions/MetaPixel/MetaPixel.glade.h:7
-#: ../extensions/PictureTile/PictureTile.glade.h:17
-msgid "_Create"
-msgstr "_Létrehozás"
-
-#: ../extensions/MetaPixel/MetaPixel.glade.h:8
-msgid "_Current query"
-msgstr "_Jelenlegi lekérdezés"
-
-#: ../extensions/MetaPixel/MetaPixel.glade.h:9 ../src/f-spot.glade.h:262
-msgid "_Tags"
-msgstr "_Címkék"
-
-#: ../extensions/MetaPixel/MetaPixel.glade.h:10
-#: ../extensions/PictureTile/PictureTile.glade.h:23
-msgid "gtk-cancel"
-msgstr ""
-
-#: ../extensions/MetaPixel/MetaPixel.glade.h:11
-#: ../extensions/PictureTile/PictureTile.glade.h:24 ../src/f-spot.glade.h:281
-msgid "x"
-msgstr "x"
-
-#: ../extensions/PicasaWebExport/PicasaWebExport.addin.xml.h:1
-msgid "_PicasaWeb..."
-msgstr "_PicasaWeb..."
-
-#: ../extensions/PicasaWebExport/google-sharp/CaptchaException.cs:58
-msgid "url"
-msgstr "url"
-
-#: ../extensions/PicasaWebExport/google-sharp/CaptchaException.cs:59
-msgid "token"
-msgstr "jelsor"
-
-# ötletek welcome
-#: ../extensions/PicasaWebExport/google-sharp/CaptchaException.cs:60
-msgid "captcha_url"
-msgstr "captcha_url"
-
-#: ../extensions/PictureTile/PictureTile.addin.xml.h:1
-msgid "Create photo_wall"
-msgstr "_Fényképfal létrehozása"
-
-#: ../extensions/PictureTile/PictureTile.cs:70
-msgid "PictureTile not available"
-msgstr "A PictureTile nem áll rendelkezésre"
-
-#: ../extensions/PictureTile/PictureTile.cs:71
-msgid ""
-"The picturetile.pl executable was not found in path. Please check that you "
-"have it installed and that you have permissions to execute it"
-msgstr "A picturetile.pl végrehajtható fájl nem található az elérési úton. Ellenőrizze, hogy telepítve van-e és jogosult végrehajtani."
-
-#: ../extensions/PictureTile/PictureTile.cs:109
-msgid "Preparing selected pictures"
-msgstr "Kijelölt képek előkészítése"
-
-#: ../extensions/PictureTile/PictureTile.cs:198
-msgid "PhotoWall generated!"
-msgstr "A fényképfal létrehozva"
-
-#: ../extensions/PictureTile/PictureTile.cs:199
-msgid ""
-"Your photo wall have been generated and imported in F-Spot. Select the last "
-"roll to see it"
-msgstr "A fényképfal előállításra és importálásra került az F-Spotba. A megjelenítéséhez válassza ki az utolsó kört"
-
-#: ../extensions/PictureTile/PictureTile.cs:202
-msgid "Error importing photowall"
-msgstr "Hiba a fényképfal importálása közben"
-
-#: ../extensions/PictureTile/PictureTile.cs:203
-msgid "An error occurred while importing the newly generated photowall to F-Spot"
-msgstr "Hiba történt az újonnan előállított fényképfal F-Spotba importálásakor"
-
-#: ../extensions/PictureTile/PictureTile.glade.h:2
-#, no-c-format
-msgid "%"
-msgstr "%"
-
-#: ../extensions/PictureTile/PictureTile.glade.h:3
-msgid "Background _color"
-msgstr "_Háttérszín"
-
-#: ../extensions/PictureTile/PictureTile.glade.h:4
-msgid "Can be negative. It will overlap images"
-msgstr "Ez lehet negatív is, ekkor átfedi a képeket"
-
-#: ../extensions/PictureTile/PictureTile.glade.h:5
-msgid ""
-"Check this if your images are all of the same size and you will have a more "
-"regular grid"
-msgstr "Jelölje be, ha a képei mind azonos méretűek és szabályosabb rácsot fog kapni"
-
-#: ../extensions/PictureTile/PictureTile.glade.h:6
-msgid "Choose how many destination images you want to generate"
-msgstr "Válassza ki az előállítani kívánt célképek számát"
-
-#: ../extensions/PictureTile/PictureTile.glade.h:7
-msgid "Destination picture max _size"
-msgstr "Cél_képek legnagyobb mérete"
-
-#: ../extensions/PictureTile/PictureTile.glade.h:8
-msgid ""
-"For more information please visit PictureTile website\n"
-"http://www.jwz.org/picturetile/"
-msgstr ""
-"További információkért keresse fel a PictureTile honlapját:\n"
-"http://www.jwz.org/picturetile/"
-
-#: ../extensions/PictureTile/PictureTile.glade.h:10
-msgid "Jpeg _quality"
-msgstr "Jpeg _minőség"
-
-#: ../extensions/PictureTile/PictureTile.glade.h:11
-msgid "Output type"
-msgstr "Kimenet típusa"
-
-#: ../extensions/PictureTile/PictureTile.glade.h:12
-msgid "Outside _border"
-msgstr "Külső sze_gély"
-
-#: ../extensions/PictureTile/PictureTile.glade.h:13
-msgid "Photo wall generator"
-msgstr "Fényképfal-előállító"
-
-#: ../extensions/PictureTile/PictureTile.glade.h:14
-msgid "PictureTile for F-Spot"
-msgstr "PictureTile az F-Spothoz"
-
-#: ../extensions/PictureTile/PictureTile.glade.h:15
-msgid "Spa_cing between images"
-msgstr "Ké_pek közötti térköz"
-
-#: ../extensions/PictureTile/PictureTile.glade.h:16
-msgid "This operation is going to TAKE VERY LONG TIME!"
-msgstr "Ez a művelet nagyon sokáig fog tartani!"
-
-#: ../extensions/PictureTile/PictureTile.glade.h:18
-msgid "_Jpeg"
-msgstr "_Jpeg"
-
-#: ../extensions/PictureTile/PictureTile.glade.h:19
-msgid "_Pages"
-msgstr "_Oldalak"
-
-#: ../extensions/PictureTile/PictureTile.glade.h:20
-msgid "_Scale images"
-msgstr "Képek mérete_zése"
-
-#: ../extensions/PictureTile/PictureTile.glade.h:21
-msgid "_Tiff"
-msgstr "_Tiff"
-
-#: ../extensions/PictureTile/PictureTile.glade.h:22
-msgid "_Uniform images"
-msgstr "_Egyforma képek"
-
-#: ../extensions/SmugMugExport/SmugMugExport.addin.xml.h:1
-msgid "_SmugMug..."
-msgstr "_SmugMug..."
-
-#: ../extensions/SmugMugExport/SmugMugExport.cs:585
-#, csharp-format
-msgid "Uploading picture \"{0}\" ({1} of {2})"
-msgstr "„{0}” kép feltöltése ({1}. / {2})"
-
-#: ../extensions/SmugMugExport/SmugMugExport.cs:614
-#, csharp-format
-msgid "Error Uploading To Gallery: {0}"
-msgstr "Hiba a galériába való feltöltés közben: {0}"
-
-#: ../extensions/SmugMugExport/SmugMugExport.cs:647
-msgid "(No Gallery)"
-msgstr "(Nincs galéria)"
-
-#: ../extensions/SmugMugExport/SmugMugExport.cs:745
-msgid "(Not Connected)"
-msgstr "(Nincs kapcsolat)"
-
-#: ../extensions/SmugMugExport/SmugMugExport.cs:746
-msgid "(No Albums)"
-msgstr "(Nincsenek albumok)"
-
-#: ../extensions/SmugMugExport/SmugMugExport.cs:790
-msgid "No account selected"
-msgstr "Nincs fiók kijelölve"
-
-#: ../extensions/SmugMugExport/SmugMugExport.glade.h:1
-#: ../src/f-spot.glade.h:14
-msgid "<b>Album</b>"
-msgstr "<b>Album</b>"
-
-#: ../extensions/SmugMugExport/SmugMugExport.glade.h:3
-msgid "<b>SmugMug Export</b>"
-msgstr "<b>SmugMug exportálás</b>"
-
-#: ../extensions/SmugMugExport/SmugMugExport.glade.h:5
-#: ../src/f-spot.glade.h:76
-msgid "Autorotate"
-msgstr "Automatikus forgatás"
-
-#: ../extensions/SmugMugExport/SmugMugExport.glade.h:7
-msgid "Open _album in browser when done uploading"
-msgstr "Az album megnyitása böngészőben a feltöltés _befejezésekor"
-
-#: ../extensions/SmugMugExport/SmugMugExport.glade.h:8
-msgid "Public Album"
-msgstr "Nyilvános album"
-
-#: ../extensions/SmugMugExport/SmugMugExport.glade.h:9
-msgid "_Account:"
-msgstr "_Fiók:"
-
-#: ../extensions/SmugMugExport/SmugMugExport.glade.h:10
-msgid "_Album Title:"
-msgstr "_Album címe:"
-
-#: ../extensions/SmugMugExport/SmugMugExport.glade.h:11
-msgid "_Description:"
-msgstr "_Leírás:"
-
-#: ../extensions/SmugMugExport/SmugMugExport.glade.h:12
-#: ../src/f-spot.glade.h:223
-msgid "_Export to Album:"
-msgstr "E_xportálás ebbe az albumba:"
-
-#: ../extensions/SmugMugExport/SmugMugExport.glade.h:13
-msgid "_Password:"
-msgstr "_Jelszó:"
-
-#: ../extensions/SmugMugExport/SmugMugExport.glade.h:15
-msgid "_Username:"
-msgstr "_Felhasználónév:"
-
 #: ../f-spot-view.desktop.in.in.h:1
 msgid "F-Spot Photo Viewer"
 msgstr "F-Spot fotómegjelenítő"
@@ -810,17 +317,21 @@ msgstr "F-Spot fotómegjelenítő"
 msgid "Photo Viewer"
 msgstr "Fotómegjelenítő"
 
-#: ../f-spot.desktop.in.in.h:1
+#: ../f-spot-import.desktop.in.in.h:1 ../f-spot.desktop.in.in.h:1
 msgid "F-Spot Photo Manager"
 msgstr "F-Spot fotókezelő"
+
+#: ../f-spot-import.desktop.in.in.h:2
+msgid "Import into F-Spot"
+msgstr "Importálás az F-Spotba"
+
+#: ../f-spot-import.desktop.in.in.h:3 ../f-spot.desktop.in.in.h:3
+msgid "Photo Manager"
+msgstr "Fényképkezelő"
 
 #: ../f-spot.desktop.in.in.h:2
 msgid "Organize, enjoy, and share your photos"
 msgstr "Fényképek rendszerezése, megjelenítése és megosztása"
-
-#: ../f-spot.desktop.in.in.h:3
-msgid "Photo Manager"
-msgstr "Fényképkezelő"
 
 #: ../libeog/eog-image.c:773
 #, c-format
@@ -865,7 +376,7 @@ msgstr "színszórás"
 msgid "dither type"
 msgstr "színszórás típusa"
 
-#: ../libfspot/f-jpeg-utils.c:445 ../src/RotateCommand.cs:231
+#: ../libfspot/f-jpeg-utils.c:445 ../src/RotateCommand.cs:222
 msgid "File not found"
 msgstr "A fájl nem található"
 
@@ -878,85 +389,79 @@ msgstr "Ismeretlen átalakítási típus: %d"
 msgid "Operation failed"
 msgstr "A művelet sikertelen"
 
-#: ../src/CameraFileSelectionDialog.cs:73
+#: ../src/CameraFileSelectionDialog.cs:74
 msgid "Preview"
 msgstr "Előnézet"
 
-#: ../src/CameraFileSelectionDialog.cs:75
+#: ../src/CameraFileSelectionDialog.cs:76
 msgid "Path"
 msgstr "Elérési út"
 
-#: ../src/CameraFileSelectionDialog.cs:77 ../src/f-spot.glade.h:107
+#: ../src/CameraFileSelectionDialog.cs:78 ../src/f-spot.glade.h:107
 msgid "File"
 msgstr "Fájl"
 
-#: ../src/CameraFileSelectionDialog.cs:79
+#: ../src/CameraFileSelectionDialog.cs:80
+#: ../extensions/FolderExport/FolderExport.cs:992
+#: ../extensions/FolderExport/FolderExport.cs:1233
 msgid "Index"
 msgstr "Index"
 
-#: ../src/CameraFileSelectionDialog.cs:99
+#: ../src/CameraFileSelectionDialog.cs:100
 msgid "Select Tag"
 msgstr "Válasszon egy címkét"
 
-#: ../src/CameraFileSelectionDialog.cs:135
+#: ../src/CameraFileSelectionDialog.cs:136
 msgid "Downloading Previews"
 msgstr "Előnézetek letöltése"
 
-#: ../src/CameraFileSelectionDialog.cs:143
+#: ../src/CameraFileSelectionDialog.cs:146
 #, csharp-format
 msgid "Downloading Preview of {0}"
 msgstr "{0} előnézetének letöltése"
 
-#: ../src/CameraFileSelectionDialog.cs:194
+#: ../src/CameraFileSelectionDialog.cs:197
+#: ../extensions/CDExport/CDExport.cs:342
+#: ../extensions/FolderExport/FolderExport.cs:391
 msgid "Transferring Pictures"
 msgstr "Képek átvitele"
 
-#: ../src/CameraFileSelectionDialog.cs:217
+#: ../src/CameraFileSelectionDialog.cs:218
 #, csharp-format
 msgid "Copying file {0} of {1}"
 msgstr "{0}/{1} fájl másolása"
 
-#: ../src/CameraFileSelectionDialog.cs:227
+#: ../src/CameraFileSelectionDialog.cs:228
 msgid "Error transferring file"
 msgstr "Hiba a fájl átvitele közben"
 
-#: ../src/CameraFileSelectionDialog.cs:236
+#: ../src/CameraFileSelectionDialog.cs:237
 msgid "Done Copying Files"
 msgstr "Fájlok másolása kész"
 
-#: ../src/CameraFileSelectionDialog.cs:238
+#: ../src/CameraFileSelectionDialog.cs:239
 msgid "Download Complete"
 msgstr "Letöltés befejezve"
 
-#: ../src/CameraFileSelectionDialog.cs:263
+#: ../src/CameraFileSelectionDialog.cs:264
 #, csharp-format
 msgid "Transferring \"{0}\" from camera"
 msgstr "„{0}” átvitele a fényképezőgéptől"
 
-#: ../src/CameraSelectionDialog.cs:28
+#: ../src/CameraSelectionDialog.cs:29
 msgid "Camera"
 msgstr "Fényképezőgép"
 
-#: ../src/CameraSelectionDialog.cs:29
+#: ../src/CameraSelectionDialog.cs:30
 msgid "Port"
 msgstr "Port"
 
-#: ../src/ColorDialog.cs:212
-msgid "Error saving adjusted photo"
-msgstr "Hiba a fénykép mentése közben"
-
-#: ../src/ColorDialog.cs:213 ../src/Loupe.cs:60 ../src/PhotoView.cs:275
-#: ../src/UI.Dialog/EditExceptionDialog.cs:25
-#, csharp-format
-msgid "Received exception \"{0}\". Unable to save photo {1}"
-msgstr "„{0}” kivétel következett be. A(z) {1} kép nem menthető"
-
-#: ../src/Core.cs:192
+#: ../src/Core.cs:200
 #, csharp-format
 msgid "No photos matching {0} found"
 msgstr "Nem találhatóak a következőre illeszkedő fényképek: {0}"
 
-#: ../src/Core.cs:193
+#: ../src/Core.cs:201
 #, csharp-format
 msgid ""
 "The tag \"{0}\" is not applied to any photos. Try adding\n"
@@ -967,11 +472,11 @@ msgstr ""
 "hozzáadni a címkét néhány fényképhez, vagy válasszon másik címkét az\n"
 "F-Spot beállításablakában."
 
-#: ../src/Core.cs:197
+#: ../src/Core.cs:205
 msgid "Search returned no results"
 msgstr "A keresés nem adott vissza eredményeket"
 
-#: ../src/Core.cs:198
+#: ../src/Core.cs:206
 msgid ""
 "The tag F-Spot is looking for does not exist. Try\n"
 "selecting a different tag in the F-Spot preference\n"
@@ -981,105 +486,86 @@ msgstr ""
 "másik címkét választani az F-Spot beállításablakában."
 
 # fixme techblabla
-#: ../src/Core/Photo.cs:412
+#. Note for translators: Reparented is a picture becoming a version of another one
+#: ../src/Core/Photo.cs:418
 msgid "Reparented"
 msgstr "Örökbe adva"
 
-#: ../src/Core/Photo.cs:412
+#: ../src/Core/Photo.cs:418
 #, csharp-format
 msgid "Reparented ({0})"
 msgstr "Örökbe adva ({0})"
 
-#: ../src/Core/Photo.cs:429
+#: ../src/Core/Photo.cs:435
 #, csharp-format
 msgid "Modified"
 msgid_plural "Modified ({0})"
 msgstr[0] "Módosított"
 msgstr[1] "Módosított ({0})"
 
-#: ../src/Core/Photo.cs:448
+#: ../src/Core/Photo.cs:454
 #, csharp-format
 msgid "Modified in {1}"
 msgstr "Módosítva ekkor: {1}"
 
-#: ../src/Core/Photo.cs:448
+#: ../src/Core/Photo.cs:454
 #, csharp-format
 msgid "Modified in {1} ({0})"
 msgstr "Módosítva ekkor: {1} ({0})"
 
 #. Note that the original version is never stored in the photo_versions table in the
 #. database.
-#: ../src/Core/Photo.cs:556 ../src/f-spot.glade.h:142
+#: ../src/Core/Photo.cs:562 ../src/f-spot.glade.h:146
 msgid "Original"
 msgstr "Eredeti"
 
-#: ../src/DateCommands.cs:56
+#: ../src/DateCommands.cs:57
 msgid "Today"
 msgstr "Ma"
 
-#: ../src/DateCommands.cs:58
+#: ../src/DateCommands.cs:59
 msgid "Yesterday"
 msgstr "Tegnap"
 
-#: ../src/DateCommands.cs:60
+#: ../src/DateCommands.cs:61
 msgid "Last 7 days"
 msgstr "Elmúlt 7 nap"
 
-#: ../src/DateCommands.cs:62
+#: ../src/DateCommands.cs:63
 msgid "Last 30 days"
 msgstr "Elmúlt 30 nap"
 
-#: ../src/DateCommands.cs:64
+#: ../src/DateCommands.cs:65
 msgid "Last 90 days"
 msgstr "Elmúlt 90 nap"
 
-#: ../src/DateCommands.cs:66
+#: ../src/DateCommands.cs:67
 msgid "Last 360 days"
 msgstr "Elmúlt 360 nap"
 
-#: ../src/DateCommands.cs:68
+#: ../src/DateCommands.cs:69
 msgid "Current Week (Mon-Sun)"
 msgstr "Jelenlegi hét (hé-va)"
 
-#: ../src/DateCommands.cs:70
+#: ../src/DateCommands.cs:71
 msgid "Previous Week (Mon-Sun)"
 msgstr "Előző hét (hé-va)"
 
-#: ../src/DateCommands.cs:86 ../src/f-spot.glade.h:68
+#: ../src/DateCommands.cs:87 ../src/f-spot.glade.h:68
 msgid "All Images"
 msgstr "Minden kép"
 
-#: ../src/DateCommands.cs:88
+#: ../src/DateCommands.cs:89
 msgid "Customized Range"
 msgstr "Egyéni tartomány"
 
-#: ../src/Editors/SoftFocus.cs:27 ../src/ItemAction.cs:342
+#: ../src/Editors/Old/SoftFocus.cs:27 ../src/ItemAction.cs:342
 msgid "Soft Focus"
 msgstr "Lágy fókusz"
 
-#: ../src/Editors/SoftFocus.cs:57 ../src/PhotoVersionCommands.cs:138
-msgid "Cancel"
-msgstr "Mégsem"
-
-#: ../src/Editors/SoftFocus.cs:60
-msgid "Apply"
-msgstr "Alkalmazás"
-
-#: ../src/Editors/Tilt.cs:28 ../src/ItemAction.cs:326
+#: ../src/Editors/Old/Tilt.cs:28 ../src/ItemAction.cs:326
 msgid "Straighten"
 msgstr "Kiegyenesítés"
-
-#: ../src/ExceptionDialog.cs:24
-msgid "F-Spot Encountered a Fatal Error"
-msgstr "Az F-Spot végzetes hibát észlelt"
-
-#: ../src/ExceptionDialog.cs:60
-msgid "Error Details"
-msgstr "Hiba részletei"
-
-#: ../src/ExceptionDialog.cs:104
-msgid "An unhandled exception was thrown: "
-msgstr "Kezeletlen kivétel történt: "
 
 #: ../src/Extensions/OpenWithMenu.cs:93
 msgid "No applications available"
@@ -1097,46 +583,46 @@ msgstr "Exportálás:"
 msgid "Open _With"
 msgstr "Megnyitás _ezzel"
 
-#: ../src/FSpot.addin.xml.h:4 ../src/f-spot.glade.h:155
+#: ../src/FSpot.addin.xml.h:4 ../src/f-spot.glade.h:159
 msgid "Rem_ove Tag"
 msgstr "Címke _törlése"
 
-#: ../src/FSpot.addin.xml.h:5 ../src/SingleView.cs:433
-#: ../src/f-spot.glade.h:158
+#: ../src/FSpot.addin.xml.h:5 ../src/SingleView.cs:430
+#: ../src/f-spot.glade.h:162
 msgid "Rotate _Left"
 msgstr "Forgatás b_alra"
 
-#: ../src/FSpot.addin.xml.h:6 ../src/SingleView.cs:434
-#: ../src/f-spot.glade.h:159
+#: ../src/FSpot.addin.xml.h:6 ../src/SingleView.cs:431
+#: ../src/f-spot.glade.h:163
 msgid "Rotate _Right"
-msgstr "Forgatás _jobbra"
+msgstr "Forgatás j_obbra"
 
 #: ../src/FSpot.addin.xml.h:7
 msgid "Tools"
 msgstr "Eszközök"
 
-#: ../src/FSpot.addin.xml.h:8 ../src/f-spot.glade.h:202
+#: ../src/FSpot.addin.xml.h:8 ../src/f-spot.glade.h:209
 msgid "_Attach Tag"
 msgstr "_Címke csatolása"
 
-#: ../src/FSpot.addin.xml.h:9 ../src/f-spot.glade.h:213
+#: ../src/FSpot.addin.xml.h:9 ../src/f-spot.glade.h:221
 msgid "_Delete From Drive"
 msgstr "_Törlés a lemezről"
 
-#: ../src/FSpot.addin.xml.h:10 ../src/f-spot.glade.h:246
+#: ../src/FSpot.addin.xml.h:10 ../src/f-spot.glade.h:254
 msgid "_Remove From Catalog"
 msgstr "Eltávolítás a _katalógusból"
 
-#: ../src/FileImportBackend.cs:261
+#: ../src/FileImportBackend.cs:262
 msgid "Import error"
 msgstr "Importálási hiba"
 
-#: ../src/FileImportBackend.cs:262
+#: ../src/FileImportBackend.cs:263
 #, csharp-format
 msgid "Error importing {0}{2}{2}{1}"
 msgstr "Hiba a(z) {0}{2}{2}{1} importálása során"
 
-#: ../src/FileImportBackend.cs:263 ../src/ThreadProgressDialog.cs:68
+#: ../src/FileImportBackend.cs:264 ../src/ThreadProgressDialog.cs:68
 msgid "Skip"
 msgstr "Kihagyás"
 
@@ -1149,38 +635,38 @@ msgstr "Nem lehet menteni a(z) „{0}” típusú fájlokat"
 msgid "Unhandled exception"
 msgstr "Kezeletlen kivétel történt"
 
-#: ../src/FullScreenView.cs:50
+#: ../src/FullScreenView.cs:56
 msgid "Hide"
 msgstr "Elrejtés"
 
-#: ../src/FullScreenView.cs:52
+#: ../src/FullScreenView.cs:58
 msgid "Hide Toolbar"
 msgstr "Eszköztár elrejtése"
 
-#: ../src/FullScreenView.cs:58
+#: ../src/FullScreenView.cs:64
 msgid "Info"
 msgstr "Információk"
 
-#: ../src/FullScreenView.cs:60
+#: ../src/FullScreenView.cs:66
 msgid "Image Information"
 msgstr "Képinformációk"
 
-#: ../src/FullScreenView.cs:65
+#: ../src/FullScreenView.cs:71
 msgid "Exit fullscreen"
 msgstr "Kilépés a teljes képernyőből"
 
-#: ../src/FullScreenView.cs:75 ../src/MainWindow.cs:293
-#: ../src/SingleView.cs:92
+#: ../src/FullScreenView.cs:81 ../src/MainWindow.cs:293
+#: ../src/SingleView.cs:95
 msgid "Slideshow"
 msgstr "Diavetítés"
 
-#: ../src/FullScreenView.cs:76
+#: ../src/FullScreenView.cs:82
 msgid "Start slideshow"
 msgstr "Diavetítés indítása"
 
-#: ../src/FullScreenView.cs:141
-msgid "Slide transition: "
-msgstr "Diaátmenet: "
+#: ../src/FullScreenView.cs:147
+msgid "Slide transition:"
+msgstr "Diaátmenet:"
 
 #: ../src/GlTransition.cs:36
 msgid "Dissolve"
@@ -1190,23 +676,23 @@ msgstr "Eltűnés"
 msgid "Flip"
 msgstr "Tükrözés"
 
-#: ../src/GlTransition.cs:148
+#: ../src/GlTransition.cs:147
 msgid "Cover"
 msgstr "Lefedés"
 
-#: ../src/GlTransition.cs:175
+#: ../src/GlTransition.cs:174
 msgid "Reveal"
 msgstr "Felfedés"
 
-#: ../src/GlTransition.cs:202
+#: ../src/GlTransition.cs:201
 msgid "Wipe"
 msgstr "Törlés"
 
-#: ../src/GlTransition.cs:260
+#: ../src/GlTransition.cs:259
 msgid "Split"
 msgstr "Felosztás"
 
-#: ../src/GlTransition.cs:350
+#: ../src/GlTransition.cs:370
 msgid "Push"
 msgstr "Kitolás"
 
@@ -1230,11 +716,11 @@ msgstr "_Hónap szerint"
 msgid "Arrange by _Folder"
 msgstr "_Mappa szerint"
 
-#: ../src/GroupSelector.cs:523 ../src/f-spot.glade.h:250
+#: ../src/GroupSelector.cs:523 ../src/f-spot.glade.h:258
 msgid "_Reverse Order"
 msgstr "S_orrend megfordítása"
 
-#: ../src/GroupSelector.cs:529 ../src/f-spot.glade.h:206
+#: ../src/GroupSelector.cs:529 ../src/f-spot.glade.h:213
 msgid "_Clear Date Range"
 msgstr "Dátumtartomány _törlése"
 
@@ -1261,6 +747,10 @@ msgstr "Interoperabilitás könyvtár"
 #: ../src/Imaging/Exif.cs:238
 msgid "Unknown Directory"
 msgstr "Ismeretlen könyvtár"
+
+#: ../src/Imaging/ImageFile.cs:87
+msgid "Writing to this file format is not implemented"
+msgstr "Az írás nincs megvalósítva ebben a fájlformátumba"
 
 #: ../src/Imaging/IptcFile.cs:145
 msgid "IPTC Information Interchange Model (IIM) Version number"
@@ -1392,7 +882,7 @@ msgstr "Az objektum szellemi kategóriája"
 msgid "Unknown IIM DataSet"
 msgstr "Ismeretlen IIM adathalmaz"
 
-#: ../src/ImportCommand.cs:49 ../src/SingleView.cs:334
+#: ../src/ImportCommand.cs:49 ../src/SingleView.cs:336
 msgid "Select Folder"
 msgstr "Mappa kiválasztása"
 
@@ -1422,97 +912,74 @@ msgstr ""
 "Az Ön által kijelölt „{0}” könyvtár nem létezik. Kérem válasszon másik "
 "könyvtárat"
 
-#. Prepare the Last Import root tag
-#: ../src/ImportCommand.cs:723 ../src/ImportCommand.cs:725
+#. Note for translators: 'Import Tags' is no command, it means 'Tags used in Import'
+#: ../src/ImportCommand.cs:724 ../src/ImportCommand.cs:726
 #: ../src/XmpTagsImporter.cs:88
 msgid "Import Tags"
 msgstr "Importált címkék"
 
-#: ../src/InfoBox.cs:81
-msgid "name"
-msgstr "név"
-
-#: ../src/InfoBox.cs:83
-msgid "version"
-msgstr "verzió"
-
-#: ../src/InfoBox.cs:85
-msgid "date"
-msgstr "dátum"
-
-#: ../src/InfoBox.cs:87
-msgid "size"
-msgstr "méret"
-
-#: ../src/InfoBox.cs:89
-msgid "exposure"
-msgstr "expozíció"
-
-#. The label for the root category is used in new and edit tag dialogs
-#: ../src/InfoBox.cs:232 ../src/TagStore.cs:258
-msgid "(None)"
-msgstr "(Nincs)"
-
-#: ../src/InfoBox.cs:243 ../src/InfoBox.cs:252
-msgid "(Unknown)"
-msgstr "(Ismeretlen)"
-
-#: ../src/InfoDisplay.cs:14 ../src/MainWindow.cs:1569
+#: ../src/InfoDisplay.cs:14
 msgid "Metadata Browser"
 msgstr "Metaadat-böngésző"
 
 #. Obsolete, remove after db rev4
 #: ../src/InfoDisplay.cs:135 ../src/InfoDisplay.cs:137
-#: ../src/f-spot.glade.h:110
+#: ../src/SingleView.cs:120 ../src/Widgets/MetadataDisplay.cs:219
+#: ../src/Widgets/MetadataDisplay.cs:221 ../src/f-spot.glade.h:110
 msgid "Folder"
 msgstr "Mappa"
 
-#: ../src/InfoDisplay.cs:139
+#: ../src/InfoDisplay.cs:139 ../src/Widgets/MetadataDisplay.cs:223
 msgid "Picasaweb"
 msgstr "Picasaweb"
 
-#: ../src/InfoDisplay.cs:141
+#: ../src/InfoDisplay.cs:141 ../src/Widgets/MetadataDisplay.cs:225
 msgid "SmugMug"
 msgstr "SmugMug"
 
-#: ../src/InfoDisplay.cs:143
+#: ../src/InfoDisplay.cs:143 ../src/Widgets/MetadataDisplay.cs:227
 msgid "Gallery2"
 msgstr "Galéria2"
 
-#: ../src/InfoDisplay.cs:235
+#: ../src/InfoDisplay.cs:239 ../src/Widgets/MetadataDisplay.cs:104
 msgid "Extended Metadata"
 msgstr "Kiterjesztett metaadatok"
 
-#: ../src/InfoDisplay.cs:267
+#: ../src/InfoDisplay.cs:271
 msgid "Exported Locations"
 msgstr "Exportált helyek"
 
-#: ../src/InfoDisplay.cs:290
+#: ../src/InfoDisplay.cs:294 ../src/Widgets/MetadataDisplay.cs:405
 msgid "No active photo"
 msgstr "Nincs aktív fénykép"
 
-#: ../src/InfoDisplay.cs:292
+#: ../src/InfoDisplay.cs:296 ../src/Widgets/MetadataDisplay.cs:407
 #, csharp-format
 msgid "The photo \"{0}\" does not exist"
 msgstr "A(z) „{0}” fénykép nem létezik"
 
-#: ../src/InfoDisplay.cs:298
+#: ../src/InfoDisplay.cs:302 ../src/Widgets/MetadataDisplay.cs:410
 msgid "No metadata available"
 msgstr "Nem érhetőek el metaadatok"
 
-#: ../src/ItemAction.cs:81 ../src/MainWindow.cs:260 ../src/SingleView.cs:75
+#: ../src/ItemAction.cs:81 ../src/MainWindow.cs:260 ../src/SingleView.cs:78
 msgid "Rotate Left"
 msgstr "Forgatás balra"
 
-#: ../src/ItemAction.cs:82 ../src/ItemAction.cs:94
+#: ../src/ItemAction.cs:82
 msgid "Rotate picture left"
 msgstr "Kép forgatása balra"
 
-#: ../src/ItemAction.cs:93 ../src/MainWindow.cs:264 ../src/SingleView.cs:80
+#: ../src/ItemAction.cs:93 ../src/MainWindow.cs:264 ../src/SingleView.cs:83
 msgid "Rotate Right"
 msgstr "Forgatás jobbra"
 
-#: ../src/ItemAction.cs:104 ../src/f-spot.glade.h:131
+#: ../src/ItemAction.cs:94
+msgid "Rotate picture right"
+msgstr "Kép forgatása jobbra"
+
+#: ../src/ItemAction.cs:104 ../src/f-spot.glade.h:135
+#: ../extensions/FolderExport/FolderExport.cs:998
 msgid "Next"
 msgstr "Következő"
 
@@ -1520,7 +987,7 @@ msgstr "Következő"
 msgid "Next picture"
 msgstr "Következő kép"
 
-#: ../src/ItemAction.cs:126 ../src/f-spot.glade.h:151
+#: ../src/ItemAction.cs:126 ../src/f-spot.glade.h:155
 msgid "Previous"
 msgstr "Előző"
 
@@ -1552,27 +1019,34 @@ msgstr "Kép szögének módosítása a horizontra kiegyenesítéshez"
 msgid "Create a soft focus visual effect"
 msgstr "Lágy fókusz vizuális hatás létrehozása"
 
-#: ../src/Loupe.cs:59
+#: ../src/Loupe.cs:60
 msgid "Error saving sharpened photo"
 msgstr "Hiba az élesített fénykép mentése közben"
 
-#: ../src/Loupe.cs:89
+#: ../src/Loupe.cs:61 ../src/PhotoView.cs:263
+#: ../src/UI.Dialog/ColorDialog.cs:212
+#: ../src/UI.Dialog/EditExceptionDialog.cs:25
+#, csharp-format
+msgid "Received exception \"{0}\". Unable to save photo {1}"
+msgstr "„{0}” kivétel következett be. A(z) {1} kép nem menthető"
+
+#: ../src/Loupe.cs:90
 msgid "Sharpen"
 msgstr "Élesítés"
 
-#: ../src/Loupe.cs:99
+#: ../src/Loupe.cs:100
 msgid "Amount:"
 msgstr "Mennyiség:"
 
-#: ../src/Loupe.cs:100
+#: ../src/Loupe.cs:101
 msgid "Radius:"
 msgstr "Sugár:"
 
-#: ../src/Loupe.cs:101
+#: ../src/Loupe.cs:102
 msgid "Threshold:"
 msgstr "Küszöb:"
 
-#: ../src/MainWindow.cs:253 ../src/f-spot.glade.h:123
+#: ../src/MainWindow.cs:253 ../src/f-spot.glade.h:125
 msgid "Import"
 msgstr "Importálás"
 
@@ -1580,7 +1054,7 @@ msgstr "Importálás"
 msgid "Import new images"
 msgstr "Új képek importálása"
 
-#: ../src/MainWindow.cs:271 ../src/f-spot.glade.h:77
+#: ../src/MainWindow.cs:271 ../src/f-spot.glade.h:76
 msgid "Browse"
 msgstr "Tallózás"
 
@@ -1596,36 +1070,29 @@ msgstr "Kép szerkesztése"
 msgid "View and edit a photo"
 msgstr "Fénykép megjelenítése és szerkesztése"
 
-#: ../src/MainWindow.cs:288 ../src/SingleView.cs:87
+#: ../src/MainWindow.cs:288 ../src/SingleView.cs:90
 msgid "Fullscreen"
 msgstr "Teljes képernyő"
 
-#: ../src/MainWindow.cs:290 ../src/SingleView.cs:89
+#: ../src/MainWindow.cs:290 ../src/SingleView.cs:92
 msgid "View photos fullscreen"
 msgstr "Képek megjelenítése teljes képernyőn"
 
-#: ../src/MainWindow.cs:295 ../src/SingleView.cs:94
+#: ../src/MainWindow.cs:295 ../src/SingleView.cs:97
 msgid "View photos in a slideshow"
 msgstr "Fényképek megjelenítése diavetítésként"
 
-#: ../src/MainWindow.cs:866
-msgid "Error loading database."
-msgstr "Hiba az adatbázis betöltése közben."
+#: ../src/MainWindow.cs:306 ../extensions/FolderExport/FolderExport.cs:995
+#: ../extensions/FolderExport/FolderExport.cs:1167
+#: ../extensions/FolderExport/FolderExport.cs:1207
+msgid "Tags"
+msgstr "Címkék"
 
-#: ../src/MainWindow.cs:867
-#, csharp-format
-msgid ""
-"F-Spot encountered an error while loading the photo database. The old "
-"database has be moved to {0} and a new database has been created."
-msgstr ""
-"Az F-Spot hibát észlelt a fotóadatbázis betöltése közben. A régi adatbázis "
-"áthelyezésre került ide: {0} és egy új adatbázis került létrehozásra."
-
-#: ../src/MainWindow.cs:1482
+#: ../src/MainWindow.cs:1582
 msgid "No cameras detected."
 msgstr "Nem érzékeltem fényképezőgépet."
 
-#: ../src/MainWindow.cs:1483
+#: ../src/MainWindow.cs:1583
 msgid ""
 "F-Spot was unable to find any cameras attached to this system.  Double check "
 "that the camera is connected and has power"
@@ -1634,24 +1101,24 @@ msgstr ""
 "fényképezőgépet sem. Ellenőrizze, hogy a fényképezőgép csatlakoztatva van-e "
 "és be van-e kapcsolva"
 
-#: ../src/MainWindow.cs:1523
+#: ../src/MainWindow.cs:1623
 msgid "Error connecting to camera"
 msgstr "Hiba a fényképezőgéphez való kapcsolódás közben"
 
-#: ../src/MainWindow.cs:1524
+#: ../src/MainWindow.cs:1624
 #, csharp-format
 msgid "Received error \"{0}\" while connecting to camera"
 msgstr "„{0}” hiba következett be a fényképezőgéphez való kapcsolódás közben"
 
 #. Translators, The singular case will never happen here.
-#: ../src/MainWindow.cs:1890
+#: ../src/MainWindow.cs:1961
 #, csharp-format
 msgid "Merge the selected tag"
 msgid_plural "Merge the {0} selected tags?"
 msgstr[0] "Összefésüli a kijelölt címkét?"
 msgstr[1] "Összefésüli a kijelölt {0} címkét?"
 
-#: ../src/MainWindow.cs:1917
+#: ../src/MainWindow.cs:1988
 msgid ""
 "This operation will merge the selected tags and any sub-tags into a single "
 "tag."
@@ -1659,74 +1126,76 @@ msgstr ""
 "Ez a művelet egy kivételével az összes kiválasztott címkét és alcímkét "
 "egyetlen címkébe fésüli össze."
 
-#: ../src/MainWindow.cs:1919
+#: ../src/MainWindow.cs:1990
 msgid "_Merge Tags"
 msgstr "_Címkék összefésülése"
 
-#: ../src/MainWindow.cs:2119 ../src/SingleView.cs:476
+#: ../src/MainWindow.cs:2187
+#, csharp-format
+msgid "{0} Photo out of {1}"
+msgid_plural "{0} Photos out of {1}"
+msgstr[0] "{0}/{1} fénykép"
+msgstr[1] "{0}/{1} fénykép"
+
+#: ../src/MainWindow.cs:2189 ../src/SingleView.cs:473
 #, csharp-format
 msgid "{0} Photo"
 msgid_plural "{0} Photos"
 msgstr[0] "{0} fénykép"
 msgstr[1] "{0} fénykép"
 
-#: ../src/MainWindow.cs:2126
-#, csharp-format
-msgid " out of {0}"
-msgstr " / {0}"
-
-#: ../src/MainWindow.cs:2129
+#: ../src/MainWindow.cs:2192
 #, csharp-format
 msgid " ({0} selected)"
 msgid_plural " ({0} selected)"
 msgstr[0] " ({0} kiválasztva)"
 msgstr[1] " ({0} kiválasztva)"
 
-#: ../src/MainWindow.cs:2216
+#: ../src/MainWindow.cs:2273
 msgid "_Ok"
 msgstr "_Ok"
 
-#: ../src/MainWindow.cs:2217
+#: ../src/MainWindow.cs:2274
 msgid "Error Deleting Picture"
 msgstr "Hiba a kép törlése közben"
 
-#: ../src/MainWindow.cs:2222
+#: ../src/MainWindow.cs:2279
 #, csharp-format
 msgid "No permission to delete the file:{1}{0}"
 msgstr "Nincs jogosultsága a következő fájl törléséhez: {1}{0}"
 
-#: ../src/MainWindow.cs:2226
+#: ../src/MainWindow.cs:2283
 #, csharp-format
 msgid "An error of type {0} occurred while deleting the file:{2}{1}"
 msgstr "{0} típusú hiba történt a következő fájl törlése közben: {2}{1}"
 
-#: ../src/MainWindow.cs:2252
+#: ../src/MainWindow.cs:2309
 #, csharp-format
 msgid "Delete the selected photo permanently?"
 msgid_plural "Delete the {0} selected photos permanently?"
 msgstr[0] "Véglegesen törli a kijelölt fényképet?"
 msgstr[1] "Véglegesen törli a kijelölt {0} fényképet?"
 
-#: ../src/MainWindow.cs:2256
+#: ../src/MainWindow.cs:2313
 msgid "This deletes all versions of the selected photo from your drive."
 msgid_plural "This deletes all versions of the selected photos from your drive."
 msgstr[0] "Ez a kijelölt fénykép összes verzióját törli a merevlemezéről."
 msgstr[1] "Ez a kijelölt fényképek összes verzióját törli a merevlemezéről."
 
-#: ../src/MainWindow.cs:2259
+#: ../src/MainWindow.cs:2316
 msgid "_Delete photo"
 msgid_plural "_Delete photos"
 msgstr[0] "_Fénykép törlése"
 msgstr[1] "_Fénykép törlése"
 
-#: ../src/MainWindow.cs:2290
+#: ../src/MainWindow.cs:2347
 #, csharp-format
 msgid "Remove the selected photo from F-Spot?"
 msgid_plural "Remove the {0} selected photos from F-Spot?"
 msgstr[0] "Eltávolítja a kijelölt fényképet az F-Spotból?"
 msgstr[1] "Eltávolítja a kijelölt {0} fényképet az F-Spotból?"
 
-#: ../src/MainWindow.cs:2295
+#: ../src/MainWindow.cs:2352
 msgid ""
 "If you remove photos from the F-Spot catalog all tag information will be "
 "lost. The photos remain on your computer and can be imported into F-Spot "
@@ -1736,47 +1205,47 @@ msgstr ""
 "elvész. A fényképek megmaradnak a számítógépén és később újra importálhatóak "
 "lesznek az F-Spotba."
 
-#: ../src/MainWindow.cs:2296
+#: ../src/MainWindow.cs:2353
 msgid "_Remove from Catalog"
 msgstr "_Eltávolítás a katalógusból"
 
-#: ../src/MainWindow.cs:2359
+#: ../src/MainWindow.cs:2416
 #, csharp-format
 msgid "Delete tag \"{0}\"?"
 msgstr "Törli a(z) „{0}” címkét?"
 
-#: ../src/MainWindow.cs:2361
+#: ../src/MainWindow.cs:2418
 #, csharp-format
 msgid "Delete the {0} selected tags?"
 msgstr "Törli a(z) {0} kijelölt címkét?"
 
 # fixme: string surgery alert!
-#: ../src/MainWindow.cs:2366
+#: ../src/MainWindow.cs:2423
 msgid "photo"
 msgid_plural "photos"
 msgstr[0] "fényképpel"
 msgstr[1] "fényképpel"
 
 # fixme: string surgery alert!
-#: ../src/MainWindow.cs:2368
+#: ../src/MainWindow.cs:2425
 #, csharp-format
 msgid "If you delete this tag, the association with {0} {1} will be lost."
 msgid_plural "If you delete these tags, the association with {0} {1} will be lost."
 msgstr[0] "Ha törli a címkét, akkor annak kapcsolata elvész {0} {1}."
 msgstr[1] "Ha törli a címkét, akkor annak kapcsolata elvész {0} {1}."
 
-#: ../src/MainWindow.cs:2373
+#: ../src/MainWindow.cs:2430
 msgid "_Delete tag"
 msgid_plural "_Delete tags"
 msgstr[0] "_Címke törlése"
 msgstr[1] "_Címkék törlése"
 
 #. A Category is not empty. Can not delete it.
-#: ../src/MainWindow.cs:2387
+#: ../src/MainWindow.cs:2444
 msgid "Tag is not empty"
 msgstr "A címke nem üres"
 
-#: ../src/MainWindow.cs:2388
+#: ../src/MainWindow.cs:2445
 #, csharp-format
 msgid ""
 "Can not delete tags that have tags within them.  Please delete tags under "
@@ -1785,39 +1254,39 @@ msgstr ""
 "Nem lehet címkéket tartalmazó címkéket törölni. Először törölje a(z) „{0}” "
 "alatti címkéket"
 
-#: ../src/MainWindow.cs:2833
+#: ../src/MainWindow.cs:2878
 msgid "Rotate selected photo left"
 msgid_plural "Rotate selected photos left"
 msgstr[0] "A kijelölt fénykép forgatása balra"
 msgstr[1] "A kijelölt fényképek forgatása balra"
 
-#: ../src/MainWindow.cs:2846
+#: ../src/MainWindow.cs:2891
 msgid "Rotate selected photo right"
 msgid_plural "Rotate selected photos right"
 msgstr[0] "A kijelölt fénykép forgatása jobbra"
 msgstr[1] "A kijelölt fénykép forgatása jobbra"
 
-#: ../src/MainWindow.cs:2854
+#: ../src/MainWindow.cs:2899
 #, csharp-format
 msgid "Find _Selected Tag"
 msgid_plural "Find _Selected Tags"
 msgstr[0] "Kijelölt _címke keresése"
 msgstr[1] "Kijelölt _címkék keresése"
 
-#: ../src/MainWindow.cs:2858
+#: ../src/MainWindow.cs:2903
 #, csharp-format
 msgid "Find Selected Tag _With"
 msgid_plural "Find Selected Tags _With"
 msgstr[0] "Kijelölt címke _keresése ezzel"
 msgstr[1] "Kijelölt címkék _keresése ezzel"
 
-#: ../src/MainWindow.cs:2896
+#: ../src/MainWindow.cs:2941
 msgid "Create New Version?"
 msgid_plural "Create New Versions?"
 msgstr[0] "Létrehoz egy új verziót?"
 msgstr[1] "Létrehoz új verziókat?"
 
-#: ../src/MainWindow.cs:2898
+#: ../src/MainWindow.cs:2943
 #, csharp-format
 msgid ""
 "Before launching {1}, should F-Spot create a new version of the selected "
@@ -1971,6 +1440,10 @@ msgstr "„{0}” kivétel következett be. A(z) „{1}” verzió nem hozható 
 msgid "Really Delete?"
 msgstr "Valóban törli?"
 
+#: ../src/PhotoVersionCommands.cs:138
+msgid "Cancel"
+msgstr "Mégsem"
+
 #: ../src/PhotoVersionCommands.cs:139
 msgid "Delete"
 msgstr "Törlés"
@@ -1999,59 +1472,65 @@ msgstr "Nem nevezhető át egy verzió"
 msgid "Received exception \"{0}\". Unable to rename version to \"{1}\""
 msgstr "„{0}” kivétel következett be. A verzió nem nevezhető át erre: „{1}”"
 
-#: ../src/PhotoVersionMenu.cs:66
+#: ../src/PhotoVersionMenu.cs:67
 msgid "(No Edits)"
 msgstr "(nincs módosítás)"
 
-#: ../src/PhotoView.cs:66
-msgid "No Constraint"
-msgstr "Nincs megszorítás"
-
-#: ../src/PhotoView.cs:67
+#: ../src/PhotoView.cs:78
 msgid "4 x 3 (Book)"
 msgstr "4 x 3 (könyv)"
 
-#: ../src/PhotoView.cs:68
+#: ../src/PhotoView.cs:79
 msgid "4 x 6 (Postcard)"
 msgstr "4 × 6 (képeslap)"
 
-#: ../src/PhotoView.cs:69
+#: ../src/PhotoView.cs:80
 msgid "5 x 7 (L, 2L)"
 msgstr "5 x 7 (L, 2L)"
 
-#: ../src/PhotoView.cs:70
+#: ../src/PhotoView.cs:81
 msgid "8 x 10"
 msgstr "8 × 10"
 
-#. new SelectionConstraint (Catalog.GetString ("4 x 3 Portrait (Book)"), 3.0 / 4.0),
-#. new SelectionConstraint (Catalog.GetString ("4 x 6 Portrait (Postcard)"), 4.0 / 6.0),
-#. new SelectionConstraint (Catalog.GetString ("5 x 7 Portrait (L, 2L)"), 5.0 / 7.0),
-#. new SelectionConstraint (Catalog.GetString ("8 x 10 Portrait"), 8.0 / 10.0),
-#: ../src/PhotoView.cs:75
+#: ../src/PhotoView.cs:82
 msgid "Square"
 msgstr "Négyzet"
 
-#: ../src/PhotoView.cs:155
+#: ../src/PhotoView.cs:129
 msgid "Crop photo to selected area"
 msgstr "Fénykép vágása a kijelölt területre"
 
-#: ../src/PhotoView.cs:156
+#: ../src/PhotoView.cs:130
 msgid "Remove redeye from selected area"
 msgstr "Vörös szem eltávolítása a kijelölt területről"
 
-#: ../src/PhotoView.cs:158
+#: ../src/PhotoView.cs:132
 msgid "Select an area to crop"
 msgstr "Válasszon egy területet a levágáshoz"
 
-#: ../src/PhotoView.cs:159
+#: ../src/PhotoView.cs:133
 msgid "Select an area to remove redeye"
 msgstr "Válasszon ki egy területet a vörös szem eltávolításához"
 
-#: ../src/PhotoView.cs:274 ../src/UI.Dialog/EditExceptionDialog.cs:38
+#. Note for translators: This indicates the current photo is photo {0} of {1} out of photos
+#: ../src/PhotoView.cs:149 ../src/ProgressDialog.cs:82
+#: ../src/TimeDialog.cs:143 ../extensions/CDExport/CDExport.cs:221
+#: ../extensions/FlickrExport/FlickrExport.cs:338
+#: ../extensions/FolderExport/FolderExport.cs:244
+#: ../extensions/GalleryExport/GalleryExport.cs:779
+#, csharp-format
+msgid "{0} of {1}"
+msgstr "{0}/{1}"
+
+#: ../src/PhotoView.cs:262 ../src/UI.Dialog/EditExceptionDialog.cs:38
 msgid "Error editing photo"
 msgstr "Hiba a fénykép szerkesztése közben"
 
-#: ../src/PhotoView.cs:327
+#: ../src/PhotoView.cs:308
+msgid "No selection available"
+msgstr "Nem áll rendelkezésre kijelölés"
+
+#: ../src/PhotoView.cs:309
 msgid ""
 "This tool requires an active selection. Please select a region of the photo "
 "and try the operation again"
@@ -2059,119 +1538,140 @@ msgstr ""
 "Ez az eszköz aktív kijelölést igényel. Kérem jelölje ki a fénykép egy "
 "területét és próbálja újra a műveletet."
 
-#: ../src/PhotoView.cs:500
+#: ../src/PhotoView.cs:498
 msgid "Comment:"
 msgstr "Megjegyzés:"
 
-#: ../src/PhotoView.cs:522
+#: ../src/PhotoView.cs:530
 msgid "Constrain the aspect ratio of the selection"
 msgstr "A kijelölés nagyítási arányának korlátozása"
 
-#: ../src/PhotoView.cs:524
+#: ../src/PhotoView.cs:532
 msgid "Crop"
 msgstr "Levágás"
 
-#: ../src/PhotoView.cs:528
+#: ../src/PhotoView.cs:536
 msgid "Reduce Red-Eye"
 msgstr "Vörös szem csökkentése"
 
-#: ../src/PhotoView.cs:532
+#: ../src/PhotoView.cs:540
 msgid "Adjust Colors"
 msgstr "Színek igazítása"
 
-#: ../src/PhotoView.cs:534
+#: ../src/PhotoView.cs:542
 msgid "Adjust the photo colors"
 msgstr "Fénykép színeinek beállítása"
 
-#: ../src/PhotoView.cs:537
+#: ../src/PhotoView.cs:545
 msgid "Desaturate"
 msgstr "Telítetlenítés"
 
-#: ../src/PhotoView.cs:539
+#: ../src/PhotoView.cs:547
 msgid "Convert the photo to black and white"
 msgstr "A fénykép átalakítása fekete-fehérré"
 
-#: ../src/PhotoView.cs:542
+#: ../src/PhotoView.cs:550
 msgid "Sepia Tone"
 msgstr "Tintaárnyalat"
 
-#: ../src/PhotoView.cs:544
+#: ../src/PhotoView.cs:552
 msgid "Convert the photo to sepia tones"
 msgstr "A fénykép átalakítása szépia tónusúvá"
 
-#: ../src/PhotoView.cs:574
+#: ../src/PhotoView.cs:582
 msgid "Previous photo"
 msgstr "Előző fénykép"
 
-#: ../src/PhotoView.cs:579
+#: ../src/PhotoView.cs:587
 msgid "Next photo"
 msgstr "Következő fénykép"
 
-#: ../src/Preferences.cs:175
+#: ../src/PhotoView.cs:647
+msgid "No Constraint"
+msgstr "Nincs megszorítás"
+
+#: ../src/PhotoView.cs:648
+msgid "Same as photo"
+msgstr "Ugyanaz, mint a fénykép"
+
+#: ../src/PhotoView.cs:653
+msgid "Custom Ratios..."
+msgstr "Egyéni arányok…"
+
+#: ../src/Preferences.cs:153
 msgid "Photos"
 msgstr "Fényképek"
 
-#: ../src/QueryWidget.cs:39
+#: ../src/PrintOperation.cs:31
+msgid "Image Settings"
+msgstr "Képbeállítások"
+
+#: ../src/QueryWidget.cs:40
 msgid "Find: "
 msgstr "Keresés: "
 
-#: ../src/QueryWidget.cs:44
+#: ../src/QueryWidget.cs:45
 msgid "Untagged photos"
 msgstr "Címkézetlen fényképek"
 
-#: ../src/QueryWidget.cs:52
+#: ../src/QueryWidget.cs:53
 msgid "Rated photos"
 msgstr "Értékelt fényképek"
 
-#: ../src/QueryWidget.cs:60
+#. Note for translators: 'Import roll' is no command, it means 'Roll that has been imported'
+#: ../src/QueryWidget.cs:62
 msgid "Import roll"
 msgstr "Importálási kör"
 
-#: ../src/QueryWidget.cs:80
+#: ../src/QueryWidget.cs:82
 msgid "Clear search"
 msgstr "Tiszta keresés"
 
-#: ../src/QueryWidget.cs:82
+#: ../src/QueryWidget.cs:89
+msgid "Refresh search"
+msgstr "Keresés frissítése"
+
+#: ../src/QueryWidget.cs:91
 msgid "No matching photos found"
 msgstr "Nem találhatók illeszkedő fényképek"
 
-#: ../src/QueryWidget.cs:114
+#: ../src/QueryWidget.cs:128
 msgid "Hide _Find Bar"
 msgstr "K_eresősáv elrejtése"
 
-#: ../src/QueryWidget.cs:120
+#: ../src/QueryWidget.cs:134
 msgid "Show _Find Bar"
 msgstr "Keresősáv _megjelenítése"
 
-#: ../src/RotateCommand.cs:96 ../src/RotateCommand.cs:111
+#: ../src/RotateCommand.cs:94 ../src/RotateCommand.cs:109
 msgid "Unable to rotate this type of photo"
 msgstr "Nem lehet forgatni ezt a fényképtípust"
 
-#: ../src/RotateCommand.cs:138
+#: ../src/RotateCommand.cs:129
 msgid "Unable to rotate readonly file"
 msgstr "Nem lehet forgatni az írásvédett fájlt"
 
-#: ../src/RotateCommand.cs:205
+#: ../src/RotateCommand.cs:196
 msgid "Rotating photos"
 msgstr "Fényképek forgatása"
 
-#: ../src/RotateCommand.cs:216
+#: ../src/RotateCommand.cs:207
 #, csharp-format
 msgid "Rotating photo \"{0}\""
 msgstr "„{0}” fénykép forgatása"
 
-#: ../src/RotateCommand.cs:229
+#: ../src/RotateCommand.cs:220
 msgid "Directory not found"
 msgstr "A könyvtár nem található"
 
-#: ../src/RotateCommand.cs:248
+#: ../src/RotateCommand.cs:240
 #, csharp-format
 msgid "Unable to rotate photo"
 msgid_plural "Unable to rotate {0} photos"
 msgstr[0] "Nem lehet forgatni a fényképet"
 msgstr[1] "Nem lehet forgatni {0} fényképet"
 
-#: ../src/RotateCommand.cs:250
+#: ../src/RotateCommand.cs:242
 #, csharp-format
 msgid ""
 "The photo could not be rotated because it is on a read only file system or "
@@ -2179,84 +1679,108 @@ msgid ""
 msgid_plural ""
 "{0} photos could not be rotated because they are on a read only file system "
 "or media such as a CDROM.  Please check the permissions and try again."
-msgstr[0] "A fénykép nem forgatható, mivel az csak olvasható fájlrendszeren vagy adathordozón, például CD-ROM-on van. Ellenőrizze a jogosultságokat és próbálja újra."
-msgstr[1] "{0} fénykép nem forgatható, mivel azok csak olvasható fájlrendszeren vagy adathordozón, például CD-ROM-on vannak. Ellenőrizze a jogosultságokat és próbálja újra."
+msgstr[0] ""
+"A fénykép nem forgatható, mivel az csak olvasható fájlrendszeren vagy "
+"adathordozón, például CD-ROM-on van. Ellenőrizze a jogosultságokat és "
+"próbálja újra."
+msgstr[1] ""
+"{0} fénykép nem forgatható, mivel azok csak olvasható fájlrendszeren vagy "
+"adathordozón, például CD-ROM-on vannak. Ellenőrizze a jogosultságokat és "
+"próbálja újra."
 
-#: ../src/RotateCommand.cs:277
+#: ../src/RotateCommand.cs:269
 #, csharp-format
 msgid "Received error \"{0}\" while attempting to rotate {1}"
 msgstr "„{0}” hiba következett be {1} forgatására tett kísérlet közben"
 
-#: ../src/RotateCommand.cs:282
+#: ../src/RotateCommand.cs:274
 msgid "Error while rotating photo."
 msgstr "Hiba a fénykép forgatása közben."
 
-#: ../src/SendEmail.cs:236
+#: ../src/SendEmail.cs:237
 msgid "Preparing email"
 msgstr "E-mail előkészítése"
 
-#: ../src/SendEmail.cs:288
+#: ../src/SendEmail.cs:289
 #, csharp-format
 msgid "Exporting picture \"{0}\""
 msgstr "„{0}” kép exportálása"
 
+#: ../src/SendEmail.cs:311
+msgid "Error processing image"
+msgstr "Hiba a kép feldolgozásakor"
+
+#: ../src/SendEmail.cs:312
+#, csharp-format
+msgid "An error occured while processing \"{0}\": {1}"
+msgstr "Hiba történt a(z) „{0}” feldolgozásakor: {1}"
+
 #. Send the mail :)
-#: ../src/SendEmail.cs:313
+#: ../src/SendEmail.cs:327
 msgid "my photos"
 msgstr "fényképeim"
 
-#: ../src/SingleView.cs:77
+#: ../src/SingleView.cs:80
 msgid "Rotate photo left"
 msgstr "Fénykép forgatása balra"
 
-#: ../src/SingleView.cs:82
+#: ../src/SingleView.cs:85
 msgid "Rotate photo right"
 msgstr "Fénykép forgatása jobbra"
 
-#: ../src/SingleView.cs:331
+#: ../src/SingleView.cs:333
 msgid "Open"
 msgstr "Megnyitás"
 
-#: ../src/SingleView.cs:436
+#: ../src/SingleView.cs:433
 msgid "Set as Background"
 msgstr "Beállítás háttérként"
 
-#: ../src/TagCommands.cs:91 ../src/TagCommands.cs:219
+#: ../src/TagCommands.cs:92 ../src/TagCommands.cs:220
 #: ../src/TagSelectionWidget.cs:508
 msgid "This name is already in use"
 msgstr "Ez a név már használatban van"
 
-#: ../src/TagCommands.cs:138
+#: ../src/TagCommands.cs:139
 msgid "Create New Tag"
 msgstr "Új címke létrehozása"
 
-#: ../src/TagCommands.cs:139
+#: ../src/TagCommands.cs:140
 msgid "Name of New Tag:"
 msgstr "Az új címke neve:"
 
-#: ../src/TagCommands.cs:278
+#: ../src/TagCommands.cs:279
 msgid "Edit Tag"
 msgstr "Címke szerkesztése"
 
-#: ../src/TagCommands.cs:279
+#: ../src/TagCommands.cs:280
 msgid "Tag Name:"
 msgstr "Címke neve:"
 
-#: ../src/TagCommands.cs:412
+#: ../src/TagCommands.cs:387
+msgid "Unable to load image"
+msgstr "A kép nem tölthető be"
+
+#: ../src/TagCommands.cs:388
+#, csharp-format
+msgid "Unable to load \"{0}\" as icon for the tag"
+msgstr "„{0}” nem tölthető be a címke ikonjaként"
+
+#: ../src/TagCommands.cs:426
 #, csharp-format
 msgid "Photo {0} of {1}"
 msgstr "{0}/{1} fénykép"
 
-#: ../src/TagCommands.cs:442
+#: ../src/TagCommands.cs:456
 #, csharp-format
 msgid "Edit Icon for Tag {0}"
 msgstr "{0} címke ikonjának szerkesztése"
 
-#: ../src/TagCommands.cs:458
+#: ../src/TagCommands.cs:472
 msgid "Select Photo from file"
 msgstr "Válassza ki fájlból a fényképet"
 
-#: ../src/TagCommands.cs:481
+#: ../src/TagCommands.cs:495
 #, csharp-format
 msgid ""
 "\n"
@@ -2273,10 +1797,6 @@ msgstr ""
 " Címkézzen meg egy fényképet a(z) '{0}' címkével, ezután már\n"
 " felhasználhatja azt ikonként."
 
-#: ../src/TagMenu.cs:91 ../src/TagPopup.cs:36
-msgid "Create New Tag..."
-msgstr "Új címke létrehozása..."
-
 #: ../src/TagPopup.cs:26
 #, csharp-format
 msgid "Find"
@@ -2284,9 +1804,13 @@ msgid_plural "Find"
 msgstr[0] "Keresés"
 msgstr[1] "Keresés"
 
+#: ../src/TagPopup.cs:36 ../src/Widgets/TagMenu.cs:91
+msgid "Create New Tag..."
+msgstr "Új címke létrehozása…"
+
 #: ../src/TagPopup.cs:42
 msgid "Edit Selected Tag..."
-msgstr "Kijelölt címke szerkesztése..."
+msgstr "Kijelölt címke szerkesztése…"
 
 #: ../src/TagPopup.cs:46
 msgid "Delete Tag"
@@ -2348,25 +1872,30 @@ msgstr "Húzza ide a keresendő címkéket"
 msgid "Error renaming tag"
 msgstr "Hiba a címke átnevezése közben"
 
-#: ../src/TagStore.cs:222
+#: ../src/TagStore.cs:230
 msgid "Favorites"
 msgstr "Kedvencek"
 
-#: ../src/TagStore.cs:227
+#: ../src/TagStore.cs:235
 msgid "Hidden"
 msgstr "Rejtett"
 
-#: ../src/TagStore.cs:235
+#: ../src/TagStore.cs:243
 msgid "People"
 msgstr "Emberek"
 
-#: ../src/TagStore.cs:240
+#: ../src/TagStore.cs:248
 msgid "Places"
 msgstr "Helyek"
 
-#: ../src/TagStore.cs:245
+#: ../src/TagStore.cs:253
 msgid "Events"
 msgstr "Események"
+
+#. The label for the root category is used in new and edit tag dialogs
+#: ../src/TagStore.cs:266 ../src/Widgets/InfoBox.cs:268
+msgid "(None)"
+msgstr "(Nincs)"
 
 #: ../src/Term.cs:297
 msgid " and "
@@ -2381,7 +1910,9 @@ msgstr ", "
 msgid " or "
 msgstr " vagy "
 
-#: ../src/Term.cs:379 ../src/f-spot.glade.h:279
+#. OPS The operators we support, case insensitive
+#. private static string op_str = "(?'Ops' or | and |, | \\s+ )";
+#: ../src/Term.cs:379 ../src/Widgets/FindBar.cs:177 ../src/f-spot.glade.h:287
 msgid "or"
 msgstr "vagy"
 
@@ -2389,10 +1920,14 @@ msgstr "vagy"
 msgid "Retry"
 msgstr "Újra"
 
-#: ../src/TimeDialog.cs:124 ../src/f-spot.glade.h:174
+#: ../src/TimeDialog.cs:126 ../src/f-spot.glade.h:180
 #, csharp-format
 msgid "Shift all photos by {0}"
 msgstr "Minden fénykép eltolása ennyivel: {0}"
+
+#: ../src/UI.Dialog/AboutDialog.cs:67
+msgid "Photo management for GNOME"
+msgstr "Fényképkezelő a GNOME-hoz"
 
 #: ../src/UI.Dialog/AboutDialog.cs:68
 msgid "Copyright © 2003-2008 Novell Inc."
@@ -2406,22 +1941,59 @@ msgstr "Kelemen Gábor <kelemeng@gnome.hu>"
 msgid "F-Spot Website"
 msgstr "F-Spot honlap"
 
-#. Mono.Unix.Error error = Mono.Unix.Stdlib.GetLastError ();
-#: ../src/Unix.cs:25
-msgid "Unable to create temporary file"
-msgstr "Nem lehet ideiglenes fájlt létrehozni"
+#: ../src/UI.Dialog/ColorDialog.cs:211
+msgid "Error saving adjusted photo"
+msgstr "Hiba a fénykép mentése közben"
 
-#: ../src/Updater.cs:283
+#: ../src/UI.Dialog/ExceptionDialog.cs:24
+msgid "F-Spot Encountered a Fatal Error"
+msgstr "Az F-Spot végzetes hibát észlelt"
+
+#: ../src/UI.Dialog/ExceptionDialog.cs:60
+msgid "Error Details"
+msgstr "Hiba részletei"
+
+#: ../src/UI.Dialog/ExceptionDialog.cs:104
+msgid "An unhandled exception was thrown: "
+msgstr "Kezeletlen kivétel történt: "
+
+#: ../src/UI.Dialog/RepairDbDialog.cs:20
+msgid "Error loading database."
+msgstr "Hiba az adatbázis betöltése közben."
+
+#: ../src/UI.Dialog/RepairDbDialog.cs:21
+#, csharp-format
+msgid ""
+"F-Spot encountered an error while loading the photo database. The old "
+"database has be moved to {0} and a new database has been created."
+msgstr ""
+"Az F-Spot hibát észlelt a fényképadatbázis betöltése közben. A régi adatbázis "
+"áthelyezésre került ide: {0} és egy új adatbázis került létrehozásra."
+
+#: ../src/UI.Dialog/SelectionRatioDialog.cs:60
+msgid "Label"
+msgstr "Címke"
+
+#: ../src/UI.Dialog/SelectionRatioDialog.cs:64
+msgid "Ratio"
+msgstr "Arány"
+
+#: ../src/Updater.cs:284
 msgid "Updating F-Spot Database"
 msgstr "Az F-Spot adatbázisának frissítése"
 
-#: ../src/Updater.cs:284
+#: ../src/Updater.cs:285
 msgid ""
 "Please wait while your F-Spot gallery's database is updated. This may take "
 "some time."
 msgstr ""
 "Várjon, amíg az F-Spot galéria-adatbázisa frissítésre kerül. Ez eltarthat "
 "egy ideig."
+
+#. Mono.Unix.Error error = Mono.Unix.Stdlib.GetLastError ();
+#: ../src/Utils/Unix.cs:32
+msgid "Unable to create temporary file"
+msgstr "Nem lehet ideiglenes fájlt létrehozni"
 
 #: ../src/Utils/GnomeUtil.cs:49
 msgid ""
@@ -2431,13 +2003,121 @@ msgstr ""
 "Az „F-Spot kézikönyv” nem található.  Ellenőrizze, hogy a telepítés "
 "sikeresen befejeződött-e."
 
+#: ../src/Widgets/CustomPrintWidget.cs:99
+msgid "Page Setup"
+msgstr "Oldalbeállítás"
+
+#: ../src/Widgets/CustomPrintWidget.cs:101
+#: ../src/Widgets/CustomPrintWidget.cs:106
+#, csharp-format
+msgid "Paper Size: {0} x {1} mm"
+msgstr "Papírméret: {0} x {1} mm"
+
+#: ../src/Widgets/CustomPrintWidget.cs:116
+msgid "Photos per page"
+msgstr "Fénykép oldalanként"
+
+#. ppp1.Toggled += TriggerChanged;
+#. ppp2.Toggled += TriggerChanged;
+#. ppp4.Toggled += TriggerChanged;
+#. ppp9.Toggled += TriggerChanged;
+#: ../src/Widgets/CustomPrintWidget.cs:128
+msgid "Repeat"
+msgstr "Ismétlés"
+
+#: ../src/Widgets/CustomPrintWidget.cs:129
+msgid "Print cut marks"
+msgstr "Levágási jelek nyomtatása"
+
+#: ../src/Widgets/CustomPrintWidget.cs:137
+msgid "Full Page (no margin)"
+msgstr "Teljes oldal (nincs margó)"
+
+#. Note for translators: "Zoom" is a Fit Mode
+#: ../src/Widgets/CustomPrintWidget.cs:141
+msgid "Zoom"
+msgstr "Nagyítás"
+
+#: ../src/Widgets/CustomPrintWidget.cs:142
+msgid "Fill"
+msgstr "Kitöltés"
+
+#: ../src/Widgets/CustomPrintWidget.cs:143
+msgid "Scaled"
+msgstr "Kifeszített"
+
+#: ../src/Widgets/CustomPrintWidget.cs:149
+msgid "White borders"
+msgstr "Fehér szegélyek"
+
+#: ../src/Widgets/CustomPrintWidget.cs:153
+msgid "Custom Text: "
+msgstr "Egyéni szöveg: "
+
+#: ../src/Widgets/EditorPage.cs:18
+msgid "Edit"
+msgstr "Szerkesztés"
+
+#: ../src/Widgets/FindBar.cs:58
+msgid "Find:"
+msgstr "Keresés:"
+
+#: ../src/Widgets/FindBar.cs:177 ../src/f-spot.glade.h:279
+msgid "and"
+msgstr "és"
+
+#: ../src/Widgets/InfoBox.cs:132
+msgid "Date"
+msgstr "Dátum"
+
+#: ../src/Widgets/InfoBox.cs:135 ../extensions/CDExport/CDExport.glade.h:5
+msgid "Size"
+msgstr "Méret"
+
+#: ../src/Widgets/InfoBox.cs:138
+msgid "Exposure"
+msgstr "Expozíció"
+
+#: ../src/Widgets/InfoBox.cs:279 ../src/Widgets/InfoBox.cs:288
+msgid "(Unknown)"
+msgstr "(Ismeretlen)"
+
+#: ../src/Widgets/InfoBox.cs:376
+#, csharp-format
+msgid "{0} Photos"
+msgstr "{0} fénykép"
+
+#. Note for translators: {0} is a date, {1} and {2} are times.
+#: ../src/Widgets/InfoBox.cs:388
+#, csharp-format
+msgid ""
+"On {0} between \n"
+"{1} and {2}"
+msgstr ""
+"{0} napon,\n"
+"{1} és {2} között"
+
+#: ../src/Widgets/InfoBox.cs:393
+#, csharp-format
+msgid ""
+"Between {0} \n"
+"and {1}"
+msgstr ""
+"{0} és {1}\n"
+"között"
+
+#: ../src/Widgets/MetadataDisplay.cs:23
+msgid "Exif"
+msgstr "Exif"
+
+#. clear Extended Metadata
+#: ../src/Widgets/MetadataDisplay.cs:387
+msgid "No Extended Metadata Available"
+msgstr "Nem érhetőek el bővített metaadatok"
+
 #: ../src/Widgets/RatingMenuItem.cs:48
 msgid "Rating:"
 msgstr "Értékelés:"
-
-#: ../src/Widgets/FindBar.cs:83
-msgid "Find:"
-msgstr "Keresés:"
 
 #: ../src/XmpTagsImporter.cs:89
 msgid "Location"
@@ -2498,11 +2178,22 @@ msgstr "800 kp"
 
 #: ../src/f-spot.glade.h:11
 msgid "<b></b>"
-msgstr "<b></b>"
+msgstr ""
+
+#: ../src/f-spot.glade.h:12 ../extensions/FlickrExport/FlickrExport.glade.h:1
+msgid "<b>Account</b>"
+msgstr "<b>Felhasználói fiók</b>"
 
 #: ../src/f-spot.glade.h:13
 msgid "<b>Action</b>"
 msgstr "<b>Művelet</b>"
+
+#: ../src/f-spot.glade.h:14
+#: ../extensions/GalleryExport/GalleryExport.glade.h:1
+#: ../extensions/PicasaWebExport/PicasaWebExport.glade.h:1
+#: ../extensions/SmugMugExport/SmugMugExport.glade.h:1
+msgid "<b>Album</b>"
+msgstr "<b>Album</b>"
 
 #: ../src/f-spot.glade.h:15
 msgid "<b>Co_rrections</b>"
@@ -2516,7 +2207,7 @@ msgstr "<b>Színkezelés</b>"
 msgid "<b>Color Temperature</b>"
 msgstr "<b>Színhőmérséklet</b>"
 
-#: ../src/f-spot.glade.h:18
+#: ../src/f-spot.glade.h:18 ../extensions/FolderExport/FolderExport.glade.h:3
 msgid "<b>Destination</b>"
 msgstr "<b>Cél</b>"
 
@@ -2537,6 +2228,7 @@ msgid "<b>From Photo</b>"
 msgstr "<b>Ezen fényképből</b>"
 
 #: ../src/f-spot.glade.h:23
+#: ../extensions/GalleryExport/GalleryExport.glade.h:2
 msgid "<b>Gallery</b>"
 msgstr "<b>Galéria</b>"
 
@@ -2557,60 +2249,76 @@ msgid "<b>Import Settings</b>"
 msgstr "<b>Importálás beállításai</b>"
 
 #: ../src/f-spot.glade.h:28
-msgid "<b>Interoperability</b>"
-msgstr "<b>Együttműködés</b>"
-
-#: ../src/f-spot.glade.h:29
 msgid "<b>Max Rating</b>"
 msgstr "<b>Legjobb értékelés</b>"
 
-#: ../src/f-spot.glade.h:30
+#: ../src/f-spot.glade.h:29
 msgid "<b>Metadata</b>"
 msgstr "<b>Metaadatok</b>"
 
-#: ../src/f-spot.glade.h:31
+#: ../src/f-spot.glade.h:30
 msgid "<b>Min Rating</b>"
 msgstr "<b>Leggyengébb értékelés</b>"
 
-#: ../src/f-spot.glade.h:32
+#: ../src/f-spot.glade.h:31
 msgid "<b>Photograph Layout</b>"
 msgstr "<b>Fényképkiosztás</b>"
 
-#: ../src/f-spot.glade.h:34
+#: ../src/f-spot.glade.h:32 ../extensions/FlickrExport/FlickrExport.glade.h:2
+#: ../extensions/FolderExport/FolderExport.glade.h:5
+#: ../extensions/GalleryExport/GalleryExport.glade.h:3
+#: ../extensions/PicasaWebExport/PicasaWebExport.glade.h:2
+#: ../extensions/SmugMugExport/SmugMugExport.glade.h:2
+msgid "<b>Photos</b>"
+msgstr "<b>Fényképek</b>"
+
+#: ../src/f-spot.glade.h:33
 msgid "<b>Predefined</b>"
 msgstr "<b>Előre definiált</b>"
 
-#: ../src/f-spot.glade.h:35
+#: ../src/f-spot.glade.h:34
 msgid "<b>Preview</b>"
 msgstr "<b>Előnézet</b>"
 
-#: ../src/f-spot.glade.h:36
+#: ../src/f-spot.glade.h:35
 msgid "<b>Printer Details</b>"
 msgstr "<b>Nyomtató részletei</b>"
 
-#: ../src/f-spot.glade.h:37
+#: ../src/f-spot.glade.h:36
 msgid "<b>Reference Photo</b>"
 msgstr "<b>Referencia-fénykép</b>"
 
-#: ../src/f-spot.glade.h:38
+#: ../src/f-spot.glade.h:37
 msgid "<b>Screensaver</b>"
 msgstr "<b>Képernyővédő</b>"
 
-#: ../src/f-spot.glade.h:39
+#: ../src/f-spot.glade.h:38
 msgid "<b>Select period</b>"
 msgstr "<b>Válasszon időszakot</b>"
 
-#: ../src/f-spot.glade.h:40
+#: ../src/f-spot.glade.h:39
 msgid "<b>Size</b>"
 msgstr "<b>Méret</b>"
 
-#: ../src/f-spot.glade.h:41
+#: ../src/f-spot.glade.h:40
 msgid "<b>Start Date</b>"
 msgstr "<b>Kezdődátum</b>"
 
-#: ../src/f-spot.glade.h:43
+#: ../src/f-spot.glade.h:41 ../extensions/FlickrExport/FlickrExport.glade.h:3
+#: ../extensions/FolderExport/FolderExport.glade.h:6
+#: ../extensions/GalleryExport/GalleryExport.glade.h:4
+#: ../extensions/PicasaWebExport/PicasaWebExport.glade.h:4
+#: ../extensions/SmugMugExport/SmugMugExport.glade.h:4
+msgid "<b>Style</b>"
+msgstr "<b>Stílus</b>"
+
+#: ../src/f-spot.glade.h:42
 msgid "<b>Summary</b>"
 msgstr "<b>Összefoglaló</b>"
+
+#: ../src/f-spot.glade.h:43
+msgid "<b>Theming</b>"
+msgstr "<b>Témák</b>"
 
 #: ../src/f-spot.glade.h:44
 msgid "<b>Transparent Parts</b>"
@@ -2638,15 +2346,9 @@ msgid ""
 "i></small>"
 msgstr ""
 "<small><i>Válassza ki a mappát, amelyben az F-Spotnak az újonnan importált "
-"fotókat tárolnia kell</i></small>"
+"fényképeket tárolnia kell</i></small>"
 
 #: ../src/f-spot.glade.h:50
-msgid ""
-"<small><i>Enable this option if you want to allow other programs to import "
-"or delete photos and tags over DBus.</i></small>"
-msgstr "<small><i>Engedélyezze ezt a beállítást a fényképek D-Bus feletti importálásának vagy törlésének engedélyezéséhez más programoknak.</i></small>"
-
-#: ../src/f-spot.glade.h:51
 msgid ""
 "<small><i>Enable this option to store tags and descriptions inside \n"
 "supported image formats.</i></small>"
@@ -2654,14 +2356,17 @@ msgstr ""
 "<small><i>Engedélyezze ezt a beállítást a címkék és leírások tárolásához\n"
 "a támogatott képformátumokon belül.</i></small>"
 
-#: ../src/f-spot.glade.h:53
+#: ../src/f-spot.glade.h:52
 msgid ""
 "<small><i>Enable this to allow interpolation on zoomed images. You shouldn't "
 "disable this for viewing photos, but disabling the interpolation could be "
 "usefull in icon design.</i></small>"
-msgstr "<small><i>Engedélyezze ezt a nagyított képek interpolációjának bekapcsolásához. Ezt nem szükséges kikapcsolni fényképek megjelenítéséhez, de hasznos lehet ikonok tervezésekor.</i></small>"
+msgstr ""
+"<small><i>Engedélyezze ezt a nagyított képek interpolációjának "
+"bekapcsolásához. Ezt nem szükséges kikapcsolni fényképek megjelenítéséhez, "
+"de hasznos lehet ikonok tervezésekor.</i></small>"
 
-#: ../src/f-spot.glade.h:54
+#: ../src/f-spot.glade.h:53
 msgid ""
 "<small><i>While acting as a screensaver, F-Spot can display all of your "
 "images, or a small subset based on tags.</i></small>"
@@ -2669,7 +2374,7 @@ msgstr ""
 "<small><i>Ha az F-Spot képernyővédőként működik, megjelenítheti az összes "
 "képét vagy azok egy részhalmazát a címkék alapján.</i></small>"
 
-#: ../src/f-spot.glade.h:55
+#: ../src/f-spot.glade.h:54
 msgid ""
 "<small><i>You can choose how to display transparent parts in images. This "
 "option has no effect on photos, but setting this as check pattern or custom "
@@ -2680,6 +2385,10 @@ msgstr ""
 "Ennek a beállításnak nincs hatása fényképekre, de sakkmintára vagy egyéni "
 "színre állítása hasznos lehet ikonok vagy más áttetsző részekkel rendelkező "
 "grafikák megjelenítésekor.</i></small>"
+
+#: ../src/f-spot.glade.h:55
+msgid "<small><i>You'll have to restart f-spot to load the new theme.</i></small>"
+msgstr "<small><i>Az új téma betöltéséhez újra kell indítani az F-Spotot.</i></small>"
 
 #: ../src/f-spot.glade.h:56
 msgid "<small>C_ontrast:</small>"
@@ -2711,7 +2420,7 @@ msgstr "<small>Árn_yalat:</small>"
 
 #: ../src/f-spot.glade.h:63
 msgid "Ad_just Color..."
-msgstr "Szí_n beállítása..."
+msgstr "Szí_n beállítása…"
 
 #: ../src/f-spot.glade.h:64
 msgid "Adjust Color"
@@ -2723,107 +2432,114 @@ msgstr "Idő beállítása"
 
 #: ../src/f-spot.glade.h:66
 msgid "Adjust _Time..."
-msgstr "I_dő beállítása..."
+msgstr "I_dő beállítása…"
 
 #: ../src/f-spot.glade.h:67
 msgid "Adjusted date: "
 msgstr "Módosított idő: "
 
 #: ../src/f-spot.glade.h:69
-msgid "Allow other programs to manipulate F-Spot"
-msgstr "Más programok kezelhetik az F-Spotot"
-
-#: ../src/f-spot.glade.h:70
 msgid "Arrange _by"
 msgstr "_Rendezés szempontja"
 
-#: ../src/f-spot.glade.h:71
+#: ../src/f-spot.glade.h:70
 msgid "As _background"
 msgstr "_Háttérként"
 
-#: ../src/f-spot.glade.h:72
+#: ../src/f-spot.glade.h:71
 msgid "As _custom color: "
 msgstr "Eg_yéni színként: "
 
-#: ../src/f-spot.glade.h:73
+#: ../src/f-spot.glade.h:72
 msgid "As check _pattern"
 msgstr "_Rácsmintaként"
 
-#: ../src/f-spot.glade.h:74
+#: ../src/f-spot.glade.h:73
 msgid "Attach Tags:"
 msgstr "Címkék csatolása:"
 
-#: ../src/f-spot.glade.h:75
+#: ../src/f-spot.glade.h:74
 msgid "Attach tag:"
 msgstr "Címke csatolása:"
 
-#: ../src/f-spot.glade.h:78
+#: ../src/f-spot.glade.h:75 ../extensions/CDExport/CDExport.glade.h:3
+#: ../extensions/FolderExport/FolderExport.glade.h:7
+#: ../extensions/GalleryExport/GalleryExport.glade.h:7
+#: ../extensions/SmugMugExport/SmugMugExport.glade.h:5
+msgid "Autorotate"
+msgstr "Automatikus forgatás"
+
+#: ../src/f-spot.glade.h:77
 msgid "By _Date"
 msgstr "_Dátum szerint"
 
-#: ../src/f-spot.glade.h:79
+#: ../src/f-spot.glade.h:78
 msgid "By _Import Roll"
 msgstr "_Importálási kör szerint"
 
-#: ../src/f-spot.glade.h:80
+#: ../src/f-spot.glade.h:79
 msgid "By _Rating"
 msgstr "É_rtékelés szerint"
 
-#: ../src/f-spot.glade.h:81
+#: ../src/f-spot.glade.h:80
 msgid "CD"
 msgstr "CD"
 
-#: ../src/f-spot.glade.h:82
+#: ../src/f-spot.glade.h:81
 msgid "C_aption:"
 msgstr "_Felirat:"
 
-#: ../src/f-spot.glade.h:83
+#: ../src/f-spot.glade.h:82
 msgid "C_ontrast:"
 msgstr "_Kontraszt:"
 
-#: ../src/f-spot.glade.h:84
+#: ../src/f-spot.glade.h:83
 msgid "Camera Selection"
 msgstr "Kamera kiválasztása"
 
-#: ../src/f-spot.glade.h:85
+#: ../src/f-spot.glade.h:84
 msgid "Cancel, do not change the current timeline. "
 msgstr "Megszakítás, az aktuális idővonal változatlanul hagyása."
 
-#: ../src/f-spot.glade.h:86
+#: ../src/f-spot.glade.h:85
 msgid "Co_nfigure"
 msgstr "_Beállítás"
 
-#: ../src/f-spot.glade.h:87
+#: ../src/f-spot.glade.h:86
 msgid "Copy Locat_ion"
 msgstr "_Hely másolása"
 
-#: ../src/f-spot.glade.h:88
+#: ../src/f-spot.glade.h:87
 msgid "Copy files to the Photos folder"
 msgstr "Fájlok másolása a Fényképek mappába"
 
-#: ../src/f-spot.glade.h:89
+#: ../src/f-spot.glade.h:88
 msgid "Create Mail"
 msgstr "Levél létrehozása"
 
-#: ../src/f-spot.glade.h:90
+#: ../src/f-spot.glade.h:89
 msgid "Create New _Tag..."
-msgstr "Új _címke létrehozása..."
+msgstr "Új _címke létrehozása…"
+
+#: ../src/f-spot.glade.h:90
+msgid "Create _New Version..."
+msgstr "Ú_j verzió létrehozása…"
 
 #: ../src/f-spot.glade.h:91
-msgid "Create _New Version..."
-msgstr "Ú_j verzió létrehozása..."
+msgid "Create a mail with the selected photos (possibly resized) attached"
+msgstr "Levél létrehozása, csatolva a kijelölt (esetleg átméretezett) fényképeket"
 
 #: ../src/f-spot.glade.h:92
-msgid "Create a mail with the selected photos (possibly resized) attached"
-msgstr "Levél létrehozása, csatolva a kijelölt (esetleg átméretezett) fotókat"
-
-#: ../src/f-spot.glade.h:93
 msgid "Crop photo to _fit"
 msgstr "_Fénykép levágása, hogy elférjen"
 
-#: ../src/f-spot.glade.h:94
+#: ../src/f-spot.glade.h:93
 msgid "Current date:"
 msgstr "Jelenlegi dátum:"
+
+#: ../src/f-spot.glade.h:94
+msgid "Custom Theme"
+msgstr "Egyéni téma"
 
 #: ../src/f-spot.glade.h:95
 msgid "Display File _Names"
@@ -2857,6 +2573,13 @@ msgstr "Ikon szerkesztése"
 msgid "Estimated new size"
 msgstr "Becsült új méret"
 
+#: ../src/f-spot.glade.h:103 ../extensions/FlickrExport/FlickrExport.glade.h:6
+#: ../extensions/GalleryExport/GalleryExport.glade.h:8
+#: ../extensions/PicasaWebExport/PicasaWebExport.glade.h:9
+#: ../extensions/SmugMugExport/SmugMugExport.glade.h:6
+msgid "Export"
+msgstr "Exportálás"
+
 #: ../src/f-spot.glade.h:104
 msgid "Extra large"
 msgstr "Extra nagy"
@@ -2878,6 +2601,10 @@ msgid "Fin_d"
 msgstr "Kere_sés"
 
 #: ../src/f-spot.glade.h:111
+msgid "From List:"
+msgstr "Listából:"
+
+#: ../src/f-spot.glade.h:112
 msgid ""
 "From Screen\n"
 "Standard RGB"
@@ -2885,7 +2612,11 @@ msgstr ""
 "Képernyőről\n"
 "Szabvány RGB"
 
-#: ../src/f-spot.glade.h:113
+#: ../src/f-spot.glade.h:114
+msgid "From gtkrc File:"
+msgstr "Gtkrc fájlból:"
+
+#: ../src/f-spot.glade.h:115
 msgid ""
 "Full Page\n"
 "Standard - 4x6"
@@ -2893,15 +2624,15 @@ msgstr ""
 "Teljes oldal\n"
 "Szabvány - 4x6"
 
-#: ../src/f-spot.glade.h:115
+#: ../src/f-spot.glade.h:117
 msgid "G_allery:"
 msgstr "G_aléria:"
 
-#: ../src/f-spot.glade.h:116
+#: ../src/f-spot.glade.h:118
 msgid "Gallery"
 msgstr "Galéria"
 
-#: ../src/f-spot.glade.h:117
+#: ../src/f-spot.glade.h:119
 msgid ""
 "Hairline\n"
 "0.25\"\n"
@@ -2913,43 +2644,48 @@ msgstr ""
 "0.5\"\n"
 "1\"\n"
 
-#: ../src/f-spot.glade.h:122
+#: ../src/f-spot.glade.h:124
 msgid "Images tagged with:"
 msgstr "Képek a következő címkével:"
 
-#: ../src/f-spot.glade.h:124
+#. Translators: this string means 'source of import'
+#: ../src/f-spot.glade.h:127
 msgid "Import Source:"
 msgstr "Importálás forrása:"
 
-#: ../src/f-spot.glade.h:125
+#: ../src/f-spot.glade.h:128
 msgid "Include subfolders"
 msgstr "Alkönyvtárakkal együtt"
 
-#: ../src/f-spot.glade.h:126
+#: ../src/f-spot.glade.h:129
 msgid "Large"
 msgstr "Nagy"
 
-#: ../src/f-spot.glade.h:127
+#: ../src/f-spot.glade.h:130
 msgid "Make F-Spot your screensaver"
 msgstr "Az F-Spot legyen a képernyővédő"
 
-#: ../src/f-spot.glade.h:128
+#: ../src/f-spot.glade.h:131
 msgid "Manage _Extensions"
 msgstr "_Kiterjesztések kezelése"
 
-#: ../src/f-spot.glade.h:129
+#: ../src/f-spot.glade.h:132
+msgid "Manage your custom selection ratios"
+msgstr "Egyéni kiválasztási arányok kezelése"
+
+#: ../src/f-spot.glade.h:133
 msgid "Medium"
 msgstr "Közepes"
 
-#: ../src/f-spot.glade.h:130
+#: ../src/f-spot.glade.h:134
 msgid "N_umber of Copies:"
 msgstr "_Másolatok száma:"
 
-#: ../src/f-spot.glade.h:132
+#: ../src/f-spot.glade.h:136
 msgid "No _image"
 msgstr "Nincs _kép"
 
-#: ../src/f-spot.glade.h:133
+#: ../src/f-spot.glade.h:137
 msgid ""
 "None\n"
 "Title\n"
@@ -2963,99 +2699,103 @@ msgstr ""
 "Dátum\n"
 "Fénykép részletei"
 
-#: ../src/f-spot.glade.h:138
-msgid "Number of photos in selected rolls :"
+#: ../src/f-spot.glade.h:142
+msgid "Number of photos in selected rolls:"
 msgstr "Fényképek száma a kijelölt körökben:"
 
-#: ../src/f-spot.glade.h:139
+#: ../src/f-spot.glade.h:143
 msgid "Number of pictures"
 msgstr "Képek száma"
 
-#: ../src/f-spot.glade.h:140
+#: ../src/f-spot.glade.h:144
 msgid "Only photos taken within these dates will be displayed."
 msgstr "Csak az ezen dátumok között készített fényképek kerülnek megjelenítésre."
 
-#: ../src/f-spot.glade.h:141
+#: ../src/f-spot.glade.h:145
 msgid "Open _Folder..."
-msgstr "Ma_ppa megnyitása..."
+msgstr "Ma_ppa megnyitása…"
 
-#: ../src/f-spot.glade.h:143
+#: ../src/f-spot.glade.h:147
 msgid "Original size (possible very large file size)"
 msgstr "Eredeti méret (előfordulhat nagyon nagy fájlméret)"
 
-#: ../src/f-spot.glade.h:144
+#: ../src/f-spot.glade.h:148
 msgid "P_arent Tag:"
 msgstr "Szülőcí_mke:"
 
-#: ../src/f-spot.glade.h:145
+#: ../src/f-spot.glade.h:149
 msgid "P_hoto Source:"
 msgstr "_Fényképforrás:"
 
-#: ../src/f-spot.glade.h:146
+#: ../src/f-spot.glade.h:150
 msgid "Page 1 of 3"
 msgstr "1/3 oldal"
 
-#: ../src/f-spot.glade.h:147
+#: ../src/f-spot.glade.h:151
 msgid "Pause"
 msgstr "Szünet"
 
-#: ../src/f-spot.glade.h:148
+#: ../src/f-spot.glade.h:152
 msgid "Photo 0 of 0"
 msgstr "0/0 fénykép"
 
-#: ../src/f-spot.glade.h:149
+#: ../src/f-spot.glade.h:153
 msgid "Photo _Size:"
 msgstr "_Fénykép mérete:"
 
-#: ../src/f-spot.glade.h:150
+#: ../src/f-spot.glade.h:154
 msgid "Preferences"
 msgstr "Beállítások"
 
-#: ../src/f-spot.glade.h:152
-msgid "Print"
-msgstr "Nyomtatás"
-
-#: ../src/f-spot.glade.h:153
+#: ../src/f-spot.glade.h:156
 msgid "Print crop _marks"
 msgstr "_Levágási jelek nyomtatása"
 
-#: ../src/f-spot.glade.h:154
+#: ../src/f-spot.glade.h:157
+msgid "Print..."
+msgstr "Nyomtatás…"
+
+#: ../src/f-spot.glade.h:158
 msgid "Re_fresh Thumbnail"
 msgstr "Bél_yegkép frissítése"
 
-#: ../src/f-spot.glade.h:156
+#: ../src/f-spot.glade.h:160
 msgid "Repair"
 msgstr "Javítás"
 
-#: ../src/f-spot.glade.h:157
+#: ../src/f-spot.glade.h:161
 msgid "Reset"
 msgstr "Visszaállítás"
 
-#: ../src/f-spot.glade.h:160
+#: ../src/f-spot.glade.h:164
 msgid "Select A Folder"
 msgstr "Válasszon egy mappát"
 
-#: ../src/f-spot.glade.h:161
-msgid "Select Photos to Copy From Camera..."
-msgstr "Válassza ki a fényképezőgépről másolandó fényképeket..."
+#: ../src/f-spot.glade.h:165
+msgid "Select A gtkrc File"
+msgstr "Válasszon egy gtkrc fájlt"
 
-#: ../src/f-spot.glade.h:163
+#: ../src/f-spot.glade.h:166
+msgid "Select Photos to Copy From Camera..."
+msgstr "Válassza ki a fényképezőgépről másolandó fényképeket…"
+
+#: ../src/f-spot.glade.h:168
 msgid "Select _None"
 msgstr "Kijelölés megszü_ntetése"
 
-#: ../src/f-spot.glade.h:164
+#: ../src/f-spot.glade.h:169
 msgid "Select a Tag..."
-msgstr "Válasszon ki egy címkét..."
+msgstr "Válasszon ki egy címkét…"
 
-#: ../src/f-spot.glade.h:165
+#: ../src/f-spot.glade.h:170
 msgid "Select the camera from which you want to transfer files"
 msgstr "Válassza ki a fényképezőgépet, amelyről át akarja vinni a fájlokat"
 
-#: ../src/f-spot.glade.h:166
+#: ../src/f-spot.glade.h:171
 msgid "Selected Camera: "
 msgstr "Kijelölt fényképezőgép: "
 
-#: ../src/f-spot.glade.h:167
+#: ../src/f-spot.glade.h:172
 msgid ""
 "Selection\n"
 "Gallery\n"
@@ -3065,55 +2805,59 @@ msgstr ""
 "Galéria\n"
 "Viewport"
 
-#: ../src/f-spot.glade.h:170
-msgid "Send by _Mail..."
-msgstr "Küldés e-_mailben..."
+#: ../src/f-spot.glade.h:175
+msgid "Selection Constraints"
+msgstr "Kiválasztási megszorítások"
 
-#: ../src/f-spot.glade.h:171
+#: ../src/f-spot.glade.h:176
+msgid "Send by _Mail..."
+msgstr "Küldés e-_mailben…"
+
+#: ../src/f-spot.glade.h:177
 msgid "Set Rating Filter"
 msgstr "Értékelési szűrő engedélyezése"
 
-#: ../src/f-spot.glade.h:172
+#: ../src/f-spot.glade.h:178
 msgid "Set as _Background"
 msgstr "Beállítás _háttérként"
 
-#: ../src/f-spot.glade.h:173
+#: ../src/f-spot.glade.h:179
 msgid "Set date range"
 msgstr "Dátumtartomány beállítása"
 
-#: ../src/f-spot.glade.h:175
+#: ../src/f-spot.glade.h:181
 msgid "Show all photos."
 msgstr "Minden fénykép megjelenítése."
 
-#: ../src/f-spot.glade.h:176
+#: ../src/f-spot.glade.h:182
 msgid "Show or hide the side pane"
 msgstr "Az oldalsáv mutatása vagy rejtése"
 
-#: ../src/f-spot.glade.h:177
+#: ../src/f-spot.glade.h:183
 msgid "Show or hide the toolbar"
 msgstr "Az eszköztár mutatása vagy rejtése"
 
-#: ../src/f-spot.glade.h:178
+#: ../src/f-spot.glade.h:184
 msgid "Side _pane"
 msgstr "_Oldalsáv"
 
-#: ../src/f-spot.glade.h:179
+#: ../src/f-spot.glade.h:185
 msgid "Side_bar"
 msgstr "_Oldalsáv"
 
-#: ../src/f-spot.glade.h:180
+#: ../src/f-spot.glade.h:186
 msgid "Small"
 msgstr "Kicsi"
 
-#: ../src/f-spot.glade.h:181
+#: ../src/f-spot.glade.h:187
 msgid "So_urce Temp"
 msgstr "_Forrás hőmérséklete"
 
-#: ../src/f-spot.glade.h:182
+#: ../src/f-spot.glade.h:188
 msgid "Space all photos by"
 msgstr "Minden fénykép kitöltése ennyivel:"
 
-#: ../src/f-spot.glade.h:183
+#: ../src/f-spot.glade.h:189
 msgid ""
 "Specify if an original size picture should be rotated or not. Smaller sizes "
 "are automatically rotated."
@@ -3121,7 +2865,7 @@ msgstr ""
 "Adja meg, hogy az eredeti méretű képeket kell-e forgatni. A kisebb méretek "
 "automatikusan forgatásra kerülnek."
 
-#: ../src/f-spot.glade.h:184
+#: ../src/f-spot.glade.h:190
 msgid ""
 "Standard RGB\n"
 "Image Profile\n"
@@ -3131,310 +2875,342 @@ msgstr ""
 "Képprofil\n"
 "Egyéni\n"
 
-#: ../src/f-spot.glade.h:188
+#: ../src/f-spot.glade.h:194
 msgid "Strip image _metadata"
 msgstr "Kép _metaadatainak eltávolítása"
 
-#: ../src/f-spot.glade.h:189
+#: ../src/f-spot.glade.h:195
+msgid "System Theme"
+msgstr "Rendszertéma"
+
+#: ../src/f-spot.glade.h:196
 msgid "T_ags"
 msgstr "_Címkék"
 
-#: ../src/f-spot.glade.h:190
+#: ../src/f-spot.glade.h:197 ../extensions/FolderExport/FolderExport.cs:1178
+#: ../extensions/FolderExport/FolderExport.cs:1179
 msgid "Tags: "
 msgstr "Címkék: "
 
-#: ../src/f-spot.glade.h:191
+#: ../src/f-spot.glade.h:198
 msgid "Thumbnail _elements"
 msgstr "Bélyegké_pek"
 
-#: ../src/f-spot.glade.h:192
+#: ../src/f-spot.glade.h:199
 msgid "Tiny"
 msgstr "Apró"
 
-#: ../src/f-spot.glade.h:193
+#: ../src/f-spot.glade.h:200
 msgid "Too_lbar"
 msgstr "_Eszköztár"
 
-#: ../src/f-spot.glade.h:194
+#: ../src/f-spot.glade.h:201
 msgid "Total original size"
 msgstr "Teljes eredeti méret"
 
-#: ../src/f-spot.glade.h:195
+#: ../src/f-spot.glade.h:202
 msgid "View"
 msgstr "Nézet"
 
-#: ../src/f-spot.glade.h:196
+#: ../src/f-spot.glade.h:203
 msgid "Will print using: US Letter size on Generic Postscript"
 msgstr ""
 "Nyomtatás a következő használatával: US Letter méret az Általános Postscript-"
 "en"
 
-#: ../src/f-spot.glade.h:197
+#: ../src/f-spot.glade.h:204
 msgid "Write _metadata to file"
 msgstr "_Metaadatok írása fájlba"
 
-#: ../src/f-spot.glade.h:198
+#: ../src/f-spot.glade.h:205
 msgid "Zoom _in"
 msgstr "_Nagyítás"
 
-#: ../src/f-spot.glade.h:199
+#: ../src/f-spot.glade.h:206
 msgid "Zoom _out"
 msgstr "_Kicsinyítés"
 
-#: ../src/f-spot.glade.h:200
+#: ../src/f-spot.glade.h:207
 msgid "Zoom in"
 msgstr "Nagyítás"
 
-#: ../src/f-spot.glade.h:201
+#: ../src/f-spot.glade.h:208
 msgid "Zoom out"
 msgstr "Kicsinyítés"
 
-#: ../src/f-spot.glade.h:203
+#: ../src/f-spot.glade.h:210
 msgid "_Attach Tag to Selection"
 msgstr "Cí_mke csatolása a kijelöléshez"
 
-#: ../src/f-spot.glade.h:204
+#: ../src/f-spot.glade.h:211
 msgid "_Border:"
 msgstr "S_zegély:"
 
-#: ../src/f-spot.glade.h:205
+#: ../src/f-spot.glade.h:212
 msgid "_Brightness:"
 msgstr "_Fényesség:"
 
-#: ../src/f-spot.glade.h:207
+#: ../src/f-spot.glade.h:214
 msgid "_Clear Rating Filter"
 msgstr "Értékelési s_zűrő törlése"
 
-#: ../src/f-spot.glade.h:208
+#: ../src/f-spot.glade.h:215
 msgid "_Clear Roll Filter"
 msgstr "_Körszűrő törlése"
 
-#: ../src/f-spot.glade.h:209
+#: ../src/f-spot.glade.h:216
 msgid "_Components"
 msgstr "Öss_zetevők"
 
-#: ../src/f-spot.glade.h:210
+#: ../src/f-spot.glade.h:217
 msgid "_Contents"
 msgstr "_Tartalom"
 
-#: ../src/f-spot.glade.h:211
+#: ../src/f-spot.glade.h:218
+msgid "_Create"
+msgstr "_Létrehozás"
+
+#: ../src/f-spot.glade.h:219
 msgid "_Create Mail"
 msgstr "_Levél létrehozása"
 
-#: ../src/f-spot.glade.h:212
+#: ../src/f-spot.glade.h:220
 msgid "_Dates"
 msgstr "_Dátumok"
 
-#: ../src/f-spot.glade.h:214
+#: ../src/f-spot.glade.h:222
 msgid "_Delete Selected Tag"
 msgstr "Kijelölt címke _törlése"
 
-#: ../src/f-spot.glade.h:215
+#: ../src/f-spot.glade.h:223
 msgid "_Delete Version"
 msgstr "Verzió _törlése"
 
-#: ../src/f-spot.glade.h:216
+#: ../src/f-spot.glade.h:224
 msgid "_Destination Temp"
 msgstr "_Célhőmérséklet"
 
-#: ../src/f-spot.glade.h:217
+#: ../src/f-spot.glade.h:225
 msgid "_Display:"
 msgstr "_Képernyő:"
 
-#: ../src/f-spot.glade.h:218
+#: ../src/f-spot.glade.h:226
 msgid "_Edit"
 msgstr "S_zerkesztés"
 
-#: ../src/f-spot.glade.h:219
+#: ../src/f-spot.glade.h:227
 msgid "_Edit Selected Tag..."
-msgstr "Kijelölt címke s_zerkesztése..."
+msgstr "Kijelölt címke s_zerkesztése…"
 
-#: ../src/f-spot.glade.h:220
+#: ../src/f-spot.glade.h:228
 msgid "_Export"
 msgstr "_Exportálás"
 
-#: ../src/f-spot.glade.h:222
+#: ../src/f-spot.glade.h:229
+#: ../extensions/FlickrExport/FlickrExport.glade.h:15
+#: ../extensions/PicasaWebExport/PicasaWebExport.glade.h:20
+msgid "_Export tags"
+msgstr "Címkék ex_portálása"
+
+#: ../src/f-spot.glade.h:230
 msgid "_Export to"
 msgstr "E_xportálás"
 
-#: ../src/f-spot.glade.h:224
-msgid "_File"
-msgstr "_Fájl"
+#: ../src/f-spot.glade.h:231
+#: ../extensions/GalleryExport/GalleryExport.glade.h:15
+#: ../extensions/PicasaWebExport/PicasaWebExport.glade.h:21
+#: ../extensions/SmugMugExport/SmugMugExport.glade.h:12
+msgid "_Export to Album:"
+msgstr "E_xportálás ebbe az albumba:"
 
-#: ../src/f-spot.glade.h:225
+# fixme mi is ez?
+#: ../src/f-spot.glade.h:232
+msgid "_Filmstrip"
+msgstr "_Filmtekercs"
+
+#: ../src/f-spot.glade.h:233
 msgid "_Flickr"
 msgstr "_Flickr"
 
-#: ../src/f-spot.glade.h:226
+#: ../src/f-spot.glade.h:234
 msgid "_Folder"
 msgstr "_Mappa"
 
-#: ../src/f-spot.glade.h:227
+#: ../src/f-spot.glade.h:235
 msgid "_Fullscreen"
 msgstr "_Teljes képernyő"
 
-#: ../src/f-spot.glade.h:228
+#: ../src/f-spot.glade.h:236
 msgid "_Gallery"
 msgstr "_Galéria"
 
-#: ../src/f-spot.glade.h:229
+#: ../src/f-spot.glade.h:237
 msgid "_Help"
 msgstr "_Súgó"
 
-#: ../src/f-spot.glade.h:230
+#: ../src/f-spot.glade.h:238
 msgid "_Hidden"
 msgstr "_Rejtett"
 
-#: ../src/f-spot.glade.h:231
+#: ../src/f-spot.glade.h:239
 msgid "_Hue:"
 msgstr "Ár_nyalat:"
 
-#: ../src/f-spot.glade.h:232
+#: ../src/f-spot.glade.h:240
 msgid "_Icon:"
 msgstr "_Ikon:"
 
-#: ../src/f-spot.glade.h:233
+#: ../src/f-spot.glade.h:241
 msgid "_Import..."
-msgstr "_Importálás..."
+msgstr "_Importálás…"
 
-#: ../src/f-spot.glade.h:234
+#: ../src/f-spot.glade.h:242
 msgid "_Interpolate image on zoom"
 msgstr "Ké_p interpolációja nagyításkor"
 
-#: ../src/f-spot.glade.h:235
+#: ../src/f-spot.glade.h:243
 msgid "_Large"
 msgstr "_Nagy"
 
-#: ../src/f-spot.glade.h:236
+#: ../src/f-spot.glade.h:244
 msgid "_Last Import Roll"
 msgstr "_Utolsó importálási kör"
 
-#: ../src/f-spot.glade.h:237
+#: ../src/f-spot.glade.h:245
 msgid "_Medium"
 msgstr "_Közepes"
 
-#: ../src/f-spot.glade.h:238
-msgid "_Metadata Browser"
-msgstr "_Metaadat-böngésző"
-
-#: ../src/f-spot.glade.h:239
+#: ../src/f-spot.glade.h:246
 msgid "_Month"
 msgstr "_Hónap"
 
-#: ../src/f-spot.glade.h:240
+#: ../src/f-spot.glade.h:247
 msgid "_New Window"
 msgstr "Új _ablak"
 
-#: ../src/f-spot.glade.h:241
+#: ../src/f-spot.glade.h:248
 msgid "_Open album in browser when done uploading"
 msgstr "Az _album megnyitása böngészőben a feltöltés befejezésekor"
 
-#: ../src/f-spot.glade.h:242
+#: ../src/f-spot.glade.h:249
 msgid "_Open destination when done exporting"
 msgstr "_Cél megnyitása az exportálás befejezésekor"
 
-#: ../src/f-spot.glade.h:243
+#: ../src/f-spot.glade.h:250
 msgid "_Output:"
 msgstr "Ki_menet:"
 
-#: ../src/f-spot.glade.h:244
+#: ../src/f-spot.glade.h:251
+msgid "_Photo"
+msgstr "_Fénykép"
+
+#: ../src/f-spot.glade.h:252
 msgid "_Quit"
 msgstr "_Kilépés"
 
-#: ../src/f-spot.glade.h:245
+#: ../src/f-spot.glade.h:253
 msgid "_Ratings"
 msgstr "Ér_tékelések"
 
-#: ../src/f-spot.glade.h:247
+#: ../src/f-spot.glade.h:255
 msgid "_Remove Tag From Selection"
 msgstr "Címke _eltávolítása a kijelölésből"
 
-#: ../src/f-spot.glade.h:248
+#: ../src/f-spot.glade.h:256
 msgid "_Rename Version"
 msgstr "Verzió átneve_zése"
 
-#: ../src/f-spot.glade.h:251
+#: ../src/f-spot.glade.h:257
+#: ../extensions/FlickrExport/FlickrExport.glade.h:16
+#: ../extensions/FolderExport/FolderExport.glade.h:17
+#: ../extensions/GalleryExport/GalleryExport.glade.h:20
+#: ../extensions/PicasaWebExport/PicasaWebExport.glade.h:24
+#: ../extensions/SmugMugExport/SmugMugExport.glade.h:14
+msgid "_Resize to: "
+msgstr "Át_méretezés: "
+
+#: ../src/f-spot.glade.h:259
 msgid "_Saturation:"
 msgstr "_Telítettség:"
 
-#: ../src/f-spot.glade.h:252
+#: ../src/f-spot.glade.h:260
 msgid "_Scale photos to no larger than: "
 msgstr "Fényképek méretezése nem _nagyobbra, mint: "
 
-#: ../src/f-spot.glade.h:253
+#: ../src/f-spot.glade.h:261
 msgid "_Select Import Rolls..."
-msgstr "_Válasszon importálási köröket..."
+msgstr "_Válasszon importálási köröket…"
 
-#: ../src/f-spot.glade.h:254
+#: ../src/f-spot.glade.h:262
 msgid "_Set Date Range..."
-msgstr "_Dátumtartomány beállítása..."
+msgstr "_Dátumtartomány beállítása…"
 
-#: ../src/f-spot.glade.h:255
+#: ../src/f-spot.glade.h:263
 msgid "_Set Rating filter..."
-msgstr "Érté_kelési szűrő beállítása..."
+msgstr "Érté_kelési szűrő beállítása…"
 
-#: ../src/f-spot.glade.h:256
+#: ../src/f-spot.glade.h:264
 msgid "_Sharpen..."
-msgstr "Éle_sítés..."
+msgstr "Éle_sítés…"
 
-#: ../src/f-spot.glade.h:257
+#: ../src/f-spot.glade.h:265
 msgid "_Slideshow"
 msgstr "_Diavetítés"
 
-#: ../src/f-spot.glade.h:258
+#: ../src/f-spot.glade.h:266
 msgid "_Small"
 msgstr "Ki_csi"
 
-#: ../src/f-spot.glade.h:259
+#: ../src/f-spot.glade.h:267
 msgid "_Strip metadata"
 msgstr "Metaa_datok eltávolítása"
 
-#: ../src/f-spot.glade.h:260
+#: ../src/f-spot.glade.h:268
 msgid "_Tag Icons"
 msgstr "_Címkeikonok"
 
-#: ../src/f-spot.glade.h:261
+#: ../src/f-spot.glade.h:269
 msgid "_Tag Name:"
 msgstr "Címke _neve:"
 
-#: ../src/f-spot.glade.h:263
+#: ../src/f-spot.glade.h:270
+msgid "_Tags"
+msgstr "_Címkék"
+
+#: ../src/f-spot.glade.h:271
 msgid "_Timeline"
 msgstr "_Idővonal"
 
-#: ../src/f-spot.glade.h:264
+#: ../src/f-spot.glade.h:272
 msgid "_Toolbar"
 msgstr "_Eszköztár"
 
-#: ../src/f-spot.glade.h:265
+#: ../src/f-spot.glade.h:273
 msgid "_Tools"
 msgstr "_Eszközök"
 
-#: ../src/f-spot.glade.h:266
+#: ../src/f-spot.glade.h:274
 msgid "_URI:"
 msgstr "_URI:"
 
-#: ../src/f-spot.glade.h:267
+#: ../src/f-spot.glade.h:275
 msgid "_Untagged Photos"
 msgstr "_Címkézetlen fényképek"
 
-#: ../src/f-spot.glade.h:268
+#: ../src/f-spot.glade.h:276
 msgid "_Version"
 msgstr "_Verzió"
 
-#: ../src/f-spot.glade.h:269
+#: ../src/f-spot.glade.h:277
 msgid "_View"
 msgstr "_Nézet"
 
-#: ../src/f-spot.glade.h:270
+#: ../src/f-spot.glade.h:278
 msgid "_Virtual Filesystem"
 msgstr "_Virtuális fájlrendszer"
 
-#: ../src/f-spot.glade.h:271
-msgid "and"
-msgstr "és"
-
 #. at, or after a date, or between dates
-#: ../src/f-spot.glade.h:273
+#: ../src/f-spot.glade.h:281
 msgid ""
 "at\n"
 "after\n"
@@ -3444,17 +3220,30 @@ msgstr ""
 "ezután\n"
 "ezek közt"
 
-#: ../src/f-spot.glade.h:276
+#: ../src/f-spot.glade.h:284
 msgid "difference:"
 msgstr "különbség:"
 
-#: ../src/f-spot.glade.h:277
+#: ../src/f-spot.glade.h:285
 msgid "img_000.jpg"
 msgstr "kép_000.jpg"
 
-#: ../src/f-spot.glade.h:278
+#: ../src/f-spot.glade.h:286
 msgid "min. Starting at {0}"
 msgstr "perc. Kezdve a következőnél: {0}"
+
+#: ../src/f-spot.glade.h:288
+#: ../extensions/FlickrExport/FlickrExport.glade.h:18
+#: ../extensions/FolderExport/FolderExport.glade.h:19
+#: ../extensions/GalleryExport/GalleryExport.glade.h:23
+#: ../extensions/PicasaWebExport/PicasaWebExport.glade.h:26
+#: ../extensions/SmugMugExport/SmugMugExport.glade.h:16
+msgid "pixels"
+msgstr "képpontra"
+
+#: ../src/f-spot.glade.h:289
+msgid "x"
+msgstr "x"
 
 #: ../tools/f-spot-screensaver.desktop.in.h:1
 msgid "Display a slideshow from F-Spot"
@@ -3463,4 +3252,566 @@ msgstr "Diavetítés megjelenítése az F-Spotból"
 #: ../tools/f-spot-screensaver.desktop.in.h:2
 msgid "F-Spot photos"
 msgstr "F-Spot fényképek"
+
+#: ../extensions/CDExport/CDExport.addin.xml.h:1
+msgid "_CD..."
+msgstr "_CD…"
+
+#: ../extensions/CDExport/CDExport.cs:219
+#, csharp-format
+msgid "Transferring picture \"{0}\" To CD"
+msgstr "„{0}” kép átvitele CD-re"
+
+#: ../extensions/CDExport/CDExport.cs:246
+#: ../extensions/FlickrExport/FlickrExport.cs:368
+#: ../extensions/FolderExport/FolderExport.cs:284
+#: ../extensions/GalleryExport/GalleryExport.cs:804
+#: ../extensions/PicasaWebExport/PicasaWebExport.cs:702
+#: ../extensions/SmugMugExport/SmugMugExport.cs:606
+msgid "Done Sending Photos"
+msgstr "Fényképek küldése kész"
+
+#: ../extensions/CDExport/CDExport.cs:248
+#: ../extensions/FolderExport/FolderExport.cs:286
+msgid "Transfer Complete"
+msgstr "Feltöltés befejezve"
+
+#: ../extensions/CDExport/CDExport.cs:255
+#: ../extensions/FolderExport/FolderExport.cs:291
+msgid "Error While Transferring"
+msgstr "Átviteli hiba"
+
+#: ../extensions/CDExport/CDExport.cs:262
+#: ../extensions/FolderExport/FolderExport.cs:310
+msgid "Error Transferring"
+msgstr "Átviteli hiba"
+
+#: ../extensions/CDExport/CDExport.cs:280
+msgid "copying..."
+msgstr "másolás…"
+
+#: ../extensions/CDExport/CDExport.cs:296
+#: ../extensions/FolderExport/FolderExport.cs:332
+msgid "Error: Error while transferring; Aborting"
+msgstr "Átviteli hiba, megszakítás"
+
+#: ../extensions/CDExport/CDExport.cs:299
+#: ../extensions/FolderExport/FolderExport.cs:335
+msgid "Error: File Already Exists; Aborting"
+msgstr "Hiba: A fájl már létezik, megszakítás"
+
+#: ../extensions/CDExport/CDExport.glade.h:1
+msgid "<b><i>There is some previously scheduled items to write</i></b>"
+msgstr "<b><i>Korábban írásra ütemezett elemek</i></b>"
+
+#: ../extensions/CDExport/CDExport.glade.h:2
+msgid "<b>Photos to Burn</b>"
+msgstr "<b>Kiírandó fényképek</b>"
+
+#: ../extensions/CDExport/CDExport.glade.h:4
+msgid "Create CD"
+msgstr "CD létrehozása"
+
+#: ../extensions/CDExport/CDExport.glade.h:6
+msgid "Size of the exported selection:"
+msgstr "Az exportált kijelölés mérete:"
+
+#: ../extensions/CDExport/CDExport.glade.h:7
+msgid "_Browse Previously Scheduled Files"
+msgstr "K_orábban ütemezett fájlok tallózása"
+
+#: ../extensions/CDExport/CDExport.glade.h:8
+msgid "_Write only these photos to CD"
+msgstr "_Csak ezen fényképek CD-re írása"
+
+#: ../extensions/FlickrExport/FlickrExport.addin.xml.h:1
+msgid "_23hq..."
+msgstr "_23hq…"
+
+#: ../extensions/FlickrExport/FlickrExport.addin.xml.h:2
+msgid "_Flickr..."
+msgstr "_Flickr…"
+
+#: ../extensions/FlickrExport/FlickrExport.cs:97
+#: ../extensions/FlickrExport/FlickrExport.glade.h:5
+msgid "Authorize"
+msgstr "Felhatalmazás"
+
+#: ../extensions/FlickrExport/FlickrExport.cs:103
+#, csharp-format
+msgid ""
+"Return to this window after you have finished the authorization process on "
+"{0} and click the \"Complete Authorization\" button below"
+msgstr ""
+"Térjen vissza ehhez az ablakhoz a felhatalmazási eljárás a(z) {0} helyen "
+"történő befejezése után és kattintson az alábbi „Felhatalmazás befejezése” "
+"gombra"
+
+#: ../extensions/FlickrExport/FlickrExport.cs:104
+msgid "Complete Authorization"
+msgstr "Felhatalmazás befejezése"
+
+#: ../extensions/FlickrExport/FlickrExport.cs:109
+#, csharp-format
+msgid "Logging into {0}"
+msgstr "Bejelentkezés a következőre: {0}"
+
+#: ../extensions/FlickrExport/FlickrExport.cs:110
+msgid "Checking credentials..."
+msgstr "Hitelesítési adatok ellenőrzése…"
+
+#: ../extensions/FlickrExport/FlickrExport.cs:117
+#, csharp-format
+msgid "Welcome {0} you are connected to {1}"
+msgstr "Üdvözlöm {0}, sikeresen csatlakozott a következőre: {1}"
+
+#: ../extensions/FlickrExport/FlickrExport.cs:120
+#, csharp-format
+msgid "Sign in as a different user"
+msgstr "Jelentkezzen be egy másik felhasználóként"
+
+#: ../extensions/FlickrExport/FlickrExport.cs:123
+#, csharp-format
+msgid "Used {0} of your allowed {1} monthly quota"
+msgstr "A havi engedélyezett {1} kvótából felhasználva: {0}"
+
+#: ../extensions/FlickrExport/FlickrExport.cs:286
+msgid "Unable to log on"
+msgstr "Nem lehet bejelentkezni"
+
+#: ../extensions/FlickrExport/FlickrExport.cs:306
+#, csharp-format
+msgid "Waiting for response {0} of {1}"
+msgstr "{0}/{1} válaszra várakozás"
+
+#: ../extensions/FlickrExport/FlickrExport.cs:333
+#: ../extensions/FolderExport/FolderExport.cs:241
+#: ../extensions/GalleryExport/GalleryExport.cs:775
+#, csharp-format
+msgid "Uploading picture \"{0}\""
+msgstr "„{0}” kép feltöltése"
+
+#: ../extensions/FlickrExport/FlickrExport.cs:356
+#, csharp-format
+msgid "Error Uploading To {0}: {1}"
+msgstr "Hiba a(z) {0} helyre feltöltés közben: {1}"
+
+#: ../extensions/FlickrExport/FlickrExport.cs:370
+#: ../extensions/GalleryExport/GalleryExport.cs:806
+#: ../extensions/PicasaWebExport/PicasaWebExport.cs:704
+#: ../extensions/SmugMugExport/SmugMugExport.cs:608
+msgid "Upload Complete"
+msgstr "Feltöltés befejezve"
+
+#: ../extensions/FlickrExport/FlickrExport.cs:438
+msgid "Unable to log on."
+msgstr "Nem lehet bejelentkezni."
+
+#: ../extensions/FlickrExport/FlickrExport.cs:439
+#, csharp-format
+msgid ""
+"F-Spot was unable to log on to {0}.  Make sure you have given the "
+"authentication using {0} web browser interface."
+msgstr ""
+"Az F-Spot nem tudott bejelentkezni a(z) {0} helyre. Győződjön meg, hogy "
+"megadta a felhatalmazást a(z) {0} webböngésző felületének használatával."
+
+#: ../extensions/FlickrExport/FlickrExport.cs:459
+#: ../extensions/GalleryExport/GalleryExport.cs:728
+#: ../extensions/PicasaWebExport/PicasaWebExport.cs:598
+#: ../extensions/SmugMugExport/SmugMugExport.cs:521
+msgid "Uploading Pictures"
+msgstr "Képek feltöltése"
+
+#: ../extensions/FlickrExport/FlickrExport.glade.h:4
+msgid "<b>Viewing permissions</b>"
+msgstr "<b>Jogosultságok megtekintése</b>"
+
+#: ../extensions/FlickrExport/FlickrExport.glade.h:7
+msgid "Export tag _hierarchy"
+msgstr "Címkehierarchia ex_portálása"
+
+#: ../extensions/FlickrExport/FlickrExport.glade.h:8
+msgid ""
+"F-Spot needs your authorization in order to upload photos to your {0} "
+"account. Press the \"Authorize\" button to open a web browser and give F-"
+"Spot the authorization. "
+msgstr ""
+"Az F-Spot az Ön felhatalmazását igényli a fényképek feltöltéséhez az Ön {0}"
+"felhasználói fiókjába. Nyomja meg a „Felhatalmazás” gombot egy böngésző "
+"megnyitásához és a felhatalmazás megadásához. "
+
+#: ../extensions/FlickrExport/FlickrExport.glade.h:9
+msgid "Ignore _top level tags"
+msgstr "_Felső szintű címkék figyelmen kívül hagyása"
+
+#: ../extensions/FlickrExport/FlickrExport.glade.h:10
+msgid "Private"
+msgstr "Személyes"
+
+#: ../extensions/FlickrExport/FlickrExport.glade.h:11
+msgid "Public"
+msgstr "Nyilvános"
+
+#: ../extensions/FlickrExport/FlickrExport.glade.h:12
+msgid "Strip _metadata"
+msgstr "_Metaadatok eltávolítása"
+
+#: ../extensions/FlickrExport/FlickrExport.glade.h:13
+msgid "Visible to Family"
+msgstr "Látható a család számára"
+
+#: ../extensions/FlickrExport/FlickrExport.glade.h:14
+msgid "Visible to Friends"
+msgstr "Látható a barátok számára"
+
+#: ../extensions/FlickrExport/FlickrExport.glade.h:17
+msgid "_View photos in browser when done uploading"
+msgstr "Fényképek _megtekintése böngészőben a feltöltés befejezésekor"
+
+#: ../extensions/FolderExport/FolderExport.addin.xml.h:1
+msgid "F_older..."
+msgstr "Ma_ppa…"
+
+#: ../extensions/FolderExport/FolderExport.cs:139
+msgid "Select Export Folder"
+msgstr "Válassza ki az exportálási mappát"
+
+#: ../extensions/FolderExport/FolderExport.cs:197
+msgid "Building Gallery"
+msgstr "Galéria felépítése"
+
+#: ../extensions/FolderExport/FolderExport.cs:247
+#, csharp-format
+msgid "Error uploading picture \"{0}\" to Gallery:{2}{1}"
+msgstr "Hiba a kép („{0}”) galériába való feltöltése közben: {2}{1}"
+
+#. Note for translators: light as clear, opposite as dark
+#: ../extensions/FolderExport/FolderExport.cs:809
+msgid "Light"
+msgstr "Világos"
+
+#: ../extensions/FolderExport/FolderExport.cs:810
+msgid "Dark"
+msgstr "Sötét"
+
+#. Abbreviation of previous
+#: ../extensions/FolderExport/FolderExport.cs:990
+msgid "Prev"
+msgstr "Előző"
+
+#: ../extensions/FolderExport/FolderExport.cs:1102
+msgid "Gallery generated by"
+msgstr "A galériát létrehozta:"
+
+#: ../extensions/FolderExport/FolderExport.cs:1142
+msgid "Show Styles"
+msgstr "Stílusok megjelenítése"
+
+#: ../extensions/FolderExport/FolderExport.cs:1143
+msgid "Hide Styles"
+msgstr "Stílusok elrejtése"
+
+#: ../extensions/FolderExport/FolderExport.cs:1310
+#: ../extensions/FolderExport/FolderExport.cs:1442
+msgid "Page:"
+msgstr "Oldal:"
+
+#: ../extensions/FolderExport/FolderExport.glade.h:1
+msgid "\n"
+msgstr "\n"
+
+#: ../extensions/FolderExport/FolderExport.glade.h:4
+msgid "<b>Export Method</b>"
+msgstr "<b>Exportálási módszer</b>"
+
+#: ../extensions/FolderExport/FolderExport.glade.h:8
+msgid "Create _gallery using \"Original\""
+msgstr "Galéria létrehozása az „Ere_deti” használatával"
+
+#: ../extensions/FolderExport/FolderExport.glade.h:9
+msgid "Create standalone _web gallery"
+msgstr "Önálló _webes galéria létrehozása"
+
+#: ../extensions/FolderExport/FolderExport.glade.h:10
+msgid "D_escription:"
+msgstr "_Leírás:"
+
+#: ../extensions/FolderExport/FolderExport.glade.h:11
+msgid "Export _tags"
+msgstr "Címkék ex_portálása"
+
+#: ../extensions/FolderExport/FolderExport.glade.h:12
+msgid "Export tag _icons"
+msgstr "Címkei_konok exportálása"
+
+#: ../extensions/FolderExport/FolderExport.glade.h:13
+msgid "Folder Export"
+msgstr "Mappaexportálás"
+
+#: ../extensions/FolderExport/FolderExport.glade.h:14
+msgid "G_allery Name:"
+msgstr "Galéria_név:"
+
+#: ../extensions/FolderExport/FolderExport.glade.h:15
+msgid "Open _destination when done exporting"
+msgstr "_Cél megnyitása az exportálás befejezésekor"
+
+#: ../extensions/FolderExport/FolderExport.glade.h:16
+msgid "_Folder:"
+msgstr "_Mappa:"
+
+#: ../extensions/FolderExport/FolderExport.glade.h:18
+msgid "_Save the files only"
+msgstr "_Csak a fájlok mentése"
+
+#: ../extensions/GalleryExport/GalleryExport.addin.xml.h:1
+msgid "Web _Gallery..."
+msgstr "_Webes galéria…"
+
+#: ../extensions/GalleryExport/GalleryExport.cs:394
+msgid "Invalid URL"
+msgstr "Érvénytelen URL"
+
+#: ../extensions/GalleryExport/GalleryExport.cs:395
+msgid "The gallery URL entry does not appear to be a valid URL"
+msgstr "A galéria URL címe nem tűnik érvényesnek"
+
+#: ../extensions/GalleryExport/GalleryExport.cs:405
+#: ../extensions/GalleryExport/GalleryExport.cs:432
+#: ../extensions/GalleryExport/GalleryExport.cs:443
+msgid "Error while connecting to Gallery"
+msgstr "Hiba a galériához való kapcsolódás közben"
+
+#: ../extensions/GalleryExport/GalleryExport.cs:406
+#: ../extensions/GalleryExport/GalleryExport.cs:433
+#: ../extensions/GalleryExport/GalleryExport.cs:444
+#, csharp-format
+msgid "The following error was encountered while attempting to log in: {0}"
+msgstr "A következő hiba történt a bejelentkezési kísérlet közben: {0}"
+
+#: ../extensions/GalleryExport/GalleryExport.cs:420
+msgid "A Gallery with this name already exists"
+msgstr "Már létezik ilyen nevű galéria"
+
+#: ../extensions/GalleryExport/GalleryExport.cs:421
+#, csharp-format
+msgid ""
+"There is already a Gallery with the same name in your registered Galleries. "
+"Please choose a unique name."
+msgstr "Már létezik ilyen nevű galéria a regisztrált galériái között. Válasszon egyedi nevet."
+
+#: ../extensions/GalleryExport/GalleryExport.cs:531
+msgid "(TopLevel)"
+msgstr "(Felsőszintű)"
+
+#: ../extensions/GalleryExport/GalleryExport.cs:593
+msgid "Invalid Gallery name"
+msgstr "Érvénytelen galérianév"
+
+#: ../extensions/GalleryExport/GalleryExport.cs:594
+msgid ""
+"The gallery name contains invalid characters.\n"
+"Only letters, numbers, - and _ are allowed"
+msgstr ""
+"A galérianév érvénytelen karaktereket tartalmaz.\n"
+"Csak betűk, számok, - és _ engedélyezett"
+
+#: ../extensions/GalleryExport/GalleryExport.cs:794
+#, csharp-format
+msgid "Error uploading picture \"{0}\" to Gallery: {1}"
+msgstr "Hiba a kép („{0}”) ezen galériába való feltöltésekor: {1}"
+
+#: ../extensions/GalleryExport/GalleryExport.cs:822
+#: ../extensions/PicasaWebExport/PicasaWebExport.cs:725
+#: ../extensions/SmugMugExport/SmugMugExport.cs:629
+msgid "(No Gallery)"
+msgstr "(Nincs galéria)"
+
+#: ../extensions/GalleryExport/GalleryExport.cs:909
+#: ../extensions/PicasaWebExport/PicasaWebExport.cs:852
+#: ../extensions/SmugMugExport/SmugMugExport.cs:725
+msgid "(Not Connected)"
+msgstr "(Nincs kapcsolat)"
+
+#: ../extensions/GalleryExport/GalleryExport.cs:910
+#: ../extensions/PicasaWebExport/PicasaWebExport.cs:853
+#: ../extensions/SmugMugExport/SmugMugExport.cs:726
+msgid "(No Albums)"
+msgstr "(Nincsenek albumok)"
+
+#: ../extensions/GalleryExport/GalleryExport.cs:962
+#: ../extensions/PicasaWebExport/PicasaWebExport.cs:915
+#: ../extensions/SmugMugExport/SmugMugExport.cs:767
+msgid "No account selected"
+msgstr "Nincs fiók kijelölve"
+
+#: ../extensions/GalleryExport/GalleryExport.glade.h:5
+#: ../extensions/PicasaWebExport/PicasaWebExport.glade.h:5
+msgid "<span weight='bold' size='larger'>Error Connecting to Gallery</span>\n"
+msgstr "<span weight='bold' size='larger'>Hiba a galériához csatlakozáskor</span>\n"
+
+#: ../extensions/GalleryExport/GalleryExport.glade.h:9
+msgid "Export _titles and comments"
+msgstr "Címek és _megjegyzések exportálása"
+
+#: ../extensions/GalleryExport/GalleryExport.glade.h:10
+#: ../extensions/PicasaWebExport/PicasaWebExport.glade.h:10
+#: ../extensions/SmugMugExport/SmugMugExport.glade.h:7
+msgid "Open _album in browser when done uploading"
+msgstr "Az album megnyitása böngészőben a feltöltés _befejezésekor"
+
+#: ../extensions/GalleryExport/GalleryExport.glade.h:11
+#: ../extensions/PicasaWebExport/PicasaWebExport.glade.h:11
+msgid "Please verify that the settings for this gallery are correct."
+msgstr "Ellenőrizze a galéria beállításainak helyességét."
+
+#: ../extensions/GalleryExport/GalleryExport.glade.h:12
+msgid "U_RL:"
+msgstr "U_RL:"
+
+#: ../extensions/GalleryExport/GalleryExport.glade.h:13
+msgid "_Album Name:"
+msgstr "_Album neve:"
+
+#: ../extensions/GalleryExport/GalleryExport.glade.h:14
+#: ../extensions/PicasaWebExport/PicasaWebExport.glade.h:19
+#: ../extensions/SmugMugExport/SmugMugExport.glade.h:11
+msgid "_Description:"
+msgstr "_Leírás:"
+
+#: ../extensions/GalleryExport/GalleryExport.glade.h:16
+msgid "_Gallery Name:"
+msgstr "Galéria _neve:"
+
+#: ../extensions/GalleryExport/GalleryExport.glade.h:17
+#: ../extensions/PicasaWebExport/PicasaWebExport.glade.h:22
+msgid "_Gallery:"
+msgstr "_Galéria:"
+
+#: ../extensions/GalleryExport/GalleryExport.glade.h:18
+msgid "_Parent Album:"
+msgstr "S_zülőalbum:"
+
+#: ../extensions/GalleryExport/GalleryExport.glade.h:19
+#: ../extensions/PicasaWebExport/PicasaWebExport.glade.h:23
+#: ../extensions/SmugMugExport/SmugMugExport.glade.h:13
+msgid "_Password:"
+msgstr "_Jelszó:"
+
+#: ../extensions/GalleryExport/GalleryExport.glade.h:21
+msgid "_Title:"
+msgstr "_Cím:"
+
+#: ../extensions/GalleryExport/GalleryExport.glade.h:22
+#: ../extensions/PicasaWebExport/PicasaWebExport.glade.h:25
+#: ../extensions/SmugMugExport/SmugMugExport.glade.h:15
+msgid "_Username:"
+msgstr "_Felhasználónév:"
+
+#: ../extensions/GalleryExport/GalleryRemote.cs:359
+msgid "Error reading server response"
+msgstr "Hiba a kiszolgáló válaszának olvasásakor"
+
+#. failed to find the response
+#: ../extensions/GalleryExport/GalleryRemote.cs:371
+msgid "Server returned response without Gallery content"
+msgstr "A kiszolgáló galériatartalom nélküli választ adott vissza"
+
+#: ../extensions/PicasaWebExport/PicasaWebExport.addin.xml.h:1
+msgid "_PicasaWeb..."
+msgstr "_PicasaWeb…"
+
+#: ../extensions/PicasaWebExport/PicasaWebExport.cs:441
+msgid "Error while creating Album"
+msgstr "Hiba az album létrehozásakor"
+
+#: ../extensions/PicasaWebExport/PicasaWebExport.cs:442
+#, csharp-format
+msgid "The following error was encountered while attempting to create an album: {0}"
+msgstr "A következő hiba történt az album létrehozásakor: {0}"
+
+#: ../extensions/PicasaWebExport/PicasaWebExport.cs:621
+#, csharp-format
+msgid "{0} Sent"
+msgstr "{0} elküldve"
+
+#: ../extensions/PicasaWebExport/PicasaWebExport.cs:623
+#, csharp-format
+msgid "{0} of approx. {1}"
+msgstr "{0}, összesen kb.: {1}"
+
+#: ../extensions/PicasaWebExport/PicasaWebExport.cs:661
+#: ../extensions/SmugMugExport/SmugMugExport.cs:564
+#, csharp-format
+msgid "Uploading picture \"{0}\" ({1} of {2})"
+msgstr "„{0}” kép feltöltése ({1}. / {2})"
+
+#: ../extensions/PicasaWebExport/PicasaWebExport.cs:692
+#: ../extensions/SmugMugExport/SmugMugExport.cs:593
+#, csharp-format
+msgid "Error Uploading To Gallery: {0}"
+msgstr "Hiba a galériába való feltöltés közben: {0}"
+
+#: ../extensions/PicasaWebExport/PicasaWebExport.cs:776
+msgid "Available space:"
+msgstr "Elérhető terület:"
+
+#: ../extensions/PicasaWebExport/PicasaWebExport.cs:893
+#, csharp-format
+msgid ""
+"<small>The selected album has a limit of {0} pictures,\n"
+"which would be passed with the current selection of {1} images</small>"
+msgstr ""
+"<small>A kiválasztott album {0} képre van korlátozva,\n"
+"amelyet a jelenleg kiválasztott {1} számú képpel meghaladna.</small>"
+
+#: ../extensions/PicasaWebExport/PicasaWebExport.glade.h:3
+msgid "<b>PicasaWeb Export</b>"
+msgstr "<b>PicasaWeb exportálás</b>"
+
+#: ../extensions/PicasaWebExport/PicasaWebExport.glade.h:7
+msgid "<span weight='bold' size='larger'>Your Google Account is locked</span>\n"
+msgstr "<span weight='bold' size='larger'>A Google fiókja zárolva van</span>\n"
+
+#: ../extensions/PicasaWebExport/PicasaWebExport.glade.h:12
+msgid ""
+"Please verify that the settings for this gallery are correct.\n"
+"Enter the letters as they are shown in the image in\n"
+"the 'Captcha' field. <i>Letters are not case-sensitive</i>"
+msgstr ""
+"Ellenőrizze a galéria beállításainak helyességét.\n"
+"Adja meg a Captcha mezőben lévő képen látható betűket.\n"
+"<i>A kis- és nagybetűk itt nem különböznek</i>"
+
+#: ../extensions/PicasaWebExport/PicasaWebExport.glade.h:15
+#: ../extensions/SmugMugExport/SmugMugExport.glade.h:8
+msgid "Public Album"
+msgstr "Nyilvános album"
+
+#: ../extensions/PicasaWebExport/PicasaWebExport.glade.h:16
+#: ../extensions/SmugMugExport/SmugMugExport.glade.h:10
+msgid "_Album Title:"
+msgstr "_Album címe:"
+
+#: ../extensions/PicasaWebExport/PicasaWebExport.glade.h:17
+msgid "_Autorotate"
+msgstr "A_utomatikus forgatás"
+
+# ötletek welcome
+#: ../extensions/PicasaWebExport/PicasaWebExport.glade.h:18
+msgid "_Captcha:"
+msgstr "_Captcha:"
+
+#: ../extensions/SmugMugExport/SmugMugExport.glade.h:3
+msgid "<b>SmugMug Export</b>"
+msgstr "<b>SmugMug exportálás</b>"
+
+#: ../extensions/SmugMugExport/SmugMugExport.glade.h:9
+msgid "_Account:"
+msgstr "_Fiók:"
+
+#: ../extensions/SmugMugExport/SmugMugExport.addin.xml.h:1
+msgid "_SmugMug..."
+msgstr "_SmugMug…"
 
