@@ -70,6 +70,36 @@ namespace DPAP {
                 writer.Write ((byte) version.Minor);
                 writer.Write ((byte) version.Build);
                 break;
+			case ContentType.FileData:
+				Console.WriteLine("ContentWriter FileData!");
+				ContentNode[] nodes = (ContentNode[]) node.Value;
+				//writer.Write(IPAddress.HostToNetworkOrder (0));
+				Console.WriteLine(nodes[0].Value);
+				writer.Write(IPAddress.HostToNetworkOrder ((int)nodes[0].Value));
+				Console.WriteLine("reading file!");
+				FileInfo info = new FileInfo ((string)nodes[1].Value);
+
+				FileStream stream = info.Open(FileMode.Open, FileAccess.Read, FileShare.Read);
+				//writer.Write (client, stream, info.Length, offset);
+				int offset = -1;
+                using (BinaryReader reader = new BinaryReader (stream)) {
+                    if (offset > 0) {
+                        reader.BaseStream.Seek (offset, SeekOrigin.Begin);
+                    }
+
+                    long count = 0;
+					long len = info.Length;
+                    while (count < len) {
+                        byte[] buf = reader.ReadBytes (Math.Min (8192, (int) len - (int) count));
+                        if (buf.Length == 0) {
+                            break;
+                        }
+                        
+                        writer.Write (buf);
+                        count += buf.Length;
+                    }
+                }
+				break;
             case ContentType.Container:
                 MemoryStream childStream = new MemoryStream ();
                 BinaryWriter childWriter = new BinaryWriter (childStream);
@@ -86,6 +116,7 @@ namespace DPAP {
                 writer.Write (bytes, 0, len);
                 childWriter.Close ();
                 break;
+				
             default:
                 Console.Error.WriteLine ("Cannot write node of type: " + code.Type);
                 break;

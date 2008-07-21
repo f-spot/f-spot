@@ -158,14 +158,18 @@ namespace DPAP
 
         private void FetchDatabases () {
             ContentNode dbnode = ContentParser.Parse (bag, fetcher.Fetch ("/databases"));
-
+			// DEBUG
+			//dbnode.Dump();
             foreach (ContentNode child in (ContentNode[]) dbnode.Value) {
                 if (child.Name != "dmap.listing")
                     continue;
 
                 foreach (ContentNode item in (ContentNode[]) child.Value) {
+					// DEBUG
+					//item.Dump();
                     Database db = new Database (this, item);
-					Console.WriteLine("Adding database {0} with id={1} and roll count={2}." , db.Name,db.Id,db.Albums.Count); 
+					Console.WriteLine("Adding database {0} with id={1} and album count={2}." , db.Name,db.Id,db.Albums.Count);
+					//Console.WriteLine("Photo " + db.Photos[0].FileName);
                     databases.Add (db);
                 }
             }

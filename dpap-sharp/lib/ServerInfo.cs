@@ -76,20 +76,21 @@ namespace DPAP {
         internal ContentNode ToNode (int dbCount) {
             return new ContentNode ("dmap.serverinforesponse",
                                     new ContentNode ("dmap.status", 200),
-                                    new ContentNode ("dmap.protocolversion", new Version (2, 0, 2)),
-                                    //new ContentNode ("dpap.protocolversion", new Version (3, 0, 2)),
-                                    new ContentNode ("dmap.itemname", name),
+                                    new ContentNode ("dmap.protocolversion", new Version (2, 0, 0)),
+                                    new ContentNode ("dpap.protocolversion", new Version (1, 0, 1)),
+			                        
+                                    new ContentNode ("dmap.itemname", "photos"),
                                     new ContentNode ("dmap.loginrequired", (byte) 1),
-                                    new ContentNode ("dmap.authenticationmethod", (byte) authMethod),
+                                //    new ContentNode ("dmap.authenticationmethod", (byte) authMethod),
                                     new ContentNode ("dmap.timeoutinterval", (int) Server.DefaultTimeout.TotalSeconds),
                                     new ContentNode ("dmap.supportsautologout", (byte) 1),
-                                    new ContentNode ("dmap.supportsupdate", (byte) 1),
-                                    new ContentNode ("dmap.supportspersistentids", (byte) 1),
-                                    new ContentNode ("dmap.supportsextensions", (byte) 1),
-                                    new ContentNode ("dmap.supportsbrowse", (byte) 1),
-                                    new ContentNode ("dmap.supportsquery", (byte) 1),
+                                 //   new ContentNode ("dmap.supportsupdate", (byte) 1),
+                                 //   new ContentNode ("dmap.supportspersistentids", (byte) 1),
+                                 //   new ContentNode ("dmap.supportsextensions", (byte) 1),
+                                 //   new ContentNode ("dmap.supportsbrowse", (byte) 1),
+                                 //   new ContentNode ("dmap.supportsquery", (byte) 1),
                                     new ContentNode ("dmap.supportsindex", (byte) 1),
-                                    new ContentNode ("dmap.supportsresolve", (byte) 0),
+                                 //   new ContentNode ("dmap.supportsresolve", (byte) 0),
                                     new ContentNode ("dmap.databasescount", dbCount));
         }
 

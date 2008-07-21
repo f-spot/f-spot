@@ -134,6 +134,8 @@ namespace DPAP {
         }
 
         public void WriteResponseFile (Socket client, string file, long offset) {
+			// DEBUG data			
+			Console.WriteLine("WriteResponseFile!!");
             FileInfo info = new FileInfo (file);
 
             FileStream stream = info.Open(FileMode.Open, FileAccess.Read, FileShare.Read);
@@ -432,7 +434,8 @@ namespace DPAP {
         internal static readonly TimeSpan DefaultTimeout = TimeSpan.FromMinutes (30);
         
         private static Regex dbItemsRegex = new Regex ("/databases/([0-9]*?)/items$");
-        private static Regex dbPhotoRegex = new Regex ("/databases/([0-9]*?)/items/([0-9]*).*");
+        private static Regex dbPhotoRegex0 = new Regex ("/databases/([0-9]*?)/items$");
+		private static Regex dbPhotoRegex = new Regex (".*'dmap.itemid:([0-9]*)'.*"); 
         private static Regex dbContainersRegex = new Regex ("/databases/([0-9]*?)/containers$");
         private static Regex dbContainerItemsRegex = new Regex ("/databases/([0-9]*?)/containers/([0-9]*?)/items$");
         
@@ -532,7 +535,7 @@ namespace DPAP {
             running = true;
             ws.Start ();
 
-            if (publish)
+           // if (publish)
                 RegisterService ();
         }
 
@@ -587,7 +590,7 @@ namespace DPAP {
                 zc_service = new RegisterService ();
                 zc_service.Name = serverInfo.Name;
                 zc_service.RegType = "_dpap._tcp";
-                zc_service.Port = (short)ws.BoundPort;
+                zc_service.Port = 8770; //(short)ws.BoundPort;
                 zc_service.TxtRecord = new TxtRecord ();
                 zc_service.TxtRecord.Add ("Password", auth);
                 zc_service.TxtRecord.Add ("Machine Name", serverInfo.Name);
@@ -660,12 +663,16 @@ namespace DPAP {
         }
 
         internal bool OnHandleRequest (Socket client, string username, string path, NameValueCollection query, int range) {
-
+			string photoQuery;
+			if(query["query"] != null)
+				photoQuery = query["query"];
+			else
+				photoQuery = "";
             int session = 0;
             if (query["session-id"] != null) {
                 session = Int32.Parse (query["session-id"]);
             }
-
+			
 /*            if (!sessions.ContainsKey (session) && path != "/server-info" && path != "/content-codes" &&
                 path != "/login") {
                 ws.WriteResponse (client, HttpStatusCode.Forbidden, "invalid session id");
@@ -685,7 +692,7 @@ namespace DPAP {
             if (query["delta"] != null) {
                 delta = Int32.Parse (query["delta"]);
             }
-			Console.WriteLine("Before returning resources");
+			Console.WriteLine("Before returning resources for path " + path);
             if (path == "/server-info") {
                 ws.WriteResponse (client, GetServerInfoNode ());
             } else if (path == "/content-codes") {
@@ -719,8 +726,10 @@ namespace DPAP {
                 
                 return false;
             } else if (path == "/databases") {
+				Console.WriteLine("path==/databases");
                 ws.WriteResponse (client, GetDatabasesNode ());
-            } else if (dbItemsRegex.IsMatch (path)) {
+            } else if (dbItemsRegex.IsMatch (path) && photoQuery.Length==0 ){ //&& !dbPhotoRegex.IsMatch(query["query"])) {
+				Console.WriteLine("dbItemsRegex, query=" + query["query"] + " meta=" + query["meta"]);
                 int dbid = Int32.Parse (dbItemsRegex.Match (path).Groups[1].Value);
 
                 Database curdb = revmgr.GetDatabase (clientRev, dbid);
@@ -746,10 +755,12 @@ namespace DPAP {
                 ContentNode node = curdb.ToPhotosNode (query["meta"].Split (','),
                                                       (int[]) deletedIds.ToArray (typeof (int)));
                 ws.WriteResponse (client, node);
-            } else if (dbPhotoRegex.IsMatch (path)) {
-                Match match = dbPhotoRegex.Match (path);
+            } else if (dbPhotoRegex.IsMatch (photoQuery)) {
+				Console.WriteLine("dbPhotoRegex");
+                Match match = dbPhotoRegex0.Match (path);
                 int dbid = Int32.Parse (match.Groups[1].Value);
-                int photoid = Int32.Parse (match.Groups[2].Value);
+				match = dbPhotoRegex.Match(photoQuery);
+                int photoid = Int32.Parse (match.Groups[1].Value);
 
                 Database db = revmgr.GetDatabase (clientRev, dbid);
                 if (db == null) {
@@ -758,6 +769,7 @@ namespace DPAP {
                 }
 
                 Photo photo = db.LookupPhotoById (photoid);
+				Console.WriteLine(photo.ToString());
                 if (photo == null) {
                     ws.WriteResponse (client, HttpStatusCode.BadRequest, "invalid photo id");
                     return true;
@@ -772,8 +784,13 @@ namespace DPAP {
                     } catch {}
                     
                     if (photo.FileName != null) {
+						Console.WriteLine("photo.Filename != null" + query["meta"].Split (',')[0]);
+						ContentNode node = photo.ToFileData();
+						node.Dump();
+						ws.WriteResponse (client, node);
                         ws.WriteResponseFile (client, photo.FileName, range);
                     } else if (db.Client != null) {
+						Console.WriteLine("db.Client != null");
                         long photoLength = 0;
                         Stream photoStream = db.StreamPhoto (photo, out photoLength);
                         
@@ -782,6 +799,7 @@ namespace DPAP {
                         } catch (IOException) {
                         }
                     } else {
+						Console.WriteLine("Else - internal error");
                         ws.WriteResponse (client, HttpStatusCode.InternalServerError, "no file");
                     }
                 } finally {

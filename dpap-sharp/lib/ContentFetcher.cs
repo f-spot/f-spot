@@ -157,6 +157,7 @@ namespace DPAP {
             /*request.Headers.Set ("Client-DPAP-Validation", hash);
             request.Headers.Set ("Client-DPAP-Access-Index", "2");
 			*/
+// DEBUG data			
 			Console.Write(path + "?"+query);
 			Console.Write(request.Headers);
 			

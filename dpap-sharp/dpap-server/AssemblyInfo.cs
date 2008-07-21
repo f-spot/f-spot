@@ -1,5 +1,5 @@
 // AssemblyInfo.cs created with MonoDevelop
-// User: andrzej at 10:26 2008-06-01
+// User: andrzej at 11:03 2008-07-17
 //
 // To change standard headers go to Edit->Preferences->Coding->Standard Headers
 //
@@ -9,7 +9,7 @@ using System.Runtime.CompilerServices;
 // Information about this assembly is defined by the following attributes. 
 // Change them to the values specific to your project.
 
-[assembly: AssemblyTitle("dpap-launcher")]
+[assembly: AssemblyTitle("dpap-server")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]

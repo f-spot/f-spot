@@ -35,7 +35,8 @@ namespace DPAP {
         String = 9,
         Date = 10,
         Version = 11,
-        Container = 12
+        Container = 12,
+		FileData = 13
     }
 
     internal struct ContentCode {
@@ -160,7 +161,7 @@ namespace DPAP {
 			bag.AddCode ("abpl", "dpap.baseplaylist", ContentType.Char);
 			bag.AddCode ("apso", "dpap.playlistsongs", ContentType.Container);
 			bag.AddCode ("pasp", "dpap.aspectratio", ContentType.String);
-			bag.AddCode ("adbs", "daap.databasesongs", ContentType.Container);
+			bag.AddCode ("adbs", "dpap.databasesongs", ContentType.Container);
 			bag.AddCode ("picd", "dpap.creationdate", ContentType.Long);
 			bag.AddCode ("pifs", "dpap.imagefilesize", ContentType.Long);
 			bag.AddCode ("pwth", "dpap.imagepixelwidth", ContentType.Long);
@@ -170,7 +171,7 @@ namespace DPAP {
 			bag.AddCode ("pimf", "dpap.imagefilename", ContentType.String);
 			bag.AddCode ("pfmt", "dpap.imageformat", ContentType.String);
 			bag.AddCode ("plsz", "dpap.imagelargefilesize", ContentType.Long);
-            //bag.AddCode ("pfdt", "dpap.filedata", ContentType.);
+			bag.AddCode ("pfdt", "dpap.filedata", ContentType.FileData);
             
             
 

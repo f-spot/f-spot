@@ -146,18 +146,24 @@ namespace DPAP
             photo.fileName = fileName;
             photo.dateAdded = dateAdded;
             photo.dateModified = dateModified;
-       
+			
             return photo;
         }
 
         public override string ToString () {
-            return String.Format ("{0} - {1}.{2} ({3})", author, title, format, id);
+            return String.Format ("{0} - {1}.{2} ({3})", fileName, title, format, id);
         }
 
         internal void SetId (int id) {
             this.id = id;
         }
-
+		internal ContentNode ToFileData () {
+			return new ContentNode ("dpap.databasesongs",
+			                        new ContentNode ("dpap.filedata",
+                                    new ContentNode ("dpap.imagefilesize", size),
+                                    new ContentNode ("dpap.imagefilename", fileName))
+			                        );
+		}
         internal ContentNode ToNode (string[] fields) {
 
             ArrayList nodes = new ArrayList ();
@@ -189,7 +195,10 @@ namespace DPAP
                 case "dpap.imageformat":
                     val = format;
                     break;
-               
+				case "dpap.imagefilename":
+					val = fileName;
+					break;
+				
                 default:
                     break;
                 }
@@ -205,7 +214,7 @@ namespace DPAP
             
             return new ContentNode ("dmap.listingitem", nodes);
         }
-
+		
         internal static Photo FromNode (ContentNode node) {
             Photo photo = new Photo ();
             
@@ -243,7 +252,7 @@ namespace DPAP
         internal ContentNode ToAlbumNode (int containerId) {
             return new ContentNode ("dmap.listingitem",
                                     new ContentNode ("dmap.itemkind", (byte) 2),
-                                    new ContentNode ("daap.songdatakind", (byte) 0),
+                                    new ContentNode ("dpap.imagefilename", fileName),
                                     new ContentNode ("dmap.itemid", Id),
                                     new ContentNode ("dmap.containeritemid", containerId),
                                     new ContentNode ("dmap.itemname", Title == null ? String.Empty : Title));
