@@ -1,0 +1,7 @@
+2008-07-22 Andrzej Wytyczak-Partyka <iapart@gmail.com>
+	* Photo.cs :
+	Work on format of the response to the query requesting a photo
+	from the db. Content codes returned match the iPhoto dump, but
+	still iPhoto doesn't download photos.
+	* ChangeLog :
+	Start of ChangeLog
