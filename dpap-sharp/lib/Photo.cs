@@ -178,9 +178,19 @@ namespace DPAP
         }
 		internal ContentNode ToFileData () {
 			return new ContentNode ("dpap.databasesongs",
-			                        new ContentNode ("dpap.filedata",
-                                    new ContentNode ("dpap.imagefilesize", size),
-                                    new ContentNode ("dpap.imagefilename", fileName))
+			                        new ContentNode ("dmap.status", 200),
+			                        new ContentNode ("dmap.updatetype", (byte) 0),
+			                        new ContentNode ("dmap.specifiedtotalcount",  1),
+			                        new ContentNode ("dmap.returnedcount", 1),
+			                        new ContentNode ("dmap.listing",
+			                                         new ContentNode ("dmap.listingitem",
+			                                                          new ContentNode ("dmap.itemid", id),
+//			                                         new ContentNode ("dmap.persistentid", (long) id),
+//			                                         new ContentNode ("dmap.itemname", name),
+//			                                         new ContentNode ("dmap.itemcount", photos.Count),
+			                                                          new ContentNode ("dpap.filedata",
+			                                                                           new ContentNode ("dpap.imagefilesize", size),
+			                                                                           new ContentNode ("dpap.imagefilename", fileName))))
 			                        );
 		}
         internal ContentNode ToNode (string[] fields) {
