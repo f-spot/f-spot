@@ -177,12 +177,18 @@ namespace DPAP
             this.id = id;
         }
 		internal ContentNode ToFileData () {
-			return new ContentNode ("dpap.databasesongs",
-			                        new ContentNode ("dmap.status", 200),
-			                        new ContentNode ("dmap.updatetype", (byte) 0),
-			                        new ContentNode ("dmap.specifiedtotalcount",  1),
-			                        new ContentNode ("dmap.returnedcount", 1),
-			                        new ContentNode ("dmap.listing",
+			
+			ArrayList nodes = new ArrayList ();
+			
+			nodes.Add (new ContentNode ("dmap.itemid", id));
+			nodes.Add (new ContentNode ("dpap.filedata",
+			                                             new ContentNode ("dpap.imagefilesize", size),
+			                                             new ContentNode ("dpap.imagefilename", fileName)));
+			return (new ContentNode("dmap.listingitem", nodes));
+			
+			 /*
+			                 
+			                        
 			                                         new ContentNode ("dmap.listingitem",
 			                                                          new ContentNode ("dmap.itemid", id),
 //			                                         new ContentNode ("dmap.persistentid", (long) id),
@@ -191,7 +197,7 @@ namespace DPAP
 			                                                          new ContentNode ("dpap.filedata",
 			                                                                           new ContentNode ("dpap.imagefilesize", size),
 			                                                                           new ContentNode ("dpap.imagefilename", fileName))))
-			                        );
+			                        );*/
 		}
         internal ContentNode ToNode (string[] fields) {
 

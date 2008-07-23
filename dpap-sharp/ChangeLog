@@ -1,3 +1,13 @@
+2008-07-23  Andrzej Wytyczak-Partyka  <iapart@gmail.com>
+
+	* lib/Photo.cs:
+	* lib/Database.cs:
+	* lib/Server.cs:
+ 	  Move parts of the photo streaming code to Database and Server classes
+          and enable streaming of more than 1 photo (whole albums).
+
+	* dpap-server/Main.cs: Add 2 photos to the database
+
 2008-07-22  Gabriel Burt  <gabriel.burt@gmail.com>
 
 	* lib/ChangeLog:

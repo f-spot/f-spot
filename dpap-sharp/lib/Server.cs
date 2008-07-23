@@ -763,18 +763,39 @@ namespace DPAP {
                 ws.WriteResponse (client, node);
             } else if (dbPhotoRegex.IsMatch (photoQuery)) {
 				Console.WriteLine("dbPhotoRegex");
-                Match match = dbPhotoRegex0.Match (path);
-                int dbid = Int32.Parse (match.Groups[1].Value);
-				match = dbPhotoRegex.Match(photoQuery);
-                int photoid = Int32.Parse (match.Groups[1].Value);
-
+				Console.WriteLine("dbItemsRegex, query=" + query["query"] + " meta=" + query["meta"]);
+				string[] photoIds = query["query"].Split (',');
+				Match match = dbPhotoRegex0.Match(path);
+				int dbid = Int32.Parse (match.Groups[1].Value);
+				int photoid = 0;
+				
+		        
+				//match = dbPhotoRegex.Match(photoQuery);
+                
                 Database db = revmgr.GetDatabase (clientRev, dbid);
                 if (db == null) {
                     ws.WriteResponse (client, HttpStatusCode.BadRequest, "invalid database id");
                     return true;
                 }
-
-                Photo photo = db.LookupPhotoById (photoid);
+				ArrayList photoNodes = new ArrayList();
+				Photo photo = db.LookupPhotoById (1);
+				foreach (string photoId in photoIds)
+				{
+					match = dbPhotoRegex.Match (photoId);
+				photoid = Int32.Parse (match.Groups[1].Value);
+					Console.WriteLine("Requested photo id=" + photoid);
+					photo = db.LookupPhotoById (photoid);
+					photoNodes.Add(photo.ToFileData());
+				}
+        
+				ArrayList children = new ArrayList ();
+				children.Add (new ContentNode ("dmap.status", 200));
+				children.Add (new ContentNode ("dmap.updatetype", (byte) 0));
+				children.Add (new ContentNode ("dmap.specifiedtotalcount",  2));
+				children.Add (new ContentNode ("dmap.returnedcount", 2));
+				children.Add (new ContentNode ("dmap.listing", photoNodes));
+				ContentNode dbsongs = new ContentNode ("dpap.databasesongs", children);
+                
 				Console.WriteLine(photo.ToString());
                 if (photo == null) {
                     ws.WriteResponse (client, HttpStatusCode.BadRequest, "invalid photo id");
@@ -791,10 +812,10 @@ namespace DPAP {
                     
                     if (photo.FileName != null) {
 						Console.WriteLine("photo.Filename != null" + query["meta"].Split (',')[0]);
-						ContentNode node = photo.ToFileData();
-						node.Dump();
-						ws.WriteResponse (client, node);
-                        ws.WriteResponseFile (client, photo.FileName, range);
+						//ContentNode node = photo.ToFileData();
+						//node.Dump();
+						ws.WriteResponse (client, dbsongs);
+        //                ws.WriteResponseFile (client, photo.FileName, range);
                     } else if (db.Client != null) {
 						Console.WriteLine("db.Client != null");
                         long photoLength = 0;

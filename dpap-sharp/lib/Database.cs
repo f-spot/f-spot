@@ -270,16 +270,19 @@ namespace DPAP {
             
             ContentNode albumsNode = ContentParser.Parse (client.Bag, albumsData);
 			// DEBUG data			
-			//albumsNode.Dump();
-            if (IsUpdateResponse (albumsNode))
-                return;
+			albumsNode.Dump();
+			Console.WriteLine("after dump!");
+			
+ //           if (IsUpdateResponse (albumsNode))
+ //               return;
 
             // handle album additions/changes
             ArrayList plids = new ArrayList ();
             
             foreach (ContentNode albumNode in (ContentNode[]) albumsNode.GetChild ("dmap.listing").Value) {
                 Album pl = Album.FromNode (albumNode);
-
+				// DEBUG
+				Console.WriteLine("foreach loop");
                 if (pl != null) {
                     plids.Add (pl.Id);
                     Album existing = LookupAlbumById (pl.Id);
@@ -291,7 +294,8 @@ namespace DPAP {
                     }
                 }
             }
-
+			// DEBUG
+			Console.WriteLine("delete albums that don't exist");
             // delete albums that no longer exist
             foreach (Album pl in new List<Album> (albums)) {
                 if (!plids.Contains (pl.Id)) {
@@ -300,7 +304,8 @@ namespace DPAP {
             }
 
             plids = null;
-
+			// DEBUG
+			Console.WriteLine("Add/remove photos in the albums");
             // add/remove photos in the albums
             foreach (Album pl in albums) {
                 byte[] albumPhotosData = client.Fetcher.Fetch (String.Format ("/databases/{0}/containers/{1}/items",

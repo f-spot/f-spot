@@ -3,10 +3,8 @@
 //
 // Authors:
 //   Andrzej Wytyczak-Partyka <iapart@gmail.com>
-//   James Willcox <snorp@snorp.net>
 //
 // Copyright (C) 2008 Andrzej Wytyczak-Partyka
-// Copyright (C) 2005  James Willcox <snorp@snorp.net>
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -60,13 +58,22 @@ namespace DPAP {
 			};
             
 			Photo p = new Photo();
-			p.FileName = "/home/andrzej/Obrazy/tesco_droid.jpg";
+			p.FileName = "./podeszczu.jpg";
 			p.Title = "test";
 			p.Format = "JPEG";
 			p.Size = 13946;
 			database.AddPhoto(p);
+			
+			Photo p1 = new Photo();
+			p1.FileName = "./Grill.jpg";
+			p1.Title = "grill";
+			p1.Format = "JPEG";
+			p1.Size = 35209;
+			database.AddPhoto(p1);
+		
 			Album a = new Album("test album");
-			a.AddPhoto(p);			
+			a.AddPhoto(p);		
+			a.AddPhoto(p1);
 			database.AddAlbum(a);
 			Console.WriteLine("Album count is now " + database.Albums.Count);
 			Console.WriteLine("Photo name is " + database.Photos[0].FileName);
