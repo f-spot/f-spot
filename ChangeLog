@@ -1,3 +1,15 @@
+2008-07-26  Ruben Vermeersch  <ruben@savanne.be>
+
+	Move the ColorAdjustment classes into a separate FSpot.ColorAdjustment
+	namespace and folder, split out the editors. More color filters will be
+	ported into this common framework, together with test fixtures.
+
+	* src/ColorAdjustment.cs: Replaced with src/ColorAdjustment/ColorAdjustment.cs.
+	* src/ColorAdjustment/Desaturate.cs: Added.
+	* src/ColorAdjustment/SepiaTone.cs: Added.
+	* src/Makefile.am: Update build.
+	* src/PhotoView.cs: Update namespaces.
+
 2008-07-25  Ruben Vermeersch  <ruben@savanne.be>
 
 	* ColorAdjustment.cs: Turn the ColorAdjustment API into something sane.

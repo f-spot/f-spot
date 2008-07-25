@@ -5,6 +5,7 @@
  *
  * Author
  *   Larry Ewing <lewing@novell.com>
+ *   Ruben Vermeersch <ruben@savanne.be>
  *
  * See COPYING for license information
  *
@@ -13,12 +14,11 @@ using Cms;
 using Gdk;
 using System.Collections.Generic;
 
-namespace FSpot {
+namespace FSpot.ColorAdjustment {
 	public abstract class ColorAdjustment {
-		protected List <Cms.Profile> profiles;
-		protected Cms.Profile adjustment_profile;
+		private List <Cms.Profile> profiles;
 		protected int nsteps = 20;
-		protected Cms.Intent intent = Cms.Intent.Perceptual;
+		private Cms.Intent intent = Cms.Intent.Perceptual;
 
 		// This is the input pixbuf, on which the adjustment will be performed.
 		private readonly Gdk.Pixbuf Input;
@@ -51,7 +51,7 @@ namespace FSpot {
 			this.input_profile = input_profile;
 		}
 
-		protected abstract void GenerateAdjustments ();
+		protected abstract List <Cms.Profile> GenerateAdjustments ();
 
 		public Pixbuf Adjust ()
 		{
@@ -61,7 +61,7 @@ namespace FSpot {
 							   Input.Height);
 			profiles = new List <Cms.Profile> (4);
 			profiles.Add (InputProfile);
-			GenerateAdjustments ();
+			profiles.AddRange (GenerateAdjustments ());
 			profiles.Add (DestinationProfile);
 			Cms.Profile [] list = profiles.ToArray ();
 			
@@ -87,54 +87,6 @@ namespace FSpot {
 			}
 
 			return final;
-		}
-	}
-
-	public class SepiaTone : ColorAdjustment {
-		public SepiaTone (Pixbuf input, Cms.Profile input_profile) : base (input, input_profile)
-		{
-		}
-
-		protected override void GenerateAdjustments ()
-		{
-			profiles.Add (Cms.Profile.CreateAbstract (nsteps,
-								  1.0,
-								  0.0,
-								  0.0,
-								  0.0,
-								  -100.0,
-								  null,
-								  ColorCIExyY.D50,
-								  ColorCIExyY.D50));
-
-			profiles.Add (Cms.Profile.CreateAbstract (nsteps,
-								  1.0,
-								  32.0,
-								  0.0,
-								  0.0,
-								  0.0,
-								  null,
-								  ColorCIExyY.D50,
-								  ColorCIExyY.WhitePointFromTemperature (9934)));
-		}
-	}
-
-	public class Desaturate : ColorAdjustment {
-		public Desaturate (Pixbuf input, Cms.Profile input_profile) : base (input, input_profile)
-		{
-		}
-
-		protected override void GenerateAdjustments ()
-		{
-			profiles.Add (Cms.Profile.CreateAbstract (nsteps,
-								  1.0,
-								  0.0,
-								  0.0,
-								  0.0,
-								  -100.0,
-								  null,
-								  ColorCIExyY.D50,
-								  ColorCIExyY.D50));
 		}
 	}
 }

@@ -277,7 +277,7 @@ namespace FSpot {
 			bool create_version = photo.DefaultVersion.IsProtected;
 	
 			try {
-				FSpot.SepiaTone sepia = new FSpot.SepiaTone (View.CompletePixbuf (), null);
+				FSpot.ColorAdjustment.SepiaTone sepia = new FSpot.ColorAdjustment.SepiaTone (View.CompletePixbuf (), null);
 				using (Pixbuf result = sepia.Adjust ()) {
 					photo.SaveVersion (result, create_version);
 					photo.Changes.DataChanged = true;
@@ -294,7 +294,7 @@ namespace FSpot {
 			bool create_version = photo.DefaultVersion.IsProtected;
 	
 			try {
-				FSpot.Desaturate desaturate = new FSpot.Desaturate (View.CompletePixbuf (), null);
+				FSpot.ColorAdjustment.Desaturate desaturate = new FSpot.ColorAdjustment.Desaturate (View.CompletePixbuf (), null);
 				using (Pixbuf result = desaturate.Adjust ()) {
 					photo.SaveVersion (result, create_version);
 					photo.Changes.DataChanged = true;
