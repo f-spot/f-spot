@@ -10,6 +10,8 @@
  * See COPYING for license information
  *
  */
+
+using FSpot.Utils;
 using Cms;
 using Gdk;
 using System.Collections.Generic;
@@ -21,7 +23,7 @@ namespace FSpot.ColorAdjustment {
 		private Cms.Intent intent = Cms.Intent.Perceptual;
 
 		// This is the input pixbuf, on which the adjustment will be performed.
-		private readonly Gdk.Pixbuf Input;
+		protected readonly Gdk.Pixbuf Input;
 
 		private Cms.Profile input_profile;
 		public Cms.Profile InputProfile {
@@ -47,8 +49,8 @@ namespace FSpot.ColorAdjustment {
 
 		public ColorAdjustment (Pixbuf input, Cms.Profile input_profile)
 		{
-			this.Input = input;
-			this.input_profile = input_profile;
+			Input = input;
+			InputProfile = input_profile;
 		}
 
 		protected abstract List <Cms.Profile> GenerateAdjustments ();
@@ -59,11 +61,7 @@ namespace FSpot.ColorAdjustment {
 							   false, 8,
 							   Input.Width,
 							   Input.Height);
-			profiles = new List <Cms.Profile> (4);
-			profiles.Add (InputProfile);
-			profiles.AddRange (GenerateAdjustments ());
-			profiles.Add (DestinationProfile);
-			Cms.Profile [] list = profiles.ToArray ();
+			Cms.Profile [] list = GenerateAdjustments ().ToArray ();
 			
 			if (Input.HasAlpha) {
 				Pixbuf alpha = PixbufUtils.Flatten (Input);

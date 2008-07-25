@@ -23,6 +23,7 @@ namespace FSpot.ColorAdjustment {
 		protected override List <Cms.Profile> GenerateAdjustments ()
 		{
 			List <Cms.Profile> profiles = new List <Cms.Profile> ();
+			profiles.Add (InputProfile);
 			profiles.Add (Cms.Profile.CreateAbstract (nsteps,
 								  1.0,
 								  0.0,
@@ -42,6 +43,7 @@ namespace FSpot.ColorAdjustment {
 								  null,
 								  ColorCIExyY.D50,
 								  ColorCIExyY.WhitePointFromTemperature (9934)));
+			profiles.Add (DestinationProfile);
 			return profiles;
 		}
 	}

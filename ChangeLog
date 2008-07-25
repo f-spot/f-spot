@@ -1,5 +1,25 @@
 2008-07-26  Ruben Vermeersch  <ruben@savanne.be>
 
+	* src/ColorAdjustment/AutoStretch.cs: Added. Basically the old AutoStretch
+	ported to reuse ColorAdjustment.
+
+	* src/ColorAdjustment/ColorAdjustment.cs: Only add InputProfile and
+	DestinationProfile on demand, needed to implement AutoStretch without
+	crashing.
+
+	* src/ColorAdjustment/Desaturate.cs:
+	* src/ColorAdjustment/SepiaTone.cs:
+	* src/Filters/ColorFilter.cs: Convert ColorFilter into something that
+	reuses ColorAdjustment. Basically this was a huge double implementation.
+	Some unit tests were not copied over, but the files needed to run them
+	aren't available anyway...
+
+	* src/ItemAction.cs: Use the noncolliding class name.
+
+	* src/Makefile.am: Added ColorAdjustment/AutoStretch.cs.
+
+2008-07-26  Ruben Vermeersch  <ruben@savanne.be>
+
 	Move the ColorAdjustment classes into a separate FSpot.ColorAdjustment
 	namespace and folder, split out the editors. More color filters will be
 	ported into this common framework, together with test fixtures.

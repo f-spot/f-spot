@@ -263,7 +263,7 @@ namespace FSpot {
 
 		protected override IFilter BuildFilter ()
 		{
-			return new AutoStretch ();
+			return new AutoStretchFilter ();
 		}
 	}
 

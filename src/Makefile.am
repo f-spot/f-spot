@@ -82,6 +82,7 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/BitConverter.cs		\
 	$(srcdir)/PhotoArray.cs 		\
 	$(srcdir)/PhotoList.cs 		\
+	$(srcdir)/ColorAdjustment/AutoStretch.cs		\
 	$(srcdir)/ColorAdjustment/ColorAdjustment.cs		\
 	$(srcdir)/ColorAdjustment/Desaturate.cs		\
 	$(srcdir)/ColorAdjustment/SepiaTone.cs		\
