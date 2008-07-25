@@ -14,7 +14,7 @@ using System;
 using System.Collections.Generic;
 
 namespace FSpot.ColorAdjustment {
-	public class AutoStretch : ColorAdjustment {
+	public class AutoStretch : Adjustment {
 		public AutoStretch (Pixbuf input, Cms.Profile input_profile) : base (input, input_profile)
 		{
 		}

@@ -1,5 +1,16 @@
 2008-07-26  Ruben Vermeersch  <ruben@savanne.be>
 
+	* src/ColorAdjustment/Adjustment.cs:
+	* src/ColorAdjustment/AutoStretch.cs:
+	* src/ColorAdjustment/Desaturate.cs:
+	* src/ColorAdjustment/SepiaTone.cs:
+	* src/Filters/ColorFilter.cs:
+	* src/Makefile.am: Rename ColorAdjustment to Adjustment, having
+	conflicting namespaces and type names is something C# does not handle
+	well.
+
+2008-07-26  Ruben Vermeersch  <ruben@savanne.be>
+
 	* src/ColorAdjustment/AutoStretch.cs: Added. Basically the old AutoStretch
 	ported to reuse ColorAdjustment.
 

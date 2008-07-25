@@ -15,7 +15,7 @@ using Gdk;
 using System.Collections.Generic;
 
 namespace FSpot.ColorAdjustment {
-	public class Desaturate : ColorAdjustment {
+	public class Desaturate : Adjustment {
 		public Desaturate (Pixbuf input, Cms.Profile input_profile) : base (input, input_profile)
 		{
 		}

@@ -30,7 +30,7 @@ namespace FSpot.Filters {
 				Pixbuf pixbuf = img.Load ();
 				Profile profile = img.GetProfile ();
 
-				FSpot.ColorAdjustment.ColorAdjustment adjustment = CreateAdjustment (pixbuf, profile);
+				Adjustment adjustment = CreateAdjustment (pixbuf, profile);
 				Gdk.Pixbuf final = adjustment.Adjust ();
 
 				Uri dest_uri = req.TempUri (Path.GetExtension (source.LocalPath));
@@ -44,11 +44,11 @@ namespace FSpot.Filters {
 			}
 		}
 
-		protected abstract FSpot.ColorAdjustment.ColorAdjustment CreateAdjustment (Pixbuf input, Cms.Profile input_profile);
+		protected abstract Adjustment CreateAdjustment (Pixbuf input, Cms.Profile input_profile);
 	}
 
 	public class AutoStretchFilter : ColorFilter {
-		protected override FSpot.ColorAdjustment.ColorAdjustment CreateAdjustment (Pixbuf input, Cms.Profile input_profile) {
+		protected override Adjustment CreateAdjustment (Pixbuf input, Cms.Profile input_profile) {
 			return new FSpot.ColorAdjustment.AutoStretch (input, input_profile);
 		}
 

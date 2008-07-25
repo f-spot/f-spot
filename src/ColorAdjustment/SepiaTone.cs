@@ -15,7 +15,7 @@ using Gdk;
 using System.Collections.Generic;
 
 namespace FSpot.ColorAdjustment {
-	public class SepiaTone : ColorAdjustment {
+	public class SepiaTone : Adjustment {
 		public SepiaTone (Pixbuf input, Cms.Profile input_profile) : base (input, input_profile)
 		{
 		}

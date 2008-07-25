@@ -1,5 +1,5 @@
 /*
- * ColorAdjustment.cs
+ * Adjustment.cs
  * 
  * Copyright 2006, 2007 Novell Inc.
  *
@@ -17,7 +17,7 @@ using Gdk;
 using System.Collections.Generic;
 
 namespace FSpot.ColorAdjustment {
-	public abstract class ColorAdjustment {
+	public abstract class Adjustment {
 		private List <Cms.Profile> profiles;
 		protected int nsteps = 20;
 		private Cms.Intent intent = Cms.Intent.Perceptual;
@@ -47,7 +47,7 @@ namespace FSpot.ColorAdjustment {
 			set { destination_profile = value; }
 		}
 
-		public ColorAdjustment (Pixbuf input, Cms.Profile input_profile)
+		public Adjustment (Pixbuf input, Cms.Profile input_profile)
 		{
 			Input = input;
 			InputProfile = input_profile;
