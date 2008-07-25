@@ -1,3 +1,10 @@
+2008-07-25  Ruben Vermeersch  <ruben@savanne.be>
+
+	* ColorAdjustment.cs: Turn the ColorAdjustment API into something sane.
+
+	* PhotoView.cs: Do a hacky fix of the current ColorAdjustments, will be
+	deprecated soon anyway.
+
 2008-07-14  Ruben Vermeersch  <ruben@savanne.be>
 
 	Add monodevelop build files, seems to work, but someone with more

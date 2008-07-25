@@ -274,13 +274,15 @@ namespace FSpot {
 		private void HandleSepiaButtonClicked (object sender, EventArgs args)
 		{
 			Photo photo = View.Item.Current as Photo;
+			bool create_version = photo.DefaultVersion.IsProtected;
 	
 			try {
-				FSpot.SepiaTone sepia = new FSpot.SepiaTone (photo);
-				sepia.Image = View.CompletePixbuf ();
-				sepia.Adjust ();
-				photo.Changes.DataChanged = true;
-				Core.Database.Photos.Commit (photo);
+				FSpot.SepiaTone sepia = new FSpot.SepiaTone (View.CompletePixbuf (), null);
+				using (Pixbuf result = sepia.Adjust ()) {
+					photo.SaveVersion (result, create_version);
+					photo.Changes.DataChanged = true;
+					Core.Database.Photos.Commit (photo);
+				}
 			} catch (System.Exception e) {
 				ShowError (e, photo); 
 			}
@@ -289,13 +291,15 @@ namespace FSpot {
 		private void HandleDesaturateButtonClicked (object sender, EventArgs args)
 		{
 			Photo photo = View.Item.Current as Photo;
+			bool create_version = photo.DefaultVersion.IsProtected;
 	
 			try {
-				FSpot.Desaturate desaturate = new FSpot.Desaturate (photo);
-				desaturate.Image = View.CompletePixbuf ();
-				desaturate.Adjust ();
-				photo.Changes.DataChanged = true;
-				Core.Database.Photos.Commit (photo);
+				FSpot.Desaturate desaturate = new FSpot.Desaturate (View.CompletePixbuf (), null);
+				using (Pixbuf result = desaturate.Adjust ()) {
+					photo.SaveVersion (result, create_version);
+					photo.Changes.DataChanged = true;
+					Core.Database.Photos.Commit (photo);
+				}
 			} catch (System.Exception e) {
 				ShowError (e, photo);
 			}

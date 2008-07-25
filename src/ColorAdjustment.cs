@@ -15,94 +15,83 @@ using System.Collections.Generic;
 
 namespace FSpot {
 	public abstract class ColorAdjustment {
-		protected Photo photo;
 		protected List <Cms.Profile> profiles;
-		protected Cms.Profile image_profile;
-		protected Cms.Profile destination_profile;
 		protected Cms.Profile adjustment_profile;
-		protected Gdk.Pixbuf image;
 		protected int nsteps = 20;
 		protected Cms.Intent intent = Cms.Intent.Perceptual;
 
 		// This is the input pixbuf, on which the adjustment will be performed.
-		//
-		// If it is not assigned, it will be loaded from the photo given when
-		// constructing the ColorAdjustment. However, assigning it (if you
-		// already have a copy in memory) avoids doing a duplicate load.
-		public Gdk.Pixbuf Image {
+		private readonly Gdk.Pixbuf Input;
+
+		private Cms.Profile input_profile;
+		public Cms.Profile InputProfile {
 			get {
-				if (image == null)
-					using (ImageFile img = ImageFile.Create (photo.DefaultVersionUri))
-						image = img.Load ();
-				return image;
+				if (input_profile == null)
+					input_profile = Cms.Profile.CreateStandardRgb ();
+
+				return input_profile;
 			}
-			set { image = value; }
+			set { input_profile = value; }
 		}
 
-		public ColorAdjustment (Photo photo)
-		{
-			this.photo = photo;
+		private Cms.Profile destination_profile;
+		public Cms.Profile DestinationProfile {
+			get {
+				if (destination_profile == null)
+					destination_profile = InputProfile;
+
+				return destination_profile;
+			}
+			set { destination_profile = value; }
 		}
-		
-		public void SetDestination (Cms.Profile profile)
+
+		public ColorAdjustment (Pixbuf input, Cms.Profile input_profile)
 		{
-			destination_profile = profile;
+			this.Input = input;
+			this.input_profile = input_profile;
 		}
 
 		protected abstract void GenerateAdjustments ();
 
-		public void Adjust ()
+		public Pixbuf Adjust ()
 		{
-			bool create_version = photo.DefaultVersion.IsProtected;
-
-			if (image_profile == null)
-				using (ImageFile img = ImageFile.Create (photo.DefaultVersionUri))
-					image_profile = img.GetProfile ();
-
-			if (image_profile == null)
-				image_profile = Cms.Profile.CreateStandardRgb ();
-
-			if (destination_profile == null)
-				destination_profile = image_profile;
-
 			Gdk.Pixbuf final = new Gdk.Pixbuf (Gdk.Colorspace.Rgb,
 							   false, 8,
-							   Image.Width,
-							   Image.Height);
+							   Input.Width,
+							   Input.Height);
 			profiles = new List <Cms.Profile> (4);
-			profiles.Add (image_profile);
+			profiles.Add (InputProfile);
 			GenerateAdjustments ();
-			profiles.Add (destination_profile);
+			profiles.Add (DestinationProfile);
 			Cms.Profile [] list = profiles.ToArray ();
 			
-			if (Image.HasAlpha) {
-				Pixbuf alpha = PixbufUtils.Flatten (Image);
+			if (Input.HasAlpha) {
+				Pixbuf alpha = PixbufUtils.Flatten (Input);
 				Transform transform = new Transform (list,
 								     PixbufUtils.PixbufCmsFormat (alpha),
 								     PixbufUtils.PixbufCmsFormat (final),
 								     intent, 0x0000);
 				PixbufUtils.ColorAdjust (alpha, final, transform);
-				PixbufUtils.ReplaceColor (final, Image);
+				PixbufUtils.ReplaceColor (final, Input);
 				alpha.Dispose ();
 				final.Dispose ();
-				final = Image;
+				final = Input;
 			} else {
 				Cms.Transform transform = new Cms.Transform (list,
-									     PixbufUtils.PixbufCmsFormat (Image),
+									     PixbufUtils.PixbufCmsFormat (Input),
 									     PixbufUtils.PixbufCmsFormat (final),
 									     intent, 0x0000);
 				
-				PixbufUtils.ColorAdjust (Image, final, transform);
-				Image.Dispose ();
+				PixbufUtils.ColorAdjust (Input, final, transform);
+				Input.Dispose ();
 			}
-				
-			photo.SaveVersion (final, create_version);
-			final.Dispose ();
+
+			return final;
 		}
 	}
 
 	public class SepiaTone : ColorAdjustment {
-		public SepiaTone (Photo photo) : base (photo)
+		public SepiaTone (Pixbuf input, Cms.Profile input_profile) : base (input, input_profile)
 		{
 		}
 
@@ -131,7 +120,7 @@ namespace FSpot {
 	}
 
 	public class Desaturate : ColorAdjustment {
-		public Desaturate (Photo photo) : base (photo)
+		public Desaturate (Pixbuf input, Cms.Profile input_profile) : base (input, input_profile)
 		{
 		}
 
