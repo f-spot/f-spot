@@ -23,7 +23,8 @@ ASSEMBLY_SOURCES =				\
 	$(srcdir)/Utility.cs
 
 REFS =					\
-	-r:ICSharpCode.SharpZipLib
+	-r:ICSharpCode.SharpZipLib \
+	-resource:content-codes
 
 PKGS =					\
 	-pkg:mono-zeroconf
