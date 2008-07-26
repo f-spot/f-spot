@@ -1,3 +1,17 @@
+2008-07-26  Andrzej Wytyczak-Partyka  <iapart@gmail.com>
+
+	* dpap-client/dpap-client.mdp:
+	* dpap-client/dpap-sharp.dll:
+	* dpap-client/Makefile.am:
+	* lib/Makefile.am:
+	* dpap-server/dpap-server.mdp:
+	* dpap-server/Main.cs:
+	* dpap-server/dpap-sharp.dll:
+	* dpap-server/Makefile.am:
+	* Makefile.am:
+	  Prepared/changed Makefiles to compile the test programs, added symlinks to dpap-sharp.dll, 
+	  so the tests don't blow up with a missing assembly error.
+
 2008-07-23  Andrzej Wytyczak-Partyka  <iapart@gmail.com>
 
 	* lib/Photo.cs:

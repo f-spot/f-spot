@@ -1,2 +1,4 @@
 SUBDIRS = 			\
-	lib
+	lib		\
+	dpap-server	\
+	dpap-client

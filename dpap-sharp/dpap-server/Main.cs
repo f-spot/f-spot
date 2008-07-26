@@ -49,24 +49,24 @@ namespace DPAP {
 			
 			Console.WriteLine("Starting DPAP server");
 			DPAP.Database database = new DPAP.Database("DPAP");
-			DPAP.Server server = new Server("apart photos");
+			DPAP.Server server = new Server("f-spot photos");
 			server.Port = 8770;
 			server.AuthenticationMethod = AuthenticationMethod.None;
 			int collision_count = 0;
 			server.Collision += delegate {
-				server.Name = "apart photos" + " [" + ++collision_count + "]";
+				server.Name = "f-spot photos" + " [" + ++collision_count + "]";
 			};
             
 			Photo p = new Photo();
-			p.FileName = "./podeszczu.jpg";
-			p.Title = "test";
+			p.FileName = "./test1.jpg";
+			p.Title = "test1";
 			p.Format = "JPEG";
 			p.Size = 13946;
 			database.AddPhoto(p);
 			
 			Photo p1 = new Photo();
-			p1.FileName = "./Grill.jpg";
-			p1.Title = "grill";
+			p1.FileName = "./test2.jpg";
+			p1.Title = "test2";
 			p1.Format = "JPEG";
 			p1.Size = 35209;
 			database.AddPhoto(p1);

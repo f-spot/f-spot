@@ -17,11 +17,8 @@ ASSEMBLY_SOURCES =				\
 	$(srcdir)/Hasher.cs			\
 	$(srcdir)/LoginException.cs		\
 	$(srcdir)/Photo.cs			\
-	$(srcdir)/Playlist.cs			\
 	$(srcdir)/Server.cs			\
 	$(srcdir)/ServerInfo.cs			\
-	$(srcdir)/Source.cs			\
-	$(srcdir)/Track.cs			\
 	$(srcdir)/User.cs			\
 	$(srcdir)/Utility.cs
 
