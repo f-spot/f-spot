@@ -66,8 +66,11 @@ namespace DPAPService {
 			
 			
 			Album a = new Album("test album");
-			FSpot.Photo [] photos = Core.Database.Photos.Query ((Tag [])null, null, null, null);
-			int i=0;
+			Tag t = Core.Database.Tags.GetTagByName("Shared items");
+			
+			Tag []tags = {t};
+			FSpot.Photo [] photos = Core.Database.Photos.Query(tags);
+			
 			foreach(FSpot.Photo photo in photos)
 			{
 				string thumbnail_path = ThumbnailGenerator.ThumbnailPath (photo.DefaultVersionUri);				
@@ -77,9 +80,9 @@ namespace DPAPService {
 				
 				if(!f.Exists) 
 					continue;
-				if(++i > 5) break;
+				//if(++i > 5) break;
 				Console.WriteLine("Found photo " + photo.DefaultVersionUri + ", thumb " + thumbnail_path);
-				p.Title = photo.Name;
+				p.Title = f.Name;
 				p.Size = (int)f.Length; 
 				p.Format = "JPEG";
 				database.AddPhoto(p);
