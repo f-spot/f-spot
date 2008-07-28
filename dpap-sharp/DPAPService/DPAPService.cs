@@ -1,0 +1,171 @@
+// DPAPService.cs
+//
+// Author:
+// Andrzej Wytyczak-Partyka <iapart@gmail.com>
+// Copyright (C) 2008 Andrzej Wytyczak-Partyka
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 2 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+// GNU General Public License for more details.
+// 
+// You should have received a copy of the GNU General Public License
+// along with this program; if not, write to the Free Software
+// Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
+//
+//
+
+using System;
+using FSpot;
+using FSpot.Extensions;
+using FSpot.Utils;
+using System.IO;
+using DPAP;
+
+namespace DPAPService {
+	public class DPAPService : IService
+	{
+		static ServiceDiscovery sd;
+		public bool Start ()
+		{
+			Console.WriteLine("Starting DPAP!");
+			uint timer = Log.InformationTimerStart ("Starting DPAP");
+		//	sd = new ServiceDiscovery();
+		//	sd.Found += OnServiceFound;			
+		//	sd.Start();
+			StartServer();
+			
+
+		/*	try {
+				Core.Database.Photos.ItemsChanged += HandleDbItemsChanged;
+			} catch {
+				Log.Warning ("unable to hook the BeagleNotifier. are you running --view mode?");
+			}*/
+		//	Log.DebugTimerPrint (timer, "BeagleService startup took {0}");
+			return true;
+		}
+		private void StartServer ()
+		{
+		Console.WriteLine("Starting DPAP server");
+			DPAP.Database database = new DPAP.Database("DPAP");
+			DPAP.Server server = new Server("f-spot photos");
+			server.Port = 8770;
+			server.AuthenticationMethod = AuthenticationMethod.None;
+			int collision_count = 0;
+			server.Collision += delegate {
+				server.Name = "f-spot photos" + " [" + ++collision_count + "]";
+			};
+            
+			
+			//FSpot.Photo photo = (FSpot.Photo) Core.Database.Photos.Get(1);			
+			
+			
+			Album a = new Album("test album");
+			FSpot.Photo [] photos = Core.Database.Photos.Query ((Tag [])null, null, null, null);
+			int i=0;
+			foreach(FSpot.Photo photo in photos)
+			{
+				string thumbnail_path = ThumbnailGenerator.ThumbnailPath (photo.DefaultVersionUri);				
+				DPAP.Photo p = new DPAP.Photo();				
+				p.FileName = thumbnail_path;				
+				FileInfo f = new FileInfo(p.FileName);
+				
+				if(!f.Exists) 
+					continue;
+				if(++i > 5) break;
+				Console.WriteLine("Found photo " + photo.DefaultVersionUri + ", thumb " + thumbnail_path);
+				p.Title = photo.Name;
+				p.Size = (int)f.Length; 
+				p.Format = "JPEG";
+				database.AddPhoto(p);
+				a.AddPhoto(p);
+			}		
+
+			database.AddAlbum(a);
+			Console.WriteLine("Album count is now " + database.Albums.Count);
+			Console.WriteLine("Photo name is " + database.Photos[0].FileName);
+			server.AddDatabase(database);
+			
+			//server.GetServerInfoNode();			
+			try {
+                server.Start();
+            } catch (System.Net.Sockets.SocketException) {
+				Console.WriteLine("Server socket exception!");
+                server.Port = 0;
+                server.Start();
+            }
+        
+			//DaapPlugin.ServerEnabledSchema.Set(true);
+            
+			//  if(!initial_db_committed) {
+                server.Commit();
+			//      initial_db_committed = true;
+			//  }
+	
+		}
+		public bool Stop ()
+		{
+			uint timer = Log.InformationTimerStart ("Stopping DPAP");
+			if(sd != null) {
+                sd.Stop();
+                sd.Found -= OnServiceFound;
+                //locator.Removed -= OnServiceRemoved;
+                sd = null;
+            }
+			//Log.DebugTimerPrint (timer, "BeagleService shutdown took {0}");	
+			return true;
+		}
+
+private static void OnServiceFound(object o, ServiceArgs args)
+		{
+			Service service = args.Service;
+			Client client;
+//			ThreadAssist.Spawn(delegate {
+        //        try {
+
+			System.Console.WriteLine("Connecting to {0} at {1}:{2}", service.Name, service.Address, service.Port);
+		    client = new Client( service );
+	
+			
+			foreach (Database d in client.Databases){
+
+				Console.WriteLine("Database " + d.Name);
+				
+				foreach (Album alb in d.Albums)
+					Console.WriteLine("\tAlbum: "+alb.Name + ", id=" + alb.getId() + " number of items:" + alb.Photos.Count);
+				Console.WriteLine(d.Photos[0].FileName);
+				foreach (DPAP.Photo ph in d.Photos)
+				{
+					if(ph != null)
+					{
+						Console.WriteLine("\t\tFile: " + ph.Title + " format = " + ph.Format + "size=" + ph.Width +"x" +ph.Height + " ID=" + ph.Id);
+						d.DownloadPhoto(ph,"./"+ph.Title);
+					}
+				}
+				
+			}
+			//client.Logout();
+		//	Console.WriteLine("Press <enter> to exit...");
+		}		
+		
+		/*private void HandleDbItemsChanged (object sender, DbItemEventArgs args)
+		{
+#if ENABLE_BEAGLE
+			Log.Debug ("Notifying beagle");
+			foreach (DbItem item in args.Items) {
+				if (item as Photo != null)
+					try {
+						BeagleNotifier.SendUpdate (item as Photo);
+					} catch (Exception e) {
+						Log.DebugFormat ("BeagleNotifier.SendUpdate failed with {0}", e.Message);
+					}
+			}
+#endif
+		}*/
+	}
+}

@@ -105,11 +105,17 @@ namespace DPAP {
 		// becomes available
 		//
 		
-		public void Start(){
+		public void Start () {
 			browser = new ServiceBrowser();
 			browser.ServiceAdded += OnServiceAdded;
 			browser.Browse("_dpap._tcp","local");
 		}
+		
+	    public void Stop () {
+            browser.Dispose ();
+            browser = null;
+            services.Clear ();
+        }
 		
 		private void OnServiceAdded(object o, ServiceBrowseEventArgs args){
 			Console.WriteLine("Found Service: {0}", args.Service.Name);

@@ -46,6 +46,13 @@ namespace DPAP {
 			
 //			sd.Services[0];
 			Console.ReadLine();
+			if(sd != null) {
+                sd.Stop();
+                sd.Found -= OnServiceFound;
+                //locator.Removed -= OnServiceRemoved;
+                sd = null;
+            }
+			
 		}
 		private static void OnServiceFound(object o, ServiceArgs args)
 		{
@@ -75,32 +82,9 @@ namespace DPAP {
 				}
 				
 			}
-			client.Logout();
-			Console.WriteLine("Press <enter> to exit...");
-			//Console.ReadLine();
-	//		});
-        /*            //client.Updated += OnClientUpdated;
-                    if(client.AuthenticationMethod == AuthenticationMethod.None) {
-                        client.Login();
+			//client.Logout();
+			//Console.WriteLine("Press <enter> to exit...");
 
-			}                        
-			*/
-                    //} else {
-                    //    ThreadAssist.ProxyToMain(PromptLogin);
-                   // }
-        /*        } catch(Exception e) {
-                    ThreadAssist.ProxyToMain(delegate {
-                        DaapErrorView error_view = new DaapErrorView(this, DaapErrorType.BrokenAuthentication);
-                        while(box.Children.Length > 0) {
-                            box.Remove(box.Children[0]);
-                        }
-                        box.PackStart(error_view, true, true, 0);
-                        error_view.Show();
-                    });
-                }*/
-               
-         //       is_activating = false;
-         //   });			
 			
 		}
 	}

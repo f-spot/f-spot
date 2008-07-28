@@ -545,7 +545,7 @@ namespace DPAP {
                 RegisterService ();
         }
 
-        public void Stop () {
+		public void Stop () {
             running = false;
 
             ws.Stop ();
