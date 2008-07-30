@@ -23,7 +23,7 @@
 //
 //
 
-using System;
+	using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -138,15 +138,16 @@ namespace DPAP
             return (int) containerIds[index];
         }
 
-        internal ContentNode ToPhotosNode (int[] deletedIds) {
+        internal ContentNode ToPhotosNode (string[] fields) {
             ArrayList photoNodes = new ArrayList ();
 
             for (int i = 0; i < photos.Count; i++) {
                 Photo photo = photos[i] as Photo;
-                photoNodes.Add (photo.ToAlbumNode ((int) containerIds[i]));
+				photoNodes.Add (photo.ToAlbumNode(fields));
+                //photoNodes.Add (photo.ToAlbumsNode ((int) containerIds[i]));
             }
 
-            ArrayList deletedNodes = null;
+            /*ArrayList deletedNodes = null;
             if (deletedIds.Length > 0) {
                 deletedNodes = new ArrayList ();
 
@@ -154,16 +155,16 @@ namespace DPAP
                     deletedNodes.Add (new ContentNode ("dmap.itemid", id));
                 }
             }
-
+*/
             ArrayList children = new ArrayList ();
             children.Add (new ContentNode ("dmap.status", 200));
-            children.Add (new ContentNode ("dmap.updatetype", deletedNodes == null ? (byte) 0 : (byte) 1));
+            children.Add (new ContentNode ("dmap.updatetype", (byte) 0));
             children.Add (new ContentNode ("dmap.specifiedtotalcount", photos.Count));
             children.Add (new ContentNode ("dmap.returnedcount", photos.Count));
             children.Add (new ContentNode ("dmap.listing", photoNodes));
 
-            if (deletedNodes != null)
-                children.Add (new ContentNode ("dmap.deletedidlisting", deletedNodes));
+  //          if (deletedNodes != null)
+    //            children.Add (new ContentNode ("dmap.deletedidlisting", deletedNodes));
             
             
             return new ContentNode ("dpap.playlistsongs", children);

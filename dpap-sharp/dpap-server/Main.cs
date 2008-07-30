@@ -58,14 +58,20 @@ namespace DPAP {
 			};
             
 			Photo p = new Photo();
-			p.FileName = "./test1.jpg";
+			p.Thumbnail = "./test3-thumb.jpg";
+			p.ThumbSize = 44786;
+			p.FileName = "test3.jpg";
+			p.Path = "./test3.jpg";
 			p.Title = "test1";
 			p.Format = "JPEG";
-			p.Size = 13946;
+			p.Size = 1088386;
 			database.AddPhoto(p);
 			
 			Photo p1 = new Photo();
-			p1.FileName = "./test2.jpg";
+			p1.Thumbnail = "./test2-thumb.jpg";
+			p1.ThumbSize = 11357;
+			p1.FileName = "test2.jpg";
+			p1.Path = "./test2.jpg";
 			p1.Title = "test2";
 			p1.Format = "JPEG";
 			p1.Size = 35209;

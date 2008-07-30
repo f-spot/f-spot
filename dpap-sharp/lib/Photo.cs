@@ -45,6 +45,9 @@ namespace DPAP
         private int photoNumber;
         private int photoCount;
         private string fileName;
+		private string thumbnail;
+		private string path;
+		private int thumbsize;
         private DateTime dateAdded = DateTime.Now;
         private DateTime dateModified = DateTime.Now;
         private short bitrate;
@@ -119,6 +122,30 @@ namespace DPAP
             }
         }
         
+		public string Path {
+            get { return path; }
+            set {
+                path = value;
+                EmitUpdated ();
+            }
+        }
+		
+		public string Thumbnail {
+            get { return thumbnail; }
+            set {
+                thumbnail = value;
+                EmitUpdated ();
+            }
+        }		
+		
+		public int ThumbSize {
+            get { return thumbsize; }
+            set {
+                thumbsize = value;
+                EmitUpdated ();
+            }
+        }				
+		
 		public int Width {
 			get { return width; }
 			set {
@@ -163,27 +190,32 @@ namespace DPAP
             photo.id = id;
             photo.size = size;
             photo.fileName = fileName;
+			photo.thumbnail = thumbnail;
+			photo.thumbsize = thumbsize;
             photo.dateAdded = dateAdded;
             photo.dateModified = dateModified;
-			
+			photo.path = path;
             return photo;
         }
 
         public override string ToString () {
-            return String.Format ("{0} - {1}.{2} ({3})", fileName, title, format, id);
+            return String.Format ("fname={0}, title={1}, format={2}, id={3}, path={4}", fileName, title, format, id, path);
         }
 
         internal void SetId (int id) {
             this.id = id;
         }
-		internal ContentNode ToFileData () {
+		internal ContentNode ToFileData (bool thumb) {
 			
 			ArrayList nodes = new ArrayList ();
-			
+			Console.WriteLine("Requested "+ ((thumb)?"thumb":"file") +", thumbnail=" + thumbnail + ", hires=" + path);
+			nodes.Add (new ContentNode ("dmap.itemkind", (byte)3));
 			nodes.Add (new ContentNode ("dmap.itemid", id));
 			nodes.Add (new ContentNode ("dpap.filedata",
-			                                             new ContentNode ("dpap.imagefilesize", size),
-			                                             new ContentNode ("dpap.imagefilename", fileName)));
+			                                             new ContentNode ("dpap.imagefilesize", (thumb)?thumbsize:size),
+			                                             new ContentNode ("dpap.imagefilename", (thumb)?thumbnail:path),
+			                                             new ContentNode ("dpap.imagefilename", (thumb)?thumbnail:fileName)));
+			
 			return (new ContentNode("dmap.listingitem", nodes));
 			
 			 /*
@@ -214,7 +246,7 @@ namespace DPAP
                     val = title;
                     break;
                 case "dmap.itemkind":
-                    val = (byte) 2;
+                    val = (byte) 3;
                     break;
                 case "dmap.persistentid":
                     val = (long) id;
@@ -233,7 +265,28 @@ namespace DPAP
 				case "dpap.imagefilename":
 					val = fileName;
 					break;
-				
+				case "dpap.imagefilesize":
+					val = thumbsize;
+					break;
+				case "dpap.imagelargefilesize":
+					val = size;
+					break;
+				/*case "dpap.aspectratio":
+					val = "0";
+					break;*/
+				case "dpap.creationdate":
+					val = 7799;
+					break;
+				case "dpap.pixelheight":
+					val = 0;
+					break;
+				case "dpap.pixelwidth":
+					val = 0;
+					break;
+				case "dpap.imagerating":
+					val = 0;
+					break;
+					
                 default:
                     break;
                 }
@@ -284,13 +337,81 @@ namespace DPAP
             return photo;
         }
 
-        internal ContentNode ToAlbumNode (int containerId) {
-            return new ContentNode ("dmap.listingitem",
-                                    new ContentNode ("dmap.itemkind", (byte) 2),
-                                    new ContentNode ("dpap.imagefilename", fileName),
+        internal ContentNode ToAlbumNode (string[] fields) {
+ArrayList nodes = new ArrayList ();
+            
+            foreach (string field in fields) {
+                object val = null;
+                
+                switch (field) {
+                case "dmap.itemid":
+                    val = id;
+                    break;
+                case "dmap.itemname":
+                    val = title;
+                    break;
+                case "dmap.itemkind":
+                    val = (byte) 3;
+                    break;
+                case "dmap.persistentid":
+                    val = (long) id;
+                    break;
+                case "dpap.photoalbum":
+                    val = album;
+                    break;
+                
+                case "dpap.author":
+                    val = author;
+                    break;
+                
+                case "dpap.imageformat":
+                    val = format;
+                    break;
+				case "dpap.imagefilename":
+					val = fileName;
+					break;
+				case "dpap.imagefilesize":
+					val = thumbsize;
+					break;
+				case "dpap.imagelargefilesize":
+					val = size;
+					break;
+				case "dpap.aspectratio":
+					val = "1.522581";
+					break;
+				case "dpap.creationdate":
+					val = 7799;
+					break;
+				case "dpap.pixelheight":
+					val = 0;
+					break;
+				case "dpap.pixelwidth":
+					val = 0;
+					break;
+				case "dpap.imagerating":
+					val = 0;
+					break;
+					
+                default:
+                    break;
+                }
+                
+                if (val != null) {
+                    // iTunes wants this to go first, sigh
+                    if (field == "dmap.itemkind")
+                        nodes.Insert (0, new ContentNode (field, val));
+                    else
+                        nodes.Add (new ContentNode (field, val));
+                }
+            }			
+            return new ContentNode ("dmap.listingitem", 
+                                    new ContentNode ("dmap.itemkind", (byte) 3),
+			                        nodes);
+                                   /* new ContentNode ("dpap.imagefilename", fileName),
                                     new ContentNode ("dmap.itemid", Id),
-                                    new ContentNode ("dmap.containeritemid", containerId),
+                                    //new ContentNode ("dmap.containeritemid", containerId),
                                     new ContentNode ("dmap.itemname", Title == null ? String.Empty : Title));
+                                    */
         }
 
         internal static void FromAlbumNode (Database db, ContentNode node, out Photo photo, out int containerId) {

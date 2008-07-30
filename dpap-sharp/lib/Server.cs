@@ -276,6 +276,7 @@ namespace DPAP {
                     try {
                         string path = splitRequest[1];
                         if (!path.StartsWith ("dpap://")) {
+							Console.WriteLine("Path is not correct - " + path);
                             path = String.Format ("dpap://localhost{0}", path);
                         }
 
@@ -674,6 +675,7 @@ namespace DPAP {
 				photoQuery = query["query"];
 			else
 				photoQuery = "";
+			
             int session = 0;
             if (query["session-id"] != null) {
                 session = Int32.Parse (query["session-id"]);
@@ -698,7 +700,11 @@ namespace DPAP {
             if (query["delta"] != null) {
                 delta = Int32.Parse (query["delta"]);
             }
-			Console.WriteLine("Before returning resources for path " + path);
+			// DEBUG data
+			Console.WriteLine("Before returning resources for path " + path + ", meta " + query["meta"] + " query " + photoQuery);
+			if(dbItemsRegex.IsMatch (path)) //&& photoQuery.Length==0
+				Console.WriteLine ("\tThis is a database/items request!");
+			
             if (path == "/server-info") {
                 ws.WriteResponse (client, GetServerInfoNode ());
             } else if (path == "/content-codes") {
@@ -763,7 +769,7 @@ namespace DPAP {
                 ws.WriteResponse (client, node);
             } else if (dbPhotoRegex.IsMatch (photoQuery)) {
 				Console.WriteLine("dbPhotoRegex");
-				Console.WriteLine("dbItemsRegex, query=" + query["query"] + " meta=" + query["meta"]);
+				Console.WriteLine("dbPhotosRegex, query=" + query["query"] + " meta=" + query["meta"]);
 				string[] photoIds = query["query"].Split (',');
 				Match match = dbPhotoRegex0.Match(path);
 				int dbid = Int32.Parse (match.Groups[1].Value);
@@ -779,13 +785,14 @@ namespace DPAP {
                 }
 				ArrayList photoNodes = new ArrayList();
 				Photo photo = db.LookupPhotoById (1);
+				
 				foreach (string photoId in photoIds)
 				{
 					match = dbPhotoRegex.Match (photoId);
 				photoid = Int32.Parse (match.Groups[1].Value);
 					Console.WriteLine("Requested photo id=" + photoid);
 					photo = db.LookupPhotoById (photoid);
-					photoNodes.Add(photo.ToFileData());
+					photoNodes.Add(photo.ToFileData(query["meta"].Contains("dpap.thumb")));
 				}
         
 				ArrayList children = new ArrayList ();
@@ -796,7 +803,7 @@ namespace DPAP {
 				children.Add (new ContentNode ("dmap.listing", photoNodes));
 				ContentNode dbsongs = new ContentNode ("dpap.databasesongs", children);
                 
-				Console.WriteLine(photo.ToString());
+				Console.WriteLine("Photo tostring: " + photo.ToString());
                 if (photo == null) {
                     ws.WriteResponse (client, HttpStatusCode.BadRequest, "invalid photo id");
                     return true;
@@ -843,6 +850,8 @@ namespace DPAP {
 
                 ws.WriteResponse (client, db.ToAlbumsNode ());
             } else if (dbContainerItemsRegex.IsMatch (path)) {
+				// DEBUG
+				Console.WriteLine("ContainerItems !");
                 Match match = dbContainerItemsRegex.Match (path);
                 int dbid = Int32.Parse (match.Groups[1].Value);
                 int plid = Int32.Parse (match.Groups[2].Value);
@@ -877,8 +886,9 @@ namespace DPAP {
                         }
                     }
                 }
-                    
-                ws.WriteResponse (client, curpl.ToPhotosNode ((int[]) deletedIds.ToArray (typeof (int))));
+                    curpl.ToPhotosNode (query["meta"].Split (',')).Dump();
+                ws.WriteResponse (client, curpl.ToPhotosNode (query["meta"].Split (',')));
+				//, (int[]) deletedIds.ToArray (typeof (int))));
             } else if (path == "/update") {
                 int retrev;
                 

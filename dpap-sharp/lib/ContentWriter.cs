@@ -19,7 +19,7 @@
 // 
 // You should have received a copy of the GNU General Public License
 // along with this program; if not, write to the Free Software
-// Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
+// Foundation, Inc., 51 Franklin Street,Fifth Floor, Boston, MA 02110-1301 USA
 //
 //
 
@@ -78,13 +78,15 @@ namespace DPAP {
                 writer.Write ((byte) version.Build);
                 break;
 			case ContentType.FileData:
+				
 				Console.WriteLine("ContentWriter FileData!");
 				ContentNode[] nodes = (ContentNode[]) node.Value;
 				//writer.Write(IPAddress.HostToNetworkOrder (0));
 				Console.WriteLine(nodes[0].Value);
 				writer.Write(IPAddress.HostToNetworkOrder ((int)nodes[0].Value));
-				Console.WriteLine("reading file!");
-				FileInfo info = new FileInfo ((string)nodes[1].Value);
+				FileInfo info = new FileInfo ((string)nodes[1].Value);				
+				Console.WriteLine("reading file " + nodes[1].Value + ", length=" +info.Length);
+				
 
 				FileStream stream = info.Open(FileMode.Open, FileAccess.Read, FileShare.Read);
 				//writer.Write (client, stream, info.Length, offset);

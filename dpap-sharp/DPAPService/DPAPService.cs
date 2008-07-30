@@ -52,6 +52,7 @@ namespace DPAPService {
 		private void StartServer ()
 		{
 		Console.WriteLine("Starting DPAP server");
+			
 			DPAP.Database database = new DPAP.Database("DPAP");
 			DPAP.Server server = new Server("f-spot photos");
 			server.Port = 8770;
@@ -70,18 +71,25 @@ namespace DPAPService {
 			
 			Tag []tags = {t};
 			FSpot.Photo [] photos = Core.Database.Photos.Query(tags);
+			int i=0;
 			
 			foreach(FSpot.Photo photo in photos)
 			{
-				string thumbnail_path = ThumbnailGenerator.ThumbnailPath (photo.DefaultVersionUri);				
-				DPAP.Photo p = new DPAP.Photo();				
-				p.FileName = thumbnail_path;				
-				FileInfo f = new FileInfo(p.FileName);
+				string thumbnail_path = ThumbnailGenerator.ThumbnailPath (photo.DefaultVersionUri);
+				FileInfo f = new FileInfo(thumbnail_path);
 				
+				DPAP.Photo p = new DPAP.Photo();			
+				
+				p.FileName = photo.Name;
+				p.Thumbnail = thumbnail_path;
+				p.ThumbSize = (int)f.Length;
+				p.Path = photo.DefaultVersionUri.ToString().Substring(7);
+				f = new FileInfo(photo.DefaultVersionUri.ToString().Substring(7));
 				if(!f.Exists) 
 					continue;
-				//if(++i > 5) break;
-				Console.WriteLine("Found photo " + photo.DefaultVersionUri + ", thumb " + thumbnail_path);
+			
+				//if(++i > 2) break;
+				Console.WriteLine("Found photo " + p.Path  + ", thumb " + thumbnail_path);
 				p.Title = f.Name;
 				p.Size = (int)f.Length; 
 				p.Format = "JPEG";
@@ -91,7 +99,7 @@ namespace DPAPService {
 
 			database.AddAlbum(a);
 			Console.WriteLine("Album count is now " + database.Albums.Count);
-			Console.WriteLine("Photo name is " + database.Photos[0].FileName);
+//			Console.WriteLine("Photo name is " + database.Photos[0].FileName);
 			server.AddDatabase(database);
 			
 			//server.GetServerInfoNode();			
@@ -124,7 +132,7 @@ namespace DPAPService {
 			return true;
 		}
 
-private static void OnServiceFound(object o, ServiceArgs args)
+		private static void OnServiceFound(object o, ServiceArgs args)
 		{
 			Service service = args.Service;
 			Client client;
