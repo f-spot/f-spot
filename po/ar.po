@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: f-spot.HEAD.ar\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-07-29 02:16+0100\n"
+"POT-Creation-Date: 2008-07-31 11:06+0100\n"
 "PO-Revision-Date: 2008-07-24 19:45+0300\n"
 "Last-Translator: OsamaKhalid <OsamaK.WFM@gmail.com>\n"
 "Language-Team: Arabic <en@li.org>\n"
@@ -753,7 +753,8 @@ msgid "Unknown Directory"
 msgstr "دليل مجهول"
 
 #: ../src/Imaging/ImageFile.cs:87
-msgid "Writing to this file format is not implemented"
+#, fuzzy
+msgid "Writing to this file format is not supported"
 msgstr "الكتابة إلى صيغة الملف هذه ليست منفّذة"
 
 #: ../src/Imaging/IptcFile.cs:145
