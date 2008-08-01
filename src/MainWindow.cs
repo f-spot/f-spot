@@ -2,6 +2,7 @@ using Gdk;
 using Gtk;
 using GtkSharp;
 using Glade;
+using Mono.Addins;
 using Mono.Unix;
 using System;
 using System.Text;
@@ -16,6 +17,7 @@ using System.Web.Mail;
 using Banshee.Kernel;
 
 using FSpot;
+using FSpot.Extensions;
 using FSpot.Query;
 using FSpot.Widgets;
 using FSpot.Utils;
@@ -306,8 +308,8 @@ public class MainWindow {
 
 		sidebar.AppendPage (tag_selection_scrolled, Catalog.GetString ("Tags"), "gtk-new");
 
-		sidebar.AppendPage (new MetadataDisplayPage ());
-//		sidebar.AppendPage (new EditorPage ());
+		ViewModeCondition.Initialize (FSpot.Extensions.ViewMode.Library);
+		AddinManager.AddExtensionNodeHandler ("/FSpot/Sidebar", OnSidebarExtensionChanged);
  		
 		sidebar.CloseRequested += HideSidebar;
 		sidebar.Show ();
@@ -489,6 +491,12 @@ public class MainWindow {
 		UpdateToolbar ();
 
 		Banshee.Kernel.Scheduler.Resume ();
+	}
+
+	private void OnSidebarExtensionChanged (object s, ExtensionNodeEventArgs args) {
+		// FIXME: No sidebar page removal yet!
+		if (args.Change == ExtensionChange.Add)
+			sidebar.AppendPage ((args.ExtensionNode as SidebarPageNode).GetSidebarPage ());
 	}
 
 	private Photo CurrentPhoto {

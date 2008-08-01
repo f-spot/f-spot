@@ -112,6 +112,7 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/Extensions/PhotoSelectionCondition.cs	\
 	$(srcdir)/Extensions/PopupCommands.cs	\
 	$(srcdir)/Extensions/ServiceNode.cs	\
+	$(srcdir)/Extensions/ViewModeCondition.cs	\
 	$(srcdir)/Fader.cs			\
 	$(srcdir)/FileImportBackend.cs		\
 	$(srcdir)/FileBrowsableItem.cs		\
@@ -293,6 +294,7 @@ JOBSCHEDULER_ASSEMBLIES =			\
 	-r:FSpot.Utils.dll
 
 WIDGETS_ASSEMBLIES =				\
+	$(LINK_MONO_ADDINS)			\
 	-pkg:gtk-sharp-2.0			\
 	-pkg:gnome-sharp-2.0			\
 	-r:Mono.Posix				\

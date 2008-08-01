@@ -6,10 +6,15 @@
 
 	<Runtime>
 		<Import assembly="f-spot.exe" />
+		<Import assembly="FSpot.Widgets.dll" />
 	</Runtime>
 
 	<ExtensionPoint path = "/FSpot/Menus">
 		<ExtensionNode type="FSpot.Extensions.SubmenuNode"/>
+	</ExtensionPoint>
+
+	<ExtensionPoint path = "/FSpot/Sidebar">
+		<ExtensionNode type="FSpot.Widgets.SidebarPageNode"/>
 	</ExtensionPoint>
 
 	<ExtensionPoint path = "/FSpot/Services">
@@ -29,6 +34,7 @@
 	</Extension>
 
 	<ConditionType id="PhotoSelection" type="FSpot.Extensions.PhotoSelectionCondition" />
+	<ConditionType id="ViewMode" type="FSpot.Extensions.ViewModeCondition" />
 
 	<Extension path = "/FSpot/Menus/PhotoPopup">
 		<Command id = "CopyLocation" _label = "Copy Photo Locat_ion" command_type = "FSpot.Extensions.CopyLocation" />
@@ -44,4 +50,11 @@
 		<MenuGenerator id = "RemoveTag" _label = "Rem_ove Tag" icon = "gtk-remove" generator_type = "FSpot.Extensions.RemoveTag" />
 		<ComplexMenuItem id = "Rate" widget_type = "FSpot.Widgets.RatingMenuItem"  command_type = "FSpot.Extensions.Rate"/>
 	</Extension>	
+
+	<Extension path = "/FSpot/Sidebar">
+		<SidebarPage sidebar_page_type = "FSpot.Widgets.MetadataDisplayPage" />
+		<Condition id="ViewMode" mode="library">
+			<SidebarPage sidebar_page_type = "FSpot.Widgets.EditorPage" />
+		</Condition>
+	</Extension>
 </Addin>

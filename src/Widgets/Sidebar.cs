@@ -10,10 +10,22 @@
  */
 
 using Gtk;
+using Mono.Addins;
 using System;
 using System.Collections.Generic;
 
 namespace FSpot.Widgets {
+	[ExtensionNode ("SidebarPage")]
+	public class SidebarPageNode : ExtensionNode {
+		[NodeAttribute (Required=true)]
+		protected string sidebar_page_type;
+
+		public SidebarPage GetSidebarPage () {
+			return (SidebarPage) Addin.CreateInstance (sidebar_page_type);
+		}
+	}
+
+
 	public class SidebarPage {
 		// The widget shown on the sidebar page.
 		private readonly Widget widget;

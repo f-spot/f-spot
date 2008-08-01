@@ -1,5 +1,23 @@
 2008-08-01  Ruben Vermeersch  <ruben@savanne.be>
 
+	* src/Extensions/ViewModeCondition.cs: Added. Allows showing sidebar pages
+	conditionally, depending on whether the full library view, or just single
+	view is in use.
+
+	* src/FSpot.addin.xml: Add an extension point to hook in new sidebar
+	pages, as requested by apart.
+
+	* src/SingleView.cs:
+	* src/MainWindow.cs: Get sidebar pages from the extension point, rather
+	than hardcoding it in.
+
+	* src/Makefile.am: Add ViewModeCondition.cs.
+
+	* src/Widgets/Sidebar.cs: Add SidebarPageNode, an ExtensionNode to add
+	sidebar pages.
+
+2008-08-01  Ruben Vermeersch  <ruben@savanne.be>
+
 	* src/Widgets/Sidebar.cs: Keep track of the selection in the Sidebar. This
 	allows sidebar pages to get a reference to the current selection at any
 	time, through the sidebar container.

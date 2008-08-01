@@ -1,8 +1,10 @@
 using Gtk;
 using Gdk;
 using System;
+using Mono.Addins;
 using Mono.Unix;
 
+using FSpot.Extensions;
 using FSpot.Utils;
 using FSpot.UI.Dialog;
 using FSpot.Widgets;
@@ -119,7 +121,8 @@ namespace FSpot {
 			info_vbox.Add (sidebar);
 			sidebar.AppendPage (directory_scrolled, Catalog.GetString ("Folder"), "gtk-directory");
 
-			sidebar.AppendPage (new MetadataDisplayPage ());
+			ViewModeCondition.Initialize (FSpot.Extensions.ViewMode.Single);
+			AddinManager.AddExtensionNodeHandler ("/FSpot/Sidebar", OnSidebarExtensionChanged);
  		
 			sidebar.CloseRequested += HandleHideSidePane;
 			sidebar.Show ();
@@ -172,6 +175,12 @@ namespace FSpot {
 			export.Submenu = (Mono.Addins.AddinManager.GetExtensionNode ("/FSpot/Menus/Exports") as FSpot.Extensions.SubmenuNode).GetMenuItem ().Submenu;
 			export.Submenu.ShowAll ();
 			export.Activated += HandleExportActivated ;
+		}
+
+		private void OnSidebarExtensionChanged (object s, ExtensionNodeEventArgs args) {
+			// FIXME: No sidebar page removal yet!
+			if (args.Change == ExtensionChange.Add)
+				sidebar.AppendPage ((args.ExtensionNode as SidebarPageNode).GetSidebarPage ());
 		}
 
 		void HandleExportActivated (object o, EventArgs e)
