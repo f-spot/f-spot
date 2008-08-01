@@ -1,5 +1,10 @@
 2008-08-01  Ruben Vermeersch  <ruben@savanne.be>
 
+	* src/Widgets/Sidebar.cs: Always do the switch, otherwise we forget to do
+	so during initialization.
+
+2008-08-01  Ruben Vermeersch  <ruben@savanne.be>
+
 	* src/Extensions/ViewModeCondition.cs: Added. Allows showing sidebar pages
 	conditionally, depending on whether the full library view, or just single
 	view is in use.

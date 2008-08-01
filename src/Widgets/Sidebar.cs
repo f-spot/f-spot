@@ -9,6 +9,7 @@
  * This is free software. See COPYING for details.
  */
 
+using FSpot.Utils;
 using Gtk;
 using Mono.Addins;
 using System;
@@ -199,12 +200,9 @@ namespace FSpot.Widgets {
 				n = 0;
 			}
 
-			if (n != notebook.CurrentPage)
-			{				
-				notebook.CurrentPage = n;
-				choose_button.Label = menu_list [n];
-				choose_button.Image.IconName = image_list [n];
-			}
+			notebook.CurrentPage = n;
+			choose_button.Label = menu_list [n];
+			choose_button.Image.IconName = image_list [n];
 		}
 
 		public int CurrentPage
