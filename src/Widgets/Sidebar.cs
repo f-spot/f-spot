@@ -89,6 +89,13 @@ namespace FSpot.Widgets {
 		public event IBrowsableCollectionChangedHandler SelectionChanged;
 		public event IBrowsableCollectionItemsChangedHandler SelectionItemsChanged;
 
+		// The photos selected.
+		private IBrowsableCollection selection;
+		public IBrowsableCollection Selection {
+			get { return selection; }
+			private set { selection = value; }
+		}
+
 		public Sidebar () : base ()
 		{
 			button_box = new HBox ();
@@ -207,6 +214,8 @@ namespace FSpot.Widgets {
 
         // Proxy selection change to the subscribed sidebar pages.
 		public void HandleSelectionChanged (IBrowsableCollection collection) {
+			Console.WriteLine("Selection Changed: {0}, {1}", collection, collection.Count);
+			Selection = collection;
 			if (SelectionChanged != null) 
 				SelectionChanged (collection);
 		}

@@ -1,3 +1,9 @@
+2008-08-01  Ruben Vermeersch  <ruben@savanne.be>
+
+	* src/Widgets/Sidebar.cs: Keep track of the selection in the Sidebar. This
+	allows sidebar pages to get a reference to the current selection at any
+	time, through the sidebar container.
+
 2008-07-26  Ruben Vermeersch  <ruben@savanne.be>
 
 	* src/ColorAdjustment/Adjustment.cs:
