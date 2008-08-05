@@ -1,3 +1,8 @@
+2008-08-05  Lorenzo Milesi <maxxer@yetopen.it>
+
+	* src/TagStore.cs: don't trash the db if an icon contains invalid
+	characters. fix bgo#545902.
+
 2008-08-01  Ruben Vermeersch  <ruben@savanne.be>
 
 	* src/Widgets/Sidebar.cs: Always do the switch, otherwise we forget to do

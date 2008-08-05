@@ -171,7 +171,11 @@ public class TagStore : DbStore {
 				tag = new Tag (null, id, name);
 
 			if (reader [4] != null)
-				SetIconFromString (tag, reader [4].ToString ());
+				try {
+					SetIconFromString (tag, reader [4].ToString ());
+				} catch (Exception ex) {
+					Log.Exception ("Unable to load icon for tag " + name, ex);
+				}
 
 			tag.SortPriority = Convert.ToInt32 (reader[3]);
 			AddToCache (tag);
