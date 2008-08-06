@@ -266,6 +266,9 @@ namespace Mono.Addins
 			
 			bool changed = false;
 			
+			if (oldList == null)
+				return false;
+
 			foreach (ExtensionNode nod in oldList) {
 				if (ChildNodes [nod.Id] == null) {
 					changed = true;

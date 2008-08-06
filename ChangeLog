@@ -1,5 +1,13 @@
 2008-08-06  Ruben Vermeersch  <ruben@savanne.be>
 
+	* mono-addins/Mono.Addins/Mono.Addins/ExtensionNode.cs: Properly check for
+	null items. This causes trouble when a condition changes.
+
+	Mono.Addins probably needs an update, or better yet, let's just add it as
+	a dependency...
+
+2008-08-06  Ruben Vermeersch  <ruben@savanne.be>
+
 	Do context-aware sidebar switching. This means that the sidebar switches
 	to a different page according to what you are doing. A default Most
 	Recently Used switching strategy is provided, this can be changed easily
