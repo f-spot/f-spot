@@ -299,6 +299,7 @@ public class MainWindow {
 		toolbar.Insert (ss_button, -1);
 
 		sidebar = new Sidebar ();
+		ViewModeChanged += sidebar.HandleMainWindowViewModeChanged;
 		sidebar_vbox.Add (sidebar);
 
 		tag_selection_scrolled = new ScrolledWindow ();
@@ -308,8 +309,9 @@ public class MainWindow {
 
 		sidebar.AppendPage (tag_selection_scrolled, Catalog.GetString ("Tags"), "gtk-new");
 
-		ViewModeCondition.Initialize (FSpot.Extensions.ViewMode.Library);
 		AddinManager.AddExtensionNodeHandler ("/FSpot/Sidebar", OnSidebarExtensionChanged);
+
+		sidebar.Context = ViewContext.Library;
  		
 		sidebar.CloseRequested += HideSidebar;
 		sidebar.Show ();
@@ -469,7 +471,6 @@ public class MainWindow {
 
 		UpdateFindByTagMenu ();
 
-		LoadPreference (Preferences.SIDEBAR_TOP_ENTRY);
 		LoadPreference (Preferences.SHOW_TOOLBAR);
 		LoadPreference (Preferences.SHOW_SIDEBAR);
 		LoadPreference (Preferences.SHOW_TIMELINE);
@@ -1844,7 +1845,6 @@ public class MainWindow {
 
 		Preferences.Set (Preferences.SHOW_TOOLBAR,		toolbar.Visible);
 		Preferences.Set (Preferences.SHOW_SIDEBAR,		info_vbox.Visible);
-		Preferences.Set (Preferences.SIDEBAR_TOP_ENTRY,		sidebar.CurrentPage);
 		Preferences.Set (Preferences.SHOW_TIMELINE,		display_timeline.Active);
 		Preferences.Set (Preferences.SHOW_FILMSTRIP,		display_filmstrip.Active);
 		Preferences.Set (Preferences.SHOW_TAGS,			icon_view.DisplayTags);
@@ -2684,10 +2684,6 @@ public class MainWindow {
 		case Preferences.SIDEBAR_POSITION:
 			if (main_hpaned.Position !=Preferences.Get<int> (key) )
 				main_hpaned.Position = Preferences.Get<int> (key);
-			break;
-
-		case Preferences.SIDEBAR_TOP_ENTRY:
-			sidebar.SwitchTo (Preferences.Get<int> (key));
 			break;
 
 		case Preferences.TAG_ICON_SIZE:

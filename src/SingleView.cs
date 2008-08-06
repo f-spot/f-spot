@@ -121,9 +121,10 @@ namespace FSpot {
 			info_vbox.Add (sidebar);
 			sidebar.AppendPage (directory_scrolled, Catalog.GetString ("Folder"), "gtk-directory");
 
-			ViewModeCondition.Initialize (FSpot.Extensions.ViewMode.Single);
 			AddinManager.AddExtensionNodeHandler ("/FSpot/Sidebar", OnSidebarExtensionChanged);
  		
+			sidebar.Context = ViewContext.Single;
+
 			sidebar.CloseRequested += HandleHideSidePane;
 			sidebar.Show ();
 

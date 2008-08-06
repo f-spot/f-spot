@@ -73,7 +73,6 @@ WIDGETS_CSDISTFILES =				\
 	$(srcdir)/Widgets/Rating.cs		\
 	$(srcdir)/Widgets/SaneTreeView.cs	\
 	$(srcdir)/Widgets/ScrolledView.cs	\
-	$(srcdir)/Widgets/Sidebar.cs		\
 	$(srcdir)/Widgets/TagView.cs
 
 F_SPOT_CSDISTFILES =				\
@@ -253,6 +252,7 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/Widgets/RatingMenuItem.cs	\
 	$(srcdir)/Widgets/Reveal.cs		\
 	$(srcdir)/Widgets/ScalingIconView.cs	\
+	$(srcdir)/Widgets/Sidebar.cs		\
 	$(srcdir)/Widgets/SoftFocus.cs		\
 	$(srcdir)/Widgets/TagEntry.cs		\
 	$(srcdir)/Widgets/TagMenu.cs		\

@@ -1,3 +1,26 @@
+2008-08-06  Ruben Vermeersch  <ruben@savanne.be>
+
+	Do context-aware sidebar switching. This means that the sidebar switches
+	to a different page according to what you are doing. A default Most
+	Recently Used switching strategy is provided, this can be changed easily
+	if desired.
+
+	* src/MainWindow.cs: Don't try to be smart with the sidebar. Stop storing
+	and restoring the active entry.
+
+	* src/Makefile.am: Move Sidebar.cs back to the main assembly, as it
+	depends on the Extensions.
+
+	* src/Preferences.cs: Remove all SIDEBAR_TOP_ENTRY related code, it's
+	obsolete.
+
+	* src/SingleView.cs: Initialize the context rather than the
+	ViewModeCondition. The same applies for MainWindow.cs.
+
+	* src/Widgets/Sidebar.cs: Add a SidebarContextSwitchStrategy, which
+	defines the way context switches are handled. Implemented using the
+	Strategy pattern.
+
 2008-08-05  Lorenzo Milesi <maxxer@yetopen.it>
 
 	* src/TagStore.cs: don't trash the db if an icon contains invalid

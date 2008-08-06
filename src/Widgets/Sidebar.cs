@@ -9,13 +9,25 @@
  * This is free software. See COPYING for details.
  */
 
+using FSpot.Extensions;
 using FSpot.Utils;
 using Gtk;
 using Mono.Addins;
+using Mono.Unix;
 using System;
 using System.Collections.Generic;
 
 namespace FSpot.Widgets {
+	// This nasty enum serves to differentiate between the different view
+	// modes. As we have both SingleView and normal F-Spot, there is no 
+	// uniform way of naming these contexts.
+	public enum ViewContext {
+		Unknown,
+		Single,
+		Library,
+		Edit
+	}
+
 	[ExtensionNode ("SidebarPage")]
 	public class SidebarPageNode : ExtensionNode {
 		[NodeAttribute (Required=true)]
@@ -26,6 +38,51 @@ namespace FSpot.Widgets {
 		}
 	}
 
+	// Decides which sidebar page should be shown for each context. Implemented
+	// using the Strategy pattern, to make it swappable easily, in case the 
+	// default MRUSidebarContextSwitchStrategy is not sufficiently usable.
+	public abstract class SidebarContextSwitchStrategy {
+		private readonly Sidebar Sidebar;
+
+		public SidebarContextSwitchStrategy (Sidebar sidebar) {
+			Sidebar = sidebar;
+		}
+
+		public abstract string PageForContext (ViewContext context);
+
+		public abstract void SwitchedToPage (ViewContext context, string name);
+	}
+
+	// Implements a Most Recently Used switching strategy. The last page you used
+	// for a given context is used.
+	public class MRUSidebarContextSwitchStrategy : SidebarContextSwitchStrategy {
+		public const string PREF_PREFIX = Preferences.APP_FSPOT + "ui/sidebar";
+
+		public MRUSidebarContextSwitchStrategy (Sidebar sidebar) : base (sidebar) {
+		}
+
+		private string PrefKeyForContext (ViewContext context) {
+			return String.Format ("{0}/{1}", PREF_PREFIX, context);
+		}
+
+		public override string PageForContext (ViewContext context) {
+			string name = Preferences.Get<string> (PrefKeyForContext (context));
+			if (name == null) 
+				name = DefaultForContext (context);
+			return name;
+		}
+
+		public override void SwitchedToPage (ViewContext context, string name) {
+			Preferences.Set (PrefKeyForContext (context), name);
+		}
+
+		private string DefaultForContext (ViewContext context) {
+			if (context == ViewContext.Edit)
+				return Catalog.GetString ("Edit");
+			// Don't care otherwise, Tags sounds reasonable
+			return Catalog.GetString ("Tags");
+		}
+	}
 
 	public class SidebarPage {
 		// The widget shown on the sidebar page.
@@ -109,8 +166,25 @@ namespace FSpot.Widgets {
 			private set { selection = value; }
 		}
 
+		public event EventHandler ContextChanged;
+
+		private ViewContext view_context = ViewContext.Unknown;
+		public ViewContext Context {
+			get { return view_context; }
+			set {
+				view_context = value;
+				if (ContextChanged != null)
+					ContextChanged (this, null);
+			}
+		}
+
+		private readonly SidebarContextSwitchStrategy ContextSwitchStrategy;
+
 		public Sidebar () : base ()
 		{
+			ContextSwitchStrategy = new MRUSidebarContextSwitchStrategy (this);
+			ContextChanged += HandleContextChanged;
+
 			button_box = new HBox ();
 			PackStart (button_box, false, false, 0);
 			
@@ -141,6 +215,20 @@ namespace FSpot.Widgets {
 			pages = new List<SidebarPage> ();
 		}
 
+		private void HandleContextChanged (object sender, EventArgs args)
+		{
+			// Make sure the ViewModeCondition is set correctly.
+			if (Context == ViewContext.Single)
+				ViewModeCondition.Initialize (FSpot.Extensions.ViewMode.Single);
+			else if (Context == ViewContext.Library || Context == ViewContext.Edit)
+				ViewModeCondition.Initialize (FSpot.Extensions.ViewMode.Library);
+			else
+				ViewModeCondition.Initialize (FSpot.Extensions.ViewMode.Unknown);
+
+			string name = ContextSwitchStrategy.PageForContext (Context);
+			SwitchTo (name);
+		}
+
 		private void HandleCanSelectChanged (object sender, EventArgs args)
 		{
 			//Log.DebugFormat ("Can select changed for {0} to {1}", sender, (sender as SidebarPage).CanSelect);
@@ -161,6 +249,7 @@ namespace FSpot.Widgets {
 			string icon_name = page.IconName;
 
 			notebook.AppendPage (page.SidebarWidget, new Label (label));
+			page.SidebarWidget.Show ();
 			
 			MenuItem item; 
 			if (icon_name == null)
@@ -174,18 +263,28 @@ namespace FSpot.Widgets {
 			choose_menu.Append (item);
 			item.Show ();
 			
-			if (notebook.Children.Length == 1)
-			{
+			if (notebook.Children.Length == 1) {
 				choose_button.Label = label;
 				choose_button.Image.IconName = icon_name;
 			}
 			menu_list.Add (label);
 			image_list.Add (icon_name);
 		}
+
+		public void HandleMainWindowViewModeChanged (object o, EventArgs args)
+		{
+			MainWindow.ModeType mode = MainWindow.Toplevel.ViewMode;
+			if (mode == MainWindow.ModeType.IconView) 
+				Context = ViewContext.Library;
+			else if (mode == MainWindow.ModeType.PhotoView)
+				Context = ViewContext.Edit;
+		}
 		
 		public void HandleItemClicked (object o, EventArgs args)
 		{
-			SwitchTo (menu_list.IndexOf (((o as MenuItem).Child as Label).Text));
+			string name = ((o as MenuItem).Child as Label).Text;
+			SwitchTo (name);
+			ContextSwitchStrategy.SwitchedToPage (Context, name);
 		}
 		
 		public void HandleCloseButtonPressed (object sender, EventArgs args)
@@ -212,9 +311,8 @@ namespace FSpot.Widgets {
 
 		public void SwitchTo (string name)
 		{
-			if (menu_list.Contains (name)) {
+			if (menu_list.Contains (name))
 				SwitchTo (menu_list.IndexOf (name));
-			}
 		}
 		
 		public bool IsActive (SidebarPage page)
