@@ -211,6 +211,10 @@ namespace DPAP
 			Console.WriteLine("Requested "+ ((thumb)?"thumb":"file") +", thumbnail=" + thumbnail + ", hires=" + path);
 			nodes.Add (new ContentNode ("dmap.itemkind", (byte)3));
 			nodes.Add (new ContentNode ("dmap.itemid", id));
+			
+			// pass the appropriate file path, depending on wether 
+			//we are sending the thumbnail or the hi-res image
+			
 			nodes.Add (new ContentNode ("dpap.filedata",
 			                                             new ContentNode ("dpap.imagefilesize", (thumb)?thumbsize:size),
 			                                             new ContentNode ("dpap.imagefilename", (thumb)?thumbnail:path),
@@ -218,18 +222,6 @@ namespace DPAP
 			
 			return (new ContentNode("dmap.listingitem", nodes));
 			
-			 /*
-			                 
-			                        
-			                                         new ContentNode ("dmap.listingitem",
-			                                                          new ContentNode ("dmap.itemid", id),
-//			                                         new ContentNode ("dmap.persistentid", (long) id),
-//			                                         new ContentNode ("dmap.itemname", name),
-//			                                         new ContentNode ("dmap.itemcount", photos.Count),
-			                                                          new ContentNode ("dpap.filedata",
-			                                                                           new ContentNode ("dpap.imagefilesize", size),
-			                                                                           new ContentNode ("dpap.imagefilename", fileName))))
-			                        );*/
 		}
         internal ContentNode ToNode (string[] fields) {
 
@@ -320,7 +312,7 @@ namespace DPAP
                 case "dpap.imagefilename":
 					photo.fileName = (string) field.Value;
 					break;
-                case "dpap.imagefilesize":
+               /* case "dpap.imagefilesize":
                     photo.size = (int) field.Value;
                     break;
                 case "dpap.imagepixelwidth":
@@ -328,7 +320,7 @@ namespace DPAP
 					break;
 				case "dpap.imagepixelheight":
 					photo.height = (int) field.Value;
-					break;
+					break;*/
                 default:
                     break;
                 }
@@ -376,6 +368,8 @@ ArrayList nodes = new ArrayList ();
 				case "dpap.imagelargefilesize":
 					val = size;
 					break;
+				// Apparently this has to be sent even with bogus data, 
+				// otherwise iPhoto '08 wont show the thumbnails
 				case "dpap.aspectratio":
 					val = "1.522581";
 					break;

@@ -114,23 +114,29 @@ namespace DPAP {
 
         public static ContentNode Parse (ContentCodeBag bag, byte[] buffer, string root,
                                          ref int offset) {
-			//Console.WriteLine("Entering ContentNode Parse (...)");
-            ContentNode node = new ContentNode ();
-//System.Console.WriteLine("debug1!");
-            int num = IPAddress.NetworkToHostOrder (BitConverter.ToInt32 (buffer, offset));
-	//		System.Console.WriteLine("debug2!");
-            ContentCode code = bag.Lookup (num);
 			
-			//System.Console.WriteLine("debug3!");
+            ContentNode node = new ContentNode ();
+            int num = IPAddress.NetworkToHostOrder (BitConverter.ToInt32 (buffer, offset));
+			ContentCode code;
+			// This is a fix for iPhoto '08 which gives wrong content-type for dpap.databasecontainers (aply)
+			if(num == 1634757753)
+			{
+				code = new ContentCode();
+				code.Name = "dpap.databasecontainers";
+				code.Type = ContentType.Container;
+			}
+			else
+				code = bag.Lookup (num);
+			if(code.Name.Equals("dpap.filedata"))
+				code.Type = ContentType.FileData;
+			
             if (code.Equals (ContentCode.Zero)) {
                 // probably a buggy server.  fallback to our internal code bag
 				Console.WriteLine("fallback to internal code bag");
 				Console.WriteLine("Code number: "+num);
 				throw new Exception("Content code not found!");
-                //code = ContentCodeBag.Default.Lookup (num);
             }
 			
-			//System.Console.WriteLine("debug!4");
             int length = IPAddress.NetworkToHostOrder (BitConverter.ToInt32 (buffer, offset + 4));
 
             if (code.Equals (ContentCode.Zero)) {
@@ -139,7 +145,8 @@ namespace DPAP {
             }
 
             node.Name = code.Name;
-			//Console.WriteLine("Code=" +code.Type.ToString());
+			
+			Console.WriteLine("name = " + node.Name + "Code=" +code.Type.ToString() + " num=" +num);
             switch (code.Type) {
             case ContentType.Char:
                 node.Value = (byte) buffer[offset + 8];
@@ -170,13 +177,16 @@ namespace DPAP {
             case ContentType.Container:
                 node.Value = ParseChildren (bag, buffer, offset + 8, length);
                 break;
+			case ContentType.FileData:
+				node.Value = offset+8;
+				break;
             default:
                 throw new ContentException (String.Format ("Unknown content type '{0}' for '{1}'",
                                                            code.Type, code.Name));
             }
 
             offset += length + 8;
-			//Console.WriteLine("Leaving ContentNode Parse (...)");
+			
             if (root != null) {
                 ContentNode rootNode = node.GetChild (root);
 

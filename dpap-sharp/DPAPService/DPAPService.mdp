@@ -21,5 +21,8 @@
     <ProjectReference type="Gac" localcopy="True" refto="FSpot.Core, Version=0.0.0.0, Culture=neutral" />
     <ProjectReference type="Gac" localcopy="True" refto="FSpot.Utils, Version=0.0.0.0, Culture=neutral" />
     <ProjectReference type="Gac" localcopy="True" refto="f-spot, Version=0.4.3.1, Culture=neutral" />
+    <ProjectReference type="Assembly" localcopy="True" refto="../../src/FSpot.Widgets.dll" />
+    <ProjectReference type="Gac" localcopy="True" refto="gtk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
+    <ProjectReference type="Gac" localcopy="True" refto="gdk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
   </References>
 </Project>

@@ -162,7 +162,7 @@ namespace DPAP {
             bag.AddCode ("ppro", "dpap.protocolversion", ContentType.Long);
             bag.AddCode ("pret", "dpap.blah", ContentType.Container);
 			bag.AddCode ("avdb", "dpap.serverdatabases", ContentType.Container);
-			bag.AddCode ("aply", "dpap.databaseplaylists", ContentType.Container);
+			bag.AddCode ("aply", "dpap.databasecontainers", ContentType.Container);
 			bag.AddCode ("abpl", "dpap.baseplaylist", ContentType.Char);
 			bag.AddCode ("apso", "dpap.playlistsongs", ContentType.Container);
 			bag.AddCode ("pasp", "dpap.aspectratio", ContentType.String);

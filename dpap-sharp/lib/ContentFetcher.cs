@@ -140,7 +140,7 @@ namespace DPAP {
             HttpWebRequest request = (HttpWebRequest) WebRequest.Create (builder.Uri);
             request.PreAuthenticate = true;
             request.Timeout = System.Threading.Timeout.Infinite;
-            request.Headers.Add ("Accept-Encoding", "gzip");
+            //request.Headers.Add ("Accept-Encoding", "gzip");
 
             if (offset > 0) {
                 request.AddRange ("bytes", (int) offset);

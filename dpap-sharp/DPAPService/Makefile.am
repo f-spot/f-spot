@@ -14,6 +14,7 @@ PLUGIN_SOURCES =			\
 REFS =					\
 	-r:../../src/f-spot.exe		\
 	-r:../../src/FSpot.Core.dll	\
+	-r:../../src/FSpot.Widgets.dll \
 	-r:../../src/FSpot.Utils.dll	\
 	-r:../lib/dpap-sharp.dll	
 #	$(LINK_BEAGLE)

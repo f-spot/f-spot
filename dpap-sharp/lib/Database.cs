@@ -218,7 +218,7 @@ namespace DPAP {
                 nodes.Add (pl.ToNode (false));
             }
 
-            return new ContentNode ("dpap.databaseplaylists",
+            return new ContentNode ("dpap.databasecontainers",
                                     new ContentNode ("dmap.status", 200),
                                     new ContentNode ("dmap.updatetype", (byte) 0),
                                     new ContentNode ("dmap.specifiedtotalcount", nodes.Count),
@@ -273,16 +273,18 @@ namespace DPAP {
 			albumsNode.Dump();
 			Console.WriteLine("after dump!");
 			
- //           if (IsUpdateResponse (albumsNode))
- //               return;
+            if (IsUpdateResponse (albumsNode))
+                return;
 
             // handle album additions/changes
             ArrayList plids = new ArrayList ();
-            
+			if(albumsNode.GetChild("dmap.listing")==null) return;
+			
             foreach (ContentNode albumNode in (ContentNode[]) albumsNode.GetChild ("dmap.listing").Value) {
-                Album pl = Album.FromNode (albumNode);
+                
 				// DEBUG
 				Console.WriteLine("foreach loop");
+				Album pl = Album.FromNode (albumNode);
                 if (pl != null) {
                     plids.Add (pl.Id);
                     Album existing = LookupAlbumById (pl.Id);
@@ -429,27 +431,66 @@ namespace DPAP {
 
         public void DownloadPhoto (Photo photo, string dest) {
 
-            BinaryWriter writer = new BinaryWriter (File.Open (dest, FileMode.Create));
-
+/*            BinaryWriter writer = new BinaryWriter (File.Open (dest, FileMode.Create));
+			MemoryStream data = new MemoryStream ();
             try {
                 long len;
                 using (BinaryReader reader = new BinaryReader (StreamPhoto (photo, out len))) {
                     int count = 0;
                     byte[] buf = new byte[ChunkLength];
-                    
-			/*		count = reader.Read(buf,0,89);
+                
+					// Skip the header    
+					//count = reader.Read(buf,0,89);
 					
-					if(count < 89)
-						count+=reader.Read(buf,0,89-count);
-				*/	
-                    do {
+					//if(count < 89)
+					//	count+=reader.Read(buf,0,89-count);
+					
+					while (true) {
+                    buf = reader.ReadBytes (8192);
+                    if (buf.Length == 0)
+                        break;
+
+                    data.Write (buf, 0, buf.Length);
+					//Console.Write(buf.);
+					}
+					
+			*/		
+/*                    do {
                         count = reader.Read (buf, 0, ChunkLength);
                         writer.Write (buf, 0, count);
+						data.Write (buf, 0, count);
                     } while (count != 0);
+	*/				
+					/*data.Flush();
+					
+					ContentNode node = ContentParser.Parse(client.Bag, data.GetBuffer());
+					node.Dump();
+					reader.Close ();
+					
                 }
             } finally {
+				data.Close ();
+                
                 writer.Close ();
-            }
+            }*/
+			 byte[] photosData = client.Fetcher.Fetch (String.Format ("/databases/{0}/items",id), 
+			                                     String.Format("meta=dpap.filedata&query=('dmap.itemid:{0}')",photo.Id));
+			ContentNode node = ContentParser.Parse(client.Bag, photosData);
+			
+			// DEBUG
+			Console.WriteLine("About to dump the photo!");
+			node.Dump();
+			ContentNode fileDataNode = node.GetChild("dpap.filedata");
+			Console.WriteLine("Photo starts at index " + fileDataNode.Value);
+			BinaryWriter writer = new BinaryWriter (File.Open (dest, FileMode.Create));
+			int count = 0;
+			int off = System.Int32.Parse(fileDataNode.Value.ToString());
+			
+			//while ( count < photosData.Length - fileDataNode.Value)
+			
+			writer.Write(photosData, (int)off, (int)photosData.Length-off);
+			
+			Console.Write("Written " + count + " out of " + (photosData.Length-off));
         }
 
         public void AddPhoto (Photo photo) {

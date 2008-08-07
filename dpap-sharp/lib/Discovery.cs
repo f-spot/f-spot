@@ -123,6 +123,11 @@ namespace DPAP {
             args.Service.Resolve ();
 		}
 		
+		public Service ServiceByName(string svcName)
+		{
+			return (Service)services[svcName];
+		}
+		
 		private void OnServiceResolved(object o, ServiceResolvedEventArgs args){
 				
 		        IResolvableService s = (IResolvableService)args.Service;

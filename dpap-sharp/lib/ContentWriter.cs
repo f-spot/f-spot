@@ -78,10 +78,11 @@ namespace DPAP {
                 writer.Write ((byte) version.Build);
                 break;
 			case ContentType.FileData:
+				// after "pfdt" we should send the file size and then immediately the file's contents 
 				
 				Console.WriteLine("ContentWriter FileData!");
 				ContentNode[] nodes = (ContentNode[]) node.Value;
-				//writer.Write(IPAddress.HostToNetworkOrder (0));
+				
 				Console.WriteLine(nodes[0].Value);
 				writer.Write(IPAddress.HostToNetworkOrder ((int)nodes[0].Value));
 				FileInfo info = new FileInfo ((string)nodes[1].Value);				

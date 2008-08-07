@@ -12,6 +12,9 @@
 	<Extension path = "/FSpot/Services">
 		<Service class="DPAPService.DPAPService"/>
 	</Extension>
+	<Extension path = "/FSpot/Sidebar">
+		<SidebarPage sidebar_page_type="DPAPService.DPAPPage"/>
+	</Extension>
 </Addin>
 
 

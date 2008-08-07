@@ -1,3 +1,20 @@
+2008-08-07  Andrzej Wytyczak-Partyka  <iapart@gmail.com>
+
+	* DPAPService/DPAPService.addin.xml:
+	* DPAPService/DPAPService.mdp:
+	* DPAPService/DPAPService.cs:
+	* DPAPService/Makefile.am:
+	Client-part of the interface to dpap-sharp library
+
+	* lib/ContentFetcher.cs:
+	* lib/ContentCodeBag.cs:
+	* lib/ContentParser.cs:
+	* lib/Photo.cs:
+	* lib/Database.cs:
+	* lib/Discovery.cs:
+	* lib/ContentWriter.cs:
+	Numerous fixes for browsing & downloading photos
+
 2008-07-30  Andrzej Wytyczak-Partyka  <iapart@gmail.com>
 
 	* DPAPService/DPAPService.cs:
