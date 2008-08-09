@@ -30,6 +30,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading;
+using Gdk;
 
 namespace DPAP {
 
@@ -473,6 +474,7 @@ namespace DPAP {
                 
                 writer.Close ();
             }*/
+			// maybe use FetchResponse to get a stream and feed it to pixbuf?
 			 byte[] photosData = client.Fetcher.Fetch (String.Format ("/databases/{0}/items",id), 
 			                                     String.Format("meta=dpap.filedata&query=('dmap.itemid:{0}')",photo.Id));
 			ContentNode node = ContentParser.Parse(client.Bag, photosData);
@@ -483,12 +485,20 @@ namespace DPAP {
 			ContentNode fileDataNode = node.GetChild("dpap.filedata");
 			Console.WriteLine("Photo starts at index " + fileDataNode.Value);
 			BinaryWriter writer = new BinaryWriter (File.Open (dest, FileMode.Create));
+			
 			int count = 0;
 			int off = System.Int32.Parse(fileDataNode.Value.ToString());
-			
+			byte[] photoBuf;
+			MemoryStream data = new MemoryStream ();
 			//while ( count < photosData.Length - fileDataNode.Value)
-			
+			data.Write(photosData, (int)off, (int)photosData.Length-off);
 			writer.Write(photosData, (int)off, (int)photosData.Length-off);
+			data.Position = 0;
+			Gdk.Pixbuf pb = new Gdk.Pixbuf(data);
+			data.Close();
+			writer.Close();
+			
+			
 			
 			Console.Write("Written " + count + " out of " + (photosData.Length-off));
         }

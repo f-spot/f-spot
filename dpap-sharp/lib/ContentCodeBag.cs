@@ -77,6 +77,8 @@ namespace DPAP {
                             } while (bytes.Length == ChunkLength);
 
                             defaultBag = ContentCodeBag.ParseCodes(buf.GetBuffer());
+							// this is crappy too... this should be in the content-codes file...
+							defaultBag.AddCode ("aply", "dpap.databasecontainers", ContentType.Container);
                         }
                     }
                 }
