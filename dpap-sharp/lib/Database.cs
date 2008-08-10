@@ -492,11 +492,9 @@ namespace DPAP {
 			MemoryStream data = new MemoryStream ();
 			//while ( count < photosData.Length - fileDataNode.Value)
 			data.Write(photosData, (int)off, (int)photosData.Length-off);
-			writer.Write(photosData, (int)off, (int)photosData.Length-off);
 			data.Position = 0;
-			Gdk.Pixbuf pb = new Gdk.Pixbuf(data);
+//			Gdk.Pixbuf pb = new Gdk.Pixbuf(data);
 			data.Close();
-			writer.Close();
 			
 			
 			
