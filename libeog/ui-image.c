@@ -60,7 +60,7 @@ static GtkScrolledWindowClass *parent_class;
  *
  * Return value: the type ID of the #UIImage class.
  **/
-GtkType
+GType
 ui_image_get_type (void)
 {
 	static GType ui_image_type = 0;

@@ -27,10 +27,10 @@
 G_BEGIN_DECLS
 
 #define TYPE_UI_IMAGE            (ui_image_get_type ())
-#define UI_IMAGE(obj)            (GTK_CHECK_CAST ((obj), TYPE_UI_IMAGE, UIImage))
-#define UI_IMAGE_CLASS(klass)    (GTK_CHECK_CLASS_CAST ((klass), TYPE_UI_IMAGE, UIImageClass))
-#define IS_UI_IMAGE(obj)         (GTK_CHECK_TYPE ((obj), TYPE_UI_IMAGE))
-#define IS_UI_IMAGE_CLASS(klass) (GTK_CHECK_CLASS_TYPE ((klass), TYPE_UI_IMAGE))
+#define UI_IMAGE(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), TYPE_UI_IMAGE, UIImage))
+#define UI_IMAGE_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST ((klass), TYPE_UI_IMAGE, UIImageClass))
+#define IS_UI_IMAGE(obj)         (G_TYPE_CHECK_INSTANCE_TYPE ((obj), TYPE_UI_IMAGE))
+#define IS_UI_IMAGE_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), TYPE_UI_IMAGE))
 
 
 typedef struct _UIImage UIImage;
@@ -50,7 +50,7 @@ struct _UIImageClass {
 };
 
 
-GtkType ui_image_get_type (void);
+GType ui_image_get_type (void);
 
 GtkWidget *ui_image_new (void);
 GtkWidget *ui_image_construct (UIImage *ui);
