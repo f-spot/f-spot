@@ -279,7 +279,7 @@ namespace FSpot {
 		{
 			if (args.Event.Type == Gdk.EventType.ButtonPress
 			    && args.Event.Button == 3) {
-				PhotoPopup popup = new PhotoPopup ();
+				PhotoPopup popup = new PhotoPopup (this);
 				popup.Activate (this.Toplevel, args.Event);
 			}
 		}

@@ -155,7 +155,7 @@ namespace FSpot.Widgets {
 
 		public event EventHandler CloseRequested;
 
-        // Selection change events, sidebar pages can subscribed to this.
+        	// Selection change events, sidebar pages can subscribed to this.
 		public event IBrowsableCollectionChangedHandler SelectionChanged;
 		public event IBrowsableCollectionItemsChangedHandler SelectionItemsChanged;
 
@@ -320,10 +320,9 @@ namespace FSpot.Widgets {
 			return (notebook.GetNthPage (notebook.CurrentPage) == page.SidebarWidget);
 		}
 
-        // Proxy selection change to the subscribed sidebar pages.
 		public void HandleSelectionChanged (IBrowsableCollection collection) {
-			Console.WriteLine("Selection Changed: {0}, {1}", collection, collection.Count);
 			Selection = collection;
+        		// Proxy selection change to the subscribed sidebar pages.
 			if (SelectionChanged != null) 
 				SelectionChanged (collection);
 		}

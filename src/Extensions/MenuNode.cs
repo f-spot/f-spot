@@ -24,11 +24,11 @@ namespace FSpot.Extensions
 	[ExtensionNodeChild (typeof (ComplexMenuItemNode))]
 	public class SubmenuNode : MenuNode
 	{
-		public override Gtk.MenuItem GetMenuItem ()
+		public override Gtk.MenuItem GetMenuItem (object parent)
 		{
-			Gtk.MenuItem item = base.GetMenuItem ();
+			Gtk.MenuItem item = base.GetMenuItem (parent);
 
-			Gtk.Menu submenu = GetSubmenu ();
+			Gtk.Menu submenu = GetSubmenu (parent);
 
 			if (item.Submenu != null)
 				item.Submenu.Dispose ();	
@@ -39,10 +39,15 @@ namespace FSpot.Extensions
 
 		public Gtk.Menu GetSubmenu ()
 		{
+			return GetSubmenu (null);
+		}
+
+		public Gtk.Menu GetSubmenu (object parent)
+		{
 			Gtk.Menu submenu = new Gtk.Menu ();
 
 			foreach (MenuNode node in ChildNodes)
-				submenu.Insert (node.GetMenuItem (), -1);
+				submenu.Insert (node.GetMenuItem (parent), -1);
 
 			return submenu;				
 		}
@@ -56,9 +61,9 @@ namespace FSpot.Extensions
 
 		private IMenuGenerator menu_generator;
 
-		public override Gtk.MenuItem GetMenuItem ()
+		public override Gtk.MenuItem GetMenuItem (object parent)
 		{
-			Gtk.MenuItem item = base.GetMenuItem ();
+			Gtk.MenuItem item = base.GetMenuItem (parent);
 			menu_generator = (IMenuGenerator) Addin.CreateInstance (command_type); 
 			item.Submenu = menu_generator.GetMenu ();
 			item.Activated += menu_generator.OnActivated;
@@ -69,9 +74,9 @@ namespace FSpot.Extensions
 	[ExtensionNode ("MenuItem")]
 	public class MenuItemNode : MenuNode
 	{
-		public override Gtk.MenuItem GetMenuItem ()
+		public override Gtk.MenuItem GetMenuItem (object parent)
 		{
-			Gtk.MenuItem item = base.GetMenuItem ();
+			Gtk.MenuItem item = base.GetMenuItem (parent);
 			item.Activated += OnActivated;
 			return item;
 		}
@@ -84,7 +89,7 @@ namespace FSpot.Extensions
 	[ExtensionNode ("MenuSeparator")]
 	public class MenuSeparatorNode : MenuNode
 	{
-		public override Gtk.MenuItem GetMenuItem ()
+		public override Gtk.MenuItem GetMenuItem (object parent)
 		{
 			return new Gtk.SeparatorMenuItem ();
 		}
@@ -98,7 +103,7 @@ namespace FSpot.Extensions
 		[NodeAttribute]
 		protected string icon;
 
-		public virtual Gtk.MenuItem GetMenuItem ()
+		public virtual Gtk.MenuItem GetMenuItem (object parent)
 		{
 			Gtk.MenuItem item;
 			if (icon == null)

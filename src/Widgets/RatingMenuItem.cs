@@ -38,7 +38,11 @@ namespace FSpot.Widgets
 		private bool pressing;
 		private bool can_activate = true;
 
-		public RatingMenuItem () : base ()
+		public RatingMenuItem () : this (null)
+		{
+		}
+
+		public RatingMenuItem (object parent) : base ()
 		{
 			HBox box = new HBox ();
 			box.Spacing = 5;
@@ -48,7 +52,11 @@ namespace FSpot.Widgets
 					GLib.Markup.EscapeText (Catalog.GetString ("Rating:")));
 			box.PackStart (label, false, false, 0);
 
-			if(MainWindow.Toplevel.Selection.Count==1)
+			if (parent is FullScreenView) {
+				FSpot.Utils.Log.Debug ("PARENT IS FSVIEW");
+				FullScreenView fsview = parent as FullScreenView;
+				entry = new Rating ((int)fsview.View.Item.Current.Rating, true);
+			} else if (MainWindow.Toplevel.Selection.Count == 1)
 				entry = new Rating ((int)MainWindow.Toplevel.Selection[0].Rating, true);
 			else
 				entry = new Rating (-1, true);

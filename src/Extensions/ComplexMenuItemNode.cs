@@ -27,9 +27,9 @@ namespace FSpot.Extensions
 
 		ICommand cmd;
 
-		public override Gtk.MenuItem GetMenuItem ()
+		public override Gtk.MenuItem GetMenuItem (object parent)
 		{
-			ComplexMenuItem item = System.Activator.CreateInstance (Type.GetType (widget_type)) as ComplexMenuItem;
+			ComplexMenuItem item = System.Activator.CreateInstance (Type.GetType (widget_type), parent) as ComplexMenuItem;
 			cmd = (ICommand) Addin.CreateInstance (command_type);
 			
 			if (item != null)

@@ -173,7 +173,7 @@ namespace FSpot {
 			if (collection.Count > 0)
 				directory_view.Selection.Add (0);
 
-			export.Submenu = (Mono.Addins.AddinManager.GetExtensionNode ("/FSpot/Menus/Exports") as FSpot.Extensions.SubmenuNode).GetMenuItem ().Submenu;
+			export.Submenu = (Mono.Addins.AddinManager.GetExtensionNode ("/FSpot/Menus/Exports") as FSpot.Extensions.SubmenuNode).GetMenuItem (this).Submenu;
 			export.Submenu.ShowAll ();
 			export.Activated += HandleExportActivated ;
 		}
