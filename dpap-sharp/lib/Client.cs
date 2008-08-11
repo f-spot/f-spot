@@ -46,11 +46,11 @@ namespace DPAP
         private IPAddress address;
         private UInt16 port;
         private ContentCodeBag bag;
-        private ServerInfo serverInfo;
+        private ServerInfo server_info;
         private List<Database> databases = new List<Database> ();
         private ContentFetcher fetcher;
         private int revision;
-        private bool updateRunning;
+        private bool update_running;
 
         public event EventHandler Updated;
 
@@ -59,7 +59,7 @@ namespace DPAP
         }
 
         public string Name {
-            get { return serverInfo.Name; }
+            get { return server_info.Name; }
         }
 
         public IPAddress Address {
@@ -71,7 +71,7 @@ namespace DPAP
         }
 
         public AuthenticationMethod AuthenticationMethod {
-            get { return serverInfo.AuthenticationMethod; }
+            get { return server_info.AuthenticationMethod; }
         }
 
         public IList<Database> Databases {
@@ -89,7 +89,7 @@ namespace DPAP
         public Client (Service service) : this (service.Address, service.Port) {
         }
 
-        public Client (string host, UInt16 port) : this (Dns.GetHostEntry (host).AddressList[0], port) {
+        public Client (string host, UInt16 port) : this (Dns.GetHostEntry (host).AddressList [0], port) {
         }
 
         public Client (IPAddress address, UInt16 port) {
@@ -97,12 +97,8 @@ namespace DPAP
             this.port = port;
 			
             fetcher = new ContentFetcher (address, port);
-			Login(null,null);
-			//byte[] resp= fetcher.Fetch("/server-info");
-			 //resp= fetcher.Fetch("/login");
-			// ContentNode node = ContentParser.Parse (ContentCodeBag.Default, fetcher.Fetch ("/server-info"));
-			//	Console.WriteLine("Odczytalem {0}, {1}", node.Name, node.Value);
-			//    serverInfo = ServerInfo.FromNode (node);
+			Login (null,null);
+			
         }
 
         ~Client () {
@@ -110,7 +106,7 @@ namespace DPAP
         }
 
         public void Dispose () {
-            updateRunning = false;
+            update_running = false;
             
             if (fetcher != null) {
                 fetcher.Dispose ();
@@ -136,19 +132,15 @@ namespace DPAP
 
             try {
                 bag = ContentCodeBag.ParseCodes (fetcher.Fetch ("/content-codes"));
-			//	ContentNode n = bag.ToNode();
-			//	n.Dump();
+		
                 ContentNode node = ContentParser.Parse (bag, fetcher.Fetch ("/login"));
                 ParseSessionId (node);
-				//byte[] db_reply = fetcher.Fetch ("/databases");
-				
-				//Console.Write(BitConverter.ToString(db_reply));
-			//	ContentNode dbnode = ContentParser.Parse (bag, fetcher.Fetch ("/databases"));
+		
                 FetchDatabases ();
                 Refresh ();
-                
-               /* if (serverInfo.SupportsUpdate) {
-                    updateRunning = true;
+               // FIXME - the update handling mechanism is currently disabled 
+               /* if (server_info.SupportsUpdate) {
+                    update_running = true;
                     Thread thread = new Thread (UpdateLoop);
                     thread.IsBackground = true;
                     thread.Start ();
@@ -165,7 +157,7 @@ namespace DPAP
 
         public void Logout () {
             try {
-                updateRunning = false;
+                update_running = false;
                 fetcher.KillAll ();
                 fetcher.Fetch ("/logout");
             } catch (WebException) {
@@ -178,38 +170,39 @@ namespace DPAP
         private void FetchDatabases () {
             ContentNode dbnode = ContentParser.Parse (bag, fetcher.Fetch ("/databases"));
 			// DEBUG
-			//dbnode.Dump();
-            foreach (ContentNode child in (ContentNode[]) dbnode.Value) {
+			//dbnode.Dump ();
+			
+            foreach (ContentNode child in (ContentNode []) dbnode.Value) {
                 if (child.Name != "dmap.listing")
                     continue;
 
-                foreach (ContentNode item in (ContentNode[]) child.Value) {
+                foreach (ContentNode item in (ContentNode []) child.Value) {
 					// DEBUG
-					//item.Dump();
+					//item.Dump ();
                     Database db = new Database (this, item);
-					Console.WriteLine("Adding database {0} with id={1} and album count={2}." , db.Name,db.Id,db.Albums.Count);
-					//Console.WriteLine("Photo " + db.Photos[0].FileName);
+					Console.WriteLine ("Adding database {0} with id={1} and album count={2}." , db.Name,db.Id,db.Albums.Count);
+					//Console.WriteLine ("Photo " + db.Photos [0].FileName);
                     databases.Add (db);
                 }
             }
         }
 
         private int GetCurrentRevision () {
-            ContentNode revNode = ContentParser.Parse (bag, fetcher.Fetch ("/update"), "dmap.serverrevision");
-            return (int) revNode.Value;
+            ContentNode rev_node = ContentParser.Parse (bag, fetcher.Fetch ("/update"), "dmap.serverrevision");
+            return (int) rev_node.Value;
         }
 
         private int WaitForRevision (int currentRevision) {
-            ContentNode revNode = ContentParser.Parse (bag, fetcher.Fetch ("/update",
+            ContentNode rev_node = ContentParser.Parse (bag, fetcher.Fetch ("/update",
                                                                            "revision-number=" + currentRevision));
 
-            return (int) revNode.GetChild ("dmap.serverrevision").Value;
+            return (int) rev_node.GetChild ("dmap.serverrevision").Value;
         }
 
         private void Refresh () {
             int newrev = 0;
 
-           /* if (serverInfo.SupportsUpdate) {
+           /* if (server_info.SupportsUpdate) {
                 if (revision == 0)
                     newrev = GetCurrentRevision ();
                 else
@@ -232,19 +225,19 @@ namespace DPAP
         private void UpdateLoop () {
             while (true) {
                 try {
-                    if (!updateRunning)
+                    if (!update_running)
                         break;
                     
                     Refresh ();
                 } catch (WebException) {
-                    if (!updateRunning)
+                    if (!update_running)
                         break;
                     
                     // chill out for a while, maybe the server went down
                     // temporarily or something.
                     Thread.Sleep (UpdateSleepInterval);
                 } catch (Exception e) {
-                    if (!updateRunning)
+                    if (!update_running)
                         break;
                     
                     Console.Error.WriteLine ("Exception in update loop: " + e);

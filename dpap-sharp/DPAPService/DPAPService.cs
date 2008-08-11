@@ -25,6 +25,7 @@ using FSpot;
 using FSpot.Extensions;
 using FSpot.Utils;
 using FSpot.Widgets;
+
 using System.IO;
 using DPAP;
 using Gtk;
@@ -37,7 +38,7 @@ namespace DPAPService {
 		ServiceDiscovery sd;
 		Client client;
 		
-		public DPAPPageWidget()
+		public DPAPPageWidget ()
 		{
 			Console.WriteLine ("DPAP Page widget ctor!");
 			tree = new TreeView ();
@@ -48,22 +49,22 @@ namespace DPAPService {
 			Gtk.CellRendererText artistNameCell = new Gtk.CellRendererText ();
 			artistNameCell.Visible = true;
 			artistColumn.PackStart (artistNameCell,false);
-			tree.AppendColumn(artistColumn);
+			tree.AppendColumn (artistColumn);
 			//tree.AppendColumn ("Icon", new Gtk.CellRendererPixbuf (), "pixbuf", 0);  
 
 			
-			list = new TreeStore (typeof(string));
+			list = new TreeStore (typeof (string));
 			tree.Model = list;
 			
 			artistColumn.AddAttribute (artistNameCell, "text", 0);
-			//list.AppendValues("test");
+			//list.AppendValues ("test");
 		
 			tree.Selection.Changed += OnSelectionChanged;
-		//	tree.ShowNow();
-		//	ShowAll();
-			sd = new DPAP.ServiceDiscovery();
+		//	tree.ShowNow ();
+		//	ShowAll ();
+			sd = new DPAP.ServiceDiscovery ();
 			sd.Found += OnServiceFound;		
-			sd.Start();	
+			sd.Start ();	
 		}
 		
 		private void OnSelectionChanged (object o, EventArgs args)
@@ -77,7 +78,7 @@ namespace DPAPService {
                 model.GetValue (iter, 0, ref val);
                 data = (string) val.Val;
 				
-				if ( list.IterDepth (iter) == 0 )
+				if (list.IterDepth (iter) == 0)
 					Connect (data);
 				else
 					ViewAlbum (data);
@@ -89,50 +90,67 @@ namespace DPAPService {
 		private void ViewAlbum (string name)
 		{
 			Console.WriteLine ("View Album !");
-			Database d = client.Databases[0];
-			Directory.CreateDirectory ("/tmp/" + client.Databases[0].Name);
-			foreach (DPAP.Photo ph in d.Photos)
+			Database d = client.Databases [0];
+			
+			Directory.CreateDirectory ("/tmp/" + client.Databases [0].Name);
+			//Console.WriteLine ("Looking for album '" + name + "'");
+			foreach (DPAP.Album alb in d.Albums)
+			{
+				//Console.WriteLine ("\t -- album '" + alb.Name + "'");
+				if (!alb.Name.Equals (name)) 
+					continue;
+				
+				Directory.CreateDirectory ("/tmp/" + client.Databases [0].Name + "/" + alb.Name);
+				foreach (DPAP.Photo ph in alb.Photos)
 				{
-					if(ph != null)
+					if (ph != null)
 					{
-						Console.WriteLine ("\t\tFile: " + ph.Title + " format = " + ph.Format + "size=" + ph.Width +"x" +ph.Height + " ID=" + ph.Id);
-						d.DownloadPhoto (ph,"/tmp/" + client.Databases[0].Name + "/" + ph.FileName);
+					//	Console.WriteLine ("\t\tFile: " + ph.Title + " format = " + ph.Format + "size=" + ph.Width +"x" +ph.Height + " ID=" + ph.Id);
+						d.DownloadPhoto (ph,"/tmp/" + client.Databases [0].Name + "/" + alb.Name + "/" + ph.FileName);
+						//FSpot.JpegFile = new JpegFile ("file:///tmp/" + client.Databases [0].Name + "/" + ph.FileName);
 					}
 				}
+				FSpot.Core.FindInstance ().View ("file:///tmp/" + client.Databases [0].Name + "/" + alb.Name);
+				break;
+			}
+			
+			
 		}
 		
 		private void Connect (string svcName)
 		{
-			Service service = sd.ServiceByName(svcName);
-			System.Console.WriteLine("Connecting to {0} at {1}:{2}", service.Name, service.Address, service.Port);
+			Service service = sd.ServiceByName (svcName);
+			System.Console.WriteLine ("Connecting to {0} at {1}:{2}", service.Name, service.Address, service.Port);
 	
-			client = new Client( service );
+			client = new Client (service);
 			TreeIter iter;
-			//list.GetIterFromString( out iter, svcName);
-			list.GetIterFirst ( out iter );
+			//list.GetIterFromString (out iter, svcName);
+			list.GetIterFirst (out iter);
 			foreach (Database d in client.Databases){
 				
-			//	list.AppendValues(iter,d.Name);
-				Console.WriteLine("Database " + d.Name);
+			//	list.AppendValues (iter,d.Name);
+				Console.WriteLine ("Database " + d.Name);
 				
 				foreach (Album alb in d.Albums)
-					list.AppendValues (iter, alb.Name);
-					//Console.WriteLine("\tAlbum: "+alb.Name + ", id=" + alb.getId() + " number of items:" + alb.Photos.Count);
-			//	Console.WriteLine(d.Photos[0].FileName);
+						list.AppendValues (iter, alb.Name);
+				
+			// Console.WriteLine ("\tAlbum: "+alb.Name + ", id=" + alb.getId () + " number of items:" + alb.Photos.Count);
+			// Console.WriteLine (d.Photos [0].FileName);
 								
 			}
 		}
 		
-		private void OnServiceFound(object o, ServiceArgs args)
+		private void OnServiceFound (object o, ServiceArgs args)
 		{
 			Service service = args.Service;
-			Console.WriteLine("ServiceFound " + service.Name);
-			if(service.Name.Equals("f-spot photos")) return;
-			list.AppendValues(service.Name);
-/*			System.Console.WriteLine("Connecting to {0} at {1}:{2}", service.Name, service.Address, service.Port);
+			Console.WriteLine ("ServiceFound " + service.Name);
+			if (service.Name.Equals ("f-spot photos")) return;
+			list.AppendValues (service.Name);
+			
+/*			System.Console.WriteLine ("Connecting to {0} at {1}:{2}", service.Name, service.Address, service.Port);
 		    
-			//client.Logout();
-			//Console.WriteLine("Press <enter> to exit...");
+			//client.Logout ();
+			//Console.WriteLine ("Press <enter> to exit...");
 */
 			
 		}
@@ -143,9 +161,9 @@ namespace DPAPService {
 	{
 		//public DPAPPage () { }
 		private static DPAPPageWidget widget;
-		public DPAPPage() : base (new DPAPPageWidget(), "Shared items", "gtk-new") 
+		public DPAPPage () : base (new DPAPPageWidget (), "Shared items", "gtk-new") 
 		{
-			Console.WriteLine("Starting DPAP client...");
+			Console.WriteLine ("Starting DPAP client...");
 		
 			widget = (DPAPPageWidget)SidebarWidget;
 		}
@@ -158,12 +176,12 @@ namespace DPAPService {
 		static ServiceDiscovery sd;
 		public bool Start ()
 		{
-			Console.WriteLine("Starting DPAP!");
+			Console.WriteLine ("Starting DPAP!");
 			uint timer = Log.InformationTimerStart ("Starting DPAP");
-		//	sd = new ServiceDiscovery();
+		//	sd = new ServiceDiscovery ();
 		//	sd.Found += OnServiceFound;			
-		//	sd.Start();
-			StartServer();
+		//	sd.Start ();
+			StartServer ();
 			
 
 		/*	try {
@@ -176,10 +194,10 @@ namespace DPAPService {
 		}
 		private void StartServer ()
 		{
-		Console.WriteLine("Starting DPAP server");
+		Console.WriteLine ("Starting DPAP server");
 			
-			DPAP.Database database = new DPAP.Database("DPAP");
-			DPAP.Server server = new Server("f-spot photos");
+			DPAP.Database database = new DPAP.Database ("DPAP");
+			DPAP.Server server = new Server ("f-spot photos");
 			server.Port = 8770;
 			server.AuthenticationMethod = AuthenticationMethod.None;
 			int collision_count = 0;
@@ -188,58 +206,58 @@ namespace DPAPService {
 			};
             
 			
-			//FSpot.Photo photo = (FSpot.Photo) Core.Database.Photos.Get(1);			
+			//FSpot.Photo photo = (FSpot.Photo) Core.Database.Photos.Get (1);			
 			
 			
-			Album a = new Album("test album");
-			Tag t = Core.Database.Tags.GetTagByName("Shared items");
+			Album a = new Album ("test album");
+			Tag t = Core.Database.Tags.GetTagByName ("Shared items");
 			
 			Tag []tags = {t};
-			FSpot.Photo [] photos = Core.Database.Photos.Query(tags);
+			FSpot.Photo [] photos = Core.Database.Photos.Query (tags);
 			int i=0;
 			
-			foreach(FSpot.Photo photo in photos)
+			foreach (FSpot.Photo photo in photos)
 			{
 				string thumbnail_path = ThumbnailGenerator.ThumbnailPath (photo.DefaultVersionUri);
-				FileInfo f = new FileInfo(thumbnail_path);
+				FileInfo f = new FileInfo (thumbnail_path);
 				
-				DPAP.Photo p = new DPAP.Photo();			
+				DPAP.Photo p = new DPAP.Photo ();			
 				
 				p.FileName = photo.Name;
 				p.Thumbnail = thumbnail_path;
 				p.ThumbSize = (int)f.Length;
-				p.Path = photo.DefaultVersionUri.ToString().Substring(7);
-				f = new FileInfo(photo.DefaultVersionUri.ToString().Substring(7));
-				if(!f.Exists) 
+				p.Path = photo.DefaultVersionUri.ToString ().Substring (7);
+				f = new FileInfo (photo.DefaultVersionUri.ToString ().Substring (7));
+				if (!f.Exists) 
 					continue;
 			
-				//if(++i > 2) break;
-				Console.WriteLine("Found photo " + p.Path  + ", thumb " + thumbnail_path);
+				//if (++i > 2) break;
+				Console.WriteLine ("Found photo " + p.Path  + ", thumb " + thumbnail_path);
 				p.Title = f.Name;
 				p.Size = (int)f.Length; 
 				p.Format = "JPEG";
-				database.AddPhoto(p);
-				a.AddPhoto(p);
+				database.AddPhoto (p);
+				a.AddPhoto (p);
 			}		
 
-			database.AddAlbum(a);
-			Console.WriteLine("Album count is now " + database.Albums.Count);
-//			Console.WriteLine("Photo name is " + database.Photos[0].FileName);
-			server.AddDatabase(database);
+			database.AddAlbum (a);
+			Console.WriteLine ("Album count is now " + database.Albums.Count);
+//			Console.WriteLine ("Photo name is " + database.Photos [0].FileName);
+			server.AddDatabase (database);
 			
-			//server.GetServerInfoNode();			
+			//server.GetServerInfoNode ();			
 			try {
-                server.Start();
+                server.Start ();
             } catch (System.Net.Sockets.SocketException) {
-				Console.WriteLine("Server socket exception!");
+				Console.WriteLine ("Server socket exception!");
                 server.Port = 0;
-                server.Start();
+                server.Start ();
             }
         
-			//DaapPlugin.ServerEnabledSchema.Set(true);
+			//DaapPlugin.ServerEnabledSchema.Set (true);
             
-			//  if(!initial_db_committed) {
-                server.Commit();
+			//  if (!initial_db_committed) {
+                server.Commit ();
 			//      initial_db_committed = true;
 			//  }
 	
@@ -247,8 +265,8 @@ namespace DPAPService {
 		public bool Stop ()
 		{
 			uint timer = Log.InformationTimerStart ("Stopping DPAP");
-			if(sd != null) {
-                sd.Stop();
+			if (sd != null) {
+                sd.Stop ();
                 sd.Found -= OnServiceFound;
                 //locator.Removed -= OnServiceRemoved;
                 sd = null;
@@ -257,36 +275,36 @@ namespace DPAPService {
 			return true;
 		}
 
-		private static void OnServiceFound(object o, ServiceArgs args)
+		private static void OnServiceFound (object o, ServiceArgs args)
 		{
 			Service service = args.Service;
 			Client client;
-//			ThreadAssist.Spawn(delegate {
+//			ThreadAssist.Spawn (delegate {
         //        try {
 
-			System.Console.WriteLine("Connecting to {0} at {1}:{2}", service.Name, service.Address, service.Port);
-		    client = new Client( service );
+			System.Console.WriteLine ("Connecting to {0} at {1}:{2}", service.Name, service.Address, service.Port);
+		    client = new Client (service);
 	
 			
 			foreach (Database d in client.Databases){
 
-				Console.WriteLine("Database " + d.Name);
+				Console.WriteLine ("Database " + d.Name);
 				
 				foreach (Album alb in d.Albums)
-					Console.WriteLine("\tAlbum: "+alb.Name + ", id=" + alb.getId() + " number of items:" + alb.Photos.Count);
-				Console.WriteLine(d.Photos[0].FileName);
+					Console.WriteLine ("\tAlbum: "+alb.Name + ", id=" + alb.getId () + " number of items:" + alb.Photos.Count);
+				Console.WriteLine (d.Photos [0].FileName);
 				foreach (DPAP.Photo ph in d.Photos)
 				{
-					if(ph != null)
+					if (ph != null)
 					{
-						Console.WriteLine("\t\tFile: " + ph.Title + " format = " + ph.Format + "size=" + ph.Width +"x" +ph.Height + " ID=" + ph.Id);
-						d.DownloadPhoto(ph,"./"+ph.Title);
+						Console.WriteLine ("\t\tFile: " + ph.Title + " format = " + ph.Format + "size=" + ph.Width +"x" +ph.Height + " ID=" + ph.Id);
+						d.DownloadPhoto (ph,"./"+ph.Title);
 					}
 				}
 				
 			}
-			//client.Logout();
-		//	Console.WriteLine("Press <enter> to exit...");
+			//client.Logout ();
+		//	Console.WriteLine ("Press <enter> to exit...");
 		}		
 		
 		/*private void HandleDbItemsChanged (object sender, DbItemEventArgs args)

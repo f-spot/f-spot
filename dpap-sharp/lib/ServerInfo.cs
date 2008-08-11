@@ -39,8 +39,8 @@ namespace DPAP {
     internal class ServerInfo {
 
         private string name;
-        private AuthenticationMethod authMethod;
-        private bool supportsUpdate;
+        private AuthenticationMethod auth_method;
+        private bool supports_update;
         
         public string Name {
             get { return name; }
@@ -48,13 +48,13 @@ namespace DPAP {
         }
 
         public AuthenticationMethod AuthenticationMethod {
-            get { return authMethod; }
-            set { authMethod = value; }
+            get { return auth_method; }
+            set { auth_method = value; }
         }
 
         public bool SupportsUpdate {
-            get { return supportsUpdate; }
-            set { supportsUpdate = value; }
+            get { return supports_update; }
+            set { supports_update = value; }
         }
 
         internal static ServerInfo FromNode (ContentNode node) {
@@ -63,7 +63,7 @@ namespace DPAP {
             if (node.Name != "dmap.serverinforesponse")
                 return null;
 
-            foreach (ContentNode child in (node.Value as ContentNode[])) {
+            foreach (ContentNode child in (node.Value as ContentNode [])) {
                 switch (child.Name) {
                 case "dmap.itemname":
                     info.Name = (string) child.Value;
@@ -84,13 +84,12 @@ namespace DPAP {
             return new ContentNode ("dmap.serverinforesponse",
                                     new ContentNode ("dmap.status", 200),
                                     new ContentNode ("dmap.protocolversion", new Version (2, 0, 0)),
-                                    new ContentNode ("dpap.protocolversion", new Version (1, 0, 1)),
-			                        
+                                    new ContentNode ("dpap.protocolversion", new Version (1, 0, 1)),			                        
                                     new ContentNode ("dmap.itemname", "photos"),
                                     new ContentNode ("dmap.loginrequired", (byte) 1),
-                                //    new ContentNode ("dmap.authenticationmethod", (byte) authMethod),
-                                    new ContentNode ("dmap.timeoutinterval", (int) Server.DefaultTimeout.TotalSeconds),
-                                    new ContentNode ("dmap.supportsautologout", (byte) 1),
+			                     //    new ContentNode ("dmap.authenticationmethod", (byte) auth_method),
+			                        new ContentNode ("dmap.timeoutinterval", (int) Server.DefaultTimeout.TotalSeconds),
+			                        new ContentNode ("dmap.supportsautologout", (byte) 1),
                                  //   new ContentNode ("dmap.supportsupdate", (byte) 1),
                                  //   new ContentNode ("dmap.supportspersistentids", (byte) 1),
                                  //   new ContentNode ("dmap.supportsextensions", (byte) 1),

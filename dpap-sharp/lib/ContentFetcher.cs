@@ -38,8 +38,8 @@ namespace DPAP {
     internal class ContentFetcher : IDisposable {
         private IPAddress address;
         private UInt16 port;
-        private int sessionId;
-        private int requestId = 10;
+        private int session_id;
+        private int request_id = 10;
 
         private DAAPCredentials creds = new DAAPCredentials ();
         private List<WebRequest> requests = new List<WebRequest> ();
@@ -55,8 +55,8 @@ namespace DPAP {
         }
         
         public int SessionId {
-            get { return sessionId; }
-            set { sessionId = value; }
+            get { return session_id; }
+            set { session_id = value; }
         }
 
         public ContentFetcher (IPAddress address, UInt16 port) {
@@ -78,18 +78,18 @@ namespace DPAP {
             }
         }
 
-        public byte[] Fetch (string path) {
+        public byte [] Fetch (string path) {
             return Fetch (path, null, null, 0);
         }
 
-        public byte[] Fetch (string path, string query) {
+        public byte [] Fetch (string path, string query) {
             return Fetch (path, query, null, 0);
         }
 
-        public byte[] Fetch (string path, string query, WebHeaderCollection extraHeaders,
-                             int requestId) {
+        public byte [] Fetch (string path, string query, WebHeaderCollection extraHeaders,
+                             int request_id) {
 
-            HttpWebResponse response = FetchResponse (path, -1, query, extraHeaders, requestId, false);
+            HttpWebResponse response = FetchResponse (path, -1, query, extraHeaders, request_id, false);
 
             MemoryStream data = new MemoryStream ();
             BinaryReader reader = new BinaryReader (GetResponseStream (response));
@@ -97,14 +97,14 @@ namespace DPAP {
                 if (response.ContentLength < 0)
                     return null;
 
-                byte[] buf;
+                byte [] buf;
                 while (true) {
                     buf = reader.ReadBytes (8192);
                     if (buf.Length == 0)
                         break;
 
                     data.Write (buf, 0, buf.Length);
-					//Console.Write(buf.);
+					//Console.Write (buf.);
                 }
 				
                 data.Flush ();
@@ -117,22 +117,22 @@ namespace DPAP {
         }
 
         public HttpWebResponse FetchResponse (string path, string query, WebHeaderCollection headers) {
-            return FetchResponse (path, -1, query, headers, ++requestId, false);
+            return FetchResponse (path, -1, query, headers, ++request_id, false);
         }
 
         public HttpWebResponse FetchFile (string path, long offset) {
-            return FetchResponse (path, offset, null, null, ++requestId, true);
+            return FetchResponse (path, offset, null, null, ++request_id, true);
         }
 
         public HttpWebResponse FetchResponse (string path, long offset, string query,
                                               WebHeaderCollection extraHeaders,
-                                              int requestId, bool disableKeepalive) {
+                                              int request_id, bool disableKeepalive) {
             UriBuilder builder = new UriBuilder ("http", address.ToString ());
             builder.Port = port;
             builder.Path = path;
 
-            if (sessionId != 0)
-                query = String.Format ("session-id={0}&", sessionId) + query;
+            if (session_id != 0)
+                query = String.Format ("session-id={0}&", session_id) + query;
 
             if (query != null)
                 builder.Query += query;
@@ -155,7 +155,7 @@ namespace DPAP {
 
             request.KeepAlive = !disableKeepalive;
 
-            string hash = Hasher.GenerateHash (3, builder.Uri.PathAndQuery, 2, requestId);
+            string hash = Hasher.GenerateHash (3, builder.Uri.PathAndQuery, 2, request_id);
 
             request.UserAgent = "iPhoto/5.0.2 (Macintosh; PPC)";
             request.Headers.Set ("Client-DMAP-Version", "1.0");
@@ -164,11 +164,11 @@ namespace DPAP {
             request.Headers.Set ("Client-DPAP-Access-Index", "2");
 			*/
 // DEBUG data			
-			Console.Write(path + "?"+query);
-			Console.Write(request.Headers);
+			Console.Write (path + "?"+query);
+			Console.Write (request.Headers);
 			
-            if (requestId >= 0)
-                request.Headers.Set ("Client-DPAP-Request-ID", requestId.ToString ());
+            if (request_id >= 0)
+                request.Headers.Set ("Client-DPAP-Request-ID", request_id.ToString ());
                                  
             request.Credentials = creds;
             request.PreAuthenticate = true;
@@ -178,8 +178,8 @@ namespace DPAP {
                     requests.Add (request);
                 }
                 HttpWebResponse response = (HttpWebResponse) request.GetResponse ();
-				//if(!response.StatusCode.Equals("OK"))
-				//	Console.Write(response.StatusCode);
+				//if (!response.StatusCode.Equals ("OK"))
+				//	Console.Write (response.StatusCode);
                 return response;
             } finally {
                 lock (requests) {

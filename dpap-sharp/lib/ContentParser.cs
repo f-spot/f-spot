@@ -43,20 +43,20 @@ namespace DPAP {
         public ContentNode () {
         }
         
-        public ContentNode (string name, params object[] values) {
+        public ContentNode (string name, params object [] values) {
             this.Name = name;
 
             ArrayList vals = new ArrayList ();
             foreach (object v in values) {
                 if (v is ICollection) {
-                    vals.AddRange ((ICollection) v);
+                    vals.AddRange ( (ICollection) v);
                 } else {
                     vals.Add (v);
                 }
             }
 
-            if (vals.Count == 1 && vals[0].GetType () != typeof (ContentNode))
-                this.Value = vals[0];
+            if (vals.Count == 1 && vals [0].GetType () != typeof (ContentNode))
+                this.Value = vals [0];
             else
                 this.Value = (object) vals.ToArray (typeof (ContentNode));
         }
@@ -68,8 +68,8 @@ namespace DPAP {
         private void Dump (int level) {
             Console.WriteLine ("{0}Name: {1}", String.Empty.PadRight (level * 4), Name);
 
-            if (Value is ContentNode[]) {
-                foreach (ContentNode child in (Value as ContentNode[])) {
+            if (Value is ContentNode []) {
+                foreach (ContentNode child in (Value as ContentNode [])) {
                     child.Dump (level + 1);
                 }
             } else {
@@ -83,7 +83,7 @@ namespace DPAP {
             if (name == this.Name)
                 return this;
 
-            ContentNode[] children = Value as ContentNode[];
+            ContentNode [] children = Value as ContentNode [];
             if (children == null)
                 return null;
 
@@ -99,7 +99,7 @@ namespace DPAP {
 
     internal class ContentParser {
 
-        private static ContentNode[] ParseChildren (ContentCodeBag bag, byte[] buffer,
+        private static ContentNode [] ParseChildren (ContentCodeBag bag, byte [] buffer,
                                                     int offset, int length) {
             ArrayList children = new ArrayList ();
 
@@ -109,32 +109,32 @@ namespace DPAP {
                 children.Add (Parse (bag, buffer, null, ref position));
             }
 
-            return (ContentNode[]) children.ToArray (typeof (ContentNode));
+            return (ContentNode []) children.ToArray (typeof (ContentNode));
         }
 
-        public static ContentNode Parse (ContentCodeBag bag, byte[] buffer, string root,
+        public static ContentNode Parse (ContentCodeBag bag, byte [] buffer, string root,
                                          ref int offset) {
 			
             ContentNode node = new ContentNode ();
             int num = IPAddress.NetworkToHostOrder (BitConverter.ToInt32 (buffer, offset));
 			ContentCode code;
 			// This is a fix for iPhoto '08 which gives wrong content-type for dpap.databasecontainers (aply)
-			if(num == 1634757753)
-			{
-				code = new ContentCode();
+			if (num == 1634757753) {
+				code = new ContentCode ();
 				code.Name = "dpap.databasecontainers";
 				code.Type = ContentType.Container;
 			}
 			else
 				code = bag.Lookup (num);
-			if(code.Name.Equals("dpap.filedata"))
+			
+			if (code.Name.Equals ("dpap.filedata"))
 				code.Type = ContentType.FileData;
 			
             if (code.Equals (ContentCode.Zero)) {
                 // probably a buggy server.  fallback to our internal code bag
-				Console.WriteLine("fallback to internal code bag");
-				Console.WriteLine("Code number: "+num);
-				throw new Exception("Content code not found!");
+				Console.WriteLine ("fallback to internal code bag");
+				Console.WriteLine ("Code number: "+num);
+				throw new Exception ("Content code not found!");
             }
 			
             int length = IPAddress.NetworkToHostOrder (BitConverter.ToInt32 (buffer, offset + 4));
@@ -146,65 +146,65 @@ namespace DPAP {
 
             node.Name = code.Name;
 			
-			Console.WriteLine("name = " + node.Name + "Code=" +code.Type.ToString() + " num=" +num);
-            switch (code.Type) {
-            case ContentType.Char:
-                node.Value = (byte) buffer[offset + 8];
-                break;
-            case ContentType.Short:
-                node.Value = IPAddress.NetworkToHostOrder (BitConverter.ToInt16 (buffer, offset + 8));
-                break;
-            case ContentType.SignedLong:
-            case ContentType.Long:
-                node.Value = IPAddress.NetworkToHostOrder (BitConverter.ToInt32 (buffer, offset + 8));
-                break;
-            case ContentType.LongLong:
-                node.Value = IPAddress.NetworkToHostOrder (BitConverter.ToInt64 (buffer, offset + 8));
-                break;
-            case ContentType.String:
-                node.Value = Encoding.UTF8.GetString (buffer, offset + 8, length);
-                break;
-            case ContentType.Date:
-                node.Value = Utility.ToDateTime (IPAddress.NetworkToHostOrder (BitConverter.ToInt32 (buffer, offset + 8)));
-                break;
-            case ContentType.Version:
-                int major = IPAddress.NetworkToHostOrder (BitConverter.ToInt16 (buffer, offset + 8));
-                int minor = (int) buffer[offset + 10];
-                int micro = (int) buffer[offset + 11];
+			Console.WriteLine ("name = " + node.Name + "Code=" +code.Type.ToString () + " num=" +num);
 
-                node.Value = new Version (major, minor, micro);
-                break;
-            case ContentType.Container:
-                node.Value = ParseChildren (bag, buffer, offset + 8, length);
-                break;
-			case ContentType.FileData:
-				node.Value = offset+8;
-				break;
-            default:
-                throw new ContentException (String.Format ("Unknown content type '{0}' for '{1}'",
-                                                           code.Type, code.Name));
+			switch (code.Type) {
+	            case ContentType.Char:
+	                node.Value = (byte) buffer [offset + 8];
+	                break;
+	            case ContentType.Short:
+	                node.Value = IPAddress.NetworkToHostOrder (BitConverter.ToInt16 (buffer, offset + 8));
+	                break;
+	            case ContentType.SignedLong:
+	            case ContentType.Long:
+	                node.Value = IPAddress.NetworkToHostOrder (BitConverter.ToInt32 (buffer, offset + 8));
+	                break;
+	            case ContentType.LongLong:
+	                node.Value = IPAddress.NetworkToHostOrder (BitConverter.ToInt64 (buffer, offset + 8));
+	                break;
+	            case ContentType.String:
+	                node.Value = Encoding.UTF8.GetString (buffer, offset + 8, length);
+	                break;
+	            case ContentType.Date:
+	                node.Value = Utility.ToDateTime (IPAddress.NetworkToHostOrder (BitConverter.ToInt32 (buffer, offset + 8)));
+	                break;
+	            case ContentType.Version:
+	                int major = IPAddress.NetworkToHostOrder (BitConverter.ToInt16 (buffer, offset + 8));
+	                int minor = (int) buffer [offset + 10];
+	                int micro = (int) buffer [offset + 11];
+
+	                node.Value = new Version (major, minor, micro);
+	                break;
+	            case ContentType.Container:
+	                node.Value = ParseChildren (bag, buffer, offset + 8, length);
+	                break;
+				case ContentType.FileData:
+					node.Value = offset+8;
+					break;
+	            default:
+	                throw new ContentException (String.Format ("Unknown content type '{0}' for '{1}'",
+	                                                           code.Type, code.Name));
             }
 
             offset += length + 8;
 			
             if (root != null) {
-                ContentNode rootNode = node.GetChild (root);
+                ContentNode root_node = node.GetChild (root);
 
-                if (rootNode == null)
+                if (root_node == null)
                     throw new ContentException (String.Format ("Could not find root node '{0}'", root));
 
-                return rootNode;
-            } else {
-                return node;
-            }
+                return root_node;
+            } else 
+				return node;
         }
         
-        public static ContentNode Parse (ContentCodeBag bag, byte[] buffer, string root) {
+        public static ContentNode Parse (ContentCodeBag bag, byte [] buffer, string root) {
             int offset = 0;
             return Parse (bag, buffer, root, ref offset);
         }
 
-        public static ContentNode Parse (ContentCodeBag bag, byte[] buffer) {
+        public static ContentNode Parse (ContentCodeBag bag, byte [] buffer) {
             return Parse (bag, buffer, null);
         }
     }

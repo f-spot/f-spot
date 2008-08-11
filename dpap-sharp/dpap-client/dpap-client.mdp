@@ -18,8 +18,6 @@
     <File name="AssemblyInfo.cs" subtype="Code" buildaction="Compile" />
   </Contents>
   <References>
-    <ProjectReference type="Gac" localcopy="True" refto="Banshee.Core, Version=1.0.0.38867, Culture=neutral" />
-    <ProjectReference type="Gac" localcopy="True" refto="Banshee.Services, Version=1.0.0.38868, Culture=neutral" />
     <ProjectReference type="Assembly" localcopy="True" refto="../lib/dpap-sharp.dll" />
   </References>
   <MonoDevelop.Autotools.MakefileInfo IntegrationEnabled="True" RelativeMakefileName="Makefile.am" SyncReferences="True" IsAutotoolsProject="True" RelativeConfigureInPath="../..">

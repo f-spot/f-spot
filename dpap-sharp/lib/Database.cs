@@ -63,9 +63,9 @@ namespace DPAP {
 
     public class Database : ICloneable {
 
-        private const int ChunkLength = 8192;
+        private const int chunk_length = 8192;
 		
-        private const string PhotoQuery = "meta=dpap.aspectratio,dmap.itemid,dmap.itemname,dpap.imagefilename," +
+        private const string photo_query = "meta=dpap.aspectratio,dmap.itemid,dmap.itemname,dpap.imagefilename," +
 			"dpap.imagefilesize,dpap.creationdate,dpap.imagepixelwidth," +
 			"dpap.imagepixelheight,dpap.imageformat,dpap.imagerating," +
 			"dpap.imagecomments,dpap.imagelargefilesize,dpap.filedata&type=photo"; 
@@ -74,13 +74,13 @@ namespace DPAP {
         private static int nextid = 1;
         private Client client;
         private int id;
-        private long persistentId;
+        private long persistent_id;
         private string name;
 
         private List<Photo> photos = new List<Photo> ();
         private List<Album> albums = new List<Album> ();
-        private Album baseAlbum = new Album ();
-        private int nextPhotoId = 1;
+        private Album base_album = new Album ();
+        private int next_photo_id = 1;
 
         public event PhotoHandler PhotoAdded;
         public event PhotoHandler PhotoRemoved;
@@ -95,7 +95,7 @@ namespace DPAP {
             get { return name; }
             set {
                 name = value;
-                baseAlbum.Name = value;
+                base_album.Name = value;
             }
         }
         
@@ -109,9 +109,9 @@ namespace DPAP {
             get { return photos.Count; }
         }
 
-        public Photo PhotoAt(int index)
+        public Photo PhotoAt (int index)
         {
-            return photos[index] as Photo;
+            return photos [index] as Photo;
         }
 
         public IList<Album> Albums {
@@ -139,14 +139,14 @@ namespace DPAP {
         }
 
         private void Parse (ContentNode dbNode) {
-            foreach (ContentNode item in (ContentNode[]) dbNode.Value) {
+            foreach (ContentNode item in (ContentNode []) dbNode.Value) {
 
                 switch (item.Name) {
                 case "dmap.itemid":
                     id = (int) item.Value;
                     break;
                 case "dmap.persistentid":
-                    persistentId = (long) item.Value;
+                    persistent_id = (long) item.Value;
                     break;
                 case "dmap.itemname":
                     name = (string) item.Value;
@@ -167,8 +167,8 @@ namespace DPAP {
         }
 
         public Album LookupAlbumById (int id) {
-            if (id == baseAlbum.Id)
-                return baseAlbum;
+            if (id == base_album.Id)
+                return base_album;
 
             foreach (Album pl in albums) {
                 if (pl.Id == id)
@@ -178,32 +178,32 @@ namespace DPAP {
             return null;
         }
 
-        internal ContentNode ToPhotosNode (string[] fields, int[] deletedIds) {
+        internal ContentNode ToPhotosNode (string [] fields, int [] deleted_ids) {
 
-            ArrayList photoNodes = new ArrayList ();
+            ArrayList photo_nodes = new ArrayList ();
             foreach (Photo photo in photos) {
-                photoNodes.Add (photo.ToNode (fields));
+                photo_nodes.Add (photo.ToNode (fields));
             }
 
-            ArrayList deletedNodes = null;
+            ArrayList deleted_nodes = null;
 
-            if (deletedIds.Length > 0) {
-                deletedNodes = new ArrayList ();
+            if (deleted_ids.Length > 0) {
+                deleted_nodes = new ArrayList ();
                 
-                foreach (int id in deletedIds) {
-                    deletedNodes.Add (new ContentNode ("dmap.itemid", id));
+                foreach (int id in deleted_ids) {
+                    deleted_nodes.Add (new ContentNode ("dmap.itemid", id));
                 }
             }
 
             ArrayList children = new ArrayList ();
             children.Add (new ContentNode ("dmap.status", 200));
-            children.Add (new ContentNode ("dmap.updatetype", deletedNodes == null ? (byte) 0 : (byte) 1));
+            children.Add (new ContentNode ("dmap.updatetype", deleted_nodes == null ? (byte) 0 : (byte) 1));
             children.Add (new ContentNode ("dmap.specifiedtotalcount", photos.Count));
             children.Add (new ContentNode ("dmap.returnedcount", photos.Count));
-            children.Add (new ContentNode ("dmap.listing", photoNodes));
+            children.Add (new ContentNode ("dmap.listing", photo_nodes));
 
-            if (deletedNodes != null) {
-                children.Add (new ContentNode ("dmap.deletedidlisting", deletedNodes));
+            if (deleted_nodes != null) {
+                children.Add (new ContentNode ("dmap.deletedidlisting", deleted_nodes));
             }
             
             return new ContentNode ("dpap.databasesongs", children);
@@ -212,7 +212,7 @@ namespace DPAP {
         internal ContentNode ToAlbumsNode () {
             ArrayList nodes = new ArrayList ();
 
-            nodes.Add (baseAlbum.ToNode (true));
+            nodes.Add (base_album.ToNode (true));
             
             foreach (Album pl in albums) {
                 nodes.Add (pl.ToNode (false));
@@ -260,30 +260,30 @@ namespace DPAP {
         }
 
         private void RefreshAlbums (string revquery) {
-            byte[] albumsData;
+            byte [] albums_data;
 
             try {
-                albumsData = client.Fetcher.Fetch (String.Format ("/databases/{0}/containers", id, revquery));
+                albums_data = client.Fetcher.Fetch (String.Format ("/databases/{0}/containers", id, revquery));
             } catch (WebException) {
                 return;
             }
             
-            ContentNode albumsNode = ContentParser.Parse (client.Bag, albumsData);
+            ContentNode albums_node = ContentParser.Parse (client.Bag, albums_data);
 			// DEBUG data			
-			albumsNode.Dump();
-			Console.WriteLine("after dump!");
+			albums_node.Dump ();
+			Console.WriteLine ("after dump!");
 			
-            if (IsUpdateResponse (albumsNode))
+            if (IsUpdateResponse (albums_node))
                 return;
 
             // handle album additions/changes
             ArrayList plids = new ArrayList ();
-			if(albumsNode.GetChild("dmap.listing")==null) return;
+			if (albums_node.GetChild ("dmap.listing")==null) return;
 			
-            foreach (ContentNode albumNode in (ContentNode[]) albumsNode.GetChild ("dmap.listing").Value) {
+            foreach (ContentNode albumNode in (ContentNode []) albums_node.GetChild ("dmap.listing").Value) {
                 
 				// DEBUG
-				Console.WriteLine("foreach loop");
+				Console.WriteLine ("foreach loop");
 				Album pl = Album.FromNode (albumNode);
                 if (pl != null) {
                     plids.Add (pl.Id);
@@ -297,7 +297,7 @@ namespace DPAP {
                 }
             }
 			// DEBUG
-			Console.WriteLine("delete albums that don't exist");
+			Console.WriteLine ("delete albums that don't exist");
             // delete albums that no longer exist
             foreach (Album pl in new List<Album> (albums)) {
                 if (!plids.Contains (pl.Id)) {
@@ -307,24 +307,24 @@ namespace DPAP {
 
             plids = null;
 			// DEBUG
-			Console.WriteLine("Add/remove photos in the albums");
+			Console.WriteLine ("Add/remove photos in the albums");
             // add/remove photos in the albums
             foreach (Album pl in albums) {
-                byte[] albumPhotosData = client.Fetcher.Fetch (String.Format ("/databases/{0}/containers/{1}/items",
+                byte [] album_photos_data = client.Fetcher.Fetch (String.Format ("/databases/{0}/containers/{1}/items",
                                                                                 id, pl.Id), revquery);
-                ContentNode albumPhotosNode = ContentParser.Parse (client.Bag, albumPhotosData);
+                ContentNode album_photos_node = ContentParser.Parse (client.Bag, album_photos_data);
 
-                if (IsUpdateResponse (albumPhotosNode))
+                if (IsUpdateResponse (album_photos_node))
                     return;
 
-                if ((byte) albumPhotosNode.GetChild ("dmap.updatetype").Value == 1) {
+                if ( (byte) album_photos_node.GetChild ("dmap.updatetype").Value == 1) {
 
                     // handle album photo deletions
-                    ContentNode deleteList = albumPhotosNode.GetChild ("dmap.deletedidlisting");
+                    ContentNode delete_list = album_photos_node.GetChild ("dmap.deletedidlisting");
 
-                    if (deleteList != null) {
-                        foreach (ContentNode deleted in (ContentNode[]) deleteList.Value) {
-                            int index = pl.LookupIndexByContainerId ((int) deleted.Value);
+                    if (delete_list != null) {
+                        foreach (ContentNode deleted in (ContentNode []) delete_list.Value) {
+                            int index = pl.LookupIndexByContainerId ( (int) deleted.Value);
 
                             if (index < 0)
                                 continue;
@@ -337,16 +337,16 @@ namespace DPAP {
                 // add new photos, or reorder existing ones
 
                 int plindex = 0;
-                foreach (ContentNode plPhotoNode in (ContentNode[]) albumPhotosNode.GetChild ("dmap.listing").Value) {
+                foreach (ContentNode pl_photo_node in (ContentNode []) album_photos_node.GetChild ("dmap.listing").Value) {
                     Photo plphoto = null;
-                    int containerId = 0;
-                    Photo.FromAlbumNode (this, plPhotoNode, out plphoto, out containerId);
+                    int container_id = 0;
+                    Photo.FromAlbumNode (this, pl_photo_node, out plphoto, out container_id);
 
-                    if (pl[plindex] != null && pl.GetContainerId (plindex) != containerId) {
+                    if (pl [plindex] != null && pl.GetContainerId (plindex) != container_id) {
                         pl.RemoveAt (plindex);
-                        pl.InsertPhoto (plindex, plphoto, containerId);
-                    } else if (pl[plindex] == null) {
-                        pl.InsertPhoto (plindex, plphoto, containerId);
+                        pl.InsertPhoto (plindex, plphoto, container_id);
+                    } else if (pl [plindex] == null) {
+                        pl.InsertPhoto (plindex, plphoto, container_id);
                     }
 
                     plindex++;
@@ -356,40 +356,42 @@ namespace DPAP {
 
         private void RefreshPhotos (string revquery) {
 			foreach (Album pl in albums){
-	            byte[] photosData = client.Fetcher.Fetch (String.Format ("/databases/{0}/containers/{1}/items", id,pl.getId()),
-	                                                     PhotoQuery);
-	            ContentNode photosNode = ContentParser.Parse (client.Bag, photosData);
-
-	            if (IsUpdateResponse (photosNode))
-	                return;
+				//Console.WriteLine ("Refreshing photos in album " + pl.Name);
+	            byte [] photos_data = client.Fetcher.Fetch (String.Format ("/databases/{0}/containers/{1}/items", id,pl.getId ()),
+	                                                     photo_query);
+	            ContentNode photos_node = ContentParser.Parse (client.Bag, photos_data);
+				//photos_node.Dump ();
+	            //if (IsUpdateResponse (photos_node))
+	             //   return;
 
 	            // handle photo additions/changes
-	            foreach (ContentNode photoNode in (ContentNode[]) photosNode.GetChild ("dmap.listing").Value) {
+	            foreach (ContentNode photoNode in (ContentNode []) photos_node.GetChild ("dmap.listing").Value) {
 					// DEBUG data					
-					//photoNode.Dump();
+					//photoNode.Dump ();
 	                Photo photo = Photo.FromNode (photoNode);
 					
 	                Photo existing = LookupPhotoById (photo.Id);
-					
+					pl.AddPhoto (photo);
 	                if (existing == null){
-					//	Console.WriteLine("adding " + photo.Title);
+					//	Console.WriteLine ("adding " + photo.Title + " to album " +pl.Name);
+					
 	                    AddPhoto (photo);
 					}
 	                else
 					{
-					//	Console.WriteLine("updating " + existing.Title);
+					//	Console.WriteLine ("updating " + existing.Title);
 	                    existing.Update (photo);
 					}
 	            }
 
-	            if ((byte) photosNode.GetChild ("dmap.updatetype").Value == 1) {
+	            if ( (byte) photos_node.GetChild ("dmap.updatetype").Value == 1) {
 
 	                // handle photo deletions
-	                ContentNode deleteList = photosNode.GetChild ("dmap.deletedidlisting");
+	                ContentNode delete_list = photos_node.GetChild ("dmap.deletedidlisting");
 
-	                if (deleteList != null) {
-	                    foreach (ContentNode deleted in (ContentNode[]) deleteList.Value) {
-	                        Photo photo = LookupPhotoById ((int) deleted.Value);
+	                if (delete_list != null) {
+	                    foreach (ContentNode deleted in (ContentNode []) delete_list.Value) {
+	                        Photo photo = LookupPhotoById ( (int) deleted.Value);
 
 	                        if (photo != null)
 	                            RemovePhoto (photo);
@@ -414,7 +416,7 @@ namespace DPAP {
 
         private HttpWebResponse FetchPhoto (Photo photo, long offset) {
             return client.Fetcher.FetchResponse (String.Format ("/databases/{0}/items",id), offset, 
-			                                     String.Format("meta=dpap.filedata&query=('dmap.itemid:{0}')",photo.Id),
+			                                     String.Format ("meta=dpap.filedata&query= ('dmap.itemid:{0}')",photo.Id),
 			                                     null, 1, true);
                                              
         }
@@ -437,13 +439,13 @@ namespace DPAP {
                 long len;
                 using (BinaryReader reader = new BinaryReader (StreamPhoto (photo, out len))) {
                     int count = 0;
-                    byte[] buf = new byte[ChunkLength];
+                    byte [] buf = new byte [chunk_length];
                 
 					// Skip the header    
-					//count = reader.Read(buf,0,89);
+					//count = reader.Read (buf,0,89);
 					
-					//if(count < 89)
-					//	count+=reader.Read(buf,0,89-count);
+					//if (count < 89)
+					//	count+=reader.Read (buf,0,89-count);
 					
 					while (true) {
                     buf = reader.ReadBytes (8192);
@@ -451,20 +453,20 @@ namespace DPAP {
                         break;
 
                     data.Write (buf, 0, buf.Length);
-					//Console.Write(buf.);
+					//Console.Write (buf.);
 					}
 					
 			*/		
 /*                    do {
-                        count = reader.Read (buf, 0, ChunkLength);
+                        count = reader.Read (buf, 0, chunk_length);
                         writer.Write (buf, 0, count);
 						data.Write (buf, 0, count);
                     } while (count != 0);
 	*/				
-					/*data.Flush();
+					/*data.Flush ();
 					
-					ContentNode node = ContentParser.Parse(client.Bag, data.GetBuffer());
-					node.Dump();
+					ContentNode node = ContentParser.Parse (client.Bag, data.GetBuffer ());
+					node.Dump ();
 					reader.Close ();
 					
                 }
@@ -474,38 +476,35 @@ namespace DPAP {
                 writer.Close ();
             }*/
 			// maybe use FetchResponse to get a stream and feed it to pixbuf?
-			 byte[] photosData = client.Fetcher.Fetch (String.Format ("/databases/{0}/items",id), 
-			                                     String.Format("meta=dpap.filedata&query=('dmap.itemid:{0}')",photo.Id));
-			ContentNode node = ContentParser.Parse(client.Bag, photosData);
+			 byte [] photos_data = client.Fetcher.Fetch (String.Format ("/databases/{0}/items",id), 
+			                                     String.Format ("meta=dpap.filedata&query= ('dmap.itemid:{0}')",photo.Id));
+			ContentNode node = ContentParser.Parse (client.Bag, photos_data);
 			
 			// DEBUG
-			Console.WriteLine("About to dump the photo!");
-			node.Dump();
-			ContentNode fileDataNode = node.GetChild("dpap.filedata");
-			Console.WriteLine("Photo starts at index " + fileDataNode.Value);
+			Console.WriteLine ("About to dump the photo!");
+			node.Dump ();
+			ContentNode filedata_node = node.GetChild ("dpap.filedata");
+			Console.WriteLine ("Photo starts at index " + filedata_node.Value);
 			BinaryWriter writer = new BinaryWriter (File.Open (dest, FileMode.Create));
 			
 			int count = 0;
-			int off = System.Int32.Parse(fileDataNode.Value.ToString());
-			byte[] photoBuf;
+			int off = System.Int32.Parse (filedata_node.Value.ToString ());
+			byte [] photo_buf;
 			MemoryStream data = new MemoryStream ();
-			//while ( count < photosData.Length - fileDataNode.Value)
-			data.Write(photosData, (int)off, (int)photosData.Length-off);
+			//while (count < photos_data.Length - fileDataNode.Value)
+			writer.Write (photos_data, (int)off, (int)photos_data.Length-off);
 			data.Position = 0;
-//			Gdk.Pixbuf pb = new Gdk.Pixbuf(data);
-			data.Close();
-			
-			
-			
-			Console.Write("Written " + count + " out of " + (photosData.Length-off));
+//			Gdk.Pixbuf pb = new Gdk.Pixbuf (data);
+			data.Close ();
+			Console.Write ("Written " + count + " out of " + (photos_data.Length-off));
         }
 
         public void AddPhoto (Photo photo) {
             if (photo.Id == 0)
-                photo.SetId (nextPhotoId++);
+                photo.SetId (next_photo_id++);
             
             photos.Add (photo);
-            baseAlbum.AddPhoto (photo);
+            base_album.AddPhoto (photo);
 
             if (PhotoAdded != null)
                 PhotoAdded (this, new PhotoArgs (photo));
@@ -513,7 +512,7 @@ namespace DPAP {
 
         public void RemovePhoto (Photo photo) {
             photos.Remove (photo);
-            baseAlbum.RemovePhoto (photo);
+            base_album.RemovePhoto (photo);
 
             foreach (Album pl in albums) {
                 pl.RemovePhoto (photo);
@@ -524,8 +523,9 @@ namespace DPAP {
         }
 
         public void AddAlbum (Album pl) {
-            albums.Add (pl);
-
+			// DEBUG			
+			Console.WriteLine ("Adding album " + pl.Name);
+            albums.Add (pl);			
             if (AlbumAdded != null)
                 AlbumAdded (this, new AlbumArgs (pl));
         }
@@ -538,36 +538,36 @@ namespace DPAP {
         }
 
         private Album CloneAlbum (Database db, Album pl) {
-            Album clonePl = new Album (pl.Name);
-            clonePl.Id = pl.Id;
+            Album clone_pl = new Album (pl.Name);
+            clone_pl.Id = pl.Id;
 
             IList<Photo> plphotos = pl.Photos;
             for (int i = 0; i < plphotos.Count; i++) {
-                clonePl.AddPhoto (db.LookupPhotoById (plphotos[i].Id), pl.GetContainerId (i));
+                clone_pl.AddPhoto (db.LookupPhotoById (plphotos [i].Id), pl.GetContainerId (i));
             }
 
-            return clonePl;
+            return clone_pl;
         }
 
         public object Clone () {
             Database db = new Database (this.name);
             db.id = id;
-            db.persistentId = persistentId;
+            db.persistent_id = persistent_id;
 
-            List<Photo> clonePhotos = new List<Photo> ();
+            List<Photo> clone_photos = new List<Photo> ();
             foreach (Photo photo in photos) {
-                clonePhotos.Add ((Photo) photo.Clone ());
+                clone_photos.Add ( (Photo) photo.Clone ());
             }
 
-            db.photos = clonePhotos;
+            db.photos = clone_photos;
 
-            List<Album> cloneAlbums = new List<Album> ();
+            List<Album> clone_albums = new List<Album> ();
             foreach (Album pl in albums) {
-                cloneAlbums.Add (CloneAlbum (db, pl));
+                clone_albums.Add (CloneAlbum (db, pl));
             }
 
-            db.albums = cloneAlbums;
-            db.baseAlbum = CloneAlbum (db, baseAlbum);
+            db.albums = clone_albums;
+            db.base_album = CloneAlbum (db, base_album);
             return db;
         }
     }

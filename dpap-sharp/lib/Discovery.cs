@@ -52,7 +52,7 @@ namespace DPAP {
         private ushort port;
         private string name;
         private bool isprotected;
-        private string machineId;
+        private string machine_id;
 
         public IPAddress Address {
             get { return address; }
@@ -71,20 +71,20 @@ namespace DPAP {
         }
 
         public string MachineId {
-            get { return machineId; }
+            get { return machine_id; }
         }
 
-        public Service (IPAddress address, ushort port, string name, bool isprotected, string machineId) {
+        public Service (IPAddress address, ushort port, string name, bool isprotected, string machine_id) {
             this.address = address;
             this.port = port;
             this.name = name;
             this.isprotected = isprotected;
-            this.machineId = machineId;
+            this.machine_id = machine_id;
         }
 
-        public override string ToString()
+        public override string ToString ()
         {
-            return String.Format("{0}:{1} ({2})", Address, Port, Name);
+            return String.Format ("{0}:{1} ({2})", Address, Port, Name);
         }
     }
 	
@@ -106,9 +106,9 @@ namespace DPAP {
 		//
 		
 		public void Start () {
-			browser = new ServiceBrowser();
+			browser = new ServiceBrowser ();
 			browser.ServiceAdded += OnServiceAdded;
-			browser.Browse("_dpap._tcp","local");
+			browser.Browse ("_dpap._tcp","local");
 		}
 		
 	    public void Stop () {
@@ -117,47 +117,47 @@ namespace DPAP {
             services.Clear ();
         }
 		
-		private void OnServiceAdded(object o, ServiceBrowseEventArgs args){
-			Console.WriteLine("Found Service: {0}", args.Service.Name);
+		private void OnServiceAdded (object o, ServiceBrowseEventArgs args){
+			Console.WriteLine ("Found Service: {0}", args.Service.Name);
 			args.Service.Resolved += OnServiceResolved;
             args.Service.Resolve ();
 		}
 		
-		public Service ServiceByName(string svcName)
+		public Service ServiceByName (string svcName)
 		{
-			return (Service)services[svcName];
+			return (Service)services [svcName];
 		}
 		
-		private void OnServiceResolved(object o, ServiceResolvedEventArgs args){
+		private void OnServiceResolved (object o, ServiceResolvedEventArgs args){
 				
 		        IResolvableService s = (IResolvableService)args.Service;
 
 			    string name = s.Name;
-		        string machineId = null;
+		        string machine_id = null;
 		        bool pwRequired = false;
 			
-		        Console.WriteLine("Resolved Service: {0} - {1}:{2} ({3} TXT record entries)", 
-		            s.FullName, s.HostEntry.AddressList[0], s.Port, s.TxtRecord.Count);
+		        Console.WriteLine ("Resolved Service: {0} - {1}:{2} ({3} TXT record entries)", 
+		            s.FullName, s.HostEntry.AddressList [0], s.Port, s.TxtRecord.Count);
 
 				if (name.EndsWith ("_PW")) {
 					name = name.Substring (0, name.Length - 3);
 					pwRequired = true;
 				}				
 				
-				foreach(TxtRecordItem item in s.TxtRecord) {
-	                if(item.Key.ToLower () == "password") {
+				foreach (TxtRecordItem item in s.TxtRecord) {
+	                if (item.Key.ToLower () == "password") {
 	                    pwRequired = item.ValueString.ToLower () == "true";
 	                } else if (item.Key.ToLower () == "machine name") {
 	                    name = item.ValueString;
 	                } else if (item.Key.ToLower () == "machine id") {
-	                    machineId = item.ValueString;
+	                    machine_id = item.ValueString;
 	                }
 				}
 				
-		            DPAP.Service svc = new DPAP.Service (s.HostEntry.AddressList[0], (ushort)s.Port, 
-                                                name, pwRequired, machineId);
+		            DPAP.Service svc = new DPAP.Service (s.HostEntry.AddressList [0], (ushort)s.Port, 
+                                                name, pwRequired, machine_id);
             
-            services[svc.Name] = svc;
+            services [svc.Name] = svc;
 			
 			if (Found != null)
                 Found (this, new ServiceArgs (svc));

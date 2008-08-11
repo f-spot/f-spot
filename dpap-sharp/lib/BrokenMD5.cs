@@ -59,21 +59,21 @@ namespace DPAP {
     internal class BrokenMD5 : MD5 {
         private const int BLOCK_SIZE_BYTES =  64;
         private const int HASH_SIZE_BYTES  =  16;
-        private uint[] _H;
-        private uint[] buff;
+        private uint [] _H;
+        private uint [] buff;
         private ulong count;
-        private byte[] _ProcessingBuffer;   // Used to start data when passed less than a block worth.
+        private byte [] _ProcessingBuffer;   // Used to start data when passed less than a block worth.
         private int _ProcessingBufferCount; // Counts how much data we have stored that still needs processed.
         private int _version;
 	
         public BrokenMD5 ( int version ) 
         {
-            _H = new uint[4];
-            buff = new uint[16];
+            _H = new uint [4];
+            buff = new uint [16];
             _ProcessingBuffer = new byte [BLOCK_SIZE_BYTES];
             _version = version;
 
-            Initialize();
+            Initialize ();
         }
 
         ~BrokenMD5 () 
@@ -97,7 +97,7 @@ namespace DPAP {
             }
         }
 
-        protected override void HashCore (byte[] rgb, int start, int size) 
+        protected override void HashCore (byte [] rgb, int start, int size) 
         {
             int i;
             State = 1;
@@ -128,16 +128,16 @@ namespace DPAP {
             }
         }
 	
-        protected override byte[] HashFinal () 
+        protected override byte [] HashFinal () 
         {
-            byte[] hash = new byte[16];
+            byte [] hash = new byte [16];
             int i, j;
 
             ProcessFinalBlock (_ProcessingBuffer, 0, _ProcessingBufferCount);
 
             for (i=0; i<4; i++) {
                 for (j=0; j<4; j++) {
-                    hash[i*4+j] = (byte)(_H[i] >> j*8);
+                    hash [i*4+j] = (byte) (_H [i] >> j*8);
                 }
             }
 
@@ -149,13 +149,13 @@ namespace DPAP {
             count = 0;
             _ProcessingBufferCount = 0;
 
-            _H[0] = 0x67452301;
-            _H[1] = 0xefcdab89;
-            _H[2] = 0x98badcfe;
-            _H[3] = 0x10325476;
+            _H [0] = 0x67452301;
+            _H [1] = 0xefcdab89;
+            _H [2] = 0x98badcfe;
+            _H [3] = 0x10325476;
         }
 
-        private void ProcessBlock (byte[] inputBuffer, int inputOffset) 
+        private void ProcessBlock (byte [] inputBuffer, int inputOffset) 
         {
             uint a, b, c, d;
             int i;
@@ -163,159 +163,159 @@ namespace DPAP {
             count += BLOCK_SIZE_BYTES;
 		
             for (i=0; i<16; i++) {
-                buff[i] = (uint)(inputBuffer[inputOffset+4*i])
-                    | (((uint)(inputBuffer[inputOffset+4*i+1])) <<  8)
-                    | (((uint)(inputBuffer[inputOffset+4*i+2])) << 16)
-                    | (((uint)(inputBuffer[inputOffset+4*i+3])) << 24);
+                buff [i] = (uint) (inputBuffer [inputOffset+4*i])
+                    | ( ( (uint) (inputBuffer [inputOffset+4*i+1])) <<  8)
+                    | ( ( (uint) (inputBuffer [inputOffset+4*i+2])) << 16)
+                    | ( ( (uint) (inputBuffer [inputOffset+4*i+3])) << 24);
             }
 		
-            a = _H[0];
-            b = _H[1];
-            c = _H[2];
-            d = _H[3];
+            a = _H [0];
+            b = _H [1];
+            c = _H [2];
+            d = _H [3];
 		
             // This function was unrolled because it seems to be doubling our performance with current compiler/VM.
             // Possibly roll up if this changes.
 
             // ---- Round 1 --------
 
-            a += (((c ^ d) & b) ^ d) + (uint) K [0] + buff [0];
+            a += ( ( (c ^ d) & b) ^ d) + (uint) K [0] + buff [0];
             a = (a << 7) | (a >> 25);
             a += b;
 
-            d += (((b ^ c) & a) ^ c) + (uint) K [1] + buff [1];
+            d += ( ( (b ^ c) & a) ^ c) + (uint) K [1] + buff [1];
             d = (d << 12) | (d >> 20);
             d += a;
 
-            c += (((a ^ b) & d) ^ b) + (uint) K [2] + buff [2];
+            c += ( ( (a ^ b) & d) ^ b) + (uint) K [2] + buff [2];
             c = (c << 17) | (c >> 15);
             c += d;
 
-            b += (((d ^ a) & c) ^ a) + (uint) K [3] + buff [3];
+            b += ( ( (d ^ a) & c) ^ a) + (uint) K [3] + buff [3];
             b = (b << 22) | (b >> 10);
             b += c;
 
-            a += (((c ^ d) & b) ^ d) + (uint) K [4] + buff [4];
+            a += ( ( (c ^ d) & b) ^ d) + (uint) K [4] + buff [4];
             a = (a << 7) | (a >> 25);
             a += b;
 
-            d += (((b ^ c) & a) ^ c) + (uint) K [5] + buff [5];
+            d += ( ( (b ^ c) & a) ^ c) + (uint) K [5] + buff [5];
             d = (d << 12) | (d >> 20);
             d += a;
 
-            c += (((a ^ b) & d) ^ b) + (uint) K [6] + buff [6];
+            c += ( ( (a ^ b) & d) ^ b) + (uint) K [6] + buff [6];
             c = (c << 17) | (c >> 15);
             c += d;
 
-            b += (((d ^ a) & c) ^ a) + (uint) K [7] + buff [7];
+            b += ( ( (d ^ a) & c) ^ a) + (uint) K [7] + buff [7];
             b = (b << 22) | (b >> 10);
             b += c;
 
-            a += (((c ^ d) & b) ^ d) + (uint) K [8] + buff [8];
+            a += ( ( (c ^ d) & b) ^ d) + (uint) K [8] + buff [8];
             a = (a << 7) | (a >> 25);
             a += b;
 
-            d += (((b ^ c) & a) ^ c) + (uint) K [9] + buff [9];
+            d += ( ( (b ^ c) & a) ^ c) + (uint) K [9] + buff [9];
             d = (d << 12) | (d >> 20);
             d += a;
 
-            c += (((a ^ b) & d) ^ b) + (uint) K [10] + buff [10];
+            c += ( ( (a ^ b) & d) ^ b) + (uint) K [10] + buff [10];
             c = (c << 17) | (c >> 15);
             c += d;
 
-            b += (((d ^ a) & c) ^ a) + (uint) K [11] + buff [11];
+            b += ( ( (d ^ a) & c) ^ a) + (uint) K [11] + buff [11];
             b = (b << 22) | (b >> 10);
             b += c;
 
-            a += (((c ^ d) & b) ^ d) + (uint) K [12] + buff [12];
+            a += ( ( (c ^ d) & b) ^ d) + (uint) K [12] + buff [12];
             a = (a << 7) | (a >> 25);
             a += b;
 
-            d += (((b ^ c) & a) ^ c) + (uint) K [13] + buff [13];
+            d += ( ( (b ^ c) & a) ^ c) + (uint) K [13] + buff [13];
             d = (d << 12) | (d >> 20);
             d += a;
 
-            c += (((a ^ b) & d) ^ b) + (uint) K [14] + buff [14];
+            c += ( ( (a ^ b) & d) ^ b) + (uint) K [14] + buff [14];
             c = (c << 17) | (c >> 15);
             c += d;
 
-            b += (((d ^ a) & c) ^ a) + (uint) K [15] + buff [15];
+            b += ( ( (d ^ a) & c) ^ a) + (uint) K [15] + buff [15];
             b = (b << 22) | (b >> 10);
             b += c;
 
 
             // ---- Round 2 --------
   
-            a += (((b ^ c) & d) ^ c) + (uint) K [16] + buff [1];
+            a += ( ( (b ^ c) & d) ^ c) + (uint) K [16] + buff [1];
             a = (a << 5) | (a >> 27);
             a += b;
 
-            d += (((a ^ b) & c) ^ b) + (uint) K [17] + buff [6];
+            d += ( ( (a ^ b) & c) ^ b) + (uint) K [17] + buff [6];
             d = (d << 9) | (d >> 23);
             d += a;
 
-            c += (((d ^ a) & b) ^ a) + (uint) K [18] + buff [11];
+            c += ( ( (d ^ a) & b) ^ a) + (uint) K [18] + buff [11];
             c = (c << 14) | (c >> 18);
             c += d;
 
-            b += (((c ^ d) & a) ^ d) + (uint) K [19] + buff [0];
+            b += ( ( (c ^ d) & a) ^ d) + (uint) K [19] + buff [0];
             b = (b << 20) | (b >> 12);
             b += c;
 
-            a += (((b ^ c) & d) ^ c) + (uint) K [20] + buff [5];
+            a += ( ( (b ^ c) & d) ^ c) + (uint) K [20] + buff [5];
             a = (a << 5) | (a >> 27);
             a += b;
 
-            d += (((a ^ b) & c) ^ b) + (uint) K [21] + buff [10];
+            d += ( ( (a ^ b) & c) ^ b) + (uint) K [21] + buff [10];
             d = (d << 9) | (d >> 23);
             d += a;
 
-            c += (((d ^ a) & b) ^ a) + (uint) K [22] + buff [15];
+            c += ( ( (d ^ a) & b) ^ a) + (uint) K [22] + buff [15];
             c = (c << 14) | (c >> 18);
             c += d;
 
-            b += (((c ^ d) & a) ^ d) + (uint) K [23] + buff [4];
+            b += ( ( (c ^ d) & a) ^ d) + (uint) K [23] + buff [4];
             b = (b << 20) | (b >> 12);
             b += c;
 
-            a += (((b ^ c) & d) ^ c) + (uint) K [24] + buff [9];
+            a += ( ( (b ^ c) & d) ^ c) + (uint) K [24] + buff [9];
             a = (a << 5) | (a >> 27);
             a += b;
 
-            d += (((a ^ b) & c) ^ b) + (uint) K [25] + buff [14];
+            d += ( ( (a ^ b) & c) ^ b) + (uint) K [25] + buff [14];
             d = (d << 9) | (d >> 23);
             d += a;
 
-            c += (((d ^ a) & b) ^ a) + (uint) K [26] + buff [3];
+            c += ( ( (d ^ a) & b) ^ a) + (uint) K [26] + buff [3];
             c = (c << 14) | (c >> 18);
             c += d;
 
-            if( _version == 1 )
+            if ( _version == 1 )
             {
-                b += (((c ^ d) & a) ^ d) + (uint) 0x445a14ed + buff [8];
+                b += ( ( (c ^ d) & a) ^ d) + (uint) 0x445a14ed + buff [8];
                 b = (b << 20) | (b >> 12);
                 b += c;
             }
             else
             {
-                b += (((c ^ d) & a) ^ d) + (uint) K [27] + buff [8];
+                b += ( ( (c ^ d) & a) ^ d) + (uint) K [27] + buff [8];
                 b = (b << 20) | (b >> 12);
                 b += c;
             }
 
-            a += (((b ^ c) & d) ^ c) + (uint) K [28] + buff [13];
+            a += ( ( (b ^ c) & d) ^ c) + (uint) K [28] + buff [13];
             a = (a << 5) | (a >> 27);
             a += b;
 
-            d += (((a ^ b) & c) ^ b) + (uint) K [29] + buff [2];
+            d += ( ( (a ^ b) & c) ^ b) + (uint) K [29] + buff [2];
             d = (d << 9) | (d >> 23);
             d += a;
 
-            c += (((d ^ a) & b) ^ a) + (uint) K [30] + buff [7];
+            c += ( ( (d ^ a) & b) ^ a) + (uint) K [30] + buff [7];
             c = (c << 14) | (c >> 18);
             c += d;
 
-            b += (((c ^ d) & a) ^ d) + (uint) K [31] + buff [12];
+            b += ( ( (c ^ d) & a) ^ d) + (uint) K [31] + buff [12];
             b = (b << 20) | (b >> 12);
             b += c;
 
@@ -389,67 +389,67 @@ namespace DPAP {
 
             // ---- Round 4 --------
   
-            a += (((~d) | b) ^ c) + (uint) K [48] + buff [0];
+            a += ( ( (~d) | b) ^ c) + (uint) K [48] + buff [0];
             a = (a << 6) | (a >> 26);
             a += b;
 
-            d += (((~c) | a) ^ b) + (uint) K [49] + buff [7];
+            d += ( ( (~c) | a) ^ b) + (uint) K [49] + buff [7];
             d = (d << 10) | (d >> 22);
             d += a;
 
-            c += (((~b) | d) ^ a) + (uint) K [50] + buff [14];
+            c += ( ( (~b) | d) ^ a) + (uint) K [50] + buff [14];
             c = (c << 15) | (c >> 17);
             c += d;
 
-            b += (((~a) | c) ^ d) + (uint) K [51] + buff [5];
+            b += ( ( (~a) | c) ^ d) + (uint) K [51] + buff [5];
             b = (b << 21) | (b >> 11);
             b += c;
 
-            a += (((~d) | b) ^ c) + (uint) K [52] + buff [12];
+            a += ( ( (~d) | b) ^ c) + (uint) K [52] + buff [12];
             a = (a << 6) | (a >> 26);
             a += b;
 
-            d += (((~c) | a) ^ b) + (uint) K [53] + buff [3];
+            d += ( ( (~c) | a) ^ b) + (uint) K [53] + buff [3];
             d = (d << 10) | (d >> 22);
             d += a;
 
-            c += (((~b) | d) ^ a) + (uint) K [54] + buff [10];
+            c += ( ( (~b) | d) ^ a) + (uint) K [54] + buff [10];
             c = (c << 15) | (c >> 17);
             c += d;
 
-            b += (((~a) | c) ^ d) + (uint) K [55] + buff [1];
+            b += ( ( (~a) | c) ^ d) + (uint) K [55] + buff [1];
             b = (b << 21) | (b >> 11);
             b += c;
 
-            a += (((~d) | b) ^ c) + (uint) K [56] + buff [8];
+            a += ( ( (~d) | b) ^ c) + (uint) K [56] + buff [8];
             a = (a << 6) | (a >> 26);
             a += b;
 
-            d += (((~c) | a) ^ b) + (uint) K [57] + buff [15];
+            d += ( ( (~c) | a) ^ b) + (uint) K [57] + buff [15];
             d = (d << 10) | (d >> 22);
             d += a;
 
-            c += (((~b) | d) ^ a) + (uint) K [58] + buff [6];
+            c += ( ( (~b) | d) ^ a) + (uint) K [58] + buff [6];
             c = (c << 15) | (c >> 17);
             c += d;
 
-            b += (((~a) | c) ^ d) + (uint) K [59] + buff [13];
+            b += ( ( (~a) | c) ^ d) + (uint) K [59] + buff [13];
             b = (b << 21) | (b >> 11);
             b += c;
 
-            a += (((~d) | b) ^ c) + (uint) K [60] + buff [4];
+            a += ( ( (~d) | b) ^ c) + (uint) K [60] + buff [4];
             a = (a << 6) | (a >> 26);
             a += b;
 
-            d += (((~c) | a) ^ b) + (uint) K [61] + buff [11];
+            d += ( ( (~c) | a) ^ b) + (uint) K [61] + buff [11];
             d = (d << 10) | (d >> 22);
             d += a;
 
-            c += (((~b) | d) ^ a) + (uint) K [62] + buff [2];
+            c += ( ( (~b) | d) ^ a) + (uint) K [62] + buff [2];
             c = (c << 15) | (c >> 17);
             c += d;
 
-            b += (((~a) | c) ^ d) + (uint) K [63] + buff [9];
+            b += ( ( (~a) | c) ^ d) + (uint) K [63] + buff [9];
             b = (b << 21) | (b >> 11);
             b += c;
 
@@ -459,23 +459,23 @@ namespace DPAP {
             _H [3] += d;
         }
 		
-        private void ProcessFinalBlock (byte[] inputBuffer, int inputOffset, int inputCount) 
+        private void ProcessFinalBlock (byte [] inputBuffer, int inputOffset, int inputCount) 
         {
             ulong total = count + (ulong)inputCount;
-            int paddingSize = (int)(56 - total % BLOCK_SIZE_BYTES);
+            int paddingSize = (int) (56 - total % BLOCK_SIZE_BYTES);
 
             if (paddingSize < 1)
                 paddingSize += BLOCK_SIZE_BYTES;
 
-            byte[] fooBuffer = new byte [inputCount+paddingSize+8];
+            byte [] fooBuffer = new byte [inputCount+paddingSize+8];
 
             for (int i=0; i<inputCount; i++) {
-                fooBuffer[i] = inputBuffer[i+inputOffset];
+                fooBuffer [i] = inputBuffer [i+inputOffset];
             }
 
-            fooBuffer[inputCount] = 0x80;
+            fooBuffer [inputCount] = 0x80;
             for (int i=inputCount+1; i<inputCount+paddingSize; i++) {
-                fooBuffer[i] = 0x00;
+                fooBuffer [i] = 0x00;
             }
 
             // I deal in bytes. The algorithm deals in bits.
@@ -484,23 +484,23 @@ namespace DPAP {
             ProcessBlock (fooBuffer, 0);
 
             if (inputCount+paddingSize+8 == 128) {
-                ProcessBlock(fooBuffer, 64);
+                ProcessBlock (fooBuffer, 64);
             }
         }
 
-        internal void AddLength (ulong length, byte[] buffer, int position)
+        internal void AddLength (ulong length, byte [] buffer, int position)
         {
-            buffer [position++] = (byte)(length);
-            buffer [position++] = (byte)(length >>  8);
-            buffer [position++] = (byte)(length >> 16);
-            buffer [position++] = (byte)(length >> 24);
-            buffer [position++] = (byte)(length >> 32);
-            buffer [position++] = (byte)(length >> 40);
-            buffer [position++] = (byte)(length >> 48);
-            buffer [position]   = (byte)(length >> 56);
+            buffer [position++] = (byte) (length);
+            buffer [position++] = (byte) (length >>  8);
+            buffer [position++] = (byte) (length >> 16);
+            buffer [position++] = (byte) (length >> 24);
+            buffer [position++] = (byte) (length >> 32);
+            buffer [position++] = (byte) (length >> 40);
+            buffer [position++] = (byte) (length >> 48);
+            buffer [position]   = (byte) (length >> 56);
         }
 
-        private readonly static uint[] K = {
+        private readonly static uint [] K = {
             0xd76aa478, 0xe8c7b756, 0x242070db, 0xc1bdceee,
             0xf57c0faf, 0x4787c62a, 0xa8304613, 0xfd469501, 
             0x698098d8, 0x8b44f7af, 0xffff5bb1, 0x895cd7be,

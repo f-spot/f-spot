@@ -42,14 +42,14 @@ namespace DPAP
 		private int width;
 		private int height;
         private string genre;
-        private int photoNumber;
-        private int photoCount;
-        private string fileName;
+        private int photo_number;
+        private int photo_count;
+        private string filename;
 		private string thumbnail;
 		private string path;
 		private int thumbsize;
-        private DateTime dateAdded = DateTime.Now;
-        private DateTime dateModified = DateTime.Now;
+        private DateTime date_added = DateTime.Now;
+        private DateTime date_modified = DateTime.Now;
         private short bitrate;
 
         public event EventHandler Updated;
@@ -115,9 +115,9 @@ namespace DPAP
         }
                 
         public string FileName {
-            get { return fileName; }
+            get { return filename; }
             set {
-                fileName = value;
+                filename = value;
                 EmitUpdated ();
             }
         }
@@ -163,17 +163,17 @@ namespace DPAP
 		}
 		
         public DateTime DateAdded {
-            get { return dateAdded; }
+            get { return date_added; }
             set {
-                dateAdded = value;
+                date_added = value;
                 EmitUpdated ();
             }
         }
         
         public DateTime DateModified {
-            get { return dateModified; }
+            get { return date_modified; }
             set {
-                dateModified = value;
+                date_modified = value;
                 EmitUpdated ();
             }
         }
@@ -189,17 +189,17 @@ namespace DPAP
             photo.duration = duration;
             photo.id = id;
             photo.size = size;
-            photo.fileName = fileName;
+            photo.filename = filename;
 			photo.thumbnail = thumbnail;
 			photo.thumbsize = thumbsize;
-            photo.dateAdded = dateAdded;
-            photo.dateModified = dateModified;
+            photo.date_added = date_added;
+            photo.date_modified = date_modified;
 			photo.path = path;
             return photo;
         }
 
         public override string ToString () {
-            return String.Format ("fname={0}, title={1}, format={2}, id={3}, path={4}", fileName, title, format, id, path);
+            return String.Format ("fname={0}, title={1}, format={2}, id={3}, path={4}", filename, title, format, id, path);
         }
 
         internal void SetId (int id) {
@@ -208,7 +208,7 @@ namespace DPAP
 		internal ContentNode ToFileData (bool thumb) {
 			
 			ArrayList nodes = new ArrayList ();
-			Console.WriteLine("Requested "+ ((thumb)?"thumb":"file") +", thumbnail=" + thumbnail + ", hires=" + path);
+			Console.WriteLine ("Requested "+ ( (thumb)?"thumb":"file") +", thumbnail=" + thumbnail + ", hires=" + path);
 			nodes.Add (new ContentNode ("dmap.itemkind", (byte)3));
 			nodes.Add (new ContentNode ("dmap.itemid", id));
 			
@@ -218,12 +218,12 @@ namespace DPAP
 			nodes.Add (new ContentNode ("dpap.filedata",
 			                                             new ContentNode ("dpap.imagefilesize", (thumb)?thumbsize:size),
 			                                             new ContentNode ("dpap.imagefilename", (thumb)?thumbnail:path),
-			                                             new ContentNode ("dpap.imagefilename", (thumb)?thumbnail:fileName)));
+			                                             new ContentNode ("dpap.imagefilename", (thumb)?thumbnail:filename)));
 			
-			return (new ContentNode("dmap.listingitem", nodes));
+			return (new ContentNode ("dmap.listingitem", nodes));
 			
 		}
-        internal ContentNode ToNode (string[] fields) {
+        internal ContentNode ToNode (string [] fields) {
 
             ArrayList nodes = new ArrayList ();
             
@@ -255,7 +255,7 @@ namespace DPAP
                     val = format;
                     break;
 				case "dpap.imagefilename":
-					val = fileName;
+					val = filename;
 					break;
 				case "dpap.imagefilesize":
 					val = thumbsize;
@@ -298,7 +298,7 @@ namespace DPAP
         internal static Photo FromNode (ContentNode node) {
             Photo photo = new Photo ();
             
-            foreach (ContentNode field in (ContentNode[]) node.Value) {
+            foreach (ContentNode field in (ContentNode []) node.Value) {
                 switch (field.Name) {
                 case "dmap.itemid":
                     photo.id = (int) field.Value;
@@ -310,7 +310,7 @@ namespace DPAP
                     photo.format = (string) field.Value;
                     break;
                 case "dpap.imagefilename":
-					photo.fileName = (string) field.Value;
+					photo.filename = (string) field.Value;
 					break;
                /* case "dpap.imagefilesize":
                     photo.size = (int) field.Value;
@@ -329,8 +329,8 @@ namespace DPAP
             return photo;
         }
 
-        internal ContentNode ToAlbumNode (string[] fields) {
-ArrayList nodes = new ArrayList ();
+        internal ContentNode ToAlbumNode (string [] fields) {
+			ArrayList nodes = new ArrayList ();
             
             foreach (string field in fields) {
                 object val = null;
@@ -360,7 +360,7 @@ ArrayList nodes = new ArrayList ();
                     val = format;
                     break;
 				case "dpap.imagefilename":
-					val = fileName;
+					val = filename;
 					break;
 				case "dpap.imagefilesize":
 					val = thumbsize;
@@ -401,7 +401,7 @@ ArrayList nodes = new ArrayList ();
             return new ContentNode ("dmap.listingitem", 
                                     new ContentNode ("dmap.itemkind", (byte) 3),
 			                        nodes);
-                                   /* new ContentNode ("dpap.imagefilename", fileName),
+                                   /* new ContentNode ("dpap.imagefilename", filename),
                                     new ContentNode ("dmap.itemid", Id),
                                     //new ContentNode ("dmap.containeritemid", containerId),
                                     new ContentNode ("dmap.itemname", Title == null ? String.Empty : Title));
@@ -412,10 +412,10 @@ ArrayList nodes = new ArrayList ();
             photo = null;
             containerId = 0;
             
-            foreach (ContentNode field in (ContentNode[]) node.Value) {
+            foreach (ContentNode field in (ContentNode []) node.Value) {
                 switch (field.Name) {
                 case "dmap.itemid":
-                    photo = db.LookupPhotoById ((int) field.Value);
+                    photo = db.LookupPhotoById ( (int) field.Value);
                     break;
                 case "dmap.containeritemid":
                     containerId = (int) field.Value;
@@ -433,8 +433,8 @@ ArrayList nodes = new ArrayList ();
                 year == photo.Year &&
                 format == photo.Format &&
                 size == photo.Size &&
-                dateAdded == photo.DateAdded &&
-                dateModified == photo.DateModified;
+                date_added == photo.DateAdded &&
+                date_modified == photo.DateModified;
         }
 
         internal void Update (Photo photo) {
@@ -447,8 +447,8 @@ ArrayList nodes = new ArrayList ();
             year = photo.Year;
             format = photo.Format;
             size = photo.Size;
-            dateAdded = photo.DateAdded;
-            dateModified = photo.DateModified;
+            date_added = photo.DateAdded;
+            date_modified = photo.DateModified;
 
             EmitUpdated ();
         }

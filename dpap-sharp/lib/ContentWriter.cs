@@ -45,52 +45,51 @@ namespace DPAP {
             switch (code.Type) {
             case ContentType.Char:
                 writer.Write (IPAddress.HostToNetworkOrder (1));
-                writer.Write ((byte) node.Value);
+                writer.Write ( (byte) node.Value);
                 break;
             case ContentType.Short:
                 writer.Write (IPAddress.HostToNetworkOrder (2));
-                writer.Write (IPAddress.HostToNetworkOrder ((short) node.Value));
+                writer.Write (IPAddress.HostToNetworkOrder ( (short) node.Value));
                 break;
             case ContentType.SignedLong:
             case ContentType.Long:
                 writer.Write (IPAddress.HostToNetworkOrder (4));
-                writer.Write (IPAddress.HostToNetworkOrder ((int) node.Value));
+                writer.Write (IPAddress.HostToNetworkOrder ( (int) node.Value));
                 break;
             case ContentType.LongLong:
                 writer.Write (IPAddress.HostToNetworkOrder (8));
-                writer.Write (IPAddress.HostToNetworkOrder ((long) node.Value));
+                writer.Write (IPAddress.HostToNetworkOrder ( (long) node.Value));
                 break;
             case ContentType.String:
-                byte[] data = Encoding.UTF8.GetBytes ((string) node.Value);
+                byte [] data = Encoding.UTF8.GetBytes ( (string) node.Value);
                 writer.Write (IPAddress.HostToNetworkOrder (data.Length));
                 writer.Write (data);
                 break;
             case ContentType.Date:
                 writer.Write (IPAddress.HostToNetworkOrder (4));
-                writer.Write (IPAddress.HostToNetworkOrder (Utility.FromDateTime ((DateTime) node.Value)));
+                writer.Write (IPAddress.HostToNetworkOrder (Utility.FromDateTime ( (DateTime) node.Value)));
                 break;
             case ContentType.Version:
                 Version version = (Version) node.Value;
                 writer.Write (IPAddress.HostToNetworkOrder (4));
 
-                writer.Write ((short) IPAddress.HostToNetworkOrder ((short) version.Major));
-                writer.Write ((byte) version.Minor);
-                writer.Write ((byte) version.Build);
+                writer.Write ( (short) IPAddress.HostToNetworkOrder ( (short) version.Major));
+                writer.Write ( (byte) version.Minor);
+                writer.Write ( (byte) version.Build);
                 break;
 			case ContentType.FileData:
 				// after "pfdt" we should send the file size and then immediately the file's contents 
+				// DEBUG
+				//Console.WriteLine ("ContentWriter FileData!");
+				ContentNode [] nodes = (ContentNode []) node.Value;
 				
-				Console.WriteLine("ContentWriter FileData!");
-				ContentNode[] nodes = (ContentNode[]) node.Value;
-				
-				Console.WriteLine(nodes[0].Value);
-				writer.Write(IPAddress.HostToNetworkOrder ((int)nodes[0].Value));
-				FileInfo info = new FileInfo ((string)nodes[1].Value);				
-				Console.WriteLine("reading file " + nodes[1].Value + ", length=" +info.Length);
+				//Console.WriteLine (nodes [0].Value);
+				writer.Write (IPAddress.HostToNetworkOrder ( (int)nodes [0].Value));
+				FileInfo info = new FileInfo ( (string)nodes [1].Value);				
+				//Console.WriteLine ("reading file " + nodes [1].Value + ", length=" +info.Length);
 				
 
-				FileStream stream = info.Open(FileMode.Open, FileAccess.Read, FileShare.Read);
-				//writer.Write (client, stream, info.Length, offset);
+				FileStream stream = info.Open (FileMode.Open, FileAccess.Read, FileShare.Read);
 				int offset = -1;
                 using (BinaryReader reader = new BinaryReader (stream)) {
                     if (offset > 0) {
@@ -100,7 +99,7 @@ namespace DPAP {
                     long count = 0;
 					long len = info.Length;
                     while (count < len) {
-                        byte[] buf = reader.ReadBytes (Math.Min (8192, (int) len - (int) count));
+                        byte [] buf = reader.ReadBytes (Math.Min (8192, (int) len - (int) count));
                         if (buf.Length == 0) {
                             break;
                         }
@@ -111,39 +110,38 @@ namespace DPAP {
                 }
 				break;
             case ContentType.Container:
-                MemoryStream childStream = new MemoryStream ();
-                BinaryWriter childWriter = new BinaryWriter (childStream);
+                MemoryStream child_stream = new MemoryStream ();
+                BinaryWriter child_writer = new BinaryWriter (child_stream);
 
-                foreach (ContentNode child in (ContentNode[]) node.Value) {
-                    Write (bag, child, childWriter);
+                foreach (ContentNode child in (ContentNode []) node.Value) {
+                    Write (bag, child, child_writer);
                 }
 
-                childWriter.Flush ();
-                byte[] bytes = childStream.GetBuffer ();
-                int len = (int) childStream.Length;
+                child_writer.Flush ();
+                byte [] bytes = child_stream.GetBuffer ();
+                int len = (int) child_stream.Length;
 
                 writer.Write (IPAddress.HostToNetworkOrder (len));
                 writer.Write (bytes, 0, len);
-                childWriter.Close ();
+                child_writer.Close ();
                 break;
-				
             default:
                 Console.Error.WriteLine ("Cannot write node of type: " + code.Type);
                 break;
             }
         }
         
-        public static byte[] Write (ContentCodeBag bag, ContentNode node) {
+        public static byte [] Write (ContentCodeBag bag, ContentNode node) {
             MemoryStream stream = new MemoryStream ();
             BinaryWriter writer = new BinaryWriter (stream);
             Write (bag, node, writer);
             writer.Flush ();
 
-            byte[] buf = stream.GetBuffer ();
+            byte [] buf = stream.GetBuffer ();
             long len = stream.Length;
             writer.Close ();
 
-            byte[] ret = new byte[len];
+            byte [] ret = new byte [len];
             Array.Copy (buf, ret, len);
             return ret;
         }

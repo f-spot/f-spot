@@ -56,34 +56,35 @@ namespace DPAP {
 
         private const int ChunkLength = 8192;
         
-        private static ContentCodeBag defaultBag;
+        private static ContentCodeBag default_bag;
         private Hashtable codes = new Hashtable ();
 
         public static ContentCodeBag Default {
             get {
-				Console.WriteLine("getting default content codebag");
-                if (defaultBag == null) {
+				Console.WriteLine ("getting default content codebag");
+                if (default_bag == null) {
 
                     // this is crappy
-                    foreach (string name in Assembly.GetExecutingAssembly().GetManifestResourceNames()) {
-						Console.WriteLine("resource " +name);
-                        using (BinaryReader reader = new BinaryReader(Assembly.GetExecutingAssembly().GetManifestResourceStream(name))) {
-                            MemoryStream buf = new MemoryStream();
-                            byte[] bytes = null;
+                    foreach (string name in Assembly.GetExecutingAssembly ().GetManifestResourceNames ()) {
+						Console.WriteLine ("resource " +name);
+                        using (BinaryReader reader = new BinaryReader (Assembly.GetExecutingAssembly ().GetManifestResourceStream (name))) {
+                            MemoryStream buf = new MemoryStream ();
+                            byte [] bytes = null;
 
                             do {
-                                bytes = reader.ReadBytes(ChunkLength);
-                                buf.Write(bytes, 0, bytes.Length);
+                                bytes = reader.ReadBytes (ChunkLength);
+                                buf.Write (bytes, 0, bytes.Length);
                             } while (bytes.Length == ChunkLength);
 
-                            defaultBag = ContentCodeBag.ParseCodes(buf.GetBuffer());
-							// this is crappy too... this should be in the content-codes file...
-							defaultBag.AddCode ("aply", "dpap.databasecontainers", ContentType.Container);
+                            default_bag = ContentCodeBag.ParseCodes (buf.GetBuffer ());
+							
+							// FIXME this shouldn't be here, should work from the content-codes file, but doesn't
+							default_bag.AddCode ("aply", "dpap.databasecontainers", ContentType.Container);
                         }
                     }
                 }
 
-                return defaultBag;
+                return default_bag;
             }
         }
 
@@ -92,7 +93,7 @@ namespace DPAP {
 
         public ContentCode Lookup (int number) {
             if (codes.ContainsKey (number))
-                return (ContentCode) codes[number];
+                return (ContentCode) codes [number];
             else
                 return ContentCode.Zero;
         }
@@ -115,23 +116,19 @@ namespace DPAP {
         }
 
         private void AddCode (string num, string name, ContentType type) {
-//			Console.WriteLine("Entering ContentCodeBag AddCode(string,string,ContentType)");
             ContentCode code = new ContentCode ();
             code.Number = GetIntFormat (num);
             code.Name = name;
             code.Type = type;
-			//Console.Write(name + ' ');
 			
-            codes[code.Number] = code;
-	//		Console.WriteLine("Leaving ContentCodeBag AddCode(string,string,ContentType)");
+            codes [code.Number] = code;
         }
 
         internal ContentNode ToNode () {
-		//	Console.WriteLine("Entering ContentCodeBag ToNode()");
             ArrayList nodes = new ArrayList ();
             
             foreach (int number in codes.Keys) {
-                ContentCode code = (ContentCode) codes[number];
+                ContentCode code = (ContentCode) codes [number];
 
                 ArrayList contents = new ArrayList ();
                 contents.Add (new ContentNode ("dmap.contentcodesnumber", code.Number));
@@ -143,12 +140,10 @@ namespace DPAP {
             }
 
             ContentNode status = new ContentNode ("dmap.status", 200);
-			//Console.WriteLine("Leaving ContentCodeBag ToNode()");
             return new ContentNode ("dmap.contentcodesresponse", status, nodes);
         }
 
-        public static ContentCodeBag ParseCodes (byte[] buffer) {
-			//Console.WriteLine("Entering ContentCodeBag ParseCodes(byte[])");
+        public static ContentCodeBag ParseCodes (byte [] buffer) {
             ContentCodeBag bag = new ContentCodeBag ();
 
             // add some codes to bootstrap us
@@ -160,7 +155,7 @@ namespace DPAP {
             bag.AddCode ("mstt", "dmap.status", ContentType.Long);
 
             // some photo-specific codes
-			// shouldn't those be automatically added when /content-codes is requested ?
+			// shouldn't be needed now
             bag.AddCode ("ppro", "dpap.protocolversion", ContentType.Long);
             bag.AddCode ("pret", "dpap.blah", ContentType.Container);
 			bag.AddCode ("avdb", "dpap.serverdatabases", ContentType.Container);
@@ -184,15 +179,14 @@ namespace DPAP {
 
             ContentNode node = ContentParser.Parse (bag, buffer);
 
-            foreach (ContentNode dictNode in (node.Value as ContentNode[])) {
-			//	Console.Write(node.Name + ' ' + node.Value + ' ');
+            foreach (ContentNode dictNode in (node.Value as ContentNode [])) {
 				if (dictNode.Name != "dmap.dictionary") {
                     continue;
                 }
                 
                 ContentCode code = new ContentCode ();
                 
-                foreach (ContentNode item in (dictNode.Value as ContentNode[])) {
+                foreach (ContentNode item in (dictNode.Value as ContentNode [])) {
                     switch (item.Name) {
                     case "dmap.contentcodesnumber":
                         code.Number = (int) item.Value;
@@ -206,9 +200,8 @@ namespace DPAP {
                     }
                 }
 
-                bag.codes[code.Number] = code;
+                bag.codes [code.Number] = code;
             }
-           // Console.WriteLine("Leaving ContentCodeBag ParseCodes(byte[])");
             return bag;
         }
     }

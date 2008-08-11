@@ -39,20 +39,20 @@ namespace DPAP
         private int id;
         private string name = String.Empty;
         private List<Photo> photos = new List<Photo> ();
-        private List<int> containerIds = new List<int> ();
+        private List<int> container_ids = new List<int> ();
 		
         public event AlbumPhotoHandler PhotoAdded;
         public event AlbumPhotoHandler PhotoRemoved;
         public event EventHandler NameChanged;
 
-        public Photo this[int index] {
+        public Photo this [int index] {
             get {
                 if (photos.Count > index)
-                    return photos[index];
+                    return photos [index];
                 else
                     return null;
             }
-            set { photos[index] = value; }
+            set { photos [index] = value; }
         }
         
         public IList<Photo> Photos {
@@ -87,7 +87,7 @@ namespace DPAP
 
         internal void InsertPhoto (int index, Photo photo, int id) {
             photos.Insert (index, photo);
-            containerIds.Insert (index, id);
+            container_ids.Insert (index, id);
 
             if (PhotoAdded != null)
                 PhotoAdded (this, index, photo);
@@ -103,16 +103,16 @@ namespace DPAP
         
         internal void AddPhoto (Photo photo, int id) {
             photos.Add (photo);
-            containerIds.Add (id);
+            container_ids.Add (id);
 
             if (PhotoAdded != null)
                 PhotoAdded (this, photos.Count - 1, photo);
         }
 
         public void RemoveAt (int index) {
-            Photo photo = (Photo) photos[index];
+            Photo photo = (Photo) photos [index];
             photos.RemoveAt (index);
-            containerIds.RemoveAt (index);
+            container_ids.RemoveAt (index);
             
             if (PhotoRemoved != null)
                 PhotoRemoved (this, index, photo);
@@ -122,7 +122,7 @@ namespace DPAP
             int index;
             bool ret = false;
             
-            while ((index = IndexOf (photo)) >= 0) {
+            while ( (index = IndexOf (photo)) >= 0) {
                 ret = true;
                 RemoveAt (index);
             }
@@ -135,16 +135,16 @@ namespace DPAP
         }
 
         internal int GetContainerId (int index) {
-            return (int) containerIds[index];
+            return (int) container_ids [index];
         }
 
-        internal ContentNode ToPhotosNode (string[] fields) {
-            ArrayList photoNodes = new ArrayList ();
+        internal ContentNode ToPhotosNode (string [] fields) {
+            ArrayList photo_nodes = new ArrayList ();
 
             for (int i = 0; i < photos.Count; i++) {
-                Photo photo = photos[i] as Photo;
-				photoNodes.Add (photo.ToAlbumNode(fields));
-                //photoNodes.Add (photo.ToAlbumsNode ((int) containerIds[i]));
+                Photo photo = photos [i] as Photo;
+				photo_nodes.Add (photo.ToAlbumNode (fields));
+                //photo_nodes.Add (photo.ToAlbumsNode ( (int) container_ids [i]));
             }
 
             /*ArrayList deletedNodes = null;
@@ -161,7 +161,7 @@ namespace DPAP
             children.Add (new ContentNode ("dmap.updatetype", (byte) 0));
             children.Add (new ContentNode ("dmap.specifiedtotalcount", photos.Count));
             children.Add (new ContentNode ("dmap.returnedcount", photos.Count));
-            children.Add (new ContentNode ("dmap.listing", photoNodes));
+            children.Add (new ContentNode ("dmap.listing", photo_nodes));
 
   //          if (deletedNodes != null)
     //            children.Add (new ContentNode ("dmap.deletedidlisting", deletedNodes));
@@ -187,7 +187,7 @@ namespace DPAP
         internal static Album FromNode (ContentNode node) {
             Album pl = new Album ();
 
-            foreach (ContentNode child in (ContentNode[]) node.Value) {
+            foreach (ContentNode child in (ContentNode []) node.Value) {
                 switch (child.Name) {
                 case  "dpap.baseplaylist":
                     return null;
@@ -213,10 +213,10 @@ namespace DPAP
         }
 
         internal int LookupIndexByContainerId (int id) {
-            return containerIds.IndexOf (id);
+            return container_ids.IndexOf (id);
         }
 
-		public int getId() {
+		public int getId () {
 			return Id;
 		}
     }

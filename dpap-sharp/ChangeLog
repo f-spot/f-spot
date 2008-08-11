@@ -1,3 +1,38 @@
+2008-08-11  Andrzej Wytyczak-Partyka  <iapart@gmail.com>
+
+	* dpap-client/dpap-client.mdp:
+	* dpap-client/Main.cs:
+	* DPAPService/DPAPService.cs:
+	* lib/ContentFetcher.cs:
+	* lib/Client.cs:
+	* lib/ContentCodeBag.cs:
+	* lib/ServerInfo.cs:
+	* lib/BrokenMD5.cs:
+	* lib/ContentParser.cs:
+	* lib/Photo.cs:
+	* lib/AssemblyInfo.cs:
+	* lib/Album.cs:
+	* lib/Database.cs:
+	* lib/Server.cs:
+	* lib/Discovery.cs:
+	* lib/ContentWriter.cs:
+	* lib/Hasher.cs:
+	* dpap-server/dpap-server.mdp:
+	Compatibility with coding guidelines
+
+2008-08-11  Andrzej Wytyczak-Partyka  <iapart@gmail.com>
+
+	* dpap-client/dpap-client.mdp:
+	* dpap-client/Makefile.am:
+	* dpap-server/dpap-server.mdp:
+	Removed unneeded dependencies
+
+	* DPAPService/DPAPService.cs:
+	* lib/Database.cs:
+	Fixed handling of multiple albums
+
+	* Makefile.am:
+	Removed dpap-server and dpap-client examples from build, added DPAPService
 2008-08-07  Andrzej Wytyczak-Partyka  <iapart@gmail.com>
 
 	* DPAPService/DPAPService.addin.xml:
