@@ -7,13 +7,11 @@ ASSEMBLY_SOURCES =  \
 	Main.cs
 
 REFS =					\
-	-r:ICSharpCode.SharpZipLib \
+	-r:Mono.Posix			\
+	-r:ICSharpCode.SharpZipLib 	\
 	-r:../lib/dpap-sharp.dll
 
-PKGS =  \
-	-pkg:banshee-1-core \
-	-pkg:banshee-1-services 
-#	System
+PKGS = 
 
 ASSEMBLY = $(ASSEMBLY_NAME).exe
 
