@@ -19,7 +19,8 @@ REFS =					\
 	-r:../lib/dpap-sharp.dll	
 #	$(LINK_BEAGLE)
 
-PKGS =
+PKGS =					\
+	-pkg:gtk-sharp-2.0
 
 RESOURCES =				\
 	-resource:$(srcdir)/$(PLUGIN_MANIFEST)
