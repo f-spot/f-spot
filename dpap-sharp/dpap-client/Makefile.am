@@ -2,12 +2,11 @@ include $(top_srcdir)/Makefile.include
 
 ASSEMBLY_NAME = dpap-client
 
-ASSEMBLY_SOURCES =  \
-	Main.cs
+ASSEMBLY_SOURCES = Main.cs
 
-REFS =  			\
-	-r:Mono.Posix		\
-	-r:../lib/dpap-sharp.dll 
+REFS =  \
+	-r:../lib/dpap-sharp.dll \
+	-r:Mono.Posix 
 
 ASSEMBLY = $(ASSEMBLY_NAME).exe
 

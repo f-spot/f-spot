@@ -1,6 +1,18 @@
 2008-08-11  Andrzej Wytyczak-Partyka  <iapart@gmail.com>
 
 	* dpap-client/dpap-client.mdp:
+	* dpap-client/Makefile.am:
+	* DPAPService/DPAPService.addin.xml:
+	* DPAPService/DPAPService.cs:
+	* DPAPBrowser/DPAPBrowser.addin.xml:
+	* DPAPBrowser/DPAPBrowser.mdp:
+	* DPAPBrowser/Makefile.am:
+	* DPAPBrowser/DPAPBrowser.cs:
+	* Makefile.am:
+	Separating DPAP browser & server addins.
+2008-08-11  Andrzej Wytyczak-Partyka  <iapart@gmail.com>
+
+	* dpap-client/dpap-client.mdp:
 	* dpap-client/Main.cs:
 	* DPAPService/DPAPService.cs:
 	* lib/ContentFetcher.cs:

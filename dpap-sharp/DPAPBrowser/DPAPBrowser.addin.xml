@@ -1,16 +1,16 @@
 <Addin namespace="FSpot"
-	id="DPAPService"
+	id="DPAPBrowser"
 	version="0.4.4.100"
-	name="DPAP Service"
-	description="Notify Beagle on image changes"
-	author="Stephane Delcroix"
+	name="DPAP Browser"
+	description="Browser iPhoto shares"
+	author="Andrzej Wytyczak-Partyka"
 	url="http://f-spot.org/Extensions"
 	category="Services">
 	<Dependencies>
 		<Addin id="Core" version="0.4.4.100"/>
 	</Dependencies>
-	<Extension path = "/FSpot/Services">
-		<Service class="DPAP.DPAPService"/>
+	<Extension path = "/FSpot/Sidebar">
+		<SidebarPage sidebar_page_type="DPAP.DPAPBrowser"/>
 	</Extension>
 </Addin>
 
