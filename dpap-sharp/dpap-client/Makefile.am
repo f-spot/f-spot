@@ -3,12 +3,10 @@ include $(top_srcdir)/Makefile.include
 ASSEMBLY_NAME = dpap-client
 
 ASSEMBLY_SOURCES =  \
-	AssemblyInfo.cs \
 	Main.cs
 
-REFS =  \
-	-pkg:banshee-1-core \
-	-pkg:banshee-1-services \
+REFS =  			\
+	-r:Mono.Posix		\
 	-r:../lib/dpap-sharp.dll 
 
 ASSEMBLY = $(ASSEMBLY_NAME).exe
