@@ -178,6 +178,7 @@ namespace FSpot.Editors {
 			Pixbuf previewed = ProcessFast (preview, null);
 			State.PhotoImageView.Pixbuf = previewed;
 			State.PhotoImageView.ZoomFit (false);
+			MainWindow.Toplevel.InfoBox.UpdateHistogram (previewed);
 		}
 
 		private void CalcPreviewSize (Pixbuf input, out int width, out int height) {
@@ -205,6 +206,8 @@ namespace FSpot.Editors {
 			if (original != null && State.PhotoImageView != null) {
 				State.PhotoImageView.Pixbuf = original;
 				State.PhotoImageView.ZoomFit (false);
+
+				MainWindow.Toplevel.InfoBox.UpdateHistogram (original);
 			}
 
 			Reset ();

@@ -438,12 +438,19 @@ namespace FSpot.Widgets
 			size_value_label.Visible = false;
 		}
 
+		private Gdk.Pixbuf histogram_hint;
+
 		private void UpdateHistogram ()
 		{
 			if (histogram_expander.Expanded && histogram_delay == null) {
 				histogram_delay = new Delay (DelayedUpdateHistogram);
 				histogram_delay.Start ();
 			}
+		}
+
+		public void UpdateHistogram (Gdk.Pixbuf pixbuf) {
+			histogram_hint = pixbuf;
+			UpdateHistogram ();
 		}
 
 		private bool DelayedUpdateHistogram () {
@@ -455,12 +462,17 @@ namespace FSpot.Widgets
 			Photo photo = Photos[0];
 
 			try {
-				using (ImageFile img = ImageFile.Create (photo.DefaultVersionUri))
-				{
-					histogram.FillValues (img.Load (256, 256));
-					int max = histogram_expander.Allocation.Width;
-					histogram_image.Pixbuf = histogram.GeneratePixbuf (max);
-				}
+				if (histogram_hint == null)
+					using (ImageFile img = ImageFile.Create (photo.DefaultVersionUri))
+						histogram_hint = img.Load (256, 256);
+
+
+				histogram.FillValues (histogram_hint);
+				int max = histogram_expander.Allocation.Width;
+				histogram_image.Pixbuf = histogram.GeneratePixbuf (max);
+
+				histogram_hint.Dispose ();
+				histogram_hint = null;
 			} catch (System.Exception e) {
 				Log.Debug (e.StackTrace);
 			}

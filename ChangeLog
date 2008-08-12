@@ -1,5 +1,13 @@
 2008-08-12  Ruben Vermeersch  <ruben@savanne.be>
 
+	* src/Editors/Editor.cs: Properly update the histogram on preview.
+
+	* src/MainWindow.cs: Make the InfoBox accessible.
+
+	* src/Widgets/InfoBox.cs: Allow passing a histogram hint.
+
+2008-08-12  Ruben Vermeersch  <ruben@savanne.be>
+
 	Add a Histogram pane above the info box.
 
 	* src/Histogram.cs: Add a GeneratePixbuf overload that allows choosing the

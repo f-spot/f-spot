@@ -233,6 +233,10 @@ public class MainWindow {
         get { return find_by_tag; }
     }
 
+	public InfoBox InfoBox {
+		get { return info_box; }
+	}
+
 	//
 	// Constructor
 	//
