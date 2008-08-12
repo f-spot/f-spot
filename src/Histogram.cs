@@ -147,6 +147,14 @@ namespace FSpot {
 			}
 		}	
 
+		public Gdk.Pixbuf GeneratePixbuf (int max_width)
+		{
+			Gdk.Pixbuf pixbuf = GeneratePixbuf ();
+			Gdk.Pixbuf scaled = PixbufUtils.ScaleToMaxSize (pixbuf, max_width, 128);
+			pixbuf.Dispose ();
+			return scaled;
+		}
+
 		public Gdk.Pixbuf GeneratePixbuf ()
 		{
 			int height = 128;

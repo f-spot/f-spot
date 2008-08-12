@@ -113,7 +113,7 @@ namespace FSpot {
 			System.IO.Stream stream = PixbufStream ();
 			if (stream == null) {
 				Gdk.Pixbuf orig = this.Load ();
-				Gdk.Pixbuf scaled = PixbufUtils.ScaleToMaxSize (orig,  max_width, max_height);	
+				Gdk.Pixbuf scaled = PixbufUtils.ScaleToMaxSize (orig,  max_width, max_height, false);
 				orig.Dispose ();
 				return scaled;
 			}

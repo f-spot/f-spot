@@ -62,6 +62,13 @@ namespace FSpot.Widgets
 		public delegate void VersionIdChangedHandler (InfoBox info_box, uint version_id);
 		public event VersionIdChangedHandler VersionIdChanged;
 	
+		private Expander histogram_expander;
+
+		private Gtk.Image histogram_image;
+		private Histogram histogram;
+
+		private Delay histogram_delay;
+
 	
 		// Widgetry.	
 		private Label name_label;
@@ -117,51 +124,78 @@ namespace FSpot.Widgets
 	
 		private void SetupWidgets ()
 		{
-			Table table = new Table (6, 2, false);
-			table.BorderWidth = 0;
+
+			histogram_expander = new Expander (Catalog.GetString ("Histogram"));
+			histogram_expander.Expanded = Preferences.Get<bool> (Preferences.INFOBOX_HISTOGRAM_VISIBLE);
+			histogram_expander.Activated += delegate (object sender, EventArgs e) { 
+				Preferences.Set (Preferences.INFOBOX_HISTOGRAM_VISIBLE, histogram_expander.Expanded);
+				UpdateHistogram ();
+			};
+			histogram_image = new Gtk.Image ();
+			histogram = new Histogram ();
+			histogram_expander.Add (histogram_image);
+
+			Window window = MainWindow.Toplevel.Window;
+			Gdk.Color c = window.Style.Backgrounds [(int)Gtk.StateType.Active];
+			histogram.Color [0] = (byte) (c.Red / 0xff);
+			histogram.Color [1] = (byte) (c.Green / 0xff);
+			histogram.Color [2] = (byte) (c.Blue / 0xff);
+			histogram.Color [3] = 0xff;
+
+			Add (histogram_expander);
+
+			Expander info_expander = new Expander (Catalog.GetString ("Image Information"));
+			info_expander.Expanded = Preferences.Get<bool> (Preferences.INFOBOX_INFO_VISIBLE);
+			info_expander.Activated += delegate (object sender, EventArgs e) {
+				Preferences.Set (Preferences.INFOBOX_INFO_VISIBLE, info_expander.Expanded);
+			};
+
+			Table info_table = new Table (6, 2, false);
+			info_table.BorderWidth = 0;
 	
 			string name_pre = "<b>";
 			string name_post = "</b>";
 
 			name_label = CreateRightAlignedLabel (name_pre + Catalog.GetString ("Name") + name_post);
-			table.Attach (name_label, 0, 1, 0, 1, AttachOptions.Fill, AttachOptions.Fill, TABLE_XPADDING, TABLE_YPADDING);
+			info_table.Attach (name_label, 0, 1, 0, 1, AttachOptions.Fill, AttachOptions.Fill, TABLE_XPADDING, TABLE_YPADDING);
 
 			version_label = CreateRightAlignedLabel (name_pre + Catalog.GetString ("Version") + name_post); 
-			table.Attach (version_label, 0, 1, 1, 2, AttachOptions.Fill, AttachOptions.Fill, TABLE_XPADDING, TABLE_YPADDING);
+			info_table.Attach (version_label, 0, 1, 1, 2, AttachOptions.Fill, AttachOptions.Fill, TABLE_XPADDING, TABLE_YPADDING);
 
 			date_label = CreateRightAlignedLabel (name_pre + Catalog.GetString ("Date") + name_post + Environment.NewLine);
-			table.Attach (date_label, 0, 1, 2, 3, AttachOptions.Fill, AttachOptions.Fill, TABLE_XPADDING, TABLE_YPADDING);
+			info_table.Attach (date_label, 0, 1, 2, 3, AttachOptions.Fill, AttachOptions.Fill, TABLE_XPADDING, TABLE_YPADDING);
 
 			size_label = CreateRightAlignedLabel (name_pre + Catalog.GetString ("Size") + name_post);
-			table.Attach (size_label, 0, 1, 3, 4, AttachOptions.Fill, AttachOptions.Fill, TABLE_XPADDING, TABLE_YPADDING);
+			info_table.Attach (size_label, 0, 1, 3, 4, AttachOptions.Fill, AttachOptions.Fill, TABLE_XPADDING, TABLE_YPADDING);
 
 			default_exposure_string = name_pre + Catalog.GetString ("Exposure") + name_post;
 			exposure_label = CreateRightAlignedLabel (default_exposure_string);
-			table.Attach (exposure_label, 0, 1, 4, 5, AttachOptions.Fill, AttachOptions.Fill, TABLE_XPADDING, TABLE_YPADDING);
+			info_table.Attach (exposure_label, 0, 1, 4, 5, AttachOptions.Fill, AttachOptions.Fill, TABLE_XPADDING, TABLE_YPADDING);
 	
 			name_value_label = new Label ();
 			name_value_label.Ellipsize = Pango.EllipsizeMode.Middle;
 			name_value_label.Justify = Gtk.Justification.Left;
 			name_value_label.Selectable = true;
 			name_value_label.Xalign = 0;
-			table.Attach (name_value_label, 1, 2, 0, 1, AttachOptions.Fill | AttachOptions.Expand, AttachOptions.Fill, 3, 0);
+			info_table.Attach (name_value_label, 1, 2, 0, 1, AttachOptions.Fill | AttachOptions.Expand, AttachOptions.Fill, 3, 0);
 			
-			date_value_label = AttachLabel (table, 2, name_value_label);
-			size_value_label = AttachLabel (table, 3, name_value_label);
-			exposure_value_label = AttachLabel (table, 4, name_value_label);
+			date_value_label = AttachLabel (info_table, 2, name_value_label);
+			size_value_label = AttachLabel (info_table, 3, name_value_label);
+			exposure_value_label = AttachLabel (info_table, 4, name_value_label);
 	
 			version_option_menu = new OptionMenu ();
-			table.Attach (version_option_menu, 1, 2, 1, 2, AttachOptions.Fill, AttachOptions.Fill, TABLE_XPADDING, TABLE_YPADDING);
+			info_table.Attach (version_option_menu, 1, 2, 1, 2, AttachOptions.Fill, AttachOptions.Fill, TABLE_XPADDING, TABLE_YPADDING);
 	
 			date_value_label.Text = Environment.NewLine;
 			exposure_value_label.Text = Environment.NewLine;
 	
 			tag_view = new TagView (MainWindow.ToolTips);
-			table.Attach (tag_view, 0, 2, 5, 6, AttachOptions.Fill, AttachOptions.Fill, TABLE_XPADDING, TABLE_YPADDING);
+			info_table.Attach (tag_view, 0, 2, 5, 6, AttachOptions.Fill, AttachOptions.Fill, TABLE_XPADDING, TABLE_YPADDING);
 			tag_view.Show ();
-			table.ShowAll ();
+			info_table.ShowAll ();
 	
-			Add (table);
+			info_expander.Add (info_table);
+			Add (info_expander);
 		}
 	
 		private class ImageInfo : StatementSink {
@@ -310,6 +344,9 @@ namespace FSpot.Widgets
 
 			Photo photo = Photos[0];
 
+			histogram_expander.Visible = true;
+			UpdateHistogram ();
+
 			name_label.Visible = true;
 			name_value_label.Text = photo.Name != null ? System.Uri.UnescapeDataString(photo.Name) : String.Empty;
 			try {
@@ -372,6 +409,8 @@ namespace FSpot.Widgets
 
 		private void UpdateMultiple ()
 		{
+			histogram_expander.Visible = false;
+
 			name_label.Visible = false;
 			name_value_label.Text = String.Format(Catalog.GetString("{0} Photos"), Photos.Length);
 
@@ -397,6 +436,36 @@ namespace FSpot.Widgets
 
 			size_label.Visible = false;
 			size_value_label.Visible = false;
+		}
+
+		private void UpdateHistogram ()
+		{
+			if (histogram_expander.Expanded && histogram_delay == null) {
+				histogram_delay = new Delay (DelayedUpdateHistogram);
+				histogram_delay.Start ();
+			}
+		}
+
+		private bool DelayedUpdateHistogram () {
+			histogram_delay = null;
+
+			if (Photos.Length == 0)
+				return false;
+
+			Photo photo = Photos[0];
+
+			try {
+				using (ImageFile img = ImageFile.Create (photo.DefaultVersionUri))
+				{
+					histogram.FillValues (img.Load (256, 256));
+					int max = histogram_expander.Allocation.Width;
+					histogram_image.Pixbuf = histogram.GeneratePixbuf (max);
+				}
+			} catch (System.Exception e) {
+				Log.Debug (e.StackTrace);
+			}
+
+			return false;
 		}
 	
 	

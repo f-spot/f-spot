@@ -1,3 +1,19 @@
+2008-08-12  Ruben Vermeersch  <ruben@savanne.be>
+
+	Add a Histogram pane above the info box.
+
+	* src/Histogram.cs: Add a GeneratePixbuf overload that allows choosing the
+	size of the generated pixbuf.
+
+	* src/Imaging/ImageFile.cs: Don't upscale when loading small images.
+
+	* src/Preferences.cs: Add configuration keys for storing the state of the
+	expanders.
+
+	* src/Widgets/InfoBox.cs: Add a histogram info pane. Wrap the image info
+	and histogram in expanders, so the user can toggle them depending on
+	whether they need them or not.
+
 2008-08-08  Ruben Vermeersch  <ruben@savanne.be>
 
 	Google Summer of Code 2008: Sidebar Improvements, version 1.
