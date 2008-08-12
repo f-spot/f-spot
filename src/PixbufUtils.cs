@@ -100,8 +100,8 @@ public class PixbufUtils {
 		if (scale > 1.0 && !upscale_smaller)
 			scale = 1.0;
 
-		fit_width = (int)(scale * orig_width);
-		fit_height = (int)(scale * orig_height);
+		fit_width = (int) Math.Round (scale * orig_width);
+		fit_height = (int) Math.Round (scale * orig_height);
 		
 		return scale;
 	}
@@ -139,12 +139,10 @@ public class PixbufUtils {
 				break;
 			}
 
-			double scale = Math.Min (max_width / (double)args.Width,
-						 max_height / (double)args.Height);
+			int scale_width = 0;
+			int scale_height = 0;
 
-			
-			int scale_width = (int)(scale * args.Width);
-			int scale_height = (int)(scale * args.Height);
+			double scale = Fit (args.Width, args.Height, max_width, max_height, true, out scale_width, out scale_height);
 
 			if (scale < 1.0)
 				loader.SetSize (scale_width, scale_height);
@@ -199,9 +197,9 @@ public class PixbufUtils {
 
 	public static Pixbuf ScaleToMaxSize (Pixbuf pixbuf, int width, int height, bool upscale)
 	{
-		double scale = Math.Min  (width / (double)pixbuf.Width, height / (double)pixbuf.Height);
-		int scale_width = (int)(scale * pixbuf.Width);
-		int scale_height = (int)(scale * pixbuf.Height);
+		int scale_width = 0;
+		int scale_height = 0;
+		double scale = Fit (pixbuf, width, height, upscale, out scale_width, out scale_height);
 
 		Gdk.Pixbuf result;
 		if (upscale || (scale < 1.0))
