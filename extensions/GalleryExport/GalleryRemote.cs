@@ -95,6 +95,7 @@ namespace GalleryRemote {
 			return gallery.AddItem (this, 
 					 path,
 					 Path.GetFileName (item.DefaultVersionUri.LocalPath),
+					 item.Name,
 					 item.Description, 
 					 true);
 		}
@@ -286,7 +287,7 @@ namespace GalleryRemote {
 		public abstract ArrayList FetchAlbums ();
 		public abstract ArrayList FetchAlbumsPrune ();
 		public abstract bool MoveAlbum (Album album, string end_name);
-		public abstract int AddItem (Album album, string path, string filename, string caption, bool autorotate);
+		public abstract int AddItem (Album album, string path, string filename, string caption, string description, bool autorotate);
 		//public abstract Album AlbumProperties (string album);
 		public abstract bool NewAlbum (string parent_name, string name, string title, string description);
 		public abstract ArrayList FetchAlbumImages (Album album, bool include_ablums);
@@ -749,6 +750,7 @@ namespace GalleryRemote {
 				     string path, 
 				     string filename,
 				     string caption, 
+				     string description,
 				     bool autorotate)
 		{
 			FormClient client = new FormClient (cookies);
@@ -761,6 +763,7 @@ namespace GalleryRemote {
 			client.Add ("force_filename", filename);
 			client.Add ("auto_rotate", autorotate ? "yes" : "no");
 			client.Add ("userfile", new FileInfo (path));
+			client.Add ("extrafield.Description", description);
 			client.expect_continue = expect_continue;
 
 			return ParseAddItem (client.Submit (uri, Progress));
@@ -966,6 +969,7 @@ namespace GalleryRemote {
 				     string path, 
 				     string filename,
 				     string caption, 
+				     string description,
 				     bool autorotate)
 		{
 			FormClient client = new FormClient (cookies);
@@ -977,6 +981,7 @@ namespace GalleryRemote {
 			client.Add ("g2_form[userfile_name]", filename);
 			client.Add ("g2_form[force_filename]", filename);
 			client.Add ("g2_form[auto_rotate]", autorotate ? "yes" : "no");
+			client.Add ("g2_form[extrafield.Description]", description);
 			client.Add ("g2_userfile", new FileInfo (path));
 			client.expect_continue = expect_continue;
 			AddG2Specific (client);
