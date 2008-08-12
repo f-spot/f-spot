@@ -377,7 +377,7 @@ namespace FSpot {
 			ZoomFit (upscale);
 		}
 
-		private void ZoomFit (bool upscale)
+		public void ZoomFit (bool upscale)
 		{			
 			Gdk.Pixbuf pixbuf = this.Pixbuf;
 			Gtk.ScrolledWindow scrolled = this.Parent as Gtk.ScrolledWindow;
@@ -505,9 +505,6 @@ namespace FSpot {
 				} else {
 					loupe.Destroy ();	
 				}
-				break;
-			case Gdk.Key.e:
-				Editor = new FSpot.Editors.SoftFocus (this);
 				break;
 			case Gdk.Key.equal:
 			case Gdk.Key.plus:

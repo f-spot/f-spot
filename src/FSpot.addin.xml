@@ -1,6 +1,6 @@
 <Addin namespace = "FSpot" 
        id = "Core" 
-       version = "0.4.4.100"
+       version = "0.4.4.101"
        compatVersion = "0.4.4.100"
        isroot="true">
 
@@ -8,6 +8,10 @@
 		<Import assembly="f-spot.exe" />
 		<Import assembly="FSpot.Widgets.dll" />
 	</Runtime>
+
+	<ExtensionPoint path = "/FSpot/Editors">
+		<ExtensionNode type="FSpot.Editors.EditorNode"/>
+	</ExtensionPoint>
 
 	<ExtensionPoint path = "/FSpot/Menus">
 		<ExtensionNode type="FSpot.Extensions.SubmenuNode"/>
@@ -56,5 +60,15 @@
 		<Condition id="ViewMode" mode="library">
 			<SidebarPage sidebar_page_type = "FSpot.Widgets.EditorPage" />
 		</Condition>
+	</Extension>
+
+	<Extension path = "/FSpot/Editors">
+		<Editor editor_type = "FSpot.Editors.CropEditor"/>
+		<Editor editor_type = "FSpot.Editors.RedEyeEditor"/>
+		<Editor editor_type = "FSpot.Editors.DesaturateEditor"/>
+		<Editor editor_type = "FSpot.Editors.SepiaEditor"/>
+		<Editor editor_type = "FSpot.Editors.TiltEditor"/>
+		<Editor editor_type = "FSpot.Editors.SoftFocusEditor"/>
+		<Editor editor_type = "FSpot.Editors.AutoStretchEditor"/>
 	</Extension>
 </Addin>

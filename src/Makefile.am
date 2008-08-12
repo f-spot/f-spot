@@ -95,9 +95,15 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/DependentListStore.cs		\
 	$(srcdir)/DirectoryAdaptor.cs		\
 	$(srcdir)/DirectoryCollection.cs	\
+	$(srcdir)/Editors/Editor.cs		\
+	$(srcdir)/Editors/AutoStretchEditor.cs		\
+	$(srcdir)/Editors/CropEditor.cs		\
+	$(srcdir)/Editors/DesaturateEditor.cs		\
+	$(srcdir)/Editors/RedEyeEditor.cs		\
+	$(srcdir)/Editors/SepiaEditor.cs		\
+	$(srcdir)/Editors/SoftFocusEditor.cs		\
+	$(srcdir)/Editors/TiltEditor.cs		\
 	$(srcdir)/Editors/Old/OldEditor.cs		\
-	$(srcdir)/Editors/Old/SoftFocus.cs		\
-	$(srcdir)/Editors/Old/Tilt.cs		\
 	$(srcdir)/ExportStore.cs		\
 	$(srcdir)/Extensions/ExportMenuItemNode.cs	\
 	$(srcdir)/Extensions/IExporter.cs	\
@@ -124,7 +130,6 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/Filters/OrientationFilter.cs	\
 	$(srcdir)/Filters/ResizeFilter.cs	\
 	$(srcdir)/Filters/SharpFilter.cs	\
-	$(srcdir)/Filters/TiltFilter.cs		\
 	$(srcdir)/Filters/UniqueNameFilter.cs	\
 	$(srcdir)/Filters/WhiteListFilter.cs	\
 	$(srcdir)/FotkiRemote.cs		\
@@ -198,6 +203,7 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/SlideView.cs			\
 	$(srcdir)/SingleView.cs			\
 	$(srcdir)/SimpleCalendar.cs		\
+	$(srcdir)/SoftFocus.cs		\
 	$(srcdir)/TagCommands.cs		\
 	$(srcdir)/TagPopup.cs			\
 	$(srcdir)/TagQueryWidget.cs		\
@@ -253,10 +259,8 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/Widgets/Reveal.cs		\
 	$(srcdir)/Widgets/ScalingIconView.cs	\
 	$(srcdir)/Widgets/Sidebar.cs		\
-	$(srcdir)/Widgets/SoftFocus.cs		\
 	$(srcdir)/Widgets/TagEntry.cs		\
 	$(srcdir)/Widgets/TagMenu.cs		\
-	$(srcdir)/Widgets/Tilt.cs		\
 	$(srcdir)/Widgets/TrayView.cs		\
 	$(srcdir)/Widgets/Wipe.cs		\
 	$(srcdir)/XmpTagsImporter.cs		\

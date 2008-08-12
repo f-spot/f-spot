@@ -1,3 +1,56 @@
+2008-08-08  Ruben Vermeersch  <ruben@savanne.be>
+
+	Google Summer of Code 2008: Sidebar Improvements, version 1.
+
+	This commit contains the bulk of my Summer of Code 2008 work, which aimed
+	to move the editors into a switchable sidebar.
+
+	* src/Editors/AutoStretchEditor.cs: Added.
+	* src/Editors/CropEditor.cs: Added.
+	* src/Editors/DesaturateEditor.cs: Added.
+	* src/Editors/Editor.cs: Added.
+	* src/Editors/Old/SoftFocus.cs: Removed.
+	* src/Editors/Old/Tilt.cs: Removed.
+	* src/Editors/RedEyeEditor.cs: Added.
+	* src/Editors/SepiaEditor.cs: Added.
+	* src/Editors/SoftFocusEditor.cs: Added.
+	* src/Editors/TiltEditor.cs: Added.
+
+	All previous files contain implementations of Editor tools. These are
+	hooked up through the /FSpot/Editors addin point. The Editor class
+	contains the abstract editor implementation. All other editors derive from
+	this class, overriding methods where needed (Template Method Pattern).
+	Most Editor options are set in the constructor (e.g. whether it needs a
+	selection to operate).
+
+	* src/Extensions/ViewModeCondition.cs: Do a small cleanup of
+	ViewModeCondition, drop the Initialize method.
+
+	* src/FSpot.addin.xml: Add the /FSpot/Editors extension point.
+
+	* src/Filters/TiltFilter.cs: Removed.
+
+	* src/ItemAction.cs: Most of this has become obsolete.
+
+	* src/MainWindow.cs: Expose the PhotoView.
+
+	* src/Makefile.am: Add / Remove needed files.
+
+	* src/PhotoImageView.cs: Make sure we can poke at ZoomFit.
+
+	* src/PhotoView.cs: Deprecate most of the old editors.
+
+	* src/Widgets/EditorPage.cs: This hooks the editor tools into the sidebar.
+
+	* src/Widgets/ImageDisplay.cs: Remove shortcuts from ImageDisplay, which
+	is btw not used and should probably be removed completely.
+
+	* src/Widgets/Sidebar.cs: Reflect the changes made in ViewModeCondition.
+
+	* src/Widgets/SoftFocus.cs: Replaced with src/SoftFocus.cs.
+
+	* src/Widgets/Tilt.cs: Removed.
+
 2008-08-06  Ruben Vermeersch  <ruben@savanne.be>
 
 	* mono-addins/Mono.Addins/Mono.Addins/ExtensionNode.cs: Properly check for

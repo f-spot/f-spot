@@ -160,6 +160,10 @@ public class MainWindow {
 		set { Tag.TagIconSize = (Tag.IconSize) value; }
 	}
 
+	public PhotoView PhotoView {
+		get { return photo_view; }
+	}
+
 	// Drag and Drop
 	public enum TargetType {
 		UriList,

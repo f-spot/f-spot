@@ -33,15 +33,17 @@ namespace FSpot.Extensions
 		private static event ViewModeChangedHandler ViewModeChanged;
 		private delegate void ViewModeChangedHandler ();
 
-		private static ViewMode Mode = ViewMode.Unknown;
+		private static ViewMode mode = ViewMode.Unknown;
+		public static ViewMode Mode {
+			get { return mode; }
+			set {
+				mode = value;
 
-		public static void Initialize (ViewMode mode) {
-			Mode = mode;
-
-			if (ViewModeChanged != null)
-				ViewModeChanged ();
+				if (ViewModeChanged != null)
+					ViewModeChanged ();
+			}
 		}
-		
+
 		public ViewModeCondition ()
 		{
 			ViewModeChanged += delegate { NotifyChanged (); };

@@ -20,10 +20,7 @@ using FSpot.Utils;
 namespace FSpot.Widgets {
 	[Binding(Gdk.Key.Up, "Up")]
 	[Binding(Gdk.Key.Down, "Down")]
-	[Binding(Gdk.Key.Left, "TiltImage", 0.05)]
-	[Binding(Gdk.Key.Right, "TiltImage", -0.05)] 
 	[Binding(Gdk.Key.space, "Pan")]
-	[Binding(Gdk.Key.Q, "Vingette")]
 	[Binding(Gdk.Key.R, "RevealImage")]
 	[Binding(Gdk.Key.P, "PushImage")]
 	public class ImageDisplay : Gtk.EventBox {
@@ -94,35 +91,6 @@ namespace FSpot.Widgets {
 		{
 			Console.WriteLine ("down");
 			Transition = new Dissolve (next, current);
-			return true;
-		}
-
-		public bool Vingette ()
-		{
-			SoftFocus f = effect as SoftFocus;
-			
-			if (f == null) {
-				f = new SoftFocus (current);
-				effect = f;
-			}
-
-			QueueDraw ();
-			return true;
-		}
-
-		public bool TiltImage (double radians)
-		{
-			Tilt t = effect as Tilt;
-
-			if (t == null) {
-				t = new Tilt (current);
-				effect = t;
-			}
-
-			t.Angle += radians;
-
-			QueueDraw ();
-
 			return true;
 		}
 

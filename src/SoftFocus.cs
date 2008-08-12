@@ -1,4 +1,4 @@
-/* 
+/*
  * SoftFocus.cs
  *
  * Author
@@ -12,7 +12,7 @@ using System.Runtime.InteropServices;
 
 namespace FSpot.Widgets {
 
-	public class SoftFocus : IEffect {
+	public class SoftFocus {
 
 		[DllImport ("cairo")]
 		internal static extern int cairo_version ();
@@ -32,16 +32,16 @@ namespace FSpot.Widgets {
 			Amount = 3;
 			Radius = .5;
 		}
-		
+
 		public Gdk.Point Center {
 			get { return center; }
 			set { center = value; }
 		}
-		
+
 		public double Amount {
 			get { return amount; }
-			set { 
-				amount = value; 
+			set {
+				amount = value;
 
 				if (blur != null)
 					blur.Dispose ();
@@ -49,15 +49,15 @@ namespace FSpot.Widgets {
 				blur = CreateBlur (info);
 			}
 		}
-		
+
 		public double Radius {
 			get { return radius; }
-			set { 
-				radius = value; 
+			set {
+				radius = value;
 
 				if (blur == null)
 					return;
-				
+
 				if (mask != null)
 					mask.Destroy ();
 
@@ -73,11 +73,11 @@ namespace FSpot.Widgets {
 			Gdk.Rectangle small = new Gdk.Rectangle (0, 0,
 								(int) Math.Ceiling (source.Bounds.Width * scale),
 								(int) Math.Ceiling (source.Bounds.Height * scale));
-			
-			MemorySurface image = new MemorySurface (Format.Argb32, 
+
+			MemorySurface image = new MemorySurface (Format.Argb32,
 								 small.Width,
 								 small.Height);
-			
+
 			Context ctx = new Context (image);
 			//Pattern solid = new SolidPattern (0, 0, 0, 0);
 			//ctx.Source = solid;
@@ -99,7 +99,7 @@ namespace FSpot.Widgets {
 			image.Destroy ();
 			return overlay;
 		}
-		
+
 		private Pattern CreateMask ()
 		{
 			double max = Math.Max (blur.Bounds.Width, blur.Bounds.Height) * .25;
@@ -114,7 +114,7 @@ namespace FSpot.Widgets {
 
 				circle.AddColorStop (0, new Cairo.Color (0.0, 0.0, 0.0, 0.0));
 				circle.AddColorStop (1.0, new Cairo.Color (1.0, 1.0, 1.0, 1.0));
-		        } else {
+			} else {
 				circle = new RadialGradient (center.X * scale, center.Y * scale, radius * max + max * .2,
 							     center.X * scale, center.Y * scale, radius * max * .7);
 
@@ -123,8 +123,8 @@ namespace FSpot.Widgets {
 			}
 			return circle;
 		}
-		
-		public bool OnExpose (Context ctx, Gdk.Rectangle allocation)
+
+		public void Apply (Context ctx, Gdk.Rectangle allocation)
 		{
 			SurfacePattern p = new SurfacePattern (info.Surface);
 			ctx.Matrix = new Matrix ();
@@ -139,7 +139,7 @@ namespace FSpot.Widgets {
 			ctx.Matrix = blur.Fit (allocation);
 			ctx.Operator = Operator.Over;
 			ctx.Source = overlay;
-			
+
 			// FIXME ouch this is ugly.
 			if (mask == null)
 				Radius = Radius;
@@ -148,9 +148,8 @@ namespace FSpot.Widgets {
 			ctx.Mask (mask);
 			overlay.Destroy ();
 			p.Destroy ();
-			return true;
 		}
-		
+
 		public void Dispose ()
 		{
 			if (mask != null)

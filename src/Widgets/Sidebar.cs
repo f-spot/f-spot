@@ -219,11 +219,11 @@ namespace FSpot.Widgets {
 		{
 			// Make sure the ViewModeCondition is set correctly.
 			if (Context == ViewContext.Single)
-				ViewModeCondition.Initialize (FSpot.Extensions.ViewMode.Single);
+				ViewModeCondition.Mode = FSpot.Extensions.ViewMode.Single;
 			else if (Context == ViewContext.Library || Context == ViewContext.Edit)
-				ViewModeCondition.Initialize (FSpot.Extensions.ViewMode.Library);
+				ViewModeCondition.Mode = FSpot.Extensions.ViewMode.Library;
 			else
-				ViewModeCondition.Initialize (FSpot.Extensions.ViewMode.Unknown);
+				ViewModeCondition.Mode = FSpot.Extensions.ViewMode.Unknown;
 
 			string name = ContextSwitchStrategy.PageForContext (Context);
 			SwitchTo (name);
