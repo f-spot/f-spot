@@ -440,11 +440,11 @@ namespace DPAP {
 
         internal static readonly TimeSpan DefaultTimeout = TimeSpan.FromMinutes (30);
         
-        private static Regex dbItemsRegex = new Regex ("/databases/ ( [0-9]*?)/items$");
-        private static Regex dbPhotoRegex0 = new Regex ("/databases/ ( [0-9]*?)/items$");
-		private static Regex dbPhotoRegex = new Regex (".*'dmap.itemid: ( [0-9]*)'.*"); 
-        private static Regex dbContainersRegex = new Regex ("/databases/ ( [0-9]*?)/containers$");
-        private static Regex dbContainerItemsRegex = new Regex ("/databases/ ( [0-9]*?)/containers/ ( [0-9]*?)/items$");
+        private static Regex dbItemsRegex = new Regex ("/databases/([0-9]*?)/items$");
+        private static Regex dbPhotoRegex0 = new Regex ("/databases/([0-9]*?)/items$");
+		private static Regex dbPhotoRegex = new Regex (".*'dmap.itemid:([0-9]*)'.*"); 
+        private static Regex dbContainersRegex = new Regex ("/databases/([0-9]*?)/containers$");
+        private static Regex dbContainerItemsRegex = new Regex ("/databases/([0-9]*?)/containers/([0-9]*?)/items$");
         
         private WebServer ws;
         private ArrayList databases = new ArrayList ();
@@ -831,6 +831,7 @@ namespace DPAP {
                         try {
                             ws.WriteResponseStream (client, photoStream, photoLength);
                         } catch (IOException) {
+							Console.WriteLine("IOException!");
                         }
                     } else {
 						Console.WriteLine ("Else - internal error");

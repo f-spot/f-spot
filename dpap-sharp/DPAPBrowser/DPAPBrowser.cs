@@ -102,14 +102,9 @@ namespace DPAP {
 				
 				Directory.CreateDirectory ("/tmp/" + client.Databases [0].Name + "/" + alb.Name);
 				foreach (DPAP.Photo ph in alb.Photos)
-				{
 					if (ph != null)
-					{
-					//	Console.WriteLine ("\t\tFile: " + ph.Title + " format = " + ph.Format + "size=" + ph.Width +"x" +ph.Height + " ID=" + ph.Id);
 						d.DownloadPhoto (ph,"/tmp/" + client.Databases [0].Name + "/" + alb.Name + "/" + ph.FileName);
-						//FSpot.JpegFile = new JpegFile ("file:///tmp/" + client.Databases [0].Name + "/" + ph.FileName);
-					}
-				}
+					
 				FSpot.Core.FindInstance ().View ("file:///tmp/" + client.Databases [0].Name + "/" + alb.Name);
 				break;
 			}

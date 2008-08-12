@@ -373,13 +373,13 @@ namespace DPAP {
 	                Photo existing = LookupPhotoById (photo.Id);
 					pl.AddPhoto (photo);
 	                if (existing == null){
-					//	Console.WriteLine ("adding " + photo.Title + " to album " +pl.Name);
+						Console.WriteLine ("adding " + photo.Title + " to album " +pl.Name);
 					
 	                    AddPhoto (photo);
 					}
 	                else
 					{
-					//	Console.WriteLine ("updating " + existing.Title);
+						Console.WriteLine ("updating " + existing.Title);
 	                    existing.Update (photo);
 					}
 	            }
@@ -416,7 +416,7 @@ namespace DPAP {
 
         private HttpWebResponse FetchPhoto (Photo photo, long offset) {
             return client.Fetcher.FetchResponse (String.Format ("/databases/{0}/items",id), offset, 
-			                                     String.Format ("meta=dpap.filedata&query= ('dmap.itemid:{0}')",photo.Id),
+			                                     String.Format ("meta=dpap.filedata&query=('dmap.itemid:{0}')",photo.Id),
 			                                     null, 1, true);
                                              
         }
@@ -477,7 +477,7 @@ namespace DPAP {
             }*/
 			// maybe use FetchResponse to get a stream and feed it to pixbuf?
 			 byte [] photos_data = client.Fetcher.Fetch (String.Format ("/databases/{0}/items",id), 
-			                                     String.Format ("meta=dpap.filedata&query= ('dmap.itemid:{0}')",photo.Id));
+			                                     String.Format ("meta=dpap.filedata&query=('dmap.itemid:{0}')",photo.Id));
 			ContentNode node = ContentParser.Parse (client.Bag, photos_data);
 			
 			// DEBUG
