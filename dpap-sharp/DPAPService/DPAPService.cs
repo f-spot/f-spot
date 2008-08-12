@@ -40,9 +40,6 @@ namespace DPAP {
 		{
 			Console.WriteLine ("Starting DPAP!");
 			uint timer = Log.InformationTimerStart ("Starting DPAP");
-		//	sd = new ServiceDiscovery ();
-		//	sd.Found += OnServiceFound;			
-		//	sd.Start ();
 			StartServer ();
 			
 
@@ -52,6 +49,7 @@ namespace DPAP {
 				Log.Warning ("unable to hook the BeagleNotifier. are you running --view mode?");
 			}*/
 		//	Log.DebugTimerPrint (timer, "BeagleService startup took {0}");
+			
 			return true;
 		}
 		private void StartServer ()
@@ -64,7 +62,7 @@ namespace DPAP {
 			server.AuthenticationMethod = AuthenticationMethod.None;
 			int collision_count = 0;
 			server.Collision += delegate {
-				server.Name = "f-spot photos" + " [" + ++collision_count + "]";
+				server.Name = "f-spot photos" + "[" + ++collision_count + "]";
 			};
             
 			
@@ -78,13 +76,10 @@ namespace DPAP {
 			FSpot.Photo [] photos = Core.Database.Photos.Query (tags);
 			int i=0;
 			
-			foreach (FSpot.Photo photo in photos)
-			{
+			foreach (FSpot.Photo photo in photos) {
 				string thumbnail_path = ThumbnailGenerator.ThumbnailPath (photo.DefaultVersionUri);
 				FileInfo f = new FileInfo (thumbnail_path);
-				
 				DPAP.Photo p = new DPAP.Photo ();			
-				
 				p.FileName = photo.Name;
 				p.Thumbnail = thumbnail_path;
 				p.ThumbSize = (int)f.Length;
@@ -104,7 +99,6 @@ namespace DPAP {
 
 			database.AddAlbum (a);
 			Console.WriteLine ("Album count is now " + database.Albums.Count);
-//			Console.WriteLine ("Photo name is " + database.Photos [0].FileName);
 			server.AddDatabase (database);
 			
 			//server.GetServerInfoNode ();			
@@ -149,12 +143,13 @@ namespace DPAP {
 		    client = new Client (service);
 	
 			
-			foreach (Database d in client.Databases){
+			/*foreach (Database d in client.Databases){
 
 				Console.WriteLine ("Database " + d.Name);
 				
 				foreach (Album alb in d.Albums)
 					Console.WriteLine ("\tAlbum: "+alb.Name + ", id=" + alb.getId () + " number of items:" + alb.Photos.Count);
+				
 				Console.WriteLine (d.Photos [0].FileName);
 				foreach (DPAP.Photo ph in d.Photos)
 				{
@@ -165,7 +160,7 @@ namespace DPAP {
 					}
 				}
 				
-			}
+			}*/
 			//client.Logout ();
 		//	Console.WriteLine ("Press <enter> to exit...");
 		}		

@@ -43,27 +43,23 @@ namespace DPAP {
 			Console.WriteLine ("DPAP Page widget ctor!");
 			tree = new TreeView ();
 			Add (tree);
-			TreeViewColumn artistColumn = new Gtk.TreeViewColumn ();
-			//artistColumn.Title = "Artist";
+			TreeViewColumn albumColumn = new Gtk.TreeViewColumn ();
+			//albumColumn.Title = "album";
  
-			Gtk.CellRendererText artistNameCell = new Gtk.CellRendererText ();
-			artistNameCell.Visible = true;
-			artistColumn.PackStart (artistNameCell,false);
-			tree.AppendColumn (artistColumn);
-			//tree.AppendColumn ("Icon", new Gtk.CellRendererPixbuf (), "pixbuf", 0);  
+			Gtk.CellRendererText albumNameCell = new Gtk.CellRendererText ();
+			albumNameCell.Visible = true;
+			albumColumn.PackStart (albumNameCell,false);
+			tree.AppendColumn (albumColumn);
 
-			
 			list = new TreeStore (typeof (string));
 			tree.Model = list;
 			
-			artistColumn.AddAttribute (artistNameCell, "text", 0);
-			//list.AppendValues ("test");
+			albumColumn.AddAttribute (albumNameCell, "text", 0);
 		
 			tree.Selection.Changed += OnSelectionChanged;
-		//	tree.ShowNow ();
-		//	ShowAll ();
 			sd = new DPAP.ServiceDiscovery ();
-			sd.Found += OnServiceFound;		
+			sd.Found += OnServiceFound;
+			sd.Removed += OnServiceRemoved;
 			sd.Start ();	
 		}
 		
@@ -119,7 +115,6 @@ namespace DPAP {
 	
 			client = new Client (service);
 			TreeIter iter;
-			//list.GetIterFromString (out iter, svcName);
 			list.GetIterFirst (out iter);
 			foreach (Database d in client.Databases){
 				
@@ -150,6 +145,13 @@ namespace DPAP {
 			
 		}
 		
+		private void OnServiceRemoved (object o, ServiceArgs args)
+		{
+			Service service = args.Service;
+			Console.WriteLine ("Service removed " + service.Name);
+			// list.Remove ()
+			
+		}
 	}
 	
 	public class DPAPBrowser : SidebarPage

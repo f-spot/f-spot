@@ -108,6 +108,7 @@ namespace DPAP {
 		public void Start () {
 			browser = new ServiceBrowser ();
 			browser.ServiceAdded += OnServiceAdded;
+			
 			browser.Browse ("_dpap._tcp","local");
 		}
 		

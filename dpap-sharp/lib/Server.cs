@@ -727,6 +727,7 @@ namespace DPAP {
                 ws.WriteResponse (client, GetLoginNode (session));
                 OnUserLogin (user);
             } else if (path == "/logout") {
+				Console.WriteLine("logout!");
                 User user = sessions [session];
                 
                 lock (sessions) {
@@ -786,13 +787,13 @@ namespace DPAP {
 				ArrayList photoNodes = new ArrayList ();
 				Photo photo = db.LookupPhotoById (1);
 				
-				foreach (string photoId in photoIds)
-				{
+				foreach (string photoId in photoIds) {
 					match = dbPhotoRegex.Match (photoId);
-				photoid = Int32.Parse (match.Groups [1].Value);
-					Console.WriteLine ("Requested photo id=" + photoid);
+					photoid = Int32.Parse (match.Groups [1].Value);
 					photo = db.LookupPhotoById (photoid);
 					photoNodes.Add (photo.ToFileData (query ["meta"].Contains ("dpap.thumb")));
+					// DEBUG
+					//Console.WriteLine ("Requested photo id=" + photoid);
 				}
         
 				ArrayList children = new ArrayList ();
@@ -803,7 +804,6 @@ namespace DPAP {
 				children.Add (new ContentNode ("dmap.listing", photoNodes));
 				ContentNode dbsongs = new ContentNode ("dpap.databasesongs", children);
                 
-				Console.WriteLine ("Photo tostring: " + photo.ToString ());
                 if (photo == null) {
                     ws.WriteResponse (client, HttpStatusCode.BadRequest, "invalid photo id");
                     return true;
@@ -818,11 +818,13 @@ namespace DPAP {
                     } catch {}
                     
                     if (photo.FileName != null) {
-						Console.WriteLine ("photo.Filename != null" + query ["meta"].Split (',') [0]);
+						// DEBUG
+						//Console.WriteLine ("photo.Filename != null" + query ["meta"].Split (',') [0]);
 						//ContentNode node = photo.ToFileData ();
 						//node.Dump ();
+						
 						ws.WriteResponse (client, dbsongs);
-        //                ws.WriteResponseFile (client, photo.FileName, range);
+
                     } else if (db.Client != null) {
 						Console.WriteLine ("db.Client != null");
                         long photoLength = 0;
@@ -838,7 +840,8 @@ namespace DPAP {
                         ws.WriteResponse (client, HttpStatusCode.InternalServerError, "no file");
                     }
                 } finally {
-                    client.Close ();
+					// commented out because it breaks the connection after sending a hires photo
+					// client.Close()
                 }
             } else if (dbContainersRegex.IsMatch (path)) {
                 int dbid = Int32.Parse (dbContainersRegex.Match (path).Groups [1].Value);

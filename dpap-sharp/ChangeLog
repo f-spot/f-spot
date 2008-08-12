@@ -1,9 +1,12 @@
 2008-08-12  Andrzej Wytyczak-Partyka  <iapart@gmail.com>
 
+	* DPAPService/DPAPService.cs:
 	* lib/Database.cs:
 	* lib/Server.cs:
+	* lib/Discovery.cs:
 	* DPAPBrowser/DPAPBrowser.cs:
-	Fixing broken queries
+	Fixing broken queries, removed nasty bug that was disconnecting
+	the client after sending him a hi-res picture
 
 2008-08-11  Andrzej Wytyczak-Partyka  <iapart@gmail.com>
 

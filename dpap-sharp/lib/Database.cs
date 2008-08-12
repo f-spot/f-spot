@@ -491,10 +491,9 @@ namespace DPAP {
 			int off = System.Int32.Parse (filedata_node.Value.ToString ());
 			byte [] photo_buf;
 			MemoryStream data = new MemoryStream ();
-			//while (count < photos_data.Length - fileDataNode.Value)
 			writer.Write (photos_data, (int)off, (int)photos_data.Length-off);
 			data.Position = 0;
-//			Gdk.Pixbuf pb = new Gdk.Pixbuf (data);
+			//	Gdk.Pixbuf pb = new Gdk.Pixbuf (data);
 			data.Close ();
 			Console.Write ("Written " + count + " out of " + (photos_data.Length-off));
         }
