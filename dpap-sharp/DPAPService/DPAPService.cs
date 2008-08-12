@@ -68,55 +68,59 @@ namespace DPAP {
 			
 			//FSpot.Photo photo = (FSpot.Photo) Core.Database.Photos.Get (1);			
 			
-			
-			Album a = new Album ("test album");
-			Tag t = Core.Database.Tags.GetTagByName ("Shared items");
-			
-			Tag []tags = {t};
-			FSpot.Photo [] photos = Core.Database.Photos.Query (tags);
-			int i=0;
-			
-			foreach (FSpot.Photo photo in photos) {
-				string thumbnail_path = ThumbnailGenerator.ThumbnailPath (photo.DefaultVersionUri);
-				FileInfo f = new FileInfo (thumbnail_path);
-				DPAP.Photo p = new DPAP.Photo ();			
-				p.FileName = photo.Name;
-				p.Thumbnail = thumbnail_path;
-				p.ThumbSize = (int)f.Length;
-				p.Path = photo.DefaultVersionUri.ToString ().Substring (7);
-				f = new FileInfo (photo.DefaultVersionUri.ToString ().Substring (7));
-				if (!f.Exists) 
-					continue;
-			
-				//if (++i > 2) break;
-				Console.WriteLine ("Found photo " + p.Path  + ", thumb " + thumbnail_path);
-				p.Title = f.Name;
-				p.Size = (int)f.Length; 
-				p.Format = "JPEG";
-				database.AddPhoto (p);
-				a.AddPhoto (p);
-			}		
-
-			database.AddAlbum (a);
-			Console.WriteLine ("Album count is now " + database.Albums.Count);
-			server.AddDatabase (database);
-			
-			//server.GetServerInfoNode ();			
 			try {
-                server.Start ();
-            } catch (System.Net.Sockets.SocketException) {
-				Console.WriteLine ("Server socket exception!");
-                server.Port = 0;
-                server.Start ();
-            }
-        
-			//DaapPlugin.ServerEnabledSchema.Set (true);
-            
-			//  if (!initial_db_committed) {
-                server.Commit ();
-			//      initial_db_committed = true;
-			//  }
-	
+				Album a = new Album ("test album");
+				Tag t = Core.Database.Tags.GetTagByName ("Shared items");
+
+				Tag []tags = {t};
+				FSpot.Photo [] photos = Core.Database.Photos.Query (tags);
+				int i=0;
+
+				foreach (FSpot.Photo photo in photos) {
+					string thumbnail_path = ThumbnailGenerator.ThumbnailPath (photo.DefaultVersionUri);
+					FileInfo f = new FileInfo (thumbnail_path);
+					DPAP.Photo p = new DPAP.Photo ();
+
+					p.FileName = photo.Name;
+					p.Thumbnail = thumbnail_path;
+					p.ThumbSize = (int)f.Length;
+					p.Path = photo.DefaultVersionUri.ToString ().Substring (7);
+					f = new FileInfo (photo.DefaultVersionUri.ToString ().Substring (7));
+					if (!f.Exists)
+						continue;
+
+					//if (++i > 2) break;
+					Console.WriteLine ("Found photo " + p.Path  + ", thumb " + thumbnail_path);
+					p.Title = f.Name;
+					p.Size = (int)f.Length;
+					p.Format = "JPEG";
+					database.AddPhoto (p);
+					a.AddPhoto (p);
+				}		
+
+				database.AddAlbum (a);
+				Console.WriteLine ("Album count is now " + database.Albums.Count);
+				server.AddDatabase (database);
+
+				//server.GetServerInfoNode ();			
+				try {
+					server.Start();
+				} catch (System.Net.Sockets.SocketException) {
+					Console.WriteLine ("Server socket exception!");
+					server.Port = 0;
+					server.Start();
+				}
+
+				//DaapPlugin.ServerEnabledSchema.Set (true);
+
+				//  if(!initial_db_committed) {
+				server.Commit();
+
+				//      initial_db_committed = true;
+				//  }
+			} catch (Exception e) {
+				Console.WriteLine ("Failed starting dpap server \n{0}", e);
+			}
 		}
 		
 		public bool Stop ()
