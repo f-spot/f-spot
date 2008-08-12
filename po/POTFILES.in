@@ -30,8 +30,13 @@ src/CameraSelectionDialog.cs
 src/Core.cs
 src/Core/Photo.cs
 src/DateCommands.cs
-src/Editors/Old/SoftFocus.cs
-src/Editors/Old/Tilt.cs
+src/Editors/AutoStretchEditor.cs
+src/Editors/CropEditor.cs
+src/Editors/DesaturateEditor.cs
+src/Editors/RedEyeEditor.cs
+src/Editors/SepiaEditor.cs
+src/Editors/SoftFocusEditor.cs
+src/Editors/TiltEditor.cs
 src/Extensions/OpenWithMenu.cs
 src/FSpot.addin.xml
 src/FileImportBackend.cs
@@ -88,9 +93,8 @@ src/Widgets/FindBar.cs
 src/Widgets/InfoBox.cs
 src/Widgets/MetadataDisplay.cs
 src/Widgets/RatingMenuItem.cs
-src/Widgets/SoftFocus.cs
+src/Widgets/Sidebar.cs
 src/Widgets/TagMenu.cs
-src/Widgets/Tilt.cs
 src/XmpTagsImporter.cs
 src/f-spot.glade
 tools/f-spot-screensaver.desktop.in
