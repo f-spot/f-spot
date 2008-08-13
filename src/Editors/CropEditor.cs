@@ -107,7 +107,8 @@ namespace FSpot.Editors {
 
 		public void UpdateSelectionCombo ()
 		{
-			if (!StateInitialized)
+			if (!StateInitialized || constraints_combo == null)
+				// Don't bomb out on instant-apply.
 				return;
 
 			//constraints_combo.Active = 0;

@@ -1,3 +1,7 @@
+2008-08-13  Ruben Vermeersch  <ruben@savanne.be>
+
+	* src/Editors/CropEditor.cs: Avoid a crasher on instant-apply.
+
 2008-08-12  Ruben Vermeersch  <ruben@savanne.be>
 
 	* src/Editors/Editor.cs: Properly update the histogram on preview.
