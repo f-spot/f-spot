@@ -26,6 +26,7 @@
 
 using FSpot;
 using FSpot.Editors;
+using FSpot.UI.Dialog;
 using FSpot.Utils;
 
 using Gtk;
@@ -190,7 +191,21 @@ namespace FSpot.Widgets {
 				return;
 
 			// TODO: Might need to do some nicer things for multiple selections (progress?)
-			editor.Apply ();
+			try {
+				editor.Apply ();
+			} catch (Exception e) {
+				string msg = Catalog.GetString ("Error saving adjusted photo(s)");
+				string desc = String.Format (Catalog.GetString ("Received exception \"{0}\". Note that you have to develop RAW files into JPEG before you can edit them."),
+							     e.Message);
+
+				HigMessageDialog md = new HigMessageDialog (MainWindow.Toplevel.Window,
+									    DialogFlags.DestroyWithParent,
+									    Gtk.MessageType.Error, ButtonsType.Ok,
+									    msg,
+									    desc);
+				md.Run ();
+				md.Destroy ();
+			}
 			ShowTools ();
 		}
 

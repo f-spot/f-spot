@@ -1,3 +1,8 @@
+2008-08-14  Ruben Vermeersch  <ruben@savanne.be>
+
+	* src/Widgets/EditorPage.cs: Don't crash when a user tries to edit a RAW
+	file, give them some help instead.
+
 2008-08-13  Ruben Vermeersch  <ruben@savanne.be>
 
 	Remove the old ColorDialog.
