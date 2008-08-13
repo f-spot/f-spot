@@ -1,5 +1,10 @@
 2008-08-13  Ruben Vermeersch  <ruben@savanne.be>
 
+	* src/Widgets/EditorPage.cs: Fix the widget packing, so that option
+	dialogs aren't blown up.
+
+2008-08-13  Ruben Vermeersch  <ruben@savanne.be>
+
 	* src/Editors/CropEditor.cs: Avoid a crasher on instant-apply.
 
 2008-08-12  Ruben Vermeersch  <ruben@savanne.be>

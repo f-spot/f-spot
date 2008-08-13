@@ -203,13 +203,13 @@ namespace FSpot.Widgets {
 			// Top label
 			VBox vbox = new VBox (false, 4);
 			Label label = new Label ();
-			label.Markup = String.Format("<b>{0}</b>", editor.Label);
-			vbox.PackStart (label, true, false, 5);
+			label.Markup = String.Format("<big><b>{0}</b></big>", editor.Label);
+			vbox.PackStart (label, false, false, 5);
 
 			// Optional config widget
 			Widget config = editor.ConfigurationWidget ();
 			if (config != null) {
-				vbox.Add (config);
+				vbox.PackStart (config, true, false, 0);
 			}
 
 			// Apply / Cancel buttons
@@ -229,7 +229,7 @@ namespace FSpot.Widgets {
 			tool_buttons.Add (apply);
 
 			// Pack it all together
-			vbox.Add (tool_buttons);
+			vbox.PackEnd (tool_buttons, false, false, 0);
 			active_editor = vbox;
 			widgets.Add (active_editor);
 			active_editor.ShowAll ();
