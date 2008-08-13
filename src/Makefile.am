@@ -84,6 +84,7 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/ColorAdjustment/Adjustment.cs		\
 	$(srcdir)/ColorAdjustment/AutoStretch.cs		\
 	$(srcdir)/ColorAdjustment/Desaturate.cs		\
+	$(srcdir)/ColorAdjustment/FullColorAdjustment.cs		\
 	$(srcdir)/ColorAdjustment/SepiaTone.cs		\
 	$(srcdir)/CompatFileChooser.cs		\
 	$(srcdir)/ControlOverlay.cs		\
@@ -98,6 +99,7 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/Editors/Editor.cs		\
 	$(srcdir)/Editors/AutoStretchEditor.cs		\
 	$(srcdir)/Editors/CropEditor.cs		\
+	$(srcdir)/Editors/ColorEditor.cs		\
 	$(srcdir)/Editors/DesaturateEditor.cs		\
 	$(srcdir)/Editors/RedEyeEditor.cs		\
 	$(srcdir)/Editors/SepiaEditor.cs		\

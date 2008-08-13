@@ -1,5 +1,21 @@
 2008-08-13  Ruben Vermeersch  <ruben@savanne.be>
 
+	Port the Color Adjustment dialog to the sidebar.
+
+	* src/ColorAdjustment/FullColorAdjustment.cs: Added. Performs a full color
+	adjustment, used by the adjust color editor.
+
+	* src/Editors/ColorEditor.cs: Added. The color editor UI.
+
+	* src/FSpot.addin.xml: Add the Color editor.
+
+	* src/Makefile.am: Add the two new files.
+
+	* src/f-spot.glade: Add a new color_editor_prefs widget, used by the color
+	editor.
+
+2008-08-13  Ruben Vermeersch  <ruben@savanne.be>
+
 	* src/Editors/Editor.cs: Be sure to free the old preview.
 
 2008-08-13  Ruben Vermeersch  <ruben@savanne.be>
