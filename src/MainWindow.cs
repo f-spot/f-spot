@@ -68,7 +68,6 @@ public class MainWindow {
 	[Glade.Widget] MenuItem rotate_left;
 	[Glade.Widget] MenuItem rotate_right;
 
-	[Glade.Widget] MenuItem adjust_color;
 	[Glade.Widget] MenuItem sharpen;
 	[Glade.Widget] MenuItem adjust_time;
 
@@ -550,7 +549,6 @@ public class MainWindow {
 			display_filmstrip.Sensitive = false;
 			group_selector.Visible = display_timeline.Active;
 
-			ColorDialog.Close ();
 			if (photo_view.View.Loupe != null)
 				photo_view.View.Loupe.Destroy ();
 			JumpTo (photo_view.Item.Index);
@@ -2056,14 +2054,6 @@ public class MainWindow {
 		new TimeDialog (db, list);
 	}
 
-	void HandleAdjustColor (object sender, EventArgs args)
-	{
-		if (ActiveIndex () >= 0) {
-			SetViewMode (ModeType.PhotoView);
-			ColorDialog.CreateForView (photo_view.View);
-		}
-	}
-
 	void HandleSharpen (object sender, EventArgs args)
 	{
 		// Don't steal characters from any text entries
@@ -2161,7 +2151,6 @@ public class MainWindow {
 			fsview = new FSpot.FullScreenView (query, main_window);
 			fsview.Destroyed += HandleFullScreenViewDestroy;
 			fsview.View.Item.Index = active;
-			ColorDialog.SwitchViews (fsview.View);
 		} else {
 			// FIXME this needs to be another mode like PhotoView and IconView mode.
 			fsview.View.Item.Index = active;
@@ -2174,10 +2163,6 @@ public class MainWindow {
 	{
 		JumpTo (fsview.View.Item.Index);
 		fsview = null;
-		
-		if (ViewMode == ModeType.PhotoView) {
-			ColorDialog.SwitchViews (photo_view.View);
-		}
 	}
 	
 	void HandleZoomScaleValueChanged (object sender, System.EventArgs args)
@@ -2864,7 +2849,6 @@ public class MainWindow {
 		}
 
 		set_as_background.Sensitive = single_active;
-		adjust_color.Sensitive = single_active;
 		adjust_time.Sensitive = active_selection;
 
 		attach_tag.Sensitive = active_selection;

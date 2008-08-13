@@ -1,5 +1,19 @@
 2008-08-13  Ruben Vermeersch  <ruben@savanne.be>
 
+	Remove the old ColorDialog.
+
+	* src/MainWindow.cs: Detach handlers for the menu item.
+
+	* src/Makefile.am: Remove ColorDialog.cs from the build.
+
+	* src/PhotoView.cs: Remove the color adjustment button.
+
+	* src/UI.Dialog/ColorDialog.cs: Removed.
+
+	* src/f-spot.glade: Remove the dialog and the menu item.
+
+2008-08-13  Ruben Vermeersch  <ruben@savanne.be>
+
 	Port the Color Adjustment dialog to the sidebar.
 
 	* src/ColorAdjustment/FullColorAdjustment.cs: Added. Performs a full color

@@ -42,8 +42,6 @@ namespace FSpot {
 		private Entry description_entry;
 		private Widgets.Rating rating;
 	
-		private Gtk.ToolButton color_button;	
-		
 		private uint restore_scrollbars_idle_id;
 	
 		// Public events.
@@ -102,8 +100,6 @@ namespace FSpot {
 	
 			display_previous_button.Sensitive = prev;
 			display_next_button.Sensitive = next;
-
-			color_button.Sensitive = valid;
 		}
 	
 		private void UpdateCountLabel ()
@@ -215,11 +211,6 @@ namespace FSpot {
 			md.Run ();
 			md.Destroy ();
 		}
-	
-		private void HandleColorButtonClicked (object sender, EventArgs args) 
-		{
-			ColorDialog.CreateForView (photo_view);
-		}	
 	
 		int changed_photo;
 		private bool CommitPendingChanges ()
@@ -371,11 +362,6 @@ namespace FSpot {
 			toolbar.IconSize = IconSize.SmallToolbar;
 			toolbar.ToolbarStyle = ToolbarStyle.Icons;
 			vbox.PackStart (toolbar, false, true, 0);
-	
-			color_button = GtkUtil.ToolButtonFromTheme ("adjust-colors", Catalog.GetString ("Adjust Colors"), false);
-			toolbar.Insert (color_button, -1);
-			color_button.SetTooltip (tips, Catalog.GetString ("Adjust the photo colors"), String.Empty);
-			color_button.Clicked += new EventHandler (HandleColorButtonClicked);
 	
 			SeparatorToolItem white_space = new SeparatorToolItem ();
 			white_space.Draw = false;
