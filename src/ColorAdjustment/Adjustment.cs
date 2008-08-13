@@ -81,7 +81,6 @@ namespace FSpot.ColorAdjustment {
 									     intent, 0x0000);
 				
 				PixbufUtils.ColorAdjust (Input, final, transform);
-				Input.Dispose ();
 			}
 
 			return final;
