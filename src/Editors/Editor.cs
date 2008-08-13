@@ -169,16 +169,24 @@ namespace FSpot.Editors {
 				original = State.PhotoImageView.Pixbuf;
 			}
 
+			Pixbuf old_preview = null;
 			if (preview == null) {
 				int width, height;
 				CalcPreviewSize (original, out width, out height);
 				preview = original.ScaleSimple (width, height, InterpType.Nearest);
+			} else {
+				// We're updating a previous preview
+				old_preview = State.PhotoImageView.Pixbuf;
 			}
 
 			Pixbuf previewed = ProcessFast (preview, null);
 			State.PhotoImageView.Pixbuf = previewed;
 			State.PhotoImageView.ZoomFit (false);
 			MainWindow.Toplevel.InfoBox.UpdateHistogram (previewed);
+
+			if (old_preview != null) {
+				old_preview.Dispose ();
+			}
 		}
 
 		private void CalcPreviewSize (Pixbuf input, out int width, out int height) {

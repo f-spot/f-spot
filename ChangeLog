@@ -1,5 +1,9 @@
 2008-08-13  Ruben Vermeersch  <ruben@savanne.be>
 
+	* src/Editors/Editor.cs: Be sure to free the old preview.
+
+2008-08-13  Ruben Vermeersch  <ruben@savanne.be>
+
 	* src/ColorAdjustment/Adjustment.cs: Don't dispose the input, it should
 	not be touched.
 
