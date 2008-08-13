@@ -1,5 +1,10 @@
 2008-08-14  Ruben Vermeersch  <ruben@savanne.be>
 
+	* src/Widgets/EditorPage.cs: Pop up a message when the user tries to apply
+	a tool that needs a selection, without having anything selected.
+
+2008-08-14  Ruben Vermeersch  <ruben@savanne.be>
+
 	* src/Widgets/EditorPage.cs: Don't crash when a user tries to edit a RAW
 	file, give them some help instead.
 

@@ -7,23 +7,6 @@
  * This is free software. See COPYING for details.
  */
 
-/*
- * FIXME: add this back
- * if (! photo_view.GetSelection (out x, out y, out width, out height)) {
- * string msg = Catalog.GetString ("No selection available");
- * string desc = Catalog.GetString ("This tool requires an active selection. Please select a region of the phot
- *
- * HigMessageDialog md = new HigMessageDialog ((Gtk.Window)this.Toplevel, DialogFlags.DestroyWithParent,
- *                                              Gtk.MessageType.Error, ButtonsType.Ok,
- *                                              msg,
- *                                             desc);
- *
- * md.Run ();
- * md.Destroy ();
- * return;
- * }
- */
-
 using FSpot;
 using FSpot.Editors;
 using FSpot.UI.Dialog;
@@ -186,9 +169,20 @@ namespace FSpot.Widgets {
 		private void Apply (Editor editor) {
 			SetupEditor (editor);
 
-			// TODO: Provide some user feedback about this.
-			if (!editor.CanBeApplied)
+			if (!editor.CanBeApplied) {
+				string msg = Catalog.GetString ("No selection available");
+				string desc = Catalog.GetString ("This tool requires an active selection. Please select a region of the photo and try the operation again");
+
+				HigMessageDialog md = new HigMessageDialog (MainWindow.Toplevel.Window,
+										DialogFlags.DestroyWithParent,
+										Gtk.MessageType.Error, ButtonsType.Ok,
+										msg,
+										desc);
+
+				md.Run ();
+				md.Destroy ();
 				return;
+			}
 
 			// TODO: Might need to do some nicer things for multiple selections (progress?)
 			try {
