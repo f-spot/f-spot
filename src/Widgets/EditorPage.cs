@@ -72,8 +72,31 @@ namespace FSpot.Widgets {
 
 		private void OnExtensionChanged (object s, ExtensionNodeEventArgs args) {
 			// FIXME: We do not do run-time removal of editors yet!
-			if (args.Change == ExtensionChange.Add)
-				editors.Add ((args.ExtensionNode as EditorNode).GetEditor ());
+			if (args.Change == ExtensionChange.Add) {
+				Editor editor = (args.ExtensionNode as EditorNode).GetEditor ();
+				editor.ProcessingStarted += OnProcessingStarted;
+				editor.ProcessingStep += OnProcessingStep;
+				editor.ProcessingFinished += OnProcessingFinished;
+				editors.Add (editor);
+			}
+		}
+
+		private ProgressDialog progress;
+
+		private void OnProcessingStarted (string name, int count) {
+			progress = new ProgressDialog (name, ProgressDialog.CancelButtonType.None, count, MainWindow.Toplevel.Window);
+		}
+
+		private void OnProcessingStep (int done) {
+			if (progress != null)
+				progress.Update (String.Empty);
+		}
+
+		private void OnProcessingFinished () {
+			if (progress != null) {
+				progress.Destroy ();
+				progress = null;
+			}
 		}
 
 		internal void ChangeButtonVisibility () {

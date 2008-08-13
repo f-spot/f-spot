@@ -57,6 +57,14 @@ namespace FSpot.Editors {
 
 	// This is the base class from which all editors inherit.
 	public abstract class Editor {
+		public delegate void ProcessingStartedHandler (string name, int count);
+		public delegate void ProcessingStepHandler (int done);
+		public delegate void ProcessingFinishedHandler ();
+
+		public event ProcessingStartedHandler ProcessingStarted;
+		public event ProcessingStepHandler ProcessingStep;
+		public event ProcessingFinishedHandler ProcessingFinished;
+
 		// Contains the current selection, the items being edited, ...
 		private EditorState state;
 		public EditorState State {
@@ -121,10 +129,24 @@ namespace FSpot.Editors {
 
 		// Apply the editor's action to a photo.
 		public void Apply () {
+			try {
+				if (ProcessingStarted != null) {
+					ProcessingStarted (Label, State.Items.Length);
+				}
+				TryApply ();
+			} finally {
+				if (ProcessingFinished != null) {
+					ProcessingFinished ();
+				}
+			}
+		}
+
+		private void TryApply () {
 			if (NeedsSelection && !State.HasSelection) {
 				throw new Exception ("Cannot apply without selection!");
 			}
 
+			int done = 0;
 			foreach (Photo photo in State.Items) {
 				Pixbuf input;
 				Cms.Profile input_profile;
@@ -137,6 +159,11 @@ namespace FSpot.Editors {
 				photo.SaveVersion (edited, create_version);
 				photo.Changes.DataChanged = true;
 				Core.Database.Photos.Commit (photo);
+
+				done++;
+				if (ProcessingStep != null) {
+					ProcessingStep (done);
+				}
 			}
 
 			Reset ();
