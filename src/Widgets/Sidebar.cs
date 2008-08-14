@@ -256,7 +256,8 @@ namespace FSpot.Widgets {
 				item = new MenuItem (label);
 			else {
 				item = new ImageMenuItem (label);
-				(item as ImageMenuItem).Image = new Image (icon_name, IconSize.Menu);
+				(item as ImageMenuItem).Image = new Image ();
+				((item as ImageMenuItem).Image as Image).IconName = icon_name;
 			}
 
 			item.Activated += HandleItemClicked;

@@ -87,7 +87,7 @@ namespace FSpot.Widgets
 			x += Allocation.X;
 			y += Allocation.Y + Allocation.Height;
 			push_in = false;
-            menu.WidthRequest = Allocation.Width;
+			menu.WidthRequest = Allocation.Width;
 		}
 	}
 }
