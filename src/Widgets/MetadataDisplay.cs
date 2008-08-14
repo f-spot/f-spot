@@ -20,8 +20,8 @@ using Mono.Unix;
 namespace FSpot.Widgets {
 	public class MetadataDisplayPage : SidebarPage {
 		public MetadataDisplayPage() : base(new MetadataDisplayWidget(), 
-											Catalog.GetString ("Exif"), 
-											"gtk-index") {
+											Catalog.GetString ("Exif Metadata"), 
+											"gtk-info") {
 			(SidebarWidget as MetadataDisplayWidget).Page = this;
 		}
 

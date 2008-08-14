@@ -1,5 +1,10 @@
 2008-08-14  Ruben Vermeersch  <ruben@savanne.be>
 
+	* src/Widgets/MetadataDisplay.cs: Make the label a bit more descriptive,
+	switch to gtk-info until we have a better EXIF icon.
+
+2008-08-14  Ruben Vermeersch  <ruben@savanne.be>
+
 	Use a tag icon for the tags pane. Thanks to Michael Monreal for the icons.
 
 	* icons/Makefile.am: Add the new icons.
