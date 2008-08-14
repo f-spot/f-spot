@@ -1,3 +1,8 @@
+2008-08-14  Ruben Vermeersch  <ruben@savanne.be>
+
+	* src/Widgets/InfoBox.cs: Correctly use Delay, no need to make new
+	instances.
+
 2008-08-14  Stephane Delcroix  <sdelcroix@novell.com>
 
 	* src/main.cs: print a trace on --debug for all Gtk/GdkPixbuf critical

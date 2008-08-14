@@ -442,10 +442,8 @@ namespace FSpot.Widgets
 
 		private void UpdateHistogram ()
 		{
-			if (histogram_expander.Expanded && histogram_delay == null) {
-				histogram_delay = new Delay (DelayedUpdateHistogram);
+			if (histogram_expander.Expanded)
 				histogram_delay.Start ();
-			}
 		}
 
 		public void UpdateHistogram (Gdk.Pixbuf pixbuf) {
@@ -454,8 +452,6 @@ namespace FSpot.Widgets
 		}
 
 		private bool DelayedUpdateHistogram () {
-			histogram_delay = null;
-
 			if (Photos.Length == 0)
 				return false;
 
@@ -488,6 +484,8 @@ namespace FSpot.Widgets
 			SetupWidgets ();
 			update_delay = new Delay (Update);
 			update_delay.Start ();
+
+			histogram_delay = new Delay (DelayedUpdateHistogram);
 	
 			BorderWidth = 2;
             Hide ();
