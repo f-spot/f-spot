@@ -69,10 +69,6 @@ public class Driver {
 		bool slideshow = false;
 		string import_uri = null;
 		
-		// Debug GdkPixbuf critical warnings
-		//LogFunc logFunc = new GLib.LogFunc (GLib.Log.PrintTraceLogFunction);
-		//Log.SetLogHandler ("GdkPixbuf", GLib.LogLevelFlags.Critical, logFunc);
-
 		program = new Program (Defines.PACKAGE, 
 				       Defines.VERSION, 
 				       Modules.UI, args);		
@@ -144,6 +140,13 @@ public class Driver {
 			
 			case "--debug":
 				Log.Debugging = true;
+				// Debug GdkPixbuf critical warnings
+				GLib.LogFunc logFunc = new GLib.LogFunc (GLib.Log.PrintTraceLogFunction);
+				GLib.Log.SetLogHandler ("GdkPixbuf", GLib.LogLevelFlags.Critical, logFunc);
+		
+				// Debug Gtk critical warnings
+				GLib.Log.SetLogHandler ("Gtk", GLib.LogLevelFlags.Critical, logFunc);
+
 				break;
 			case "--uninstalled": case "--gdb":
 				break;

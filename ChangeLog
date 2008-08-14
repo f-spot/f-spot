@@ -1,3 +1,8 @@
+2008-08-14  Stephane Delcroix  <sdelcroix@novell.com>
+
+	* src/main.cs: print a trace on --debug for all Gtk/GdkPixbuf critical
+	warnings.
+
 2008-08-14  Ruben Vermeersch  <ruben@savanne.be>
 
 	* src/Widgets/MetadataDisplay.cs: Make the label a bit more descriptive,
