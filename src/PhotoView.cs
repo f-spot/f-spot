@@ -37,8 +37,6 @@ namespace FSpot {
 	
 		private Widgets.TagView tag_view;
 		
-		private Gtk.ToolButton display_next_button, display_previous_button;
-		private Label count_label;
 		private Entry description_entry;
 		private Widgets.Rating rating;
 	
@@ -87,30 +85,6 @@ namespace FSpot {
 			photo_view.Reload ();
 		}
 	
-		private void UpdateButtonSensitivity ()
-		{
-			bool valid = photo_view.Item.IsValid;
-			bool prev = valid && Item.Index > 0;
-			bool next = valid && Item.Index < query.Count - 1;
-	
-			if (valid) {
-				Gnome.Vfs.Uri vfs = new Gnome.Vfs.Uri (photo_view.Item.Current.DefaultVersionUri.ToString ());
-				valid = vfs.Scheme == "file";
-			}
-	
-			display_previous_button.Sensitive = prev;
-			display_next_button.Sensitive = next;
-		}
-	
-		private void UpdateCountLabel ()
-		{
-			if (query == null)
-				count_label.Text = String.Empty;
-			else
-				// Note for translators: This indicates the current photo is photo {0} of {1} out of photos
-				count_label.Text = String.Format (Catalog.GetString ("{0} of {1}"), query.Count == 0 ? 0 : Item.Index + 1, query.Count == 0 ? 0 : query.Count);
-		}
-	
 		private void UpdateDescriptionEntry ()
 		{
 			description_entry.Changed -= HandleDescriptionChanged;
@@ -150,8 +124,6 @@ namespace FSpot {
 			if (UpdateStarted != null)
 				UpdateStarted (this);
 	
-			UpdateButtonSensitivity ();
-			UpdateCountLabel ();
 			UpdateDescriptionEntry ();
 			UpdateRating ();
 
@@ -186,16 +158,6 @@ namespace FSpot {
 			PhotoPopup popup = new PhotoPopup ();
 			popup.Activate (this.Toplevel);
 			return true;
-		}
-	
-		private void HandleDisplayNextButtonClicked (object sender, EventArgs args)
-		{
-			View.Item.MoveNext ();
-		}
-	
-		private void HandleDisplayPreviousButtonClicked (object sender, EventArgs args)
-		{
-			View.Item.MovePrevious ();
 		}
 	
 		private void ShowError (System.Exception e, Photo photo)
@@ -269,16 +231,6 @@ namespace FSpot {
 				PhotoChanged (this);
 		}
 	
-		private void HandleSelectionChanged ()
-		{
-			int x, y, width, height;
-			bool old = has_selection;
-			has_selection = photo_view.GetSelection (out x, out y, out width, out height);
-		
-			if (has_selection != old)
-				UpdateButtonSensitivity ();
-		}
-	
 		private void HandleDestroy (object sender, System.EventArgs args)
 		{
 			CommitPendingChanges ();
@@ -327,7 +279,6 @@ namespace FSpot {
 			inner_vbox.PackStart (filmstrip, false, false, 0);
 	
 			photo_view.PhotoChanged += HandlePhotoChanged;
-			photo_view.SelectionChanged += HandleSelectionChanged;
 	
 			photo_view_scrolled = new ScrolledWindow (null, null);
 
@@ -357,33 +308,6 @@ namespace FSpot {
 			SetColors ();
 			
 			inner_vbox.PackStart (inner_hbox, false, true, 0);
-	
-			Toolbar toolbar = new Toolbar ();
-			toolbar.IconSize = IconSize.SmallToolbar;
-			toolbar.ToolbarStyle = ToolbarStyle.Icons;
-			vbox.PackStart (toolbar, false, true, 0);
-	
-			SeparatorToolItem white_space = new SeparatorToolItem ();
-			white_space.Draw = false;
-			white_space.Expand = true;
-			toolbar.Insert (white_space, -1);
-	
-			ToolItem label_item = new ToolItem ();
-			count_label = new Label (String.Empty);
-			label_item.Child = count_label;
-			toolbar.Insert (label_item, -1);
-	
-			display_previous_button = new ToolButton (Stock.GoBack);
-			toolbar.Insert (display_previous_button, -1);
-			display_previous_button.SetTooltip (tips, Catalog.GetString ("Previous photo"), String.Empty);
-			display_previous_button.Clicked += new EventHandler (HandleDisplayPreviousButtonClicked);
-	
-			display_next_button = new ToolButton (Stock.GoForward);
-			toolbar.Insert (display_next_button, -1);
-			display_next_button.SetTooltip (tips, Catalog.GetString ("Next photo"), String.Empty);
-			display_next_button.Clicked += new EventHandler (HandleDisplayNextButtonClicked);
-	
-			UpdateButtonSensitivity ();
 	
 			vbox.ShowAll ();
 	

@@ -149,6 +149,11 @@ public class MainWindow {
 	
 	ToolButton rl_button;
 	ToolButton rr_button;
+
+	Label count_label;
+
+	Gtk.ToolButton display_next_button;
+	Gtk.ToolButton display_previous_button;
 	
 	ModeType view_mode;
 	bool write_metadata = false;
@@ -304,6 +309,26 @@ public class MainWindow {
 		ss_button.Clicked += HandleViewSlideShow;
 		ss_button.SetTooltip (ToolTips, Catalog.GetString ("View photos in a slideshow"), null);
 		toolbar.Insert (ss_button, -1);
+
+		SeparatorToolItem white_space = new SeparatorToolItem ();
+		white_space.Draw = false;
+		white_space.Expand = true;
+		toolbar.Insert (white_space, -1);
+
+		ToolItem label_item = new ToolItem ();
+		count_label = new Label (String.Empty);
+		label_item.Child = count_label;
+		toolbar.Insert (label_item, -1);
+
+		display_previous_button = new ToolButton (Stock.GoBack);
+		toolbar.Insert (display_previous_button, -1);
+		display_previous_button.SetTooltip (ToolTips, Catalog.GetString ("Previous photo"), String.Empty);
+		display_previous_button.Clicked += new EventHandler (HandleDisplayPreviousButtonClicked);
+
+		display_next_button = new ToolButton (Stock.GoForward);
+		toolbar.Insert (display_next_button, -1);
+		display_next_button.SetTooltip (ToolTips, Catalog.GetString ("Next photo"), String.Empty);
+		display_next_button.Clicked += new EventHandler (HandleDisplayNextButtonClicked);
 
 		sidebar = new Sidebar ();
 		ViewModeChanged += sidebar.HandleMainWindowViewModeChanged;
@@ -501,6 +526,16 @@ public class MainWindow {
 		Banshee.Kernel.Scheduler.Resume ();
 	}
 
+	private void HandleDisplayNextButtonClicked (object sender, EventArgs args)
+	{
+		PhotoView.View.Item.MoveNext ();
+	}
+
+	private void HandleDisplayPreviousButtonClicked (object sender, EventArgs args)
+	{
+		PhotoView.View.Item.MovePrevious ();
+	}
+
 	private void OnSidebarExtensionChanged (object s, ExtensionNodeEventArgs args) {
 		// FIXME: No sidebar page removal yet!
 		if (args.Change == ExtensionChange.Add)
@@ -587,6 +622,35 @@ public class MainWindow {
 			if (edit_button.Active != state)
 				edit_button.Active = state;
 		}
+
+		if (view_mode == ModeType.PhotoView) {
+			display_previous_button.Visible = true;
+			display_next_button.Visible = true;
+			count_label.Visible = true;
+
+			bool valid = photo_view.View.Item.IsValid;
+			bool prev = valid && photo_view.View.Item.Index > 0;
+			bool next = valid && photo_view.View.Item.Index < query.Count - 1;
+
+			if (valid) {
+				Gnome.Vfs.Uri vfs = new Gnome.Vfs.Uri (photo_view.View.Item.Current.DefaultVersionUri.ToString ());
+				valid = vfs.Scheme == "file";
+			}
+
+			display_previous_button.Sensitive = prev;
+			display_next_button.Sensitive = next;
+
+			if (Query == null)
+				count_label.Text = String.Empty;
+			else
+				// Note for translators: This indicates the current photo is photo {0} of {1} out of photos
+				count_label.Text = String.Format (Catalog.GetString ("{0} of {1}"), Query.Count == 0 ? 0 : photo_view.View.Item.Index + 1, Query.Count == 0 ? 0 : Query.Count);
+		} else {
+			display_previous_button.Visible = false;
+			display_next_button.Visible = false;
+			count_label.Visible = false;
+		}
+
 	}
 
 	private void HandleExportActivated (object o, EventArgs e)
@@ -777,7 +841,8 @@ public class MainWindow {
 	{
 		UpdateMenus ();
 		UpdateTagEntryFromSelection ();
-		UpdateStatusLabel();	
+		UpdateStatusLabel ();
+		UpdateToolbar ();
 
 		info_box.Photos = SelectedPhotos ();
 	}

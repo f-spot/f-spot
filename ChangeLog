@@ -1,5 +1,14 @@
 2008-08-14  Ruben Vermeersch  <ruben@savanne.be>
 
+	Eliminate the final bits of the editing toolbar: the navigation arrows.
+	These are now in the unused part of the top toolbar, to the right.
+
+	* src/MainWindow.cs: Move the navigation buttons to the top toolbar.
+
+	* src/PhotoView.cs: Eliminate the empty toolbar.
+
+2008-08-14  Ruben Vermeersch  <ruben@savanne.be>
+
 	* src/Widgets/InfoBox.cs: Correctly use Delay, no need to make new
 	instances.
 
