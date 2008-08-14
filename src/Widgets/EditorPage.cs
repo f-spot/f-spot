@@ -241,7 +241,7 @@ namespace FSpot.Widgets {
 			// Optional config widget
 			Widget config = editor.ConfigurationWidget ();
 			if (config != null) {
-				vbox.PackStart (config, true, false, 0);
+				vbox.PackStart (config, false, false, 0);
 			}
 
 			// Apply / Cancel buttons
