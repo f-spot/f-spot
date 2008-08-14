@@ -38,6 +38,8 @@ theme_icons = 					\
 	actions,red-eye-remove-16.png		\
 	actions,red-eye-remove-22.png		\
 	actions,red-eye-remove-24.png		\
+	actions,tag-16.png			\
+	actions,tag-22.png			\
 	actions,tag-new-16.png			\
 	actions,tag-new-22.png			\
 	actions,tag-new-24.png			\

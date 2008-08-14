@@ -314,7 +314,7 @@ public class MainWindow {
 		tag_selection_widget = new TagSelectionWidget (db.Tags);
 		tag_selection_scrolled.Add (tag_selection_widget);
 
-		sidebar.AppendPage (tag_selection_scrolled, Catalog.GetString ("Tags"), "gtk-new");
+		sidebar.AppendPage (tag_selection_scrolled, Catalog.GetString ("Tags"), "tag");
 
 		AddinManager.AddExtensionNodeHandler ("/FSpot/Sidebar", OnSidebarExtensionChanged);
 

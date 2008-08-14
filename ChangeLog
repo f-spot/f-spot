@@ -1,5 +1,21 @@
 2008-08-14  Ruben Vermeersch  <ruben@savanne.be>
 
+	Use a tag icon for the tags pane. Thanks to Michael Monreal for the icons.
+
+	* icons/Makefile.am: Add the new icons.
+
+	* icons/tag-16.png: Added.
+
+	* icons/tag-16.svg: Added.
+
+	* icons/tag-22.png: Added.
+
+	* icons/tag-22.svg: Added.
+
+	* src/MainWindow.cs: Use tag instead of gtk-new as the icon.
+
+2008-08-14  Ruben Vermeersch  <ruben@savanne.be>
+
 	Add progress reporting when updating multiple pictures.
 
 	* src/Editors/Editor.cs: Add events that can be used to observe the state
