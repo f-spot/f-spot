@@ -311,7 +311,7 @@ namespace DPAP {
             // add/remove photos in the albums
             foreach (Album pl in albums) {
                 byte [] album_photos_data = client.Fetcher.Fetch (String.Format ("/databases/{0}/containers/{1}/items",
-                                                                                id, pl.Id), revquery);
+                                                                                id, pl.Id), "meta=dpap.aspectratio,dmap.itemid,dmap.itemname,dpap.imagefilename,dpap.imagefilesize,dpap.creationdate,dpap.imagepixelwidth,dpap.imagepixelheight,dpap.imageformat,dpap.imagerating,dpap.imagecomments,dpap.imagelargefilesize&type=photo");
                 ContentNode album_photos_node = ContentParser.Parse (client.Bag, album_photos_data);
 
                 if (IsUpdateResponse (album_photos_node))
