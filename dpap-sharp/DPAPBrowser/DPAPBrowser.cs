@@ -134,7 +134,7 @@ namespace DPAP {
 		{
 			Service service = args.Service;
 			Console.WriteLine ("ServiceFound " + service.Name);
-			if (service.Name.Equals ("f-spot photos")) return;
+			if (service.Name.Equals (System.Environment.UserName + " f-spot photos")) return;
 			list.AppendValues (service.Name);
 			
 /*			System.Console.WriteLine ("Connecting to {0} at {1}:{2}", service.Name, service.Address, service.Port);

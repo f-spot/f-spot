@@ -57,12 +57,13 @@ namespace DPAP {
 		Console.WriteLine ("Starting DPAP server");
 			
 			DPAP.Database database = new DPAP.Database ("DPAP");
-			DPAP.Server server = new Server ("f-spot photos");
+			
+			DPAP.Server server = new Server (System.Environment.UserName.ToString() + " f-spot photos");
 			server.Port = 8770;
 			server.AuthenticationMethod = AuthenticationMethod.None;
 			int collision_count = 0;
 			server.Collision += delegate {
-				server.Name = "f-spot photos" + "[" + ++collision_count + "]";
+				server.Name = System.Environment.UserName.ToString() + " f-spot photos" + "[" + ++collision_count + "]";
 			};
             
 			

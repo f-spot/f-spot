@@ -855,11 +855,12 @@ namespace DPAP {
                 ws.WriteResponse (client, db.ToAlbumsNode ());
             } else if (dbContainerItemsRegex.IsMatch (path)) {
 				// DEBUG
-				Console.WriteLine ("ContainerItems !");
+				Console.WriteLine ("ContainerItems ! path=" + path);
+				
                 Match match = dbContainerItemsRegex.Match (path);
                 int dbid = Int32.Parse (match.Groups [1].Value);
                 int plid = Int32.Parse (match.Groups [2].Value);
-
+				
                 Database curdb = revmgr.GetDatabase (clientRev, dbid);
                 if (curdb == null) {
                     ws.WriteResponse (client, HttpStatusCode.BadRequest, "invalid database id");
@@ -871,7 +872,8 @@ namespace DPAP {
                     ws.WriteResponse (client, HttpStatusCode.BadRequest, "invalid playlist id");
                     return true;
                 }
-
+				// DEBUG
+				Console.WriteLine("db and album ready!");
                 ArrayList deletedIds = new ArrayList ();
                 if (delta > 0) {
                     Database olddb = revmgr.GetDatabase (clientRev - delta, dbid);
@@ -890,7 +892,9 @@ namespace DPAP {
                         }
                     }
                 }
-                    curpl.ToPhotosNode (query ["meta"].Split (',')).Dump ();
+				Console.WriteLine("About to send response... meta=" + query["meta"]);
+                curpl.ToPhotosNode (query ["meta"].Split (',')).Dump ();
+				
                 ws.WriteResponse (client, curpl.ToPhotosNode (query ["meta"].Split (',')));
 				//, (int []) deletedIds.ToArray (typeof (int))));
             } else if (path == "/update") {

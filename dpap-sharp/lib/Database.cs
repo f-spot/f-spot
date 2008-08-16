@@ -263,7 +263,7 @@ namespace DPAP {
             byte [] albums_data;
 
             try {
-                albums_data = client.Fetcher.Fetch (String.Format ("/databases/{0}/containers", id, revquery));
+                albums_data = client.Fetcher.Fetch (String.Format ("/databases/{0}/containers", id), "meta=dpap.aspectratio,dmap.itemid,dmap.itemname,dpap.imagefilename,dpap.imagefilesize,dpap.creationdate,dpap.imagepixelwidth,dpap.imagepixelheight,dpap.imageformat,dpap.imagerating,dpap.imagecomments,dpap.imagelargefilesize&type=photo");
             } catch (WebException) {
                 return;
             }
