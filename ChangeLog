@@ -1,3 +1,8 @@
+2008-08-16  Ruben Vermeersch  <ruben@savanne.be>
+
+	* src/MainWindow.cs: Set the glade translation domain to f-spot. This
+	should fix some of the problems with untranslated strings reported on IRC.
+
 2008-08-15  Alexandre Prokoudine  <alexandre.prokoudine@gmail.com>
 
 	* docs/C/f-spot.exe: fix for #546137

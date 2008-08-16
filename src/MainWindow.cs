@@ -251,7 +251,7 @@ public class MainWindow {
 		if (Toplevel == null)
 			Toplevel = this;
 
-		Glade.XML gui = new Glade.XML (null, "f-spot.glade", "main_window", null);
+		Glade.XML gui = new Glade.XML (null, "f-spot.glade", "main_window", "f-spot");
 		gui.Autoconnect (this);
 
 		LoadPreference (Preferences.MAIN_WINDOW_WIDTH);
