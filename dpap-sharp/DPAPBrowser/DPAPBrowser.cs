@@ -96,12 +96,12 @@ namespace DPAP {
 				if (!alb.Name.Equals (name)) 
 					continue;
 				
-				Directory.CreateDirectory ("/tmp/" + client.Databases [0].Name + "/" + alb.Name);
+				Directory.CreateDirectory (System.Environment.GetFolderPath (System.Environment.SpecialFolder.Personal) + "/.cache/DPAP/" + client.Name + "/" + alb.Name);
 				foreach (DPAP.Photo ph in alb.Photos)
 					if (ph != null)
-						d.DownloadPhoto (ph,"/tmp/" + client.Databases [0].Name + "/" + alb.Name + "/" + ph.FileName);
+						d.DownloadPhoto (ph, System.Environment.GetFolderPath (System.Environment.SpecialFolder.Personal) + "/.cache/DPAP/" + client.Name + "/" + alb.Name + "/" + ph.FileName);
 					
-				FSpot.Core.FindInstance ().View ("file:///tmp/" + client.Databases [0].Name + "/" + alb.Name);
+				FSpot.Core.FindInstance ().View ( System.Environment.GetFolderPath (System.Environment.SpecialFolder.Personal) + "/.cache/DPAP/" + client.Name + "/" + alb.Name);
 				break;
 			}
 			
@@ -149,7 +149,18 @@ namespace DPAP {
 		{
 			Service service = args.Service;
 			Console.WriteLine ("Service removed " + service.Name);
-			// list.Remove ()
+			TreeIter root = TreeIter.Zero;
+			TreeIter iter = TreeIter.Zero;
+
+			bool valid = tree.Model.GetIterFirst (out root);
+
+			while (valid) {
+				if(((String)tree.Model.GetValue(root,0)).Equals(service.Name))
+					(tree.Model as TreeStore).Remove(ref root);
+				valid = tree.Model.IterNext (ref root);
+			}
+			if (Directory.Exists (System.Environment.GetFolderPath (System.Environment.SpecialFolder.Personal) + "/.cache/DPAP/" + service.Name))
+				Directory.Delete (System.Environment.GetFolderPath (System.Environment.SpecialFolder.Personal) + "/.cache/DPAP/" + service.Name, true);
 			
 		}
 	}
@@ -160,8 +171,7 @@ namespace DPAP {
 		private static DPAPPageWidget widget;
 		public DPAPBrowser () : base (new DPAPPageWidget (), "Shared items", "gtk-new") 
 		{
-			Console.WriteLine ("Starting DPAP client...");
-		
+			Console.WriteLine ("Starting DPAP client...");		
 			widget = (DPAPPageWidget)SidebarWidget;
 		}
 		

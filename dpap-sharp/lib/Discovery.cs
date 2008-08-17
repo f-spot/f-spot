@@ -107,7 +107,9 @@ namespace DPAP {
 		
 		public void Start () {
 			browser = new ServiceBrowser ();
+
 			browser.ServiceAdded += OnServiceAdded;
+			browser.ServiceRemoved += OnServiceRemoved;
 			
 			browser.Browse ("_dpap._tcp","local");
 		}
@@ -162,6 +164,14 @@ namespace DPAP {
 			
 			if (Found != null)
                 Found (this, new ServiceArgs (svc));
-		}		    
+		}
+		
+		private void OnServiceRemoved (object o, ServiceBrowseEventArgs args){
+			
+			IResolvableService s = args.Service;
+			
+			Removed (this, new ServiceArgs (new DPAP.Service (null, 0, s.Name, false, null)));
+			
+		}
 	}
 }

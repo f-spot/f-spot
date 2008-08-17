@@ -51,7 +51,8 @@ namespace DPAP
         private ContentFetcher fetcher;
         private int revision;
         private bool update_running;
-
+		private string service_name;
+		
         public event EventHandler Updated;
 
         internal int Revision {
@@ -59,7 +60,7 @@ namespace DPAP
         }
 
         public string Name {
-            get { return server_info.Name; }
+            get { return service_name; }
         }
 
         public IPAddress Address {
@@ -86,16 +87,16 @@ namespace DPAP
             get { return fetcher; }
         }
 
-        public Client (Service service) : this (service.Address, service.Port) {
+        public Client (Service service) : this (service.Address, service.Port, service.Name) {
         }
 
-        public Client (string host, UInt16 port) : this (Dns.GetHostEntry (host).AddressList [0], port) {
+        public Client (string host, UInt16 port) : this (Dns.GetHostEntry (host).AddressList [0], port, "") {
         }
 
-        public Client (IPAddress address, UInt16 port) {
+        public Client (IPAddress address, UInt16 port, String name) {
             this.address = address;
             this.port = port;
-			
+			this.service_name = name;
             fetcher = new ContentFetcher (address, port);
 			Login (null,null);
 			
