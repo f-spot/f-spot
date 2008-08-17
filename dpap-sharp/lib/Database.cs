@@ -477,7 +477,7 @@ namespace DPAP {
             }*/
 			// maybe use FetchResponse to get a stream and feed it to pixbuf?
 			 byte [] photos_data = client.Fetcher.Fetch (String.Format ("/databases/{0}/items",id), 
-			                                     String.Format ("meta=dpap.filedata&query=('dmap.itemid:{0}')",photo.Id));
+			                                     String.Format ("meta=dpap.thumb,dpap.filedata&query=('dmap.itemid:{0}')",photo.Id));
 			ContentNode node = ContentParser.Parse (client.Bag, photos_data);
 			
 			// DEBUG
