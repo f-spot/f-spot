@@ -1,3 +1,9 @@
+2008-08-17  Ruben Vermeersch  <ruben@savanne.be>
+
+	* src/Core/PhotoChanges.cs: Correctly check if versions_added and
+	versions_removed have been set. Based on a patch by Bengt Thuree. (Fixes
+	BGO #548104).
+
 2008-08-16  Ruben Vermeersch  <ruben@savanne.be>
 
 	* src/MainWindow.cs: Set the glade translation domain to f-spot. This

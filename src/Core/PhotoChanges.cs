@@ -142,9 +142,9 @@ namespace FSpot
 		{
 			if (versions_modified == null)
 				versions_modified = new List<uint> ();
-			if (versions_added.Contains (v))
+			if (versions_added != null && versions_added.Contains (v))
 				return;
-			if (versions_removed.Contains (v))
+			if (versions_removed != null && versions_removed.Contains (v))
 				return;
 			versions_modified.Add (v);
 		}
