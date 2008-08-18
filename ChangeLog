@@ -1,5 +1,10 @@
 2008-08-18  Ruben Vermeersch  <ruben@savanne.be>
 
+	* src/FSpot.addin.xml: Bump the core version number, to be sure to have a
+	good version onto which addins can depend for hooking in new editors.
+
+2008-08-18  Ruben Vermeersch  <ruben@savanne.be>
+
 	* src/Widgets/EditorPage.cs: Do the button visibility changes in a less
 	stupid way.
 
