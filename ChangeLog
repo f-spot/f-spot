@@ -1,3 +1,8 @@
+2008-08-18  Ruben Vermeersch  <ruben@savanne.be>
+
+	* src/Widgets/EditorPage.cs: Do the button visibility changes in a less
+	stupid way.
+
 2008-08-17  Ruben Vermeersch  <ruben@savanne.be>
 
 	* src/Core/PhotoChanges.cs: Correctly check if versions_added and

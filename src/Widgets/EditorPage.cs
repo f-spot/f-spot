@@ -104,12 +104,8 @@ namespace FSpot.Widgets {
 				Button button;
 				editor_buttons.TryGetValue (editor, out button);
 
-				// Ugly add-remove thing to maintain ordering.
-				// Simply changing Button.Visible doesn't work,
-				// as ShowAll is called higher up in the stack :-(
-				buttons.Remove (button);
-				if (Page.InPhotoView || editor.CanHandleMultiple)
-					buttons.Add (button);
+				bool visible = Page.InPhotoView || editor.CanHandleMultiple;
+				button.Visible = visible;
 			}
 		}
 
