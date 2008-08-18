@@ -50,7 +50,7 @@ namespace FSpot {
 			box = new InfoItem (item);
 			box.BorderWidth = 15;
 			Add (box);
-			box.Show ();
+			box.ShowAll ();
 			Visibility = VisibilityType.Partial;
 			KeepAbove = true;
 			//WindowPosition = WindowPosition.Mouse;
