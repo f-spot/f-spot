@@ -1,0 +1,1026 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: f-spot trunk\n"
+"POT-Creation-Date: 2008-07-13 03:45+0000\n"
+"PO-Revision-Date: 2008-08-20 15:44+0300\n"
+"Last-Translator: Alexandre Prokoudine <alexandre.prokoudine@gmail.com>\n"
+"Language-Team: Russian <gnome-cyr@gnome.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: Russian\n"
+"X-Poedit-Country: RUSSIAN FEDERATION\n"
+
+#. When image changes, this message will be marked fuzzy or untranslated for you.
+#. It doesn't matter what you translate it to: it's not used at all.
+#: C/f-spot.xml:138(None)
+msgid "@@image: 'figures/f-spot-crop.png'; md5=63e18c96702aea4701024837a13ae2d9"
+msgstr "@@image: 'figures/f-spot-crop.png'; md5=63e18c96702aea4701024837a13ae2d9"
+
+#. When image changes, this message will be marked fuzzy or untranslated for you.
+#. It doesn't matter what you translate it to: it's not used at all.
+#: C/f-spot.xml:162(None)
+msgid "@@image: 'figures/f-spot-straighten.png'; md5=ceeff0cac633d06599fa5760cc4bc568"
+msgstr "@@image: 'figures/f-spot-straighten.png'; md5=ceeff0cac633d06599fa5760cc4bc568"
+
+#. When image changes, this message will be marked fuzzy or untranslated for you.
+#. It doesn't matter what you translate it to: it's not used at all.
+#: C/f-spot.xml:181(None)
+msgid "@@image: 'figures/f-spot-adjust-colors.png'; md5=6a5d9eaaaaf238ccbf70552bc073898c"
+msgstr "@@image: 'figures/f-spot-adjust-colors.png'; md5=6a5d9eaaaaf238ccbf70552bc073898c"
+
+#. When image changes, this message will be marked fuzzy or untranslated for you.
+#. It doesn't matter what you translate it to: it's not used at all.
+#: C/f-spot.xml:199(None)
+msgid "@@image: 'figures/f-spot-autocolor.png'; md5=240c4a86c95c9507755fe790bef0e24a"
+msgstr "@@image: 'figures/f-spot-autocolor.png'; md5=240c4a86c95c9507755fe790bef0e24a"
+
+#. When image changes, this message will be marked fuzzy or untranslated for you.
+#. It doesn't matter what you translate it to: it's not used at all.
+#: C/f-spot.xml:216(None)
+msgid "@@image: 'figures/f-spot-desaturate.png'; md5=fa54dfd08171658d720be71b6d367139"
+msgstr "@@image: 'figures/f-spot-desaturate.png'; md5=fa54dfd08171658d720be71b6d367139"
+
+#. When image changes, this message will be marked fuzzy or untranslated for you.
+#. It doesn't matter what you translate it to: it's not used at all.
+#: C/f-spot.xml:233(None)
+msgid "@@image: 'figures/f-spot-sepia.png'; md5=154d6e34903664dbd776f2bef405ce91"
+msgstr "@@image: 'figures/f-spot-sepia.png'; md5=154d6e34903664dbd776f2bef405ce91"
+
+#. When image changes, this message will be marked fuzzy or untranslated for you.
+#. It doesn't matter what you translate it to: it's not used at all.
+#: C/f-spot.xml:264(None)
+msgid "@@image: 'figures/f-spot-red-eye.png'; md5=743d0a2ccc9b2fa8fa314855c225cd31"
+msgstr "@@image: 'figures/f-spot-red-eye.png'; md5=743d0a2ccc9b2fa8fa314855c225cd31"
+
+#. When image changes, this message will be marked fuzzy or untranslated for you.
+#. It doesn't matter what you translate it to: it's not used at all.
+#: C/f-spot.xml:291(None)
+msgid "@@image: 'figures/f-spot-soft-focus.png'; md5=14d1437ce49c83f3ebbcf70b7047ffbe"
+msgstr "@@image: 'figures/f-spot-soft-focus.png'; md5=14d1437ce49c83f3ebbcf70b7047ffbe"
+
+#. When image changes, this message will be marked fuzzy or untranslated for you.
+#. It doesn't matter what you translate it to: it's not used at all.
+#: C/f-spot.xml:567(None)
+msgid "@@image: 'figures/f-spot-fullscreen.png'; md5=86040e20ebf1015f6489a56e9589f063"
+msgstr "@@image: 'figures/f-spot-fullscreen.png'; md5=86040e20ebf1015f6489a56e9589f063"
+
+#. When image changes, this message will be marked fuzzy or untranslated for you.
+#. It doesn't matter what you translate it to: it's not used at all.
+#: C/f-spot.xml:580(None)
+msgid "@@image: 'figures/f-spot-slideshow.png'; md5=84a69bc3bb7a1b8d04c967d3a66e6f23"
+msgstr "@@image: 'figures/f-spot-slideshow.png'; md5=84a69bc3bb7a1b8d04c967d3a66e6f23"
+
+#: C/f-spot.xml:5(title)
+msgid "The F-Spot Manual"
+msgstr "Руководство по F-Spot"
+
+#: C/f-spot.xml:7(para)
+#: C/f-spot.xml:9(subtitle)
+msgid "This is the user manual for F-Spot, a GNOME personal photo manager."
+msgstr "Руководство пользователя по F-Spot — программе управления фотографиями."
+
+#: C/f-spot.xml:11(year)
+msgid "2007"
+msgstr "2007"
+
+#: C/f-spot.xml:12(holder)
+msgid "Aaron Bockover, Gabriel Burt, Miguel de Icaza, Bengt Thuree"
+msgstr "Aaron Bockover, Gabriel Burt, Miguel de Icaza, Bengt Thuree"
+
+#: C/f-spot.xml:15(publishername)
+msgid "GNOME Documentation Project"
+msgstr "Проект документирования GNOME"
+
+#: C/f-spot.xml:19(firstname)
+msgid "Miguel"
+msgstr "Miguel"
+
+#: C/f-spot.xml:20(surname)
+msgid "de Icaza"
+msgstr "de Icaza"
+
+#: C/f-spot.xml:23(firstname)
+msgid "Aaron"
+msgstr "Aaron"
+
+#: C/f-spot.xml:24(surname)
+msgid "Bockover"
+msgstr "Bockover"
+
+#: C/f-spot.xml:27(firstname)
+msgid "Bengt"
+msgstr "Bengt"
+
+#: C/f-spot.xml:28(surname)
+msgid "Thuree"
+msgstr "Thuree"
+
+#: C/f-spot.xml:31(firstname)
+msgid "Gabriel"
+msgstr "Gabriel"
+
+#: C/f-spot.xml:32(surname)
+msgid "Burt"
+msgstr "Burt"
+
+#: C/f-spot.xml:35(firstname)
+msgid "Alexandre"
+msgstr "Александр"
+
+#: C/f-spot.xml:36(surname)
+msgid "Prokoudine"
+msgstr "Прокудин"
+
+#: C/f-spot.xml:39(firstname)
+msgid "Stephane"
+msgstr "Stephane"
+
+#: C/f-spot.xml:40(surname)
+msgid "Delcroix"
+msgstr "Delcroix"
+
+#: C/f-spot.xml:46(revnumber)
+msgid "0.3"
+msgstr "0.3"
+
+#: C/f-spot.xml:47(date)
+msgid "2007-07-26"
+msgstr "2007-07-26"
+
+#: C/f-spot.xml:53(title)
+msgid "Organizing your photos"
+msgstr "Управление фотографиями"
+
+#: C/f-spot.xml:56(title)
+msgid "Import"
+msgstr "Импорт фотографий"
+
+#: C/f-spot.xml:58(para)
+msgid "You can import photos from your hard drive or your camera. When you import your photos into F-Spot from your camera, it will always make a copy of them, leaving you free to clear your camera's memory. By default, F-Spot will make a copy of photos imported from your hard drive. Uncheck the <guilabel>Copy</guilabel> option on the import dialog or hold <keycap>Shift</keycap> when dragging photos into F-Spot if you do not wish to copy them from your hard drive."
+msgstr "Фотографии импортируются с жёсткого диска или фотокамеры. При импорте фотографий с фотокамеры всегда создаётся их копия, что позволяет очистить память фотокамеры. По умолчанию F-Spot создаёт копии фотографий, импортируемых с жёсткого диска. Чтобы копии фотографий не создавались, снимите флажок с параметра <guilabel>Копировать</guilabel> в диалоговом окне импорта, или удерживайте клавишу <keycap>Shift</keycap>, когда перетаскиваете мышью фотографии в F-Spot."
+
+#: C/f-spot.xml:68(para)
+msgid "By default, F-Spot copies your photos to the <filename class=\"directory\">~/Photos</filename> folder. You can change the folder F-Spot uses in <guilabel>Preferences</guilabel> dialog (<menuchoice><guimenu>Edit</guimenu><guimenuitem>Preferences</guimenuitem></menuchoice>)."
+msgstr "По умолчанию F-Spot копирует фотографии в папку <filename class=\"directory\">~/Photos</filename>, которую можно сменить в диалоговом окне <guilabel>Параметры</guilabel> (<menuchoice><guimenu>Правка</guimenu><guimenuitem>Параметры</guimenuitem></menuchoice>)."
+
+#: C/f-spot.xml:76(para)
+msgid "If all the photos you are importing at one time are from a particular event, or have some other characteristic in common, you can create a tag for them so you can later find them with ease. To do this, follow the instructions from <xref linkend=\"tag\"/> to create a new tag, then when you are importing them, check the button for <guilabel>Attach Tag</guilabel> and choose the tag you created."
+msgstr "Если все импортируемые фотографии связаны с каким-либо событием или обладают другими общими свойствами, создайте для них специальную метку. С помощью меток можно с лёгкостью отыскать эти фотографии в будущем. В <xref linkend=\"tag\"/> даются инструкции по созданию новых меток."
+
+#: C/f-spot.xml:86(para)
+msgid "F-Spot uses a database stored at <filename>~/.gnome2/f-spot/photos.db</filename>. Note, to access it, use the sqlite3 command. You can also manually specify path to a database by running F-Spot with <option>-b</option> option."
+msgstr "F-Spot использует базу данных, хранящуюся в <filename>~/.gnome2/f-spot/photos.db</filename>. Для получения доступа к базе данных используется команда sqlite3. Путь к базе данных можно назначить вручную, запустив F-Spot с опцией <option>-b</option>."
+
+#: C/f-spot.xml:94(para)
+msgid "After an import, F-Spot will display the pictures of the latest import roll only. Read <xref linkend=\"enjoying-search\"/> to learn how to deal with import rolls."
+msgstr "После импорта фотографий F-Spot показывает изображения, добавленные только за последний сеанса импорта. Прочтите <xref linkend=\"enjoying-search\"/> о том, как работать с сеансами импорта."
+
+#: C/f-spot.xml:102(title)
+msgid "Edit"
+msgstr "Редактирование фотографий"
+
+#: C/f-spot.xml:104(para)
+msgid "If you double click or press enter on an image, you enter Edit mode, where you can remove red-eye, crop, and adjust brightness and colors."
+msgstr "Для перехода в режим редактирования изображений дважды щелкните левой клавишей мыши по изображению, либо нажмите клавишу <keycap>Enter</keycap>. В режиме редактирования можно удалить эффект красных глаз, скорректировать яркость и цвета."
+
+#: C/f-spot.xml:110(title)
+msgid "Versions"
+msgstr "Версии"
+
+#: C/f-spot.xml:112(para)
+msgid "When you edit your photos, a new copy (called a version) is created, so your original is never altered. After your first edit to a photo, subsequent edits will modify the same version. If you want to create mulitple versions of your photo, perhaps with different cropping or coloring, you can do so via the <menuchoice><guimenu>File</guimenu><guimenuitem>Create new version</guimenuitem></menuchoice> option."
+msgstr "Во время редактирования фотографии всегда создаётся её копия (версия), поэтому её исходная версия никогда не будет испорчена. После первого редактирования фотографии все последующие правки будут вносить изменения в ту же самую версию изображения. Создать несколько версий изображения, например, чтобы опробовать различные варианты кадрирования или корректировки цветов, можно с помощью меню <menuchoice><guimenu>Файл</guimenu><guimenuitem>Создать новую версию</guimenuitem></menuchoice>."
+
+#: C/f-spot.xml:123(title)
+msgid "Crop"
+msgstr "Кадрирование"
+
+#: C/f-spot.xml:125(para)
+msgid "Cropping an image is a great way to improve the quality of a photograph by improving how it is framed. You crop a photo by selecting the part of the photo you want to keep. If you want your photo to be the exact dimensions necessary for a certain print size, you can constrain the kind of selection F-Spot will allow you to draw by choosing the appropriate size from the constraint drop down. See the <xref linkend=\"edit-remove-red-eye\"/> below for details on making a selection on your photo."
+msgstr "Кадрирование изображений — хороший способ улучшить фотографию. Кадрирование выполняется выделением той области изображения, которую хотят оставить, вся остальная область изображения за пределами выделения будет удалена. Чтобы фотография имела точные пропорции, необходимые для различных видов печати, выберите тип выделения из выпадающего списка. В <xref linkend=\"edit-remove-red-eye\"/> подробно рассказывается о том, как осуществляется выделение областей изображения."
+
+#: C/f-spot.xml:135(title)
+msgid "Crop tool"
+msgstr "Инструмент кадрирования"
+
+#: C/f-spot.xml:142(para)
+#: C/f-spot.xml:343(para)
+msgid "Once you have made your crop selection, you must click the crop button beneath the image to finalize the crop. If you are working with the original photo, cropping creates a new version your photo."
+msgstr "Чтобы выполнить кадрирование, выделите область изображения и нажмите кнопку кадрирования, находящуюся под изображением. Если операция кадрирования выполнятся над исходной версией изображения, её применение приведёт к созданию новой версии изображения."
+
+#: C/f-spot.xml:150(title)
+msgid "Straighten"
+msgstr "Выравнивание"
+
+#: C/f-spot.xml:152(para)
+msgid "Straighten effect is a tool to level a photo, quite helpful for landscapes taken without a tripod, when (imaginary) line of horizon is not at 0°. This tool rotates an image by a specified angle and automagically crops the resulted image, so that you always see a perfect rectangle."
+msgstr "Инструмент выравнивания оказывается весьма полезным для фотографий, сделанных камерой без штатива, на которых мнимая линия горизонта оказывается приподнятой над строгой горизонталью на угол, отличный от 0 °. Инструмент выравнивания поворачивает изображение на заданный угол и автоматически кадрирует полученное изображение, придавая ему прямоугольную форму."
+
+#: C/f-spot.xml:159(title)
+msgid "Straighten tool"
+msgstr "Инструмент выравнивания"
+
+#: C/f-spot.xml:169(title)
+msgid "Adjust Colors"
+msgstr "Корректировка цвета"
+
+#: C/f-spot.xml:171(para)
+msgid "To adjust the brightness, contrast, and colors of a photo, first click the <guibutton>Adjust the photo colors</guibutton> icon to open the adjustment dialog. Change then some settings and save them with <guibutton>OK</guibutton>."
+msgstr "Чтобы скорректировать яркость, контраст или цвета фотоснимка, нажмите на значок <guibutton>Скорректировать цвета снимка</guibutton>. В появившемся окне скорректируйте необходимые параметры и сохраните их, нажав кнопку <guibutton>OK</guibutton>."
+
+#: C/f-spot.xml:178(title)
+msgid "Adjust Colors tool"
+msgstr "Инструмент корректировки цвета"
+
+#: C/f-spot.xml:188(title)
+#: C/f-spot.xml:196(title)
+msgid "AutoColor"
+msgstr "Автокоррекция цвета"
+
+#: C/f-spot.xml:190(para)
+msgid "This effect automatically adjusts color levels to make a pretty balanced picture color-wise. It serves best for pictures taken with automatical white balance, when camera didn't manage to do the job well."
+msgstr "Этот инструмент автоматически настраивает цветовые уровни изображения для получения сбалансированного по цвету изображения. Эффективен для фотографий, снятых фотокамерой, которая не выполняет достаточно хорошо автоматический баланс белого цвета."
+
+#: C/f-spot.xml:206(title)
+msgid "Desaturate"
+msgstr "Обесцвечивание"
+
+#: C/f-spot.xml:208(para)
+msgid "To make a colorful photo a black and white one, open a photo of choice and press <guibutton>Desaturate</guibutton> button."
+msgstr "Чтобы из цветного снимка получить чёрно-белый, выберите фотоснимок и нажмите кнопку <guibutton>Сделать снимок чёрно-белым</guibutton>."
+
+#: C/f-spot.xml:213(title)
+#: C/f-spot.xml:230(title)
+msgid "Desaturation tool"
+msgstr "Инструмент обесцвечивания"
+
+#: C/f-spot.xml:223(title)
+msgid "Sepia"
+msgstr "Эффект сепии"
+
+#: C/f-spot.xml:225(para)
+msgid "To make a colorful photo look like an old-style picture in sepia tones, open a photo of choice and press <guibutton>Sepia</guibutton> button."
+msgstr "Чтобы из цветного снимка создать снимок с эффектом сепии, выберите фотоснимок и нажмите кнопку <guibutton>Применить к снимку эффект сепии</guibutton>."
+
+#: C/f-spot.xml:240(title)
+msgid "Remove Red-Eye"
+msgstr "Удаление эффекта красных глаз"
+
+#: C/f-spot.xml:242(para)
+msgid "To remove redeye from a photo, you need to select a zone containing the eyes. You may want to zoom in on the image to accurately select the eyes in the photo. You should be able to correct both eyes on the same person in one shot, or even the eyes from multiple people at once. If this doesn't work for you, or the selected zone contains some vivid red parts (lips, ...) you'll probably have to correct one red eye at a time."
+msgstr "Чтобы удалить эффект красных глаз с фотографии, выделите область снимка, на которой изображены глаза. Для получения более точного выделения изображение можно приблизить. Попробуйте скорректировать оба глаза одного и того же человека за одну правку, или глаза всех людей на снимке. Если это не сработало, или, если выделенные области содержат несколько ярко-красных фрагментов (губы и т. д.), придётся удалять эффект красных глаз для каждого глаза в отдельности."
+
+#: C/f-spot.xml:250(para)
+msgid "To make your selection, click one corner of the rectangle that will be your selection, and drag your mouse to the diagonal corner and release it. You can resize your selection by dragging its edges, and you can move it by clicking in the middle of it and dragging it to where you want it."
+msgstr "Чтобы создать выделение, зажмите левую кнопку мыши и, не отпуская кнопку, переместите указатель мыши в диагональном направлении. Отпустите кнопку, чтобы закончить выделение. Перемещая края выделения, можно изменять размер выделения. Чтобы переместить выделение, зажмите левую кнопку мыши, когда её курсор будет находиться над центром выделенной области, и переместите курсор, не отпуская кнопку мыши, в место, куда надо переместить выделение."
+
+#: C/f-spot.xml:256(para)
+msgid "Once you have selected a zone, you can remove the red from it by clicking the red-eye button beneath the photo."
+msgstr "После того, как область выделена, нажмите кнопку удаления красных глаз, находящуюся под изображением."
+
+#: C/f-spot.xml:261(title)
+msgid "Red-Eye tool"
+msgstr "Инструмент удаления эффекта красных глаз"
+
+#: C/f-spot.xml:269(para)
+msgid "You can change the threshold for redeyes detection by changing the gconf key <filename class=\"directory\">/apps/f-spot/edit/redeye_threshold</filename>."
+msgstr "Порог обнаружения красных глаз можно изменить с помощью ключа gconf <filename class=\"directory\">/apps/f-spot/edit/redeye_threshold</filename>."
+
+#: C/f-spot.xml:278(title)
+msgid "Soft Focus"
+msgstr "Мягкий фокус"
+
+#: C/f-spot.xml:280(para)
+msgid "In photography sharpening one region of a picture, while blurring all the rest, is a way to make an emphasis and grab attention. It is achieved by using a lens that allows shooting with a short distance in front of and beyond the subject that appears to be in focus. Soft focus effect is a way to emulate such a lens."
+msgstr "Чтобы акцентировать внимание на определённой части фотографии, можно размыть фотографию таким образом, что в области, на которой желательно сделать акцент, резкость сохраняется прежней, а остальная часть фотографии размывается. Этого можно достичь, используя объектив, который позволяет снимать с близкого расстояния объекты, находящиеся в фокусе. Эффект мягкого фокуса позволяет эмитировать такие объективы."
+
+#: C/f-spot.xml:288(title)
+msgid "Soft Focus tool"
+msgstr "Инструмент мягкого фокуса"
+
+#: C/f-spot.xml:295(para)
+msgid "Click to choose central point of the area you want to be in focus and adjust amount of blurring, then click <guibutton>OK</guibutton>."
+msgstr "Нажмите левую кнопку мыши в центре области, которая должна находиться в фокусе, скорректируйте величину размывания и нажмите <guibutton>OK</guibutton>."
+
+#: C/f-spot.xml:302(title)
+msgid "Sharpen"
+msgstr "Резкость"
+
+#: C/f-spot.xml:304(para)
+msgid "Out-of-focus photographs and most digitized images often need a sharpness correction. The Unsharp Mask effect sharpens edges of the elements without increasing noise or blemish. To sharpen a photo choose <menuchoice><guimenu>Edit</guimenu><guimenuitem>Sharpen...</guimenuitem></menuchoice> and specify the following values:"
+msgstr "Плохо сфокусированные снимки и большинство оцифрованных изображений часто нуждаются в коррекции резкости. Нерезкая маска обостряет края элементов без увеличения шума. Чтобы увеличить резкость, выберите меню <menuchoice><guimenu>Правка</guimenu><guimenuitem>Увеличить резкость...</guimenuitem> </menuchoice> и задайте следующие значения:"
+
+#: C/f-spot.xml:315(para)
+msgid "<parameter class=\"option\">Amount</parameter> — strength of sharpening."
+msgstr "<parameter class=\"option\">Величина</parameter> — сила резкости;"
+
+#: C/f-spot.xml:320(para)
+msgid "<parameter class=\"option\">Radius</parameter> — how many pixels on either side of an edge will be affected by sharpening. High resolution images allow higher radius."
+msgstr "<parameter class=\"option\">Радиус</parameter> — сколько пикселов по обе стороны от края будет зависеть от резкости. Изображения с высоким разрешением позволяют применять радиус большего размера;"
+
+#: C/f-spot.xml:327(para)
+msgid "<parameter class=\"option\">Threshold</parameter> — the minimum difference in pixel values that indicates an edge where sharpen must be applied. This helps avoiding creation of blemishes in face, sky or water surface."
+msgstr "<parameter class=\"option\">Порог</parameter> — минимальная разница в пикселах, которая указывает края, где надо применять увеличение резкости. Это помогает избежать возникновения пятен на лицах, небе или водной поверхности."
+
+#: C/f-spot.xml:337(title)
+msgid "Describe"
+msgstr "Комментарий"
+
+#: C/f-spot.xml:339(para)
+msgid "You can also enter a description of the image by clicking on the text entry box below the image and typing."
+msgstr "Чтобы ввести комментарий к изображению, нажмите левую кнопку мыши на строке ввода комментария."
+
+#: C/f-spot.xml:351(title)
+msgid "Adjust Time"
+msgstr "Корректировка времени"
+
+#: C/f-spot.xml:353(para)
+msgid "In both 'browse' or 'edit' modes, you can adjust the time of one or multiple pictures (<menuchoice><guimenu>Edit</guimenu><guimenuitem>Adjust Time</guimenuitem></menuchoice>). Adjusting the time of multiple pictures at once helps you shift all an import roll if, e.g. the time on your camera is badly set or if you forgot to change it according to DST."
+msgstr "В обоих режимах (просмотра и редактирования) можно скорректировать время для одной или сразу для нескольких фотографий: (<menuchoice><guimenu>Правка</guimenu><guimenuitem> Скорректировать время</guimenuitem> </menuchoice>). Корретировка времени одновременно для нескольких фотографий помогает перенести во времени сеанс импорта, если, например, время на фотокамере выставлено неправильно, или, если вы забыли изменить его в соответствии с летним временем."
+
+#: C/f-spot.xml:365(title)
+msgid "Tag"
+msgstr "Метки"
+
+#: C/f-spot.xml:366(para)
+msgid "F-Spot enables you to organize and enjoy your photos by associating them with various user-customizable tags. A tag is a merely a label. F-Spot comes with default tags to get you started; you are free to change them and add new ones. For example, if you want to create a tag for specific event, you can create a new tag named after that event under the Events tag."
+msgstr "F-Spot позволяет управлять фотоснимками с помощью различных меток, которые могут настраиваться пользователем. Первоначально в F-Spot есть несколько стандартных меток; их можно изменить или создать свои собственные метки. Например, если необходимо создать метку для определённого события, создайте новую метку, дайте ей название согласно произошедшему событию и разместите под меткой «События»."
+
+#: C/f-spot.xml:373(para)
+msgid "There are many ways to tag photos:"
+msgstr "Несколько способов назначения меток фотографиям:"
+
+#: C/f-spot.xml:378(para)
+msgid "drag and drop the photo(s) onto the tag"
+msgstr "перетащить мышью снимок(-ки) на метку;"
+
+#: C/f-spot.xml:383(para)
+msgid "drag and drop the tag onto the photo(s)"
+msgstr "перетащить мышью метку на снимок(-ки);"
+
+#: C/f-spot.xml:388(para)
+msgid "via the photo's right-click menu"
+msgstr "используя меню, которое появляется по нажатию правой кнопки мыши;"
+
+#: C/f-spot.xml:393(para)
+msgid "via the Tags and Edit menus"
+msgstr "используя меню <guimenu>Метки</guimenu> и <guimenu>Правка</guimenu>;"
+
+#: C/f-spot.xml:398(para)
+msgid "by typing them in (press <keycap>t</keycap> to pop up the tag entry bar, enter comma-separated tags) - with tab completion!"
+msgstr "ввести названия меток (нажмите <keycap>t</keycap> для появления всплывающей строки ввода меток; метки отделяются друг от друга запятыми) с возможностью автоматического дополнения их названий (с помощью клавиши <keycap>Tab</keycap>)."
+
+#: C/f-spot.xml:404(para)
+msgid "The first photo you associate with a tag will be used for that tag's icon. You can always edit a tag's name, parent tag, and icon by right clicking on it and choosing <guilabel>Edit tag</guilabel>."
+msgstr "Первая фотография, которой была назначена метка, будет использоваться в качестве значка метки. Имя метки, родительскую метку и значок метки можно изменить, если нажать на ней правую кнопку мыши и выбрать <guilabel>Изменить выбранную метку</guilabel>."
+
+#: C/f-spot.xml:409(para)
+msgid "You can change a tag's parent by dragging and dropping it where you like. Also, you can edit the name of a tag by selecting it and pressing <keycap>F2</keycap>. Lastly, if you have the tag tree widget focused (e.g. you just clicked on a tag), you can start typing the name of a tag, and all the expanded tags in the list will be searched and you'll jump to any matching ones."
+msgstr "Чтобы изменить родительскую метку, перетащите её с помощью мыши. Чтобы изменить имя выбранной метки можно, нажмите клавишу <keycap>F2</keycap>. Если дерево меток получает фокус ввода (например, если нажать левую кнопку мыши на какой-нибудь метке), можно выполнить поиск меток из списка по имени, набрав имя метки."
+
+#: C/f-spot.xml:418(para)
+msgid "You can also change size of tag icons in the sidebar or even make tag icons invisible by selecting preferred option from <menuchoice><guimenu>View</guimenu><guimenuitem>Tag Icons</guimenuitem></menuchoice> menu."
+msgstr "С помощью меню <menuchoice><guimenu>Вид</guimenu><guimenuitem>Значки меток</guimenuitem></menuchoice> можно изменять размер значков меток на боковой панели или даже делать их скрытыми."
+
+#: C/f-spot.xml:426(para)
+#, fuzzy
+msgid "F-Spot can write tags as metadata fields into JPEG files. Tags for various RAW files, PNG, TIFF, and others are written to F-Spot's database. You will have to re-tag these files if you re-import your collection."
+msgstr "F-Spot можете записывать метки как поля метаданных в файлы JPEG. Метки для различных файлов RAW, PNG, TIFF и других форматов записываются в базу данных F-Spot. Вы должны переопределить метки для этих файлов, в случае повторной операции импорта вашей коллекции."
+
+#: C/f-spot.xml:437(title)
+msgid "Enjoying your photos"
+msgstr "Просмотр фотографий"
+
+#: C/f-spot.xml:439(title)
+msgid "Browse"
+msgstr "Просмотр фотографий"
+
+#: C/f-spot.xml:440(para)
+msgid "You can use the slider widget to browse your photos by month or by directory. To change this setting, go to <menuchoice><guimenu>View</guimenu><guimenuitem>Arranged By</guimenuitem></menuchoice>."
+msgstr "Используя ползунок, можно просматривать фотографии по месяцам или каталогам. Этот параметр изменяется через меню <menuchoice><guimenu>Вид</guimenu><guimenuitem>Отсортировать по</guimenuitem></menuchoice>."
+
+#: C/f-spot.xml:448(title)
+msgid "Search"
+msgstr "Поиск фотографий"
+
+#: C/f-spot.xml:450(para)
+msgid "F-Spot uses search search filters to help you better define search criteria."
+msgstr "F-Spot использует поисковые фильтры, помогающие определить критерии поиска."
+
+#: C/f-spot.xml:455(title)
+msgid "Tags"
+msgstr "Метки"
+
+#: C/f-spot.xml:457(para)
+msgid "You can start a search by double clicking or activating a tag from the tag list. Alternatively, you can show the find bar with <menuchoice><guimenu>Find</guimenu><guimenuitem>Show Find Bar</guimenuitem></menuchoice>. With the find bar shown, you can drag tags from the tag view to the find bar."
+msgstr "Чтобы начать поиск, дважды нажмите левую кнопку мыши на метке или активируйте метку из списка меток, или откройте панель поиска (<menuchoice><guimenu>Поиск</guimenu><guimenuitem>Показать панель поиска</guimenuitem></menuchoice>) и перетащите на неё метки с помощью мыши."
+
+#: C/f-spot.xml:463(para)
+msgid "To find photos that are tagged with both of two tags, activate the first in the tag view or drag it onto the find bar, then drag the second tag and drop it on top of the first. You can also right click on the second tag in the tag view, or use the <guimenu>Find</guimenu> menu, and choose <guimenuitem>Find With...</guimenuitem> and select the first tag (or group of tags)."
+msgstr "Чтобы найти фотографии, помеченные двумя метками, активируйте первую метку в списке меток слева или перетащите её мышью на панель поиска, затем перетащите вторую метку (отпустите левую кнопку мыши, когда вторая метка будет находиться над первой меткой). Или нажмите правую кнопку мыши на второй метке (это также можно сделать через меню <menuchoice><guimenu>Поиск</guimenu><guimenuitem>Найти выбранную метку с</guimenuitem></menuchoice>) и выберите первую метку (или группу меток). "
+
+#: C/f-spot.xml:470(para)
+msgid "You can drag a tag icon around on the find bar to change from finding it and another tag to finding it or another tag."
+msgstr "Чтобы найти фотографию, помеченную определённой меткой, перетащите мышью значок метки на панель поиска."
+
+#: C/f-spot.xml:474(para)
+msgid "You can search for photos that do not have a particular tag by double-clicking on a tag in the find bar. Alternatively, you can right-click a tag in the find bar and select <guimenuitem>Exclude</guimenuitem>."
+msgstr "Чтобы найти фотографии, которые не имеют определённой метки, дважды нажмите левую кнопку мыши на этой метке на панели поиска, или нажмите правую кнопку мыши на этой метке на панели поиска и выберите <guimenuitem>Исключая снимки с пометкой...</guimenuitem>."
+
+#: C/f-spot.xml:479(para)
+msgid "To remove a tag from the search, drag it away from the find bar, or right click and select <guimenuitem>Remove</guimenuitem>."
+msgstr "Чтобы удалить метку из поиска, вытащите её мышью с панели поиска, или нажмите правую кнопку мыши и выберите <guimenuitem>Удалить</guimenuitem>."
+
+#: C/f-spot.xml:483(para)
+msgid "By default, photos tagged <emphasis>Hidden</emphasis> will not be shown. You must explicitly include the <emphasis>Hidden</emphasis> tag in your search to show such photos."
+msgstr "По умолчанию фотографии с пометкой <emphasis>Скрытые</emphasis> не отображаются. Чтобы эти фотографии отображались, включите в поиск метку <emphasis>Скрытые</emphasis>."
+
+#: C/f-spot.xml:491(title)
+msgid "Import Rolls"
+msgstr "Сеансы импорта"
+
+#: C/f-spot.xml:492(para)
+msgid "F-Spot remembers what pictures were imported every now and then. Use <menuchoice><guimenu>Find</guimenu><guisubmenu>Import Roll</guisubmenu><guimenuitem>Last import roll</guimenuitem></menuchoice> to limit search to last importing session or use <menuchoice><guimenu>Find</guimenu><guisubmenu>Import Roll</guisubmenu><guimenuitem>Select Import Rolls...</guimenuitem></menuchoice> to make a finer selection of imported photos:"
+msgstr "F-Spot запоминает, когда и какие фотографии были импортированы. Чтобы выбрать фотографии, импортированные за последний сеанс, используйте меню <menuchoice><guimenu>Поиск</guimenu><guisubmenu>По сеансу испорта</guisubmenu><guimenuitem>Последний сеанс импорта...</guimenuitem></menuchoice>. Чтобы выполнить более точный поиск, используйте <menuchoice><guimenu>Поиск</guimenu><guisubmenu>По сеансу импорта</guisubmenu><guimenuitem>Выбрать сеансы импорта...</guimenuitem></menuchoice>:"
+
+#: C/f-spot.xml:502(para)
+msgid "<parameter class=\"option\">At</parameter> — to select photos from a particular importing session"
+msgstr "<parameter class=\"option\">Во время</parameter> — выбрать фотографии с определённого сеанса импорта;"
+
+#: C/f-spot.xml:507(para)
+msgid "<parameter class=\"option\">After</parameter> — to select all photos imported begining with a particular importing sessio"
+msgstr "<parameter class=\"option\">После</parameter> — выбрать все фотографии, импортированные, начиная с определённого сеанса импорта;"
+
+#: C/f-spot.xml:512(para)
+msgid "<parameter class=\"option\">Between</parameter> — to select all photos imported between two particular importing sessions"
+msgstr "<parameter class=\"option\">Между</parameter> — выбрать все фотографии, импортированные между двумя определёнными сеансами импорта."
+
+#: C/f-spot.xml:517(para)
+msgid "Every time you change settings of the filter, amount of selected photos will appear in the bottom part of the dialog."
+msgstr "Каждый раз, изменяя параметры фильтра, выбранные фотографии появляются в нижней части диалогового окна."
+
+#: C/f-spot.xml:521(para)
+msgid "When you apply Import Roll filter, in the Find bar you will see <guilabel>Find: Import Roll</guilabel>. Now you can add some other filter to finetune your selection."
+msgstr "Если использовать фильтр по сеансам импорта, на панели поиска появиться надпись <guilabel>Найти: Сеанс импорта</guilabel>. Чтобы уточнить поиск, можно добавить несколько дополнительных фильтров."
+
+#: C/f-spot.xml:526(para)
+msgid "If you don't need the Import Roll filter anymore, choose <menuchoice><guimenu>Find</guimenu><guisubmenu>Import Roll</guisubmenu><guimenuitem>Clear roll filter</guimenuitem></menuchoice> to remove Import Roll from search criteria. You can also click the close button (<guibutton>X</guibutton>) of the search bar to discard all the current search options."
+msgstr "Если фильтр по сеансам импорта больше не нужен его можно удалить: выберите <menuchoice><guimenu>Поиск</guimenu><guisubmenu>По сеансу импорта</guisubmenu><guimenuitem>Убрать фильтр сеансов импорта</guimenuitem></menuchoice>. Или нажмите кнопку \"Закрыть\" (<guibutton>X</guibutton>) на панели поиска, чтобы отменить все текущие параметры поиска."
+
+#: C/f-spot.xml:535(para)
+msgid "The number of displayed rolls in the dialog is defined by the gconf key <filename class=\"directory\">/apps/f-spot/import/gui_roll_history</filename>. Default value is 10."
+msgstr "Количество отображаемых сеансов в диалоговом окне определяется ключом gconf <filename class=\"directory\">/apps/f-spot/import/gui_roll_history</filename>. Значение по умолчанию — 10."
+
+#: C/f-spot.xml:544(title)
+msgid "Type-to-find"
+msgstr "Строка поиска"
+
+#: C/f-spot.xml:545(para)
+msgid "There is also a type-to-find entry. Press <keycap>/</keycap> to open it. It cannot be used at the same time as the find bar. You can type queries such as \"TagA and (TagB or (TagC and TagD))\". At any point, if F-Spot recognizes what you've typed as a valid query, it will update your search. The <emphasis>not</emphasis> operator is not yet supported."
+msgstr "Чтобы открыть строку поиска меток, нажмите клавишу <keycap>/</keycap>. Строка поиска не может использоваться одновременно с панелью поиска. В строке поиска вводятся запросы наподобие \"меткаA and (меткаB or (меткаC and меткаD))\". Если F-Spot признаёт введённый запрос корректным, список найденных фотографий сразу же обновляется. Оператор <emphasis>not</emphasis> на данный момент не поддерживается."
+
+#: C/f-spot.xml:556(title)
+msgid "Fullscreen Mode and Slideshows"
+msgstr "Полноэкранный режим и слайдшоу"
+
+#: C/f-spot.xml:557(para)
+msgid "For fewer distractions and larger display, you can view your photos in full screen mode. You control when to show the next photo or to return to the previous. Enter fullscreen mode by pressing <keycap>F11</keycap> at any time or by pressing the button in the toolbar."
+msgstr "Чтобы не отвлекаться от просмотра фотографий, можно использовать полноэкранный режим. В этом режиме можно управлять просмотром: перейти к следующей фотографии или вернуться к предыдущей. Чтобы включить полноэкранный режим, нажмите клавишу <keycap>F11</keycap> или нажмите кнопку на панели инструментов."
+
+#: C/f-spot.xml:564(title)
+msgid "FullScreen"
+msgstr "Во весь экран"
+
+#: C/f-spot.xml:571(para)
+msgid "In slideshow mode, you can sit back and view your photos as they are presented to you. You can start a slideshow by pressing the button on the toolbar."
+msgstr "Можно расслабиться и просмотреть фотографии в режиме слайдшоу. Чтобы запустить слайдшоу, нажмите кнопку на панели инструментов."
+
+#: C/f-spot.xml:577(title)
+msgid "SlideShow"
+msgstr "Слайдшоу"
+
+#: C/f-spot.xml:588(title)
+msgid "Sharing your photos"
+msgstr "Поделитесь своими фотографиями"
+
+#: C/f-spot.xml:591(para)
+msgid "There are many ways to share your photos using F-Spot. All of the following methods will only share the photos you have selected when you run them."
+msgstr "Существует несколько способов, чтобы поделиться с другими вашими фотографиями. Действие всех описанных ниже методов распространяется только на выделенные фотографии."
+
+#: C/f-spot.xml:598(title)
+msgid "E-mail"
+msgstr "Электронная почта"
+
+#: C/f-spot.xml:599(para)
+msgid "E-mail your photos directly from F-Spot with the <menuchoice><guimenu>File</guimenu><guimenuitem>Send Mail</guimenuitem></menuchoice> menu."
+msgstr "Чтобы отправить фотографии из F-Spot по электронной почте, используйте меню <menuchoice><guimenu>Файл </guimenu><guimenuitem>Послать почтой</guimenuitem></menuchoice>."
+
+#: C/f-spot.xml:605(title)
+msgid "Note 1"
+msgstr "Замечание 1"
+
+#: C/f-spot.xml:606(para)
+msgid "The email program used for this is defined at the GNOME level. You can change the default e-mailer for your user using the <application>Preferred Applications</application> tool in <menuchoice><guimenu>System</guimenu><guisubmenu>Preferences</guisubmenu></menuchoice>."
+msgstr "Программа для работы с электронной почтой определяется на уровне приложений, используемых по умолчанию в GNOME. Клиент для работы с электронной почтой по умолчанию можно изменить, используя утилиту <application>Предпочтительные приложения</application> в меню <menuchoice><guimenu>Система</guimenu><guisubmenu>Параметры</guisubmenu></menuchoice>."
+
+#: C/f-spot.xml:615(title)
+msgid "Note 2"
+msgstr "Замечание 2"
+
+#: C/f-spot.xml:616(para)
+msgid "If some of the photos you'd like to send by email are in a format that F-Spot can't write (e.g. RAW images), the size selection dialog will become insensitive and the originals will be sent."
+msgstr "Если некоторые из фотографий, которые вы хотите отправить по электронной почте, имеют формат, который F-Spot не умеет записывать (например, изображения RAW), диалог выбора размера станет нечувствительным и будут отправлены оригиналы."
+
+#: C/f-spot.xml:623(para)
+#, fuzzy
+msgid "If you're sending resized pictures, F-Spot will keep the modified versions somewhere in the <filename class=\"directory\">/tmp</filename> directory for 30 seconds. It's not an issue with evolution, which makes it's own local copy of the attachments, but could be a bit shorter if you're using Thunderbird. You can change the delay by editing the gconf key <filename class=\"directory\">/apps/f-spot/export/email/delete_timeout_seconds</filename>."
+msgstr "Если вы отправляете изображения с изменёнными размерами, F-Spot сохранит изменённые версии где-нибудь в каталоге <filename class=\"directory\">/tmp</filename> на 30 секунд. It's not an issue with evolution, which makes it's own local copy of the attachments, but could be a bit shorter if you're using Thunderbird. Вы можете управлять задержкой, изменяя значение ключа gconf <filename class=\"directory\">/apps/f-spot/export/email/delete_timeout_seconds</filename>."
+
+#: C/f-spot.xml:635(title)
+msgid "Print"
+msgstr "Печать"
+
+#: C/f-spot.xml:636(para)
+msgid "Print your photos with the <menuchoice><guimenu>File</guimenu><guimenuitem>Print</guimenuitem></menuchoice> menu."
+msgstr "Чтобы напечатать фотографии, используйте меню <menuchoice><guimenu>Файл</guimenu><guimenuitem>Печать</guimenuitem></menuchoice>."
+
+#: C/f-spot.xml:643(title)
+msgid "Burn to CD"
+msgstr "Запись на компакт-диск"
+
+#: C/f-spot.xml:644(para)
+msgid "Burn your photos to CD or DVD with the <menuchoice><guimenu>File</guimenu><guisubmenu>Export</guisubmenu><guimenuitem>Export to CD</guimenuitem></menuchoice> menu."
+msgstr "Чтобы записать фотографии на CD или DVD, используйте меню <menuchoice><guimenu>Файл</guimenu><guisubmenu>Экспортировать</guisubmenu><guimenuitem>Компакт-диск...</guimenuitem></menuchoice>."
+
+#: C/f-spot.xml:652(title)
+msgid "Generate a Website Gallery or Folder"
+msgstr "Создание веб-галереи или папки"
+
+#: C/f-spot.xml:653(para)
+msgid "The <menuchoice><guimenu>File</guimenu><guimenuitem>Export</guimenuitem><guimenuitem>Export to Folder</guimenuitem></menuchoice> feature gives you three ways to export your images."
+msgstr "Функция <menuchoice><guimenu>Файл</guimenu><guimenuitem>Экспортировать</guimenuitem><guimenuitem>Папка...</guimenuitem></menuchoice> предоставляет три различных способа экспорта изображений."
+
+#: C/f-spot.xml:661(para)
+msgid "<guilabel>Use Original</guilabel> exports your photos ready for use with Jakub Steiner's free <ulink url=\"http://jimmac.musichall.cz/original.php\"> Original Photo Gallery</ulink> software. If you are unsure about this option, it is probably not the right one for you."
+msgstr "<guilabel>Создать галерею при помощи \"Original\"</guilabel> экспортирует фотографии уже готовыми для использования с помощью свободной программы Якуба Штайнера (Jakub Steiner) <ulink url=\"http://jimmac.musichall.cz/original.php\"> Original Photo Gallery</ulink>. Для тех, кто не знает, что это такое, данный параметр вряд ли является подходящим."
+
+#: C/f-spot.xml:669(para)
+msgid "<guilabel>Use static HTML files</guilabel> exports your photos to an interactive website, ready for you to upload."
+msgstr "<guilabel>Создать отдельную веб-галерею</guilabel> экспортирует фотографии в готовый для загрузки интерактивный веб-сайт."
+
+#: C/f-spot.xml:675(para)
+msgid "<guilabel>Plain Files</guilabel> exports your images as files within directories, without putting them into a gallery."
+msgstr "<guilabel>Сохранить только файлы</guilabel> экспортирует изображения как файлы в каталогах, не включая их в галерею."
+
+#: C/f-spot.xml:684(title)
+msgid "Post to your online galleries"
+msgstr "Экспорт в сетевые галереи"
+
+#: C/f-spot.xml:685(para)
+msgid "If you use Flickr, SmugMug, 23hq or Picasa Web Album, you can post your files directly from F-Spot with the <menuchoice><guimenu>File</guimenu><guisubmenu>Export</guisubmenu></menuchoice> menu, choosing corresponding submenu item."
+msgstr "Для пользователей SmugMug, 23hq или Picasa Web Album, есть возможность публиковать снимки непосредственно из F-Spot с помощью меню <menuchoice><guimenu>Файл</guimenu><guisubmenu>Экспортировать</guisubmenu></menuchoice>."
+
+#: C/f-spot.xml:690(para)
+msgid "If you use the PHP software known as <ulink url=\"http://gallery.sourceforge.net/\"> Gallery</ulink>, you can post your photos to your existing album with the <menuchoice><guimenu>File</guimenu><guimenuitem>Export</guimenuitem><guimenuitem>Export to Web Gallery</guimenuitem></menuchoice> menu. You must first enable the Remote module within your Gallery installation."
+msgstr "Пользователи программного обеспечения, известного как <ulink url=\"http://gallery.sourceforge.net/\"> Gallery</ulink>, могут размещать свои фотографии в существующий альбом с помощью меню <menuchoice><guimenu>Файл</guimenu><guimenuitem>Экспортировать</guimenuitem><guimenuitem>Web Gallery...</guimenuitem></menuchoice>. В установке Gallery должен быть включён модуль удалённого управления."
+
+#: C/f-spot.xml:698(title)
+msgid "Note for Gallery 2.2 users"
+msgstr "Заметка для пользователей Gallery 2.2"
+
+#: C/f-spot.xml:699(para)
+msgid "The Remote plugin for Gallery should be 1.0.8 or newer."
+msgstr "Модуль удалённого управления должен иметь версию 1.0.8 или более новую."
+
+#: C/f-spot.xml:703(para)
+msgid "<ulink url=\"http://pennave.sourceforge.net\">PennAve</ulink> is a Python web-application that directly uses F-Spot's database to present a dynamic gallery of your photos and tags."
+msgstr "<ulink url=\"http://pennave.sourceforge.net\">PennAve</ulink> — веб-приложение, написанное на языке Python, которое непосредственно использует базу данных F-Spot для представления динамической галереи ваших фотографий и меток."
+
+#: C/f-spot.xml:708(para)
+msgid "<ulink url=\"http://www.conduit-project.org\">Conduit</ulink> is an application that can sync photos that have a particular tag with your Flickr or Picasa Web Album web storage."
+msgstr "<ulink url=\"http://www.conduit-project.org\">Conduit</ulink> — приложение, способное синхронизировать фотографии, имеющие определённые метки, с веб-хранилищами Flickr и Picasa Web Album."
+
+#: C/f-spot.xml:717(title)
+msgid "Extend functionality"
+msgstr "Расширение функциональности"
+
+#: C/f-spot.xml:720(title)
+msgid "What extensions are"
+msgstr "Что такое расширения"
+
+#: C/f-spot.xml:722(para)
+msgid "F-Spot extensions are means to add new functionality to the application. F-Spot supports two types of extension: exporters (which allow exporting photos to new web services or data storages) and tools (which allow new ways of color correction, duplicate photos finders etc.). Extensions are distributed in form of extension packages."
+msgstr "Расширения F-Spot добавляют приложению новые функциональные возможности. F-Spot поддерживает два вида расширений: программы экспорта (позволяют экспортировать фотографии в дополнительные веб-службы или хранилища данных) и инструменты (новые методы коррекции цвета, дубликат поисковиков фотографий и т. д.). Расширения распространяются в виде пакетов расширений."
+
+#: C/f-spot.xml:729(para)
+msgid "In the best traditions of not reinventing the wheel extensions can use other extensions, which means that one extension cannot work, if another extension is not installed. This concept of dependance actually means that"
+msgstr "Одни расширения могут использовать другие расширения, поэтому некоторые из них не могут работать, если другое расширение не установлено. Такая концепция зависимостей приводит к тому, что:"
+
+#: C/f-spot.xml:736(para)
+msgid "you cannot install an extension, if the extension it depends on, is not present in the system"
+msgstr "нельзя установить расширение, зависящее от расширения, не установленного в системе;"
+
+#: C/f-spot.xml:741(para)
+msgid "you cannot remove an extension on which some other extension depends"
+msgstr "нельзя удалить расширение, от которого зависят другие расширения."
+
+#: C/f-spot.xml:749(title)
+msgid "Managing extensions"
+msgstr "Управление расширениями"
+
+#: C/f-spot.xml:751(para)
+msgid "To manage extensions choose <menuchoice><guimenu>Edit</guimenu><guimenuitem>Manage Extensions</guimenuitem></menuchoice> menu item."
+msgstr "Для управления расширениями используется меню <menuchoice><guimenu>Правка</guimenu><guimenuitem>Настроить расширения</guimenuitem></menuchoice>"
+
+#: C/f-spot.xml:757(title)
+msgid "Managing extension repositories"
+msgstr "Управление репозиториями расширений"
+
+#: C/f-spot.xml:759(para)
+msgid "Simply put, repositories are extension storages. They can be either network or local. To add a new repository click Repositories button, choose type of the repository you are about to add and provide either URL or path. If the URL or path you specified doesn't contain a description (index) file for extensions, a warning message will pop up to tell you that."
+msgstr "Репозитории — хранилища расширений. Они могут быть сетевыми или локальными. Чтобы добавить новый репозиторий, нажмите кнопку <guibutton>Репозитории</guibutton>, выберите тип репозитория и укажите URL или путь. Если указанный URL или путь не содержат файл с описанием расширения, об этом появится предупреждающее сообщение."
+
+#: C/f-spot.xml:766(para)
+msgid "To remove a repository click <guibutton>Repositories</guibutton> button again, choose the repository you are about to delete and click <guibutton>Delete</guibutton> button."
+msgstr "Чтобы удалить репозиторий, нажмите кнопку <guibutton>Репозитории...</guibutton>, выберите репозитории для удаления и нажмите кнопку <guibutton>Удалить...</guibutton>."
+
+#: C/f-spot.xml:774(title)
+msgid "Installing and updating extensions"
+msgstr "Установка и обновление расширений"
+
+#: C/f-spot.xml:776(para)
+msgid "To install an extension click <guibutton>Install extensions...</guibutton> button. In the newly presented dialog"
+msgstr "Чтобы установить расширение, нажмите кнопку <guibutton>Установить расширения...</guibutton>. В появившемся диалоговом окне"
+
+#: C/f-spot.xml:782(para)
+msgid "Choose repository to install from all known repositories or just one of available repositories."
+msgstr "Выберите репозиторий для установки из всех известных репозиториев или один из доступных репозиториев. "
+
+#: C/f-spot.xml:788(para)
+msgid "Choose, what extension packages you want to see: All, Only new, Only updates."
+msgstr "Выберите пакеты расширений: все пакеты, только новые версии, только обновления."
+
+#: C/f-spot.xml:793(para)
+msgid "Click the <guibutton>Update</guibutton> button to update list of available extension packages by given criteria."
+msgstr "Нажмите кнопку <guibutton>Обновить</guibutton>, чтобы обновить список доступных пакетов согласно выбранному критерию."
+
+#: C/f-spot.xml:799(para)
+msgid "Choose extensions you want to install/update, click <guibutton>Information</guibutton> to see summary on selected package, if you want to."
+msgstr "Выберите расширения для установки или обновления. Чтобы просмотреть описание к пакету, нажмите кнопку <guibutton>Информация</guibutton>."
+
+#: C/f-spot.xml:805(para)
+msgid "Click <guibutton>Forward</guibutton> to proceed with installation."
+msgstr "Нажмите <guibutton>Вперёд</guibutton>, чтобы продолжить установку."
+
+#: C/f-spot.xml:813(title)
+msgid "Enabling and disabling extensions"
+msgstr "Включение и выключение расширений"
+
+#: C/f-spot.xml:815(para)
+msgid "You might want to temporarily enable or disable a particular extension package, for example, if the extension is not stable enough to handle a large amount of photos or if menus get crowded with extensions."
+msgstr "Возможно, возникнет необходимость временно включить или отключить определённый пакет расширений. Например, если расширение не является достаточно стабильным для того, чтобы им можно было без риска обработать большее количество фотографий, или, если меню переполнено расширениями. "
+
+#: C/f-spot.xml:820(para)
+msgid "In the <guilabel>Manage Extensions</guilabel> dialog select the extension package and click <guibutton>Enable</guibutton> or <guibutton>Disable</guibutton>. You will have to restart F-Spot to let changes apply."
+msgstr "В диалоговом окне <guilabel>Управление расширениями</guilabel> выберите пакет и нажмите кнопку <guibutton>Включить</guibutton> или <guibutton>Отключить</guibutton>. Чтобы изменения вступили в силу, необходимо перезапустить F-Spot."
+
+#: C/f-spot.xml:828(title)
+msgid "Removing extensions"
+msgstr "Удаление расширений"
+
+#: C/f-spot.xml:830(para)
+msgid "If you don't need an extension you can remove it from the system completely. In the <guilabel>Manage Extensions</guilabel> dialog select the extension package you want to remove and click <guibutton>Delete</guibutton>."
+msgstr "Если расширение лишнее, его можно полностью удалить из системы. В диалоговом окне <guilabel>Управление расширениями</guilabel> выберите пакет расширения для удаления и нажмите кнопку <guibutton>Удалить</guibutton>."
+
+#: C/f-spot.xml:838(title)
+msgid "Reading summary of extensions"
+msgstr "Описания к расширениям"
+
+#: C/f-spot.xml:840(para)
+msgid "Every extension package contains metadata that provides the following information about the extension:"
+msgstr "Каждый пакет расширения содержит метаданные, которые позволяют получить следующую информацию о расширении:"
+
+#: C/f-spot.xml:846(para)
+msgid "Description, which usually covers puprose of the extension"
+msgstr "описание, в котором обычно говорится, для чего предназначено расширение;"
+
+#: C/f-spot.xml:851(para)
+msgid "Version"
+msgstr "версия;"
+
+#: C/f-spot.xml:856(para)
+msgid "Author"
+msgstr "автор;"
+
+#: C/f-spot.xml:861(para)
+msgid "Dependencies"
+msgstr "зависимости."
+
+#: C/f-spot.xml:867(para)
+msgid "In the <guilabel>Manage Extensions</guilabel> dialog select the extension package you want to read summary of and click <guibutton>Information</guibutton>."
+msgstr "В диалоговом окне <guilabel>Управление расширениями</guilabel> выберите пакет, описание к которому вы хотите прочесть, и нажмите кнопку <guibutton>Информация</guibutton>"
+
+#: C/f-spot.xml:875(title)
+msgid "Developing extensions"
+msgstr "Разработка расширений"
+
+#: C/f-spot.xml:877(para)
+msgid "<ulink url=\"http://f-spot.org/Extend_F-Spot\">Extend F-Spot</ulink> document gives instructions on developing your own extensions for F-Spot."
+msgstr "Документ <ulink url=\"http://f-spot.org/Extend_F-Spot\">Extend F-Spot</ulink> даёт инструкции по разработке собственных расширений для F-Spot."
+
+#: C/f-spot.xml:885(title)
+msgid "Shortcuts"
+msgstr "Клавиатурные сокращения"
+
+#: C/f-spot.xml:888(title)
+msgid "Global Shortcuts"
+msgstr "Клавиатурные сокращения: глобальное действие"
+
+#: C/f-spot.xml:893(entry)
+#: C/f-spot.xml:977(entry)
+#: C/f-spot.xml:1073(entry)
+#: C/f-spot.xml:1125(entry)
+msgid "Key"
+msgstr "Клавиша"
+
+#: C/f-spot.xml:896(entry)
+#: C/f-spot.xml:980(entry)
+#: C/f-spot.xml:1076(entry)
+#: C/f-spot.xml:1128(entry)
+msgid "Action"
+msgstr "Действие"
+
+#: C/f-spot.xml:904(keycap)
+msgid "["
+msgstr "["
+
+#: C/f-spot.xml:906(entry)
+msgid "Rotate the selected photos to the left"
+msgstr "Повернуть выбранные снимки влево"
+
+#: C/f-spot.xml:912(keycap)
+msgid "]"
+msgstr "]"
+
+#: C/f-spot.xml:914(entry)
+msgid "Rotate the selected photos to the right"
+msgstr "Повернуть выбранные снимки вправо"
+
+#: C/f-spot.xml:920(keycap)
+msgid "t"
+msgstr "t"
+
+#: C/f-spot.xml:922(entry)
+msgid "View or edit tags for selected photos"
+msgstr "Показать или изменить метки для выделенных снимков"
+
+#: C/f-spot.xml:928(keycap)
+msgid "F11"
+msgstr "F11"
+
+#: C/f-spot.xml:930(entry)
+msgid "Full screen view"
+msgstr "Во весь экран"
+
+#: C/f-spot.xml:936(keycap)
+#: C/f-spot.xml:944(keycap)
+#: C/f-spot.xml:952(keycap)
+#: C/f-spot.xml:960(keycap)
+#: C/f-spot.xml:988(keycap)
+#: C/f-spot.xml:996(keycap)
+#: C/f-spot.xml:1014(keycap)
+#: C/f-spot.xml:1039(keycap)
+#: C/f-spot.xml:1092(keycap)
+msgid "Ctrl"
+msgstr "Ctrl"
+
+#: C/f-spot.xml:936(keycap)
+msgid "I"
+msgstr "I"
+
+#: C/f-spot.xml:938(entry)
+msgid "Displays information about the photo"
+msgstr "Показать информацию о снимке"
+
+#: C/f-spot.xml:944(keycap)
+msgid "Equals"
+msgstr "="
+
+#: C/f-spot.xml:946(entry)
+msgid "Zoom-in"
+msgstr "Приблизить"
+
+#: C/f-spot.xml:952(keycap)
+msgid "Minus"
+msgstr "-"
+
+#: C/f-spot.xml:954(entry)
+msgid "Zoom-out"
+msgstr "Отдалить"
+
+#: C/f-spot.xml:960(keycap)
+msgid "N"
+msgstr "N"
+
+#: C/f-spot.xml:962(entry)
+msgid "Import photos"
+msgstr "Импорт фотографий"
+
+#: C/f-spot.xml:972(title)
+msgid "Browse Mode Shortcuts"
+msgstr "Клавиатурные сокращения: режим браузера "
+
+#: C/f-spot.xml:988(keycap)
+#: C/f-spot.xml:997(keycap)
+msgid "A"
+msgstr "A"
+
+#: C/f-spot.xml:990(entry)
+msgid "Select all"
+msgstr "Выделить все"
+
+#: C/f-spot.xml:996(keycap)
+#: C/f-spot.xml:1030(keycap)
+#: C/f-spot.xml:1039(keycap)
+msgid "Shift"
+msgstr "Shift"
+
+#: C/f-spot.xml:999(entry)
+msgid "Unselect all"
+msgstr "Снять выделение"
+
+#: C/f-spot.xml:1005(keycap)
+msgid "k"
+msgstr "k"
+
+#: C/f-spot.xml:1006(keycap)
+msgid "j"
+msgstr "j"
+
+#: C/f-spot.xml:1006(keycap)
+msgid "h"
+msgstr "h"
+
+#: C/f-spot.xml:1006(keycap)
+msgid "l"
+msgstr "l"
+
+#: C/f-spot.xml:1004(entry)
+msgid "Arrow keys (up, down, left, right) or <placeholder-1/>, <placeholder-2/>, <placeholder-3/>, <placeholder-4/> keys"
+msgstr "Клавиши со стрелками (вверх, вниз, влево, вправо) или клавиши <placeholder-1/>, <placeholder-2/>, <placeholder-3/>, <placeholder-4/>"
+
+#: C/f-spot.xml:1008(entry)
+msgid "Move focus"
+msgstr "Переместить фокус"
+
+#: C/f-spot.xml:1013(entry)
+msgid "<placeholder-1/>-arrow key"
+msgstr "<placeholder-1/>-клавиша со стрелкой"
+
+#: C/f-spot.xml:1016(entry)
+msgid "Move the focus without changing the selection"
+msgstr "Переместить фокус без изменения выделения"
+
+#: C/f-spot.xml:1022(keycap)
+#: C/f-spot.xml:1144(keycap)
+msgid "Spacebar"
+msgstr "Пробел"
+
+#: C/f-spot.xml:1024(entry)
+msgid "Select or unselect the focused photo"
+msgstr "Выбрать или снять выделение с фотографии, находящейся в фокусе"
+
+#: C/f-spot.xml:1031(keycap)
+msgid "arrow key"
+msgstr "клавиша со стрелкой"
+
+#: C/f-spot.xml:1033(entry)
+msgid "Change the photo selection"
+msgstr "Изменить выделение"
+
+#: C/f-spot.xml:1040(keycap)
+msgid "left arrow or right arrow"
+msgstr "стрелка влево или вправо"
+
+#: C/f-spot.xml:1042(entry)
+msgid "Add/Remove all photos in the row, in the direction pressed, to the selection"
+msgstr "Добавить в выделение или снять выделение с фотографий в строке в выбранном направлении"
+
+#: C/f-spot.xml:1048(keycap)
+#: C/f-spot.xml:1184(keycap)
+#: C/f-spot.xml:1188(keycap)
+msgid "v"
+msgstr "v"
+
+#: C/f-spot.xml:1050(entry)
+msgid "Pops up a larger preview of the picture pointed by the mouse"
+msgstr "Всплывающее окно предварительного просмотра изображения, над которым находится указатель мыши"
+
+#: C/f-spot.xml:1056(keycap)
+msgid "V"
+msgstr "V"
+
+#: C/f-spot.xml:1058(entry)
+msgid "Pops up a larger preview and a color histogram of the picture pointed by the mouse"
+msgstr "Всплывающее окно предварительного просмотра и цветовая гистограмма изображения, над которым находится указатель мыши"
+
+#: C/f-spot.xml:1068(title)
+msgid "Tag Shortcuts"
+msgstr "Клавиатурные сокращения: метки"
+
+#: C/f-spot.xml:1084(keycap)
+msgid "F2"
+msgstr "F2"
+
+#: C/f-spot.xml:1086(entry)
+msgid "Rename selected tag"
+msgstr "Переименовать выделенную метку"
+
+#: C/f-spot.xml:1092(keycap)
+msgid "T"
+msgstr "T"
+
+#: C/f-spot.xml:1094(entry)
+msgid "Add tags to selected photos"
+msgstr "Назначить метки выделенным фотографиям"
+
+#: C/f-spot.xml:1099(entry)
+#: C/f-spot.xml:1107(entry)
+msgid "n/a"
+msgstr "нет"
+
+#: C/f-spot.xml:1102(entry)
+msgid "Drag and drop tags to move them"
+msgstr "Перетащить мышью метки для их перемещения"
+
+#: C/f-spot.xml:1110(entry)
+#, fuzzy
+msgid "Type a tag's name to jump to it (only works if tag is shown/expanded)"
+msgstr "Набрать имя метки, чтобы перейти к ней (only works if tag is shown/expanded)"
+
+#: C/f-spot.xml:1120(title)
+msgid "Edit Mode Shortcuts"
+msgstr "Клавиатурные сокращения: режим редактирования"
+
+#: C/f-spot.xml:1136(keycap)
+msgid "Page Up"
+msgstr "Page Up"
+
+#: C/f-spot.xml:1138(entry)
+msgid "Go to Previous Photo"
+msgstr "Перейти к предыдущей фотографии"
+
+#: C/f-spot.xml:1144(keycap)
+msgid "Page Down"
+msgstr "Page Down"
+
+#: C/f-spot.xml:1143(entry)
+msgid "<placeholder-1/>, <placeholder-2/>"
+msgstr "<placeholder-1/>, <placeholder-2/>"
+
+#: C/f-spot.xml:1146(entry)
+msgid "Go to Next Photo"
+msgstr "Перейти к следующей фотографии"
+
+#: C/f-spot.xml:1152(keycap)
+msgid "0"
+msgstr "0"
+
+#: C/f-spot.xml:1154(entry)
+msgid "Fit the image to the screen"
+msgstr "Подогнать изображение к размеру экрана"
+
+#: C/f-spot.xml:1160(keycap)
+msgid "1"
+msgstr "1"
+
+#: C/f-spot.xml:1162(entry)
+msgid "Zoom Factor to 1.0 (1 screen pixel per image pixel)"
+msgstr "Коэффициент увеличения 1.0 (1 пиксел экрана на пиксел изображения)"
+
+#: C/f-spot.xml:1168(keycap)
+msgid "2"
+msgstr "2"
+
+#: C/f-spot.xml:1170(entry)
+msgid "Zoom Factor to 2.0 (4 screen pixels per image pixel)"
+msgstr "Коэффициент увеличения 2.0 (4 пиксела экрана на пиксел изображения)"
+
+#: C/f-spot.xml:1176(keycap)
+msgid "Escape"
+msgstr "Escape"
+
+#: C/f-spot.xml:1178(entry)
+msgid "Returns to Browser mode"
+msgstr "Вернуться в режим просмотра"
+
+#: C/f-spot.xml:1186(entry)
+msgid "Examine photo with magnifying glass (Loupe). Doubleclick on the Loupe, or type <placeholder-1/> again to close it."
+msgstr "Рассмотреть фотографию через увеличительное стекло (лупу). Чтобы убрать увеличительное стекло, дважды нажмите на нём левую кнопку мыши, или нажмите <placeholder-1/>."
+
+#. Put one translator per line, in the form of NAME <EMAIL>, YEAR1, YEAR2.
+#: C/f-spot.xml:0(None)
+msgid "translator-credits"
+msgstr "Yuri Myasoedov <omerta13@yandex.ru>, 2008."
+
