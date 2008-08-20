@@ -123,8 +123,6 @@ namespace Mono.Addins
 				if (childrenLoaded)
 					return childNodes;
 				
-				childrenLoaded = true;
-				
 				try {
 					if (treeNode.Children.Count == 0) {
 						childNodes = ExtensionNodeList.Empty;
@@ -135,6 +133,8 @@ namespace Mono.Addins
 					AddinManager.ReportError (null, null, ex, false);
 					childNodes = ExtensionNodeList.Empty;
 					return childNodes;
+				} finally {
+					childrenLoaded = true;
 				}
 
 				ArrayList list = new ArrayList ();
@@ -266,9 +266,6 @@ namespace Mono.Addins
 			
 			bool changed = false;
 			
-			if (oldList == null)
-				return false;
-
 			foreach (ExtensionNode nod in oldList) {
 				if (ChildNodes [nod.Id] == null) {
 					changed = true;
