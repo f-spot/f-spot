@@ -53,6 +53,7 @@ namespace FSpot.UI.Dialog {
 		[Glade.Widget] private RadioButton themecustom_radio;
 		[Glade.Widget] private Label themelist_label;
 		[Glade.Widget] private Label restartlabel;
+		[Glade.Widget] private Label themefile_label;
 		[Glade.Widget] private FileChooserButton theme_filechooser;
 		[Glade.Widget] private Table theme_table;
 		[Glade.Widget] private Button refreshtheme_button;
@@ -132,6 +133,8 @@ namespace FSpot.UI.Dialog {
 			theme_table.Attach (themelist_combo, 2, 3, 0, 1);
 			themelist_combo.Changed += HandleThemeComboChanged;
 			themelist_combo.Show ();
+			theme_filechooser.Visible = themefile_label.Visible = FSpot.Utils.Log.Debugging;
+
 			themelist_combo.Sensitive = theme_filechooser.Sensitive = themecustom_radio.Active; 
 			if (File.Exists (active_theme))
 				theme_filechooser.SetFilename (Preferences.Get<string> (Preferences.GTK_RC));
