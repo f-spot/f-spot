@@ -3,6 +3,7 @@
  *
  * Author(s):
  *	Larry Ewing  <lewing@novell.com>
+ *	Ruben Vermeersch  <ruben@savanne.be>
  *
  * This is free software, See COPYING for details.
  */
@@ -11,18 +12,36 @@ using System;
 
 namespace FSpot {
 	public class Histogram {
+#region Color hints
+		private byte [] colors = new byte [] {0x00, 0x00, 0x00, 0xff};
+
+		public byte RedColorHint {
+			set { colors [0] = value; }
+		}
+
+		public byte GreenColorHint {
+			set { colors [1] = value; }
+		}
+
+		public byte BlueColorHint {
+			set { colors [2] = value; }
+		}
+
+		public byte BackgroundColorHint {
+			set { colors [3] = value; }
+		}
+
+		private int [,] values = new int [256, 3];
+#endregion
+
 		public Histogram (Gdk.Pixbuf src)
 		{
 		        FillValues (src);
 		}
 		
 		public Histogram () {}
-		
-		// FIXME these should be properties
-		public byte [] Color = new byte [] {0x00, 0x00, 0x00, 0xff};
 
 		public void FillValues (Gdk.Pixbuf src)
-
 		{
 			values = new int [256, 3];
 
@@ -56,19 +75,19 @@ namespace FSpot {
 			}
 		}
 		
-		private int Count (int channel)
+		private int ChannelSum (int channel)
 		{
-			int count = 0;
+			int sum = 0;
 			for (int i = 0; i < values.GetLength (0); i++) {
-				count += values [i, channel];
+				sum += values [i, channel];
 			}
 
-			return count;
+			return sum;
 		}
 
 		public void GetHighLow (int channel, out int high, out int low)
 		{
-			double total = Count (channel);
+			double total = ChannelSum (channel);
 			double current = 0.0;
 			double percentage;
 			double next_percentage;
@@ -126,10 +145,10 @@ namespace FSpot {
 
 					int j = 0;
 					for (; j < height - top; j++) {
-						pixels [0] = Color [0];
-						pixels [1] = Color [1];
-						pixels [2] = Color [2];
-						pixels [3] = Color [3];
+						pixels [0] = colors [0];
+						pixels [1] = colors [1];
+						pixels [2] = colors [2];
+						pixels [3] = colors [3];
 						pixels += rowstride;
 					}
 					for (; j < height; j++) {
@@ -146,9 +165,9 @@ namespace FSpot {
 
 		public Gdk.Pixbuf GeneratePixbuf (int max_width)
 		{
-			Gdk.Pixbuf pixbuf = GeneratePixbuf ();
-			Gdk.Pixbuf scaled = PixbufUtils.ScaleToMaxSize (pixbuf, max_width, 128);
-			pixbuf.Dispose ();
+			Gdk.Pixbuf scaled;
+			using (Gdk.Pixbuf pixbuf = GeneratePixbuf ())
+				scaled = PixbufUtils.ScaleToMaxSize (pixbuf, max_width, 128);
 			return scaled;
 		}
 
@@ -156,11 +175,10 @@ namespace FSpot {
 		{
 			int height = 128;
 			Gdk.Pixbuf pixbuf = new Gdk.Pixbuf (Gdk.Colorspace.Rgb, true, 8, values.GetLength (0), height);
-			this.Draw (pixbuf);
+			Draw (pixbuf);
 			return pixbuf;
 		}
 						     
-		private int [,] values = new int [256, 3];
 		
 #if FSPOT_HISTOGRAM_MAIN
 		public static void Main (string [] args) 

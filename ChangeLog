@@ -1,5 +1,12 @@
 2008-08-25  Ruben Vermeersch  <ruben@savanne.be>
 
+	* src/Histogram.cs: More cleanups, fix a FIXME.
+
+	* src/Widgets/InfoBox.cs, src/Widgets/PreviewPopup.cs: Instead of filling
+	magic array items, use the new properties.
+
+2008-08-25  Ruben Vermeersch  <ruben@savanne.be>
+
 	* src/Histogram.cs: Fix pixbuf warnings and do some cleanups.
 
 2009-08-25  Stephane Delcroix  <sdelcroix@novell.com>

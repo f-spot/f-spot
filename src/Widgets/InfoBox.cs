@@ -137,10 +137,10 @@ namespace FSpot.Widgets
 
 			Window window = MainWindow.Toplevel.Window;
 			Gdk.Color c = window.Style.Backgrounds [(int)Gtk.StateType.Active];
-			histogram.Color [0] = (byte) (c.Red / 0xff);
-			histogram.Color [1] = (byte) (c.Green / 0xff);
-			histogram.Color [2] = (byte) (c.Blue / 0xff);
-			histogram.Color [3] = 0xff;
+			histogram.RedColorHint = (byte) (c.Red / 0xff);
+			histogram.GreenColorHint = (byte) (c.Green / 0xff);
+			histogram.BlueColorHint = (byte) (c.Blue / 0xff);
+			histogram.BackgroundColorHint = 0xff;
 
 			Add (histogram_expander);
 
@@ -461,7 +461,6 @@ namespace FSpot.Widgets
 				if (histogram_hint == null)
 					using (ImageFile img = ImageFile.Create (photo.DefaultVersionUri))
 						histogram_hint = img.Load (256, 256);
-
 
 				histogram.FillValues (histogram_hint);
 				int max = histogram_expander.Allocation.Width;

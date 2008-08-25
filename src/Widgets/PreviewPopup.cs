@@ -299,10 +299,10 @@ namespace FSpot {
 			this.BorderWidth = 6;
 
 			hist = new FSpot.Histogram ();
-			hist.Color [0] = 127;			
-			hist.Color [1] = 127;			
-			hist.Color [2] = 127;
-			hist.Color [3] = 0xff;
+			hist.RedColorHint = 127;
+			hist.GreenColorHint = 127;
+			hist.BlueColorHint = 127;
+			hist.BackgroundColorHint = 0xff;
 
 			image = new Gtk.Image ();
 			image.CanFocus = false;
