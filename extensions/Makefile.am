@@ -6,6 +6,7 @@ SUBDIRS = 			\
 	GalleryExport		\
 	FlickrExport		\
 	FolderExport		\
+	MergeDb			\
  	PicasaWebExport		\
  	SmugMugExport
 
