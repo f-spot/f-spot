@@ -54,12 +54,9 @@ namespace FSpot {
 					}
 				}
 			}
-			if (pixbuf != null) {
-				Draw (pixbuf);
-			}
 		}
 		
-		public int Count (int channel)
+		private int Count (int channel)
 		{
 			int count = 0;
 			for (int i = 0; i < values.GetLength (0); i++) {
@@ -158,24 +155,12 @@ namespace FSpot {
 		public Gdk.Pixbuf GeneratePixbuf ()
 		{
 			int height = 128;
-			pixbuf = new Gdk.Pixbuf (Gdk.Colorspace.Rgb, true, 8, values.GetLength (0), height);
+			Gdk.Pixbuf pixbuf = new Gdk.Pixbuf (Gdk.Colorspace.Rgb, true, 8, values.GetLength (0), height);
 			this.Draw (pixbuf);
 			return pixbuf;
 		}
 						     
 		private int [,] values = new int [256, 3];
-		public int [,] Values {
-			get {
-				return values;
-			}
-		}
-		
-		private Gdk.Pixbuf pixbuf;
-		public Gdk.Pixbuf Pixbuf {
-			get {
-				return pixbuf;
-			}
-		}
 		
 #if FSPOT_HISTOGRAM_MAIN
 		public static void Main (string [] args) 
