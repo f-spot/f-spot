@@ -529,6 +529,123 @@ public class PhotoStore : DbStore {
 		 	ItemsRemovedOverDBus (this, new DbItemEventArgs (photos)); 
 	}
 
+	public int Count (string table_name, params IQueryCondition [] conditions)
+	{
+		StringBuilder query_builder = new StringBuilder ("SELECT COUNT(*) FROM " + table_name + " ");
+		bool where_added = false;
+		foreach (IQueryCondition condition in conditions) {
+			if (condition == null)
+				continue;
+			if (condition is IOrderCondition)
+				continue;
+			query_builder.Append (where_added ? " AND " : " WHERE ");
+			query_builder.Append (condition.SqlClause ());
+			where_added = true;
+		}
+
+		SqliteDataReader reader = Database.Query (query_builder.ToString());
+		reader.Read ();
+		int count = Convert.ToInt32 (reader [0]);
+		reader.Close();
+		return count;
+	}
+
+	public int [] IndicesOf (string table_name, uint [] items)
+	{
+		StringBuilder query_builder = new StringBuilder ("SELECT ROWID FROM ");
+		query_builder.Append (table_name);
+		query_builder.Append (" WHERE \"photos.id\" IN (");
+		for (int i = 0; i < items.Length; i++) {
+			query_builder.Append (items [i]);
+			query_builder.Append ((i != items.Length - 1) ? ", " : ")" );
+		}
+		return IndicesOf (query_builder.ToString ());
+	}
+
+	public int IndexOf (string table_name, Photo photo)
+	{
+		string query = String.Format ("SELECT ROWID FROM {0} WHERE \"photos.id\" = {1}", table_name, photo.Id);
+		return IndexOf (query);
+	}
+
+	public int IndexOf (string table_name, DateTime time, bool asc)
+	{
+		string query = String.Format ("SELECT ROWID FROM {0} WHERE \"photos.time\" {2} {1} ORDER BY \"photos.time\" {3} LIMIT 1",
+				table_name,
+				DbUtils.UnixTimeFromDateTime (time),
+				asc ? ">=" : "<=",
+				asc ? "ASC" : "DESC");
+		return IndexOf (query);
+	}
+
+	private int IndexOf (string query)
+	{
+		uint timer = Log.DebugTimerStart ();
+		SqliteDataReader reader = Database.Query (query);
+		int index = - 1;
+		if (reader.Read ())
+			index = Convert.ToInt32 (reader [0]);
+		reader.Close();
+		Log.DebugTimerPrint (timer, "IndexOf took {0} : " + query);
+		return index - 1; //ROWID starts counting at 1
+	}
+
+	private int [] IndicesOf (string query)
+	{
+		uint timer = Log.DebugTimerStart ();
+		List<int> list = new List<int> ();
+		SqliteDataReader reader = Database.Query (query);
+		while (reader.Read ())
+			list.Add (Convert.ToInt32 (reader [0]) - 1);
+		Log.DebugTimerPrint (timer, "IndicesOf took {0} : " + query);
+		return list.ToArray ();
+	}
+
+	public Dictionary<int,int[]> PhotosPerMonth (params IQueryCondition [] conditions)
+	{
+		uint timer = Log.DebugTimerStart ();
+		Dictionary<int, int[]> val = new Dictionary<int, int[]> ();
+
+		//Sqlite is way more efficient querying to a temp then grouping than grouping at once
+		Database.ExecuteNonQuery ("DROP TABLE IF EXISTS POPULATION");
+		StringBuilder query_builder = new StringBuilder ("CREATE TEMP TABLE population AS SELECT strftime('%Y%m', datetime(time, 'unixepoch')) AS month FROM photos");
+		bool where_added = false;
+		foreach (IQueryCondition condition in conditions) {
+			if (condition == null)
+				continue;
+			if (condition is IOrderCondition)
+				continue;
+			query_builder.Append (where_added ? " AND " : " WHERE ");
+			query_builder.Append (condition.SqlClause ());
+			where_added = true;
+		}
+		Database.ExecuteNonQuery (query_builder.ToString ());
+
+		int minyear = Int32.MaxValue;
+		int maxyear = Int32.MinValue;
+
+		SqliteDataReader reader = Database.Query ("SELECT COUNT (*), month from population GROUP BY month");
+		while (reader.Read ()) {
+			string yyyymm = reader [1].ToString ();
+			int count = Convert.ToInt32 (reader [0]);
+			int year = Convert.ToInt32 (yyyymm.Substring (0,4));
+			maxyear = Math.Max (year, maxyear);
+			minyear = Math.Min (year, minyear);
+			int month = Convert.ToInt32 (yyyymm.Substring (4));
+			if (!val.ContainsKey (year))
+				val.Add (year, new int[12]);
+			val[year][month-1] = count;
+		}
+		reader.Close ();
+
+		//Fill the blank
+		for (int i = minyear; i <= maxyear; i++)
+			if (!val.ContainsKey (i))
+				val.Add (i, new int[12]);
+
+		Log.DebugTimerPrint (timer, "PhotosPerMonth took {0}");
+		return val;
+	}
 
 	// Queries.
 	[Obsolete ("drop this, use IQueryCondition correctly instead")]
@@ -541,14 +658,76 @@ public class PhotoStore : DbStore {
 		StringBuilder query_builder = new StringBuilder ("SELECT * FROM photos ");
 		
 		bool where_added = false;
-		foreach (IQueryCondition condition in conditions)
-			if (condition != null) {
-				query_builder.Append (where_added ? " AND " : " WHERE ");
-				query_builder.Append (condition.SqlClause ());
-				where_added = true;
-			}
-		query_builder.Append(" ORDER BY time ");
+		foreach (IQueryCondition condition in conditions) {
+			if (condition == null)
+				continue;
+			if (condition is IOrderCondition)
+				continue;
+			query_builder.Append (where_added ? " AND " : " WHERE ");
+			query_builder.Append (condition.SqlClause ());
+			where_added = true;
+		}
+
+		bool order_added = false;
+		foreach (IQueryCondition condition in conditions) {
+			if (condition == null)
+				continue;
+			if (!(condition is IOrderCondition))
+				continue;
+			query_builder.Append (order_added ? " , " : "ORDER BY ");
+			query_builder.Append (condition.SqlClause ());
+			order_added = true;
+		}
 		return Query (query_builder.ToString ());
+	}
+
+	public void QueryToTemp (string temp_table, params IQueryCondition [] conditions)
+	{
+		StringBuilder query_builder = new StringBuilder ("SELECT * FROM photos ");
+
+		bool where_added = false;
+		foreach (IQueryCondition condition in conditions) {
+			if (condition == null)
+				continue;
+			if (condition is IOrderCondition)
+				continue;
+			query_builder.Append (where_added ? " AND " : " WHERE ");
+			query_builder.Append (condition.SqlClause ());
+			where_added = true;
+		}
+
+		bool order_added = false;
+		foreach (IQueryCondition condition in conditions) {
+			if (condition == null)
+				continue;
+			if (!(condition is IOrderCondition))
+				continue;
+			query_builder.Append (order_added ? " , " : "ORDER BY ");
+			query_builder.Append (condition.SqlClause ());
+			order_added = true;
+		}
+		QueryToTemp (temp_table, query_builder.ToString ());
+	}
+
+	public void QueryToTemp(string temp_table, string query)
+	{
+		uint timer = Log.DebugTimerStart ();
+		Database.BeginTransaction ();
+		Database.ExecuteNonQuery (String.Format ("DROP TABLE IF EXISTS {0}", temp_table));
+		//Database.ExecuteNonQuery (String.Format ("CREATE TEMPORARY TABLE {0} AS {1}", temp_table, query));
+		Database.Query (String.Format ("CREATE TEMPORARY TABLE {0} AS {1}", temp_table, query)).Close ();
+		Database.CommitTransaction ();
+		Log.DebugTimerPrint (timer, "QueryToTemp took {0} : " + query);
+	}
+
+	public Photo [] QueryFromTemp (string temp_table)
+	{
+		return QueryFromTemp (temp_table, 0, -1);
+	}
+
+	public Photo [] QueryFromTemp (string temp_table, int offset, int limit)
+	{
+		return Query (String.Format ("SELECT * FROM {0} LIMIT {1} OFFSET {2}", temp_table, limit, offset));
 	}
 
 	public Photo [] Query (string query)
@@ -558,7 +737,7 @@ public class PhotoStore : DbStore {
 
 	public Photo [] Query (DbCommand query)
 	{
-		uint timer = Log.DebugTimerStart ("Query: " + query.CommandText);
+		uint timer = Log.DebugTimerStart ();
 		SqliteDataReader reader = Database.Query(query);
 
 		List<Photo> new_photos = new List<Photo> ();
@@ -604,7 +783,7 @@ public class PhotoStore : DbStore {
 		foreach (Photo photo in new_photos)
 			photo.Changes = null;
 
-		Log.DebugTimerPrint (timer, "Query took {0}");
+ 		Log.DebugTimerPrint (timer, "Query took {0} : " + query.CommandText);
 		return query_result.ToArray ();
 	}
 
@@ -650,9 +829,85 @@ public class PhotoStore : DbStore {
 	}
 
 	[Obsolete ("drop this, use IQueryCondition correctly instead")]
+	public void QueryToTemp (string temp_table, Tag [] tags, string extra_condition, DateRange range, RollSet importidrange, RatingRange ratingrange, OrderByTime orderbytime)
+	{
+		QueryToTemp (temp_table, FSpot.OrTerm.FromTags(tags), extra_condition, range, importidrange, ratingrange, orderbytime);
+	}
+
+	[Obsolete ("drop this, use IQueryCondition correctly instead")]
 	public Photo [] Query (Tag [] tags, string extra_condition, DateRange range, RollSet importidrange, RatingRange ratingrange)
 	{
 		return Query (FSpot.OrTerm.FromTags(tags), extra_condition, range, importidrange, ratingrange);
+	}
+
+	[Obsolete ("drop this, use IQueryCondition correctly instead")]
+	public void QueryToTemp (string temp_table, Term searchexpression, string extra_condition, DateRange range, RollSet importidrange, RatingRange ratingrange, OrderByTime orderbytime)
+	{
+		bool hide = (extra_condition == null);
+
+		// The SQL query that we want to construct is:
+		//
+		// SELECT photos.id
+		//        photos.time
+		//        photos.uri,
+		//        photos.description,
+		//	  photos.roll_id,
+		//        photos.default_version_id
+		//        photos.rating
+		//                  FROM photos, photo_tags
+		//		    WHERE photos.time >= time1 AND photos.time <= time2
+		//				AND photos.rating >= rat1 AND photos.rating <= rat2
+		//				AND photos.id NOT IN (select photo_id FROM photo_tags WHERE tag_id = HIDDEN)
+		//				AND photos.id IN (select photo_id FROM photo_tags where tag_id IN (tag1, tag2..)
+		//				AND extra_condition_string
+		//                  GROUP BY photos.id
+
+		StringBuilder query_builder = new StringBuilder ();
+		ArrayList where_clauses = new ArrayList ();
+		query_builder.Append ("SELECT photos.id, " 			+
+					     "photos.time, "			+
+					     "photos.uri, "			+
+					     "photos.description, "		+
+					     "photos.roll_id, "   		+
+					     "photos.default_version_id, "	+
+					     "photos.rating "			+
+				      "FROM photos ");
+
+		if (range != null) {
+			where_clauses.Add (String.Format ("photos.time >= {0} AND photos.time <= {1}",
+							  DbUtils.UnixTimeFromDateTime (range.Start),
+							  DbUtils.UnixTimeFromDateTime (range.End)));
+
+		}
+
+		if (ratingrange != null) {
+			where_clauses.Add (ratingrange.SqlClause ());
+		}
+
+		if (importidrange != null) {
+			where_clauses.Add (importidrange.SqlClause ());
+		}
+
+		if (hide && Core.Database.Tags.Hidden != null) {
+			where_clauses.Add (String.Format ("photos.id NOT IN (SELECT photo_id FROM photo_tags WHERE tag_id = {0})",
+							  FSpot.Core.Database.Tags.Hidden.Id));
+		}
+
+		if (searchexpression != null) {
+			where_clauses.Add (searchexpression.SqlCondition ());
+		}
+
+		if (extra_condition != null && extra_condition.Trim () != String.Empty) {
+			where_clauses.Add (extra_condition);
+		}
+
+		if (where_clauses.Count > 0) {
+			query_builder.Append (" WHERE ");
+			query_builder.Append (String.Join (" AND ", ((String []) where_clauses.ToArray (typeof(String)))));
+		}
+		query_builder.Append (" ORDER BY ");
+		query_builder.Append (orderbytime.SqlClause ());
+		QueryToTemp (temp_table, query_builder.ToString ());
 	}
 
 	[Obsolete ("drop this, use IQueryCondition correctly instead")]

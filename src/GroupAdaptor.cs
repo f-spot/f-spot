@@ -45,20 +45,19 @@ namespace FSpot {
 
 		protected void HandleQueryChanged (IBrowsableCollection sender)
 		{
-			Log.Debug ("GroupAdaptor::Reloading" );
 			Reload ();
 		}
 
 		public void Dispose ()
 		{
-			this.query.PreChanged -= HandleQueryChanged; 
+			this.query.Changed -= HandleQueryChanged;
 		}
 
 		protected GroupAdaptor (PhotoQuery query, bool order_ascending)
 		{
 			this.order_ascending = order_ascending;
 			this.query = query;
-			this.query.PreChanged += HandleQueryChanged;
+			this.query.Changed += HandleQueryChanged;
 
 			Reload (); 
 		}

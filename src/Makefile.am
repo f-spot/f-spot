@@ -37,8 +37,10 @@ CORE_CSDISTFILES =				\
 
 QUERY_CSDISTFILES =				\
 	$(srcdir)/Query/DateRange.cs		\
+	$(srcdir)/Query/IOrderCondition.cs	\
 	$(srcdir)/Query/IQueryCondition.cs	\
 	$(srcdir)/Query/LogicalTerm.cs		\
+	$(srcdir)/Query/OrderByTime.cs		\
 	$(srcdir)/Query/RatingRange.cs		\
 	$(srcdir)/Query/RollSet.cs		\
 	$(srcdir)/Query/UntaggedCondition.cs

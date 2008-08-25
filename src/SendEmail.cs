@@ -56,9 +56,11 @@ namespace FSpot {
 		{
 			this.selection = selection;
 
-			foreach (Photo p in selection.Items)
+			for (int i = 0; i < selection.Count; i++) {
+				Photo p = selection[i] as Photo;
 				if (Gnome.Vfs.MimeType.GetMimeTypeForUri (p.DefaultVersionUri.ToString ()) != "image/jpeg")
 					force_original = true;
+			}
 
 			if (force_original) {
 				original_size.Active = true;
@@ -86,7 +88,8 @@ namespace FSpot {
 			Dialog.Modal = false;
 
 			// Calculate total original filesize 
-			foreach (Photo photo in selection.Items) {
+			for (int i = 0; i < selection.Count; i++) {
+				Photo photo = selection[i] as Photo;
 				try {
 					Orig_Photo_Size += (new Gnome.Vfs.FileInfo (photo.DefaultVersionUri.ToString ())).Size;
 				} catch {
@@ -98,7 +101,7 @@ namespace FSpot {
 
 
 			// Calculate approximate size shrinking, use first photo, and shrink to medium size as base.
-			Photo scalephoto = selection.Items [0] as Photo;			
+			Photo scalephoto = selection [0] as Photo;
 			if (scalephoto != null && !force_original) {
 				
 				// Get first photos file size
@@ -236,7 +239,7 @@ namespace FSpot {
 		
 			progress_dialog = new ProgressDialog (Catalog.GetString ("Preparing email"),
 							      ProgressDialog.CancelButtonType.Stop,
-							      selection.Items.Length, 
+							      selection.Count,
 							      parent_window);
 			
 			size = GetScaleSize(); // Which size should we scale to. 0 --> Original
@@ -280,8 +283,8 @@ namespace FSpot {
 			filters.Add (new UniqueNameFilter (tmp_mail_dir));
 
 
-			foreach (Photo photo in selection.Items) {
-			
+			for (int i = 0; i < selection.Count; i++) {
+				Photo photo = selection [i] as Photo;
 				if ( (photo != null) && (!UserCancelled) ) {
 
 					if (progress_dialog != null)

@@ -109,7 +109,7 @@ namespace FSpot {
 
 		public override FSpot.IBrowsableItem PhotoFromIndex (int item) 
 		{
-			return query.Items [LookupItem (item)];
+			return query [LookupItem (item)];
 		}
 
 		private int LookupItem (int group)

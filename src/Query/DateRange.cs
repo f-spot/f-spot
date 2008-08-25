@@ -30,6 +30,12 @@ namespace FSpot.Query {
 			this.end = end;
 		}
 
+		public DateRange (int year, int month)
+		{
+			start = new DateTime (year, month, 1);
+			end = new DateTime (month < 12 ? year : year + 1, month < 12 ? month + 1 : 1, 1);
+		}
+
 		public string SqlClause ()
 		{
 			return String.Format (" photos.time >= {0} AND photos.time <= {1} ", 

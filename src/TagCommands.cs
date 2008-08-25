@@ -482,10 +482,10 @@ public class TagCommands {
 
 			photo_scrolled_window.Add (image_view);
 
-			if (query.Photos.Length > 0) {
+			if (query.Count > 0) {
 				photo_spin_button.Wrap = true;
 				photo_spin_button.Adjustment.Lower = 1.0;
-				photo_spin_button.Adjustment.Upper = (double)query.Photos.Length;
+				photo_spin_button.Adjustment.Upper = (double) query.Count;
 				photo_spin_button.Adjustment.StepIncrement = 1.0;
 				photo_spin_button.ValueChanged += HandleSpinButtonChanged;
 				

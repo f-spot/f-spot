@@ -546,7 +546,7 @@ public class MainWindow {
 		get {
 			int active = ActiveIndex ();
 			if (active >= 0)
-				return query.Photos [active];
+				return query [active] as Photo;
 			else
 				return null;
 		}
@@ -866,7 +866,7 @@ public class MainWindow {
 	
 		int i = 0;
 		foreach (int num in selected_ids)
-			photo_list [i ++] = query.Photos [num];
+			photo_list [i ++] = query [num] as Photo;
 		
 		return photo_list;
 	}
@@ -876,6 +876,7 @@ public class MainWindow {
 		return SelectedPhotos (SelectedIds ());
 	}
 
+	[Obsolete ("MARKED FOR REMOVAL")]
 	public Photo [] ActivePhotos () 
 	{
 		return query.Photos;
@@ -930,7 +931,7 @@ public class MainWindow {
 	public void AddTagExtended (int [] nums, Tag [] tags)
 	{
 		foreach (int num in nums)
-			query.Photos [num].AddTag (tags);
+			(query[num] as Photo).AddTag (tags);
 		query.Commit (nums);
 
 		foreach (Tag t in tags) {
@@ -939,7 +940,7 @@ public class MainWindow {
 			// FIXME this needs a lot more work.
 			Pixbuf icon = null;
 			try {
-				Pixbuf tmp = FSpot.PhotoLoader.LoadAtMaxSize (query.Items [nums[0]], 128, 128);
+				Pixbuf tmp = FSpot.PhotoLoader.LoadAtMaxSize (query [nums[0]], 128, 128);
 				icon = PixbufUtils.TagIconFromPixbuf (tmp);
 				tmp.Dispose ();
 			} catch {
@@ -954,7 +955,7 @@ public class MainWindow {
 	public void RemoveTags (int [] nums, Tag [] tags)
 	{
 		foreach (int num in nums)
-			query.Photos [num].RemoveTag (tags);
+			(query[num] as Photo).RemoveTag (tags);
 		query.Commit (nums);
 	}
 
@@ -1150,7 +1151,7 @@ public class MainWindow {
 		
 		FSpot.TimeAdaptor time_adaptor = group_selector.Adaptor as FSpot.TimeAdaptor;
 		if (time_adaptor != null)
-			JumpTo (time_adaptor.LookupItem (time));
+			JumpTo (query.LookupItem (time));
 	}
 
 	private void JumpTo (int index)
@@ -1189,7 +1190,7 @@ public class MainWindow {
 		if (cell_num == -1 /*|| cell_num == lastTopLeftCell*/)
 			return;
 
-		FSpot.IBrowsableItem photo = icon_view.Collection.Items [cell_num];
+		FSpot.IBrowsableItem photo = icon_view.Collection [cell_num];
 #if false
 		group_selector.Adaptor.GlassSet -= HandleAdaptorGlassSet;
 		group_selector.Adaptor.SetGlass (group_selector.Adaptor.IndexFromPhoto (photo));
@@ -1586,7 +1587,7 @@ public class MainWindow {
 		db.BeginTransaction ();
 		int [] selected_photos = SelectedIds ();
 		foreach (int num in selected_photos) {
-			p = query.Photos [num];
+			p = query [num] as Photo;
 			p.Rating = (uint) r;
 		}
 		query.Commit (selected_photos);
@@ -1872,7 +1873,7 @@ public class MainWindow {
 			return;
 		
 		group_selector.Adaptor.OrderAscending = item.Active;
-		query.RequestReload ();
+		query.TimeOrderAsc = item.Active;
 
 		// FIXME this is blah...we need UIManager love here
 		if (item != reverse_order)
@@ -2256,12 +2257,14 @@ public class MainWindow {
 		
 		clear_date_range.Sensitive = (query.Range != null);
 		clear_rating_filter.Sensitive = (query.RatingRange != null);
-		UpdateStatusLabel ();
+		update_status_label = true;
+		GLib.Idle.Add (UpdateStatusLabel);
 	}
 
-	private void UpdateStatusLabel ()
+	bool update_status_label;
+	private bool UpdateStatusLabel ()
 	{
-		//uint timer = Log.DebugTimerStart ();
+		update_status_label = false;
 		int total_photos = Database.Photos.TotalPhotos;
 		if (total_photos != query.Count)
 			status_label.Text = String.Format (Catalog.GetPluralString ("{0} Photo out of {1}", "{0} Photos out of {1}", query.Count), query.Count, total_photos);
@@ -2271,7 +2274,7 @@ public class MainWindow {
 		if ((selection != null) && (selection.Count > 0))
 			status_label.Text += String.Format (Catalog.GetPluralString (" ({0} selected)", " ({0} selected)", selection.Count), selection.Count);
 		status_label.UseMarkup = true;
-		//Log.DebugTimerPrint (timer, "UpdateStatusLabel took {0}");
+		return update_status_label;
 	}
 	
 	void HandleZoomChanged (object sender, System.EventArgs args)
@@ -2402,9 +2405,9 @@ public class MainWindow {
 									   MessageType.Warning, 
 									   header, msg, ok_caption)) {                              
 			
+			uint timer = Log.DebugTimerStart ();
 			foreach (Photo photo in photos) {
 				foreach (uint id in photo.VersionIds) {
-					Console.WriteLine (" path == {0}", photo.VersionUri (id).LocalPath);
 					try {
 						photo.DeleteVersion (id, true);
 					} catch (Exception e) {
@@ -2415,6 +2418,7 @@ public class MainWindow {
 			db.Photos.Remove (photos);
 			
 			UpdateQuery ();
+			Log.DebugTimerPrint (timer, "HandleDeleteCommand took {0}");
 		}
 	}
 
@@ -2489,7 +2493,7 @@ public class MainWindow {
 		Db db = MainWindow.Toplevel.Database;
 		FSpot.PhotoQuery count_query = new FSpot.PhotoQuery(db.Photos);
 		count_query.Terms = FSpot.OrTerm.FromTags(tags);
-		int associated_photos = count_query.Photos.Length;
+		int associated_photos = count_query.Count;
 
 		string header;
 		if (tags.Length == 1)
