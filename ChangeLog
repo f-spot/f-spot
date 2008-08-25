@@ -1,5 +1,13 @@
 2008-08-25  Ruben Vermeersch  <ruben@savanne.be>
 
+	* src/Histogram.cs: Further cleanup the Histogram API. It still does two
+	tasks (due to the AutoStretch tool), but it's getting better at doing one
+	task.
+
+	* src/Widgets/InfoBox.cs, src/Widgets/PreviewPopup.cs: Use the new API.
+
+2008-08-25  Ruben Vermeersch  <ruben@savanne.be>
+
 	* src/Histogram.cs: More cleanups, fix a FIXME.
 
 	* src/Widgets/InfoBox.cs, src/Widgets/PreviewPopup.cs: Instead of filling

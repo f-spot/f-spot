@@ -53,8 +53,7 @@ namespace FSpot {
 		private void AddHistogram (Gdk.Pixbuf pixbuf)
 		{
 			if (show_histogram) {
-				hist.FillValues (pixbuf);
-				Gdk.Pixbuf image = hist.GeneratePixbuf ();
+				Gdk.Pixbuf image = hist.Generate (pixbuf);
 				double scalex = 0.5;
 				double scaley = 0.5;
 				

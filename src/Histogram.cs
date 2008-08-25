@@ -41,7 +41,7 @@ namespace FSpot {
 		
 		public Histogram () {}
 
-		public void FillValues (Gdk.Pixbuf src)
+		private void FillValues (Gdk.Pixbuf src)
 		{
 			values = new int [256, 3];
 
@@ -163,16 +163,17 @@ namespace FSpot {
 			}
 		}	
 
-		public Gdk.Pixbuf GeneratePixbuf (int max_width)
+		public Gdk.Pixbuf Generate (Gdk.Pixbuf input, int max_width)
 		{
 			Gdk.Pixbuf scaled;
-			using (Gdk.Pixbuf pixbuf = GeneratePixbuf ())
+			using (Gdk.Pixbuf pixbuf = Generate (input))
 				scaled = PixbufUtils.ScaleToMaxSize (pixbuf, max_width, 128);
 			return scaled;
 		}
 
-		public Gdk.Pixbuf GeneratePixbuf ()
+		public Gdk.Pixbuf Generate (Gdk.Pixbuf input)
 		{
+			FillValues (input);
 			int height = 128;
 			Gdk.Pixbuf pixbuf = new Gdk.Pixbuf (Gdk.Colorspace.Rgb, true, 8, values.GetLength (0), height);
 			Draw (pixbuf);
@@ -186,12 +187,12 @@ namespace FSpot {
 			Gtk.Application.Init ();
 			Gdk.Pixbuf pixbuf = new Gdk.Pixbuf (args [0]);
 			System.Console.WriteLine ("loaded {0}", args [0]);
-			Histogram hist = new Histogram (pixbuf);
+			Histogram hist = new Histogram ();
 			System.Console.WriteLine ("loaded histgram", args [0]);
 			
 			Gtk.Window win = new Gtk.Window ("display");
 			Gtk.Image image = new Gtk.Image ();
-			Gdk.Pixbuf img = hist.GeneratePixbuf ();
+			Gdk.Pixbuf img = hist.Generate (pixbuf);
 			image.Pixbuf = img;
 			win.Add (image);
 			win.ShowAll ();

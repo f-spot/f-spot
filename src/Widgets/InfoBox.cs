@@ -462,9 +462,8 @@ namespace FSpot.Widgets
 					using (ImageFile img = ImageFile.Create (photo.DefaultVersionUri))
 						histogram_hint = img.Load (256, 256);
 
-				histogram.FillValues (histogram_hint);
 				int max = histogram_expander.Allocation.Width;
-				histogram_image.Pixbuf = histogram.GeneratePixbuf (max);
+				histogram_image.Pixbuf = histogram.Generate (histogram_hint, max);
 
 				histogram_hint.Dispose ();
 				histogram_hint = null;
