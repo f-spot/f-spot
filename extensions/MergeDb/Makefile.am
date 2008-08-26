@@ -10,6 +10,7 @@ PLUGIN_SOURCES =			\
 	$(srcdir)/MergeDb.cs
 
 REFS =					\
+	-r:Mono.Posix			\
 	-r:../../src/f-spot.exe		\
 	-r:../../src/FSpot.Core.dll	\
 	-r:../../src/FSpot.Utils.dll	\

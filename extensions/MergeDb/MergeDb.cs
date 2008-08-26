@@ -15,6 +15,8 @@ using FSpot;
 using FSpot.Extensions;
 using FSpot.Utils;
 using FSpot.Query;
+using FSpot.UI.Dialog;
+using Mono.Unix;
 
 namespace MergeDbExtension
 {
@@ -41,9 +43,15 @@ namespace MergeDbExtension
 		public void Run (object o, EventArgs e)
 		{
 			from_db = new Db ();
+			from_db.ExceptionThrown += HandleDbException;
 			to_db = Core.Database;
 
 			ShowDialog ();
+		}
+
+		void HandleDbException (Exception e)
+		{
+			Log.Exception (e);
 		}
 
 		public void ShowDialog () {
@@ -66,9 +74,9 @@ namespace MergeDbExtension
 
 		void HandleFileSet (object o, EventArgs e)
 		{
-			Log.DebugFormat ("FileChooser Activated, trying to open {0}...", db_filechooser.Filename);
 			try {
 				from_db.Init (db_filechooser.Filename, true);
+				Log.Debug ("HE");
 				query = new PhotoQuery (from_db.Photos);
 			
 				CheckRolls ();
@@ -83,6 +91,17 @@ namespace MergeDbExtension
 				newrolls_radio.Active = true;
 				HandleRollsChanged (null, null);
 			} catch (Exception ex) {
+				string msg = Catalog.GetString ("Error opening the selected file");
+				string desc = String.Format (Catalog.GetString ("The file you selected is not a valid or supported database.\n\nReceived exception \"{0}\"."), ex.Message);
+				
+				HigMessageDialog md = new HigMessageDialog (mergedb_dialog, DialogFlags.DestroyWithParent, 
+									    Gtk.MessageType.Error,
+									    ButtonsType.Ok, 
+									    msg,
+									    desc);
+				md.Run ();
+				md.Destroy ();
+
 				Log.Exception (ex);
 			}
 		}
