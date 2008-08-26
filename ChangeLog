@@ -1,5 +1,10 @@
 2008-08-26  Ruben Vermeersch  <ruben@savanne.be>
 
+	* Widgets/InfoBox.cs: Prevent a possible race condition, where a second
+	thread updates the histogram while it's in use.
+
+2008-08-26  Ruben Vermeersch  <ruben@savanne.be>
+
 	* Editors/Editor.cs: Force reloading of the image after resetting the
 	editor, prevents the histogram from using a disposed pixbuf.
 

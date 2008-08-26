@@ -457,16 +457,18 @@ namespace FSpot.Widgets
 
 			Photo photo = Photos[0];
 
+			Gdk.Pixbuf hint = histogram_hint;
+			histogram_hint = null;
+
 			try {
-				if (histogram_hint == null)
+				if (hint == null)
 					using (ImageFile img = ImageFile.Create (photo.DefaultVersionUri))
-						histogram_hint = img.Load (256, 256);
+						hint = img.Load (256, 256);
 
 				int max = histogram_expander.Allocation.Width;
-				histogram_image.Pixbuf = histogram.Generate (histogram_hint, max);
+				histogram_image.Pixbuf = histogram.Generate (hint, max);
 
-				histogram_hint.Dispose ();
-				histogram_hint = null;
+				hint.Dispose ();
 			} catch (System.Exception e) {
 				Log.Debug (e.StackTrace);
 			}
