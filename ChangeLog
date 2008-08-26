@@ -1,3 +1,12 @@
+2008-08-26  Stephane Delcroix  <sdelcroix@novell.com>
+
+	* src/Db.cs:
+	* src/QueuedSqliteDatabase.cs: move the Connect out of the ProcessQueue
+	thread so we can catch connect exception. Add an event handler for
+	ExceptionThrown.
+
+	* src/FSpot.addin.xml: bump addin version.
+
 2008-08-25  Ruben Vermeersch  <ruben@savanne.be>
 
 	* src/Histogram.cs: Further cleanup the Histogram API. It still does two

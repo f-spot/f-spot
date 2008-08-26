@@ -145,6 +145,10 @@ public class Db : IDisposable {
 	bool empty;
 	string path;
 
+	public delegate void ExceptionThrownHandler (Exception e);
+	public event ExceptionThrownHandler ExceptionThrown;
+
+
 	public TagStore Tags {
 		get { return tag_store; }
 	}
@@ -213,6 +217,8 @@ public class Db : IDisposable {
 			throw new Exception (path + ": File not found");
 
 		database = new QueuedSqliteDatabase(path);
+		database.ExceptionThrown += HandleDbException;
+
 		if (database.GetFileVersion(path) == 2)
 			SqliteUpgrade ();
 
@@ -234,6 +240,14 @@ public class Db : IDisposable {
 
 		empty = new_db;
 		Log.DebugTimerPrint (timer, "Db Initialization took {0}");
+	}
+
+	void HandleDbException (Exception e)
+	{
+		if (ExceptionThrown != null)
+			ExceptionThrown (e);
+		else
+			throw e;
 	}
 
 	public bool Empty {

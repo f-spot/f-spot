@@ -82,9 +82,27 @@ namespace Banshee.Database
         /// </summary>
         private AutoResetEvent queue_signal = new AutoResetEvent(false);
         
+	public delegate void ExceptionThrownHandler (Exception e);
+	public event ExceptionThrownHandler ExceptionThrown;
+
         public QueuedSqliteDatabase(string dbpath)
         {
             this.dbpath = dbpath;
+
+            // Connect
+            if(connection == null) {
+                version = GetFileVersion(dbpath);
+                if (version == 3) {
+                    connection = new SqliteConnection("Version=3,URI=file:" + dbpath);
+                } else if (version == 2) {
+                    connection = new SqliteConnection("Version=2,encoding=UTF-8,URI=file:" + dbpath);
+                } else {
+                    throw new Exception("Unsupported SQLite database version");
+                }
+                connection.Open();
+                connected = true;
+            }
+ 
             queue_thread = new Thread(ProcessQueue);
             queue_thread.IsBackground = true;
             queue_thread.Start();
@@ -261,20 +279,8 @@ namespace Banshee.Database
 
         private void ProcessQueue()
         {         
-            // Connect
-            if(connection == null) {
-                version = GetFileVersion(dbpath);
-                if (version == 3) {
-                    connection = new SqliteConnection("Version=3,URI=file:" + dbpath);
-                } else if (version == 2) {
-                    connection = new SqliteConnection("Version=2,encoding=UTF-8,URI=file:" + dbpath);
-                } else {
-                    throw new Exception("Unsupported SQLite database version");
-                }
-                connection.Open();
-                connected = true;
-            }
-            
+	    try {
+           
             // Keep handling queries
             while(!dispose_requested) {
                 while(command_queue.Count > 0) {
@@ -291,6 +297,12 @@ namespace Banshee.Database
 
             // Finish
             connection.Close();
+	    } catch (Exception e) {
+		    if (ExceptionThrown != null)
+			    ExceptionThrown (e);
+		    else
+			    throw;
+	    }
         }
 
         public int GetFileVersion(string path) 
