@@ -113,7 +113,7 @@ namespace FSpot.Widgets {
 			// Remove any open editor, if present.
 			if (current_editor != null) {
 				active_editor.Hide ();
-				Remove (active_editor);
+				widgets.Remove (active_editor);
 				active_editor = null;
 				current_editor.Restore ();
 				current_editor = null;

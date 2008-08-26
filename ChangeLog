@@ -1,5 +1,11 @@
 2008-08-26  Ruben Vermeersch  <ruben@savanne.be>
 
+	* Widgets/EditorPage.cs: Fix a critical warning, caused by removing the
+	editor configuration widget from the wrong parent. Amazed that it even
+	worked in the first place.
+
+2008-08-26  Ruben Vermeersch  <ruben@savanne.be>
+
 	* Widgets/InfoBox.cs: Prevent a possible race condition, where a second
 	thread updates the histogram while it's in use.
 
