@@ -1,4 +1,5 @@
-/* FSpot.MergeDb.cs
+/* 
+ * FSpot.MergeDb.cs
  *
  * Author(s):
  *	Stephane Delcroix  <stephane@delcroix.org>
@@ -7,6 +8,7 @@
  */
 
 using System;
+using System.IO;
 using System.Collections.Generic;
 
 using Gtk;
@@ -22,20 +24,11 @@ namespace MergeDbExtension
 {
 	public class MergeDb : ICommand
 	{
-		[Glade.Widget] Gtk.Dialog mergedb_dialog;
-		[Glade.Widget] Gtk.Button apply_button;
-		[Glade.Widget] Gtk.Button cancel_button;
-		[Glade.Widget] Gtk.FileChooserButton db_filechooser;
-		[Glade.Widget] Gtk.RadioButton newrolls_radio;
-		[Glade.Widget] Gtk.RadioButton allrolls_radio;
-		[Glade.Widget] Gtk.RadioButton singleroll_radio;
-		[Glade.Widget] Gtk.ComboBox rolls_combo;
-
 
 		Db from_db;
 		Db to_db;
-		PhotoQuery query;
 		Roll [] new_rolls;
+		MergeDbDialog mdd;
 
 		Dictionary<uint, Tag> tag_map; //Key is a TagId from from_db, Value is a Tag from to_db
 		Dictionary<uint, uint> roll_map; 
@@ -46,7 +39,11 @@ namespace MergeDbExtension
 			from_db.ExceptionThrown += HandleDbException;
 			to_db = Core.Database;
 
-			ShowDialog ();
+			//ShowDialog ();
+			mdd = new MergeDbDialog (this);
+			mdd.FileChooser.FileSet += HandleFileSet;
+			mdd.Dialog.Response += HandleResponse;
+			mdd.ShowAll ();
 		}
 
 		void HandleDbException (Exception e)
@@ -54,47 +51,29 @@ namespace MergeDbExtension
 			Log.Exception (e);
 		}
 
-		public void ShowDialog () {
-			Glade.XML xml = new Glade.XML (null, "MergeDb.glade", "mergedb_dialog", "f-spot");
-			xml.Autoconnect (this);
-			mergedb_dialog.Modal = false;
-			mergedb_dialog.TransientFor = null;
 
-			db_filechooser.FileSet += HandleFileSet;
-
-			newrolls_radio.Toggled += HandleRollsChanged;
-			allrolls_radio.Toggled += HandleRollsChanged;
-			singleroll_radio.Toggled += HandleRollsChanged;
-
-			rolls_combo.Changed += HandleRollsChanged;
-
-			mergedb_dialog.Response += HandleResponse;
-			mergedb_dialog.ShowAll ();
+		internal Db FromDb {
+			get { return from_db; }
 		}
 
 		void HandleFileSet (object o, EventArgs e)
 		{
 			try {
-				from_db.Init (db_filechooser.Filename, true);
-				Log.Debug ("HE");
-				query = new PhotoQuery (from_db.Photos);
+				string tempfilename = System.IO.Path.GetTempFileName ();
+				System.IO.File.Copy (mdd.FileChooser.Filename, tempfilename, true);
+
+				from_db.Init (tempfilename, true);
 			
-				CheckRolls ();
-				rolls_combo.Active = 0;
+				FillRolls ();
+				mdd.Rolls = new_rolls;
 
-				newrolls_radio.Sensitive = true;
-				allrolls_radio.Sensitive = true;
-				singleroll_radio.Sensitive = true;
+				mdd.SetSensitive ();
 
-				apply_button.Sensitive = true;
-
-				newrolls_radio.Active = true;
-				HandleRollsChanged (null, null);
 			} catch (Exception ex) {
 				string msg = Catalog.GetString ("Error opening the selected file");
 				string desc = String.Format (Catalog.GetString ("The file you selected is not a valid or supported database.\n\nReceived exception \"{0}\"."), ex.Message);
 				
-				HigMessageDialog md = new HigMessageDialog (mergedb_dialog, DialogFlags.DestroyWithParent, 
+				HigMessageDialog md = new HigMessageDialog (mdd.Dialog, DialogFlags.DestroyWithParent, 
 									    Gtk.MessageType.Error,
 									    ButtonsType.Ok, 
 									    msg,
@@ -106,7 +85,7 @@ namespace MergeDbExtension
 			}
 		}
 
-		void CheckRolls ()
+		void FillRolls ()
 		{
 			List<Roll> from_rolls = new List<Roll> (from_db.Rolls.GetRolls ());
 			Roll [] to_rolls = to_db.Rolls.GetRolls ();
@@ -116,35 +95,15 @@ namespace MergeDbExtension
 						from_rolls.Remove (fr);
 			new_rolls = from_rolls.ToArray ();
 
-			foreach (Roll r in from_rolls) {
-				uint numphotos = from_db.Rolls.PhotosInRoll (r);
-				DateTime date = r.Time.ToLocalTime ();
-				rolls_combo.AppendText (String.Format ("{0} ({1})", date.ToString("%dd %MMM, %HH:%mm"), numphotos));
-			}
-		}
-
-		void HandleRollsChanged (object o, EventArgs e)
-		{
-			rolls_combo.Sensitive = singleroll_radio.Active;
-
-			if (allrolls_radio.Active)
-				query.RollSet = null;
-
-			if (newrolls_radio.Active)
-				query.RollSet = new RollSet (new_rolls);
-
-			if (singleroll_radio.Active) {
-				Console.WriteLine (rolls_combo.Active);
-				query.RollSet = new RollSet (new_rolls [rolls_combo.Active]);
-			}
 		}
 
 		void HandleResponse (object obj, ResponseArgs args) {
 			if (args.ResponseId == ResponseType.Accept) {
-				Roll [] mergerolls = singleroll_radio.Active ? new Roll [] {new_rolls [rolls_combo.Active]} : new_rolls;
-				DoMerge (query, mergerolls, false);
+				PhotoQuery query = new PhotoQuery (from_db.Photos);
+				query.RollSet = mdd.ActiveRolls == null ? null : new RollSet (mdd.ActiveRolls);
+				DoMerge (query, mdd.ActiveRolls, mdd.Copy);
 			}
-			mergedb_dialog.Destroy ();
+			mdd.Dialog.Destroy ();
 		}
 
 
@@ -199,6 +158,8 @@ namespace MergeDbExtension
 
 		void CreateRolls (Roll [] rolls)
 		{
+			if (rolls == null)
+				rolls = from_db.Rolls.GetRolls ();
 			RollStore from_store = from_db.Rolls;
 			RollStore to_store = to_db.Rolls;
 
@@ -215,15 +176,87 @@ namespace MergeDbExtension
 				ImportPhoto (p, copy);
 		}
 
+		Dictionary<string, string> path_map = null;
+		Dictionary<string, string> PathMap {
+			get {
+				if (path_map == null)
+					path_map = new Dictionary<string, string> ();
+				return path_map;
+			}
+		}
+
 		void ImportPhoto (Photo photo, bool copy)
 		{
 			Log.WarningFormat ("Importing {0}", photo.Name);
 			PhotoStore from_store = from_db.Photos;
 			PhotoStore to_store = to_db.Photos;
 
-			Gdk.Pixbuf pixbuf;
-			Photo newp = to_store.Create (photo.VersionUri (Photo.OriginalVersionId), roll_map [photo.RollId], out pixbuf);
+			string photo_path = photo.VersionUri (Photo.OriginalVersionId).AbsolutePath;
 
+			while (!System.IO.File.Exists (photo_path)) {
+				Log.Debug ("Not found, trying the mappings...");
+				foreach (string key in PathMap.Keys) {
+					string path = photo_path;
+					path = path.Replace (key, PathMap [key]);
+					Log.DebugFormat ("Replaced path {0}", path);
+					if (System.IO.File.Exists (path)) {
+						photo_path = path;
+						break;;
+					}
+				}
+
+				if (System.IO.File.Exists (photo_path)) {
+					Log.Debug ("Exists!!!");					
+					continue;
+				}
+
+				string [] parts = photo_path.Split (new char[] {'/'});
+				if (parts.Length > 6) {
+					string folder = String.Join ("/", parts, 0, parts.Length - 4);
+					PickFolderDialog pfd = new PickFolderDialog (mdd.Dialog, folder);
+					string new_folder = pfd.Run ();
+					pfd.Dialog.Destroy ();
+					if (new_folder == null) //Skip
+						return;
+					Log.DebugFormat ("{0} maps to {1}", folder, new_folder);
+					
+					PathMap[folder] = new_folder;
+					
+				} else
+					Console.WriteLine ("point me to the file");
+				Console.WriteLine ("FNF: {0}", photo_path);
+
+			}
+
+			string destination;
+			Gdk.Pixbuf pixbuf;
+			Photo newp;
+
+			if (copy)
+				destination = FileImportBackend.ChooseLocation (photo_path, null);
+			else
+				destination = photo_path;
+
+			// Don't copy if we are already home
+			if (photo_path == destination) 
+				newp = to_store.Create (destination, roll_map [photo.RollId], out pixbuf);
+			else {
+				System.IO.File.Copy (photo_path, destination);
+
+				newp = to_store.Create (destination, photo_path, roll_map [photo.RollId], out pixbuf);
+				try {
+					File.SetAttributes (destination, File.GetAttributes (destination) & ~FileAttributes.ReadOnly);
+					DateTime create = File.GetCreationTime (photo_path);
+					File.SetCreationTime (destination, create);
+					DateTime mod = File.GetLastWriteTime (photo_path);
+					File.SetLastWriteTime (destination, mod);
+				} catch (IOException) {
+					// we don't want an exception here to be fatal.
+				}
+			} 
+
+			if (newp == null)
+				return;
 
 			foreach (Tag t in photo.Tags) {
 				Log.WarningFormat ("Tagging with {0}", t.Name);

@@ -7,7 +7,9 @@ PLUGIN_MANIFEST = $(PLUGIN_NAME).addin.xml
 PLUGIN_ASSEMBLY = $(PLUGIN_NAME).dll
 
 PLUGIN_SOURCES =			\
-	$(srcdir)/MergeDb.cs
+	$(srcdir)/MergeDb.cs		\
+	$(srcdir)/MergeDbDialog.cs	\
+	$(srcdir)/PickFolderDialog.cs
 
 REFS =					\
 	-r:Mono.Posix			\
@@ -29,7 +31,7 @@ all: $(PLUGIN_ASSEMBLY)
 mpack: $(PLUGIN_ASSEMBLY)
 	mautil p $(PLUGIN_ASSEMBLY)
 
-$(PLUGIN_ASSEMBLY): $(PLUGIN_SOURCES) $(PLUGIN_MANIFEST)
+$(PLUGIN_ASSEMBLY): $(PLUGIN_SOURCES) $(PLUGIN_MANIFEST) $(PLUGIN_NAME).glade
 	$(CSC_LIB) -out:$@ $(PLUGIN_SOURCES) $(REFS) $(PKGS) $(ASSEMBLIES) $(RESOURCES)
 
 plugindir = $(pkglibdir)/extensions
