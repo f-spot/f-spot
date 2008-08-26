@@ -242,7 +242,7 @@ namespace FSpot.Editors {
 				State.PhotoImageView.Pixbuf = original;
 				State.PhotoImageView.ZoomFit (false);
 
-				MainWindow.Toplevel.InfoBox.UpdateHistogram (original);
+				MainWindow.Toplevel.InfoBox.UpdateHistogram (null);
 			}
 
 			Reset ();

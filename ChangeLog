@@ -1,3 +1,8 @@
+2008-08-26  Ruben Vermeersch  <ruben@savanne.be>
+
+	* Editors/Editor.cs: Force reloading of the image after resetting the
+	editor, prevents the histogram from using a disposed pixbuf.
+
 2008-08-26  Stephane Delcroix  <sdelcroix@novell.com>
 
 	* src/Db.cs:
