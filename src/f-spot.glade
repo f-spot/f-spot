@@ -5488,7 +5488,7 @@ Photo Details</property>
 	      <child>
 		<widget class="GtkLabel" id="label170">
 		  <property name="visible">True</property>
-		  <property name="label" translatable="yes">Te_mp:</property>
+		  <property name="label" translatable="yes" comments="Note for translators: meant as Temperature">Te_mp:</property>
 		  <property name="use_underline">True</property>
 		  <property name="use_markup">True</property>
 		  <property name="justify">GTK_JUSTIFY_LEFT</property>
