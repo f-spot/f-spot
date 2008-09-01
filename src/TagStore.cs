@@ -390,7 +390,8 @@ public class TagStore : DbStore {
 		if (update_xmp && Preferences.Get<bool> (Preferences.METADATA_EMBED_IN_IMAGE)) {
 			Photo [] photos = Core.Database.Photos.Query (new Tag [] { tag });
 			foreach (Photo p in photos)
-				SyncMetadataJob.Create (Core.Database.Jobs, p);
+				if (p.HasTag (tag)) // the query returns all the pics of the tag and all its child. this avoids updating child tags
+					SyncMetadataJob.Create (Core.Database.Jobs, p);
 		}
 
 		if (use_transactions)
