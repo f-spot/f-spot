@@ -430,31 +430,75 @@ namespace FSpot {
 			// for any of the default handlers.
 			args.RetVal = true;
 		
-			// Check for KeyPad arrow keys, which scroll the window when zoomed in
-			// but should go to the next/previous photo when not zoomed (no scrollbars)
-			if (this.Fit) {
-				switch (args.Event.Key) {
+			// Scroll if image is zoomed in (scrollbars are visible)
+			Gtk.ScrolledWindow scrolled = this.Parent as Gtk.ScrolledWindow;
+			if (scrolled != null && !this.Fit) {
+				Gtk.Adjustment vadj = scrolled.Vadjustment;
+				Gtk.Adjustment hadj = scrolled.Hadjustment;
+				switch (args.Event.Key) {					
 				case Gdk.Key.Up:
-				case Gdk.Key.Left:
 				case Gdk.Key.KP_Up:
+				case Gdk.Key.j:
+					vadj.Value -= vadj.StepIncrement;
+					if (vadj.Value < vadj.Lower)
+						vadj.Value = vadj.Lower;
+					return;
+				case Gdk.Key.Left:
 				case Gdk.Key.KP_Left:
-					this.Item.MovePrevious ();
+				case Gdk.Key.h:
+					hadj.Value -= hadj.StepIncrement;
+					if (hadj.Value < hadj.Lower)
+						hadj.Value = hadj.Lower;
 					return;
 				case Gdk.Key.Down:
-				case Gdk.Key.Right:
 				case Gdk.Key.KP_Down:
+				case Gdk.Key.k:
+					vadj.Value += vadj.StepIncrement;
+					if (vadj.Value > vadj.Upper - vadj.PageSize)
+						vadj.Value = vadj.Upper - vadj.PageSize;
+					return;
+				case Gdk.Key.Right:
 				case Gdk.Key.KP_Right:
-					this.Item.MoveNext ();
+				case Gdk.Key.l:
+					hadj.Value += hadj.StepIncrement;
+					if (hadj.Value > hadj.Upper - hadj.PageSize)
+						hadj.Value = hadj.Upper - hadj.PageSize;
 					return;
 				}
 			}
-
+			
+			// Go to the next/previous photo when not zoomed (no scrollbars)
 			switch (args.Event.Key) {
 			case Gdk.Key.Up:
+			case Gdk.Key.KP_Up:
 			case Gdk.Key.Left:
+			case Gdk.Key.KP_Left:
 			case Gdk.Key.Page_Up:
 			case Gdk.Key.KP_Page_Up:
+			case Gdk.Key.BackSpace:
+			case Gdk.Key.h:
+			case Gdk.Key.H:
+			case Gdk.Key.j:
+			case Gdk.Key.J:
+			case Gdk.Key.b:
+			case Gdk.Key.B:
 				this.Item.MovePrevious ();
+				break;
+			case Gdk.Key.Down:
+			case Gdk.Key.KP_Down:
+			case Gdk.Key.Right:
+			case Gdk.Key.KP_Right:
+			case Gdk.Key.Page_Down:
+			case Gdk.Key.KP_Page_Down:
+			case Gdk.Key.space:
+			case Gdk.Key.KP_Space:
+			case Gdk.Key.k:
+			case Gdk.Key.K:
+			case Gdk.Key.l:
+			case Gdk.Key.L:
+			case Gdk.Key.n:
+			case Gdk.Key.N:
+				this.Item.MoveNext ();
 				break;
 			case Gdk.Key.Home:
 			case Gdk.Key.KP_Home:
@@ -463,14 +507,6 @@ namespace FSpot {
 			case Gdk.Key.End:
 			case Gdk.Key.KP_End:
 				this.Item.Index = this.Query.Count - 1;
-				break;
-			case Gdk.Key.Down:
-			case Gdk.Key.Right:
-			case Gdk.Key.Page_Down:
-			case Gdk.Key.KP_Page_Down:
-			case Gdk.Key.space:
-			case Gdk.Key.KP_Space:
-				this.Item.MoveNext ();
 				break;
 			case Gdk.Key.Key_0:
 			case Gdk.Key.KP_0:

@@ -308,21 +308,37 @@ namespace FSpot {
 
 		protected override bool OnKeyPressEvent (Gdk.EventKey key)
 		{
+			bool allow_quit = true;
+			
 			switch (key.Key) {
-				case Gdk.Key.Up:
-				case Gdk.Key.Left:
-				case Gdk.Key.KP_Up:
-				case Gdk.Key.KP_Left:
-				case Gdk.Key.Page_Up:
-				case Gdk.Key.Down:
-				case Gdk.Key.Right:
-				case Gdk.Key.KP_Down:
-				case Gdk.Key.KP_Right:
-				case Gdk.Key.Page_Down:
-					break;
-				default:
-					controls.Visibility = ControlOverlay.VisibilityType.Partial;
-					break;
+			// do not show controls on moving/zooming and modifier keys
+			case Gdk.Key.Up:
+			case Gdk.Key.Left:
+			case Gdk.Key.KP_Up:
+			case Gdk.Key.KP_Left:
+			case Gdk.Key.Page_Up:
+			case Gdk.Key.Down:
+			case Gdk.Key.Right:
+			case Gdk.Key.KP_Down:
+			case Gdk.Key.KP_Right:
+			case Gdk.Key.Page_Down:
+			case Gdk.Key.plus:
+			case Gdk.Key.minus:
+			case Gdk.Key.equal:
+			case Gdk.Key.KP_Add:
+			case Gdk.Key.KP_Subtract:
+			case Gdk.Key.Key_1:
+			case Gdk.Key.Key_0:
+			case Gdk.Key.Shift_L:
+			case Gdk.Key.Shift_R:
+			case Gdk.Key.Control_L:
+			case Gdk.Key.Control_R:
+				// do not quit on modifier keys as well - wait for following keystrokes
+				allow_quit = false;
+				break;
+			default:
+				controls.Visibility = ControlOverlay.VisibilityType.Partial;
+				break;
 			}
 
 			if (key == null) {
@@ -334,9 +350,9 @@ namespace FSpot {
 				System.Console.WriteLine ("view == null", key);
 				return false;
 			}
-
+			
 			bool retval = base.OnKeyPressEvent (key);
-			if (!retval)
+			if (allow_quit && !retval)
 				Quit ();
 			else 
 				view.Fit = false;
