@@ -7,6 +7,7 @@ using System.Collections.Specialized;
 using System.Web;
 using Mono.Unix;
 using FSpot;
+using FSpot.UI.Dialog;
 
 /* These classes are based off the documentation at 
  *
@@ -190,7 +191,7 @@ namespace GalleryRemote {
 		VersionFormatInvalid = 103,
 		VersionMissing = 104,
 		PasswordWrong = 201,
-		LoginMisssing = 202,
+		LoginMissing = 202,
 		UnknownComand = 301,
 		NoAddPermission = 401,
 		NoFilename = 402,
@@ -646,7 +647,7 @@ namespace GalleryRemote {
 				}
 				//Console.WriteLine ("Found: {0} cookies", response.Cookies.Count);
 				if (status != ResultCode.Success) {
-					Console.WriteLine (status_text);
+					Console.WriteLine (status_text + " Status: " + status);
 					throw new GalleryCommandException (status_text, status);
 				}
 
@@ -696,6 +697,20 @@ namespace GalleryRemote {
 			}
 			return fixedUrl;
 			
+		}
+
+		public void PopupException (GalleryCommandException e, Gtk.Dialog d) 
+		{
+			System.Console.WriteLine(String.Format ("{0} : {1} ({2})", e.Message, e.ResponseText, e.Status));
+			HigMessageDialog md = 
+				new HigMessageDialog (d, 
+						      Gtk.DialogFlags.Modal |
+						      Gtk.DialogFlags.DestroyWithParent,
+						      Gtk.MessageType.Error, Gtk.ButtonsType.Ok,
+						      Catalog.GetString ("Error while creating new album"),
+						      String.Format (Catalog.GetString ("The following error was encountered while attempting to perform the requested operation:\n{0} ({1})"), e.Message, e.Status));
+			md.Run ();
+			md.Destroy ();
 		}
 		
 	}

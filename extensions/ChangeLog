@@ -1,3 +1,10 @@
+2008-09-03  Lorenzo Milesi <maxxer@yetopen.it>
+ 
+	* GalleryExport/GalleryRemote.cs:
+	* GalleryExport/GalleryExport.cs: catch some G2 communication errors
+	instead of crashing. fix bgo#498568.
+	* GalleryExport/GalleryExport.addin.xml: bump addin version.
+
 2008-08-18  Ruben Vermeersch  <ruben@savanne.be>
 
 	Add a sample extension, using the new Editors extension point. Does

@@ -49,7 +49,7 @@ namespace G2Export {
 			} else if (version == GalleryVersion.Version2) {
 				gal = new Gallery2 (url, url);
 			} else {
-				throw new Exception ("Cannot connect to a Gallery for which the version is unknown");
+				throw new GalleryException (Catalog.GetString("Cannot connect to a Gallery for which the version is unknown.\nPlease check that you have Remote plugin 1.0.8 or later"));
 			}
 
 			System.Console.WriteLine ("Gallery created: " + gal);
@@ -385,7 +385,6 @@ namespace G2Export {
 					GalleryAccountManager.GetInstance ().AddAccount (created);
 					account = created;
 				} catch (System.UriFormatException) {
-					
 					HigMessageDialog md = 
 						new HigMessageDialog (add_dialog, 
 								      Gtk.DialogFlags.Modal |
@@ -596,8 +595,13 @@ namespace G2Export {
 					md.Destroy ();
 					return;
 				}
-				gallery.NewAlbum (parent, name, title, description);
-				export.HandleAlbumAdded (title);
+				try {
+					gallery.NewAlbum (parent, name, title, description);
+					export.HandleAlbumAdded (title);
+ 				} catch (GalleryCommandException e) {
+ 					gallery.PopupException(e, add_album_dialog);
+ 					return;
+ 				}
 			}
 			add_album_dialog.Destroy ();
 		}
@@ -782,23 +786,23 @@ namespace G2Export {
 					FilterRequest req = new FilterRequest (item.DefaultVersionUri);
 
 					filters.Convert (req);
-				try {
-					int id = album.Add (item, req.Current.LocalPath);
+					try {
+						int id = album.Add (item, req.Current.LocalPath);
 
-					if (item != null && item is Photo && Core.Database != null && id != 0) {
-						Core.Database.Exports.Create ((item as Photo).Id, (item as Photo).DefaultVersionId,
-									      ExportStore.Gallery2ExportType,
-									      String.Format("{0}:{1}",album.Gallery.Uri.ToString (), id.ToString ()));
-					}
-				} catch (System.Exception e) {
-					progress_dialog.Message = String.Format (Catalog.GetString ("Error uploading picture \"{0}\" to Gallery: {1}"), item.Name, e.Message);
-					progress_dialog.ProgressText = Catalog.GetString ("Error");
-					Console.WriteLine (e);
+						if (item != null && item is Photo && Core.Database != null && id != 0) {
+							Core.Database.Exports.Create ((item as Photo).Id, (item as Photo).DefaultVersionId,
+										      ExportStore.Gallery2ExportType,
+										      String.Format("{0}:{1}",album.Gallery.Uri.ToString (), id.ToString ()));
+						}
+					} catch (System.Exception e) {
+						progress_dialog.Message = String.Format (Catalog.GetString ("Error uploading picture \"{0}\" to Gallery: {1}"), item.Name, e.Message);
+						progress_dialog.ProgressText = Catalog.GetString ("Error");
+						Console.WriteLine (e);
 
-					if (progress_dialog.PerformRetrySkip ()) {
-						photo_index--;
+						if (progress_dialog.PerformRetrySkip ()) {
+							photo_index--;
+						}
 					}
-				}
 			}
 
 			progress_dialog.Message = Catalog.GetString ("Done Sending Photos");
@@ -897,8 +901,13 @@ namespace G2Export {
 			System.Collections.ArrayList albums = null;
 			if (gallery != null) {
 				//gallery.FetchAlbumsPrune ();
-				gallery.FetchAlbums ();
-				albums = gallery.Albums;
+				try {
+					gallery.FetchAlbums ();
+					albums = gallery.Albums;
+				} catch (GalleryCommandException e) {
+					gallery.PopupException (e, export_dialog);
+					return;
+				}
 			}
 
 			Gtk.Menu menu = new Gtk.Menu ();
@@ -959,7 +968,7 @@ namespace G2Export {
 		public void HandleAddAlbum (object sender, System.EventArgs args)
 		{
 			if (account == null)
-				throw new Exception (Catalog.GetString ("No account selected"));
+				throw new GalleryException (Catalog.GetString ("No account selected"));
 				
 			new GalleryAddAlbum (this, account.Gallery);
 		}
