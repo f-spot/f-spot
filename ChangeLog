@@ -1,3 +1,8 @@
+2008-09-03  Lorenzo Milesi <maxxer@yetopen.it>
+
+	* src/PrintOperation.cs: avoid crashing if image is not found on
+	filesystem. Fix bgo#547663.
+
 2008-09-03  Stephane Delcroix  <sdelcroix@novell.com>
 
 	* src/FullScreenView.cs:

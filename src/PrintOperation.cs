@@ -14,6 +14,7 @@ using System.Runtime.InteropServices;
 using Mono.Unix;
 
 using FSpot.Widgets;
+using FSpot.Utils;
 
 namespace FSpot
 {
@@ -103,7 +104,16 @@ namespace FSpot
 						continue;
 					using (ImageFile img = new ImageFile (selected_photos[p_index].DefaultVersionUri))
 					{
-						Gdk.Pixbuf pixbuf = img.Load ();
+						Gdk.Pixbuf pixbuf;
+						try {
+							pixbuf = img.Load ();
+						} catch (Exception e) {
+							Log.Exception ("Unable to load image " + selected_photos[p_index].DefaultVersionUri + "\n", e);
+							// If the image is not found load error pixbuf
+							pixbuf = new Gdk.Pixbuf (PixbufUtils.ErrorPixbuf, 0, 0, 
+										      PixbufUtils.ErrorPixbuf.Width, 
+										      PixbufUtils.ErrorPixbuf.Height);
+						}
 						//Gdk.Pixbuf pixbuf = img.Load (100, 100);
 						bool rotated = false;
 						if (Math.Sign ((double)pixbuf.Width/pixbuf.Height - 1.0) != Math.Sign (w/h - 1.0)) {
