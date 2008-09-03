@@ -138,6 +138,7 @@ namespace FSpot
 			case SHOW_DATES:
 			case SHOW_RATINGS:
 			case VIEWER_SHOW_FILENAMES:
+				return true;
 			
 			case TAG_ICON_SIZE:
 				return (int) Tag.IconSize.Medium;
