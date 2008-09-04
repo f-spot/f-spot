@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: f-spot\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-08-25 19:24+0200\n"
-"PO-Revision-Date: 2008-08-25 19:27+0100\n"
+"POT-Creation-Date: 2008-09-05 00:47+0200\n"
+"PO-Revision-Date: 2008-09-05 00:50+0100\n"
 "Last-Translator: Daniel Nylander <po@danielnylander.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
 "MIME-Version: 1.0\n"
@@ -231,7 +231,7 @@ msgstr "Inaktivera"
 #: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.ErrorDialog.cs:40
 #: ../extensions/FlickrExport/FlickrExport.cs:359
 #: ../extensions/FolderExport/FolderExport.cs:249
-#: ../extensions/GalleryExport/GalleryExport.cs:795
+#: ../extensions/GalleryExport/GalleryExport.cs:799
 #: ../extensions/PicasaWebExport/PicasaWebExport.cs:694
 #: ../extensions/SmugMugExport/SmugMugExport.cs:595
 msgid "Error"
@@ -667,18 +667,18 @@ msgid "Tools"
 msgstr "Verktyg"
 
 #: ../src/FSpot.addin.xml.h:8
-#: ../src/f-spot.glade.h:194
+#: ../src/f-spot.glade.h:195
 msgid "_Attach Tag"
 msgstr "_Fäst tagg"
 
 #: ../src/FSpot.addin.xml.h:9
-#: ../src/f-spot.glade.h:206
+#: ../src/f-spot.glade.h:207
 msgid "_Delete From Drive"
 msgstr "Ta bort från _disk"
 
 # SUN CHANGED MESSAGE
 #: ../src/FSpot.addin.xml.h:10
-#: ../src/f-spot.glade.h:239
+#: ../src/f-spot.glade.h:240
 msgid "_Remove From Catalog"
 msgstr "Ta bort från _katalog"
 
@@ -793,12 +793,12 @@ msgid "Arrange by _Folder"
 msgstr "Ordna efter _mapp"
 
 #: ../src/GroupSelector.cs:523
-#: ../src/f-spot.glade.h:243
+#: ../src/f-spot.glade.h:244
 msgid "_Reverse Order"
 msgstr "Omvä_nd ordning"
 
 #: ../src/GroupSelector.cs:529
-#: ../src/f-spot.glade.h:198
+#: ../src/f-spot.glade.h:199
 msgid "_Clear Date Range"
 msgstr "_Rensa datumintervall"
 
@@ -1174,7 +1174,7 @@ msgstr "Taggar"
 #: ../extensions/CDExport/CDExport.cs:221
 #: ../extensions/FlickrExport/FlickrExport.cs:338
 #: ../extensions/FolderExport/FolderExport.cs:244
-#: ../extensions/GalleryExport/GalleryExport.cs:779
+#: ../extensions/GalleryExport/GalleryExport.cs:783
 #, csharp-format
 msgid "{0} of {1}"
 msgstr "{0} av {1}"
@@ -1551,11 +1551,11 @@ msgstr "Fel vid redigering av foto"
 msgid "Comment:"
 msgstr "Kommentar:"
 
-#: ../src/Preferences.cs:159
+#: ../src/Preferences.cs:160
 msgid "Photos"
 msgstr "Foton"
 
-#: ../src/PrintOperation.cs:31
+#: ../src/PrintOperation.cs:32
 msgid "Image Settings"
 msgstr "Bildinställningar"
 
@@ -1862,7 +1862,7 @@ msgstr " eller "
 #. private static string op_str = "(?'Ops' or | and |, | \\s+ )";
 #: ../src/Term.cs:379
 #: ../src/Widgets/FindBar.cs:177
-#: ../src/f-spot.glade.h:273
+#: ../src/f-spot.glade.h:274
 msgid "or"
 msgstr "eller"
 
@@ -2009,10 +2009,12 @@ msgid "This tool requires an active selection. Please select a region of the pho
 msgstr "Detta verktyg kräver en aktiv markering. Markera ett område i fotot och försök göra samma operation igen"
 
 #: ../src/Widgets/EditorPage.cs:210
-msgid "Error saving adjusted photo(s)"
-msgstr "Fel vid sparande av justerade foto(n)"
+msgid "Error saving adjusted photo"
+msgid_plural "Error saving adjusted photos"
+msgstr[0] "Fel vid sparande av justerat foto"
+msgstr[1] "Fel vid sparande av justerade foton"
 
-#: ../src/Widgets/EditorPage.cs:211
+#: ../src/Widgets/EditorPage.cs:212
 #, csharp-format
 msgid "Received exception \"{0}\". Note that you have to develop RAW files into JPEG before you can edit them."
 msgstr "Mottog undantaget \"{0}\". Observera att du måste framkalla RAW-filer i JPEG innan du kan redigera dem."
@@ -2022,7 +2024,7 @@ msgid "Find:"
 msgstr "Sök:"
 
 #: ../src/Widgets/FindBar.cs:177
-#: ../src/f-spot.glade.h:265
+#: ../src/f-spot.glade.h:266
 msgid "and"
 msgstr "och"
 
@@ -2774,236 +2776,237 @@ msgstr "T_aggar"
 msgid "Tags: "
 msgstr "Taggar: "
 
-#: ../src/f-spot.glade.h:182
+#. Note for translators: meant as Temperature
+#: ../src/f-spot.glade.h:183
 msgid "Te_mp:"
 msgstr "Te_mp:"
 
-#: ../src/f-spot.glade.h:183
+#: ../src/f-spot.glade.h:184
 msgid "Thumbnail _elements"
 msgstr "Miniatyrbilds_element"
 
-#: ../src/f-spot.glade.h:184
+#: ../src/f-spot.glade.h:185
 msgid "Tiny"
 msgstr "Mycket liten"
 
-#: ../src/f-spot.glade.h:185
+#: ../src/f-spot.glade.h:186
 msgid "Too_lbar"
 msgstr "Verktygs_rad"
 
-#: ../src/f-spot.glade.h:186
+#: ../src/f-spot.glade.h:187
 msgid "Total original size"
 msgstr "Total ursprunglig storlek"
 
-#: ../src/f-spot.glade.h:187
+#: ../src/f-spot.glade.h:188
 msgid "View"
 msgstr "Visa"
 
-#: ../src/f-spot.glade.h:188
+#: ../src/f-spot.glade.h:189
 msgid "Will print using: US Letter size on Generic Postscript"
 msgstr "Kommer att skriva ut med inställningarna: Storlek US Letter på Generic Postscript"
 
-#: ../src/f-spot.glade.h:189
+#: ../src/f-spot.glade.h:190
 msgid "Write _metadata to file"
 msgstr "Skriv _metadata till fil"
 
-#: ../src/f-spot.glade.h:190
+#: ../src/f-spot.glade.h:191
 msgid "Zoom _in"
 msgstr "Zooma _in"
 
-#: ../src/f-spot.glade.h:191
+#: ../src/f-spot.glade.h:192
 msgid "Zoom _out"
 msgstr "Zooma _ut"
 
-#: ../src/f-spot.glade.h:192
+#: ../src/f-spot.glade.h:193
 msgid "Zoom in"
 msgstr "Zooma in"
 
-#: ../src/f-spot.glade.h:193
+#: ../src/f-spot.glade.h:194
 msgid "Zoom out"
 msgstr "Zooma ut"
 
-#: ../src/f-spot.glade.h:195
+#: ../src/f-spot.glade.h:196
 msgid "_Attach Tag to Selection"
 msgstr "_Fäst tagg till markering"
 
-#: ../src/f-spot.glade.h:196
+#: ../src/f-spot.glade.h:197
 msgid "_Border:"
 msgstr "_Kant:"
 
-#: ../src/f-spot.glade.h:197
+#: ../src/f-spot.glade.h:198
 msgid "_Brightness:"
 msgstr "_Ljusstyrka:"
 
-#: ../src/f-spot.glade.h:199
+#: ../src/f-spot.glade.h:200
 msgid "_Clear Rating Filter"
 msgstr "_Töm betygsfilter"
 
-#: ../src/f-spot.glade.h:200
+#: ../src/f-spot.glade.h:201
 msgid "_Clear Roll Filter"
 msgstr "_Töm rullfilter"
 
-#: ../src/f-spot.glade.h:201
+#: ../src/f-spot.glade.h:202
 msgid "_Components"
 msgstr "_Komponenter"
 
-#: ../src/f-spot.glade.h:202
+#: ../src/f-spot.glade.h:203
 msgid "_Contents"
 msgstr "_Innehåll"
 
-#: ../src/f-spot.glade.h:203
+#: ../src/f-spot.glade.h:204
 msgid "_Create"
 msgstr "S_kapa"
 
-#: ../src/f-spot.glade.h:204
+#: ../src/f-spot.glade.h:205
 msgid "_Create Mail"
 msgstr "S_kapa e-post"
 
-#: ../src/f-spot.glade.h:205
+#: ../src/f-spot.glade.h:206
 msgid "_Dates"
 msgstr "_Datum"
 
-#: ../src/f-spot.glade.h:207
+#: ../src/f-spot.glade.h:208
 msgid "_Delete Selected Tag"
 msgstr "Ta bort _markerad tagg"
 
-#: ../src/f-spot.glade.h:208
+#: ../src/f-spot.glade.h:209
 msgid "_Delete Version"
 msgstr "_Ta bort version"
 
-#: ../src/f-spot.glade.h:209
+#: ../src/f-spot.glade.h:210
 msgid "_Display:"
 msgstr "_Visa:"
 
-#: ../src/f-spot.glade.h:210
+#: ../src/f-spot.glade.h:211
 msgid "_Edit"
 msgstr "R_edigera"
 
-#: ../src/f-spot.glade.h:211
+#: ../src/f-spot.glade.h:212
 msgid "_Edit Selected Tag..."
 msgstr "_Redigera markerad tagg..."
 
-#: ../src/f-spot.glade.h:212
+#: ../src/f-spot.glade.h:213
 msgid "_Export"
 msgstr "_Exportera"
 
-#: ../src/f-spot.glade.h:213
+#: ../src/f-spot.glade.h:214
 #: ../extensions/FlickrExport/FlickrExport.glade.h:15
 #: ../extensions/PicasaWebExport/PicasaWebExport.glade.h:20
 msgid "_Export tags"
 msgstr "_Exportera taggar"
 
-#: ../src/f-spot.glade.h:214
+#: ../src/f-spot.glade.h:215
 msgid "_Export to"
 msgstr "_Exportera till"
 
-#: ../src/f-spot.glade.h:215
+#: ../src/f-spot.glade.h:216
 #: ../extensions/GalleryExport/GalleryExport.glade.h:15
 #: ../extensions/PicasaWebExport/PicasaWebExport.glade.h:21
 #: ../extensions/SmugMugExport/SmugMugExport.glade.h:12
 msgid "_Export to Album:"
 msgstr "_Exportera till album:"
 
-#: ../src/f-spot.glade.h:216
+#: ../src/f-spot.glade.h:217
 msgid "_Exposure:"
 msgstr "_Exponering:"
 
-#: ../src/f-spot.glade.h:217
+#: ../src/f-spot.glade.h:218
 msgid "_Filmstrip"
 msgstr "_Filmremsa"
 
-#: ../src/f-spot.glade.h:218
+#: ../src/f-spot.glade.h:219
 msgid "_Flickr"
 msgstr "_Flickr"
 
-#: ../src/f-spot.glade.h:219
+#: ../src/f-spot.glade.h:220
 msgid "_Folder"
 msgstr "_Mapp"
 
-#: ../src/f-spot.glade.h:220
+#: ../src/f-spot.glade.h:221
 msgid "_Fullscreen"
 msgstr "_Helskärm"
 
-#: ../src/f-spot.glade.h:221
+#: ../src/f-spot.glade.h:222
 msgid "_Gallery"
 msgstr "Bild_galleri"
 
-#: ../src/f-spot.glade.h:222
+#: ../src/f-spot.glade.h:223
 msgid "_Help"
 msgstr "_Hjälp"
 
-#: ../src/f-spot.glade.h:223
+#: ../src/f-spot.glade.h:224
 msgid "_Hidden"
 msgstr "_Dolda"
 
-#: ../src/f-spot.glade.h:224
+#: ../src/f-spot.glade.h:225
 msgid "_Hue:"
 msgstr "_Nyans:"
 
-#: ../src/f-spot.glade.h:225
+#: ../src/f-spot.glade.h:226
 msgid "_Icon:"
 msgstr "_Ikon:"
 
-#: ../src/f-spot.glade.h:226
+#: ../src/f-spot.glade.h:227
 msgid "_Import..."
 msgstr "_Importera..."
 
-#: ../src/f-spot.glade.h:227
+#: ../src/f-spot.glade.h:228
 msgid "_Interpolate image on zoom"
 msgstr "_Interpolera bild vid zoomning"
 
-#: ../src/f-spot.glade.h:228
+#: ../src/f-spot.glade.h:229
 msgid "_Large"
 msgstr "_Stor"
 
-#: ../src/f-spot.glade.h:229
+#: ../src/f-spot.glade.h:230
 msgid "_Last Import Roll"
 msgstr "Senaste imp_ortrullen"
 
-#: ../src/f-spot.glade.h:230
+#: ../src/f-spot.glade.h:231
 msgid "_Medium"
 msgstr "_Mellan"
 
-#: ../src/f-spot.glade.h:231
+#: ../src/f-spot.glade.h:232
 msgid "_Month"
 msgstr "_Månad"
 
-#: ../src/f-spot.glade.h:232
+#: ../src/f-spot.glade.h:233
 msgid "_New Window"
 msgstr "_Nytt fönster"
 
-#: ../src/f-spot.glade.h:233
+#: ../src/f-spot.glade.h:234
 msgid "_Open album in browser when done uploading"
 msgstr "_Öppna album i webbläsaren när sändningen är färdig"
 
-#: ../src/f-spot.glade.h:234
+#: ../src/f-spot.glade.h:235
 msgid "_Open destination when done exporting"
 msgstr "_Öppna mål när exporteringen är färdig"
 
-#: ../src/f-spot.glade.h:235
+#: ../src/f-spot.glade.h:236
 msgid "_Output:"
 msgstr "_Utdata:"
 
-#: ../src/f-spot.glade.h:236
+#: ../src/f-spot.glade.h:237
 msgid "_Photo"
 msgstr "_Foto"
 
-#: ../src/f-spot.glade.h:237
+#: ../src/f-spot.glade.h:238
 msgid "_Quit"
 msgstr "_Avsluta"
 
-#: ../src/f-spot.glade.h:238
+#: ../src/f-spot.glade.h:239
 msgid "_Ratings"
 msgstr "_Betyg"
 
-#: ../src/f-spot.glade.h:240
+#: ../src/f-spot.glade.h:241
 msgid "_Remove Tag From Selection"
 msgstr "_Ta bort tagg från markering"
 
-#: ../src/f-spot.glade.h:241
+#: ../src/f-spot.glade.h:242
 msgid "_Rename Version"
 msgstr "_Byt namn på versionen"
 
-#: ../src/f-spot.glade.h:242
+#: ../src/f-spot.glade.h:243
 #: ../extensions/FlickrExport/FlickrExport.glade.h:16
 #: ../extensions/FolderExport/FolderExport.glade.h:17
 #: ../extensions/GalleryExport/GalleryExport.glade.h:20
@@ -3012,92 +3015,92 @@ msgstr "_Byt namn på versionen"
 msgid "_Resize to: "
 msgstr "_Skala om bilder till: "
 
-#: ../src/f-spot.glade.h:244
+#: ../src/f-spot.glade.h:245
 msgid "_Saturation:"
 msgstr "_Mättnad:"
 
-#: ../src/f-spot.glade.h:245
+#: ../src/f-spot.glade.h:246
 msgid "_Scale photos to no larger than: "
 msgstr "_Skala foton till högst: "
 
-#: ../src/f-spot.glade.h:246
+#: ../src/f-spot.glade.h:247
 msgid "_Select Import Rolls..."
 msgstr "_Välj importrullar..."
 
-#: ../src/f-spot.glade.h:247
+#: ../src/f-spot.glade.h:248
 msgid "_Set Date Range..."
 msgstr "Ange dat_umintervall..."
 
-#: ../src/f-spot.glade.h:248
+#: ../src/f-spot.glade.h:249
 msgid "_Set Rating filter..."
 msgstr "Ange _betygsfilter..."
 
-#: ../src/f-spot.glade.h:249
+#: ../src/f-spot.glade.h:250
 msgid "_Sharpen..."
 msgstr "_Gör skarpare..."
 
-#: ../src/f-spot.glade.h:250
+#: ../src/f-spot.glade.h:251
 msgid "_Slideshow"
 msgstr "_Bildspel"
 
-#: ../src/f-spot.glade.h:251
+#: ../src/f-spot.glade.h:252
 msgid "_Small"
 msgstr "_Liten"
 
-#: ../src/f-spot.glade.h:252
+#: ../src/f-spot.glade.h:253
 msgid "_Strip metadata"
 msgstr "_Ta bort metadata"
 
-#: ../src/f-spot.glade.h:253
+#: ../src/f-spot.glade.h:254
 msgid "_Tag Icons"
 msgstr "_Taggikoner"
 
-#: ../src/f-spot.glade.h:254
+#: ../src/f-spot.glade.h:255
 msgid "_Tag Name:"
 msgstr "_Taggnamn:"
 
-#: ../src/f-spot.glade.h:255
+#: ../src/f-spot.glade.h:256
 msgid "_Tags"
 msgstr "_Taggar"
 
-#: ../src/f-spot.glade.h:256
+#: ../src/f-spot.glade.h:257
 msgid "_Timeline"
 msgstr "_Tidslinje"
 
-#: ../src/f-spot.glade.h:257
+#: ../src/f-spot.glade.h:258
 msgid "_Tint:"
 msgstr "_Tona:"
 
-#: ../src/f-spot.glade.h:258
+#: ../src/f-spot.glade.h:259
 msgid "_Toolbar"
 msgstr "_Verktygsrad"
 
-#: ../src/f-spot.glade.h:259
+#: ../src/f-spot.glade.h:260
 msgid "_Tools"
 msgstr "_Verktyg"
 
-#: ../src/f-spot.glade.h:260
+#: ../src/f-spot.glade.h:261
 msgid "_URI:"
 msgstr "_URI:"
 
-#: ../src/f-spot.glade.h:261
+#: ../src/f-spot.glade.h:262
 msgid "_Untagged Photos"
 msgstr "_Otaggade foton"
 
-#: ../src/f-spot.glade.h:262
+#: ../src/f-spot.glade.h:263
 msgid "_Version"
 msgstr "_Version"
 
-#: ../src/f-spot.glade.h:263
+#: ../src/f-spot.glade.h:264
 msgid "_View"
 msgstr "_Visa"
 
-#: ../src/f-spot.glade.h:264
+#: ../src/f-spot.glade.h:265
 msgid "_Virtual Filesystem"
 msgstr "_Virtuellt filsystem"
 
 #. at, or after a date, or between dates
-#: ../src/f-spot.glade.h:267
+#: ../src/f-spot.glade.h:268
 msgid ""
 "at\n"
 "after\n"
@@ -3107,19 +3110,19 @@ msgstr ""
 "efter den\n"
 "mellan den"
 
-#: ../src/f-spot.glade.h:270
+#: ../src/f-spot.glade.h:271
 msgid "difference:"
 msgstr "skillnad:"
 
-#: ../src/f-spot.glade.h:271
+#: ../src/f-spot.glade.h:272
 msgid "img_000.jpg"
 msgstr "bild_000.jpg"
 
-#: ../src/f-spot.glade.h:272
+#: ../src/f-spot.glade.h:273
 msgid "min. Starting at {0}"
 msgstr "min. Början vid {0}"
 
-#: ../src/f-spot.glade.h:274
+#: ../src/f-spot.glade.h:275
 #: ../extensions/FlickrExport/FlickrExport.glade.h:18
 #: ../extensions/FolderExport/FolderExport.glade.h:19
 #: ../extensions/GalleryExport/GalleryExport.glade.h:23
@@ -3128,7 +3131,7 @@ msgstr "min. Början vid {0}"
 msgid "pixels"
 msgstr "bildpunkter"
 
-#: ../src/f-spot.glade.h:275
+#: ../src/f-spot.glade.h:276
 msgid "x"
 msgstr "x"
 
@@ -3152,7 +3155,7 @@ msgstr "Överför bild \"{0}\" till cd"
 #: ../extensions/CDExport/CDExport.cs:246
 #: ../extensions/FlickrExport/FlickrExport.cs:368
 #: ../extensions/FolderExport/FolderExport.cs:284
-#: ../extensions/GalleryExport/GalleryExport.cs:804
+#: ../extensions/GalleryExport/GalleryExport.cs:808
 #: ../extensions/PicasaWebExport/PicasaWebExport.cs:702
 #: ../extensions/SmugMugExport/SmugMugExport.cs:606
 msgid "Done Sending Photos"
@@ -3268,7 +3271,7 @@ msgstr "Väntar på svar {0} av {1}"
 
 #: ../extensions/FlickrExport/FlickrExport.cs:333
 #: ../extensions/FolderExport/FolderExport.cs:241
-#: ../extensions/GalleryExport/GalleryExport.cs:775
+#: ../extensions/GalleryExport/GalleryExport.cs:779
 #, csharp-format
 msgid "Uploading picture \"{0}\""
 msgstr "Skickar upp bild \"{0}\""
@@ -3279,7 +3282,7 @@ msgid "Error Uploading To {0}: {1}"
 msgstr "Fel vid sändning till {0}: {1}"
 
 #: ../extensions/FlickrExport/FlickrExport.cs:370
-#: ../extensions/GalleryExport/GalleryExport.cs:806
+#: ../extensions/GalleryExport/GalleryExport.cs:810
 #: ../extensions/PicasaWebExport/PicasaWebExport.cs:704
 #: ../extensions/SmugMugExport/SmugMugExport.cs:608
 msgid "Upload Complete"
@@ -3295,7 +3298,7 @@ msgid "F-Spot was unable to log on to {0}.  Make sure you have given the authent
 msgstr "F-Spot kunde inte logga in på {0}. Kontrollera att du har angivit rätt inloggningsuppgifter med hjälp av webbläsargränssnittet."
 
 #: ../extensions/FlickrExport/FlickrExport.cs:459
-#: ../extensions/GalleryExport/GalleryExport.cs:728
+#: ../extensions/GalleryExport/GalleryExport.cs:732
 #: ../extensions/PicasaWebExport/PicasaWebExport.cs:598
 #: ../extensions/SmugMugExport/SmugMugExport.cs:521
 msgid "Uploading Pictures"
@@ -3441,45 +3444,53 @@ msgstr "_Spara endast filerna"
 msgid "Web _Gallery..."
 msgstr "Webb_galleri..."
 
-#: ../extensions/GalleryExport/GalleryExport.cs:394
+#: ../extensions/GalleryExport/GalleryExport.cs:52
+msgid ""
+"Cannot connect to a Gallery for which the version is unknown.\n"
+"Please check that you have Remote plugin 1.0.8 or later"
+msgstr ""
+"Kan inte ansluta till ett Gallery för vilket versionen är okänd.\n"
+"Kontrollera att du har insticksmodulen Remote 1.0.8 eller senare"
+
+#: ../extensions/GalleryExport/GalleryExport.cs:393
 msgid "Invalid URL"
 msgstr "Ogiltig URL"
 
-#: ../extensions/GalleryExport/GalleryExport.cs:395
+#: ../extensions/GalleryExport/GalleryExport.cs:394
 msgid "The gallery URL entry does not appear to be a valid URL"
 msgstr "Galleriets URL-post verkar inte vara en giltig URL"
+
+#: ../extensions/GalleryExport/GalleryExport.cs:404
+#: ../extensions/GalleryExport/GalleryExport.cs:431
+#: ../extensions/GalleryExport/GalleryExport.cs:442
+msgid "Error while connecting to Gallery"
+msgstr "Fel vid anslutning till Gallery"
 
 #: ../extensions/GalleryExport/GalleryExport.cs:405
 #: ../extensions/GalleryExport/GalleryExport.cs:432
 #: ../extensions/GalleryExport/GalleryExport.cs:443
-msgid "Error while connecting to Gallery"
-msgstr "Fel vid anslutning till Gallery"
-
-#: ../extensions/GalleryExport/GalleryExport.cs:406
-#: ../extensions/GalleryExport/GalleryExport.cs:433
-#: ../extensions/GalleryExport/GalleryExport.cs:444
 #, csharp-format
 msgid "The following error was encountered while attempting to log in: {0}"
 msgstr "Följande fel påträffades vid försök att logga in: {0}"
 
-#: ../extensions/GalleryExport/GalleryExport.cs:420
+#: ../extensions/GalleryExport/GalleryExport.cs:419
 msgid "A Gallery with this name already exists"
 msgstr "Ett galleri med det här namnet finns redan"
 
-#: ../extensions/GalleryExport/GalleryExport.cs:421
+#: ../extensions/GalleryExport/GalleryExport.cs:420
 #, csharp-format
 msgid "There is already a Gallery with the same name in your registered Galleries. Please choose a unique name."
 msgstr "Det finns redan ett galleri med samma namn bland dina registrerade gallerier. Välj ett unikt namn."
 
-#: ../extensions/GalleryExport/GalleryExport.cs:531
+#: ../extensions/GalleryExport/GalleryExport.cs:530
 msgid "(TopLevel)"
 msgstr "(Toppnivå)"
 
-#: ../extensions/GalleryExport/GalleryExport.cs:593
+#: ../extensions/GalleryExport/GalleryExport.cs:592
 msgid "Invalid Gallery name"
 msgstr "Ogiltigt gallerinamn"
 
-#: ../extensions/GalleryExport/GalleryExport.cs:594
+#: ../extensions/GalleryExport/GalleryExport.cs:593
 msgid ""
 "The gallery name contains invalid characters.\n"
 "Only letters, numbers, - and _ are allowed"
@@ -3487,30 +3498,30 @@ msgstr ""
 "Gallerinamnet innehåller ogiltiga tecken.\n"
 "Endast bokstäver, siffror, - och _ är tillåtna"
 
-#: ../extensions/GalleryExport/GalleryExport.cs:794
+#: ../extensions/GalleryExport/GalleryExport.cs:798
 #, csharp-format
 msgid "Error uploading picture \"{0}\" to Gallery: {1}"
 msgstr "Fel vid sändning av bilden \"{0}\" till Gallery: {1}"
 
-#: ../extensions/GalleryExport/GalleryExport.cs:822
+#: ../extensions/GalleryExport/GalleryExport.cs:826
 #: ../extensions/PicasaWebExport/PicasaWebExport.cs:725
 #: ../extensions/SmugMugExport/SmugMugExport.cs:629
 msgid "(No Gallery)"
 msgstr "(Inget galleri)"
 
-#: ../extensions/GalleryExport/GalleryExport.cs:909
+#: ../extensions/GalleryExport/GalleryExport.cs:918
 #: ../extensions/PicasaWebExport/PicasaWebExport.cs:852
 #: ../extensions/SmugMugExport/SmugMugExport.cs:725
 msgid "(Not Connected)"
 msgstr "(Inte ansluten)"
 
-#: ../extensions/GalleryExport/GalleryExport.cs:910
+#: ../extensions/GalleryExport/GalleryExport.cs:919
 #: ../extensions/PicasaWebExport/PicasaWebExport.cs:853
 #: ../extensions/SmugMugExport/SmugMugExport.cs:726
 msgid "(No Albums)"
 msgstr "(Inga album)"
 
-#: ../extensions/GalleryExport/GalleryExport.cs:962
+#: ../extensions/GalleryExport/GalleryExport.cs:971
 #: ../extensions/PicasaWebExport/PicasaWebExport.cs:915
 #: ../extensions/SmugMugExport/SmugMugExport.cs:767
 msgid "No account selected"
@@ -3579,14 +3590,27 @@ msgstr "_Titel:"
 msgid "_Username:"
 msgstr "_Användarnamn:"
 
-#: ../extensions/GalleryExport/GalleryRemote.cs:360
+#: ../extensions/GalleryExport/GalleryRemote.cs:361
 msgid "Error reading server response"
 msgstr "Fel vid läsning av serversvar"
 
 #. failed to find the response
-#: ../extensions/GalleryExport/GalleryRemote.cs:372
+#: ../extensions/GalleryExport/GalleryRemote.cs:373
 msgid "Server returned response without Gallery content"
 msgstr "Servern returnerade svar utan Gallery-innehåll"
+
+#: ../extensions/GalleryExport/GalleryRemote.cs:710
+msgid "Error while creating new album"
+msgstr "Fel vid skapandet av nytt album"
+
+#: ../extensions/GalleryExport/GalleryRemote.cs:711
+#, csharp-format
+msgid ""
+"The following error was encountered while attempting to perform the requested operation:\n"
+"{0} ({1})"
+msgstr ""
+"Följande fel påträffades vid försök att genomföra begärd åtgärd:\n"
+"{0} ({1})"
 
 #: ../extensions/PicasaWebExport/PicasaWebExport.addin.xml.h:1
 msgid "_PicasaWeb..."
