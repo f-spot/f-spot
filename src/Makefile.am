@@ -174,6 +174,7 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/Imaging/Tiff.cs		\
 	$(srcdir)/JobStore.cs			\
 	$(srcdir)/Jobs/SyncMetadataJob.cs	\
+	$(srcdir)/Jobs/CalculateHashJob.cs	\
 	$(srcdir)/Loupe.cs			\
 	$(srcdir)/MainWindow.cs			\
 	$(srcdir)/MemorySurface.cs		\

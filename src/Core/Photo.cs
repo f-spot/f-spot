@@ -207,6 +207,18 @@ namespace FSpot
 				changes.RatingChanged = true;
 			}
 		}
+
+		private string md5_sum;
+		public string MD5Sum {
+			get { return md5_sum; }
+			set { 
+				if (md5_sum == value)
+				 	return;
+
+				md5_sum = value; 
+				changes.MD5SumChanged = true;
+			} 
+		}
 	
 		// Version management
 		public const int OriginalVersionId = 1;
@@ -254,9 +266,9 @@ namespace FSpot
 	
 		// This doesn't check if a version of that name already exists, 
 		// it's supposed to be used only within the Photo and PhotoStore classes.
-		internal void AddVersionUnsafely (uint version_id, System.Uri uri, string name, bool is_protected)
+		internal void AddVersionUnsafely (uint version_id, System.Uri uri, string md5_sum, string name, bool is_protected)
 		{
-			Versions [version_id] = new PhotoVersion (this, version_id, uri, name, is_protected);
+			Versions [version_id] = new PhotoVersion (this, version_id, uri, md5_sum, name, is_protected);
 	
 			highest_version_id = Math.Max (version_id, highest_version_id);
 			changes.AddVersion (version_id);
@@ -272,7 +284,9 @@ namespace FSpot
 			if (VersionNameExists (name))
 				throw new ApplicationException ("A version with that name already exists");
 			highest_version_id ++;
-			Versions [highest_version_id] = new PhotoVersion (this, highest_version_id, uri, name, is_protected);
+			string md5_sum = GenerateMD5 (uri);
+
+			Versions [highest_version_id] = new PhotoVersion (this, highest_version_id, uri, name, md5_sum, is_protected);
 
 			changes.AddVersion (highest_version_id);
 			return highest_version_id;
@@ -416,6 +430,7 @@ namespace FSpot
 		{
 			System.Uri new_uri = GetUriForVersionName (name, System.IO.Path.GetExtension (VersionUri (base_version_id).AbsolutePath));
 			System.Uri original_uri = VersionUri (base_version_id);
+			string md5_sum = MD5Sum;
 	
 			if (VersionNameExists (name))
 				throw new Exception ("This version name already exists");
@@ -440,9 +455,13 @@ namespace FSpot
 	//				try {
 	//					Mono.Unix.Native.Syscall.chown(new_path, Mono.Unix.Native.Syscall.getuid (), stat.st_gid);
 	//				} catch (Exception) {}
+	//
+			} else {
+				md5_sum = Photo.GenerateMD5 (new_uri);
 			}
 			highest_version_id ++;
-			Versions [highest_version_id] = new PhotoVersion (this, highest_version_id, new_uri, name, is_protected);
+
+			Versions [highest_version_id] = new PhotoVersion (this, highest_version_id, new_uri, md5_sum, name, is_protected);
 
 			changes.AddVersion (highest_version_id);
 	
@@ -466,7 +485,7 @@ namespace FSpot
 					continue;
 	
 				highest_version_id ++;
-				Versions [highest_version_id] = new PhotoVersion (this, highest_version_id, version.Uri, name, is_protected);
+				Versions [highest_version_id] = new PhotoVersion (this, highest_version_id, version.Uri, version.MD5Sum, name, is_protected);
 
 				changes.AddVersion (highest_version_id);
 
@@ -597,9 +616,54 @@ namespace FSpot
 			return tags.Contains (tag);
 		}
 	
+		//
+		// MD5 Calculator
+		//
+		private static System.Security.Cryptography.MD5 md5_generator;
+
+		private static System.Security.Cryptography.MD5 MD5Generator {
+			get {
+				if (md5_generator == null)
+				 	md5_generator = new System.Security.Cryptography.MD5CryptoServiceProvider ();
+
+				return md5_generator;
+			} 
+		}
+
+		private static IDictionary<System.Uri, string> md5_cache = new Dictionary<System.Uri, string> ();
+
+		public static void ResetMD5Cache () {
+			if (md5_cache != null)	
+				md5_cache.Clear (); 
+		}
+
+		public static string GenerateMD5 (System.Uri uri)
+		{
+		 	try {
+			 	if (md5_cache.ContainsKey (uri)) {
+				 	Log.DebugFormat("Return cache hit for {0}", uri);
+				 	return md5_cache [uri];
+				}
+
+				using (Gdk.Pixbuf pixbuf = ThumbnailGenerator.Create (uri))
+				{
+					byte[] serialized = PixbufSerializer.Serialize (pixbuf);
+					byte[] md5 = MD5Generator.ComputeHash (serialized);
+					string md5_string = Convert.ToBase64String (md5);
+
+					md5_cache.Add (uri, md5_string);
+					return md5_string;
+				}
+			} catch (Exception e) {
+			 	Log.DebugFormat("Failed to create MD5Sum for Uri {0}; {1}", uri, e.Message);
+			}
+
+			return string.Empty; 
+		}
+
 
 		// Constructor
-		public Photo (uint id, long unix_time, System.Uri uri)
+		public Photo (uint id, long unix_time, System.Uri uri, string md5_sum)
 			: base (id)
 		{
 			if (uri == null)
@@ -609,10 +673,11 @@ namespace FSpot
 	
 			description = String.Empty;
 			rating = 0;
+			this.md5_sum = md5_sum;
 	
 			// Note that the original version is never stored in the photo_versions table in the
 			// database.
-			AddVersionUnsafely (OriginalVersionId, uri, Catalog.GetString ("Original"), true);
+			AddVersionUnsafely (OriginalVersionId, uri, md5_sum, Catalog.GetString ("Original"), true);
 		}
 	}
 }

@@ -25,6 +25,7 @@ namespace FSpot
 			Description		= 0x10,
 			RollId			= 0x20,
 			Data			= 0x40,
+			MD5Sum			= 0x80
 		}
 
 		Changes changes = Changes.None;
@@ -106,6 +107,17 @@ namespace FSpot
 				else
 					changes &= ~Changes.RollId;
 			}
+		}
+
+		public bool MD5SumChanged {
+			get { return (changes & Changes.MD5Sum) == Changes.MD5Sum ; } 
+			set {
+				if (value)
+				 	changes |= Changes.MD5Sum;
+				else
+				 	changes &= ~Changes.MD5Sum; 
+			}
+		 
 		}
 
 		public static PhotosChanges operator | (PhotosChanges c1, PhotosChanges c2)

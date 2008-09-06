@@ -321,6 +321,7 @@ public class ImportCommand : GladeDialog
 	[Glade.Widget] Gtk.OptionMenu source_option_menu;
 	[Glade.Widget] Gtk.ScrolledWindow icon_scrolled;
 	[Glade.Widget] Gtk.ScrolledWindow photo_scrolled;
+	[Glade.Widget] Gtk.CheckButton duplicate_check;
 	[Glade.Widget] Gtk.CheckButton recurse_check;
 	[Glade.Widget] Gtk.CheckButton copy_check;
 	[Glade.Widget] Gtk.Button ok_button;
@@ -431,10 +432,8 @@ public class ImportCommand : GladeDialog
 	}
 
 	private bool Step ()
-	{			
-		Photo photo;
-		Pixbuf thumbnail;
-		int count;
+	{	
+	 	StepStatusInfo status_info;		
 		bool ongoing = true;
 
 		if (importer == null)
@@ -443,27 +442,27 @@ public class ImportCommand : GladeDialog
 		try {
 			// FIXME this is really just an incredibly ugly way of dealing
 			// with the recursive DoImport loops we sometimes get into
-			ongoing = importer.Step (out photo, out thumbnail, out count);
+			ongoing = importer.Step (out status_info);
 		} catch (ImportException e){
 			System.Console.WriteLine (e);
 			return false;
 		}
 
-		if (photo == null || thumbnail == null) {
+		if (!status_info.IsDuplicate && (status_info.Photo == null || status_info.Thumbnail == null)) {
 			Console.WriteLine ("Could not import file");
 		} else {
 			//icon_scrolled.Visible = true;
-			collection.Add (photo);
-		
+		 	if (!status_info.IsDuplicate)
+				collection.Add (status_info.Photo);
 			//grid.AddThumbnail (thumbnail);
 
 		}
 
-		if (thumbnail != null)
-			thumbnail.Dispose ();
+		if (status_info.Thumbnail != null)
+			status_info.Thumbnail.Dispose ();
 		
-		if (count < total)
-			UpdateProgressBar (count + 1, total);
+		if (status_info.Count < total)
+			UpdateProgressBar (status_info.Count + 1, total);
 
 		if (ongoing && total > 0)
 			return true;
@@ -600,6 +599,7 @@ public class ImportCommand : GladeDialog
 		this.Dialog.DefaultResponse = ResponseType.Ok;
 		
 		//import_folder_entry.Activated += HandleEntryActivate;
+		duplicate_check.Toggled += HandleRecurseToggled;
 		recurse_check.Toggled += HandleRecurseToggled;
 		copy_check.Toggled += HandleRecurseToggled;
 
@@ -776,9 +776,13 @@ public class ImportCommand : GladeDialog
 		bool recurse = true;
 		if (recurse_check != null)
 			recurse = recurse_check.Active;
+
+		bool include_duplicates = false;
+		if (include_duplicates != null)
+		 	include_duplicates = duplicate_check.Active;
 		
 //		importer = new FileImportBackend (store, pathimport, copy, recurse, null);
-		importer = new FileImportBackend (store, pathimport, copy, recurse, null, Dialog);
+		importer = new FileImportBackend (store, pathimport, copy, recurse, include_duplicates, null, Dialog);
 		AllowFinish = false;
 		
 		total = importer.Prepare ();
@@ -848,3 +852,48 @@ public class ImportCommand : GladeDialog
 
 #endif
 }
+
+public class StepStatusInfo {
+	private Photo photo;
+	private Pixbuf thumbnail;
+	private int count;
+	private bool is_duplicate;
+
+	public Photo Photo {
+		get  {
+			return photo; 
+		} 
+	}
+
+	public Pixbuf Thumbnail {
+		get {
+			return thumbnail; 
+		} 
+	}
+
+	public int Count {
+		get {
+			return count; 
+		} 
+	}
+
+	public bool IsDuplicate {
+		get {
+			return is_duplicate; 
+		} 
+	}
+
+	public StepStatusInfo (Photo photo, Pixbuf thumbnail, int count, bool is_duplicate)
+	{
+		this.photo = photo;
+		this.thumbnail = thumbnail;
+		this.count = count;
+		this.is_duplicate = is_duplicate;
+	}
+ 
+	public StepStatusInfo (Photo photo, Pixbuf thumbnail, int count)
+		: this (photo, thumbnail, count, false)
+	{ }
+}
+
+

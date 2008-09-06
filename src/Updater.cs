@@ -274,7 +274,65 @@ namespace FSpot.Database {
 					"SELECT photo_id, version_id, name, uri, protected FROM {0}", tmp_photo_versions));
 			});
 
-			// Update to version 14.0
+			// Update to version 16.0
+			 AddUpdate (new Version (16,0), delegate () {
+				 string temp_table = MoveTableToTemp ("photos");
+  
+				 Execute ("CREATE TABLE photos ( " +
+					  "	id                 INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,   " +
+					  "	time               INTEGER NOT NULL,	   	   " +
+					  "	uri		   STRING NOT NULL,		   " +
+					  "	description        TEXT NOT NULL,	           " +
+					  "	roll_id            INTEGER NOT NULL,		   " +
+					  "	default_version_id INTEGER NOT NULL,		   " +
+					  "	rating		   INTEGER NULL,		   " +
+					  "	md5_sum		   TEXT NULL  			   " +
+					  ")"
+				 );
+  
+				 Execute (string.Format ("INSERT INTO photos (id, time, uri, description, roll_id, " + 
+							 "default_version_id, rating, md5_sum) " + 
+							 "SELECT id, time, uri, description, roll_id, " +
+							 "       default_version_id, rating, '' " +
+							 "FROM   {0} ", 
+							 temp_table
+							)
+				 );
+
+
+				 string temp_versions_table = MoveTableToTemp ("photo_versions");
+
+				 Console.WriteLine("{0} - {1}", temp_table, temp_versions_table);
+
+				 Execute ("CREATE TABLE photo_versions (    	" +
+					  "      photo_id        INTEGER,  	" +
+					  "      version_id      INTEGER,  	" +
+					  "      name            STRING,    	" +
+					  "	uri		STRING NOT NULL," +
+					  "	md5_sum		STRING NOT NULL," +
+					  "	protected	BOOLEAN		" +
+					  ")");
+
+				 Execute (string.Format ("INSERT INTO photo_versions (photo_id, version_id, name, uri, md5_sum, protected) " + 
+							 "SELECT photo_id, version_id, name, uri, '', protected " +
+							 "FROM   {0} ", 
+							 temp_versions_table
+							)
+				 );
+
+				 // This is kind of hacky but should be a lot faster on
+				 // large photo databases
+				 Execute (string.Format ("INSERT INTO jobs (job_type, job_options, run_at, job_priority) " +
+							 "SELECT '{0}', id, {1}, {2} " +
+							 "FROM   photos ",
+							 typeof(Jobs.CalculateHashJob).ToString (),
+							 FSpot.Utils.DbUtils.UnixTimeFromDateTime (DateTime.Now),
+							 0
+							)
+				 );
+			 }, true);
+
+			 // Update to version 17.0
 			//AddUpdate (new Version (14,0),delegate () {
 			//	do update here
 			//});

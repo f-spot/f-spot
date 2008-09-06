@@ -7,7 +7,7 @@ public abstract class ImportBackend {
 	public abstract int Prepare ();
 
 	// Import one picture.  Returns false when done; then you have to call Finish().
-	public abstract bool Step (out Photo photo, out Pixbuf thumbnail, out int count);
+	public abstract bool Step (out StepStatusInfo import_info);
 
 	// Cancel importing.
 	public abstract void Cancel ();

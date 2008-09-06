@@ -1,3 +1,28 @@
+2008-09-06  Thomas Van Machelen <thomas.vanmachelen@gmail.com>
+
+	Add duplicate detection to the import window.  Fix bgo #169646
+
+	* src/TagStore.cs: Free memory used for serializing
+
+	* src/f-spot.glade:
+	* src/ImportCommand.cs:
+	* src/ImportBackend.cs:
+	* src/FileImportBackend.cs: Add an option to the file import window to
+	allow the user to include duplicates or not.
+
+	* src/Core/Photo.cs:
+	* src/Core/PhotoVersion.cs:
+	* src/Core/PhotosChanges.cs:
+	* src/PhotoStore.cs: 
+	* src/Updater.cs: Add an md5 sum field to the photo and photo
+	version, this makes it easy for us to check for images already in the
+	database.
+
+	* src/Makefile.am:
+	* src/Jobs/CalculateHashJob.cs: Add a job class that allows us to
+	calculate the md5 sum of a photo asynchronously.  This is used when
+	updating the database to include the md5 sum field.
+
 2008-09-03  Lorenzo Milesi <maxxer@yetopen.it>
 
 	* src/PrintOperation.cs: avoid crashing if image is not found on

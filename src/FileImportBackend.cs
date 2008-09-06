@@ -23,11 +23,13 @@ public class FileImportBackend : ImportBackend {
 	TagStore tag_store = FSpot.Core.Database.Tags;
 	bool recurse;
 	bool copy;
+	bool include_duplicates;
 	string [] base_paths;
 	Tag [] tags;
 	Gtk.Window parent;
 
 	int count;
+	int duplicate_count;
 	XmpTagsImporter xmptags;
 
 	ArrayList import_info;
@@ -117,6 +119,7 @@ public class FileImportBackend : ImportBackend {
 		xmptags = new XmpTagsImporter (store, tag_store);
 
 		roll = rolls.Create ();
+		Photo.ResetMD5Cache ();
 
 		return import_info.Count;
 	}
@@ -191,9 +194,11 @@ public class FileImportBackend : ImportBackend {
 		return dest;
 	}
 
-	public override bool Step (out Photo photo, out Pixbuf thumbnail, out int count)
+	public override bool Step (out StepStatusInfo status_info)
 	{
-		thumbnail = null;
+		Photo photo = null;
+		Pixbuf thumbnail = null;
+		bool is_duplicate = false;
 
 		if (import_info == null)
 			throw new ImportException ("Prepare() was not called");
@@ -209,41 +214,62 @@ public class FileImportBackend : ImportBackend {
 			string destination = info.OriginalPath;
 			if (copy)
 				destination = ChooseLocation (info.OriginalPath, directories);
-			
+
 			// Don't copy if we are already home
 			if (info.OriginalPath == destination) {
 				info.DestinationPath = destination;
-				photo = store.Create (info.DestinationPath, roll.Id, out thumbnail);
+
+				if (!include_duplicates)
+					photo = store.CheckForDuplicate (UriUtils.PathToFileUri (destination));
+
+				if (photo == null)
+					photo = store.Create (info.DestinationPath, roll.Id, out thumbnail);
+				else
+				 	is_duplicate = true;
 			} else {
 				System.IO.File.Copy (info.OriginalPath, destination);
 				info.DestinationPath = destination;
 
-				photo = store.Create (info.DestinationPath, info.OriginalPath, roll.Id, out thumbnail);
+				if (!include_duplicates)
+				 	photo = store.CheckForDuplicate (UriUtils.PathToFileUri (destination));
 
-				try {
-					File.SetAttributes (destination, File.GetAttributes (info.DestinationPath) & ~FileAttributes.ReadOnly);
-					DateTime create = File.GetCreationTime (info.OriginalPath);
-					File.SetCreationTime (info.DestinationPath, create);
-					DateTime mod = File.GetLastWriteTime (info.OriginalPath);
-					File.SetLastWriteTime (info.DestinationPath, mod);
-				} catch (IOException) {
-					// we don't want an exception here to be fatal.
+				if (photo == null)
+				{
+					photo = store.Create (info.DestinationPath, info.OriginalPath, roll.Id, out thumbnail);
+				 	
+
+					try {
+						File.SetAttributes (destination, File.GetAttributes (info.DestinationPath) & ~FileAttributes.ReadOnly);
+						DateTime create = File.GetCreationTime (info.OriginalPath);
+						File.SetCreationTime (info.DestinationPath, create);
+						DateTime mod = File.GetLastWriteTime (info.OriginalPath);
+						File.SetLastWriteTime (info.DestinationPath, mod);
+					} catch (IOException) {
+						// we don't want an exception here to be fatal.
+					}
+				}
+				else
+				{
+					is_duplicate = true; 
 				}
 			} 
 
-			if (tags != null) {
-				foreach (Tag t in tags) {
-					photo.AddTag (t);
+			if (!is_duplicate)
+			{
+				if (tags != null) {
+					foreach (Tag t in tags) {
+						photo.AddTag (t);
+					}
+					needs_commit = true;
 				}
-				needs_commit = true;
+
+				needs_commit |= xmptags.Import (photo, info.DestinationPath, info.OriginalPath);
+
+				if (needs_commit)
+					store.Commit(photo);
+
+				info.Photo = photo;
 			}
-
-			needs_commit |= xmptags.Import (photo, info.DestinationPath, info.OriginalPath);
-
-			if (needs_commit)
-				store.Commit(photo);
-			
-			info.Photo = photo;
 		} catch (System.Exception e) {
 			System.Console.WriteLine ("Error importing {0}{2}{1}", info.OriginalPath, e.ToString (), Environment.NewLine);
 			if (thumbnail != null)
@@ -266,7 +292,11 @@ public class FileImportBackend : ImportBackend {
 		}
 
 		this.count ++;
-		count = this.count;
+
+		if (is_duplicate)
+		 	this.duplicate_count ++;
+
+		status_info = new StepStatusInfo (photo, thumbnail, this.count, is_duplicate);
 
 		return (!abort && count != import_info.Count);
 	}
@@ -322,18 +352,26 @@ public class FileImportBackend : ImportBackend {
 
 		import_info = null;
 		xmptags.Finish();
-		count = 0;
-	//rolls.EndImport();    // Clean up the imported session.
+		Photo.ResetMD5Cache ();
+
+		if (count == duplicate_count)
+		 	rolls.Remove (roll);
+
+		count = duplicate_count = 0;
+		//rolls.EndImport();    // Clean up the imported session.
 	}
 
-	public FileImportBackend (PhotoStore store, string [] base_paths, bool recurse, Gtk.Window parent) : this (store, base_paths, false, recurse, null, parent) {}
+	public FileImportBackend (PhotoStore store, string [] base_paths, bool recurse, Gtk.Window parent) : this (store, base_paths, false, recurse, false, null, parent) {}
 
-	public FileImportBackend (PhotoStore store, string [] base_paths, bool copy, bool recurse, Tag [] tags, Gtk.Window parent)
+	public FileImportBackend (PhotoStore store, string [] base_paths, bool copy, bool recurse, Tag [] tags, Gtk.Window parent) : this (store, base_paths, copy, recurse, false, null, parent) {}
+
+	public FileImportBackend (PhotoStore store, string [] base_paths, bool copy, bool recurse, bool include_duplicates, Tag [] tags, Gtk.Window parent)
 	{
 		this.store = store;
 		this.copy = copy;
 		this.base_paths = base_paths;
 		this.recurse = recurse;
+		this.include_duplicates = include_duplicates;
 		this.tags = tags;
 		this.parent = parent;
 	}
