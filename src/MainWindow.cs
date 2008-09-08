@@ -2168,7 +2168,7 @@ public class MainWindow {
 	void HandleDisplayFilmstrip (object sender, EventArgs args)
 	{
 		photo_view.FilmStripVisibility = display_filmstrip.Active;
-		if (view_mode == ModeType.PhotoView) {
+		if (view_mode == ModeType.PhotoView)
 			photo_view.QueueDraw ();
 	}
 
