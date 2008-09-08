@@ -2168,6 +2168,8 @@ public class MainWindow {
 	void HandleDisplayFilmstrip (object sender, EventArgs args)
 	{
 		photo_view.FilmStripVisibility = display_filmstrip.Active;
+		if (view_mode == ModeType.PhotoView) {
+			photo_view.QueueDraw ();
 	}
 
 	void HandleDisplayInfoSidebar (object sender, EventArgs args)
@@ -3186,8 +3188,10 @@ public class MainWindow {
 
 		if (view_mode == ModeType.IconView)
 			icon_view.GrabFocus ();
-		else
+		else {
+			photo_view.QueueDraw ();
 			photo_view.View.GrabFocus ();
+		}
 
 		tag_entry.ClearTagCompletions ();
 	}
