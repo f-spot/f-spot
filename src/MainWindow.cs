@@ -2729,6 +2729,7 @@ public class MainWindow {
 		case Preferences.GROUP_ADAPTOR_ORDER_ASC:
 			group_selector.Adaptor.OrderAscending = Preferences.Get<bool> (key);
 			reverse_order.Active = Preferences.Get<bool> (key);
+			query.TimeOrderAsc = group_selector.Adaptor.OrderAscending;
 			break;
 
 		case Preferences.GLASS_POSITION:
