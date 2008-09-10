@@ -1,3 +1,8 @@
+2008-09-10  Thomas Van Machelen <thomas.vanmachelen@gmail.com>
+
+	* src/FileImportBackend.cs: Always remove copies that are detected as
+	being duplicate.
+
 2008-09-08  Lorenzo Milesi <maxxer@yetopen.it>
 
 	* src/MainWindow.cs: update photoview when closing filmstrip and

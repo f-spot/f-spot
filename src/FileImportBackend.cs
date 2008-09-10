@@ -251,6 +251,7 @@ public class FileImportBackend : ImportBackend {
 				else
 				{
 					is_duplicate = true; 
+					System.IO.File.Delete (destination);
 				}
 			} 
 
