@@ -1,5 +1,9 @@
 2008-09-11  Lorenzo Milesi <maxxer@yetopen.it>
 
+	* src/PhotoImageView.cs: fix vim shortcuts
+
+2008-09-11  Lorenzo Milesi <maxxer@yetopen.it>
+
 	* src/FullScreenView.cs: map keybindings to view/hide infobox, 
 	close fullscreen. now only few keys close fs! removed console
 	writelines. related to bug #347591. Portions of patch from 

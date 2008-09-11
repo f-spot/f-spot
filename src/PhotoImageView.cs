@@ -438,7 +438,8 @@ namespace FSpot {
 				switch (args.Event.Key) {					
 				case Gdk.Key.Up:
 				case Gdk.Key.KP_Up:
-				case Gdk.Key.j:
+				case Gdk.Key.k:
+				case Gdk.Key.K:
 					vadj.Value -= vadj.StepIncrement;
 					if (vadj.Value < vadj.Lower)
 						vadj.Value = vadj.Lower;
@@ -452,7 +453,8 @@ namespace FSpot {
 					return;
 				case Gdk.Key.Down:
 				case Gdk.Key.KP_Down:
-				case Gdk.Key.k:
+				case Gdk.Key.j:
+				case Gdk.Key.J:
 					vadj.Value += vadj.StepIncrement;
 					if (vadj.Value > vadj.Upper - vadj.PageSize)
 						vadj.Value = vadj.Upper - vadj.PageSize;
@@ -478,8 +480,8 @@ namespace FSpot {
 			case Gdk.Key.BackSpace:
 			case Gdk.Key.h:
 			case Gdk.Key.H:
-			case Gdk.Key.j:
-			case Gdk.Key.J:
+			case Gdk.Key.k:
+			case Gdk.Key.K:
 			case Gdk.Key.b:
 			case Gdk.Key.B:
 				this.Item.MovePrevious ();
@@ -492,8 +494,8 @@ namespace FSpot {
 			case Gdk.Key.KP_Page_Down:
 			case Gdk.Key.space:
 			case Gdk.Key.KP_Space:
-			case Gdk.Key.k:
-			case Gdk.Key.K:
+			case Gdk.Key.j:
+			case Gdk.Key.J:
 			case Gdk.Key.l:
 			case Gdk.Key.L:
 			case Gdk.Key.n:
