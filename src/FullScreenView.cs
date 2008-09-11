@@ -11,6 +11,7 @@ using System;
 using Gtk;
 using Gdk;
 using FSpot.Widgets;
+using FSpot.Utils;
 using Mono.Unix;
 
 namespace FSpot {
@@ -23,6 +24,7 @@ namespace FSpot {
 		//		private ImageDisplay display;
 		private TextureDisplay display;
 		private ToolButton play_pause_button;
+		private ToggleToolButton info_button;
 
 		ActionGroup actions;
 		const string ExitFullScreen = "ExitFullScreen";
@@ -177,7 +179,8 @@ namespace FSpot {
 				tbar.Insert (t_item, -1);
 #endif
 
-				tbar.Insert ((actions [Info]).CreateToolItem () as ToolItem, -1);
+				info_button = (ToggleToolButton) ((actions [Info]).CreateToolItem () as ToolItem);
+				tbar.Insert (info_button, -1);
 
 				tbar.Insert ((actions [HideToolbar]).CreateToolItem () as ToolItem, -1);
 
@@ -200,7 +203,7 @@ namespace FSpot {
 
 				notebook.CurrentPage = 0;
 			} catch (System.Exception e) {
-				System.Console.WriteLine (e);
+				Log.Exception (e);
 			}	
 
 		}
@@ -245,13 +248,18 @@ namespace FSpot {
 		InfoOverlay info;
 		private void InfoAction (object sender, System.EventArgs args)
 		{
-			ToggleAction action = sender as ToggleAction;
+			bool active = false;
+			if (sender is ToggleToolButton) {
+				(sender as ToggleToolButton).Active = ! (sender as ToggleToolButton).Active;
+				active = (sender as ToggleToolButton).Active;
+			} else 
+				active = (sender as ToggleAction).Active;
 
 			if (info == null) {
 				info = new InfoOverlay (this, view.Item);
 			}
 
-			info.Visibility = action.Active ? 
+			info.Visibility = active ? 
 				ControlOverlay.VisibilityType.Partial : 
 				ControlOverlay.VisibilityType.None;
 		}
@@ -263,7 +271,7 @@ namespace FSpot {
 			Gdk.ModifierType type;
 			((Gtk.Widget)sender).GdkWindow.GetPointer (out x, out y, out type);
 
-			if (y > (Allocation.Height * 0.66)) {
+			if (y > (Allocation.Height * 0.75)) {
 				controls.Visibility = ControlOverlay.VisibilityType.Partial;
 				scroll.ShowControls ();
 			}
@@ -308,46 +316,30 @@ namespace FSpot {
 
 		protected override bool OnKeyPressEvent (Gdk.EventKey key)
 		{
-			bool allow_quit = true;
+			bool allow_quit = false;
 			
 			switch (key.Key) {
-			// do not show controls on moving/zooming and modifier keys
-			case Gdk.Key.Up:
-			case Gdk.Key.Left:
-			case Gdk.Key.KP_Up:
-			case Gdk.Key.KP_Left:
-			case Gdk.Key.Page_Up:
-			case Gdk.Key.Down:
-			case Gdk.Key.Right:
-			case Gdk.Key.KP_Down:
-			case Gdk.Key.KP_Right:
-			case Gdk.Key.Page_Down:
-			case Gdk.Key.plus:
-			case Gdk.Key.minus:
-			case Gdk.Key.equal:
-			case Gdk.Key.KP_Add:
-			case Gdk.Key.KP_Subtract:
-			case Gdk.Key.Key_1:
-			case Gdk.Key.Key_0:
-			case Gdk.Key.Shift_L:
-			case Gdk.Key.Shift_R:
-			case Gdk.Key.Control_L:
-			case Gdk.Key.Control_R:
-				// do not quit on modifier keys as well - wait for following keystrokes
-				allow_quit = false;
+			// quit only on certain keys
+			case Gdk.Key.F:
+			case Gdk.Key.f:
+			case Gdk.Key.F11:
+			case Gdk.Key.Escape:
+				allow_quit = true;
 				break;
-			default:
-				controls.Visibility = ControlOverlay.VisibilityType.Partial;
+			// display infobox for 'i' key
+			case Gdk.Key.i:
+			case Gdk.Key.I:
+				InfoAction (info_button, null);
 				break;
 			}
 
 			if (key == null) {
-				System.Console.WriteLine ("Key == null", key);
+				Log.Debug ("Key == null: " + key);
 				return false;
 			}
 
 			if (view == null) {
-				System.Console.WriteLine ("view == null", key);
+				Log.Debug ("view == null: " + key);
 				return false;
 			}
 			

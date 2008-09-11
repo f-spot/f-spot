@@ -1,3 +1,10 @@
+2008-09-11  Lorenzo Milesi <maxxer@yetopen.it>
+
+	* src/FullScreenView.cs: map keybindings to view/hide infobox, 
+	close fullscreen. now only few keys close fs! removed console
+	writelines. related to bug #347591. Portions of patch from 
+	Cosme Sevestre.
+
 2008-09-10  Thomas Van Machelen <thomas.vanmachelen@gmail.com>
 
 	* src/FileImportBackend.cs: Always remove copies that are detected as
