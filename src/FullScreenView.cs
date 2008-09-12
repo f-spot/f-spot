@@ -331,6 +331,12 @@ namespace FSpot {
 			case Gdk.Key.I:
 				InfoAction (info_button, null);
 				break;
+			case Gdk.Key.bracketleft:
+				new RotateLeftAction (view.Item).Activate ();
+				break;
+			case Gdk.Key.bracketright:
+				new RotateRightAction (view.Item).Activate ();
+				break;
 			}
 
 			if (key == null) {
