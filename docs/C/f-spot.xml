@@ -102,6 +102,15 @@
 				roll only. Read <xref linkend="enjoying-search"/> to learn how to deal 
 				with import rolls.
 			</para>
+			<para>
+				You can also import directly from Mozilla 
+				<ulink url="http://www.mozilla.com/en-US/firefox/">Firefox</ulink> and 
+				<ulink url="http://www.mozilla.com/en-US/thunderbird/">Thunderbird</ulink> using 
+				<ulink url="https://addons.mozilla.org/en-US/firefox/addon/7091">Firefox</ulink> 
+				and <ulink url="https://addons.mozilla.org/en-US/thunderbird/addon/7011">Thunderbird</ulink> 
+				F-Spot importer extensions written by 
+				<ulink url="http://personalpages.tds.net/~cdovel/">Pizzach</ulink>.
+			</para>
 		</sect1>
 		
 		<sect1 id="edit">
@@ -554,6 +563,11 @@
 					(TagB or (TagC and TagD))". At any point, if F-Spot recognizes what you've typed as 
 					a valid query, it will update your search. The <emphasis>not</emphasis> operator 
 					is not yet supported. 
+				</para>
+				<name></name>
+				
+				para>
+					This function will also search for the typed text into photos comments and filename.
 				</para>
 			</sect2>
 		</sect1>
