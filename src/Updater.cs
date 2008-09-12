@@ -332,6 +332,11 @@ namespace FSpot.Database {
 				 );
 			 }, true);
 
+			// Update to version 16.1
+			 AddUpdate (new Version (16,1), delegate () {
+				 Execute ("CREATE INDEX idx_photo_versions_id ON photo_versions(photo_id)");
+			 }, false);
+
 			 // Update to version 17.0
 			//AddUpdate (new Version (14,0),delegate () {
 			//	do update here

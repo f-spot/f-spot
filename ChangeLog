@@ -1,3 +1,7 @@
+2008-09-12  Stephane Delcroix  <sdelcroix@novell.com>
+
+	* src/Updater.cs: add an index to speed up GetByUri.
+
 2008-09-12  Lorenzo Milesi <maxxer@yetopen.it>
 
 	* src/PhotoVersionMenu.cs: ellipsize photo version names. fix
