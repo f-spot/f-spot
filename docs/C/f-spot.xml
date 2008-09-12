@@ -8,7 +8,7 @@
 		</abstract>
 		<subtitle>This is the user manual for F-Spot, a GNOME personal photo manager.</subtitle>
 		<copyright>
-			<year>2007</year>
+			<year>2007-2008</year>
 			<holder>Aaron Bockover, Gabriel Burt, Miguel de Icaza, Bengt Thuree</holder>
 		</copyright>
 		<publisher>
@@ -42,6 +42,10 @@
 		</authorgroup>
 		<!--<include href="legal.xml" xmlns="http://www.w3.org/2001/XInclude"/>-->
 		<revhistory>
+			<revision>
+				<revnumber>0.4</revnumber>
+				<date>2008-09-12</date>
+			</revision>
 			<revision>
 				<revnumber>0.3</revnumber>
 				<date>2007-07-26</date>
@@ -919,6 +923,23 @@
 						</row>
 						<row>
 							<entry>
+								<keycap>Del</keycap>
+							</entry>
+							<entry>
+								Remove selected photos from F-Spot's catalogue
+							</entry>
+						</row>
+						<row>
+							<entry>
+								<keycombo><keycap>Shift</keycap><keycap>Del</keycap></keycombo>
+							</entry>
+							<entry>
+								Delete selected photos permanently from the drive
+							</entry>
+						</row>
+ 
+						<row>
+							<entry>
 								<keycap>t</keycap>
 							</entry>
 							<entry>
@@ -965,6 +986,14 @@
 								Import photos
 							</entry>
 						</row>
+						<row>
+							<entry>
+								<keycombo><keycap>Alt</keycap><keycap>0-5</keycap></keycombo>
+							</entry>
+							<entry>
+								Alt plus a number from 0 to 5 rate the selected picture(s)
+							</entry>
+						</row>
 					</tbody>
 				</tgroup>
 			</informaltable>
@@ -1004,8 +1033,8 @@
 						</row>
 						<row>
 							<entry>
-								Arrow keys (up, down, left, right) or <keycap>k</keycap>, 
-								<keycap>j</keycap>, <keycap>h</keycap>, <keycap>l</keycap> keys
+								Arrow keys or <keycap>H</keycap>, <keycap>J</keycap>, 
+								<keycap>K</keycap>, <keycap>L</keycap>
 							</entry>
 							<entry>
 								Move focus
@@ -1013,7 +1042,7 @@
 						</row>
 						<row>
 							<entry>
-								<keycap>Ctrl</keycap>-arrow key
+								<keycap>Ctrl</keycap>-Arrow key
 							</entry>
 							<entry>
 								Move the focus without changing the selection
@@ -1030,7 +1059,7 @@
 						<row>
 							<entry>
 								<keycombo><keycap>Shift</keycap>
-								<keycap>arrow key</keycap></keycombo>
+								<keycap>Arrow key</keycap></keycombo>
 							</entry>
 							<entry>
 								Change the photo selection
@@ -1039,7 +1068,7 @@
 						<row>
 							<entry>
 								<keycombo><keycap>Ctrl</keycap><keycap>Shift</keycap>
-								<keycap>left arrow or right arrow</keycap></keycombo>
+								<keycap>Left arrow or Right arrow</keycap></keycombo>
 							</entry>
 							<entry>
 								Add/Remove all photos in the row, in the direction pressed, to the selection
@@ -1047,7 +1076,7 @@
 						</row>
 						<row>
 							<entry>
-								<keycap>v</keycap>
+								<keycap>V</keycap>
 							</entry>
 							<entry>
 								Pops up a larger preview of the picture pointed by the mouse
@@ -1055,7 +1084,7 @@
 						</row>
 						<row>
 							<entry>
-								<keycap>V</keycap>
+								<keycombo><keycap>Shift</keycap><keycap>V</keycap></keycombo>
 							</entry>
 							<entry>
 								Pops up a larger preview and a color histogram of the picture pointed by the mouse
@@ -1135,7 +1164,7 @@
 					<tbody>
 						<row>
 							<entry>
-								<keycap>Page Up</keycap>
+								<keycap>Page Up</keycap>, <keycap>Backspace</keycap>, <keycap>B</keycap>
 							</entry>
 							<entry>
 								Go to Previous Photo
@@ -1143,10 +1172,27 @@
 						</row>
 						<row>
 							<entry>
-								<keycap>Page Down</keycap>, <keycap>Spacebar</keycap>
+								<keycap>Page Down</keycap>, <keycap>Spacebar</keycap>, <keycap>N</keycap>
 							</entry>
 							<entry>
 								Go to Next Photo
+							</entry>
+						</row>
+						<row>
+							<entry>
+								Arrow keys or <keycap>H</keycap>, <keycap>J</keycap>, 
+								<keycap>K</keycap>, <keycap>L</keycap>
+							</entry>
+							<entry>
+								Go to Previous/Next photo or move around a zoomed photo
+							</entry>
+						</row>
+						<row>
+							<entry>
+								<keycap>f</keycap>
+							</entry>
+							<entry>
+								Full screen view
 							</entry>
 						</row>
 						<row>
@@ -1183,11 +1229,27 @@
 						</row>
 						<row>
 							<entry>
-								<keycap>v</keycap>
+								<keycap>V</keycap>
 							</entry>
 							<entry>
 								Examine photo with magnifying glass (Loupe). Doubleclick on the 
 								Loupe, or type <keycap>v</keycap> again to close it.
+							</entry>
+						</row>
+						<row>
+							<entry>
+								<keycap>Shift</keycap>-Mousewheel
+							</entry>
+							<entry>
+								Faster filmstrip scrolling
+							</entry>
+						</row>
+						<row>
+							<entry>
+								<keycap>i</keycap>
+							</entry>
+							<entry>
+								Toggle infobox visibility ''(only when in full screen)''
 							</entry>
 						</row>
 					</tbody>
