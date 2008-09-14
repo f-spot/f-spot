@@ -600,12 +600,13 @@ public class PhotoStore : DbStore {
 				PhotoVersion version = photo.GetVersion (version_id) as PhotoVersion;
 				Database.ExecuteNonQuery (new DbCommand (
 					"UPDATE photo_versions SET name = :name, " +
-					"uri = :uri, protected = :protected " +
+					"uri = :uri, protected = :protected, md5_sum = :md5_sum " +
 					"WHERE photo_id = :photo_id AND version_id = :version_id",
 					"name", version.Name,
 					"uri", version.Uri.ToString (),
 					"protected", version.IsProtected,
 					"photo_id", photo.Id,
+					"md5_sum", version.MD5Sum,
 					"version_id", version_id));
 			}
 		photo.Changes = null;
@@ -626,8 +627,6 @@ public class PhotoStore : DbStore {
 			)
 		);
 
-		bool needs_commit = false;
-
 		foreach (uint version_id in photo.VersionIds) {
 			if (version_id == Photo.OriginalVersionId)
 			 	continue;
@@ -635,13 +634,15 @@ public class PhotoStore : DbStore {
 			PhotoVersion version = photo.GetVersion (version_id) as PhotoVersion;
 
 			string version_md5_sum = Photo.GenerateMD5 (version.Uri);
-			version.MD5Sum = version_md5_sum; 
 
-			needs_commit = true;
+			if (version.MD5Sum == version_md5_sum)
+			 	continue;
+
+			version.MD5Sum = version_md5_sum; 
+			photo.Changes.ChangeVersion (version_id);
 		}
 
-		if (needs_commit)
-			Commit (photo);
+		Commit (photo);
 	}
 	
 	// Dbus

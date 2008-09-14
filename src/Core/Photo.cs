@@ -640,19 +640,13 @@ namespace FSpot
 		public static string GenerateMD5 (System.Uri uri)
 		{
 		 	try {
-			 	if (md5_cache.ContainsKey (uri)) {
-				 	Log.DebugFormat("Return cache hit for {0}", uri);
+			 	if (md5_cache.ContainsKey (uri))
 				 	return md5_cache [uri];
-				}
 
-				Log.DebugFormat("Creating thumbnail for {0}", uri);
 				using (Gdk.Pixbuf pixbuf = ThumbnailGenerator.Create (uri))
 				{
-					Log.DebugFormat("Created thumbnail, now serializing for {0}, ", uri);
 					byte[] serialized = PixbufSerializer.Serialize (pixbuf);
-					Log.DebugFormat("Serialized, now hashing for {0}, ", uri);
 					byte[] md5 = MD5Generator.ComputeHash (serialized);
-					Log.DebugFormat("Hashed for {0}, ", uri);
 					string md5_string = Convert.ToBase64String (md5);
 
 					md5_cache.Add (uri, md5_string);

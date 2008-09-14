@@ -1,3 +1,8 @@
+2008-09-14  Thomas Van Machelen <thomas.vanmachelen@gmail.com>
+
+	* src/PhotoStore.cs: Make sure the md5 sum on the photo versions is
+	saved to database.
+
 2008-09-12  Stephane Delcroix  <sdelcroix@novell.com>
 
 	* src/Updater.cs: add an index to speed up GetByUri.
