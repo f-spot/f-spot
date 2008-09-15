@@ -59,6 +59,7 @@ public class MainWindow {
 	
 	[Glade.Widget] MenuItem tools;
 	[Glade.Widget] MenuItem export;
+	[Glade.Widget] MenuItem pagesetup_menu_item;
 	[Glade.Widget] MenuItem print;
 	[Glade.Widget] MenuItem send_mail;
 
@@ -262,6 +263,11 @@ public class MainWindow {
 		LoadPreference (Preferences.SIDEBAR_POSITION);
 		LoadPreference (Preferences.METADATA_EMBED_IN_IMAGE);
 		
+#if GTK_2_10
+		pagesetup_menu_item.Activated += HandlePageSetupActivated;
+#else
+		pagesetup_menu_item.Visible = false;
+#endif
 		toolbar = new Gtk.Toolbar ();
 		toolbar_vbox.PackStart (toolbar);
 
@@ -1722,6 +1728,12 @@ public class MainWindow {
 			cam.ReleaseGPhotoResources ();
 		}
 	}
+#if GTK_2_10
+	void HandlePageSetupActivated (object o, EventArgs e)
+	{
+		FSpot.Global.PageSetup = Print.RunPageSetupDialog (this.Window, FSpot.Global.PageSetup, null);
+	}
+#endif
 	
 	void HandlePrintCommand (object sender, EventArgs e)
 	{

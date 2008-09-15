@@ -98,7 +98,12 @@ namespace FSpot.Widgets
 
 			Frame page_size = new Frame (Catalog.GetString ("Page Setup"));
 			VBox vb = new VBox ();
-			Label current_settings = new Label (String.Format (Catalog.GetString ("Paper Size: {0} x {1} mm"), "...", "..."));
+			Label current_settings = new Label ();
+			if (FSpot.Global.PageSetup != null)
+				current_settings.Text = String.Format (Catalog.GetString ("Paper Size: {0} x {1} mm"), print_operation.DefaultPageSetup.GetPaperWidth (Unit.Mm), print_operation.DefaultPageSetup.GetPaperHeight (Unit.Mm));
+			else
+				current_settings.Text = String.Format (Catalog.GetString ("Paper Size: {0} x {1} mm"), "...", "...");
+
 			vb.PackStart (current_settings, false, false, 0);
 			Button page_setup_btn = new Button ("Set Page Size and Orientation");
 			page_setup_btn.Clicked += delegate {

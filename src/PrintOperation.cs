@@ -31,6 +31,7 @@ namespace FSpot
 			this.selected_photos = selected_photos;
 			CustomTabLabel = Catalog.GetString ("Image Settings");
 			NPages = selected_photos.Length;
+			DefaultPageSetup = FSpot.Global.PageSetup;
 		}
 
 		protected override void OnBeginPrint (Gtk.PrintContext context)

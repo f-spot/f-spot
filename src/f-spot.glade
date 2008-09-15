@@ -3133,6 +3133,13 @@ Photo Details</property>
                       </widget>
                     </child>
                     <child>
+                      <widget class="GtkMenuItem" id="pagesetup_menu_item">
+                        <property name="visible">True</property>
+                        <property name="label" translatable="yes">Page Set_up...</property>
+                        <property name="use_underline">True</property>
+                      </widget>
+                    </child>
+                    <child>
                       <widget class="GtkImageMenuItem" id="send_mail">
                         <property name="visible">True</property>
                         <property name="label" translatable="yes">Send by _Mail...</property>
