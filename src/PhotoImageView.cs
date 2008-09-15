@@ -386,24 +386,19 @@ namespace FSpot {
 			if (pixbuf == null)
 				return;
 
-			int available_width = this.Allocation.Width;
-			int available_height = this.Allocation.Height;
-		
+			if (scrolled != null)
+				scrolled.SetPolicy (Gtk.PolicyType.Never, Gtk.PolicyType.Never);
+
+			int available_width = (scrolled != null) ? scrolled.Allocation.Width : this.Allocation.Width;
+			int available_height = (scrolled != null) ? scrolled.Allocation.Height : this.Allocation.Height;
+
 			double zoom_to_fit = ZoomUtils.FitToScale ((uint) available_width, 
 								   (uint) available_height,
 								   (uint) pixbuf.Width, 
 								   (uint) pixbuf.Height, 
 								   upscale);
-			
-			double image_zoom = zoom_to_fit;
-			/*
-			System.Console.WriteLine ("Zoom = {0}, {1}, {2}", image_zoom, 
-						  available_width, 
-						  available_height);
-			*/
 
-			if (scrolled != null)
-				scrolled.SetPolicy (Gtk.PolicyType.Never, Gtk.PolicyType.Never);
+			double image_zoom = zoom_to_fit;
 
 			this.SetZoom (image_zoom, image_zoom);
 			

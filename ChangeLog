@@ -1,3 +1,7 @@
+2008-09-15  Stephane Delcroix  <sdelcroix@novell.com>
+
+	* src/PhotoImageView.cs: fix the ZoomFit, bgo #551741.
+
 2008-09-14  Thomas Van Machelen <thomas.vanmachelen@gmail.com>
 
 	* src/PhotoStore.cs: Make sure the md5 sum on the photo versions is
