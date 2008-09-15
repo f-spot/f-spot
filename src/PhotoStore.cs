@@ -146,6 +146,8 @@ public class PhotoStore : DbStore {
 			"	protected	BOOLEAN,	" +
 			"	UNIQUE (photo_id, version_id)	" +
 			")");
+
+		Database.ExecuteNonQuery ("CREATE INDEX idx_photo_versions_id ON photo_versions(photo_id)");
 	}
 
 	public Photo CheckForDuplicate (System.Uri uri) {
