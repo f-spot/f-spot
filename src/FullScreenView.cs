@@ -234,7 +234,7 @@ namespace FSpot {
 			this.Destroy ();
 		}
 
-	        private void HideToolbarAction (object sender, System.EventArgs args)
+		private void HideToolbarAction (object sender, System.EventArgs args)
 		{
 			scroll.HideControls (true);
 			controls.Dismiss ();
@@ -316,45 +316,30 @@ namespace FSpot {
 
 		protected override bool OnKeyPressEvent (Gdk.EventKey key)
 		{
-			bool allow_quit = false;
-			
 			switch (key.Key) {
 			// quit only on certain keys
 			case Gdk.Key.F:
 			case Gdk.Key.f:
+			case Gdk.Key.Q:
+			case Gdk.Key.q:
 			case Gdk.Key.F11:
 			case Gdk.Key.Escape:
-				allow_quit = true;
-				break;
+				Quit ();
+				return true;
 			// display infobox for 'i' key
 			case Gdk.Key.i:
 			case Gdk.Key.I:
 				InfoAction (info_button, null);
-				break;
+				return true;
 			case Gdk.Key.bracketleft:
 				new RotateLeftAction (view.Item).Activate ();
-				break;
+				return true;
 			case Gdk.Key.bracketright:
 				new RotateRightAction (view.Item).Activate ();
-				break;
+				return true;
 			}
 
-			if (key == null) {
-				Log.Debug ("Key == null: " + key);
-				return false;
-			}
-
-			if (view == null) {
-				Log.Debug ("view == null: " + key);
-				return false;
-			}
-			
-			bool retval = base.OnKeyPressEvent (key);
-			if (allow_quit && !retval)
-				Quit ();
-			else 
-				view.Fit = false;
-			return retval;
+			return base.OnKeyPressEvent (key);
 		}
 	}
 }

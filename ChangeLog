@@ -1,3 +1,10 @@
+2008-09-15  Stephane Delcroix  <sdelcroix@novell.com>
+
+	* src/MainWindows.cs
+	* src/FullScreenView.cs:
+	* src/f-spot.glade: some key handling refactoring, allow rating
+	and deleting in fullscreen. Patch from Anton Keks, fixes bgo #552145.
+
 2008-09-15  Ruben Vermeersch  <ruben@savanne.be>
 
 	* src/Core/Photo.cs: Fix the order of the md5_sum and name parameters, to

@@ -1310,58 +1310,6 @@ public class MainWindow {
 		args.RetVal = true;
 	}
 
-	void HandleIconViewKeyPressEvent (object sender, Gtk.KeyPressEventArgs args)
-	{
-		bool alt = ModifierType.Mod1Mask == (args.Event.State & ModifierType.Mod1Mask);
-		bool shift = ModifierType.ShiftMask == (args.Event.State & ModifierType.ShiftMask);
-
-		switch (args.Event.Key) {
-		case Gdk.Key.Delete:
-			if (shift)
-				HandleDeleteCommand (sender, (EventArgs) args);
-			else
-				HandleRemoveCommand (sender, (EventArgs) args);
-			args.RetVal = true;
-			break;
-		case Gdk.Key.Key_0:
-			if (alt) {
-				HandleRatingMenuSelected (0);
-				args.RetVal = true;
-			}
-			break;
-		case Gdk.Key.Key_1:
-			if (alt) {
-				HandleRatingMenuSelected (1);
-				args.RetVal = true;
-			}
-			break;
-		case Gdk.Key.Key_2:
-			if (alt) {
-				HandleRatingMenuSelected (2);
-				args.RetVal = true;
-			}
-			break;
-		case Gdk.Key.Key_3:
-			if (alt) {
-				HandleRatingMenuSelected (3);
-				args.RetVal = true;
-			}
-			break;
-		case Gdk.Key.Key_4:
-			if (alt) {
-				HandleRatingMenuSelected (4);
-				args.RetVal = true;
-			}
-			break;
-		case Gdk.Key.Key_5:
-			if (alt) {
-				HandleRatingMenuSelected (5);
-				args.RetVal = true;
-			}
-			break;
-		}
-	}
-
 	public void ImportUriList (UriList list, bool copy) 
 	{
 		ImportCommand command = new ImportCommand (main_window);
@@ -1470,15 +1418,88 @@ public class MainWindow {
 		}
 	}
 
+	public void HandleCommonPhotoCommands (object sender, Gtk.KeyPressEventArgs args) {
+		bool alt = ModifierType.Mod1Mask == (args.Event.State & ModifierType.Mod1Mask);
+		bool shift = ModifierType.ShiftMask == (args.Event.State & ModifierType.ShiftMask);
+		bool handled = true;
+		
+		switch (args.Event.Key) {
+		case Gdk.Key.Delete:
+			if (shift)
+				HandleDeleteCommand (sender, args);
+			else
+				HandleRemoveCommand (sender, args);
+			break;
+		case Gdk.Key.Key_0:
+			if (alt)
+				HandleRatingMenuSelected (0);
+			break;
+		case Gdk.Key.Key_1:
+			if (alt)
+				HandleRatingMenuSelected (1);
+			break;
+		case Gdk.Key.Key_2:
+			if (alt)
+				HandleRatingMenuSelected (2);
+			break;
+		case Gdk.Key.Key_3:
+			if (alt)
+				HandleRatingMenuSelected (3);
+			break;
+		case Gdk.Key.Key_4:
+			if (alt)
+				HandleRatingMenuSelected (4);
+			break;
+		case Gdk.Key.Key_5:
+			if (alt)
+				HandleRatingMenuSelected (5);
+			break;
+		default:
+			handled = false;
+			break;
+		}
+
+		if (handled)
+			args.RetVal = result;
+	}
+
+	void HandleIconViewKeyPressEvent (object sender, Gtk.KeyPressEventArgs args)
+	{
+		HandleCommonPhotoCommands (sender, args);
+		if ((bool)args.RetVal)
+			return;
+
+		switch (args.Event.Key) {
+		case Gdk.Key.F:
+		case Gdk.Key.f:
+			HandleViewFullscreen (sender, args);
+			args.RetVal = true;
+			break;
+		}
+	}
+
+	//
+	// FullScreenView event handlers.
+	//
+
+	void HandleFullScreenViewKeyPressEvent (object sender, Gtk.KeyPressEventArgs args)
+	{
+		HandleCommonPhotoCommands (sender, args);
+		if ((bool)args.RetVal)
+			// this will hide any panels again that might have appeared above the fullscreen view
+			fsview.Present ();
+	}
+
 	//
 	// PhotoView event handlers.
 	//
-	
+
 	void HandlePhotoViewKeyPressEvent (object sender, Gtk.KeyPressEventArgs args)
 	{
-		bool alt = ModifierType.Mod1Mask == (args.Event.State & ModifierType.Mod1Mask);
-		bool shift = ModifierType.ShiftMask == (args.Event.State & ModifierType.ShiftMask);
-		
+		HandleCommonPhotoCommands (sender, args);
+		if ((bool)args.RetVal)
+			return;
+
 		switch (args.Event.Key) {
 		case Gdk.Key.F:
 		case Gdk.Key.f:
@@ -1489,53 +1510,7 @@ public class MainWindow {
 			SetViewMode (ModeType.IconView);
 			args.RetVal = true;
 			break;
-		case Gdk.Key.Delete:
-			if (shift)
-				HandleDeleteCommand (sender, (EventArgs) args);
-			else
-				HandleRemoveCommand (sender, (EventArgs) args);
-			args.RetVal = true;
-			break;
-		case Gdk.Key.Key_0:
-			if (alt) {
-				HandleRatingMenuSelected (0);
-				args.RetVal = true;
-			}
-			break;
-		case Gdk.Key.Key_1:
-			if (alt) {
-				HandleRatingMenuSelected (1);
-				args.RetVal = true;
-			}
-			break;
-		case Gdk.Key.Key_2:
-			if (alt) {
-				HandleRatingMenuSelected (2);
-				args.RetVal = true;
-			}
-			break;
-		case Gdk.Key.Key_3:
-			if (alt) {
-				HandleRatingMenuSelected (3);
-				args.RetVal = true;
-			}
-			break;
-		case Gdk.Key.Key_4:
-			if (alt) {
-				HandleRatingMenuSelected (4);
-				args.RetVal = true;
-			}
-			break;
-		case Gdk.Key.Key_5:
-			if (alt) {
-				HandleRatingMenuSelected (5);
-				args.RetVal = true;
-			}
-			break;
-		default:
-			break;
 		}
-		return;
 	}
 
 	void HandlePhotoViewUpdateStarted (PhotoView sender)
@@ -2233,6 +2208,7 @@ public class MainWindow {
 		if (fsview == null) {
 			fsview = new FSpot.FullScreenView (query, main_window);
 			fsview.Destroyed += HandleFullScreenViewDestroy;
+			fsview.KeyPressEvent += HandleFullScreenViewKeyPressEvent;
 			fsview.View.Item.Index = active;
 		} else {
 			// FIXME this needs to be another mode like PhotoView and IconView mode.
@@ -2393,7 +2369,7 @@ public class MainWindow {
 		Widget wsender = sender as Widget;
 		Gtk.Window toplevel = null;
 
-		if (wsender != null)
+		if (wsender != null && !(wsender is MenuItem))
 			toplevel = (Gtk.Window) wsender.Toplevel;
 		else if (fsview != null)
 			toplevel = fsview;
@@ -2415,8 +2391,6 @@ public class MainWindow {
 								 photos.Length);
 		string ok_caption = Catalog.GetPluralString ("_Delete photo", "_Delete photos", photos.Length);
 		
-
-
 		if (ResponseType.Ok == HigMessageDialog.RunHigConfirmation(GetToplevel (sender), 
 									   DialogFlags.DestroyWithParent, 
 									   MessageType.Warning, 

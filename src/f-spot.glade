@@ -3291,6 +3291,7 @@ Photo Details</property>
                         <property name="label" translatable="yes">_Delete From Drive</property>
                         <property name="use_underline">True</property>
                         <signal name="activate" handler="HandleDeleteCommand"/>
+			<accelerator key="Delete" modifiers="GDK_SHIFT_MASK" signal="activate"/>
                       </widget>
                     </child>
                     <child>
@@ -3299,6 +3300,7 @@ Photo Details</property>
                         <property name="label" translatable="yes">_Remove From Catalog</property>
                         <property name="use_underline">True</property>
                         <signal name="activate" handler="HandleRemoveCommand"/>
+			<accelerator key="Delete" signal="activate"/>
                       </widget>
                     </child>
                     <child>
