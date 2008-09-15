@@ -355,8 +355,11 @@ public class MainWindow {
 		sidebar.Show ();
 
 		info_box = new InfoBox ();
+		ViewModeChanged += info_box.HandleMainWindowViewModeChanged;
 		info_box.VersionIdChanged += delegate (InfoBox box, uint version_id) { UpdateForVersionIdChange (version_id);};
 		sidebar_vbox.PackEnd (info_box, false, false, 0);
+
+		info_box.Context = ViewContext.Library;
 		
 		tag_selection_widget.Selection.Changed += HandleTagSelectionChanged;
 		tag_selection_widget.DragDataGet += HandleTagSelectionDragDataGet;

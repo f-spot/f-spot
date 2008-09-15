@@ -1,5 +1,22 @@
 2008-09-15  Ruben Vermeersch  <ruben@savanne.be>
 
+	Add context sensitivity to the infobox/histogram.
+
+	* src/MainWindow.cs: Notify the infobox of context changes.
+
+	* src/Makefile.am: Add ViewContext.cs.
+
+	* src/Preferences.cs: Remove the old preference keys.
+
+	* src/Widgets/InfoBox.cs: Add smart context-sensitive
+	displaying/undisplaying of infobox/histogram.
+
+	* src/Widgets/Sidebar.cs: Remove the ViewContext enum...
+
+	* src/Widgets/ViewContext.cs: ... and move it here (new file).
+
+2008-09-15  Ruben Vermeersch  <ruben@savanne.be>
+
 	* Jobs/CalculateHashJob.cs: Return true on completion. As expected in Job.
 	Not that it's ever checked...
 

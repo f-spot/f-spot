@@ -50,9 +50,6 @@ namespace FSpot
 		public const string SIDEBAR_POSITION = "/apps/f-spot/ui/sidebar_size";
 		public const string ZOOM = "/apps/f-spot/ui/zoom";
 
-		public const string INFOBOX_INFO_VISIBLE = "/apps/f-spot/ui/infobox_info_visible";
-		public const string INFOBOX_HISTOGRAM_VISIBLE = "/apps/f-spot/ui/infobox_histogram_visible";
-
 		public const string EXPORT_EMAIL_SIZE = "/apps/f-spot/export/email/size";
 		public const string EXPORT_EMAIL_ROTATE = "/apps/f-spot/export/email/auto_rotate";
 		public const string EXPORT_EMAIL_DELETE_TIMEOUT_SEC = "/apps/f-spot/export/email/delete_timeout_seconds";
@@ -146,10 +143,6 @@ namespace FSpot
 			case SIDEBAR_POSITION:
 			case ZOOM:
 				return null;
-
-			case INFOBOX_INFO_VISIBLE:
-			case INFOBOX_HISTOGRAM_VISIBLE:
-				return true;
 
 			case IMPORT_GUI_ROLL_HISTORY:
 				return 10;

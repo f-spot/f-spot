@@ -266,6 +266,7 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/Widgets/TagEntry.cs		\
 	$(srcdir)/Widgets/TagMenu.cs		\
 	$(srcdir)/Widgets/TrayView.cs		\
+	$(srcdir)/Widgets/ViewContext.cs		\
 	$(srcdir)/Widgets/Wipe.cs		\
 	$(srcdir)/XmpTagsImporter.cs		\
 	$(srcdir)/main.cs

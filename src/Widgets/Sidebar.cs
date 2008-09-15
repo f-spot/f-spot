@@ -18,16 +18,6 @@ using System;
 using System.Collections.Generic;
 
 namespace FSpot.Widgets {
-	// This nasty enum serves to differentiate between the different view
-	// modes. As we have both SingleView and normal F-Spot, there is no 
-	// uniform way of naming these contexts.
-	public enum ViewContext {
-		Unknown,
-		Single,
-		Library,
-		Edit
-	}
-
 	[ExtensionNode ("SidebarPage")]
 	public class SidebarPageNode : ExtensionNode {
 		[NodeAttribute (Required=true)]

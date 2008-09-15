@@ -62,6 +62,7 @@ namespace FSpot.Widgets
 		public delegate void VersionIdChangedHandler (InfoBox info_box, uint version_id);
 		public event VersionIdChangedHandler VersionIdChanged;
 	
+		private Expander info_expander;
 		private Expander histogram_expander;
 
 		private Gtk.Image histogram_image;
@@ -69,6 +70,20 @@ namespace FSpot.Widgets
 
 		private Delay histogram_delay;
 
+		// Context switching (toggles visibility).
+		public event EventHandler ContextChanged;
+
+		private ViewContext view_context = ViewContext.Unknown;
+		public ViewContext Context {
+			get { return view_context; }
+			set {
+				view_context = value;
+				if (ContextChanged != null)
+					ContextChanged (this, null);
+			}
+		}
+
+		private readonly InfoBoxContextSwitchStrategy ContextSwitchStrategy;
 	
 		// Widgetry.	
 		private Label name_label;
@@ -126,9 +141,8 @@ namespace FSpot.Widgets
 		{
 
 			histogram_expander = new Expander (Catalog.GetString ("Histogram"));
-			histogram_expander.Expanded = Preferences.Get<bool> (Preferences.INFOBOX_HISTOGRAM_VISIBLE);
 			histogram_expander.Activated += delegate (object sender, EventArgs e) { 
-				Preferences.Set (Preferences.INFOBOX_HISTOGRAM_VISIBLE, histogram_expander.Expanded);
+				ContextSwitchStrategy.SetHistogramVisible (Context, histogram_expander.Expanded);
 				UpdateHistogram ();
 			};
 			histogram_image = new Gtk.Image ();
@@ -144,10 +158,9 @@ namespace FSpot.Widgets
 
 			Add (histogram_expander);
 
-			Expander info_expander = new Expander (Catalog.GetString ("Image Information"));
-			info_expander.Expanded = Preferences.Get<bool> (Preferences.INFOBOX_INFO_VISIBLE);
+			info_expander = new Expander (Catalog.GetString ("Image Information"));
 			info_expander.Activated += delegate (object sender, EventArgs e) {
-				Preferences.Set (Preferences.INFOBOX_INFO_VISIBLE, info_expander.Expanded);
+				ContextSwitchStrategy.SetInfoBoxVisible (Context, info_expander.Expanded);
 			};
 
 			Table info_table = new Table (6, 2, false);
@@ -475,13 +488,38 @@ namespace FSpot.Widgets
 
 			return false;
 		}
+
+		// Context switching
+
+		private void HandleContextChanged (object sender, EventArgs args)
+		{
+			bool infobox_visible = ContextSwitchStrategy.InfoBoxVisible (Context);
+			info_expander.Expanded = infobox_visible;
+
+			bool histogram_visible = ContextSwitchStrategy.HistogramVisible (Context);
+			histogram_expander.Expanded = histogram_visible;
+			if (histogram_visible)
+				UpdateHistogram ();
+		}
 	
+		public void HandleMainWindowViewModeChanged (object o, EventArgs args)
+		{
+			MainWindow.ModeType mode = MainWindow.Toplevel.ViewMode;
+			if (mode == MainWindow.ModeType.IconView)
+				Context = ViewContext.Library;
+			else if (mode == MainWindow.ModeType.PhotoView)
+				Context = ViewContext.Edit;
+		}
 	
 		// Constructor.
 	
 		public InfoBox () : base (false, 0)
 		{
+			ContextSwitchStrategy = new MRUInfoBoxContextSwitchStrategy ();
+			ContextChanged += HandleContextChanged;
+
 			SetupWidgets ();
+
 			update_delay = new Delay (Update);
 			update_delay.Start ();
 
@@ -489,6 +527,54 @@ namespace FSpot.Widgets
 	
 			BorderWidth = 2;
             Hide ();
+		}
+	}
+
+	// Decides whether infobox / histogram should be shown for each context. Implemented
+	// using the Strategy pattern, to make it swappable easily, in case the
+	// default MRUInfoBoxContextSwitchStrategy is not sufficiently usable.
+	public abstract class InfoBoxContextSwitchStrategy {
+		public abstract bool InfoBoxVisible (ViewContext context);
+		public abstract bool HistogramVisible (ViewContext context);
+
+		public abstract void SetInfoBoxVisible (ViewContext context, bool visible);
+		public abstract void SetHistogramVisible (ViewContext context, bool visible);
+	}
+
+	// Values are stored as strings, because bool is not nullable through Preferences.
+	public class MRUInfoBoxContextSwitchStrategy : InfoBoxContextSwitchStrategy {
+		public const string PREF_PREFIX = Preferences.APP_FSPOT + "ui";
+
+		private string PrefKeyForContext (ViewContext context, string item) {
+			return String.Format ("{0}/{1}_visible/{2}", PREF_PREFIX, item, context);
+		}
+
+		private bool VisibilityForContext (ViewContext context, string item) {
+			string visible = Preferences.Get<string> (PrefKeyForContext (context, item));
+			if (visible == null)
+				return true;
+			else
+				return visible == "1";
+		}
+
+		private void SetVisibilityForContext (ViewContext context, string item, bool visible) {
+			Preferences.Set (PrefKeyForContext (context, item), visible ? "1" : "0");
+		}
+
+		public override bool InfoBoxVisible (ViewContext context) {
+			return VisibilityForContext (context, "infobox");
+		}
+
+		public override bool HistogramVisible (ViewContext context) {
+			return VisibilityForContext (context, "histogram");
+		}
+
+		public override void SetInfoBoxVisible (ViewContext context, bool visible) {
+			SetVisibilityForContext (context, "infobox", visible);
+		}
+
+		public override void SetHistogramVisible (ViewContext context, bool visible) {
+			SetVisibilityForContext (context, "histogram", visible);
 		}
 	}
 }
