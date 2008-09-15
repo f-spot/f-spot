@@ -1460,7 +1460,7 @@ public class MainWindow {
 		}
 
 		if (handled)
-			args.RetVal = result;
+			args.RetVal = handled;
 	}
 
 	void HandleIconViewKeyPressEvent (object sender, Gtk.KeyPressEventArgs args)
