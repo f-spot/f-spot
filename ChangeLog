@@ -1,5 +1,11 @@
 2008-09-15  Stephane Delcroix  <sdelcroix@novell.com>
 
+	* src/Widgets/ComplexMenuItem.cs:
+	* src/Widgets/RatinMenuItem.cs: new protected (IntPtr raw) ctors.
+	Fixes bgo #552272.
+
+2008-09-15  Stephane Delcroix  <sdelcroix@novell.com>
+
 	* src/PhotoImageView.cs: fix the ZoomFit, bgo #551741.
 
 2008-09-14  Thomas Van Machelen <thomas.vanmachelen@gmail.com>

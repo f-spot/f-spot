@@ -44,6 +44,10 @@ namespace FSpot.Widgets
 				handler (o, e);
 		}
 
+		protected ComplexMenuItem (IntPtr raw) : base (raw)
+		{
+		}
+
 		public ComplexMenuItem() : base()
 		{
 		}

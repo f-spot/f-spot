@@ -38,6 +38,10 @@ namespace FSpot.Widgets
 		private bool pressing;
 		private bool can_activate = true;
 
+		protected RatingMenuItem (IntPtr raw) : base (raw) 
+		{
+		}
+
 		public RatingMenuItem () : this (null)
 		{
 		}
