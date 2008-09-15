@@ -1,5 +1,10 @@
 2008-09-15  Stephane Delcroix  <sdelcroix@novell.com>
 
+	* src/Imaging/Tiff.cs: fix the charset for writing UserComment.
+	Patch from Ulf Rompe, Fixes bgo #551593
+
+2008-09-15  Stephane Delcroix  <sdelcroix@novell.com>
+
 	* src/Widgets/ComplexMenuItem.cs:
 	* src/Widgets/RatinMenuItem.cs: new protected (IntPtr raw) ctors.
 	Fixes bgo #552272.

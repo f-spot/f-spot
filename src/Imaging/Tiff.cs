@@ -459,7 +459,7 @@ namespace FSpot.Tiff {
 				heading = "ASCII\0\0\0";
 				enc = new System.Text.ASCIIEncoding ();
 			} else {
-				heading = "Unicode\0";
+				heading = "UNICODE\0";
 				enc = new System.Text.UnicodeEncoding (! is_little, true);
 			}
 			
