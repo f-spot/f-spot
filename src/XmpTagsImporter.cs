@@ -294,7 +294,10 @@ namespace FSpot.Xmp {
 			using (ImageFile img = ImageFile.Create (path)) {
 				StatementSource source = img as StatementSource;
 				if (source != null) {
-					source.Select (xmp);
+					try {
+						source.Select (xmp);
+					} catch  {
+					}
 				}
 			}
 

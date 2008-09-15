@@ -1,5 +1,9 @@
 2008-09-15  Stephane Delcroix  <sdelcroix@novell.com>
 
+	* srx/XmpTagImporter.cs: workaround for bgo #371602.
+
+2008-09-15  Stephane Delcroix  <sdelcroix@novell.com>
+
 	* src/Widgets/CustomPrintWidget.cs:
 	* src/Core/Global.cs: keep the PageSetup globally
 
