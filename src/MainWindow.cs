@@ -1421,7 +1421,6 @@ public class MainWindow {
 	public void HandleCommonPhotoCommands (object sender, Gtk.KeyPressEventArgs args) {
 		bool alt = ModifierType.Mod1Mask == (args.Event.State & ModifierType.Mod1Mask);
 		bool shift = ModifierType.ShiftMask == (args.Event.State & ModifierType.ShiftMask);
-		bool handled = true;
 		
 		switch (args.Event.Key) {
 		case Gdk.Key.Delete:
@@ -1455,12 +1454,10 @@ public class MainWindow {
 				HandleRatingMenuSelected (5);
 			break;
 		default:
-			handled = false;
+			return; //do not set the RetVal to true
 			break;
 		}
-
-		if (handled)
-			args.RetVal = handled;
+		args.RetVal = true;
 	}
 
 	void HandleIconViewKeyPressEvent (object sender, Gtk.KeyPressEventArgs args)
