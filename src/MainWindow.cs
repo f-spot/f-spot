@@ -1421,6 +1421,9 @@ public class MainWindow {
 	public void HandleCommonPhotoCommands (object sender, Gtk.KeyPressEventArgs args) {
 		bool alt = ModifierType.Mod1Mask == (args.Event.State & ModifierType.Mod1Mask);
 		bool shift = ModifierType.ShiftMask == (args.Event.State & ModifierType.ShiftMask);
+
+		if (args.RetVal == null)
+			args.RetVal = false;
 		
 		switch (args.Event.Key) {
 		case Gdk.Key.Delete:
