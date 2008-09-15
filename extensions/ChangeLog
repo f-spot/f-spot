@@ -1,3 +1,11 @@
+2008-09-15  Lorenzo Milesi <maxxer@yetopen.it>
+
+	* FlickrExport/FlickrExport.cs: enable Zooomr export, don't display
+ 	progress bar if max is 0.
+ 	* FlickrExport/FlickrNet/Flickr.cs: fixes for Zooomr export
+ 	* FlickrExport/FlickrExport.addin.xml: add Zooomr, bump addin ver
+ 	* FlickrExport/FlickrRemote.cs: added Zooomr api keys. fix bgo#383243
+ 
 2008-09-03  Lorenzo Milesi <maxxer@yetopen.it>
  
 	* GalleryExport/GalleryRemote.cs:

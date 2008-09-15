@@ -54,7 +54,7 @@ namespace FlickrNet
 
 		private string[] _baseUrl = new string[] { 
 															"http://api.flickr.com/services/rest/", 
-															"http://beta.zooomr.com/bluenote/api/rest",
+															"http://www.zooomr.com/api/rest/",
 															"http://www.23hq.com/services/rest/"};
 
 		private string UploadUrl
@@ -63,7 +63,7 @@ namespace FlickrNet
 		}
 		private static string[] _uploadUrl = new string[] {
 															  "http://api.flickr.com/services/upload/",
-															  "http://beta.zooomr.com/bluenote/api/upload",
+															  "http://www.zooomr.com/api/upload",
 															  "http://www.23hq.com/services/upload/"};
 
 		private string ReplaceUrl
@@ -72,7 +72,7 @@ namespace FlickrNet
 		}
 		private static string[] _replaceUrl = new string[] {
 															   "http://api.flickr.com/services/replace/",
-															   "http://beta.zooomr.com/bluenote/api/replace",
+															   "http://www.zooomr.com/api/replace",
 															   "http://www.23hq.com/services/replace/"};
 
 		private string AuthUrl
@@ -81,7 +81,7 @@ namespace FlickrNet
 		}
 		private static string[] _authUrl = new string[] {
 															   "http://www.flickr.com/services/auth/",
-															   "http://beta.zooomr.com/auth/",
+															   "http://www.zooomr.com/services/auth/",
 															   "http://www.23hq.com/services/auth/"};
 
 		private string _apiKey;
@@ -443,7 +443,8 @@ namespace FlickrNet
             {
                 // This is needed in the Compact Framework
                 // See for more details: http://msdn2.microsoft.com/en-us/library/1afx2b0f.aspx
-                req.GetRequestStream().Close();
+              	if (req.Method=="POST")
+	                req.GetRequestStream().Close();
             }
 
 			try
@@ -701,7 +702,7 @@ namespace FlickrNet
 			FlickrNet.Response response = GetResponseNoCache(parameters);
 			if( response.Status == ResponseStatus.OK )
 			{
-				return response.AllElements[0].InnerText;
+				return response.AllElements[CurrentService==SupportedService.Zooomr?1:0].InnerText;
 			}
 			else
 			{
@@ -772,7 +773,7 @@ namespace FlickrNet
 			FlickrNet.Response response = GetResponseNoCache(parameters);
 			if( response.Status == ResponseStatus.OK )
 			{
-				Auth auth = new Auth(response.AllElements[0]);
+				Auth auth = new Auth(response.AllElements[CurrentService==SupportedService.Zooomr?1:0]);
 				return auth;
 			}
 			else
@@ -820,7 +821,7 @@ namespace FlickrNet
 			FlickrNet.Response response = GetResponseNoCache(parameters);
 			if( response.Status == ResponseStatus.OK )
 			{
-				Auth auth = new Auth(response.AllElements[0]);
+				Auth auth = new Auth(response.AllElements[CurrentService==SupportedService.Zooomr?1:0]);
 				return auth;
 			}
 			else

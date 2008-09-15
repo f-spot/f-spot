@@ -20,6 +20,14 @@ namespace FSpotFlickrExport {
 		}
 	}
 
+	public class ZooomrExport : FlickrExport
+	{
+		public override void Run (IBrowsableCollection selection)
+		{
+			Run (SupportedService.Zooomr, selection, false);
+		}
+	}
+
 	public class FlickrExport : FSpot.Extensions.IExporter {
 		IBrowsableCollection selection;
 
@@ -118,11 +126,14 @@ namespace FSpotFlickrExport {
 										auth.User.Username,
 										current_service.Name);
 					auth_flickr.Label = String.Format (Catalog.GetString ("Sign in as a different user"), auth.User.Username);
-					used_bandwidth.Visible = !fr.Connection.PeopleGetUploadStatus().IsPro;
-					used_bandwidth.Fraction = fr.Connection.PeopleGetUploadStatus().PercentageUsed;
-					used_bandwidth.Text = string.Format (Catalog.GetString("Used {0} of your allowed {1} monthly quota"), 
+					used_bandwidth.Visible = !fr.Connection.PeopleGetUploadStatus().IsPro && 
+									fr.Connection.PeopleGetUploadStatus().BandwidthMax > 0;
+					if (used_bandwidth.Visible) {
+						used_bandwidth.Fraction = fr.Connection.PeopleGetUploadStatus().PercentageUsed;
+						used_bandwidth.Text = string.Format (Catalog.GetString("Used {0} of your allowed {1} monthly quota"), 
 									SizeUtil.ToHumanReadable(fr.Connection.PeopleGetUploadStatus().BandwidthUsed), 
 									SizeUtil.ToHumanReadable(fr.Connection.PeopleGetUploadStatus().BandwidthMax));
+					}
 					break;
 				}
 				state = value;
@@ -371,12 +382,17 @@ namespace FSpotFlickrExport {
 			progress_dialog.ButtonLabel = Gtk.Stock.Ok;
 
 			if (open && ids.Count != 0) {
-				string view_url = string.Format ("http://www.{0}/tools/uploader_edit.gne?ids", current_service.Name);
-				bool first = true;
+				string view_url;
+				if (current_service.Name == "Zooomr.com")
+					view_url = string.Format ("http://www.{0}/photos/{1}/", current_service.Name, auth.User.Username);
+				else {
+					view_url = string.Format ("http://www.{0}/tools/uploader_edit.gne?ids", current_service.Name);
+					bool first = true;
 
-				foreach (string id in ids) {
-					view_url = view_url + (first ? "=" : ",") + id;
-					first = false;
+					foreach (string id in ids) {
+						view_url = view_url + (first ? "=" : ",") + id;
+						first = false;
+					}
 				}
 
 				GnomeUtil.UrlShow (view_url);
