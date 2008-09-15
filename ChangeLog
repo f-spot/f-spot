@@ -7,6 +7,11 @@
 
 2008-09-15  Stephane Delcroix  <sdelcroix@novell.com>
 
+	* src/PhotoSore.cs: fixing a bug in version creation introduced by the
+	dupe detect patch.
+
+2008-09-15  Stephane Delcroix  <sdelcroix@novell.com>
+
 	* src/MainWindows.cs
 	* src/FullScreenView.cs:
 	* src/f-spot.glade: some key handling refactoring, allow rating

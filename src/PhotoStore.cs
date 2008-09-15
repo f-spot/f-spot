@@ -521,6 +521,7 @@ public class PhotoStore : DbStore {
 
 	public void Commit (Photo [] items)
 	{
+		uint timer = Log.DebugTimerStart ();
 		// Only use a transaction for multiple saves. Avoids recursive transactions.
 		bool use_transactions = !Database.InTransaction && items.Length > 1;
 
@@ -535,6 +536,7 @@ public class PhotoStore : DbStore {
 			Database.CommitTransaction ();
 
 		EmitChanged (items, new PhotoEventArgs (items, changes));
+		Log.DebugTimerPrint (timer, "Commit took {0}");
 	}
 
 	private PhotoChanges Update (Photo photo) {
@@ -589,13 +591,14 @@ public class PhotoStore : DbStore {
 			foreach (uint version_id in changes.VersionsAdded) {
 				PhotoVersion version = photo.GetVersion (version_id) as PhotoVersion;
 				Database.ExecuteNonQuery (new DbCommand (
-					"INSERT OR IGNORE INTO photo_versions (photo_id, version_id, name, uri, protected) " +
-					"VALUES (:photo_id, :version_id, :name, :uri, :is_protected)",
+					"INSERT OR IGNORE INTO photo_versions (photo_id, version_id, name, uri, protected, md5_sum) " +
+					"VALUES (:photo_id, :version_id, :name, :uri, :is_protected, :md5_sum)",
 					"photo_id", photo.Id,
 					"version_id", version_id,
 					"name", version.Name,
 					"uri", version.Uri.ToString (),
-					"is_protected", version.IsProtected));
+					"is_protected", version.IsProtected,
+					"md5_sum", version.MD5Sum));
 			}
 		if (changes.VersionsModified != null)
 			foreach (uint version_id in changes.VersionsModified) {
