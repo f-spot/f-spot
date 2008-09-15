@@ -1,5 +1,10 @@
 2008-09-15  Ruben Vermeersch  <ruben@savanne.be>
 
+	* src/Core/Photo.cs: Fix the order of the md5_sum and name parameters, to
+	prevent awkward version names.
+
+2008-09-15  Ruben Vermeersch  <ruben@savanne.be>
+
 	Add context sensitivity to the infobox/histogram.
 
 	* src/MainWindow.cs: Notify the infobox of context changes.

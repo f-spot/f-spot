@@ -286,7 +286,7 @@ namespace FSpot
 			highest_version_id ++;
 			string md5_sum = GenerateMD5 (uri);
 
-			Versions [highest_version_id] = new PhotoVersion (this, highest_version_id, uri, name, md5_sum, is_protected);
+			Versions [highest_version_id] = new PhotoVersion (this, highest_version_id, uri, md5_sum, name, is_protected);
 
 			changes.AddVersion (highest_version_id);
 			return highest_version_id;
