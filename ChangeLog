@@ -1,3 +1,8 @@
+2008-09-15  Ruben Vermeersch  <ruben@savanne.be>
+
+	* Jobs/CalculateHashJob.cs: Return true on completion. As expected in Job.
+	Not that it's ever checked...
+
 2008-09-15  Stephane Delcroix  <sdelcroix@novell.com>
 
 	* src/PhotoStore.cs: add the index on new db creation too;

@@ -40,6 +40,7 @@ namespace FSpot.Jobs {
 			try {
 			 	Photo photo = FSpot.Core.Database.Photos.Get (Convert.ToUInt32 (photo_id)) as Photo;
 				FSpot.Core.Database.Photos.UpdateMD5Sum (photo);
+				return true;
 			} catch (System.Exception e) {
 			 	Log.DebugFormat ("Error Calculating Hash for photo {0}: {1}", JobOptions, e.Message);
 			}
