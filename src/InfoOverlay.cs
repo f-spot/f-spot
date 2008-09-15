@@ -21,6 +21,7 @@ namespace FSpot {
 			HandleItemChanged (item, null);
 			VersionIdChanged += HandleVersionIdChanged;
 			ShowTags = true;
+			Context = ViewContext.FullScreen;
 		}
 		
 		private void HandleItemChanged (BrowsablePointer sender, BrowsablePointerChangedArgs args)

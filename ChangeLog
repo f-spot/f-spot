@@ -1,3 +1,10 @@
+2008-09-15  Ruben Vermeersch  <ruben@savanne.be>
+
+	* src/InfoOverlay.cs: Use the FullScreen context while viewing full
+	screen.
+
+	* src/Widgets/ViewContext.cs: Add FullScreen.
+
 2008-09-15  Stephane Delcroix  <sdelcroix@novell.com>
 
 	* src/MainWindows.cs

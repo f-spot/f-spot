@@ -15,6 +15,7 @@ namespace FSpot.Widgets {
 		Unknown,
 		Single,
 		Library,
-		Edit
+		Edit,
+		FullScreen
 	}
 }
