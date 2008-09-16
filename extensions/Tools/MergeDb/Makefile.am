@@ -13,10 +13,10 @@ PLUGIN_SOURCES =			\
 
 REFS =					\
 	-r:Mono.Posix			\
-	-r:../../src/f-spot.exe		\
-	-r:../../src/FSpot.Core.dll	\
-	-r:../../src/FSpot.Utils.dll	\
-	-r:../../src/FSpot.Query.dll
+	-r:$(top_builddir)/src/f-spot.exe		\
+	-r:$(top_builddir)/src/FSpot.Core.dll	\
+	-r:$(top_builddir)/src/FSpot.Utils.dll	\
+	-r:$(top_builddir)/src/FSpot.Query.dll
 
 PKGS =					\
 	-pkg:gtk-sharp-2.0		\

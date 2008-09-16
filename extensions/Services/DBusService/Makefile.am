@@ -13,9 +13,9 @@ PLUGIN_SOURCES =			\
 
 REFS =					\
 	-pkg:gtk-sharp-2.0		\
-	-r:../../src/f-spot.exe		\
-	-r:../../src/FSpot.Core.dll	\
-	-r:../../src/FSpot.Utils.dll	\
+	-r:$(top_builddir)/src/f-spot.exe		\
+	-r:$(top_builddir)/src/FSpot.Core.dll	\
+	-r:$(top_builddir)/src/FSpot.Utils.dll	\
 	$(LINK_DBUS)
 
 PKGS =
