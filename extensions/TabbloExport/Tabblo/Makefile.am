@@ -14,10 +14,10 @@ ASSEMBLY_SOURCES = \
 	$(srcdir)/UploadProgressEventHandler.cs
 
 REFS = \
+       -r:$(top_builddir)/src/FSpot.Utils.dll \
        -r:Mono.Posix.dll
 
-PKGS = \
-	-pkg:f-spot 
+PKGS =
 
 ASSEMBLY = $(ASSEMBLY_NAME).dll
 
