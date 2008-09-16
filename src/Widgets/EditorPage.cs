@@ -127,6 +127,8 @@ namespace FSpot.Widgets {
 
 			if (widgets == null) {
 				widgets = new VBox (false, 0);
+				widgets.NoShowAll = true;
+				widgets.Show ();
 				Viewport widgets_port = new Viewport ();
 				widgets_port.Add (widgets);
 				Add (widgets_port);
@@ -146,12 +148,13 @@ namespace FSpot.Widgets {
 				Button button = new Button (editor.Label);
 				button.Image = new Image (GtkUtil.TryLoadIcon (FSpot.Global.IconTheme, editor.IconName, 22, (Gtk.IconLookupFlags)0));
 				button.Clicked += delegate (object o, EventArgs e) { ChooseEditor (current); };
+				button.Show ();
 				buttons.Add (button);
 				editor_buttons.Add (editor, button);
 			}
 
+			buttons.Show ();
 			widgets.Add (buttons);
-			buttons.ShowAll ();
 		}
 
 		private void ChooseEditor (Editor editor) {
