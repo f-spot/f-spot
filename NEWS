@@ -1,6 +1,15 @@
 f-spot 0.5.0 - Sep XX 2008 - Thumbs down
 ----------------------------------------
-
+- new sidebar, reworked editors (Ruben, SoC)
+- color profile support (Wasja, SoC)
+- 2 dpap addins (Apart, SoC)
+- duplicate detection at import (Thomas)
+- reworked db interractions, with O(1) queries
+- reducing and batching db access
+- light-speed tagging
+- FullScreen mode enhancement
+- new extensions, updated docs, updated translations
+- hundreds of bugfixes (Lorenzo)
 
 f-spot 0.4.4 - May 28 2008 - Springtime
 ---------------------------------------
