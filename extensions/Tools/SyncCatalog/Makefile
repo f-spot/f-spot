@@ -6,7 +6,8 @@ PACKAGES = \
 	-pkg:gtk-sharp-2.0	\
 	-pkg:f-spot
 
-ASSEMBLIES =
+ASSEMBLIES = \
+	-r:Mono.Posix
 
 RESOURCES = \
 	-resource:$(ADDIN).addin.xml

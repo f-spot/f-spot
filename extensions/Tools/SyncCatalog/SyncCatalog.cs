@@ -9,6 +9,7 @@
 
 using System;
 using System.Collections.Generic;
+using Mono.Unix;
 
 using Gtk;
 
@@ -21,23 +22,73 @@ namespace SyncCatalogExtension {
 
 	public class SyncCatalog : ICommand {
 		public void Run (object o, EventArgs e) {
-			if (ResponseType.Ok != HigMessageDialog.RunHigConfirmation (
-				MainWindow.Toplevel.Window,
-				DialogFlags.DestroyWithParent,
-				MessageType.Warning,
-				"Sync Catalog with photos",
-				"Sync operation of the entire catalog with all photos could take hours, but hopefully it will be run in background. you can stop f-spot any time you want, the sync job will be restarted next time you start f-spot",
-				"Do it now"))
-				return;
-
-			Photo [] photos = Core.Database.Photos.Query ((Tag [])null, null, null, null);
-
-			foreach (Photo photo in photos) {
-				SyncMetadataJob.Create (Core.Database.Jobs, photo);
-			}
-
+			SyncCatalogDialog dialog = new SyncCatalogDialog ();  
+			dialog.ShowDialog ();
 
 		}
+	}
+
+	public class SyncCatalogDialog : Dialog 
+	{
+		private RadioButton RadioSelectedPhotos;
+		private RadioButton RadioEntireCatalog;
+
+		public void ShowDialog ()
+		{ 			
+			string message="";
+			message = Catalog.GetString ("Sync operation of the entire catalog or a lot of selected photos with their files \n" +
+					"could take hours, but hopefully it will be run in background.\n" +
+					"You can stop F-Spot any time you want, the sync job will be restarted next time you start F-Fpot.\n" +
+					"What do you want to do?");
+			
+			Gtk.Label label;
+			label = new Gtk.Label (message);
+			
+			RadioSelectedPhotos = new RadioButton ("Synchronize selected photos");
+			RadioEntireCatalog = new RadioButton (RadioSelectedPhotos, "Synchronize entire catalog");
+			if (MainWindow.Toplevel.SelectedPhotos ().Length > 0)
+				RadioSelectedPhotos.Active = true;
+			else
+				RadioEntireCatalog.Active = true;
+			
+			VBox.PackStart (label, false, false, 5);
+			VBox.PackStart (RadioSelectedPhotos, false, false, 1);
+			VBox.PackStart (RadioEntireCatalog, false, false, 1);
+
+			this.WindowPosition = WindowPosition.Center;
+
+			this.AddButton ("_Run", ResponseType.Apply);
+			this.AddButton ("_Cancel", ResponseType.Cancel);
+
+			this.Response += HandleResponse;
+
+			ShowAll ();
+
+		}
+
+		void HandleResponse (object obj, ResponseArgs args)
+	        {
+			switch(args.ResponseId)
+			{
+				case ResponseType.Cancel:
+					this.Destroy ();
+					break;
+				case ResponseType.Apply:
+					Photo [] photos = new Photo [0];
+					if (RadioEntireCatalog.Active)
+						photos = Core.Database.Photos.Query ();
+					else if (RadioSelectedPhotos.Active)
+						photos = MainWindow.Toplevel.SelectedPhotos ();
+
+					this.Hide ();
+					foreach (Photo photo in photos) {
+						SyncMetadataJob.Create (Core.Database.Jobs, photo);
+					}
+					this.Destroy();
+					break;
+			}
+	        }
+
 	}
 
 }
