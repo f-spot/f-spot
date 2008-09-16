@@ -15,6 +15,7 @@ using Gtk;
 using Glade;
 using LibGPhoto2;
 using Mono.Unix;
+using FSpot.Utils;
 using FSpot.UI.Dialog;
 
 namespace FSpot {
@@ -31,6 +32,7 @@ namespace FSpot {
 		[Widget] Gtk.TreeView file_tree;
 		[Widget] Gtk.OptionMenu tag_option_menu;
 		[Widget] Gtk.CheckButton attach_check;
+		[Widget] Gtk.CheckButton duplicate_check;
 
 		GPhotoCamera camera;
 		ListStore preview_list_store;
@@ -219,7 +221,12 @@ namespace FSpot {
 									    (i + 1), index_list.Count);
 						
 						progress_dialog.ProgressText = msg;
-						saved.Add (SaveFile ((int)(index_list [i])));
+
+						SaveResult result = SaveFile ((int)(index_list [i]));
+
+						if (!result.IsDuplicate)
+						 	saved.Add (result.Path);
+
 						progress_dialog.Fraction = (i + 1)/(double)index_list.Count;
 					}
 					catch (System.Exception e) {
@@ -241,7 +248,7 @@ namespace FSpot {
 			}
 		}
 		
-		private string SaveFile (int index) 
+		private SaveResult SaveFile (int index) 
 		{
 			GPhotoCameraFile camfile = (GPhotoCameraFile) camera.FileList [index];
 			string tempdir = FSpot.Global.PhotoDirectory;
@@ -266,12 +273,36 @@ namespace FSpot {
 			progress_dialog.Message = msg;
 			
 			camera.SaveFile (index, path);
-			
-			string dest = FileImportBackend.ChooseLocation (path);
-			System.IO.File.Move (path, dest);
-			path = dest;
 
-			return path;
+			if (duplicate_check.Active && db.Photos.CheckForDuplicate (FSpot.Utils.UriUtils.PathToFileUri (path)) != null) {
+			 	System.IO.File.Delete (path);
+
+				return new SaveResult (path, true);
+			} else {
+				string dest = FileImportBackend.ChooseLocation (path);
+				System.IO.File.Move (path, dest);
+
+				return new SaveResult (dest, false);
+			}
+		}
+
+		private class SaveResult {
+			private bool is_duplicate;
+			
+			private string path;
+
+			public string Path {
+				get { return path; } 
+			}
+
+			public bool IsDuplicate {
+				get { return is_duplicate; } 
+			}
+			
+			public SaveResult (string path, bool is_duplicate) {
+				this.path = path;
+				this.is_duplicate = is_duplicate;
+			} 
 		}
 		
 		private int ImportFiles ()

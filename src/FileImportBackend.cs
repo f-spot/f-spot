@@ -23,7 +23,7 @@ public class FileImportBackend : ImportBackend {
 	TagStore tag_store = FSpot.Core.Database.Tags;
 	bool recurse;
 	bool copy;
-	bool include_duplicates;
+	bool detect_duplicates;
 	string [] base_paths;
 	Tag [] tags;
 	Gtk.Window parent;
@@ -219,7 +219,7 @@ public class FileImportBackend : ImportBackend {
 			if (info.OriginalPath == destination) {
 				info.DestinationPath = destination;
 
-				if (!include_duplicates)
+				if (detect_duplicates)
 					photo = store.CheckForDuplicate (UriUtils.PathToFileUri (destination));
 
 				if (photo == null)
@@ -230,7 +230,7 @@ public class FileImportBackend : ImportBackend {
 				System.IO.File.Copy (info.OriginalPath, destination);
 				info.DestinationPath = destination;
 
-				if (!include_duplicates)
+				if (detect_duplicates)
 				 	photo = store.CheckForDuplicate (UriUtils.PathToFileUri (destination));
 
 				if (photo == null)
@@ -366,13 +366,13 @@ public class FileImportBackend : ImportBackend {
 
 	public FileImportBackend (PhotoStore store, string [] base_paths, bool copy, bool recurse, Tag [] tags, Gtk.Window parent) : this (store, base_paths, copy, recurse, false, null, parent) {}
 
-	public FileImportBackend (PhotoStore store, string [] base_paths, bool copy, bool recurse, bool include_duplicates, Tag [] tags, Gtk.Window parent)
+	public FileImportBackend (PhotoStore store, string [] base_paths, bool copy, bool recurse, bool detect_duplicates, Tag [] tags, Gtk.Window parent)
 	{
 		this.store = store;
 		this.copy = copy;
 		this.base_paths = base_paths;
 		this.recurse = recurse;
-		this.include_duplicates = include_duplicates;
+		this.detect_duplicates = detect_duplicates;
 		this.tags = tags;
 		this.parent = parent;
 	}

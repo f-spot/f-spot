@@ -777,12 +777,12 @@ public class ImportCommand : GladeDialog
 		if (recurse_check != null)
 			recurse = recurse_check.Active;
 
-		bool include_duplicates = false;
-		if (include_duplicates != null)
-		 	include_duplicates = duplicate_check.Active;
+		bool detect_duplicates = false;
+		if (duplicate_check != null)
+		 	detect_duplicates = duplicate_check.Active;
 		
 //		importer = new FileImportBackend (store, pathimport, copy, recurse, null);
-		importer = new FileImportBackend (store, pathimport, copy, recurse, include_duplicates, null, Dialog);
+		importer = new FileImportBackend (store, pathimport, copy, recurse, detect_duplicates, null, Dialog);
 		AllowFinish = false;
 		
 		total = importer.Prepare ();

@@ -633,7 +633,7 @@
                     <property name="expand">False</property>
                     <property name="fill">False</property>
                   </packing>
-                </child>
+                </child>                
                 <child>
                   <widget class="GtkOptionMenu" id="tag_option_menu">
                     <property name="visible">True</property>
@@ -648,6 +648,21 @@
               <packing>
                 <property name="expand">False</property>
                 <property name="position">2</property>
+              </packing>
+            </child>
+            <child>
+              <widget class="GtkCheckButton" id="duplicate_check">
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="label" translatable="yes">Detect duplicates</property>
+                <property name="use_underline">True</property>
+                <property name="response_id">0</property>
+                <property name="active">True</property>
+                <property name="draw_indicator">True</property>
+              </widget>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">False</property>
               </packing>
             </child>
           </widget>
@@ -4246,7 +4261,7 @@ Photo Details</property>
   <widget class="GtkDialog" id="import_dialog">
     <property name="title" translatable="yes">Import</property>
     <property name="modal">True</property>
-    <property name="default_width">640</property>
+    <property name="default_width">664</property>
     <property name="type_hint">GDK_WINDOW_TYPE_HINT_DIALOG</property>
     <property name="has_separator">False</property>
     <child internal-child="vbox">
@@ -4429,10 +4444,10 @@ Photo Details</property>
               <widget class="GtkCheckButton" id="duplicate_check">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
-                <property name="label" translatable="yes">Include Duplicates</property>
+                <property name="label" translatable="yes">Detect duplicates</property>
                 <property name="use_underline">True</property>
                 <property name="response_id">0</property>
-                <property name="active">False</property>
+                <property name="active">True</property>
                 <property name="draw_indicator">True</property>
               </widget>
               <packing>
