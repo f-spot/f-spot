@@ -91,6 +91,7 @@ public class MainWindow {
 
 	[Glade.Widget] MenuItem zoom_in;
 	[Glade.Widget] MenuItem zoom_out;
+	[Glade.Widget] CheckMenuItem loupe_menu_item;
 
 	[Glade.Widget] RadioMenuItem tag_icon_hidden;
 	[Glade.Widget] RadioMenuItem tag_icon_small;
@@ -598,7 +599,7 @@ public class MainWindow {
 			group_selector.Visible = display_timeline.Active;
 
 			if (photo_view.View.Loupe != null)
-				photo_view.View.Loupe.Destroy ();
+				loupe_menu_item.Active = false;
 			JumpTo (photo_view.Item.Index);
 			zoom_scale.Value = icon_view.Zoom;
 			break;
@@ -2122,6 +2123,17 @@ public class MainWindow {
 		new TimeDialog (db, list);
 	}
 
+	void HandleLoupe (object sender, EventArgs args)
+	{
+		// Don't steal characters from any text entries
+		if (Window.Focus is Gtk.Entry && Gtk.Global.CurrentEvent is Gdk.EventKey) {
+			Window.Focus.ProcessEvent (Gtk.Global.CurrentEvent);
+			return;
+		}
+		
+		photo_view.View.ShowHideLoupe ();
+	}
+
 	void HandleSharpen (object sender, EventArgs args)
 	{
 		// Don't steal characters from any text entries
@@ -2908,6 +2920,7 @@ public class MainWindow {
 			rename_version_menu_item.Sensitive = false;
 
 			sharpen.Sensitive = false;
+			loupe_menu_item.Sensitive = false;
 		} else {
 			version_menu_item.Sensitive = true;
 			create_version_menu_item.Sensitive = true;
@@ -2925,6 +2938,7 @@ public class MainWindow {
 			version_menu_item.Submenu = versions_submenu;
 
 			sharpen.Sensitive = (view_mode == ModeType.IconView ? false : true);
+			loupe_menu_item.Sensitive = (view_mode == ModeType.IconView ? false : true);
 		}
 
 		set_as_background.Sensitive = single_active;

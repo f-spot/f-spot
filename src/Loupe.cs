@@ -596,7 +596,7 @@ namespace FSpot {
 		{
 			switch (args.Event.Key) {
 			case Gdk.Key.v:
-				Destroy ();
+				MainWindow.Toplevel.PhotoView.View.ShowHideLoupe ();
 				args.RetVal = true;
 				break;
 			default:

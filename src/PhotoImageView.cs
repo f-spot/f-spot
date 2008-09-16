@@ -103,7 +103,6 @@ namespace FSpot {
 				editor = null;
 		}
 
-
 		public Loupe Loupe {
 			get { return loupe; }
 		}
@@ -534,15 +533,6 @@ namespace FSpot {
 			case Gdk.Key.KP_Subtract:
 				ZoomOut ();
 				break;
-			case Gdk.Key.v:
-				if (loupe == null) {
-					loupe = new Loupe (this);
-					loupe.Destroyed += HandleLoupeDestroy;
-					loupe.Show ();
-				} else {
-					loupe.Destroy ();	
-				}
-				break;
 			case Gdk.Key.equal:
 			case Gdk.Key.plus:
 			case Gdk.Key.KP_Add:
@@ -556,6 +546,18 @@ namespace FSpot {
 			return;
 		}
 
+		public void ShowHideLoupe ()
+		{
+			if (loupe == null) {
+				loupe = new Loupe (this);
+				loupe.Destroyed += HandleLoupeDestroy;
+				loupe.Show ();
+			} else {
+				loupe.Destroy ();	
+			}
+			
+		}
+		
 		public void ShowSharpener ()
 		{
 			if (sharpener == null) {

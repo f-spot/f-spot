@@ -3544,6 +3544,15 @@ Photo Details</property>
                       </widget>
                     </child>
                     <child>
+                      <widget class="GtkCheckMenuItem" id="loupe_menu_item">
+                        <property name="visible">True</property>
+                        <property name="label" translatable="yes">_Loupe</property>
+                        <property name="use_underline">True</property>
+                        <signal name="activate" handler="HandleLoupe"/>
+                        <accelerator key="v" signal="activate"/>
+                      </widget>
+                    </child>
+                    <child>
                       <widget class="GtkSeparatorMenuItem" id="separator16">
                         <property name="visible">True</property>
                       </widget>
