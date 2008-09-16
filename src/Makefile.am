@@ -436,7 +436,6 @@ CLEANFILES =					\
 	Cms.dll.mdb				\
 	Cms.dll					\
 	FSpot.Utils.dll.mdb			\
-	FSpot.Utils.dll.config			\
 	FSpot.Utils.dll				\
 	FSpot.Query.dll				\
 	FSpot.Query.dll.mdb			\
