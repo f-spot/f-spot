@@ -57,6 +57,7 @@ plugin_DATA =			\
 EXTRA_DIST = 			\
 	$(PLUGIN_SOURCES)	\
 	$(PLUGIN_MANIFEST)	\
+	TrustError.glade	\
 	$(PLUGIN_NAME).glade
 
 CLEANFILES =			\
