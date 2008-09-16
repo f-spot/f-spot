@@ -52,7 +52,6 @@ src/Imaging/Exif.cs
 src/Imaging/ImageFile.cs
 src/Imaging/IptcFile.cs
 src/ImportCommand.cs
-src/InfoDisplay.cs
 src/ItemAction.cs
 src/Loupe.cs
 src/MainWindow.cs
@@ -104,7 +103,6 @@ extensions/Exporters/CDExport/CDExport.glade
 extensions/Exporters/FlickrExport/FlickrExport.addin.xml
 extensions/Exporters/FlickrExport/FlickrExport.cs
 extensions/Exporters/FlickrExport/FlickrExport.glade
-extensions/Editors/FlipEditor/FlipEditor.cs
 extensions/Exporters/FolderExport/FolderExport.addin.xml
 extensions/Exporters/FolderExport/FolderExport.cs
 extensions/Exporters/FolderExport/FolderExport.glade
@@ -112,6 +110,13 @@ extensions/Exporters/GalleryExport/GalleryExport.addin.xml
 extensions/Exporters/GalleryExport/GalleryExport.cs
 extensions/Exporters/GalleryExport/GalleryExport.glade
 extensions/Exporters/GalleryExport/GalleryRemote.cs
+extensions/Exporters/FacebookExport/FacebookExport.addin.xml
+extensions/Exporters/FacebookExport/FacebookExport.cs
+extensions/Exporters/FacebookExport/FacebookExport.glade
+extensions/Exporters/PicasaWebExport/google-sharp/CaptchaException.cs
+extensions/Exporters/ZipExport/ZipExport.addin.xml
+extensions/Exporters/ZipExport/ZipExport.cs
+extensions/Exporters/ZipExport/ZipExport.glade
 extensions/Tools/MergeDb/MergeDb.addin.xml
 extensions/Tools/MergeDb/MergeDb.cs
 extensions/Tools/MergeDb/MergeDb.glade
@@ -127,6 +132,4 @@ extensions/Exporters/TabbloExport/TabbloExport.addin.xml
 extensions/Exporters/TabbloExport/TabbloExport.cs
 extensions/Exporters/TabbloExport/TabbloExport.glade
 extensions/Exporters/TabbloExport/TrustError.glade
-extensions/Tools/DevelopInUFraw/DevelopInUFRaw.addin.xml
-extensions/Tools/DevelopInUFraw/DevelopInUFRaw.cs
 
