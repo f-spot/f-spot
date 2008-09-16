@@ -30,8 +30,7 @@ assemblydir = $(pkglibdir)
 assembly_DATA =	$(ASSEMBLY)
 
 EXTRA_DIST =			\
-	$(ASSEMBLY_SOURCES)	\
-	License.txt
+	$(ASSEMBLY_SOURCES)	
 
 CLEANFILES =			\
 	$(ASSEMBLY)		\
