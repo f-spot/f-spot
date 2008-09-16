@@ -1,15 +1,7 @@
 SUBDIRS = 			\
-	BeagleService		\
-	CDExport		\
-	DBusService		\
-	DefaultExporters	\
-	GalleryExport		\
-	FlickrExport		\
-	FolderExport		\
-	MergeDb			\
- 	PicasaWebExport		\
- 	TabbloExport		\
- 	SmugMugExport
+	Services		\
+	Exporters		\
+	Tools
 
 addinsdir = $(pkglibdir)
 addins_DATA = f-spot.global.addins

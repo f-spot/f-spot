@@ -1,0 +1,223 @@
+/*
+
+Default F-Spot HTML Gallery Stylesheet
+Jakub 'jimmac' Steiner <jimmac@novell.com>
+
+*/
+
+body {
+  font-family: luxi sans, trebuchet ms, sans-serif;
+  color: #888;
+  margin: 12px;
+	background-color: #3c3c3c;
+}
+
+.header {
+/*	position: relative; */
+	width: 100%;
+	margin-bottom: 20px;
+	padding: 0px;
+  border-bottom: 1px dotted #888;
+  font-size: 12px;
+}
+
+#title {
+  color: #bbb;
+  font-weight: bold;
+  margin: 0;
+  padding: 0;
+  margin-left: 3px;
+	font-size: large;
+	letter-spacing: .5em;
+}
+
+div.navi {
+	float: right;
+	text-align: right;
+	margin-top: 3px;
+}
+
+div.navilabel {
+	padding: 3px 10px 0px 0px;
+	margin-right: 10px;
+}
+
+div.navi div {
+	float: left;
+	margin: 2px;
+}
+
+/* image pages navigation */
+div.navi a {
+	display: block;
+	width: 80px;
+	height: 17px;
+	-moz-border-radius: 3px;
+	border: 1px solid #444;
+	text-align: center;
+	padding-top: 3px;
+}
+
+div#index a:hover, div#prev a:hover, div#next a:hover {
+	text-decoration: none;
+  background-color: #c49200;
+	color: #333;
+}
+
+/* index page navigation */
+div.navi div.navipage a, div.navi div.navipage-current a {
+	display: block;
+	width: auto;
+	padding-left: 6px;
+	padding-right: 6px;
+	height: 17px;
+	-moz-border-radius: 3px;
+	border: 1px solid #444;
+	text-align: center;
+	padding-top: 3px;
+}
+
+.navipage a:hover, .navipage-current a:hover {
+  text-decoration: none;
+  background-color: #c49200;
+	color: #333;
+}
+
+.navipage-current a {
+	background-color: #666;
+}
+
+a {
+  text-decoration: none;
+  color: #c49200;
+}
+
+a:hover {
+  text-decoration: underline;
+  color: #da1;
+}
+
+div.container1 {
+	width: 630px;
+	margin: auto;
+}
+
+div.photo {
+  text-align: center;
+  vertical-align: middle;
+  margin-top: 5%;
+}
+
+div.thumbs  {
+	clear: both;
+  padding: 6px;
+  text-align: center;
+}
+
+div.thumbs a {
+	margin: 6px;
+	display: block;
+	float: left;
+	width: 140px;
+	height: 140px;
+	line-height: 140px;
+	border: 1px solid #727272;
+	background-color: #282828;
+	-moz-border-radius: 5px;
+}
+
+div.thumbs img {
+  padding: 4px;
+  vertical-align: middle;
+  border: 0px;
+}
+
+div#gallery_description {
+	clear: both;
+	padding: 10px 12px 0px 12px;
+}
+
+div.photo img.picture {
+  padding: 16px;
+  border: 1px solid #555;
+	-moz-border-radius: 7px;
+	background-color: #333;
+	margin: 20px;
+}
+
+ul#innertagbox {
+  display: inline;
+  margin: 0px;
+  padding: 0px;
+}
+div#tagbox {
+  -moz-border-radius: 7px;
+  border: 1px solid #555;
+  background-color: #333;
+  padding: 5px;
+  margin-top: 2em;
+  display: inline-block;
+}
+
+div#tagbox h1 {
+  margin-left: 1em;
+}
+
+div#tagbox li {
+  display: block;
+  margin: 3px;
+}
+
+div#tagbox img.tag {
+  margin: 5px;
+}
+
+div#tagbox .tagtext-icon {
+  position:relative;
+  top: -22px;
+}
+
+div.thumbs a:hover {
+	background-color: #222;
+  border: 2px solid #c49200;
+	margin: 5px;
+}
+
+div.photo div {
+  text-align: center;
+  margin-top: 6px;
+  font-size: 18px;
+  font-family: Luxi Serif, Georgia, Helvetica;
+//  font-style: italic;
+}
+
+div.footer {
+	clear: both;
+	padding: 20px 10px 0px 10px;
+  font-size: 10px;
+	width: 640px;
+	margin: auto;
+ }
+
+div#styleboxcontainer {
+	position: fixed;
+	bottom: 0px;
+	right: 8px;
+	font-size: 10px;
+	margin: 4px;
+	padding: 4px;
+}
+
+#stylebox ul {
+	list-style-type: none;
+	padding-left: 0px;
+}
+
+/* tags list */
+#tagbox h1 {
+	font-size: large;
+}
+
+#tagbox .tag {
+	margin-left: 1em;
+}

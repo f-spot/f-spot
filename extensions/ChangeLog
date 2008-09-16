@@ -1,5 +1,10 @@
 2008-09-16  Stephane Delcroix  <sdelcroix*novell.com>
 
+	Split the addins in Editors, Exporters, Misc, Services, Tools.
+	From now on, use the subfolder ChangeLog.
+
+2008-09-16  Stephane Delcroix  <sdelcroix*novell.com>
+
 	* ResizeEditor.cs: new resize editor, work in progress.
 
 2008-09-16  Lorenzo Milesi <maxxer@yetopen.it>
