@@ -17,12 +17,14 @@ PLUGIN_SOURCES = \
 
 
 REFS = \
+	-r:$(top_builddir)/src/f-spot.exe \
+	-r:$(top_builddir)/src/FSpot.Core.dll \
+	-r:$(top_builddir)/src/FSpot.Utils.dll \
 	-r:Tabblo/Mono.Tabblo.dll \
 	$(LINK_KEYRING)		\
 	-r:Mono.Posix.dll
 
 PKGS = \
-	-pkg:f-spot \
 	-pkg:gtk-sharp-2.0 \
 	-pkg:glade-sharp-2.0 \
 	-pkg:gnome-vfs-sharp-2.0
