@@ -1,5 +1,28 @@
 2008-09-16  Stephane Delcroix  <sdelcroix@novell.com>
 
+	* Core/ColorManagement.cs:
+	* AsyncPixbufLoader.cs:
+	* Cms/NativeMethods.cs:
+	* Cms/Profile.cs:
+	* GPhotoCamera.cs:
+	* Imaging/Tiff.cs:
+	* MainWindow.cs:
+	* Makefile.am:
+	* PhotoImageView.cs:
+	* Preferences.cs:
+	* PrintOperation.cs:
+	* TagCommands.cs:
+	* TagSelectionWidget.cs:
+	* TextureDisplay.cs:
+	* UI.Dialog/PreferenceDialog.cs:
+	* Widgets/Filmstrip.cs:
+	* Widgets/IconView.cs:
+	* Widgets/TagView.cs:
+	* f-spot.glade: Color management patch developped by Wasja during the
+	Google Summer of Code.
+
+2008-09-16  Stephane Delcroix  <sdelcroix@novell.com>
+
 	* NEWS:
 	* configure.in:
 	* src/FSpot.addin.xml:

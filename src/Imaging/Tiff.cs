@@ -2287,6 +2287,14 @@ namespace FSpot.Tiff {
 
 		public Cr2File (Uri uri) : base (uri)
 		{
+//							Gtk.MessageDialog md = new Gtk.MessageDialog (null, 
+//							                                              Gtk.DialogFlags.DestroyWithParent,
+//							                                              Gtk.MessageType.Error, 
+//							                                              Gtk.ButtonsType.Close,
+//							                                              "bca");
+//	
+//							int result = md.Run ();
+//							md.Destroy();
 		}
 
 		/*

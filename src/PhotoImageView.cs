@@ -23,6 +23,7 @@ namespace FSpot {
 
 		public PhotoImageView (IBrowsableCollection query) : this (new BrowsablePointer (query, -1))
 		{
+			FSpot.ColorManagement.PhotoImageView = this;
 		}
 
 		public PhotoImageView (BrowsablePointer item)
@@ -31,6 +32,9 @@ namespace FSpot {
 			loader.AreaUpdated += HandlePixbufAreaUpdated;
 			loader.AreaPrepared += HandlePixbufPrepared;
 			loader.Done += HandleDone;
+			
+			FSpot.ColorManagement.PhotoImageView = this;
+			this.Transform = FSpot.ColorManagement.StandartTransform (); //for preview windows
 
 			Accelerometer.OrientationChanged += HandleOrientationChanged;
 

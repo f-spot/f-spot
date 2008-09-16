@@ -238,8 +238,15 @@ public class TagCommands {
 		private void HandleIconButtonClicked (object sender, EventArgs args)
 		{
 			TagCommands.EditIcon command = new TagCommands.EditIcon (db, parent_window);
-			if (command.Execute (tag))
-				icon_image.Pixbuf = tag.Icon;
+			//FIXME
+			if (command.Execute (tag)) {
+				if (FSpot.ColorManagement.IsEnabled && tag.Icon != null) {
+					icon_image.Pixbuf = tag.Icon.Copy();
+					FSpot.ColorManagement.ApplyScreenProfile(icon_image.Pixbuf);
+				}
+				else
+					icon_image.Pixbuf = tag.Icon;
+			}
 		}
 
 		private void PopulateCategoryOptionMenu (Tag t)
@@ -283,6 +290,11 @@ public class TagCommands {
 			tag_name_entry.Text = t.Name;
 
 			icon_image.Pixbuf = t.Icon;
+			//FIXME
+			if (FSpot.ColorManagement.IsEnabled && icon_image.Pixbuf != null) {
+				icon_image.Pixbuf = icon_image.Pixbuf.Copy();
+				FSpot.ColorManagement.ApplyScreenProfile (icon_image.Pixbuf);
+			}
 			PopulateCategoryOptionMenu  (t);
 			
 			icon_button.Clicked += HandleIconButtonClicked;
@@ -338,6 +350,8 @@ public class TagCommands {
 		[Glade.Widget] SpinButton photo_spin_button;
 		[Glade.Widget] HBox external_photo_chooser_hbox;
 		[Glade.Widget] Button noicon_button;
+		
+		private Gdk.Pixbuf PreviewPixbuf_WithoutProfile;
 
 		private Gdk.Pixbuf PreviewPixbuf {
 			get { return preview_image.Pixbuf; }
@@ -381,6 +395,8 @@ public class TagCommands {
 				using (FSpot.ImageFile img = FSpot.ImageFile.Create(new Uri(external_photo_chooser.Uri))) {
 					using (Gdk.Pixbuf external_image = img.Load ()) {
 						PreviewPixbuf = PixbufUtils.TagIconFromPixbuf (external_image);
+						PreviewPixbuf_WithoutProfile = PreviewPixbuf.Copy();
+						FSpot.ColorManagement.ApplyScreenProfile (PreviewPixbuf);
 					}
 				}
 			} catch (Exception) {
@@ -411,11 +427,17 @@ public class TagCommands {
 				if (width > 0 && height > 0) {
 					tmp = new Gdk.Pixbuf (image_view.Pixbuf, x, y, width, height);
 					
+					//FIXME
 					PreviewPixbuf = PixbufUtils.TagIconFromPixbuf (tmp);
+					PreviewPixbuf_WithoutProfile = PreviewPixbuf.Copy();
+					FSpot.ColorManagement.ApplyScreenProfile (PreviewPixbuf);
 					
 					tmp.Dispose ();
 				} else {
+					//FIXME
 					PreviewPixbuf = PixbufUtils.TagIconFromPixbuf (image_view.Pixbuf);
+					PreviewPixbuf_WithoutProfile = PreviewPixbuf.Copy();
+					FSpot.ColorManagement.ApplyScreenProfile (PreviewPixbuf);
 				}
 			}
 		}
@@ -527,7 +549,7 @@ public class TagCommands {
 						t.ThemeIconName = IconName;
 					} else {
 						t.ThemeIconName = null;
-						t.Icon = PreviewPixbuf;
+						t.Icon = PreviewPixbuf_WithoutProfile;
 					}
 					//db.Tags.Commit (t);
 					success = true;

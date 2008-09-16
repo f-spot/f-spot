@@ -120,6 +120,15 @@ namespace FSpot {
 					PixbufOrientation thumb_orientation = Accelerometer.GetViewOrientation (PixbufOrientation.TopLeft);
 					thumb = new Gdk.Pixbuf (ThumbnailGenerator.ThumbnailPath (uri));
 					thumb = PixbufUtils.TransformOrientation (thumb, thumb_orientation);
+					
+					if (FSpot.ColorManagement.IsEnabled && !thumb.HasAlpha) {
+						if (img.GetProfile () == null)
+							FSpot.ColorManagement.PhotoImageView.Transform = FSpot.ColorManagement.StandartTransform ();
+						else
+							FSpot.ColorManagement.PhotoImageView.Transform = FSpot.ColorManagement.CreateTransform (thumb, img.GetProfile ());
+					}
+					else
+						FSpot.ColorManagement.PhotoImageView.Transform = null;
 				} catch (System.Exception e) {
 					//FSpot.ThumbnailGenerator.Default.Request (uri.ToString (), 0, 256, 256);	
 					if (!(e is GLib.GException)) 

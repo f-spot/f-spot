@@ -33,6 +33,11 @@ namespace FSpot
 		public const string VIEWER_TRANSPARENCY = "/apps/f-spot/viewer/transparency";
 		public const string CUSTOM_CROP_RATIOS = "/apps/f-spot/viewer/custom_crop_ratios";
 		
+		public const string COLOR_MANAGEMENT_ENABLED = "/apps/f-spot/ui/color_management_enabled";
+		public const string COLOR_MANAGEMENT_USE_X_PROFILE = "/apps/f-spot/ui/color_management_use_x_profile";
+		public const string COLOR_MANAGEMENT_DISPLAY_PROFILE = "/apps/f-spot/ui/color_management_display_profile";
+		public const string COLOR_MANAGEMENT_OUTPUT_PROFILE = "/apps/f-spot/ui/color_management_output_profile";
+		
 		public const string SHOW_TOOLBAR = "/apps/f-spot/ui/show_toolbar";
 		public const string SHOW_SIDEBAR = "/apps/f-spot/ui/show_sidebar";
 		public const string SHOW_TIMELINE = "/apps/f-spot/ui/show_timeline";

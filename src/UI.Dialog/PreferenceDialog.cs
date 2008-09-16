@@ -16,33 +16,34 @@ using Gtk;
 using FSpot.Widgets;
 
 namespace FSpot.UI.Dialog {
-#if FALSE
 	public class ProfileList : TreeStore {
-		public ProfileList () : base (typeof (Profile))
+		public ProfileList () : base (typeof (Cms.Profile))
 		{
-			this.AppendValues (Profile.CreateStandardRgb ());
-			this.AppendValues (Profile.CreateAlternateRgb ());
+			foreach (Cms.Profile profile in FSpot.ColorManagement.Profiles)
+				this.AppendValues (profile);
 		}
 
+		private const int NameLenth = 50;
 		public static void ProfileNameDataFunc (CellLayout layout, CellRenderer renderer, TreeModel model, TreeIter iter)
 		{
-			Profile profile = (Profile) model.GetValue (iter, 0);
-			(renderer as Gtk.CellRendererText).Text = profile.ProductName;
-		}
-
-		public static void ProfileDescriptionDataFunc (CellLayout layout, CellRenderer renderer, TreeModel model, TreeIter iter)
-		{
-			Profile profile = (Profile) model.GetValue (iter, 0);
-			(renderer as Gtk.CellRendererText).Text = profile.ProductDescription;
+			if (model.GetValue (iter, 0) != null) {
+				Cms.Profile profile = (Cms.Profile) model.GetValue (iter, 0);
+				if (profile.ProductName.Length < NameLenth)
+					(renderer as Gtk.CellRendererText).Text = profile.ProductName;
+				else
+					(renderer as Gtk.CellRendererText).Text = profile.ProductName.Substring(0, NameLenth) + "...";
+			}
+			else
+				(renderer as Gtk.CellRendererText).Text = "";
 		}
 	}
-#endif
+
 	public class PreferenceDialog : GladeDialog {
 		[Glade.Widget] private CheckButton metadata_check;
-#if FALSE
+		[Glade.Widget] private CheckButton colormanagement_check;
+		[Glade.Widget] private CheckButton use_x_profile_check;
 		[Glade.Widget] private ComboBox display_combo;
 		[Glade.Widget] private ComboBox destination_combo;
-#endif
 		[Glade.Widget] private HBox tagselectionhbox;
 		[Glade.Widget] private Button set_saver_button;
 		[Glade.Widget] private FileChooserButton photosdir_chooser;
@@ -71,6 +72,8 @@ namespace FSpot.UI.Dialog {
 		{
 			tag_button = new MenuButton ();
 			LoadPreference (Preferences.METADATA_EMBED_IN_IMAGE);
+			LoadPreference (Preferences.COLOR_MANAGEMENT_ENABLED);
+			LoadPreference (Preferences.COLOR_MANAGEMENT_USE_X_PROFILE);
 			LoadPreference (Preferences.SCREENSAVER_TAG);
 			LoadPreference (Preferences.GNOME_SCREENSAVER_THEME);
 			if (Global.PhotoDirectory == Preferences.Get<string> (Preferences.STORAGE_PATH)) {
@@ -80,24 +83,41 @@ namespace FSpot.UI.Dialog {
 				photosdir_chooser.SetCurrentFolder(Global.PhotoDirectory);
 				photosdir_chooser.Sensitive = false;
 			}
-#if FALSE
+
 			Gtk.CellRendererText name_cell = new Gtk.CellRendererText ();
 			Gtk.CellRendererText desc_cell = new Gtk.CellRendererText ();
 			
-			display_combo.Model = new ProfileList ();
+			use_x_profile_check.Sensitive = colormanagement_check.Active;
+			
+			display_combo.Sensitive = colormanagement_check.Active;
+			display_combo.Model = new ProfileList ();                                                                                    
 			display_combo.PackStart (desc_cell, false);
 			display_combo.PackStart (name_cell, true);
 			display_combo.SetCellDataFunc (name_cell, new CellLayoutDataFunc (ProfileList.ProfileNameDataFunc));
-			display_combo.SetCellDataFunc (desc_cell, new CellLayoutDataFunc (ProfileList.ProfileDescriptionDataFunc));
+			//FIXME
+			int it_ = 0;
+			foreach (Cms.Profile profile in FSpot.ColorManagement.Profiles) {
+				if (profile.ProductName == Preferences.Get<string> (Preferences.COLOR_MANAGEMENT_DISPLAY_PROFILE))
+					display_combo.Active = it_;
+				it_++;
+			}
+
 			display_combo.Changed += HandleDisplayChanged;
 
+			destination_combo.Sensitive = colormanagement_check.Active;
 			destination_combo.Model = new ProfileList ();
 			destination_combo.PackStart (desc_cell, false);
 			destination_combo.PackStart (name_cell, true);
 			destination_combo.SetCellDataFunc (name_cell, new CellLayoutDataFunc (ProfileList.ProfileNameDataFunc));
-			destination_combo.SetCellDataFunc (desc_cell, new CellLayoutDataFunc (ProfileList.ProfileDescriptionDataFunc));
-			destination_combo.Changed += HandleDisplayChanged;
-#endif
+			destination_combo.Changed += HandleDestinationChanged;
+			//FIXME
+			it_ = 0;
+			foreach (Cms.Profile profile in FSpot.ColorManagement.Profiles) {
+				if (profile.ProductName ==  Preferences.Get<string> (Preferences.COLOR_MANAGEMENT_OUTPUT_PROFILE))
+					destination_combo.Active = it_;
+				it_++;
+			}
+
 			TagMenu tagmenu = new TagMenu (null, MainWindow.Toplevel.Database.Tags);
 	
 			tagmenu.Populate (false);
@@ -153,21 +173,47 @@ namespace FSpot.UI.Dialog {
 			this.Dialog.Destroyed += HandleDestroyed;
 		}
 
-#if FALSE
+		private void ColorManagementEnabledToggled (object sender, System.EventArgs args)
+		{
+			Preferences.Set (Preferences.COLOR_MANAGEMENT_ENABLED, colormanagement_check.Active);
+
+			if (FSpot.ColorManagement.IsEnabled != colormanagement_check.Active) {
+				FSpot.ColorManagement.IsEnabled = colormanagement_check.Active;
+				FSpot.ColorManagement.ReloadSettings();
+			}
+			
+			use_x_profile_check.Sensitive = colormanagement_check.Active;
+			display_combo.Sensitive = colormanagement_check.Active;
+			destination_combo.Sensitive = colormanagement_check.Active;
+		}
+		
+		private void UseXProfileToggled (object sender, System.EventArgs args)
+		{
+			Preferences.Set (Preferences.COLOR_MANAGEMENT_USE_X_PROFILE, use_x_profile_check.Active);
+			if (FSpot.ColorManagement.UseXProfile != use_x_profile_check.Active) {
+				FSpot.ColorManagement.UseXProfile = use_x_profile_check.Active;
+				FSpot.ColorManagement.ReloadSettings();
+			}
+		}
+
 		private void HandleDisplayChanged (object sender, System.EventArgs args)
 		{
 			TreeIter iter;
-			if (display_combo.GetActiveIter (out iter))
-				FSpot.Global.DisplayProfile = (Profile) display_combo.Model.GetValue (iter, 0);
+			Gdk.Screen screen = Gdk.Screen.Default;
+			if (display_combo.GetActiveIter (out iter)) {
+				FSpot.ColorManagement.DisplayProfile = (Cms.Profile) display_combo.Model.GetValue (iter, 0);
+//				FSpot.Widgets.CompositeUtils.SetScreenProfile(screen, FSpot.ColorManagement.DisplayProfile);
+				FSpot.ColorManagement.ReloadSettings();
+			}
 		}
 		
 		private void HandleDestinationChanged (object sender, System.EventArgs args)
 		{
 			TreeIter iter;
 			if (destination_combo.GetActiveIter (out iter))
-				FSpot.Global.DestinationProfile = (Profile) destination_combo.Model.GetValue (iter, 0);
+				FSpot.ColorManagement.DestinationProfile = (Cms.Profile) destination_combo.Model.GetValue (iter, 0);
 		}
-#endif
+
 		private void HandleTagMenuSelected (Tag t)
 		{
 			tag_button.Label = t.Name;
@@ -275,6 +321,16 @@ namespace FSpot.UI.Dialog {
 				bool active = Preferences.Get<bool> (key);
 				if (metadata_check.Active != active)
 					metadata_check.Active = active;
+				break;
+case Preferences.COLOR_MANAGEMENT_ENABLED:
+				active = Preferences.Get<bool> (key);
+				if (colormanagement_check.Active != active)
+					colormanagement_check.Active = active;
+				break;
+			case Preferences.COLOR_MANAGEMENT_USE_X_PROFILE:
+				active = Preferences.Get<bool> (key);
+				if (use_x_profile_check.Active != active)
+					use_x_profile_check.Active = active;
 				break;
 			case Preferences.SCREENSAVER_TAG:
 				try {

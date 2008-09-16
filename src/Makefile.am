@@ -74,8 +74,7 @@ WIDGETS_CSDISTFILES =				\
 	$(srcdir)/Widgets/MenuButton.cs		\
 	$(srcdir)/Widgets/Rating.cs		\
 	$(srcdir)/Widgets/SaneTreeView.cs	\
-	$(srcdir)/Widgets/ScrolledView.cs	\
-	$(srcdir)/Widgets/TagView.cs
+	$(srcdir)/Widgets/ScrolledView.cs
 
 F_SPOT_CSDISTFILES =				\
 	$(srcdir)/AsyncPixbufLoader.cs		\
@@ -91,6 +90,7 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/CompatFileChooser.cs		\
 	$(srcdir)/ControlOverlay.cs		\
 	$(srcdir)/Core.cs			\
+	$(srcdir)/Core/ColorManagement.cs	\
 	$(srcdir)/Core/Photo.cs			\
 	$(srcdir)/Core/PhotoVersion.cs		\
 	$(srcdir)/DateCommands.cs		\
@@ -265,6 +265,7 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/Widgets/Sidebar.cs		\
 	$(srcdir)/Widgets/TagEntry.cs		\
 	$(srcdir)/Widgets/TagMenu.cs		\
+	$(srcdir)/Widgets/TagView.cs		\
 	$(srcdir)/Widgets/TrayView.cs		\
 	$(srcdir)/Widgets/ViewContext.cs		\
 	$(srcdir)/Widgets/Wipe.cs		\

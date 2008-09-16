@@ -869,6 +869,11 @@ namespace FSpot.Widgets
 						draw.Width, draw.Height);
 
 				if (region.Intersect (area, out draw)) {
+					//FIXME
+					if (FSpot.ColorManagement.IsEnabled) {
+						temp_thumbnail = temp_thumbnail.Copy();
+						FSpot.ColorManagement.ApplyScreenProfile (temp_thumbnail);
+					}
 					temp_thumbnail.RenderToDrawable (BinWindow, Style.WhiteGC,
 							draw.X - region.X,
 							draw.Y - region.Y,
@@ -988,6 +993,8 @@ namespace FSpot.Widgets
 									tag_bounds.Height,
 									InterpType.Bilinear);
 						}
+						
+						FSpot.ColorManagement.ApplyScreenProfile (scaled_icon);
 
 						scaled_icon.RenderToDrawable (BinWindow, Style.WhiteGC,
 								region.X - tag_bounds.X,

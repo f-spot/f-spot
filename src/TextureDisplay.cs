@@ -164,7 +164,8 @@ namespace FSpot {
 			try {
 				using (ImageFile img = ImageFile.Create (item.Current.DefaultVersionUri)) {
 					using (Gdk.Pixbuf pixbuf = img.Load ()) {
-					        tex = new Texture (pixbuf);
+						FSpot.ColorManagement.ApplyScreenProfile (pixbuf, img.GetProfile ());
+						tex = new Texture (pixbuf);
 					}
 				}
 			} catch (Exception) {

@@ -192,8 +192,16 @@ public class TagSelectionWidget : FSpot.Widgets.SaneTreeView {
 		SetBackground (renderer, tag);
 
 		// FIXME I can't set the Pixbuf to null, not sure if it's a GTK# bug...
-		if (tag.Icon != null)
-			(renderer as CellRendererPixbuf).Pixbuf = tag.SizedIcon;
+		if (tag.Icon != null) {
+			if (FSpot.ColorManagement.IsEnabled) {
+				//FIXME
+				Gdk.Pixbuf temp = tag.SizedIcon.Copy();
+				FSpot.ColorManagement.ApplyScreenProfile (temp);
+				(renderer as CellRendererPixbuf).Pixbuf = temp;
+			}
+			else
+				(renderer as CellRendererPixbuf).Pixbuf = tag.SizedIcon;
+		}
 		else
 			(renderer as CellRendererPixbuf).Pixbuf = empty_pixbuf;
 	}

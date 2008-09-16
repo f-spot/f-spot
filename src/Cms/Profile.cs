@@ -252,6 +252,12 @@ namespace Cms {
 			}				
 		}
 		
+		public uint ColorSpace {
+			get {
+				return NativeMethods.cmsGetColorSpace (this.handle);
+			}
+		}
+		
 		public string Model {
 			get {
 				lock (srgb) {

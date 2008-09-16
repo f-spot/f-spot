@@ -5855,6 +5855,7 @@ supported image formats.&lt;/i&gt;&lt;/small&gt;</property>
             </child>
             <child>
               <widget class="GtkFrame" id="frame41">
+		<property name="visible">True</property>
                 <property name="label_xalign">0</property>
                 <property name="shadow_type">GTK_SHADOW_NONE</property>
                 <child>
@@ -5864,7 +5865,7 @@ supported image formats.&lt;/i&gt;&lt;/small&gt;</property>
                     <child>
                       <widget class="GtkTable" id="table24">
                         <property name="visible">True</property>
-                        <property name="n_rows">4</property>
+                        <property name="n_rows">5</property>
                         <property name="n_columns">3</property>
                         <property name="column_spacing">6</property>
                         <property name="row_spacing">6</property>
@@ -5892,6 +5893,41 @@ supported image formats.&lt;/i&gt;&lt;/small&gt;</property>
                         <child>
                           <placeholder/>
                         </child>
+			<child>
+                          <widget class="GtkCheckButton" id="colormanagement_check">
+                            <property name="visible">True</property>
+                            <property name="can_focus">True</property>
+                            <property name="label" translatable="yes">Enable</property>
+                            <property name="use_underline">True</property>
+                            <property name="response_id">0</property>
+                            <property name="draw_indicator">True</property>
+                            <signal name="toggled" handler="ColorManagementEnabledToggled"/>
+                          </widget>
+                          <packing>
+ 			    <property name="top_attach">0</property>
+                            <property name="bottom_attach">1</property>
+                            <property name="x_options">GTK_FILL</property>
+                            <property name="y_options"></property>
+                          </packing>
+			</child>
+			<child>
+                          <widget class="GtkCheckButton" id="use_x_profile_check">
+                            <property name="visible">True</property>
+                            <property name="can_focus">True</property>
+                            <property name="label" translatable="yes">Try to use the system display profile</property>
+                            <property name="use_underline">True</property>
+                            <property name="response_id">0</property>
+                            <property name="draw_indicator">True</property>
+                            <signal name="toggled" handler="UseXProfileToggled"/>
+                          </widget>
+                          <packing>
+			    <property name="left_attach">1</property>
+ 			    <property name="top_attach">0</property>
+                            <property name="bottom_attach">1</property>
+                            <property name="x_options">GTK_FILL</property>
+                            <property name="y_options"></property>
+                          </packing>
+			</child>
                         <child>
                           <widget class="GtkLabel" id="label185">
                             <property name="visible">True</property>
@@ -5923,8 +5959,6 @@ supported image formats.&lt;/i&gt;&lt;/small&gt;</property>
                         <child>
                           <widget class="GtkComboBox" id="display_combo">
                             <property name="visible">True</property>
-                            <property name="items" translatable="yes">From Screen
-Standard RGB</property>
                           </widget>
                           <packing>
                             <property name="left_attach">1</property>
@@ -5937,10 +5971,6 @@ Standard RGB</property>
                         <child>
                           <widget class="GtkComboBox" id="destination_combo">
                             <property name="visible">True</property>
-                            <property name="items" translatable="yes">Standard RGB
-Image Profile
-Custom
-</property>
                           </widget>
                           <packing>
                             <property name="left_attach">1</property>

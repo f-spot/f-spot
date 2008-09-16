@@ -93,6 +93,9 @@ namespace Cms
 	
 		[DllImport("liblcms-1.0.0.dll", EntryPoint = "cmsErrorAction")]
 		public static extern void CmsErrorAction (int action);
+		
+		[DllImport ("liblcms-1.0.0.dll", EntryPoint = "cmsGetColorSpace")]
+		public static extern uint cmsGetColorSpace (HandleRef hprofile);
 
 		[DllImport("liblcms-1.0.0.dll", EntryPoint = "cmsTakeProductDesc")]
 		public extern static IntPtr CmsTakeProductDesc (HandleRef handle);

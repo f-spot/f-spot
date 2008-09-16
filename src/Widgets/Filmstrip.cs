@@ -562,6 +562,12 @@ namespace FSpot.Widgets
 
 			}
 			
+			//FIXME
+			if (FSpot.ColorManagement.IsEnabled) {
+				current = current.Copy ();
+				FSpot.ColorManagement.ApplyScreenProfile (current);
+			}
+			
 			if (!highlighted)
 				return current;
 

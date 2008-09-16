@@ -183,7 +183,9 @@ public class GPhotoCamera
 			if (bytedata.Length > 0) {
 				MemoryStream dataStream = new MemoryStream (bytedata);
 				try {
-					return new Pixbuf (dataStream);
+					Gdk.Pixbuf temp = new Pixbuf (dataStream);
+					FSpot.ColorManagement.ApplyScreenProfile (temp);
+					return temp;
 				} catch (Exception e) {
 					// Actual errors with the data libgphoto gives us have been
 					// observed here see b.g.o #357569. 
