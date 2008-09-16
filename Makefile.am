@@ -23,6 +23,7 @@ DIST_SUBDIRS = 		\
 	semweb		\
 	dbus-sharp	\
 	dbus-sharp-glib	\
+	dpap-sharp	\
 	docs		\
 	glitz-sharp	\
 	gnome-keyring-sharp \
