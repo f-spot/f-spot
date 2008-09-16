@@ -8,6 +8,7 @@ SUBDIRS = 			\
 	FolderExport		\
 	MergeDb			\
  	PicasaWebExport		\
+ 	TabbloExport		\
  	SmugMugExport
 
 addinsdir = $(pkglibdir)
