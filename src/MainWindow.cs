@@ -2123,6 +2123,11 @@ public class MainWindow {
 		new TimeDialog (db, list);
 	}
 
+	public void HideLoupe ()
+	{
+		loupe_menu_item.Active = false;
+	}
+
 	void HandleLoupe (object sender, EventArgs args)
 	{
 		// Don't steal characters from any text entries

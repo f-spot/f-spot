@@ -577,7 +577,7 @@ namespace FSpot {
 				break;
 			case Gdk.EventType.TwoButtonPress:
 				dragging = false;
-				this.Destroy ();
+				MainWindow.Toplevel.HideLoupe ();
 				break;
 			}
 		}
@@ -596,7 +596,7 @@ namespace FSpot {
 		{
 			switch (args.Event.Key) {
 			case Gdk.Key.v:
-				MainWindow.Toplevel.PhotoView.View.ShowHideLoupe ();
+				MainWindow.Toplevel.HideLoupe ();
 				args.RetVal = true;
 				break;
 			default:
