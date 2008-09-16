@@ -21,6 +21,7 @@ namespace FSpot {
 			HandleItemChanged (item, null);
 			VersionIdChanged += HandleVersionIdChanged;
 			ShowTags = true;
+			ShowRating = true;
 			Context = ViewContext.FullScreen;
 		}
 		
@@ -48,6 +49,7 @@ namespace FSpot {
 		{
 			XAlign = 1.0;
 			YAlign = 0.1;
+			DefaultWidth = 250;
 			box = new InfoItem (item);
 			box.BorderWidth = 15;
 			Add (box);

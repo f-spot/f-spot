@@ -1,3 +1,9 @@
+2008-09-16  Lorenzo Milesi <maxxer@yetopen.it>
+
+	* src/InfoOverlay.cs: set fixed width to 250. default width was
+	ellipsizing too many strings.
+	* src/Widgets/InfoBox.cs: display rating widget in fullscreen infobox.
+
 2008-09-16  Thomas Van Machelen <thomas.vanmachelen@gmail.com>
 
 	* src/f-spot.glade:

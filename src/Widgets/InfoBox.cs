@@ -58,6 +58,19 @@ namespace FSpot.Widgets
 				tag_view.Visible = show_tags;
 			}
 		}
+	
+		private bool show_rating = false;
+		public bool ShowRating {
+			get { return show_rating; }
+			set {
+				if (show_rating == value)
+					return;
+
+				show_rating = value;
+				rating_label.Visible = show_rating;
+				rating_view.Visible = show_rating;
+			}
+		}
 
 		public delegate void VersionIdChangedHandler (InfoBox info_box, uint version_id);
 		public event VersionIdChangedHandler VersionIdChanged;
@@ -101,6 +114,9 @@ namespace FSpot.Widgets
 		private Label exposure_label;
 		private Label exposure_value_label;
 
+		private Label rating_label;
+		private RatingSmall rating_view;
+
 		private TagView tag_view;
 		private string default_exposure_string;
 
@@ -109,6 +125,11 @@ namespace FSpot.Widgets
 			if (VersionIdChanged != null)
 				VersionIdChanged (this, menu.VersionId);
 		}
+	
+		private void HandleRatingChanged (object o, EventArgs e)
+		{
+			MainWindow.Toplevel.HandleRatingMenuSelected ((o as Widgets.Rating).Value);
+	 	}
 	
 		private Label CreateRightAlignedLabel (string text)
 		{
@@ -163,7 +184,7 @@ namespace FSpot.Widgets
 				ContextSwitchStrategy.SetInfoBoxVisible (Context, info_expander.Expanded);
 			};
 
-			Table info_table = new Table (6, 2, false);
+			Table info_table = new Table (7, 2, false);
 			info_table.BorderWidth = 0;
 	
 			string name_pre = "<b>";
@@ -184,7 +205,11 @@ namespace FSpot.Widgets
 			default_exposure_string = name_pre + Catalog.GetString ("Exposure") + name_post;
 			exposure_label = CreateRightAlignedLabel (default_exposure_string);
 			info_table.Attach (exposure_label, 0, 1, 4, 5, AttachOptions.Fill, AttachOptions.Fill, TABLE_XPADDING, TABLE_YPADDING);
-	
+			
+			rating_label = CreateRightAlignedLabel (name_pre + Catalog.GetString ("Rating") + name_post);
+			info_table.Attach (rating_label, 0, 1, 5, 6, AttachOptions.Fill, AttachOptions.Fill, TABLE_XPADDING, TABLE_YPADDING);
+			rating_label.Visible = false;
+
 			name_value_label = new Label ();
 			name_value_label.Ellipsize = Pango.EllipsizeMode.Middle;
 			name_value_label.Justify = Gtk.Justification.Left;
@@ -201,14 +226,25 @@ namespace FSpot.Widgets
 	
 			date_value_label.Text = Environment.NewLine;
 			exposure_value_label.Text = Environment.NewLine;
-	
+
+			Gtk.Alignment rating_align = new Gtk.Alignment( 0, 0, 0, 0);
+			info_table.Attach (rating_align, 1, 2, 5, 6, AttachOptions.Fill, AttachOptions.Fill, TABLE_XPADDING, TABLE_YPADDING);
+			
+			rating_view = new RatingSmall ();
+			rating_view.Visible = false;
+			rating_view.Changed += HandleRatingChanged;
+			rating_align.Add (rating_view);
+
 			tag_view = new TagView (MainWindow.ToolTips);
-			info_table.Attach (tag_view, 0, 2, 5, 6, AttachOptions.Fill, AttachOptions.Fill, TABLE_XPADDING, TABLE_YPADDING);
+			info_table.Attach (tag_view, 0, 2, 6, 7, AttachOptions.Fill, AttachOptions.Fill, TABLE_XPADDING, TABLE_YPADDING);
 			tag_view.Show ();
+
 			info_table.ShowAll ();
 	
 			info_expander.Add (info_table);
 			Add (info_expander);
+			rating_label.Visible = show_rating;
+			rating_view.Visible = show_rating;
 		}
 	
 		private class ImageInfo : StatementSink {
@@ -416,8 +452,13 @@ namespace FSpot.Widgets
 			}
 			if (show_tags)
 				tag_view.Current = photo;
+			rating_label.Visible = show_rating;
+			rating_view.Visible = show_rating;
+			if (show_rating) {
+				rating_view.Value = (int) photo.Rating;
+			}
 	
-            Show ();
+			Show ();
 		}
 
 		private void UpdateMultiple ()
@@ -449,6 +490,9 @@ namespace FSpot.Widgets
 
 			size_label.Visible = false;
 			size_value_label.Visible = false;
+
+			rating_label.Visible = false;
+			rating_view.Visible = false;
 		}
 
 		private Gdk.Pixbuf histogram_hint;
@@ -526,7 +570,7 @@ namespace FSpot.Widgets
 			histogram_delay = new Delay (DelayedUpdateHistogram);
 	
 			BorderWidth = 2;
-            Hide ();
+			Hide ();
 		}
 	}
 
