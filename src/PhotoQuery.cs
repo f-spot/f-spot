@@ -341,8 +341,6 @@ namespace FSpot {
 		{
 			int [] indexes = IndicesOf (args.Items);
 
-			PhotoEventArgs photo_args = args as PhotoEventArgs;
-
 			if (indexes.Length > 0 && ItemsChanged != null)
 				ItemsChanged (this, new BrowsableEventArgs(indexes, (args as PhotoEventArgs).Changes));
 		}
