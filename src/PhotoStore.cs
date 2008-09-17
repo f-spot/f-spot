@@ -148,6 +148,7 @@ public class PhotoStore : DbStore {
 			")");
 
 		Database.ExecuteNonQuery ("CREATE INDEX idx_photo_versions_id ON photo_versions(photo_id)");
+		Database.ExecuteNonQuery ("CREATE INDEX idx_photos_roll_id ON photos(roll_id)");
 	}
 
 	public Photo CheckForDuplicate (System.Uri uri) {

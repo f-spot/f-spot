@@ -337,6 +337,11 @@ namespace FSpot.Database {
 				 Execute ("CREATE INDEX idx_photo_versions_id ON photo_versions(photo_id)");
 			 }, false);
 
+			// Update to version 16.2
+			 AddUpdate (new Version (16,2), delegate () {
+				 Execute ("CREATE INDEX idx_photos_roll_id ON photos(roll_id)");
+			 }, false);
+
 			 // Update to version 17.0
 			//AddUpdate (new Version (14,0),delegate () {
 			//	do update here
