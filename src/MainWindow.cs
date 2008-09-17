@@ -1098,8 +1098,8 @@ public class MainWindow {
 			
 			db.BeginTransaction ();
 			List<Photo> photos = new List<Photo> ();
-			foreach (string photo_path in list.ToLocalPaths ()) {
-				Photo photo = db.Photos.GetByPath (photo_path);
+			foreach (Uri photo_uri in list) {
+				Photo photo = db.Photos.GetByUri (photo_uri);
 				
 				// FIXME - at this point we should import the photo, and then continue
 				if (photo == null)
