@@ -1,3 +1,8 @@
+2008-09-17  Ruben Vermeersch  <ruben@savanne.be>
+
+	* src/TagSelectionWidget.cs: Fix a Preferences.Get is obsolete warning,
+	small cleanups in the process. Number of warnings down to 36.
+
 2008-09-16  Lorenzo Milesi <maxxer@yetopen.it>
 
 	* src/InfoOverlay.cs: set fixed width to 250. default width was

@@ -387,27 +387,23 @@ public class TagSelectionWidget : FSpot.Widgets.SaneTreeView {
 
 	void ExpandDefaults ()
 	{
-		object val = FSpot.Preferences.Get (FSpot.Preferences.EXPANDED_TAGS);
-
-		if (val == null)
+		int [] tags = FSpot.Preferences.Get<int []> (FSpot.Preferences.EXPANDED_TAGS);
+		if (tags == null) {
 			ExpandAll ();
-		else {
-			TreeIter [] iters = ModelIters ();
-			if (iters == null || iters.Length == 0)
-				return;
+			return;
+		}
 
-			ArrayList expanded_tags = new ArrayList (val as int[]);
-			if (expanded_tags.Count < 1)
-				return;
+		TreeIter [] iters = ModelIters ();
+		if (iters == null || iters.Length == 0 || tags.Length == 0)
+			return;
 
-			foreach (TreeIter iter in iters)
-			{
-				GLib.Value v = new GLib.Value ();
-				Model.GetValue (iter, IdColumn, ref v);
-				int tag_id = (int)(uint) v;
-				if (expanded_tags.Contains (tag_id)) {
-					ExpandRow (Model.GetPath (iter), false);
-				}
+		foreach (TreeIter iter in iters)
+		{
+			GLib.Value v = new GLib.Value ();
+			Model.GetValue (iter, IdColumn, ref v);
+			int tag_id = (int)(uint) v;
+			if (Array.IndexOf (tags, tag_id) > -1) {
+				ExpandRow (Model.GetPath (iter), false);
 			}
 		}
 	}
