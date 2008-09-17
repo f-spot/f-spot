@@ -1,5 +1,9 @@
 2008-09-17  Stephane Delcroix  <sdelcroix@novell.com>
 
+	* src/Widgets/FilmStrip.cs: speed up the strip a bit
+
+2008-09-17  Stephane Delcroix  <sdelcroix@novell.com>
+
 	* src/main.cs: bump the gsd housekeeping values if needed.
 	* src/Utils/Unix.cs:
 	* src/PixbufCache.cs: touch the thumbnail on load

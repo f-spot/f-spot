@@ -673,7 +673,7 @@ namespace FSpot.Widgets
 		{
 			PositionChangedHandler handler;
 			Filmstrip filmstrip;
-			uint interval = 10;
+			uint interval = 50;
 			float target;
 			float speed;
 			float acc = 50f; //images/second^2
@@ -687,7 +687,7 @@ namespace FSpot.Widgets
 			public void MoveTo (float target)
 			{
 				this.target = target;
-				GLib.Timeout.Add (interval, new GLib.TimeoutHandler (Step)); 	
+				GLib.Timeout.Add (interval, new GLib.TimeoutHandler (Step));
 			}
 
 			bool Step ()
@@ -713,7 +713,7 @@ namespace FSpot.Widgets
 
 				float increment = speed * interval / 1000f;
 
-				if (Math.Abs (distance - increment) < 0.01) {
+				if (Math.Abs (distance - increment) < 0.4) {
 					handler (target);
 					return false;
 				}
