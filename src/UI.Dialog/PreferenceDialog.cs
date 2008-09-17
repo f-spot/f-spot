@@ -199,7 +199,7 @@ namespace FSpot.UI.Dialog {
 		private void HandleDisplayChanged (object sender, System.EventArgs args)
 		{
 			TreeIter iter;
-			Gdk.Screen screen = Gdk.Screen.Default;
+//			Gdk.Screen screen = Gdk.Screen.Default;
 			if (display_combo.GetActiveIter (out iter)) {
 				FSpot.ColorManagement.DisplayProfile = (Cms.Profile) display_combo.Model.GetValue (iter, 0);
 //				FSpot.Widgets.CompositeUtils.SetScreenProfile(screen, FSpot.ColorManagement.DisplayProfile);
