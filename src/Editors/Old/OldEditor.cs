@@ -223,7 +223,7 @@ namespace FSpot.Editors {
 		[GLib.ConnectBefore]
 		public virtual void ExposeEvent (object sender, ExposeEventArgs args)
 		{
-			Context ctx = CairoUtils.CreateContext (view.GdkWindow);
+			Context ctx = Gdk.CairoHelper.Create (view.GdkWindow);
 			Gdk.Color c = view.Style.Background (view.State);
 			ctx.Source = new SolidPattern (c.Red / (float) ushort.MaxValue,
 						       c.Blue / (float) ushort.MaxValue,

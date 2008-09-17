@@ -80,7 +80,7 @@ namespace FSpot {
 		protected override bool OnExposeEvent (Gdk.EventExpose args)
 		{
 			int round = 12;
-			Context g = CairoUtils.CreateContext (GdkWindow);
+			Context g = Gdk.CairoHelper.Create (GdkWindow);
 			g.Operator = Operator.Source;
 #if MONO_1_2_5
 			g.Source = new SolidPattern (new Cairo.Color (0, 0, 0, 0));

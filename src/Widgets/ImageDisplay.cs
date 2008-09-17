@@ -205,7 +205,7 @@ namespace FSpot.Widgets {
 			bool double_buffer = false;
 			base.OnExposeEvent (args);
 
-			Context ctx = CairoUtils.CreateContext (GdkWindow);
+			Context ctx = Gdk.CairoHelper.Create (GdkWindow);
 			//Surface glitz = CairoUtils.CreateGlitzSurface (GdkWindow);
 			//Context ctx = new Context (glitz);
 			if (double_buffer) {

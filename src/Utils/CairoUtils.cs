@@ -14,22 +14,6 @@ using System.Runtime.InteropServices;
 
 namespace FSpot.Utils {
 	public class CairoUtils {
-		static class NativeMethods
-		{
-			[DllImport("libgdk-2.0-0.dll")]
-			public static extern IntPtr gdk_cairo_create (IntPtr raw);	
-		}
-		
-		[Obsolete ("use Gdk.CairoHelper.Create instead")]
-		public static Cairo.Context CreateContext (Gdk.Drawable drawable)
-		{
-			Cairo.Context ctx = new Cairo.Context (NativeMethods.gdk_cairo_create (drawable.Handle));
-			if (ctx == null) 
-				throw new Exception ("Couldn't create Cairo Graphics!");
-			
-			return ctx;
-		}
-
 		public static Surface CreateSurface (Gdk.Drawable d)
 		{
 			int width, height;
