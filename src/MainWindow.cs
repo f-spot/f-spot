@@ -1471,7 +1471,6 @@ public class MainWindow {
 			break;
 		default:
 			return; //do not set the RetVal to true
-			break;
 		}
 		args.RetVal = true;
 	}
