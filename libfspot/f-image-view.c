@@ -217,6 +217,9 @@ set_cursor (FImageView *image_view)
 {
 	GdkCursor *cursor = NULL;
 
+	if (!GDK_IS_WINDOW(GTK_WIDGET (image_view)->window)) 
+		return;
+	
 	if (image_view->priv->mode != MODE_IDLE) {
 		cursor = get_cursor_for_mode (image_view, image_view->priv->mode);
 	} else {
@@ -926,6 +929,7 @@ f_image_view_set_pointer_mode (FImageView *image_view,
 			       FImageViewPointerMode mode)
 {
 	image_view->priv->pointer_mode = mode;
+    	set_cursor (image_view);
 }
 
 FImageViewPointerMode

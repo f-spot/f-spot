@@ -48,5 +48,17 @@ namespace FSpot.Utils {
 		{
 			return (Gdk.Visual) GLib.Object.GetObject (NativeMethods.gdk_x11_screen_lookup_visual (screen.Handle, visualid));
 		}
+		
+		public static Cursor CreateEmptyCursor (Display display) 
+		{
+			try {
+				Gdk.Pixbuf empty = new Gdk.Pixbuf (Gdk.Colorspace.Rgb, true, 8, 1, 1);
+				empty.Fill (0x00000000);
+				return new Gdk.Cursor (display, empty, 0, 0);
+			} catch (System.Exception e){
+				Log.Exception (e);
+				return null;
+			}
+		}
 	}
 }

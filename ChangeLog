@@ -1,3 +1,12 @@
+2008-09-15  Anton Keks  <anton@azib.net>
+
+	* src/SlideView.cs
+	* src/Utils/GdkUtils.cs: moved empty cursor creation code to GdkUtils.
+
+	* libfspot/f-image-view.c
+	* src/FullScreenView.cs: hides cursor automatically when entering full
+	screen. Moving the mouse will show cursor again for 3 seconds.
+
 2008-09-17  Stephane Delcroix  <sdelcroix@novell.com>
 
 	* src/Widgets/FilmStrip.cs: speed up the strip a bit

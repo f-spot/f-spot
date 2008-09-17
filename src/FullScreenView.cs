@@ -25,6 +25,7 @@ namespace FSpot {
 		private TextureDisplay display;
 		private ToolButton play_pause_button;
 		private ToggleToolButton info_button;
+		private Delay hide_cursor_delay;
 
 		ActionGroup actions;
 		const string ExitFullScreen = "ExitFullScreen";
@@ -100,10 +101,10 @@ namespace FSpot {
 				view = new PhotoImageView (collection);
 				// FIXME this should be handled by the new style setting code
 				view.ModifyBg (Gtk.StateType.Normal, this.Style.Black);
-				view.PointerMode = ImageView.PointerModeType.Scroll;
 				this.Add (notebook);
 				view.Show ();
 				view.MotionNotifyEvent += HandleViewMotion;
+				view.PointerMode = ImageView.PointerModeType.Scroll;
 				
 				scroll.ScrolledWindow.Add (view);
 
@@ -196,6 +197,9 @@ namespace FSpot {
 				
 				view.Item.Changed += HandleItemChanged;
 				view.GrabFocus ();
+
+				hide_cursor_delay = new Delay (3000, new GLib.IdleHandler (HideCursor));
+				hide_cursor_delay.Start ();
 				
 				controls = new ControlOverlay (this);
 				controls.Add (tbar);
@@ -205,33 +209,42 @@ namespace FSpot {
 			} catch (System.Exception e) {
 				Log.Exception (e);
 			}	
-
 		}
 
+		private Gdk.Cursor empty_cursor;
+		private bool HideCursor ()
+		{
+			if (empty_cursor == null) 
+				empty_cursor = GdkUtils.CreateEmptyCursor (GdkWindow.Display);
+			
+			this.GdkWindow.Cursor = empty_cursor;
+			view.GdkWindow.Cursor = empty_cursor;
+			return false;
+		}
+		
+		private void ShowCursor () 
+		{
+			view.PointerMode = ImageView.PointerModeType.Scroll;
+			this.GdkWindow.Cursor = null;
+		}
+		
 		private void HandleItemChanged (object sender, BrowsablePointerChangedArgs args)
 		{
 			if (scroll.ControlBox.Visible)
 				scroll.ShowControls ();
 		}
-#if false
+
 		protected override bool OnExposeEvent (Gdk.EventExpose args)
 		{
 			bool ret = base.OnExposeEvent (args);
-			Graphics g = CairoHelper.Create (GdkWindow);
 
-			g.Color = new Cairo.Color (0, 0, 0, .5);
-			g.Operator = Operator.DestOut;
-			g.Rectangle (0, 0, Allocation.Width  * .5, Allocation.Height);
-			g.Paint ();
-
+			HideCursor ();
 			return ret;
 		}
-#endif
 		
 		private void ExitAction (object sender, System.EventArgs args)
 		{
-			display.Dispose ();
-			this.Destroy ();
+			Quit ();
 		}
 
 		private void HideToolbarAction (object sender, System.EventArgs args)
@@ -267,6 +280,9 @@ namespace FSpot {
 		[GLib.ConnectBefore]
 		private void HandleViewMotion (object sender, Gtk.MotionNotifyEventArgs args)
 		{
+			ShowCursor ();
+			hide_cursor_delay.Restart ();
+			
 			int x, y;
 			Gdk.ModifierType type;
 			((Gtk.Widget)sender).GdkWindow.GetPointer (out x, out y, out type);
@@ -310,7 +326,9 @@ namespace FSpot {
 
 		public void Quit ()
 		{
+			hide_cursor_delay.Stop ();
 			FSpot.Utils.ScreenSaver.UnInhibit ();
+
 			this.Destroy ();
 		}
 

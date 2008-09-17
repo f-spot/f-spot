@@ -6,6 +6,7 @@ using System;
 using GLib;
 using System.Runtime.InteropServices;
 using FSpot;
+using FSpot.Utils;
 
 namespace FSpot {
 	public class XScreenSaverSlide : Gtk.Window {
@@ -85,28 +86,10 @@ namespace FSpot {
 
 			busy = new Gdk.Cursor (Gdk.CursorType.Watch);
 			this.GdkWindow.Cursor = busy;
-			none = Empty ();
+			none = GdkUtils.CreateEmptyCursor (GdkWindow.Display);
 
 			hide = new Delay (2000, new GLib.IdleHandler (HideCursor));
 		}
-
-		public Gdk.Cursor Empty () 
-		{
-			Gdk.Cursor cempty = null;
-			
-			try {
-				Gdk.Pixbuf empty = new Gdk.Pixbuf (Gdk.Colorspace.Rgb, true, 8, 1, 1);
-			        empty.Fill (0x00000000);
-				cempty = new Gdk.Cursor (GdkWindow.Display, empty, 0, 0);
-			} catch (System.Exception e){
-				System.Console.WriteLine (e.ToString ());
-				return null;
-			}
-
-			return cempty;
-		}
-
-
 
 		public void Play ()
 		{
