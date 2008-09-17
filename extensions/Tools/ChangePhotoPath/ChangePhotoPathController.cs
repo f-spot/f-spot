@@ -221,7 +221,7 @@ namespace ChangePhotoPath
 					}
 
 					if ( (photo != null) && !StillOnSamePhotoId (last_index-1, last_index, photo_id_array) ) {
-						photo_store.Commit (photo, true, false);
+						photo_store.Commit (photo);
 						photo = null;
 					}
 
@@ -233,7 +233,7 @@ namespace ChangePhotoPath
 					// float apa = last_index / (last_index-6);
 				}
 				if (photo != null)
-					photo_store.Commit (photo, true, false);
+					photo_store.Commit (photo);
 			} catch (Exception e) {
 				Console.WriteLine(e);
 				return ProcessResult.Error;
