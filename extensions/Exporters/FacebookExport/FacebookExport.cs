@@ -335,6 +335,7 @@ namespace FSpot.Exporter.Facebook
 				picture_info_vbox.Sensitive = true;
 
 				User me = account.Facebook.GetLoggedInUser ().GetUserInfo ();
+				// Note for translators: {0} and {1} are respectively firstname and surname of the user 
 				whoami_label.Text = String.Format (Catalog.GetString ("{0} {1} is logged into Facebook"), me.FirstName, me.LastName);
 
 				Friend[] friend_list = account.Facebook.GetFriends ();
