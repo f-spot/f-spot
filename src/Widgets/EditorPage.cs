@@ -65,9 +65,10 @@ namespace FSpot.Widgets {
 
 		public EditorPageWidget () {
 			editors = new List<Editor> ();
+			editor_buttons = new Dictionary<Editor, Button> ();
+			ShowTools ();
 			AddinManager.AddExtensionNodeHandler ("/FSpot/Editors", OnExtensionChanged);
 
-			ShowTools ();
 		}
 
 		private void OnExtensionChanged (object s, ExtensionNodeEventArgs args) {
@@ -78,6 +79,7 @@ namespace FSpot.Widgets {
 				editor.ProcessingStep += OnProcessingStep;
 				editor.ProcessingFinished += OnProcessingFinished;
 				editors.Add (editor);
+				PackButton (editor);
 			}
 		}
 
@@ -102,11 +104,20 @@ namespace FSpot.Widgets {
 		internal void ChangeButtonVisibility () {
 			foreach (Editor editor in editors) {
 				Button button;
-				editor_buttons.TryGetValue (editor, out button);
-
-				bool visible = Page.InPhotoView || editor.CanHandleMultiple;
-				button.Visible = visible;
+				if (editor_buttons.TryGetValue (editor, out button))
+					button.Visible = Page.InPhotoView || editor.CanHandleMultiple;
 			}
+		}
+
+		void PackButton (Editor editor)
+		{
+			Button button = new Button (editor.Label);
+			if (editor.IconName != null)
+				button.Image = new Image (GtkUtil.TryLoadIcon (FSpot.Global.IconTheme, editor.IconName, 22, (Gtk.IconLookupFlags)0));
+			button.Clicked += delegate (object o, EventArgs e) { ChooseEditor (editor); };
+			button.Show ();
+			buttons.Add (button);
+			editor_buttons.Add (editor, button);
 		}
 
 		public void ShowTools () {
@@ -141,17 +152,8 @@ namespace FSpot.Widgets {
 			buttons.Spacing = 5;
 			buttons.LayoutStyle = ButtonBoxStyle.Start;
 
-			editor_buttons = new Dictionary<Editor, Button> ();
-			foreach (Editor editor in editors) {
-				// Build sidebar button and add it to the sidebar.
-				Editor current = editor;
-				Button button = new Button (editor.Label);
-				button.Image = new Image (GtkUtil.TryLoadIcon (FSpot.Global.IconTheme, editor.IconName, 22, (Gtk.IconLookupFlags)0));
-				button.Clicked += delegate (object o, EventArgs e) { ChooseEditor (current); };
-				button.Show ();
-				buttons.Add (button);
-				editor_buttons.Add (editor, button);
-			}
+			foreach (Editor editor in editors) 
+				PackButton (editor);
 
 			buttons.Show ();
 			widgets.Add (buttons);
