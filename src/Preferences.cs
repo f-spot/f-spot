@@ -82,6 +82,9 @@ namespace FSpot
 		public const string PROXY_PASSWORD = "/system/http_proxy/authentication_password";
 		public const string PROXY_BYPASS_LIST = "/system/http_proxy/ignore_hosts";
 
+		public const string GSD_THUMBS_MAX_AGE = "/desktop/gnome/thumbnail_cache/maximum_age";
+		public const string GSD_THUMBS_MAX_SIZE = "/desktop/gnome/thumbnail_cache/maximum_size";
+
 
 		private static IPreferenceBackend backend;
 		private static NotifyChangedHandler changed_handler;
@@ -202,28 +205,37 @@ namespace FSpot
 			}
 		}
 
-		public static T Get<T> (string key)
+		//return true if the key exists in the backend
+		public static bool TryGet<T> (string key, out T value)
 		{
 			lock (cache) {
-				T val = default (T);
+				value = default (T);
 				object o;
-				if (cache.TryGetValue (key, out o)) 
-					return (T)o;
+				if (cache.TryGetValue (key, out o)) {
+					value = (T)o;
+					return true;
+				}
 
 				try {
-					try {
-						val = (T) Backend.Get (key);
-					} catch (NoSuchKeyException) {
-						val = (T) GetDefault (key);
-					} catch (InvalidCastException) {
-						val = (T) GetDefault (key);
-					}
-				} catch {
-					val = default(T);
+					value = (T) Backend.Get (key);
+				} catch { //catching NoSuchKeyException
+					return false;
 				}
 				
-				cache.Add (key, val);
+				cache.Add (key, value);
+				return true;
+			}
+		}
+
+		public static T Get<T> (string key)
+		{
+			T val;
+			if (TryGet<T> (key, out val))
 				return val;
+			try {
+				return (T) GetDefault (key);
+			} catch { //catching InvalidCastException
+				return default (T);
 			}
 		}
 

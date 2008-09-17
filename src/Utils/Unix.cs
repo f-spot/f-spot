@@ -13,6 +13,9 @@ namespace FSpot.Utils {
 
 			[DllImport("libc", EntryPoint="prctl")]
 			public static extern int PrCtl(int option, string name, ulong arg3, ulong arg4, ulong arg5);
+
+			[DllImport("libc", EntryPoint="utime")]
+			public static extern int UTime (string filename, IntPtr buf);
 		}
 
 		public static int Rename (string oldpath, string newpath)
@@ -46,6 +49,12 @@ namespace FSpot.Utils {
 			} catch (EntryPointNotFoundException) {
 		    		/* noop */
 			}
+		}
+
+		public static void Touch (string filename)
+		{
+			if (NativeMethods.UTime (filename, IntPtr.Zero) != 0)
+				Log.DebugFormat ("touch on {0} failed", filename);
 		}
 	}
 }

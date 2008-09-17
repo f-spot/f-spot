@@ -1,7 +1,7 @@
 include $(top_srcdir)/Makefile.include
 UNSAFE = -unsafe
 NOWARN = -nowarn:0169 -nowarn:0612 -nowarn:0414  
-EXTRAFLAGS = -d:TEST_METADATA -d:BROKEN_RSVG $(CSC_DEFINES)
+EXTRAFLAGS = -d:TEST_METADATA -d:BROKEN_RSVG -d:GSD_2_24 $(CSC_DEFINES)
 
 CMS_CSDISTFILES =				\
 	$(srcdir)/Cms/CctTable.cs		\

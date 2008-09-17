@@ -1,3 +1,10 @@
+2008-09-17  Stephane Delcroix  <sdelcroix@novell.com>
+
+	* src/main.cs: bump the gsd housekeeping values if needed.
+	* src/Utils/Unix.cs:
+	* src/PixbufCache.cs: touch the thumbnail on load
+	* src/Preferences.cs: some refactoring, adding a TryGet method.
+
 2008-09-17  Ruben Vermeersch  <ruben@savanne.be>
 
 	* src/TagSelectionWidget.cs: Fix a Preferences.Get is obsolete warning,

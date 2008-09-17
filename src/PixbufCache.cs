@@ -57,6 +57,11 @@ namespace FSpot {
 				}
 				Monitor.Pulse (items);
 			}
+#if GSD_2_24
+			if (!System.IO.File.Exists (path))
+				return;
+			Utils.Unix.Touch (path);
+#endif
 		}
 
 		public void Update (string path, Gdk.Pixbuf pixbuf)
