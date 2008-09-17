@@ -73,7 +73,7 @@
                 <property name="visible">True</property>
                 <property name="sensitive">False</property>
                 <property name="can_focus">True</property>
-                <property name="label" translatable="yes">Copy images to Photos/</property>
+                <property name="label" translatable="yes">Copy images to photos folder</property>
                 <property name="response_id">0</property>
                 <property name="active">True</property>
                 <property name="draw_indicator">True</property>
@@ -90,9 +90,9 @@
                 <property name="visible">True</property>
                 <property name="xalign">1</property>
                 <property name="label" translatable="yes">&lt;small&gt;&lt;i&gt;Choose what to import from the selected db.
-"Everything" will import everything, creating duplicates if you already imported from that database.
-"New Rolls only" is the smart option that will avoid re-importing you could have imported during a previous operation.
-"A Single Import Roll" let you choose which roll you want to merge back.&lt;/i&gt;&lt;/small&gt;</property>
+"New Rolls Only" is the smart option that will avoid re-importing photos you could have imported during a previous operation.
+"A Single Import Roll" let you choose which roll you want to merge back.
+"Everything" will import everything, creating duplicates if you already imported from that database.&lt;/i&gt;&lt;/small&gt;</property>
                 <property name="use_markup">True</property>
                 <property name="wrap">True</property>
                 <property name="ellipsize">PANGO_ELLIPSIZE_END</property>
