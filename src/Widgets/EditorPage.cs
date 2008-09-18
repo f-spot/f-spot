@@ -168,7 +168,7 @@ namespace FSpot.Widgets {
 				Apply (editor); // Instant apply
 		}
 
-		private void SetupEditor (Editor editor) {
+		private bool SetupEditor (Editor editor) {
 			EditorState state = editor.CreateState ();
 
 			EditorSelection selection = new EditorSelection ();
@@ -185,13 +185,17 @@ namespace FSpot.Widgets {
 				state.Selection = null;
 				state.PhotoImageView = null;
 			}
+			if (Page.Sidebar.Selection == null)
+				return false;
 			state.Items = Page.Sidebar.Selection.Items;
 
 			editor.Initialize (state);
+			return true;
 		}
 
 		private void Apply (Editor editor) {
-			SetupEditor (editor);
+			if (!SetupEditor (editor))
+				return;
 
 			if (!editor.CanBeApplied) {
 				string msg = Catalog.GetString ("No selection available");
