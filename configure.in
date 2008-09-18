@@ -176,7 +176,15 @@ AC_SUBST(DIR_DBUS_GLIB)
 AC_SUBST(LINK_DBUS)
 AC_SUBST(PATH_DBUS)
 
-dnl -- nunit ... workaround for ubuntu
+dnl -- nunit
+AC_ARG_ENABLE([nunit],[AC_HELP_STRING([--disable-unit], [build without unit tests])],,)
+AM_CONDITIONAL(DISABLE_NUNIT, test "x$enable_nunit" = "xno")
+
+if test "x$enable_nunit" = "xno"; then
+	NUNIT_DEFINES=''
+	NUNIT_PKG=''
+
+else 	
 NUNIT_DEFINES='-d:ENABLE_NUNIT'
 PKG_CHECK_MODULES(MONO_NUNIT, mono-nunit >= $MONO_REQUIRED,
 [
@@ -201,6 +209,7 @@ PKG_CHECK_MODULES(MONO_NUNIT, mono-nunit >= $MONO_REQUIRED,
     ])
   ])
 ])
+fi
 
 AC_SUBST(NUNIT_PKG)
 AC_SUBST(NUNIT_DEFINES)
