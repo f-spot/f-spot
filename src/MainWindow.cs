@@ -346,6 +346,7 @@ public class MainWindow {
 		sidebar_vbox.Add (sidebar);
 
 		tag_selection_scrolled = new ScrolledWindow ();
+		tag_selection_scrolled.ShadowType = ShadowType.In;
 		
 		tag_selection_widget = new TagSelectionWidget (db.Tags);
 		tag_selection_scrolled.Add (tag_selection_widget);
