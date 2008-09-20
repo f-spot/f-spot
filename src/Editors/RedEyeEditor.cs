@@ -22,7 +22,7 @@ namespace FSpot.Editors {
 		}
 
 		public override Widget ConfigurationWidget () {
-			return new Label("Select the eyes you wish to fix.");
+			return new Label(Catalog.GetString ("Select the eyes you wish to fix."));
 		}
 
 		protected override Pixbuf Process (Pixbuf input, Cms.Profile input_profile) {
