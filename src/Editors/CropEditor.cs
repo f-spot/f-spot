@@ -70,7 +70,7 @@ namespace FSpot.Editors {
 		public override Widget ConfigurationWidget () {
 			VBox vbox = new VBox ();
 
-			Label info = new Label("Select the area that needs cropping.");
+			Label info = new Label (Catalog.GetString ("Select the area that needs cropping."));
 
 			constraints_combo = new ComboBox ();
 			CellRendererText constraint_name_cell = new CellRendererText ();
