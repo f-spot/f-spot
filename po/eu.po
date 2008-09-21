@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: eu\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-09-18 14:00+0200\n"
-"PO-Revision-Date: 2008-09-18 15:16+0200\n"
+"POT-Creation-Date: 2008-09-21 16:56+0200\n"
+"PO-Revision-Date: 2008-09-21 16:57+0200\n"
 "Last-Translator: Iñaki Larrañaga Murgoitio <dooteo@euskalgnu.org>\n"
 "Language-Team: Basque <itzulpena@euskalgnu.org>\n"
 "MIME-Version: 1.0\n"
@@ -598,6 +598,10 @@ msgstr "Karratua"
 msgid "Crop"
 msgstr "Moztu"
 
+#: ../src/Editors/CropEditor.cs:73
+msgid "Select the area that needs cropping."
+msgstr "Hautatu mozketa behar duen area."
+
 #: ../src/Editors/CropEditor.cs:98
 msgid "No Constraint"
 msgstr "Murriztapenik gabe"
@@ -621,6 +625,10 @@ msgstr "Begi gorriak gutxitzea"
 #: ../src/Editors/RedEyeEditor.cs:21
 msgid "Fix!"
 msgstr "Finkatu"
+
+#: ../src/Editors/RedEyeEditor.cs:25
+msgid "Select the eyes you wish to fix."
+msgstr "Hautatu finkatzea nahi dituzun begiak."
 
 #: ../src/Editors/SepiaEditor.cs:17
 msgid "Sepia Tone"
@@ -1086,7 +1094,7 @@ msgid "Next photo"
 msgstr "Hurrengo argazkia"
 
 #. Don't care otherwise, Tags sounds reasonable
-#: ../src/MainWindow.cs:353 ../src/Widgets/Sidebar.cs:73
+#: ../src/MainWindow.cs:354 ../src/Widgets/Sidebar.cs:73
 #: ../extensions/Exporters/FolderExport/FolderExport.cs:995
 #: ../extensions/Exporters/FolderExport/FolderExport.cs:1167
 #: ../extensions/Exporters/FolderExport/FolderExport.cs:1207
@@ -1094,7 +1102,7 @@ msgid "Tags"
 msgstr "Etiketak"
 
 #. Note for translators: This indicates the current photo is photo {0} of {1} out of photos
-#: ../src/MainWindow.cs:661 ../src/ProgressDialog.cs:82
+#: ../src/MainWindow.cs:662 ../src/ProgressDialog.cs:82
 #: ../src/TimeDialog.cs:143 ../extensions/Exporters/CDExport/CDExport.cs:221
 #: ../extensions/Exporters/FlickrExport/FlickrExport.cs:349
 #: ../extensions/Exporters/FolderExport/FolderExport.cs:244
@@ -1103,11 +1111,11 @@ msgstr "Etiketak"
 msgid "{0} of {1}"
 msgstr "{0} / {1}"
 
-#: ../src/MainWindow.cs:1670
+#: ../src/MainWindow.cs:1671
 msgid "No cameras detected."
 msgstr "Ez da kamerarik detektatu."
 
-#: ../src/MainWindow.cs:1671
+#: ../src/MainWindow.cs:1672
 msgid ""
 "F-Spot was unable to find any cameras attached to this system.  Double check "
 "that the camera is connected and has power"
@@ -1115,24 +1123,24 @@ msgstr ""
 "F-Spot ez da gai izan sistemara konektatutako kamera aurkitzeko. Egiaztatu "
 "kamera konektatuta eta piztuta dagoela"
 
-#: ../src/MainWindow.cs:1711
+#: ../src/MainWindow.cs:1712
 msgid "Error connecting to camera"
 msgstr "Errorea kamerarekin konektatzean"
 
-#: ../src/MainWindow.cs:1712
+#: ../src/MainWindow.cs:1713
 #, csharp-format
 msgid "Received error \"{0}\" while connecting to camera"
 msgstr "\"{0}\" errorea jaso da kamerarekin konektatzean"
 
 #. Translators, The singular case will never happen here.
-#: ../src/MainWindow.cs:2057
+#: ../src/MainWindow.cs:2058
 #, csharp-format
 msgid "Merge the selected tag"
 msgid_plural "Merge the {0} selected tags?"
 msgstr[0] "Batu hautatutako etiketa"
 msgstr[1] "Batu hautatutako {0} etiketak?"
 
-#: ../src/MainWindow.cs:2084
+#: ../src/MainWindow.cs:2085
 msgid ""
 "This operation will merge the selected tags and any sub-tags into a single "
 "tag."
@@ -1140,57 +1148,57 @@ msgstr ""
 "Eragiketa honek hautatutako etiketak eta edozein azpi-etiketa batu egingo "
 "ditu etiketa bakarrean."
 
-#: ../src/MainWindow.cs:2086
+#: ../src/MainWindow.cs:2087
 msgid "_Merge Tags"
 msgstr "_Batu etiketak"
 
-#: ../src/MainWindow.cs:2291
+#: ../src/MainWindow.cs:2292
 #, csharp-format
 msgid "{0} Photo out of {1}"
 msgid_plural "{0} Photos out of {1}"
 msgstr[0] "{0} / {1} argazkia"
 msgstr[1] "{0} / {1} argazkia"
 
-#: ../src/MainWindow.cs:2293 ../src/SingleView.cs:481
+#: ../src/MainWindow.cs:2294 ../src/SingleView.cs:481
 #, csharp-format
 msgid "{0} Photo"
 msgid_plural "{0} Photos"
 msgstr[0] "Argazki {0}"
 msgstr[1] "{0} argazki"
 
-#: ../src/MainWindow.cs:2296
+#: ../src/MainWindow.cs:2297
 #, csharp-format
 msgid " ({0} selected)"
 msgid_plural " ({0} selected)"
 msgstr[0] " ({0} hautatuta)"
 msgstr[1] " ({0} hautatuta)"
 
-#: ../src/MainWindow.cs:2377
+#: ../src/MainWindow.cs:2378
 msgid "_Ok"
 msgstr "_Ados"
 
-#: ../src/MainWindow.cs:2378
+#: ../src/MainWindow.cs:2379
 msgid "Error Deleting Picture"
 msgstr "Errorea argazkia ezabatzean"
 
-#: ../src/MainWindow.cs:2383
+#: ../src/MainWindow.cs:2384
 #, csharp-format
 msgid "No permission to delete the file:{1}{0}"
 msgstr "Ez dago baimenik fitxategia ezabatzeko: {1}{0}"
 
-#: ../src/MainWindow.cs:2387
+#: ../src/MainWindow.cs:2388
 #, csharp-format
 msgid "An error of type {0} occurred while deleting the file:{2}{1}"
 msgstr "{0} motako errorea gertatu da fitxategia ezabatzean: {2}{1}"
 
-#: ../src/MainWindow.cs:2413
+#: ../src/MainWindow.cs:2414
 #, csharp-format
 msgid "Delete the selected photo permanently?"
 msgid_plural "Delete the {0} selected photos permanently?"
 msgstr[0] "Ezabatu hautatutako argazkiak betirako?"
 msgstr[1] "Ezabatu hautatutako {0} argazki betirako?"
 
-#: ../src/MainWindow.cs:2417
+#: ../src/MainWindow.cs:2418
 msgid "This deletes all versions of the selected photo from your drive."
 msgid_plural "This deletes all versions of the selected photos from your drive."
 msgstr[0] ""
@@ -1198,20 +1206,20 @@ msgstr[0] ""
 "ditu."
 msgstr[1] "Honek hautatutako argazkien bertsio guztiak zure euskarritik ezabatuko ditu."
 
-#: ../src/MainWindow.cs:2420
+#: ../src/MainWindow.cs:2421
 msgid "_Delete photo"
 msgid_plural "_Delete photos"
 msgstr[0] "_Ezabatu argazkia"
 msgstr[1] "_Ezabatu argazkiak"
 
-#: ../src/MainWindow.cs:2450
+#: ../src/MainWindow.cs:2451
 #, csharp-format
 msgid "Remove the selected photo from F-Spot?"
 msgid_plural "Remove the {0} selected photos from F-Spot?"
 msgstr[0] "Ezabatu hautatutako argazkia F-Spot-etik?"
 msgstr[1] "Ezabatu hautatutako {0} argazki F-Spot-etik?"
 
-#: ../src/MainWindow.cs:2455
+#: ../src/MainWindow.cs:2456
 msgid ""
 "If you remove photos from the F-Spot catalog all tag information will be "
 "lost. The photos remain on your computer and can be imported into F-Spot "
@@ -1221,45 +1229,45 @@ msgstr ""
 "galduko da. Argazkiak ordenagailuan egoten jarraituko dute, eta F-Spot-era "
 "berriro inportatzeko aukera egongo da."
 
-#: ../src/MainWindow.cs:2456
+#: ../src/MainWindow.cs:2457
 msgid "_Remove from Catalog"
 msgstr "_Kendu katalogotik"
 
-#: ../src/MainWindow.cs:2519
+#: ../src/MainWindow.cs:2520
 #, csharp-format
 msgid "Delete tag \"{0}\"?"
 msgstr "Ezabatu \"{0}\" etiketa?"
 
-#: ../src/MainWindow.cs:2521
+#: ../src/MainWindow.cs:2522
 #, csharp-format
 msgid "Delete the {0} selected tags?"
 msgstr "Ezabatu hautatutako {0} etiketak?"
 
-#: ../src/MainWindow.cs:2526
+#: ../src/MainWindow.cs:2527
 msgid "photo"
 msgid_plural "photos"
 msgstr[0] "argazkia"
 msgstr[1] "argazkiak"
 
-#: ../src/MainWindow.cs:2528
+#: ../src/MainWindow.cs:2529
 #, csharp-format
 msgid "If you delete this tag, the association with {0} {1} will be lost."
 msgid_plural "If you delete these tags, the association with {0} {1} will be lost."
 msgstr[0] "Etiketa hau ezabatuz gero, {0} {1} esleipena ere galduko da."
 msgstr[1] "Etiketa hauek ezabatuz gero, {0} {1} esleipena ere galduko da."
 
-#: ../src/MainWindow.cs:2533
+#: ../src/MainWindow.cs:2534
 msgid "_Delete tag"
 msgid_plural "_Delete tags"
 msgstr[0] "_Ezabatu etiketa"
 msgstr[1] "_Ezabatu etiketak"
 
 #. A Category is not empty. Can not delete it.
-#: ../src/MainWindow.cs:2547
+#: ../src/MainWindow.cs:2548
 msgid "Tag is not empty"
 msgstr "Etiketa ez dago hutsik"
 
-#: ../src/MainWindow.cs:2548
+#: ../src/MainWindow.cs:2549
 #, csharp-format
 msgid ""
 "Can not delete tags that have tags within them.  Please delete tags under "
@@ -1268,39 +1276,39 @@ msgstr ""
 "Ezin dira etiketak dituzten etiketak ezabatu . Aurrenik ezabatu {0} pean "
 "dauden etiketak"
 
-#: ../src/MainWindow.cs:2991
+#: ../src/MainWindow.cs:2992
 msgid "Rotate selected photo left"
 msgid_plural "Rotate selected photos left"
 msgstr[0] "Biratu hautatutako argazkia ezkerrera"
 msgstr[1] "Biratu hautatutako argazkiak ezkerrera"
 
-#: ../src/MainWindow.cs:3004
+#: ../src/MainWindow.cs:3005
 msgid "Rotate selected photo right"
 msgid_plural "Rotate selected photos right"
 msgstr[0] "Biratu hautatutako argazkia eskuinera"
 msgstr[1] "Biratu hautatutako argazkiak eskuinera"
 
-#: ../src/MainWindow.cs:3012
+#: ../src/MainWindow.cs:3013
 #, csharp-format
 msgid "Find _Selected Tag"
 msgid_plural "Find _Selected Tags"
 msgstr[0] "Bilatu _hautatutako etiketa"
 msgstr[1] "Bilatu _hautatutako etiketak"
 
-#: ../src/MainWindow.cs:3016
+#: ../src/MainWindow.cs:3017
 #, csharp-format
 msgid "Find Selected Tag _With"
 msgid_plural "Find Selected Tags _With"
 msgstr[0] "Bilatu hautatutako etiketa _honekin"
 msgstr[1] "Bilatu hautatutako etiketak _honekin"
 
-#: ../src/MainWindow.cs:3054
+#: ../src/MainWindow.cs:3055
 msgid "Create New Version?"
 msgid_plural "Create New Versions?"
 msgstr[0] "Sortu bertsio berria?"
 msgstr[1] "Sortu bertsio berriak?"
 
-#: ../src/MainWindow.cs:3056
+#: ../src/MainWindow.cs:3057
 #, csharp-format
 msgid ""
 "Before launching {1}, should F-Spot create a new version of the selected "
@@ -3686,8 +3694,8 @@ msgid ""
 "Facebook only permits 60 photographs per album.  Please refine your "
 "selection and try again."
 msgstr ""
-"Facebook-ek gehienez 60 argazki onartzen ditu albumeko. "
-"Findu hautapena eta saiatu berriro."
+"Facebook-ek gehienez 60 argazki onartzen ditu albumeko. Findu hautapena eta "
+"saiatu berriro."
 
 #: ../extensions/Exporters/FacebookExport/FacebookExport.cs:279
 #: ../extensions/Exporters/FacebookExport/FacebookExport.cs:365
@@ -3705,8 +3713,9 @@ msgid ""
 "log into Facebook automatically from now on."
 msgstr ""
 "'F-Spot'-ek orain web arakatzailea abiaraziko du Facebook-en saioa hasteko. "
-"Aktibatu Facebook-eko \"Save my login information\" (gorde nire saioko informazioa) kontrol-koadroa "
-"eta aurrerantzean 'F-Spot'-ek Facebook-en saioa automatikoki hasiko du."
+"Aktibatu Facebook-eko \"Save my login information\" (gorde nire saioko "
+"informazioa) kontrol-koadroa eta aurrerantzean 'F-Spot'-ek Facebook-en saioa "
+"automatikoki hasiko du."
 
 #: ../extensions/Exporters/FacebookExport/FacebookExport.cs:326
 msgid "Error logging into Facebook"
@@ -3810,8 +3819,8 @@ msgid ""
 "This tool requires an active selection. Please select one or more pictures "
 "and try again"
 msgstr ""
-"Tresna honek hautapena aktibo egotea eskatzen du. Hautatu argazki bat "
-"edo gehiago eta saiatu berriro"
+"Tresna honek hautapena aktibo egotea eskatzen du. Hautatu argazki bat edo "
+"gehiago eta saiatu berriro"
 
 #: ../extensions/Exporters/ZipExport/ZipExport.cs:63
 msgid "Select export folder"
@@ -3876,8 +3885,8 @@ msgstr ""
 "\"Erroilu berriak soilik\" aukera azkarra da aurreko eragiketetan "
 "inportatutako argazkiak berriro inportatzea saihesteko.\n"
 "\"Erroilu bakarra\" aukerak zein erroilu batzea nahi duzu utziko dizu.\n"
-"\"Dena\" guztiak inportatuko ditu: aurrez datu-base horretatik "
-"inportatuta badituzu bikoiztuak sortuz.</i></small>"
+"\"Dena\" guztiak inportatuko ditu: aurrez datu-base horretatik inportatuta "
+"badituzu bikoiztuak sortuz.</i></small>"
 
 #: ../extensions/Tools/MergeDb/MergeDb.glade.h:6
 msgid ""
@@ -3885,8 +3894,9 @@ msgid ""
 "the later, be sure that this location will stay accessible from f-spot.</i></"
 "small>"
 msgstr ""
-"<small><i>Kopiatu irudiak lokalean edo mantendu dauden lekuan. Azkena hautatzen baduzu, "
-"ziurtatu zaitez bere kokalekua erabilgarri egongo dela f-spot aplikazioak atzitzeko.</i></small>"
+"<small><i>Kopiatu irudiak lokalean edo mantendu dauden lekuan. Azkena "
+"hautatzen baduzu, ziurtatu zaitez bere kokalekua erabilgarri egongo dela f-"
+"spot aplikazioak atzitzeko.</i></small>"
 
 #: ../extensions/Tools/MergeDb/MergeDb.glade.h:7
 msgid "A Single Import Roll"
