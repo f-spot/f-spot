@@ -35,7 +35,7 @@ public class PixbufSerializer {
 	public static byte [] Serialize (Pixbuf pixbuf)
 	{
 		Pixdata pixdata = new Pixdata ();
-		IntPtr raw_pixdata = pixdata.FromPixbuf (pixbuf, true); // FIXME GTK# shouldn't this be a constructor or something?
+		IntPtr raw_pixdata = pixdata.FromPixbuf (pixbuf, false); // FIXME GTK# shouldn't this be a constructor or something?
 									//       It's probably because we need the IntPtr to free it afterwards
 
 		uint data_length;
