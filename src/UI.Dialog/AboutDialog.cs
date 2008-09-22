@@ -27,11 +27,12 @@ namespace FSpot.UI.Dialog
 				"\tStephane Delcroix",
 				"",
 				"Active Contributors to this release",
-				"\tAndrzej Wytyczak-Partyka (Google Summer of Code)",
-				"\tLorenzo Milesi",
-				"\tRuben Vermeersch (Google Summer of Code)",
-				"\tThomas Van Machelen",
-				"\tVasily Kirilichev (Google Summer of Code)",
+				"\tAndrzej Wytyczak-Partyka (Google Summer of Code)", 	//0.5.0
+				"\tLorenzo Milesi",					//0.5.0
+				"\tMike Gem\x00fcnde",
+				"\tRuben Vermeersch (Google Summer of Code)",		//0,5,0
+				"\tThomas Van Machelen",				//0.5.0
+				"\tVasily Kirilichev (Google Summer of Code)",		//0.5.0
 				"",
 				"Contributors",
 				"\tAaron Bockover",
