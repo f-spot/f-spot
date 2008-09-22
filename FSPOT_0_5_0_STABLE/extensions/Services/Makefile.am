@@ -1,0 +1,3 @@
+SUBDIRS = 			\
+	BeagleService		\
+	DBusService

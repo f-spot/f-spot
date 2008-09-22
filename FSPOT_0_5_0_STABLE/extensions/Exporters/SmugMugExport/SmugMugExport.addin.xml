@@ -1,0 +1,17 @@
+<Addin namespace="FSpot"
+	version="0.5.0.0"
+	name="SmugMug Export"
+	description="This extension allows you to export your photos to SmugMug."
+	author="F-Spot team"
+	url="http://f-spot.org"
+	defaultEnabled="true"
+	category="Export">
+
+	<Dependencies>
+		<Addin id="Core" version="0.5.0.0"/>
+	</Dependencies>
+
+	<Extension path = "/FSpot/Menus/Exports">
+		<ExportMenuItem id="SmugMug" _label = "_SmugMug..." class = "FSpotSmugMugExport.SmugMugExport" />
+	</Extension>
+</Addin>

@@ -1,0 +1,5 @@
+<configuration>
+  <dllmap dll="liblcms-1.0.0.dll" target="liblcms.so.1"/>
+  <dllmap dll="libfspot" target="@expanded_libdir@/f-spot/libfspot.so.0"/>
+</configuration>
+

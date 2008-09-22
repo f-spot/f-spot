@@ -1,0 +1,71 @@
+#!/bin/bash
+
+prefix=@prefix@
+exec_prefix=@exec_prefix@
+libdir=@libdir@ 
+turtledir=@TURTLEDIR@
+beagledir=@BEAGLE_DIR@
+
+EXE_TO_RUN="$libdir/f-spot/f-spot.exe"
+
+if test "x$DBUS_SESSION_BUS_ADDRESS" == "x"; then
+    echo "** No session dbus found. Starting one **"
+    DBUSLAUNCH="dbus-launch" 
+else
+    DBUSLAUNCH=""
+fi
+
+if test "x$turtledir" != "x"; then
+    export MONO_PATH=$turtledir/lib:$turtledir/gui:$MONO_PATH
+fi
+
+if test "x$beagledir" != "x"; then
+    export MONO_PATH=$beagledir:$MONO_PATH
+fi
+
+[ -n "$FSPOT_DEBUG" ] && FSPOT_DEBUG="--debug"
+[ -n "$FSPOT_TRACE" ] && FSPOT_TRACE="--trace=$FSPOT_TRACE"
+[ -n "$FSPOT_PROFILE" ] && FSPOT_PROFILE="--profile=$FSPOT_PROFILE"
+run_mdb=false
+run_gdb=false
+for arg in "$@"; do
+    case "x$arg" in
+    	x--debug)
+	    FSPOT_DEBUG="$arg"
+	    ;;
+	x--mdb)
+	    run_mdb=true
+	    ;;
+	x--gdb)
+	    run_gdb=true
+	    ;;
+    	x--trace=*)
+	    FSPOT_TRACE="$arg"
+	    ;;
+	x--profile=*)
+	    FSPOT_PROFILE="$arg"
+	    ;;
+	x--uninstalled)
+	    echo "*** Running uninstalled f-spot ***"
+	    EXE_TO_RUN="./f-spot.exe"
+	    export MONO_PATH=@PATH_DBUS@@PATH_GIO@../Tao/Tao.OpenGl:../Tao/Tao.OpenGl.Glu:../Tao/Tao.OpenGl.ExtensionLoader:../google-sharp:../gnome-keyring-sharp:../FlickrNet:../SmugMugNet:../libgphoto2-sharp:../semweb:../glitz-sharp/src/:../mono-addins/Mono.Addins:../mono-addins/Mono.Addins.Setup:../mono-addins/Mono.Addins.Gui:$MONO_PATH
+	    ;;
+    esac
+done
+
+if [ -n "$FSPOT_DEBUG" ]; then
+    echo "** Running f-spot in Debug Mode **"
+fi
+
+if [ -n "$FSPOT_DEBUG" -o -n "$FSPOT_TRACE" -o -n "$FSPOT_PROFILE" ]; then
+    MONO_OPTIONS="$FSPOT_DEBUG $FSPOT_TRACE $FSPOT_PROFILE"
+    echo "** Running Mono with $MONO_OPTIONS **"
+fi
+
+if $run_mdb; then
+	mdb $EXE_TO_RUN -args "$@"
+elif $run_gdb; then
+	gdb --eval-command=run --args mono $MONO_OPTIONS $EXE_TO_RUN "$@"
+else
+	exec -a @PACKAGE@ $DBUSLAUNCH mono $MONO_OPTIONS $EXE_TO_RUN "$@"
+fi

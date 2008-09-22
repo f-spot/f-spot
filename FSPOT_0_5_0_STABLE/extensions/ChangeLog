@@ -1,0 +1,412 @@
+2008-09-16  Lorenzo Milesi <maxxer@yetopen.it>
+
+	* Tools/SyncCatalog/Makefile:
+	* Tools/SyncCatalog/SyncCatalog.cs: allow syncing only a selection of
+	pics. Patch from Miguel Aguero. Fix bgo#478763.
+
+2008-09-16  Stephane Delcroix  <sdelcroix*novell.com>
+
+	Split the addins in Editors, Exporters, Misc, Services, Tools.
+	From now on, use the subfolder ChangeLog.
+
+2008-09-16  Stephane Delcroix  <sdelcroix*novell.com>
+
+	* ResizeEditor.cs: new resize editor, work in progress.
+
+2008-09-16  Lorenzo Milesi <maxxer@yetopen.it>
+	* TabbloExport/*: Tabblo.com export extension by Wojciech
+	Dzierżanowski. Fix bgo#382658.
+	This extension is not enabled by default.
+
+2008-09-15  Lorenzo Milesi <maxxer@yetopen.it>
+
+	* FlickrExport/FlickrExport.cs: enable Zooomr export, don't display
+ 	progress bar if max is 0.
+ 	* FlickrExport/FlickrNet/Flickr.cs: fixes for Zooomr export
+ 	* FlickrExport/FlickrExport.addin.xml: add Zooomr, bump addin ver
+ 	* FlickrExport/FlickrRemote.cs: added Zooomr api keys. fix bgo#383243
+ 
+2008-09-03  Lorenzo Milesi <maxxer@yetopen.it>
+ 
+	* GalleryExport/GalleryRemote.cs:
+	* GalleryExport/GalleryExport.cs: catch some G2 communication errors
+	instead of crashing. fix bgo#498568.
+	* GalleryExport/GalleryExport.addin.xml: bump addin version.
+
+2008-08-18  Ruben Vermeersch  <ruben@savanne.be>
+
+	Add a sample extension, using the new Editors extension point. Does
+	horizontal flipping.
+
+	* FlipEditor/FlipEditor.addin.xml: Added.
+	* FlipEditor/FlipEditor.cs: Added.
+	* FlipEditor/Makefile: Added.
+
+2008-07-14  Ruben Vermeersch  <ruben@savanne.be>
+
+	Remove old build files.
+
+	* DefaultExporters/DefaultExporters.mdp: Removed.
+	* DevelopInUFraw/DevelopInUFraw.mdp: Removed.
+	* Extensions.mds: Removed.
+	* FacebookExport/FacebookExport.mdp: Removed.
+	* GalleryExport/GalleryExport.mdp: Removed.
+	* RawPlusJpeg/RawPlusJpeg.mdp: Removed.
+	* SyncCatalog/SyncCatalog.mdp: Removed.
+
+2008-07-04  Stephane Delcroix  <sdelcroix@novell.com>
+
+	* RetroactiveRoll/*: new extension from Andy Wingo. bgo 497136
+
+2008-07-03  Ruben Vermeersch  <ruben@savanne.be>
+
+	* BeagleService/BeagleService.addin.xml:
+	* CDExport/CDExport.addin.xml:
+	* DBusService/DBusProxy.cs:
+	* DBusService/DBusService.addin.xml:
+	* DefaultExporters/DefaultExporters.addin.xml:
+	* DevelopInUFraw/DevelopInUFRaw.addin.xml:
+	* DevelopInUFraw/DevelopInUFRaw.cs:
+	* FacebookExport/FacebookExport.addin.xml:
+	* FlickrExport/FlickrExport.addin.xml:
+	* FolderExport/FolderExport.addin.xml:
+	* GalleryExport/GalleryExport.addin.xml:
+	* LightTable/LightTable.addin.xml:
+	* MetaPixel/MetaPixel.addin.xml:
+	* MetaPixel/MetaPixel.cs:
+	* PicasaWebExport/PicasaWebExport.addin.xml:
+	* PictureTile/PictureTile.addin.xml:
+	* RawPlusJpeg/RawPlusJpeg.addin.xml:
+	* RawPlusJpeg/RawPlusJpeg.cs:
+	* SmugMugExport/SmugMugExport.addin.xml:
+	* SyncCatalog/SyncCatalog.addin.xml:
+	* ZipExport/ZipExport.addin.xml: Bump versions to 0.4.4.99, because of
+	changed PhotoStore API. Fix calls to Commit where needed.
+
+2008-07-02  Lorenzo Milesi <maxxer@yetopen.it>
+ 
+ 	* PicasaWeb/PicasaWebExport.addin.xml: bump version
+ 	* PicasaWeb/PicasaWebExport.cs: check that there's at least one album
+ 	on change. Fix bgo#541140.
+ 
+2008-07-02  Stephane Delcroix  <stephane@delcroix.org>
+
+	* FlickrExport/: update to flickrnet 1.2.5
+
+2008-06-26  Thomas Van Machelen <thomas.vanmachelen@gmail.com>
+
+	* extensions/DBusService
+	* extensions/DBusService/DBusService.cs
+	* extensions/DBusService/DBusProxy.cs
+	* extensions/DBusService/Makefile.am
+	* extensions/DBusService/DBusService.addin.xml: Refactor DBus api to
+	be a Service extension.  Fixes bgo #539183
+	
+
+2008-06-23  Thomas Van Machelen <thomas.vanmachelen@gmail.com>
+
+	* SmugMugExport/SmugMugNet/SmugMugApi.cs:  Fix regex so it gets the id
+	out nicely. Fixes bgo #538460
+
+2008-06-17  Lorenzo Milesi <maxxer@yetopen.it>
+
+	* FolderExport/FolderExport.addin.xml:
+	* FolderExport/FolderExport.cs:
+	* FolderExport/f-spot-simple-white.css:
+	* FolderExport/f-spot-simple.css:
+	* FolderExport/FolderExport.glade: optionally export tag and tag
+	icons. Fix bgo#538543 and bgo#336178. 
+	Patches from Leon Barret and Jean-Christophe Dubacq.
+
+2008-06-11  Lorenzo Milesi <maxxer@yetopen.it>
+
+	* PicasaWebExport/PicasaExport.addin.xml: bump version to 0.4.4.1.
+	* PicasaWebExport/PicasaExport.cs: check if the account is connected
+	on album menu change. Fix bgo#537684.
+
+2008-06-09  Stephane Delcroix  <sdelcroix@novell.com>
+
+	* FolderExport/: Fix exception on missing gconf key for original.
+	bgo #537331.
+
+2008-05-29  Lorenzo Milesi <maxxer@yetopen.it>
+
+	* SmugMugExport/SmugMugExport.addin.xml: Bump version to 0.4.4.3.
+	* SmugMugExport/SmugMugExport.cs: fix div by 0. Check if returned
+	photo_id is valid. fix connection check.
+	* SmugMugExport/SmugMugNet/SmugMugApi.cs: use JSON instead of REST.
+	Code by Thomas Van Machelen. fix bgo#534902.
+
+2008-06-05  Stephane Delcroix  <sdelcroix@novell.com>
+
+	* GalleryExport/*: Fixes 536661, handle more exceptions at login
+
+	* BeagleService: reduce the debug verbosity.
+
+2008-06-05  Stephane Delcroix  <sdelcroix@novell.com>
+
+	* FolderExport/FolderExport.cs: No longer crash on missing SHARPEN
+	keyy. Fixes bgo #536707.
+
+2008-05-30  Stephane Delcroix  <sdelcroix@novell.com>
+
+	* BeagleService/*: new (empty for now) addin for notifying Beagle of
+	image changes.
+
+2008-05-29  Lorenzo Milesi <maxxer@yetopen.it>
+
+	* SmugMugExport/SmugMugExport.addin.xml: Bump version to 0.4.4.2.
+	* SmugMugExport/SmugMugExport.cs: fix crash on connection failed.
+
+2008-05-25  Lorenzo Milesi <maxxer@yetopen.it>
+
+	* SmugMugExport/SmugMugNet/SmugMugApi.cs: export connected property
+	* SmugMugExport/SmugMugExport.addin.xml: Bump version to 0.4.4.1.
+	* SmugMugExport/SmugMugExport.cs: better check if account is
+	connected. fix bgo#534104.
+
+2008-05-18  Ruben Vermeersch  <ruben@savanne.be>
+
+	* DevelopInUFraw/DevelopInUFRaw.addin.xml: Depend on the new Core version.
+	Bump version to 0.4.4.
+
+2008-05-18  Ruben Vermeersch  <ruben@savanne.be>
+
+	* DevelopInUFraw/DevelopInUFRaw.addin.xml: Bump version, add Batch option,
+	only show when multiple photos are selected.
+
+	* DevelopInUFraw/DevelopInUFRaw.cs: Abstract the DevelopInUFraw class, add
+	one for developing in the GUI and another one for batch develops which
+	shows a progress bar.
+
+2008-05-16  Stephane Delcroix  <sdelcroix@novell.com>
+
+	* CDExport/*: fix the Clean, implement a quick file browser for
+	the gio version.
+
+2008-05-09  Stephane Delcroix  <sdelcroix@novell.com>
+
+	* CDExport/*: use gio-sharp if needed
+
+2008-05-08  Stephane Delcroix  <sdelcroix@novell.com>
+
+	* DevelopInUFraw/DevelopInUFraw.cs: Patch from Pascal de Bruijn to fix 
+	bgo #532018
+
+2008-04-27  Ruben Vermeersch  <ruben@savanne.be>
+
+	* FlickrExport/FlickrExport.addin.xml: Bump version number, forgot that in
+	the last commit.
+
+2008-04-26  Ruben Vermeersch  <ruben@savanne.be>
+
+	* FlickrExport/FlickrExport.cs: Don't show bandwidth bar to pro users.
+	Scares me to death. Upload limits haven't returned, let's not give our
+	users the impression :-).
+
+2008-04-24  Stephane Delcroix  <sdelcroix@novell.com>
+
+	* SmugMugExport/Makefile.am:
+	* PicasaWebExport/Makefile.am:
+	* FlickrExport/Makefile.am: allow parallel compilation with -j.
+	Fixes bgo #516632.
+
+2008-04-16  Lorenzo Milesi <maxxer@yetopen.it>
+
+	* FlickrExport/FlickrExport.cs:
+	* FlickrExport/FlickrRemote.cs:
+	* FolderExport/FolderExport.cs: fixed some exporter preferences
+	* FlickrExport/FlickrExport.addin.xml:
+	* FolderExport/FolderExport.addin.xml: bump addin version and raised
+	dependency to 0.4.3.
+
+2008-04-06  Lorenzo Milesi <maxxer@yetopen.it>
+
+	* GalleryExport/GalleryExport.cs: sort export by photo date. fix
+	bgo#494574.
+	* GalleryExport/GalleryExport.addins.xml: bump addin version.
+
+2008-03-23  Lorenzo Milesi <maxxer@yetopen.it>
+
+	* FlickrExport/FlickrExport.cs: fix loading of hierarchy options from
+	preferences.
+	* FlickrExport/FlickrExport.addin.xml: bumping addin version.
+
+2008-03-21  Stephane Delcroix  <sdelcroix@novell.com>
+
+	* FlickrExport/FlickrExport.cs:
+	* FlickrExport/FlickrExport.glade:
+	* FlickrExport/FlickrRemote.cs: option to export the tag hierarchy,
+	patch from Maxxer and Pascal de Bruijn. Thx. Fixes bgo #376282.
+	Show remaining upload quota. patch from Maxxer. Fixes bgo #356756.
+
+	* FlickrExport/FlickrExport.addin.xml: bumping addin version.
+
+2008-03-21  Stephane Delcroix  <sdelcroix@novell.com>
+
+	* FlickrExport/FlickExport.cs: fixing the ok/cancel button. bgo
+	#468817.
+	* FlickExport/FlickrExport.addin.xml: bumping the version number.
+
+2008-03-20  Lorenzo Milesi <maxxer@yetopen.it>
+
+	* PicasaWebExport/PicasaExport.glade:
+	* PicasaWebExport/PicasaExport.cs: check if the current upload
+	selection is fits the album photo# limit. Fix bgo#516553.
+
+2008-03-19  Claude Paroz  <claude@2xlibre.net>
+
+	* MetaPixel/MetaPixel.glade:
+	* PictureTile/PictureTile.glade: Removed translatable property from stock
+	labels.
+
+2008-03-13   Thomas Van Machelen <thomas.vamachelen@gmail.com>
+
+	* extensions/SmugMugExport/SmugMugExport.cs: Rename ok_button to
+	export_button as it exists in glade file, disable the add album button
+	when not connected correctly and remove some unused fields
+
+2008-02-27 Jordi Mas <jmas@softcatala.org>
+
+	* PictureTile/PictureTile.cs: Fixes English typo
+
+2008-02-14  Lorenzo Milesi <maxxer@yetopen.it>
+
+	* ZipExport/ZipExport.addin.xml: 
+	* ZipExport/ZipExport.cs: improve HACKING compliance, fix export in
+	--view mode.
+
+2008-02-11  Stephane Delcroix  <sdelcroix@novell.com>
+
+	* PictureTile:
+	* MetaPixel: 2 new extensions from maxxer.
+
+2008-02-01  Lorenzo Milesi <maxxer@yetopen.it>
+
+	* Makefile.am:
+	* DefaultExporters/*:
+	* PicasaWebExport/*: Moved PicasaWeb export out of the codebase.
+
+2008-02-01  Lorenzo Milesi <maxxer@yetopen.it>
+
+	* Makefile.am:
+	* DefaultExporters/DefaultExporters.addin.xml:
+	* CDExport/*: Moved CD export out of the codebase.
+
+2008-02-01  Lorenzo Milesi <maxxer@yetopen.it>
+
+	* Makefile.am:
+	* DefaultExporters/DefaultExporters.addin.xml:
+	* SmugMugExport/*: Moved SmugMug export out of the codebase.
+
+2008-01-30  Lorenzo Milesi <maxxer@yetopen.it>
+
+	* Makefile.am:
+	* DefaultExporters/DefaultExporters.addin.xml:
+	* FlickrExport/*: Moved Flickr export out of the codebase.
+	* FolderExport/*: Moved Folder export out of the codebase.
+
+2008-01-28  Lorenzo Milesi <maxxer@yetopen.it>
+
+	* Makefile.am:
+	* GalleryExport/*: Moved Gallery export out of the codebase.
+
+2008-01-22  Stephane Delcroix  <sdelcroix@novell.com>
+
+	* RawPlusJpeg/RawPlusJpeg.addin.xml:
+	* RawPlusJpeg/RawPlusJpeg.cs:
+	* DevelopInUFraw/DevelopInUFRaw.addin.xml: adaptations for the ns 
+	changes
+
+2008-01-05  Gabriel Burt  <gabriel.burt@gmail.com>
+
+	* GalleryExport/GalleryExport.addin.xml: Add accelerator.
+
+2008-01-05  Gabriel Burt  <gabriel.burt@gmail.com>
+
+	* DefaultExporters/DefaultExporters.addin.xml: Add accelerator keys. Patch
+	from Lorenzo Milesi <maxxer@yetopen.it>, fixes BGO #499990.
+
+2007-12-11  Stephane Delcroix  <sdelcroix@novell.com>
+
+	* ZipExport/* : updating.
+	* FacebookExport.cs: fixing some namespace issues.
+
+2007-12-10  Stephane Delcroix  <sdelcroix@novell.com>
+
+	* ZipExport/*: new export addin by Lorenzo.
+
+2007-12-07  Stephane Delcroix  <sdelcroix@novell.com>
+
+	* FacebookExport/Mono.Facebook/: include the suorces in the build.
+
+2007-12-05  Stephane Delcroix  <sdelcroix@novell.com>
+
+	* FacebookExport/FacebookExport.cs:
+	* FacebookExport/FacebookExport.addin.xml: fixing the glade issue
+
+2007-11-27  Stephane Delcroix  <sdelcroix@novell.com>
+
+        * FacebookExport/*: new exprot to facebook export, by George,
+        Valentin, Thomas and others. Fixes bgo #352394
+
+2007-10-24  Stephane Delcroix  <stephane@delcroix.org>
+
+	* DevelopInUFRaw/*: 'protect' the developped version.
+	* RawPlusJpeg/*: 'protect' the original jpeg version.
+
+2007-10-24  Stephane Delcroix  <stephane@delcroix.org>
+
+	* DevelopInUFraw: escapes also the destination ui. Fixes bgo #489325.
+
+2007-10-20  Ruben Vermeersch  <ruben@savanne.be>
+
+	Start breaking out exporters. Each exporter should go into it's own export
+	addin.
+
+	* DefaultExporters/DefaultExporters.addin.xml: Remove reference to
+	GalleryExport.
+
+	* GalleryExport/GalleryExport.addin.xml: Added.
+	* GalleryExport/Makefile.am: Added.
+
+	* Makefile.am: Add GalleryExport subdir.
+
+2007-09-21  Gabriel Burt  <gabriel.burt@gmail.com>
+
+	* DefaultExporters/DefaultExporters.addin.xml: Remove repetitive 'Export to'
+	in submenu.  Fixes #471198.
+
+2007-09-19  Stephane Delcroix  <stephane@delcroix.org>
+
+	* SyncCatalog/: new extension from Miguel Aguero to re-sync metadatas
+	to file. Fixes bgo #434094.
+
+2007-09-14  Stephane Delcroix  <stephane@delcroix.org>
+
+	* RawPlusJpeg/: v1.02, rely on new ImageFile IsRaw() and IsJpeg()
+	helpers.
+
+	* DevelopInUFraw/: v0.95, rely on new ImageFile IsRaw() heper, no longer use
+	Obsolete methods.
+
+2007-09-11  Stephane Delcroix  <stephane@delcroix.org>
+
+	* RawPlusJpeg/: v1.01, no longer rely on obsolete methods.
+
+2007-09-10  Stephane Delcroix  <stephane@delcroix.org>
+
+	* RawPlusJpeg/: v1.0, completely refactored. Works way better.
+
+2007-09-10  Stephane Delcroix  <stephane@delcroix.org>
+
+	* RawPlusJpeg/: v0.998, embed the whole process in a try/catch, only
+	refresh the query if we really merged some images.
+
+2007-09-10  Stephane Delcroix  <stephane@delcroix.org>
+
+	* RawPlusJpeg/: bumping to 0.997 with additional(useless ?) nullity check
+
+2007-09-10  Stephane Delcroix  <stephane@delcroix.org>
+
+	* ChangeLog: new ChangeLog for extensions/

@@ -1,0 +1,119 @@
+General:
+      * The current EXIF display is too EXIF specific and extremely
+        dull,  The layout needs to be redone and the the Items should be
+        ordered by relative importance.  A reduced view should replace
+        the current info box on the side panel.
+      * The info display should show all the metadata we know about at
+        any given time Currently this means it should also display XMP
+        chunks in jpegs.
+      * Add basic simple file management.  Integrate this with dragging
+        in the IconView to allow for moving between directories.
+      * Add a folder view pane that lets you see the layout of the
+        folders with images in them.
+      * Add click to tag mode in the tag assignment.  This should be act
+        like an editing mode where the cursor changes to an icon of the
+        tag and ever image you click gets that tag applied.
+      * Support for import/playing/tracking DCF sound files should be
+        added.  These files are recorded at the same time as the image
+        and named according to the digital camera file system
+        specification.
+      * Add a dbus service so that things like importing can be run
+        separately from the command line or another app and communicate
+        with a running f-spot.
+
+Searching:
+      * Add a time range slider next to the text search to allow simple
+        limiting of the how far back to search remove the old time based
+        search.
+
+Timeline:
+      * Fix the limits so that they don't scroll off screen but scroll
+        onto a resting zone instead.
+
+Image View:
+      * Add a histogram overlay. The current histogram can basically
+        work the way it is a slight widget wrapper.
+      * The comment entry currently takes up too much space when it
+        isn't being used.  It should be made simple to show/hide it and
+        perhaps implemented as an overlay box.
+      * Change the selection display type to use the darkening effect
+        the gimp uses not the current XOR drawing.
+      * Garrett has done mock-ups of the full-screen mode that should be
+        analyzed and implemented.  They will probably end up using some
+        of the overlay support created for the the histogram and comment
+        work. 
+
+Editing:
+      * Move the current editing effects into the side pane and spit it
+        several into functional groups.  The Picassa interface appears
+        to be a good model to follow for the inline dialogs and it is
+        similar to how album works.  This will also allow us to leave
+        selection off in the PhotoView normally which will make Some
+        people happy.  Miguel has a proof of concept patch that starts
+        this process.
+      * Define an effects interface that plug-ins can implement and be
+        loaded into the new pane.
+      * Enhance the current color editor to allow for more control over
+        the adjustment curve.  LCMS supports creation of a lot more
+        complex abstract profiles than we are currently using.  Adding
+        something like shadow and highlight sliders should take a
+        relatively small amount of work.
+      * Add preset adjustment profiles for different lighting scenarios.
+        Daylight/Incandescent/Fluorescent etc.  I think it should be
+        possible to build the profile with some sliders then save it
+        with lcms to be loaded later as a preset.
+      * Add brightness/contrast auto-correction.  The gimp plug-ins are
+        a good source for this.  Pick some good ones and implment them
+        as pluggable effects.
+
+Raw Photos: (this is broken down into a bit of a progression)
+      * Implement 16bit scaling code. Move the current Editing logic
+        from operating directly on pixbufs to operating on our own
+        internal object that supports deep images and pixbufs (and
+        metadata).  It should also be possible to clean up use of the
+        Pixbuf utility class here.
+      * Eventually it we should use the new image objects in a managed
+        replacement of the current image view and do color correction on
+        the fly in the image view code.  Hopefully we can count on it
+        being fast enough to do real time.
+      * Support loading and saving of 16bit png and tiff/DNF files. 
+
+Icon View:
+      * Add grouping display.  This can be based on the same information
+        the GroupSelector uses but it should be displayed as bar inline
+        in the IconView.
+
+Import:
+      * Fix the UI for both directory and camera import.  Allow the user
+        to specify A batch description, camera type, photographer and
+        copyright setting.  It would be nice to have An All rights
+        reserved and the various creative commons options there already.
+      * On initial startup do a search for all the images on the
+        machine, either using beagle or locate or simple directory
+        watching.
+      * Watch directories we've already imported from for new files
+        (using inotify?) and offer the ability to add them as they show
+        up.
+
+Export:
+
+Metadata:
+      * Store all the operations we apply to an image in the image
+        metadata.  This includes export/import/editing.  This should
+        include a specification about what types we know about and
+        preferably be able to be serialized as RDF in an XMP file.
+      * Allow metadata export as XMP.  We should be able to save all the
+        metadata we are carrying as an XMP file externally and in the
+        JPEG.  The current save jpeg code can support saveing multiple
+        JPEG markers.
+      * Sync up the metadata description with whatever beagle decides to
+        standardize on.  Ideally we can attack the format along with the
+        beagle crew and standardize on how we describe the f-spot tuples
+        for import, export and editing.
+      * Cope with images no longer on disc using stored metadata and
+        beagle searches to replace missing images.  Prompt for CD
+        insertion, display web image, find files that were moved outside
+        of f-spot.
+      * Finish the managed tiff/EXIF parser.
+
+Printing:

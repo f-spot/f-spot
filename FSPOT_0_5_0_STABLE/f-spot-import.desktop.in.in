@@ -1,0 +1,19 @@
+[Desktop Entry]
+Version=1.0
+_Name=F-Spot Photo Manager
+_GenericName=Photo Manager
+_Comment=Import into F-Spot
+NoDisplay=true
+Exec=f-spot-import %u
+Icon=f-spot
+MimeType=x-content/image-dcf;x-content/image-picturecd;
+StartupNotify=true
+Terminal=false
+Type=Application
+Categories=Graphics;Photography;GNOME;GTK;
+X-GNOME-Bugzilla-Bugzilla=GNOME
+X-GNOME-Bugzilla-Product=f-spot
+X-GNOME-Bugzilla-Component=General
+X-GNOME-Bugzilla-Version=@VERSION@
+X-GNOME-DocPath=f-spot/f-spot.xml
+X-SuSE-translate=true

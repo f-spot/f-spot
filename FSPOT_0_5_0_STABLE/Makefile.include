@@ -1,0 +1,50 @@
+## Makefile.include
+## FSpot wide helper
+
+## Directories
+
+DIR_ADDINS_ADDINS = $(top_builddir)/mono-addins/Mono.Addins
+DIR_ADDINS_GUI = $(top_builddir)/mono-addins/Mono.Addins.Gui
+DIR_ADDINS_SETUP = $(top_builddir)/mono-addins/Mono.Addins.Setup
+DIR_DOCS = $(top_builddir)/docs
+DIR_EXTENSIONS = $(top_builddir)/extensions
+DIR_GLITZ = $(top_builddir)/glitz-sharp/src
+DIR_GPHOTO2 = $(top_builddir)/libgphoto2-sharp
+DIR_ICONS = $(top_builddir)/icons
+DIR_JPEGTRAN = $(top_builddir)/libjpegtran
+DIR_KEYRING = $(top_builddir)/gnome-keyring-sharp
+DIR_LIBEOG = $(top_builddir)/libeog
+DIR_LIBFSPOT = $(top_builddir)/libfspot
+DIR_SEMWEB = $(top_builddir)/semweb
+DIR_SRC = $(top_builddir)/src
+DIR_TAO_OPENGL = $(top_builddir)/Tao/Tao.OpenGl
+DIR_TAO_GLU = $(top_builddir)/Tao/Tao.OpenGl.Glu
+DIR_TAO_EXTENSIONLOADER = $(top_builddir)/Tao/Tao.OpenGl.ExtensionLoader
+DIR_TAO_GLPOSTPROCESS = $(top_builddir)/Tao/Tao.GlPostProcess
+
+## Links
+
+LINK_KEYRING = -r:$(DIR_KEYRING)/gnome-keyring-sharp.dll
+LINK_GLITZ = -r:$(DIR_GLITZ)/NDesk.Glitz.dll 
+LINK_GPHOTO2 = -r:$(DIR_GPHOTO2)/libgphoto2-sharp.dll
+LINK_MONO_ADDINS =					\
+	-r:$(DIR_ADDINS_ADDINS)/Mono.Addins.dll		\
+	-r:$(DIR_ADDINS_SETUP)/Mono.Addins.Setup.dll	\
+	-r:$(DIR_ADDINS_GUI)/Mono.Addins.Gui.dll
+LINK_SEMWEB = -r:$(DIR_SEMWEB)/SemWeb.dll
+LINK_TAO = 								\
+	-r:$(DIR_TAO_OPENGL)/Tao.OpenGl.dll				\
+	-r:$(DIR_TAO_GLU)/Tao.OpenGl.Glu.dll				\
+	-r:$(DIR_TAO_EXTENSIONLOADER)/Tao.OpenGl.ExtensionLoader.dll
+
+## Build
+
+CSC_FLAGS = -debug
+CSC = gmcs $(CSC_FLAGS) -target:exe
+CSC_LIB = gmcs $(CSC_FLAGS) -target:library
+
+## Runtime
+
+MONO_DEBUGFLAGS = --debug
+RUNTIME = mono $(MONO_DEBUGFLAGS)
+

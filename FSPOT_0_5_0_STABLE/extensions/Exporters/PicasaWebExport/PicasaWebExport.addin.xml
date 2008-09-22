@@ -1,0 +1,17 @@
+<Addin namespace="FSpot"
+	version="0.5.0.0"
+	name="PicasaWeb Export"
+	description="This extension allows you to export your photos to PicasaWeb."
+	author="F-Spot team"
+	url="http://f-spot.org"
+	defaultEnabled="true"
+	category="Export">
+
+	<Dependencies>
+		<Addin id="Core" version="0.5.0.0"/>
+	</Dependencies>
+
+	<Extension path = "/FSpot/Menus/Exports">
+		<ExportMenuItem id="PicasaWeb" _label = "_PicasaWeb..." class = "FSpotGoogleExport.GoogleExport" />
+	</Extension>
+</Addin>

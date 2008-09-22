@@ -1,0 +1,4114 @@
+# Serbian translation of f-spot
+# Courtesy of Prevod.org team (http://prevod.org/) -- 2005.
+#
+# This file is distributed under the same license as the f-spot package.
+#
+# Данило Шеган <danilo@gnome.org>
+# Maintainer: Милош Поповић <gpopac@gmail.com>
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: f-spot\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2008-09-22 00:17+0200\n"
+"PO-Revision-Date: 2008-09-22 00:18+0100\n"
+"Last-Translator: Горан Ракић <grakic@devbase.net>\n"
+"Language-Team: Serbian (sr) <gnom@prevod.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3;    plural=n%10==1 && n%100!=11 ? 0 :    n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInfoDialog.cs:62
+msgid "Version:"
+msgstr "Издање:"
+
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInfoDialog.cs:65
+msgid "Author:"
+msgstr "Аутор:"
+
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInfoDialog.cs:68
+msgid "Copyright:"
+msgstr "Ауторско право:"
+
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInfoDialog.cs:71
+msgid "Extension Dependencies:"
+msgstr "Зависности проширења:"
+
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:97
+msgid "All registered repositories"
+msgstr "Сва регистрована складишта"
+
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:184
+msgid "Are you sure you want to cancel the installation?"
+msgstr "Да ли сигурно желите да прекинете додавање?"
+
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:308
+msgid "The following packages will be uninstalled:"
+msgstr "Следећи пакети че бити уклоњени:"
+
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:313
+msgid "There are other extensions that depend on the previous ones which will also be uninstalled:"
+msgstr "Нека проширења зависе од претходних која ће такође бити укоњена:"
+
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:384
+msgid "The selected extensions can't be installed because there are dependency conflicts."
+msgstr "Изабрана проширења не могу бити додата због постојања конфликта међузависностима."
+
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:398
+msgid "The following packages will be installed:"
+msgstr "Следећи пакети ће бити додати:"
+
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:402
+msgid " (in user directory)"
+msgstr " (у корисничком директоријуму)"
+
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:408
+msgid "The following packages need to be uninstalled:"
+msgstr "Потребно је уклонити следеће пакете:"
+
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:416
+msgid "The following dependencies could not be resolved:"
+msgstr "Није могуће решити следеће зависности:"
+
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:441
+msgid "The installation has been successfully completed."
+msgstr "Додавање пакета је успешно завршено."
+
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:442
+msgid "The installation failed!"
+msgstr "Додавање није успело!"
+
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:443
+msgid "The installation has completed with warnings."
+msgstr "Додавање је завршено уз упозорења."
+
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:446
+msgid "The uninstallation has been successfully completed."
+msgstr "Уклањање је узпешно завршено."
+
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:447
+msgid "The uninstallation failed!"
+msgstr "Уклањање није успело!"
+
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:448
+msgid "The uninstallation has completed with warnings."
+msgstr "Уклањање је завршено уз упозорења."
+
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:616
+msgid "Repository"
+msgstr "Складиште"
+
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstaller.cs:16
+msgid "Installation cancelled"
+msgstr "Додавање је прекинуто"
+
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallerDialog.cs:159
+msgid "Some of the required extensions were not found"
+msgstr "Нека од потребних проширења нису нађена"
+
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallerDialog.cs:171
+msgid "Installation failed"
+msgstr "Додавање није успело"
+
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinTreeWidget.cs:91
+msgid "Extension"
+msgstr "Проширење"
+
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinTreeWidget.cs:112
+#: ../src/Widgets/InfoBox.cs:196
+msgid "Version"
+msgstr "Издање"
+
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinTreeWidget.cs:168
+msgid "Other"
+msgstr "Остало"
+
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/ManageSitesDialog.cs:51
+#: ../src/Widgets/InfoBox.cs:193
+#: ../extensions/Exporters/FacebookExport/FacebookExport.glade.h:9
+msgid "Name"
+msgstr "Назив"
+
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/ManageSitesDialog.cs:52
+msgid "Url"
+msgstr "Адреса"
+
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/Services.cs:61
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/Services.cs:70
+#, csharp-format
+msgid "Exception occurred: {0}"
+msgstr "Јавио се изузетак: {0}"
+
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInfoDialog.cs:32
+msgid "Package"
+msgstr "Пакет"
+
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:110
+msgid "Extension Installation"
+msgstr "Додавање проширења"
+
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:136
+msgid "<b>Select the extensions to install and click on Next</b>"
+msgstr "<b>Изаберите проширење које желите да додате и притисните „Наредно“</b>"
+
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:150
+msgid "Install from:"
+msgstr "Инсталирај из:"
+
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:179
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:180
+msgid "_Repositories..."
+msgstr "_Складишта..."
+
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:220
+msgid "Show all packages"
+msgstr "Прикажи све пакете"
+
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:221
+msgid "Show new versions only"
+msgstr "Прикажи само нова издања"
+
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:222
+msgid "Show updates only"
+msgstr "Прикажи само надоградње"
+
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:247
+msgid "_Unselect All"
+msgstr "Изабери _ништа"
+
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:259
+#: ../src/f-spot.glade.h:153
+msgid "Select _All"
+msgstr "Изабери _све"
+
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:334
+msgid "label124"
+msgstr "натпис124"
+
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:346
+msgid "Overall Progress:"
+msgstr "Упукан напредак:"
+
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:374
+msgid "Downloading extensions..."
+msgstr "Преузимам проширења..."
+
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallerDialog.cs:36
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:58
+msgid "Extension Manager"
+msgstr "Уредник проширења"
+
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallerDialog.cs:54
+msgid "Additional extensions are required to perform this operation."
+msgstr "Потребна су додатна проширења за извођење ове радње."
+
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallerDialog.cs:64
+msgid "The following extensions will be installed:"
+msgstr "Следећа проширења ће бити додата:"
+
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:90
+msgid "<big><b>Extension Manager</b></big>"
+msgstr "<big><b>Уредник проширења</b></big>"
+
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:110
+msgid "The following extensions are currently installed:"
+msgstr "Додата су следећа проширења:"
+
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:165
+msgid "_Install Extensions..."
+msgstr "_Додај проширења..."
+
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:210
+msgid "_Uninstall..."
+msgstr "_Уклони..."
+
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:236
+#: ../src/f-spot.glade.h:89
+msgid "Enable"
+msgstr "Омогући"
+
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:262
+msgid "Disable"
+msgstr "Онемогући"
+
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.ErrorDialog.cs:40
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:370
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:249
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:799
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:544
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:694
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:595
+#: ../extensions/Exporters/TabbloExport/TabbloExport.cs:176
+msgid "Error"
+msgstr "Грешка"
+
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.ErrorDialog.cs:111
+msgid "Details"
+msgstr "Детаљи"
+
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.ManageSitesDialog.cs:34
+msgid "Extension Repository Management"
+msgstr "Уредник проширења складишта"
+
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.NewSiteDialog.cs:52
+msgid "Add New Repository"
+msgstr "Додај ново складиште"
+
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.NewSiteDialog.cs:70
+msgid "Select the location of the repository you want to register:"
+msgstr "Изаберите место складишта које желите да региструјете:"
+
+#. Container child vbox89.Gtk.Box+BoxChild
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.NewSiteDialog.cs:77
+msgid "Register an on-line repository"
+msgstr "Региструјте складиште на мрежи"
+
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.NewSiteDialog.cs:106
+msgid "Url:"
+msgstr "Адреса:"
+
+#. Container child vbox89.Gtk.Box+BoxChild
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.NewSiteDialog.cs:127
+msgid "Register a local repository"
+msgstr "Региструјте локално складиште"
+
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.NewSiteDialog.cs:155
+msgid "Path:"
+msgstr "Путања:"
+
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.NewSiteDialog.cs:179
+msgid "Browse..."
+msgstr "Разгледај..."
+
+#: ../mono-addins/Mono.Addins/Mono.Addins.Description/AssemblyDependency.cs:79
+#, csharp-format
+msgid "(provided by {0})"
+msgstr "(обезбедио {0})"
+
+#: ../mono-addins/Mono.Addins/Mono.Addins/AddinSessionService.cs:154
+msgid "Disabled extensions can't be loaded."
+msgstr "Онемогућена проширења не могу бити учитана."
+
+#: ../mono-addins/Mono.Addins/Mono.Addins/AddinSessionService.cs:179
+#, csharp-format
+msgid "Loading {0} extension"
+msgstr "Учитавам {0} проширење"
+
+#: ../mono-addins/Mono.Addins/Mono.Addins/AddinSessionService.cs:265
+#, csharp-format
+msgid "The required extension '{0}' is disabled."
+msgstr "Захтевано проширење „{0}“ је онемогућено."
+
+#: ../mono-addins/Mono.Addins/Mono.Addins/AddinSessionService.cs:267
+#, csharp-format
+msgid "The required extension '{0}' is not installed."
+msgstr "Захтевано проширење „{0}“ није додато."
+
+#: ../f-spot-view.desktop.in.in.h:1
+msgid "F-Spot Photo Viewer"
+msgstr "Ф-број прегледач фотографија"
+
+#: ../f-spot-view.desktop.in.in.h:2
+msgid "Photo Viewer"
+msgstr "Прегледник фотографија"
+
+#: ../f-spot-import.desktop.in.in.h:1
+#: ../f-spot.desktop.in.in.h:1
+msgid "F-Spot Photo Manager"
+msgstr "Ф-број фото албум"
+
+#: ../f-spot-import.desktop.in.in.h:2
+msgid "Import into F-Spot"
+msgstr "Увези у Ф-број"
+
+#: ../f-spot-import.desktop.in.in.h:3
+#: ../f-spot.desktop.in.in.h:3
+msgid "Photo Manager"
+msgstr "Фото албум"
+
+#: ../f-spot.desktop.in.in.h:2
+msgid "Organize, enjoy, and share your photos"
+msgstr "Организујте, уживајте и поделите Ваше фотографије"
+
+#: ../libeog/eog-image.c:773
+#, c-format
+msgid "No image loaded."
+msgstr "Није учитана слика."
+
+#: ../libeog/eog-image.c:780
+#, c-format
+msgid "Can't save non local files."
+msgstr "Не могу да чувам нелокалне датотеке."
+
+#: ../libeog/eog-image.c:803
+#, c-format
+msgid "Unsupported image type for saving."
+msgstr "Неподржана врста слике при чувању."
+
+#: ../libeog/image-view.c:2128
+msgid "interpolation type"
+msgstr "врста интерполације"
+
+#: ../libeog/image-view.c:2129
+msgid "the type of interpolation to use"
+msgstr "коју врсту интерполације користити"
+
+#: ../libeog/image-view.c:2135
+#: ../libeog/image-view.c:2142
+msgid "check type"
+msgstr "врста сенчења"
+
+#: ../libeog/image-view.c:2136
+msgid "the type of chequering to use"
+msgstr "какво сенчење користити"
+
+#: ../libeog/image-view.c:2143
+msgid "the size of chequers to use"
+msgstr "величина сенчења"
+
+#: ../libeog/image-view.c:2149
+msgid "dither"
+msgstr "мешање"
+
+#: ../libeog/image-view.c:2150
+msgid "dither type"
+msgstr "врста мешања"
+
+#: ../libfspot/f-jpeg-utils.c:445
+#: ../src/RotateCommand.cs:222
+msgid "File not found"
+msgstr "Датотека није нађена"
+
+#: ../libfspot/f-jpeg-utils.c:468
+#, c-format
+msgid "Unknown transform type %d"
+msgstr "Непозната врста трансформације %d"
+
+#: ../libfspot/f-jpeg-utils.c:476
+msgid "Operation failed"
+msgstr "Пропала операција"
+
+#: ../src/CameraFileSelectionDialog.cs:76
+msgid "Preview"
+msgstr "Приказ"
+
+#: ../src/CameraFileSelectionDialog.cs:78
+msgid "Path"
+msgstr "Путања"
+
+#: ../src/CameraFileSelectionDialog.cs:80
+#: ../src/f-spot.glade.h:95
+msgid "File"
+msgstr "Датотека"
+
+#: ../src/CameraFileSelectionDialog.cs:82
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:992
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:1233
+msgid "Index"
+msgstr "Попис"
+
+#: ../src/CameraFileSelectionDialog.cs:102
+msgid "Select Tag"
+msgstr "Изабери ознаку"
+
+#: ../src/CameraFileSelectionDialog.cs:138
+msgid "Downloading Previews"
+msgstr "Преузимам прегледе"
+
+#: ../src/CameraFileSelectionDialog.cs:148
+#, csharp-format
+msgid "Downloading Preview of {0}"
+msgstr "Преузимам преглед за {0}"
+
+#: ../src/CameraFileSelectionDialog.cs:199
+#: ../extensions/Exporters/CDExport/CDExport.cs:342
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:391
+msgid "Transferring Pictures"
+msgstr "Пребацујем слике"
+
+#: ../src/CameraFileSelectionDialog.cs:220
+#, csharp-format
+msgid "Copying file {0} of {1}"
+msgstr "Умножавам датотеку {0} од {1}"
+
+#: ../src/CameraFileSelectionDialog.cs:235
+msgid "Error transferring file"
+msgstr "Грешка при пребацивању датотеке"
+
+#: ../src/CameraFileSelectionDialog.cs:244
+msgid "Done Copying Files"
+msgstr "Готово умножавање датотека"
+
+#: ../src/CameraFileSelectionDialog.cs:246
+msgid "Download Complete"
+msgstr "Преузимање готово"
+
+#: ../src/CameraFileSelectionDialog.cs:271
+#, csharp-format
+msgid "Transferring \"{0}\" from camera"
+msgstr "Преносим „{0}“ са апарата"
+
+#: ../src/CameraSelectionDialog.cs:29
+msgid "Camera"
+msgstr "Апарат"
+
+#: ../src/CameraSelectionDialog.cs:30
+msgid "Port"
+msgstr "Прикључак"
+
+#: ../src/Core.cs:200
+#, csharp-format
+msgid "No photos matching {0} found"
+msgstr "Нису нађене фотографије за {0}"
+
+#: ../src/Core.cs:201
+#, csharp-format
+msgid ""
+"The tag \"{0}\" is not applied to any photos. Try adding\n"
+"the tag to some photos or selecting a different tag in the\n"
+"F-Spot preference dialog."
+msgstr ""
+"Ознака “„{0}“ није примењена ни на једну ознаку. Покушате\n"
+"да додате ознаку неким фотографијама или да изаберите другу\n"
+"ознаку из поставки Ф-броја."
+
+#: ../src/Core.cs:205
+msgid "Search returned no results"
+msgstr "Претрага није дала резултат"
+
+#: ../src/Core.cs:206
+msgid ""
+"The tag F-Spot is looking for does not exist. Try\n"
+"selecting a different tag in the F-Spot preference\n"
+"dialog."
+msgstr ""
+"Ознака коју је Ф-број тражио не постоји. Покушајте\n"
+"да изаберете другу ознаку у поставкама Ф-броја."
+
+#. Note for translators: Reparented is a picture becoming a version of another one
+#: ../src/Core/Photo.cs:482
+msgid "Reparented"
+msgstr "Придружена слици"
+
+#: ../src/Core/Photo.cs:482
+#, csharp-format
+msgid "Reparented ({0})"
+msgstr "Придружених слика ({0})"
+
+#: ../src/Core/Photo.cs:501
+#, csharp-format
+msgid "Modified"
+msgid_plural "Modified ({0})"
+msgstr[0] "Измењена ({0})"
+msgstr[1] "Измењене ({0})"
+msgstr[2] "Измењених ({0})"
+
+#: ../src/Core/Photo.cs:520
+#, csharp-format
+msgid "Modified in {1}"
+msgstr "Измењена у {1}"
+
+#: ../src/Core/Photo.cs:520
+#, csharp-format
+msgid "Modified in {1} ({0})"
+msgstr "Измењена у {1} ({0})"
+
+#. Note that the original version is never stored in the photo_versions table in the
+#. database.
+#: ../src/Core/Photo.cs:678
+#: ../src/f-spot.glade.h:132
+msgid "Original"
+msgstr "Оригинал"
+
+#: ../src/DateCommands.cs:57
+msgid "Today"
+msgstr "Данас"
+
+#: ../src/DateCommands.cs:59
+msgid "Yesterday"
+msgstr "Јуче"
+
+#: ../src/DateCommands.cs:61
+msgid "Last 7 days"
+msgstr "У последњих 7 дана"
+
+#: ../src/DateCommands.cs:63
+msgid "Last 30 days"
+msgstr "У последњих 30 дана"
+
+#: ../src/DateCommands.cs:65
+msgid "Last 90 days"
+msgstr "У последњих 90 дана"
+
+#: ../src/DateCommands.cs:67
+msgid "Last 360 days"
+msgstr "У последњих 360 дана"
+
+#: ../src/DateCommands.cs:69
+msgid "Current Week (Mon-Sun)"
+msgstr "Текућа недеља (пон-нед)"
+
+#: ../src/DateCommands.cs:71
+msgid "Previous Week (Mon-Sun)"
+msgstr "Претходна недеља (пон-нед)"
+
+#: ../src/DateCommands.cs:87
+#: ../src/f-spot.glade.h:54
+msgid "All Images"
+msgstr "Све слике"
+
+#: ../src/DateCommands.cs:89
+msgid "Customized Range"
+msgstr "Произвољан опсег"
+
+#: ../src/Editors/AutoStretchEditor.cs:17
+msgid "Auto Color"
+msgstr "Ауто боје"
+
+#: ../src/Editors/ColorEditor.cs:38
+msgid "Adjust Colors"
+msgstr "Подеси боје"
+
+#: ../src/Editors/ColorEditor.cs:41
+msgid "Adjust"
+msgstr "Подеси"
+
+#: ../src/Editors/CropEditor.cs:35
+msgid "4 x 3 (Book)"
+msgstr "10 x 7,5 (књига)"
+
+#: ../src/Editors/CropEditor.cs:36
+msgid "4 x 6 (Postcard)"
+msgstr "10 x 15 (разгледница)"
+
+#: ../src/Editors/CropEditor.cs:37
+msgid "5 x 7 (L, 2L)"
+msgstr "12,5 x 17,5 (L, 2L)"
+
+#: ../src/Editors/CropEditor.cs:38
+msgid "8 x 10"
+msgstr "20 x 25"
+
+#: ../src/Editors/CropEditor.cs:39
+msgid "Square"
+msgstr "Квадрирај"
+
+#: ../src/Editors/CropEditor.cs:42
+msgid "Crop"
+msgstr "Исеци"
+
+#: ../src/Editors/CropEditor.cs:73
+msgid "Select the area that needs cropping."
+msgstr "Изаберите подручје за одсецање."
+
+#: ../src/Editors/CropEditor.cs:98
+msgid "No Constraint"
+msgstr "Без ограничења"
+
+#: ../src/Editors/CropEditor.cs:99
+msgid "Same as photo"
+msgstr "Као на фотографији"
+
+#: ../src/Editors/CropEditor.cs:104
+msgid "Custom Ratios..."
+msgstr "Произвољна размера..."
+
+#: ../src/Editors/DesaturateEditor.cs:17
+msgid "Desaturate"
+msgstr "Обезбоји"
+
+#: ../src/Editors/RedEyeEditor.cs:19
+msgid "Red-eye Reduction"
+msgstr "Уклањање црвених очију"
+
+#: ../src/Editors/RedEyeEditor.cs:21
+msgid "Fix!"
+msgstr "Поправи!"
+
+#: ../src/Editors/RedEyeEditor.cs:25
+msgid "Select the eyes you wish to fix."
+msgstr "Изаберите очи које желите да исправите."
+
+#: ../src/Editors/SepiaEditor.cs:17
+msgid "Sepia Tone"
+msgstr "Браон тон"
+
+#: ../src/Editors/SoftFocusEditor.cs:28
+msgid "Soft Focus"
+msgstr "Благи фокус"
+
+#: ../src/Editors/TiltEditor.cs:28
+msgid "Straighten"
+msgstr "Исправљање"
+
+#: ../src/Extensions/OpenWithMenu.cs:93
+msgid "No applications available"
+msgstr "Нису доступни програми"
+
+#: ../src/FSpot.addin.xml.h:1
+msgid "Copy Photo Locat_ion"
+msgstr "Умножи _путању слике"
+
+#: ../src/FSpot.addin.xml.h:2
+msgid "Export to"
+msgstr "Извези у"
+
+#: ../src/FSpot.addin.xml.h:3
+msgid "Open _With"
+msgstr "Отвори _помоћу"
+
+#: ../src/FSpot.addin.xml.h:4
+#: ../src/f-spot.glade.h:146
+msgid "Rem_ove Tag"
+msgstr "У_клони ознаку"
+
+#: ../src/FSpot.addin.xml.h:5
+#: ../src/SingleView.cs:438
+#: ../src/f-spot.glade.h:148
+msgid "Rotate _Left"
+msgstr "Ротирај _лево"
+
+#: ../src/FSpot.addin.xml.h:6
+#: ../src/SingleView.cs:439
+#: ../src/f-spot.glade.h:149
+msgid "Rotate _Right"
+msgstr "Ротирај _десно"
+
+#: ../src/FSpot.addin.xml.h:7
+msgid "Tools"
+msgstr "Алати"
+
+#: ../src/FSpot.addin.xml.h:8
+#: ../src/f-spot.glade.h:193
+msgid "_Attach Tag"
+msgstr "_Додај ознаку"
+
+#: ../src/FSpot.addin.xml.h:9
+#: ../src/f-spot.glade.h:205
+msgid "_Delete From Drive"
+msgstr "_Уклони са диска"
+
+#: ../src/FSpot.addin.xml.h:10
+#: ../src/f-spot.glade.h:239
+msgid "_Remove From Catalog"
+msgstr "Укло_ни из каталога"
+
+# bug: uvezi od, uvezi sa
+#: ../src/FileImportBackend.cs:286
+msgid "Import error"
+msgstr "Грешка при увозу:"
+
+#: ../src/FileImportBackend.cs:287
+#, csharp-format
+msgid "Error importing {0}{2}{2}{1}"
+msgstr "Грешка при увозу {0}{2}{2}{1}"
+
+#: ../src/FileImportBackend.cs:288
+#: ../src/ThreadProgressDialog.cs:68
+#: ../extensions/Tools/MergeDb/MergeDb.glade.h:15
+msgid "Skip"
+msgstr "Прескочи"
+
+#: ../src/Filters/ResizeFilter.cs:70
+#: ../src/Filters/SharpFilter.cs:52
+#, csharp-format
+msgid "No way to save files of type \"{0}\""
+msgstr "Не постоји начин да сачувам датотеке типа „{0}“"
+
+#: ../src/FormClient.cs:297
+msgid "Unhandled exception"
+msgstr "Нерешив изузетак"
+
+#: ../src/FullScreenView.cs:59
+msgid "Hide"
+msgstr "Сакриј"
+
+#: ../src/FullScreenView.cs:61
+msgid "Hide Toolbar"
+msgstr "Сакриј алатницу"
+
+#: ../src/FullScreenView.cs:67
+msgid "Info"
+msgstr "Подаци"
+
+#: ../src/FullScreenView.cs:69
+#: ../src/Widgets/InfoBox.cs:182
+msgid "Image Information"
+msgstr "Подаци о слици"
+
+#: ../src/FullScreenView.cs:74
+msgid "Exit fullscreen"
+msgstr "Напусти цео екран"
+
+#: ../src/FullScreenView.cs:84
+#: ../src/MainWindow.cs:319
+#: ../src/SingleView.cs:97
+msgid "Slideshow"
+msgstr "Покретни приказ"
+
+#: ../src/FullScreenView.cs:85
+msgid "Start slideshow"
+msgstr "Пусти покретни приказ"
+
+#: ../src/FullScreenView.cs:150
+msgid "Slide transition:"
+msgstr "Прелаз слика:"
+
+#: ../src/GlTransition.cs:36
+msgid "Dissolve"
+msgstr "Избледи"
+
+# bug: flickr
+#: ../src/GlTransition.cs:104
+msgid "Flip"
+msgstr "Преврни"
+
+#: ../src/GlTransition.cs:147
+msgid "Cover"
+msgstr "Прекриј"
+
+#: ../src/GlTransition.cs:174
+msgid "Reveal"
+msgstr "Откриј"
+
+#: ../src/GlTransition.cs:201
+msgid "Wipe"
+msgstr "Избриши"
+
+#: ../src/GlTransition.cs:259
+msgid "Split"
+msgstr "Подели"
+
+#: ../src/GlTransition.cs:370
+msgid "Push"
+msgstr "Изгурај"
+
+#: ../src/GroupSelector.cs:57
+#: ../src/GroupSelector.cs:58
+msgid "More dates"
+msgstr "Још датума"
+
+#: ../src/GroupSelector.cs:60
+#: ../src/GroupSelector.cs:61
+msgid "More directories"
+msgstr "Још директоријума"
+
+#: ../src/GroupSelector.cs:63
+#: ../src/GroupSelector.cs:64
+msgid "More"
+msgstr "Још"
+
+#: ../src/GroupSelector.cs:515
+msgid "Arrange by _Month"
+msgstr "Сортирај по _месецима"
+
+#: ../src/GroupSelector.cs:518
+msgid "Arrange by _Folder"
+msgstr "Сортирај по _директоријуму"
+
+#: ../src/GroupSelector.cs:523
+#: ../src/f-spot.glade.h:243
+msgid "_Reverse Order"
+msgstr "_Обрнут редослед"
+
+#: ../src/GroupSelector.cs:529
+#: ../src/f-spot.glade.h:197
+msgid "_Clear Date Range"
+msgstr "_Очисти опсег датума"
+
+#: ../src/Imaging/Exif.cs:228
+msgid "Image Directory"
+msgstr "Камера и програми"
+
+#: ../src/Imaging/Exif.cs:230
+msgid "Thumbnail Directory"
+msgstr "Подаци о слици"
+
+#: ../src/Imaging/Exif.cs:232
+msgid "Exif Directory"
+msgstr "Услови при снимању (Exif)"
+
+#: ../src/Imaging/Exif.cs:234
+msgid "GPS Directory"
+msgstr "GPS подаци"
+
+#: ../src/Imaging/Exif.cs:236
+msgid "InterOperability Directory"
+msgstr "Подаци о размени података"
+
+#: ../src/Imaging/Exif.cs:238
+msgid "Unknown Directory"
+msgstr "Непознати директоријум"
+
+#: ../src/Imaging/ImageFile.cs:87
+msgid "Writing to this file format is not supported"
+msgstr "Није подржан упис у ову врсту датотеке"
+
+#: ../src/Imaging/IptcFile.cs:145
+msgid "IPTC Information Interchange Model (IIM) Version number"
+msgstr "IPTC Модел информационе размене (IIM) број издања"
+
+#: ../src/Imaging/IptcFile.cs:147
+msgid "OSI Destination routing information"
+msgstr "Подаци ОСИ одредишне руте"
+
+#: ../src/Imaging/IptcFile.cs:149
+msgid "IPTC file format"
+msgstr "IPTC тип датотеке"
+
+#: ../src/Imaging/IptcFile.cs:151
+msgid "Identifies the provider and product"
+msgstr "Одређује добављача и производ"
+
+#: ../src/Imaging/IptcFile.cs:153
+msgid "A unique number identifying the envelope"
+msgstr "Јединствен број који одређује омот"
+
+#: ../src/Imaging/IptcFile.cs:155
+msgid "A unique number"
+msgstr "Јединствен број"
+
+#: ../src/Imaging/IptcFile.cs:157
+msgid "The envelope handling priority between 1 (most urgent) and 9 (least urgent)"
+msgstr "Приоритет обраде омота између 1 (хитнио) и 9 (најмање важно)"
+
+#: ../src/Imaging/IptcFile.cs:159
+msgid "The year, month and day (CCYYMMDD) the service sent the material"
+msgstr "Година, месец и дан (ГГГГММДД) када је сервис послао материјал"
+
+#: ../src/Imaging/IptcFile.cs:161
+msgid "The hour, minute and second (HHMMSS) the service sent the material"
+msgstr "Сат, минут и секунда (ССММСС) када је сервис послао материјал"
+
+#: ../src/Imaging/IptcFile.cs:163
+msgid "The character set designation"
+msgstr "Ознака сета карактера"
+
+#: ../src/Imaging/IptcFile.cs:165
+msgid "External globally unique object identifier"
+msgstr "Спољна, свуда јединствена одредница објекта"
+
+#: ../src/Imaging/IptcFile.cs:170
+msgid "Abstract Relationship Method (ARM) identifier"
+msgstr "Одреднца методе односа са абстрактом (ARM)"
+
+#: ../src/Imaging/IptcFile.cs:172
+msgid "Abstract Relationship Method (ARM) version number."
+msgstr "Број изадања методе односа са абстрактом (ARM)"
+
+#: ../src/Imaging/IptcFile.cs:175
+msgid "Number identifying the IIM version this application record uses"
+msgstr "Број који одређује IIM издање које овај запис програма користи"
+
+#: ../src/Imaging/IptcFile.cs:177
+msgid "Object type reference"
+msgstr "Повезница типа објекта"
+
+#: ../src/Imaging/IptcFile.cs:182
+msgid "Object attribute reference"
+msgstr "Повезница атрибута објета"
+
+#: ../src/Imaging/IptcFile.cs:188
+#: ../src/Imaging/IptcFile.cs:192
+msgid "Object name"
+msgstr "Име објекта"
+
+#: ../src/Imaging/IptcFile.cs:190
+msgid "Status of the objectdata according to the provider"
+msgstr "Стање података објекта судећи по добављачу"
+
+#: ../src/Imaging/IptcFile.cs:194
+msgid "Location within a city or area where the object originates"
+msgstr "Место у граду или области одакле објекат потиче"
+
+#: ../src/Imaging/IptcFile.cs:197
+msgid "Name of the city the content is focussing on"
+msgstr "Име града на који садржај циља"
+
+#: ../src/Imaging/IptcFile.cs:200
+msgid "Copyright information for"
+msgstr "Ауторска права за"
+
+#: ../src/Imaging/IptcFile.cs:203
+msgid "Full name of the country of the focus of the content"
+msgstr "Пуно име земље и циљ садржаја"
+
+#: ../src/Imaging/IptcFile.cs:206
+msgid "Two or three letter ISO3166 code of the country of the focus of the content"
+msgstr "Дво или трословни ИСО3166 код државе за циљ садржаја"
+
+#: ../src/Imaging/IptcFile.cs:209
+msgid "Creator of the content"
+msgstr "Аутор и садржај"
+
+#: ../src/Imaging/IptcFile.cs:212
+msgid "Provider of the object"
+msgstr "Добављач објекта"
+
+#: ../src/Imaging/IptcFile.cs:215
+msgid "The title of the author or creator"
+msgstr "Име аутора или творца"
+
+#: ../src/Imaging/IptcFile.cs:218
+msgid "The person involved in writing, editing or correcting the object data or caption/abstract"
+msgstr "Особа која је укључена у писање, уређивање или поправљање података о објекту или заглавља/абстракта"
+
+#: ../src/Imaging/IptcFile.cs:222
+msgid "Headline of the content"
+msgstr "Наслов садржаја"
+
+#: ../src/Imaging/IptcFile.cs:225
+msgid "Instructions from the creator to the receiver not covered by other fields"
+msgstr "Упутства аутора потрошачу која нису покривена осталим пољима"
+
+#: ../src/Imaging/IptcFile.cs:228
+msgid "Intellectual genre of the object"
+msgstr "Интелектуални жанр објекта"
+
+#: ../src/Imaging/IptcFile.cs:241
+msgid "Unknown IIM DataSet"
+msgstr "Непознат IIM СетПодатака"
+
+#: ../src/ImportCommand.cs:49
+#: ../src/SingleView.cs:344
+msgid "Select Folder"
+msgstr "Изаберите директоријум"
+
+#: ../src/ImportCommand.cs:261
+msgid "(No Cameras Detected)"
+msgstr "(Нису пронађени апарати)"
+
+#: ../src/ImportCommand.cs:406
+#, csharp-format
+msgid "Loading {0} of {1}"
+msgstr "Учитавам {0} од {1}"
+
+#: ../src/ImportCommand.cs:472
+msgid "Done Loading"
+msgstr "Учитавање завршено"
+
+#: ../src/ImportCommand.cs:670
+msgid "Directory does not exist."
+msgstr "Директоријум не постоји."
+
+# bug: unclear
+#: ../src/ImportCommand.cs:671
+#, csharp-format
+msgid "The directory you selected \"{0}\" does not exist.  Please choose a different directory"
+msgstr "Директоријум који сте изабрали „{0}“ не постоји.  Изаберите неки други."
+
+#. Note for translators: 'Import Tags' is no command, it means 'Tags used in Import'
+#: ../src/ImportCommand.cs:724
+#: ../src/ImportCommand.cs:726
+#: ../src/XmpTagsImporter.cs:88
+msgid "Import Tags"
+msgstr "Увезене ознаке"
+
+#: ../src/ItemAction.cs:81
+#: ../src/MainWindow.cs:286
+#: ../src/SingleView.cs:80
+msgid "Rotate Left"
+msgstr "Ротирај _улево"
+
+#: ../src/ItemAction.cs:82
+msgid "Rotate picture left"
+msgstr "Ротира слику улево"
+
+#: ../src/ItemAction.cs:93
+#: ../src/MainWindow.cs:290
+#: ../src/SingleView.cs:85
+msgid "Rotate Right"
+msgstr "Ротирај _удесно"
+
+#: ../src/ItemAction.cs:94
+msgid "Rotate picture right"
+msgstr "Ротира слику удесно"
+
+#: ../src/ItemAction.cs:104
+#: ../src/f-spot.glade.h:121
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:998
+msgid "Next"
+msgstr "Следећа"
+
+#: ../src/ItemAction.cs:105
+msgid "Next picture"
+msgstr "Иде на наредну слику"
+
+#: ../src/ItemAction.cs:126
+#: ../src/f-spot.glade.h:142
+msgid "Previous"
+msgstr "Претходна"
+
+#: ../src/ItemAction.cs:127
+msgid "Previous picture"
+msgstr "Иде на претходну слику"
+
+#: ../src/Loupe.cs:60
+msgid "Error saving sharpened photo"
+msgstr "Грешка при чувању изоштрене слике"
+
+#: ../src/Loupe.cs:61
+#: ../src/PhotoView.cs:166
+#: ../src/UI.Dialog/EditExceptionDialog.cs:25
+#, csharp-format
+msgid "Received exception \"{0}\". Unable to save photo {1}"
+msgstr "Примио сам изузетак „{0}“. Не могу да сачувам слику {1}"
+
+#: ../src/Loupe.cs:90
+msgid "Sharpen"
+msgstr "Изоштри"
+
+#: ../src/Loupe.cs:100
+msgid "Amount:"
+msgstr "Количина:"
+
+#: ../src/Loupe.cs:101
+msgid "Radius:"
+msgstr "Полупречник:"
+
+#: ../src/Loupe.cs:102
+msgid "Threshold:"
+msgstr "Праг:"
+
+#: ../src/MainWindow.cs:279
+#: ../src/f-spot.glade.h:111
+msgid "Import"
+msgstr "Увези"
+
+#: ../src/MainWindow.cs:281
+msgid "Import new images"
+msgstr "Увези нове слике"
+
+#: ../src/MainWindow.cs:297
+#: ../src/f-spot.glade.h:62
+msgid "Browse"
+msgstr "Разгледај"
+
+#: ../src/MainWindow.cs:301
+msgid "Browse many photos simultaneously"
+msgstr "Прегледај више фотографија одједном"
+
+#: ../src/MainWindow.cs:305
+msgid "Edit Image"
+msgstr "Уреди слику"
+
+#: ../src/MainWindow.cs:309
+msgid "View and edit a photo"
+msgstr "Прегледај и уреди слику"
+
+#: ../src/MainWindow.cs:314
+#: ../src/SingleView.cs:92
+msgid "Fullscreen"
+msgstr "Цео екран"
+
+#: ../src/MainWindow.cs:316
+#: ../src/SingleView.cs:94
+msgid "View photos fullscreen"
+msgstr "Прегледај фотографије у целом екрану"
+
+#: ../src/MainWindow.cs:321
+#: ../src/SingleView.cs:99
+msgid "View photos in a slideshow"
+msgstr "Прегледај слике у покретном приказу"
+
+#: ../src/MainWindow.cs:336
+msgid "Previous photo"
+msgstr "Претходна слика"
+
+# bug: no plural forms needed
+#: ../src/MainWindow.cs:341
+msgid "Next photo"
+msgstr "Следећа слика"
+
+#. Don't care otherwise, Tags sounds reasonable
+#: ../src/MainWindow.cs:354
+#: ../src/Widgets/Sidebar.cs:73
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:995
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:1167
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:1207
+msgid "Tags"
+msgstr "Ознаке"
+
+#. Note for translators: This indicates the current photo is photo {0} of {1} out of photos
+#: ../src/MainWindow.cs:662
+#: ../src/ProgressDialog.cs:82
+#: ../src/TimeDialog.cs:143
+#: ../extensions/Exporters/CDExport/CDExport.cs:221
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:349
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:244
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:783
+#, csharp-format
+msgid "{0} of {1}"
+msgstr "{0} од {1}"
+
+#: ../src/MainWindow.cs:1671
+msgid "No cameras detected."
+msgstr "Нисам нашао ниједан апарат."
+
+#: ../src/MainWindow.cs:1672
+msgid "F-Spot was unable to find any cameras attached to this system.  Double check that the camera is connected and has power"
+msgstr "Ф-број није успео да нађе ниједан апарат повезан на овај систем.  Проверите да је апарат повезан и укључен"
+
+#: ../src/MainWindow.cs:1712
+msgid "Error connecting to camera"
+msgstr "Грешка при повезивању са апаратом"
+
+#: ../src/MainWindow.cs:1713
+#, csharp-format
+msgid "Received error \"{0}\" while connecting to camera"
+msgstr "Примих грешку „{0}“ при повезивању са апаратом"
+
+#. Translators, The singular case will never happen here.
+#: ../src/MainWindow.cs:2058
+#, csharp-format
+msgid "Merge the selected tag"
+msgid_plural "Merge the {0} selected tags?"
+msgstr[0] "Уклони {0} изабрану ознаку?"
+msgstr[1] "Уклони {0} изабране ознаке?"
+msgstr[2] "Уклони {0} изабраних ознака?"
+
+#: ../src/MainWindow.cs:2085
+msgid "This operation will merge the selected tags and any sub-tags into a single tag."
+msgstr "Ова радња ће спојити изабране ознаке и под-ознаке у једну ознаку."
+
+#: ../src/MainWindow.cs:2087
+msgid "_Merge Tags"
+msgstr "_Споји ознаке"
+
+#: ../src/MainWindow.cs:2292
+#, csharp-format
+msgid "{0} Photo out of {1}"
+msgid_plural "{0} Photos out of {1}"
+msgstr[0] "Слика {0} од {1}"
+msgstr[1] "Слике {0} од {1}"
+msgstr[2] "Слика {0} од {1}"
+
+#: ../src/MainWindow.cs:2294
+#: ../src/SingleView.cs:481
+#, csharp-format
+msgid "{0} Photo"
+msgid_plural "{0} Photos"
+msgstr[0] "{0} слика"
+msgstr[1] "{0} слике"
+msgstr[2] "{0} слика"
+
+#: ../src/MainWindow.cs:2297
+#, csharp-format
+msgid " ({0} selected)"
+msgid_plural " ({0} selected)"
+msgstr[0] " ({0} изабрана)"
+msgstr[1] " ({0} изабране)"
+msgstr[2] " ({0} изабраних)"
+
+#: ../src/MainWindow.cs:2378
+msgid "_Ok"
+msgstr "_У реду"
+
+#: ../src/MainWindow.cs:2379
+msgid "Error Deleting Picture"
+msgstr "Грешка при уклањању слика"
+
+#: ../src/MainWindow.cs:2384
+#, csharp-format
+msgid "No permission to delete the file:{1}{0}"
+msgstr "Немате овлашжења за брисање датотеке:{1}{0}"
+
+#: ../src/MainWindow.cs:2388
+#, csharp-format
+msgid "An error of type {0} occurred while deleting the file:{2}{1}"
+msgstr "Грешка типа {0} се јавила при брисању датотеке:{2}{1}"
+
+#: ../src/MainWindow.cs:2414
+#, csharp-format
+msgid "Delete the selected photo permanently?"
+msgid_plural "Delete the {0} selected photos permanently?"
+msgstr[0] "Трајно обрисати {0} изабрану слику?"
+msgstr[1] "Трајно обрисати {0} изабране слике?"
+msgstr[2] "Трајно обрисати {0} изабраних слика?"
+
+# bug: no plural forms needed
+#: ../src/MainWindow.cs:2418
+msgid "This deletes all versions of the selected photo from your drive."
+msgid_plural "This deletes all versions of the selected photos from your drive."
+msgstr[0] "Ово уклања све изабране слике са вашег диска."
+msgstr[1] "Ово уклања све изабране слике са вашег диска."
+msgstr[2] "Ово уклања све изабране слике са вашег диска."
+
+# bug: no plural forms needed
+#: ../src/MainWindow.cs:2421
+msgid "_Delete photo"
+msgid_plural "_Delete photos"
+msgstr[0] "У_клони слике"
+msgstr[1] "У_клони слике"
+msgstr[2] "У_клони слике"
+
+#: ../src/MainWindow.cs:2451
+#, csharp-format
+msgid "Remove the selected photo from F-Spot?"
+msgid_plural "Remove the {0} selected photos from F-Spot?"
+msgstr[0] "Уклонити {0} изабрану слику из Ф-броја?"
+msgstr[1] "Уклонити {0} изабране слике из Ф-броја?"
+msgstr[2] "Уклонити {0} изабраних слика из Ф-броја?"
+
+#: ../src/MainWindow.cs:2456
+msgid "If you remove photos from the F-Spot catalog all tag information will be lost. The photos remain on your computer and can be imported into F-Spot again."
+msgstr "Уколико уклоните слике из Ф-број каталога сви подаци о ознакама ће бити изгубљени. Слике ће остати на вашем рачунару и могу се поново увести у Ф-Спот."
+
+#: ../src/MainWindow.cs:2457
+msgid "_Remove from Catalog"
+msgstr "У_клони из каталога"
+
+# bug: no plural forms
+#: ../src/MainWindow.cs:2520
+#, csharp-format
+msgid "Delete tag \"{0}\"?"
+msgstr "Да уклоним ознаку „{0}“?"
+
+#: ../src/MainWindow.cs:2522
+#, csharp-format
+msgid "Delete the {0} selected tags?"
+msgstr "Да уклони {0} изабране ознаке?"
+
+#: ../src/MainWindow.cs:2527
+msgid "photo"
+msgid_plural "photos"
+msgstr[0] "слика"
+msgstr[1] "слике"
+msgstr[2] "слика"
+
+#: ../src/MainWindow.cs:2529
+#, csharp-format
+msgid "If you delete this tag, the association with {0} {1} will be lost."
+msgid_plural "If you delete these tags, the association with {0} {1} will be lost."
+msgstr[0] "Уколико уклоните ознаку, веза са {0} {1} ће бити изгубљена."
+msgstr[1] "Уколико уклоните ознаку, везе са {0} {1} ће бити изгубљене."
+msgstr[2] "Уколико уклоните ознаку, везе са {0} {1} ће бити изгубљене."
+
+# bug: no plural forms
+#: ../src/MainWindow.cs:2534
+msgid "_Delete tag"
+msgid_plural "_Delete tags"
+msgstr[0] "_Уклони ознаке"
+msgstr[1] "_Уклони ознаке"
+msgstr[2] "_Уклони ознаке"
+
+#. A Category is not empty. Can not delete it.
+#: ../src/MainWindow.cs:2548
+msgid "Tag is not empty"
+msgstr "Ознака није празна"
+
+#: ../src/MainWindow.cs:2549
+#, csharp-format
+msgid "Can not delete tags that have tags within them.  Please delete tags under \"{0}\" first"
+msgstr "Не могу да обришем ознаке које имају ознаке унутар себе. Обришите најпре ознаке испод {0}"
+
+#: ../src/MainWindow.cs:2992
+msgid "Rotate selected photo left"
+msgid_plural "Rotate selected photos left"
+msgstr[0] "Ротирај изабрану слику улево"
+msgstr[1] "Ротирај изабране слику улево"
+msgstr[2] "Ротирај изабране слику улево"
+
+#: ../src/MainWindow.cs:3005
+msgid "Rotate selected photo right"
+msgid_plural "Rotate selected photos right"
+msgstr[0] "Ротирај изабрану слику удесно"
+msgstr[1] "Ротирај изабране слику удесно"
+msgstr[2] "Ротирај изабране слику удесно"
+
+#: ../src/MainWindow.cs:3013
+#, csharp-format
+msgid "Find _Selected Tag"
+msgid_plural "Find _Selected Tags"
+msgstr[0] "Нађи изабрану ознаку"
+msgstr[1] "Нађи изабране ознаке"
+msgstr[2] "Нађи изабране ознаке"
+
+#: ../src/MainWindow.cs:3017
+#, csharp-format
+msgid "Find Selected Tag _With"
+msgid_plural "Find Selected Tags _With"
+msgstr[0] "Нађи изабрану ознаку са"
+msgstr[1] "Нађи изабране ознаке са"
+msgstr[2] "Нађи изабране ознаке са"
+
+#: ../src/MainWindow.cs:3055
+msgid "Create New Version?"
+msgid_plural "Create New Versions?"
+msgstr[0] "Да направим ново издање?"
+msgstr[1] "Да направим нова издања?"
+msgstr[2] "Да направим нова издања?"
+
+#: ../src/MainWindow.cs:3057
+#, csharp-format
+msgid "Before launching {1}, should F-Spot create a new version of the selected photo to preserve the original?"
+msgid_plural "Before launching {1}, should F-Spot create new versions of the selected photos to preserve the originals?"
+msgstr[0] "Да ли да Ф-број направи ново издање изабране фотографије пре покретања {1} како би оригинал остао нетакнут?"
+msgstr[1] "Да ли да Ф-број направи ново издање изабраних фотографија пре покретања {1} како би оригинали остали нетакнути?"
+msgstr[2] "Да ли да Ф-број направи ново издање изабраних фотографија пре покретања {1} како би оригинал остали нетакнути?"
+
+#: ../src/MetadataStore.cs:18
+msgid "Creator"
+msgstr "Аутор"
+
+#: ../src/MetadataStore.cs:19
+msgid "Title"
+msgstr "Наслов"
+
+#: ../src/MetadataStore.cs:20
+msgid "Copyright"
+msgstr "Ауторско право"
+
+#: ../src/MetadataStore.cs:21
+msgid "Subject and Keywords"
+msgstr "Кључне речи"
+
+#: ../src/MetadataStore.cs:22
+msgid "Compression"
+msgstr "Компресија"
+
+#: ../src/MetadataStore.cs:24
+msgid "Planar Configuration"
+msgstr "Планарне поставке"
+
+#: ../src/MetadataStore.cs:26
+msgid "Orientation"
+msgstr "Орјентација"
+
+#: ../src/MetadataStore.cs:28
+msgid "Photometric Interpretation"
+msgstr "Фотометријска интерполација"
+
+#: ../src/MetadataStore.cs:30
+msgid "Resolution Unit"
+msgstr "Мера резолуције"
+
+#: ../src/MetadataStore.cs:32
+msgid "Exposure Program"
+msgstr "Програм експозиције"
+
+#: ../src/MetadataStore.cs:34
+msgid "Metering Mode"
+msgstr "Режим мерења"
+
+#: ../src/MetadataStore.cs:36
+msgid "Exposure Mode"
+msgstr "Режим експозиције"
+
+#: ../src/MetadataStore.cs:38
+msgid "Custom Rendered"
+msgstr "Произвољно исцртавање"
+
+#: ../src/MetadataStore.cs:40
+msgid "Components Configuration"
+msgstr "Поставке компоненти"
+
+#: ../src/MetadataStore.cs:42
+msgid "Light Source"
+msgstr "Извор светла"
+
+#: ../src/MetadataStore.cs:44
+msgid "Sensing Method"
+msgstr "Метод очитавања"
+
+#: ../src/MetadataStore.cs:46
+msgid "Color Space"
+msgstr "Простор боја"
+
+#: ../src/MetadataStore.cs:48
+msgid "White Balance"
+msgstr "Баланс белог"
+
+#: ../src/MetadataStore.cs:50
+msgid "Focal Plane Resolution Unit"
+msgstr "Јединица резолуције жижне равни"
+
+#: ../src/MetadataStore.cs:52
+msgid "File Source Type"
+msgstr "Тип изворне датотеке"
+
+#: ../src/MetadataStore.cs:54
+msgid "Scene Capture Type"
+msgstr "Режим фотографисања"
+
+# Не знам где је ово у???
+#: ../src/MetadataStore.cs:56
+msgid "Gain Control"
+msgstr "Прибави контролу"
+
+#: ../src/MetadataStore.cs:58
+msgid "Contrast"
+msgstr "Контраст"
+
+#: ../src/MetadataStore.cs:60
+msgid "Saturation"
+msgstr "Засићеност"
+
+#: ../src/MetadataStore.cs:62
+msgid "Sharpness"
+msgstr "Оштрина"
+
+#: ../src/MetadataStore.cs:64
+msgid "Scene Type"
+msgstr "Врста сцене"
+
+#. Fixme this should really set parent menu
+#. items insensitve
+#: ../src/PhotoTagMenu.cs:74
+msgid "(No Tags)"
+msgstr "(Нема ознака)"
+
+#: ../src/PhotoVersionCommands.cs:57
+msgid "Create New Version"
+msgstr "Направи ново издање"
+
+#: ../src/PhotoVersionCommands.cs:58
+msgid "Name:"
+msgstr "Назив:"
+
+#: ../src/PhotoVersionCommands.cs:62
+msgid "Rename Version"
+msgstr "Преименуј издање"
+
+#: ../src/PhotoVersionCommands.cs:63
+msgid "New name:"
+msgstr "Нови назив:"
+
+#: ../src/PhotoVersionCommands.cs:109
+msgid "Could not create a new version"
+msgstr "Не могу да направим ново издање"
+
+#: ../src/PhotoVersionCommands.cs:110
+#, csharp-format
+msgid "Received exception \"{0}\". Unable to create version \"{1}\""
+msgstr "Примио сам изузетак „{0}“. Не могу да направим издање „{1}“"
+
+#: ../src/PhotoVersionCommands.cs:137
+msgid "Really Delete?"
+msgstr "Заиста обрисати?"
+
+#: ../src/PhotoVersionCommands.cs:138
+msgid "Cancel"
+msgstr "Обустави"
+
+#: ../src/PhotoVersionCommands.cs:139
+msgid "Delete"
+msgstr "Уклони"
+
+#: ../src/PhotoVersionCommands.cs:143
+#, csharp-format
+msgid "Really delete version \"{0}\"?"
+msgstr "Заиста обрисати издање „{0}“?"
+
+#. FIXME show error dialog.
+#: ../src/PhotoVersionCommands.cs:153
+msgid "Could not delete a version"
+msgstr "Не могу да обришем издање"
+
+#: ../src/PhotoVersionCommands.cs:154
+#, csharp-format
+msgid "Received exception \"{0}\". Unable to delete version \"{1}\""
+msgstr "Примио сам изузетак „{0}“. Не могу да обришем издање „{1}“"
+
+#: ../src/PhotoVersionCommands.cs:195
+msgid "Could not rename a version"
+msgstr "Не могу да преименујем издање"
+
+#: ../src/PhotoVersionCommands.cs:196
+#, csharp-format
+msgid "Received exception \"{0}\". Unable to rename version to \"{1}\""
+msgstr "Примио сам изузетак „{0}“. Не могу да преименујем издање у „{1}“"
+
+#: ../src/PhotoVersionMenu.cs:68
+msgid "(No Edits)"
+msgstr "(Без измена)"
+
+#: ../src/PhotoView.cs:165
+#: ../src/UI.Dialog/EditExceptionDialog.cs:38
+msgid "Error editing photo"
+msgstr "Грешка при измени слике"
+
+#: ../src/PhotoView.cs:298
+msgid "Comment:"
+msgstr "Коментар:"
+
+#: ../src/Preferences.cs:161
+msgid "Photos"
+msgstr "Фотографије"
+
+#: ../src/PrintOperation.cs:32
+msgid "Image Settings"
+msgstr "Поставке за слику"
+
+#: ../src/QueryWidget.cs:40
+msgid "Find: "
+msgstr "Нађи:"
+
+#: ../src/QueryWidget.cs:45
+msgid "Untagged photos"
+msgstr "Неозначене фотографије"
+
+#: ../src/QueryWidget.cs:53
+msgid "Rated photos"
+msgstr "Оцењене фотографије"
+
+# bug: uvezi od, uvezi sa
+#. Note for translators: 'Import roll' is no command, it means 'Roll that has been imported'
+#: ../src/QueryWidget.cs:62
+msgid "Import roll"
+msgstr "Увожења"
+
+#: ../src/QueryWidget.cs:82
+msgid "Clear search"
+msgstr "Очисти претрагу"
+
+#: ../src/QueryWidget.cs:89
+msgid "Refresh search"
+msgstr "Освежи претрагу"
+
+#: ../src/QueryWidget.cs:91
+msgid "No matching photos found"
+msgstr "Нису нађене фотографије"
+
+#: ../src/QueryWidget.cs:128
+msgid "Hide _Find Bar"
+msgstr "Сакриј линију за _претрагу"
+
+#: ../src/QueryWidget.cs:134
+msgid "Show _Find Bar"
+msgstr "Прикажи линију за _претрагу"
+
+#: ../src/RotateCommand.cs:94
+#: ../src/RotateCommand.cs:109
+msgid "Unable to rotate this type of photo"
+msgstr "Не могу да ротирам ову врсту слике"
+
+#: ../src/RotateCommand.cs:129
+msgid "Unable to rotate readonly file"
+msgstr "Не могу да ротирам датотеке без овлашћења за упис"
+
+#: ../src/RotateCommand.cs:196
+msgid "Rotating photos"
+msgstr "Окрећем слике"
+
+#: ../src/RotateCommand.cs:207
+#, csharp-format
+msgid "Rotating photo \"{0}\""
+msgstr "Окрећем слику „{0}“"
+
+#: ../src/RotateCommand.cs:220
+msgid "Directory not found"
+msgstr "Директоријум није нађен"
+
+#: ../src/RotateCommand.cs:240
+#, csharp-format
+msgid "Unable to rotate photo"
+msgid_plural "Unable to rotate {0} photos"
+msgstr[0] "Не могу да ротирам {0} слику"
+msgstr[1] "Не могу да ротирам {0} слике"
+msgstr[2] "Не могу да ротирам {0} слика"
+
+#: ../src/RotateCommand.cs:242
+#, csharp-format
+msgid "The photo could not be rotated because it is on a read only file system or media such as a CDROM.  Please check the permissions and try again."
+msgid_plural "{0} photos could not be rotated because they are on a read only file system or media such as a CDROM.  Please check the permissions and try again."
+msgstr[0] "Не могу да ротирам {0} слику зато што се налази на систему датотека који омогућава само читање или на медију као што је ЦД.  Проверите овлашћења и покушајте поново."
+msgstr[1] "Не могу да ротирам {0} слике зато што се налазе на систему датотека који омогућава само читање или на медију као што је ЦД.  Проверите овлашћења и покушајте поново."
+msgstr[2] "Не могу да ротирам {0} слика зато што се налазе на систему датотека који омогућава само читање или на медију као што је ЦД.  Проверите овлашћења и покушајте поново."
+
+#: ../src/RotateCommand.cs:269
+#, csharp-format
+msgid "Received error \"{0}\" while attempting to rotate {1}"
+msgstr "Примих грешку „{0}“ при покушају да ротирам {1}"
+
+#: ../src/RotateCommand.cs:274
+msgid "Error while rotating photo."
+msgstr "Грешка при ротирању слике."
+
+#: ../src/SendEmail.cs:240
+msgid "Preparing email"
+msgstr "Припремам е-пошту"
+
+#: ../src/SendEmail.cs:292
+#, csharp-format
+msgid "Exporting picture \"{0}\""
+msgstr "Извозим слику „{0}“"
+
+#: ../src/SendEmail.cs:314
+msgid "Error processing image"
+msgstr "Грешка при обради ознаке"
+
+#: ../src/SendEmail.cs:315
+#, csharp-format
+msgid "An error occured while processing \"{0}\": {1}"
+msgstr "Јавила се грешка при обради „{0}“: {1}"
+
+#. Send the mail :)
+#: ../src/SendEmail.cs:330
+msgid "my photos"
+msgstr "моје слике"
+
+#: ../src/SingleView.cs:82
+msgid "Rotate photo left"
+msgstr "Ротирај слику у_лево"
+
+#: ../src/SingleView.cs:87
+msgid "Rotate photo right"
+msgstr "Ротирај слику у_десно"
+
+#. Obsolete, remove after db rev4
+#: ../src/SingleView.cs:122
+#: ../src/Widgets/MetadataDisplay.cs:219
+#: ../src/Widgets/MetadataDisplay.cs:221
+#: ../src/f-spot.glade.h:98
+msgid "Folder"
+msgstr "Фасцикла"
+
+#: ../src/SingleView.cs:341
+msgid "Open"
+msgstr "Отвори"
+
+#: ../src/SingleView.cs:441
+msgid "Set as Background"
+msgstr "Постави за позадину"
+
+#: ../src/TagCommands.cs:92
+#: ../src/TagCommands.cs:220
+#: ../src/TagSelectionWidget.cs:512
+msgid "This name is already in use"
+msgstr "Ово име је већ у употреби"
+
+#: ../src/TagCommands.cs:139
+msgid "Create New Tag"
+msgstr "Направи нову ознаку"
+
+#: ../src/TagCommands.cs:140
+msgid "Name of New Tag:"
+msgstr "Име нове ознаке:"
+
+#: ../src/TagCommands.cs:286
+msgid "Edit Tag"
+msgstr "Уреди ознаку"
+
+#: ../src/TagCommands.cs:287
+msgid "Tag Name:"
+msgstr "Име ознаке:"
+
+#: ../src/TagCommands.cs:403
+msgid "Unable to load image"
+msgstr "Не могу да учитам слику"
+
+#: ../src/TagCommands.cs:404
+#, csharp-format
+msgid "Unable to load \"{0}\" as icon for the tag"
+msgstr "Не могу да учитам „{0}“ за иконицу ознаке"
+
+#: ../src/TagCommands.cs:448
+#, csharp-format
+msgid "Photo {0} of {1}"
+msgstr "Слика {0} од {1}"
+
+#: ../src/TagCommands.cs:478
+#, csharp-format
+msgid "Edit Icon for Tag {0}"
+msgstr "Измени икону за ознаку {0}"
+
+#: ../src/TagCommands.cs:494
+msgid "Select Photo from file"
+msgstr "Иабери слику из датотеке"
+
+#: ../src/TagCommands.cs:517
+#, csharp-format
+msgid ""
+"\n"
+"<b>From Photo</b>\n"
+" You can use one of your library photos as an icon for this tag.\n"
+" However, first you must have at least one photo associated\n"
+" with this tag. Please tag a photo as '{0}' and return here\n"
+" to use it as an icon."
+msgstr ""
+"\n"
+"<b>Из фотографије</b>\n"
+" Можете користити једну од ваших фотографија из збирке као иконицу.\n"
+" за ову ознаку. Ипак, морате најпре имати бар једну фотографију\n"
+" означену овом ознаком. Означите фотографију са „{0}“ и вратите се\n"
+" овде како би је искористили за иконицу."
+
+#: ../src/TagPopup.cs:26
+#, csharp-format
+msgid "Find"
+msgid_plural "Find"
+msgstr[0] "_Нађи"
+msgstr[1] "_Нађи"
+msgstr[2] "_Нађи"
+
+#: ../src/TagPopup.cs:36
+#: ../src/Widgets/TagMenu.cs:91
+msgid "Create New Tag..."
+msgstr "Направи нову ознаку..."
+
+#: ../src/TagPopup.cs:42
+msgid "Edit Selected Tag..."
+msgstr "Уреди изабрану ознаку..."
+
+#: ../src/TagPopup.cs:46
+msgid "Delete Tag"
+msgid_plural "Delete Tags"
+msgstr[0] "Уклони ознаку"
+msgstr[1] "Уклони ознаке"
+msgstr[2] "Уклони ознака"
+
+#: ../src/TagPopup.cs:52
+msgid "Attach Tag to Selection"
+msgid_plural "Attach Tags to Selection"
+msgstr[0] "Додај ознаку на изабрану"
+msgstr[1] "Додај ознаку на изабране"
+msgstr[2] "Додај ознаку на изабране"
+
+#: ../src/TagPopup.cs:56
+msgid "Remove Tag From Selection"
+msgid_plural "Remove Tags From Selection"
+msgstr[0] "Уклони ознаку са изабране"
+msgstr[1] "Уклони ознаку са изабраних"
+msgstr[2] "Уклони ознаку са изабраних"
+
+#: ../src/TagPopup.cs:62
+msgid "Merge Tags"
+msgstr "Споји изнаке"
+
+#: ../src/TagQueryWidget.cs:32
+#, csharp-format
+msgid "Include Photos Tagged \"{0}\""
+msgstr "Укључи фотографије означене са „{0}“"
+
+#: ../src/TagQueryWidget.cs:37
+#, csharp-format
+msgid "Exclude Photos Tagged \"{0}\""
+msgstr "Искључи фотографије означене са „{0}“"
+
+#: ../src/TagQueryWidget.cs:42
+msgid "Remove From Search"
+msgstr "Уклони из претраге"
+
+#: ../src/TagQueryWidget.cs:86
+#, csharp-format
+msgid "Find _With"
+msgid_plural "Find _With"
+msgstr[0] "Нађи _са"
+msgstr[1] "Нађи _са"
+msgstr[2] "Нађи _са"
+
+#: ../src/TagQueryWidget.cs:112
+msgid "All"
+msgstr "Све"
+
+#: ../src/TagQueryWidget.cs:147
+#: ../src/Term.cs:591
+#, csharp-format
+msgid "Not {0}"
+msgstr "Није {0}"
+
+#: ../src/TagQueryWidget.cs:277
+msgid "Drag tags here to search for them"
+msgstr "Превуците овде ознаке за претрагу"
+
+#: ../src/TagSelectionWidget.cs:511
+msgid "Error renaming tag"
+msgstr "Грешка при преименовању ознаке"
+
+#: ../src/TagStore.cs:239
+msgid "Favorites"
+msgstr "Омиљене"
+
+#: ../src/TagStore.cs:244
+msgid "Hidden"
+msgstr "Скривене"
+
+#: ../src/TagStore.cs:252
+msgid "People"
+msgstr "Људи"
+
+#: ../src/TagStore.cs:257
+msgid "Places"
+msgstr "Места"
+
+#: ../src/TagStore.cs:262
+msgid "Events"
+msgstr "Догађаји"
+
+#. The label for the root category is used in new and edit tag dialogs
+#: ../src/TagStore.cs:275
+#: ../src/Widgets/InfoBox.cs:351
+msgid "(None)"
+msgstr "(Ништа)"
+
+#: ../src/Term.cs:297
+msgid " and "
+msgstr " и "
+
+#. operators.Add (Catalog.GetString (" && "));
+#: ../src/Term.cs:299
+msgid ", "
+msgstr ", "
+
+#: ../src/Term.cs:355
+msgid " or "
+msgstr " или "
+
+#. OPS The operators we support, case insensitive
+#. private static string op_str = "(?'Ops' or | and |, | \\s+ )";
+#: ../src/Term.cs:379
+#: ../src/Widgets/FindBar.cs:177
+#: ../src/f-spot.glade.h:273
+msgid "or"
+msgstr "или"
+
+#: ../src/ThreadProgressDialog.cs:66
+msgid "Retry"
+msgstr "Покушај поново"
+
+#: ../src/TimeDialog.cs:126
+#: ../src/f-spot.glade.h:166
+#, csharp-format
+msgid "Shift all photos by {0}"
+msgstr "Помери све слике за {0}"
+
+#: ../src/UI.Dialog/AboutDialog.cs:70
+msgid "Photo management for GNOME"
+msgstr "Уређивање фото-албума у Гному"
+
+#: ../src/UI.Dialog/AboutDialog.cs:71
+msgid "Copyright © 2003-2008 Novell Inc."
+msgstr "Ауторско право © 2003-2007 Novell Inc."
+
+#: ../src/UI.Dialog/AboutDialog.cs:96
+msgid "translator-credits"
+msgstr ""
+"Данило Шеган <danilo@prevod.org>\n"
+"Милош Поповић <gpopac@gmail.com>\n"
+"\n"
+"Prevod.org — превод на српски језик."
+
+#: ../src/UI.Dialog/AboutDialog.cs:101
+msgid "F-Spot Website"
+msgstr "Ф-број веб сајт"
+
+#: ../src/UI.Dialog/ExceptionDialog.cs:24
+msgid "F-Spot Encountered a Fatal Error"
+msgstr "Ф-број је наишао на кобну грешку"
+
+#: ../src/UI.Dialog/ExceptionDialog.cs:60
+msgid "Error Details"
+msgstr "Детаљи грешке"
+
+#: ../src/UI.Dialog/ExceptionDialog.cs:104
+msgid "An unhandled exception was thrown: "
+msgstr "Избечена је нерешива грешка: "
+
+#: ../src/UI.Dialog/RepairDbDialog.cs:20
+msgid "Error loading database."
+msgstr "Грешка при учитавању безе података"
+
+#: ../src/UI.Dialog/RepairDbDialog.cs:21
+#, csharp-format
+msgid "F-Spot encountered an error while loading the photo database. The old database has be moved to {0} and a new database has been created."
+msgstr "Ф-број је наишао на грешку при учитавању базе. Стара база је пресељена у {0} и нова база је направљена."
+
+#: ../src/UI.Dialog/SelectionRatioDialog.cs:60
+msgid "Label"
+msgstr "Натпис"
+
+#: ../src/UI.Dialog/SelectionRatioDialog.cs:64
+msgid "Ratio"
+msgstr "Однос"
+
+#: ../src/Updater.cs:380
+msgid "Updating F-Spot Database"
+msgstr "Ажурирам базу Ф-броја"
+
+#: ../src/Updater.cs:381
+msgid "Please wait while your F-Spot gallery's database is updated. This may take some time."
+msgstr "Молимо сачекајте док се не ажурира Ф-број база галерије. Ово може да потраје неко време."
+
+#. Mono.Unix.Error error = Mono.Unix.Stdlib.GetLastError ();
+#: ../src/Utils/Unix.cs:35
+msgid "Unable to create temporary file"
+msgstr "Не могу да направим привремену датотеку"
+
+#: ../src/Utils/GnomeUtil.cs:49
+msgid "The \"F-Spot Manual\" could not be found.  Please verify that your installation has been completed successfully."
+msgstr "„Ф-број упутство“ није нађено. Проверите да ли ваша је додавање програма успешно завршено."
+
+#: ../src/Widgets/CustomPrintWidget.cs:99
+msgid "Page Setup"
+msgstr "Подешавање стране"
+
+#: ../src/Widgets/CustomPrintWidget.cs:103
+#: ../src/Widgets/CustomPrintWidget.cs:105
+#: ../src/Widgets/CustomPrintWidget.cs:111
+#, csharp-format
+msgid "Paper Size: {0} x {1} mm"
+msgstr "Величина папира: {0} x {1} mm"
+
+#: ../src/Widgets/CustomPrintWidget.cs:121
+msgid "Photos per page"
+msgstr "Слика по страници"
+
+#. ppp1.Toggled += TriggerChanged;
+#. ppp2.Toggled += TriggerChanged;
+#. ppp4.Toggled += TriggerChanged;
+#. ppp9.Toggled += TriggerChanged;
+#: ../src/Widgets/CustomPrintWidget.cs:133
+msgid "Repeat"
+msgstr "Постави"
+
+#: ../src/Widgets/CustomPrintWidget.cs:134
+msgid "Print cut marks"
+msgstr "Штампај ознаке за сечење"
+
+#: ../src/Widgets/CustomPrintWidget.cs:142
+msgid "Full Page (no margin)"
+msgstr "Цела страна (без маргине)"
+
+#. Note for translators: "Zoom" is a Fit Mode
+#: ../src/Widgets/CustomPrintWidget.cs:146
+msgid "Zoom"
+msgstr "Увећање"
+
+#: ../src/Widgets/CustomPrintWidget.cs:147
+msgid "Fill"
+msgstr "Попуни"
+
+#: ../src/Widgets/CustomPrintWidget.cs:148
+msgid "Scaled"
+msgstr "Рашири"
+
+#: ../src/Widgets/CustomPrintWidget.cs:154
+msgid "White borders"
+msgstr "Беле ивице"
+
+#: ../src/Widgets/CustomPrintWidget.cs:158
+msgid "Custom Text: "
+msgstr "Произвољан текст: "
+
+#: ../src/Widgets/EditorPage.cs:29
+#: ../src/Widgets/Sidebar.cs:71
+msgid "Edit"
+msgstr "Уређивање"
+
+#: ../src/Widgets/EditorPage.cs:201
+#: ../extensions/Exporters/ZipExport/ZipExport.cs:46
+msgid "No selection available"
+msgstr "Ништа није изабрано"
+
+#: ../src/Widgets/EditorPage.cs:202
+msgid "This tool requires an active selection. Please select a region of the photo and try the operation again"
+msgstr "Овај алат захтева да буде активан избор. Изаберите област фотографије и поновите радњу"
+
+#: ../src/Widgets/EditorPage.cs:219
+msgid "Error saving adjusted photo"
+msgid_plural "Error saving adjusted photos"
+msgstr[0] "Грешка при чувању исправљене слике"
+msgstr[1] "Грешка при чувању исправљених слика"
+msgstr[2] "Грешка при чувању исправљених слике"
+
+#: ../src/Widgets/EditorPage.cs:221
+#, csharp-format
+msgid "Received exception \"{0}\". Note that you have to develop RAW files into JPEG before you can edit them."
+msgstr "Примљен је изузетак „{0}“. Морате да развијете RAW датотеке у JPEG пре њихове измене."
+
+#: ../src/Widgets/FindBar.cs:58
+msgid "Find:"
+msgstr "Нађи:"
+
+#: ../src/Widgets/FindBar.cs:177
+#: ../src/f-spot.glade.h:265
+msgid "and"
+msgstr "и"
+
+#: ../src/Widgets/InfoBox.cs:164
+msgid "Histogram"
+msgstr "Хистограм"
+
+#: ../src/Widgets/InfoBox.cs:199
+msgid "Date"
+msgstr "Датум"
+
+#: ../src/Widgets/InfoBox.cs:202
+#: ../extensions/Exporters/CDExport/CDExport.glade.h:5
+msgid "Size"
+msgstr "Величина"
+
+#: ../src/Widgets/InfoBox.cs:205
+msgid "Exposure"
+msgstr "Експозиција"
+
+#: ../src/Widgets/InfoBox.cs:209
+msgid "Rating"
+msgstr "Оцена"
+
+#: ../src/Widgets/InfoBox.cs:362
+#: ../src/Widgets/InfoBox.cs:371
+msgid "(Unknown)"
+msgstr "(Непознато)"
+
+#: ../src/Widgets/InfoBox.cs:469
+#, csharp-format
+msgid "{0} Photos"
+msgstr "{0} слика"
+
+#. Note for translators: {0} is a date, {1} and {2} are times.
+#: ../src/Widgets/InfoBox.cs:481
+#, csharp-format
+msgid ""
+"On {0} between \n"
+"{1} and {2}"
+msgstr ""
+"На {0} између \n"
+"{1} и {2}"
+
+#: ../src/Widgets/InfoBox.cs:486
+#, csharp-format
+msgid ""
+"Between {0} \n"
+"and {1}"
+msgstr ""
+"Између {0} \n"
+"и {1}"
+
+#: ../src/Widgets/MetadataDisplay.cs:23
+msgid "Metadata"
+msgstr "Метаподаци"
+
+#: ../src/Widgets/MetadataDisplay.cs:104
+msgid "Extended Metadata"
+msgstr "Проширени метаподаци"
+
+#: ../src/Widgets/MetadataDisplay.cs:223
+msgid "Picasaweb"
+msgstr "ПикасаВеб"
+
+#: ../src/Widgets/MetadataDisplay.cs:225
+msgid "SmugMug"
+msgstr "СмугМуг"
+
+#: ../src/Widgets/MetadataDisplay.cs:227
+msgid "Gallery2"
+msgstr "Галерија2"
+
+#. clear Extended Metadata
+#: ../src/Widgets/MetadataDisplay.cs:387
+msgid "No Extended Metadata Available"
+msgstr "Нису доступни проширени метаподаци"
+
+#: ../src/Widgets/MetadataDisplay.cs:405
+msgid "No active photo"
+msgstr "Нема изабраних фотографија"
+
+#: ../src/Widgets/MetadataDisplay.cs:407
+#, csharp-format
+msgid "The photo \"{0}\" does not exist"
+msgstr "Фотографија „{0}“ не постоји"
+
+#: ../src/Widgets/MetadataDisplay.cs:410
+msgid "No metadata available"
+msgstr "Нису доступни метаподаци"
+
+#: ../src/Widgets/RatingMenuItem.cs:56
+msgid "Rating:"
+msgstr "Оцена:"
+
+#: ../src/XmpTagsImporter.cs:89
+#: ../extensions/Exporters/FacebookExport/FacebookExport.glade.h:6
+msgid "Location"
+msgstr "Место"
+
+#: ../src/XmpTagsImporter.cs:90
+msgid "Country"
+msgstr "Земља"
+
+#: ../src/XmpTagsImporter.cs:91
+msgid "City"
+msgstr "Град"
+
+#: ../src/XmpTagsImporter.cs:92
+msgid "State"
+msgstr "Држава"
+
+#. namespace
+#: ../src/f-spot.glade.h:1
+msgid " "
+msgstr " "
+
+#: ../src/f-spot.glade.h:2
+msgid "0000:00:00 00:00:00"
+msgstr "0000:00:00 00:00:00"
+
+#: ../src/f-spot.glade.h:3
+msgid "00:00:00"
+msgstr "00:00:00"
+
+#: ../src/f-spot.glade.h:4
+msgid "1 of 1"
+msgstr "1 од 1"
+
+#: ../src/f-spot.glade.h:5
+msgid "1024 px"
+msgstr "1024 px"
+
+#: ../src/f-spot.glade.h:6
+msgid "320 px"
+msgstr "320 px"
+
+#: ../src/f-spot.glade.h:7
+msgid "480 px"
+msgstr "480 px"
+
+#: ../src/f-spot.glade.h:8
+msgid "5"
+msgstr "5"
+
+#: ../src/f-spot.glade.h:9
+msgid "640 px"
+msgstr "640 px"
+
+#: ../src/f-spot.glade.h:10
+msgid "800 px"
+msgstr "800 px"
+
+#: ../src/f-spot.glade.h:11
+msgid "<b></b>"
+msgstr "<b></b>"
+
+#: ../src/f-spot.glade.h:12
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:1
+msgid "<b>Account</b>"
+msgstr "<b>Налог</b>"
+
+#: ../src/f-spot.glade.h:13
+msgid "<b>Action</b>"
+msgstr "<b>Наредба</b>"
+
+#: ../src/f-spot.glade.h:14
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:1
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:1
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:1
+msgid "<b>Album</b>"
+msgstr "<b>Албум</b>"
+
+#: ../src/f-spot.glade.h:15
+msgid "<b>Co_rrections</b>"
+msgstr "<b>И_справке</b>"
+
+#: ../src/f-spot.glade.h:16
+msgid "<b>Color Management</b>"
+msgstr "<b>Управљање бојама</b>"
+
+#: ../src/f-spot.glade.h:17
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:3
+msgid "<b>Destination</b>"
+msgstr "<b>Одредиште</b>"
+
+#: ../src/f-spot.glade.h:18
+msgid "<b>End Date</b>"
+msgstr "<b>Завршни датум</b>"
+
+#: ../src/f-spot.glade.h:19
+msgid "<b>From External Photo</b>"
+msgstr "<b>Из спољне слике</b>"
+
+#: ../src/f-spot.glade.h:20
+msgid "<b>From Photo</b>"
+msgstr "<b>Из слике</b>"
+
+#: ../src/f-spot.glade.h:21
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:2
+msgid "<b>Gallery</b>"
+msgstr "<b>Галерија</b>"
+
+#: ../src/f-spot.glade.h:22
+msgid "<b>Image Interpolation</b>"
+msgstr "<b>Интерполација слике</b>"
+
+#: ../src/f-spot.glade.h:23
+msgid "<b>Import Settings</b>"
+msgstr "<b>Поставке увоза</b>"
+
+#: ../src/f-spot.glade.h:24
+msgid "<b>Max Rating</b>"
+msgstr "<b>Најбоља оцена</b>"
+
+#: ../src/f-spot.glade.h:25
+msgid "<b>Metadata</b>"
+msgstr "<b>Метаподаци</b>"
+
+#: ../src/f-spot.glade.h:26
+msgid "<b>Min Rating</b>"
+msgstr "<b>Најгора оцена</b>"
+
+#: ../src/f-spot.glade.h:27
+msgid "<b>Photograph Layout</b>"
+msgstr "<b>Излагање фотографије</b>"
+
+#: ../src/f-spot.glade.h:28
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:2
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:5
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:3
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:2
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:2
+#: ../extensions/Exporters/TabbloExport/TabbloExport.glade.h:1
+msgid "<b>Photos</b>"
+msgstr "<b>Фотографије</b>"
+
+#: ../src/f-spot.glade.h:29
+msgid "<b>Predefined</b>"
+msgstr "<b>Предефинисано</b>"
+
+#: ../src/f-spot.glade.h:30
+msgid "<b>Preview</b>"
+msgstr "<b>Преглед</b>"
+
+#: ../src/f-spot.glade.h:31
+msgid "<b>Printer Details</b>"
+msgstr "<b>Детаљи штампача</b>"
+
+#: ../src/f-spot.glade.h:32
+msgid "<b>Reference Photo</b>"
+msgstr "<b>Повезница слике</b>"
+
+#: ../src/f-spot.glade.h:33
+msgid "<b>Screensaver</b>"
+msgstr "<b>Чувар екрана</b>"
+
+#: ../src/f-spot.glade.h:34
+msgid "<b>Select period</b>"
+msgstr "<b>Изабери период</b>"
+
+#: ../src/f-spot.glade.h:35
+msgid "<b>Size</b>"
+msgstr "<b>Величина</b>"
+
+#: ../src/f-spot.glade.h:36
+msgid "<b>Start Date</b>"
+msgstr "<b>Почетни датум</b>"
+
+#: ../src/f-spot.glade.h:37
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:3
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:6
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:4
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:4
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:4
+msgid "<b>Style</b>"
+msgstr "<b>Стил</b>"
+
+#: ../src/f-spot.glade.h:38
+msgid "<b>Summary</b>"
+msgstr "<b>Сума</b>"
+
+#: ../src/f-spot.glade.h:39
+msgid "<b>Theming</b>"
+msgstr "<b>Теме</b>"
+
+#: ../src/f-spot.glade.h:40
+msgid "<b>Transparent Parts</b>"
+msgstr "<b>Провидни делови</b>"
+
+#: ../src/f-spot.glade.h:41
+msgid "<b>View all pictures imported</b>"
+msgstr "<b>Прегледај све увезене слике</b>"
+
+#: ../src/f-spot.glade.h:42
+msgid "<b>_White Balance</b>"
+msgstr "<b>_Бланс белог</b>"
+
+#: ../src/f-spot.glade.h:43
+msgid "<small></small>"
+msgstr "<small></small>"
+
+#: ../src/f-spot.glade.h:44
+msgid "<small><i>Choose the folder where F-Spot should store newly imported photos</i></small>"
+msgstr "<small><i>Изаберите фасциклу где ће Ф-број да чува новоувезене фотографије</i></small>"
+
+#: ../src/f-spot.glade.h:45
+msgid ""
+"<small><i>Enable this option to store tags and descriptions inside \n"
+"supported image formats.</i></small>"
+msgstr ""
+"<small><i>Укључите ову опцију како би чували ознаке или опис унутар \n"
+"подржаних формата слика.</i></small>"
+
+#: ../src/f-spot.glade.h:47
+msgid "<small><i>Enable this to allow interpolation on zoomed images. You shouldn't disable this for viewing photos, but disabling the interpolation could be usefull in icon design.</i></small>"
+msgstr "<small><i>Укључите ово како би дозволили интерполацију на повећаним слимама. Не бисте требали да искључите ову опцију за преглед фотографија, али она може бити корисна код иконица.</i></small>"
+
+#: ../src/f-spot.glade.h:48
+msgid "<small><i>While acting as a screensaver, F-Spot can display all of your images, or a small subset based on tags.</i></small>"
+msgstr "<small><i>У току рада као чувар екрана, Ф-број може да прикаже све Ваше слике или мали подскуп на основу ознака.</i></small>"
+
+#: ../src/f-spot.glade.h:49
+msgid "<small><i>You can choose how to display transparent parts in images. This option has no effect on photos, but setting this as check pattern or custom color could be usefull when viewing icons or other artworks with transparent parts.</i></small>"
+msgstr "<small><i>Можете да изаберете како да се приказују провидни делови слика. Ова опција нема ефекта на фотографије, али постављање на шаховски шаблон или произвољну боју може бити корисно при прегледу иконица или других радова са провидним деловима.</i></small>"
+
+#: ../src/f-spot.glade.h:50
+msgid "<small><i>You'll have to restart f-spot to load the new theme.</i></small>"
+msgstr "<small><i>Морате да поново покренете Ф-број како би учитао нову тему.</i></small>"
+
+#: ../src/f-spot.glade.h:51
+msgid "Adjust Time"
+msgstr "Подеси време"
+
+#: ../src/f-spot.glade.h:52
+msgid "Adjust _Time..."
+msgstr "Подеси _време..."
+
+#: ../src/f-spot.glade.h:53
+msgid "Adjusted date: "
+msgstr "Подешен датум: "
+
+#: ../src/f-spot.glade.h:55
+msgid "Arrange _by"
+msgstr "_Сортирај по"
+
+#: ../src/f-spot.glade.h:56
+msgid "As _background"
+msgstr "Постави за по_задину"
+
+#: ../src/f-spot.glade.h:57
+msgid "As _custom color: "
+msgstr "Као прои_звољна боја: "
+
+#: ../src/f-spot.glade.h:58
+msgid "As check _pattern"
+msgstr "Као _шаховски шаблон"
+
+#: ../src/f-spot.glade.h:59
+msgid "Attach Tags:"
+msgstr "Додај ознаке:"
+
+#: ../src/f-spot.glade.h:60
+msgid "Attach tag:"
+msgstr "Додај ознаку:"
+
+#: ../src/f-spot.glade.h:61
+#: ../extensions/Exporters/CDExport/CDExport.glade.h:3
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:7
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:7
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:5
+msgid "Autorotate"
+msgstr "Сам ротирај"
+
+#: ../src/f-spot.glade.h:63
+msgid "By _Date"
+msgstr "По _датуму"
+
+#: ../src/f-spot.glade.h:64
+msgid "By _Import Roll"
+msgstr "По _увожењима"
+
+#: ../src/f-spot.glade.h:65
+msgid "By _Rating"
+msgstr "По _оценама"
+
+#: ../src/f-spot.glade.h:66
+msgid "CD"
+msgstr "ЦД"
+
+#: ../src/f-spot.glade.h:67
+msgid "C_aption:"
+msgstr "_Наслов:"
+
+#: ../src/f-spot.glade.h:68
+msgid "C_ontrast:"
+msgstr "_Контраст:"
+
+#: ../src/f-spot.glade.h:69
+msgid "Camera Selection"
+msgstr "Избор апарата"
+
+#: ../src/f-spot.glade.h:70
+msgid "Cancel, do not change the current timeline. "
+msgstr "Обустави, не мењај тренутну скалу времена. "
+
+#: ../src/f-spot.glade.h:71
+msgid "Co_nfigure"
+msgstr "По_деси"
+
+#: ../src/f-spot.glade.h:72
+msgid "Copy Locat_ion"
+msgstr "Умножи _путању слике"
+
+#: ../src/f-spot.glade.h:73
+msgid "Copy files to the Photos folder"
+msgstr "Убаци датотеке у директоријум са Фото албумом"
+
+#: ../src/f-spot.glade.h:74
+msgid "Create Mail"
+msgstr "Направи е-писмо"
+
+#: ../src/f-spot.glade.h:75
+msgid "Create New _Tag..."
+msgstr "Направи нову _ознаку..."
+
+#: ../src/f-spot.glade.h:76
+msgid "Create _New Version..."
+msgstr "_Направи ново издање..."
+
+#: ../src/f-spot.glade.h:77
+msgid "Create a mail with the selected photos (possibly resized) attached"
+msgstr "Направи е-писмо са прилогом од изабраних фотографија (по могућству смањених)"
+
+#: ../src/f-spot.glade.h:78
+msgid "Crop photo to _fit"
+msgstr "Исе_ци слику да стане"
+
+#: ../src/f-spot.glade.h:79
+msgid "Current date:"
+msgstr "Тренутни датум:"
+
+#: ../src/f-spot.glade.h:80
+msgid "Custom Theme"
+msgstr "Произвољна тема"
+
+#: ../src/f-spot.glade.h:81
+msgid "Detect duplicates"
+msgstr "Нађи дупликате"
+
+#: ../src/f-spot.glade.h:82
+msgid "Display File _Names"
+msgstr "Прикажи _имена датотека"
+
+#: ../src/f-spot.glade.h:83
+msgid "Display only those photos that were imported in specified Rolls."
+msgstr "Прикажи само оне фотографије које су увезене у одређеном увожењу."
+
+#: ../src/f-spot.glade.h:84
+msgid "Do not send a mail"
+msgstr "Не шаљи е-пошту"
+
+#: ../src/f-spot.glade.h:85
+msgid "E-_Mail:"
+msgstr "_Е-пошта:"
+
+#: ../src/f-spot.glade.h:86
+msgid "E_xport titles and comments"
+msgstr "_Извези наслове и примедбе"
+
+#: ../src/f-spot.glade.h:87
+msgid "Edit Tag Icon"
+msgstr "Измени икону ознаке"
+
+#: ../src/f-spot.glade.h:88
+msgid "Edit icon"
+msgstr "Измени икону"
+
+#: ../src/f-spot.glade.h:90
+msgid "Estimated new size"
+msgstr "Процењена нова величина"
+
+#: ../src/f-spot.glade.h:91
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:6
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:8
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:9
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:6
+#: ../extensions/Exporters/TabbloExport/TabbloExport.glade.h:3
+msgid "Export"
+msgstr "Извези"
+
+#: ../src/f-spot.glade.h:92
+msgid "Extra large"
+msgstr "Екстра велико"
+
+#: ../src/f-spot.glade.h:93
+msgid "F-Spot"
+msgstr "Ф-број"
+
+#: ../src/f-spot.glade.h:94
+msgid "F-Spot View"
+msgstr "Ф-број преглед"
+
+#: ../src/f-spot.glade.h:96
+msgid "Filter on selected rolls"
+msgstr "Филтрирај изабрана увожења"
+
+#: ../src/f-spot.glade.h:97
+msgid "Fin_d"
+msgstr "_Нађи"
+
+#: ../src/f-spot.glade.h:99
+msgid "From List:"
+msgstr "Из листе: "
+
+#: ../src/f-spot.glade.h:100
+msgid "From gtkrc File:"
+msgstr "Из gtkrc датотеке: "
+
+#: ../src/f-spot.glade.h:101
+msgid ""
+"Full Page\n"
+"Standard - 4x6"
+msgstr ""
+"Пуна страна\n"
+"Обично — 10x15"
+
+#: ../src/f-spot.glade.h:103
+msgid "G_allery:"
+msgstr "_Галерија:"
+
+#: ../src/f-spot.glade.h:104
+msgid "Gallery"
+msgstr "Галерија"
+
+#: ../src/f-spot.glade.h:105
+msgid ""
+"Hairline\n"
+"0.25\"\n"
+"0.5\"\n"
+"1\"\n"
+msgstr ""
+"Танка\n"
+"0,6см\n"
+"1,2см\n"
+"2,5см\n"
+
+#: ../src/f-spot.glade.h:110
+msgid "Images tagged with:"
+msgstr "Слике означене са:"
+
+#. Translators: this string means 'source of import'
+#: ../src/f-spot.glade.h:113
+msgid "Import Source:"
+msgstr "Извор увоза:"
+
+#: ../src/f-spot.glade.h:114
+msgid "Include subfolders"
+msgstr "Укључи поддиректоријуме."
+
+#: ../src/f-spot.glade.h:115
+msgid "Large"
+msgstr "Велика"
+
+#: ../src/f-spot.glade.h:116
+msgid "Make F-Spot your screensaver"
+msgstr "Постави Ф-број као чувар екрана"
+
+#: ../src/f-spot.glade.h:117
+msgid "Manage _Extensions"
+msgstr "Уреди п_роширења"
+
+#: ../src/f-spot.glade.h:118
+msgid "Manage your custom selection ratios"
+msgstr "Уредите произвољне односе избора"
+
+#: ../src/f-spot.glade.h:119
+msgid "Medium"
+msgstr "Средње"
+
+#: ../src/f-spot.glade.h:120
+msgid "N_umber of Copies:"
+msgstr "_Број умножака:"
+
+#: ../src/f-spot.glade.h:122
+msgid "No _image"
+msgstr "Нема _слика"
+
+#: ../src/f-spot.glade.h:123
+msgid ""
+"None\n"
+"Title\n"
+"Filename\n"
+"Date\n"
+"Photo Details"
+msgstr ""
+"Ништа\n"
+"Наслов\n"
+"Име датотеке\n"
+"Датум\n"
+"Детаљи слике"
+
+#: ../src/f-spot.glade.h:128
+msgid "Number of photos in selected rolls:"
+msgstr "Број фотографија у изабраним увожењима:"
+
+#: ../src/f-spot.glade.h:129
+msgid "Number of pictures"
+msgstr "Број слика"
+
+#: ../src/f-spot.glade.h:130
+msgid "Only photos taken within these dates will be displayed."
+msgstr "Само фотографије настале унутар ових датума ће бити приказане."
+
+#: ../src/f-spot.glade.h:131
+msgid "Open _Folder..."
+msgstr "Отвори _фасциклу..."
+
+#: ../src/f-spot.glade.h:133
+msgid "Original size (possible very large file size)"
+msgstr "Оригинална величина (могућа огромна величина датотеке)"
+
+#: ../src/f-spot.glade.h:134
+msgid "P_arent Tag:"
+msgstr "_Родитељска ознака"
+
+#: ../src/f-spot.glade.h:135
+msgid "P_hoto Source:"
+msgstr "И_звор слике:"
+
+#: ../src/f-spot.glade.h:136
+msgid "Page 1 of 3"
+msgstr "Страна 1 од 3"
+
+#: ../src/f-spot.glade.h:137
+msgid "Page Set_up..."
+msgstr "Подеша_вање стране..."
+
+#: ../src/f-spot.glade.h:138
+msgid "Pause"
+msgstr "Пауза"
+
+#: ../src/f-spot.glade.h:139
+msgid "Photo 0 of 0"
+msgstr "Слика 0 од 0"
+
+#: ../src/f-spot.glade.h:140
+msgid "Photo _Size:"
+msgstr "_Величина слике:"
+
+#: ../src/f-spot.glade.h:141
+msgid "Preferences"
+msgstr "Поставке"
+
+#: ../src/f-spot.glade.h:143
+msgid "Print crop _marks"
+msgstr "Штампај ознаке за _сечење"
+
+#: ../src/f-spot.glade.h:144
+msgid "Print..."
+msgstr "Штампај..."
+
+#: ../src/f-spot.glade.h:145
+msgid "Re_fresh Thumbnail"
+msgstr "_Освежи мањи приказ"
+
+#: ../src/f-spot.glade.h:147
+msgid "Repair"
+msgstr "Поправи"
+
+#: ../src/f-spot.glade.h:150
+msgid "Select A Folder"
+msgstr "Изаберите фасциклу"
+
+#: ../src/f-spot.glade.h:151
+msgid "Select A gtkrc File"
+msgstr "Изаберите gtkrc датотеку"
+
+#: ../src/f-spot.glade.h:152
+msgid "Select Photos to Copy From Camera..."
+msgstr "Изаберите фотографије за пребацивање са апарата..."
+
+#: ../src/f-spot.glade.h:154
+msgid "Select _None"
+msgstr "Изабери _ништа"
+
+#: ../src/f-spot.glade.h:155
+msgid "Select a Tag..."
+msgstr "Изаберите ознаку..."
+
+#: ../src/f-spot.glade.h:156
+msgid "Select the camera from which you want to transfer files"
+msgstr "Изаберите апарат са којег желите да пребаците датотеке."
+
+#: ../src/f-spot.glade.h:157
+msgid "Selected Camera: "
+msgstr "Изабрани апарат:"
+
+#: ../src/f-spot.glade.h:158
+msgid ""
+"Selection\n"
+"Gallery\n"
+"Viewport"
+msgstr ""
+"Избор\n"
+"Галерија\n"
+"Приказано"
+
+#: ../src/f-spot.glade.h:161
+msgid "Selection Constraints"
+msgstr "Ограничења избора"
+
+#: ../src/f-spot.glade.h:162
+msgid "Send by _Mail..."
+msgstr "П_ошаљи преко е-поште..."
+
+#: ../src/f-spot.glade.h:163
+msgid "Set Rating Filter"
+msgstr "Постави филтер оцена"
+
+#: ../src/f-spot.glade.h:164
+msgid "Set as _Background"
+msgstr "Постави за по_задину"
+
+#: ../src/f-spot.glade.h:165
+msgid "Set date range"
+msgstr "Постави опсег датума"
+
+#: ../src/f-spot.glade.h:167
+msgid "Show all photos."
+msgstr "Прикажи све фотографије"
+
+#: ../src/f-spot.glade.h:168
+msgid "Show or hide the side pane"
+msgstr "Прикажи или сакриј бочну површ"
+
+#: ../src/f-spot.glade.h:169
+msgid "Show or hide the toolbar"
+msgstr "Прикажи или сакриј алатницу"
+
+#: ../src/f-spot.glade.h:170
+msgid "Side _pane"
+msgstr "_Бочна површ"
+
+#: ../src/f-spot.glade.h:171
+msgid "Side_bar"
+msgstr "Бочна _линија"
+
+#: ../src/f-spot.glade.h:172
+msgid "Small"
+msgstr "Мала"
+
+#: ../src/f-spot.glade.h:173
+msgid "Space all photos by"
+msgstr "Одвоји све лике од"
+
+#: ../src/f-spot.glade.h:174
+msgid "Specify if an original size picture should be rotated or not. Smaller sizes are automatically rotated."
+msgstr "Одреди да ли слика у изворниј величини треба бити ротирана или не. Мање величине се саме ротирају."
+
+#: ../src/f-spot.glade.h:175
+msgid "Strip image _metadata"
+msgstr "Одбаци м_етаподатке слике"
+
+#: ../src/f-spot.glade.h:176
+msgid "System Theme"
+msgstr "Системска тема"
+
+#: ../src/f-spot.glade.h:177
+msgid "T_ags"
+msgstr "_Ознаке"
+
+#: ../src/f-spot.glade.h:178
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:1178
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:1179
+msgid "Tags: "
+msgstr "Ознаке: "
+
+#. Note for translators: meant as Temperature
+#: ../src/f-spot.glade.h:180
+msgid "Te_mp:"
+msgstr "Те_мп:"
+
+#: ../src/f-spot.glade.h:181
+msgid "Thumbnail _elements"
+msgstr "Елементи _умањеног приказа"
+
+#: ../src/f-spot.glade.h:182
+msgid "Tiny"
+msgstr "Танко"
+
+#: ../src/f-spot.glade.h:183
+msgid "Too_lbar"
+msgstr "_Алатница"
+
+#: ../src/f-spot.glade.h:184
+msgid "Total original size"
+msgstr "Укупна изворна величина"
+
+#: ../src/f-spot.glade.h:185
+msgid "Try to use the system display profile"
+msgstr "Покушајте са системским профилом екрана"
+
+#: ../src/f-spot.glade.h:186
+msgid "View"
+msgstr "Преглед"
+
+#: ../src/f-spot.glade.h:187
+msgid "Will print using: US Letter size on Generic Postscript"
+msgstr "Штампаће користећи: САД Писмо величину на обичном ПостСкрипту"
+
+#: ../src/f-spot.glade.h:188
+msgid "Write _metadata to file"
+msgstr "Упиши _метаподатке у датотеку"
+
+#: ../src/f-spot.glade.h:189
+msgid "Zoom _in"
+msgstr "У_већај"
+
+#: ../src/f-spot.glade.h:190
+msgid "Zoom _out"
+msgstr "У_мањи"
+
+#: ../src/f-spot.glade.h:191
+msgid "Zoom in"
+msgstr "Увећава преглед слике"
+
+#: ../src/f-spot.glade.h:192
+msgid "Zoom out"
+msgstr "Умањује преглед слике"
+
+#: ../src/f-spot.glade.h:194
+msgid "_Attach Tag to Selection"
+msgstr "_Додај ознаку на изабране"
+
+#: ../src/f-spot.glade.h:195
+msgid "_Border:"
+msgstr "_Ивица:"
+
+#: ../src/f-spot.glade.h:196
+msgid "_Brightness:"
+msgstr "_Осветљеност:"
+
+#: ../src/f-spot.glade.h:198
+msgid "_Clear Rating Filter"
+msgstr "Очисти филтер _оцена"
+
+#: ../src/f-spot.glade.h:199
+msgid "_Clear Roll Filter"
+msgstr "Очисти филтер _увожења"
+
+#: ../src/f-spot.glade.h:200
+msgid "_Components"
+msgstr "_Делови"
+
+#: ../src/f-spot.glade.h:201
+msgid "_Contents"
+msgstr "_Садржај"
+
+#: ../src/f-spot.glade.h:202
+#: ../extensions/Exporters/ZipExport/ZipExport.glade.h:1
+msgid "_Create"
+msgstr "_Направи"
+
+#: ../src/f-spot.glade.h:203
+msgid "_Create Mail"
+msgstr "Направи _е-писмо"
+
+#: ../src/f-spot.glade.h:204
+msgid "_Dates"
+msgstr "_Датуми"
+
+#: ../src/f-spot.glade.h:206
+msgid "_Delete Selected Tag"
+msgstr "_Уклони изабрану ознаку"
+
+#: ../src/f-spot.glade.h:207
+msgid "_Delete Version"
+msgstr "_Уклони издање"
+
+#: ../src/f-spot.glade.h:208
+msgid "_Display:"
+msgstr "_Прикажи:"
+
+#: ../src/f-spot.glade.h:209
+msgid "_Edit"
+msgstr "_Уређивање"
+
+#: ../src/f-spot.glade.h:210
+msgid "_Edit Selected Tag..."
+msgstr "Уре_ди изабрану ознаку..."
+
+#: ../src/f-spot.glade.h:211
+msgid "_Export"
+msgstr "И_звези"
+
+#: ../src/f-spot.glade.h:212
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:15
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:20
+msgid "_Export tags"
+msgstr "Извези _ознаке"
+
+#: ../src/f-spot.glade.h:213
+msgid "_Export to"
+msgstr "Извези _у"
+
+#: ../src/f-spot.glade.h:214
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:15
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:21
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:12
+msgid "_Export to Album:"
+msgstr "Извези у _албум:"
+
+#: ../src/f-spot.glade.h:215
+msgid "_Exposure:"
+msgstr "_Експозиција:"
+
+#: ../src/f-spot.glade.h:216
+msgid "_Filmstrip"
+msgstr "_Филмска трака"
+
+# bug: flickr
+#: ../src/f-spot.glade.h:217
+msgid "_Flickr"
+msgstr "_Flickr"
+
+#: ../src/f-spot.glade.h:218
+msgid "_Folder"
+msgstr "_Директоријумима"
+
+#: ../src/f-spot.glade.h:219
+msgid "_Fullscreen"
+msgstr "_Цео екран"
+
+#: ../src/f-spot.glade.h:220
+msgid "_Gallery"
+msgstr "_Галерија"
+
+#: ../src/f-spot.glade.h:221
+msgid "_Help"
+msgstr "_Помоћ"
+
+#: ../src/f-spot.glade.h:222
+msgid "_Hidden"
+msgstr "_Скривено"
+
+#: ../src/f-spot.glade.h:223
+msgid "_Hue:"
+msgstr "_Нијанса:"
+
+#: ../src/f-spot.glade.h:224
+msgid "_Icon:"
+msgstr "_Икона:"
+
+#: ../src/f-spot.glade.h:225
+msgid "_Import..."
+msgstr "Ув_ези..."
+
+#: ../src/f-spot.glade.h:226
+msgid "_Interpolate image on zoom"
+msgstr "_Интерполиши слику при увећању"
+
+#: ../src/f-spot.glade.h:227
+msgid "_Large"
+msgstr "_Велика"
+
+#: ../src/f-spot.glade.h:228
+msgid "_Last Import Roll"
+msgstr "_Последње увожење"
+
+#: ../src/f-spot.glade.h:229
+msgid "_Loupe"
+msgstr "_Лупа"
+
+#: ../src/f-spot.glade.h:230
+msgid "_Medium"
+msgstr "_Средња"
+
+#: ../src/f-spot.glade.h:231
+msgid "_Month"
+msgstr "_Месецима"
+
+#: ../src/f-spot.glade.h:232
+msgid "_New Window"
+msgstr "_Нови прозор"
+
+#: ../src/f-spot.glade.h:233
+msgid "_Open album in browser when done uploading"
+msgstr "Отвори _албум у разгледачу по завршеном набацивању"
+
+#: ../src/f-spot.glade.h:234
+msgid "_Open destination when done exporting"
+msgstr "Отвори _одредиште по завршеном извозу."
+
+#: ../src/f-spot.glade.h:235
+msgid "_Output:"
+msgstr "И_злаз:"
+
+#: ../src/f-spot.glade.h:236
+msgid "_Photo"
+msgstr "_Фотографија"
+
+#: ../src/f-spot.glade.h:237
+msgid "_Quit"
+msgstr "_Изађи"
+
+#: ../src/f-spot.glade.h:238
+msgid "_Ratings"
+msgstr "_Оцене"
+
+#: ../src/f-spot.glade.h:240
+msgid "_Remove Tag From Selection"
+msgstr "У_клони ознаку из избора"
+
+#: ../src/f-spot.glade.h:241
+msgid "_Rename Version"
+msgstr "П_реименуј издање"
+
+#: ../src/f-spot.glade.h:242
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:16
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:17
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:20
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:24
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:14
+msgid "_Resize to: "
+msgstr "_Величина на: "
+
+#: ../src/f-spot.glade.h:244
+msgid "_Saturation:"
+msgstr "_Засићеност:"
+
+#: ../src/f-spot.glade.h:245
+msgid "_Scale photos to no larger than: "
+msgstr "Промени величину на не већу од:"
+
+#: ../src/f-spot.glade.h:246
+msgid "_Select Import Rolls..."
+msgstr "_Изабери увожења..."
+
+#: ../src/f-spot.glade.h:247
+msgid "_Set Date Range..."
+msgstr "Постави опсег _датума..."
+
+#: ../src/f-spot.glade.h:248
+msgid "_Set Rating filter..."
+msgstr "Постави филтер _оцена..."
+
+#: ../src/f-spot.glade.h:249
+msgid "_Sharpen..."
+msgstr "_Изоштри..."
+
+#: ../src/f-spot.glade.h:250
+msgid "_Slideshow"
+msgstr "По_кретни приказ"
+
+#: ../src/f-spot.glade.h:251
+msgid "_Small"
+msgstr "_Мала"
+
+#: ../src/f-spot.glade.h:252
+msgid "_Strip metadata"
+msgstr "Од_баци метаподатке"
+
+#: ../src/f-spot.glade.h:253
+msgid "_Tag Icons"
+msgstr "_Иконе ознака"
+
+#: ../src/f-spot.glade.h:254
+msgid "_Tag Name:"
+msgstr "И_ме ознаке:"
+
+#: ../src/f-spot.glade.h:255
+msgid "_Tags"
+msgstr "_Ознаке"
+
+#: ../src/f-spot.glade.h:256
+msgid "_Timeline"
+msgstr "Линија _времена"
+
+#: ../src/f-spot.glade.h:257
+msgid "_Tint:"
+msgstr "_Прелив:"
+
+#: ../src/f-spot.glade.h:258
+msgid "_Toolbar"
+msgstr "_Алатница"
+
+#: ../src/f-spot.glade.h:259
+msgid "_Tools"
+msgstr "Ала_ти"
+
+#: ../src/f-spot.glade.h:260
+msgid "_URI:"
+msgstr "_Адреса:"
+
+#: ../src/f-spot.glade.h:261
+msgid "_Untagged Photos"
+msgstr "_Фотографије без ознака"
+
+#: ../src/f-spot.glade.h:262
+msgid "_Version"
+msgstr "И_здање"
+
+#: ../src/f-spot.glade.h:263
+msgid "_View"
+msgstr "П_реглед"
+
+#: ../src/f-spot.glade.h:264
+msgid "_Virtual Filesystem"
+msgstr "_Виртуелни систем датотека"
+
+#. at, or after a date, or between dates
+#: ../src/f-spot.glade.h:267
+msgid ""
+"at\n"
+"after\n"
+"between"
+msgstr ""
+" \n"
+"након\n"
+"између"
+
+#: ../src/f-spot.glade.h:270
+msgid "difference:"
+msgstr "разлика:"
+
+#: ../src/f-spot.glade.h:271
+msgid "img_000.jpg"
+msgstr "img_000.jpg"
+
+#: ../src/f-spot.glade.h:272
+msgid "min. Starting at {0}"
+msgstr "мин. Почињем од {0}"
+
+#: ../src/f-spot.glade.h:274
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:18
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:19
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:23
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:26
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:16
+msgid "pixels"
+msgstr "тачака"
+
+#: ../src/f-spot.glade.h:275
+msgid "x"
+msgstr "x"
+
+#: ../tools/f-spot-screensaver.desktop.in.h:1
+msgid "Display a slideshow from F-Spot"
+msgstr "Прикажи покретни приказ из Ф-броја"
+
+#: ../tools/f-spot-screensaver.desktop.in.h:2
+msgid "F-Spot photos"
+msgstr "Ф-број фотографије"
+
+#: ../extensions/Exporters/CDExport/CDExport.addin.xml.h:1
+msgid "_CD..."
+msgstr "_ЦД..."
+
+#: ../extensions/Exporters/CDExport/CDExport.cs:219
+#, csharp-format
+msgid "Transferring picture \"{0}\" To CD"
+msgstr "Пребацујем слику „{0}“ на ЦД"
+
+#: ../extensions/Exporters/CDExport/CDExport.cs:246
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:379
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:284
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:808
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:552
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:702
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:606
+msgid "Done Sending Photos"
+msgstr "Слање фотографија је завршено"
+
+#: ../extensions/Exporters/CDExport/CDExport.cs:248
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:286
+msgid "Transfer Complete"
+msgstr "Пренос је завршен"
+
+#: ../extensions/Exporters/CDExport/CDExport.cs:255
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:291
+msgid "Error While Transferring"
+msgstr "Грешка у току пребацивања"
+
+#: ../extensions/Exporters/CDExport/CDExport.cs:262
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:310
+msgid "Error Transferring"
+msgstr "Грешка у преацивању"
+
+#: ../extensions/Exporters/CDExport/CDExport.cs:280
+msgid "copying..."
+msgstr "умножавам..."
+
+#: ../extensions/Exporters/CDExport/CDExport.cs:296
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:332
+msgid "Error: Error while transferring; Aborting"
+msgstr "Грешка: грешка у току пребацивања; одустајем"
+
+#: ../extensions/Exporters/CDExport/CDExport.cs:299
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:335
+msgid "Error: File Already Exists; Aborting"
+msgstr "Грешка: датотека већ постоји; одустајем"
+
+#: ../extensions/Exporters/CDExport/CDExport.glade.h:1
+msgid "<b><i>There is some previously scheduled items to write</i></b>"
+msgstr "<b><i>Већ постоје ставке које су заказане за упис</i></b>"
+
+#: ../extensions/Exporters/CDExport/CDExport.glade.h:2
+msgid "<b>Photos to Burn</b>"
+msgstr "<b>Слике за упис на ЦД</b>"
+
+#: ../extensions/Exporters/CDExport/CDExport.glade.h:4
+msgid "Create CD"
+msgstr "Направи ЦД"
+
+#: ../extensions/Exporters/CDExport/CDExport.glade.h:6
+msgid "Size of the exported selection:"
+msgstr "Величина избора за извожење:"
+
+#: ../extensions/Exporters/CDExport/CDExport.glade.h:7
+msgid "_Browse Previously Scheduled Files"
+msgstr "_Разгледај претходно заказане датотеке"
+
+#: ../extensions/Exporters/CDExport/CDExport.glade.h:8
+msgid "_Write only these photos to CD"
+msgstr "_Упиши само ове форографије на ЦД"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.addin.xml.h:1
+msgid "_23hq..."
+msgstr "_23hq..."
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.addin.xml.h:2
+msgid "_Flickr..."
+msgstr "_Фликр..."
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.addin.xml.h:3
+msgid "_Zooomr..."
+msgstr "_Зооомр..."
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:105
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:5
+msgid "Authorize"
+msgstr "Овласти"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:111
+#, csharp-format
+msgid "Return to this window after you have finished the authorization process on {0} and click the \"Complete Authorization\" button below"
+msgstr "Вратите се на ово прозорче након овлашћивања на {0} и притисните дугме „Заврши овлашћење“"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:112
+msgid "Complete Authorization"
+msgstr "Заврши овлашћивање"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:117
+#, csharp-format
+msgid "Logging into {0}"
+msgstr "Пријави се на {0}"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:118
+msgid "Checking credentials..."
+msgstr "Проверавам уверења..."
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:125
+#, csharp-format
+msgid "Welcome {0} you are connected to {1}"
+msgstr "Добродошли {0}, повезани сте на {1}"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:128
+#, csharp-format
+msgid "Sign in as a different user"
+msgstr "Пријави се као други корисник"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:133
+#, csharp-format
+msgid "Used {0} of your allowed {1} monthly quota"
+msgstr "Искоришћено {0} од ваше дозвољене {1} месечне квоте"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:297
+msgid "Unable to log on"
+msgstr "Не могу да се пријавим"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:317
+#, csharp-format
+msgid "Waiting for response {0} of {1}"
+msgstr "Чекам одговор {0} од {1}"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:344
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:241
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:779
+#, csharp-format
+msgid "Uploading picture \"{0}\""
+msgstr "Набацујем слику „{0}“"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:367
+#, csharp-format
+msgid "Error Uploading To {0}: {1}"
+msgstr "Грешка при набацивању на {0}: {1}"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:381
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:810
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:554
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:704
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:608
+msgid "Upload Complete"
+msgstr "Набацивање готово"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:454
+msgid "Unable to log on."
+msgstr "Не могу да се пријавим."
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:455
+#, csharp-format
+msgid "F-Spot was unable to log on to {0}.  Make sure you have given the authentication using {0} web browser interface."
+msgstr "Ф-број се не може пријавити на {0}.  Проверите да ли сте се пријавили користећи окружење Интернет прегледника {0}."
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:475
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:732
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:478
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:598
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:521
+msgid "Uploading Pictures"
+msgstr "Набацујем слике"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:4
+msgid "<b>Viewing permissions</b>"
+msgstr "<b>Овлашћења прегледа</b>"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:7
+msgid "Export tag _hierarchy"
+msgstr "Извези _хијерархију ознака"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:8
+msgid "F-Spot needs your authorization in order to upload photos to your {0} account. Press the \"Authorize\" button to open a web browser and give F-Spot the authorization. "
+msgstr "Ф-броју је потребно Ваше овлашћење како би набацио слике на Ваш {0} налог. Притисните дугме „Овласти“ како би отворили Интернет прегледник и дали Ф-броју овлашћење."
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:9
+msgid "Ignore _top level tags"
+msgstr "Занемари ознаке _највишег нивоа"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:10
+msgid "Private"
+msgstr "Приватно"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:11
+msgid "Public"
+msgstr "Јавно"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:12
+msgid "Strip _metadata"
+msgstr "Одбаци _метаподатке"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:13
+msgid "Visible to Family"
+msgstr "Видљиво породици"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:14
+msgid "Visible to Friends"
+msgstr "Видљиво пријатељима"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:17
+msgid "_View photos in browser when done uploading"
+msgstr "_Погледај слике у разгледачу по завршеном постављању"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.addin.xml.h:1
+msgid "F_older..."
+msgstr "_Директоријум..."
+
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:139
+msgid "Select Export Folder"
+msgstr "Изаберите директоријум за извоз"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:197
+msgid "Building Gallery"
+msgstr "Правим галерију"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:247
+#, csharp-format
+msgid "Error uploading picture \"{0}\" to Gallery:{2}{1}"
+msgstr "Грешка при набацивању слике „{0}“ у Галерију:{2}{1}"
+
+#. Note for translators: light as clear, opposite as dark
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:809
+msgid "Light"
+msgstr "Светло"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:810
+msgid "Dark"
+msgstr "Мрак"
+
+#. Abbreviation of previous
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:990
+msgid "Prev"
+msgstr "Прет"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:1102
+msgid "Gallery generated by"
+msgstr "Галерија је направљена помоћу"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:1142
+msgid "Show Styles"
+msgstr "Прикажи стилове"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:1143
+msgid "Hide Styles"
+msgstr "Сакриј стилове"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:1310
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:1442
+msgid "Page:"
+msgstr "Страница:"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:1
+msgid "\n"
+msgstr "\n"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:4
+msgid "<b>Export Method</b>"
+msgstr "<b>Начин извоза</b>"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:8
+msgid "Create _gallery using \"Original\""
+msgstr "Направи —галерију користећи „Оригинал“"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:9
+msgid "Create standalone _web gallery"
+msgstr "Направи самосталну _веб галерију"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:10
+msgid "D_escription:"
+msgstr "_Опис:"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:11
+msgid "Export _tags"
+msgstr "Извези _ознаке"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:12
+msgid "Export tag _icons"
+msgstr "Извези _иконице ознака"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:13
+msgid "Folder Export"
+msgstr "Извоз директоријума"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:14
+msgid "G_allery Name:"
+msgstr "_Назив галерије:"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:15
+msgid "Open _destination when done exporting"
+msgstr "Отвори _одредиште по завршеном извозу."
+
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:16
+msgid "_Folder:"
+msgstr "_Фасцикла:"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:18
+msgid "_Save the files only"
+msgstr "_Сачувај само датотеке"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.addin.xml.h:1
+msgid "Web _Gallery..."
+msgstr "_Веб галерију..."
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:52
+msgid ""
+"Cannot connect to a Gallery for which the version is unknown.\n"
+"Please check that you have Remote plugin 1.0.8 or later"
+msgstr ""
+"Не могу да се повежем на Галерију уколико не знам њено издање.\n"
+"Проверите да ли је инсталиран Remote додатак 1.0.8 или новији"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:393
+msgid "Invalid URL"
+msgstr "Погрешна адреса"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:394
+msgid "The gallery URL entry does not appear to be a valid URL"
+msgstr "Адреса галерије изгледа као да није исправна"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:404
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:431
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:442
+msgid "Error while connecting to Gallery"
+msgstr "Грешка при повезивању са Галеријом"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:405
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:432
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:443
+#, csharp-format
+msgid "The following error was encountered while attempting to log in: {0}"
+msgstr "Следећа грешка се јавила при покушају повезивања на: {0}"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:419
+msgid "A Gallery with this name already exists"
+msgstr "Већ постоји галерија са овим називом"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:420
+#, csharp-format
+msgid "There is already a Gallery with the same name in your registered Galleries. Please choose a unique name."
+msgstr "У галеријама које сте регистровали већ постоји једна са овим називом. Изаберите неки други назив."
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:530
+msgid "(TopLevel)"
+msgstr "(ГорњиНиво)"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:592
+msgid "Invalid Gallery name"
+msgstr "Неисправно име Галерије"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:593
+msgid ""
+"The gallery name contains invalid characters.\n"
+"Only letters, numbers, - and _ are allowed"
+msgstr ""
+"Име галерије садржи неисправне карактере.\n"
+"Само слова, бројеви, „_“ и „_“ су дозвољени."
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:798
+#, csharp-format
+msgid "Error uploading picture \"{0}\" to Gallery: {1}"
+msgstr "Грешка при набацивању слике „{0}“ у Галерију: {1}"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:826
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:725
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:629
+msgid "(No Gallery)"
+msgstr "(Без Галерије)"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:918
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:852
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:725
+msgid "(Not Connected)"
+msgstr "(Није повезан)"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:919
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:853
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:726
+msgid "(No Albums)"
+msgstr "(Нема албума)"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:971
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:915
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:767
+msgid "No account selected"
+msgstr "Нису изабрани налози"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:5
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:5
+msgid "<span weight='bold' size='larger'>Error Connecting to Gallery</span>\n"
+msgstr "<span weight='bold' size='larger'>Грешка при повезивању на Галерију</span>\n"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:9
+msgid "Export _titles and comments"
+msgstr "Извези _наслове и примедбе"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:10
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:10
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:7
+msgid "Open _album in browser when done uploading"
+msgstr "Отвори _албум у разгледачу по завршеном набацивању"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:11
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:11
+msgid "Please verify that the settings for this gallery are correct."
+msgstr "Проверите да ли су подешавања за ову галерију исправна."
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:12
+msgid "U_RL:"
+msgstr "_Адреса:"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:13
+msgid "_Album Name:"
+msgstr "_Име албума:"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:14
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:19
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:11
+msgid "_Description:"
+msgstr "_Опис:"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:16
+msgid "_Gallery Name:"
+msgstr "_Назив галерије:"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:17
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:22
+msgid "_Gallery:"
+msgstr "_Галерија:"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:18
+msgid "_Parent Album:"
+msgstr "_Родитељски албум:"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:19
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:23
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:13
+#: ../extensions/Exporters/TabbloExport/TabbloExport.glade.h:4
+msgid "_Password:"
+msgstr "_Лозинка:"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:21
+msgid "_Title:"
+msgstr "_Наслов:"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:22
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:25
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:15
+#: ../extensions/Exporters/TabbloExport/TabbloExport.glade.h:5
+msgid "_Username:"
+msgstr "_Корисничко име:"
+
+#: ../extensions/Exporters/GalleryExport/GalleryRemote.cs:361
+msgid "Error reading server response"
+msgstr "Грешка у читању одговора са сервера"
+
+#. failed to find the response
+#: ../extensions/Exporters/GalleryExport/GalleryRemote.cs:373
+msgid "Server returned response without Gallery content"
+msgstr "Сервер је вратио одговор без садржаја Гелерије"
+
+#: ../extensions/Exporters/GalleryExport/GalleryRemote.cs:710
+msgid "Error while creating new album"
+msgstr "Грешка приликом прављења новог албума"
+
+#: ../extensions/Exporters/GalleryExport/GalleryRemote.cs:711
+#, csharp-format
+msgid ""
+"The following error was encountered while attempting to perform the requested operation:\n"
+"{0} ({1})"
+msgstr ""
+"Јавила се следећа грешка при покушају извођења затражене операције:\n"
+" {0} ({1})"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.addin.xml.h:1
+msgid "F_acebook..."
+msgstr "_Фејсбук..."
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:256
+msgid "Too many images to export"
+msgstr "Превише слика за извоз"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:256
+msgid "Facebook only permits 60 photographs per album.  Please refine your selection and try again."
+msgstr "Фејсбук дозвољава до 60 фотографија по албуму.  Смањите ваш избор и покушајте поново."
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:279
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:365
+msgid "You are not logged in."
+msgstr "Нисте пријављени."
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:320
+msgid "Waiting for authentication"
+msgstr "Чекам на пријаву"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:320
+msgid "F-Spot will now launch your browser so that you can log into Facebook.  Turn on the \"Save my login information\" checkbox on Facebook and F-Spot will log into Facebook automatically from now on."
+msgstr "Ф-бој ће покренути разгледач како би могли да се пријавите на Фејсбук.  Унутар Фејсбука укључите „Save my login information“ како би се  Ф-број могао самостално пријављивати."
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:326
+msgid "Error logging into Facebook"
+msgstr "Грешка при повезивању на Фејсбук"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:326
+msgid "There was a problem logging into Facebook.  Check your credentials and try again."
+msgstr "Јавила се грешка про пријави на Фејсбук.  Проверите акредитивно писмо и покушајте поново."
+
+#. Note for translators: {0} and {1} are respectively firstname and surname of the user
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:339
+#, csharp-format
+msgid "{0} {1} is logged into Facebook"
+msgstr "{0} {1} је пријављен на Фејсбук"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:492
+msgid "Album must have a name"
+msgstr "Морате именовати албум"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:492
+msgid "Please name your album or choose an existing album."
+msgstr "Унесите име албума или изаберите постојећи албум."
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:505
+msgid "Creating a new album failed"
+msgstr "Образовање новог албума није успело"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:505
+#, csharp-format
+msgid ""
+"An error occurred creating a new album.\n"
+"\n"
+"{0}"
+msgstr ""
+"Грешка приликом прављења новог албума.\n"
+"\n"
+"{0}"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:529
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:661
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:564
+#, csharp-format
+msgid "Uploading picture \"{0}\" ({1} of {2})"
+msgstr "Набацујем слику „{0}“ ({1} од {2})"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:543
+#, csharp-format
+msgid "Error Uploading To Facebook: {0}"
+msgstr "Грешка при набацивању на Фејсбук: {0}"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.glade.h:1
+msgid "Caption"
+msgstr "Наслов"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.glade.h:2
+msgid "Create a new album"
+msgstr "Направи нови албум"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.glade.h:3
+msgid "Description"
+msgstr "Опис"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.glade.h:4
+msgid "Export to Facebook"
+msgstr "Извези у Фејсбук"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.glade.h:5
+msgid "In this photo"
+msgstr "У овој фотографији"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.glade.h:7
+msgid "Login"
+msgstr "Пријави се"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.glade.h:8
+msgid "Logout"
+msgstr "Одјави се"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.glade.h:10
+msgid "This is who I am"
+msgstr "Ово сам ја"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.glade.h:11
+msgid "Use an existing album"
+msgstr "Користи потојећи албум"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.glade.h:12
+msgid "Who is this?"
+msgstr "Ко је ово?"
+
+#: ../extensions/Exporters/ZipExport/ZipExport.addin.xml.h:1
+msgid "Compressed fil_e..."
+msgstr "_Запакована датотека..."
+
+#: ../extensions/Exporters/ZipExport/ZipExport.cs:47
+msgid "This tool requires an active selection. Please select one or more pictures and try again"
+msgstr "Овај алат захтева активан избор. Изаберите област једне или више фотографија и поновите радњу"
+
+#: ../extensions/Exporters/ZipExport/ZipExport.cs:63
+msgid "Select export folder"
+msgstr "Изаберите директоријум за извоз"
+
+#: ../extensions/Exporters/ZipExport/ZipExport.cs:101
+msgid "Exporting files"
+msgstr "Извозим датотеке"
+
+#: ../extensions/Exporters/ZipExport/ZipExport.cs:107
+#, csharp-format
+msgid "Preparing photo \"{0}\""
+msgstr "Спремам слику „{0}“"
+
+#: ../extensions/Exporters/ZipExport/ZipExport.glade.h:2
+msgid "_File name:"
+msgstr "_Назив датотеке:"
+
+#: ../extensions/Exporters/ZipExport/ZipExport.glade.h:3
+msgid "_Location:"
+msgstr "_Место:"
+
+#: ../extensions/Exporters/ZipExport/ZipExport.glade.h:4
+msgid "_Scale:"
+msgstr "_Рашири:"
+
+#: ../extensions/Tools/MergeDb/MergeDb.addin.xml.h:1
+msgid "Merge Db"
+msgstr "Споји базе"
+
+#: ../extensions/Tools/MergeDb/MergeDb.cs:73
+msgid "Error opening the selected file"
+msgstr "Грешка при отварању изабране датотеке"
+
+#: ../extensions/Tools/MergeDb/MergeDb.cs:74
+#, csharp-format
+msgid ""
+"The file you selected is not a valid or supported database.\n"
+"\n"
+"Received exception \"{0}\"."
+msgstr ""
+"Изабрана датотека није исправна или подржана база података.\n"
+"\n"
+"Примљен изузетак „{0}“."
+
+#: ../extensions/Tools/MergeDb/MergeDb.glade.h:1
+msgid "<small><i>Choose the location of the database you want to import from</i></small>"
+msgstr "<small><i>Изаберите место базе из које желите да извршите увоз</i></small>"
+
+#: ../extensions/Tools/MergeDb/MergeDb.glade.h:2
+msgid ""
+"<small><i>Choose what to import from the selected db.\n"
+"\"New Rolls Only\" is the smart option that will avoid re-importing photos you could have imported during a previous operation.\n"
+"\"A Single Import Roll\" let you choose which roll you want to merge back.\n"
+"\"Everything\" will import everything, creating duplicates if you already imported from that database.</i></small>"
+msgstr ""
+"<small><i>Изаберите шта да увезем из изабране базе података.\n"
+"„Само нова увожења“ онемогућава поновно увожење већ увезених фотографија.\n"
+"„Раније увожење“ дозвољава враћање једног ранијег увожење.\n"
+"„Увези све“ увози све фотографије и прави дупликате уколико су слике већ биле увезене.</i></small>"
+
+#: ../extensions/Tools/MergeDb/MergeDb.glade.h:6
+msgid "<small><i>Copy the images locally or keep them where they are. If you chose the later, be sure that this location will stay accessible from f-spot.</i></small>"
+msgstr "<small><i>Умножава слике на локалном дику или их задржи где су сада. Уколико одложите ову радњу за касније, осигурајте се да место остане доступно из Ф-броја.</i></small>"
+
+#: ../extensions/Tools/MergeDb/MergeDb.glade.h:7
+msgid "A Single Import Roll"
+msgstr "Раније увожење"
+
+#: ../extensions/Tools/MergeDb/MergeDb.glade.h:8
+msgid "Copy images to photos folder"
+msgstr "Умножи слике у фасциклу са фотографијама"
+
+#: ../extensions/Tools/MergeDb/MergeDb.glade.h:9
+msgid "Database Location:"
+msgstr "Место базе:"
+
+#: ../extensions/Tools/MergeDb/MergeDb.glade.h:10
+msgid "Everything"
+msgstr "Увези све"
+
+#: ../extensions/Tools/MergeDb/MergeDb.glade.h:11
+msgid "Import:"
+msgstr "Увези:"
+
+#: ../extensions/Tools/MergeDb/MergeDb.glade.h:12
+msgid "Keep the images at their original location"
+msgstr "Задржи слике тамо где су сада"
+
+#: ../extensions/Tools/MergeDb/MergeDb.glade.h:13
+msgid "Merge another f-spot collection"
+msgstr "Споји још једну колекцију Ф-броја"
+
+#: ../extensions/Tools/MergeDb/MergeDb.glade.h:14
+msgid "New Rolls Only"
+msgstr "Само нова увожења"
+
+#: ../extensions/Tools/MergeDb/PickFolderDialog.cs:33
+#, csharp-format
+msgid ""
+"<big>The database refers to files contained in the <b>{0}</b> folder.\n"
+" Please select that folder so I can do the mapping.</big>"
+msgstr ""
+"<big>База се односи на датотеке из <b>{0}</b> фасцикле.\n"
+" Изаберите ту фасциклу како бих могао да их мапирам.</big>"
+
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.addin.xml.h:1
+msgid "_PicasaWeb..."
+msgstr "_ПикасаВеб..."
+
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:441
+msgid "Error while creating Album"
+msgstr "Грешка приликом прављења албума"
+
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:442
+#, csharp-format
+msgid "The following error was encountered while attempting to create an album: {0}"
+msgstr "Јавила се следећа грешка при покушају да направим албум: {0}"
+
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:621
+#, csharp-format
+msgid "{0} Sent"
+msgstr "{0} послато"
+
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:623
+#, csharp-format
+msgid "{0} of approx. {1}"
+msgstr "{0} од приближно {1}"
+
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:692
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:593
+#, csharp-format
+msgid "Error Uploading To Gallery: {0}"
+msgstr "Грешка при набацивању у Галерију: {0}"
+
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:776
+msgid "Available space:"
+msgstr "Преостало место:"
+
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:893
+#, csharp-format
+msgid ""
+"<small>The selected album has a limit of {0} pictures,\n"
+"which would be passed with the current selection of {1} images</small>"
+msgstr ""
+"<small>Изабрани албум је ограничен на {0} слика,\n"
+"које ће бити послате са тренутно изабраних {1} слика</small>"
+
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:3
+msgid "<b>PicasaWeb Export</b>"
+msgstr "<b>Извоз на ПикасаВеб</b>"
+
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:7
+msgid "<span weight='bold' size='larger'>Your Google Account is locked</span>\n"
+msgstr "<span weight='bold' size='larger'>Ваш Гугл налог је закључан</span>\n"
+
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:12
+msgid ""
+"Please verify that the settings for this gallery are correct.\n"
+"Enter the letters as they are shown in the image in\n"
+"the 'Captcha' field. <i>Letters are not case-sensitive</i>"
+msgstr ""
+"Проверите да ли су исправне поставке за ову гелерију.\n"
+"Унесите слова као што су приказана на слици унутар поља\n"
+"„Захват“. <i>Нису битна велика и мала слова</i>"
+
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:15
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:8
+msgid "Public Album"
+msgstr "Јавни албум"
+
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:16
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:10
+msgid "_Album Title:"
+msgstr "_Наслов албума:"
+
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:17
+msgid "_Autorotate"
+msgstr "_Сам ротирај"
+
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:18
+msgid "_Captcha:"
+msgstr "_Захват:"
+
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:3
+msgid "<b>SmugMug Export</b>"
+msgstr "<b>Извоз у СмугМуг</b>"
+
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:9
+msgid "_Account:"
+msgstr "_Налог:"
+
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.addin.xml.h:1
+msgid "_SmugMug..."
+msgstr "_СмугМуг..."
+
+#: ../extensions/Exporters/TabbloExport/Tabblo/Connection.cs:126
+#, csharp-format
+msgid "Uploading photo \"{0}\""
+msgstr "Набацујем слику „{0}“"
+
+#: ../extensions/Exporters/TabbloExport/Tabblo/Connection.cs:181
+msgid "Logging into Tabblo"
+msgstr "Пријављујем се на Таббло"
+
+#: ../extensions/Exporters/TabbloExport/Tabblo/Connection.cs:241
+msgid "Obtaining URL for upload"
+msgstr "Пробављам адресу за слање"
+
+#: ../extensions/Exporters/TabbloExport/TabbloExport.addin.xml.h:1
+msgid "_Tabblo..."
+msgstr "_Таббло..."
+
+#: ../extensions/Exporters/TabbloExport/TabbloExport.cs:165
+msgid "Done sending photos"
+msgstr "Слање фотографија је завршено"
+
+#: ../extensions/Exporters/TabbloExport/TabbloExport.cs:167
+msgid "Upload complete"
+msgstr "Набацивање је завршено"
+
+#: ../extensions/Exporters/TabbloExport/TabbloExport.cs:173
+msgid "Error uploading to Tabblo: "
+msgstr "Грешка при набацивању на Таббло: "
+
+#: ../extensions/Exporters/TabbloExport/TabbloExport.glade.h:2
+msgid "<b>Tabblo account</b>"
+msgstr "<b>Таббло налог</b>"
+
+#: ../extensions/Exporters/TabbloExport/TrustError.glade.h:1
+msgid "<b>{0}</b>."
+msgstr "<b>{0}</b>."
+
+#: ../extensions/Exporters/TabbloExport/TrustError.glade.h:2
+msgid "A trust error occured while attempting to access"
+msgstr "Јавила се грешка у овлашћењима при покушају повезивања"
+
+#: ../extensions/Exporters/TabbloExport/TrustError.glade.h:3
+msgid "Abort this session"
+msgstr "Одбаци ову сесију"
+
+#: ../extensions/Exporters/TabbloExport/TrustError.glade.h:4
+msgid "Always trust this site's certificate"
+msgstr "Увек веруј сертификатима са ове адресе"
+
+#: ../extensions/Exporters/TabbloExport/TrustError.glade.h:5
+msgid "Do you wish to:"
+msgstr "Да ли желите да:"
+
+#: ../extensions/Exporters/TabbloExport/TrustError.glade.h:6
+msgid "Trust Error"
+msgstr "Грешка у овлашћењима"
+
+#: ../extensions/Exporters/TabbloExport/TrustError.glade.h:7
+msgid "Trust the site's certificate this once"
+msgstr "Прихвати сертификат са ове адресе само сада"
+
+#~ msgid "Metadata Browser"
+#~ msgstr "Прегледач метаподатака"
+#~ msgid "Exported Locations"
+#~ msgstr "Извезене путање"
+#~ msgid ""
+#~ "From Screen\n"
+#~ "Standard RGB"
+#~ msgstr ""
+#~ "Са екрана\n"
+#~ "Стандардни RGB"
+#~ msgid ""
+#~ "Standard RGB\n"
+#~ "Image Profile\n"
+#~ "Custom\n"
+#~ msgstr ""
+#~ "Стандардни RGB\n"
+#~ "Профил слике\n"
+#~ "Произвољно\n"
+#~ msgid "Automatically adjust the colors"
+#~ msgstr "Сам подешава исправне боје"
+#~ msgid "Apply straightening"
+#~ msgstr "Примени исправљање"
+#~ msgid "Apply straightening to image"
+#~ msgstr "Примени исправљање на слици"
+#~ msgid "Adjust the angle of the image to straighten the horizon"
+#~ msgstr "Подешава угао слике ради исправљања искошеног хоризонта"
+#~ msgid "Create a soft focus visual effect"
+#~ msgstr "Прави ефекат благог фокуса"
+#~ msgid "Crop photo to selected area"
+#~ msgstr "Сече слику на изабрано подручје"
+#~ msgid "Remove redeye from selected area"
+#~ msgstr "Уклања црвенило очију са означеног подручја"
+#~ msgid "Select an area to remove redeye"
+#~ msgstr "Изаберите подручје за уклањање црвенила очију"
+#~ msgid "Constrain the aspect ratio of the selection"
+#~ msgstr "Фиксира размеру избора"
+#~ msgid "Reduce Red-Eye"
+#~ msgstr "Смањи црвенило очију"
+#~ msgid "Adjust the photo colors"
+#~ msgstr "Подешава боје на слици"
+#~ msgid "Convert the photo to black and white"
+#~ msgstr "Прави црно-белу слику"
+#~ msgid "Convert the photo to sepia tones"
+#~ msgstr "Прави слику у браон тоновима"
+#~ msgid "Exif"
+#~ msgstr "Еxif"
+#~ msgid "<b>Color Temperature</b>"
+#~ msgstr "<b>Температура боја</b>"
+#~ msgid "<b>Exposure</b>"
+#~ msgstr "<b>Експозиција</b>"
+#~ msgid "<b>Histo_gram</b>"
+#~ msgstr "<b>_Хистограм</b>"
+#~ msgid "<small> </small>"
+#~ msgstr "<small> </small>"
+#~ msgid "<small>C_ontrast:</small>"
+#~ msgstr "<small>_Контраст</small>"
+#~ msgid "<small>Te_mp:</small>"
+#~ msgstr "<small>_Темп:</small>"
+#~ msgid "<small>_Brightness:</small>"
+#~ msgstr "<small>_Осветљеност:</small>"
+#~ msgid "<small>_Exposure:</small>"
+#~ msgstr "<small>_Експозиција:</small>"
+#~ msgid "<small>_Hue:</small>"
+#~ msgstr "_Нијанса:"
+#~ msgid "<small>_Saturation:</small>"
+#~ msgstr "<small>_Засићеност:</small>"
+#~ msgid "<small>_Tint:</small>"
+#~ msgstr "Тонира_ње"
+#~ msgid "Ad_just Color..."
+#~ msgstr "Подеси _боју..."
+#~ msgid "Adjust Color"
+#~ msgstr "Подеси боју"
+#~ msgid "Reset"
+#~ msgstr "Поново постави"
+#~ msgid "So_urce Temp"
+#~ msgstr "_Привремени извор"
+

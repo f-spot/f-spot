@@ -1,0 +1,75 @@
+<Addin namespace = "FSpot" 
+       id = "Core" 
+       version = "0.5.0.0"
+       compatVersion = "0.4.4.100"
+       isroot="true">
+
+	<Runtime>
+		<Import assembly="f-spot.exe" />
+		<Import assembly="FSpot.Widgets.dll" />
+	</Runtime>
+
+	<ExtensionPoint path = "/FSpot/Editors">
+		<ExtensionNode type="FSpot.Editors.EditorNode"/>
+	</ExtensionPoint>
+
+	<ExtensionPoint path = "/FSpot/Menus">
+		<ExtensionNode type="FSpot.Extensions.SubmenuNode"/>
+	</ExtensionPoint>
+
+	<ExtensionPoint path = "/FSpot/Sidebar">
+		<ExtensionNode type="FSpot.Widgets.SidebarPageNode"/>
+	</ExtensionPoint>
+
+	<ExtensionPoint path = "/FSpot/Services">
+		<ExtensionNode name="Service" type="FSpot.Extensions.ServiceNode"/>
+	</ExtensionPoint>
+
+	<Extension path = "/FSpot/Menus">
+		<Menu id="Exports" _label="Export to" />
+	</Extension>
+
+	<Extension path = "/FSpot/Menus">
+		<Menu id="Tools" _label="Tools" />
+	</Extension>
+
+	<Extension path = "/FSpot/Menus">
+		<Menu id = "PhotoPopup" />
+	</Extension>
+
+	<ConditionType id="PhotoSelection" type="FSpot.Extensions.PhotoSelectionCondition" />
+	<ConditionType id="ViewMode" type="FSpot.Extensions.ViewModeCondition" />
+
+	<Extension path = "/FSpot/Menus/PhotoPopup">
+		<Command id = "CopyLocation" _label = "Copy Photo Locat_ion" command_type = "FSpot.Extensions.CopyLocation" />
+		<MenuSeparator id = "Separator1" />
+		<Command id = "RLeft" _label = "Rotate _Left" icon = "object-rotate-left" command_type = "FSpot.Extensions.Rotate270" />
+		<Command id = "RRight" _label = "Rotate _Right" icon = "object-rotate-right" command_type = "FSpot.Extensions.Rotate90" />
+		<MenuSeparator id = "Separator2" />
+		<MenuGenerator id = "OpenWith" _label = "Open _With" icon = "gtk-open" generator_type = "FSpot.Extensions.OpenWith" />
+		<Command id = "Remove" _label = "_Remove From Catalog" command_type = "FSpot.Extensions.Remove" />
+		<Command id = "Delete" _label = "_Delete From Drive" command_type = "FSpot.Extensions.Delete" />
+		<MenuSeparator id = "Separator3" />
+		<MenuGenerator id = "AttachTag" _label = "_Attach Tag" icon = "gtk-add" generator_type = "FSpot.Extensions.AttachTag" />
+		<MenuGenerator id = "RemoveTag" _label = "Rem_ove Tag" icon = "gtk-remove" generator_type = "FSpot.Extensions.RemoveTag" />
+		<ComplexMenuItem id = "Rate" widget_type = "FSpot.Widgets.RatingMenuItem"  command_type = "FSpot.Extensions.Rate"/>
+	</Extension>	
+
+	<Extension path = "/FSpot/Sidebar">
+		<SidebarPage sidebar_page_type = "FSpot.Widgets.MetadataDisplayPage" />
+		<Condition id="ViewMode" mode="library">
+			<SidebarPage sidebar_page_type = "FSpot.Widgets.EditorPage" />
+		</Condition>
+	</Extension>
+
+	<Extension path = "/FSpot/Editors">
+		<Editor editor_type = "FSpot.Editors.CropEditor"/>
+		<Editor editor_type = "FSpot.Editors.RedEyeEditor"/>
+		<Editor editor_type = "FSpot.Editors.DesaturateEditor"/>
+		<Editor editor_type = "FSpot.Editors.SepiaEditor"/>
+		<Editor editor_type = "FSpot.Editors.TiltEditor"/>
+		<Editor editor_type = "FSpot.Editors.SoftFocusEditor"/>
+		<Editor editor_type = "FSpot.Editors.AutoStretchEditor"/>
+		<Editor editor_type = "FSpot.Editors.ColorEditor"/>
+	</Extension>
+</Addin>

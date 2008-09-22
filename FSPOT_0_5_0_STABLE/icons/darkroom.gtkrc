@@ -1,0 +1,42 @@
+gtk_color_scheme = "fg_color:#f5f5f5\nbg_color:#585a55\nbase_color:#2a2d26\ntext_color:#000\nselected_bg_color:#f57900\nselected_fg_color:#fff"
+
+style "darkroom-style"
+{
+  fg[NORMAL]        = @fg_color #
+  fg[PRELIGHT]      = @fg_color #
+  fg[SELECTED]      = @selected_fg_color #
+  fg[ACTIVE]        = @fg_color #
+  fg[INSENSITIVE]   = darker (@bg_color) #
+
+  bg[NORMAL]        = @bg_color #
+  bg[PRELIGHT]      = shade (1.02, @bg_color) #
+  bg[SELECTED]      = @selected_bg_color #
+  bg[INSENSITIVE]   = @bg_color #
+  bg[ACTIVE]        = shade (0.9, @bg_color) #
+
+#base is the background for thumbnails and images
+  base[NORMAL]      = @base_color #
+  base[PRELIGHT]    = shade (0.95, @bg_color) #
+  base[ACTIVE]      = shade (0.9, @selected_bg_color) #selected but unfocused window
+  base[SELECTED]    = @selected_bg_color #
+  base[INSENSITIVE] = @bg_color #
+
+  text[NORMAL]      = @text_color #
+  text[PRELIGHT]    = @text_color #
+  text[ACTIVE]      = @selected_fg_color #
+  text[SELECTED]    = @selected_fg_color #
+  text[INSENSITIVE] = darker (@bg_color) #
+
+
+	GtkTreeView::even-row-color = "#666"
+	GtkTreeView::odd-row-color = "#555"
+
+	bg_pixmap[NORMAL] = "<none>"
+
+	engine "clearlooks" {
+	}
+}
+
+widget "*" style "darkroom-style"
+class "*" style "darkroom-style"
+widget_class "*" style "darkroom-style"

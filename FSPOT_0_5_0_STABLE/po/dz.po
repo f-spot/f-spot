@@ -1,0 +1,3459 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: f-spot.HEAD.pot\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2007-06-10 03:30+0100\n"
+"PO-Revision-Date: 2007-06-20 10:04+0530\n"
+"Last-Translator: Dawa pemo <daws_403@hotmail.com>\n"
+"Language-Team: Dzongkha <pgeyleg@dit.gov.bt>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n!=1);\n"
+"X-Poedit-Language: Dzongkha\n"
+"X-Poedit-Country: BHUTAN\n"
+"X-Poedit-SourceCharset: utf-8\n"
+
+#: ../Mono.Addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInfoDialog.cs:62
+#: ../src/InfoBox.cs:74
+msgid "Version:"
+msgstr "ཐོན་རིམ་:"
+
+#: ../Mono.Addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInfoDialog.cs:65
+msgid "Author:"
+msgstr "རྩོམ་པ་པོ :"
+
+#: ../Mono.Addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInfoDialog.cs:68
+msgid "Copyright:"
+msgstr "འདྲ་བཤུས་དབང་ཆ་:"
+
+#: ../Mono.Addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInfoDialog.cs:71
+msgid "Add-in Dependencies:"
+msgstr "རྟེན་འབྲེལ་ཚུ་ནང་ལུ་ ཁ་སྐོང་རྐྱབས:"
+
+#: ../Mono.Addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:96
+msgid "All registered repositories"
+msgstr "ཐོ་འགོད་འབད་ཡོད་པའི་ མཛོད་གནས་ག་ར་ "
+
+#: ../Mono.Addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:180
+msgid "Are you sure you want to cancel the installation?"
+msgstr "ཁྱོད་ཀྱིས་ གཞི་བཙུགས་དེ་ ཆ་མེད་གཏང་ནི་ངེས་གཏན་ཨིན་ན?"
+
+#: ../Mono.Addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:303
+msgid ""
+"<b>The following packages will be uninstalled:</b>\n"
+"\n"
+msgstr ""
+"<b>འོག་གི་ ཐུམ་སྒྲིལ་ཚུ་ གཞི་བཙུགས་མ་འབད་བ་བཞག་འོང་:</b>\n"
+"\n"
+
+#: ../Mono.Addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:308
+msgid ""
+"<b>There are other add-ins that depend on the previous ones which will also be uninstalled:</b>\n"
+"\n"
+msgstr ""
+"<b>ཧེ་མམ་ལུ་བརྟེན་པའི་གཞི་བཙུགས་མ་འབད་བའི་ add-ins གཞན་ཡང་ཡོད་:</b>\n"
+"\n"
+
+#: ../Mono.Addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:379
+msgid "<b><span foreground=\"red\">The selected add-ins can't be installed because there are dependency conflicts.</span></b>\n"
+msgstr "<b><span foreground=\"red\">རྟེན་འབྲེལ་མི་མཐུན་པ་ཚུ་ཡོདཔ་ལས་ སེལ་འཐུ་འབད་ཡོད་པའི་ add-ins དེ་གཞི་བཙུགས་མི་ཚུགས་པས་</span></b>\n"
+
+#: ../Mono.Addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:381
+#: ../Mono.Addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:388
+msgid "<b><span foreground=\"red\">"
+msgstr "<b><span foreground=\"red\">"
+
+#: ../Mono.Addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:381
+#: ../Mono.Addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:388
+msgid "</span></b>\n"
+msgstr "</span></b>\n"
+
+#: ../Mono.Addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:393
+msgid ""
+"<b>The following packages will be installed:</b>\n"
+"\n"
+msgstr ""
+"<b>འོག་གི་ ཐུམ་སྒྲིལ་ཚུ་ གཞི་བཙུགས་འབད་དེ་འོང་:</b>\n"
+"\n"
+
+#: ../Mono.Addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:397
+msgid " (in user directory)"
+msgstr " (ལག་ལེན་པའི་ སྣོད་ཐོ་ ནང་)"
+
+#: ../Mono.Addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:403
+msgid ""
+"<b>The following packages need to be uninstalled:</b>\n"
+"\n"
+msgstr ""
+"<b>འོག་གི་ ཐུམ་སྒྲིལ་ཚུ་ གཞི་བཙུགས་འབད་བཤོལ་གཏང་དགོ་པས་:</b>\n"
+"\n"
+
+#: ../Mono.Addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:411
+msgid ""
+"<b>The following dependencies could not be resolved:</b>\n"
+"\n"
+msgstr ""
+"<b>འོག་གི་ རྟེན་འབྲེལ་ཚུ་ མོས་མཐུན་འབད་མ་ཚུགས་པས་:</b>\n"
+"\n"
+
+#: ../Mono.Addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:435
+msgid "The installation has been successfully completed."
+msgstr "གཞི་བཙུགས་དེ་ མཐར་འཁྱོལ་སྦེ་ མཇུག་བསྡུ་ཡོདཔ་"
+
+#: ../Mono.Addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:436
+msgid "The installation failed!"
+msgstr "གཞི་བཙུགས་ འཐུས་ཤོར་འབྱུང་ཡོདཔ !"
+
+#: ../Mono.Addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:439
+msgid "The uninstallation has been successfully completed."
+msgstr "བཏོན་གཏང་ནི་དེ་ མཐར་འཁྱོལ་སྦེ་ མཇུག་བསྡུ་ཡོདཔ།"
+
+#: ../Mono.Addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:440
+msgid "The uninstallation failed!"
+msgstr "བཏོན་གཏང་ནི་ འཐུས་ཤོར་འབྱུང་ཡོདཔ་ !"
+
+#: ../Mono.Addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:599
+msgid "Repository"
+msgstr "མཛོད་གནས་"
+
+#: ../Mono.Addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinTreeWidget.cs:91
+msgid "Add-in"
+msgstr "Add-in"
+
+#: ../Mono.Addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinTreeWidget.cs:112
+msgid "Version"
+msgstr "ཐོན་རིམ་"
+
+#: ../Mono.Addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinTreeWidget.cs:168
+msgid "Other"
+msgstr "གཞན་"
+
+#: ../Mono.Addins/Mono.Addins.Gui/Mono.Addins.Gui/ManageSitesDialog.cs:51
+msgid "Name"
+msgstr "མིང་"
+
+#: ../Mono.Addins/Mono.Addins.Gui/Mono.Addins.Gui/ManageSitesDialog.cs:52
+msgid "Url"
+msgstr "ཡུ་ཨར་ཨེལ་"
+
+#: ../Mono.Addins/Mono.Addins.Gui/Mono.Addins.Gui/Services.cs:61
+#: ../Mono.Addins/Mono.Addins.Gui/Mono.Addins.Gui/Services.cs:70
+#, csharp-format
+msgid "Exception occurred: {0}"
+msgstr "དམིགས་བསལ་འབྱུང་ནུག་: {0}"
+
+#: ../Mono.Addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInfoDialog.cs:32
+msgid "MonoDevelop Package"
+msgstr "གོང་འཕེལ་རྐྱང་པ་ ཐུམ་སྒྲིལ་"
+
+#: ../Mono.Addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:110
+msgid "Add-in Installation"
+msgstr "Add-in གཞི་བཙུགས་"
+
+#: ../Mono.Addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:134
+msgid "<b>Select the add-ins to install and click on Next</b>"
+msgstr "<b>ཤུལ་མམ་གུར་ གཞི་བཙུགས་དང་ཨེབ་གཏང་འབད་ནི་དོན་ལས་ add-ins སེལ་འཐུ་འབད་</b>"
+
+#: ../Mono.Addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:148
+msgid "Install from:"
+msgstr "ལས་  གཞི་བཙུགས་འབད་:"
+
+#: ../Mono.Addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:177
+#: ../Mono.Addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:181
+msgid "_Repositories..."
+msgstr "མཛོད་གནས་ཚུ་...(_R)"
+
+#: ../Mono.Addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:217
+msgid "Show all packages"
+msgstr "ཐུམ་སྒྲིལ་ ག་ར་སྟོན་"
+
+#: ../Mono.Addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:218
+msgid "Show new versions only"
+msgstr "ཐོན་རིམ་གསརཔ་ཚུ་ཙམ་ཅིག་སྟོན་"
+
+#: ../Mono.Addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:219
+msgid "Show updates only"
+msgstr "དུས་མཐུན་ཚུ་ཙམ་ཅིག་སྟོན་"
+
+#: ../Mono.Addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:244
+msgid "_Unselect All"
+msgstr "ཆ་མཉམ་སེལ་འཐུ་མ་འབད་(_U)"
+
+#: ../Mono.Addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:256
+#: ../src/f-spot.glade.h:190
+msgid "Select _All"
+msgstr "ཆ་མཉམ་སེལ་འཐུ་འབད་(_A)"
+
+#: ../Mono.Addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:331
+msgid "label124"
+msgstr "ཁ་ཡིག་ ༡༢༤"
+
+#: ../Mono.Addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:342
+msgid "Overall Progress:"
+msgstr "ཡར་འཕེལ་ ཡོངས་བསྡོམས:"
+
+#: ../Mono.Addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:370
+msgid "Downloading add-ins..."
+msgstr " add-ins ཕབ་ལེན་འབད་དོ་..."
+
+#: ../Mono.Addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:58
+msgid "MonoDevelop Add-in Manager"
+msgstr "གོང་འཕེལ་རྐྱང་པ་Add-in འཛིན་སྐྱོང་པ་"
+
+#: ../Mono.Addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:88
+msgid "<big><b>MonoDevelop Add-in Manager</b></big>"
+msgstr "<big><b>གོང་འཕེལ་རྐྱང་པ་Add-in འཛིན་སྐྱོང་པ་</b></big>"
+
+#: ../Mono.Addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:108
+msgid "The following add-ins are currently installed:"
+msgstr "འོག་གི་ add-ins ཚུ་ད་ལྟོ་གཞི་བཙུགས་འབད་དེ་ཡོདཔ :"
+
+#: ../Mono.Addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:166
+msgid "_Install Add-ins..."
+msgstr " Add-ins གཞི་བཙུགས་འབད་...(_I)"
+
+#: ../Mono.Addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:215
+msgid "_Uninstall..."
+msgstr "བཏོན་གཏང་...(_U)"
+
+#: ../Mono.Addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:245
+msgid "Enable"
+msgstr "ལྕོགས་ཅན་བཟོ་"
+
+#: ../Mono.Addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:275
+msgid "Disable"
+msgstr "ལྕོགས་མིན་བཟོ་"
+
+#: ../Mono.Addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.ErrorDialog.cs:40
+msgid "MonoDevelop"
+msgstr "གོང་འཕེལ་རྐྱང་པ་"
+
+#: ../Mono.Addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.ErrorDialog.cs:111
+msgid "Details"
+msgstr "རྒྱས་བཤད་ཚུ་"
+
+#: ../Mono.Addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.ManageSitesDialog.cs:34
+msgid "Add-in Repository Management"
+msgstr "Add-in མཛོད་གནས་ འཛིན་སྐྱོང་"
+
+#: ../Mono.Addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.NewSiteDialog.cs:52
+msgid "Add New Repository"
+msgstr "མཛོད་གནས་གསརཔ་ ཁ་སྐོང་རྐྱབས་"
+
+#: ../Mono.Addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.NewSiteDialog.cs:68
+msgid "Select the location of the repository you want to register:"
+msgstr "ཁྱོད་ར་ ཐོ་བཀོད་འབད་དགོ་མནོ་མི་ མཛོད་གནས་ཀྱི་གནས་ཁོངས་སེལ་འཐུ་འབད་:"
+
+#. Container child vbox89.Gtk.Box+BoxChild
+#: ../Mono.Addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.NewSiteDialog.cs:75
+msgid "Register an on-line repository"
+msgstr "གློག་ལམ་ཐོག་ལུ་ཡོད་པའི་ མཛོད་གནས་ཅིག་ ཐོ་འགོད་འབད་"
+
+#: ../Mono.Addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.NewSiteDialog.cs:104
+msgid "Url:"
+msgstr "ཡུ་ཨར་ཨེལ་:"
+
+#. Container child vbox89.Gtk.Box+BoxChild
+#: ../Mono.Addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.NewSiteDialog.cs:125
+msgid "Register a local repository"
+msgstr "ཉེ་གནས་ མཛོད་གནས་ཅིག་ ཐོ་འགོད་འབད་"
+
+#: ../Mono.Addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.NewSiteDialog.cs:153
+msgid "Path:"
+msgstr "འགྲུལ་ལམ:"
+
+#: ../Mono.Addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.NewSiteDialog.cs:177
+msgid "Browse..."
+msgstr "བརྡ་འཚོལ་..."
+
+#: ../Mono.Addins/Mono.Addins/Mono.Addins.Description/AssemblyDependency.cs:79
+#, csharp-format
+msgid "(provided by {0})"
+msgstr "( {0}གིས་ བྱིན་ཏེ་ཡོདཔ་)"
+
+#: ../Mono.Addins/Mono.Addins/Mono.Addins/AddinSessionService.cs:108
+msgid "Disabled add-ins can't be loaded."
+msgstr "ལྕོགས་མིན་བཟོ་ཡོད་པའི་  add-ins མངོན་གསལ་འབད་མི་ཚུགས་ནི་མས་"
+
+#: ../Mono.Addins/Mono.Addins/Mono.Addins/AddinSessionService.cs:133
+#, csharp-format
+msgid "Loading {0} add-in"
+msgstr " {0} add-in མངོན་གསལ་འབད་དོ་"
+
+#: ../Mono.Addins/Mono.Addins/Mono.Addins/AddinSessionService.cs:216
+#, csharp-format
+msgid "The required addin '{0}' is disabled."
+msgstr "དགོས་མཁོ་ཡོད་པའི་  addin '{0}' དེ་ལྕོགས་མིན་བཟོ་ཡོདཔ།"
+
+#: ../Mono.Addins/Mono.Addins/Mono.Addins/AddinSessionService.cs:218
+#, csharp-format
+msgid "The required addin '{0}' is not installed."
+msgstr "དགོས་མཁོ་ཡོད་པའི་ addin '{0}' དེ་གཞི་བཙུགས་འབད་དེ་མེདཔ།"
+
+#: ../extensions/DefaultExporters/DefaultExporters.addin.xml.h:1
+msgid "Export to 23hq..."
+msgstr "༢༣ ཨེཆ་ཀིའུ་ ལུ་ཕྱིར་འདྲེན་འབད་..."
+
+#: ../extensions/DefaultExporters/DefaultExporters.addin.xml.h:2
+msgid "Export to CD..."
+msgstr "སི་ཌི་ལུ་ཕྱིར་འདྲེན་འབད་..."
+
+#: ../extensions/DefaultExporters/DefaultExporters.addin.xml.h:3
+msgid "Export to Flickr..."
+msgstr "འདར་བ་ལུ་ཕྱིར་འདྲེན་འབད་..."
+
+#: ../extensions/DefaultExporters/DefaultExporters.addin.xml.h:4
+msgid "Export to Folder..."
+msgstr "སྣོད་འཛིན་ལུ་ཕྱིར་འདྲེན་འབད་..."
+
+#: ../extensions/DefaultExporters/DefaultExporters.addin.xml.h:5
+msgid "Export to PicasaWeb..."
+msgstr "པི་ཀ་ས་ཝེབ་ལུ་ཕྱིར་འདྲེན་འབད་..."
+
+#: ../extensions/DefaultExporters/DefaultExporters.addin.xml.h:6
+msgid "Export to SmugMug......"
+msgstr "སི་མག་མག་ལུ་ཕྱིར་འདྲེན་འབད་..."
+
+#: ../extensions/DefaultExporters/DefaultExporters.addin.xml.h:7
+msgid "Export to Web Gallery..."
+msgstr "ཝེབ་སྟོན་ཁང་ལུ་ཕྱིར་འདྲེན་འབད་..."
+
+#: ../f-spot-view.desktop.in.in.h:1
+msgid "F-Spot Photo Viewer"
+msgstr "ཨེཕ་-ཨིསི་པོཊི་ དཔར་མཐོང་བྱེད་"
+
+#: ../f-spot-view.desktop.in.in.h:2
+msgid "Photo Viewer"
+msgstr "དཔར་མཐོང་བྱེད་"
+
+#: ../f-spot.desktop.in.in.h:1
+msgid "F-Spot Photo Manager"
+msgstr "ཨེཕ་-ཨིསི་པོཊི་ དཔར་འཛིན་སྐྱོང་པ་"
+
+#: ../f-spot.desktop.in.in.h:2
+msgid "Organize, enjoy, and share your photos"
+msgstr "ཁྱོད་ཀྱི་དཔར་ཚུ་ འགོ་འདྲེན་འཐབ་ སྤྲོ་བ་སྟོན་ དེ་ལས་ རུབ་སྤྱོད་འབད་"
+
+#: ../f-spot.desktop.in.in.h:3
+msgid "Photo Manager"
+msgstr "དཔར་འཛིན་སྐྱོང་པ་"
+
+#: ../google-sharp/CaptchaException.cs:58
+msgid "url"
+msgstr "ཡུ་ཨར་ཨེལ་"
+
+#: ../google-sharp/CaptchaException.cs:59
+msgid "token"
+msgstr "ངོ་རྟགས་"
+
+#: ../google-sharp/CaptchaException.cs:60
+msgid "captcha_url"
+msgstr "ཀེཔཊི་ཅ་ ཡུ་ཨར་ཨེལ་(_u)"
+
+#: ../libeog/eog-file-selection.c:29
+#: ../libeog/eog-file-selection.c:46
+msgid "By Extension"
+msgstr "རྒྱ་བསྐྱེད་ཀྱིས་འབད་"
+
+#: ../libeog/eog-file-selection.c:30
+msgid "BMP"
+msgstr "བི་ཨེམ་པི་"
+
+#: ../libeog/eog-file-selection.c:31
+msgid "GIF"
+msgstr "ཇི་ཨའི་ཨེཕ་"
+
+#: ../libeog/eog-file-selection.c:32
+msgid "ICO"
+msgstr "ཨའི་སི་ཨོ་"
+
+#: ../libeog/eog-file-selection.c:33
+#: ../libeog/eog-file-selection.c:48
+msgid "JPEG"
+msgstr "ཇེ་པི་ཨི་ཇི་"
+
+#: ../libeog/eog-file-selection.c:34
+#: ../libeog/eog-file-selection.c:51
+msgid "PNG"
+msgstr "པི་ཨེན་ཇི་"
+
+#: ../libeog/eog-file-selection.c:35
+msgid "PNM"
+msgstr "པི་ཨེན་ཨེམ་"
+
+#: ../libeog/eog-file-selection.c:36
+msgid "RAS"
+msgstr "ཨར་ཨེ་ཨེསི་"
+
+#: ../libeog/eog-file-selection.c:37
+msgid "SVG"
+msgstr "ཨེསི་ཝི་ཇི་"
+
+#: ../libeog/eog-file-selection.c:38
+msgid "TGA"
+msgstr "ཊི་ཇི་ཨེ་"
+
+#: ../libeog/eog-file-selection.c:39
+msgid "TIFF"
+msgstr "ཊི་ཨའི་ཨེཕ་ཨེཕ་"
+
+#: ../libeog/eog-file-selection.c:40
+msgid "XBM"
+msgstr "ཨེགསི་བི་ཨེམ་"
+
+#: ../libeog/eog-file-selection.c:41
+#: ../libeog/eog-file-selection.c:54
+msgid "XPM"
+msgstr "ཨེགསི་པི་ཨེམ་"
+
+#: ../libeog/eog-file-selection.c:207
+msgid "Unsupported file format."
+msgstr "རྒྱབ་སྐྱོར་མ་འབད་བའི་ཡིག་སྣོད་རྩ་སྒྲིག"
+
+#: ../libeog/eog-file-selection.c:225
+msgid "Determine File Type:"
+msgstr "ཡིག་སྣོད་དབྱེ་བ་གཏན་འབེབས་བཟོ་:"
+
+#: ../libeog/eog-file-selection.c:268
+msgid "Load Image"
+msgstr "གཟུགས་བརྙན་མངོན་གསལ་འབད་"
+
+#: ../libeog/eog-file-selection.c:274
+msgid "Save Image"
+msgstr "གཟུགས་བརྙན་སྲུང་བཞག་འབད་"
+
+#: ../libeog/eog-image.c:773
+msgid "No image loaded."
+msgstr "གཟུགས་བརྙན་གཅིག་ཡང་མངོན་གསལ་མ་འབད་བས།"
+
+#: ../libeog/eog-image.c:780
+msgid "Can't save non local files."
+msgstr "ཉེ་གནས་ཡིག་སྣོད་མེན་མི་ཚུ་སྲུང་བཞག་འབད་མི་ཚུགས།"
+
+#: ../libeog/eog-image.c:803
+msgid "Unsupported image type for saving."
+msgstr "སྲུང་བཞག་འབད་ནིའི་དོན་ལུ་ རྒྱབ་སྐྱོར་མ་འབད་བའི་གཟུགས་བརྙན།"
+
+#: ../libeog/image-view.c:2128
+msgid "interpolation type"
+msgstr "བསྐྱར་བསྣོན་དབྱེ་བ་"
+
+#: ../libeog/image-view.c:2129
+msgid "the type of interpolation to use"
+msgstr "ལག་ལེན་འཐབ་ནིའི་དོན་ལས་ བསྐྱར་བསྣོན་གྱི་དབྱེ་བ་"
+
+#: ../libeog/image-view.c:2135
+#: ../libeog/image-view.c:2142
+msgid "check type"
+msgstr "ཞིབ་དཔྱད་དབྱེ་བ་"
+
+#: ../libeog/image-view.c:2136
+msgid "the type of chequering to use"
+msgstr "ལག་ལེན་འཐབ་ནིའི་དོན་ལས་ ཞིབ་དཔྱད་འདྲི་དཔྱད་ཀྱི་དབྱེ་བ་"
+
+#: ../libeog/image-view.c:2143
+msgid "the size of chequers to use"
+msgstr "ལག་ལེན་འཐབ་ནིའི་དོན་ལས་ ཞིབ་དཔྱད་འདྲི་དཔྱད་པའི་ཚད་"
+
+#: ../libeog/image-view.c:2149
+msgid "dither"
+msgstr "སྤར་"
+
+#: ../libeog/image-view.c:2150
+msgid "dither type"
+msgstr "སྤར་ནིའི་དབྱེ་བ་"
+
+#: ../libfspot/f-jpeg-utils.c:445
+msgid "File not found"
+msgstr "ཡིག་སྣོད་འཚོལ་མ་འཐོབ་"
+
+#: ../libfspot/f-jpeg-utils.c:468
+#, c-format
+msgid "Unknown transform type %d"
+msgstr "མ་ཤེས་པའི་བཟོ་བསྒྱུར་དབྱེ་བ་ %d"
+
+#: ../libfspot/f-jpeg-utils.c:476
+msgid "Operation failed"
+msgstr "བཀོལ་སྤྱོད་པ་འཐུས་ཤོར་འབྱུང་ཡོདཔ་"
+
+#: ../src/CDExport.cs:116
+#, csharp-format
+msgid "Transferring picture \"{0}\" To CD"
+msgstr "པར་ \"{0}\"  སི་ཌི་ལུ་གནས་སོར་འབད་དོ་"
+
+#. This indicates the current photo is photo {0} of {1} out of photos
+#: ../src/CDExport.cs:118
+#: ../src/FlickrExport.cs:285
+#: ../src/FolderExport.cs:197
+#: ../src/GalleryExport.cs:704
+#: ../src/ProgressDialog.cs:82
+#: ../src/TimeDialog.cs:147
+#, csharp-format
+msgid "{0} of {1}"
+msgstr "{1} ལས་ {0}"
+
+#: ../src/CDExport.cs:131
+#: ../src/FlickrExport.cs:302
+#: ../src/FolderExport.cs:228
+#: ../src/GalleryExport.cs:728
+#: ../src/PicasaWebExport.cs:626
+#: ../src/SmugMugExport.cs:579
+msgid "Done Sending Photos"
+msgstr "དཔར་ཚུ་གཏང་ནི་འབད་ཚར་"
+
+#: ../src/CDExport.cs:133
+#: ../src/FolderExport.cs:230
+msgid "Transfer Complete"
+msgstr "གནས་སོར་མཇུག་བསྡུ་ཡོད་"
+
+#: ../src/CDExport.cs:140
+#: ../src/FolderExport.cs:235
+msgid "Error While Transferring"
+msgstr "གནས་སོར་འབད་བའི་སྐབས་འཛོལ་བ་"
+
+#: ../src/CDExport.cs:147
+#: ../src/FolderExport.cs:252
+msgid "Error Transferring"
+msgstr "གནས་སོར་འབད་བའི་འཛོལ་བ་"
+
+#: ../src/CDExport.cs:168
+#: ../src/FolderExport.cs:274
+msgid "Error: Error while transferring; Aborting"
+msgstr "འཛོལ་བ་: གནས་སོར་འབད་བའི་སྐབས་འཛོལ་བ་  བར་བཤོལ་འབད་དོ་"
+
+#: ../src/CDExport.cs:171
+#: ../src/FolderExport.cs:277
+msgid "Error: File Already Exists; Aborting"
+msgstr "འཛོལ་བ་: ཡིག་སྣོད་ཧེ་མ་ལས་རང་ཡོད་  བར་བཤོལ་འབད་དོ་"
+
+#: ../src/CDExport.cs:210
+#: ../src/CameraFileSelectionDialog.cs:183
+#: ../src/FolderExport.cs:331
+msgid "Transferring Pictures"
+msgstr "པར་ཚུ་གནས་སོར་འབད་དོ་"
+
+#: ../src/CameraFileSelectionDialog.cs:62
+msgid "Preview"
+msgstr "སྔོན་ལྟ་"
+
+#: ../src/CameraFileSelectionDialog.cs:64
+msgid "Path"
+msgstr "འགྲུལ་ལམ་"
+
+#: ../src/CameraFileSelectionDialog.cs:66
+#: ../src/f-spot.glade.h:123
+msgid "File"
+msgstr "ཡིག་སྣོད་"
+
+#: ../src/CameraFileSelectionDialog.cs:68
+#: ../src/FolderExport.cs:855
+msgid "Index"
+msgstr "ཟུར་ཐོ་"
+
+#: ../src/CameraFileSelectionDialog.cs:88
+msgid "Select Tag"
+msgstr "ངོ་རྟགས་སེལ་འཐུ་འབད་"
+
+#: ../src/CameraFileSelectionDialog.cs:124
+msgid "Downloading Previews"
+msgstr "ཕབ་ལེན་འབད་ནིའི་སྔོན་ལྟ་ཚུ་"
+
+#: ../src/CameraFileSelectionDialog.cs:132
+#, csharp-format
+msgid "Downloading Preview of {0}"
+msgstr "{0}གི་ ཕབ་ལེན་འབད་ནིའི་སྔོན་ལྟ་ཚུ་"
+
+#: ../src/CameraFileSelectionDialog.cs:206
+#, csharp-format
+msgid "Copying file {0} of {1}"
+msgstr "{1} ལས་  {0} ཡིག་སྣོད་ འདྲ་བཤུས་རྐྱབས་དོ་"
+
+#: ../src/CameraFileSelectionDialog.cs:216
+msgid "Error transferring file"
+msgstr "ཡིག་སྣོད་གནས་སོར་འབད་བའི་འཛོལ་བ་"
+
+#: ../src/CameraFileSelectionDialog.cs:225
+msgid "Done Copying Files"
+msgstr "ཡིག་སྣོད་འདྲ་བཤུས་རྐྱབས་ནི་ཚུ་འབད་ཚར་"
+
+#: ../src/CameraFileSelectionDialog.cs:227
+msgid "Download Complete"
+msgstr "ཕབ་ལེན་མཇུག་བསྡུ་ཡོད་"
+
+#: ../src/CameraFileSelectionDialog.cs:252
+#, csharp-format
+msgid "Transferring \"{0}\" from camera"
+msgstr "པར་ཆས་ལས་  \"{0}\" གནས་སོར་འབད་དོ་"
+
+#: ../src/CameraSelectionDialog.cs:28
+#: ../src/StockIcons.cs:29
+msgid "Camera"
+msgstr "པར་ཆས་"
+
+#: ../src/CameraSelectionDialog.cs:29
+msgid "Port"
+msgstr "འདྲེན་ལམ་"
+
+#: ../src/ColorDialog.cs:211
+msgid "Error saving adjusted photo"
+msgstr "བདེ་སྒྲིག་འབད་ཡོད་པའི་དཔར་སྲུང་བཞག་འབད་ད་ འཛོལ་བ་"
+
+#: ../src/ColorDialog.cs:212
+#: ../src/HigMessageDialog.cs:15
+#: ../src/Loupe.cs:58
+#: ../src/MainWindow.cs:1952
+#: ../src/PhotoView.cs:266
+#, csharp-format
+msgid "Received exception \"{0}\". Unable to save photo {1}"
+msgstr "དམིགས་བསལ་ \"{0}\" འཐོབ་ཡོདཔ། དཔར་ {1} སྲུང་བཞག་འབད་མ་ཚུགས་"
+
+#: ../src/Core.cs:188
+#, csharp-format
+msgid "No photos matching {0} found"
+msgstr " {0} ལུ་མཐུན་མི་དཔར་ཚུ་མ་འཐོབ་"
+
+#: ../src/Core.cs:189
+#, csharp-format
+msgid ""
+"The tag \"{0}\" is not applied to any photos. Try adding\n"
+"the tag to some photos or selecting a different tag in the\n"
+"F-Spot preference dialog."
+msgstr ""
+"ངོ་རྟགས་ \"{0}\" འདི་ དཔར་ཚུ་ག་ལུ་ཡང་འཇུག་སྤྱོད་མ་འབད་བས། ལོག་\n"
+"ངོ་རྟགས་འདི་ དཔར་ལ་ལུ་ཅིག་ལུ་ཁ་སྐོང་རྐྱབས་ནི་ ཡང་ན་ ངོ་རྟགས་སོ་སོ་ཅིག་ \n"
+"ཨེཕ་-ཨིསི་པོཊི་དགའ་གདམ་ཌའི་ལོག་ནང་ལུ་་སེལ་འཐུ་འབད་ནི་འབད་རྩོལ་བསྐྱེད།"
+
+#: ../src/Core.cs:193
+msgid "Search returned no results"
+msgstr "འཚོལ་ཞིབ་འབད་མི་འདི་ གྲུབ་འབྲས་མ་འབྱུང་"
+
+#: ../src/Core.cs:194
+msgid ""
+"The tag F-Spot is looking for does not exist. Try\n"
+"selecting a different tag in the F-Spot preference\n"
+"dialog."
+msgstr ""
+"ཨེཕ་-ས་ཁོངས་ཀྱིས་ འཚོལ་མི་ངོ་རྟགས་དེ་མིན་ནུག།  \n"
+" ཨེཕ་-ས་ཁོངས་དགའ་གདམ\n"
+" ་ཌའི་ལོག་ ནང་ལུ་ ངོ་རྟགས་སོ་སོ་ སེལ་འཐུ་འབད་ཐོག་ལས་འབད་རྩོལ་བསྐྱེད།"
+
+#: ../src/Editors/SoftFocus.cs:25
+#: ../src/ItemAction.cs:371
+#: ../src/StockIcons.cs:43
+msgid "Soft Focus"
+msgstr "ཆོད་དམིགས་འཇམ་ཁྱུག་ཁྱུ།"
+
+#: ../src/Editors/Tilt.cs:28
+#: ../src/ItemAction.cs:355
+#: ../src/StockIcons.cs:34
+msgid "Straighten"
+msgstr "ཕྲང་འཕྲངམ།"
+
+#: ../src/ExceptionDialog.cs:24
+msgid "F-Spot Encountered a Fatal Error"
+msgstr "ཨེཕ་-ཨིསི་པོཊི་གིས་ འཚུབ་ཆེན་འཛོལ་བ་ཅིག་གདོང་ཐུག་འབྱུང་ཡོདཔ་"
+
+#: ../src/ExceptionDialog.cs:60
+msgid "Error Details"
+msgstr "འཛོལ་བའི་རྒྱས་བཤད་ཚུ་"
+
+#: ../src/ExceptionDialog.cs:104
+msgid "An unhandled exception was thrown: "
+msgstr "ལེགས་སྐྱོང་མ་འཐབ་པའི་དམིགས་བསལ་འདི་ བཀོ་ཡོདཔ་:"
+
+#: ../src/FSpot.addin.xml.h:1
+msgid "Export to"
+msgstr "   ལུ་ ཕྱིར་འདྲེན་འབད་"
+
+#: ../src/FSpot.addin.xml.h:2
+msgid "Tools"
+msgstr "ལག་ཆས་ཕྲ་ཚུ་"
+
+#: ../src/FileImportBackend.cs:265
+msgid "Import error"
+msgstr "ནང་འདྲེན་འབད་ནི་འཛོལ་བ།"
+
+#: ../src/FileImportBackend.cs:266
+#, csharp-format
+msgid "Error importing {0}{2}{2}{1}"
+msgstr "ནང་འདྲེན་འབད་ནི་འཛོལ་བ་{0}{2}{2}{1}"
+
+#: ../src/Filters/ResizeFilter.cs:70
+#: ../src/Filters/SharpFilter.cs:52
+#, csharp-format
+msgid "No way to save files of type \"{0}\""
+msgstr "དབྱེ་བ་ \"{0}\" འབད་མི་ཡིག་སྣོད་ཚུ་ སྲུང་བཞག་འབད་ནིའི་དབས་ལམ་མེད་"
+
+#: ../src/FlickrExport.cs:73
+#: ../src/f-spot.glade.h:80
+msgid "Authorize"
+msgstr "དབང་སྤྲོད་"
+
+#: ../src/FlickrExport.cs:78
+#, csharp-format
+msgid "Return to this window after you have finished the authorization process on {0} and click the \"Complete Authorization\" button below"
+msgstr "ཁྱོད་ཀྱིས་ {0} གུའི་དབང་སྤྲོད་ལས་སྦྱོར་འདི་ མཇུག་བསྡུ་ཚར་བའི་ཤུལ་ལུ་ འ་ནི་སྒོ་སྒྲིག་འདི་ལུ་ སླར་ལོག་འབད་ དེ་ལས་ འོག་གི་\"Complete Authorization\" ཨེབ་རྟ་འདི་ཨེབ་གཏང་འབད་"
+
+#: ../src/FlickrExport.cs:79
+msgid "Complete Authorization"
+msgstr "དབང་སྤྲོད་ཆ་ཚང་"
+
+#: ../src/FlickrExport.cs:83
+#, csharp-format
+msgid "Logging into {0}"
+msgstr "{0} ནང་ལུ་ ནང་བསྐྱོད་འབད་དོ་"
+
+#: ../src/FlickrExport.cs:84
+msgid "Checking credentials..."
+msgstr "ངོ་སྤྲོད་ཞིབ་དཔྱད་འབད་དོ་"
+
+#: ../src/FlickrExport.cs:90
+#, csharp-format
+msgid "Welcome {0} you are connected to {1}"
+msgstr "{0} བྱོན་པ་ལེགས་སོ་ ཁྱོད་ {1} ལུ་མཐུད་ཡོད་"
+
+#: ../src/FlickrExport.cs:93
+#, csharp-format
+msgid "Sign in as a different user"
+msgstr "ལག་ལེན་པ་སོ་སོ་ཅིག་སྦེ་ འཛུལ་"
+
+#: ../src/FlickrExport.cs:244
+msgid "Unable to log on"
+msgstr "ནང་བསྐྱོད་འབད་མ་ཚུགས་"
+
+#: ../src/FlickrExport.cs:264
+#, csharp-format
+msgid "Waiting for response {0} of {1}"
+msgstr "{1}ལས་ {0} ལན་ལུ་བསྒུག་དོ་"
+
+#: ../src/FlickrExport.cs:280
+#: ../src/FolderExport.cs:194
+#: ../src/GalleryExport.cs:700
+#, csharp-format
+msgid "Uploading picture \"{0}\""
+msgstr "པར་ \"{0}\" སྐྱེལ་བཙུགས་འབད་དོ་"
+
+#: ../src/FlickrExport.cs:304
+#: ../src/GalleryExport.cs:730
+#: ../src/PicasaWebExport.cs:628
+#: ../src/SmugMugExport.cs:581
+msgid "Upload Complete"
+msgstr "སྐྱེལ་བཙུགས་མཇུག་བསྡུ་ཡོད་"
+
+#: ../src/FlickrExport.cs:307
+#, csharp-format
+msgid "Error Uploading To {0}: {1}"
+msgstr " {0}: {1} ལུ་སྐྱེལ་བཙུགས་འབད་བའི་འཛོལ་བ་"
+
+#: ../src/FlickrExport.cs:310
+#: ../src/FolderExport.cs:202
+#: ../src/GalleryExport.cs:720
+#: ../src/PicasaWebExport.cs:618
+#: ../src/SmugMugExport.cs:571
+msgid "Error"
+msgstr "འཛོལ་བ་"
+
+#: ../src/FlickrExport.cs:373
+msgid "Unable to log on."
+msgstr "ནང་བསྐྱོད་འབད་མ་ཚུགས།"
+
+#: ../src/FlickrExport.cs:374
+#, csharp-format
+msgid "F-Spot was unable to log on to {0}.  Make sure you have given the authentication using {0} web browser interface."
+msgstr "ཨེཕ་-ཨིསི་པོཊི་འདི་  {0}ལུ་ནང་བསྐྱོད་འབད་མ་ཚུགས། ཁྱོད་ཀྱིས་ {0} ཝེབ་བརའུ་ཟར་ངོས་འདྲ་བ་ལག་ལེན་འཐབ་ཐོག་ བདེན་བཤད་འདི་བྱིན་ཡོདཔ་ཨིནམ་ ངེས་ཏིག་བཟོ།"
+
+#: ../src/FlickrExport.cs:392
+#: ../src/GalleryExport.cs:653
+#: ../src/PicasaWebExport.cs:533
+#: ../src/SmugMugExport.cs:497
+msgid "Uploading Pictures"
+msgstr "པར་ཚུ་སྐྱེལ་བཙུགས་འབད་དོ་"
+
+#: ../src/FolderExport.cs:111
+msgid "Select Export Folder"
+msgstr "ཕྱིར་འདྲེན་སྣོད་འཛིན་སེལ་འཐུ་འབད་"
+
+#: ../src/FolderExport.cs:156
+msgid "Building Gallery"
+msgstr "སྟོན་ཁང་བཟོ་བརྩིགས་འབད་དོ་"
+
+#: ../src/FolderExport.cs:200
+#, csharp-format
+msgid "Error uploading picture \"{0}\" to Gallery:{2}{1}"
+msgstr "པར་ \"{0}\" སྟོན་ཁང་ལུ་མངོན་གསལ་འབད་ནི་འཛོལ་བ་{2}{1}"
+
+#: ../src/FolderExport.cs:709
+msgid "Light"
+msgstr "སྐྱ་བོ་"
+
+#: ../src/FolderExport.cs:710
+msgid "Dark"
+msgstr "གྲིབ་གནག་"
+
+#. Abbreviation of previous
+#: ../src/FolderExport.cs:853
+msgid "Prev"
+msgstr "ཧེ་མམ་"
+
+#: ../src/FolderExport.cs:858
+#: ../src/ItemAction.cs:133
+#: ../src/f-spot.glade.h:152
+msgid "Next"
+msgstr "ཤུལ་མམ་"
+
+#: ../src/FolderExport.cs:911
+#: ../src/FolderExport.cs:1084
+msgid "Show Styles"
+msgstr "བཟོ་རྣམ་ཚུ་སྟོན་"
+
+#: ../src/FolderExport.cs:912
+#: ../src/FolderExport.cs:1085
+msgid "Hide Styles"
+msgstr "བཟོ་རྣམ་ཚུ་སྦ་བཞག་"
+
+#: ../src/FolderExport.cs:969
+msgid "Gallery generated by"
+msgstr "གིས་ སྟོན་ཁང་བཟོ་བཏོན་འབད་ཡོདཔ་"
+
+#: ../src/FolderExport.cs:1014
+msgid "Page:"
+msgstr "ཤོག་ལེབ་:"
+
+#: ../src/FormClient.cs:292
+msgid "Unhandled exception"
+msgstr "ལེགས་སྐྱོང་མ་འཐབ་པའི་དམིགས་བསལ་"
+
+#: ../src/FullScreenView.cs:34
+msgid "Hide"
+msgstr "སྦ་"
+
+#: ../src/FullScreenView.cs:36
+msgid "Hide Toolbar"
+msgstr "ལག་ཆས་ཕྲ་རིང་སྦ་བཞག་"
+
+#: ../src/FullScreenView.cs:40
+msgid "Exit fullscreen"
+msgstr "གསལ་གཞི་གངམ་ཕྱིར་ཐོན་འབད་"
+
+#: ../src/FullScreenView.cs:46
+#: ../src/StockIcons.cs:42
+msgid "Slideshow"
+msgstr "བཤུད་བརྙན་"
+
+#: ../src/FullScreenView.cs:48
+msgid "Start slideshow"
+msgstr "བཤུད་བརྙན་འགོ་བཙུགས།"
+
+#: ../src/FullScreenView.cs:55
+msgid "Info"
+msgstr "བརྡ་དོན།"
+
+#: ../src/FullScreenView.cs:57
+msgid "Image Information"
+msgstr "གཟུགས་བརྙན་བརྡ་དོན།"
+
+#: ../src/FullScreenView.cs:97
+msgid "Slide transition: "
+msgstr "བཤུད་བརྙན་འགྱུར་བ།"
+
+#: ../src/GalleryExport.cs:376
+msgid "Invalid URL"
+msgstr "ནུས་མེད་ཡུ་ཨར་ཨེལ་"
+
+#: ../src/GalleryExport.cs:377
+msgid "The gallery URL entry does not appear to be a valid URL"
+msgstr "སྟོན་ཁང་ཡུ་ཨར་ཨེལ་ ཐོ་བཀོད་འདི་ ནུས་ལྡན་ཡུ་ཨར་ཨེལ་ཅིག་སྦེ་ མི་འབྱུང་པས།"
+
+#: ../src/GalleryExport.cs:387
+#: ../src/GalleryExport.cs:402
+msgid "Error while connecting to Gallery"
+msgstr "སྟོན་ཁང་ལུ་མཐུད་པའི་སྐབས་ འཛོལ་བ་"
+
+#: ../src/GalleryExport.cs:388
+#: ../src/GalleryExport.cs:403
+#, csharp-format
+msgid "The following error was encountered while attempting to log in: {0}"
+msgstr "འོག་གི་འཛོལ་བ་འདི་ ནང་བསྐྱོད་འབད་ནི་གི་དཔའ་བཅམ་པའི་སྐབས་ གདོང་ཐུག་འབྱུང་ཡོད་: {0}"
+
+#: ../src/GalleryExport.cs:481
+msgid "(TopLevel)"
+msgstr "(ཆེ་རིམ་)"
+
+#: ../src/GalleryExport.cs:719
+#, csharp-format
+msgid "Error uploading picture \"{0}\" to Gallery: {1}"
+msgstr "པར་ \"{0}\" སྟོན་ཁང་ལུ་མངོན་གསལ་འབད་ནི་འཛོལ་བ་ {1}"
+
+#: ../src/GalleryExport.cs:746
+#: ../src/PicasaWebExport.cs:649
+#: ../src/SmugMugExport.cs:602
+msgid "(No Gallery)"
+msgstr "(སྟོན་ཁང་མེད་)"
+
+#: ../src/GalleryExport.cs:833
+#: ../src/PicasaWebExport.cs:776
+#: ../src/SmugMugExport.cs:700
+msgid "(Not Connected)"
+msgstr "(མ་མཐུད་པས་)"
+
+#: ../src/GalleryExport.cs:834
+#: ../src/PicasaWebExport.cs:777
+#: ../src/SmugMugExport.cs:701
+msgid "(No Albums)"
+msgstr "(པར་དེབ་མེད་)"
+
+#: ../src/GalleryExport.cs:886
+#: ../src/PicasaWebExport.cs:821
+#: ../src/SmugMugExport.cs:745
+msgid "No account selected"
+msgstr "རྩིས་ཐོ་སེལ་འཐུ་འབད་འབདཝ་མེད་"
+
+#: ../src/GalleryRemote.cs:356
+msgid "Error reading server response"
+msgstr "སར་བར་ལན་ལྷག་ནི་འཛོལ་བ།"
+
+#. failed to find the response
+#: ../src/GalleryRemote.cs:368
+msgid "Server returned response without Gallery content"
+msgstr "སར་བར་གྱི་ལན་སྟོན་ཁང་ནང་དོན་མེདཔ་སྦེ་སླར་ལོག་ཡོདཔ།"
+
+#: ../src/GlTransition.cs:36
+msgid "Dissolve"
+msgstr "བཞུ་ཡལ།"
+
+#: ../src/GlTransition.cs:104
+msgid "Flip"
+msgstr "མྱུར་ལྷོག"
+
+#: ../src/GlTransition.cs:148
+msgid "Cover"
+msgstr "ཁེབས།"
+
+#: ../src/GlTransition.cs:175
+msgid "Reveal"
+msgstr "ཕྱིར་གསལ།"
+
+#: ../src/GlTransition.cs:202
+msgid "Wipe"
+msgstr "རྩ་མེད་གཏང་ནི།"
+
+#: ../src/GlTransition.cs:260
+msgid "Split"
+msgstr "གཤག"
+
+#: ../src/GlTransition.cs:347
+msgid "Push"
+msgstr "འཕུལ།"
+
+#: ../src/GroupSelector.cs:57
+#: ../src/GroupSelector.cs:58
+msgid "More dates"
+msgstr "ཚེས་གྲངས་ཧེང་བཀལ་"
+
+#: ../src/GroupSelector.cs:60
+#: ../src/GroupSelector.cs:61
+msgid "More directories"
+msgstr "སྣོད་ཐོ་ཧེང་བཀལ་"
+
+#: ../src/GroupSelector.cs:63
+#: ../src/GroupSelector.cs:64
+msgid "More"
+msgstr "ཧེང་བཀལ་"
+
+#: ../src/GroupSelector.cs:515
+msgid "Arrange by _Month"
+msgstr "ཟླཝ་གིས་སྦེ་ བདེ་ཞིབ་འབད་(_M)"
+
+#: ../src/GroupSelector.cs:518
+msgid "Arrange by _Folder"
+msgstr "སྣོད་འཛིན་གྱིས་སྦེ་ བདེ་ཞིབ་འབད་(_F)"
+
+#: ../src/GroupSelector.cs:523
+#: ../src/f-spot.glade.h:282
+msgid "_Reverse Order"
+msgstr "རིམ་ལོག་གོ་རིམ་(_R)"
+
+#: ../src/GroupSelector.cs:529
+msgid "_Clear Date Range"
+msgstr "ཚེས་གྲངས་ཁྱབ་ཚད་བསལ་(_C)"
+
+#: ../src/HigMessageDialog.cs:28
+#: ../src/PhotoView.cs:265
+msgid "Error editing photo"
+msgstr "དཔར་ཞུན་དག་འབད་བའི་སྐབས་འཛོལ་བ་"
+
+#: ../src/Imaging/Exif.cs:228
+msgid "Image Directory"
+msgstr "གཟུགས་བརྙན་སྣོད་ཐོ་"
+
+#: ../src/Imaging/Exif.cs:230
+msgid "Thumbnail Directory"
+msgstr "མཐེ་གཟེར་སྣོད་ཐོ་"
+
+#: ../src/Imaging/Exif.cs:232
+msgid "Exif Directory"
+msgstr "ཨི་ཨེགསི་ཨའི་ཨེཕ་ སྣོད་ཐོ་"
+
+#: ../src/Imaging/Exif.cs:234
+msgid "GPS Directory"
+msgstr "ཇི་པི་ཨེསི་སྣོད་ཐོ་"
+
+#: ../src/Imaging/Exif.cs:236
+msgid "InterOperability Directory"
+msgstr "ཕན་ཚུན་བཀོལ་སྤྱོད་འབད་བཏུབ་པའི་སྣོད་ཐོ་"
+
+#: ../src/Imaging/Exif.cs:238
+msgid "Unknown Directory"
+msgstr "མ་ཤེས་པའི་འཛོལ་བ་"
+
+#: ../src/Imaging/IptcFile.cs:145
+msgid "IPTC Information Interchange Model (IIM) Version number"
+msgstr "ཨའི་པི་ཊི་སི་ བརྡ་དོན་ཕན་ཚུན་བསྒྱུར་བཅོས་དཔེ་ (ཨའི་ཨའི་ཨེམ་) ཐོན་རིམ་ཨང་"
+
+#: ../src/Imaging/IptcFile.cs:147
+msgid "OSI Destination routing information"
+msgstr "ཨོ་ཨེསི་ཨའི་འགྲོ་ཡུལ་ འགྲུལ་ལམ་བཟོ་ནིའི་བརྡ་དོན་"
+
+#: ../src/Imaging/IptcFile.cs:149
+msgid "IPTC file format"
+msgstr "ཨའི་པི་ཊི་སི་ ཡིག་སྣོད་རྩ་སྒྲིག་"
+
+#: ../src/Imaging/IptcFile.cs:151
+msgid "Identifies the provider and product"
+msgstr "བྱིན་མཁན་དང་ཐོན་སྐྱེད་ ངོས་འཛིན་འབདཝ་ཨིན་"
+
+#: ../src/Imaging/IptcFile.cs:153
+msgid "A unique number identifying the envelope"
+msgstr "མཐུན་མོང་མ་ཡིན་པའི་ཨང་ ཡིག་ཤུབས་འདི་ངོས་འཛིན་འབད་དོ་"
+
+#: ../src/Imaging/IptcFile.cs:155
+msgid "A unique number"
+msgstr "མཐུན་མོང་མ་ཡིན་པའི་ཨང་"
+
+#: ../src/Imaging/IptcFile.cs:157
+msgid "The envelope handling priority between 1 (most urgent) and 9 (least urgent)"
+msgstr "ཡིག་ཤུབས་ གཙོ་རིམ་ ༡ (མང་ཤོས་འཕྲལ་མཁོ་) དང་ ༩ (ཉུང་ཤོས་འཕྲལ་མཁོ་) གི་བར་ན་ ལེགས་སྐྱོང་འཐབ་དོ་"
+
+#: ../src/Imaging/IptcFile.cs:159
+msgid "The year month and day (CCYYMMDD) the service sent the material"
+msgstr "ལོ་ ཟླཝ་ དང་ ཉིནམ་ (སི་སི་ཝའི་ཝའི་ཨེམ་ཨེམ་ཌི་ཌི་) ཞབས་ཏོག་གིས་ ཅ་ཆས་བཏང་ཡོདཔ་"
+
+#: ../src/Imaging/IptcFile.cs:161
+msgid "The hour minute and second the (HHMMSS+HHMM) the service sent the material"
+msgstr "ཆུ་ཚོད་  སྐར་མ་ དང་ སྐར་ཆ་ (ཨེཆ་ཨེཆ་ཨེམ་ཨེམ་ཨེསི་ཨེསི་+ཨེཆ་ཨེཆ་ཨེམ་ཨེམ་) ཞབས་ཏོག་གིས་ ཅ་ཆས་བཏང་ཡོདཔ་"
+
+#: ../src/Imaging/IptcFile.cs:163
+msgid "The character set designation"
+msgstr "ཡིག་འབྲུ་ཆ་ཚན་གོ་གནས་"
+
+#: ../src/Imaging/IptcFile.cs:165
+msgid "External globally unique object identifier"
+msgstr "ཕྱིའི་སྤྱི་ཁྱབ་མཐུན་མོང་མ་ཡིན་པའི་ དངོས་པོ་ངོས་འཛིན་པ་"
+
+#: ../src/Imaging/IptcFile.cs:170
+msgid "Abstract Relationship Method (ARM) identifier"
+msgstr "སྙིང་བཅུད་མཐུན་འབྲེལ་ཐབས་ལམ་(ཨེ་ཨར་ཨེམ་)ངོས་འཛིན་པ་ "
+
+#: ../src/Imaging/IptcFile.cs:172
+msgid "Abstract Relationship Method (ARM) version number."
+msgstr "སྙིང་བཅུད་མཐུན་འབྲེལ་ཐབས་ལམ་(ཨེ་ཨར་ཨེམ་)ཐོན་རིམ་ཨང་།"
+
+#: ../src/Imaging/IptcFile.cs:175
+msgid "Number identifying the IIM version this application record uses"
+msgstr "འ་ནི་གློག་རིམ་དྲན་ཐོ་གིས་ལག་ལེན་འཐབ་མི་ ཨའི་ཨའི་ཨེམ་ཐོན་རིམ་འདི་ངོས་འཛིན་འབད་མི་ཨང་"
+
+#: ../src/Imaging/IptcFile.cs:177
+msgid "Object type reference"
+msgstr "དངོས་པོ་དབྱེ་བ་གཞི་བསྟུན་"
+
+#: ../src/Imaging/IptcFile.cs:182
+msgid "Object attribute reference"
+msgstr "དངོས་པོ་ཁྱད་རྣམ་གཞི་བསྟུན་"
+
+#: ../src/Imaging/IptcFile.cs:188
+#: ../src/Imaging/IptcFile.cs:192
+msgid "Object name"
+msgstr "དངོས་པོ་མིང་"
+
+#: ../src/Imaging/IptcFile.cs:190
+msgid "Status of the objectdata according to the provider"
+msgstr "བྱིན་མཁན་འདི་དང་འཁྲིལ་ཏེ་ དངོས་པོ་གནད་སྡུད་འདི་གི་གནས་ཚད་"
+
+#: ../src/Imaging/IptcFile.cs:194
+msgid "Location within a city or area where the object originates"
+msgstr "དངོས་པོ་འདི་ འགོ་ཐོག་འབྱུང་སའི་ གྲོང་སྡེ་ཡང་ན་མངའ་ཁོངས་ཅིག་ ནང་འཁོད་གནས་ཁོངས་"
+
+#: ../src/Imaging/IptcFile.cs:197
+msgid "Name of the city the content is focussing on"
+msgstr "ནང་དོན་འདི་ཆེད་དམིགས་འབད་མི་ གྲོང་སྡེ་འདི་གི་མིང་"
+
+#: ../src/Imaging/IptcFile.cs:200
+msgid "Copyright information for"
+msgstr "དོན་ལུ་ འདྲ་བཤུས་དབང་ཆ་བརྡ་དོན་"
+
+#: ../src/Imaging/IptcFile.cs:203
+msgid "Full name of the country of the focus of the content"
+msgstr "ནང་དོན་འདི་གི་ ཆེད་དམིགས་ཀྱི་ རྒྱལ་ཁབ་འདིགི་ མིང་ཆ་ཚང་"
+
+#: ../src/Imaging/IptcFile.cs:206
+msgid "Two or three letter ISO3166 code of the country of the focus of the content"
+msgstr "ནང་དོན་འདི་གི་ ཆེད་དམིགས་གི་ རྒྱལ་ཁབ་འདི་གི་ གཉིས་ཡང་ན་ གསུམ་ཡི་གུ་ ཨའི་ཨེསི་ཨོ་༣༡༦༦ ཨང་རྟགས་"
+
+#: ../src/Imaging/IptcFile.cs:209
+msgid "Creator of the content"
+msgstr "ནང་དོན་འདི་གི་གསར་བསྐྲུན་པ་"
+
+#: ../src/Imaging/IptcFile.cs:212
+msgid "Provider of the object"
+msgstr "དངོས་པོ་འདི་གི་བྱིན་མཁན་"
+
+#: ../src/Imaging/IptcFile.cs:215
+msgid "The title of the author or creator"
+msgstr "རྩོམ་པ་པོ་ཡང་ན་ གསར་བསྐྲུན་པ་འདི་གི་མགོ་མིང་"
+
+#: ../src/Imaging/IptcFile.cs:218
+msgid "The person involved in writing, editing or correcting the object data or caption/abstract"
+msgstr "དངོས་པོ་གནད་སྡུད་ཡང་ན་ གཔར་བཤད་/སྙིང་བཅུད་འདི་ འབྲི་ནི་ ཞུན་དག་འབད་ནི་ ཡང་ན་ནོར་བཅོས་འབད་ནི་ནང་ འབྲལ་བ་ཡོད་མི་གང་ཟག"
+
+#: ../src/Imaging/IptcFile.cs:222
+msgid "Headline of the content"
+msgstr "ནང་དོན་འདི་གི་གཙོ་དོན་"
+
+#: ../src/Imaging/IptcFile.cs:225
+msgid "Instructions from the creator to the receiver not covered by other fields"
+msgstr "གསར་བསྐྲུན་པ་འདི་ལས་ འཐོབ་མི་འདི་ལུ་གི་ བསླབ་སྟོན་འདི་ གཞན་མི་ས་སྒོ་ཚུ་གིས་ མ་སྤུབས་པས་"
+
+#: ../src/Imaging/IptcFile.cs:228
+msgid "Intellectual genre of the object"
+msgstr "དངོས་པོ་འདི་གི་ བློ་རིག་གི་རིགས་"
+
+#: ../src/Imaging/IptcFile.cs:241
+msgid "Unknown IIM DataSet"
+msgstr "མ་ཤེས་པའི་ཨའི་ཨའི་ཨེམ་གནད་སྡུད་ཆ་ཚན་"
+
+#: ../src/ImportCommand.cs:28
+#: ../src/SingleView.cs:321
+msgid "Select Folder"
+msgstr "སྣོད་འཛིན་སེལ་འཐུ་འབད་"
+
+#: ../src/ImportCommand.cs:235
+msgid "(No Cameras Detected)"
+msgstr "(པར་ཆས་ཚུ་སྐྱོན་འཛིན་མ་འབྱུང་)"
+
+#: ../src/ImportCommand.cs:378
+#, csharp-format
+msgid "Loading {0} of {1}"
+msgstr "{1} ལས་  {0} མངོན་གསལ་འབད་དོ་"
+
+#: ../src/ImportCommand.cs:446
+msgid "Done Loading"
+msgstr "མངོན་གསལ་འབད་ཚར་"
+
+#: ../src/ImportCommand.cs:636
+msgid "Directory does not exist."
+msgstr "སྣོད་ཐོ་འདི་མེད་"
+
+#: ../src/ImportCommand.cs:637
+#, csharp-format
+msgid "The directory you selected \"{0}\" does not exist.  Please choose a different directory"
+msgstr "ཁྱོད་ཀྱིས་སེལ་འཐུ་འབད་མི་སྣོད་ཐོ་  \"{0}\" འདི་མེད། སྣོད་ཐོ་སོ་སོ་ཅིག་གདམ་ཁ་རྐྱབས་གནང་"
+
+#. Prepare the Last Import root tag
+#: ../src/ImportCommand.cs:682
+#: ../src/ImportCommand.cs:684
+#: ../src/XmpTagsImporter.cs:86
+msgid "Import Tags"
+msgstr "ངོ་རྟགས་ཚུ་ནང་འདྲེན་འབད་"
+
+#: ../src/InfoBox.cs:72
+#: ../src/PhotoVersionCommands.cs:56
+msgid "Name:"
+msgstr "མིང་:"
+
+#: ../src/InfoBox.cs:76
+msgid "Date:"
+msgstr "ཚེས་གྲངས་:"
+
+#: ../src/InfoBox.cs:78
+msgid "Size:"
+msgstr "ཚད་:"
+
+#: ../src/InfoBox.cs:80
+msgid "Exposure:"
+msgstr "མདངས་ཕོག་:"
+
+#. The label for the root category is used in new and edit tag dialogs
+#: ../src/InfoBox.cs:221
+#: ../src/TagStore.cs:443
+msgid "(None)"
+msgstr "(ཅི་མེད་)"
+
+#: ../src/InfoBox.cs:232
+#: ../src/InfoBox.cs:241
+msgid "(Unknown)"
+msgstr "(མ་ཤེསཔ་)"
+
+#: ../src/InfoDisplay.cs:14
+#: ../src/MainWindow.cs:1460
+#: ../src/f-spot.glade.h:150
+msgid "Metadata Browser"
+msgstr "མེ་ཊ་གནད་སྡུད་བརའུ་ཟར་"
+
+#. Obsolete, remove after db rev4
+#: ../src/InfoDisplay.cs:135
+#: ../src/InfoDisplay.cs:137
+#: ../src/f-spot.glade.h:126
+msgid "Folder"
+msgstr "སྣོད་འཛིན་"
+
+#: ../src/InfoDisplay.cs:139
+msgid "Picasaweb"
+msgstr "པི་ཀ་ས་ཝེབ།"
+
+#: ../src/InfoDisplay.cs:141
+msgid "SmugMug"
+msgstr "སི་མག་མག"
+
+#: ../src/InfoDisplay.cs:143
+msgid "Gallery2"
+msgstr "སྟོན་ཁང་༢"
+
+#: ../src/InfoDisplay.cs:235
+msgid "Extended Metadata"
+msgstr "རྒྱ་བསྐྱེད་འབད་ཡོད་པའི་མེ་ཊ་གནད་སྡུད་"
+
+#: ../src/InfoDisplay.cs:267
+msgid "Exported Locations"
+msgstr "ཕྱིར་འདྲེན་འབད་ཡོད་པའི་གནས་ཁོངས་ཚུ།"
+
+#: ../src/InfoDisplay.cs:290
+msgid "No active photo"
+msgstr "ཤུགས་ལྡན་དཔར་མེད་"
+
+#: ../src/InfoDisplay.cs:292
+#, csharp-format
+msgid "The photo \"{0}\" does not exist"
+msgstr "དཔར་ \"{0}\" འདི་མེད་"
+
+#: ../src/InfoDisplay.cs:298
+msgid "No metadata available"
+msgstr "མེ་ཊ་གནད་སྡུད་འཐོབ་ཚུགསཔ་མེད་"
+
+#: ../src/ItemAction.cs:110
+msgid "Rotate Left"
+msgstr "གཡོན་ལུ་བསྒྱིར།"
+
+#: ../src/ItemAction.cs:111
+#: ../src/ItemAction.cs:123
+msgid "Rotate picture left"
+msgstr "པར་གཡོན་ལུ་བསྒྱིར།"
+
+#: ../src/ItemAction.cs:122
+msgid "Rotate Right"
+msgstr "གཡས་ལུ་བསྒྱིར་།"
+
+#: ../src/ItemAction.cs:134
+msgid "Next picture"
+msgstr "ཤུལ་མམ་གྱི་པར།"
+
+#: ../src/ItemAction.cs:155
+#: ../src/f-spot.glade.h:176
+msgid "Previous"
+msgstr "ཧེ་མམ་"
+
+#: ../src/ItemAction.cs:156
+msgid "Previous picture"
+msgstr "ཧེ་མམ་གྱི་པར།"
+
+#: ../src/ItemAction.cs:286
+#: ../src/StockIcons.cs:27
+msgid "Auto Color"
+msgstr "རང་བཞིན་ཚོས་གཞི།"
+
+#: ../src/ItemAction.cs:287
+msgid "Automatically adjust the colors"
+msgstr "ཚོས་གཞི་ཚུ་རང་བཞིན་གྱིས་བདེ་སྒྲིག་འབད།"
+
+#: ../src/ItemAction.cs:302
+msgid "Apply straightening"
+msgstr "ཕྲང་ཕྲངམ་འཇུག་སྤྱོད་འབད།"
+
+#: ../src/ItemAction.cs:303
+msgid "Apply straightening to image"
+msgstr "གཟུགས་བརྙན་ལུ་ཕྲང་ཕྲངམ་འཇུག་སྤྱོད་འབད།"
+
+#: ../src/ItemAction.cs:356
+msgid "Adjust the angle of the image to straighten the horizon"
+msgstr "གཟུགས་བརྙན་གྱི་གྲུ་ཟུར་འདི་ཐད་སྙོམས་འདི་ཕྲང་ཕྲངམ་ལུ་བདེ་སྒྲིག་འབད།"
+
+#: ../src/ItemAction.cs:372
+msgid "Create a soft focus visual effect"
+msgstr "ཆེད་དམིགས་འཆར་སྣང་ནུས་པ་འཇམ་ཁྱུག་ཁྱུ་ཅིག་གསར་བསྐྲུན་འབད།"
+
+#: ../src/Loupe.cs:57
+#: ../src/MainWindow.cs:1951
+msgid "Error saving sharpened photo"
+msgstr "རྣོ་ཅན་བཟོ་ཡོད་པའི་དཔར་སྲུང་བཞག་འབད་བའི་སྐབས་ འཛོལ་བ་"
+
+#: ../src/Loupe.cs:87
+msgid "Sharpen"
+msgstr "རྣོ་ཅན་བཟོ་"
+
+#: ../src/Loupe.cs:97
+#: ../src/MainWindow.cs:1918
+msgid "Amount:"
+msgstr "བསྡོམས་:"
+
+#: ../src/Loupe.cs:98
+#: ../src/MainWindow.cs:1919
+msgid "Radius:"
+msgstr "མཐའ་འཁོར་:"
+
+#: ../src/Loupe.cs:99
+#: ../src/MainWindow.cs:1920
+msgid "Threshold:"
+msgstr "ཐེརེཤ་ཧཱོལ་:"
+
+#: ../src/MainWindow.cs:243
+#: ../src/f-spot.glade.h:141
+msgid "Import"
+msgstr "ནང་འདྲེན་"
+
+#: ../src/MainWindow.cs:244
+msgid "Import photos"
+msgstr "དཔར་ཚུ་ནང་འདྲེན་འབད་"
+
+#: ../src/MainWindow.cs:255
+msgid "Browse many photos simultaneously"
+msgstr "དཔར་ལེ་ཤ་དུས་མཉམ་ལུ་ བརྡ་འཚོལ་འབད་"
+
+#: ../src/MainWindow.cs:258
+msgid "View and edit a photo"
+msgstr "དཔར་ཅིག་ སྟོན་ཞིནམ་ལས་ཞུན་དག་འབད་"
+
+#: ../src/MainWindow.cs:263
+#: ../src/SingleView.cs:85
+msgid "View photos fullscreen"
+msgstr "དཔར་ཚུ་གསལ་གཞི་གངམ་སྦེ་སྟོན་"
+
+#: ../src/MainWindow.cs:266
+#: ../src/SingleView.cs:87
+msgid "View photos in a slideshow"
+msgstr "དཔར་ཚུ་ བཤུད་བརྙན་ཅིག་ནང་སྟོན་"
+
+#: ../src/MainWindow.cs:824
+msgid "Error loading database."
+msgstr "གནད་སྡུད་གཞི་རྟེན་མངོན་གསལ་འབད་བའི་སྐབས་འཛོལ་བ།"
+
+#: ../src/MainWindow.cs:825
+#, csharp-format
+msgid "F-Spot encountered an error while loading the photo database. The old database has be moved to {0} and a new database has been created."
+msgstr "ཨེཕ་-ཨིསི་པོཊི་གིས་ དཔར་གྱི་གནད་སྡུད་གཞི་རྟེན་འདི་མངོན་གསལ་འབད་བའི་སྐབས་ འཛོལ་བ་ཅིག་གདོང་ཐུག་འབྱུང་ཡོད། གནད་སྡུད་གཞི་རྟེན་རྙིངམ་འདི་ {0} ལུ་སྤོ་ཡོད་ དེ་ལས་ གནད་སྡུད་གཞི་རྟེན་གསརཔ་ཅིག་གསར་བསྐྲུན་འབད་ཡོད།"
+
+#: ../src/MainWindow.cs:1383
+msgid "No cameras detected."
+msgstr "པར་ཆས་ཚུ་སྐྱོན་འཛིན་མ་འབྱུང་"
+
+#: ../src/MainWindow.cs:1384
+msgid "F-Spot was unable to find any cameras attached to this system.  Double check that the camera is connected and has power"
+msgstr "ཨེཕ་-ཨིསི་པོཊི་འདི་ འ་ནི་རིམ་ལུགས་ལུ་མཉམ་སྦྲགས་འབད་ཡོད་པའི་ པར་ཆས་ག་ནི་ཡང་འཚོལ་མ་འཐོབ། པར་ཆས་འདི་ མཐུད་ཡོདཔ་དང་ ནུས་ཤུགས་ཡོདཔ་སྦེ་ ཚར་གཉིས་ཨེབ་གཏང་འབད་"
+
+#: ../src/MainWindow.cs:1424
+msgid "Error connecting to camera"
+msgstr "པར་ཆས་ལུ་མཐུད་པའི་སྐབས་འཛོལ་བ་"
+
+#: ../src/MainWindow.cs:1425
+#, csharp-format
+msgid "Received error \"{0}\" while connecting to camera"
+msgstr "པར་ཆས་ལུ་མཐུད་པའི་སྐབས་ འཛོལ་བ་ \"{0}\" འཐོབ་ཡོདཔ་"
+
+#. Translators should localize the following string
+#. * which will give them credit in the About box.
+#. * E.g. "Martin Willemoes Hansen"
+#: ../src/MainWindow.cs:1562
+msgid "translator-credits"
+msgstr "ཨའི་ཌི་ཨར་སི་གི་མ་དངུལ་རྒྱབ་སྐྱོར་ཐོག་ལས་ བརྡ་དོན་འཕྲུལ་རིག་ལས་ཁུངས་ནང་ སྐད་བསྒྱུར་འབད་ཡི། ཁ་གསལ་གྱི་དོན་ལུ་ འབྲལ་བ་འཐབ་ས་: <pema_geyleg@druknet.bt>"
+
+#: ../src/MainWindow.cs:1569
+msgid "Copyright © 2003-2007 Novell Inc."
+msgstr "Copyright  © ༢༠༠༣-༢༠༠༦ ནོ་ཝེལ་ ཨའི་ཨེན་སི་"
+
+#. Translators, The singular case will never happen here.
+#: ../src/MainWindow.cs:1831
+#, csharp-format
+msgid "Merge the selected tag"
+msgid_plural "Merge the {0} selected tags?"
+msgstr[0] "སེལ་འཐུ་འབད་ཡོད་པའི་ངོ་རྟགས་འདི་མཉམ་བསྡོམས་འབད་"
+msgstr[1] "{0} སེལ་ཐའུ་འབད་ཡོད་པའི་ངོ་རྟགས་ཚུ་ མཉམ་བསྡོམ་འབད་?"
+
+#: ../src/MainWindow.cs:1858
+msgid "This operation will merge the selected tags and any sub-tags into a single tag."
+msgstr "འ་ནི་བཀོལ་སྤྱོད་འདི་གིས་ ངོ་རྟགས་རྐྱངམ་ཅིག་ལུ་ སེལ་འཐུ་འབད་ཡོད་པའི་ངོ་རྟགས་ཚུ་དང་ ཡན་ལག་ངོ་རྟགས་ག་འབད་རུང་ མཉམ་སབསྡོམས་འབད་འོང་།"
+
+#: ../src/MainWindow.cs:1860
+msgid "_Merge Tags"
+msgstr "ངོ་རྟགས་ཚུ་མཉམ་བསྡོམས་འབད་(_M)"
+
+#: ../src/MainWindow.cs:1909
+msgid "Unsharp Mask"
+msgstr "རྣོ་ཅན་མེན་པའི་གདོང་ཁེབས་"
+
+#: ../src/MainWindow.cs:2132
+#: ../src/SingleView.cs:463
+#, csharp-format
+msgid "{0} Photo"
+msgid_plural "{0} Photos"
+msgstr[0] "{0} དཔར་"
+msgstr[1] "{0} དཔར་ཚུ་"
+
+#: ../src/MainWindow.cs:2139
+#, csharp-format
+msgid " out of {0}"
+msgstr "{0}ལས་"
+
+#: ../src/MainWindow.cs:2142
+#, csharp-format
+msgid " ({0} selected)"
+msgid_plural " ({0} selected)"
+msgstr[0] " ({0} སེལ་འཐུ་འབད་ཡོདཔ་)"
+msgstr[1] " ({0} སེལ་འཐུ་འབད་ཡོདཔ་)"
+
+#: ../src/MainWindow.cs:2229
+msgid "_Ok"
+msgstr "བཏུབ་(_O)"
+
+#: ../src/MainWindow.cs:2230
+msgid "Error Deleting Picture"
+msgstr "པར་བཏོན་པའི་སྐབས་འཛོལ་བ་"
+
+#: ../src/MainWindow.cs:2235
+#, csharp-format
+msgid "No permission to delete the file:{1}{0}"
+msgstr "ཡིག་སྣོད་འདི་བཏོན་གཏང་ནི་གནང་བ་མེདཔ།{1}{0}"
+
+#: ../src/MainWindow.cs:2239
+#, csharp-format
+msgid "An error of type {0} occurred while deleting the file:{2}{1}"
+msgstr "ཡིག་སྣོད་འདི་བཏོན་གཏང་བའི་སྐབས་ {0} འཛོལ་བ་ཅིག་གི་དབྱེ་བ་འབྱུང་ཡོདཔ།{2}{1}"
+
+#: ../src/MainWindow.cs:2265
+#, csharp-format
+msgid "Delete the selected photo permanently?"
+msgid_plural "Delete the {0} selected photos permanently?"
+msgstr[0] "སེལའ་ཐུ་འབད་ཡོད་པའི་དཔར་ རྟག་བརྟན་སྦེ་ བཏོན་གཏང་?"
+msgstr[1] "{0} སེལ་འཐུ་འབད་ཡོད་པའི་དཔར་ཚུ་ རྟག་བརྟན་སྦེ་ བཏོན་གཏང་?"
+
+#: ../src/MainWindow.cs:2269
+msgid "This deletes all versions of the selected photo from your drive."
+msgid_plural "This deletes all versions of the selected photos from your drive."
+msgstr[0] "འ་ནི་འདི་གིས་ སེལ་འཐུ་འབད་ཡོད་པའི་དཔར་འདི་གི་ ཐོན་རིམ་ཚུ་ཆ་མཉམ་ ཁྱོད་རའི་འདྲེན་འཕྲུལ་ལས་བཏོན་གཏངམ་ཨིན།"
+msgstr[1] "འ་ནི་འདི་གིས་ སེལ་འཐུ་འབད་ཡོད་པའི་དཔར་འདི་ཚུ་གི་ ཐོན་རིམ་ཚུ་ཆ་མཉམ་ ཁྱོད་རའི་འདྲེན་འཕྲུལ་ལས་ བཏོན་གཏངམ་ཨིན།"
+
+#: ../src/MainWindow.cs:2272
+msgid "_Delete photo"
+msgid_plural "_Delete photos"
+msgstr[0] "དཔར་བཏོན་གཏང་(_D)"
+msgstr[1] "དཔར་ཚུ་བཏོན་གཏང་(_D)"
+
+#: ../src/MainWindow.cs:2303
+#, csharp-format
+msgid "Remove the selected photo from F-Spot?"
+msgid_plural "Remove the {0} selected photos from F-Spot?"
+msgstr[0] "སེལ་འཐུ་འབད་ཡོད་པའི་དཔར་འདི་ ཨེཕ་-ཨིསི་པོཊི་ལས་རྩ་བསྐྲད་གཏང་?"
+msgstr[1] "{0} སེལ་འཐུ་འབད་ཡོད་པའི་དཔར་ཚུ་ ཨེཕ་-ཨིསི་པོཊི་ལས་ རྩ་བསྐྲད་གཏང་?"
+
+#: ../src/MainWindow.cs:2308
+msgid "If you remove photos from the F-Spot catalog all tag information will be lost. The photos remain on your computer and can be imported into F-Spot again."
+msgstr "ཁྱོད་ཀྱིས་དཔར་ཚུ་ ཨེཕ་-ཨིསི་པོཊི་ཐོ་གཞུང་འདི་ལས་ རྩ་བསྐྲད་གཏང་པ་ཅིན་ ངོ་རྟགས་བརྡ་དོན་ཆ་མཉམ་བརླག་སྟོར་ཞུགས་འོང་། དཔར་ཚུ་ཁྱོད་རའི་གློག་རིག་གུ་སྡོད་འོང་ དེ་ལས་ འདི་ ལོག་ཨེཕ་-ཨིསི་པོཊི་ནང་ལུ་ ནང་འདྲེན་འབད་བཏུབ།"
+
+#: ../src/MainWindow.cs:2309
+msgid "_Remove from Catalog"
+msgstr "ཐོ་གཞུང་ལས་རྩ་བསྐྲད་གཏང་(_R)"
+
+#: ../src/MainWindow.cs:2366
+#, csharp-format
+msgid "Delete tag \"{0}\"?"
+msgstr "ངོ་རྟགས་ \"{0}\" བཏོན་གཏང་?"
+
+#: ../src/MainWindow.cs:2368
+#, csharp-format
+msgid "Delete the {0} selected tags?"
+msgstr "{0} སེལ་འཐུ་འབད་ཡོད་པའི་ངོ་རྟགས་ཚུ་བཏོན་གཏང་?"
+
+#: ../src/MainWindow.cs:2371
+msgid "If you delete a tag, all associations with photos are lost."
+msgstr "ཁྱོད་ཀྱིས་ངོ་རྟགས་ཅིག་བཏོན་གཏང་པ་ཅིན་ དཔར་དང་གཅིག་ཁར་འབྲེལ་བ་ཡོད་མི་ཚུ་ཆ་མཉམ་ བརླག་སྟོར་ཞུགས་འོང་།"
+
+#: ../src/MainWindow.cs:2372
+msgid "_Delete tag"
+msgid_plural "_Delete tags"
+msgstr[0] "ངོ་རྟགས་བཏོན་གཏང་(_D)"
+msgstr[1] "ངོ་རྟགས་ཚུ་བཏོན་གཏང་(_D)"
+
+#. A Category is not empty. Can not delete it.
+#: ../src/MainWindow.cs:2386
+msgid "Tag is not empty"
+msgstr "ངོ་རྟགས་འདི་སྟོངམ་མེན་"
+
+#: ../src/MainWindow.cs:2387
+#, csharp-format
+msgid "Can not delete tags that have tags within them.  Please delete tags under \"{0}\" first"
+msgstr "དེ་ཚུ་གི་ནང་འཁོད་ ངོ་རྟགས་ཚུ་ཡོད་མི་ ངོ་རྟགས་ཚུ་བཏོན་གཏང་མི་ཚུགས། དང་པ་རང་  \"{0}\" གི་འོག་ལུ་ཡོད་མི་ ངོ་རྟགས་ཚུ་ བཏོན་གཏང་གནང་"
+
+#: ../src/MainWindow.cs:2818
+msgid "Rotate selected photo left"
+msgid_plural "Rotate selected photos left"
+msgstr[0] "སེལ་འཐུ་འབད་ཡོད་པའི་དཔར་ཚུ་ གཡོན་ལུ་བསྒྱིར་"
+msgstr[1] "སེལ་འཐུ་འབད་ཡོད་པའི་དཔར་ གཡོན་ལུ་བསྒྱིར་"
+
+#: ../src/MainWindow.cs:2831
+msgid "Rotate selected photo right"
+msgid_plural "Rotate selected photos right"
+msgstr[0] "སེལ་འཐུ་འབད་ཡོད་པའི་དཔར་ཚུ་ གཡས་ལུ་བསྒྱིར་"
+msgstr[1] "སེལ་འཐུ་འབད་ཡོད་པའི་དཔར་ གཡས་ལུ་བསྒྱིར་"
+
+#: ../src/MainWindow.cs:2839
+#, csharp-format
+msgid "Find Selected Tag"
+msgid_plural "Find Selected Tags"
+msgstr[0] "སེལ་འཐུ་འབད་ཡོད་པའི་ངོ་རྟགས་ཚུ་འཚོལ་"
+msgstr[1] "སེལ་འཐུ་འབད་ཡོད་པའི་ངོ་རྟགས་འཚོལ་"
+
+#: ../src/MainWindow.cs:2843
+#, csharp-format
+msgid "Find Selected Tag With"
+msgid_plural "Find Selected Tags With"
+msgstr[0] "དང་གཅིག་ཁར་ སེལ་འཐུ་འབད་ཡོད་པའི་ངོ་རྟགས་ཚུ་འཚོལ་"
+msgstr[1] "དང་གཅིག་ཁར་ སེལ་འཐུ་འབད་ཡོད་པའི་ངོ་རྟགས་འཚོལ་"
+
+#: ../src/MainWindow.cs:2860
+msgid "Create New Version?"
+msgid_plural "Create New Versions?"
+msgstr[0] "ཐོན་རིམ་གསརཔ་ཚུ་གསར་བསྐྲུན་འབད་?"
+msgstr[1] "ཐོན་རིམ་གསརཔ་གསར་བསྐྲུན་འབད་?"
+
+#: ../src/MainWindow.cs:2862
+#, csharp-format
+msgid "Before launching {1}, should F-Spot create a new version of the selected photo to preserve the original?"
+msgid_plural "Before launching {1}, should F-Spot create new versions of the selected photos to preserve the originals?"
+msgstr[0] "{1} གསར་བཙུགས་མ་འབད་བའི་ཧེ་མ་ ཨེཕ་-ཨིསི་པོཊི་གིས་ སེལ་འཐུ་འབད་ཡོད་པའི་དཔར་ཚུ་གི་ ཐོན་རིམ་གསརཔ་འདི་ ངོ་མ་འདི་ཉམས་སྲུང་འབད་ནིའི་དོན་ལས་ གསར་བསྐྲུན་འབད་དགོབ་ཨིན་ན ?"
+msgstr[1] "{1} གསར་བཙུགས་མ་འབད་བའི་ཧེ་མ་ ཨེཕ་-ཨིསི་པོཊི་གིས་ སེལ་འཐུ་འབད་ཡོད་པའི་དཔར་ཚུ་གི་ ཐོན་རིམ་གསརཔ་འདི་ ངོ་མ་ཚུ་ཉམས་སྲུང་འབད་ནིའི་དོན་ལས་ གསར་བསྐྲུན་འབད་དགོབ་ཨིན་ན?"
+
+#: ../src/MetadataStore.cs:18
+msgid "Creator"
+msgstr "གསར་བསྐྲུན་པ་"
+
+#: ../src/MetadataStore.cs:19
+msgid "Title"
+msgstr "མགོ་མིང་"
+
+#: ../src/MetadataStore.cs:20
+msgid "Copyright"
+msgstr "འདྲ་བཤུས་དབང་ཆ་"
+
+#: ../src/MetadataStore.cs:21
+msgid "Subject and Keywords"
+msgstr "དོན་ཚན་དང་གཙོ་ཚིག་ཚུ་"
+
+#: ../src/MetadataStore.cs:22
+msgid "Compression"
+msgstr "ཨེབ་བཙུགས་"
+
+#: ../src/MetadataStore.cs:24
+msgid "Planar Configuration"
+msgstr "པ་ལ་ནར་རིམ་སྒྲིག་"
+
+#: ../src/MetadataStore.cs:26
+msgid "Orientation"
+msgstr "ཁ་ཕྱོགས་"
+
+#: ../src/MetadataStore.cs:28
+msgid "Photometric Interpretation"
+msgstr "ཕོ་ཊོ་མེ་ཊིཀ་ ཁ་བསྒྱུར་"
+
+#: ../src/MetadataStore.cs:30
+msgid "Resolution Unit"
+msgstr "ཧུམ་ཆ་སྡེ་ཕྲན་"
+
+#: ../src/MetadataStore.cs:32
+msgid "Exposure Program"
+msgstr "མདངས་ཕོག་ལམ་རིམ་"
+
+#: ../src/MetadataStore.cs:34
+msgid "Metering Mode"
+msgstr "མི་ཊ་རིང་ཐབས་ལམ་"
+
+#: ../src/MetadataStore.cs:36
+msgid "Exposure Mode"
+msgstr "མདངས་ཕོག་ཐབས་ལམ་"
+
+#: ../src/MetadataStore.cs:38
+msgid "Custom Rendered"
+msgstr "སྲོལ་སྒྲིག་ལྷག་སྟོན་འབད་ཡོདཔ་"
+
+#: ../src/MetadataStore.cs:40
+msgid "Components Configuration"
+msgstr "ཆ་ཤས་རིམ་སྒྲིག་འབད་ནི་"
+
+#: ../src/MetadataStore.cs:42
+msgid "Light Source"
+msgstr "འོད་འབྱུང་ཁུངས་"
+
+#: ../src/MetadataStore.cs:44
+msgid "Sensing Method"
+msgstr "དྲན་ཚོར་ཐབས་ལམ་"
+
+#: ../src/MetadataStore.cs:46
+msgid "Color Space"
+msgstr "ཚོས་གཞི་བར་སྟོང་"
+
+#: ../src/MetadataStore.cs:48
+msgid "White Balance"
+msgstr "དཀརཔོ་ལྷག་ལུས་"
+
+#: ../src/MetadataStore.cs:50
+msgid "Focal Plane Resolution Unit"
+msgstr "ཕོ་ཀཱལ་བྱིལ་ལི་ཧུམ་ཆ་སྡེ་ཕྲན་"
+
+#: ../src/MetadataStore.cs:52
+msgid "File Source Type"
+msgstr "ཡིག་སྣོད་འབྱུང་ཁུངས་དབྱེ་བ་"
+
+#: ../src/MetadataStore.cs:54
+msgid "Scene Capture Type"
+msgstr "འཆར་སྣང་འཛིན་བཟུང་དབྱེ་བ་"
+
+#: ../src/MetadataStore.cs:56
+msgid "Gain Control"
+msgstr "ཚད་འཛིན་ཁེ་ཕན་"
+
+#: ../src/MetadataStore.cs:58
+msgid "Contrast"
+msgstr "ཚོན་མདངས་"
+
+#: ../src/MetadataStore.cs:60
+msgid "Saturation"
+msgstr "མཐའ་ཚད་"
+
+#: ../src/MetadataStore.cs:62
+msgid "Sharpness"
+msgstr "རྣོ་ཅན་"
+
+#: ../src/MetadataStore.cs:64
+msgid "Scene Type"
+msgstr "འཆར་སྣང་དབྱེ་བ་"
+
+#: ../src/OpenWithMenu.cs:80
+msgid "No applications available"
+msgstr "གློག་རིམ་འཐོབ་ཚུགསཔ་མེད་"
+
+#: ../src/OpenWithMenu.cs:95
+msgid "Open With"
+msgstr "དང་གཅིག་ཁར་ཁ་ཕྱེ་"
+
+#: ../src/PhotoPopup.cs:46
+msgid "Copy Photo Location"
+msgstr "དཔར་གྱི་གནས་ཁོངས་འདྲ་བཤུས་རྐྱབས་"
+
+#: ../src/PhotoPopup.cs:62
+msgid "Remove From Catalog"
+msgstr "ཐོ་གཞུང་ལས་རྩ་བསྐྲད་གཏང་"
+
+#: ../src/PhotoPopup.cs:64
+msgid "Delete From Drive"
+msgstr "འདྲེན་འཕྲུལ་ལས་བཏོན་གཏང་"
+
+#.
+#. FIXME TagMenu is ugly.
+#.
+#: ../src/PhotoPopup.cs:72
+msgid "Attach Tag"
+msgstr "ངོ་རྟགས་མཉམ་སྦྲགས་འབད་"
+
+#.
+#. FIXME finish the IPhotoSelection stuff and move the activate handler into the class
+#. this current method is way too complicated.
+#.
+#: ../src/PhotoPopup.cs:84
+msgid "Remove Tag"
+msgstr "ངོ་རྟགས་རྩ་བསྐྲད་གཏང་"
+
+#: ../src/PhotoStore.cs:385
+#, csharp-format
+msgid "Modified"
+msgid_plural "Modified ({0})"
+msgstr[0] "ལེགས་བཅོས་འབད་ཡོད་"
+msgstr[1] "({0}) ལེགས་་བཅོས་འབད་ཡོད་"
+
+#: ../src/PhotoStore.cs:404
+#, csharp-format
+msgid "Modified in {1}"
+msgid_plural "Modified in {1} ({0})"
+msgstr[0] "{1}ནང་ལེགས་བཅོས་འབད་ཡོད་"
+msgstr[1] "{1} ({0}) ནང་ལེགས་བཅོས་འབད་ཡོད་"
+
+#. Note that the original version is never stored in the photo_versions table in the
+#. database.
+#: ../src/PhotoStore.cs:589
+#: ../src/f-spot.glade.h:163
+msgid "Original"
+msgstr "ངོ་མ་"
+
+#. Fixme this should really set parent menu
+#. items insensitve
+#: ../src/PhotoTagMenu.cs:72
+msgid "(No Tags)"
+msgstr "(ངོ་རྟགས་་ཚུ་མེད་)"
+
+#: ../src/PhotoVersionCommands.cs:55
+msgid "Create New Version"
+msgstr "ཐོན་རིམ་གསརཔ་གསར་བསྐྲུན་འབད་"
+
+#: ../src/PhotoVersionCommands.cs:60
+msgid "Rename Version"
+msgstr "ཐོན་རིམ་བསྐྱར་མིང་བཏགས་"
+
+#: ../src/PhotoVersionCommands.cs:61
+msgid "New name:"
+msgstr "མིང་གསརཔ་:"
+
+#: ../src/PhotoVersionCommands.cs:107
+msgid "Could not create a new version"
+msgstr "ཐོན་རིམ་གསརཔ་ཅིག་གསར་བསྐྲུན་འབད་མི་ཚུགས་"
+
+#: ../src/PhotoVersionCommands.cs:108
+#, csharp-format
+msgid "Received exception \"{0}\". Unable to create version \"{1}\""
+msgstr "དམིགས་བསལ་ \"{0}\"་ཐོབ་ཡོད། ཐོན་རིམ་ \"{1}\" གསར་བསྐྲུན་འབད་མ་ཚུགས་"
+
+#: ../src/PhotoVersionCommands.cs:135
+msgid "Really Delete?"
+msgstr "ཐད་རི་འབའ་རི་བཏོན་གཏང་ནི་ཨིན་ན?"
+
+#: ../src/PhotoVersionCommands.cs:136
+msgid "Cancel"
+msgstr "ཆ་མེད་གཏང་ནི།"
+
+#: ../src/PhotoVersionCommands.cs:137
+msgid "Delete"
+msgstr "བཏོན་གཏང་།"
+
+#: ../src/PhotoVersionCommands.cs:141
+#, csharp-format
+msgid "Really delete version \"{0}\"?"
+msgstr "ཐོན་ \"{0}\" ཐད་རི་འབའ་རི་བཏོན་གཏང་ནི་ཨིན་ན?"
+
+#. FIXME show error dialog.
+#: ../src/PhotoVersionCommands.cs:151
+msgid "Could not delete a version"
+msgstr "ཐོན་རིམ་ཅིག་བཏོན་གཏང་མ་ཚུགས་"
+
+#: ../src/PhotoVersionCommands.cs:152
+#, csharp-format
+msgid "Received exception \"{0}\". Unable to delete version \"{1}\""
+msgstr "དམིགས་བསལ་ \"{0}\" འཐོབ་ཡོད། ཐོན་རིམ་ \"{1}\" བཏོན་གཏང་མ་ཚུགས་"
+
+#: ../src/PhotoVersionCommands.cs:193
+msgid "Could not rename a version"
+msgstr "ཐོན་རིམ་ཅིག་བསྐྱར་མིང་བཏགས་མ་ཚུགས་"
+
+#: ../src/PhotoVersionCommands.cs:194
+#, csharp-format
+msgid "Received exception \"{0}\". Unable to rename version to \"{1}\""
+msgstr "དམིགས་བསལ་ \"{0}\" ཐོབ་ཡོད། ཐོན་རིམ་འདི་ \"{1}\" ལུ་བསྐྱར་མིང་བཏགས་མ་ཚུགས་"
+
+#: ../src/PhotoVersionMenu.cs:66
+msgid "(No Edits)"
+msgstr "(ཞུན་དག་འབད་ནི་མེད་)"
+
+#: ../src/PhotoView.cs:63
+msgid "No Constraint"
+msgstr "དམ་ནི་མེད་"
+
+#: ../src/PhotoView.cs:64
+msgid "4 x 3 (Book)"
+msgstr "༤ x ༣ (ཀི་དེབ་)"
+
+#: ../src/PhotoView.cs:65
+msgid "4 x 6 (Postcard)"
+msgstr "༤ x ༦ (འགྲེམ་བྱང་)"
+
+#: ../src/PhotoView.cs:66
+msgid "5 x 7 (L, 2L)"
+msgstr "༥ x ༧ (ཨེལ་  ༢་ཨེལ་)"
+
+#: ../src/PhotoView.cs:67
+msgid "8 x 10"
+msgstr "༨ x ༡༠"
+
+#. new SelectionConstraint (Catalog.GetString ("4 x 3 Portrait (Book)"), 3.0 / 4.0),
+#. new SelectionConstraint (Catalog.GetString ("4 x 6 Portrait (Postcard)"), 4.0 / 6.0),
+#. new SelectionConstraint (Catalog.GetString ("5 x 7 Portrait (L, 2L)"), 5.0 / 7.0),
+#. new SelectionConstraint (Catalog.GetString ("8 x 10 Portrait"), 8.0 / 10.0),
+#: ../src/PhotoView.cs:72
+msgid "Square"
+msgstr "གྲུ་བཞི་"
+
+#: ../src/PhotoView.cs:152
+msgid "Crop photo to selected area"
+msgstr "སེལ་འཐུ་འབད་ཡོད་པའི་མངའ་ཁོངས་ལུ་ དཔར་བཏོག་བཅོས་འབད་"
+
+#: ../src/PhotoView.cs:153
+msgid "Remove redeye from selected area"
+msgstr "སེལ་འཐུ་འབད་ཡོད་པའི་མངའ་ཁོངས་ལས་ རེཌི་ཨའི་རྩ་བསྐྲད་གཏང་"
+
+#: ../src/PhotoView.cs:155
+msgid "Select an area to crop"
+msgstr "བཏོག་བཅོས་འབད་ནིའི་དོན་ལས་ མངའ་ཁོངས་ཅིག་སེལ་འཐུ་འབད་"
+
+#: ../src/PhotoView.cs:156
+msgid "Select an area to remove redeye"
+msgstr "རེཌི་ཨའི་རྩ་བསྐྲད་གཏང་ནིའི་དོན་ལས་ མངའ་ཁོངས་ཅིག་སེལ་འཐུ་འབད་"
+
+#: ../src/PhotoView.cs:317
+msgid "No selection available"
+msgstr "སེལ་འཐུ་འཐོབ་ཚུགསཔ་མེད་"
+
+#: ../src/PhotoView.cs:318
+msgid "This tool requires an active selection. Please select a region of the photo and try the operation again"
+msgstr "འ་ནི་ལག་ཆས་འདི་ལུ་ ཤུགས་ལྡན་སེལ་འཐུ་འབད་ནི་ཅིག་དགོཔ་ཨིན། དཔར་འདི་གི་ལུང་ཕྱོགས་ཅིག་སེལ་འཐུ་འབད་ དེ་ལས་ བཀོལ་སྤྱོད་པ་འདི་ལོག་འབད་རྩོལ་བསྐྱེད་གནང་"
+
+#: ../src/PhotoView.cs:487
+msgid "Comment:"
+msgstr "བསམ་བཀོད་:"
+
+#: ../src/PhotoView.cs:561
+msgid "Adjust the photo colors"
+msgstr "དཔར་གྱི་ཚོས་གཞི་འདི་བདེ་སྒྲིག་འབད་"
+
+#: ../src/PhotoView.cs:562
+msgid "Constrain the aspect ratio of the selection"
+msgstr "སེལ་འཐུ་འབད་ནི་འདི་གི་རྣམ་དཔྱ་ཚད་འདི་དམ་"
+
+#: ../src/PhotoView.cs:563
+msgid "Next photo"
+msgstr "ཤུལ་མའི་དཔར་"
+
+#: ../src/PhotoView.cs:564
+msgid "Previous photo"
+msgstr "ཧེ་མའི་དཔར་"
+
+#: ../src/PhotoView.cs:565
+msgid "Convert the photo to black and white"
+msgstr "དཔར་འདི་ གནགཔོ་དང་དཀརཔོ་ལུ་གཞི་བསྒྱུར་འབད་"
+
+#: ../src/PhotoView.cs:566
+msgid "Convert the photo to sepia tones"
+msgstr "དཔར་འདི་ སི་པི་ཡ་ཊོནསི་ལུ་གཞི་བསྒྱུར་འབད་"
+
+#: ../src/PicasaWebExport.cs:405
+msgid "Error while creating Album"
+msgstr "གླུ་མཛོད་ གསར་བསྐྲུན་འབད་བའི་སྐབས་ལུ་འཛོལ་བ་"
+
+#: ../src/PicasaWebExport.cs:406
+#, csharp-format
+msgid "The following error was encountered while attempting to create an album: {0}"
+msgstr "འོག་གི་ འཛོལ་བ་དེ་ གླུ་མཛོད་ཅིག་གསར་བསྐྲུན་འབད་ནིའི་དཔའ་བཅམ་པའི་སྐབས་ལུ ་གདོང་ཐུག་འབྱུང་ཡོད་: {0}"
+
+#: ../src/PicasaWebExport.cs:585
+#: ../src/SmugMugExport.cs:540
+#, csharp-format
+msgid "Uploading picture \"{0}\" ({1} of {2})"
+msgstr "པར་ \"{0}\" ( {2}ལས་ {1}) སྐྱེལ་བཙུགས་འབད་དོ་"
+
+#: ../src/PicasaWebExport.cs:616
+#: ../src/SmugMugExport.cs:569
+#, csharp-format
+msgid "Error Uploading To Gallery: {0}"
+msgstr "སྟོན་ཁང་ལུ་སྐྱེལ་བཙུགས་འབདཝ་ད་འཛོལ་བ་: {0}"
+
+#: ../src/PicasaWebExport.cs:700
+msgid "Available space :"
+msgstr "འཐོབ་ཚུགས་པའི་བར་སྟོང་:"
+
+#: ../src/Preferences.cs:190
+msgid "Photos"
+msgstr "དཔར་ཚུ་"
+
+#: ../src/QueryWidget.cs:37
+msgid "Find: "
+msgstr "འཚོལ་:"
+
+#: ../src/QueryWidget.cs:42
+msgid "Untagged photos"
+msgstr "ངོ་རྟགས་མ་སྦྱར་མི་དཔར་ཚུ་"
+
+#: ../src/QueryWidget.cs:50
+msgid "Import roll"
+msgstr "ཤོ་རིལ་ ནང་འདྲེན་འབད་"
+
+#: ../src/QueryWidget.cs:70
+msgid "Clear search"
+msgstr "འཚོལ་ཞིབ་བསལ་"
+
+#: ../src/QueryWidget.cs:72
+msgid "No matching photos found"
+msgstr "མཐུན་མི་དཔར་ཚུ་གཅིག་ཡང་མ་འཐོབ་"
+
+#: ../src/QueryWidget.cs:103
+msgid "Hide Find Bar"
+msgstr "འཚོལ་ནིའི་ཕྲ་རིང་སྦ་བཞག་"
+
+#: ../src/QueryWidget.cs:109
+msgid "Show Find Bar"
+msgstr "འཚོལ་ནིའི་ཕྲ་རིང་སྟོན་"
+
+#: ../src/RotateCommand.cs:200
+msgid "Rotating photos"
+msgstr "དཔར་ཚུ་བསྒྱིར་དོ་"
+
+#: ../src/RotateCommand.cs:211
+#, csharp-format
+msgid "Rotating photo \"{0}\""
+msgstr "དཔར་ \"{0}\" བསྒྱིར་དོ་"
+
+#: ../src/RotateCommand.cs:236
+#, csharp-format
+msgid "Unable to rotate photo"
+msgid_plural "Unable to rotate {0} photos"
+msgstr[0] "དཔར་བསྒྱིར་མ་ཚུགས་"
+msgstr[1] "{0} དཔར་ཚུ་བསྒྱིར་མ་ཚུགས་"
+
+#: ../src/RotateCommand.cs:240
+#, csharp-format
+msgid "The photo could not be rotated because it is on a read only file system or media such as a CDROM.  Please check the permissions and try again"
+msgid_plural "{0} photos could not be rotated because they are on a read only file system or media such as a CDROM.  Please check the permissions and try again"
+msgstr[0] "དཔར་འདི་བསྒྱིར་མ་ཚུགས་ ག་ཅི་སྦེ་ཟེར་བ་ཅིན་ འདི་ལྷག་ནི་ཙམ་ཡིག་སྣོད་རིམ་ལུགས་གུ་ ཡང་ན་ སི་ཌི་རཱོམ་བཟུམ་མའི་བརྡ་ལམ་གུ་ཨིན་པས། གནང་བ་ཚུ་ཞིབ་དཔྱད་འབད་ཞིནམ་ལས་ ལོག་འབད་རྩོལ་བསྐྱེད་གནང་"
+msgstr[1] "{0} དཔར་ཚུ་བསྒྱིར་མ་ཚུགས་ ག་ཅི་སྦེ་ཟེར་བ་ཅིན་ འདི་ལྷག་ནི་ཙམ་ཡིག་སྣོད་རིམ་ལུགས་གུ་ ཡང་ན་ སི་ཌི་རཱོམ་བཟུམ་མའི་བརྡ་ལམ་གུ་ཨིན་པས། གནང་བ་ཚུ་ཞིབ་དཔྱད་འབད་ཞིནམ་ལས་ ལོག་འབད་རྩོལ་བསྐྱེད་གནང་"
+
+#: ../src/RotateCommand.cs:262
+#, csharp-format
+msgid "Received error \"{0}\" while attempting to rotate {1}"
+msgstr "{1} བསྒྱིར་ནི་གི་དཔའ་བཅམ་པའི་སྐབས་་འཛོལ་བ་ \"{0}\" འཐོབ་ཡོདཔ་"
+
+#: ../src/RotateCommand.cs:267
+msgid "Error while rotating photo."
+msgstr "དཔར་བསྒྱིར་བའི་སྐབས་འཛོལ་བ།"
+
+#: ../src/SendEmail.cs:236
+msgid "Preparing email"
+msgstr "གློག་འཕྲིན་གྲ་སྒྲིག་འབད་དོ་"
+
+#: ../src/SendEmail.cs:288
+#, csharp-format
+msgid "Exporting picture \"{0}\""
+msgstr "པར་ \"{0}\" ཕྱིར་འདྲེན་འབད་དོ་"
+
+#: ../src/SingleView.cs:78
+msgid "Rotate photo left"
+msgstr "པར གཡོན་ལུ་བསྒྱིར།"
+
+#: ../src/SingleView.cs:80
+msgid "Rotate photo right"
+msgstr "པར་གཡས་ལུ་བསྒྱིར།"
+
+#: ../src/SingleView.cs:318
+msgid "Open"
+msgstr "ཁ་ཕྱེ་"
+
+#: ../src/SingleView.cs:423
+msgid "Set as Background"
+msgstr "རྒྱབ་གཞི་སྦེ་གཞི་སྒྲིག་འབད་"
+
+#: ../src/StockIcons.cs:26
+msgid "Adjust Colors"
+msgstr "ཚོས་གཞི་ཚུ་བདེ་སྒྲིག་འབད་"
+
+#: ../src/StockIcons.cs:28
+#: ../src/f-spot.glade.h:82
+msgid "Browse"
+msgstr "བརྡ་འཚོལ་"
+
+#: ../src/StockIcons.cs:30
+msgid "Crop"
+msgstr "བཏོག་བཅོས་"
+
+#: ../src/StockIcons.cs:31
+msgid "Desaturate"
+msgstr "ཆ་གི་མ་སྦང་"
+
+#: ../src/StockIcons.cs:32
+msgid "Edit Photo"
+msgstr "དཔར་ཞུན་དག་འབད་"
+
+#: ../src/StockIcons.cs:33
+msgid "Fullscreen"
+msgstr "གསལ་གཞི་གང་"
+
+#: ../src/StockIcons.cs:35
+msgid "Loading"
+msgstr "མངོན་གསལ་འབད་དོ་"
+
+#: ../src/StockIcons.cs:36
+#: ../src/TagCommands.cs:126
+#: ../src/TagMenu.cs:89
+#: ../src/TagPopup.cs:34
+msgid "Create New Tag"
+msgstr "ངོ་རྟགས་གསརཔ་གསར་བསྐྲུན་འབད་"
+
+#: ../src/StockIcons.cs:37
+msgid "Question"
+msgstr "དྲི་བ་"
+
+#: ../src/StockIcons.cs:38
+msgid "Reduce Red-Eye"
+msgstr "རེཌི་ཨའི་ མར་ཕབ་འབད་"
+
+#: ../src/StockIcons.cs:39
+#: ../src/f-spot.glade.h:186
+msgid "Rotate _Left"
+msgstr "གཡོན་ལུ་བསྒྱིར་(_L)"
+
+#: ../src/StockIcons.cs:40
+#: ../src/f-spot.glade.h:187
+msgid "Rotate _Right"
+msgstr "གཡས་ལུ་བསྒྱིར་(_R)"
+
+#: ../src/StockIcons.cs:41
+msgid "Sepia Tone"
+msgstr "སི་པི་ཡ་ སྐད་ཀྱི་སྙན་ཆ་"
+
+#: ../src/StockIcons.cs:44
+msgid "Near"
+msgstr "ཉེ་འདབས་"
+
+#: ../src/StockIcons.cs:45
+msgid "Far"
+msgstr "ཐག་རིང་"
+
+#: ../src/StockIcons.cs:46
+msgid "Restore View"
+msgstr "སོར་ཆུད་སྟོན།"
+
+#: ../src/TagCommands.cs:79
+#: ../src/TagCommands.cs:207
+#: ../src/TagSelectionWidget.cs:505
+msgid "This name is already in use"
+msgstr "འ་ནི་མིང་འདི་ཧེ་མ་ལས་ལག་ལེན་ཡོད་"
+
+#: ../src/TagCommands.cs:127
+msgid "Name of New Tag:"
+msgstr "ངོ་རྟགས་གསརཔ་གི་མིང་:"
+
+#: ../src/TagCommands.cs:277
+#: ../src/TagPopup.cs:40
+msgid "Edit Tag"
+msgstr "ངོ་རྟགས་ཞུན་དག་འབད་"
+
+#: ../src/TagCommands.cs:278
+msgid "Tag Name:"
+msgstr "ངོ་རྟགས་མིང་:"
+
+#: ../src/TagCommands.cs:371
+#, csharp-format
+msgid "Photo {0} of {1}"
+msgstr "དཔར་  {1}ལས་  {0} "
+
+#: ../src/TagCommands.cs:398
+#, csharp-format
+msgid "Edit Icon for Tag {0}"
+msgstr "ངོ་རྟགས་ {0}གི་དོན་ལུ་ ངོས་དཔར་ཞུན་དག་འབད་"
+
+#: ../src/TagPopup.cs:24
+#, csharp-format
+msgid "Find"
+msgid_plural "Find"
+msgstr[0] "འཚོལ་"
+msgstr[1] "འཚོལ་"
+
+#: ../src/TagPopup.cs:44
+msgid "Delete Tag"
+msgid_plural "Delete Tags"
+msgstr[0] "ངོ་རྟགས་བཏོན་གཏང་"
+msgstr[1] "ངོ་རྟགས་བཏོན་གཏང་"
+
+#: ../src/TagPopup.cs:50
+msgid "Attach Tag to Selection"
+msgid_plural "Attach Tags to Selection"
+msgstr[0] "སེལ་འཐུ་འབད་ནི་ལུ་ ངོ་རྟགས་མཉམ་སྦྲགས་འབད་"
+msgstr[1] "སེལ་འཐུ་འབད་ནི་ལུ་ ངོ་རྟགས་མཉམ་སྦྲགས་འབད་"
+
+#: ../src/TagPopup.cs:54
+msgid "Remove Tag From Selection"
+msgid_plural "Remove Tags From Selection"
+msgstr[0] "སེལ་འཐུ་འབད་ནི་ལས་ ངོ་རྟགས་རྩ་བསྐྲད་གཏང་"
+msgstr[1] "སེལ་འཐུ་འབད་ནི་ལས་ ངོ་རྟགས་རྩ་བསྐྲད་གཏང་"
+
+#: ../src/TagPopup.cs:60
+msgid "Merge Tags"
+msgstr "ངོ་རྟགས་ཚུ་མཉམ་བསྡོམས་འབད་"
+
+#: ../src/TagQueryWidget.cs:31
+msgid "Include"
+msgstr "གྲངས་སུ་བཙུགས་"
+
+#: ../src/TagQueryWidget.cs:37
+msgid "Exclude"
+msgstr "གྲངས་ལས་བཏོན་"
+
+#: ../src/TagQueryWidget.cs:43
+msgid "Remove"
+msgstr "རྩ་བསྐྲད་གཏང་"
+
+#: ../src/TagQueryWidget.cs:87
+#, csharp-format
+msgid "Find _With"
+msgid_plural "Find _With"
+msgstr[0] "དང་གཅིག་ཁར་འཚོལ་(_W)"
+msgstr[1] "དང་གཅིག་ཁར་འཚོལ་(_W)"
+
+#: ../src/TagQueryWidget.cs:113
+msgid "All"
+msgstr "ཆ་མཉམ་"
+
+#: ../src/TagQueryWidget.cs:148
+#: ../src/Term.cs:592
+#, csharp-format
+msgid "Not {0}"
+msgstr "{0} མེན་"
+
+#: ../src/TagQueryWidget.cs:278
+msgid "Drag tags here to search for them"
+msgstr "འདི་ཚུ་གི་དོན་ལུ་འཚོལ་ཞིབ་འབད་ནིའི་དོན་ལས་ ནཱ་ལུ་ངོ་རྟགས་ཚུ་འདྲུད་"
+
+#: ../src/TagSelectionWidget.cs:504
+msgid "Error renaming tag"
+msgstr "ངོ་རྟགས་བསྐྱར་མིང་བཏགས་པའི་སྐབས་འཛོལ་བ་"
+
+#: ../src/TagStore.cs:407
+msgid "Favorites"
+msgstr "དགའ་མི་ཚུ་"
+
+#: ../src/TagStore.cs:412
+msgid "Hidden"
+msgstr "སྦ་ཡོདཔ་"
+
+#: ../src/TagStore.cs:420
+msgid "People"
+msgstr "མི་མང་"
+
+#: ../src/TagStore.cs:425
+msgid "Places"
+msgstr "ས་གནས་ཚུ་"
+
+#: ../src/TagStore.cs:430
+msgid "Events"
+msgstr "བྱུང་ལས་ཚུ་"
+
+#: ../src/Term.cs:297
+msgid " and "
+msgstr "དང་"
+
+#. operators.Add (Catalog.GetString (" && "));
+#: ../src/Term.cs:299
+msgid ", "
+msgstr ", "
+
+#: ../src/Term.cs:355
+msgid " or "
+msgstr "ཡང་ན་"
+
+#: ../src/Term.cs:379
+msgid "or"
+msgstr "ཡང་ན་"
+
+#: ../src/ThreadProgressDialog.cs:66
+msgid "Retry"
+msgstr "སླར་རྩོལ།"
+
+#: ../src/ThreadProgressDialog.cs:68
+msgid "Skip"
+msgstr "གོམ་འགྱོ།"
+
+#. The preceding text here is the second checkbutton in the Time dialog
+#. that says "Space all photos by []"
+#: ../src/TimeDialog.cs:125
+#: ../src/f-spot.glade.h:310
+#, csharp-format
+msgid "min. Starting at {0}"
+msgstr "སྐར་ཆ་  {0}ལུ་འགོ་བཙུགས་དོ་"
+
+#: ../src/TimeDialog.cs:130
+#: ../src/f-spot.glade.h:203
+#, csharp-format
+msgid "Shift all photos by {0}"
+msgstr "དཔར་ཚུ་ཆ་མཉམ་ {0}གི་སྦེ་བཤུད་"
+
+#. Mono.Unix.Error error = Mono.Unix.Stdlib.GetLastError ();
+#: ../src/Unix.cs:25
+msgid "Unable to create temporary file"
+msgstr "གནས་སྐབས་ཀྱི་ཡིག་སྣོད་གསར་བསྐྲུན་འབད་མ་ཚུགས་"
+
+#: ../src/Updater.cs:153
+msgid "Updating F-Spot Database"
+msgstr "ཨེཕ་-ཨིསི་པོཊི་གནད་སྡུད་གཞི་རྟེན་དུས་མཐུན་བཟོ་དོ་"
+
+#: ../src/Updater.cs:154
+msgid "Please wait while your F-Spot gallery's database is updated. This may take some time."
+msgstr "ཁྱོད་ཀྱི་ཨེཕ་-ཨིསི་པོཊི་སྟོན་ཁང་གི་གནད་སྡུད་གཞི་རྟེན་འདི་ དུས་མཐུན་བཟོ་བའི་སྐབས་བསྒུག་གནང་། འདི་གིས་དུས་ཡུན་དག་པ་ཅིག་འགོར་འོང་།"
+
+#: ../src/Util.cs:454
+msgid "There was an error invoking the external handler"
+msgstr "ཕྱིའི་ལེགས་སྐྱོང་པ་འདི་ལས་བཀོལ་འབདཝ་ད་ འཛོལ་བ་ཅིག་འདུག་"
+
+#: ../src/Util.cs:455
+#, csharp-format
+msgid "Received error:{1}\"{0}\"{1}"
+msgstr "ཐོབ་ཡོད་མི་འཛོལ་བ་{1}\"{0}\"{1}"
+
+#: ../src/Util.cs:479
+msgid "The \"F-Spot Manual\" could not be found.  Please verify that your installation has been completed successfully."
+msgstr "འདི་ \"F-Spot Manual\" འཚོལ་མ་ཐོབ།  ཁྱོད་ཀྱི་གཞི་བཙུགས་མཐར་འཁྱོརཔ་སྦེ་མཇུག་བསྡུ་ཡོད་པའི་བདེན་སྦྱོར་འབད་གནང་།"
+
+#: ../src/Util.cs:487
+msgid "Help not found"
+msgstr "གྲོགས་རམ་འཚོལ་མ་ཐོབ།"
+
+#: ../src/Widgets/DateEdit.cs:210
+msgid "Calendar"
+msgstr "ཟླ་ཐོ།"
+
+#: ../src/Widgets/FindBar.cs:54
+msgid "Find:"
+msgstr "འཚོལ་:"
+
+#: ../src/XmpTagsImporter.cs:87
+msgid "Location"
+msgstr "གནས་ཁོངས་"
+
+#: ../src/XmpTagsImporter.cs:88
+msgid "Country"
+msgstr "རྒྱལ་ཁབ་"
+
+#: ../src/XmpTagsImporter.cs:89
+msgid "City"
+msgstr "གྲོང་སྡེ་"
+
+#: ../src/XmpTagsImporter.cs:90
+msgid "State"
+msgstr "མངའ་སྡེ་"
+
+#. namespace
+#: ../src/f-spot.glade.h:1
+msgid "\n"
+msgstr "\n"
+
+#: ../src/f-spot.glade.h:3
+msgid " "
+msgstr " "
+
+#: ../src/f-spot.glade.h:4
+msgid "0000:00:00 00:00:00"
+msgstr "0000:00:00 00:00:00"
+
+#: ../src/f-spot.glade.h:5
+msgid "00:00:00"
+msgstr "00:00:00"
+
+#: ../src/f-spot.glade.h:6
+msgid "1 of 1"
+msgstr "༡ ལས་ ༡"
+
+#: ../src/f-spot.glade.h:7
+msgid "1024 px"
+msgstr "༡༠༢༤ པི་ཨེགསི་"
+
+#: ../src/f-spot.glade.h:8
+msgid "320 px"
+msgstr "༣༢༠ པི་ཨེགསི་"
+
+#: ../src/f-spot.glade.h:9
+msgid "480 px"
+msgstr "༤༨༠ པི་ཨེགསི་"
+
+#: ../src/f-spot.glade.h:10
+msgid "5"
+msgstr "༥"
+
+#: ../src/f-spot.glade.h:11
+msgid "640 px"
+msgstr "༦༤༠ པི་ཨེགསི་"
+
+#: ../src/f-spot.glade.h:12
+msgid "800 px"
+msgstr "༨༠༠ པི་ཨེགསི་"
+
+#: ../src/f-spot.glade.h:13
+msgid "<b></b>"
+msgstr "<b></b>"
+
+#: ../src/f-spot.glade.h:14
+msgid "<b>Account</b>"
+msgstr "<b>རྩིས་ཐོ་</b>"
+
+#: ../src/f-spot.glade.h:15
+msgid "<b>Action</b>"
+msgstr "<b>བྱ་བ་</b>"
+
+#: ../src/f-spot.glade.h:16
+msgid "<b>Album</b>"
+msgstr "<b>པར་དེབ་</b>"
+
+#: ../src/f-spot.glade.h:17
+msgid "<b>Co_rrections</b>"
+msgstr "<b>ནོར་བཅོས་འབད་ནི་ཚུ་</b>(_r)"
+
+#: ../src/f-spot.glade.h:18
+msgid "<b>Color Management</b>"
+msgstr "<b>ཚོས་གཞི་འཛིན་སྐྱོང་</b>"
+
+#: ../src/f-spot.glade.h:19
+msgid "<b>Color Temperature</b>"
+msgstr "<b>ཚོས་གཞི་ཚ་དྲོད་</b>"
+
+#: ../src/f-spot.glade.h:20
+msgid "<b>Destination</b>"
+msgstr "<b>འགྲོ་ཡུལ་</b>"
+
+#: ../src/f-spot.glade.h:21
+msgid "<b>End Date</b>"
+msgstr "<b>མཇུག་བསྡུ་བའི་ཚེས་གྲངས་</b>"
+
+#: ../src/f-spot.glade.h:22
+msgid "<b>Export Method</b>"
+msgstr "<b>ཕྱིར་འདྲེན་ཐབས་ལམ་</b>"
+
+#: ../src/f-spot.glade.h:23
+msgid "<b>Exposure</b>"
+msgstr "<b>མདངས་ཕོག་</b>"
+
+#: ../src/f-spot.glade.h:24
+msgid "<b>From Photo</b>"
+msgstr "<b>དཔར་ལས་</b>"
+
+#: ../src/f-spot.glade.h:25
+msgid "<b>Gallery</b>"
+msgstr "<b>སྟོན་ཁང་</b>"
+
+#: ../src/f-spot.glade.h:26
+msgid "<b>Histo_gram</b>"
+msgstr "<b>ཧིསི་ཊོ་ག་རམ་</b>(_g)"
+
+#: ../src/f-spot.glade.h:27
+msgid "<b>Histogram</b>"
+msgstr "<b>ཧིསི་ཊོ་ག་རམ་</b>"
+
+#: ../src/f-spot.glade.h:28
+msgid "<b>Image Interpolation</b>"
+msgstr "<b>གཟུགས་བརྙན་བསྐྱར་བསྣོན་</b>"
+
+#: ../src/f-spot.glade.h:29
+msgid "<b>Import Settings</b>"
+msgstr "<b>ནང་འདྲེན་སྒྲིག་སྟངས་</b>"
+
+#: ../src/f-spot.glade.h:30
+msgid "<b>Metadata</b>"
+msgstr "<b>མེ་ཊ་གནད་སྡུད་</b>"
+
+#: ../src/f-spot.glade.h:31
+msgid "<b>Photograph Layout</b>"
+msgstr "<b>དཔར་གྱི་སྒྲིག་བཀོད་</b>"
+
+#: ../src/f-spot.glade.h:32
+msgid "<b>Photos to Burn</b>"
+msgstr "<b>བཙུགས་སྤྱོད་འབད་ནིའི་དོན་ལས་དཔར་ཚུ་</b>"
+
+#: ../src/f-spot.glade.h:33
+msgid "<b>Photos</b>"
+msgstr "<b>དཔར་ཚུ་</b>"
+
+#: ../src/f-spot.glade.h:34
+msgid "<b>PicasaWeb Export</b>"
+msgstr "<b>པི་ཀ་ས་ཝེབ་ ཕྱིར་འདྲེན་</b>"
+
+#: ../src/f-spot.glade.h:35
+msgid "<b>Predefined</b>"
+msgstr "<b>སྔ་གོང་ངེས་འཛིན་འབད་ཡོདཔ་</b>"
+
+#: ../src/f-spot.glade.h:36
+msgid "<b>Preview</b>"
+msgstr "<b>སྔོན་ལྟ་</b>"
+
+#: ../src/f-spot.glade.h:37
+msgid "<b>Printer Details</b>"
+msgstr "<b>དཔར་འཕྲུལ་རྒྱས་བཤད་ཚུ་</b>"
+
+#: ../src/f-spot.glade.h:38
+msgid "<b>Reference Photo</b>"
+msgstr "<b>གཞི་བསྟུན་དཔར་</b>"
+
+#: ../src/f-spot.glade.h:39
+msgid "<b>Screensaver</b>"
+msgstr "<b>གསལ་གཞིའི་ཉེན་སྲུང་</b>"
+
+#: ../src/f-spot.glade.h:40
+msgid "<b>Size</b>"
+msgstr "<b>ཚད་</b>"
+
+#: ../src/f-spot.glade.h:41
+msgid "<b>SmugMug Export</b>"
+msgstr "<b>སི་མག་ ཕྱིར་འདྲེན་</b>"
+
+#: ../src/f-spot.glade.h:42
+msgid "<b>Start Date</b>"
+msgstr "<b>འགོ་བཙུགས་ཚེས་གྲངས་</b>"
+
+#: ../src/f-spot.glade.h:43
+msgid "<b>Style</b>"
+msgstr "<b>བཟོ་རྣམ་</b>"
+
+#: ../src/f-spot.glade.h:44
+msgid "<b>Summary</b>"
+msgstr "<b>བཅུད་དོན་</b>"
+
+#: ../src/f-spot.glade.h:45
+msgid "<b>Transparent Parts</b>"
+msgstr "<b>དྭངས་གསལ་ཅན་ཡན་ལག་ཚུ་</b>"
+
+#: ../src/f-spot.glade.h:46
+msgid "<b>View all pictures imported</b>"
+msgstr "<b>ནང་འདྲེན་འབད་དེ་ཡོད་པའི་ པར་ ག་ར་བལྟ་</b>"
+
+#: ../src/f-spot.glade.h:47
+msgid "<b>Viewing permissions</b>"
+msgstr "<b>གནང་བ་ཚུ་སྟོན་དོ་</b>"
+
+#: ../src/f-spot.glade.h:48
+msgid "<b>_White Balance</b>"
+msgstr "<b>དཀརཔོ་ལྷག་ལུས་</b>(_W)"
+
+#: ../src/f-spot.glade.h:49
+msgid "<small> </small>"
+msgstr "<small> </small>"
+
+#: ../src/f-spot.glade.h:50
+msgid "<small></small>"
+msgstr "<small></small>"
+
+#: ../src/f-spot.glade.h:51
+msgid "<small><i>Choose the folder where F-Spot should store newly imported photos</i></small>"
+msgstr "<small><i> ཨེཕ་-ཨིསི་པོཊི་གིས་ གསརཔ་སྦེ་ནང་འདྲེན་འབད་ཡོད་པའི་དཔར་ཚུ་སྲུང་བཞག་དགོ་པའི་ སྣོད་འཛིན་འདི་གདམ་ཁ་རྐྱབས་</i></small>"
+
+#: ../src/f-spot.glade.h:52
+msgid ""
+"<small><i>Enable this option to store tags and descriptions inside \n"
+"supported image formats.</i></small>"
+msgstr ""
+"<small><i> འ་ནི་གདམ་ཁ་འདི་ ངོ་རྟགས་ཚུ་དང་ འགྲེལ་བཤད་ཚུ་  \n"
+"རྒྱབ་སྐྱོར་འབད་ཡོད་པའི་གཟུགས་བརྙན་རྩ་སྒྲིག་གི་ནང་ན་སྲུང་བཞག་ནིའི་དོན་ལས་ ལྕོགས་ཅན་བཟོ།</i></small>"
+
+#: ../src/f-spot.glade.h:54
+msgid "<small><i>Enable this to allow interpolation on zoomed images. You should'nt disable this for viewing photos, but disabling the interpolation could be usefull in icon design.</i></small>"
+msgstr "<small><i>འ་ནི་འདི་ རྒྱས་ཟུམ་འབད་ཡོད་པའི་གཟུགས་བརྙན་ཚུ་གུ་ བསྐྱར་བསྣོན་འབད་བཅུག་ནིའི་དོན་ལས་ ལྕོགས་ཅན་བཟོ། ཁྱོད་ཀྱིས་ འ་ནི་འདི་ དཔར་ཚུ་སྟོན་ནིའི་དོན་ལུ་ ལྕོགས་མིན་བཟོ་ནི་མི་འོང་ དེ་འབདཝ་ད་ བསྐྱར་བསྣོན་ལྕོགས་མིན་བཟོ་ནི་འདི་ ངོས་དཔར་བཀོད་སྒྲིག་ནང་ཕན་ཐོག་འོང་།</i></small>"
+
+#: ../src/f-spot.glade.h:55
+msgid "<small><i>While acting as a screensaver, F-spot can display all of your images, or a small subset based on tags.</i></small>"
+msgstr "<small><i>གསལ་གཞིའི་ཉེན་སྲུང་གི་ངོ་ཚབ་འབད་བའི་སྐབས་ལུ་ ཨེཕ-ས་ཁོངས་དེ་གིས་ ཁྱོད་རའི་གཟུགས་བརྙན་ག་ར་ བཀྲམ་སྟོན་འབད་ཚུགས་ ཡང་ན་ ངོ་རྟགས་ཚུ་ལུ་ གཞི་བཞག་ཡོད་པའི་ མ་ཚན་ཡན་ལག་ཆུང་ཀུ་ཅིག་</i></small>"
+
+#: ../src/f-spot.glade.h:56
+msgid "<small><i>You can choose how to display transparent parts in images. This option has no effect on photos, but setting this as check pattern or custom color could be usefull when viewing icons or other artworks with transparent parts.</i></small>"
+msgstr "<small><i>ཁྱོད་ཀྱིས་ གཟུགས་བརྙན་ཚུ་ནང་ དྭངས་གསལ་ཅན་ཡན་ལག་ཚུ་ བཀྲམ་སྟོན་ག་དེ་སྦེ་འབད་ནི་ཨིན་ན་གདམ་ཁ་རྐྱབས་བཏུབ། འ་ནི་གདམ་ཁ་འདི་ལུ་ དཔར་ཚུ་ལུ་ནུས་པ་མེད་ དེ་འབདཝ་ད་ འ་ནི་འདི་ ཞིབ་དཔྱད་དཔེ་གཞི་ཡང་ན་སྲོལ་སྒྲིག་ཚོས་གཞི་སྦེ་ སྒྲིག་སྟངས་འབད་མི་འདི་གིས་ ངོས་དཔར་ཚུ་ཡང་ན་ གཞན་མི་ རི་མོའི་ལཱ་གཡོག་ཚུ་ དྭངས་གསལ་ཅན་ཡན་ལག་ཚུ་དང་གཅིག་ཁར་ སྟོན་པའི་སྐབས་ ཕན་ཐོག་ཅན་འོང་།</i></small>"
+
+#: ../src/f-spot.glade.h:57
+msgid "<small>C_ontrast:</small>"
+msgstr "<small>ཚོན་མདངས་:</small>(_o)"
+
+#: ../src/f-spot.glade.h:58
+msgid "<small>Te_mp:</small>"
+msgstr "<small>ཚ་དྲོད་:</small>(_m)"
+
+#: ../src/f-spot.glade.h:59
+msgid "<small>_Brightness:</small>"
+msgstr "<small>དཀར་མདངས་:</small>(_B)"
+
+#: ../src/f-spot.glade.h:60
+msgid "<small>_Exposure:</small>"
+msgstr "<small>མདངས་ཕོག་:</small>(_E)"
+
+#: ../src/f-spot.glade.h:61
+msgid "<small>_Hue:</small>"
+msgstr "<small>ཚོན་མདངས་:</small>(_H)"
+
+#: ../src/f-spot.glade.h:62
+msgid "<small>_Saturation:</small>"
+msgstr "<small>མཐའ་ཚད་:</small>(_S)"
+
+#: ../src/f-spot.glade.h:63
+msgid "<small>_Tint:</small>"
+msgstr "<small>ཊིནཊི་:</small>(_T)"
+
+#: ../src/f-spot.glade.h:64
+msgid "<span weight='bold' size='larger'>Error Connecting to Gallery</span>\n"
+msgstr "<འཕར་ཚད་ལྗིད་ཚད་='རྒྱགས་པ་' ཚད་='སྦོམ་མི་'>སྟོན་ཁང་ལུ་མཐུད་པའི་འཛོལ་བ་</span>\n"
+
+#: ../src/f-spot.glade.h:66
+msgid "<span weight='bold' size='larger'>Your Google Account is locked</span>\n"
+msgstr "<འཕར་ཚད་ལྗིད་ཚད་='རྒྱགས་པ་' ཚད་='སྦོམ་མི་'>ཁྱོད་ཀྱི་གུ་གལ་རྩིས་ཐོ་འདི་ལྡེ་མིག་རྐྱབས་ཡོད་</span>\n"
+
+#: ../src/f-spot.glade.h:68
+msgid "Ad_just Color..."
+msgstr "ཚོས་གཞི་བདེ་སྒྲིག་འབད་...(_j)"
+
+#: ../src/f-spot.glade.h:69
+msgid "Adjust Color"
+msgstr "ཚོས་གཞི་བདེ་སྒྲིག་འབད་"
+
+#: ../src/f-spot.glade.h:70
+msgid "Adjust Time"
+msgstr "ཆུ་ཚོད་བདེ་སྒྲིག་འབད་"
+
+#: ../src/f-spot.glade.h:71
+msgid "Adjust _Time..."
+msgstr "དུས་ཚོད་བདེ་སྒྲིག་འབད་(_T)་་་"
+
+#: ../src/f-spot.glade.h:72
+msgid "Adjusted date: "
+msgstr "བདེ་སྒྲིག་འབད་ཡོད་པའི་ཚེས་གྲངས་:"
+
+#: ../src/f-spot.glade.h:73
+msgid "All Images"
+msgstr "གཟུགས་བརྙན་ ག་ར་"
+
+#: ../src/f-spot.glade.h:74
+msgid "Arrange _by"
+msgstr "གིས་ བདེ་ཞིབ་འབད་(_b)"
+
+#: ../src/f-spot.glade.h:75
+msgid "As _background"
+msgstr "རྒྱབ་གཞི་སྦེ་(_b)"
+
+#: ../src/f-spot.glade.h:76
+msgid "As check pattern"
+msgstr "ཞིབ་དཔྱད་དཔེ་གཞི་སྦེ་"
+
+#: ../src/f-spot.glade.h:77
+msgid "As custom color: "
+msgstr "སྲོལ་སྒྲིག་ཚོས་གཞི་སྦེ་:"
+
+#: ../src/f-spot.glade.h:78
+msgid "Attach Tags:"
+msgstr "ངོ་རྟགས་ཚུ་མཉམ་སྦྲགས་འབད་"
+
+#: ../src/f-spot.glade.h:79
+msgid "Attach tag:"
+msgstr "མཉམ་སྦྲགས་ངོ་རྟགས་:"
+
+#: ../src/f-spot.glade.h:81
+msgid "Autorotate"
+msgstr "རང་བཞིན་བསྒྱིར་"
+
+#: ../src/f-spot.glade.h:83
+msgid "CD"
+msgstr "སི་ཌི་"
+
+#: ../src/f-spot.glade.h:84
+msgid "C_aption:"
+msgstr "དཔར་བཤད་:(_a)"
+
+#: ../src/f-spot.glade.h:85
+msgid "C_ontrast:"
+msgstr "ཚོན་མདངས་:(_o)"
+
+#: ../src/f-spot.glade.h:86
+msgid "Camera Selection"
+msgstr "པར་ཆས་སེལ་འཐུ་འབད་ནི་"
+
+#: ../src/f-spot.glade.h:87
+msgid "Clea_r Date Range"
+msgstr "ཚེས་གྲངས་ཁྱབ་ཚད་བསལ་(_r)"
+
+#: ../src/f-spot.glade.h:88
+msgid "Clear roll filter"
+msgstr "ཤོ་རིལ་ཚགས་མ་ བསལ་"
+
+#: ../src/f-spot.glade.h:89
+msgid "Co_nfigure"
+msgstr "རིམ་སྒྲིག་འབད་(_n)"
+
+#: ../src/f-spot.glade.h:90
+msgid "Copy Locat_ion"
+msgstr "གནས་ཁོངས་འདྲ་བཤུས་རྐྱབས་(_i)"
+
+#: ../src/f-spot.glade.h:91
+msgid "Copy files to the Photos folder"
+msgstr "ཡིག་སྣོད་ཚུ་ དཔར་ཚུ་གི་སྣོད་འཛིན་འདི་ལུ་ འདྲ་བཤུས་རྐྱབས་"
+
+#: ../src/f-spot.glade.h:92
+msgid "Create CD"
+msgstr "སི་ཌི་གསར་བསྐྲུན་འབད་"
+
+#: ../src/f-spot.glade.h:93
+msgid "Create Mail"
+msgstr "ཡིག་འཕྲིན་གསར་བསྐྲུན་འབད་"
+
+#: ../src/f-spot.glade.h:94
+msgid "Create New _Tag..."
+msgstr "ངོ་རྟགས་གསརཔ་གསར་བསྐྲུན་འབད་(_T)"
+
+#: ../src/f-spot.glade.h:95
+msgid "Create _New Version..."
+msgstr "ཐོན་རིམ་གསརཔ་གསར་བསྐྲུན་འབད་(_N)"
+
+#: ../src/f-spot.glade.h:96
+msgid "Create _gallery using \"Original\""
+msgstr "\"Original\" ལག་ལེན་འཐབ་ཐོག་ སྟོན་ཁང་གསར་བསྐྲུན་འབད་(_g)"
+
+#: ../src/f-spot.glade.h:97
+msgid "Create a mail with the selected photos (possible resized) attached"
+msgstr "སེལ་འཐུ་འབད་ཡོད་པའི་དཔར་ཚུ་(སྲིད་པའི་ཚད་བསྐྱར་བཟོ་)མཉམ་སྦྲགས་འབད་ཡོད་མི་དང་གཅིག་ཁར་ ཡིག་འཕྲིན་ཅིག་གསར་བསྐྲུན་འབད་"
+
+#: ../src/f-spot.glade.h:98
+msgid "Create mail..."
+msgstr "ཡིག་འཕྲིན་གསར་བསྐྲུན་འབད་..."
+
+#: ../src/f-spot.glade.h:99
+msgid "Create standalone _web gallery"
+msgstr "རང་དབང་ཝེབ་སྟོན་ཁང་གསར་བསྐྲུན་འབད་(_w)"
+
+#: ../src/f-spot.glade.h:100
+msgid "Crop photo to _fit"
+msgstr "ཚུད་སྒྲིག་འབད་ནིའི་དོན་ལས་ དཔར་བཏོག་བཅོས་འབད་(_f)"
+
+#: ../src/f-spot.glade.h:101
+msgid "Current date:"
+msgstr "ད་ལྟོའི་ཚེས་གྲངས་:"
+
+#: ../src/f-spot.glade.h:102
+msgid "D_escription:"
+msgstr "འགྲེལ་བཤད་:(_e)"
+
+#: ../src/f-spot.glade.h:103
+msgid "Display File Names"
+msgstr "ཡིག་སྣོད་མིང་ཚུ་བཀྲམ་སྟོན་འབད་"
+
+#: ../src/f-spot.glade.h:104
+msgid "Display Side_bar"
+msgstr "ཟུར་ཁའི་ཕྲ་རིང་བཀྲམ་སྟོན་འབད་(_b)"
+
+#: ../src/f-spot.glade.h:105
+msgid "Display T_ags"
+msgstr "ངོ་རྟགས་ཚུ་བཀྲམ་སྟོན་འབད་(_a)"
+
+#: ../src/f-spot.glade.h:106
+msgid "Display Too_lbar"
+msgstr "ལག་ཆས་ཕྲ་རིང་བཀྲམ་སྟོན་འབད་(_l)"
+
+#: ../src/f-spot.glade.h:107
+msgid "Display _Dates"
+msgstr "ཚེས་གྲངས་ཚུ་བཀྲམ་སྟོན་འབད་(_D)"
+
+#: ../src/f-spot.glade.h:108
+msgid "Display _Timeline"
+msgstr "ཊ་འིམ་ལའིན་ བཀྲམ་སྟོན་འབད་(_T)"
+
+#: ../src/f-spot.glade.h:109
+msgid "Display only those photos that were imported in specified Rolls."
+msgstr "གསལ་བཀོད་འབད་ཡོད་པའི་ ཤོ་རིལ་ཚུ་ ནང་ལུ་ནང་འདྲེན་འབད་ཡོད་པའི་དཔར་ཚུ་རྐྱངམ་ཅིག་  བཀྲམ་སྟོན་འབད།"
+
+#: ../src/f-spot.glade.h:110
+msgid "Do not send a mail"
+msgstr "ཡིག་འཕྲིན་མ་གཏང་"
+
+#: ../src/f-spot.glade.h:111
+msgid "E-_Mail:"
+msgstr "གློག་འཕྲིན་(_M)"
+
+#: ../src/f-spot.glade.h:112
+msgid "E_xport titles and comments"
+msgstr "མགོ་མིང་ཚུ་དང་ བསམ་བཀོད་ཚུ་ཕྱིར་འདྲེན་འབད་(_x)"
+
+#: ../src/f-spot.glade.h:113
+msgid "Edit"
+msgstr "ཞུན་དག་"
+
+#: ../src/f-spot.glade.h:114
+msgid "Edit Tag Icon"
+msgstr "ངོ་རྟགས་ངོས་དཔར་ཞུན་དག་འབད་"
+
+#: ../src/f-spot.glade.h:115
+msgid "Edit icon"
+msgstr "ངོས་དཔར་ཞུན་དག་འབད་"
+
+#: ../src/f-spot.glade.h:116
+msgid "Estimated new size"
+msgstr "ཕོག་ཚོད་ཀྱི་ཚད་གསརཔ་"
+
+#: ../src/f-spot.glade.h:117
+msgid "Export"
+msgstr "ཕྱིར་འདྲེན་"
+
+#: ../src/f-spot.glade.h:118
+msgid "Export _titles and comments"
+msgstr "མགོ་མིང་ཚུ་དང་བསམ་བཀོད་ཚུ་ཕྱིར་འདྲེན་འབད་(_t)"
+
+#: ../src/f-spot.glade.h:119
+msgid "Extra large"
+msgstr "ཧ་ཅང་སྦོམ་"
+
+#: ../src/f-spot.glade.h:120
+msgid "F-Spot"
+msgstr "ཨེཕ་-ཨིསི་པོཊི་"
+
+#: ../src/f-spot.glade.h:121
+msgid "F-Spot View"
+msgstr "ཨེཕ་-ཨིསི་པོཊི་མཐོང་སྣང་"
+
+#: ../src/f-spot.glade.h:122
+msgid "F-Spot needs your authorization in order to upload photos to your {0} account. Press the \"Authorize\" button to open a web browser and give F-Spot the authorization. "
+msgstr "ཨེཕ་-ཨིསི་པོཊི་ལུ་  དཔར་ཚུ་ ཁྱོད་ཀྱི་ {0} རྩིས་ཐོ་ལུ་སྐྱེལ་བཙུགས་འབད་ནིའི་དོན་ལས་ ཁྱོད་ཀྱི་དབང་སྤྲོད་དགོ། \"Authorize\" ཨེབ་རྟ་འདི་ ཝེབ་བརའུ་ཟར་ཅིག་ཁ་ཕྱེ་ནིའི་དོན་ལས་ ཨེབ་ དེ་ལས་ ཨེཕ་-ཨིསི་པོཊི་ལུ་དབང་སྤྲོད་བྱིན།"
+
+#: ../src/f-spot.glade.h:124
+msgid "Filter on selected rolls"
+msgstr "སེལ་འཐུ་འབད་ཡོད་པའི་ཤོ་རིལ་ཚུ་གུར་བཙག་"
+
+#: ../src/f-spot.glade.h:125
+msgid "Fin_d"
+msgstr "འཚོལ་(_d)"
+
+#: ../src/f-spot.glade.h:127
+msgid "Folder Export"
+msgstr "སྣོད་འཛིན་ཕྱིར་འདྲེན་"
+
+#: ../src/f-spot.glade.h:128
+msgid ""
+"From Screen\n"
+"Standard RGB"
+msgstr ""
+"གསལ་གཞི་ལས་\n"
+"ཚད་ལྡན་ཨར་ཇི་བི་"
+
+#: ../src/f-spot.glade.h:130
+msgid ""
+"Full Page\n"
+"Standard - 4x6"
+msgstr ""
+"ཤོག་ལེབ་གང་\n"
+"ཚད་ལྡན་ - 4x6"
+
+#: ../src/f-spot.glade.h:132
+msgid "G_allery Name:"
+msgstr "སྟོན་ཁང་མིང་:(_a)"
+
+#: ../src/f-spot.glade.h:133
+msgid "G_allery:"
+msgstr "སྟོན་ཁང་:(_a)"
+
+#: ../src/f-spot.glade.h:134
+msgid "Gallery"
+msgstr "སྟོན་ཁང་"
+
+#: ../src/f-spot.glade.h:135
+msgid ""
+"Hairline\n"
+"0.25\"\n"
+"0.5\"\n"
+"1\"\n"
+msgstr ""
+"ཧེ་ཡར་ལའིན་\n"
+"0.25\"\n"
+"0.5\"\n"
+"1\"\n"
+
+#: ../src/f-spot.glade.h:140
+msgid "Images tagged with:"
+msgstr "གཅིག་ཁར་ངོ་རྟགས་སྦྱར་ཡོད་པའི་གཟུགས་བརྙན་ཚུ་:"
+
+#: ../src/f-spot.glade.h:142
+msgid "Import Rolls"
+msgstr "ཤོ་རིལ་ཚུ་ནང་འདྲེན་འབད་"
+
+#: ../src/f-spot.glade.h:143
+msgid "Import Source:"
+msgstr "འབྱུང་ཁུངས་ནང་འདྲེན་འབད་:"
+
+#: ../src/f-spot.glade.h:144
+msgid "Include subfolders"
+msgstr "ཡན་ལག་སྣོད་འཛིན་ཚུ་གྲངས་སུ་བཙུགས་"
+
+#: ../src/f-spot.glade.h:145
+msgid "Interpolate image on zoom"
+msgstr "རྒྱས་ཟུམ་ལུ་ གཟུགས་བརྙན་བསྐྱར་བསྣོན་འབད་"
+
+#: ../src/f-spot.glade.h:146
+msgid "Large"
+msgstr "སྦོམ་"
+
+#: ../src/f-spot.glade.h:147
+msgid "Last import roll"
+msgstr "ནང་འདྲེན་ ཤོ་རིལ་ མཇུག་མམ་"
+
+#: ../src/f-spot.glade.h:148
+msgid "Make F-Spot your screensaver"
+msgstr "ཨེཕ་-ཨིསི་པོཊི་ཁྱོད་རའི་གསལ་གཞིའི་ཉེན་སྲུང་བཟོ་"
+
+#: ../src/f-spot.glade.h:149
+msgid "Medium"
+msgstr "འབྲིང་མ་"
+
+#: ../src/f-spot.glade.h:151
+msgid "N_umber of Copies:"
+msgstr "འདྲ་བཤུས་ཚུ་གི་གྲངས་:(_u)"
+
+#: ../src/f-spot.glade.h:153
+msgid ""
+"None\n"
+"Title\n"
+"Filename\n"
+"Date\n"
+"Photo Details"
+msgstr ""
+"ཅི་མེད་\n"
+"མགོ་མིང་\n"
+"ཡིག་སྣོད་མིང་\n"
+"ཚེས་གྲངས་\n"
+"དཔར་གྱི་རྒྱས་བཤད་ཚུ་"
+
+#: ../src/f-spot.glade.h:158
+msgid "Number of photos in selected rolls :"
+msgstr "སེལ་འཐུ་འབད་ཡོད་པའི་ཤོ་རིལ་ཚུ་ནང་ལུ་ དཔར་གྱི་ གྱངས་་ཁ་ :"
+
+#: ../src/f-spot.glade.h:159
+msgid "Number of pictures"
+msgstr "པར་ཚུ་གི་གྲངས་"
+
+#: ../src/f-spot.glade.h:160
+msgid "Open _Folder..."
+msgstr "སྣོད་འཛིན་ཁ་ཕྱེ་...(_F)"
+
+#: ../src/f-spot.glade.h:161
+msgid "Open _album in browser when done uploading"
+msgstr "སྐྱེལ་བཙུགས་འབད་ཚརཝ་ད་ བརའུ་ཟར་ནང་པར་དེབ་ཁ་ཕྱེ་(_a)"
+
+#: ../src/f-spot.glade.h:162
+msgid "Open _destination when done exporting"
+msgstr "ཕྱིར་འདྲེན་འབད་ཚར་བའི་སྐབས་ འགྲོ་ཡུལ་ཁ་ཕྱེ་(_d)"
+
+#: ../src/f-spot.glade.h:164
+msgid "Original size (possible very large file size)"
+msgstr "ཚད་ངོ་མ་(ཧ་ཅང་སྦོམ་ཡིག་སྣོད་ཚད་སྲིད་མི་)"
+
+#: ../src/f-spot.glade.h:165
+msgid "P_arent Tag:"
+msgstr "རྩ་ལག་ངོ་རྟགས་:(_a)"
+
+#: ../src/f-spot.glade.h:166
+msgid "P_hoto Source:"
+msgstr "དཔར་གྱི་འབྱུང་ཁུངས་:(_h)"
+
+#: ../src/f-spot.glade.h:167
+msgid "Page 1 of 3"
+msgstr "ཤོག་ལེབ་ ༣ ལས་ ༡"
+
+#: ../src/f-spot.glade.h:168
+msgid "Pause"
+msgstr "ཐེམ་"
+
+#: ../src/f-spot.glade.h:169
+msgid "Photo 0 of 0"
+msgstr "དཔར་ ༠ ལས་ ༠"
+
+#: ../src/f-spot.glade.h:170
+msgid "Photo _Size:"
+msgstr "དཔར་གྱི་ཚད་:(_S)"
+
+#: ../src/f-spot.glade.h:171
+msgid "Please verify that the settings for this gallery are correct."
+msgstr "འ་ནི་སྟོན་ཁང་གི་དོན་ལུ་ སྒྲིག་སྟངས་ཚུ་ ངེས་བདེན་ཨིནམ་ བདེན་སྦྱོར་འབད་གནང་།"
+
+#: ../src/f-spot.glade.h:172
+msgid ""
+"Please verify that the settings for this gallery are correct.\n"
+"Enter the letters as they are shown in the image in\n"
+"the 'Captcha' field. <i>Letters are not case-sensitive</i>"
+msgstr ""
+"འ་ནི་ཧྟོན་ཁང་གི་དོན་ལུ་ སྒྲིག་སྟངས་འདི་ངེས་བདེན་ཨིནམ་བདེན་སྦྱོར་འབད་གནང་།\n"
+"ཡི་གུ་ཚུ་ གཟུགས་བརྙན་\n"
+" 'Captcha' ས་སྒོ་ནང་ཡོད་མི་ནང་སྟོན་ཡོད་མི་བཟུམ་སྦེ་ ཐོ་བཀོད་འབད། <i>ཡི་གུ་ཚུ་ ཡི་གུ་ཆེ་ཆུང་གི་ཉེན་ཁ་མེན་</i>"
+
+#: ../src/f-spot.glade.h:175
+msgid "Preferences"
+msgstr "དགའ་གདམ་ཚུ་"
+
+#: ../src/f-spot.glade.h:177
+msgid "Print"
+msgstr "དཔར་བསྐྲུན་འབད་"
+
+#: ../src/f-spot.glade.h:178
+msgid "Print crop _marks"
+msgstr "བཏོག་བཅོས་རྟགས་ཚུ་དཔར་བསྐྲུན་འབད་(_m)"
+
+#: ../src/f-spot.glade.h:179
+msgid "Private"
+msgstr "སྒེར་དོན་"
+
+#: ../src/f-spot.glade.h:180
+msgid "Public"
+msgstr "མི་མང་"
+
+#: ../src/f-spot.glade.h:181
+msgid "Public Album"
+msgstr "མི་མང་པར་དེབ་"
+
+#: ../src/f-spot.glade.h:182
+msgid "Re_fresh Thumbnail"
+msgstr "མཐེ་ཟེར་ཡང་བསལ་འབད་(_f)"
+
+#: ../src/f-spot.glade.h:183
+msgid "Rem_ove Tag"
+msgstr "ངོ་རྟགས་རྩ་བསྐྲད་གཏང་(_o)"
+
+#: ../src/f-spot.glade.h:184
+msgid "Repair"
+msgstr "ཉམས་བཅོས་"
+
+#: ../src/f-spot.glade.h:185
+msgid "Reset"
+msgstr "སླར་སྒྲིག་"
+
+#: ../src/f-spot.glade.h:188
+msgid "Select A Folder"
+msgstr "སྣོད་འཛིན་ཅིག་སེལ་འཐུ་འབད་"
+
+#: ../src/f-spot.glade.h:189
+msgid "Select Photos to Copy From Camera..."
+msgstr "པར་ཆས་ལས་འདྲ་བཤུས་རྐྱབས་ནིའི་དོན་ལས་ དཔར་ཚུ་སེལ་འཐུ་འབད་..."
+
+#: ../src/f-spot.glade.h:191
+msgid "Select _None"
+msgstr "ཅི་མེད་སེལ་འཐུ་འབད་(_N)"
+
+#: ../src/f-spot.glade.h:192
+msgid "Select a Tag..."
+msgstr "ངོ་རྟགས་ཅིག་སེལ་འཐུ་འབད་..."
+
+#: ../src/f-spot.glade.h:193
+msgid "Select import rolls..."
+msgstr "ནང་འདྲེན་ཤོ་རིལ་ཚུ་ སེལ་འཐུ་འབད་..."
+
+#: ../src/f-spot.glade.h:194
+msgid "Select the camera from which you want to transfer files"
+msgstr "ཁྱོད་ཀྱིས་ཡིག་སྣོད་ཚུ་གནས་སོར་འབད་དགོ་མནོ་མི་ པར་ཆས་འདི་སེལ་འཐུ་འབད་"
+
+#: ../src/f-spot.glade.h:195
+msgid "Selected Camera: "
+msgstr "སེལ་འཐུ་འབད་ཡོད་པའི་པར་ཆས་:"
+
+#: ../src/f-spot.glade.h:196
+msgid ""
+"Selection\n"
+"Gallery\n"
+"Viewport"
+msgstr ""
+"སེལ་འཐུ་འབད་ནི་\n"
+"སྟོན་ཁང་\n"
+"མཐོང་སྣང་མཐུད་ལམ་"
+
+#: ../src/f-spot.glade.h:199
+msgid "Send _Mail..."
+msgstr "ཡིག་འཕྲིན་གཏང་...(_M)"
+
+#: ../src/f-spot.glade.h:200
+msgid "Set Date Range"
+msgstr "ཚེས་གྲངས་ཁྱབ་ཚད་གཞི་སྒྲིག་འབད་"
+
+#: ../src/f-spot.glade.h:201
+msgid "Set _Date Range..."
+msgstr "ཚེས་གྲངས་ཁྱབ་ཚད་གཞི་སྒྲིག་འབད་...(_D)"
+
+#: ../src/f-spot.glade.h:202
+msgid "Set as _Background"
+msgstr "རྒྱབ་གཞི་སྦེ་གཞི་སྒྲིག་འབད་(_B)"
+
+#: ../src/f-spot.glade.h:204
+msgid "Show all photos."
+msgstr "དཔར་ག་ར་ སྟོན་"
+
+#: ../src/f-spot.glade.h:205
+msgid "Show or hide the side pane"
+msgstr "ཟུར་ཁའི་པེན་འདི་ སྟོན་ཡང་ན་སྦ་བཞག་"
+
+#: ../src/f-spot.glade.h:206
+msgid "Show or hide the toolbar"
+msgstr "ལག་ཆས་ཕྲ་རིང་འདི་སྟོན་ཡང་ན་སྦ་བཞག་"
+
+#: ../src/f-spot.glade.h:207
+msgid "Side _pane"
+msgstr "ཟུར་ཁའི་ཕྲ་རིང་(_p)"
+
+#: ../src/f-spot.glade.h:208
+msgid "Size"
+msgstr "ཚད་"
+
+#: ../src/f-spot.glade.h:209
+msgid "Size of the exported selection :"
+msgstr "ཕྱིར་འདྲེན་འབད་ཡོད་པའི་སེལ་འཐུ་འབད་ནིའི་ཚད་:"
+
+#: ../src/f-spot.glade.h:210
+msgid "Small"
+msgstr "ཆུང་ཀུ་"
+
+#: ../src/f-spot.glade.h:211
+msgid "So_urce Temp"
+msgstr "འབྱུང་ཁུངས་ཚ་དྲོད་(_u)"
+
+#: ../src/f-spot.glade.h:212
+msgid "Space all photos by"
+msgstr "གིས་སྦེ་ དཔར་ཚུ་ཆ་མཉམ་བར་སྟོང་བཞག་"
+
+#: ../src/f-spot.glade.h:213
+msgid "Specify if an original size picture should be rotated or not. Smaller sizes are automatically rotated."
+msgstr "ཚད་ངོ་མའི་པར་ཅིག་ བསྒྱིར་ནི་གུ་ཨིན་མེན་གསལ་བཀོད་འབད། ཚད་ཆུང་མི་ཚུ་ རང་བཞིན་གྱིས་བསྒྱིརཝ་ཨིན།"
+
+#: ../src/f-spot.glade.h:214
+msgid ""
+"Standard RGB\n"
+"Image Profile\n"
+"Custom\n"
+msgstr ""
+"ཚད་ལྡན་ཨར་ཇི་བི་\n"
+"གཟུགས་བརྙན་གསལ་སྡུད་\n"
+"སོལ་སྒྲིག་\n"
+
+#: ../src/f-spot.glade.h:218
+msgid "Strip _metadata"
+msgstr "མེ་ཊ་གནད་སྡུད་བཤུབ་(_m)"
+
+#: ../src/f-spot.glade.h:219
+msgid "Strip image _metadata"
+msgstr "གཟུགས་བརྙན་མེ་ཊ་གནད་སྡུད་བཤུབ་(_m)"
+
+#: ../src/f-spot.glade.h:220
+msgid "Tag Icons"
+msgstr "ངོ་རྟགས་ངོས་དཔར་ཚུ།"
+
+#: ../src/f-spot.glade.h:221
+msgid "Tags: "
+msgstr "ངོ་རྟགས་ཚུ་:"
+
+#: ../src/f-spot.glade.h:222
+msgid "Tiny"
+msgstr "ཕྲ་བ་"
+
+#: ../src/f-spot.glade.h:223
+msgid "Toolbar"
+msgstr "ལག་ཆས་ཕྲ་རིང་"
+
+#: ../src/f-spot.glade.h:224
+msgid "Total original size"
+msgstr "ཚད་ངོ་མའི་བསྡོམས་"
+
+#: ../src/f-spot.glade.h:225
+msgid "U_RL:"
+msgstr "ཡུ་ཨར་ཨེལ་:(_R)"
+
+#: ../src/f-spot.glade.h:226
+msgid "View"
+msgstr "མཐོང་སྣང་"
+
+#: ../src/f-spot.glade.h:227
+msgid "Visible to Family"
+msgstr "རིགས་ཚན་ལུ་མཐོང་ཚུགསཔ་"
+
+#: ../src/f-spot.glade.h:228
+msgid "Visible to Friends"
+msgstr "ཆ་རོགས་ཚུ་ལུ་མཐོང་ཚུགསཔ་"
+
+#: ../src/f-spot.glade.h:229
+msgid "Will print using: US Letter size on Generic Postscript"
+msgstr "རིགས་བརྒྱུད་པོསིཊི་སིཀིརིཔཊི་གུ་ཡུ་ཨེསི་ ཡི་གུའི་ཚད་:  ལག་ལེན་འཐབ་ཐོག་ དཔར་བསྐྲུན་འབད་འོང་"
+
+#: ../src/f-spot.glade.h:230
+msgid "Write _metadata to file"
+msgstr "ཡིག་སྣོད་ལུ་ མེ་ཊ་གནད་སྡུད་འབྲི་(_m)"
+
+#: ../src/f-spot.glade.h:231
+msgid "Zoom _in"
+msgstr "ཕྱིར་རྒྱས་(_i)"
+
+#: ../src/f-spot.glade.h:232
+msgid "Zoom _out"
+msgstr "ནང་ཟུམ་(_o)"
+
+#: ../src/f-spot.glade.h:233
+msgid "Zoom in"
+msgstr "ཕྱིར་རྒྱས་"
+
+#: ../src/f-spot.glade.h:234
+msgid "Zoom out"
+msgstr "ནང་ཟུམ་"
+
+#: ../src/f-spot.glade.h:235
+msgid "_Account:"
+msgstr "རྩིས་ཐོ་:(_A)"
+
+#: ../src/f-spot.glade.h:236
+msgid "_Album Name:"
+msgstr "པར་དེབ་མིང་:(_A)"
+
+#: ../src/f-spot.glade.h:237
+msgid "_Album Title:"
+msgstr "པར་དེབ་མགོ་མིང་:(_A)"
+
+#: ../src/f-spot.glade.h:238
+msgid "_Attach Tag"
+msgstr "ངོ་རྟགས་མཉམ་སྦགས་འབད་(_A)"
+
+#: ../src/f-spot.glade.h:239
+msgid "_Attach Tag to Selection"
+msgstr "ངོ་རྟགས་འདི་ སེལ་ཐའུ་འབད་ནི་ལུ་མཉམ་སྦྲགས་འབད་(_A)"
+
+#: ../src/f-spot.glade.h:240
+msgid "_Border:"
+msgstr "མཐའ་མཚམས་:(_B)"
+
+#: ../src/f-spot.glade.h:241
+msgid "_Brightness:"
+msgstr "དཀར་མདངས་:(_B)"
+
+#: ../src/f-spot.glade.h:242
+msgid "_Browse Previously Scheduled Files"
+msgstr "ཧེ་མའི་འཆར་རིམ་ཅན་ཡིག་སྣོད་ཚུ་ བརྡ་འཚོལ་འབད་(_B)"
+
+#: ../src/f-spot.glade.h:243
+msgid "_Captcha:"
+msgstr "ཀེཔཊི་ཅ་:(_C)"
+
+#: ../src/f-spot.glade.h:244
+msgid "_Contents"
+msgstr "ནང་དོན་ཚུ་(_C)"
+
+#: ../src/f-spot.glade.h:245
+msgid "_Delete From Drive"
+msgstr "འདྲེན་འཕྲུལ་ལས་བཏོན་གཏང་(_D)"
+
+#: ../src/f-spot.glade.h:246
+msgid "_Delete Selected Tag"
+msgstr "སེལ་འཐུ་འབད་ཡོད་པའི་ངོ་རྟགས་བཏོན་གཏང་(_D)"
+
+#: ../src/f-spot.glade.h:247
+msgid "_Delete Version"
+msgstr "ཐོན་རིམ་བཏོན་གཏང་(_D)"
+
+#: ../src/f-spot.glade.h:248
+msgid "_Description:"
+msgstr "འགྲེལ་བཤད་:(_D)"
+
+#: ../src/f-spot.glade.h:249
+msgid "_Destination Temp"
+msgstr "འགྲོ་ཡུལ་ཚ་དྲོད་(_D)"
+
+#: ../src/f-spot.glade.h:250
+msgid "_Display:"
+msgstr "བཀྲམ་སྟོན་:(_D)"
+
+#: ../src/f-spot.glade.h:251
+msgid "_Edit Selected Tag..."
+msgstr "སེལ་འཐུ་འབད་ཡོད་པའི་ངོ་རྟགས་ཞུན་དག་འབད་(_E)"
+
+#: ../src/f-spot.glade.h:252
+msgid "_Export"
+msgstr "ཕྱིར་འདྲེན་(_E)"
+
+#: ../src/f-spot.glade.h:253
+msgid "_Export tags"
+msgstr "ངོ་རྟགས་ཚུ་ཕྱིར་འདྲེན་འབད་(_E)"
+
+#: ../src/f-spot.glade.h:254
+msgid "_Export to Album:"
+msgstr "པར་དེབ་ལུ་ཕྱིར་འདྲེན་འབད་:(_E)"
+
+#: ../src/f-spot.glade.h:255
+msgid "_Flickr"
+msgstr "འདར་བ་(_F)"
+
+#: ../src/f-spot.glade.h:256
+msgid "_Folder"
+msgstr "སྣོད་འཛིན་(_F)"
+
+#: ../src/f-spot.glade.h:257
+msgid "_Folder:"
+msgstr "སྣོད་འཛིན་:(_F)"
+
+#: ../src/f-spot.glade.h:258
+msgid "_Fullscreen"
+msgstr "གསལ་གཞི་གང་(_F)"
+
+#: ../src/f-spot.glade.h:259
+msgid "_Gallery"
+msgstr "སྟོན་ཁང་(_G)"
+
+#: ../src/f-spot.glade.h:260
+msgid "_Gallery Name:"
+msgstr "སྟོན་ཁང་མིང་:(_G)"
+
+#: ../src/f-spot.glade.h:261
+msgid "_Gallery:"
+msgstr "སྟོན་ཁང་:(_G)"
+
+#: ../src/f-spot.glade.h:262
+msgid "_Hidden"
+msgstr "སྦ་ཡོདཔ(_H)"
+
+#: ../src/f-spot.glade.h:263
+msgid "_Hue:"
+msgstr "ཚོན་མདངས་:(_H)"
+
+#: ../src/f-spot.glade.h:264
+msgid "_Icon:"
+msgstr "ངོས་དཔར་:(_I)"
+
+#: ../src/f-spot.glade.h:265
+msgid "_Import..."
+msgstr "ནང་འདྲེན་འབད་...(_I)"
+
+#: ../src/f-spot.glade.h:266
+msgid "_Large"
+msgstr "སྦོམ(_L)"
+
+#: ../src/f-spot.glade.h:267
+msgid "_Medium"
+msgstr "འབྲིང་མ(_M)"
+
+#: ../src/f-spot.glade.h:268
+msgid "_Metadata Browser"
+msgstr "མེ་ཊ་གནད་སྡུད་བརའུ་ཟར་(_M)"
+
+#: ../src/f-spot.glade.h:269
+msgid "_Month"
+msgstr "ཟླ་(_M)"
+
+#: ../src/f-spot.glade.h:270
+msgid "_New Window"
+msgstr "སྒོ་སྒྲིག་གསརཔ་(_N)"
+
+#: ../src/f-spot.glade.h:271
+msgid "_Open album in browser when done uploading"
+msgstr "སྐྱེལ་བཙུགས་འབད་ཚརཝ་ད་ བརའུ་ཟར་ནང་པར་དེབ་ཁ་ཕྱེ་(_O)"
+
+#: ../src/f-spot.glade.h:272
+msgid "_Open destination when done exporting"
+msgstr "ཕྱིར་འདྲེན་འབད་ཚརཝ་ད་ འགྲོ་ཡུལ་ཁ་ཕྱེ་(_O)"
+
+#: ../src/f-spot.glade.h:273
+msgid "_Output:"
+msgstr "ཨའུཊི་པུཊི་:(_O)"
+
+#: ../src/f-spot.glade.h:274
+msgid "_Parent Album:"
+msgstr "རྩ་ལག་པར་དེབ་:(_P)"
+
+#: ../src/f-spot.glade.h:275
+msgid "_Password:"
+msgstr "ཆོག་ཡིག་:(_P)"
+
+#: ../src/f-spot.glade.h:276
+msgid "_Print..."
+msgstr "དཔར་བསྐྲུན་འབད་...(_P)"
+
+#: ../src/f-spot.glade.h:277
+msgid "_Quit"
+msgstr "སྤང་(_Q)"
+
+#: ../src/f-spot.glade.h:278
+msgid "_Remove From Catalog"
+msgstr "ཐོ་གཞུང་ལས་རྩ་བསྐྲད་གཏང་(_R)"
+
+#: ../src/f-spot.glade.h:279
+msgid "_Remove Tag From Selection"
+msgstr "སེལ་འཐུ་འབད་ནི་ལས་ ངོ་རྟགས་རྩ་བསྐྲད་གཏང་(_R)"
+
+#: ../src/f-spot.glade.h:280
+msgid "_Rename Version"
+msgstr "ཐོན་རིམ་བསྐྱར་མིང་བཏགས་(_R)"
+
+#: ../src/f-spot.glade.h:281
+msgid "_Resize to: "
+msgstr "ལུ་ཚད་བསྐྱར་བཟོ་འབད་(_R)"
+
+#: ../src/f-spot.glade.h:283
+msgid "_Saturation:"
+msgstr "མཐའ་ཚད་:(_S)"
+
+#: ../src/f-spot.glade.h:284
+msgid "_Save the files only"
+msgstr "ཡིག་སྣོད་ཚུ་རྐྱངམ་ཅིག་སྲུང་བཞག་འབད་(_S)"
+
+#: ../src/f-spot.glade.h:285
+msgid "_Scale photos to no larger than: "
+msgstr "ལས་མ་སྦོམ་མི་ དཔར་ཚུ་ཚད་འཇལ་:(_S)"
+
+#: ../src/f-spot.glade.h:286
+msgid "_Sharpen..."
+msgstr "རྣོ་ཅན་བཟོ་...(_S)"
+
+#: ../src/f-spot.glade.h:287
+msgid "_Slideshow"
+msgstr "བཤུད་བརྙན་(_S)"
+
+#: ../src/f-spot.glade.h:288
+msgid "_Small"
+msgstr "ཆུང་ཀུ(_S)"
+
+#: ../src/f-spot.glade.h:289
+msgid "_Strip metadata"
+msgstr "མེ་ཊ་གནད་སྡུད་བཤུབ་(_S)"
+
+#: ../src/f-spot.glade.h:290
+msgid "_Tag Name:"
+msgstr "ངོ་རྟགས་མིང་:(_T)"
+
+#: ../src/f-spot.glade.h:291
+msgid "_Tags"
+msgstr "ངོ་རྟགས་ཚུ་(_T)"
+
+#: ../src/f-spot.glade.h:292
+msgid "_Title:"
+msgstr "མགོ་མིང་:(_T)"
+
+#: ../src/f-spot.glade.h:293
+msgid "_Tools"
+msgstr "ལག་ཆས་ཚུ་(_T)"
+
+#: ../src/f-spot.glade.h:294
+msgid "_URI:"
+msgstr "ཡུ་ཨར་ཨའི་:(_U)"
+
+#: ../src/f-spot.glade.h:295
+msgid "_Untagged Photos"
+msgstr "ངོ་རྟགས་མ་བཟོ་བའི་དཔར་ཚུ་(_U)"
+
+#: ../src/f-spot.glade.h:296
+msgid "_Username:"
+msgstr "ལག་ལེན་པའི་མིང་(_U)"
+
+#: ../src/f-spot.glade.h:297
+msgid "_Version"
+msgstr "ཐོན་རིམ་(_V)"
+
+#: ../src/f-spot.glade.h:298
+msgid "_View"
+msgstr "མཐོང་སྣོང་(_V)"
+
+#: ../src/f-spot.glade.h:299
+msgid "_View photos in browser when done uploading"
+msgstr "སྐྱེལ་བཙུགས་འབད་ཚརཝ་ད་ བརའུ་ཟར་ནང་ དཔར་ཚུ་སྟོན་(_V)"
+
+#: ../src/f-spot.glade.h:300
+msgid "_Virtual Filesystem"
+msgstr "བར་ཅུ་ཡལ་ཡིག་སྣོད་རིམ་ལུགས་(_V)"
+
+#: ../src/f-spot.glade.h:301
+msgid "_Write only these photos to CD"
+msgstr "འ་ནི་དཔར་ཚུ་རྐྱངམ་ཅིག་ སི་ཌི་ལུ་འབྲི་(_W)"
+
+#: ../src/f-spot.glade.h:302
+msgid "and"
+msgstr " དང་"
+
+#. at, or after a date, or between dates
+#: ../src/f-spot.glade.h:304
+msgid ""
+"at\n"
+"after\n"
+"between"
+msgstr ""
+"ལུ་\n"
+"ཤུལ་ལས་\n"
+"བར་ན་"
+
+#: ../src/f-spot.glade.h:307
+msgid "dialog1"
+msgstr "ཌའི་ལོག་༡"
+
+#: ../src/f-spot.glade.h:308
+msgid "difference:"
+msgstr "ཁྱད་པར་:"
+
+#: ../src/f-spot.glade.h:309
+msgid "img_000.jpg"
+msgstr "གཟུགས་བརྙན་ 000.jpg (_0)"
+
+#: ../src/f-spot.glade.h:311
+msgid "pixels"
+msgstr "པིག་སེལསི་"
+
+#: ../src/f-spot.glade.h:312
+msgid "x"
+msgstr "x"
+
+#: ../tools/f-spot-screensaver.desktop.in.h:1
+msgid "Display a slideshow from F-Spot"
+msgstr "བཤུད་བརྙན་ཅིག་ ཨེཕ་-ཨིསི་པོཊི་ལས་བཀྲམ་སྟོན་འབད་"
+
+#: ../tools/f-spot-screensaver.desktop.in.h:2
+msgid "F-Spot photos"
+msgstr "ཨེཕ་-ཨིསི་པོཊི་དཔར་ཚུ་"
+
+#~ msgid "The tag \"{0}\" is not applied to any photos. Try adding"
+#~ msgstr ""
+#~ "ངོ་རྟགས་འདི་ \"{0}\" དཔར་ཚུ་གང་རུང་ལུ་འཇུག་སྤྱོད་མ་འབད་བར་ཡོདཔ། ཁ་སྐོང་འབད་ནི་འབད་རྩོལ་"
+#~ "བསྐྱེད།"
+#~ msgid "the tag to some photos or selecting a different tag in the"
+#~ msgstr "འདི་ནང་ངོ་རྟགས་སོ་སོ་ཅིག་སེལ་འཐུ་འབད་ནི་ཡང་ན་དཔར་་ཚུ་ལ་ལོ་ལུ་ངོ་རྟགས་འདི།"
+#~ msgid "F-Spot preference dialog."
+#~ msgstr "ཨེཕ་-ས་ཁོངས་དགའ་གདམ་ཌའི་ལོག"
+#~ msgid "The tag F-Spot is looking for does not exist. Try"
+#~ msgstr "དོན་ལུ་བལྟ་མི་ཨེཕ་-ས་ཁོངས་ངོ་རྟགས་འདི་གནས་མེདཔ། འབད་རྩོལ་བསྐྱེད།"
+#~ msgid "selecting a different tag in the F-Spot preference"
+#~ msgstr "ཨེཕ་-ས་ཁོངས་དགའ་གདམ་འདི་ནང་ངོ་རྟགས་སོ་སོ་ཅིག་སེལ་འཐུ་འབད་ནི།"
+#~ msgid "dialog."
+#~ msgstr "ཌའི་ལོག"
+#~ msgid "Valid"
+#~ msgstr "ནུས་ལྡན་"
+#~ msgid "Invalid"
+#~ msgstr "ནུས་མེད་"
+#~ msgid ""
+#~ "<small><i>Select the tag you like F-Spot to display images from while "
+#~ "acting as the screensaver</i></small>"
+#~ msgstr ""
+#~ "<small><i> གསལ་གཞི་ཉེན་སྲུང་སྦེ་འབད་བའི་སྐབས་ ཁྱོད་ཀྱིས་ཨེཕ་-ཨིསི་པོཊི་གི་གཟུགས་བརྙན་ཚུ་བཀྲམ་སྟོན་"
+#~ "འབད་ནི་ཨིན་མི་ ངོ་རྟགས་འདི་སེལ་འཐུ་འབད་</i></small>"
+#~ msgid "E_xport to CD..."
+#~ msgstr "སི་ཌི་ལུ་ཕྱིར་འདྲེན་འབད་...(_x)"
+#~ msgid "Unknown destination."
+#~ msgstr "མ་ཤེས་པའི་འགྲོ་ཡུལ་"
+#~ msgid ""
+#~ "When copying files from a camera you must select a valid destination on "
+#~ "the local filesystem"
+#~ msgstr ""
+#~ "ཡིག་སྣོད་ཚུ་ པར་ཆས་ཅིག་ལས་འདྲ་བཤུས་རྐྱབས་པའི་སྐབས་ ཁྱོད་ཀྱིས་་ཉེ་གནས་ཡིག་སྣོད་རིམ་ལུགས་གུ་ལུ་ ནུས་"
+#~ "ལྡན་འགྲོ་ཡུལ་ཅིག་ སེལ་འཐུ་འབད་དགོ"
+#~ msgid "Unable to create directory."
+#~ msgstr "སྣོད་ཐོ་གསར་བསྐྲུན་འབད་མ་ཚུགས།"
+#~ msgid ""
+#~ "Error \"{0}\" while creating directory \"{1}\".  Check that the path and "
+#~ "permissions are correct and try again"
+#~ msgstr ""
+#~ "སྣོད་ཐོ་ \"{1}\" གསར་བསྐྲུན་འབད་བའི་སྐབས་ འཛོལ་བ་ \"{0}\"   འགྲུལ་ལམ་ཚུ་དང་གནང་བ་ཚུ་ངེས་"
+#~ "བདེན་ཨིནམ་ཞིབ་དཔྱད་འབད་ཞིནམ་ལས་ ལོག་འབད་རྩོལ་བསྐྱེད་གནང་།"
+#~ msgid "Select Destination"
+#~ msgstr "འགྲོ་ཡུལ་སེལ་འཐུ་འབད་"
+#~ msgid "Back"
+#~ msgstr "རྒྱབ་"
+#~ msgid "..."
+#~ msgstr "..."
+#~ msgid "Copy _Files to: "
+#~ msgstr "ལུ་ ཡིག་སྣོད་ཚུ་འདྲ་བཤུས་རྐྱབས་(_F)"
+#~ msgid "_Import files after copy"
+#~ msgstr "འདྲ་བཤུས་རྐྱབས་པའི་ཤུལ་ལུ་ ཡིག་སྣོད་ཚུ་ནང་འདྲེན་འབད་(_I)"
+#~ msgid "_Prefix: "
+#~ msgstr "སྔོན་ཚིག་:(_P)"
+#~ msgid "_Select Tags..."
+#~ msgstr "ངོ་རྟགས་ཚུ་སེལ་འཐུ་འབད་...(_S)"
+

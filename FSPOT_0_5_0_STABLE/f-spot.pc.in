@@ -1,0 +1,9 @@
+prefix=@prefix@
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+
+
+Name: F-Spot
+Description: F-Spot, Organise, enjoy and share your pictures
+Version: @VERSION@
+Libs: -r:${libdir}/f-spot/f-spot.exe -r:${libdir}/f-spot/FSpot.Core.dll -r:${libdir}/f-spot/FSpot.Utils.dll -r:${libdir}/f-spot/Cms.dll -r:${libdir}/f-spot/FSpot.Query.dll -r:${libdir}/f-spot/FSpot.JobScheduler.dll -r:${libdir}/f-spot/FSpot.Widgets.dll

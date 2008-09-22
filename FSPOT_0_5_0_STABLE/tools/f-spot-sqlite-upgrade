@@ -1,0 +1,43 @@
+#!/bin/sh
+set -e
+
+# This only upgrades the default database location
+# if you have specified a different location 
+DB_LOCATION=~/.gnome2/f-spot/photos.db
+BACKUP_LOCATION=$DB_LOCATION.backup
+DUMP_LOCATION=$DB_LOCATION.dump
+NEW_DB_LOCATION=$DB_LOCATION.new
+
+if ! which sqlite >/dev/null 2>&1 ; then
+	echo "Could not find sqlite binary. Update aborted." >&2
+	exit 1
+elif ! which sqlite3 >/dev/null 2>&1 ; then
+	echo "Could not find sqlite3 binary. Update aborted." >&2
+	exit 1
+fi
+
+if [ ! -f $DB_LOCATION ]; then
+	echo "Could not find $DB_LOCATION, nothing to update. Update aborted." >&2
+	exit 1
+fi
+
+# make sure nothing gets in the way
+rm -f $BACKUP_LOCATION
+rm -f $DUMP_LOCATION
+rm -f $NEW_DB_LOCATION
+
+if grep "^...This file contains an SQLite 2.1 database" $DB_LOCATION >/dev/null 2>&1; then
+	echo "Upgrading from SQLite 2.1 to SQLite3"
+	cp $DB_LOCATION $BACKUP_LOCATION
+	if sqlite $DB_LOCATION .dump > $DUMP_LOCATION &&
+	   sqlite3 $NEW_DB_LOCATION < $DUMP_LOCATION; then
+		cp $NEW_DB_LOCATION $DB_LOCATION
+		echo "Upgrade was successful."
+	else
+		echo "Upgrade failed, putting old database back." >&2
+		cp $BACKUP_LOCATION $DB_LOCATION
+		exit 1
+	fi
+else
+	echo "Database is already upgraded"
+fi

@@ -1,0 +1,15 @@
+/*
+ * AssemblyInfo.cs
+ *
+ * Authors
+ *   Stephane Delcroix <stephane@delcroix.org>
+ *
+ */
+
+using System.Reflection;
+using System.Runtime.CompilerServices;
+
+[assembly: AssemblyVersion("@VERSION@")]
+[assembly: AssemblyTitle ("F-Spot")]
+[assembly: AssemblyCopyright ("(c)2003-2007, Novell Inc")]
+[assembly: AssemblyDescription ("Personal photo management for the GNOME Desktop")]

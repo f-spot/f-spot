@@ -1,0 +1,3860 @@
+# Ukrainian translation of the GIMP.
+# Copyright (C) 1999 Free Software Foundation, Inc.
+# Yuri Syrota <rasta@renome.rovno.ua>, 1999.
+# Maxim Dziumanenko <mvd@mylinux.com.ua>, 2004
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: gimp 2.4.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2008-06-24 10:18+0000\n"
+"PO-Revision-Date: 2008-06-24 10:18-0000\n"
+"Last-Translator: Maxim V. Dziumanenko <dziumanenko@gmail.com>\n"
+"Language-Team: Ukrainian <uk@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
+"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInfoDialog.cs:62
+msgid "Version:"
+msgstr "Версія:"
+
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInfoDialog.cs:65
+msgid "Author:"
+msgstr "Автор:"
+
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInfoDialog.cs:68
+msgid "Copyright:"
+msgstr "Авторські права:"
+
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInfoDialog.cs:71
+msgid "Extension Dependencies:"
+msgstr "Залежності розширення:"
+
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:97
+msgid "All registered repositories"
+msgstr "Всі зареєстровані репозиторії"
+
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:184
+msgid "Are you sure you want to cancel the installation?"
+msgstr "Ви дійсно бажаєте скасувати встановлення?"
+
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:308
+msgid "The following packages will be uninstalled:"
+msgstr "Наступні пакети будуть видалені:"
+
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:313
+msgid ""
+"There are other extensions that depend on the previous ones which will also "
+"be uninstalled:"
+msgstr "Є розширення, що залежать від попередніх, і вони теж будуть видалені:"
+
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:384
+msgid ""
+"The selected extensions can't be installed because there are dependency "
+"conflicts."
+msgstr "Вибрані розширення не можуть бути встановлені через конфлікт залежностей."
+
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:398
+msgid "The following packages will be installed:"
+msgstr "Будуть встановлені наступні пакети:"
+
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:402
+msgid " (in user directory)"
+msgstr " (у каталог користувача)"
+
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:408
+msgid "The following packages need to be uninstalled:"
+msgstr "Наступні пакети будуть видалені:"
+
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:416
+msgid "The following dependencies could not be resolved:"
+msgstr "Не вдалося задовольнити наступні залежності:"
+
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:441
+msgid "The installation has been successfully completed."
+msgstr "Встановлення успішно завершено."
+
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:442
+msgid "The installation failed!"
+msgstr "Помилка при встановленні!"
+
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:443
+msgid "The installation has completed with warnings."
+msgstr "Встановлення завершилось з попередженням."
+
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:446
+msgid "The uninstallation has been successfully completed."
+msgstr "Видалення успішно завершено."
+
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:447
+msgid "The uninstallation failed!"
+msgstr "Видалення завершилось помилкою!"
+
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:448
+msgid "The uninstallation has completed with warnings."
+msgstr "Видалення завершилось з попередженням!"
+
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:616
+msgid "Repository"
+msgstr "Репозиторій"
+
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstaller.cs:16
+msgid "Installation cancelled"
+msgstr "Встановлення скасовано"
+
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallerDialog.cs:159
+msgid "Some of the required extensions were not found"
+msgstr "Декілька потрібних розширень не знайдено"
+
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallerDialog.cs:171
+msgid "Installation failed"
+msgstr "Помилка при встановленні"
+
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinTreeWidget.cs:91
+msgid "Extension"
+msgstr "Розширення"
+
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinTreeWidget.cs:112
+#: ../src/Widgets/InfoBox.cs:129
+msgid "Version"
+msgstr "Версія"
+
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinTreeWidget.cs:168
+msgid "Other"
+msgstr "Інше"
+
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/ManageSitesDialog.cs:51
+#: ../src/Widgets/InfoBox.cs:126
+msgid "Name"
+msgstr "Назва"
+
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/ManageSitesDialog.cs:52
+msgid "Url"
+msgstr "URL"
+
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/Services.cs:61
+#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/Services.cs:70
+#, csharp-format
+msgid "Exception occurred: {0}"
+msgstr "Виникла виняткова ситуація: {0}"
+
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInfoDialog.cs:32
+msgid "Package"
+msgstr "Пакет"
+
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:110
+msgid "Extension Installation"
+msgstr "Встановлення розширення"
+
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:136
+msgid "<b>Select the extensions to install and click on Next</b>"
+msgstr "<b>Виберіть розширення для встановлення та натисніть «Далі»</b>"
+
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:150
+msgid "Install from:"
+msgstr "Встановити з:"
+
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:179
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:180
+msgid "_Repositories..."
+msgstr "_Репозиторії..."
+
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:220
+msgid "Show all packages"
+msgstr "Показати вс_і теки"
+
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:221
+msgid "Show new versions only"
+msgstr "Показувати лише нові файли"
+
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:222
+msgid "Show updates only"
+msgstr "Показувати лише оновлення"
+
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:247
+msgid "_Unselect All"
+msgstr "Зн~яти видалення"
+
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:259
+#: ../src/f-spot.glade.h:170
+msgid "Select _All"
+msgstr "Виді_лити все"
+
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:334
+msgid "label124"
+msgstr "label124"
+
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:346
+msgid "Overall Progress:"
+msgstr "Загальний поступ:"
+
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:374
+msgid "Downloading extensions..."
+msgstr "Завантажуються розширення..."
+
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallerDialog.cs:36
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:58
+msgid "Extension Manager"
+msgstr "Керування розширеннями"
+
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallerDialog.cs:54
+msgid "Additional extensions are required to perform this operation."
+msgstr "Треба встановити додаткові розширення для виконання цієї операції."
+
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallerDialog.cs:64
+msgid "The following extensions will be installed:"
+msgstr "Будуть встановлені наступні розширення:"
+
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:90
+msgid "<big><b>Extension Manager</b></big>"
+msgstr "<big><b>Керування розширеннями F-Spot</b></big>"
+
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:110
+msgid "The following extensions are currently installed:"
+msgstr "Вже установлені наступні розширення:"
+
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:165
+msgid "_Install Extensions..."
+msgstr "_Встановити розширення..."
+
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:210
+msgid "_Uninstall..."
+msgstr "В_идалити..."
+
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:236
+msgid "Enable"
+msgstr "Увімкнути"
+
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:262
+msgid "Disable"
+msgstr "Вимкнути"
+
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.ErrorDialog.cs:40
+#: ../extensions/FlickrExport/FlickrExport.cs:359
+#: ../extensions/FolderExport/FolderExport.cs:249
+#: ../extensions/GalleryExport/GalleryExport.cs:788
+#: ../extensions/PicasaWebExport/PicasaWebExport.cs:694
+#: ../extensions/SmugMugExport/SmugMugExport.cs:595
+msgid "Error"
+msgstr "Помилка"
+
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.ErrorDialog.cs:111
+msgid "Details"
+msgstr "Подробиці"
+
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.ManageSitesDialog.cs:34
+msgid "Extension Repository Management"
+msgstr "Керування репозиторіями розширеннями"
+
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.NewSiteDialog.cs:52
+msgid "Add New Repository"
+msgstr "Додати репозиторій"
+
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.NewSiteDialog.cs:70
+msgid "Select the location of the repository you want to register:"
+msgstr "Виберіть розташування репозиторію:"
+
+#. Container child vbox89.Gtk.Box+BoxChild
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.NewSiteDialog.cs:77
+msgid "Register an on-line repository"
+msgstr "Зареєструвати мережний репозиторій"
+
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.NewSiteDialog.cs:106
+msgid "Url:"
+msgstr "URL:"
+
+#. Container child vbox89.Gtk.Box+BoxChild
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.NewSiteDialog.cs:127
+msgid "Register a local repository"
+msgstr "Зареєструвати локальний репозиторій"
+
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.NewSiteDialog.cs:155
+msgid "Path:"
+msgstr "Шлях:"
+
+#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.NewSiteDialog.cs:179
+msgid "Browse..."
+msgstr "Огляд..."
+
+#: ../mono-addins/Mono.Addins/Mono.Addins.Description/AssemblyDependency.cs:79
+#, csharp-format
+msgid "(provided by {0})"
+msgstr "(надано {0})"
+
+#: ../mono-addins/Mono.Addins/Mono.Addins/AddinSessionService.cs:154
+msgid "Disabled extensions can't be loaded."
+msgstr "Вимкнені розширення неможливо завантажити."
+
+#: ../mono-addins/Mono.Addins/Mono.Addins/AddinSessionService.cs:179
+#, csharp-format
+msgid "Loading {0} extension"
+msgstr "Завантажується розширення {0}"
+
+#: ../mono-addins/Mono.Addins/Mono.Addins/AddinSessionService.cs:265
+#, csharp-format
+msgid "The required extension '{0}' is disabled."
+msgstr "Необхідне розширення '{0}' вимкнено."
+
+#: ../mono-addins/Mono.Addins/Mono.Addins/AddinSessionService.cs:267
+#, csharp-format
+msgid "The required extension '{0}' is not installed."
+msgstr "Необхідне розширення '{0}' не встановлено."
+
+#: ../f-spot-view.desktop.in.in.h:1
+msgid "F-Spot Photo Viewer"
+msgstr "Перегляд фотографій F-Spot"
+
+#: ../f-spot-view.desktop.in.in.h:2
+msgid "Photo Viewer"
+msgstr "Перегляд фотографій"
+
+#: ../f-spot-import.desktop.in.in.h:1 ../f-spot.desktop.in.in.h:1
+msgid "F-Spot Photo Manager"
+msgstr "Керування фотографіями у F-Spot"
+
+#: ../f-spot-import.desktop.in.in.h:2
+msgid "Import into F-Spot"
+msgstr "Імпортувати до F-Spot"
+
+#: ../f-spot-import.desktop.in.in.h:3 ../f-spot.desktop.in.in.h:3
+msgid "Photo Manager"
+msgstr "Керування фотографіями"
+
+#: ../f-spot.desktop.in.in.h:2
+msgid "Organize, enjoy, and share your photos"
+msgstr "Організація, перегляд та передача фотографій"
+
+#: ../libeog/eog-image.c:773
+#, c-format
+msgid "No image loaded."
+msgstr "Немає зображень."
+
+#: ../libeog/eog-image.c:780
+#, c-format
+msgid "Can't save non local files."
+msgstr "Збереження нелокальних файлів не підтримується."
+
+#: ../libeog/eog-image.c:803
+#, c-format
+msgid "Unsupported image type for saving."
+msgstr "Непідтримуваний тип файлів для зображення."
+
+#: ../libeog/image-view.c:2128
+msgid "interpolation type"
+msgstr "тип інтерполяції"
+
+#: ../libeog/image-view.c:2129
+msgid "the type of interpolation to use"
+msgstr "який тип інтерполяції використати"
+
+#: ../libeog/image-view.c:2135 ../libeog/image-view.c:2142
+msgid "check type"
+msgstr "перевірити тип"
+
+#: ../libeog/image-view.c:2136
+msgid "the type of chequering to use"
+msgstr "тип використаних шахових клітин"
+
+#: ../libeog/image-view.c:2143
+msgid "the size of chequers to use"
+msgstr "розмір шахових клітин"
+
+#: ../libeog/image-view.c:2149
+msgid "dither"
+msgstr "дітер"
+
+#: ../libeog/image-view.c:2150
+msgid "dither type"
+msgstr "тип дітеру"
+
+#: ../libfspot/f-jpeg-utils.c:445 ../src/RotateCommand.cs:222
+msgid "File not found"
+msgstr "Файл не знайдено"
+
+#: ../libfspot/f-jpeg-utils.c:468
+#, c-format
+msgid "Unknown transform type %d"
+msgstr "Невідомий тип перетворення %d"
+
+#: ../libfspot/f-jpeg-utils.c:476
+msgid "Operation failed"
+msgstr "Операція закінчилась помилкою"
+
+#: ../src/CameraFileSelectionDialog.cs:74
+msgid "Preview"
+msgstr "Перегляд"
+
+#: ../src/CameraFileSelectionDialog.cs:76
+msgid "Path"
+msgstr "Контур"
+
+#: ../src/CameraFileSelectionDialog.cs:78 ../src/f-spot.glade.h:112
+msgid "File"
+msgstr "Файл"
+
+#: ../src/CameraFileSelectionDialog.cs:80
+#: ../extensions/FolderExport/FolderExport.cs:992
+#: ../extensions/FolderExport/FolderExport.cs:1233
+msgid "Index"
+msgstr "Індекс"
+
+#: ../src/CameraFileSelectionDialog.cs:100
+msgid "Select Tag"
+msgstr "Виберіть позначку"
+
+#: ../src/CameraFileSelectionDialog.cs:136
+msgid "Downloading Previews"
+msgstr "Скасуються мініатюри"
+
+#: ../src/CameraFileSelectionDialog.cs:146
+#, csharp-format
+msgid "Downloading Preview of {0}"
+msgstr "Завантажується мініатюра {0}"
+
+#: ../src/CameraFileSelectionDialog.cs:197
+#: ../extensions/CDExport/CDExport.cs:342
+#: ../extensions/FolderExport/FolderExport.cs:391
+msgid "Transferring Pictures"
+msgstr "Триває копіювання зображень"
+
+#: ../src/CameraFileSelectionDialog.cs:218
+#, csharp-format
+msgid "Copying file {0} of {1}"
+msgstr "Копіюється файл {0} з {1}"
+
+#: ../src/CameraFileSelectionDialog.cs:228
+msgid "Error transferring file"
+msgstr "Помилка при передачі файлів"
+
+#: ../src/CameraFileSelectionDialog.cs:237
+msgid "Done Copying Files"
+msgstr "Копіювання файлів завершено"
+
+#: ../src/CameraFileSelectionDialog.cs:239
+msgid "Download Complete"
+msgstr "Завантаження завершено"
+
+#: ../src/CameraFileSelectionDialog.cs:264
+#, csharp-format
+msgid "Transferring \"{0}\" from camera"
+msgstr "Копіюється \"{0}\" з фотоапарату"
+
+#: ../src/CameraSelectionDialog.cs:29
+msgid "Camera"
+msgstr "Фотоапарат"
+
+#: ../src/CameraSelectionDialog.cs:30
+msgid "Port"
+msgstr "Порт"
+
+#: ../src/Core.cs:199
+#, csharp-format
+msgid "No photos matching {0} found"
+msgstr "Знімків з позначкою {0} не знайдено"
+
+#: ../src/Core.cs:200
+#, csharp-format
+msgid ""
+"The tag \"{0}\" is not applied to any photos. Try adding\n"
+"the tag to some photos or selecting a different tag in the\n"
+"F-Spot preference dialog."
+msgstr ""
+"Позначка \"{0}\" не застосовна ні до одного знімку. Спробуйте \n"
+"застосувати її до яких-ось знімків або вибрати іншу позначку\n"
+"у діалозі параметрів F-Spot."
+
+#: ../src/Core.cs:204
+msgid "Search returned no results"
+msgstr "Нічого не знайдено"
+
+#: ../src/Core.cs:205
+msgid ""
+"The tag F-Spot is looking for does not exist. Try\n"
+"selecting a different tag in the F-Spot preference\n"
+"dialog."
+msgstr ""
+"Позначки, яку шукає F-Spot, не існує.\n"
+"Спробуйте вибрати іншу позначку у діалозі\n"
+"параметрів F-Spot."
+
+#. Note for translators: Reparented is a picture becoming a version of another one
+#: ../src/Core/Photo.cs:418
+msgid "Reparented"
+msgstr "Змінено версіонність"
+
+#: ../src/Core/Photo.cs:418
+#, csharp-format
+msgid "Reparented ({0})"
+msgstr "Змінено версіонність ({0})"
+
+#: ../src/Core/Photo.cs:435
+#, csharp-format
+msgid "Modified"
+msgid_plural "Modified ({0})"
+msgstr[0] "Версія ({0})"
+msgstr[1] "Версія ({0})"
+msgstr[2] "Версія ({0})"
+
+#: ../src/Core/Photo.cs:454
+#, csharp-format
+msgid "Modified in {1}"
+msgstr "Змінено о {1}"
+
+#: ../src/Core/Photo.cs:454
+#, csharp-format
+msgid "Modified in {1} ({0})"
+msgstr "Змінено о {1} ({0})"
+
+#. Note that the original version is never stored in the photo_versions table in the
+#. database.
+#: ../src/Core/Photo.cs:562 ../src/f-spot.glade.h:149
+msgid "Original"
+msgstr "Початкова"
+
+#: ../src/DateCommands.cs:57
+msgid "Today"
+msgstr "Сьогодні"
+
+#: ../src/DateCommands.cs:59
+msgid "Yesterday"
+msgstr "Вчора"
+
+#: ../src/DateCommands.cs:61
+msgid "Last 7 days"
+msgstr "Останні 7 діб"
+
+#: ../src/DateCommands.cs:63
+msgid "Last 30 days"
+msgstr "Останні 30 діб"
+
+#: ../src/DateCommands.cs:65
+msgid "Last 90 days"
+msgstr "Останні 90 діб"
+
+#: ../src/DateCommands.cs:67
+msgid "Last 360 days"
+msgstr "Останні 360 діб"
+
+#: ../src/DateCommands.cs:69
+msgid "Current Week (Mon-Sun)"
+msgstr "Поточний тиждень (ПН-НД)"
+
+#: ../src/DateCommands.cs:71
+msgid "Previous Week (Mon-Sun)"
+msgstr "Попередня тиждень (ПН-НД)"
+
+#: ../src/DateCommands.cs:87 ../src/f-spot.glade.h:72
+msgid "All Images"
+msgstr "Усі знімки"
+
+#: ../src/DateCommands.cs:89
+msgid "Customized Range"
+msgstr "Інший діапазон"
+
+#: ../src/Editors/SoftFocus.cs:27 ../src/ItemAction.cs:342
+msgid "Soft Focus"
+msgstr "М'який фокус"
+
+#: ../src/Editors/Tilt.cs:28 ../src/ItemAction.cs:326
+msgid "Straighten"
+msgstr "Вирівняти"
+
+#: ../src/Extensions/OpenWithMenu.cs:93
+msgid "No applications available"
+msgstr "Немає доступних програм"
+
+#: ../src/FSpot.addin.xml.h:1
+msgid "Copy Photo Locat_ion"
+msgstr "Копіювати _розташування знімків"
+
+#: ../src/FSpot.addin.xml.h:2
+msgid "Export to"
+msgstr "Експорт"
+
+#: ../src/FSpot.addin.xml.h:3
+msgid "Open _With"
+msgstr "Відкрити _у"
+
+#: ../src/FSpot.addin.xml.h:4 ../src/f-spot.glade.h:162
+msgid "Rem_ove Tag"
+msgstr "В_идалити позначку"
+
+#: ../src/FSpot.addin.xml.h:5 ../src/SingleView.cs:430
+#: ../src/f-spot.glade.h:165
+msgid "Rotate _Left"
+msgstr "Обернути _ліворуч"
+
+#: ../src/FSpot.addin.xml.h:6 ../src/SingleView.cs:431
+#: ../src/f-spot.glade.h:166
+msgid "Rotate _Right"
+msgstr "Обернути _праворуч"
+
+#: ../src/FSpot.addin.xml.h:7
+msgid "Tools"
+msgstr "Сервіс"
+
+#: ../src/FSpot.addin.xml.h:8 ../src/f-spot.glade.h:212
+msgid "_Attach Tag"
+msgstr "_Призначити позначку"
+
+#: ../src/FSpot.addin.xml.h:9 ../src/f-spot.glade.h:224
+msgid "_Delete From Drive"
+msgstr "В_идалити з диску"
+
+#: ../src/FSpot.addin.xml.h:10 ../src/f-spot.glade.h:257
+msgid "_Remove From Catalog"
+msgstr "Видалити з ~каталогу"
+
+#: ../src/FileImportBackend.cs:262
+msgid "Import error"
+msgstr "Помилка імпорту"
+
+#: ../src/FileImportBackend.cs:263
+#, csharp-format
+msgid "Error importing {0}{2}{2}{1}"
+msgstr "Помилка при імпорті {0}{2}{2}{1}"
+
+#: ../src/FileImportBackend.cs:264 ../src/ThreadProgressDialog.cs:68
+msgid "Skip"
+msgstr "Пропустити"
+
+#: ../src/Filters/ResizeFilter.cs:70 ../src/Filters/SharpFilter.cs:52
+#, csharp-format
+msgid "No way to save files of type \"{0}\""
+msgstr "Немає способу зберегти файли типу \"{0}\""
+
+#: ../src/FormClient.cs:297
+msgid "Unhandled exception"
+msgstr "Виникла виключна ситуація"
+
+#: ../src/FullScreenView.cs:56
+msgid "Hide"
+msgstr "Сховати"
+
+#: ../src/FullScreenView.cs:58
+msgid "Hide Toolbar"
+msgstr "Сховати панель інструментів"
+
+#: ../src/FullScreenView.cs:64
+msgid "Info"
+msgstr "Інфо"
+
+#: ../src/FullScreenView.cs:66
+msgid "Image Information"
+msgstr "Інформація про знімок"
+
+#: ../src/FullScreenView.cs:71
+msgid "Exit fullscreen"
+msgstr "Повернутися"
+
+#: ../src/FullScreenView.cs:81 ../src/MainWindow.cs:295
+#: ../src/SingleView.cs:95
+msgid "Slideshow"
+msgstr "Показ слайдів"
+
+#: ../src/FullScreenView.cs:82
+msgid "Start slideshow"
+msgstr "Почати показ слайдів"
+
+#: ../src/FullScreenView.cs:147
+msgid "Slide transition: "
+msgstr "Тип переходу слайду:"
+
+#: ../src/GlTransition.cs:36
+msgid "Dissolve"
+msgstr "Розчинення"
+
+#: ../src/GlTransition.cs:104
+msgid "Flip"
+msgstr "Обертання кубу"
+
+#: ../src/GlTransition.cs:147
+msgid "Cover"
+msgstr "Перекриття"
+
+#: ../src/GlTransition.cs:174
+msgid "Reveal"
+msgstr "Виявлення"
+
+#: ../src/GlTransition.cs:201
+msgid "Wipe"
+msgstr "Розчищення"
+
+#: ../src/GlTransition.cs:259
+msgid "Split"
+msgstr "Розділення"
+
+#: ../src/GlTransition.cs:370
+msgid "Push"
+msgstr "Виштовхування"
+
+#: ../src/GroupSelector.cs:57 ../src/GroupSelector.cs:58
+msgid "More dates"
+msgstr "Більше дат"
+
+#: ../src/GroupSelector.cs:60 ../src/GroupSelector.cs:61
+msgid "More directories"
+msgstr "Більше каталогів"
+
+#: ../src/GroupSelector.cs:63 ../src/GroupSelector.cs:64
+msgid "More"
+msgstr "Більше"
+
+#: ../src/GroupSelector.cs:515
+msgid "Arrange by _Month"
+msgstr "Сортувати за _місяцями"
+
+#: ../src/GroupSelector.cs:518
+msgid "Arrange by _Folder"
+msgstr "Сортувати за _теками"
+
+#: ../src/GroupSelector.cs:523 ../src/f-spot.glade.h:261
+msgid "_Reverse Order"
+msgstr "_Зворотній напрямок"
+
+#: ../src/GroupSelector.cs:529 ../src/f-spot.glade.h:216
+msgid "_Clear Date Range"
+msgstr "О_чистити діапазон дат"
+
+#: ../src/Imaging/Exif.cs:228
+msgid "Image Directory"
+msgstr "Каталог зображень"
+
+#: ../src/Imaging/Exif.cs:230
+msgid "Thumbnail Directory"
+msgstr "Каталог мініатюр"
+
+#: ../src/Imaging/Exif.cs:232
+msgid "Exif Directory"
+msgstr "Каталог Exif"
+
+#: ../src/Imaging/Exif.cs:234
+msgid "GPS Directory"
+msgstr "Каталог GPS"
+
+#: ../src/Imaging/Exif.cs:236
+msgid "InterOperability Directory"
+msgstr "Розділ про сумісність"
+
+#: ../src/Imaging/Exif.cs:238
+msgid "Unknown Directory"
+msgstr "Невідомий каталог"
+
+#: ../src/Imaging/IptcFile.cs:145
+msgid "IPTC Information Interchange Model (IIM) Version number"
+msgstr "Номер версії IPTC Information Interchange Model (IIM)"
+
+#: ../src/Imaging/IptcFile.cs:147
+msgid "OSI Destination routing information"
+msgstr "Інформація про маршрут до місця призначення OSI"
+
+#: ../src/Imaging/IptcFile.cs:149
+msgid "IPTC file format"
+msgstr "формат файлів IPTC"
+
+#: ../src/Imaging/IptcFile.cs:151
+msgid "Identifies the provider and product"
+msgstr "Ідентифікує постачальника та продукт"
+
+#: ../src/Imaging/IptcFile.cs:153
+#, fuzzy
+msgid "A unique number identifying the envelope"
+msgstr "Унікальне число, що ідентифікує огинаючу"
+
+#: ../src/Imaging/IptcFile.cs:155
+msgid "A unique number"
+msgstr "Унікальне число"
+
+#: ../src/Imaging/IptcFile.cs:157
+msgid ""
+"The envelope handling priority between 1 (most urgent) and 9 (least urgent)"
+msgstr "Пріоритет обробки між 1 (найбільш терміновий) та 9 (менш терміновий)"
+
+#: ../src/Imaging/IptcFile.cs:159
+msgid "The year, month and day (CCYYMMDD) the service sent the material"
+msgstr "Рік, місяць та день (CCYYMMDD), коли служба переслала цей матеріал"
+
+#: ../src/Imaging/IptcFile.cs:161
+msgid "The hour, minute and second (HHMMSS) the service sent the material"
+msgstr "Година, хвилина та секунда (HHMMSS+HHMM), коли служба переслала цей матеріал"
+
+#: ../src/Imaging/IptcFile.cs:163
+msgid "The character set designation"
+msgstr "Визначення кодування"
+
+#: ../src/Imaging/IptcFile.cs:165
+msgid "External globally unique object identifier"
+msgstr "Зовнішній, глобально унікальний ідентифікатор об'єкту"
+
+#: ../src/Imaging/IptcFile.cs:170
+msgid "Abstract Relationship Method (ARM) identifier"
+msgstr "Ідентифікатор методу абстрактної родинності (ARM)"
+
+#: ../src/Imaging/IptcFile.cs:172
+msgid "Abstract Relationship Method (ARM) version number."
+msgstr "Номер версії методу абстрактної родинності (ARM)"
+
+#: ../src/Imaging/IptcFile.cs:175
+msgid "Number identifying the IIM version this application record uses"
+msgstr "Номер, що ідентифікує версію IIMV, що використовується у запису цієї програми"
+
+#: ../src/Imaging/IptcFile.cs:177
+msgid "Object type reference"
+msgstr "Посилання на тип об'єкту"
+
+#: ../src/Imaging/IptcFile.cs:182
+msgid "Object attribute reference"
+msgstr "Посилання на атрибут об'єкту"
+
+#: ../src/Imaging/IptcFile.cs:188 ../src/Imaging/IptcFile.cs:192
+msgid "Object name"
+msgstr "Назва об'єкту"
+
+#: ../src/Imaging/IptcFile.cs:190
+msgid "Status of the objectdata according to the provider"
+msgstr "Статус даних об'єкту згідно наданої інформації"
+
+#: ../src/Imaging/IptcFile.cs:194
+msgid "Location within a city or area where the object originates"
+msgstr "Місце, звідки походить предмет зйомки"
+
+#: ../src/Imaging/IptcFile.cs:197
+msgid "Name of the city the content is focussing on"
+msgstr "Назва міста, де відбуваються описані дії"
+
+#: ../src/Imaging/IptcFile.cs:200
+msgid "Copyright information for"
+msgstr "Інформація про авторське право для"
+
+#: ../src/Imaging/IptcFile.cs:203
+msgid "Full name of the country of the focus of the content"
+msgstr "Повна назва країни, де відбуваються описані дії"
+
+#: ../src/Imaging/IptcFile.cs:206
+msgid ""
+"Two or three letter ISO3166 code of the country of the focus of the content"
+msgstr "Дво- або тризначний код ISO3166 країни, де зроблено знімок"
+
+#: ../src/Imaging/IptcFile.cs:209
+msgid "Creator of the content"
+msgstr "Автор вмісту"
+
+#: ../src/Imaging/IptcFile.cs:212
+msgid "Provider of the object"
+msgstr "Постачальник об'єкту"
+
+#: ../src/Imaging/IptcFile.cs:215
+msgid "The title of the author or creator"
+msgstr "Ім'я автора чи творця"
+
+#: ../src/Imaging/IptcFile.cs:218
+msgid ""
+"The person involved in writing, editing or correcting the object data or "
+"caption/abstract"
+msgstr "Особа, що приймала участь у написанні, редагуванні чи зміні даних об'єкту, його заголовку чи вступу"
+
+#: ../src/Imaging/IptcFile.cs:222
+msgid "Headline of the content"
+msgstr "Заголовок вмісту"
+
+#: ../src/Imaging/IptcFile.cs:225
+msgid ""
+"Instructions from the creator to the receiver not covered by other fields"
+msgstr ""
+
+#: ../src/Imaging/IptcFile.cs:228
+#, fuzzy
+msgid "Intellectual genre of the object"
+msgstr "_Об'єкт у контур"
+
+#: ../src/Imaging/IptcFile.cs:241
+#, fuzzy
+msgid "Unknown IIM DataSet"
+msgstr "Невідомий аргумент '%s' проігноровано."
+
+#: ../src/ImportCommand.cs:49 ../src/SingleView.cs:336
+msgid "Select Folder"
+msgstr "Вибрати теку"
+
+#: ../src/ImportCommand.cs:261
+msgid "(No Cameras Detected)"
+msgstr "(фотоапарат не знайдено)"
+
+#: ../src/ImportCommand.cs:405
+#, csharp-format
+msgid "Loading {0} of {1}"
+msgstr "Копіюється файл {0} з {1}"
+
+#: ../src/ImportCommand.cs:473
+msgid "Done Loading"
+msgstr "Завантаження завершено"
+
+#: ../src/ImportCommand.cs:670
+msgid "Directory does not exist."
+msgstr "Каталог не існує."
+
+#: ../src/ImportCommand.cs:671
+#, csharp-format
+msgid ""
+"The directory you selected \"{0}\" does not exist.  Please choose a "
+"different directory"
+msgstr "Вибраний вами каталог \"{0}\" не існує. Виберіть інший"
+
+#. Note for translators: 'Import Tags' is no command, it means 'Tags used in Import'
+#: ../src/ImportCommand.cs:724 ../src/ImportCommand.cs:726
+#: ../src/XmpTagsImporter.cs:87
+msgid "Import Tags"
+msgstr "Імпортовані позначки"
+
+#: ../src/InfoDisplay.cs:14
+msgid "Metadata Browser"
+msgstr "Перегляд метаданих"
+
+#. Obsolete, remove after db rev4
+#: ../src/InfoDisplay.cs:135 ../src/InfoDisplay.cs:137
+#: ../src/SingleView.cs:120 ../src/f-spot.glade.h:115
+msgid "Folder"
+msgstr "Тека"
+
+#: ../src/InfoDisplay.cs:139
+msgid "Picasaweb"
+msgstr "Picasaweb"
+
+#: ../src/InfoDisplay.cs:141
+msgid "SmugMug"
+msgstr "SmugMug"
+
+#: ../src/InfoDisplay.cs:143
+msgid "Gallery2"
+msgstr "Gallery2"
+
+#: ../src/InfoDisplay.cs:239
+msgid "Extended Metadata"
+msgstr "Інші метадані"
+
+#: ../src/InfoDisplay.cs:271
+msgid "Exported Locations"
+msgstr "Експортувані місця"
+
+#: ../src/InfoDisplay.cs:294
+msgid "No active photo"
+msgstr "Немає активного знімку"
+
+#: ../src/InfoDisplay.cs:296
+#, csharp-format
+msgid "The photo \"{0}\" does not exist"
+msgstr "Знімок \"{0}\" не існує"
+
+#: ../src/InfoDisplay.cs:302
+msgid "No metadata available"
+msgstr "Метадані недоступні"
+
+#: ../src/ItemAction.cs:81 ../src/MainWindow.cs:262 ../src/SingleView.cs:78
+msgid "Rotate Left"
+msgstr "Обернути ліворуч"
+
+#: ../src/ItemAction.cs:82
+msgid "Rotate picture left"
+msgstr "Обернути знімок ліворуч"
+
+#: ../src/ItemAction.cs:93 ../src/MainWindow.cs:266 ../src/SingleView.cs:83
+msgid "Rotate Right"
+msgstr "Обернути праворуч"
+
+#: ../src/ItemAction.cs:94
+msgid "Rotate picture right"
+msgstr "Обернути знімок праворуч"
+
+#: ../src/ItemAction.cs:104 ../src/f-spot.glade.h:138
+#: ../extensions/FolderExport/FolderExport.cs:998
+msgid "Next"
+msgstr "Далі"
+
+#: ../src/ItemAction.cs:105
+msgid "Next picture"
+msgstr "Наступний знімок"
+
+#: ../src/ItemAction.cs:126 ../src/f-spot.glade.h:158
+msgid "Previous"
+msgstr "Назад"
+
+#: ../src/ItemAction.cs:127
+msgid "Previous picture"
+msgstr "Попередній знімок"
+
+#: ../src/ItemAction.cs:257
+msgid "Auto Color"
+msgstr "Автокорекція кольору"
+
+#: ../src/ItemAction.cs:258
+msgid "Automatically adjust the colors"
+msgstr "Автоматично скоригувати колір знімку"
+
+#: ../src/ItemAction.cs:273
+#, fuzzy
+msgid "Apply straightening"
+msgstr "Застосувати до:"
+
+#: ../src/ItemAction.cs:274
+#, fuzzy
+msgid "Apply straightening to image"
+msgstr "Застосувати активний градієнт до кінцевого зображення"
+
+#: ../src/ItemAction.cs:327
+msgid "Adjust the angle of the image to straighten the horizon"
+msgstr ""
+
+#: ../src/ItemAction.cs:343
+msgid "Create a soft focus visual effect"
+msgstr ""
+
+#: ../src/Loupe.cs:60
+#, fuzzy
+msgid "Error saving sharpened photo"
+msgstr "Помилка майстра друку фотографій"
+
+#: ../src/Loupe.cs:61 ../src/PhotoView.cs:261
+#: ../src/UI.Dialog/ColorDialog.cs:212
+#: ../src/UI.Dialog/EditExceptionDialog.cs:25
+#, csharp-format
+msgid "Received exception \"{0}\". Unable to save photo {1}"
+msgstr ""
+
+#: ../src/Loupe.cs:90
+msgid "Sharpen"
+msgstr "Різкість"
+
+#: ../src/Loupe.cs:100
+msgid "Amount:"
+msgstr "Ступінь:"
+
+#: ../src/Loupe.cs:101
+msgid "Radius:"
+msgstr "Радіус:"
+
+#: ../src/Loupe.cs:102
+msgid "Threshold:"
+msgstr "Поріг:"
+
+#: ../src/MainWindow.cs:255 ../src/f-spot.glade.h:128
+msgid "Import"
+msgstr "Імпорт"
+
+#: ../src/MainWindow.cs:257
+msgid "Import new images"
+msgstr "Імпорувати нові знімки"
+
+#: ../src/MainWindow.cs:273 ../src/f-spot.glade.h:81
+msgid "Browse"
+msgstr "Переглянути"
+
+#: ../src/MainWindow.cs:277
+msgid "Browse many photos simultaneously"
+msgstr "Переглянути декілька знімків одночасно"
+
+#: ../src/MainWindow.cs:281
+msgid "Edit Image"
+msgstr "Змінити знімок"
+
+#: ../src/MainWindow.cs:285
+#, fuzzy
+msgid "View and edit a photo"
+msgstr "Створення та зміна градієнтів"
+
+#: ../src/MainWindow.cs:290 ../src/SingleView.cs:90
+msgid "Fullscreen"
+msgstr "На весь екран"
+
+#: ../src/MainWindow.cs:292 ../src/SingleView.cs:92
+#, fuzzy
+msgid "View photos fullscreen"
+msgstr "Показати у повноекранному режимі"
+
+#: ../src/MainWindow.cs:297 ../src/SingleView.cs:97
+#, fuzzy
+msgid "View photos in a slideshow"
+msgstr "Мова перегляду (view this page in):"
+
+#: ../src/MainWindow.cs:308 ../extensions/FolderExport/FolderExport.cs:995
+#: ../extensions/FolderExport/FolderExport.cs:1167
+#: ../extensions/FolderExport/FolderExport.cs:1207
+msgid "Tags"
+msgstr "Теги"
+
+#: ../src/MainWindow.cs:1575
+msgid "No cameras detected."
+msgstr "Фотоапарат не знайдено."
+
+#: ../src/MainWindow.cs:1576
+msgid ""
+"F-Spot was unable to find any cameras attached to this system.  Double check "
+"that the camera is connected and has power"
+msgstr ""
+
+#: ../src/MainWindow.cs:1616
+msgid "Error connecting to camera"
+msgstr "Помилка при з'єднані з фотоапаратом."
+
+#: ../src/MainWindow.cs:1617
+#, fuzzy, csharp-format
+msgid "Received error \"{0}\" while connecting to camera"
+msgstr "Помилка під час підключення до сервера."
+
+#. Translators, The singular case will never happen here.
+#: ../src/MainWindow.cs:1954
+#, fuzzy, csharp-format
+msgid "Merge the selected tag"
+msgid_plural "Merge the {0} selected tags?"
+msgstr[0] "<b>Файли дерева _тегів</b>"
+msgstr[1] "Видалити вибраний елемент"
+msgstr[2] "Видалити вибраний елемент"
+
+#: ../src/MainWindow.cs:1981
+msgid ""
+"This operation will merge the selected tags and any sub-tags into a single "
+"tag."
+msgstr ""
+
+#: ../src/MainWindow.cs:1983
+#, fuzzy
+msgid "_Merge Tags"
+msgstr "EXIF теги:"
+
+#: ../src/MainWindow.cs:2180
+#, fuzzy, csharp-format
+msgid "{0} Photo out of {1}"
+msgid_plural "{0} Photos out of {1}"
+msgstr[0] "<b>Згасання:</b>"
+msgstr[1] ""
+msgstr[2] ""
+
+#: ../src/MainWindow.cs:2182 ../src/SingleView.cs:473
+#, fuzzy, csharp-format
+msgid "{0} Photo"
+msgid_plural "{0} Photos"
+msgstr[0] "Фотографія"
+msgstr[1] ""
+msgstr[2] ""
+
+#: ../src/MainWindow.cs:2185
+#, fuzzy, csharp-format
+msgid " ({0} selected)"
+msgid_plural " ({0} selected)"
+msgstr[0] "Виділено: %d (%s)"
+msgstr[1] "Фільтр не вибраний"
+msgstr[2] "Фільтр не вибраний"
+
+#: ../src/MainWindow.cs:2266
+msgid "_Ok"
+msgstr "_Гаразд"
+
+#: ../src/MainWindow.cs:2267
+msgid "Error Deleting Picture"
+msgstr "Помилка при видаленні знімку"
+
+#: ../src/MainWindow.cs:2272
+#, fuzzy, csharp-format
+msgid "No permission to delete the file:{1}{0}"
+msgstr "Не вдається видалити старий файл \"%s\": %s"
+
+#: ../src/MainWindow.cs:2276
+#, fuzzy, csharp-format
+msgid "An error of type {0} occurred while deleting the file:{2}{1}"
+msgstr "Помилка при видаленні файлу чи каталогу"
+
+#: ../src/MainWindow.cs:2302
+#, fuzzy, csharp-format
+msgid "Delete the selected photo permanently?"
+msgid_plural "Delete the {0} selected photos permanently?"
+msgstr[0] "Видалити всі виділені елементи остаточно"
+msgstr[1] "Видалити вибраний шаблон"
+msgstr[2] "Видалити вибраний шаблон"
+
+#: ../src/MainWindow.cs:2306
+msgid "This deletes all versions of the selected photo from your drive."
+msgid_plural ""
+"This deletes all versions of the selected photos from your drive."
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+#: ../src/MainWindow.cs:2309
+#, fuzzy
+msgid "_Delete photo"
+msgid_plural "_Delete photos"
+msgstr[0] "Фотопапір"
+msgstr[1] "В_идалити колір"
+msgstr[2] "В_идалити колір"
+
+#: ../src/MainWindow.cs:2340
+#, fuzzy, csharp-format
+msgid "Remove the selected photo from F-Spot?"
+msgid_plural "Remove the {0} selected photos from F-Spot?"
+msgstr[0] "Видалити виділені файли з альбому"
+msgstr[1] "Видалити вибраний елемент"
+msgstr[2] "Видалити вибраний елемент"
+
+#: ../src/MainWindow.cs:2345
+msgid ""
+"If you remove photos from the F-Spot catalog all tag information will be "
+"lost. The photos remain on your computer and can be imported into F-Spot "
+"again."
+msgstr ""
+
+#: ../src/MainWindow.cs:2346
+#, fuzzy
+msgid "_Remove from Catalog"
+msgstr "Видалити виділені файли з альбому"
+
+#: ../src/MainWindow.cs:2409
+#, fuzzy, csharp-format
+msgid "Delete tag \"{0}\"?"
+msgstr "Відповідає _тег"
+
+#: ../src/MainWindow.cs:2411
+#, fuzzy, csharp-format
+msgid "Delete the {0} selected tags?"
+msgstr "Видалити виділені вузли"
+
+#: ../src/MainWindow.cs:2416
+#, fuzzy
+msgid "photo"
+msgid_plural "photos"
+msgstr[0] "Фотографія"
+msgstr[1] "пункт"
+msgstr[2] "пункт"
+
+#: ../src/MainWindow.cs:2418
+#, fuzzy, csharp-format
+msgid "If you delete this tag, the association with {0} {1} will be lost."
+msgid_plural ""
+"If you delete these tags, the association with {0} {1} will be lost."
+msgstr[0] ""
+"Якщо ви не збережете зображення, зміни за останню %d хвилину будуть втрачені."
+msgstr[1] ""
+"Якщо ви не збережете зображення, зміни за останні %d хвилини будуть втрачені."
+msgstr[2] ""
+"Якщо ви не збережете зображення, зміни за останні %d хвилин будуть втрачені."
+
+#: ../src/MainWindow.cs:2423
+#, fuzzy
+msgid "_Delete tag"
+msgid_plural "_Delete tags"
+msgstr[0] "Відповідає _тег"
+msgstr[1] "_Видалити зображення"
+msgstr[2] "_Видалити зображення"
+
+#. A Category is not empty. Can not delete it.
+#: ../src/MainWindow.cs:2437
+#, fuzzy
+msgid "Tag is not empty"
+msgstr "Носій не є порожнім."
+
+#: ../src/MainWindow.cs:2438
+#, csharp-format
+msgid ""
+"Can not delete tags that have tags within them.  Please delete tags under "
+"\"{0}\" first"
+msgstr ""
+
+#: ../src/MainWindow.cs:2886
+#, fuzzy
+msgid "Rotate selected photo left"
+msgid_plural "Rotate selected photos left"
+msgstr[0] "Вибрати кліп зліва."
+msgstr[1] "Обернути на 90° ліворуч"
+msgstr[2] "Обернути на 90° ліворуч"
+
+#: ../src/MainWindow.cs:2899
+#, fuzzy
+msgid "Rotate selected photo right"
+msgid_plural "Rotate selected photos right"
+msgstr[0] "Вибрати кліп справа."
+msgstr[1] "Обернути на 90° праворуч"
+msgstr[2] "Обернути на 90° праворуч"
+
+#: ../src/MainWindow.cs:2907
+#, fuzzy, csharp-format
+msgid "Find _Selected Tag"
+msgid_plural "Find _Selected Tags"
+msgstr[0] "Знайти парний тег"
+msgstr[1] "Накладати маску на виді_лені ділянки"
+msgstr[2] "Накладати маску на виді_лені ділянки"
+
+#: ../src/MainWindow.cs:2911
+#, fuzzy, csharp-format
+msgid "Find Selected Tag _With"
+msgid_plural "Find Selected Tags _With"
+msgstr[0] "Зв'язати з вибраними шрифтами"
+msgstr[1] ""
+msgstr[2] ""
+
+#: ../src/MainWindow.cs:2949
+#, fuzzy
+msgid "Create New Version?"
+msgid_plural "Create New Versions?"
+msgstr[0] "Доступна нова версія"
+msgstr[1] "Створення нового шару"
+msgstr[2] "Створення нового шару"
+
+#: ../src/MainWindow.cs:2951
+#, csharp-format
+msgid ""
+"Before launching {1}, should F-Spot create a new version of the selected "
+"photo to preserve the original?"
+msgid_plural ""
+"Before launching {1}, should F-Spot create new versions of the selected "
+"photos to preserve the originals?"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+#: ../src/MetadataStore.cs:18
+msgid "Creator"
+msgstr "Автор"
+
+#: ../src/MetadataStore.cs:19
+msgid "Title"
+msgstr "Назва"
+
+#: ../src/MetadataStore.cs:20
+msgid "Copyright"
+msgstr "Авторські права"
+
+#: ../src/MetadataStore.cs:21
+msgid "Subject and Keywords"
+msgstr "Тема та ключові слова"
+
+#: ../src/MetadataStore.cs:22
+msgid "Compression"
+msgstr "Стиснення"
+
+#: ../src/MetadataStore.cs:24
+msgid "Planar Configuration"
+msgstr "Принцип організації даних"
+
+#: ../src/MetadataStore.cs:26
+msgid "Orientation"
+msgstr "Оріентація"
+
+#: ../src/MetadataStore.cs:28
+msgid "Photometric Interpretation"
+msgstr "Кольорова модель"
+
+#: ../src/MetadataStore.cs:30
+msgid "Resolution Unit"
+msgstr "Одиниця роздільної здатності"
+
+#: ../src/MetadataStore.cs:32
+msgid "Exposure Program"
+msgstr "Програма експозиції"
+
+#: ../src/MetadataStore.cs:34
+msgid "Metering Mode"
+msgstr "Режим вимірювання експозиції"
+
+#: ../src/MetadataStore.cs:36
+msgid "Exposure Mode"
+msgstr "Режим вибору експозиції"
+
+#: ../src/MetadataStore.cs:38
+msgid "Custom Rendered"
+msgstr "Додаткова обробка"
+
+#: ../src/MetadataStore.cs:40
+#, fuzzy
+msgid "Components Configuration"
+msgstr "Конфігурація GTK"
+
+#: ../src/MetadataStore.cs:42
+msgid "Light Source"
+msgstr "Джерело світла"
+
+#: ../src/MetadataStore.cs:44
+msgid "Sensing Method"
+msgstr "Тип сенсору"
+
+#: ../src/MetadataStore.cs:46
+msgid "Color Space"
+msgstr "Кольоровий простір"
+
+#: ../src/MetadataStore.cs:48
+msgid "White Balance"
+msgstr "Баланс білого"
+
+#: ../src/MetadataStore.cs:50
+#, fuzzy
+msgid "Focal Plane Resolution Unit"
+msgstr "Зміна роздільної здатності"
+
+#: ../src/MetadataStore.cs:52
+msgid "File Source Type"
+msgstr "Тип джерела файла"
+
+#: ../src/MetadataStore.cs:54
+#, fuzzy
+msgid "Scene Capture Type"
+msgstr "Зйомка цього типу не підтримується"
+
+#: ../src/MetadataStore.cs:56
+msgid "Gain Control"
+msgstr "Підвищення яскравості"
+
+#: ../src/MetadataStore.cs:58
+msgid "Contrast"
+msgstr "Контрастність"
+
+#: ../src/MetadataStore.cs:60
+msgid "Saturation"
+msgstr "Насиченість"
+
+#: ../src/MetadataStore.cs:62
+msgid "Sharpness"
+msgstr "Різкість"
+
+#: ../src/MetadataStore.cs:64
+msgid "Scene Type"
+msgstr "Тип сцени"
+
+#. Fixme this should really set parent menu
+#. items insensitve
+#: ../src/PhotoTagMenu.cs:74
+msgid "(No Tags)"
+msgstr "(без позначок)"
+
+#: ../src/PhotoVersionCommands.cs:57
+msgid "Create New Version"
+msgstr "Створити нову версію"
+
+#: ../src/PhotoVersionCommands.cs:58
+msgid "Name:"
+msgstr "Назва:"
+
+#: ../src/PhotoVersionCommands.cs:62
+msgid "Rename Version"
+msgstr "Перейменувати версію"
+
+#: ../src/PhotoVersionCommands.cs:63
+msgid "New name:"
+msgstr "Нова назва:"
+
+#: ../src/PhotoVersionCommands.cs:109
+#, fuzzy
+msgid "Could not create a new version"
+msgstr "Неможливо створити новий процес."
+
+#: ../src/PhotoVersionCommands.cs:110
+#, csharp-format
+msgid "Received exception \"{0}\". Unable to create version \"{1}\""
+msgstr ""
+
+#: ../src/PhotoVersionCommands.cs:137
+msgid "Really Delete?"
+msgstr "Дійсно видалити?"
+
+#: ../src/PhotoVersionCommands.cs:138
+msgid "Cancel"
+msgstr "Скасувати"
+
+#: ../src/PhotoVersionCommands.cs:139
+msgid "Delete"
+msgstr "Видалити"
+
+#: ../src/PhotoVersionCommands.cs:143
+#, csharp-format
+msgid "Really delete version \"{0}\"?"
+msgstr "Дійсно видалити версію \"{0}\"?"
+
+#. FIXME show error dialog.
+#: ../src/PhotoVersionCommands.cs:153
+#, fuzzy
+msgid "Could not delete a version"
+msgstr "Не вдається видалити теку \"%s\": %s"
+
+#: ../src/PhotoVersionCommands.cs:154
+#, fuzzy, csharp-format
+msgid "Received exception \"{0}\". Unable to delete version \"{1}\""
+msgstr "Не вдається видалити елемент зі списку виключень автозаміни."
+
+#: ../src/PhotoVersionCommands.cs:195
+#, fuzzy
+msgid "Could not rename a version"
+msgstr "Не вдається перейменувати альбом \"%s\": %s"
+
+#: ../src/PhotoVersionCommands.cs:196
+#, csharp-format
+msgid "Received exception \"{0}\". Unable to rename version to \"{1}\""
+msgstr ""
+
+#: ../src/PhotoVersionMenu.cs:67
+msgid "(No Edits)"
+msgstr "(без редагування)"
+
+#: ../src/PhotoView.cs:75
+msgid "4 x 3 (Book)"
+msgstr "4 x 3 (книга)"
+
+#: ../src/PhotoView.cs:76
+msgid "4 x 6 (Postcard)"
+msgstr "4 x 6 (поштова картка)"
+
+#: ../src/PhotoView.cs:77
+msgid "5 x 7 (L, 2L)"
+msgstr "5 x 7 (L, 2L)"
+
+#: ../src/PhotoView.cs:78
+msgid "8 x 10"
+msgstr "8 x 10"
+
+#: ../src/PhotoView.cs:79
+msgid "Square"
+msgstr "Квадрат"
+
+#: ../src/PhotoView.cs:126
+msgid "Crop photo to selected area"
+msgstr "Кадрувати за виділенням"
+
+#: ../src/PhotoView.cs:127
+msgid "Remove redeye from selected area"
+msgstr "Прибрати ефект червоних очей з виділеної області"
+
+#: ../src/PhotoView.cs:129
+msgid "Select an area to crop"
+msgstr "Виберіть область кадрування"
+
+#: ../src/PhotoView.cs:130
+#, fuzzy
+msgid "Select an area to remove redeye"
+msgstr "Виділіть <b>текст</b> для видалення ручного кернінгу."
+
+#: ../src/PhotoView.cs:260 ../src/UI.Dialog/EditExceptionDialog.cs:38
+msgid "Error editing photo"
+msgstr "Помилка при редагуванні знімку"
+
+#: ../src/PhotoView.cs:312
+msgid "No selection available"
+msgstr "Нічого не виділено"
+
+#: ../src/PhotoView.cs:313
+msgid ""
+"This tool requires an active selection. Please select a region of the photo "
+"and try the operation again"
+msgstr ""
+
+#: ../src/PhotoView.cs:501
+msgid "Comment:"
+msgstr "Коментар:"
+
+#: ../src/PhotoView.cs:533
+#, fuzzy
+msgid "Constrain the aspect ratio of the selection"
+msgstr "Пропорції для шрифту"
+
+#: ../src/PhotoView.cs:535
+msgid "Crop"
+msgstr "Кадрування"
+
+#: ../src/PhotoView.cs:539
+msgid "Reduce Red-Eye"
+msgstr "Прибрати ефект червоних очей"
+
+#: ../src/PhotoView.cs:543
+msgid "Adjust Colors"
+msgstr "Коригувати кольори"
+
+#: ../src/PhotoView.cs:545
+#, fuzzy
+msgid "Adjust the photo colors"
+msgstr "Настроїти _орієнтацію фотознімка"
+
+#: ../src/PhotoView.cs:548
+msgid "Desaturate"
+msgstr "Знебарвлення"
+
+#: ../src/PhotoView.cs:550
+#, fuzzy
+msgid "Convert the photo to black and white"
+msgstr "Запит на запуск у чорно-білому режимі"
+
+#: ../src/PhotoView.cs:553
+msgid "Sepia Tone"
+msgstr "Тонувати у сепію"
+
+#: ../src/PhotoView.cs:555
+#, fuzzy
+msgid "Convert the photo to sepia tones"
+msgstr "Перетворення зображення у відтінки сірого"
+
+#: ../src/PhotoView.cs:585
+msgid "Previous photo"
+msgstr "Попередній знімок"
+
+#: ../src/PhotoView.cs:590
+msgid "Next photo"
+msgstr "Наступний знімок"
+
+#: ../src/PhotoView.cs:625
+msgid "No Constraint"
+msgstr "Вільне виділення"
+
+#: ../src/PhotoView.cs:626
+msgid "Same as photo"
+msgstr "Як у знімку"
+
+#: ../src/PhotoView.cs:631
+#, fuzzy
+msgid "Custom Ratios..."
+msgstr "Вказаний розмір полотна"
+
+#: ../src/Preferences.cs:157
+msgid "Photos"
+msgstr "Фотографії"
+
+#: ../src/PrintOperation.cs:31
+msgid "Image Settings"
+msgstr "Параметри зображення"
+
+#. This indicates the current photo is photo {0} of {1} out of photos
+#: ../src/ProgressDialog.cs:82 ../src/TimeDialog.cs:142
+#: ../extensions/CDExport/CDExport.cs:221
+#: ../extensions/FlickrExport/FlickrExport.cs:338
+#: ../extensions/FolderExport/FolderExport.cs:244
+#: ../extensions/GalleryExport/GalleryExport.cs:772
+#, csharp-format
+msgid "{0} of {1}"
+msgstr "{0} з {1}"
+
+#: ../src/QueryWidget.cs:40
+msgid "Find: "
+msgstr "Знайти: "
+
+#: ../src/QueryWidget.cs:45
+msgid "Untagged photos"
+msgstr "Не віднесені до категорій знімки"
+
+#: ../src/QueryWidget.cs:53
+msgid "Rated photos"
+msgstr "Знімки з оцінкою"
+
+#. Note for translators: 'Import roll' is no command, it means 'Roll that has been imported'
+#: ../src/QueryWidget.cs:62
+msgid "Import roll"
+msgstr "Сеанс імпорту"
+
+#: ../src/QueryWidget.cs:82
+msgid "Clear search"
+msgstr "Очистити результат пошуку"
+
+#: ../src/QueryWidget.cs:89
+msgid "Refresh search"
+msgstr "Оновити результат пошуку"
+
+#: ../src/QueryWidget.cs:91
+#, fuzzy
+msgid "No matching photos found"
+msgstr "Не знайдено відповідних списків розсилки"
+
+#: ../src/QueryWidget.cs:128
+#, fuzzy
+msgid "Hide _Find Bar"
+msgstr "Сховати _панель вкладень"
+
+#: ../src/QueryWidget.cs:134
+#, fuzzy
+msgid "Show _Find Bar"
+msgstr "&Рядок стану"
+
+#: ../src/RotateCommand.cs:94 ../src/RotateCommand.cs:109
+msgid "Unable to rotate this type of photo"
+msgstr ""
+
+#: ../src/RotateCommand.cs:129
+#, fuzzy
+msgid "Unable to rotate readonly file"
+msgstr "Неможливо відкрити файл специфікацій: %s: %s\n"
+
+#: ../src/RotateCommand.cs:196
+#, fuzzy
+msgid "Rotating photos"
+msgstr "Імпортування фотознімків"
+
+#: ../src/RotateCommand.cs:207
+#, fuzzy, csharp-format
+msgid "Rotating photo \"{0}\""
+msgstr "Фотопапір"
+
+#: ../src/RotateCommand.cs:220
+#, fuzzy
+msgid "Directory not found"
+msgstr "Каталог не знайдено"
+
+#: ../src/RotateCommand.cs:240
+#, fuzzy, csharp-format
+msgid "Unable to rotate photo"
+msgid_plural "Unable to rotate {0} photos"
+msgstr[0] "Натисніть клавішу повороту."
+msgstr[1] ""
+msgstr[2] ""
+
+#: ../src/RotateCommand.cs:242
+#, csharp-format
+msgid ""
+"The photo could not be rotated because it is on a read only file system or "
+"media such as a CDROM.  Please check the permissions and try again."
+msgid_plural ""
+"{0} photos could not be rotated because they are on a read only file system "
+"or media such as a CDROM.  Please check the permissions and try again."
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+#: ../src/RotateCommand.cs:269
+#, fuzzy, csharp-format
+msgid "Received error \"{0}\" while attempting to rotate {1}"
+msgstr "Помилка при спробі розв'язати конфлікт."
+
+#: ../src/RotateCommand.cs:274
+#, fuzzy
+msgid "Error while rotating photo."
+msgstr "Помилка майстра друку фотографій"
+
+#: ../src/SendEmail.cs:237
+#, fuzzy
+msgid "Preparing email"
+msgstr "Поштове повідомлення StarMail"
+
+#: ../src/SendEmail.cs:289
+#, fuzzy, csharp-format
+msgid "Exporting picture \"{0}\""
+msgstr "Вставити зображення"
+
+#: ../src/SendEmail.cs:311
+#, fuzzy
+msgid "Error processing image"
+msgstr ""
+"Помилка збереження зображення\n"
+"\n"
+"%s"
+
+#: ../src/SendEmail.cs:312
+#, fuzzy, csharp-format
+msgid "An error occured while processing \"{0}\": {1}"
+msgstr ""
+"Під час друку сталася помилка.\n"
+"\n"
+
+#. Send the mail :)
+#: ../src/SendEmail.cs:327
+msgid "my photos"
+msgstr "мї знімки"
+
+#: ../src/SingleView.cs:80
+#, fuzzy
+msgid "Rotate photo left"
+msgstr "поворот вліво на 90"
+
+#: ../src/SingleView.cs:85
+#, fuzzy
+msgid "Rotate photo right"
+msgstr "Повертати вправо на 90°"
+
+#: ../src/SingleView.cs:333
+msgid "Open"
+msgstr "_Відкрити..."
+
+#: ../src/SingleView.cs:433
+msgid "Set as Background"
+msgstr "Помістити на робочий стіл"
+
+#: ../src/TagCommands.cs:92 ../src/TagCommands.cs:220
+#: ../src/TagSelectionWidget.cs:508
+#, fuzzy
+msgid "This name is already in use"
+msgstr "Цей розділ вже використовується"
+
+#: ../src/TagCommands.cs:139
+msgid "Create New Tag"
+msgstr "Створити нову позначку"
+
+#: ../src/TagCommands.cs:140
+msgid "Name of New Tag:"
+msgstr "Назва нової позначки:"
+
+#: ../src/TagCommands.cs:279
+msgid "Edit Tag"
+msgstr "Змінити позначку..."
+
+#: ../src/TagCommands.cs:280
+msgid "Tag Name:"
+msgstr "Назва позначки:"
+
+#: ../src/TagCommands.cs:388
+#, fuzzy
+msgid "Unable to load image"
+msgstr ""
+"Не вдалось завантажити зображення:\n"
+"%s"
+
+#: ../src/TagCommands.cs:389
+#, csharp-format
+msgid "Unable to load \"{0}\" as icon for the tag"
+msgstr ""
+
+#: ../src/TagCommands.cs:427
+#, csharp-format
+msgid "Photo {0} of {1}"
+msgstr "Фотографія {0} з {1}"
+
+#: ../src/TagCommands.cs:457
+#, fuzzy, csharp-format
+msgid "Edit Icon for Tag {0}"
+msgstr "Значок цього вікна"
+
+#: ../src/TagCommands.cs:473
+#, fuzzy
+msgid "Select Photo from file"
+msgstr "Виберіть зображення з файлу"
+
+#: ../src/TagCommands.cs:496
+#, csharp-format
+msgid ""
+"\n"
+"<b>From Photo</b>\n"
+" You can use one of your library photos as an icon for this tag.\n"
+" However, first you must have at least one photo associated\n"
+" with this tag. Please tag a photo as '{0}' and return here\n"
+" to use it as an icon."
+msgstr ""
+
+#: ../src/TagMenu.cs:91 ../src/TagPopup.cs:36
+#, fuzzy
+msgid "Create New Tag..."
+msgstr "Створити новий шар"
+
+#: ../src/TagPopup.cs:26
+#, fuzzy, csharp-format
+msgid "Find"
+msgid_plural "Find"
+msgstr[0] "Знайти"
+msgstr[1] "Фіксоване"
+msgstr[2] "Фіксоване"
+
+#: ../src/TagPopup.cs:42
+#, fuzzy
+msgid "Edit Selected Tag..."
+msgstr "Правити виділений ключ"
+
+#: ../src/TagPopup.cs:46
+#, fuzzy
+msgid "Delete Tag"
+msgid_plural "Delete Tags"
+msgstr[0] "Відповідає _тег"
+msgstr[1] "_Видалити зображення"
+msgstr[2] "_Видалити зображення"
+
+#: ../src/TagPopup.cs:52
+#, fuzzy
+msgid "Attach Tag to Selection"
+msgid_plural "Attach Tags to Selection"
+msgstr[0] "Виділіть повідомлення, що додаєте!"
+msgstr[1] "Альфа-канал -> Виділена область"
+msgstr[2] "Альфа-канал -> Виділена область"
+
+#: ../src/TagPopup.cs:56
+#, fuzzy
+msgid "Remove Tag From Selection"
+msgid_plural "Remove Tags From Selection"
+msgstr[0] "Видалити з добірки"
+msgstr[1] "Видалення плаваючого виділення"
+msgstr[2] "Видалення плаваючого виділення"
+
+#: ../src/TagPopup.cs:62
+msgid "Merge Tags"
+msgstr "Об'єднати теги:"
+
+#: ../src/TagQueryWidget.cs:32
+#, fuzzy, csharp-format
+msgid "Include Photos Tagged \"{0}\""
+msgstr "Жодної позиції не вибрано."
+
+#: ../src/TagQueryWidget.cs:37
+#, fuzzy, csharp-format
+msgid "Exclude Photos Tagged \"{0}\""
+msgstr "Жодної позиції не вибрано."
+
+#: ../src/TagQueryWidget.cs:42
+msgid "Remove From Search"
+msgstr "Видалити з пошуку"
+
+#: ../src/TagQueryWidget.cs:86
+#, fuzzy, csharp-format
+msgid "Find _With"
+msgid_plural "Find _With"
+msgstr[0] "Знайти імена, які починаються з:"
+msgstr[1] ""
+msgstr[2] ""
+
+#: ../src/TagQueryWidget.cs:112
+msgid "All"
+msgstr "Усіма"
+
+#: ../src/TagQueryWidget.cs:147 ../src/Term.cs:591
+#, csharp-format
+msgid "Not {0}"
+msgstr "Не {0}"
+
+#: ../src/TagQueryWidget.cs:277
+msgid "Drag tags here to search for them"
+msgstr ""
+
+#: ../src/TagSelectionWidget.cs:507
+#, fuzzy
+msgid "Error renaming tag"
+msgstr "Помилка перейменування %s у %s\n"
+
+#: ../src/TagStore.cs:230
+msgid "Favorites"
+msgstr "Улюблене"
+
+#: ../src/TagStore.cs:235
+msgid "Hidden"
+msgstr "Приховане"
+
+#: ../src/TagStore.cs:243
+msgid "People"
+msgstr "Люди"
+
+#: ../src/TagStore.cs:248
+msgid "Places"
+msgstr "Місця"
+
+#: ../src/TagStore.cs:253
+msgid "Events"
+msgstr "Події"
+
+#. The label for the root category is used in new and edit tag dialogs
+#: ../src/TagStore.cs:266 ../src/Widgets/InfoBox.cs:268
+msgid "(None)"
+msgstr "(Немає)"
+
+#: ../src/Term.cs:297
+msgid " and "
+msgstr " та "
+
+#. operators.Add (Catalog.GetString (" && "));
+#: ../src/Term.cs:299
+msgid ", "
+msgstr ", "
+
+#: ../src/Term.cs:355
+msgid " or "
+msgstr " або "
+
+#. OPS The operators we support, case insensitive
+#. private static string op_str = "(?'Ops' or | and |, | \\s+ )";
+#: ../src/Term.cs:379 ../src/Widgets/FindBar.cs:176 ../src/f-spot.glade.h:290
+msgid "or"
+msgstr "або"
+
+#: ../src/ThreadProgressDialog.cs:66
+msgid "Retry"
+msgstr "Спробувати знову"
+
+#: ../src/TimeDialog.cs:125 ../src/f-spot.glade.h:183
+#, csharp-format
+msgid "Shift all photos by {0}"
+msgstr "Зсунути усі знімки на {0}"
+
+#: ../src/UI.Dialog/AboutDialog.cs:67
+#, fuzzy
+msgid "Photo management for GNOME"
+msgstr "Програма керування проектами для середовища GNOME"
+
+#: ../src/UI.Dialog/AboutDialog.cs:68
+msgid "Copyright © 2003-2008 Novell Inc."
+msgstr "Авторські права © 2003-2008 Novell Inc."
+
+#: ../src/UI.Dialog/AboutDialog.cs:93
+msgid "translator-credits"
+msgstr "Максим Дзюманенко <dziumanenko@gmail.com>"
+
+#: ../src/UI.Dialog/AboutDialog.cs:98
+msgid "F-Spot Website"
+msgstr "Веб-сайт F-Spot"
+
+#: ../src/UI.Dialog/ColorDialog.cs:211
+#, fuzzy
+msgid "Error saving adjusted photo"
+msgstr "Помилка майстра друку фотографій"
+
+#: ../src/UI.Dialog/ExceptionDialog.cs:24
+#, fuzzy
+msgid "F-Spot Encountered a Fatal Error"
+msgstr "Критична помилка переміщення %s у %s"
+
+#: ../src/UI.Dialog/ExceptionDialog.cs:60
+msgid "Error Details"
+msgstr "Відомості про помилку"
+
+#: ../src/UI.Dialog/ExceptionDialog.cs:104
+#, fuzzy
+msgid "An unhandled exception was thrown: "
+msgstr "Виняток %1 викликано з адреси %2\r\n"
+
+#: ../src/UI.Dialog/RepairDbDialog.cs:20
+#, fuzzy
+msgid "Error loading database."
+msgstr "Помилка сервера бази даних"
+
+#: ../src/UI.Dialog/RepairDbDialog.cs:21
+#, csharp-format
+msgid ""
+"F-Spot encountered an error while loading the photo database. The old "
+"database has be moved to {0} and a new database has been created."
+msgstr ""
+
+#: ../src/UI.Dialog/SelectionRatioDialog.cs:60
+msgid "Label"
+msgstr "Назва"
+
+#: ../src/UI.Dialog/SelectionRatioDialog.cs:64
+msgid "Ratio"
+msgstr "Відношення"
+
+#: ../src/Updater.cs:284
+msgid "Updating F-Spot Database"
+msgstr "Оновлюється база даних F-Spot"
+
+#: ../src/Updater.cs:285
+msgid ""
+"Please wait while your F-Spot gallery's database is updated. This may take "
+"some time."
+msgstr ""
+
+#. Mono.Unix.Error error = Mono.Unix.Stdlib.GetLastError ();
+#: ../src/Utils/Unix.cs:32
+msgid "Unable to create temporary file"
+msgstr "Неможливо створити тимчасовий файл"
+
+#: ../src/Utils/GnomeUtil.cs:47
+msgid ""
+"The \"F-Spot Manual\" could not be found.  Please verify that your "
+"installation has been completed successfully."
+msgstr ""
+
+#: ../src/Widgets/CustomPrintWidget.cs:99
+msgid "Page Setup"
+msgstr "Параметри сторінки"
+
+#: ../src/Widgets/CustomPrintWidget.cs:101
+#: ../src/Widgets/CustomPrintWidget.cs:106
+#, csharp-format
+msgid "Paper Size: {0} x {1} mm"
+msgstr "Розмір паперу: {0} x {1} мм"
+
+#: ../src/Widgets/CustomPrintWidget.cs:116
+msgid "Photos per page"
+msgstr "Зображень на сторінку"
+
+#. ppp1.Toggled += TriggerChanged;
+#. ppp2.Toggled += TriggerChanged;
+#. ppp4.Toggled += TriggerChanged;
+#. ppp9.Toggled += TriggerChanged;
+#: ../src/Widgets/CustomPrintWidget.cs:128
+msgid "Repeat"
+msgstr "Повторити"
+
+#: ../src/Widgets/CustomPrintWidget.cs:129
+#, fuzzy
+msgid "Print cut marks"
+msgstr "Недруковані &символи"
+
+#: ../src/Widgets/CustomPrintWidget.cs:137
+#, fuzzy
+msgid "Full Page (no margin)"
+msgstr "Сторінку не вказано."
+
+#: ../src/Widgets/CustomPrintWidget.cs:140
+msgid "Zoom"
+msgstr "Масштаб"
+
+#: ../src/Widgets/CustomPrintWidget.cs:141
+msgid "Fill"
+msgstr "Заповнення"
+
+#: ../src/Widgets/CustomPrintWidget.cs:142
+msgid "Scaled"
+msgstr "Масштабувати"
+
+#: ../src/Widgets/CustomPrintWidget.cs:148
+msgid "White borders"
+msgstr "Білі краї"
+
+#: ../src/Widgets/CustomPrintWidget.cs:152
+msgid "Custom Text: "
+msgstr "Власний текст:"
+
+#: ../src/Widgets/InfoBox.cs:132
+msgid "Date"
+msgstr "Дата"
+
+#: ../src/Widgets/InfoBox.cs:135 ../extensions/CDExport/CDExport.glade.h:5
+msgid "Size"
+msgstr "Розмір"
+
+#: ../src/Widgets/InfoBox.cs:138
+msgid "Exposure"
+msgstr "Експозиція"
+
+#: ../src/Widgets/InfoBox.cs:279 ../src/Widgets/InfoBox.cs:288
+msgid "(Unknown)"
+msgstr "(Невідомо)"
+
+#: ../src/Widgets/InfoBox.cs:376
+#, csharp-format
+msgid "{0} Photos"
+msgstr "{0} Фотографій"
+
+#. Note for translators: {0} is a date, {1} and {2} are times.
+#: ../src/Widgets/InfoBox.cs:388
+#, csharp-format
+msgid ""
+"On {0} between \n"
+"{1} and {2}"
+msgstr ""
+"{0} між \n"
+"{1} та {2}"
+
+#: ../src/Widgets/InfoBox.cs:393
+#, csharp-format
+msgid ""
+"Between {0} \n"
+"and {1}"
+msgstr ""
+"Між {0} \n"
+"та {1}"
+
+#: ../src/Widgets/RatingMenuItem.cs:48
+msgid "Rating:"
+msgstr "Оцінка:"
+
+#: ../src/Widgets/FindBar.cs:57
+msgid "Find:"
+msgstr "Знайти:"
+
+#: ../src/Widgets/FindBar.cs:176 ../src/f-spot.glade.h:282
+msgid "and"
+msgstr "та"
+
+#: ../src/XmpTagsImporter.cs:88
+msgid "Location"
+msgstr "Розташування"
+
+#: ../src/XmpTagsImporter.cs:89
+msgid "Country"
+msgstr "Країна"
+
+#: ../src/XmpTagsImporter.cs:90
+msgid "City"
+msgstr "Місто"
+
+#: ../src/XmpTagsImporter.cs:91
+msgid "State"
+msgstr "Область"
+
+#. namespace
+#: ../src/f-spot.glade.h:1
+msgid " "
+msgstr " "
+
+#: ../src/f-spot.glade.h:2
+msgid " From List : "
+msgstr " Зі списку : "
+
+#: ../src/f-spot.glade.h:3
+msgid " From gtkrc File : "
+msgstr "З файлу gtkrc:"
+
+#: ../src/f-spot.glade.h:4
+msgid "0000:00:00 00:00:00"
+msgstr "0000:00:00 00:00:00"
+
+#: ../src/f-spot.glade.h:5
+msgid "00:00:00"
+msgstr "00:00:00"
+
+#: ../src/f-spot.glade.h:6
+msgid "1 of 1"
+msgstr "1 з 1"
+
+#: ../src/f-spot.glade.h:7
+msgid "1024 px"
+msgstr "1024 px"
+
+#: ../src/f-spot.glade.h:8
+msgid "320 px"
+msgstr "320 px"
+
+#: ../src/f-spot.glade.h:9
+msgid "480 px"
+msgstr "480 px"
+
+#: ../src/f-spot.glade.h:10
+msgid "5"
+msgstr "5"
+
+#: ../src/f-spot.glade.h:11
+msgid "640 px"
+msgstr "640 px"
+
+#: ../src/f-spot.glade.h:12
+msgid "800 px"
+msgstr "800 px"
+
+#: ../src/f-spot.glade.h:13
+msgid "<b></b>"
+msgstr "<b></b>"
+
+#: ../src/f-spot.glade.h:14 ../extensions/FlickrExport/FlickrExport.glade.h:1
+msgid "<b>Account</b>"
+msgstr "<b>Обліковий рахунок</b>"
+
+#: ../src/f-spot.glade.h:15
+msgid "<b>Action</b>"
+msgstr "<b>Дія</b>"
+
+#: ../src/f-spot.glade.h:16
+#: ../extensions/GalleryExport/GalleryExport.glade.h:1
+#: ../extensions/PicasaWebExport/PicasaWebExport.glade.h:1
+#: ../extensions/SmugMugExport/SmugMugExport.glade.h:1
+msgid "<b>Album</b>"
+msgstr "<b>Альбом</b>"
+
+#: ../src/f-spot.glade.h:17
+msgid "<b>Co_rrections</b>"
+msgstr "<b>_Зміни</b>"
+
+#: ../src/f-spot.glade.h:18
+msgid "<b>Color Management</b>"
+msgstr "<b>Керування кольором</b>"
+
+#: ../src/f-spot.glade.h:19
+msgid "<b>Color Temperature</b>"
+msgstr "<b>Кольорова температура</b>"
+
+#: ../src/f-spot.glade.h:20 ../extensions/FolderExport/FolderExport.glade.h:3
+msgid "<b>Destination</b>"
+msgstr "<b>Ціль</b>"
+
+#: ../src/f-spot.glade.h:21
+msgid "<b>End Date</b>"
+msgstr "<b>Дата завершення</b>"
+
+#: ../src/f-spot.glade.h:22
+msgid "<b>Exposure</b>"
+msgstr "<b>Експозиція</b>"
+
+#: ../src/f-spot.glade.h:23
+msgid "<b>From External Photo</b>"
+msgstr "<b>Із зовнішнього знімку</b>"
+
+#: ../src/f-spot.glade.h:24
+msgid "<b>From Photo</b>"
+msgstr "<b>Із знімку</b>"
+
+#: ../src/f-spot.glade.h:25
+#: ../extensions/GalleryExport/GalleryExport.glade.h:2
+msgid "<b>Gallery</b>"
+msgstr "<b>Галерея</b>"
+
+#: ../src/f-spot.glade.h:26
+msgid "<b>Histo_gram</b>"
+msgstr "<b>_Гістограма</b>"
+
+#: ../src/f-spot.glade.h:27
+msgid "<b>Histogram</b>"
+msgstr "<b>ГІстограма</b>"
+
+#: ../src/f-spot.glade.h:28
+msgid "<b>Image Interpolation</b>"
+msgstr "<b>Інтерполяція знімку</b>"
+
+#: ../src/f-spot.glade.h:29
+msgid "<b>Import Settings</b>"
+msgstr "<b>Параметри імпорту</b>"
+
+#: ../src/f-spot.glade.h:30
+msgid "<b>Interoperability</b>"
+msgstr "<b>Взаємодія</b>"
+
+#: ../src/f-spot.glade.h:31
+msgid "<b>Max Rating</b>"
+msgstr "<b>Макс. оцінка</b>"
+
+#: ../src/f-spot.glade.h:32
+msgid "<b>Metadata</b>"
+msgstr "<b>Метадані</b>"
+
+#: ../src/f-spot.glade.h:33
+msgid "<b>Min Rating</b>"
+msgstr "<b>Мін. оцінка</b>"
+
+#: ../src/f-spot.glade.h:34
+msgid "<b>Photograph Layout</b>"
+msgstr "<b>Вид фотографії</b>"
+
+#: ../src/f-spot.glade.h:35 ../extensions/FlickrExport/FlickrExport.glade.h:2
+#: ../extensions/FolderExport/FolderExport.glade.h:5
+#: ../extensions/GalleryExport/GalleryExport.glade.h:3
+#: ../extensions/PicasaWebExport/PicasaWebExport.glade.h:2
+#: ../extensions/SmugMugExport/SmugMugExport.glade.h:2
+msgid "<b>Photos</b>"
+msgstr "<b>Знімки</b>"
+
+#: ../src/f-spot.glade.h:36
+msgid "<b>Predefined</b>"
+msgstr "<b>Встановлено заздалегідь</b>"
+
+#: ../src/f-spot.glade.h:37
+msgid "<b>Preview</b>"
+msgstr "<b>Попередній перегляд</b>"
+
+#: ../src/f-spot.glade.h:38
+msgid "<b>Printer Details</b>"
+msgstr "<b>Подробиці про принтер</b>"
+
+#: ../src/f-spot.glade.h:39
+msgid "<b>Reference Photo</b>"
+msgstr "<b>Первинний знімок</b>"
+
+#: ../src/f-spot.glade.h:40
+msgid "<b>Screensaver</b>"
+msgstr "<b>Збереження екрану</b>"
+
+#: ../src/f-spot.glade.h:41
+msgid "<b>Select period</b>"
+msgstr "<b>Виберіть період</b>"
+
+#: ../src/f-spot.glade.h:42
+msgid "<b>Size</b>"
+msgstr "<b>Розмір</b>"
+
+#: ../src/f-spot.glade.h:43
+msgid "<b>Start Date</b>"
+msgstr "<b>Початкова дата</b>"
+
+#: ../src/f-spot.glade.h:44 ../extensions/FlickrExport/FlickrExport.glade.h:3
+#: ../extensions/FolderExport/FolderExport.glade.h:6
+#: ../extensions/GalleryExport/GalleryExport.glade.h:4
+#: ../extensions/PicasaWebExport/PicasaWebExport.glade.h:4
+#: ../extensions/SmugMugExport/SmugMugExport.glade.h:4
+msgid "<b>Style</b>"
+msgstr "<b>Стиль</b>"
+
+#: ../src/f-spot.glade.h:45
+msgid "<b>Summary</b>"
+msgstr "<b>Зведення</b>"
+
+#: ../src/f-spot.glade.h:46
+msgid "<b>Theming</b>"
+msgstr "<b>Стиль оформлення</b>"
+
+#: ../src/f-spot.glade.h:47
+msgid "<b>Transparent Parts</b>"
+msgstr "<b>Прозорі області відображаються</b>"
+
+#: ../src/f-spot.glade.h:48
+msgid "<b>View all pictures imported</b>"
+msgstr "<b>Переглядати усі імпортовані знімки</b>"
+
+#: ../src/f-spot.glade.h:49
+msgid "<b>_White Balance</b>"
+msgstr "<b>_Баланс білого</b>"
+
+#: ../src/f-spot.glade.h:50
+msgid "<small> </small>"
+msgstr "<small> </small>"
+
+#: ../src/f-spot.glade.h:51
+msgid "<small></small>"
+msgstr "<small></small>"
+
+#: ../src/f-spot.glade.h:52
+msgid ""
+"<small><i>Choose the folder where F-Spot should store newly imported photos</"
+"i></small>"
+msgstr "<small><i>Виберіть теку, у якій F-Spot буде зберігати імпортовані знімки</i></small>"
+
+#: ../src/f-spot.glade.h:53
+msgid ""
+"<small><i>Enable this option if you want to allow other programs to import "
+"or delete photos and tags over DBus.</i></small>"
+msgstr ""
+
+#: ../src/f-spot.glade.h:54
+msgid ""
+"<small><i>Enable this option to store tags and descriptions inside \n"
+"supported image formats.</i></small>"
+msgstr ""
+
+#: ../src/f-spot.glade.h:56
+msgid ""
+"<small><i>Enable this to allow interpolation on zoomed images. You shouldn't "
+"disable this for viewing photos, but disabling the interpolation could be "
+"usefull in icon design.</i></small>"
+msgstr ""
+
+#: ../src/f-spot.glade.h:57
+msgid ""
+"<small><i>While acting as a screensaver, F-Spot can display all of your "
+"images, or a small subset based on tags.</i></small>"
+msgstr ""
+
+#: ../src/f-spot.glade.h:58
+msgid ""
+"<small><i>You can choose how to display transparent parts in images. This "
+"option has no effect on photos, but setting this as check pattern or custom "
+"color could be usefull when viewing icons or other artworks with transparent "
+"parts.</i></small>"
+msgstr ""
+
+#: ../src/f-spot.glade.h:59
+msgid ""
+"<small><i>You'll have to restart f-spot to load the new theme.</i></small>"
+msgstr ""
+
+#: ../src/f-spot.glade.h:60
+msgid "<small>C_ontrast:</small>"
+msgstr "<small>_Контрастність:</small>"
+
+#: ../src/f-spot.glade.h:61
+msgid "<small>Te_mp:</small>"
+msgstr "<small>Те_мпература:</small>"
+
+#: ../src/f-spot.glade.h:62
+msgid "<small>_Brightness:</small>"
+msgstr "<small>_Яскравість:</small>"
+
+#: ../src/f-spot.glade.h:63
+msgid "<small>_Exposure:</small>"
+msgstr "<small>_Експозиція:</small>"
+
+#: ../src/f-spot.glade.h:64
+msgid "<small>_Hue:</small>"
+msgstr "<small>_Відтінок:</small>"
+
+#: ../src/f-spot.glade.h:65
+msgid "<small>_Saturation:</small>"
+msgstr "<small>_Насиченість:</small>"
+
+#: ../src/f-spot.glade.h:66
+msgid "<small>_Tint:</small>"
+msgstr "<small>_Інтенсивність:</small>"
+
+#: ../src/f-spot.glade.h:67
+msgid "Ad_just Color..."
+msgstr "Коригувати _кольори..."
+
+#: ../src/f-spot.glade.h:68
+msgid "Adjust Color"
+msgstr "Коригувати кольори"
+
+#: ../src/f-spot.glade.h:69
+msgid "Adjust Time"
+msgstr "Коригувати час"
+
+#: ../src/f-spot.glade.h:70
+msgid "Adjust _Time..."
+msgstr "Коригувати _час..."
+
+#: ../src/f-spot.glade.h:71
+msgid "Adjusted date: "
+msgstr "Новий час"
+
+#: ../src/f-spot.glade.h:73
+msgid "Allow other programs to manipulate F-Spot"
+msgstr "Інші програми можуть керувати F-Spot"
+
+#: ../src/f-spot.glade.h:74
+msgid "Arrange _by"
+msgstr "С_ортувати за"
+
+#: ../src/f-spot.glade.h:75
+msgid "As _background"
+msgstr "Кольором _тла"
+
+#: ../src/f-spot.glade.h:76
+msgid "As _custom color: "
+msgstr "_Вказаним кольором: "
+
+#: ../src/f-spot.glade.h:77
+msgid "As check _pattern"
+msgstr "_Шаховими клітинами"
+
+#: ../src/f-spot.glade.h:78
+msgid "Attach Tags:"
+msgstr "Призначити позначки:"
+
+#: ../src/f-spot.glade.h:79
+msgid "Attach tag:"
+msgstr "Призначити позначку:"
+
+#: ../src/f-spot.glade.h:80 ../extensions/CDExport/CDExport.glade.h:3
+#: ../extensions/FolderExport/FolderExport.glade.h:7
+#: ../extensions/GalleryExport/GalleryExport.glade.h:7
+#: ../extensions/SmugMugExport/SmugMugExport.glade.h:5
+msgid "Autorotate"
+msgstr "Автоматично обернути"
+
+#: ../src/f-spot.glade.h:82
+msgid "By _Date"
+msgstr "за _датою"
+
+#: ../src/f-spot.glade.h:83
+msgid "By _Import Roll"
+msgstr "за сеансом _імпорту"
+
+#: ../src/f-spot.glade.h:84
+msgid "By _Rating"
+msgstr "за _оцінкою"
+
+#: ../src/f-spot.glade.h:85
+msgid "CD"
+msgstr "CD"
+
+#: ../src/f-spot.glade.h:86
+msgid "C_aption:"
+msgstr "_Підпис"
+
+#: ../src/f-spot.glade.h:87
+msgid "C_ontrast:"
+msgstr "_Контраст:"
+
+#: ../src/f-spot.glade.h:88
+msgid "Camera Selection"
+msgstr "Вибір фотоапарату"
+
+#: ../src/f-spot.glade.h:89
+msgid "Cancel, do not change the current timeline. "
+msgstr "Скасувати, нічого не міняти у шкалі часу времени"
+
+#: ../src/f-spot.glade.h:90
+msgid "Co_nfigure"
+msgstr "На_лаштувати"
+
+#: ../src/f-spot.glade.h:91
+msgid "Copy Locat_ion"
+msgstr "Копіювати _місцерозташування"
+
+#: ../src/f-spot.glade.h:92
+msgid "Copy files to the Photos folder"
+msgstr "Копіювати файли у теку Photos"
+
+#: ../src/f-spot.glade.h:93
+msgid "Create Mail"
+msgstr "Створити поштове повідомлення"
+
+#: ../src/f-spot.glade.h:94
+msgid "Create New _Tag..."
+msgstr "Створити _нову позначку..."
+
+#: ../src/f-spot.glade.h:95
+msgid "Create _New Version..."
+msgstr "Створити _нову версію..."
+
+#: ../src/f-spot.glade.h:96
+msgid "Create a mail with the selected photos (possibly resized) attached"
+msgstr "Створити поштове повідомлення з вкладеними обраними знімками (за потреби — зменшеного розміру)"
+
+#: ../src/f-spot.glade.h:97
+msgid "Crop photo to _fit"
+msgstr "Обрізати, _щоб умістити"
+
+#: ../src/f-spot.glade.h:98
+msgid "Current date:"
+msgstr "Поточна дата"
+
+#: ../src/f-spot.glade.h:99
+msgid "Custom Theme"
+msgstr "Інший стиль оформлення"
+
+#: ../src/f-spot.glade.h:100
+msgid "Display File _Names"
+msgstr "Показувати _імена файлів"
+
+#: ../src/f-spot.glade.h:101
+msgid "Display only those photos that were imported in specified Rolls."
+msgstr "Показувати лише ті знімки, що були імпортовані у певний момент часу"
+
+#: ../src/f-spot.glade.h:102
+msgid "Do not send a mail"
+msgstr "Не надсилати повідомлення"
+
+#: ../src/f-spot.glade.h:103
+msgid "E-_Mail:"
+msgstr "Ел._пошта:"
+
+#: ../src/f-spot.glade.h:104
+msgid "E_xport titles and comments"
+msgstr "_Експортувати назви та коментарі"
+
+#: ../src/f-spot.glade.h:105
+msgid "Edit Tag Icon"
+msgstr "Змінити значок позначки"
+
+#: ../src/f-spot.glade.h:106
+msgid "Edit icon"
+msgstr "Змінити значок"
+
+#: ../src/f-spot.glade.h:107
+msgid "Estimated new size"
+msgstr "Обчислений новий розмір"
+
+#: ../src/f-spot.glade.h:108 ../extensions/FlickrExport/FlickrExport.glade.h:6
+#: ../extensions/GalleryExport/GalleryExport.glade.h:8
+#: ../extensions/PicasaWebExport/PicasaWebExport.glade.h:9
+#: ../extensions/SmugMugExport/SmugMugExport.glade.h:6
+msgid "Export"
+msgstr "Експорт"
+
+#: ../src/f-spot.glade.h:109
+msgid "Extra large"
+msgstr "Дуже великий"
+
+#: ../src/f-spot.glade.h:110
+msgid "F-Spot"
+msgstr "F-Spot"
+
+#: ../src/f-spot.glade.h:111
+msgid "F-Spot View"
+msgstr "Перегляд у F-Spot"
+
+#: ../src/f-spot.glade.h:113
+msgid "Filter on selected rolls"
+msgstr "Фільтр за вибраними сеансам імпорту"
+
+#: ../src/f-spot.glade.h:114
+msgid "Fin_d"
+msgstr "З_найти"
+
+#: ../src/f-spot.glade.h:116
+msgid ""
+"From Screen\n"
+"Standard RGB"
+msgstr ""
+"З екрану\n"
+"Standard RGB"
+
+#: ../src/f-spot.glade.h:118
+msgid ""
+"Full Page\n"
+"Standard - 4x6"
+msgstr ""
+"Ціла сторінка\n"
+"Стандарт - 4x6"
+
+#: ../src/f-spot.glade.h:120
+msgid "G_allery:"
+msgstr "_Галерея:"
+
+#: ../src/f-spot.glade.h:121
+msgid "Gallery"
+msgstr "Галерея"
+
+#: ../src/f-spot.glade.h:122
+msgid ""
+"Hairline\n"
+"0.25\"\n"
+"0.5\"\n"
+"1\"\n"
+msgstr ""
+"Волос\n"
+"0.25\"\n"
+"0.5\"\n"
+"1\"\n"
+
+#: ../src/f-spot.glade.h:127
+msgid "Images tagged with:"
+msgstr "Позначені знімки:"
+
+#. Translators: this string means 'source of import'
+#: ../src/f-spot.glade.h:130
+msgid "Import Source:"
+msgstr "Звідки додати:"
+
+#: ../src/f-spot.glade.h:131
+msgid "Include subfolders"
+msgstr "Включати підтеки"
+
+#: ../src/f-spot.glade.h:132
+msgid "Large"
+msgstr "Великий"
+
+#: ../src/f-spot.glade.h:133
+msgid "Make F-Spot your screensaver"
+msgstr "Зробити F-Spot програмою зберігання екрану"
+
+#: ../src/f-spot.glade.h:134
+msgid "Manage _Extensions"
+msgstr "Налаштувати роз_ширення"
+
+#: ../src/f-spot.glade.h:135
+msgid "Manage your custom selection ratios"
+msgstr "Керування набором відношень сторін"
+
+#: ../src/f-spot.glade.h:136
+msgid "Medium"
+msgstr "Середній"
+
+#: ../src/f-spot.glade.h:137
+msgid "N_umber of Copies:"
+msgstr "_Кількість копій:"
+
+#: ../src/f-spot.glade.h:139
+msgid "No _image"
+msgstr "Немає _зображень"
+
+#: ../src/f-spot.glade.h:140
+msgid ""
+"None\n"
+"Title\n"
+"Filename\n"
+"Date\n"
+"Photo Details"
+msgstr ""
+"Нічого\n"
+"Назва\n"
+"Назва файлу\n"
+"Дата\n"
+"Подробиці про знімок"
+
+#: ../src/f-spot.glade.h:145
+msgid "Number of photos in selected rolls :"
+msgstr "Знімків у вибраних сеансах імпорту:"
+
+#: ../src/f-spot.glade.h:146
+msgid "Number of pictures"
+msgstr "Кількість знімків"
+
+#: ../src/f-spot.glade.h:147
+msgid "Only photos taken within these dates will be displayed."
+msgstr "Будуть показані фотографії лише за вказаний період часу"
+
+#: ../src/f-spot.glade.h:148
+msgid "Open _Folder..."
+msgstr "Відкрити _теку..."
+
+#: ../src/f-spot.glade.h:150
+msgid "Original size (possible very large file size)"
+msgstr "Первинний розмір (розмір файлу може бути дуже великим)"
+
+#: ../src/f-spot.glade.h:151
+msgid "P_arent Tag:"
+msgstr "_Батьківська позначка:"
+
+#: ../src/f-spot.glade.h:152
+msgid "P_hoto Source:"
+msgstr "_Джерело знімків:"
+
+#: ../src/f-spot.glade.h:153
+msgid "Page 1 of 3"
+msgstr "Сторінка 1 з 3"
+
+#: ../src/f-spot.glade.h:154
+msgid "Pause"
+msgstr "Пауза"
+
+#: ../src/f-spot.glade.h:155
+msgid "Photo 0 of 0"
+msgstr "Знімок 0 з 0"
+
+#: ../src/f-spot.glade.h:156
+msgid "Photo _Size:"
+msgstr "_Розмір знімку:"
+
+#: ../src/f-spot.glade.h:157
+msgid "Preferences"
+msgstr "Параметри"
+
+#: ../src/f-spot.glade.h:159
+msgid "Print crop _marks"
+msgstr "Надрукувати знімки під о_брізку"
+
+#: ../src/f-spot.glade.h:160
+msgid "Print..."
+msgstr "Друк..."
+
+#: ../src/f-spot.glade.h:161
+msgid "Re_fresh Thumbnail"
+msgstr "_Оновити ескіз"
+
+#: ../src/f-spot.glade.h:163
+msgid "Repair"
+msgstr "Відновити"
+
+#: ../src/f-spot.glade.h:164
+msgid "Reset"
+msgstr "Скинути"
+
+#: ../src/f-spot.glade.h:167
+msgid "Select A Folder"
+msgstr "Виберіть теку"
+
+#: ../src/f-spot.glade.h:168
+msgid "Select A gtkrc File"
+msgstr "Виберіть файл gtkrc"
+
+#: ../src/f-spot.glade.h:169
+msgid "Select Photos to Copy From Camera..."
+msgstr "Виберіть знімки для копіювання з камери..."
+
+#: ../src/f-spot.glade.h:171
+msgid "Select _None"
+msgstr "_Зняти виділення"
+
+#: ../src/f-spot.glade.h:172
+msgid "Select a Tag..."
+msgstr "Виберіть позначку..."
+
+#: ../src/f-spot.glade.h:173
+msgid "Select the camera from which you want to transfer files"
+msgstr "Виберіть фотоапарат, з якого треба забрати знімки"
+
+#: ../src/f-spot.glade.h:174
+msgid "Selected Camera: "
+msgstr "Вибраний фотоапарат: "
+
+#: ../src/f-spot.glade.h:175
+msgid ""
+"Selection\n"
+"Gallery\n"
+"Viewport"
+msgstr ""
+"Вибране\n"
+"Галерея\n"
+"Область перегляду"
+
+#: ../src/f-spot.glade.h:178
+msgid "Selection Constraints"
+msgstr "Відношення сторін"
+
+#: ../src/f-spot.glade.h:179
+msgid "Send by _Mail..."
+msgstr "Надіслати по_штою..."
+
+#: ../src/f-spot.glade.h:180
+msgid "Set Rating Filter"
+msgstr "Фільтр оцінки"
+
+#: ../src/f-spot.glade.h:181
+msgid "Set as _Background"
+msgstr "Помістити на _робочий стіл"
+
+#: ../src/f-spot.glade.h:182
+msgid "Set date range"
+msgstr "Встановіть діапазон дат"
+
+#: ../src/f-spot.glade.h:184
+msgid "Show all photos."
+msgstr "Показувати всі знімки."
+
+#: ../src/f-spot.glade.h:185
+msgid "Show or hide the side pane"
+msgstr "Показати чи сховати бічну панель"
+
+#: ../src/f-spot.glade.h:186
+msgid "Show or hide the toolbar"
+msgstr "Показати/сховати панель інструментів"
+
+#: ../src/f-spot.glade.h:187
+msgid "Side _pane"
+msgstr "_Бічна панель"
+
+#: ../src/f-spot.glade.h:188
+msgid "Side_bar"
+msgstr "Бічна _панель"
+
+#: ../src/f-spot.glade.h:189
+msgid "Small"
+msgstr "Малий"
+
+#: ../src/f-spot.glade.h:190
+msgid "So_urce Temp"
+msgstr "_Первинна температура"
+
+#: ../src/f-spot.glade.h:191
+msgid "Space all photos by"
+msgstr "Встановити часовий інтервал між знімками у"
+
+#: ../src/f-spot.glade.h:192
+msgid ""
+"Specify if an original size picture should be rotated or not. Smaller sizes "
+"are automatically rotated."
+msgstr "Вкажіть, чи обертати знімок первинного розміру. Знімки меншого розміру обертаються автоматично."
+
+#: ../src/f-spot.glade.h:193
+msgid ""
+"Standard RGB\n"
+"Image Profile\n"
+"Custom\n"
+msgstr ""
+"sRGB\n"
+"Профіль знімку\n"
+"Інший профіль\n"
+
+#: ../src/f-spot.glade.h:197
+msgid "Strip image _metadata"
+msgstr "П_рибрати метадані знімку"
+
+#: ../src/f-spot.glade.h:198
+msgid "System Theme"
+msgstr "Системний стиль оформлення"
+
+#: ../src/f-spot.glade.h:199
+msgid "T_ags"
+msgstr "_Позначки"
+
+#: ../src/f-spot.glade.h:200 ../extensions/FolderExport/FolderExport.cs:1178
+#: ../extensions/FolderExport/FolderExport.cs:1179
+msgid "Tags: "
+msgstr "Позкачки: "
+
+#: ../src/f-spot.glade.h:201
+msgid "Thumbnail _elements"
+msgstr "Ескізи містять"
+
+#: ../src/f-spot.glade.h:202
+msgid "Tiny"
+msgstr "Крихітний"
+
+#: ../src/f-spot.glade.h:203
+msgid "Too_lbar"
+msgstr "_Панель інструментів"
+
+#: ../src/f-spot.glade.h:204
+msgid "Total original size"
+msgstr "Загальний розмір оригіналів"
+
+#: ../src/f-spot.glade.h:205
+msgid "View"
+msgstr "Виглад"
+
+#: ../src/f-spot.glade.h:206
+msgid "Will print using: US Letter size on Generic Postscript"
+msgstr "Надрукує: на папері US Letter у Generic Postscript"
+
+#: ../src/f-spot.glade.h:207
+msgid "Write _metadata to file"
+msgstr "Записувати _метадані у файли"
+
+#: ../src/f-spot.glade.h:208
+msgid "Zoom _in"
+msgstr "З_більшити"
+
+#: ../src/f-spot.glade.h:209
+msgid "Zoom _out"
+msgstr "З_меншити"
+
+#: ../src/f-spot.glade.h:210
+msgid "Zoom in"
+msgstr "Збільшити"
+
+#: ../src/f-spot.glade.h:211
+msgid "Zoom out"
+msgstr "Зменшити"
+
+#: ../src/f-spot.glade.h:213
+msgid "_Attach Tag to Selection"
+msgstr "_Призначити позначку виділеному"
+
+#: ../src/f-spot.glade.h:214
+msgid "_Border:"
+msgstr "_Рамка:"
+
+#: ../src/f-spot.glade.h:215
+msgid "_Brightness:"
+msgstr "_Яскравість:"
+
+#: ../src/f-spot.glade.h:217
+msgid "_Clear Rating Filter"
+msgstr "_Прибрати фільтр оцінки"
+
+#: ../src/f-spot.glade.h:218
+msgid "_Clear Roll Filter"
+msgstr "_Прибрати фільтр сеансів імпорту"
+
+#: ../src/f-spot.glade.h:219
+msgid "_Components"
+msgstr "П_анелі"
+
+#: ../src/f-spot.glade.h:220
+msgid "_Contents"
+msgstr "_Зміст"
+
+#: ../src/f-spot.glade.h:221
+msgid "_Create"
+msgstr "_Створити"
+
+#: ../src/f-spot.glade.h:222
+msgid "_Create Mail"
+msgstr "_Створити повідомлення"
+
+#: ../src/f-spot.glade.h:223
+msgid "_Dates"
+msgstr "_Дату"
+
+#: ../src/f-spot.glade.h:225
+msgid "_Delete Selected Tag"
+msgstr "В_идалити вибрану позначку"
+
+#: ../src/f-spot.glade.h:226
+msgid "_Delete Version"
+msgstr "В_идалити версію"
+
+#: ../src/f-spot.glade.h:227
+msgid "_Destination Temp"
+msgstr "Н_овая температура"
+
+#: ../src/f-spot.glade.h:228
+msgid "_Display:"
+msgstr "_Відображення:"
+
+#: ../src/f-spot.glade.h:229
+msgid "_Edit"
+msgstr "_Правка"
+
+#: ../src/f-spot.glade.h:230
+msgid "_Edit Selected Tag..."
+msgstr "_Змінити виділену позначку..."
+
+#: ../src/f-spot.glade.h:231
+msgid "_Export"
+msgstr "_Експортувати"
+
+#: ../src/f-spot.glade.h:232
+#: ../extensions/FlickrExport/FlickrExport.glade.h:15
+#: ../extensions/PicasaWebExport/PicasaWebExport.glade.h:20
+msgid "_Export tags"
+msgstr "Е_кспортувати позначки"
+
+#: ../src/f-spot.glade.h:233
+msgid "_Export to"
+msgstr "_Експортувати до"
+
+#: ../src/f-spot.glade.h:234
+#: ../extensions/GalleryExport/GalleryExport.glade.h:15
+#: ../extensions/PicasaWebExport/PicasaWebExport.glade.h:21
+#: ../extensions/SmugMugExport/SmugMugExport.glade.h:12
+msgid "_Export to Album:"
+msgstr "Експортувати до _альбому:"
+
+#: ../src/f-spot.glade.h:235
+msgid "_Filmstrip"
+msgstr "_Фотострічка"
+
+#: ../src/f-spot.glade.h:236
+msgid "_Flickr"
+msgstr "_Дзеркало"
+
+#: ../src/f-spot.glade.h:237
+msgid "_Folder"
+msgstr "_Тека"
+
+#: ../src/f-spot.glade.h:238
+msgid "_Fullscreen"
+msgstr "На весь _екран"
+
+#: ../src/f-spot.glade.h:239
+msgid "_Gallery"
+msgstr "_Галерея"
+
+#: ../src/f-spot.glade.h:240
+msgid "_Help"
+msgstr "_Довідка"
+
+#: ../src/f-spot.glade.h:241
+msgid "_Hidden"
+msgstr "_Приховані"
+
+#: ../src/f-spot.glade.h:242
+msgid "_Hue:"
+msgstr "Від_тінок:"
+
+#: ../src/f-spot.glade.h:243
+msgid "_Icon:"
+msgstr "_Значок:"
+
+#: ../src/f-spot.glade.h:244
+msgid "_Import..."
+msgstr "_Імпорт..."
+
+#: ../src/f-spot.glade.h:245
+msgid "_Interpolate image on zoom"
+msgstr "_Виконати інтерполяцію при зміні масштабу"
+
+#: ../src/f-spot.glade.h:246
+msgid "_Large"
+msgstr "_Великі"
+
+#: ../src/f-spot.glade.h:247
+msgid "_Last Import Roll"
+msgstr "_Останній сеанс імпорту"
+
+#: ../src/f-spot.glade.h:248
+msgid "_Medium"
+msgstr "_Середні"
+
+#: ../src/f-spot.glade.h:249
+msgid "_Month"
+msgstr "_Місяць"
+
+#: ../src/f-spot.glade.h:250
+msgid "_New Window"
+msgstr "_Нове вікно"
+
+#: ../src/f-spot.glade.h:251
+msgid "_Open album in browser when done uploading"
+msgstr "Відкрити _альбом у оглядачі при завершені завантаження"
+
+#: ../src/f-spot.glade.h:252
+msgid "_Open destination when done exporting"
+msgstr "Відкрити _каталог при завершенні експорту"
+
+#: ../src/f-spot.glade.h:253
+msgid "_Output:"
+msgstr "На _виході:"
+
+#: ../src/f-spot.glade.h:254
+msgid "_Photo"
+msgstr "_Фото"
+
+#: ../src/f-spot.glade.h:255
+msgid "_Quit"
+msgstr "Ви_йти"
+
+#: ../src/f-spot.glade.h:256
+msgid "_Ratings"
+msgstr "О_цінки"
+
+#: ../src/f-spot.glade.h:258
+msgid "_Remove Tag From Selection"
+msgstr "Зняти _позначку з виділеного"
+
+#: ../src/f-spot.glade.h:259
+msgid "_Rename Version"
+msgstr "Перей_менувати версію"
+
+#: ../src/f-spot.glade.h:260
+#: ../extensions/FlickrExport/FlickrExport.glade.h:16
+#: ../extensions/FolderExport/FolderExport.glade.h:17
+#: ../extensions/GalleryExport/GalleryExport.glade.h:20
+#: ../extensions/PicasaWebExport/PicasaWebExport.glade.h:24
+#: ../extensions/SmugMugExport/SmugMugExport.glade.h:14
+msgid "_Resize to: "
+msgstr "_Масштабувати до: "
+
+#: ../src/f-spot.glade.h:262
+msgid "_Saturation:"
+msgstr "_Насиченість:"
+
+#: ../src/f-spot.glade.h:263
+msgid "_Scale photos to no larger than: "
+msgstr "_Масштабувати знімок до не більш ніж: "
+
+#: ../src/f-spot.glade.h:264
+msgid "_Select Import Rolls..."
+msgstr "_Вибрати сеанси імпорту..."
+
+#: ../src/f-spot.glade.h:265
+msgid "_Set Date Range..."
+msgstr "_Встановити діапазон дат..."
+
+#: ../src/f-spot.glade.h:266
+msgid "_Set Rating filter..."
+msgstr "_Увімкнути фільтр оцінок..."
+
+#: ../src/f-spot.glade.h:267
+msgid "_Sharpen..."
+msgstr "_Підвищити _різкості..."
+
+#: ../src/f-spot.glade.h:268
+msgid "_Slideshow"
+msgstr "Показ _слайдів"
+
+#: ../src/f-spot.glade.h:269
+msgid "_Small"
+msgstr "_Малий"
+
+#: ../src/f-spot.glade.h:270
+msgid "_Strip metadata"
+msgstr "_Прибрати метадані"
+
+#: ../src/f-spot.glade.h:271
+msgid "_Tag Icons"
+msgstr "Значки _позначок"
+
+#: ../src/f-spot.glade.h:272
+msgid "_Tag Name:"
+msgstr "Назва _позначки:"
+
+#: ../src/f-spot.glade.h:273
+msgid "_Tags"
+msgstr "_Позначки"
+
+#: ../src/f-spot.glade.h:274
+msgid "_Timeline"
+msgstr "_Шкала часу"
+
+#: ../src/f-spot.glade.h:275
+msgid "_Toolbar"
+msgstr "Панель _інструментів"
+
+#: ../src/f-spot.glade.h:276
+msgid "_Tools"
+msgstr "С_ервіс"
+
+#: ../src/f-spot.glade.h:277
+msgid "_URI:"
+msgstr "_URI:"
+
+#: ../src/f-spot.glade.h:278
+msgid "_Untagged Photos"
+msgstr "Знімки _без категорій"
+
+#: ../src/f-spot.glade.h:279
+msgid "_Version"
+msgstr "_Версія"
+
+#: ../src/f-spot.glade.h:280
+msgid "_View"
+msgstr "_Вигляд"
+
+#: ../src/f-spot.glade.h:281
+msgid "_Virtual Filesystem"
+msgstr "_Віртуальна файлова система"
+
+#. at, or after a date, or between dates
+#: ../src/f-spot.glade.h:284
+msgid ""
+"at\n"
+"after\n"
+"between"
+msgstr ""
+"під час\n"
+"після\n"
+"між"
+
+#: ../src/f-spot.glade.h:287
+msgid "difference:"
+msgstr "з різницею у:"
+
+#: ../src/f-spot.glade.h:288
+msgid "img_000.jpg"
+msgstr "img_000.jpg"
+
+#: ../src/f-spot.glade.h:289
+msgid "min. Starting at {0}"
+msgstr "хв. Починаючи з {0}"
+
+#: ../src/f-spot.glade.h:291
+#: ../extensions/FlickrExport/FlickrExport.glade.h:18
+#: ../extensions/FolderExport/FolderExport.glade.h:19
+#: ../extensions/GalleryExport/GalleryExport.glade.h:23
+#: ../extensions/PicasaWebExport/PicasaWebExport.glade.h:26
+#: ../extensions/SmugMugExport/SmugMugExport.glade.h:16
+msgid "pixels"
+msgstr "точок"
+
+#: ../src/f-spot.glade.h:292
+msgid "x"
+msgstr "x"
+
+#: ../tools/f-spot-screensaver.desktop.in.h:1
+msgid "Display a slideshow from F-Spot"
+msgstr "Показ слайдів за допомогою F-Spot"
+
+#: ../tools/f-spot-screensaver.desktop.in.h:2
+msgid "F-Spot photos"
+msgstr "Знімки у F-Spot"
+
+#: ../extensions/CDExport/CDExport.addin.xml.h:1
+msgid "_CD..."
+msgstr "_CD..."
+
+#: ../extensions/CDExport/CDExport.cs:219
+#, csharp-format
+msgid "Transferring picture \"{0}\" To CD"
+msgstr "Триває копіювання знімку \"{0}\" на CD"
+
+#: ../extensions/CDExport/CDExport.cs:246
+#: ../extensions/FlickrExport/FlickrExport.cs:368
+#: ../extensions/FolderExport/FolderExport.cs:284
+#: ../extensions/GalleryExport/GalleryExport.cs:797
+#: ../extensions/PicasaWebExport/PicasaWebExport.cs:702
+#: ../extensions/SmugMugExport/SmugMugExport.cs:606
+msgid "Done Sending Photos"
+msgstr "Надсилання знімків завершено"
+
+#: ../extensions/CDExport/CDExport.cs:248
+#: ../extensions/FolderExport/FolderExport.cs:286
+msgid "Transfer Complete"
+msgstr "Передачу завершено"
+
+#: ../extensions/CDExport/CDExport.cs:255
+#: ../extensions/FolderExport/FolderExport.cs:291
+msgid "Error While Transferring"
+msgstr "Помилка при передачі файлів"
+
+#: ../extensions/CDExport/CDExport.cs:262
+#: ../extensions/FolderExport/FolderExport.cs:310
+msgid "Error Transferring"
+msgstr "Помилка при передачі файлів"
+
+#: ../extensions/CDExport/CDExport.cs:280
+msgid "copying..."
+msgstr "копіюється..."
+
+#: ../extensions/CDExport/CDExport.cs:296
+#: ../extensions/FolderExport/FolderExport.cs:332
+msgid "Error: Error while transferring; Aborting"
+msgstr "Помилка: помилка при передачі; виконання перервано"
+
+#: ../extensions/CDExport/CDExport.cs:299
+#: ../extensions/FolderExport/FolderExport.cs:335
+msgid "Error: File Already Exists; Aborting"
+msgstr "Помилка: файл вже існує; виконання перевано"
+
+#: ../extensions/CDExport/CDExport.glade.h:1
+msgid "<b><i>There is some previously scheduled items to write</i></b>"
+msgstr "<b><i>Чи є раніше заплановані для запису елементи</i></b>"
+
+#: ../extensions/CDExport/CDExport.glade.h:2
+msgid "<b>Photos to Burn</b>"
+msgstr "<b>Знімки, що записуються на диск</b>"
+
+#: ../extensions/CDExport/CDExport.glade.h:4
+msgid "Create CD"
+msgstr "Створити CD"
+
+#: ../extensions/CDExport/CDExport.glade.h:6
+msgid "Size of the exported selection :"
+msgstr "Обсяг експортованих знімків: "
+
+#: ../extensions/CDExport/CDExport.glade.h:7
+msgid "_Browse Previously Scheduled Files"
+msgstr ""
+
+#: ../extensions/CDExport/CDExport.glade.h:8
+msgid "_Write only these photos to CD"
+msgstr "_Записати лише ці знімки на CD"
+
+#: ../extensions/FlickrExport/FlickrExport.addin.xml.h:1
+msgid "_23hq..."
+msgstr "_23hq..."
+
+#: ../extensions/FlickrExport/FlickrExport.addin.xml.h:2
+msgid "_Flickr..."
+msgstr "_Flickr"
+
+#: ../extensions/FlickrExport/FlickrExport.cs:97
+#: ../extensions/FlickrExport/FlickrExport.glade.h:5
+msgid "Authorize"
+msgstr "Авторизувати"
+
+#: ../extensions/FlickrExport/FlickrExport.cs:103
+#, csharp-format
+msgid ""
+"Return to this window after you have finished the authorization process on "
+"{0} and click the \"Complete Authorization\" button below"
+msgstr ""
+
+#: ../extensions/FlickrExport/FlickrExport.cs:104
+msgid "Complete Authorization"
+msgstr "Завершити авторизацію"
+
+#: ../extensions/FlickrExport/FlickrExport.cs:109
+#, csharp-format
+msgid "Logging into {0}"
+msgstr "Обертається знімок \"{0}\""
+
+#: ../extensions/FlickrExport/FlickrExport.cs:110
+msgid "Checking credentials..."
+msgstr "Перевірка посвідчень..."
+
+#: ../extensions/FlickrExport/FlickrExport.cs:117
+#, csharp-format
+msgid "Welcome {0} you are connected to {1}"
+msgstr "Ласкаво просимо {0} ви з'єдналися з {1}"
+
+#: ../extensions/FlickrExport/FlickrExport.cs:120
+#, csharp-format
+msgid "Sign in as a different user"
+msgstr "Підписати іншого користувача"
+
+#: ../extensions/FlickrExport/FlickrExport.cs:123
+#, csharp-format
+msgid "Used {0} of your allowed {1} monthly quota"
+msgstr ""
+
+#: ../extensions/FlickrExport/FlickrExport.cs:286
+msgid "Unable to log on"
+msgstr "Не вдається увійти до системи"
+
+#: ../extensions/FlickrExport/FlickrExport.cs:306
+#, csharp-format
+msgid "Waiting for response {0} of {1}"
+msgstr "Очікування відповіді {0} з {1}"
+
+#: ../extensions/FlickrExport/FlickrExport.cs:333
+#: ../extensions/FolderExport/FolderExport.cs:241
+#: ../extensions/GalleryExport/GalleryExport.cs:768
+#, csharp-format
+msgid "Uploading picture \"{0}\""
+msgstr "Вивантажується знімок \"{0}\""
+
+#: ../extensions/FlickrExport/FlickrExport.cs:356
+#, csharp-format
+msgid "Error Uploading To {0}: {1}"
+msgstr "Помилка при вивантаженні до {0}: {1}"
+
+#: ../extensions/FlickrExport/FlickrExport.cs:370
+#: ../extensions/GalleryExport/GalleryExport.cs:799
+#: ../extensions/PicasaWebExport/PicasaWebExport.cs:704
+#: ../extensions/SmugMugExport/SmugMugExport.cs:608
+msgid "Upload Complete"
+msgstr "Вивантаження завершено"
+
+#: ../extensions/FlickrExport/FlickrExport.cs:438
+msgid "Unable to log on."
+msgstr "Не вдається увійти до системи."
+
+#: ../extensions/FlickrExport/FlickrExport.cs:439
+#, csharp-format
+msgid ""
+"F-Spot was unable to log on to {0}.  Make sure you have given the "
+"authentication using {0} web browser interface."
+msgstr ""
+
+#: ../extensions/FlickrExport/FlickrExport.cs:459
+#: ../extensions/GalleryExport/GalleryExport.cs:721
+#: ../extensions/PicasaWebExport/PicasaWebExport.cs:598
+#: ../extensions/SmugMugExport/SmugMugExport.cs:521
+msgid "Uploading Pictures"
+msgstr "Триває вивантаження знімків"
+
+#: ../extensions/FlickrExport/FlickrExport.glade.h:4
+msgid "<b>Viewing permissions</b>"
+msgstr "<b>Доступ до перегляду</b>"
+
+#: ../extensions/FlickrExport/FlickrExport.glade.h:7
+msgid "Export tag _hierarchy"
+msgstr "_Експортувати ієрархію позначок"
+
+#: ../extensions/FlickrExport/FlickrExport.glade.h:8
+msgid ""
+"F-Spot needs your authorization in order to upload photos to your {0} "
+"account. Press the \"Authorize\" button to open a web browser and give F-"
+"Spot the authorization. "
+msgstr ""
+
+#: ../extensions/FlickrExport/FlickrExport.glade.h:9
+msgid "Ignore _top level tags"
+msgstr "Ігнорувати позначки _верхнього рівня"
+
+#: ../extensions/FlickrExport/FlickrExport.glade.h:10
+msgid "Private"
+msgstr "Приватний"
+
+#: ../extensions/FlickrExport/FlickrExport.glade.h:11
+msgid "Public"
+msgstr "Публічний"
+
+#: ../extensions/FlickrExport/FlickrExport.glade.h:12
+msgid "Strip _metadata"
+msgstr "_Прибрати метадані"
+
+#: ../extensions/FlickrExport/FlickrExport.glade.h:13
+msgid "Visible to Family"
+msgstr "Видимі членам родини"
+
+#: ../extensions/FlickrExport/FlickrExport.glade.h:14
+msgid "Visible to Friends"
+msgstr "Видимі друзям"
+
+#: ../extensions/FlickrExport/FlickrExport.glade.h:17
+msgid "_View photos in browser when done uploading"
+msgstr "Відкрити _альбом у оглядачі при завершені завантаження"
+
+#: ../extensions/FolderExport/FolderExport.addin.xml.h:1
+msgid "F_older..."
+msgstr "_Тека..."
+
+#: ../extensions/FolderExport/FolderExport.cs:139
+msgid "Select Export Folder"
+msgstr "Виберіть теку для експорту"
+
+#: ../extensions/FolderExport/FolderExport.cs:197
+msgid "Building Gallery"
+msgstr "Створення галереї"
+
+#: ../extensions/FolderExport/FolderExport.cs:247
+#, csharp-format
+msgid "Error uploading picture \"{0}\" to Gallery:{2}{1}"
+msgstr "Помилка при вивантаженні знімку \"{0}\" до галереї:{2}{1}"
+
+#. Note for translators: light as clear, opposite as dark
+#: ../extensions/FolderExport/FolderExport.cs:809
+msgid "Light"
+msgstr "Світлий"
+
+#: ../extensions/FolderExport/FolderExport.cs:810
+msgid "Dark"
+msgstr "Темний"
+
+#. Abbreviation of previous
+#: ../extensions/FolderExport/FolderExport.cs:990
+msgid "Prev"
+msgstr "Попередній"
+
+#: ../extensions/FolderExport/FolderExport.cs:1102
+msgid "Gallery generated by"
+msgstr "Галерею створено"
+
+#: ../extensions/FolderExport/FolderExport.cs:1142
+msgid "Show Styles"
+msgstr "Показувати стилі"
+
+#: ../extensions/FolderExport/FolderExport.cs:1143
+msgid "Hide Styles"
+msgstr "Сховати стилі"
+
+#: ../extensions/FolderExport/FolderExport.cs:1310
+#: ../extensions/FolderExport/FolderExport.cs:1442
+msgid "Page:"
+msgstr "Сторінка:"
+
+#: ../extensions/FolderExport/FolderExport.glade.h:1
+msgid "\n"
+msgstr "\n"
+
+#: ../extensions/FolderExport/FolderExport.glade.h:4
+msgid "<b>Export Method</b>"
+msgstr "<b>Спосіб екпорту</b>"
+
+#: ../extensions/FolderExport/FolderExport.glade.h:8
+msgid "Create _gallery using \"Original\""
+msgstr "_Створити галерею використовуючи Original"
+
+#: ../extensions/FolderExport/FolderExport.glade.h:9
+msgid "Create standalone _web gallery"
+msgstr "Створити окрему _веб-галерею..."
+
+#: ../extensions/FolderExport/FolderExport.glade.h:10
+msgid "D_escription:"
+msgstr "О_пис:"
+
+#: ../extensions/FolderExport/FolderExport.glade.h:11
+msgid "Export _tags"
+msgstr "Експортувати _позначки"
+
+#: ../extensions/FolderExport/FolderExport.glade.h:12
+msgid "Export tag _icons"
+msgstr "Експортувати _значки позначок"
+
+#: ../extensions/FolderExport/FolderExport.glade.h:13
+msgid "Folder Export"
+msgstr "Експорту до теки"
+
+#: ../extensions/FolderExport/FolderExport.glade.h:14
+msgid "G_allery Name:"
+msgstr "_Назва галереї:"
+
+#: ../extensions/FolderExport/FolderExport.glade.h:15
+msgid "Open _destination when done exporting"
+msgstr "Відкрити _сторінку з галереєю при завершенні експорту"
+
+#: ../extensions/FolderExport/FolderExport.glade.h:16
+msgid "_Folder:"
+msgstr "_Тека:"
+
+#: ../extensions/FolderExport/FolderExport.glade.h:18
+msgid "_Save the files only"
+msgstr "З_берегти лише файли"
+
+#: ../extensions/GalleryExport/GalleryExport.addin.xml.h:1
+msgid "Web _Gallery..."
+msgstr "_Веб-галерея..."
+
+#: ../extensions/GalleryExport/GalleryExport.cs:388
+msgid "Invalid URL"
+msgstr "Неправильний URL"
+
+#: ../extensions/GalleryExport/GalleryExport.cs:389
+msgid "The gallery URL entry does not appear to be a valid URL"
+msgstr ""
+
+#: ../extensions/GalleryExport/GalleryExport.cs:399
+#: ../extensions/GalleryExport/GalleryExport.cs:426
+#: ../extensions/GalleryExport/GalleryExport.cs:437
+msgid "Error while connecting to Gallery"
+msgstr "Помилка під час з'єднання з галереєю"
+
+#: ../extensions/GalleryExport/GalleryExport.cs:400
+#: ../extensions/GalleryExport/GalleryExport.cs:427
+#: ../extensions/GalleryExport/GalleryExport.cs:438
+#, csharp-format
+msgid "The following error was encountered while attempting to log in: {0}"
+msgstr ""
+
+#: ../extensions/GalleryExport/GalleryExport.cs:414
+#, fuzzy
+msgid "A Gallery with this name already exists"
+msgstr "Тека з цією назвою вже існує"
+
+#: ../extensions/GalleryExport/GalleryExport.cs:415
+#, csharp-format
+msgid ""
+"There is already a Gallery with the same name in your registered Galleries. "
+"Please choose a unique name."
+msgstr ""
+
+#: ../extensions/GalleryExport/GalleryExport.cs:525
+#, fuzzy
+msgid "(TopLevel)"
+msgstr "Фокус у вікні найвищого рівня"
+
+#: ../extensions/GalleryExport/GalleryExport.cs:587
+#, fuzzy
+msgid "Invalid Gallery name"
+msgstr "Неправильна назва кімнати"
+
+#: ../extensions/GalleryExport/GalleryExport.cs:588
+msgid ""
+"The gallery name contains invalid characters.\n"
+"Only letters, numbers, - and _ are allowed"
+msgstr ""
+
+#: ../extensions/GalleryExport/GalleryExport.cs:787
+#, csharp-format
+msgid "Error uploading picture \"{0}\" to Gallery: {1}"
+msgstr ""
+
+#: ../extensions/GalleryExport/GalleryExport.cs:815
+#: ../extensions/PicasaWebExport/PicasaWebExport.cs:725
+#: ../extensions/SmugMugExport/SmugMugExport.cs:629
+#, fuzzy
+msgid "(No Gallery)"
+msgstr "Колекція фотографій   "
+
+#: ../extensions/GalleryExport/GalleryExport.cs:902
+#: ../extensions/PicasaWebExport/PicasaWebExport.cs:852
+#: ../extensions/SmugMugExport/SmugMugExport.cs:725
+#, fuzzy
+msgid "(Not Connected)"
+msgstr "Не підключений"
+
+#: ../extensions/GalleryExport/GalleryExport.cs:903
+#: ../extensions/PicasaWebExport/PicasaWebExport.cs:853
+#: ../extensions/SmugMugExport/SmugMugExport.cs:726
+#, fuzzy
+msgid "(No Albums)"
+msgstr "Віртуальні диски"
+
+#: ../extensions/GalleryExport/GalleryExport.cs:955
+#: ../extensions/PicasaWebExport/PicasaWebExport.cs:915
+#: ../extensions/SmugMugExport/SmugMugExport.cs:767
+#, fuzzy
+msgid "No account selected"
+msgstr "Документ не вибрано"
+
+#: ../extensions/GalleryExport/GalleryExport.glade.h:5
+#: ../extensions/PicasaWebExport/PicasaWebExport.glade.h:5
+msgid "<span weight='bold' size='larger'>Error Connecting to Gallery</span>\n"
+msgstr ""
+
+#: ../extensions/GalleryExport/GalleryExport.glade.h:9
+#, fuzzy
+msgid "Export _titles and comments"
+msgstr "примітки та зміни"
+
+#: ../extensions/GalleryExport/GalleryExport.glade.h:10
+#: ../extensions/PicasaWebExport/PicasaWebExport.glade.h:10
+#: ../extensions/SmugMugExport/SmugMugExport.glade.h:7
+msgid "Open _album in browser when done uploading"
+msgstr ""
+
+#: ../extensions/GalleryExport/GalleryExport.glade.h:11
+#: ../extensions/PicasaWebExport/PicasaWebExport.glade.h:11
+msgid "Please verify that the settings for this gallery are correct."
+msgstr ""
+
+#: ../extensions/GalleryExport/GalleryExport.glade.h:12
+msgid "U_RL:"
+msgstr ""
+
+#: ../extensions/GalleryExport/GalleryExport.glade.h:13
+#, fuzzy
+msgid "_Album Name:"
+msgstr "Назва &альбому"
+
+#: ../extensions/GalleryExport/GalleryExport.glade.h:14
+#: ../extensions/PicasaWebExport/PicasaWebExport.glade.h:19
+#: ../extensions/SmugMugExport/SmugMugExport.glade.h:11
+#, fuzzy
+msgid "_Description:"
+msgstr "_Опис:"
+
+#: ../extensions/GalleryExport/GalleryExport.glade.h:16
+#, fuzzy
+msgid "_Gallery Name:"
+msgstr "Повне ім'я "
+
+#: ../extensions/GalleryExport/GalleryExport.glade.h:17
+#: ../extensions/PicasaWebExport/PicasaWebExport.glade.h:22
+#, fuzzy
+msgid "_Gallery:"
+msgstr "Колекція"
+
+#: ../extensions/GalleryExport/GalleryExport.glade.h:18
+#, fuzzy
+msgid "_Parent Album:"
+msgstr "Рівень відтворення (альбом):"
+
+#: ../extensions/GalleryExport/GalleryExport.glade.h:19
+#: ../extensions/PicasaWebExport/PicasaWebExport.glade.h:23
+#: ../extensions/SmugMugExport/SmugMugExport.glade.h:13
+#, fuzzy
+msgid "_Password:"
+msgstr "_Пароль:"
+
+#: ../extensions/GalleryExport/GalleryExport.glade.h:21
+#, fuzzy
+msgid "_Title:"
+msgstr "_Назва твору:"
+
+#: ../extensions/GalleryExport/GalleryExport.glade.h:22
+#: ../extensions/PicasaWebExport/PicasaWebExport.glade.h:25
+#: ../extensions/SmugMugExport/SmugMugExport.glade.h:15
+#, fuzzy
+msgid "_Username:"
+msgstr "_Користувач:"
+
+#: ../extensions/GalleryExport/GalleryRemote.cs:357
+#, fuzzy
+msgid "Error reading server response"
+msgstr ""
+"Помилка при читанні відповіді сервера:\n"
+"%s"
+
+#. failed to find the response
+#: ../extensions/GalleryExport/GalleryRemote.cs:369
+msgid "Server returned response without Gallery content"
+msgstr ""
+
+#: ../extensions/PicasaWebExport/PicasaWebExport.addin.xml.h:1
+#, fuzzy
+msgid "_PicasaWeb..."
+msgstr "Вст_авити з буфера з назвою..."
+
+#: ../extensions/PicasaWebExport/PicasaWebExport.cs:441
+#, fuzzy
+msgid "Error while creating Album"
+msgstr "Помилка \"%s\" при створені посилання на \"%s\"."
+
+#: ../extensions/PicasaWebExport/PicasaWebExport.cs:442
+#, csharp-format
+msgid ""
+"The following error was encountered while attempting to create an album: {0}"
+msgstr ""
+
+#: ../extensions/PicasaWebExport/PicasaWebExport.cs:621
+#, fuzzy, csharp-format
+msgid "{0} Sent"
+msgstr "Відпр"
+
+#: ../extensions/PicasaWebExport/PicasaWebExport.cs:623
+#, fuzzy, csharp-format
+msgid "{0} of approx. {1}"
+msgstr " (набл.)"
+
+#: ../extensions/PicasaWebExport/PicasaWebExport.cs:661
+#: ../extensions/SmugMugExport/SmugMugExport.cs:564
+#, fuzzy, csharp-format
+msgid "Uploading picture \"{0}\" ({1} of {2})"
+msgstr "Вставити зображення"
+
+#: ../extensions/PicasaWebExport/PicasaWebExport.cs:692
+#: ../extensions/SmugMugExport/SmugMugExport.cs:593
+#, fuzzy, csharp-format
+msgid "Error Uploading To Gallery: {0}"
+msgstr "Надсилання на сервер ''%.64S''"
+
+#: ../extensions/PicasaWebExport/PicasaWebExport.cs:776
+#, fuzzy
+msgid "Available space :"
+msgstr "Наявне вільне місце"
+
+#: ../extensions/PicasaWebExport/PicasaWebExport.cs:893
+#, csharp-format
+msgid ""
+"<small>The selected album has a limit of {0} pictures,\n"
+"which would be passed with the current selection of {1} images</small>"
+msgstr ""
+
+#: ../extensions/PicasaWebExport/PicasaWebExport.glade.h:3
+#, fuzzy
+msgid "<b>PicasaWeb Export</b>"
+msgstr "_Експорт..."
+
+#: ../extensions/PicasaWebExport/PicasaWebExport.glade.h:7
+msgid ""
+"<span weight='bold' size='larger'>Your Google Account is locked</span>\n"
+msgstr ""
+
+#: ../extensions/PicasaWebExport/PicasaWebExport.glade.h:12
+msgid ""
+"Please verify that the settings for this gallery are correct.\n"
+"Enter the letters as they are shown in the image in\n"
+"the 'Captcha' field. <i>Letters are not case-sensitive</i>"
+msgstr ""
+
+#: ../extensions/PicasaWebExport/PicasaWebExport.glade.h:15
+#: ../extensions/SmugMugExport/SmugMugExport.glade.h:8
+#, fuzzy
+msgid "Public Album"
+msgstr "Рівень відтворення (альбом):"
+
+#: ../extensions/PicasaWebExport/PicasaWebExport.glade.h:16
+#: ../extensions/SmugMugExport/SmugMugExport.glade.h:10
+#, fuzzy
+msgid "_Album Title:"
+msgstr "Назва альбому"
+
+#: ../extensions/PicasaWebExport/PicasaWebExport.glade.h:17
+#, fuzzy
+msgid "_Autorotate"
+msgstr "_Обертання"
+
+#: ../extensions/PicasaWebExport/PicasaWebExport.glade.h:18
+#, fuzzy
+msgid "_Captcha:"
+msgstr "Стиль _початку:"
+
+#: ../extensions/SmugMugExport/SmugMugExport.glade.h:3
+#, fuzzy
+msgid "<b>SmugMug Export</b>"
+msgstr "_Експорт..."
+
+#: ../extensions/SmugMugExport/SmugMugExport.glade.h:9
+#, fuzzy
+msgid "_Account:"
+msgstr "_Обліковий запис:"
+
+#: ../extensions/SmugMugExport/SmugMugExport.addin.xml.h:1
+msgid "_SmugMug..."
+msgstr ""
+
+

@@ -1,0 +1,17 @@
+<configuration>
+  <dllmap dll="libglib-2.0-0.dll" target="libglib-2.0.so.0"/>
+  <dllmap dll="libgobject-2.0-0.dll" target="libgobject-2.0.so.0"/>
+  <dllmap dll="libgtk-win32-2.0-0.dll" target="libgtk-x11-2.0.so.0"/>
+  <dllmap dll="libgdk-2.0-0.dll" target="libgdk-x11-2.0.so.0"/>
+  <dllmap dll="libgdk_pixbuf-2.0-0.dll" target="libgdk_pixbuf-2.0.so.0"/>
+  <dllmap dll="libgnomevfs-2-0.dll" target="libgnomevfs-2.so.0"/>
+  <dllmap dll="libgnomeui-2-0.dll" target="libgnomeui-2.so.0"/>
+  <dllmap dll="libfspot" target="@expanded_libdir@/f-spot/libfspot.so.0"/>
+  <dllmap dll="libfspoteog" target="@expanded_libdir@/f-spot/libfspoteog.so.0"/>
+  <dllmap dll="libfspotjpeg" target="@expanded_libdir@/f-spot/libfspotjpg.so.0"/>
+  <dllmap dll="X11" target="libX11.so.6"/>
+  <dllmap dll="GL" target="libGL.so.1"/>
+  <dllmap dll="libXcomposite.dll" target="libXcomposite.so.1"/>
+  <dllmap dll="liblcms-1.0.0.dll" target="liblcms.so.1"/>
+  <dllmap dll="libexif.dll" target="libexif.so.@EXIF_SOVERSION@"/>
+</configuration>
