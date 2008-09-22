@@ -1,6 +1,8 @@
 2008-09-22  Stephane Delcroix  <sdelcroix@novell.com>
 
-	* src/UI.Dialog/AboutDialog.cs: added Mike Gemunde in authors list
+	* configure.in: bump to 0.5.0.1
+	* src/TagStore.cs: do not use rle, it triggers a bug in gdk-pixbuf. Fixes
+	bgo #553243.
 
 2008-09-20 Jordi Mas <jmas@softcatala.org>
 	
