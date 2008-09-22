@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: f-spot.HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-09-16 20:02+0000\n"
-"PO-Revision-Date: 2008-09-17 14:57+0200\n"
+"POT-Creation-Date: 2008-09-20 17:45+0000\n"
+"PO-Revision-Date: 2008-09-22 23:14+0200\n"
 "Last-Translator: Jorge González <jorgegonz@svn.gnome.org>\n"
 "Language-Team: Español <gnome-es-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -247,7 +247,7 @@ msgstr "Desactivar"
 #: ../extensions/Exporters/FlickrExport/FlickrExport.cs:370
 #: ../extensions/Exporters/FolderExport/FolderExport.cs:249
 #: ../extensions/Exporters/GalleryExport/GalleryExport.cs:799
-#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:543
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:544
 #: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:694
 #: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:595
 #: ../extensions/Exporters/TabbloExport/TabbloExport.cs:176
@@ -602,6 +602,10 @@ msgstr "Cuadrado"
 msgid "Crop"
 msgstr "Recortar"
 
+#: ../src/Editors/CropEditor.cs:73
+msgid "Select the area that needs cropping."
+msgstr "Seleccionar el área que debe recortarse."
+
 #: ../src/Editors/CropEditor.cs:98
 msgid "No Constraint"
 msgstr "Sin restricción"
@@ -625,6 +629,10 @@ msgstr "Reducción de ojos rojos"
 #: ../src/Editors/RedEyeEditor.cs:21
 msgid "Fix!"
 msgstr "Arreglar"
+
+#: ../src/Editors/RedEyeEditor.cs:25
+msgid "Select the eyes you wish to fix."
+msgstr "Seleccionar los ojos que quiere arreglar."
 
 #: ../src/Editors/SepiaEditor.cs:17
 msgid "Sepia Tone"
@@ -707,36 +715,36 @@ msgstr "No hay forma de guardar los archivos de tipo «{0}»"
 msgid "Unhandled exception"
 msgstr "Excepción no manipulada"
 
-#: ../src/FullScreenView.cs:58
+#: ../src/FullScreenView.cs:59
 msgid "Hide"
 msgstr "Ocultar"
 
-#: ../src/FullScreenView.cs:60
+#: ../src/FullScreenView.cs:61
 msgid "Hide Toolbar"
 msgstr "Ocultar barra de herramientas"
 
-#: ../src/FullScreenView.cs:66
+#: ../src/FullScreenView.cs:67
 msgid "Info"
 msgstr "Información"
 
-#: ../src/FullScreenView.cs:68 ../src/Widgets/InfoBox.cs:182
+#: ../src/FullScreenView.cs:69 ../src/Widgets/InfoBox.cs:182
 msgid "Image Information"
 msgstr "Información de la imagen"
 
-#: ../src/FullScreenView.cs:73
+#: ../src/FullScreenView.cs:74
 msgid "Exit fullscreen"
 msgstr "Salir de pantalla completa"
 
-#: ../src/FullScreenView.cs:83 ../src/MainWindow.cs:319
+#: ../src/FullScreenView.cs:84 ../src/MainWindow.cs:319
 #: ../src/SingleView.cs:97
 msgid "Slideshow"
 msgstr "Diapositivas"
 
-#: ../src/FullScreenView.cs:84
+#: ../src/FullScreenView.cs:85
 msgid "Start slideshow"
 msgstr "Comenzar a mostrar las diapositivas"
 
-#: ../src/FullScreenView.cs:149
+#: ../src/FullScreenView.cs:150
 msgid "Slide transition:"
 msgstr "Transición de la diapositiva: "
 
@@ -1099,7 +1107,7 @@ msgid "Next photo"
 msgstr "Siguiente foto"
 
 #. Don't care otherwise, Tags sounds reasonable
-#: ../src/MainWindow.cs:353 ../src/Widgets/Sidebar.cs:73
+#: ../src/MainWindow.cs:354 ../src/Widgets/Sidebar.cs:73
 #: ../extensions/Exporters/FolderExport/FolderExport.cs:995
 #: ../extensions/Exporters/FolderExport/FolderExport.cs:1167
 #: ../extensions/Exporters/FolderExport/FolderExport.cs:1207
@@ -1107,7 +1115,7 @@ msgid "Tags"
 msgstr "Etiquetas"
 
 #. Note for translators: This indicates the current photo is photo {0} of {1} out of photos
-#: ../src/MainWindow.cs:661 ../src/ProgressDialog.cs:82
+#: ../src/MainWindow.cs:662 ../src/ProgressDialog.cs:82
 #: ../src/TimeDialog.cs:143 ../extensions/Exporters/CDExport/CDExport.cs:221
 #: ../extensions/Exporters/FlickrExport/FlickrExport.cs:349
 #: ../extensions/Exporters/FolderExport/FolderExport.cs:244
@@ -1515,7 +1523,7 @@ msgstr "Error al editar la foto"
 msgid "Comment:"
 msgstr "Comentario:"
 
-#: ../src/Preferences.cs:158
+#: ../src/Preferences.cs:161
 msgid "Photos"
 msgstr "Fotos"
 
@@ -1658,7 +1666,7 @@ msgid "Set as Background"
 msgstr "Establecer como fondo"
 
 #: ../src/TagCommands.cs:92 ../src/TagCommands.cs:220
-#: ../src/TagSelectionWidget.cs:516
+#: ../src/TagSelectionWidget.cs:512
 msgid "This name is already in use"
 msgstr "Este nombre ya está siendo usado"
 
@@ -1789,7 +1797,7 @@ msgstr "Sin {0}"
 msgid "Drag tags here to search for them"
 msgstr "Arrastre etiquetas aquí para buscarlas"
 
-#: ../src/TagSelectionWidget.cs:515
+#: ../src/TagSelectionWidget.cs:511
 msgid "Error renaming tag"
 msgstr "Error al renombrar la etiqueta"
 
@@ -1895,11 +1903,11 @@ msgstr "Etiqueta"
 msgid "Ratio"
 msgstr "Puntuación"
 
-#: ../src/Updater.cs:375
+#: ../src/Updater.cs:380
 msgid "Updating F-Spot Database"
 msgstr "Actualizando base de datos F-Spot"
 
-#: ../src/Updater.cs:376
+#: ../src/Updater.cs:381
 msgid ""
 "Please wait while your F-Spot gallery's database is updated. This may take "
 "some time."
@@ -1908,7 +1916,7 @@ msgstr ""
 "actualiza. Esto puede llevar algo de tiempo."
 
 #. Mono.Unix.Error error = Mono.Unix.Stdlib.GetLastError ();
-#: ../src/Utils/Unix.cs:32
+#: ../src/Utils/Unix.cs:35
 msgid "Unable to create temporary file"
 msgstr "Imposible crear el archivo temporal"
 
@@ -1976,12 +1984,12 @@ msgstr "Texto personalizado: "
 msgid "Edit"
 msgstr "Editar"
 
-#: ../src/Widgets/EditorPage.cs:195
+#: ../src/Widgets/EditorPage.cs:201
 #: ../extensions/Exporters/ZipExport/ZipExport.cs:46
 msgid "No selection available"
 msgstr "No hay ninguna selección disponible"
 
-#: ../src/Widgets/EditorPage.cs:196
+#: ../src/Widgets/EditorPage.cs:202
 msgid ""
 "This tool requires an active selection. Please select a region of the photo "
 "and try the operation again"
@@ -1989,13 +1997,13 @@ msgstr ""
 "Ésta herramienta requiere una selección activa. Seleccione una región de la "
 "foto e intente la operación de nuevo."
 
-#: ../src/Widgets/EditorPage.cs:213
+#: ../src/Widgets/EditorPage.cs:219
 msgid "Error saving adjusted photo"
 msgid_plural "Error saving adjusted photos"
 msgstr[0] "Error al guardar la foto ajustada"
 msgstr[1] "Error al guardar las fotos ajustadas"
 
-#: ../src/Widgets/EditorPage.cs:215
+#: ../src/Widgets/EditorPage.cs:221
 #, csharp-format
 msgid ""
 "Received exception \"{0}\". Note that you have to develop RAW files into "
@@ -3206,7 +3214,7 @@ msgstr "Transfiriendo fotografía «{0}» al CD"
 #: ../extensions/Exporters/FlickrExport/FlickrExport.cs:379
 #: ../extensions/Exporters/FolderExport/FolderExport.cs:284
 #: ../extensions/Exporters/GalleryExport/GalleryExport.cs:808
-#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:551
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:552
 #: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:702
 #: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:606
 msgid "Done Sending Photos"
@@ -3343,7 +3351,7 @@ msgstr "Error al cargar en {0}: {1}"
 
 #: ../extensions/Exporters/FlickrExport/FlickrExport.cs:381
 #: ../extensions/Exporters/GalleryExport/GalleryExport.cs:810
-#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:553
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:554
 #: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:704
 #: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:608
 msgid "Upload Complete"
@@ -3364,7 +3372,7 @@ msgstr ""
 
 #: ../extensions/Exporters/FlickrExport/FlickrExport.cs:475
 #: ../extensions/Exporters/GalleryExport/GalleryExport.cs:732
-#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:477
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:478
 #: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:598
 #: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:521
 msgid "Uploading Pictures"
@@ -3709,7 +3717,7 @@ msgstr ""
 "inténtelo de nuevo."
 
 #: ../extensions/Exporters/FacebookExport/FacebookExport.cs:279
-#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:364
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:365
 msgid "You are not logged in."
 msgstr "No ha iniciado sesión."
 
@@ -3740,24 +3748,25 @@ msgstr ""
 "Hubo un problema al iniciar sesión en Facebook. Compruebe sus credenciales e "
 "inténtelo de nuevo."
 
-#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:338
+#. Note for translators: {0} and {1} are respectively firstname and surname of the user
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:339
 #, csharp-format
 msgid "{0} {1} is logged into Facebook"
 msgstr "{0} {1} ha iniciado sesión en Facebook"
 
-#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:491
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:492
 msgid "Album must have a name"
 msgstr "El álbum debe tener un nombre"
 
-#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:491
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:492
 msgid "Please name your album or choose an existing album."
 msgstr "Dé un nombre a su álbum o elija un álbum existente."
 
-#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:504
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:505
 msgid "Creating a new album failed"
 msgstr "Falló la creación del álbum nuevo"
 
-#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:504
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:505
 #, csharp-format
 msgid ""
 "An error occurred creating a new album.\n"
@@ -3768,14 +3777,14 @@ msgstr ""
 "\n"
 "{0}"
 
-#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:528
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:529
 #: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:661
 #: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:564
 #, csharp-format
 msgid "Uploading picture \"{0}\" ({1} of {2})"
 msgstr "Subiendo imagen «{0}» ({1} de {2})"
 
-#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:542
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:543
 #, csharp-format
 msgid "Error Uploading To Facebook: {0}"
 msgstr "Error al subir a Facebook: {0}"
@@ -3819,27 +3828,6 @@ msgstr "Usar un álbum existente"
 #: ../extensions/Exporters/FacebookExport/FacebookExport.glade.h:12
 msgid "Who is this?"
 msgstr "¿Quién es este?"
-
-#: ../extensions/Exporters/FacebookExport/FacebookExport.glade.h:13
-msgid "gtk-add"
-msgstr "gtk-add"
-
-#: ../extensions/Exporters/FacebookExport/FacebookExport.glade.h:14
-#: ../extensions/Exporters/ZipExport/ZipExport.glade.h:5
-msgid "gtk-cancel"
-msgstr "gtk-cancel"
-
-#: ../extensions/Exporters/PicasaWebExport/google-sharp/CaptchaException.cs:58
-msgid "url"
-msgstr "url"
-
-#: ../extensions/Exporters/PicasaWebExport/google-sharp/CaptchaException.cs:59
-msgid "token"
-msgstr ""
-
-#: ../extensions/Exporters/PicasaWebExport/google-sharp/CaptchaException.cs:60
-msgid "captcha_url"
-msgstr ""
 
 #: ../extensions/Exporters/ZipExport/ZipExport.addin.xml.h:1
 msgid "Compressed fil_e..."
@@ -3908,18 +3896,18 @@ msgstr ""
 #: ../extensions/Tools/MergeDb/MergeDb.glade.h:2
 msgid ""
 "<small><i>Choose what to import from the selected db.\n"
+"\"New Rolls Only\" is the smart option that will avoid re-importing photos "
+"you could have imported during a previous operation.\n"
+"\"A Single Import Roll\" let you choose which roll you want to merge back.\n"
 "\"Everything\" will import everything, creating duplicates if you already "
-"imported from that database.\n"
-"\"New Rolls only\" is the smart option that will avoid re-importing you "
-"could have imported during a previous operation.\n"
-"\"A Single Import Roll\" let you choose which roll you want to merge back.</"
-"i></small>"
+"imported from that database.</i></small>"
 msgstr ""
 "<small><i>Elija qué quiere importar de la base de datos seleccionada.\n"
-"«Todo» importará todo, creando duplicados su ya importó esa base de datos.\n"
 "«Sólo carretes nuevos» es la opción más inteligente que evitará volver a "
 "importar lo que previamente se pudo importar en otra operación.\n"
-"«Un sólo carrete» le permite elegir qué carrete quiere mezclar.</i></small>"
+"«Un sólo carrete» le permite elegir qué carrete quiere mezclar.\n"
+"«Todo» importará todo, creando duplicados su ya importó esa base de datos.</"
+"i></small>"
 
 #: ../extensions/Tools/MergeDb/MergeDb.glade.h:6
 msgid ""
@@ -3935,8 +3923,8 @@ msgid "A Single Import Roll"
 msgstr "Un sólo carrete"
 
 #: ../extensions/Tools/MergeDb/MergeDb.glade.h:8
-msgid "Copy images to Photos/"
-msgstr "Copiar imágenes a la carpeta Fotos/"
+msgid "Copy images to photos folder"
+msgstr "Copiar imágenes a la carpeta de fotos"
 
 #: ../extensions/Tools/MergeDb/MergeDb.glade.h:9
 msgid "Database Location:"
@@ -4125,6 +4113,18 @@ msgstr "Error de confianza"
 #: ../extensions/Exporters/TabbloExport/TrustError.glade.h:7
 msgid "Trust the site's certificate this once"
 msgstr "Confiar en el certificado del sitio esta vez"
+
+#~ msgid "gtk-add"
+#~ msgstr "gtk-add"
+
+#~ msgid "gtk-cancel"
+#~ msgstr "gtk-cancel"
+
+#~ msgid "url"
+#~ msgstr "url"
+
+#~ msgid "Copy images to Photos/"
+#~ msgstr "Copiar imágenes a la carpeta Fotos/"
 
 #~ msgid "Metadata Browser"
 #~ msgstr "Examinador de metadatos"
