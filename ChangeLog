@@ -1,5 +1,12 @@
 2008-09-22  Stephane Delcroix  <sdelcroix@novell.com>
 
+	* src/Core/Photo.cs:
+	* src/TagStore.cs:
+	* src/Utils/GdkUtils.cs: no longer P/Invoke pixdata.Deserialize, move the
+	PixbufSerializer methods to GdkUtils.
+
+2008-09-22  Stephane Delcroix  <sdelcroix@novell.com>
+
 	* src/UI.Dialog/AboutDialog.cs: added Mike Gemunde in authors list
 
 2008-09-22  Stephane Delcroix  <sdelcroix@novell.com>

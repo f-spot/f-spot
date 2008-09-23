@@ -13,43 +13,6 @@ using FSpot.Jobs;
 using FSpot.Query;
 using FSpot.Utils;
 
-// FIXME: This is to workaround the currently busted GTK# bindings.
-using System.Runtime.InteropServices;
-
-public class PixbufSerializer {
-	[DllImport("libgdk_pixbuf-2.0-0.dll")]
-	static extern unsafe bool gdk_pixdata_deserialize(ref Gdk.Pixdata raw, uint stream_length, byte [] stream, out IntPtr error);
-
-	public static unsafe Pixbuf Deserialize (byte [] data)
-	{
-		Pixdata pixdata = new Pixdata ();
-
-		pixdata.Deserialize ((uint) data.Length, data);
-
-		return Pixbuf.FromPixdata (pixdata, true);
-	}
-
-	[DllImport("libgdk_pixbuf-2.0-0.dll")]
-	static extern IntPtr gdk_pixdata_serialize(ref Gdk.Pixdata raw, out uint stream_length_p);
-
-	public static byte [] Serialize (Pixbuf pixbuf)
-	{
-		Pixdata pixdata = new Pixdata ();
-		IntPtr raw_pixdata = pixdata.FromPixbuf (pixbuf, false); // FIXME GTK# shouldn't this be a constructor or something?
-									//       It's probably because we need the IntPtr to free it afterwards
-
-		uint data_length;
-		IntPtr raw_data = gdk_pixdata_serialize (ref pixdata, out data_length);
-
-		byte [] data = new byte [data_length];
-		Marshal.Copy (raw_data, data, 0, (int) data_length);
-		
-		GLib.Marshaller.Free (new IntPtr[] { raw_data, raw_pixdata });
-		
-		return data;
-	}
-}
-
 public class InvalidTagOperationException : InvalidOperationException {
 	public Tag tag;
 	
@@ -105,7 +68,7 @@ public class TagStore : DbStore {
 		else if (icon_string.StartsWith (STOCK_ICON_DB_PREFIX))
 			tag.ThemeIconName = icon_string.Substring (STOCK_ICON_DB_PREFIX.Length);
 		else
-			tag.Icon = PixbufSerializer.Deserialize (Convert.FromBase64String (icon_string));
+			tag.Icon = GdkUtils.Deserialize (Convert.FromBase64String (icon_string));
 	}
 
 	private Tag hidden;
@@ -361,7 +324,7 @@ public class TagStore : DbStore {
 		if (tag.Icon == null)
 			return String.Empty;
 
-		byte [] data = PixbufSerializer.Serialize (tag.Icon);
+		byte [] data = GdkUtils.Serialize (tag.Icon);
 		return Convert.ToBase64String (data);
 	}
 

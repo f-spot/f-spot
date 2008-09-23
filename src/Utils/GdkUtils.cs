@@ -4,6 +4,30 @@ using System.Runtime.InteropServices;
 
 namespace FSpot.Utils {
 	public class GdkUtils {
+		public static Pixbuf Deserialize (byte [] data)
+		{
+			Pixdata pixdata = new Pixdata ();
+	
+			pixdata.Deserialize ((uint) data.Length, data);
+	
+			return Pixbuf.FromPixdata (pixdata, true);
+		}
+	
+		public static byte [] Serialize (Pixbuf pixbuf)
+		{
+			Pixdata pixdata = new Pixdata ();
+	
+#if true 	//We should use_rle, but bgo#553374 prevents this
+			pixdata.FromPixbuf (pixbuf, false);
+			return pixdata.Serialize ();
+#else
+			IntPtr raw_pixdata = pixdata.FromPixbuf (pixbuf, true); 
+			byte [] data = pixdata.Serialize ();
+			GLib.Marshaller.Free (raw_pixdata);
+				
+			return data;
+#endif
+		}
 
 		class NativeMethods
 		{

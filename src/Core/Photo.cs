@@ -645,7 +645,7 @@ namespace FSpot
 
 				using (Gdk.Pixbuf pixbuf = ThumbnailGenerator.Create (uri))
 				{
-					byte[] serialized = PixbufSerializer.Serialize (pixbuf);
+					byte[] serialized = GdkUtils.Serialize (pixbuf);
 					byte[] md5 = MD5Generator.ComputeHash (serialized);
 					string md5_string = Convert.ToBase64String (md5);
 
