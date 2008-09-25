@@ -469,7 +469,6 @@ namespace FSpot.Widgets
 
 		void OnVersionComboChanged (object o, EventArgs e)
 		{
-			Console.WriteLine ("OnVersionChanged");
 			ComboBox combo = o as ComboBox;
 			if (combo == null)
 				return;
