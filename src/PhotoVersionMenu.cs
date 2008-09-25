@@ -56,7 +56,6 @@ public class PhotoVersionMenu : Menu {
 			menu_item.Show ();
 			menu_item.Sensitive = true;
 			((Gtk.Label)menu_item.Child).UseUnderline = false;
-			((Gtk.Label)menu_item.Child).Ellipsize = Pango.EllipsizeMode.End;
 			menu_item.Activated += new EventHandler (HandleMenuItemActivated);
 
 			item_infos [i ++] = new MenuItemInfo (menu_item, id);
@@ -68,7 +67,6 @@ public class PhotoVersionMenu : Menu {
 			MenuItem no_edits_menu_item = new MenuItem (Mono.Unix.Catalog.GetString ("(No Edits)"));
 			no_edits_menu_item.Show ();
 			no_edits_menu_item.Sensitive = false;
-			((Gtk.Label)no_edits_menu_item.Child).Ellipsize = Pango.EllipsizeMode.End;
 			Append (no_edits_menu_item);
 		}
 	}

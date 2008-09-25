@@ -103,7 +103,8 @@ namespace FSpot.Widgets
 		private Label name_value_label;
 
 		private Label version_label;
-		private OptionMenu version_option_menu;
+		private ListStore version_list;
+		private ComboBox version_combo;
 
 		private Label date_label;
 		private Label date_value_label;
@@ -120,12 +121,6 @@ namespace FSpot.Widgets
 		private TagView tag_view;
 		private string default_exposure_string;
 
-		private void HandleVersionIdChanged (PhotoVersionMenu menu)
-		{
-			if (VersionIdChanged != null)
-				VersionIdChanged (this, menu.VersionId);
-		}
-	
 		private void HandleRatingChanged (object o, EventArgs e)
 		{
 			MainWindow.Toplevel.HandleRatingMenuSelected ((o as Widgets.Rating).Value);
@@ -220,9 +215,16 @@ namespace FSpot.Widgets
 			date_value_label = AttachLabel (info_table, 2, name_value_label);
 			size_value_label = AttachLabel (info_table, 3, name_value_label);
 			exposure_value_label = AttachLabel (info_table, 4, name_value_label);
-	
-			version_option_menu = new OptionMenu ();
-			info_table.Attach (version_option_menu, 1, 2, 1, 2, AttachOptions.Fill, AttachOptions.Fill, TABLE_XPADDING, TABLE_YPADDING);
+			
+			version_list = new ListStore (typeof (uint), typeof (string));
+			version_combo = new ComboBox ();
+			CellRendererText version_name_cell = new CellRendererText ();
+			version_name_cell.Ellipsize = Pango.EllipsizeMode.End;
+			version_combo.PackStart (version_name_cell, true);
+			version_combo.SetCellDataFunc (version_name_cell, new CellLayoutDataFunc (VersionNameCellFunc));
+			version_combo.Model = version_list;
+			version_combo.Changed += OnVersionComboChanged;
+			info_table.Attach (version_combo, 1, 2, 1, 2, AttachOptions.Fill, AttachOptions.Fill, TABLE_XPADDING, TABLE_YPADDING);
 	
 			date_value_label.Text = Environment.NewLine;
 			exposure_value_label.Text = Environment.NewLine;
@@ -435,21 +437,18 @@ namespace FSpot.Widgets
 			
 	
 			version_label.Visible = true;
-			version_option_menu.Visible = true;
-			PhotoVersionMenu menu = new PhotoVersionMenu (photo);
-			menu.VersionIdChanged += new PhotoVersionMenu.VersionIdChangedHandler (HandleVersionIdChanged);
-			menu.WidthRequest = version_option_menu.Allocation.Width;
-			version_option_menu.Menu = menu;
-			
-			uint i = 0;
+			version_combo.Visible = true;
+			version_list.Clear ();
+			version_combo.Changed -= OnVersionComboChanged;
+			int i = 0;
 			foreach (uint version_id in photo.VersionIds) {
-				if (version_id == photo.DefaultVersionId) {
-					// FIXME GTK# why not just .History = i ?
-					version_option_menu.SetHistory (i);
-					break;
-				}
+				version_list.AppendValues (version_id, (photo.GetVersion (version_id) as PhotoVersion).Name);
+				if (version_id == photo.DefaultVersionId)
+					version_combo.Active = i;
 				i++;
 			}
+			version_combo.Changed += OnVersionComboChanged;
+
 			if (show_tags)
 				tag_view.Current = photo;
 			rating_label.Visible = show_rating;
@@ -461,6 +460,26 @@ namespace FSpot.Widgets
 			Show ();
 		}
 
+		void VersionNameCellFunc (CellLayout cell_layout, CellRenderer cell, TreeModel tree_model, TreeIter iter)
+		{
+			string name = (string)tree_model.GetValue (iter, 1);
+			(cell as CellRendererText).Text = name;
+		}
+
+
+		void OnVersionComboChanged (object o, EventArgs e)
+		{
+			Console.WriteLine ("OnVersionChanged");
+			ComboBox combo = o as ComboBox;
+			if (combo == null)
+				return;
+
+			TreeIter iter;
+
+			if (combo.GetActiveIter (out iter))
+				VersionIdChanged (this, (uint)version_list.GetValue (iter, 0));
+		}
+
 		private void UpdateMultiple ()
 		{
 			histogram_expander.Visible = false;
@@ -469,7 +488,7 @@ namespace FSpot.Widgets
 			name_value_label.Text = String.Format(Catalog.GetString("{0} Photos"), Photos.Length);
 
 			version_label.Visible = false;
-			version_option_menu.Visible = false;
+			version_combo.Visible = false;
 
 			exposure_label.Visible = false;
 			exposure_value_label.Visible = false;

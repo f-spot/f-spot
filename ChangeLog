@@ -1,3 +1,8 @@
+2008-09-25  Stephane Delcroix  <sdelcroix@novell.com>
+
+	* src/PhotoVersionMenu.cs: no longer Ellipsize items
+	* src/InfoBox.cs: replace the OptionMenu by a ComboBox, Ellipsize the text.
+
 2008-09-22  Stephane Delcroix  <sdelcroix@novell.com>
 
 	* src/Core/Photo.cs:
