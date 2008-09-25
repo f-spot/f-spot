@@ -216,7 +216,7 @@ namespace FSpot.Widgets
 			size_value_label = AttachLabel (info_table, 3, name_value_label);
 			exposure_value_label = AttachLabel (info_table, 4, name_value_label);
 			
-			version_list = new ListStore (typeof (uint), typeof (string));
+			version_list = new ListStore (typeof (uint), typeof (string), typeof (bool));
 			version_combo = new ComboBox ();
 			CellRendererText version_name_cell = new CellRendererText ();
 			version_name_cell.Ellipsize = Pango.EllipsizeMode.End;
@@ -442,11 +442,13 @@ namespace FSpot.Widgets
 			version_combo.Changed -= OnVersionComboChanged;
 			int i = 0;
 			foreach (uint version_id in photo.VersionIds) {
-				version_list.AppendValues (version_id, (photo.GetVersion (version_id) as PhotoVersion).Name);
+				version_list.AppendValues (version_id, (photo.GetVersion (version_id) as PhotoVersion).Name, true);
 				if (version_id == photo.DefaultVersionId)
 					version_combo.Active = i;
 				i++;
 			}
+			if (photo.VersionIds.Length == 1)
+				version_list.AppendValues (0, Catalog.GetString ("(No Edits)"), false);
 			version_combo.Changed += OnVersionComboChanged;
 
 			if (show_tags)
@@ -464,6 +466,8 @@ namespace FSpot.Widgets
 		{
 			string name = (string)tree_model.GetValue (iter, 1);
 			(cell as CellRendererText).Text = name;
+
+			cell.Sensitive = (bool)tree_model.GetValue (iter, 2);
 		}
 
 
