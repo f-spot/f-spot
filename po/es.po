@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: f-spot.HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-09-20 17:45+0000\n"
-"PO-Revision-Date: 2008-09-22 23:14+0200\n"
+"POT-Creation-Date: 2008-09-26 08:18+0000\n"
+"PO-Revision-Date: 2008-09-26 14:42+0200\n"
 "Last-Translator: Jorge González <jorgegonz@svn.gnome.org>\n"
 "Language-Team: Español <gnome-es-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -127,7 +127,7 @@ msgid "Extension"
 msgstr "Extensión"
 
 #: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinTreeWidget.cs:112
-#: ../src/Widgets/InfoBox.cs:196
+#: ../src/Widgets/InfoBox.cs:191
 msgid "Version"
 msgstr "Versión"
 
@@ -136,7 +136,7 @@ msgid "Other"
 msgstr "Otro"
 
 #: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/ManageSitesDialog.cs:51
-#: ../src/Widgets/InfoBox.cs:193
+#: ../src/Widgets/InfoBox.cs:188
 #: ../extensions/Exporters/FacebookExport/FacebookExport.glade.h:9
 msgid "Name"
 msgstr "Nombre"
@@ -727,7 +727,7 @@ msgstr "Ocultar barra de herramientas"
 msgid "Info"
 msgstr "Información"
 
-#: ../src/FullScreenView.cs:69 ../src/Widgets/InfoBox.cs:182
+#: ../src/FullScreenView.cs:69 ../src/Widgets/InfoBox.cs:177
 msgid "Image Information"
 msgstr "Información de la imagen"
 
@@ -1511,7 +1511,7 @@ msgid "Received exception \"{0}\". Unable to rename version to \"{1}\""
 msgstr ""
 "Se recibió la excepción «{0}». No es posible renombrar la versión a «{1}»"
 
-#: ../src/PhotoVersionMenu.cs:68
+#: ../src/PhotoVersionMenu.cs:67 ../src/Widgets/InfoBox.cs:451
 msgid "(No Edits)"
 msgstr "(No hay modificaciones)"
 
@@ -1801,28 +1801,28 @@ msgstr "Arrastre etiquetas aquí para buscarlas"
 msgid "Error renaming tag"
 msgstr "Error al renombrar la etiqueta"
 
-#: ../src/TagStore.cs:239
+#: ../src/TagStore.cs:202
 msgid "Favorites"
 msgstr "Favoritos"
 
-#: ../src/TagStore.cs:244
+#: ../src/TagStore.cs:207
 msgid "Hidden"
 msgstr "Oculto"
 
-#: ../src/TagStore.cs:252
+#: ../src/TagStore.cs:215
 msgid "People"
 msgstr "Gente"
 
-#: ../src/TagStore.cs:257
+#: ../src/TagStore.cs:220
 msgid "Places"
 msgstr "Lugares"
 
-#: ../src/TagStore.cs:262
+#: ../src/TagStore.cs:225
 msgid "Events"
 msgstr "Acontecimientos"
 
 #. The label for the root category is used in new and edit tag dialogs
-#: ../src/TagStore.cs:275 ../src/Widgets/InfoBox.cs:351
+#: ../src/TagStore.cs:238 ../src/Widgets/InfoBox.cs:353
 msgid "(None)"
 msgstr "(Ninguno)"
 
@@ -2020,38 +2020,38 @@ msgstr "Buscar:"
 msgid "and"
 msgstr "y"
 
-#: ../src/Widgets/InfoBox.cs:164
+#: ../src/Widgets/InfoBox.cs:159
 msgid "Histogram"
 msgstr "Histograma"
 
-#: ../src/Widgets/InfoBox.cs:199
+#: ../src/Widgets/InfoBox.cs:194
 msgid "Date"
 msgstr "Fecha"
 
-#: ../src/Widgets/InfoBox.cs:202
+#: ../src/Widgets/InfoBox.cs:197
 #: ../extensions/Exporters/CDExport/CDExport.glade.h:5
 msgid "Size"
 msgstr "Tamaño"
 
-#: ../src/Widgets/InfoBox.cs:205
+#: ../src/Widgets/InfoBox.cs:200
 msgid "Exposure"
 msgstr "Exposición"
 
-#: ../src/Widgets/InfoBox.cs:209
+#: ../src/Widgets/InfoBox.cs:204
 msgid "Rating"
 msgstr "Puntuación"
 
-#: ../src/Widgets/InfoBox.cs:362 ../src/Widgets/InfoBox.cs:371
+#: ../src/Widgets/InfoBox.cs:364 ../src/Widgets/InfoBox.cs:373
 msgid "(Unknown)"
 msgstr "(Desconocido)"
 
-#: ../src/Widgets/InfoBox.cs:469
+#: ../src/Widgets/InfoBox.cs:491
 #, csharp-format
 msgid "{0} Photos"
 msgstr "{0} Fotos"
 
 #. Note for translators: {0} is a date, {1} and {2} are times.
-#: ../src/Widgets/InfoBox.cs:481
+#: ../src/Widgets/InfoBox.cs:503
 #, csharp-format
 msgid ""
 "On {0} between \n"
@@ -2060,7 +2060,7 @@ msgstr ""
 "En {0} entre\n"
 "{1} y {2}"
 
-#: ../src/Widgets/InfoBox.cs:486
+#: ../src/Widgets/InfoBox.cs:508
 #, csharp-format
 msgid ""
 "Between {0} \n"
@@ -3041,12 +3041,12 @@ msgid "_Open destination when done exporting"
 msgstr "_Abrir el destino cuando se termine de exportar"
 
 #: ../src/f-spot.glade.h:235
-msgid "_Output:"
-msgstr "_Salida:"
-
-#: ../src/f-spot.glade.h:236
 msgid "_Photo"
 msgstr "_Foto"
+
+#: ../src/f-spot.glade.h:236
+msgid "_Print output:"
+msgstr "_Imprimir salida:"
 
 #: ../src/f-spot.glade.h:237
 msgid "_Quit"
