@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: f-spot.HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-09-26 08:18+0000\n"
-"PO-Revision-Date: 2008-09-26 14:42+0200\n"
+"POT-Creation-Date: 2008-09-28 15:20+0000\n"
+"PO-Revision-Date: 2008-09-28 19:32+0200\n"
 "Last-Translator: Jorge González <jorgegonz@svn.gnome.org>\n"
 "Language-Team: Español <gnome-es-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -127,7 +127,7 @@ msgid "Extension"
 msgstr "Extensión"
 
 #: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinTreeWidget.cs:112
-#: ../src/Widgets/InfoBox.cs:191
+#: ../src/Widgets/InfoBox.cs:211
 msgid "Version"
 msgstr "Versión"
 
@@ -136,7 +136,7 @@ msgid "Other"
 msgstr "Otro"
 
 #: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/ManageSitesDialog.cs:51
-#: ../src/Widgets/InfoBox.cs:188
+#: ../src/Widgets/InfoBox.cs:208
 #: ../extensions/Exporters/FacebookExport/FacebookExport.glade.h:9
 msgid "Name"
 msgstr "Nombre"
@@ -455,7 +455,7 @@ msgstr "Descarga completada"
 msgid "Transferring \"{0}\" from camera"
 msgstr "Transfiriendo «{0}» desde la cámara"
 
-#: ../src/CameraSelectionDialog.cs:29
+#: ../src/CameraSelectionDialog.cs:29 ../src/Widgets/InfoBox.cs:227
 msgid "Camera"
 msgstr "Cámara"
 
@@ -727,7 +727,7 @@ msgstr "Ocultar barra de herramientas"
 msgid "Info"
 msgstr "Información"
 
-#: ../src/FullScreenView.cs:69 ../src/Widgets/InfoBox.cs:177
+#: ../src/FullScreenView.cs:69 ../src/Widgets/InfoBox.cs:197
 msgid "Image Information"
 msgstr "Información de la imagen"
 
@@ -1511,7 +1511,7 @@ msgid "Received exception \"{0}\". Unable to rename version to \"{1}\""
 msgstr ""
 "Se recibió la excepción «{0}». No es posible renombrar la versión a «{1}»"
 
-#: ../src/PhotoVersionMenu.cs:67 ../src/Widgets/InfoBox.cs:451
+#: ../src/PhotoVersionMenu.cs:67 ../src/Widgets/InfoBox.cs:546
 msgid "(No Edits)"
 msgstr "(No hay modificaciones)"
 
@@ -1822,7 +1822,7 @@ msgid "Events"
 msgstr "Acontecimientos"
 
 #. The label for the root category is used in new and edit tag dialogs
-#: ../src/TagStore.cs:238 ../src/Widgets/InfoBox.cs:353
+#: ../src/TagStore.cs:238 ../src/Widgets/InfoBox.cs:397
 msgid "(None)"
 msgstr "(Ninguno)"
 
@@ -2020,38 +2020,55 @@ msgstr "Buscar:"
 msgid "and"
 msgstr "y"
 
-#: ../src/Widgets/InfoBox.cs:159
+#: ../src/Widgets/InfoBox.cs:179
 msgid "Histogram"
 msgstr "Histograma"
 
-#: ../src/Widgets/InfoBox.cs:194
+#: ../src/Widgets/InfoBox.cs:214
 msgid "Date"
 msgstr "Fecha"
 
-#: ../src/Widgets/InfoBox.cs:197
+#: ../src/Widgets/InfoBox.cs:217
 #: ../extensions/Exporters/CDExport/CDExport.glade.h:5
 msgid "Size"
 msgstr "Tamaño"
 
-#: ../src/Widgets/InfoBox.cs:200
+#: ../src/Widgets/InfoBox.cs:220
 msgid "Exposure"
 msgstr "Exposición"
 
-#: ../src/Widgets/InfoBox.cs:204
+#: ../src/Widgets/InfoBox.cs:224
+msgid "Focal Length"
+msgstr "Longitud focal"
+
+#: ../src/Widgets/InfoBox.cs:230
+msgid "File Size"
+msgstr "Tamaño del archivo"
+
+#: ../src/Widgets/InfoBox.cs:233
 msgid "Rating"
 msgstr "Puntuación"
 
-#: ../src/Widgets/InfoBox.cs:364 ../src/Widgets/InfoBox.cs:373
+#: ../src/Widgets/InfoBox.cs:406 ../src/Widgets/InfoBox.cs:429
+#: ../src/Widgets/InfoBox.cs:439 ../src/Widgets/InfoBox.cs:448
 msgid "(Unknown)"
 msgstr "(Desconocido)"
 
-#: ../src/Widgets/InfoBox.cs:491
+#: ../src/Widgets/InfoBox.cs:416
+msgid "(wrong format)"
+msgstr "(formato incorrecto)"
+
+#: ../src/Widgets/InfoBox.cs:554
+msgid "(File not found)"
+msgstr "(No se encontró el archivo)"
+
+#: ../src/Widgets/InfoBox.cs:598
 #, csharp-format
 msgid "{0} Photos"
 msgstr "{0} Fotos"
 
 #. Note for translators: {0} is a date, {1} and {2} are times.
-#: ../src/Widgets/InfoBox.cs:503
+#: ../src/Widgets/InfoBox.cs:618
 #, csharp-format
 msgid ""
 "On {0} between \n"
@@ -2060,7 +2077,7 @@ msgstr ""
 "En {0} entre\n"
 "{1} y {2}"
 
-#: ../src/Widgets/InfoBox.cs:508
+#: ../src/Widgets/InfoBox.cs:623
 #, csharp-format
 msgid ""
 "Between {0} \n"
@@ -2068,6 +2085,38 @@ msgid ""
 msgstr ""
 "Entre {0} \n"
 "y {1}"
+
+#: ../src/Widgets/InfoBox.cs:647
+msgid "(At least one File not found)"
+msgstr "(Al menos no se encontró un archivo)"
+
+#: ../src/Widgets/InfoBox.cs:761
+msgid "Show Photo Name"
+msgstr "Mostrar el nombre de la foto"
+
+#: ../src/Widgets/InfoBox.cs:770
+msgid "Show Date"
+msgstr "Mostrar la fecha"
+
+#: ../src/Widgets/InfoBox.cs:779
+msgid "Show Size"
+msgstr "Mostrar el tamaño"
+
+#: ../src/Widgets/InfoBox.cs:788
+msgid "Show Exposure"
+msgstr "Mostrar la exposición"
+
+#: ../src/Widgets/InfoBox.cs:797
+msgid "Show Focal Length"
+msgstr "Mostrar la longitud focal"
+
+#: ../src/Widgets/InfoBox.cs:806
+msgid "Show Camera"
+msgstr "Mostrar la cámara"
+
+#: ../src/Widgets/InfoBox.cs:815
+msgid "Show File Size"
+msgstr "Mostrar el tamaño del archivo"
 
 #: ../src/Widgets/MetadataDisplay.cs:23
 msgid "Metadata"
