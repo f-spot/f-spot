@@ -7,6 +7,7 @@
  * 	Gabriel Burt
  *	Stephane Delcroix  <stephane@delcroix.org>
  *	Ruben Vermeersch <ruben@savanne.be>
+ *  Mike Gemuende <mike@gemuende.de>
  *
  * This is free software. See COPYING for details.
  */
@@ -114,12 +115,29 @@ namespace FSpot.Widgets
 
 		private Label exposure_label;
 		private Label exposure_value_label;
+		
+		private Label focal_length_label;
+		private Label focal_length_value_label;
+		
+		private Label camera_label;
+		private Label camera_value_label;
+		
+		private Label file_size_label;
+		private Label file_size_value_label;
 
 		private Label rating_label;
 		private RatingSmall rating_view;
 
 		private TagView tag_view;
 		private string default_exposure_string;
+		
+		private bool show_name;
+		private bool show_date;
+		private bool show_size;
+		private bool show_exposure;
+		private bool show_focal_length;
+		private bool show_camera;
+		private bool show_file_size;
 
 		private void HandleRatingChanged (object o, EventArgs e)
 		{
@@ -132,20 +150,22 @@ namespace FSpot.Widgets
 			label.UseMarkup = true;
 			label.Markup = text;
 			label.Xalign = 1;
-	
+
 			return label;
 		}
 	
 		const int TABLE_XPADDING = 3;
 		const int TABLE_YPADDING = 3;
-		static private Label AttachLabel (Table table, int row_num, Widget entry)
+		private Label AttachLabel (Table table, int row_num, Widget entry)
 		{
 			Label label = new Label (String.Empty);
 			label.Xalign = 0;
 			label.Selectable = true;
 			label.Ellipsize = Pango.EllipsizeMode.End;
 			label.Show ();
-	
+
+			label.PopulatePopup += HandlePopulatePopup;
+			
 			table.Attach (label, 1, 2, (uint) row_num, (uint) row_num + 1,
 				      AttachOptions.Expand | AttachOptions.Fill, AttachOptions.Expand | AttachOptions.Fill,
 				      (uint) entry.Style.XThickness + TABLE_XPADDING, (uint) entry.Style.YThickness);
@@ -178,8 +198,8 @@ namespace FSpot.Widgets
 			info_expander.Activated += delegate (object sender, EventArgs e) {
 				ContextSwitchStrategy.SetInfoBoxVisible (Context, info_expander.Expanded);
 			};
-
-			Table info_table = new Table (7, 2, false);
+			
+			Table info_table = new Table (10, 2, false);
 			info_table.BorderWidth = 0;
 	
 			string name_pre = "<b>";
@@ -201,8 +221,17 @@ namespace FSpot.Widgets
 			exposure_label = CreateRightAlignedLabel (default_exposure_string);
 			info_table.Attach (exposure_label, 0, 1, 4, 5, AttachOptions.Fill, AttachOptions.Fill, TABLE_XPADDING, TABLE_YPADDING);
 			
+			focal_length_label = CreateRightAlignedLabel (name_pre + Catalog.GetString ("Focal Length") + name_post);
+			info_table.Attach (focal_length_label, 0, 1, 5, 6, AttachOptions.Fill, AttachOptions.Fill, TABLE_XPADDING, TABLE_YPADDING);
+			
+			camera_label = CreateRightAlignedLabel (name_pre + Catalog.GetString ("Camera") + name_post);
+			info_table.Attach (camera_label, 0, 1, 6, 7, AttachOptions.Fill, AttachOptions.Fill, TABLE_XPADDING, TABLE_YPADDING);
+			
+			file_size_label = CreateRightAlignedLabel (name_pre + Catalog.GetString ("File Size") + name_post);
+			info_table.Attach (file_size_label, 0, 1, 7, 8, AttachOptions.Fill, AttachOptions.Fill, TABLE_XPADDING, TABLE_YPADDING);
+			
 			rating_label = CreateRightAlignedLabel (name_pre + Catalog.GetString ("Rating") + name_post);
-			info_table.Attach (rating_label, 0, 1, 5, 6, AttachOptions.Fill, AttachOptions.Fill, TABLE_XPADDING, TABLE_YPADDING);
+			info_table.Attach (rating_label, 0, 1, 8, 9, AttachOptions.Fill, AttachOptions.Fill, TABLE_XPADDING, TABLE_YPADDING);
 			rating_label.Visible = false;
 
 			name_value_label = new Label ();
@@ -210,6 +239,8 @@ namespace FSpot.Widgets
 			name_value_label.Justify = Gtk.Justification.Left;
 			name_value_label.Selectable = true;
 			name_value_label.Xalign = 0;
+			name_value_label.PopulatePopup += HandlePopulatePopup;
+			
 			info_table.Attach (name_value_label, 1, 2, 0, 1, AttachOptions.Fill | AttachOptions.Expand, AttachOptions.Fill, 3, 0);
 			
 			date_value_label = AttachLabel (info_table, 2, name_value_label);
@@ -228,9 +259,12 @@ namespace FSpot.Widgets
 	
 			date_value_label.Text = Environment.NewLine;
 			exposure_value_label.Text = Environment.NewLine;
+			focal_length_value_label = AttachLabel (info_table, 5, name_value_label);
+			camera_value_label = AttachLabel (info_table, 6, name_value_label);
+			file_size_value_label = AttachLabel (info_table, 7, name_value_label);
 
 			Gtk.Alignment rating_align = new Gtk.Alignment( 0, 0, 0, 0);
-			info_table.Attach (rating_align, 1, 2, 5, 6, AttachOptions.Fill, AttachOptions.Fill, TABLE_XPADDING, TABLE_YPADDING);
+			info_table.Attach (rating_align, 1, 2, 8, 9, AttachOptions.Fill, AttachOptions.Fill, TABLE_XPADDING, TABLE_YPADDING);
 			
 			rating_view = new RatingSmall ();
 			rating_view.Visible = false;
@@ -238,12 +272,15 @@ namespace FSpot.Widgets
 			rating_align.Add (rating_view);
 
 			tag_view = new TagView (MainWindow.ToolTips);
-			info_table.Attach (tag_view, 0, 2, 6, 7, AttachOptions.Fill, AttachOptions.Fill, TABLE_XPADDING, TABLE_YPADDING);
-			tag_view.Show ();
+			info_table.Attach (tag_view, 0, 2, 9, 10, AttachOptions.Fill, AttachOptions.Fill, TABLE_XPADDING, TABLE_YPADDING);
 
 			info_table.ShowAll ();
-	
-			info_expander.Add (info_table);
+
+			EventBox eb = new EventBox ();
+			eb.Add (info_table);
+			info_expander.Add (eb);
+			eb.ButtonPressEvent += HandleButtonPressEvent;
+
 			Add (info_expander);
 			rating_label.Visible = show_rating;
 			rating_view.Visible = show_rating;
@@ -256,6 +293,8 @@ namespace FSpot.Widgets
 			string fnumber;
 			string exposure;
 			string iso_speed;
+			string focal_length;
+			string camera_model;
 			bool add = true;
 			Resource iso_anon;
 	
@@ -319,12 +358,17 @@ namespace FSpot.Widgets
 					fnumber = ((SemWeb.Literal)stmt.Object).Value;
 				else if (stmt.Predicate == MetadataStore.Namespaces.Resolve ("exif:ISOSpeedRatings"))
 					iso_anon = stmt.Object;
+				else if (stmt.Predicate == MetadataStore.Namespaces.Resolve ("exif:FocalLength"))
+					focal_length = ((SemWeb.Literal)stmt.Object).Value;
+				else if (stmt.Predicate == MetadataStore.Namespaces.Resolve ("tiff:Model"))
+					camera_model = ((SemWeb.Literal)stmt.Object).Value;
 				else if (stmt.Subject == iso_anon && stmt.Predicate == MetadataStore.Namespaces.Resolve ("rdf:li"))
 					iso_speed = ((SemWeb.Literal)stmt.Object).Value;
 				else if (add && stmt.Subject.Uri == null)
 					store.Add (stmt);
-	
-				if (width == null || height == null || exposure == null || aperture == null || iso_speed == null)
+
+				if (width == null || height == null || exposure == null || aperture == null 
+				    || iso_speed == null || focal_length == null || camera_model == null)
 					return true;
 				else
 					return false;
@@ -355,6 +399,37 @@ namespace FSpot.Widgets
 					return info;
 				}
 			}
+			
+			public string FocalLength {
+				get {
+					if (focal_length == null)
+						return Catalog.GetString ("(Unknown)");
+
+					string fl = focal_length;
+
+					if (focal_length.Contains("/")) {
+						string[] strings = focal_length.Split('/');
+						try {
+							if (strings.Length == 2)
+								fl = (double.Parse (strings[0]) / double.Parse (strings[1])).ToString ();
+						} catch (FormatException e) {
+							return Catalog.GetString ("(wrong format)");
+						}
+					}
+
+					return fl + " mm";
+				}
+			}
+
+			public string CameraModel {
+				get {
+					if (focal_length != null)
+						return camera_model;
+					else
+						return Catalog.GetString ("(Unknown)");
+				}
+			}
+
 	
 			public string Dimensions {
 				get {
@@ -398,8 +473,12 @@ namespace FSpot.Widgets
 			histogram_expander.Visible = true;
 			UpdateHistogram ();
 
-			name_label.Visible = true;
-			name_value_label.Text = photo.Name != null ? System.Uri.UnescapeDataString(photo.Name) : String.Empty;
+			if (show_name) {
+				name_value_label.Text = photo.Name != null ? System.Uri.UnescapeDataString(photo.Name) : String.Empty;
+			}
+			name_label.Visible = show_name;	
+			name_value_label.Visible = show_name;
+			
 			try {
 				//using (new Timer ("building info")) {
 					using (ImageFile img = ImageFile.Create (photo.DefaultVersionUri))
@@ -412,30 +491,46 @@ namespace FSpot.Widgets
 				info = new ImageInfo (null);			
 			}
 
-			exposure_value_label.Text = info.ExposureInfo;
-			if (exposure_value_label.Text.IndexOf (Environment.NewLine) != -1)
-				exposure_label.Markup = default_exposure_string + Environment.NewLine;
-			else
-				exposure_label.Markup = default_exposure_string;
-			exposure_label.Visible = true;
-			exposure_value_label.Visible = true;
-	
-			size_value_label.Text = info.Dimensions;
-			size_label.Visible = true;
-			size_value_label.Visible = true;
+			if (show_exposure) {
+				exposure_value_label.Text = info.ExposureInfo;
+				if (exposure_value_label.Text.IndexOf (Environment.NewLine) != -1)
+					exposure_label.Markup = default_exposure_string + Environment.NewLine;
+				else
+					exposure_label.Markup = default_exposure_string;
+			}
+			exposure_label.Visible = show_exposure;
+			exposure_value_label.Visible = show_exposure;
 
+			if (show_size)
+				size_value_label.Text = info.Dimensions;
+			size_label.Visible = show_size;
+			size_value_label.Visible = show_size;
+
+			if (show_date) {
 	#if USE_EXIF_DATE
-			date_value_label.Text = info.Date;
+				date_value_label.Text = info.Date;
 	#else
-			DateTime local_time = photo.Time.ToLocalTime ();
-			date_value_label.Text = String.Format ("{0}{2}{1}",
-				local_time.ToShortDateString (),
-				local_time.ToShortTimeString (),
-				Environment.NewLine
-			);
+				DateTime local_time = photo.Time.ToLocalTime ();
+				date_value_label.Text = String.Format ("{0}{2}{1}",
+				                                       local_time.ToShortDateString (),
+				                                       local_time.ToShortTimeString (),
+				                                       Environment.NewLine
+				                                       );
 	#endif
+			}
+			date_label.Visible = show_date;
+			date_value_label.Visible = show_date;
 			
-	
+			if (show_focal_length)
+				focal_length_value_label.Text = info.FocalLength;
+			focal_length_label.Visible = show_focal_length;
+			focal_length_value_label.Visible = show_focal_length;
+			
+			if (show_camera)
+				camera_value_label.Text = info.CameraModel;
+			camera_label.Visible = show_camera;
+			camera_value_label.Visible = show_camera;
+
 			version_label.Visible = true;
 			version_combo.Visible = true;
 			version_list.Clear ();
@@ -451,6 +546,18 @@ namespace FSpot.Widgets
 				version_list.AppendValues (0, Catalog.GetString ("(No Edits)"), false);
 			version_combo.Changed += OnVersionComboChanged;
 
+			if (show_file_size) {
+				try {
+					Gnome.Vfs.FileInfo file_info = new Gnome.Vfs.FileInfo (photo.DefaultVersionUri.ToString ());
+					file_size_value_label.Text = Gnome.Vfs.Format.FileSizeForDisplay (file_info.Size);
+				} catch (System.IO.FileNotFoundException) {
+					file_size_value_label.Text = Catalog.GetString("(File not found)");
+				}
+			}
+			
+			file_size_label.Visible = show_file_size;
+			file_size_value_label.Visible = show_file_size;			
+			
 			if (show_tags)
 				tag_view.Current = photo;
 			rating_label.Visible = show_rating;
@@ -489,26 +596,59 @@ namespace FSpot.Widgets
 
 			name_label.Visible = false;
 			name_value_label.Text = String.Format(Catalog.GetString("{0} Photos"), Photos.Length);
-
+			name_value_label.Visible = true;
+			
 			version_label.Visible = false;
 			version_combo.Visible = false;
 
 			exposure_label.Visible = false;
 			exposure_value_label.Visible = false;
+			
+			focal_length_label.Visible = false;
+			focal_length_value_label.Visible = false;
+			
+			camera_label.Visible = false;
+			camera_value_label.Visible = false;
 
-			Photo first = Photos[Photos.Length-1];
-			Photo last = Photos[0];
-			if (first.Time.Date == last.Time.Date) {
-				//Note for translators: {0} is a date, {1} and {2} are times.
-				date_value_label.Text = String.Format(Catalog.GetString("On {0} between \n{1} and {2}"), 
-						first.Time.ToLocalTime ().ToShortDateString (),
-						first.Time.ToLocalTime ().ToShortTimeString (),
-						last.Time.ToLocalTime ().ToShortTimeString ());
-			} else {
-				date_value_label.Text = String.Format(Catalog.GetString("Between {0} \nand {1}"),
-						first.Time.ToLocalTime ().ToShortDateString (),
-						last.Time.ToLocalTime ().ToShortDateString ());
+			if (show_date) {
+				Photo first = Photos[Photos.Length-1];
+				Photo last = Photos[0];
+				if (first.Time.Date == last.Time.Date) {
+					//Note for translators: {0} is a date, {1} and {2} are times.
+					date_value_label.Text = String.Format(Catalog.GetString("On {0} between \n{1} and {2}"), 
+					                                      first.Time.ToLocalTime ().ToShortDateString (),
+					                                      first.Time.ToLocalTime ().ToShortTimeString (),
+					                                      last.Time.ToLocalTime ().ToShortTimeString ());
+				} else {
+					date_value_label.Text = String.Format(Catalog.GetString("Between {0} \nand {1}"),
+					                                      first.Time.ToLocalTime ().ToShortDateString (),
+					                                      last.Time.ToLocalTime ().ToShortDateString ());
+				}
 			}
+			date_label.Visible = show_date;
+			date_value_label.Visible = show_date;
+			
+			if (show_file_size) {
+				long file_size = 0;
+				foreach (Photo photo in Photos) {
+					
+					try {
+						Gnome.Vfs.FileInfo file_info = new Gnome.Vfs.FileInfo (photo.DefaultVersionUri.ToString ());
+						file_size += file_info.Size;
+					} catch (System.IO.FileNotFoundException) {
+						file_size = -1;
+						break;
+					}
+				}
+				
+				if (file_size != -1) {
+					file_size_value_label.Text = Gnome.Vfs.Format.FileSizeForDisplay (file_size);
+				} else {
+					file_size_value_label.Text = Catalog.GetString("(At least one File not found)");
+				}
+			}
+			file_size_label.Visible = show_file_size;
+			file_size_value_label.Visible = show_file_size;	
 
 			size_label.Visible = false;
 			size_value_label.Visible = false;
@@ -564,8 +704,17 @@ namespace FSpot.Widgets
 
 			bool histogram_visible = ContextSwitchStrategy.HistogramVisible (Context);
 			histogram_expander.Expanded = histogram_visible;
-			if (histogram_visible)
-				UpdateHistogram ();
+			
+			show_name = ContextSwitchStrategy.InfoBoxNameVisible (Context);
+			show_date = ContextSwitchStrategy.InfoBoxDateVisible (Context);
+			show_size = ContextSwitchStrategy.InfoBoxSizeVisible (Context);
+			show_exposure = ContextSwitchStrategy.InfoBoxExposureVisible (Context);
+			show_focal_length = ContextSwitchStrategy.InfoBoxFocalLengthVisible (Context);
+			show_camera = ContextSwitchStrategy.InfoBoxCameraVisible (Context);
+			show_file_size = ContextSwitchStrategy.InfoBoxFileSizeVisible (Context);
+			
+			if (infobox_visible)
+				update_delay.Start ();
 		}
 	
 		public void HandleMainWindowViewModeChanged (object o, EventArgs args)
@@ -575,6 +724,131 @@ namespace FSpot.Widgets
 				Context = ViewContext.Library;
 			else if (mode == MainWindow.ModeType.PhotoView)
 				Context = ViewContext.Edit;
+		}
+		
+		void HandleButtonPressEvent (object sender, ButtonPressEventArgs args)
+		{
+			if (args.Event.Button == 3) {
+				Menu popup_menu = new Menu ();
+				
+				AddMenuItems (popup_menu);
+				
+				if (args.Event != null)
+					popup_menu.Popup (null, null, null, args.Event.Button, args.Event.Time);
+				else
+					popup_menu.Popup (null, null, null, 0, Gtk.Global.CurrentEventTime);
+			
+				args.RetVal = true;
+			}
+		}
+		
+		void HandlePopulatePopup (object sender, PopulatePopupArgs args)
+		{			
+			AddMenuItems (args.Menu);
+			
+			args.RetVal = true;
+		}
+		
+		private void AddMenuItems (Menu popup_menu) {
+			
+			if (popup_menu.Children.Length > 0) {
+				GtkUtil.MakeMenuSeparator (popup_menu);
+			}
+			
+			MenuItem item;
+			
+			item = GtkUtil.MakeCheckMenuItem (popup_menu,
+			                                  Catalog.GetString ("Show Photo Name"),
+			                                  HandleMenuItemSelected,
+			                                  true,
+			                                  show_name,
+			                                  false);
+			
+			item.SetData ("cb", name_label.Handle);
+				
+			item = GtkUtil.MakeCheckMenuItem (popup_menu,
+			                           Catalog.GetString ("Show Date"),
+			                           HandleMenuItemSelected,
+			                           true,
+			                           show_date,
+			                           false);
+			
+			item.SetData ("cb", date_label.Handle);			
+			
+			item = GtkUtil.MakeCheckMenuItem (popup_menu,
+			                           Catalog.GetString ("Show Size"),
+			                           HandleMenuItemSelected,
+			                           true,
+			                           show_size,
+			                           false);
+			
+			item.SetData ("cb", size_label.Handle);
+			
+			item = GtkUtil.MakeCheckMenuItem (popup_menu,
+			                           Catalog.GetString ("Show Exposure"),
+			                           HandleMenuItemSelected,
+			                           true,
+			                           show_exposure,
+			                           false);
+			
+			item.SetData ("cb", exposure_label.Handle);
+			
+			item = GtkUtil.MakeCheckMenuItem (popup_menu,
+			                           Catalog.GetString ("Show Focal Length"),
+			                           HandleMenuItemSelected,
+			                           true,
+			                           show_focal_length,
+			                           false);
+			
+			item.SetData ("cb", focal_length_label.Handle);
+			
+			item = GtkUtil.MakeCheckMenuItem (popup_menu,
+			                           Catalog.GetString ("Show Camera"),
+			                           HandleMenuItemSelected,
+			                           true,
+			                           show_camera,
+			                           false);
+			
+			item.SetData ("cb", camera_label.Handle);
+			
+			item = GtkUtil.MakeCheckMenuItem (popup_menu,
+			                           Catalog.GetString ("Show File Size"),
+			                           HandleMenuItemSelected,
+			                           true,
+			                           show_file_size,
+			                           false);
+			
+			item.SetData ("cb", file_size_label.Handle);
+		}
+		
+		private void HandleMenuItemSelected (object sender, EventArgs args)
+		{
+			IntPtr handle = (sender as CheckMenuItem).GetData ("cb");
+			
+			if (handle == name_label.Handle) {
+				show_name = (sender as CheckMenuItem).Active;
+				ContextSwitchStrategy.SetInfoBoxNameVisible (Context, show_name);
+			} else if (handle == date_label.Handle) {
+				show_date = (sender as CheckMenuItem).Active;
+				ContextSwitchStrategy.SetInfoBoxDateVisible (Context, show_date);
+			} else if (handle == size_label.Handle) {
+				show_size = (sender as CheckMenuItem).Active;
+				ContextSwitchStrategy.SetInfoBoxSizeVisible (Context, show_size);
+			} else if (handle == exposure_label.Handle) {
+				show_exposure = (sender as CheckMenuItem).Active;
+				ContextSwitchStrategy.SetInfoBoxExposureVisible (Context, show_exposure);
+			} else if (handle == focal_length_label.Handle) {
+				show_focal_length = (sender as CheckMenuItem).Active;
+				ContextSwitchStrategy.SetInfoBoxFocalLengthVisible (Context, show_focal_length);
+			} else if (handle == camera_label.Handle) {
+				show_camera = (sender as CheckMenuItem).Active;
+				ContextSwitchStrategy.SetInfoBoxCameraVisible (Context, show_camera);
+			} else if (handle == file_size_label.Handle) {
+				show_file_size = (sender as CheckMenuItem).Active;
+				ContextSwitchStrategy.SetInfoBoxFileSizeVisible (Context, show_file_size);
+			}
+			
+			update_delay.Start ();
 		}
 	
 		// Constructor.
@@ -590,7 +864,7 @@ namespace FSpot.Widgets
 			update_delay.Start ();
 
 			histogram_delay = new Delay (DelayedUpdateHistogram);
-	
+			
 			BorderWidth = 2;
 			Hide ();
 		}
@@ -602,9 +876,23 @@ namespace FSpot.Widgets
 	public abstract class InfoBoxContextSwitchStrategy {
 		public abstract bool InfoBoxVisible (ViewContext context);
 		public abstract bool HistogramVisible (ViewContext context);
+		public abstract bool InfoBoxNameVisible (ViewContext context);
+		public abstract bool InfoBoxDateVisible (ViewContext context);
+		public abstract bool InfoBoxSizeVisible (ViewContext context);
+		public abstract bool InfoBoxExposureVisible (ViewContext context);
+		public abstract bool InfoBoxFocalLengthVisible (ViewContext context);
+		public abstract bool InfoBoxCameraVisible (ViewContext context);
+		public abstract bool InfoBoxFileSizeVisible (ViewContext context);
 
 		public abstract void SetInfoBoxVisible (ViewContext context, bool visible);
 		public abstract void SetHistogramVisible (ViewContext context, bool visible);
+		public abstract void SetInfoBoxNameVisible (ViewContext context, bool visible);
+		public abstract void SetInfoBoxDateVisible (ViewContext context, bool visible);
+		public abstract void SetInfoBoxSizeVisible (ViewContext context, bool visible);
+		public abstract void SetInfoBoxExposureVisible (ViewContext context, bool visible);
+		public abstract void SetInfoBoxFocalLengthVisible (ViewContext context, bool visible);
+		public abstract void SetInfoBoxCameraVisible (ViewContext context, bool visible);
+		public abstract void SetInfoBoxFileSizeVisible (ViewContext context, bool visible);
 	}
 
 	// Values are stored as strings, because bool is not nullable through Preferences.
@@ -614,11 +902,23 @@ namespace FSpot.Widgets
 		private string PrefKeyForContext (ViewContext context, string item) {
 			return String.Format ("{0}/{1}_visible/{2}", PREF_PREFIX, item, context);
 		}
+		
+		private string PrefKeyForContext (ViewContext context, string parent, string item) {
+			return String.Format ("{0}/{1}_visible/{2}/{3}", PREF_PREFIX, parent, item, context);
+		}
 
-		private bool VisibilityForContext (ViewContext context, string item) {
+		private bool VisibilityForContext (ViewContext context, string item, bool default_value) {
 			string visible = Preferences.Get<string> (PrefKeyForContext (context, item));
 			if (visible == null)
-				return true;
+				return default_value;
+			else
+				return visible == "1";
+		}
+		
+		private bool VisibilityForContext (ViewContext context, string parent, string item, bool default_value) {
+			string visible = Preferences.Get<string> (PrefKeyForContext (context, parent, item));
+			if (visible == null)
+				return default_value;
 			else
 				return visible == "1";
 		}
@@ -626,13 +926,45 @@ namespace FSpot.Widgets
 		private void SetVisibilityForContext (ViewContext context, string item, bool visible) {
 			Preferences.Set (PrefKeyForContext (context, item), visible ? "1" : "0");
 		}
+		
+		private void SetVisibilityForContext (ViewContext context, string parent, string item, bool visible) {
+			Preferences.Set (PrefKeyForContext (context, parent, item), visible ? "1" : "0");
+		}
 
 		public override bool InfoBoxVisible (ViewContext context) {
-			return VisibilityForContext (context, "infobox");
+			return VisibilityForContext (context, "infobox", true);
 		}
 
 		public override bool HistogramVisible (ViewContext context) {
-			return VisibilityForContext (context, "histogram");
+			return VisibilityForContext (context, "histogram", true);
+		}
+		
+		public override bool InfoBoxNameVisible (ViewContext context) {
+			return VisibilityForContext (context, "infobox", "name", true);
+		}
+		
+		public override bool InfoBoxDateVisible (ViewContext context) {
+			return VisibilityForContext (context, "infobox", "date", true);
+		}
+		
+		public override bool InfoBoxSizeVisible (ViewContext context) {
+			return VisibilityForContext (context, "infobox", "size", true);
+		}
+		
+		public override bool InfoBoxExposureVisible (ViewContext context) {
+			return VisibilityForContext (context, "infobox", "exposure", true);
+		}
+		
+		public override bool InfoBoxFocalLengthVisible (ViewContext context) {
+			return VisibilityForContext (context, "infobox", "focal_length", false);
+		}
+		
+		public override bool InfoBoxCameraVisible (ViewContext context)  {
+			return VisibilityForContext (context, "infobox", "camera", false);
+		}
+		
+		public override bool InfoBoxFileSizeVisible (ViewContext context) {
+			return VisibilityForContext (context, "infobox", "file_size", false);
 		}
 
 		public override void SetInfoBoxVisible (ViewContext context, bool visible) {
@@ -641,6 +973,34 @@ namespace FSpot.Widgets
 
 		public override void SetHistogramVisible (ViewContext context, bool visible) {
 			SetVisibilityForContext (context, "histogram", visible);
+		}
+		
+		public override void SetInfoBoxNameVisible (ViewContext context, bool visible) {
+			SetVisibilityForContext (context, "infobox", "name", visible);
+		}
+		
+		public override void SetInfoBoxDateVisible (ViewContext context, bool visible) {
+			SetVisibilityForContext (context, "infobox", "date", visible);
+		}
+		
+		public override void SetInfoBoxSizeVisible (ViewContext context, bool visible) {
+			SetVisibilityForContext (context, "infobox", "size", visible);
+		}
+		
+		public override void SetInfoBoxExposureVisible (ViewContext context, bool visible) {
+			SetVisibilityForContext (context, "infobox", "exposure", visible);
+		}
+		
+		public override void SetInfoBoxFocalLengthVisible (ViewContext context, bool visible) {
+			SetVisibilityForContext (context, "infobox", "focal_length", visible);
+		}
+		
+		public override void SetInfoBoxCameraVisible (ViewContext context, bool visible) {
+			SetVisibilityForContext (context, "infobox", "camera", visible);
+		}
+		
+		public override void SetInfoBoxFileSizeVisible (ViewContext context, bool visible) {
+			SetVisibilityForContext (context, "infobox", "file_size", visible);
 		}
 	}
 }

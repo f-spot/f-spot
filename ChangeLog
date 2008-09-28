@@ -1,3 +1,8 @@
+2008-09-28  Stephane Delcroix  <sdelcroix@novell.com>
+
+	* sc/Widgets/InfoBox.cs: make the shown info in the InfoBox 
+	configurable. Patch from Mike Gemuende, bgo #380958.
+
 2008-09-25  Stephane Delcroix  <sdelcroix@novell.com>
 
 	* src/InfoBox.cs: re-add the (No Edits) label
