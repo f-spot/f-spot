@@ -103,7 +103,7 @@ namespace FSpot.Widgets
 			Value = RatingFromPosition (x);
 		}
 		
-		private int RatingFromPosition (double x)
+		public virtual int RatingFromPosition (double x)
 		{
 			int pos = (int) (x / (double) IconRated.Width);
 			
@@ -355,6 +355,11 @@ namespace FSpot.Widgets
 		
 		public override int NumLevels {
 			get { return max_rating; }
+		}
+		
+		public override int RatingFromPosition (double x)
+		{
+			return base.RatingFromPosition (x) + 1;
 		}
 	}
 }
