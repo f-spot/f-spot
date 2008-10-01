@@ -71,7 +71,7 @@ if $run_mdb; then
 elif $run_gdb; then
 	gdb --eval-command=run --args mono $MONO_OPTIONS $EXE_TO_RUN "$@"
 elif $run_valgrind; then
-	valgrind --tool=memcheck --leak-check=full --log-file=valgrind --smc-check=all --suppressions=/home/sde/Mono/mono/data/mono.supp mono $MONO_OPTIONS $EXE_TO_RUN "$@"
+	valgrind --tool=memcheck --leak-check=full --show-reachable=yes --log-file=valgrind --smc-check=all --suppressions=/home/sde/Mono/mono/data/mono.supp mono $MONO_OPTIONS $EXE_TO_RUN "$@"
 else
 	exec -a @PACKAGE@ $DBUSLAUNCH mono $MONO_OPTIONS $EXE_TO_RUN "$@"
 fi
