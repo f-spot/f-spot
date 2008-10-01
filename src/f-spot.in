@@ -28,6 +28,7 @@ fi
 [ -n "$FSPOT_PROFILE" ] && FSPOT_PROFILE="--profile=$FSPOT_PROFILE"
 run_mdb=false
 run_gdb=false
+run_valgrind=false
 for arg in "$@"; do
     case "x$arg" in
     	x--debug)
@@ -38,6 +39,9 @@ for arg in "$@"; do
 	    ;;
 	x--gdb)
 	    run_gdb=true
+	    ;;
+	x--valgrind)
+	    run_valgrind=true
 	    ;;
     	x--trace=*)
 	    FSPOT_TRACE="$arg"
@@ -66,6 +70,8 @@ if $run_mdb; then
 	mdb $EXE_TO_RUN -args "$@"
 elif $run_gdb; then
 	gdb --eval-command=run --args mono $MONO_OPTIONS $EXE_TO_RUN "$@"
+elif $run_valgrind; then
+	valgrind --tool=memcheck --leak-check=full --log-file=valgrind --smc-check=all --suppressions=/home/sde/Mono/mono/data/mono.supp mono $MONO_OPTIONS $EXE_TO_RUN "$@"
 else
 	exec -a @PACKAGE@ $DBUSLAUNCH mono $MONO_OPTIONS $EXE_TO_RUN "$@"
 fi

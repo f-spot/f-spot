@@ -148,7 +148,7 @@ public class Driver {
 				GLib.Log.SetLogHandler ("Gtk", GLib.LogLevelFlags.Critical, logFunc);
 
 				break;
-			case "--uninstalled": case "--gdb":
+			case "--uninstalled": case "--gdb": case "--valgrind":
 				break;
 			default:
 				if (args [i].StartsWith ("--profile"))
