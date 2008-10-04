@@ -43,6 +43,10 @@
 		<!--<include href="legal.xml" xmlns="http://www.w3.org/2001/XInclude"/>-->
 		<revhistory>
 			<revision>
+				<revnumber>0.5</revnumber>
+				<date>2008-09-25</date>
+			</revision>
+			<revision>
 				<revnumber>0.4</revnumber>
 				<date>2008-09-12</date>
 			</revision>
@@ -375,7 +379,7 @@
 				</para>
 			</sect2>
 		</sect1>
-		
+
 		<sect1 id="tag">
 			<title>Tag</title>
 			<para>
@@ -564,7 +568,6 @@
 					a valid query, it will update your search. The <emphasis>not</emphasis> operator 
 					is not yet supported. 
 				</para>
-				<name></name>
 				
 				<para>
 					This function will also search for the typed text into photos comments and filename.
@@ -730,6 +733,169 @@
 				that can sync photos that have a particular tag with your Flickr or Picasa 
 				Web Album web storage.
 			</para>
+		</sect1>
+	</chapter>
+
+	<chapter id="cms">
+		<title>Color management</title>
+
+		<sect1 id="cms-what-is-cms">
+			<title>What's color management</title>
+			
+			<para>
+				When you capture a photo and look at it on a display, it looks different than 
+				on a camera's preview display or on any other display. It will also look 
+				different when you print it. This is because every device has unique color 
+				reproduction capabilities.
+			</para>
+
+			<para>
+				Color management system (CMS) is a tool to achieve reliable color reproduction 
+				for both display and output (e.g. a printer). A CMS relies on color profiles 
+				to map original colors to the color that a device can reproduce so that colors 
+				will appear the same way everywhere — on a computer LCD monitor, on a print 
+				from your local photolab etc.
+			</para>
+		</sect1>
+
+		<sect1 id="cms-what-is-icc-profile">
+			<title>What's a color profile</title>
+			
+			<para>
+				A color profile is a file with either .icc (thus its is often called an ICC 
+				profile) or .icm extension that describes how device's colors correspond to a 
+				universal description of colors.
+			</para>
+
+			<para>
+				There are several types of profiles: 
+			</para>
+
+			<itemizedlist>
+				<listitem>
+					<para>
+						Input device profile. It's profile for a camera or a profile that an 
+						application like XSane embeds into a scanned image. 
+					</para>
+				</listitem>
+				<listitem>
+					<para>
+						Working space profile. It's a profile that describes color space in 
+						which all operations are done inside an application. Usually very wide 
+						gamut profiles like AdobeRGB1998 or ProPhotoRGB are used for that.
+					</para>				
+				</listitem>
+				<listitem>
+					<para>
+						Display profile. It's a profile for a monitor. 
+					</para>				
+				</listitem>
+				<listitem>
+					<para>
+						Output profile. This is usually a profile for you printer. 
+					</para>				
+				</listitem>
+			</itemizedlist>					
+
+			<para>
+				Currently F-Spot allows setting only display and output profiles. 
+				All color operations are done in sRGB color space. 
+			</para>
+		</sect1>
+
+		<sect1 id="cms-how-to-get-icc-profile">
+			<title>How to get my screen/printer color profile </title>
+
+			<para>
+				There are few ways to get a color profile. 
+			</para>
+			
+			<sect2 id="cms-icc-from-cd-or-internet">
+				<title> From CD or Internet </title>
+
+				<para>
+					Many hardware manufacturers put color profiles into CD in the bundle. 
+					If you have one (from monitor or printer), you can use it. Or you can 
+					download it from the Internet (usually, from support section of the 
+					manufacturer's web site). Some camera manufacturers (Nikon, Canon) 
+					also provide ICC profiles.
+				</para>
+			</sect2>
+
+			<sect2 id="cms-icc-from-calibrating-and-profiling">
+				<title>Calibrating and profiling</title>
+
+				<para>
+					Best results can be achieved by calibrating and profiling devices with 
+					a measurement device. It is not so difficult, but it means that you need 
+					a spectrophotometer to do all measurements and create an ICC profile.
+				</para>
+
+				<para>
+					If you are on Windows or Mac OS X, you can use manufacturer's software 
+					coming with a spectrophotometer. On Linux you will have to use either 
+					<ulink url="http://www.argyllcms.com">Argyll</ulink>, which is a set of 
+					versatile command line tools, or 
+					<ulink url="http://lprof.sourceforge.net/">LProf</ulink>, which has a 
+					graphical user interface. 
+				</para>
+				<para>
+					Please refer to documentation of third party hardware and software 
+					vendors for details.
+				</para>
+			</sect2>
+
+			<sect2 id="cms-icc-from-embedding">
+				<title>Embedding</title>
+
+				<para>
+					Image formats themselves (such as TIFF, JPEG, PNG...) may contain embedded 
+					color profiles. If color management is enabled, F-Spot looks for such 
+					embedded profiles and takes them into consideration.
+				</para>
+			</sect2>
+		</sect1>
+
+		<sect1 id="cms-how-to-use">
+			<title>How to use color management in F-Spot</title>
+			
+			<para>
+				Color management in F-Spot can use only RGB profiles at this time 
+				(and you can't see other profiles in the F-Spot).
+			</para>
+
+			<itemizedlist>
+				<listitem>
+					<para>
+						Copy your color profiles into the 
+						<filename class='directory'>/usr/share/color/icc</filename> or 
+						<filename class='directory'>/usr/local/share./color/icc</filename> 
+						directory.
+					</para>
+				</listitem>
+				<listitem>
+					<para>
+						Enable the color management with the <menuchoice>
+						<guimenu>Edit</guimenu><guimenuitem>Preferences</guimenuitem>
+						</menuchoice> menu.
+					</para>				
+				</listitem>
+				<listitem>
+					<para>
+						Select <guilabel>Display</guilabel> and <guilabel>Output</guilabel> 
+						profiles.
+					</para>				
+				</listitem>
+			</itemizedlist>					
+
+			<tip>
+				<para>
+					You can use <ulink url="http://burtonini.com/blog/computers/xicc">xicc</ulink> 
+					to load ICC profile to display and use the loaded profile from F-Spot. 
+					Just mark the checkbox <guilabel>Try to use the system display 
+					profile</guilabel>.
+				</para>
+			</tip>
 		</sect1>
 	</chapter>
 	

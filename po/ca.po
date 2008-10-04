@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: F-Spot\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-09-18 11:59+0200\n"
-"PO-Revision-Date: 2008-09-18 12:47+0100\n"
+"POT-Creation-Date: 2008-10-02 13:49+0200\n"
+"PO-Revision-Date: 2008-10-02 14:47+0100\n"
 "Last-Translator: Jordi Mas <jmas@softcatala.org>\n"
 "Language-Team: Catalan\n"
 "MIME-Version: 1.0\n"
@@ -141,7 +141,7 @@ msgstr "Complement"
 
 #
 #: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinTreeWidget.cs:112
-#: ../src/Widgets/InfoBox.cs:196
+#: ../src/Widgets/InfoBox.cs:211
 msgid "Version"
 msgstr "Versió"
 
@@ -151,7 +151,7 @@ msgstr "Altres"
 
 #
 #: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/ManageSitesDialog.cs:51
-#: ../src/Widgets/InfoBox.cs:193
+#: ../src/Widgets/InfoBox.cs:208
 #: ../extensions/Exporters/FacebookExport/FacebookExport.glade.h:9
 msgid "Name"
 msgstr "Nom"
@@ -494,7 +494,7 @@ msgstr "S'ha acabat la baixada"
 msgid "Transferring \"{0}\" from camera"
 msgstr "S'està transferint la fotografia «{0}» des de la càmera"
 
-#: ../src/CameraSelectionDialog.cs:29
+#: ../src/CameraSelectionDialog.cs:29 ../src/Widgets/InfoBox.cs:227
 msgid "Camera"
 msgstr "Càmera"
 
@@ -648,6 +648,10 @@ msgstr "Quadrat"
 msgid "Crop"
 msgstr "Escapça"
 
+#: ../src/Editors/CropEditor.cs:73
+msgid "Select the area that needs cropping."
+msgstr "Seleccioneu l'àrea que vulgueu escapçar"
+
 #: ../src/Editors/CropEditor.cs:98
 msgid "No Constraint"
 msgstr "Sense restricció"
@@ -672,6 +676,10 @@ msgstr "Reducció d'ulls vermells"
 #: ../src/Editors/RedEyeEditor.cs:21
 msgid "Fix!"
 msgstr "Arregla"
+
+#: ../src/Editors/RedEyeEditor.cs:25
+msgid "Select the eyes you wish to fix."
+msgstr "Seleccioneu els ulls que voleu arreglar."
 
 #: ../src/Editors/SepiaEditor.cs:17
 msgid "Sepia Tone"
@@ -779,7 +787,7 @@ msgstr "Informació"
 
 #
 #
-#: ../src/FullScreenView.cs:69 ../src/Widgets/InfoBox.cs:182
+#: ../src/FullScreenView.cs:69 ../src/Widgets/InfoBox.cs:197
 msgid "Image Information"
 msgstr "Informació de la imatge"
 
@@ -1190,7 +1198,7 @@ msgstr "Fotografia següent"
 #
 #
 #. Don't care otherwise, Tags sounds reasonable
-#: ../src/MainWindow.cs:353 ../src/Widgets/Sidebar.cs:73
+#: ../src/MainWindow.cs:354 ../src/Widgets/Sidebar.cs:73
 #: ../extensions/Exporters/FolderExport/FolderExport.cs:995
 #: ../extensions/Exporters/FolderExport/FolderExport.cs:1167
 #: ../extensions/Exporters/FolderExport/FolderExport.cs:1207
@@ -1198,7 +1206,7 @@ msgid "Tags"
 msgstr "Etiquetes"
 
 #. Note for translators: This indicates the current photo is photo {0} of {1} out of photos
-#: ../src/MainWindow.cs:661 ../src/ProgressDialog.cs:82
+#: ../src/MainWindow.cs:662 ../src/ProgressDialog.cs:82
 #: ../src/TimeDialog.cs:143 ../extensions/Exporters/CDExport/CDExport.cs:221
 #: ../extensions/Exporters/FlickrExport/FlickrExport.cs:349
 #: ../extensions/Exporters/FolderExport/FolderExport.cs:244
@@ -1207,12 +1215,12 @@ msgstr "Etiquetes"
 msgid "{0} of {1}"
 msgstr "{0} de {1}"
 
-#: ../src/MainWindow.cs:1670
+#: ../src/MainWindow.cs:1671
 msgid "No cameras detected."
 msgstr "No s'ha detectat cap càmera."
 
 #
-#: ../src/MainWindow.cs:1671
+#: ../src/MainWindow.cs:1672
 msgid ""
 "F-Spot was unable to find any cameras attached to this system.  Double check "
 "that the camera is connected and has power"
@@ -1220,24 +1228,24 @@ msgstr ""
 "L'F-Spot no ha pogut trobar cap càmera connectada a aquest sistema. "
 "Comproveu que la càmera estigui connectada i engegada"
 
-#: ../src/MainWindow.cs:1711
+#: ../src/MainWindow.cs:1712
 msgid "Error connecting to camera"
 msgstr "S'ha produït un error en connectar amb la càmera"
 
-#: ../src/MainWindow.cs:1712
+#: ../src/MainWindow.cs:1713
 #, csharp-format
 msgid "Received error \"{0}\" while connecting to camera"
 msgstr "S'ha rebut l'error «{0}» mentre es connectava amb la càmera"
 
 #. Translators, The singular case will never happen here.
-#: ../src/MainWindow.cs:2057
+#: ../src/MainWindow.cs:2058
 #, csharp-format
 msgid "Merge the selected tag"
 msgid_plural "Merge the {0} selected tags?"
 msgstr[0] "Voleu fusionar l'etiqueta seleccionada?"
 msgstr[1] "Voleu fusionar les {0} etiquetes seleccionades?"
 
-#: ../src/MainWindow.cs:2084
+#: ../src/MainWindow.cs:2085
 msgid ""
 "This operation will merge the selected tags and any sub-tags into a single "
 "tag."
@@ -1246,58 +1254,58 @@ msgstr ""
 "una de sola."
 
 #
-#: ../src/MainWindow.cs:2086
+#: ../src/MainWindow.cs:2087
 msgid "_Merge Tags"
 msgstr "F_usiona les etiquetes"
 
-#: ../src/MainWindow.cs:2291
+#: ../src/MainWindow.cs:2292
 #, csharp-format
 msgid "{0} Photo out of {1}"
 msgid_plural "{0} Photos out of {1}"
 msgstr[0] "{0} fotografia de {1}"
 msgstr[1] "{0} fotografies de {1}"
 
-#: ../src/MainWindow.cs:2293 ../src/SingleView.cs:481
+#: ../src/MainWindow.cs:2294 ../src/SingleView.cs:481
 #, csharp-format
 msgid "{0} Photo"
 msgid_plural "{0} Photos"
 msgstr[0] "{0} fotografia"
 msgstr[1] "{0} fotografies"
 
-#: ../src/MainWindow.cs:2296
+#: ../src/MainWindow.cs:2297
 #, csharp-format
 msgid " ({0} selected)"
 msgid_plural " ({0} selected)"
 msgstr[0] " ({0} seleccionada)"
 msgstr[1] " ({0} seleccionades)"
 
-#: ../src/MainWindow.cs:2377
+#: ../src/MainWindow.cs:2378
 msgid "_Ok"
 msgstr "_D'acord"
 
-#: ../src/MainWindow.cs:2378
+#: ../src/MainWindow.cs:2379
 msgid "Error Deleting Picture"
 msgstr "S'ha produït un error en suprimir la fotografia"
 
 # , csharp-format
-#: ../src/MainWindow.cs:2383
+#: ../src/MainWindow.cs:2384
 #, csharp-format
 msgid "No permission to delete the file:{1}{0}"
 msgstr "No teniu permís per suprimir el fitxer:{1}{0}"
 
-#: ../src/MainWindow.cs:2387
+#: ../src/MainWindow.cs:2388
 #, csharp-format
 msgid "An error of type {0} occurred while deleting the file:{2}{1}"
 msgstr "S'ha produït un error de tipus {0} en suprimir el fitxer:{2}{1}"
 
-#: ../src/MainWindow.cs:2413
+#: ../src/MainWindow.cs:2414
 #, csharp-format
 msgid "Delete the selected photo permanently?"
 msgid_plural "Delete the {0} selected photos permanently?"
 msgstr[0] "Voleu suprimir permanentment la fotografia seleccionada?"
 msgstr[1] "Voleu suprimir permanentment les {0} fotografies seleccionades?"
 
-#: ../src/MainWindow.cs:2417
+#: ../src/MainWindow.cs:2418
 msgid "This deletes all versions of the selected photo from your drive."
 msgid_plural ""
 "This deletes all versions of the selected photos from your drive."
@@ -1306,20 +1314,20 @@ msgstr[0] ""
 msgstr[1] ""
 "Se suprimiran del disc totes les versions de les fotografies seleccionades."
 
-#: ../src/MainWindow.cs:2420
+#: ../src/MainWindow.cs:2421
 msgid "_Delete photo"
 msgid_plural "_Delete photos"
 msgstr[0] "_Suprimeix la fotografia"
 msgstr[1] "_Suprimeix les fotografies"
 
-#: ../src/MainWindow.cs:2450
+#: ../src/MainWindow.cs:2451
 #, csharp-format
 msgid "Remove the selected photo from F-Spot?"
 msgid_plural "Remove the {0} selected photos from F-Spot?"
 msgstr[0] "Voleu suprimir la fotografia seleccionada de l'F-Spot?"
 msgstr[1] "Voleu suprimir les {0} fotografies seleccionades de l'F-Spot?"
 
-#: ../src/MainWindow.cs:2455
+#: ../src/MainWindow.cs:2456
 msgid ""
 "If you remove photos from the F-Spot catalog all tag information will be "
 "lost. The photos remain on your computer and can be imported into F-Spot "
@@ -1329,29 +1337,29 @@ msgstr ""
 "etiquetes es perdrà. Les fotografies, però, es mantindran a l'ordinador i es "
 "podran tornar a importar a l'F-Spot."
 
-#: ../src/MainWindow.cs:2456
+#: ../src/MainWindow.cs:2457
 msgid "_Remove from Catalog"
 msgstr "Suprimeix del catà_leg"
 
-#: ../src/MainWindow.cs:2519
+#: ../src/MainWindow.cs:2520
 #, csharp-format
 msgid "Delete tag \"{0}\"?"
 msgstr "Voleu suprimir l'etiqueta «{0}»?"
 
-#: ../src/MainWindow.cs:2521
+#: ../src/MainWindow.cs:2522
 #, csharp-format
 msgid "Delete the {0} selected tags?"
 msgstr "Voleu suprimir les etiquetes {0} seleccionades?"
 
 #
 #
-#: ../src/MainWindow.cs:2526
+#: ../src/MainWindow.cs:2527
 msgid "photo"
 msgid_plural "photos"
 msgstr[0] "fotografia"
 msgstr[1] "fotografies"
 
-#: ../src/MainWindow.cs:2528
+#: ../src/MainWindow.cs:2529
 #, csharp-format
 msgid "If you delete this tag, the association with {0} {1} will be lost."
 msgid_plural ""
@@ -1361,18 +1369,18 @@ msgstr[0] ""
 msgstr[1] ""
 "Si suprimiu aquestes etiquetes, les associacions amb {0} {1} es perdran."
 
-#: ../src/MainWindow.cs:2533
+#: ../src/MainWindow.cs:2534
 msgid "_Delete tag"
 msgid_plural "_Delete tags"
 msgstr[0] "_Suprimeix l'etiqueta"
 msgstr[1] "_Suprimeix les etiquetes"
 
 #. A Category is not empty. Can not delete it.
-#: ../src/MainWindow.cs:2547
+#: ../src/MainWindow.cs:2548
 msgid "Tag is not empty"
 msgstr "L'etiqueta no és buida"
 
-#: ../src/MainWindow.cs:2548
+#: ../src/MainWindow.cs:2549
 #, csharp-format
 msgid ""
 "Can not delete tags that have tags within them.  Please delete tags under "
@@ -1381,19 +1389,19 @@ msgstr ""
 "No es poden suprimir etiquetes que en contenen d'altres. Primer suprimiu les "
 "etiquetes «{0}»"
 
-#: ../src/MainWindow.cs:2991
+#: ../src/MainWindow.cs:2992
 msgid "Rotate selected photo left"
 msgid_plural "Rotate selected photos left"
 msgstr[0] "Gira la fotografia seleccionada cap a l'esquerra"
 msgstr[1] "Gira les fotografies seleccionades cap a l'esquerra"
 
-#: ../src/MainWindow.cs:3004
+#: ../src/MainWindow.cs:3005
 msgid "Rotate selected photo right"
 msgid_plural "Rotate selected photos right"
 msgstr[0] "Gira la fotografia seleccionada cap a la dreta"
 msgstr[1] "Gira les fotografies seleccionades cap a la dreta"
 
-#: ../src/MainWindow.cs:3012
+#: ../src/MainWindow.cs:3013
 #, csharp-format
 msgid "Find _Selected Tag"
 msgid_plural "Find _Selected Tags"
@@ -1401,20 +1409,20 @@ msgstr[0] "_Cerca l'etiqueta seleccionada"
 msgstr[1] "_Cerca les etiquetes seleccionades"
 
 # csharp-format
-#: ../src/MainWindow.cs:3016
+#: ../src/MainWindow.cs:3017
 #, csharp-format
 msgid "Find Selected Tag _With"
 msgid_plural "Find Selected Tags _With"
 msgstr[0] "C_erca l'etiqueta seleccionada amb"
 msgstr[1] "C_erca les etiquetes seleccionada amb"
 
-#: ../src/MainWindow.cs:3054
+#: ../src/MainWindow.cs:3055
 msgid "Create New Version?"
 msgid_plural "Create New Versions?"
 msgstr[0] "Voleu crear una versió nova?"
 msgstr[1] "Voleu crear versions noves?"
 
-#: ../src/MainWindow.cs:3056
+#: ../src/MainWindow.cs:3057
 #, csharp-format
 msgid ""
 "Before launching {1}, should F-Spot create a new version of the selected "
@@ -1601,7 +1609,7 @@ msgstr "No s'ha pogut canviar el nom de la versió"
 msgid "Received exception \"{0}\". Unable to rename version to \"{1}\""
 msgstr "S'ha rebut l'excepció «{0}». No s'ha pogut desar la versió com a «{1}»"
 
-#: ../src/PhotoVersionMenu.cs:68
+#: ../src/PhotoVersionMenu.cs:67 ../src/Widgets/InfoBox.cs:546
 msgid "(No Edits)"
 msgstr "(Cap modificació)"
 
@@ -1926,28 +1934,28 @@ msgstr "Arrossegueu les etiquetes aquí per cercar-les"
 msgid "Error renaming tag"
 msgstr "S'ha produït un error en reanomenar l'etiqueta"
 
-#: ../src/TagStore.cs:239
+#: ../src/TagStore.cs:202
 msgid "Favorites"
 msgstr "Preferides"
 
-#: ../src/TagStore.cs:244
+#: ../src/TagStore.cs:207
 msgid "Hidden"
 msgstr "Ocultes"
 
-#: ../src/TagStore.cs:252
+#: ../src/TagStore.cs:215
 msgid "People"
 msgstr "Gent"
 
-#: ../src/TagStore.cs:257
+#: ../src/TagStore.cs:220
 msgid "Places"
 msgstr "Llocs"
 
-#: ../src/TagStore.cs:262
+#: ../src/TagStore.cs:225
 msgid "Events"
 msgstr "Esdeveniments"
 
 #. The label for the root category is used in new and edit tag dialogs
-#: ../src/TagStore.cs:275 ../src/Widgets/InfoBox.cs:351
+#: ../src/TagStore.cs:238 ../src/Widgets/InfoBox.cs:397
 msgid "(None)"
 msgstr "(Cap)"
 
@@ -2156,8 +2164,8 @@ msgid ""
 "Received exception \"{0}\". Note that you have to develop RAW files into "
 "JPEG before you can edit them."
 msgstr ""
-"S'ha rebut una excepció «{0}». Tingueu en compte que heu de convertir "
-"fitxers RAW dins del JPEG abans de que pugueu editar-los."
+"S'ha rebut una excepció «{0}». Tingueu en compte que heu de convertir fitxers "
+"RAW dins del JPEG abans de que pugueu editar-los."
 
 #: ../src/Widgets/FindBar.cs:58
 msgid "Find:"
@@ -2169,49 +2177,67 @@ msgid "and"
 msgstr "i"
 
 #
-#: ../src/Widgets/InfoBox.cs:164
+#: ../src/Widgets/InfoBox.cs:179
 msgid "Histogram"
 msgstr "Histograma"
 
 #
 #
-#: ../src/Widgets/InfoBox.cs:199
+#: ../src/Widgets/InfoBox.cs:214
 msgid "Date"
 msgstr "Data"
 
 #
 #
-#: ../src/Widgets/InfoBox.cs:202
+#: ../src/Widgets/InfoBox.cs:217
 #: ../extensions/Exporters/CDExport/CDExport.glade.h:5
 msgid "Size"
 msgstr "Mida"
 
 #
 #
-#: ../src/Widgets/InfoBox.cs:205
+#: ../src/Widgets/InfoBox.cs:220
 msgid "Exposure"
 msgstr "Exposició"
+
+#: ../src/Widgets/InfoBox.cs:224
+msgid "Focal Length"
+msgstr "Longitud focal"
+
+#: ../src/Widgets/InfoBox.cs:230
+msgid "File Size"
+msgstr "Mida del fitxer"
 
 #
 #
 # TODO: Valoració?
 #
-#: ../src/Widgets/InfoBox.cs:209
+#: ../src/Widgets/InfoBox.cs:233
 msgid "Rating"
 msgstr "Puntuació:"
 
-#: ../src/Widgets/InfoBox.cs:362 ../src/Widgets/InfoBox.cs:371
+#: ../src/Widgets/InfoBox.cs:406 ../src/Widgets/InfoBox.cs:429
+#: ../src/Widgets/InfoBox.cs:439 ../src/Widgets/InfoBox.cs:448
 msgid "(Unknown)"
 msgstr "(Desconegut)"
 
+#: ../src/Widgets/InfoBox.cs:416
+msgid "(wrong format)"
+msgstr "(format erroni)"
+
+#: ../src/Widgets/InfoBox.cs:554
+#
+msgid "(File not found)"
+msgstr "(no s'ha trobat el fitxer)"
+
 # csharp-format
-#: ../src/Widgets/InfoBox.cs:469
+#: ../src/Widgets/InfoBox.cs:598
 #, csharp-format
 msgid "{0} Photos"
 msgstr "{0} fotografies"
 
 #. Note for translators: {0} is a date, {1} and {2} are times.
-#: ../src/Widgets/InfoBox.cs:481
+#: ../src/Widgets/InfoBox.cs:618
 #, csharp-format
 msgid ""
 "On {0} between \n"
@@ -2220,7 +2246,7 @@ msgstr ""
 "Al {0} entre \n"
 "les {1} i les {2}"
 
-#: ../src/Widgets/InfoBox.cs:486
+#: ../src/Widgets/InfoBox.cs:623
 #, csharp-format
 msgid ""
 "Between {0} \n"
@@ -2228,6 +2254,46 @@ msgid ""
 msgstr ""
 "Entre les {0} \n"
 "i les {1}"
+
+#: ../src/Widgets/InfoBox.cs:647
+#
+msgid "(At least one File not found)"
+msgstr "(falta almenys un fitxer)"
+
+#: ../src/Widgets/InfoBox.cs:761
+#
+msgid "Show Photo Name"
+msgstr "Mostra el nom de la fotografia"
+
+#: ../src/Widgets/InfoBox.cs:770
+#
+msgid "Show Date"
+msgstr "Mostra la data"
+
+#: ../src/Widgets/InfoBox.cs:779
+#
+msgid "Show Size"
+msgstr "Mostra la mida"
+
+#
+#
+#: ../src/Widgets/InfoBox.cs:788
+#
+msgid "Show Exposure"
+msgstr "Mostra l'exposició"
+
+#: ../src/Widgets/InfoBox.cs:797
+msgid "Show Focal Length"
+msgstr "Mostra la longitud focal"
+
+#: ../src/Widgets/InfoBox.cs:806
+#
+msgid "Show Camera"
+msgstr "Mostra la càmera"
+
+#: ../src/Widgets/InfoBox.cs:815
+msgid "Show File Size"
+msgstr "Mostra la mida del fitxer"
 
 #: ../src/Widgets/MetadataDisplay.cs:23
 msgid "Metadata"
@@ -3082,7 +3148,7 @@ msgstr "Mida original total"
 
 #: ../src/f-spot.glade.h:185
 msgid "Try to use the system display profile"
-msgstr ""
+msgstr "Prova d'usar el perfil de la pantalla del sistema"
 
 #: ../src/f-spot.glade.h:186
 msgid "View"
@@ -3303,15 +3369,16 @@ msgstr "O_bre l'àlbum en el navegador quan finalitzi la pujada"
 msgid "_Open destination when done exporting"
 msgstr "O_bre la destinació quan finalitzi l'exportació"
 
+#
+#
 #: ../src/f-spot.glade.h:235
-msgid "_Output:"
-msgstr "_Sortida:"
-
-#
-#
-#: ../src/f-spot.glade.h:236
 msgid "_Photo"
 msgstr "_Fotografies"
+
+#: ../src/f-spot.glade.h:236
+#
+msgid "_Print output:"
+msgstr "_Sortida de la impressió:"
 
 #: ../src/f-spot.glade.h:237
 msgid "_Quit"
@@ -4014,26 +4081,27 @@ msgstr ""
 
 #: ../extensions/Exporters/FacebookExport/FacebookExport.addin.xml.h:1
 msgid "F_acebook..."
-msgstr ""
+msgstr "F_acebook..."
 
 #: ../extensions/Exporters/FacebookExport/FacebookExport.cs:256
 msgid "Too many images to export"
-msgstr ""
+msgstr "Hi ha massa imatges a exportar"
 
 #: ../extensions/Exporters/FacebookExport/FacebookExport.cs:256
 msgid ""
 "Facebook only permits 60 photographs per album.  Please refine your "
 "selection and try again."
 msgstr ""
+"El Facebook només permet 60 fotografies per àlbum. Refineu la selecció i proveu-ho de nou."
 
 #: ../extensions/Exporters/FacebookExport/FacebookExport.cs:279
 #: ../extensions/Exporters/FacebookExport/FacebookExport.cs:365
 msgid "You are not logged in."
-msgstr ""
+msgstr "No heu entrat."
 
 #: ../extensions/Exporters/FacebookExport/FacebookExport.cs:320
 msgid "Waiting for authentication"
-msgstr ""
+msgstr "S'està esperant l'autenticació"
 
 #: ../extensions/Exporters/FacebookExport/FacebookExport.cs:320
 msgid ""
@@ -4065,21 +4133,23 @@ msgstr "L'àlbum ha de tenir un nom"
 
 #: ../extensions/Exporters/FacebookExport/FacebookExport.cs:492
 msgid "Please name your album or choose an existing album."
-msgstr ""
+msgstr "Introduïu un nom per l'àlbum o seleccioneu un àlbum existent."
 
 #: ../extensions/Exporters/FacebookExport/FacebookExport.cs:505
 msgid "Creating a new album failed"
-msgstr ""
+msgstr "S'ha produït un error en crear un àlbum nou"
 
 #
 #
 #: ../extensions/Exporters/FacebookExport/FacebookExport.cs:505
-#, fuzzy, csharp-format
+#, csharp-format
 msgid ""
 "An error occurred creating a new album.\n"
 "\n"
 "{0}"
-msgstr "S'ha produït un error en crear un àlbum nou"
+msgstr "S'ha produït un error en crear un àlbum nou.\n"
+"\n"
+"{0}"
 
 #: ../extensions/Exporters/FacebookExport/FacebookExport.cs:529
 #: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:661
@@ -4115,9 +4185,9 @@ msgid "Export to Facebook"
 msgstr "Exporta-ho al Facebook..."
 
 #: ../extensions/Exporters/FacebookExport/FacebookExport.glade.h:5
-#, fuzzy
+#
 msgid "In this photo"
-msgstr "No hi ha cap fotografia activa"
+msgstr "En aquesta fotografia"
 
 #
 #: ../extensions/Exporters/FacebookExport/FacebookExport.glade.h:7
@@ -4192,9 +4262,9 @@ msgid "Merge Db"
 msgstr "Fusiona les bases de dades"
 
 #: ../extensions/Tools/MergeDb/MergeDb.cs:73
-#, fuzzy
+#
 msgid "Error opening the selected file"
-msgstr "Voleu fusionar l'etiqueta seleccionada?"
+msgstr "S'ha produït un error en obrir el fitxer seleccionat"
 
 #: ../extensions/Tools/MergeDb/MergeDb.cs:74
 #, csharp-format
@@ -4205,13 +4275,13 @@ msgid ""
 msgstr ""
 
 #: ../extensions/Tools/MergeDb/MergeDb.glade.h:1
-#, fuzzy
+#
 msgid ""
 "<small><i>Choose the location of the database you want to import from</i></"
 "small>"
 msgstr ""
-"<small><i>Escolliu el directori on l'F-Spot desarà les fotografies noves "
-"importades</i></small>"
+"<small><i>Escolliu la ubicació de la base de dades que voleu importar des de"
+"</i></small>"
 
 #: ../extensions/Tools/MergeDb/MergeDb.glade.h:2
 msgid ""
@@ -4239,9 +4309,9 @@ msgstr "Un únic rodet a importar"
 
 #
 #: ../extensions/Tools/MergeDb/MergeDb.glade.h:8
-#, fuzzy
+#
 msgid "Copy images to photos folder"
-msgstr "Copia els fitxers a la carpeta de les fotografies"
+msgstr "Copia les imatges a la carpeta de les fotografies"
 
 #
 #
@@ -4251,7 +4321,7 @@ msgstr "Ubicació de la base de dades:"
 
 #: ../extensions/Tools/MergeDb/MergeDb.glade.h:10
 msgid "Everything"
-msgstr ""
+msgstr "Tot"
 
 #
 #: ../extensions/Tools/MergeDb/MergeDb.glade.h:11
@@ -4260,11 +4330,11 @@ msgstr "Importa:"
 
 #: ../extensions/Tools/MergeDb/MergeDb.glade.h:12
 msgid "Keep the images at their original location"
-msgstr ""
+msgstr "Manté les imatges a la seva ubicació original"
 
 #: ../extensions/Tools/MergeDb/MergeDb.glade.h:13
 msgid "Merge another f-spot collection"
-msgstr ""
+msgstr "Fusiona amb una altra col·leció de l'F-Spot"
 
 #: ../extensions/Tools/MergeDb/MergeDb.glade.h:14
 msgid "New Rolls Only"
@@ -4389,8 +4459,8 @@ msgstr "_SmugMug..."
 msgid "Uploading photo \"{0}\""
 msgstr "S'està pujant la fotografia «{0}»"
 
+#
 #: ../extensions/Exporters/TabbloExport/Tabblo/Connection.cs:181
-#, fuzzy
 msgid "Logging into Tabblo"
 msgstr "S'està entrant al Tabblo"
 
@@ -4434,24 +4504,24 @@ msgstr "S'ha produït un error en processar «{0}»: {1}"
 
 #: ../extensions/Exporters/TabbloExport/TrustError.glade.h:3
 msgid "Abort this session"
-msgstr ""
+msgstr "Cancel·la aquesta sessió"
 
 #: ../extensions/Exporters/TabbloExport/TrustError.glade.h:4
 msgid "Always trust this site's certificate"
-msgstr ""
+msgstr "Confia sempre en el certificat d'aquest lloc"
 
 #: ../extensions/Exporters/TabbloExport/TrustError.glade.h:5
 msgid "Do you wish to:"
-msgstr ""
+msgstr "Voleu:"
 
 #: ../extensions/Exporters/TabbloExport/TrustError.glade.h:6
-#, fuzzy
+#
 msgid "Trust Error"
-msgstr "S'ha produït un error"
+msgstr "S'ha produït un error de confiança"
 
 #: ../extensions/Exporters/TabbloExport/TrustError.glade.h:7
 msgid "Trust the site's certificate this once"
-msgstr ""
+msgstr "Confia en el certificat d'aquest lloc només aquest cop"
 
 #~ msgid "Metadata Browser"
 #~ msgstr "Navegador de metadades"
@@ -4500,9 +4570,6 @@ msgstr ""
 
 #~ msgid "Remove redeye from selected area"
 #~ msgstr "Treu els ulls vermells de la zona seleccionada"
-
-#~ msgid "Select an area to crop"
-#~ msgstr "Seleccioneu l'àrea que vulgueu escapçar"
 
 #~ msgid "Select an area to remove redeye"
 #~ msgstr "Seleccioneu l'àrea d'on vulgueu treure els ulls vermells"
