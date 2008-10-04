@@ -1,3 +1,7 @@
+2008-10-04  Stephane Delcroix  <sdelcroix@novell.com>
+
+	* src/PixbufUtils.cs: fix the leakage on GetSize ();
+
 2008-09-22  Stephane Delcroix  <sdelcroix@novell.com>
 
 	* configure.in: bump to 0.5.0.1
