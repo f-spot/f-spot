@@ -1,4 +1,8 @@
-2009-10-01  Stephane Delcroix  <sdelcroix@novell.com>
+2008-10-04  Stephane Delcroix  <sdelcroix@novell.com>
+
+	* src/PixbufUtils.cs: fix the leakage on GetSize ();
+
+2008-10-01  Stephane Delcroix  <sdelcroix@novell.com>
 
 	* src/f-spot.in:
 	* src/main.cs: --valgrind option

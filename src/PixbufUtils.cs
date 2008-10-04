@@ -214,6 +214,12 @@ public class PixbufUtils {
 		
 	static public void GetSize (string path, out int width, out int height)
 	{
+#if true
+		using (Gdk.Pixbuf pixbuf = new Gdk.Pixbuf (path)) {
+			width = pixbuf.Width;
+			height = pixbuf.Height;
+		}
+#else //yes, the pixbuf loader hack is smarter, but it leaks like an old women
 		Gdk.PixbufLoader loader = new Gdk.PixbufLoader ();
 		int orig_width = 0;
 		int orig_height = 0;
@@ -237,6 +243,7 @@ public class PixbufUtils {
 		
 		width = orig_width;
 		height = orig_height;
+#endif
 	}
 
 	static public Pixbuf LoadAtMaxSize (string path, int max_width, int max_height)
