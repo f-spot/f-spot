@@ -45,19 +45,19 @@ namespace FSpot.Filters {
 					
 					int width, height;
 	
-					jimg = ImageFile.Create (dest) as JpegFile;
-					
-					PixbufUtils.GetSize (dest, out width, out height);
-	
-					jimg.SetOrientation (PixbufOrientation.TopLeft);
-					jimg.SetDimensions (width, height);
-	
-					Gdk.Pixbuf pixbuf = new Gdk.Pixbuf (dest, 160, 120, true);
-					jimg.SetThumbnail (pixbuf);
-					pixbuf.Dispose ();
-	
-					jimg.SaveMetaData (dest);
-					jimg.Dispose ();
+					using (jimg = ImageFile.Create (dest) as JpegFile) {
+						PixbufUtils.GetSize (dest, out width, out height);
+
+						jimg.SetOrientation (PixbufOrientation.TopLeft);
+						jimg.SetDimensions (width, height);
+
+						using (Gdk.Pixbuf pixbuf = new Gdk.Pixbuf (dest, 160, 120, true)) {
+							jimg.SetThumbnail (pixbuf);
+						}
+
+						jimg.SaveMetaData (dest);
+						jimg.Dispose ();
+					}
 				}
 	
 				if (changed)

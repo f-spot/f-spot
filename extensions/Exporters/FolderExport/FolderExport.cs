@@ -1376,8 +1376,9 @@ namespace FSpotFolderExport {
 			if (icon.Height != 52 || icon.Width != 52) {
 				scaled=icon.ScaleSimple(52,52,Gdk.InterpType.Bilinear);
 			} else
-				scaled=icon;
+				scaled=icon.Copy ();
 			scaled.Save (SubdirPath("tags",TagName(tag)), "png");
+			scaled.Dispose ();
 		}
 
 		public string TagPath (Tag tag)
