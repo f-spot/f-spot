@@ -543,7 +543,7 @@ namespace FSpot.Widgets
 				i++;
 			}
 			if (photo.VersionIds.Length == 1)
-				version_list.AppendValues (0, Catalog.GetString ("(No Edits)"), false);
+				version_list.AppendValues ((uint)0, Catalog.GetString ("(No Edits)"), false);
 			version_combo.Changed += OnVersionComboChanged;
 
 			if (show_file_size) {
