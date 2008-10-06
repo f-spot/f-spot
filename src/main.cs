@@ -212,7 +212,7 @@ public class Driver {
 					program = null;
 				} catch (System.Exception) { 
 					if (!shutdown)
-						Log.Information ("Starting new FSpot server");
+						Log.InformationFormat ("Starting new FSpot server (f-spot {0})", FSpot.Defines.VERSION);
 				}
 				
 				Core core = null;
