@@ -342,6 +342,12 @@ namespace FSpot.Database {
 				 Execute ("CREATE INDEX idx_photos_roll_id ON photos(roll_id)");
 			 }, false);
 
+			// Update to version 16.3
+			AddUpdate (new Version (16,3), delegate () {
+				Execute (String.Format ("DELETE FROM jobs WHERE job_type = '{0}'", typeof(Jobs.CalculateHashJob).ToString ()));
+			}, false);
+
+
 			 // Update to version 17.0
 			//AddUpdate (new Version (14,0),delegate () {
 			//	do update here
