@@ -1,5 +1,9 @@
 2008-10-10  Stephane Delcroix  <sdelcroix@novell.com>
 
+	* src/TagStore.cs: extnd the api to Commit multiple tags at once
+
+2008-10-10  Stephane Delcroix  <sdelcroix@novell.com>
+
 	* src/MainWindow.cs:
 	* src/PhotoView.cs: refresh the TagView on tags changed
 

@@ -335,32 +335,38 @@ public class TagStore : DbStore {
 
 	public void Commit (DbItem item, bool update_xmp)
 	{
-		Tag tag = item as Tag;
+		Commit (new DbItem[] {item}, update_xmp);
+	}
+
+	public void Commit (DbItem [] items, bool update_xmp)
+	{
 
 		bool use_transactions = !Database.InTransaction && update_xmp;
 
 		if (use_transactions)
 			Database.BeginTransaction ();
 
-		Database.ExecuteNonQuery (new DbCommand ("UPDATE tags SET name = :name, category_id = :category_id, "
-                    + "is_category = :is_category, sort_priority = :sort_priority, icon = :icon WHERE id = :id",
-						  "name", tag.Name,
-						  "category_id", tag.Category.Id,
-						  "is_category", tag is Category ? 1 : 0,
-						  "sort_priority", tag.SortPriority,
-						  "icon", GetIconString (tag),
-						  "id", tag.Id));
-		
-		if (update_xmp && Preferences.Get<bool> (Preferences.METADATA_EMBED_IN_IMAGE)) {
-			Photo [] photos = Core.Database.Photos.Query (new Tag [] { tag });
-			foreach (Photo p in photos)
-				if (p.HasTag (tag)) // the query returns all the pics of the tag and all its child. this avoids updating child tags
-					SyncMetadataJob.Create (Core.Database.Jobs, p);
+		foreach (Tag tag in items) {
+			Database.ExecuteNonQuery (new DbCommand ("UPDATE tags SET name = :name, category_id = :category_id, "
+                	    + "is_category = :is_category, sort_priority = :sort_priority, icon = :icon WHERE id = :id",
+							  "name", tag.Name,
+							  "category_id", tag.Category.Id,
+							  "is_category", tag is Category ? 1 : 0,
+							  "sort_priority", tag.SortPriority,
+							  "icon", GetIconString (tag),
+							  "id", tag.Id));
+			
+			if (update_xmp && Preferences.Get<bool> (Preferences.METADATA_EMBED_IN_IMAGE)) {
+				Photo [] photos = Core.Database.Photos.Query (new Tag [] { tag });
+				foreach (Photo p in photos)
+					if (p.HasTag (tag)) // the query returns all the pics of the tag and all its child. this avoids updating child tags
+						SyncMetadataJob.Create (Core.Database.Jobs, p);
+			}
 		}
 
 		if (use_transactions)
 			Database.CommitTransaction ();
 
-		EmitChanged (tag);
+		EmitChanged (items);
 	}
 }
