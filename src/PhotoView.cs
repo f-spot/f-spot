@@ -217,6 +217,11 @@ namespace FSpot {
 			changed_photo = Item.Index;
 			commit_delay.Start ();
 	 	}
+
+		public void UpdateTagView ()
+		{
+			tag_view.QueueDraw ();
+		}
 	
 		private void HandlePhotoChanged (FSpot.PhotoImageView view)
 		{

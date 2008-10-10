@@ -866,7 +866,7 @@ public class MainWindow {
 	{
 		UpdateMenus ();
 		UpdateTagEntryFromSelection ();
-
+		photo_view.UpdateTagView ();
 		info_box.Photos = SelectedPhotos ();
 	}
 

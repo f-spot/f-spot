@@ -1,3 +1,8 @@
+2008-10-10  Stephane Delcroix  <sdelcroix@novell.com>
+
+	* src/MainWindow.cs:
+	* src/PhotoView.cs: refresh the TagView on tags changed
+
 2008-10-06  Stephane Delcroix  <sdelcroix@novell.com>
 
 	* src/Widgets/InfoBox.cs: fix a Gtk warning.
