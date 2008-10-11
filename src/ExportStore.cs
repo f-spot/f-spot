@@ -55,12 +55,13 @@ public class ExportStore : DbStore {
 	private void CreateTable ()
 	{
  		Database.ExecuteNonQuery (
-			"CREATE TABLE exports ("					+
-				"id		 INTEGER PRIMARY KEY NOT NULL, "	+
-                                "image_id         INTEGER NOT NULL, "			+
-                                "image_version_id INTEGER NOT NULL, "			+
-                                "export_type      TEXT NOT NULL, "			+
-                                "export_token     TEXT NOT NULL)");
+			"CREATE TABLE exports (\n" +
+			"	id			INTEGER PRIMARY KEY NOT NULL, \n" +
+			"	image_id		INTEGER NOT NULL, \n" +
+			"	image_version_id	INTEGER NOT NULL, \n" +
+			"	export_type		TEXT NOT NULL, \n" +
+			"	export_token		TEXT NOT NULL\n" +
+			")");
 	}
 
 	private ExportItem LoadItem (SqliteDataReader reader)

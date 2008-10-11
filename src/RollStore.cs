@@ -25,9 +25,9 @@ public class RollStore : DbStore
 			return;
 
 		Database.ExecuteNonQuery (
-			"CREATE TABLE rolls (                            " +
-			"	id          INTEGER PRIMARY KEY NOT NULL,  " +
-			"       time        INTEGER NOT NULL		   " +
+			"CREATE TABLE rolls (\n" +
+			"	id	INTEGER PRIMARY KEY NOT NULL, \n" +
+			"       time	INTEGER NOT NULL\n" +
 			")");
 	}
 

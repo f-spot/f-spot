@@ -1,3 +1,8 @@
+2008-10-11  Stephane Delcroix  <sdelcroix@novell.com>
+
+	* src/*Store.cs: 
+	* src/Updater.cs: fix the tables schema so it's readable again in sqlite
+
 2008-10-10  Stephane Delcroix  <sdelcroix@novell.com>
 
 	* src/TagStore.cs: extnd the api to Commit multiple tags at once

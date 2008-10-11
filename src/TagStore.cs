@@ -184,18 +184,16 @@ public class TagStore : DbStore {
 
 	private void CreateTable ()
 	{
-
-		Database.ExecuteNonQuery ("CREATE TABLE tags (                            " +
-				   "	id            INTEGER PRIMARY KEY NOT NULL," +
-				   "       name          TEXT UNIQUE,                 " +
-				   "       category_id   INTEGER,			   " +
-				   "       is_category   BOOLEAN,			   " +
-				   "       sort_priority INTEGER,			   " +
-				   "       icon          TEXT			   " +
-				   ")");
-
+		Database.ExecuteNonQuery (
+			"CREATE TABLE tags (\n" +
+			"	id		INTEGER PRIMARY KEY NOT NULL, \n" +
+			"	name		TEXT UNIQUE, \n" +
+			"	category_id	INTEGER, \n" +
+			"	is_category	BOOLEAN, \n" +
+			"	sort_priority	INTEGER, \n" +
+			"	icon		TEXT\n" +
+			")");
 	}
-
 
 	private void CreateDefaultTags ()
 	{

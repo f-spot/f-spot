@@ -114,37 +114,33 @@ public class PhotoStore : DbStore {
 			return;
 		
 		Database.ExecuteNonQuery ( 
-			//WARNING: if you change this schema, reflect your changes 
-			//to Updater.cs, at revision 7.0
-			"CREATE TABLE photos (                                     " +
-			"	id                 INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,   " +
-			"	time               INTEGER NOT NULL,	   	   " +
-			"	uri		   STRING NOT NULL,		   " +
-			"	description        TEXT NOT NULL,	           " +
-			"	roll_id            INTEGER NOT NULL,		   " +
-			"	default_version_id INTEGER NOT NULL,		   " +
-			"	rating		   INTEGER NULL,		   " +
-			"	md5_sum		   TEXT NULL  			   " +
+			"CREATE TABLE photos (\n" +
+			"	id			INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, \n" +
+			"	time			INTEGER NOT NULL, \n" +
+			"	uri			STRING NOT NULL, \n" +
+			"	description		TEXT NOT NULL, \n" +
+			"	roll_id			INTEGER NOT NULL, \n" +
+			"	default_version_id	INTEGER NOT NULL, \n" +
+			"	rating			INTEGER NULL, \n" +
+			"	md5_sum			TEXT NULL\n" +
 			")");
 
-
 		Database.ExecuteNonQuery (
-			"CREATE TABLE photo_tags (        " +
-			"	photo_id      INTEGER,    " +
-			"       tag_id        INTEGER,    " +
-			"       UNIQUE (photo_id, tag_id) " +
+			"CREATE TABLE photo_tags (\n" +
+			"	photo_id	INTEGER, \n" +
+			"       tag_id		INTEGER, \n" +
+			"       UNIQUE (photo_id, tag_id)\n" +
 			")");
 
-
 		Database.ExecuteNonQuery (
-			"CREATE TABLE photo_versions (		"+
-			"	photo_id	INTEGER,	" +
-			"	version_id	INTEGER,	" +
-			"	name		STRING,		" +
-			"	uri		STRING NOT NULL," +
-			"	md5_sum		STRING NOT NULL," +
-			"	protected	BOOLEAN,	" +
-			"	UNIQUE (photo_id, version_id)	" +
+			"CREATE TABLE photo_versions (\n"+
+			"	photo_id	INTEGER, \n" +
+			"	version_id	INTEGER, \n" +
+			"	name		STRING, \n" +
+			"	uri		STRING NOT NULL, \n" +
+			"	md5_sum		STRING NOT NULL, \n" +
+			"	protected	BOOLEAN, \n" +
+			"	UNIQUE (photo_id, version_id)\n" +
 			")");
 
 		Database.ExecuteNonQuery ("CREATE INDEX idx_photo_versions_id ON photo_versions(photo_id)");

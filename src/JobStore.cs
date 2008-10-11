@@ -89,13 +89,13 @@ public class JobStore : DbStore {
 	private void CreateTable ()
 	{
 		Database.ExecuteNonQuery (
-			@"CREATE TABLE jobs (
-				id		 INTEGER PRIMARY KEY NOT NULL,
-				job_type         TEXT NOT NULL,
-                                job_options      TEXT NOT NULL,
-                                run_at           INTEGER,
-				job_priority     INTEGER NOT NULL
-			)");
+			"CREATE TABLE jobs (\n" +
+			"	id		INTEGER PRIMARY KEY NOT NULL, \n" +
+			"	job_type	TEXT NOT NULL, \n" +
+			"	job_options	TEXT NOT NULL, \n" +
+			"	run_at		INTEGER, \n" +
+			"	job_priority	INTEGER NOT NULL\n" +
+			")");
 	}
 
 	private Job LoadItem (SqliteDataReader reader)

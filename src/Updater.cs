@@ -347,9 +347,125 @@ namespace FSpot.Database {
 				Execute (String.Format ("DELETE FROM jobs WHERE job_type = '{0}'", typeof(Jobs.CalculateHashJob).ToString ()));
 			}, false);
 
+			// Update to version 16.4
+			AddUpdate (new Version (16,4), delegate () { //fix the tables schema EOL
+				string temp_table = MoveTableToTemp ("exports");
+			 	Execute (
+					"CREATE TABLE exports (\n" +
+					"	id			INTEGER PRIMARY KEY NOT NULL, \n" +
+					"	image_id		INTEGER NOT NULL, \n" +
+					"	image_version_id	INTEGER NOT NULL, \n" +
+					"	export_type		TEXT NOT NULL, \n" +
+					"	export_token		TEXT NOT NULL\n" +
+					")");
+				Execute (String.Format (
+					"INSERT INTO exports (id, image_id, image_version_id, export_type, export_token) " + 
+					"SELECT id, image_id, image_version_id, export_type, export_token " +
+					"FROM {0}", temp_table));
 
-			 // Update to version 17.0
-			//AddUpdate (new Version (14,0),delegate () {
+				temp_table = MoveTableToTemp ("jobs");
+				Execute (
+					"CREATE TABLE jobs (\n" +
+					"	id		INTEGER PRIMARY KEY NOT NULL, \n" +
+					"	job_type	TEXT NOT NULL, \n" +
+					"	job_options	TEXT NOT NULL, \n" +
+					"	run_at		INTEGER, \n" +
+					"	job_priority	INTEGER NOT NULL\n" +
+					")");
+				Execute (String.Format (
+					"INSERT INTO jobs (id, job_type, job_options, run_at, job_priority) " +
+					"SELECT id, job_type, job_options, run_at, job_priority " +
+					"FROM {0}", temp_table));
+
+				temp_table = MoveTableToTemp ("meta");
+				Execute (
+					"CREATE TABLE meta (\n" +
+					"	id	INTEGER PRIMARY KEY NOT NULL, \n" +
+					"	name	TEXT UNIQUE NOT NULL, \n" +
+					"	data	TEXT\n" +
+					")");
+				Execute (String.Format (
+					"INSERT INTO meta (id, name, data) " +
+					"SELECT id, name, data " +
+					"FROM {0}", temp_table));
+
+				temp_table = MoveTableToTemp ("photos");
+				Execute ( 
+					"CREATE TABLE photos (\n" +
+					"	id			INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, \n" +
+					"	time			INTEGER NOT NULL, \n" +
+					"	uri			STRING NOT NULL, \n" +
+					"	description		TEXT NOT NULL, \n" +
+					"	roll_id			INTEGER NOT NULL, \n" +
+					"	default_version_id	INTEGER NOT NULL, \n" +
+					"	rating			INTEGER NULL, \n" +
+					"	md5_sum			TEXT NULL\n" +
+					")");
+				Execute (String.Format (
+					"INSERT INTO photos (id, time, uri, description, roll_id, default_version_id, rating, md5_sum) " +
+					"SELECT id, time, uri, description, roll_id, default_version_id, rating, md5_sum " +
+					"FROM {0}", temp_table));
+
+				temp_table = MoveTableToTemp ("photo_tags");
+				Execute(
+					"CREATE TABLE photo_tags (\n" +
+					"	photo_id	INTEGER, \n" +
+					"       tag_id		INTEGER, \n" +
+					"       UNIQUE (photo_id, tag_id)\n" +
+					")");
+				Execute (String.Format (
+					"INSERT INTO photo_tags (photo_id, tag_id) " +
+					"SELECT photo_id, tag_id " +
+					"FROM {0}", temp_table));
+
+				temp_table = MoveTableToTemp ("photo_versions");
+				Execute (
+					"CREATE TABLE photo_versions (\n"+
+					"	photo_id	INTEGER, \n" +
+					"	version_id	INTEGER, \n" +
+					"	name		STRING, \n" +
+					"	uri		STRING NOT NULL, \n" +
+					"	md5_sum		STRING NOT NULL, \n" +
+					"	protected	BOOLEAN, \n" +
+					"	UNIQUE (photo_id, version_id)\n" +
+					")");
+				Execute (String.Format (
+					"INSERT INTO photo_versions (photo_id, version_id, name, uri, md5_sum, protected) " +
+					"SELECT photo_id, version_id, name, uri, md5_sum, protected " +
+					"FROM {0}", temp_table));
+
+				Execute ("CREATE INDEX idx_photo_versions_id ON photo_versions(photo_id)");
+				Execute ("CREATE INDEX idx_photos_roll_id ON photos(roll_id)");
+
+				temp_table = MoveTableToTemp ("rolls");
+				Execute (
+					"CREATE TABLE rolls (\n" +
+					"	id	INTEGER PRIMARY KEY NOT NULL, \n" +
+					"       time	INTEGER NOT NULL\n" +
+					")");
+				Execute (String.Format (
+					"INSERT INTO rolls (id, time) " +
+					"SELECT id, time " +
+					"FROM {0}", temp_table));
+
+				temp_table = MoveTableToTemp ("tags");
+				Execute (
+					"CREATE TABLE tags (\n" +
+					"	id		INTEGER PRIMARY KEY NOT NULL, \n" +
+					"	name		TEXT UNIQUE, \n" +
+					"	category_id	INTEGER, \n" +
+					"	is_category	BOOLEAN, \n" +
+					"	sort_priority	INTEGER, \n" +
+					"	icon		TEXT\n" +
+					")");
+				Execute (String.Format (
+					"INSERT INTO tags (id, name, category_id, is_category, sort_priority, icon) " +
+					"SELECT id, name, category_id, is_category, sort_priority, icon " +
+					"FROM {0}", temp_table));
+			});
+
+			// Update to version 17.0
+			//AddUpdate (new Version (14,0), delegate () {
 			//	do update here
 			//});
 		}

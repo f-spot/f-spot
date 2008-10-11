@@ -62,13 +62,12 @@ public class MetaStore : DbStore {
 
 	private void CreateTable ()
 	{
-		Database.ExecuteNonQuery(     
-			"CREATE TABLE meta (					" +
-			"	id		INTEGER PRIMARY KEY NOT NULL,	" +
-			"	name		TEXT UNIQUE NOT NULL,		" +
-			"	data		TEXT				" +
+		Database.ExecuteNonQuery ( 
+			"CREATE TABLE meta (\n" +
+			"	id	INTEGER PRIMARY KEY NOT NULL, \n" +
+			"	name	TEXT UNIQUE NOT NULL, \n" +
+			"	data	TEXT\n" +
 			")");
-
 	}
 
 	private void CreateDefaultItems (bool is_new)
