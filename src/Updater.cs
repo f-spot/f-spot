@@ -4,6 +4,7 @@ using Gtk;
 using System;
 using System.Collections;
 using Banshee.Database;
+using FSpot.Utils;
 
 namespace FSpot.Database {
 	public static class Updater {
@@ -65,7 +66,7 @@ namespace FSpot.Database {
 					"NOT IN (SELECT id FROM tags))",
 					id));
 
-				System.Console.WriteLine ("Other tag restored.  Sorry about that!");
+				Log.Debug ("Other tag restored.  Sorry about that!");
 			});
 			
 			// Update from version 2 to 3: ensure that Hidden is the only tag left which is a real tag (not category)
@@ -86,7 +87,7 @@ namespace FSpot.Database {
 			//Version 5.0, add a roll_id field to photos, rename table 'imports' to 'rolls' 
 			//and fix bgo 324425.
 			AddUpdate (new Version (5, 0), delegate () {
-				System.Console.WriteLine ("Will add a roll_id field to photos!");
+				Log.Debug ("Will add a roll_id field to photos!");
 				string tmp_photos = MoveTableToTemp ("photos");
 				ExecuteNonQuery (
 					"CREATE TABLE photos (                                     " +
@@ -100,7 +101,7 @@ namespace FSpot.Database {
 					")");
 				ExecuteScalar (String.Format("INSERT INTO photos SELECT id, time, directory_path, name, description, 0, default_version_id FROM {0}", tmp_photos));
 
-				System.Console.WriteLine ("Will rename imports to rolls!");
+				Log.Debug ("Will rename imports to rolls!");
 				string tmp_rolls = MoveTableToTemp ("imports");
 				ExecuteNonQuery (
 					"CREATE TABLE rolls (                                     " +
@@ -109,7 +110,7 @@ namespace FSpot.Database {
 					")");
 				ExecuteScalar (String.Format("INSERT INTO rolls SELECT id, time FROM {0}", tmp_rolls));
 
-				System.Console.WriteLine ("Cleaning weird descriptions, fixes bug #324425.");
+				Log.Debug ("Cleaning weird descriptions, fixes bug #324425.");
 				ExecuteNonQuery ("UPDATE photos SET description = \"\" WHERE description LIKE \"Invalid size of entry%\"");
 			});				
 
@@ -302,8 +303,6 @@ namespace FSpot.Database {
 
 				 string temp_versions_table = MoveTableToTemp ("photo_versions");
 
-				 Console.WriteLine("{0} - {1}", temp_table, temp_versions_table);
-
 				 Execute ("CREATE TABLE photo_versions (    	" +
 					  "      photo_id        INTEGER,  	" +
 					  "      version_id      INTEGER,  	" +
@@ -313,7 +312,7 @@ namespace FSpot.Database {
 					  "	protected	BOOLEAN		" +
 					  ")");
 
-				 Execute (string.Format ("INSERT INTO photo_versions (photo_id, version_id, name, uri, md5_sum, protected) " + 
+				 Execute (String.Format ("INSERT INTO photo_versions (photo_id, version_id, name, uri, md5_sum, protected) " + 
 							 "SELECT photo_id, version_id, name, uri, '', protected " +
 							 "FROM   {0} ", 
 							 temp_versions_table
@@ -483,11 +482,11 @@ namespace FSpot.Database {
 			if (current_version == LatestVersion)
 				return;
 			else if (current_version > LatestVersion) {
-				Console.WriteLine ("The existing database version is more recent than this version of F-Spot expects.");
+				Log.Information ("The existing database version is more recent than this version of F-Spot expects.");
 				return;
 			}
 
-			Console.WriteLine ("Updating F-Spot Database");
+			uint timer = Log.InformationTimerStart ("Updating F-Spot Database");
 
 			// Only create and show the dialog if one or more of the updates to be done is
 			// marked as being slow
@@ -524,7 +523,7 @@ namespace FSpot.Database {
 
 				db.CommitTransaction ();
 			} catch (Exception e) {
-				Console.WriteLine ("Rolling back database changes because of Exception");
+				Log.Warning ("Rolling back database changes because of Exception");
 				// There was an error, roll back the database
 				db.RollbackTransaction ();
 
@@ -536,7 +535,7 @@ namespace FSpot.Database {
 				dialog.Destroy ();
 			
 			if (new Version(db_version.Value) == LatestVersion)
-				Console.WriteLine ("Database updates completed successfully.");
+				Log.InformationTimerPrint (timer, "Database updates completed successfully (in {0}).");
 		}
 		
 		private static void AddUpdate (Version version, UpdateCode code)
@@ -649,7 +648,7 @@ namespace FSpot.Database {
 			{
 				code ();
 				
-				Console.WriteLine ("Updated database from version {0} to {1}",
+				Log.DebugFormat ("Updated database from version {0} to {1}",
 						db_version.Value,
 						Version.ToString ());
 
