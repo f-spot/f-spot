@@ -766,7 +766,15 @@ public class PixbufUtils {
 
 		return orientation;
 	}
+
+	public static PixbufOrientation GetOrientation (System.Uri uri)
+	{
+		using (FSpot.ImageFile img = FSpot.ImageFile.Create (uri)) {
+			return img.Orientation;
+		}	
+	}
 	
+	[Obsolete ("Use GetOrientation (System.Uri) instead")]
 	public static PixbufOrientation GetOrientation (string path)
 	{
 		using (FSpot.ImageFile img = FSpot.ImageFile.Create (path)) {

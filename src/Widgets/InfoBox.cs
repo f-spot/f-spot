@@ -412,7 +412,7 @@ namespace FSpot.Widgets
 						try {
 							if (strings.Length == 2)
 								fl = (double.Parse (strings[0]) / double.Parse (strings[1])).ToString ();
-						} catch (FormatException e) {
+						} catch (FormatException) {
 							return Catalog.GetString ("(wrong format)");
 						}
 					}
