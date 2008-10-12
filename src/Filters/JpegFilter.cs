@@ -36,7 +36,7 @@ namespace FSpot.Filters {
 			// even when the source is not a jpeg
 			string source = req.Current.LocalPath;
 
-			using (ImageFile img = ImageFile.Create (source)) {
+			using (ImageFile img = ImageFile.Create (req.Current)) {
 				if (img is JpegFile)
 					return false;
 

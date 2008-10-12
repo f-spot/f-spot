@@ -43,7 +43,7 @@ namespace FSpot.Filters {
 			System.Uri dest_uri = req.TempUri (System.IO.Path.GetExtension (source));
 			string dest = dest_uri.LocalPath;
 
-			using (ImageFile img = ImageFile.Create (source)) {
+			using (ImageFile img = ImageFile.Create (req.Current)) {
 
 				using (Pixbuf pixbuf = img.Load ()) {
 					if (pixbuf.Width < size && pixbuf.Height < size)

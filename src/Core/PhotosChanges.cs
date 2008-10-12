@@ -90,7 +90,7 @@ namespace FSpot
 			}
 		}
 		bool tags_changed = false;
-		public bool TagsChanged {
+		public virtual bool TagsChanged {
 			get { return tags_changed; }
 			private set { tags_changed = value; }
 		}

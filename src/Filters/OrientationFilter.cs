@@ -20,7 +20,7 @@ namespace FSpot.Filters {
 			System.Uri dest_uri = req.TempUri (System.IO.Path.GetExtension (source));
 			string dest = dest_uri.LocalPath;
 
-			using (ImageFile img = ImageFile.Create (source)) {
+			using (ImageFile img = ImageFile.Create (req.Current)) {
 				bool changed = false;
 				
 				if (img.Orientation != PixbufOrientation.TopLeft && img is JpegFile) {
@@ -45,7 +45,7 @@ namespace FSpot.Filters {
 					
 					int width, height;
 	
-					using (jimg = ImageFile.Create (dest) as JpegFile) {
+					using (jimg = ImageFile.Create (dest_uri) as JpegFile) {
 						PixbufUtils.GetSize (dest, out width, out height);
 
 						jimg.SetOrientation (PixbufOrientation.TopLeft);

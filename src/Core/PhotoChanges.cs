@@ -20,7 +20,7 @@ namespace FSpot
 			get { return VersionsAdded == null && VersionsRemoved == null && VersionsModified == null; }
 		}
 
-		public bool TagsChanged {
+		public override bool TagsChanged {
 			get { return TagsAdded == null && TagsRemoved == null; }
 		}
 
