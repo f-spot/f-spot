@@ -607,7 +607,7 @@ namespace FSpot.Database {
 			string temp_name = table_name + "_temp";
 			
 			// Get the table definition for the table we are copying
-			string sql = SelectSingleString (String.Format ("SELECT sql FROM sqlite_master WHERE tbl_name = '{0}' ORDER BY type DESC", table_name));
+			string sql = SelectSingleString (String.Format ("SELECT sql FROM sqlite_master WHERE tbl_name = '{0}' AND type = 'table' ORDER BY type DESC", table_name));
 			
 			// Drop temp table if already exists
 			ExecuteNonQuery ("DROP TABLE IF EXISTS " + temp_name);
