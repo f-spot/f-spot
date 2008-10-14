@@ -1,5 +1,10 @@
 2008-10-14  Stephane Delcroix  <sdelcroix@novell.com>
 
+	* src/FullScreenView.cs: fix a bug going fullscreen on vertically 
+	arranged monitors
+
+2008-10-14  Stephane Delcroix  <sdelcroix@novell.com>
+
 	* src/Updater.cs: restrict the sql search in MoveTableToTemp to tables
 
 2008-10-12  Stephane Delcroix  <sdelcroix@novell.com>

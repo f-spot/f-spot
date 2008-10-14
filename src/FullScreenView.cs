@@ -38,9 +38,8 @@ namespace FSpot {
 			//going fullscreen on the same screen the parent window
 			Gdk.Screen screen = Screen;
 			int monitor = screen.GetMonitorAtWindow (parent.GdkWindow);
-			Gdk.Rectangle bounds = screen.GetMonitorGeometry(monitor);
-			Move(bounds.X, 0);
-
+			Gdk.Rectangle bounds = screen.GetMonitorGeometry (monitor);
+			Move (bounds.X, bounds.Y);
 
 			string style = "style \"test\" {\n" +
 				"GtkToolbar::shadow_type = GTK_SHADOW_NONE\n" +
