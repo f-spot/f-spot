@@ -1,3 +1,9 @@
+2008-10-16  Stephane Delcroix  <sdelcroix@novell.com>
+
+	* ChangePhotoPath.addin.xml:
+	* ChangePhotoPathController.cs: mark the changes to be committed, fixes
+	bgo #545967.
+
 2008-07-01  Ruben Vermeersch  <ruben@savanne.be>
 
 	* ChangePhotoPath.addin.xml:
