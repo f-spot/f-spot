@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: f-spot\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-09-25 20:52+0200\n"
-"PO-Revision-Date: 2008-09-25 21:09+0200\n"
+"POT-Creation-Date: 2008-10-07 18:42+0200\n"
+"PO-Revision-Date: 2008-10-07 18:45+0200\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norwegian Bokmal <i18n-nb@lister.ping.uio.no>\n"
 "MIME-Version: 1.0\n"
@@ -122,7 +122,7 @@ msgid "Extension"
 msgstr "Utvidelse"
 
 #: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinTreeWidget.cs:112
-#: ../src/Widgets/InfoBox.cs:191
+#: ../src/Widgets/InfoBox.cs:211
 msgid "Version"
 msgstr "Versjon"
 
@@ -131,7 +131,7 @@ msgid "Other"
 msgstr "Andre"
 
 #: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/ManageSitesDialog.cs:51
-#: ../src/Widgets/InfoBox.cs:188
+#: ../src/Widgets/InfoBox.cs:208
 #: ../extensions/Exporters/FacebookExport/FacebookExport.glade.h:9
 msgid "Name"
 msgstr "Navn"
@@ -451,7 +451,7 @@ msgstr "Ferdig med nedlasting"
 msgid "Transferring \"{0}\" from camera"
 msgstr "Overfører «{0}» fra kamera"
 
-#: ../src/CameraSelectionDialog.cs:29
+#: ../src/CameraSelectionDialog.cs:29 ../src/Widgets/InfoBox.cs:227
 msgid "Camera"
 msgstr "Kamera"
 
@@ -493,7 +493,7 @@ msgid "Reparented"
 msgstr "Reparer"
 
 #: ../src/Core/Photo.cs:482
-#, fuzzy, csharp-format
+#, csharp-format, fuzzy
 msgid "Reparented ({0})"
 msgstr "Reparer"
 
@@ -721,7 +721,7 @@ msgstr "Skjul verktøylinje"
 msgid "Info"
 msgstr "Informasjon"
 
-#: ../src/FullScreenView.cs:69 ../src/Widgets/InfoBox.cs:177
+#: ../src/FullScreenView.cs:69 ../src/Widgets/InfoBox.cs:197
 msgid "Image Information"
 msgstr "Bildeinformasjon"
 
@@ -1489,7 +1489,7 @@ msgstr "Kunne ikke endre navn på en versjon"
 msgid "Received exception \"{0}\". Unable to rename version to \"{1}\""
 msgstr "Mottok unntak «{0}». Kunne ikke lagre bilde {1}"
 
-#: ../src/PhotoVersionMenu.cs:67 ../src/Widgets/InfoBox.cs:451
+#: ../src/PhotoVersionMenu.cs:67 ../src/Widgets/InfoBox.cs:546
 msgid "(No Edits)"
 msgstr "(Ingen redigeringer)"
 
@@ -1518,9 +1518,8 @@ msgid "Untagged photos"
 msgstr "Umerkede fotografier"
 
 #: ../src/QueryWidget.cs:53
-#, fuzzy
 msgid "Rated photos"
-msgstr "Umerkede fotografier"
+msgstr "Bilder med poeng"
 
 #. Note for translators: 'Import roll' is no command, it means 'Roll that has been imported'
 #: ../src/QueryWidget.cs:62
@@ -1797,7 +1796,7 @@ msgid "Events"
 msgstr "Hendelser"
 
 #. The label for the root category is used in new and edit tag dialogs
-#: ../src/TagStore.cs:238 ../src/Widgets/InfoBox.cs:353
+#: ../src/TagStore.cs:238 ../src/Widgets/InfoBox.cs:397
 msgid "(None)"
 msgstr "(Ingen)"
 
@@ -1880,11 +1879,11 @@ msgstr "Etikett"
 msgid "Ratio"
 msgstr "Rate"
 
-#: ../src/Updater.cs:380
+#: ../src/Updater.cs:386
 msgid "Updating F-Spot Database"
 msgstr "Oppdaterer F-Spot-databasen"
 
-#: ../src/Updater.cs:381
+#: ../src/Updater.cs:387
 msgid ""
 "Please wait while your F-Spot gallery's database is updated. This may take "
 "some time."
@@ -1994,45 +1993,62 @@ msgstr "Finn:"
 msgid "and"
 msgstr "og"
 
-#: ../src/Widgets/InfoBox.cs:159
+#: ../src/Widgets/InfoBox.cs:179
 msgid "Histogram"
 msgstr "Histogram"
 
-#: ../src/Widgets/InfoBox.cs:194
+#: ../src/Widgets/InfoBox.cs:214
 msgid "Date"
 msgstr "Dato"
 
-#: ../src/Widgets/InfoBox.cs:197
+#: ../src/Widgets/InfoBox.cs:217
 #: ../extensions/Exporters/CDExport/CDExport.glade.h:5
 msgid "Size"
 msgstr "Størrelse"
 
-#: ../src/Widgets/InfoBox.cs:200
+#: ../src/Widgets/InfoBox.cs:220
 msgid "Exposure"
 msgstr "Eksponering"
 
-#: ../src/Widgets/InfoBox.cs:204
+#: ../src/Widgets/InfoBox.cs:224
+msgid "Focal Length"
+msgstr ""
+
+#: ../src/Widgets/InfoBox.cs:230
+msgid "File Size"
+msgstr "Filstørrelse"
+
+#: ../src/Widgets/InfoBox.cs:233
 msgid "Rating"
 msgstr "Poeng"
 
-#: ../src/Widgets/InfoBox.cs:364 ../src/Widgets/InfoBox.cs:373
+#: ../src/Widgets/InfoBox.cs:406 ../src/Widgets/InfoBox.cs:429
+#: ../src/Widgets/InfoBox.cs:439 ../src/Widgets/InfoBox.cs:448
 msgid "(Unknown)"
 msgstr "(Ukjent)"
 
-#: ../src/Widgets/InfoBox.cs:491
+#: ../src/Widgets/InfoBox.cs:416
+msgid "(wrong format)"
+msgstr "(feil format)"
+
+#: ../src/Widgets/InfoBox.cs:554
+msgid "(File not found)"
+msgstr "(Fil ikke funnet)"
+
+#: ../src/Widgets/InfoBox.cs:598
 #, csharp-format
 msgid "{0} Photos"
 msgstr "{0} bilder"
 
 #. Note for translators: {0} is a date, {1} and {2} are times.
-#: ../src/Widgets/InfoBox.cs:503
+#: ../src/Widgets/InfoBox.cs:618
 #, csharp-format
 msgid ""
 "On {0} between \n"
 "{1} and {2}"
 msgstr ""
 
-#: ../src/Widgets/InfoBox.cs:508
+#: ../src/Widgets/InfoBox.cs:623
 #, csharp-format
 msgid ""
 "Between {0} \n"
@@ -2040,6 +2056,40 @@ msgid ""
 msgstr ""
 "Mellom {0} \n"
 "og {1}"
+
+#: ../src/Widgets/InfoBox.cs:647
+#, fuzzy
+msgid "(At least one File not found)"
+msgstr "Fil ikke funnet"
+
+#: ../src/Widgets/InfoBox.cs:761
+msgid "Show Photo Name"
+msgstr "Vis navn på bilde"
+
+#: ../src/Widgets/InfoBox.cs:770
+msgid "Show Date"
+msgstr "Vis dato"
+
+#: ../src/Widgets/InfoBox.cs:779
+msgid "Show Size"
+msgstr "Vis størrelse"
+
+#: ../src/Widgets/InfoBox.cs:788
+#, fuzzy
+msgid "Show Exposure"
+msgstr "Eksponering"
+
+#: ../src/Widgets/InfoBox.cs:797
+msgid "Show Focal Length"
+msgstr ""
+
+#: ../src/Widgets/InfoBox.cs:806
+msgid "Show Camera"
+msgstr "Vis kamera"
+
+#: ../src/Widgets/InfoBox.cs:815
+msgid "Show File Size"
+msgstr "Vis filstørrelse"
 
 #: ../src/Widgets/MetadataDisplay.cs:23
 msgid "Metadata"
@@ -3005,12 +3055,13 @@ msgid "_Open destination when done exporting"
 msgstr "_Åpne mål når eksportering er ferdig"
 
 #: ../src/f-spot.glade.h:235
-msgid "_Output:"
-msgstr "_Utskrift:"
-
-#: ../src/f-spot.glade.h:236
 msgid "_Photo"
 msgstr "_Bilde"
+
+#: ../src/f-spot.glade.h:236
+#, fuzzy
+msgid "_Print output:"
+msgstr "_Utskrift:"
 
 #: ../src/f-spot.glade.h:237
 msgid "_Quit"
@@ -3340,9 +3391,8 @@ msgstr ""
 #: ../extensions/Exporters/FacebookExport/FacebookExport.cs:478
 #: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:598
 #: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:521
-#, fuzzy
 msgid "Uploading Pictures"
-msgstr "Overfører bilder"
+msgstr "Laster opp bilder"
 
 #: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:4
 #, fuzzy
@@ -3391,19 +3441,16 @@ msgid "_View photos in browser when done uploading"
 msgstr "_Åpne album i nettleser når opplasting er ferdig"
 
 #: ../extensions/Exporters/FolderExport/FolderExport.addin.xml.h:1
-#, fuzzy
 msgid "F_older..."
-msgstr "Mappe"
+msgstr "Ma_ppe..."
 
 #: ../extensions/Exporters/FolderExport/FolderExport.cs:139
-#, fuzzy
 msgid "Select Export Folder"
-msgstr "Velg en mappe"
+msgstr "Velg eksportmappe"
 
 #: ../extensions/Exporters/FolderExport/FolderExport.cs:197
-#, fuzzy
 msgid "Building Gallery"
-msgstr "Galleri"
+msgstr "Bygger galleri"
 
 #: ../extensions/Exporters/FolderExport/FolderExport.cs:247
 #, fuzzy, csharp-format
@@ -3437,7 +3484,7 @@ msgid "Hide Styles"
 msgstr "Skjul stiler"
 
 #: ../extensions/Exporters/FolderExport/FolderExport.cs:1310
-#: ../extensions/Exporters/FolderExport/FolderExport.cs:1442
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:1443
 msgid "Page:"
 msgstr "Side:"
 
