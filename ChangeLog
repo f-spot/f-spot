@@ -1,3 +1,8 @@
+2008-10-16  Stephane Delcroix  <sdelcroix@novell.com>
+
+	* src/PhotoStore.cs: Fix the biggest WTF ever. We should definitely
+	stop referencing results columns by their id !
+
 2008-10-16  Lorenzo Milesi  <maxxer@yetopen.it>
 
 	* src/Widgets/Filmstrip.cs: prevent crashing if no image in

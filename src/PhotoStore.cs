@@ -352,7 +352,7 @@ public class PhotoStore : DbStore {
 #else
 				new System.Uri (reader [1].ToString (), true),
 #endif
-				reader[6].ToString ()
+				reader[6] != null ? reader[6].ToString () : null
 			);
 
 			photo.Description = reader[2].ToString ();
@@ -384,7 +384,7 @@ public class PhotoStore : DbStore {
 
 		uint timer = Log.DebugTimerStart ();
 
-		SqliteDataReader reader = Database.Query (new DbCommand ("SELECT id, time, description, roll_id, default_version_id, rating " + 
+		SqliteDataReader reader = Database.Query (new DbCommand ("SELECT id, time, description, roll_id, default_version_id, rating, md5_sum " + 
 									 " FROM photos " +
 									 " LEFT JOIN photo_versions AS pv ON photos.id = pv.photo_id" +
 							                 " WHERE photos.uri = :uri OR pv.uri = :uri", "uri", uri.ToString ()));
@@ -393,7 +393,7 @@ public class PhotoStore : DbStore {
 			photo = new Photo (Convert.ToUInt32 (reader [0]),
 					   Convert.ToInt64 (reader [1]),
 					   uri,
-					   reader[6].ToString ());
+					   reader[6] != null ? reader[6].ToString () : null);
 
 			photo.Description = reader[2].ToString ();
 			photo.RollId = Convert.ToUInt32 (reader[3]);
@@ -888,7 +888,7 @@ public class PhotoStore : DbStore {
 		return Query (new DbCommand (query));
 	}
 
-	public Photo [] Query (DbCommand query)
+	private Photo [] Query (DbCommand query)
 	{
 		uint timer = Log.DebugTimerStart ();
 		SqliteDataReader reader = Database.Query(query);
@@ -907,7 +907,7 @@ public class PhotoStore : DbStore {
 #else
 						   new System.Uri (reader [2].ToString (), true),
 #endif
-						   reader [6].ToString ()
+						   reader[7] != null ? reader [7].ToString () : null
 				);
 				photo.Description = reader[3].ToString ();
 				photo.RollId = Convert.ToUInt32 (reader[4]);
@@ -1025,7 +1025,8 @@ public class PhotoStore : DbStore {
 					     "photos.description, "		+
 					     "photos.roll_id, "   		+
 					     "photos.default_version_id, "	+
-					     "photos.rating "			+
+					     "photos.rating, "			+
+					     "photos.md5_sum "			+
 				      "FROM photos ");
 
 		if (range != null) {
