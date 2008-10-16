@@ -183,6 +183,8 @@ namespace ChangePhotoPath
 				photo = photo_store.Get ( (uint) photo_id_array[index]) as Photo;
 			PhotoVersion version = photo.GetVersion ( (uint) version_id_array[index]) as PhotoVersion;
 			version.Uri = new System.Uri ( path );
+			photo.Changes.UriChanged = true;
+			photo.Changes.ChangeVersion ( (uint) version_id_array[index] );
 		}
 
 /// FIXME Refactor, try to use one common method....
