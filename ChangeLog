@@ -1,3 +1,8 @@
+2008-10-16  Lorenzo Milesi  <maxxer@yetopen.it>
+
+	* src/Widgets/Filmstrip.cs: prevent crashing if no image in
+	collection. fix bgo#556395
+
 2008-10-14  Stephane Delcroix  <sdelcroix@novell.com>
 
 	* src/FullScreenView.cs: fix a bug going fullscreen on vertically 

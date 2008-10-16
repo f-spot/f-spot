@@ -372,6 +372,9 @@ namespace FSpot.Widgets
 			if (evnt.Window != GdkWindow)
 				return true;
 
+			if (selection.Collection.Count == 0)
+				return true;
+
 			if (extendable && Allocation.Width >= BackgroundPixbuf.Width + (2 * x_offset) + BackgroundTile.Width)
 				BackgroundPixbuf = null;
 
