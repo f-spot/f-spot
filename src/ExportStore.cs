@@ -66,11 +66,11 @@ public class ExportStore : DbStore {
 
 	private ExportItem LoadItem (SqliteDataReader reader)
 	{
-		return new ExportItem (Convert.ToUInt32 (reader[0]), 
-				       Convert.ToUInt32 (reader[1]),
-				       Convert.ToUInt32 (reader[2]), 
-				       reader[3].ToString (), 
-				       reader[4].ToString ());
+		return new ExportItem (Convert.ToUInt32 (reader["id"]), 
+				       Convert.ToUInt32 (reader["image_id"]),
+				       Convert.ToUInt32 (reader["image_version_id"]), 
+				       reader["export_type"].ToString (), 
+				       reader["export_token"].ToString ());
 	}
 	
 	private void LoadAllItems ()

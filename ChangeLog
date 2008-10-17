@@ -1,5 +1,6 @@
 2008-10-17  Stephane Delcroix  <sdelcroix@novell.com>
 
+	* src/ExportStore.cs:
 	* src/PhotoStore.cs: avoid using SqliteDataReader.this[int] to avoid
 	big hidden issues. use SqliteDataReader.this[string] instead.
 
