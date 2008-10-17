@@ -2,6 +2,7 @@
 
 	* src/ExportStore.cs:
 	* src/JobStore.cs:
+	* src/MetaStore.cs:
 	* src/PhotoStore.cs: avoid using SqliteDataReader.this[int] to avoid
 	big hidden issues. use SqliteDataReader.this[string] instead.
 

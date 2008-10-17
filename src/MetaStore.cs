@@ -87,13 +87,13 @@ public class MetaStore : DbStore {
 		SqliteDataReader reader = Database.Query("SELECT id, name, data FROM meta");
 
 		while (reader.Read ()) {
-			uint id = Convert.ToUInt32 (reader [0]);
+			uint id = Convert.ToUInt32 (reader ["id"]);
 
-			string name = reader [1].ToString ();
+			string name = reader ["name"].ToString ();
 
 			string data = null;
-			if (reader [2] != null)
-				data = reader [2].ToString ();
+			if (reader ["data"] != null)
+				data = reader ["data"].ToString ();
 
 			MetaItem item = new MetaItem (id, name, data);
 
