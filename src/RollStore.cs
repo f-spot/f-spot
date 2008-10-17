@@ -56,7 +56,7 @@ public class RollStore : DbStore
 		SqliteDataReader reader = Database.Query(new DbCommand ("SELECT time FROM rolls WHERE id = :id", "id", id));
 
 		if (reader.Read ()) {
-			roll = new Roll (id, Convert.ToUInt32 (reader [0]));
+			roll = new Roll (id, Convert.ToUInt32 (reader ["time"]));
 			AddToCache (roll);
 		}
 
@@ -77,9 +77,9 @@ public class RollStore : DbStore
 	public uint PhotosInRoll (Roll roll)
 	{
 		uint number_of_photos = 0;
-		using (SqliteDataReader reader = Database.Query (new DbCommand ("SELECT count(*) FROM photos WHERE roll_id = :id", "id", roll.Id))) {
+		using (SqliteDataReader reader = Database.Query (new DbCommand ("SELECT count(*) AS count FROM photos WHERE roll_id = :id", "id", roll.Id))) {
 			if (reader.Read ())
-				number_of_photos = Convert.ToUInt32 (reader [0]);
+				number_of_photos = Convert.ToUInt32 (reader ["count"]);
                
 			reader.Close ();
 		}
@@ -95,17 +95,17 @@ public class RollStore : DbStore
 	{
 		ArrayList list = new ArrayList ();
 
-		string query = "SELECT DISTINCT rolls.id, rolls.time FROM rolls, photos WHERE photos.roll_id = rolls.id ORDER BY rolls.time DESC";
+		string query = "SELECT DISTINCT rolls.id AS roll_id, rolls.time AS roll_time FROM rolls, photos WHERE photos.roll_id = rolls.id ORDER BY rolls.time DESC";
 		if (limit >= 0)
 			query += " LIMIT " + limit;
 
 		using (SqliteDataReader reader = Database.Query(query)) {
 			while (reader.Read ()) {
-				uint id = Convert.ToUInt32 (reader[0]);
+				uint id = Convert.ToUInt32 (reader["roll_id"]);
 
 				Roll roll = LookupInCache (id) as Roll;
 				if (roll == null) {
-					roll = new Roll (id, Convert.ToUInt32 (reader[1]));
+					roll = new Roll (id, Convert.ToUInt32 (reader["roll_time"]));
 					AddToCache (roll);
 				}
 				list.Add (roll);
