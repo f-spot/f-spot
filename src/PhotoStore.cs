@@ -33,9 +33,9 @@ using Banshee.Database;
 public class PhotoStore : DbStore {
 	public int TotalPhotos {
 		get {
-			SqliteDataReader reader = Database.Query("SELECT COUNT(*) FROM photos");
+			SqliteDataReader reader = Database.Query("SELECT COUNT(*) AS photo_count FROM photos");
 			reader.Read ();
-			int total = Convert.ToInt32 (reader [0]);
+			int total = Convert.ToInt32 (reader ["photo_count"]);
 			reader.Close ();
 			return total;
 		}
@@ -239,15 +239,15 @@ public class PhotoStore : DbStore {
 		);
 
 		while (reader.Read ()) {
-			uint version_id = Convert.ToUInt32 (reader [0]);
-			string name = reader[1].ToString ();
+			uint version_id = Convert.ToUInt32 (reader ["version_id"]);
+			string name = reader["name"].ToString ();
 #if MONO_2_0
-			System.Uri uri = new System.Uri (reader[2].ToString ());
+			System.Uri uri = new System.Uri (reader["uri"].ToString ());
 #else
-			System.Uri uri = new System.Uri (reader[2].ToString (), true);
+			System.Uri uri = new System.Uri (reader["uri"].ToString (), true);
 #endif
-			string md5_sum = reader[3].ToString ();
-			bool is_protected = Convert.ToBoolean (reader[4]);
+			string md5_sum = reader["md5_sum"].ToString ();
+			bool is_protected = Convert.ToBoolean (reader["protected"]);
 			photo.AddVersionUnsafely (version_id, uri, md5_sum, name, is_protected);
 		}
 		reader.Close();
@@ -258,7 +258,7 @@ public class PhotoStore : DbStore {
 		SqliteDataReader reader = Database.Query(new DbCommand("SELECT tag_id FROM photo_tags WHERE photo_id = :id", "id", photo.Id));
 
 		while (reader.Read ()) {
-			uint tag_id = Convert.ToUInt32 (reader [0]);
+			uint tag_id = Convert.ToUInt32 (reader ["tag_id"]);
 			Tag tag = Core.Database.Tags.Get (tag_id) as Tag;
 			photo.AddTagUnsafely (tag);
 		}
@@ -269,7 +269,7 @@ public class PhotoStore : DbStore {
 		SqliteDataReader reader = Database.Query("SELECT photo_id, version_id, name, uri, md5_sum, protected FROM photo_versions");
 		
 		while (reader.Read ()) {
-			uint id = Convert.ToUInt32 (reader [0]);
+			uint id = Convert.ToUInt32 (reader ["photo_id"]);
 			Photo photo = LookupInCache (id) as Photo;
 				
 			if (photo == null) {
@@ -282,16 +282,16 @@ public class PhotoStore : DbStore {
 				continue;
 			}
 
-			if (reader [1] != null) {
-				uint version_id = Convert.ToUInt32 (reader [1]);
-				string name = reader[2].ToString ();
+			if (reader ["version_id"] != null) {
+				uint version_id = Convert.ToUInt32 (reader ["version_id"]);
+				string name = reader["name"].ToString ();
 #if MONO_2_0
-				System.Uri uri = new System.Uri (reader[3].ToString ());
+				System.Uri uri = new System.Uri (reader["uri"].ToString ());
 #else
-				System.Uri uri = new System.Uri (reader[3].ToString (), true);
+				System.Uri uri = new System.Uri (reader["uri"].ToString (), true);
 #endif
-				string md5_sum = reader[4].ToString ();
-				bool is_protected = Convert.ToBoolean (reader[5]);	
+				string md5_sum = reader["md5_sum"].ToString ();
+				bool is_protected = Convert.ToBoolean (reader["protected"]);	
 				photo.AddVersionUnsafely (version_id, uri, md5_sum, name, is_protected);
 			}
 
@@ -309,7 +309,7 @@ public class PhotoStore : DbStore {
 		SqliteDataReader reader = Database.Query("SELECT photo_id, tag_id FROM photo_tags");
 
 		while (reader.Read ()) {
-			uint id = Convert.ToUInt32 (reader [0]);
+			uint id = Convert.ToUInt32 (reader ["photo_id"]);
 			Photo photo = LookupInCache (id) as Photo;
 				
 			if (photo == null) {
@@ -323,7 +323,7 @@ public class PhotoStore : DbStore {
 			}
 
 		        if (reader [1] != null) {
-				uint tag_id = Convert.ToUInt32 (reader [1]);
+				uint tag_id = Convert.ToUInt32 (reader ["tag_id"]);
 				Tag tag = Core.Database.Tags.Get (tag_id) as Tag;
 				photo.AddTagUnsafely (tag);
 			}
@@ -346,19 +346,19 @@ public class PhotoStore : DbStore {
 
 		if (reader.Read ()) {
 			photo = new Photo (id,
-				Convert.ToInt64 (reader [0]),
+				Convert.ToInt64 (reader ["time"]),
 #if MONO_2_0
-				new System.Uri (reader [1].ToString ()),
+				new System.Uri (reader ["uri"].ToString ()),
 #else
-				new System.Uri (reader [1].ToString (), true),
+				new System.Uri (reader ["uri"].ToString (), true),
 #endif
-				reader[6] != null ? reader[6].ToString () : null
+				reader["md5_sum"] != null ? reader["md5_sum"].ToString () : null
 			);
 
-			photo.Description = reader[2].ToString ();
-			photo.RollId = Convert.ToUInt32 (reader[3]);
-			photo.DefaultVersionId = Convert.ToUInt32 (reader[4]);
-			photo.Rating = Convert.ToUInt32 (reader [5]);
+			photo.Description = reader["description"].ToString ();
+			photo.RollId = Convert.ToUInt32 (reader["roll_id"]);
+			photo.DefaultVersionId = Convert.ToUInt32 (reader["default_version_id"]);
+			photo.Rating = Convert.ToUInt32 (reader ["rating"]);
 			AddToCache (photo);
 		}
 		reader.Close();
@@ -390,15 +390,15 @@ public class PhotoStore : DbStore {
 							                 " WHERE photos.uri = :uri OR pv.uri = :uri", "uri", uri.ToString ()));
 
 		if (reader.Read ()) {
-			photo = new Photo (Convert.ToUInt32 (reader [0]),
-					   Convert.ToInt64 (reader [1]),
+			photo = new Photo (Convert.ToUInt32 (reader ["id"]),
+					   Convert.ToInt64 (reader ["time"]),
 					   uri,
-					   reader[6] != null ? reader[6].ToString () : null);
+					   reader["md5_sum"] != null ? reader["md5_sum"].ToString () : null);
 
-			photo.Description = reader[2].ToString ();
-			photo.RollId = Convert.ToUInt32 (reader[3]);
-			photo.DefaultVersionId = Convert.ToUInt32 (reader[4]);
-			photo.Rating = Convert.ToUInt32 (reader [5]);
+			photo.Description = reader["description"].ToString ();
+			photo.RollId = Convert.ToUInt32 (reader["roll_id"]);
+			photo.DefaultVersionId = Convert.ToUInt32 (reader["default_version_id"]);
+			photo.Rating = Convert.ToUInt32 (reader ["rating"]);
 		}
 	        reader.Close();
 		Log.DebugTimerPrint (timer, "GetByUri query took {0}");
@@ -436,20 +436,20 @@ public class PhotoStore : DbStore {
 		);
 
 		while (reader.Read ()) {
-			Photo photo = new Photo (Convert.ToUInt32 (reader [0]),
-				Convert.ToInt64 (reader [1]),
+			Photo photo = new Photo (Convert.ToUInt32 (reader ["id"]),
+				Convert.ToInt64 (reader ["time"]),
 #if MONO_2_0
-				new System.Uri (reader [2].ToString ()),
+				new System.Uri (reader ["uri"].ToString ()),
 #else
-				new System.Uri (reader [2].ToString (), true),
+				new System.Uri (reader ["uri"].ToString (), true),
 #endif
 				md5_sum
 			);
 
-			photo.Description = reader[3].ToString ();
-			photo.RollId = Convert.ToUInt32 (reader[4]);
-			photo.DefaultVersionId = Convert.ToUInt32 (reader[5]);
-			photo.Rating = Convert.ToUInt32 (reader [6]);
+			photo.Description = reader["description"].ToString ();
+			photo.RollId = Convert.ToUInt32 (reader["roll_id"]);
+			photo.DefaultVersionId = Convert.ToUInt32 (reader["default_version_id"]);
+			photo.Rating = Convert.ToUInt32 (reader ["rating"]);
 			photo.MD5Sum = md5_sum;
 
 			// get cached if possible
@@ -684,7 +684,7 @@ public class PhotoStore : DbStore {
 
 	public int Count (string table_name, params IQueryCondition [] conditions)
 	{
-		StringBuilder query_builder = new StringBuilder ("SELECT COUNT(*) FROM " + table_name + " ");
+		StringBuilder query_builder = new StringBuilder ("SELECT COUNT(*) AS count FROM " + table_name + " ");
 		bool where_added = false;
 		foreach (IQueryCondition condition in conditions) {
 			if (condition == null)
@@ -698,7 +698,7 @@ public class PhotoStore : DbStore {
 
 		SqliteDataReader reader = Database.Query (query_builder.ToString());
 		reader.Read ();
-		int count = Convert.ToInt32 (reader [0]);
+		int count = Convert.ToInt32 (reader ["count"]);
 		reader.Close();
 		return count;
 	}
@@ -717,7 +717,7 @@ public class PhotoStore : DbStore {
 
 	public int IndexOf (string table_name, Photo photo)
 	{
-		string query = String.Format ("SELECT ROWID FROM {0} WHERE \"photos.id\" = {1}", table_name, photo.Id);
+		string query = String.Format ("SELECT ROWID AS row_id FROM {0} WHERE \"photos.id\" = {1}", table_name, photo.Id);
 		return IndexOf (query);
 	}
 
@@ -737,7 +737,7 @@ public class PhotoStore : DbStore {
 		SqliteDataReader reader = Database.Query (query);
 		int index = - 1;
 		if (reader.Read ())
-			index = Convert.ToInt32 (reader [0]);
+			index = Convert.ToInt32 (reader ["row_id"]);
 		reader.Close();
 		Log.DebugTimerPrint (timer, "IndexOf took {0} : " + query);
 		return index - 1; //ROWID starts counting at 1
@@ -749,7 +749,7 @@ public class PhotoStore : DbStore {
 		List<int> list = new List<int> ();
 		SqliteDataReader reader = Database.Query (query);
 		while (reader.Read ())
-			list.Add (Convert.ToInt32 (reader [0]) - 1);
+			list.Add (Convert.ToInt32 (reader ["row_id"]) - 1);
 		Log.DebugTimerPrint (timer, "IndicesOf took {0} : " + query);
 		return list.ToArray ();
 	}
@@ -777,10 +777,10 @@ public class PhotoStore : DbStore {
 		int minyear = Int32.MaxValue;
 		int maxyear = Int32.MinValue;
 
-		SqliteDataReader reader = Database.Query ("SELECT COUNT (*), month from population GROUP BY month");
+		SqliteDataReader reader = Database.Query ("SELECT COUNT (*) as count, month from population GROUP BY month");
 		while (reader.Read ()) {
-			string yyyymm = reader [1].ToString ();
-			int count = Convert.ToInt32 (reader [0]);
+			string yyyymm = reader ["month"].ToString ();
+			int count = Convert.ToInt32 (reader ["count"]);
 			int year = Convert.ToInt32 (yyyymm.Substring (0,4));
 			maxyear = Math.Max (year, maxyear);
 			minyear = Math.Min (year, minyear);
@@ -896,23 +896,23 @@ public class PhotoStore : DbStore {
 		List<Photo> new_photos = new List<Photo> ();
 		List<Photo> query_result = new List<Photo> ();
 		while (reader.Read ()) {
-			uint id = Convert.ToUInt32 (reader [0]);
+			uint id = Convert.ToUInt32 (reader ["id"]);
 			Photo photo = LookupInCache (id) as Photo;
 
 			if (photo == null) {
 				photo = new Photo (id,
-						   Convert.ToInt64 (reader [1]),
+						   Convert.ToInt64 (reader ["time"]),
 #if MONO_2_0
-						   new System.Uri (reader [2].ToString ()),
+						   new System.Uri (reader ["uri"].ToString ()),
 #else
-						   new System.Uri (reader [2].ToString (), true),
+						   new System.Uri (reader ["uri"].ToString (), true),
 #endif
-						   reader[7] != null ? reader [7].ToString () : null
+						   reader["md5_sum"] != null ? reader ["md5_sum"].ToString () : null
 				);
-				photo.Description = reader[3].ToString ();
-				photo.RollId = Convert.ToUInt32 (reader[4]);
-				photo.DefaultVersionId = Convert.ToUInt32 (reader[5]);
-				photo.Rating = Convert.ToUInt32 (reader [6]);
+				photo.Description = reader["description"].ToString ();
+				photo.RollId = Convert.ToUInt32 (reader["roll_id"]);
+				photo.DefaultVersionId = Convert.ToUInt32 (reader["default_version_id"]);
+				photo.Rating = Convert.ToUInt32 (reader ["rating"]);
 				new_photos.Add (photo);
 			}
 
