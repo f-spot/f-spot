@@ -705,7 +705,7 @@ public class PhotoStore : DbStore {
 
 	public int [] IndicesOf (string table_name, uint [] items)
 	{
-		StringBuilder query_builder = new StringBuilder ("SELECT ROWID FROM ");
+		StringBuilder query_builder = new StringBuilder ("SELECT ROWID AS row_id FROM ");
 		query_builder.Append (table_name);
 		query_builder.Append (" WHERE id IN (");
 		for (int i = 0; i < items.Length; i++) {
@@ -723,7 +723,7 @@ public class PhotoStore : DbStore {
 
 	public int IndexOf (string table_name, DateTime time, bool asc)
 	{
-		string query = String.Format ("SELECT ROWID FROM {0} WHERE time {2} {1} ORDER BY time {3} LIMIT 1",
+		string query = String.Format ("SELECT ROWID AS row_id FROM {0} WHERE time {2} {1} ORDER BY time {3} LIMIT 1",
 				table_name,
 				DbUtils.UnixTimeFromDateTime (time),
 				asc ? ">=" : "<=",
