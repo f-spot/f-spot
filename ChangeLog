@@ -1,5 +1,10 @@
 2008-10-17  Stephane Delcroix  <sdelcroix@novell.com>
 
+	* src/PhotoStore.cs: fix the subselect column names to work on both
+	pre-3.5.9 and post-3.6.0 sqlite.
+
+2008-10-17  Stephane Delcroix  <sdelcroix@novell.com>
+
 	* src/ExportStore.cs:
 	* src/JobStore.cs:
 	* src/MetaStore.cs:
