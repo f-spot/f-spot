@@ -124,9 +124,9 @@ public class TagStore : DbStore {
 		SqliteDataReader reader = Database.Query ("SELECT id, name, is_category, sort_priority, icon FROM tags");
 
 		while (reader.Read ()) {
-			uint id = Convert.ToUInt32 (reader [0]);
-			string name = reader [1].ToString ();
-			bool is_category = (Convert.ToUInt32 (reader [2]) != 0);
+			uint id = Convert.ToUInt32 (reader ["id"]);
+			string name = reader ["name"].ToString ();
+			bool is_category = (Convert.ToUInt32 (reader ["is_category"]) != 0);
 
 			Tag tag;
 			if (is_category)
@@ -134,14 +134,14 @@ public class TagStore : DbStore {
 			else
 				tag = new Tag (null, id, name);
 
-			if (reader [4] != null)
+			if (reader ["icon"] != null)
 				try {
-					SetIconFromString (tag, reader [4].ToString ());
+					SetIconFromString (tag, reader ["icon"].ToString ());
 				} catch (Exception ex) {
 					Log.Exception ("Unable to load icon for tag " + name, ex);
 				}
 
-			tag.SortPriority = Convert.ToInt32 (reader[3]);
+			tag.SortPriority = Convert.ToInt32 (reader["sort_priority"]);
 			AddToCache (tag);
 		}
 
@@ -151,8 +151,8 @@ public class TagStore : DbStore {
 		reader = Database.Query ("SELECT id, category_id FROM tags");
 
 		while (reader.Read ()) {
-			uint id = Convert.ToUInt32 (reader [0]);
-			uint category_id = Convert.ToUInt32 (reader [1]);
+			uint id = Convert.ToUInt32 (reader ["id"]);
+			uint category_id = Convert.ToUInt32 (reader ["category_id"]);
 
 			Tag tag = Get (id) as Tag;
 			if (tag == null)
@@ -169,11 +169,11 @@ public class TagStore : DbStore {
 		reader.Close ();
 
 		//Pass 3, set popularity
-		reader = Database.Query ("SELECT tag_id, COUNT (*) as popularity FROM photo_tags GROUP BY tag_id");
+		reader = Database.Query ("SELECT tag_id, COUNT (*) AS popularity FROM photo_tags GROUP BY tag_id");
 		while (reader.Read ()) {
-			Tag t = Get (Convert.ToUInt32 (reader [0])) as Tag;
+			Tag t = Get (Convert.ToUInt32 (reader ["tag_id"])) as Tag;
 			if (t != null)
-				t.Popularity = Convert.ToInt32 (reader [1]);
+				t.Popularity = Convert.ToInt32 (reader ["popularity"]);
 		}
 		reader.Close ();
 

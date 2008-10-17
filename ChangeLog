@@ -4,7 +4,8 @@
 	* src/JobStore.cs:
 	* src/MetaStore.cs:
 	* src/PhotoStore.cs:
-	* src/RollStore.cs: avoid using SqliteDataReader.this[int] to avoid
+	* src/RollStore.cs:
+	* src/TagStore.cs: avoid using SqliteDataReader.this[int] to avoid
 	big hidden issues. use SqliteDataReader.this[string] instead.
 
 2008-10-16  Stephane Delcroix  <sdelcroix@novell.com>
