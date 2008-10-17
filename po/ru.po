@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: f-spot trunk\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-10-18 01:32+0400\n"
-"PO-Revision-Date: 2008-10-18 01:36+0300\n"
+"PO-Revision-Date: 2008-10-18 03:38+0300\n"
 "Last-Translator: Alexandre Prokoudine <alexandre.prokoudine@gmail.com>\n"
 "Language-Team: Russian <gnome-cyr@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -3871,13 +3871,17 @@ msgid ""
 "\"Everything\" will import everything, creating duplicates if you already imported from that database.</i></small>"
 msgstr ""
 "<small><i>Выберите, что именно импортировать из базы данных.\n"
-"«Только новые сессии импорта» — импортировать все новое, что появилось с момента последнего импорта из этой базы данных.\n"
+"«Только новые сессии импорта» — импортировать все новое, что\n"
+"появилось с момента последнего импорта из этой базы данных.\n"
 "«Одну сессию импорта» — выбрать конкретную сессию импорта.\n"
-"«Все» — импортировать абсолютно все, что может привести к созданию дубликатов, если импорт из этой базы данных уже выполнялся.</i></small>"
+"«Все» — импортировать всё, что может привести к созданию \n"
+"дубликатов, если импорт из этой базы данных уже выполнялся.</i></small>"
 
 #: ../extensions/Tools/MergeDb/MergeDb.glade.h:6
 msgid "<small><i>Copy the images locally or keep them where they are. If you chose the later, be sure that this location will stay accessible from f-spot.</i></small>"
-msgstr "<small><i>Скопировать снимки на локальный диск или оставить их на месте. В последнем случае убедитесь, что они всегда доступны F-Spot.</i></small>"
+msgstr ""
+"<small><i>Скопировать снимки на локальный диск или оставить их на месте.\n"
+"В последнем случае убедитесь, что они всегда доступны F-Spot.</i></small>"
 
 #: ../extensions/Tools/MergeDb/MergeDb.glade.h:7
 msgid "A Single Import Roll"
@@ -3893,7 +3897,7 @@ msgstr "Расположение базы данных:"
 
 #: ../extensions/Tools/MergeDb/MergeDb.glade.h:10
 msgid "Everything"
-msgstr "Все"
+msgstr "Всё"
 
 #: ../extensions/Tools/MergeDb/MergeDb.glade.h:11
 msgid "Import:"
