@@ -101,11 +101,11 @@ public class JobStore : DbStore {
 	private Job LoadItem (SqliteDataReader reader)
 	{
 		return (Job) Activator.CreateInstance (
-				Type.GetType (reader [1].ToString ()), 
-				Convert.ToUInt32 (reader[0]), 
-				reader[2].ToString (), 
-				Convert.ToInt32 (reader[3]), 
-				(JobPriority) Convert.ToInt32 (reader[4]),
+				Type.GetType (reader ["job_type"].ToString ()), 
+				Convert.ToUInt32 (reader["id"]), 
+				reader["job_options"].ToString (), 
+				Convert.ToInt32 (reader["run_at"]), 
+				(JobPriority) Convert.ToInt32 (reader["job_priority"]),
 				true);
 	}
 	
