@@ -35,7 +35,8 @@ namespace HashJobExtension {
 		public void ShowDialog ()
 		{ 			
 			VBox.Spacing = 6;
-			Label l = new Label ("In order to detect duplicates on pictures you imported before f-spot 0.5.0, f-spot need to analyze your image collection. This is is not done by default as it's time consuming. You can Start or Pause this update process using this dialog.") {LineWrap = true};
+			Label l = new Label ("In order to detect duplicates on pictures you imported before f-spot 0.5.0, f-spot need to analyze your image collection. This is is not done by default as it's time consuming. You can Start or Pause this update process using this dialog."); 
+			l.LineWrap = true;
 			VBox.PackStart (l);
 
 			Button execute = new Button (Stock.Execute);
