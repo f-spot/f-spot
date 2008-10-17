@@ -429,7 +429,7 @@ public class PhotoStore : DbStore {
 		
 		SqliteDataReader reader = Database.Query (
 			new DbCommand ("SELECT DISTINCT " + 
-				       "id, time, photos.uri, description, roll_id, default_version_id, rating " + 
+				       "id, time, photos.uri AS uri, description, roll_id, default_version_id, rating " + 
 				       "FROM photos " + 
 				       "LEFT JOIN photo_versions " + 
 				       "ON   photos.id = photo_versions.photo_id " +
@@ -711,7 +711,7 @@ public class PhotoStore : DbStore {
 	{
 		StringBuilder query_builder = new StringBuilder ("SELECT ROWID FROM ");
 		query_builder.Append (table_name);
-		query_builder.Append (" WHERE \"photos.id\" IN (");
+		query_builder.Append (" WHERE id IN (");
 		for (int i = 0; i < items.Length; i++) {
 			query_builder.Append (items [i]);
 			query_builder.Append ((i != items.Length - 1) ? ", " : ")" );
@@ -721,13 +721,13 @@ public class PhotoStore : DbStore {
 
 	public int IndexOf (string table_name, Photo photo)
 	{
-		string query = String.Format ("SELECT ROWID FROM {0} WHERE \"photos.id\" = {1}", table_name, photo.Id);
+		string query = String.Format ("SELECT ROWID FROM {0} WHERE id = {1}", table_name, photo.Id);
 		return IndexOf (query);
 	}
 
 	public int IndexOf (string table_name, DateTime time, bool asc)
 	{
-		string query = String.Format ("SELECT ROWID FROM {0} WHERE \"photos.time\" {2} {1} ORDER BY \"photos.time\" {3} LIMIT 1",
+		string query = String.Format ("SELECT ROWID FROM {0} WHERE time {2} {1} ORDER BY time {3} LIMIT 1",
 				table_name,
 				DbUtils.UnixTimeFromDateTime (time),
 				asc ? ">=" : "<=",
@@ -764,8 +764,8 @@ public class PhotoStore : DbStore {
 		Dictionary<int, int[]> val = new Dictionary<int, int[]> ();
 
 		//Sqlite is way more efficient querying to a temp then grouping than grouping at once
-		Database.ExecuteNonQuery ("DROP TABLE IF EXISTS POPULATION");
-		StringBuilder query_builder = new StringBuilder ("CREATE TEMP TABLE population AS SELECT strftime('%Y%m', datetime(time, 'unixepoch')) AS month FROM photos");
+		Database.ExecuteNonQuery ("DROP TABLE IF EXISTS population");
+		StringBuilder query_builder = new StringBuilder ("CREATE TEMPORARY TABLE population AS SELECT strftime('%Y%m', datetime(time, 'unixepoch')) AS month FROM photos");
 		bool where_added = false;
 		foreach (IQueryCondition condition in conditions) {
 			if (condition == null)
@@ -966,14 +966,14 @@ public class PhotoStore : DbStore {
 	{
 		Log.DebugFormat ("Query Uri {0}", uri);
 		return Query (new DbCommand (
-			"SELECT photos.id, "			+
-				"photos.time, "			+
-				"photos.uri, "			+
-				"photos.description, "		+
-				"photos.roll_id, "		+
-				"photos.default_version_id, "	+
-				"photos.rating, "		+
-				"photos.md5_sum "		+
+			"SELECT id, "			+
+				"time, "			+
+				"uri, "			+
+				"description, "		+
+				"roll_id, "		+
+				"default_version_id, "	+
+				"rating, "		+
+				"md5_sum "		+
 			"FROM photos " 				+
 			"WHERE uri LIKE :uri "		+
 			"AND uri NOT LIKE :uri_",
@@ -1023,18 +1023,18 @@ public class PhotoStore : DbStore {
 
 		StringBuilder query_builder = new StringBuilder ();
 		ArrayList where_clauses = new ArrayList ();
-		query_builder.Append ("SELECT photos.id, " 			+
-					     "photos.time, "			+
-					     "photos.uri, "			+
-					     "photos.description, "		+
-					     "photos.roll_id, "   		+
-					     "photos.default_version_id, "	+
-					     "photos.rating, "			+
-					     "photos.md5_sum "			+
+		query_builder.Append ("SELECT id, " 			+
+					     "time, "			+
+					     "uri, "			+
+					     "description, "		+
+					     "roll_id, "   		+
+					     "default_version_id, "	+
+					     "rating, "			+
+					     "md5_sum "			+
 				      "FROM photos ");
 
 		if (range != null) {
-			where_clauses.Add (String.Format ("photos.time >= {0} AND photos.time <= {1}",
+			where_clauses.Add (String.Format ("time >= {0} AND time <= {1}",
 							  DbUtils.UnixTimeFromDateTime (range.Start),
 							  DbUtils.UnixTimeFromDateTime (range.End)));
 
@@ -1049,7 +1049,7 @@ public class PhotoStore : DbStore {
 		}
 
 		if (hide && Core.Database.Tags.Hidden != null) {
-			where_clauses.Add (String.Format ("photos.id NOT IN (SELECT photo_id FROM photo_tags WHERE tag_id = {0})",
+			where_clauses.Add (String.Format ("id NOT IN (SELECT photo_id FROM photo_tags WHERE tag_id = {0})",
 							  FSpot.Core.Database.Tags.Hidden.Id));
 		}
 
@@ -1094,18 +1094,18 @@ public class PhotoStore : DbStore {
 		
 		StringBuilder query_builder = new StringBuilder ();
 		ArrayList where_clauses = new ArrayList ();
-		query_builder.Append ("SELECT photos.id, " 			+
-					     "photos.time, "			+
-					     "photos.uri, "			+
-					     "photos.description, "		+
-				      	     "photos.roll_id, "   		+
-					     "photos.default_version_id, "	+
-					     "photos.rating, "			+
-					     "photos.md5_sum "			+
+		query_builder.Append ("SELECT id, " 			+
+					     "time, "			+
+					     "uri, "			+
+					     "description, "		+
+				      	     "roll_id, "   		+
+					     "default_version_id, "	+
+					     "rating, "			+
+					     "md5_sum "			+
 				      "FROM photos ");
 		
 		if (range != null) {
-			where_clauses.Add (String.Format ("photos.time >= {0} AND photos.time <= {1}",
+			where_clauses.Add (String.Format ("time >= {0} AND time <= {1}",
 							  DbUtils.UnixTimeFromDateTime (range.Start), 
 							  DbUtils.UnixTimeFromDateTime (range.End)));
 
@@ -1120,7 +1120,7 @@ public class PhotoStore : DbStore {
 		}		
 		
 		if (hide && Core.Database.Tags.Hidden != null) {
-			where_clauses.Add (String.Format ("photos.id NOT IN (SELECT photo_id FROM photo_tags WHERE tag_id = {0})", 
+			where_clauses.Add (String.Format ("id NOT IN (SELECT photo_id FROM photo_tags WHERE tag_id = {0})", 
 							  FSpot.Core.Database.Tags.Hidden.Id));
 		}
 		
@@ -1136,7 +1136,7 @@ public class PhotoStore : DbStore {
 			query_builder.Append (" WHERE ");
 			query_builder.Append (String.Join (" AND ", ((String []) where_clauses.ToArray (typeof(String)))));
 		}
-		query_builder.Append (" ORDER BY photos.time");
+		query_builder.Append (" ORDER BY time");
 		return Query (query_builder.ToString ());
 	}
 }
