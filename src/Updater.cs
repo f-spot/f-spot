@@ -413,7 +413,7 @@ namespace FSpot.Database {
 					"       UNIQUE (photo_id, tag_id)\n" +
 					")");
 				Execute (String.Format (
-					"INSERT INTO photo_tags (photo_id, tag_id) " +
+					"INSERT OR IGNORE INTO photo_tags (photo_id, tag_id) " +
 					"SELECT photo_id, tag_id " +
 					"FROM {0}", temp_table));
 
@@ -429,7 +429,7 @@ namespace FSpot.Database {
 					"	UNIQUE (photo_id, version_id)\n" +
 					")");
 				Execute (String.Format (
-					"INSERT INTO photo_versions (photo_id, version_id, name, uri, md5_sum, protected) " +
+					"INSERT OR IGNORE INTO photo_versions (photo_id, version_id, name, uri, md5_sum, protected) " +
 					"SELECT photo_id, version_id, name, uri, md5_sum, protected " +
 					"FROM {0}", temp_table));
 
