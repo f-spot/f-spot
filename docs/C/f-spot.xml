@@ -82,7 +82,13 @@
 				directory and make F-Spot only reference to existing files. For that you 
 				need to disable checkbox <guilabel>Copy files to the Photos folder</guilabel>. 
 			</para>
-
+			<para>
+				If there is a tiny chance that some of your photos are already imported 
+				from the chosen source, you can use <guilabel>Detect duplicates</guilabel> 
+				option. In this case F-Spot will try to find out if exactly this image is 
+				already present in the database and thus new copy of it should not be 
+				imported. 
+			</para>
 			<para>
 				If all the photos you are importing at one time are from a particular event, 
 				or have some other characteristic in common, you can create a tag for them 
