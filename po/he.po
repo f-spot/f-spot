@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: f-spot\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-07-30 07:55+0000\n"
-"PO-Revision-Date: 2008-07-09 02:48+0200\n"
+"POT-Creation-Date: 2008-10-19 03:46+0000\n"
+"PO-Revision-Date: 2008-10-20 01:40+0200\n"
 "Last-Translator: Mark Krapivner <mark125@gmail.com>\n"
 "Language-Team: Hebrew <he@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -48,17 +48,11 @@ msgid "The following packages will be uninstalled:"
 msgstr "החבילות הבאות יוסרו:"
 
 #: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:313
-#, fuzzy
-msgid ""
-"There are other extensions that depend on the previous ones which will also "
-"be uninstalled:"
-msgstr "ישנם תוספים אחרים שתלויים בתוספים שיוסרו"
+msgid "There are other extensions that depend on the previous ones which will also be uninstalled:"
+msgstr "ישנם תוספים אחרים שתלויים בתוספים שיוסרו:"
 
 #: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:384
-#, fuzzy
-msgid ""
-"The selected extensions can't be installed because there are dependency "
-"conflicts."
+msgid "The selected extensions can't be installed because there are dependency conflicts."
 msgstr "לא ניתן להתקין את התוספים שנבחרו עקב התנגדות תלויות."
 
 #: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:398
@@ -111,7 +105,7 @@ msgstr "התקנה בוטלה"
 
 #: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallerDialog.cs:159
 msgid "Some of the required extensions were not found"
-msgstr "חלק מההרחבות לא נמצאו"
+msgstr "חלק מהתוספים לא נמצאו"
 
 #: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallerDialog.cs:171
 msgid "Installation failed"
@@ -122,7 +116,7 @@ msgid "Extension"
 msgstr "תוסף"
 
 #: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinTreeWidget.cs:112
-#: ../src/Widgets/InfoBox.cs:129
+#: ../src/Widgets/InfoBox.cs:211
 msgid "Version"
 msgstr "גרסה"
 
@@ -131,7 +125,8 @@ msgid "Other"
 msgstr "אחר"
 
 #: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/ManageSitesDialog.cs:51
-#: ../src/Widgets/InfoBox.cs:126
+#: ../src/Widgets/InfoBox.cs:208
+#: ../extensions/Exporters/FacebookExport/FacebookExport.glade.h:9
 msgid "Name"
 msgstr "שם"
 
@@ -141,9 +136,9 @@ msgstr "כתובת"
 
 #: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/Services.cs:61
 #: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/Services.cs:70
-#, csharp-format
+#, fuzzy, csharp-format
 msgid "Exception occurred: {0}"
-msgstr ""
+msgstr "An exception occurred '%s'"
 
 #: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInfoDialog.cs:32
 msgid "Package"
@@ -155,7 +150,7 @@ msgstr "התקנת תוספים"
 
 #: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:136
 msgid "<b>Select the extensions to install and click on Next</b>"
-msgstr "<b>בחר את ההרחבות להתקנה ולחץ על קדימה</b>"
+msgstr "<b>בחר את התוספים להתקנה ולחץ על קדימה</b>"
 
 #: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:150
 msgid "Install from:"
@@ -183,13 +178,13 @@ msgid "_Unselect All"
 msgstr "_בטל בחירה"
 
 #: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:259
-#: ../src/f-spot.glade.h:167
+#: ../src/f-spot.glade.h:153
 msgid "Select _All"
 msgstr "בחר _הכל"
 
 #: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:334
 msgid "label124"
-msgstr ""
+msgstr "label124"
 
 #: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:346
 msgid "Overall Progress:"
@@ -197,20 +192,20 @@ msgstr "סך הכל התקדמות:"
 
 #: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:374
 msgid "Downloading extensions..."
-msgstr "מוריד הרחבות..."
+msgstr "מוריד תוספים..."
 
 #: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallerDialog.cs:36
 #: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:58
 msgid "Extension Manager"
-msgstr "מנהל הרחבות"
+msgstr "מנהל התוספים"
 
 #: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallerDialog.cs:54
 msgid "Additional extensions are required to perform this operation."
-msgstr "הרחבות נוספות נחוצות לביצוע פעולה זאת."
+msgstr "נחוצים תוספים נוספים לביצוע פעולה זאת."
 
 #: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallerDialog.cs:64
 msgid "The following extensions will be installed:"
-msgstr "ההרחבות הבאות יותקנו:"
+msgstr "התוספים הבאים יותקנו:"
 
 #: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:90
 msgid "<big><b>Extension Manager</b></big>"
@@ -218,17 +213,18 @@ msgstr "<big><b>מנהל תוספים</b></big>"
 
 #: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:110
 msgid "The following extensions are currently installed:"
-msgstr "ההרחבות שכרגע מותקנות:"
+msgstr "התוספים שכרגע מותקנים:"
 
 #: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:165
 msgid "_Install Extensions..."
-msgstr "_התקן הרחבות..."
+msgstr "_התקן תוספים..."
 
 #: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:210
 msgid "_Uninstall..."
 msgstr "_הסרה..."
 
 #: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:236
+#: ../src/f-spot.glade.h:89
 msgid "Enable"
 msgstr "הפעל"
 
@@ -237,11 +233,13 @@ msgid "Disable"
 msgstr "כיבוי"
 
 #: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.ErrorDialog.cs:40
-#: ../extensions/FlickrExport/FlickrExport.cs:359
-#: ../extensions/FolderExport/FolderExport.cs:249
-#: ../extensions/GalleryExport/GalleryExport.cs:795
-#: ../extensions/PicasaWebExport/PicasaWebExport.cs:694
-#: ../extensions/SmugMugExport/SmugMugExport.cs:595
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:370
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:249
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:799
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:544
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:694
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:595
+#: ../extensions/Exporters/TabbloExport/TabbloExport.cs:176
 msgid "Error"
 msgstr "שגיאה"
 
@@ -251,7 +249,7 @@ msgstr "פרטים"
 
 #: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.ManageSitesDialog.cs:34
 msgid "Extension Repository Management"
-msgstr "ניהול מאגרי הרחבות"
+msgstr "ניהול מאגרי התוספים"
 
 #: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.NewSiteDialog.cs:52
 msgid "Add New Repository"
@@ -290,12 +288,12 @@ msgstr "(מסופק על ידי {0})"
 
 #: ../mono-addins/Mono.Addins/Mono.Addins/AddinSessionService.cs:154
 msgid "Disabled extensions can't be loaded."
-msgstr "הרחבות מכובות לא יכולים להיטען."
+msgstr "תוספים מכובים לא יכולים להיטען."
 
 #: ../mono-addins/Mono.Addins/Mono.Addins/AddinSessionService.cs:179
-#, fuzzy, csharp-format
+#, csharp-format
 msgid "Loading {0} extension"
-msgstr "טוען {0} מתוך {1}"
+msgstr "טעינת התוסף {0}"
 
 #: ../mono-addins/Mono.Addins/Mono.Addins/AddinSessionService.cs:265
 #, csharp-format
@@ -305,7 +303,7 @@ msgstr "התוסף הנדרש '{0}' מכובה."
 #: ../mono-addins/Mono.Addins/Mono.Addins/AddinSessionService.cs:267
 #, csharp-format
 msgid "The required extension '{0}' is not installed."
-msgstr ""
+msgstr "התוסף הנדרש '{0}' לא מותקן."
 
 #: ../f-spot-view.desktop.in.in.h:1
 msgid "F-Spot Photo Viewer"
@@ -315,7 +313,8 @@ msgstr "מציג התמונות F-Spot"
 msgid "Photo Viewer"
 msgstr "מציג התמונות"
 
-#: ../f-spot-import.desktop.in.in.h:1 ../f-spot.desktop.in.in.h:1
+#: ../f-spot-import.desktop.in.in.h:1
+#: ../f-spot.desktop.in.in.h:1
 msgid "F-Spot Photo Manager"
 msgstr "מנהל התמונות F-Spot"
 
@@ -323,7 +322,8 @@ msgstr "מנהל התמונות F-Spot"
 msgid "Import into F-Spot"
 msgstr "ייבוא לתוך F-Spot"
 
-#: ../f-spot-import.desktop.in.in.h:3 ../f-spot.desktop.in.in.h:3
+#: ../f-spot-import.desktop.in.in.h:3
+#: ../f-spot.desktop.in.in.h:3
 msgid "Photo Manager"
 msgstr "מנהל תמונות"
 
@@ -354,7 +354,8 @@ msgstr "סוג אינטרפולציה"
 msgid "the type of interpolation to use"
 msgstr "סוג האינטרפולציה לשימוש"
 
-#: ../libeog/image-view.c:2135 ../libeog/image-view.c:2142
+#: ../libeog/image-view.c:2135
+#: ../libeog/image-view.c:2142
 msgid "check type"
 msgstr "בדוק סוג"
 
@@ -363,90 +364,95 @@ msgid "the type of chequering to use"
 msgstr "סוג השיבוץ לשימוש"
 
 #: ../libeog/image-view.c:2143
+#, fuzzy
 msgid "the size of chequers to use"
-msgstr ""
+msgstr "גודל האיקון לשימוש."
 
 #: ../libeog/image-view.c:2149
 msgid "dither"
 msgstr ""
 
 #: ../libeog/image-view.c:2150
+#, fuzzy
 msgid "dither type"
-msgstr ""
+msgstr "כתיבה כחולה"
 
-#: ../libfspot/f-jpeg-utils.c:445 ../src/RotateCommand.cs:222
+#: ../libfspot/f-jpeg-utils.c:445
+#: ../src/RotateCommand.cs:222
 msgid "File not found"
 msgstr "הקובץ לא נמצא"
 
 #: ../libfspot/f-jpeg-utils.c:468
-#, c-format
+#, fuzzy, c-format
 msgid "Unknown transform type %d"
-msgstr ""
+msgstr "סוג מקור לא ידוע"
 
 #: ../libfspot/f-jpeg-utils.c:476
 msgid "Operation failed"
 msgstr "פעולה נכשלה"
 
-#: ../src/CameraFileSelectionDialog.cs:74
+#: ../src/CameraFileSelectionDialog.cs:76
 msgid "Preview"
 msgstr "צפייה מקדימה"
 
-#: ../src/CameraFileSelectionDialog.cs:76
+#: ../src/CameraFileSelectionDialog.cs:78
 msgid "Path"
 msgstr "נתיב"
 
-#: ../src/CameraFileSelectionDialog.cs:78 ../src/f-spot.glade.h:107
+#: ../src/CameraFileSelectionDialog.cs:80
+#: ../src/f-spot.glade.h:95
 msgid "File"
 msgstr "קובץ"
 
-#: ../src/CameraFileSelectionDialog.cs:80
-#: ../extensions/FolderExport/FolderExport.cs:992
-#: ../extensions/FolderExport/FolderExport.cs:1233
+#: ../src/CameraFileSelectionDialog.cs:82
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:992
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:1233
 msgid "Index"
 msgstr "אינדקס"
 
-#: ../src/CameraFileSelectionDialog.cs:100
+#: ../src/CameraFileSelectionDialog.cs:102
 msgid "Select Tag"
 msgstr "בחירת תווית"
 
-#: ../src/CameraFileSelectionDialog.cs:136
+#: ../src/CameraFileSelectionDialog.cs:138
 msgid "Downloading Previews"
 msgstr "מוריד תצוגה מקדימה"
 
-#: ../src/CameraFileSelectionDialog.cs:146
+#: ../src/CameraFileSelectionDialog.cs:148
 #, csharp-format
 msgid "Downloading Preview of {0}"
 msgstr "מוריד תצוגה מקדימה של {0}"
 
-#: ../src/CameraFileSelectionDialog.cs:197
-#: ../extensions/CDExport/CDExport.cs:342
-#: ../extensions/FolderExport/FolderExport.cs:391
+#: ../src/CameraFileSelectionDialog.cs:199
+#: ../extensions/Exporters/CDExport/CDExport.cs:342
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:391
 msgid "Transferring Pictures"
 msgstr "מעביר תמונות"
 
-#: ../src/CameraFileSelectionDialog.cs:218
+#: ../src/CameraFileSelectionDialog.cs:220
 #, csharp-format
 msgid "Copying file {0} of {1}"
 msgstr "מעתיק {0} מ {1}"
 
-#: ../src/CameraFileSelectionDialog.cs:228
+#: ../src/CameraFileSelectionDialog.cs:235
 msgid "Error transferring file"
 msgstr "שגיאה במהלך העתקה"
 
-#: ../src/CameraFileSelectionDialog.cs:237
+#: ../src/CameraFileSelectionDialog.cs:244
 msgid "Done Copying Files"
 msgstr "ההעתקה הושלמה"
 
-#: ../src/CameraFileSelectionDialog.cs:239
+#: ../src/CameraFileSelectionDialog.cs:246
 msgid "Download Complete"
 msgstr "הורדה הושלמה"
 
-#: ../src/CameraFileSelectionDialog.cs:264
+#: ../src/CameraFileSelectionDialog.cs:271
 #, csharp-format
 msgid "Transferring \"{0}\" from camera"
 msgstr "מעביר \"{0}\" מהמצלמה"
 
 #: ../src/CameraSelectionDialog.cs:29
+#: ../src/Widgets/InfoBox.cs:227
 msgid "Camera"
 msgstr "מצלמה"
 
@@ -482,36 +488,37 @@ msgstr ""
 "F-Spot."
 
 #. Note for translators: Reparented is a picture becoming a version of another one
-#: ../src/Core/Photo.cs:463
+#: ../src/Core/Photo.cs:482
 #, fuzzy
 msgid "Reparented"
 msgstr "תיקון"
 
-#: ../src/Core/Photo.cs:463
+#: ../src/Core/Photo.cs:482
 #, fuzzy, csharp-format
 msgid "Reparented ({0})"
 msgstr "תיקון"
 
-#: ../src/Core/Photo.cs:482
+#: ../src/Core/Photo.cs:501
 #, csharp-format
 msgid "Modified"
 msgid_plural "Modified ({0})"
 msgstr[0] "עודכן"
 msgstr[1] "עודכנו ({0})"
 
-#: ../src/Core/Photo.cs:501
-#, fuzzy, csharp-format
+#: ../src/Core/Photo.cs:520
+#, csharp-format
 msgid "Modified in {1}"
 msgstr "שונה ב-{1}"
 
-#: ../src/Core/Photo.cs:501
-#, fuzzy, csharp-format
+#: ../src/Core/Photo.cs:520
+#, csharp-format
 msgid "Modified in {1} ({0})"
-msgstr "שונה ב-{1}"
+msgstr "שונה ב-{1} ({0})"
 
 #. Note that the original version is never stored in the photo_versions table in the
 #. database.
-#: ../src/Core/Photo.cs:615 ../src/f-spot.glade.h:146
+#: ../src/Core/Photo.cs:678
+#: ../src/f-spot.glade.h:132
 msgid "Original"
 msgstr "מקורי"
 
@@ -549,7 +556,8 @@ msgstr "שבוע נוכחי"
 msgid "Previous Week (Mon-Sun)"
 msgstr "שבוע שעבר"
 
-#: ../src/DateCommands.cs:87 ../src/f-spot.glade.h:68
+#: ../src/DateCommands.cs:87
+#: ../src/f-spot.glade.h:54
 msgid "All Images"
 msgstr "כל התמונות"
 
@@ -557,11 +565,87 @@ msgstr "כל התמונות"
 msgid "Customized Range"
 msgstr "התאם את התחום"
 
-#: ../src/Editors/Old/SoftFocus.cs:27 ../src/ItemAction.cs:343
+#: ../src/Editors/AutoStretchEditor.cs:17
+msgid "Auto Color"
+msgstr "צבע אוטומטי"
+
+#: ../src/Editors/ColorEditor.cs:38
+msgid "Adjust Colors"
+msgstr "תיקון צבעים"
+
+#: ../src/Editors/ColorEditor.cs:41
+msgid "Adjust"
+msgstr "כוונון"
+
+#: ../src/Editors/CropEditor.cs:35
+msgid "4 x 3 (Book)"
+msgstr "4 x 3 (ספר)"
+
+#: ../src/Editors/CropEditor.cs:36
+msgid "4 x 6 (Postcard)"
+msgstr "4 x 6 (גלויה)"
+
+#: ../src/Editors/CropEditor.cs:37
+msgid "5 x 7 (L, 2L)"
+msgstr "5 x 7 (L, 2L)"
+
+#: ../src/Editors/CropEditor.cs:38
+msgid "8 x 10"
+msgstr "8 x 10"
+
+#: ../src/Editors/CropEditor.cs:39
+msgid "Square"
+msgstr "ריבוע"
+
+#: ../src/Editors/CropEditor.cs:42
+msgid "Crop"
+msgstr "קיצוץ"
+
+#: ../src/Editors/CropEditor.cs:73
+msgid "Select the area that needs cropping."
+msgstr ""
+
+#: ../src/Editors/CropEditor.cs:98
+#, fuzzy
+msgid "No Constraint"
+msgstr "הגבלת משאבים"
+
+#: ../src/Editors/CropEditor.cs:99
+#, fuzzy
+msgid "Same as photo"
+msgstr "Same as --no-wintab"
+
+#: ../src/Editors/CropEditor.cs:104
+#, fuzzy
+msgid "Custom Ratios..."
+msgstr "Custom Background"
+
+#: ../src/Editors/DesaturateEditor.cs:17
+msgid "Desaturate"
+msgstr "ביטול הרוויה"
+
+#: ../src/Editors/RedEyeEditor.cs:19
+msgid "Red-eye Reduction"
+msgstr "הפחתת עיין-אדמה"
+
+#: ../src/Editors/RedEyeEditor.cs:21
+msgid "Fix!"
+msgstr "תיקון!"
+
+#: ../src/Editors/RedEyeEditor.cs:25
+msgid "Select the eyes you wish to fix."
+msgstr "בחר את העיינים שברצונך לתקן."
+
+#: ../src/Editors/SepiaEditor.cs:17
+#, fuzzy
+msgid "Sepia Tone"
+msgstr "בדיקות גווני-ביניים"
+
+#: ../src/Editors/SoftFocusEditor.cs:28
 msgid "Soft Focus"
 msgstr "פוקוס רך"
 
-#: ../src/Editors/Old/Tilt.cs:28 ../src/ItemAction.cs:327
+#: ../src/Editors/TiltEditor.cs:28
 msgid "Straighten"
 msgstr "יישור"
 
@@ -581,17 +665,20 @@ msgstr "ייצוא אל"
 msgid "Open _With"
 msgstr "פתח _באמצעות"
 
-#: ../src/FSpot.addin.xml.h:4 ../src/f-spot.glade.h:159
+#: ../src/FSpot.addin.xml.h:4
+#: ../src/f-spot.glade.h:146
 msgid "Rem_ove Tag"
 msgstr "הס_ר תווית"
 
-#: ../src/FSpot.addin.xml.h:5 ../src/SingleView.cs:428
-#: ../src/f-spot.glade.h:162
+#: ../src/FSpot.addin.xml.h:5
+#: ../src/SingleView.cs:438
+#: ../src/f-spot.glade.h:148
 msgid "Rotate _Left"
 msgstr "סובב _שמאלה"
 
-#: ../src/FSpot.addin.xml.h:6 ../src/SingleView.cs:429
-#: ../src/f-spot.glade.h:163
+#: ../src/FSpot.addin.xml.h:6
+#: ../src/SingleView.cs:439
+#: ../src/f-spot.glade.h:149
 msgid "Rotate _Right"
 msgstr "סובב _ימינה"
 
@@ -599,71 +686,79 @@ msgstr "סובב _ימינה"
 msgid "Tools"
 msgstr "כלים"
 
-#: ../src/FSpot.addin.xml.h:8 ../src/f-spot.glade.h:209
+#: ../src/FSpot.addin.xml.h:8
+#: ../src/f-spot.glade.h:193
 msgid "_Attach Tag"
 msgstr "_צרף תווית"
 
-#: ../src/FSpot.addin.xml.h:9 ../src/f-spot.glade.h:221
+#: ../src/FSpot.addin.xml.h:9
+#: ../src/f-spot.glade.h:205
 msgid "_Delete From Drive"
 msgstr "_מחק מהכונן"
 
-#: ../src/FSpot.addin.xml.h:10 ../src/f-spot.glade.h:254
+#: ../src/FSpot.addin.xml.h:10
+#: ../src/f-spot.glade.h:239
 msgid "_Remove From Catalog"
 msgstr "_הסר מהקטלוג"
 
-#: ../src/FileImportBackend.cs:259
+#: ../src/FileImportBackend.cs:286
 msgid "Import error"
 msgstr "שגיאת ייבוא"
 
-#: ../src/FileImportBackend.cs:260
+#: ../src/FileImportBackend.cs:287
 #, csharp-format
 msgid "Error importing {0}{2}{2}{1}"
 msgstr "שגיאת ייבוא {0}{2}{2}{1}"
 
-#: ../src/FileImportBackend.cs:261 ../src/ThreadProgressDialog.cs:68
+#: ../src/FileImportBackend.cs:288
+#: ../src/ThreadProgressDialog.cs:68
+#: ../extensions/Tools/MergeDb/MergeDb.glade.h:15
 msgid "Skip"
 msgstr "דלג"
 
-#: ../src/Filters/ResizeFilter.cs:70 ../src/Filters/SharpFilter.cs:52
+#: ../src/Filters/ResizeFilter.cs:70
+#: ../src/Filters/SharpFilter.cs:52
 #, csharp-format
 msgid "No way to save files of type \"{0}\""
 msgstr "אין דרך לשמור קבצים מסוג \"{0}\""
 
 #: ../src/FormClient.cs:297
+#, fuzzy
 msgid "Unhandled exception"
-msgstr ""
+msgstr "Exception Handling"
 
-#: ../src/FullScreenView.cs:56
+#: ../src/FullScreenView.cs:58
 msgid "Hide"
 msgstr "הסתר"
 
-#: ../src/FullScreenView.cs:58
+#: ../src/FullScreenView.cs:60
 msgid "Hide Toolbar"
 msgstr "הסתר סרגל כלים"
 
-#: ../src/FullScreenView.cs:64
+#: ../src/FullScreenView.cs:66
 msgid "Info"
 msgstr "מידע"
 
-#: ../src/FullScreenView.cs:66
+#: ../src/FullScreenView.cs:68
+#: ../src/Widgets/InfoBox.cs:197
 msgid "Image Information"
 msgstr "מידע אודות התמונה"
 
-#: ../src/FullScreenView.cs:71
+#: ../src/FullScreenView.cs:73
 msgid "Exit fullscreen"
 msgstr "יציאה ממצב מסך מלא"
 
-#: ../src/FullScreenView.cs:81 ../src/MainWindow.cs:294
-#: ../src/SingleView.cs:95
+#: ../src/FullScreenView.cs:83
+#: ../src/MainWindow.cs:319
+#: ../src/SingleView.cs:97
 msgid "Slideshow"
 msgstr "מצגת"
 
-#: ../src/FullScreenView.cs:82
+#: ../src/FullScreenView.cs:84
 msgid "Start slideshow"
 msgstr "התחלת מצגת"
 
-#: ../src/FullScreenView.cs:147
-#, fuzzy
+#: ../src/FullScreenView.cs:149
 msgid "Slide transition:"
 msgstr "מעבר שקופית: "
 
@@ -695,15 +790,19 @@ msgstr "פיצול"
 msgid "Push"
 msgstr "דחיפה"
 
-#: ../src/GroupSelector.cs:57 ../src/GroupSelector.cs:58
+#: ../src/GroupSelector.cs:57
+#: ../src/GroupSelector.cs:58
 msgid "More dates"
 msgstr "תאריכים נוספים"
 
-#: ../src/GroupSelector.cs:60 ../src/GroupSelector.cs:61
+#: ../src/GroupSelector.cs:60
+#: ../src/GroupSelector.cs:61
+#, fuzzy
 msgid "More directories"
-msgstr ""
+msgstr "Create Directories"
 
-#: ../src/GroupSelector.cs:63 ../src/GroupSelector.cs:64
+#: ../src/GroupSelector.cs:63
+#: ../src/GroupSelector.cs:64
 msgid "More"
 msgstr "עוד"
 
@@ -715,13 +814,15 @@ msgstr "סידור לפי _חודש"
 msgid "Arrange by _Folder"
 msgstr "סידור לפי _תיקייה"
 
-#: ../src/GroupSelector.cs:523 ../src/f-spot.glade.h:258
+#: ../src/GroupSelector.cs:523
+#: ../src/f-spot.glade.h:243
 msgid "_Reverse Order"
 msgstr "_להפוך סדר"
 
-#: ../src/GroupSelector.cs:529 ../src/f-spot.glade.h:213
+#: ../src/GroupSelector.cs:529
+#: ../src/f-spot.glade.h:197
 msgid "_Clear Date Range"
-msgstr "_נקה תווך תאריכים"
+msgstr "_נקה טווח תאריכים"
 
 #: ../src/Imaging/Exif.cs:228
 msgid "Image Directory"
@@ -740,8 +841,9 @@ msgid "GPS Directory"
 msgstr "ספריית GPS"
 
 #: ../src/Imaging/Exif.cs:236
+#, fuzzy
 msgid "InterOperability Directory"
-msgstr ""
+msgstr "ספרייה לא חוקית"
 
 #: ../src/Imaging/Exif.cs:238
 msgid "Unknown Directory"
@@ -760,8 +862,9 @@ msgid "OSI Destination routing information"
 msgstr ""
 
 #: ../src/Imaging/IptcFile.cs:149
+#, fuzzy
 msgid "IPTC file format"
-msgstr ""
+msgstr "סוג הקובץ לא נתמך."
 
 #: ../src/Imaging/IptcFile.cs:151
 msgid "Identifies the provider and product"
@@ -777,8 +880,7 @@ msgid "A unique number"
 msgstr "מספר יחודי"
 
 #: ../src/Imaging/IptcFile.cs:157
-msgid ""
-"The envelope handling priority between 1 (most urgent) and 9 (least urgent)"
+msgid "The envelope handling priority between 1 (most urgent) and 9 (least urgent)"
 msgstr ""
 
 #: ../src/Imaging/IptcFile.cs:159
@@ -790,8 +892,9 @@ msgid "The hour, minute and second (HHMMSS) the service sent the material"
 msgstr ""
 
 #: ../src/Imaging/IptcFile.cs:163
+#, fuzzy
 msgid "The character set designation"
-msgstr ""
+msgstr "קידוד תווים לא ידוע: %s"
 
 #: ../src/Imaging/IptcFile.cs:165
 msgid "External globally unique object identifier"
@@ -810,16 +913,19 @@ msgid "Number identifying the IIM version this application record uses"
 msgstr ""
 
 #: ../src/Imaging/IptcFile.cs:177
+#, fuzzy
 msgid "Object type reference"
-msgstr ""
+msgstr "סוג אובייקט הלוח"
 
 #: ../src/Imaging/IptcFile.cs:182
+#, fuzzy
 msgid "Object attribute reference"
-msgstr ""
+msgstr "invalid context reference '%s'"
 
-#: ../src/Imaging/IptcFile.cs:188 ../src/Imaging/IptcFile.cs:192
+#: ../src/Imaging/IptcFile.cs:188
+#: ../src/Imaging/IptcFile.cs:192
 msgid "Object name"
-msgstr ""
+msgstr "שם האובייקט"
 
 #: ../src/Imaging/IptcFile.cs:190
 msgid "Status of the objectdata according to the provider"
@@ -842,8 +948,7 @@ msgid "Full name of the country of the focus of the content"
 msgstr ""
 
 #: ../src/Imaging/IptcFile.cs:206
-msgid ""
-"Two or three letter ISO3166 code of the country of the focus of the content"
+msgid "Two or three letter ISO3166 code of the country of the focus of the content"
 msgstr ""
 
 #: ../src/Imaging/IptcFile.cs:209
@@ -852,36 +957,37 @@ msgstr "יוצר התוכן"
 
 #: ../src/Imaging/IptcFile.cs:212
 msgid "Provider of the object"
-msgstr ""
+msgstr "ספק האובייקט"
 
 #: ../src/Imaging/IptcFile.cs:215
 msgid "The title of the author or creator"
 msgstr ""
 
 #: ../src/Imaging/IptcFile.cs:218
-msgid ""
-"The person involved in writing, editing or correcting the object data or "
-"caption/abstract"
+msgid "The person involved in writing, editing or correcting the object data or caption/abstract"
 msgstr ""
 
 #: ../src/Imaging/IptcFile.cs:222
+#, fuzzy
 msgid "Headline of the content"
-msgstr ""
+msgstr "תצוגה נוכחית"
 
 #: ../src/Imaging/IptcFile.cs:225
-msgid ""
-"Instructions from the creator to the receiver not covered by other fields"
+msgid "Instructions from the creator to the receiver not covered by other fields"
 msgstr ""
 
 #: ../src/Imaging/IptcFile.cs:228
+#, fuzzy
 msgid "Intellectual genre of the object"
-msgstr ""
+msgstr "צור אובייקט קווי"
 
 #: ../src/Imaging/IptcFile.cs:241
+#, fuzzy
 msgid "Unknown IIM DataSet"
-msgstr ""
+msgstr "סוג מקור לא ידוע"
 
-#: ../src/ImportCommand.cs:49 ../src/SingleView.cs:334
+#: ../src/ImportCommand.cs:49
+#: ../src/SingleView.cs:344
 msgid "Select Folder"
 msgstr "בחירת תיקייה"
 
@@ -889,12 +995,12 @@ msgstr "בחירת תיקייה"
 msgid "(No Cameras Detected)"
 msgstr "(לא זוהתה מצלמה)"
 
-#: ../src/ImportCommand.cs:405
+#: ../src/ImportCommand.cs:406
 #, csharp-format
 msgid "Loading {0} of {1}"
 msgstr "טוען {0} מתוך {1}"
 
-#: ../src/ImportCommand.cs:473
+#: ../src/ImportCommand.cs:472
 msgid "Done Loading"
 msgstr "הטעינה הסתיימה"
 
@@ -904,63 +1010,19 @@ msgstr "הסיפרייה לא קיימת."
 
 #: ../src/ImportCommand.cs:671
 #, csharp-format
-msgid ""
-"The directory you selected \"{0}\" does not exist.  Please choose a "
-"different directory"
+msgid "The directory you selected \"{0}\" does not exist.  Please choose a different directory"
 msgstr ""
 
 #. Note for translators: 'Import Tags' is no command, it means 'Tags used in Import'
-#: ../src/ImportCommand.cs:724 ../src/ImportCommand.cs:726
+#: ../src/ImportCommand.cs:724
+#: ../src/ImportCommand.cs:726
 #: ../src/XmpTagsImporter.cs:88
 msgid "Import Tags"
 msgstr "ייבוא תוויות"
 
-#: ../src/InfoDisplay.cs:14
-msgid "Metadata Browser"
-msgstr ""
-
-#. Obsolete, remove after db rev4
-#: ../src/InfoDisplay.cs:135 ../src/InfoDisplay.cs:137
-#: ../src/SingleView.cs:120 ../src/Widgets/MetadataDisplay.cs:219
-#: ../src/Widgets/MetadataDisplay.cs:221 ../src/f-spot.glade.h:110
-msgid "Folder"
-msgstr "תיקייה"
-
-#: ../src/InfoDisplay.cs:139 ../src/Widgets/MetadataDisplay.cs:223
-msgid "Picasaweb"
-msgstr "Picasaweb"
-
-#: ../src/InfoDisplay.cs:141 ../src/Widgets/MetadataDisplay.cs:225
-msgid "SmugMug"
-msgstr "SmugMug"
-
-#: ../src/InfoDisplay.cs:143 ../src/Widgets/MetadataDisplay.cs:227
-msgid "Gallery2"
-msgstr "גלריה2"
-
-#: ../src/InfoDisplay.cs:239 ../src/Widgets/MetadataDisplay.cs:104
-#, fuzzy
-msgid "Extended Metadata"
-msgstr "מידע מורחב"
-
-#: ../src/InfoDisplay.cs:271
-msgid "Exported Locations"
-msgstr ""
-
-#: ../src/InfoDisplay.cs:294 ../src/Widgets/MetadataDisplay.cs:405
-msgid "No active photo"
-msgstr "אין תמונה פעילה"
-
-#: ../src/InfoDisplay.cs:296 ../src/Widgets/MetadataDisplay.cs:407
-#, csharp-format
-msgid "The photo \"{0}\" does not exist"
-msgstr "התמונה \"{0}\" לא קיימת"
-
-#: ../src/InfoDisplay.cs:302 ../src/Widgets/MetadataDisplay.cs:410
-msgid "No metadata available"
-msgstr ""
-
-#: ../src/ItemAction.cs:81 ../src/MainWindow.cs:261 ../src/SingleView.cs:78
+#: ../src/ItemAction.cs:81
+#: ../src/MainWindow.cs:286
+#: ../src/SingleView.cs:80
 msgid "Rotate Left"
 msgstr "סיבוב שמאלה"
 
@@ -968,17 +1030,19 @@ msgstr "סיבוב שמאלה"
 msgid "Rotate picture left"
 msgstr "סיבוב התמונה שמאלה"
 
-#: ../src/ItemAction.cs:93 ../src/MainWindow.cs:265 ../src/SingleView.cs:83
+#: ../src/ItemAction.cs:93
+#: ../src/MainWindow.cs:290
+#: ../src/SingleView.cs:85
 msgid "Rotate Right"
 msgstr "סיבוב ימינה"
 
 #: ../src/ItemAction.cs:94
-#, fuzzy
 msgid "Rotate picture right"
-msgstr "סיבוב התמונה שמאלה"
+msgstr "סיבוב תמונה ימינה"
 
-#: ../src/ItemAction.cs:104 ../src/f-spot.glade.h:135
-#: ../extensions/FolderExport/FolderExport.cs:998
+#: ../src/ItemAction.cs:104
+#: ../src/f-spot.glade.h:121
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:998
 msgid "Next"
 msgstr "הבא"
 
@@ -986,7 +1050,8 @@ msgstr "הבא"
 msgid "Next picture"
 msgstr "תמונה הבאה"
 
-#: ../src/ItemAction.cs:126 ../src/f-spot.glade.h:155
+#: ../src/ItemAction.cs:126
+#: ../src/f-spot.glade.h:142
 msgid "Previous"
 msgstr "קודם"
 
@@ -994,36 +1059,13 @@ msgstr "קודם"
 msgid "Previous picture"
 msgstr "תמונה קודמת"
 
-#: ../src/ItemAction.cs:258
-msgid "Auto Color"
-msgstr ""
-
-#: ../src/ItemAction.cs:259
-msgid "Automatically adjust the colors"
-msgstr ""
-
-#: ../src/ItemAction.cs:274
-msgid "Apply straightening"
-msgstr ""
-
-#: ../src/ItemAction.cs:275
-msgid "Apply straightening to image"
-msgstr ""
-
-#: ../src/ItemAction.cs:328
-msgid "Adjust the angle of the image to straighten the horizon"
-msgstr ""
-
-#: ../src/ItemAction.cs:344
-msgid "Create a soft focus visual effect"
-msgstr ""
-
 #: ../src/Loupe.cs:60
+#, fuzzy
 msgid "Error saving sharpened photo"
-msgstr ""
+msgstr "שגיאה בסיבוב תמונה."
 
-#: ../src/Loupe.cs:61 ../src/PhotoView.cs:263
-#: ../src/UI.Dialog/ColorDialog.cs:212
+#: ../src/Loupe.cs:61
+#: ../src/PhotoView.cs:166
 #: ../src/UI.Dialog/EditExceptionDialog.cs:25
 #, csharp-format
 msgid "Received exception \"{0}\". Unable to save photo {1}"
@@ -1045,250 +1087,258 @@ msgstr "רדיוס:"
 msgid "Threshold:"
 msgstr "סף:"
 
-#: ../src/MainWindow.cs:254 ../src/f-spot.glade.h:125
+#: ../src/MainWindow.cs:279
+#: ../src/f-spot.glade.h:111
 msgid "Import"
 msgstr "ייבוא"
 
-#: ../src/MainWindow.cs:256
+#: ../src/MainWindow.cs:281
 msgid "Import new images"
 msgstr "ייבוא תמונות חדשות"
 
-#: ../src/MainWindow.cs:272 ../src/f-spot.glade.h:76
+#: ../src/MainWindow.cs:297
+#: ../src/f-spot.glade.h:62
 msgid "Browse"
 msgstr "עיון"
 
-#: ../src/MainWindow.cs:276
+#: ../src/MainWindow.cs:301
 msgid "Browse many photos simultaneously"
 msgstr "עיון בהרבה תמונות בו זמנית"
 
-#: ../src/MainWindow.cs:280
+#: ../src/MainWindow.cs:305
 msgid "Edit Image"
 msgstr "עריכת תמונה"
 
-#: ../src/MainWindow.cs:284
+#: ../src/MainWindow.cs:309
 msgid "View and edit a photo"
 msgstr "הצגה והעריכת תמונה"
 
-#: ../src/MainWindow.cs:289 ../src/SingleView.cs:90
+#: ../src/MainWindow.cs:314
+#: ../src/SingleView.cs:92
 msgid "Fullscreen"
 msgstr "מסך מלא"
 
-#: ../src/MainWindow.cs:291 ../src/SingleView.cs:92
+#: ../src/MainWindow.cs:316
+#: ../src/SingleView.cs:94
 msgid "View photos fullscreen"
 msgstr "הצגת התמונות במסך מלא"
 
-#: ../src/MainWindow.cs:296 ../src/SingleView.cs:97
+#: ../src/MainWindow.cs:321
+#: ../src/SingleView.cs:99
 msgid "View photos in a slideshow"
 msgstr "הצגת התמונות במצגת"
 
-#: ../src/MainWindow.cs:307 ../extensions/FolderExport/FolderExport.cs:995
-#: ../extensions/FolderExport/FolderExport.cs:1167
-#: ../extensions/FolderExport/FolderExport.cs:1207
+#: ../src/MainWindow.cs:336
+msgid "Previous photo"
+msgstr "תמונה קודמת"
+
+#: ../src/MainWindow.cs:341
+msgid "Next photo"
+msgstr "תמונה הבאה"
+
+#. Don't care otherwise, Tags sounds reasonable
+#: ../src/MainWindow.cs:354
+#: ../src/Widgets/Sidebar.cs:73
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:995
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:1167
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:1207
 msgid "Tags"
 msgstr "תוויות"
 
-#: ../src/MainWindow.cs:1593
+#. Note for translators: This indicates the current photo is photo {0} of {1} out of photos
+#: ../src/MainWindow.cs:662
+#: ../src/ProgressDialog.cs:82
+#: ../src/TimeDialog.cs:143
+#: ../extensions/Exporters/CDExport/CDExport.cs:221
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:349
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:244
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:783
+#, csharp-format
+msgid "{0} of {1}"
+msgstr "{0} מ {1}"
+
+#: ../src/MainWindow.cs:1671
 msgid "No cameras detected."
 msgstr "לא זוהתה מצלמה."
 
-#: ../src/MainWindow.cs:1594
-msgid ""
-"F-Spot was unable to find any cameras attached to this system.  Double check "
-"that the camera is connected and has power"
-msgstr ""
-"F-Spot לא הצליח למצוא מצלמות שמחוברות למחשב שלכם. בדוק שוב שהמצלמה מחוברת "
-"ויש לה חשמל"
+#: ../src/MainWindow.cs:1672
+msgid "F-Spot was unable to find any cameras attached to this system.  Double check that the camera is connected and has power"
+msgstr "F-Spot לא הצליח למצוא מצלמות שמחוברות למחשב שלכם. בדוק שוב שהמצלמה מחוברת ויש לה חשמל"
 
-#: ../src/MainWindow.cs:1634
+#: ../src/MainWindow.cs:1712
 msgid "Error connecting to camera"
 msgstr "שגיאה בהתחברות למצלמה"
 
-#: ../src/MainWindow.cs:1635
+#: ../src/MainWindow.cs:1713
 #, csharp-format
 msgid "Received error \"{0}\" while connecting to camera"
 msgstr "התקבלה שגיאה \"{0}\" בזמן ההתחברות למצלמה"
 
 #. Translators, The singular case will never happen here.
-#: ../src/MainWindow.cs:1975
+#: ../src/MainWindow.cs:2058
 #, csharp-format
 msgid "Merge the selected tag"
 msgid_plural "Merge the {0} selected tags?"
 msgstr[0] "מיזוג התוויות הנבחרות"
 msgstr[1] "מיזוג {0} התוויות הנבחרות?"
 
-#: ../src/MainWindow.cs:2002
-msgid ""
-"This operation will merge the selected tags and any sub-tags into a single "
-"tag."
+#: ../src/MainWindow.cs:2085
+msgid "This operation will merge the selected tags and any sub-tags into a single tag."
 msgstr ""
 
-#: ../src/MainWindow.cs:2004
+#: ../src/MainWindow.cs:2087
 msgid "_Merge Tags"
 msgstr "_מיזוג תוויות"
 
-#: ../src/MainWindow.cs:2201
-#, fuzzy, csharp-format
+#: ../src/MainWindow.cs:2292
+#, csharp-format
 msgid "{0} Photo out of {1}"
 msgid_plural "{0} Photos out of {1}"
 msgstr[0] "תמונה {0} מתוך {1}"
-msgstr[1] "תמונה {0} מתוך {1}"
+msgstr[1] "{1} תמונות מתוך {1}"
 
-#: ../src/MainWindow.cs:2203 ../src/SingleView.cs:471
+#: ../src/MainWindow.cs:2294
+#: ../src/SingleView.cs:481
 #, csharp-format
 msgid "{0} Photo"
 msgid_plural "{0} Photos"
 msgstr[0] "{0} תמונות"
 msgstr[1] "{0} תמונות"
 
-#: ../src/MainWindow.cs:2206
+#: ../src/MainWindow.cs:2297
 #, csharp-format
 msgid " ({0} selected)"
 msgid_plural " ({0} selected)"
 msgstr[0] " ({0} נבחר)"
 msgstr[1] " ({0} נבחרו)"
 
-#: ../src/MainWindow.cs:2287
+#: ../src/MainWindow.cs:2378
 msgid "_Ok"
 msgstr "_אישור"
 
-#: ../src/MainWindow.cs:2288
+#: ../src/MainWindow.cs:2379
 msgid "Error Deleting Picture"
 msgstr "שגיאה במחיקת תמונה"
 
-#: ../src/MainWindow.cs:2293
+#: ../src/MainWindow.cs:2384
 #, csharp-format
 msgid "No permission to delete the file:{1}{0}"
 msgstr "אין הרשאות כדי למחוק את הקובץ:{1}{0}"
 
-#: ../src/MainWindow.cs:2297
-#, csharp-format
+#: ../src/MainWindow.cs:2388
+#, fuzzy, csharp-format
 msgid "An error of type {0} occurred while deleting the file:{2}{1}"
-msgstr ""
+msgstr "ארעה שגיאה בעת מחיקת קובץ או ספרייה"
 
-#: ../src/MainWindow.cs:2323
+#: ../src/MainWindow.cs:2414
 #, csharp-format
 msgid "Delete the selected photo permanently?"
 msgid_plural "Delete the {0} selected photos permanently?"
 msgstr[0] "מחיקת התמונה הנבחרת לצמיתות?"
 msgstr[1] "מחיקת {0} תמונות נבחרות לצמיתות?"
 
-#: ../src/MainWindow.cs:2327
+#: ../src/MainWindow.cs:2418
 msgid "This deletes all versions of the selected photo from your drive."
-msgid_plural ""
-"This deletes all versions of the selected photos from your drive."
+msgid_plural "This deletes all versions of the selected photos from your drive."
 msgstr[0] "מחק את כל הגרסאות של התמונה הנבחרת מהכונן שלך."
 msgstr[1] "מחק את כל הגרסאות של התמונות הנבחרות מהכונן שלך."
 
-#: ../src/MainWindow.cs:2330
+#: ../src/MainWindow.cs:2421
 msgid "_Delete photo"
 msgid_plural "_Delete photos"
 msgstr[0] "_מחק תמונה"
 msgstr[1] "_מחק תמונות"
 
-#: ../src/MainWindow.cs:2361
+#: ../src/MainWindow.cs:2451
 #, csharp-format
 msgid "Remove the selected photo from F-Spot?"
 msgid_plural "Remove the {0} selected photos from F-Spot?"
 msgstr[0] "מחק את התמונה הנבחרת מתוך F-Spot?"
 msgstr[1] "מחיקת {0} תמונות נבחרות מתוך F-Spot?"
 
-#: ../src/MainWindow.cs:2366
-msgid ""
-"If you remove photos from the F-Spot catalog all tag information will be "
-"lost. The photos remain on your computer and can be imported into F-Spot "
-"again."
-msgstr ""
-"אם נימחק מידע מהקטלוג של F-Spot כל נתוני התווית ימחקו. התמונות יישארו על "
-"המחשב ויהיה אפשרי לייבא אותם לתוך F-Spot שוב."
+#: ../src/MainWindow.cs:2456
+msgid "If you remove photos from the F-Spot catalog all tag information will be lost. The photos remain on your computer and can be imported into F-Spot again."
+msgstr "אם נימחק מידע מהקטלוג של F-Spot כל נתוני התווית ימחקו. התמונות יישארו על המחשב ויהיה אפשרי לייבא אותם לתוך F-Spot שוב."
 
-#: ../src/MainWindow.cs:2367
+#: ../src/MainWindow.cs:2457
 msgid "_Remove from Catalog"
 msgstr "_הסר מהקטלוג"
 
-#: ../src/MainWindow.cs:2430
+#: ../src/MainWindow.cs:2520
 #, csharp-format
 msgid "Delete tag \"{0}\"?"
 msgstr "מחק את התווית \"{0}\"?"
 
-#: ../src/MainWindow.cs:2432
+#: ../src/MainWindow.cs:2522
 #, csharp-format
 msgid "Delete the {0} selected tags?"
 msgstr "למחוק {0} תוויות נבחרות?"
 
-#: ../src/MainWindow.cs:2437
+#: ../src/MainWindow.cs:2527
 msgid "photo"
 msgid_plural "photos"
 msgstr[0] "תמונה"
 msgstr[1] "תמונות"
 
-#: ../src/MainWindow.cs:2439
+#: ../src/MainWindow.cs:2529
 #, fuzzy, csharp-format
 msgid "If you delete this tag, the association with {0} {1} will be lost."
-msgid_plural ""
-"If you delete these tags, the association with {0} {1} will be lost."
+msgid_plural "If you delete these tags, the association with {0} {1} will be lost."
 msgstr[0] "אם אתם מוחקים תווית, כל הסמיכויות עם התמונות יאבדו."
 msgstr[1] "אם אתם מוחקים תווית, כל הסמיכויות עם התמונות יאבדו."
 
-#: ../src/MainWindow.cs:2444
+#: ../src/MainWindow.cs:2534
 msgid "_Delete tag"
 msgid_plural "_Delete tags"
 msgstr[0] "_מחיקת תווית"
 msgstr[1] "_מחיקת תוויות"
 
 #. A Category is not empty. Can not delete it.
-#: ../src/MainWindow.cs:2458
+#: ../src/MainWindow.cs:2548
 msgid "Tag is not empty"
 msgstr "התווית לא ריקה"
 
-#: ../src/MainWindow.cs:2459
+#: ../src/MainWindow.cs:2549
 #, csharp-format
-msgid ""
-"Can not delete tags that have tags within them.  Please delete tags under "
-"\"{0}\" first"
-msgstr ""
-"לא ניתן למחוק תוויות שכוללות תתי תוויות בתוכם. קודם נא למחוק את התוויות תחת "
-"\"{0}\""
+msgid "Can not delete tags that have tags within them.  Please delete tags under \"{0}\" first"
+msgstr "לא ניתן למחוק תוויות שכוללות תתי תוויות בתוכם. קודם נא למחוק את התוויות תחת \"{0}\""
 
-#: ../src/MainWindow.cs:2898
+#: ../src/MainWindow.cs:2992
 msgid "Rotate selected photo left"
 msgid_plural "Rotate selected photos left"
 msgstr[0] "סובב את התמונה הנבחרת לשמאל"
 msgstr[1] "סובב את התמונות הנבחרות לשמאל"
 
-#: ../src/MainWindow.cs:2911
+#: ../src/MainWindow.cs:3005
 msgid "Rotate selected photo right"
 msgid_plural "Rotate selected photos right"
 msgstr[0] "סיבוב התמונה הנבחרת לימין"
 msgstr[1] "סיבוב התמונות הנבחרות לימין"
 
-#: ../src/MainWindow.cs:2919
+#: ../src/MainWindow.cs:3013
 #, csharp-format
 msgid "Find _Selected Tag"
 msgid_plural "Find _Selected Tags"
 msgstr[0] "חיפוש תווית _נבחרת"
 msgstr[1] "חיפוש תוויות _נבחרות"
 
-#: ../src/MainWindow.cs:2923
+#: ../src/MainWindow.cs:3017
 #, fuzzy, csharp-format
 msgid "Find Selected Tag _With"
 msgid_plural "Find Selected Tags _With"
-msgstr[0] "מצא תוויות נבחרות עם"
-msgstr[1] "מצא תוויות נבחרות עם"
+msgstr[0] "מצא תווית נבחרת _עם"
+msgstr[1] "מצא תוויות נבחרות _עם"
 
-#: ../src/MainWindow.cs:2961
+#: ../src/MainWindow.cs:3055
 msgid "Create New Version?"
 msgid_plural "Create New Versions?"
 msgstr[0] "יצירת גרסה חדשה?"
 msgstr[1] "יצירת גרסאות חדשות?"
 
-#: ../src/MainWindow.cs:2963
+#: ../src/MainWindow.cs:3057
 #, csharp-format
-msgid ""
-"Before launching {1}, should F-Spot create a new version of the selected "
-"photo to preserve the original?"
-msgid_plural ""
-"Before launching {1}, should F-Spot create new versions of the selected "
-"photos to preserve the originals?"
+msgid "Before launching {1}, should F-Spot create a new version of the selected photo to preserve the original?"
+msgid_plural "Before launching {1}, should F-Spot create new versions of the selected photos to preserve the originals?"
 msgstr[0] ""
 msgstr[1] ""
 
@@ -1313,20 +1363,22 @@ msgid "Compression"
 msgstr "דחיסה"
 
 #: ../src/MetadataStore.cs:24
+#, fuzzy
 msgid "Planar Configuration"
-msgstr ""
+msgstr "השארת קבצי הגדרה"
 
 #: ../src/MetadataStore.cs:26
 msgid "Orientation"
 msgstr "כיוון"
 
 #: ../src/MetadataStore.cs:28
+#, fuzzy
 msgid "Photometric Interpretation"
-msgstr ""
+msgstr "פירוש ערך"
 
 #: ../src/MetadataStore.cs:30
 msgid "Resolution Unit"
-msgstr ""
+msgstr "יחידת רזולוציה"
 
 #: ../src/MetadataStore.cs:32
 msgid "Exposure Program"
@@ -1337,12 +1389,14 @@ msgid "Metering Mode"
 msgstr "מצב מדידה"
 
 #: ../src/MetadataStore.cs:36
+#, fuzzy
 msgid "Exposure Mode"
-msgstr ""
+msgstr "שיטה מטרית"
 
 #: ../src/MetadataStore.cs:38
+#, fuzzy
 msgid "Custom Rendered"
-msgstr ""
+msgstr "Custom Background"
 
 #: ../src/MetadataStore.cs:40
 msgid "Components Configuration"
@@ -1353,8 +1407,9 @@ msgid "Light Source"
 msgstr "מקור קל"
 
 #: ../src/MetadataStore.cs:44
+#, fuzzy
 msgid "Sensing Method"
-msgstr ""
+msgstr "שיטת הצליל"
 
 #: ../src/MetadataStore.cs:46
 msgid "Color Space"
@@ -1373,12 +1428,14 @@ msgid "File Source Type"
 msgstr "סוג מקור קובץ"
 
 #: ../src/MetadataStore.cs:54
+#, fuzzy
 msgid "Scene Capture Type"
-msgstr ""
+msgstr "סוג מקור לא ידוע"
 
 #: ../src/MetadataStore.cs:56
+#, fuzzy
 msgid "Gain Control"
-msgstr ""
+msgstr "בקרת קבצים"
 
 #: ../src/MetadataStore.cs:58
 msgid "Contrast"
@@ -1393,8 +1450,9 @@ msgid "Sharpness"
 msgstr "חדות"
 
 #: ../src/MetadataStore.cs:64
+#, fuzzy
 msgid "Scene Type"
-msgstr ""
+msgstr "כתיבה כחולה"
 
 #. Fixme this should really set parent menu
 #. items insensitve
@@ -1456,7 +1514,7 @@ msgstr ""
 
 #: ../src/PhotoVersionCommands.cs:195
 msgid "Could not rename a version"
-msgstr ""
+msgstr "לא ניתן לשנות את שם הגרסה"
 
 #: ../src/PhotoVersionCommands.cs:196
 #, csharp-format
@@ -1464,135 +1522,24 @@ msgid "Received exception \"{0}\". Unable to rename version to \"{1}\""
 msgstr ""
 
 #: ../src/PhotoVersionMenu.cs:67
+#: ../src/Widgets/InfoBox.cs:546
 msgid "(No Edits)"
 msgstr "(אין עריכות)"
 
-#: ../src/PhotoView.cs:78
-msgid "4 x 3 (Book)"
-msgstr "4 x 3 (ספר)"
-
-#: ../src/PhotoView.cs:79
-msgid "4 x 6 (Postcard)"
-msgstr "4 x 6 (גלויה)"
-
-#: ../src/PhotoView.cs:80
-msgid "5 x 7 (L, 2L)"
-msgstr "5 x 7 (L, 2L)"
-
-#: ../src/PhotoView.cs:81
-msgid "8 x 10"
-msgstr "8 x 10"
-
-#: ../src/PhotoView.cs:82
-msgid "Square"
-msgstr "ריבוע"
-
-#: ../src/PhotoView.cs:129
-msgid "Crop photo to selected area"
-msgstr ""
-
-#: ../src/PhotoView.cs:130
-msgid "Remove redeye from selected area"
-msgstr "מחיקת עיין אדומה מהאזור הנבחר"
-
-#: ../src/PhotoView.cs:132
-msgid "Select an area to crop"
-msgstr ""
-
-#: ../src/PhotoView.cs:133
-msgid "Select an area to remove redeye"
-msgstr ""
-
-#. Note for translators: This indicates the current photo is photo {0} of {1} out of photos
-#: ../src/PhotoView.cs:149 ../src/ProgressDialog.cs:82
-#: ../src/TimeDialog.cs:143 ../extensions/CDExport/CDExport.cs:221
-#: ../extensions/FlickrExport/FlickrExport.cs:338
-#: ../extensions/FolderExport/FolderExport.cs:244
-#: ../extensions/GalleryExport/GalleryExport.cs:779
-#, csharp-format
-msgid "{0} of {1}"
-msgstr "{0} מ {1}"
-
-#: ../src/PhotoView.cs:262 ../src/UI.Dialog/EditExceptionDialog.cs:38
+#: ../src/PhotoView.cs:165
+#: ../src/UI.Dialog/EditExceptionDialog.cs:38
 msgid "Error editing photo"
 msgstr "שגיאה בעריכת תמונה"
 
-#: ../src/PhotoView.cs:314
-msgid "No selection available"
-msgstr ""
-
-#: ../src/PhotoView.cs:315
-msgid ""
-"This tool requires an active selection. Please select a region of the photo "
-"and try the operation again"
-msgstr ""
-
-#: ../src/PhotoView.cs:505
+#: ../src/PhotoView.cs:303
 msgid "Comment:"
 msgstr "הערה:‏"
 
-#: ../src/PhotoView.cs:537
-msgid "Constrain the aspect ratio of the selection"
-msgstr ""
-
-#: ../src/PhotoView.cs:539
-msgid "Crop"
-msgstr "קיצוץ"
-
-#: ../src/PhotoView.cs:543
-msgid "Reduce Red-Eye"
-msgstr "הפחתת עיין-אדמה"
-
-#: ../src/PhotoView.cs:547
-msgid "Adjust Colors"
-msgstr "תיקון צבעים"
-
-#: ../src/PhotoView.cs:549
-msgid "Adjust the photo colors"
-msgstr ""
-
-#: ../src/PhotoView.cs:552
-msgid "Desaturate"
-msgstr "ביטול הרוויה"
-
-#: ../src/PhotoView.cs:554
-msgid "Convert the photo to black and white"
-msgstr "המרת התמונה לשחור ולבן"
-
-#: ../src/PhotoView.cs:557
-msgid "Sepia Tone"
-msgstr ""
-
-#: ../src/PhotoView.cs:559
-msgid "Convert the photo to sepia tones"
-msgstr ""
-
-#: ../src/PhotoView.cs:589
-msgid "Previous photo"
-msgstr "תמונה קודמת"
-
-#: ../src/PhotoView.cs:594
-msgid "Next photo"
-msgstr "תמונה הבאה"
-
-#: ../src/PhotoView.cs:654
-msgid "No Constraint"
-msgstr ""
-
-#: ../src/PhotoView.cs:655
-#, fuzzy
-msgid "Same as photo"
-msgstr "תמונות מדורגות"
-
-#: ../src/PhotoView.cs:660
-msgid "Custom Ratios..."
-msgstr ""
-
-#: ../src/Preferences.cs:153
+#: ../src/Preferences.cs:161
 msgid "Photos"
 msgstr "תמונות"
 
-#: ../src/PrintOperation.cs:31
+#: ../src/PrintOperation.cs:32
 msgid "Image Settings"
 msgstr "הגדרות תמונה"
 
@@ -1610,8 +1557,9 @@ msgstr "תמונות מדורגות"
 
 #. Note for translators: 'Import roll' is no command, it means 'Roll that has been imported'
 #: ../src/QueryWidget.cs:62
+#, fuzzy
 msgid "Import roll"
-msgstr ""
+msgstr "רוק אנד רול"
 
 #: ../src/QueryWidget.cs:82
 msgid "Clear search"
@@ -1633,24 +1581,23 @@ msgstr "הסתר _חיפוש"
 msgid "Show _Find Bar"
 msgstr "הצג _חיפוש"
 
-#: ../src/RotateCommand.cs:94 ../src/RotateCommand.cs:109
-#, fuzzy
+#: ../src/RotateCommand.cs:94
+#: ../src/RotateCommand.cs:109
 msgid "Unable to rotate this type of photo"
-msgstr "סיבוב תמונה לא הצליח"
+msgstr "לא ניתן לסובב תמונה מסוג זה"
 
 #: ../src/RotateCommand.cs:129
-#, fuzzy
 msgid "Unable to rotate readonly file"
-msgstr "אין אפשרות ליצור קובץ זמני"
+msgstr "לא ניתן לסובב קובץ לקריאה בלבד"
 
 #: ../src/RotateCommand.cs:196
 msgid "Rotating photos"
-msgstr ""
+msgstr "מסובב תמונות"
 
 #: ../src/RotateCommand.cs:207
 #, csharp-format
 msgid "Rotating photo \"{0}\""
-msgstr ""
+msgstr "מסובב את התמונה \"{0}\""
 
 #: ../src/RotateCommand.cs:220
 msgid "Directory not found"
@@ -1665,65 +1612,70 @@ msgstr[1] "לא ניתן לסובב {0} תמונות"
 
 #: ../src/RotateCommand.cs:242
 #, csharp-format
-msgid ""
-"The photo could not be rotated because it is on a read only file system or "
-"media such as a CDROM.  Please check the permissions and try again."
-msgid_plural ""
-"{0} photos could not be rotated because they are on a read only file system "
-"or media such as a CDROM.  Please check the permissions and try again."
+msgid "The photo could not be rotated because it is on a read only file system or media such as a CDROM.  Please check the permissions and try again."
+msgid_plural "{0} photos could not be rotated because they are on a read only file system or media such as a CDROM.  Please check the permissions and try again."
 msgstr[0] ""
 msgstr[1] ""
 
 #: ../src/RotateCommand.cs:269
 #, csharp-format
 msgid "Received error \"{0}\" while attempting to rotate {1}"
-msgstr ""
+msgstr "התקבלה שגיאה \"{0}\" בזמן ניסיון לסובב את {1}"
 
 #: ../src/RotateCommand.cs:274
 msgid "Error while rotating photo."
 msgstr "שגיאה בסיבוב תמונה."
 
-#: ../src/SendEmail.cs:237
+#: ../src/SendEmail.cs:240
 msgid "Preparing email"
 msgstr "מכין דוא\"ל"
 
-#: ../src/SendEmail.cs:289
+#: ../src/SendEmail.cs:292
 #, csharp-format
 msgid "Exporting picture \"{0}\""
 msgstr "מייצא תמונה \"{0}\""
 
-#: ../src/SendEmail.cs:311
+#: ../src/SendEmail.cs:314
 msgid "Error processing image"
 msgstr "שגיאה בעיבוד תמונה"
 
-#: ../src/SendEmail.cs:312
-#, csharp-format
+#: ../src/SendEmail.cs:315
+#, fuzzy, csharp-format
 msgid "An error occured while processing \"{0}\": {1}"
-msgstr ""
+msgstr "error processing netlink message: %s"
 
 #. Send the mail :)
-#: ../src/SendEmail.cs:327
+#: ../src/SendEmail.cs:330
 msgid "my photos"
 msgstr "התמונות שלי"
 
-#: ../src/SingleView.cs:80
+#: ../src/SingleView.cs:82
 msgid "Rotate photo left"
 msgstr "סיבוב תמונה שמאלה"
 
-#: ../src/SingleView.cs:85
+#: ../src/SingleView.cs:87
 msgid "Rotate photo right"
 msgstr "סיבוב תמונה ימינה"
 
-#: ../src/SingleView.cs:331
+#. Obsolete, remove after db rev4
+#: ../src/SingleView.cs:122
+#: ../src/Widgets/MetadataDisplay.cs:219
+#: ../src/Widgets/MetadataDisplay.cs:221
+#: ../src/f-spot.glade.h:98
+msgid "Folder"
+msgstr "תיקייה"
+
+#: ../src/SingleView.cs:341
 msgid "Open"
 msgstr "פתח"
 
-#: ../src/SingleView.cs:431
+#: ../src/SingleView.cs:441
 msgid "Set as Background"
 msgstr "קבע כרקע"
 
-#: ../src/TagCommands.cs:92 ../src/TagCommands.cs:220
-#: ../src/TagSelectionWidget.cs:508
+#: ../src/TagCommands.cs:92
+#: ../src/TagCommands.cs:220
+#: ../src/TagSelectionWidget.cs:512
 msgid "This name is already in use"
 msgstr "השם הזה כבר בשימוש"
 
@@ -1735,39 +1687,38 @@ msgstr "צור תווית חדשה"
 msgid "Name of New Tag:"
 msgstr "שם התווית החדשה:"
 
-#: ../src/TagCommands.cs:279
+#: ../src/TagCommands.cs:286
 msgid "Edit Tag"
 msgstr "ערוך תווית"
 
-#: ../src/TagCommands.cs:280
+#: ../src/TagCommands.cs:287
 msgid "Tag Name:"
 msgstr "שם התווית:"
 
-#: ../src/TagCommands.cs:387
+#: ../src/TagCommands.cs:403
 msgid "Unable to load image"
 msgstr "לא ניתן לטעון תמונה"
 
-#: ../src/TagCommands.cs:388
+#: ../src/TagCommands.cs:404
 #, csharp-format
 msgid "Unable to load \"{0}\" as icon for the tag"
 msgstr ""
 
-#: ../src/TagCommands.cs:426
+#: ../src/TagCommands.cs:448
 #, csharp-format
 msgid "Photo {0} of {1}"
 msgstr "תמונה {0} מתוך {1}"
 
-#: ../src/TagCommands.cs:456
+#: ../src/TagCommands.cs:478
 #, csharp-format
 msgid "Edit Icon for Tag {0}"
 msgstr "עריכת סמל עבור תווית {0}"
 
-#: ../src/TagCommands.cs:472
-#, fuzzy
+#: ../src/TagCommands.cs:494
 msgid "Select Photo from file"
-msgstr "בחרו תמונות להעתקה ממצלמה"
+msgstr "בחר תמונה מקובץ"
 
-#: ../src/TagCommands.cs:495
+#: ../src/TagCommands.cs:517
 #, csharp-format
 msgid ""
 "\n"
@@ -1785,7 +1736,8 @@ msgid_plural "Find"
 msgstr[0] "חפש"
 msgstr[1] "חפש"
 
-#: ../src/TagPopup.cs:36 ../src/Widgets/TagMenu.cs:91
+#: ../src/TagPopup.cs:36
+#: ../src/Widgets/TagMenu.cs:91
 msgid "Create New Tag..."
 msgstr "יצירת תווית חדשה..."
 
@@ -1840,7 +1792,8 @@ msgstr[1] "חפש _עם"
 msgid "All"
 msgstr "הכול"
 
-#: ../src/TagQueryWidget.cs:147 ../src/Term.cs:591
+#: ../src/TagQueryWidget.cs:147
+#: ../src/Term.cs:591
 #, csharp-format
 msgid "Not {0}"
 msgstr "לא {0}"
@@ -1849,32 +1802,33 @@ msgstr "לא {0}"
 msgid "Drag tags here to search for them"
 msgstr "גרור תוויות לכאן כדי לחפש אחריהם"
 
-#: ../src/TagSelectionWidget.cs:507
+#: ../src/TagSelectionWidget.cs:511
 msgid "Error renaming tag"
 msgstr "שגיאה בשינוי שם התווית"
 
-#: ../src/TagStore.cs:234
+#: ../src/TagStore.cs:200
 msgid "Favorites"
 msgstr "מועדפים"
 
-#: ../src/TagStore.cs:239
+#: ../src/TagStore.cs:205
 msgid "Hidden"
 msgstr "נסתר"
 
-#: ../src/TagStore.cs:247
+#: ../src/TagStore.cs:213
 msgid "People"
 msgstr "אנשים"
 
-#: ../src/TagStore.cs:252
+#: ../src/TagStore.cs:218
 msgid "Places"
 msgstr "מקומות"
 
-#: ../src/TagStore.cs:257
+#: ../src/TagStore.cs:223
 msgid "Events"
 msgstr "אירועים"
 
 #. The label for the root category is used in new and edit tag dialogs
-#: ../src/TagStore.cs:270 ../src/Widgets/InfoBox.cs:268
+#: ../src/TagStore.cs:236
+#: ../src/Widgets/InfoBox.cs:397
 msgid "(None)"
 msgstr "(ללא)"
 
@@ -1893,7 +1847,9 @@ msgstr " או "
 
 #. OPS The operators we support, case insensitive
 #. private static string op_str = "(?'Ops' or | and |, | \\s+ )";
-#: ../src/Term.cs:379 ../src/Widgets/FindBar.cs:177 ../src/f-spot.glade.h:287
+#: ../src/Term.cs:379
+#: ../src/Widgets/FindBar.cs:177
+#: ../src/f-spot.glade.h:273
 msgid "or"
 msgstr "או"
 
@@ -1901,20 +1857,21 @@ msgstr "או"
 msgid "Retry"
 msgstr "לנסות שוב"
 
-#: ../src/TimeDialog.cs:126 ../src/f-spot.glade.h:180
+#: ../src/TimeDialog.cs:126
+#: ../src/f-spot.glade.h:166
 #, csharp-format
 msgid "Shift all photos by {0}"
 msgstr ""
 
-#: ../src/UI.Dialog/AboutDialog.cs:67
+#: ../src/UI.Dialog/AboutDialog.cs:70
 msgid "Photo management for GNOME"
 msgstr "מנהל תמונות עבור GNOME"
 
-#: ../src/UI.Dialog/AboutDialog.cs:68
+#: ../src/UI.Dialog/AboutDialog.cs:71
 msgid "Copyright © 2003-2008 Novell Inc."
 msgstr "Copyright © 2003-2008 Novell Inc."
 
-#: ../src/UI.Dialog/AboutDialog.cs:93
+#: ../src/UI.Dialog/AboutDialog.cs:96
 msgid "translator-credits"
 msgstr ""
 "מארק קרפיבנר <mark125@gmail.com>\n"
@@ -1924,14 +1881,9 @@ msgstr ""
 "פרוייקט תרגום GNOME לעברית:\n"
 "‏http://gnome-il.berlios.de"
 
-#: ../src/UI.Dialog/AboutDialog.cs:98
+#: ../src/UI.Dialog/AboutDialog.cs:101
 msgid "F-Spot Website"
 msgstr "אתר הבית של F-Spot"
-
-#: ../src/UI.Dialog/ColorDialog.cs:211
-#, fuzzy
-msgid "Error saving adjusted photo"
-msgstr "שגיאה בשמירת התמונה הערוכה"
 
 #: ../src/UI.Dialog/ExceptionDialog.cs:24
 msgid "F-Spot Encountered a Fatal Error"
@@ -1951,54 +1903,47 @@ msgstr "שגיאה בטעינת מסד הנתונים."
 
 #: ../src/UI.Dialog/RepairDbDialog.cs:21
 #, csharp-format
-msgid ""
-"F-Spot encountered an error while loading the photo database. The old "
-"database has be moved to {0} and a new database has been created."
+msgid "F-Spot encountered an error while loading the photo database. The old database has be moved to {0} and a new database has been created."
 msgstr ""
 
 #: ../src/UI.Dialog/SelectionRatioDialog.cs:60
-#, fuzzy
 msgid "Label"
-msgstr "גדול"
+msgstr "תווית"
 
 #: ../src/UI.Dialog/SelectionRatioDialog.cs:64
 #, fuzzy
 msgid "Ratio"
-msgstr "דירוג:"
+msgstr "Ratio"
 
-#: ../src/Updater.cs:312
+#: ../src/Updater.cs:501
 msgid "Updating F-Spot Database"
 msgstr "מעדכן את מסד הנתונים של F-Spot"
 
-#: ../src/Updater.cs:313
-msgid ""
-"Please wait while your F-Spot gallery's database is updated. This may take "
-"some time."
-msgstr ""
-"נא להמתין בזמן שמסד הנתונים של גלריית F-Spot יתעדכן. התהליך עלול לקחת זמן."
+#: ../src/Updater.cs:502
+msgid "Please wait while your F-Spot gallery's database is updated. This may take some time."
+msgstr "נא להמתין בזמן שמסד הנתונים של גלריית F-Spot יתעדכן. התהליך עלול לקחת זמן."
 
 #. Mono.Unix.Error error = Mono.Unix.Stdlib.GetLastError ();
-#: ../src/Utils/Unix.cs:32
+#: ../src/Utils/Unix.cs:35
 msgid "Unable to create temporary file"
 msgstr "לא ניתן ליצור קובץ זמני"
 
 #: ../src/Utils/GnomeUtil.cs:49
-msgid ""
-"The \"F-Spot Manual\" could not be found.  Please verify that your "
-"installation has been completed successfully."
+msgid "The \"F-Spot Manual\" could not be found.  Please verify that your installation has been completed successfully."
 msgstr ""
 
 #: ../src/Widgets/CustomPrintWidget.cs:99
 msgid "Page Setup"
 msgstr "הגדרות עמוד"
 
-#: ../src/Widgets/CustomPrintWidget.cs:101
-#: ../src/Widgets/CustomPrintWidget.cs:106
+#: ../src/Widgets/CustomPrintWidget.cs:103
+#: ../src/Widgets/CustomPrintWidget.cs:105
+#: ../src/Widgets/CustomPrintWidget.cs:111
 #, csharp-format
 msgid "Paper Size: {0} x {1} mm"
 msgstr "גודל הנייר: {0} x {1} mm"
 
-#: ../src/Widgets/CustomPrintWidget.cs:116
+#: ../src/Widgets/CustomPrintWidget.cs:121
 msgid "Photos per page"
 msgstr "תמונות לכל עמוד"
 
@@ -2006,104 +1951,229 @@ msgstr "תמונות לכל עמוד"
 #. ppp2.Toggled += TriggerChanged;
 #. ppp4.Toggled += TriggerChanged;
 #. ppp9.Toggled += TriggerChanged;
-#: ../src/Widgets/CustomPrintWidget.cs:128
+#: ../src/Widgets/CustomPrintWidget.cs:133
 msgid "Repeat"
 msgstr "חזרה"
 
-#: ../src/Widgets/CustomPrintWidget.cs:129
-msgid "Print cut marks"
-msgstr ""
-
-#: ../src/Widgets/CustomPrintWidget.cs:137
-msgid "Full Page (no margin)"
-msgstr ""
-
-#. Note for translators: "Zoom" is a Fit Mode
-#: ../src/Widgets/CustomPrintWidget.cs:141
+#: ../src/Widgets/CustomPrintWidget.cs:134
 #, fuzzy
-msgid "Zoom"
-msgstr "להתקרב"
+msgid "Print cut marks"
+msgstr "Show Line Marks"
 
 #: ../src/Widgets/CustomPrintWidget.cs:142
+msgid "Full Page (no margin)"
+msgstr "דף מלא (ללא שוליים)"
+
+#. Note for translators: "Zoom" is a Fit Mode
+#: ../src/Widgets/CustomPrintWidget.cs:146
+#, fuzzy
+msgid "Zoom"
+msgstr "זום"
+
+#: ../src/Widgets/CustomPrintWidget.cs:147
 #, fuzzy
 msgid "Fill"
-msgstr "קובץ"
+msgstr "Fill"
 
-#: ../src/Widgets/CustomPrintWidget.cs:143
+#: ../src/Widgets/CustomPrintWidget.cs:148
 msgid "Scaled"
 msgstr ""
 
-#: ../src/Widgets/CustomPrintWidget.cs:149
+#: ../src/Widgets/CustomPrintWidget.cs:154
 msgid "White borders"
 msgstr "גבולות לבן"
 
-#: ../src/Widgets/CustomPrintWidget.cs:153
+#: ../src/Widgets/CustomPrintWidget.cs:158
 msgid "Custom Text: "
-msgstr ""
+msgstr "טקסט מותאם:"
 
-#: ../src/Widgets/EditorPage.cs:18
+#: ../src/Widgets/EditorPage.cs:29
+#: ../src/Widgets/Sidebar.cs:71
 msgid "Edit"
 msgstr "עריכה"
+
+#: ../src/Widgets/EditorPage.cs:201
+#: ../extensions/Exporters/ZipExport/ZipExport.cs:46
+#, fuzzy
+msgid "No selection available"
+msgstr "אין הודעה יומית"
+
+#: ../src/Widgets/EditorPage.cs:202
+msgid "This tool requires an active selection. Please select a region of the photo and try the operation again"
+msgstr ""
+
+#: ../src/Widgets/EditorPage.cs:219
+#, fuzzy
+msgid "Error saving adjusted photo"
+msgid_plural "Error saving adjusted photos"
+msgstr[0] "שגיאה בסיבוב תמונה."
+msgstr[1] "שגיאה בשמירת התמונה הערוכה"
+
+#: ../src/Widgets/EditorPage.cs:221
+#, csharp-format
+msgid "Received exception \"{0}\". Note that you have to develop RAW files into JPEG before you can edit them."
+msgstr ""
 
 #: ../src/Widgets/FindBar.cs:58
 msgid "Find:"
 msgstr "חפש:"
 
-#: ../src/Widgets/FindBar.cs:177 ../src/f-spot.glade.h:279
+#: ../src/Widgets/FindBar.cs:177
+#: ../src/f-spot.glade.h:265
 msgid "and"
 msgstr "ו"
 
-#: ../src/Widgets/InfoBox.cs:132
+#: ../src/Widgets/InfoBox.cs:179
+msgid "Histogram"
+msgstr "היסטוגרמה"
+
+#: ../src/Widgets/InfoBox.cs:214
 msgid "Date"
 msgstr "תאריך"
 
-#: ../src/Widgets/InfoBox.cs:135 ../extensions/CDExport/CDExport.glade.h:5
+#: ../src/Widgets/InfoBox.cs:217
+#: ../extensions/Exporters/CDExport/CDExport.glade.h:5
 msgid "Size"
 msgstr "גודל"
 
-#: ../src/Widgets/InfoBox.cs:138
+#: ../src/Widgets/InfoBox.cs:220
 msgid "Exposure"
 msgstr "חשיפה"
 
-#: ../src/Widgets/InfoBox.cs:279 ../src/Widgets/InfoBox.cs:288
+#: ../src/Widgets/InfoBox.cs:224
+msgid "Focal Length"
+msgstr "אורך מוקד"
+
+#: ../src/Widgets/InfoBox.cs:230
+msgid "File Size"
+msgstr "גודל הקובץ"
+
+#: ../src/Widgets/InfoBox.cs:233
+msgid "Rating"
+msgstr "דירוג"
+
+#: ../src/Widgets/InfoBox.cs:406
+#: ../src/Widgets/InfoBox.cs:429
+#: ../src/Widgets/InfoBox.cs:439
+#: ../src/Widgets/InfoBox.cs:448
 msgid "(Unknown)"
 msgstr "(לא ידוע)"
 
-#: ../src/Widgets/InfoBox.cs:376
+#: ../src/Widgets/InfoBox.cs:416
+#, fuzzy
+msgid "(wrong format)"
+msgstr "Date Format"
+
+#: ../src/Widgets/InfoBox.cs:554
+msgid "(File not found)"
+msgstr "(קובץ לא נמצא)"
+
+#: ../src/Widgets/InfoBox.cs:598
 #, csharp-format
 msgid "{0} Photos"
 msgstr "{0} תמונות"
 
 #. Note for translators: {0} is a date, {1} and {2} are times.
-#: ../src/Widgets/InfoBox.cs:388
+#: ../src/Widgets/InfoBox.cs:618
 #, csharp-format
 msgid ""
 "On {0} between \n"
 "{1} and {2}"
 msgstr ""
+"בתאריך {0} בין \n"
+"{1} ו-{2}"
 
-#: ../src/Widgets/InfoBox.cs:393
+#: ../src/Widgets/InfoBox.cs:623
 #, csharp-format
 msgid ""
 "Between {0} \n"
 "and {1}"
 msgstr ""
+"בין {0} \n"
+"ו-{1}"
+
+#: ../src/Widgets/InfoBox.cs:647
+msgid "(At least one File not found)"
+msgstr "(לפחות קובץ אחד לא נמצא)"
+
+#: ../src/Widgets/InfoBox.cs:761
+msgid "Show Photo Name"
+msgstr "הצג שם תמונה"
+
+#: ../src/Widgets/InfoBox.cs:770
+msgid "Show Date"
+msgstr "הצג תאריך"
+
+#: ../src/Widgets/InfoBox.cs:779
+msgid "Show Size"
+msgstr "הצג גודל"
+
+#: ../src/Widgets/InfoBox.cs:788
+#, fuzzy
+msgid "Show Exposure"
+msgstr "תוכנית חשיפה"
+
+#: ../src/Widgets/InfoBox.cs:797
+#, fuzzy
+msgid "Show Focal Length"
+msgstr "Length of scale's slider"
+
+#: ../src/Widgets/InfoBox.cs:806
+msgid "Show Camera"
+msgstr "הצג מצלמה"
+
+#: ../src/Widgets/InfoBox.cs:815
+msgid "Show File Size"
+msgstr "הצג גודל מקורי"
 
 #: ../src/Widgets/MetadataDisplay.cs:23
-msgid "Exif"
-msgstr ""
+#, fuzzy
+msgid "Metadata"
+msgstr "מטה-מידע"
+
+#: ../src/Widgets/MetadataDisplay.cs:104
+#, fuzzy
+msgid "Extended Metadata"
+msgstr "מידע כתובת מורחב"
+
+#: ../src/Widgets/MetadataDisplay.cs:223
+msgid "Picasaweb"
+msgstr "Picasaweb"
+
+#: ../src/Widgets/MetadataDisplay.cs:225
+msgid "SmugMug"
+msgstr "SmugMug"
+
+#: ../src/Widgets/MetadataDisplay.cs:227
+msgid "Gallery2"
+msgstr "גלריה2"
 
 #. clear Extended Metadata
 #: ../src/Widgets/MetadataDisplay.cs:387
 #, fuzzy
 msgid "No Extended Metadata Available"
-msgstr "מידע מורחב"
+msgstr "לא קיימת הודעה להיום"
 
-#: ../src/Widgets/RatingMenuItem.cs:48
+#: ../src/Widgets/MetadataDisplay.cs:405
+msgid "No active photo"
+msgstr "אין תמונה פעילה"
+
+#: ../src/Widgets/MetadataDisplay.cs:407
+#, csharp-format
+msgid "The photo \"{0}\" does not exist"
+msgstr "התמונה \"{0}\" לא קיימת"
+
+#: ../src/Widgets/MetadataDisplay.cs:410
+#, fuzzy
+msgid "No metadata available"
+msgstr "אין נתוני meta זמינים"
+
+#: ../src/Widgets/RatingMenuItem.cs:56
 msgid "Rating:"
 msgstr "דירוג:"
 
 #: ../src/XmpTagsImporter.cs:89
+#: ../extensions/Exporters/FacebookExport/FacebookExport.glade.h:6
 msgid "Location"
 msgstr "מיקום"
 
@@ -2164,7 +2234,8 @@ msgstr "800 px"
 msgid "<b></b>"
 msgstr "<b></b>"
 
-#: ../src/f-spot.glade.h:12 ../extensions/FlickrExport/FlickrExport.glade.h:1
+#: ../src/f-spot.glade.h:12
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:1
 msgid "<b>Account</b>"
 msgstr "<b>חשבון</b>"
 
@@ -2173,9 +2244,9 @@ msgid "<b>Action</b>"
 msgstr "<b>פעולה</b>"
 
 #: ../src/f-spot.glade.h:14
-#: ../extensions/GalleryExport/GalleryExport.glade.h:1
-#: ../extensions/PicasaWebExport/PicasaWebExport.glade.h:1
-#: ../extensions/SmugMugExport/SmugMugExport.glade.h:1
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:1
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:1
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:1
 msgid "<b>Album</b>"
 msgstr "<b>אלבום</b>"
 
@@ -2188,153 +2259,131 @@ msgid "<b>Color Management</b>"
 msgstr "<b>ניהול צבעים</b>"
 
 #: ../src/f-spot.glade.h:17
-msgid "<b>Color Temperature</b>"
-msgstr "<b>טמפרטורת הצבע</b>"
-
-#: ../src/f-spot.glade.h:18 ../extensions/FolderExport/FolderExport.glade.h:3
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:3
 msgid "<b>Destination</b>"
 msgstr "<b>יעד</b>"
 
-#: ../src/f-spot.glade.h:19
+#: ../src/f-spot.glade.h:18
 msgid "<b>End Date</b>"
 msgstr "<b>תאריך סיום</b>"
 
-#: ../src/f-spot.glade.h:20
-msgid "<b>Exposure</b>"
-msgstr "<b>חשיפה</b>"
-
-#: ../src/f-spot.glade.h:21
-#, fuzzy
+#: ../src/f-spot.glade.h:19
 msgid "<b>From External Photo</b>"
-msgstr "<b>מתמונה</b>"
+msgstr "<b>מתמונה חיצונית</b>"
 
-#: ../src/f-spot.glade.h:22
+#: ../src/f-spot.glade.h:20
 msgid "<b>From Photo</b>"
 msgstr "<b>מתמונה</b>"
 
-#: ../src/f-spot.glade.h:23
-#: ../extensions/GalleryExport/GalleryExport.glade.h:2
+#: ../src/f-spot.glade.h:21
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:2
 msgid "<b>Gallery</b>"
 msgstr "<b>גלריה</b>"
 
-#: ../src/f-spot.glade.h:24
-msgid "<b>Histo_gram</b>"
-msgstr "<b>היסטו_גרמה</b>"
-
-#: ../src/f-spot.glade.h:25
-msgid "<b>Histogram</b>"
-msgstr "<b>היסטוגרמה</b>"
-
-#: ../src/f-spot.glade.h:26
+#: ../src/f-spot.glade.h:22
 msgid "<b>Image Interpolation</b>"
 msgstr "<b>אינטרפולציית תמונה</b>"
 
-#: ../src/f-spot.glade.h:27
+#: ../src/f-spot.glade.h:23
 msgid "<b>Import Settings</b>"
 msgstr "<b>הגדרות ייבוא</b>"
 
-#: ../src/f-spot.glade.h:28
+#: ../src/f-spot.glade.h:24
 msgid "<b>Max Rating</b>"
 msgstr "<b>דירוג מקסימלי</b>"
 
-#: ../src/f-spot.glade.h:29
+#: ../src/f-spot.glade.h:25
 msgid "<b>Metadata</b>"
 msgstr "<b>מטה-מידע</b>"
 
-#: ../src/f-spot.glade.h:30
+#: ../src/f-spot.glade.h:26
 msgid "<b>Min Rating</b>"
 msgstr "<b>דירוג מינימלי</b>"
 
-#: ../src/f-spot.glade.h:31
+#: ../src/f-spot.glade.h:27
 msgid "<b>Photograph Layout</b>"
-msgstr ""
+msgstr "<b>מבנה תמונה</b>"
 
-#: ../src/f-spot.glade.h:32 ../extensions/FlickrExport/FlickrExport.glade.h:2
-#: ../extensions/FolderExport/FolderExport.glade.h:5
-#: ../extensions/GalleryExport/GalleryExport.glade.h:3
-#: ../extensions/PicasaWebExport/PicasaWebExport.glade.h:2
-#: ../extensions/SmugMugExport/SmugMugExport.glade.h:2
+#: ../src/f-spot.glade.h:28
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:2
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:5
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:3
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:2
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:2
+#: ../extensions/Exporters/TabbloExport/TabbloExport.glade.h:1
 msgid "<b>Photos</b>"
 msgstr "<b>תמונות</b>"
 
-#: ../src/f-spot.glade.h:33
+#: ../src/f-spot.glade.h:29
 msgid "<b>Predefined</b>"
 msgstr "<b>מוגדר מראש</b>"
 
-#: ../src/f-spot.glade.h:34
+#: ../src/f-spot.glade.h:30
 msgid "<b>Preview</b>"
 msgstr "<b>תצוגה מקדימה</b>"
 
-#: ../src/f-spot.glade.h:35
+#: ../src/f-spot.glade.h:31
 msgid "<b>Printer Details</b>"
 msgstr "<b>פרטי המדפסת</b>"
 
-#: ../src/f-spot.glade.h:36
+#: ../src/f-spot.glade.h:32
 msgid "<b>Reference Photo</b>"
 msgstr "<b>תמונת יחוס</b>"
 
-#: ../src/f-spot.glade.h:37
+#: ../src/f-spot.glade.h:33
 msgid "<b>Screensaver</b>"
 msgstr "<b>שומר מסך</b>"
 
-#: ../src/f-spot.glade.h:38
+#: ../src/f-spot.glade.h:34
 msgid "<b>Select period</b>"
 msgstr "<b>תקופה נבחרת</b>"
 
-#: ../src/f-spot.glade.h:39
+#: ../src/f-spot.glade.h:35
 msgid "<b>Size</b>"
 msgstr "<b>גודל</b>"
 
-#: ../src/f-spot.glade.h:40
+#: ../src/f-spot.glade.h:36
 msgid "<b>Start Date</b>"
 msgstr "<b>תאריך התחלה</b>"
 
-#: ../src/f-spot.glade.h:41 ../extensions/FlickrExport/FlickrExport.glade.h:3
-#: ../extensions/FolderExport/FolderExport.glade.h:6
-#: ../extensions/GalleryExport/GalleryExport.glade.h:4
-#: ../extensions/PicasaWebExport/PicasaWebExport.glade.h:4
-#: ../extensions/SmugMugExport/SmugMugExport.glade.h:4
+#: ../src/f-spot.glade.h:37
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:3
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:6
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:4
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:4
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:4
 msgid "<b>Style</b>"
 msgstr "<b>סגנון</b>"
 
-#: ../src/f-spot.glade.h:42
+#: ../src/f-spot.glade.h:38
 msgid "<b>Summary</b>"
 msgstr "‏<b>סיכום</b>"
 
-#: ../src/f-spot.glade.h:43
-#, fuzzy
+#: ../src/f-spot.glade.h:39
 msgid "<b>Theming</b>"
-msgstr "<b></b>"
+msgstr "<b>ערכות נושא</b>"
 
-#: ../src/f-spot.glade.h:44
+#: ../src/f-spot.glade.h:40
 msgid "<b>Transparent Parts</b>"
 msgstr "<b>חלקים שקופים</b>"
 
-#: ../src/f-spot.glade.h:45
+#: ../src/f-spot.glade.h:41
 msgid "<b>View all pictures imported</b>"
 msgstr ""
 
-#: ../src/f-spot.glade.h:46
+#: ../src/f-spot.glade.h:42
 msgid "<b>_White Balance</b>"
 msgstr "<b>_איזון לבן</b>"
 
-#: ../src/f-spot.glade.h:47
-msgid "<small> </small>"
-msgstr "<small> </small>"
-
-#: ../src/f-spot.glade.h:48
+#: ../src/f-spot.glade.h:43
 msgid "<small></small>"
 msgstr "<small></small>"
 
-#: ../src/f-spot.glade.h:49
-msgid ""
-"<small><i>Choose the folder where F-Spot should store newly imported photos</"
-"i></small>"
-msgstr ""
-"<small><i>בחר את התיקייה שאליה F-Spot יעביר תמונות שייובאו לאחרונה</i></"
-"small>"
+#: ../src/f-spot.glade.h:44
+msgid "<small><i>Choose the folder where F-Spot should store newly imported photos</i></small>"
+msgstr "<small><i>בחר את התיקייה שאליה F-Spot יעביר תמונות שייובאו לאחרונה</i></small>"
 
-#: ../src/f-spot.glade.h:50
+#: ../src/f-spot.glade.h:45
 msgid ""
 "<small><i>Enable this option to store tags and descriptions inside \n"
 "supported image formats.</i></small>"
@@ -2342,266 +2391,218 @@ msgstr ""
 "<small><i>אפשר שמירת תגיות ומלל לתיאור תמונה\n"
 "כאשר סוג הקובץ מאפשר זאת.</i></small>"
 
-#: ../src/f-spot.glade.h:52
-msgid ""
-"<small><i>Enable this to allow interpolation on zoomed images. You shouldn't "
-"disable this for viewing photos, but disabling the interpolation could be "
-"usefull in icon design.</i></small>"
+#: ../src/f-spot.glade.h:47
+msgid "<small><i>Enable this to allow interpolation on zoomed images. You shouldn't disable this for viewing photos, but disabling the interpolation could be usefull in icon design.</i></small>"
 msgstr ""
 
-#: ../src/f-spot.glade.h:53
-msgid ""
-"<small><i>While acting as a screensaver, F-Spot can display all of your "
-"images, or a small subset based on tags.</i></small>"
-msgstr ""
-"<small><i>בזמן פעילות כשומר מסך, F-Spot יכול להציג את כל התמונות שלך, או חלק "
-"קטן מהם על בסיס התוויות.</i></small>"
+#: ../src/f-spot.glade.h:48
+msgid "<small><i>While acting as a screensaver, F-Spot can display all of your images, or a small subset based on tags.</i></small>"
+msgstr "<small><i>בזמן פעילות כשומר מסך, F-Spot יכול להציג את כל התמונות שלך, או חלק קטן מהם על בסיס התוויות.</i></small>"
 
-#: ../src/f-spot.glade.h:54
-msgid ""
-"<small><i>You can choose how to display transparent parts in images. This "
-"option has no effect on photos, but setting this as check pattern or custom "
-"color could be usefull when viewing icons or other artworks with transparent "
-"parts.</i></small>"
+#: ../src/f-spot.glade.h:49
+msgid "<small><i>You can choose how to display transparent parts in images. This option has no effect on photos, but setting this as check pattern or custom color could be usefull when viewing icons or other artworks with transparent parts.</i></small>"
 msgstr ""
 
-#: ../src/f-spot.glade.h:55
+#: ../src/f-spot.glade.h:50
 #, fuzzy
-msgid ""
-"<small><i>You'll have to restart f-spot to load the new theme.</i></small>"
-msgstr ""
-"<small><i>בחר את התיקייה שאליה F-Spot יעביר תמונות שייובאו לאחרונה</i></"
-"small>"
+msgid "<small><i>You'll have to restart f-spot to load the new theme.</i></small>"
+msgstr "<small><i>בחר את התיקייה שאליה F-Spot יעביר תמונות שייובאו לאחרונה</i></small>"
 
-#: ../src/f-spot.glade.h:56
-msgid "<small>C_ontrast:</small>"
-msgstr "<small>נ_יגודיות:</small>"
-
-#: ../src/f-spot.glade.h:57
-msgid "<small>Te_mp:</small>"
-msgstr ""
-
-#: ../src/f-spot.glade.h:58
-msgid "<small>_Brightness:</small>"
-msgstr "<small>_בהירות:</small>"
-
-#: ../src/f-spot.glade.h:59
-msgid "<small>_Exposure:</small>"
-msgstr "<small>_חשיפה:</small>"
-
-#: ../src/f-spot.glade.h:60
-msgid "<small>_Hue:</small>"
-msgstr "<small>_גוון:</small>"
-
-#: ../src/f-spot.glade.h:61
-msgid "<small>_Saturation:</small>"
-msgstr "<small>_הרויה:</small>"
-
-#: ../src/f-spot.glade.h:62
-msgid "<small>_Tint:</small>"
-msgstr "<small>_גוונים:</small>"
-
-#: ../src/f-spot.glade.h:63
-msgid "Ad_just Color..."
-msgstr "הת_אמת צבע..."
-
-#: ../src/f-spot.glade.h:64
-msgid "Adjust Color"
-msgstr "התאמת צבע"
-
-#: ../src/f-spot.glade.h:65
+#: ../src/f-spot.glade.h:51
 msgid "Adjust Time"
 msgstr "כיוון זמן"
 
-#: ../src/f-spot.glade.h:66
+#: ../src/f-spot.glade.h:52
 msgid "Adjust _Time..."
 msgstr "כיוון _זמן..."
 
-#: ../src/f-spot.glade.h:67
+#: ../src/f-spot.glade.h:53
 msgid "Adjusted date: "
 msgstr "שנה את התאריך: "
 
-#: ../src/f-spot.glade.h:69
+#: ../src/f-spot.glade.h:55
 msgid "Arrange _by"
 msgstr "לסדר _לפי"
 
-#: ../src/f-spot.glade.h:70
+#: ../src/f-spot.glade.h:56
 msgid "As _background"
 msgstr "_כרקע"
 
-#: ../src/f-spot.glade.h:71
+#: ../src/f-spot.glade.h:57
 #, fuzzy
 msgid "As _custom color: "
-msgstr "כצבע מותאם אישית: "
+msgstr "בחר צבע מותאם אישית"
 
-#: ../src/f-spot.glade.h:72
+#: ../src/f-spot.glade.h:58
+#, fuzzy
 msgid "As check _pattern"
-msgstr ""
+msgstr "_תבנית משבצות"
 
-#: ../src/f-spot.glade.h:73
+#: ../src/f-spot.glade.h:59
 msgid "Attach Tags:"
 msgstr "הצמדת תוויות:"
 
-#: ../src/f-spot.glade.h:74
+#: ../src/f-spot.glade.h:60
 msgid "Attach tag:"
 msgstr "הצמדת תווית:"
 
-#: ../src/f-spot.glade.h:75 ../extensions/CDExport/CDExport.glade.h:3
-#: ../extensions/FolderExport/FolderExport.glade.h:7
-#: ../extensions/GalleryExport/GalleryExport.glade.h:7
-#: ../extensions/SmugMugExport/SmugMugExport.glade.h:5
+#: ../src/f-spot.glade.h:61
+#: ../extensions/Exporters/CDExport/CDExport.glade.h:3
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:7
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:7
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:5
 msgid "Autorotate"
 msgstr ""
 
-#: ../src/f-spot.glade.h:77
+#: ../src/f-spot.glade.h:63
 msgid "By _Date"
 msgstr "לפי _תאריך"
 
-#: ../src/f-spot.glade.h:78
+#: ../src/f-spot.glade.h:64
 #, fuzzy
 msgid "By _Import Roll"
-msgstr "בחר תיקייה לייצא"
+msgstr "גלול חלון מעלה"
 
-#: ../src/f-spot.glade.h:79
+#: ../src/f-spot.glade.h:65
 msgid "By _Rating"
 msgstr "לפי _דירוג"
 
-#: ../src/f-spot.glade.h:80
+#: ../src/f-spot.glade.h:66
 msgid "CD"
 msgstr "תקליטור"
 
-#: ../src/f-spot.glade.h:81
+#: ../src/f-spot.glade.h:67
 msgid "C_aption:"
 msgstr ""
 
-#: ../src/f-spot.glade.h:82
+#: ../src/f-spot.glade.h:68
 msgid "C_ontrast:"
 msgstr "נ_יגודיות:"
 
-#: ../src/f-spot.glade.h:83
+#: ../src/f-spot.glade.h:69
 msgid "Camera Selection"
 msgstr "בחירת מצלמה"
 
-#: ../src/f-spot.glade.h:84
+#: ../src/f-spot.glade.h:70
 msgid "Cancel, do not change the current timeline. "
 msgstr ""
 
-#: ../src/f-spot.glade.h:85
+#: ../src/f-spot.glade.h:71
 msgid "Co_nfigure"
 msgstr "ה_גדר"
 
-#: ../src/f-spot.glade.h:86
+#: ../src/f-spot.glade.h:72
 msgid "Copy Locat_ion"
 msgstr "העתק _מיקום"
 
-#: ../src/f-spot.glade.h:87
+#: ../src/f-spot.glade.h:73
 msgid "Copy files to the Photos folder"
 msgstr "העתק קבצים לתיקיית התמונות"
 
-#: ../src/f-spot.glade.h:88
+#: ../src/f-spot.glade.h:74
 msgid "Create Mail"
 msgstr "יצירת דואר"
 
-#: ../src/f-spot.glade.h:89
+#: ../src/f-spot.glade.h:75
 msgid "Create New _Tag..."
 msgstr "יצירת _תווית חדשה..."
 
-#: ../src/f-spot.glade.h:90
+#: ../src/f-spot.glade.h:76
 msgid "Create _New Version..."
 msgstr "יצירת גרסה _חדשה..."
 
-#: ../src/f-spot.glade.h:91
+#: ../src/f-spot.glade.h:77
 msgid "Create a mail with the selected photos (possibly resized) attached"
 msgstr ""
 
-#: ../src/f-spot.glade.h:92
+#: ../src/f-spot.glade.h:78
+#, fuzzy
 msgid "Crop photo to _fit"
-msgstr ""
+msgstr "התאם חלון לסרט"
 
-#: ../src/f-spot.glade.h:93
+#: ../src/f-spot.glade.h:79
 msgid "Current date:"
 msgstr "תאריך נוכחי:"
 
-#: ../src/f-spot.glade.h:94
+#: ../src/f-spot.glade.h:80
 msgid "Custom Theme"
 msgstr "ערכת נושא מותאמת"
 
-#: ../src/f-spot.glade.h:95
+#: ../src/f-spot.glade.h:81
+msgid "Detect duplicates"
+msgstr "גילוי _כפולים"
+
+#: ../src/f-spot.glade.h:82
 msgid "Display File _Names"
 msgstr "הצגת _שמות קבצים"
 
-#: ../src/f-spot.glade.h:96
+#: ../src/f-spot.glade.h:83
 msgid "Display only those photos that were imported in specified Rolls."
 msgstr ""
 
-#: ../src/f-spot.glade.h:97
+#: ../src/f-spot.glade.h:84
 msgid "Do not send a mail"
 msgstr "לא לשלוח דואר"
 
-#: ../src/f-spot.glade.h:98
+#: ../src/f-spot.glade.h:85
 msgid "E-_Mail:"
 msgstr "דואר-_אלקטרוני:"
 
-#: ../src/f-spot.glade.h:99
+#: ../src/f-spot.glade.h:86
 msgid "E_xport titles and comments"
 msgstr "יי_צוא הערות ותגובות"
 
-#: ../src/f-spot.glade.h:100
+#: ../src/f-spot.glade.h:87
 msgid "Edit Tag Icon"
 msgstr "עריכת סמל התווית"
 
-#: ../src/f-spot.glade.h:101
+#: ../src/f-spot.glade.h:88
 msgid "Edit icon"
 msgstr "עריכת סמל"
 
-#: ../src/f-spot.glade.h:102
+#: ../src/f-spot.glade.h:90
 msgid "Estimated new size"
 msgstr "גודל חדש משוער"
 
-#: ../src/f-spot.glade.h:103 ../extensions/FlickrExport/FlickrExport.glade.h:6
-#: ../extensions/GalleryExport/GalleryExport.glade.h:8
-#: ../extensions/PicasaWebExport/PicasaWebExport.glade.h:9
-#: ../extensions/SmugMugExport/SmugMugExport.glade.h:6
+#: ../src/f-spot.glade.h:91
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:6
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:8
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:9
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:6
+#: ../extensions/Exporters/TabbloExport/TabbloExport.glade.h:3
 msgid "Export"
 msgstr "‮יצוא‬"
 
-#: ../src/f-spot.glade.h:104
+#: ../src/f-spot.glade.h:92
 msgid "Extra large"
 msgstr "גדול במיוחד"
 
-#: ../src/f-spot.glade.h:105
+#: ../src/f-spot.glade.h:93
 msgid "F-Spot"
 msgstr "F-Spot"
 
-#: ../src/f-spot.glade.h:106
+#: ../src/f-spot.glade.h:94
 msgid "F-Spot View"
 msgstr "צפייה F-Spot"
 
-#: ../src/f-spot.glade.h:108
+#: ../src/f-spot.glade.h:96
+#, fuzzy
 msgid "Filter on selected rolls"
-msgstr ""
+msgstr "הנמכת המסנן הנבחר"
 
-#: ../src/f-spot.glade.h:109
+#: ../src/f-spot.glade.h:97
 msgid "Fin_d"
 msgstr "_חיפוש"
 
-#: ../src/f-spot.glade.h:111
+#: ../src/f-spot.glade.h:99
 msgid "From List:"
-msgstr ""
+msgstr "מרשימה:"
 
-#: ../src/f-spot.glade.h:112
-msgid ""
-"From Screen\n"
-"Standard RGB"
-msgstr ""
-"מסך\n"
-"RGB רגיל"
-
-#: ../src/f-spot.glade.h:114
+#: ../src/f-spot.glade.h:100
 msgid "From gtkrc File:"
 msgstr "מקובץ gtkrc:"
 
-#: ../src/f-spot.glade.h:115
+#: ../src/f-spot.glade.h:101
 msgid ""
 "Full Page\n"
 "Standard - 4x6"
@@ -2609,15 +2610,15 @@ msgstr ""
 "עמוד מלא\n"
 "4x6 - רגיל"
 
-#: ../src/f-spot.glade.h:117
+#: ../src/f-spot.glade.h:103
 msgid "G_allery:"
 msgstr "ג_לריה:"
 
-#: ../src/f-spot.glade.h:118
+#: ../src/f-spot.glade.h:104
 msgid "Gallery"
 msgstr "גלריה"
 
-#: ../src/f-spot.glade.h:119
+#: ../src/f-spot.glade.h:105
 msgid ""
 "Hairline\n"
 "0.25\"\n"
@@ -2629,48 +2630,48 @@ msgstr ""
 "0.5\"\n"
 "1\"\n"
 
-#: ../src/f-spot.glade.h:124
+#: ../src/f-spot.glade.h:110
 msgid "Images tagged with:"
 msgstr "תמונות מסומנות בתווית:"
 
 #. Translators: this string means 'source of import'
-#: ../src/f-spot.glade.h:127
+#: ../src/f-spot.glade.h:113
 msgid "Import Source:"
 msgstr "מקור לייבוא:"
 
-#: ../src/f-spot.glade.h:128
+#: ../src/f-spot.glade.h:114
 msgid "Include subfolders"
 msgstr "לכלול תתי תיקיות"
 
-#: ../src/f-spot.glade.h:129
+#: ../src/f-spot.glade.h:115
 msgid "Large"
 msgstr "גדול"
 
-#: ../src/f-spot.glade.h:130
+#: ../src/f-spot.glade.h:116
 msgid "Make F-Spot your screensaver"
 msgstr "להפוך את F-Spot לשומר המסך"
 
-#: ../src/f-spot.glade.h:131
+#: ../src/f-spot.glade.h:117
 msgid "Manage _Extensions"
-msgstr "ניהול _הרחבות"
+msgstr "ניהול _תוספים"
 
-#: ../src/f-spot.glade.h:132
+#: ../src/f-spot.glade.h:118
 msgid "Manage your custom selection ratios"
 msgstr ""
 
-#: ../src/f-spot.glade.h:133
+#: ../src/f-spot.glade.h:119
 msgid "Medium"
 msgstr "רגיל"
 
-#: ../src/f-spot.glade.h:134
+#: ../src/f-spot.glade.h:120
 msgid "N_umber of Copies:"
 msgstr "מ_ספר עותקים"
 
-#: ../src/f-spot.glade.h:136
+#: ../src/f-spot.glade.h:122
 msgid "No _image"
 msgstr "אין _תמונה"
 
-#: ../src/f-spot.glade.h:137
+#: ../src/f-spot.glade.h:123
 msgid ""
 "None\n"
 "Title\n"
@@ -2684,516 +2685,532 @@ msgstr ""
 "תאריך\n"
 "פרטי התמונה"
 
-#: ../src/f-spot.glade.h:142
+#: ../src/f-spot.glade.h:128
 #, fuzzy
 msgid "Number of photos in selected rolls:"
 msgstr "מספר התמונות"
 
-#: ../src/f-spot.glade.h:143
+#: ../src/f-spot.glade.h:129
 msgid "Number of pictures"
 msgstr "מספר התמונות"
 
-#: ../src/f-spot.glade.h:144
+#: ../src/f-spot.glade.h:130
 msgid "Only photos taken within these dates will be displayed."
 msgstr "יוצגו תמונות שצולמו בין תאריכים אלו בלבד."
 
-#: ../src/f-spot.glade.h:145
+#: ../src/f-spot.glade.h:131
 msgid "Open _Folder..."
 msgstr "פתח _תיקייה..."
 
-#: ../src/f-spot.glade.h:147
+#: ../src/f-spot.glade.h:133
 msgid "Original size (possible very large file size)"
 msgstr "גודל מקורי (יתכן גודל קובץ גדול מאוד)"
 
-#: ../src/f-spot.glade.h:148
+#: ../src/f-spot.glade.h:134
 msgid "P_arent Tag:"
 msgstr "תווית _אב:"
 
-#: ../src/f-spot.glade.h:149
+#: ../src/f-spot.glade.h:135
 msgid "P_hoto Source:"
 msgstr "מקור ת_מונה:"
 
-#: ../src/f-spot.glade.h:150
+#: ../src/f-spot.glade.h:136
 msgid "Page 1 of 3"
 msgstr "עמוד 1 מתוך 3"
 
-#: ../src/f-spot.glade.h:151
+#: ../src/f-spot.glade.h:137
+msgid "Page Set_up..."
+msgstr "הג_דרות עמוד..."
+
+#: ../src/f-spot.glade.h:138
 msgid "Pause"
 msgstr "השהייה"
 
-#: ../src/f-spot.glade.h:152
+#: ../src/f-spot.glade.h:139
 msgid "Photo 0 of 0"
 msgstr "תמונה 0 מתוך 0"
 
-#: ../src/f-spot.glade.h:153
+#: ../src/f-spot.glade.h:140
 msgid "Photo _Size:"
 msgstr "_גודל תמונה:"
 
-#: ../src/f-spot.glade.h:154
+#: ../src/f-spot.glade.h:141
 msgid "Preferences"
 msgstr "העדפות"
 
-#: ../src/f-spot.glade.h:156
+#: ../src/f-spot.glade.h:143
+#, fuzzy
 msgid "Print crop _marks"
-msgstr ""
+msgstr "Show Line Marks"
 
-#: ../src/f-spot.glade.h:157
+#: ../src/f-spot.glade.h:144
 msgid "Print..."
 msgstr "הדפסה..."
 
-#: ../src/f-spot.glade.h:158
+#: ../src/f-spot.glade.h:145
 msgid "Re_fresh Thumbnail"
 msgstr "רע_נן תמונה ממוזערת"
 
-#: ../src/f-spot.glade.h:160
+#: ../src/f-spot.glade.h:147
 msgid "Repair"
 msgstr "תיקון"
 
-#: ../src/f-spot.glade.h:161
-msgid "Reset"
-msgstr "איפוס"
-
-#: ../src/f-spot.glade.h:164
+#: ../src/f-spot.glade.h:150
 msgid "Select A Folder"
 msgstr "בחר תיקייה"
 
-#: ../src/f-spot.glade.h:165
+#: ../src/f-spot.glade.h:151
 msgid "Select A gtkrc File"
 msgstr "בחר קובץ gtkrc"
 
-#: ../src/f-spot.glade.h:166
+#: ../src/f-spot.glade.h:152
 msgid "Select Photos to Copy From Camera..."
 msgstr "בחר תמונות להעתקה ממצלמה..."
 
-#: ../src/f-spot.glade.h:168
+#: ../src/f-spot.glade.h:154
 msgid "Select _None"
 msgstr "_בטל בחירה"
 
-#: ../src/f-spot.glade.h:169
+#: ../src/f-spot.glade.h:155
 msgid "Select a Tag..."
 msgstr "בחר תווית..."
 
-#: ../src/f-spot.glade.h:170
+#: ../src/f-spot.glade.h:156
 msgid "Select the camera from which you want to transfer files"
 msgstr "בחר במצלמה שממנה אתה רוצה להעביר קבצים"
 
-#: ../src/f-spot.glade.h:171
+#: ../src/f-spot.glade.h:157
 msgid "Selected Camera: "
 msgstr "מצלמה נבחרת: "
 
-#: ../src/f-spot.glade.h:172
+#: ../src/f-spot.glade.h:158
+#, fuzzy
 msgid ""
 "Selection\n"
 "Gallery\n"
 "Viewport"
-msgstr ""
+msgstr "Color of the selection box"
 
-#: ../src/f-spot.glade.h:175
+#: ../src/f-spot.glade.h:161
+#, fuzzy
 msgid "Selection Constraints"
-msgstr ""
+msgstr "בחירת צבע"
 
-#: ../src/f-spot.glade.h:176
+#: ../src/f-spot.glade.h:162
 msgid "Send by _Mail..."
 msgstr "שלח ב_דואר..."
 
-#: ../src/f-spot.glade.h:177
+#: ../src/f-spot.glade.h:163
 msgid "Set Rating Filter"
-msgstr ""
+msgstr "קבע מסנן דירוג"
 
-#: ../src/f-spot.glade.h:178
+#: ../src/f-spot.glade.h:164
 msgid "Set as _Background"
 msgstr "קבע כ_רקע"
 
-#: ../src/f-spot.glade.h:179
+#: ../src/f-spot.glade.h:165
 msgid "Set date range"
-msgstr ""
+msgstr "קבע טווח התאריכים"
 
-#: ../src/f-spot.glade.h:181
+#: ../src/f-spot.glade.h:167
 msgid "Show all photos."
 msgstr "הצג את כל התמונות."
 
-#: ../src/f-spot.glade.h:182
+#: ../src/f-spot.glade.h:168
 msgid "Show or hide the side pane"
 msgstr "הצג או הסתר את סרגל הצד"
 
-#: ../src/f-spot.glade.h:183
+#: ../src/f-spot.glade.h:169
 msgid "Show or hide the toolbar"
 msgstr "הצג או הסתר את סרגל הכלים"
 
-#: ../src/f-spot.glade.h:184
+#: ../src/f-spot.glade.h:170
 msgid "Side _pane"
 msgstr "סרגל _צד"
 
-#: ../src/f-spot.glade.h:185
+#: ../src/f-spot.glade.h:171
 msgid "Side_bar"
 msgstr "סרגל _צד"
 
-#: ../src/f-spot.glade.h:186
+#: ../src/f-spot.glade.h:172
 msgid "Small"
 msgstr "קטן"
 
-#: ../src/f-spot.glade.h:187
-msgid "So_urce Temp"
-msgstr ""
-
-#: ../src/f-spot.glade.h:188
+#: ../src/f-spot.glade.h:173
+#, fuzzy
 msgid "Space all photos by"
+msgstr "                .רחא ןבל חטשו םיחוורמ םלעתה  -W  --ignore-all-space"
+
+#: ../src/f-spot.glade.h:174
+msgid "Specify if an original size picture should be rotated or not. Smaller sizes are automatically rotated."
 msgstr ""
 
-#: ../src/f-spot.glade.h:189
-msgid ""
-"Specify if an original size picture should be rotated or not. Smaller sizes "
-"are automatically rotated."
-msgstr ""
-
-#: ../src/f-spot.glade.h:190
-msgid ""
-"Standard RGB\n"
-"Image Profile\n"
-"Custom\n"
-msgstr ""
-"RGB סטנדרטי\n"
-"פרופיל התמונה\n"
-"מותאם\n"
-
-#: ../src/f-spot.glade.h:194
+#: ../src/f-spot.glade.h:175
+#, fuzzy
 msgid "Strip image _metadata"
-msgstr ""
+msgstr "Image/label border"
 
-#: ../src/f-spot.glade.h:195
+#: ../src/f-spot.glade.h:176
 msgid "System Theme"
-msgstr ""
+msgstr "בערכת הנושא של המערכת"
 
-#: ../src/f-spot.glade.h:196
+#: ../src/f-spot.glade.h:177
 msgid "T_ags"
 msgstr "ת_וויות"
 
-#: ../src/f-spot.glade.h:197 ../extensions/FolderExport/FolderExport.cs:1178
-#: ../extensions/FolderExport/FolderExport.cs:1179
+#: ../src/f-spot.glade.h:178
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:1178
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:1179
 msgid "Tags: "
 msgstr "תוויות: "
 
-#: ../src/f-spot.glade.h:198
+#. Note for translators: meant as Temperature
+#: ../src/f-spot.glade.h:180
+#, fuzzy
+msgid "Te_mp:"
+msgstr "_תבנית..."
+
+#: ../src/f-spot.glade.h:181
 #, fuzzy
 msgid "Thumbnail _elements"
-msgstr "ספריית תמונות ממוזערות"
+msgstr "Formatting Elements"
 
-#: ../src/f-spot.glade.h:199
+#: ../src/f-spot.glade.h:182
 msgid "Tiny"
 msgstr "קטנטן"
 
-#: ../src/f-spot.glade.h:200
+#: ../src/f-spot.glade.h:183
 msgid "Too_lbar"
 msgstr "סרג_ל כלים"
 
-#: ../src/f-spot.glade.h:201
+#: ../src/f-spot.glade.h:184
+#, fuzzy
 msgid "Total original size"
+msgstr "ה_צג גודל מקורי"
+
+#: ../src/f-spot.glade.h:185
+msgid "Try to use the system display profile"
 msgstr ""
 
-#: ../src/f-spot.glade.h:202
+#: ../src/f-spot.glade.h:186
 msgid "View"
 msgstr "הצג"
 
-#: ../src/f-spot.glade.h:203
+#: ../src/f-spot.glade.h:187
 msgid "Will print using: US Letter size on Generic Postscript"
 msgstr ""
 
-#: ../src/f-spot.glade.h:204
+#: ../src/f-spot.glade.h:188
+#, fuzzy
 msgid "Write _metadata to file"
-msgstr ""
+msgstr "אין אפשרות לכתוב אל הקובץ %s"
 
-#: ../src/f-spot.glade.h:205
+#: ../src/f-spot.glade.h:189
 msgid "Zoom _in"
 msgstr "_להתקרב"
 
-#: ../src/f-spot.glade.h:206
+#: ../src/f-spot.glade.h:190
 msgid "Zoom _out"
 msgstr "_להתרחק"
 
-#: ../src/f-spot.glade.h:207
+#: ../src/f-spot.glade.h:191
 msgid "Zoom in"
 msgstr "להתקרב"
 
-#: ../src/f-spot.glade.h:208
+#: ../src/f-spot.glade.h:192
 msgid "Zoom out"
 msgstr "להתרחק"
 
-#: ../src/f-spot.glade.h:210
+#: ../src/f-spot.glade.h:194
 msgid "_Attach Tag to Selection"
 msgstr "_הצמד תווית לבחירה"
 
-#: ../src/f-spot.glade.h:211
+#: ../src/f-spot.glade.h:195
 msgid "_Border:"
 msgstr "_גבול:"
 
-#: ../src/f-spot.glade.h:212
+#: ../src/f-spot.glade.h:196
 msgid "_Brightness:"
 msgstr "_בהירות:"
 
-#: ../src/f-spot.glade.h:214
-#, fuzzy
+#: ../src/f-spot.glade.h:198
 msgid "_Clear Rating Filter"
-msgstr "_פינוי תווך התאריכים"
+msgstr "_נקה מסנן דירוג"
 
-#: ../src/f-spot.glade.h:215
+#: ../src/f-spot.glade.h:199
+#, fuzzy
 msgid "_Clear Roll Filter"
-msgstr ""
+msgstr "הוסף מ_סנן אוטומטי"
 
-#: ../src/f-spot.glade.h:216
+#: ../src/f-spot.glade.h:200
 msgid "_Components"
 msgstr "_רכיבים"
 
-#: ../src/f-spot.glade.h:217
+#: ../src/f-spot.glade.h:201
 msgid "_Contents"
 msgstr "_תכולה"
 
-#: ../src/f-spot.glade.h:218
-#, fuzzy
+#: ../src/f-spot.glade.h:202
+#: ../extensions/Exporters/ZipExport/ZipExport.glade.h:1
 msgid "_Create"
-msgstr "יצירת תקליטור"
+msgstr "_צור"
 
-#: ../src/f-spot.glade.h:219
+#: ../src/f-spot.glade.h:203
 msgid "_Create Mail"
 msgstr "צור _דואר"
 
-#: ../src/f-spot.glade.h:220
+#: ../src/f-spot.glade.h:204
 msgid "_Dates"
 msgstr "_תאריכים"
 
-#: ../src/f-spot.glade.h:222
+#: ../src/f-spot.glade.h:206
 msgid "_Delete Selected Tag"
 msgstr "_מחק תווית נבחרת"
 
-#: ../src/f-spot.glade.h:223
+#: ../src/f-spot.glade.h:207
 msgid "_Delete Version"
 msgstr "_מחיקת גרסה"
 
-#: ../src/f-spot.glade.h:224
-msgid "_Destination Temp"
-msgstr ""
-
-#: ../src/f-spot.glade.h:225
+#: ../src/f-spot.glade.h:208
 msgid "_Display:"
 msgstr "_הצגה:"
 
-#: ../src/f-spot.glade.h:226
+#: ../src/f-spot.glade.h:209
 msgid "_Edit"
 msgstr "_עריכה"
 
-#: ../src/f-spot.glade.h:227
+#: ../src/f-spot.glade.h:210
 msgid "_Edit Selected Tag..."
 msgstr "_ערוך תווית נבחרת..."
 
-#: ../src/f-spot.glade.h:228
+#: ../src/f-spot.glade.h:211
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:15
 msgid "_Export"
 msgstr "_ייצוא"
 
-#: ../src/f-spot.glade.h:229
-#: ../extensions/FlickrExport/FlickrExport.glade.h:15
-#: ../extensions/PicasaWebExport/PicasaWebExport.glade.h:20
+#: ../src/f-spot.glade.h:212
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:16
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:20
 msgid "_Export tags"
 msgstr "_ייצוא תוויות"
 
-#: ../src/f-spot.glade.h:230
+#: ../src/f-spot.glade.h:213
 msgid "_Export to"
 msgstr "י_צא אל"
 
-#: ../src/f-spot.glade.h:231
-#: ../extensions/GalleryExport/GalleryExport.glade.h:15
-#: ../extensions/PicasaWebExport/PicasaWebExport.glade.h:21
-#: ../extensions/SmugMugExport/SmugMugExport.glade.h:12
+#: ../src/f-spot.glade.h:214
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:15
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:21
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:12
 msgid "_Export to Album:"
 msgstr "_ייצוא לאלבום:"
 
-#: ../src/f-spot.glade.h:232
+#: ../src/f-spot.glade.h:215
+#, fuzzy
+msgid "_Exposure:"
+msgstr "חשיפה"
+
+#: ../src/f-spot.glade.h:216
 msgid "_Filmstrip"
 msgstr ""
 
-#: ../src/f-spot.glade.h:233
+#: ../src/f-spot.glade.h:217
 msgid "_Flickr"
 msgstr "_Flickr"
 
-#: ../src/f-spot.glade.h:234
+#: ../src/f-spot.glade.h:218
 msgid "_Folder"
 msgstr "_תיקייה"
 
-#: ../src/f-spot.glade.h:235
+#: ../src/f-spot.glade.h:219
 msgid "_Fullscreen"
 msgstr "_מסך מלא"
 
-#: ../src/f-spot.glade.h:236
+#: ../src/f-spot.glade.h:220
 msgid "_Gallery"
 msgstr "_גלריה"
 
-#: ../src/f-spot.glade.h:237
+#: ../src/f-spot.glade.h:221
 msgid "_Help"
 msgstr "_עזרה"
 
-#: ../src/f-spot.glade.h:238
+#: ../src/f-spot.glade.h:222
 msgid "_Hidden"
 msgstr "_חבוי"
 
-#: ../src/f-spot.glade.h:239
+#: ../src/f-spot.glade.h:223
 msgid "_Hue:"
 msgstr "_גוון:"
 
-#: ../src/f-spot.glade.h:240
+#: ../src/f-spot.glade.h:224
 msgid "_Icon:"
 msgstr "_סמל:"
 
-#: ../src/f-spot.glade.h:241
+#: ../src/f-spot.glade.h:225
 msgid "_Import..."
 msgstr "_ייבא..."
 
-#: ../src/f-spot.glade.h:242
+#: ../src/f-spot.glade.h:226
+#, fuzzy
 msgid "_Interpolate image on zoom"
-msgstr ""
+msgstr "שגיאה במחיקת תמונה %s"
 
-#: ../src/f-spot.glade.h:243
+#: ../src/f-spot.glade.h:227
 msgid "_Large"
 msgstr "_גדול"
 
-#: ../src/f-spot.glade.h:244
+#: ../src/f-spot.glade.h:228
 #, fuzzy
 msgid "_Last Import Roll"
-msgstr "בחר תיקייה לייצא"
+msgstr "גלול חלון מעלה"
 
-#: ../src/f-spot.glade.h:245
+#: ../src/f-spot.glade.h:229
+msgid "_Loupe"
+msgstr ""
+
+#: ../src/f-spot.glade.h:230
 msgid "_Medium"
 msgstr "_בינוני"
 
-#: ../src/f-spot.glade.h:246
+#: ../src/f-spot.glade.h:231
 msgid "_Month"
 msgstr "_חודש"
 
-#: ../src/f-spot.glade.h:247
+#: ../src/f-spot.glade.h:232
 msgid "_New Window"
 msgstr "חלון _חדש"
 
-#: ../src/f-spot.glade.h:248
+#: ../src/f-spot.glade.h:233
 msgid "_Open album in browser when done uploading"
 msgstr "_פתח את האלבום בדפדפן בסיום ההעלאה"
 
-#: ../src/f-spot.glade.h:249
+#: ../src/f-spot.glade.h:234
 msgid "_Open destination when done exporting"
 msgstr "_פתח את תיקיית היעד בתום תהליך הייצוא"
 
-#: ../src/f-spot.glade.h:250
-msgid "_Output:"
-msgstr "_פלט:"
-
-#: ../src/f-spot.glade.h:251
+#: ../src/f-spot.glade.h:235
 msgid "_Photo"
 msgstr "_תמונה"
 
-#: ../src/f-spot.glade.h:252
+#: ../src/f-spot.glade.h:236
+msgid "_Print output:"
+msgstr "פלט _הדפסה"
+
+#: ../src/f-spot.glade.h:237
 msgid "_Quit"
 msgstr "י_ציאה"
 
-#: ../src/f-spot.glade.h:253
+#: ../src/f-spot.glade.h:238
 msgid "_Ratings"
 msgstr "_דירוגים"
 
-#: ../src/f-spot.glade.h:255
+#: ../src/f-spot.glade.h:240
 msgid "_Remove Tag From Selection"
 msgstr "_הסר את התווית מהקטלוג"
 
-#: ../src/f-spot.glade.h:256
+#: ../src/f-spot.glade.h:241
 msgid "_Rename Version"
 msgstr "_שינוי שם הגרסה"
 
-#: ../src/f-spot.glade.h:257
-#: ../extensions/FlickrExport/FlickrExport.glade.h:16
-#: ../extensions/FolderExport/FolderExport.glade.h:17
-#: ../extensions/GalleryExport/GalleryExport.glade.h:20
-#: ../extensions/PicasaWebExport/PicasaWebExport.glade.h:24
-#: ../extensions/SmugMugExport/SmugMugExport.glade.h:14
+#: ../src/f-spot.glade.h:242
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:17
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:17
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:20
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:24
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:14
 msgid "_Resize to: "
 msgstr "_הקטן ל: "
 
-#: ../src/f-spot.glade.h:259
+#: ../src/f-spot.glade.h:244
 msgid "_Saturation:"
 msgstr "_רוויה:"
 
-#: ../src/f-spot.glade.h:260
+#: ../src/f-spot.glade.h:245
 msgid "_Scale photos to no larger than: "
 msgstr ""
 
-#: ../src/f-spot.glade.h:261
+#: ../src/f-spot.glade.h:246
 #, fuzzy
 msgid "_Select Import Rolls..."
-msgstr "בחר תיקייה לייצא"
+msgstr "בחר תעודה לייבוא..."
 
-#: ../src/f-spot.glade.h:262
+#: ../src/f-spot.glade.h:247
 msgid "_Set Date Range..."
-msgstr "_קבע תווך תאריכים..."
+msgstr "_קבע טווח תאריכים..."
 
-#: ../src/f-spot.glade.h:263
+#: ../src/f-spot.glade.h:248
 msgid "_Set Rating filter..."
 msgstr "קבע מסנן דירוג..."
 
-#: ../src/f-spot.glade.h:264
+#: ../src/f-spot.glade.h:249
 msgid "_Sharpen..."
 msgstr "_חידוד..."
 
-#: ../src/f-spot.glade.h:265
+#: ../src/f-spot.glade.h:250
 msgid "_Slideshow"
 msgstr "_מצגת"
 
-#: ../src/f-spot.glade.h:266
+#: ../src/f-spot.glade.h:251
 msgid "_Small"
 msgstr "_קטן"
 
-#: ../src/f-spot.glade.h:267
+#: ../src/f-spot.glade.h:252
+#, fuzzy
 msgid "_Strip metadata"
-msgstr ""
+msgstr "_הפשטת תווים מיוחדים"
 
-#: ../src/f-spot.glade.h:268
+#: ../src/f-spot.glade.h:253
 msgid "_Tag Icons"
 msgstr "סמלי _תוויות"
 
-#: ../src/f-spot.glade.h:269
+#: ../src/f-spot.glade.h:254
 msgid "_Tag Name:"
 msgstr "_שם תווית:"
 
-#: ../src/f-spot.glade.h:270
+#: ../src/f-spot.glade.h:255
 msgid "_Tags"
 msgstr "_תוויות"
 
-#: ../src/f-spot.glade.h:271
+#: ../src/f-spot.glade.h:256
 msgid "_Timeline"
 msgstr "_ציר הזמן"
 
-#: ../src/f-spot.glade.h:272
+#: ../src/f-spot.glade.h:257
+#, fuzzy
+msgid "_Tint:"
+msgstr "<small>_גוונים:</small>"
+
+#: ../src/f-spot.glade.h:258
 msgid "_Toolbar"
 msgstr "_סרגל כלים"
 
-#: ../src/f-spot.glade.h:273
+#: ../src/f-spot.glade.h:259
 msgid "_Tools"
 msgstr "_כלים"
 
-#: ../src/f-spot.glade.h:274
+#: ../src/f-spot.glade.h:260
+#, fuzzy
 msgid "_URI:"
-msgstr ""
+msgstr "כתובת"
 
-#: ../src/f-spot.glade.h:275
+#: ../src/f-spot.glade.h:261
 msgid "_Untagged Photos"
 msgstr "_תמונות ללא תווית"
 
-#: ../src/f-spot.glade.h:276
+#: ../src/f-spot.glade.h:262
 msgid "_Version"
 msgstr "_גרסה"
 
-#: ../src/f-spot.glade.h:277
+#: ../src/f-spot.glade.h:263
 msgid "_View"
 msgstr "_תצוגה"
 
-#: ../src/f-spot.glade.h:278
+#: ../src/f-spot.glade.h:264
 msgid "_Virtual Filesystem"
 msgstr "_מערכת קבצים וירטואלית"
 
 #. at, or after a date, or between dates
-#: ../src/f-spot.glade.h:281
+#: ../src/f-spot.glade.h:267
 msgid ""
 "at\n"
 "after\n"
@@ -3203,28 +3220,28 @@ msgstr ""
 "אחרי התאריך\n"
 "בין תאריכים"
 
-#: ../src/f-spot.glade.h:284
+#: ../src/f-spot.glade.h:270
 msgid "difference:"
 msgstr "הבדלים:"
 
-#: ../src/f-spot.glade.h:285
+#: ../src/f-spot.glade.h:271
 msgid "img_000.jpg"
 msgstr "img_000.jpg"
 
-#: ../src/f-spot.glade.h:286
+#: ../src/f-spot.glade.h:272
 msgid "min. Starting at {0}"
 msgstr "דקות. מתחיל ב-{0}"
 
-#: ../src/f-spot.glade.h:288
-#: ../extensions/FlickrExport/FlickrExport.glade.h:18
-#: ../extensions/FolderExport/FolderExport.glade.h:19
-#: ../extensions/GalleryExport/GalleryExport.glade.h:23
-#: ../extensions/PicasaWebExport/PicasaWebExport.glade.h:26
-#: ../extensions/SmugMugExport/SmugMugExport.glade.h:16
+#: ../src/f-spot.glade.h:274
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:19
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:19
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:23
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:26
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:16
 msgid "pixels"
 msgstr "פיקסלים"
 
-#: ../src/f-spot.glade.h:289
+#: ../src/f-spot.glade.h:275
 msgid "x"
 msgstr "x"
 
@@ -3236,554 +3253,900 @@ msgstr "הצגת מצגת מתוך F-Spot"
 msgid "F-Spot photos"
 msgstr "תמונות F-Spot"
 
-#: ../extensions/CDExport/CDExport.addin.xml.h:1
+#: ../extensions/Exporters/CDExport/CDExport.addin.xml.h:1
+#, fuzzy
 msgid "_CD..."
-msgstr ""
+msgstr "CD-R"
 
-#: ../extensions/CDExport/CDExport.cs:219
+#: ../extensions/Exporters/CDExport/CDExport.cs:219
 #, csharp-format
 msgid "Transferring picture \"{0}\" To CD"
 msgstr "מעביר תמונה \"{0}\" לתקליטור"
 
-#: ../extensions/CDExport/CDExport.cs:246
-#: ../extensions/FlickrExport/FlickrExport.cs:368
-#: ../extensions/FolderExport/FolderExport.cs:284
-#: ../extensions/GalleryExport/GalleryExport.cs:804
-#: ../extensions/PicasaWebExport/PicasaWebExport.cs:702
-#: ../extensions/SmugMugExport/SmugMugExport.cs:606
+#: ../extensions/Exporters/CDExport/CDExport.cs:246
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:379
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:284
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:808
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:552
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:702
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:606
 msgid "Done Sending Photos"
 msgstr "סיים לשלוח תמונות"
 
-#: ../extensions/CDExport/CDExport.cs:248
-#: ../extensions/FolderExport/FolderExport.cs:286
+#: ../extensions/Exporters/CDExport/CDExport.cs:248
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:286
 msgid "Transfer Complete"
 msgstr "ההעברה הושלמה"
 
-#: ../extensions/CDExport/CDExport.cs:255
-#: ../extensions/FolderExport/FolderExport.cs:291
+#: ../extensions/Exporters/CDExport/CDExport.cs:255
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:291
 msgid "Error While Transferring"
 msgstr "שגיאה בהעברה"
 
-#: ../extensions/CDExport/CDExport.cs:262
-#: ../extensions/FolderExport/FolderExport.cs:310
+#: ../extensions/Exporters/CDExport/CDExport.cs:262
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:310
 msgid "Error Transferring"
 msgstr "שגיאת העברה"
 
-#: ../extensions/CDExport/CDExport.cs:280
+#: ../extensions/Exporters/CDExport/CDExport.cs:280
 msgid "copying..."
 msgstr "מעתיק..."
 
-#: ../extensions/CDExport/CDExport.cs:296
-#: ../extensions/FolderExport/FolderExport.cs:332
+#: ../extensions/Exporters/CDExport/CDExport.cs:296
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:332
 msgid "Error: Error while transferring; Aborting"
 msgstr "שגיאה: שגיאה בזמן העברה; מבטל"
 
-#: ../extensions/CDExport/CDExport.cs:299
-#: ../extensions/FolderExport/FolderExport.cs:335
+#: ../extensions/Exporters/CDExport/CDExport.cs:299
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:335
 msgid "Error: File Already Exists; Aborting"
 msgstr "שגיאה: הקובץ כבר קיים; מבטל"
 
-#: ../extensions/CDExport/CDExport.glade.h:1
+#: ../extensions/Exporters/CDExport/CDExport.glade.h:1
 msgid "<b><i>There is some previously scheduled items to write</i></b>"
 msgstr ""
 
-#: ../extensions/CDExport/CDExport.glade.h:2
+#: ../extensions/Exporters/CDExport/CDExport.glade.h:2
 msgid "<b>Photos to Burn</b>"
 msgstr "<b>תמונות לצריבה</b>"
 
-#: ../extensions/CDExport/CDExport.glade.h:4
+#: ../extensions/Exporters/CDExport/CDExport.glade.h:4
 msgid "Create CD"
 msgstr "יצירת תקליטור"
 
-#: ../extensions/CDExport/CDExport.glade.h:6
+#: ../extensions/Exporters/CDExport/CDExport.glade.h:6
+#, fuzzy
 msgid "Size of the exported selection:"
-msgstr ""
+msgstr "Color of the selection box"
 
-#: ../extensions/CDExport/CDExport.glade.h:7
+#: ../extensions/Exporters/CDExport/CDExport.glade.h:7
 msgid "_Browse Previously Scheduled Files"
 msgstr ""
 
-#: ../extensions/CDExport/CDExport.glade.h:8
+#: ../extensions/Exporters/CDExport/CDExport.glade.h:8
 msgid "_Write only these photos to CD"
 msgstr "_כתוב רק את התמונות האלה על התקליטור"
 
-#: ../extensions/FlickrExport/FlickrExport.addin.xml.h:1
+#: ../extensions/Exporters/FlickrExport/FlickrExport.addin.xml.h:1
 msgid "_23hq..."
 msgstr "_23hq..."
 
-#: ../extensions/FlickrExport/FlickrExport.addin.xml.h:2
+#: ../extensions/Exporters/FlickrExport/FlickrExport.addin.xml.h:2
 msgid "_Flickr..."
 msgstr "_Flickr..."
 
-#: ../extensions/FlickrExport/FlickrExport.cs:97
-#: ../extensions/FlickrExport/FlickrExport.glade.h:5
+#: ../extensions/Exporters/FlickrExport/FlickrExport.addin.xml.h:3
+#, fuzzy
+msgid "_Zooomr..."
+msgstr "_ייבא..."
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:105
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:5
 msgid "Authorize"
 msgstr "אישור"
 
-#: ../extensions/FlickrExport/FlickrExport.cs:103
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:111
 #, csharp-format
-msgid ""
-"Return to this window after you have finished the authorization process on "
-"{0} and click the \"Complete Authorization\" button below"
+msgid "Return to this window after you have finished the authorization process on {0} and click the \"Complete Authorization\" button below"
 msgstr ""
 
-#: ../extensions/FlickrExport/FlickrExport.cs:104
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:112
 msgid "Complete Authorization"
 msgstr "משלים אישור"
 
-#: ../extensions/FlickrExport/FlickrExport.cs:109
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:117
 #, csharp-format
 msgid "Logging into {0}"
 msgstr "מתחבר אל {0}"
 
-#: ../extensions/FlickrExport/FlickrExport.cs:110
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:118
+#, fuzzy
 msgid "Checking credentials..."
-msgstr ""
+msgstr "בדיקת איות..."
 
-#: ../extensions/FlickrExport/FlickrExport.cs:117
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:125
 #, csharp-format
 msgid "Welcome {0} you are connected to {1}"
 msgstr "שלום {0} אתה כרגע מחובר אל-{1}"
 
-#: ../extensions/FlickrExport/FlickrExport.cs:120
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:128
 #, csharp-format
 msgid "Sign in as a different user"
 msgstr "התחבר כמשתמש אחר"
 
-#: ../extensions/FlickrExport/FlickrExport.cs:123
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:133
 #, csharp-format
 msgid "Used {0} of your allowed {1} monthly quota"
 msgstr ""
 
-#: ../extensions/FlickrExport/FlickrExport.cs:286
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:297
 msgid "Unable to log on"
 msgstr "לא ניתן להתחבר"
 
-#: ../extensions/FlickrExport/FlickrExport.cs:306
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:317
 #, csharp-format
 msgid "Waiting for response {0} of {1}"
 msgstr "ממתין לתגובה {0} מתוך {1}"
 
-#: ../extensions/FlickrExport/FlickrExport.cs:333
-#: ../extensions/FolderExport/FolderExport.cs:241
-#: ../extensions/GalleryExport/GalleryExport.cs:775
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:344
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:241
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:779
 #, csharp-format
 msgid "Uploading picture \"{0}\""
 msgstr "מעלה תמונה \"{0}\""
 
-#: ../extensions/FlickrExport/FlickrExport.cs:356
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:367
 #, csharp-format
 msgid "Error Uploading To {0}: {1}"
 msgstr "שגיאה בהעלאה ל-{0}: {1}"
 
-#: ../extensions/FlickrExport/FlickrExport.cs:370
-#: ../extensions/GalleryExport/GalleryExport.cs:806
-#: ../extensions/PicasaWebExport/PicasaWebExport.cs:704
-#: ../extensions/SmugMugExport/SmugMugExport.cs:608
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:381
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:810
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:554
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:704
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:608
 msgid "Upload Complete"
 msgstr "העלאה הושלמה"
 
-#: ../extensions/FlickrExport/FlickrExport.cs:438
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:454
 msgid "Unable to log on."
 msgstr "התחברות לא הצליחה."
 
-#: ../extensions/FlickrExport/FlickrExport.cs:439
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:455
 #, csharp-format
-msgid ""
-"F-Spot was unable to log on to {0}.  Make sure you have given the "
-"authentication using {0} web browser interface."
+msgid "F-Spot was unable to log on to {0}.  Make sure you have given the authentication using {0} web browser interface."
 msgstr ""
 
-#: ../extensions/FlickrExport/FlickrExport.cs:459
-#: ../extensions/GalleryExport/GalleryExport.cs:728
-#: ../extensions/PicasaWebExport/PicasaWebExport.cs:598
-#: ../extensions/SmugMugExport/SmugMugExport.cs:521
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:475
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:732
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:478
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:598
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:521
 msgid "Uploading Pictures"
 msgstr "מעלה תמונות"
 
-#: ../extensions/FlickrExport/FlickrExport.glade.h:4
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:4
 msgid "<b>Viewing permissions</b>"
 msgstr "<b>צפייה בהרשאות</b>"
 
-#: ../extensions/FlickrExport/FlickrExport.glade.h:7
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:7
 msgid "Export tag _hierarchy"
 msgstr "ייצוא _מבנה תוויות"
 
-#: ../extensions/FlickrExport/FlickrExport.glade.h:8
-msgid ""
-"F-Spot needs your authorization in order to upload photos to your {0} "
-"account. Press the \"Authorize\" button to open a web browser and give F-"
-"Spot the authorization. "
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:8
+msgid "F-Spot needs your authorization in order to upload photos to your {0} account. Press the \"Authorize\" button to open a web browser and give F-Spot the authorization. "
 msgstr ""
 
-#: ../extensions/FlickrExport/FlickrExport.glade.h:9
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:9
+#, fuzzy
 msgid "Ignore _top level tags"
-msgstr ""
+msgstr "Document `%s' has no top level <%s> node\n"
 
-#: ../extensions/FlickrExport/FlickrExport.glade.h:10
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:10
 msgid "Private"
 msgstr "אישי"
 
-#: ../extensions/FlickrExport/FlickrExport.glade.h:11
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:11
 msgid "Public"
 msgstr "ציבורי"
 
-#: ../extensions/FlickrExport/FlickrExport.glade.h:12
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:12
+#, fuzzy
 msgid "Strip _metadata"
-msgstr ""
+msgstr "_הפשטת תווים מיוחדים"
 
-#: ../extensions/FlickrExport/FlickrExport.glade.h:13
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:13
 msgid "Visible to Family"
 msgstr "גלוי למשפחה"
 
-#: ../extensions/FlickrExport/FlickrExport.glade.h:14
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:14
 msgid "Visible to Friends"
 msgstr "גלוי לחברים"
 
-#: ../extensions/FlickrExport/FlickrExport.glade.h:17
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:18
 msgid "_View photos in browser when done uploading"
 msgstr "_צפה בתמונות בדפדפן כשההעלאה מסתיימת"
 
-#: ../extensions/FolderExport/FolderExport.addin.xml.h:1
+#: ../extensions/Exporters/FolderExport/FolderExport.addin.xml.h:1
 msgid "F_older..."
 msgstr "תי_קייה..."
 
-#: ../extensions/FolderExport/FolderExport.cs:139
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:139
 msgid "Select Export Folder"
 msgstr "בחר תיקייה לייצא"
 
-#: ../extensions/FolderExport/FolderExport.cs:197
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:197
 msgid "Building Gallery"
 msgstr "בונה גלריה"
 
-#: ../extensions/FolderExport/FolderExport.cs:247
-#, fuzzy, csharp-format
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:247
+#, csharp-format
 msgid "Error uploading picture \"{0}\" to Gallery:{2}{1}"
-msgstr "שגיאה בהעלאת התמונה \"{0}\" לגלריה: {1}"
+msgstr "שגיאה בהעלאת התמונה \"{0}\" לגלריה:{2}{1}"
 
 #. Note for translators: light as clear, opposite as dark
-#: ../extensions/FolderExport/FolderExport.cs:809
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:809
 msgid "Light"
 msgstr "קליל"
 
-#: ../extensions/FolderExport/FolderExport.cs:810
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:810
 msgid "Dark"
 msgstr "כהה"
 
 #. Abbreviation of previous
-#: ../extensions/FolderExport/FolderExport.cs:990
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:990
 msgid "Prev"
 msgstr "הקודם"
 
-#: ../extensions/FolderExport/FolderExport.cs:1102
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:1102
 msgid "Gallery generated by"
 msgstr "גלריה נוצרה על ידי"
 
-#: ../extensions/FolderExport/FolderExport.cs:1142
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:1142
 msgid "Show Styles"
 msgstr "הצג סגנונות"
 
-#: ../extensions/FolderExport/FolderExport.cs:1143
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:1143
 msgid "Hide Styles"
 msgstr "הסתר סגנונות"
 
-#: ../extensions/FolderExport/FolderExport.cs:1310
-#: ../extensions/FolderExport/FolderExport.cs:1442
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:1310
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:1443
 msgid "Page:"
 msgstr "עמוד:"
 
-#: ../extensions/FolderExport/FolderExport.glade.h:1
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:1
 msgid "\n"
 msgstr "\n"
 
-#: ../extensions/FolderExport/FolderExport.glade.h:4
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:4
 msgid "<b>Export Method</b>"
 msgstr "<b>שיטת ייצוא</b>"
 
-#: ../extensions/FolderExport/FolderExport.glade.h:8
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:8
 msgid "Create _gallery using \"Original\""
 msgstr ""
 
-#: ../extensions/FolderExport/FolderExport.glade.h:9
-#, fuzzy
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:9
 msgid "Create standalone _web gallery"
-msgstr "צור גלריה להצגה ב_רשת"
+msgstr "צור גלריה _רשת אישית"
 
-#: ../extensions/FolderExport/FolderExport.glade.h:10
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:10
 msgid "D_escription:"
 msgstr "תי_אור:"
 
-#: ../extensions/FolderExport/FolderExport.glade.h:11
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:11
 msgid "Export _tags"
 msgstr "ייצוא _תוויות"
 
-#: ../extensions/FolderExport/FolderExport.glade.h:12
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:12
 msgid "Export tag _icons"
 msgstr "ייצוא _איקוני תוויות"
 
-#: ../extensions/FolderExport/FolderExport.glade.h:13
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:13
 msgid "Folder Export"
 msgstr "ייצוא תיקיות"
 
-#: ../extensions/FolderExport/FolderExport.glade.h:14
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:14
 msgid "G_allery Name:"
 msgstr "שם ה_גלריה:"
 
-#: ../extensions/FolderExport/FolderExport.glade.h:15
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:15
 msgid "Open _destination when done exporting"
 msgstr "פתח את תיקיית _היעד בתום תהליך היצוא"
 
-#: ../extensions/FolderExport/FolderExport.glade.h:16
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:16
 msgid "_Folder:"
 msgstr "_תיקייה:"
 
-#: ../extensions/FolderExport/FolderExport.glade.h:18
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:18
 msgid "_Save the files only"
 msgstr "_שמור את הקבצים בלבד"
 
-#: ../extensions/GalleryExport/GalleryExport.addin.xml.h:1
+#: ../extensions/Exporters/GalleryExport/GalleryExport.addin.xml.h:1
 msgid "Web _Gallery..."
 msgstr "_גלריית רשת..."
 
-#: ../extensions/GalleryExport/GalleryExport.cs:394
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:52
+msgid ""
+"Cannot connect to a Gallery for which the version is unknown.\n"
+"Please check that you have Remote plugin 1.0.8 or later"
+msgstr ""
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:393
 msgid "Invalid URL"
 msgstr "כתובת אינטרנט לא תקינה"
 
-#: ../extensions/GalleryExport/GalleryExport.cs:395
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:394
 msgid "The gallery URL entry does not appear to be a valid URL"
-msgstr ""
+msgstr "כתובת הגלריה לא תקינה"
 
-#: ../extensions/GalleryExport/GalleryExport.cs:405
-#: ../extensions/GalleryExport/GalleryExport.cs:432
-#: ../extensions/GalleryExport/GalleryExport.cs:443
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:404
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:431
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:442
 msgid "Error while connecting to Gallery"
 msgstr "שגיאה בזמן התחברות לגלריה"
 
-#: ../extensions/GalleryExport/GalleryExport.cs:406
-#: ../extensions/GalleryExport/GalleryExport.cs:433
-#: ../extensions/GalleryExport/GalleryExport.cs:444
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:405
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:432
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:443
 #, csharp-format
 msgid "The following error was encountered while attempting to log in: {0}"
 msgstr ""
 
-#: ../extensions/GalleryExport/GalleryExport.cs:420
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:419
 msgid "A Gallery with this name already exists"
 msgstr "גלריה עם השם הזה כבר קיימת"
 
-#: ../extensions/GalleryExport/GalleryExport.cs:421
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:420
 #, csharp-format
-msgid ""
-"There is already a Gallery with the same name in your registered Galleries. "
-"Please choose a unique name."
+msgid "There is already a Gallery with the same name in your registered Galleries. Please choose a unique name."
 msgstr ""
 
-#: ../extensions/GalleryExport/GalleryExport.cs:531
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:530
 msgid "(TopLevel)"
 msgstr "(רמה עליונה)"
 
-#: ../extensions/GalleryExport/GalleryExport.cs:593
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:592
 msgid "Invalid Gallery name"
 msgstr "שם גלריה לא תקין"
 
-#: ../extensions/GalleryExport/GalleryExport.cs:594
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:593
 msgid ""
 "The gallery name contains invalid characters.\n"
 "Only letters, numbers, - and _ are allowed"
 msgstr ""
+"שם הגלריה מכיל תווים אסורים.\n"
+"מותר להשתמש רק באותיות, וספרים ובתווים \"-\" ו-\"_\""
 
-#: ../extensions/GalleryExport/GalleryExport.cs:794
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:798
 #, csharp-format
 msgid "Error uploading picture \"{0}\" to Gallery: {1}"
 msgstr "שגיאה בהעלאת התמונה \"{0}\" לגלריה: {1}"
 
-#: ../extensions/GalleryExport/GalleryExport.cs:822
-#: ../extensions/PicasaWebExport/PicasaWebExport.cs:725
-#: ../extensions/SmugMugExport/SmugMugExport.cs:629
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:826
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:725
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:629
 msgid "(No Gallery)"
 msgstr "(אין גלריה)"
 
-#: ../extensions/GalleryExport/GalleryExport.cs:909
-#: ../extensions/PicasaWebExport/PicasaWebExport.cs:852
-#: ../extensions/SmugMugExport/SmugMugExport.cs:725
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:918
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:852
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:725
 msgid "(Not Connected)"
 msgstr "(לא מחובר)"
 
-#: ../extensions/GalleryExport/GalleryExport.cs:910
-#: ../extensions/PicasaWebExport/PicasaWebExport.cs:853
-#: ../extensions/SmugMugExport/SmugMugExport.cs:726
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:919
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:853
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:726
 msgid "(No Albums)"
 msgstr "(אין אלבומים)"
 
-#: ../extensions/GalleryExport/GalleryExport.cs:962
-#: ../extensions/PicasaWebExport/PicasaWebExport.cs:915
-#: ../extensions/SmugMugExport/SmugMugExport.cs:767
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:971
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:915
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:767
 msgid "No account selected"
 msgstr "לא נבחרו חשבונות"
 
-#: ../extensions/GalleryExport/GalleryExport.glade.h:5
-#: ../extensions/PicasaWebExport/PicasaWebExport.glade.h:5
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:5
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:5
 msgid "<span weight='bold' size='larger'>Error Connecting to Gallery</span>\n"
 msgstr "<span weight='bold' size='larger'>שגיאה בהתחברות לגלריה</span>\n"
 
-#: ../extensions/GalleryExport/GalleryExport.glade.h:9
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:9
 msgid "Export _titles and comments"
 msgstr "ייצוא _כותרות והערות"
 
-#: ../extensions/GalleryExport/GalleryExport.glade.h:10
-#: ../extensions/PicasaWebExport/PicasaWebExport.glade.h:10
-#: ../extensions/SmugMugExport/SmugMugExport.glade.h:7
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:10
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:10
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:7
 msgid "Open _album in browser when done uploading"
 msgstr "פתח את _האלבום בדפדפן כשההעלאה מסתיימת"
 
-#: ../extensions/GalleryExport/GalleryExport.glade.h:11
-#: ../extensions/PicasaWebExport/PicasaWebExport.glade.h:11
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:11
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:11
 msgid "Please verify that the settings for this gallery are correct."
 msgstr "נא וודא שהגדרות הגלריה נכונות."
 
-#: ../extensions/GalleryExport/GalleryExport.glade.h:12
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:12
 msgid "U_RL:"
 msgstr "_כתובת אינטרנט:"
 
-#: ../extensions/GalleryExport/GalleryExport.glade.h:13
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:13
 msgid "_Album Name:"
 msgstr "שם _האלבום:"
 
-#: ../extensions/GalleryExport/GalleryExport.glade.h:14
-#: ../extensions/PicasaWebExport/PicasaWebExport.glade.h:19
-#: ../extensions/SmugMugExport/SmugMugExport.glade.h:11
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:14
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:19
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:11
 msgid "_Description:"
 msgstr "_תיאור:"
 
-#: ../extensions/GalleryExport/GalleryExport.glade.h:16
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:16
 msgid "_Gallery Name:"
 msgstr "_שם הגלריה:"
 
-#: ../extensions/GalleryExport/GalleryExport.glade.h:17
-#: ../extensions/PicasaWebExport/PicasaWebExport.glade.h:22
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:17
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:22
 msgid "_Gallery:"
 msgstr "_גלריה:"
 
-#: ../extensions/GalleryExport/GalleryExport.glade.h:18
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:18
 msgid "_Parent Album:"
 msgstr "אלבום _אב:"
 
-#: ../extensions/GalleryExport/GalleryExport.glade.h:19
-#: ../extensions/PicasaWebExport/PicasaWebExport.glade.h:23
-#: ../extensions/SmugMugExport/SmugMugExport.glade.h:13
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:19
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:23
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:13
+#: ../extensions/Exporters/TabbloExport/TabbloExport.glade.h:4
 msgid "_Password:"
 msgstr "_סיסמה:"
 
-#: ../extensions/GalleryExport/GalleryExport.glade.h:21
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:21
 msgid "_Title:"
 msgstr "_כותרת:"
 
-#: ../extensions/GalleryExport/GalleryExport.glade.h:22
-#: ../extensions/PicasaWebExport/PicasaWebExport.glade.h:25
-#: ../extensions/SmugMugExport/SmugMugExport.glade.h:15
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:22
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:25
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:15
+#: ../extensions/Exporters/TabbloExport/TabbloExport.glade.h:5
 msgid "_Username:"
 msgstr "שם _משתמש:"
 
-#: ../extensions/GalleryExport/GalleryRemote.cs:359
+#: ../extensions/Exporters/GalleryExport/GalleryRemote.cs:361
 msgid "Error reading server response"
 msgstr "שגיאה בקריאת תגובת השרת"
 
 #. failed to find the response
-#: ../extensions/GalleryExport/GalleryRemote.cs:371
+#: ../extensions/Exporters/GalleryExport/GalleryRemote.cs:373
 msgid "Server returned response without Gallery content"
 msgstr "השרת החזיר תגובה ללא תוכן הגלריה"
 
-#: ../extensions/PicasaWebExport/PicasaWebExport.addin.xml.h:1
-msgid "_PicasaWeb..."
-msgstr "_PicasaWeb..."
+#: ../extensions/Exporters/GalleryExport/GalleryRemote.cs:710
+msgid "Error while creating new album"
+msgstr "ארעה שגיאה בעת יצירת אלבום חדש"
 
-#: ../extensions/PicasaWebExport/PicasaWebExport.cs:441
-msgid "Error while creating Album"
-msgstr "שגיאה ביצירת האלבום"
-
-#: ../extensions/PicasaWebExport/PicasaWebExport.cs:442
+#: ../extensions/Exporters/GalleryExport/GalleryRemote.cs:711
 #, csharp-format
 msgid ""
-"The following error was encountered while attempting to create an album: {0}"
+"The following error was encountered while attempting to perform the requested operation:\n"
+"{0} ({1})"
+msgstr ""
+"התרחשה השגיאה הבאה בזמן ניסיון לביצוע הפעולה המתבקשת:\n"
+"{0} ({1})"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.addin.xml.h:1
+msgid "F_acebook..."
+msgstr "F_acebook..."
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:256
+msgid "Too many images to export"
+msgstr "יותר מידי תמונות לייצא"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:256
+msgid "Facebook only permits 60 photographs per album.  Please refine your selection and try again."
+msgstr "Facebook מאפשר עד 60 תמונות לכל אלבום.  נא חזור לבחירה שלך ונסה שוב."
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:279
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:365
+msgid "You are not logged in."
+msgstr "אתה לא מחובר."
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:320
+msgid "Waiting for authentication"
+msgstr "ממתין לאימות"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:320
+msgid "F-Spot will now launch your browser so that you can log into Facebook.  Turn on the \"Save my login information\" checkbox on Facebook and F-Spot will log into Facebook automatically from now on."
 msgstr ""
 
-#: ../extensions/PicasaWebExport/PicasaWebExport.cs:621
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:326
+msgid "Error logging into Facebook"
+msgstr "שגיאה בכניסה ל-Facebook"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:326
+msgid "There was a problem logging into Facebook.  Check your credentials and try again."
+msgstr ""
+
+#. Note for translators: {0} and {1} are respectively firstname and surname of the user
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:339
 #, csharp-format
-msgid "{0} Sent"
-msgstr "{0} נשלח"
+msgid "{0} {1} is logged into Facebook"
+msgstr "{0} {1} מחובר ל-Facebook"
 
-#: ../extensions/PicasaWebExport/PicasaWebExport.cs:623
-#, fuzzy, csharp-format
-msgid "{0} of approx. {1}"
-msgstr "{0} מ {1}"
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:492
+msgid "Album must have a name"
+msgstr "חובה להזין שם לאלבום"
 
-#: ../extensions/PicasaWebExport/PicasaWebExport.cs:661
-#: ../extensions/SmugMugExport/SmugMugExport.cs:564
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:492
+msgid "Please name your album or choose an existing album."
+msgstr ""
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:505
+msgid "Creating a new album failed"
+msgstr "יצירת אלבום חדש נכשלה"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:505
+#, csharp-format
+msgid ""
+"An error occurred creating a new album.\n"
+"\n"
+"{0}"
+msgstr ""
+"ארעה שגיאה בעת יצירת אלבום חדש.\n"
+"\n"
+"{0}"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:529
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:661
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:564
 #, csharp-format
 msgid "Uploading picture \"{0}\" ({1} of {2})"
 msgstr "מעלה תמונה \"{0}\" ({1} מתוך {2})"
 
-#: ../extensions/PicasaWebExport/PicasaWebExport.cs:692
-#: ../extensions/SmugMugExport/SmugMugExport.cs:593
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:543
+#, csharp-format
+msgid "Error Uploading To Facebook: {0}"
+msgstr "שגיאה בהעלאה ל-Facebook: {0}"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.glade.h:1
+#, fuzzy
+msgid "Caption"
+msgstr "caption"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.glade.h:2
+msgid "Create a new album"
+msgstr "יצירת אלבום חדש"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.glade.h:3
+msgid "Description"
+msgstr "תיאור"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.glade.h:4
+msgid "Export to Facebook"
+msgstr "ייצא ל-Facebook"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.glade.h:5
+msgid "In this photo"
+msgstr "בתמונה זו"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.glade.h:7
+msgid "Login"
+msgstr "התחבר"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.glade.h:8
+msgid "Logout"
+msgstr "התנתק"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.glade.h:10
+msgid "This is who I am"
+msgstr "זה מי זה"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.glade.h:11
+msgid "Use an existing album"
+msgstr "שימוש באלבום קיים"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.glade.h:12
+msgid "Who is this?"
+msgstr "מי זה?"
+
+#: ../extensions/Exporters/ZipExport/ZipExport.addin.xml.h:1
+msgid "Compressed fil_e..."
+msgstr "קו_בץ מכווץ..."
+
+#: ../extensions/Exporters/ZipExport/ZipExport.cs:47
+msgid "This tool requires an active selection. Please select one or more pictures and try again"
+msgstr ""
+
+#: ../extensions/Exporters/ZipExport/ZipExport.cs:63
+msgid "Select export folder"
+msgstr "בחר תיקייה לייצוא"
+
+#: ../extensions/Exporters/ZipExport/ZipExport.cs:101
+msgid "Exporting files"
+msgstr "מייצא קבצים"
+
+#: ../extensions/Exporters/ZipExport/ZipExport.cs:107
+#, csharp-format
+msgid "Preparing photo \"{0}\""
+msgstr "מכין את התמונה \"{0}\""
+
+#: ../extensions/Exporters/ZipExport/ZipExport.glade.h:2
+msgid "_File name:"
+msgstr "שם_ קובץ:"
+
+#: ../extensions/Exporters/ZipExport/ZipExport.glade.h:3
+msgid "_Location:"
+msgstr "_מיקום:"
+
+#: ../extensions/Exporters/ZipExport/ZipExport.glade.h:4
+msgid "_Scale:"
+msgstr "_קנה מידה:"
+
+#: ../extensions/Tools/MergeDb/MergeDb.addin.xml.h:1
+msgid "Merge Db"
+msgstr "מיזוג מסד נתונים"
+
+#: ../extensions/Tools/MergeDb/MergeDb.cs:73
+msgid "Error opening the selected file"
+msgstr "ארעה שגיאה בעת פתיחת הקובץ"
+
+#: ../extensions/Tools/MergeDb/MergeDb.cs:74
+#, csharp-format
+msgid ""
+"The file you selected is not a valid or supported database.\n"
+"\n"
+"Received exception \"{0}\"."
+msgstr ""
+
+#: ../extensions/Tools/MergeDb/MergeDb.glade.h:1
+msgid "<small><i>Choose the location of the database you want to import from</i></small>"
+msgstr "<small><i>בחר את מיקום מסד הנתינים שברצונך לייבא ממנו</i></small>"
+
+#: ../extensions/Tools/MergeDb/MergeDb.glade.h:2
+msgid ""
+"<small><i>Choose what to import from the selected db.\n"
+"\"New Rolls Only\" is the smart option that will avoid re-importing photos you could have imported during a previous operation.\n"
+"\"A Single Import Roll\" let you choose which roll you want to merge back.\n"
+"\"Everything\" will import everything, creating duplicates if you already imported from that database.</i></small>"
+msgstr ""
+
+#: ../extensions/Tools/MergeDb/MergeDb.glade.h:6
+msgid "<small><i>Copy the images locally or keep them where they are. If you chose the later, be sure that this location will stay accessible from f-spot.</i></small>"
+msgstr ""
+
+#: ../extensions/Tools/MergeDb/MergeDb.glade.h:7
+#, fuzzy
+msgid "A Single Import Roll"
+msgstr "יבא _קובץ יחיד"
+
+#: ../extensions/Tools/MergeDb/MergeDb.glade.h:8
+msgid "Copy images to photos folder"
+msgstr "העתק תמונות מתיקיית התמונות"
+
+#: ../extensions/Tools/MergeDb/MergeDb.glade.h:9
+msgid "Database Location:"
+msgstr "מיקום מסד הנתונים:"
+
+#: ../extensions/Tools/MergeDb/MergeDb.glade.h:10
+msgid "Everything"
+msgstr "הכל"
+
+#: ../extensions/Tools/MergeDb/MergeDb.glade.h:11
+msgid "Import:"
+msgstr "ייבא:"
+
+#: ../extensions/Tools/MergeDb/MergeDb.glade.h:12
+msgid "Keep the images at their original location"
+msgstr "שמירת התמונות במיקום המקורי שלהם"
+
+#: ../extensions/Tools/MergeDb/MergeDb.glade.h:13
+msgid "Merge another f-spot collection"
+msgstr ""
+
+#: ../extensions/Tools/MergeDb/MergeDb.glade.h:14
+msgid "New Rolls Only"
+msgstr ""
+
+#: ../extensions/Tools/MergeDb/PickFolderDialog.cs:33
+#, csharp-format
+msgid ""
+"<big>The database refers to files contained in the <b>{0}</b> folder.\n"
+" Please select that folder so I can do the mapping.</big>"
+msgstr ""
+
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.addin.xml.h:1
+msgid "_PicasaWeb..."
+msgstr "_PicasaWeb..."
+
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:441
+msgid "Error while creating Album"
+msgstr "שגיאה ביצירת האלבום"
+
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:442
+#, csharp-format
+msgid "The following error was encountered while attempting to create an album: {0}"
+msgstr ""
+
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:621
+#, csharp-format
+msgid "{0} Sent"
+msgstr "{0} נשלח"
+
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:623
+#, csharp-format
+msgid "{0} of approx. {1}"
+msgstr ""
+
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:692
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:593
 #, csharp-format
 msgid "Error Uploading To Gallery: {0}"
 msgstr "שגיאה בהעלאה לגלריה: {0}"
 
-#: ../extensions/PicasaWebExport/PicasaWebExport.cs:776
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:776
 msgid "Available space:"
 msgstr "מקום פנוי:"
 
-#: ../extensions/PicasaWebExport/PicasaWebExport.cs:893
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:893
 #, csharp-format
 msgid ""
 "<small>The selected album has a limit of {0} pictures,\n"
 "which would be passed with the current selection of {1} images</small>"
 msgstr ""
 
-#: ../extensions/PicasaWebExport/PicasaWebExport.glade.h:3
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:3
 msgid "<b>PicasaWeb Export</b>"
 msgstr "<b>PicasaWeb ייצוא לתוך </b>"
 
-#: ../extensions/PicasaWebExport/PicasaWebExport.glade.h:7
-msgid ""
-"<span weight='bold' size='larger'>Your Google Account is locked</span>\n"
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:7
+msgid "<span weight='bold' size='larger'>Your Google Account is locked</span>\n"
 msgstr "<span weight='bold' size='larger'>החשבון שלכם בגוגל נעול</span>\n"
 
-#: ../extensions/PicasaWebExport/PicasaWebExport.glade.h:12
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:12
 msgid ""
 "Please verify that the settings for this gallery are correct.\n"
 "Enter the letters as they are shown in the image in\n"
 "the 'Captcha' field. <i>Letters are not case-sensitive</i>"
 msgstr ""
 
-#: ../extensions/PicasaWebExport/PicasaWebExport.glade.h:15
-#: ../extensions/SmugMugExport/SmugMugExport.glade.h:8
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:15
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:8
 msgid "Public Album"
 msgstr "אלבום ציבורי"
 
-#: ../extensions/PicasaWebExport/PicasaWebExport.glade.h:16
-#: ../extensions/SmugMugExport/SmugMugExport.glade.h:10
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:16
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:10
 msgid "_Album Title:"
 msgstr "_כותרת האלבום:"
 
-#: ../extensions/PicasaWebExport/PicasaWebExport.glade.h:17
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:17
 msgid "_Autorotate"
 msgstr "סיבוב _אוטומטי"
 
-#: ../extensions/PicasaWebExport/PicasaWebExport.glade.h:18
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:18
 msgid "_Captcha:"
 msgstr "_Captcha:"
 
-#: ../extensions/SmugMugExport/SmugMugExport.glade.h:3
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:3
 msgid "<b>SmugMug Export</b>"
 msgstr "<b>ייצוא SmugMug</b>"
 
-#: ../extensions/SmugMugExport/SmugMugExport.glade.h:9
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:9
 msgid "_Account:"
 msgstr "_חשבון:"
 
-#: ../extensions/SmugMugExport/SmugMugExport.addin.xml.h:1
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.addin.xml.h:1
 msgid "_SmugMug..."
 msgstr "_SmugMug..."
+
+#: ../extensions/Exporters/TabbloExport/Tabblo/Connection.cs:126
+#, csharp-format
+msgid "Uploading photo \"{0}\""
+msgstr "מעלה תמונה \"{0}\""
+
+#: ../extensions/Exporters/TabbloExport/Tabblo/Connection.cs:181
+msgid "Logging into Tabblo"
+msgstr "מתחבר ל-Tabblo"
+
+#: ../extensions/Exporters/TabbloExport/Tabblo/Connection.cs:241
+msgid "Obtaining URL for upload"
+msgstr "מקבל כתובת להעלאה"
+
+#: ../extensions/Exporters/TabbloExport/TabbloExport.addin.xml.h:1
+msgid "_Tabblo..."
+msgstr "_Tabblo..."
+
+#: ../extensions/Exporters/TabbloExport/TabbloExport.cs:165
+msgid "Done sending photos"
+msgstr "ליחת תמונות הסתיימה"
+
+#: ../extensions/Exporters/TabbloExport/TabbloExport.cs:167
+msgid "Upload complete"
+msgstr "העלאה הושלמה"
+
+#: ../extensions/Exporters/TabbloExport/TabbloExport.cs:173
+msgid "Error uploading to Tabblo: "
+msgstr "שגיאה בהעלאה ל-Tabblo: "
+
+#: ../extensions/Exporters/TabbloExport/TabbloExport.glade.h:2
+msgid "<b>Tabblo account</b>"
+msgstr "<b>חשבון Tabblo</b>"
+
+#: ../extensions/Exporters/TabbloExport/TrustError.glade.h:1
+msgid "<b>{0}</b>."
+msgstr "<b>{0}</b>."
+
+#: ../extensions/Exporters/TabbloExport/TrustError.glade.h:2
+msgid "A trust error occured while attempting to access"
+msgstr ""
+
+#: ../extensions/Exporters/TabbloExport/TrustError.glade.h:3
+msgid "Abort this session"
+msgstr "אודות ההפעלה"
+
+#: ../extensions/Exporters/TabbloExport/TrustError.glade.h:4
+msgid "Always trust this site's certificate"
+msgstr ""
+
+#: ../extensions/Exporters/TabbloExport/TrustError.glade.h:5
+msgid "Do you wish to:"
+msgstr "האם ברצונך:"
+
+#: ../extensions/Exporters/TabbloExport/TrustError.glade.h:6
+msgid "Trust Error"
+msgstr "שגיאת אמון"
+
+#: ../extensions/Exporters/TabbloExport/TrustError.glade.h:7
+msgid "Trust the site's certificate this once"
+msgstr ""
+
+#~ msgid "Remove redeye from selected area"
+#~ msgstr "מחיקת עיין אדומה מהאזור הנבחר"
+#~ msgid "Reduce Red-Eye"
+#~ msgstr "הפחתת עיין-אדמה"
+#~ msgid "Convert the photo to black and white"
+#~ msgstr "המרת התמונה לשחור ולבן"
+#~ msgid "<b>Color Temperature</b>"
+#~ msgstr "<b>טמפרטורת הצבע</b>"
+#~ msgid "<b>Exposure</b>"
+#~ msgstr "<b>חשיפה</b>"
+#~ msgid "<b>Histo_gram</b>"
+#~ msgstr "<b>היסטו_גרמה</b>"
+#~ msgid "<small> </small>"
+#~ msgstr "<small> </small>"
+#~ msgid "<small>C_ontrast:</small>"
+#~ msgstr "<small>נ_יגודיות:</small>"
+#~ msgid "<small>_Brightness:</small>"
+#~ msgstr "<small>_בהירות:</small>"
+#~ msgid "<small>_Exposure:</small>"
+#~ msgstr "<small>_חשיפה:</small>"
+#~ msgid "<small>_Hue:</small>"
+#~ msgstr "<small>_גוון:</small>"
+#~ msgid "<small>_Saturation:</small>"
+#~ msgstr "<small>_הרויה:</small>"
+#~ msgid "<small>_Tint:</small>"
+#~ msgstr "<small>_גוונים:</small>"
+#~ msgid "Ad_just Color..."
+#~ msgstr "הת_אמת צבע..."
+#~ msgid "Adjust Color"
+#~ msgstr "התאמת צבע"
+#~ msgid ""
+#~ "From Screen\n"
+#~ "Standard RGB"
+#~ msgstr ""
+#~ "מסך\n"
+#~ "RGB רגיל"
+#~ msgid "Reset"
+#~ msgstr "איפוס"
+#~ msgid ""
+#~ "Standard RGB\n"
+#~ "Image Profile\n"
+#~ "Custom\n"
+#~ msgstr ""
+#~ "RGB סטנדרטי\n"
+#~ "פרופיל התמונה\n"
+#~ "מותאם\n"
 
 #, fuzzy
 #~ msgid "Create p_hotomosaic"
@@ -3792,10 +4155,6 @@ msgstr "_SmugMug..."
 #, fuzzy
 #~ msgid "Creating miniatures"
 #~ msgstr "מעביר תמונות"
-
-#, fuzzy
-#~ msgid "Preparing photo \"{0}\""
-#~ msgstr "מייצא תמונה \"{0}\""
 
 #, fuzzy
 #~ msgid "Creating photomosaics"
@@ -3810,13 +4169,10 @@ msgstr "_SmugMug..."
 #, fuzzy
 #~ msgid "_Current query"
 #~ msgstr "תאריך נוכחי:"
-
 #~ msgid "url"
 #~ msgstr "כתובת קישור"
-
 #~ msgid "token"
 #~ msgstr "token"
-
 #~ msgid "captcha_url"
 #~ msgstr "captcha_url"
 
@@ -3835,13 +4191,10 @@ msgstr "_SmugMug..."
 #, fuzzy
 #~ msgid "Error importing photowall"
 #~ msgstr "שגיאה בעריכת תמונה"
-
 #~ msgid "%"
 #~ msgstr "%"
-
 #~ msgid "Background _color"
 #~ msgstr "_צבע רקע"
-
 #~ msgid "Jpeg _quality"
 #~ msgstr "_איכות Jpeg"
 
@@ -3852,35 +4205,26 @@ msgstr "_SmugMug..."
 #, fuzzy
 #~ msgid "Photo wall generator"
 #~ msgstr "מנהל תמונות"
-
 #~ msgid "_Jpeg"
 #~ msgstr "_Jpeg"
-
 #~ msgid "_Pages"
 #~ msgstr "_עמודים"
 
 #, fuzzy
 #~ msgid "_Scale images"
 #~ msgstr "שמירת תמונה"
-
 #~ msgid "_Tiff"
 #~ msgstr "_Tiff"
-
 #~ msgid "Apply"
 #~ msgstr "החל"
-
 #~ msgid "name"
 #~ msgstr "שם"
-
 #~ msgid "version"
 #~ msgstr "גרסה"
-
 #~ msgid "date"
 #~ msgstr "תאריך"
-
 #~ msgid "size"
 #~ msgstr "גודל"
-
 #~ msgid " out of {0}"
 #~ msgstr " מתוך {0}"
 
@@ -3895,132 +4239,86 @@ msgstr "_SmugMug..."
 #~ msgstr ""
 #~ "<small><i>אפשר שמירת תגיות ומלל לתיאור תמונה\n"
 #~ "כאשר סוג הקובץ מאפשר זאת.</i></small>"
-
 #~ msgid "_File"
 #~ msgstr "_קובץ"
-
 #~ msgid "By Extension"
 #~ msgstr "לפי סיומת"
-
 #~ msgid "BMP"
 #~ msgstr "BMP"
-
 #~ msgid "GIF"
 #~ msgstr "GIF"
-
 #~ msgid "ICO"
 #~ msgstr "ICO"
-
 #~ msgid "JPEG"
 #~ msgstr "JPEG"
-
 #~ msgid "PNG"
 #~ msgstr "PNG"
-
 #~ msgid "PNM"
 #~ msgstr "PNM"
-
 #~ msgid "RAS"
 #~ msgstr "RAS"
-
 #~ msgid "SVG"
 #~ msgstr "SVG"
-
 #~ msgid "TGA"
 #~ msgstr "TGA"
-
 #~ msgid "TIFF"
 #~ msgstr "TIFF"
-
 #~ msgid "XBM"
 #~ msgstr "XBM"
-
 #~ msgid "XPM"
 #~ msgstr "XPM"
-
 #~ msgid "Unsupported file format."
 #~ msgstr "סוג הקובץ לא נתמך."
-
 #~ msgid "Determine File Type:"
 #~ msgstr "קבע את סוג הקובץ:"
-
 #~ msgid "Load Image"
 #~ msgstr "טען תמונה"
-
 #~ msgid "Help not found"
 #~ msgstr "עזרה לא נמצאה"
-
 #~ msgid "Add-in Manager"
 #~ msgstr "מנהל תוספים"
-
 #~ msgid "F-Spot Add-in Manager"
 #~ msgstr "מנהל ההרחבות של F-Spot"
-
 #~ msgid "Export to 23hq..."
 #~ msgstr "יצוא ל-23hq..."
-
 #~ msgid "Export to CD..."
 #~ msgstr "ייצוא לתקליטור..."
-
-#~ msgid "Export to Flickr..."
-#~ msgstr "ייצוא אל Flickr..."
-
 #~ msgid "Export to Folder..."
 #~ msgstr "ייצוא אל תיקייה..."
-
 #~ msgid "Export to PicasaWeb..."
 #~ msgstr "ייצוא אל PicasaWeb..."
-
 #~ msgid "Export to SmugMug......"
 #~ msgstr "יצא ל-SmugMug..."
-
 #~ msgid "Attach Tag"
 #~ msgstr "צירוף תווית"
-
 #~ msgid "Remove From Catalog"
 #~ msgstr "הסרה מהקטלוג"
-
 #~ msgid "Remove Tag"
 #~ msgstr "הסר תווית"
-
 #~ msgid "Size:"
 #~ msgstr "גודל:‏"
-
 #~ msgid "Include"
 #~ msgstr "הכללה"
-
 #~ msgid "Exclude"
 #~ msgstr "למעט"
-
 #~ msgid "Remove"
 #~ msgstr "להסיר"
-
-#~ msgid "Create mail..."
-#~ msgstr "יצירת דואר"
-
 #~ msgid "Display T_ags"
 #~ msgstr "הצגת ת_וויות"
-
 #~ msgid "Display Too_lbar"
 #~ msgstr "הצגת סרגל כלים"
-
 #~ msgid "Display _Dates"
 #~ msgstr "הצגת _תאריכים"
-
 #~ msgid "dialog1"
 #~ msgstr "דו-שיח1"
-
 #~ msgid "gtk-about"
 #~ msgstr "gtk-about"
-
 #~ msgid "gtk-close"
 #~ msgstr "gtk-close"
-
 #~ msgid "gtk-open"
 #~ msgstr "gtk-open"
-
 #~ msgid "gtk-preferences"
 #~ msgstr "gtk-preferences"
-
 #~ msgid "gtk-print"
 #~ msgstr "gtk-print"
+
