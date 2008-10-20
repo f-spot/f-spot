@@ -29,6 +29,7 @@ fi
 run_mdb=false
 run_gdb=false
 run_valgrind=false
+basedir_set=false
 for arg in "$@"; do
     case "x$arg" in
     	x--debug)
@@ -40,6 +41,9 @@ for arg in "$@"; do
 	x--gdb)
 	    run_gdb=true
 	    ;;
+	x-b) basedir_set=true;;
+	x-basedir) basedir_set=true;;
+	x--basedir) basedir_set=true;;
 	x--valgrind)
 	    run_valgrind=true
 	    ;;
@@ -56,6 +60,21 @@ for arg in "$@"; do
 	    ;;
     esac
 done
+
+if [ "$basedir_set" != "true" ]; then
+    if [ ! -n "$XDG_CONFIG_HOME" ]; then
+        XDG_CONFIG_HOME="$HOME/.config"
+    fi
+    if [ -e "$HOME/.gnome2/f-spot" ] && [ -e "$XDG_CONFIG_HOME/f-spot" ]; then
+        echo "It looks like you have 2 settings directories for f-spot ($HOME/.gnome2/f-spot and $XDG_CONFIG_HOME/f-spot). Remove one or run f-spot with --basedir option"
+        zenity --error --text="It looks like you have 2 settings directories for f-spot ($HOME/.gnome2/f-spot and $XDG_CONFIG_HOME/f-spot). Remove one or run f-spot with --basedir option"
+	exit -1
+    elif [ -e "$HOME/.gnome2/f-spot" ]; then
+        mkdir -p $XDG_CONFIG_HOME/
+	echo "Moving $HOME/.gnome2/f-spot to $XDG_CONFIG_HOME/"
+        mv $HOME/.gnome2/f-spot $XDG_CONFIG_HOME/
+    fi
+fi
 
 if [ -n "$FSPOT_DEBUG" ]; then
     echo "** Running f-spot in Debug Mode **"

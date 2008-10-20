@@ -4,6 +4,7 @@
  * This is free software. See COPYING for details
  *
  */
+using System;
 
 namespace FSpot {
 	public static class Global {
@@ -11,7 +12,9 @@ namespace FSpot {
 			get { return System.IO.Path.Combine (System.Environment.GetEnvironmentVariable ("HOME"), System.String.Empty); }
 		}
 		
-		private static string base_dir = System.IO.Path.Combine (HomeDirectory,  System.IO.Path.Combine (".gnome2", "f-spot"));
+		//$XDG_CONFIG_HOME/f-spot or $HOME/.config/f-spot
+		private static string xdg_config_home = Environment.GetFolderPath (Environment.SpecialFolder.ApplicationData);
+		private static string base_dir = System.IO.Path.Combine (xdg_config_home, "f-spot");
 		public static string BaseDirectory {
 			get { return base_dir; }
 			set { base_dir = value; }

@@ -1,3 +1,10 @@
+2008-10-20  Stephane Delcroix  <sdelcroix@novell.com>
+
+	* src/Core/Global.cs: use $XDG_CONFIG_HOME/f-spot as data storage path 
+	instead of ~/.gnome2/f-spot
+
+	* src/f-spot.in: mv ~/.gnome2/f-spot to .config or fails if both exists
+
 2008-10-18  Stephane Delcroix  <sdelcroix@novell.com>
 
 	* src/Updater.cs: fix the upgrade for he ones who tested early versions
