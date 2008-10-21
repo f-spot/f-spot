@@ -278,6 +278,19 @@ namespace FSpot.Utils
                 Debug (String.Format (format, args));
             }
         }
+	
+	public static void DebugException (Exception e)
+	{
+	    if (Debugging)
+	        Exception (e);
+	}
+
+	public static void DebugException (string message, Exception e)
+	{
+	    if (Debugging)
+		Exception (message, e);
+
+	}
                 
         #endregion
         
