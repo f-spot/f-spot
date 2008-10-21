@@ -11,7 +11,6 @@
 
 using System;
 using Gtk;
-using Gnome;
 using FSpot.Query;
 using FSpot.UI.Dialog;
 

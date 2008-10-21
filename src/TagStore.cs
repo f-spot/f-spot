@@ -1,5 +1,4 @@
 using Gdk;
-using Gnome;
 using Gtk;
 using Mono.Unix;
 using Mono.Data.SqliteClient;

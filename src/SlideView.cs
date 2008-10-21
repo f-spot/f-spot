@@ -1,7 +1,5 @@
 using Gtk;
 using Gdk;
-using Gnome;
-using GtkSharp;
 using System;
 using GLib;
 using System.Runtime.InteropServices;

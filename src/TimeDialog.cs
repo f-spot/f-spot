@@ -1,6 +1,5 @@
 using System;
 using Gtk;
-using Gnome;
 using System.Collections;
 using Mono.Unix;
 using FSpot.Widgets;
@@ -39,7 +38,7 @@ namespace FSpot {
 		[Glade.Widget] Label old_label;
 		[Glade.Widget] Label count_label;
 
-		[Glade.Widget] DateEdit date_edit;
+		[Glade.Widget] Gnome.DateEdit date_edit;
 
 		[Glade.Widget] Frame tray_frame;
 		

@@ -1,6 +1,5 @@
 using Gdk;
 using Gtk;
-using GtkSharp;
 using Glade;
 using Mono.Addins;
 using Mono.Unix;

@@ -11,8 +11,6 @@
 
 using Gtk;
 using Gdk;
-using Gnome;
-using GtkSharp;
 using System;
 using System.Reflection;
 using System.Collections;

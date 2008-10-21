@@ -27,7 +27,6 @@
 using GLib;
 using Gdk;
 using Gtk;
-using GtkSharp;
 using System.Collections;
 using System.IO;
 using System;

@@ -1,5 +1,4 @@
 using Gtk;
-using Gnome;
 using System;
 using System.Reflection;
 using System.IO;
@@ -58,7 +57,7 @@ public class Driver {
 	static int Main (string [] args)
 	{
 		bool empty = false;
-		Program program = null;
+		Gnome.Program program = null;
 		ICore control = null;
 		List<string> uris = new List<string> ();
 		Unix.SetProcessName (Defines.PACKAGE);
@@ -69,9 +68,9 @@ public class Driver {
 		bool slideshow = false;
 		string import_uri = null;
 		
-		program = new Program (Defines.PACKAGE, 
+		program = new Gnome.Program (Defines.PACKAGE,
 				       Defines.VERSION, 
-				       Modules.UI, args);		
+				       Gnome.Modules.UI, args);
 		
 		FSpot.Global.PhotoDirectory = Preferences.Get<string> (Preferences.STORAGE_PATH);
 

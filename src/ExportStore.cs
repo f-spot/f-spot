@@ -1,5 +1,4 @@
 using Gdk;
-using Gnome;
 using Gtk;
 using Mono.Data.SqliteClient;
 using System.Collections;

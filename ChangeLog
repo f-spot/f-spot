@@ -1,5 +1,31 @@
 2008-10-21  Stephane Delcroix  <sdelcroix@novell.com>
 
+	* src/Core/Photo.cs:
+	* src/DateCommands.cs:
+	* src/ExportStore.cs:
+	* src/Extensions/OpenWithMenu.cs:
+	* src/FileImportBackend.cs:
+	* src/ImportCommand.cs:
+	* src/MainWindow.cs:
+	* src/MetaStore.cs:
+	* src/PhotoStore.cs:
+	* src/PhotoVersionMenu.cs:
+	* src/PhotoView.cs:
+	* src/ProgressDialog.cs:
+	* src/RatingFilter.cs:
+	* src/SendEmail.cs:
+	* src/SlideView.cs:
+	* src/TagCommands.cs:
+	* src/TagSelectionWidget.cs:
+	* src/TagStore.cs:
+	* src/TimeDialog.cs:
+	* src/UI.Dialog/LastRollDialog.cs:
+	* src/Widgets/IconView.cs:
+	* src/main.cs: remove all the "usig Gnome*" header, replaced by fully
+	specified class names.
+
+2008-10-21  Stephane Delcroix  <sdelcroix@novell.com>
+
 	* src/Utils/Log.cs: DebugException methods to print the exception only
 	in --debug mode.
 

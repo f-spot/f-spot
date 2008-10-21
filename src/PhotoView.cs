@@ -12,7 +12,6 @@
 using Gdk;
 using GLib;
 using Gtk;
-using GtkSharp;
 using System;
 using System.IO;
 using System.Collections.Generic;

@@ -9,8 +9,6 @@
  * This is free software. See COPYING for details.
  */
 
-using Gnome;
-using Gnome.Vfs;
 using Gdk;
 using Gtk;
 
@@ -41,14 +39,14 @@ public class PhotoStore : DbStore {
 		}
 	}
 
-	public static ThumbnailFactory ThumbnailFactory = new ThumbnailFactory (ThumbnailSize.Large);
+	public static Gnome.ThumbnailFactory ThumbnailFactory = new Gnome.ThumbnailFactory (Gnome.ThumbnailSize.Large);
 
 	// FIXME this is a hack.  Since we don't have Gnome.ThumbnailFactory.SaveThumbnail() in
 	// GTK#, and generate them by ourselves directly with Gdk.Pixbuf, we have to make sure here
 	// that the "large" thumbnail directory exists.
 	private static void EnsureThumbnailDirectory ()
 	{
-		string large_thumbnail_file_name_template = Thumbnail.PathForUri ("file:///boo", ThumbnailSize.Large);
+		string large_thumbnail_file_name_template = Gnome.Thumbnail.PathForUri ("file:///boo", Gnome.ThumbnailSize.Large);
 		string large_thumbnail_directory_path = System.IO.Path.GetDirectoryName (large_thumbnail_file_name_template);
 
 		if (! System.IO.File.Exists (large_thumbnail_directory_path))
@@ -92,7 +90,7 @@ public class PhotoStore : DbStore {
 
 	public static void DeleteThumbnail (System.Uri uri)
 	{
-		string path = Thumbnail.PathForUri (uri.ToString (), ThumbnailSize.Large);
+		string path = Gnome.Thumbnail.PathForUri (uri.ToString (), Gnome.ThumbnailSize.Large);
 		if (System.IO.File.Exists (path))
 			System.IO.File.Delete (path);
 	}
@@ -156,13 +154,13 @@ public class PhotoStore : DbStore {
 		 	return found;
 
 		string md5 = Photo.GenerateMD5 (uri);			
-		Gnome.Vfs.FileInfo info = new Gnome.Vfs.FileInfo (uri.ToString (), FileInfoOptions.GetMimeType);
+		Gnome.Vfs.FileInfo info = new Gnome.Vfs.FileInfo (uri.ToString (), Gnome.Vfs.FileInfoOptions.GetMimeType);
 
 		Photo[] md5_matches = GetByMD5 (md5);
 
 		foreach (Photo match in md5_matches)
 		{
-		 	Gnome.Vfs.FileInfo match_info = new Gnome.Vfs.FileInfo (match.DefaultVersionUri.ToString (), FileInfoOptions.GetMimeType);
+			Gnome.Vfs.FileInfo match_info = new Gnome.Vfs.FileInfo (match.DefaultVersionUri.ToString (), Gnome.Vfs.FileInfoOptions.GetMimeType);
 
 			// same mimetype?
 			if (info.MimeType != match_info.MimeType)

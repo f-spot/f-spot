@@ -10,7 +10,6 @@
  */
 
 using Gtk;
-using Gnome;
 using System;
 using Mono.Unix;
 using FSpot;
@@ -23,8 +22,8 @@ public class DateCommands {
 		Gtk.Window parent_window;
 
 		[Glade.Widget] private Button ok_button;
-		[Glade.Widget] private DateEdit start_dateedit;
-		[Glade.Widget] private DateEdit end_dateedit;
+		[Glade.Widget] private Gnome.DateEdit start_dateedit;
+		[Glade.Widget] private Gnome.DateEdit end_dateedit;
 		[Glade.Widget] private ComboBox period_combobox;
 
 		static string [] ranges = {

@@ -15,7 +15,6 @@ using System.Collections;
 using System.Collections.Generic;
 
 using Mono.Unix;
-using Gnome.Vfs;
 
 using FSpot.Utils;
 
@@ -392,7 +391,7 @@ namespace FSpot
 	
 			if (!keep_file) {
 				if ((new Gnome.Vfs.Uri (uri.ToString ())).Exists) {
-					if ((new Gnome.Vfs.Uri (uri.ToString ()).Unlink()) != Result.Ok)
+					if ((new Gnome.Vfs.Uri (uri.ToString ()).Unlink()) != Gnome.Vfs.Result.Ok)
 						throw new System.UnauthorizedAccessException();
 				}
 	
@@ -439,11 +438,11 @@ namespace FSpot
 				if ((new Gnome.Vfs.Uri (new_uri.ToString ())).Exists)
 					throw new Exception (String.Format ("An object at this uri {0} already exists", new_uri.ToString ()));
 	
-				Xfer.XferUri (
+				Gnome.Vfs.Xfer.XferUri (
 					new Gnome.Vfs.Uri (original_uri.ToString ()), 
 					new Gnome.Vfs.Uri (new_uri.ToString ()),
-					XferOptions.Default, XferErrorMode.Abort, 
-					XferOverwriteMode.Abort, 
+					Gnome.Vfs.XferOptions.Default, Gnome.Vfs.XferErrorMode.Abort,
+					Gnome.Vfs.XferOverwriteMode.Abort,
 					delegate (Gnome.Vfs.XferProgressInfo info) {return 1;});
 	
 	//			Mono.Unix.Native.Stat stat;

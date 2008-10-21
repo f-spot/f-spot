@@ -9,7 +9,6 @@
  */
 
 using Gtk;
-using GtkSharp;
 using System;
 using System.Text;
 using System.Collections;

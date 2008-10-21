@@ -15,12 +15,11 @@ using System.Collections;
 using System.Runtime.InteropServices;
 using Gtk;
 using Gdk;
-using Gnome.Vfs;
 using Mono.Unix;
 
 namespace FSpot.Extensions {
 	public class OpenWithMenu: Gtk.Menu {
-		public delegate void OpenWithHandler (MimeApplication app);
+		public delegate void OpenWithHandler (Gnome.Vfs.MimeApplication app);
 		public event OpenWithHandler ApplicationActivated;
 	
 		public delegate string [] MimeFetcher ();
@@ -79,7 +78,7 @@ namespace FSpot.Extensions {
 	
 			ArrayList list = (HideInvalid) ? intersection : union;
 	
-			foreach (MimeApplication app in list) {
+			foreach (Gnome.Vfs.MimeApplication app in list) {
 				//System.Console.WriteLine ("Adding app {0} to open with menu (binary name = {1}", app.Name, app.BinaryName);
 				//System.Console.WriteLine ("Desktop file path: {0}, id : {1}", app.DesktopFilePath);
 				AppMenuItem i = new AppMenuItem (this, app);
@@ -114,12 +113,12 @@ namespace FSpot.Extensions {
 				if (mime_type == null)
 					continue;
 	
-				MimeApplication [] apps = Gnome.Vfs.Mime.GetAllApplications (mime_type);
+				Gnome.Vfs.MimeApplication [] apps = Gnome.Vfs.Mime.GetAllApplications (mime_type);
 				for (int i = 0; i < apps.Length; i++) {
 					apps [i] = apps [i].Copy ();
 				}
 	
-				foreach (MimeApplication app in apps) {
+				foreach (Gnome.Vfs.MimeApplication app in apps) {
 					// Skip apps that don't take URIs
 					if (! app.SupportsUris ())
 						continue;
@@ -138,7 +137,7 @@ namespace FSpot.Extensions {
 	
 				if (! first) {
 					for (int i = 0; i < intersection.Count; i++) {
-						MimeApplication app = intersection [i] as MimeApplication;
+						Gnome.Vfs.MimeApplication app = intersection [i] as Gnome.Vfs.MimeApplication;
 						if (System.Array.IndexOf (apps, app) == -1) {
 							intersection.Remove (app);
 							i--;
@@ -159,9 +158,9 @@ namespace FSpot.Extensions {
 		}
 		
 		private class AppMenuItem : ImageMenuItem {
-			public MimeApplication App;
+			public Gnome.Vfs.MimeApplication App;
 	
-			public AppMenuItem (OpenWithMenu menu, MimeApplication mime_application) : base (mime_application.Name)
+			public AppMenuItem (OpenWithMenu menu, Gnome.Vfs.MimeApplication mime_application) : base (mime_application.Name)
 			{
 				App = mime_application;
 				
@@ -187,3 +186,4 @@ namespace FSpot.Extensions {
 		}
 	}
 }
+

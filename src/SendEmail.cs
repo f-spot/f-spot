@@ -9,7 +9,6 @@
  */
 
 using Gtk;
-using Gnome;
 using System;
 
 using FSpot.Widgets;
