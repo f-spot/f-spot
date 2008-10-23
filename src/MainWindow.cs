@@ -1658,6 +1658,7 @@ public class MainWindow {
 
 	public void ImportCamera (string camera_device)
 	{
+		Log.DebugFormat ("ImportCamera {0}", camera_device);
 		GPhotoCamera cam = new GPhotoCamera();
 
 		try {
@@ -1678,10 +1679,9 @@ public class MainWindow {
 				selected_cam = 0;
 			} else {
 				bool found = false;
-				if (camera_device != null) {
-					string port = camera_device.Remove (0, "gphoto2:".Length);
-					for (int i = 0; i < num_cameras; i++)
-						if (cam.CameraList.GetValue (i) == port) {
+				if (camera_device != null)
+					for (int i = 0; i < num_cameras; i++) {
+						if (camera_device.IndexOf (cam.CameraList.GetValue(i)) != 0) {
 							selected_cam = i;
 							found = true;
 							break;
