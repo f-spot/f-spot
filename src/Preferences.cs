@@ -149,6 +149,7 @@ namespace FSpot
 				return (int) Tag.IconSize.Medium;
 		
 			case SIDEBAR_POSITION:
+				return 130;
 			case ZOOM:
 				return null;
 
