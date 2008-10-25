@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: f-spot 5.0.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-10-17 13:33+0000\n"
-"PO-Revision-Date: 2008-10-20 17:01+0700\n"
+"POT-Creation-Date: 2008-10-20 09:12+0000\n"
+"PO-Revision-Date: 2008-10-25 19:15+0700\n"
 "Last-Translator: 甘露(Gan Lu) <rhythm.gan@gmail.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -2623,4 +2623,1383 @@ msgstr "打开文件夹(_F)..."
 #: ../src/f-spot.glade.h:133
 msgid "Original size (possible very large file size)"
 msgstr "原始大小(可能非常大的文件大小)"
+
+#: ../src/f-spot.glade.h:134
+msgid "P_arent Tag:"
+msgstr "上层标记(_a)："
+
+#: ../src/f-spot.glade.h:135
+msgid "P_hoto Source:"
+msgstr "照片源(_h)："
+
+#: ../src/f-spot.glade.h:136
+msgid "Page 1 of 3"
+msgstr "第 1 页，共 3 页"
+
+#: ../src/f-spot.glade.h:137
+msgid "Page Set_up..."
+msgstr "页面设置(_u)..."
+
+#: ../src/f-spot.glade.h:138
+msgid "Pause"
+msgstr "暂停"
+
+#: ../src/f-spot.glade.h:139
+msgid "Photo 0 of 0"
+msgstr "照片 0 ，共 0"
+
+#: ../src/f-spot.glade.h:140
+msgid "Photo _Size:"
+msgstr "照片大小(_S)："
+
+#: ../src/f-spot.glade.h:141
+msgid "Preferences"
+msgstr "首选项"
+
+#: ../src/f-spot.glade.h:143
+msgid "Print crop _marks"
+msgstr "打印裁剪标记(_m)"
+
+#: ../src/f-spot.glade.h:144
+msgid "Print..."
+msgstr "打印..."
+
+#: ../src/f-spot.glade.h:145
+msgid "Re_fresh Thumbnail"
+msgstr "刷新缩略图(_f)"
+
+#: ../src/f-spot.glade.h:147
+msgid "Repair"
+msgstr "修改"
+
+#: ../src/f-spot.glade.h:150
+msgid "Select A Folder"
+msgstr "选择一个文件夹"
+
+#: ../src/f-spot.glade.h:151
+msgid "Select A gtkrc File"
+msgstr "选择一个 gtkrc 文件"
+
+#: ../src/f-spot.glade.h:152
+msgid "Select Photos to Copy From Camera..."
+msgstr "从相机选择照片进行复制"
+
+#: ../src/f-spot.glade.h:154
+msgid "Select _None"
+msgstr "均不选择(_N)"
+
+#: ../src/f-spot.glade.h:155
+msgid "Select a Tag..."
+msgstr "选择一个标记..."
+
+#: ../src/f-spot.glade.h:156
+msgid "Select the camera from which you want to transfer files"
+msgstr "选择您想要传送文件的相机"
+
+#: ../src/f-spot.glade.h:157
+msgid "Selected Camera: "
+msgstr "选择相机："
+
+#: ../src/f-spot.glade.h:158
+msgid ""
+"Selection\n"
+"Gallery\n"
+"Viewport"
+msgstr ""
+"选定\n"
+"画库\n"
+"查看窗"
+
+#: ../src/f-spot.glade.h:161
+msgid "Selection Constraints"
+msgstr "选定对比度"
+
+#: ../src/f-spot.glade.h:162
+msgid "Send by _Mail..."
+msgstr "通过邮件发送(_M)..."
+
+#: ../src/f-spot.glade.h:163
+msgid "Set Rating Filter"
+msgstr "设定评分过滤"
+
+#: ../src/f-spot.glade.h:164
+msgid "Set as _Background"
+msgstr "设置为背景(_B)"
+
+#: ../src/f-spot.glade.h:165
+msgid "Set date range"
+msgstr "设定日期范围"
+
+#: ../src/f-spot.glade.h:167
+msgid "Show all photos."
+msgstr "显示所有照片。"
+
+#: ../src/f-spot.glade.h:168
+msgid "Show or hide the side pane"
+msgstr "显示或隐藏侧边栏"
+
+#: ../src/f-spot.glade.h:169
+msgid "Show or hide the toolbar"
+msgstr "显示或隐藏工具栏"
+
+#: ../src/f-spot.glade.h:170
+msgid "Side _pane"
+msgstr "侧边窗格(_p)"
+
+#: ../src/f-spot.glade.h:171
+msgid "Side_bar"
+msgstr "侧边栏"
+
+#: ../src/f-spot.glade.h:172
+msgid "Small"
+msgstr "小的"
+
+#: ../src/f-spot.glade.h:173
+msgid "Space all photos by"
+msgstr "平移所有照片根据"
+
+#: ../src/f-spot.glade.h:174
+msgid "Specify if an original size picture should be rotated or not. Smaller sizes are automatically rotated."
+msgstr "指定一张原始大小的图片是否应当旋转。较小的将自动进行旋转。"
+
+#: ../src/f-spot.glade.h:175
+msgid "Strip image _metadata"
+msgstr "去除图像元数据(_m)"
+
+#: ../src/f-spot.glade.h:176
+msgid "System Theme"
+msgstr "系统主题"
+
+#: ../src/f-spot.glade.h:177
+msgid "T_ags"
+msgstr "标记(_a)"
+
+#: ../src/f-spot.glade.h:178
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:1178
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:1179
+msgid "Tags: "
+msgstr "标记："
+
+#. Note for translators: meant as Temperature
+#: ../src/f-spot.glade.h:180
+msgid "Te_mp:"
+msgstr "温度(_m)："
+
+#: ../src/f-spot.glade.h:181
+msgid "Thumbnail _elements"
+msgstr "缩略图元素(_e)"
+
+#: ../src/f-spot.glade.h:182
+msgid "Tiny"
+msgstr "微小的"
+
+#: ../src/f-spot.glade.h:183
+msgid "Too_lbar"
+msgstr "工具栏(_l)"
+
+#: ../src/f-spot.glade.h:184
+msgid "Total original size"
+msgstr "全部原始大小"
+
+#: ../src/f-spot.glade.h:185
+msgid "Try to use the system display profile"
+msgstr "尝试使用系统的显示简表"
+
+#: ../src/f-spot.glade.h:186
+msgid "View"
+msgstr "查看"
+
+#: ../src/f-spot.glade.h:187
+msgid "Will print using: US Letter size on Generic Postscript"
+msgstr "打印将使用：在通用的 Postscript上的美国信纸大小"
+
+#: ../src/f-spot.glade.h:188
+msgid "Write _metadata to file"
+msgstr "写入元数据到文件(_m)"
+
+#: ../src/f-spot.glade.h:189
+msgid "Zoom _in"
+msgstr "放大(_i)"
+
+#: ../src/f-spot.glade.h:190
+msgid "Zoom _out"
+msgstr "缩小(_o)"
+
+#: ../src/f-spot.glade.h:191
+msgid "Zoom in"
+msgstr "放大"
+
+#: ../src/f-spot.glade.h:192
+msgid "Zoom out"
+msgstr "缩小"
+
+#: ../src/f-spot.glade.h:194
+msgid "_Attach Tag to Selection"
+msgstr "给选中对象附加标记(_A)"
+
+#: ../src/f-spot.glade.h:195
+msgid "_Border:"
+msgstr "边际(_B)："
+
+#: ../src/f-spot.glade.h:196
+msgid "_Brightness:"
+msgstr "亮度(_B)："
+
+#: ../src/f-spot.glade.h:198
+msgid "_Clear Rating Filter"
+msgstr "清除评分过滤(_C)"
+
+#: ../src/f-spot.glade.h:199
+msgid "_Clear Roll Filter"
+msgstr ""
+
+#: ../src/f-spot.glade.h:200
+msgid "_Components"
+msgstr "构成(_C)"
+
+#: ../src/f-spot.glade.h:201
+msgid "_Contents"
+msgstr "内容(_C)"
+
+#: ../src/f-spot.glade.h:202
+#: ../extensions/Exporters/ZipExport/ZipExport.glade.h:1
+msgid "_Create"
+msgstr "创建(_C)"
+
+#: ../src/f-spot.glade.h:203
+msgid "_Create Mail"
+msgstr "创建邮件(_C)"
+
+#: ../src/f-spot.glade.h:204
+msgid "_Dates"
+msgstr "日期(_D)"
+
+#: ../src/f-spot.glade.h:206
+msgid "_Delete Selected Tag"
+msgstr "删除选中的标记(_D)"
+
+#: ../src/f-spot.glade.h:207
+msgid "_Delete Version"
+msgstr "删除版本(_D)"
+
+#: ../src/f-spot.glade.h:208
+msgid "_Display:"
+msgstr "显示(_D)："
+
+#: ../src/f-spot.glade.h:209
+msgid "_Edit"
+msgstr "编辑(_E)"
+
+#: ../src/f-spot.glade.h:210
+msgid "_Edit Selected Tag..."
+msgstr "编辑选中的标记(_E)..."
+
+#: ../src/f-spot.glade.h:211
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:15
+msgid "_Export"
+msgstr "导出(_E)"
+
+#: ../src/f-spot.glade.h:212
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:16
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:20
+msgid "_Export tags"
+msgstr "导出标记(_E)"
+
+#: ../src/f-spot.glade.h:213
+msgid "_Export to"
+msgstr "导出到(_E)"
+
+#: ../src/f-spot.glade.h:214
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:15
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:21
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:12
+msgid "_Export to Album:"
+msgstr "导出到画册(_E)："
+
+#: ../src/f-spot.glade.h:215
+msgid "_Exposure:"
+msgstr "曝光度(_E)："
+
+#: ../src/f-spot.glade.h:216
+msgid "_Filmstrip"
+msgstr "胶片效果(_F)"
+
+#: ../src/f-spot.glade.h:217
+msgid "_Flickr"
+msgstr "Flickr(_F)"
+
+#: ../src/f-spot.glade.h:218
+msgid "_Folder"
+msgstr "文件夹(_F)"
+
+#: ../src/f-spot.glade.h:219
+msgid "_Fullscreen"
+msgstr "全屏(_F)"
+
+#: ../src/f-spot.glade.h:220
+msgid "_Gallery"
+msgstr "图库(_G)"
+
+#: ../src/f-spot.glade.h:221
+msgid "_Help"
+msgstr "帮助(_H)"
+
+#: ../src/f-spot.glade.h:222
+msgid "_Hidden"
+msgstr "隐藏(_H)"
+
+#: ../src/f-spot.glade.h:223
+msgid "_Hue:"
+msgstr "色调(_H)"
+
+#: ../src/f-spot.glade.h:224
+msgid "_Icon:"
+msgstr "图标(_I)："
+
+#: ../src/f-spot.glade.h:225
+msgid "_Import..."
+msgstr "导入(_I)..."
+
+#: ../src/f-spot.glade.h:226
+msgid "_Interpolate image on zoom"
+msgstr ""
+
+#: ../src/f-spot.glade.h:227
+msgid "_Large"
+msgstr "大的(_L)"
+
+#: ../src/f-spot.glade.h:228
+msgid "_Last Import Roll"
+msgstr "上次导入清单(_L)"
+
+#: ../src/f-spot.glade.h:229
+msgid "_Loupe"
+msgstr "放大镜效果(_L)"
+
+#: ../src/f-spot.glade.h:230
+msgid "_Medium"
+msgstr "中等(_M)"
+
+#: ../src/f-spot.glade.h:231
+msgid "_Month"
+msgstr "月(_M)"
+
+#: ../src/f-spot.glade.h:232
+msgid "_New Window"
+msgstr "新窗口(_N"
+
+#: ../src/f-spot.glade.h:233
+msgid "_Open album in browser when done uploading"
+msgstr "当上传完毕时在浏览器中打开画册(_O)"
+
+#: ../src/f-spot.glade.h:234
+msgid "_Open destination when done exporting"
+msgstr "当导出完毕时打开目的地(_O)"
+
+#: ../src/f-spot.glade.h:235
+msgid "_Photo"
+msgstr "照片(_P)"
+
+#: ../src/f-spot.glade.h:236
+msgid "_Print output:"
+msgstr "打印输出(_P)："
+
+#: ../src/f-spot.glade.h:237
+msgid "_Quit"
+msgstr "退出(_Q)"
+
+#: ../src/f-spot.glade.h:238
+msgid "_Ratings"
+msgstr "评分(_R)"
+
+#: ../src/f-spot.glade.h:240
+msgid "_Remove Tag From Selection"
+msgstr "删除选中对象的标记(_R)"
+
+#: ../src/f-spot.glade.h:241
+msgid "_Rename Version"
+msgstr "重命名版本(_R)"
+
+#: ../src/f-spot.glade.h:242
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:17
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:17
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:20
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:24
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:14
+msgid "_Resize to: "
+msgstr "调整大小到(_R)："
+
+#: ../src/f-spot.glade.h:244
+msgid "_Saturation:"
+msgstr "饱和度(_S)"
+
+#: ../src/f-spot.glade.h:245
+msgid "_Scale photos to no larger than: "
+msgstr "放大照片不超过(_S)："
+
+#: ../src/f-spot.glade.h:246
+msgid "_Select Import Rolls..."
+msgstr "选择导入清单(_S)..."
+
+#: ../src/f-spot.glade.h:247
+msgid "_Set Date Range..."
+msgstr "设定日期范围(_S)..."
+
+#: ../src/f-spot.glade.h:248
+msgid "_Set Rating filter..."
+msgstr "设定评分过滤(_S)..."
+
+#: ../src/f-spot.glade.h:249
+msgid "_Sharpen..."
+msgstr "锐化(_S)..."
+
+#: ../src/f-spot.glade.h:250
+msgid "_Slideshow"
+msgstr "幻灯片(_S)"
+
+#: ../src/f-spot.glade.h:251
+msgid "_Small"
+msgstr "小的(_S)"
+
+#: ../src/f-spot.glade.h:252
+msgid "_Strip metadata"
+msgstr "去除元数据(_S)"
+
+#: ../src/f-spot.glade.h:253
+msgid "_Tag Icons"
+msgstr "标记图标(_T)"
+
+#: ../src/f-spot.glade.h:254
+msgid "_Tag Name:"
+msgstr "标记名称(_T)："
+
+#: ../src/f-spot.glade.h:255
+msgid "_Tags"
+msgstr "标记(_T)"
+
+#: ../src/f-spot.glade.h:256
+msgid "_Timeline"
+msgstr "时间线(_T)"
+
+#: ../src/f-spot.glade.h:257
+msgid "_Tint:"
+msgstr "染色(_T)"
+
+#: ../src/f-spot.glade.h:258
+msgid "_Toolbar"
+msgstr "工具栏(_T)"
+
+#: ../src/f-spot.glade.h:259
+msgid "_Tools"
+msgstr "工具(_T)"
+
+#: ../src/f-spot.glade.h:260
+msgid "_URI:"
+msgstr "URI(_U)："
+
+#: ../src/f-spot.glade.h:261
+msgid "_Untagged Photos"
+msgstr "无标记的照片(_U)"
+
+#: ../src/f-spot.glade.h:262
+msgid "_Version"
+msgstr "版本(_V)"
+
+#: ../src/f-spot.glade.h:263
+msgid "_View"
+msgstr "查看(_V)"
+
+#: ../src/f-spot.glade.h:264
+msgid "_Virtual Filesystem"
+msgstr "虚拟文件系统(_V)"
+
+#. at, or after a date, or between dates
+#: ../src/f-spot.glade.h:267
+msgid ""
+"at\n"
+"after\n"
+"between"
+msgstr ""
+"在\n"
+"之后\n"
+"之间"
+
+#: ../src/f-spot.glade.h:270
+msgid "difference:"
+msgstr "差异："
+
+#: ../src/f-spot.glade.h:271
+msgid "img_000.jpg"
+msgstr "img_000.jpg"
+
+#: ../src/f-spot.glade.h:272
+msgid "min. Starting at {0}"
+msgstr "最小开始于 {0}"
+
+#: ../src/f-spot.glade.h:274
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:19
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:19
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:23
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:26
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:16
+msgid "pixels"
+msgstr "像素"
+
+#: ../src/f-spot.glade.h:275
+msgid "x"
+msgstr "x"
+
+#: ../tools/f-spot-screensaver.desktop.in.h:1
+msgid "Display a slideshow from F-Spot"
+msgstr "由 F-Spot 显示幻灯片"
+
+#: ../tools/f-spot-screensaver.desktop.in.h:2
+msgid "F-Spot photos"
+msgstr "F-Spot 照片"
+
+#: ../extensions/Exporters/CDExport/CDExport.addin.xml.h:1
+msgid "_CD..."
+msgstr "CD(_C)..."
+
+#: ../extensions/Exporters/CDExport/CDExport.cs:219
+#, csharp-format
+msgid "Transferring picture \"{0}\" To CD"
+msgstr "传送图片 \"{0}\" 到光盘"
+
+#: ../extensions/Exporters/CDExport/CDExport.cs:246
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:379
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:284
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:808
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:552
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:702
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:606
+msgid "Done Sending Photos"
+msgstr "发送照片完成"
+
+#: ../extensions/Exporters/CDExport/CDExport.cs:248
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:286
+msgid "Transfer Complete"
+msgstr "传输完毕"
+
+#: ../extensions/Exporters/CDExport/CDExport.cs:255
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:291
+msgid "Error While Transferring"
+msgstr "传送时出错"
+
+#: ../extensions/Exporters/CDExport/CDExport.cs:262
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:310
+msgid "Error Transferring"
+msgstr "传送出错"
+
+#: ../extensions/Exporters/CDExport/CDExport.cs:280
+msgid "copying..."
+msgstr "正在复制..."
+
+#: ../extensions/Exporters/CDExport/CDExport.cs:296
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:332
+msgid "Error: Error while transferring; Aborting"
+msgstr "错误：传送时出错；正在放弃"
+
+#: ../extensions/Exporters/CDExport/CDExport.cs:299
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:335
+msgid "Error: File Already Exists; Aborting"
+msgstr "错误：文件已存在；放弃中"
+
+#: ../extensions/Exporters/CDExport/CDExport.glade.h:1
+msgid "<b><i>There is some previously scheduled items to write</i></b>"
+msgstr "<b><i>有一些预定的项目要写入</i></b>"
+
+#: ../extensions/Exporters/CDExport/CDExport.glade.h:2
+msgid "<b>Photos to Burn</b>"
+msgstr "<b>要刻录照片</b>"
+
+#: ../extensions/Exporters/CDExport/CDExport.glade.h:4
+msgid "Create CD"
+msgstr "创建光盘"
+
+#: ../extensions/Exporters/CDExport/CDExport.glade.h:6
+msgid "Size of the exported selection:"
+msgstr "要导出的选定的大小："
+
+#: ../extensions/Exporters/CDExport/CDExport.glade.h:7
+msgid "_Browse Previously Scheduled Files"
+msgstr "浏览之前预定的文件(_B)"
+
+#: ../extensions/Exporters/CDExport/CDExport.glade.h:8
+msgid "_Write only these photos to CD"
+msgstr "仅写入这些照片到光盘(_W)"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.addin.xml.h:1
+msgid "_23hq..."
+msgstr "23hq(_2)..."
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.addin.xml.h:2
+msgid "_Flickr..."
+msgstr "Flickr(_F)..."
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.addin.xml.h:3
+msgid "_Zooomr..."
+msgstr "Zooomr(_Z)..."
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:105
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:5
+msgid "Authorize"
+msgstr "授权"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:111
+#, csharp-format
+msgid "Return to this window after you have finished the authorization process on {0} and click the \"Complete Authorization\" button below"
+msgstr ""
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:112
+msgid "Complete Authorization"
+msgstr "完成验证"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:117
+#, csharp-format
+msgid "Logging into {0}"
+msgstr "正在登录到 {0}"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:118
+msgid "Checking credentials..."
+msgstr "正在检查凭证..."
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:125
+#, csharp-format
+msgid "Welcome {0} you are connected to {1}"
+msgstr "欢迎 {0} ，你已经连接到 {1}"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:128
+#, csharp-format
+msgid "Sign in as a different user"
+msgstr "作为另外的用户登录"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:133
+#, csharp-format
+msgid "Used {0} of your allowed {1} monthly quota"
+msgstr "已使用 {0} ，每月共允许 {1} 配额"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:297
+msgid "Unable to log on"
+msgstr "无法登录"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:317
+#, csharp-format
+msgid "Waiting for response {0} of {1}"
+msgstr "正在等待响应 {0}，共 {1}"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:344
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:241
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:779
+#, csharp-format
+msgid "Uploading picture \"{0}\""
+msgstr "正在上传图片 \"{0}\""
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:367
+#, csharp-format
+msgid "Error Uploading To {0}: {1}"
+msgstr "上传到 {0} 时出错：{1}"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:381
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:810
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:554
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:704
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:608
+msgid "Upload Complete"
+msgstr "上传完毕"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:454
+msgid "Unable to log on."
+msgstr "无法登录。"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:455
+#, csharp-format
+msgid "F-Spot was unable to log on to {0}.  Make sure you have given the authentication using {0} web browser interface."
+msgstr "F-Spot 无法登录到 {0}。请确认你已经通过 {0} 的网络浏览器界面获得了授权。"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:475
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:732
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:478
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:598
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:521
+msgid "Uploading Pictures"
+msgstr "正在上传图片"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:4
+msgid "<b>Viewing permissions</b>"
+msgstr "<b>查看权限</b>"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:7
+msgid "Export tag _hierarchy"
+msgstr "导出标记层次(_h)"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:8
+msgid "F-Spot needs your authorization in order to upload photos to your {0} account. Press the \"Authorize\" button to open a web browser and give F-Spot the authorization. "
+msgstr "F-Spot 需要你的授权以能够上传照片到你的 {0} 账户。按下 \"授权\" 按钮以打开网络浏览器并给与 F-Spot 授权。"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:9
+msgid "Ignore _top level tags"
+msgstr "忽略顶层的标记(_t)"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:10
+msgid "Private"
+msgstr "私人的"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:11
+msgid "Public"
+msgstr "公开的"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:12
+msgid "Strip _metadata"
+msgstr "去除元数据(_m)"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:13
+msgid "Visible to Family"
+msgstr "家人可见"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:14
+msgid "Visible to Friends"
+msgstr "朋友可见"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:18
+msgid "_View photos in browser when done uploading"
+msgstr "完成上载后在浏览器中查看(_V)"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.addin.xml.h:1
+msgid "F_older..."
+msgstr "文件夹(_o)..."
+
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:139
+msgid "Select Export Folder"
+msgstr "选择导出文件夹"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:197
+msgid "Building Gallery"
+msgstr "正在建立图库"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:247
+#, csharp-format
+msgid "Error uploading picture \"{0}\" to Gallery:{2}{1}"
+msgstr "上传图片 \"{0}\" 到图库出错：{2}{1}"
+
+#. Note for translators: light as clear, opposite as dark
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:809
+msgid "Light"
+msgstr "亮"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:810
+msgid "Dark"
+msgstr "黑"
+
+#. Abbreviation of previous
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:990
+msgid "Prev"
+msgstr "预览"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:1102
+msgid "Gallery generated by"
+msgstr "画廊生成由"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:1142
+msgid "Show Styles"
+msgstr "显示风格"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:1143
+msgid "Hide Styles"
+msgstr "隐藏风格"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:1310
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:1443
+msgid "Page:"
+msgstr "页面："
+
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:1
+msgid "\n"
+msgstr "\n"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:4
+msgid "<b>Export Method</b>"
+msgstr "<b>导出方式</b>"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:8
+msgid "Create _gallery using \"Original\""
+msgstr "使用 \"Original\" 创建画库(_g)"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:9
+msgid "Create standalone _web gallery"
+msgstr "创建独立的网络画库(_w)"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:10
+msgid "D_escription:"
+msgstr "描述(_e)："
+
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:11
+msgid "Export _tags"
+msgstr "导出标记(_t)"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:12
+msgid "Export tag _icons"
+msgstr "导出标记图标(_i)"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:13
+msgid "Folder Export"
+msgstr "文件夹导出"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:14
+msgid "G_allery Name:"
+msgstr "图库名(_a)："
+
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:15
+msgid "Open _destination when done exporting"
+msgstr "导出完毕时打开目的地(_d)"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:16
+msgid "_Folder:"
+msgstr "文件夹(_F)："
+
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:18
+msgid "_Save the files only"
+msgstr "仅保存文件(_S)"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.addin.xml.h:1
+msgid "Web _Gallery..."
+msgstr "网络图库(_G)..."
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:52
+msgid ""
+"Cannot connect to a Gallery for which the version is unknown.\n"
+"Please check that you have Remote plugin 1.0.8 or later"
+msgstr ""
+"无法连接到未知版本的某个画库。\n"
+"请检查你装有 Remote 插件 1.0.8 或更高版本"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:393
+msgid "Invalid URL"
+msgstr "无效的 URL"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:394
+msgid "The gallery URL entry does not appear to be a valid URL"
+msgstr "该画库的 URL 地址不像是有效的 URL 地址。"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:404
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:431
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:442
+msgid "Error while connecting to Gallery"
+msgstr "连接到画库时出错"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:405
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:432
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:443
+#, csharp-format
+msgid "The following error was encountered while attempting to log in: {0}"
+msgstr "尝试登录时遇到下列错误：{0}"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:419
+msgid "A Gallery with this name already exists"
+msgstr "已存在同名画库"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:420
+#, csharp-format
+msgid "There is already a Gallery with the same name in your registered Galleries. Please choose a unique name."
+msgstr "在你登记的画库中已存在同名画库。请选择某个唯一的名称。"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:530
+msgid "(TopLevel)"
+msgstr "(最顶层)"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:592
+msgid "Invalid Gallery name"
+msgstr "无效的画廊名"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:593
+msgid ""
+"The gallery name contains invalid characters.\n"
+"Only letters, numbers, - and _ are allowed"
+msgstr ""
+"图库名字包含无效的字符。\n"
+"仅允许字母，数字，- 和 _ 。"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:798
+#, csharp-format
+msgid "Error uploading picture \"{0}\" to Gallery: {1}"
+msgstr "上传图片 \"{0}\" 到画库时出错：{1}"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:826
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:725
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:629
+msgid "(No Gallery)"
+msgstr "(无图库)"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:918
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:852
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:725
+msgid "(Not Connected)"
+msgstr "(没有连接)"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:919
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:853
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:726
+msgid "(No Albums)"
+msgstr "(无画册)"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:971
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:915
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:767
+msgid "No account selected"
+msgstr "没有账户选定"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:5
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:5
+msgid "<span weight='bold' size='larger'>Error Connecting to Gallery</span>\n"
+msgstr "<span weight='bold' size='larger'>连接到画库时出错</span>\n"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:9
+msgid "Export _titles and comments"
+msgstr "导出标题和注释(_t)"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:10
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:10
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:7
+msgid "Open _album in browser when done uploading"
+msgstr "上传完毕时在浏览器中打开画册(_a)"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:11
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:11
+msgid "Please verify that the settings for this gallery are correct."
+msgstr "请确认该画库的设定是正确的。"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:12
+msgid "U_RL:"
+msgstr "URL(_R):"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:13
+msgid "_Album Name:"
+msgstr "相册名(_A)："
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:14
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:19
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:11
+msgid "_Description:"
+msgstr "描述(_D)："
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:16
+msgid "_Gallery Name:"
+msgstr "图库名(_G)："
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:17
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:22
+msgid "_Gallery:"
+msgstr "图库(_G)："
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:18
+msgid "_Parent Album:"
+msgstr "上层相册(_P)："
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:19
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:23
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:13
+#: ../extensions/Exporters/TabbloExport/TabbloExport.glade.h:4
+msgid "_Password:"
+msgstr "密码(_P)："
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:21
+msgid "_Title:"
+msgstr "标题(_T)："
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:22
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:25
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:15
+#: ../extensions/Exporters/TabbloExport/TabbloExport.glade.h:5
+msgid "_Username:"
+msgstr "用户名(_U)："
+
+#: ../extensions/Exporters/GalleryExport/GalleryRemote.cs:361
+msgid "Error reading server response"
+msgstr "读取服务器响应时出错"
+
+#. failed to find the response
+#: ../extensions/Exporters/GalleryExport/GalleryRemote.cs:373
+msgid "Server returned response without Gallery content"
+msgstr "服务器返回响应但没有画库内容"
+
+#: ../extensions/Exporters/GalleryExport/GalleryRemote.cs:710
+msgid "Error while creating new album"
+msgstr "创建新画册时出现错误"
+
+#: ../extensions/Exporters/GalleryExport/GalleryRemote.cs:711
+#, csharp-format
+msgid ""
+"The following error was encountered while attempting to perform the requested operation:\n"
+"{0} ({1})"
+msgstr ""
+"当尝试执行要求的操作时遇到下列错误：\n"
+"{0} ({1})"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.addin.xml.h:1
+msgid "F_acebook..."
+msgstr "Facebook(_a)..."
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:256
+msgid "Too many images to export"
+msgstr "太多图像要导出了"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:256
+msgid "Facebook only permits 60 photographs per album.  Please refine your selection and try again."
+msgstr "Facebook 仅允许每个相册60张照片。请重新选择后再试。"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:279
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:365
+msgid "You are not logged in."
+msgstr "你还未登录。"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:320
+msgid "Waiting for authentication"
+msgstr "正在等待验证"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:320
+msgid "F-Spot will now launch your browser so that you can log into Facebook.  Turn on the \"Save my login information\" checkbox on Facebook and F-Spot will log into Facebook automatically from now on."
+msgstr "F-Spot 现在将启动你的浏览器，以便你能够登录进 Facebook。打开 \"Save my login information\" "
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:326
+msgid "Error logging into Facebook"
+msgstr "登录到 Facebook 时出错"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:326
+msgid "There was a problem logging into Facebook.  Check your credentials and try again."
+msgstr "登录到 Facebook 遇到一个问题。请检查你的用户名和密码后再试。"
+
+#. Note for translators: {0} and {1} are respectively firstname and surname of the user
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:339
+#, csharp-format
+msgid "{0} {1} is logged into Facebook"
+msgstr "{0} {1} 已登录到 Facebook"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:492
+msgid "Album must have a name"
+msgstr "相册必须有个名字"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:492
+msgid "Please name your album or choose an existing album."
+msgstr "请为你的画册取个名字或选择一个现存的画册。"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:505
+msgid "Creating a new album failed"
+msgstr "创建新相册失败"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:505
+#, csharp-format
+msgid ""
+"An error occurred creating a new album.\n"
+"\n"
+"{0}"
+msgstr ""
+"创建新相册时发生错误。\n"
+"\n"
+"{0}"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:529
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:661
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:564
+#, csharp-format
+msgid "Uploading picture \"{0}\" ({1} of {2})"
+msgstr "上传图片 \"{0}\" (第 {1} 张，共 {2} 张)"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:543
+#, csharp-format
+msgid "Error Uploading To Facebook: {0}"
+msgstr "上传到 Facebook 时出错：{0}"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.glade.h:1
+msgid "Caption"
+msgstr "标题"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.glade.h:2
+msgid "Create a new album"
+msgstr "创建一个新画册"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.glade.h:3
+msgid "Description"
+msgstr "描述"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.glade.h:4
+msgid "Export to Facebook"
+msgstr "导出到 Facebook"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.glade.h:5
+msgid "In this photo"
+msgstr "在本照片中"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.glade.h:7
+msgid "Login"
+msgstr "登录"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.glade.h:8
+msgid "Logout"
+msgstr "注销"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.glade.h:10
+msgid "This is who I am"
+msgstr "这就是我"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.glade.h:11
+msgid "Use an existing album"
+msgstr "使用现存的相册"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.glade.h:12
+msgid "Who is this?"
+msgstr "这是谁？"
+
+#: ../extensions/Exporters/ZipExport/ZipExport.addin.xml.h:1
+msgid "Compressed fil_e..."
+msgstr "压缩文件(_e)..."
+
+#: ../extensions/Exporters/ZipExport/ZipExport.cs:47
+msgid "This tool requires an active selection. Please select one or more pictures and try again"
+msgstr "此工具需要一个现有的选中范围。请先选中一个或多个图片后再试"
+
+#: ../extensions/Exporters/ZipExport/ZipExport.cs:63
+msgid "Select export folder"
+msgstr "选择导出文件夹"
+
+#: ../extensions/Exporters/ZipExport/ZipExport.cs:101
+msgid "Exporting files"
+msgstr "正在导出文件"
+
+#: ../extensions/Exporters/ZipExport/ZipExport.cs:107
+#, csharp-format
+msgid "Preparing photo \"{0}\""
+msgstr "正在准备照片 \"{0}\""
+
+#: ../extensions/Exporters/ZipExport/ZipExport.glade.h:2
+msgid "_File name:"
+msgstr "文件名(_F)："
+
+#: ../extensions/Exporters/ZipExport/ZipExport.glade.h:3
+msgid "_Location:"
+msgstr "位置(_L):"
+
+#: ../extensions/Exporters/ZipExport/ZipExport.glade.h:4
+msgid "_Scale:"
+msgstr "缩放(_S)："
+
+#: ../extensions/Tools/MergeDb/MergeDb.addin.xml.h:1
+msgid "Merge Db"
+msgstr "合并数据库"
+
+#: ../extensions/Tools/MergeDb/MergeDb.cs:73
+msgid "Error opening the selected file"
+msgstr "打开选定文件时出错"
+
+#: ../extensions/Tools/MergeDb/MergeDb.cs:74
+#, csharp-format
+msgid ""
+"The file you selected is not a valid or supported database.\n"
+"\n"
+"Received exception \"{0}\"."
+msgstr ""
+"你选定的文件是无效或不支持的数据库。n\n"
+"收到例外 \"{0}\"。"
+
+#: ../extensions/Tools/MergeDb/MergeDb.glade.h:1
+msgid "<small><i>Choose the location of the database you want to import from</i></small>"
+msgstr "<small><i>选择你想导入的数据库位置</i></small>"
+
+#: ../extensions/Tools/MergeDb/MergeDb.glade.h:2
+msgid ""
+"<small><i>Choose what to import from the selected db.\n"
+"\"New Rolls Only\" is the smart option that will avoid re-importing photos you could have imported during a previous operation.\n"
+"\"A Single Import Roll\" let you choose which roll you want to merge back.\n"
+"\"Everything\" will import everything, creating duplicates if you already imported from that database.</i></small>"
+msgstr ""
+
+#: ../extensions/Tools/MergeDb/MergeDb.glade.h:6
+msgid "<small><i>Copy the images locally or keep them where they are. If you chose the later, be sure that this location will stay accessible from f-spot.</i></small>"
+msgstr ""
+
+#: ../extensions/Tools/MergeDb/MergeDb.glade.h:7
+msgid "A Single Import Roll"
+msgstr "单一导入清单"
+
+#: ../extensions/Tools/MergeDb/MergeDb.glade.h:8
+msgid "Copy images to photos folder"
+msgstr "复制图像到照片文件夹"
+
+#: ../extensions/Tools/MergeDb/MergeDb.glade.h:9
+msgid "Database Location:"
+msgstr "数据库位置："
+
+#: ../extensions/Tools/MergeDb/MergeDb.glade.h:10
+msgid "Everything"
+msgstr "所有东西"
+
+#: ../extensions/Tools/MergeDb/MergeDb.glade.h:11
+msgid "Import:"
+msgstr "导入："
+
+#: ../extensions/Tools/MergeDb/MergeDb.glade.h:12
+msgid "Keep the images at their original location"
+msgstr "将图像保持在原位置"
+
+#: ../extensions/Tools/MergeDb/MergeDb.glade.h:13
+msgid "Merge another f-spot collection"
+msgstr "合并另外的 f-spot 收藏"
+
+#: ../extensions/Tools/MergeDb/MergeDb.glade.h:14
+msgid "New Rolls Only"
+msgstr "仅新清单"
+
+#: ../extensions/Tools/MergeDb/PickFolderDialog.cs:33
+#, csharp-format
+msgid ""
+"<big>The database refers to files contained in the <b>{0}</b> folder.\n"
+" Please select that folder so I can do the mapping.</big>"
+msgstr ""
+
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.addin.xml.h:1
+msgid "_PicasaWeb..."
+msgstr "_PicasaWeb..."
+
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:441
+msgid "Error while creating Album"
+msgstr "创建专辑时出错"
+
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:442
+#, csharp-format
+msgid "The following error was encountered while attempting to create an album: {0}"
+msgstr "当尝试创建画册时遇到下列错误：{0}"
+
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:621
+#, csharp-format
+msgid "{0} Sent"
+msgstr "{0} 已发送"
+
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:623
+#, csharp-format
+msgid "{0} of approx. {1}"
+msgstr "第 {0}，总共约 {1}"
+
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:692
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:593
+#, csharp-format
+msgid "Error Uploading To Gallery: {0}"
+msgstr "上传到画廊时出错：{0}"
+
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:776
+msgid "Available space:"
+msgstr "可用空间："
+
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:893
+#, csharp-format
+msgid ""
+"<small>The selected album has a limit of {0} pictures,\n"
+"which would be passed with the current selection of {1} images</small>"
+msgstr ""
+"<small>选定的画册限于 {0} 张图片。\n"
+"当前选定的图像将超过 {1} 张图像</small>"
+
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:3
+msgid "<b>PicasaWeb Export</b>"
+msgstr "<b>PicasaWeb 导出</b>"
+
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:7
+msgid "<span weight='bold' size='larger'>Your Google Account is locked</span>\n"
+msgstr "<span weight='bold' size='larger'>你的谷歌(Google)账户已被锁定</span>\n"
+
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:12
+msgid ""
+"Please verify that the settings for this gallery are correct.\n"
+"Enter the letters as they are shown in the image in\n"
+"the 'Captcha' field. <i>Letters are not case-sensitive</i>"
+msgstr ""
+
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:15
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:8
+msgid "Public Album"
+msgstr "公开相册"
+
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:16
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:10
+msgid "_Album Title:"
+msgstr "相册标题(_A)："
+
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:17
+msgid "_Autorotate"
+msgstr "自动旋转(_A)"
+
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:18
+msgid "_Captcha:"
+msgstr "个人头像(_C)："
+
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:3
+msgid "<b>SmugMug Export</b>"
+msgstr "<b>SmugMug 导出</b>"
+
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:9
+msgid "_Account:"
+msgstr "账户(_A)："
+
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.addin.xml.h:1
+msgid "_SmugMug..."
+msgstr "SmugMug(_S)..."
+
+#: ../extensions/Exporters/TabbloExport/Tabblo/Connection.cs:126
+#, csharp-format
+msgid "Uploading photo \"{0}\""
+msgstr "正在上传照片 \"{0}\""
+
+#: ../extensions/Exporters/TabbloExport/Tabblo/Connection.cs:181
+msgid "Logging into Tabblo"
+msgstr "正在登录到 Tabblo"
+
+#: ../extensions/Exporters/TabbloExport/Tabblo/Connection.cs:241
+msgid "Obtaining URL for upload"
+msgstr "正在获取上传的 URL 地址"
+
+#: ../extensions/Exporters/TabbloExport/TabbloExport.addin.xml.h:1
+msgid "_Tabblo..."
+msgstr "Tabblo(_T)..."
+
+#: ../extensions/Exporters/TabbloExport/TabbloExport.cs:165
+msgid "Done sending photos"
+msgstr "发送照片完毕"
+
+#: ../extensions/Exporters/TabbloExport/TabbloExport.cs:167
+msgid "Upload complete"
+msgstr "上传完毕"
+
+#: ../extensions/Exporters/TabbloExport/TabbloExport.cs:173
+msgid "Error uploading to Tabblo: "
+msgstr "上传到 Tabblo 时出错："
+
+#: ../extensions/Exporters/TabbloExport/TabbloExport.glade.h:2
+msgid "<b>Tabblo account</b>"
+msgstr "<b>Tabblo 账户</b>"
+
+#: ../extensions/Exporters/TabbloExport/TrustError.glade.h:1
+msgid "<b>{0}</b>."
+msgstr "<b>{0}</b>"
+
+#: ../extensions/Exporters/TabbloExport/TrustError.glade.h:2
+msgid "A trust error occured while attempting to access"
+msgstr "当尝试访问时发生一个信任错误"
+
+#: ../extensions/Exporters/TabbloExport/TrustError.glade.h:3
+msgid "Abort this session"
+msgstr "放弃本次进程"
+
+#: ../extensions/Exporters/TabbloExport/TrustError.glade.h:4
+msgid "Always trust this site's certificate"
+msgstr "永远信任该网站的证书"
+
+#: ../extensions/Exporters/TabbloExport/TrustError.glade.h:5
+msgid "Do you wish to:"
+msgstr "你希望到："
+
+#: ../extensions/Exporters/TabbloExport/TrustError.glade.h:6
+msgid "Trust Error"
+msgstr "信任错误"
+
+#: ../extensions/Exporters/TabbloExport/TrustError.glade.h:7
+msgid "Trust the site's certificate this once"
+msgstr "本次信任该网站的证书"
 
