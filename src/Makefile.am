@@ -30,7 +30,6 @@ CORE_CSDISTFILES =				\
 	$(srcdir)/Core/IBrowsableItem.cs	\
 	$(srcdir)/Core/IBrowsableItemChanges.cs	\
 	$(srcdir)/Core/IBrowsableCollection.cs	\
-	$(srcdir)/Core/IPreferenceBackend.cs	\
 	$(srcdir)/Core/PhotoChanges.cs		\
 	$(srcdir)/Core/PhotosChanges.cs		\
 	$(srcdir)/Core/Roll.cs
@@ -76,8 +75,12 @@ WIDGETS_CSDISTFILES =				\
 	$(srcdir)/Widgets/SaneTreeView.cs	\
 	$(srcdir)/Widgets/ScrolledView.cs
 
-PLATFORM_CSDISTFILES =					\
+GNOME_PLATFORM_CSDISTFILES =				\
+	$(srcdir)/Platform/Gnome/PreferenceBackend.cs	\
 	$(srcdir)/Platform/Gnome/ThumbnailFactory.cs
+
+NULL_PLATFORM_CSDISTFILES =				\
+	$(srcdir)/Platform/Null/PreferenceBackend.cs
 
 F_SPOT_CSDISTFILES =				\
 	$(srcdir)/AsyncPixbufLoader.cs		\
@@ -142,7 +145,6 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/FotkiRemote.cs		\
 	$(srcdir)/FormClient.cs			\
 	$(srcdir)/FullScreenView.cs		\
-	$(srcdir)/GConfPreferenceBackend.cs	\
 	$(srcdir)/GdkGlx.cs			\
 	$(srcdir)/GlTransition.cs		\
 	$(srcdir)/GroupAdaptor.cs		\
@@ -183,7 +185,6 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/MemorySurface.cs		\
 	$(srcdir)/MetaStore.cs			\
 	$(srcdir)/MetadataStore.cs		\
-	$(srcdir)/NullPreferenceBackend.cs	\
 	$(srcdir)/Operation.cs			\
 	$(srcdir)/PhotoEventArgs.cs		\
 	$(srcdir)/PhotoImageView.cs		\
@@ -314,9 +315,10 @@ WIDGETS_ASSEMBLIES =				\
 	-r:FSpot.Core.dll			\
 	-r:FSpot.Utils.dll
 
-PLATFORM_ASSEMBLIES =				\
+GNOME_PLATFORM_ASSEMBLIES =			\
 	-pkg:gnome-sharp-2.0			\
 	-pkg:gtk-sharp-2.0			\
+	-pkg:gconf-sharp-2.0			\
 	-r:FSpot.Utils.dll
 
 F_SPOT_ASSEMBLIES = 				\
@@ -391,7 +393,9 @@ JOBSCHEDULER_CSFILES = $(JOBSCHEDULER_CSDISTFILES)
 
 WIDGETS_CSFILES = $(WIDGETS_CSDISTFILES)
 
-PLATFORM_CSFILES = $(PLATFORM_CSDISTFILES)
+GNOME_PLATFORM_CSFILES = $(GNOME_PLATFORM_CSDISTFILES)
+
+NULL_PLATFORM_CSFILES = $(NULL_PLATFROM_CSDISTFILES)
 
 F_SPOT_CSFILES = $(F_SPOT_CSDISTFILES)	\
 	AssemblyInfo.cs
@@ -420,6 +424,9 @@ FSpot.Widgets.dll: $(WIDGETS_CSFILES) FSpot.Utils.dll FSpot.Core.dll
 	@echo -e "\n*** Compiling $@"
 	$(CSC_LIB) -out:$@ $(EXTRAFLAGS) $(WIDGETS_CSFILES) $(WIDGETS_ASSEMBLIES)
 
+PLATFORM_CSFILES = $(GNOME_PLATFORM_CSFILES)
+PLATFORM_ASSEMBLIES = $(GNOME_PLATFORM_ASSEMBLIES)
+
 FSpot.Platform.dll: $(PLATFORM_CSFILES) FSpot.Utils.dll
 	@echo -e "\n*** Compiling $@"
 	$(CSC_LIB) -out:$@ $(EXTRAFLAGS) $(PLATFORM_CSFILES) $(PLATFORM_ASSEMBLIES)
@@ -437,6 +444,8 @@ EXTRA_DIST =					\
 	$(QUERY_CSDISTFILES)			\
 	$(JOBSCHEDULER_CSDISTFILES)		\
 	$(WIDGETS_CSDISTFILES)			\
+	$(GNOME_PLATFORM_CSDISTFILES)		\
+	$(NULL_PLATFORM_CSDISTFILES)		\
 	$(F_SPOT_CSDISTFILES)			\
 	$(F_SPOT_DISTRESOURCES)			\
 	f-spot.exe.config.in			\
@@ -461,8 +470,9 @@ CLEANFILES =					\
 	FSpot.JobScheduler.dll.mdb		\
 	FSpot.Widgets.dll			\
 	FSpot.Widgets.dll.mdb			\
+	FSpot.Platform.dll			\
+	FSpot.Platform.dll.mdb			\
 	Cms.dll.config
-
 
 DISTCLEANFILES = 				\
 	Makefile

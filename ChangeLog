@@ -11,6 +11,13 @@
 2008-10-21  Stephane Delcroix  <sdelcroix@novell.com>
 
 	* src/Makefile.am:
+	* src/Platform/Gnome/PreferenceBackend.cs:
+	* src/Platform/Null/PreferenceBackend.cs:
+	* src/Preferences.cs: move the GConf bits in Platform
+
+2008-10-21  Stephane Delcroix  <sdelcroix@novell.com>
+
+	* src/Makefile.am:
 	* src/Platform/Gnome/ThumbnailFactory.cs: move all the Gnome.Thumbnail*
 	code in this factory class, and abstract the API to be suitable for
 	other platforms

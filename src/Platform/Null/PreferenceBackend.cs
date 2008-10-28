@@ -1,14 +1,11 @@
 /*
- * FSpot.IPreferenceBackend.cs
+ * FSpot.NullPreferenceBackend.cs
  *
  * Author(s):
  *	Stephane Delcroix  <stephane@delcroix.org>
  *
  * This is free software. See COPYING for details.
  */
-
-using System;
-using System.Runtime.Serialization;
 
 namespace FSpot
 {
@@ -51,11 +48,23 @@ namespace FSpot
 	}
 
 	public delegate void NotifyChangedHandler (object sender, NotifyEventArgs args);
+}
 
-	public interface IPreferenceBackend
+namespace FSpot.Platform
+{
+	public class PreferenceBackend : IPreferenceBackend
 	{
-		object Get (string key);
-		void Set (string key, object value);	
-		void AddNotify (string key, NotifyChangedHandler handler);
+		public object Get (string key)
+		{
+			throw new NoSuchKeyException (key);
+		}
+
+		public void Set (string key, object o)
+		{
+		}
+
+		public void AddNotify (string key, NotifyChangedHandler handler)
+		{
+		}
 	}
 }

@@ -2,6 +2,7 @@ using System.Net;
 using System;
 using System.Collections.Generic;
 using Mono.Unix;
+using FSpot.Platform;
 
 namespace FSpot
 {
@@ -86,22 +87,12 @@ namespace FSpot
 		public const string GSD_THUMBS_MAX_SIZE = "/desktop/gnome/thumbnail_cache/maximum_size";
 
 
-		private static IPreferenceBackend backend;
+		private static PreferenceBackend backend;
 		private static NotifyChangedHandler changed_handler;
-		private static IPreferenceBackend Backend {
+		private static PreferenceBackend Backend {
 			get {
 				if (backend == null) {
-#if !NOGCONF
-					try {
-						backend = new GConfPreferenceBackend ();
-					} catch (Exception ex) {
-						Console.WriteLine ("Couldn't load Gconf. Check that gconf-daemon is running.{0}{1}",
-							Environment.NewLine, ex);
-						backend = new NullPreferenceBackend ();
-					}
-#else
-					backend = new NullPreferenceBackend ();
-#endif
+					backend = new PreferenceBackend ();
 					changed_handler = new NotifyChangedHandler (OnSettingChanged);
 					backend.AddNotify ("/apps/f-spot", changed_handler);
 					backend.AddNotify ("/apps/gnome-screensaver/themes", changed_handler);
