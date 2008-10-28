@@ -1,5 +1,10 @@
 2008-10-22  Stephane Delcroix  <sdelcroix@novell.com>
 
+	* src/main.cs: replace Gnome.Program by Gtk.Application. Clean the
+	startup sequence a bit. Fixes the --help bug not showing help.
+
+2008-10-22  Stephane Delcroix  <sdelcroix@novell.com>
+
 	* src/Makefile.am
 	* src/Platform/Gnome/ScreenSaver.cs:
 	* src/Platform/Null/ScreenSaver.cs: move the Screensaver code from
