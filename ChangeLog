@@ -1,3 +1,8 @@
+2008-10-24  Stephane Delcroix  <sdelcroix@novell.com>
+
+	* src/Platform/Null/ThumbnailFactory.cs: working NullThumbFactory,
+	keeps all the thumbs in memory
+
 2008-10-22  Stephane Delcroix  <sdelcroix@novell.com>
 
 	* src/main.cs: replace Gnome.Program by Gtk.Application. Clean the

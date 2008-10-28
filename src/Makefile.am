@@ -81,7 +81,8 @@ GNOME_PLATFORM_CSDISTFILES =				\
 
 NULL_PLATFORM_CSDISTFILES =				\
 	$(srcdir)/Platform/Null/PreferenceBackend.cs	\
-	$(srcdir)/Platform/Null/ScreenSaver.cs
+	$(srcdir)/Platform/Null/ScreenSaver.cs		\
+	$(srcdir)/Platform/Gnome/ThumbnailFactory.cs
 
 F_SPOT_CSDISTFILES =				\
 	$(srcdir)/AsyncPixbufLoader.cs		\
