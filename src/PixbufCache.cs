@@ -11,6 +11,8 @@ using System;
 using System.Collections;
 using System.Threading;
 
+using FSpot.Platform;
+
 namespace FSpot {
 	public class PixbufCache {
 		Hashtable items;
@@ -36,20 +38,18 @@ namespace FSpot {
 		
 		public void HandleThumbnailLoaded (PixbufLoader loader, Uri uri, int order, Gdk.Pixbuf result)
 		{
-			string thumb_path = ThumbnailGenerator.ThumbnailPath (uri);
-			
 			if (result != null)
-				Reload (thumb_path);
+				Reload (uri);
 		}
-			
-		public void Request (string path, object closure, int width, int height)
+
+		public void Request (Uri uri, object closure, int width, int height)
 		{
 			lock (items) {
-				CacheEntry entry = items[path] as CacheEntry;
+				CacheEntry entry = items[uri] as CacheEntry;
 
 				if (entry == null) {
-					entry = new CacheEntry (this, path, closure, width, height);
-					items [path] = entry;
+					entry = new CacheEntry (this, uri, closure, width, height);
+					items [uri] = entry;
 					items_mru.Add (entry);
 				} else {
 					MoveForward (entry);
@@ -57,22 +57,17 @@ namespace FSpot {
 				}
 				Monitor.Pulse (items);
 			}
-#if GSD_2_24
-			if (!System.IO.File.Exists (path))
-				return;
-			Utils.Unix.Touch (path);
-#endif
 		}
 
-		public void Update (string path, Gdk.Pixbuf pixbuf)
-		{
-			lock (items) {
-				CacheEntry entry = (CacheEntry) items [path];
-				if (entry != null) {
-					entry.SetPixbufExtended (pixbuf, true);
-				}
-			}
-		}
+//		public void Update (Uri uri, Gdk.Pixbuf pixbuf)
+//		{
+//			lock (items) {
+//				CacheEntry entry = (CacheEntry) items [uri];
+//				if (entry != null) {
+//					entry.SetPixbufExtended (pixbuf, true);
+//				}
+//			}
+//		}
 
 		public void Update (CacheEntry entry, Gdk.Pixbuf pixbuf)
 		{
@@ -94,12 +89,12 @@ namespace FSpot {
 			}
 		}
 
-		public void Reload (string path)
+		public void Reload (Uri uri)
 		{
 			CacheEntry entry;
 
 			lock (items) {
-				entry = (CacheEntry) items [path];
+				entry = (CacheEntry) items [uri];
 				if (entry != null) {
 					lock (entry) {
 						entry.Reload = true;
@@ -147,7 +142,7 @@ namespace FSpot {
 			int num = 0;
 			while ((items_mru.Count - num) > 10 && total_size > max_size) {
 				CacheEntry entry = (CacheEntry) items_mru [num++];
-				items.Remove (entry.Path);
+				items.Remove (entry.Uri);
 				entry.Dispose ();
 			}
 			if (num > 0) {
@@ -188,7 +183,7 @@ namespace FSpot {
 		{
 			Gdk.Pixbuf loaded = null;
 			try {
-				loaded = new Gdk.Pixbuf (entry.Path);
+				loaded = ThumbnailFactory.LoadThumbnail (entry.Uri);
 				this.Update (entry, loaded);
 			} catch (GLib.GException){
 				if (loaded != null)
@@ -200,7 +195,7 @@ namespace FSpot {
 		private void QueueLast (CacheEntry entry)
 		{
 			Gtk.Application.Invoke (delegate (object obj, System.EventArgs args) {
-				if (entry.Path != null && OnPixbufLoaded != null)
+				if (entry.Uri != null && OnPixbufLoaded != null)
 					OnPixbufLoaded (this, entry);
 			});
 		}
@@ -226,51 +221,51 @@ namespace FSpot {
 		}
 		       
 
-		private CacheEntry ULookup (string path)
+		private CacheEntry ULookup (Uri uri)
 		{
-			CacheEntry entry = (CacheEntry) items [path];
+			CacheEntry entry = (CacheEntry) items [uri];
 			if (entry != null) {
 				MoveForward (entry);
 			}
 			return (CacheEntry) entry;
 		}
 
-		public CacheEntry Lookup (string path)
+		public CacheEntry Lookup (Uri uri)
 		{
 			lock (items) {
-				return ULookup (path);
+				return ULookup (uri);
 			}
 		}
 
-		public void Remove (string path) 
+		private void URemove (Uri uri)
 		{
-			lock (items) {
-				URemove (path);
-			}
-		}
-
-		private void URemove (string path)
-		{
-			CacheEntry entry = (CacheEntry) items [path];
+			CacheEntry entry = (CacheEntry) items [uri];
 			if (entry != null) {
-				items.Remove (path);
+				items.Remove (uri);
 				items_mru.Remove (entry);
 				entry.Dispose ();
 			}
 		}
 
+		public void Remove (Uri uri)
+		{
+			lock (items) {
+				URemove (uri);
+			}
+		}
+
 		public class CacheEntry : System.IDisposable {
 			private Gdk.Pixbuf pixbuf;
-			private string path;
+			private Uri uri;
 			private int width;
 			private int height;
 			private object data;
 			private bool reload;
 			private PixbufCache cache;
 			
-			public CacheEntry (PixbufCache cache, string path, object closure, int width, int height)
+			public CacheEntry (PixbufCache cache, Uri uri, object closure, int width, int height)
 			{
-				this.path = path;
+				this.uri = uri;
 				this.width = width;
 				this.height = height;
 				this.data = closure;
@@ -284,8 +279,8 @@ namespace FSpot {
 				set { reload = value; }
 			}
 
-			public string Path {
-				get { return path; }
+			public Uri Uri {
+				get { return uri; }
 			}
 
 			public int Width {
@@ -312,7 +307,7 @@ namespace FSpot {
 			}
 			
 			public bool IsDisposed {
-				get { return path == null; }
+				get { return uri == null; }
 			}
 			
 			public void SetPixbufExtended (Gdk.Pixbuf value, bool ignore_undead)
@@ -380,7 +375,7 @@ namespace FSpot {
 					}
 					this.pixbuf = null;
 					this.cache = null;
-					this.path = null;
+					this.uri = null;
 				}
 				System.GC.SuppressFinalize (this);
 			}

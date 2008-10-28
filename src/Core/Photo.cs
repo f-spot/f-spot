@@ -17,6 +17,7 @@ using System.Collections.Generic;
 using Mono.Unix;
 
 using FSpot.Utils;
+using FSpot.Platform;
 
 namespace FSpot
 {
@@ -396,12 +397,10 @@ namespace FSpot
 				}
 	
 				try {
-					string thumb_path = ThumbnailGenerator.ThumbnailPath (uri);
-					System.IO.File.Delete (thumb_path);
-				} catch (System.Exception) {
+					ThumbnailFactory.DeleteThumbnail (uri);
+				} catch {
 					//ignore an error here we don't really care.
 				}
-				PhotoStore.DeleteThumbnail (uri);
 			}
 			Versions.Remove (version_id);
 

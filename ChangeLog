@@ -10,6 +10,26 @@
 
 2008-10-21  Stephane Delcroix  <sdelcroix@novell.com>
 
+	* src/Makefile.am:
+	* src/Platform/Gnome/ThumbnailFactory.cs: move all the Gnome.Thumbnail*
+	code in this factory class, and abstract the API to be suitable for
+	other platforms
+
+	* src/AsyncPixbufLoader.cs:
+	* src/Core/Photo.cs:
+	* src/MainWindow.cs:
+	* src/PhotoLoader.cs:
+	* src/PhotoVersionCommand.cs:
+	* src/PixbufCache.cs:
+	* src/ThumbnailCache.cs:
+	* src/ThumbnailGenerator.cs:
+	* src/Widgets/EditorPage.cs:
+	* src/Widges/FilmStrip.cs:
+	* src/Widgets/IconView.cs: use the new ThumbnailFactory instead of the Gnome
+	one.
+
+2008-10-21  Stephane Delcroix  <sdelcroix@novell.com>
+
 	* src/Core/Photo.cs:
 	* src/DateCommands.cs:
 	* src/ExportStore.cs:

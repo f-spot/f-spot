@@ -22,8 +22,8 @@ public class ThumbnailCache : IDisposable {
 	// Types.
 
 	private class Thumbnail {
-		// Path of the image on the disk.
-		public string path;
+		// Uri of the image source
+		public Uri uri;
 
 		// The uncompressed thumbnail.
 		public Pixbuf pixbuf;
@@ -55,27 +55,27 @@ public class ThumbnailCache : IDisposable {
 		}
 	}
 
-	public void AddThumbnail (string path, Pixbuf pixbuf)
+	public void AddThumbnail (Uri uri, Pixbuf pixbuf)
 	{
 		Thumbnail thumbnail = new Thumbnail ();
 
-		thumbnail.path = path;
+		thumbnail.uri = uri;
 		thumbnail.pixbuf = pixbuf;
 
-		RemoveThumbnailForPath (path);
+		RemoveThumbnailForUri (uri);
 
 		pixbuf_mru.Insert (0, thumbnail);
-		pixbuf_hash.Add (path, thumbnail);
+		pixbuf_hash.Add (uri, thumbnail);
 
 		MaybeExpunge ();
 	}
 
-	public Pixbuf GetThumbnailForPath (string path)
+	public Pixbuf GetThumbnailForUri (Uri uri)
 	{
-		if (! pixbuf_hash.ContainsKey (path))
+		if (! pixbuf_hash.ContainsKey (uri))
 			return null;
 
-		Thumbnail item = pixbuf_hash [path] as Thumbnail;
+		Thumbnail item = pixbuf_hash [uri] as Thumbnail;
 
 		pixbuf_mru.Remove (item);
 		pixbuf_mru.Insert (0, item);
@@ -83,14 +83,14 @@ public class ThumbnailCache : IDisposable {
 		return PixbufUtils.ShallowCopy (item.pixbuf);
 	}
 
-	public void RemoveThumbnailForPath (string path)
+	public void RemoveThumbnailForUri (Uri uri)
 	{
-		if (! pixbuf_hash.ContainsKey (path))
+		if (! pixbuf_hash.ContainsKey (uri))
 			return;
 
-		Thumbnail item = pixbuf_hash [path] as Thumbnail;
+		Thumbnail item = pixbuf_hash [uri] as Thumbnail;
 
-		pixbuf_hash.Remove (path);
+		pixbuf_hash.Remove (uri);
 		pixbuf_mru.Remove (item);
 
 		item.pixbuf.Dispose ();
@@ -100,7 +100,7 @@ public class ThumbnailCache : IDisposable {
 	{
 		foreach (object item in pixbuf_mru) {
 			Thumbnail thumb = item as Thumbnail;
-			pixbuf_hash.Remove (thumb.path);
+			pixbuf_hash.Remove (thumb.uri);
 			thumb.pixbuf.Dispose ();
 		}
 		pixbuf_mru.Clear ();
@@ -112,7 +112,7 @@ public class ThumbnailCache : IDisposable {
 		Log.DebugFormat ("Finalizer called on {0}. Should be Disposed", GetType ());		
 		foreach (object item in pixbuf_mru) {
 			Thumbnail thumb = item as Thumbnail;
-			pixbuf_hash.Remove (thumb.path);
+			pixbuf_hash.Remove (thumb.uri);
 			thumb.pixbuf.Dispose ();
 		}
 		pixbuf_mru.Clear ();
@@ -125,7 +125,7 @@ public class ThumbnailCache : IDisposable {
 		while (pixbuf_mru.Count > max_count) {
 			Thumbnail thumbnail = pixbuf_mru [pixbuf_mru.Count - 1] as Thumbnail;
 
-			pixbuf_hash.Remove (thumbnail.path);
+			pixbuf_hash.Remove (thumbnail.uri);
 			pixbuf_mru.RemoveAt (pixbuf_mru.Count - 1);
 
 			thumbnail.pixbuf.Dispose ();

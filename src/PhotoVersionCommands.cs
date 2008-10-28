@@ -3,6 +3,7 @@ using Glade;
 using System;
 using Mono.Unix;
 using FSpot;
+using FSpot.Utils;
 using FSpot.UI.Dialog;
 
 public class PhotoVersionCommands
@@ -149,7 +150,7 @@ public class PhotoVersionCommands
 					photo.DeleteVersion (photo.DefaultVersionId);
 					store.Commit (photo);
 				} catch (Exception e) {
-					// FIXME show error dialog.
+					Log.DebugException (e);
 					string msg = Catalog.GetString ("Could not delete a version");
 					string desc = String.Format (Catalog.GetString ("Received exception \"{0}\". Unable to delete version \"{1}\""),
 								     e.Message, photo.Name);

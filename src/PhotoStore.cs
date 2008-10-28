@@ -24,6 +24,7 @@ using System;
 using FSpot;
 using FSpot.Query;
 using FSpot.Utils;
+using FSpot.Platform;
 
 using Banshee.Database;
 
@@ -38,8 +39,6 @@ public class PhotoStore : DbStore {
 			return total;
 		}
 	}
-
-	public static Gnome.ThumbnailFactory ThumbnailFactory = new Gnome.ThumbnailFactory (Gnome.ThumbnailSize.Large);
 
 	// FIXME this is a hack.  Since we don't have Gnome.ThumbnailFactory.SaveThumbnail() in
 	// GTK#, and generate them by ourselves directly with Gdk.Pixbuf, we have to make sure here
@@ -57,14 +56,14 @@ public class PhotoStore : DbStore {
 	// Generates the thumbnail, returns the Pixbuf, and also stores it as a side effect
 	//
 
-	public static Pixbuf GenerateThumbnail (System.Uri uri)
+	private static Pixbuf GenerateThumbnail (System.Uri uri)
 	{
 		using (FSpot.ImageFile img = FSpot.ImageFile.Create (uri)) {
 			return GenerateThumbnail (uri, img);
 		}
 	}
 
-	public static Pixbuf GenerateThumbnail (System.Uri uri, ImageFile img)
+	private static Pixbuf GenerateThumbnail (System.Uri uri, ImageFile img)
 	{
 		Pixbuf thumbnail = null;
 
@@ -77,29 +76,21 @@ public class PhotoStore : DbStore {
 		}
 
 		// Save embedded thumbnails in a silightly invalid way so that we know to regnerate them later.
-		if (thumbnail != null) {
-			PixbufUtils.SaveAtomic (thumbnail, FSpot.ThumbnailGenerator.ThumbnailPath (uri), 
-						"png", new string [] { null} , new string [] { null});
+		if (thumbnail != null)
 			//FIXME with gio, set it to uri time minus a few sec
-			System.IO.File.SetLastWriteTime (FSpot.ThumbnailGenerator.ThumbnailPath (uri), new DateTime (1980, 1, 1));
-		} else 
+			ThumbnailFactory.SaveThumbnail (thumbnail, uri, new DateTime (1980, 1, 1));
+		 else
 			thumbnail = FSpot.ThumbnailGenerator.Create (uri);
 		
 		return thumbnail;
 	}
 
-	public static void DeleteThumbnail (System.Uri uri)
-	{
-		string path = Gnome.Thumbnail.PathForUri (uri.ToString (), Gnome.ThumbnailSize.Large);
-		if (System.IO.File.Exists (path))
-			System.IO.File.Delete (path);
-	}
 
-	public static void MoveThumbnail (string old_path, string new_path)
-	{
-		System.IO.File.Move (ThumbnailGenerator.ThumbnailPath (UriUtils.PathToFileUri (old_path)),
-			   ThumbnailGenerator.ThumbnailPath(UriUtils.PathToFileUri (new_path)));
-	}
+//	public static void MoveThumbnail (string old_path, string new_path)
+//	{
+//		System.IO.File.Move (ThumbnailGenerator.ThumbnailPath (UriUtils.PathToFileUri (old_path)),
+//			   ThumbnailGenerator.ThumbnailPath(UriUtils.PathToFileUri (new_path)));
+//	}
 
 	// Constructor
 

@@ -1,6 +1,8 @@
 using System;
 using System.IO;
 using System.Runtime.Remoting.Messaging;
+using FSpot.Platform;
+using FSpot.Utils;
 
 namespace FSpot {
 	public delegate void AreaUpdatedHandler (object sender, AreaUpdatedArgs area);
@@ -118,7 +120,7 @@ namespace FSpot {
 			
 				try {
 					PixbufOrientation thumb_orientation = Accelerometer.GetViewOrientation (PixbufOrientation.TopLeft);
-					thumb = new Gdk.Pixbuf (ThumbnailGenerator.ThumbnailPath (uri));
+					thumb = ThumbnailFactory.LoadThumbnail (uri);
 					thumb = PixbufUtils.TransformOrientation (thumb, thumb_orientation);
 					
 					if (FSpot.ColorManagement.IsEnabled && !thumb.HasAlpha) {
@@ -130,9 +132,8 @@ namespace FSpot {
 					else
 						FSpot.ColorManagement.PhotoImageView.Transform = null;
 				} catch (System.Exception e) {
-					//FSpot.ThumbnailGenerator.Default.Request (uri.ToString (), 0, 256, 256);	
 					if (!(e is GLib.GException)) 
-						System.Console.WriteLine (e.ToString ());
+						Log.DebugException (e);
 				}
 
 				System.IO.Stream nstream = img.PixbufStream ();
@@ -395,7 +396,7 @@ namespace FSpot {
 						 Gdk.InterpType.Bilinear, 0xff);
 			
 			if (thumb != null)
-				if (!ThumbnailGenerator.ThumbnailIsValid (thumb, uri))
+				if (!ThumbnailFactory.ThumbnailIsValid (thumb, uri))
 					FSpot.ThumbnailGenerator.Default.Request (uri, 0, 256, 256);
 
 			area_prepared = true;			

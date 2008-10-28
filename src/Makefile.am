@@ -76,6 +76,9 @@ WIDGETS_CSDISTFILES =				\
 	$(srcdir)/Widgets/SaneTreeView.cs	\
 	$(srcdir)/Widgets/ScrolledView.cs
 
+PLATFORM_CSDISTFILES =					\
+	$(srcdir)/Platform/Gnome/ThumbnailFactory.cs
+
 F_SPOT_CSDISTFILES =				\
 	$(srcdir)/AsyncPixbufLoader.cs		\
 	$(srcdir)/BlockProcessor.cs		\
@@ -311,6 +314,11 @@ WIDGETS_ASSEMBLIES =				\
 	-r:FSpot.Core.dll			\
 	-r:FSpot.Utils.dll
 
+PLATFORM_ASSEMBLIES =				\
+	-pkg:gnome-sharp-2.0			\
+	-pkg:gtk-sharp-2.0			\
+	-r:FSpot.Utils.dll
+
 F_SPOT_ASSEMBLIES = 				\
 	$(LINK_DBUS)				\
 	$(LINK_GPHOTO2)				\
@@ -332,6 +340,7 @@ F_SPOT_ASSEMBLIES = 				\
 	-r:FSpot.Utils.dll			\
 	-r:FSpot.JobScheduler.dll		\
 	-r:FSpot.Widgets.dll			\
+	-r:FSpot.Platform.dll			\
 	-r:Cms.dll				\
 	$(NUNIT_PKG)				\
 	$(GCONF_PKG)				\
@@ -364,7 +373,8 @@ fspotlib_DATA = f-spot.exe.config	\
 		FSpot.Query.dll		\
 		FSpot.Core.dll		\
 		FSpot.JobScheduler.dll	\
-		FSpot.Widgets.dll
+		FSpot.Widgets.dll	\
+		FSpot.Platform.dll
 
 bin_SCRIPTS = f-spot
 
@@ -380,6 +390,8 @@ UTILS_CSFILES = $(UTILS_CSDISTFILES)
 JOBSCHEDULER_CSFILES = $(JOBSCHEDULER_CSDISTFILES)
 
 WIDGETS_CSFILES = $(WIDGETS_CSDISTFILES)
+
+PLATFORM_CSFILES = $(PLATFORM_CSDISTFILES)
 
 F_SPOT_CSFILES = $(F_SPOT_CSDISTFILES)	\
 	AssemblyInfo.cs
@@ -408,7 +420,11 @@ FSpot.Widgets.dll: $(WIDGETS_CSFILES) FSpot.Utils.dll FSpot.Core.dll
 	@echo -e "\n*** Compiling $@"
 	$(CSC_LIB) -out:$@ $(EXTRAFLAGS) $(WIDGETS_CSFILES) $(WIDGETS_ASSEMBLIES)
 
-f-spot.exe: $(F_SPOT_CSFILES) FSpot.Utils.dll FSpot.Core.dll FSpot.Query.dll FSpot.JobScheduler.dll FSpot.Widgets.dll Cms.dll $(F_SPOT_RESOURCES)
+FSpot.Platform.dll: $(PLATFORM_CSFILES) FSpot.Utils.dll
+	@echo -e "\n*** Compiling $@"
+	$(CSC_LIB) -out:$@ $(EXTRAFLAGS) $(PLATFORM_CSFILES) $(PLATFORM_ASSEMBLIES)
+
+f-spot.exe: $(F_SPOT_CSFILES) FSpot.Utils.dll FSpot.Core.dll FSpot.Query.dll FSpot.JobScheduler.dll FSpot.Widgets.dll Cms.dll FSpot.Platform.dll $(F_SPOT_RESOURCES)
 	@echo -e "\n*** Compiling $@"
 	$(CSC) -target:winexe -out:$@ $(EXTRAFLAGS) $(UNSAFE) $(NOWARN) $(NUNIT_DEFINES) $(F_SPOT_CSFILES) $(F_SPOT_ASSEMBLIES) $(RESOURCES)
 

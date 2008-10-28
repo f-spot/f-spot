@@ -1252,8 +1252,7 @@ public class MainWindow {
 
 			bool use_icon = false;;
 			while (len-- > 0) {
-				string thumbnail_path = FSpot.ThumbnailGenerator.ThumbnailPath (photos [len].DefaultVersionUri);
-				FSpot.PixbufCache.CacheEntry entry = icon_view.Cache.Lookup (thumbnail_path);
+				FSpot.PixbufCache.CacheEntry entry = icon_view.Cache.Lookup (photos [len].DefaultVersionUri);
 
 				Pixbuf thumbnail = null;
 				if (entry != null) {

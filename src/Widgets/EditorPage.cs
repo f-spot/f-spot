@@ -216,6 +216,7 @@ namespace FSpot.Widgets {
 			try {
 				editor.Apply ();
 			} catch (Exception e) {
+				Log.DebugException (e);
 				string msg = Catalog.GetPluralString ("Error saving adjusted photo", "Error saving adjusted photos", 
 									editor.State.Items.Length);
 				string desc = String.Format (Catalog.GetString ("Received exception \"{0}\". Note that you have to develop RAW files into JPEG before you can edit them."),

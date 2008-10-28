@@ -18,6 +18,7 @@ using Gtk;
 using Gdk;
 
 using FSpot.Utils;
+using FSpot.Platform;
 
 namespace FSpot.Widgets
 {
@@ -309,7 +310,7 @@ namespace FSpot.Widgets
 		}
 
 		FSpot.BrowsablePointer selection;
-		DisposableCache<string, Pixbuf> thumb_cache;
+		DisposableCache<Uri, Pixbuf> thumb_cache;
 
 		public Filmstrip (FSpot.BrowsablePointer selection) : this (selection, true)
 		{
@@ -323,7 +324,7 @@ namespace FSpot.Widgets
 			this.selection.Collection.Changed += HandleCollectionChanged;
 			this.selection.Collection.ItemsChanged += HandleCollectionItemsChanged;
 			this.squared_thumbs = squared_thumbs;
-			thumb_cache = new DisposableCache<string, Pixbuf> (30);
+			thumb_cache = new DisposableCache<Uri, Pixbuf> (30);
 			ThumbnailGenerator.Default.OnPixbufLoaded += HandlePixbufLoaded;
 		}
 	
@@ -492,14 +493,14 @@ namespace FSpot.Widgets
 			if (!args.Changes.DataChanged)
 				return;
 			foreach (int item in args.Items)
-				thumb_cache.TryRemove (FSpot.ThumbnailGenerator.ThumbnailPath ((selection.Collection [item]).DefaultVersionUri));
+				thumb_cache.TryRemove ((selection.Collection [item]).DefaultVersionUri);
 
 			//FIXME call QueueDrawArea
 			QueueDraw ();
 		}
 
 		void HandlePixbufLoaded (PixbufLoader pl, Uri uri, int order, Pixbuf p) {
-			if (!thumb_cache.Contains (FSpot.ThumbnailGenerator.ThumbnailPath (uri))) {
+			if (!thumb_cache.Contains (uri)) {
 				return;
 			}
 			
@@ -534,13 +535,11 @@ namespace FSpot.Widgets
 
  		protected virtual Pixbuf GetPixbuf (int i, bool highlighted)
 		{
-			string thumb_path;
 			Pixbuf current;
+			Uri uri = (selection.Collection [i]).DefaultVersionUri;
 			try {
-				thumb_path = FSpot.ThumbnailGenerator.ThumbnailPath ((selection.Collection [i]).DefaultVersionUri);
-				current = PixbufUtils.ShallowCopy (thumb_cache.Get (thumb_path));
+				current = PixbufUtils.ShallowCopy (thumb_cache.Get (uri));
 			} catch (IndexOutOfRangeException) {
-				thumb_path = null;
 				current = null;
 			}
 
@@ -549,18 +548,19 @@ namespace FSpot.Widgets
 					ThumbnailGenerator.Default.Request ((selection.Collection [i]).DefaultVersionUri, 0, 256, 256);
 
 					if (SquaredThumbs) {
-						current = new Pixbuf (thumb_path);
-						current = PixbufUtils.IconFromPixbuf (current, ThumbSize);
+						using (Pixbuf p = ThumbnailFactory.LoadThumbnail (uri)) {
+							current = PixbufUtils.IconFromPixbuf (p, ThumbSize);
+						}
 					} else 
-						current = new Pixbuf (thumb_path, -1, ThumbSize);
-					thumb_cache.Add (thumb_path, current);
+						current = ThumbnailFactory.LoadThumbnail (uri, -1, ThumbSize);
+					thumb_cache.Add (uri, current);
 				} catch {
 					try {
 						current = FSpot.Global.IconTheme.LoadIcon ("gtk-missing-image", ThumbSize, (Gtk.IconLookupFlags)0);
 					} catch {
 						current = null;
 					}
-					thumb_cache.Add (thumb_path, null);
+					thumb_cache.Add (uri, null);
 				}
 
 			}

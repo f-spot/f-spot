@@ -15,6 +15,7 @@ using System;
 using System.Reflection;
 using System.Collections;
 using System.IO;
+using FSpot.Platform;
 
 namespace FSpot.Widgets
 {
@@ -564,8 +565,7 @@ namespace FSpot.Widgets
 		public void UpdateThumbnail (int thumbnail_num)
 		{
 			FSpot.IBrowsableItem photo = collection [thumbnail_num];
-			string thumbnail_path = FSpot.ThumbnailGenerator.ThumbnailPath (photo.DefaultVersionUri);
-			cache.Remove (thumbnail_path);
+			cache.Remove (photo.DefaultVersionUri);
 			InvalidateCell (thumbnail_num);
 		}
 
@@ -772,11 +772,10 @@ namespace FSpot.Widgets
 				return;
 
 			FSpot.IBrowsableItem photo = collection [thumbnail_num];
-			string thumbnail_path = FSpot.ThumbnailGenerator.ThumbnailPath (photo.DefaultVersionUri);
 
-			FSpot.PixbufCache.CacheEntry entry = cache.Lookup (thumbnail_path);
+			FSpot.PixbufCache.CacheEntry entry = cache.Lookup (photo.DefaultVersionUri);
 			if (entry == null)
-				cache.Request (thumbnail_path, thumbnail_num, ThumbnailWidth, ThumbnailHeight);
+				cache.Request (photo.DefaultVersionUri, thumbnail_num, ThumbnailWidth, ThumbnailHeight);
 			else
 				entry.Data = thumbnail_num;
 
@@ -1157,7 +1156,6 @@ namespace FSpot.Widgets
 
 			FSpot.IBrowsableItem photo;
 			FSpot.PixbufCache.CacheEntry entry;
-			string thumbnail_path;
 
 			// Preload the cache with images aroud the expose area
 			// FIXME the preload need to be tuned to the Cache size but this is a resonable start
@@ -1179,19 +1177,17 @@ namespace FSpot.Widgets
 				int cell = back ? ecell - i - 1 : scell + mid + i;
 
 				photo = collection [cell];
-				thumbnail_path = FSpot.ThumbnailGenerator.ThumbnailPath (photo.DefaultVersionUri);
 
-				entry = cache.Lookup (thumbnail_path);
+				entry = cache.Lookup (photo.DefaultVersionUri);
 				if (entry == null)
-					cache.Request (thumbnail_path, cell, ThumbnailWidth, ThumbnailHeight);
+					cache.Request (photo.DefaultVersionUri, cell, ThumbnailWidth, ThumbnailHeight);
 
 				cell = back ? scell + i : scell + mid - i - 1;
 				photo = collection [cell];
-				thumbnail_path = FSpot.ThumbnailGenerator.ThumbnailPath (photo.DefaultVersionUri);
 
-				entry = cache.Lookup (thumbnail_path);
+				entry = cache.Lookup (photo.DefaultVersionUri);
 				if (entry == null)
-					cache.Request (thumbnail_path, cell, ThumbnailWidth, ThumbnailHeight);
+					cache.Request (photo.DefaultVersionUri, cell, ThumbnailWidth, ThumbnailHeight);
 			}
 		}
 
@@ -1285,13 +1281,13 @@ namespace FSpot.Widgets
 			if (order >= 0 && order < collection.Count) {
 				System.Uri uri = collection [order].DefaultVersionUri;
 
-				if (result == null && !System.IO.File.Exists (FSpot.ThumbnailGenerator.ThumbnailPath (uri)))
+				if (result == null && !ThumbnailFactory.ThumbnailExists (uri))
 					FSpot.ThumbnailGenerator.Default.Request (uri, 0, 256, 256);
 
 				if (result == null)
 					return;
 
-				if (!FSpot.PhotoLoader.ThumbnailIsValid (uri, result))
+				if (!ThumbnailFactory.ThumbnailIsValid (result, uri))
 					FSpot.ThumbnailGenerator.Default.Request (uri, 0, 256, 256);
 			}
 

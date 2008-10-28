@@ -10,10 +10,11 @@
 using System;
 using System.IO;
 using FSpot.Utils;
+using FSpot.Platform;
 
 namespace FSpot {
 	public class ThumbnailGenerator : PixbufLoader {
-		private static Gnome.ThumbnailFactory factory = new Gnome.ThumbnailFactory (Gnome.ThumbnailSize.Large);
+
 		static public ThumbnailGenerator Default = new ThumbnailGenerator ();
 		
 		public const string ThumbMTime = "tEXt::Thumb::MTime";
@@ -21,6 +22,7 @@ namespace FSpot {
 		public const string ThumbImageWidth = "tEXt::Thumb::Image::Width";
 		public const string ThumbImageHeight = "tEXt::Thumb::Image::Height"; 
 
+		[Obsolete ("Use Create (Uri) instead")]
 		public static Gdk.Pixbuf Create (string path)
 		{
 			return Create (UriUtils.PathToFileUri (path));
@@ -29,75 +31,39 @@ namespace FSpot {
 		public static Gdk.Pixbuf Create (Uri uri)
 		{
 			try {
-				using (ImageFile img = ImageFile.Create (uri)) {
-					Gdk.Pixbuf thumb = img.Load (256, 256);
+				Gdk.Pixbuf thumb;
 
-					if (thumb != null)
-						Save (thumb, uri);
-					return thumb;
+				using (ImageFile img = ImageFile.Create (uri)) {
+					thumb = img.Load (256, 256);
 				}
-			} catch {
+
+				if (thumb == null)
+					return null;
+
+				try { //Setting the thumb options
+					Gnome.Vfs.FileInfo vfs = new Gnome.Vfs.FileInfo (UriUtils.UriToStringEscaped (uri));
+					DateTime mtime = vfs.Mtime;
+
+					PixbufUtils.SetOption (thumb, ThumbUri, UriUtils.UriToStringEscaped (uri));
+					PixbufUtils.SetOption (thumb, ThumbMTime, ((uint)GLib.Marshaller.DateTimeTotime_t (mtime)).ToString ());
+				} catch (System.Exception e) {
+					Log.Exception (e);
+				}
+
+				Save (thumb, uri);
+				return thumb;
+			} catch (Exception e) {
+				Log.Exception (e);
 				return null;
 			}
 		}
 		
-		public static bool ThumbnailIsValid (Gdk.Pixbuf thumbnail, System.Uri uri)
+		private static void Save (Gdk.Pixbuf image, Uri uri)
 		{
-			bool valid = false;
-
-			try {	
-				Gnome.Vfs.FileInfo vfs = new Gnome.Vfs.FileInfo (uri.ToString ());
-				DateTime mtime = vfs.Mtime;
-				valid  = Gnome.Thumbnail.IsValid (thumbnail, UriUtils.UriToStringEscaped (uri), mtime);
-			} catch (System.IO.FileNotFoundException) {
-				// If the original file is not on disk, the thumbnail is as valid as it's going to get
-				valid = true;
-			} catch (System.Exception e) {
-				System.Console.WriteLine (e);
-				valid = false;
-			}
-			
-			return valid;
-		}
-
-		public static string ThumbnailPath (System.Uri uri)
-		{
-			string large_path = Gnome.Thumbnail.PathForUri (UriUtils.UriToStringEscaped (uri), Gnome.ThumbnailSize.Large);
-			return large_path;
-		}
-
-		[Obsolete ("Use ThumbnailPath (System.Uri) instead")]
-		public static string ThumbnailPath (string path) 
-		{
-			return ThumbnailPath (UriUtils.PathToFileUri (path));
-		}
-
-		public static void Save (Gdk.Pixbuf image, Uri dest)
-		{			
-			string uri = UriUtils.UriToStringEscaped (dest);
-			System.DateTime mtime = DateTime.Now;
-
-			// Use Gnome.Vfs
 			try {
-				Gnome.Vfs.FileInfo vfs = new Gnome.Vfs.FileInfo (uri);
-				mtime = vfs.Mtime;
-	      
-				PixbufUtils.SetOption (image, ThumbUri, uri);
-				PixbufUtils.SetOption (image, ThumbMTime,
-						       ((uint)GLib.Marshaller.DateTimeTotime_t (mtime)).ToString ());
-			} catch (System.Exception e) {
-				Console.WriteLine (e);
-			}
-
-			//System.Console.WriteLine ("saving uri \"{0}\" mtime \"{1}\"", 
-			//			  image.GetOption ("tEXt::Thumb::URI"), 
-			//			  image.GetOption ("tEXt::Thumb::MTime"));
-			
-			string large_path = ThumbnailPath (uri);
-			try {
-				ThumbnailCache.Default.RemoveThumbnailForPath (large_path);
+				ThumbnailCache.Default.RemoveThumbnailForUri (uri);
 			} finally {
-				factory.SaveThumbnail (image, uri, mtime);
+				ThumbnailFactory.SaveThumbnail (image, uri);
 			}
 		}
 
@@ -114,10 +80,7 @@ namespace FSpot {
 
 		public override void Request (Uri uri, int order, int width, int height)
 		{
-			if (!uri.IsFile)
-				Log.Debug ("FIXME: compute timestamp on non file uri too");
-			if (uri.IsFile && System.IO.File.Exists (ThumbnailPath (uri)) 
-				&& System.IO.File.GetLastWriteTime (ThumbnailPath (uri)) >= System.IO.File.GetLastWriteTime (uri.AbsolutePath))
+			if (ThumbnailFactory.ThumbnailExists (uri) && ThumbnailFactory.ThumbnailIsRecent (uri))
 				return;
 
 			base.Request (uri, order, width, height);
