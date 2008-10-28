@@ -1,5 +1,5 @@
 /*
- * FSpot.Utils.ScreenSaver.cs
+ * FSpot.Platform.Gnome.ScreenSaver.cs
  *
  * Author(s)
  * 	Stephane Delcroix  <stephane@delcroix.org>
@@ -13,7 +13,9 @@ using System.Runtime.InteropServices;
 
 using NDesk.DBus;
 
-namespace FSpot.Utils
+using FSpot.Utils;
+
+namespace FSpot.Platform
 {
 	[Interface ("org.gnome.ScreenSaver")]
 	public interface IScreenSaver
@@ -41,13 +43,13 @@ namespace FSpot.Utils
 			if (inhibited)
 				return cookie;
 
-			Log.Information ("Inhibit screensaver for slideshow");
+			Log.Information ("Inhibit screensaver for {0}", reason);
 			try {
 				cookie = GnomeScreenSaver.Inhibit ("f-spot", reason);
 				inhibited = true;
 			} catch (Exception ex) {
 				Log.Exception ("Error Inhibiting the screenserver", ex);
-			}	
+			}
 			return cookie;
 		}
 

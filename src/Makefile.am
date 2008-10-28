@@ -54,8 +54,7 @@ UTILS_CSDISTFILES =				\
 	$(srcdir)/Utils/GtkUtil.cs		\
 	$(srcdir)/Utils/Log.cs			\
 	$(srcdir)/Utils/Unix.cs			\
-	$(srcdir)/Utils/UriUtils.cs		\
-	$(srcdir)/Utils/ScreenSaver.cs
+	$(srcdir)/Utils/UriUtils.cs
 
 JOBSCHEDULER_CSDISTFILES =				\
 	$(srcdir)/JobScheduler/FSpotCompat.cs		\
@@ -77,10 +76,12 @@ WIDGETS_CSDISTFILES =				\
 
 GNOME_PLATFORM_CSDISTFILES =				\
 	$(srcdir)/Platform/Gnome/PreferenceBackend.cs	\
+	$(srcdir)/Platform/Gnome/ScreenSaver.cs		\
 	$(srcdir)/Platform/Gnome/ThumbnailFactory.cs
 
 NULL_PLATFORM_CSDISTFILES =				\
-	$(srcdir)/Platform/Null/PreferenceBackend.cs
+	$(srcdir)/Platform/Null/PreferenceBackend.cs	\
+	$(srcdir)/Platform/Null/ScreenSaver.cs
 
 F_SPOT_CSDISTFILES =				\
 	$(srcdir)/AsyncPixbufLoader.cs		\
@@ -319,6 +320,10 @@ GNOME_PLATFORM_ASSEMBLIES =			\
 	-pkg:gnome-sharp-2.0			\
 	-pkg:gtk-sharp-2.0			\
 	-pkg:gconf-sharp-2.0			\
+	$(LINK_DBUS)				\
+	-r:FSpot.Utils.dll
+
+NULL_PLATFORM_ASSEMBLIES =			\
 	-r:FSpot.Utils.dll
 
 F_SPOT_ASSEMBLIES = 				\

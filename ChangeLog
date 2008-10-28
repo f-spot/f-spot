@@ -1,3 +1,12 @@
+2008-10-22  Stephane Delcroix  <sdelcroix@novell.com>
+
+	* src/Makefile.am
+	* src/Platform/Gnome/ScreenSaver.cs:
+	* src/Platform/Null/ScreenSaver.cs: move the Screensaver code from
+	Utils/ to Platform/, stub an empty NullScreensaver
+
+	* src/FullScreenView.cs: namespace changes for the moved ScreenSaver
+
 2008-10-24  Stephane Delcroix  <sdelcroix@novell.com>
 
 	* src/Preferences.cs: change the sidebar_size default.

@@ -310,12 +310,12 @@ namespace FSpot {
 		public bool PlayPause ()
 		{
 			if (notebook.CurrentPage == 0) {
-				FSpot.Utils.ScreenSaver.Inhibit ("Running slideshow mode");
+				FSpot.Platform.ScreenSaver.Inhibit ("Running slideshow mode");
 				notebook.CurrentPage = 1;
 				play_pause_button.IconName = "media-playback-pause";
 				display.Start ();
 			} else {
-				FSpot.Utils.ScreenSaver.UnInhibit ();
+				FSpot.Platform.ScreenSaver.UnInhibit ();
 				notebook.CurrentPage = 0;
 				play_pause_button.IconName = "media-playback-start";
 				display.Stop ();
@@ -326,7 +326,7 @@ namespace FSpot {
 		public void Quit ()
 		{
 			hide_cursor_delay.Stop ();
-			FSpot.Utils.ScreenSaver.UnInhibit ();
+			FSpot.Platform.ScreenSaver.UnInhibit ();
 
 			this.Destroy ();
 		}
