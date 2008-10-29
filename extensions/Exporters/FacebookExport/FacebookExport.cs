@@ -25,6 +25,7 @@ using FSpot.Utils;
 using FSpot.UI.Dialog;
 using FSpot.Extensions;
 using FSpot.Filters;
+using FSpot.Platform;
 
 using Mono.Facebook;
 
@@ -409,16 +410,13 @@ namespace FSpot.Exporter.Facebook
 			tag_treeview.Model = new TagStore (account.Facebook, tags [current_item], friends);
 
 			IBrowsableItem item = items [current_item];
-			string thumbnail_path = ThumbnailGenerator.ThumbnailPath (item.DefaultVersionUri);
 
 			if (tag_image_eventbox.Children.Length > 0) {
 				tag_image_eventbox.Remove (tag_image);
 				tag_image.Destroy ();
 			}
 
-			using (ImageFile image = new ImageFile (thumbnail_path)) {
-				Gdk.Pixbuf data = image.Load ();
-				data = PixbufUtils.ScaleToMaxSize (data, 400, 400);
+			using (Gdk.Pixbuf data = PixbufUtils.ScaleToMaxSize (ThumbnailFactory.LoadThumbnail (item.DefaultVersionUri), 400, 400)) {
 				tag_image_height = data.Height;
 				tag_image_width = data.Width;
 				tag_image = new Gtk.Image (data);
