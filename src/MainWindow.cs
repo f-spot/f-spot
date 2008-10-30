@@ -1445,26 +1445,32 @@ public class MainWindow {
 				HandleRemoveCommand (sender, args);
 			break;
 		case Gdk.Key.Key_0:
+		case Gdk.Key.KP_0:
 			if (alt)
 				HandleRatingMenuSelected (0);
 			break;
 		case Gdk.Key.Key_1:
+		case Gdk.Key.KP_1:
 			if (alt)
 				HandleRatingMenuSelected (1);
 			break;
 		case Gdk.Key.Key_2:
+		case Gdk.Key.KP_2:
 			if (alt)
 				HandleRatingMenuSelected (2);
 			break;
 		case Gdk.Key.Key_3:
+		case Gdk.Key.KP_3:
 			if (alt)
 				HandleRatingMenuSelected (3);
 			break;
 		case Gdk.Key.Key_4:
+		case Gdk.Key.KP_4:
 			if (alt)
 				HandleRatingMenuSelected (4);
 			break;
 		case Gdk.Key.Key_5:
+		case Gdk.Key.KP_5:
 			if (alt)
 				HandleRatingMenuSelected (5);
 			break;
