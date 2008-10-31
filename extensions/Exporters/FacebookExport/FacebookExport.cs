@@ -266,6 +266,7 @@ namespace FSpot.Exporter.Facebook
 			thumbnail_iconview = new FSpot.Widgets.IconView (selection);
 			thumbnail_iconview.DisplayDates = false;
 			thumbnail_iconview.DisplayTags = false;
+			thumbnail_iconview.DisplayRatings = false;
 			thumbnail_iconview.ButtonPressEvent += HandleThumbnailIconViewButtonPressEvent;
 			thumbnail_iconview.KeyPressEvent += HandleThumbnailIconViewKeyPressEvent;
 			thumbnail_iconview.Show ();
