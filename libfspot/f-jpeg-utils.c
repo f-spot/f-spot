@@ -43,8 +43,6 @@
 
 #include <glib.h>
 
-#include <libgnome/gnome-i18n.h>
-
 #include <libgnomevfs/gnome-vfs-types.h>
 #include <libgnomevfs/gnome-vfs-ops.h>
 #include <libgnomevfs/gnome-vfs-utils.h>
