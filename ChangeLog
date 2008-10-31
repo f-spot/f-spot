@@ -1,3 +1,13 @@
+2008-10-31  Stephane Delcroix  <sdelcroix@novell.com>
+
+	* libeog/eog-image.c:
+	* libeog/eog-scroll-view.c:
+	* libeog/image-view.c:
+	* libeog/ui-image.cs: remove the gnome-i18n.h header, replace with
+	gi18n.h where appropriate. Replace GNOME_BOILERPLATE and 
+	GNOME_CALL_PARENT by GObject macros or code. Drop the gnome-macro.h
+	header too.
+
 2008-10-30  Stephane Delcroix  <sdelcroix@novell.com>
 
 	* src/MainWindow.cs: Allow rating using Alt + NumPad 0 to 5

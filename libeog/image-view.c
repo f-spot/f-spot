@@ -27,8 +27,7 @@
 #include <gdk/gdk.h>
 #include <gdk/gdkkeysyms.h>
 #include <gtk/gtkmain.h>
-#include <libgnome/gnome-macros.h>
-#include <libgnome/gnome-i18n.h>
+#include <glib/gi18n.h>
 #include "cursors.h"
 #include "image-view.h"
 #include "uta.h"
@@ -142,10 +141,7 @@ enum {
 
 static guint image_view_signals[LAST_SIGNAL];
 
-GNOME_CLASS_BOILERPLATE (ImageView,
-			 image_view,
-			 GtkWidget,
-			 GTK_TYPE_WIDGET);
+G_DEFINE_TYPE (ImageView, image_view, GTK_TYPE_WIDGET);
 
 /* VOID:OBJECT,OBJECT (gtkmarshalers.list:69) */
 void
@@ -241,7 +237,7 @@ image_view_set_property (GObject      *object,
 
 /* Object initialization function for the image view */
 static void
-image_view_instance_init (ImageView *view)
+image_view_init (ImageView *view)
 {
 	ImageViewPrivate *priv;
 
@@ -321,7 +317,7 @@ image_view_dispose (GObject *object)
 
 	remove_dirty_region (view);
 
-	GNOME_CALL_PARENT (G_OBJECT_CLASS, dispose, (object));
+	G_OBJECT_CLASS (image_view_parent_class)->dispose (object);
 }
 
 /* Finalize handler for the image view */
@@ -339,7 +335,7 @@ image_view_finalize (GObject *object)
 
 	g_free (priv);
 
-	GNOME_CALL_PARENT (G_OBJECT_CLASS, finalize, (object));
+	G_OBJECT_CLASS (image_view_parent_class)->finalize (object);
 }
 
 
@@ -1084,8 +1080,8 @@ image_view_unmap (GtkWidget *widget)
 
 	remove_dirty_region (IMAGE_VIEW (widget));
 
-	if (GTK_WIDGET_CLASS (parent_class)->unmap)
-		(* GTK_WIDGET_CLASS (parent_class)->unmap) (widget);
+	if (GTK_WIDGET_CLASS (image_view_parent_class)->unmap)
+		(* GTK_WIDGET_CLASS (image_view_parent_class)->unmap) (widget);
 }
 
 /* Realize handler for the image view */
@@ -1141,8 +1137,8 @@ image_view_unrealize (GtkWidget *widget)
 
 	remove_dirty_region (IMAGE_VIEW (widget));
 
-	if (GTK_WIDGET_CLASS (parent_class)->unrealize)
-		(* GTK_WIDGET_CLASS (parent_class)->unrealize) (widget);
+	if (GTK_WIDGET_CLASS (image_view_parent_class)->unrealize)
+		(* GTK_WIDGET_CLASS (image_view_parent_class)->unrealize) (widget);
 }
 
 /* Size_request handler for the image view */
@@ -1621,7 +1617,7 @@ image_view_key_press_event (GtkWidget *widget, GdkEventKey *event)
 	if (handled)
 		return TRUE;
 	else
-		return (* GTK_WIDGET_CLASS (parent_class)->key_press_event) (widget, event);
+		return (* GTK_WIDGET_CLASS (image_view_parent_class)->key_press_event) (widget, event);
 }
 
 /* Callback used when an adjustment is changed */

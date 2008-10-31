@@ -1,7 +1,6 @@
+#include <glib/gi18n.h>
 #include <glib/gthread.h>
 #include <glib/gqueue.h>
-#include <libgnome/gnome-macros.h>
-#include <libgnome/gnome-i18n.h>
 #include <libgnomeui/gnome-thumbnail.h>
 #include <gdk-pixbuf/gdk-pixbuf.h>
 #include <gtk/gtk.h>
@@ -247,10 +246,7 @@ add_image_to_queue (EogImage *image)
 
    ------------------------------------*/
 
-GNOME_CLASS_BOILERPLATE (EogImage,
-			 eog_image,
-			 GObject,
-			 G_TYPE_OBJECT);
+G_DEFINE_TYPE (EogImage, eog_image, G_TYPE_OBJECT);
 
 static void
 eog_image_dispose (GObject *object)
@@ -370,7 +366,7 @@ eog_image_class_init (EogImageClass *klass)
 }
 
 static void
-eog_image_instance_init (EogImage *img)
+eog_image_init (EogImage *img)
 {
 	EogImagePrivate *priv;
 

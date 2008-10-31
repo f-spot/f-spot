@@ -22,7 +22,6 @@
 #include <config.h>
 #include <gtk/gtksignal.h>
 #include <gtk/gtkwindow.h>
-#include <libgnome/gnome-i18n.h>
 #include "image-view.h"
 #include "ui-image.h"
 #include "zoom.h"
