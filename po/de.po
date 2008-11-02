@@ -5,14 +5,13 @@
 # Hendrik Richter <hendrikr@gnome.org>, 2006, 2008.
 # Hanno Böck <hanno@hboeck.de>, 2008.
 # Arun Persaud <arun@nubati.net>, 2008.
-# fridtjof <fridtjof@fbunet.de>, 2008.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: f-spot\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-11-02 09:54+0100\n"
-"PO-Revision-Date: 2008-11-02 09:57+0100\n"
+"POT-Creation-Date: 2008-11-02 10:41+0100\n"
+"PO-Revision-Date: 2008-11-02 10:42+0100\n"
 "Last-Translator: Hendrik Richter <hendrikr@gnome.org>\n"
 "Language-Team: German GNOME Translators <gnome-de@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -629,7 +628,7 @@ msgstr "Rote-Augen-Reduzierung"
 
 #: ../src/Editors/RedEyeEditor.cs:21
 msgid "Fix!"
-msgstr "Korrigieren"
+msgstr "Korrigiere!"
 
 #: ../src/Editors/RedEyeEditor.cs:25
 msgid "Select the eyes you wish to fix."
@@ -2566,7 +2565,7 @@ msgstr "Datei_namen anzeigen"
 
 #: ../src/f-spot.glade.h:83
 msgid "Display only those photos that were imported in specified Rolls."
-msgstr "Nur Fotos darstellen, die in den angegebenen Importen sind."
+msgstr "Stelle nur Fotos dar, die in den angegebenen Importen sind."
 
 #: ../src/f-spot.glade.h:84
 msgid "Do not send a mail"
@@ -2915,7 +2914,7 @@ msgstr "Gesamte Originalgröße"
 
 #: ../src/f-spot.glade.h:185
 msgid "Try to use the system display profile"
-msgstr "Versuchen, das System-Anzeigeprofil zu verwenden"
+msgstr "Es wird versucht, das System-Anzeigeprofil zu verwenden"
 
 #: ../src/f-spot.glade.h:186
 msgid "View"
@@ -3399,7 +3398,7 @@ msgstr "{0} von ihrer monatlichen Quota von {1} in Benutzung"
 
 #: ../extensions/Exporters/FlickrExport/FlickrExport.cs:297
 msgid "Unable to log on"
-msgstr "Konnte nicht einloggen"
+msgstr "Anmeldung fehlgeschlagen"
 
 #: ../extensions/Exporters/FlickrExport/FlickrExport.cs:317
 #, csharp-format
@@ -3622,8 +3621,7 @@ msgstr "Fehler beim Verbinden zur Gallery"
 #: ../extensions/Exporters/GalleryExport/GalleryExport.cs:443
 #, csharp-format
 msgid "The following error was encountered while attempting to log in: {0}"
-msgstr ""
-"Der folgende Fehler ist beim Versuch, ein Album anzulegen, aufgetreten: {0}"
+msgstr "Der folgende Fehler trat beim Anmelden auf: {0}"
 
 #: ../extensions/Exporters/GalleryExport/GalleryExport.cs:419
 msgid "A Gallery with this name already exists"
@@ -3770,8 +3768,8 @@ msgid ""
 "requested operation:\n"
 "{0} ({1})"
 msgstr ""
-"Der folgende Fehler ist beim Versuch, die gewünschte Aktion auszuführen "
-"aufgetreten:\n"
+"Der folgende Fehler trat beim Versuch auf, die gewünschte Aktion "
+"auszuführen:\n"
 "{0} ({1})"
 
 #: ../extensions/Exporters/FacebookExport/FacebookExport.addin.xml.h:1
@@ -3797,7 +3795,7 @@ msgstr "Sie sind nicht angemeldet."
 
 #: ../extensions/Exporters/FacebookExport/FacebookExport.cs:322
 msgid "Waiting for authentication"
-msgstr "Warte auf Authentifizierung"
+msgstr "Warte auf Legitimation"
 
 #: ../extensions/Exporters/FacebookExport/FacebookExport.cs:322
 msgid ""
@@ -3818,8 +3816,8 @@ msgid ""
 "There was a problem logging into Facebook.  Check your credentials and try "
 "again."
 msgstr ""
-"Es gab ein Problem beim Einloggen in Facebook.  Überprüfen Sie Ihre Daten "
-"und versuchen Sie es erneut."
+"Es gab ein Problem beim Anmelden in Facebook.  Überprüfen Sie Ihre Daten und "
+"versuchen Sie es erneut."
 
 #. Note for translators: {0} and {1} are respectively firstname and surname of the user
 #: ../extensions/Exporters/FacebookExport/FacebookExport.cs:341
@@ -3834,11 +3832,11 @@ msgstr "Album muss einen Namen haben"
 #: ../extensions/Exporters/FacebookExport/FacebookExport.cs:491
 msgid "Please name your album or choose an existing album."
 msgstr ""
-"Bitte geben Sie den Namen des Albums an oder wählen Sie ein existierendes"
+"Bitte geben Sie den Namen des Albums an oder wählen Sie ein existierendes."
 
 #: ../extensions/Exporters/FacebookExport/FacebookExport.cs:504
 msgid "Creating a new album failed"
-msgstr "Erstellung eines neuen Album fehlgeschlagen"
+msgstr "Erstellung eines neuen Albums ist fehlgeschlagen"
 
 #: ../extensions/Exporters/FacebookExport/FacebookExport.cs:504
 #, csharp-format
@@ -4015,7 +4013,7 @@ msgstr "Importiere:"
 
 #: ../extensions/Tools/MergeDb/MergeDb.glade.h:12
 msgid "Keep the images at their original location"
-msgstr "Belasse die Bilder in ihrem ursprünglichen Verzeichnis"
+msgstr "Belasse die Bilder in ihrem ursprünglichen Ordner"
 
 #: ../extensions/Tools/MergeDb/MergeDb.glade.h:13
 msgid "Merge another f-spot collection"
@@ -4032,8 +4030,8 @@ msgid ""
 " Please select that folder so I can do the mapping.</big>"
 msgstr ""
 "<big>Die Datenbank verweist auf Dateien im Ordner <b>{0}</b>.\n"
-"Bitte wählen Sie diesen Ordner aus, damit ich die Verweise anlegen kann.</"
-"big>"
+"Bitte wählen Sie diesen Ordner aus, damit die Verweise angelegt werden "
+"können.</big>"
 
 #: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.addin.xml.h:1
 msgid "_PicasaWeb..."
@@ -4048,7 +4046,7 @@ msgstr "Fehler beim Erstellen des Albums"
 msgid ""
 "The following error was encountered while attempting to create an album: {0}"
 msgstr ""
-"Der folgende Fehler trat beim Versuch ein neues Album zu erstellen auf: {0}"
+"Der folgende Fehler trat beim Versuch auf, ein neues Album zu erstellen: {0}"
 
 #: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:621
 #, csharp-format
@@ -4140,7 +4138,7 @@ msgstr "Anmeldung bei Tabblo"
 
 #: ../extensions/Exporters/TabbloExport/Tabblo/Connection.cs:241
 msgid "Obtaining URL for upload"
-msgstr "Hole URL für Hochladen"
+msgstr "URL zum Hochladen wird ermittelt"
 
 #: ../extensions/Exporters/TabbloExport/TabbloExport.addin.xml.h:1
 msgid "_Tabblo..."
@@ -4172,7 +4170,7 @@ msgstr "Es gab einen Vertrauensfehler beim Verbindungsaufbau"
 
 #: ../extensions/Exporters/TabbloExport/TrustError.glade.h:3
 msgid "Abort this session"
-msgstr "Breche die Sitzung ab"
+msgstr "Sitzung wird abgebrochen"
 
 #: ../extensions/Exporters/TabbloExport/TrustError.glade.h:4
 msgid "Always trust this site's certificate"
@@ -4188,7 +4186,7 @@ msgstr "Vertrauensfehler"
 
 #: ../extensions/Exporters/TabbloExport/TrustError.glade.h:7
 msgid "Trust the site's certificate this once"
-msgstr "Diesem Zertifikat nur ein Mal vertrauen"
+msgstr "Diesem Zertifikat nur dieses Mal vertrauen"
 
 #~ msgid "Metadata Browser"
 #~ msgstr "Metadaten-Browser"
