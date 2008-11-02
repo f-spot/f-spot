@@ -108,6 +108,9 @@ namespace FSpot
 					if (Math.Max (cached_icon.Width, cached_icon.Height) <= (int) tag_icon_size) 
 						return cached_icon;
 				}
+				if (icon == null)
+					return null;
+
 				if (Math.Max (icon.Width, icon.Height) >= (int) tag_icon_size) { //Don't upscale
 					if (cached_icon != null)
 						cached_icon.Dispose ();
