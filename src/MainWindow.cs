@@ -268,11 +268,8 @@ public class MainWindow {
  		LoadPreference (Preferences.COLOR_MANAGEMENT_USE_X_PROFILE);
  		FSpot.ColorManagement.LoadSettings();
 	
-#if GTK_2_10
 		pagesetup_menu_item.Activated += HandlePageSetupActivated;
-#else
-		pagesetup_menu_item.Visible = false;
-#endif
+
 		toolbar = new Gtk.Toolbar ();
 		toolbar_vbox.PackStart (toolbar);
 
@@ -1724,21 +1721,15 @@ public class MainWindow {
 			cam.ReleaseGPhotoResources ();
 		}
 	}
-#if GTK_2_10
 	void HandlePageSetupActivated (object o, EventArgs e)
 	{
 		FSpot.Global.PageSetup = Print.RunPageSetupDialog (this.Window, FSpot.Global.PageSetup, null);
 	}
-#endif
 	
 	void HandlePrintCommand (object sender, EventArgs e)
 	{
-#if !GTK_2_10
-		new FSpot.PrintDialog (SelectedPhotos ());
-#else
 		FSpot.PrintOperation print = new FSpot.PrintOperation (SelectedPhotos ());
 		print.Run (PrintOperationAction.PrintDialog, null);
-#endif
 	}
 
 	private Gtk.Dialog info_display_window;

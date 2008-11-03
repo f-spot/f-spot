@@ -68,12 +68,10 @@ namespace FSpot {
 		}
 #endif
 
-#if GTK_2_10
 		private static Gtk.PageSetup page_setup = null;
 		public static Gtk.PageSetup PageSetup {
 			get { return page_setup; }
 			set { page_setup = value; }
 		}
-#endif
 	}
 }

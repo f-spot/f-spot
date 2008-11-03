@@ -203,7 +203,6 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/PixbufCache.cs		\
 	$(srcdir)/PixelBuffer.cs		\
 	$(srcdir)/Preferences.cs 		\
-	$(srcdir)/PrintDialog.cs		\
 	$(srcdir)/PrintOperation.cs		\
 	$(srcdir)/ProgressDialog.cs		\
 	$(srcdir)/RatingFilter.cs		\

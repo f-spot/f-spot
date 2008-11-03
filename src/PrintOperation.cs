@@ -7,7 +7,6 @@
  * This is free software. See COPYING for details.
  */
 
-#if GTK_2_10
 using Cairo;
 using System;
 using System.Runtime.InteropServices;
@@ -236,4 +235,3 @@ namespace FSpot
 		}
 	}
 }
-#endif

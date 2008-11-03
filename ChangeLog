@@ -12,6 +12,19 @@
 
 	* src/MainWindow.cs: Allow rating using Alt + NumPad 0 to 5
 
+2008-10-30  Stephane Delcroix  <sdelcroix@novell.com>
+
+	* configure.in: bump the gtk/gtk-sharp dependency to 2.10
+
+	* src/PrintDialog.cs: obsolete: removed
+
+	* src/Core/Global.cs:
+	* src/FullScreenView.cs:
+	* src/ItemAction.cs:
+	* src/MainWindow.cs:
+	* src/Makefile.am:
+	* src/PrintOperation.cs: remove the GTK_2_10 ifdefs
+
 2008-10-29  Stephane Delcroix  <sdelcroix@novell.com>
 
 	* src/Widgets/OpenWithMenu.cs: moved from the Extensions ns, ported

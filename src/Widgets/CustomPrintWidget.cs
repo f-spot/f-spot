@@ -14,7 +14,6 @@ using FSpot.Utils;
 
 namespace FSpot.Widgets
 {
-#if GTK_2_10
 	public class CustomPrintWidget : VBox
 	{
 		public delegate void ChangedHandler (Gtk.Widget widget);
@@ -162,5 +161,4 @@ namespace FSpot.Widgets
 			TriggerChanged (this, null);
 		}
 	}
-#endif
 }
