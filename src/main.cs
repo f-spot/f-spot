@@ -66,6 +66,8 @@ namespace FSpot
 			bool view = false;
 			bool slideshow = false;
 			string import_uri = null;
+
+			Catalog.Init ("f-spot", Defines.LOCALE_DIR);
 			
 			FSpot.Global.PhotoDirectory = Preferences.Get<string> (Preferences.STORAGE_PATH);
 			for (int i = 0; i < args.Length && !shutdown; i++) {
@@ -164,8 +166,6 @@ namespace FSpot
 			Application.Init (Defines.PACKAGE, ref args);
 
 			if (slideshow == true) {
-				Catalog.Init ("f-spot", Defines.LOCALE_DIR);
-
 				Core core = new Core ();
 				core.ShowSlides (null);
 				Application.Run ();
@@ -224,7 +224,6 @@ namespace FSpot
 							Gtk.Rc.AddDefaultFile (Preferences.Get<string> (Preferences.GTK_RC));
 						}
 
-						Catalog.Init ("f-spot", Defines.LOCALE_DIR);
 						try {
 							Gtk.Window.DefaultIconList = new Gdk.Pixbuf [] {
 								GtkUtil.TryLoadIcon (FSpot.Global.IconTheme, "f-spot", 16, (Gtk.IconLookupFlags)0),

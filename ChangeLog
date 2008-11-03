@@ -1,5 +1,10 @@
 2008-11-03  Stephane Delcroix  <sdelcroix@novell.com>
 
+	* src/main.cs: initialize the translation catalog earlier. Fix a nasty 
+	bug.
+
+2008-11-03  Stephane Delcroix  <sdelcroix@novell.com>
+
 	* configure.in: check for gtk-sharp 2.12.6 in which we can use AppInfo
 
 	* src/MainWindow.cs:
