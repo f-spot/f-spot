@@ -61,7 +61,11 @@ namespace FSpot.Extensions
 		public Gtk.Menu GetMenu ()
 		{
 			owm = new Widgets.OpenWithMenu (MainWindow.Toplevel.SelectedMimeTypes, "f-spot");
+#if GTK_SHARP_2_12_6
 			owm.ApplicationActivated += delegate (AppInfo app) { MainWindow.Toplevel.HandleOpenWith (this, app); };
+#else
+			owm.ApplicationActivated += delegate (Gnome.Vfs.MimeApplication app) { MainWindow.Toplevel.HandleOpenWith (this, app); };
+#endif
 			return (Gtk.Menu) owm;
 		}
 

@@ -108,6 +108,9 @@ fi
 if pkg-config --atleast-version=2.12.2 gtk-sharp-2.0; then
    CSC_DEFINES="$CSC_DEFINES -d:GTK_2_12_2"
 fi
+if pkg-config --atleast-version=2.12.6 gtk-sharp-2.0; then
+   CSC_DEFINES="$CSC_DEFINES -d:GTK_SHARP_2_12_6"
+fi
 if pkg-config --atleast-version=1.2.5 mono; then
    CSC_DEFINES="$CSC_DEFINES -d:MONO_1_2_5"
 fi

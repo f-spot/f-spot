@@ -15,13 +15,19 @@ using System.Collections.Generic;
 
 using Gtk;
 using Gdk;
+#if GTK_SHARP_2_12_6
 using GLib;
+#endif
 
 using Mono.Unix;
 
 namespace FSpot.Widgets {
 	public class OpenWithMenu: Gtk.Menu {
+#if GTK_SHARP_2_12_6
 		public delegate void OpenWithHandler (AppInfo app_info);
+#else
+		public delegate void OpenWithHandler (Gnome.Vfs.MimeApplication app_info);
+#endif
 		public event OpenWithHandler ApplicationActivated;
 
 		public delegate string [] TypeFetcher ();
@@ -42,6 +48,13 @@ namespace FSpot.Widgets {
 			set { show_icons = value; }
 		}
 
+#if !GTK_SHARP_2_12_6
+		static OpenWithMenu ()
+		{
+			Gnome.Vfs.Vfs.Initialize ();
+		}
+#endif
+
 		public OpenWithMenu (TypeFetcher type_fetcher) : this (type_fetcher, null)
 		{
 		}
@@ -59,7 +72,11 @@ namespace FSpot.Widgets {
 			for (int i = 0; i < dead_pool.Length; i++)
 				dead_pool [i].Destroy ();
 
+#if GTK_SHARP_2_12_6
 			foreach (AppInfo app in ApplicationsFor (type_fetcher ())) {
+#else
+			foreach (Gnome.Vfs.MimeApplication app in ApplicationsFor (type_fetcher ())) {
+#endif
 				AppMenuItem i = new AppMenuItem (app, show_icons);
 				i.Activated += HandleItemActivated;
 				Append (i);
@@ -74,11 +91,20 @@ namespace FSpot.Widgets {
 			ShowAll ();
 		}
 
+#if GTK_SHARP_2_12_6
 		AppInfo[] ApplicationsFor (string [] types)
+#else
+		Gnome.Vfs.MimeApplication[] ApplicationsFor (string [] types)
+#endif
 		{
+#if GTK_SHARP_2_12_6
 			List<AppInfo> app_infos = new List<AppInfo> ();
+#else
+			List<Gnome.Vfs.MimeApplication> app_infos = new List<Gnome.Vfs.MimeApplication> ();
+#endif
 			HashSet<string> existing_ids = new HashSet<string> ();
 			foreach (string type in types)
+#if GTK_SHARP_2_12_6
 				foreach (AppInfo appinfo in AppInfoAdapter.GetAllForType (type)) {
 					if (existing_ids.Contains (appinfo.Id))
 						continue;
@@ -89,6 +115,18 @@ namespace FSpot.Widgets {
 					app_infos.Add (appinfo);
 					existing_ids.Add (appinfo.Id);
 				}
+#else
+				foreach (Gnome.Vfs.MimeApplication appinfo in Gnome.Vfs.Mime.GetAllApplications (type)) {
+					if (existing_ids.Contains (appinfo.DesktopId))
+						continue;
+					if (!appinfo.SupportsUris ())
+						continue;
+					if (ignore_apps != null && ignore_apps.Contains (appinfo.BinaryName))
+						continue;
+					app_infos.Add (appinfo);
+					existing_ids.Add (appinfo.DesktopId);
+				}
+#endif
 			return app_infos.ToArray ();
 		}
 
@@ -102,12 +140,24 @@ namespace FSpot.Widgets {
 
 		private class AppMenuItem : ImageMenuItem {
 
+#if GTK_SHARP_2_12_6
 			AppInfo app;
+#else
+			Gnome.Vfs.MimeApplication app;
+#endif
+#if GTK_SHARP_2_12_6
 			public AppInfo App {
+#else
+			public Gnome.Vfs.MimeApplication App {
+#endif
 				get { return app; }
 			}
 
+#if GTK_SHARP_2_12_6
 			public AppMenuItem (AppInfo app, bool show_icon) : base (app.Name)
+#else
+			public AppMenuItem (Gnome.Vfs.MimeApplication app, bool show_icon) : base (app.Name)
+#endif
 			{
 				this.app = app;
 
@@ -115,6 +165,7 @@ namespace FSpot.Widgets {
 					return;
 
 				Pixbuf pixbuf = null;
+#if GTK_SHARP_2_12_6
 				if (app.Icon is ThemedIcon) {
 					try {
 						pixbuf = IconTheme.Default.ChooseIcon ((app.Icon as ThemedIcon).Names, 16, (IconLookupFlags)0).LoadIcon ();
@@ -122,6 +173,16 @@ namespace FSpot.Widgets {
 					}
 				} else
 					FSpot.Utils.Log.DebugFormat ("Loading icons from {0} is not implemented", app.Icon);
+#else
+				try {
+					if (app.Icon.StartsWith ("/"))
+						pixbuf = new Gdk.Pixbuf (app.Icon, 16, 16);
+					else
+						pixbuf = IconTheme.Default.LoadIcon (app.Icon, 16, (IconLookupFlags)0);
+				} catch (System.Exception) {
+					pixbuf = null;
+				}
+#endif
 
 				if (pixbuf != null)
 					Image = new Gtk.Image (pixbuf);

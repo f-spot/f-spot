@@ -3041,7 +3041,11 @@ public class MainWindow {
 		}
 	}
 
+#if GTK_SHARP_2_12_6
 	public void HandleOpenWith (object sender, GLib.AppInfo application)
+#else
+	public void HandleOpenWith (object sender, Gnome.Vfs.MimeApplication application)
+#endif
 	{
 		Photo[] selected = SelectedPhotos ();
 
@@ -3102,7 +3106,11 @@ public class MainWindow {
 			db.Photos.Commit (selected);
 
 		try {
+#if GTK_SHARP_2_12_6
 			application.LaunchUris (uri_list, null);
+#else
+			application.Launch (uri_list);
+#endif
 		} catch (System.Exception) {
 			Log.ErrorFormat ("Failed to lauch {0}", application.Name);
 		}
