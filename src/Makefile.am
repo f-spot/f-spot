@@ -311,6 +311,7 @@ JOBSCHEDULER_ASSEMBLIES =			\
 
 WIDGETS_ASSEMBLIES =				\
 	$(LINK_MONO_ADDINS)			\
+	$(LINK_GIO)				\
 	-pkg:gtk-sharp-2.0			\
 	-pkg:gnome-sharp-2.0			\
 	-r:Mono.Posix				\

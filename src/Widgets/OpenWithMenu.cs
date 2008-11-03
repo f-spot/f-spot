@@ -1,68 +1,66 @@
 /*
- * FSpot.OpenWithMenu
+ * FSpot.Widgets.OpenWithMenu.cs
  *
  * Author(s)
+ * 	Stephane Delcroix  <stephane@delcroix.org>
  * 	Loz  <gnome2@flower.powernet.co.uk>
  * 	Gabriel Burt  <gabriel.burt@gmail.com>
  * 	Larry Ewing  <lewing@novell.com>
- * 	Stephane Delcroix  <stephane@delcroix.org>
  *
  * This is free software. See COPYING for details.
  */
 
 using System;
-using System.Collections;
-using System.Runtime.InteropServices;
+using System.Collections.Generic;
+
 using Gtk;
 using Gdk;
+using GLib;
+
 using Mono.Unix;
 
 namespace FSpot.Widgets {
 	public class OpenWithMenu: Gtk.Menu {
-		public delegate void OpenWithHandler (Gnome.Vfs.MimeApplication app);
+		public delegate void OpenWithHandler (AppInfo app_info);
 		public event OpenWithHandler ApplicationActivated;
 
-		public delegate string [] MimeFetcher ();
-		private MimeFetcher mime_fetcher;
+		public delegate string [] TypeFetcher ();
+		TypeFetcher type_fetcher;
 
-		private string [] mime_types;
-		private bool populated = false;
+		string [] types;
+		bool populated = false;
 
-		private string ignore_app = null;
-		public string IgnoreApp {
-			get { return ignore_app; }
-			set { ignore_app = value; }
+		List<string> ignore_apps;
+		public string [] IgnoreApp {
+			get {
+				if (ignore_apps == null)
+					return null;
+				return ignore_apps.ToArray ();
+			}
 		}
 
-		private bool show_icons = false;
+		bool show_icons = false;
 		public bool ShowIcons {
 			get { return show_icons; }
 			set { show_icons = value; }
 		}
 
-		private bool hide_invalid = true;
-		public bool HideInvalid {
-			get { return hide_invalid; }
-			set { hide_invalid = value; }
-		}
-
-		static OpenWithMenu () {
-			Gnome.Vfs.Vfs.Initialize ();
-		}
-
-		public OpenWithMenu (MimeFetcher mime_fetcher)
+		public OpenWithMenu (TypeFetcher type_fetcher) : this (type_fetcher, null)
 		{
-			this.mime_fetcher = mime_fetcher;
 		}
 
+		public OpenWithMenu (TypeFetcher type_fetcher, params string [] ignore_apps)
+		{
+			this.type_fetcher = type_fetcher;
+			this.ignore_apps = new List<string> (ignore_apps);
+		}
+
+		//FIXME: this should be private and done on Draw()
 		public void Populate (object sender, EventArgs args)
 		{
-			string [] mime_types = mime_fetcher ();
+			string [] types = type_fetcher ();
 
-			//foreach (string mime in mime_types)
-			//	System.Console.WriteLine ("Populating open with menu for {0}", mime);
-
-			if (this.mime_types != mime_types && populated) {
+			if (this.types != types && populated) {
 				populated = false;
 
 				Widget [] dead_pool = Children;
@@ -73,18 +71,9 @@ namespace FSpot.Widgets {
 			if (populated)
 				return;
 
-			ArrayList union, intersection;
-			ApplicationsFor (this, mime_types, out union, out intersection);
-
-			ArrayList list = (HideInvalid) ? intersection : union;
-
-			foreach (Gnome.Vfs.MimeApplication app in list) {
-				//System.Console.WriteLine ("Adding app {0} to open with menu (binary name = {1}", app.Name, app.BinaryName);
-				//System.Console.WriteLine ("Desktop file path: {0}, id : {1}", app.DesktopFilePath);
-				AppMenuItem i = new AppMenuItem (this, app);
+			foreach (AppInfo app in ApplicationsFor (types)) {
+				AppMenuItem i = new AppMenuItem (app, show_icons);
 				i.Activated += HandleItemActivated;
-				// Make it not sensitive it we're showing everything
-				i.Sensitive = (HideInvalid || intersection.Contains (app));
 				Append (i);
 			}
 
@@ -99,54 +88,20 @@ namespace FSpot.Widgets {
 			populated = true;
 		}
 
-		private static void ApplicationsFor (OpenWithMenu menu, string [] mime_types, out ArrayList union, out ArrayList intersection)
+		AppInfo[] ApplicationsFor (string [] types)
 		{
-			//Console.WriteLine ("Getting applications");
-			union = new ArrayList ();
-			intersection = new ArrayList ();
-
-			if (mime_types == null || mime_types.Length < 1)
-				return;
-
-			bool first = true;
-			foreach (string mime_type in mime_types) {
-				if (mime_type == null)
-					continue;
-
-				Gnome.Vfs.MimeApplication [] apps = Gnome.Vfs.Mime.GetAllApplications (mime_type);
-				for (int i = 0; i < apps.Length; i++) {
-					apps [i] = apps [i].Copy ();
-				}
-
-				foreach (Gnome.Vfs.MimeApplication app in apps) {
-					// Skip apps that don't take URIs
-					if (! app.SupportsUris ())
+			List<AppInfo> app_infos = new List<AppInfo> ();
+			foreach (string type in types)
+				foreach (AppInfo appinfo in AppInfoAdapter.GetAllForType (type)) {
+					if (app_infos.Contains (appinfo))
 						continue;
-
-					// Skip apps that we were told to ignore
-					if (menu.IgnoreApp != null)
-						if (app.BinaryName.IndexOf (menu.IgnoreApp) != -1)
-							continue;
-
-					if (! union.Contains (app))
-						union.Add (app);
-
-					if (first)
-						intersection.Add (app);
+					if (!appinfo.SupportsUris ())
+						continue;
+					if (ignore_apps != null && ignore_apps.Contains (appinfo.Executable))
+						continue;
+					app_infos.Add (appinfo);
 				}
-
-				if (! first) {
-					for (int i = 0; i < intersection.Count; i++) {
-						Gnome.Vfs.MimeApplication app = intersection [i] as Gnome.Vfs.MimeApplication;
-						if (System.Array.IndexOf (apps, app) == -1) {
-							intersection.Remove (app);
-							i--;
-						}
-					}
-				}
-
-				first = false;
-			}
+			return app_infos.ToArray ();
 		}
 
 		private void HandleItemActivated (object sender, EventArgs args)
@@ -158,30 +113,30 @@ namespace FSpot.Widgets {
 		}
 
 		private class AppMenuItem : ImageMenuItem {
-			public Gnome.Vfs.MimeApplication App;
 
-			public AppMenuItem (OpenWithMenu menu, Gnome.Vfs.MimeApplication mime_application) : base (mime_application.Name)
+			AppInfo app;
+			public AppInfo App {
+				get { return app; }
+			}
+
+			public AppMenuItem (AppInfo app, bool show_icon) : base (app.Name)
 			{
-				App = mime_application;
+				this.app = app;
 
-				if (menu.ShowIcons) {
-					if (mime_application.Icon != null) {
-						Gdk.Pixbuf pixbuf = null;
+				if (!show_icon)
+					return;
 
-						try {
-							if (mime_application.Icon.StartsWith ("/"))
-								pixbuf = new Gdk.Pixbuf (mime_application.Icon, 16, 16);
-							else
-								pixbuf = IconTheme.Default.LoadIcon (mime_application.Icon,
-												     16, (IconLookupFlags)0);
-						} catch (System.Exception) {
-							pixbuf = null;
-						}
-
-						if (pixbuf != null)
-							Image = new Gtk.Image (pixbuf);
+				Pixbuf pixbuf = null;
+				if (app.Icon is ThemedIcon) {
+					try {
+						pixbuf = IconTheme.Default.ChooseIcon ((app.Icon as ThemedIcon).Names, 16, (IconLookupFlags)0).LoadIcon ();
+					} catch (System.Exception) {
 					}
-				}
+				} else
+					FSpot.Utils.Log.DebugFormat ("Loading icons from {0} is not implemented", app.Icon);
+
+				if (pixbuf != null)
+					Image = new Gtk.Image (pixbuf);
 			}
 		}
 	}

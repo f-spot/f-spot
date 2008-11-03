@@ -12,6 +12,11 @@
 
 	* src/MainWindow.cs: Allow rating using Alt + NumPad 0 to 5
 
+2008-10-29  Stephane Delcroix  <sdelcroix@novell.com>
+
+	* src/Widgets/OpenWithMenu.cs: moved from the Extensions ns, ported
+	to gio.
+
 2008-10-24  Stephane Delcroix  <sdelcroix@novell.com>
 
 	* src/Platform/Null/ThumbnailFactory.cs: working NullThumbFactory,
