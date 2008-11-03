@@ -54,11 +54,11 @@ namespace FSpot.Extensions
 
 	public class OpenWith : IMenuGenerator
 	{
-		private OpenWithMenu owm;
+		private Widgets.OpenWithMenu owm;
 
 		public Gtk.Menu GetMenu ()
 		{
-			owm = new OpenWithMenu (MainWindow.Toplevel.SelectedMimeTypes);
+			owm = new Widgets.OpenWithMenu (MainWindow.Toplevel.SelectedMimeTypes);
 			owm.IgnoreApp = "f-spot";
 			owm.ApplicationActivated += delegate (Gnome.Vfs.MimeApplication app) { MainWindow.Toplevel.HandleOpenWith (this, app); };
 			return (Gtk.Menu) owm;

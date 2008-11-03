@@ -70,6 +70,7 @@ WIDGETS_CSDISTFILES =				\
 	$(srcdir)/Widgets/CustomPrintWidget.cs	\
 	$(srcdir)/Widgets/HighlightedBox.cs	\
 	$(srcdir)/Widgets/MenuButton.cs		\
+	$(srcdir)/Widgets/OpenWithMenu.cs	\
 	$(srcdir)/Widgets/Rating.cs		\
 	$(srcdir)/Widgets/SaneTreeView.cs	\
 	$(srcdir)/Widgets/ScrolledView.cs
@@ -123,7 +124,6 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/Extensions/IMenuGenerator.cs	\
 	$(srcdir)/Extensions/IService.cs	\
 	$(srcdir)/Extensions/MenuNode.cs	\
-	$(srcdir)/Extensions/OpenWithMenu.cs	\
 	$(srcdir)/Extensions/CommandMenuItemNode.cs	\
 	$(srcdir)/Extensions/ComplexMenuItemNode.cs	\
 	$(srcdir)/Extensions/PhotoSelectionCondition.cs	\
