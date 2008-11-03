@@ -337,6 +337,7 @@ F_SPOT_ASSEMBLIES = 				\
 	$(LINK_SMUGMUG)				\
 	$(LINK_TAO)				\
 	$(LINK_SEMWEB)				\
+	$(LINK_GIO)				\
 	-r:System.Data				\
 	-r:System.Web				\
 	-r:Mono.Data.SqliteClient		\

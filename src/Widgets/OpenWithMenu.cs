@@ -27,9 +27,6 @@ namespace FSpot.Widgets {
 		public delegate string [] TypeFetcher ();
 		TypeFetcher type_fetcher;
 
-		string [] types;
-		bool populated = false;
-
 		List<string> ignore_apps;
 		public string [] IgnoreApp {
 			get {
@@ -39,7 +36,7 @@ namespace FSpot.Widgets {
 			}
 		}
 
-		bool show_icons = false;
+		bool show_icons = true;
 		public bool ShowIcons {
 			get { return show_icons; }
 			set { show_icons = value; }
@@ -58,20 +55,11 @@ namespace FSpot.Widgets {
 		//FIXME: this should be private and done on Draw()
 		public void Populate (object sender, EventArgs args)
 		{
-			string [] types = type_fetcher ();
+			Widget [] dead_pool = Children;
+			for (int i = 0; i < dead_pool.Length; i++)
+				dead_pool [i].Destroy ();
 
-			if (this.types != types && populated) {
-				populated = false;
-
-				Widget [] dead_pool = Children;
-				for (int i = 0; i < dead_pool.Length; i++)
-					dead_pool [i].Destroy ();
-			}
-
-			if (populated)
-				return;
-
-			foreach (AppInfo app in ApplicationsFor (types)) {
+			foreach (AppInfo app in ApplicationsFor (type_fetcher ())) {
 				AppMenuItem i = new AppMenuItem (app, show_icons);
 				i.Activated += HandleItemActivated;
 				Append (i);
@@ -84,22 +72,22 @@ namespace FSpot.Widgets {
 			}
 
 			ShowAll ();
-
-			populated = true;
 		}
 
 		AppInfo[] ApplicationsFor (string [] types)
 		{
 			List<AppInfo> app_infos = new List<AppInfo> ();
+			HashSet<string> existing_ids = new HashSet<string> ();
 			foreach (string type in types)
 				foreach (AppInfo appinfo in AppInfoAdapter.GetAllForType (type)) {
-					if (app_infos.Contains (appinfo))
+					if (existing_ids.Contains (appinfo.Id))
 						continue;
 					if (!appinfo.SupportsUris ())
 						continue;
 					if (ignore_apps != null && ignore_apps.Contains (appinfo.Executable))
 						continue;
 					app_infos.Add (appinfo);
+					existing_ids.Add (appinfo.Id);
 				}
 			return app_infos.ToArray ();
 		}

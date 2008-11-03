@@ -17,6 +17,9 @@
 	* src/Widgets/OpenWithMenu.cs: moved from the Extensions ns, ported
 	to gio.
 
+	* src/Extensions/PopupCommands.cs:
+	* src/Mainwindow.cs: changes related to Gio.AppInfo
+
 2008-10-24  Stephane Delcroix  <sdelcroix@novell.com>
 
 	* src/Platform/Null/ThumbnailFactory.cs: working NullThumbFactory,

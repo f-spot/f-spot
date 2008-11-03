@@ -1,5 +1,6 @@
 using Gdk;
 using Gtk;
+
 using Glade;
 using Mono.Addins;
 using Mono.Unix;
@@ -3049,7 +3050,7 @@ public class MainWindow {
 		}
 	}
 
-	public void HandleOpenWith (object sender, Gnome.Vfs.MimeApplication mime_application)
+	public void HandleOpenWith (object sender, GLib.AppInfo application)
 	{
 		Photo[] selected = SelectedPhotos ();
 
@@ -3060,7 +3061,7 @@ public class MainWindow {
 		string msg = String.Format (Catalog.GetPluralString (
 				"Before launching {1}, should F-Spot create a new version of the selected photo to preserve the original?",
 				"Before launching {1}, should F-Spot create new versions of the selected photos to preserve the originals?", selected.Length),
-				selected.Length, mime_application.Name);
+				selected.Length, application.Name);
 
 		// FIXME add cancel button? add help button?
 		HigMessageDialog hmd = new HigMessageDialog(GetToplevel (sender), DialogFlags.DestroyWithParent, 
@@ -3089,7 +3090,7 @@ public class MainWindow {
 		foreach (Photo photo in selected) {
 			try {
 				if (create_new_versions) {
-					uint version = photo.CreateNamedVersion (mime_application.Name, photo.DefaultVersionId, true);
+					uint version = photo.CreateNamedVersion (application.Name, photo.DefaultVersionId, true);
 					photo.DefaultVersionId = version;
 				}
 			} catch (Exception e) {
@@ -3109,7 +3110,11 @@ public class MainWindow {
 		if (create_new_versions)
 			db.Photos.Commit (selected);
 
-		mime_application.Launch (uri_list);
+		try {
+			application.LaunchUris (uri_list, null);
+		} catch (System.Exception) {
+			Log.ErrorFormat ("Failed to lauch {0}", application.Name);
+		}
 	}
 
 	public void GetWidgetPosition(Widget widget, out int x, out int y)

@@ -10,6 +10,8 @@
 
 using System;
 
+using GLib;
+
 namespace FSpot.Extensions 
 {
 	public class CopyLocation : ICommand
@@ -58,9 +60,8 @@ namespace FSpot.Extensions
 
 		public Gtk.Menu GetMenu ()
 		{
-			owm = new Widgets.OpenWithMenu (MainWindow.Toplevel.SelectedMimeTypes);
-			owm.IgnoreApp = "f-spot";
-			owm.ApplicationActivated += delegate (Gnome.Vfs.MimeApplication app) { MainWindow.Toplevel.HandleOpenWith (this, app); };
+			owm = new Widgets.OpenWithMenu (MainWindow.Toplevel.SelectedMimeTypes, "f-spot");
+			owm.ApplicationActivated += delegate (AppInfo app) { MainWindow.Toplevel.HandleOpenWith (this, app); };
 			return (Gtk.Menu) owm;
 		}
 
