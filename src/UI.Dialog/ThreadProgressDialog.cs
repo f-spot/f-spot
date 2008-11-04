@@ -1,34 +1,17 @@
+/*
+ * FSpot.UI.Dialog.ThreadProgressDialog.cs
+ *
+ * Author(s):
+ *	Larry Ewing  <lewing@novell.com>
+ *	Stephane Delcroix  <stephane@delcroix.org>
+ *
+ * This is free software. See COPYING for details.
+ */
+
 using System;
 using System.Threading;
 
-namespace FSpot {
-
-	
-	public class ProgressItem {
-		public ProgressItem () {
-			
-		}
-		
-		public delegate void ChangedHandler (ProgressItem item);
-		public event ChangedHandler Changed;
-
-		double value;
-		public double Value {
-			get {
-				lock (this) {
-					return value;
-				}
-			}
-			set {
-				lock (this) {
-					this.value = value;
-					if (Changed != null)
-						Changed (this);
-				}
-			}
-		}
-	}
-
+namespace FSpot.UI.Dialog {
 	public class ThreadProgressDialog : Gtk.Dialog {
 		FSpot.Delay delay;
 

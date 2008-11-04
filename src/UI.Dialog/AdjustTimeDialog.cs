@@ -1,28 +1,21 @@
+/*
+ * FSpot.UI.Dialogs.AdjstTimeDialog.cs
+ *
+ * Author(s):
+ *	Larry Ewing  <lewing@novell.com>
+ *	Stephane Delcroix  <stephane@delcroix.org>
+ *
+ * This is free software. See COPYING for details.
+ */
+
 using System;
 using Gtk;
 using System.Collections;
 using Mono.Unix;
 using FSpot.Widgets;
-using FSpot.UI.Dialog;
 
-namespace FSpot {
-//	public class TimeChangedEventArgs : PhotoEventArgs {
-//		TimeSpan span;
-//
-//		public TimeChangedEventArgs (Photo [] items, TimeSpan span)
-//			: base (items, true, false)
-//		{
-//			this.span = span;
-//		}
-//
-//		public TimeSpan TimeSpan {
-//			get {
-//				return span;
-//			}
-//		}
-//	}
-
-	public class TimeDialog : GladeDialog 
+namespace FSpot.UI.Dialog {
+	public class AdjustTimeDialog : GladeDialog 
 	{
 		[Glade.Widget] ScrolledWindow view_scrolled;
 		[Glade.Widget] ScrolledWindow tray_scrolled;
@@ -58,7 +51,7 @@ namespace FSpot {
 		Db db;
 		TimeSpan gnome_dateedit_sucks;
 
-		public TimeDialog (Db db, IBrowsableCollection collection) : base ("time_dialog")
+		public AdjustTimeDialog (Db db, IBrowsableCollection collection) : base ("time_dialog")
 		{
 			this.db = db;
 			this.collection = collection;

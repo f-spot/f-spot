@@ -1,5 +1,5 @@
 /*
- * Filters/JpegFilter.cs
+ * FSpot.BlockProcessor.cs
  *
  * Author(s)
  *   Larry Ewing <lewing@novell.com>

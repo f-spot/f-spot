@@ -1,6 +1,7 @@
 using System;
 using Gtk;
 using FSpot;
+using FSpot.UI.Dialog;
 
 public class ThumbnailCommand {
 	

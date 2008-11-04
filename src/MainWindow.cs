@@ -2116,7 +2116,7 @@ public class MainWindow {
 	{
 		PhotoList list = new PhotoList (Selection.Items);
 		list.Sort (new Photo.CompareDateName ());
-		new TimeDialog (db, list);
+		new AdjustTimeDialog (db, list);
 	}
 
 	public void HideLoupe ()

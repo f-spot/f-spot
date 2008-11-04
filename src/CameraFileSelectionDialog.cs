@@ -38,7 +38,7 @@ namespace FSpot {
 		ListStore preview_list_store;
 		Db db;
 		
-		FSpot.ThreadProgressDialog progress_dialog;
+		ThreadProgressDialog progress_dialog;
 		System.Collections.ArrayList index_list;
 		
 		string[] saved_files;
@@ -198,7 +198,7 @@ namespace FSpot {
 			command_thread = new System.Threading.Thread (new System.Threading.ThreadStart (this.Download));
 			command_thread.Name = Catalog.GetString ("Transferring Pictures");
 			
-			progress_dialog = new FSpot.ThreadProgressDialog (command_thread, 1);
+			progress_dialog = new ThreadProgressDialog (command_thread, 1);
 			progress_dialog.Start ();
 			
 			while (command_thread.IsAlive) {

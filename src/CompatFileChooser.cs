@@ -11,6 +11,7 @@ using System;
 using Gtk;
 using System.Runtime.InteropServices;
 
+[Obsolete ("This is no longer needed, use a FileChooser instead")]
 public class CompatFileChooserDialog {
     /* Public interface */
 

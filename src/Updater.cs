@@ -5,6 +5,7 @@ using System;
 using System.Collections;
 using Banshee.Database;
 using FSpot.Utils;
+using FSpot.UI.Dialog;
 
 namespace FSpot.Database {
 	public static class Updater {

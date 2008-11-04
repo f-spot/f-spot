@@ -204,7 +204,7 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/PixelBuffer.cs		\
 	$(srcdir)/Preferences.cs 		\
 	$(srcdir)/PrintOperation.cs		\
-	$(srcdir)/ProgressDialog.cs		\
+	$(srcdir)/ProgressItem.cs		\
 	$(srcdir)/RatingFilter.cs		\
 	$(srcdir)/QueuedSqliteDatabase.cs	\
 	$(srcdir)/RotateCommand.cs		\
@@ -219,24 +219,25 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/TagQueryWidget.cs		\
 	$(srcdir)/TagSelectionWidget.cs		\
 	$(srcdir)/TagStore.cs			\
-	$(srcdir)/ThreadProgressDialog.cs	\
 	$(srcdir)/ThumbnailCache.cs		\
 	$(srcdir)/ThumbnailGenerator.cs		\
 	$(srcdir)/Texture.cs			\
 	$(srcdir)/TextureDisplay.cs             \
 	$(srcdir)/Term.cs			\
 	$(srcdir)/TimeAdaptor.cs		\
-	$(srcdir)/TimeDialog.cs			\
 	$(srcdir)/TipWindow.cs			\
 	$(srcdir)/UI.Dialog/AboutDialog.cs	\
+	$(srcdir)/UI.Dialog/AdjustTimeDialog.cs	\
 	$(srcdir)/UI.Dialog/EditExceptionDialog.cs	\
 	$(srcdir)/UI.Dialog/ExceptionDialog.cs	\
 	$(srcdir)/UI.Dialog/GladeDialog.cs	\
 	$(srcdir)/UI.Dialog/HigMessageDialog.cs	\
 	$(srcdir)/UI.Dialog/LastRollDialog.cs		\
 	$(srcdir)/UI.Dialog/PreferenceDialog.cs		\
-	$(srcdir)/UI.Dialog/SelectionRatioDialog.cs	\
+	$(srcdir)/UI.Dialog/ProgressDialog.cs		\
 	$(srcdir)/UI.Dialog/RepairDbDialog.cs	\
+	$(srcdir)/UI.Dialog/SelectionRatioDialog.cs	\
+	$(srcdir)/UI.Dialog/ThreadProgressDialog.cs	\
 	$(srcdir)/Updater.cs			\
 	$(srcdir)/UriCollection.cs		\
 	$(srcdir)/Util.cs			\
