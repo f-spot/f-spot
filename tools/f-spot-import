@@ -4,8 +4,14 @@ udi="$1"
 #xmessage $udi
 
 if [ "$udi" != "${udi#gphoto2:}" ]; then
-	# gphoto2, as passed by nautilus.
+	# gphoto2, as passed by gvfs/nautilus
 	f-spot --import "$udi"
+	exit
+fi
+mnt=${udi#file://}
+if [ "$udi" != "$mnt" ]; then
+	# mount point, as passed by gvfs/nautilus.
+	f-spot --import "$mnt"
 	exit
 fi
 mount_point=`hal-get-property --udi="$udi" --key=volume.mount_point` || true
