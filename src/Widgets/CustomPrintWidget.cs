@@ -56,7 +56,7 @@ namespace FSpot.Widgets
 				else if (fill.Active)	return FitMode.Fill;
 				else if (scaled.Active)	return FitMode.Scaled;
 				else
-					throw new Exception ("Something is fucked on this GUI");
+					throw new Exception ("Something is wrong on this GUI");
 			}
 		}
 
