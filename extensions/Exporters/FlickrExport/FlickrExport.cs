@@ -475,7 +475,7 @@ namespace FSpotFlickrExport {
 			command_thread.Name = Catalog.GetString ("Uploading Pictures");
 
 			Dialog.Destroy ();
-			progress_dialog = new FSpot.ThreadProgressDialog (command_thread, selection.Count);
+			progress_dialog = new ThreadProgressDialog (command_thread, selection.Count);
 			progress_dialog.Start ();
 
 			// Save these settings for next time

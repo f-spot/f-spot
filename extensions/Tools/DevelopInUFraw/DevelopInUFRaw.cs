@@ -10,10 +10,12 @@
 using System;
 using System.IO;
 
+using Mono.Unix;
+
 using FSpot;
 using FSpot.Utils;
 using FSpot.Extensions;
-using Mono.Unix;
+using FSpot.UI.Dialog;
 
 namespace DevelopInUFRawExtension
 {

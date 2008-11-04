@@ -520,7 +520,7 @@ namespace FSpotGoogleExport {
 
 		IBrowsableItem [] items;
 		int photo_index;
-		FSpot.ThreadProgressDialog progress_dialog;
+		ThreadProgressDialog progress_dialog;
 
 		ArrayList accounts;
 		private GoogleAccount account;
@@ -597,7 +597,7 @@ namespace FSpotGoogleExport {
 				command_thread = new System.Threading.Thread (new System.Threading.ThreadStart (this.Upload));
 				command_thread.Name = Catalog.GetString ("Uploading Pictures");
 
-				progress_dialog = new FSpot.ThreadProgressDialog (command_thread, items.Length);
+				progress_dialog = new ThreadProgressDialog (command_thread, items.Length);
 				progress_dialog.Start ();
 
 				// Save these settings for next time

@@ -24,6 +24,7 @@ using FSpot;
 using FSpot.Filters;
 using FSpot.Widgets;
 using FSpot.Utils;
+using FSpot.UI.Dialog;
 
 using Gnome.Keyring;
 using SmugMugNet;
@@ -454,7 +455,7 @@ namespace FSpotSmugMugExport {
 
 		IBrowsableItem [] items;
 		int photo_index;
-		FSpot.ThreadProgressDialog progress_dialog;
+		ThreadProgressDialog progress_dialog;
 
 		ArrayList accounts;
 		private SmugMugAccount account;
@@ -520,7 +521,7 @@ namespace FSpotSmugMugExport {
 				command_thread = new System.Threading.Thread (new System.Threading.ThreadStart (this.Upload));
 				command_thread.Name = Mono.Unix.Catalog.GetString ("Uploading Pictures");
 
-				progress_dialog = new FSpot.ThreadProgressDialog (command_thread, items.Length);
+				progress_dialog = new ThreadProgressDialog (command_thread, items.Length);
 				progress_dialog.Start ();
 
 				// Save these settings for next time

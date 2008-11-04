@@ -6,6 +6,7 @@ using FSpot;
 using FSpot.Filters;
 using FSpot.Widgets;
 using FSpot.Utils;
+using FSpot.UI.Dialog;
 #if GIO_2_16
 using GLib;
 #endif
@@ -32,7 +33,7 @@ namespace FSpotCDExport {
 		bool clean;
 		bool rotate;
 
-		FSpot.ThreadProgressDialog progress_dialog;
+		ThreadProgressDialog progress_dialog;
 		System.Threading.Thread command_thread;
 
 		private Glade.XML xml;
@@ -341,7 +342,7 @@ namespace FSpotCDExport {
 			command_thread = new System.Threading.Thread (new System.Threading.ThreadStart (Transfer));
 			command_thread.Name = Catalog.GetString ("Transferring Pictures");
 
-			progress_dialog = new FSpot.ThreadProgressDialog (command_thread, selection.Count);
+			progress_dialog = new ThreadProgressDialog (command_thread, selection.Count);
 			progress_dialog.Start ();
 		}
 

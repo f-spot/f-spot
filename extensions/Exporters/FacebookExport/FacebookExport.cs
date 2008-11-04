@@ -184,7 +184,7 @@ namespace FSpot.Exporter.Facebook
 
 		private FSpot.Widgets.IconView thumbnail_iconview;
 
-		FSpot.ThreadProgressDialog progress_dialog;
+		ThreadProgressDialog progress_dialog;
 
 		[Glade.WidgetAttribute]
 		Gtk.VBox album_info_vbox;
@@ -476,7 +476,7 @@ namespace FSpot.Exporter.Facebook
 				command_thread = new System.Threading.Thread (new System.Threading.ThreadStart (Upload));
 				command_thread.Name = Mono.Unix.Catalog.GetString ("Uploading Pictures");
 
-				progress_dialog = new FSpot.ThreadProgressDialog (command_thread, items.Length);
+				progress_dialog = new ThreadProgressDialog (command_thread, items.Length);
 				progress_dialog.Start ();
 			}
 		}

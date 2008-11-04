@@ -37,6 +37,7 @@ using System.Net;
 using System.Threading;
 
 using FSpot.Utils;
+using FSpot.UI.Dialog;
 
 namespace FSpotTabbloExport {
 	/// <summary>
@@ -56,7 +57,7 @@ namespace FSpotTabbloExport {
 		[Glade.Widget] Gtk.Button cancel_button;
 		[Glade.Widget] Gtk.ScrolledWindow thumb_scrolled_window;
 
-		private FSpot.ThreadProgressDialog progress_dialog;
+		private ThreadProgressDialog progress_dialog;
 
 		// Keyring constants.
 		private const string KeyringItemName = "Tabblo Account";
@@ -137,7 +138,7 @@ namespace FSpotTabbloExport {
 
 			Thread upload_thread =
 					new Thread (new ThreadStart (Upload));
-			progress_dialog = new FSpot.ThreadProgressDialog (
+			progress_dialog = new ThreadProgressDialog (
 					upload_thread, photos.Items.Length);
 			progress_dialog.Start ();
 		}

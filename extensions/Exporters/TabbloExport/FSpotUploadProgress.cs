@@ -30,17 +30,18 @@
 using Mono.Tabblo;
 using Mono.Unix;
 using System;
+using FSpot.UI.Dialog;
 
 namespace FSpotTabbloExport {
 
 	class FSpotUploadProgress : TotalUploadProgress	{
 
-		private FSpot.ThreadProgressDialog progress_dialog;
+		private ThreadProgressDialog progress_dialog;
 
 
 		internal FSpotUploadProgress (
 				Picture [] pictures,
-				FSpot.ThreadProgressDialog progress_dialog)
+				ThreadProgressDialog progress_dialog)
 			: base (pictures)
 		{
 			this.progress_dialog = progress_dialog;

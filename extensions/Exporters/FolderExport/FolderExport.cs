@@ -34,6 +34,7 @@ using FSpot;
 using FSpot.Filters;
 using FSpot.Widgets;
 using FSpot.Utils;
+using FSpot.UI.Dialog;
 
 namespace FSpotFolderExport {
 	public class FolderExport : FSpot.Extensions.IExporter {
@@ -89,7 +90,7 @@ namespace FSpotFolderExport {
 		// FIME this needs to be a real temp directory
 		string gallery_path = Path.Combine (Path.GetTempPath (), "f-spot-original-" + System.DateTime.Now.Ticks.ToString ());
 
-		FSpot.ThreadProgressDialog progress_dialog;
+		ThreadProgressDialog progress_dialog;
 		System.Threading.Thread command_thread;
 
 		public FolderExport ()
@@ -395,7 +396,7 @@ namespace FSpotFolderExport {
 			// 2: zipfiles
 			// 9: directories + info.txt + .htaccess
 			// this should actually be 1 anyway, because we transfer just one dir
-			progress_dialog = new FSpot.ThreadProgressDialog (command_thread, 1);
+			progress_dialog = new ThreadProgressDialog (command_thread, 1);
 			progress_dialog.Start ();
 		}
 
