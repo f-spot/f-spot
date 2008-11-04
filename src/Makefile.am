@@ -96,7 +96,6 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/ColorAdjustment/Desaturate.cs		\
 	$(srcdir)/ColorAdjustment/FullColorAdjustment.cs		\
 	$(srcdir)/ColorAdjustment/SepiaTone.cs		\
-	$(srcdir)/CompatFileChooser.cs		\
 	$(srcdir)/ControlOverlay.cs		\
 	$(srcdir)/Core.cs			\
 	$(srcdir)/Core/ColorManagement.cs	\

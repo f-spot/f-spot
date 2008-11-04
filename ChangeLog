@@ -1,3 +1,8 @@
+2008-11-04  Stephane Delcroix  <sdelcroix@novell.com>
+
+	* src/ImportCommand.cs: use a FilechooserDialog instead of the deprecated
+	CompatFilechooser
+
 2008-11-03  Stephane Delcroix  <sdelcroix@novell.com>
 
 	* src/main.cs: initialize the translation catalog earlier. Fix a nasty 

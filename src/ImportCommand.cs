@@ -536,24 +536,24 @@ public class ImportCommand : GladeDialog
 	{
 		string path = null;
 
-		CompatFileChooserDialog file_selector =
-			new CompatFileChooserDialog ("Import", this.Dialog,
-						     CompatFileChooserDialog.Action.SelectFolder);
+		FileChooserDialog file_chooser =
+			new FileChooserDialog (Catalog.GetString ("Import"), this.Dialog,
+						     FileChooserAction.SelectFolder);
 
-		file_selector.SelectMultiple = false;
+		file_chooser.SelectMultiple = false;
 
 		if (ImportPath != null)
-			file_selector.Filename = ImportPath;
+			file_chooser.SetFilename (ImportPath);
 		else
-			file_selector.Filename = FSpot.Global.HomeDirectory;
+			file_chooser.SetFilename (FSpot.Global.HomeDirectory);
 
-		int response = file_selector.Run ();
+		int response = file_chooser.Run ();
 
 		if ((ResponseType) response == ResponseType.Ok) {
-			path = file_selector.Filename;
+			path = file_chooser.Filename;
 		}
 
-		file_selector.Destroy ();
+		file_chooser.Destroy ();
 		return path;
 	}
 
