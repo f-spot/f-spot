@@ -78,7 +78,7 @@ namespace DPAP {
 				int i=0;
 
 				foreach (FSpot.Photo photo in photos) {
-					string thumbnail_path = ThumbnailGenerator.ThumbnailPath (photo.DefaultVersionUri);
+					string thumbnail_path = Gnome.Thumbnail.PathForUri (photo.DefaultVersionUri.ToString(), Gnome.ThumbnailSize.Large);
 					FileInfo f = new FileInfo (thumbnail_path);
 					DPAP.Photo p = new DPAP.Photo ();
 
