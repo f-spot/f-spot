@@ -1,5 +1,5 @@
 /*
- * FSpot.PreogressItem.cs
+ * FSpot.ProgressItem.cs
  *
  * Author(s):
  *	Larry Ewing  <lewing@novell.com>
