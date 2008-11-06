@@ -541,6 +541,8 @@ public class ImportCommand : GladeDialog
 						     FileChooserAction.SelectFolder);
 
 		file_chooser.SelectMultiple = false;
+		file_chooser.AddButton (Stock.Cancel, ResponseType.Cancel);
+		file_chooser.AddButton (Stock.Ok, ResponseType.Ok);
 
 		if (ImportPath != null)
 			file_chooser.SetFilename (ImportPath);
