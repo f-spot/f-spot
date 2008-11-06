@@ -244,17 +244,17 @@ namespace FSpot.UI.Dialog {
 #if GTK_2_12_2
 				Gtk.Rc.DefaultFiles = Global.DefaultRcFiles;
 				Gtk.Rc.ReparseAllForSettings (Gtk.Settings.Default, true);
+#endif
 			} else {
 				TreeIter iter;
 				if (themelist_combo.GetActiveIter (out iter)) {
-Console.WriteLine ("Setting the theme to combo value");
 					Preferences.Set (Preferences.GTK_RC, theme_list [(themelist_combo.Model.GetValue (iter, 0)) as string]);
+#if GTK_2_12_2
 					Gtk.Rc.DefaultFiles = Global.DefaultRcFiles;
 					Gtk.Rc.AddDefaultFile (Preferences.Get<string> (Preferences.GTK_RC));
 					Gtk.Rc.ReparseAllForSettings (Gtk.Settings.Default, true);
-				}
-
 #endif
+				}
 			}
 		}
 
