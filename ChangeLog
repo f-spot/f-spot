@@ -1,5 +1,12 @@
 2008-11-08  Stephane Delcroix  <sdelcroix@novell.com>
 
+	* libeog/access.c|h:
+	* libeog/accessible-image-view.c|h:
+	* libeog/accessible-image-view-factory.c|h: drop unused files and
+	classes.
+
+2008-11-08  Stephane Delcroix  <sdelcroix@novell.com>
+
 	* src/MainWindow.cs: do not resize the window fi the setting is <= 0.
 	Fixes bgo #559556.
 

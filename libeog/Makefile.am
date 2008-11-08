@@ -15,12 +15,6 @@ fspotlibdir = $(libdir)/f-spot
 fspotlib_LTLIBRARIES = libfspoteog.la
 
 libfspoteog_files =				\
-	access.c				\
-	access.h				\
-        accessible-image-view-factory.h		\
-        accessible-image-view-factory.c		\
-        accessible-image-view.h			\
-        accessible-image-view.c			\
 	eog-image.h				\
 	eog-image.c				\
 	eog-pixbuf-util.h			\
