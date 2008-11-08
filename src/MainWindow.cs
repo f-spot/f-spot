@@ -2696,8 +2696,10 @@ public class MainWindow {
 		
 		case Preferences.MAIN_WINDOW_WIDTH:
 		case Preferences.MAIN_WINDOW_HEIGHT:
-			main_window.Resize(Preferences.Get<int> (Preferences.MAIN_WINDOW_WIDTH),
-					   Preferences.Get<int> (Preferences.MAIN_WINDOW_HEIGHT));
+			if (Preferences.Get<int> (Preferences.MAIN_WINDOW_WIDTH) > 0 &&
+						  Preferences.Get<int> (Preferences.MAIN_WINDOW_HEIGHT) > 0)
+				main_window.Resize(Preferences.Get<int> (Preferences.MAIN_WINDOW_WIDTH),
+						   Preferences.Get<int> (Preferences.MAIN_WINDOW_HEIGHT));
 
 			break;
 		
