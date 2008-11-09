@@ -10,14 +10,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: f-spot\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-09-22 00:17+0200\n"
-"PO-Revision-Date: 2008-09-22 00:18+0100\n"
-"Last-Translator: Goran Rakić <grakic@devbase.net>\n"
+"POT-Creation-Date: 2008-11-09 12:33+0100\n"
+"PO-Revision-Date: 2008-02-29 22:38+0100\n"
+"Last-Translator: Miloš Popović <gpopac@gmail.com>\n"
 "Language-Team: Serbian (sr) <gnom@prevod.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3;    plural=n%10==1 && n%100!=11 ? 0 :    n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"Plural-Forms: nplurals=3;    plural=n%10==1 && n%100!=11 ? 0 :    n%10>=2 && "
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 
 #: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInfoDialog.cs:62
 msgid "Version:"
@@ -48,12 +49,18 @@ msgid "The following packages will be uninstalled:"
 msgstr "Sledeći paketi če biti uklonjeni:"
 
 #: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:313
-msgid "There are other extensions that depend on the previous ones which will also be uninstalled:"
+msgid ""
+"There are other extensions that depend on the previous ones which will also "
+"be uninstalled:"
 msgstr "Neka proširenja zavise od prethodnih koja će takođe biti ukonjena:"
 
 #: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:384
-msgid "The selected extensions can't be installed because there are dependency conflicts."
-msgstr "Izabrana proširenja ne mogu biti dodata zbog postojanja konflikta međuzavisnostima."
+msgid ""
+"The selected extensions can't be installed because there are dependency "
+"conflicts."
+msgstr ""
+"Izabrana proširenja ne mogu biti dodata zbog postojanja konflikta "
+"međuzavisnostima."
 
 #: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:398
 msgid "The following packages will be installed:"
@@ -116,7 +123,7 @@ msgid "Extension"
 msgstr "Proširenje"
 
 #: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinTreeWidget.cs:112
-#: ../src/Widgets/InfoBox.cs:196
+#: ../src/Widgets/InfoBox.cs:211
 msgid "Version"
 msgstr "Izdanje"
 
@@ -125,7 +132,7 @@ msgid "Other"
 msgstr "Ostalo"
 
 #: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/ManageSitesDialog.cs:51
-#: ../src/Widgets/InfoBox.cs:193
+#: ../src/Widgets/InfoBox.cs:208
 #: ../extensions/Exporters/FacebookExport/FacebookExport.glade.h:9
 msgid "Name"
 msgstr "Naziv"
@@ -150,7 +157,8 @@ msgstr "Dodavanje proširenja"
 
 #: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:136
 msgid "<b>Select the extensions to install and click on Next</b>"
-msgstr "<b>Izaberite proširenje koje želite da dodate i pritisnite „Naredno“</b>"
+msgstr ""
+"<b>Izaberite proširenje koje želite da dodate i pritisnite „Naredno“</b>"
 
 #: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:150
 msgid "Install from:"
@@ -234,12 +242,12 @@ msgstr "Onemogući"
 
 #: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.ErrorDialog.cs:40
 #: ../extensions/Exporters/FlickrExport/FlickrExport.cs:370
-#: ../extensions/Exporters/FolderExport/FolderExport.cs:249
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:250
 #: ../extensions/Exporters/GalleryExport/GalleryExport.cs:799
-#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:544
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:543
 #: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:694
-#: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:595
-#: ../extensions/Exporters/TabbloExport/TabbloExport.cs:176
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:596
+#: ../extensions/Exporters/TabbloExport/TabbloExport.cs:177
 msgid "Error"
 msgstr "Greška"
 
@@ -313,8 +321,7 @@ msgstr "F-broj pregledač fotografija"
 msgid "Photo Viewer"
 msgstr "Preglednik fotografija"
 
-#: ../f-spot-import.desktop.in.in.h:1
-#: ../f-spot.desktop.in.in.h:1
+#: ../f-spot-import.desktop.in.in.h:1 ../f-spot.desktop.in.in.h:1
 msgid "F-Spot Photo Manager"
 msgstr "F-broj foto album"
 
@@ -322,8 +329,7 @@ msgstr "F-broj foto album"
 msgid "Import into F-Spot"
 msgstr "Uvezi u F-broj"
 
-#: ../f-spot-import.desktop.in.in.h:3
-#: ../f-spot.desktop.in.in.h:3
+#: ../f-spot-import.desktop.in.in.h:3 ../f-spot.desktop.in.in.h:3
 msgid "Photo Manager"
 msgstr "Foto album"
 
@@ -331,61 +337,59 @@ msgstr "Foto album"
 msgid "Organize, enjoy, and share your photos"
 msgstr "Organizujte, uživajte i podelite Vaše fotografije"
 
-#: ../libeog/eog-image.c:773
+#: ../libeog/eog-image.c:769
 #, c-format
 msgid "No image loaded."
 msgstr "Nije učitana slika."
 
-#: ../libeog/eog-image.c:780
+#: ../libeog/eog-image.c:776
 #, c-format
 msgid "Can't save non local files."
 msgstr "Ne mogu da čuvam nelokalne datoteke."
 
-#: ../libeog/eog-image.c:803
+#: ../libeog/eog-image.c:799
 #, c-format
 msgid "Unsupported image type for saving."
 msgstr "Nepodržana vrsta slike pri čuvanju."
 
-#: ../libeog/image-view.c:2128
+#: ../libeog/image-view.c:2124
 msgid "interpolation type"
 msgstr "vrsta interpolacije"
 
-#: ../libeog/image-view.c:2129
+#: ../libeog/image-view.c:2125
 msgid "the type of interpolation to use"
 msgstr "koju vrstu interpolacije koristiti"
 
-#: ../libeog/image-view.c:2135
-#: ../libeog/image-view.c:2142
+#: ../libeog/image-view.c:2131 ../libeog/image-view.c:2138
 msgid "check type"
 msgstr "vrsta senčenja"
 
-#: ../libeog/image-view.c:2136
+#: ../libeog/image-view.c:2132
 msgid "the type of chequering to use"
 msgstr "kakvo senčenje koristiti"
 
-#: ../libeog/image-view.c:2143
+#: ../libeog/image-view.c:2139
 msgid "the size of chequers to use"
 msgstr "veličina senčenja"
 
-#: ../libeog/image-view.c:2149
+#: ../libeog/image-view.c:2145
 msgid "dither"
 msgstr "mešanje"
 
-#: ../libeog/image-view.c:2150
+#: ../libeog/image-view.c:2146
 msgid "dither type"
 msgstr "vrsta mešanja"
 
-#: ../libfspot/f-jpeg-utils.c:445
-#: ../src/RotateCommand.cs:222
+#: ../libfspot/f-jpeg-utils.c:443 ../src/RotateCommand.cs:222
 msgid "File not found"
 msgstr "Datoteka nije nađena"
 
-#: ../libfspot/f-jpeg-utils.c:468
+#: ../libfspot/f-jpeg-utils.c:466
 #, c-format
 msgid "Unknown transform type %d"
 msgstr "Nepoznata vrsta transformacije %d"
 
-#: ../libfspot/f-jpeg-utils.c:476
+#: ../libfspot/f-jpeg-utils.c:474
 msgid "Operation failed"
 msgstr "Propala operacija"
 
@@ -397,14 +401,13 @@ msgstr "Prikaz"
 msgid "Path"
 msgstr "Putanja"
 
-#: ../src/CameraFileSelectionDialog.cs:80
-#: ../src/f-spot.glade.h:95
+#: ../src/CameraFileSelectionDialog.cs:80 ../src/f-spot.glade.h:95
 msgid "File"
 msgstr "Datoteka"
 
 #: ../src/CameraFileSelectionDialog.cs:82
-#: ../extensions/Exporters/FolderExport/FolderExport.cs:992
-#: ../extensions/Exporters/FolderExport/FolderExport.cs:1233
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:993
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:1234
 msgid "Index"
 msgstr "Popis"
 
@@ -422,8 +425,8 @@ msgid "Downloading Preview of {0}"
 msgstr "Preuzimam pregled za {0}"
 
 #: ../src/CameraFileSelectionDialog.cs:199
-#: ../extensions/Exporters/CDExport/CDExport.cs:342
-#: ../extensions/Exporters/FolderExport/FolderExport.cs:391
+#: ../extensions/Exporters/CDExport/CDExport.cs:343
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:392
 msgid "Transferring Pictures"
 msgstr "Prebacujem slike"
 
@@ -449,7 +452,7 @@ msgstr "Preuzimanje gotovo"
 msgid "Transferring \"{0}\" from camera"
 msgstr "Prenosim „{0}“ sa aparata"
 
-#: ../src/CameraSelectionDialog.cs:29
+#: ../src/CameraSelectionDialog.cs:29 ../src/Widgets/InfoBox.cs:227
 msgid "Camera"
 msgstr "Aparat"
 
@@ -487,16 +490,16 @@ msgstr ""
 "da izaberete drugu oznaku u postavkama F-broja."
 
 #. Note for translators: Reparented is a picture becoming a version of another one
-#: ../src/Core/Photo.cs:482
+#: ../src/Core/Photo.cs:480
 msgid "Reparented"
 msgstr "Pridružena slici"
 
-#: ../src/Core/Photo.cs:482
+#: ../src/Core/Photo.cs:480
 #, csharp-format
 msgid "Reparented ({0})"
 msgstr "Pridruženih slika ({0})"
 
-#: ../src/Core/Photo.cs:501
+#: ../src/Core/Photo.cs:499
 #, csharp-format
 msgid "Modified"
 msgid_plural "Modified ({0})"
@@ -504,61 +507,59 @@ msgstr[0] "Izmenjena ({0})"
 msgstr[1] "Izmenjene ({0})"
 msgstr[2] "Izmenjenih ({0})"
 
-#: ../src/Core/Photo.cs:520
+#: ../src/Core/Photo.cs:518
 #, csharp-format
 msgid "Modified in {1}"
 msgstr "Izmenjena u {1}"
 
-#: ../src/Core/Photo.cs:520
+#: ../src/Core/Photo.cs:518
 #, csharp-format
 msgid "Modified in {1} ({0})"
 msgstr "Izmenjena u {1} ({0})"
 
 #. Note that the original version is never stored in the photo_versions table in the
 #. database.
-#: ../src/Core/Photo.cs:678
-#: ../src/f-spot.glade.h:132
+#: ../src/Core/Photo.cs:676 ../src/f-spot.glade.h:132
 msgid "Original"
 msgstr "Original"
 
-#: ../src/DateCommands.cs:57
+#: ../src/DateCommands.cs:56
 msgid "Today"
 msgstr "Danas"
 
-#: ../src/DateCommands.cs:59
+#: ../src/DateCommands.cs:58
 msgid "Yesterday"
 msgstr "Juče"
 
-#: ../src/DateCommands.cs:61
+#: ../src/DateCommands.cs:60
 msgid "Last 7 days"
 msgstr "U poslednjih 7 dana"
 
-#: ../src/DateCommands.cs:63
+#: ../src/DateCommands.cs:62
 msgid "Last 30 days"
 msgstr "U poslednjih 30 dana"
 
-#: ../src/DateCommands.cs:65
+#: ../src/DateCommands.cs:64
 msgid "Last 90 days"
 msgstr "U poslednjih 90 dana"
 
-#: ../src/DateCommands.cs:67
+#: ../src/DateCommands.cs:66
 msgid "Last 360 days"
 msgstr "U poslednjih 360 dana"
 
-#: ../src/DateCommands.cs:69
+#: ../src/DateCommands.cs:68
 msgid "Current Week (Mon-Sun)"
 msgstr "Tekuća nedelja (pon-ned)"
 
-#: ../src/DateCommands.cs:71
+#: ../src/DateCommands.cs:70
 msgid "Previous Week (Mon-Sun)"
 msgstr "Prethodna nedelja (pon-ned)"
 
-#: ../src/DateCommands.cs:87
-#: ../src/f-spot.glade.h:54
+#: ../src/DateCommands.cs:86 ../src/f-spot.glade.h:54
 msgid "All Images"
 msgstr "Sve slike"
 
-#: ../src/DateCommands.cs:89
+#: ../src/DateCommands.cs:88
 msgid "Customized Range"
 msgstr "Proizvoljan opseg"
 
@@ -642,10 +643,6 @@ msgstr "Blagi fokus"
 msgid "Straighten"
 msgstr "Ispravljanje"
 
-#: ../src/Extensions/OpenWithMenu.cs:93
-msgid "No applications available"
-msgstr "Nisu dostupni programi"
-
 #: ../src/FSpot.addin.xml.h:1
 msgid "Copy Photo Locat_ion"
 msgstr "Umnoži _putanju slike"
@@ -658,19 +655,16 @@ msgstr "Izvezi u"
 msgid "Open _With"
 msgstr "Otvori _pomoću"
 
-#: ../src/FSpot.addin.xml.h:4
-#: ../src/f-spot.glade.h:146
+#: ../src/FSpot.addin.xml.h:4 ../src/f-spot.glade.h:146
 msgid "Rem_ove Tag"
 msgstr "U_kloni oznaku"
 
-#: ../src/FSpot.addin.xml.h:5
-#: ../src/SingleView.cs:438
+#: ../src/FSpot.addin.xml.h:5 ../src/SingleView.cs:438
 #: ../src/f-spot.glade.h:148
 msgid "Rotate _Left"
 msgstr "Rotiraj _levo"
 
-#: ../src/FSpot.addin.xml.h:6
-#: ../src/SingleView.cs:439
+#: ../src/FSpot.addin.xml.h:6 ../src/SingleView.cs:439
 #: ../src/f-spot.glade.h:149
 msgid "Rotate _Right"
 msgstr "Rotiraj _desno"
@@ -679,39 +673,34 @@ msgstr "Rotiraj _desno"
 msgid "Tools"
 msgstr "Alati"
 
-#: ../src/FSpot.addin.xml.h:8
-#: ../src/f-spot.glade.h:193
+#: ../src/FSpot.addin.xml.h:8 ../src/f-spot.glade.h:193
 msgid "_Attach Tag"
 msgstr "_Dodaj oznaku"
 
-#: ../src/FSpot.addin.xml.h:9
-#: ../src/f-spot.glade.h:205
+#: ../src/FSpot.addin.xml.h:9 ../src/f-spot.glade.h:205
 msgid "_Delete From Drive"
 msgstr "_Ukloni sa diska"
 
-#: ../src/FSpot.addin.xml.h:10
-#: ../src/f-spot.glade.h:239
+#: ../src/FSpot.addin.xml.h:10 ../src/f-spot.glade.h:239
 msgid "_Remove From Catalog"
 msgstr "Uklo_ni iz kataloga"
 
 # bug: uvezi od, uvezi sa
-#: ../src/FileImportBackend.cs:286
+#: ../src/FileImportBackend.cs:285
 msgid "Import error"
 msgstr "Greška pri uvozu:"
 
-#: ../src/FileImportBackend.cs:287
+#: ../src/FileImportBackend.cs:286
 #, csharp-format
 msgid "Error importing {0}{2}{2}{1}"
 msgstr "Greška pri uvozu {0}{2}{2}{1}"
 
-#: ../src/FileImportBackend.cs:288
-#: ../src/ThreadProgressDialog.cs:68
+#: ../src/FileImportBackend.cs:287 ../src/UI.Dialog/ThreadProgressDialog.cs:51
 #: ../extensions/Tools/MergeDb/MergeDb.glade.h:15
 msgid "Skip"
 msgstr "Preskoči"
 
-#: ../src/Filters/ResizeFilter.cs:70
-#: ../src/Filters/SharpFilter.cs:52
+#: ../src/Filters/ResizeFilter.cs:70 ../src/Filters/SharpFilter.cs:52
 #, csharp-format
 msgid "No way to save files of type \"{0}\""
 msgstr "Ne postoji način da sačuvam datoteke tipa „{0}“"
@@ -720,38 +709,36 @@ msgstr "Ne postoji način da sačuvam datoteke tipa „{0}“"
 msgid "Unhandled exception"
 msgstr "Nerešiv izuzetak"
 
-#: ../src/FullScreenView.cs:59
+#: ../src/FullScreenView.cs:58
 msgid "Hide"
 msgstr "Sakrij"
 
-#: ../src/FullScreenView.cs:61
+#: ../src/FullScreenView.cs:60
 msgid "Hide Toolbar"
 msgstr "Sakrij alatnicu"
 
-#: ../src/FullScreenView.cs:67
+#: ../src/FullScreenView.cs:66
 msgid "Info"
 msgstr "Podaci"
 
-#: ../src/FullScreenView.cs:69
-#: ../src/Widgets/InfoBox.cs:182
+#: ../src/FullScreenView.cs:68 ../src/Widgets/InfoBox.cs:197
 msgid "Image Information"
 msgstr "Podaci o slici"
 
-#: ../src/FullScreenView.cs:74
+#: ../src/FullScreenView.cs:73
 msgid "Exit fullscreen"
 msgstr "Napusti ceo ekran"
 
-#: ../src/FullScreenView.cs:84
-#: ../src/MainWindow.cs:319
+#: ../src/FullScreenView.cs:81 ../src/MainWindow.cs:316
 #: ../src/SingleView.cs:97
 msgid "Slideshow"
 msgstr "Pokretni prikaz"
 
-#: ../src/FullScreenView.cs:85
+#: ../src/FullScreenView.cs:82
 msgid "Start slideshow"
 msgstr "Pusti pokretni prikaz"
 
-#: ../src/FullScreenView.cs:150
+#: ../src/FullScreenView.cs:128
 msgid "Slide transition:"
 msgstr "Prelaz slika:"
 
@@ -784,18 +771,15 @@ msgstr "Podeli"
 msgid "Push"
 msgstr "Izguraj"
 
-#: ../src/GroupSelector.cs:57
-#: ../src/GroupSelector.cs:58
+#: ../src/GroupSelector.cs:57 ../src/GroupSelector.cs:58
 msgid "More dates"
 msgstr "Još datuma"
 
-#: ../src/GroupSelector.cs:60
-#: ../src/GroupSelector.cs:61
+#: ../src/GroupSelector.cs:60 ../src/GroupSelector.cs:61
 msgid "More directories"
 msgstr "Još direktorijuma"
 
-#: ../src/GroupSelector.cs:63
-#: ../src/GroupSelector.cs:64
+#: ../src/GroupSelector.cs:63 ../src/GroupSelector.cs:64
 msgid "More"
 msgstr "Još"
 
@@ -807,13 +791,11 @@ msgstr "Sortiraj po _mesecima"
 msgid "Arrange by _Folder"
 msgstr "Sortiraj po _direktorijumu"
 
-#: ../src/GroupSelector.cs:523
-#: ../src/f-spot.glade.h:243
+#: ../src/GroupSelector.cs:523 ../src/f-spot.glade.h:243
 msgid "_Reverse Order"
 msgstr "_Obrnut redosled"
 
-#: ../src/GroupSelector.cs:529
-#: ../src/f-spot.glade.h:197
+#: ../src/GroupSelector.cs:529 ../src/f-spot.glade.h:197
 msgid "_Clear Date Range"
 msgstr "_Očisti opseg datuma"
 
@@ -870,8 +852,9 @@ msgid "A unique number"
 msgstr "Jedinstven broj"
 
 #: ../src/Imaging/IptcFile.cs:157
-msgid "The envelope handling priority between 1 (most urgent) and 9 (least urgent)"
-msgstr "Prioritet obrade omota između 1 (hitnio) i 9 (najmanje važno)"
+msgid ""
+"The envelope handling priority between 1 (most urgent) and 9 (least urgent)"
+msgstr "Prioritet upravljanja omotima između 1 (hitnio) i 9 (najmanje važno)"
 
 #: ../src/Imaging/IptcFile.cs:159
 msgid "The year, month and day (CCYYMMDD) the service sent the material"
@@ -909,8 +892,7 @@ msgstr "Poveznica tipa objekta"
 msgid "Object attribute reference"
 msgstr "Poveznica atributa objeta"
 
-#: ../src/Imaging/IptcFile.cs:188
-#: ../src/Imaging/IptcFile.cs:192
+#: ../src/Imaging/IptcFile.cs:188 ../src/Imaging/IptcFile.cs:192
 msgid "Object name"
 msgstr "Ime objekta"
 
@@ -935,7 +917,8 @@ msgid "Full name of the country of the focus of the content"
 msgstr "Puno ime zemlje i cilj sadržaja"
 
 #: ../src/Imaging/IptcFile.cs:206
-msgid "Two or three letter ISO3166 code of the country of the focus of the content"
+msgid ""
+"Two or three letter ISO3166 code of the country of the focus of the content"
 msgstr "Dvo ili troslovni ISO3166 kod države za cilj sadržaja"
 
 #: ../src/Imaging/IptcFile.cs:209
@@ -951,15 +934,20 @@ msgid "The title of the author or creator"
 msgstr "Ime autora ili tvorca"
 
 #: ../src/Imaging/IptcFile.cs:218
-msgid "The person involved in writing, editing or correcting the object data or caption/abstract"
-msgstr "Osoba koja je uključena u pisanje, uređivanje ili popravljanje podataka o objektu ili zaglavlja/abstrakta"
+msgid ""
+"The person involved in writing, editing or correcting the object data or "
+"caption/abstract"
+msgstr ""
+"Osoba koja je uključena u pisanje, uređivanje ili popravljanje podataka o objektu "
+"ili zaglavlja/abstrakta"
 
 #: ../src/Imaging/IptcFile.cs:222
 msgid "Headline of the content"
 msgstr "Naslov sadržaja"
 
 #: ../src/Imaging/IptcFile.cs:225
-msgid "Instructions from the creator to the receiver not covered by other fields"
+msgid ""
+"Instructions from the creator to the receiver not covered by other fields"
 msgstr "Uputstva autora potrošaču koja nisu pokrivena ostalim poljima"
 
 #: ../src/Imaging/IptcFile.cs:228
@@ -970,23 +958,27 @@ msgstr "Intelektualni žanr objekta"
 msgid "Unknown IIM DataSet"
 msgstr "Nepoznat IIM SetPodataka"
 
-#: ../src/ImportCommand.cs:49
-#: ../src/SingleView.cs:344
+#: ../src/ImportCommand.cs:47 ../src/SingleView.cs:344
 msgid "Select Folder"
 msgstr "Izaberite direktorijum"
 
-#: ../src/ImportCommand.cs:261
+#: ../src/ImportCommand.cs:259
 msgid "(No Cameras Detected)"
 msgstr "(Nisu pronađeni aparati)"
 
-#: ../src/ImportCommand.cs:406
+#: ../src/ImportCommand.cs:404
 #, csharp-format
 msgid "Loading {0} of {1}"
 msgstr "Učitavam {0} od {1}"
 
-#: ../src/ImportCommand.cs:472
+#: ../src/ImportCommand.cs:470
 msgid "Done Loading"
 msgstr "Učitavanje završeno"
+
+#: ../src/ImportCommand.cs:540 ../src/MainWindow.cs:276
+#: ../src/f-spot.glade.h:111
+msgid "Import"
+msgstr "Uvezi"
 
 #: ../src/ImportCommand.cs:670
 msgid "Directory does not exist."
@@ -995,52 +987,48 @@ msgstr "Direktorijum ne postoji."
 # bug: unclear
 #: ../src/ImportCommand.cs:671
 #, csharp-format
-msgid "The directory you selected \"{0}\" does not exist.  Please choose a different directory"
-msgstr "Direktorijum koji ste izabrali „{0}“ ne postoji.  Izaberite neki drugi."
+msgid ""
+"The directory you selected \"{0}\" does not exist.  Please choose a "
+"different directory"
+msgstr ""
+"Direktorijum koji ste izabrali „{0}“ ne postoji.  Izaberite neki drugi."
 
 #. Note for translators: 'Import Tags' is no command, it means 'Tags used in Import'
-#: ../src/ImportCommand.cs:724
-#: ../src/ImportCommand.cs:726
+#: ../src/ImportCommand.cs:724 ../src/ImportCommand.cs:726
 #: ../src/XmpTagsImporter.cs:88
 msgid "Import Tags"
 msgstr "Uvezene oznake"
 
-#: ../src/ItemAction.cs:81
-#: ../src/MainWindow.cs:286
-#: ../src/SingleView.cs:80
+#: ../src/ItemAction.cs:79 ../src/MainWindow.cs:283 ../src/SingleView.cs:80
 msgid "Rotate Left"
 msgstr "Rotiraj _ulevo"
 
-#: ../src/ItemAction.cs:82
+#: ../src/ItemAction.cs:80
 msgid "Rotate picture left"
 msgstr "Rotira sliku ulevo"
 
-#: ../src/ItemAction.cs:93
-#: ../src/MainWindow.cs:290
-#: ../src/SingleView.cs:85
+#: ../src/ItemAction.cs:91 ../src/MainWindow.cs:287 ../src/SingleView.cs:85
 msgid "Rotate Right"
 msgstr "Rotiraj _udesno"
 
-#: ../src/ItemAction.cs:94
+#: ../src/ItemAction.cs:92
 msgid "Rotate picture right"
 msgstr "Rotira sliku udesno"
 
-#: ../src/ItemAction.cs:104
-#: ../src/f-spot.glade.h:121
-#: ../extensions/Exporters/FolderExport/FolderExport.cs:998
+#: ../src/ItemAction.cs:102 ../src/f-spot.glade.h:121
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:999
 msgid "Next"
 msgstr "Sledeća"
 
-#: ../src/ItemAction.cs:105
+#: ../src/ItemAction.cs:103
 msgid "Next picture"
 msgstr "Ide na narednu sliku"
 
-#: ../src/ItemAction.cs:126
-#: ../src/f-spot.glade.h:142
+#: ../src/ItemAction.cs:124 ../src/f-spot.glade.h:142
 msgid "Previous"
 msgstr "Prethodna"
 
-#: ../src/ItemAction.cs:127
+#: ../src/ItemAction.cs:125
 msgid "Previous picture"
 msgstr "Ide na prethodnu sliku"
 
@@ -1048,8 +1036,7 @@ msgstr "Ide na prethodnu sliku"
 msgid "Error saving sharpened photo"
 msgstr "Greška pri čuvanju izoštrene slike"
 
-#: ../src/Loupe.cs:61
-#: ../src/PhotoView.cs:166
+#: ../src/Loupe.cs:61 ../src/PhotoView.cs:165
 #: ../src/UI.Dialog/EditExceptionDialog.cs:25
 #, csharp-format
 msgid "Received exception \"{0}\". Unable to save photo {1}"
@@ -1071,96 +1058,89 @@ msgstr "Poluprečnik:"
 msgid "Threshold:"
 msgstr "Prag:"
 
-#: ../src/MainWindow.cs:279
-#: ../src/f-spot.glade.h:111
-msgid "Import"
-msgstr "Uvezi"
-
-#: ../src/MainWindow.cs:281
+#: ../src/MainWindow.cs:278
 msgid "Import new images"
 msgstr "Uvezi nove slike"
 
-#: ../src/MainWindow.cs:297
-#: ../src/f-spot.glade.h:62
+#: ../src/MainWindow.cs:294 ../src/f-spot.glade.h:62
 msgid "Browse"
 msgstr "Razgledaj"
 
-#: ../src/MainWindow.cs:301
+#: ../src/MainWindow.cs:298
 msgid "Browse many photos simultaneously"
 msgstr "Pregledaj više fotografija odjednom"
 
-#: ../src/MainWindow.cs:305
+#: ../src/MainWindow.cs:302
 msgid "Edit Image"
 msgstr "Uredi sliku"
 
-#: ../src/MainWindow.cs:309
+#: ../src/MainWindow.cs:306
 msgid "View and edit a photo"
 msgstr "Pregledaj i uredi sliku"
 
-#: ../src/MainWindow.cs:314
-#: ../src/SingleView.cs:92
+#: ../src/MainWindow.cs:311 ../src/SingleView.cs:92
 msgid "Fullscreen"
 msgstr "Ceo ekran"
 
-#: ../src/MainWindow.cs:316
-#: ../src/SingleView.cs:94
+#: ../src/MainWindow.cs:313 ../src/SingleView.cs:94
 msgid "View photos fullscreen"
 msgstr "Pregledaj fotografije u celom ekranu"
 
-#: ../src/MainWindow.cs:321
-#: ../src/SingleView.cs:99
+#: ../src/MainWindow.cs:318 ../src/SingleView.cs:99
 msgid "View photos in a slideshow"
 msgstr "Pregledaj slike u pokretnom prikazu"
 
-#: ../src/MainWindow.cs:336
+#: ../src/MainWindow.cs:333
 msgid "Previous photo"
 msgstr "Prethodna slika"
 
 # bug: no plural forms needed
-#: ../src/MainWindow.cs:341
+#: ../src/MainWindow.cs:338
 msgid "Next photo"
 msgstr "Sledeća slika"
 
 #. Don't care otherwise, Tags sounds reasonable
-#: ../src/MainWindow.cs:354
-#: ../src/Widgets/Sidebar.cs:73
-#: ../extensions/Exporters/FolderExport/FolderExport.cs:995
-#: ../extensions/Exporters/FolderExport/FolderExport.cs:1167
-#: ../extensions/Exporters/FolderExport/FolderExport.cs:1207
+#: ../src/MainWindow.cs:351 ../src/Widgets/Sidebar.cs:73
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:996
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:1168
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:1208
 msgid "Tags"
 msgstr "Oznake"
 
 #. Note for translators: This indicates the current photo is photo {0} of {1} out of photos
-#: ../src/MainWindow.cs:662
-#: ../src/ProgressDialog.cs:82
-#: ../src/TimeDialog.cs:143
-#: ../extensions/Exporters/CDExport/CDExport.cs:221
+#: ../src/MainWindow.cs:659 ../src/UI.Dialog/AdjustTimeDialog.cs:135
+#: ../src/UI.Dialog/ProgressDialog.cs:92
+#: ../extensions/Exporters/CDExport/CDExport.cs:222
 #: ../extensions/Exporters/FlickrExport/FlickrExport.cs:349
-#: ../extensions/Exporters/FolderExport/FolderExport.cs:244
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:245
 #: ../extensions/Exporters/GalleryExport/GalleryExport.cs:783
 #, csharp-format
 msgid "{0} of {1}"
 msgstr "{0} od {1}"
 
-#: ../src/MainWindow.cs:1671
+#: ../src/MainWindow.cs:1674
 msgid "No cameras detected."
 msgstr "Nisam našao nijedan aparat."
 
-#: ../src/MainWindow.cs:1672
-msgid "F-Spot was unable to find any cameras attached to this system.  Double check that the camera is connected and has power"
-msgstr "F-broj nije uspeo da nađe nijedan aparat povezan na ovaj sistem.  Proverite da je aparat povezan i uključen"
+#: ../src/MainWindow.cs:1675
+msgid ""
+"F-Spot was unable to find any cameras attached to this system.  Double check "
+"that the camera is connected and has power"
+msgstr ""
+"F-broj nije uspeo da nađe nijedan aparat povezan na ovaj sistem.  Proverite "
+"da je aparat povezan i uključen"
 
-#: ../src/MainWindow.cs:1712
+#: ../src/MainWindow.cs:1714
 msgid "Error connecting to camera"
 msgstr "Greška pri povezivanju sa aparatom"
 
-#: ../src/MainWindow.cs:1713
+#: ../src/MainWindow.cs:1715
 #, csharp-format
 msgid "Received error \"{0}\" while connecting to camera"
 msgstr "Primih grešku „{0}“ pri povezivanju sa aparatom"
 
 #. Translators, The singular case will never happen here.
-#: ../src/MainWindow.cs:2058
+#: ../src/MainWindow.cs:2054
 #, csharp-format
 msgid "Merge the selected tag"
 msgid_plural "Merge the {0} selected tags?"
@@ -1168,15 +1148,17 @@ msgstr[0] "Ukloni {0} izabranu oznaku?"
 msgstr[1] "Ukloni {0} izabrane oznake?"
 msgstr[2] "Ukloni {0} izabranih oznaka?"
 
-#: ../src/MainWindow.cs:2085
-msgid "This operation will merge the selected tags and any sub-tags into a single tag."
+#: ../src/MainWindow.cs:2081
+msgid ""
+"This operation will merge the selected tags and any sub-tags into a single "
+"tag."
 msgstr "Ova radnja će spojiti izabrane oznake i pod-oznake u jednu oznaku."
 
-#: ../src/MainWindow.cs:2087
+#: ../src/MainWindow.cs:2083
 msgid "_Merge Tags"
 msgstr "_Spoji oznake"
 
-#: ../src/MainWindow.cs:2292
+#: ../src/MainWindow.cs:2288
 #, csharp-format
 msgid "{0} Photo out of {1}"
 msgid_plural "{0} Photos out of {1}"
@@ -1184,8 +1166,7 @@ msgstr[0] "Slika {0} od {1}"
 msgstr[1] "Slike {0} od {1}"
 msgstr[2] "Slika {0} od {1}"
 
-#: ../src/MainWindow.cs:2294
-#: ../src/SingleView.cs:481
+#: ../src/MainWindow.cs:2290 ../src/SingleView.cs:481
 #, csharp-format
 msgid "{0} Photo"
 msgid_plural "{0} Photos"
@@ -1193,7 +1174,7 @@ msgstr[0] "{0} slika"
 msgstr[1] "{0} slike"
 msgstr[2] "{0} slika"
 
-#: ../src/MainWindow.cs:2297
+#: ../src/MainWindow.cs:2293
 #, csharp-format
 msgid " ({0} selected)"
 msgid_plural " ({0} selected)"
@@ -1201,25 +1182,25 @@ msgstr[0] " ({0} izabrana)"
 msgstr[1] " ({0} izabrane)"
 msgstr[2] " ({0} izabranih)"
 
-#: ../src/MainWindow.cs:2378
+#: ../src/MainWindow.cs:2374
 msgid "_Ok"
 msgstr "_U redu"
 
-#: ../src/MainWindow.cs:2379
+#: ../src/MainWindow.cs:2375
 msgid "Error Deleting Picture"
 msgstr "Greška pri uklanjanju slika"
 
-#: ../src/MainWindow.cs:2384
+#: ../src/MainWindow.cs:2380
 #, csharp-format
 msgid "No permission to delete the file:{1}{0}"
 msgstr "Nemate ovlašženja za brisanje datoteke:{1}{0}"
 
-#: ../src/MainWindow.cs:2388
+#: ../src/MainWindow.cs:2384
 #, csharp-format
 msgid "An error of type {0} occurred while deleting the file:{2}{1}"
 msgstr "Greška tipa {0} se javila pri brisanju datoteke:{2}{1}"
 
-#: ../src/MainWindow.cs:2414
+#: ../src/MainWindow.cs:2410
 #, csharp-format
 msgid "Delete the selected photo permanently?"
 msgid_plural "Delete the {0} selected photos permanently?"
@@ -1228,22 +1209,23 @@ msgstr[1] "Trajno obrisati {0} izabrane slike?"
 msgstr[2] "Trajno obrisati {0} izabranih slika?"
 
 # bug: no plural forms needed
-#: ../src/MainWindow.cs:2418
+#: ../src/MainWindow.cs:2414
 msgid "This deletes all versions of the selected photo from your drive."
-msgid_plural "This deletes all versions of the selected photos from your drive."
+msgid_plural ""
+"This deletes all versions of the selected photos from your drive."
 msgstr[0] "Ovo uklanja sve izabrane slike sa vašeg diska."
 msgstr[1] "Ovo uklanja sve izabrane slike sa vašeg diska."
 msgstr[2] "Ovo uklanja sve izabrane slike sa vašeg diska."
 
 # bug: no plural forms needed
-#: ../src/MainWindow.cs:2421
+#: ../src/MainWindow.cs:2417
 msgid "_Delete photo"
 msgid_plural "_Delete photos"
 msgstr[0] "U_kloni slike"
 msgstr[1] "U_kloni slike"
 msgstr[2] "U_kloni slike"
 
-#: ../src/MainWindow.cs:2451
+#: ../src/MainWindow.cs:2447
 #, csharp-format
 msgid "Remove the selected photo from F-Spot?"
 msgid_plural "Remove the {0} selected photos from F-Spot?"
@@ -1251,42 +1233,49 @@ msgstr[0] "Ukloniti {0} izabranu sliku iz F-broja?"
 msgstr[1] "Ukloniti {0} izabrane slike iz F-broja?"
 msgstr[2] "Ukloniti {0} izabranih slika iz F-broja?"
 
-#: ../src/MainWindow.cs:2456
-msgid "If you remove photos from the F-Spot catalog all tag information will be lost. The photos remain on your computer and can be imported into F-Spot again."
-msgstr "Ukoliko uklonite slike iz F-broj kataloga svi podaci o oznakama će biti izgubljeni. Slike će ostati na vašem računaru i mogu se ponovo uvesti u F-Spot."
+#: ../src/MainWindow.cs:2452
+msgid ""
+"If you remove photos from the F-Spot catalog all tag information will be "
+"lost. The photos remain on your computer and can be imported into F-Spot "
+"again."
+msgstr ""
+"Ukoliko uklonite slike iz F-broj kataloga svi podaci o oznakama će biti "
+"izgubljeni. Slike će ostati na vašem računaru i mogu se ponovo uvesti u F-"
+"Spot."
 
-#: ../src/MainWindow.cs:2457
+#: ../src/MainWindow.cs:2453
 msgid "_Remove from Catalog"
 msgstr "U_kloni iz kataloga"
 
 # bug: no plural forms
-#: ../src/MainWindow.cs:2520
+#: ../src/MainWindow.cs:2516
 #, csharp-format
 msgid "Delete tag \"{0}\"?"
 msgstr "Da uklonim oznaku „{0}“?"
 
-#: ../src/MainWindow.cs:2522
+#: ../src/MainWindow.cs:2518
 #, csharp-format
 msgid "Delete the {0} selected tags?"
 msgstr "Da ukloni {0} izabrane oznake?"
 
-#: ../src/MainWindow.cs:2527
+#: ../src/MainWindow.cs:2523
 msgid "photo"
 msgid_plural "photos"
 msgstr[0] "slika"
 msgstr[1] "slike"
 msgstr[2] "slika"
 
-#: ../src/MainWindow.cs:2529
+#: ../src/MainWindow.cs:2525
 #, csharp-format
 msgid "If you delete this tag, the association with {0} {1} will be lost."
-msgid_plural "If you delete these tags, the association with {0} {1} will be lost."
+msgid_plural ""
+"If you delete these tags, the association with {0} {1} will be lost."
 msgstr[0] "Ukoliko uklonite oznaku, veza sa {0} {1} će biti izgubljena."
 msgstr[1] "Ukoliko uklonite oznaku, veze sa {0} {1} će biti izgubljene."
 msgstr[2] "Ukoliko uklonite oznaku, veze sa {0} {1} će biti izgubljene."
 
 # bug: no plural forms
-#: ../src/MainWindow.cs:2534
+#: ../src/MainWindow.cs:2530
 msgid "_Delete tag"
 msgid_plural "_Delete tags"
 msgstr[0] "_Ukloni oznake"
@@ -1294,30 +1283,34 @@ msgstr[1] "_Ukloni oznake"
 msgstr[2] "_Ukloni oznake"
 
 #. A Category is not empty. Can not delete it.
-#: ../src/MainWindow.cs:2548
+#: ../src/MainWindow.cs:2544
 msgid "Tag is not empty"
 msgstr "Oznaka nije prazna"
 
-#: ../src/MainWindow.cs:2549
+#: ../src/MainWindow.cs:2545
 #, csharp-format
-msgid "Can not delete tags that have tags within them.  Please delete tags under \"{0}\" first"
-msgstr "Ne mogu da obrišem oznake koje imaju oznake unutar sebe. Obrišite najpre oznake ispod {0}"
+msgid ""
+"Can not delete tags that have tags within them.  Please delete tags under "
+"\"{0}\" first"
+msgstr ""
+"Ne mogu da obrišem oznake koje imaju oznake unutar sebe. Obrišite najpre "
+"oznake ispod {0}"
 
-#: ../src/MainWindow.cs:2992
+#: ../src/MainWindow.cs:2990
 msgid "Rotate selected photo left"
 msgid_plural "Rotate selected photos left"
 msgstr[0] "Rotiraj izabranu sliku ulevo"
 msgstr[1] "Rotiraj izabrane sliku ulevo"
 msgstr[2] "Rotiraj izabrane sliku ulevo"
 
-#: ../src/MainWindow.cs:3005
+#: ../src/MainWindow.cs:3003
 msgid "Rotate selected photo right"
 msgid_plural "Rotate selected photos right"
 msgstr[0] "Rotiraj izabranu sliku udesno"
 msgstr[1] "Rotiraj izabrane sliku udesno"
 msgstr[2] "Rotiraj izabrane sliku udesno"
 
-#: ../src/MainWindow.cs:3013
+#: ../src/MainWindow.cs:3011
 #, csharp-format
 msgid "Find _Selected Tag"
 msgid_plural "Find _Selected Tags"
@@ -1325,7 +1318,7 @@ msgstr[0] "Nađi izabranu oznaku"
 msgstr[1] "Nađi izabrane oznake"
 msgstr[2] "Nađi izabrane oznake"
 
-#: ../src/MainWindow.cs:3017
+#: ../src/MainWindow.cs:3015
 #, csharp-format
 msgid "Find Selected Tag _With"
 msgid_plural "Find Selected Tags _With"
@@ -1333,20 +1326,30 @@ msgstr[0] "Nađi izabranu oznaku sa"
 msgstr[1] "Nađi izabrane oznake sa"
 msgstr[2] "Nađi izabrane oznake sa"
 
-#: ../src/MainWindow.cs:3055
+#: ../src/MainWindow.cs:3057
 msgid "Create New Version?"
 msgid_plural "Create New Versions?"
 msgstr[0] "Da napravim novo izdanje?"
 msgstr[1] "Da napravim nova izdanja?"
 msgstr[2] "Da napravim nova izdanja?"
 
-#: ../src/MainWindow.cs:3057
+#: ../src/MainWindow.cs:3059
 #, csharp-format
-msgid "Before launching {1}, should F-Spot create a new version of the selected photo to preserve the original?"
-msgid_plural "Before launching {1}, should F-Spot create new versions of the selected photos to preserve the originals?"
-msgstr[0] "Da li da F-broj napravi novo izdanje izabrane fotografije pre pokretanja {1} kako bi original ostao netaknut?"
-msgstr[1] "Da li da F-broj napravi novo izdanje izabranih fotografija pre pokretanja {1} kako bi originali ostali netaknuti?"
-msgstr[2] "Da li da F-broj napravi novo izdanje izabranih fotografija pre pokretanja {1} kako bi original ostali netaknuti?"
+msgid ""
+"Before launching {1}, should F-Spot create a new version of the selected "
+"photo to preserve the original?"
+msgid_plural ""
+"Before launching {1}, should F-Spot create new versions of the selected "
+"photos to preserve the originals?"
+msgstr[0] ""
+"Da li da F-broj napravi novo izdanje izabrane fotografije pre pokretanja {1} "
+"kako bi original ostao netaknut?"
+msgstr[1] ""
+"Da li da F-broj napravi novo izdanje izabranih fotografija pre pokretanja {1} "
+"kako bi originali ostali netaknuti?"
+msgstr[2] ""
+"Da li da F-broj napravi novo izdanje izabranih fotografija pre pokretanja {1} "
+"kako bi original ostali netaknuti?"
 
 #: ../src/MetadataStore.cs:18
 msgid "Creator"
@@ -1435,7 +1438,7 @@ msgstr "Režim fotografisanja"
 # Ne znam gde je ovo u???
 #: ../src/MetadataStore.cs:56
 msgid "Gain Control"
-msgstr "Pribavi kontrolu"
+msgstr "Kontrola izvlačenja"
 
 #: ../src/MetadataStore.cs:58
 msgid "Contrast"
@@ -1459,85 +1462,83 @@ msgstr "Vrsta scene"
 msgid "(No Tags)"
 msgstr "(Nema oznaka)"
 
-#: ../src/PhotoVersionCommands.cs:57
+#: ../src/PhotoVersionCommands.cs:58
 msgid "Create New Version"
 msgstr "Napravi novo izdanje"
 
-#: ../src/PhotoVersionCommands.cs:58
+#: ../src/PhotoVersionCommands.cs:59
 msgid "Name:"
 msgstr "Naziv:"
 
-#: ../src/PhotoVersionCommands.cs:62
+#: ../src/PhotoVersionCommands.cs:63
 msgid "Rename Version"
 msgstr "Preimenuj izdanje"
 
-#: ../src/PhotoVersionCommands.cs:63
+#: ../src/PhotoVersionCommands.cs:64
 msgid "New name:"
 msgstr "Novi naziv:"
 
-#: ../src/PhotoVersionCommands.cs:109
+#: ../src/PhotoVersionCommands.cs:110
 msgid "Could not create a new version"
 msgstr "Ne mogu da napravim novo izdanje"
 
-#: ../src/PhotoVersionCommands.cs:110
+#: ../src/PhotoVersionCommands.cs:111
 #, csharp-format
 msgid "Received exception \"{0}\". Unable to create version \"{1}\""
 msgstr "Primio sam izuzetak „{0}“. Ne mogu da napravim izdanje „{1}“"
 
-#: ../src/PhotoVersionCommands.cs:137
+#: ../src/PhotoVersionCommands.cs:138
 msgid "Really Delete?"
 msgstr "Zaista obrisati?"
 
-#: ../src/PhotoVersionCommands.cs:138
+#: ../src/PhotoVersionCommands.cs:139
 msgid "Cancel"
 msgstr "Obustavi"
 
-#: ../src/PhotoVersionCommands.cs:139
+#: ../src/PhotoVersionCommands.cs:140
 msgid "Delete"
 msgstr "Ukloni"
 
-#: ../src/PhotoVersionCommands.cs:143
+#: ../src/PhotoVersionCommands.cs:144
 #, csharp-format
 msgid "Really delete version \"{0}\"?"
 msgstr "Zaista obrisati izdanje „{0}“?"
 
-#. FIXME show error dialog.
-#: ../src/PhotoVersionCommands.cs:153
+#: ../src/PhotoVersionCommands.cs:154
 msgid "Could not delete a version"
 msgstr "Ne mogu da obrišem izdanje"
 
-#: ../src/PhotoVersionCommands.cs:154
+#: ../src/PhotoVersionCommands.cs:155
 #, csharp-format
 msgid "Received exception \"{0}\". Unable to delete version \"{1}\""
 msgstr "Primio sam izuzetak „{0}“. Ne mogu da obrišem izdanje „{1}“"
 
-#: ../src/PhotoVersionCommands.cs:195
+#: ../src/PhotoVersionCommands.cs:196
 msgid "Could not rename a version"
 msgstr "Ne mogu da preimenujem izdanje"
 
-#: ../src/PhotoVersionCommands.cs:196
+#: ../src/PhotoVersionCommands.cs:197
 #, csharp-format
 msgid "Received exception \"{0}\". Unable to rename version to \"{1}\""
 msgstr "Primio sam izuzetak „{0}“. Ne mogu da preimenujem izdanje u „{1}“"
 
-#: ../src/PhotoVersionMenu.cs:68
+#: ../src/PhotoVersionMenu.cs:66 ../src/Widgets/InfoBox.cs:546
 msgid "(No Edits)"
 msgstr "(Bez izmena)"
 
-#: ../src/PhotoView.cs:165
-#: ../src/UI.Dialog/EditExceptionDialog.cs:38
+#: ../src/PhotoView.cs:164 ../src/UI.Dialog/EditExceptionDialog.cs:38
 msgid "Error editing photo"
 msgstr "Greška pri izmeni slike"
 
-#: ../src/PhotoView.cs:298
+#: ../src/PhotoView.cs:302
 msgid "Comment:"
 msgstr "Komentar:"
 
-#: ../src/Preferences.cs:161
+#: ../src/Preferences.cs:153
 msgid "Photos"
 msgstr "Fotografije"
 
-#: ../src/PrintOperation.cs:32
+#: ../src/PrintOperation.cs:31
 msgid "Image Settings"
 msgstr "Postavke za sliku"
 
@@ -1579,8 +1580,7 @@ msgstr "Sakrij liniju za _pretragu"
 msgid "Show _Find Bar"
 msgstr "Prikaži liniju za _pretragu"
 
-#: ../src/RotateCommand.cs:94
-#: ../src/RotateCommand.cs:109
+#: ../src/RotateCommand.cs:94 ../src/RotateCommand.cs:109
 msgid "Unable to rotate this type of photo"
 msgstr "Ne mogu da rotiram ovu vrstu slike"
 
@@ -1611,11 +1611,24 @@ msgstr[2] "Ne mogu da rotiram {0} slika"
 
 #: ../src/RotateCommand.cs:242
 #, csharp-format
-msgid "The photo could not be rotated because it is on a read only file system or media such as a CDROM.  Please check the permissions and try again."
-msgid_plural "{0} photos could not be rotated because they are on a read only file system or media such as a CDROM.  Please check the permissions and try again."
-msgstr[0] "Ne mogu da rotiram {0} sliku zato što se nalazi na sistemu datoteka koji omogućava samo čitanje ili na mediju kao što je CD.  Proverite ovlašćenja i pokušajte ponovo."
-msgstr[1] "Ne mogu da rotiram {0} slike zato što se nalaze na sistemu datoteka koji omogućava samo čitanje ili na mediju kao što je CD.  Proverite ovlašćenja i pokušajte ponovo."
-msgstr[2] "Ne mogu da rotiram {0} slika zato što se nalaze na sistemu datoteka koji omogućava samo čitanje ili na mediju kao što je CD.  Proverite ovlašćenja i pokušajte ponovo."
+msgid ""
+"The photo could not be rotated because it is on a read only file system or "
+"media such as a CDROM.  Please check the permissions and try again."
+msgid_plural ""
+"{0} photos could not be rotated because they are on a read only file system "
+"or media such as a CDROM.  Please check the permissions and try again."
+msgstr[0] ""
+"Ne mogu da rotiram {0} sliku zato što se nalazi na sistemu datoteka koji "
+"omogućava samo čitanje ili na mediju kao što je CD.  Proverite ovlašćenja i "
+"pokušajte ponovo."
+msgstr[1] ""
+"Ne mogu da rotiram {0} slike zato što se nalaze na sistemu datoteka koji "
+"omogućava samo čitanje ili na mediju kao što je CD.  Proverite ovlašćenja i "
+"pokušajte ponovo."
+msgstr[2] ""
+"Ne mogu da rotiram {0} slika zato što se nalaze na sistemu datoteka koji "
+"omogućava samo čitanje ili na mediju kao što je CD.  Proverite ovlašćenja i "
+"pokušajte ponovo."
 
 #: ../src/RotateCommand.cs:269
 #, csharp-format
@@ -1626,26 +1639,26 @@ msgstr "Primih grešku „{0}“ pri pokušaju da rotiram {1}"
 msgid "Error while rotating photo."
 msgstr "Greška pri rotiranju slike."
 
-#: ../src/SendEmail.cs:240
+#: ../src/SendEmail.cs:239
 msgid "Preparing email"
 msgstr "Pripremam e-poštu"
 
-#: ../src/SendEmail.cs:292
+#: ../src/SendEmail.cs:291
 #, csharp-format
 msgid "Exporting picture \"{0}\""
 msgstr "Izvozim sliku „{0}“"
 
-#: ../src/SendEmail.cs:314
+#: ../src/SendEmail.cs:313
 msgid "Error processing image"
 msgstr "Greška pri obradi oznake"
 
-#: ../src/SendEmail.cs:315
+#: ../src/SendEmail.cs:314
 #, csharp-format
 msgid "An error occured while processing \"{0}\": {1}"
 msgstr "Javila se greška pri obradi „{0}“: {1}"
 
 #. Send the mail :)
-#: ../src/SendEmail.cs:330
+#: ../src/SendEmail.cs:329
 msgid "my photos"
 msgstr "moje slike"
 
@@ -1658,10 +1671,8 @@ msgid "Rotate photo right"
 msgstr "Rotiraj sliku u_desno"
 
 #. Obsolete, remove after db rev4
-#: ../src/SingleView.cs:122
-#: ../src/Widgets/MetadataDisplay.cs:219
-#: ../src/Widgets/MetadataDisplay.cs:221
-#: ../src/f-spot.glade.h:98
+#: ../src/SingleView.cs:122 ../src/Widgets/MetadataDisplay.cs:219
+#: ../src/Widgets/MetadataDisplay.cs:221 ../src/f-spot.glade.h:98
 msgid "Folder"
 msgstr "Fascikla"
 
@@ -1673,52 +1684,51 @@ msgstr "Otvori"
 msgid "Set as Background"
 msgstr "Postavi za pozadinu"
 
-#: ../src/TagCommands.cs:92
-#: ../src/TagCommands.cs:220
-#: ../src/TagSelectionWidget.cs:512
+#: ../src/TagCommands.cs:91 ../src/TagCommands.cs:219
+#: ../src/TagSelectionWidget.cs:511
 msgid "This name is already in use"
 msgstr "Ovo ime je već u upotrebi"
 
-#: ../src/TagCommands.cs:139
+#: ../src/TagCommands.cs:138
 msgid "Create New Tag"
 msgstr "Napravi novu oznaku"
 
-#: ../src/TagCommands.cs:140
+#: ../src/TagCommands.cs:139
 msgid "Name of New Tag:"
 msgstr "Ime nove oznake:"
 
-#: ../src/TagCommands.cs:286
+#: ../src/TagCommands.cs:285
 msgid "Edit Tag"
 msgstr "Uredi oznaku"
 
-#: ../src/TagCommands.cs:287
+#: ../src/TagCommands.cs:286
 msgid "Tag Name:"
 msgstr "Ime oznake:"
 
-#: ../src/TagCommands.cs:403
+#: ../src/TagCommands.cs:402
 msgid "Unable to load image"
 msgstr "Ne mogu da učitam sliku"
 
-#: ../src/TagCommands.cs:404
+#: ../src/TagCommands.cs:403
 #, csharp-format
 msgid "Unable to load \"{0}\" as icon for the tag"
 msgstr "Ne mogu da učitam „{0}“ za ikonicu oznake"
 
-#: ../src/TagCommands.cs:448
+#: ../src/TagCommands.cs:447
 #, csharp-format
 msgid "Photo {0} of {1}"
 msgstr "Slika {0} od {1}"
 
-#: ../src/TagCommands.cs:478
+#: ../src/TagCommands.cs:477
 #, csharp-format
 msgid "Edit Icon for Tag {0}"
 msgstr "Izmeni ikonu za oznaku {0}"
 
-#: ../src/TagCommands.cs:494
+#: ../src/TagCommands.cs:493
 msgid "Select Photo from file"
 msgstr "Iaberi sliku iz datoteke"
 
-#: ../src/TagCommands.cs:517
+#: ../src/TagCommands.cs:516
 #, csharp-format
 msgid ""
 "\n"
@@ -1743,8 +1753,7 @@ msgstr[0] "_Nađi"
 msgstr[1] "_Nađi"
 msgstr[2] "_Nađi"
 
-#: ../src/TagPopup.cs:36
-#: ../src/Widgets/TagMenu.cs:91
+#: ../src/TagPopup.cs:36 ../src/Widgets/TagMenu.cs:91
 msgid "Create New Tag..."
 msgstr "Napravi novu oznaku..."
 
@@ -1803,8 +1812,7 @@ msgstr[2] "Nađi _sa"
 msgid "All"
 msgstr "Sve"
 
-#: ../src/TagQueryWidget.cs:147
-#: ../src/Term.cs:591
+#: ../src/TagQueryWidget.cs:147 ../src/Term.cs:591
 #, csharp-format
 msgid "Not {0}"
 msgstr "Nije {0}"
@@ -1813,33 +1821,32 @@ msgstr "Nije {0}"
 msgid "Drag tags here to search for them"
 msgstr "Prevucite ovde oznake za pretragu"
 
-#: ../src/TagSelectionWidget.cs:511
+#: ../src/TagSelectionWidget.cs:510
 msgid "Error renaming tag"
 msgstr "Greška pri preimenovanju oznake"
 
-#: ../src/TagStore.cs:239
+#: ../src/TagStore.cs:199
 msgid "Favorites"
 msgstr "Omiljene"
 
-#: ../src/TagStore.cs:244
+#: ../src/TagStore.cs:204
 msgid "Hidden"
 msgstr "Skrivene"
 
-#: ../src/TagStore.cs:252
+#: ../src/TagStore.cs:212
 msgid "People"
 msgstr "Ljudi"
 
-#: ../src/TagStore.cs:257
+#: ../src/TagStore.cs:217
 msgid "Places"
 msgstr "Mesta"
 
-#: ../src/TagStore.cs:262
+#: ../src/TagStore.cs:222
 msgid "Events"
 msgstr "Događaji"
 
 #. The label for the root category is used in new and edit tag dialogs
-#: ../src/TagStore.cs:275
-#: ../src/Widgets/InfoBox.cs:351
+#: ../src/TagStore.cs:235 ../src/Widgets/InfoBox.cs:397
 msgid "(None)"
 msgstr "(Ništa)"
 
@@ -1858,21 +1865,9 @@ msgstr " ili "
 
 #. OPS The operators we support, case insensitive
 #. private static string op_str = "(?'Ops' or | and |, | \\s+ )";
-#: ../src/Term.cs:379
-#: ../src/Widgets/FindBar.cs:177
-#: ../src/f-spot.glade.h:273
+#: ../src/Term.cs:379 ../src/Widgets/FindBar.cs:177 ../src/f-spot.glade.h:273
 msgid "or"
 msgstr "ili"
-
-#: ../src/ThreadProgressDialog.cs:66
-msgid "Retry"
-msgstr "Pokušaj ponovo"
-
-#: ../src/TimeDialog.cs:126
-#: ../src/f-spot.glade.h:166
-#, csharp-format
-msgid "Shift all photos by {0}"
-msgstr "Pomeri sve slike za {0}"
 
 #: ../src/UI.Dialog/AboutDialog.cs:70
 msgid "Photo management for GNOME"
@@ -1894,6 +1889,11 @@ msgstr ""
 msgid "F-Spot Website"
 msgstr "F-broj veb sajt"
 
+#: ../src/UI.Dialog/AdjustTimeDialog.cs:118 ../src/f-spot.glade.h:166
+#, csharp-format
+msgid "Shift all photos by {0}"
+msgstr "Pomeri sve slike za {0}"
+
 #: ../src/UI.Dialog/ExceptionDialog.cs:24
 msgid "F-Spot Encountered a Fatal Error"
 msgstr "F-broj je naišao na kobnu grešku"
@@ -1912,8 +1912,12 @@ msgstr "Greška pri učitavanju beze podataka"
 
 #: ../src/UI.Dialog/RepairDbDialog.cs:21
 #, csharp-format
-msgid "F-Spot encountered an error while loading the photo database. The old database has be moved to {0} and a new database has been created."
-msgstr "F-broj je naišao na grešku pri učitavanju baze. Stara baza je preseljena u {0} i nova baza je napravljena."
+msgid ""
+"F-Spot encountered an error while loading the photo database. The old "
+"database has be moved to {0} and a new database has been created."
+msgstr ""
+"F-broj je naišao na grešku pri učitavanju baze. Stara baza je preseljena u {0} "
+"i nova baza je napravljena."
 
 #: ../src/UI.Dialog/SelectionRatioDialog.cs:60
 msgid "Label"
@@ -1923,13 +1927,21 @@ msgstr "Natpis"
 msgid "Ratio"
 msgstr "Odnos"
 
-#: ../src/Updater.cs:380
+#: ../src/UI.Dialog/ThreadProgressDialog.cs:49
+msgid "Retry"
+msgstr "Pokušaj ponovo"
+
+#: ../src/Updater.cs:502
 msgid "Updating F-Spot Database"
 msgstr "Ažuriram bazu F-broja"
 
-#: ../src/Updater.cs:381
-msgid "Please wait while your F-Spot gallery's database is updated. This may take some time."
-msgstr "Molimo sačekajte dok se ne ažurira F-broj baza galerije. Ovo može da potraje neko vreme."
+#: ../src/Updater.cs:503
+msgid ""
+"Please wait while your F-Spot gallery's database is updated. This may take "
+"some time."
+msgstr ""
+"Molimo sačekajte dok se ne ažurira F-broj baza galerije. Ovo može da potraje "
+"neko vreme."
 
 #. Mono.Unix.Error error = Mono.Unix.Stdlib.GetLastError ();
 #: ../src/Utils/Unix.cs:35
@@ -1937,21 +1949,25 @@ msgid "Unable to create temporary file"
 msgstr "Ne mogu da napravim privremenu datoteku"
 
 #: ../src/Utils/GnomeUtil.cs:49
-msgid "The \"F-Spot Manual\" could not be found.  Please verify that your installation has been completed successfully."
-msgstr "„F-broj uputstvo“ nije nađeno. Proverite da li vaša je dodavanje programa uspešno završeno."
+msgid ""
+"The \"F-Spot Manual\" could not be found.  Please verify that your "
+"installation has been completed successfully."
+msgstr ""
+"„F-broj uputstvo“ nije nađeno. Proverite da li vaša je dodavanje programa "
+"uspešno završeno."
 
-#: ../src/Widgets/CustomPrintWidget.cs:99
+#: ../src/Widgets/CustomPrintWidget.cs:98
 msgid "Page Setup"
 msgstr "Podešavanje strane"
 
-#: ../src/Widgets/CustomPrintWidget.cs:103
-#: ../src/Widgets/CustomPrintWidget.cs:105
-#: ../src/Widgets/CustomPrintWidget.cs:111
+#: ../src/Widgets/CustomPrintWidget.cs:102
+#: ../src/Widgets/CustomPrintWidget.cs:104
+#: ../src/Widgets/CustomPrintWidget.cs:110
 #, csharp-format
 msgid "Paper Size: {0} x {1} mm"
 msgstr "Veličina papira: {0} x {1} mm"
 
-#: ../src/Widgets/CustomPrintWidget.cs:121
+#: ../src/Widgets/CustomPrintWidget.cs:120
 msgid "Photos per page"
 msgstr "Slika po stranici"
 
@@ -1959,41 +1975,40 @@ msgstr "Slika po stranici"
 #. ppp2.Toggled += TriggerChanged;
 #. ppp4.Toggled += TriggerChanged;
 #. ppp9.Toggled += TriggerChanged;
-#: ../src/Widgets/CustomPrintWidget.cs:133
+#: ../src/Widgets/CustomPrintWidget.cs:132
 msgid "Repeat"
 msgstr "Postavi"
 
-#: ../src/Widgets/CustomPrintWidget.cs:134
+#: ../src/Widgets/CustomPrintWidget.cs:133
 msgid "Print cut marks"
 msgstr "Štampaj oznake za sečenje"
 
-#: ../src/Widgets/CustomPrintWidget.cs:142
+#: ../src/Widgets/CustomPrintWidget.cs:141
 msgid "Full Page (no margin)"
 msgstr "Cela strana (bez margine)"
 
 #. Note for translators: "Zoom" is a Fit Mode
-#: ../src/Widgets/CustomPrintWidget.cs:146
+#: ../src/Widgets/CustomPrintWidget.cs:145
 msgid "Zoom"
 msgstr "Uvećanje"
 
-#: ../src/Widgets/CustomPrintWidget.cs:147
+#: ../src/Widgets/CustomPrintWidget.cs:146
 msgid "Fill"
 msgstr "Popuni"
 
-#: ../src/Widgets/CustomPrintWidget.cs:148
+#: ../src/Widgets/CustomPrintWidget.cs:147
 msgid "Scaled"
 msgstr "Raširi"
 
-#: ../src/Widgets/CustomPrintWidget.cs:154
+#: ../src/Widgets/CustomPrintWidget.cs:153
 msgid "White borders"
 msgstr "Bele ivice"
 
-#: ../src/Widgets/CustomPrintWidget.cs:158
+#: ../src/Widgets/CustomPrintWidget.cs:157
 msgid "Custom Text: "
 msgstr "Proizvoljan tekst: "
 
-#: ../src/Widgets/EditorPage.cs:29
-#: ../src/Widgets/Sidebar.cs:71
+#: ../src/Widgets/EditorPage.cs:29 ../src/Widgets/Sidebar.cs:71
 msgid "Edit"
 msgstr "Uređivanje"
 
@@ -2003,63 +2018,86 @@ msgid "No selection available"
 msgstr "Ništa nije izabrano"
 
 #: ../src/Widgets/EditorPage.cs:202
-msgid "This tool requires an active selection. Please select a region of the photo and try the operation again"
-msgstr "Ovaj alat zahteva da bude aktivan izbor. Izaberite oblast fotografije i ponovite radnju"
+msgid ""
+"This tool requires an active selection. Please select a region of the photo "
+"and try the operation again"
+msgstr ""
+"Ovaj alat zahteva da bude aktivan izbor. Izaberite oblast fotografije i "
+"ponovite radnju"
 
-#: ../src/Widgets/EditorPage.cs:219
+#: ../src/Widgets/EditorPage.cs:220
 msgid "Error saving adjusted photo"
 msgid_plural "Error saving adjusted photos"
 msgstr[0] "Greška pri čuvanju ispravljene slike"
 msgstr[1] "Greška pri čuvanju ispravljenih slika"
 msgstr[2] "Greška pri čuvanju ispravljenih slike"
 
-#: ../src/Widgets/EditorPage.cs:221
+#: ../src/Widgets/EditorPage.cs:222
 #, csharp-format
-msgid "Received exception \"{0}\". Note that you have to develop RAW files into JPEG before you can edit them."
-msgstr "Primljen je izuzetak „{0}“. Morate da razvijete RAW datoteke u JPEG pre njihove izmene."
+msgid ""
+"Received exception \"{0}\". Note that you have to develop RAW files into "
+"JPEG before you can edit them."
+msgstr ""
+"Primljen je izuzetak „{0}“. Morate da razvijete RAW datoteke u JPEG pre "
+"njihove izmene."
 
 #: ../src/Widgets/FindBar.cs:58
 msgid "Find:"
 msgstr "Nađi:"
 
-#: ../src/Widgets/FindBar.cs:177
-#: ../src/f-spot.glade.h:265
+#: ../src/Widgets/FindBar.cs:177 ../src/f-spot.glade.h:265
 msgid "and"
 msgstr "i"
 
-#: ../src/Widgets/InfoBox.cs:164
+#: ../src/Widgets/InfoBox.cs:179
 msgid "Histogram"
 msgstr "Histogram"
 
-#: ../src/Widgets/InfoBox.cs:199
+#: ../src/Widgets/InfoBox.cs:214
 msgid "Date"
 msgstr "Datum"
 
-#: ../src/Widgets/InfoBox.cs:202
+#: ../src/Widgets/InfoBox.cs:217
 #: ../extensions/Exporters/CDExport/CDExport.glade.h:5
 msgid "Size"
 msgstr "Veličina"
 
-#: ../src/Widgets/InfoBox.cs:205
+#: ../src/Widgets/InfoBox.cs:220
 msgid "Exposure"
 msgstr "Ekspozicija"
 
-#: ../src/Widgets/InfoBox.cs:209
+#: ../src/Widgets/InfoBox.cs:224
+msgid "Focal Length"
+msgstr "Žižna daljina"
+
+#: ../src/Widgets/InfoBox.cs:230
+msgid "File Size"
+msgstr "Veličina datoteke"
+
+#: ../src/Widgets/InfoBox.cs:233
 msgid "Rating"
 msgstr "Ocena"
 
-#: ../src/Widgets/InfoBox.cs:362
-#: ../src/Widgets/InfoBox.cs:371
+#: ../src/Widgets/InfoBox.cs:406 ../src/Widgets/InfoBox.cs:429
+#: ../src/Widgets/InfoBox.cs:439 ../src/Widgets/InfoBox.cs:448
 msgid "(Unknown)"
-msgstr "(Nepoznato)"
+msgstr "(nepoznata)"
 
-#: ../src/Widgets/InfoBox.cs:469
+#: ../src/Widgets/InfoBox.cs:416
+msgid "(wrong format)"
+msgstr "(pogrešan format)"
+
+#: ../src/Widgets/InfoBox.cs:554
+msgid "(File not found)"
+msgstr "(datoteka nije nađena)"
+
+#: ../src/Widgets/InfoBox.cs:598
 #, csharp-format
 msgid "{0} Photos"
 msgstr "{0} slika"
 
 #. Note for translators: {0} is a date, {1} and {2} are times.
-#: ../src/Widgets/InfoBox.cs:481
+#: ../src/Widgets/InfoBox.cs:618
 #, csharp-format
 msgid ""
 "On {0} between \n"
@@ -2068,7 +2106,7 @@ msgstr ""
 "Na {0} između \n"
 "{1} i {2}"
 
-#: ../src/Widgets/InfoBox.cs:486
+#: ../src/Widgets/InfoBox.cs:623
 #, csharp-format
 msgid ""
 "Between {0} \n"
@@ -2076,6 +2114,38 @@ msgid ""
 msgstr ""
 "Između {0} \n"
 "i {1}"
+
+#: ../src/Widgets/InfoBox.cs:647
+msgid "(At least one File not found)"
+msgstr "(bar jedna datoteka nije nađena)"
+
+#: ../src/Widgets/InfoBox.cs:761
+msgid "Show Photo Name"
+msgstr "Prikaži naziv fotografije"
+
+#: ../src/Widgets/InfoBox.cs:770
+msgid "Show Date"
+msgstr "Prikaži datum"
+
+#: ../src/Widgets/InfoBox.cs:779
+msgid "Show Size"
+msgstr "Prikaži veličinu"
+
+#: ../src/Widgets/InfoBox.cs:788
+msgid "Show Exposure"
+msgstr "Prikaži ekspoziciju"
+
+#: ../src/Widgets/InfoBox.cs:797
+msgid "Show Focal Length"
+msgstr "Prikaži žižnu daljinu"
+
+#: ../src/Widgets/InfoBox.cs:806
+msgid "Show Camera"
+msgstr "Prikaži foto-aparat"
+
+#: ../src/Widgets/InfoBox.cs:815
+msgid "Show File Size"
+msgstr "Prikaži veličinu datoteke"
 
 #: ../src/Widgets/MetadataDisplay.cs:23
 msgid "Metadata"
@@ -2114,6 +2184,10 @@ msgstr "Fotografija „{0}“ ne postoji"
 #: ../src/Widgets/MetadataDisplay.cs:410
 msgid "No metadata available"
 msgstr "Nisu dostupni metapodaci"
+
+#: ../src/Widgets/OpenWithMenu.cs:86
+msgid "No applications available"
+msgstr "Nisu dostupni programi"
 
 #: ../src/Widgets/RatingMenuItem.cs:56
 msgid "Rating:"
@@ -2327,8 +2401,12 @@ msgid "<small></small>"
 msgstr "<small></small>"
 
 #: ../src/f-spot.glade.h:44
-msgid "<small><i>Choose the folder where F-Spot should store newly imported photos</i></small>"
-msgstr "<small><i>Izaberite fasciklu gde će F-broj da čuva novouvezene fotografije</i></small>"
+msgid ""
+"<small><i>Choose the folder where F-Spot should store newly imported photos</"
+"i></small>"
+msgstr ""
+"<small><i>Izaberite fasciklu gde će F-broj da čuva novouvezene fotografije</"
+"i></small>"
 
 #: ../src/f-spot.glade.h:45
 msgid ""
@@ -2339,20 +2417,41 @@ msgstr ""
 "podržanih formata slika.</i></small>"
 
 #: ../src/f-spot.glade.h:47
-msgid "<small><i>Enable this to allow interpolation on zoomed images. You shouldn't disable this for viewing photos, but disabling the interpolation could be usefull in icon design.</i></small>"
-msgstr "<small><i>Uključite ovo kako bi dozvolili interpolaciju na povećanim slimama. Ne biste trebali da isključite ovu opciju za pregled fotografija, ali ona može biti korisna kod ikonica.</i></small>"
+msgid ""
+"<small><i>Enable this to allow interpolation on zoomed images. You shouldn't "
+"disable this for viewing photos, but disabling the interpolation could be "
+"usefull in icon design.</i></small>"
+msgstr ""
+"<small><i>Uključite ovo kako bi dozvolili interpolaciju na povećanim slimama. "
+"Ne biste trebali da isključite ovu opciju za pregled fotografija, ali ona "
+"može biti korisna kod ikonica.</i></small>"
 
 #: ../src/f-spot.glade.h:48
-msgid "<small><i>While acting as a screensaver, F-Spot can display all of your images, or a small subset based on tags.</i></small>"
-msgstr "<small><i>U toku rada kao čuvar ekrana, F-broj može da prikaže sve Vaše slike ili mali podskup na osnovu oznaka.</i></small>"
+msgid ""
+"<small><i>While acting as a screensaver, F-Spot can display all of your "
+"images, or a small subset based on tags.</i></small>"
+msgstr ""
+"<small><i>U toku rada kao čuvar ekrana, F-broj može da prikaže sve Vaše "
+"slike ili mali podskup na osnovu oznaka.</i></small>"
 
 #: ../src/f-spot.glade.h:49
-msgid "<small><i>You can choose how to display transparent parts in images. This option has no effect on photos, but setting this as check pattern or custom color could be usefull when viewing icons or other artworks with transparent parts.</i></small>"
-msgstr "<small><i>Možete da izaberete kako da se prikazuju providni delovi slika. Ova opcija nema efekta na fotografije, ali postavljanje na šahovski šablon ili proizvoljnu boju može biti korisno pri pregledu ikonica ili drugih radova sa providnim delovima.</i></small>"
+msgid ""
+"<small><i>You can choose how to display transparent parts in images. This "
+"option has no effect on photos, but setting this as check pattern or custom "
+"color could be usefull when viewing icons or other artworks with transparent "
+"parts.</i></small>"
+msgstr ""
+"<small><i>Možete da izaberete kako da se prikazuju providni delovi slika. "
+"Ova opcija nema efekta na fotografije, ali postavljanje na šahovski šablon ili "
+"proizvoljnu boju može biti korisno pri pregledu ikonica ili drugih radova sa "
+"providnim delovima.</i></small>"
 
 #: ../src/f-spot.glade.h:50
-msgid "<small><i>You'll have to restart f-spot to load the new theme.</i></small>"
-msgstr "<small><i>Morate da ponovo pokrenete F-broj kako bi učitao novu temu.</i></small>"
+msgid ""
+"<small><i>You'll have to restart f-spot to load the new theme.</i></small>"
+msgstr ""
+"<small><i>Morate da ponovo pokrenete F-broj kako bi učitao novu temu.</i></"
+"small>"
 
 #: ../src/f-spot.glade.h:51
 msgid "Adjust Time"
@@ -2456,7 +2555,8 @@ msgstr "_Napravi novo izdanje..."
 
 #: ../src/f-spot.glade.h:77
 msgid "Create a mail with the selected photos (possibly resized) attached"
-msgstr "Napravi e-pismo sa prilogom od izabranih fotografija (po mogućstvu smanjenih)"
+msgstr ""
+"Napravi e-pismo sa prilogom od izabranih fotografija (po mogućstvu smanjenih)"
 
 #: ../src/f-spot.glade.h:78
 msgid "Crop photo to _fit"
@@ -2781,8 +2881,12 @@ msgid "Space all photos by"
 msgstr "Odvoji sve like od"
 
 #: ../src/f-spot.glade.h:174
-msgid "Specify if an original size picture should be rotated or not. Smaller sizes are automatically rotated."
-msgstr "Odredi da li slika u izvornij veličini treba biti rotirana ili ne. Manje veličine se same rotiraju."
+msgid ""
+"Specify if an original size picture should be rotated or not. Smaller sizes "
+"are automatically rotated."
+msgstr ""
+"Odredi da li slika u izvornij veličini treba biti rotirana ili ne. Manje "
+"veličine se same rotiraju."
 
 #: ../src/f-spot.glade.h:175
 msgid "Strip image _metadata"
@@ -2797,8 +2901,8 @@ msgid "T_ags"
 msgstr "_Oznake"
 
 #: ../src/f-spot.glade.h:178
-#: ../extensions/Exporters/FolderExport/FolderExport.cs:1178
 #: ../extensions/Exporters/FolderExport/FolderExport.cs:1179
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:1180
 msgid "Tags: "
 msgstr "Oznake: "
 
@@ -2917,11 +3021,12 @@ msgid "_Edit Selected Tag..."
 msgstr "Ure_di izabranu oznaku..."
 
 #: ../src/f-spot.glade.h:211
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:15
 msgid "_Export"
 msgstr "I_zvezi"
 
 #: ../src/f-spot.glade.h:212
-#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:15
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:16
 #: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:20
 msgid "_Export tags"
 msgstr "Izvezi _oznake"
@@ -3019,12 +3124,12 @@ msgid "_Open destination when done exporting"
 msgstr "Otvori _odredište po završenom izvozu."
 
 #: ../src/f-spot.glade.h:235
-msgid "_Output:"
-msgstr "I_zlaz:"
-
-#: ../src/f-spot.glade.h:236
 msgid "_Photo"
 msgstr "_Fotografija"
+
+#: ../src/f-spot.glade.h:236
+msgid "_Print output:"
+msgstr "I_spiši izlaz:"
 
 #: ../src/f-spot.glade.h:237
 msgid "_Quit"
@@ -3043,7 +3148,7 @@ msgid "_Rename Version"
 msgstr "P_reimenuj izdanje"
 
 #: ../src/f-spot.glade.h:242
-#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:16
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:17
 #: ../extensions/Exporters/FolderExport/FolderExport.glade.h:17
 #: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:20
 #: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:24
@@ -3159,7 +3264,7 @@ msgid "min. Starting at {0}"
 msgstr "min. Počinjem od {0}"
 
 #: ../src/f-spot.glade.h:274
-#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:18
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:19
 #: ../extensions/Exporters/FolderExport/FolderExport.glade.h:19
 #: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:23
 #: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:26
@@ -3183,47 +3288,47 @@ msgstr "F-broj fotografije"
 msgid "_CD..."
 msgstr "_CD..."
 
-#: ../extensions/Exporters/CDExport/CDExport.cs:219
+#: ../extensions/Exporters/CDExport/CDExport.cs:220
 #, csharp-format
 msgid "Transferring picture \"{0}\" To CD"
 msgstr "Prebacujem sliku „{0}“ na CD"
 
-#: ../extensions/Exporters/CDExport/CDExport.cs:246
+#: ../extensions/Exporters/CDExport/CDExport.cs:247
 #: ../extensions/Exporters/FlickrExport/FlickrExport.cs:379
-#: ../extensions/Exporters/FolderExport/FolderExport.cs:284
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:285
 #: ../extensions/Exporters/GalleryExport/GalleryExport.cs:808
-#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:552
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:551
 #: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:702
-#: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:606
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:607
 msgid "Done Sending Photos"
 msgstr "Slanje fotografija je završeno"
 
-#: ../extensions/Exporters/CDExport/CDExport.cs:248
-#: ../extensions/Exporters/FolderExport/FolderExport.cs:286
+#: ../extensions/Exporters/CDExport/CDExport.cs:249
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:287
 msgid "Transfer Complete"
 msgstr "Prenos je završen"
 
-#: ../extensions/Exporters/CDExport/CDExport.cs:255
-#: ../extensions/Exporters/FolderExport/FolderExport.cs:291
+#: ../extensions/Exporters/CDExport/CDExport.cs:256
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:292
 msgid "Error While Transferring"
 msgstr "Greška u toku prebacivanja"
 
-#: ../extensions/Exporters/CDExport/CDExport.cs:262
-#: ../extensions/Exporters/FolderExport/FolderExport.cs:310
+#: ../extensions/Exporters/CDExport/CDExport.cs:263
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:311
 msgid "Error Transferring"
 msgstr "Greška u preacivanju"
 
-#: ../extensions/Exporters/CDExport/CDExport.cs:280
+#: ../extensions/Exporters/CDExport/CDExport.cs:281
 msgid "copying..."
 msgstr "umnožavam..."
 
-#: ../extensions/Exporters/CDExport/CDExport.cs:296
-#: ../extensions/Exporters/FolderExport/FolderExport.cs:332
+#: ../extensions/Exporters/CDExport/CDExport.cs:297
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:333
 msgid "Error: Error while transferring; Aborting"
 msgstr "Greška: greška u toku prebacivanja; odustajem"
 
-#: ../extensions/Exporters/CDExport/CDExport.cs:299
-#: ../extensions/Exporters/FolderExport/FolderExport.cs:335
+#: ../extensions/Exporters/CDExport/CDExport.cs:300
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:336
 msgid "Error: File Already Exists; Aborting"
 msgstr "Greška: datoteka već postoji; odustajem"
 
@@ -3270,8 +3375,12 @@ msgstr "Ovlasti"
 
 #: ../extensions/Exporters/FlickrExport/FlickrExport.cs:111
 #, csharp-format
-msgid "Return to this window after you have finished the authorization process on {0} and click the \"Complete Authorization\" button below"
-msgstr "Vratite se na ovo prozorče nakon ovlašćivanja na {0} i pritisnite dugme „Završi ovlašćenje“"
+msgid ""
+"Return to this window after you have finished the authorization process on "
+"{0} and click the \"Complete Authorization\" button below"
+msgstr ""
+"Vratite se na ovo prozorče nakon ovlašćivanja na {0} i pritisnite dugme "
+"„Završi ovlašćenje“"
 
 #: ../extensions/Exporters/FlickrExport/FlickrExport.cs:112
 msgid "Complete Authorization"
@@ -3311,7 +3420,7 @@ msgid "Waiting for response {0} of {1}"
 msgstr "Čekam odgovor {0} od {1}"
 
 #: ../extensions/Exporters/FlickrExport/FlickrExport.cs:344
-#: ../extensions/Exporters/FolderExport/FolderExport.cs:241
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:242
 #: ../extensions/Exporters/GalleryExport/GalleryExport.cs:779
 #, csharp-format
 msgid "Uploading picture \"{0}\""
@@ -3324,9 +3433,9 @@ msgstr "Greška pri nabacivanju na {0}: {1}"
 
 #: ../extensions/Exporters/FlickrExport/FlickrExport.cs:381
 #: ../extensions/Exporters/GalleryExport/GalleryExport.cs:810
-#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:554
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:553
 #: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:704
-#: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:608
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:609
 msgid "Upload Complete"
 msgstr "Nabacivanje gotovo"
 
@@ -3336,14 +3445,18 @@ msgstr "Ne mogu da se prijavim."
 
 #: ../extensions/Exporters/FlickrExport/FlickrExport.cs:455
 #, csharp-format
-msgid "F-Spot was unable to log on to {0}.  Make sure you have given the authentication using {0} web browser interface."
-msgstr "F-broj se ne može prijaviti na {0}.  Proverite da li ste se prijavili koristeći okruženje Internet preglednika {0}."
+msgid ""
+"F-Spot was unable to log on to {0}.  Make sure you have given the "
+"authentication using {0} web browser interface."
+msgstr ""
+"F-broj se ne može prijaviti na {0}.  Proverite da li ste se prijavili "
+"koristeći okruženje Internet preglednika {0}."
 
 #: ../extensions/Exporters/FlickrExport/FlickrExport.cs:475
 #: ../extensions/Exporters/GalleryExport/GalleryExport.cs:732
-#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:478
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:477
 #: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:598
-#: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:521
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:522
 msgid "Uploading Pictures"
 msgstr "Nabacujem slike"
 
@@ -3356,8 +3469,14 @@ msgid "Export tag _hierarchy"
 msgstr "Izvezi _hijerarhiju oznaka"
 
 #: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:8
-msgid "F-Spot needs your authorization in order to upload photos to your {0} account. Press the \"Authorize\" button to open a web browser and give F-Spot the authorization. "
-msgstr "F-broju je potrebno Vaše ovlašćenje kako bi nabacio slike na Vaš {0} nalog. Pritisnite dugme „Ovlasti“ kako bi otvorili Internet preglednik i dali F-broju ovlašćenje."
+msgid ""
+"F-Spot needs your authorization in order to upload photos to your {0} "
+"account. Press the \"Authorize\" button to open a web browser and give F-"
+"Spot the authorization. "
+msgstr ""
+"F-broju je potrebno Vaše ovlašćenje kako bi nabacio slike na Vaš {0} nalog. "
+"Pritisnite dugme „Ovlasti“ kako bi otvorili Internet preglednik i dali F-"
+"broju ovlašćenje."
 
 #: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:9
 msgid "Ignore _top level tags"
@@ -3383,7 +3502,7 @@ msgstr "Vidljivo porodici"
 msgid "Visible to Friends"
 msgstr "Vidljivo prijateljima"
 
-#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:17
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:18
 msgid "_View photos in browser when done uploading"
 msgstr "_Pogledaj slike u razgledaču po završenom postavljanju"
 
@@ -3391,47 +3510,47 @@ msgstr "_Pogledaj slike u razgledaču po završenom postavljanju"
 msgid "F_older..."
 msgstr "_Direktorijum..."
 
-#: ../extensions/Exporters/FolderExport/FolderExport.cs:139
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:140
 msgid "Select Export Folder"
 msgstr "Izaberite direktorijum za izvoz"
 
-#: ../extensions/Exporters/FolderExport/FolderExport.cs:197
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:198
 msgid "Building Gallery"
 msgstr "Pravim galeriju"
 
-#: ../extensions/Exporters/FolderExport/FolderExport.cs:247
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:248
 #, csharp-format
 msgid "Error uploading picture \"{0}\" to Gallery:{2}{1}"
 msgstr "Greška pri nabacivanju slike „{0}“ u Galeriju:{2}{1}"
 
 #. Note for translators: light as clear, opposite as dark
-#: ../extensions/Exporters/FolderExport/FolderExport.cs:809
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:810
 msgid "Light"
 msgstr "Svetlo"
 
-#: ../extensions/Exporters/FolderExport/FolderExport.cs:810
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:811
 msgid "Dark"
 msgstr "Mrak"
 
 #. Abbreviation of previous
-#: ../extensions/Exporters/FolderExport/FolderExport.cs:990
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:991
 msgid "Prev"
 msgstr "Pret"
 
-#: ../extensions/Exporters/FolderExport/FolderExport.cs:1102
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:1103
 msgid "Gallery generated by"
 msgstr "Galerija je napravljena pomoću"
 
-#: ../extensions/Exporters/FolderExport/FolderExport.cs:1142
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:1143
 msgid "Show Styles"
 msgstr "Prikaži stilove"
 
-#: ../extensions/Exporters/FolderExport/FolderExport.cs:1143
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:1144
 msgid "Hide Styles"
 msgstr "Sakrij stilove"
 
-#: ../extensions/Exporters/FolderExport/FolderExport.cs:1310
-#: ../extensions/Exporters/FolderExport/FolderExport.cs:1442
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:1311
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:1444
 msgid "Page:"
 msgstr "Stranica:"
 
@@ -3522,8 +3641,12 @@ msgstr "Već postoji galerija sa ovim nazivom"
 
 #: ../extensions/Exporters/GalleryExport/GalleryExport.cs:420
 #, csharp-format
-msgid "There is already a Gallery with the same name in your registered Galleries. Please choose a unique name."
-msgstr "U galerijama koje ste registrovali već postoji jedna sa ovim nazivom. Izaberite neki drugi naziv."
+msgid ""
+"There is already a Gallery with the same name in your registered Galleries. "
+"Please choose a unique name."
+msgstr ""
+"U galerijama koje ste registrovali već postoji jedna sa ovim nazivom. "
+"Izaberite neki drugi naziv."
 
 #: ../extensions/Exporters/GalleryExport/GalleryExport.cs:530
 msgid "(TopLevel)"
@@ -3548,32 +3671,33 @@ msgstr "Greška pri nabacivanju slike „{0}“ u Galeriju: {1}"
 
 #: ../extensions/Exporters/GalleryExport/GalleryExport.cs:826
 #: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:725
-#: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:629
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:630
 msgid "(No Gallery)"
 msgstr "(Bez Galerije)"
 
 #: ../extensions/Exporters/GalleryExport/GalleryExport.cs:918
 #: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:852
-#: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:725
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:726
 msgid "(Not Connected)"
 msgstr "(Nije povezan)"
 
 #: ../extensions/Exporters/GalleryExport/GalleryExport.cs:919
 #: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:853
-#: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:726
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:727
 msgid "(No Albums)"
 msgstr "(Nema albuma)"
 
 #: ../extensions/Exporters/GalleryExport/GalleryExport.cs:971
 #: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:915
-#: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:767
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:768
 msgid "No account selected"
 msgstr "Nisu izabrani nalozi"
 
 #: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:5
 #: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:5
 msgid "<span weight='bold' size='larger'>Error Connecting to Gallery</span>\n"
-msgstr "<span weight='bold' size='larger'>Greška pri povezivanju na Galeriju</span>\n"
+msgstr ""
+"<span weight='bold' size='larger'>Greška pri povezivanju na Galeriju</span>\n"
 
 #: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:9
 msgid "Export _titles and comments"
@@ -3651,7 +3775,8 @@ msgstr "Greška prilikom pravljenja novog albuma"
 #: ../extensions/Exporters/GalleryExport/GalleryRemote.cs:711
 #, csharp-format
 msgid ""
-"The following error was encountered while attempting to perform the requested operation:\n"
+"The following error was encountered while attempting to perform the "
+"requested operation:\n"
 "{0} ({1})"
 msgstr ""
 "Javila se sledeća greška pri pokušaju izvođenja zatražene operacije:\n"
@@ -3661,54 +3786,68 @@ msgstr ""
 msgid "F_acebook..."
 msgstr "_Fejsbuk..."
 
-#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:256
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:257
 msgid "Too many images to export"
 msgstr "Previše slika za izvoz"
 
-#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:256
-msgid "Facebook only permits 60 photographs per album.  Please refine your selection and try again."
-msgstr "Fejsbuk dozvoljava do 60 fotografija po albumu.  Smanjite vaš izbor i pokušajte ponovo."
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:257
+msgid ""
+"Facebook only permits 60 photographs per album.  Please refine your "
+"selection and try again."
+msgstr ""
+"Fejsbuk dozvoljava do 60 fotografija po albumu.  Smanjite vaš izbor i "
+"pokušajte ponovo."
 
-#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:279
-#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:365
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:281
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:367
 msgid "You are not logged in."
 msgstr "Niste prijavljeni."
 
-#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:320
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:322
 msgid "Waiting for authentication"
 msgstr "Čekam na prijavu"
 
-#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:320
-msgid "F-Spot will now launch your browser so that you can log into Facebook.  Turn on the \"Save my login information\" checkbox on Facebook and F-Spot will log into Facebook automatically from now on."
-msgstr "F-boj će pokrenuti razgledač kako bi mogli da se prijavite na Fejsbuk.  Unutar Fejsbuka uključite „Save my login information“ kako bi se  F-broj mogao samostalno prijavljivati."
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:322
+msgid ""
+"F-Spot will now launch your browser so that you can log into Facebook.  Turn "
+"on the \"Save my login information\" checkbox on Facebook and F-Spot will "
+"log into Facebook automatically from now on."
+msgstr ""
+"F-boj će pokrenuti razgledač kako bi mogli da se prijavite na Fejsbuk.  "
+"Unutar Fejsbuka uključite „Save my login information“ kako bi se  F-broj "
+"mogao samostalno prijavljivati."
 
-#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:326
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:328
 msgid "Error logging into Facebook"
 msgstr "Greška pri povezivanju na Fejsbuk"
 
-#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:326
-msgid "There was a problem logging into Facebook.  Check your credentials and try again."
-msgstr "Javila se greška pro prijavi na Fejsbuk.  Proverite akreditivno pismo i pokušajte ponovo."
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:328
+msgid ""
+"There was a problem logging into Facebook.  Check your credentials and try "
+"again."
+msgstr ""
+"Javila se greška pro prijavi na Fejsbuk.  Proverite akreditivno pismo i "
+"pokušajte ponovo."
 
 #. Note for translators: {0} and {1} are respectively firstname and surname of the user
-#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:339
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:341
 #, csharp-format
 msgid "{0} {1} is logged into Facebook"
 msgstr "{0} {1} je prijavljen na Fejsbuk"
 
-#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:492
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:491
 msgid "Album must have a name"
 msgstr "Morate imenovati album"
 
-#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:492
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:491
 msgid "Please name your album or choose an existing album."
 msgstr "Unesite ime albuma ili izaberite postojeći album."
 
-#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:505
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:504
 msgid "Creating a new album failed"
 msgstr "Obrazovanje novog albuma nije uspelo"
 
-#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:505
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:504
 #, csharp-format
 msgid ""
 "An error occurred creating a new album.\n"
@@ -3719,14 +3858,14 @@ msgstr ""
 "\n"
 "{0}"
 
-#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:529
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:528
 #: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:661
-#: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:564
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:565
 #, csharp-format
 msgid "Uploading picture \"{0}\" ({1} of {2})"
 msgstr "Nabacujem sliku „{0}“ ({1} od {2})"
 
-#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:543
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:542
 #, csharp-format
 msgid "Error Uploading To Facebook: {0}"
 msgstr "Greška pri nabacivanju na Fejsbuk: {0}"
@@ -3776,8 +3915,12 @@ msgid "Compressed fil_e..."
 msgstr "_Zapakovana datoteka..."
 
 #: ../extensions/Exporters/ZipExport/ZipExport.cs:47
-msgid "This tool requires an active selection. Please select one or more pictures and try again"
-msgstr "Ovaj alat zahteva aktivan izbor. Izaberite oblast jedne ili više fotografija i ponovite radnju"
+msgid ""
+"This tool requires an active selection. Please select one or more pictures "
+"and try again"
+msgstr ""
+"Ovaj alat zahteva aktivan izbor. Izaberite oblast jedne ili više fotografija "
+"i ponovite radnju"
 
 #: ../extensions/Exporters/ZipExport/ZipExport.cs:63
 msgid "Select export folder"
@@ -3824,24 +3967,36 @@ msgstr ""
 "Primljen izuzetak „{0}“."
 
 #: ../extensions/Tools/MergeDb/MergeDb.glade.h:1
-msgid "<small><i>Choose the location of the database you want to import from</i></small>"
-msgstr "<small><i>Izaberite mesto baze iz koje želite da izvršite uvoz</i></small>"
+msgid ""
+"<small><i>Choose the location of the database you want to import from</i></"
+"small>"
+msgstr ""
+"<small><i>Izaberite mesto baze iz koje želite da izvršite uvoz</i></small>"
 
 #: ../extensions/Tools/MergeDb/MergeDb.glade.h:2
 msgid ""
 "<small><i>Choose what to import from the selected db.\n"
-"\"New Rolls Only\" is the smart option that will avoid re-importing photos you could have imported during a previous operation.\n"
+"\"New Rolls Only\" is the smart option that will avoid re-importing photos "
+"you could have imported during a previous operation.\n"
 "\"A Single Import Roll\" let you choose which roll you want to merge back.\n"
-"\"Everything\" will import everything, creating duplicates if you already imported from that database.</i></small>"
+"\"Everything\" will import everything, creating duplicates if you already "
+"imported from that database.</i></small>"
 msgstr ""
 "<small><i>Izaberite šta da uvezem iz izabrane baze podataka.\n"
 "„Samo nova uvoženja“ onemogućava ponovno uvoženje već uvezenih fotografija.\n"
 "„Ranije uvoženje“ dozvoljava vraćanje jednog ranijeg uvoženje.\n"
-"„Uvezi sve“ uvozi sve fotografije i pravi duplikate ukoliko su slike već bile uvezene.</i></small>"
+"„Uvezi sve“ uvozi sve fotografije i pravi duplikate ukoliko su slike već "
+"bile uvezene.</i></small>"
 
 #: ../extensions/Tools/MergeDb/MergeDb.glade.h:6
-msgid "<small><i>Copy the images locally or keep them where they are. If you chose the later, be sure that this location will stay accessible from f-spot.</i></small>"
-msgstr "<small><i>Umnožava slike na lokalnom diku ili ih zadrži gde su sada. Ukoliko odložite ovu radnju za kasnije, osigurajte se da mesto ostane dostupno iz F-broja.</i></small>"
+msgid ""
+"<small><i>Copy the images locally or keep them where they are. If you chose "
+"the later, be sure that this location will stay accessible from f-spot.</i></"
+"small>"
+msgstr ""
+"<small><i>Umnožava slike na lokalnom diku ili ih zadrži gde su sada. Ukoliko "
+"odložite ovu radnju za kasnije, osigurajte se da mesto ostane dostupno iz F-"
+"broja.</i></small>"
 
 #: ../extensions/Tools/MergeDb/MergeDb.glade.h:7
 msgid "A Single Import Roll"
@@ -3894,7 +4049,8 @@ msgstr "Greška prilikom pravljenja albuma"
 
 #: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:442
 #, csharp-format
-msgid "The following error was encountered while attempting to create an album: {0}"
+msgid ""
+"The following error was encountered while attempting to create an album: {0}"
 msgstr "Javila se sledeća greška pri pokušaju da napravim album: {0}"
 
 #: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:621
@@ -3908,7 +4064,7 @@ msgid "{0} of approx. {1}"
 msgstr "{0} od približno {1}"
 
 #: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:692
-#: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:593
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:594
 #, csharp-format
 msgid "Error Uploading To Gallery: {0}"
 msgstr "Greška pri nabacivanju u Galeriju: {0}"
@@ -3931,7 +4087,8 @@ msgid "<b>PicasaWeb Export</b>"
 msgstr "<b>Izvoz na PikasaVeb</b>"
 
 #: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:7
-msgid "<span weight='bold' size='larger'>Your Google Account is locked</span>\n"
+msgid ""
+"<span weight='bold' size='larger'>Your Google Account is locked</span>\n"
 msgstr "<span weight='bold' size='larger'>Vaš Gugl nalog je zaključan</span>\n"
 
 #: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:12
@@ -3991,15 +4148,15 @@ msgstr "Probavljam adresu za slanje"
 msgid "_Tabblo..."
 msgstr "_Tabblo..."
 
-#: ../extensions/Exporters/TabbloExport/TabbloExport.cs:165
+#: ../extensions/Exporters/TabbloExport/TabbloExport.cs:166
 msgid "Done sending photos"
 msgstr "Slanje fotografija je završeno"
 
-#: ../extensions/Exporters/TabbloExport/TabbloExport.cs:167
+#: ../extensions/Exporters/TabbloExport/TabbloExport.cs:168
 msgid "Upload complete"
 msgstr "Nabacivanje je završeno"
 
-#: ../extensions/Exporters/TabbloExport/TabbloExport.cs:173
+#: ../extensions/Exporters/TabbloExport/TabbloExport.cs:174
 msgid "Error uploading to Tabblo: "
 msgstr "Greška pri nabacivanju na Tabblo: "
 
@@ -4037,14 +4194,17 @@ msgstr "Prihvati sertifikat sa ove adrese samo sada"
 
 #~ msgid "Metadata Browser"
 #~ msgstr "Pregledač metapodataka"
+
 #~ msgid "Exported Locations"
 #~ msgstr "Izvezene putanje"
+
 #~ msgid ""
 #~ "From Screen\n"
 #~ "Standard RGB"
 #~ msgstr ""
 #~ "Sa ekrana\n"
 #~ "Standardni RGB"
+
 #~ msgid ""
 #~ "Standard RGB\n"
 #~ "Image Profile\n"
@@ -4053,62 +4213,500 @@ msgstr "Prihvati sertifikat sa ove adrese samo sada"
 #~ "Standardni RGB\n"
 #~ "Profil slike\n"
 #~ "Proizvoljno\n"
+
 #~ msgid "Automatically adjust the colors"
 #~ msgstr "Sam podešava ispravne boje"
+
 #~ msgid "Apply straightening"
 #~ msgstr "Primeni ispravljanje"
+
 #~ msgid "Apply straightening to image"
 #~ msgstr "Primeni ispravljanje na slici"
+
 #~ msgid "Adjust the angle of the image to straighten the horizon"
 #~ msgstr "Podešava ugao slike radi ispravljanja iskošenog horizonta"
+
 #~ msgid "Create a soft focus visual effect"
 #~ msgstr "Pravi efekat blagog fokusa"
+
 #~ msgid "Crop photo to selected area"
 #~ msgstr "Seče sliku na izabrano područje"
+
 #~ msgid "Remove redeye from selected area"
 #~ msgstr "Uklanja crvenilo očiju sa označenog područja"
+
 #~ msgid "Select an area to remove redeye"
 #~ msgstr "Izaberite područje za uklanjanje crvenila očiju"
+
 #~ msgid "Constrain the aspect ratio of the selection"
 #~ msgstr "Fiksira razmeru izbora"
+
 #~ msgid "Reduce Red-Eye"
 #~ msgstr "Smanji crvenilo očiju"
+
 #~ msgid "Adjust the photo colors"
 #~ msgstr "Podešava boje na slici"
+
 #~ msgid "Convert the photo to black and white"
 #~ msgstr "Pravi crno-belu sliku"
+
 #~ msgid "Convert the photo to sepia tones"
 #~ msgstr "Pravi sliku u braon tonovima"
+
 #~ msgid "Exif"
 #~ msgstr "Exif"
+
 #~ msgid "<b>Color Temperature</b>"
 #~ msgstr "<b>Temperatura boja</b>"
+
 #~ msgid "<b>Exposure</b>"
 #~ msgstr "<b>Ekspozicija</b>"
+
 #~ msgid "<b>Histo_gram</b>"
 #~ msgstr "<b>_Histogram</b>"
+
 #~ msgid "<small> </small>"
 #~ msgstr "<small> </small>"
+
 #~ msgid "<small>C_ontrast:</small>"
 #~ msgstr "<small>_Kontrast</small>"
+
 #~ msgid "<small>Te_mp:</small>"
 #~ msgstr "<small>_Temp:</small>"
+
 #~ msgid "<small>_Brightness:</small>"
 #~ msgstr "<small>_Osvetljenost:</small>"
+
 #~ msgid "<small>_Exposure:</small>"
 #~ msgstr "<small>_Ekspozicija:</small>"
+
 #~ msgid "<small>_Hue:</small>"
 #~ msgstr "_Nijansa:"
+
 #~ msgid "<small>_Saturation:</small>"
 #~ msgstr "<small>_Zasićenost:</small>"
+
 #~ msgid "<small>_Tint:</small>"
 #~ msgstr "Tonira_nje"
+
 #~ msgid "Ad_just Color..."
 #~ msgstr "Podesi _boju..."
+
 #~ msgid "Adjust Color"
 #~ msgstr "Podesi boju"
+
 #~ msgid "Reset"
 #~ msgstr "Ponovo postavi"
+
 #~ msgid "So_urce Temp"
 #~ msgstr "_Privremeni izvor"
 
+# ili je ovo temperatura?
+#~ msgid "_Destination Temp"
+#~ msgstr "P_rivremeno odredište"
+
+#~ msgid "<b>Interoperability</b>"
+#~ msgstr "<b>Interpolabilnost</b>"
+
+#~ msgid ""
+#~ "<small><i>Enable this option if you want to allow other programs to "
+#~ "import or delete photos and tags over DBus.</i></small>"
+#~ msgstr ""
+#~ "<small><i>Uključite ovu opciju ukoliko želite da dozvolite da drugi "
+#~ "programi uvoze ili brišu fotografije i oznake kroz DBus.</i></small>"
+
+#~ msgid "Allow other programs to manipulate F-Spot"
+#~ msgstr "Dozvoli drugim programima da kontrolišu F-broj"
+
+#~ msgid "gtk-refresh"
+#~ msgstr "gtk-refresh"
+
+#~ msgid " out of {0}"
+#~ msgstr "od {0}"
+
+#~ msgid "name"
+#~ msgstr "naziv"
+
+#~ msgid "version"
+#~ msgstr "izdanje"
+
+#~ msgid "date"
+#~ msgstr "datum"
+
+#~ msgid "size"
+#~ msgstr "veličina"
+
+#~ msgid "_Metadata Browser"
+#~ msgstr "_Pregledač metapodataka"
+
+#~ msgid "url"
+#~ msgstr "url"
+
+#~ msgid "token"
+#~ msgstr "token"
+
+#~ msgid "captcha_url"
+#~ msgstr "captcha_url"
+
+#~ msgid "Apply"
+#~ msgstr "Primeni"
+
+#~ msgid "Create p_hotomosaic"
+#~ msgstr "Napravi foto-_mozaik"
+
+#~ msgid "Metapixel not available"
+#~ msgstr "Nije dostupan metapiksel"
+
+#~ msgid ""
+#~ "The metapixel executable was not found in path. Please check that you "
+#~ "have it installed and that you have permissions to execute it"
+#~ msgstr ""
+#~ "Izvršna datoteka metapiksela nije nađena. Proverite da li je instalirana "
+#~ "na pravom mestu i da li imate ovlašćenja za njeno pokretanje"
+
+# bug: unclear
+#~ msgid "The tags selected provided no pictures. Please select different tags"
+#~ msgstr "Izabrane oznake nisu našle slike. Izaberite druge oznake"
+
+#~ msgid "Creating miniatures"
+#~ msgstr "Pravim minijature"
+
+#~ msgid "Creating photomosaics"
+#~ msgstr "Pravim foto-mozaik"
+
+#~ msgid "Processing \"{0}\""
+#~ msgstr "Obrađujem „{0}“"
+
+#~ msgid "PhotoMosaics generated!"
+#~ msgstr "Napravljen je foto-mozaik!"
+
+#~ msgid "PhotoMosaic"
+#~ msgid_plural "PhotoMosaic ({0})"
+#~ msgstr[0] "{0} foto-mozaik"
+#~ msgstr[1] "{0} foto-mozaika"
+#~ msgstr[2] "{0} foto-mozaika"
+
+#~ msgid "<b>Generate miniatures from</b>"
+#~ msgstr "<b>Napravi minijature iz</b>"
+
+#~ msgid ""
+#~ "Generate the miniatures from a selection of tags. No tags mean ALL "
+#~ "pictures"
+#~ msgstr ""
+#~ "Pravi minijature od slika sa izabranim oznakama. Ukoliko nema oznaka "
+#~ "pravi minijature od svih slika"
+
+#~ msgid "MetaPixel photomosaics"
+#~ msgstr "Metapiksel foto-mozaici"
+
+#~ msgid "Miniatures _size"
+#~ msgstr "_Veličina minijature"
+
+#~ msgid "Miniatures can be generated from the current main view"
+#~ msgstr "Možete napraviti minijature iz trenutnog pregleda"
+
+#~ msgid "Size of the miniatures composing the mosaic"
+#~ msgstr "Veličina minijatura za mozaik"
+
+#~ msgid "_Current query"
+#~ msgstr "_Trenutni upit:"
+
+#~ msgid "gtk-cancel"
+#~ msgstr "gtk-cancel"
+
+#~ msgid "Create photo_wall"
+#~ msgstr "Napravi foto-_zid"
+
+#~ msgid "PictureTile not available"
+#~ msgstr "NaslovSlike nije dostupan"
+
+#~ msgid ""
+#~ "The picturetile.pl executable was not found in path. Please check that "
+#~ "you have it installed and that you have permissions to execute it"
+#~ msgstr ""
+#~ "Izvršna datoteka picturetile.pl nije nađena. Proverite da li je "
+#~ "instalirana na pravom mestu i da li imate ovlašćenja za njeno pokretanje"
+
+#~ msgid "Preparing selected pictures"
+#~ msgstr "Pripremam izabrane slike"
+
+#~ msgid ""
+#~ "Your photo wall have been generated and imported in F-Spot. Select the "
+#~ "last roll to see it"
+#~ msgstr ""
+#~ "Foto-zid je napravljen i uvezen u F-broj. Ukoliko želite da ga pronađete "
+#~ "izaberite poslednje uvoženje"
+
+#~ msgid "Error importing photowall"
+#~ msgstr "Greška pri uvozu foto-zida"
+
+#~ msgid ""
+#~ "An error occurred while importing the newly generated photowall to F-Spot"
+#~ msgstr "Javila se greška pri uvozu napravljenog foto-zida u F-broj"
+
+#~ msgid "%"
+#~ msgstr "%"
+
+#~ msgid "Background _color"
+#~ msgstr "_Pozadinska boja"
+
+#~ msgid "Can be negative. It will overlap images"
+#~ msgstr "Ne može biti negativna vrednost jer će se slike poklopiti"
+
+#~ msgid ""
+#~ "Check this if your images are all of the same size and you will have a "
+#~ "more regular grid"
+#~ msgstr ""
+#~ "Izaberite ovu mogućnost ukoliko su sve slike iste veličine i imaćete "
+#~ "ispravniju mrežu"
+
+#~ msgid "Choose how many destination images you want to generate"
+#~ msgstr "Izaberite koliko slika želite da napravite"
+
+# ili je ovo temperatura?
+#~ msgid "Destination picture max _size"
+#~ msgstr "_Najveća veličina izlazne slike"
+
+#~ msgid ""
+#~ "For more information please visit PictureTile website\n"
+#~ "http://www.jwz.org/picturetile/"
+#~ msgstr ""
+#~ "Za više podataka posetite PictureTile veb sajt\n"
+#~ "http://www.jwz.org/picturetile/"
+
+#~ msgid "Jpeg _quality"
+#~ msgstr "Jpeg _kvalitet"
+
+#~ msgid "Output type"
+#~ msgstr "Izlaz tip"
+
+#~ msgid "Photo wall generator"
+#~ msgstr "Sačinjavanje foto-zida"
+
+#~ msgid "PictureTile for F-Spot"
+#~ msgstr "Foto-crep za F-broj"
+
+#~ msgid "Spa_cing between images"
+#~ msgstr "_Razmak između slika"
+
+#~ msgid "This operation is going to TAKE VERY LONG TIME!"
+#~ msgstr "Ova radnja će trajati jako dugo!"
+
+#~ msgid "_Jpeg"
+#~ msgstr "_Jpeg"
+
+#~ msgid "_Scale images"
+#~ msgstr "Promeni _veličinu slika"
+
+#~ msgid "_Tiff"
+#~ msgstr "_Tiff"
+
+#~ msgid "_Uniform images"
+#~ msgstr "_Jednolične slike"
+
+#~ msgid "_File"
+#~ msgstr "_Datoteka"
+
+#~ msgid "Unsharp Mask"
+#~ msgstr "Maska za ne-izoštravanje"
+
+#~ msgid "By Extension"
+#~ msgstr "Prema ekstenziji"
+
+#~ msgid "BMP"
+#~ msgstr "BMP"
+
+#~ msgid "GIF"
+#~ msgstr "GIF"
+
+#~ msgid "ICO"
+#~ msgstr "ICO"
+
+#~ msgid "JPEG"
+#~ msgstr "JPEG"
+
+#~ msgid "PNG"
+#~ msgstr "PNG"
+
+#~ msgid "PNM"
+#~ msgstr "PNM"
+
+#~ msgid "RAS"
+#~ msgstr "RAS"
+
+#~ msgid "SVG"
+#~ msgstr "SVG"
+
+#~ msgid "TGA"
+#~ msgstr "TGA"
+
+#~ msgid "TIFF"
+#~ msgstr "TIFF"
+
+#~ msgid "XBM"
+#~ msgstr "XBM"
+
+#~ msgid "XPM"
+#~ msgstr "XPM"
+
+#~ msgid "Unsupported file format."
+#~ msgstr "Nepodržana vrsta datoteke."
+
+#~ msgid "Determine File Type:"
+#~ msgstr "Odredi vrstu datoteku:"
+
+#~ msgid "Load Image"
+#~ msgstr "Učitaj sliku"
+
+#~ msgid "There was an error invoking the external handler"
+#~ msgstr "Došlo je do greške pri pozivu spoljnog programa"
+
+#~ msgid "Received error:{1}\"{0}\"{1}"
+#~ msgstr "Primih grešku:{1}„{0}“{1}"
+
+#~ msgid "Help not found"
+#~ msgstr "Pomoć nije nađena"
+
+#~ msgid "Beneath _Photos"
+#~ msgstr "_Ispod fotografija"
+
+#~ msgid "Clea_r Date Range"
+#~ msgstr "_Očisti opseg datuma"
+
+#~ msgid "Unknown destination."
+#~ msgstr "Nepoznato odredište."
+
+#~ msgid ""
+#~ "When copying files from a camera you must select a valid destination on "
+#~ "the local filesystem"
+#~ msgstr ""
+#~ "Pri umnožavanju datoteka sa kamere morate izabrati ispravno odredište u "
+#~ "lokalnom sistemu datoteka"
+
+#~ msgid ""
+#~ "Error \"{0}\" while creating directory \"{1}\".  Check that the path and "
+#~ "permissions are correct and try again"
+#~ msgstr ""
+#~ "Greška „{0}“ pri pravljenju direktorijuma „{1}“.  Proverite da li su putanja "
+#~ "i ovlašćenja ispravni i pokušajte ponovo"
+
+#~ msgid "Select Destination"
+#~ msgstr "Izaberite odredište"
+
+#~ msgid "Enter Password"
+#~ msgstr "Unesite lozinku"
+
+#~ msgid "Enter Password for "
+#~ msgstr "Unesite lozinku za"
+
+#~ msgid "Error: Error while transferring, Aborting"
+#~ msgstr "Greška: Greška pri prebacivanju, odustajem"
+
+#~ msgid "Error: File Already Exists, Aborting"
+#~ msgstr "Greška: datoteka već postoji, odustajem"
+
+#~ msgid "<b>From Image</b>"
+#~ msgstr "<b>Od slike</b>"
+
+#~ msgid "Copy Files To: "
+#~ msgstr "Umnoži datoteke u: "
+
+#~ msgid "Create New _Category..."
+#~ msgstr "Napravi novu _kategoriju..."
+
+#~ msgid "E_xport To CD..."
+#~ msgstr "I_zvezi na CD..."
+
+#~ msgid "Export Tags and Categories"
+#~ msgstr "Izvezi oznake i kategorije"
+
+#~ msgid "Export tags and categories"
+#~ msgstr "Izvezi oznake i kategorije"
+
+#~ msgid "Export to Original"
+#~ msgstr "Izvezi u Original"
+
+#~ msgid "Export to _Original..."
+#~ msgstr "Izvezi u _Original..."
+
+#~ msgid "Export to _VFS..."
+#~ msgstr "Izvezi na _VFS..."
+
+#~ msgid "Find by _Tag"
+#~ msgstr "Nađi po _oznaci"
+
+#~ msgid "Import files after copy."
+#~ msgstr "Uvezi datoteke nakon umnožavanja."
+
+#~ msgid "Import from C_amera..."
+#~ msgstr "Uvezi sa _aparata..."
+
+#~ msgid "Prefix: "
+#~ msgstr "Predmetak: "
+
+#~ msgid "Use static HTML."
+#~ msgstr "Koristi statični HTML."
+
+#~ msgid "_Close"
+#~ msgstr "_Zatvori"
+
+#~ msgid "_Directory"
+#~ msgstr "_Direktorijum"
+
+#~ msgid "_EXIF Data"
+#~ msgstr "_EXIF podaci"
+
+#~ msgid "dialog1"
+#~ msgstr "dialog1"
+
+#~ msgid "Size:"
+#~ msgstr "Veličina:"
+
+#~ msgid "Attach Tag"
+#~ msgstr "Dodaj oznaku"
+
+#~ msgid "4 x 3 Portrait (Book)"
+#~ msgstr "10 x 7,5 portret (knjiga)"
+
+#~ msgid "4 x 6 Portrait (Postcard)"
+#~ msgstr "10 x 15 portret (razglednica)"
+
+#~ msgid "5 x 7 Portrait (L, 2L)"
+#~ msgstr "12,5 x 17,5 portret (L, 2L)"
+
+#~ msgid "8 x 10 Portrait"
+#~ msgstr "20 x 25 portret"
+
+#~ msgid "Received exception \"{0}\" while rotating image {1}"
+#~ msgstr "Primih izuzetak „{0}“ pri rotaciji slike {1}"
+
+#~ msgid "Unknown Error while Rotating Image."
+#~ msgstr "Nepoznata greška pri rotaciji slike."
+
+#~ msgid "Question"
+#~ msgstr "Pitanje"
+
+#~ msgid "(No categories)"
+#~ msgstr "(Bez kategorije)"
+
+#~ msgid "Create New Category"
+#~ msgstr "Napravi novu kategoriju"
+
+#~ msgid "Name of new category:"
+#~ msgstr "Naziv nove kategorije:"
+
+#~ msgid "Edit Category"
+#~ msgstr "Izmeni kategoriju"
+
+#~ msgid "Category name:"
+#~ msgstr "Naziv kategorije:"
+
+# bug: s/For/for/ (case)
+#~ msgid "Edit icon For category {0}"
+#~ msgstr "Izmeni ikonu za kategoriju {0}"
+
+#~ msgid "Scaling picture \"{0}\""
+#~ msgstr "Preuveličavam sliku „{0}“"
+
+#~ msgid "Transferring picture \"{0}\""
+#~ msgstr "Prebacujem sliku „{0}“"

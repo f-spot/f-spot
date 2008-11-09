@@ -38,7 +38,6 @@ src/Editors/RedEyeEditor.cs
 src/Editors/SepiaEditor.cs
 src/Editors/SoftFocusEditor.cs
 src/Editors/TiltEditor.cs
-src/Extensions/OpenWithMenu.cs
 src/FSpot.addin.xml
 src/FileImportBackend.cs
 src/Filters/ResizeFilter.cs
@@ -64,7 +63,6 @@ src/PhotoVersionMenu.cs
 src/PhotoView.cs
 src/Preferences.cs
 src/PrintOperation.cs
-src/ProgressDialog.cs
 src/QueryWidget.cs
 src/RotateCommand.cs
 src/SendEmail.cs
@@ -75,13 +73,14 @@ src/TagQueryWidget.cs
 src/TagSelectionWidget.cs
 src/TagStore.cs
 src/Term.cs
-src/ThreadProgressDialog.cs
-src/TimeDialog.cs
 src/UI.Dialog/AboutDialog.cs
+src/UI.Dialog/AdjustTimeDialog.cs
 src/UI.Dialog/EditExceptionDialog.cs
 src/UI.Dialog/ExceptionDialog.cs
+src/UI.Dialog/ProgressDialog.cs
 src/UI.Dialog/RepairDbDialog.cs
 src/UI.Dialog/SelectionRatioDialog.cs
+src/UI.Dialog/ThreadProgressDialog.cs
 src/Updater.cs
 src/Util.cs
 src/Utils/Unix.cs
@@ -91,6 +90,7 @@ src/Widgets/EditorPage.cs
 src/Widgets/FindBar.cs
 src/Widgets/InfoBox.cs
 src/Widgets/MetadataDisplay.cs
+src/Widgets/OpenWithMenu.cs
 src/Widgets/RatingMenuItem.cs
 src/Widgets/Sidebar.cs
 src/Widgets/TagMenu.cs
