@@ -67,7 +67,7 @@ namespace FSpot.Widgets
 				else if (ppp4.Active)	return 4;
 				else if (ppp9.Active)	return 9;
 				else
-					throw new Exception ("Something is fucked on this GUI");
+					throw new Exception ("Something is wrong on this GUI");
 			}
 		}
 
