@@ -312,27 +312,22 @@ namespace FSpot.UI.Dialog {
 		{
 			switch (key) {
 			case Preferences.METADATA_EMBED_IN_IMAGE:
-				bool active = Preferences.Get<bool> (key);
-				if (metadata_check.Active != active)
-					metadata_check.Active = active;
+				bool embed_active = Preferences.Get<bool> (key);
+				if (metadata_check.Active != embed_active)
+					metadata_check.Active = embed_active;
 				break;
-case Preferences.COLOR_MANAGEMENT_ENABLED:
-				active = Preferences.Get<bool> (key);
-				if (colormanagement_check.Active != active)
-					colormanagement_check.Active = active;
+			case Preferences.COLOR_MANAGEMENT_ENABLED:
+				bool color_active = Preferences.Get<bool> (key);
+				if (colormanagement_check.Active != color_active)
+					colormanagement_check.Active = color_active;
 				break;
 			case Preferences.COLOR_MANAGEMENT_USE_X_PROFILE:
-				active = Preferences.Get<bool> (key);
-				if (use_x_profile_check.Active != active)
-					use_x_profile_check.Active = active;
+				bool use_x_active = Preferences.Get<bool> (key);
+				if (use_x_profile_check.Active != use_x_active)
+					use_x_profile_check.Active = use_x_active;
 				break;
 			case Preferences.SCREENSAVER_TAG:
-				try {
-					screensaver_tag = Preferences.Get<int> (key);
-				} catch (System.Exception e) {
-					Console.WriteLine (e);
-					screensaver_tag = 0;
-				}
+				screensaver_tag = Preferences.Get<int> (key);
 				if (screensaver_tag == 0) {
 					screensaverall_radio.Active = true;
 					tag_button.Sensitive = false;
