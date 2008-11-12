@@ -1,3 +1,8 @@
+2008-11-12  Lorenzo Milesi  <maxxer@yetopen.it>
+
+	* src/Term.cs: correctly encode text as html to avoid warnings. fix
+	bgo#559905.
+
 2008-11-08  Stephane Delcroix  <sdelcroix@novell.com>
 
 	* libeog/access.c|h:

@@ -497,7 +497,7 @@ namespace FSpot {
 				handle_box = new LiteralBox ();
 				handle_box.BorderWidth = 1;
 
-				label = new Label (tag.Name);
+				label = new Label (System.Web.HttpUtility.HtmlEncode (tag.Name));
 				label.UseMarkup = true;
 
 				image = new Gtk.Image (NormalIcon);
@@ -589,11 +589,11 @@ namespace FSpot {
 			negated_icon = null;
 			if (IsNegated) {
 				tips.SetTip (widget, String.Format (Catalog.GetString ("Not {0}"), tag.Name), null);
-				label.Text = "<s>" + tag.Name + "</s>";
+				label.Text = "<s>" + System.Web.HttpUtility.HtmlEncode (tag.Name) + "</s>";
 				image.Pixbuf = NegatedIcon;
 			} else {
 				tips.SetTip (widget, tag.Name, null);
-				label.Text = tag.Name;
+				label.Text = System.Web.HttpUtility.HtmlEncode (tag.Name);
 				image.Pixbuf = NormalIcon;
 			}
 
