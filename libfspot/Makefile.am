@@ -25,9 +25,7 @@ libfspot_la_SOURCES =				\
 	f-pixbuf-unsharp.c			\
 	f-marshal.c				\
 	f-marshal.h				\
-	f-screen-utils.c			\
-	f-utils.c				\
-	f-utils.h
+	f-screen-utils.c
 
 libfspot_la_LIBADD = 					\
 	$(LCMS_LIBS)					\
