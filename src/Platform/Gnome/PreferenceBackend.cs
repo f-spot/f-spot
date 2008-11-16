@@ -51,8 +51,6 @@ namespace FSpot
 		{
 		}
 	}
-
-	public delegate void NotifyChangedHandler (object sender, NotifyEventArgs args);
 }
 
 namespace FSpot.Platform
@@ -86,7 +84,7 @@ namespace FSpot.Platform
 			Client.Set (key, o);
 		}
 
-		public void AddNotify (string key, NotifyChangedHandler handler)
+		public void AddNotify (string key, EventHandler<NotifyEventArgs> handler)
 		{
 			Client.AddNotify (key, delegate (object sender, GConf.NotifyEventArgs args) {handler (sender, new NotifyEventArgs (args.Key, args.Value));});
 		}

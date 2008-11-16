@@ -1415,8 +1415,12 @@ public class MainWindow {
 	// IconView event handlers
 	// 
 
-	void HandleDoubleClicked (Widget widget, BrowsableEventArgs args)
+	void HandleDoubleClicked (object sender, BrowsableEventArgs args)
 	{
+		Widget widget = sender as Widget;
+		if (widget == null)
+			return;
+
 		switch (ViewMode) {
 		case ModeType.IconView:
 			icon_view.FocusCell = args.Items[0];

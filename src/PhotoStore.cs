@@ -637,8 +637,8 @@ public class PhotoStore : DbStore {
 	}
 	
 	// Dbus
-	public event ItemsAddedHandler ItemsAddedOverDBus;
-	public event ItemsRemovedHandler ItemsRemovedOverDBus;
+	public event EventHandler<DbItemEventArgs> ItemsAddedOverDBus;
+	public event EventHandler<DbItemEventArgs> ItemsRemovedOverDBus;
 
 	public Photo CreateOverDBus (string new_path, string orig_path, uint roll_id, out Gdk.Pixbuf pixbuf)  {
 		Photo photo = Create (new_path, orig_path, roll_id, out pixbuf);

@@ -324,7 +324,6 @@ public class ImageView : Layout {
 		if (view.ZoomChanged != null)
 			view.ZoomChanged (view, System.EventArgs.Empty);
 	}
-	public delegate void ZoomChangedHandler (object sender, System.EventArgs args);
-	public event ZoomChangedHandler ZoomChanged;
+	public event EventHandler ZoomChanged;
 }
 }

@@ -49,8 +49,6 @@ namespace FSpot {
 		}
 	}
 	
-	public delegate void IOChannelDataReadyEvent (object sender, DataReadEventArgs args);
-
 	public class IOChannel : System.IO.Stream {
 		private HandleRef handle;
 		
@@ -199,9 +197,9 @@ namespace FSpot {
 		// FIXME this should hold more than one source in a table
 		// but I am lazy
 		uint data_ready_source;
-		private IOChannelDataReadyEvent data_ready;
+		private EventHandler<DataReadEventArgs> data_ready;
 		private IOFunc func;
-		public event IOChannelDataReadyEvent DataReady {
+		public event EventHandler<DataReadEventArgs> DataReady {
 			add {
 				data_ready += value;
 				func = new IOFunc (DataReadyHandler);

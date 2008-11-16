@@ -52,8 +52,7 @@ namespace FSpot {
 		public delegate void UpdateFinishedHandler (PhotoView view);
 		public event UpdateFinishedHandler UpdateFinished;
 
-		public delegate void DoubleClickedHandler (Widget widget, BrowsableEventArgs args);
-		public event DoubleClickedHandler DoubleClicked;
+		public event EventHandler<BrowsableEventArgs> DoubleClicked;
 	
 		public FSpot.PhotoImageView View {
 			get { return photo_view; }

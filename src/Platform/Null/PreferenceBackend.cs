@@ -46,8 +46,6 @@ namespace FSpot
 		{
 		}
 	}
-
-	public delegate void NotifyChangedHandler (object sender, NotifyEventArgs args);
 }
 
 namespace FSpot.Platform
@@ -63,7 +61,7 @@ namespace FSpot.Platform
 		{
 		}
 
-		public void AddNotify (string key, NotifyChangedHandler handler)
+		public void AddNotify (string key, EventHandler<NotifyEventArgs> handler)
 		{
 		}
 	}

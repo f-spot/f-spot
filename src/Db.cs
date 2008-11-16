@@ -9,10 +9,6 @@ using FSpot.Utils;
 
 // A Store maps to a SQL table.  We have separate stores (i.e. SQL tables) for tags, photos and imports.
 
-public delegate void ItemsAddedHandler (object sender, DbItemEventArgs args);
-public delegate void ItemsRemovedHandler (object sender, DbItemEventArgs args);
-public delegate void ItemsChangedHandler (object sender, DbItemEventArgs args);
-
 public class DbException : ApplicationException {
 	public DbException(string msg) : base(msg)
 	{
@@ -22,9 +18,9 @@ public class DbException : ApplicationException {
 public abstract class DbStore {
 	// DbItem cache.
 
-	public event ItemsAddedHandler   ItemsAdded;
-	public event ItemsRemovedHandler ItemsRemoved;
-	public event ItemsChangedHandler ItemsChanged;
+	public event EventHandler<DbItemEventArgs> ItemsAdded;
+	public event EventHandler<DbItemEventArgs> ItemsRemoved;
+	public event EventHandler<DbItemEventArgs> ItemsChanged;
 
 	protected Hashtable item_cache;
 	bool cache_is_immortal;

@@ -88,12 +88,12 @@ namespace FSpot
 
 
 		private static PreferenceBackend backend;
-		private static NotifyChangedHandler changed_handler;
+		private static EventHandler<NotifyEventArgs> changed_handler;
 		private static PreferenceBackend Backend {
 			get {
 				if (backend == null) {
 					backend = new PreferenceBackend ();
-					changed_handler = new NotifyChangedHandler (OnSettingChanged);
+					changed_handler = new EventHandler<NotifyEventArgs> (OnSettingChanged);
 					backend.AddNotify ("/apps/f-spot", changed_handler);
 					backend.AddNotify ("/apps/gnome-screensaver/themes", changed_handler);
 					backend.AddNotify ("/apps/gnome-screensaver/mode", changed_handler);
@@ -244,7 +244,7 @@ namespace FSpot
 			}
 		}
 
-		public static event NotifyChangedHandler SettingChanged;
+		public static event EventHandler<NotifyEventArgs> SettingChanged;
 
 		static void OnSettingChanged (object sender, NotifyEventArgs args)
 		{

@@ -32,8 +32,6 @@ using System.Collections.Generic;
 
 namespace FSpot.Utils
 {
-    public delegate void LogNotifyHandler (LogNotifyEventArgs args);
-
     public class LogNotifyEventArgs : EventArgs
     {
         private LogEntry entry;
@@ -90,7 +88,7 @@ namespace FSpot.Utils
     
     public static class Log
     {
-        public static event LogNotifyHandler Notify;
+        public static event EventHandler<LogNotifyEventArgs> Notify;
         
         private static Dictionary<uint, DateTime> timers = new Dictionary<uint, DateTime> ();
         private static uint next_timer_id = 1;
@@ -145,9 +143,9 @@ namespace FSpot.Utils
         
         private static void OnNotify (LogEntry entry)
         {
-            LogNotifyHandler handler = Notify;
+            EventHandler<LogNotifyEventArgs> handler = Notify;
             if (handler != null) {
-                handler (new LogNotifyEventArgs (entry));
+                handler (null, new LogNotifyEventArgs (entry));
             }
         }
         

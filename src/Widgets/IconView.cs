@@ -193,11 +193,8 @@ namespace FSpot.Widgets
 		private int click_count;
 
 		// Public events.
-		public delegate void DoubleClickedHandler (Widget widget, BrowsableEventArgs args);
-		public event DoubleClickedHandler DoubleClicked;
-
-		public delegate void ZoomChangedHandler (object sender, System.EventArgs args);
-		public event ZoomChangedHandler ZoomChanged;
+		public event EventHandler<BrowsableEventArgs> DoubleClicked;
+		public event EventHandler ZoomChanged;
 
 		// Public API.
 		public IconView (IntPtr raw) : base (raw) {}

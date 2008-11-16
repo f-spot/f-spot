@@ -30,8 +30,8 @@ namespace FSpot.Extensions
 	// because there is no way to get hold of a reference to the current window.
 	public class ViewModeCondition : ConditionType
 	{
-		private static event ViewModeChangedHandler ViewModeChanged;
 		private delegate void ViewModeChangedHandler ();
+		private static event ViewModeChangedHandler ViewModeChanged;
 
 		private static ViewMode mode = ViewMode.Unknown;
 		public static ViewMode Mode {

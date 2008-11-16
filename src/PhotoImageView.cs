@@ -151,7 +151,7 @@ namespace FSpot {
 		}
 
 		// Display.
-		private void HandlePixbufAreaUpdated (object sender, AreaUpdatedArgs args)
+		private void HandlePixbufAreaUpdated (object sender, AreaUpdatedEventArgs args)
 		{
 			if (!ShowProgress)
 				return;
@@ -161,7 +161,7 @@ namespace FSpot {
 		}
 		
 
-		private void HandlePixbufPrepared (object sender, AreaPreparedArgs args)
+		private void HandlePixbufPrepared (object sender, AreaPreparedEventArgs args)
 		{
 			if (!ShowProgress)
 				return;

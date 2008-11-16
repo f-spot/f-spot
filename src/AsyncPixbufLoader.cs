@@ -5,30 +5,27 @@ using FSpot.Platform;
 using FSpot.Utils;
 
 namespace FSpot {
-	public delegate void AreaUpdatedHandler (object sender, AreaUpdatedArgs area);
-	public delegate void AreaPreparedHandler (object sender, AreaPreparedArgs args);
-
-	public class AreaPreparedArgs : System.EventArgs {
+	public class AreaPreparedEventArgs : System.EventArgs {
 		bool reduced_resolution;
 
 		public bool ReducedResolution {
 			get { return reduced_resolution; }
 		}
 	
-		public AreaPreparedArgs (bool reduced_resolution)
+		public AreaPreparedEventArgs (bool reduced_resolution)
 		{
 			this.reduced_resolution = reduced_resolution;
 		}
 	}
 
-	public class AreaUpdatedArgs : System.EventArgs {
+	public class AreaUpdatedEventArgs : System.EventArgs {
 		Gdk.Rectangle area;
 
 		public Gdk.Rectangle Area { 
 			get { return area; }
 		}
 
-		public AreaUpdatedArgs (Gdk.Rectangle area)
+		public AreaUpdatedEventArgs (Gdk.Rectangle area)
 		{
 			this.area = area;
 		}
@@ -51,8 +48,8 @@ namespace FSpot {
 		//byte [] buffer = new byte [8192];
 		byte [] buffer = new byte [1 << 15];
 
-		public event AreaUpdatedHandler AreaUpdated;
-		public event AreaPreparedHandler AreaPrepared;
+		public event EventHandler<AreaUpdatedEventArgs> AreaUpdated;
+		public event EventHandler<AreaPreparedEventArgs> AreaPrepared;
 		public event System.EventHandler Done;
 
 		// If the photo we just loaded has an out of date
@@ -150,7 +147,7 @@ namespace FSpot {
 
 				if (AreaPrepared != null && thumb != null) {
 					pixbuf = thumb;
-					AreaPrepared (this, new AreaPreparedArgs (true));
+					AreaPrepared (this, new AreaPreparedEventArgs (true));
 				}
 
 				ThumbnailGenerator.Default.PushBlock ();
@@ -219,7 +216,7 @@ namespace FSpot {
 				area = PixbufUtils.TransformAndCopy (loader.Pixbuf, pixbuf, orientation, damage);
 			
 			if (area.Width != 0 && area.Height != 0 && AreaUpdated != null)
-				AreaUpdated (this, new AreaUpdatedArgs (area));
+				AreaUpdated (this, new AreaUpdatedEventArgs (area));
 
 			//System.Console.WriteLine ("orig {0} tform {1}", damage.ToString (), area.ToString ());
 			damage = Gdk.Rectangle.Zero;
@@ -401,7 +398,7 @@ namespace FSpot {
 
 			area_prepared = true;			
 			if (AreaUpdated != null)
-				AreaPrepared (this, new AreaPreparedArgs (false));
+				AreaPrepared (this, new AreaPreparedEventArgs (false));
 
 			if (thumb != null)
 				thumb.Dispose ();
