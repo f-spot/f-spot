@@ -53,17 +53,5 @@ namespace FSpot.Utils
 			}
 		}
 
-#if !NOGCONF
-		public static void SetBackgroundImage (string path)
-		{
-			GConf.Client client = new GConf.Client (); 
-			client.Set ("/desktop/gnome/background/color_shading_type", "solid");
-			client.Set ("/desktop/gnome/background/primary_color", "#000000");
-			client.Set ("/desktop/gnome/background/picture_options", "stretched");
-			client.Set ("/desktop/gnome/background/picture_opacity", 100);
-			client.Set ("/desktop/gnome/background/picture_filename", path);
-			client.Set ("/desktop/gnome/background/draw_background", true);
-		}
-#endif	
 	}
 }

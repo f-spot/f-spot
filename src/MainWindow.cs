@@ -22,6 +22,7 @@ using FSpot.Query;
 using FSpot.Widgets;
 using FSpot.Utils;
 using FSpot.UI.Dialog;
+using FSpot.Platform;
 
 using LibGPhoto2;
 
@@ -2624,14 +2625,12 @@ public class MainWindow {
 
 	void HandleSetAsBackgroundCommand (object sender, EventArgs args)
 	{
-#if !NOGCONF
 		Photo current = CurrentPhoto;
 
 		if (current == null)
 			return;
 
-		GnomeUtil.SetBackgroundImage (current.DefaultVersionUri.LocalPath);
-#endif
+		Desktop.SetBackgroundImage (current.DefaultVersionUri.LocalPath);
 	}
 
 	void HandleSetDateRange (object sender, EventArgs args) {

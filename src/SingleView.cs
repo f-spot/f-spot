@@ -8,6 +8,7 @@ using FSpot.Extensions;
 using FSpot.Utils;
 using FSpot.UI.Dialog;
 using FSpot.Widgets;
+using FSpot.Platform;
 
 namespace FSpot {
 	public class SingleView {
@@ -273,14 +274,12 @@ namespace FSpot {
 
 		void HandleSetAsBackgroundCommand (object sender, EventArgs args)
 		{
-#if !NOGCONF
 			IBrowsableItem current = image_view.Item.Current;
 
 			if (current == null)
 				return;
 
-			GnomeUtil.SetBackgroundImage (current.DefaultVersionUri.LocalPath);
-#endif
+			Desktop.SetBackgroundImage (current.DefaultVersionUri.LocalPath);
 		}
 
 		private void HandleViewToolbar (object sender, System.EventArgs args)
