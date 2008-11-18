@@ -395,11 +395,11 @@ namespace FSpot {
 			int available_width = (scrolled != null) ? scrolled.Allocation.Width : this.Allocation.Width;
 			int available_height = (scrolled != null) ? scrolled.Allocation.Height : this.Allocation.Height;
 
-			double zoom_to_fit = ZoomUtils.FitToScale ((uint) available_width, 
-								   (uint) available_height,
-								   (uint) pixbuf.Width, 
-								   (uint) pixbuf.Height, 
-								   upscale);
+			double zoom_to_fit = FitToScale ((uint) available_width, 
+							(uint) available_height,
+							(uint) pixbuf.Width, 
+							(uint) pixbuf.Height, 
+							upscale);
 
 			double image_zoom = zoom_to_fit;
 
@@ -408,7 +408,21 @@ namespace FSpot {
 			if (scrolled != null)
 				scrolled.SetPolicy (Gtk.PolicyType.Automatic, Gtk.PolicyType.Automatic);
 		}
-		
+
+		static double FitToScale (uint dest_width, uint dest_height, uint src_width, uint src_height, bool upscale_smaller)
+		{
+			if (src_width == 0 || src_height == 0)
+				return 1.0;
+	
+			if (dest_width == 0 || dest_height == 0)
+				return 0.0;
+	
+			if (src_width <= dest_width && src_height <= dest_height && !upscale_smaller)
+				return 1.0;
+	
+			return Math.Min ((double)dest_width / src_width, (double)dest_height / src_height);
+		}
+	
 		private void HandleLoupeDestroy (object sender, EventArgs args)
 		{
 			if (sender == loupe)
