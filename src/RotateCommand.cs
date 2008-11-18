@@ -42,7 +42,7 @@ namespace FSpot {
 		Counterclockwise,
 	}
 
-	public class RotateOperation : Operation {
+	public class RotateOperation : IOperation {
 		IBrowsableItem item;
 		RotateDirection direction;
 		bool done;
@@ -116,7 +116,7 @@ namespace FSpot {
 			RotateOrientation (original_path, dir);
 		}
 		
-		public override bool Step () {
+		public bool Step () {
 			string original_path;
 
 			if (done)
@@ -139,7 +139,7 @@ namespace FSpot {
 		}
 	}
 
-	public class RotateMultiple : Operation {
+	public class RotateMultiple : IOperation {
 		RotateDirection direction;
 		IBrowsableItem [] items;
 		int index;
@@ -160,7 +160,7 @@ namespace FSpot {
 			index = 0;
 		}
 		
-		public override bool Step ()
+		public bool Step ()
 		{
 			if (index >= items.Length)  
 				return false;

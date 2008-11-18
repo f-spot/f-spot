@@ -180,6 +180,7 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/Imaging/X3fFile.cs		\
 	$(srcdir)/Imaging/XmpFile.cs		\
 	$(srcdir)/Imaging/Tiff.cs		\
+	$(srcdir)/IOperation.cs			\
 	$(srcdir)/JobStore.cs			\
 	$(srcdir)/Jobs/SyncMetadataJob.cs	\
 	$(srcdir)/Jobs/CalculateHashJob.cs	\
@@ -188,7 +189,6 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/MemorySurface.cs		\
 	$(srcdir)/MetaStore.cs			\
 	$(srcdir)/MetadataStore.cs		\
-	$(srcdir)/Operation.cs			\
 	$(srcdir)/PhotoEventArgs.cs		\
 	$(srcdir)/PhotoImageView.cs		\
 	$(srcdir)/PhotoLoader.cs		\
