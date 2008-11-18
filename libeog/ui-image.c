@@ -24,7 +24,6 @@
 #include <gtk/gtkwindow.h>
 #include "image-view.h"
 #include "ui-image.h"
-#include "zoom.h"
 
 
 

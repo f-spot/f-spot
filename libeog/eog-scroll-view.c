@@ -6,7 +6,6 @@
 #include "eog-scroll-view.h"
 #include "cursors.h"
 #include "uta.h"
-#include "zoom.h"
 
 /* Maximum size of delayed repaint rectangles */
 #define PAINT_RECT_WIDTH 128
