@@ -236,8 +236,9 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/UI.Dialog/LastRollDialog.cs		\
 	$(srcdir)/UI.Dialog/PreferenceDialog.cs		\
 	$(srcdir)/UI.Dialog/ProgressDialog.cs		\
-	$(srcdir)/UI.Dialog/RepairDbDialog.cs	\
+	$(srcdir)/UI.Dialog/RepairDbDialog.cs		\
 	$(srcdir)/UI.Dialog/SelectionRatioDialog.cs	\
+	$(srcdir)/UI.Dialog/TagSelectionDialog.cs	\
 	$(srcdir)/UI.Dialog/ThreadProgressDialog.cs	\
 	$(srcdir)/Updater.cs			\
 	$(srcdir)/UriCollection.cs		\
@@ -248,7 +249,6 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/GPhotoCamera.cs		\
 	$(srcdir)/CameraSelectionDialog.cs	\
 	$(srcdir)/CameraFileSelectionDialog.cs	\
-	$(srcdir)/TagSelectionDialog.cs		\
 	$(srcdir)/Widgets/CompositeUtils.cs	\
 	$(srcdir)/Widgets/Dissolve.cs		\
 	$(srcdir)/Widgets/EditorPage.cs		\
