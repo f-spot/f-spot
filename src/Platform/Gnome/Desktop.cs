@@ -2,7 +2,7 @@
  * FSpot.Platform.Gnome.Desktop.cs
  *
  * Author(s):
- *	Stephane Delcrois <stephane@delcroix.org>
+ *	Stephane Delcroix <stephane@delcroix.org>
  *
  * This is free software. See COPYING for details.
  */
