@@ -30,9 +30,7 @@ libfspoteog_files =				\
 	cursors.c				\
 	cursors.h				\
 	ui-image.c				\
-	ui-image.h				\
-	zoom.c					\
-	zoom.h
+	ui-image.h
 
 libfspoteog_la_SOURCES = $(libfspoteog_files)
 
