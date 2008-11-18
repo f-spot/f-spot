@@ -16,6 +16,8 @@ namespace FSpot
 {
 	public class Delay
 	{
+		object syncHandle = new object ();
+
 		public Delay (uint interval, GLib.IdleHandler op)
 		{
 			this.op += op;
@@ -35,7 +37,7 @@ namespace FSpot
 
 		private bool HandleOperation ()
 		{
-			lock (this) {
+			lock (syncHandle) {
 				bool runagain = op ();
 				if (!runagain)
 					source = 0;
@@ -45,7 +47,7 @@ namespace FSpot
 		}
 		
 		public void Start () {
-			lock (this) {
+			lock (syncHandle) {
 				if (this.IsPending)
 					return;
 
@@ -74,7 +76,7 @@ namespace FSpot
 		
 		public void Stop () 
 		{
-			lock (this) {
+			lock (syncHandle) {
 				if (this.IsPending) {
 					GLib.Source.Remove (source);
 					source = 0;
