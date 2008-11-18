@@ -328,12 +328,12 @@ namespace FSpot.UI.Dialog {
 				break;
 			case Preferences.SCREENSAVER_TAG:
 				screensaver_tag = Preferences.Get<int> (key);
-				if (screensaver_tag == 0) {
+				Tag t = MainWindow.Toplevel.Database.Tags.GetTagById (screensaver_tag);
+				if (screensaver_tag == 0 || t == null) {
 					screensaverall_radio.Active = true;
 					tag_button.Sensitive = false;
 				} else {
 					screensavertagged_radio.Active = true;
-					Tag t = MainWindow.Toplevel.Database.Tags.GetTagById (screensaver_tag);
 					tag_button.Label = t.Name;
 				}
 				break;

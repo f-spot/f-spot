@@ -1,5 +1,10 @@
 2008-11-18  Stephane Delcroix  <sdelcroix@novell.com>
 
+	* src/UI.Dialog/PreferenceDialog.cs: handle the case where the 
+	screensaver_tag from gconf no longer exists. Fix bgo #560265.
+
+2008-11-18  Stephane Delcroix  <sdelcroix@novell.com>
+
 	* src/ZoomUtils.cs:
 	* src/PhotoImageView.cs: moved the only method left in ZoomUtils to 
 	PhotoImageView. dropping ZoomUtils.cs

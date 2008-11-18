@@ -91,7 +91,6 @@ public class TagStore : DbStore {
 		foreach (Tag t in this.item_cache.Values)
 			if (t.Id == id)
 				return t;
-
 		return null;
 	}
 
