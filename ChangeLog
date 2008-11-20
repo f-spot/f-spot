@@ -1,5 +1,10 @@
 2008-11-20  Stephane Delcroix  <sdelcroix@novell.com>
 
+	* libfspot/f-jpeg-utils.c: fix a bug causing 0x0 as reported image
+	size.
+
+2008-11-20  Stephane Delcroix  <sdelcroix@novell.com>
+
 	* src/Makefile.am: install the .mdb too
 
 2008-11-20  Stephane Delcroix  <sdelcroix@novell.com>

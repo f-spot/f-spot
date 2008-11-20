@@ -101,7 +101,7 @@ fill_input_buffer (j_decompress_ptr cinfo)
 				      NULL,
 				      &err);
 	
-	if (err == NULL || nbytes == 0) {
+	if (err != NULL || nbytes == 0) {
 		/* return a fake EOI marker so we will eventually terminate */
 		src->buffer[0] = (JOCTET) 0xFF;
 		src->buffer[1] = (JOCTET) JPEG_EOI;
