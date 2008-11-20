@@ -376,15 +376,23 @@ RESOURCES = $(foreach res,$(F_SPOT_RESOURCES), $(addprefix -resource:,$(res)),$(
 fspotlibdir = $(libdir)/f-spot
 fspotlib_DATA = f-spot.exe.config	\
 		f-spot.exe		\
+		f-spot.exe.mdb		\
 		Cms.dll.config		\
 		Cms.dll			\
+		Cms.dll.mdb		\
 		FSpot.Utils.dll		\
+		FSpot.Utils.dll.mdb	\
 		FSpot.Utils.dll.config	\
 		FSpot.Query.dll		\
+		FSpot.Query.dll.mdb	\
 		FSpot.Core.dll		\
+		FSpot.Core.dll.mdb	\
 		FSpot.JobScheduler.dll	\
+		FSpot.JobScheduler.dll.mdb \
 		FSpot.Widgets.dll	\
-		FSpot.Platform.dll
+		FSpot.Widgets.dll.mdb	\
+		FSpot.Platform.dll	\
+		FSpot.Platform.dll.mdb
 
 bin_SCRIPTS = f-spot
 
