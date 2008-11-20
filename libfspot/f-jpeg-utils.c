@@ -42,10 +42,7 @@
 #include "libjpegtran/jpegtran.h"
 
 #include <glib.h>
-
-#include <libgnomevfs/gnome-vfs-types.h>
-#include <libgnomevfs/gnome-vfs-ops.h>
-#include <libgnomevfs/gnome-vfs-utils.h>
+#include <gio/gio.h>
 
 #include <libexif/exif-data.h>
 #include <libexif/exif-content.h>
@@ -59,7 +56,7 @@
 
 typedef struct {
 	struct jpeg_source_mgr pub;	/* public fields */
-	GnomeVFSHandle *handle;
+	GInputStream *stream;
 	JOCTET buffer[BUFFER_SIZE];
 } Source;
 
@@ -94,16 +91,17 @@ static gboolean
 fill_input_buffer (j_decompress_ptr cinfo)
 {
 	Source *src;
-	GnomeVFSFileSize nbytes;
-	GnomeVFSResult result;
+	gssize nbytes;
+	GError *err = NULL;
 	
 	src = (Source *) cinfo->src;
-	result = gnome_vfs_read (src->handle,
-				 src->buffer,
-				 G_N_ELEMENTS (src->buffer),
-				 &nbytes);
+	nbytes = g_input_stream_read (src->stream,
+				      src->buffer,
+				      G_N_ELEMENTS (src->buffer),
+				      NULL,
+				      &err);
 	
-	if (result != GNOME_VFS_OK || nbytes == 0) {
+	if (err == NULL || nbytes == 0) {
 		/* return a fake EOI marker so we will eventually terminate */
 		src->buffer[0] = (JOCTET) 0xFF;
 		src->buffer[1] = (JOCTET) JPEG_EOI;
@@ -138,7 +136,7 @@ term_source (j_decompress_ptr cinfo)
 }
 
 static void
-vfs_src (j_decompress_ptr cinfo, GnomeVFSHandle *handle)
+gio_src (j_decompress_ptr cinfo, GInputStream *stream)
 {
 	Source *src;
 	
@@ -152,13 +150,13 @@ vfs_src (j_decompress_ptr cinfo, GnomeVFSHandle *handle)
 	src->pub.skip_input_data = skip_input_data;
 	src->pub.resync_to_restart = jpeg_resync_to_restart; /* use default method */
 	src->pub.term_source = term_source;
-	src->handle = handle;
+	src->stream = stream;
 	src->pub.bytes_in_buffer = 0; /* forces fill_input_buffer on first read */
 	src->pub.next_input_byte = NULL; /* until buffer loaded */
 }
 
 static void
-vfs_src_free (j_decompress_ptr cinfo)
+gio_src_free (j_decompress_ptr cinfo)
 {
 	g_free (cinfo->src);
 }
@@ -195,13 +193,13 @@ do_load_internal (const char *path,
 {
 	struct jpeg_decompress_struct cinfo;
 	ErrorHandlerData jerr;
-	GnomeVFSHandle *handle;
 	unsigned char *lines[1];
 	guchar * volatile buffer;
 	guchar * volatile pixels;
 	guchar *ptr;
-	guchar *uri;
-	GnomeVFSResult result;
+	GFile *uri;
+	GFileInputStream *input_stream;
+	GError *err = NULL;
 	unsigned int i;
 
 	g_return_val_if_fail (g_path_is_absolute (path), NULL);
@@ -211,11 +209,11 @@ do_load_internal (const char *path,
 	if (original_height_return != NULL)
 		*original_height_return = 0;
 
-	uri = g_strconcat ("file://", path, NULL);
-	result = gnome_vfs_open (&handle, uri, GNOME_VFS_OPEN_READ);
-	g_free (uri);
+	uri = g_file_new_for_path (path);
+	input_stream = g_file_read (uri, NULL, &err);
+	g_object_unref (uri);
 
-	if (result != GNOME_VFS_OK)
+	if (err != NULL)
 		return NULL;
 	
 	cinfo.err = jpeg_std_error (&jerr.pub);
@@ -227,7 +225,7 @@ do_load_internal (const char *path,
 	if (setjmp (jerr.setjmp_buffer)) {
 		/* Handle a JPEG error. */
 		jpeg_destroy_decompress (&cinfo);
-		gnome_vfs_close (handle);
+		g_input_stream_close (G_INPUT_STREAM (input_stream), NULL, NULL);
 		g_free (buffer);
 		g_free (pixels);
 		return NULL;
@@ -235,7 +233,7 @@ do_load_internal (const char *path,
 
 	jpeg_create_decompress (&cinfo);
 
-	vfs_src (&cinfo, handle);
+	gio_src (&cinfo, G_INPUT_STREAM (input_stream));
 	jpeg_read_header (&cinfo, TRUE);
 
 	if (target_width != 0 && target_height != 0) {
@@ -284,9 +282,9 @@ do_load_internal (const char *path,
 
 	jpeg_destroy_decompress (&cinfo);
 
-	vfs_src_free (&cinfo);
+	gio_src_free (&cinfo);
 	
-	gnome_vfs_close (handle);
+	g_input_stream_close (G_INPUT_STREAM (input_stream), NULL, NULL);
 
 	if (original_width_return != NULL)
 		*original_width_return = cinfo.image_width;
@@ -306,15 +304,15 @@ do_load_internal (const char *path,
 
 /* Public API.  */
 
-GdkPixbuf *
-f_load_scaled_jpeg  (const char *path,
-		     int target_width,
-		     int target_height,
-		     int *original_width_return,
-		     int *original_height_return)
-{
-	return do_load_internal (path, target_width, target_height, original_width_return, original_height_return);
-}
+//GdkPixbuf *
+//f_load_scaled_jpeg  (const char *path,
+//		     int target_width,
+//		     int target_height,
+//		     int *original_width_return,
+//		     int *original_height_return)
+//{
+//	return do_load_internal (path, target_width, target_height, original_width_return, original_height_return);
+//}
 
 
 /* FIXME: Error reporting in this function sucks...  */

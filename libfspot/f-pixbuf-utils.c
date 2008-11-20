@@ -42,7 +42,7 @@
 #include <math.h>
 #include <stdio.h>
 #include <errno.h>
-#include <gdk/gdkcairo.h>
+#include <gdk/gdk.h>
 #include "f-image-surface.h"
 
 

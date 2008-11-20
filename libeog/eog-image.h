@@ -2,7 +2,7 @@
 #define _EOG_IMAGE_H_
 
 #include <glib-object.h>
-#include <libgnomevfs/gnome-vfs-uri.h>
+#include <gio/gio.h>
 #include <gdk-pixbuf/gdk-pixbuf.h>
 
 G_BEGIN_DECLS
@@ -60,14 +60,14 @@ GType               eog_image_get_type                       (void) G_GNUC_CONST
 
 /* loading API */
 EogImage*           eog_image_new                            (const char *txt_uri, EogImageLoadMode mode);
-EogImage*           eog_image_new_uri                        (GnomeVFSURI *uri, EogImageLoadMode mode);
+EogImage*           eog_image_new_uri                        (GFile *uri, EogImageLoadMode mode);
 gboolean            eog_image_load                           (EogImage *img);
 gboolean            eog_image_load_thumbnail                 (EogImage *img);
 void                eog_image_free_mem                       (EogImage *img);
 
 /* saving API */
 gboolean            eog_image_save                            (EogImage *img, 
-							       const GnomeVFSURI *uri,
+							       const GFile *uri,
 							       GError **error);
 
 /* query API */

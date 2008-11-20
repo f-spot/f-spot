@@ -22,7 +22,7 @@
 #ifndef UI_IMAGE_H
 #define UI_IMAGE_H
 
-#include <gtk/gtkscrolledwindow.h>
+#include <gtk/gtk.h>
 
 G_BEGIN_DECLS
 

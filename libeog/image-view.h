@@ -22,9 +22,9 @@
 #ifndef IMAGE_VIEW_H
 #define IMAGE_VIEW_H
 
-#include <glib/gmacros.h>
+#include <glib.h>
 #include <gconf/gconf-client.h>
-#include <gtk/gtkwidget.h>
+#include <gtk/gtk.h>
 #include <gdk-pixbuf/gdk-pixbuf.h>
 
 G_BEGIN_DECLS

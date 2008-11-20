@@ -25,7 +25,7 @@
 
 #include "f-utils.h"
 
-#include <glib/gmacros.h>
+#include <glib.h>
 
 
 char *

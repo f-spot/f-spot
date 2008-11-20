@@ -1,10 +1,8 @@
 #include <glib/gi18n.h>
-#include <glib/gthread.h>
-#include <glib/gqueue.h>
+#include <glib.h>
 #include <libgnomeui/gnome-thumbnail.h>
 #include <gdk-pixbuf/gdk-pixbuf.h>
 #include <gtk/gtk.h>
-#include <libgnomevfs/gnome-vfs.h>
 
 #include "libeog-marshal.h"
 #include "eog-image.h"
@@ -18,7 +16,7 @@ static gint         dispatch_callbacks_id      = -1;
 static GStaticMutex jobs_mutex                 = G_STATIC_MUTEX_INIT;
 
 struct _EogImagePrivate {
-	GnomeVFSURI *uri;
+	GFile *uri;
 	EogImageLoadMode mode;
 
 	GdkPixbuf *image;
@@ -101,6 +99,26 @@ dispatch_image_finished (gpointer data)
 	return TRUE;
 }
 
+//partly from libsoup/soup-date.c
+static time_t
+g_time_val_to_time_t (GTimeVal *timeval)
+{
+	GDate *date = g_date_new ();
+	GDate *epoch = g_date_new_dmy (1, 1, 1970);
+	g_date_set_time_val (date, timeval);
+	
+	if (date->year < 1970)
+		return 0;
+
+	if (sizeof (time_t) == 4 && date->year > 2038)
+		return (time_t)0x7fffffff;
+	
+	time_t tt = 24 * 3600 * g_date_days_between (epoch, date);
+	g_free (date);
+	g_free (epoch);
+	return tt;
+}
+
 static gpointer
 create_thumbnails (gpointer data)
 {
@@ -128,7 +146,7 @@ create_thumbnails (gpointer data)
 
 		priv = image->priv;
 
-		uri_str = gnome_vfs_uri_to_string (priv->uri, GNOME_VFS_URI_HIDE_NONE);
+		uri_str = g_file_get_uri (priv->uri);
 #if THUMB_DEBUG
 		g_message ("uri:  %s", uri_str);
 #endif
@@ -143,31 +161,33 @@ create_thumbnails (gpointer data)
 		}
 		else {
 			GnomeThumbnailFactory *factory;
-			GnomeVFSFileInfo *info;
-			GnomeVFSResult result;
-			
-			info = gnome_vfs_file_info_new ();
-			result = gnome_vfs_get_file_info_uri (priv->uri, info, 
-							      GNOME_VFS_FILE_INFO_DEFAULT |
-							      GNOME_VFS_FILE_INFO_GET_MIME_TYPE);
-			
-			if (result == GNOME_VFS_OK &&
-			    (info->valid_fields & GNOME_VFS_FILE_INFO_FIELDS_MTIME) != 0 &&
-			    (info->valid_fields & GNOME_VFS_FILE_INFO_FIELDS_MIME_TYPE) != 0) 
-			{
+			GFileInfo *info;
+			GError *err = NULL;
+
+			info = g_file_query_info (priv->uri,
+						  "standard::fast-content-type,time::modified",
+						  G_FILE_QUERY_INFO_NONE,
+						  NULL,
+						  &err);
+
+			if (err == NULL) {
 #if THUMB_DEBUG
 				g_print ("uri: %s, mtime: %i, mime_type %s\n", uri_str, info->mtime, info->mime_type);
 #endif
 				
 				factory = gnome_thumbnail_factory_new (GNOME_THUMBNAIL_SIZE_NORMAL);
+				GTimeVal *mtime;
+				g_file_info_get_modification_time (info, mtime);
+				time_t mtime_t = g_time_val_to_time_t (mtime);
+				g_free (mtime);
 				
-				if (!gnome_thumbnail_factory_has_valid_failed_thumbnail (factory, uri_str, info->mtime) &&
-				    gnome_thumbnail_factory_can_thumbnail (factory, uri_str, info->mime_type, info->mtime)) 
+				if (!gnome_thumbnail_factory_has_valid_failed_thumbnail (factory, uri_str, mtime_t) &&
+				    gnome_thumbnail_factory_can_thumbnail (factory, uri_str, g_file_info_get_content_type (info), mtime_t)) 
 				{
-					priv->thumbnail = gnome_thumbnail_factory_generate_thumbnail (factory, uri_str, info->mime_type);
+					priv->thumbnail = gnome_thumbnail_factory_generate_thumbnail (factory, uri_str, g_file_info_get_content_type(info));
 					
 					if (priv->thumbnail != NULL) {
-						gnome_thumbnail_factory_save_thumbnail (factory, priv->thumbnail, uri_str, info->mtime);
+						gnome_thumbnail_factory_save_thumbnail (factory, priv->thumbnail, uri_str, mtime_t);
 					}
 				}
 				
@@ -179,7 +199,7 @@ create_thumbnails (gpointer data)
 #endif
 			}
 			
-			gnome_vfs_file_info_unref (info);
+			g_object_unref (info);
 		}
 		
 		g_free (uri_str);
@@ -256,7 +276,7 @@ eog_image_dispose (GObject *object)
 	priv = EOG_IMAGE (object)->priv;
 
 	if (priv->uri) {
-		gnome_vfs_uri_unref (priv->uri);
+		g_object_unref (priv->uri);
 		priv->uri = NULL;
 	}
 
@@ -382,7 +402,7 @@ eog_image_init (EogImage *img)
 }
 
 EogImage* 
-eog_image_new_uri (GnomeVFSURI *uri, EogImageLoadMode mode)
+eog_image_new_uri (GFile *uri, EogImageLoadMode mode)
 {
 	EogImage *img;
 	EogImagePrivate *priv;
@@ -390,7 +410,7 @@ eog_image_new_uri (GnomeVFSURI *uri, EogImageLoadMode mode)
 	img = EOG_IMAGE (g_object_new (EOG_TYPE_IMAGE, NULL));
 	priv = img->priv;
 
-	priv->uri = gnome_vfs_uri_ref (uri);
+	priv->uri = g_object_ref (uri);
 	priv->mode = mode;
 	priv->modified = FALSE;
 	
@@ -400,12 +420,12 @@ eog_image_new_uri (GnomeVFSURI *uri, EogImageLoadMode mode)
 EogImage* 
 eog_image_new (const char *txt_uri, EogImageLoadMode mode)
 {
-	GnomeVFSURI *uri;
+	GFile *uri;
 	EogImage *image;
 
-	uri = gnome_vfs_uri_new (txt_uri);
+	uri = g_file_new_for_uri (txt_uri);
 	image = eog_image_new_uri (uri, mode);
-	gnome_vfs_uri_unref (uri);
+	g_object_unref (uri);
 
 	return image;
 }
@@ -468,11 +488,11 @@ real_image_load (gpointer data)
 	EogImage *img;
 	EogImagePrivate *priv;
 	GdkPixbufLoader *loader;
-	GnomeVFSResult result;
-	GnomeVFSHandle *handle;
 	guchar *buffer;
-	GnomeVFSFileSize bytes_read;
+	gssize bytes_read;
 	gboolean failed;
+	GError *err = NULL;
+	GFileInputStream *inputstream;
 
 	img = EOG_IMAGE (data);
 	priv = img->priv;
@@ -483,10 +503,11 @@ real_image_load (gpointer data)
 
 	g_assert (priv->image == NULL);
 
-	result = gnome_vfs_open_uri (&handle, priv->uri, GNOME_VFS_OPEN_READ);
-	if (result != GNOME_VFS_OK) {
-		g_signal_emit (G_OBJECT (img), eog_image_signals [SIGNAL_LOADING_FAILED], 0, gnome_vfs_result_to_string (result));
-		g_print ("VFS Error: %s\n", gnome_vfs_result_to_string (result));
+
+	inputstream = g_file_read (priv->uri, NULL, &err);
+	if (err == NULL) {
+		g_signal_emit (G_OBJECT (img), eog_image_signals [SIGNAL_LOADING_FAILED], 0, err->message);
+		g_print ("g_file_read error: %s\n", err->message);
 		return FALSE;
 	}
 	
@@ -500,11 +521,12 @@ real_image_load (gpointer data)
 	}
 	
 	while (TRUE) {
-		result = gnome_vfs_read (handle, buffer, 4096, &bytes_read);
-		if (result == GNOME_VFS_ERROR_EOF || bytes_read == 0) {
+		bytes_read = g_input_stream_read (G_INPUT_STREAM (inputstream), buffer, 4096, NULL, &err);
+//		result = gnome_vfs_read (handle, buffer, 4096, &bytes_read);
+		if (bytes_read == 0) {
 			break;
 		}
-		else if (result != GNOME_VFS_OK) {
+		else if (err != NULL) {
 			failed = TRUE;
 			break;
 		}
@@ -522,7 +544,7 @@ real_image_load (gpointer data)
 	}
 
 	g_free (buffer);
-	gnome_vfs_close (handle);
+	g_input_stream_close (G_INPUT_STREAM(inputstream), NULL, NULL);
 	
 	if (failed) {
 		if (priv->image != NULL) {
@@ -564,34 +586,34 @@ eog_image_load (EogImage *img)
 	if (priv->image == NULL && priv->load_idle_id == 0)
 	{
 		if (priv->mode == EOG_IMAGE_LOAD_DEFAULT) {
-			if (gnome_vfs_uri_is_local (priv->uri)) {
-				GnomeVFSFileInfo *info;
-				GnomeVFSResult result;
-				info = gnome_vfs_file_info_new ();
-				
-				result = gnome_vfs_get_file_info_uri (priv->uri,
-								      info,
-								      GNOME_VFS_FILE_INFO_DEFAULT);
-
-				if (result != GNOME_VFS_OK) {
-					g_signal_emit (G_OBJECT (img), eog_image_signals [SIGNAL_LOADING_FAILED], 
-						       0, gnome_vfs_result_to_string (result));
-					g_print ("VFS Error: %s\n", gnome_vfs_result_to_string (result));
-					return FALSE;
-				}
-
+//			if (gnome_vfs_uri_is_local (priv->uri)) {
+//				GnomeVFSFileInfo *info;
+//				GnomeVFSResult result;
+//				info = gnome_vfs_file_info_new ();
+//				
+//				result = gnome_vfs_get_file_info_uri (priv->uri,
+//								      info,
+//								      GNOME_VFS_FILE_INFO_DEFAULT);
+//
+//				if (result != GNOME_VFS_OK) {
+//					g_signal_emit (G_OBJECT (img), eog_image_signals [SIGNAL_LOADING_FAILED], 
+//						       0, gnome_vfs_result_to_string (result));
+//					g_print ("VFS Error: %s\n", gnome_vfs_result_to_string (result));
+//					return FALSE;
+//				}
+//
+//				priv->mode = EOG_IMAGE_LOAD_PROGRESSIVE;
+//				if (((info->valid_fields & GNOME_VFS_FILE_INFO_FIELDS_SIZE) != 0) && 
+//				    (info->size < 1000000))
+//				{
+//					priv->mode = EOG_IMAGE_LOAD_COMPLETE;
+//				}
+//
+//				gnome_vfs_file_info_unref (info);
+//			}
+//			else {
 				priv->mode = EOG_IMAGE_LOAD_PROGRESSIVE;
-				if (((info->valid_fields & GNOME_VFS_FILE_INFO_FIELDS_SIZE) != 0) && 
-				    (info->size < 1000000))
-				{
-					priv->mode = EOG_IMAGE_LOAD_COMPLETE;
-				}
-
-				gnome_vfs_file_info_unref (info);
-			}
-			else {
-				priv->mode = EOG_IMAGE_LOAD_PROGRESSIVE;
-			}
+//			}
 		}
 		
 		priv->load_idle_id = g_idle_add (real_image_load, img);
@@ -750,61 +772,61 @@ eog_image_flip_vertical (EogImage *img)
 	g_signal_emit (G_OBJECT (img), eog_image_signals [SIGNAL_CHANGED], 0);	
 }
 
-gboolean
-eog_image_save (EogImage *img, const GnomeVFSURI *uri, GError **error)
-{
-	EogImagePrivate *priv;
-	char *file;
-	char *file_type = NULL;
-
-	g_return_val_if_fail (EOG_IS_IMAGE (img), FALSE);
-	g_return_val_if_fail (uri != NULL, FALSE);
-	g_return_val_if_fail (error == NULL || *error == NULL, FALSE);
-
-	priv = img->priv;
-
-	if (priv->image == NULL) {
-		g_set_error (error, EOG_IMAGE_ERROR,
-			     EOG_IMAGE_ERROR_NOT_LOADED,
-			     _("No image loaded."));
-		return FALSE;
-	}
-	
-	if (!gnome_vfs_uri_is_local (uri)) {
-		g_set_error (error, EOG_IMAGE_ERROR, 
-			     EOG_IMAGE_ERROR_SAVE_NOT_LOCAL,
-			     _("Can't save non local files."));
-		return FALSE;
-	}
-
-	file = (char*) gnome_vfs_uri_get_path (uri); /* don't free file */
-	
-	if (g_str_has_suffix (file, ".png")) {
-		file_type = "png";
-	}
-	else if (g_str_has_suffix (file, ".jpg") ||
-		 g_str_has_suffix (file, ".jpeg"))
-	{
-		file_type = "jpeg";
-	}
-#if 0
-	else if (g_str_has_suffix (file, ".xpm")) {
-		return eog_image_helper_save_xpm (priv->image, file, error);
-	}
-#endif
-
-	if (file_type == NULL) {
-		g_set_error (error, GDK_PIXBUF_ERROR,
-			     GDK_PIXBUF_ERROR_UNKNOWN_TYPE,
-			     _("Unsupported image type for saving."));
-		return FALSE;
-	}
-	else {
-		return gdk_pixbuf_save (priv->image, file, file_type, error, NULL);
-	}
-
-	return FALSE;
-}
+//gboolean
+//eog_image_save (EogImage *img, const GFile *uri, GError **error)
+//{
+//	EogImagePrivate *priv;
+//	char *file;
+//	char *file_type = NULL;
+//
+//	g_return_val_if_fail (EOG_IS_IMAGE (img), FALSE);
+//	g_return_val_if_fail (uri != NULL, FALSE);
+//	g_return_val_if_fail (error == NULL || *error == NULL, FALSE);
+//
+//	priv = img->priv;
+//
+//	if (priv->image == NULL) {
+//		g_set_error (error, EOG_IMAGE_ERROR,
+//			     EOG_IMAGE_ERROR_NOT_LOADED,
+//			     _("No image loaded."));
+//		return FALSE;
+//	}
+//	
+//	if (!gnome_vfs_uri_is_local (uri)) {
+//		g_set_error (error, EOG_IMAGE_ERROR, 
+//			     EOG_IMAGE_ERROR_SAVE_NOT_LOCAL,
+//			     _("Can't save non local files."));
+//		return FALSE;
+//	}
+//
+//	file = (char*) gnome_vfs_uri_get_path (uri); /* don't free file */
+//	
+//	if (g_str_has_suffix (file, ".png")) {
+//		file_type = "png";
+//	}
+//	else if (g_str_has_suffix (file, ".jpg") ||
+//		 g_str_has_suffix (file, ".jpeg"))
+//	{
+//		file_type = "jpeg";
+//	}
+//#if 0
+//	else if (g_str_has_suffix (file, ".xpm")) {
+//		return eog_image_helper_save_xpm (priv->image, file, error);
+//	}
+//#endif
+//
+//	if (file_type == NULL) {
+//		g_set_error (error, GDK_PIXBUF_ERROR,
+//			     GDK_PIXBUF_ERROR_UNKNOWN_TYPE,
+//			     _("Unsupported image type for saving."));
+//		return FALSE;
+//	}
+//	else {
+//		return gdk_pixbuf_save (priv->image, file, file_type, error, NULL);
+//	}
+//
+//	return FALSE;
+//}
 
 gchar*               
 eog_image_get_caption (EogImage *img)
@@ -818,7 +840,7 @@ eog_image_get_caption (EogImage *img)
 	if (priv->uri == NULL)
 		return NULL;
 
-	return gnome_vfs_uri_extract_short_name (priv->uri);
+	return g_file_get_basename (priv->uri);
 }
 
 void

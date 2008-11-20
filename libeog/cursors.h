@@ -22,7 +22,7 @@
 #ifndef CURSORS_H
 #define CURSORS_H
 
-#include <gtk/gtkwidget.h>
+#include <gtk/gtk.h>
 
 typedef enum {
 	CURSOR_HAND_OPEN,

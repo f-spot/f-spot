@@ -20,8 +20,6 @@
  */
 
 #include <config.h>
-#include <gtk/gtksignal.h>
-#include <gtk/gtkwindow.h>
 #include "image-view.h"
 #include "ui-image.h"
 

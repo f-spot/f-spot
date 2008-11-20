@@ -4,6 +4,11 @@ INCLUDES =							\
 	-DG_LOG_DOMAIN=\"libfspoteog\"				\
 	-DDATADIR=\""$(datadir)"\"				\
 	-DLIBEOG_ETTORE_CHANGES=1				\
+	-DG_DISABLE_DEPRECATED -DGTK_DISABLE_DEPRECATED		\
+	-DGDK_DISABLE_DEPRECATED -DGNOME_DISABLE_DEPRECATED	\
+	-DG_DISABLE_SINGLE_INCLUDES				\
+	-DGDK_PIXBUF_DISABLE_SINGLE_INCLUDES			\
+	-DGTK_DISABLE_SINGLE_INCLUDES				\
 	-I$(srcdir) -I$(top_srcdir)				\
 	-I$(top_srcdir)/src					\
 	-I$(top_builddir)					\

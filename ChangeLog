@@ -1,3 +1,17 @@
+2008-11-20  Stephane Delcroix  <sdelcroix@novell.com>
+
+	* configure.in: check for gio-2.0
+	
+	* libeog/Makefile.am:
+	* libfspot/Makefile.am: add the G_*_DISABLE_SINGLE_INCLUDES and
+	DISABLE_DEPRECATED flags to fullfill GnomeGoals.
+
+	* libfspot/*:
+	* libeog/*: fix the build for the new flags, move the GnomeVFS
+	code to Gio.
+
+	* src/Imaging/JpegUtils.cs: comment out never used methods.
+
 2008-11-18  Stephane Delcroix  <sdelcroix@novell.com>
 
 	* src/UI.Dialog/PreferenceDialog.cs: handle the case where the 
