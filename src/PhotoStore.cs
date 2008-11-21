@@ -127,7 +127,7 @@ public class PhotoStore : DbStore {
 			"	version_id	INTEGER, \n" +
 			"	name		STRING, \n" +
 			"	uri		STRING NOT NULL, \n" +
-			"	md5_sum		STRING NOT NULL, \n" +
+			"	md5_sum		TEXT NULL, \n" +
 			"	protected	BOOLEAN, \n" +
 			"	UNIQUE (photo_id, version_id)\n" +
 			")");
@@ -235,7 +235,7 @@ public class PhotoStore : DbStore {
 #else
 			System.Uri uri = new System.Uri (reader["uri"].ToString (), true);
 #endif
-			string md5_sum = reader["md5_sum"].ToString ();
+			string md5_sum = reader["md5_sum"] != null ? reader ["md5_sum"].ToString () : null;
 			bool is_protected = Convert.ToBoolean (reader["protected"]);
 			photo.AddVersionUnsafely (version_id, uri, md5_sum, name, is_protected);
 		}
@@ -279,8 +279,8 @@ public class PhotoStore : DbStore {
 #else
 				System.Uri uri = new System.Uri (reader["uri"].ToString (), true);
 #endif
-				string md5_sum = reader["md5_sum"].ToString ();
-				bool is_protected = Convert.ToBoolean (reader["protected"]);	
+				string md5_sum = reader["md5_sum"] != null ? reader ["md5_sum"].ToString () : null;
+				bool is_protected = Convert.ToBoolean (reader["protected"]);
 				photo.AddVersionUnsafely (version_id, uri, md5_sum, name, is_protected);
 			}
 

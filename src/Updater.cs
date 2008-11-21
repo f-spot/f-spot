@@ -464,6 +464,30 @@ namespace FSpot.Database {
 					"FROM {0}", temp_table));
 			});
 
+			// Update to version 16.5
+			AddUpdate (new Version (16,5), delegate () { //fix md5 null in photos and photo_versions table
+				string temp_table = MoveTableToTemp ("photo_versions");
+				Execute (
+					"CREATE TABLE photo_versions (\n"+
+					"	photo_id	INTEGER, \n" +
+					"	version_id	INTEGER, \n" +
+					"	name		STRING, \n" +
+					"	uri		STRING NOT NULL, \n" +
+					"	md5_sum		TEXT NULL, \n" +
+					"	protected	BOOLEAN, \n" +
+					"	UNIQUE (photo_id, version_id)\n" +
+					")");
+				Execute (String.Format (
+					"INSERT OR IGNORE INTO photo_versions (photo_id, version_id, name, uri, md5_sum, protected) " +
+					"SELECT photo_id, version_id, name, uri, md5_sum, protected " +
+					"FROM {0}", temp_table));
+
+				Execute ("CREATE INDEX idx_photo_versions_id ON photo_versions(photo_id)");
+
+				Execute ("UPDATE photos SET md5_sum = NULL WHERE md5_sum = ''");
+				Execute ("UPDATE photo_versions SET md5_sum = NULL WHERE md5_sum = ''");
+			});
+
 			// Update to version 17.0
 			//AddUpdate (new Version (14,0), delegate () {
 			//	do update here
