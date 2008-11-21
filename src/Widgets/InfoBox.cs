@@ -549,7 +549,11 @@ namespace FSpot.Widgets
 			if (show_file_size) {
 				try {
 					Gnome.Vfs.FileInfo file_info = new Gnome.Vfs.FileInfo (photo.DefaultVersionUri.ToString ());
+#if GTK_SHARP_2_14_0
+					file_size_value_label.Text = GLib.Format.SizeForDisplay (file_info.Size);
+#else
 					file_size_value_label.Text = Gnome.Vfs.Format.FileSizeForDisplay (file_info.Size);
+#endif
 				} catch (System.IO.FileNotFoundException) {
 					file_size_value_label.Text = Catalog.GetString("(File not found)");
 				}

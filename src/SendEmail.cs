@@ -136,7 +136,11 @@ namespace FSpot {
 			}
 
 			NumberOfPictures.Text 	= selection.Count.ToString();
+#if GTK_SHARP_2_14_0
+			TotalOriginalSize.Text 	= GLib.Format.SizeForDisplay (Orig_Photo_Size);
+#else
 			TotalOriginalSize.Text 	= SizeUtil.ToHumanReadable (Orig_Photo_Size);
+#endif
 			
 			UpdateEstimatedSize();
 
@@ -188,7 +192,11 @@ namespace FSpot {
 				else
 					new_approx_total_size = System.Convert.ToInt64(Orig_Photo_Size * avg_scale [new_size_index]);
 
+#if GTK_SHARP_2_14_0
+				approxresult = GLib.Format.SizeForDisplay (new_approx_total_size);
+#else
 				approxresult = SizeUtil.ToHumanReadable (new_approx_total_size);
+#endif
 				ApproxNewSize.Text 	= approxresult;	
 
 		}
