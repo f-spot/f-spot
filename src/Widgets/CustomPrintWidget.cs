@@ -99,7 +99,9 @@ namespace FSpot.Widgets
 			VBox vb = new VBox ();
 			Label current_settings = new Label ();
 			if (FSpot.Global.PageSetup != null)
-				current_settings.Text = String.Format (Catalog.GetString ("Paper Size: {0} x {1} mm"), print_operation.DefaultPageSetup.GetPaperWidth (Unit.Mm), print_operation.DefaultPageSetup.GetPaperHeight (Unit.Mm));
+				current_settings.Text = String.Format (Catalog.GetString ("Paper Size: {0} x {1} mm"), 
+								Math.Round (print_operation.DefaultPageSetup.GetPaperWidth (Unit.Mm), 1), 
+								Math.Round (print_operation.DefaultPageSetup.GetPaperHeight (Unit.Mm), 1));
 			else
 				current_settings.Text = String.Format (Catalog.GetString ("Paper Size: {0} x {1} mm"), "...", "...");
 
