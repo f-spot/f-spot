@@ -202,7 +202,7 @@ public class PhotoStore : DbStore {
 					"roll_id", roll_id,
 	 				"default_version_id", Photo.OriginalVersionId,
 					"rating", "0",
-					"md5_sum", md5_sum
+					"md5_sum", (md5_sum != String.Empty ? md5_sum : null)
 				)
 			);
 	
@@ -544,7 +544,7 @@ public class PhotoStore : DbStore {
 					"time", DbUtils.UnixTimeFromDateTime (photo.Time),
 					"uri", photo.VersionUri (Photo.OriginalVersionId).OriginalString,
 					"rating", String.Format ("{0}", photo.Rating),
-					"md5_sum", photo.MD5Sum,
+					"md5_sum", (photo.MD5Sum != String.Empty ? photo.MD5Sum : null),
 					"id", photo.Id
 				)
 			);
@@ -584,7 +584,7 @@ public class PhotoStore : DbStore {
 					"name", version.Name,
 					"uri", version.Uri.ToString (),
 					"is_protected", version.IsProtected,
-					"md5_sum", version.MD5Sum));
+					"md5_sum", (version.MD5Sum != String.Empty ? version.MD5Sum : null)));
 			}
 		if (changes.VersionsModified != null)
 			foreach (uint version_id in changes.VersionsModified) {
@@ -597,7 +597,7 @@ public class PhotoStore : DbStore {
 					"uri", version.Uri.ToString (),
 					"protected", version.IsProtected,
 					"photo_id", photo.Id,
-					"md5_sum", version.MD5Sum,
+					"md5_sum", (version.MD5Sum != String.Empty ? version.MD5Sum : null),
 					"version_id", version_id));
 			}
 		photo.Changes = null;
@@ -613,7 +613,7 @@ public class PhotoStore : DbStore {
 				"UPDATE photos " +
 				"SET    md5_sum = :md5_sum " +
 				"WHERE  ID = :id",
-				"md5_sum", md5_sum,
+				"md5_sum", (md5_sum != String.Empty ? md5_sum : null),
 				"id", photo.Id
 			)
 		);
