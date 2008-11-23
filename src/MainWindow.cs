@@ -2411,6 +2411,12 @@ public class MainWindow {
 
 	public void HandleDeleteCommand (object sender, EventArgs args)
 	{
+		// Don't steal characters from any text entries
+		if (Window.Focus is Gtk.Entry && Gtk.Global.CurrentEvent is Gdk.EventKey) {
+			Window.Focus.ProcessEvent (Gtk.Global.CurrentEvent);
+			return;
+		}
+		
    		Photo[] photos = SelectedPhotos();
    		string header = Catalog.GetPluralString ("Delete the selected photo permanently?", 
 								    "Delete the {0} selected photos permanently?", 
@@ -2445,6 +2451,12 @@ public class MainWindow {
 
 	public void HandleRemoveCommand (object sender, EventArgs args)
 	{
+		// Don't steal characters from any text entries
+		if (Window.Focus is Gtk.Entry && Gtk.Global.CurrentEvent is Gdk.EventKey) {
+			Window.Focus.ProcessEvent (Gtk.Global.CurrentEvent);
+			return;
+		}
+
    		Photo[] photos = SelectedPhotos();
 		if (photos.Length == 0) 
 			return;

@@ -1,5 +1,9 @@
 2008-11-22  Lorenzo Milesi  <maxxer@yetopen.it>
 
+	* src/MainWindow.cs: Don't steal DEL from TagType. fix bgo#560540.
+
+2008-11-22  Lorenzo Milesi  <maxxer@yetopen.it>
+
 	* src/Widget/CustomPrintWidget.cs: round paper size values. fix bgo#561526
 
 2008-11-22  Stephane Delcroix  <sdelcroix@novell.com>
