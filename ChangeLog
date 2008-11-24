@@ -1,3 +1,8 @@
+2008-11-24  Lorenzo Milesi  <maxxer@yetopen.it>
+
+	* src/Core/Photo.cs: ensure md5 is hashed when creating new version
+	with SaveVersion.
+
 2008-11-24  Stephane Delcroix  <sdelcroix@novell.com>
 
 	* src/Core.Photo.cs: Do not swallow exception.

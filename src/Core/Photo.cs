@@ -359,6 +359,7 @@ namespace FSpot
 					using (Stream stream = System.IO.File.OpenWrite (version_path)) {
 						img.Save (buffer, stream);
 					}
+					(GetVersion (version) as PhotoVersion).MD5Sum = GenerateMD5 (VersionUri (version));
 					FSpot.ThumbnailGenerator.Create (version_path).Dispose ();
 					DefaultVersionId = version;
 				} catch (System.Exception e) {
@@ -444,18 +445,7 @@ namespace FSpot
 					Gnome.Vfs.XferOverwriteMode.Abort,
 					delegate (Gnome.Vfs.XferProgressInfo info) {return 1;});
 	
-	//			Mono.Unix.Native.Stat stat;
-	//			int stat_err = Mono.Unix.Native.Syscall.stat (original_path, out stat);
-	//			File.Copy (original_path, new_path);
 				FSpot.ThumbnailGenerator.Create (new_uri).Dispose ();
-	//			
-	//			if (stat_err == 0) 
-	//				try {
-	//					Mono.Unix.Native.Syscall.chown(new_path, Mono.Unix.Native.Syscall.getuid (), stat.st_gid);
-	//				} catch (Exception) {}
-	//
-			} else {
-				md5_sum = Photo.GenerateMD5 (new_uri);
 			}
 			highest_version_id ++;
 
