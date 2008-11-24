@@ -1,3 +1,15 @@
+2008-11-24  Stephane Delcroix  <sdelcroix@novell.com>
+
+	* src/Makefile.am:
+	* src/f-spot.glade:
+	* src/UI.Dialog/ui/PreferenceDialog.glade: starts splitting the huge
+	f-spot.glade in usable chunks.
+
+	* src/UI.Dialog/GladeDialog.cs: creates gladedialogs from other assemblies
+
+	* src/UI.Dialog/PreferenceDialog.cs: create the pref dialog from it's own
+	resource file.
+
 2008-11-24  Lorenzo Milesi  <maxxer@yetopen.it>
 
 	* src/Core/Photo.cs: ensure md5 is hashed when creating new version

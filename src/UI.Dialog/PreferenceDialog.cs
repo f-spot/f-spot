@@ -68,7 +68,7 @@ namespace FSpot.UI.Dialog {
 		private const string SaverMode = "single";
 		Dictionary<string, string> theme_list;
 
-		public PreferenceDialog () : base ("main_preferences")
+		public PreferenceDialog () : base ("main_preferences", "PreferenceDialog.glade")
 		{
 			tag_button = new MenuButton ();
 			LoadPreference (Preferences.METADATA_EMBED_IN_IMAGE);

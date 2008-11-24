@@ -359,9 +359,10 @@ F_SPOT_ASSEMBLIES = 				\
 	-pkg:gnome-sharp-2.0			\
 	-pkg:gnome-vfs-sharp-2.0
 
-F_SPOT_DISTRESOURCES =			\
-	$(srcdir)/dces.rdf		\
-	$(srcdir)/f-spot.glade		\
+F_SPOT_DISTRESOURCES =					\
+	$(srcdir)/dces.rdf				\
+	$(srcdir)/f-spot.glade				\
+	$(srcdir)/UI.Dialog/ui/PreferenceDialog.glade	\
 	$(srcdir)/FSpot.addin.xml
 
 F_SPOT_RESOURCES =					\

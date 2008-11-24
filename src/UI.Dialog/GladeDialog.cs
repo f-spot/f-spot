@@ -3,10 +3,13 @@
  *
  * Author(s):
  *	Larry Ewing  <lewing@novell.com>
+ *	Stephane Delcroix  <stephane@delcroix.org>
  *
  * This is free software. See COPYING for details.
  *
  */
+
+using System;
 
 namespace FSpot.UI.Dialog 
 {
@@ -20,15 +23,29 @@ namespace FSpot.UI.Dialog
 		{
 		}
 
-		public GladeDialog (string name)
+		public GladeDialog (string widget_name) : this (widget_name, "f-spot.glade")
 		{
-			CreateDialog (name);
 		}
 
-		protected void CreateDialog (string name)
+		public GladeDialog (string widget_name, string resource_name)
 		{
-			this.dialog_name = name;		
-			xml = new Glade.XML (null, "f-spot.glade", name, "f-spot");
+			if (widget_name == null)
+				throw new ArgumentNullException ("widget_name");
+			if (resource_name == null)
+				throw new ArgumentNullException ("resource_name");
+
+			CreateDialog (widget_name, resource_name);
+		}
+
+		protected void CreateDialog (string widget_name)
+		{
+			CreateDialog (widget_name, "f-spot.glade");
+		}
+
+		protected void CreateDialog (string widget_name, string resource_name)
+		{
+			this.dialog_name = widget_name;
+			xml = new Glade.XML (null, resource_name, widget_name, "f-spot");
 			xml.Autoconnect (this);
 		}
 
