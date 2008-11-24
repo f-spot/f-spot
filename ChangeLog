@@ -1,4 +1,8 @@
 2008-11-24  Stephane Delcroix  <sdelcroix@novell.com>
+
+	* src/PhotoStore.cs: Close the reader in IndicesOf
+
+2008-11-24  Stephane Delcroix  <sdelcroix@novell.com>
 	
 	* src/Core/Tag.cs: clean up the properties, only create the stock-icons
 	pixbufs on demand.

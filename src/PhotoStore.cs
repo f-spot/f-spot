@@ -732,13 +732,14 @@ public class PhotoStore : DbStore {
 		return index - 1; //ROWID starts counting at 1
 	}
 
-	private int [] IndicesOf (string query)
+	int [] IndicesOf (string query)
 	{
 		uint timer = Log.DebugTimerStart ();
 		List<int> list = new List<int> ();
 		SqliteDataReader reader = Database.Query (query);
 		while (reader.Read ())
 			list.Add (Convert.ToInt32 (reader ["row_id"]) - 1);
+		reader.Close ();
 		Log.DebugTimerPrint (timer, "IndicesOf took {0} : " + query);
 		return list.ToArray ();
 	}
