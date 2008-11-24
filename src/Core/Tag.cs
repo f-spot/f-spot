@@ -14,19 +14,16 @@ using FSpot.Utils;
 
 namespace FSpot
 {
-	public class Tag : DbItem, IComparable, IDisposable {
-		private string name;
+	public class Tag : DbItem, IComparable<Tag>, IDisposable {
+		string name;
 		public string Name {
-			set {
-				name = value;
-			}
-			get {
-				return name;
-			}
+			get { return name; }
+			set {  name = value;}
 		}
 	
-		private Category category;
+		Category category;
 		public Category Category {
+			get { return category; }
 			set {
 				if (Category != null)
 					Category.RemoveChild (this);
@@ -35,38 +32,37 @@ namespace FSpot
 				if (category != null)
 					category.AddChild (this);
 			}
-			get {
-				return category;
-			}
 		}
 	
-		private int sort_priority;
+		int sort_priority;
 		public int SortPriority {
-			set { sort_priority = value; }
 			get { return sort_priority; }
+			set { sort_priority = value; }
 		}
 	
-		private int popularity = 0;
+		int popularity = 0;
 		public int Popularity {
 			get { return popularity; }
 			set { popularity = value; }
 		}
 
 		// Icon.  If theme_icon_name is not null, then we save the name of the icon instead
-		// of the actual icon data.
-	
-		private string theme_icon_name;
+		// of the actual icon data.	
+		string theme_icon_name;
 		public string ThemeIconName {
-			set {
-				theme_icon_name = value;
-				cached_icon_size = IconSize.Hidden;
-				icon = GtkUtil.TryLoadIcon (FSpot.Global.IconTheme, theme_icon_name, 48, (Gtk.IconLookupFlags)0);
-			}
 			get { return theme_icon_name; }
+			set { theme_icon_name = value; }
 		}
 	
-		private Pixbuf icon;
+		Pixbuf icon;
 		public Pixbuf Icon {
+			get {
+				if (icon == null && theme_icon_name != null) {
+					cached_icon_size = IconSize.Hidden;
+					icon = GtkUtil.TryLoadIcon (FSpot.Global.IconTheme, theme_icon_name, 48, (Gtk.IconLookupFlags)0);
+				}
+				return icon;
+			}
 			set {
 				theme_icon_name = null;
 				if (icon != null)
@@ -74,7 +70,6 @@ namespace FSpot
 				icon = value;
 				cached_icon_size = IconSize.Hidden;
 			}
-			get { return icon; }
 		}
 	
 		public enum IconSize {
@@ -84,13 +79,13 @@ namespace FSpot
 			Large = 48
 		};
 	
-		private static IconSize tag_icon_size = IconSize.Large;
+		static IconSize tag_icon_size = IconSize.Large;
 		public static IconSize TagIconSize {
 			get { return tag_icon_size; }
 			set { tag_icon_size = value; }
 		}
 	
-		private Pixbuf cached_icon;
+		Pixbuf cached_icon;
 		private IconSize cached_icon_size = IconSize.Hidden;
 	
 		// We can use a SizedIcon everywhere we were using an Icon
@@ -108,18 +103,17 @@ namespace FSpot
 					if (Math.Max (cached_icon.Width, cached_icon.Height) <= (int) tag_icon_size) 
 						return cached_icon;
 				}
-				if (icon == null)
+				if (Icon == null)
 					return null;
 
-				if (Math.Max (icon.Width, icon.Height) >= (int) tag_icon_size) { //Don't upscale
+				if (Math.Max (Icon.Width, Icon.Height) >= (int) tag_icon_size) { //Don't upscale
 					if (cached_icon != null)
 						cached_icon.Dispose ();
-					cached_icon = icon.ScaleSimple ((int) tag_icon_size, (int) tag_icon_size, InterpType.Bilinear);
+					cached_icon = Icon.ScaleSimple ((int) tag_icon_size, (int) tag_icon_size, InterpType.Bilinear);
 					cached_icon_size = tag_icon_size;
 					return cached_icon;
-				}
-				else
-					return icon;
+				} else
+					return Icon;
 			}	
 		}
 	
@@ -134,10 +128,8 @@ namespace FSpot
 	
 	
 		// IComparer.
-		public int CompareTo (object obj)
+		public int CompareTo (Tag tag)
 		{
-			Tag tag = obj as Tag;
-	
 			if (Category == tag.Category) {
 				if (SortPriority == tag.SortPriority)
 					return Name.CompareTo (tag.Name);

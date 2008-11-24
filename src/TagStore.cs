@@ -60,7 +60,7 @@ public class TagStore : DbStore {
 
 	private const string STOCK_ICON_DB_PREFIX = "stock_icon:";
 
-	private void SetIconFromString (Tag tag, string icon_string)
+	static void SetIconFromString (Tag tag, string icon_string)
 	{
 		if (icon_string == null || icon_string == String.Empty)
 			tag.Icon = null;
