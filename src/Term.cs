@@ -6,6 +6,7 @@
 
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Text;
 using Mono.Unix;
 using Gtk;
@@ -636,7 +637,7 @@ namespace FSpot {
 			StringBuilder ids = new StringBuilder (tag.Id.ToString ());
 
 			if (tag is Category) {
-				ArrayList tags = new ArrayList ();
+				List<Tag> tags = new List<Tag> ();
 				(tag as Category).AddDescendentsTo (tags);
 
 				for (int i = 0; i < tags.Count; i++)

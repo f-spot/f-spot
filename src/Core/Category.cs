@@ -8,27 +8,27 @@
  * This is free software. See COPYING for details.
  */
 
-using System.Collections;
+using System.Collections.Generic;
 
 namespace FSpot
 {
 	public class Category : Tag {
-		ArrayList children;
+		List<Tag> children;
 		bool children_need_sort;
 		public Tag [] Children {
 			get {
 				if (children_need_sort)
 					children.Sort ();
-				return (Tag []) children.ToArray (typeof (Tag));
+				return children.ToArray ();
 			}
 			set {
-				children = new ArrayList (value);
+				children = new List<Tag> (value);
 				children_need_sort = true;
 			}
 		}
 	
 		// Appends all of this categories descendents to the list
-		public void AddDescendentsTo (ArrayList list)
+		public void AddDescendentsTo (IList<Tag> list)
 		{
 			foreach (Tag tag in children) {
 				if (! list.Contains (tag))
@@ -58,7 +58,7 @@ namespace FSpot
 		public Category (Category category, uint id, string name)
 			: base (category, id, name)
 		{
-			children = new ArrayList ();
+			children = new List<Tag> ();
 		}
 	}
 }

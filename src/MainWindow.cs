@@ -2062,7 +2062,7 @@ public class MainWindow {
 
 		// If a tag with children tags is selected for merging, we
 		// should also merge its children..
-		ArrayList all_tags = new ArrayList (tags.Length);
+		List<Tag> all_tags = new List<Tag> (tags.Length);
 		foreach (Tag tag in tags) {
 			if (! all_tags.Contains (tag))
 				all_tags.Add (tag);
@@ -2076,7 +2076,7 @@ public class MainWindow {
 		}
 
 		// debug..
-		tags = (Tag []) all_tags.ToArray (typeof (Tag));
+		tags = all_tags.ToArray ();
 		System.Array.Sort (tags, new TagRemoveComparer ());
 
 		foreach (Tag tag in tags) {
