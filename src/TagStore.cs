@@ -299,7 +299,7 @@ public class TagStore : DbStore {
 		Category category = item as Category;
 		if (category != null && 
 		    category.Children != null && 
-		    category.Children.Length > 0)
+		    category.Children.Count > 0)
 			throw new InvalidTagOperationException (category, "Cannot remove category that contains children");
 
 		RemoveFromCache (item);

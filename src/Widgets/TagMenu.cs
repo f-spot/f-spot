@@ -101,7 +101,7 @@ public class TagMenu : Menu {
 			item.ShowAll ();
 
 			Category subcat = t as Category;
-			if (subcat != null && subcat.Children.Length != 0) {
+			if (subcat != null && subcat.Children.Count != 0) {
 				PopulateFlat (t as Category, parent);
 			} else {
 				item.Activated += HandleActivate;
@@ -121,7 +121,7 @@ public class TagMenu : Menu {
 			item.ShowAll ();
 
 			Category subcat = t as Category;
-			if (subcat != null && subcat.Children.Length != 0) {
+			if (subcat != null && subcat.Children.Count != 0) {
 				Gtk.Menu submenu = new Menu ();
 				Populate (t as Category, submenu);
 

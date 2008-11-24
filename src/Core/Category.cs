@@ -15,7 +15,7 @@ namespace FSpot
 	public class Category : Tag {
 		List<Tag> children;
 		bool children_need_sort;
-		public Tag [] Children {
+		public IList<Tag> Children {
 			get {
 				if (children_need_sort)
 					children.Sort ();

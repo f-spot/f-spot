@@ -1,5 +1,15 @@
 2008-11-24  Stephane Delcroix  <sdelcroix@novell.com>
 
+	* src/Core/Category.cs: returns IList<Tag> instead of Tag[] for Children
+	property.
+
+	* src/Core/Photo.cs:
+	* src/TagSelectionWidget.cs:
+	* src/TagStore.cs:
+	* src/Widgets/TagMenu.cs: adapt to the modified api
+
+2008-11-24  Stephane Delcroix  <sdelcroix@novell.com>
+
 	* src/Core/Category.cs: use a generic collection
 
 	* src/MainWindow.cs:

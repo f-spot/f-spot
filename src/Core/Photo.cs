@@ -584,7 +584,7 @@ namespace FSpot
 				RemoveTag (tag);
 		}	
 	
-		public void RemoveCategory (Tag []taglist)
+		public void RemoveCategory (IList<Tag> taglist)
 		{
 			foreach (Tag tag in taglist) {
 				Category cat = tag as Category;

@@ -28,6 +28,7 @@ using GLib;
 using Gdk;
 using Gtk;
 using System.Collections;
+using System.Collections.Generic;
 using System.IO;
 using System;
 
@@ -88,7 +89,7 @@ public class TagSelectionWidget : FSpot.Widgets.SaneTreeView {
 
 	private void LoadCategory (Category category, TreeIter parent_iter)
 	{
-		Tag [] tags = category.Children;
+		IList<Tag> tags = category.Children;
 
 		foreach (Tag t in tags) {
 			TreeIter iter = (Model as TreeStore).AppendValues (parent_iter, t.Id, t.Name);
