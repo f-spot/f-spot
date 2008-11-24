@@ -1,3 +1,7 @@
+2008-11-24  Stephane Delcroix  <sdelcroix@novell.com>
+
+	* src/Core.Photo.cs: Do not swallow exception.
+
 2008-11-22  Lorenzo Milesi  <maxxer@yetopen.it>
 
 	* src/MainWindow.cs: Don't steal DEL from TagType. fix bgo#560540.
