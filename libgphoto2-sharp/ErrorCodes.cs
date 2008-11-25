@@ -15,7 +15,7 @@ namespace LibGPhoto2
 	public enum ErrorCode
 	{
 		/* IO Errors */
-		GeneraError		= -1,
+		GeneralError		= -1,
 		BadParameters		= -2,
 		NoMemory		= -3,
 		Library			= -4,
