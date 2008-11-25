@@ -3,6 +3,7 @@ using System.IO;
 using System.Collections;
 using LibGPhoto2;
 using Gdk;
+using FSpot.Utils;
 
 public class GPhotoCamera
 {
@@ -69,11 +70,11 @@ public class GPhotoCamera
 
 		
 		string path  = camera_list.GetValue (selected_camera__camera_list_index);
-		System.Console.WriteLine ("Testing gphoto path = {0}", path);
+		Log.DebugFormat ("Testing gphoto path = {0}", path);
 		selected_camera__port_info_list_index = port_info_list.LookupPath (path);
 
 		port_info = port_info_list.GetInfo (selected_camera__port_info_list_index);
-		System.Console.WriteLine ("PortInfo {0}, {1}", port_info.Name, port_info.Path);
+		Log.DebugFormat ("PortInfo {0}, {1}", port_info.Name, port_info.Path);
 
 		camera.SetPortInfo (port_info);
 	}
@@ -167,7 +168,7 @@ public class GPhotoCamera
 									       CameraFileType.Preview,
 									       context);
 			} catch (System.Exception e) {
-				System.Console.WriteLine (e.ToString ());
+				Log.Exception (e);
 				selected_file.PreviewFile = null;
 			}
 		}
@@ -189,8 +190,8 @@ public class GPhotoCamera
 				} catch (Exception e) {
 					// Actual errors with the data libgphoto gives us have been
 					// observed here see b.g.o #357569. 
-					Console.WriteLine ("Error retrieving preview image");
-					Console.WriteLine (e);
+					Log.Information ("Error retrieving preview image");
+					Log.DebugException (e);
 				}
 					
 			}
