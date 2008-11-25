@@ -35,6 +35,7 @@ libfspot_la_SOURCES =				\
 libfspot_la_LIBADD = 					\
 	$(LCMS_LIBS)					\
 	$(EXIF_LIBS)					\
+	$(GIO_LIBS)					\
 	$(top_builddir)/libjpegtran/libfspotjpegtran.la	\
 	$(top_builddir)/libeog/libfspoteog.la
 

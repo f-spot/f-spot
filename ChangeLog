@@ -1,3 +1,8 @@
+2008-11-25  Stephane Delcroix  <sdelcroix@novell.com>
+
+	* configure.in:
+	* libfspot/Makefile.am: link against gio
+
 2008-11-24  Stephane Delcroix  <sdelcroix@novell.com>
 
 	* src/PhotoStore.cs: Close the reader in IndicesOf
