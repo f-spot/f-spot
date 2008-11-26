@@ -33,6 +33,7 @@ namespace FSpot
 		}
 	}
 
+	[Serializable]
 	public class NoSuchKeyException : Exception
 	{
 		public NoSuchKeyException () : base ()
@@ -57,12 +58,16 @@ namespace FSpot.Platform
 {
 	public class PreferenceBackend
 	{
+		static object sync_handler = new object ();
+
 		private static GConf.Client client;
 		private GConf.Client Client {
 			get {
-				if (client == null)
-					client = new GConf.Client ();
-				return client;
+				lock (sync_handler) {
+					if (client == null)
+						client = new GConf.Client ();
+					return client;
+				}
 			}
 		}
 
