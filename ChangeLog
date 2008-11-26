@@ -1,5 +1,9 @@
 2008-11-26  Stephane Delcroix  <sdelcroix@novell.com>
 
+	* src/Core/Defines.cs.in: use const instead of static readonly
+
+2008-11-26  Stephane Delcroix  <sdelcroix@novell.com>
+
 	* src/Core/PhotosChanges.cs: do not use a 0 value in the flag enum
 
 2008-11-26  Stephane Delcroix  <sdelcroix@novell.com>
