@@ -17,7 +17,11 @@ namespace FSpot
 
 	public class FullInvalidate : IBrowsableItemChanges
 	{
-		public static FullInvalidate Instance = new FullInvalidate ();
+		static FullInvalidate instance = new FullInvalidate ();
+		public static FullInvalidate Instance {
+			get { return instance; } 
+		}
+
 		public bool DataChanged {
 			get { return true; }
 		}
