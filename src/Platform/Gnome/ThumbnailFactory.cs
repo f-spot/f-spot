@@ -15,7 +15,7 @@ using Gdk;
 
 namespace FSpot.Platform
 {
-	public class ThumbnailFactory
+	public static class ThumbnailFactory
 	{
 		static Gnome.ThumbnailFactory gnome_thumbnail_factory = new Gnome.ThumbnailFactory (Gnome.ThumbnailSize.Large);
 

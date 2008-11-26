@@ -9,7 +9,7 @@
 
 namespace FSpot.Platform
 {
-	public class Desktop
+	public static class Desktop
 	{
 		public static void SetBackgroundImage (string path)
 		{
