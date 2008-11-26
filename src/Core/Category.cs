@@ -34,11 +34,10 @@ namespace FSpot
 				if (! list.Contains (tag))
 					list.Add (tag);
 	
-				if (! (tag is Category))
-					continue;
-	
 				Category cat = tag as Category;
-	
+				if (cat == null)
+					continue;
+		
 				cat.AddDescendentsTo (list);
 			}
 		}
