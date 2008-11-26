@@ -45,7 +45,7 @@ namespace FSpot {
 			get { return destination_profile; }
 		}
 
-		private static Gtk.IconTheme icon_theme = null;
+		private static Gtk.IconTheme icon_theme;
 		public static Gtk.IconTheme IconTheme {
 			get {
 				if (icon_theme == null) {
@@ -57,7 +57,7 @@ namespace FSpot {
 		}
 
 #if GTK_2_12_2
-		private static string [] default_rc_files = null;
+		private static string [] default_rc_files;
 		public static string [] DefaultRcFiles {
 			get {
 				if (default_rc_files == null)
@@ -68,7 +68,7 @@ namespace FSpot {
 		}
 #endif
 
-		private static Gtk.PageSetup page_setup = null;
+		private static Gtk.PageSetup page_setup;
 		public static Gtk.PageSetup PageSetup {
 			get { return page_setup; }
 			set { page_setup = value; }
