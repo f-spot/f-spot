@@ -19,58 +19,58 @@ namespace FSpot.Platform
 	{
 		static Gnome.ThumbnailFactory gnome_thumbnail_factory = new Gnome.ThumbnailFactory (Gnome.ThumbnailSize.Large);
 
-		public static void SaveThumbnail (Pixbuf pixbuf, Uri image_uri)
+		public static void SaveThumbnail (Pixbuf pixbuf, Uri imageUri)
 		{
 			if (pixbuf == null)
 				throw new ArgumentNullException ("pixbuf");
-			if (image_uri == null)
-				throw new ArgumentNullException ("image_uri");
+			if (imageUri == null)
+				throw new ArgumentNullException ("imageUri");
 
-			Gnome.Vfs.FileInfo vfs = new Gnome.Vfs.FileInfo (image_uri.ToString ());
+			Gnome.Vfs.FileInfo vfs = new Gnome.Vfs.FileInfo (imageUri.ToString ());
 			DateTime mtime = vfs.Mtime;
-			SaveThumbnail (pixbuf, image_uri, mtime);
+			SaveThumbnail (pixbuf, imageUri, mtime);
 		}
 
-		public static void SaveThumbnail (Pixbuf pixbuf, Uri image_uri, DateTime original_mtime)
+		public static void SaveThumbnail (Pixbuf pixbuf, Uri imageUri, DateTime originalMtime)
 		{
 			if (pixbuf == null)
 				throw new ArgumentNullException ("pixbuf");
-			if (image_uri == null)
-				throw new ArgumentNullException ("image_uri");
+			if (imageUri == null)
+				throw new ArgumentNullException ("imageUri");
 
-			gnome_thumbnail_factory.SaveThumbnail (pixbuf, UriUtils.UriToStringEscaped (image_uri), original_mtime);
+			gnome_thumbnail_factory.SaveThumbnail (pixbuf, UriUtils.UriToStringEscaped (imageUri), originalMtime);
 		}
 
-		public static void DeleteThumbnail (Uri image_uri)
+		public static void DeleteThumbnail (Uri imageUri)
 		{
-			if (image_uri == null)
-				throw new ArgumentNullException ("image_uri");
+			if (imageUri == null)
+				throw new ArgumentNullException ("imageUri");
 			try {
-				if (System.IO.File.Exists (PathForUri (image_uri)))
-					System.IO.File.Delete (PathForUri (image_uri));
+				if (System.IO.File.Exists (PathForUri (imageUri)))
+					System.IO.File.Delete (PathForUri (imageUri));
 			} catch (Exception e) {
 				Log.DebugException (e);
 			}
 		}
 
-		public static void MoveThumbnail (Uri from_uri, Uri to_uri)
+		public static void MoveThumbnail (Uri fromUri, Uri toUri)
 		{
-			if (from_uri == null)
-				throw new ArgumentNullException ("from_uri");
-			if (to_uri == null)
-				throw new ArgumentNullException ("to_uri");
-			System.IO.File.Move (PathForUri (from_uri), PathForUri (to_uri));
+			if (fromUri == null)
+				throw new ArgumentNullException ("fromUri");
+			if (toUri == null)
+				throw new ArgumentNullException ("toUri");
+			System.IO.File.Move (PathForUri (fromUri), PathForUri (toUri));
 		}
 
-		public static bool ThumbnailIsValid (Pixbuf pixbuf, Uri image_uri)
+		public static bool ThumbnailIsValid (Pixbuf pixbuf, Uri imageUri)
 		{
-			if (image_uri == null)
-				throw new ArgumentNullException ("image_uri");
+			if (imageUri == null)
+				throw new ArgumentNullException ("imageUri");
 
 			try {
-				Gnome.Vfs.FileInfo vfs = new Gnome.Vfs.FileInfo (image_uri.ToString ());
+				Gnome.Vfs.FileInfo vfs = new Gnome.Vfs.FileInfo (imageUri.ToString ());
 				DateTime mtime = vfs.Mtime;
-				return ThumbnailIsValid (pixbuf, image_uri, mtime);
+				return ThumbnailIsValid (pixbuf, imageUri, mtime);
 			} catch (System.IO.FileNotFoundException) {
 				// If the original file is not on disk, the thumbnail is as valid as it's going to get
 				return true;
@@ -80,15 +80,15 @@ namespace FSpot.Platform
 			}
 		}
 
-		public static bool ThumbnailIsValid (Pixbuf pixbuf, Uri image_uri, DateTime mtime)
+		public static bool ThumbnailIsValid (Pixbuf pixbuf, Uri imageUri, DateTime mtime)
 		{
 			if (pixbuf == null)
 				throw new ArgumentNullException ("pixbuf");
-			if (image_uri == null)
-				throw new ArgumentNullException ("image_uri");
+			if (imageUri == null)
+				throw new ArgumentNullException ("imageUri");
 
 			try {
-				return  Gnome.Thumbnail.IsValid (pixbuf, UriUtils.UriToStringEscaped (image_uri), mtime);
+				return  Gnome.Thumbnail.IsValid (pixbuf, UriUtils.UriToStringEscaped (imageUri), mtime);
 			} catch (System.IO.FileNotFoundException) {
 				// If the original file is not on disk, the thumbnail is as valid as it's going to get
 				return true;
@@ -98,39 +98,39 @@ namespace FSpot.Platform
 			}
 		}
 
-		public static Pixbuf LoadThumbnail (Uri image_uri)
+		public static Pixbuf LoadThumbnail (Uri imageUri)
 		{
-			if (image_uri == null)
-				throw new ArgumentNullException ("image_uri");
+			if (imageUri == null)
+				throw new ArgumentNullException ("imageUri");
 #if GSD_2_24
-			if (System.IO.File.Exists (PathForUri (image_uri)))
-				Utils.Unix.Touch (PathForUri (image_uri));
+			if (System.IO.File.Exists (PathForUri (imageUri)))
+				Utils.Unix.Touch (PathForUri (imageUri));
 #endif
 			try {
-				return new Pixbuf (PathForUri (image_uri));
+				return new Pixbuf (PathForUri (imageUri));
 			} catch {
 				return null;
 			}
 		}
 
-		public static Pixbuf LoadThumbnail (Uri image_uri, int dest_width, int dest_height)
+		public static Pixbuf LoadThumbnail (Uri imageUri, int destWidth, int destHeight)
 		{
-			using (Pixbuf p = LoadThumbnail (image_uri)) {
-				return Gnome.Thumbnail.ScaleDownPixbuf (p, dest_width, dest_height);
+			using (Pixbuf p = LoadThumbnail (imageUri)) {
+				return Gnome.Thumbnail.ScaleDownPixbuf (p, destWidth, destHeight);
 			}
 		}
 
-		public static bool ThumbnailExists (Uri image_uri)
+		public static bool ThumbnailExists (Uri imageUri)
 		{
-			return System.IO.File.Exists (PathForUri (image_uri));
+			return System.IO.File.Exists (PathForUri (imageUri));
 		}
 
-		public static bool ThumbnailIsRecent (Uri image_uri)
+		public static bool ThumbnailIsRecent (Uri imageUri)
 		{
-			if (!image_uri.IsFile)
+			if (!imageUri.IsFile)
 				Log.Debug ("FIXME: compute timestamp on non file uri too");
 
-			return image_uri.IsFile && System.IO.File.Exists (PathForUri (image_uri)) && System.IO.File.GetLastWriteTime (PathForUri (image_uri)) >= System.IO.File.GetLastWriteTime (image_uri.AbsolutePath);
+			return imageUri.IsFile && System.IO.File.Exists (PathForUri (imageUri)) && System.IO.File.GetLastWriteTime (PathForUri (imageUri)) >= System.IO.File.GetLastWriteTime (imageUri.AbsolutePath);
 		}
 
 		static string PathForUri (Uri uri)
