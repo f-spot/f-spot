@@ -20,19 +20,19 @@ namespace FSpot
 
 		public Delay (uint interval, GLib.IdleHandler op)
 		{
-			this.op += op;
+			this.op = op;
 			this.interval = interval;
 		}
 
 		public Delay (GLib.IdleHandler op) 
 		{
-			this.op += op;
+			this.op = op;
 		}
 
 		uint source;
 		uint interval;
 
-		private event GLib.IdleHandler op;
+		private GLib.IdleHandler op;
 
 		private bool HandleOperation ()
 		{
