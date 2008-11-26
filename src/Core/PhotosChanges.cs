@@ -17,7 +17,6 @@ namespace FSpot
 	{
 		[Flags ()]
 		enum Changes {
-			None 			= 0x0,
 			DefaultVersionId 	= 0x1,
 			Time			= 0x2,
 			Uri			= 0x4,
@@ -28,10 +27,10 @@ namespace FSpot
 			MD5Sum			= 0x80
 		}
 
-		Changes changes = Changes.None;
+		Changes changes = 0;
 
 		public bool MetadataChanged {
-			get { return (changes & ~Changes.Data) != Changes.None || TagsChanged || VersionsChanged; }
+			get { return (changes & ~Changes.Data) != 0 || TagsChanged || VersionsChanged; }
 		}
 
 		public bool DataChanged {
