@@ -551,7 +551,7 @@ namespace FSpot {
 			return false;
 		}
 
-		private void HandleItemChanged (BrowsablePointer pointer, BrowsablePointerChangedArgs args)
+		private void HandleItemChanged (object sender, BrowsablePointerChangedEventArgs args)
 		{
 			UpdateSample ();
 		}

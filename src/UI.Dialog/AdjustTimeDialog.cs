@@ -119,7 +119,7 @@ namespace FSpot.UI.Dialog {
 							      Offset);
 		}
 
-		void HandleItemChanged (BrowsablePointer pointer, BrowsablePointerChangedArgs args)
+		void HandleItemChanged (object sender, BrowsablePointerChangedEventArgs args)
 		{
 			//back_button.Sensitive = (Item.Index > 0 && collection.Count > 0);
 			//forward_button.Sensitive = (Item.Index < collection.Count - 1);

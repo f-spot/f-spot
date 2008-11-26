@@ -25,7 +25,7 @@ namespace FSpot {
 			Context = ViewContext.FullScreen;
 		}
 		
-		private void HandleItemChanged (BrowsablePointer sender, BrowsablePointerChangedArgs args)
+		private void HandleItemChanged (object sender, BrowsablePointerChangedEventArgs args)
 		{
 			Photo = item.Current as Photo;
 		}

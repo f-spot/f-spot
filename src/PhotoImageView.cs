@@ -307,7 +307,7 @@ namespace FSpot {
 			this.ZoomFit ();
 		}
 
-		private void PhotoItemChanged (BrowsablePointer item, BrowsablePointerChangedArgs args) 
+		private void PhotoItemChanged (object sender, BrowsablePointerChangedEventArgs args) 
 		{
 			// If it is just the position that changed fall out
 			if (args != null && 

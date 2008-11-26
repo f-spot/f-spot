@@ -194,7 +194,7 @@ namespace FSpot {
 			this.GdkWindow.Cursor = null;
 		}
 		
-		private void HandleItemChanged (object sender, BrowsablePointerChangedArgs args)
+		private void HandleItemChanged (object sender, BrowsablePointerChangedEventArgs args)
 		{
 			if (scroll.ControlBox.Visible)
 				scroll.ShowControls ();

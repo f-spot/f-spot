@@ -10,12 +10,12 @@ using System;
 
 namespace FSpot
 {
-	public delegate void ItemChangedHandler (BrowsablePointer pointer, BrowsablePointerChangedArgs old);
+
 	public class BrowsablePointer {
 		IBrowsableCollection collection;
 		IBrowsableItem item;
 		int index;
-		public event ItemChangedHandler Changed;
+		public event EventHandler<BrowsablePointerChangedEventArgs> Changed;
 
 		public BrowsablePointer (IBrowsableCollection collection, int index)
 		{
@@ -110,9 +110,7 @@ namespace FSpot
 
 		private void SetIndex (int value, IBrowsableItemChanges changes)
 		{
-			BrowsablePointerChangedArgs args;
-			
-			args = new BrowsablePointerChangedArgs (Current, index, changes);
+			BrowsablePointerChangedEventArgs args = new BrowsablePointerChangedEventArgs (Current, index, changes);
 			
 			index = value;
 			item = Current;

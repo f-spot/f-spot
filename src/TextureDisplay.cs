@@ -175,7 +175,7 @@ namespace FSpot {
 		}
 
 		Animator animator;
-		private void HandleItemChanged (BrowsablePointer p, BrowsablePointerChangedArgs args)
+		private void HandleItemChanged (object sender, BrowsablePointerChangedEventArgs args)
 		{
 			Animator = new Animator (3000, 20, HandleTick);
 

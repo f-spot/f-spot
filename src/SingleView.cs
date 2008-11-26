@@ -161,11 +161,14 @@ namespace FSpot {
 			collection.Changed += HandleCollectionChanged;
 
 			// wrap the methods to fit to the delegate
-			image_view.Item.Changed += delegate (BrowsablePointer pointer, BrowsablePointerChangedArgs old) {
-															IBrowsableItem [] item = {pointer.Current};
-															PhotoArray item_array = new PhotoArray (item);
-															sidebar.HandleSelectionChanged (item_array);
-													};
+			image_view.Item.Changed += delegate (object sender, BrowsablePointerChangedEventArgs old) {
+					BrowsablePointer pointer = sender as BrowsablePointer;
+					if (pointer == null)
+						return;
+					IBrowsableItem [] item = {pointer.Current};
+					PhotoArray item_array = new PhotoArray (item);
+					sidebar.HandleSelectionChanged (item_array);
+			};
 			
 			image_view.Item.Collection.ItemsChanged += sidebar.HandleSelectionItemsChanged;
 
@@ -262,8 +265,12 @@ namespace FSpot {
 			UpdateStatusLabel ();
 		}
 
-		private void HandleItemChanged (BrowsablePointer pointer, BrowsablePointerChangedArgs old)
+		private void HandleItemChanged (object sender, BrowsablePointerChangedEventArgs old)
 		{
+			BrowsablePointer pointer = sender as BrowsablePointer;
+			if (pointer == null)
+				return;
+
 			directory_view.FocusCell = pointer.Index;
 			directory_view.Selection.Clear ();
 			if (collection.Count > 0) {

@@ -31,8 +31,8 @@ namespace FSpot {
 			item.Changed += ItemChanged;
 		}
 
-	        protected virtual void ItemChanged (BrowsablePointer sender, 
-						    BrowsablePointerChangedArgs args)
+	        protected virtual void ItemChanged (object sender, 
+						    BrowsablePointerChangedEventArgs args)
 		{
 			Sensitive = item.IsValid;
 		}
@@ -105,8 +105,7 @@ namespace FSpot {
 		{
 		}
 
-		protected override void ItemChanged (BrowsablePointer p,
-						     BrowsablePointerChangedArgs args)
+		protected override void ItemChanged (object sender, BrowsablePointerChangedEventArgs args)
 		{
 			Sensitive = item.Index < item.Collection.Count -1;
 		}
@@ -127,8 +126,7 @@ namespace FSpot {
 		{
 		}
 
-		protected override void ItemChanged (BrowsablePointer p,
-						     BrowsablePointerChangedArgs args)
+		protected override void ItemChanged (object sender, BrowsablePointerChangedEventArgs args)
 		{
 			Sensitive =  item.Index > 0;
 		}

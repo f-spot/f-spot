@@ -21,7 +21,7 @@ CORE_CSDISTFILES =				\
 	$(srcdir)/Core/Animator.cs		\
 	$(srcdir)/Core/BrowsableEventArgs.cs	\
 	$(srcdir)/Core/BrowsablePointer.cs	\
-	$(srcdir)/Core/BrowsablePointerEventArgs.cs	\
+	$(srcdir)/Core/BrowsablePointerChangedEventArgs.cs	\
 	$(srcdir)/Core/Category.cs		\
 	$(srcdir)/Core/DbItem.cs		\
 	$(srcdir)/Core/Delay.cs			\

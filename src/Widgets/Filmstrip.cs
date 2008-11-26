@@ -477,7 +477,7 @@ namespace FSpot.Widgets
 			QueueDraw ();
 		}
 
-		void HandlePointerChanged (BrowsablePointer pointer, BrowsablePointerChangedArgs old)
+		void HandlePointerChanged (object sender, BrowsablePointerChangedEventArgs args)
 		{
 			Position = ActiveItem;
 		}
