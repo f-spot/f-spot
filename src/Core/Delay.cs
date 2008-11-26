@@ -27,7 +27,6 @@ namespace FSpot
 		public Delay (GLib.IdleHandler op) 
 		{
 			this.op += op;
-			this.interval = 0;
 		}
 
 		uint source;
