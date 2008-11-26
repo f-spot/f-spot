@@ -6,6 +6,7 @@
  *
  * This is free software. See COPYING for details.
  */
+using System;
 
 namespace FSpot
 {
@@ -18,6 +19,9 @@ namespace FSpot
 
 		public BrowsablePointer (IBrowsableCollection collection, int index)
 		{
+			if (collection == null)
+				throw new ArgumentNullException ("collection");
+
 			this.collection = collection;
 			this.Index = index;
 			item = Current;
@@ -127,6 +131,8 @@ namespace FSpot
 		
 		protected void HandleCollectionChanged (IBrowsableCollection collection)
 		{
+			if (collection == null)
+				throw new ArgumentNullException ("collection");
 			int old_location = Index;
 			int next_location = collection.IndexOf (item);
 			

@@ -1,5 +1,13 @@
 2008-11-26  Stephane Delcroix  <sdelcroix@novell.com>
 
+	* src/Core/BrowsablePointer.cs:
+	* src/Core/Category.cs:
+	* src/Core/Delay.cs:
+	* src/Core/PhotosChanges.cs:
+	* src/Core/Tag.cs: Check for null arguments on public methods
+
+2008-11-26  Stephane Delcroix  <sdelcroix@novell.com>
+
 	* src/Core/BrowsableItemChanges.cs: replace the public Instance field by
 	a private field and a public property
 

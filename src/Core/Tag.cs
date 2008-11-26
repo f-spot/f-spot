@@ -130,6 +130,9 @@ namespace FSpot
 		// IComparer.
 		public int CompareTo (Tag tag)
 		{
+			if (tag == null)
+				throw new ArgumentNullException ("tag");
+
 			if (Category == tag.Category) {
 				if (SortPriority == tag.SortPriority)
 					return Name.CompareTo (tag.Name);
@@ -142,6 +145,9 @@ namespace FSpot
 		
 		public bool IsAncestorOf (Tag tag)
 		{
+			if (tag == null)
+				throw new ArgumentNullException ("tag");
+
 			for (Category parent = tag.Category; parent != null; parent = parent.Category) {
 				if (parent == this)
 					return true;

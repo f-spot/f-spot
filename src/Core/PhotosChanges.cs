@@ -122,6 +122,11 @@ namespace FSpot
 
 		public static PhotosChanges operator | (PhotosChanges c1, PhotosChanges c2)
 		{
+			if (c1 == null)
+				throw new ArgumentNullException ("c1");
+			if (c2 == null)
+				throw new ArgumentNullException ("c2");
+
 			PhotosChanges changes = new PhotosChanges ();
 			changes.changes = c1.changes | c2.changes;
 			changes.VersionsChanged = c1.VersionsChanged || c2.VersionsChanged;

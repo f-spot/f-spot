@@ -8,6 +8,7 @@
  * This is free software. See COPYING for details.
  */
 
+using System;
 using System.Collections.Generic;
 
 namespace FSpot
@@ -30,6 +31,9 @@ namespace FSpot
 		// Appends all of this categories descendents to the list
 		public void AddDescendentsTo (IList<Tag> list)
 		{
+			if (list == null)
+				throw new ArgumentNullException ("list");
+
 			foreach (Tag tag in children) {
 				if (! list.Contains (tag))
 					list.Add (tag);
