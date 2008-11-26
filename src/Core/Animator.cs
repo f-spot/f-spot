@@ -49,8 +49,9 @@ namespace FSpot
 		public bool HandleTimeout ()
 		{
 			percent = (DateTime.Now - start).Ticks / (float) duration.Ticks;
-			if (tick != null)
-				tick (this, EventArgs.Empty);
+			EventHandler tick_handler = tick;
+			if (tick_handler != null)
+				tick_handler (this, EventArgs.Empty);
 
 			return delay.IsPending;
 		}
