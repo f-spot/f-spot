@@ -236,9 +236,9 @@ public class MainWindow {
 		get { return selection; }
 	}
 
-    public MenuItem FindByTag {
-        get { return find_by_tag; }
-    }
+	public MenuItem FindByTag {
+		get { return find_by_tag; }
+	}
 
 	public InfoBox InfoBox {
 		get { return info_box; }
@@ -1622,7 +1622,7 @@ public class MainWindow {
 	
 	public void HandleRequireTag (object sender, EventArgs args)
  	{
-        ShowQueryWidget ();
+		ShowQueryWidget ();
 		query_widget.Require (tag_selection_widget.TagHighlight);
  	}
  
@@ -2502,8 +2502,8 @@ public class MainWindow {
 		case Gdk.Key.space:
 		case Gdk.Key.Return:
 		case Gdk.Key.KP_Enter:
-            ShowQueryWidget ();
-            query_widget.Include (tag_selection_widget.TagHighlight);
+			ShowQueryWidget ();
+			query_widget.Include (tag_selection_widget.TagHighlight);
 			break;
 
 		case Gdk.Key.F2:
@@ -3276,7 +3276,8 @@ public class MainWindow {
 		return mimes.ToArray (typeof (string)) as string [];
 	}
 
-	private void ShowQueryWidget () {
+	private void ShowQueryWidget ()
+	{
 		if (find_bar.Visible) {
 			find_bar.Entry.Text = String.Empty;
 			find_bar.Hide ();

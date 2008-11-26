@@ -1,3 +1,12 @@
+/*
+ * FSpot.QueryWidget.cs
+ *
+ * Author(s):
+ *	Gabriel Burt
+ *
+ * This is free software. See COPYING for details.
+ */
+
 using FSpot.Query;
 using FSpot.Widgets;
 using Mono.Unix;
@@ -21,9 +30,7 @@ namespace FSpot {
 		Gtk.Tooltips tips = new Gtk.Tooltips ();
 
 		public LogicWidget Logic {
-			get {
-				return logic_widget;
-			}
+			get { return logic_widget; }
 		}
 
 		public QueryWidget (PhotoQuery query, Db db, TagSelectionWidget selector) : base(new HBox())
@@ -120,6 +127,7 @@ namespace FSpot {
 			query.RatingRange = null;
 			logic_widget.Clear = true;
 			logic_widget.UpdateQuery ();
+			HideBar ();
 		}
 
 		public void ShowBar ()
