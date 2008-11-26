@@ -127,6 +127,9 @@ namespace FSpot.Platform
 
 		public static bool ThumbnailIsRecent (Uri imageUri)
 		{
+			if (imageUri == null)
+				throw new ArgumentNullException ("imageUri");
+
 			if (!imageUri.IsFile)
 				Log.Debug ("FIXME: compute timestamp on non file uri too");
 
