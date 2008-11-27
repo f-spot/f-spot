@@ -1,3 +1,8 @@
+2008-11-27  Stephane Delcroix  <sdelcroix@novell.com>
+
+	* src/Widgets/OpenWithMenu.cs: use List<> instead of HashSet<>, as it's
+	only available on mono >= 1.9
+
 2008-11-26  Stephane Delcroix  <sdelcroix@novell.com>
 
 	* src/Platform/Gnome/PreferenceBackend.cs: mark the exception with

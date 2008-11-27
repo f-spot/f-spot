@@ -102,7 +102,7 @@ namespace FSpot.Widgets {
 #else
 			List<Gnome.Vfs.MimeApplication> app_infos = new List<Gnome.Vfs.MimeApplication> ();
 #endif
-			HashSet<string> existing_ids = new HashSet<string> ();
+			List<string> existing_ids = new List<string> ();
 			foreach (string type in types)
 #if GTK_SHARP_2_12_6
 				foreach (AppInfo appinfo in AppInfoAdapter.GetAllForType (type)) {
@@ -163,6 +163,8 @@ namespace FSpot.Widgets {
 
 				if (!show_icon)
 					return;
+
+//FIXME: GTK_SHARP_2_14 should provide a way to get the image directly out of app.Icon
 
 				Pixbuf pixbuf = null;
 #if GTK_SHARP_2_12_6
