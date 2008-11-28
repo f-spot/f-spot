@@ -91,6 +91,8 @@ namespace FSpot.Platform
 
 		public void AddNotify (string key, EventHandler<NotifyEventArgs> handler)
 		{
+			// GConf doesn't like trailing slashes
+			key = key.TrimEnd('/');	
 			Client.AddNotify (key, delegate (object sender, GConf.NotifyEventArgs args) {handler (sender, new NotifyEventArgs (args.Key, args.Value));});
 		}
 	}
