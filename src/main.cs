@@ -295,6 +295,9 @@ namespace FSpot
 				if (!is_main)
 					return 0;
 
+				// init web proxy globally
+				Platform.WebProxy.Init ();
+
 #if GSD_2_24
 				Log.Information ("Hack for gnome-settings-daemon engaged");
 				int max_age, max_size;

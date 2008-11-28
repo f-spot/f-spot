@@ -1,3 +1,18 @@
+2008-11-28  Stephane Delcroix  <sdelcroix@novell.com>
+
+	this patch is based on the work done by Anton Keks on bgo#432745
+
+	* src/Platform/Gnome/PreferenceBackend.cs: internal Get<T> () method
+
+	* src/Preferences.cs: use shorter keys, move GetWebProxy in WebProxy
+
+	* src/Platform/Gnome/WebProxy.cs: set the WebRequestDefaultProxy
+	according to gnome settings.
+
+	* src/main.cs: Init () the Platform.WebProxy
+
+	* src/Platform/Null/WebProxy.cs: dummy WebProxy
+
 2008-11-28  Anton Keks  <anton@azib.net>
 
 	* src/Platform/Gnome/PreferencesBackend.cs: trim trailing slashes

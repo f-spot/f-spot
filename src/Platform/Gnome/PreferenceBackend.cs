@@ -84,6 +84,17 @@ namespace FSpot.Platform
 			}
 		}
 
+		internal T Get<T> (string key)
+		{
+			T value = default(T);
+			try {
+				value = (T) Get (key);
+			} catch (NoSuchKeyException) {
+			} catch (InvalidCastException) {
+			}
+			return value;
+		}
+
 		public void Set (string key, object o)
 		{
 			Client.Set (key, o);

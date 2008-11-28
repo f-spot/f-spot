@@ -237,8 +237,6 @@ namespace FSpot {
 			//Request.UserAgent = "F-Spot Gallery Remote Client";
 			Request.UserAgent = "Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.7) Gecko/20040626 Firefox/0.9.1";
 	
-			Request.Proxy = WebProxy.GetDefaultProxy ();
-	
 			if (multipart) {
 				GenerateBoundary ();
 				Request.ContentType = "multipart/form-data; boundary=" + boundary;
