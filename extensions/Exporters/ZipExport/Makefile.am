@@ -15,6 +15,7 @@ REFS =					\
 	-r:$(top_builddir)/src/FSpot.Utils.dll	\
 	$(LINK_SEMWEB)			\
 	$(LINK_MONO_ADDINS)		\
+	$(LINK_GIO)			\
 	-r:System.Web			\
 	-r:ICSharpCode.SharpZipLib	\
 	-r:Mono.Posix
