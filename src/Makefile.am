@@ -87,7 +87,7 @@ NULL_PLATFORM_CSDISTFILES =				\
 	$(srcdir)/Platform/Null/PreferenceBackend.cs	\
 	$(srcdir)/Platform/Null/ScreenSaver.cs		\
 	$(srcdir)/Platform/Null/ThumbnailFactory.cs	\
-	$(srcdir)/Platform/Gnome/WebProxy.cs
+	$(srcdir)/Platform/Null/WebProxy.cs
 
 F_SPOT_CSDISTFILES =				\
 	$(srcdir)/AsyncPixbufLoader.cs		\
