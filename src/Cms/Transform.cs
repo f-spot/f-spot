@@ -28,6 +28,9 @@ namespace Cms {
 				  Format output_format,
 				  Intent intent, uint flags)
 		{
+			if (profiles == null)
+				throw new ArgumentNullException ("profiles");
+
 			HandleRef [] handles = new HandleRef [profiles.Length];
 			for (int i = 0; i < profiles.Length; i++) {
 				handles [i] = profiles [i].Handle;
@@ -43,6 +46,11 @@ namespace Cms {
 				  Profile output, Format output_format,
 				  Intent intent, uint flags)
 		{
+			if (input == null)
+				throw new ArgumentNullException ("input");
+			if (output == null)
+				throw new ArgumentNullException ("output");
+
 			this.handle = new HandleRef (this, NativeMethods.CmsCreateTransform (input.Handle, input_format,
 									       output.Handle, output_format,
 									       (int)intent, flags));

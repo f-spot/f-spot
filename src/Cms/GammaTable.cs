@@ -117,6 +117,9 @@ namespace Cms {
 		public GammaTable (ushort [] values, int start_offset, int length)
 		{
 #if true
+			if (values == null)
+				throw new ArgumentNullException ("values");
+
 			handle = new HandleRef (this, NativeMethods.FCmsGammaTableNew (values, start_offset, length));
 			//System.Console.WriteLine ("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXhandle = {0}", handle.Handle);
 #else

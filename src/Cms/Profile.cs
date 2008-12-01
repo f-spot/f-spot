@@ -83,6 +83,9 @@ namespace Cms {
 
 		public static Profile GetScreenProfile (Gdk.Screen screen)
 		{
+			if (screen == null)
+				throw new ArgumentNullException ("screen");
+
 			IntPtr profile = NativeMethods.FScreenGetProfile (screen.Handle);
 			
 			if (profile == IntPtr.Zero)
@@ -197,12 +200,18 @@ namespace Cms {
 			throw new SaveException ("Error Saving Profile");
 		}
 
-		public Profile (byte [] data) : this (data, 0, data.Length) {}
+		public Profile (byte [] data) : this (data, 0, data.Length) {
+			if (data == null)
+				throw new ArgumentNullException ("data");	
+		}
 
 		public Profile (byte [] data, int start_offset, int length)
 		{
 			if (start_offset < 0)
 				throw new System.ArgumentOutOfRangeException ("start_offset < 0");
+
+			if (data == null)
+				throw new ArgumentNullException ("data");
 
 			if (data.Length - start_offset < 0)
 				throw new System.ArgumentOutOfRangeException ("start_offset > data.Length");
