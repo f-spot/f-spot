@@ -73,6 +73,7 @@ if [ "$basedir_set" != "true" ]; then
         mkdir -p $XDG_CONFIG_HOME/
 	echo "Moving $HOME/.gnome2/f-spot to $XDG_CONFIG_HOME/"
         mv $HOME/.gnome2/f-spot $XDG_CONFIG_HOME/
+	rm -rf $XDG_CONFIG_HOME/addin*
     fi
 fi
 
