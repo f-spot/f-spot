@@ -5,6 +5,7 @@ EXTRAFLAGS = -d:TEST_METADATA -d:BROKEN_RSVG -d:GSD_2_24 $(CSC_DEFINES)
 
 CMS_CSDISTFILES =				\
 	$(srcdir)/Cms/CctTable.cs		\
+	$(srcdir)/Cms/CmsException.cs		\
 	$(srcdir)/Cms/ColorCIELab.cs		\
 	$(srcdir)/Cms/ColorCIELCh.cs		\
 	$(srcdir)/Cms/ColorCIExyY.cs		\
@@ -15,6 +16,7 @@ CMS_CSDISTFILES =				\
 	$(srcdir)/Cms/Intent.cs			\
 	$(srcdir)/Cms/NativeMethods.cs		\
 	$(srcdir)/Cms/Profile.cs		\
+	$(srcdir)/Cms/SaveException.cs		\
 	$(srcdir)/Cms/Transform.cs
 
 CORE_CSDISTFILES =				\

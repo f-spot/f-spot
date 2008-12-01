@@ -57,7 +57,7 @@ namespace Cms {
 				string [] subs = line.Split ('\t');
 				int ptemp = int.Parse (subs [0]);
 				if (ptemp != temp)
-					throw new System.Exception (String.Format ("{0} != {1}", ptemp, temp));
+					throw new CmsException (String.Format ("{0} != {1}", ptemp, temp));
 				
 				double x = double.Parse (subs [1]);
 				double y = double.Parse (subs [2]);

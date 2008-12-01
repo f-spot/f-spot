@@ -73,12 +73,12 @@ namespace Cms {
 			return new Profile (NativeMethods.CmsCreateLabProfile (IntPtr.Zero));
 		}			
 
-		public static Profile CreateGray (ColorCIExyY white_point, GammaTable transfer)
+		public static Profile CreateGray (ColorCIExyY whitePoint, GammaTable transfer)
 		{
 			if (transfer == null)
-				return new Profile (NativeMethods.CmsCreateGrayProfile (ref white_point, new GammaTable (4096, 2.2).Handle));
+				return new Profile (NativeMethods.CmsCreateGrayProfile (ref whitePoint, new GammaTable (4096, 2.2).Handle));
 			else
-				return new Profile (NativeMethods.CmsCreateGrayProfile (ref white_point, transfer.Handle));
+				return new Profile (NativeMethods.CmsCreateGrayProfile (ref whitePoint, transfer.Handle));
 		}
 
 		public static Profile GetScreenProfile (Gdk.Screen screen)
@@ -124,8 +124,8 @@ namespace Cms {
 						      double Hue,
 						      double Saturation,
 						      GammaTable [] tables,
-						      ColorCIExyY src_wp,
-						      ColorCIExyY dest_wp)
+						      ColorCIExyY srcWp,
+						      ColorCIExyY destWp)
 		{
 			if (tables == null) {
 				GammaTable gamma = new GammaTable (1024, Math.Pow (10, -Bright/100));
@@ -138,7 +138,7 @@ namespace Cms {
 			System.Console.WriteLine ("b {0}", Bright);
 			System.Console.WriteLine ("c {0}", Contrast);
 			System.Console.WriteLine ("h {0}", Hue);
-			System.Console.WriteLine ("s {0} {1} {2}", Saturation, src_wp, dest_wp);
+			System.Console.WriteLine ("s {0} {1} {2}", Saturation, srcWp, destWp);
 			*/
 			return new Profile (NativeMethods.FCmsCreateBCHSWabstractProfile (nLUTPoints,
 									     Exposure,
@@ -146,8 +146,8 @@ namespace Cms {
 									     Contrast,
 									     Hue,
 									     Saturation,
-									     ref src_wp,
-									     ref dest_wp,
+									     ref srcWp,
+									     ref destWp,
 									     CopyHandles (tables)));
 		}
 
@@ -178,7 +178,7 @@ namespace Cms {
 			handle = new HandleRef (this, NativeMethods.CmsOpenProfileFromFile (path, "r"));
 
 			if (handle.Handle == IntPtr.Zero)
-				throw new Exception ("Error opening ICC profile in file " + path);
+				throw new CmsException ("Error opening ICC profile in file " + path);
 		}
 
 		public byte [] Save ()
@@ -218,7 +218,7 @@ namespace Cms {
 			}
 			
 			if (profileh == IntPtr.Zero)
-				throw new System.Exception ("Invalid Profile Data");
+				throw new CmsException ("Invalid Profile Data");
 			else 
 				this.handle = new HandleRef (this, profileh);
 		}
@@ -227,7 +227,7 @@ namespace Cms {
 			get {
 				ColorCIEXYZ wp;
 				if (!NativeMethods.CmsTakeMediaWhitePoint (out wp, handle))
-					throw new ApplicationException ("unable to retrieve white point from profile");
+					throw new CmsException ("unable to retrieve white point from profile");
 				return wp;
 			}
 		}
@@ -236,7 +236,7 @@ namespace Cms {
 			get {
 				ColorCIEXYZ black;
 				if (!NativeMethods.CmsTakeMediaBlackPoint (out black, handle))
-					throw new ApplicationException ("unable to retrieve white point from profile");
+					throw new CmsException ("unable to retrieve white point from profile");
 				
 				return black;
 			}
@@ -246,7 +246,7 @@ namespace Cms {
 			get {
 				ColorCIEXYZTriple colors;
 				if (!NativeMethods.CmsTakeColorants (out colors, handle))
-					throw new ApplicationException ("Unable to retrieve profile colorants");
+					throw new CmsException ("Unable to retrieve profile colorants");
 				
 				return colors;
 			}				
@@ -313,7 +313,7 @@ namespace Cms {
 		protected virtual void Cleanup ()
 		{
 			if (NativeMethods.CmsCloseProfile (this.Handle) == 0)
-				throw new Exception ("Error closing Handle");
+				throw new CmsException ("Error closing Handle");
 
 		}
 
@@ -324,21 +324,4 @@ namespace Cms {
 
 	}
 
-	public class SaveException : System.Exception {
-		public SaveException (string message) : base (message)
-		{
-		}
-
-		protected SaveException (SerializationInfo info, StreamingContext context) : base (info, context)
-		{
-		}
-
-		public SaveException (string message, Exception innerException) : base (message, innerException)
-		{
-		}
-
-		public SaveException () : base ()
-		{
-		}
-	}
 }

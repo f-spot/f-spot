@@ -1,3 +1,15 @@
+2008-12-01  Stephane Delcroix  <sdelcroix@novell.com>
+
+	* src/Cms/Profile.cs: remove underscores in method args
+
+	* src/Cms/CmsException.cs:
+	* src/Cms/SaveException.cs: new CmsException, move SaveException in its
+	own file.
+
+	* src/Cms/ColorCIExyY.cs:
+	* src/Cms/GammaTable.cs:
+	* src/Cms/Profile.cs: throws CmsException instead of Exception
+
 2008-11-28  Stephane Delcroix  <sdelcroix@novell.com>
 
 	this patch is based on the work done by Anton Keks on bgo#432745

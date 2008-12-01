@@ -90,7 +90,7 @@ namespace Cms {
 			get {
 				unsafe {
 					if (handle.Handle == (IntPtr)0)
-						throw new Exception ();
+						throw new CmsException ();
 					
 					if (index < 0 || index >= Count)
 						throw new ArgumentOutOfRangeException (String.Format ("index {0} outside of count {1} for {2}", index, Count, handle.Handle));
@@ -102,7 +102,7 @@ namespace Cms {
 			set {
 				unsafe {
 					if (handle.Handle == (IntPtr)0)
-						throw new Exception ();
+						throw new CmsException ();
 					
 					if (index < 0 || index >= Count)
 						throw new ArgumentOutOfRangeException (String.Format ("index {0} outside of count {1} for handle {2}", index, Count, handle.Handle));
