@@ -142,6 +142,9 @@ namespace FSpot
 					// Debug Gtk critical warnings
 					GLib.Log.SetLogHandler ("Gtk", GLib.LogLevelFlags.Critical, logFunc);
 
+					// Debug GLib critical warnings
+					GLib.Log.SetLogHandler ("GLib", GLib.LogLevelFlags.Critical, logFunc);
+
 					break;
 				case "--uninstalled": case "--gdb": case "--valgrind":
 					break;
@@ -166,6 +169,7 @@ namespace FSpot
 			Application.Init (Defines.PACKAGE, ref args);
 
 			if (slideshow == true) {
+				Gnome.Vfs.Vfs.Initialize ();
 				Core core = new Core ();
 				core.ShowSlides (null);
 				Application.Run ();
