@@ -1,5 +1,10 @@
 2008-12-02  Stephane Delcroix  <sdelcroix@novell.com>
 
+	* src/Widgets/InfoBox.cs: no longer depend on Gnome.Vfs (or at least
+	it won't when we'll have gtk-sharp 2.14)
+
+2008-12-02  Stephane Delcroix  <sdelcroix@novell.com>
+
 	* src/Widgets/IconView.cs: no longer forward keystrokes to parent
 	widgets for movement keys.
 

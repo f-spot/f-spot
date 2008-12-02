@@ -20,6 +20,9 @@ using FSpot;
 using SemWeb;
 using Mono.Unix;
 using FSpot.Utils;
+using GLib;
+using GFile = GLib.File;
+using GFileInfo = GLib.FileInfo;
 
 // FIXME TODO: We want to use something like EClippedLabel here throughout so it handles small sizes
 // gracefully using ellipsis.
@@ -487,7 +490,7 @@ namespace FSpot.Widgets
 					}
 					//}
 			} catch (System.Exception e) {
-				Log.Debug (e.StackTrace);
+				FSpot.Utils.Log.Debug (e.StackTrace);
 				info = new ImageInfo (null);			
 			}
 
@@ -548,9 +551,10 @@ namespace FSpot.Widgets
 
 			if (show_file_size) {
 				try {
-					Gnome.Vfs.FileInfo file_info = new Gnome.Vfs.FileInfo (photo.DefaultVersionUri.ToString ());
+					GFile file = FileFactory.NewForUri (photo.DefaultVersionUri);
+					GFileInfo file_info = file.QueryInfo ("standard::size", FileQueryInfoFlags.None, null);
 #if GTK_SHARP_2_14_0
-					file_size_value_label.Text = GLib.Format.SizeForDisplay (file_info.Size);
+					file_size_value_label.Text = Format.SizeForDisplay (file_info.Size);
 #else
 					file_size_value_label.Text = Gnome.Vfs.Format.FileSizeForDisplay (file_info.Size);
 #endif
@@ -637,7 +641,8 @@ namespace FSpot.Widgets
 				foreach (Photo photo in Photos) {
 					
 					try {
-						Gnome.Vfs.FileInfo file_info = new Gnome.Vfs.FileInfo (photo.DefaultVersionUri.ToString ());
+						GFile file = FileFactory.NewForUri (photo.DefaultVersionUri);
+						GFileInfo file_info = file.QueryInfo ("standard::size", FileQueryInfoFlags.None, null);
 						file_size += file_info.Size;
 					} catch (System.IO.FileNotFoundException) {
 						file_size = -1;
@@ -645,11 +650,15 @@ namespace FSpot.Widgets
 					}
 				}
 				
-				if (file_size != -1) {
+				if (file_size != -1)
+#if GTK_SHARP_2_14_0
+					file_size_value_label.Text = Format.SizeForDisplay (file_size);
+#else
 					file_size_value_label.Text = Gnome.Vfs.Format.FileSizeForDisplay (file_size);
-				} else {
+#endif
+
+				else
 					file_size_value_label.Text = Catalog.GetString("(At least one File not found)");
-				}
 			}
 			file_size_label.Visible = show_file_size;
 			file_size_value_label.Visible = show_file_size;	
@@ -693,7 +702,7 @@ namespace FSpot.Widgets
 
 				hint.Dispose ();
 			} catch (System.Exception e) {
-				Log.Debug (e.StackTrace);
+				FSpot.Utils.Log.Debug (e.StackTrace);
 			}
 
 			return false;
