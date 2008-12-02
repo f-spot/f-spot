@@ -1549,11 +1549,6 @@ namespace FSpot.Widgets
 				return;
 			}
 
-			if (FocusCell == focus_old) {
-				args.RetVal = false;
-				return;
-			}
-
 			if (shift) {
 				if (focus_old != FocusCell && selection.Contains (focus_old) && selection.Contains (FocusCell))
 					selection.Remove (FocusCell, focus_old);

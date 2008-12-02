@@ -1,5 +1,10 @@
 2008-12-02  Stephane Delcroix  <sdelcroix@novell.com>
 
+	* src/Widgets/IconView.cs: no longer forward keystrokes to parent
+	widgets for movement keys.
+
+2008-12-02  Stephane Delcroix  <sdelcroix@novell.com>
+
 	* src/main.cs: initialize gnomevfs to get the screensaver back to work
 
 2008-12-01  Stephane Delcroix  <sdelcroix@novell.com>
