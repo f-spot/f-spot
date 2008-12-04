@@ -16,7 +16,8 @@ SUBDIRS = 		\
 	tools		\
 	po		\
 	src		\
-	extensions
+	extensions	\
+	GKeyFile
 
 DIST_SUBDIRS = 		\
 	gio-sharp	\
@@ -37,7 +38,8 @@ DIST_SUBDIRS = 		\
 	tools		\
 	po		\
 	src		\
-	extensions
+	extensions	\
+	GKeyFile
 
 desktop_in_files=	\
 	f-spot.desktop.in	\

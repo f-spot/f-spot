@@ -1,0 +1,343 @@
+<?xml version="1.0"?>
+<api>
+  <!--
+
+        This file was automatically generated.
+        Please DO NOT MODIFY THIS FILE, modify .metadata files instead.
+
+-->
+  <namespace name="KeyFile" library="libglib-2.0.dll">
+    <enum name="Error" cname="GKeyFileError" type="enum">
+      <member cname="G_KEY_FILE_ERROR_UNKNOWN_ENCODING" name="UnknownEncoding" />
+      <member cname="G_KEY_FILE_ERROR_PARSE" name="Parse" />
+      <member cname="G_KEY_FILE_ERROR_NOT_FOUND" name="NotFound" />
+      <member cname="G_KEY_FILE_ERROR_KEY_NOT_FOUND" name="KeyNotFound" />
+      <member cname="G_KEY_FILE_ERROR_GROUP_NOT_FOUND" name="GroupNotFound" />
+      <member cname="G_KEY_FILE_ERROR_INVALID_VALUE" name="InvalidValue" />
+    </enum>
+    <enum name="Flags" cname="GKeyFileFlags" type="flags">
+      <member cname="G_KEY_FILE_NONE" name="None" />
+      <member cname="G_KEY_FILE_KEEP_COMMENTS" name="KeepComments" value="1 &lt;&lt; 0" />
+      <member cname="G_KEY_FILE_KEEP_TRANSLATIONS" name="KeepTranslations" value="1 &lt;&lt; 1" />
+    </enum>
+    <struct name="GKeyFile" cname="GKeyFile" opaque="true">
+      <method name="ErrorQuark" cname="g_key_file_error_quark" shared="true">
+        <return-type type="GQuark" />
+      </method>
+      <method name="Free" cname="g_key_file_free">
+        <return-type type="void" />
+      </method>
+      <method name="GetBoolean" cname="g_key_file_get_boolean">
+        <return-type type="gboolean" />
+        <parameters>
+          <parameter type="const-gchar*" name="group_name" />
+          <parameter type="const-gchar*" name="key" />
+          <parameter type="GError**" name="error" />
+        </parameters>
+      </method>
+      <method name="GetBooleanList" cname="g_key_file_get_boolean_list">
+        <return-type type="gboolean*" />
+        <parameters>
+          <parameter type="const-gchar*" name="group_name" />
+          <parameter type="const-gchar*" name="key" />
+          <parameter type="gsize*" name="length" />
+          <parameter type="GError**" name="error" />
+        </parameters>
+      </method>
+      <method name="GetComment" cname="g_key_file_get_comment">
+        <return-type type="gchar*" />
+        <parameters>
+          <parameter type="const-gchar*" name="group_name" />
+          <parameter type="const-gchar*" name="key" />
+          <parameter type="GError**" name="error" />
+        </parameters>
+      </method>
+      <method name="GetDouble" cname="g_key_file_get_double">
+        <return-type type="gdouble" />
+        <parameters>
+          <parameter type="const-gchar*" name="group_name" />
+          <parameter type="const-gchar*" name="key" />
+          <parameter type="GError**" name="error" />
+        </parameters>
+      </method>
+      <method name="GetDoubleList" cname="g_key_file_get_double_list">
+        <return-type type="gdouble*" />
+        <parameters>
+          <parameter type="const-gchar*" name="group_name" />
+          <parameter type="const-gchar*" name="key" />
+          <parameter type="gsize*" name="length" />
+          <parameter type="GError**" name="error" />
+        </parameters>
+      </method>
+      <method name="GetGroups" cname="g_key_file_get_groups">
+        <return-type type="gchar**" />
+        <parameters>
+          <parameter type="gsize*" name="length" />
+        </parameters>
+      </method>
+      <method name="GetInteger" cname="g_key_file_get_integer">
+        <return-type type="gint" />
+        <parameters>
+          <parameter type="const-gchar*" name="group_name" />
+          <parameter type="const-gchar*" name="key" />
+          <parameter type="GError**" name="error" />
+        </parameters>
+      </method>
+      <method name="GetIntegerList" cname="g_key_file_get_integer_list">
+        <return-type type="gint*" />
+        <parameters>
+          <parameter type="const-gchar*" name="group_name" />
+          <parameter type="const-gchar*" name="key" />
+          <parameter type="gsize*" name="length" />
+          <parameter type="GError**" name="error" />
+        </parameters>
+      </method>
+      <method name="GetKeys" cname="g_key_file_get_keys">
+        <return-type type="gchar**" />
+        <parameters>
+          <parameter type="const-gchar*" name="group_name" />
+          <parameter type="gsize*" name="length" />
+          <parameter type="GError**" name="error" />
+        </parameters>
+      </method>
+      <method name="GetLocaleString" cname="g_key_file_get_locale_string">
+        <return-type type="gchar*" />
+        <parameters>
+          <parameter type="const-gchar*" name="group_name" />
+          <parameter type="const-gchar*" name="key" />
+          <parameter type="const-gchar*" name="locale" />
+          <parameter type="GError**" name="error" />
+        </parameters>
+      </method>
+      <method name="GetLocaleStringList" cname="g_key_file_get_locale_string_list">
+        <return-type type="gchar**" />
+        <parameters>
+          <parameter type="const-gchar*" name="group_name" />
+          <parameter type="const-gchar*" name="key" />
+          <parameter type="const-gchar*" name="locale" />
+          <parameter type="gsize*" name="length" />
+          <parameter type="GError**" name="error" />
+        </parameters>
+      </method>
+      <method name="GetStartGroup" cname="g_key_file_get_start_group">
+        <return-type type="gchar*" />
+      </method>
+      <method name="GetString" cname="g_key_file_get_string">
+        <return-type type="gchar*" />
+        <parameters>
+          <parameter type="const-gchar*" name="group_name" />
+          <parameter type="const-gchar*" name="key" />
+          <parameter type="GError**" name="error" />
+        </parameters>
+      </method>
+      <method name="GetStringList" cname="g_key_file_get_string_list">
+        <return-type type="gchar**" />
+        <parameters>
+          <parameter type="const-gchar*" name="group_name" />
+          <parameter type="const-gchar*" name="key" />
+          <parameter type="gsize*" name="length" />
+          <parameter type="GError**" name="error" />
+        </parameters>
+      </method>
+      <method name="GetValue" cname="g_key_file_get_value">
+        <return-type type="gchar*" />
+        <parameters>
+          <parameter type="const-gchar*" name="group_name" />
+          <parameter type="const-gchar*" name="key" />
+          <parameter type="GError**" name="error" />
+        </parameters>
+      </method>
+      <method name="HasGroup" cname="g_key_file_has_group">
+        <return-type type="gboolean" />
+        <parameters>
+          <parameter type="const-gchar*" name="group_name" />
+        </parameters>
+      </method>
+      <method name="HasKey" cname="g_key_file_has_key">
+        <return-type type="gboolean" />
+        <parameters>
+          <parameter type="const-gchar*" name="group_name" />
+          <parameter type="const-gchar*" name="key" />
+          <parameter type="GError**" name="error" />
+        </parameters>
+      </method>
+      <method name="LoadFromData" cname="g_key_file_load_from_data">
+        <return-type type="gboolean" />
+        <parameters>
+          <parameter type="const-gchar*" name="data" />
+          <parameter type="gsize" name="length" />
+          <parameter type="GKeyFileFlags" name="flags" />
+          <parameter type="GError**" name="error" />
+        </parameters>
+      </method>
+      <method name="LoadFromDataDirs" cname="g_key_file_load_from_data_dirs">
+        <return-type type="gboolean" />
+        <parameters>
+          <parameter type="const-gchar*" name="file" />
+          <parameter type="gchar**" name="full_path" />
+          <parameter type="GKeyFileFlags" name="flags" />
+          <parameter type="GError**" name="error" />
+        </parameters>
+      </method>
+      <method name="LoadFromDirs" cname="g_key_file_load_from_dirs">
+        <return-type type="gboolean" />
+        <parameters>
+          <parameter type="const-gchar*" name="file" />
+          <parameter type="const-gchar**" name="search_dirs" />
+          <parameter type="gchar**" name="full_path" />
+          <parameter type="GKeyFileFlags" name="flags" />
+          <parameter type="GError**" name="error" />
+        </parameters>
+      </method>
+      <method name="LoadFromFile" cname="g_key_file_load_from_file">
+        <return-type type="gboolean" />
+        <parameters>
+          <parameter type="const-gchar*" name="file" />
+          <parameter type="GKeyFileFlags" name="flags" />
+          <parameter type="GError**" name="error" />
+        </parameters>
+      </method>
+      <constructor cname="g_key_file_new" />
+      <method name="RemoveComment" cname="g_key_file_remove_comment">
+        <return-type type="gboolean" />
+        <parameters>
+          <parameter type="const-gchar*" name="group_name" />
+          <parameter type="const-gchar*" name="key" />
+          <parameter type="GError**" name="error" />
+        </parameters>
+      </method>
+      <method name="RemoveGroup" cname="g_key_file_remove_group">
+        <return-type type="gboolean" />
+        <parameters>
+          <parameter type="const-gchar*" name="group_name" />
+          <parameter type="GError**" name="error" />
+        </parameters>
+      </method>
+      <method name="RemoveKey" cname="g_key_file_remove_key">
+        <return-type type="gboolean" />
+        <parameters>
+          <parameter type="const-gchar*" name="group_name" />
+          <parameter type="const-gchar*" name="key" />
+          <parameter type="GError**" name="error" />
+        </parameters>
+      </method>
+      <method name="SetBoolean" cname="g_key_file_set_boolean">
+        <return-type type="void" />
+        <parameters>
+          <parameter type="const-gchar*" name="group_name" />
+          <parameter type="const-gchar*" name="key" />
+          <parameter type="gboolean" name="value" />
+        </parameters>
+      </method>
+      <method name="SetBooleanList" cname="g_key_file_set_boolean_list">
+        <return-type type="void" />
+        <parameters>
+          <parameter type="const-gchar*" name="group_name" />
+          <parameter type="const-gchar*" name="key" />
+          <parameter type="gboolean" array="true" name="list" />
+          <parameter type="gsize" name="length" />
+        </parameters>
+      </method>
+      <method name="SetComment" cname="g_key_file_set_comment">
+        <return-type type="gboolean" />
+        <parameters>
+          <parameter type="const-gchar*" name="group_name" />
+          <parameter type="const-gchar*" name="key" />
+          <parameter type="const-gchar*" name="comment" />
+          <parameter type="GError**" name="error" />
+        </parameters>
+      </method>
+      <method name="SetDouble" cname="g_key_file_set_double">
+        <return-type type="void" />
+        <parameters>
+          <parameter type="const-gchar*" name="group_name" />
+          <parameter type="const-gchar*" name="key" />
+          <parameter type="gdouble" name="value" />
+        </parameters>
+      </method>
+      <method name="SetDoubleList" cname="g_key_file_set_double_list">
+        <return-type type="void" />
+        <parameters>
+          <parameter type="const-gchar*" name="group_name" />
+          <parameter type="const-gchar*" name="key" />
+          <parameter type="gdouble" array="true" name="list" />
+          <parameter type="gsize" name="length" />
+        </parameters>
+      </method>
+      <method name="SetInteger" cname="g_key_file_set_integer">
+        <return-type type="void" />
+        <parameters>
+          <parameter type="const-gchar*" name="group_name" />
+          <parameter type="const-gchar*" name="key" />
+          <parameter type="gint" name="value" />
+        </parameters>
+      </method>
+      <method name="SetIntegerList" cname="g_key_file_set_integer_list">
+        <return-type type="void" />
+        <parameters>
+          <parameter type="const-gchar*" name="group_name" />
+          <parameter type="const-gchar*" name="key" />
+          <parameter type="gint" array="true" name="list" />
+          <parameter type="gsize" name="length" />
+        </parameters>
+      </method>
+      <method name="SetListSeparator" cname="g_key_file_set_list_separator">
+        <return-type type="void" />
+        <parameters>
+          <parameter type="gchar" name="separator" />
+        </parameters>
+      </method>
+      <method name="SetLocaleString" cname="g_key_file_set_locale_string">
+        <return-type type="void" />
+        <parameters>
+          <parameter type="const-gchar*" name="group_name" />
+          <parameter type="const-gchar*" name="key" />
+          <parameter type="const-gchar*" name="locale" />
+          <parameter type="const-gchar*" name="string" />
+        </parameters>
+      </method>
+      <method name="SetLocaleStringList" cname="g_key_file_set_locale_string_list">
+        <return-type type="void" />
+        <parameters>
+          <parameter type="const-gchar*" name="group_name" />
+          <parameter type="const-gchar*" name="key" />
+          <parameter type="const-gchar*" name="locale" />
+          <parameter type="const-gchar*" array="true" name="list" />
+          <parameter type="gsize" name="length" />
+        </parameters>
+      </method>
+      <method name="SetString" cname="g_key_file_set_string">
+        <return-type type="void" />
+        <parameters>
+          <parameter type="const-gchar*" name="group_name" />
+          <parameter type="const-gchar*" name="key" />
+          <parameter type="const-gchar*" name="string" />
+        </parameters>
+      </method>
+      <method name="SetStringList" cname="g_key_file_set_string_list">
+        <return-type type="void" />
+        <parameters>
+          <parameter type="const-gchar*" name="group_name" />
+          <parameter type="const-gchar*" name="key" />
+          <parameter type="const-gchar*" array="true" name="list" />
+          <parameter type="gsize" name="length" />
+        </parameters>
+      </method>
+      <method name="SetValue" cname="g_key_file_set_value">
+        <return-type type="void" />
+        <parameters>
+          <parameter type="const-gchar*" name="group_name" />
+          <parameter type="const-gchar*" name="key" />
+          <parameter type="const-gchar*" name="value" />
+        </parameters>
+      </method>
+      <method name="ToData" cname="g_key_file_to_data">
+        <return-type type="gchar*" />
+        <parameters>
+          <parameter type="gsize*" name="length" />
+          <parameter type="GError**" name="error" />
+        </parameters>
+      </method>
+    </struct>
+  </namespace>
+</api>
