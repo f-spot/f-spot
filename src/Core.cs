@@ -99,7 +99,10 @@ namespace FSpot {
 			{
 				if (path != null && path.StartsWith ("gphoto2:"))
 					main.ImportCamera (path);
-				else
+				else if (path != null && path.StartsWith ("file:")) {
+					Uri uri = new Uri (path);
+					main.ImportFile (Uri.UnescapeDataString (uri.AbsolutePath));
+				} else
 					main.ImportFile (path);
 				
 				return false;
