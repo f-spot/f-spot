@@ -1,3 +1,8 @@
+2008-12-06  Stephane Delcroix  <sdelcroix@novell.com>
+
+	* GKeyFile/*: fix the Set*List in the metadata, not in .custom. Hide
+	broken methods.
+
 2008-12-05  Stephane Delcroix  <sdelcroix@novell.com>
 
 	* src/Core.cs:

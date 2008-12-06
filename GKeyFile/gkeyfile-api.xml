@@ -35,7 +35,7 @@
           <parameter type="GError**" name="error" />
         </parameters>
       </method>
-      <method name="GetBooleanList" cname="g_key_file_get_boolean_list">
+      <method name="GetBooleanList" cname="g_key_file_get_boolean_list" hidden="1">
         <return-type type="gboolean*" />
         <parameters>
           <parameter type="const-gchar*" name="group_name" />
@@ -60,7 +60,7 @@
           <parameter type="GError**" name="error" />
         </parameters>
       </method>
-      <method name="GetDoubleList" cname="g_key_file_get_double_list">
+      <method name="GetDoubleList" cname="g_key_file_get_double_list" hidden="1">
         <return-type type="gdouble*" />
         <parameters>
           <parameter type="const-gchar*" name="group_name" />
@@ -83,7 +83,7 @@
           <parameter type="GError**" name="error" />
         </parameters>
       </method>
-      <method name="GetIntegerList" cname="g_key_file_get_integer_list">
+      <method name="GetIntegerList" cname="g_key_file_get_integer_list" hidden="1">
         <return-type type="gint*" />
         <parameters>
           <parameter type="const-gchar*" name="group_name" />
@@ -229,13 +229,13 @@
           <parameter type="gboolean" name="value" />
         </parameters>
       </method>
-      <method name="SetBooleanList" cname="g_key_file_set_boolean_list" accessibility="private">
+      <method name="SetBooleanList" cname="g_key_file_set_boolean_list">
         <return-type type="void" />
         <parameters>
           <parameter type="const-gchar*" name="group_name" />
           <parameter type="const-gchar*" name="key" />
           <parameter type="gboolean" array="true" name="list" />
-          <parameter type="gsize" name="length" />
+          <parameter type="gsize" name="n_list" />
         </parameters>
       </method>
       <method name="SetComment" cname="g_key_file_set_comment">
@@ -255,13 +255,13 @@
           <parameter type="gdouble" name="value" />
         </parameters>
       </method>
-      <method name="SetDoubleList" cname="g_key_file_set_double_list" accessibility="private">
+      <method name="SetDoubleList" cname="g_key_file_set_double_list">
         <return-type type="void" />
         <parameters>
           <parameter type="const-gchar*" name="group_name" />
           <parameter type="const-gchar*" name="key" />
           <parameter type="gdouble" array="true" name="list" />
-          <parameter type="gsize" name="length" />
+          <parameter type="gsize" name="n_list" />
         </parameters>
       </method>
       <method name="SetInteger" cname="g_key_file_set_integer">
@@ -272,13 +272,13 @@
           <parameter type="gint" name="value" />
         </parameters>
       </method>
-      <method name="SetIntegerList" cname="g_key_file_set_integer_list" accessibility="private">
+      <method name="SetIntegerList" cname="g_key_file_set_integer_list">
         <return-type type="void" />
         <parameters>
           <parameter type="const-gchar*" name="group_name" />
           <parameter type="const-gchar*" name="key" />
           <parameter type="gint" array="true" name="list" />
-          <parameter type="gsize" name="length" />
+          <parameter type="gsize" name="n_list" />
         </parameters>
       </method>
       <method name="SetListSeparator" cname="g_key_file_set_list_separator">
@@ -314,13 +314,13 @@
           <parameter type="const-gchar*" name="string" />
         </parameters>
       </method>
-      <method name="SetStringList" cname="g_key_file_set_string_list" accessibility="private">
+      <method name="SetStringList" cname="g_key_file_set_string_list">
         <return-type type="void" />
         <parameters>
           <parameter type="const-gchar*" name="group_name" />
           <parameter type="const-gchar*" name="key" />
           <parameter type="const-gchar*" array="true" name="list" />
-          <parameter type="gsize" name="length" />
+          <parameter type="gsize" name="n_list" />
         </parameters>
       </method>
       <method name="SetValue" cname="g_key_file_set_value">
