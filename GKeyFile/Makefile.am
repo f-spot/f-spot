@@ -1,5 +1,7 @@
 all: gkeyfile-sharp.dll
 
+CSFLAGS=-g
+
 gkeyfile-api.raw: gkeyfile-sharp-sources.xml
 	gapi2-parser gkeyfile-sharp-sources.xml
 
@@ -12,7 +14,7 @@ gkeyfile-api.xml: gkeyfile-api.raw GKeyFile.metadata
 	touch $@
 
 gkeyfile-sharp.dll: .generated_timestamp $(SOURCES) $(CUSTOMS)
-	gmcs -unsafe -pkg:glib-sharp-2.0 -target:library -out:$@ $(srcdir)/generated/*.cs $(SOURCES)
+	gmcs -unsafe $(CSFLAGS) -pkg:glib-sharp-2.0 -target:library -out:$@ $(srcdir)/generated/*.cs $(SOURCES)
 
 CUSTOMS =				\
 	$(srcdir)/GKeyFile.custom

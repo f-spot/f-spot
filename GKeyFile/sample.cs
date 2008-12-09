@@ -71,6 +71,9 @@ public class TestGKeyFile
 		foreach (string val in key_file.GetStringList ("Lists", "sList"))
 			Console.WriteLine (val);
 
+		foreach (int i in key_file.GetIntegerList ("Lists", "ints"))
+			Console.WriteLine (i);
+
 		key_file.Save ("mysamplefile2.ini");
 
 		key_file = new GKeyFile ("mysamplefile.ini");
