@@ -27,14 +27,8 @@ namespace FSpot {
 		
 		protected Stream Open ()
 		{
-			//Gnome.Vfs.Uri vfs = new Gnome.Vfs.Uri (uri.ToString ());
-			// FIXME, this seems like the sane thing to do, but vfs streams seem to 
-			// actually be faster and they need more testing.
-			//if (vfs.IsLocal)
-			//	return File.OpenRead (uri.LocalPath);
-
 			Log.DebugFormat ("open uri = {0}", uri.ToString ());
-			return new Gnome.Vfs.VfsStream (uri.ToString (), FileMode.Open);
+			return new GLib.GioStream (GLib.FileFactory.NewForUri (uri).Read (null));
 		}
 
 		public virtual Stream PixbufStream ()
