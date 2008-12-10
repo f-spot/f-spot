@@ -1,5 +1,10 @@
 2008-12-10  Stephane Delcroix  <sdelcroix@novell.com>
 
+	* Platform/Gnome/ThumbnailFactory.cs: replace Gnome.Vfs calls by Gio
+	equivalents.
+
+2008-12-10  Stephane Delcroix  <sdelcroix@novell.com>
+
 	* Imaging/ImageFile.cs: load images through GioStreams
 
 2008-12-06  Stephane Delcroix  <sdelcroix@novell.com>

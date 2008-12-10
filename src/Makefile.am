@@ -323,10 +323,12 @@ WIDGETS_ASSEMBLIES =				\
 	-r:FSpot.Utils.dll
 
 GNOME_PLATFORM_ASSEMBLIES =			\
+	$(LINK_GIO)				\
 	-pkg:gnome-sharp-2.0			\
 	-pkg:gtk-sharp-2.0			\
 	-pkg:gconf-sharp-2.0			\
 	$(LINK_DBUS)				\
+	-r:Mono.Posix				\
 	-r:FSpot.Utils.dll
 
 NULL_PLATFORM_ASSEMBLIES =			\

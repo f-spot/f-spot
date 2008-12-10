@@ -26,8 +26,10 @@ namespace FSpot.Platform
 			if (imageUri == null)
 				throw new ArgumentNullException ("imageUri");
 
-			Gnome.Vfs.FileInfo vfs = new Gnome.Vfs.FileInfo (imageUri.ToString ());
-			DateTime mtime = vfs.Mtime;
+			GLib.File gfile = GLib.FileFactory.NewForUri (imageUri);
+			GLib.FileInfo info = gfile.QueryInfo ("time::modified", GLib.FileQueryInfoFlags.None, null);
+			DateTime mtime = Mono.Unix.Native.NativeConvert.ToDateTime ((long)info.GetAttributeULong ("time::modified"));
+
 			SaveThumbnail (pixbuf, imageUri, mtime);
 		}
 
@@ -68,8 +70,9 @@ namespace FSpot.Platform
 				throw new ArgumentNullException ("imageUri");
 
 			try {
-				Gnome.Vfs.FileInfo vfs = new Gnome.Vfs.FileInfo (imageUri.ToString ());
-				DateTime mtime = vfs.Mtime;
+				GLib.File gfile = GLib.FileFactory.NewForUri (imageUri);
+				GLib.FileInfo info = gfile.QueryInfo ("time::modified", GLib.FileQueryInfoFlags.None, null);
+				DateTime mtime = Mono.Unix.Native.NativeConvert.ToDateTime ((long)info.GetAttributeULong ("time::modified"));
 				return ThumbnailIsValid (pixbuf, imageUri, mtime);
 			} catch (System.IO.FileNotFoundException) {
 				// If the original file is not on disk, the thumbnail is as valid as it's going to get
@@ -132,6 +135,9 @@ namespace FSpot.Platform
 
 			if (!imageUri.IsFile)
 				Log.Debug ("FIXME: compute timestamp on non file uri too");
+
+			if (!System.IO.File.Exists (imageUri.AbsolutePath))
+				return true;
 
 			return imageUri.IsFile && System.IO.File.Exists (PathForUri (imageUri)) && System.IO.File.GetLastWriteTime (PathForUri (imageUri)) >= System.IO.File.GetLastWriteTime (imageUri.AbsolutePath);
 		}
