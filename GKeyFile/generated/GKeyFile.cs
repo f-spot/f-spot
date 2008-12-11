@@ -597,23 +597,28 @@ namespace KeyFile {
 		return GetStringList (group_name, key, out length);
 	}
 
-//	[DllImport("libglib-2.0.dll")]
-//	static extern unsafe bool g_key_file_get_boolean_list(IntPtr raw, IntPtr group_name, IntPtr key, out UIntPtr length, out IntPtr error);
-//
-//	public unsafe bool GetBooleanList(string group_name, string key, out ulong length) {
-//		IntPtr native_group_name = GLib.Marshaller.StringToPtrGStrdup (group_name);
-//		IntPtr native_key = GLib.Marshaller.StringToPtrGStrdup (key);
-//		UIntPtr native_length;
-//		IntPtr error = IntPtr.Zero;
-//		bool raw_ret = g_key_file_get_boolean_list(Handle, native_group_name, native_key, out native_length, out error);
-//		bool ret = raw_ret;
-//		GLib.Marshaller.Free (native_group_name);
-//		GLib.Marshaller.Free (native_key);
-//		length = (ulong) native_length;
-//		if (error != IntPtr.Zero) throw new GLib.GException (error);
-//		return ret;
-//	}
-//
+	[DllImport("libglib-2.0.dll")]
+	static extern unsafe IntPtr g_key_file_get_boolean_list(IntPtr raw, IntPtr group_name, IntPtr key, out UIntPtr length, out IntPtr error);
+
+	public unsafe bool[] GetBooleanList(string group_name, string key) {
+		IntPtr native_group_name = GLib.Marshaller.StringToPtrGStrdup (group_name);
+		IntPtr native_key = GLib.Marshaller.StringToPtrGStrdup (key);
+		UIntPtr native_length;
+		IntPtr error = IntPtr.Zero;
+		IntPtr raw_ret = g_key_file_get_boolean_list(Handle, native_group_name, native_key, out native_length, out error);
+		ulong length = (ulong) native_length;
+		bool[] ret = new bool [(int)length];
+		int[] b_ret = new int [(int)length];
+		GLib.Marshaller.Free (native_group_name);
+		GLib.Marshaller.Free (native_key);
+		if (error != IntPtr.Zero) throw new GLib.GException (error);
+		Marshal.Copy (raw_ret, b_ret, 0, (int)length);
+		GLib.Marshaller.Free (raw_ret);
+		for (int i=0; i < (int)length; i++)
+			ret[i] = b_ret[i] != 0;
+		return ret;
+	}
+
 	[DllImport("libglib-2.0.dll")]
 	static extern unsafe IntPtr g_key_file_get_integer_list(IntPtr raw, IntPtr group_name, IntPtr key, out UIntPtr length, out IntPtr error);
 
@@ -627,31 +632,30 @@ namespace KeyFile {
 		int[] ret = new int[(int)length];
 		GLib.Marshaller.Free (native_group_name);
 		GLib.Marshaller.Free (native_key);
-		for (int i=0; i < (int)length; i++)
-			ret[i] = Marshal.ReadInt32 (raw_ret, i * Marshal.SizeOf(typeof(Int32)));
-
 		if (error != IntPtr.Zero) throw new GLib.GException (error);
+		Marshal.Copy (raw_ret, ret, 0, (int)length);
+		GLib.Marshaller.Free (raw_ret);
 		return ret;
 	}
 
-//	[DllImport("libglib-2.0.dll")]
-//	static extern unsafe double g_key_file_get_double_list(IntPtr raw, IntPtr group_name, IntPtr key, out UIntPtr length, out IntPtr error);
-//
-//	public unsafe double GetDoubleList(string group_name, string key, out ulong length) {
-//		IntPtr native_group_name = GLib.Marshaller.StringToPtrGStrdup (group_name);
-//		IntPtr native_key = GLib.Marshaller.StringToPtrGStrdup (key);
-//		UIntPtr native_length;
-//		IntPtr error = IntPtr.Zero;
-//		double raw_ret = g_key_file_get_double_list(Handle, native_group_name, native_key, out native_length, out error);
-//		double ret = raw_ret;
-//		GLib.Marshaller.Free (native_group_name);
-//		GLib.Marshaller.Free (native_key);
-//		length = (ulong) native_length;
-//		if (error != IntPtr.Zero) throw new GLib.GException (error);
-//		return ret;
-//	}
+	[DllImport("libglib-2.0.dll")]
+	static extern unsafe IntPtr g_key_file_get_double_list(IntPtr raw, IntPtr group_name, IntPtr key, out UIntPtr length, out IntPtr error);
 
-
+	public unsafe double[] GetDoubleList(string group_name, string key) {
+		IntPtr native_group_name = GLib.Marshaller.StringToPtrGStrdup (group_name);
+		IntPtr native_key = GLib.Marshaller.StringToPtrGStrdup (key);
+		UIntPtr native_length;
+		IntPtr error = IntPtr.Zero;
+		IntPtr raw_ret = g_key_file_get_double_list(Handle, native_group_name, native_key, out native_length, out error);
+		ulong length = (ulong)native_length;
+		double[] ret = new double[(int)length];
+		GLib.Marshaller.Free (native_group_name);
+		GLib.Marshaller.Free (native_key);
+		if (error != IntPtr.Zero) throw new GLib.GException (error);
+		Marshal.Copy (raw_ret, ret, 0, (int)length);
+		GLib.Marshaller.Free (raw_ret);
+		return ret;
+	}
 
 #endregion
 	}
