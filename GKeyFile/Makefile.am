@@ -1,6 +1,20 @@
-all: gkeyfile-sharp.dll
+include $(top_srcdir)/Makefile.include
 
-CSFLAGS=-g
+ASSEMBLY_NAME = gkeyfile-sharp
+
+ASSEMBLY_SOURCES =
+
+ASSEMBLY_CUSTOMS =			\
+	$(srcdir)/GKeyFile.custom
+	
+REFS =
+
+PKGS =					\
+	-pkg:glib-sharp-2.0
+
+ASSEMBLY = $(ASSEMBLY_NAME).dll
+
+all: $(ASSEMBLY)
 
 gkeyfile-api.raw: gkeyfile-sharp-sources.xml
 	gapi2-parser gkeyfile-sharp-sources.xml
@@ -12,23 +26,24 @@ gkeyfile-api.xml: gkeyfile-api.raw GKeyFile.metadata
 .generated_timestamp: gkeyfile-api.xml $(CUSTOMS)
 	gapi2-codegen --outdir=generated --customdir=$(srcdir) --generate gkeyfile-api.xml
 	touch $@
+$(ASSEMBLY): .generated_timestamp $(ASSEMBLY_SOURCES) $(ASSEMBLY_CUSTOMS)
+	$(CSC_LIB) -unsafe -out:$@ $(PKGS) $(REFS) $(ASSEMBLY_SOURCES) $(srcdir)/generated/*.cs
 
-gkeyfile-sharp.dll: .generated_timestamp $(SOURCES) $(CUSTOMS)
-	gmcs -unsafe $(CSFLAGS) -pkg:glib-sharp-2.0 -target:library -out:$@ $(srcdir)/generated/*.cs $(SOURCES)
+assemblydir = $(pkglibdir)
+assembly_DATA =			\
+	$(ASSEMBLY)
 
-CUSTOMS =				\
-	$(srcdir)/GKeyFile.custom
-	
 EXTRA_DIST =				\
-	$(CUSTOMS)			\
-	gkeyfile-sharp-sources.xml	\
+	$(ASSEMBLY_SOURCES)		\
+	$(ASSEMBLY_CUSTOMS)		\
+	$(ASSEMBLY_NAME)-sources.xml	\
 	gkeyfile-api.raw		\
 	GKeyFile.metadata		\
 	gkeyfile-api.xml		\
 	.generated_timestamp		\
 	generated/*.cs
 
-CLEANFILES =				\
-	gkeyfile-sharp.dll		\
-	gkeyfile-sharp.dll.mdb
 
+CLEANFILES =			\
+	$(ASSEMBLY)		\
+	$(ASSEMBLY).mdb
