@@ -71,6 +71,8 @@ namespace FSpot.Platform
 
 			try {
 				GLib.File gfile = GLib.FileFactory.NewForUri (imageUri);
+				if (!gfile.Exists)
+					return true;
 				GLib.FileInfo info = gfile.QueryInfo ("time::modified", GLib.FileQueryInfoFlags.None, null);
 				DateTime mtime = Mono.Unix.Native.NativeConvert.ToDateTime ((long)info.GetAttributeULong ("time::modified"));
 				return ThumbnailIsValid (pixbuf, imageUri, mtime);

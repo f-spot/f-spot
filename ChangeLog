@@ -1,3 +1,8 @@
+2008-12-12  Stephane Delcroix  <sdelcroix@novell.com>
+
+	* Platform/Gnome/ThumbnailFactory.cs: no longer timeout on ThumbIsValid
+	for missing images
+
 2008-12-10  Stephane Delcroix  <sdelcroix@novell.com>
 
 	* Platform/Gnome/ThumbnailFactory.cs: replace Gnome.Vfs calls by Gio
