@@ -81,24 +81,18 @@ AC_SUBST(GIO_LIBS)
 CSC_DEFINES=""
 PKG_CHECK_MODULES(GNOME_SHARP, gnome-sharp-2.0 >= 2.8)
 
-dnl -- gio-sharp: needed if gnome >= 2.22. link or bundle ?
-if pkg-config --atleast-version=2.22 libgnome-2.0; then
-	if pkg-config --atleast-version=2.16 gio-sharp-2.0; then
-		LINK_GIO="-pkg:gio-sharp-2.0"
-		DIR_GIO=""
-		PATH_GIO=""
-	else
-		LINK_GIO='-r:$(top_builddir)/gio-sharp/gio/gio-sharp.dll'
-		DIR_GIO="gio-sharp"
-		AC_CONFIG_SUBDIRS([gio-sharp])
-		PATH_GIO='../gio-sharp/gio:'
-	fi
-	CSC_DEFINES="$CSC_DEFINES -d:GIO_2_16"
-else
-	LINK_GIO=""
+dnl -- gio-sharp: link or bundle ?
+if pkg-config --atleast-version=2.16 gio-sharp-2.0; then
+	LINK_GIO="-pkg:gio-sharp-2.0"
 	DIR_GIO=""
 	PATH_GIO=""
+else
+	LINK_GIO='-r:$(top_builddir)/gio-sharp/gio/gio-sharp.dll'
+	DIR_GIO="gio-sharp"
+	AC_CONFIG_SUBDIRS([gio-sharp])
+	PATH_GIO='../gio-sharp/gio:'
 fi
+CSC_DEFINES="$CSC_DEFINES -d:GIO_2_16"
 
 AC_SUBST(LINK_GIO)
 AC_SUBST(DIR_GIO)
