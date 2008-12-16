@@ -31,6 +31,11 @@ public class TagView : EventBox {
 		parent_tips = tips;
 	}
 
+	protected TagView (IntPtr raw) : base (raw)
+	{
+		VisibleWindow = false;	
+	}
+
 	public IBrowsableItem Current {
 		set {
 			photo = value;

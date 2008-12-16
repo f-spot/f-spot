@@ -1,5 +1,9 @@
 2008-12-16  Stephane Delcroix  <sdelcroix@novell.com>
 
+	* src/Widgets/TagView.cs: provide a protected ctor(IntPtr)
+
+2008-12-16  Stephane Delcroix  <sdelcroix@novell.com>
+
 	* configure.in: require gio-sharp, whatever the libgnome version
 
 2008-12-12  Stephane Delcroix  <sdelcroix@novell.com>
