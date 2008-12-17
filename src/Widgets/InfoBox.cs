@@ -558,8 +558,9 @@ namespace FSpot.Widgets
 #else
 					file_size_value_label.Text = Gnome.Vfs.Format.FileSizeForDisplay (file_info.Size);
 #endif
-				} catch (System.IO.FileNotFoundException) {
-					file_size_value_label.Text = Catalog.GetString("(File not found)");
+				} catch (GLib.GException e) {
+					file_size_value_label.Text = Catalog.GetString("(File read error)");
+					FSpot.Utils.Log.DebugException (e);
 				}
 			}
 			
@@ -644,8 +645,9 @@ namespace FSpot.Widgets
 						GFile file = FileFactory.NewForUri (photo.DefaultVersionUri);
 						GFileInfo file_info = file.QueryInfo ("standard::size", FileQueryInfoFlags.None, null);
 						file_size += file_info.Size;
-					} catch (System.IO.FileNotFoundException) {
+					} catch (GLib.GException e) {
 						file_size = -1;
+						FSpot.Utils.Log.DebugException (e);
 						break;
 					}
 				}

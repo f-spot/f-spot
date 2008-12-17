@@ -1,3 +1,7 @@
+2008-12-17  Stephane Delcroix  <sdelcroix@novell.com>
+
+	* src/Widgets/IconView.cs: fix the crash on missing files
+
 2008-12-16  Stephane Delcroix  <sdelcroix@novell.com>
 
 	* src/Widgets/TagView.cs: provide a protected ctor(IntPtr)
