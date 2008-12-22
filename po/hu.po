@@ -8,10 +8,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: f-spot.HEAD\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=f-"
-"spot&amp;component=general\n"
-"POT-Creation-Date: 2008-12-01 18:17+0000\n"
-"PO-Revision-Date: 2008-09-27 07:34+0200\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=f-spot&amp;component=general\n"
+"POT-Creation-Date: 2008-12-17 12:05+0000\n"
+"PO-Revision-Date: 2008-12-22 13:40+0100\n"
 "Last-Translator: Gabor Kelemen <kelemeng@gnome.hu>\n"
 "Language-Team: Hungarian <gnome@fsf.hu>\n"
 "MIME-Version: 1.0\n"
@@ -60,8 +59,7 @@ msgstr ""
 msgid ""
 "The selected extensions can't be installed because there are dependency "
 "conflicts."
-msgstr ""
-"A kiválasztott kiterjesztések függőségi problémák miatt nem telepíthetők."
+msgstr "A kiválasztott kiterjesztések függőségi problémák miatt nem telepíthetők."
 
 #: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:398
 msgid "The following packages will be installed:"
@@ -124,7 +122,7 @@ msgid "Extension"
 msgstr "Kiterjesztés"
 
 #: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinTreeWidget.cs:112
-#: ../src/Widgets/InfoBox.cs:211
+#: ../src/Widgets/InfoBox.cs:214
 msgid "Version"
 msgstr "Verzió"
 
@@ -133,7 +131,7 @@ msgid "Other"
 msgstr "Egyéb"
 
 #: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/ManageSitesDialog.cs:51
-#: ../src/Widgets/InfoBox.cs:208
+#: ../src/Widgets/InfoBox.cs:211
 #: ../extensions/Exporters/FacebookExport/FacebookExport.glade.h:9
 msgid "Name"
 msgstr "Név"
@@ -438,7 +436,7 @@ msgstr "Letöltés befejezve"
 msgid "Transferring \"{0}\" from camera"
 msgstr "„{0}” átvitele a fényképezőgéptől"
 
-#: ../src/CameraSelectionDialog.cs:29 ../src/Widgets/InfoBox.cs:227
+#: ../src/CameraSelectionDialog.cs:29 ../src/Widgets/InfoBox.cs:230
 msgid "Camera"
 msgstr "Fényképezőgép"
 
@@ -446,12 +444,12 @@ msgstr "Fényképezőgép"
 msgid "Port"
 msgstr "Port"
 
-#: ../src/Core.cs:200
+#: ../src/Core.cs:203
 #, csharp-format
 msgid "No photos matching {0} found"
 msgstr "Nem találhatóak a következőre illeszkedő fényképek: {0}"
 
-#: ../src/Core.cs:201
+#: ../src/Core.cs:204
 #, csharp-format
 msgid ""
 "The tag \"{0}\" is not applied to any photos. Try adding\n"
@@ -462,11 +460,11 @@ msgstr ""
 "hozzáadni a címkét néhány fényképhez, vagy válasszon másik címkét az\n"
 "F-Spot beállításablakában."
 
-#: ../src/Core.cs:205
+#: ../src/Core.cs:208
 msgid "Search returned no results"
 msgstr "A keresés nem adott vissza eredményeket"
 
-#: ../src/Core.cs:206
+#: ../src/Core.cs:209
 msgid ""
 "The tag F-Spot is looking for does not exist. Try\n"
 "selecting a different tag in the F-Spot preference\n"
@@ -706,7 +704,7 @@ msgstr "Eszköztár elrejtése"
 msgid "Info"
 msgstr "Információk"
 
-#: ../src/FullScreenView.cs:68 ../src/Widgets/InfoBox.cs:197
+#: ../src/FullScreenView.cs:68 ../src/Widgets/InfoBox.cs:200
 msgid "Image Information"
 msgstr "Képinformációk"
 
@@ -807,7 +805,7 @@ msgstr "Interoperabilitás könyvtár"
 msgid "Unknown Directory"
 msgstr "Ismeretlen könyvtár"
 
-#: ../src/Imaging/ImageFile.cs:87
+#: ../src/Imaging/ImageFile.cs:81
 msgid "Writing to this file format is not supported"
 msgstr "Az írás nem támogatott ebbe a fájlformátumba"
 
@@ -836,21 +834,18 @@ msgid "A unique number"
 msgstr "Egy egyedi szám"
 
 #: ../src/Imaging/IptcFile.cs:157
-msgid ""
-"The envelope handling priority between 1 (most urgent) and 9 (least urgent)"
+msgid "The envelope handling priority between 1 (most urgent) and 9 (least urgent)"
 msgstr ""
 "A boríték kezelésének prioritása 1 (legsürgősebb) és 9 (legkevésbé sürgős) "
 "között"
 
 #: ../src/Imaging/IptcFile.cs:159
 msgid "The year, month and day (CCYYMMDD) the service sent the material"
-msgstr ""
-"Az év, hónap és nap (ÉÉÉÉHHNN), amikor a szolgáltatás az anyagot küldte"
+msgstr "Az év, hónap és nap (ÉÉÉÉHHNN), amikor a szolgáltatás az anyagot küldte"
 
 #: ../src/Imaging/IptcFile.cs:161
 msgid "The hour, minute and second (HHMMSS) the service sent the material"
-msgstr ""
-"Az óra perce és másodperce (ÓÓPPMM), amikor a szolgáltatás az anyagot küldte"
+msgstr "Az óra perce és másodperce (ÓÓPPMM), amikor a szolgáltatás az anyagot küldte"
 
 #: ../src/Imaging/IptcFile.cs:163
 msgid "The character set designation"
@@ -905,10 +900,8 @@ msgid "Full name of the country of the focus of the content"
 msgstr "Azon ország teljes neve, amelyre a tartalom fókuszál"
 
 #: ../src/Imaging/IptcFile.cs:206
-msgid ""
-"Two or three letter ISO3166 code of the country of the focus of the content"
-msgstr ""
-"Azon ország két- vagy hárombetűs ISO3166 kódja, amelyre a tartalom fókuszál"
+msgid "Two or three letter ISO3166 code of the country of the focus of the content"
+msgstr "Azon ország két- vagy hárombetűs ISO3166 kódja, amelyre a tartalom fókuszál"
 
 #: ../src/Imaging/IptcFile.cs:209
 msgid "Creator of the content"
@@ -935,8 +928,7 @@ msgid "Headline of the content"
 msgstr "A tartalom főcíme"
 
 #: ../src/Imaging/IptcFile.cs:225
-msgid ""
-"Instructions from the creator to the receiver not covered by other fields"
+msgid "Instructions from the creator to the receiver not covered by other fields"
 msgstr "Az alkotó által a fogadóval más mezőkben nem közölt utasítások"
 
 #: ../src/Imaging/IptcFile.cs:228
@@ -1196,8 +1188,7 @@ msgstr[1] "Véglegesen törli a kijelölt {0} fényképet?"
 
 #: ../src/MainWindow.cs:2425
 msgid "This deletes all versions of the selected photo from your drive."
-msgid_plural ""
-"This deletes all versions of the selected photos from your drive."
+msgid_plural "This deletes all versions of the selected photos from your drive."
 msgstr[0] "Ez a kijelölt fénykép összes verzióját törli a merevlemezéről."
 msgstr[1] "Ez a kijelölt fényképek összes verzióját törli a merevlemezéről."
 
@@ -1249,8 +1240,7 @@ msgstr[1] "fényképpel"
 #: ../src/MainWindow.cs:2542
 #, csharp-format
 msgid "If you delete this tag, the association with {0} {1} will be lost."
-msgid_plural ""
-"If you delete these tags, the association with {0} {1} will be lost."
+msgid_plural "If you delete these tags, the association with {0} {1} will be lost."
 msgstr[0] "Ha törli a címkét, akkor annak kapcsolata elvész {0} {1}."
 msgstr[1] "Ha törli a címkét, akkor annak kapcsolata elvész {0} {1}."
 
@@ -1491,7 +1481,7 @@ msgstr "Nem nevezhető át egy verzió"
 msgid "Received exception \"{0}\". Unable to rename version to \"{1}\""
 msgstr "„{0}” kivétel következett be. A verzió nem nevezhető át erre: „{1}”"
 
-#: ../src/PhotoVersionMenu.cs:66 ../src/Widgets/InfoBox.cs:546
+#: ../src/PhotoVersionMenu.cs:66 ../src/Widgets/InfoBox.cs:549
 msgid "(No Edits)"
 msgstr "(nincs módosítás)"
 
@@ -1804,7 +1794,7 @@ msgid "Events"
 msgstr "Események"
 
 #. The label for the root category is used in new and edit tag dialogs
-#: ../src/TagStore.cs:234 ../src/Widgets/InfoBox.cs:397
+#: ../src/TagStore.cs:234 ../src/Widgets/InfoBox.cs:400
 msgid "(None)"
 msgstr "(Nincs)"
 
@@ -2003,57 +1993,55 @@ msgstr "Keresés:"
 msgid "and"
 msgstr "és"
 
-#: ../src/Widgets/InfoBox.cs:179
+#: ../src/Widgets/InfoBox.cs:182
 msgid "Histogram"
 msgstr "Hisztogram"
 
-#: ../src/Widgets/InfoBox.cs:214
+#: ../src/Widgets/InfoBox.cs:217
 msgid "Date"
 msgstr "Dátum"
 
-#: ../src/Widgets/InfoBox.cs:217
+#: ../src/Widgets/InfoBox.cs:220
 #: ../extensions/Exporters/CDExport/CDExport.glade.h:5
 msgid "Size"
 msgstr "Méret"
 
-#: ../src/Widgets/InfoBox.cs:220
+#: ../src/Widgets/InfoBox.cs:223
 msgid "Exposure"
 msgstr "Expozíció"
 
-#: ../src/Widgets/InfoBox.cs:224
+#: ../src/Widgets/InfoBox.cs:227
 msgid "Focal Length"
-msgstr ""
-
-#: ../src/Widgets/InfoBox.cs:230
-#, fuzzy
-msgid "File Size"
-msgstr "Fájl"
+msgstr "Fokális hossz"
 
 #: ../src/Widgets/InfoBox.cs:233
+msgid "File Size"
+msgstr "Fájlméret"
+
+#: ../src/Widgets/InfoBox.cs:236
 msgid "Rating"
 msgstr "Értékelés"
 
-#: ../src/Widgets/InfoBox.cs:406 ../src/Widgets/InfoBox.cs:429
-#: ../src/Widgets/InfoBox.cs:439 ../src/Widgets/InfoBox.cs:448
+#: ../src/Widgets/InfoBox.cs:409 ../src/Widgets/InfoBox.cs:432
+#: ../src/Widgets/InfoBox.cs:442 ../src/Widgets/InfoBox.cs:451
 msgid "(Unknown)"
 msgstr "(Ismeretlen)"
 
-#: ../src/Widgets/InfoBox.cs:416
+#: ../src/Widgets/InfoBox.cs:419
 msgid "(wrong format)"
-msgstr ""
+msgstr "(hibás formátum)"
 
-#: ../src/Widgets/InfoBox.cs:558
-#, fuzzy
-msgid "(File not found)"
-msgstr "A fájl nem található"
+#: ../src/Widgets/InfoBox.cs:562
+msgid "(File read error)"
+msgstr "(Fájlolvasási hiba)"
 
-#: ../src/Widgets/InfoBox.cs:602
+#: ../src/Widgets/InfoBox.cs:607
 #, csharp-format
 msgid "{0} Photos"
 msgstr "{0} fénykép"
 
 #. Note for translators: {0} is a date, {1} and {2} are times.
-#: ../src/Widgets/InfoBox.cs:622
+#: ../src/Widgets/InfoBox.cs:627
 #, csharp-format
 msgid ""
 "On {0} between \n"
@@ -2062,7 +2050,7 @@ msgstr ""
 "{0} napon,\n"
 "{1} és {2} között"
 
-#: ../src/Widgets/InfoBox.cs:627
+#: ../src/Widgets/InfoBox.cs:632
 #, csharp-format
 msgid ""
 "Between {0} \n"
@@ -2071,43 +2059,37 @@ msgstr ""
 "{0} és {1}\n"
 "között"
 
-#: ../src/Widgets/InfoBox.cs:651
-#, fuzzy
+#: ../src/Widgets/InfoBox.cs:663
 msgid "(At least one File not found)"
-msgstr "A fájl nem található"
+msgstr "(Legalább egy fájl nem található)"
 
-#: ../src/Widgets/InfoBox.cs:765
-#, fuzzy
+#: ../src/Widgets/InfoBox.cs:776
 msgid "Show Photo Name"
-msgstr "F-Spot fotókezelő"
+msgstr "Fotónév megjelenítése"
 
-#: ../src/Widgets/InfoBox.cs:774
-#, fuzzy
+#: ../src/Widgets/InfoBox.cs:785
 msgid "Show Date"
-msgstr "Stílusok megjelenítése"
+msgstr "Dátum megjelenítése"
 
-#: ../src/Widgets/InfoBox.cs:783
-#, fuzzy
+#: ../src/Widgets/InfoBox.cs:794
 msgid "Show Size"
-msgstr "Stílusok megjelenítése"
+msgstr "Méret megjelenítése"
 
-#: ../src/Widgets/InfoBox.cs:792
-#, fuzzy
+#: ../src/Widgets/InfoBox.cs:803
 msgid "Show Exposure"
-msgstr "Expozíció"
+msgstr "Expozíció megjelenítése"
 
-#: ../src/Widgets/InfoBox.cs:801
+#: ../src/Widgets/InfoBox.cs:812
 msgid "Show Focal Length"
-msgstr ""
+msgstr "Fokális hossz megjelenítése"
 
-#: ../src/Widgets/InfoBox.cs:810
-#, fuzzy
+#: ../src/Widgets/InfoBox.cs:821
 msgid "Show Camera"
-msgstr "Fényképezőgép"
+msgstr "Fényképezőgép megjelenítése"
 
-#: ../src/Widgets/InfoBox.cs:819
+#: ../src/Widgets/InfoBox.cs:830
 msgid "Show File Size"
-msgstr ""
+msgstr "Fájlméret megjelenítése"
 
 #: ../src/Widgets/MetadataDisplay.cs:23
 msgid "Metadata"
@@ -2450,8 +2432,7 @@ msgstr "Ú_j verzió létrehozása…"
 
 #: ../src/f-spot.glade.h:62
 msgid "Create a mail with the selected photos (possibly resized) attached"
-msgstr ""
-"Levél létrehozása, csatolva a kijelölt (esetleg átméretezett) fényképeket"
+msgstr "Levél létrehozása, csatolva a kijelölt (esetleg átméretezett) fényképeket"
 
 #: ../src/f-spot.glade.h:63
 msgid "Current date:"
@@ -2569,8 +2550,7 @@ msgstr "Képek száma"
 
 #: ../src/f-spot.glade.h:94
 msgid "Only photos taken within these dates will be displayed."
-msgstr ""
-"Csak az ezen dátumok között készített fényképek kerülnek megjelenítésre."
+msgstr "Csak az ezen dátumok között készített fényképek kerülnek megjelenítésre."
 
 #: ../src/f-spot.glade.h:95
 msgid "Open _Folder..."
@@ -2873,7 +2853,7 @@ msgstr "_Utolsó importálási kör"
 
 #: ../src/f-spot.glade.h:177
 msgid "_Loupe"
-msgstr ""
+msgstr "Nagyító"
 
 #: ../src/f-spot.glade.h:178
 msgid "_Medium"
@@ -3465,8 +3445,7 @@ msgstr "Nincs fiók kijelölve"
 #: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:5
 #: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:5
 msgid "<span weight='bold' size='larger'>Error Connecting to Gallery</span>\n"
-msgstr ""
-"<span weight='bold' size='larger'>Hiba a galériához csatlakozáskor</span>\n"
+msgstr "<span weight='bold' size='larger'>Hiba a galériához csatlakozáskor</span>\n"
 
 #: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:9
 msgid "Export _titles and comments"
@@ -3761,7 +3740,7 @@ msgstr ""
 "Az „Egyetlen importálási kör” segítségével kiválaszthatja, hogy melyik kört "
 "kívánja visszafésülni.\n"
 "A „Minden” minden fényképet importál, de ha már importált az adatbázisból, "
-"akkor másolatokat fog létrehozni.<small><i>"
+"akkor másolatokat fog létrehozni.</i></small>"
 
 #: ../extensions/Tools/MergeDb/MergeDb.glade.h:6
 msgid ""
@@ -3824,8 +3803,7 @@ msgstr "Hiba az album létrehozásakor"
 
 #: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:442
 #, csharp-format
-msgid ""
-"The following error was encountered while attempting to create an album: {0}"
+msgid "The following error was encountered while attempting to create an album: {0}"
 msgstr "A következő hiba történt az album létrehozásakor: {0}"
 
 #: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:621
@@ -3862,8 +3840,7 @@ msgid "<b>PicasaWeb Export</b>"
 msgstr "<b>PicasaWeb exportálás</b>"
 
 #: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:7
-msgid ""
-"<span weight='bold' size='larger'>Your Google Account is locked</span>\n"
+msgid "<span weight='bold' size='larger'>Your Google Account is locked</span>\n"
 msgstr "<span weight='bold' size='larger'>A Google fiókja zárolva van</span>\n"
 
 #: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:12
@@ -3968,170 +3945,3 @@ msgstr "Hitelesítési hiba"
 msgid "Trust the site's certificate this once"
 msgstr "Most az egyszer megbízom a webhely tanúsítványában"
 
-#~ msgid "No image loaded."
-#~ msgstr "Nincs kép betöltve."
-
-#~ msgid "Can't save non local files."
-#~ msgstr "Nem helyi fájlokat nem lehet menteni."
-
-#~ msgid "Unsupported image type for saving."
-#~ msgstr "Nem támogatott a mentéshez megadott képtípus."
-
-#~ msgid "<b>Color Management</b>"
-#~ msgstr "<b>Színkezelés</b>"
-
-#~ msgid "<b>Import Settings</b>"
-#~ msgstr "<b>Importálás beállításai</b>"
-
-#~ msgid "<b>Metadata</b>"
-#~ msgstr "<b>Metaadatok</b>"
-
-#~ msgid "<b>Photograph Layout</b>"
-#~ msgstr "<b>Fényképkiosztás</b>"
-
-#~ msgid "<b>Printer Details</b>"
-#~ msgstr "<b>Nyomtató részletei</b>"
-
-#~ msgid "<b>Screensaver</b>"
-#~ msgstr "<b>Képernyővédő</b>"
-
-#~ msgid "<b>Theming</b>"
-#~ msgstr "<b>Témák</b>"
-
-#~ msgid ""
-#~ "<small><i>Choose the folder where F-Spot should store newly imported "
-#~ "photos</i></small>"
-#~ msgstr ""
-#~ "<small><i>Válassza ki a mappát, amelyben az F-Spotnak az újonnan "
-#~ "importált fényképeket tárolnia kell</i></small>"
-
-#~ msgid ""
-#~ "<small><i>Enable this option to store tags and descriptions inside \n"
-#~ "supported image formats.</i></small>"
-#~ msgstr ""
-#~ "<small><i>Engedélyezze ezt a beállítást a címkék és leírások tárolásához\n"
-#~ "a támogatott képformátumokon belül.</i></small>"
-
-#~ msgid ""
-#~ "<small><i>While acting as a screensaver, F-Spot can display all of your "
-#~ "images, or a small subset based on tags.</i></small>"
-#~ msgstr ""
-#~ "<small><i>Ha az F-Spot képernyővédőként működik, megjelenítheti az összes "
-#~ "képét vagy azok egy részhalmazát a címkék alapján.</i></small>"
-
-#~ msgid ""
-#~ "<small><i>You'll have to restart f-spot to load the new theme.</i></small>"
-#~ msgstr ""
-#~ "<small><i>Az új téma betöltéséhez újra kell indítani az F-Spotot.</i></"
-#~ "small>"
-
-#~ msgid "C_aption:"
-#~ msgstr "_Felirat:"
-
-#~ msgid "Co_nfigure"
-#~ msgstr "_Beállítás"
-
-#~ msgid "Crop photo to _fit"
-#~ msgstr "_Fénykép levágása, hogy elférjen"
-
-#~ msgid "Custom Theme"
-#~ msgstr "Egyéni téma"
-
-#~ msgid "From List:"
-#~ msgstr "Listából:"
-
-#~ msgid "From gtkrc File:"
-#~ msgstr "Gtkrc fájlból:"
-
-#~ msgid ""
-#~ "Full Page\n"
-#~ "Standard - 4x6"
-#~ msgstr ""
-#~ "Teljes oldal\n"
-#~ "Szabvány - 4x6"
-
-#~ msgid ""
-#~ "Hairline\n"
-#~ "0.25\"\n"
-#~ "0.5\"\n"
-#~ "1\"\n"
-#~ msgstr ""
-#~ "Hajszálvonal\n"
-#~ "0.25\"\n"
-#~ "0.5\"\n"
-#~ "1\"\n"
-
-#~ msgid "Images tagged with:"
-#~ msgstr "Képek a következő címkével:"
-
-#~ msgid "Make F-Spot your screensaver"
-#~ msgstr "Az F-Spot legyen a képernyővédő"
-
-#~ msgid "N_umber of Copies:"
-#~ msgstr "_Másolatok száma:"
-
-#~ msgid ""
-#~ "None\n"
-#~ "Title\n"
-#~ "Filename\n"
-#~ "Date\n"
-#~ "Photo Details"
-#~ msgstr ""
-#~ "Nincs\n"
-#~ "Cím\n"
-#~ "Fájlnév\n"
-#~ "Dátum\n"
-#~ "Fénykép részletei"
-
-#~ msgid "P_hoto Source:"
-#~ msgstr "_Fényképforrás:"
-
-#~ msgid "Page 1 of 3"
-#~ msgstr "1/3 oldal"
-
-#~ msgid "Photo _Size:"
-#~ msgstr "_Fénykép mérete:"
-
-#~ msgid "Print crop _marks"
-#~ msgstr "_Levágási jelek nyomtatása"
-
-#~ msgid "Print..."
-#~ msgstr "Nyomtatás…"
-
-#~ msgid "Select A Folder"
-#~ msgstr "Válasszon egy mappát"
-
-#~ msgid "Select A gtkrc File"
-#~ msgstr "Válasszon egy gtkrc fájlt"
-
-#~ msgid ""
-#~ "Selection\n"
-#~ "Gallery\n"
-#~ "Viewport"
-#~ msgstr ""
-#~ "Kijelölés\n"
-#~ "Galéria\n"
-#~ "Viewport"
-
-#~ msgid "System Theme"
-#~ msgstr "Rendszertéma"
-
-#~ msgid "Try to use the system display profile"
-#~ msgstr "Kísérlet a rendszer megjelenítési profiljának használatára"
-
-#~ msgid "Will print using: US Letter size on Generic Postscript"
-#~ msgstr ""
-#~ "Nyomtatás a következő használatával: US Letter méret az Általános "
-#~ "Postscript-en"
-
-#~ msgid "Write _metadata to file"
-#~ msgstr "_Metaadatok írása fájlba"
-
-#~ msgid "_Border:"
-#~ msgstr "S_zegély:"
-
-#~ msgid "_Display:"
-#~ msgstr "_Képernyő:"
-
-#~ msgid "_Print output:"
-#~ msgstr "Nyomtatási ki_menet:"
