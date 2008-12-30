@@ -291,8 +291,12 @@ namespace FSpot
 					control.Organize ();
 					Gdk.Global.NotifyStartupComplete ();
 					foreach (ServiceNode service in AddinManager.GetExtensionNodes ("/FSpot/Services")) {
-						service.Initialize ();
-						service.Start ();
+						try {
+							service.Initialize ();
+							service.Start ();
+						} catch (Exception e) {
+							System.Console.WriteLine (e);
+						}
 					}
 				}
 
