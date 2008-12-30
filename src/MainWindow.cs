@@ -161,6 +161,8 @@ public class MainWindow {
 	ModeType view_mode;
 	bool write_metadata = false;
 
+	Gdk.Cursor watch = new Gdk.Cursor (Gdk.CursorType.Watch);
+
 	// Tag Icon Sizes
 	public int TagsIconSize {
 		get { return (int) Tag.TagIconSize; }
@@ -1535,7 +1537,7 @@ public class MainWindow {
 
 	void HandlePhotoViewUpdateStarted (PhotoView sender)
 	{
-		main_window.GdkWindow.Cursor = new Gdk.Cursor (Gdk.CursorType.Watch);
+		main_window.GdkWindow.Cursor = watch;
 		// FIXME: use gdk_display_flush() when available
 		main_window.GdkWindow.Display.Sync ();
 	}
@@ -2822,7 +2824,7 @@ public class MainWindow {
 
 	public void UpdateQuery ()
 	{
-		main_window.GdkWindow.Cursor = new Gdk.Cursor (Gdk.CursorType.Watch);
+		main_window.GdkWindow.Cursor = watch;
 		main_window.GdkWindow.Display.Sync ();
 		query.RequestReload ();
 		main_window.GdkWindow.Cursor = null;
