@@ -693,18 +693,22 @@ namespace FSpot.Widgets
 
 			Gdk.Pixbuf hint = histogram_hint;
 			histogram_hint = null;
+			int max = histogram_expander.Allocation.Width;
 
 			try {
 				if (hint == null)
 					using (ImageFile img = ImageFile.Create (photo.DefaultVersionUri))
 						hint = img.Load (256, 256);
-
-				int max = histogram_expander.Allocation.Width;
+				
 				histogram_image.Pixbuf = histogram.Generate (hint, max);
-
+				
 				hint.Dispose ();
 			} catch (System.Exception e) {
 				FSpot.Utils.Log.Debug (e.StackTrace);
+				using (Gdk.Pixbuf empty = new Gdk.Pixbuf (Gdk.Colorspace.Rgb, true, 8, 256, 256)) {
+					empty.Fill (0x0);
+					histogram_image.Pixbuf = histogram.Generate (empty, max);
+				}
 			}
 
 			return false;

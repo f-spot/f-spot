@@ -1,5 +1,11 @@
 2008-12-30  Larry Ewing  <lewing@novell.com>
 
+	* src/Widgets/InfoBox.cs: create a null histogram image if
+	something goes wrong in the normal case.
+
+	* src/Widgets/MetadataDisplay.cs: don't crash when quickly
+	thumbing through missing files.
+
 	* src/main.cs: make extension failures nonfatal.
 
 2008-12-26  Stephane Delcroix  <sdelcroix@novell.com>

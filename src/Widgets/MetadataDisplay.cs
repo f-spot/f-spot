@@ -122,8 +122,10 @@ namespace FSpot.Widgets {
 			set {
 				photo = value;
 
-				if (exif_info != null)
+				if (exif_info != null) {
 					exif_info.Dispose ();
+					exif_info = null;
+				}
 
 				if (photo != null) {
 					if (File.Exists (photo.DefaultVersionUri.LocalPath))
