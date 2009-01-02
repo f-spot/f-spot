@@ -295,7 +295,8 @@ namespace FSpot
 							service.Initialize ();
 							service.Start ();
 						} catch (Exception e) {
-							System.Console.WriteLine (e);
+							Log.WarningFormat ("Something went wrong while starting the {0} extension.", service.Id);
+							Log.DebugException (e);
 						}
 					}
 				}

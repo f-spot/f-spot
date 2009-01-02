@@ -1,3 +1,7 @@
+2009-01-02  Stephane Delcroix  <sdelcroix@novell.com>
+
+	* src/main.cs: Log() errors instead of S.C.WL ().
+
 2008-12-30  Larry Ewing  <lewing@novell.com>
 
 	* src/MainWindow.cs: avoid an X related (somewhere deep in xcb)
