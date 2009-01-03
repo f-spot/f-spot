@@ -9,10 +9,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: F-Spot\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-05-20 10:01+0000\n"
-"PO-Revision-Date: 2008-06-11 10:28+0300\n"
-"Last-Translator: Mattias Põldaru <mahfiaz@gmail.com>\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=f-spot&amp;component=general\n"
+"POT-Creation-Date: 2008-12-27 11:18+0000\n"
+"PO-Revision-Date: 2008-12-28 13:17+0300\n"
+"Last-Translator: Mattias Põldaru <mahfiaz gmail com>\n"
 "Language-Team: Estonian <gnome-et@linux.ee>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -116,6 +116,7 @@ msgid "Extension"
 msgstr "Lisa"
 
 #: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinTreeWidget.cs:112
+#: ../src/Widgets/InfoBox.cs:214
 msgid "Version"
 msgstr "Versioon"
 
@@ -124,6 +125,8 @@ msgid "Other"
 msgstr "Teised"
 
 #: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/ManageSitesDialog.cs:51
+#: ../src/Widgets/InfoBox.cs:211
+#: ../extensions/Exporters/FacebookExport/FacebookExport.glade.h:9
 msgid "Name"
 msgstr "Nimi"
 
@@ -175,7 +178,7 @@ msgid "_Unselect All"
 msgstr "_Eemalda valik"
 
 #: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:259
-#: ../src/f-spot.glade.h:169
+#: ../src/f-spot.glade.h:110
 msgid "Select _All"
 msgstr "Vali _kõik"
 
@@ -229,11 +232,13 @@ msgid "Disable"
 msgstr "Keela"
 
 #: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.ErrorDialog.cs:40
-#: ../extensions/FlickrExport/FlickrExport.cs:359
-#: ../extensions/FolderExport/FolderExport.cs:223
-#: ../extensions/GalleryExport/GalleryExport.cs:760
-#: ../extensions/PicasaWebExport/PicasaWebExport.cs:694
-#: ../extensions/SmugMugExport/SmugMugExport.cs:597
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:370
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:250
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:799
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:543
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:694
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:596
+#: ../extensions/Exporters/TabbloExport/TabbloExport.cs:177
 msgid "Error"
 msgstr "Viga"
 
@@ -325,124 +330,111 @@ msgstr "Fotode haldaja"
 msgid "Organize, enjoy, and share your photos"
 msgstr "Naudi fotoalbumi korrastamist ning fotode jagamist"
 
-#: ../libeog/eog-image.c:773
-#, c-format
-msgid "No image loaded."
-msgstr "Pildifaili pole laaditud."
-
-#: ../libeog/eog-image.c:780
-#, c-format
-msgid "Can't save non local files."
-msgstr "Mittekohalikke faile ei saa salvestada."
-
-#: ../libeog/eog-image.c:803
-#, c-format
-msgid "Unsupported image type for saving."
-msgstr "Seda tüüpi faili salvestamine pole toetatud."
-
-#: ../libeog/image-view.c:2128
+#: ../libeog/image-view.c:2124
 msgid "interpolation type"
 msgstr "interpoleerimise tüüp"
 
-#: ../libeog/image-view.c:2129
+#: ../libeog/image-view.c:2125
 msgid "the type of interpolation to use"
 msgstr "kasutatava interpoleerimise tüüp"
 
-#: ../libeog/image-view.c:2135
-#: ../libeog/image-view.c:2142
+#: ../libeog/image-view.c:2131
+#: ../libeog/image-view.c:2138
 msgid "check type"
 msgstr "maleruudustiku tüüp"
 
-#: ../libeog/image-view.c:2136
+#: ../libeog/image-view.c:2132
 msgid "the type of chequering to use"
 msgstr "maleruudustiku tüüp"
 
-#: ../libeog/image-view.c:2143
+#: ../libeog/image-view.c:2139
 msgid "the size of chequers to use"
 msgstr "maleruudustiku suurus"
 
-#: ../libeog/image-view.c:2149
+#: ../libeog/image-view.c:2145
 msgid "dither"
 msgstr "virvtoonimine"
 
-#: ../libeog/image-view.c:2150
+#: ../libeog/image-view.c:2146
 msgid "dither type"
 msgstr "virvtoonimise tüüp"
 
-#: ../libfspot/f-jpeg-utils.c:445
+#: ../libfspot/f-jpeg-utils.c:441
 #: ../src/RotateCommand.cs:222
 msgid "File not found"
 msgstr "Faili ei leitud"
 
-#: ../libfspot/f-jpeg-utils.c:468
+#: ../libfspot/f-jpeg-utils.c:464
 #, c-format
 msgid "Unknown transform type %d"
 msgstr "Tundmatu muutmise tüüp %d"
 
-#: ../libfspot/f-jpeg-utils.c:476
+#: ../libfspot/f-jpeg-utils.c:472
 msgid "Operation failed"
 msgstr "Tegevus nurjus"
 
-#: ../src/CameraFileSelectionDialog.cs:74
+#: ../src/CameraFileSelectionDialog.cs:76
 msgid "Preview"
 msgstr "Eelvaade"
 
-#: ../src/CameraFileSelectionDialog.cs:76
+#: ../src/CameraFileSelectionDialog.cs:78
 msgid "Path"
 msgstr "Asukoht"
 
-#: ../src/CameraFileSelectionDialog.cs:78
-#: ../src/f-spot.glade.h:112
+#: ../src/CameraFileSelectionDialog.cs:80
+#: ../src/f-spot.glade.h:77
 msgid "File"
 msgstr "Fail"
 
-#: ../src/CameraFileSelectionDialog.cs:80
-#: ../extensions/FolderExport/FolderExport.cs:885
+#: ../src/CameraFileSelectionDialog.cs:82
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:993
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:1234
 msgid "Index"
 msgstr "Indeks"
 
-#: ../src/CameraFileSelectionDialog.cs:100
+#: ../src/CameraFileSelectionDialog.cs:102
 msgid "Select Tag"
 msgstr "Vali märksõna"
 
-#: ../src/CameraFileSelectionDialog.cs:136
+#: ../src/CameraFileSelectionDialog.cs:138
 msgid "Downloading Previews"
 msgstr "Eelvaadete allalaadimine"
 
-#: ../src/CameraFileSelectionDialog.cs:146
+#: ../src/CameraFileSelectionDialog.cs:148
 #, csharp-format
 msgid "Downloading Preview of {0}"
 msgstr "{0} eelvaate allalaadimine"
 
-#: ../src/CameraFileSelectionDialog.cs:197
-#: ../extensions/CDExport/CDExport.cs:342
-#: ../extensions/FolderExport/FolderExport.cs:352
+#: ../src/CameraFileSelectionDialog.cs:199
+#: ../extensions/Exporters/CDExport/CDExport.cs:343
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:392
 msgid "Transferring Pictures"
 msgstr "Piltide edastamine"
 
-#: ../src/CameraFileSelectionDialog.cs:218
+#: ../src/CameraFileSelectionDialog.cs:220
 #, csharp-format
 msgid "Copying file {0} of {1}"
 msgstr "Faili kopeerimine {0} {1}-st"
 
-#: ../src/CameraFileSelectionDialog.cs:228
+#: ../src/CameraFileSelectionDialog.cs:235
 msgid "Error transferring file"
 msgstr "Faili edastamine nurjus"
 
-#: ../src/CameraFileSelectionDialog.cs:237
+#: ../src/CameraFileSelectionDialog.cs:244
 msgid "Done Copying Files"
 msgstr "Failide kopeerimine lõpetatud"
 
-#: ../src/CameraFileSelectionDialog.cs:239
+#: ../src/CameraFileSelectionDialog.cs:246
 msgid "Download Complete"
 msgstr "Allalaadimine lõpetatud"
 
-#: ../src/CameraFileSelectionDialog.cs:264
+#: ../src/CameraFileSelectionDialog.cs:271
 #, csharp-format
 msgid "Transferring \"{0}\" from camera"
 msgstr "\"{0}\" liigutamine kaamerast"
 
 #: ../src/CameraSelectionDialog.cs:29
+#: ../src/Widgets/InfoBox.cs:230
 msgid "Camera"
 msgstr "Kaamera"
 
@@ -450,12 +442,12 @@ msgstr "Kaamera"
 msgid "Port"
 msgstr "Port"
 
-#: ../src/Core.cs:199
+#: ../src/Core.cs:203
 #, csharp-format
 msgid "No photos matching {0} found"
 msgstr "Tingimusega {0} sobivaid fotosid ei leitud"
 
-#: ../src/Core.cs:200
+#: ../src/Core.cs:204
 #, csharp-format
 msgid ""
 "The tag \"{0}\" is not applied to any photos. Try adding\n"
@@ -466,11 +458,11 @@ msgstr ""
 "Seosta mõni foto selle märksõnaga või vali F-Spoti\n"
 "sätete dialoogist mõni teine märksõna."
 
-#: ../src/Core.cs:204
+#: ../src/Core.cs:208
 msgid "Search returned no results"
 msgstr "Otsing ei andnud tulemusi"
 
-#: ../src/Core.cs:205
+#: ../src/Core.cs:209
 msgid ""
 "The tag F-Spot is looking for does not exist. Try\n"
 "selecting a different tag in the F-Spot preference\n"
@@ -480,93 +472,158 @@ msgstr ""
 "sätete dialoogist mõni teine märksõna."
 
 #. Note for translators: Reparented is a picture becoming a version of another one
-#: ../src/Core/Photo.cs:418
+#: ../src/Core/Photo.cs:470
 msgid "Reparented"
 msgstr "Uue vanemaga"
 
-#: ../src/Core/Photo.cs:418
+#: ../src/Core/Photo.cs:470
 #, csharp-format
 msgid "Reparented ({0})"
 msgstr "Uue vanemaga ({0})"
 
-#: ../src/Core/Photo.cs:435
+#: ../src/Core/Photo.cs:489
 #, csharp-format
 msgid "Modified"
 msgid_plural "Modified ({0})"
 msgstr[0] "Muudetud"
 msgstr[1] "Muudetud ({0})"
 
-#: ../src/Core/Photo.cs:454
+#: ../src/Core/Photo.cs:508
 #, csharp-format
 msgid "Modified in {1}"
 msgstr "Muudetud {1}"
 
-#: ../src/Core/Photo.cs:454
+#: ../src/Core/Photo.cs:508
 #, csharp-format
 msgid "Modified in {1} ({0})"
 msgstr "Muudetud {1} ({0})"
 
 #. Note that the original version is never stored in the photo_versions table in the
 #. database.
-#: ../src/Core/Photo.cs:562
-#: ../src/f-spot.glade.h:148
+#: ../src/Core/Photo.cs:666
+#: ../src/f-spot.glade.h:96
 msgid "Original"
 msgstr "Originaal"
 
-#: ../src/DateCommands.cs:57
+#: ../src/DateCommands.cs:56
 msgid "Today"
 msgstr "Täna"
 
-#: ../src/DateCommands.cs:59
+#: ../src/DateCommands.cs:58
 msgid "Yesterday"
 msgstr "Eile"
 
-#: ../src/DateCommands.cs:61
+#: ../src/DateCommands.cs:60
 msgid "Last 7 days"
 msgstr "Viimased 7 päeva"
 
-#: ../src/DateCommands.cs:63
+#: ../src/DateCommands.cs:62
 msgid "Last 30 days"
 msgstr "Viimased 30 päeva"
 
-#: ../src/DateCommands.cs:65
+#: ../src/DateCommands.cs:64
 msgid "Last 90 days"
 msgstr "Viimased 90 päeva"
 
-#: ../src/DateCommands.cs:67
+#: ../src/DateCommands.cs:66
 msgid "Last 360 days"
 msgstr "Viimased 360 päeva"
 
-#: ../src/DateCommands.cs:69
+#: ../src/DateCommands.cs:68
 msgid "Current Week (Mon-Sun)"
 msgstr "Praegune nädal (E-P)"
 
-#: ../src/DateCommands.cs:71
+#: ../src/DateCommands.cs:70
 msgid "Previous Week (Mon-Sun)"
 msgstr "Eelmine nädal (E-P)"
 
-#: ../src/DateCommands.cs:87
-#: ../src/f-spot.glade.h:72
+#: ../src/DateCommands.cs:86
 msgid "All Images"
 msgstr "Kõik pildid"
 
-#: ../src/DateCommands.cs:89
+#: ../src/DateCommands.cs:88
 msgid "Customized Range"
 msgstr "Muu vahemik"
 
-#: ../src/Editors/SoftFocus.cs:27
-#: ../src/ItemAction.cs:342
+#: ../src/Editors/AutoStretchEditor.cs:17
+msgid "Auto Color"
+msgstr "Automaatsed värvid"
+
+#: ../src/Editors/ColorEditor.cs:38
+msgid "Adjust Colors"
+msgstr "Kohenda värvid"
+
+#: ../src/Editors/ColorEditor.cs:41
+msgid "Adjust"
+msgstr "Kohenda"
+
+#: ../src/Editors/CropEditor.cs:35
+msgid "4 x 3 (Book)"
+msgstr "4 x 3 (raamat)"
+
+#: ../src/Editors/CropEditor.cs:36
+msgid "4 x 6 (Postcard)"
+msgstr "4 x 6 (postkaart)"
+
+#: ../src/Editors/CropEditor.cs:37
+msgid "5 x 7 (L, 2L)"
+msgstr "5 x 7 (L, 2L)"
+
+#: ../src/Editors/CropEditor.cs:38
+msgid "8 x 10"
+msgstr "8 x 10"
+
+#: ../src/Editors/CropEditor.cs:39
+msgid "Square"
+msgstr "Ruut"
+
+#: ../src/Editors/CropEditor.cs:42
+msgid "Crop"
+msgstr "Lõika"
+
+#: ../src/Editors/CropEditor.cs:73
+msgid "Select the area that needs cropping."
+msgstr "Vali väljalõigatav ala."
+
+#: ../src/Editors/CropEditor.cs:98
+msgid "No Constraint"
+msgstr "Piirangut pole"
+
+#: ../src/Editors/CropEditor.cs:99
+msgid "Same as photo"
+msgstr "Sama nagu foto"
+
+#: ../src/Editors/CropEditor.cs:104
+msgid "Custom Ratios..."
+msgstr "Muud suhted..."
+
+#: ../src/Editors/DesaturateEditor.cs:17
+msgid "Desaturate"
+msgstr "Vähenda värvilisust"
+
+#: ../src/Editors/RedEyeEditor.cs:19
+msgid "Red-eye Reduction"
+msgstr "Punasilmsuse vähendamine"
+
+#: ../src/Editors/RedEyeEditor.cs:21
+msgid "Fix!"
+msgstr "Paranda!"
+
+#: ../src/Editors/RedEyeEditor.cs:25
+msgid "Select the eyes you wish to fix."
+msgstr "Vali silmad, mille punasilmsust vähendada."
+
+#: ../src/Editors/SepiaEditor.cs:17
+msgid "Sepia Tone"
+msgstr "Seepiatoon"
+
+#: ../src/Editors/SoftFocusEditor.cs:28
 msgid "Soft Focus"
 msgstr "Pehme fookus"
 
-#: ../src/Editors/Tilt.cs:28
-#: ../src/ItemAction.cs:326
+#: ../src/Editors/TiltEditor.cs:28
 msgid "Straighten"
 msgstr "Sirgestamine"
-
-#: ../src/Extensions/OpenWithMenu.cs:93
-msgid "No applications available"
-msgstr "Rakendusi pole saadaval"
 
 #: ../src/FSpot.addin.xml.h:1
 msgid "Copy Photo Locat_ion"
@@ -578,22 +635,22 @@ msgstr "Ekspordi kuhu"
 
 #: ../src/FSpot.addin.xml.h:3
 msgid "Open _With"
-msgstr "Ava _programmiga"
+msgstr "Ava _rakendusega"
 
 #: ../src/FSpot.addin.xml.h:4
-#: ../src/f-spot.glade.h:161
+#: ../src/f-spot.glade.h:105
 msgid "Rem_ove Tag"
 msgstr "_Eemalda märksõna"
 
 #: ../src/FSpot.addin.xml.h:5
-#: ../src/SingleView.cs:427
-#: ../src/f-spot.glade.h:164
+#: ../src/SingleView.cs:444
+#: ../src/f-spot.glade.h:107
 msgid "Rotate _Left"
 msgstr "Pööra _vasakule"
 
 #: ../src/FSpot.addin.xml.h:6
-#: ../src/SingleView.cs:428
-#: ../src/f-spot.glade.h:165
+#: ../src/SingleView.cs:445
+#: ../src/f-spot.glade.h:108
 msgid "Rotate _Right"
 msgstr "Pööra _paremale"
 
@@ -602,31 +659,32 @@ msgid "Tools"
 msgstr "Tööriistad"
 
 #: ../src/FSpot.addin.xml.h:8
-#: ../src/f-spot.glade.h:211
+#: ../src/f-spot.glade.h:143
 msgid "_Attach Tag"
 msgstr "Ühenda _märksõnaga"
 
 #: ../src/FSpot.addin.xml.h:9
-#: ../src/f-spot.glade.h:223
+#: ../src/f-spot.glade.h:154
 msgid "_Delete From Drive"
 msgstr "_Kustuta kettalt"
 
 #: ../src/FSpot.addin.xml.h:10
-#: ../src/f-spot.glade.h:257
+#: ../src/f-spot.glade.h:186
 msgid "_Remove From Catalog"
 msgstr "_Eemalda kataloogist"
 
-#: ../src/FileImportBackend.cs:262
+#: ../src/FileImportBackend.cs:285
 msgid "Import error"
 msgstr "Importimise viga"
 
-#: ../src/FileImportBackend.cs:263
+#: ../src/FileImportBackend.cs:286
 #, csharp-format
 msgid "Error importing {0}{2}{2}{1}"
 msgstr "Viga {0}{2}{2}{1} importimisel"
 
-#: ../src/FileImportBackend.cs:264
-#: ../src/ThreadProgressDialog.cs:68
+#: ../src/FileImportBackend.cs:287
+#: ../src/UI.Dialog/ThreadProgressDialog.cs:51
+#: ../extensions/Tools/MergeDb/MergeDb.glade.h:15
 msgid "Skip"
 msgstr "Jäta vahele"
 
@@ -636,33 +694,34 @@ msgstr "Jäta vahele"
 msgid "No way to save files of type \"{0}\""
 msgstr "Ei ole võimalust salvestada \"{0}\" tüüpi faile"
 
-#: ../src/FormClient.cs:297
+#: ../src/FormClient.cs:295
 msgid "Unhandled exception"
 msgstr "Käsitsematu erandolukord"
 
-#: ../src/FullScreenView.cs:56
+#: ../src/FullScreenView.cs:58
 msgid "Hide"
 msgstr "Peida"
 
-#: ../src/FullScreenView.cs:58
+#: ../src/FullScreenView.cs:60
 msgid "Hide Toolbar"
 msgstr "Peida tööriistariba"
 
-#: ../src/FullScreenView.cs:64
-msgid "Info"
-msgstr "Teave"
-
 #: ../src/FullScreenView.cs:66
-msgid "Image Information"
-msgstr "Pildi teave"
+msgid "Info"
+msgstr "Andmed"
 
-#: ../src/FullScreenView.cs:71
+#: ../src/FullScreenView.cs:68
+#: ../src/Widgets/InfoBox.cs:200
+msgid "Image Information"
+msgstr "Pildi andmed"
+
+#: ../src/FullScreenView.cs:73
 msgid "Exit fullscreen"
 msgstr "Välju täisekraanvaatest."
 
 #: ../src/FullScreenView.cs:81
-#: ../src/MainWindow.cs:294
-#: ../src/SingleView.cs:93
+#: ../src/MainWindow.cs:317
+#: ../src/SingleView.cs:98
 msgid "Slideshow"
 msgstr "Slaidiesitlus"
 
@@ -670,8 +729,8 @@ msgstr "Slaidiesitlus"
 msgid "Start slideshow"
 msgstr "Alusta slaidiesitlust"
 
-#: ../src/FullScreenView.cs:147
-msgid "Slide transition: "
+#: ../src/FullScreenView.cs:128
+msgid "Slide transition:"
 msgstr "Slaidide vahetus:"
 
 #: ../src/GlTransition.cs:36
@@ -726,12 +785,12 @@ msgid "Arrange by _Folder"
 msgstr "Sorteeri _kausta järgi"
 
 #: ../src/GroupSelector.cs:523
-#: ../src/f-spot.glade.h:261
+#: ../src/f-spot.glade.h:190
 msgid "_Reverse Order"
 msgstr "_Pööratud järjekord"
 
 #: ../src/GroupSelector.cs:529
-#: ../src/f-spot.glade.h:215
+#: ../src/f-spot.glade.h:146
 msgid "_Clear Date Range"
 msgstr "_Puhasta ajavahemik"
 
@@ -758,6 +817,10 @@ msgstr "Koostalitlusvõime kataloog"
 #: ../src/Imaging/Exif.cs:238
 msgid "Unknown Directory"
 msgstr "Tundmatu kataloog"
+
+#: ../src/Imaging/ImageFile.cs:81
+msgid "Writing to this file format is not supported"
+msgstr "Sellesse failivormingusse kirjutamine pole toetatud"
 
 #: ../src/Imaging/IptcFile.cs:145
 msgid "IPTC Information Interchange Model (IIM) Version number"
@@ -884,23 +947,29 @@ msgstr "Objekti vorm"
 msgid "Unknown IIM DataSet"
 msgstr "Tundmatu IIM andmekogu"
 
-#: ../src/ImportCommand.cs:49
-#: ../src/SingleView.cs:328
+#: ../src/ImportCommand.cs:47
+#: ../src/SingleView.cs:350
 msgid "Select Folder"
 msgstr "Kausta valimine"
 
-#: ../src/ImportCommand.cs:261
+#: ../src/ImportCommand.cs:259
 msgid "(No Cameras Detected)"
 msgstr "(Kaameraid ei tuvastatud)"
 
-#: ../src/ImportCommand.cs:405
+#: ../src/ImportCommand.cs:404
 #, csharp-format
 msgid "Loading {0} of {1}"
 msgstr "Laadimine {0} {1}-st"
 
-#: ../src/ImportCommand.cs:473
+#: ../src/ImportCommand.cs:470
 msgid "Done Loading"
 msgstr "Laadimine lõpetatud"
+
+#: ../src/ImportCommand.cs:540
+#: ../src/MainWindow.cs:277
+#: ../src/f-spot.glade.h:82
+msgid "Import"
+msgstr "Importimine"
 
 #: ../src/ImportCommand.cs:670
 msgid "Directory does not exist."
@@ -914,363 +983,320 @@ msgstr "Sinu märgitud kausta \"{0}\" ei eksisteeri. Palun vali teine kaust"
 #. Note for translators: 'Import Tags' is no command, it means 'Tags used in Import'
 #: ../src/ImportCommand.cs:724
 #: ../src/ImportCommand.cs:726
-#: ../src/XmpTagsImporter.cs:87
+#: ../src/XmpTagsImporter.cs:88
 msgid "Import Tags"
 msgstr "Importimise märksõnad"
 
-#: ../src/InfoDisplay.cs:14
-#: ../src/MainWindow.cs:1564
-msgid "Metadata Browser"
-msgstr "Metaandmete lehitseja"
-
-#. Obsolete, remove after db rev4
-#: ../src/InfoDisplay.cs:135
-#: ../src/InfoDisplay.cs:137
-#: ../src/f-spot.glade.h:115
-msgid "Folder"
-msgstr "Kaust"
-
-#: ../src/InfoDisplay.cs:139
-msgid "Picasaweb"
-msgstr "Picasaweb"
-
-#: ../src/InfoDisplay.cs:141
-msgid "SmugMug"
-msgstr "SmugMug"
-
-#: ../src/InfoDisplay.cs:143
-msgid "Gallery2"
-msgstr "Gallery2"
-
-#: ../src/InfoDisplay.cs:239
-msgid "Extended Metadata"
-msgstr "Laiendatud metaandmed"
-
-#: ../src/InfoDisplay.cs:271
-msgid "Exported Locations"
-msgstr "Eksporditud asukohad"
-
-#: ../src/InfoDisplay.cs:294
-msgid "No active photo"
-msgstr "Aktiivset fotot pole"
-
-#: ../src/InfoDisplay.cs:296
-#, csharp-format
-msgid "The photo \"{0}\" does not exist"
-msgstr "Fotot \"{0}\" ei eksisteeri"
-
-#: ../src/InfoDisplay.cs:302
-msgid "No metadata available"
-msgstr "Metaandmed pole saadaval"
-
-#: ../src/ItemAction.cs:81
-#: ../src/MainWindow.cs:261
-#: ../src/SingleView.cs:76
+#: ../src/ItemAction.cs:79
+#: ../src/MainWindow.cs:284
+#: ../src/SingleView.cs:81
 msgid "Rotate Left"
 msgstr "Vasakule"
 
-#: ../src/ItemAction.cs:82
-#: ../src/ItemAction.cs:94
+#: ../src/ItemAction.cs:80
 msgid "Rotate picture left"
 msgstr "Pööra pilt vasakule"
 
-#: ../src/ItemAction.cs:93
-#: ../src/MainWindow.cs:265
-#: ../src/SingleView.cs:81
+#: ../src/ItemAction.cs:91
+#: ../src/MainWindow.cs:288
+#: ../src/SingleView.cs:86
 msgid "Rotate Right"
 msgstr "Paremale"
 
-#: ../src/ItemAction.cs:104
-#: ../src/f-spot.glade.h:137
-#: ../extensions/FolderExport/FolderExport.cs:888
+#: ../src/ItemAction.cs:92
+msgid "Rotate picture right"
+msgstr "Pööra pilt paremale"
+
+#: ../src/ItemAction.cs:102
+#: ../src/f-spot.glade.h:90
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:999
 msgid "Next"
 msgstr "Järgmine"
 
-#: ../src/ItemAction.cs:105
+#: ../src/ItemAction.cs:103
 msgid "Next picture"
 msgstr "Järgmine pilt"
 
-#: ../src/ItemAction.cs:126
-#: ../src/f-spot.glade.h:157
+#: ../src/ItemAction.cs:123
+#: ../src/f-spot.glade.h:103
 msgid "Previous"
 msgstr "Eelmine"
 
-#: ../src/ItemAction.cs:127
+#: ../src/ItemAction.cs:124
 msgid "Previous picture"
 msgstr "Eelmine pilt"
 
-#: ../src/ItemAction.cs:257
-msgid "Auto Color"
-msgstr "Automaatsed värvid"
-
-#: ../src/ItemAction.cs:258
-msgid "Automatically adjust the colors"
-msgstr "Paranda automaatselt värvid"
-
-#: ../src/ItemAction.cs:273
-msgid "Apply straightening"
-msgstr "Sirgesta"
-
-#: ../src/ItemAction.cs:274
-msgid "Apply straightening to image"
-msgstr "Rakenda pildi sirgestamine"
-
-#: ../src/ItemAction.cs:327
-msgid "Adjust the angle of the image to straighten the horizon"
-msgstr "Määra horisondi sirgestamise nurk"
-
-#: ../src/ItemAction.cs:343
-msgid "Create a soft focus visual effect"
-msgstr "Rakenda pehme fookuse efekt"
-
-#: ../src/Loupe.cs:64
+#: ../src/Loupe.cs:62
 msgid "Error saving sharpened photo"
 msgstr "Viga teravustatud foto salvestamisel"
 
-#: ../src/Loupe.cs:65
-#: ../src/PhotoView.cs:256
-#: ../src/UI.Dialog/ColorDialog.cs:212
+#: ../src/Loupe.cs:63
+#: ../src/PhotoView.cs:164
 #: ../src/UI.Dialog/EditExceptionDialog.cs:25
 #, csharp-format
 msgid "Received exception \"{0}\". Unable to save photo {1}"
 msgstr "Erandlik olukord \"{0}\". Fotot ei saa salvestada {1}"
 
-#: ../src/Loupe.cs:94
+#: ../src/Loupe.cs:92
 msgid "Sharpen"
 msgstr "Teravusta"
 
-#: ../src/Loupe.cs:104
+#: ../src/Loupe.cs:102
 msgid "Amount:"
 msgstr "Hulk:"
 
-#: ../src/Loupe.cs:105
+#: ../src/Loupe.cs:103
 msgid "Radius:"
 msgstr "Raadius:"
 
-#: ../src/Loupe.cs:106
+#: ../src/Loupe.cs:104
 msgid "Threshold:"
 msgstr "Lävi:"
 
-#: ../src/MainWindow.cs:254
-#: ../src/f-spot.glade.h:128
-msgid "Import"
-msgstr "Importimine"
-
-#: ../src/MainWindow.cs:256
+#: ../src/MainWindow.cs:279
 msgid "Import new images"
 msgstr "Impordi uued pildid"
 
-#: ../src/MainWindow.cs:272
-#: ../src/f-spot.glade.h:81
+#: ../src/MainWindow.cs:295
+#: ../src/f-spot.glade.h:49
 msgid "Browse"
 msgstr "Lehitse"
 
-#: ../src/MainWindow.cs:276
+#: ../src/MainWindow.cs:299
 msgid "Browse many photos simultaneously"
 msgstr "Lehitse korraga mitut fotot"
 
-#: ../src/MainWindow.cs:280
+#: ../src/MainWindow.cs:303
 msgid "Edit Image"
 msgstr "Muuda pilti"
 
-#: ../src/MainWindow.cs:284
+#: ../src/MainWindow.cs:307
 msgid "View and edit a photo"
 msgstr "Näita ja muuda fotot"
 
-#: ../src/MainWindow.cs:289
-#: ../src/SingleView.cs:88
+#: ../src/MainWindow.cs:312
+#: ../src/SingleView.cs:93
 msgid "Fullscreen"
 msgstr "Täisekraan"
 
-#: ../src/MainWindow.cs:291
-#: ../src/SingleView.cs:90
+#: ../src/MainWindow.cs:314
+#: ../src/SingleView.cs:95
 msgid "View photos fullscreen"
 msgstr "Kuva täisekraanvaates"
 
-#: ../src/MainWindow.cs:296
-#: ../src/SingleView.cs:95
+#: ../src/MainWindow.cs:319
+#: ../src/SingleView.cs:100
 msgid "View photos in a slideshow"
 msgstr "Näita fotod slaidiesitlusena"
 
-#: ../src/MainWindow.cs:1477
+#: ../src/MainWindow.cs:334
+msgid "Previous photo"
+msgstr "Eelmine foto"
+
+#: ../src/MainWindow.cs:339
+msgid "Next photo"
+msgstr "Järgmine foto"
+
+#. Don't care otherwise, Tags sounds reasonable
+#: ../src/MainWindow.cs:352
+#: ../src/Widgets/Sidebar.cs:73
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:996
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:1168
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:1208
+msgid "Tags"
+msgstr "Märksõnad"
+
+#. Note for translators: This indicates the current photo is photo {0} of {1} out of photos
+#: ../src/MainWindow.cs:660
+#: ../src/UI.Dialog/AdjustTimeDialog.cs:135
+#: ../src/UI.Dialog/ProgressDialog.cs:92
+#: ../extensions/Exporters/CDExport/CDExport.cs:222
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:349
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:245
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:783
+#, csharp-format
+msgid "{0} of {1}"
+msgstr "{0} / {1}"
+
+#: ../src/MainWindow.cs:1679
 msgid "No cameras detected."
 msgstr "Kaameraid ei tuvastatud."
 
-#: ../src/MainWindow.cs:1478
+#: ../src/MainWindow.cs:1680
 msgid "F-Spot was unable to find any cameras attached to this system.  Double check that the camera is connected and has power"
 msgstr "F-Spot ei leidnud ühtegi ühendatud kaamerat. Kontrolli uuesti, kas kaameral on toide ja ühendus arvutiga."
 
-#: ../src/MainWindow.cs:1518
+#: ../src/MainWindow.cs:1719
 msgid "Error connecting to camera"
 msgstr "Viga kaameraga ühendumisel"
 
-#: ../src/MainWindow.cs:1519
+#: ../src/MainWindow.cs:1720
 #, csharp-format
 msgid "Received error \"{0}\" while connecting to camera"
 msgstr "Kaameraga ühendumisel esines viga \"{0}\""
 
 #. Translators, The singular case will never happen here.
-#: ../src/MainWindow.cs:1886
+#: ../src/MainWindow.cs:2059
 #, csharp-format
 msgid "Merge the selected tag"
 msgid_plural "Merge the {0} selected tags?"
 msgstr[0] "Ühenda valitud märksõna"
 msgstr[1] "Kas ühendada valitud {0} märksõna?"
 
-#: ../src/MainWindow.cs:1913
+#: ../src/MainWindow.cs:2086
 msgid "This operation will merge the selected tags and any sub-tags into a single tag."
 msgstr "See operatsioon liidab valitud märksõnad ja kõik alammärksõnad ühe märksõna alla."
 
-#: ../src/MainWindow.cs:1915
+#: ../src/MainWindow.cs:2088
 msgid "_Merge Tags"
 msgstr "Ühenda _märksõnad"
 
-#: ../src/MainWindow.cs:2115
+#: ../src/MainWindow.cs:2293
 #, csharp-format
 msgid "{0} Photo out of {1}"
 msgid_plural "{0} Photos out of {1}"
 msgstr[0] "{0} foto {1}-st"
 msgstr[1] "{0} fotot {1}-st"
 
-#: ../src/MainWindow.cs:2117
-#: ../src/SingleView.cs:470
+#: ../src/MainWindow.cs:2295
+#: ../src/SingleView.cs:487
 #, csharp-format
 msgid "{0} Photo"
 msgid_plural "{0} Photos"
 msgstr[0] "{0} foto"
 msgstr[1] "{0} fotot"
 
-#: ../src/MainWindow.cs:2120
+#: ../src/MainWindow.cs:2298
 #, csharp-format
 msgid " ({0} selected)"
 msgid_plural " ({0} selected)"
 msgstr[0] " ({0} valitud)"
 msgstr[1] " ({0} valitud)"
 
-#: ../src/MainWindow.cs:2202
+#: ../src/MainWindow.cs:2379
 msgid "_Ok"
 msgstr "_Olgu"
 
-#: ../src/MainWindow.cs:2203
+#: ../src/MainWindow.cs:2380
 msgid "Error Deleting Picture"
 msgstr "Viga pildi kustutamisel"
 
-#: ../src/MainWindow.cs:2208
+#: ../src/MainWindow.cs:2385
 #, csharp-format
 msgid "No permission to delete the file:{1}{0}"
 msgstr "Pole õigust faili kustutada: {1}{0}"
 
-#: ../src/MainWindow.cs:2212
+#: ../src/MainWindow.cs:2389
 #, csharp-format
 msgid "An error of type {0} occurred while deleting the file:{2}{1}"
 msgstr "Faili kustutamisel esines {0} tüüpi viga: {2}{1}"
 
-#: ../src/MainWindow.cs:2238
+#: ../src/MainWindow.cs:2421
 #, csharp-format
 msgid "Delete the selected photo permanently?"
 msgid_plural "Delete the {0} selected photos permanently?"
 msgstr[0] "Kas soovid valitud foto lõplikult kustutada?"
 msgstr[1] "Kas soovid valitud {0} fotot lõplikult kustutada?"
 
-#: ../src/MainWindow.cs:2242
+#: ../src/MainWindow.cs:2425
 msgid "This deletes all versions of the selected photo from your drive."
 msgid_plural "This deletes all versions of the selected photos from your drive."
 msgstr[0] "See kustutab kõik versioonid valitud fotost sinu kettalt."
 msgstr[1] "See kustutab kõik versioonid valitud fotodest sinu kettalt."
 
-#: ../src/MainWindow.cs:2245
+#: ../src/MainWindow.cs:2428
 msgid "_Delete photo"
 msgid_plural "_Delete photos"
 msgstr[0] "_Kustuta foto"
 msgstr[1] "_Kustuta fotod"
 
-#: ../src/MainWindow.cs:2276
+#: ../src/MainWindow.cs:2464
 #, csharp-format
 msgid "Remove the selected photo from F-Spot?"
 msgid_plural "Remove the {0} selected photos from F-Spot?"
 msgstr[0] "Kas eemaldada valitud foto F-Spotist?"
 msgstr[1] "Kas eemaldada valitud {0} fotot F-Spotist?"
 
-#: ../src/MainWindow.cs:2281
+#: ../src/MainWindow.cs:2469
 msgid "If you remove photos from the F-Spot catalog all tag information will be lost. The photos remain on your computer and can be imported into F-Spot again."
 msgstr "Kui sa eemaldad fotod F-Spoti kataloogist, hävib märksõnade teave. Fotod jäävad sinu arvutisse ja neid võib uuesti F-Spot'i importida."
 
-#: ../src/MainWindow.cs:2282
+#: ../src/MainWindow.cs:2470
 msgid "_Remove from Catalog"
 msgstr "_Eemalda kaustast"
 
-#: ../src/MainWindow.cs:2345
+#: ../src/MainWindow.cs:2533
 #, csharp-format
 msgid "Delete tag \"{0}\"?"
 msgstr "Kas kustutada märksõna \"{0}\"?"
 
-#: ../src/MainWindow.cs:2347
+#: ../src/MainWindow.cs:2535
 #, csharp-format
 msgid "Delete the {0} selected tags?"
 msgstr "Kas kustutada {0} valitud märksõna?"
 
-#: ../src/MainWindow.cs:2352
+#: ../src/MainWindow.cs:2540
 msgid "photo"
 msgid_plural "photos"
 msgstr[0] "foto"
 msgstr[1] "fotot"
 
-#: ../src/MainWindow.cs:2354
+#: ../src/MainWindow.cs:2542
 #, csharp-format
 msgid "If you delete this tag, the association with {0} {1} will be lost."
 msgid_plural "If you delete these tags, the association with {0} {1} will be lost."
 msgstr[0] "Kui sa kustutad märksõna, siis selle kõik seosed {0} {1} fotodega  lähevad kaotsi."
 msgstr[1] "Kui sa kustutad märksõnad, siis nende kõik seosed {0} {1} fotodega lähevad kaotsi."
 
-#: ../src/MainWindow.cs:2359
+#: ../src/MainWindow.cs:2547
 msgid "_Delete tag"
 msgid_plural "_Delete tags"
 msgstr[0] "_Kustuta märksõna"
 msgstr[1] "_Kustuta märksõnad"
 
 #. A Category is not empty. Can not delete it.
-#: ../src/MainWindow.cs:2373
+#: ../src/MainWindow.cs:2561
 msgid "Tag is not empty"
 msgstr "Märksõna on kasutusel, seda ei saa kustutada"
 
-#: ../src/MainWindow.cs:2374
+#: ../src/MainWindow.cs:2562
 #, csharp-format
 msgid "Can not delete tags that have tags within them.  Please delete tags under \"{0}\" first"
 msgstr "Ei saa kustutada märksõnu, millel on alammärksõnad. Kustuta enne \"{0}\" alammärksõnad."
 
-#: ../src/MainWindow.cs:2826
+#: ../src/MainWindow.cs:3005
 msgid "Rotate selected photo left"
 msgid_plural "Rotate selected photos left"
 msgstr[0] "Pööra valitud foto vasakule"
 msgstr[1] "Pööra valitud fotod vasakule"
 
-#: ../src/MainWindow.cs:2839
+#: ../src/MainWindow.cs:3018
 msgid "Rotate selected photo right"
 msgid_plural "Rotate selected photos right"
 msgstr[0] "Pööra valitud foto paremale"
 msgstr[1] "Pööra valitud fotod paremale"
 
-#: ../src/MainWindow.cs:2847
+#: ../src/MainWindow.cs:3026
 #, csharp-format
 msgid "Find _Selected Tag"
 msgid_plural "Find _Selected Tags"
 msgstr[0] "Otsi _valitud märksõna"
 msgstr[1] "Otsi _valitud märksõnu"
 
-#: ../src/MainWindow.cs:2851
+#: ../src/MainWindow.cs:3030
 #, csharp-format
 msgid "Find Selected Tag _With"
 msgid_plural "Find Selected Tags _With"
 msgstr[0] "Otsi valitud märksõna _koos..."
 msgstr[1] "Otsi valitud märksõnu _koos..."
 
-#: ../src/MainWindow.cs:2889
+#: ../src/MainWindow.cs:3072
 msgid "Create New Version?"
 msgid_plural "Create New Versions?"
 msgstr[0] "Kas luua uus verioon?"
 msgstr[1] "Kas luua uued versioonid?"
 
-#: ../src/MainWindow.cs:2891
+#: ../src/MainWindow.cs:3074
 #, csharp-format
 msgid "Before launching {1}, should F-Spot create a new version of the selected photo to preserve the original?"
 msgid_plural "Before launching {1}, should F-Spot create new versions of the selected photos to preserve the originals?"
@@ -1387,229 +1413,122 @@ msgstr "Stseeni tüüp"
 msgid "(No Tags)"
 msgstr "(Märksõnu pole)"
 
-#: ../src/PhotoVersionCommands.cs:57
+#: ../src/PhotoVersionCommands.cs:58
 msgid "Create New Version"
 msgstr "Loo uus versioon"
 
-#: ../src/PhotoVersionCommands.cs:58
+#: ../src/PhotoVersionCommands.cs:59
 msgid "Name:"
 msgstr "Nimi:"
 
-#: ../src/PhotoVersionCommands.cs:62
+#: ../src/PhotoVersionCommands.cs:63
 msgid "Rename Version"
 msgstr "Nimeta versioon ümber"
 
-#: ../src/PhotoVersionCommands.cs:63
+#: ../src/PhotoVersionCommands.cs:64
 msgid "New name:"
 msgstr "Uus nimi:"
 
-#: ../src/PhotoVersionCommands.cs:109
+#: ../src/PhotoVersionCommands.cs:110
 msgid "Could not create a new version"
 msgstr "Ei saa luua uut versiooni"
 
-#: ../src/PhotoVersionCommands.cs:110
+#: ../src/PhotoVersionCommands.cs:111
 #, csharp-format
 msgid "Received exception \"{0}\". Unable to create version \"{1}\""
 msgstr "Erandlik olukord \"{0}\". Versiooni \"{1}\" ei saa luua"
 
-#: ../src/PhotoVersionCommands.cs:137
+#: ../src/PhotoVersionCommands.cs:138
 msgid "Really Delete?"
 msgstr "Kas tõesti kustutada?"
 
-#: ../src/PhotoVersionCommands.cs:138
+#: ../src/PhotoVersionCommands.cs:139
 msgid "Cancel"
 msgstr "Loobu"
 
-#: ../src/PhotoVersionCommands.cs:139
+#: ../src/PhotoVersionCommands.cs:140
 msgid "Delete"
 msgstr "Kustuta"
 
-#: ../src/PhotoVersionCommands.cs:143
+#: ../src/PhotoVersionCommands.cs:144
 #, csharp-format
 msgid "Really delete version \"{0}\"?"
 msgstr "Kas tõesti kustutatada versioon \"{0}\"?"
 
-#. FIXME show error dialog.
-#: ../src/PhotoVersionCommands.cs:153
+#: ../src/PhotoVersionCommands.cs:154
 msgid "Could not delete a version"
 msgstr "Versiooni ei saa kustutada"
 
-#: ../src/PhotoVersionCommands.cs:154
+#: ../src/PhotoVersionCommands.cs:155
 #, csharp-format
 msgid "Received exception \"{0}\". Unable to delete version \"{1}\""
 msgstr "Erandlik olukord \"{0}\". Versiooni \"{1}\" ei saa kustutada"
 
-#: ../src/PhotoVersionCommands.cs:195
+#: ../src/PhotoVersionCommands.cs:196
 msgid "Could not rename a version"
 msgstr "Versiooni ei saa ümber nimetada"
 
-#: ../src/PhotoVersionCommands.cs:196
+#: ../src/PhotoVersionCommands.cs:197
 #, csharp-format
 msgid "Received exception \"{0}\". Unable to rename version to \"{1}\""
 msgstr "Erandlik olukord \"{0}\". Versiooni ei saa nimetada \"{1}\"-ks"
 
-#: ../src/PhotoVersionMenu.cs:67
+#: ../src/PhotoVersionMenu.cs:66
+#: ../src/Widgets/InfoBox.cs:549
 msgid "(No Edits)"
 msgstr "(versioone pole)"
 
-#: ../src/PhotoView.cs:75
-msgid "4 x 3 (Book)"
-msgstr "4 x 3 (raamat)"
-
-#: ../src/PhotoView.cs:76
-msgid "4 x 6 (Postcard)"
-msgstr "4 x 6 (postkaart)"
-
-#: ../src/PhotoView.cs:77
-msgid "5 x 7 (L, 2L)"
-msgstr "5 x 7 (L, 2L)"
-
-#: ../src/PhotoView.cs:78
-msgid "8 x 10"
-msgstr "8 x 10"
-
-#: ../src/PhotoView.cs:79
-msgid "Square"
-msgstr "Ruut"
-
-#: ../src/PhotoView.cs:126
-msgid "Crop photo to selected area"
-msgstr "Lõika foto valitud alasse"
-
-#: ../src/PhotoView.cs:127
-msgid "Remove redeye from selected area"
-msgstr "Eemalda valitud alast punasilmsus"
-
-#: ../src/PhotoView.cs:129
-msgid "Select an area to crop"
-msgstr "Vali väljalõigatav ala"
-
-#: ../src/PhotoView.cs:130
-msgid "Select an area to remove redeye"
-msgstr "Vali ala, kust eemaldada punasilmsus"
-
-#: ../src/PhotoView.cs:255
+#: ../src/PhotoView.cs:163
 #: ../src/UI.Dialog/EditExceptionDialog.cs:38
 msgid "Error editing photo"
 msgstr "Viga foto muutmisel"
 
-#: ../src/PhotoView.cs:307
-msgid "No selection available"
-msgstr "Midagi ei ole valitud"
-
-#: ../src/PhotoView.cs:308
-msgid "This tool requires an active selection. Please select a region of the photo and try the operation again"
-msgstr "See tööriist vajab aktiivset märgistust. Vali fotolt mingi ala ja proovi uuesti."
-
-#: ../src/PhotoView.cs:496
+#: ../src/PhotoView.cs:301
 msgid "Comment:"
 msgstr "Kommentaar:"
 
-#: ../src/PhotoView.cs:528
-msgid "Constrain the aspect ratio of the selection"
-msgstr "Määra valiku külgede suhe"
-
-#: ../src/PhotoView.cs:530
-msgid "Crop"
-msgstr "Lõika"
-
-#: ../src/PhotoView.cs:534
-msgid "Reduce Red-Eye"
-msgstr "Vähenda punasilmsust"
-
-#: ../src/PhotoView.cs:538
-msgid "Adjust Colors"
-msgstr "Kohenda värvid"
-
-#: ../src/PhotoView.cs:540
-msgid "Adjust the photo colors"
-msgstr "Foto tonaalsuse kohendamine"
-
-#: ../src/PhotoView.cs:543
-msgid "Desaturate"
-msgstr "Vähenda värvilisust"
-
-#: ../src/PhotoView.cs:545
-msgid "Convert the photo to black and white"
-msgstr "Foto mustvalgeks"
-
-#: ../src/PhotoView.cs:548
-msgid "Sepia Tone"
-msgstr "Seepiatoon"
-
-#: ../src/PhotoView.cs:550
-msgid "Convert the photo to sepia tones"
-msgstr "Foto seepiatoonidesse"
-
-#: ../src/PhotoView.cs:580
-msgid "Previous photo"
-msgstr "Eelmine foto"
-
-#: ../src/PhotoView.cs:585
-msgid "Next photo"
-msgstr "Järgmine foto"
-
-#: ../src/PhotoView.cs:622
-msgid "No Constraint"
-msgstr "Piirangut pole"
-
-#: ../src/PhotoView.cs:623
-msgid "Same as photo"
-msgstr "Sama nagu foto"
-
-#: ../src/PhotoView.cs:628
-msgid "Custom Ratios..."
-msgstr "Muud suhted..."
-
-#: ../src/Preferences.cs:158
+#: ../src/Preferences.cs:147
 msgid "Photos"
 msgstr "Fotod"
 
-#. This indicates the current photo is photo {0} of {1} out of photos
-#: ../src/ProgressDialog.cs:82
-#: ../src/TimeDialog.cs:142
-#: ../extensions/CDExport/CDExport.cs:221
-#: ../extensions/FlickrExport/FlickrExport.cs:338
-#: ../extensions/FolderExport/FolderExport.cs:218
-#: ../extensions/GalleryExport/GalleryExport.cs:744
-#, csharp-format
-msgid "{0} of {1}"
-msgstr "{0} / {1}"
+#: ../src/PrintOperation.cs:31
+msgid "Image Settings"
+msgstr "Pildi sätted"
 
-#: ../src/QueryWidget.cs:40
+#: ../src/QueryWidget.cs:47
 msgid "Find: "
 msgstr "Leia:"
 
-#: ../src/QueryWidget.cs:45
+#: ../src/QueryWidget.cs:52
 msgid "Untagged photos"
 msgstr "Märksõnadeta fotod"
 
-#: ../src/QueryWidget.cs:53
+#: ../src/QueryWidget.cs:60
 msgid "Rated photos"
 msgstr "Hinnatud fotod"
 
 #. Note for translators: 'Import roll' is no command, it means 'Roll that has been imported'
-#: ../src/QueryWidget.cs:62
+#: ../src/QueryWidget.cs:69
 msgid "Import roll"
 msgstr "Imporditud rull"
 
-#: ../src/QueryWidget.cs:82
+#: ../src/QueryWidget.cs:89
 msgid "Clear search"
 msgstr "Puhasta otsing"
 
-#: ../src/QueryWidget.cs:89
+#: ../src/QueryWidget.cs:96
 msgid "Refresh search"
 msgstr "Värskenda otsingut"
 
-#: ../src/QueryWidget.cs:91
+#: ../src/QueryWidget.cs:98
 msgid "No matching photos found"
 msgstr "Sobivaid fotosid ei leitud"
 
-#: ../src/QueryWidget.cs:128
+#: ../src/QueryWidget.cs:136
 msgid "Hide _Find Bar"
 msgstr "Peida _otsiriba"
 
-#: ../src/QueryWidget.cs:134
+#: ../src/QueryWidget.cs:142
 msgid "Show _Find Bar"
 msgstr "Näita _otsiriba"
 
@@ -1658,91 +1577,98 @@ msgstr "Tekkis viga \"{0}\", kui üritati pilt(e) pöörata {1}"
 msgid "Error while rotating photo."
 msgstr "Viga foto pööramisel."
 
-#: ../src/SendEmail.cs:237
+#: ../src/SendEmail.cs:247
 msgid "Preparing email"
 msgstr "Meili ettevalmistamine"
 
-#: ../src/SendEmail.cs:289
+#: ../src/SendEmail.cs:299
 #, csharp-format
 msgid "Exporting picture \"{0}\""
 msgstr "Pildi \"{0}\" eksportimine"
 
-#: ../src/SendEmail.cs:311
+#: ../src/SendEmail.cs:321
 msgid "Error processing image"
 msgstr "Viga pildi töötlemisel"
 
-#: ../src/SendEmail.cs:312
+#: ../src/SendEmail.cs:322
 #, csharp-format
 msgid "An error occured while processing \"{0}\": {1}"
 msgstr "\"{0}\" töötlemisel esines viga: {1}"
 
 #. Send the mail :)
-#: ../src/SendEmail.cs:327
+#: ../src/SendEmail.cs:337
 msgid "my photos"
 msgstr "minu fotod"
 
-#: ../src/SingleView.cs:78
+#: ../src/SingleView.cs:83
 msgid "Rotate photo left"
 msgstr "Pööra pilt vasakule"
 
-#: ../src/SingleView.cs:83
+#: ../src/SingleView.cs:88
 msgid "Rotate photo right"
 msgstr "Pööra pilt paremale"
 
-#: ../src/SingleView.cs:325
+#. Obsolete, remove after db rev4
+#: ../src/SingleView.cs:123
+#: ../src/Widgets/MetadataDisplay.cs:219
+#: ../src/Widgets/MetadataDisplay.cs:221
+msgid "Folder"
+msgstr "Kaust"
+
+#: ../src/SingleView.cs:347
 msgid "Open"
 msgstr "Avamine"
 
-#: ../src/SingleView.cs:430
+#: ../src/SingleView.cs:447
 msgid "Set as Background"
 msgstr "Taustapildiks tegemine"
 
-#: ../src/TagCommands.cs:92
-#: ../src/TagCommands.cs:220
-#: ../src/TagSelectionWidget.cs:508
+#: ../src/TagCommands.cs:91
+#: ../src/TagCommands.cs:219
+#: ../src/TagSelectionWidget.cs:512
 msgid "This name is already in use"
 msgstr "See nimi on juba kasutuses"
 
-#: ../src/TagCommands.cs:139
+#: ../src/TagCommands.cs:138
 msgid "Create New Tag"
 msgstr "Loo uus märksõna"
 
-#: ../src/TagCommands.cs:140
+#: ../src/TagCommands.cs:139
 msgid "Name of New Tag:"
 msgstr "Märksõna uus nimi:"
 
-#: ../src/TagCommands.cs:279
+#: ../src/TagCommands.cs:285
 msgid "Edit Tag"
 msgstr "Muuda märksõna"
 
-#: ../src/TagCommands.cs:280
+#: ../src/TagCommands.cs:286
 msgid "Tag Name:"
 msgstr "Märksõna:"
 
-#: ../src/TagCommands.cs:388
+#: ../src/TagCommands.cs:402
 msgid "Unable to load image"
 msgstr "Pildi laadimine ei õnnestu"
 
-#: ../src/TagCommands.cs:389
+#: ../src/TagCommands.cs:403
 #, csharp-format
 msgid "Unable to load \"{0}\" as icon for the tag"
 msgstr "Pilti \"{0}\" ei saa laadida märksõna ikooniks"
 
-#: ../src/TagCommands.cs:427
+#: ../src/TagCommands.cs:447
 #, csharp-format
 msgid "Photo {0} of {1}"
 msgstr "{0} pilt {1}-st"
 
-#: ../src/TagCommands.cs:457
+#: ../src/TagCommands.cs:477
 #, csharp-format
 msgid "Edit Icon for Tag {0}"
 msgstr "Muuda märksõna {0} pilti"
 
-#: ../src/TagCommands.cs:473
+#: ../src/TagCommands.cs:493
 msgid "Select Photo from file"
 msgstr "Vali foto failist"
 
-#: ../src/TagCommands.cs:496
+#: ../src/TagCommands.cs:516
 #, csharp-format
 msgid ""
 "\n"
@@ -1758,17 +1684,17 @@ msgstr ""
 " Selleks peab selle märksõnaga seostuma vähemalt\n"
 " üks pilt. Märgista vähemalt üks foto märksõnaga '{0}'."
 
-#: ../src/TagMenu.cs:91
-#: ../src/TagPopup.cs:36
-msgid "Create New Tag..."
-msgstr "Loo uus märksõna..."
-
 #: ../src/TagPopup.cs:26
 #, csharp-format
 msgid "Find"
 msgid_plural "Find"
 msgstr[0] "Otsi"
 msgstr[1] "Otsi"
+
+#: ../src/TagPopup.cs:36
+#: ../src/Widgets/TagMenu.cs:91
+msgid "Create New Tag..."
+msgstr "Loo uus märksõna..."
 
 #: ../src/TagPopup.cs:42
 msgid "Edit Selected Tag..."
@@ -1822,7 +1748,7 @@ msgid "All"
 msgstr "Kõik"
 
 #: ../src/TagQueryWidget.cs:147
-#: ../src/Term.cs:591
+#: ../src/Term.cs:592
 #, csharp-format
 msgid "Not {0}"
 msgstr "Mitte {0}"
@@ -1831,84 +1757,80 @@ msgstr "Mitte {0}"
 msgid "Drag tags here to search for them"
 msgstr "Lohista siia märksõnad, mille järgi otsitakse"
 
-#: ../src/TagSelectionWidget.cs:507
+#: ../src/TagSelectionWidget.cs:511
 msgid "Error renaming tag"
 msgstr "Viga märksõna ümbernimetamisel"
 
-#: ../src/TagStore.cs:230
+#: ../src/TagStore.cs:198
 msgid "Favorites"
 msgstr "Lemmikud"
 
-#: ../src/TagStore.cs:235
+#: ../src/TagStore.cs:203
 msgid "Hidden"
 msgstr "Varjatud"
 
-#: ../src/TagStore.cs:243
+#: ../src/TagStore.cs:211
 msgid "People"
 msgstr "Inimesed"
 
-#: ../src/TagStore.cs:248
+#: ../src/TagStore.cs:216
 msgid "Places"
 msgstr "Kohad"
 
-#: ../src/TagStore.cs:253
+#: ../src/TagStore.cs:221
 msgid "Events"
 msgstr "Sündmused"
 
 #. The label for the root category is used in new and edit tag dialogs
-#: ../src/TagStore.cs:266
-#: ../src/Widgets/InfoBox.cs:258
+#: ../src/TagStore.cs:234
+#: ../src/Widgets/InfoBox.cs:400
 msgid "(None)"
 msgstr "(Pole)"
 
-#: ../src/Term.cs:297
+#: ../src/Term.cs:298
 msgid " and "
 msgstr " ja "
 
 #. operators.Add (Catalog.GetString (" && "));
-#: ../src/Term.cs:299
+#: ../src/Term.cs:300
 msgid ", "
 msgstr ", "
 
-#: ../src/Term.cs:355
+#: ../src/Term.cs:356
 msgid " or "
 msgstr " või "
 
 #. OPS The operators we support, case insensitive
 #. private static string op_str = "(?'Ops' or | and |, | \\s+ )";
-#: ../src/Term.cs:379
-#: ../src/Widgets/FindBar.cs:202
-#: ../src/f-spot.glade.h:290
+#: ../src/Term.cs:380
+#: ../src/Widgets/FindBar.cs:177
+#: ../src/f-spot.glade.h:220
 msgid "or"
 msgstr "või"
 
-#: ../src/ThreadProgressDialog.cs:66
-msgid "Retry"
-msgstr "Proovi uuesti"
+#: ../src/UI.Dialog/AboutDialog.cs:70
+msgid "Photo management for GNOME"
+msgstr "GNOME fotode haldaja"
 
-#: ../src/TimeDialog.cs:125
-#: ../src/f-spot.glade.h:182
-#, csharp-format
-msgid "Shift all photos by {0}"
-msgstr "Nihuta kõiki pilte {0} võrra"
-
-#: ../src/UI.Dialog/AboutDialog.cs:68
+#: ../src/UI.Dialog/AboutDialog.cs:71
 msgid "Copyright © 2003-2008 Novell Inc."
 msgstr "Autoriõigus © 2003-2008 Novell Inc."
 
-#: ../src/UI.Dialog/AboutDialog.cs:93
+#: ../src/UI.Dialog/AboutDialog.cs:96
 msgid "translator-credits"
 msgstr ""
 "Priit Laes <amd@store20.com>, 2005, 2007-2008\n"
 "Mattias Põldaru <mahfiaz@gmail.com>, 2007-2008."
 
-#: ../src/UI.Dialog/AboutDialog.cs:98
+#: ../src/UI.Dialog/AboutDialog.cs:101
 msgid "F-Spot Website"
 msgstr "F-Spot veebileht"
 
-#: ../src/UI.Dialog/ColorDialog.cs:211
-msgid "Error saving adjusted photo"
-msgstr "Viga muudetud foto salvestamisel"
+#: ../src/UI.Dialog/AdjustTimeDialog.cs:118
+#: ../src/f-spot.glade.h:120
+#, csharp-format
+msgid "Shift all photos by {0}"
+msgstr "Nihuta kõiki pilte {0} võrra"
 
 #: ../src/UI.Dialog/ExceptionDialog.cs:24
 msgid "F-Spot Encountered a Fatal Error"
@@ -1939,16 +1861,20 @@ msgstr "Silt"
 msgid "Ratio"
 msgstr "Suhe"
 
-#: ../src/Updater.cs:284
+#: ../src/UI.Dialog/ThreadProgressDialog.cs:49
+msgid "Retry"
+msgstr "Proovi uuesti"
+
+#: ../src/Updater.cs:526
 msgid "Updating F-Spot Database"
 msgstr "F-Spot'i andmebaasi uuendamine"
 
-#: ../src/Updater.cs:285
+#: ../src/Updater.cs:527
 msgid "Please wait while your F-Spot gallery's database is updated. This may take some time."
 msgstr "Palun oota, kuni F-Spot'i galerii andmebaasi uuendatakse. Selleks kulub aega."
 
 #. Mono.Unix.Error error = Mono.Unix.Stdlib.GetLastError ();
-#: ../src/Utils/Unix.cs:25
+#: ../src/Utils/Unix.cs:35
 msgid "Unable to create temporary file"
 msgstr "Ajutist faili ei saa luua"
 
@@ -1956,57 +1882,252 @@ msgstr "Ajutist faili ei saa luua"
 msgid "The \"F-Spot Manual\" could not be found.  Please verify that your installation has been completed successfully."
 msgstr "\"F-Spot käsiraamatut\" ei leitud. Veendu, et paigaldus lõpetati edukalt."
 
-#: ../src/Widgets/InfoBox.cs:104
-msgid "name"
-msgstr "Nimi"
+#: ../src/Widgets/CustomPrintWidget.cs:98
+msgid "Page Setup"
+msgstr "Lehekülje sätted"
 
-#: ../src/Widgets/InfoBox.cs:106
-msgid "version"
-msgstr "Versioon"
+#: ../src/Widgets/CustomPrintWidget.cs:102
+#: ../src/Widgets/CustomPrintWidget.cs:106
+#: ../src/Widgets/CustomPrintWidget.cs:112
+#, csharp-format
+msgid "Paper Size: {0} x {1} mm"
+msgstr "Lehekülje suurus: {0} x {1} mm"
 
-#: ../src/Widgets/InfoBox.cs:108
-msgid "date"
-msgstr "Kuupäev"
+#: ../src/Widgets/CustomPrintWidget.cs:124
+msgid "Photos per page"
+msgstr "Fotosid lehel"
 
-#: ../src/Widgets/InfoBox.cs:110
-msgid "size"
-msgstr "Mõõdud"
+#. ppp1.Toggled += TriggerChanged;
+#. ppp2.Toggled += TriggerChanged;
+#. ppp4.Toggled += TriggerChanged;
+#. ppp9.Toggled += TriggerChanged;
+#: ../src/Widgets/CustomPrintWidget.cs:136
+msgid "Repeat"
+msgstr "Korda"
 
-#: ../src/Widgets/InfoBox.cs:112
-msgid "exposure"
-msgstr "Säriaeg"
+#: ../src/Widgets/CustomPrintWidget.cs:137
+msgid "Print cut marks"
+msgstr "Prindi lõikamise märgid"
 
-#: ../src/Widgets/InfoBox.cs:269
-#: ../src/Widgets/InfoBox.cs:278
-msgid "(Unknown)"
-msgstr "(Tundmatu)"
+#: ../src/Widgets/CustomPrintWidget.cs:145
+msgid "Full Page (no margin)"
+msgstr "Täislehekülg (ilma ääristeta)"
 
-#: ../src/Widgets/RatingMenuItem.cs:48
-msgid "Rating:"
-msgstr "Hinnang:"
+#. Note for translators: "Zoom" is a Fit Mode
+#: ../src/Widgets/CustomPrintWidget.cs:149
+msgid "Zoom"
+msgstr "Suurenda"
 
-#: ../src/Widgets/FindBar.cs:83
+#: ../src/Widgets/CustomPrintWidget.cs:150
+msgid "Fill"
+msgstr "Täide"
+
+#: ../src/Widgets/CustomPrintWidget.cs:151
+msgid "Scaled"
+msgstr "Skaleeritud"
+
+#: ../src/Widgets/CustomPrintWidget.cs:157
+msgid "White borders"
+msgstr "Valged äärised"
+
+#: ../src/Widgets/CustomPrintWidget.cs:161
+msgid "Custom Text: "
+msgstr "Muu tekst:"
+
+#: ../src/Widgets/EditorPage.cs:29
+#: ../src/Widgets/Sidebar.cs:71
+msgid "Edit"
+msgstr "Redigeerimine"
+
+#: ../src/Widgets/EditorPage.cs:201
+#: ../extensions/Exporters/ZipExport/ZipExport.cs:46
+msgid "No selection available"
+msgstr "Midagi ei ole valitud"
+
+#: ../src/Widgets/EditorPage.cs:202
+msgid "This tool requires an active selection. Please select a region of the photo and try the operation again"
+msgstr "See tööriist vajab aktiivset märgistust. Vali fotolt mingi ala ja proovi uuesti."
+
+#: ../src/Widgets/EditorPage.cs:220
+msgid "Error saving adjusted photo"
+msgid_plural "Error saving adjusted photos"
+msgstr[0] "Viga muudetud foto salvestamisel"
+msgstr[1] "Viga muudetud fotode salvestamisel"
+
+#: ../src/Widgets/EditorPage.cs:222
+#, csharp-format
+msgid "Received exception \"{0}\". Note that you have to develop RAW files into JPEG before you can edit them."
+msgstr "Saadi erand \"{0}\". Tea, et piltide redigeerimiseks tuleb enne RAW failidest teha JPEG failid."
+
+#: ../src/Widgets/FindBar.cs:58
 msgid "Find:"
 msgstr "Otsi:"
 
-#: ../src/Widgets/FindBar.cs:202
-#: ../src/f-spot.glade.h:282
+#: ../src/Widgets/FindBar.cs:177
+#: ../src/f-spot.glade.h:212
 msgid "and"
 msgstr "ja"
 
-#: ../src/XmpTagsImporter.cs:88
+#: ../src/Widgets/InfoBox.cs:182
+msgid "Histogram"
+msgstr "Histogramm"
+
+#: ../src/Widgets/InfoBox.cs:217
+msgid "Date"
+msgstr "Kuupäev"
+
+#: ../src/Widgets/InfoBox.cs:220
+#: ../extensions/Exporters/CDExport/CDExport.glade.h:5
+msgid "Size"
+msgstr "Suurus"
+
+#: ../src/Widgets/InfoBox.cs:223
+msgid "Exposure"
+msgstr "Säriaeg"
+
+#: ../src/Widgets/InfoBox.cs:227
+msgid "Focal Length"
+msgstr "Fookuskaugus"
+
+#: ../src/Widgets/InfoBox.cs:233
+msgid "File Size"
+msgstr "Faili suurus"
+
+#: ../src/Widgets/InfoBox.cs:236
+msgid "Rating"
+msgstr "Hinnang"
+
+#: ../src/Widgets/InfoBox.cs:409
+#: ../src/Widgets/InfoBox.cs:432
+#: ../src/Widgets/InfoBox.cs:442
+#: ../src/Widgets/InfoBox.cs:451
+msgid "(Unknown)"
+msgstr "(Tundmatu)"
+
+#: ../src/Widgets/InfoBox.cs:419
+msgid "(wrong format)"
+msgstr "(vale vorming)"
+
+#: ../src/Widgets/InfoBox.cs:562
+msgid "(File read error)"
+msgstr "(Viga faili lugemisel)"
+
+#: ../src/Widgets/InfoBox.cs:607
+#, csharp-format
+msgid "{0} Photos"
+msgstr "{0} fotot"
+
+#. Note for translators: {0} is a date, {1} and {2} are times.
+#: ../src/Widgets/InfoBox.cs:627
+#, csharp-format
+msgid ""
+"On {0} between \n"
+"{1} and {2}"
+msgstr ""
+"{0} \n"
+"{1} ja {2} vahel"
+
+#: ../src/Widgets/InfoBox.cs:632
+#, csharp-format
+msgid ""
+"Between {0} \n"
+"and {1}"
+msgstr ""
+"{0} ja\n"
+"{1} vahel"
+
+#: ../src/Widgets/InfoBox.cs:663
+msgid "(At least one File not found)"
+msgstr "(Vähemalt ühte faili ei leitud)"
+
+#: ../src/Widgets/InfoBox.cs:776
+msgid "Show Photo Name"
+msgstr "Näita foto nime"
+
+#: ../src/Widgets/InfoBox.cs:785
+msgid "Show Date"
+msgstr "Näita kuupäeva"
+
+#: ../src/Widgets/InfoBox.cs:794
+msgid "Show Size"
+msgstr "Näita suurust"
+
+#: ../src/Widgets/InfoBox.cs:803
+msgid "Show Exposure"
+msgstr "Näita säriaega"
+
+#: ../src/Widgets/InfoBox.cs:812
+msgid "Show Focal Length"
+msgstr "Näita fookuskaugust"
+
+#: ../src/Widgets/InfoBox.cs:821
+msgid "Show Camera"
+msgstr "Näita kaamerat"
+
+#: ../src/Widgets/InfoBox.cs:830
+msgid "Show File Size"
+msgstr "Näita failisuurust"
+
+#: ../src/Widgets/MetadataDisplay.cs:23
+msgid "Metadata"
+msgstr "Metaandmed"
+
+#: ../src/Widgets/MetadataDisplay.cs:104
+msgid "Extended Metadata"
+msgstr "Laiendatud metaandmed"
+
+#: ../src/Widgets/MetadataDisplay.cs:223
+msgid "Picasaweb"
+msgstr "Picasaweb"
+
+#: ../src/Widgets/MetadataDisplay.cs:225
+msgid "SmugMug"
+msgstr "SmugMug"
+
+#: ../src/Widgets/MetadataDisplay.cs:227
+msgid "Gallery2"
+msgstr "Gallery2"
+
+#. clear Extended Metadata
+#: ../src/Widgets/MetadataDisplay.cs:387
+msgid "No Extended Metadata Available"
+msgstr "Laiendatud metaandmed pole saadaval"
+
+#: ../src/Widgets/MetadataDisplay.cs:405
+msgid "No active photo"
+msgstr "Aktiivset fotot pole"
+
+#: ../src/Widgets/MetadataDisplay.cs:407
+#, csharp-format
+msgid "The photo \"{0}\" does not exist"
+msgstr "Fotot \"{0}\" ei eksisteeri"
+
+#: ../src/Widgets/MetadataDisplay.cs:410
+msgid "No metadata available"
+msgstr "Metaandmed pole saadaval"
+
+#: ../src/Widgets/OpenWithMenu.cs:86
+msgid "No applications available"
+msgstr "Rakendusi pole saadaval"
+
+#: ../src/Widgets/RatingMenuItem.cs:56
+msgid "Rating:"
+msgstr "Hinnang:"
+
+#: ../src/XmpTagsImporter.cs:89
+#: ../extensions/Exporters/FacebookExport/FacebookExport.glade.h:6
 msgid "Location"
 msgstr "Asukoht"
 
-#: ../src/XmpTagsImporter.cs:89
+#: ../src/XmpTagsImporter.cs:90
 msgid "Country"
 msgstr "Riik"
 
-#: ../src/XmpTagsImporter.cs:90
+#: ../src/XmpTagsImporter.cs:91
 msgid "City"
 msgstr "Linn"
 
-#: ../src/XmpTagsImporter.cs:91
+#: ../src/XmpTagsImporter.cs:92
 msgid "State"
 msgstr "Osariik"
 
@@ -2016,1069 +2137,817 @@ msgid " "
 msgstr " "
 
 #: ../src/f-spot.glade.h:2
-msgid " From List : "
-msgstr " Nimekirjast :"
-
-#: ../src/f-spot.glade.h:3
-msgid " From gtkrc File : "
-msgstr " gtkrc failist :"
-
-#: ../src/f-spot.glade.h:4
 msgid "0000:00:00 00:00:00"
 msgstr "0000:00:00 00:00:00"
 
-#: ../src/f-spot.glade.h:5
+#: ../src/f-spot.glade.h:3
 msgid "00:00:00"
 msgstr "00:00:00"
 
-#: ../src/f-spot.glade.h:6
+#: ../src/f-spot.glade.h:4
 msgid "1 of 1"
 msgstr "1 / 1"
 
-#: ../src/f-spot.glade.h:7
+#: ../src/f-spot.glade.h:5
 msgid "1024 px"
 msgstr "1024 px"
 
-#: ../src/f-spot.glade.h:8
+#: ../src/f-spot.glade.h:6
 msgid "320 px"
 msgstr "320 px"
 
-#: ../src/f-spot.glade.h:9
+#: ../src/f-spot.glade.h:7
 msgid "480 px"
 msgstr "480 px"
 
-#: ../src/f-spot.glade.h:10
+#: ../src/f-spot.glade.h:8
 msgid "5"
 msgstr "5"
 
-#: ../src/f-spot.glade.h:11
+#: ../src/f-spot.glade.h:9
 msgid "640 px"
 msgstr "640 px"
 
-#: ../src/f-spot.glade.h:12
+#: ../src/f-spot.glade.h:10
 msgid "800 px"
 msgstr "800 px"
 
-#: ../src/f-spot.glade.h:13
+#: ../src/f-spot.glade.h:11
 msgid "<b></b>"
 msgstr "<b></b>"
 
-#: ../src/f-spot.glade.h:14
-#: ../extensions/FlickrExport/FlickrExport.glade.h:1
+#: ../src/f-spot.glade.h:12
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:1
 msgid "<b>Account</b>"
 msgstr "<b>Konto</b>"
 
-#: ../src/f-spot.glade.h:15
+#: ../src/f-spot.glade.h:13
 msgid "<b>Action</b>"
 msgstr "<b>Tegevus</b>"
 
-#: ../src/f-spot.glade.h:16
-#: ../extensions/GalleryExport/GalleryExport.glade.h:1
-#: ../extensions/PicasaWebExport/PicasaWebExport.glade.h:1
-#: ../extensions/SmugMugExport/SmugMugExport.glade.h:1
+#: ../src/f-spot.glade.h:14
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:1
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:1
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:1
 msgid "<b>Album</b>"
 msgstr "<b>Album</b>"
 
-#: ../src/f-spot.glade.h:17
+#: ../src/f-spot.glade.h:15
 msgid "<b>Co_rrections</b>"
 msgstr "<b>_Parandused</b>"
 
-#: ../src/f-spot.glade.h:18
-msgid "<b>Color Management</b>"
-msgstr "<b>Värvihaldus</b>"
-
-#: ../src/f-spot.glade.h:19
-msgid "<b>Color Temperature</b>"
-msgstr "<b>Värvustemperatuur</b>"
-
-#: ../src/f-spot.glade.h:20
-#: ../extensions/FolderExport/FolderExport.glade.h:3
+#: ../src/f-spot.glade.h:16
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:3
 msgid "<b>Destination</b>"
 msgstr "<b>Sihtkaust</b>"
 
-#: ../src/f-spot.glade.h:21
+#: ../src/f-spot.glade.h:17
 msgid "<b>End Date</b>"
 msgstr "<b>Lõpu kuupäev</b>"
 
-#: ../src/f-spot.glade.h:22
-msgid "<b>Exposure</b>"
-msgstr "<b>Säritus</b>"
-
-#: ../src/f-spot.glade.h:23
+#: ../src/f-spot.glade.h:18
 msgid "<b>From External Photo</b>"
 msgstr "<b>Välisest fotost</b>"
 
-#: ../src/f-spot.glade.h:24
+#: ../src/f-spot.glade.h:19
 msgid "<b>From Photo</b>"
 msgstr "<b>Fotost</b>"
 
-#: ../src/f-spot.glade.h:25
-#: ../extensions/GalleryExport/GalleryExport.glade.h:2
+#: ../src/f-spot.glade.h:20
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:2
 msgid "<b>Gallery</b>"
 msgstr "<b>Galerii</b>"
 
-#: ../src/f-spot.glade.h:26
-msgid "<b>Histo_gram</b>"
-msgstr "<b>Histo_gramm</b>"
-
-#: ../src/f-spot.glade.h:27
-msgid "<b>Histogram</b>"
-msgstr "<b>Histogramm</b>"
-
-#: ../src/f-spot.glade.h:28
+#: ../src/f-spot.glade.h:21
 msgid "<b>Image Interpolation</b>"
 msgstr "<b>Pildi interpoleerimine</b>"
 
-#: ../src/f-spot.glade.h:29
-msgid "<b>Import Settings</b>"
-msgstr "<b>Importimise eelistused</b>"
-
-#: ../src/f-spot.glade.h:30
-msgid "<b>Interoperability</b>"
-msgstr "<b>Koostalitlusvõime</b>"
-
-#: ../src/f-spot.glade.h:31
+#: ../src/f-spot.glade.h:22
 msgid "<b>Max Rating</b>"
 msgstr "<b>Suurim hinnang</b>"
 
-#: ../src/f-spot.glade.h:32
-msgid "<b>Metadata</b>"
-msgstr "<b>Metaandmed</b>"
-
-#: ../src/f-spot.glade.h:33
+#: ../src/f-spot.glade.h:23
 msgid "<b>Min Rating</b>"
 msgstr "<b>Vähim hinnang</b>"
 
-#: ../src/f-spot.glade.h:34
-msgid "<b>Photograph Layout</b>"
-msgstr "<b>Fotopaigutus</b>"
-
-#: ../src/f-spot.glade.h:35
-#: ../extensions/FlickrExport/FlickrExport.glade.h:2
-#: ../extensions/FolderExport/FolderExport.glade.h:5
-#: ../extensions/GalleryExport/GalleryExport.glade.h:3
-#: ../extensions/PicasaWebExport/PicasaWebExport.glade.h:2
-#: ../extensions/SmugMugExport/SmugMugExport.glade.h:2
+#: ../src/f-spot.glade.h:24
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:2
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:5
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:3
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:2
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:2
+#: ../extensions/Exporters/TabbloExport/TabbloExport.glade.h:1
 msgid "<b>Photos</b>"
 msgstr "<b>Fotod</b>"
 
-#: ../src/f-spot.glade.h:36
+#: ../src/f-spot.glade.h:25
 msgid "<b>Predefined</b>"
 msgstr "<b>Eelmääratud</b>"
 
-#: ../src/f-spot.glade.h:37
+#: ../src/f-spot.glade.h:26
 msgid "<b>Preview</b>"
 msgstr "<b>Eelvaade</b>"
 
-#: ../src/f-spot.glade.h:38
-msgid "<b>Printer Details</b>"
-msgstr "<b>Printeri üksikasjad</b>"
-
-#: ../src/f-spot.glade.h:39
+#: ../src/f-spot.glade.h:27
 msgid "<b>Reference Photo</b>"
 msgstr "<b>Viitav foto</b>"
 
-#: ../src/f-spot.glade.h:40
-msgid "<b>Screensaver</b>"
-msgstr "<b>Ekraanisäästja</b>"
-
-#: ../src/f-spot.glade.h:41
+#: ../src/f-spot.glade.h:28
 msgid "<b>Select period</b>"
 msgstr "<b>Vali ajavahemik</b>"
 
-#: ../src/f-spot.glade.h:42
+#: ../src/f-spot.glade.h:29
 msgid "<b>Size</b>"
 msgstr "<b>Suurus</b>"
 
-#: ../src/f-spot.glade.h:43
+#: ../src/f-spot.glade.h:30
 msgid "<b>Start Date</b>"
 msgstr "<b>Alguse kuupäev</b>"
 
-#: ../src/f-spot.glade.h:44
-#: ../extensions/FlickrExport/FlickrExport.glade.h:3
-#: ../extensions/FolderExport/FolderExport.glade.h:6
-#: ../extensions/GalleryExport/GalleryExport.glade.h:4
-#: ../extensions/PicasaWebExport/PicasaWebExport.glade.h:4
-#: ../extensions/SmugMugExport/SmugMugExport.glade.h:4
+#: ../src/f-spot.glade.h:31
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:3
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:6
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:4
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:4
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:4
 msgid "<b>Style</b>"
 msgstr "<b>Stiil</b>"
 
-#: ../src/f-spot.glade.h:45
+#: ../src/f-spot.glade.h:32
 msgid "<b>Summary</b>"
 msgstr "<b>Kokkuvõte</b>"
 
-#: ../src/f-spot.glade.h:46
-msgid "<b>Theming</b>"
-msgstr "<b>Teemad</b>"
-
-#: ../src/f-spot.glade.h:47
+#: ../src/f-spot.glade.h:33
 msgid "<b>Transparent Parts</b>"
 msgstr "<b>Läbipaistvad osad</b>"
 
-#: ../src/f-spot.glade.h:48
+#: ../src/f-spot.glade.h:34
 msgid "<b>View all pictures imported</b>"
 msgstr "<b>Näita kõiki imporditud pilte</b>"
 
-#: ../src/f-spot.glade.h:49
+#: ../src/f-spot.glade.h:35
 msgid "<b>_White Balance</b>"
 msgstr "<b>_Valge tasakaal</b>"
 
-#: ../src/f-spot.glade.h:50
-msgid "<small> </small>"
-msgstr "<small> </small>"
-
-#: ../src/f-spot.glade.h:51
+#: ../src/f-spot.glade.h:36
 msgid "<small></small>"
 msgstr "<small></small>"
 
-#: ../src/f-spot.glade.h:52
-msgid "<small><i>Choose the folder where F-Spot should store newly imported photos</i></small>"
-msgstr "<small><i>Vali kaust kuhu F-Spot salvestab importimisel uued fotod</i></small>"
-
-#: ../src/f-spot.glade.h:53
-msgid "<small><i>Enable this option if you want to allow other programs to import or delete photos and tags over DBus.</i></small>"
-msgstr "<small><i>Märgi see valik, et teistel programmidel lubada DBus'i kaudu fotode ja märksõnade importimine ja kustutamine.</i></small>"
-
-#: ../src/f-spot.glade.h:54
-msgid ""
-"<small><i>Enable this option to store tags and descriptions inside \n"
-"supported image formats.</i></small>"
-msgstr ""
-"<small><i>Märgi see valik et toetatud pildivormingute puhul\n"
-"salvestada märksõnad ja kirjeldused pildifailidesse.</i></small>"
-
-#: ../src/f-spot.glade.h:56
+#: ../src/f-spot.glade.h:37
 msgid "<small><i>Enable this to allow interpolation on zoomed images. You shouldn't disable this for viewing photos, but disabling the interpolation could be usefull in icon design.</i></small>"
 msgstr "<small><i>Märgi see, et lubada suurendatud piltide interpoleerimine. Interpoleerimist ei peaks keelama fotode kuvamisel, kuid keelamine võib osutuda kasulikuks näiteks ikoonide disainimisel.</i></small>"
 
-#: ../src/f-spot.glade.h:57
-msgid "<small><i>While acting as a screensaver, F-Spot can display all of your images, or a small subset based on tags.</i></small>"
-msgstr ""
-"<small><i>Ekraanisäästjana võib F-Spot kuvada kõiki albumi\n"
-"pilte või märksõnadega määratud osa neist.</i></small>"
-
-#: ../src/f-spot.glade.h:58
+#: ../src/f-spot.glade.h:38
 msgid "<small><i>You can choose how to display transparent parts in images. This option has no effect on photos, but setting this as check pattern or custom color could be usefull when viewing icons or other artworks with transparent parts.</i></small>"
 msgstr "<small><i>Sa saad valida, kuidas näidatakse piltide läbipaistvaid osi. See ei muuda midagi fotode kuvamises, kuid selle määramine malelaua mustrile või muule värvile võib osutuda kasulikuks ikoonide või läbipaistvate osadega piltide vaatamisel.</i></small>"
 
-#: ../src/f-spot.glade.h:59
-msgid "<small><i>You'll have to restart f-spot to load the new theme.</i></small>"
-msgstr "<small><i>Uue teema laadimiseks tuleb f-spot taaskäivitada.</i></small>"
-
-#: ../src/f-spot.glade.h:60
-msgid "<small>C_ontrast:</small>"
-msgstr "<small>K_ontrastsus:</small>"
-
-#: ../src/f-spot.glade.h:61
-msgid "<small>Te_mp:</small>"
-msgstr "<small>Te_mperatuur:</small>"
-
-#: ../src/f-spot.glade.h:62
-msgid "<small>_Brightness:</small>"
-msgstr "<small>_Heledus:</small>"
-
-#: ../src/f-spot.glade.h:63
-msgid "<small>_Exposure:</small>"
-msgstr "<small>_Säritus:</small>"
-
-#: ../src/f-spot.glade.h:64
-msgid "<small>_Hue:</small>"
-msgstr "<small>_Värvitoon:</small>"
-
-#: ../src/f-spot.glade.h:65
-msgid "<small>_Saturation:</small>"
-msgstr "<small>_Värviküllasus:</small>"
-
-#: ../src/f-spot.glade.h:66
-msgid "<small>_Tint:</small>"
-msgstr "<small>_Toonimisvärv:</small>"
-
-#: ../src/f-spot.glade.h:67
-msgid "Ad_just Color..."
-msgstr "Kohenda _värve..."
-
-#: ../src/f-spot.glade.h:68
-msgid "Adjust Color"
-msgstr "Värvide kohendamine"
-
-#: ../src/f-spot.glade.h:69
+#: ../src/f-spot.glade.h:39
 msgid "Adjust Time"
 msgstr "Aja kohendamine"
 
-#: ../src/f-spot.glade.h:70
+#: ../src/f-spot.glade.h:40
 msgid "Adjust _Time..."
 msgstr "Kohenda _aega..."
 
-#: ../src/f-spot.glade.h:71
+#: ../src/f-spot.glade.h:41
 msgid "Adjusted date: "
 msgstr "Kohendatud kuupäev:"
 
-#: ../src/f-spot.glade.h:73
-msgid "Allow other programs to manipulate F-Spot"
-msgstr "Luba teistel programmidel F-Spoti juhtida"
-
-#: ../src/f-spot.glade.h:74
+#: ../src/f-spot.glade.h:42
 msgid "Arrange _by"
 msgstr "Järjestamise _alus"
 
-#: ../src/f-spot.glade.h:75
+#: ../src/f-spot.glade.h:43
 msgid "As _background"
 msgstr "Taustaks"
 
-#: ../src/f-spot.glade.h:76
+#: ../src/f-spot.glade.h:44
 msgid "As _custom color: "
 msgstr "Muu _värvina:"
 
-#: ../src/f-spot.glade.h:77
+#: ../src/f-spot.glade.h:45
 msgid "As check _pattern"
 msgstr "_Malelaua mustrina"
 
-#: ../src/f-spot.glade.h:78
+#: ../src/f-spot.glade.h:46
 msgid "Attach Tags:"
 msgstr "Ühenda märksõnadega:"
 
-#: ../src/f-spot.glade.h:79
+#: ../src/f-spot.glade.h:47
 msgid "Attach tag:"
 msgstr "Ühenda märksõnaga:"
 
-#: ../src/f-spot.glade.h:80
-#: ../extensions/CDExport/CDExport.glade.h:3
-#: ../extensions/FolderExport/FolderExport.glade.h:7
-#: ../extensions/GalleryExport/GalleryExport.glade.h:9
-#: ../extensions/SmugMugExport/SmugMugExport.glade.h:5
+#: ../src/f-spot.glade.h:48
+#: ../extensions/Exporters/CDExport/CDExport.glade.h:3
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:7
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:7
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:5
 msgid "Autorotate"
 msgstr "Automaatne pildi pööramine"
 
-#: ../src/f-spot.glade.h:82
+#: ../src/f-spot.glade.h:50
 msgid "By _Date"
 msgstr "_Kuupäeva järgi"
 
-#: ../src/f-spot.glade.h:83
+#: ../src/f-spot.glade.h:51
 msgid "By _Import Roll"
 msgstr "_Filmirullide järgi"
 
-#: ../src/f-spot.glade.h:84
+#: ../src/f-spot.glade.h:52
 msgid "By _Rating"
 msgstr "_Hinnangu järgi"
 
-#: ../src/f-spot.glade.h:85
+#: ../src/f-spot.glade.h:53
 msgid "CD"
 msgstr "CD"
 
-#: ../src/f-spot.glade.h:86
-msgid "C_aption:"
-msgstr "_Allkiri:"
-
-#: ../src/f-spot.glade.h:87
+#: ../src/f-spot.glade.h:54
 msgid "C_ontrast:"
 msgstr "_Kontrastsus:"
 
-#: ../src/f-spot.glade.h:88
+#: ../src/f-spot.glade.h:55
 msgid "Camera Selection"
 msgstr "Kaamera valik"
 
-#: ../src/f-spot.glade.h:89
+#: ../src/f-spot.glade.h:56
 msgid "Cancel, do not change the current timeline. "
 msgstr "Tühistamine, praegust ajajoont ei muudeta"
 
-#: ../src/f-spot.glade.h:90
-msgid "Co_nfigure"
-msgstr "_Sätted"
-
-#: ../src/f-spot.glade.h:91
+#: ../src/f-spot.glade.h:57
 msgid "Copy Locat_ion"
 msgstr "Kopeeri _asukoht"
 
-#: ../src/f-spot.glade.h:92
+#: ../src/f-spot.glade.h:58
 msgid "Copy files to the Photos folder"
 msgstr "Failid kopeeritakse piltide kausta"
 
-#: ../src/f-spot.glade.h:93
+#: ../src/f-spot.glade.h:59
 msgid "Create Mail"
 msgstr "Uue e-kirja loomine"
 
-#: ../src/f-spot.glade.h:94
+#: ../src/f-spot.glade.h:60
 msgid "Create New _Tag..."
 msgstr "_Loo uus märksõna..."
 
-#: ../src/f-spot.glade.h:95
+#: ../src/f-spot.glade.h:61
 msgid "Create _New Version..."
 msgstr "Loo uus _versioon..."
 
-#: ../src/f-spot.glade.h:96
+#: ../src/f-spot.glade.h:62
 msgid "Create a mail with the selected photos (possibly resized) attached"
 msgstr "Märgitud fotodest (muudetud suurusega) kaasapanekuga meili loomine"
 
-#: ../src/f-spot.glade.h:97
-msgid "Crop photo to _fit"
-msgstr "Mahutamiseks lõika fotot"
-
-#: ../src/f-spot.glade.h:98
+#: ../src/f-spot.glade.h:63
 msgid "Current date:"
 msgstr "Praegune kuupäev:"
 
-#: ../src/f-spot.glade.h:99
-msgid "Custom Theme"
-msgstr "Muu teema"
+#: ../src/f-spot.glade.h:64
+msgid "Detect duplicates"
+msgstr "Tuvasta duplikaadid"
 
-#: ../src/f-spot.glade.h:100
+#: ../src/f-spot.glade.h:65
 msgid "Display File _Names"
 msgstr "_Näita failinimesid"
 
-#: ../src/f-spot.glade.h:101
+#: ../src/f-spot.glade.h:66
 msgid "Display only those photos that were imported in specified Rolls."
 msgstr "Kuva ainult kindlatelt rullidelt imporditud fotod."
 
-#: ../src/f-spot.glade.h:102
+#: ../src/f-spot.glade.h:67
 msgid "Do not send a mail"
 msgstr "Ära saada e-kirja"
 
-#: ../src/f-spot.glade.h:103
+#: ../src/f-spot.glade.h:68
 msgid "E-_Mail:"
 msgstr "_E-post:"
 
-#: ../src/f-spot.glade.h:104
+#: ../src/f-spot.glade.h:69
 msgid "E_xport titles and comments"
 msgstr "E_kspordi nimed ja kommentaarid"
 
-#: ../src/f-spot.glade.h:105
+#: ../src/f-spot.glade.h:70
 msgid "Edit Tag Icon"
 msgstr "Muuda märksõna ikooni"
 
-#: ../src/f-spot.glade.h:106
+#: ../src/f-spot.glade.h:71
 msgid "Edit icon"
 msgstr "Ikooni muutmine"
 
-#: ../src/f-spot.glade.h:107
+#: ../src/f-spot.glade.h:72
 msgid "Estimated new size"
 msgstr "Arvestuslik maht"
 
-#: ../src/f-spot.glade.h:108
-#: ../extensions/FlickrExport/FlickrExport.glade.h:6
-#: ../extensions/GalleryExport/GalleryExport.glade.h:10
-#: ../extensions/PicasaWebExport/PicasaWebExport.glade.h:9
-#: ../extensions/SmugMugExport/SmugMugExport.glade.h:6
+#: ../src/f-spot.glade.h:73
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:6
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:8
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:9
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:6
+#: ../extensions/Exporters/TabbloExport/TabbloExport.glade.h:3
 msgid "Export"
 msgstr "Eksportimine"
 
-#: ../src/f-spot.glade.h:109
+#: ../src/f-spot.glade.h:74
 msgid "Extra large"
 msgstr "Eriti suur"
 
-#: ../src/f-spot.glade.h:110
+#: ../src/f-spot.glade.h:75
 msgid "F-Spot"
 msgstr "F-Spot"
 
-#: ../src/f-spot.glade.h:111
+#: ../src/f-spot.glade.h:76
 msgid "F-Spot View"
 msgstr "F-Spot vaade"
 
-#: ../src/f-spot.glade.h:113
+#: ../src/f-spot.glade.h:78
 msgid "Filter on selected rolls"
 msgstr "Filtreeri märgitud rullid"
 
-#: ../src/f-spot.glade.h:114
+#: ../src/f-spot.glade.h:79
 msgid "Fin_d"
 msgstr "_Otsing"
 
-#: ../src/f-spot.glade.h:116
-msgid ""
-"From Screen\n"
-"Standard RGB"
-msgstr ""
-"Ekraanilt\n"
-"Standardne RGB"
-
-#: ../src/f-spot.glade.h:118
-msgid ""
-"Full Page\n"
-"Standard - 4x6"
-msgstr ""
-"Täisleht\n"
-"Standardne - 4x6"
-
-#: ../src/f-spot.glade.h:120
+#: ../src/f-spot.glade.h:80
 msgid "G_allery:"
 msgstr "_Galerii:"
 
-#: ../src/f-spot.glade.h:121
+#: ../src/f-spot.glade.h:81
 msgid "Gallery"
 msgstr "Galerii"
 
-#: ../src/f-spot.glade.h:122
-msgid ""
-"Hairline\n"
-"0.25\"\n"
-"0.5\"\n"
-"1\"\n"
-msgstr ""
-"Peenjoon\n"
-"0,6 mm\n"
-"1,2 mm\n"
-"25 mm\n"
-
-#: ../src/f-spot.glade.h:127
-msgid "Images tagged with:"
-msgstr "Pildid märksõnadega:"
-
-#: ../src/f-spot.glade.h:129
+#. Translators: this string means 'source of import'
+#: ../src/f-spot.glade.h:84
 msgid "Import Source:"
 msgstr "Importimise allikas:"
 
-#: ../src/f-spot.glade.h:130
+#: ../src/f-spot.glade.h:85
 msgid "Include subfolders"
 msgstr "Kaasa alakaustad"
 
-#: ../src/f-spot.glade.h:131
+#: ../src/f-spot.glade.h:86
 msgid "Large"
 msgstr "Suur"
 
-#: ../src/f-spot.glade.h:132
-msgid "Make F-Spot your screensaver"
-msgstr "Määra F-Spot ekraanisäästjaks"
-
-#: ../src/f-spot.glade.h:133
+#: ../src/f-spot.glade.h:87
 msgid "Manage _Extensions"
 msgstr "_Lisade haldamine"
 
-#: ../src/f-spot.glade.h:134
+#: ../src/f-spot.glade.h:88
 msgid "Manage your custom selection ratios"
 msgstr "Halda kohaldatud valikupiirkondi"
 
-#: ../src/f-spot.glade.h:135
+#: ../src/f-spot.glade.h:89
 msgid "Medium"
 msgstr "Keskmine"
 
-#: ../src/f-spot.glade.h:136
-msgid "N_umber of Copies:"
-msgstr "Koopiate _arv:"
-
-#: ../src/f-spot.glade.h:138
+#: ../src/f-spot.glade.h:91
 msgid "No _image"
 msgstr "_Pildifaili pole laaditud."
 
-#: ../src/f-spot.glade.h:139
-msgid ""
-"None\n"
-"Title\n"
-"Filename\n"
-"Date\n"
-"Photo Details"
-msgstr ""
-"Pole\n"
-"Pealkiri\n"
-"Failinimi\n"
-"Kuupäev\n"
-"Foto üksikasjad"
-
-#: ../src/f-spot.glade.h:144
-msgid "Number of photos in selected rolls :"
+#: ../src/f-spot.glade.h:92
+msgid "Number of photos in selected rolls:"
 msgstr "Piltide arv märgitud rullides :"
 
-#: ../src/f-spot.glade.h:145
+#: ../src/f-spot.glade.h:93
 msgid "Number of pictures"
 msgstr "Piltide arv"
 
-#: ../src/f-spot.glade.h:146
+#: ../src/f-spot.glade.h:94
 msgid "Only photos taken within these dates will be displayed."
 msgstr "Kuvatakse ainult nendel kuupäevadel võetud fotosid."
 
-#: ../src/f-spot.glade.h:147
+#: ../src/f-spot.glade.h:95
 msgid "Open _Folder..."
 msgstr "_Kausta avamine..."
 
-#: ../src/f-spot.glade.h:149
+#: ../src/f-spot.glade.h:97
 msgid "Original size (possible very large file size)"
 msgstr "Esialgne suurus (võib olla väga suur fail)"
 
-#: ../src/f-spot.glade.h:150
+#: ../src/f-spot.glade.h:98
 msgid "P_arent Tag:"
 msgstr "_Emamärksõna:"
 
-#: ../src/f-spot.glade.h:151
-msgid "P_hoto Source:"
-msgstr "Foto _allikas:"
+#: ../src/f-spot.glade.h:99
+msgid "Page Set_up..."
+msgstr "Lehekülje _sätted..."
 
-#: ../src/f-spot.glade.h:152
-msgid "Page 1 of 3"
-msgstr "Lehekülg 1 / 3"
-
-#: ../src/f-spot.glade.h:153
+#: ../src/f-spot.glade.h:100
 msgid "Pause"
 msgstr "Paus"
 
-#: ../src/f-spot.glade.h:154
+#: ../src/f-spot.glade.h:101
 msgid "Photo 0 of 0"
 msgstr "Foto 0 / 0"
 
-#: ../src/f-spot.glade.h:155
-msgid "Photo _Size:"
-msgstr "Foto _suurus:"
-
-#: ../src/f-spot.glade.h:156
+#: ../src/f-spot.glade.h:102
 msgid "Preferences"
 msgstr "Eelistused"
 
-#: ../src/f-spot.glade.h:158
-msgid "Print"
-msgstr "Prindi"
-
-#: ../src/f-spot.glade.h:159
-msgid "Print crop _marks"
-msgstr "Lõikamise märkide trükkimine"
-
-#: ../src/f-spot.glade.h:160
+#: ../src/f-spot.glade.h:104
 msgid "Re_fresh Thumbnail"
 msgstr "_Värskenda pisipilti"
 
-#: ../src/f-spot.glade.h:162
+#: ../src/f-spot.glade.h:106
 msgid "Repair"
 msgstr "Paranda"
 
-#: ../src/f-spot.glade.h:163
-msgid "Reset"
-msgstr "Taasta"
-
-#: ../src/f-spot.glade.h:166
-msgid "Select A Folder"
-msgstr "Vali kaust"
-
-#: ../src/f-spot.glade.h:167
-msgid "Select A gtkrc File"
-msgstr "Vali gtkrc fail"
-
-#: ../src/f-spot.glade.h:168
+#: ../src/f-spot.glade.h:109
 msgid "Select Photos to Copy From Camera..."
 msgstr "Vali millised fotod kaamerast kopeerida..."
 
-#: ../src/f-spot.glade.h:170
+#: ../src/f-spot.glade.h:111
 msgid "Select _None"
 msgstr "Ära vali ühtegi"
 
-#: ../src/f-spot.glade.h:171
+#: ../src/f-spot.glade.h:112
 msgid "Select a Tag..."
 msgstr "Vali _märksõna..."
 
-#: ../src/f-spot.glade.h:172
+#: ../src/f-spot.glade.h:113
 msgid "Select the camera from which you want to transfer files"
 msgstr "Vali kaamera, millest tahad faile liigutada"
 
-#: ../src/f-spot.glade.h:173
+#: ../src/f-spot.glade.h:114
 msgid "Selected Camera: "
 msgstr "Valitud kaamera:"
 
-#: ../src/f-spot.glade.h:174
-msgid ""
-"Selection\n"
-"Gallery\n"
-"Viewport"
-msgstr ""
-"Valik\n"
-"Galerii\n"
-"Vaateala"
-
-#: ../src/f-spot.glade.h:177
+#: ../src/f-spot.glade.h:115
 msgid "Selection Constraints"
 msgstr "Valiku määrang"
 
-#: ../src/f-spot.glade.h:178
+#: ../src/f-spot.glade.h:116
 msgid "Send by _Mail..."
 msgstr "Saada meiliga..."
 
-#: ../src/f-spot.glade.h:179
+#: ../src/f-spot.glade.h:117
 msgid "Set Rating Filter"
 msgstr "Hinnangufiltri määramine"
 
-#: ../src/f-spot.glade.h:180
+#: ../src/f-spot.glade.h:118
 msgid "Set as _Background"
 msgstr "Määra _taustapildiks"
 
-#: ../src/f-spot.glade.h:181
+#: ../src/f-spot.glade.h:119
 msgid "Set date range"
 msgstr "Määra ajavahemik"
 
-#: ../src/f-spot.glade.h:183
+#: ../src/f-spot.glade.h:121
 msgid "Show all photos."
 msgstr "Näita kõiki fotosid."
 
-#: ../src/f-spot.glade.h:184
+#: ../src/f-spot.glade.h:122
 msgid "Show or hide the side pane"
 msgstr "Näita või peida külgpaneel"
 
-#: ../src/f-spot.glade.h:185
+#: ../src/f-spot.glade.h:123
 msgid "Show or hide the toolbar"
 msgstr "Näita või peida tööriistariba"
 
-#: ../src/f-spot.glade.h:186
+#: ../src/f-spot.glade.h:124
 msgid "Side _pane"
 msgstr "Külgpaan"
 
-#: ../src/f-spot.glade.h:187
+#: ../src/f-spot.glade.h:125
 msgid "Side_bar"
 msgstr "_Külgriba"
 
-#: ../src/f-spot.glade.h:188
+#: ../src/f-spot.glade.h:126
 msgid "Small"
 msgstr "Väike"
 
-#: ../src/f-spot.glade.h:189
-msgid "So_urce Temp"
-msgstr "_Alliktemperatuur"
-
-#: ../src/f-spot.glade.h:190
+#: ../src/f-spot.glade.h:127
 msgid "Space all photos by"
 msgstr "Kõigi fotode vahele jääb"
 
-#: ../src/f-spot.glade.h:191
+#: ../src/f-spot.glade.h:128
 msgid "Specify if an original size picture should be rotated or not. Smaller sizes are automatically rotated."
 msgstr "Täpsusta kas originaalpilti pöörata või mitte. Vähendatud pilte pööratakse automaatselt."
 
-#: ../src/f-spot.glade.h:192
-msgid ""
-"Standard RGB\n"
-"Image Profile\n"
-"Custom\n"
-msgstr ""
-"Tavaline RGB\n"
-"Pildi profiil\n"
-"Muu\n"
-
-#: ../src/f-spot.glade.h:196
+#: ../src/f-spot.glade.h:129
 msgid "Strip image _metadata"
 msgstr "Eemalda pildi _metaandmed"
 
-#: ../src/f-spot.glade.h:197
-msgid "System Theme"
-msgstr "Süsteemiteema"
-
-#: ../src/f-spot.glade.h:198
+#: ../src/f-spot.glade.h:130
 msgid "T_ags"
 msgstr "_Märksõnad"
 
-#: ../src/f-spot.glade.h:199
+#: ../src/f-spot.glade.h:131
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:1179
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:1180
 msgid "Tags: "
 msgstr "Märksõnad:"
 
-#: ../src/f-spot.glade.h:200
+#. Note for translators: meant as Temperature
+#: ../src/f-spot.glade.h:133
+msgid "Te_mp:"
+msgstr "Te_mperatuur:"
+
+#: ../src/f-spot.glade.h:134
 msgid "Thumbnail _elements"
 msgstr "Pisipiltidega näidatakse"
 
-#: ../src/f-spot.glade.h:201
+#: ../src/f-spot.glade.h:135
 msgid "Tiny"
 msgstr "Pisike"
 
-#: ../src/f-spot.glade.h:202
+#: ../src/f-spot.glade.h:136
 msgid "Too_lbar"
 msgstr "_Tööriistariba"
 
-#: ../src/f-spot.glade.h:203
+#: ../src/f-spot.glade.h:137
 msgid "Total original size"
 msgstr "Originaalide maht"
 
-#: ../src/f-spot.glade.h:204
+#: ../src/f-spot.glade.h:138
 msgid "View"
 msgstr "Vaade"
 
-#: ../src/f-spot.glade.h:205
-msgid "Will print using: US Letter size on Generic Postscript"
-msgstr "Printimine: US kirjasuurus printerile Üldine Postscript"
-
-#: ../src/f-spot.glade.h:206
-msgid "Write _metadata to file"
-msgstr "_Metaandmed kirjutatakse faili"
-
-#: ../src/f-spot.glade.h:207
+#: ../src/f-spot.glade.h:139
 msgid "Zoom _in"
 msgstr "_Suurenda"
 
-#: ../src/f-spot.glade.h:208
+#: ../src/f-spot.glade.h:140
 msgid "Zoom _out"
 msgstr "_Vähenda"
 
-#: ../src/f-spot.glade.h:209
+#: ../src/f-spot.glade.h:141
 msgid "Zoom in"
 msgstr "Suurenda"
 
-#: ../src/f-spot.glade.h:210
+#: ../src/f-spot.glade.h:142
 msgid "Zoom out"
 msgstr "Vähenda"
 
-#: ../src/f-spot.glade.h:212
+#: ../src/f-spot.glade.h:144
 msgid "_Attach Tag to Selection"
 msgstr "Ühenda valik _märksõnaga"
 
-#: ../src/f-spot.glade.h:213
-msgid "_Border:"
-msgstr "Ää_ris:"
-
-#: ../src/f-spot.glade.h:214
+#: ../src/f-spot.glade.h:145
 msgid "_Brightness:"
 msgstr "_Heledus:"
 
-#: ../src/f-spot.glade.h:216
+#: ../src/f-spot.glade.h:147
 msgid "_Clear Rating Filter"
 msgstr "_Puhasta hinnangufilter"
 
-#: ../src/f-spot.glade.h:217
+#: ../src/f-spot.glade.h:148
 msgid "_Clear Roll Filter"
 msgstr "_Puhasta rullifilter"
 
-#: ../src/f-spot.glade.h:218
+#: ../src/f-spot.glade.h:149
 msgid "_Components"
 msgstr "_Komponendid"
 
-#: ../src/f-spot.glade.h:219
+#: ../src/f-spot.glade.h:150
 msgid "_Contents"
 msgstr "_Sisu"
 
-#: ../src/f-spot.glade.h:220
+#: ../src/f-spot.glade.h:151
+#: ../extensions/Exporters/ZipExport/ZipExport.glade.h:1
 msgid "_Create"
 msgstr "_Loo"
 
-#: ../src/f-spot.glade.h:221
+#: ../src/f-spot.glade.h:152
 msgid "_Create Mail"
 msgstr "_Uus e-mail"
 
-#: ../src/f-spot.glade.h:222
+#: ../src/f-spot.glade.h:153
 msgid "_Dates"
 msgstr "_Kuupäev"
 
-#: ../src/f-spot.glade.h:224
+#: ../src/f-spot.glade.h:155
 msgid "_Delete Selected Tag"
 msgstr "_Kustuta valitud märksõna"
 
-#: ../src/f-spot.glade.h:225
+#: ../src/f-spot.glade.h:156
 msgid "_Delete Version"
 msgstr "_Kustuta see versioon"
 
-#: ../src/f-spot.glade.h:226
-msgid "_Destination Temp"
-msgstr "_Sihttemperatuur"
-
-#: ../src/f-spot.glade.h:227
-msgid "_Display:"
-msgstr "_Vaade:"
-
-#: ../src/f-spot.glade.h:228
+#: ../src/f-spot.glade.h:157
 msgid "_Edit"
 msgstr "_Redigeerimine"
 
-#: ../src/f-spot.glade.h:229
+#: ../src/f-spot.glade.h:158
 msgid "_Edit Selected Tag..."
 msgstr "_Muuda valitud märksõna..."
 
-#: ../src/f-spot.glade.h:230
+#: ../src/f-spot.glade.h:159
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:15
 msgid "_Export"
 msgstr "_Eksportimine"
 
-#: ../src/f-spot.glade.h:231
-#: ../extensions/FlickrExport/FlickrExport.glade.h:15
-#: ../extensions/PicasaWebExport/PicasaWebExport.glade.h:20
+#: ../src/f-spot.glade.h:160
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:16
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:20
 msgid "_Export tags"
 msgstr "_Ekspordi märksõnad"
 
-#: ../src/f-spot.glade.h:232
+#: ../src/f-spot.glade.h:161
 msgid "_Export to"
 msgstr "_Ekspordi kuhu"
 
-#: ../src/f-spot.glade.h:233
-#: ../extensions/GalleryExport/GalleryExport.glade.h:23
-#: ../extensions/PicasaWebExport/PicasaWebExport.glade.h:21
-#: ../extensions/SmugMugExport/SmugMugExport.glade.h:12
+#: ../src/f-spot.glade.h:162
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:15
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:21
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:12
 msgid "_Export to Album:"
 msgstr "_Ekspordi albumisse:"
 
-#: ../src/f-spot.glade.h:234
+#: ../src/f-spot.glade.h:163
+msgid "_Exposure:"
+msgstr "_Säriaeg:"
+
+#: ../src/f-spot.glade.h:164
 msgid "_Filmstrip"
 msgstr "_Filmiriba"
 
-#: ../src/f-spot.glade.h:235
+#: ../src/f-spot.glade.h:165
 msgid "_Flickr"
 msgstr "_Flickr"
 
-#: ../src/f-spot.glade.h:236
+#: ../src/f-spot.glade.h:166
 msgid "_Folder"
 msgstr "_Kaust"
 
-#: ../src/f-spot.glade.h:237
+#: ../src/f-spot.glade.h:167
 msgid "_Fullscreen"
 msgstr "_Täisekraan"
 
-#: ../src/f-spot.glade.h:238
+#: ../src/f-spot.glade.h:168
 msgid "_Gallery"
 msgstr "_Galerii"
 
-#: ../src/f-spot.glade.h:239
+#: ../src/f-spot.glade.h:169
 msgid "_Help"
 msgstr "_Abi"
 
-#: ../src/f-spot.glade.h:240
+#: ../src/f-spot.glade.h:170
 msgid "_Hidden"
 msgstr "_Varjatud"
 
-#: ../src/f-spot.glade.h:241
+#: ../src/f-spot.glade.h:171
 msgid "_Hue:"
 msgstr "_Hue:"
 
-#: ../src/f-spot.glade.h:242
+#: ../src/f-spot.glade.h:172
 msgid "_Icon:"
 msgstr "_Ikoon:"
 
-#: ../src/f-spot.glade.h:243
+#: ../src/f-spot.glade.h:173
 msgid "_Import..."
 msgstr "_Impordi..."
 
-#: ../src/f-spot.glade.h:244
+#: ../src/f-spot.glade.h:174
 msgid "_Interpolate image on zoom"
 msgstr "_Pildi interpoleerimine suurendamisel"
 
-#: ../src/f-spot.glade.h:245
+#: ../src/f-spot.glade.h:175
 msgid "_Large"
 msgstr "_Suur"
 
-#: ../src/f-spot.glade.h:246
+#: ../src/f-spot.glade.h:176
 msgid "_Last Import Roll"
 msgstr "_Viimati imporditud rull"
 
-#: ../src/f-spot.glade.h:247
+#: ../src/f-spot.glade.h:177
+msgid "_Loupe"
+msgstr "_Luup"
+
+#: ../src/f-spot.glade.h:178
 msgid "_Medium"
 msgstr "_Keskmine"
 
-#: ../src/f-spot.glade.h:248
-msgid "_Metadata Browser"
-msgstr "_Metaandmete lehitseja"
-
-#: ../src/f-spot.glade.h:249
+#: ../src/f-spot.glade.h:179
 msgid "_Month"
 msgstr "_Kuu"
 
-#: ../src/f-spot.glade.h:250
+#: ../src/f-spot.glade.h:180
 msgid "_New Window"
 msgstr "_Uus aken"
 
-#: ../src/f-spot.glade.h:251
+#: ../src/f-spot.glade.h:181
 msgid "_Open album in browser when done uploading"
 msgstr "_Ava album brauseriga kui üleslaadimine on lõpetatud"
 
-#: ../src/f-spot.glade.h:252
+#: ../src/f-spot.glade.h:182
 msgid "_Open destination when done exporting"
 msgstr "_Ava sihtkoht, kui eksportimine on lõpetatud"
 
-#: ../src/f-spot.glade.h:253
-msgid "_Output:"
-msgstr "_Väljund:"
-
-#: ../src/f-spot.glade.h:254
+#: ../src/f-spot.glade.h:183
 msgid "_Photo"
 msgstr "_Foto"
 
-#: ../src/f-spot.glade.h:255
+#: ../src/f-spot.glade.h:184
 msgid "_Quit"
 msgstr "_Välju"
 
-#: ../src/f-spot.glade.h:256
+#: ../src/f-spot.glade.h:185
 msgid "_Ratings"
 msgstr "_Hinnang"
 
-#: ../src/f-spot.glade.h:258
+#: ../src/f-spot.glade.h:187
 msgid "_Remove Tag From Selection"
 msgstr "_Eemalda valikust märksõna"
 
-#: ../src/f-spot.glade.h:259
+#: ../src/f-spot.glade.h:188
 msgid "_Rename Version"
 msgstr "_Nimeta versioon ümber"
 
-#: ../src/f-spot.glade.h:260
-#: ../extensions/FlickrExport/FlickrExport.glade.h:16
-#: ../extensions/FolderExport/FolderExport.glade.h:15
-#: ../extensions/GalleryExport/GalleryExport.glade.h:28
-#: ../extensions/PicasaWebExport/PicasaWebExport.glade.h:24
-#: ../extensions/SmugMugExport/SmugMugExport.glade.h:14
+#: ../src/f-spot.glade.h:189
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:17
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:17
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:20
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:24
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:14
 msgid "_Resize to: "
 msgstr "_Muuda suurust kuni:"
 
-#: ../src/f-spot.glade.h:262
+#: ../src/f-spot.glade.h:191
 msgid "_Saturation:"
 msgstr "_Värviküllastus:"
 
-#: ../src/f-spot.glade.h:263
+#: ../src/f-spot.glade.h:192
 msgid "_Scale photos to no larger than: "
 msgstr "Ära _suurenda fotosid suuremaks kui:"
 
-#: ../src/f-spot.glade.h:264
+#: ../src/f-spot.glade.h:193
 msgid "_Select Import Rolls..."
 msgstr "_Vali imporditavad filmirullid..."
 
-#: ../src/f-spot.glade.h:265
+#: ../src/f-spot.glade.h:194
 msgid "_Set Date Range..."
 msgstr "_Määra ajavahemik..."
 
-#: ../src/f-spot.glade.h:266
+#: ../src/f-spot.glade.h:195
 msgid "_Set Rating filter..."
 msgstr "_Määra hinnangufilter..."
 
-#: ../src/f-spot.glade.h:267
+#: ../src/f-spot.glade.h:196
 msgid "_Sharpen..."
 msgstr "_Teravustamine..."
 
-#: ../src/f-spot.glade.h:268
+#: ../src/f-spot.glade.h:197
 msgid "_Slideshow"
 msgstr "_Slaidiesitlus"
 
-#: ../src/f-spot.glade.h:269
+#: ../src/f-spot.glade.h:198
 msgid "_Small"
 msgstr "_Väike"
 
-#: ../src/f-spot.glade.h:270
+#: ../src/f-spot.glade.h:199
 msgid "_Strip metadata"
 msgstr "_Eemalda metaandmed"
 
-#: ../src/f-spot.glade.h:271
+#: ../src/f-spot.glade.h:200
 msgid "_Tag Icons"
 msgstr "_Märksõnade ikoonid"
 
-#: ../src/f-spot.glade.h:272
+#: ../src/f-spot.glade.h:201
 msgid "_Tag Name:"
 msgstr "_Märksõna nimi:"
 
-#: ../src/f-spot.glade.h:273
+#: ../src/f-spot.glade.h:202
 msgid "_Tags"
 msgstr "_Märksõnad"
 
-#: ../src/f-spot.glade.h:274
+#: ../src/f-spot.glade.h:203
 msgid "_Timeline"
 msgstr "_Ajajoon"
 
-#: ../src/f-spot.glade.h:275
+#: ../src/f-spot.glade.h:204
+msgid "_Tint:"
+msgstr "_Toon:"
+
+#: ../src/f-spot.glade.h:205
 msgid "_Toolbar"
 msgstr "_Tööriistariba"
 
-#: ../src/f-spot.glade.h:276
+#: ../src/f-spot.glade.h:206
 msgid "_Tools"
 msgstr "_Tööriistad"
 
-#: ../src/f-spot.glade.h:277
+#: ../src/f-spot.glade.h:207
 msgid "_URI:"
 msgstr "_URI:"
 
-#: ../src/f-spot.glade.h:278
+#: ../src/f-spot.glade.h:208
 msgid "_Untagged Photos"
 msgstr "_Märksõnadeta fotod"
 
-#: ../src/f-spot.glade.h:279
+#: ../src/f-spot.glade.h:209
 msgid "_Version"
 msgstr "_Versioon"
 
-#: ../src/f-spot.glade.h:280
+#: ../src/f-spot.glade.h:210
 msgid "_View"
 msgstr "_Vaade"
 
-#: ../src/f-spot.glade.h:281
+#: ../src/f-spot.glade.h:211
 msgid "_Virtual Filesystem"
 msgstr "_Virtuaalne failisüsteem"
 
 #. at, or after a date, or between dates
-#: ../src/f-spot.glade.h:284
+#: ../src/f-spot.glade.h:214
 msgid ""
 "at\n"
 "after\n"
@@ -3088,28 +2957,28 @@ msgstr ""
 "pärast\n"
 "vahemikus"
 
-#: ../src/f-spot.glade.h:287
+#: ../src/f-spot.glade.h:217
 msgid "difference:"
 msgstr "erinevus:"
 
-#: ../src/f-spot.glade.h:288
+#: ../src/f-spot.glade.h:218
 msgid "img_000.jpg"
 msgstr "img_000.jpg"
 
-#: ../src/f-spot.glade.h:289
+#: ../src/f-spot.glade.h:219
 msgid "min. Starting at {0}"
 msgstr "min. Alates {0}"
 
-#: ../src/f-spot.glade.h:291
-#: ../extensions/FlickrExport/FlickrExport.glade.h:18
-#: ../extensions/FolderExport/FolderExport.glade.h:17
-#: ../extensions/GalleryExport/GalleryExport.glade.h:31
-#: ../extensions/PicasaWebExport/PicasaWebExport.glade.h:26
-#: ../extensions/SmugMugExport/SmugMugExport.glade.h:16
+#: ../src/f-spot.glade.h:221
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:19
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:19
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:23
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:26
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:16
 msgid "pixels"
 msgstr "pikslit"
 
-#: ../src/f-spot.glade.h:292
+#: ../src/f-spot.glade.h:222
 msgid "x"
 msgstr "x"
 
@@ -3121,331 +2990,361 @@ msgstr "Näita slaidiesitlust F-Spotiga"
 msgid "F-Spot photos"
 msgstr "F-Spot fotoalbum"
 
-#: ../extensions/CDExport/CDExport.addin.xml.h:1
+#: ../extensions/Exporters/CDExport/CDExport.addin.xml.h:1
 msgid "_CD..."
 msgstr "_CD..."
 
-#: ../extensions/CDExport/CDExport.cs:219
+#: ../extensions/Exporters/CDExport/CDExport.cs:220
 #, csharp-format
 msgid "Transferring picture \"{0}\" To CD"
 msgstr "Pildi \"{0}\" edastamine plaadile"
 
-#: ../extensions/CDExport/CDExport.cs:246
-#: ../extensions/FlickrExport/FlickrExport.cs:368
-#: ../extensions/FolderExport/FolderExport.cs:249
-#: ../extensions/GalleryExport/GalleryExport.cs:769
-#: ../extensions/PicasaWebExport/PicasaWebExport.cs:702
-#: ../extensions/SmugMugExport/SmugMugExport.cs:605
+#: ../extensions/Exporters/CDExport/CDExport.cs:247
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:379
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:285
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:808
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:551
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:702
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:607
 msgid "Done Sending Photos"
 msgstr "Fotode saatmine lõpetatud"
 
-#: ../extensions/CDExport/CDExport.cs:248
-#: ../extensions/FolderExport/FolderExport.cs:251
+#: ../extensions/Exporters/CDExport/CDExport.cs:249
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:287
 msgid "Transfer Complete"
 msgstr "Edastamine lõpetatud"
 
-#: ../extensions/CDExport/CDExport.cs:255
-#: ../extensions/FolderExport/FolderExport.cs:256
+#: ../extensions/Exporters/CDExport/CDExport.cs:256
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:292
 msgid "Error While Transferring"
 msgstr "Viga edastamisel"
 
-#: ../extensions/CDExport/CDExport.cs:262
-#: ../extensions/FolderExport/FolderExport.cs:273
+#: ../extensions/Exporters/CDExport/CDExport.cs:263
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:311
 msgid "Error Transferring"
 msgstr "Edastamise viga"
 
-#: ../extensions/CDExport/CDExport.cs:280
+#: ../extensions/Exporters/CDExport/CDExport.cs:281
 msgid "copying..."
 msgstr "kopeerimine..."
 
-#: ../extensions/CDExport/CDExport.cs:296
-#: ../extensions/FolderExport/FolderExport.cs:295
+#: ../extensions/Exporters/CDExport/CDExport.cs:297
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:333
 msgid "Error: Error while transferring; Aborting"
 msgstr "Viga: viga faili edastamisel; katkestatud"
 
-#: ../extensions/CDExport/CDExport.cs:299
-#: ../extensions/FolderExport/FolderExport.cs:298
+#: ../extensions/Exporters/CDExport/CDExport.cs:300
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:336
 msgid "Error: File Already Exists; Aborting"
 msgstr "Viga: fail on juba olemas; katkestatud"
 
-#: ../extensions/CDExport/CDExport.glade.h:1
+#: ../extensions/Exporters/CDExport/CDExport.glade.h:1
 msgid "<b><i>There is some previously scheduled items to write</i></b>"
 msgstr "<b><i>Varem valmis pandud kirjed ootavad kirjutamist</i></b>"
 
-#: ../extensions/CDExport/CDExport.glade.h:2
+#: ../extensions/Exporters/CDExport/CDExport.glade.h:2
 msgid "<b>Photos to Burn</b>"
 msgstr "<b>Fotod plaadile kirjutamiseks</b>"
 
-#: ../extensions/CDExport/CDExport.glade.h:4
+#: ../extensions/Exporters/CDExport/CDExport.glade.h:4
 msgid "Create CD"
 msgstr "Loo CD"
 
-#: ../extensions/CDExport/CDExport.glade.h:5
-msgid "Size"
-msgstr "Suurus"
-
-#: ../extensions/CDExport/CDExport.glade.h:6
-msgid "Size of the exported selection :"
+#: ../extensions/Exporters/CDExport/CDExport.glade.h:6
+msgid "Size of the exported selection:"
 msgstr "Eksporditud valiku suurus:"
 
-#: ../extensions/CDExport/CDExport.glade.h:7
+#: ../extensions/Exporters/CDExport/CDExport.glade.h:7
 msgid "_Browse Previously Scheduled Files"
 msgstr "_Lehitse eelnevalt valmis pandud faile"
 
-#: ../extensions/CDExport/CDExport.glade.h:8
+#: ../extensions/Exporters/CDExport/CDExport.glade.h:8
 msgid "_Write only these photos to CD"
 msgstr "_Kirjuta ainult need fotod plaadile"
 
-#: ../extensions/FlickrExport/FlickrExport.addin.xml.h:1
+#: ../extensions/Exporters/FlickrExport/FlickrExport.addin.xml.h:1
 msgid "_23hq..."
 msgstr "_23hq..."
 
-#: ../extensions/FlickrExport/FlickrExport.addin.xml.h:2
+#: ../extensions/Exporters/FlickrExport/FlickrExport.addin.xml.h:2
 msgid "_Flickr..."
 msgstr "_Flickr..."
 
-#: ../extensions/FlickrExport/FlickrExport.cs:97
-#: ../extensions/FlickrExport/FlickrExport.glade.h:5
+#: ../extensions/Exporters/FlickrExport/FlickrExport.addin.xml.h:3
+msgid "_Zooomr..."
+msgstr "_Zooomr..."
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:105
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:5
 msgid "Authorize"
 msgstr "Autoriseeri"
 
-#: ../extensions/FlickrExport/FlickrExport.cs:103
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:111
 #, csharp-format
 msgid "Return to this window after you have finished the authorization process on {0} and click the \"Complete Authorization\" button below"
 msgstr "Pärast autoriseerimisprotsessi lõpetamist serveris {0} naase siia aknasse ja kliki allpool asuval nupul \"Autoriseerimise lõpetamine\""
 
-#: ../extensions/FlickrExport/FlickrExport.cs:104
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:112
 msgid "Complete Authorization"
 msgstr "Autoriseerimise lõpetamine"
 
-#: ../extensions/FlickrExport/FlickrExport.cs:109
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:117
 #, csharp-format
 msgid "Logging into {0}"
 msgstr "Sisselogimine {0}"
 
-#: ../extensions/FlickrExport/FlickrExport.cs:110
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:118
 msgid "Checking credentials..."
 msgstr "Tunnistuse kontroll..."
 
-#: ../extensions/FlickrExport/FlickrExport.cs:117
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:125
 #, csharp-format
 msgid "Welcome {0} you are connected to {1}"
 msgstr "Tere {0}, oled ühendatud masinaga {1}"
 
-#: ../extensions/FlickrExport/FlickrExport.cs:120
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:128
 #, csharp-format
 msgid "Sign in as a different user"
 msgstr "Logi sisse teise kasutajana"
 
-#: ../extensions/FlickrExport/FlickrExport.cs:123
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:133
 #, csharp-format
 msgid "Used {0} of your allowed {1} monthly quota"
 msgstr "Igakuisest kvoodist {1} on kasutusel {0}"
 
-#: ../extensions/FlickrExport/FlickrExport.cs:286
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:297
 msgid "Unable to log on"
 msgstr "Sisselogimine ei õnnestu"
 
-#: ../extensions/FlickrExport/FlickrExport.cs:306
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:317
 #, csharp-format
 msgid "Waiting for response {0} of {1}"
 msgstr "Vastuse ootamine {0} / {1}"
 
-#: ../extensions/FlickrExport/FlickrExport.cs:333
-#: ../extensions/FolderExport/FolderExport.cs:215
-#: ../extensions/GalleryExport/GalleryExport.cs:740
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:344
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:242
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:779
 #, csharp-format
 msgid "Uploading picture \"{0}\""
 msgstr "Pildi \"{0}\" üleslaadimine"
 
-#: ../extensions/FlickrExport/FlickrExport.cs:356
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:367
 #, csharp-format
 msgid "Error Uploading To {0}: {1}"
 msgstr "Viga üleslaadimisel serverisse {0}: {1}"
 
-#: ../extensions/FlickrExport/FlickrExport.cs:370
-#: ../extensions/GalleryExport/GalleryExport.cs:771
-#: ../extensions/PicasaWebExport/PicasaWebExport.cs:704
-#: ../extensions/SmugMugExport/SmugMugExport.cs:607
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:381
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:810
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:553
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:704
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:609
 msgid "Upload Complete"
 msgstr "Üleslaadimine lõpetatud"
 
-#: ../extensions/FlickrExport/FlickrExport.cs:438
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:454
 msgid "Unable to log on."
 msgstr "Sisselogimine ei õnnestu."
 
-#: ../extensions/FlickrExport/FlickrExport.cs:439
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:455
 #, csharp-format
 msgid "F-Spot was unable to log on to {0}.  Make sure you have given the authentication using {0} web browser interface."
 msgstr "F-Spot ei saa logida serverisse {0}. Palun veendu {0} veebilehitseja abil, et sind on autenditud."
 
-#: ../extensions/FlickrExport/FlickrExport.cs:459
-#: ../extensions/GalleryExport/GalleryExport.cs:693
-#: ../extensions/PicasaWebExport/PicasaWebExport.cs:598
-#: ../extensions/SmugMugExport/SmugMugExport.cs:523
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:475
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:732
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:477
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:598
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:522
 msgid "Uploading Pictures"
 msgstr "Piltide üleslaadimine"
 
-#: ../extensions/FlickrExport/FlickrExport.glade.h:4
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:4
 msgid "<b>Viewing permissions</b>"
 msgstr "<b>Vaatamise õigused</b>"
 
-#: ../extensions/FlickrExport/FlickrExport.glade.h:7
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:7
 msgid "Export tag _hierarchy"
 msgstr "_Ekspordi märksõnade hierarhia"
 
-#: ../extensions/FlickrExport/FlickrExport.glade.h:8
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:8
 msgid "F-Spot needs your authorization in order to upload photos to your {0} account. Press the \"Authorize\" button to open a web browser and give F-Spot the authorization. "
 msgstr "Fotosde {0} kontole üles laadimiseks tuleb F-Spot autoriseerida. Vajuta nuppu \"Autoriseerimine\", et avada veebisirvija ja autoriseerida F-Spot."
 
-#: ../extensions/FlickrExport/FlickrExport.glade.h:9
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:9
 msgid "Ignore _top level tags"
 msgstr "Ignoreeri kõige ülemise taseme märksõnu"
 
-#: ../extensions/FlickrExport/FlickrExport.glade.h:10
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:10
 msgid "Private"
 msgstr "Isiklik"
 
-#: ../extensions/FlickrExport/FlickrExport.glade.h:11
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:11
 msgid "Public"
 msgstr "Avalik"
 
-#: ../extensions/FlickrExport/FlickrExport.glade.h:12
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:12
 msgid "Strip _metadata"
 msgstr "Eemalda _metaandmed"
 
-#: ../extensions/FlickrExport/FlickrExport.glade.h:13
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:13
 msgid "Visible to Family"
 msgstr "Nähtav perele"
 
-#: ../extensions/FlickrExport/FlickrExport.glade.h:14
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:14
 msgid "Visible to Friends"
 msgstr "Nähtav sõpradele"
 
-#: ../extensions/FlickrExport/FlickrExport.glade.h:17
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:18
 msgid "_View photos in browser when done uploading"
 msgstr "Kui üleslaadimine on valmis, kuva fotod veebilehitsejas"
 
-#: ../extensions/FolderExport/FolderExport.addin.xml.h:1
+#: ../extensions/Exporters/FolderExport/FolderExport.addin.xml.h:1
 msgid "F_older..."
 msgstr "_Asukoht..."
 
-#: ../extensions/FolderExport/FolderExport.cs:132
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:140
 msgid "Select Export Folder"
 msgstr "Vali eksportimise kaust"
 
-#: ../extensions/FolderExport/FolderExport.cs:177
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:198
 msgid "Building Gallery"
 msgstr "Galerii loomine"
 
-#: ../extensions/FolderExport/FolderExport.cs:221
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:248
 #, csharp-format
 msgid "Error uploading picture \"{0}\" to Gallery:{2}{1}"
 msgstr "Viga pildi \"{0}\" üleslaadimisel Gallery'sse:{2}{1}"
 
-#: ../extensions/FolderExport/FolderExport.cs:739
+#. Note for translators: light as clear, opposite as dark
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:810
 msgid "Light"
 msgstr "Hele"
 
-#: ../extensions/FolderExport/FolderExport.cs:740
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:811
 msgid "Dark"
 msgstr "Tume"
 
 #. Abbreviation of previous
-#: ../extensions/FolderExport/FolderExport.cs:883
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:991
 msgid "Prev"
 msgstr "Eelmine"
 
-#: ../extensions/FolderExport/FolderExport.cs:941
-#: ../extensions/FolderExport/FolderExport.cs:1114
-msgid "Show Styles"
-msgstr "Näita stiile"
-
-#: ../extensions/FolderExport/FolderExport.cs:942
-#: ../extensions/FolderExport/FolderExport.cs:1115
-msgid "Hide Styles"
-msgstr "Peida stiilid"
-
-#: ../extensions/FolderExport/FolderExport.cs:999
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:1103
 msgid "Gallery generated by"
 msgstr "Galerii genereeris"
 
-#: ../extensions/FolderExport/FolderExport.cs:1044
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:1143
+msgid "Show Styles"
+msgstr "Näita stiile"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:1144
+msgid "Hide Styles"
+msgstr "Peida stiilid"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:1311
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:1444
 msgid "Page:"
 msgstr "Leht:"
 
-#: ../extensions/FolderExport/FolderExport.glade.h:1
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:1
 msgid "\n"
 msgstr "\n"
 
-#: ../extensions/FolderExport/FolderExport.glade.h:4
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:4
 msgid "<b>Export Method</b>"
 msgstr "<b>Eksportimise meetod</b>"
 
-#: ../extensions/FolderExport/FolderExport.glade.h:8
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:8
 msgid "Create _gallery using \"Original\""
 msgstr "Loo \"Original\" _galerii"
 
-#: ../extensions/FolderExport/FolderExport.glade.h:9
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:9
 msgid "Create standalone _web gallery"
 msgstr "Eraldiseisva _veebigalerii loomine"
 
-#: ../extensions/FolderExport/FolderExport.glade.h:10
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:10
 msgid "D_escription:"
 msgstr "_Kirjeldus:"
 
-#: ../extensions/FolderExport/FolderExport.glade.h:11
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:11
+msgid "Export _tags"
+msgstr "Ekspordi _märksõnad"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:12
+msgid "Export tag _icons"
+msgstr "Ekspordi märksõnade _ikoonid"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:13
 msgid "Folder Export"
 msgstr "Kausta eksportimine"
 
-#: ../extensions/FolderExport/FolderExport.glade.h:12
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:14
 msgid "G_allery Name:"
 msgstr "Galerii _nimi:"
 
-#: ../extensions/FolderExport/FolderExport.glade.h:13
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:15
 msgid "Open _destination when done exporting"
 msgstr "_Sihtkausta avamine pärast eksportimise lõppemist"
 
-#: ../extensions/FolderExport/FolderExport.glade.h:14
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:16
 msgid "_Folder:"
 msgstr "_Asukoht:"
 
-#: ../extensions/FolderExport/FolderExport.glade.h:16
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:18
 msgid "_Save the files only"
 msgstr "_Salvesta ainult failid"
 
-#: ../extensions/GalleryExport/GalleryExport.addin.xml.h:1
+#: ../extensions/Exporters/GalleryExport/GalleryExport.addin.xml.h:1
 msgid "Web _Gallery..."
 msgstr "Veebi_galerii..."
 
-#: ../extensions/GalleryExport/GalleryExport.cs:384
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:52
+msgid ""
+"Cannot connect to a Gallery for which the version is unknown.\n"
+"Please check that you have Remote plugin 1.0.8 or later"
+msgstr ""
+"Ei saa ühenduda Gallery'ga, mille versioon pole teada.\n"
+"Veendu, et sul on Kaugplugina versioon on 1.0.8 või uuem"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:393
 msgid "Invalid URL"
 msgstr "Vigane URL"
 
-#: ../extensions/GalleryExport/GalleryExport.cs:385
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:394
 msgid "The gallery URL entry does not appear to be a valid URL"
 msgstr "Galerii URL ei ole sobiv"
 
-#: ../extensions/GalleryExport/GalleryExport.cs:395
-#: ../extensions/GalleryExport/GalleryExport.cs:410
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:404
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:431
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:442
 msgid "Error while connecting to Gallery"
 msgstr "Viga galeriiga ühendumisel"
 
-#: ../extensions/GalleryExport/GalleryExport.cs:396
-#: ../extensions/GalleryExport/GalleryExport.cs:411
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:405
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:432
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:443
 #, csharp-format
 msgid "The following error was encountered while attempting to log in: {0}"
 msgstr "Sisselogimiskatsel esines järgnev viga: {0}"
 
-#: ../extensions/GalleryExport/GalleryExport.cs:497
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:419
+msgid "A Gallery with this name already exists"
+msgstr "Sellenimeline galerii on juba olemas"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:420
+#, csharp-format
+msgid "There is already a Gallery with the same name in your registered Galleries. Please choose a unique name."
+msgstr "Registreeritud galeriide hulgas juba on selle nimega galerii. Vali unikaalne nimi."
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:530
 msgid "(TopLevel)"
 msgstr "(Kõrgeim tase)"
 
-#: ../extensions/GalleryExport/GalleryExport.cs:559
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:592
 msgid "Invalid Gallery name"
 msgstr "Galerii nimi sobimatu"
 
-#: ../extensions/GalleryExport/GalleryExport.cs:560
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:593
 msgid ""
 "The gallery name contains invalid characters.\n"
 "Only letters, numbers, - and _ are allowed"
@@ -3453,179 +3352,383 @@ msgstr ""
 "Galerii nimi sisaldab sobimatuid tähemärke.\n"
 "Lubatud on ainult tähed, numbrid, - ja _"
 
-#: ../extensions/GalleryExport/GalleryExport.cs:759
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:798
 #, csharp-format
 msgid "Error uploading picture \"{0}\" to Gallery: {1}"
 msgstr "Viga pildi \"{0}\" üleslaadimisel Gallery'sse: {1}"
 
-#: ../extensions/GalleryExport/GalleryExport.cs:787
-#: ../extensions/PicasaWebExport/PicasaWebExport.cs:725
-#: ../extensions/SmugMugExport/SmugMugExport.cs:628
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:826
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:725
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:630
 msgid "(No Gallery)"
 msgstr "(Galeriisid pole)"
 
-#: ../extensions/GalleryExport/GalleryExport.cs:874
-#: ../extensions/PicasaWebExport/PicasaWebExport.cs:852
-#: ../extensions/SmugMugExport/SmugMugExport.cs:725
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:918
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:852
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:726
 msgid "(Not Connected)"
 msgstr "(Pole ühendatud)"
 
-#: ../extensions/GalleryExport/GalleryExport.cs:875
-#: ../extensions/PicasaWebExport/PicasaWebExport.cs:853
-#: ../extensions/SmugMugExport/SmugMugExport.cs:726
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:919
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:853
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:727
 msgid "(No Albums)"
 msgstr "(Albumeid pole)"
 
-#: ../extensions/GalleryExport/GalleryExport.cs:927
-#: ../extensions/PicasaWebExport/PicasaWebExport.cs:912
-#: ../extensions/SmugMugExport/SmugMugExport.cs:767
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:971
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:915
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:768
 msgid "No account selected"
 msgstr "Konto pole valitud"
 
-#: ../extensions/GalleryExport/GalleryExport.glade.h:5
-#: ../extensions/PicasaWebExport/PicasaWebExport.glade.h:5
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:5
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:5
 msgid "<span weight='bold' size='larger'>Error Connecting to Gallery</span>\n"
 msgstr "<span weight='bold' size='larger'>Viga Gallery'ga ühendumisel</span>\n"
 
-#: ../extensions/GalleryExport/GalleryExport.glade.h:7
-#: ../extensions/PicasaWebExport/PicasaWebExport.glade.h:7
-msgid "<span weight='bold' size='larger'>Your Google Account is locked</span>\n"
-msgstr "<span weight='bold' size='larger'>Sinu Google konto on lukustatud</span>\n"
-
-#: ../extensions/GalleryExport/GalleryExport.glade.h:11
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:9
 msgid "Export _titles and comments"
 msgstr "_Pealkirjade ja kommentaaride eksportimine"
 
-#: ../extensions/GalleryExport/GalleryExport.glade.h:12
-#: ../extensions/PicasaWebExport/PicasaWebExport.glade.h:10
-#: ../extensions/SmugMugExport/SmugMugExport.glade.h:7
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:10
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:10
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:7
 msgid "Open _album in browser when done uploading"
 msgstr "Kui üleslaadimine on lõpetatud avatakse _album veebilehitsejas"
 
-#: ../extensions/GalleryExport/GalleryExport.glade.h:13
-#: ../extensions/PicasaWebExport/PicasaWebExport.glade.h:11
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:11
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:11
 msgid "Please verify that the settings for this gallery are correct."
 msgstr "Palun veendu, et selle galerii sätted on õiged."
 
-#: ../extensions/GalleryExport/GalleryExport.glade.h:14
-#: ../extensions/PicasaWebExport/PicasaWebExport.glade.h:12
-msgid ""
-"Please verify that the settings for this gallery are correct.\n"
-"Enter the letters as they are shown in the image in\n"
-"the 'Captcha' field. <i>Letters are not case-sensitive</i>"
-msgstr ""
-"Palun veendu, et selle galerii sätted on õiged.\n"
-"Sisesta tähed, nagu need on 'Captcha' pildil. <i>Tähed ei ole tõstutundlikud.</i>"
-
-#: ../extensions/GalleryExport/GalleryExport.glade.h:17
-#: ../extensions/PicasaWebExport/PicasaWebExport.glade.h:15
-#: ../extensions/SmugMugExport/SmugMugExport.glade.h:8
-msgid "Public Album"
-msgstr "Avalik album"
-
-#: ../extensions/GalleryExport/GalleryExport.glade.h:18
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:12
 msgid "U_RL:"
 msgstr "U_RL:"
 
-#: ../extensions/GalleryExport/GalleryExport.glade.h:19
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:13
 msgid "_Album Name:"
 msgstr "_Albumi nimi:"
 
-#: ../extensions/GalleryExport/GalleryExport.glade.h:20
-#: ../extensions/PicasaWebExport/PicasaWebExport.glade.h:16
-#: ../extensions/SmugMugExport/SmugMugExport.glade.h:10
-msgid "_Album Title:"
-msgstr "_Albumi pealkiri:"
-
-#: ../extensions/GalleryExport/GalleryExport.glade.h:21
-#: ../extensions/PicasaWebExport/PicasaWebExport.glade.h:18
-msgid "_Captcha:"
-msgstr "_Captcha:"
-
-#: ../extensions/GalleryExport/GalleryExport.glade.h:22
-#: ../extensions/PicasaWebExport/PicasaWebExport.glade.h:19
-#: ../extensions/SmugMugExport/SmugMugExport.glade.h:11
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:14
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:19
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:11
 msgid "_Description:"
 msgstr "Kirjel_dus:"
 
-#: ../extensions/GalleryExport/GalleryExport.glade.h:24
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:16
 msgid "_Gallery Name:"
 msgstr "Galerii _nimi:"
 
-#: ../extensions/GalleryExport/GalleryExport.glade.h:25
-#: ../extensions/PicasaWebExport/PicasaWebExport.glade.h:22
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:17
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:22
 msgid "_Gallery:"
 msgstr "_Galerii:"
 
-#: ../extensions/GalleryExport/GalleryExport.glade.h:26
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:18
 msgid "_Parent Album:"
-msgstr "Ülemine _album:"
+msgstr "Ema_album:"
 
-#: ../extensions/GalleryExport/GalleryExport.glade.h:27
-#: ../extensions/PicasaWebExport/PicasaWebExport.glade.h:23
-#: ../extensions/SmugMugExport/SmugMugExport.glade.h:13
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:19
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:23
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:13
+#: ../extensions/Exporters/TabbloExport/TabbloExport.glade.h:4
 msgid "_Password:"
 msgstr "_Parool:"
 
-#: ../extensions/GalleryExport/GalleryExport.glade.h:29
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:21
 msgid "_Title:"
 msgstr "_Pealkiri:"
 
-#: ../extensions/GalleryExport/GalleryExport.glade.h:30
-#: ../extensions/PicasaWebExport/PicasaWebExport.glade.h:25
-#: ../extensions/SmugMugExport/SmugMugExport.glade.h:15
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:22
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:25
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:15
+#: ../extensions/Exporters/TabbloExport/TabbloExport.glade.h:5
 msgid "_Username:"
 msgstr "_Kasutajanimi:"
 
-#: ../extensions/GalleryExport/GalleryRemote.cs:357
+#: ../extensions/Exporters/GalleryExport/GalleryRemote.cs:361
 msgid "Error reading server response"
 msgstr "Viga serveri vastuse lugemisel"
 
 #. failed to find the response
-#: ../extensions/GalleryExport/GalleryRemote.cs:369
+#: ../extensions/Exporters/GalleryExport/GalleryRemote.cs:373
 msgid "Server returned response without Gallery content"
 msgstr "Serveri vastus ei sisalda Gallery infot"
 
-#: ../extensions/PicasaWebExport/PicasaWebExport.addin.xml.h:1
-msgid "_PicasaWeb..."
-msgstr "_PicasaWeb..."
-
-#: ../extensions/PicasaWebExport/PicasaWebExport.cs:441
-msgid "Error while creating Album"
+#: ../extensions/Exporters/GalleryExport/GalleryRemote.cs:710
+msgid "Error while creating new album"
 msgstr "Viga albumi loomisel"
 
-#: ../extensions/PicasaWebExport/PicasaWebExport.cs:442
+#: ../extensions/Exporters/GalleryExport/GalleryRemote.cs:711
 #, csharp-format
-msgid "The following error was encountered while attempting to create an album: {0}"
-msgstr "Albumi loomise katsel esines järgnev viga: {0}"
+msgid ""
+"The following error was encountered while attempting to perform the requested operation:\n"
+"{0} ({1})"
+msgstr ""
+"Nõutud operatsiooni teostamise katsel esines järgnev viga:\n"
+"{0} ({1})"
 
-#: ../extensions/PicasaWebExport/PicasaWebExport.cs:621
+#: ../extensions/Exporters/FacebookExport/FacebookExport.addin.xml.h:1
+msgid "F_acebook..."
+msgstr "F_acebook..."
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:257
+msgid "Too many images to export"
+msgstr "Eksportimiseks liiga palju pilte"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:257
+msgid "Facebook only permits 60 photographs per album.  Please refine your selection and try again."
+msgstr "Facebook võimaldab ainult 60 fotot albumi kohta. Muuda valikut ja proovi uuesti."
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:281
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:367
+msgid "You are not logged in."
+msgstr "Sa ei ole sisse logitud."
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:322
+msgid "Waiting for authentication"
+msgstr "Autentimise järel ootamine"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:322
+msgid "F-Spot will now launch your browser so that you can log into Facebook.  Turn on the \"Save my login information\" checkbox on Facebook and F-Spot will log into Facebook automatically from now on."
+msgstr "F-Spot käivitab nüüd veebibrauseri, milles saad Facebook'i sisse logida. Luba Facebook'is \"Save my login information\" ja edaspidi logib F-Spot automaatselt sisse."
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:328
+msgid "Error logging into Facebook"
+msgstr "Viga Facebook'i sisselogimisel"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:328
+msgid "There was a problem logging into Facebook.  Check your credentials and try again."
+msgstr "Facebook'i sisselogimisel ei õnnestunud. Kontrolli parooli ja proovi uuesti."
+
+#. Note for translators: {0} and {1} are respectively firstname and surname of the user
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:341
 #, csharp-format
-msgid "{0} Sent"
-msgstr "{0} saadetud"
+msgid "{0} {1} is logged into Facebook"
+msgstr "{0} {1} on Facebook'i sisse logitud"
 
-#: ../extensions/PicasaWebExport/PicasaWebExport.cs:623
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:491
+msgid "Album must have a name"
+msgstr "Albumil peab olema nimi"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:491
+msgid "Please name your album or choose an existing album."
+msgstr "Nimeta album või vali olemasolev album"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:504
+msgid "Creating a new album failed"
+msgstr "Uue albumi loomine nurjus"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:504
 #, csharp-format
-msgid "{0} of approx. {1}"
-msgstr "{0} arvestuslikust {1}-st"
+msgid ""
+"An error occurred creating a new album.\n"
+"\n"
+"{0}"
+msgstr ""
+"Uue albumi loomisel esines viga.\n"
+"\n"
+"{0}"
 
-#: ../extensions/PicasaWebExport/PicasaWebExport.cs:661
-#: ../extensions/SmugMugExport/SmugMugExport.cs:566
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:528
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:661
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:565
 #, csharp-format
 msgid "Uploading picture \"{0}\" ({1} of {2})"
 msgstr "Pildi \"{0}\" üleslaadimine. ({1} {2}-st)"
 
-#: ../extensions/PicasaWebExport/PicasaWebExport.cs:692
-#: ../extensions/SmugMugExport/SmugMugExport.cs:595
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:542
+#, csharp-format
+msgid "Error Uploading To Facebook: {0}"
+msgstr "Viga Facebook'i üleslaadimisel: {0}"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.glade.h:1
+msgid "Caption"
+msgstr "Allkiri"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.glade.h:2
+msgid "Create a new album"
+msgstr "Loo uus album"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.glade.h:3
+msgid "Description"
+msgstr "Kirjeldus"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.glade.h:4
+msgid "Export to Facebook"
+msgstr "Ekspordi Facebook'i"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.glade.h:5
+msgid "In this photo"
+msgstr "Sellel fotol"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.glade.h:7
+msgid "Login"
+msgstr "Sisselogimine"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.glade.h:8
+msgid "Logout"
+msgstr "Väljalogimine"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.glade.h:10
+msgid "This is who I am"
+msgstr "Selline ma olengi"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.glade.h:11
+msgid "Use an existing album"
+msgstr "Kasuta olemasolevat albumit"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.glade.h:12
+msgid "Who is this?"
+msgstr "Kes see on?"
+
+#: ../extensions/Exporters/ZipExport/ZipExport.addin.xml.h:1
+msgid "Compressed fil_e..."
+msgstr "Tihendatud _fail..."
+
+#: ../extensions/Exporters/ZipExport/ZipExport.cs:47
+msgid "This tool requires an active selection. Please select one or more pictures and try again"
+msgstr "See tööriist vajab aktiivset märgistust. Vali vähemalt üks pilt ja proovi uuesti"
+
+#: ../extensions/Exporters/ZipExport/ZipExport.cs:63
+msgid "Select export folder"
+msgstr "Vali eksportimise kaust"
+
+#: ../extensions/Exporters/ZipExport/ZipExport.cs:101
+msgid "Exporting files"
+msgstr "Failide eksportimine"
+
+#: ../extensions/Exporters/ZipExport/ZipExport.cs:107
+#, csharp-format
+msgid "Preparing photo \"{0}\""
+msgstr "Foto \"{0}\" ettevalmistamine"
+
+#: ../extensions/Exporters/ZipExport/ZipExport.glade.h:2
+msgid "_File name:"
+msgstr "_Faili nimi:"
+
+#: ../extensions/Exporters/ZipExport/ZipExport.glade.h:3
+msgid "_Location:"
+msgstr "_Asukoht:"
+
+#: ../extensions/Exporters/ZipExport/ZipExport.glade.h:4
+msgid "_Scale:"
+msgstr "_Skaala:"
+
+#: ../extensions/Tools/MergeDb/MergeDb.addin.xml.h:1
+msgid "Merge Db"
+msgstr "Ühenda andmebaasid"
+
+#: ../extensions/Tools/MergeDb/MergeDb.cs:73
+msgid "Error opening the selected file"
+msgstr "Viga valitud faili avamisel"
+
+#: ../extensions/Tools/MergeDb/MergeDb.cs:74
+#, csharp-format
+msgid ""
+"The file you selected is not a valid or supported database.\n"
+"\n"
+"Received exception \"{0}\"."
+msgstr ""
+"Valitud fail ei ole sobiv ega toetatud andmebaas.\n"
+"\n"
+"Saadi erand \"{0}\"."
+
+#: ../extensions/Tools/MergeDb/MergeDb.glade.h:1
+msgid "<small><i>Choose the location of the database you want to import from</i></small>"
+msgstr "<small><i>Vali andmebaasi asukoht, millest sa tahad pilte importida</i></small>"
+
+#: ../extensions/Tools/MergeDb/MergeDb.glade.h:2
+msgid ""
+"<small><i>Choose what to import from the selected db.\n"
+"\"New Rolls Only\" is the smart option that will avoid re-importing photos you could have imported during a previous operation.\n"
+"\"A Single Import Roll\" let you choose which roll you want to merge back.\n"
+"\"Everything\" will import everything, creating duplicates if you already imported from that database.</i></small>"
+msgstr ""
+"<small><i>Vali mida andmebaasist importida.\n"
+"\"Ainult uued rullid\" on nutikas valik, mis hoidub varem imporditud fotode uuesti importimisest.\n"
+"\"Üksainus rull\" laseb sul valida millist rulli sa tahad tagasi liita.\n"
+"\"Kõik\" impordib kõik, luues duplikaadid, kui sa oled sellest andmebaasist juba importinud.</i></small>"
+
+#: ../extensions/Tools/MergeDb/MergeDb.glade.h:6
+msgid "<small><i>Copy the images locally or keep them where they are. If you chose the later, be sure that this location will stay accessible from f-spot.</i></small>"
+msgstr "<small><i>Kopeeri pildid või jäta need esialgsesse asukohta. Viimase valimisel  veendu, et asukoht jääb f-spotile kättseaadavaks.</i></small>"
+
+#: ../extensions/Tools/MergeDb/MergeDb.glade.h:7
+msgid "A Single Import Roll"
+msgstr "Üks importrull"
+
+#: ../extensions/Tools/MergeDb/MergeDb.glade.h:8
+msgid "Copy images to photos folder"
+msgstr "Kopeeri failid piltide kausta"
+
+#: ../extensions/Tools/MergeDb/MergeDb.glade.h:9
+msgid "Database Location:"
+msgstr "Andmebaasi asukoht:"
+
+#: ../extensions/Tools/MergeDb/MergeDb.glade.h:10
+msgid "Everything"
+msgstr "Kõik"
+
+#: ../extensions/Tools/MergeDb/MergeDb.glade.h:11
+msgid "Import:"
+msgstr "Impordi:"
+
+#: ../extensions/Tools/MergeDb/MergeDb.glade.h:12
+msgid "Keep the images at their original location"
+msgstr "Jäta pildid nende esialgsesse asukohta"
+
+#: ../extensions/Tools/MergeDb/MergeDb.glade.h:13
+msgid "Merge another f-spot collection"
+msgstr "Liida praegusega teine f-spoti kollektsioon"
+
+#: ../extensions/Tools/MergeDb/MergeDb.glade.h:14
+msgid "New Rolls Only"
+msgstr "Ainult uued rullid"
+
+#: ../extensions/Tools/MergeDb/PickFolderDialog.cs:33
+#, csharp-format
+msgid ""
+"<big>The database refers to files contained in the <b>{0}</b> folder.\n"
+" Please select that folder so I can do the mapping.</big>"
+msgstr ""
+"<big>Andmebaas viitab failidele kataloogis <b>{0}</b>\n"
+"Palun vali see kataloog, et kirjed saaks sellega seostada.</big>"
+
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.addin.xml.h:1
+msgid "_PicasaWeb..."
+msgstr "_PicasaWeb..."
+
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:441
+msgid "Error while creating Album"
+msgstr "Viga albumi loomisel"
+
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:442
+#, csharp-format
+msgid "The following error was encountered while attempting to create an album: {0}"
+msgstr "Albumi loomise katsel esines järgnev viga: {0}"
+
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:621
+#, csharp-format
+msgid "{0} Sent"
+msgstr "{0} saadetud"
+
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:623
+#, csharp-format
+msgid "{0} of approx. {1}"
+msgstr "{0} arvestuslikust {1}-st"
+
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:692
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:594
 #, csharp-format
 msgid "Error Uploading To Gallery: {0}"
 msgstr "Viga galeriisse \"{0}\" üleslaadimisel."
 
-#: ../extensions/PicasaWebExport/PicasaWebExport.cs:776
-msgid "Available space :"
-msgstr "Saadaval olev ruum :"
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:776
+msgid "Available space:"
+msgstr "Saadavalolev ruum:"
 
-#: ../extensions/PicasaWebExport/PicasaWebExport.cs:890
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:893
 #, csharp-format
 msgid ""
 "<small>The selected album has a limit of {0} pictures,\n"
@@ -3634,100 +3737,111 @@ msgstr ""
 "<small>Valitud album on piiratud {0} pildiga,\n"
 "piirang ületataks praegu valitud piltide arvuga {1}.</small>"
 
-#: ../extensions/PicasaWebExport/PicasaWebExport.glade.h:3
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:3
 msgid "<b>PicasaWeb Export</b>"
 msgstr "<b>PicasaWeb eksport</b>"
 
-#: ../extensions/PicasaWebExport/PicasaWebExport.glade.h:17
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:7
+msgid "<span weight='bold' size='larger'>Your Google Account is locked</span>\n"
+msgstr "<span weight='bold' size='larger'>Sinu Google konto on lukustatud</span>\n"
+
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:12
+msgid ""
+"Please verify that the settings for this gallery are correct.\n"
+"Enter the letters as they are shown in the image in\n"
+"the 'Captcha' field. <i>Letters are not case-sensitive</i>"
+msgstr ""
+"Palun veendu, et selle galerii sätted on õiged.\n"
+"Sisesta tähed, nagu need on 'Captcha' pildil. <i>Tähed ei ole tõstutundlikud.</i>"
+
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:15
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:8
+msgid "Public Album"
+msgstr "Avalik album"
+
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:16
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:10
+msgid "_Album Title:"
+msgstr "_Albumi pealkiri:"
+
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:17
 msgid "_Autorotate"
 msgstr "_Pööra automaatselt"
 
-#: ../extensions/PicasaWebExport/google-sharp/CaptchaException.cs:58
-msgid "url"
-msgstr "url"
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:18
+msgid "_Captcha:"
+msgstr "_Captcha:"
 
-#: ../extensions/PicasaWebExport/google-sharp/CaptchaException.cs:59
-msgid "token"
-msgstr "märk"
-
-#: ../extensions/PicasaWebExport/google-sharp/CaptchaException.cs:60
-msgid "captcha_url"
-msgstr "captcha_url"
-
-#: ../extensions/SmugMugExport/SmugMugExport.glade.h:3
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:3
 msgid "<b>SmugMug Export</b>"
 msgstr "<b>SmugMug eksport</b>"
 
-#: ../extensions/SmugMugExport/SmugMugExport.glade.h:9
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:9
 msgid "_Account:"
 msgstr "_Konto:"
 
-#: ../extensions/SmugMugExport/SmugMugExport.addin.xml.h:1
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.addin.xml.h:1
 msgid "_SmugMug..."
 msgstr "_SmugMug..."
 
-#~ msgid "Add-in"
-#~ msgstr "Lisa"
-#~ msgid "Add-in Manager"
-#~ msgstr "Lisade haldaja"
-#~ msgid "F-Spot Add-in Manager"
-#~ msgstr "F-Spot lisade haldaja"
-#~ msgid "BMP"
-#~ msgstr "BMP"
-#~ msgid "GIF"
-#~ msgstr "GIF"
-#~ msgid "ICO"
-#~ msgstr "ICO"
-#~ msgid "JPEG"
-#~ msgstr "JPEG"
-#~ msgid "PNG"
-#~ msgstr "PNG"
-#~ msgid "PNM"
-#~ msgstr "PNM"
-#~ msgid "RAS"
-#~ msgstr "RAS"
-#~ msgid "SVG"
-#~ msgstr "SVG"
-#~ msgid "TGA"
-#~ msgstr "TGA"
-#~ msgid "TIFF"
-#~ msgstr "TIFF"
-#~ msgid "XBM"
-#~ msgstr "XBM"
-#~ msgid "XPM"
-#~ msgstr "XPM"
-#~ msgid "Unsupported file format."
-#~ msgstr "Toetamata failivorming."
-#~ msgid "Determine File Type:"
-#~ msgstr "Määra faili tüüp:"
-#~ msgid "Load Image"
-#~ msgstr "Laadi pildifail"
-#~ msgid "Save Image"
-#~ msgstr "Salvesta pilt"
-#~ msgid "Apply"
-#~ msgstr "Rakenda"
-#~ msgid "Attach Tag"
-#~ msgstr "Lisa märksõna"
-#~ msgid "Delete From Drive"
-#~ msgstr "Kustuta kettalt"
-#~ msgid "Remove From Catalog"
-#~ msgstr "Kustuta kataloogist"
-#~ msgid "Remove Tag"
-#~ msgstr "Eemalda märksõna"
+#: ../extensions/Exporters/TabbloExport/Tabblo/Connection.cs:126
+#, csharp-format
+msgid "Uploading photo \"{0}\""
+msgstr "Foto \"{0}\" üleslaadimine"
 
-#, fuzzy
-#~ msgid "Unsharp Mask"
-#~ msgstr "Ebaterav mask"
-#~ msgid " out of {0}"
-#~ msgstr "{0}-st"
-#~ msgid "Received error:{1}\"{0}\"{1}"
-#~ msgstr "Tekkis viga:{1}\"{0}\"{1}"
-#~ msgid "Help not found"
-#~ msgstr "Abifaile ei leitud"
-#~ msgid "Clea_r Date Range"
-#~ msgstr "_Puhasta andmeala"
-#~ msgid "Edit"
-#~ msgstr "Redigeerimine"
-#~ msgid "_File"
-#~ msgstr "_Fail"
+#: ../extensions/Exporters/TabbloExport/Tabblo/Connection.cs:181
+msgid "Logging into Tabblo"
+msgstr "Tabblo'sse sisselogimine"
+
+#: ../extensions/Exporters/TabbloExport/Tabblo/Connection.cs:241
+msgid "Obtaining URL for upload"
+msgstr "Üleslaadimiseks URL'i hankimine"
+
+#: ../extensions/Exporters/TabbloExport/TabbloExport.addin.xml.h:1
+msgid "_Tabblo..."
+msgstr "_Tabblo..."
+
+#: ../extensions/Exporters/TabbloExport/TabbloExport.cs:166
+msgid "Done sending photos"
+msgstr "Fotode saatmine lõpetatud"
+
+#: ../extensions/Exporters/TabbloExport/TabbloExport.cs:168
+msgid "Upload complete"
+msgstr "Üleslaadimine lõpetatud"
+
+#: ../extensions/Exporters/TabbloExport/TabbloExport.cs:174
+msgid "Error uploading to Tabblo: "
+msgstr "Viga Tabblo'sse üleslaadimisel:"
+
+#: ../extensions/Exporters/TabbloExport/TabbloExport.glade.h:2
+msgid "<b>Tabblo account</b>"
+msgstr "<b>Tabblo konto</b>"
+
+#: ../extensions/Exporters/TabbloExport/TrustError.glade.h:1
+msgid "<b>{0}</b>."
+msgstr "<b>{0}</b>."
+
+#: ../extensions/Exporters/TabbloExport/TrustError.glade.h:2
+msgid "A trust error occured while attempting to access"
+msgstr "Ühenduse loomist takistas usalduse puudus"
+
+#: ../extensions/Exporters/TabbloExport/TrustError.glade.h:3
+msgid "Abort this session"
+msgstr "Katkesta see sessioon"
+
+#: ../extensions/Exporters/TabbloExport/TrustError.glade.h:4
+msgid "Always trust this site's certificate"
+msgstr "Alati usalda selle lehekülje sertifikaati"
+
+#: ../extensions/Exporters/TabbloExport/TrustError.glade.h:5
+msgid "Do you wish to:"
+msgstr "Kas sa tahad:"
+
+#: ../extensions/Exporters/TabbloExport/TrustError.glade.h:6
+msgid "Trust Error"
+msgstr "Usaldus puudub"
+
+#: ../extensions/Exporters/TabbloExport/TrustError.glade.h:7
+msgid "Trust the site's certificate this once"
+msgstr "Usalda sel korral selle lehekülje sertifikaati"
 
