@@ -1,3 +1,9 @@
+2009-01-05  Gabriel Burt  <gabriel.burt@gmail.com>
+
+	* src/JobStore.cs:
+	* src/Updater.cs: Fix crash in upgrading db from version 3 to 
+	16 (BNC #462294)
+
 2009-01-05  Stephane Delcroix  <sdelcroix@novell.com>
 
 	* configure.in: adapt the version#, now that gio-sharp is build with

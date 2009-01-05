@@ -320,6 +320,8 @@ namespace FSpot.Database {
 							)
 				 );
 
+				 JobStore.CreateTable (db.Database);
+
 				 // This is kind of hacky but should be a lot faster on
 				 // large photo databases
 				 Execute (string.Format ("INSERT INTO jobs (job_type, job_options, run_at, job_priority) " +

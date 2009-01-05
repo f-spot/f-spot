@@ -86,9 +86,13 @@ public abstract class Job : DbItem, IJob
 
 public class JobStore : DbStore {
 	
-	private void CreateTable ()
+	internal static void CreateTable (QueuedSqliteDatabase database)
 	{
-		Database.ExecuteNonQuery (
+		if (database.TableExists ("jobs")) {
+			return;
+		}
+
+		database.ExecuteNonQuery (
 			"CREATE TABLE jobs (\n" +
 			"	id		INTEGER PRIMARY KEY NOT NULL, \n" +
 			"	job_type	TEXT NOT NULL, \n" +
@@ -199,7 +203,7 @@ public class JobStore : DbStore {
 	public JobStore (QueuedSqliteDatabase database, bool is_new) : base (database, true)
 	{
 		if (is_new || !Database.TableExists ("jobs")) {
-			CreateTable ();
+			CreateTable (database);
 		} else {
 			LoadAllItems ();
                 }
