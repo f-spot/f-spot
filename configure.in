@@ -82,7 +82,7 @@ CSC_DEFINES=""
 PKG_CHECK_MODULES(GNOME_SHARP, gnome-sharp-2.0 >= 2.8)
 
 dnl -- gio-sharp: link or bundle ?
-if pkg-config --atleast-version=2.16 gio-sharp-2.0; then
+if pkg-config --atleast-version=2.13.90 gio-sharp-2.0; then
 	LINK_GIO="-pkg:gio-sharp-2.0"
 	DIR_GIO=""
 	PATH_GIO=""

@@ -1,3 +1,8 @@
+2009-01-05  Stephane Delcroix  <sdelcroix@novell.com>
+
+	* configure.in: adapt the version#, now that gio-sharp is build with
+	gtk-sharp.
+
 2009-01-02  Stephane Delcroix  <sdelcroix@novell.com>
 
 	* src/main.cs: Log() errors instead of S.C.WL ().
