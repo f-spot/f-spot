@@ -3,7 +3,10 @@ set -e
 
 # This only upgrades the default database location
 # if you have specified a different location 
-DB_LOCATION=~/.gnome2/f-spot/photos.db
+if [ ! -n "$XDG_CONFIG_HOME" ]; then
+	XDG_CONFIG_HOME="$HOME/.config"
+fi
+DB_LOCATION="$XDG_CONFIG_HOME/f-spot/photos.db"
 BACKUP_LOCATION=$DB_LOCATION.backup
 DUMP_LOCATION=$DB_LOCATION.dump
 NEW_DB_LOCATION=$DB_LOCATION.new
