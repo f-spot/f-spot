@@ -1,3 +1,8 @@
+2009-01-06  Stephane Delcroix  <sdelcroix@novell.com>
+
+	* src/SingleView.cs: gray out the rotate buttons if there's no images.
+	Fixes bgo #566677.
+
 2009-01-06  Lorenzo Milesi  <maxxer@yetopen.it>
 	
 	* tools/f-spot-sqlite-upgrade: handle $XDG_CONFIG_HOME for db location

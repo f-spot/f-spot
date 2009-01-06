@@ -32,6 +32,11 @@ namespace FSpot {
 
 		[Glade.Widget] Label status_label;
 
+		[Glade.Widget] ImageMenuItem rotate_left;
+		[Glade.Widget] ImageMenuItem rotate_right;
+
+		ToolButton rr_button, rl_button;
+
 		Sidebar sidebar;
 
 		protected Glade.XML xml;
@@ -78,12 +83,12 @@ namespace FSpot {
 			Gtk.Toolbar toolbar = new Gtk.Toolbar ();
 			toolbar_hbox.PackStart (toolbar);
 		
-			ToolButton rl_button = GtkUtil.ToolButtonFromTheme ("object-rotate-left", Catalog.GetString ("Rotate Left"), true);
+			rl_button = GtkUtil.ToolButtonFromTheme ("object-rotate-left", Catalog.GetString ("Rotate Left"), true);
 			rl_button.Clicked += HandleRotate270Command;
 			rl_button.SetTooltip (toolTips, Catalog.GetString ("Rotate photo left"), null);
 			toolbar.Insert (rl_button, -1);
 
-			ToolButton rr_button = GtkUtil.ToolButtonFromTheme ("object-rotate-right", Catalog.GetString ("Rotate Right"), true);
+			rr_button = GtkUtil.ToolButtonFromTheme ("object-rotate-right", Catalog.GetString ("Rotate Right"), true);
 			rr_button.Clicked += HandleRotate90Command;
 			rr_button.SetTooltip (toolTips, Catalog.GetString ("Rotate photo right"), null);
 			toolbar.Insert (rr_button, -1);
@@ -202,6 +207,8 @@ namespace FSpot {
 
 			if (collection.Count > 1)
 				ShowSidebar = true;
+
+			rotate_left.Sensitive = rotate_right.Sensitive = rr_button.Sensitive = rl_button.Sensitive = collection.Count != 0;
 
 			UpdateStatusLabel ();
 		}
