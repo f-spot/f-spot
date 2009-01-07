@@ -8,9 +8,6 @@
  * This is free software, see COPYING fro details
  *
  */
-#if ENABLE_NUNIT
-using NUnit.Framework;
-#endif
 
 namespace FSpot.Filters {
 	public class OrientationFilter : IFilter {
@@ -67,18 +64,5 @@ namespace FSpot.Filters {
 			}
 		}
 		
-#if ENABLE_NUNIT
-		[TestFixture]
-		public class Tests : ImageTest {
-			[Test]
-			public void TestNoop ()
-			{
-				string path = CreateFile ("test.jpg", 50);
-				FilterRequest req = new FilterRequest (path);
-				IFilter filter = new OrientationFilter ();
-				Assert.IsFalse (filter.Convert (req), "Orientation Filter changed a normal file");
-			}
-		}
-#endif
 	}
 }

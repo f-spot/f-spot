@@ -159,7 +159,6 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/Accelerometer.cs		\
 	$(srcdir)/Histogram.cs			\
 	$(srcdir)/ImageView.cs			\
-	$(srcdir)/ImageTest.cs			\
 	$(srcdir)/ImportBackend.cs		\
 	$(srcdir)/ImportCommand.cs		\
 	$(srcdir)/InfoOverlay.cs		\

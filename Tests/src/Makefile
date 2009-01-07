@@ -9,7 +9,10 @@ SOURCES = 				\
 	TagStore.cs			\
 	ThumbnailGenerator.cs		\
 	Query/LogicalTerm.cs		\
-	Cms/Cms.cs
+	Cms/Cms.cs			\
+	Filters/JpegFilter.cs		\
+	Filters/OrientationFilter.cs	\
+	Filters/ColorFilter.cs
 
 PKGS = 					\
 	-pkg:mono-nunit			\
