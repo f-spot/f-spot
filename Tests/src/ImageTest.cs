@@ -13,7 +13,6 @@ namespace FSpot {
 	public class ImageTest {
 		public ImageTest ()
 		{
-			Gnome.Vfs.Vfs.Initialize ();
 			Gtk.Application.Init ();
 		}
 

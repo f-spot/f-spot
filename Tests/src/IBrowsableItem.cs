@@ -12,8 +12,6 @@ namespace FSpot.Tests
 
 		public IBrowsableItemTests ()
 		{
-			Gnome.Vfs.Vfs.Initialize ();
-
 			collection = new FSpot.UriCollection ();
 			item = new BrowsablePointer (collection, 0);
 			item.Changed += delegate {
