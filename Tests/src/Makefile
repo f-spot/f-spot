@@ -39,7 +39,7 @@ $(TESTASSEMBLY): $(SOURCES)
 	gmcs $(MCSFLAGS) $(PKGS) $(REFS) $(SOURCES) $(RESOURCES) -out:$(TESTASSEMBLY)
 
 test: $(TESTASSEMBLY)
-	export MONO_PATH=../../src:../../semweb; nunit-console2 $(TESTASSEMBLY)
+	export MONO_PATH=../../src:../../gio-sharp/gio/:../../semweb; nunit-console2 $(TESTASSEMBLY)
 
 clean:
 	rm -f *~ *.dll TestResult.xml *.db
