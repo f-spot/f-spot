@@ -4,6 +4,7 @@ TESTASSEMBLY = f-spot.tests.dll
 
 SOURCES = 				\
 	IBrowsableItem.cs		\
+	ImageTest.cs			\
 	PhotoStore.cs			\
 	TagStore.cs			\
 	ThumbnailGenerator.cs		\
@@ -21,6 +22,7 @@ REFS =					\
 	-r:../../src/FSpot.Core.dll	\
 	-r:../../src/FSpot.Query.dll	\
 	-r:../../src/FSpot.Utils.dll	\
+	-r:../../src/FSpot.Platform.dll \
 	-r:../../src/Cms.dll		\
 	-r:../../semweb/SemWeb.dll
 

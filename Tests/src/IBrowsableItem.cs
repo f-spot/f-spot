@@ -35,7 +35,7 @@ namespace FSpot.Tests
 			collection.Add (new System.Uri ("file:///test.png"));
 			Assert.IsFalse (changed);
 
-			collection.MarkChanged (0);
+			collection.MarkChanged (new BrowsableEventArgs (0, FullInvalidate.Instance));
 			Assert.IsTrue (changed);
 		       
 			changed = false;

@@ -4,6 +4,7 @@ using System;
 using System.IO;
 
 using FSpot.Utils;
+using FSpot.Platform;
 
 namespace FSpot.Tests
 {
@@ -77,20 +78,20 @@ namespace FSpot.Tests
 		public void StringNames (string name)
 		{
 			string path = CreateFile (name, 1024);
-			string thumb_path = ThumbnailGenerator.ThumbnailPath (path);
+			Uri fileuri = UriUtils.PathToFileUri (path);
+			//string thumb_path = ThumbnailFactory.PathForUri.ThumbnailPath (UriUtils.PathToFileUri(path));
 			
-			ThumbnailGenerator.Create (path);
 
-			Assert.IsTrue (File.Exists (thumb_path), String.Format ("Missing: {0} created from {1}", thumb_path, path));
-			using (Gdk.Pixbuf thumb = new Gdk.Pixbuf (thumb_path)) {
+			using (Gdk.Pixbuf thumb = ThumbnailGenerator.Create (fileuri)) {
+				Assert.IsTrue (ThumbnailFactory.ThumbnailExists (fileuri), String.Format ("Missing: thumbnail created from {0}", fileuri));
 				Assert.IsNotNull (thumb);
 				Assert.AreEqual (thumb.GetOption (ThumbnailGenerator.ThumbUri), UriUtils.PathToFileUriEscaped (path));
-				Assert.AreEqual (new Uri (thumb.GetOption (ThumbnailGenerator.ThumbUri)), UriUtils.PathToFileUri (path));
-				Assert.IsTrue (ThumbnailGenerator.ThumbnailIsValid (thumb, UriUtils.PathToFileUri (path)));
+				Assert.AreEqual (new Uri (thumb.GetOption (ThumbnailGenerator.ThumbUri)), fileuri);
+				Assert.IsTrue (ThumbnailFactory.ThumbnailIsValid (thumb, fileuri));
 			}
 			
+			ThumbnailFactory.DeleteThumbnail (fileuri);
 			File.Delete (path);
-			File.Delete (thumb_path);
 		}
 
 		[Test]
@@ -106,21 +107,21 @@ namespace FSpot.Tests
 			string path = CreateFile (name, 768);
 			Uri uri = new Uri (Gnome.Vfs.Uri.GetUriFromLocalPath (path));
 
-			string string_path = ThumbnailGenerator.ThumbnailPath (path);
-			string thumb_path = ThumbnailGenerator.ThumbnailPath (uri);
-			Assert.AreEqual (thumb_path, string_path);
+//			string string_path = ThumbnailGenerator.ThumbnailPath (path);
+//			string thumb_path = ThumbnailGenerator.ThumbnailPath (uri);
+//			Assert.AreEqual (thumb_path, string_path);
 
 			ThumbnailGenerator.Create (uri);
 
-			Assert.IsTrue (File.Exists (thumb_path), String.Format ("Missing: {0} created from {1}", thumb_path, uri));
-			using (Gdk.Pixbuf thumb = new Gdk.Pixbuf (thumb_path)) {
+			using (Gdk.Pixbuf thumb = ThumbnailGenerator.Create (uri)) {
+				Assert.IsTrue (ThumbnailFactory.ThumbnailExists (uri));
 				Assert.IsNotNull (thumb);
 				Assert.AreEqual (thumb.GetOption (ThumbnailGenerator.ThumbUri), UriUtils.UriToStringEscaped (uri));
 				Assert.AreEqual (new Uri (thumb.GetOption (ThumbnailGenerator.ThumbUri)), uri);
-				Assert.IsTrue (ThumbnailGenerator.ThumbnailIsValid (thumb, uri));
+				Assert.IsTrue (ThumbnailFactory.ThumbnailIsValid (thumb, uri));
 			}
 
-			File.Delete (thumb_path);
+			ThumbnailFactory.DeleteThumbnail (uri);
 			File.Delete (path);
 		}
 	}
