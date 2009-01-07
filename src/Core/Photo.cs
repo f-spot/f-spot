@@ -392,11 +392,14 @@ namespace FSpot
 			System.Uri uri =  VersionUri (version_id);
 	
 			if (!keep_file) {
-				if ((new Gnome.Vfs.Uri (uri.ToString ())).Exists) {
-					if ((new Gnome.Vfs.Uri (uri.ToString ()).Unlink()) != Gnome.Vfs.Result.Ok)
-						throw new System.UnauthorizedAccessException();
-				}
-	
+				GLib.File file = GLib.FileFactory.NewForUri (uri);
+				if (file.Exists) 
+					try {
+						file.Trash (null);
+					} catch (GLib.GException) {
+						Log.Debug ("Unable to Trash, trying to Delete");
+						file.Delete ();
+					}	
 				try {
 					ThumbnailFactory.DeleteThumbnail (uri);
 				} catch {
@@ -435,15 +438,13 @@ namespace FSpot
 				throw new Exception ("This version name already exists");
 	
 			if (create) {
-				if ((new Gnome.Vfs.Uri (new_uri.ToString ())).Exists)
+				GLib.File destination = GLib.FileFactory.NewForUri (new_uri);
+				if (destination.Exists)
 					throw new Exception (String.Format ("An object at this uri {0} already exists", new_uri.ToString ()));
 	
-				Gnome.Vfs.Xfer.XferUri (
-					new Gnome.Vfs.Uri (original_uri.ToString ()), 
-					new Gnome.Vfs.Uri (new_uri.ToString ()),
-					Gnome.Vfs.XferOptions.Default, Gnome.Vfs.XferErrorMode.Abort,
-					Gnome.Vfs.XferOverwriteMode.Abort,
-					delegate (Gnome.Vfs.XferProgressInfo info) {return 1;});
+		//FIXME. or better, fix the copy api !
+				GLib.File source = GLib.FileFactory.NewForUri (original_uri);
+				source.Copy (destination, GLib.FileCopyFlags.None, null, null);
 	
 				FSpot.ThumbnailGenerator.Create (new_uri).Dispose ();
 			}
