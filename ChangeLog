@@ -1,3 +1,7 @@
+2009-01-16  Stephane Delcroix  <sdelcroix@novell.com>
+
+	* src/f-spot.glade: re-map ctrl-n to Import. Fixes bnc #458648.
+
 2009-01-06  Stephane Delcroix  <sdelcroix@novell.com>
 
 	* src/SingleView.cs: gray out the rotate buttons if there's no images.

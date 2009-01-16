@@ -2523,6 +2523,7 @@
                         <property name="label" translatable="yes">_Import...</property>
                         <property name="use_underline">True</property>
                         <signal name="activate" handler="HandleImportCommand"/>
+                        <accelerator key="n" modifiers="GDK_CONTROL_MASK" signal="activate"/>
                         <child internal-child="image">
                           <widget class="GtkImage" id="menu-item-image25">
                             <property name="stock">gtk-add</property>
