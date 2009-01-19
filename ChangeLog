@@ -1,3 +1,8 @@
+2008-01-16  Stephane Delcroix  <sdelcroix@novell.com>
+
+	* src/PixbufUtils.cs: add a check for corrupted ExifData. Fixes 
+	bnc #448019.
+
 2009-01-16  Stephane Delcroix  <sdelcroix@novell.com>
 
 	* src/f-spot.glade: re-map ctrl-n to Import. Fixes bnc #458648.

@@ -514,24 +514,29 @@ public class PixbufUtils {
 		// The DCF spec says thumbnails should be 160x120 always
 		Pixbuf thumbnail = ScaleToAspect (pixbuf, 160, 120);
 		byte [] thumb_data = Save (thumbnail, "jpeg", null, null);
-		exif_data.Data = thumb_data;
 		thumbnail.Dispose ();
 
-		// Most of the things we will set will be in the 0th ifd
-		Exif.ExifContent content = exif_data.GetContents (Exif.Ifd.Zero);
-
-		// reset the orientation tag the default is top/left
-		content.GetEntry (Exif.Tag.Orientation).Reset ();
-
-		// set the write time in the datetime tag
-		content.GetEntry (Exif.Tag.DateTime).Reset ();
-
-		// set the software tag
-		content.GetEntry (Exif.Tag.Software).SetData (FSpot.Defines.PACKAGE + " version " + FSpot.Defines.VERSION);
-
-		byte [] data = exif_data.Save ();
+		byte [] data = new byte [0]; 
 		FPixbufJpegMarker [] marker = new FPixbufJpegMarker [0];
 		bool result = false;
+
+		if (exif_data != null && exif_data.Handle.Handle != IntPtr.Zero) {
+			exif_data.Data = thumb_data;
+
+			// Most of the things we will set will be in the 0th ifd
+			Exif.ExifContent content = exif_data.GetContents (Exif.Ifd.Zero);
+
+			// reset the orientation tag the default is top/left
+			content.GetEntry (Exif.Tag.Orientation).Reset ();
+
+			// set the write time in the datetime tag
+			content.GetEntry (Exif.Tag.DateTime).Reset ();
+
+			// set the software tag
+			content.GetEntry (Exif.Tag.Software).SetData (FSpot.Defines.PACKAGE + " version " + FSpot.Defines.VERSION);
+
+			data = exif_data.Save ();
+		}
 
 		unsafe {
 			if (data.Length > 0) {
