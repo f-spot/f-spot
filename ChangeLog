@@ -1,3 +1,14 @@
+2009-01-19  Ruben Vermeersch  <ruben@savanne.be>
+
+	* src/Utils/Log.cs: Add Trace log level and Trace + TraceFormat messages,
+	which generate the needed syscalls for trace timelines.
+
+	* src/main.cs: Parse the --strace to enable tracing.
+
+	* src/f-spot.in: Add a --strace parameter to run f-spot under strace,
+	which allows for the creation of trace timelines. More info:
+	http://weblog.savanne.be/156-using-federicos-timeline-tool-with-mono
+
 2008-01-16  Stephane Delcroix  <sdelcroix@novell.com>
 
 	* src/PixbufUtils.cs: add a check for corrupted ExifData. Fixes 

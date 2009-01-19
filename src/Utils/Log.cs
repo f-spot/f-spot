@@ -48,6 +48,7 @@ namespace FSpot.Utils
         
     public enum LogEntryType
     {
+        Trace,
         Debug,
         Warning,
         Error,
@@ -98,10 +99,20 @@ namespace FSpot.Utils
             get { return debugging; }
             set { debugging = value; }
         }
+
+        private static bool tracing = false;
+        public static bool Tracing {
+            get { return tracing; }
+            set { tracing = value; }
+        }
         
         public static void Commit (LogEntryType type, string message, string details, bool showUser)
         {
             if (type == LogEntryType.Debug && !Debugging) {
+                return;
+            }
+
+            if (type == LogEntryType.Trace && !Tracing) {
                 return;
             }
         
@@ -111,6 +122,7 @@ namespace FSpot.Utils
                     case LogEntryType.Warning: ConsoleCrayon.ForegroundColor = ConsoleColor.Yellow; break;
                     case LogEntryType.Information: ConsoleCrayon.ForegroundColor = ConsoleColor.Green; break;
                     case LogEntryType.Debug: ConsoleCrayon.ForegroundColor = ConsoleColor.Blue; break;
+                    case LogEntryType.Trace: ConsoleCrayon.ForegroundColor = ConsoleColor.Magenta; break;
                 }
                 
                 Console.Write ("[{0} {1:00}:{2:00}:{3:00}.{4:000}]", TypeString (type), DateTime.Now.Hour,
@@ -128,6 +140,11 @@ namespace FSpot.Utils
             if (showUser) {
                 OnNotify (new LogEntry (type, message, details));
             }
+
+            if (type == LogEntryType.Trace) {
+                string str = String.Format ("MARK: {0}: {1}", message, details);
+                Mono.Unix.Native.Syscall.access(str, Mono.Unix.Native.AccessModes.F_OK);
+            }
         }
 
         private static string TypeString (LogEntryType type)
@@ -137,6 +154,7 @@ namespace FSpot.Utils
                 case LogEntryType.Warning:       return "Warn ";
                 case LogEntryType.Error:         return "Error";
                 case LogEntryType.Information:   return "Info ";
+                case LogEntryType.Trace:         return "Trace";
             }
             return null;
         }
@@ -252,6 +270,24 @@ namespace FSpot.Utils
             }
         }
         
+        #endregion
+
+        #region Public Trace Methods
+
+        public static void Trace (string group, string details)
+        {
+            if (Tracing) {
+                Commit (LogEntryType.Trace, group, details, false);
+            }
+        }
+
+        public static void TraceFormat (string group, string format, params object [] args)
+        {
+            if (Tracing) {
+                Trace (group, String.Format (format, args));
+            }
+        }
+
         #endregion
         
         #region Public Debug Methods

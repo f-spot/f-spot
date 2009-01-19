@@ -29,6 +29,7 @@ fi
 run_mdb=false
 run_gdb=false
 run_valgrind=false
+run_strace=false
 basedir_set=false
 for arg in "$@"; do
     case "x$arg" in
@@ -47,8 +48,11 @@ for arg in "$@"; do
 	x--valgrind)
 	    run_valgrind=true
 	    ;;
-    	x--trace=*)
+	x--trace=*)
 	    FSPOT_TRACE="$arg"
+	    ;;
+	x--strace)
+	    run_strace=true
 	    ;;
 	x--profile=*)
 	    FSPOT_PROFILE="$arg"
@@ -92,6 +96,8 @@ elif $run_gdb; then
 	gdb --eval-command=run --args mono $MONO_OPTIONS $EXE_TO_RUN "$@"
 elif $run_valgrind; then
 	valgrind --tool=memcheck --leak-check=full --show-reachable=yes --log-file=valgrind --smc-check=all --suppressions=/home/sde/Mono/mono/data/mono.supp mono $MONO_OPTIONS $EXE_TO_RUN "$@"
+elif $run_strace; then
+	strace -ttt -f -o /tmp/f-spot.strace mono $MONO_OPTIONS $EXE_TO_RUN "$@"
 else
 	exec -a @PACKAGE@ $DBUSLAUNCH mono $MONO_OPTIONS $EXE_TO_RUN "$@"
 fi

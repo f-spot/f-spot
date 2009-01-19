@@ -133,6 +133,10 @@ namespace FSpot
 					Version ();
 					return 0;
 
+				case "--strace":
+					Log.Tracing = true;
+					break;
+
 				case "--debug":
 					Log.Debugging = true;
 					// Debug GdkPixbuf critical warnings
