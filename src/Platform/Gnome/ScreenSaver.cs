@@ -48,7 +48,7 @@ namespace FSpot.Platform
 				cookie = GnomeScreenSaver.Inhibit ("f-spot", reason);
 				inhibited = true;
 			} catch (Exception ex) {
-				Log.Exception ("Error Inhibiting the screenserver", ex);
+				Log.Exception ("Error Inhibiting the screensaver", ex);
 			}
 			return cookie;
 		}
@@ -62,7 +62,7 @@ namespace FSpot.Platform
 				GnomeScreenSaver.UnInhibit (cookie);
 				inhibited = false;
 			} catch (Exception ex) {
-				Log.Exception ("Error UnInhibiting the screenserver", ex);
+				Log.Exception ("Error UnInhibiting the screensaver", ex);
 			}
 		}
 	}
