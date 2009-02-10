@@ -221,7 +221,7 @@ public class PhotoVersionCommands
 						new_parent.DefaultVersionId = new_parent.CreateReparentedVersion (photo.GetVersion (version_id) as PhotoVersion);
 						store.Commit (new_parent);
 					} catch (Exception e) {
-						Console.WriteLine (e);	
+						Log.DebugException (e);	
 					}
 				}
 				uint [] version_ids = photo.VersionIds;
@@ -230,10 +230,9 @@ public class PhotoVersionCommands
 					try {
 						photo.DeleteVersion (version_id, true, true);
 					} catch (Exception e) {
-						Console.WriteLine(e);
+						Log.DebugException (e);
 					}
 				}
-				store.Commit (photo);
 				MainWindow.Toplevel.Database.Photos.Remove (photo);
 			}
 			return true;

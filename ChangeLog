@@ -1,3 +1,9 @@
+2009-02-10  Lorenzo Milesi  <maxxer@yetopen.it>
+
+	* src/PhotoVersionCommands.cs: remove commit of the old photo, 
+	  remove S.C.WL.
+	* src/MainWindow.cs: avoid reparenting self.
+
 2009-01-19  Ruben Vermeersch  <ruben@savanne.be>
 
 	* src/Utils/Log.cs: Add Trace log level and Trace + TraceFormat messages,

@@ -1399,8 +1399,9 @@ public class MainWindow {
 			int p_item = icon_view.CellAtPosition (args.X + (int) icon_view.Hadjustment.Value, 
 							     args.Y + (int) icon_view.Vadjustment.Value);
 
-			if (p_item >= 0)
-			{
+			if (p_item >= 0) {
+				if (icon_view.Selection.Contains (p_item)) //We don't want to reparent ourselves!
+					return;
 				PhotoVersionCommands.Reparent cmd = new PhotoVersionCommands.Reparent ();
 				
 				cmd.Execute (db.Photos, SelectedPhotos(), query.Photos [p_item], GetToplevel (null));
