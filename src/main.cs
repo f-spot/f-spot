@@ -226,9 +226,7 @@ namespace FSpot
 							if (File.Exists (Path.Combine (Global.BaseDirectory, "gtkrc")))
 								Gtk.Rc.AddDefaultFile (Path.Combine (Global.BaseDirectory, "gtkrc"));
 
-#if GTK_2_12_2
 							Global.DefaultRcFiles = Gtk.Rc.DefaultFiles;
-#endif
 							Gtk.Rc.AddDefaultFile (Preferences.Get<string> (Preferences.GTK_RC));
 							Gtk.Rc.ReparseAllForSettings (Gtk.Settings.Default, true);
 						}

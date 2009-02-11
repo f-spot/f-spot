@@ -7,9 +7,7 @@ using FSpot.Filters;
 using FSpot.Widgets;
 using FSpot.Utils;
 using FSpot.UI.Dialog;
-#if GIO_2_16
 using GLib;
-#endif
 
 namespace FSpotCDExport {
 	public class CDExport : FSpot.Extensions.IExporter {
@@ -22,12 +20,8 @@ namespace FSpotCDExport {
 		[Glade.Widget] Gtk.Label size_label;
 		[Glade.Widget] Gtk.Frame previous_frame;
 
-#if GIO_2_16
 		Gtk.Window listwindow;
 		System.Uri dest = new System.Uri ("burn:///");
-#else
-		Gnome.Vfs.Uri dest = new Gnome.Vfs.Uri ("burn:///");
-#endif
 
 		int photo_index;
 		bool clean;
@@ -84,7 +78,6 @@ namespace FSpotCDExport {
 
 		void HandleBrowseExisting (object sender, System.EventArgs args)
 		{
-#if GIO_2_16
 			if (listwindow == null) {
 				listwindow = new Gtk.Window ("Pending files to write");
 				listwindow.SetDefaultSize (400, 200);
@@ -99,12 +92,8 @@ namespace FSpotCDExport {
 			}
 			ListAll (((listwindow.Child as Gtk.ScrolledWindow).Child as Gtk.TextView).Buffer, dest);
 			listwindow.ShowAll ();
-#else
-			GnomeUtil.UrlShow (dest.ToString ());
-#endif
 		}
 
-#if GIO_2_16
 		void ListAll (Gtk.TextBuffer t, System.Uri path)
 		{
 			GLib.File f = FileFactory.NewForUri (path);
@@ -114,41 +103,27 @@ namespace FSpotCDExport {
 					ListAll (t, new System.Uri (path, info.Name + "/"));
 			}
 		}
-#endif
+
 		[DllImport ("libc")]
 		extern static int system (string program);
 
 //		//FIXME: rewrite this as a Filter
-#if GIO_2_16
 	        public static GLib.File UniqueName (System.Uri path, string shortname)
-#else
-	        public static Gnome.Vfs.Uri UniqueName (Gnome.Vfs.Uri path, string shortname)
-#endif
 	        {
 	                int i = 1;
-#if GIO_2_16
 			GLib.File dest = FileFactory.NewForUri (new System.Uri (path, shortname));
-#else
-			Gnome.Vfs.Uri target = path.Clone();
-	                Gnome.Vfs.Uri dest = target.AppendFileName(shortname);
-#endif
 	                while (dest.Exists) {
 	                        string numbered_name = System.String.Format ("{0}-{1}{2}",
 	                                                              System.IO.Path.GetFileNameWithoutExtension (shortname),
 	                                                              i++,
 	                                                              System.IO.Path.GetExtension (shortname));
 
-#if GIO_2_16
 				dest = FileFactory.NewForUri (new System.Uri (path, numbered_name));
-#else
-				dest = target.AppendFileName(numbered_name);
-#endif
 	                }
 
 	                return dest;
 	        }
 
-#if GIO_2_16
 		void Clean (System.Uri path)
 		{
 			GLib.File source = FileFactory.NewForUri (path);
@@ -158,43 +133,20 @@ namespace FSpotCDExport {
 				FileFactory.NewForUri (new System.Uri (path, info.Name)).Delete ();
 			}
 		}
-#else
-		void Clean ()
-		{
-			Gnome.Vfs.Uri target = dest.Clone ();
-			Gnome.Vfs.XferProgressCallback cb = new Gnome.Vfs.XferProgressCallback (Progress);
-			Gnome.Vfs.Xfer.XferDeleteList (new Gnome.Vfs.Uri [] {target}, Gnome.Vfs.XferErrorMode.Query, Gnome.Vfs.XferOptions.Recursive, cb);
-		}
-#endif
 
-#if GIO_2_16
 		bool IsEmpty (System.Uri path)
 		{
 			foreach (GLib.FileInfo fi in FileFactory.NewForUri (path).EnumerateChildren ("*", FileQueryInfoFlags.None, null))
 				return true;
 			return false;
 		}
-#else
-		bool IsEmpty (Gnome.Vfs.Uri path)
-		{
-			return Gnome.Vfs.Directory.GetEntries (path).Length != 0;
-		}
-#endif
 
 		public void Transfer () {
 			try {
-#if GIO_2_16
 				bool result = true;
-#else
-				Gnome.Vfs.Result result = Gnome.Vfs.Result.Ok;
-#endif
 
 				if (clean)
-#if GIO_2_16
 					Clean (dest);
-#else
-					Clean ();
-#endif
 
 				foreach (IBrowsableItem photo in selection.Items) {
 
@@ -203,47 +155,25 @@ namespace FSpotCDExport {
 						if (rotate)
 							new OrientationFilter ().Convert (request);
 
-#if GIO_2_16
 						GLib.File source = FileFactory.NewForUri (request.Current.ToString ());
-#else
-						Gnome.Vfs.Uri source = new Gnome.Vfs.Uri (request.Current.ToString ());
-						Gnome.Vfs.Uri target = dest.Clone ();
-#endif
-#if GIO_2_16
 						GLib.File target = UniqueName (dest, photo.Name);
 						FileProgressCallback cb = Progress;
-#else
-						target = UniqueName (target, photo.Name);
-						Gnome.Vfs.XferProgressCallback cb = new Gnome.Vfs.XferProgressCallback (Progress);
-#endif
 
 						progress_dialog.Message = System.String.Format (Catalog.GetString ("Transferring picture \"{0}\" To CD"), photo.Name);
 						progress_dialog.Fraction = photo_index / (double) selection.Count;
 						progress_dialog.ProgressText = System.String.Format (Catalog.GetString ("{0} of {1}"),
 											     photo_index, selection.Count);
 
-#if GIO_2_16
 						result &= source.Copy (target,
 									FileCopyFlags.None,
 									null,
 									cb);
-#else
-						result = Gnome.Vfs.Xfer.XferUri (source, target,
-										 Gnome.Vfs.XferOptions.Default,
-										 Gnome.Vfs.XferErrorMode.Abort,
-										 Gnome.Vfs.XferOverwriteMode.Replace,
-										 cb);
-#endif
 					}
 					photo_index++;
 				}
 
 				// FIXME the error dialog here is ugly and needs improvement when strings are not frozen.
-#if GIO_2_16
 				if (result) {
-#else
-				if (result == Gnome.Vfs.Result.Ok) {
-#endif
 					progress_dialog.Message = Catalog.GetString ("Done Sending Photos");
 					progress_dialog.Fraction = 1.0;
 					progress_dialog.ProgressText = Catalog.GetString ("Transfer Complete");
@@ -271,38 +201,13 @@ namespace FSpotCDExport {
 			progress_dialog.Destroy ();
 		}
 
-#if GIO_2_16
 		private void Progress (long current_num_bytes, long total_num_bytes)
-#else
-		private int Progress (Gnome.Vfs.XferProgressInfo info)
-#endif
 		{
-#if GIO_2_16
 			progress_dialog.ProgressText = Catalog.GetString ("copying...");
-#else
-			progress_dialog.ProgressText = info.Phase.ToString ();
-#endif
 
-#if GIO_2_16
 			if (total_num_bytes > 0)
 				progress_dialog.Fraction = current_num_bytes / (double)total_num_bytes;
-#else
-			if (info.BytesTotal > 0)
-				progress_dialog.Fraction = info.BytesCopied / (double)info.BytesTotal;
-#endif
 
-#if !GIO_2_16
-			switch (info.Status) {
-			case Gnome.Vfs.XferProgressStatus.Vfserror:
-				progress_dialog.Message = Catalog.GetString ("Error: Error while transferring; Aborting");
-				return (int)Gnome.Vfs.XferErrorAction.Abort;
-			case Gnome.Vfs.XferProgressStatus.Overwrite:
-				progress_dialog.ProgressText = Catalog.GetString ("Error: File Already Exists; Aborting");
-				return (int)Gnome.Vfs.XferOverwriteAction.Abort;
-			default:
-				return 1;
-			}
-#endif
 		}
 
 		private void HandleMsg (Gnome.Vfs.ModuleCallback cb)
@@ -326,10 +231,8 @@ namespace FSpotCDExport {
 
 		private void HandleResponse (object sender, Gtk.ResponseArgs args)
 		{
-#if GIO_2_16
 			if (listwindow != null)
 				listwindow.Destroy ();
-#endif
 			if (args.ResponseId != Gtk.ResponseType.Ok) {
 				Dialog.Destroy ();
 				return;

@@ -153,9 +153,7 @@ public class UriList : ArrayList {
 
 
 public class SizeUtil {
-#if GTK_SHARP_2_14_0
 	[Obsolete ("Use GLib.Format.SizeForDisplay (gtk-sharp > 2.14)")]
-#endif
 	public static string ToHumanReadable (long size)
 	{
 		string tmp_str = String.Empty;

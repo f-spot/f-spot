@@ -526,6 +526,29 @@ namespace KeyFile {
 			g_key_file_free (raw);
 		}
 
+		class FinalizerInfo {
+			IntPtr handle;
+
+			public FinalizerInfo (IntPtr handle)
+			{
+				this.handle = handle;
+			}
+
+			public bool Handler ()
+			{
+				g_key_file_free (handle);
+				return false;
+			}
+		}
+
+		~GKeyFile ()
+		{
+			if (!Owned)
+				return;
+			FinalizerInfo info = new FinalizerInfo (Handle);
+			GLib.Timeout.Add (50, new GLib.TimeoutHandler (info.Handler));
+		}
+
 #endregion
 #region Customized extensions
 #line 1 "GKeyFile.custom"

@@ -161,9 +161,7 @@ namespace FSpot.UI.Dialog {
 			theme_filechooser.SelectionChanged += HandleThemeFileActivated;
 			themecustom_radio.Active = (active_theme != String.Empty);	
 
-#if GTK_2_12_2
 			restartlabel.Visible = false;
-#endif
 
 #if DEBUGTHEMES
 			refreshtheme_button = true;
@@ -241,19 +239,15 @@ namespace FSpot.UI.Dialog {
 			themelist_combo.Sensitive = theme_filechooser.Sensitive = themecustom_radio.Active; 
 			if (themenone_radio.Active) {
 				Preferences.Set (Preferences.GTK_RC, String.Empty);
-#if GTK_2_12_2
 				Gtk.Rc.DefaultFiles = Global.DefaultRcFiles;
 				Gtk.Rc.ReparseAllForSettings (Gtk.Settings.Default, true);
-#endif
 			} else {
 				TreeIter iter;
 				if (themelist_combo.GetActiveIter (out iter)) {
 					Preferences.Set (Preferences.GTK_RC, theme_list [(themelist_combo.Model.GetValue (iter, 0)) as string]);
-#if GTK_2_12_2
 					Gtk.Rc.DefaultFiles = Global.DefaultRcFiles;
 					Gtk.Rc.AddDefaultFile (Preferences.Get<string> (Preferences.GTK_RC));
 					Gtk.Rc.ReparseAllForSettings (Gtk.Settings.Default, true);
-#endif
 				}
 			}
 		}
@@ -265,22 +259,18 @@ namespace FSpot.UI.Dialog {
 			TreeIter iter;
 			if ((o as ComboBox).GetActiveIter (out iter))
 				Preferences.Set (Preferences.GTK_RC, theme_list [((o as ComboBox).Model.GetValue (iter, 0)) as string]);
-#if GTK_2_12_2
 			Gtk.Rc.DefaultFiles = Global.DefaultRcFiles;
 			Gtk.Rc.AddDefaultFile (Preferences.Get<string> (Preferences.GTK_RC));
 			Gtk.Rc.ReparseAllForSettings (Gtk.Settings.Default, true);
-#endif
 		}
 
 		void HandleThemeFileActivated (object o, EventArgs e)
 		{
 			if (theme_filechooser.Filename != null && theme_filechooser.Filename != Preferences.Get<string> (Preferences.GTK_RC)) {
 				Preferences.Set (Preferences.GTK_RC, theme_filechooser.Filename);	
-#if GTK_2_12_2
 				Gtk.Rc.DefaultFiles = Global.DefaultRcFiles;
 				Gtk.Rc.AddDefaultFile (Preferences.Get<string> (Preferences.GTK_RC));
 				Gtk.Rc.ReparseAllForSettings (Gtk.Settings.Default, true);
-#endif
 			}
 		}
 
@@ -303,9 +293,7 @@ namespace FSpot.UI.Dialog {
 
 		void HandleRefreshTheme (object o, EventArgs e)
 		{
-#if GTK_2_12_2
 			Gtk.Rc.ReparseAllForSettings (Gtk.Settings.Default, true);	
-#endif
 		}
 
 		void LoadPreference (string key)

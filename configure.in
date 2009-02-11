@@ -59,7 +59,7 @@ LIBGNOMEUI_REQUIRED=2.2
 LIBEXIF_REQUIRED_MIN=0.5.7
 LIBEXIF_REQUIRED_MAX=0.7.0
 GIO_REQUIRED=2.16.0
-GTKSHARP_REQUIRED=2.10
+GTKSHARP_REQUIRED=2.13.90
 MONO_REQUIRED=1.2.4
 GTK_REQUIRED=2.10
 BEAGLE_REQUIRED=0.3.0
@@ -70,7 +70,7 @@ dnl -- this check is
 LCMS_REQUIRED=1.12
 dnl -- LIBGPHOTO2_REQUIRED=2.1.4
 
-PKG_CHECK_MODULES(F, libgnome-2.0 >= $LIBGNOME_REQUIRED libgnomeui-2.0 >= $LIBGNOMEUI_REQUIRED libexif >= $LIBEXIF_REQUIRED_MIN libexif < $LIBEXIF_REQUIRED_MAX glade-sharp-2.0 >= $GTKSHARP_REQUIRED gnome-vfs-sharp-2.0 >= $GTKSHARP_REQUIRED gtk+-2.0 >= $GTK_REQUIRED mono >= $MONO_REQUIRED mono-cairo >= $MONO_CAIRO_REQUIRED)
+PKG_CHECK_MODULES(F, libgnome-2.0 >= $LIBGNOME_REQUIRED libgnomeui-2.0 >= $LIBGNOMEUI_REQUIRED libexif >= $LIBEXIF_REQUIRED_MIN libexif < $LIBEXIF_REQUIRED_MAX gtk-sharp-2.0 >= $GTKSHARP_REQUIRED glib-sharp-2.0 >= $GTKSHARP_REQUIRED gio-sharp-2.0 >= $GTKSHARP_REQUIRED glade-sharp-2.0 >= $GTKSHARP_REQUIRED gnome-vfs-sharp-2.0 >= $GTKSHARP_REQUIRED gtk+-2.0 >= $GTK_REQUIRED mono >= $MONO_REQUIRED mono-cairo >= $MONO_CAIRO_REQUIRED)
 AC_SUBST(F_CFLAGS)
 AC_SUBST(F_LIBS)
 
@@ -81,38 +81,6 @@ AC_SUBST(GIO_LIBS)
 CSC_DEFINES=""
 PKG_CHECK_MODULES(GNOME_SHARP, gnome-sharp-2.0 >= 2.8)
 
-dnl -- gio-sharp: link or bundle ?
-if pkg-config --atleast-version=2.13.90 gio-sharp-2.0; then
-	LINK_GIO="-pkg:gio-sharp-2.0"
-	DIR_GIO=""
-	PATH_GIO=""
-else
-	LINK_GIO='-r:$(top_builddir)/gio-sharp/gio/gio-sharp.dll'
-	DIR_GIO="gio-sharp"
-	AC_CONFIG_SUBDIRS([gio-sharp])
-	PATH_GIO='../gio-sharp/gio:'
-fi
-CSC_DEFINES="$CSC_DEFINES -d:GIO_2_16"
-
-AC_SUBST(LINK_GIO)
-AC_SUBST(DIR_GIO)
-AC_SUBST(PATH_GIO)
-
-if pkg-config --atleast-version=2.10.3 gtk-sharp-2.0; then
-   CSC_DEFINES="$CSC_DEFINES -d:GTK_2_10_3"
-fi
-if pkg-config --atleast-version=2.11 gtk-sharp-2.0; then
-   CSC_DEFINES="$CSC_DEFINES -d:GTK_2_11"
-fi
-if pkg-config --atleast-version=2.12.2 gtk-sharp-2.0; then
-   CSC_DEFINES="$CSC_DEFINES -d:GTK_2_12_2"
-fi
-if pkg-config --atleast-version=2.12.6 gtk-sharp-2.0; then
-   CSC_DEFINES="$CSC_DEFINES -d:GTK_SHARP_2_12_6"
-fi
-if pkg-config --atleast-version=2.14.0 gtk-sharp-2.0; then
-   CSC_DEFINES="$CSC_DEFINES -d:GTK_SHARP_2_14_0"
-fi
 if pkg-config --atleast-version=1.2.5 mono; then
    CSC_DEFINES="$CSC_DEFINES -d:MONO_1_2_5"
 fi

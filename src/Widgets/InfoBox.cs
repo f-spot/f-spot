@@ -553,11 +553,7 @@ namespace FSpot.Widgets
 				try {
 					GFile file = FileFactory.NewForUri (photo.DefaultVersionUri);
 					GFileInfo file_info = file.QueryInfo ("standard::size", FileQueryInfoFlags.None, null);
-#if GTK_SHARP_2_14_0
 					file_size_value_label.Text = Format.SizeForDisplay (file_info.Size);
-#else
-					file_size_value_label.Text = Gnome.Vfs.Format.FileSizeForDisplay (file_info.Size);
-#endif
 				} catch (GLib.GException e) {
 					file_size_value_label.Text = Catalog.GetString("(File read error)");
 					FSpot.Utils.Log.DebugException (e);
@@ -653,11 +649,7 @@ namespace FSpot.Widgets
 				}
 				
 				if (file_size != -1)
-#if GTK_SHARP_2_14_0
 					file_size_value_label.Text = Format.SizeForDisplay (file_size);
-#else
-					file_size_value_label.Text = Gnome.Vfs.Format.FileSizeForDisplay (file_size);
-#endif
 
 				else
 					file_size_value_label.Text = Catalog.GetString("(At least one File not found)");

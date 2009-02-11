@@ -15,11 +15,11 @@ REFS =					\
 	-r:$(top_builddir)/src/FSpot.Core.dll	\
 	-r:$(top_builddir)/src/FSpot.Utils.dll	\
 	-r:$(top_builddir)/src/FSpot.Query.dll	\
-	$(LINK_GIO)				\
 	$(LINK_MONO_ADDINS)			\
 	$(LINK_SEMWEB)
 
 PKGS =					\
+	-pkg:gio-sharp-2.0		\
 	-pkg:gtk-sharp-2.0		\
 	-pkg:glade-sharp-2.0
 

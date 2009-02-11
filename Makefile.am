@@ -20,7 +20,6 @@ SUBDIRS = 		\
 	GKeyFile
 
 DIST_SUBDIRS = 		\
-	gio-sharp	\
 	semweb		\
 	dbus-sharp	\
 	dbus-sharp-glib	\
@@ -91,13 +90,6 @@ UPDATE_DESKTOP = \
 
 install-data-hook: 
 	$(UPDATE_DESKTOP)
-	if [ "x$(DIR_GIO)" != "x" ] ; then \
-		$(install_sh_DATA) $(top_builddir)/gio-sharp/gio/gio-sharp.dll $(DESTDIR)$(libdir)/f-spot/; \
-		$(install_sh_DATA) $(top_builddir)/gio-sharp/gio/gio-sharp.dll.config $(DESTDIR)$(libdir)/f-spot/; \
-	fi
 
 uninstall-hook: 
 	$(UPDATE_DESKTOP)
-	if [ "x$(DIR_GIO)" != "x" ] ; then \
-		rm -f $(DESTDIR)$(libdir)/f-spot/gio-sharp.dll $(DESTDIR)$(libdir)/f-spot/gio-sharp.dll.config; \
-	fi

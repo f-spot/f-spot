@@ -931,13 +931,8 @@ namespace FSpot {
 					active.X = min_x;
 					active.Width = max_x - min_x;
 					
-#if GTK_2_10_3 && !GTK_2_12_2 //workaround for buggy code
-					active.Intersect (area);
-					GdkWindow.DrawRectangle (Style.BaseGC (State), true, active);
-#else
 					if (active.Intersect (area, out active))
 						GdkWindow.DrawRectangle (Style.BaseGC (State), true, active);
-#endif
 					
 					int i;
 					BoxXHit (area.X, out i);

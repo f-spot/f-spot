@@ -56,7 +56,6 @@ namespace FSpot {
 			}
 		}
 
-#if GTK_2_12_2
 		private static string [] default_rc_files;
 		public static string [] DefaultRcFiles {
 			get {
@@ -66,7 +65,6 @@ namespace FSpot {
 			}
 			set { default_rc_files = value; }
 		}
-#endif
 
 		private static Gtk.PageSetup page_setup;
 		public static Gtk.PageSetup PageSetup {
