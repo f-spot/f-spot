@@ -214,7 +214,7 @@ public class RotateCommand {
 					RunGenericError (re, re.Path, re.Message);
 				else
 					readonly_count++;
-			} catch (Gnome.Vfs.VfsException) {
+			} catch (GLib.GException) {
 				readonly_count++;
 			} catch (DirectoryNotFoundException e) {
 				RunGenericError (e, op.Items [op.Index].DefaultVersionUri.LocalPath, Catalog.GetString ("Directory not found"));
