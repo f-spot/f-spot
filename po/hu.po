@@ -1,16 +1,16 @@
 # translation of f-spot.HEAD.hu.po to Hungarian
 # Hungarian translation of F-Spot
 # This file is distributed under the same license as the F-Spot package.
-# Copyright (C) 2005, 2006, 2007, 2008 Free Software Foundation, Inc.
+# Copyright (C) 2005, 2006, 2007, 2008, 2009 Free Software Foundation, Inc.
 #
-# Gabor Kelemen <kelemeng@gnome.hu>, 2005, 2006, 2007, 2008.
+# Gabor Kelemen <kelemeng@gnome.hu>, 2005, 2006, 2007, 2008, 2009.
 # Kalman Kemenczy <kkemenczy@novell.com>, 2006.
 msgid ""
 msgstr ""
 "Project-Id-Version: f-spot.HEAD\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=f-spot&amp;component=general\n"
-"POT-Creation-Date: 2008-12-17 12:05+0000\n"
-"PO-Revision-Date: 2008-12-22 13:40+0100\n"
+"POT-Creation-Date: 2008-12-22 12:42+0000\n"
+"PO-Revision-Date: 2009-02-13 12:30+0100\n"
 "Last-Translator: Gabor Kelemen <kelemeng@gnome.hu>\n"
 "Language-Team: Hungarian <gnome@fsf.hu>\n"
 "MIME-Version: 1.0\n"
@@ -641,7 +641,7 @@ msgstr "Megnyitás _ezzel"
 
 #: ../src/FSpot.addin.xml.h:4 ../src/f-spot.glade.h:105
 msgid "Rem_ove Tag"
-msgstr "Címke _törlése"
+msgstr "Cí_mke törlése"
 
 #: ../src/FSpot.addin.xml.h:5 ../src/SingleView.cs:444
 #: ../src/f-spot.glade.h:107
@@ -971,7 +971,7 @@ msgid ""
 "The directory you selected \"{0}\" does not exist.  Please choose a "
 "different directory"
 msgstr ""
-"Az Ön által kijelölt „{0}” könyvtár nem létezik. Kérem válasszon másik "
+"Az Ön által kijelölt „{0}” könyvtár nem létezik. Válasszon másik "
 "könyvtárat"
 
 #. Note for translators: 'Import Tags' is no command, it means 'Tags used in Import'
@@ -1520,7 +1520,7 @@ msgstr "Importálási kör"
 
 #: ../src/QueryWidget.cs:89
 msgid "Clear search"
-msgstr "Tiszta keresés"
+msgstr "Keresés törlése"
 
 #: ../src/QueryWidget.cs:96
 msgid "Refresh search"
@@ -1967,7 +1967,7 @@ msgid ""
 "This tool requires an active selection. Please select a region of the photo "
 "and try the operation again"
 msgstr ""
-"Ez az eszköz aktív kijelölést igényel. Kérem jelölje ki a fénykép egy "
+"Ez az eszköz aktív kijelölést igényel. Jelölje ki a fénykép egy "
 "területét és próbálja újra a műveletet."
 
 #: ../src/Widgets/EditorPage.cs:220
@@ -2817,7 +2817,7 @@ msgstr "_Teljes képernyő"
 
 #: ../src/f-spot.glade.h:168
 msgid "_Gallery"
-msgstr "_Galéria"
+msgstr "G_aléria"
 
 #: ../src/f-spot.glade.h:169
 msgid "_Help"
@@ -3669,7 +3669,7 @@ msgid ""
 "This tool requires an active selection. Please select one or more pictures "
 "and try again"
 msgstr ""
-"Ez az eszköz aktív kijelölést igényel. Kérem jelöljön ki legalább egy "
+"Ez az eszköz aktív kijelölést igényel. Jelöljön ki legalább egy "
 "fényképet és próbálja újra a műveletet."
 
 #: ../extensions/Exporters/ZipExport/ZipExport.cs:63
