@@ -81,6 +81,7 @@ src/UI.Dialog/ProgressDialog.cs
 src/UI.Dialog/RepairDbDialog.cs
 src/UI.Dialog/SelectionRatioDialog.cs
 src/UI.Dialog/ThreadProgressDialog.cs
+src/UI.Dialog/ui/PreferenceDialog.glade
 src/Updater.cs
 src/Util.cs
 src/Utils/Unix.cs
@@ -120,6 +121,7 @@ extensions/Tools/MergeDb/MergeDb.addin.xml
 extensions/Tools/MergeDb/MergeDb.cs
 extensions/Tools/MergeDb/MergeDb.glade
 extensions/Tools/MergeDb/PickFolderDialog.cs
+extensions/Tools/HashJob/HashJob.cs
 extensions/Exporters/PicasaWebExport/PicasaWebExport.addin.xml
 extensions/Exporters/PicasaWebExport/PicasaWebExport.cs
 extensions/Exporters/PicasaWebExport/PicasaWebExport.glade
@@ -131,4 +133,6 @@ extensions/Exporters/TabbloExport/TabbloExport.addin.xml
 extensions/Exporters/TabbloExport/TabbloExport.cs
 extensions/Exporters/TabbloExport/TabbloExport.glade
 extensions/Exporters/TabbloExport/TrustError.glade
+extensions/Editors/BlackoutEditor/BlackoutEditor.cs
+extensions/Editors/PixelateEditor/PixelateEditor.cs
 
