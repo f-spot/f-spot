@@ -773,15 +773,11 @@ namespace FSpotGoogleExport {
 					long ql = account.Picasa.QuotaLimit;
 
 					StringBuilder sb = new StringBuilder("<small>");
-					sb.Append(Catalog.GetString("Available space:"));
-					sb.Append(SizeUtil.ToHumanReadable (ql - qu));
-					sb.Append(" (");
-					sb.Append(100 * qu / ql);
-					sb.Append("% used out of ");
-					sb.Append(SizeUtil.ToHumanReadable (ql));
-					sb.Append(")");
+					sb.Append(String.Format (Catalog.GetString ("Available space: {0}, {1}% used out of {2}"),
+								GLib.Format.SizeForDisplay(ql - qu),
+								(100 * qu / ql),
+								GLib.Format.SizeForDisplay (ql)));
 					sb.Append("</small>");
-
 					status_label.Text = sb.ToString();
 					status_label.UseMarkup = true;
 
@@ -890,9 +886,12 @@ namespace FSpotGoogleExport {
 			PicasaAlbum a = albums [album_optionmenu.History];
 			export_button.Sensitive = a.PicturesRemaining >= items.Length;
 			if (album_status_label.Visible = !export_button.Sensitive) {
-				album_status_label.Text = String.Format (Catalog.GetString ("<small>The selected album has a limit of {0} pictures,\n" +
-									   "which would be passed with the current selection of {1} images</small>"),
-									a.PicturesCount + a.PicturesRemaining, items.Length);
+				StringBuilder sb = new StringBuilder("<small>");
+				sb.Append(String.Format (Catalog.GetString ("The selected album has a limit of {0} pictures,\n" +
+								"which would be passed with the current selection of {1} images"),
+								a.PicturesCount + a.PicturesRemaining, items.Length));
+				sb.Append("</small>");
+				album_status_label.Text = String.Format (sb.ToString());
 				album_status_label.UseMarkup = true;
 			} else {
 				album_status_label.Text = String.Empty;
