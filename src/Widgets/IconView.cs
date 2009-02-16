@@ -1452,8 +1452,7 @@ namespace FSpot.Widgets
 		private void SetColors ()
 		{
 			if (IsRealized) {
-				BinWindow.Background = Style.BaseColors [(int)State];
-				GdkWindow.Background = Style.BaseColors [(int)State];
+				BinWindow.Background = Style.DarkColors [(int)State];
 			}
 		}
 

@@ -389,6 +389,14 @@ namespace FSpot {
 			GtkUtil.ModifyColors (background);
 			GtkUtil.ModifyColors (photo_view_scrolled);
 			GtkUtil.ModifyColors (rating);
+
+			Gdk.Color dark = Style.Dark (Gtk.StateType.Normal);
+			filmstrip.ModifyBg (Gtk.StateType.Normal, dark);
+			tag_view.ModifyBg (Gtk.StateType.Normal, dark);
+			photo_view.ModifyBg (Gtk.StateType.Normal, dark);
+			background.ModifyBg (Gtk.StateType.Normal, dark);
+			photo_view_scrolled.ModifyBg (Gtk.StateType.Normal, dark);
+			rating.ModifyBg (Gtk.StateType.Normal, dark);
 		}
 	
 		protected override void OnStyleSet (Style previous)
