@@ -51,7 +51,7 @@ namespace HashJobExtension {
 
 			VBox.Spacing = 6;
 			Label l = new Label (Catalog.GetString ("In order to detect duplicates on pictures you imported before 0.5.0, " +
-					"F-Spot needs to analyze your image collection. This is is not done by default as it's time consuming. " +
+					"F-Spot needs to analyze your image collection. This is not done by default as it's time consuming. " +
 					"You can Start or Pause this update process using this dialog."));
 			l.LineWrap = true;
 			VBox.PackStart (l);
