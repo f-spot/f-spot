@@ -61,6 +61,15 @@ namespace FSpot {
 			name_table [".mrw"] = typeof (FSpot.Mrw.MrwFile);
 			name_table [".raf"] = typeof (FSpot.Raf.RafFile);
 			name_table [".x3f"] = typeof (FSpot.X3f.X3fFile);
+
+			//as xcf pixbufloader is not part of gdk-pixbuf, check if it's there,
+			//and enable it if needed.
+			foreach (Gdk.PixbufFormat format in Gdk.Pixbuf.Formats)
+				if (format.Name == "xcf") {
+					if (format.Disabled)
+						format.Disabled = false;
+					name_table [".xcf"] = typeof (ImageFile);
+				}
 		}
 
 		public Uri Uri {

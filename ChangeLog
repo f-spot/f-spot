@@ -1,3 +1,8 @@
+2009-02-27  Stephane Delcroix  <sdelcroix@novell.com>
+
+	* src/Imaging/ImageFile.cs: enable xcf support if there's a
+	loader for it.
+
 2009-02-12  Stephane Delcroix  <sdelcroix@novell.com>
 
 	* src/Imaging/PngFile.cs: move the tests to Test/
