@@ -11,9 +11,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: f-spot\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-02-25 00:04+0100\n"
-"PO-Revision-Date: 2009-02-21 20:06+0100\n"
-"Last-Translator: Mads Lundby <lundbymads@gmail.com>\n"
+"POT-Creation-Date: 2009-03-02 23:02+0100\n"
+"PO-Revision-Date: 2009-02-25 16:49+0100\n"
+"Last-Translator: Mads Bille Lundby <lundbymads@gmail.com>\n"
 "Language-Team: Danish <dansk@dansk-gruppen.dk>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -353,11 +353,11 @@ msgstr "type af tern"
 
 #: ../libeog/image-view.c:2132
 msgid "the type of chequering to use"
-msgstr "den slags tern som skal anvendes"
+msgstr "den slags tern som skal bruges"
 
 #: ../libeog/image-view.c:2139
 msgid "the size of chequers to use"
-msgstr "størrelsen af de tern, som skal anvendes"
+msgstr "størrelsen af de tern, som skal bruges"
 
 #: ../libeog/image-view.c:2145
 msgid "dither"
@@ -459,7 +459,7 @@ msgid ""
 "the tag to some photos or selecting a different tag in the\n"
 "F-Spot preference dialog."
 msgstr ""
-"Mærket \"{0}\" er ikke anvendt på noget foto. Prøv at\n"
+"Mærket \"{0}\" er ikke brugt på noget foto. Prøv at\n"
 "tilføje mærket til nogle fotos eller vælg et andet mærke\n"
 "i F-Spot-indstillingsvinduet."
 
@@ -810,7 +810,7 @@ msgstr "InterOperability-mappe"
 msgid "Unknown Directory"
 msgstr "Ukendt mappe"
 
-#: ../src/Imaging/ImageFile.cs:81
+#: ../src/Imaging/ImageFile.cs:90
 msgid "Writing to this file format is not supported"
 msgstr "Skrivning til dette filformat understøttes ikke"
 
@@ -1704,10 +1704,10 @@ msgid ""
 msgstr ""
 "\n"
 "<b>Fra foto</b>\n"
-"Du kan anvende et af dine billeder fra samlingen som et ikon\n"
+"Du kan bruge et af dine billeder fra samlingen som et ikon\n"
 "for dette mærke. Du skal dog mindst have ét foto, der er tilknyttet\n"
 " dette mærke. Mærk et foto som \"{0}\" og vend tilbage hertil for at\n"
-" anvende det som et ikon."
+" bruge det som et ikon."
 
 #: ../src/TagPopup.cs:26
 #, csharp-format
@@ -1901,26 +1901,24 @@ msgid "<b>Import Settings</b>"
 msgstr "<b>Importindstillinger</b>"
 
 #: ../src/UI.Dialog/ui/PreferenceDialog.glade.h:3
-#, fuzzy
 msgid "<b>Metadata</b>"
-msgstr "Metadata"
+msgstr "<b>Metadata</b>"
 
 #: ../src/UI.Dialog/ui/PreferenceDialog.glade.h:4
 msgid "<b>Screensaver</b>"
 msgstr "<b>Pauseskærm</b>"
 
 #: ../src/UI.Dialog/ui/PreferenceDialog.glade.h:5
-#, fuzzy
 msgid "<b>Theming</b>"
-msgstr "<b></b>"
+msgstr "<b>Temaer</b>"
 
+# Jeg har valgt ikke at skrive "nyligt importerede", da det henviser til datid. Newly henviser til fremtidige "nyimporterede" billeder.
 #: ../src/UI.Dialog/ui/PreferenceDialog.glade.h:6
-#, fuzzy
 msgid ""
 "<small><i>Choose the folder where F-Spot should store newly imported photos</"
 "i></small>"
 msgstr ""
-"<small><i>Vælg placeringen af databasen du ønsker at importere fra </i></"
+"<small><i>Vælg mappen, hvori F-spot skal lagre nye importerede billeder</i></"
 "small>"
 
 #: ../src/UI.Dialog/ui/PreferenceDialog.glade.h:7
@@ -1943,19 +1941,19 @@ msgstr ""
 msgid ""
 "<small><i>You'll have to restart f-spot to load the new theme.</i></small>"
 msgstr ""
+"<small><i>Du skal genstarte f-spot for at indlæse det nye tema</i></small>"
 
 #: ../src/UI.Dialog/ui/PreferenceDialog.glade.h:12
-#, fuzzy
 msgid "Custom Theme"
-msgstr "Tilpasset tekst:"
+msgstr "Tilpasset tema:"
 
 #: ../src/UI.Dialog/ui/PreferenceDialog.glade.h:15
 msgid "From List:"
-msgstr ""
+msgstr "Fra liste:"
 
 #: ../src/UI.Dialog/ui/PreferenceDialog.glade.h:16
 msgid "From gtkrc File:"
-msgstr ""
+msgstr "Fra gtkrc-fil:"
 
 #: ../src/UI.Dialog/ui/PreferenceDialog.glade.h:17
 msgid "Images tagged with:"
@@ -1970,22 +1968,20 @@ msgid "Preferences"
 msgstr "Indstillinger"
 
 #: ../src/UI.Dialog/ui/PreferenceDialog.glade.h:20
-#, fuzzy
 msgid "Select A Folder"
-msgstr "Vælg mappe"
+msgstr "Vælg en mappe"
 
 #: ../src/UI.Dialog/ui/PreferenceDialog.glade.h:21
-#, fuzzy
 msgid "Select A gtkrc File"
-msgstr "Vælg foto fra fil"
+msgstr "Vælg en gtkrc-fil"
 
 #: ../src/UI.Dialog/ui/PreferenceDialog.glade.h:22
 msgid "System Theme"
-msgstr ""
+msgstr "Systemtema"
 
 #: ../src/UI.Dialog/ui/PreferenceDialog.glade.h:23
 msgid "Try to use the system display profile"
-msgstr ""
+msgstr "Forsøg at bruge systemets visningsprofil"
 
 #: ../src/UI.Dialog/ui/PreferenceDialog.glade.h:24
 msgid "Write _metadata to file"
@@ -1996,9 +1992,8 @@ msgid "_Display:"
 msgstr "_Vis:"
 
 #: ../src/UI.Dialog/ui/PreferenceDialog.glade.h:26
-#, fuzzy
 msgid "_Print output:"
-msgstr "_Uddata:"
+msgstr "_Udskriv uddata:"
 
 #: ../src/Updater.cs:528
 msgid "Updating F-Spot Database"
@@ -2075,7 +2070,7 @@ msgstr "Hvide kanter"
 
 #: ../src/Widgets/CustomPrintWidget.cs:161
 msgid "Custom Text: "
-msgstr "Tilpasset tekst:"
+msgstr "Tilpasset tekst: "
 
 #: ../src/Widgets/EditorPage.cs:29 ../src/Widgets/Sidebar.cs:71
 msgid "Edit"
@@ -3270,7 +3265,7 @@ msgstr "Log ind som en anden bruger"
 #: ../extensions/Exporters/FlickrExport/FlickrExport.cs:133
 #, csharp-format
 msgid "Used {0} of your allowed {1} monthly quota"
-msgstr "Anvendt {0} af din tilladte månedlige kvote på {1}"
+msgstr "Brugt {0} af din tilladte månedlige kvote på {1}"
 
 #: ../extensions/Exporters/FlickrExport/FlickrExport.cs:297
 msgid "Unable to log on"
@@ -3434,7 +3429,7 @@ msgstr "<b>Eksportmetode</b>"
 
 #: ../extensions/Exporters/FolderExport/FolderExport.glade.h:8
 msgid "Create _gallery using \"Original\""
-msgstr "Opret _galleri ved anvendelse af \"Original\""
+msgstr "Opret _galleri med brug af \"Original\""
 
 #: ../extensions/Exporters/FolderExport/FolderExport.glade.h:9
 msgid "Create standalone _web gallery"
@@ -3775,7 +3770,7 @@ msgstr "Dette er, hvem jeg er"
 
 #: ../extensions/Exporters/FacebookExport/FacebookExport.glade.h:11
 msgid "Use an existing album"
-msgstr "Anvend et eksisterende album"
+msgstr "Brug et eksisterende album"
 
 #: ../extensions/Exporters/FacebookExport/FacebookExport.glade.h:12
 msgid "Who is this?"
@@ -3914,21 +3909,24 @@ msgstr ""
 " Vælg venligst denne mappe, så jeg kan foretage afbildningen.</big>"
 
 #: ../extensions/Tools/HashJob/HashJob.cs:53
+#, fuzzy
 msgid ""
 "In order to detect duplicates on pictures you imported before 0.5.0, F-Spot "
-"needs to analyze your image collection. This is is not done by default as "
-"it's time consuming. You can Start or Pause this update process using this "
-"dialog."
+"needs to analyze your image collection. This is not done by default as it's "
+"time consuming. You can Start or Pause this update process using this dialog."
 msgstr ""
+"For at genkende kopier af billeder, du importerede før version 0.5.0, skal F-"
+"spot analysere din billedsamling. Dette sker ikke som standard, da det er "
+"tidskrævende. Du kan starte eller midlertidigt afbryde denne "
+"opdateringsproces i dette vindue."
 
 #: ../extensions/Tools/HashJob/HashJob.cs:102
-#, fuzzy
 msgid "Processing images..."
-msgstr "Fejl ved billedbehandling"
+msgstr "Behandler billeder..."
 
 #: ../extensions/Tools/HashJob/HashJob.cs:108
 msgid "Stopped"
-msgstr ""
+msgstr "Stoppet"
 
 #: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.addin.xml.h:1
 msgid "_PicasaWeb..."
@@ -3963,16 +3961,16 @@ msgstr "Fejl ved overførsel til galleri: {0}"
 #: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:776
 #, csharp-format
 msgid "Available space: {0}, {1}% used out of {2}"
-msgstr ""
+msgstr "Tilgængelig plads: {0}, {1}% brugt ud af {2}"
 
 #: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:890
-#, fuzzy, csharp-format
+#, csharp-format
 msgid ""
 "The selected album has a limit of {0} pictures,\n"
 "which would be passed with the current selection of {1} images"
 msgstr ""
-"<small>Det valgte album har en grænse på {0} billeder,\n"
-" og denne overskrides med det nuværende udvalg på {1} billeder</small>"
+"Det valgte album har en grænse på {0} billeder,\n"
+"og denne overskrides med det nuværende udvalg på {1} billeder"
 
 #: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:3
 msgid "<b>PicasaWeb Export</b>"
@@ -4086,22 +4084,19 @@ msgstr "Stole på sidens certifikat denne gang"
 
 #: ../extensions/Editors/BlackoutEditor/BlackoutEditor.cs:18
 msgid "Blackout"
-msgstr ""
+msgstr "Gå i sort"
 
 #: ../extensions/Editors/BlackoutEditor/BlackoutEditor.cs:26
-#, fuzzy
 msgid "Select the area that you want blacked out."
-msgstr "Vælg det område der skal tilskæres."
+msgstr "Vælg det område der skal gå i sort."
 
 #: ../extensions/Editors/PixelateEditor/PixelateEditor.cs:18
-#, fuzzy
 msgid "Pixelate"
-msgstr "Privat"
+msgstr "Pixelér"
 
 #: ../extensions/Editors/PixelateEditor/PixelateEditor.cs:26
-#, fuzzy
 msgid "Select the area that you want pixelated."
-msgstr "Vælg det område der skal tilskæres."
+msgstr "Vælg det område der skal pixeleres."
 
 #~ msgid "Available space:"
 #~ msgstr "Tilgængelig plads:"
