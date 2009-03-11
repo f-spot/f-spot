@@ -1,3 +1,7 @@
+2009-03-11  Stephane Delcroix  <sdelcroix@novell.com>
+
+	* src/Widgets/OpenWithMenu.cs: use the new Image ctor from gtk#2.14
+
 2009-02-27  Stephane Delcroix  <sdelcroix@novell.com>
 
 	* src/Imaging/ImageFile.cs: enable xcf support if there's a

@@ -114,19 +114,7 @@ namespace FSpot.Widgets {
 				if (!show_icon)
 					return;
 
-//FIXME: GTK_SHARP_2_14 should provide a way to get the image directly out of app.Icon
-
-				Pixbuf pixbuf = null;
-				if (app.Icon is ThemedIcon) {
-					try {
-						pixbuf = IconTheme.Default.ChooseIcon ((app.Icon as ThemedIcon).Names, 16, (IconLookupFlags)0).LoadIcon ();
-					} catch (System.Exception) {
-					}
-				} else
-					FSpot.Utils.Log.DebugFormat ("Loading icons from {0} is not implemented", app.Icon);
-
-				if (pixbuf != null)
-					Image = new Gtk.Image (pixbuf);
+				Image = new Gtk.Image (app.Icon, IconSize.Menu);
 			}
 		}
 	}
