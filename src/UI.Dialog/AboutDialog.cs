@@ -89,7 +89,7 @@ namespace FSpot.UI.Dialog
 				Console.WriteLine (e);
 				License = "GPL v2";
 			}
-			Logo = new Gdk.Pixbuf (System.Reflection.Assembly.GetEntryAssembly (), "f-spot-logo.svg");
+			Logo = new Gdk.Pixbuf (System.Reflection.Assembly.GetEntryAssembly (), "f-spot-128.png");
 			ProgramName = "F-Spot";
 			TranslatorCredits = Catalog.GetString ("translator-credits");
                 	if (System.String.Compare (TranslatorCredits, "translator-credits") == 0)

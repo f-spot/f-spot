@@ -374,7 +374,7 @@ F_SPOT_RESOURCES =					\
 	$(F_SPOT_DISTRESOURCES)				\
 	$(top_srcdir)/COPYING				\
 	$(top_srcdir)/icons/f-spot-not.png		\
-	$(top_srcdir)/icons/f-spot-logo.svg		\
+	$(top_srcdir)/icons/f-spot-128.png		\
 	$(top_srcdir)/icons/flower.png
 
 RESOURCES = $(foreach res,$(F_SPOT_RESOURCES), $(addprefix -resource:,$(res)),$(notdir $(res)))
