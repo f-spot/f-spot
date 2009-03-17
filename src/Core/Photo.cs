@@ -509,9 +509,6 @@ namespace FSpot
 						(num == 1) ? Catalog.GetString ("Modified in {1}") : Catalog.GetString ("Modified in {1} ({0})"),
 						num, name);
 	
-				if (num > 1)
-					final_name = name + String.Format(" ({0})", num);
-	
 				if (! VersionNameExists (final_name))
 					return CreateVersion (final_name, base_version_id, create_file);
 	
