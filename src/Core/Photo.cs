@@ -418,19 +418,26 @@ namespace FSpot
 				}
 			} while (version_id > OriginalVersionId);
 		}
+
 		public uint CreateProtectedVersion (string name, uint base_version_id, bool create)
 		{
-			return CreateVersion (name, base_version_id, create, true);
+			return CreateVersion (name, null, base_version_id, create, true);
 		}
 	
 		public uint CreateVersion (string name, uint base_version_id, bool create)
 		{
-			return CreateVersion (name, base_version_id, create, false);
+			return CreateVersion (name, null, base_version_id, create, false);
+		}
+
+		public uint CreateVersion (string name, string extension, uint base_version_id, bool create)
+		{
+			return CreateVersion (name, extension, base_version_id, create, false);
 		}
 	
-		private uint CreateVersion (string name, uint base_version_id, bool create, bool is_protected)
+		private uint CreateVersion (string name, string extension, uint base_version_id, bool create, bool is_protected)
 		{
-			System.Uri new_uri = GetUriForVersionName (name, System.IO.Path.GetExtension (VersionUri (base_version_id).AbsolutePath));
+			extension = extension ?? System.IO.Path.GetExtension (VersionUri (base_version_id).AbsolutePath);
+			System.Uri new_uri = GetUriForVersionName (name, extension);
 			System.Uri original_uri = VersionUri (base_version_id);
 			string md5_sum = MD5Sum;
 	
