@@ -69,6 +69,7 @@ namespace FSpot
 		public const string METADATA_EMBED_IN_IMAGE = APP_FSPOT + "metadata/embed_in_image";
 
 		public const string EDIT_REDEYE_THRESHOLD = APP_FSPOT + "edit/redeye_threshold";
+		public const string EDIT_CREATE_XCF_VERSION = APP_FSPOT + "edit/create_xcf";
 
 		public const string GNOME_SCREENSAVER_THEME = "/apps/gnome-screensaver/themes";
 		public const string GNOME_SCREENSAVER_MODE = "/apps/gnome-screensaver/mode";

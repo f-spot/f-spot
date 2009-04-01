@@ -1,3 +1,10 @@
+2009-04-01  Stephane delcroix  <sdelcroix@novell.com>
+
+	* src/Preferences.cs:
+	* src/Core/Photo.cs:
+	* src/MainWindow.cs: Allow creation of .xcf version of file from the
+	"Open With" menu. Require a pixbuf loader for xcf.
+
 2009-03-11  Stephane Delcroix  <sdelcroix@novell.com>
 
 	* src/Widgets/OpenWithMenu.cs: use the new Image ctor from gtk#2.14

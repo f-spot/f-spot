@@ -506,7 +506,12 @@ namespace FSpot
 			}
 		}
 	
-		public uint CreateNamedVersion (string name, uint base_version_id, bool create_file)
+		public uint CreateNamedVersion (string name, uint baseVersionId, bool createFile)
+		{
+			return CreateNamedVersion (name, baseVersionId, createFile);
+		}
+
+		public uint CreateNamedVersion (string name, string extension, uint base_version_id, bool create_file)
 		{
 			int num = 1;
 			
@@ -517,7 +522,7 @@ namespace FSpot
 						num, name);
 	
 				if (! VersionNameExists (final_name))
-					return CreateVersion (final_name, base_version_id, create_file);
+					return CreateVersion (final_name, extension, base_version_id, create_file);
 	
 				num ++;
 			}

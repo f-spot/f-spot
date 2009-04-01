@@ -3083,6 +3083,24 @@ public class MainWindow {
 		//hmd.AddButton (Gtk.Stock.Cancel, Gtk.ResponseType.Cancel, false);
 		hmd.AddButton (Gtk.Stock.Yes, Gtk.ResponseType.Yes, true);
 
+		bool support_xcf = false;;
+		if (application.Id == "gimp.desktop") 
+			foreach (Gdk.PixbufFormat format in Gdk.Pixbuf.Formats)
+				if (format.Name == "xcf")
+					support_xcf = true;
+
+		//This allows creating a version with a .xcf extension.
+		//There's no need to convert the file to xcf file format, gimp will take care of this
+		if (support_xcf) {	
+			CheckButton cb = new CheckButton (Catalog.GetString ("XCF version"));
+			cb.Active = Preferences.Get<bool> (Preferences.EDIT_CREATE_XCF_VERSION);
+			hmd.VBox.Add (cb);
+			cb.Toggled += delegate (object s, EventArgs e) {
+				Preferences.Set (Preferences.EDIT_CREATE_XCF_VERSION, (s as CheckButton).Active);
+			};
+			cb.Show ();
+		}
+
 		Gtk.ResponseType response = Gtk.ResponseType.Cancel;
 
 		try {
@@ -3090,6 +3108,12 @@ public class MainWindow {
 		} finally {
 			hmd.Destroy ();
 		}
+		
+		bool create_xcf = false;
+		if (support_xcf)
+			create_xcf = Preferences.Get<bool> (Preferences.EDIT_CREATE_XCF_VERSION);
+
+		Console.WriteLine ("XCF ? {0}", create_xcf);
 
 		if (response == Gtk.ResponseType.Cancel)
 			return;
@@ -3101,7 +3125,7 @@ public class MainWindow {
 		foreach (Photo photo in selected) {
 			try {
 				if (create_new_versions) {
-					uint version = photo.CreateNamedVersion (application.Name, photo.DefaultVersionId, true);
+					uint version = photo.CreateNamedVersion (application.Name, create_xcf ? ".xcf" : null, photo.DefaultVersionId, true);
 					photo.DefaultVersionId = version;
 				}
 			} catch (Exception e) {
