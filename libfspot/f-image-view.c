@@ -914,7 +914,6 @@ f_image_view_init (FImageView *image_view)
 FImageView *
 f_image_view_new (void)
 {
-	g_warning ("f_image_view_new");
 	return g_object_new (F_TYPE_IMAGE_VIEW, NULL);
 }
 
