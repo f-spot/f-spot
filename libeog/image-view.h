@@ -58,9 +58,10 @@ typedef enum {
 
 #define TYPE_IMAGE_VIEW            (image_view_get_type ())
 #define IMAGE_VIEW(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), TYPE_IMAGE_VIEW, ImageView))
-#define IMAGE_VIEW_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST ((klass), TYPE_IMAGE_VIEW, ImageViewClass))
 #define IS_IMAGE_VIEW(obj)         (G_TYPE_CHECK_INSTANCE_TYPE ((obj), TYPE_IMAGE_VIEW))
+#define IMAGE_VIEW_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST ((klass), TYPE_IMAGE_VIEW, ImageViewClass))
 #define IS_IMAGE_VIEW_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), TYPE_IMAGE_VIEW))
+#define IMAGE_VIEW_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), TYPE_IMAGE_VIEW, ImageViewClass))
 
 typedef struct _ImageView ImageView;
 typedef struct _ImageViewClass ImageViewClass;
@@ -68,7 +69,7 @@ typedef struct _ImageViewClass ImageViewClass;
 typedef struct _ImageViewPrivate ImageViewPrivate;
 
 struct _ImageView {
-	GtkWidget widget;
+	GtkWidget parent_instance;
 
 	/* Private data */
 	ImageViewPrivate *priv;

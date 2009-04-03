@@ -28,10 +28,10 @@
 
 #define F_TYPE_IMAGE_VIEW			(f_image_view_get_type ())
 #define F_IMAGE_VIEW(obj)			(G_TYPE_CHECK_INSTANCE_CAST ((obj), F_TYPE_IMAGE_VIEW, FImageView))
-#define F_IMAGE_VIEW_CLASS(klass)		(G_TYPE_CHECK_CLASS_CAST ((klass), F_TYPE_IMAGE_VIEW, FImageViewClass))
 #define F_IS_IMAGE_VIEW(obj)			(G_TYPE_CHECK_INSTANCE_TYPE ((obj), F_TYPE_IMAGE_VIEW))
+#define F_IMAGE_VIEW_CLASS(klass)		(G_TYPE_CHECK_CLASS_CAST ((klass), F_TYPE_IMAGE_VIEW, FImageViewClass))
 #define F_IS_IMAGE_VIEW_CLASS(klass)		(G_TYPE_CHECK_CLASS_TYPE ((obj), F_TYPE_IMAGE_VIEW))
-
+#define F_IMAGE_VIEW_GET_CLASS(obj)		(G_TYPE_INSTANCE_GET_CLASS ((obj), F_TYPE_IMAGE_VIEW, FImageViewClass))
 
 enum _FImageViewPointerMode {
 	F_IMAGE_VIEW_POINTER_MODE_NONE,
@@ -46,7 +46,7 @@ typedef struct _FImageViewPrivate FImageViewPrivate;
 typedef struct _FImageViewClass   FImageViewClass;
 
 struct _FImageView {
-	ImageView parent;
+	ImageView parent_instance;
 
 	FImageViewPrivate *priv;
 };
@@ -60,7 +60,7 @@ struct _FImageViewClass {
 
 GType  f_image_view_get_type  (void);
 
-GtkWidget *f_image_view_new  (void);
+FImageView *f_image_view_new  (void);
 
 void                   f_image_view_set_pointer_mode  (FImageView            *image_view,
 						       FImageViewPointerMode  mode);

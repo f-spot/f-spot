@@ -31,9 +31,7 @@
 #include "libeog/cursors.h"
 
 
-#define PARENT_TYPE image_view_get_type ()
-static ImageViewClass *parent_class = NULL;
-
+G_DEFINE_TYPE (FImageView, f_image_view, TYPE_IMAGE_VIEW);
 
 /* Thickness of the rectangle drawn to show the current selection.  */
 #define SELECTION_LINE_WIDTH  1
@@ -595,7 +593,7 @@ impl_expose_event (GtkWidget *widget, GdkEventExpose *event)
 	GdkRegion *selection;
 	GdkRectangle rect;
 
-	(* GTK_WIDGET_CLASS (parent_class)->expose_event) (widget, event);
+	(* GTK_WIDGET_CLASS (f_image_view_parent_class)->expose_event) (widget, event);
 
 	if (! priv->selection_active)
 		return FALSE; 
@@ -629,7 +627,7 @@ impl_realize (GtkWidget *widget)
 {
 	FImageViewPrivate *priv = F_IMAGE_VIEW (widget)->priv;
 
-	(* GTK_WIDGET_CLASS (parent_class)->realize) (widget);
+	(* GTK_WIDGET_CLASS (f_image_view_parent_class)->realize) (widget);
 
 	set_cursor (F_IMAGE_VIEW (widget));
 
@@ -645,7 +643,7 @@ impl_realize (GtkWidget *widget)
 static void
 impl_unrealize (GtkWidget *widget)
 {
-	(* GTK_WIDGET_CLASS (parent_class)->unrealize) (widget);
+	(* GTK_WIDGET_CLASS (f_image_view_parent_class)->unrealize) (widget);
 
 	F_UNREF (F_IMAGE_VIEW (widget)->priv->selection_gc);
 }
@@ -659,7 +657,7 @@ impl_button_press_event (GtkWidget *widget,
 	Mode mode;
 
 	if (priv->pointer_mode == F_IMAGE_VIEW_POINTER_MODE_SCROLL)
-		return (* GTK_WIDGET_CLASS (parent_class)->button_press_event) (widget, button_event);
+		return (* GTK_WIDGET_CLASS (f_image_view_parent_class)->button_press_event) (widget, button_event);
 	else if (priv->pointer_mode == F_IMAGE_VIEW_POINTER_MODE_NONE)
 		return FALSE;
 
@@ -722,7 +720,7 @@ impl_motion_notify_event (GtkWidget *widget,
 	GdkRectangle current;
 	
 	if (priv->pointer_mode == F_IMAGE_VIEW_POINTER_MODE_SCROLL)
-		return (* GTK_WIDGET_CLASS (parent_class)->motion_notify_event) (widget, motion_event);
+		return (* GTK_WIDGET_CLASS (f_image_view_parent_class)->motion_notify_event) (widget, motion_event);
 
 	if (motion_event->is_hint)
 		gdk_window_get_pointer (widget->window, &x, &y, &mods);
@@ -845,7 +843,7 @@ impl_button_release_event (GtkWidget *widget,
 	FImageViewPrivate *priv = F_IMAGE_VIEW (widget)->priv;
 
 	if (priv->pointer_mode == F_IMAGE_VIEW_POINTER_MODE_SCROLL)
-		return (* GTK_WIDGET_CLASS (parent_class)->button_release_event) (widget, button_event);
+		return (* GTK_WIDGET_CLASS (f_image_view_parent_class)->button_release_event) (widget, button_event);
 
 	priv->is_new_selection = FALSE;
 	priv->mode = MODE_IDLE;
@@ -865,18 +863,18 @@ impl_finalize (GObject *object)
 
 	g_free (priv);
 
-	(* G_OBJECT_CLASS (parent_class)->finalize) (object);
+	(* G_OBJECT_CLASS (f_image_view_parent_class)->finalize) (object);
 }
 
 
 /* Initialization.  */
 
 static void
-class_init (FImageViewClass *class)
+f_image_view_class_init (FImageViewClass *klass)
 {
-	ImageViewClass *image_view_class = IMAGE_VIEW_CLASS (class);
-	GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (class);
-	GObjectClass *object_class = G_OBJECT_CLASS (class);
+	ImageViewClass *image_view_class = IMAGE_VIEW_CLASS (klass);
+	GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (klass);
+	GObjectClass *object_class = G_OBJECT_CLASS (klass);
 
 	image_view_class->paint_extra = impl_paint_extra;
 
@@ -889,10 +887,8 @@ class_init (FImageViewClass *class)
 
 	object_class->finalize = impl_finalize;
 
-	parent_class = g_type_class_peek_parent (class);
-
 	signals[SELECTION_CHANGED] = g_signal_new ("selection_changed",
-						   G_TYPE_FROM_CLASS (class),
+						   G_OBJECT_CLASS_TYPE (object_class),
 						   G_SIGNAL_RUN_LAST,
 						   G_STRUCT_OFFSET (FImageViewClass, selection_changed),
 						   NULL, NULL,
@@ -901,7 +897,7 @@ class_init (FImageViewClass *class)
 }
 
 static void
-init (FImageView *image_view)
+f_image_view_init (FImageView *image_view)
 {
 	FImageViewPrivate *priv;
 
@@ -915,10 +911,11 @@ init (FImageView *image_view)
 
 /* Instantiation.  */
 
-GtkWidget *
+FImageView *
 f_image_view_new (void)
 {
-	return g_object_new (f_image_view_get_type (), NULL);
+	g_warning ("f_image_view_new");
+	return g_object_new (F_TYPE_IMAGE_VIEW, NULL);
 }
 
 
@@ -993,6 +990,3 @@ f_image_view_unset_selection (FImageView *image_view)
 		emit_selection_changed (image_view);
 	}
 }
-
-
-F_MAKE_TYPE (FImageView, f_image_view)
