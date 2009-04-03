@@ -149,6 +149,9 @@ namespace FSpot
 					// Debug GLib critical warnings
 					GLib.Log.SetLogHandler ("GLib", GLib.LogLevelFlags.Critical, logFunc);
 
+					//Debug GLib-GObject critical warnings
+					GLib.Log.SetLogHandler ("GLib-GObject", GLib.LogLevelFlags.Critical, logFunc);
+
 					break;
 				case "--uninstalled": case "--gdb": case "--valgrind":
 					break;
