@@ -191,7 +191,7 @@ namespace FSpot {
 				this.Pixbuf = null;
 				if (!loader.Loading) {
 					try {
-						System.Console.WriteLine ("Falling back to file loader");
+						Log.Warning ("Falling back to file loader");
 
 						this.Pixbuf = FSpot.PhotoLoader.Load (item.Collection, 
 										      item.Index);
