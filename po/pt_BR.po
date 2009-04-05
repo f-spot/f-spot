@@ -2,19 +2,19 @@
 # Copyright (C) 2005-2006 Free Software Foundation, Inc.
 # This file is distributed under the same license as the f-spot package.
 # Raphael Higino <phhigino@gmail.com>, 2005-2006.
-# Vladimir Melo <vladimirmelo.psi@gmail.com>, 2007-2008.
+# Vladimir Melo <vmelo@gnome.org>, 2007, 2008, 2009.
 # Og Maciel <ogmaciel@gnome.org>, 2007-2008.
 # Amadeu A. Barbosa Júnior <amadeu@gmail.com>, 2008.
 # Michel Recondo <mrecondo@gmail.com>, 2008.
 # Enrico Nicoletto <liverig@gmail.com>, 2009.
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: f-spot\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-03-31 11:06-0400\n"
-"PO-Revision-Date: 2009-03-31 10:23-0300\n"
-"Last-Translator: Enrico Nicoletto <liverig@gmail.com>\n"
+"POT-Creation-Date: 2009-04-05 09:40-0400\n"
+"PO-Revision-Date: 2009-04-02 10:23-0300\n"
+"Last-Translator: Vladimir Melo <vmelo@gnome.org>\n"
 "Language-Team: Brazilian Portuguese <gnome-pt_br-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -501,19 +501,19 @@ msgid_plural "Modified ({0})"
 msgstr[0] "Modificado"
 msgstr[1] "({0}) modificados"
 
-#: ../src/Core/Photo.cs:516
+#: ../src/Core/Photo.cs:521
 #, csharp-format
 msgid "Modified in {1}"
 msgstr "Modificado em {1}"
 
-#: ../src/Core/Photo.cs:516
+#: ../src/Core/Photo.cs:521
 #, csharp-format
 msgid "Modified in {1} ({0})"
 msgstr "Modificado em {1} ({0})"
 
 #. Note that the original version is never stored in the photo_versions table in the
 #. database.
-#: ../src/Core/Photo.cs:671 ../src/f-spot.glade.h:96
+#: ../src/Core/Photo.cs:676 ../src/f-spot.glade.h:96
 msgid "Original"
 msgstr "Original"
 
@@ -1326,6 +1326,10 @@ msgstr[1] ""
 "Antes de iniciar {1}, o F-Spot deve criar novas versões das fotos "
 "selecionadas para preservar as originais?"
 
+#: ../src/MainWindow.cs:3095
+msgid "XCF version"
+msgstr "Versão XCF"
+
 #: ../src/MetadataStore.cs:18
 msgid "Creator"
 msgstr "Criador"
@@ -1509,7 +1513,7 @@ msgstr "Erro ao editar foto"
 msgid "Comment:"
 msgstr "Comentário:"
 
-#: ../src/Preferences.cs:147
+#: ../src/Preferences.cs:148
 msgid "Photos"
 msgstr "Fotos"
 
@@ -3921,10 +3925,10 @@ msgid ""
 "needs to analyze your image collection. This is not done by default as it's "
 "time consuming. You can Start or Pause this update process using this dialog."
 msgstr ""
-"A fim de detectar duplicatas em imagens que você importou antes da versão "
-"0.5.0, F-Spot precisa analisar sua coleção de imagens. Isto não é feito por "
+"Para detectar imagens duplicadas que você importou antes da versão 0.5.0, o "
+"F-Spot precisa analisar a sua coleção de imagens. Isto não é feito por "
 "padrão pelo consumo de tempo. Você pode Iniciar ou Pausar este processo de "
-"atualização usando esta janela de diálogo."
+"atualização usando este diálogo."
 
 #: ../extensions/Tools/HashJob/HashJob.cs:102
 msgid "Processing images..."
@@ -4090,18 +4094,13 @@ msgstr "Erro de confiança"
 msgid "Trust the site's certificate this once"
 msgstr "Confiar neste certificador apenas esta vez"
 
-# Seccond 'The Free Dictionary', blackout have the definitions:
-# 1. to put out (lights)
-# 2. to lose vision, consciousness, or memory temporarily
-# 3. to stop (news, a television programme, etc.) from being broadcast
-# So I conventioned translating blackout as "Eliminar" because I believe it is more relationated with the package.
 #: ../extensions/Editors/BlackoutEditor/BlackoutEditor.cs:18
 msgid "Blackout"
-msgstr "Eliminar"
+msgstr "Escurecer"
 
 #: ../extensions/Editors/BlackoutEditor/BlackoutEditor.cs:26
 msgid "Select the area that you want blacked out."
-msgstr "Seleciona a área que você deseja eliminar."
+msgstr "Seleciona a área em que você deseja escurecer."
 
 #: ../extensions/Editors/PixelateEditor/PixelateEditor.cs:18
 msgid "Pixelate"
