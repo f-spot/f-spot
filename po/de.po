@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: f-spot\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-03-08 00:05+0100\n"
-"PO-Revision-Date: 2009-03-08 00:11+0100\n"
+"POT-Creation-Date: 2009-04-13 22:04+0200\n"
+"PO-Revision-Date: 2009-04-13 22:14+0100\n"
 "Last-Translator: Mario Blättermann <mariobl@gnome.org>\n"
 "Language-Team: German GNOME Translators <gnome-de@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -61,8 +61,8 @@ msgid ""
 "The selected extensions can't be installed because there are dependency "
 "conflicts."
 msgstr ""
-"Die ausgewählten Erweiterungen können nicht installiert werden, da es weitere "
-"Abhängigkeiten gibt."
+"Die ausgewählten Erweiterungen können nicht installiert werden, da es "
+"weitere Abhängigkeiten gibt."
 
 #: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:398
 msgid "The following packages will be installed:"
@@ -462,8 +462,8 @@ msgid ""
 "F-Spot preference dialog."
 msgstr ""
 "Die Markierung »{0}« wird bei keinem Foto genutzt. Versuchen\n"
-"Sie, die Markierung zu einigen Fotos hinzuzufügen oder wählen Sie eine andere "
-"Markierung im F-Spot-Einstellungsdialog."
+"Sie, die Markierung zu einigen Fotos hinzuzufügen oder wählen Sie eine "
+"andere Markierung im F-Spot-Einstellungsdialog."
 
 #: ../src/Core.cs:208
 msgid "Search returned no results"
@@ -480,35 +480,35 @@ msgstr ""
 "F-Spot-Einstellungsdialog."
 
 #. Note for translators: Reparented is a picture becoming a version of another one
-#: ../src/Core/Photo.cs:471
+#: ../src/Core/Photo.cs:478
 msgid "Reparented"
 msgstr "Ausgangsfoto neu festgelegt"
 
-#: ../src/Core/Photo.cs:471
+#: ../src/Core/Photo.cs:478
 #, csharp-format
 msgid "Reparented ({0})"
 msgstr "Ausgangsfoto neu festgelegt ({0})"
 
-#: ../src/Core/Photo.cs:490
+#: ../src/Core/Photo.cs:497
 #, csharp-format
 msgid "Modified"
 msgid_plural "Modified ({0})"
 msgstr[0] "Bearbeitet"
 msgstr[1] "Bearbeitet ({0})"
 
-#: ../src/Core/Photo.cs:509
+#: ../src/Core/Photo.cs:521
 #, csharp-format
 msgid "Modified in {1}"
 msgstr "Bearbeitet in {1}"
 
-#: ../src/Core/Photo.cs:509
+#: ../src/Core/Photo.cs:521
 #, csharp-format
 msgid "Modified in {1} ({0})"
 msgstr "Bearbeitet in {1} ({0})"
 
 #. Note that the original version is never stored in the photo_versions table in the
 #. database.
-#: ../src/Core/Photo.cs:667 ../src/f-spot.glade.h:96
+#: ../src/Core/Photo.cs:676 ../src/f-spot.glade.h:96
 msgid "Original"
 msgstr "Original"
 
@@ -982,8 +982,8 @@ msgstr "Ordner ist nicht vorhanden."
 #: ../src/ImportCommand.cs:671
 #, csharp-format
 msgid ""
-"The directory you selected \"{0}\" does not exist.  Please choose a different "
-"directory"
+"The directory you selected \"{0}\" does not exist.  Please choose a "
+"different directory"
 msgstr ""
 "Der von Ihnen gewählte Ordner »{0}« ist nicht vorhanden. Bitte wählen Sie "
 "einen anderen Ordner"
@@ -1036,7 +1036,8 @@ msgstr "Fehler beim Speichern des geschärften Bilds"
 #, csharp-format
 msgid "Received exception \"{0}\". Unable to save photo {1}"
 msgstr ""
-"Die Ausnahme »{0}« wurde empfangen. Das Bild {1} kann nicht gespeichert werden."
+"Die Ausnahme »{0}« wurde empfangen. Das Bild {1} kann nicht gespeichert "
+"werden."
 
 #: ../src/Loupe.cs:92
 msgid "Sharpen"
@@ -1202,7 +1203,8 @@ msgstr[1] "Die {0} ausgewählten Fotos dauerhaft löschen?"
 
 #: ../src/MainWindow.cs:2428
 msgid "This deletes all versions of the selected photo from your drive."
-msgid_plural "This deletes all versions of the selected photos from your drive."
+msgid_plural ""
+"This deletes all versions of the selected photos from your drive."
 msgstr[0] "Dies löscht alle Versionen des gewählten Fotos vom Laufwerk."
 msgstr[1] "Dies löscht alle Versionen der gewählten Fotos vom Laufwerk."
 
@@ -1327,6 +1329,10 @@ msgstr[0] ""
 msgstr[1] ""
 "Soll F-Spot vor dem Ausführen von {1} eine Kopie der ausgewählten Fotos "
 "erstellen, um die Originale zu erhalten?"
+
+#: ../src/MainWindow.cs:3095
+msgid "XCF version"
+msgstr "XCF-Version"
 
 #: ../src/MetadataStore.cs:18
 msgid "Creator"
@@ -1516,7 +1522,7 @@ msgstr "Fehler beim Bearbeiten des Fotos"
 msgid "Comment:"
 msgstr "Kommentar:"
 
-#: ../src/Preferences.cs:147
+#: ../src/Preferences.cs:148
 msgid "Photos"
 msgstr "Fotos"
 
@@ -1598,9 +1604,9 @@ msgid_plural ""
 "{0} photos could not be rotated because they are on a read only file system "
 "or media such as a CDROM.  Please check the permissions and try again."
 msgstr[0] ""
-"Das Foto konnte nicht gedreht werden, da es sich auf einem schreibgeschützten "
-"Dateisystem oder Medium (z.B. CD-ROM) befindet. Bitte versuchen Sie es nach "
-"Überprüfung der Zugriffsrechte erneut."
+"Das Foto konnte nicht gedreht werden, da es sich auf einem "
+"schreibgeschützten Dateisystem oder Medium (z.B. CD-ROM) befindet. Bitte "
+"versuchen Sie es nach Überprüfung der Zugriffsrechte erneut."
 msgstr[1] ""
 "{0} Fotos konnten nicht gedreht werden, da sie sich auf einem "
 "schreibgeschützten Dateisystem oder Medium (z.B. CD-ROM) befinden. Bitte "
@@ -2030,8 +2036,8 @@ msgid ""
 "The \"F-Spot Manual\" could not be found.  Please verify that your "
 "installation has been completed successfully."
 msgstr ""
-"Die »F-Spot Dokumentation« konnte nicht gefunden werden. Bitte überprüfen Sie, "
-"ob die Installation erfolgreich durchgeführt wurde."
+"Die »F-Spot Dokumentation« konnte nicht gefunden werden. Bitte überprüfen "
+"Sie, ob die Installation erfolgreich durchgeführt wurde."
 
 #: ../src/Widgets/CustomPrintWidget.cs:98
 msgid "Page Setup"
@@ -2111,8 +2117,8 @@ msgstr[1] "Fehler beim Speichern der abgeglichenen Fotos"
 #: ../src/Widgets/EditorPage.cs:222
 #, csharp-format
 msgid ""
-"Received exception \"{0}\". Note that you have to develop RAW files into JPEG "
-"before you can edit them."
+"Received exception \"{0}\". Note that you have to develop RAW files into "
+"JPEG before you can edit them."
 msgstr ""
 "Die Ausnahme »{0}« wurde empfangen. Beachten Sie, dass RAW-Dateien vor der "
 "Bearbeitung erst in JPEG-Dateien umgewandelt werden müssen."
@@ -2508,7 +2514,8 @@ msgstr "Markierungen hinzufügen:"
 msgid "Attach tag:"
 msgstr "Markierung anfügen:"
 
-#: ../src/f-spot.glade.h:48 ../extensions/Exporters/CDExport/CDExport.glade.h:3
+#: ../src/f-spot.glade.h:48
+#: ../extensions/Exporters/CDExport/CDExport.glade.h:3
 #: ../extensions/Exporters/FolderExport/FolderExport.glade.h:7
 #: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:7
 #: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:5
@@ -3203,7 +3210,8 @@ msgstr "wird kopiert …"
 
 #: ../extensions/Exporters/CDExport/CDExport.glade.h:1
 msgid "<b><i>There is some previously scheduled items to write</i></b>"
-msgstr "<b><i>Es exisitieren schon Daten, die gespeichert werden müssen</i></b>"
+msgstr ""
+"<b><i>Es exisitieren schon Daten, die gespeichert werden müssen</i></b>"
 
 #: ../extensions/Exporters/CDExport/CDExport.glade.h:2
 msgid "<b>Photos to Burn</b>"
@@ -3341,8 +3349,8 @@ msgstr "Markierungs-_Rangordnung exportieren"
 #: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:8
 msgid ""
 "F-Spot needs your authorization in order to upload photos to your {0} "
-"account. Press the \"Authorize\" button to open a web browser and give F-Spot "
-"the authorization. "
+"account. Press the \"Authorize\" button to open a web browser and give F-"
+"Spot the authorization. "
 msgstr ""
 "F-Spot benötigt Ihre Legitimierung, um Fotos zu Ihrem {0}-Benutzerkonto "
 "hochzuladen. Bitte klicken Sie auf den »Legitimieren«-Knopf, um einen Browser "
@@ -3655,8 +3663,8 @@ msgstr "Fehler beim Erstellen eines neuen Albums"
 #: ../extensions/Exporters/GalleryExport/GalleryRemote.cs:711
 #, csharp-format
 msgid ""
-"The following error was encountered while attempting to perform the requested "
-"operation:\n"
+"The following error was encountered while attempting to perform the "
+"requested operation:\n"
 "{0} ({1})"
 msgstr ""
 "Der folgende Fehler trat beim Versuch auf, die gewünschte Aktion "
@@ -3673,8 +3681,8 @@ msgstr "Zu viele Fotos zum Exportieren"
 
 #: ../extensions/Exporters/FacebookExport/FacebookExport.cs:257
 msgid ""
-"Facebook only permits 60 photographs per album.  Please refine your selection "
-"and try again."
+"Facebook only permits 60 photographs per album.  Please refine your "
+"selection and try again."
 msgstr ""
 "Facebook erlaubt nur 60 Fotos per Album. Bitte verkleinern Sie ihre Auswahl "
 "und versuchen es erneut."
@@ -3691,8 +3699,8 @@ msgstr "Es wird auf Legitimation gewartet"
 #: ../extensions/Exporters/FacebookExport/FacebookExport.cs:322
 msgid ""
 "F-Spot will now launch your browser so that you can log into Facebook.  Turn "
-"on the \"Save my login information\" checkbox on Facebook and F-Spot will log "
-"into Facebook automatically from now on."
+"on the \"Save my login information\" checkbox on Facebook and F-Spot will "
+"log into Facebook automatically from now on."
 msgstr ""
 "F-Spot wird nun Ihren Browser starten, damit Sie sich bei Facebook anmelden "
 "können.  Aktivieren Sie das Kontrollkästchen bei »Angemeldet bleiben« und F-"
@@ -3932,8 +3940,9 @@ msgid ""
 msgstr ""
 "Um Duplikate von Bildern zu erkennen, die von F-Spot-Versionen vor 0.5.0 "
 "importiert wurden, muss Ihre Bildersammlung analysiert werden. Dies wird "
-"nicht automatisch erledigt, da es längere Zeit in Anspruch nimmt.  Sie können "
-"mit Hilfe dieses Dialogs den Aktualisierungsvorgang starten oder unterbrechen."
+"nicht automatisch erledigt, da es längere Zeit in Anspruch nimmt.  Sie "
+"können mit Hilfe dieses Dialogs den Aktualisierungsvorgang starten oder "
+"unterbrechen."
 
 #: ../extensions/Tools/HashJob/HashJob.cs:102
 msgid "Processing images..."
@@ -3993,7 +4002,8 @@ msgid "<b>PicasaWeb Export</b>"
 msgstr "<b>PicasaWeb Export</b>"
 
 #: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:7
-msgid "<span weight='bold' size='larger'>Your Google Account is locked</span>\n"
+msgid ""
+"<span weight='bold' size='larger'>Your Google Account is locked</span>\n"
 msgstr ""
 "<span weight='bold' size='larger'>Ihr Google-Konto ist gesperrt</span>\n"
 
@@ -4325,10 +4335,11 @@ msgstr "Wählen Sie den Bereich zum Verpixeln aus."
 
 #, fuzzy
 #~ msgid ""
-#~ "<small><i>Enable this option if you want to allow other programs to import "
-#~ "or delete photos and tags over DBus.</i></small>"
+#~ "<small><i>Enable this option if you want to allow other programs to "
+#~ "import or delete photos and tags over DBus.</i></small>"
 #~ msgstr ""
-#~ "<small><i>Aktivieren Sie diese Option, um Markierungen und Beschreibungen\n"
+#~ "<small><i>Aktivieren Sie diese Option, um Markierungen und "
+#~ "Beschreibungen\n"
 #~ "im Bild selbst zu speichern, sofern das Bildformat dies unterstützt.</i></"
 #~ "small>"
 
@@ -4398,8 +4409,8 @@ msgstr "Wählen Sie den Bereich zum Verpixeln aus."
 #~ "permissions are correct and try again"
 #~ msgstr ""
 #~ "Der Fehler »{0}« ist während der Erstellung des Verzeichnisses »{1}« "
-#~ "aufgetreten. Überprüfen Sie den Pfad und die Zugriffsrechte. Versuchen Sie "
-#~ "es danach noch einmal."
+#~ "aufgetreten. Überprüfen Sie den Pfad und die Zugriffsrechte. Versuchen "
+#~ "Sie es danach noch einmal."
 
 #~ msgid "Select Destination"
 #~ msgstr "Zielverzeichnis wählen"
@@ -4643,10 +4654,6 @@ msgstr "Wählen Sie den Bereich zum Verpixeln aus."
 #, fuzzy
 #~ msgid "name"
 #~ msgstr "Name:"
-
-#, fuzzy
-#~ msgid "version"
-#~ msgstr "_Version"
 
 #, fuzzy
 #~ msgid "date"
