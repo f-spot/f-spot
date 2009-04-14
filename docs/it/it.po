@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: F-Spot 0.2\n"
-"POT-Creation-Date: 2009-04-05 13:44+0000\n"
-"PO-Revision-Date: 2009-04-09 22:16+0200\n"
+"POT-Creation-Date: 2009-04-09 20:19+0000\n"
+"PO-Revision-Date: 2009-04-12 07:20+0200\n"
 "Last-Translator: Lorenzo Travaglio <ltrav02@yahoo.it>\n"
 "Language-Team: Italian <tp@lists.linux.it>\n"
 "MIME-Version: 1.0\n"
@@ -213,7 +213,15 @@ msgid ""
 "disable physical copying of images to that directory and make F-Spot only "
 "reference to existing files. For that you need to disable checkbox "
 "<guilabel>Copy files to the Photos folder</guilabel>."
-msgstr "In modo predefinito F-Spot copia le fotografie nella directory <filename class=\"directory\">~/Immagini</filename>. È tuttavia possibile indicare una diversa directory mediante il menù <guilabel>Preferenze</guilabel> (<menuchoice><guimenu>Modifica</guimenu><guimenuitem>Preferenze</guimenuitem></menuchoice>). È parimenti possibile disabilitare la copia fisica in una directory e utilizzare solo un riferimento ai file esistenti. Ciò si ottiene deselezionando la casella <guilabel>Copia i file nella cartella delle foto</guilabel>."
+msgstr ""
+"In modo predefinito F-Spot copia le fotografie nella directory <filename "
+"class=directory>~/Photos</filename>. È tuttavia possibile indicare una "
+"diversa directory mediante il menù <guilabel>Preferenze</guilabel> "
+"(<menuchoice><guimenu>Modifica</guimenu><guimenuitem>Preferenze</"
+"guimenuitem></menuchoice>). È parimenti possibile disabilitare la copia "
+"fisica in una directory ed utilizzare solo un riferimento ai file esistenti. "
+"Ciò si ottiene deselezionando la casella <guilabel>Copia i file nella "
+"cartella delle foto</guilabel>."
 
 #: C/f-spot.xml:85(para)
 msgid ""
@@ -224,7 +232,7 @@ msgid ""
 "imported."
 msgstr ""
 "Per verificare se una o più immagini siano già state importate dalla "
-"locazione selezionata è possibile selezionare l'opzione <guilabel>Rileva "
+"posizione selezionata è possibile selezionare l'opzione <guilabel>Rileva "
 "duplicati</guilabel>. F-Spot cercherà di rilevare se una copia esatta "
 "dell'immagine sia già presente e in caso affermativo non effettuerà "
 "l'importazione."
@@ -343,7 +351,7 @@ msgstr ""
 
 #: C/f-spot.xml:160(title)
 msgid "Crop tool"
-msgstr "Strumento Ritaglia"
+msgstr "Strumento ritaglia"
 
 #: C/f-spot.xml:167(para) C/f-spot.xml:368(para)
 msgid ""
@@ -394,7 +402,7 @@ msgstr ""
 
 #: C/f-spot.xml:203(title)
 msgid "Adjust Colors tool"
-msgstr "Strumento Regolazione colori"
+msgstr "Strumento regolazione colori"
 
 #: C/f-spot.xml:213(title) C/f-spot.xml:221(title)
 msgid "AutoColor"
@@ -537,7 +545,7 @@ msgid ""
 "menuchoice> and specify the following values:"
 msgstr ""
 "Le fotografie sfocate e molte immagini digitalizzate spesso richiedono una "
-"correzione della nitidezza. L'effetto Maschera di Contrasto migliora la "
+"correzione della nitidezza. L'effetto Maschera di contrasto migliora la "
 "nitidezza degli orli degli elementi senza incrementare il rumore o "
 "introdurre difetti. Per rendere più nitida una foto selezionare "
 "<menuchoice><guimenu>Modifica</guimenu><guimenuitem>Nitidezza...</"
@@ -864,8 +872,8 @@ msgid ""
 "<guilabel>Find: Import Roll</guilabel>. Now you can add some other filter to "
 "finetune your selection."
 msgstr ""
-"Quando si applica il filtro di Importazione Rullino, nella barra di ricerca "
-"si potrà osservare la dicitura <guilabel>Trova: Importa Rullino</guilabel>. "
+"Quando si applica il filtro di Importazione rullino, nella barra di ricerca "
+"si potrà osservare la dicitura <guilabel>Trova: Importa rullino</guilabel>. "
 "Si possono a questo punto aggiungere altri filtri per finalizzare la propria "
 "selezione."
 
@@ -878,8 +886,8 @@ msgid ""
 "(<guibutton>X</guibutton>) of the search bar to discard all the current "
 "search options."
 msgstr ""
-"Se il filtro Importazione Rullino non serve più, scegliere <guimenu>Trova</"
-"guimenu><guisubmenu>Importa Rullini</guisubmenu><guimenuitem>Cancella filtri "
+"Se il filtro Importazione rullino non serve più, scegliere <guimenu>Trova</"
+"guimenu><guisubmenu>Importa rullini</guisubmenu><guimenuitem>Cancella filtri "
 "rullino</guimenuitem></menuchoice> per rimuovere l'importazione rullini dai "
 "criteri di ricerca. Premere il pulsante di chiusura (<guibutton>X</"
 "guibutton>) della barra di ricerca per cancellare tutte le opzioni di "
@@ -1179,7 +1187,7 @@ msgid ""
 "color reproduction capabilities."
 msgstr ""
 "Quando si osserva una foto sul monitor questa appare differente da quella "
-"osservata nella previsualizzazione della fotocamera o su un altro display. "
+"osservata nella previsualizzazione della fotocamera o su un altro monitor. "
 "Risulta essere anche diversa quando la si stampa. Questo perché ogni "
 "dispositivo ha una sua propria capacità di riprodurre i colori."
 
@@ -1237,7 +1245,7 @@ msgstr ""
 
 #: C/f-spot.xml:795(para)
 msgid "Display profile. It's a profile for a monitor."
-msgstr "Profilo Display. È un profilo per monitor."
+msgstr "Profilo display. È un profilo per monitor."
 
 #: C/f-spot.xml:800(para)
 msgid "Output profile. This is usually a profile for you printer."
@@ -1253,7 +1261,7 @@ msgstr ""
 
 #: C/f-spot.xml:813(title)
 msgid "How to get my screen/printer color profile"
-msgstr "Come prelevare i profili per il display e la stampante"
+msgstr "Come prelevare i profili per il monitor e la stampante"
 
 #: C/f-spot.xml:815(para)
 msgid "There are few ways to get a color profile."
@@ -1359,7 +1367,6 @@ msgstr ""
 "<menuchoice><guimenu>File</guimenu><guimenuitem>Stampa</guimenuitem></"
 "menuchoice>."
 
-# Non sono sicuro di quanto segue, nella mia versione non c'è Output sotto Display...
 #: C/f-spot.xml:890(para)
 msgid ""
 "Select <guilabel>Display</guilabel> and <guilabel>Output</guilabel> profiles."
@@ -1367,14 +1374,17 @@ msgstr ""
 "Selezionare i profili <guilabel>Display</guilabel> e <guilabel>Output</"
 "guilabel>."
 
-# Qualcuno può dirmi se la voce di menù è corretta?
 #: C/f-spot.xml:898(para)
 msgid ""
 "You can use <ulink url=\"http://burtonini.com/blog/computers/xicc\">xicc</"
 "ulink> to load ICC profile to display and use the loaded profile from F-"
 "Spot. Just mark the checkbox <guilabel>Try to use the system display "
 "profile</guilabel>."
-msgstr "Sul sito <ulink url=\"http://burtonini.com/blog/computers/xicc\">xicc</\"ulink> è possibile trovare alcuni profili ICC da scaricare e usare con F-Spot. A questo punto selezionare la casella <guilabel>Prova ad utilizzare il profilo di visualizzazione di sistema</guilabel>."
+msgstr ""
+"Sul sito <ulink url=\"http://burtonini.com/blog/computers/xicc\">xicc</"
+"\"ulink> è possibile trovare alcuni profili ICC da scaricare e usare con F-"
+"Spot. A questo punto selezionare la casella <guilabel>Prova a usare il "
+"profilo di sistema</guilabel>."
 
 #: C/f-spot.xml:909(title)
 msgid "Extend functionality"
@@ -1525,7 +1535,7 @@ msgid ""
 msgstr ""
 "È possibile abilitare o disabilitare temporaneamente un pacchetto di "
 "estensione, ad esempio se non è abbastanza stabile per gestire un gran "
-"numero di fotografie oppure se i menù risultano ristretti dalle estensioni."
+"numero di fotografie oppure se i menù risultano affollati di estensioni."
 
 #: C/f-spot.xml:1012(para)
 msgid ""
@@ -1654,7 +1664,7 @@ msgstr "Maiusc"
 
 #: C/f-spot.xml:1122(entry)
 msgid "Delete selected photos permanently from the drive"
-msgstr "Elimina definitivamente le foto selezionate"
+msgstr "Elimina definitivamente dal disco le foto selezionate"
 
 #: C/f-spot.xml:1129(keycap)
 msgid "t"
@@ -1800,7 +1810,9 @@ msgstr "Freccia sinistra o freccia destra"
 #: C/f-spot.xml:1259(entry)
 msgid ""
 "Add/Remove all photos in the row, in the direction pressed, to the selection"
-msgstr "Aggiunge alla selezione, o le rimuove, tutte le foto della riga"
+msgstr ""
+"Aggiunge o rimuove alla selezione tutte le foto della riga, nella direzione "
+"premuta"
 
 #: C/f-spot.xml:1265(keycap) C/f-spot.xml:1273(keycap)
 #: C/f-spot.xml:1418(keycap)
@@ -1937,8 +1949,9 @@ msgid ""
 "Examine photo with magnifying glass (Loupe). Doubleclick on the Loupe, or "
 "type <placeholder-1/> again to close it."
 msgstr ""
-"Esamina le foto con la lente di ingrandimento (Loupe). Fare doppio clic su "
-"Loupe o digitare <placeholder-1/> nuovamente per chiudere."
+"Esamina le foto con la lente di ingrandimento (Loupe). Fare doppio clic "
+"sulla lente di ingrandimento o digitare <placeholder-1/> nuovamente per "
+"chiudere."
 
 #: C/f-spot.xml:1426(entry)
 msgid "<placeholder-1/>-Mousewheel"
