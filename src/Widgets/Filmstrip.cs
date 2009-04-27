@@ -271,6 +271,13 @@ namespace FSpot.Widgets
 				return position; 
 			}
 			set {
+				if (value == position)
+					return;
+				if (value < 0)
+					value = 0;
+				if (value > selection.Collection.Count - 1)
+					value = selection.Collection.Count - 1;
+
 				animation.From = position;
 				animation.To = value;
 				animation.Restart ();
