@@ -1337,7 +1337,6 @@ msgstr "Copyright © 2003-2007 Novell Inc."
 
 #. Translators, The singular case will never happen here.
 #: ../src/MainWindow.cs:1855
-#, csharp-format
 msgid "Merge the selected tag"
 msgid_plural "Merge the {0} selected tags?"
 msgstr[0] "Apvienot izvēlēto tagu"
@@ -1398,7 +1397,6 @@ msgid "An error of type {0} occurred while deleting the file:{2}{1}"
 msgstr "{0} tipa kļūda satikta dzēšot failu:{2}{1}"
 
 #: ../src/MainWindow.cs:2289
-#, csharp-format
 msgid "Delete the selected photo permanently?"
 msgid_plural "Delete the {0} selected photos permanently?"
 msgstr[0] "Izdzēst izvēlēto bildi uzreiz?"
@@ -1420,7 +1418,6 @@ msgstr[1] "_Izdzēst bildes"
 msgstr[2] "_Izdzēst bildes"
 
 #: ../src/MainWindow.cs:2327
-#, csharp-format
 msgid "Remove the selected photo from F-Spot?"
 msgid_plural "Remove the {0} selected photos from F-Spot?"
 msgstr[0] "Izdzēst izvēlēto bildi no F-Spot?"
@@ -1679,7 +1676,6 @@ msgid "Remove Tag"
 msgstr "Izdzēst tagu"
 
 #: ../src/PhotoStore.cs:385
-#, csharp-format
 msgid "Modified"
 msgid_plural "Modified ({0})"
 msgstr[0] "Modificēts"
@@ -1932,7 +1928,6 @@ msgid "Rotating photo \"{0}\""
 msgstr "Apgriežu bildes \"{0}\""
 
 #: ../src/RotateCommand.cs:236
-#, csharp-format
 msgid "Unable to rotate photo"
 msgid_plural "Unable to rotate {0} photos"
 msgstr[0] "Nav iespējams apgriezt bildi"
@@ -1940,7 +1935,6 @@ msgstr[1] "Nav iespējams apgriezt {0} bildes"
 msgstr[2] "Nav iespējams apgriezt {0} bildes"
 
 #: ../src/RotateCommand.cs:240
-#, csharp-format
 msgid ""
 "The photo could not be rotated because it is on a read only file system or "
 "media such as a CDROM.  Please check the permissions and try again"
