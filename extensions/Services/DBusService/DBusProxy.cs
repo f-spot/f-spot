@@ -4,6 +4,8 @@ using System.IO;
 using System.Text;
 
 using FSpot;
+using FSpot.Query;
+using FSpot.Utils;
 using NDesk.DBus;
 
 namespace DBusService {
@@ -276,6 +278,7 @@ namespace DBusService {
 
 		// query
 		uint[] Query (string []tags);
+		uint[] QueryByDate (long start_time, long end_time);
 
 		// events
 		event RemoteUp RemoteUp;
@@ -345,6 +348,20 @@ namespace DBusService {
 
 			Photo []photos = db.Photos.Query (tag_list.ToArray ());
 
+			uint []ids = new uint[photos.Length];
+
+			for (int i = 0; i < ids.Length; i++)
+				ids[i] = photos[i].Id;
+
+			return ids;
+		}
+
+		public uint[] QueryByDate (long start_time, long end_time)
+		{
+			DateTime start = DbUtils.DateTimeFromUnixTime (start_time);
+			DateTime end = DbUtils.DateTimeFromUnixTime (end_time);
+
+			Photo []photos = db.Photos.Query (new DateRange (start, end));
 			uint []ids = new uint[photos.Length];
 
 			for (int i = 0; i < ids.Length; i++)

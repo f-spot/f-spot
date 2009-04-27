@@ -16,6 +16,7 @@ REFS =					\
 	-r:$(top_builddir)/src/f-spot.exe		\
 	-r:$(top_builddir)/src/FSpot.Core.dll	\
 	-r:$(top_builddir)/src/FSpot.Utils.dll	\
+	-r:$(top_builddir)/src/FSpot.Query.dll	\
 	$(LINK_DBUS)
 
 PKGS =
