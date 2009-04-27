@@ -19,6 +19,7 @@ using Gdk;
 
 using FSpot.Utils;
 using FSpot.Platform;
+using FSpot.Bling;
 
 namespace FSpot.Widgets
 {
@@ -27,6 +28,8 @@ namespace FSpot.Widgets
 
 //		public event OrientationChangedHandler OrientationChanged;
 		public event EventHandler PositionChanged;
+
+		DoubleCubicAnimation animation;
 
 		bool extendable = true;
 		public bool Extendable {
@@ -248,33 +251,6 @@ namespace FSpot.Widgets
 			}
 		}
 
-		IAnimator animator;
-		IAnimator Animator {
-			get {
-				if (animator == null)
-					animator = new AcceleratedAnimator (this, OnPositionChanged);
-				return animator;
-			}
-		}
-
-		public int AnimatorOrder {
-			set {
-				switch (value) {
-				case 0:
-					animator = new DirectAnimator (OnPositionChanged);
-					break;
-				case 1:
-					animator = new ConstantSpeedAnimator (this, OnPositionChanged);
-					break;
-				case 2:
-					animator = new AcceleratedAnimator (this, OnPositionChanged);
-					break;
-				default:
-					throw new ArgumentException ("No animator of that order defined");
-				}
-			}
-		}
-
 		public int ActiveItem {
 			get { return selection.Index; }
 			set {
@@ -289,21 +265,16 @@ namespace FSpot.Widgets
 			}
 		}
 
-		float position;
-		public float Position {
+		double position;
+		public double Position {
 			get { 
-				position = Math.Min (position, selection.Collection.Count - 1);
 				return position; 
 			}
 			set {
-				if (value == position)
-					return;
-				if (value < 0)
-					value = 0;
-				if (value > selection.Collection.Count - 1)
-					value = selection.Collection.Count - 1;
+				animation.From = position;
+				animation.To = value;
+				animation.Restart ();
 
-				Animator.MoveTo (value);
 				if (PositionChanged != null)
 					PositionChanged (this, EventArgs.Empty);
 			}
@@ -326,6 +297,9 @@ namespace FSpot.Widgets
 			this.squared_thumbs = squared_thumbs;
 			thumb_cache = new DisposableCache<Uri, Pixbuf> (30);
 			ThumbnailGenerator.Default.OnPixbufLoaded += HandlePixbufLoaded;
+
+			animation = new DoubleCubicAnimation (0, 0, TimeSpan.FromSeconds (4), SetPositionCore);
+			animation.EasingMode = EasingMode.Out;
 		}
 	
 		int min_length = 400;
@@ -434,18 +408,18 @@ namespace FSpot.Widgets
 
 		protected override bool OnScrollEvent (EventScroll args)
 		{
-			float shift = 1.0f;
+			float shift = 1f;
 			if ((args.State & Gdk.ModifierType.ShiftMask) > 0)
 				shift = 6f;
 
 			switch (args.Direction) {
 			case ScrollDirection.Up:
 			case ScrollDirection.Right:
-				Position -= shift;
+				Position = animation.To - shift;
 				return true;
 			case Gdk.ScrollDirection.Down:
 			case Gdk.ScrollDirection.Left:
-				Position += shift;
+				Position = animation.To + shift;
 				return true;
 			}
 			return false;
@@ -469,10 +443,16 @@ namespace FSpot.Widgets
 			return false;
 		}
 
-		public delegate void PositionChangedHandler (float position);
-
-		protected virtual void OnPositionChanged (float position)
+		protected virtual void SetPositionCore (double position)
 		{
+			if (this.position == position)
+				return;
+			if (position < 0)
+				position = 0;
+			if (position > selection.Collection.Count - 1)
+				position = selection.Collection.Count - 1;
+
+
 			this.position = position;
 			QueueDraw ();
 		}
@@ -520,12 +500,8 @@ namespace FSpot.Widgets
 			foreach (int key in start_indexes.Keys)
 				if (key <= evnt.X && key > pos)
 					pos = key;
-			try {
-				ActiveItem = (int)start_indexes [pos];
-				return true;
-			} catch {
-				return true;
-			}
+			ActiveItem = (int)start_indexes [pos];
+			return true;
 		}
  
  		protected Pixbuf GetPixbuf (int i)
@@ -614,120 +590,6 @@ namespace FSpot.Widgets
 			//Free unmanaged resources
 
 			is_disposed = true;
-		}
-
-		public interface IAnimator
-		{
-			void MoveTo (float target);
-		}
-
-		public class DirectAnimator : IAnimator
-		{
-			PositionChangedHandler handler;
-
-			public DirectAnimator (PositionChangedHandler handler)
-			{
-				this.handler = handler;
-			}
-
-			public void MoveTo (float target)
-			{
-				handler (target);
-			}
-		}
-
-		public class ConstantSpeedAnimator : IAnimator
-		{
-			PositionChangedHandler handler;
-			float speed = 20f; // images/second
-			uint interval = 40;
-			float target;
-			Filmstrip filmstrip;
-
-			public ConstantSpeedAnimator (Filmstrip filmstrip, PositionChangedHandler handler)
-			{
-				this.handler = handler;
-				this.filmstrip = filmstrip;
-			}
-
-			public void MoveTo (float target)
-			{
-				this.target = target;
-				GLib.Timeout.Add (interval, new GLib.TimeoutHandler (Step)); 
-			}
-
-			bool Step ()
-			{
-				float increment = speed * interval / 1000f;
-				if (Math.Abs (filmstrip.Position - target) < increment) {
-					handler (target);
-					return false;
-				}
-				if (target > filmstrip.Position)
-					handler (filmstrip.Position + increment);
-				else
-					handler (filmstrip.Position - increment);
-
-				return true;
-			}
-		}
-
-		public class AcceleratedAnimator : IAnimator
-		{
-			PositionChangedHandler handler;
-			Filmstrip filmstrip;
-			uint interval = 50;
-			float target;
-			float speed;
-			float acc = 50f; //images/second^2
-
-			public AcceleratedAnimator (Filmstrip filmstrip, PositionChangedHandler handler)
-			{
-				this.handler = handler;
-				this.filmstrip = filmstrip;
-			}
-
-			public void MoveTo (float target)
-			{
-				this.target = target;
-				GLib.Timeout.Add (interval, new GLib.TimeoutHandler (Step));
-			}
-
-			bool Step ()
-			{
-				float dv = acc * interval / 1000f;
-				float halfway_distance = 0.5f * (speed + dv) * (speed + dv) / acc;
-				float distance = Math.Abs (filmstrip.Position - target);
-				if (distance == 0) {
-					return false;
-				}
-
-				if (Math.Abs (speed) > 30 && distance > halfway_distance) { //HYPERSPACE JUMP
-					handler (target + (float)Math.Sign (filmstrip.Position - target) * halfway_distance);
-					speed -= dv;
-					return true;
-				}
-
-				if ( distance <= halfway_distance )	//SLOW DOWN!
-					speed -= dv;
-
-				else	//SPEED UP
-					speed += dv;
-
-				float increment = speed * interval / 1000f;
-
-				if (Math.Abs (distance - increment) < 0.4) {
-					handler (target);
-					return false;
-				}
-
-				if (target > filmstrip.Position)
-					handler (filmstrip.Position + increment);
-				else
-					handler (filmstrip.Position - increment);
-
-				return true;
-			}
 		}
 	}
 }
