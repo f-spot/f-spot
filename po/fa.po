@@ -1814,28 +1814,24 @@ msgstr ""
 #, csharp-format
 msgid "Delete the selected photo permanently?"
 msgid_plural "Delete the {0} selected photos permanently?"
-msgstr[0] "عکس انتخابی برای همیشه حذف شود؟"
-msgstr[1] "{0} عکس انتخابی برای همیشه حذف شوند؟"
+msgstr[0] "{0} عکس انتخابی برای همیشه حذف شوند؟"
 
 #: ../src/MainWindow.cs:2055
 msgid "This deletes all versions of the selected photo from your drive."
 msgid_plural ""
 "This deletes all versions of the selected photos from your drive."
-msgstr[0] "این کار تمام نسخه‌های عکس انتخابی را از دیسک سخت حذف می‌کند."
-msgstr[1] "این کار تمام نسخه‌های عکس‌های انتخابی از دیسک سخت حذف می‌کند."
+msgstr[0] "این کار تمام نسخه‌های عکس‌های انتخابی از دیسک سخت حذف می‌کند."
 
 #: ../src/MainWindow.cs:2058
 msgid "_Delete photo"
 msgid_plural "_Delete photos"
-msgstr[0] "_حذف عکس"
-msgstr[1] "_حذف عکس‌ها"
+msgstr[0] "_حذف عکس‌ها"
 
 #: ../src/MainWindow.cs:2080
 #, csharp-format
 msgid "Remove the selected photo from F-Spot?"
 msgid_plural "Remove the {0} selected photos from F-Spot?"
-msgstr[0] "عکس انتخابی از اِف-اِسپات حذف شود؟"
-msgstr[1] "{0} عکس‌ انتخابی از اِف-اِسپات حذف شوند؟"
+msgstr[0] "{0} عکس‌ انتخابی از اِف-اِسپات حذف شوند؟"
 
 #: ../src/MainWindow.cs:2085
 msgid ""
@@ -1867,8 +1863,7 @@ msgstr "اگر برچسبی را حذف کنید، همهٔ ارتباطات آ�
 #: ../src/MainWindow.cs:2147
 msgid "_Delete tag"
 msgid_plural "_Delete tags"
-msgstr[0] "_حذف برچسب"
-msgstr[1] "_حذف برچسب‌ها"
+msgstr[0] "_حذف برچسب‌ها"
 
 #. A Category is not empty. Can not delete it.
 #: ../src/MainWindow.cs:2161
@@ -1887,20 +1882,17 @@ msgstr ""
 #: ../src/MainWindow.cs:2473
 msgid "Rotate selected photo left"
 msgid_plural "Rotate selected photos left"
-msgstr[0] "چرخاندن عکس انتخابی به چپ"
-msgstr[1] "چرخاندن عکس‌های انتخابی به چپ"
+msgstr[0] "چرخاندن عکس‌های انتخابی به چپ"
 
 #: ../src/MainWindow.cs:2486
 msgid "Rotate selected photo right"
 msgid_plural "Rotate selected photos right"
-msgstr[0] "چرخاندن عکس انتخابی به راست"
-msgstr[1] "چرخاندن عکس‌های انتخابی به راست"
+msgstr[0] "چرخاندن عکس‌های انتخابی به راست"
 
 #: ../src/MainWindow.cs:2500
 msgid "Create New Version?"
 msgid_plural "Create New Versions?"
-msgstr[0] "نسخهٔ جدیدی ایجاد شود؟"
-msgstr[1] "نسخه‌های جدید ایجاد شوند؟"
+msgstr[0] "نسخه‌های جدید ایجاد شوند؟"
 
 #: ../src/MainWindow.cs:2502
 #, csharp-format
@@ -1911,10 +1903,6 @@ msgid_plural ""
 "Before launching {1}, should F-Spot create new versions of the selected "
 "photos to preserve the originals?"
 msgstr[0] ""
-"قبل از اجرای {1}،  آیا لازم است اِف-اِسپات برای حفظ نسخهٔ اصلی عکس انتخاب شده، نسخهٔ "
-"جدیدی از آن ایجاد کند؟ "
-
-msgstr[1] ""
 "قبل از اجرای {1}،  آیا لازم است اِف-اِسپات برای حفظ نسخه‌های اصلی عکس‌های انتخاب شده، نسخه‌های "
 "جدیدی از آنها ایجاد کند؟ "
 #: ../src/MetadataStore.cs:17
@@ -2060,15 +2048,13 @@ msgstr "حذف برچسب"
 #, csharp-format
 msgid "Modified"
 msgid_plural "Modified ({0})"
-msgstr[0] "تغییر یافته"
-msgstr[1] "تغییر یافته({0})"
+msgstr[0] "تغییر یافته({0})"
 
 #: ../src/PhotoStore.cs:379
 #, csharp-format
 msgid "Modified in {1}"
 msgid_plural "Modified in {1} ({0})"
-msgstr[0] "تغییر یافته در {1}"
-msgstr[1] "تغییر یافته در {1} ({0})"
+msgstr[0] "تغییر یافته در {1} ({0})"
 
 
 #. Note that the original version is never stored in the photo_versions table in the
@@ -2249,8 +2235,7 @@ msgstr "چرخش عکس «{0}»"
 #, csharp-format
 msgid "Unable to rotate photo"
 msgid_plural "Unable to rotate {0} photos"
-msgstr[0] "چرخاندن عکس ممکن نیست"
-msgstr[1] "چرخاندن {0} عکس ممکن نیست"
+msgstr[0] "چرخاندن {0} عکس ممکن نیست"
 
 #: ../src/RotateCommand.cs:194
 #, csharp-format
@@ -2261,10 +2246,6 @@ msgid_plural ""
 "{0} photos could not be rotated because they are on a read only file system "
 "or media such as a CDROM.  Please check the permissions and try again"
 msgstr[0] ""
-"نمی‌توان عکس را چرخاند چون در یک سیستم پرونده‌ای فقط خواندنی یا "
-"رسانه‌ای مانند سی‌دی ذخیره شده است. لطفاً اجازه‌ها را بررسی کنید و دوباره امتحان کنید"
-
-msgstr[1] ""
 
 "نمی‌توان {0} عکس را چرخاند چون در یک سیستم پرونده‌ای فقط خواندنی یا "
 "رسانه‌ای مانند سی‌دی ذخیره شده‌اند. لطفاً اجازه‌ها را بررسی کنید و دوباره امتحان کنید"
@@ -2370,20 +2351,17 @@ msgstr "ویرایش شمایل برای برچسب {0}"
 #: ../src/TagPopup.cs:32
 msgid "Delete Tag"
 msgid_plural "Delete Tags"
-msgstr[0] "حذف برچسب"
-msgstr[1] "حذف برچسب‌ها"
+msgstr[0] "حذف برچسب‌ها"
 
 #: ../src/TagPopup.cs:38
 msgid "Attach Tag to Selection"
 msgid_plural "Attach Tags to Selection"
-msgstr[0] "پیوست برچسب به انتخاب"
-msgstr[1] "پیوست برچسب‌ها به انتخاب"
+msgstr[0] "پیوست برچسب‌ها به انتخاب"
 
 #: ../src/TagPopup.cs:42
 msgid "Remove Tag From Selection"
 msgid_plural "Remove Tags From Selection"
-msgstr[0] "حذف برچسب از انتخاب"
-msgstr[1] "حذف برچسب‌ها از انتخاب"
+msgstr[0] "حذف برچسب‌ها از انتخاب"
 
 #: ../src/TagPopup.cs:48
 msgid "Merge Tags"
