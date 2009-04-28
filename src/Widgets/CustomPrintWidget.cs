@@ -106,7 +106,7 @@ namespace FSpot.Widgets
 				current_settings.Text = String.Format (Catalog.GetString ("Paper Size: {0} x {1} mm"), "...", "...");
 
 			vb.PackStart (current_settings, false, false, 0);
-			Button page_setup_btn = new Button ("Set Page Size and Orientation");
+			Button page_setup_btn = new Button (Catalog.GetString ("Set Page Size and Orientation"));
 			page_setup_btn.Clicked += delegate {
 				this.print_operation.DefaultPageSetup = Print.RunPageSetupDialog (null, print_operation.DefaultPageSetup, this.print_operation.PrintSettings); 
 				current_settings.Text = String.Format (Catalog.GetString ("Paper Size: {0} x {1} mm"), 
