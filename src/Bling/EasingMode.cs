@@ -1,5 +1,5 @@
 //
-// FSpot.Bling.EasingMode,cs
+// FSpot.Bling.EasingMode.cs
 //
 // Author(s):
 //	Stephane Delcroix  <stephane@delcroix.org>
@@ -10,9 +10,9 @@
 namespace FSpot.Bling
 {
 	public enum EasingMode {
-		In = 0,
-		Out,
-		InOut,
+		EaseIn = 0,
+		EaseOut,
+		EaseInOut,
 	}
 }
 

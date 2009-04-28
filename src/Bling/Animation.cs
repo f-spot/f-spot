@@ -1,5 +1,5 @@
 //
-// FSpot.Bling.EasedAnimation,cs
+// FSpot.Bling.Animation,cs
 //
 // Author(s):
 //	Stephane Delcroix  <stephane@delcroix.org>
@@ -14,7 +14,7 @@ using System.ComponentModel;
 
 namespace FSpot.Bling
 {
-	public abstract class EasedAnimation<T>
+	public abstract class Animation<T>
 	{
 		enum AnimationState {
 			NotRunning = 0,
@@ -30,26 +30,23 @@ namespace FSpot.Bling
 		T to;
 		Action<T> action;
 		AnimationState state;
-		EasingMode easingmode;
 
-		public EasedAnimation ()
+		public Animation ()
 		{
 			from = default (T);
 			to = default (T);
 			duration = TimeSpan.Zero;
 			action = null;
 			state = AnimationState.NotRunning;
-			easingmode = EasingMode.In;
 		}
 
-		public EasedAnimation (T from, T to, TimeSpan duration, Action<T> action)
+		public Animation (T from, T to, TimeSpan duration, Action<T> action)
 		{
 			this.from = from;
 			this.to = to;
 			this.duration = duration;
 			this.action = action;
 			state = AnimationState.NotRunning;
-			easingmode = EasingMode.In;
 		}
 
 		public void Pause ()
@@ -109,19 +106,9 @@ namespace FSpot.Bling
 			starttime = DateTimeOffset.Now;
 		}
 
-		public double Ease (double normalizedTime)
+		protected virtual double Ease (double normalizedTime)
 		{
-			switch (easingmode) {
-			case EasingMode.In:
-				return EaseInCore (normalizedTime);
-			case EasingMode.Out:
-				return 1.0 - EaseInCore (1 - normalizedTime);
-			case EasingMode.InOut:
-				return (normalizedTime <= 0.5
-					? EaseInCore (normalizedTime * 2) * 0.5
-					: 1.0 - EaseInCore ((1 - normalizedTime) * 2) * 0.5);
-			}
-			throw new InvalidOperationException ("Unknown value for EasingMode");
+			return normalizedTime;
 		}
 
 		bool Handler ()
@@ -138,16 +125,10 @@ namespace FSpot.Bling
 			return true;
 		}
 
-		protected abstract double EaseInCore (double percentage);
 		protected abstract T Interpolate (T from, T to, double progress);
 
 		public event EventHandler Completed;
 		public event EventHandler<ProgressChangedEventArgs> ProgressChanged;
-
-		public EasingMode EasingMode {
-			get { return easingmode; }
-			set { easingmode = value; }
-		}
 
 		public bool IsRunning {
 			get { return state == AnimationState.Running; }

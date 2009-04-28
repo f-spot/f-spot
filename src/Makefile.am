@@ -68,16 +68,14 @@ JOBSCHEDULER_CSDISTFILES =				\
 	$(srcdir)/JobScheduler/Scheduler.cs
 
 WIDGETS_CSDISTFILES =				\
-	$(srcdir)/Bling/BackAnimation.cs	\
-	$(srcdir)/Bling/CubicAnimation.cs	\
-	$(srcdir)/Bling/DoubleBackAnimation.cs	\
-	$(srcdir)/Bling/DoubleCubicAnimation.cs	\
-	$(srcdir)/Bling/DoubleLinearAnimation.cs\
-	$(srcdir)/Bling/DoubleQuinticAnimation.cs\
-	$(srcdir)/Bling/EasedAnimation.cs	\
+	$(srcdir)/Bling/Animation.cs		\
+	$(srcdir)/Bling/BackEase.cs		\
+	$(srcdir)/Bling/DoubleAnimation.cs	\
+	$(srcdir)/Bling/CubicEase.cs		\
+	$(srcdir)/Bling/EasingFunction.cs	\
 	$(srcdir)/Bling/EasingMode.cs		\
-	$(srcdir)/Bling/LinearAnimation.cs	\
-	$(srcdir)/Bling/QuinticAnimation.cs	\
+	$(srcdir)/Bling/EasedAnimation.cs	\
+	$(srcdir)/Bling/QuinticEase.cs		\
 	$(srcdir)/Widgets/ComplexMenuItem.cs	\
 	$(srcdir)/Widgets/CustomPrintWidget.cs	\
 	$(srcdir)/Widgets/HighlightedBox.cs	\

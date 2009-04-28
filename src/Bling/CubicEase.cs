@@ -1,5 +1,5 @@
 //
-// FSpot.Bling.CubicAnimation,cs
+// FSpot.Bling.CubicEase.cs
 //
 // Author(s):
 //	Stephane Delcroix  <stephane@delcroix.org>
@@ -10,9 +10,13 @@
 using System;
 
 namespace FSpot.Bling
-{	public abstract class CubicAnimation<T>: EasedAnimation<T>
+{	public class CubicEase : EasingFunction
 	{
-		public CubicAnimation (T from, T to, TimeSpan duration, Action<T> action) : base (from, to, duration, action)
+		public CubicEase () : base ()
+		{
+		}
+
+		public CubicEase (EasingMode easingMode) : base (easingMode)
 		{
 		}
 

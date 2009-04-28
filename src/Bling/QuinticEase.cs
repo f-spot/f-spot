@@ -1,5 +1,5 @@
 //
-// FSpot.Bling.QuinticAnimation,cs
+// FSpot.Bling.QuinticEase.cs
 //
 // Author(s):
 //	Stephane Delcroix  <stephane@delcroix.org>
@@ -10,9 +10,13 @@
 using System;
 
 namespace FSpot.Bling
-{	public abstract class QuinticAnimation<T>: EasedAnimation<T>
+{	public abstract class QuinticEase : EasingFunction
 	{
-		public QuinticAnimation (T from, T to, TimeSpan duration, Action<T> action) : base (from, to, duration, action)
+		public QuinticEase () : base ()
+		{
+		}
+		
+		public QuinticEase (EasingMode easingMode) : base (easingMode)
 		{
 		}
 

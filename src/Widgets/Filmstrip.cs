@@ -29,7 +29,7 @@ namespace FSpot.Widgets
 //		public event OrientationChangedHandler OrientationChanged;
 		public event EventHandler PositionChanged;
 
-		DoubleCubicAnimation animation;
+		DoubleAnimation animation;
 
 		bool extendable = true;
 		public bool Extendable {
@@ -305,8 +305,7 @@ namespace FSpot.Widgets
 			thumb_cache = new DisposableCache<Uri, Pixbuf> (30);
 			ThumbnailGenerator.Default.OnPixbufLoaded += HandlePixbufLoaded;
 
-			animation = new DoubleCubicAnimation (0, 0, TimeSpan.FromSeconds (4), SetPositionCore);
-			animation.EasingMode = EasingMode.Out;
+			animation = new DoubleAnimation (0, 0, TimeSpan.FromSeconds (4), SetPositionCore, new CubicEase (EasingMode.EaseOut));
 		}
 	
 		int min_length = 400;
