@@ -201,12 +201,28 @@ namespace FSpot.Widgets
 
 		void HandleCalendarDaySelected (object sender, EventArgs e)
 		{
-			//Set the date
+			DateTimeOffset += (calendar.Date - DateTimeOffset.Date);
 		}
 
 		void HandleCalendarDaySelectedDoubleClick (object sender, EventArgs e)
 		{
 			HidePopup ();
+		}
+
+		void HandlePopupButtonPressed (object sender, ButtonPressEventArgs e)
+		{
+			var child = Global.GetEventWidget (e.Event);
+			if (child != calendar_popup) {
+				while (child != null) {
+					if (child == calendar_popup) {
+						e.RetVal = false;
+						return;
+					}
+					child = child.Parent;
+				}
+			}
+			HidePopup ();
+			e.RetVal = true;
 		}
 
 		void HandlePopupDeleted (object sender, DeleteEventArgs e)
@@ -225,21 +241,6 @@ namespace FSpot.Widgets
 			e.RetVal = true;
 		}
 
-		void HandlePopupButtonPressed (object sender, ButtonPressEventArgs e)
-		{
-			var child = Global.GetEventWidget (e.Event);
-			if (child != calendar_popup) {
-				while (child != null) {
-					if (child == calendar_popup) {
-						e.RetVal = false;
-						return;
-					}
-					child = child.Parent;
-				}
-			}
-			HidePopup ();
-			e.RetVal = true;
-		}
 #endregion
 
 #region Test App
