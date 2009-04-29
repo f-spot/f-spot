@@ -78,6 +78,8 @@ WIDGETS_CSDISTFILES =				\
 	$(srcdir)/Bling/QuinticEase.cs		\
 	$(srcdir)/Widgets/ComplexMenuItem.cs	\
 	$(srcdir)/Widgets/CustomPrintWidget.cs	\
+	$(srcdir)/Widgets/DateEdit.cs		\
+	$(srcdir)/Widgets/DateEditFlags.cs	\
 	$(srcdir)/Widgets/HighlightedBox.cs	\
 	$(srcdir)/Widgets/MenuButton.cs		\
 	$(srcdir)/Widgets/OpenWithMenu.cs	\
