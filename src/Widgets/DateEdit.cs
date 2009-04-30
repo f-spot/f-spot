@@ -1,462 +1,305 @@
-/*
- * Widgets/DateEdit.cs: A Date/Time widget with zone support.
- *   The DateTime part is merely a port of gnome-dateedit.c
- *
- * Author(s)
- *   Stephane Delcroix  <stephane@delcroix.org>
- *
- * This is free software. See COPYING for details.
- */
+//
+// FSpot.Widgets.DateEdit.cs: A Date/Time widget with zone support.
+//
+// Author(s)
+//   Stephane Delcroix  <stephane@delcroix.org>
+//
+// the widgetry to show the calendar popup is ported from the libgnomeui GnomeDateEdit
+// widget from Miguel de Icaza, (c) the Free Software Foundation
+//
+// Copyright (c) 2009 Novell, Inc.
+//
+// This is free software. See COPYING for details.
+//
+
 using System;
 using Mono.Unix;
 using Gtk;
 
 namespace FSpot.Widgets
 {
-	[System.Flags]
-	public enum DateEditFlags {
-		ShowTime = 1,
-		Two4Hr = 1 << 1,
-		WeeksStartsOnMonday = 1 << 2,
-		ShowZone = 1 << 3,
-	}
-
-	public class DateEdit : Gtk.HBox
+	public class DateEdit : HBox
 	{
-		//This class keeps the time in UTC and the offset for the timezone
-		private class DateTimeZone {
+		DateEditFlags dateEditFlags;
+		DateTimeOffset dateTimeOffset;
 
-			public delegate void DateTimeZoneChangedHandler (object o, EventArgs e);
-			public event DateTimeZoneChangedHandler Changed;
-
-			public DateTimeZone (System.DateTime datetime)
-			{
-				UtcTime = datetime.ToUniversalTime ();
-				offset = Convert.ToInt32 (datetime.ToString ("zz"));
-			}
-			
-			int year;
-			public int Year {
-				get { return year; }
-				set { 
-					if (value < 0)
-						return;
-					year = value;
-					if (Changed != null)
-						Changed (this, null);
-				}
-			}
-
-			int month;
-			public int Month {
-				get { return month; }
-				set { 
-					if (value < 1 || value > 12)
-						return;
-					month = value; 
-					if (Changed != null)
-						Changed (this, null);
-				}
-			}
-
-			int day;
-			public int Day {
-				get { return day; }
-				set {
-					//FIXME check value
-					day = value;
-					if (Changed != null)
-						Changed (this, null);
-				}
-			}
-
-			int hour;
-			public int Hour {
-				get { return hour; }
-				set {
-					if (value < 0 || value > 23)
-						return;
-
-					UtcTime = UtcTime.AddHours (value - offset - hour); 
-					if (Changed != null)
-						Changed (this, null);
-				}
-			}
-
-			int minute;
-			public int Minute {
-				get { return minute; }
-				set { 
-					if (value < 0 || value > 59)
-						return;
-					minute = value;
-					if (Changed != null)
-						Changed (this, null);
-				}
-			}
-
-			int second;
-
-			//FIXME: some tz have 1/2 hours offsets !
-			int offset;
-			public int Offset {
-				get { return offset; }
-				set {
-					UtcTime = UtcTime.AddHours (offset - value);
-					offset = value;
-					if (Changed != null)
-						Changed (this, null);
-				}
-
-			}
-
-			public System.DateTime UtcTime {
-				get { return (new System.DateTime (year, month, day, hour, minute, second)); }
-				set {
-					year = value.Year;
-					month = value.Month;
-					day = value.Day;
-					hour = value.Hour;
-					minute = value.Minute;
-					second = value.Second;
-					if (Changed != null)
-						Changed (this, null);
-				}
-			}
-
-			public System.DateTime TimeinZone (int zone) {
-				return (new System.DateTime (year, month, day, hour, minute, second).AddHours (zone));
-			}
-
-			public static string OffsetString (int offset)
-			{
-				System.Text.StringBuilder sb = new System.Text.StringBuilder ();
-				if (offset >= 0)
-					sb.Append ("+");
-				sb.Append (offset.ToString("00"));
-				sb.Append (":00");
-				return sb.ToString ();
-			}
+#region public API
+		public DateEdit () : this (DateTimeOffset.Now)
+		{
 		}
 
-		DateTimeZone datetime;
-		DateEditFlags flags;
-		int lower_hour = 7;
-		int upper_hour = 19;
-		int time_increment = 15;
-	
-		Gtk.Entry date_entry;
-		Gtk.Entry time_entry;
-		Gtk.Entry zone_entry;
-		Gtk.Button date_button;
-		Gtk.TreeStore time_store;
-		Gtk.ComboBox time_combo;
-		Gtk.ComboBox offset_combo;
-		Gtk.Window cal_popup;
-		Gtk.Calendar calendar;
+		public DateEdit (DateTimeOffset dateTimeOffset) : this (dateTimeOffset, DateEditFlags.None)
+		{
+		}
 
-		public delegate void TimeChangedHandler (object sender, EventArgs e);
-		public event TimeChangedHandler Changed;
+		public DateEdit (DateTimeOffset dateTimeOffset, DateEditFlags dateEditFlags) : base ()
+		{
+			this.dateEditFlags = dateEditFlags;
+			this.dateTimeOffset = dateTimeOffset;
+			CreateWidget ();
+		}
 
-		public int LowerHour {
-			get { return lower_hour; }
+		public DateTimeOffset DateTimeOffset {
+			get { return dateTimeOffset; }
 			set { 
-				//FIXME: check for range
-				//FIXME: redraw the time_popup
-				lower_hour = value; 
+Console.WriteLine ("changed to {0}", value);
+				DateTimeOffset old_dto = dateTimeOffset;
+				dateTimeOffset = value; 
+				if (dateTimeOffset.Date != old_dto.Date)
+					OnDateChanged ();
+				if (dateTimeOffset.Offset != old_dto.Offset)
+					OnOffsetChanged ();
+				if (dateTimeOffset - dateTimeOffset.Date != old_dto - old_dto.Date)
+					OnTimeChanged ();
+				UpdateWidget ();
 			}
 		}
 
-		public int UpperHour {
-			get { return upper_hour; }
+		public DateEditFlags DateEditFlags {
+			get { return dateEditFlags; }
 			set { 
-				//FIXME: check for range
-				//FIXME: redraw the time_popup
-				upper_hour = value; 
+				dateEditFlags = value;
+				UpdateWidget ();
 			}
 		}
 
-		public int TimeIncrement {
-			get { return time_increment; }
-			set {
-				//FIXME: check for authorized values (divisor of 60)
-				time_increment = value;
-			}
+		public event EventHandler DateChanged;
+		public event EventHandler TimeChanged;
+		public event EventHandler OffsetChanged;
+
+		protected void OnDateChanged ()
+		{
+			EventHandler h = DateChanged;
+			if (h != null)
+				h (this, EventArgs.Empty);
 		}
 
-		public DateEdit () : this (System.DateTime.Now)
+		protected void OnTimeChanged ()
 		{
+			EventHandler h = TimeChanged;
+			if (h != null)
+				h (this, EventArgs.Empty);
 		}
 
-		public DateEdit (System.DateTime datetime) : this (datetime, DateEditFlags.ShowTime |
-									     DateEditFlags.Two4Hr |
-									     DateEditFlags.WeeksStartsOnMonday |
-									     DateEditFlags.ShowZone)
+		protected void OnOffsetChanged ()
 		{
+			EventHandler h = OffsetChanged;
+			if (h != null)
+				h (this, EventArgs.Empty);
 		}
 
-		public DateEdit (System.DateTime time, DateEditFlags flags)
-		{
-			datetime = new DateTimeZone (time);
-			datetime.Changed += HandleDateTimeZoneChanged;
-			this.flags = flags;
+		bool ShowSeconds {
+			get { return (dateEditFlags & DateEditFlags.ShowSeconds) == DateEditFlags.ShowSeconds; }
+		}
+#endregion public API
 
-			date_entry = new Gtk.Entry ();
-			date_entry.WidthChars = 10;
-			date_entry.Changed += HandleDateEntryChanged;
-			PackStart (date_entry, true, true, 0);
-		
-			Gtk.HBox b_box = new Gtk.HBox ();
-			b_box.PackStart (new Gtk.Label (Catalog.GetString ("Calendar")), true, true, 0);
-			b_box.PackStart (new Gtk.Arrow(Gtk.ArrowType.Down, Gtk.ShadowType.Out), true, false, 0);
-			date_button = new Gtk.Button (b_box);
+#region Gtk Widgetry
+		Entry date_entry;
+		Button date_button;
+		Entry time_entry;
+		Entry offset_entry;
+		Calendar calendar;
+		Window calendar_popup;
+		Gdk.Color red = new Gdk.Color (255, 0, 0);
+
+		void CreateWidget ()
+		{
+			Homogeneous = false;
+			Spacing = 1;
+
+			Add (date_entry = new Entry () {WidthChars = 10, IsEditable = true});
+			date_entry.Activated += HandleDateEntryActivated;
+			date_entry.Show ();
+			var bbox = new HBox ();
+			Widget w;
+			bbox.Add (w = new Label (Catalog.GetString ("Calendar")));
+			w.Show ();
+			bbox.Add (w = new Arrow (ArrowType.Down, ShadowType.Out));
+			w.Show ();
+			bbox.Show ();
+			Add (date_button = new Button (bbox));
 			date_button.Clicked += HandleCalendarButtonClicked;
-			PackStart (date_button, false, false, 0);
+			date_button.Show ();
+			Add (time_entry = new Entry () {WidthChars = 12, IsEditable = true});
+			time_entry.Activated += HandleTimeEntryActivated;
+			time_entry.Show ();
+			Add (offset_entry = new Entry () {WidthChars = 6, IsEditable = true});
+			offset_entry.Activated += HandleOffsetEntryActivated;
+			offset_entry.Show ();
 
-			calendar = new Gtk.Calendar ();
+			calendar = new Calendar ();
 			calendar.DaySelected += HandleCalendarDaySelected;
-			Gtk.Frame frame = new Gtk.Frame ();
+			calendar.DaySelectedDoubleClick += HandleCalendarDaySelectedDoubleClick;
+			var frame = new Frame ();
 			frame.Add (calendar);
-			cal_popup = new Gtk.Window (Gtk.WindowType.Popup);
-			cal_popup.DestroyWithParent = true;
-			cal_popup.Add (frame);
-			cal_popup.Shown += HandleCalendarPopupShown;
-			cal_popup.GrabNotify += HandlePopupGrabNotify;
-			frame.Show ();
 			calendar.Show ();
+			calendar_popup = new Window (WindowType.Popup) {DestroyWithParent = true, Resizable = false};
+			calendar_popup.Add (frame);
+			calendar_popup.DeleteEvent += HandlePopupDeleted;
+			calendar_popup.KeyPressEvent += HandlePopupKeyPressed;
+			calendar_popup.ButtonPressEvent += HandlePopupButtonPressed;
+			frame.Show ();
 
-			time_entry = new Gtk.Entry ();
-			time_entry.WidthChars = 8;
-			time_entry.Changed += HandleTimeEntryChanged;
-			PackStart (time_entry, true, true, 0);
-
-			Gtk.CellRendererText timecell = new Gtk.CellRendererText ();
-			time_combo = new Gtk.ComboBox ();
-			time_store = new Gtk.TreeStore (typeof (string), typeof (int), typeof (int)); 
-			time_combo.Model = time_store;
-			time_combo.PackStart (timecell, true);
-			time_combo.SetCellDataFunc (timecell, new CellLayoutDataFunc (TimeCellFunc));
-			time_combo.Realized += FillTimeCombo;
-			time_combo.Changed += HandleTimeComboChanged;
-			PackStart (time_combo, false, false, 0);
-
-			zone_entry = new Gtk.Entry ();
-			zone_entry.IsEditable = false;
-			zone_entry.MaxLength = 6;
-			zone_entry.WidthChars = 6;
-			PackStart (zone_entry, true, true, 0);
-
-			Gtk.CellRendererText offsetcell = new Gtk.CellRendererText ();
-			offset_combo = new Gtk.ComboBox ();
-			offset_combo.Model = new Gtk.TreeStore (typeof (string), typeof (int));
-			offset_combo.PackStart (offsetcell, true);
-			offset_combo.SetCellDataFunc (offsetcell, new CellLayoutDataFunc (OffsetCellFunc));
-			FillOffsetCombo ();
-			offset_combo.Changed += HandleOffsetComboChanged;
-			PackStart (offset_combo, false, false, 0);
-
-			Update ();
-			ShowAll ();
+			UpdateWidget ();
 		}
 
-		public int Offset {
-			get { return datetime.Offset; }
-		}
-
-
-		void Update ()
+		void UpdateWidget ()
 		{
-			DateTime time = datetime.TimeinZone (datetime.Offset);	
-			date_entry.Text = time.ToShortDateString();	
-			time_entry.Text = ((flags & DateEditFlags.Two4Hr) == DateEditFlags.Two4Hr) ? time.ToString("HH:mm", null) : time.ToString("hh:mm tt", null);
-			zone_entry.Text = DateTimeZone.OffsetString (datetime.Offset);
+			date_entry.Text = dateTimeOffset.ToString ("d");
+			date_entry.ModifyBase (StateType.Normal);
+			if (ShowSeconds)
+				time_entry.Text = dateTimeOffset.ToString ("T");
+			else
+				time_entry.Text = dateTimeOffset.ToString ("t");
+			time_entry.ModifyBase (StateType.Normal);
+			time_entry.Visible = (dateEditFlags & DateEditFlags.ShowTime) == DateEditFlags.ShowTime;
+			offset_entry.Text = dateTimeOffset.ToString ("zzz");
+			offset_entry.ModifyBase (StateType.Normal);
+			offset_entry.Visible = (dateEditFlags & DateEditFlags.ShowOffset) == DateEditFlags.ShowOffset;
 		}
 
-		void HandleDateTimeZoneChanged (object o, EventArgs e)
+		bool GrabPointerAndKeyboard (Gdk.Window window, uint activate_time)
 		{
-			Update ();
-			if (Changed != null)
-				Changed (this, null);
+			if (Gdk.Pointer.Grab (window, true,
+					      Gdk.EventMask.ButtonPressMask | Gdk.EventMask.ButtonReleaseMask | Gdk.EventMask.PointerMotionMask,
+					      null, null, activate_time) == Gdk.GrabStatus.Success) {
+				if (Gdk.Keyboard.Grab (window, true, activate_time) == Gdk.GrabStatus.Success)
+					return true;
+				else {
+					Gdk.Pointer.Ungrab (activate_time);
+					return false;
+				}
+			}
+			return false;
 		}
 
-		public static explicit operator System.DateTime (DateEdit de)
+		void PositionPopup ()
 		{
-			return de.datetime.UtcTime;
-		}
-
-		private void HandleCalendarButtonClicked (object o, EventArgs e)
-		{
-			if (cal_popup.Visible)
-				HideCalendarPopup ();
-			else 
-				ShowCalendarPopup ();
-		}
-
-		private void ShowCalendarPopup ()
-		{
-			cal_popup.Show();
-			cal_popup.GrabFocus ();
-		}
-
-		private void HideCalendarPopup ()
-		{
-			cal_popup.Hide ();	
-		}
-
-		private void HandleCalendarPopupShown (object o, EventArgs e)
-		{	
-			PositionCalendarPopup ();
-		}
-
-		private void PositionCalendarPopup ()
-		{
+			var requisition = calendar_popup.SizeRequest ();
 			int x, y;
-			Gtk.Requisition req = cal_popup.SizeRequest ();
-			GetWidgetPosition(date_button, out x, out y);
-			cal_popup.Move (x + date_button.Allocation.Width - req.Width, y + date_button.Allocation.Height);
+			date_button.Window.GetOrigin (out x, out y);
+			x += date_button.Allocation.X;
+			y += date_button.Allocation.Y;
+			x += date_button.Allocation.Width - requisition.Width;
+			y += date_button.Allocation.Height;
+
+			if (x < 0)
+				x = 0;
+			if (y < 0)
+				y = 0;
+			calendar_popup.Move (x, y);
 		}
 
-		private void HandleCalendarDaySelected (object o, EventArgs e)
+		void HandleCalendarButtonClicked (object sender, EventArgs e)
 		{
-			datetime.Year = calendar.Date.Year;
-			datetime.Month = calendar.Date.Month;
-			datetime.Day = calendar.Date.Day;
-		}
-
-		private void HandlePopupGrabNotify (object o, GrabNotifyArgs args)
-		{
-			if (args.WasGrabbed)
-				HideCalendarPopup ();
-		}
-
-		void TimeCellFunc (CellLayout cell_layout, CellRenderer cell, TreeModel tree_model, TreeIter iter)
-		{
-			string name = (string)tree_model.GetValue (iter, 0);
-			(cell as CellRendererText).Text = name;	
-		}
-
-		private void FillTimeCombo (object o, EventArgs e)
-		{
-			FillTimeCombo ();	
-		}
-
-		private void FillTimeCombo ()
-		{
-			if (lower_hour > upper_hour)
+			//Temporarily grab pointer and keyboard
+			if (!GrabPointerAndKeyboard (this.Window, Global.CurrentEventTime))
 				return;
 
-			time_combo.Changed -= HandleTimeComboChanged;
+			//select the day on the calendar
 
-			int localhour = System.DateTime.Now.Hour;
+			PositionPopup ();
 
-			TreeIter iter;
-			for (int i=lower_hour; i<=upper_hour; i++)
-			{
-				iter = time_store.AppendValues (TimeLabel (i, 0, ((flags & DateEditFlags.Two4Hr) == DateEditFlags.Two4Hr)), i, 0);
-				for (int j = time_increment; j < 60; j += time_increment) {
-					time_store.AppendValues (iter, TimeLabel (i, j, ((flags & DateEditFlags.Two4Hr) == DateEditFlags.Two4Hr)), i, j);	
+			Grab.Add (calendar_popup);
+			calendar_popup.Show ();
+			calendar.GrabFocus ();
+
+			//transfer the grabs to the popup
+			GrabPointerAndKeyboard (calendar_popup.Window, Global.CurrentEventTime);
+		}
+
+		void HandleDateEntryActivated (object sender, EventArgs e)
+		{
+			DateTimeOffset new_date;
+			if (DateTimeOffset.TryParseExact (date_entry.Text, "d", null, System.Globalization.DateTimeStyles.AssumeLocal | System.Globalization.DateTimeStyles.AllowWhiteSpaces, out new_date))
+				DateTimeOffset += (new_date.Date - DateTimeOffset.Date);
+			else 
+				date_entry.ModifyBase (StateType.Normal, red);
+		}
+
+		void HandleTimeEntryActivated (object sender, EventArgs e)
+		{
+			DateTimeOffset new_date;
+			if (DateTimeOffset.TryParseExact (String.Format ("{0} {1}", DateTimeOffset.ToString ("d"), time_entry.Text), ShowSeconds ? "G" : "g", null, System.Globalization.DateTimeStyles.AssumeLocal | System.Globalization.DateTimeStyles.AllowWhiteSpaces, out new_date)) {
+				DateTimeOffset = DateTimeOffset.AddHours (new_date.Hour - DateTimeOffset.Hour).AddMinutes (new_date.Minute - DateTimeOffset.Minute).AddSeconds (new_date.Second - DateTimeOffset.Second);
+			} else
+				time_entry.ModifyBase (StateType.Normal, red);
+
+		}
+
+		void HandleOffsetEntryActivated (object sender, EventArgs e)
+		{
+			TimeSpan new_offset;
+			if (TimeSpan.TryParse (offset_entry.Text.Trim ('+'), out new_offset))
+				DateTimeOffset = new DateTimeOffset (dateTimeOffset.DateTime, new_offset);
+			else
+				offset_entry.ModifyBase (StateType.Normal, red);
+		}
+
+		void HidePopup ()
+		{
+			calendar_popup.Hide ();
+			Grab.Remove (calendar_popup);
+		}
+
+		void HandleCalendarDaySelected (object sender, EventArgs e)
+		{
+			DateTimeOffset += (calendar.Date - DateTimeOffset.Date);
+		}
+
+		void HandleCalendarDaySelectedDoubleClick (object sender, EventArgs e)
+		{
+			HidePopup ();
+		}
+
+		void HandlePopupButtonPressed (object sender, ButtonPressEventArgs e)
+		{
+			var child = Global.GetEventWidget (e.Event);
+			if (child != calendar_popup) {
+				while (child != null) {
+					if (child == calendar_popup) {
+						e.RetVal = false;
+						return;
+					}
+					child = child.Parent;
 				}
-				if (i == localhour)
-					time_combo.Active = i - lower_hour;
-
 			}
-			if (localhour < lower_hour)
-				time_combo.Active = 0;
-			if (localhour > upper_hour)
-				time_combo.Active = upper_hour - lower_hour;
-
-			time_combo.Changed += HandleTimeComboChanged;
-
-			Update ();
+			HidePopup ();
+			e.RetVal = true;
 		}
 
-		private void HandleTimeEntryChanged (object o, EventArgs e)
+		void HandlePopupDeleted (object sender, DeleteEventArgs e)
 		{
-			datetime.Changed -= HandleDateTimeZoneChanged;
-			try {
-				System.DateTime newtime = System.DateTime.Parse (time_entry.Text);
-				datetime.Hour = newtime.Hour;
-				datetime.Minute = newtime.Minute;
-			} catch (FormatException)
-			{}
-			datetime.Changed += HandleDateTimeZoneChanged;
-			if (Changed != null)
-				Changed (this, null);
+			HidePopup ();
+			e.RetVal = false;
 		}
 
-		private void HandleDateEntryChanged (object o, EventArgs e)
+		void HandlePopupKeyPressed (object sender, KeyPressEventArgs e)
 		{
-			datetime.Changed -= HandleDateTimeZoneChanged;
-			try {
-				System.DateTime newtime = System.DateTime.Parse (date_entry.Text);
-				datetime.Year = newtime.Year;
-				datetime.Month = newtime.Month;
-				datetime.Day = newtime.Day;
-			} catch (FormatException)
-			{}
-			datetime.Changed += HandleDateTimeZoneChanged;
-			if (Changed != null)
-				Changed (this, null);
-
-		}
-
-		private void HandleTimeComboChanged (object o, EventArgs e)
-		{
-			TreeIter iter;
-			if (time_combo.GetActiveIter (out iter)) {
-				datetime.Hour = (int) time_store.GetValue (iter, 1);
-				datetime.Minute = (int) time_store.GetValue (iter, 2);
+			if (e.Event.Key != Gdk.Key.Escape) {
+				e.RetVal = false;
+				return;
 			}
+			HidePopup ();
+			e.RetVal = true;
 		}
+#endregion
 
-		void OffsetCellFunc (CellLayout cell_layout, CellRenderer cell, TreeModel tree_model, TreeIter iter)
+#region Test App
+#if DEBUGDATEEDIT
+		static void Main ()
 		{
-			(cell as CellRendererText).Text = (string)tree_model.GetValue (iter, 0);
-		}
+			Gtk.Application.Init ();
+			Window w = new Window ("test");
+			DateEdit de;
+			w.Add (de = new DateEdit ());
+			de.DateEditFlags |= DateEditFlags.ShowOffset | DateEditFlags.ShowTime | DateEditFlags.ShowSeconds;
+			de.Show ();
+			w.Show ();
+			Gtk.Application.Run ();
 
-		void FillOffsetCombo ()
-		{
-			for (int i=-12; i <= 13; i++)
-				(offset_combo.Model as TreeStore).AppendValues (DateTimeZone.OffsetString(i),i);
-
-			offset_combo.Changed -= HandleOffsetComboChanged;
-			offset_combo.Active = datetime.Offset + 12;
-			offset_combo.Changed += HandleOffsetComboChanged;
-			
-			Update ();
 		}
-
-		void HandleOffsetComboChanged (object o, EventArgs e)
-		{
-			TreeIter iter;
-			if (offset_combo.GetActiveIter (out iter)) {
-				datetime.Offset = (int) offset_combo.Model.GetValue (iter, 1);
-			}
-		}
-
-		private static string TimeLabel (int h, int m, bool two4hr)
-		{
-			if (two4hr) {
-				return String.Format ("{0}{1}{2}",
-							h % 24,
-							System.Globalization.DateTimeFormatInfo.CurrentInfo.TimeSeparator,
-							m.ToString ("00"));
-			} else {
-				return String.Format ("{0}{1}{2} {3}",
-							(h + 11) % 12 + 1, 
-							System.Globalization.DateTimeFormatInfo.CurrentInfo.TimeSeparator,
-							m.ToString ("00"),
-							(12 <= h && h < 24) ? 
-								System.Globalization.DateTimeFormatInfo.CurrentInfo.PMDesignator : 
-								System.Globalization.DateTimeFormatInfo.CurrentInfo.AMDesignator);
-			}
-		}
-
-		static void GetWidgetPosition(Gtk.Widget widget, out int x, out int y)
-		{
-		    	widget.GdkWindow.GetOrigin(out x, out y);	
-			x += widget.Allocation.X;
-			y += widget.Allocation.Y;
-		}
+#endif
+#endregion	
 	}
 }
