@@ -117,7 +117,6 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/Core/ColorManagement.cs	\
 	$(srcdir)/Core/Photo.cs			\
 	$(srcdir)/Core/PhotoVersion.cs		\
-	$(srcdir)/DateCommands.cs		\
 	$(srcdir)/Db.cs				\
 	$(srcdir)/DependentListStore.cs		\
 	$(srcdir)/DirectoryAdaptor.cs		\
@@ -243,6 +242,7 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/UI.Dialog/AboutDialog.cs	\
 	$(srcdir)/UI.Dialog/AdjustTimeDialog.cs	\
 	$(srcdir)/UI.Dialog/BuilderDialog.cs	\
+	$(srcdir)/UI.Dialog/DateRangeDialog.cs		\
 	$(srcdir)/UI.Dialog/EditExceptionDialog.cs	\
 	$(srcdir)/UI.Dialog/ExceptionDialog.cs	\
 	$(srcdir)/UI.Dialog/GladeDialog.cs	\
@@ -378,6 +378,7 @@ F_SPOT_ASSEMBLIES = 				\
 F_SPOT_DISTRESOURCES =					\
 	$(srcdir)/dces.rdf				\
 	$(srcdir)/f-spot.glade				\
+	$(srcdir)/UI.Dialog/ui/DateRangeDialog.ui	\
 	$(srcdir)/UI.Dialog/ui/PreferenceDialog.glade	\
 	$(srcdir)/FSpot.addin.xml
 
