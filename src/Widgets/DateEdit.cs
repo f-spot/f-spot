@@ -193,7 +193,7 @@ Console.WriteLine ("changed to {0}", value);
 		void HandleCalendarButtonClicked (object sender, EventArgs e)
 		{
 			//Temporarily grab pointer and keyboard
-			if (!GrabPointerAndKeyboard (this.Window, Global.CurrentEventTime))
+			if (!GrabPointerAndKeyboard (this.Window, Gtk.Global.CurrentEventTime))
 				return;
 
 			//select the day on the calendar
@@ -205,7 +205,7 @@ Console.WriteLine ("changed to {0}", value);
 			calendar.GrabFocus ();
 
 			//transfer the grabs to the popup
-			GrabPointerAndKeyboard (calendar_popup.Window, Global.CurrentEventTime);
+			GrabPointerAndKeyboard (calendar_popup.Window, Gtk.Global.CurrentEventTime);
 		}
 
 		void HandleDateEntryActivated (object sender, EventArgs e)
@@ -254,7 +254,7 @@ Console.WriteLine ("changed to {0}", value);
 
 		void HandlePopupButtonPressed (object sender, ButtonPressEventArgs e)
 		{
-			var child = Global.GetEventWidget (e.Event);
+			var child = Gtk.Global.GetEventWidget (e.Event);
 			if (child != calendar_popup) {
 				while (child != null) {
 					if (child == calendar_popup) {
