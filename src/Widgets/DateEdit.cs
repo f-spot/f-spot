@@ -42,6 +42,7 @@ namespace FSpot.Widgets
 		public DateTimeOffset DateTimeOffset {
 			get { return dateTimeOffset; }
 			set { 
+Console.WriteLine ("changed to {0}", value);
 				DateTimeOffset old_dto = dateTimeOffset;
 				dateTimeOffset = value; 
 				if (dateTimeOffset.Date != old_dto.Date)
@@ -101,7 +102,8 @@ namespace FSpot.Widgets
 			Homogeneous = false;
 			Spacing = 1;
 
-			Add (date_entry = new Entry () {WidthChars = 10});
+			Add (date_entry = new Entry () {WidthChars = 10, IsEditable = true});
+			date_entry.Activated += HandleDateEntryActivated;
 			date_entry.Show ();
 			var bbox = new HBox ();
 			Widget w;
@@ -113,7 +115,8 @@ namespace FSpot.Widgets
 			Add (date_button = new Button (bbox));
 			date_button.Clicked += HandleCalendarButtonClicked;
 			date_button.Show ();
-			Add (time_entry = new Entry ());
+			Add (time_entry = new Entry () {WidthChars = 12, IsEditable = true});
+			time_entry.Activated += HandleTimeEntryActivated;
 			time_entry.Show ();
 			Add (offset_entry = new Entry ());
 			offset_entry.Show ();
@@ -137,7 +140,9 @@ namespace FSpot.Widgets
 		void UpdateWidget ()
 		{
 			date_entry.Text = dateTimeOffset.ToString ("d");
+			date_entry.ModifyBase (StateType.Normal);
 			time_entry.Text = dateTimeOffset.ToString ("t");
+			time_entry.ModifyBase (StateType.Normal);
 			time_entry.Visible = (dateEditFlags & DateEditFlags.ShowTime) == DateEditFlags.ShowTime;
 			offset_entry.Text = dateTimeOffset.ToString ("zzz");
 			offset_entry.Visible = (dateEditFlags & DateEditFlags.ShowOffset) == DateEditFlags.ShowOffset;
@@ -191,6 +196,25 @@ namespace FSpot.Widgets
 
 			//transfer the grabs to the popup
 			GrabPointerAndKeyboard (calendar_popup.Window, Global.CurrentEventTime);
+		}
+
+		void HandleDateEntryActivated (object sender, EventArgs e)
+		{
+			DateTimeOffset new_date;
+			if (DateTimeOffset.TryParseExact (date_entry.Text, "d", null, System.Globalization.DateTimeStyles.AssumeLocal | System.Globalization.DateTimeStyles.AllowWhiteSpaces, out new_date))
+				DateTimeOffset += (new_date.Date - DateTimeOffset.Date);
+			else 
+				date_entry.ModifyBase (StateType.Normal, new Gdk.Color (255, 0, 0));
+		}
+
+		void HandleTimeEntryActivated (object sender, EventArgs e)
+		{
+			DateTimeOffset new_date;
+			if (DateTimeOffset.TryParseExact (String.Format ("{0} {1}", date_entry.Text, time_entry.Text), "g", null, System.Globalization.DateTimeStyles.AssumeLocal | System.Globalization.DateTimeStyles.AllowWhiteSpaces, out new_date)) {
+				DateTimeOffset = DateTimeOffset.AddHours (new_date.Hour - DateTimeOffset.Hour).AddMinutes (new_date.Minute - DateTimeOffset.Minute);
+			} else
+				time_entry.ModifyBase (StateType.Normal, new Gdk.Color (255, 0, 0));
+
 		}
 
 		void HidePopup ()
