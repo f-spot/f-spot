@@ -63,10 +63,6 @@ Console.WriteLine ("changed to {0}", value);
 			}
 		}
 
-		public bool ShowSeconds {
-			get { return (dateEditFlags & DateEditFlags.ShowSeconds) == DateEditFlags.ShowSeconds; }
-		}
-
 		public event EventHandler DateChanged;
 		public event EventHandler TimeChanged;
 		public event EventHandler OffsetChanged;
@@ -90,6 +86,10 @@ Console.WriteLine ("changed to {0}", value);
 			EventHandler h = OffsetChanged;
 			if (h != null)
 				h (this, EventArgs.Empty);
+		}
+
+		bool ShowSeconds {
+			get { return (dateEditFlags & DateEditFlags.ShowSeconds) == DateEditFlags.ShowSeconds; }
 		}
 #endregion public API
 
@@ -283,7 +283,6 @@ Console.WriteLine ("changed to {0}", value);
 			HidePopup ();
 			e.RetVal = true;
 		}
-
 #endregion
 
 #region Test App
