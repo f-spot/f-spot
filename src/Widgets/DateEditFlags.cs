@@ -16,8 +16,7 @@ namespace FSpot.Widgets
 	{
 		None 			= 0,
 		ShowTime 		= 1 << 0,
-		ShowOffset		= 1 << 1,
-		Two4Hr			= 1 << 2,
-		WeekStartsOnMonday	= 1 << 3,
+		ShowSeconds		= 1 << 1,
+		ShowOffset		= 1 << 2,
 	}
 }
