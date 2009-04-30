@@ -63,6 +63,10 @@ Console.WriteLine ("changed to {0}", value);
 			}
 		}
 
+		public bool ShowSeconds {
+			get { return (dateEditFlags & DateEditFlags.ShowSeconds) == DateEditFlags.ShowSeconds; }
+		}
+
 		public event EventHandler DateChanged;
 		public event EventHandler TimeChanged;
 		public event EventHandler OffsetChanged;
@@ -96,6 +100,7 @@ Console.WriteLine ("changed to {0}", value);
 		Entry offset_entry;
 		Calendar calendar;
 		Window calendar_popup;
+		Gdk.Color red = new Gdk.Color (255, 0, 0);
 
 		void CreateWidget ()
 		{
@@ -141,7 +146,10 @@ Console.WriteLine ("changed to {0}", value);
 		{
 			date_entry.Text = dateTimeOffset.ToString ("d");
 			date_entry.ModifyBase (StateType.Normal);
-			time_entry.Text = dateTimeOffset.ToString ("t");
+			if (ShowSeconds)
+				time_entry.Text = dateTimeOffset.ToString ("T");
+			else
+				time_entry.Text = dateTimeOffset.ToString ("t");
 			time_entry.ModifyBase (StateType.Normal);
 			time_entry.Visible = (dateEditFlags & DateEditFlags.ShowTime) == DateEditFlags.ShowTime;
 			offset_entry.Text = dateTimeOffset.ToString ("zzz");
@@ -204,16 +212,16 @@ Console.WriteLine ("changed to {0}", value);
 			if (DateTimeOffset.TryParseExact (date_entry.Text, "d", null, System.Globalization.DateTimeStyles.AssumeLocal | System.Globalization.DateTimeStyles.AllowWhiteSpaces, out new_date))
 				DateTimeOffset += (new_date.Date - DateTimeOffset.Date);
 			else 
-				date_entry.ModifyBase (StateType.Normal, new Gdk.Color (255, 0, 0));
+				date_entry.ModifyBase (StateType.Normal, red);
 		}
 
 		void HandleTimeEntryActivated (object sender, EventArgs e)
 		{
 			DateTimeOffset new_date;
-			if (DateTimeOffset.TryParseExact (String.Format ("{0} {1}", date_entry.Text, time_entry.Text), "g", null, System.Globalization.DateTimeStyles.AssumeLocal | System.Globalization.DateTimeStyles.AllowWhiteSpaces, out new_date)) {
-				DateTimeOffset = DateTimeOffset.AddHours (new_date.Hour - DateTimeOffset.Hour).AddMinutes (new_date.Minute - DateTimeOffset.Minute);
+			if (DateTimeOffset.TryParseExact (String.Format ("{0} {1}", date_entry.Text, time_entry.Text), ShowSeconds ? "G" : "g", null, System.Globalization.DateTimeStyles.AssumeLocal | System.Globalization.DateTimeStyles.AllowWhiteSpaces, out new_date)) {
+				DateTimeOffset = DateTimeOffset.AddHours (new_date.Hour - DateTimeOffset.Hour).AddMinutes (new_date.Minute - DateTimeOffset.Minute).AddSeconds (new_date.Second - DateTimeOffset.Second);
 			} else
-				time_entry.ModifyBase (StateType.Normal, new Gdk.Color (255, 0, 0));
+				time_entry.ModifyBase (StateType.Normal, red);
 
 		}
 
@@ -275,7 +283,7 @@ Console.WriteLine ("changed to {0}", value);
 			Window w = new Window ("test");
 			DateEdit de;
 			w.Add (de = new DateEdit ());
-			de.DateEditFlags |= DateEditFlags.ShowOffset | DateEditFlags.ShowTime;
+			de.DateEditFlags |= DateEditFlags.ShowOffset | DateEditFlags.ShowTime | DateEditFlags.ShowSeconds;
 			de.Show ();
 			w.Show ();
 			Gtk.Application.Run ();
