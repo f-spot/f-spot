@@ -123,7 +123,8 @@ Console.WriteLine ("changed to {0}", value);
 			Add (time_entry = new Entry () {WidthChars = 12, IsEditable = true});
 			time_entry.Activated += HandleTimeEntryActivated;
 			time_entry.Show ();
-			Add (offset_entry = new Entry ());
+			Add (offset_entry = new Entry () {WidthChars = 6, IsEditable = true});
+			offset_entry.Activated += HandleOffsetEntryActivated;
 			offset_entry.Show ();
 
 			calendar = new Calendar ();
@@ -153,6 +154,7 @@ Console.WriteLine ("changed to {0}", value);
 			time_entry.ModifyBase (StateType.Normal);
 			time_entry.Visible = (dateEditFlags & DateEditFlags.ShowTime) == DateEditFlags.ShowTime;
 			offset_entry.Text = dateTimeOffset.ToString ("zzz");
+			offset_entry.ModifyBase (StateType.Normal);
 			offset_entry.Visible = (dateEditFlags & DateEditFlags.ShowOffset) == DateEditFlags.ShowOffset;
 		}
 
@@ -218,11 +220,20 @@ Console.WriteLine ("changed to {0}", value);
 		void HandleTimeEntryActivated (object sender, EventArgs e)
 		{
 			DateTimeOffset new_date;
-			if (DateTimeOffset.TryParseExact (String.Format ("{0} {1}", date_entry.Text, time_entry.Text), ShowSeconds ? "G" : "g", null, System.Globalization.DateTimeStyles.AssumeLocal | System.Globalization.DateTimeStyles.AllowWhiteSpaces, out new_date)) {
+			if (DateTimeOffset.TryParseExact (String.Format ("{0} {1}", DateTimeOffset.ToString ("d"), time_entry.Text), ShowSeconds ? "G" : "g", null, System.Globalization.DateTimeStyles.AssumeLocal | System.Globalization.DateTimeStyles.AllowWhiteSpaces, out new_date)) {
 				DateTimeOffset = DateTimeOffset.AddHours (new_date.Hour - DateTimeOffset.Hour).AddMinutes (new_date.Minute - DateTimeOffset.Minute).AddSeconds (new_date.Second - DateTimeOffset.Second);
 			} else
 				time_entry.ModifyBase (StateType.Normal, red);
 
+		}
+
+		void HandleOffsetEntryActivated (object sender, EventArgs e)
+		{
+			TimeSpan new_offset;
+			if (TimeSpan.TryParse (offset_entry.Text.Trim ('+'), out new_offset))
+				DateTimeOffset = new DateTimeOffset (dateTimeOffset.DateTime, new_offset);
+			else
+				offset_entry.ModifyBase (StateType.Normal, red);
 		}
 
 		void HidePopup ()
