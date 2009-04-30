@@ -242,6 +242,7 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/TipWindow.cs			\
 	$(srcdir)/UI.Dialog/AboutDialog.cs	\
 	$(srcdir)/UI.Dialog/AdjustTimeDialog.cs	\
+	$(srcdir)/UI.Dialog/BuilderDialog.cs	\
 	$(srcdir)/UI.Dialog/EditExceptionDialog.cs	\
 	$(srcdir)/UI.Dialog/ExceptionDialog.cs	\
 	$(srcdir)/UI.Dialog/GladeDialog.cs	\
