@@ -13,8 +13,8 @@ msgstr ""
 "Project-Id-Version: f-spot.HEAD\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=f-"
 "spot&component=General\n"
-"POT-Creation-Date: 2009-04-03 18:34+0000\n"
-"PO-Revision-Date: 2009-04-12 17:09+0200\n"
+"POT-Creation-Date: 2009-04-28 08:22+0000\n"
+"PO-Revision-Date: 2009-05-01 21:01+0200\n"
 "Last-Translator: Jorge González <jorgegonz@svn.gnome.org>\n"
 "Language-Team: Español <gnome-es-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -2027,6 +2027,10 @@ msgstr "Configuración de página"
 #, csharp-format
 msgid "Paper Size: {0} x {1} mm"
 msgstr "Tamaño del papel: {0} x {1} mm"
+
+#: ../src/Widgets/CustomPrintWidget.cs:109
+msgid "Set Page Size and Orientation"
+msgstr "Ajustar el tamaño y la orientación de la página"
 
 #: ../src/Widgets/CustomPrintWidget.cs:124
 msgid "Photos per page"
