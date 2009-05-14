@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: f-spot.HEAD\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=f-spot&component=General\n"
-"POT-Creation-Date: 2009-02-25 15:30+0000\n"
-"PO-Revision-Date: 2009-03-02 17:19+0100\n"
+"POT-Creation-Date: 2009-04-28 08:22+0000\n"
+"PO-Revision-Date: 2009-05-14 23:17+0200\n"
 "Last-Translator: Gabor Kelemen <kelemeng@gnome.hu>\n"
 "Language-Team: Hungarian <gnome@fsf.hu>\n"
 "MIME-Version: 1.0\n"
@@ -475,35 +475,35 @@ msgstr ""
 
 # fixme techblabla
 #. Note for translators: Reparented is a picture becoming a version of another one
-#: ../src/Core/Photo.cs:471
+#: ../src/Core/Photo.cs:478
 msgid "Reparented"
 msgstr "Örökbe adva"
 
-#: ../src/Core/Photo.cs:471
+#: ../src/Core/Photo.cs:478
 #, csharp-format
 msgid "Reparented ({0})"
 msgstr "Örökbe adva ({0})"
 
-#: ../src/Core/Photo.cs:490
+#: ../src/Core/Photo.cs:497
 #, csharp-format
 msgid "Modified"
 msgid_plural "Modified ({0})"
 msgstr[0] "Módosított"
 msgstr[1] "Módosított ({0})"
 
-#: ../src/Core/Photo.cs:509
+#: ../src/Core/Photo.cs:521
 #, csharp-format
 msgid "Modified in {1}"
 msgstr "Módosítva ekkor: {1}"
 
-#: ../src/Core/Photo.cs:509
+#: ../src/Core/Photo.cs:521
 #, csharp-format
 msgid "Modified in {1} ({0})"
 msgstr "Módosítva ekkor: {1} ({0})"
 
 #. Note that the original version is never stored in the photo_versions table in the
 #. database.
-#: ../src/Core/Photo.cs:667 ../src/f-spot.glade.h:96
+#: ../src/Core/Photo.cs:676 ../src/f-spot.glade.h:96
 msgid "Original"
 msgstr "Eredeti"
 
@@ -805,7 +805,7 @@ msgstr "Interoperabilitás könyvtár"
 msgid "Unknown Directory"
 msgstr "Ismeretlen könyvtár"
 
-#: ../src/Imaging/ImageFile.cs:81
+#: ../src/Imaging/ImageFile.cs:90
 msgid "Writing to this file format is not supported"
 msgstr "Az írás nem támogatott ebbe a fájlformátumba"
 
@@ -1309,6 +1309,11 @@ msgstr[1] ""
 "A(z) {1} indítása előtt a F-Spot létrehozzon-e új változatokat a kijelölt "
 "fényképekből az eredetik megőrzése érdekében?"
 
+#: ../src/MainWindow.cs:3095
+#| msgid "Version"
+msgid "XCF version"
+msgstr "XCF verzió"
+
 #: ../src/MetadataStore.cs:18
 msgid "Creator"
 msgstr "Létrehozó"
@@ -1491,7 +1496,7 @@ msgstr "Hiba a fénykép szerkesztése közben"
 msgid "Comment:"
 msgstr "Megjegyzés:"
 
-#: ../src/Preferences.cs:147
+#: ../src/Preferences.cs:148
 msgid "Photos"
 msgstr "Fényképek"
 
@@ -1875,62 +1880,54 @@ msgid "Retry"
 msgstr "Újra"
 
 #: ../src/UI.Dialog/ui/PreferenceDialog.glade.h:1
-#| msgid "<b>Export Method</b>"
 msgid "<b>Color Management</b>"
 msgstr "<b>Színkezelés</b>"
 
 #: ../src/UI.Dialog/ui/PreferenceDialog.glade.h:2
-#| msgid "<b>Co_rrections</b>"
 msgid "<b>Import Settings</b>"
 msgstr "<b>Importálás beállításai</b>"
 
 #: ../src/UI.Dialog/ui/PreferenceDialog.glade.h:3
-#| msgid "Metadata"
 msgid "<b>Metadata</b>"
 msgstr "<b>Metaadatok</b>"
 
 #: ../src/UI.Dialog/ui/PreferenceDialog.glade.h:4
-#| msgid "<b>Preview</b>"
 msgid "<b>Screensaver</b>"
 msgstr "<b>Képernyővédő</b>"
 
 #: ../src/UI.Dialog/ui/PreferenceDialog.glade.h:5
-#| msgid "<b></b>"
 msgid "<b>Theming</b>"
 msgstr "<b>Témák</b>"
 
 #: ../src/UI.Dialog/ui/PreferenceDialog.glade.h:6
-#| msgid ""
-#| "<small><i>Choose the location of the database you want to import from</"
-#| "i></small>"
 msgid ""
 "<small><i>Choose the folder where F-Spot should store newly imported photos</"
 "i></small>"
-msgstr ""
-"<small><i>Válassza ki a mappát, amelyben importálni kíván</i></"
-"small>"
+msgstr "<small><i>Válassza ki a mappát, amelyben importálni kíván</i></small>"
 
 #: ../src/UI.Dialog/ui/PreferenceDialog.glade.h:7
-#| msgid ""
-#| "<small><i>Choose the location of the database you want to import from</"
-#| "i></small>"
 msgid ""
 "<small><i>Enable this option to store tags and descriptions inside \n"
 "supported image formats.</i></small>"
-msgstr "<small><i>Engedélyezze ezt a címkék és leírások támogatott képformátumokban tárolásához</i></small>"
+msgstr ""
+"<small><i>Engedélyezze ezt a címkék és leírások támogatott képformátumokban "
+"tárolásához</i></small>"
 
 #: ../src/UI.Dialog/ui/PreferenceDialog.glade.h:9
 msgid ""
 "<small><i>While acting as a screensaver, F-Spot can display all of your "
 "images, or a small subset based on tags.</i></small>"
-msgstr "<small><i>Képernyővédőként működve az F-Spot képes megjeleníteni az összes képét, vagy címke alapján azok egy részét.</i></small>"
+msgstr ""
+"<small><i>Képernyővédőként működve az F-Spot képes megjeleníteni az összes "
+"képét, vagy címke alapján azok egy részét.</i></small>"
 
 #: ../src/UI.Dialog/ui/PreferenceDialog.glade.h:10
 msgid "<small><i>You'll have to restart f-spot to load the new theme.</i></small>"
-msgstr "<small><i>Az új téma betöltéséhez újra kell indítania az F-Spotot.</i></small>"
+msgstr ""
+"<small><i>Az új téma betöltéséhez újra kell indítania az F-Spotot.</i></"
+"small>"
 
 #: ../src/UI.Dialog/ui/PreferenceDialog.glade.h:12
-#| msgid "Custom Text: "
 msgid "Custom Theme"
 msgstr "Egyéni téma"
 
@@ -1955,12 +1952,10 @@ msgid "Preferences"
 msgstr "Beállítások"
 
 #: ../src/UI.Dialog/ui/PreferenceDialog.glade.h:20
-#| msgid "Select Folder"
 msgid "Select A Folder"
 msgstr "Válasszon ki egy mappát"
 
 #: ../src/UI.Dialog/ui/PreferenceDialog.glade.h:21
-#| msgid "Select Photo from file"
 msgid "Select A gtkrc File"
 msgstr "Válasszon ki egy Gtkrc fájlt"
 
@@ -1973,7 +1968,6 @@ msgid "Try to use the system display profile"
 msgstr "Kísérlet a rendszer megjelenési profiljának használatára"
 
 #: ../src/UI.Dialog/ui/PreferenceDialog.glade.h:24
-#| msgid "Strip _metadata"
 msgid "Write _metadata to file"
 msgstr "Metaadatok fájlba í_rása"
 
@@ -2020,6 +2014,10 @@ msgstr "Oldalbeállítás"
 #, csharp-format
 msgid "Paper Size: {0} x {1} mm"
 msgstr "Papírméret: {0} x {1} mm"
+
+#: ../src/Widgets/CustomPrintWidget.cs:109
+msgid "Set Page Size and Orientation"
+msgstr "Oldalméret és -tájolás beállítása"
 
 #: ../src/Widgets/CustomPrintWidget.cs:124
 msgid "Photos per page"
@@ -3902,10 +3900,13 @@ msgid ""
 "In order to detect duplicates on pictures you imported before 0.5.0, F-Spot "
 "needs to analyze your image collection. This is not done by default as it's "
 "time consuming. You can Start or Pause this update process using this dialog."
-msgstr "A 0.5.0 változat előtt importált képek másodpéldányainak észleléséhez az F-Spotnak elemeznie kell a képgyűjteményt. Ez időigényessége miatt alapértelmezésben nem kerül végrehajtásra. Ebben az ablakban elindíthatja vagy leállíthatja ezt a frissítési folyamatot."
+msgstr ""
+"A 0.5.0 változat előtt importált képek másodpéldányainak észleléséhez az F-"
+"Spotnak elemeznie kell a képgyűjteményt. Ez időigényessége miatt "
+"alapértelmezésben nem kerül végrehajtásra. Ebben az ablakban elindíthatja "
+"vagy leállíthatja ezt a frissítési folyamatot."
 
 #: ../extensions/Tools/HashJob/HashJob.cs:102
-#| msgid "Error processing image"
 msgid "Processing images..."
 msgstr "Képek feldolgozása…"
 
@@ -3949,9 +3950,6 @@ msgstr "Elérhető hely: {0}, összesen {2}: {1}% használatban"
 
 #: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:890
 #, csharp-format
-#| msgid ""
-#| "<small>The selected album has a limit of {0} pictures,\n"
-#| "which would be passed with the current selection of {1} images</small>"
 msgid ""
 "The selected album has a limit of {0} pictures,\n"
 "which would be passed with the current selection of {1} images"
@@ -4071,23 +4069,20 @@ msgstr "Most az egyszer megbízom a webhely tanúsítványában"
 
 #: ../extensions/Editors/BlackoutEditor/BlackoutEditor.cs:18
 msgid "Blackout"
-msgstr ""
+msgstr "Kifeketítés"
 
 #: ../extensions/Editors/BlackoutEditor/BlackoutEditor.cs:26
-#, fuzzy
 #| msgid "Select the area that needs cropping."
 msgid "Select the area that you want blacked out."
-msgstr "Válasszon egy területet a levágáshoz."
+msgstr "Válassza ki a területet a kifeketítéshez."
 
 #: ../extensions/Editors/PixelateEditor/PixelateEditor.cs:18
-#, fuzzy
 #| msgid "Private"
 msgid "Pixelate"
-msgstr "Személyes"
+msgstr "Pixelesítés"
 
 #: ../extensions/Editors/PixelateEditor/PixelateEditor.cs:26
-#, fuzzy
 #| msgid "Select the area that needs cropping."
 msgid "Select the area that you want pixelated."
-msgstr "Válasszon egy területet a levágáshoz."
+msgstr "Válassza ki a területet a pixelesítéshez."
 
