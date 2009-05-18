@@ -2633,8 +2633,11 @@ public class MainWindow {
 	}
 
 	void HandleSetDateRange (object sender, EventArgs args) {
-		DateCommands.Set set_command = new DateCommands.Set (query, main_window);
-		set_command.Execute ();
+		var date_range_dialog = new DateRangeDialog (query.Range, main_window);
+		if ((ResponseType)date_range_dialog.Run () == ResponseType.Ok)
+			query.Range = date_range_dialog.Range;
+		date_range_dialog.Destroy ();
+
 		//update the TimeLine
 		if (group_selector.Adaptor is TimeAdaptor && query.Range != null) 
 			group_selector.SetLimitsToDates(query.Range.Start, query.Range.End);

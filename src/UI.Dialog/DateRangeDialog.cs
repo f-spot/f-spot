@@ -1,9 +1,10 @@
 /*
- * DateCommand.cs
+ * FSpot.UI.Dialog.DateRangeDialog.cs
  *
  * Author(s):
  * 	Larry Ewing <lewing@novell.com>
  * 	Bengt Thuree
+ *	Stephane Delcroix  <stephane@delcroix.org>
  *
  * This is free software. See COPYING for details.
  *
@@ -14,17 +15,19 @@ using System;
 using Mono.Unix;
 using FSpot;
 using FSpot.Query;
-using FSpot.UI.Dialog;
 
-public class DateCommands {
-	public class Set : GladeDialog {
+namespace FSpot.UI.Dialog
+{
+	public class DateRangeDialog : BuilderDialog {
 		FSpot.PhotoQuery query;
 		Gtk.Window parent_window;
 
-		[Glade.Widget] private Button ok_button;
-		[Glade.Widget] private Gnome.DateEdit start_dateedit;
-		[Glade.Widget] private Gnome.DateEdit end_dateedit;
-		[Glade.Widget] private ComboBox period_combobox;
+		[Builder.Object] Button ok_button;
+		[Builder.Object] Gnome.DateEdit start_dateedit;
+		[Builder.Object] Gnome.DateEdit end_dateedit;
+		[Builder.Object] ComboBox period_combobox;
+
+		TreeStore rangestore;
 
 		static string [] ranges = {
 			"today",
@@ -42,6 +45,42 @@ public class DateCommands {
 			"alldates",
 			"customizedrange"
 		};
+
+		public DateRangeDialog (DateRange query_range, Gtk.Window parent_window) : base ("DateRangeDialog.ui", "date_range_dialog")
+		{
+			this.query = query;
+			this.parent_window = parent_window;
+			TransientFor = parent_window;
+			DefaultResponse = ResponseType.Ok;
+			var cell_renderer = new CellRendererText ();
+
+			// Build the combo box with years and month names
+			period_combobox.Model = rangestore = new TreeStore (typeof (string));
+			period_combobox.PackStart (cell_renderer, true);
+
+			period_combobox.SetCellDataFunc (cell_renderer, new CellLayoutDataFunc (RangeCellFunc));
+
+			foreach (string range in ranges)
+				rangestore.AppendValues (GetString(range));
+
+			period_combobox.Changed += HandlePeriodComboboxChanged;
+           	 	period_combobox.Active = System.Array.IndexOf(ranges, "last7days"); // Default to Last 7 days
+
+			if (query_range != null) {
+				start_dateedit.Time = query_range.Start;
+				end_dateedit.Time = query_range.End;
+			}
+
+		}
+
+		void RangeCellFunc (CellLayout cell_layout, CellRenderer cell, TreeModel tree_model, TreeIter iter)
+		{
+			string name = (string)tree_model.GetValue (iter, 0);
+			(cell as CellRendererText).Text = name;
+		}
+
+
+
 
 		private static string GetString(int index)
 		{
@@ -89,6 +128,10 @@ public class DateCommands {
 			default:
 				return rangename;
 			}	
+		}
+
+		public DateRange Range {
+			get { return QueryRange (period_combobox.Active); }
 		}
 
 		private DateRange QueryRange (int index)
@@ -203,48 +246,6 @@ public class DateCommands {
 			((Gtk.Entry) start_dateedit.Children [0] as Gtk.Entry).Changed += HandleDateEditChanged;
 			end_dateedit.DateChanged += HandleDateEditChanged;
 			((Gtk.Entry) end_dateedit.Children [0] as Gtk.Entry).Changed += HandleDateEditChanged;
-		}
-
-		public Set (FSpot.PhotoQuery query, Gtk.Window parent_window)
-		{
-			this.query = query;
-			this.parent_window = parent_window;
-		}
-
-		public bool Execute ()
-		{
-			this.CreateDialog ("date_range_dialog");
-
-			// Build the combo box with years and month names
-			foreach (string range in ranges)
-				period_combobox.AppendText (GetString(range));
-
-			start_dateedit.DateChanged += HandleDateEditChanged;
-			((Gtk.Entry) start_dateedit.Children [0] as Gtk.Entry).Changed += HandleDateEditChanged;
-			end_dateedit.DateChanged += HandleDateEditChanged;
-			((Gtk.Entry) end_dateedit.Children [0] as Gtk.Entry).Changed += HandleDateEditChanged;
-			
-			period_combobox.Changed += HandlePeriodComboboxChanged;
-           	 	period_combobox.Active = System.Array.IndexOf(ranges, "last7days"); // Default to Last 7 days
-
-			if (query.Range != null) {
-				start_dateedit.Time = query.Range.Start;
-				end_dateedit.Time = query.Range.End;
-			}
-
-			Dialog.TransientFor = parent_window;
-			Dialog.DefaultResponse = ResponseType.Ok;
-			ResponseType response = (ResponseType) this.Dialog.Run ();
-
-			bool success = false;
-
-			if (response == ResponseType.Ok) {
-				query.Range = QueryRange (period_combobox.Active);
-				success = true;
-			}
-			
-			this.Dialog.Destroy ();
-			return success;
 		}
 	}
 }
