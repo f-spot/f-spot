@@ -297,13 +297,8 @@ namespace FSpot
 		{
 			string name_without_extension = System.IO.Path.GetFileNameWithoutExtension (Name);
 	
-#if MONO_2_0
 			return new System.Uri (System.IO.Path.Combine (DirectoryPath,  name_without_extension 
 						       + " (" + UriUtils.EscapeString (version_name, false, true, true) + ")" + extension));
-#else
-			return new System.Uri (System.IO.Path.Combine (DirectoryPath,  name_without_extension 
-						       + " (" + UriUtils.EscapeString (version_name, false, true, true) + ")" + extension), true);
-#endif
 		}
 	
 		public bool VersionNameExists (string version_name)

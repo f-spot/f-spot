@@ -82,19 +82,11 @@ namespace FSpot {
 			int round = 12;
 			Context g = Gdk.CairoHelper.Create (GdkWindow);
 			g.Operator = Operator.Source;
-#if MONO_1_2_5
 			g.Source = new SolidPattern (new Cairo.Color (0, 0, 0, 0));
-#else
-			g.Source = new SolidPattern (new Cairo.Color (0, 0, 0, 0), true);
-#endif
 			g.Paint ();
 			g.Operator = Operator.Over;
 #if true
-#if MONO_1_2_5
 			g.Source = new SolidPattern (new Cairo.Color (0, 0, 0, .7));
-#else
-			g.Source = new SolidPattern (new Cairo.Color (0, 0, 0, .7), true);
-#endif
 			g.MoveTo (round, 0);
 			//g.LineTo (Allocation.Width - round, 0);
 			g.Arc (Allocation.Width - round, round, round, - Math.PI * 0.5, 0);

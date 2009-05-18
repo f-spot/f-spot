@@ -230,11 +230,7 @@ public class PhotoStore : DbStore {
 		while (reader.Read ()) {
 			uint version_id = Convert.ToUInt32 (reader ["version_id"]);
 			string name = reader["name"].ToString ();
-#if MONO_2_0
 			System.Uri uri = new System.Uri (reader["uri"].ToString ());
-#else
-			System.Uri uri = new System.Uri (reader["uri"].ToString (), true);
-#endif
 			string md5_sum = reader["md5_sum"] != null ? reader ["md5_sum"].ToString () : null;
 			bool is_protected = Convert.ToBoolean (reader["protected"]);
 			photo.AddVersionUnsafely (version_id, uri, md5_sum, name, is_protected);
@@ -274,11 +270,7 @@ public class PhotoStore : DbStore {
 			if (reader ["version_id"] != null) {
 				uint version_id = Convert.ToUInt32 (reader ["version_id"]);
 				string name = reader["name"].ToString ();
-#if MONO_2_0
 				System.Uri uri = new System.Uri (reader["uri"].ToString ());
-#else
-				System.Uri uri = new System.Uri (reader["uri"].ToString (), true);
-#endif
 				string md5_sum = reader["md5_sum"] != null ? reader ["md5_sum"].ToString () : null;
 				bool is_protected = Convert.ToBoolean (reader["protected"]);
 				photo.AddVersionUnsafely (version_id, uri, md5_sum, name, is_protected);
@@ -336,11 +328,7 @@ public class PhotoStore : DbStore {
 		if (reader.Read ()) {
 			photo = new Photo (id,
 				Convert.ToInt64 (reader ["time"]),
-#if MONO_2_0
 				new System.Uri (reader ["uri"].ToString ()),
-#else
-				new System.Uri (reader ["uri"].ToString (), true),
-#endif
 				reader["md5_sum"] != null ? reader["md5_sum"].ToString () : null
 			);
 
@@ -427,11 +415,7 @@ public class PhotoStore : DbStore {
 		while (reader.Read ()) {
 			Photo photo = new Photo (Convert.ToUInt32 (reader ["id"]),
 				Convert.ToInt64 (reader ["time"]),
-#if MONO_2_0
 				new System.Uri (reader ["uri"].ToString ()),
-#else
-				new System.Uri (reader ["uri"].ToString (), true),
-#endif
 				md5_sum
 			);
 
@@ -892,11 +876,7 @@ public class PhotoStore : DbStore {
 			if (photo == null) {
 				photo = new Photo (id,
 						   Convert.ToInt64 (reader ["time"]),
-#if MONO_2_0
 						   new System.Uri (reader ["uri"].ToString ()),
-#else
-						   new System.Uri (reader ["uri"].ToString (), true),
-#endif
 						   reader["md5_sum"] != null ? reader ["md5_sum"].ToString () : null
 				);
 				photo.Description = reader["description"].ToString ();

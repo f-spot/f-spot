@@ -42,11 +42,7 @@ namespace FSpot.Utils
 			}
 			builder.Append (path);
 	
-#if MONO_2_0
 			return new Uri (builder.ToString ());
-#else
-			return new Uri (builder.ToString (), true);
-#endif
 		}
 
 		static char[] CharsToQuote = { ';', '?', ':', '@', '&', '=', '$', ',', '#' };

@@ -923,15 +923,7 @@ public class MainWindow {
 		
 		int [] selected_ids = SelectedIds ();
 		if (command.Execute (direction, SelectedPhotos (selected_ids)))
-#if MONO_1_9_0
 			query.MarkChanged (selected_ids, new PhotoChanges () {DataChanged = true});
-#else
-		{
-			PhotoChanges changes = new PhotoChanges ();
-			changes.DataChanged = true;
-			query.MarkChanged (selected_ids, changes);
-		}
-#endif
 	}
 
 	//
@@ -2582,15 +2574,7 @@ public class MainWindow {
 
 		int [] selected_ids = SelectedIds ();
 		if (command.Execute (SelectedPhotos (selected_ids)))
-#if MONO_1_9_0
 			query.MarkChanged (selected_ids, new PhotoChanges {DataChanged = true});
-#else
-		{
-			PhotoChanges changes = new PhotoChanges ();
-			changes.DataChanged = true;
-			query.MarkChanged (selected_ids, changes);
-		}
-#endif
 	}
 
 	public void HandleRotate90Command (object sender, EventArgs args)
