@@ -42,7 +42,6 @@ namespace FSpot.Widgets
 		public DateTimeOffset DateTimeOffset {
 			get { return dateTimeOffset; }
 			set { 
-Console.WriteLine ("changed to {0}", value);
 				DateTimeOffset old_dto = dateTimeOffset;
 				dateTimeOffset = value; 
 				if (dateTimeOffset.Date != old_dto.Date)
@@ -99,6 +98,7 @@ Console.WriteLine ("changed to {0}", value);
 		Entry time_entry;
 		Entry offset_entry;
 		Calendar calendar;
+		Label calendar_label;
 		Window calendar_popup;
 		Gdk.Color red = new Gdk.Color (255, 0, 0);
 
@@ -112,7 +112,7 @@ Console.WriteLine ("changed to {0}", value);
 			date_entry.Show ();
 			var bbox = new HBox ();
 			Widget w;
-			bbox.Add (w = new Label (Catalog.GetString ("Calendar")));
+			bbox.Add (w = calendar_label = new Label (Catalog.GetString ("Calendar")));
 			w.Show ();
 			bbox.Add (w = new Arrow (ArrowType.Down, ShadowType.Out));
 			w.Show ();
@@ -156,6 +156,7 @@ Console.WriteLine ("changed to {0}", value);
 			offset_entry.Text = dateTimeOffset.ToString ("zzz");
 			offset_entry.ModifyBase (StateType.Normal);
 			offset_entry.Visible = (dateEditFlags & DateEditFlags.ShowOffset) == DateEditFlags.ShowOffset;
+			calendar_label.Visible = time_entry.Visible || offset_entry.Visible;
 		}
 
 		bool GrabPointerAndKeyboard (Gdk.Window window, uint activate_time)
