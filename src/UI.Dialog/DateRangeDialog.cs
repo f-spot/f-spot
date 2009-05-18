@@ -46,7 +46,7 @@ namespace FSpot.UI.Dialog
 			"customizedrange"
 		};
 
-		public DateRangeDialog (FSpot.PhotoQuery query, Gtk.Window parent_window) : base ("DateRangeDialog.ui", "date_range_dialog")
+		public DateRangeDialog (DateRange query_range, Gtk.Window parent_window) : base ("DateRangeDialog.ui", "date_range_dialog")
 		{
 			this.query = query;
 			this.parent_window = parent_window;
@@ -63,30 +63,14 @@ namespace FSpot.UI.Dialog
 			foreach (string range in ranges)
 				rangestore.AppendValues (GetString(range));
 
-//			start_dateedit.DateChanged += HandleDateEditChanged;
-//			((Gtk.Entry) start_dateedit.Children [0] as Gtk.Entry).Changed += HandleDateEditChanged;
-//			end_dateedit.DateChanged += HandleDateEditChanged;
-//			((Gtk.Entry) end_dateedit.Children [0] as Gtk.Entry).Changed += HandleDateEditChanged;
-//			
-           	 	period_combobox.Active = System.Array.IndexOf(ranges, "last7days"); // Default to Last 7 days
 			period_combobox.Changed += HandlePeriodComboboxChanged;
-//
-//			if (query.Range != null) {
-//				start_dateedit.Time = query.Range.Start;
-//				end_dateedit.Time = query.Range.End;
-//			}
-//
-//			ResponseType response = (ResponseType) this.Dialog.Run ();
-//
-//			bool success = false;
-//
-//			if (response == ResponseType.Ok) {
-//				query.Range = QueryRange (period_combobox.Active);
-//				success = true;
-//			}
-//			
-//			this.Dialog.Destroy ();
-//			return success;
+           	 	period_combobox.Active = System.Array.IndexOf(ranges, "last7days"); // Default to Last 7 days
+
+			if (query_range != null) {
+				start_dateedit.Time = query_range.Start;
+				end_dateedit.Time = query_range.End;
+			}
+
 		}
 
 		void RangeCellFunc (CellLayout cell_layout, CellRenderer cell, TreeModel tree_model, TreeIter iter)
@@ -146,11 +130,12 @@ namespace FSpot.UI.Dialog
 			}	
 		}
 
+		public DateRange Range {
+			get { return QueryRange (period_combobox.Active); }
+		}
+
 		private DateRange QueryRange (int index)
 		{
-			Console.WriteLine ("QueryRange");
-			Console.WriteLine ("index " + index);
-			Console.WriteLine ("ranges " + ranges);
 			return QueryRange ( ranges [index]);
 		}
 
