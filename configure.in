@@ -60,7 +60,7 @@ LIBEXIF_REQUIRED_MIN=0.5.7
 LIBEXIF_REQUIRED_MAX=0.7.0
 GIO_REQUIRED=2.16.0
 GTKSHARP_REQUIRED=2.13.90
-MONO_REQUIRED=1.2.4
+MONO_REQUIRED=2.2.0
 GTK_REQUIRED=2.10
 BEAGLE_REQUIRED=0.3.0
 NDESK_DBUS_REQUIRED=0.4.2
@@ -81,15 +81,6 @@ AC_SUBST(GIO_LIBS)
 CSC_DEFINES=""
 PKG_CHECK_MODULES(GNOME_SHARP, gnome-sharp-2.0 >= 2.8)
 
-if pkg-config --atleast-version=1.2.5 mono; then
-   CSC_DEFINES="$CSC_DEFINES -d:MONO_1_2_5"
-fi
-if pkg-config --atleast-version=1.9.0 mono; then
-   CSC_DEFINES="$CSC_DEFINES -d:MONO_1_9_0"
-fi
-if pkg-config --atleast-version=2.0 mono; then
-   CSC_DEFINES="$CSC_DEFINES -d:MONO_2_0"
-fi
 if pkg-config --atleast-version=1.2.5 mono-cairo; then
    CSC_DEFINES="$CSC_DEFINES -d:CAIRO_1_2_5"
 fi
