@@ -13,8 +13,8 @@
 using Gtk;
 using System;
 using Mono.Unix;
-using FSpot;
 using FSpot.Query;
+using FSpot.Widgets;
 
 namespace FSpot.UI.Dialog
 {
@@ -23,9 +23,12 @@ namespace FSpot.UI.Dialog
 		Gtk.Window parent_window;
 
 		[Builder.Object] Button ok_button;
-		[Builder.Object] Gnome.DateEdit start_dateedit;
-		[Builder.Object] Gnome.DateEdit end_dateedit;
+		[Builder.Object] Frame startframe;
+		[Builder.Object] Frame endframe;
 		[Builder.Object] ComboBox period_combobox;
+
+		DateEdit start_dateedit;
+		DateEdit end_dateedit;
 
 		TreeStore rangestore;
 
@@ -52,6 +55,12 @@ namespace FSpot.UI.Dialog
 			this.parent_window = parent_window;
 			TransientFor = parent_window;
 			DefaultResponse = ResponseType.Ok;
+
+			(startframe.Child as Bin).Child = start_dateedit = new DateEdit ();
+			start_dateedit.Show ();
+			(endframe.Child as Bin).Child = end_dateedit = new DateEdit ();
+			end_dateedit.Show ();
+
 			var cell_renderer = new CellRendererText ();
 
 			// Build the combo box with years and month names
@@ -67,8 +76,8 @@ namespace FSpot.UI.Dialog
            	 	period_combobox.Active = System.Array.IndexOf(ranges, "last7days"); // Default to Last 7 days
 
 			if (query_range != null) {
-				start_dateedit.Time = query_range.Start;
-				end_dateedit.Time = query_range.End;
+				start_dateedit.DateTimeOffset = query_range.Start;
+				end_dateedit.DateTimeOffset = query_range.End;
 			}
 
 		}
@@ -202,8 +211,8 @@ namespace FSpot.UI.Dialog
 				clear = true;
 				break;
 			case "customizedrange":
-				startdate = start_dateedit.Time;
-				enddate = end_dateedit.Time;
+				startdate = start_dateedit.DateTimeOffset.Date;
+				enddate = end_dateedit.DateTimeOffset.Date;
 				break;
 			default:
 				clear = true;
@@ -238,8 +247,8 @@ namespace FSpot.UI.Dialog
 
 			DateRange range = QueryRange (period_combobox.Active);
 			if (range != null) {
-				start_dateedit.Time = range.Start;
-				end_dateedit.Time = range.End;
+				start_dateedit.DateTimeOffset = range.Start;
+				end_dateedit.DateTimeOffset = range.End;
 			}
 			
 			start_dateedit.DateChanged += HandleDateEditChanged;
