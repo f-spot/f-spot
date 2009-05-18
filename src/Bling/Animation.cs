@@ -54,7 +54,7 @@ namespace FSpot.Bling
 			if (state == AnimationState.Paused)
 				return;
 			if (state != AnimationState.NotRunning)
-				throw new InvalidOperationException ("Can't Pause () a non running animation");
+				throw new InvalidOperationException ("Can't Pause () a non running animation.");
 			GLib.Idle.Remove (Handler);
 			pausedafter = DateTimeOffset.Now - starttime;
 			state = AnimationState.Paused;
@@ -65,7 +65,7 @@ namespace FSpot.Bling
 			if (state == AnimationState.Running)
 				return;
 			if (state != AnimationState.Paused)
-				throw new InvalidOperationException ("Can't Resume a non running animation");
+				throw new InvalidOperationException ("Can't Resume () a non running animation.");
 			starttime = DateTimeOffset.Now - pausedafter;
 			state = AnimationState.Running;
 			GLib.Timeout.Add (40, Handler, GLib.Priority.DefaultIdle);
@@ -74,7 +74,7 @@ namespace FSpot.Bling
 		public void Start ()
 		{
 			if (state != AnimationState.NotRunning)
-				throw new InvalidOperationException ("Can't Start() a running or paused animation");
+				throw new InvalidOperationException ("Can't Start () a running or paused animation.");
 			starttime = DateTimeOffset.Now;
 			state = AnimationState.Running;
 			GLib.Timeout.Add (40, Handler, GLib.Priority.DefaultIdle);
@@ -113,12 +113,15 @@ namespace FSpot.Bling
 
 		bool Handler ()
 		{
-			double percentage = (double)(DateTimeOffset.Now - starttime ).Ticks / (double)duration.Ticks;
+			double percentage = (double)(DateTimeOffset.Now - starttime).Ticks / (double)duration.Ticks;
+			EventHandler<ProgressChangedEventArgs> p = ProgressChanged;
+			if (p != null)
+				p (this, new ProgressChangedEventArgs ((int)(100 * percentage), null));
 			action (Interpolate (from, to, Ease (Math.Min (percentage, 1.0))));
 			if (percentage >= 1.0) {
 				EventHandler h = Completed;
 				if (h != null)
-					Completed (this, EventArgs.Empty);
+					h (this, EventArgs.Empty);
 				state = AnimationState.NotRunning;
 				return false;
 			}
