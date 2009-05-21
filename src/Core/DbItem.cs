@@ -23,21 +23,21 @@ namespace FSpot
 		}
 	}
 
-	public class DbItemEventArgs : EventArgs {
-		private DbItem [] items;
+	public class DbItemEventArgs<T> : EventArgs where T : DbItem {
+		private T [] items;
 
-		public DbItem [] Items {
+		public T [] Items {
 			get { return items; }
 		}
 
-		public DbItemEventArgs (DbItem [] items) : base ()
+		public DbItemEventArgs (T [] items) : base ()
 		{
 			this.items = items;
 		}
 
-		public DbItemEventArgs (DbItem item) : base ()
+		public DbItemEventArgs (T item) : base ()
 		{
-			this.items = new DbItem [] { item };
+			this.items = new T [] { item };
 		}
 	}
 }

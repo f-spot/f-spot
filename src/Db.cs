@@ -1,5 +1,6 @@
 using System.Threading;
 using System.Collections;
+using System.Collections.Generic;
 using System.IO;
 using System;
 using Banshee.Database;
@@ -15,19 +16,19 @@ public class DbException : ApplicationException {
 	}
 }
 
-public abstract class DbStore {
+public abstract class DbStore<T> where T : DbItem {
 	// DbItem cache.
 
-	public event EventHandler<DbItemEventArgs> ItemsAdded;
-	public event EventHandler<DbItemEventArgs> ItemsRemoved;
-	public event EventHandler<DbItemEventArgs> ItemsChanged;
+	public event EventHandler<DbItemEventArgs<T>> ItemsAdded;
+	public event EventHandler<DbItemEventArgs<T>> ItemsRemoved;
+	public event EventHandler<DbItemEventArgs<T>> ItemsChanged;
 
-	protected Hashtable item_cache;
+	protected Dictionary<uint, object> item_cache;
 	bool cache_is_immortal;
 
-	protected void AddToCache (DbItem item)
+	protected void AddToCache (T item)
 	{
-		if (item_cache.Contains (item.Id))
+		if (item_cache.ContainsKey (item.Id))
 			item_cache.Remove (item.Id);
 
 		if (cache_is_immortal)
@@ -36,59 +37,59 @@ public abstract class DbStore {
 			item_cache.Add (item.Id, new WeakReference (item));
 	}
 
-	protected DbItem LookupInCache (uint id)
+	protected T LookupInCache (uint id)
 	{
 		if (cache_is_immortal)
-			return item_cache [id] as DbItem;
+			return item_cache [id] as T;
 
 		WeakReference weakref = item_cache [id] as WeakReference;
 		if (weakref == null)
 			return null;
 		else
-			return (DbItem) weakref.Target;
+			return (T) weakref.Target;
 	}
 
-	protected void RemoveFromCache (DbItem item)
+	protected void RemoveFromCache (T item)
 	{
 		item_cache.Remove (item.Id);
 	}
 
-	protected void EmitAdded (DbItem item)
+	protected void EmitAdded (T item)
 	{
-		EmitAdded (new DbItem [] { item });
+		EmitAdded (new T [] { item });
 	}
 
-	protected void EmitAdded (DbItem [] items)
+	protected void EmitAdded (T [] items)
 	{
 		if (ItemsAdded != null)
-			ItemsAdded (this, new DbItemEventArgs (items));
+			ItemsAdded (this, new DbItemEventArgs<T> (items));
 	}
 
-	protected void EmitChanged (DbItem item)
+	protected void EmitChanged (T item)
 	{
-		EmitChanged (new DbItem [] { item });
+		EmitChanged (new T [] { item });
 	}
 
-	protected void EmitChanged (DbItem [] items)
+	protected void EmitChanged (T [] items)
 	{
-		EmitChanged (items, new DbItemEventArgs (items));
+		EmitChanged (items, new DbItemEventArgs<T> (items));
 	}
 
-	protected void EmitChanged (DbItem [] items, DbItemEventArgs args)
+	protected void EmitChanged (T [] items, DbItemEventArgs<T> args)
 	{
 		if (ItemsChanged != null)
 			ItemsChanged (this, args);
 	}
 
-	protected void EmitRemoved (DbItem item)
+	protected void EmitRemoved (T item)
 	{
-		EmitRemoved (new DbItem [] { item });
+		EmitRemoved (new T [] { item });
 	}
 
-	protected void EmitRemoved (DbItem [] items)
+	protected void EmitRemoved (T [] items)
 	{
 		if (ItemsRemoved != null)
-			ItemsRemoved (this, new DbItemEventArgs (items));
+			ItemsRemoved (this, new DbItemEventArgs<T> (items));
 	}
 
 	public bool CacheEmpty {
@@ -114,17 +115,17 @@ public abstract class DbStore {
 		this.database = database;
 		this.cache_is_immortal = cache_is_immortal;
 
-		item_cache = new Hashtable ();
+		item_cache = new Dictionary<uint, object> ();
 	}
 
 
 	// Abstract methods.
 
-	public abstract DbItem Get (uint id);
-	public abstract void Remove (DbItem item);
+	public abstract T Get (uint id);
+	public abstract void Remove (T item);
 	// If you have made changes to "obj", you have to invoke Commit() to have the changes
 	// saved into the database.
-	public abstract void Commit (DbItem item);
+	public abstract void Commit (T item);
 }
 
 
