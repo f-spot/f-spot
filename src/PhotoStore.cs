@@ -29,7 +29,7 @@ using FSpot.Platform;
 using Banshee.Database;
 
 
-public class PhotoStore : DbStore {
+public class PhotoStore : DbStore<Photo> {
 	public int TotalPhotos {
 		get {
 			SqliteDataReader reader = Database.Query("SELECT COUNT(*) AS photo_count FROM photos");
@@ -312,9 +312,9 @@ public class PhotoStore : DbStore {
 		reader.Close();
 	}
 
-	public override DbItem Get (uint id)
+	public override Photo Get (uint id)
 	{
-		Photo photo = LookupInCache (id) as Photo;
+		Photo photo = LookupInCache (id);
 		if (photo != null)
 			return photo;
 
@@ -479,12 +479,12 @@ public class PhotoStore : DbStore {
 
 	}
 
-	public override void Remove (DbItem item)
+	public override void Remove (Photo item)
 	{
 		Remove (new Photo [] { (Photo)item });
 	}
 
-	public override void Commit (DbItem item)
+	public override void Commit (Photo item)
 	{
 		Commit (new Photo [] {item as Photo});
 	}
@@ -621,8 +621,8 @@ public class PhotoStore : DbStore {
 	}
 	
 	// Dbus
-	public event EventHandler<DbItemEventArgs> ItemsAddedOverDBus;
-	public event EventHandler<DbItemEventArgs> ItemsRemovedOverDBus;
+	public event EventHandler<DbItemEventArgs<Photo>> ItemsAddedOverDBus;
+	public event EventHandler<DbItemEventArgs<Photo>> ItemsRemovedOverDBus;
 
 	public Photo CreateOverDBus (string new_path, string orig_path, uint roll_id, out Gdk.Pixbuf pixbuf)  {
 		Photo photo = Create (new_path, orig_path, roll_id, out pixbuf);
@@ -643,7 +643,7 @@ public class PhotoStore : DbStore {
 
 	protected void EmitAddedOverDBus (Photo [] photos) {
 	 	if (ItemsAddedOverDBus != null)
-		 	ItemsAddedOverDBus (this, new DbItemEventArgs (photos));
+		 	ItemsAddedOverDBus (this, new DbItemEventArgs<Photo> (photos));
 	}
 
 	protected void EmitRemovedOverDBus (Photo photo) {
@@ -652,7 +652,7 @@ public class PhotoStore : DbStore {
 
 	protected void EmitRemovedOverDBus (Photo [] photos) {
 		if (ItemsRemovedOverDBus != null)
-		 	ItemsRemovedOverDBus (this, new DbItemEventArgs (photos)); 
+		 	ItemsRemovedOverDBus (this, new DbItemEventArgs<Photo> (photos)); 
 	}
 
 	public int Count (string table_name, params IQueryCondition [] conditions)

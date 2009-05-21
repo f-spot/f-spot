@@ -50,7 +50,7 @@ public class TagRemoveComparer : IComparer {
 	}
 }
 
-public class TagStore : DbStore {
+public class TagStore : DbStore<Tag> {
 	Category root_category;
 	public Category RootCategory {
 		get {
@@ -286,30 +286,29 @@ public class TagStore : DbStore {
 		return new_category;
 	}
 
-	public override DbItem Get (uint id)
+	public override Tag Get (uint id)
 	{
 		if (id == 0)
 			return RootCategory;
 		else
-			return LookupInCache (id) as Tag;
+			return LookupInCache (id);
 	}
 	
-	public override void Remove (DbItem item)
+	public override void Remove (Tag tag)
 	{
-		Category category = item as Category;
+		Category category = tag as Category;
 		if (category != null && 
 		    category.Children != null && 
 		    category.Children.Count > 0)
 			throw new InvalidTagOperationException (category, "Cannot remove category that contains children");
 
-		RemoveFromCache (item);
+		RemoveFromCache (tag);
 		
-		((Tag)item).Category = null;
-		
+		tag.Category = null;
 
-		Database.ExecuteNonQuery (new DbCommand ("DELETE FROM tags WHERE id = :id", "id", item.Id));
+		Database.ExecuteNonQuery (new DbCommand ("DELETE FROM tags WHERE id = :id", "id", tag.Id));
 
-		EmitRemoved (item);
+		EmitRemoved (tag);
 	}
 
 
@@ -324,17 +323,17 @@ public class TagStore : DbStore {
 		return Convert.ToBase64String (data);
 	}
 
-	public override void Commit (DbItem item)
+	public override void Commit (Tag tag)
 	{
-		Commit (item, false);	
+		Commit (tag, false);	
 	}
 
-	public void Commit (DbItem item, bool update_xmp)
+	public void Commit (Tag tag, bool update_xmp)
 	{
-		Commit (new DbItem[] {item}, update_xmp);
+		Commit (new Tag[] {tag}, update_xmp);
 	}
 
-	public void Commit (DbItem [] items, bool update_xmp)
+	public void Commit (Tag [] tags, bool update_xmp)
 	{
 
 		bool use_transactions = !Database.InTransaction && update_xmp;
@@ -342,7 +341,7 @@ public class TagStore : DbStore {
 		if (use_transactions)
 			Database.BeginTransaction ();
 
-		foreach (Tag tag in items) {
+		foreach (Tag tag in tags) {
 			Database.ExecuteNonQuery (new DbCommand ("UPDATE tags SET name = :name, category_id = :category_id, "
                 	    + "is_category = :is_category, sort_priority = :sort_priority, icon = :icon WHERE id = :id",
 							  "name", tag.Name,
@@ -363,6 +362,6 @@ public class TagStore : DbStore {
 		if (use_transactions)
 			Database.CommitTransaction ();
 
-		EmitChanged (items);
+		EmitChanged (tags);
 	}
 }

@@ -673,10 +673,9 @@ public class MainWindow {
 		FSpot.Extensions.ExportMenuItemNode.SelectedImages = delegate () {return new FSpot.PhotoArray (SelectedPhotos ()); };
 	}
 
-	private void HandleDbItemsChanged (object sender, DbItemEventArgs args)
+	private void HandleDbItemsChanged (object sender, DbItemEventArgs<Photo> args)
 	{
-		foreach (DbItem item in args.Items) {
-			Photo p = item as Photo;
+		foreach (Photo p in args.Items) {
 			if (p == null)
 				continue;
 			if (write_metadata)
@@ -687,7 +686,7 @@ public class MainWindow {
 			query.RequestReload ();
 	}
 
-	private void HandleTagsChanged (object sender, DbItemEventArgs args)
+	private void HandleTagsChanged (object sender, DbItemEventArgs<Tag> args)
 	{
 		icon_view.QueueDraw ();
 		UpdateTagEntryFromSelection ();	

@@ -337,7 +337,7 @@ namespace FSpot {
 			store.Commit (to_commit.ToArray ());
 		}
 
-		private void MarkChanged (object sender, DbItemEventArgs args)
+		private void MarkChanged (object sender, DbItemEventArgs<Photo> args)
 		{
 			int [] indexes = IndicesOf (args.Items);
 

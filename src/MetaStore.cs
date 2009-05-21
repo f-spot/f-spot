@@ -32,7 +32,7 @@ public class MetaItem : DbItem {
 	}
 }
 
-public class MetaStore : DbStore {
+public class MetaStore : DbStore<MetaItem> {
 	private const string version = "F-Spot Version";
 	private const string db_version = "F-Spot Database Version";
 	private const string hidden = "Hidden Tag Id";
@@ -126,21 +126,19 @@ public class MetaStore : DbStore {
 		return item;
 	}
 	
-	public override void Commit (DbItem dbitem)
+	public override void Commit (MetaItem item)
 	{
-		MetaItem item = dbitem as MetaItem;
-
 		Database.ExecuteNonQuery(new DbCommand("UPDATE meta SET data = :data WHERE name = :name", "name", item.Name, "data", item.Value));
 		
 		EmitChanged (item);
 	}
 	
-	public override DbItem Get (uint id)
+	public override MetaItem Get (uint id)
 	{
 		return LookupInCache (id);
 	}
 	
-	public override void Remove (DbItem item)
+	public override void Remove (MetaItem item)
 	{
 		RemoveFromCache (item);
 		

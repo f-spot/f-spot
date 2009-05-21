@@ -84,7 +84,7 @@ public abstract class Job : DbItem, IJob
 	protected abstract bool Execute ();
 }
 
-public class JobStore : DbStore {
+public class JobStore : DbStore<Job> {
 	
 	internal static void CreateTable (QueuedSqliteDatabase database)
 	{
@@ -160,10 +160,8 @@ public class JobStore : DbStore {
 		return job;
 	}
 	
-	public override void Commit (DbItem dbitem)
+	public override void Commit (Job item)
 	{
-		Job item = dbitem as Job;
-
 		if (item.Persistent)
 			Database.ExecuteNonQuery(new DbCommand("UPDATE jobs " 					+
 									"SET job_type = :job_type "		+
@@ -179,13 +177,13 @@ public class JobStore : DbStore {
 		EmitChanged (item);
 	}
 	
-	public override DbItem Get (uint id)
+	public override Job Get (uint id)
 	{
             // we never use this
             return null;
 	}
 
-	public override void Remove (DbItem item)
+	public override void Remove (Job item)
 	{
 		RemoveFromCache (item);
 
@@ -195,9 +193,9 @@ public class JobStore : DbStore {
 		EmitRemoved (item);
 	}
 
-	public void HandleRemoveJob (object o, EventArgs e)
+	public void HandleRemoveJob (Object o, EventArgs e)
 	{
-		Remove (o as DbItem);
+		Remove (o as Job);
 	}
 
 	public JobStore (QueuedSqliteDatabase database, bool is_new) : base (database, true)
