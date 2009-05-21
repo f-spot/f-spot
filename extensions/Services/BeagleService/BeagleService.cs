@@ -35,7 +35,7 @@ namespace BeagleService {
 			return true;
 		}
 
-		private void HandleDbItemsChanged (object sender, DbItemEventArgs args)
+		private void HandleDbItemsChanged (object sender, DbItemEventArgs<Photo> args)
 		{
 #if ENABLE_BEAGLE
 			Log.Debug ("Notifying beagle");
