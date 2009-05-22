@@ -255,7 +255,7 @@ public class PhotoStore : DbStore<Photo> {
 		
 		while (reader.Read ()) {
 			uint id = Convert.ToUInt32 (reader ["photo_id"]);
-			Photo photo = LookupInCache (id) as Photo;
+			Photo photo = LookupInCache (id);
 				
 			if (photo == null) {
 				//Console.WriteLine ("Photo {0} not found", id);
@@ -291,7 +291,7 @@ public class PhotoStore : DbStore<Photo> {
 
 		while (reader.Read ()) {
 			uint id = Convert.ToUInt32 (reader ["photo_id"]);
-			Photo photo = LookupInCache (id) as Photo;
+			Photo photo = LookupInCache (id);
 				
 			if (photo == null) {
 				//Console.WriteLine ("Photo {0} not found", id);
@@ -383,7 +383,7 @@ public class PhotoStore : DbStore<Photo> {
 		if (photo == null)
 			return null;
 
-		Photo cached = LookupInCache (photo.Id) as Photo;
+		Photo cached = LookupInCache (photo.Id);
 
 		if (cached != null)
 			return cached;
@@ -426,7 +426,7 @@ public class PhotoStore : DbStore<Photo> {
 			photo.MD5Sum = md5_sum;
 
 			// get cached if possible
-			Photo cached = LookupInCache (photo.Id) as Photo;
+			Photo cached = LookupInCache (photo.Id);
 
 			if (cached != null)
 			{
@@ -486,7 +486,7 @@ public class PhotoStore : DbStore<Photo> {
 
 	public override void Commit (Photo item)
 	{
-		Commit (new Photo [] {item as Photo});
+		Commit (new Photo [] {item});
 	}
 
 	public void Commit (Photo [] items)
@@ -871,7 +871,7 @@ public class PhotoStore : DbStore<Photo> {
 		List<Photo> query_result = new List<Photo> ();
 		while (reader.Read ()) {
 			uint id = Convert.ToUInt32 (reader ["id"]);
-			Photo photo = LookupInCache (id) as Photo;
+			Photo photo = LookupInCache (id);
 
 			if (photo == null) {
 				photo = new Photo (id,
