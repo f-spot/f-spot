@@ -1,5 +1,5 @@
 <Addin namespace="FSpot"
-	version="1.8"
+	version="1.9"
 	name="Default Exporters"
 	description="This extension contains all the default exporters for f-spot. Most of them will be moved out of this extension in the future, and, at that time, this extension will be deprecated."
 	author="F-Spot team"
@@ -8,7 +8,7 @@
 	category="Export">
 
 	<Dependencies>
-		<Addin id="Core" version="0.4.4.100"/>
+		<Addin id="Core" version="0.6"/>
 	</Dependencies>
 
 	<Extension path = "/FSpot/Menus/Exports">
