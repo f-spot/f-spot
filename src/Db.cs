@@ -39,14 +39,14 @@ public abstract class DbStore<T> where T : DbItem {
 
 	protected T LookupInCache (uint id)
 	{
+		if (!item_cache.ContainsKey(id))
+			return null;
+
 		if (cache_is_immortal)
 			return item_cache [id] as T;
 
 		WeakReference weakref = item_cache [id] as WeakReference;
-		if (weakref == null)
-			return null;
-		else
-			return (T) weakref.Target;
+		return (T) weakref.Target;
 	}
 
 	protected void RemoveFromCache (T item)
