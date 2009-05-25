@@ -19,13 +19,12 @@ using FSpot.Widgets;
 namespace FSpot.UI.Dialog
 {
 	public class DateRangeDialog : BuilderDialog {
-		FSpot.PhotoQuery query;
 		Gtk.Window parent_window;
 
-		[Builder.Object] Button ok_button;
-		[Builder.Object] Frame startframe;
-		[Builder.Object] Frame endframe;
-		[Builder.Object] ComboBox period_combobox;
+		[GtkBeans.Builder.Object] Button ok_button;
+		[GtkBeans.Builder.Object] Frame startframe;
+		[GtkBeans.Builder.Object] Frame endframe;
+		[GtkBeans.Builder.Object] ComboBox period_combobox;
 
 		DateEdit start_dateedit;
 		DateEdit end_dateedit;
@@ -51,7 +50,6 @@ namespace FSpot.UI.Dialog
 
 		public DateRangeDialog (DateRange query_range, Gtk.Window parent_window) : base ("DateRangeDialog.ui", "date_range_dialog")
 		{
-			this.query = query;
 			this.parent_window = parent_window;
 			TransientFor = parent_window;
 			DefaultResponse = ResponseType.Ok;

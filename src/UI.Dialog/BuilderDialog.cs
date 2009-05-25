@@ -10,7 +10,7 @@
 //
 
 using System;
-using Gtk;
+using GtkBeans;
 
 namespace FSpot.UI.Dialog
 {

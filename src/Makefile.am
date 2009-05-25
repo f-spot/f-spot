@@ -328,6 +328,7 @@ WIDGETS_ASSEMBLIES =				\
 	-pkg:gio-sharp-2.0			\
 	-pkg:gtk-sharp-2.0			\
 	-pkg:gnome-sharp-2.0			\
+	-pkg:gtk-sharp-beans-2.0		\
 	-r:Mono.Posix				\
 	-r:FSpot.Core.dll			\
 	-r:FSpot.Utils.dll
@@ -370,6 +371,7 @@ F_SPOT_ASSEMBLIES = 				\
 	$(NUNIT_PKG)				\
 	$(GCONF_PKG)				\
 	$(GTKHTML_SHARP_PKG)			\
+	-pkg:gtk-sharp-beans-2.0		\
 	-pkg:gio-sharp-2.0			\
 	-pkg:glade-sharp-2.0			\
 	-pkg:gnome-sharp-2.0			\
