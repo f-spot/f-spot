@@ -32,6 +32,12 @@ gio-sharp.dll: $(srcdir)/generated/File.cs $(SRCS)
 	@echo -e "\n*** Building $@"
 	$(CSC) -target:library -out:$@ $(UNSAFE) $(DEBUG) $(ASSEMBLIES) $(SRCS) $(srcdir)/generated/*.cs
 
+assemblydir = $(pkglibdir)
+assembly_DATA =			\
+	gio-sharp.dll		\
+	gio-sharp.dll.config
+
+
 CLEANFILES = 			\
 	gio-sharp.dll 	\
 	gio-sharp.dll.mdb \
