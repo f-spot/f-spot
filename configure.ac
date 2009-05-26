@@ -356,4 +356,7 @@ f-spot.spec
 f-spot.desktop.in
 f-spot-view.desktop.in
 f-spot-import.desktop.in
+gio-sharp/Makefile
+gio-sharp/gio/Makefile
+gio-sharp/generator/Makefile
 )
