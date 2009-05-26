@@ -21,7 +21,7 @@ REFS =					\
 
 PKGS =					\
 	-pkg:gnome-vfs-sharp-2.0	\
-	-pkg:gtk-sharp-beans-2.0	\
+	$(LINK_GTKSHARPBEANS)		\	
 	-pkg:gtk-sharp-2.0		\
 	-pkg:glade-sharp-2.0
 

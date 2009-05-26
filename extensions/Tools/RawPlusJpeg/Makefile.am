@@ -19,7 +19,7 @@ REFS =					\
 	$(LINK_SEMWEB)
 
 PKGS =					\
-	-pkg:gio-sharp-2.0		\
+	$(LINK_GIOSHARP)		\
 	-pkg:gtk-sharp-2.0		\
 	-pkg:glade-sharp-2.0
 
