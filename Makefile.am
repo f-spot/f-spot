@@ -94,9 +94,6 @@ UPDATE_DESKTOP = \
 
 install-data-hook: 
 	$(UPDATE_DESKTOP)
-	if [ -f $(DESTDIR)$(pkglibdir)/gio-sharp.dll ] ; then \
-		rm -f $(DESTDIR)$(pkglibdir)/gio-sharp.dll* ; \
-	fi
 
 uninstall-hook: 
 	$(UPDATE_DESKTOP)
