@@ -21,8 +21,8 @@ gio-api.xml: $(srcdir)/gio-api.raw $(srcdir)/Gio.metadata
 	chmod +w $(builddir)/gio-api.xml
 	gapi2-fixup --api=gio-api.xml --metadata=$(srcdir)/Gio.metadata
 
-$(top_builddir)/generator/gapi_codegen.exe:
-	$(MAKE) -C $(top_builddir)/generator gapi_codegen.exe
+$(builddir)/../generator/gapi_codegen.exe:
+	$(MAKE) -C $(builddir)/../generator
 
 generated/File.cs: gio-api.xml $(CUSTOMS) $(builddir)/../generator/gapi_codegen.exe
 	@echo -e "\n*** Generating C# code"

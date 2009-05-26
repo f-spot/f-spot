@@ -1,6 +1,8 @@
 include ../../Makefile.include
 
-CLEANFILES = gapi_codegen.exe
+CLEANFILES =				\
+	gapi_codegen.exe		\
+	gapi_codegen.exe.mdb
 
 sources = 				\
 	AliasGen.cs			\
@@ -62,5 +64,5 @@ all: gapi_codegen.exe
 
 gapi_codegen.exe: $(build_sources)
 	@echo -e "\n*** Building the generator"
-	$(CSC) /out:gapi_codegen.exe $(OFF_T_FLAGS) $(references) $(build_sources)
+	$(CSC) /out:gapi_codegen.exe $(build_sources)
 
