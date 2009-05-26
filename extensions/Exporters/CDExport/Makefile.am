@@ -19,7 +19,7 @@ REFS =					\
 PKGS =					\
 	-pkg:gnome-vfs-sharp-2.0	\
 	-pkg:gtk-sharp-2.0		\
-	-pkg:gio-sharp-2.0		\
+	$(LINK_GIOSHARP)		\
 	-pkg:glade-sharp-2.0
 
 RESOURCES =				\

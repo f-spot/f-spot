@@ -21,6 +21,8 @@ DIR_TAO_OPENGL = $(top_builddir)/Tao/Tao.OpenGl
 DIR_TAO_GLU = $(top_builddir)/Tao/Tao.OpenGl.Glu
 DIR_TAO_EXTENSIONLOADER = $(top_builddir)/Tao/Tao.OpenGl.ExtensionLoader
 DIR_TAO_GLPOSTPROCESS = $(top_builddir)/Tao/Tao.GlPostProcess
+DIR_GIOSHARP = $(top_builddir)/gio-sharp/gio
+DIR_GTKSHARPBEANS = $(top_builddir)/gtk-sharp-beans
 
 ## Links
 
@@ -36,6 +38,8 @@ LINK_TAO = 								\
 	-r:$(DIR_TAO_OPENGL)/Tao.OpenGl.dll				\
 	-r:$(DIR_TAO_GLU)/Tao.OpenGl.Glu.dll				\
 	-r:$(DIR_TAO_EXTENSIONLOADER)/Tao.OpenGl.ExtensionLoader.dll
+LINK_GIOSHARP = -r:$(DIR_GIOSHARP)/gio-sharp.dll
+LINK_GTKSHARPBEANS = -r:$(DIR_GTKSHARPBEANS)/gtk-sharp-beans.dll
 
 ## Build
 

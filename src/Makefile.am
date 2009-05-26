@@ -325,15 +325,16 @@ JOBSCHEDULER_ASSEMBLIES =			\
 
 WIDGETS_ASSEMBLIES =				\
 	$(LINK_MONO_ADDINS)			\
-	-pkg:gio-sharp-2.0			\
+	$(LINK_GIOSHARP)			\
 	-pkg:gtk-sharp-2.0			\
 	-pkg:gnome-sharp-2.0			\
+	$(LINK_GTKSHARPBEANS)			\
 	-r:Mono.Posix				\
 	-r:FSpot.Core.dll			\
 	-r:FSpot.Utils.dll
 
 GNOME_PLATFORM_ASSEMBLIES =			\
-	-pkg:gio-sharp-2.0			\
+	$(LINK_GIOSHARP)			\
 	-pkg:gnome-sharp-2.0			\
 	-pkg:gtk-sharp-2.0			\
 	-pkg:gconf-sharp-2.0			\
@@ -353,6 +354,8 @@ F_SPOT_ASSEMBLIES = 				\
 	$(LINK_SMUGMUG)				\
 	$(LINK_TAO)				\
 	$(LINK_SEMWEB)				\
+	$(LINK_GTKSHARPBEANS)			\
+	$(LINK_GIOSHARP)			\
 	-r:System.Data				\
 	-r:System.Web				\
 	-r:Mono.Data.SqliteClient		\
@@ -370,7 +373,6 @@ F_SPOT_ASSEMBLIES = 				\
 	$(NUNIT_PKG)				\
 	$(GCONF_PKG)				\
 	$(GTKHTML_SHARP_PKG)			\
-	-pkg:gio-sharp-2.0			\
 	-pkg:glade-sharp-2.0			\
 	-pkg:gnome-sharp-2.0			\
 	-pkg:gnome-vfs-sharp-2.0

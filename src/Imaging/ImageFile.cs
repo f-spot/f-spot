@@ -2,6 +2,7 @@ using System;
 using System.IO;
 using FSpot.Utils;
 using Mono.Unix;
+using Gdk;
 
 namespace FSpot {
 	public class ImageFormatException : ApplicationException {
@@ -66,8 +67,8 @@ namespace FSpot {
 			//and enable it if needed.
 			foreach (Gdk.PixbufFormat format in Gdk.Pixbuf.Formats)
 				if (format.Name == "xcf") {
-					if (format.Disabled)
-						format.Disabled = false;
+					if (format.IsDisabled)
+						format.SetDisabled (false);
 					name_table [".xcf"] = typeof (ImageFile);
 				}
 		}
@@ -213,7 +214,7 @@ namespace FSpot {
 		public void Dispose ()
 		{
 			Close ();
-			GC.SuppressFinalize (this);
+			System.GC.SuppressFinalize (this);
 		}
 
 		protected virtual void Close ()

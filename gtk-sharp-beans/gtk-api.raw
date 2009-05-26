@@ -1,0 +1,138 @@
+<?xml version="1.0"?>
+<api>
+  <!--
+
+        This file was automatically generated.
+        Please DO NOT MODIFY THIS FILE, modify .metadata files instead.
+
+-->
+  <namespace name="GtkBeans" library="libgtk-win32-2.0-0.dll">
+    <enum name="GtkBuilderError" cname="GtkBuilderError" type="enum">
+      <member cname="GTK_BUILDER_ERROR_INVALID_TYPE_FUNCTION" name="InvalidTypeFunction" />
+      <member cname="GTK_BUILDER_ERROR_UNHANDLED_TAG" name="UnhandledTag" />
+      <member cname="GTK_BUILDER_ERROR_MISSING_ATTRIBUTE" name="MissingAttribute" />
+      <member cname="GTK_BUILDER_ERROR_INVALID_ATTRIBUTE" name="InvalidAttribute" />
+      <member cname="GTK_BUILDER_ERROR_INVALID_TAG" name="InvalidTag" />
+      <member cname="GTK_BUILDER_ERROR_MISSING_PROPERTY_VALUE" name="MissingPropertyValue" />
+      <member cname="GTK_BUILDER_ERROR_INVALID_VALUE" name="InvalidValue" />
+      <member cname="GTK_BUILDER_ERROR_VERSION_MISMATCH" name="VersionMismatch" />
+    </enum>
+    <callback name="GtkBuilderConnectFunc" cname="GtkBuilderConnectFunc">
+      <return-type type="void" />
+      <parameters>
+        <parameter type="GtkBuilder*" name="builder" />
+        <parameter type="GObject*" name="object" />
+        <parameter type="const-gchar*" name="signal_name" />
+        <parameter type="const-gchar*" name="handler_name" />
+        <parameter type="GObject*" name="connect_object" />
+        <parameter type="GConnectFlags" name="flags" />
+        <parameter type="gpointer" name="user_data" />
+      </parameters>
+    </callback>
+    <object name="GtkBuilder" cname="GtkBuilder" parent="GObject">
+      <field name="GSEAL" cname="GSEAL (priv)" type="GtkBuilderPrivate*" />
+      <property name="TranslationDomain" cname="translation-domain" type="gchar*" readable="true" writeable="true" />
+      <virtual_method name="GetTypeFromName" cname="get_type_from_name">
+        <return-type type="GType" />
+        <parameters>
+          <parameter type="GtkBuilder*" name="builder" />
+          <parameter type="const-char*" name="type_name" />
+        </parameters>
+      </virtual_method>
+      <method name="AddFromFile" cname="gtk_builder_add_from_file">
+        <return-type type="guint" />
+        <parameters>
+          <parameter type="const-gchar*" name="filename" />
+          <parameter type="GError**" name="error" />
+        </parameters>
+      </method>
+      <method name="AddFromString" cname="gtk_builder_add_from_string">
+        <return-type type="guint" />
+        <parameters>
+          <parameter type="const-gchar*" name="buffer" />
+          <parameter type="gsize" name="length" />
+          <parameter type="GError**" name="error" />
+        </parameters>
+      </method>
+      <method name="AddObjectsFromFile" cname="gtk_builder_add_objects_from_file">
+        <return-type type="guint" />
+        <parameters>
+          <parameter type="const-gchar*" name="filename" />
+          <parameter type="gchar**" name="object_ids" />
+          <parameter type="GError**" name="error" />
+        </parameters>
+      </method>
+      <method name="AddObjectsFromString" cname="gtk_builder_add_objects_from_string">
+        <return-type type="guint" />
+        <parameters>
+          <parameter type="const-gchar*" name="buffer" />
+          <parameter type="gsize" name="length" />
+          <parameter type="gchar**" name="object_ids" />
+          <parameter type="GError**" name="error" />
+        </parameters>
+      </method>
+      <method name="ConnectSignals" cname="gtk_builder_connect_signals">
+        <return-type type="void" />
+        <parameters>
+          <parameter type="gpointer" name="user_data" />
+        </parameters>
+      </method>
+      <method name="ConnectSignalsFull" cname="gtk_builder_connect_signals_full">
+        <return-type type="void" />
+        <parameters>
+          <parameter type="GtkBuilderConnectFunc" name="func" />
+          <parameter type="gpointer" name="user_data" />
+        </parameters>
+      </method>
+      <method name="ErrorQuark" cname="gtk_builder_error_quark" shared="true">
+        <return-type type="GQuark" />
+      </method>
+      <method name="GetObject" cname="gtk_builder_get_object">
+        <return-type type="GObject*" />
+        <parameters>
+          <parameter type="const-gchar*" name="name" />
+        </parameters>
+      </method>
+      <method name="GetObjects" cname="gtk_builder_get_objects">
+        <return-type type="GSList*" />
+      </method>
+      <method name="GetTranslationDomain" cname="gtk_builder_get_translation_domain">
+        <return-type type="const-gchar*" />
+      </method>
+      <method name="GetType" cname="gtk_builder_get_type" shared="true">
+        <return-type type="GType" />
+      </method>
+      <method name="GetTypeFromName" cname="gtk_builder_get_type_from_name">
+        <return-type type="GType" />
+        <parameters>
+          <parameter type="const-char*" name="type_name" />
+        </parameters>
+      </method>
+      <constructor cname="gtk_builder_new" />
+      <method name="SetTranslationDomain" cname="gtk_builder_set_translation_domain">
+        <return-type type="void" />
+        <parameters>
+          <parameter type="const-gchar*" name="domain" />
+        </parameters>
+      </method>
+      <method name="ValueFromString" cname="gtk_builder_value_from_string">
+        <return-type type="gboolean" />
+        <parameters>
+          <parameter type="GParamSpec*" name="pspec" />
+          <parameter type="const-gchar*" name="string" />
+          <parameter type="GValue*" name="value" />
+          <parameter type="GError**" name="error" />
+        </parameters>
+      </method>
+      <method name="ValueFromStringType" cname="gtk_builder_value_from_string_type">
+        <return-type type="gboolean" />
+        <parameters>
+          <parameter type="GType" name="type" />
+          <parameter type="const-gchar*" name="string" />
+          <parameter type="GValue*" name="value" />
+          <parameter type="GError**" name="error" />
+        </parameters>
+      </method>
+    </object>
+  </namespace>
+</api>

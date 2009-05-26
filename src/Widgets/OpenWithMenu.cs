@@ -114,7 +114,7 @@ namespace FSpot.Widgets {
 				if (!show_icon)
 					return;
 
-				Image = new Gtk.Image (app.Icon, IconSize.Menu);
+				Image = GtkBeans.Image.NewFromIcon (app.Icon, IconSize.Menu);
 			}
 		}
 	}
