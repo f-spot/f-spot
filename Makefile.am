@@ -2,6 +2,8 @@ SUBDIRS = 		\
 	$(subdirs)	\
 	$(DIR_DBUS)	\
 	$(DIR_DBUS_GLIB)\
+	gio-sharp	\
+	gtk-sharp-beans	\
 	semweb		\
 	docs		\
 	glitz-sharp	\
@@ -20,6 +22,8 @@ SUBDIRS = 		\
 	GKeyFile
 
 DIST_SUBDIRS = 		\
+	gio-sharp	\
+	gtk-sharp-beans	\
 	semweb		\
 	dbus-sharp	\
 	dbus-sharp-glib	\
