@@ -3,12 +3,18 @@ include ../../Makefile.include
 UNSAFE = -unsafe
 DEBUG = -debug
 
-SRCS =						\
-	AssemblyInfo.cs				\
-	FileFactory.cs				\
-	GioStream.cs
+SRCS =								\
+	$(srcdir)/AssemblyInfo.cs				\
+	$(srcdir)/FileFactory.cs				\
+	$(srcdir)/GioStream.cs
 
-CUSTOMS =
+CUSTOMS =							\
+	$(srcdir)/AppInfoAdapter.custom				\
+	$(srcdir)/FileAdapter.custom				\
+	$(srcdir)/File.custom					\
+	$(srcdir)/FileEnumerator.custom
+
+SNK = 	$(srcdir)/gtk-sharp.snk
 
 ASSEMBLIES =					\
 	-pkg:glib-sharp-2.0
@@ -24,13 +30,14 @@ gio-api.xml: $(srcdir)/gio-api.raw $(srcdir)/Gio.metadata
 $(builddir)/../generator/gapi_codegen.exe:
 	$(MAKE) -C $(builddir)/../generator
 
-generated/File.cs: gio-api.xml $(CUSTOMS) $(builddir)/../generator/gapi_codegen.exe
+$(builddir)/generated/File.cs: $(builddir)/gio-api.xml $(CUSTOMS) $(builddir)/../generator/gapi_codegen.exe
 	@echo -e "\n*** Generating C# code"
 	$(MONO) $(builddir)/../generator/gapi_codegen.exe $(GLIBSHARP_CFLAGS) --outdir=generated --customdir=$(srcdir) --generate gio-api.xml
 
-gio-sharp.dll: $(srcdir)/generated/File.cs $(SRCS)
+gio-sharp.dll: $(builddir)/generated/File.cs $(SRCS) $(SNK)
 	@echo -e "\n*** Building $@"
-	$(CSC) -target:library -out:$@ $(UNSAFE) $(DEBUG) $(ASSEMBLIES) $(SRCS) $(srcdir)/generated/*.cs
+	cp $(SNK) .
+	$(CSC) -target:library -out:$@ $(UNSAFE) $(DEBUG) $(ASSEMBLIES) $(SRCS) $(builddir)/generated/*.cs
 
 assemblydir = $(pkglibdir)
 assembly_DATA =			\
@@ -46,4 +53,7 @@ CLEANFILES = 			\
 EXTRA_DIST =			\
 	$(SRCS)			\
 	$(CUSTOMS)		\
+	Gio.metadata		\
+	$(SNK)			\
+	gio-sharp.dll.config	\
 	gio-api.raw
