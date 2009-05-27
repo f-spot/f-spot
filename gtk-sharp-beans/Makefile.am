@@ -25,17 +25,17 @@ all: gtk-sharp-beans.dll
 gtk-api.xml: $(srcdir)/gtk-api.raw $(srcdir)/Gtk.metadata
 	@echo -e "\n*** Massaging the raw api into $@"
 	cp $(srcdir)/gtk-api.raw gtk-api.xml
-	chmod +w $(builddir)/gtk-api.xml
+	chmod +w gtk-api.xml
 	gapi2-fixup --api=gtk-api.xml --metadata=$(srcdir)/Gtk.metadata
 
 gtk_generated/Builder.cs: gtk-api.xml $(GTK_CUSTOMS)
 	@echo -e "\n*** Generating C# code"
 	gapi2-codegen $(GLIBSHARP_CFLAGS) --outdir=gtk_generated --customdir=$(srcdir) --generate gtk-api.xml
 
-gtk-sharp-beans.dll: $(builddir)/gtk_generated/Builder.cs $(SRCS) $(SNK)
+gtk-sharp-beans.dll: gtk_generated/Builder.cs $(SRCS) $(SNK)
 	@echo -e "\n*** Building $@"
 	if ! test -e gtk-sharp-beans.snk; then cp $(srcdir)/gtk-sharp-beans.snk .; fi
-	$(CSC) -target:library -out:$@ -unsafe $(ASSEMBLIES) $(SRCS) $(builddir)/gtk_generated/*.cs
+	$(CSC) -target:library -out:$@ -unsafe $(ASSEMBLIES) $(SRCS) gtk_generated/*.cs
 
 CLEANFILES = 			\
 	gtk-sharp-beans.dll 	\
