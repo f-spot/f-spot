@@ -17,9 +17,9 @@ all: gio-sharp.dll
 
 gio-api.xml: $(srcdir)/gio-api.raw $(srcdir)/Gio.metadata
 	@echo -e "\n*** Massaging the raw api into $@"
-	cp $(srcdir)/gio-api.raw gio-api.xml
+	cp $(srcdir)/gio-api.raw $(builddir)/gio-api.xml
 	chmod +w $(builddir)/gio-api.xml
-	gapi2-fixup --api=gio-api.xml --metadata=$(srcdir)/Gio.metadata
+	gapi2-fixup --api=$(builddir)/gio-api.xml --metadata=$(srcdir)/Gio.metadata
 
 $(builddir)/../generator/gapi_codegen.exe:
 	$(MAKE) -C $(builddir)/../generator
