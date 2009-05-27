@@ -6,6 +6,11 @@ ASSEMBLY_SOURCES =
 
 ASSEMBLY_CUSTOMS =			\
 	$(srcdir)/GKeyFile.custom
+
+GENERATED =				\
+	$(srcdir)/generated/Error.cs	\
+	$(srcdir)/generated/Flags.cs	\
+	$(srcdir)/generated/GKeyFile.cs
 	
 REFS =
 
@@ -41,8 +46,7 @@ EXTRA_DIST =				\
 	GKeyFile.metadata		\
 	gkeyfile-api.xml		\
 	.generated_timestamp		\
-	generated/*.cs
-
+	$(GENERATED)
 
 CLEANFILES =			\
 	$(ASSEMBLY)		\
