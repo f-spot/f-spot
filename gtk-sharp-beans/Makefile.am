@@ -32,9 +32,10 @@ gtk_generated/Builder.cs: gtk-api.xml $(GTK_CUSTOMS)
 	@echo -e "\n*** Generating C# code"
 	gapi2-codegen $(GLIBSHARP_CFLAGS) --outdir=gtk_generated --customdir=$(srcdir) --generate gtk-api.xml
 
-gtk-sharp-beans.dll: $(srcdir)/gtk_generated/Builder.cs $(SRCS)
+gtk-sharp-beans.dll: $(builddir)/gtk_generated/Builder.cs $(SRCS) $(SNK)
 	@echo -e "\n*** Building $@"
-	$(CSC) -target:library -out:$@ -unsafe $(ASSEMBLIES) $(SRCS) $(srcdir)/gtk_generated/*.cs
+	if ! test -e gtk-sharp-beans.snk; then cp $(srcdir)/gtk-sharp-beans.snk .; fi
+	$(CSC) -target:library -out:$@ -unsafe $(ASSEMBLIES) $(SRCS) $(builddir)/gtk_generated/*.cs
 
 CLEANFILES = 			\
 	gtk-sharp-beans.dll 	\
@@ -44,6 +45,9 @@ CLEANFILES = 			\
 EXTRA_DIST =			\
 	$(SRCS)			\
 	$(CUSTOMS)		\
+	gtk-sharp-beans.snk	\
+	gtk-sharp-beans.dll.config	\
+	Gtk.metadata		\
 	gtk-api.raw
 
 assemblydir = $(pkglibdir)
