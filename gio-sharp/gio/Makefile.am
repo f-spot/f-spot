@@ -36,7 +36,7 @@ $(builddir)/generated/File.cs: $(builddir)/gio-api.xml $(CUSTOMS) $(builddir)/..
 
 gio-sharp.dll: $(builddir)/generated/File.cs $(SRCS) $(SNK)
 	@echo -e "\n*** Building $@"
-	cp $(SNK) .
+	if ! test -e gtk-sharp.snk; then cp $(srcdir)/gtk-sharp.snk .; fi
 	$(CSC) -target:library -out:$@ $(UNSAFE) $(DEBUG) $(ASSEMBLIES) $(SRCS) $(builddir)/generated/*.cs
 
 assemblydir = $(pkglibdir)
