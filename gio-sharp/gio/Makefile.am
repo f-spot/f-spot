@@ -23,21 +23,21 @@ all: gio-sharp.dll
 
 gio-api.xml: $(srcdir)/gio-api.raw $(srcdir)/Gio.metadata
 	@echo -e "\n*** Massaging the raw api into $@"
-	cp $(srcdir)/gio-api.raw $(builddir)/gio-api.xml
-	chmod +w $(builddir)/gio-api.xml
-	gapi2-fixup --api=$(builddir)/gio-api.xml --metadata=$(srcdir)/Gio.metadata
+	cp $(srcdir)/gio-api.raw gio-api.xml
+	chmod +w gio-api.xml
+	gapi2-fixup --api=gio-api.xml --metadata=$(srcdir)/Gio.metadata
 
-$(builddir)/../generator/gapi_codegen.exe:
-	$(MAKE) -C $(builddir)/../generator
+$(top_builddir)/gio-sharp/generator/gapi_codegen.exe:
+	$(MAKE) -C $(top_builddir)/gio-sharp/generator
 
-$(builddir)/generated/File.cs: $(builddir)/gio-api.xml $(CUSTOMS) $(builddir)/../generator/gapi_codegen.exe
+generated/File.cs: gio-api.xml $(CUSTOMS) $(top_builddir)/gio-sharp/generator/gapi_codegen.exe
 	@echo -e "\n*** Generating C# code"
-	$(MONO) $(builddir)/../generator/gapi_codegen.exe $(GLIBSHARP_CFLAGS) --outdir=generated --customdir=$(srcdir) --generate gio-api.xml
+	$(MONO) $(top_builddir)/gio-sharp/generator/gapi_codegen.exe $(GLIBSHARP_CFLAGS) --outdir=generated --customdir=$(srcdir) --generate gio-api.xml
 
-gio-sharp.dll: $(builddir)/generated/File.cs $(SRCS) $(SNK)
+gio-sharp.dll: generated/File.cs $(SRCS) $(SNK)
 	@echo -e "\n*** Building $@"
 	if ! test -e gtk-sharp.snk; then cp $(srcdir)/gtk-sharp.snk .; fi
-	$(CSC) -target:library -out:$@ $(UNSAFE) $(DEBUG) $(ASSEMBLIES) $(SRCS) $(builddir)/generated/*.cs
+	$(CSC) -target:library -out:$@ $(UNSAFE) $(DEBUG) $(ASSEMBLIES) $(SRCS) generated/*.cs
 
 assemblydir = $(pkglibdir)
 assembly_DATA =			\
