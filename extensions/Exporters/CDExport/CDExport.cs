@@ -179,7 +179,7 @@ namespace FSpotCDExport {
 					progress_dialog.ProgressText = Catalog.GetString ("Transfer Complete");
 					progress_dialog.ButtonLabel = Gtk.Stock.Ok;
 					progress_dialog.Hide ();
-					system ("nautilus-cd-burner");
+					system ("brasero -n");
 				} else {
 					throw new System.Exception (System.String.Format ("{0}{3}{1}{3}{2}",
 											  progress_dialog.Message,
