@@ -14,7 +14,7 @@ CUSTOMS =							\
 	$(srcdir)/File.custom					\
 	$(srcdir)/FileEnumerator.custom
 
-SNK = 	$(srcdir)/gtk-sharp.snk
+SNK = 	$(srcdir)/snk
 
 ASSEMBLIES =					\
 	-pkg:glib-sharp-2.0
@@ -34,9 +34,11 @@ generated/File.cs: gio-api.xml $(CUSTOMS) $(top_builddir)/gio-sharp/generator/ga
 	@echo -e "\n*** Generating C# code"
 	$(MONO) $(top_builddir)/gio-sharp/generator/gapi_codegen.exe $(GLIBSHARP_CFLAGS) --outdir=generated --customdir=$(srcdir) --generate gio-api.xml
 
-gio-sharp.dll: generated/File.cs $(SRCS) $(SNK)
+gtk-sharp.snk: $(SNK)
+	cp $< $@
+
+gio-sharp.dll: generated/File.cs $(SRCS) gtk-sharp.snk
 	@echo -e "\n*** Building $@"
-	if ! test -e gtk-sharp.snk; then cp $(srcdir)/gtk-sharp.snk .; fi
 	$(CSC) -target:library -out:$@ $(UNSAFE) $(DEBUG) $(ASSEMBLIES) $(SRCS) generated/*.cs
 
 assemblydir = $(pkglibdir)
@@ -49,6 +51,10 @@ CLEANFILES = 			\
 	gio-sharp.dll 	\
 	gio-sharp.dll.mdb \
 	gio-api.xml
+
+DISTCLEANFILES =		\
+	generated/*.cs		\
+	gtk-sharp.snk
 
 EXTRA_DIST =			\
 	$(SRCS)			\

@@ -20,6 +20,8 @@ ASSEMBLIES =					\
 	$(LINK_GIOSHARP)			\
 	-pkg:gtk-sharp-2.0
 
+SNK = snk
+
 all: gtk-sharp-beans.dll
 
 gtk-api.xml: $(srcdir)/gtk-api.raw $(srcdir)/Gtk.metadata
@@ -32,9 +34,11 @@ gtk_generated/Builder.cs: gtk-api.xml $(GTK_CUSTOMS)
 	@echo -e "\n*** Generating C# code"
 	gapi2-codegen $(GLIBSHARP_CFLAGS) --outdir=gtk_generated --customdir=$(srcdir) --generate gtk-api.xml
 
-gtk-sharp-beans.dll: gtk_generated/Builder.cs $(SRCS) $(SNK)
+gtk-sharp-beans.snk: $(SNK)
+	cp $< $@
+
+gtk-sharp-beans.dll: gtk_generated/Builder.cs $(SRCS) gtk-sharp-beans.snk
 	@echo -e "\n*** Building $@"
-	if ! test -e gtk-sharp-beans.snk; then cp $(srcdir)/gtk-sharp-beans.snk .; fi
 	$(CSC) -target:library -out:$@ -unsafe $(ASSEMBLIES) $(SRCS) gtk_generated/*.cs
 
 CLEANFILES = 			\
@@ -42,10 +46,14 @@ CLEANFILES = 			\
 	gtk-sharp-beans.dll.mdb \
 	gtk-api.xml
 
+DISTCLEANFILES =		\
+	gtk_generated/*.cs	\
+	gtk-sharp-beans.snk
+
 EXTRA_DIST =			\
 	$(SRCS)			\
 	$(CUSTOMS)		\
-	gtk-sharp-beans.snk	\
+	$(SNK)		\
 	gtk-sharp-beans.dll.config	\
 	Gtk.metadata		\
 	gtk-api.raw
