@@ -694,8 +694,11 @@ namespace FSpotGoogleExport {
 					progress_dialog.ProgressText = Catalog.GetString ("Error");
 					System.Console.WriteLine (e);
 
-					if (progress_dialog.PerformRetrySkip ())
+					if (progress_dialog.PerformRetrySkip ()) {
 						photo_index--;
+						if (photo_index == 0)
+							approx_size = 0;
+					}
 				}
 			}
 
