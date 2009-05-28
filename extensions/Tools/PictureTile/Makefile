@@ -2,7 +2,7 @@ all: PictureTile.dll
 
 PACKAGES = \
 	-pkg:f-spot \
-	-pkg:gio-sharp-2.0 \
+	-pkg:$(LINK_GIOSHARP) \
 	-pkg:gtk-sharp-2.0 \
 	-pkg:glade-sharp-2.0
 
