@@ -213,7 +213,7 @@ namespace FSpotCDExport {
 		private void HandleMsg (Gnome.Vfs.ModuleCallback cb)
 		{
 			Gnome.Vfs.ModuleCallbackStatusMessage msg = cb as Gnome.Vfs.ModuleCallbackStatusMessage;
-			System.Console.WriteLine ("{0}", msg.Message);
+			FSpot.Utils.Log.Debug ("CDExport: " + msg.Message);
 		}
 
 		private void HandleAuth (Gnome.Vfs.ModuleCallback cb)
