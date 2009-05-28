@@ -831,14 +831,14 @@ paint_rectangle (ImageView *view, ArtIRect *rect, GdkInterpType interp_type)
 		d.x0 - xofs, d.y0 - yofs);
 	*/
 
-	gdk_pixbuf_render_to_drawable (tmp,
-				       GTK_WIDGET (view)->window,
-				       GTK_WIDGET (view)->style->black_gc,
-				       0, 0,
-				       d.x0, d.y0,
-				       d.x1 - d.x0, d.y1 - d.y0,
-				       priv->dither,
-				       d.x0 - xofs, d.y0 - yofs);
+	gdk_draw_pixbuf (GTK_WIDGET (view)->window,
+		         GTK_WIDGET (view)->style->black_gc,
+		         tmp,
+			 0, 0,
+		         d.x0, d.y0,
+		         d.x1 - d.x0, d.y1 - d.y0,
+		         priv->dither,
+		         d.x0 - xofs, d.y0 - yofs);
 	
 #endif
 
@@ -1678,7 +1678,7 @@ image_view_set_scroll_adjustments (GtkWidget *widget,
 	if (priv->hadj != hadj) {
 		priv->hadj = hadj;
 		g_object_ref (priv->hadj);
-		gtk_object_sink (GTK_OBJECT (priv->hadj));
+		g_object_ref_sink (GTK_OBJECT (priv->hadj));
 
 		g_signal_connect (priv->hadj, "value_changed",
 				  G_CALLBACK (adjustment_changed_cb),
@@ -1690,7 +1690,7 @@ image_view_set_scroll_adjustments (GtkWidget *widget,
 	if (priv->vadj != vadj) {
 		priv->vadj = vadj;
 		g_object_ref (priv->vadj);
-		gtk_object_sink (GTK_OBJECT (priv->vadj));
+		g_object_ref_sink (GTK_OBJECT (priv->vadj));
 
 		g_signal_connect (priv->vadj, "value_changed",
 				  G_CALLBACK (adjustment_changed_cb),

@@ -853,7 +853,7 @@ eog_image_free_mem (EogImage *img)
 	priv = img->priv;
 
 	if (priv->image != NULL) {
-		gdk_pixbuf_unref (priv->image);
+		g_object_unref (priv->image);
 		priv->image = NULL;
 	}
 }

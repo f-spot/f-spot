@@ -152,9 +152,9 @@ ui_image_new (void)
 
 	ui = UI_IMAGE (g_object_new (TYPE_UI_IMAGE,
 				     "hadjustment", 
-				     GTK_ADJUSTMENT (gtk_object_new (GTK_TYPE_ADJUSTMENT, NULL)),
+				     GTK_ADJUSTMENT (g_object_new (GTK_TYPE_ADJUSTMENT, NULL)),
 				     "vadjustment",
-				     GTK_ADJUSTMENT (gtk_object_new (GTK_TYPE_ADJUSTMENT, NULL)),
+				     GTK_ADJUSTMENT (g_object_new (GTK_TYPE_ADJUSTMENT, NULL)),
 				     NULL));
 	return ui_image_construct (ui);
 }

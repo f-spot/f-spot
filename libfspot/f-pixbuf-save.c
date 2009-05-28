@@ -155,7 +155,7 @@ f_pixbuf_save_jpeg (GdkPixbuf *pixbuf,
 	jpeg_destroy_compress (&cinfo);
 
 	fclose (outfile);
-	gdk_pixbuf_unref (pixbuf);
+	g_object_unref (pixbuf);
 
 	return TRUE;
 }
