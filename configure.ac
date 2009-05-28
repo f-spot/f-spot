@@ -89,6 +89,10 @@ if pkg-config --atleast-version=1.2.5 mono-cairo; then
    CSC_DEFINES="$CSC_DEFINES -d:CAIRO_1_2_5"
 fi
 
+if pkg-config --atleast-version=2.13.0 gtk-sharp-2.0 && pkg-config --max-version=2.14 gtk-sharp-2.0; then
+	AC_MSG_ERROR([There's a svn version of gtk-sharp 2.13.x installed. Uninstall it.])
+fi
+
 dnl - Choose PreferenceBackend (default to gconf)
 AC_ARG_ENABLE([gconf],[AC_HELP_STRING([--disable-gconf], [build without gconf preference backend])],,)
 
