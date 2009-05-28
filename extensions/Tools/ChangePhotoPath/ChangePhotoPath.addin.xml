@@ -1,6 +1,6 @@
 <Addin namespace="FSpot"
         id="ChangePath"
-        version="0.5.0.1"
+        version="0.6"
         name="ChangePath"
         description="UNSTABLE - Please ensure you have a backup of your photos.db before you test this extension. This extension will allow you to change the base path to the your photos. It is very handy if you move your photos from ~/Photos to /OurPhotos for instance. Just ensure you let SqLite continue to process the changes for up to a few hours after f-spot reports finished. It will only change the path to photos which are located under the Photo directory."
         author="Bengt Thuree"
@@ -8,7 +8,7 @@
         category="Tools"
 	defaultEnabled="false">
 	<Dependencies>
-		<Addin id="Core" version="0.5.0.0"/>
+		<Addin id="Core" version="0.6"/>
 	</Dependencies>
 	<Extension path = "/FSpot/Menus/Tools">
 		<Command id="FileList" _label = "Change path to photos" command_type = "ChangePhotoPath.Dump" />

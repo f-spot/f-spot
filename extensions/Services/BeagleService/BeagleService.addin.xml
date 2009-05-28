@@ -1,13 +1,13 @@
 <Addin namespace="FSpot"
 	id="BeagleService"
-	version="0.5.0.0"
+	version="0.6.1"
 	name="Beagle Service"
 	description="Notify Beagle on image changes"
 	author="Stephane Delcroix"
 	url="http://f-spot.org/Extensions"
 	category="Services">
 	<Dependencies>
-		<Addin id="Core" version="0.5.0.0"/>
+		<Addin id="Core" version="0.6"/>
 	</Dependencies>
 	<Extension path = "/FSpot/Services">
 		<Service class="BeagleService.BeagleService"/>

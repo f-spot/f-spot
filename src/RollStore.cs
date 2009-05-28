@@ -17,7 +17,7 @@ using Banshee.Database;
 using FSpot.Utils;
 using FSpot;
 
-public class RollStore : DbStore
+public class RollStore : DbStore<Roll>
 {
 	public RollStore (QueuedSqliteDatabase database, bool is_new) : base (database, false)
 	{
@@ -47,7 +47,7 @@ public class RollStore : DbStore
 		return Create (System.DateTime.UtcNow);
 	}
 
-	public override DbItem Get (uint id)
+	public override Roll Get (uint id)
 	{
 		Roll roll = LookupInCache (id) as Roll;
 		if (roll != null)
@@ -63,13 +63,13 @@ public class RollStore : DbStore
 		return roll;
 	}
 
-	public override void Remove (DbItem item)
+	public override void Remove (Roll item)
 	{
 		RemoveFromCache (item);
 		Database.ExecuteNonQuery (new DbCommand ("DELETE FROM rolls WHERE id = :id", "id", item.Id));
 	}
 
-	public override void Commit (DbItem item)
+	public override void Commit (Roll item)
 	{
 		// Nothing to do here, since all the properties of a roll are immutable.
 	}

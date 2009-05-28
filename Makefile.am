@@ -2,6 +2,8 @@ SUBDIRS = 		\
 	$(subdirs)	\
 	$(DIR_DBUS)	\
 	$(DIR_DBUS_GLIB)\
+	gio-sharp	\
+	gtk-sharp-beans	\
 	semweb		\
 	docs		\
 	glitz-sharp	\
@@ -20,6 +22,8 @@ SUBDIRS = 		\
 	GKeyFile
 
 DIST_SUBDIRS = 		\
+	gio-sharp	\
+	gtk-sharp-beans	\
 	semweb		\
 	dbus-sharp	\
 	dbus-sharp-glib	\
@@ -90,9 +94,6 @@ UPDATE_DESKTOP = \
 
 install-data-hook: 
 	$(UPDATE_DESKTOP)
-	if [ -f $(DESTDIR)$(pkglibdir)/gio-sharp.dll ] ; then \
-		rm -f $(DESTDIR)$(pkglibdir)/gio-sharp.dll* ; \
-	fi
 
 uninstall-hook: 
 	$(UPDATE_DESKTOP)

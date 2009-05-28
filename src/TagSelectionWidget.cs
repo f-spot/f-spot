@@ -332,25 +332,21 @@ public class TagSelectionWidget : FSpot.Widgets.SaneTreeView {
 		return iter;
 	}
 
-	private void HandleTagsRemoved (object sender, DbItemEventArgs args)
+	private void HandleTagsRemoved (object sender, DbItemEventArgs<Tag> args)
 	{
 		TreeIter iter;
 
-		foreach (DbItem item in args.Items) {
-			Tag tag = (Tag)item;
-
+		foreach (Tag tag in args.Items) {
 			if (TreeIterForTag (tag, out iter)) 
 				(Model as TreeStore).Remove (ref iter);
 		}
 	}
 	
-	private void HandleTagsAdded (object sender, DbItemEventArgs args)
+	private void HandleTagsAdded (object sender, DbItemEventArgs<Tag> args)
 	{
 		TreeIter iter = TreeIter.Zero;
 		
-		foreach (DbItem item in args.Items) {
-			Tag tag = (Tag)item;
-
+		foreach (Tag tag in args.Items) {
 			if (tag.Category != tag_store.RootCategory)
 				TreeIterForTag (tag.Category, out iter);
 
@@ -360,14 +356,12 @@ public class TagSelectionWidget : FSpot.Widgets.SaneTreeView {
 		}
 	}
 	
-	private void HandleTagsChanged (object sender, DbItemEventArgs args)
+	private void HandleTagsChanged (object sender, DbItemEventArgs<Tag> args)
 	{
 		TreeStore store = Model as TreeStore;
 		TreeIter iter, category_iter, parent_iter;
 
-		foreach (DbItem item in args.Items) {
-			Tag tag = (Tag) item;
-
+		foreach (Tag tag in args.Items) {
 			TreeIterForTag (tag, out iter);
 			
 			bool category_valid = TreeIterForTag(tag.Category, out category_iter);

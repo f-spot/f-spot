@@ -10,7 +10,7 @@
 
 namespace FSpot
 {
-	public class PhotoEventArgs : DbItemEventArgs {
+	public class PhotoEventArgs : DbItemEventArgs<Photo> {
 		PhotosChanges changes;
 		public PhotosChanges Changes {
 			get { return changes; }

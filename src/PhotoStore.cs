@@ -29,7 +29,7 @@ using FSpot.Platform;
 using Banshee.Database;
 
 
-public class PhotoStore : DbStore {
+public class PhotoStore : DbStore<Photo> {
 	public int TotalPhotos {
 		get {
 			SqliteDataReader reader = Database.Query("SELECT COUNT(*) AS photo_count FROM photos");
@@ -255,7 +255,7 @@ public class PhotoStore : DbStore {
 		
 		while (reader.Read ()) {
 			uint id = Convert.ToUInt32 (reader ["photo_id"]);
-			Photo photo = LookupInCache (id) as Photo;
+			Photo photo = LookupInCache (id);
 				
 			if (photo == null) {
 				//Console.WriteLine ("Photo {0} not found", id);
@@ -291,7 +291,7 @@ public class PhotoStore : DbStore {
 
 		while (reader.Read ()) {
 			uint id = Convert.ToUInt32 (reader ["photo_id"]);
-			Photo photo = LookupInCache (id) as Photo;
+			Photo photo = LookupInCache (id);
 				
 			if (photo == null) {
 				//Console.WriteLine ("Photo {0} not found", id);
@@ -312,9 +312,9 @@ public class PhotoStore : DbStore {
 		reader.Close();
 	}
 
-	public override DbItem Get (uint id)
+	public override Photo Get (uint id)
 	{
-		Photo photo = LookupInCache (id) as Photo;
+		Photo photo = LookupInCache (id);
 		if (photo != null)
 			return photo;
 
@@ -383,7 +383,7 @@ public class PhotoStore : DbStore {
 		if (photo == null)
 			return null;
 
-		Photo cached = LookupInCache (photo.Id) as Photo;
+		Photo cached = LookupInCache (photo.Id);
 
 		if (cached != null)
 			return cached;
@@ -426,7 +426,7 @@ public class PhotoStore : DbStore {
 			photo.MD5Sum = md5_sum;
 
 			// get cached if possible
-			Photo cached = LookupInCache (photo.Id) as Photo;
+			Photo cached = LookupInCache (photo.Id);
 
 			if (cached != null)
 			{
@@ -479,14 +479,14 @@ public class PhotoStore : DbStore {
 
 	}
 
-	public override void Remove (DbItem item)
+	public override void Remove (Photo item)
 	{
 		Remove (new Photo [] { (Photo)item });
 	}
 
-	public override void Commit (DbItem item)
+	public override void Commit (Photo item)
 	{
-		Commit (new Photo [] {item as Photo});
+		Commit (new Photo [] {item});
 	}
 
 	public void Commit (Photo [] items)
@@ -621,8 +621,8 @@ public class PhotoStore : DbStore {
 	}
 	
 	// Dbus
-	public event EventHandler<DbItemEventArgs> ItemsAddedOverDBus;
-	public event EventHandler<DbItemEventArgs> ItemsRemovedOverDBus;
+	public event EventHandler<DbItemEventArgs<Photo>> ItemsAddedOverDBus;
+	public event EventHandler<DbItemEventArgs<Photo>> ItemsRemovedOverDBus;
 
 	public Photo CreateOverDBus (string new_path, string orig_path, uint roll_id, out Gdk.Pixbuf pixbuf)  {
 		Photo photo = Create (new_path, orig_path, roll_id, out pixbuf);
@@ -643,7 +643,7 @@ public class PhotoStore : DbStore {
 
 	protected void EmitAddedOverDBus (Photo [] photos) {
 	 	if (ItemsAddedOverDBus != null)
-		 	ItemsAddedOverDBus (this, new DbItemEventArgs (photos));
+		 	ItemsAddedOverDBus (this, new DbItemEventArgs<Photo> (photos));
 	}
 
 	protected void EmitRemovedOverDBus (Photo photo) {
@@ -652,7 +652,7 @@ public class PhotoStore : DbStore {
 
 	protected void EmitRemovedOverDBus (Photo [] photos) {
 		if (ItemsRemovedOverDBus != null)
-		 	ItemsRemovedOverDBus (this, new DbItemEventArgs (photos)); 
+		 	ItemsRemovedOverDBus (this, new DbItemEventArgs<Photo> (photos)); 
 	}
 
 	public int Count (string table_name, params IQueryCondition [] conditions)
@@ -871,7 +871,7 @@ public class PhotoStore : DbStore {
 		List<Photo> query_result = new List<Photo> ();
 		while (reader.Read ()) {
 			uint id = Convert.ToUInt32 (reader ["id"]);
-			Photo photo = LookupInCache (id) as Photo;
+			Photo photo = LookupInCache (id);
 
 			if (photo == null) {
 				photo = new Photo (id,

@@ -42,7 +42,7 @@ public class ExportItem : DbItem {
     }
 }
 
-public class ExportStore : DbStore {
+public class ExportStore : DbStore<ExportItem> {
 	
 	public const string FlickrExportType = "fspot:Flickr";
 	public const string OldFolderExportType = "fspot:Folder"; //This is obsolete and meant to be remove once db reach rev4
@@ -96,17 +96,15 @@ public class ExportStore : DbStore {
 		return item;
 	}
 	
-	public override void Commit (DbItem dbitem)
+	public override void Commit (ExportItem item)
 	{
-		ExportItem item = dbitem as ExportItem;
-
 		Database.ExecuteNonQuery(new DbCommand("UPDATE exports SET image_id = :image_id, image_version_id = :image_version_id, export_type = :export_type SET export_token = :export_token WHERE id = :item_id", 
                     "item_id", item.Id, "image_id", item.ImageId, "image_version_id", item.ImageVersionId, "export_type", item.ExportType, "export_token", item.ExportToken));
 		
 		EmitChanged (item);
 	}
 	
-	public override DbItem Get (uint id)
+	public override ExportItem Get (uint id)
 	{
             // we never use this
             return null;
@@ -126,7 +124,7 @@ public class ExportStore : DbStore {
 		return list;
 	}
 	
-	public override void Remove (DbItem item)
+	public override void Remove (ExportItem item)
 	{
 		RemoveFromCache (item);
 

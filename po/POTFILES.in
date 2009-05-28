@@ -29,7 +29,6 @@ src/CameraFileSelectionDialog.cs
 src/CameraSelectionDialog.cs
 src/Core.cs
 src/Core/Photo.cs
-src/DateCommands.cs
 src/Editors/AutoStretchEditor.cs
 src/Editors/ColorEditor.cs
 src/Editors/CropEditor.cs
@@ -75,6 +74,7 @@ src/TagStore.cs
 src/Term.cs
 src/UI.Dialog/AboutDialog.cs
 src/UI.Dialog/AdjustTimeDialog.cs
+src/UI.Dialog/DateRangeDialog.cs
 src/UI.Dialog/EditExceptionDialog.cs
 src/UI.Dialog/ExceptionDialog.cs
 src/UI.Dialog/ProgressDialog.cs
@@ -82,6 +82,7 @@ src/UI.Dialog/RepairDbDialog.cs
 src/UI.Dialog/SelectionRatioDialog.cs
 src/UI.Dialog/ThreadProgressDialog.cs
 src/UI.Dialog/ui/PreferenceDialog.glade
+src/UI.Dialog/ui/DateRangeDialog.ui
 src/Updater.cs
 src/Util.cs
 src/Utils/Unix.cs
@@ -137,6 +138,3 @@ extensions/Exporters/TabbloExport/TabbloExport.addin.xml
 extensions/Exporters/TabbloExport/TabbloExport.cs
 extensions/Exporters/TabbloExport/TabbloExport.glade
 extensions/Exporters/TabbloExport/TrustError.glade
-extensions/Editors/BlackoutEditor/BlackoutEditor.cs
-extensions/Editors/PixelateEditor/PixelateEditor.cs
-

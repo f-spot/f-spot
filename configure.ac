@@ -1,4 +1,4 @@
-AC_INIT(F-Spot, 0.5.0.3)
+AC_INIT(F-Spot, 0.6.0.0)
 AC_CONFIG_SRCDIR(src/main.cs)
 
 AM_CONFIG_HEADER(config.h)
@@ -59,9 +59,11 @@ LIBGNOMEUI_REQUIRED=2.2
 LIBEXIF_REQUIRED_MIN=0.5.7
 LIBEXIF_REQUIRED_MAX=0.7.0
 GIO_REQUIRED=2.16.0
-GTKSHARP_REQUIRED=2.13.90
-MONO_REQUIRED=2.2.0
-GTK_REQUIRED=2.10
+GIOSHARP_REQUIRED=2.13.92
+GTKSHARPBEANS_REQUIRED=2.13.92
+GTKSHARP_REQUIRED=2.12.2
+MONO_REQUIRED=2.0.0
+GTK_REQUIRED=2.14
 BEAGLE_REQUIRED=0.3.0
 NDESK_DBUS_REQUIRED=0.4.2
 NDESK_DBUS_GLIB_REQUIRED=0.3.0
@@ -70,7 +72,7 @@ dnl -- this check is
 LCMS_REQUIRED=1.12
 dnl -- LIBGPHOTO2_REQUIRED=2.1.4
 
-PKG_CHECK_MODULES(F, libgnome-2.0 >= $LIBGNOME_REQUIRED libgnomeui-2.0 >= $LIBGNOMEUI_REQUIRED libexif >= $LIBEXIF_REQUIRED_MIN libexif < $LIBEXIF_REQUIRED_MAX gtk-sharp-2.0 >= $GTKSHARP_REQUIRED glib-sharp-2.0 >= $GTKSHARP_REQUIRED gio-sharp-2.0 >= $GTKSHARP_REQUIRED glade-sharp-2.0 >= $GTKSHARP_REQUIRED gnome-vfs-sharp-2.0 >= $GTKSHARP_REQUIRED gtk+-2.0 >= $GTK_REQUIRED mono >= $MONO_REQUIRED mono-cairo >= $MONO_CAIRO_REQUIRED)
+PKG_CHECK_MODULES(F, libgnome-2.0 >= $LIBGNOME_REQUIRED libgnomeui-2.0 >= $LIBGNOMEUI_REQUIRED libexif >= $LIBEXIF_REQUIRED_MIN libexif < $LIBEXIF_REQUIRED_MAX gtk-sharp-2.0 >= $GTKSHARP_REQUIRED glib-sharp-2.0 >= $GTKSHARP_REQUIRED glade-sharp-2.0 >= $GTKSHARP_REQUIRED gnome-vfs-sharp-2.0 >= $GTKSHARP_REQUIRED gtk+-2.0 >= $GTK_REQUIRED mono >= $MONO_REQUIRED mono-cairo >= $MONO_CAIRO_REQUIRED)
 AC_SUBST(F_CFLAGS)
 AC_SUBST(F_LIBS)
 
@@ -81,8 +83,14 @@ AC_SUBST(GIO_LIBS)
 CSC_DEFINES=""
 PKG_CHECK_MODULES(GNOME_SHARP, gnome-sharp-2.0 >= 2.8)
 
+PKG_CHECK_MODULES(GLIBSHARP, glib-sharp-2.0 >= 2.12)
+
 if pkg-config --atleast-version=1.2.5 mono-cairo; then
    CSC_DEFINES="$CSC_DEFINES -d:CAIRO_1_2_5"
+fi
+
+if pkg-config --atleast-version=2.13.0 gtk-sharp-2.0 && pkg-config --max-version=2.14 gtk-sharp-2.0; then
+	AC_MSG_ERROR([There's a svn version of gtk-sharp 2.13.x installed. Uninstall it.])
 fi
 
 dnl - Choose PreferenceBackend (default to gconf)
@@ -286,7 +294,7 @@ AC_CONFIG_FILES([src/f-spot],[chmod +x src/f-spot])
 GNOME_ICON_THEME_PREFIX=`$PKG_CONFIG --variable=prefix gnome-icon-theme`
 AC_SUBST(GNOME_ICON_THEME_PREFIX)
 
-AC_OUTPUT([
+AC_OUTPUT(
 Makefile
 dbus-sharp/Makefile
 dbus-sharp-glib/Makefile
@@ -354,4 +362,8 @@ f-spot.spec
 f-spot.desktop.in
 f-spot-view.desktop.in
 f-spot-import.desktop.in
-])
+gio-sharp/Makefile
+gio-sharp/gio/Makefile
+gio-sharp/generator/Makefile
+gtk-sharp-beans/Makefile
+)

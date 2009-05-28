@@ -313,19 +313,19 @@ namespace FSpot
 
 		// When the user edits a tag (it's icon, name, etc) we get called
 		// and update the images/text in the query as needed to reflect the changes.
-		private void HandleTagChanged (object sender, DbItemEventArgs args)
+		private void HandleTagChanged (object sender, DbItemEventArgs<Tag> args)
 		{
-			foreach (DbItem item in args.Items)
-			foreach (Literal term in rootTerm.FindByTag (item as Tag))
-			term.Update ();
+			foreach (Tag t in args.Items)
+                foreach (Literal term in rootTerm.FindByTag (t))
+                    term.Update ();
 		}
 
 		// If the user deletes a tag that is in use in the query, remove it from the query too.
-		private void HandleTagDeleted (object sender, DbItemEventArgs args)
+		private void HandleTagDeleted (object sender, DbItemEventArgs<Tag> args)
 		{
-			foreach (DbItem item in args.Items)
-			foreach (Literal term in rootTerm.FindByTag (item as Tag))
-			term.RemoveSelf ();
+			foreach (Tag t in args.Items)
+                foreach (Literal term in rootTerm.FindByTag (t))
+                    term.RemoveSelf ();
 		}
 
 		private void HandleDragMotion (object o, DragMotionArgs args)
