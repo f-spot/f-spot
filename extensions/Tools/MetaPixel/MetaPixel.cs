@@ -24,6 +24,7 @@ using FSpot.Extensions;
 using FSpot.Widgets;
 using FSpot.Filters;
 using FSpot.UI.Dialog;
+using FSpot.Utils;
 using Mono.Unix;
 
 namespace MetaPixelExtension {
@@ -39,7 +40,7 @@ namespace MetaPixelExtension {
 		string minidir_tmp;
 
 		public void Run (object o, EventArgs e) {
-			Console.WriteLine ("Executing MetaPixel extension");
+			Log.Information ("Executing MetaPixel extension");
 			if (MainWindow.Toplevel.SelectedPhotos ().Length == 0) {
 				InfoDialog (Catalog.GetString ("No selection available"),
 					    Catalog.GetString ("This tool requires an active selection. Please select one or more pictures and try again"),
@@ -142,8 +143,10 @@ namespace MetaPixelExtension {
 					return;
 				}
 				//FIXME should switch to retry/skip
-				if (!(new Gnome.Vfs.Uri (p.DefaultVersionUri.ToString ())).Exists)
+				if (!GLib.FileFactory.NewForUri (p.DefaultVersionUri).Exists) {
+					Log.Warning (String.Format ("Couldn't access photo {0} while creating miniatures", p.DefaultVersionUri.LocalPath));
 					continue;
+				}
 				//FIXME Check if the picture's format is supproted (jpg, gif)
 
 				FilterSet filters = new FilterSet ();
@@ -160,12 +163,12 @@ namespace MetaPixelExtension {
 									CheapEscape(freq.Current.LocalPath), //Source image
 									CheapEscape(minifile),  //Dest image
 									minidir_tmp);  //Table file
-				Console.WriteLine ("Executing: metapixel {0}", prepare_command);
+				Log.Debug ("Executing: metapixel " + prepare_command);
 
 				System.Diagnostics.Process mp_prep = System.Diagnostics.Process.Start ("metapixel", prepare_command);
 				mp_prep.WaitForExit ();
-				if (!(new Gnome.Vfs.Uri (minifile)).Exists) {
-					Console.WriteLine ("No mini? No party! {0}", minifile);
+				if (!System.IO.File.Exists (minifile)) {
+					Log.Debug ("No mini? No party! {0}", minifile);
 					continue;
 				}
 
@@ -187,8 +190,11 @@ namespace MetaPixelExtension {
 					return;
 				}
 				//FIXME should switch to retry/skip
-				if (!(new Gnome.Vfs.Uri (p.DefaultVersionUri.ToString ())).Exists)
+				if (!GLib.FileFactory.NewForUri (p.DefaultVersionUri).Exists) {
+					Log.Warning (String.Format ("Couldn't access photo {0} while creating mosaics", p.DefaultVersionUri.LocalPath));
+					error_count ++;
 					continue;
+				}
 
 				//FIXME Check if the picture's format is supproted (jpg, gif)
 
@@ -203,13 +209,13 @@ namespace MetaPixelExtension {
 
 				string mosaic_command = String.Format ("--metapixel -l {0} {1} {2}",
 									minidir_tmp,
-									CheapEscape(freq.Current.LocalPath),
-									CheapEscape(mosaic.LocalPath));
-				Console.WriteLine ("Executing: metapixel {0}", mosaic_command);
+									CheapEscape (freq.Current.LocalPath),
+									CheapEscape (mosaic.LocalPath));
+				Log.Debug ("Executing: metapixel " + mosaic_command);
 				System.Diagnostics.Process mp_exe = System.Diagnostics.Process.Start ("metapixel", mosaic_command);
 				mp_exe.WaitForExit ();
-				if (!(new Gnome.Vfs.Uri (mosaic.ToString ())).Exists) {
-					Console.WriteLine ("Error in processing image");
+				if (!GLib.FileFactory.NewForUri (mosaic).Exists) {
+					Log.Warning ("Error in processing image " + p.Name);
 					error_count ++;
 					continue;
 				}
@@ -227,9 +233,9 @@ namespace MetaPixelExtension {
 			if (error_count > 0)
 				final_message += String.Format (".\n{0} images out of {1} had errors",
 							error_count, MainWindow.Toplevel.SelectedPhotos ().Length);
-			InfoDialog (Catalog.GetString("PhotoMosaics generated!"),
-				    Catalog.GetString(final_message),
-				    Gtk.MessageType.Info);
+			InfoDialog (Catalog.GetString ("PhotoMosaics generated!"),
+				    Catalog.GetString (final_message),
+				    (error_count == 0 ? Gtk.MessageType.Info : Gtk.MessageType.Warning));
 			DeleteTmp ();
 
 		}
@@ -280,11 +286,11 @@ namespace MetaPixelExtension {
 			DirectoryInfo dir = new DirectoryInfo(minidir_tmp);
 			FileInfo[] tmpfiles = dir.GetFiles();
 			foreach (FileInfo f in tmpfiles) {
-				if (System.IO.File.Exists(minidir_tmp + f.Name)) {
+				if (System.IO.File.Exists (minidir_tmp + f.Name)) {
 					System.IO.File.Delete (minidir_tmp + f.Name);
 				}
 			}
-			if (System.IO.Directory.Exists(minidir_tmp)) {
+			if (System.IO.Directory.Exists (minidir_tmp)) {
 				System.IO.Directory.Delete(minidir_tmp);
 			}
 		}

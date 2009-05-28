@@ -2,7 +2,7 @@ all: PictureTile.dll
 
 PACKAGES = \
 	-pkg:f-spot \
-	-pkg:gnome-vfs-sharp-2.0 \
+	-pkg:gio-sharp-2.0 \
 	-pkg:gtk-sharp-2.0 \
 	-pkg:glade-sharp-2.0
 
@@ -17,7 +17,7 @@ SOURCES = \
 	PictureTile.cs
 
 install: all
-	cp *.dll ~/.gnome2/f-spot/addins/
+	cp *.dll ~/.config/f-spot/addins/
 
 mpack: PictureTile.dll
 	mautil p PictureTile.dll
