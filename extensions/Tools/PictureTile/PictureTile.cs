@@ -22,6 +22,7 @@ using FSpot.Extensions;
 using FSpot.Widgets;
 using FSpot.Filters;
 using FSpot.UI.Dialog;
+using FSpot.Utils;
 using Mono.Unix;
 
 namespace PictureTileExtension {
@@ -45,7 +46,7 @@ namespace PictureTileExtension {
 		Tag [] photo_tags;
 
 		public void Run (object o, EventArgs e) {
-			Console.WriteLine ("Executing PictureTile extension");
+			Log.Information ("Executing PictureTile extension");
 			if (MainWindow.Toplevel.SelectedPhotos ().Length == 0) {
 				InfoDialog (Catalog.GetString ("No selection available"),
 					    Catalog.GetString ("This tool requires an active selection. Please select one or more pictures and try again"),
@@ -129,8 +130,10 @@ namespace PictureTileExtension {
 				}
 
 				//FIXME should switch to retry/skip
-				if (!(new Gnome.Vfs.Uri (p.DefaultVersionUri.ToString ())).Exists)
+				if (!GLib.FileFactory.NewForUri (p.DefaultVersionUri).Exists) {
+					Log.Warning (String.Format ("Couldn't access photo {0} while creating mosaics", p.DefaultVersionUri.LocalPath));
 					continue;
+				}
 
 				using (FilterRequest freq = new FilterRequest (p.DefaultVersionUri)) {
 					filters.Convert (freq);
@@ -172,7 +175,7 @@ namespace PictureTileExtension {
 								pages.Text,
 								uniform,
 								destfile_tmp);
-			Console.WriteLine ("Executing: picturetile.pl {0}", picturetile_command);
+			Log.Debug ("Executing: picturetile.pl " + picturetile_command);
 			System.Diagnostics.Process pt_exe = System.Diagnostics.Process.Start ("picturetile.pl", picturetile_command);
 			pt_exe.WaitForExit ();
 
