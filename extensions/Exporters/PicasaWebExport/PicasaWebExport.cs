@@ -53,7 +53,7 @@ namespace FSpotGoogleExport {
 
 		public PicasaWeb Connect ()
 		{
-			System.Console.WriteLine ("GoogleAccount.Connect()");
+			Log.Debug ("GoogleAccount.Connect()");
 			GoogleConnection conn = new GoogleConnection (GoogleService.Picasa);
 			ServicePointManager.CertificatePolicy = new NoCheckCertificatePolicy ();
 			if (unlock_captcha == null || token == null)
@@ -200,7 +200,7 @@ namespace FSpotGoogleExport {
 					Ring.DeleteItem(keyring, result.ItemID);
 				}
 			} catch (Exception e) {
-				Console.WriteLine(e);
+				Log.DebugException (e);
 			}
 			accounts.Remove (account);
 			MarkChanged ();
@@ -250,7 +250,7 @@ namespace FSpotGoogleExport {
 
 				}
 			} catch (Exception e) {
-				Console.Error.WriteLine(e);
+				Log.DebugException (e);
 			}
 
 			MarkChanged ();
@@ -588,7 +588,6 @@ namespace FSpotGoogleExport {
 			export_tag = tag_check.Active;
 
 			if (account != null) {
-				//System.Console.WriteLine ("history = {0}", album_optionmenu.History);
 				album = (PicasaAlbum) account.Picasa.GetAlbums() [Math.Max (0, album_optionmenu.History)];
 				photo_index = 0;
 
@@ -638,7 +637,7 @@ namespace FSpotGoogleExport {
 			sent_bytes = 0;
 			approx_size = 0;
 
-			System.Console.WriteLine ("Starting Upload to Picasa");
+			Log.Debug ("Starting Upload to Picasa");
 
 			FilterSet filters = new FilterSet ();
 			filters.Add (new JpegFilter ());
@@ -656,7 +655,7 @@ namespace FSpotGoogleExport {
 					IBrowsableItem item = items[photo_index];
 
 					FileInfo file_info;
-					Console.WriteLine ("uploading {0}", photo_index);
+					Log.Debug ("Picasa uploading " + photo_index);
 
 					progress_dialog.Message = String.Format (Catalog.GetString ("Uploading picture \"{0}\" ({1} of {2})"),
 										 item.Name, photo_index+1, items.Length);
@@ -692,10 +691,13 @@ namespace FSpotGoogleExport {
 					progress_dialog.Message = String.Format (Catalog.GetString ("Error Uploading To Gallery: {0}"),
 										 e.Message);
 					progress_dialog.ProgressText = Catalog.GetString ("Error");
-					System.Console.WriteLine (e);
+					Log.DebugException (e);
 
-					if (progress_dialog.PerformRetrySkip ())
+					if (progress_dialog.PerformRetrySkip ()) {
 						photo_index--;
+						if (photo_index == 0)
+							approx_size = 0;
+					}
 				}
 			}
 
@@ -784,7 +786,7 @@ namespace FSpotGoogleExport {
 					album_button.Sensitive = true;
 				}
 			} catch (CaptchaException exc){
-				System.Console.WriteLine("Your google account is locked");
+				Log.Debug ("Your Google account is locked");
 				if (selected != null)
 					account = selected;
 
@@ -793,11 +795,10 @@ namespace FSpotGoogleExport {
 
 				new GoogleAccountDialog (this.Dialog, account, false, exc);
 
-				System.Console.WriteLine ("Your google account is locked, you can unlock it by visiting: {0}", CaptchaException.UnlockCaptchaURL);
+				Log.Warning ("Your Google account is locked, you can unlock it by visiting: {0}", CaptchaException.UnlockCaptchaURL);
 
 			} catch (System.Exception) {
-				System.Console.WriteLine ("Can not connect to Picasa. Bad username ? password ? network connection ?");
-				//System.Console.WriteLine ("{0}",ex);
+				Log.Warning ("Can not connect to Picasa. Bad username? password? network connection?");
 				if (selected != null)
 					account = selected;
 
@@ -834,7 +835,7 @@ namespace FSpotGoogleExport {
 				try {
 					albums = picasa.GetAlbums();
 				} catch {
-					Console.WriteLine("Can't get the albums");
+					Log.Warning ("Picasa: can't get the albums");
 					albums = null;
 					picasa = null;
 				}
@@ -922,8 +923,6 @@ namespace FSpotGoogleExport {
 
 			if (val == null)
 				return;
-
-			//System.Console.WriteLine ("Setting {0} to {1}", key, val);
 
 			switch (key) {
 			case SCALE_KEY:
