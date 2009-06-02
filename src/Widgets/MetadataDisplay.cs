@@ -104,6 +104,7 @@ namespace FSpot.Widgets {
 			Expander expander = new Expander (String.Format("<span weight=\"bold\"><small>{0}</small></span>", Catalog.GetString ("Extended Metadata")));
 			expander.UseMarkup = true;
 			expander.Add (tree_view);
+			expander.Expanded = true;
 			
 			main_vbox.PackStart (expander, false, false, 6);
 			expander.ShowAll ();
@@ -188,6 +189,7 @@ namespace FSpot.Widgets {
 			Expander expander = new Expander (String.Format ("<span weight=\"bold\"><small>{0}</small></span>", name));
 			expander.UseMarkup = true;
 			expander.Add (tree_view);
+			expander.Expanded = true;
 			
 			exif_vbox.PackStart (expander, false, false, 6);
 			exif_vbox.ReorderChild (expander, pos);
