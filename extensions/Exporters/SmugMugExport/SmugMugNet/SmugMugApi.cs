@@ -17,6 +17,7 @@ using System.IO;
 using System.Text.RegularExpressions;
 using System.Xml;
 using System.Collections.Specialized;
+using FSpot.Utils;
 
 namespace SmugMugNet
 {
@@ -430,7 +431,7 @@ namespace SmugMugNet
 			public SmugMugParam (string name, object value)
 			{
 				this.name = name;
-				this.value = value;
+				this.value = (value is String ? System.Web.HttpUtility.UrlEncode ((string)value) : value);
 			}
 
 			public string Name

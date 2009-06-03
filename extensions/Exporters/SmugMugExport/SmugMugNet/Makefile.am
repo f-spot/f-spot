@@ -6,7 +6,8 @@ ASSEMBLY_SOURCES =				\
 	$(srcdir)/SmugMugApi.cs 		\
 	$(srcdir)/NoCheckCertificatePolicy.cs
 
-REFS =
+REFS = \
+	-r:System.Web
 
 PKGS =
 
