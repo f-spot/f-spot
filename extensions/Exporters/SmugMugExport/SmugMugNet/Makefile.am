@@ -6,7 +6,9 @@ ASSEMBLY_SOURCES =				\
 	$(srcdir)/SmugMugApi.cs 		\
 	$(srcdir)/NoCheckCertificatePolicy.cs
 
-REFS =
+REFS = \
+	-r:$(top_builddir)/src/FSpot.Utils.dll	\
+	-r:System.Web
 
 PKGS =
 

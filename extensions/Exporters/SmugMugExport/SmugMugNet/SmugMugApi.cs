@@ -17,6 +17,7 @@ using System.IO;
 using System.Text.RegularExpressions;
 using System.Xml;
 using System.Collections.Specialized;
+using FSpot.Utils;
 
 namespace SmugMugNet
 {
@@ -430,7 +431,7 @@ namespace SmugMugNet
 			public SmugMugParam (string name, object value)
 			{
 				this.name = name;
-				this.value = value;
+				this.value = (value is String ? System.Web.HttpUtility.UrlEncode ((string)value) : value);
 			}
 
 			public string Name
@@ -454,12 +455,12 @@ namespace SmugMugNet
 	{
 		public SmugMugException(string message) : base (message)
 		{
-			Console.WriteLine (message);
+			Log.Debug (message);
 		}
 
 		public SmugMugException (string message, Exception innerException) : base (message, innerException)
 		{
-			Console.WriteLine (message, innerException.ToString());
+			Log.Debug (message, innerException.ToString());
 		}
 	}
 
@@ -467,7 +468,7 @@ namespace SmugMugNet
 	{
 		public SmugMugUploadException (string message, Exception innerException) : base (message, innerException)
 		{
-			Console.WriteLine (message, innerException.ToString ());
+			Log.Debug (message, innerException.ToString ());
 		}
 	}
 }
