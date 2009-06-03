@@ -455,12 +455,12 @@ namespace SmugMugNet
 	{
 		public SmugMugException(string message) : base (message)
 		{
-			Console.WriteLine (message);
+			Log.Debug (message);
 		}
 
 		public SmugMugException (string message, Exception innerException) : base (message, innerException)
 		{
-			Console.WriteLine (message, innerException.ToString());
+			Log.Debug (message, innerException.ToString());
 		}
 	}
 
@@ -468,7 +468,7 @@ namespace SmugMugNet
 	{
 		public SmugMugUploadException (string message, Exception innerException) : base (message, innerException)
 		{
-			Console.WriteLine (message, innerException.ToString ());
+			Log.Debug (message, innerException.ToString ());
 		}
 	}
 }

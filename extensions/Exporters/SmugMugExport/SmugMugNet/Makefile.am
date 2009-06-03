@@ -7,6 +7,7 @@ ASSEMBLY_SOURCES =				\
 	$(srcdir)/NoCheckCertificatePolicy.cs
 
 REFS = \
+	-r:$(top_builddir)/src/FSpot.Utils.dll	\
 	-r:System.Web
 
 PKGS =
