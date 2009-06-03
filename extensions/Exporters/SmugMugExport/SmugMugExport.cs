@@ -43,7 +43,7 @@ namespace FSpotSmugMugExport {
 
 		public SmugMugApi Connect ()
 		{
-			System.Console.WriteLine ("SmugMug.Connect() {0}", username);
+			Log.Debug ("SmugMug.Connect() " + username);
 			SmugMugApi proxy = new SmugMugApi (username, password);
 			ServicePointManager.CertificatePolicy = new NoCheckCertificatePolicy ();
 			proxy.Login ();
@@ -160,7 +160,7 @@ namespace FSpotSmugMugExport {
 					Ring.DeleteItem(keyring, result.ItemID);
 				}
 			} catch (Exception e) {
-				Console.WriteLine(e);
+				Log.Exception (e);
 			}
 			accounts.Remove (account);
 			MarkChanged ();
@@ -201,7 +201,7 @@ namespace FSpotSmugMugExport {
 
 				}
 			} catch (Exception e) {
-				Console.Error.WriteLine(e);
+				Log.Exception (e);
 			}
 
 			MarkChanged ();
@@ -544,7 +544,7 @@ namespace FSpotSmugMugExport {
 
 			System.Uri album_uri = null;
 
-			System.Console.WriteLine ("Starting Upload to Smugmug, album {0} - {1}", album.Title, album.AlbumID);
+			Log.Debug ("Starting Upload to Smugmug, album " + album.Title + " - " + album.AlbumID);
 
 			FilterSet filters = new FilterSet ();
 			filters.Add (new JpegFilter ());
@@ -560,7 +560,7 @@ namespace FSpotSmugMugExport {
 					IBrowsableItem item = items[photo_index];
 
 					FileInfo file_info;
-					Console.WriteLine ("uploading {0}", photo_index);
+					Log.Debug ("uploading " + photo_index);
 
 					progress_dialog.Message = String.Format (Catalog.GetString ("Uploading picture \"{0}\" ({1} of {2})"),
 										 item.Name, photo_index+1, items.Length);
@@ -594,7 +594,7 @@ namespace FSpotSmugMugExport {
 					progress_dialog.Message = String.Format (Mono.Unix.Catalog.GetString ("Error Uploading To Gallery: {0}"),
 										 e.Message);
 					progress_dialog.ProgressText = Mono.Unix.Catalog.GetString ("Error");
-					System.Console.WriteLine (e);
+					Log.DebugException (e);
 
 					if (progress_dialog.PerformRetrySkip ()) {
 						photo_index--;
@@ -675,7 +675,7 @@ namespace FSpotSmugMugExport {
 					PopulateAlbumOptionMenu (account.SmugMug);
 				}
 			} catch (System.Exception) {
-				System.Console.WriteLine ("Can not connect to SmugMug. Bad username ? password ? network connection ?");
+				Log.Warning ("Can not connect to SmugMug. Bad username? Password? Network connection?");
 				//System.Console.WriteLine ("{0}",ex);
 				if (selected != null)
 					account = selected;
@@ -713,7 +713,7 @@ namespace FSpotSmugMugExport {
 				try {
 					albums = smugmug.GetAlbums();
 				} catch (Exception) {
-					Console.WriteLine("Can't get the albums");
+					Log.Debug ("Can't get the albums");
 					smugmug = null;
 				}
 			}
