@@ -1,4 +1,4 @@
-# translation of f-spot.po.master.gu.po to Gujarati
+# translation of gu.po to Gujarati
 # Gujarati translation of f-spot.
 # Copyright (C) 2009 f-spot's COPYRIGHT HOLDER
 # This file is distributed under the same license as the f-spot package.
@@ -6,10 +6,10 @@
 # Sweta Kothari <swkothar@redhat.com>, 2009.
 msgid ""
 msgstr ""
-"Project-Id-Version: f-spot.po.master.gu\n"
+"Project-Id-Version: gu\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=f-spot&component=General\n"
 "POT-Creation-Date: 2009-06-01 09:52+0000\n"
-"PO-Revision-Date: 2009-06-02 14:23+0530\n"
+"PO-Revision-Date: 2009-06-04 14:46+0530\n"
 "Last-Translator: Sweta Kothari <swkothar@redhat.com>\n"
 "Language-Team: Gujarati\n"
 "MIME-Version: 1.0\n"
@@ -32,7 +32,7 @@ msgstr "કોપીરાઇટ:"
 
 #: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInfoDialog.cs:71
 msgid "Extension Dependencies:"
-msgstr ""
+msgstr "એક્સટેન્શન આધારો:"
 
 #: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:97
 msgid "All registered repositories"
@@ -50,13 +50,13 @@ msgstr "નીચેનાં પેકેજો સ્થાપિત થયે
 msgid ""
 "There are other extensions that depend on the previous ones which will also "
 "be uninstalled:"
-msgstr ""
+msgstr "ત્યાં બીજા એક્સટેન્શનો છે કે જે પહેલાનાં એક પર આધાર રાખે છે કે જે પણ સ્થાપિત થયેલ નથી:"
 
 #: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:384
 msgid ""
 "The selected extensions can't be installed because there are dependency "
 "conflicts."
-msgstr ""
+msgstr "પસંદ થયેલ એક્સટેન્શનો ને સ્થાપિત કરી શકાતા નથી કારણ કે ત્યાં આધાર અથડામણ થાય છે."
 
 #: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:398
 msgid "The following packages will be installed:"
@@ -108,7 +108,7 @@ msgstr "સ્થાપન રદ કરેલ છે"
 
 #: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallerDialog.cs:159
 msgid "Some of the required extensions were not found"
-msgstr ""
+msgstr "અમુક જરૂરી એક્સટેન્શનો શોધાયા ન હતા"
 
 #: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallerDialog.cs:171
 msgid "Installation failed"
@@ -187,7 +187,7 @@ msgstr "બધુ પસંદ કરો (_A)"
 
 #: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:334
 msgid "label124"
-msgstr ""
+msgstr "લેબલ124"
 
 #: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:346
 msgid "Overall Progress:"
@@ -224,7 +224,7 @@ msgstr "એક્સટેન્શનોને સ્થાપિત કરો 
 
 #: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:210
 msgid "_Uninstall..."
-msgstr ""
+msgstr "બિનસ્થાપિત કરો (_U)..."
 
 #: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:236
 #: ../src/UI.Dialog/ui/PreferenceDialog.glade.h:13
@@ -252,7 +252,7 @@ msgstr "વિગતો"
 
 #: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.ManageSitesDialog.cs:34
 msgid "Extension Repository Management"
-msgstr ""
+msgstr "એકસટેન્શન રિપોઝીટરી વ્યવસ્થાપન"
 
 #: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.NewSiteDialog.cs:52
 msgid "Add New Repository"
@@ -287,38 +287,38 @@ msgstr "બ્રાઉઝ કરો..."
 #: ../mono-addins/Mono.Addins/Mono.Addins.Description/AssemblyDependency.cs:79
 #, csharp-format
 msgid "(provided by {0})"
-msgstr ""
+msgstr "({0} દ્દારા પૂરુ પાડેલ છે)"
 
 #: ../mono-addins/Mono.Addins/Mono.Addins/AddinSessionService.cs:154
 msgid "Disabled extensions can't be loaded."
-msgstr ""
+msgstr "નિષ્ક્રિય થયેલ એક્સટેન્શનો ને લોડ કરી શકાતા નથી."
 
 #: ../mono-addins/Mono.Addins/Mono.Addins/AddinSessionService.cs:179
 #, csharp-format
 msgid "Loading {0} extension"
-msgstr ""
+msgstr "{0} એક્સટેન્શનને લોડ કરી રહ્યા છે"
 
 #: ../mono-addins/Mono.Addins/Mono.Addins/AddinSessionService.cs:265
 #, csharp-format
 msgid "The required extension '{0}' is disabled."
-msgstr ""
+msgstr "જરૂરી એક્સટેન્શન '{0}' એ નિષ્ક્રિય થયેલ છે."
 
 #: ../mono-addins/Mono.Addins/Mono.Addins/AddinSessionService.cs:267
 #, csharp-format
 msgid "The required extension '{0}' is not installed."
-msgstr ""
+msgstr "જરૂરી એક્સટેન્શન '{0}' એ સ્થાપિત થયેલ નથી."
 
 #: ../f-spot-view.desktop.in.in.h:1
 msgid "F-Spot Photo Viewer"
-msgstr ""
+msgstr "F-Spot ફોટો દર્શક"
 
 #: ../f-spot-view.desktop.in.in.h:2
 msgid "Photo Viewer"
-msgstr ""
+msgstr "ફોટો દર્શક"
 
 #: ../f-spot-import.desktop.in.in.h:1 ../f-spot.desktop.in.in.h:1
 msgid "F-Spot Photo Manager"
-msgstr ""
+msgstr "F-Spot ફોટો વ્યવસ્થાપક"
 
 #: ../f-spot-import.desktop.in.in.h:2
 msgid "Import into F-Spot"
@@ -330,15 +330,15 @@ msgstr "ફોટો વ્યવસ્થાપક"
 
 #: ../f-spot.desktop.in.in.h:2
 msgid "Organize, enjoy, and share your photos"
-msgstr ""
+msgstr "તમારા ફોટોને સંચાલિત, આનંદ માણો, અને વહેંચો"
 
 #: ../libeog/image-view.c:2124
 msgid "interpolation type"
-msgstr ""
+msgstr "ઇન્ટરપોલેશન પ્રકાર"
 
 #: ../libeog/image-view.c:2125
 msgid "the type of interpolation to use"
-msgstr ""
+msgstr "વાપરવા માટે ઇન્ટરપોલેશન નો પ્રકાર"
 
 #: ../libeog/image-view.c:2131 ../libeog/image-view.c:2138
 msgid "check type"
@@ -346,19 +346,19 @@ msgstr "પ્રકારને ચકાસો"
 
 #: ../libeog/image-view.c:2132
 msgid "the type of chequering to use"
-msgstr ""
+msgstr "વાપરવા માટે ચેકરીંગનો પ્રકાર"
 
 #: ../libeog/image-view.c:2139
 msgid "the size of chequers to use"
-msgstr ""
+msgstr "વાપરવા માટે ચેકરોનું માપ"
 
 #: ../libeog/image-view.c:2145
 msgid "dither"
-msgstr ""
+msgstr "ધ્રુજારી"
 
 #: ../libeog/image-view.c:2146
 msgid "dither type"
-msgstr ""
+msgstr "ધ્રુજારી પ્રકાર"
 
 #: ../libfspot/f-jpeg-utils.c:441 ../src/RotateCommand.cs:222
 msgid "File not found"
@@ -367,7 +367,7 @@ msgstr "ફાઇલ શોધાઇ નથી"
 #: ../libfspot/f-jpeg-utils.c:464
 #, c-format
 msgid "Unknown transform type %d"
-msgstr ""
+msgstr "અજ્ઞાત ટ્રાન્સફોર્મ પ્રકાર %d"
 
 #: ../libfspot/f-jpeg-utils.c:472
 msgid "Operation failed"
@@ -402,7 +402,7 @@ msgstr "પૂર્વદર્શનોને ડાઉનલોડ કરી 
 #: ../src/CameraFileSelectionDialog.cs:148
 #, csharp-format
 msgid "Downloading Preview of {0}"
-msgstr ""
+msgstr "{0} નાં પૂર્વદર્શનને ડાઉનલોડ કરી રહ્યા છે"
 
 #: ../src/CameraFileSelectionDialog.cs:199
 #: ../extensions/Exporters/CDExport/CDExport.cs:246
@@ -413,7 +413,7 @@ msgstr "ચિત્રોને સ્થળાંતર કરી રહ્ય
 #: ../src/CameraFileSelectionDialog.cs:220
 #, csharp-format
 msgid "Copying file {0} of {1}"
-msgstr ""
+msgstr "{1} ની ફાઇલ {0} ની નકલ કરી રહ્યા છે"
 
 #: ../src/CameraFileSelectionDialog.cs:235
 msgid "Error transferring file"
@@ -421,16 +421,16 @@ msgstr ""
 
 #: ../src/CameraFileSelectionDialog.cs:244
 msgid "Done Copying Files"
-msgstr ""
+msgstr "ફાઇલોની નકલ કરવાનું પૂરુ થયુ"
 
 #: ../src/CameraFileSelectionDialog.cs:246
 msgid "Download Complete"
-msgstr ""
+msgstr "ડાઉનલોડ સમાપ્ત"
 
 #: ../src/CameraFileSelectionDialog.cs:271
 #, csharp-format
 msgid "Transferring \"{0}\" from camera"
-msgstr ""
+msgstr "કેમેરા માંથી \"{0}\" નું પરિવહન કરી રહ્યા છે"
 
 #: ../src/CameraSelectionDialog.cs:29 ../src/Widgets/InfoBox.cs:230
 msgid "Camera"
@@ -443,7 +443,7 @@ msgstr "પોર્ટ"
 #: ../src/Core.cs:203
 #, csharp-format
 msgid "No photos matching {0} found"
-msgstr ""
+msgstr "ફોટો બંધબેસતા {0} શોધાયા નથી"
 
 #: ../src/Core.cs:204
 #, csharp-format
@@ -478,18 +478,18 @@ msgstr ""
 #, csharp-format
 msgid "Modified"
 msgid_plural "Modified ({0})"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "બદલાયેલ"
+msgstr[1] "બદલાયેલ ({0})"
 
 #: ../src/Core/Photo.cs:516
 #, csharp-format
 msgid "Modified in {1}"
-msgstr ""
+msgstr "{1} માં બદલાયેલ"
 
 #: ../src/Core/Photo.cs:516
 #, csharp-format
 msgid "Modified in {1} ({0})"
-msgstr ""
+msgstr "{1} ({0}) માં બદલાયેલ"
 
 #. Note that the original version is never stored in the photo_versions table in the
 #. database.
@@ -535,7 +535,7 @@ msgstr "કાપો"
 
 #: ../src/Editors/CropEditor.cs:73
 msgid "Select the area that needs cropping."
-msgstr ""
+msgstr "વિસ્તારને પસંદ કરો કે જેને કાપવાની જરૂર હોય."
 
 #: ../src/Editors/CropEditor.cs:98
 msgid "No Constraint"
@@ -579,11 +579,11 @@ msgstr ""
 
 #: ../src/FSpot.addin.xml.h:1
 msgid "Copy Photo Locat_ion"
-msgstr ""
+msgstr "ફોટો સ્થાનની નકલ કરો (_i)"
 
 #: ../src/FSpot.addin.xml.h:2
 msgid "Export to"
-msgstr ""
+msgstr "તેમાં નિકાસ કરો"
 
 #: ../src/FSpot.addin.xml.h:3
 msgid "Open _With"
@@ -609,7 +609,7 @@ msgstr "સાધનો"
 
 #: ../src/FSpot.addin.xml.h:8 ../src/f-spot.glade.h:137
 msgid "_Attach Tag"
-msgstr ""
+msgstr "ટેગને જોડો (_A)"
 
 #: ../src/FSpot.addin.xml.h:9 ../src/f-spot.glade.h:148
 msgid "_Delete From Drive"
@@ -636,7 +636,7 @@ msgstr "છોડી દો"
 #: ../src/Filters/ResizeFilter.cs:70 ../src/Filters/SharpFilter.cs:52
 #, csharp-format
 msgid "No way to save files of type \"{0}\""
-msgstr ""
+msgstr "પ્રકાર \"{0}\" ની ફાઇલોને સંગ્રહ કરવા માટે રસ્તો નથી"
 
 #: ../src/FormClient.cs:295
 msgid "Unhandled exception"
@@ -665,11 +665,11 @@ msgstr "સંપૂર્ણસ્ક્રીન માંથી બહાર 
 #: ../src/FullScreenView.cs:81 ../src/MainWindow.cs:319
 #: ../src/SingleView.cs:103
 msgid "Slideshow"
-msgstr ""
+msgstr "તકતી પૂર્વદર્શન"
 
 #: ../src/FullScreenView.cs:82
 msgid "Start slideshow"
-msgstr ""
+msgstr "તકતી પૂર્વદર્શનને શરૂ કરો"
 
 #: ../src/FullScreenView.cs:128
 msgid "Slide transition:"
@@ -681,7 +681,7 @@ msgstr ""
 
 #: ../src/GlTransition.cs:104
 msgid "Flip"
-msgstr ""
+msgstr "ફ્લિપ"
 
 #: ../src/GlTransition.cs:147
 msgid "Cover"
@@ -697,7 +697,7 @@ msgstr ""
 
 #: ../src/GlTransition.cs:259
 msgid "Split"
-msgstr ""
+msgstr "અલગ કરો"
 
 #: ../src/GlTransition.cs:370
 msgid "Push"
@@ -729,7 +729,7 @@ msgstr ""
 
 #: ../src/GroupSelector.cs:529 ../src/f-spot.glade.h:140
 msgid "_Clear Date Range"
-msgstr ""
+msgstr "તારીખની સીમાને સાફ કરો (_C)"
 
 #: ../src/Imaging/Exif.cs:228
 msgid "Image Directory"
@@ -737,7 +737,7 @@ msgstr "ઇમેજ ડિરેક્ટરી"
 
 #: ../src/Imaging/Exif.cs:230
 msgid "Thumbnail Directory"
-msgstr ""
+msgstr "થમ્ભનેઇલ ડિરેક્ટરી"
 
 #: ../src/Imaging/Exif.cs:232
 msgid "Exif Directory"
@@ -749,7 +749,7 @@ msgstr "GPS ડિરેક્ટરી"
 
 #: ../src/Imaging/Exif.cs:236
 msgid "InterOperability Directory"
-msgstr ""
+msgstr "InterOperability ડિરેક્ટરી"
 
 #: ../src/Imaging/Exif.cs:238
 msgid "Unknown Directory"
@@ -757,11 +757,11 @@ msgstr "અજ્ઞાત ડિરેક્ટરી"
 
 #: ../src/Imaging/ImageFile.cs:91
 msgid "Writing to this file format is not supported"
-msgstr ""
+msgstr "આ ફાઇલ બંધારણને લખવાનું આધારભૂત નથી"
 
 #: ../src/Imaging/IptcFile.cs:145
 msgid "IPTC Information Interchange Model (IIM) Version number"
-msgstr ""
+msgstr "IPTC Information Interchange Model (IIM) આવૃત્તિ નંબર"
 
 #: ../src/Imaging/IptcFile.cs:147
 msgid "OSI Destination routing information"
@@ -805,11 +805,11 @@ msgstr ""
 
 #: ../src/Imaging/IptcFile.cs:170
 msgid "Abstract Relationship Method (ARM) identifier"
-msgstr ""
+msgstr "Abstract Relationship Method (ARM) ઓળખનાર"
 
 #: ../src/Imaging/IptcFile.cs:172
 msgid "Abstract Relationship Method (ARM) version number."
-msgstr ""
+msgstr "Abstract Relationship Method (ARM) આવૃત્તિ નંબર."
 
 #: ../src/Imaging/IptcFile.cs:175
 msgid "Number identifying the IIM version this application record uses"
@@ -817,11 +817,11 @@ msgstr ""
 
 #: ../src/Imaging/IptcFile.cs:177
 msgid "Object type reference"
-msgstr ""
+msgstr "ઓબ્જેક્ટ પ્રકાર સંદર્ભ"
 
 #: ../src/Imaging/IptcFile.cs:182
 msgid "Object attribute reference"
-msgstr ""
+msgstr "ઓબ્જેક્ટ ગુણધર્મ સંદર્ભ"
 
 #: ../src/Imaging/IptcFile.cs:188 ../src/Imaging/IptcFile.cs:192
 msgid "Object name"
@@ -841,7 +841,7 @@ msgstr ""
 
 #: ../src/Imaging/IptcFile.cs:200
 msgid "Copyright information for"
-msgstr ""
+msgstr "તે માટે કોપીરાઇટ જાણકારી"
 
 #: ../src/Imaging/IptcFile.cs:203
 msgid "Full name of the country of the focus of the content"
@@ -871,7 +871,7 @@ msgstr ""
 
 #: ../src/Imaging/IptcFile.cs:222
 msgid "Headline of the content"
-msgstr ""
+msgstr "સમાવિષ્ટનું હેડલાઇન"
 
 #: ../src/Imaging/IptcFile.cs:225
 msgid "Instructions from the creator to the receiver not covered by other fields"
@@ -891,12 +891,12 @@ msgstr "ફોલ્ડરને પસંદ કરો"
 
 #: ../src/ImportCommand.cs:259
 msgid "(No Cameras Detected)"
-msgstr ""
+msgstr "(કેમેરાઓ શોધાયેલ નથી)"
 
 #: ../src/ImportCommand.cs:404
 #, csharp-format
 msgid "Loading {0} of {1}"
-msgstr ""
+msgstr "{1} નાં {0} ને લોડ કરી રહ્યા છે"
 
 #: ../src/ImportCommand.cs:470
 msgid "Done Loading"
@@ -916,7 +916,7 @@ msgstr "ડિરેક્ટરી અસ્તિત્વ ધરાવતી 
 msgid ""
 "The directory you selected \"{0}\" does not exist.  Please choose a "
 "different directory"
-msgstr ""
+msgstr "ડિરેક્ટરી જે તમે પસંદ કરેલ \"{0}\" છે તે અસ્તિત્વ ધરાવતી નથી.  મહેરબાની કરીને વિવિધ ડિરેક્ટરીને પસંદ કરો"
 
 #. Note for translators: 'Import Tags' is no command, it means 'Tags used in Import'
 #: ../src/ImportCommand.cs:724 ../src/ImportCommand.cs:726
@@ -993,7 +993,7 @@ msgstr "બ્રાઉઝ કરો"
 
 #: ../src/MainWindow.cs:301
 msgid "Browse many photos simultaneously"
-msgstr ""
+msgstr "એકીસાથે ઘણાબધા ફોટોને બ્રાઉઝ કરો"
 
 #: ../src/MainWindow.cs:305
 msgid "Edit Image"
@@ -1013,7 +1013,7 @@ msgstr "ફોટાઓની સંપૂર્ણસ્ક્રીનને �
 
 #: ../src/MainWindow.cs:321 ../src/SingleView.cs:105
 msgid "View photos in a slideshow"
-msgstr ""
+msgstr "તકતી પૂર્વદર્શનમાં ફોટોને દર્શાવો"
 
 #: ../src/MainWindow.cs:336
 msgid "Previous photo"
@@ -1040,7 +1040,7 @@ msgstr "ટેગો"
 #: ../extensions/Exporters/GalleryExport/GalleryExport.cs:783
 #, csharp-format
 msgid "{0} of {1}"
-msgstr ""
+msgstr "{1} નો {0}"
 
 #: ../src/MainWindow.cs:1673
 msgid "No cameras detected."
@@ -1051,6 +1051,8 @@ msgid ""
 "F-Spot was unable to find any cameras attached to this system.  Double check "
 "that the camera is connected and has power"
 msgstr ""
+"F-Spot એ આ સિસ્ટમમાં કોઇપણ કેમેરાને શોધવામાં અસમર્થ હતી.  બેવાર ચકાસો કે જે કેમેરા જોડાયેલ છે "
+"અને તેની પાસે પાવર છે"
 
 #: ../src/MainWindow.cs:1713
 msgid "Error connecting to camera"
@@ -1059,15 +1061,15 @@ msgstr "કેમેરાને જોડવા દરમ્યાન ભૂલ
 #: ../src/MainWindow.cs:1714
 #, csharp-format
 msgid "Received error \"{0}\" while connecting to camera"
-msgstr ""
+msgstr "ભૂલ \"{0}\" મળેલ છે જ્યારે કેમેરાને જોડી રહ્યા હોય છે"
 
 #. Translators, The singular case will never happen here.
 #: ../src/MainWindow.cs:2053
 #, csharp-format
 msgid "Merge the selected tag"
 msgid_plural "Merge the {0} selected tags?"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} પસંદ થયેલ ટેગને ભેગા કરો"
+msgstr[1] "{0} પસંદ થયેલ ટેગોને ભેગા કરો"
 
 #: ../src/MainWindow.cs:2080
 msgid ""
@@ -1090,15 +1092,15 @@ msgstr[1] ""
 #, csharp-format
 msgid "{0} Photo"
 msgid_plural "{0} Photos"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} ફોટો"
+msgstr[1] "{0} ફોટાઓ"
 
 #: ../src/MainWindow.cs:2292
 #, csharp-format
 msgid " ({0} selected)"
 msgid_plural " ({0} selected)"
 msgstr[0] ""
-msgstr[1] ""
+msgstr[1] " ({0} પસંદ થયેલ છે)"
 
 #: ../src/MainWindow.cs:2373
 msgid "_Ok"
@@ -1111,7 +1113,7 @@ msgstr "ચિત્રને કાઢવા દરમ્યાન ભૂલ"
 #: ../src/MainWindow.cs:2379
 #, csharp-format
 msgid "No permission to delete the file:{1}{0}"
-msgstr ""
+msgstr "ફાઇલને કાઢી નાંખવા માટે પરવાનગી નથી:{1}{0}"
 
 #: ../src/MainWindow.cs:2383
 #, csharp-format
@@ -1122,20 +1124,20 @@ msgstr ""
 #, csharp-format
 msgid "Delete the selected photo permanently?"
 msgid_plural "Delete the {0} selected photos permanently?"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "કાયમ માટે પસંદ થયેલ ફોટાને કાઢી નાંખો?"
+msgstr[1] "કાયમ માટે {0} પસંદ થયેલ ફોટાઓને કાઢી નાંખો?"
 
 #: ../src/MainWindow.cs:2419
 msgid "This deletes all versions of the selected photo from your drive."
 msgid_plural "This deletes all versions of the selected photos from your drive."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "આ તમારી ડ્રાઇવ માંથી પસંદ થયેલ ફોટોની બધી આવૃત્તિ ને કાઢી નાંખે છે."
+msgstr[1] "આ તમારી ડ્રાઇવ માંથી પસંદ થયેલ ફોટાઓની બધી આવૃત્તિ ને કાઢી નાંખે છે."
 
 #: ../src/MainWindow.cs:2422
 msgid "_Delete photo"
 msgid_plural "_Delete photos"
 msgstr[0] "ફોટોને કાઢી નાંખો (_D)"
-msgstr[1] ""
+msgstr[1] "ફોટાઓને કાઢી નાંખો (_D)"
 
 #: ../src/MainWindow.cs:2458
 #, csharp-format
@@ -1150,6 +1152,8 @@ msgid ""
 "lost. The photos remain on your computer and can be imported into F-Spot "
 "again."
 msgstr ""
+"જો તમે F-Spot કેટલોગ માંથી ફોટાઓને દૂર કરો તો બધી ટેગ જાણકારી ગુમ થઇ જશે. ફોટાઓ તમારા કૉમ્પ્યુટર પર રહેલાં છે અને "
+"ફરીથી F-Spot માં આયાત કરી શકાય છે."
 
 #: ../src/MainWindow.cs:2464
 msgid "_Remove from Catalog"
@@ -1158,12 +1162,12 @@ msgstr "કેટલોગ માંથી દૂર કરો (_R)"
 #: ../src/MainWindow.cs:2527
 #, csharp-format
 msgid "Delete tag \"{0}\"?"
-msgstr ""
+msgstr "ટેગ \"{0}\" ને કાઢી નાંખો?"
 
 #: ../src/MainWindow.cs:2529
 #, csharp-format
 msgid "Delete the {0} selected tags?"
-msgstr ""
+msgstr "{0} પસંદ થયેલ ટેગોને કાઢી નાંખો?"
 
 #: ../src/MainWindow.cs:2534
 msgid "photo"
@@ -1181,8 +1185,8 @@ msgstr[1] ""
 #: ../src/MainWindow.cs:2541
 msgid "_Delete tag"
 msgid_plural "_Delete tags"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "ટેગને કાઢી નાંખો (_D)"
+msgstr[1] "ટેગોને કાઢી નાંખો (_D)"
 
 #. A Category is not empty. Can not delete it.
 #: ../src/MainWindow.cs:2555
@@ -1199,14 +1203,14 @@ msgstr ""
 #: ../src/MainWindow.cs:2994
 msgid "Rotate selected photo left"
 msgid_plural "Rotate selected photos left"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "પસંદ થયેલ ફોટોને ડાબી તરફ ફેરવો"
+msgstr[1] "પસંદ થયેલ ફોટાઓને ડાબી તરફ ફેરવો"
 
 #: ../src/MainWindow.cs:3007
 msgid "Rotate selected photo right"
 msgid_plural "Rotate selected photos right"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "પસંદ થયેલ ફોટોને જમણી તરફ ફેરવો"
+msgstr[1] "પસંદ થયેલ ફોટાઓને જમણી તરફ ફેરવો"
 
 #: ../src/MainWindow.cs:3015
 #, csharp-format
@@ -1219,14 +1223,14 @@ msgstr[1] "પસંદ થયેલ ટેગો ને શોધો (_S)"
 #, csharp-format
 msgid "Find Selected Tag _With"
 msgid_plural "Find Selected Tags _With"
-msgstr[0] " "
-msgstr[1] ""
+msgstr[0] "ની સાથે પસંદ થયેલ ટેગને શોધો (_W)"
+msgstr[1] "ની સાથે પસંદ થયેલ ટેગોને શોધો (_W)"
 
 #: ../src/MainWindow.cs:3057
 msgid "Create New Version?"
 msgid_plural "Create New Versions?"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "નવી આવૃત્તિને બનાવો?"
+msgstr[1] "નવી આવૃત્તિઓને બનાવો?"
 
 #: ../src/MainWindow.cs:3059
 #, csharp-format
@@ -1265,7 +1269,7 @@ msgstr ""
 
 #: ../src/MetadataStore.cs:24
 msgid "Planar Configuration"
-msgstr ""
+msgstr "પ્લાનર રૂપરેખાંકન"
 
 #: ../src/MetadataStore.cs:26
 msgid "Orientation"
@@ -1297,7 +1301,7 @@ msgstr ""
 
 #: ../src/MetadataStore.cs:40
 msgid "Components Configuration"
-msgstr ""
+msgstr "ઘટકો રૂપરેખાંકન"
 
 #: ../src/MetadataStore.cs:42
 msgid "Light Source"
@@ -1321,7 +1325,7 @@ msgstr ""
 
 #: ../src/MetadataStore.cs:52
 msgid "File Source Type"
-msgstr ""
+msgstr "ફાઇલ સ્ત્રોત પ્રકાર"
 
 #: ../src/MetadataStore.cs:54
 msgid "Scene Capture Type"
@@ -1380,7 +1384,7 @@ msgstr ""
 
 #: ../src/PhotoVersionCommands.cs:138
 msgid "Really Delete?"
-msgstr ""
+msgstr "ખરેખર કાઢવુ છે?"
 
 #: ../src/PhotoVersionCommands.cs:139
 msgid "Cancel"
@@ -1393,7 +1397,7 @@ msgstr "કાઢી નાંખો"
 #: ../src/PhotoVersionCommands.cs:144
 #, csharp-format
 msgid "Really delete version \"{0}\"?"
-msgstr ""
+msgstr "ખરેખર આવૃત્તિ \"{0}\" ને કાઢવી છે?"
 
 #: ../src/PhotoVersionCommands.cs:154
 msgid "Could not delete a version"
@@ -1439,7 +1443,7 @@ msgstr "શોધો: "
 
 #: ../src/QueryWidget.cs:52
 msgid "Untagged photos"
-msgstr ""
+msgstr "ટેગ ન થયેલ ફોટાઓ"
 
 #: ../src/QueryWidget.cs:60
 msgid "Rated photos"
@@ -1452,15 +1456,15 @@ msgstr ""
 
 #: ../src/QueryWidget.cs:89
 msgid "Clear search"
-msgstr ""
+msgstr "શોધ ને સાફ કરો"
 
 #: ../src/QueryWidget.cs:96
 msgid "Refresh search"
-msgstr ""
+msgstr "શોધ ને તાજુ કરો"
 
 #: ../src/QueryWidget.cs:98
 msgid "No matching photos found"
-msgstr ""
+msgstr "બંધબેસતા ફોટાઓ શોધાયા નથી"
 
 #: ../src/QueryWidget.cs:136
 msgid "Hide _Find Bar"
@@ -1472,7 +1476,7 @@ msgstr ""
 
 #: ../src/RotateCommand.cs:94 ../src/RotateCommand.cs:109
 msgid "Unable to rotate this type of photo"
-msgstr ""
+msgstr "ફોટોનાં આ પ્રકારને ફેરવવામાં અસમર્થ"
 
 #: ../src/RotateCommand.cs:129
 msgid "Unable to rotate readonly file"
@@ -1485,7 +1489,7 @@ msgstr "ફોટાઓને ફેરવી રહ્યા છે"
 #: ../src/RotateCommand.cs:207
 #, csharp-format
 msgid "Rotating photo \"{0}\""
-msgstr ""
+msgstr "ફોટો \"{0}\" ને ફેરવી રહ્યા છે"
 
 #: ../src/RotateCommand.cs:220
 msgid "Directory not found"
@@ -1525,7 +1529,7 @@ msgstr "ઇમેઇલની તૈયારી કરી રહ્યા છ�
 #: ../src/SendEmail.cs:291
 #, csharp-format
 msgid "Exporting picture \"{0}\""
-msgstr ""
+msgstr "ચિત્ર \"{0}\" ની નિકાસ કરી રહ્યા છે"
 
 #: ../src/SendEmail.cs:313
 msgid "Error processing image"
@@ -1543,11 +1547,11 @@ msgstr "મારા ફોટાઓ"
 
 #: ../src/SingleView.cs:88
 msgid "Rotate photo left"
-msgstr ""
+msgstr "ફોટોને ડાબી તરફ ફેરવો"
 
 #: ../src/SingleView.cs:93
 msgid "Rotate photo right"
-msgstr ""
+msgstr "ફોટોને જમણી તરફ ફેરવો"
 
 #. Obsolete, remove after db rev4
 #: ../src/SingleView.cs:128 ../src/UI.Dialog/ui/PreferenceDialog.glade.h:14
@@ -1561,7 +1565,7 @@ msgstr "ખોલો"
 
 #: ../src/SingleView.cs:454
 msgid "Set as Background"
-msgstr ""
+msgstr "પાશ્ર્વ ભાગ તરીકે સુયોજિત કરો"
 
 #: ../src/TagCommands.cs:91 ../src/TagCommands.cs:219
 #: ../src/TagSelectionWidget.cs:506
@@ -1591,7 +1595,7 @@ msgstr "ઇમેજને લોડ કરવામાં અસમર્થ"
 #: ../src/TagCommands.cs:403
 #, csharp-format
 msgid "Unable to load \"{0}\" as icon for the tag"
-msgstr ""
+msgstr "ટેગ માટે ચિહ્ન તરીકે \"{0}\" ને લોડ કરવામાં અસમર્થ"
 
 #: ../src/TagCommands.cs:447
 #, csharp-format
@@ -1601,7 +1605,7 @@ msgstr ""
 #: ../src/TagCommands.cs:477
 #, csharp-format
 msgid "Edit Icon for Tag {0}"
-msgstr ""
+msgstr "ટેગ {0} માટે ચિહ્નમાં ફેરફાર કરો"
 
 #: ../src/TagCommands.cs:493
 msgid "Select Photo from file"
@@ -1648,8 +1652,8 @@ msgstr[1] ""
 #: ../src/TagPopup.cs:56
 msgid "Remove Tag From Selection"
 msgid_plural "Remove Tags From Selection"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "પસંદગીમાંથી ટેગને દૂર કરો"
+msgstr[1] "પસંદગીમાંથી ટેગોને દૂર કરો"
 
 #: ../src/TagPopup.cs:62
 msgid "Merge Tags"
@@ -1658,12 +1662,12 @@ msgstr "ટેગોને ભેગા કરો"
 #: ../src/TagQueryWidget.cs:32
 #, csharp-format
 msgid "Include Photos Tagged \"{0}\""
-msgstr ""
+msgstr "ફોટાઓ ટેગ થયેલ \"{0}\" ને સમાવો"
 
 #: ../src/TagQueryWidget.cs:37
 #, csharp-format
 msgid "Exclude Photos Tagged \"{0}\""
-msgstr ""
+msgstr "ફોટાઓ ટેગ થયેલ \"{0}\" ને બહાર નીકાળો"
 
 #: ../src/TagQueryWidget.cs:42
 msgid "Remove From Search"
@@ -1673,8 +1677,8 @@ msgstr "શોધ માંથી દૂર કરો"
 #, csharp-format
 msgid "Find _With"
 msgid_plural "Find _With"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "ની સાથે શોધો (_W)"
+msgstr[1] "ની સાથે શોધો (_W)"
 
 #: ../src/TagQueryWidget.cs:112
 msgid "All"
@@ -1683,7 +1687,7 @@ msgstr "બધુ"
 #: ../src/TagQueryWidget.cs:147 ../src/Term.cs:592
 #, csharp-format
 msgid "Not {0}"
-msgstr ""
+msgstr "{0} નથી"
 
 #: ../src/TagQueryWidget.cs:277
 msgid "Drag tags here to search for them"
@@ -1716,7 +1720,7 @@ msgstr "ઘટનાઓ"
 #. The label for the root category is used in new and edit tag dialogs
 #: ../src/TagStore.cs:234 ../src/Widgets/InfoBox.cs:400
 msgid "(None)"
-msgstr ""
+msgstr "(કંઇ નહિં)"
 
 #: ../src/Term.cs:298
 msgid " and "
@@ -1739,7 +1743,7 @@ msgstr "અથવા"
 
 #: ../src/UI.Dialog/AboutDialog.cs:70
 msgid "Photo management for GNOME"
-msgstr ""
+msgstr "GNOME માટે ફોટો વ્યવસ્થાપન"
 
 #: ../src/UI.Dialog/AboutDialog.cs:71
 msgid "Copyright © 2003-2008 Novell Inc."
@@ -1756,7 +1760,7 @@ msgstr "F-Spot વેબસાઇટ"
 #: ../src/UI.Dialog/AdjustTimeDialog.cs:118 ../src/f-spot.glade.h:114
 #, csharp-format
 msgid "Shift all photos by {0}"
-msgstr ""
+msgstr "{0} દ્દારા બધા ફોટાઓને ખસેડો"
 
 #: ../src/UI.Dialog/DateRangeDialog.cs:102
 msgid "Today"
@@ -1768,27 +1772,27 @@ msgstr "ગઇ કાલે"
 
 #: ../src/UI.Dialog/DateRangeDialog.cs:106
 msgid "Last 7 days"
-msgstr ""
+msgstr "છેલ્લા ૭ દિવસો"
 
 #: ../src/UI.Dialog/DateRangeDialog.cs:108
 msgid "Last 30 days"
-msgstr ""
+msgstr "છેલ્લા ૩૦ દિવસો"
 
 #: ../src/UI.Dialog/DateRangeDialog.cs:110
 msgid "Last 90 days"
-msgstr ""
+msgstr "છેલ્લા ૯૦ દિવસો"
 
 #: ../src/UI.Dialog/DateRangeDialog.cs:112
 msgid "Last 360 days"
-msgstr ""
+msgstr "છેલ્લા ૩૬૦ દિવસો"
 
 #: ../src/UI.Dialog/DateRangeDialog.cs:114
 msgid "Current Week (Mon-Sun)"
-msgstr ""
+msgstr "હાલનુ અઠવાડિયું (સોમવાર-રવિવાર)"
 
 #: ../src/UI.Dialog/DateRangeDialog.cs:116
 msgid "Previous Week (Mon-Sun)"
-msgstr ""
+msgstr "પહેલાનું અઠવાડિયું (સોમવાર-રવિવાર)"
 
 #: ../src/UI.Dialog/DateRangeDialog.cs:132
 #: ../src/UI.Dialog/ui/PreferenceDialog.glade.h:11
@@ -1805,7 +1809,7 @@ msgstr ""
 
 #: ../src/UI.Dialog/ExceptionDialog.cs:60
 msgid "Error Details"
-msgstr ""
+msgstr "ભૂલ વિગતો"
 
 #: ../src/UI.Dialog/ExceptionDialog.cs:104
 msgid "An unhandled exception was thrown: "
@@ -1848,7 +1852,7 @@ msgstr "<b>મેટાડેટા</b>"
 
 #: ../src/UI.Dialog/ui/PreferenceDialog.glade.h:4
 msgid "<b>Screensaver</b>"
-msgstr ""
+msgstr "<b>સ્ક્રીનસેવર</b>"
 
 #: ../src/UI.Dialog/ui/PreferenceDialog.glade.h:5
 msgid "<b>Theming</b>"
@@ -1859,12 +1863,14 @@ msgid ""
 "<small><i>Choose the folder where F-Spot should store newly imported photos</"
 "i></small>"
 msgstr ""
+"<small><i>ફોલ્ડરને પસંદ કરો જ્યાં F-Spot એ નવી આયાત થયેલ ફોટાઓનો સંગ્રહ થવો જોઇએ</"
+"i></small>"
 
 #: ../src/UI.Dialog/ui/PreferenceDialog.glade.h:7
 msgid ""
 "<small><i>Enable this option to store tags and descriptions inside \n"
 "supported image formats.</i></small>"
-msgstr ""
+msgstr "<small><i>આધારભૂત ઇમેજ બંધારણોની અંદર ટેગો અને વર્ણનોનો સંગ્રહ કરવા માટે આ વિકલ્પને સક્રિય કરો.</i></small>"
 
 #: ../src/UI.Dialog/ui/PreferenceDialog.glade.h:9
 msgid ""
@@ -1874,7 +1880,7 @@ msgstr ""
 
 #: ../src/UI.Dialog/ui/PreferenceDialog.glade.h:10
 msgid "<small><i>You'll have to restart F-Spot to load the new theme.</i></small>"
-msgstr ""
+msgstr "<small><i>તમારે નવી થીમને લોડ કરવા માટે F-Spot ને પુન:શરૂ કરવુ જ પડશે.</i></small>"
 
 #: ../src/UI.Dialog/ui/PreferenceDialog.glade.h:12
 msgid "Custom Theme"
@@ -1882,19 +1888,19 @@ msgstr ""
 
 #: ../src/UI.Dialog/ui/PreferenceDialog.glade.h:15
 msgid "From List:"
-msgstr ""
+msgstr "યાદી માંથી:"
 
 #: ../src/UI.Dialog/ui/PreferenceDialog.glade.h:16
 msgid "From gtkrc File:"
-msgstr ""
+msgstr "gtkrc ફાઇલ માંથી:"
 
 #: ../src/UI.Dialog/ui/PreferenceDialog.glade.h:17
 msgid "Images tagged with:"
-msgstr ""
+msgstr "ની સાથે ટેગ થયેલ ઇમેજો:"
 
 #: ../src/UI.Dialog/ui/PreferenceDialog.glade.h:18
 msgid "Make F-Spot your screensaver"
-msgstr ""
+msgstr "તમારા સ્ક્રીનસેવર માટે F-Spot ને બનાવો"
 
 #: ../src/UI.Dialog/ui/PreferenceDialog.glade.h:19 ../src/f-spot.glade.h:97
 msgid "Preferences"
@@ -1902,11 +1908,11 @@ msgstr "પસંદગીઓ"
 
 #: ../src/UI.Dialog/ui/PreferenceDialog.glade.h:20
 msgid "Select A Folder"
-msgstr ""
+msgstr "ફોલ્ડરને પસંદ કરો"
 
 #: ../src/UI.Dialog/ui/PreferenceDialog.glade.h:21
 msgid "Select A gtkrc File"
-msgstr ""
+msgstr "gtkrc ફાઇલને પસંદ કરો"
 
 #: ../src/UI.Dialog/ui/PreferenceDialog.glade.h:22
 msgid "System Theme"
@@ -1914,34 +1920,34 @@ msgstr "સિસ્ટમ થીમ"
 
 #: ../src/UI.Dialog/ui/PreferenceDialog.glade.h:23
 msgid "Try to use the system display profile"
-msgstr ""
+msgstr "સિસ્ટમ દર્શાવ પ્રોફાઇલને વાપરવા માટે પ્રયત્ન કરો"
 
 #: ../src/UI.Dialog/ui/PreferenceDialog.glade.h:24
 msgid "Write _metadata to file"
-msgstr ""
+msgstr "ફાઇલમાં મેટાડેટાને લખો (_m)"
 
 #: ../src/UI.Dialog/ui/PreferenceDialog.glade.h:25
 msgid "_Display:"
-msgstr ""
+msgstr "દર્શાવો (_D):"
 
 #: ../src/UI.Dialog/ui/PreferenceDialog.glade.h:26
 msgid "_Print output:"
-msgstr ""
+msgstr "પ્રિન્ટ આઉટપુટ (_P):"
 
 #: ../src/Updater.cs:528
 msgid "Updating F-Spot Database"
-msgstr ""
+msgstr "F-Spot ડેટાબેઝને સુધારી રહ્યા છે"
 
 #: ../src/Updater.cs:529
 msgid ""
 "Please wait while your F-Spot gallery's database is updated. This may take "
 "some time."
-msgstr ""
+msgstr "મહેરબાની કરીને થોભો જ્યારે તમારો F-Spot ગેલરિનો ડેટાબેઝ સુધારેલ છે. આને અમુક સમય લાગી શકે છે."
 
 #. Mono.Unix.Error error = Mono.Unix.Stdlib.GetLastError ();
 #: ../src/Utils/Unix.cs:35
 msgid "Unable to create temporary file"
-msgstr ""
+msgstr "કામચલાઉ ફાઇલને બનાવવામાં અસમર્થ"
 
 #: ../src/Utils/GnomeUtil.cs:49
 msgid ""
@@ -1951,18 +1957,18 @@ msgstr ""
 
 #: ../src/Widgets/CustomPrintWidget.cs:98
 msgid "Page Setup"
-msgstr ""
+msgstr "પાનું સુયોજન"
 
 #: ../src/Widgets/CustomPrintWidget.cs:102
 #: ../src/Widgets/CustomPrintWidget.cs:106
 #: ../src/Widgets/CustomPrintWidget.cs:112
 #, csharp-format
 msgid "Paper Size: {0} x {1} mm"
-msgstr ""
+msgstr "પેપર માપ: {0} x {1} mm"
 
 #: ../src/Widgets/CustomPrintWidget.cs:109
 msgid "Set Page Size and Orientation"
-msgstr ""
+msgstr "પાનાનું માપ અને દિશાને સુયોજિત કરો"
 
 #: ../src/Widgets/CustomPrintWidget.cs:124
 msgid "Photos per page"
@@ -1974,7 +1980,7 @@ msgstr ""
 #. ppp9.Toggled += TriggerChanged;
 #: ../src/Widgets/CustomPrintWidget.cs:136
 msgid "Repeat"
-msgstr ""
+msgstr "વારંવાર કરો"
 
 #: ../src/Widgets/CustomPrintWidget.cs:137
 msgid "Print cut marks"
@@ -1987,11 +1993,11 @@ msgstr ""
 #. Note for translators: "Zoom" is a Fit Mode
 #: ../src/Widgets/CustomPrintWidget.cs:149
 msgid "Zoom"
-msgstr ""
+msgstr "નાનું મોટુ કરો"
 
 #: ../src/Widgets/CustomPrintWidget.cs:150
 msgid "Fill"
-msgstr ""
+msgstr "ભરો"
 
 #: ../src/Widgets/CustomPrintWidget.cs:151
 msgid "Scaled"
@@ -1999,7 +2005,7 @@ msgstr ""
 
 #: ../src/Widgets/CustomPrintWidget.cs:157
 msgid "White borders"
-msgstr ""
+msgstr "સફેદ કિનારીઓ"
 
 #: ../src/Widgets/CustomPrintWidget.cs:161
 msgid "Custom Text: "
@@ -2014,7 +2020,7 @@ msgstr "ફેરફાર કરો"
 #: ../extensions/Tools/MetaPixel/MetaPixel.cs:45
 #: ../extensions/Tools/PictureTile/PictureTile.cs:51
 msgid "No selection available"
-msgstr ""
+msgstr "પસંદગી ઉપલ્બધ નથી"
 
 #: ../src/Widgets/EditorPage.cs:202
 msgid ""
@@ -2025,8 +2031,8 @@ msgstr ""
 #: ../src/Widgets/EditorPage.cs:220
 msgid "Error saving adjusted photo"
 msgid_plural "Error saving adjusted photos"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "ગોઠવાયેલ ફોટોને સંગ્રહ કરતી વખતે ભૂલ"
+msgstr[1] "ગોઠવાયેલ ફોટાઓને સંગ્રહ કરતી વખતે ભૂલ"
 
 #: ../src/Widgets/EditorPage.cs:222
 #, csharp-format
@@ -2045,7 +2051,7 @@ msgstr "અને"
 
 #: ../src/Widgets/InfoBox.cs:182
 msgid "Histogram"
-msgstr ""
+msgstr "હિસ્ટોગ્રામ"
 
 #: ../src/Widgets/InfoBox.cs:217
 msgid "Date"
@@ -2079,7 +2085,7 @@ msgstr "(અજ્ઞાત)"
 
 #: ../src/Widgets/InfoBox.cs:419
 msgid "(wrong format)"
-msgstr ""
+msgstr "(ખોટુ બંધારણ)"
 
 #: ../src/Widgets/InfoBox.cs:558
 msgid "(File read error)"
@@ -2107,7 +2113,7 @@ msgstr ""
 
 #: ../src/Widgets/InfoBox.cs:655
 msgid "(At least one File not found)"
-msgstr ""
+msgstr "(ઓછામાં ઓછી એક ફાઇલ શોધાઇ નથી)"
 
 #: ../src/Widgets/InfoBox.cs:772
 msgid "Show Photo Name"
@@ -2127,7 +2133,7 @@ msgstr ""
 
 #: ../src/Widgets/InfoBox.cs:808
 msgid "Show Focal Length"
-msgstr ""
+msgstr "ફોકલ લંબાઇને બતાવો"
 
 #: ../src/Widgets/InfoBox.cs:817
 msgid "Show Camera"
@@ -2143,15 +2149,15 @@ msgstr "મેટાડેટા"
 
 #: ../src/Widgets/MetadataDisplay.cs:104
 msgid "Extended Metadata"
-msgstr ""
+msgstr "વિસ્તરેલ મેટાડેટા"
 
 #: ../src/Widgets/MetadataDisplay.cs:225
 msgid "Picasaweb"
-msgstr ""
+msgstr "પિકાસાવેબ"
 
 #: ../src/Widgets/MetadataDisplay.cs:227
 msgid "SmugMug"
-msgstr ""
+msgstr "SmugMug"
 
 #: ../src/Widgets/MetadataDisplay.cs:229
 msgid "Gallery2"
@@ -2160,24 +2166,24 @@ msgstr ""
 #. clear Extended Metadata
 #: ../src/Widgets/MetadataDisplay.cs:389
 msgid "No Extended Metadata Available"
-msgstr ""
+msgstr "વિસ્તરેલ મેટાડેટા ઉપલ્બધ નથી"
 
 #: ../src/Widgets/MetadataDisplay.cs:407
 msgid "No active photo"
-msgstr ""
+msgstr "સક્રિય ફોટો નથી"
 
 #: ../src/Widgets/MetadataDisplay.cs:409
 #, csharp-format
 msgid "The photo \"{0}\" does not exist"
-msgstr ""
+msgstr "ફોટો \"{0}\" અસ્તિત્વ ધરાવતુ નથી"
 
 #: ../src/Widgets/MetadataDisplay.cs:412
 msgid "No metadata available"
-msgstr ""
+msgstr "મેટાડેટા ઉપલ્બધ નથી"
 
 #: ../src/Widgets/OpenWithMenu.cs:69
 msgid "No applications available"
-msgstr ""
+msgstr "કાર્યક્રમો ઉપલ્બધ નથી"
 
 #: ../src/Widgets/RatingMenuItem.cs:56
 msgid "Rating:"
@@ -2198,7 +2204,7 @@ msgstr "શહેર"
 
 #: ../src/XmpTagsImporter.cs:93
 msgid "State"
-msgstr ""
+msgstr "સ્થિતિ"
 
 #. namespace
 #: ../src/f-spot.glade.h:1
@@ -2215,7 +2221,7 @@ msgstr "00:00:00"
 
 #: ../src/f-spot.glade.h:4
 msgid "1 of 1"
-msgstr ""
+msgstr "૧ નું ૧"
 
 #: ../src/f-spot.glade.h:5
 msgid "1024 px"
@@ -2268,24 +2274,24 @@ msgstr ""
 #: ../src/f-spot.glade.h:16
 #: ../extensions/Exporters/FolderExport/FolderExport.glade.h:3
 msgid "<b>Destination</b>"
-msgstr ""
+msgstr "<b>લક્ષ્ય</b>"
 
 #: ../src/f-spot.glade.h:17
 msgid "<b>From External Photo</b>"
-msgstr ""
+msgstr "<b>બહારનાં ફોટો માંથી</b>"
 
 #: ../src/f-spot.glade.h:18
 msgid "<b>From Photo</b>"
-msgstr ""
+msgstr "<b>ફોટો માંથી</b>"
 
 #: ../src/f-spot.glade.h:19
 #: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:2
 msgid "<b>Gallery</b>"
-msgstr ""
+msgstr "<b>ગેલરિ</b>"
 
 #: ../src/f-spot.glade.h:20
 msgid "<b>Image Interpolation</b>"
-msgstr ""
+msgstr "<b>ઇમેજ ઇન્ટરપોલેશન</b>"
 
 #: ../src/f-spot.glade.h:21
 msgid "<b>Max Rating</b>"
@@ -2311,11 +2317,11 @@ msgstr ""
 
 #: ../src/f-spot.glade.h:25
 msgid "<b>Preview</b>"
-msgstr ""
+msgstr "<b>પૂર્વદર્શન</b>"
 
 #: ../src/f-spot.glade.h:26
 msgid "<b>Reference Photo</b>"
-msgstr ""
+msgstr "<b>સંદર્ભ ફોટો</b>"
 
 #: ../src/f-spot.glade.h:27
 msgid "<b>Size</b>"
@@ -2336,11 +2342,11 @@ msgstr "<b>સાર</b>"
 
 #: ../src/f-spot.glade.h:30
 msgid "<b>Transparent Parts</b>"
-msgstr ""
+msgstr "<b>પારદર્શક ભાગો</b>"
 
 #: ../src/f-spot.glade.h:31
 msgid "<b>View all pictures imported</b>"
-msgstr ""
+msgstr "<b>આયાત થયેલ બધા ચિત્રોને દર્શાવો</b>"
 
 #: ../src/f-spot.glade.h:32
 msgid "<b>_White Balance</b>"
@@ -2367,15 +2373,15 @@ msgstr ""
 
 #: ../src/f-spot.glade.h:36
 msgid "Adjust Time"
-msgstr ""
+msgstr "સમયને ગોઠવો"
 
 #: ../src/f-spot.glade.h:37
 msgid "Adjust _Time..."
-msgstr ""
+msgstr "સમય ને ગોઠવો (_T)..."
 
 #: ../src/f-spot.glade.h:38
 msgid "Adjusted date: "
-msgstr ""
+msgstr "ગોઠવાયેલ તારીખ: "
 
 #: ../src/f-spot.glade.h:39
 msgid "Arrange _by"
@@ -2383,7 +2389,7 @@ msgstr ""
 
 #: ../src/f-spot.glade.h:40
 msgid "As _background"
-msgstr ""
+msgstr "પાશ્ર્વભાગ તરીકે (_b)"
 
 #: ../src/f-spot.glade.h:41
 msgid "As _custom color: "
@@ -2395,11 +2401,11 @@ msgstr ""
 
 #: ../src/f-spot.glade.h:43
 msgid "Attach Tags:"
-msgstr ""
+msgstr "ટેગોને જોડો:"
 
 #: ../src/f-spot.glade.h:44
 msgid "Attach tag:"
-msgstr ""
+msgstr "ટેગને જોડો:"
 
 #: ../src/f-spot.glade.h:45
 #: ../extensions/Exporters/CDExport/CDExport.glade.h:3
@@ -2411,7 +2417,7 @@ msgstr ""
 
 #: ../src/f-spot.glade.h:47
 msgid "By _Date"
-msgstr ""
+msgstr "તારીખ દ્દારા (_D)"
 
 #: ../src/f-spot.glade.h:48
 msgid "By _Import Roll"
@@ -2439,7 +2445,7 @@ msgstr "સ્થાનની નકલ કરો (_i)"
 
 #: ../src/f-spot.glade.h:54
 msgid "Copy files to the Photos folder"
-msgstr ""
+msgstr "ફોટાઓ ફોલ્ડરની ફોઇલોની નકલ કરો"
 
 #: ../src/f-spot.glade.h:55
 msgid "Create Mail"
@@ -2479,7 +2485,7 @@ msgstr "મેઇલ મોકલો નહિં"
 
 #: ../src/f-spot.glade.h:64
 msgid "E-_Mail:"
-msgstr ""
+msgstr "ઇ-મેઇલ (_M):"
 
 #: ../src/f-spot.glade.h:65
 msgid "E_xport titles and comments"
@@ -2516,7 +2522,7 @@ msgstr "F-Spot"
 
 #: ../src/f-spot.glade.h:72
 msgid "F-Spot View"
-msgstr ""
+msgstr "F-Spot દ્રશ્ય"
 
 #: ../src/f-spot.glade.h:74
 msgid "Filter on selected rolls"
@@ -2585,7 +2591,7 @@ msgstr ""
 
 #: ../src/f-spot.glade.h:94
 msgid "Page Set_up..."
-msgstr ""
+msgstr "પાનાનું સુયોજન (_u)..."
 
 #: ../src/f-spot.glade.h:95
 msgid "Pause"
@@ -2597,7 +2603,7 @@ msgstr ""
 
 #: ../src/f-spot.glade.h:99
 msgid "Re_fresh Thumbnail"
-msgstr ""
+msgstr "થમ્ભનેઇલને તાજુ કરો (_f)"
 
 #: ../src/f-spot.glade.h:101
 msgid "Repair"
@@ -2605,11 +2611,11 @@ msgstr ""
 
 #: ../src/f-spot.glade.h:104
 msgid "Select Photos to Copy From Camera..."
-msgstr ""
+msgstr "કેમેરા માંથી નકલ કરવા માટે ફોટાઓને પસંદ કરો..."
 
 #: ../src/f-spot.glade.h:106
 msgid "Select _None"
-msgstr ""
+msgstr "કંઇ નહિં પસંદ કરો (_N)"
 
 #: ../src/f-spot.glade.h:107
 msgid "Select a Tag..."
@@ -2617,7 +2623,7 @@ msgstr "ટેગને પસંદ કરો..."
 
 #: ../src/f-spot.glade.h:108
 msgid "Select the camera from which you want to transfer files"
-msgstr ""
+msgstr "તમે કઇ ફાઇલોનું પરિવહન કરવા માંગો છો તેમાંથી કેમેરા ને પસંદ કરો"
 
 #: ../src/f-spot.glade.h:109
 msgid "Selected Camera: "
@@ -2694,7 +2700,7 @@ msgstr ""
 
 #: ../src/f-spot.glade.h:128
 msgid "Thumbnail _elements"
-msgstr ""
+msgstr "થમ્ભનેઇલ ઘટકો (_e)"
 
 #: ../src/f-spot.glade.h:129
 msgid "Tiny"
@@ -2710,23 +2716,23 @@ msgstr "કુલ મૂળભૂત માપ"
 
 #: ../src/f-spot.glade.h:132
 msgid "View"
-msgstr ""
+msgstr "દ્રશ્ય"
 
 #: ../src/f-spot.glade.h:133
 msgid "Zoom _in"
-msgstr ""
+msgstr "નાનું કરો (_i)"
 
 #: ../src/f-spot.glade.h:134
 msgid "Zoom _out"
-msgstr ""
+msgstr "મોટુ કરો (_o)"
 
 #: ../src/f-spot.glade.h:135
 msgid "Zoom in"
-msgstr ""
+msgstr "નાનું કરો"
 
 #: ../src/f-spot.glade.h:136
 msgid "Zoom out"
-msgstr ""
+msgstr "મોટુ કરો"
 
 #: ../src/f-spot.glade.h:138
 msgid "_Attach Tag to Selection"
@@ -2791,7 +2797,7 @@ msgstr "નિકાસ કરો (_E)"
 #: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:16
 #: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:20
 msgid "_Export tags"
-msgstr ""
+msgstr "ટેગોની નિકાસ કરો (_E)"
 
 #: ../src/f-spot.glade.h:155
 msgid "_Export to"
@@ -2802,7 +2808,7 @@ msgstr ""
 #: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:21
 #: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:13
 msgid "_Export to Album:"
-msgstr ""
+msgstr "આલ્બમમાં નિકાસ કરો (_E):"
 
 #: ../src/f-spot.glade.h:157
 msgid "_Exposure:"
@@ -2814,7 +2820,7 @@ msgstr ""
 
 #: ../src/f-spot.glade.h:159
 msgid "_Flickr"
-msgstr ""
+msgstr "Flickr (_F)"
 
 #: ../src/f-spot.glade.h:160
 msgid "_Folder"
@@ -2838,11 +2844,11 @@ msgstr "છુપાયેલ (_H)"
 
 #: ../src/f-spot.glade.h:165
 msgid "_Hue:"
-msgstr ""
+msgstr "હ્યુ (_H):"
 
 #: ../src/f-spot.glade.h:166
 msgid "_Icon:"
-msgstr ""
+msgstr "ચિહ્ન (_I):"
 
 #: ../src/f-spot.glade.h:167
 msgid "_Import..."
@@ -2878,11 +2884,11 @@ msgstr "નવી વિન્ડો (_N)"
 
 #: ../src/f-spot.glade.h:175
 msgid "_Open album in browser when done uploading"
-msgstr ""
+msgstr "જ્યારે અપલોડ કરવાનું પૂરુ થયુ હોય ત્યારે બ્રાઉઝરમાં આલ્બમને ખોલો (_O)"
 
 #: ../src/f-spot.glade.h:176
 msgid "_Open destination when done exporting"
-msgstr ""
+msgstr "જ્યારે નિકાસ કરવાનું પૂરુ થાય ત્યારે લક્ષ્યને ખોલો (_O)"
 
 #: ../src/f-spot.glade.h:177
 msgid "_Photo"
@@ -2939,7 +2945,7 @@ msgstr ""
 
 #: ../src/f-spot.glade.h:191
 msgid "_Slideshow"
-msgstr ""
+msgstr "તકતી પૂર્વદર્શન (_S)"
 
 #: ../src/f-spot.glade.h:192
 msgid "_Small"
@@ -2951,7 +2957,7 @@ msgstr ""
 
 #: ../src/f-spot.glade.h:194
 msgid "_Tag Icons"
-msgstr ""
+msgstr "ટેગ ચિહ્નો (_T)"
 
 #: ../src/f-spot.glade.h:195
 msgid "_Tag Name:"
@@ -2991,7 +2997,7 @@ msgstr "આવૃત્તિ (_V)"
 
 #: ../src/f-spot.glade.h:204
 msgid "_View"
-msgstr ""
+msgstr "દ્રશ્ય (_V)"
 
 #: ../src/f-spot.glade.h:205
 msgid "_Virtual Filesystem"
@@ -3032,7 +3038,7 @@ msgstr "x"
 
 #: ../tools/f-spot-screensaver.desktop.in.h:1
 msgid "Display a slideshow from F-Spot"
-msgstr ""
+msgstr "F-Spot માંથી તકતી પૂર્વદર્શનને દર્શાવો"
 
 #: ../tools/f-spot-screensaver.desktop.in.h:2
 msgid "F-Spot photos"
@@ -3045,7 +3051,7 @@ msgstr "CD (_C)..."
 #: ../extensions/Exporters/CDExport/CDExport.cs:162
 #, csharp-format
 msgid "Transferring picture \"{0}\" To CD"
-msgstr ""
+msgstr "CD માં ચિત્ર \"{0}\" ને પરિવહન કરી રહ્યા છે"
 
 #: ../extensions/Exporters/CDExport/CDExport.cs:177
 #: ../extensions/Exporters/FlickrExport/FlickrExport.cs:379
@@ -3090,7 +3096,7 @@ msgstr "CD ને બનાવો"
 
 #: ../extensions/Exporters/CDExport/CDExport.glade.h:6
 msgid "Size of the exported selection:"
-msgstr ""
+msgstr "નિકાસ થયેલ પસંદગીનું માપ:"
 
 #: ../extensions/Exporters/CDExport/CDExport.glade.h:7
 msgid "_Browse Previously Scheduled Files"
@@ -3106,7 +3112,7 @@ msgstr "23hq (_2)..."
 
 #: ../extensions/Exporters/FlickrExport/FlickrExport.addin.xml.h:2
 msgid "_Flickr..."
-msgstr ""
+msgstr "Flickr (_F)..."
 
 #: ../extensions/Exporters/FlickrExport/FlickrExport.addin.xml.h:3
 msgid "_Zooomr..."
@@ -3115,7 +3121,7 @@ msgstr ""
 #: ../extensions/Exporters/FlickrExport/FlickrExport.cs:105
 #: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:5
 msgid "Authorize"
-msgstr ""
+msgstr "સત્તા"
 
 #: ../extensions/Exporters/FlickrExport/FlickrExport.cs:111
 #, csharp-format
@@ -3131,7 +3137,7 @@ msgstr ""
 #: ../extensions/Exporters/FlickrExport/FlickrExport.cs:117
 #, csharp-format
 msgid "Logging into {0}"
-msgstr ""
+msgstr "{0} માં પ્રવેશી રહ્યા છે"
 
 #: ../extensions/Exporters/FlickrExport/FlickrExport.cs:118
 msgid "Checking credentials..."
@@ -3145,7 +3151,7 @@ msgstr ""
 #: ../extensions/Exporters/FlickrExport/FlickrExport.cs:128
 #, csharp-format
 msgid "Sign in as a different user"
-msgstr ""
+msgstr "વિવિધ વપરાશકર્તાઓ તરીકે પ્રવેશો"
 
 #: ../extensions/Exporters/FlickrExport/FlickrExport.cs:133
 #, csharp-format
@@ -3166,12 +3172,12 @@ msgstr ""
 #: ../extensions/Exporters/GalleryExport/GalleryExport.cs:779
 #, csharp-format
 msgid "Uploading picture \"{0}\""
-msgstr ""
+msgstr "ચિત્ર \"{0}\" ને અપલોડ કરી રહ્યા છે"
 
 #: ../extensions/Exporters/FlickrExport/FlickrExport.cs:367
 #, csharp-format
 msgid "Error Uploading To {0}: {1}"
-msgstr ""
+msgstr "{0} માં અપલોડ કરતી વખતે ભૂલ: {1}"
 
 #: ../extensions/Exporters/FlickrExport/FlickrExport.cs:381
 #: ../extensions/Exporters/GalleryExport/GalleryExport.cs:810
@@ -3241,7 +3247,7 @@ msgstr ""
 
 #: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:18
 msgid "_View photos in browser when done uploading"
-msgstr ""
+msgstr "જ્યારે અપલોડીંગ પૂરુ થાય ત્યારે બ્રાઉઝરમાં ફોટાઓને દેખાડો (_V)"
 
 #: ../extensions/Exporters/FolderExport/FolderExport.addin.xml.h:1
 msgid "F_older..."
@@ -3271,11 +3277,11 @@ msgstr ""
 #. Note for translators: light as clear, opposite as dark
 #: ../extensions/Exporters/FolderExport/FolderExport.cs:810
 msgid "Light"
-msgstr ""
+msgstr "ઝાંખુ"
 
 #: ../extensions/Exporters/FolderExport/FolderExport.cs:811
 msgid "Dark"
-msgstr ""
+msgstr "ઘટ્ટ"
 
 #. Abbreviation of previous
 #: ../extensions/Exporters/FolderExport/FolderExport.cs:991
@@ -3305,7 +3311,7 @@ msgstr "\n"
 
 #: ../extensions/Exporters/FolderExport/FolderExport.glade.h:4
 msgid "<b>Export Method</b>"
-msgstr ""
+msgstr "<b>પદ્દતિની નિકાસ કરો</b>"
 
 #: ../extensions/Exporters/FolderExport/FolderExport.glade.h:8
 msgid "Create _gallery using \"Original\""
@@ -3325,7 +3331,7 @@ msgstr "ટેગોની નિકાસ કરો (_t)"
 
 #: ../extensions/Exporters/FolderExport/FolderExport.glade.h:12
 msgid "Export tag _icons"
-msgstr ""
+msgstr "ટેગ ચિહ્નોની નિકાસ કરો (_i)"
 
 #: ../extensions/Exporters/FolderExport/FolderExport.glade.h:13
 msgid "Folder Export"
@@ -3349,7 +3355,7 @@ msgstr "ફક્ત ફાઇલોને સંગ્રહો (_S)"
 
 #: ../extensions/Exporters/GalleryExport/GalleryExport.addin.xml.h:1
 msgid "Web _Gallery..."
-msgstr ""
+msgstr "વેબ ગેલરિ (_G)..."
 
 #: ../extensions/Exporters/GalleryExport/GalleryExport.cs:52
 msgid ""
@@ -3508,7 +3514,7 @@ msgstr ""
 
 #: ../extensions/Exporters/GalleryExport/GalleryRemote.cs:710
 msgid "Error while creating new album"
-msgstr ""
+msgstr "ભૂલ જ્યારે નવા આલ્બમને બનાવી રહ્યા હોય "
 
 #: ../extensions/Exporters/GalleryExport/GalleryRemote.cs:711
 #, csharp-format
@@ -3524,7 +3530,7 @@ msgstr ""
 
 #: ../extensions/Exporters/FacebookExport/FacebookExport.cs:257
 msgid "Too many images to export"
-msgstr ""
+msgstr "નિકાસ કરવા માટે ઘણા બધી ઇમેજો"
 
 #: ../extensions/Exporters/FacebookExport/FacebookExport.cs:257
 msgid ""
@@ -3583,6 +3589,9 @@ msgid ""
 "\n"
 "{0}"
 msgstr ""
+"નવા આલ્બમને બનાવતી વખતે ભૂલ ઉદ્ભવી.\n"
+"\n"
+"{0}"
 
 #: ../extensions/Exporters/FacebookExport/FacebookExport.cs:528
 #: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:660
@@ -3598,7 +3607,7 @@ msgstr ""
 
 #: ../extensions/Exporters/FacebookExport/FacebookExport.glade.h:1
 msgid "Caption"
-msgstr ""
+msgstr "કેપ્શન"
 
 #: ../extensions/Exporters/FacebookExport/FacebookExport.glade.h:2
 msgid "Create a new album"
@@ -3660,7 +3669,7 @@ msgstr "ફાઇલોની નિકાસ કરી રહ્યા છે"
 #: ../extensions/Tools/MetaPixel/MetaPixel.cs:140
 #, csharp-format
 msgid "Preparing photo \"{0}\""
-msgstr ""
+msgstr "ફોટો \"{0}\" ની તૈયારી કરી રહ્યા છે"
 
 #: ../extensions/Exporters/ZipExport/ZipExport.glade.h:2
 msgid "_File name:"
@@ -3787,7 +3796,7 @@ msgstr ""
 #: ../extensions/Tools/PictureTile/PictureTile.cs:120
 #, csharp-format
 msgid "Processing \"{0}\""
-msgstr ""
+msgstr "\"{0}\" ની પ્રક્રિયા કરી રહ્યા છે"
 
 #: ../extensions/Tools/MetaPixel/MetaPixel.cs:236
 msgid "PhotoMosaics generated!"
@@ -3853,7 +3862,7 @@ msgstr "અટકેલ છે"
 
 #: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.addin.xml.h:1
 msgid "_PicasaWeb..."
-msgstr ""
+msgstr "પિકાસાવેબ (_P)..."
 
 #: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:441
 msgid "Error while creating Album"
@@ -3867,7 +3876,7 @@ msgstr ""
 #: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:620
 #, csharp-format
 msgid "{0} Sent"
-msgstr ""
+msgstr "{0} મોકલેલ"
 
 #: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:622
 #, csharp-format
@@ -3940,7 +3949,7 @@ msgstr "SmugMug (_S)..."
 #: ../extensions/Exporters/TabbloExport/Tabblo/Connection.cs:126
 #, csharp-format
 msgid "Uploading photo \"{0}\""
-msgstr ""
+msgstr "ફોટો \"{0}\" ને અપલોડ કરી રહ્યા છે"
 
 #: ../extensions/Exporters/TabbloExport/Tabblo/Connection.cs:181
 msgid "Logging into Tabblo"
@@ -3956,11 +3965,11 @@ msgstr ""
 
 #: ../extensions/Exporters/TabbloExport/TabbloExport.cs:166
 msgid "Done sending photos"
-msgstr ""
+msgstr "ફોટાઓને મોકલવાનું પૂરુ થયુ"
 
 #: ../extensions/Exporters/TabbloExport/TabbloExport.cs:168
 msgid "Upload complete"
-msgstr ""
+msgstr "અપલોડ સમાપ્ત"
 
 #: ../extensions/Exporters/TabbloExport/TabbloExport.cs:174
 msgid "Error uploading to Tabblo: "
@@ -3984,7 +3993,7 @@ msgstr ""
 
 #: ../extensions/Exporters/TabbloExport/TrustError.glade.h:4
 msgid "Always trust this site's certificate"
-msgstr ""
+msgstr "આ સાઇટનાં પ્રમાણપત્ર પર હંમેશા વિશ્ર્વાસ રાખો"
 
 #: ../extensions/Exporters/TabbloExport/TrustError.glade.h:5
 msgid "Do you wish to:"
@@ -3992,9 +4001,9 @@ msgstr ""
 
 #: ../extensions/Exporters/TabbloExport/TrustError.glade.h:6
 msgid "Trust Error"
-msgstr ""
+msgstr "વિશ્ર્વાસુ ભૂલ"
 
 #: ../extensions/Exporters/TabbloExport/TrustError.glade.h:7
 msgid "Trust the site's certificate this once"
-msgstr ""
+msgstr "એકવાર આ સાઇટનાં પ્રમાણપત્ર પર વિશ્ર્વાસ રાખો"
 
