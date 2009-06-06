@@ -158,7 +158,6 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/Filters/SharpFilter.cs	\
 	$(srcdir)/Filters/UniqueNameFilter.cs	\
 	$(srcdir)/Filters/WhiteListFilter.cs	\
-	$(srcdir)/FotkiRemote.cs		\
 	$(srcdir)/FormClient.cs			\
 	$(srcdir)/FullScreenView.cs		\
 	$(srcdir)/GdkGlx.cs			\
