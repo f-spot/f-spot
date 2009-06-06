@@ -131,7 +131,6 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/Editors/SepiaEditor.cs		\
 	$(srcdir)/Editors/SoftFocusEditor.cs		\
 	$(srcdir)/Editors/TiltEditor.cs		\
-	$(srcdir)/Editors/Old/OldEditor.cs		\
 	$(srcdir)/ExportStore.cs		\
 	$(srcdir)/Extensions/ExportMenuItemNode.cs	\
 	$(srcdir)/Extensions/IExporter.cs	\

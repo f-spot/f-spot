@@ -19,7 +19,6 @@ namespace FSpot.Widgets {
 		ProgressType load_async = ProgressType.Full;
 		bool progressive_display;
 		public GdkGlx.Context Glx;
-		private OldEditor editor;
 
 		public PhotoImageView (IBrowsableCollection query) : this (new BrowsablePointer (query, -1))
 		{
@@ -79,28 +78,6 @@ namespace FSpot.Widgets {
 				query.ItemsChanged += HandleQueryItemsChanged;
 			}
 #endif
-		}
-
-		public OldEditor Editor {
-			get { return editor; }
-			set {
-				value.Done += HandleEditorDone;
-
-				if (editor != null)
-					editor.Destroy ();
-				
-				editor = value;
-			}
-		}
-
-		private void HandleEditorDone (object sender, EventArgs args)
-		{
-			OldEditor old = sender as OldEditor;
-
-			old.Done -= HandleEditorDone;
-				
-			if (old == editor)
-				editor = null;
 		}
 
 		public Loupe Loupe {
