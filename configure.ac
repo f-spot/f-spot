@@ -323,6 +323,7 @@ src/Core/Defines.cs
 src/AssemblyInfo.cs
 src/f-spot.exe.config
 src/Cms.dll.config
+src/FSpot.Widgets.dll.config
 src/Makefile
 GKeyFile/Makefile
 glitz-sharp/Makefile

@@ -412,6 +412,7 @@ fspotlib_DATA = f-spot.exe.config	\
 		FSpot.JobScheduler.dll.mdb \
 		FSpot.Widgets.dll	\
 		FSpot.Widgets.dll.mdb	\
+		FSpot.Widgets.dll.config\
 		FSpot.Platform.dll	\
 		FSpot.Platform.dll.mdb
 
@@ -488,6 +489,7 @@ EXTRA_DIST =					\
 	f-spot.exe.config.in			\
 	f-spot.in				\
 	FSpot.Utils.dll.config			\
+	FSpot.Widgets.dll.config.in		\
 	Cms.dll.config.in
 
 CLEANFILES =					\
@@ -507,6 +509,7 @@ CLEANFILES =					\
 	FSpot.JobScheduler.dll.mdb		\
 	FSpot.Widgets.dll			\
 	FSpot.Widgets.dll.mdb			\
+	FSpot.Widgets.dll.config		\
 	FSpot.Platform.dll			\
 	FSpot.Platform.dll.mdb			\
 	Cms.dll.config
