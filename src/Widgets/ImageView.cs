@@ -30,6 +30,7 @@ namespace FSpot.Widgets
 
 		public ImageView () : base (null, null)
 		{
+			transparent_color = this.Style.BaseColors [(int)Gtk.StateType.Normal];
 		}
 
 		public Pixbuf Pixbuf {
@@ -63,18 +64,36 @@ namespace FSpot.Widgets
 			set { throw new NotImplementedException ();} 
 		}
 
+		double zoom;
+		public double Zoom {
+			get { return zoom; }
+			set { 
+				if (value < MIN_ZOOM || value > MAX_ZOOM)
+					return;
+				zoom = value;
+				EventHandler eh = ZoomChanged;
+				if (eh != null)
+					eh (this, EventArgs.Empty);
+			}
+		}
 
+		[Obsolete ("use the Zoom Property")]
 		public void GetZoom (out double zoomx, out double zoomy)
 		{
-			throw new NotImplementedException ();	
+			zoomx = zoomy = Zoom;
 		}
 
+		[Obsolete ("use the Zoom Property, or ZoomAboutPoint method")]
 		public void SetZoom (double zoom_x, double zoom_y)
 		{
-			throw new NotImplementedException ();	
+			Zoom = zoom_x;
+		}
+
+		public void ZoomAboutPoint (double zoom_increment, int x, int y)
+		{
 		}
 		
-		Gdk.Color transparent_color = this.Style.BaseColors [(int)Gtk.StateType.Normal];
+		Gdk.Color transparent_color;
 		public Gdk.Color TransparentColor {
 			get { return transparent_color; }
 			set { transparent_color = value; }
