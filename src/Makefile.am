@@ -81,6 +81,7 @@ WIDGETS_CSDISTFILES =				\
 	$(srcdir)/Widgets/DateEdit.cs		\
 	$(srcdir)/Widgets/DateEditFlags.cs	\
 	$(srcdir)/Widgets/HighlightedBox.cs	\
+	$(srcdir)/Widgets/ImageView.cs		\
 	$(srcdir)/Widgets/MenuButton.cs		\
 	$(srcdir)/Widgets/OpenWithMenu.cs	\
 	$(srcdir)/Widgets/Rating.cs		\
@@ -167,7 +168,6 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/GroupSelector.cs		\
 	$(srcdir)/Accelerometer.cs		\
 	$(srcdir)/Histogram.cs			\
-	$(srcdir)/ImageView.cs			\
 	$(srcdir)/ImportBackend.cs		\
 	$(srcdir)/ImportCommand.cs		\
 	$(srcdir)/InfoOverlay.cs		\
@@ -329,6 +329,7 @@ WIDGETS_ASSEMBLIES =				\
 	-pkg:gtk-sharp-2.0			\
 	-pkg:gnome-sharp-2.0			\
 	$(LINK_GTKSHARPBEANS)			\
+	-r:Cms.dll				\
 	-r:Mono.Posix				\
 	-r:FSpot.Core.dll			\
 	-r:FSpot.Utils.dll
