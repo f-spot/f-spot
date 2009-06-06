@@ -4,6 +4,7 @@ using Gtk;
 using Cairo;
 using Tao.OpenGl;
 using FSpot.Utils;
+using FSpot.Widgets;
 
 namespace FSpot.Editors {
 	public abstract class OldEditor {

@@ -9,6 +9,7 @@
 
 using FSpot;
 using FSpot.Utils;
+using FSpot.Widgets;
 
 using Gdk;
 using Gtk;

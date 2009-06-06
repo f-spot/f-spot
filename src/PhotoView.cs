@@ -28,7 +28,7 @@ namespace FSpot {
 		FSpot.Delay commit_delay; 
 	
 		private bool has_selection = false;
-		private FSpot.PhotoImageView photo_view;
+		private PhotoImageView photo_view;
 		private ScrolledWindow photo_view_scrolled;
 		private EventBox background;
 		
@@ -54,7 +54,7 @@ namespace FSpot {
 
 		public event EventHandler<BrowsableEventArgs> DoubleClicked;
 	
-		public FSpot.PhotoImageView View {
+		public PhotoImageView View {
 			get { return photo_view; }
 		}
 	
@@ -221,7 +221,7 @@ namespace FSpot {
 			tag_view.QueueDraw ();
 		}
 	
-		private void HandlePhotoChanged (FSpot.PhotoImageView view)
+		private void HandlePhotoChanged (PhotoImageView view)
 		{
 			if (query is PhotoQuery) {
 				CommitPendingChanges ();
@@ -271,7 +271,7 @@ namespace FSpot {
 			frame.Add (inner_vbox);
 			
 			BrowsablePointer bp = new BrowsablePointer (query, -1);
-			photo_view = new FSpot.PhotoImageView (bp);
+			photo_view = new PhotoImageView (bp);
 	
 			filmstrip = new Filmstrip (bp);
 			Gdk.Pixbuf bg = new Gdk.Pixbuf (Gdk.Colorspace.Rgb, true, 8, 1, 69);

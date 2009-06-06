@@ -2,7 +2,7 @@ using System;
 using FSpot.Editors;
 using FSpot.Utils;
 
-namespace FSpot {
+namespace FSpot.Widgets {
 	public enum ProgressType {
 		None,
 		Async,

@@ -17,6 +17,7 @@ using Mono.Unix;
 using FSpot;
 using FSpot.Utils;
 using FSpot.UI.Dialog;
+using FSpot.Widgets;
 
 public class TagCommands {
 
@@ -332,7 +333,7 @@ public class TagCommands {
 		Db db;
 		Gtk.Window parent_window;
 		FSpot.PhotoQuery query;
-		FSpot.PhotoImageView image_view;
+		PhotoImageView image_view;
 		Gtk.IconView icon_view;
 		ListStore icon_store;
 		string icon_name = null;
@@ -441,7 +442,7 @@ public class TagCommands {
 			}
 		}
 
-		public void HandlePhotoChanged (FSpot.PhotoImageView sender)
+		public void HandlePhotoChanged (PhotoImageView sender)
 		{
 			int item = image_view.Item.Index;
 			photo_label.Text = String.Format (Catalog.GetString ("Photo {0} of {1}"), 
@@ -485,7 +486,7 @@ public class TagCommands {
 			else 
 				query.Terms = new FSpot.Literal (t);
 
-			image_view = new FSpot.PhotoImageView (query);
+			image_view = new PhotoImageView (query);
 			image_view.SelectionXyRatio = 1.0;
 			image_view.SelectionChanged += HandleSelectionChanged;
 			image_view.PhotoChanged += HandlePhotoChanged;

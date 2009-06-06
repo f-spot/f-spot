@@ -1,10 +1,21 @@
+//
+// FSpot.Widgets.ImageView.cs
+//
+// Author(s):
+//	Ettore Perazzoli
+//	Larry Ewing  <lewing@novell.com>
+//	Stephane Delcrxoi  <stephane@delcroix.org>
+//
+// This is free software. See COPYING for details
+//
+
 using Gdk;
 using Gtk;
 using System;
 using System.Collections;
 using System.Runtime.InteropServices;
 
-namespace FSpot {
+namespace FSpot.Widgets {
 public class ImageView : Layout {
 	private Cms.Transform transform;
 

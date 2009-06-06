@@ -23,6 +23,7 @@ using FSpot.Widgets;
 using FSpot;
 using FSpot.Utils;
 using FSpot.UI.Dialog;
+using FSpot.Widgets;
 
 public class ImportCommand : GladeDialog
 {
@@ -342,7 +343,7 @@ public class ImportCommand : GladeDialog
 	PhotoStore store;
 	FSpot.Delay step;
 	
-	FSpot.PhotoImageView photo_view;
+	PhotoImageView photo_view;
 	ImportBackend importer;
 	FSpot.Widgets.IconView tray;
 
@@ -615,7 +616,7 @@ public class ImportCommand : GladeDialog
 		tray.DisplayTags = false;
 		tray.Show ();
 
-		photo_view = new FSpot.PhotoImageView (collection);
+		photo_view = new PhotoImageView (collection);
 		photo_scrolled.Add (photo_view);
 		photo_scrolled.SetSizeRequest (200, 200);
 		photo_view.Show ();
