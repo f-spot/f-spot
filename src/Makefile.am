@@ -84,6 +84,7 @@ WIDGETS_CSDISTFILES =				\
 	$(srcdir)/Widgets/ImageView.cs		\
 	$(srcdir)/Widgets/MenuButton.cs		\
 	$(srcdir)/Widgets/OpenWithMenu.cs	\
+	$(srcdir)/Widgets/PointerMode.cs	\
 	$(srcdir)/Widgets/Rating.cs		\
 	$(srcdir)/Widgets/SaneTreeView.cs	\
 	$(srcdir)/Widgets/ScrolledView.cs

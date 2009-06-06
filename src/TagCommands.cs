@@ -414,7 +414,7 @@ public class TagCommands {
 			}
 		}
 
-		private void HandleSelectionChanged ()
+		private void HandleSelectionChanged (object sender, EventArgs e)
 		{
 			int x, y, width, height;
 			Gdk.Pixbuf tmp = null;
