@@ -55,7 +55,7 @@ public class ColorManagement {
 			get { return destination_profile; }
 		}
 		
-		private static void GetStandartProfiles ()
+		private static void GetStandardProfiles ()
 		{
 			Profiles.Add (Cms.Profile.CreateStandardRgb ());
 			Profiles.Add (Cms.Profile.CreateAlternateRgb ());
@@ -124,23 +124,23 @@ public class ColorManagement {
 		public static void LoadSettings ()
 		{
 			Profiles.Clear ();
-			GetStandartProfiles ();
+			GetStandardProfiles ();
 			foreach (string dir in search_dir)
 				GetProfiles (dir);
 			GetXProfile ();
 			GetSettings ();
-			CreateStandartTransform ();
+			CreateStandardTransform ();
 		}
 		
 		public static void ReloadSettings()
 		{
 			GetXProfile ();
 			GetSettings ();
-			CreateStandartTransform ();
+			CreateStandardTransform ();
 			PhotoImageView.Reload ();
 		}
 		
-		private static void CreateStandartTransform ()
+		private static void CreateStandardTransform ()
 		{
 			Cms.Profile [] list = new Cms.Profile [] { Cms.Profile.CreateStandardRgb (), display_profile };
 			
@@ -151,7 +151,7 @@ public class ColorManagement {
 		}
 		
 		//it returns the cached transformation
-		public static Cms.Transform StandartTransform ()
+		public static Cms.Transform StandardTransform ()
 		{
 			if (IsEnabled)
 				return standart_transform;

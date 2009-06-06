@@ -52,9 +52,10 @@ namespace FSpot.Widgets
 			set { throw new NotImplementedException ();} 
 		}
 
+		Cms.Transform transform;
 		public Cms.Transform Transform {
-			get { throw new NotImplementedException ();} 
-			set { throw new NotImplementedException ();} 
+			get { return transform; } 
+			set { transform = value;} 
 		}
 
 		public Gdk.InterpType Interpolation {
@@ -73,18 +74,25 @@ namespace FSpot.Widgets
 			throw new NotImplementedException ();	
 		}
 		
+		Gdk.Color transparent_color = this.Style.BaseColors [(int)Gtk.StateType.Normal];
+		public Gdk.Color TransparentColor {
+			get { return transparent_color; }
+			set { transparent_color = value; }
+		}
+
+		[Obsolete ("Use the TransparentColor property")]
 		public void SetTransparentColor (Gdk.Color color)
 		{
-			throw new NotImplementedException ();
+			TransparentColor = color;
 		} 
 
 		public void SetTransparentColor (string color) //format "#000000"
 		{
-			SetTransparentColor (new Gdk.Color (
+			TransparentColor  = new Gdk.Color (
 					Byte.Parse (color.Substring (1,2), System.Globalization.NumberStyles.AllowHexSpecifier),
 					Byte.Parse (color.Substring (3,2), System.Globalization.NumberStyles.AllowHexSpecifier),
 					Byte.Parse (color.Substring (5,2), System.Globalization.NumberStyles.AllowHexSpecifier)
-			));
+			);
 		}
 
 		[Obsolete ("use the CheckSize Property instead")]

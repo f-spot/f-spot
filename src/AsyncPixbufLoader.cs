@@ -122,7 +122,7 @@ namespace FSpot {
 					
 					if (FSpot.ColorManagement.IsEnabled && !thumb.HasAlpha) {
 						if (img.GetProfile () == null)
-							FSpot.ColorManagement.PhotoImageView.Transform = FSpot.ColorManagement.StandartTransform ();
+							FSpot.ColorManagement.PhotoImageView.Transform = FSpot.ColorManagement.StandardTransform ();
 						else
 							FSpot.ColorManagement.PhotoImageView.Transform = FSpot.ColorManagement.CreateTransform (thumb, img.GetProfile ());
 					}

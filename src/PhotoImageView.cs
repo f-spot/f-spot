@@ -33,7 +33,7 @@ namespace FSpot.Widgets {
 			loader.Done += HandleDone;
 			
 			FSpot.ColorManagement.PhotoImageView = this;
-			this.Transform = FSpot.ColorManagement.StandartTransform (); //for preview windows
+			Transform = FSpot.ColorManagement.StandardTransform (); //for preview windows
 
 			Accelerometer.OrientationChanged += HandleOrientationChanged;
 
@@ -47,7 +47,6 @@ namespace FSpot.Widgets {
 			this.item = item;
 			item.Changed += PhotoItemChanged;
 			this.Destroyed += HandleDestroyed;
-			this.SetTransparentColor (this.Style.BaseColors [(int)Gtk.StateType.Normal]);
 		}
 		
 		protected override void OnStyleSet (Gtk.Style previous)
