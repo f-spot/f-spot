@@ -189,9 +189,19 @@ namespace FSpot.Widgets
 
 		protected void UpdateMinZoom ()
 		{
-			throw new NotImplementedException ();	
-		}
+			if (Pixbuf == null)
+				min_zoom = 0.1;
+			else {
+				min_zoom = Math.Min (1.0,
+					Math.Min ((double)Allocation.Width / (double)Pixbuf.Width,
+					(double)Allocation.Height / (double)Pixbuf.Height));
+			}
 
+			// Since this affects the zoom_scale we should alert it
+			EventHandler eh = ZoomChanged;
+			if (eh != null)
+				eh (this, System.EventArgs.Empty);
+		}
 
 		public event EventHandler ZoomChanged;
 		public event EventHandler SelectionChanged;
