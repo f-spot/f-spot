@@ -33,9 +33,14 @@ namespace FSpot.Widgets
 			transparent_color = this.Style.BaseColors [(int)Gtk.StateType.Normal];
 		}
 
+		Pixbuf pixbuf;
 		public Pixbuf Pixbuf {
-			get { throw new NotImplementedException ();} 
-			set { throw new NotImplementedException ();} 
+			get { return pixbuf; } 
+			set {
+				pixbuf = value;
+				//scroll_to_view
+				QueueDraw ();
+			} 
 		}
 
 		public int CheckSize {
@@ -46,6 +51,21 @@ namespace FSpot.Widgets
 		public PointerMode PointerMode {
 			get { throw new NotImplementedException ();} 
 			set { throw new NotImplementedException ();} 
+		}
+
+		Gdk.Rectangle selection = Rectangle.Zero;
+		public Gdk.Rectangle Selection {
+			get { return selection; }
+			set { 
+				if (value == selection)
+					return;
+
+				selection = value;
+
+				EventHandler eh = SelectionChanged;
+				if (eh != null)
+					eh (this, EventArgs.Empty);
+			}
 		}
 
 		public double SelectionXyRatio {
@@ -146,14 +166,25 @@ namespace FSpot.Widgets
 //			return win;
 		}
 
+		[Obsolete ("use the Selection Property")]
 		public bool GetSelection (out int x, out int y, out int width, out int height)
 		{
-			throw new NotImplementedException ();	
+			if (selection == Rectangle.Zero) {
+				x = y = width = height = 0;
+				return false;
+			}
+
+			x = Selection.X;
+			y = Selection.Y;
+			width = Selection.Width;
+			height = Selection.Height;
+			return true;
 		}
 
+		[Obsolete ("set the Selection property to Gdk.Rectangle.Zero instead")]
 		public void UnsetSelection () 
 		{
-			throw new NotImplementedException ();
+			Selection = Gdk.Rectangle.Zero;
 		}
 
 		protected void UpdateMinZoom ()
