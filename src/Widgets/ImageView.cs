@@ -79,9 +79,15 @@ namespace FSpot.Widgets
 			set { transform = value;} 
 		}
 
+		InterpType interpolation = InterpType.Bilinear;
 		public Gdk.InterpType Interpolation {
-			get { throw new NotImplementedException ();} 
-			set { throw new NotImplementedException ();} 
+			get { return interpolation; } 
+			set { 
+				if (interpolation == value)
+					return;
+				interpolation = value;
+				QueueDraw ();
+			} 
 		}
 
 		double zoom;
@@ -207,6 +213,57 @@ namespace FSpot.Widgets
 		public event EventHandler ZoomChanged;
 		public event EventHandler SelectionChanged;
 
+		void PaintBackground (Rectangle rect)
+		{
+		}
+
+		unsafe void PaintRectangle (Rectangle area, InterpType interpolation)
+		{
+			int scaled_width, scaled_height;
+			if (Pixbuf != null) {
+				scaled_width = (int)Math.Floor (Pixbuf.Width * Zoom + .5);
+				scaled_height = (int)Math.Floor (Pixbuf.Height * Zoom + .5);
+			} else {
+				scaled_width = scaled_height = 0;
+			}
+
+			int x_offset = (Allocation.Width - scaled_width) / 2;
+			int y_offset = (Allocation.Height - scaled_height) / 2;
+
+			//Draw background
+			if (y_offset > 0) 	//Top
+				PaintBackground (new Rectangle (0, 0, Allocation.Width, y_offset));
+			if (x_offset > 0) 	//Left
+				PaintBackground (new Rectangle (0, y_offset, x_offset, scaled_height));
+			if (x_offset >= 0)	//Right
+				PaintBackground (new Rectangle (x_offset + scaled_width, y_offset, Allocation.Width - x_offset - scaled_width, scaled_height));
+			if (y_offset >= 0)	//Bottom
+				PaintBackground (new Rectangle (0, y_offset + scaled_height, Allocation.Width, Allocation.Height - y_offset - scaled_height));
+
+			
+			area.Intersect (new Rectangle (x_offset, y_offset, scaled_width, scaled_height));
+
+			//Short circuit
+//			if (zoom == 1.0 &&
+//			    Pixbuf != null &&
+//			    !Pixbuf.HasAlpha &&
+//			    Pixbuf.BitsPerSample == 8) {
+			if (Pixbuf != null) {
+				byte* pixels = (byte*)Pixbuf.Pixels;
+				this.GetWindow().DrawRgbImageDithalign (Style.BlackGC,
+							      area.X,
+							      area.Y,
+							      area.Width,
+							      area.Height,
+							      RgbDither.Max,
+							      pixels,
+							      Pixbuf.Rowstride,
+							      area.X - x_offset,
+							      area.Y - y_offset);
+			}
+
+		}
+
 		protected override bool OnExposeEvent (EventExpose evnt)
 		{
 			Console.WriteLine ("ImageView OnExposeEvent");
@@ -214,9 +271,22 @@ namespace FSpot.Widgets
 			if (evnt == null)
 				return true;
 
-			foreach (Rectangle rect in evnt.Region.GetRectangles ())
+			foreach (Rectangle area in evnt.Region.GetRectangles ())
 			{
-				Console.WriteLine ("drawing a rect");
+				area.Intersect (Allocation);
+				if (area == Rectangle.Zero)
+					continue;
+
+				//draw synchronously if InterpType.Nearest or zoom 1:1
+				if (Interpolation == InterpType.Nearest || zoom == 1.0) {
+					PaintRectangle (area, Interpolation);
+					continue;
+				}
+				
+				//delay all other interpolation types
+//				GLib.Idle.Add (...);
+
+				PaintRectangle (area, InterpType.Nearest);
 			}
 			return true;
 		}
