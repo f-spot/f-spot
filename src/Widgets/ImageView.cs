@@ -187,6 +187,7 @@ namespace FSpot.Widgets
 			Selection = Gdk.Rectangle.Zero;
 		}
 
+		[Obsolete ("drop this, this should be done automatically on pixbuf or allocation changed")]
 		protected void UpdateMinZoom ()
 		{
 			if (Pixbuf == null)
@@ -206,5 +207,18 @@ namespace FSpot.Widgets
 		public event EventHandler ZoomChanged;
 		public event EventHandler SelectionChanged;
 
+		protected override bool OnExposeEvent (EventExpose evnt)
+		{
+			Console.WriteLine ("ImageView OnExposeEvent");
+
+			if (evnt == null)
+				return true;
+
+			foreach (Rectangle rect in evnt.Region.GetRectangles ())
+			{
+				Console.WriteLine ("drawing a rect");
+			}
+			return true;
+		}
 	}
 }
