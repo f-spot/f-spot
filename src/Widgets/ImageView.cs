@@ -90,7 +90,7 @@ namespace FSpot.Widgets
 			} 
 		}
 
-		double zoom;
+		double zoom = 1.0;
 		public double Zoom {
 			get { return zoom; }
 			set { 
@@ -102,6 +102,9 @@ namespace FSpot.Widgets
 					eh (this, EventArgs.Empty);
 			}
 		}
+
+		int XOffset { get; set;}
+		int YOffset { get; set;}
 
 		[Obsolete ("use the Zoom Property")]
 		public void GetZoom (out double zoomx, out double zoomy)
@@ -213,7 +216,7 @@ namespace FSpot.Widgets
 		public event EventHandler ZoomChanged;
 		public event EventHandler SelectionChanged;
 
-		void PaintBackground (Rectangle rect)
+		void PaintBackground (Rectangle backgound, Rectangle area)
 		{
 		}
 
@@ -227,18 +230,18 @@ namespace FSpot.Widgets
 				scaled_width = scaled_height = 0;
 			}
 
-			int x_offset = (Allocation.Width - scaled_width) / 2;
-			int y_offset = (Allocation.Height - scaled_height) / 2;
+			int x_offset = scaled_width < Allocation.Width ? (Allocation.Width - scaled_width) / 2 : -XOffset;
+			int y_offset = scaled_height < Allocation.Height ? (Allocation.Height - scaled_height) / 2 : -YOffset;
 
 			//Draw background
 			if (y_offset > 0) 	//Top
-				PaintBackground (new Rectangle (0, 0, Allocation.Width, y_offset));
+				PaintBackground (new Rectangle (0, 0, Allocation.Width, y_offset), area);
 			if (x_offset > 0) 	//Left
-				PaintBackground (new Rectangle (0, y_offset, x_offset, scaled_height));
+				PaintBackground (new Rectangle (0, y_offset, x_offset, scaled_height), area);
 			if (x_offset >= 0)	//Right
-				PaintBackground (new Rectangle (x_offset + scaled_width, y_offset, Allocation.Width - x_offset - scaled_width, scaled_height));
+				PaintBackground (new Rectangle (x_offset + scaled_width, y_offset, Allocation.Width - x_offset - scaled_width, scaled_height), area);
 			if (y_offset >= 0)	//Bottom
-				PaintBackground (new Rectangle (0, y_offset + scaled_height, Allocation.Width, Allocation.Height - y_offset - scaled_height));
+				PaintBackground (new Rectangle (0, y_offset + scaled_height, Allocation.Width, Allocation.Height - y_offset - scaled_height), area);
 
 			
 			area.Intersect (new Rectangle (x_offset, y_offset, scaled_width, scaled_height));
@@ -249,19 +252,19 @@ namespace FSpot.Widgets
 //			    !Pixbuf.HasAlpha &&
 //			    Pixbuf.BitsPerSample == 8) {
 			if (Pixbuf != null) {
-				byte* pixels = (byte*)Pixbuf.Pixels;
-				this.GetWindow().DrawRgbImageDithalign (Style.BlackGC,
-							      area.X,
-							      area.Y,
-							      area.Width,
-							      area.Height,
-							      RgbDither.Max,
-							      pixels,
-							      Pixbuf.Rowstride,
-							      area.X - x_offset,
-							      area.Y - y_offset);
+				BinWindow.DrawPixbuf (Style.BlackGC,
+						      Pixbuf,
+						      0,
+						      0,
+						      0,
+						      0,
+						      area.Width, area.Height,
+						      RgbDither.Max,
+						      0,
+						      0);
 			}
 
+			this.ShowAll();
 		}
 
 		protected override bool OnExposeEvent (EventExpose evnt)
@@ -288,6 +291,7 @@ namespace FSpot.Widgets
 
 				PaintRectangle (area, InterpType.Nearest);
 			}
+
 			return true;
 		}
 	}
