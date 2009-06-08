@@ -243,32 +243,67 @@ namespace FSpot.Widgets
 			if (y_offset >= 0)	//Bottom
 				PaintBackground (new Rectangle (0, y_offset + scaled_height, Allocation.Width, Allocation.Height - y_offset - scaled_height), area);
 
-			
+			if (Pixbuf == null)
+				return;
+
 			area.Intersect (new Rectangle (x_offset, y_offset, scaled_width, scaled_height));
 
 			//Short circuit for 1:1 zoom
-//			if (zoom == 1.0 &&
-//			    Pixbuf != null) {
-			if (Pixbuf != null) {
+			if (zoom == 1.0) {
 				BinWindow.DrawPixbuf (Style.BlackGC,
 						      Pixbuf,
-						      0,
-						      0,
-						      0,
-						      0,
+						      area.X,
+						      area.Y,
+						      area.X,
+						      area.Y,
 						      area.Width, area.Height,
 						      RgbDither.Max,
-						      0,
-						      0);
+						      area.X - x_offset,
+						      area.Y - y_offset);
+				return;
 			}
 
-			this.ShowAll();
+			using (Pixbuf temp_pixbuf = new Pixbuf (Colorspace.Rgb, false, 8, area.Width, area.Height)) {
+				if (Pixbuf.HasAlpha)
+					temp_pixbuf.Fill (0x00000000);
+
+				//FIXME: compute check pattern
+				uint check_black = 0x00000000;
+				uint check_dark = 0x00555555;
+				int check_medium = 8;
+
+				Pixbuf.CompositeColor (temp_pixbuf,
+						       0,
+						       0,
+						       area.Width,
+						       area.Height,
+						       -(area.X - x_offset),
+						       -(area.Y - y_offset),
+						       zoom,
+						       zoom,
+						       zoom == 1.0 ? InterpType.Nearest : interpolation, 255,
+						       area.X - x_offset,
+						       area.Y - y_offset,
+						       check_medium,
+						       check_black,
+						       check_dark);
+
+				BinWindow.DrawPixbuf (Style.BlackGC,
+						      temp_pixbuf,
+						      0,
+						      0,
+						      area.X,
+						      area.Y,
+						      area.Width,
+						      area.Height,
+						      RgbDither.Max,
+						      area.X - x_offset,
+						      area.Y - y_offset);
+			}
 		}
 
 		protected override bool OnExposeEvent (EventExpose evnt)
 		{
-			Console.WriteLine ("ImageView OnExposeEvent");
-
 			if (evnt == null)
 				return true;
 
