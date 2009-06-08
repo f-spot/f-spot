@@ -220,7 +220,7 @@ namespace FSpot.Widgets
 		{
 		}
 
-		unsafe void PaintRectangle (Rectangle area, InterpType interpolation)
+		void PaintRectangle (Rectangle area, InterpType interpolation)
 		{
 			int scaled_width, scaled_height;
 			if (Pixbuf != null) {
@@ -246,11 +246,9 @@ namespace FSpot.Widgets
 			
 			area.Intersect (new Rectangle (x_offset, y_offset, scaled_width, scaled_height));
 
-			//Short circuit
+			//Short circuit for 1:1 zoom
 //			if (zoom == 1.0 &&
-//			    Pixbuf != null &&
-//			    !Pixbuf.HasAlpha &&
-//			    Pixbuf.BitsPerSample == 8) {
+//			    Pixbuf != null) {
 			if (Pixbuf != null) {
 				BinWindow.DrawPixbuf (Style.BlackGC,
 						      Pixbuf,
