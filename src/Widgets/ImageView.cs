@@ -171,17 +171,24 @@ namespace FSpot.Widgets
 			if (this.Pixbuf == null)
 				return Gdk.Rectangle.Zero;
 
-			throw new NotImplementedException ();
-			
-//			this.GetOffsets (out x, out y, out width, out height);
-//	
-//			Gdk.Rectangle win = Gdk.Rectangle.Zero;
-//			win.X = (int) Math.Floor (image.X * (double) (width - 1) / (this.Pixbuf.Width - 1) + 0.5) + x;
-//			win.Y = (int) Math.Floor (image.Y * (double) (height - 1) / (this.Pixbuf.Height - 1) + 0.5) + y;
-//			win.Width = (int) Math.Floor ((image.X + image.Width) * (double) (width - 1) / (this.Pixbuf.Width - 1) + 0.5) - win.X + x;
-//			win.Height = (int) Math.Floor ((image.Y + image.Height) * (double) (height - 1) / (this.Pixbuf.Height - 1) + 0.5) - win.Y + y;
-//	
-//			return win;
+			int scaled_width, scaled_height;
+			if (Pixbuf != null) {
+				scaled_width = (int)Math.Floor (Pixbuf.Width * Zoom + .5);
+				scaled_height = (int)Math.Floor (Pixbuf.Height * Zoom + .5);
+			} else {
+				scaled_width = scaled_height = 0;
+			}
+
+			int x_offset = scaled_width < Allocation.Width ? (Allocation.Width - scaled_width) / 2 : -XOffset;
+			int y_offset = scaled_height < Allocation.Height ? (Allocation.Height - scaled_height) / 2 : -YOffset;
+
+			Gdk.Rectangle win = Gdk.Rectangle.Zero;
+			win.X = (int) Math.Floor (image.X * (double) (scaled_width - 1) / (this.Pixbuf.Width - 1) + 0.5) + x_offset;
+			win.Y = (int) Math.Floor (image.Y * (double) (scaled_height - 1) / (this.Pixbuf.Height - 1) + 0.5) + y_offset;
+			win.Width = (int) Math.Floor ((image.X + image.Width) * (double) (scaled_width - 1) / (this.Pixbuf.Width - 1) + 0.5) - win.X + x_offset;
+			win.Height = (int) Math.Floor ((image.Y + image.Height) * (double) (scaled_height - 1) / (this.Pixbuf.Height - 1) + 0.5) - win.Y + y_offset;
+	
+			return win;
 		}
 
 		[Obsolete ("use the Selection Property")]
