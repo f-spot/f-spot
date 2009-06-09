@@ -361,23 +361,14 @@ namespace FSpot.Widgets
 			return base.OnButtonPressEvent (evnt);
 		}
 
-		private void ScrollTo ()
-		{
-		}
 		protected override bool OnScrollEvent (EventScroll evnt)
 		{
-			int x_incr = (int) Hadjustment.PageIncrement / 2;
-			int y_incr = (int) Vadjustment.PageIncrement / 2;
-			
-			if ((evnt.State & ModifierType.ShiftMask) == 0) //no shift, let's zoom
+			if ((evnt.State & ModifierType.ShiftMask) == 0) {//no shift, let's zoom
 				ZoomAboutPoint ((evnt.Direction == ScrollDirection.Up || evnt.Direction == ScrollDirection.Right) ? ZOOM_FACTOR : 1.0 / ZOOM_FACTOR,
 						 (int)evnt.X, (int)evnt.Y);
-			else if ((evnt.State & ModifierType.ControlMask) == 0)
-				ScrollTo ();
-			else
-				ScrollTo ();
-
-			return false;
+				return true;
+			}
+			return base.OnScrollEvent (evnt);
 		}
 
 		void UpdateScaledSize ()
