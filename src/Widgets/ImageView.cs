@@ -101,15 +101,7 @@ namespace FSpot.Widgets
 		double zoom = 1.0;
 		public double Zoom {
 			get { return zoom; }
-			set { 
-				if (value < MIN_ZOOM || value > MAX_ZOOM)
-					return;
-				zoom = value;
-				EventHandler eh = ZoomChanged;
-				if (eh != null)
-					eh (this, EventArgs.Empty);
-				QueueDraw ();
-			}
+			set { DoZoom (value, false, 0, 0); }
 		}
 
 		int XOffset { get; set;}
@@ -127,8 +119,28 @@ namespace FSpot.Widgets
 			Zoom = zoom_x;
 		}
 
+		void DoZoom (double zoom, bool use_anchor, int x, int y)
+		{
+			if (zoom == this.zoom)
+				return;
+
+			if (zoom > MAX_ZOOM)
+				zoom = MAX_ZOOM;
+			else if (zoom < MIN_ZOOM)
+				zoom = MIN_ZOOM;
+
+			double oldzoom = this.zoom;
+			this.zoom = zoom;
+
+			EventHandler eh = ZoomChanged;
+			if (eh != null)
+				eh (this, EventArgs.Empty);
+			QueueDraw ();
+		}
+
 		public void ZoomAboutPoint (double zoom_increment, int x, int y)
 		{
+			DoZoom (zoom * zoom_increment, true, x, y);
 		}
 		
 		Gdk.Color transparent_color;
@@ -333,6 +345,51 @@ namespace FSpot.Widgets
 			}
 
 			return true;
+		}
+
+		bool dragging = false;
+		int draganchor_x = 0;
+		int draganchor_y = 0;
+		protected override bool OnButtonPressEvent (EventButton evnt)
+		{
+			Console.WriteLine ("OnButtonPressEvent {0}", evnt.Button);
+			if (!HasFocus)
+				GrabFocus ();
+
+			if (dragging)
+				return base.OnButtonPressEvent (evnt);
+
+			switch (evnt.Button) {
+			case 1:	
+				dragging = true;
+				draganchor_x = (int)evnt.X;
+				draganchor_y = (int)evnt.Y;
+
+				return true;
+			default:
+				break;
+			}
+
+			return base.OnButtonPressEvent (evnt);
+		}
+
+		private void ScrollTo ()
+		{
+		}
+		protected override bool OnScrollEvent (EventScroll evnt)
+		{
+			int x_incr = (int) Hadjustment.PageIncrement / 2;
+			int y_incr = (int) Vadjustment.PageIncrement / 2;
+			
+			if ((evnt.State & ModifierType.ShiftMask) == 0) //no shift, let's zoom
+				ZoomAboutPoint ((evnt.Direction == ScrollDirection.Up || evnt.Direction == ScrollDirection.Right) ? ZOOM_FACTOR : 1.0 / ZOOM_FACTOR,
+						 (int)evnt.X, (int)evnt.Y);
+			else if ((evnt.State & ModifierType.ControlMask) == 0)
+				ScrollTo ();
+			else
+				ScrollTo ();
+
+			return false;
 		}
 	}
 }
