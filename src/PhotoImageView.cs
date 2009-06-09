@@ -39,7 +39,6 @@ namespace FSpot.Widgets {
 
 			HandleRealized (null, null);
 
-			this.SizeAllocated += HandleSizeAllocated;
 			this.KeyPressEvent += HandleKeyPressEvent;
 			//this.Realized += HandleRealized;
 			this.Unrealized += HandleUnrealized;
@@ -255,10 +254,11 @@ namespace FSpot.Widgets {
 			}
 		}
 		
-		private void HandleSizeAllocated (object sender, Gtk.SizeAllocatedArgs args)
+		protected override void OnSizeAllocated (Gdk.Rectangle allocation)
 		{
 			if (fit)
 				ZoomFit ();
+			base.OnSizeAllocated (allocation);
 		}
 
 		FSpot.AsyncPixbufLoader loader;
