@@ -286,8 +286,8 @@ namespace FSpot.Widgets
 				min_zoom = 0.1;
 			else {
 				min_zoom = Math.Min (1.0,
-					Math.Min ((double)Allocation.Width / (double)Pixbuf.Width,
-					(double)Allocation.Height / (double)Pixbuf.Height));
+					Math.Min ((double)allocation.Width / (double)Pixbuf.Width,
+					(double)allocation.Height / (double)Pixbuf.Height));
 			}
 
 			if (zoom < min_zoom)
@@ -296,6 +296,8 @@ namespace FSpot.Widgets
 			EventHandler eh = ZoomChanged;
 			if (eh != null)
 				eh (this, System.EventArgs.Empty);
+
+			base.OnSizeAllocated (allocation);
 	
 		}
 
@@ -306,20 +308,21 @@ namespace FSpot.Widgets
 
 			foreach (Rectangle area in evnt.Region.GetRectangles ())
 			{
-				area.Intersect (Allocation);
-				if (area == Rectangle.Zero)
+				var p_area = new Rectangle (Math.Max (0, area.X), Math.Max (0, area.Y),
+						      Math.Min (Allocation.Width, area.Width), Math.Min (Allocation.Height, area.Height));
+				if (p_area == Rectangle.Zero)
 					continue;
 
 				//draw synchronously if InterpType.Nearest or zoom 1:1
 				if (Interpolation == InterpType.Nearest || zoom == 1.0) {
-					PaintRectangle (area, Interpolation);
+					PaintRectangle (p_area, Interpolation);
 					continue;
 				}
 				
 				//delay all other interpolation types
 //				GLib.Idle.Add (...);
 
-				PaintRectangle (area, InterpType.Nearest);
+				PaintRectangle (p_area, InterpType.Nearest);
 			}
 
 			return true;
