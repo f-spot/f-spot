@@ -1,14 +1,14 @@
-# translation of f-spot.master.mr.po to marathi
+# translation of mr.po to marathi
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 #
 # Sandeep Shedmake <sandeep.shedmake@gmail.com>, 2009.
 msgid ""
 msgstr ""
-"Project-Id-Version: f-spot.master.mr\n"
+"Project-Id-Version: mr\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=f-spot&component=General\n"
 "POT-Creation-Date: 2009-05-29 07:53+0000\n"
-"PO-Revision-Date: 2009-06-08 17:51+0530\n"
+"PO-Revision-Date: 2009-06-09 11:00+0530\n"
 "Last-Translator: Sandeep Shedmake <sandeep.shedmake@gmail.com>\n"
 "Language-Team: marathi\n"
 "MIME-Version: 1.0\n"
@@ -1521,8 +1521,8 @@ msgid ""
 msgid_plural ""
 "{0} photos could not be rotated because they are on a read only file system "
 "or media such as a CDROM.  Please check the permissions and try again."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "फक्त वाचनजोगी फाइल प्रणाली किंवा CDROM नुरूप मिडीया असल्यामुळे फोटो फिरवणे शक्य नाही.  कृपया परवानगी तपसा व पुन्हा प्रयत्न करा."
+msgstr[1] "फक्त वाचनजोगी फाइल प्रणाली किंवा CDROM नुरूप मिडीया असल्यामुळे {0} फोटो फिरवणे शक्य नाही.  कृपया परवानगी तपसा व पुन्हा प्रयत्न करा."
 
 #: ../src/RotateCommand.cs:269
 #, csharp-format
@@ -1632,6 +1632,12 @@ msgid ""
 " with this tag. Please tag a photo as '{0}' and return here\n"
 " to use it as an icon."
 msgstr ""
+"\n"
+"<b>Photo पासून</b>\n"
+" या टॅग करीता तुम्ही लायब्ररी फोटो चिन्ह नुरूप वापरू शकता.\n"
+" तरी, या टॅग सह किमान एक फोटो संबंधित असायला हवे.\n"
+" कृपया फोटोला '{0}' नुरूप टॅग करा व \n"
+" चिन्हा नुरूप वापर करा."
 
 #: ../src/TagPopup.cs:26
 #, csharp-format
@@ -2395,6 +2401,8 @@ msgid ""
 "disable this for viewing photos, but disabling the interpolation could be "
 "usefull in icon design.</i></small>"
 msgstr ""
+"<small><i>दृष्य बदल प्रतिमांवर interpolation करीता यास कार्यान्वीत करा. फोटो पहाण्याकरीता यास अकार्यान्वीत करू "
+"नका, परंतु interpolation ला अकार्यान्वीत करणे चिन्हाची रचना ठरवण्यास उपयोगी ठरू शकते.</i></small>"
 
 #: ../src/f-spot.glade.h:35
 msgid ""
@@ -2402,7 +2410,7 @@ msgid ""
 "option has no effect on photos, but setting this as check pattern or custom "
 "color could be usefull when viewing icons or other artworks with transparent "
 "parts.</i></small>"
-msgstr ""
+msgstr "<small><i>प्रतिमाचे पारदर्शकीय भाग दर्शवण्याकरीता तुम्ही पसंत करू करू शकता. या पर्यायमुळे फोटोंवर कुठलाही प्रभाव पडत नाही, परंतु यांस चिन्ह किंवा पारदर्शकीय भाग सह इतर आर्टवर्कच्या अवलोकनवेळी तपासणी रचना किंवा इच्छिक रंग नुरूप निश्चित करण्याकरीता उपयोगी ठरू शकते.</i></small>"
 
 #: ../src/f-spot.glade.h:36
 msgid "Adjust Time"
@@ -2710,7 +2718,7 @@ msgstr "सर्व फोटो सुस्थीत करा"
 msgid ""
 "Specify if an original size picture should be rotated or not. Smaller sizes "
 "are automatically rotated."
-msgstr ""
+msgstr "मुळ आकाराचे चित्र फिरवावे किंवा नाही ते निश्चित करा. लहान आकार स्वयंनुरूप फिरवले जातिल."
 
 #: ../src/f-spot.glade.h:123
 msgid "Strip image _metadata"
@@ -3769,6 +3777,11 @@ msgid ""
 "\"Everything\" will import everything, creating duplicates if you already "
 "imported from that database.</i></small>"
 msgstr ""
+"<small><i>नीवडलेल्या db पासून काय आयात करावे ते ठरवा.\n"
+"\"New Rolls Only\" सर्वात योग्य पर्याय आहे ज्यामुळे पूर्वीच्या कार्यवेळी आयात करण्याजोगी "
+"फोटो पुन्हा आयात करण्यापासून रोखले जाऊ शकते.\n"
+"\"A Single Import Roll\" तुम्हाला कुठला रोल पुन्हा एकत्र करायचे, त्यांस परवानगी देतो .\n"
+"कोष पासून आधिपासून आयात केले असल्यावर \"Everything\" सगळे काही आयात करतो, व ड्युप्लिकेटस् बनवतो.</i></small>"
 
 #: ../extensions/Tools/MergeDb/MergeDb.glade.h:6
 msgid ""
@@ -3776,6 +3789,8 @@ msgid ""
 "the later, be sure that this location will stay accessible from f-spot.</i></"
 "small>"
 msgstr ""
+"<small><i>प्रतिमांचे स्थानीयरित्या प्रत बनवा किंवा त्यांस मुळ जागेवर सुरक्षीत करा. मुळ जागेवर सुरक्षीत करणे पसंत केल्यास, हे ठिकाण f-spot पासून प्रवेशजोगी राहेल याची खात्री करा.</i></"
+"small>"
 
 #: ../extensions/Tools/MergeDb/MergeDb.glade.h:7
 msgid "A Single Import Roll"
@@ -3833,7 +3848,7 @@ msgstr "Metapixel उपलब्ध नाही"
 msgid ""
 "The metapixel executable was not found in path. Please check that you have "
 "it installed and that you have permissions to execute it"
-msgstr ""
+msgstr "मेटापिक्सेल एक्जीक्यूटेबल या मार्गवर आढळले नाही. कृपया यांस प्रतिष्ठापीत केले आहे व कार्यान्वीत करण्याकरीता तुमच्याकडे योग्य परवानगी आहे याची खात्री करा"
 
 #. There is no photo for the selected tags! :(
 #: ../extensions/Tools/MetaPixel/MetaPixel.cs:121
@@ -3891,7 +3906,7 @@ msgstr "PictureTile उपलब्ध नाही"
 msgid ""
 "The picturetile.pl executable was not found in path. Please check that you "
 "have it installed and that you have permissions to execute it"
-msgstr ""
+msgstr "picturetile.pl एक्जीक्यूटेबल या मार्गवर आढळले नाही. कृपया यांस प्रतिष्ठापीत केले आहे व कार्यान्वीत करण्याकरीता तुमच्याकडे योग्य परवानगी आहे याची खात्री करा"
 
 #: ../extensions/Tools/PictureTile/PictureTile.cs:110
 #| msgid "Previous picture"
@@ -3924,6 +3939,9 @@ msgid ""
 "needs to analyze your image collection. This is not done by default as it's "
 "time consuming. You can Start or Pause this update process using this dialog."
 msgstr ""
+"0.5.0 पूर्वी आयात केलेल्या चित्रांचे ड्युप्लिकेट ओळखण्याकरीता, F-Spot ला "
+"तुम्हचे प्रतिमा संग्रह विश्लेषीत करण्याची आवश्यकता आहे. जास्त वेळेच्या अभावी हे मुलभूत नुरूप कार्यान्वीत केले जात नाही. "
+"या संवादचा वापर करून तुम्ही हे अद्ययावत सुरू किंवा थांबवू शकता."
 
 #: ../extensions/Tools/HashJob/HashJob.cs:102
 msgid "Processing images..."
