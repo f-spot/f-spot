@@ -4,7 +4,7 @@
 // Authors:
 //	Wojciech Dzierzanowski (wojciech.dzierzanowski@gmail.com)
 //
-// (C) Copyright 2008 Wojciech Dzierzanowski
+// (C) Copyright 2009 Wojciech Dzierzanowski
 //
 
 // Permission is hereby granted, free of charge, to any person obtaining
@@ -34,12 +34,11 @@ using System.Diagnostics;
 using System.IO;
 using System.Net;
 using System.Text;
-
-using FSpot.Utils;
+using System.Web;
 
 namespace Mono.Tabblo {
 
-	public class Connection {
+	class Connection {
 
 		private const string LoginUrl =
 				"https://store.tabblo.com:443/studio/authtoken";
@@ -49,6 +48,10 @@ namespace Mono.Tabblo {
 				+ "/token/{0}/?url=/studio"
 				+ "/report_upload_session";
 
+		private const string ContentTypeUrlEncoded =
+				"application/x-www-form-urlencoded; "
+				+ "charset=UTF-8";
+
 		private readonly IPreferences preferences;
 
 		private string auth_token = null;
@@ -57,24 +60,24 @@ namespace Mono.Tabblo {
 		private CookieCollection cookies;
 
 
-		public Connection (IPreferences preferences)
+		internal Connection (IPreferences preferences)
 		{
-			if (null == preferences) {
-				throw new ArgumentNullException ("preferences");
-			}
+			Debug.Assert (null != preferences);
 			this.preferences = preferences;
 			this.cookies = new CookieCollection ();
 		}
 
 
-		public void UploadFile (string name, Stream data_stream,
-		                        string mime_type, string [,] arguments)
+		internal void UploadFile (string name, Stream data_stream,
+		                          string mime_type,
+		                          string [,] arguments)
 		{
 			if (!IsAuthenticated ()) {
 				Login ();
 			}
 
-			Log.DebugFormat ("Uploading " + mime_type + " file " + name);
+			Debug.WriteLine ("Uploading " + mime_type + " file "
+					+ name);
 			DoUploadFile (name, data_stream, mime_type, arguments);
 		}
 
@@ -90,7 +93,7 @@ namespace Mono.Tabblo {
 					new MultipartRequest (http_request);
 
 			MemoryStream mem_stream = null;
-			if (null != UploadProgressHandler) {
+			if (null != UploadProgressChanged) {
 				// "Manual buffering" using a MemoryStream.
 				request.Request.AllowWriteStreamBuffering =
 						false;
@@ -102,6 +105,9 @@ namespace Mono.Tabblo {
 			request.AddHeader ("Content-Disposition",
 					"form-data; name=\"filename0\"; "
 							+ "filename=\"" + name
+							+ GetFileNameExtension (
+								mime_type)
+
 							+ '"',
 					false);
 			request.AddHeader ("Content-Type", mime_type, true);
@@ -117,7 +123,7 @@ namespace Mono.Tabblo {
 			request.EndPartialContent ();
 			request.EndPart (true);
 
-			if (null != UploadProgressHandler) {
+			if (null != UploadProgressChanged) {
 
 				int total = (int) request.OutputStream.Length;
 				request.Request.ContentLength = total;
@@ -154,17 +160,36 @@ namespace Mono.Tabblo {
 		}
 
 
-		public event UploadProgressEventHandler UploadProgressHandler;
+		private static string GetFileNameExtension(string mime_type)
+		{
+			switch (mime_type)
+			{
+				case "image/jpeg":
+					return ".jpeg";
+
+				case "image/png":
+					return ".png";
+
+				default:
+					Debug.WriteLine (
+							"Unexpected MIME type: "
+							+ mime_type);
+					return ".jpeg";
+			}
+		}
+
+
+		internal event UploadProgressEventHandler UploadProgressChanged;
 
 		private void FireUploadProgress (string title, int sent,
 		                                 int total)
 		{
-			if (null != UploadProgressHandler) {
+			if (null != UploadProgressChanged) {
 				UploadProgressEventArgs args =
 						new UploadProgressEventArgs (
 								title, sent,
 								total);
-				UploadProgressHandler (this, args);
+				UploadProgressChanged (this, args);
 			}
 		}
 
@@ -185,8 +210,7 @@ namespace Mono.Tabblo {
 
 			HttpWebRequest request = CreateHttpRequest (
 					LoginUrl, "POST");
-			request.ContentType =
-					"application/x-www-form-urlencoded";
+			request.ContentType = ContentTypeUrlEncoded;
 
 			string [,] arguments = {
 				{"username", preferences.Username},
@@ -194,13 +218,12 @@ namespace Mono.Tabblo {
 			};
 
 			try {
-				WriteRequestContent (request,
-						FormatRequestArguments (
-								arguments));
+				WriteRequestContent (request, arguments);
 				string response = SendRequest (
 						"login", request);
 				if ("BAD".Equals (response)) {
-					Log.DebugFormat ("Invalid username or password");
+					Debug.WriteLine (
+						"Invalid username or password");
 					throw new TabbloException (
 						"Login failed: Invalid username"
 						+ " or password");
@@ -219,19 +242,22 @@ namespace Mono.Tabblo {
 				// `GetUploadUrl()'.
 				WebException we = e.InnerException
 						as WebException;
-				if (null != we)
-					Log.DebugFormat ("Caught a WebException, status=" + we.Status);
-				if (null != we
-					&& WebExceptionStatus.TrustFailure
+				if (null != we) {
+					Debug.WriteLine ("Caught a WebException,"
+							+ " status="
+							+ we.Status);
+					if (WebExceptionStatus.TrustFailure
 							== we.Status) {
-					throw new TabbloException (
+						throw new TabbloException (
 							"Trust failure", we);
+					}
 				}
 				throw;
 			}
 
-			if  (null != auth_token)
-				Log.DebugFormat  ("Login successful. Token: " + auth_token);
+			Debug.WriteLineIf (null != auth_token,
+					"Login successful. Token: "
+					+ auth_token);
 		}
 
 
@@ -241,13 +267,13 @@ namespace Mono.Tabblo {
 						"Obtaining URL for upload"),
 					0, 0);
 
-			if (! IsAuthenticated ())
-				Log.DebugFormat ("Not authenticated");
+			Debug.Assert (IsAuthenticated (), "Not authenticated");
 
 			if (null == session_upload_url) {
 
-				string [,] auth_arguments =
-						{ {"auth_token", auth_token} };
+				string [,] auth_arguments = {
+					{"auth_token", auth_token}
+				};
 				string url = AuthorizeUrl + "/?"
 						+ FormatRequestArguments (
 								auth_arguments);
@@ -276,7 +302,7 @@ namespace Mono.Tabblo {
 						arguments);
 			}
 
-			Log.DebugFormat ("Upload URL: " + upload_url);
+			Debug.WriteLine ("Upload URL: " + upload_url);
 			return upload_url;
 		}
 
@@ -320,10 +346,17 @@ namespace Mono.Tabblo {
 
 			string cookie_header = request.CookieContainer
 					.GetCookieHeader (request.RequestUri);
-			if (cookie_header.Length > 0)
-				Log.DebugFormat ("Cookie: " + cookie_header);
+			Debug.WriteLineIf (cookie_header.Length > 0,
+					"Cookie: " + cookie_header);
 		}
 
+
+		private static void WriteRequestContent (HttpWebRequest request,
+		                                         string [,] arguments)
+		{
+			WriteRequestContent (request,
+					FormatRequestArguments (arguments));
+		}
 
 		private static void WriteRequestContent (HttpWebRequest request,
 		                                         string content)
@@ -340,7 +373,9 @@ namespace Mono.Tabblo {
 							content_bytes.Length);
 				}
 			} catch (WebException e) {
-				Log.Exception (e);
+				Debug.WriteLine (
+						"Error writing request content",
+						"ERROR");
 				throw new TabbloException (
 						"HTTP request failure: "
 								+ e.Message,
@@ -349,7 +384,8 @@ namespace Mono.Tabblo {
 
 			char [] content_chars = new char [content_bytes.Length];
 			content_bytes.CopyTo (content_chars, 0);
-			Log.DebugFormat ("Request content: " + new string (content_chars));
+			Debug.WriteLine ("Request content: "
+					+ new string (content_chars));
 		}
 
 
@@ -360,20 +396,17 @@ namespace Mono.Tabblo {
 
 			for (int i = 0; i < arguments.GetLength (0); ++i) {
 				content.AppendFormat( "{0}={1}&",
-						arguments [i, 0],
-						arguments [i, 1]);
+						HttpUtility.UrlEncode (
+							arguments [i, 0]),
+						HttpUtility.UrlEncode (
+							arguments [i, 1]));
 			}
 
 			if (content.Length > 0) {
 				content.Remove (content.Length - 1, 1);
 			}
 
-			byte [] content_bytes =	Encoding.UTF8.GetBytes (
-					content.ToString ());
-			char [] content_chars = new char [content_bytes.Length];
-			content_bytes.CopyTo (content_chars, 0);
-
-			return new string (content_chars);
+			return content.ToString ();
 		}
 
 
@@ -393,7 +426,9 @@ namespace Mono.Tabblo {
 		                            HttpWebRequest request,
 		                            bool keep_cookies)
 		{
-			Log.DebugFormat ("Sending " + description + ' ' + request.Method + " request to " + request.Address);
+			Debug.WriteLine ("Sending " + description + ' '
+					+ request.Method + " request to "
+					+ request.Address);
 
 			HttpWebResponse response = null;
 			try {
@@ -401,14 +436,21 @@ namespace Mono.Tabblo {
 						request.GetResponse ();
 				if (keep_cookies) {
 					cookies.Add (response.Cookies);
-					Log.DebugFormat (response.Cookies.Count + " cookie(s)");
+					Debug.WriteLine (response.Cookies.Count
+							+ " cookie(s)");
 					foreach (Cookie c in response.Cookies) {
-						Log.DebugFormat ("Set-Cookie: " + c.Name + '=' + c.Value + "; Domain=" + c.Domain + "; expires=" + c.Expires);
+						Debug.WriteLine ("Set-Cookie: "
+								+ c.Name + '='
+								+ c.Value
+								+ "; Domain="
+								+ c.Domain
+								+ "; expires="
+								+ c.Expires);
 					}
 				}
 				return GetResponseAsString (response);
 			} catch (WebException e) {
-				Log.Exception (e);
+				Debug.WriteLine (description + " failed: " + e);
 				HttpWebResponse error_response =
 						e.Response as HttpWebResponse;
 				string response_string = null != error_response
@@ -427,9 +469,10 @@ namespace Mono.Tabblo {
 		}
 
 
-		private static string GetResponseAsString (HttpWebResponse response)
+		private static string GetResponseAsString (
+				HttpWebResponse response)
 		{
-			Log.DebugFormat ("Response: ");
+			Debug.Write ("Response: ");
 
 			Encoding encoding = Encoding.UTF8;
 			if (response.ContentEncoding.Length > 0) {
@@ -452,12 +495,8 @@ namespace Mono.Tabblo {
 				stream.Close ();
 			}
 
-			if (null != response_string)
-				try {
-					Log.DebugFormat (response_string);
-				} catch (System.FormatException e) {
-					Log.DebugFormat ("Unable to print respose string: not in correct format");
-				}
+			Debug.WriteLineIf (null != response_string,
+					response_string);
 			return response_string;
 		}
 	}

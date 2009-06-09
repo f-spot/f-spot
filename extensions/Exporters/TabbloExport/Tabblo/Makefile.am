@@ -10,12 +10,13 @@ ASSEMBLY_SOURCES = \
 	$(srcdir)/Picture.cs \
 	$(srcdir)/TabbloException.cs \
 	$(srcdir)/TotalUploadProgress.cs \
+	$(srcdir)/Uploader.cs \
 	$(srcdir)/UploadProgressEventArgs.cs \
 	$(srcdir)/UploadProgressEventHandler.cs
 
 REFS = \
-       -r:$(top_builddir)/src/FSpot.Utils.dll \
-       -r:Mono.Posix.dll
+       -r:Mono.Posix.dll \
+       -r:System.Web.dll
 
 PKGS =
 

@@ -4,7 +4,7 @@
 // Authors:
 //	Wojciech Dzierzanowski (wojciech.dzierzanowski@gmail.com)
 //
-// (C) Copyright 2008 Wojciech Dzierzanowski
+// (C) Copyright 2009 Wojciech Dzierzanowski
 //
 
 // Permission is hereby granted, free of charge, to any person obtaining
@@ -39,7 +39,7 @@ namespace FSpotTabbloExport {
 		                                   WebRequest request,
 						   int problem)
 		{
-			Log.DebugFormat ("Blindly trusting " + request.RequestUri);
+			Log.Warning ("Blindly trusting " + request.RequestUri);
 			return true;
 		}
 	}

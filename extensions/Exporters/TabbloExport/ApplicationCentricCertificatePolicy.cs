@@ -4,7 +4,7 @@
 // Authors:
 //	Wojciech Dzierzanowski (wojciech.dzierzanowski@gmail.com)
 //
-// (C) Copyright 2008 Wojciech Dzierzanowski
+// (C) Copyright 2009 Wojciech Dzierzanowski
 //
 
 // Permission is hereby granted, free of charge, to any person obtaining
@@ -62,7 +62,9 @@ namespace FSpotTabbloExport {
 		                                   WebRequest request,
 						   int problem)
 		{
-			Log.DebugFormat ("Checking validation result for {0}: problem={1}", request.RequestUri, problem);
+			Log.DebugFormat ("Checking validation result for {0}: "
+					+ "problem={1}",
+					request.RequestUri, problem);
 
 			if (0 == problem) {
 				return true;
@@ -77,17 +79,17 @@ namespace FSpotTabbloExport {
 			LoadCertificates ();
 
 			string hash = certificate.GetCertHashString ();
-			Log.DebugFormat ("Certificate hash: " + hash);
+			Log.Debug ("Certificate hash: " + hash);
 
 			int stored_problem = 0;
 			if (cert_hashes.TryGetValue (hash, out stored_problem)
 					&& problem == stored_problem) {
-				Log.DebugFormat ("We already trust this site");
+				Log.Debug ("We already trust this site");
 				return true;
 			}
 
 			Decision decision = GetDecision (certificate, request);
-			Log.DebugFormat ("Decision: " + decision);
+			Log.Debug ("Decision: " + decision);
 
 			switch (decision) {
 			case Decision.DontTrust:
@@ -109,7 +111,7 @@ namespace FSpotTabbloExport {
 				WebRequest request)
 		{
 			Decision decision = Decision.DontTrust;
-			Log.DebugFormat ("Making the default decision: " + decision);
+			Log.Debug ("Making the default decision: " + decision);
 			return decision;
 		}
 

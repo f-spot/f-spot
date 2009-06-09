@@ -8,7 +8,7 @@
 //
 // (C) Copyright 2006 Novell, Inc. (http://www.novell.com)
 // (C) Copyright 2007 S. Delcroix
-// (C) Copyright 2008 Wojciech Dzierzanowski
+// (C) Copyright 2009 Wojciech Dzierzanowski
 //
 
 // Permission is hereby granted, free of charge, to any person obtaining
@@ -38,8 +38,6 @@ using System.Globalization;
 using System.IO;
 using System.Net;
 using System.Text;
-
-using FSpot.Utils;
 
 namespace Mono.Tabblo {
 
@@ -202,13 +200,13 @@ namespace Mono.Tabblo {
 		[Conditional (VerboseSymbol)]
 		private static void LogBeginPart ()
 		{
-			Log.DebugFormat (">>>START MultipartRequest content");
+			Debug.WriteLine (">>>START MultipartRequest content");
 		}
 
 		[Conditional (VerboseSymbol)]
 		private static void LogEndPart ()
 		{
-			Log.DebugFormat ("<<<END MultipartRequest content");
+			Debug.WriteLine ("<<<END MultipartRequest content");
 		}
 
 		[Conditional (VerboseSymbol)]
@@ -217,7 +215,7 @@ namespace Mono.Tabblo {
 		{
 			char [] content_chars = new char [length];
 			Array.Copy (content, offset, content_chars, 0, length);
-			Log.DebugFormat (new string (content_chars));
+			Debug.Write (new string (content_chars));
 		}
 	}
 }

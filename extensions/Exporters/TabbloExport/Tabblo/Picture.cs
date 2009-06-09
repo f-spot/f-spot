@@ -4,7 +4,7 @@
 // Authors:
 //	Wojciech Dzierzanowski (wojciech.dzierzanowski@gmail.com)
 //
-// (C) Copyright 2008 Wojciech Dzierzanowski
+// (C) Copyright 2009 Wojciech Dzierzanowski
 //
 
 // Permission is hereby granted, free of charge, to any person obtaining
@@ -28,7 +28,7 @@
 //
 
 using System;
-using System.IO;
+using System.Collections.Generic;
 
 namespace Mono.Tabblo {
 
@@ -39,29 +39,9 @@ namespace Mono.Tabblo {
 		private readonly string mime_type;
 		private readonly string privacy;
 
-
-		public string Name {
-			get {
-				return name;
-			}
-		}
-		public Uri Uri {
-			get {
-				return uri;
-			}
-		}
-		public string MimeType {
-			get {
-				return mime_type;
-			}
-		}
-		public string Privacy {
-			get {
-				return privacy;
-			}
-		}
-
-
+		private List<string> tags = new List<string> ();
+ 
+		
 		public Picture (string name, Uri uri, string mime_type,
 		                string privacy)
 		{
@@ -84,17 +64,41 @@ namespace Mono.Tabblo {
 		}
 
 
-		public void Upload (Connection connection)
-		{
-			if (null == connection) {
-				throw new ArgumentNullException ("connection");
+		public string Name {
+			get {
+				return name;
 			}
+		}
+		public Uri Uri {
+			get {
+				return uri;
+			}
+		}
+		public string MimeType {
+			get {
+				return mime_type;
+			}
+		}
+		public string Privacy {
+			get {
+				return privacy;
+			}
+		}
+		public string[] Tags {
+			get {
+				return tags.ToArray ();
+			}
+		}
 
-			using (Stream data_stream =
-					File.OpenRead (Uri.LocalPath)) {
-				connection.UploadFile (Name, data_stream,
-						MimeType, null);
-			}
+
+		public void AddTag (string tag)
+		{
+			if (null == tag) {
+				throw new ArgumentNullException ("tag");
+ 			}
+			if (!tags.Contains (tag)) {
+				tags.Add (tag);
+ 			}
 		}
 	}
 }
