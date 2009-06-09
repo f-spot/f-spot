@@ -46,6 +46,8 @@ namespace FSpot.Widgets
 						(double)Allocation.Height / (double)Pixbuf.Height));
 				}
 
+				UpdateScaledSize ();
+
 				//scroll_to_view
 				QueueDraw ();
 			} 
@@ -99,7 +101,7 @@ namespace FSpot.Widgets
 		}
 
 		double zoom = 1.0;
-		public double Zoom {
+		public virtual double Zoom {
 			get { return zoom; }
 			set { DoZoom (value, false, 0, 0); }
 		}
@@ -131,6 +133,8 @@ namespace FSpot.Widgets
 
 			double oldzoom = this.zoom;
 			this.zoom = zoom;
+
+			UpdateScaledSize ();
 
 			EventHandler eh = ZoomChanged;
 			if (eh != null)
@@ -183,22 +187,14 @@ namespace FSpot.Widgets
 			if (this.Pixbuf == null)
 				return Gdk.Rectangle.Zero;
 
-			int scaled_width, scaled_height;
-			if (Pixbuf != null) {
-				scaled_width = (int)Math.Floor (Pixbuf.Width * Zoom + .5);
-				scaled_height = (int)Math.Floor (Pixbuf.Height * Zoom + .5);
-			} else {
-				scaled_width = scaled_height = 0;
-			}
-
-			int x_offset = scaled_width < Allocation.Width ? (Allocation.Width - scaled_width) / 2 : -XOffset;
-			int y_offset = scaled_height < Allocation.Height ? (Allocation.Height - scaled_height) / 2 : -YOffset;
+			int x_offset = (int)Width < Allocation.Width ? (Allocation.Width - (int)Width) / 2 : -XOffset;
+			int y_offset = (int)Height < Allocation.Height ? (Allocation.Height - (int)Height) / 2 : -YOffset;
 
 			Gdk.Rectangle win = Gdk.Rectangle.Zero;
-			win.X = (int) Math.Floor (image.X * (double) (scaled_width - 1) / (this.Pixbuf.Width - 1) + 0.5) + x_offset;
-			win.Y = (int) Math.Floor (image.Y * (double) (scaled_height - 1) / (this.Pixbuf.Height - 1) + 0.5) + y_offset;
-			win.Width = (int) Math.Floor ((image.X + image.Width) * (double) (scaled_width - 1) / (this.Pixbuf.Width - 1) + 0.5) - win.X + x_offset;
-			win.Height = (int) Math.Floor ((image.Y + image.Height) * (double) (scaled_height - 1) / (this.Pixbuf.Height - 1) + 0.5) - win.Y + y_offset;
+			win.X = (int) Math.Floor (image.X * (double) (Width - 1) / (this.Pixbuf.Width - 1) + 0.5) + x_offset;
+			win.Y = (int) Math.Floor (image.Y * (double) (Height - 1) / (this.Pixbuf.Height - 1) + 0.5) + y_offset;
+			win.Width = (int) Math.Floor ((image.X + image.Width) * (double) (Width - 1) / (this.Pixbuf.Width - 1) + 0.5) - win.X + x_offset;
+			win.Height = (int) Math.Floor ((image.Y + image.Height) * (double) (Height - 1) / (this.Pixbuf.Height - 1) + 0.5) - win.Y + y_offset;
 	
 			return win;
 		}
@@ -233,31 +229,23 @@ namespace FSpot.Widgets
 
 		void PaintRectangle (Rectangle area, InterpType interpolation)
 		{
-			int scaled_width, scaled_height;
-			if (Pixbuf != null) {
-				scaled_width = (int)Math.Floor (Pixbuf.Width * Zoom + .5);
-				scaled_height = (int)Math.Floor (Pixbuf.Height * Zoom + .5);
-			} else {
-				scaled_width = scaled_height = 0;
-			}
-
-			int x_offset = scaled_width < Allocation.Width ? (Allocation.Width - scaled_width) / 2 : -XOffset;
-			int y_offset = scaled_height < Allocation.Height ? (Allocation.Height - scaled_height) / 2 : -YOffset;
+			int x_offset = (int)Width < Allocation.Width ? (Allocation.Width - (int)Width) / 2 : -XOffset;
+			int y_offset = (int)Height < Allocation.Height ? (Allocation.Height - (int)Height) / 2 : -YOffset;
 
 			//Draw background
 			if (y_offset > 0) 	//Top
 				PaintBackground (new Rectangle (0, 0, Allocation.Width, y_offset), area);
 			if (x_offset > 0) 	//Left
-				PaintBackground (new Rectangle (0, y_offset, x_offset, scaled_height), area);
+				PaintBackground (new Rectangle (0, y_offset, x_offset, (int)Height), area);
 			if (x_offset >= 0)	//Right
-				PaintBackground (new Rectangle (x_offset + scaled_width, y_offset, Allocation.Width - x_offset - scaled_width, scaled_height), area);
+				PaintBackground (new Rectangle (x_offset + (int)Width, y_offset, Allocation.Width - x_offset - (int)Width, (int)Height), area);
 			if (y_offset >= 0)	//Bottom
-				PaintBackground (new Rectangle (0, y_offset + scaled_height, Allocation.Width, Allocation.Height - y_offset - scaled_height), area);
+				PaintBackground (new Rectangle (0, y_offset + (int)Height, Allocation.Width, Allocation.Height - y_offset - (int)Height), area);
 
 			if (Pixbuf == null)
 				return;
 
-			area.Intersect (new Rectangle (x_offset, y_offset, scaled_width, scaled_height));
+			area.Intersect (new Rectangle (x_offset, y_offset, (int)Width, (int)Height));
 
 			//Short circuit for 1:1 zoom
 			if (zoom == 1.0) {
@@ -390,6 +378,19 @@ namespace FSpot.Widgets
 				ScrollTo ();
 
 			return false;
+		}
+
+		void UpdateScaledSize ()
+		{
+			uint scaled_width, scaled_height;
+			if (Pixbuf != null) {
+				scaled_width = (uint)Math.Floor (Pixbuf.Width * Zoom + .5);
+				scaled_height = (uint)Math.Floor (Pixbuf.Height * Zoom + .5);
+			} else {
+				scaled_width = scaled_height = 0;
+			}
+			Width = scaled_width;
+			Height = scaled_height;
 		}
 	}
 }
