@@ -38,6 +38,14 @@ namespace FSpot.Widgets
 			get { return pixbuf; } 
 			set {
 				pixbuf = value;
+				if (pixbuf == null)
+					min_zoom = 0.1;
+				else {
+					min_zoom = Math.Min (1.0,
+						Math.Min ((double)Allocation.Width / (double)Pixbuf.Width,
+						(double)Allocation.Height / (double)Pixbuf.Height));
+				}
+
 				//scroll_to_view
 				QueueDraw ();
 			} 
@@ -100,6 +108,7 @@ namespace FSpot.Widgets
 				EventHandler eh = ZoomChanged;
 				if (eh != null)
 					eh (this, EventArgs.Empty);
+				QueueDraw ();
 			}
 		}
 
@@ -196,23 +205,6 @@ namespace FSpot.Widgets
 			Selection = Gdk.Rectangle.Zero;
 		}
 
-		[Obsolete ("drop this, this should be done automatically on pixbuf or allocation changed")]
-		protected void UpdateMinZoom ()
-		{
-			if (Pixbuf == null)
-				min_zoom = 0.1;
-			else {
-				min_zoom = Math.Min (1.0,
-					Math.Min ((double)Allocation.Width / (double)Pixbuf.Width,
-					(double)Allocation.Height / (double)Pixbuf.Height));
-			}
-
-			// Since this affects the zoom_scale we should alert it
-			EventHandler eh = ZoomChanged;
-			if (eh != null)
-				eh (this, System.EventArgs.Empty);
-		}
-
 		public event EventHandler ZoomChanged;
 		public event EventHandler SelectionChanged;
 
@@ -252,14 +244,11 @@ namespace FSpot.Widgets
 			if (zoom == 1.0) {
 				BinWindow.DrawPixbuf (Style.BlackGC,
 						      Pixbuf,
-						      area.X,
-						      area.Y,
-						      area.X,
-						      area.Y,
+						      area.X, area.Y,
+						      area.X, area.Y,
 						      area.Width, area.Height,
 						      RgbDither.Max,
-						      area.X - x_offset,
-						      area.Y - y_offset);
+						      area.X - x_offset, area.Y - y_offset);
 				return;
 			}
 
@@ -273,33 +262,41 @@ namespace FSpot.Widgets
 				int check_medium = 8;
 
 				Pixbuf.CompositeColor (temp_pixbuf,
-						       0,
-						       0,
-						       area.Width,
-						       area.Height,
-						       -(area.X - x_offset),
-						       -(area.Y - y_offset),
-						       zoom,
-						       zoom,
+						       0, 0,
+						       area.Width, area.Height,
+						       -(area.X - x_offset), -(area.Y - y_offset),
+						       zoom, zoom,
 						       zoom == 1.0 ? InterpType.Nearest : interpolation, 255,
-						       area.X - x_offset,
-						       area.Y - y_offset,
-						       check_medium,
-						       check_black,
-						       check_dark);
+						       area.X - x_offset, area.Y - y_offset,
+						       check_medium, check_black, check_dark);
 
 				BinWindow.DrawPixbuf (Style.BlackGC,
 						      temp_pixbuf,
-						      0,
-						      0,
-						      area.X,
-						      area.Y,
-						      area.Width,
-						      area.Height,
+						      0, 0,
+						      area.X, area.Y,
+						      area.Width, area.Height,
 						      RgbDither.Max,
-						      area.X - x_offset,
-						      area.Y - y_offset);
+						      area.X - x_offset, area.Y - y_offset);
 			}
+		}
+
+		protected override void OnSizeAllocated (Rectangle allocation)
+		{
+			if (Pixbuf == null)
+				min_zoom = 0.1;
+			else {
+				min_zoom = Math.Min (1.0,
+					Math.Min ((double)Allocation.Width / (double)Pixbuf.Width,
+					(double)Allocation.Height / (double)Pixbuf.Height));
+			}
+
+			if (zoom < min_zoom)
+				zoom = min_zoom;
+			// Since this affects the zoom_scale we should alert it
+			EventHandler eh = ZoomChanged;
+			if (eh != null)
+				eh (this, System.EventArgs.Empty);
+	
 		}
 
 		protected override bool OnExposeEvent (EventExpose evnt)

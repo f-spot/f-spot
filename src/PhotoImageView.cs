@@ -149,7 +149,6 @@ namespace FSpot.Widgets {
 			if (prev != null)
 				prev.Dispose ();
 
-			UpdateMinZoom ();
 			this.ZoomFit (args.ReducedResolution);
 		}
 
@@ -182,14 +181,12 @@ namespace FSpot.Widgets {
 				if (this.Pixbuf == null) {
 					LoadErrorImage (ex);
 				} else {
-					UpdateMinZoom ();
 					this.ZoomFit ();
 				}
 			} else {
 				this.Pixbuf = loader.Pixbuf;
 
 				if (!loader.Prepared || !ShowProgress) {
-					UpdateMinZoom ();
 					this.ZoomFit ();
 				}
 			}
@@ -279,7 +276,6 @@ namespace FSpot.Widgets {
 			if (old != null)
 				old.Dispose ();
 			
-			UpdateMinZoom ();
 			this.ZoomFit ();
 		}
 
@@ -330,7 +326,6 @@ namespace FSpot.Widgets {
 				if (old != null)
 					old.Dispose ();
 
-				UpdateMinZoom ();
 				this.ZoomFit ();
 			}
 			
