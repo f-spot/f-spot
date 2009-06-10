@@ -4,7 +4,7 @@
 // Authors:
 //	Wojciech Dzierzanowski (wojciech.dzierzanowski@gmail.com)
 //
-// (C) Copyright 2008 Wojciech Dzierzanowski
+// (C) Copyright 2009 Wojciech Dzierzanowski
 //
 
 // Permission is hereby granted, free of charge, to any person obtaining
@@ -31,8 +31,6 @@ using System;
 using System.IO;
 using System.Diagnostics;
 
-using FSpot.Utils;
-
 namespace Mono.Tabblo {
 
 	public class TotalUploadProgress {
@@ -46,7 +44,7 @@ namespace Mono.Tabblo {
 
 		public TotalUploadProgress (Picture [] pictures)
 		{
-			if (null == pictures) Log.DebugFormat ("No pictures!");
+			Debug.Assert (null != pictures, "No pictures!");
 
 			total_file_count = pictures.Length;
 			total_file_size = GetTotalFileSize (pictures);
@@ -74,7 +72,7 @@ namespace Mono.Tabblo {
 			int percent = (int)
 					((double) bytes_sent_total * 100
 							/ TotalFileSize);
-			Log.DebugFormat ("{0}%...", percent);
+			Debug.Write (String.Format ("{0}%...", percent));
 
 			if (args.BytesTotal == args.BytesSent) {
 				prev_bytes_sent = 0;
@@ -98,7 +96,7 @@ namespace Mono.Tabblo {
 
 		private static ulong GetTotalFileSize (Picture [] pictures)
 		{
-			if (null == pictures) Log.DebugFormat ("No pictures!");
+			Debug.Assert (null != pictures, "No pictures!");
 
 			ulong size = 0;
 

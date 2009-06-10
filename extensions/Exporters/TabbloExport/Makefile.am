@@ -10,9 +10,11 @@ PLUGIN_SOURCES = \
 	$(srcdir)/ApplicationCentricCertificatePolicy.cs \
 	$(srcdir)/AssemblyInfo.cs \
 	$(srcdir)/BlindTrustCertificatePolicy.cs \
+	$(srcdir)/FSpotTraceListener.cs \
 	$(srcdir)/FSpotUploadProgress.cs \
-	$(srcdir)/Preferences.cs \
 	$(srcdir)/TabbloExport.cs \
+	$(srcdir)/TabbloExportModel.cs \
+	$(srcdir)/TabbloExportView.cs \
 	$(srcdir)/UserDecisionCertificatePolicy.cs
 
 

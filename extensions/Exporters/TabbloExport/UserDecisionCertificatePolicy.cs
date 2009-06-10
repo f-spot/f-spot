@@ -87,7 +87,7 @@ namespace FSpotTabbloExport {
 
 			Gtk.ResponseType response =
 					(Gtk.ResponseType) dialog.Run ();
-			Log.DebugFormat ("Decision dialog response: " + response);
+			Log.Debug ("Decision dialog response: " + response);
 
 			dialog.Destroy ();
 
