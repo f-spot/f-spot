@@ -65,6 +65,20 @@ namespace FSpot.Widgets
 		public static CheckPattern Gray = new CheckPattern (0x00808080, 0x00808080, 8);
 		public static CheckPattern White = new CheckPattern (0x00ffffff, 0x00ffffff, 8);
 
+		public static bool operator== (CheckPattern left, CheckPattern right)
+		{
+			return (left.color1 == right.color1) &&
+			       (left.color2 == right.color2) &&
+			       (left.color1 == left.color2 || left.check_size == right.check_size);
+		}
+
+		public static bool operator!= (CheckPattern left, CheckPattern right)
+		{
+			return (left.color1 != right.color1) || 
+			       (left.color2 != right.color2) ||
+			       (left.color1 != left.color2 && left.check_size != right.check_size);
+		}
+
 		static uint s_to_h (string color)
 		{
 			return (uint)(Byte.Parse (color.Substring (1,2), System.Globalization.NumberStyles.AllowHexSpecifier) << 16) +

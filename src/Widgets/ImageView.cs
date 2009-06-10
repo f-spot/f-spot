@@ -55,7 +55,12 @@ namespace FSpot.Widgets
 		CheckPattern check_pattern = CheckPattern.Dark;
 		public CheckPattern CheckPattern {
 			get { return check_pattern; } 
-			set { check_pattern = value; } 
+			set { 
+				if (check_pattern == value)
+					return;
+				check_pattern = value;
+				QueueDraw ();
+			} 
 		}
 
 		public PointerMode PointerMode {
@@ -221,7 +226,9 @@ namespace FSpot.Widgets
 			area.Intersect (new Rectangle (x_offset, y_offset, (int)Width, (int)Height));
 
 			//Short circuit for 1:1 zoom
-			if (zoom == 1.0) {
+			if (zoom == 1.0 &&
+			    !Pixbuf.HasAlpha &&
+			    Pixbuf.BitsPerSample == 8) {
 				BinWindow.DrawPixbuf (Style.BlackGC,
 						      Pixbuf,
 						      area.X, area.Y,
@@ -236,11 +243,6 @@ namespace FSpot.Widgets
 				if (Pixbuf.HasAlpha)
 					temp_pixbuf.Fill (0x00000000);
 
-				//FIXME: compute check pattern
-				uint check_black = 0x00000000;
-				uint check_dark = 0x00555555;
-				int check_medium = 8;
-
 				Pixbuf.CompositeColor (temp_pixbuf,
 						       0, 0,
 						       area.Width, area.Height,
@@ -248,7 +250,7 @@ namespace FSpot.Widgets
 						       zoom, zoom,
 						       zoom == 1.0 ? InterpType.Nearest : interpolation, 255,
 						       area.X - x_offset, area.Y - y_offset,
-						       check_medium, check_black, check_dark);
+						       CheckPattern.CheckSize, CheckPattern.Color1, CheckPattern.Color2);
 
 				BinWindow.DrawPixbuf (Style.BlackGC,
 						      temp_pixbuf,
