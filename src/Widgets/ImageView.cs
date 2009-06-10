@@ -8,6 +8,7 @@
 //
 
 using System;
+using System.Runtime.InteropServices;
 
 using Gtk;
 using Gdk;
@@ -27,7 +28,7 @@ namespace FSpot.Widgets
 		protected double MIN_ZOOM {
 			get { return min_zoom; }
 		}
-
+		
 		public ImageView () : base (null, null)
 		{
 		}
@@ -126,8 +127,16 @@ namespace FSpot.Widgets
 			Zoom = zoom_x;
 		}
 
+		[DllImport("libgobject-2.0-0.dll")]
+		static extern void g_object_freeze_notify (IntPtr inst);
+
+		[DllImport("libgobject-2.0-0.dll")]
+		static extern void g_object_thaw_notify (IntPtr inst);
+
+
 		void DoZoom (double zoom, bool use_anchor, int x, int y)
 		{
+Console.WriteLine ("DoZoom");
 			if (zoom == this.zoom)
 				return;
 
@@ -138,12 +147,24 @@ namespace FSpot.Widgets
 
 			double oldzoom = this.zoom;
 			this.zoom = zoom;
+			if (!use_anchor) {
+				x = Allocation.Width / 2;
+				y = Allocation.Height / 2;
+			}
+			double x_anchor, y_anchor;
+			x_anchor = (double)(Hadjustment.Value + x) / (double)Width;
+			y_anchor = (double)(Vadjustment.Value + y) / (double)Height;
 
+//			BinWindow.Clear ();
+frozen = true;
 			UpdateScaledSize ();
+			Hadjustment.Value = x_anchor * Width - x;
+			Vadjustment.Value = y_anchor * Height - y;
 
 			EventHandler eh = ZoomChanged;
 			if (eh != null)
 				eh (this, EventArgs.Empty);
+frozen = false;
 			QueueDraw ();
 		}
 
@@ -205,8 +226,12 @@ namespace FSpot.Widgets
 		{
 		}
 
+bool frozen = false;
 		void PaintRectangle (Rectangle area, InterpType interpolation)
 		{
+if (frozen)
+	return;
+Console.WriteLine ("PaintRectangle {0}", area);
 			int x_offset = (int)Width < Allocation.Width ? (Allocation.Width - (int)Width) / 2 : -XOffset;
 			int y_offset = (int)Height < Allocation.Height ? (Allocation.Height - (int)Height) / 2 : -YOffset;
 
@@ -355,6 +380,8 @@ namespace FSpot.Widgets
 			} else {
 				scaled_width = scaled_height = 0;
 			}
+			Hadjustment.Upper = (double)scaled_width;
+			Vadjustment.Upper = (double)scaled_height;
 			Width = scaled_width;
 			Height = scaled_height;
 		}
