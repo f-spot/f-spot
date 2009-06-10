@@ -50,7 +50,7 @@ namespace FSpot.Widgets {
 		
 		protected override void OnStyleSet (Gtk.Style previous)
 		{
-			this.SetTransparentColor (this.Style.Backgrounds [(int)Gtk.StateType.Normal]);
+			CheckPattern = new CheckPattern (this.Style.Backgrounds [(int)Gtk.StateType.Normal]);
 		}
 
 		new public BrowsablePointer Item {

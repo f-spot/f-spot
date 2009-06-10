@@ -581,16 +581,16 @@ namespace FSpot {
 
 			case Preferences.VIEWER_TRANSPARENCY:
 				if (Preferences.Get<string> (key) == "CHECK_PATTERN")
-					image_view.SetCheckSize (2);
+					image_view.CheckPattern = CheckPattern.Dark;
 				else if (Preferences.Get<string> (key) == "COLOR")
-					image_view.SetTransparentColor (Preferences.Get<string> (Preferences.VIEWER_TRANS_COLOR));
+					image_view.CheckPattern = new CheckPattern (Preferences.Get<string> (Preferences.VIEWER_TRANS_COLOR));
 				else // NONE
-					image_view.SetTransparentColor (image_view.Style.BaseColors [(int)Gtk.StateType.Normal]);
+					image_view.CheckPattern = new CheckPattern (image_view.Style.BaseColors [(int)Gtk.StateType.Normal]);
 				break;
 
 			case Preferences.VIEWER_TRANS_COLOR:
 				if (Preferences.Get<string> (Preferences.VIEWER_TRANSPARENCY) == "COLOR")
-					image_view.SetTransparentColor (Preferences.Get<string> (key));
+					image_view.CheckPattern = new CheckPattern (Preferences.Get<string> (key));
 				break;
 			}
 		}

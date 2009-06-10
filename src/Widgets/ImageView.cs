@@ -30,7 +30,6 @@ namespace FSpot.Widgets
 
 		public ImageView () : base (null, null)
 		{
-			transparent_color = this.Style.BaseColors [(int)Gtk.StateType.Normal];
 		}
 
 		Pixbuf pixbuf;
@@ -53,9 +52,10 @@ namespace FSpot.Widgets
 			} 
 		}
 
-		public int CheckSize {
-			get { throw new NotImplementedException ();} 
-			set { throw new NotImplementedException ();} 
+		CheckPattern check_pattern = CheckPattern.Dark;
+		public CheckPattern CheckPattern {
+			get { return check_pattern; } 
+			set { check_pattern = value; } 
 		}
 
 		public PointerMode PointerMode {
@@ -147,33 +147,6 @@ namespace FSpot.Widgets
 			DoZoom (zoom * zoom_increment, true, x, y);
 		}
 		
-		Gdk.Color transparent_color;
-		public Gdk.Color TransparentColor {
-			get { return transparent_color; }
-			set { transparent_color = value; }
-		}
-
-		[Obsolete ("Use the TransparentColor property")]
-		public void SetTransparentColor (Gdk.Color color)
-		{
-			TransparentColor = color;
-		} 
-
-		public void SetTransparentColor (string color) //format "#000000"
-		{
-			TransparentColor  = new Gdk.Color (
-					Byte.Parse (color.Substring (1,2), System.Globalization.NumberStyles.AllowHexSpecifier),
-					Byte.Parse (color.Substring (3,2), System.Globalization.NumberStyles.AllowHexSpecifier),
-					Byte.Parse (color.Substring (5,2), System.Globalization.NumberStyles.AllowHexSpecifier)
-			);
-		}
-
-		[Obsolete ("use the CheckSize Property instead")]
-		public void SetCheckSize (int size)
-		{
-			CheckSize = size;
-		}
-
 		public Gdk.Point WindowCoordsToImage (Point win)
 		{
 			throw new NotImplementedException ();
