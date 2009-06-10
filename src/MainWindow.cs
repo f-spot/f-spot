@@ -941,7 +941,7 @@ public class MainWindow {
 		query.Commit (nums);
 
 		foreach (Tag t in tags) {
-			if (t.Icon != null)
+			if (t.Icon != null || t.IconWasCleared)
 				continue;
 			// FIXME this needs a lot more work.
 			Pixbuf icon = null;
@@ -3212,7 +3212,7 @@ public class MainWindow {
 		foreach (string tagname in new_tags) {
 			Tag t = db.Tags.GetTagByName (tagname);
 			if (t == null) {
-				t = db.Tags.CreateCategory (default_category, tagname) as Tag;
+				t = db.Tags.CreateCategory (default_category, tagname, true) as Tag;
 				db.Tags.Commit (t);
 			}
 			tags [i++] = t;

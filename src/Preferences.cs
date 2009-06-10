@@ -48,6 +48,7 @@ namespace FSpot
 		public const string EXPANDED_TAGS = APP_FSPOT + "ui/expanded_tags";
 		public const string SHOW_RATINGS = APP_FSPOT + "ui/show_ratings";
 		public const string TAG_ICON_SIZE = APP_FSPOT + "ui/tag_icon_size";
+		public const string TAG_ICON_AUTOMATIC = APP_FSPOT + "ui/tag_icon_automatic";
 		
 		public const string GLASS_POSITION = APP_FSPOT + "ui/glass_position";
 		public const string GROUP_ADAPTOR = APP_FSPOT + "ui/group_adaptor";
@@ -133,6 +134,9 @@ namespace FSpot
 			
 			case TAG_ICON_SIZE:
 				return (int) Tag.IconSize.Medium;
+
+			case TAG_ICON_AUTOMATIC:
+				return true;
 		
 			case SIDEBAR_POSITION:
 				return 130;

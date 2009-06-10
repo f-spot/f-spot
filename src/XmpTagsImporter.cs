@@ -101,7 +101,8 @@ namespace FSpot.Xmp {
 				return tag;
 			
 			tag = tag_store.CreateCategory (parent,
-							info.TagName);
+							info.TagName,
+							false);
 			
 			if (info.HasIcon) {
 				tag.ThemeIconName = info.IconName;

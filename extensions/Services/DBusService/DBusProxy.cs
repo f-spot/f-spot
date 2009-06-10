@@ -226,7 +226,7 @@ namespace DBusService {
 		private int CreateTagPriv (Category parent_tag, string name)
 		{
 			try {
-				Tag created = tag_store.CreateCategory (parent_tag, name);
+				Tag created = tag_store.CreateCategory (parent_tag, name, false);
 				return (int)created.Id;
 			}
 			catch {
