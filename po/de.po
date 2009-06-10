@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: f-spot\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-06-01 11:32+0200\n"
-"PO-Revision-Date: 2009-06-01 11:50+0100\n"
+"POT-Creation-Date: 2009-06-10 20:54+0200\n"
+"PO-Revision-Date: 2009-06-10 20:59+0100\n"
 "Last-Translator: Mario Blättermann <mariobl@gnome.org>\n"
 "Language-Team: German GNOME Translators <gnome-de@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -251,7 +251,7 @@ msgstr "Deaktivieren"
 #: ../extensions/Exporters/FacebookExport/FacebookExport.cs:543
 #: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:693
 #: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:596
-#: ../extensions/Exporters/TabbloExport/TabbloExport.cs:177
+#: ../extensions/Exporters/TabbloExport/TabbloExport.cs:314
 msgid "Error"
 msgstr "Fehler"
 
@@ -913,33 +913,33 @@ msgstr "Kategorie des Objekts"
 msgid "Unknown IIM DataSet"
 msgstr "Unbekannter IIM-Datensatz"
 
-#: ../src/ImportCommand.cs:47 ../src/SingleView.cs:357
+#: ../src/ImportCommand.cs:48 ../src/SingleView.cs:357
 msgid "Select Folder"
 msgstr "Ordner wählen"
 
-#: ../src/ImportCommand.cs:259
+#: ../src/ImportCommand.cs:260
 msgid "(No Cameras Detected)"
 msgstr "(Keine Kameras erkannt)"
 
-#: ../src/ImportCommand.cs:404
+#: ../src/ImportCommand.cs:405
 #, csharp-format
 msgid "Loading {0} of {1}"
 msgstr "Laden der Datei {0} von {1}"
 
-#: ../src/ImportCommand.cs:470
+#: ../src/ImportCommand.cs:471
 msgid "Done Loading"
 msgstr "Laden abgeschlossen"
 
-#: ../src/ImportCommand.cs:540 ../src/MainWindow.cs:279
+#: ../src/ImportCommand.cs:541 ../src/MainWindow.cs:279
 #: ../src/f-spot.glade.h:78
 msgid "Import"
 msgstr "Importieren"
 
-#: ../src/ImportCommand.cs:670
+#: ../src/ImportCommand.cs:671
 msgid "Directory does not exist."
 msgstr "Ordner ist nicht vorhanden."
 
-#: ../src/ImportCommand.cs:671
+#: ../src/ImportCommand.cs:672
 #, csharp-format
 msgid ""
 "The directory you selected \"{0}\" does not exist.  Please choose a different "
@@ -949,7 +949,7 @@ msgstr ""
 "einen anderen Ordner"
 
 #. Note for translators: 'Import Tags' is no command, it means 'Tags used in Import'
-#: ../src/ImportCommand.cs:724 ../src/ImportCommand.cs:726
+#: ../src/ImportCommand.cs:725 ../src/ImportCommand.cs:727
 #: ../src/XmpTagsImporter.cs:89
 msgid "Import Tags"
 msgstr "Markierungen importieren"
@@ -1613,7 +1613,7 @@ msgstr "Foto nach rechts rotieren"
 
 #. Obsolete, remove after db rev4
 #: ../src/SingleView.cs:128 ../src/UI.Dialog/ui/PreferenceDialog.glade.h:14
-#: ../src/Widgets/MetadataDisplay.cs:221 ../src/Widgets/MetadataDisplay.cs:223
+#: ../src/Widgets/MetadataDisplay.cs:223 ../src/Widgets/MetadataDisplay.cs:225
 msgid "Folder"
 msgstr "Ordner"
 
@@ -1625,51 +1625,51 @@ msgstr "Öffnen"
 msgid "Set as Background"
 msgstr "Als Hintergrundbild verwenden"
 
-#: ../src/TagCommands.cs:91 ../src/TagCommands.cs:219
+#: ../src/TagCommands.cs:92 ../src/TagCommands.cs:220
 #: ../src/TagSelectionWidget.cs:506
 msgid "This name is already in use"
 msgstr "Dieser Name existiert bereits"
 
-#: ../src/TagCommands.cs:138
+#: ../src/TagCommands.cs:139
 msgid "Create New Tag"
 msgstr "Neue Markierung erstellen"
 
-#: ../src/TagCommands.cs:139
+#: ../src/TagCommands.cs:140
 msgid "Name of New Tag:"
 msgstr "Name der neuen Markierung:"
 
-#: ../src/TagCommands.cs:285
+#: ../src/TagCommands.cs:286
 msgid "Edit Tag"
 msgstr "Markierung bearbeiten"
 
-#: ../src/TagCommands.cs:286
+#: ../src/TagCommands.cs:287
 msgid "Tag Name:"
 msgstr "Markierungsname:"
 
-#: ../src/TagCommands.cs:402
+#: ../src/TagCommands.cs:403
 msgid "Unable to load image"
 msgstr "Bild konnte nicht geladen werden"
 
-#: ../src/TagCommands.cs:403
+#: ../src/TagCommands.cs:404
 #, csharp-format
 msgid "Unable to load \"{0}\" as icon for the tag"
 msgstr "»{0}« kann nicht als Symbol für die Markierung geladen werden"
 
-#: ../src/TagCommands.cs:447
+#: ../src/TagCommands.cs:448
 #, csharp-format
 msgid "Photo {0} of {1}"
 msgstr "Foto {0} von {1}"
 
-#: ../src/TagCommands.cs:477
+#: ../src/TagCommands.cs:478
 #, csharp-format
 msgid "Edit Icon for Tag {0}"
 msgstr "Symbol für Markierung {0} bearbeiten"
 
-#: ../src/TagCommands.cs:493
+#: ../src/TagCommands.cs:494
 msgid "Select Photo from file"
 msgstr "Foto aus Datei auswählen"
 
-#: ../src/TagCommands.cs:516
+#: ../src/TagCommands.cs:517
 #, csharp-format
 msgid ""
 "\n"
@@ -2243,33 +2243,33 @@ msgstr "Metadaten"
 msgid "Extended Metadata"
 msgstr "Erweiterte Metadaten"
 
-#: ../src/Widgets/MetadataDisplay.cs:225
+#: ../src/Widgets/MetadataDisplay.cs:227
 msgid "Picasaweb"
 msgstr "Picasaweb"
 
-#: ../src/Widgets/MetadataDisplay.cs:227
+#: ../src/Widgets/MetadataDisplay.cs:229
 msgid "SmugMug"
 msgstr "SmugMug"
 
-#: ../src/Widgets/MetadataDisplay.cs:229
+#: ../src/Widgets/MetadataDisplay.cs:231
 msgid "Gallery2"
 msgstr "Gallery2"
 
 #. clear Extended Metadata
-#: ../src/Widgets/MetadataDisplay.cs:389
+#: ../src/Widgets/MetadataDisplay.cs:391
 msgid "No Extended Metadata Available"
 msgstr "Keine erweiterten Metadaten verfügbar"
 
-#: ../src/Widgets/MetadataDisplay.cs:407
+#: ../src/Widgets/MetadataDisplay.cs:409
 msgid "No active photo"
 msgstr "Kein Foto ausgewählt"
 
-#: ../src/Widgets/MetadataDisplay.cs:409
+#: ../src/Widgets/MetadataDisplay.cs:411
 #, csharp-format
 msgid "The photo \"{0}\" does not exist"
 msgstr "Das Foto »{0}« ist nicht vorhanden"
 
-#: ../src/Widgets/MetadataDisplay.cs:412
+#: ../src/Widgets/MetadataDisplay.cs:414
 msgid "No metadata available"
 msgstr "Keine Metadaten verfügbar"
 
@@ -2399,7 +2399,7 @@ msgstr "<b>min. Bewertung</b>"
 #: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:3
 #: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:2
 #: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:2
-#: ../extensions/Exporters/TabbloExport/TabbloExport.glade.h:1
+#: ../extensions/Exporters/TabbloExport/TabbloExport.glade.h:2
 msgid "<b>Photos</b>"
 msgstr "<b>Fotos</b>"
 
@@ -2610,7 +2610,7 @@ msgstr "Geschätzte neue Größe"
 #: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:8
 #: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:9
 #: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:6
-#: ../extensions/Exporters/TabbloExport/TabbloExport.glade.h:3
+#: ../extensions/Exporters/TabbloExport/TabbloExport.glade.h:5
 msgid "Export"
 msgstr "Exportieren"
 
@@ -3612,7 +3612,7 @@ msgstr "Überge_ordnetes Album:"
 #: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:19
 #: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:23
 #: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:14
-#: ../extensions/Exporters/TabbloExport/TabbloExport.glade.h:4
+#: ../extensions/Exporters/TabbloExport/TabbloExport.glade.h:9
 msgid "_Password:"
 msgstr "_Passwort:"
 
@@ -3623,7 +3623,7 @@ msgstr "_Titel:"
 #: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:22
 #: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:25
 #: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:16
-#: ../extensions/Exporters/TabbloExport/TabbloExport.glade.h:5
+#: ../extensions/Exporters/TabbloExport/TabbloExport.glade.h:10
 msgid "_Username:"
 msgstr "_Benutzername:"
 
@@ -4124,16 +4124,16 @@ msgstr "_Benutzerkonto:"
 msgid "_SmugMug..."
 msgstr "_SmugMug …"
 
-#: ../extensions/Exporters/TabbloExport/Tabblo/Connection.cs:126
+#: ../extensions/Exporters/TabbloExport/Tabblo/Connection.cs:132
 #, csharp-format
 msgid "Uploading photo \"{0}\""
 msgstr "Foto »{0}« wird hochgeladen"
 
-#: ../extensions/Exporters/TabbloExport/Tabblo/Connection.cs:181
+#: ../extensions/Exporters/TabbloExport/Tabblo/Connection.cs:206
 msgid "Logging into Tabblo"
 msgstr "Anmeldung bei Tabblo"
 
-#: ../extensions/Exporters/TabbloExport/Tabblo/Connection.cs:241
+#: ../extensions/Exporters/TabbloExport/Tabblo/Connection.cs:267
 msgid "Obtaining URL for upload"
 msgstr "URL zum Hochladen wird ermittelt"
 
@@ -4141,21 +4141,50 @@ msgstr "URL zum Hochladen wird ermittelt"
 msgid "_Tabblo..."
 msgstr "_Tabblo …"
 
-#: ../extensions/Exporters/TabbloExport/TabbloExport.cs:166
+#: ../extensions/Exporters/TabbloExport/TabbloExport.cs:303
 msgid "Done sending photos"
 msgstr "Verschicken der Fotos abgeschlossen"
 
-#: ../extensions/Exporters/TabbloExport/TabbloExport.cs:168
+#: ../extensions/Exporters/TabbloExport/TabbloExport.cs:305
 msgid "Upload complete"
 msgstr "Hochladen abgeschlossen"
 
-#: ../extensions/Exporters/TabbloExport/TabbloExport.cs:174
+#: ../extensions/Exporters/TabbloExport/TabbloExport.cs:311
 msgid "Error uploading to Tabblo: "
 msgstr "Fehler beim Hochladen zu Tabblo: "
 
-#: ../extensions/Exporters/TabbloExport/TabbloExport.glade.h:2
+#: ../extensions/Exporters/TabbloExport/TabbloExport.glade.h:1
+msgid "<b>F-Spot tags</b>"
+msgstr "<b>F-Spot-Markierungen</b>"
+
+#: ../extensions/Exporters/TabbloExport/TabbloExport.glade.h:3
 msgid "<b>Tabblo account</b>"
 msgstr "<b>Tabblo-Konto</b>"
+
+#: ../extensions/Exporters/TabbloExport/TabbloExport.glade.h:4
+msgid ""
+"<small><i>F-Spot tags can help you track the export status of photos. "
+"Example: Use one tag for the photos that you plan to export, and another one "
+"for those already exported. Here, you can tell F-Spot to automatically "
+"replace these tags as appropriate.</i></small>"
+msgstr ""
+"<small><i>F-Spot-Markierungen können Ihnen dabei helfen, den Exportstatus "
+"Ihrer Fotos zu verfolgen. Beispiel: Verwenden Sie eine bestimmte Markierung "
+"für Fotos, die Sie exportieren wollen, und eine weitere für jene Fotos, die "
+"bereits exportiert wurden. So können Sie F-Spot anweisen, diese Markierungen "
+"automatisch wie gewünscht zu ersetzen.</i></small>"
+
+#: ../extensions/Exporters/TabbloExport/TabbloExport.glade.h:6
+msgid "Rem_ove from exported photos:"
+msgstr "Aus exp_ortierten Fotos entfernen:"
+
+#: ../extensions/Exporters/TabbloExport/TabbloExport.glade.h:7
+msgid "Select..."
+msgstr "Auswählen …"
+
+#: ../extensions/Exporters/TabbloExport/TabbloExport.glade.h:8
+msgid "_Attach to exported photos:"
+msgstr "An exportierte Fotos _anhängen:"
 
 #: ../extensions/Exporters/TabbloExport/TrustError.glade.h:1
 msgid "<b>{0}</b>."
