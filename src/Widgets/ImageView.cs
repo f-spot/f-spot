@@ -382,8 +382,7 @@ Console.WriteLine ("PaintRectangle {0}", area);
 			}
 			Hadjustment.Upper = (double)scaled_width;
 			Vadjustment.Upper = (double)scaled_height;
-			Width = scaled_width;
-			Height = scaled_height;
+			SetSize (scaled_width, scaled_height);
 		}
 	}
 }
