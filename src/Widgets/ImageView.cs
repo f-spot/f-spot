@@ -231,7 +231,7 @@ namespace FSpot.Widgets
 			    Pixbuf.BitsPerSample == 8) {
 				BinWindow.DrawPixbuf (Style.BlackGC,
 						      Pixbuf,
-						      area.X, area.Y,
+						      area.X - x_offset, area.Y - y_offset,
 						      area.X, area.Y,
 						      area.Width, area.Height,
 						      RgbDither.Max,
