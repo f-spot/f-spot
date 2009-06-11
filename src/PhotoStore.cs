@@ -1036,7 +1036,6 @@ public class PhotoStore : DbStore<Photo> {
 
 		query_builder.Append (", ");
 		query_builder.Append (orderbyuri.SqlClause ());
-Console.WriteLine (query_builder.ToString ());
 		QueryToTemp (temp_table, query_builder.ToString ());
 	}
 
