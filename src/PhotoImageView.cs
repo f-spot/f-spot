@@ -324,7 +324,7 @@ namespace FSpot.Widgets {
 				this.ZoomFit ();
 			}
 			
-			this.UnsetSelection ();
+			Selection = Gdk.Rectangle.Zero;
 
 			if (PhotoChanged != null)
 				PhotoChanged (this);

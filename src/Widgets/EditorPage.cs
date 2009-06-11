@@ -175,10 +175,13 @@ namespace FSpot.Widgets {
 			PhotoImageView photo_view = MainWindow.Toplevel.PhotoView.View;
 
 			if (Page.InPhotoView && photo_view != null) {
-				if (photo_view.GetSelection (out selection.x, out selection.y,
-							out selection.width, out selection.height))
+				if (photo_view.Selection != Gdk.Rectangle.Zero) {
+					selection.x = photo_view.Selection.X;
+					selection.y = photo_view.Selection.Y;
+					selection.width = photo_view.Selection.Width;
+					selection.height = photo_view.Selection.Height;
 					state.Selection = selection;
-				else
+				} else
 					state.Selection = null;
 				state.PhotoImageView = photo_view;
 			} else {
