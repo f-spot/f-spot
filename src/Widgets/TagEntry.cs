@@ -139,9 +139,15 @@ namespace FSpot.Widgets {
 				} else
 					args.RetVal = false;
 			} else if (args.Event.Key == Gdk.Key.Tab) {
-				DoTagCompletion ();
+				DoTagCompletion (true);
 				args.RetVal = true;
-			} else 
+			} else if (args.Event.Key == Gdk.Key.ISO_Left_Tab) {
+				DoTagCompletion (false);
+				args.RetVal = true;
+			} else if (args.Event.Key != Gdk.Key.Shift_L && 
+			           args.Event.Key != Gdk.Key.Shift_R && 
+			           args.Event.Key != Gdk.Key.Control_L && 
+			           args.Event.Key != Gdk.Key.Control_R)
 				ClearTagCompletions ();
 		}
 
@@ -158,12 +164,15 @@ namespace FSpot.Widgets {
 		string tag_completion_typed_so_far;
 		int tag_completion_typed_position;
 
-		private void DoTagCompletion ()
+		private void DoTagCompletion (bool forward)
 		{
 			string completion;
 			
 			if (tag_completion_index != -1) {
-				tag_completion_index = (tag_completion_index + 1) % tag_completions.Length;
+				if (forward)
+					tag_completion_index = (tag_completion_index + 1) % tag_completions.Length;
+				else
+					tag_completion_index = (tag_completion_index + tag_completions.Length - 1) % tag_completions.Length;
 			} else {
 	
 				tag_completion_typed_position = Position;
@@ -184,7 +193,10 @@ namespace FSpot.Widgets {
 				if (tag_completions == null)
 					return;
 	
-				tag_completion_index = 0;
+				if (forward)
+					tag_completion_index = 0;
+				else
+					tag_completion_index = tag_completions.Length - 1;
 			}
 	
 			tag_ignore_changes = true;
