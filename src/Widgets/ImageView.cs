@@ -20,10 +20,14 @@ namespace FSpot.Widgets
 	{
 
 #region public API
-		public ImageView () : base ()
+		public ImageView (Adjustment hadjustment, Adjustment vadjustment) : base ()
 		{
 			OnSetScrollAdjustments (hadjustment, vadjustment);
 			children = new List<LayoutChild> ();
+		}
+
+		public ImageView () : this (null, null)
+		{
 		}
 
 		Pixbuf pixbuf;
@@ -159,6 +163,35 @@ namespace FSpot.Widgets
 
 #endregion
 
+#region container
+		protected override void OnAdded (Gtk.Widget widget)
+		{
+			Put (widget, 0, 0);
+		}
+
+		protected override void OnRemoved (Gtk.Widget widget)
+		{
+			LayoutChild child = null;
+			foreach (var c in children) {
+				if (child.Widget == widget) {
+					child = c;
+					break;
+				}
+			}
+
+			if (child != null) {
+				widget.Unparent ();
+				children.Remove (child);
+			}
+		}
+
+		protected override void ForAll (bool include_internals, Gtk.Callback callback)
+		{
+			foreach (var child in children) 
+				callback (child.Widget);
+		}
+#endregion
+
 #region GtkWidgetry
 		protected override void OnRealized ()
 		{
@@ -241,12 +274,10 @@ namespace FSpot.Widgets
 			Hadjustment.PageSize = allocation.Width;
 			Hadjustment.PageIncrement = scaled_width * .9;
 			Hadjustment.Lower = 0;
-			Hadjustment.Upper = Math.Max (scaled_width, allocation.Width);
 
 			Vadjustment.PageSize = allocation.Height;
 			Vadjustment.PageIncrement = scaled_height * .9;
 			Vadjustment.Lower = 0;
-			Vadjustment.Upper = Math.Max (scaled_height, allocation.Height);
 			base.OnSizeAllocated (allocation);
 		}
 
@@ -279,19 +310,18 @@ namespace FSpot.Widgets
 
 		protected override void OnSetScrollAdjustments (Gtk.Adjustment hadjustment, Gtk.Adjustment vadjustment)
 		{
-Console.WriteLine ("\n\nLayout.OnSetScrollAdjustments");
 			if (hadjustment == null)
 				hadjustment = new Gtk.Adjustment (0, 0, 0, 0, 0, 0);
 			if (vadjustment == null)
 				vadjustment = new Gtk.Adjustment (0, 0, 0, 0, 0, 0);
 			bool need_change = false;
-			if (Hadjustment != hadjustment) {
+			if (this.hadjustment != hadjustment) {
 				this.hadjustment = hadjustment;
 				this.hadjustment.Upper = scaled_width;
 				this.hadjustment.ValueChanged += HandleAdjustmentsValueChanged;
 				need_change = true;
 			}
-			if (Vadjustment != vadjustment) {
+			if (this.vadjustment != vadjustment) {
 				this.vadjustment = vadjustment;
 				this.vadjustment.Upper = scaled_height;
 				this.vadjustment.ValueChanged += HandleAdjustmentsValueChanged;
@@ -327,28 +357,6 @@ Console.WriteLine ("DoZoom {0} {1} {2} {3}", zoom, use_anchor, x, y);
 
 			QueueDraw ();
 		}
-
-	
-//		[Obsolete ("use the Selection Property")]
-//		public bool GetSelection (out int x, out int y, out int width, out int height)
-//		{
-//			if (selection == Rectangle.Zero) {
-//				x = y = width = height = 0;
-//				return false;
-//			}
-//
-//			x = Selection.X;
-//			y = Selection.Y;
-//			width = Selection.Width;
-//			height = Selection.Height;
-//			return true;
-//		}
-//
-//		[Obsolete ("set the Selection property to Gdk.Rectangle.Zero instead")]
-//		public void UnsetSelection () 
-//		{
-//			Selection = Gdk.Rectangle.Zero;
-//		}
 
 		void PaintBackground (Rectangle backgound, Rectangle area)
 		{
@@ -457,40 +465,30 @@ Console.WriteLine ("PaintRectangle {0}", area);
 				scaled_width = scaled_height = 0;
 			}
 
-			Hadjustment.Value = scaled_width;
-			Vadjustment.Value = scaled_height;
+			Hadjustment.Upper = scaled_width;
+			Vadjustment.Upper = scaled_height;
 		}
-#region widgetry
+
 		void HandleAdjustmentsValueChanged (object sender, EventArgs e) {
 			Console.WriteLine ("Adjustment(s) value changed");
 		}
-#endregion
+#region children
 		class LayoutChild {
 			Gtk.Widget widget;
 			public Gtk.Widget Widget {
 				get { return widget; }
 			}
 
-			int x;
-			public int X {
-				get { return x; } 
-				set { x = value; }
-			}
-
-			int y;
-			public int Y {
-				get { return y; }
-				set { y = value; }
-			}
+			public int X {get; set; }
+			public int Y {get; set; }
 
 			public LayoutChild (Gtk.Widget widget, int x, int y)
 			{
 				this.widget = widget;
-				this.x = x;
-				this.y = y;
+				X = x;
+				Y = y;
 			}
 		}
-
 
 		List<LayoutChild> children;
 		public void Put (Gtk.Widget widget, int x, int y)
@@ -520,5 +518,6 @@ Console.WriteLine ("PaintRectangle {0}", area);
 			if (Visible && widget.Visible)
 				QueueResize ();
 		}
+#endregion
 	}
 }
