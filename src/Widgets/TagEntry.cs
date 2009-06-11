@@ -134,9 +134,12 @@ namespace FSpot.Widgets {
 				args.RetVal = false;
 			} else if (args.Event.Key == Gdk.Key.Return) { 
 				if (tag_completion_index != -1) {
-					OnActivated ();
+					// If we are completing a tag, then finish that
+					FinishTagCompletion ();
 					args.RetVal = true;
 				} else
+					// Otherwise, pass the event to Gtk.Entry
+					// which will call OnActivated
 					args.RetVal = false;
 			} else if (args.Event.Key == Gdk.Key.Tab) {
 				DoTagCompletion (true);
@@ -204,6 +207,18 @@ namespace FSpot.Widgets {
 			SelectRegion (tag_completion_typed_position, Text.Length);
 		}
 
+		void FinishTagCompletion ()
+		{
+			int sel_start, sel_end;
+			if (GetSelectionBounds (out sel_start, out sel_end) && tag_completion_index != -1) {
+				InsertText (", ", ref sel_end);
+				SelectRegion (-1, -1);
+				Position = sel_end + 2;
+				ClearTagCompletions ();
+			}
+			
+		}
+
 		//Activated means the user pressed 'Enter'
 		protected override void OnActivated ()
 		{
@@ -211,15 +226,6 @@ namespace FSpot.Widgets {
 	
 			if (tagnames == null)
 				return;
-
-			int sel_start, sel_end;
-			if (GetSelectionBounds (out sel_start, out sel_end) && tag_completion_index != -1) {
-				InsertText (", ", ref sel_end);
-				SelectRegion (-1, -1);
-				Position = sel_end + 2;
-				ClearTagCompletions ();
-				return;
-			}
 
 			// Add any new tags to the selected photos
 			ArrayList new_tags = new ArrayList ();
