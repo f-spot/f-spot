@@ -73,7 +73,11 @@ namespace FSpot
 			}
 		}
 
-		public bool IconWasCleared = false;
+		bool icon_was_cleared = false;
+		public bool IconWasCleared {
+			get { return icon_was_cleared; }
+			set { icon_was_cleared = value; }
+		}
 	
 		public enum IconSize {
 			Hidden = 0,
