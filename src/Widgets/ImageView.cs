@@ -276,13 +276,21 @@ namespace FSpot.Widgets
 				GdkWindow.MoveResize (allocation.X, allocation.Y, allocation.Width, allocation.Height);
 			}
 
-			Hadjustment.PageSize = allocation.Width;
+			Hadjustment.PageSize = Math.Min (scaled_width, allocation.Width);
 			Hadjustment.PageIncrement = scaled_width * .9;
+			Hadjustment.StepIncrement = 32;
 			Hadjustment.Lower = 0;
 
-			Vadjustment.PageSize = allocation.Height;
+			Vadjustment.PageSize = Math.Min (scaled_height, allocation.Height);
 			Vadjustment.PageIncrement = scaled_height * .9;
+			Vadjustment.StepIncrement = 32;
 			Vadjustment.Lower = 0;
+
+			if (XOffset > Hadjustment.Upper - Hadjustment.PageSize)
+				ScrollTo ((int)(Hadjustment.Upper - Hadjustment.PageSize), YOffset, false);
+			if (YOffset > Vadjustment.Upper - Vadjustment.PageSize)
+				ScrollTo (XOffset, (int)(Vadjustment.Upper - Vadjustment.PageSize), false);
+
 			base.OnSizeAllocated (allocation);
 		}
 
@@ -371,8 +379,8 @@ namespace FSpot.Widgets
 				return true;
 			}
 
-			int x_incr = (int)Hadjustment.PageIncrement / 2;
-			int y_incr = (int)Vadjustment.PageIncrement / 2;
+			int x_incr = (int)Hadjustment.PageIncrement / 4;
+			int y_incr = (int)Vadjustment.PageIncrement / 4;
 			if ((evnt.State & ModifierType.ControlMask) == 0) {//no control scroll
 				ScrollBy ((evnt.Direction == ScrollDirection.Left) ? -x_incr : (evnt.Direction == ScrollDirection.Right) ? x_incr : 0,
 					  (evnt.Direction == ScrollDirection.Up) ? -y_incr : (evnt.Direction == ScrollDirection.Down) ? y_incr : 0);
@@ -507,6 +515,8 @@ Console.WriteLine ("PaintRectangle {0}", area);
 			if (x > Hadjustment.Upper - Hadjustment.PageSize) x = (int)(Hadjustment.Upper - Hadjustment.PageSize);
 			if (y < 0) y = 0;
 			if (y > Vadjustment.Upper - Vadjustment.PageSize) y = (int)(Vadjustment.Upper - Vadjustment.PageSize);
+
+			Console.WriteLine ("ScrollTo {0} {1}", x, y);
 			
 			int xof = x - XOffset;
 			int yof = y - YOffset;
