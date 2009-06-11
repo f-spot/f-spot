@@ -24,6 +24,8 @@ namespace FSpot.Widgets
 		{
 			OnSetScrollAdjustments (hadjustment, vadjustment);
 			children = new List<LayoutChild> ();
+			AdjustmentsChanged += ScrollToAdjustments;
+			//DoubleBuffered = false;
 		}
 
 		public ImageView () : this (null, null)
@@ -43,7 +45,10 @@ namespace FSpot.Widgets
 						(double)Allocation.Height / (double)Pixbuf.Height));
 
 				ComputeScaledSize ();
-				//scroll_to_view (0, 0)
+				AdjustmentsChanged -= ScrollToAdjustments;
+				Hadjustment.Value = Vadjustment.Value = 0;
+				XOffset = YOffset = 0;
+				AdjustmentsChanged += ScrollToAdjustments;
 				QueueDraw ();
 			} 
 		}
@@ -332,6 +337,54 @@ namespace FSpot.Widgets
 				HandleAdjustmentsValueChanged (this, EventArgs.Empty);
 		}	
 
+		bool dragging = false;
+		int draganchor_x = 0;
+		int draganchor_y = 0;
+		protected override bool OnButtonPressEvent (EventButton evnt)
+		{
+			Console.WriteLine ("OnButtonPressEvent {0}", evnt.Button);
+			if (!HasFocus)
+				GrabFocus ();
+
+			if (dragging)
+				return base.OnButtonPressEvent (evnt);
+
+			switch (evnt.Button) {
+			case 1:	
+				dragging = true;
+				draganchor_x = (int)evnt.X;
+				draganchor_y = (int)evnt.Y;
+
+				return true;
+			default:
+				break;
+			}
+
+			return base.OnButtonPressEvent (evnt);
+		}
+
+		protected override bool OnScrollEvent (EventScroll evnt)
+		{
+			if ((evnt.State & ModifierType.ShiftMask) == 0) {//no shift, let's zoom
+				ZoomAboutPoint ((evnt.Direction == ScrollDirection.Up || evnt.Direction == ScrollDirection.Right) ? ZOOM_FACTOR : 1.0 / ZOOM_FACTOR,
+						 (int)evnt.X, (int)evnt.Y);
+				return true;
+			}
+
+			int x_incr = (int)Hadjustment.PageIncrement / 2;
+			int y_incr = (int)Vadjustment.PageIncrement / 2;
+			if ((evnt.State & ModifierType.ControlMask) == 0) {//no control scroll
+				ScrollBy ((evnt.Direction == ScrollDirection.Left) ? -x_incr : (evnt.Direction == ScrollDirection.Right) ? x_incr : 0,
+					  (evnt.Direction == ScrollDirection.Up) ? -y_incr : (evnt.Direction == ScrollDirection.Down) ? y_incr : 0);
+				return true;
+			} else { //invert x and y for scrolling
+				ScrollBy ((evnt.Direction == ScrollDirection.Up) ? -y_incr : (evnt.Direction == ScrollDirection.Down) ? y_incr : 0,
+					  (evnt.Direction == ScrollDirection.Left) ? -x_incr : (evnt.Direction == ScrollDirection.Right) ? x_incr : 0);	
+				return true;
+			}
+			return base.OnScrollEvent (evnt);
+		}
+
 
 #endregion
 		int XOffset { get; set;}
@@ -419,42 +472,6 @@ Console.WriteLine ("PaintRectangle {0}", area);
 			}
 		}
 
-		bool dragging = false;
-		int draganchor_x = 0;
-		int draganchor_y = 0;
-		protected override bool OnButtonPressEvent (EventButton evnt)
-		{
-			Console.WriteLine ("OnButtonPressEvent {0}", evnt.Button);
-			if (!HasFocus)
-				GrabFocus ();
-
-			if (dragging)
-				return base.OnButtonPressEvent (evnt);
-
-			switch (evnt.Button) {
-			case 1:	
-				dragging = true;
-				draganchor_x = (int)evnt.X;
-				draganchor_y = (int)evnt.Y;
-
-				return true;
-			default:
-				break;
-			}
-
-			return base.OnButtonPressEvent (evnt);
-		}
-
-		protected override bool OnScrollEvent (EventScroll evnt)
-		{
-			if ((evnt.State & ModifierType.ShiftMask) == 0) {//no shift, let's zoom
-				ZoomAboutPoint ((evnt.Direction == ScrollDirection.Up || evnt.Direction == ScrollDirection.Right) ? ZOOM_FACTOR : 1.0 / ZOOM_FACTOR,
-						 (int)evnt.X, (int)evnt.Y);
-				return true;
-			}
-			return base.OnScrollEvent (evnt);
-		}
-
 		uint scaled_width, scaled_height;
 		void ComputeScaledSize ()
 		{
@@ -469,9 +486,51 @@ Console.WriteLine ("PaintRectangle {0}", area);
 			Vadjustment.Upper = scaled_height;
 		}
 
-		void HandleAdjustmentsValueChanged (object sender, EventArgs e) {
+		event EventHandler AdjustmentsChanged;
+
+		void HandleAdjustmentsValueChanged (object sender, EventArgs e)
+		{
 			Console.WriteLine ("Adjustment(s) value changed");
+			EventHandler eh = AdjustmentsChanged;
+			if (eh != null)
+				eh (this, EventArgs.Empty);
 		}
+
+		void ScrollToAdjustments (object sender, EventArgs e)
+		{
+			ScrollTo ((int)Hadjustment.Value, (int)Vadjustment.Value, false);
+		}
+
+		void ScrollTo (int x, int y, bool change_adjustments)
+		{
+			if (x < 0) x = 0;
+			if (x > Hadjustment.Upper - Hadjustment.PageSize) x = (int)(Hadjustment.Upper - Hadjustment.PageSize);
+			if (y < 0) y = 0;
+			if (y > Vadjustment.Upper - Vadjustment.PageSize) y = (int)(Vadjustment.Upper - Vadjustment.PageSize);
+			
+			int xof = x - XOffset;
+			int yof = y - YOffset;
+			XOffset = x;
+			YOffset = y;
+
+			if (IsRealized) {
+				GdkWindow.Scroll (-xof, -yof);
+				GdkWindow.ProcessUpdates (true);
+			}
+
+			if (change_adjustments) {
+				AdjustmentsChanged -= ScrollToAdjustments;
+				Hadjustment.Value = XOffset;
+				Vadjustment.Value = YOffset;
+				AdjustmentsChanged += ScrollToAdjustments;
+			}
+		}
+
+		void ScrollBy (int x, int y)
+		{
+			ScrollTo (XOffset + x, YOffset + y, true);
+		}
+
 #region children
 		class LayoutChild {
 			Gtk.Widget widget;
