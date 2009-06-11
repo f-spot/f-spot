@@ -144,11 +144,7 @@ namespace FSpot.Widgets {
 			} else if (args.Event.Key == Gdk.Key.ISO_Left_Tab) {
 				DoTagCompletion (false);
 				args.RetVal = true;
-			} else if (args.Event.Key != Gdk.Key.Shift_L && 
-			           args.Event.Key != Gdk.Key.Shift_R && 
-			           args.Event.Key != Gdk.Key.Control_L && 
-			           args.Event.Key != Gdk.Key.Control_R)
-				ClearTagCompletions ();
+			}
 		}
 
 		bool tag_ignore_changes = false;
