@@ -83,6 +83,7 @@ WIDGETS_CSDISTFILES =				\
 	$(srcdir)/Widgets/DateEditFlags.cs	\
 	$(srcdir)/Widgets/HighlightedBox.cs	\
 	$(srcdir)/Widgets/ImageView.cs		\
+	$(srcdir)/Widgets/Layout.cs		\
 	$(srcdir)/Widgets/MenuButton.cs		\
 	$(srcdir)/Widgets/OpenWithMenu.cs	\
 	$(srcdir)/Widgets/PointerMode.cs	\

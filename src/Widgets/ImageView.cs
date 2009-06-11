@@ -155,16 +155,13 @@ Console.WriteLine ("DoZoom");
 			x_anchor = (double)(Hadjustment.Value + x) / (double)Width;
 			y_anchor = (double)(Vadjustment.Value + y) / (double)Height;
 
-//			BinWindow.Clear ();
-frozen = true;
-			UpdateScaledSize ();
+      			UpdateScaledSize ();
 			Hadjustment.Value = x_anchor * Width - x;
 			Vadjustment.Value = y_anchor * Height - y;
 
 			EventHandler eh = ZoomChanged;
 			if (eh != null)
 				eh (this, EventArgs.Empty);
-frozen = false;
 			QueueDraw ();
 		}
 
@@ -226,15 +223,11 @@ frozen = false;
 		{
 		}
 
-bool frozen = false;
 		void PaintRectangle (Rectangle area, InterpType interpolation)
 		{
-if (frozen)
-	return;
 Console.WriteLine ("PaintRectangle {0}", area);
 			int x_offset = (int)Width < Allocation.Width ? (Allocation.Width - (int)Width) / 2 : -XOffset;
 			int y_offset = (int)Height < Allocation.Height ? (Allocation.Height - (int)Height) / 2 : -YOffset;
-
 			//Draw background
 			if (y_offset > 0) 	//Top
 				PaintBackground (new Rectangle (0, 0, Allocation.Width, y_offset), area);
@@ -289,6 +282,7 @@ Console.WriteLine ("PaintRectangle {0}", area);
 
 		protected override void OnSizeAllocated (Rectangle allocation)
 		{
+Console.WriteLine ("ImageView.OnSizeAllocated");
 			if (Pixbuf == null)
 				min_zoom = 0.1;
 			else {
@@ -310,6 +304,7 @@ Console.WriteLine ("PaintRectangle {0}", area);
 
 		protected override bool OnExposeEvent (EventExpose evnt)
 		{
+Console.WriteLine ("ImageView.OnExposeEvent");
 			if (evnt == null)
 				return true;
 
