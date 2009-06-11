@@ -8,6 +8,7 @@
 //
 
 using System;
+using System.Collections.Generic;
 using System.Runtime.InteropServices;
 
 using Gtk;
@@ -15,7 +16,7 @@ using Gdk;
 
 namespace FSpot.Widgets
 {
-	public class ImageView : Layout
+	public class ImageView : Container
 	{
 		public static double ZOOM_FACTOR = 1.1;
 
@@ -29,8 +30,10 @@ namespace FSpot.Widgets
 			get { return min_zoom; }
 		}
 		
-		public ImageView () : base (null, null)
+		public ImageView () : base ()
 		{
+			OnSetScrollAdjustments (hadjustment, vadjustment);
+			children = new List<LayoutChild> ();
 		}
 
 		Pixbuf pixbuf;
@@ -40,15 +43,13 @@ namespace FSpot.Widgets
 				pixbuf = value;
 				if (pixbuf == null)
 					min_zoom = 0.1;
-				else {
+				else
 					min_zoom = Math.Min (1.0,
 						Math.Min ((double)Allocation.Width / (double)Pixbuf.Width,
 						(double)Allocation.Height / (double)Pixbuf.Height));
-				}
 
-				UpdateScaledSize ();
-
-				//scroll_to_view
+				ComputeScaledSize ();
+				//scroll_to_view (0, 0)
 				QueueDraw ();
 			} 
 		}
@@ -60,7 +61,8 @@ namespace FSpot.Widgets
 				if (check_pattern == value)
 					return;
 				check_pattern = value;
-				QueueDraw ();
+				if (Pixbuf != null && Pixbuf.HasAlpha)
+					QueueDraw ();
 			} 
 		}
 
@@ -68,6 +70,17 @@ namespace FSpot.Widgets
 			get { throw new NotImplementedException ();} 
 			set { throw new NotImplementedException ();} 
 		}
+
+		Adjustment hadjustment;
+		public Adjustment Hadjustment {
+			get { return hadjustment; }
+		}
+
+		Adjustment vadjustment;
+		public Adjustment Vadjustment {
+			get { return vadjustment; }
+		}
+
 
 		Gdk.Rectangle selection = Rectangle.Zero;
 		public Gdk.Rectangle Selection {
@@ -127,16 +140,9 @@ namespace FSpot.Widgets
 			Zoom = zoom_x;
 		}
 
-		[DllImport("libgobject-2.0-0.dll")]
-		static extern void g_object_freeze_notify (IntPtr inst);
-
-		[DllImport("libgobject-2.0-0.dll")]
-		static extern void g_object_thaw_notify (IntPtr inst);
-
-
 		void DoZoom (double zoom, bool use_anchor, int x, int y)
 		{
-Console.WriteLine ("DoZoom");
+Console.WriteLine ("DoZoom {0} {1} {2} {3}", zoom, use_anchor, x, y);
 			if (zoom == this.zoom)
 				return;
 
@@ -145,23 +151,13 @@ Console.WriteLine ("DoZoom");
 			else if (zoom < MIN_ZOOM)
 				zoom = MIN_ZOOM;
 
-			double oldzoom = this.zoom;
 			this.zoom = zoom;
-			if (!use_anchor) {
-				x = Allocation.Width / 2;
-				y = Allocation.Height / 2;
-			}
-			double x_anchor, y_anchor;
-			x_anchor = (double)(Hadjustment.Value + x) / (double)Width;
-			y_anchor = (double)(Vadjustment.Value + y) / (double)Height;
-
-      			UpdateScaledSize ();
-			Hadjustment.Value = x_anchor * Width - x;
-			Vadjustment.Value = y_anchor * Height - y;
+			ComputeScaledSize ();
 
 			EventHandler eh = ZoomChanged;
 			if (eh != null)
 				eh (this, EventArgs.Empty);
+
 			QueueDraw ();
 		}
 
@@ -177,20 +173,17 @@ Console.WriteLine ("DoZoom");
 
 		public Gdk.Rectangle ImageCoordsToWindow (Gdk.Rectangle image)
 		{
-			int x, y;
-			int width, height;
-	
 			if (this.Pixbuf == null)
 				return Gdk.Rectangle.Zero;
 
-			int x_offset = (int)Width < Allocation.Width ? (Allocation.Width - (int)Width) / 2 : -XOffset;
-			int y_offset = (int)Height < Allocation.Height ? (Allocation.Height - (int)Height) / 2 : -YOffset;
+			int x_offset = scaled_width < Allocation.Width ? (int)(Allocation.Width - scaled_width) / 2 : -XOffset;
+			int y_offset = scaled_height < Allocation.Height ? (int)(Allocation.Height - scaled_height) / 2 : -YOffset;
 
 			Gdk.Rectangle win = Gdk.Rectangle.Zero;
-			win.X = (int) Math.Floor (image.X * (double) (Width - 1) / (this.Pixbuf.Width - 1) + 0.5) + x_offset;
-			win.Y = (int) Math.Floor (image.Y * (double) (Height - 1) / (this.Pixbuf.Height - 1) + 0.5) + y_offset;
-			win.Width = (int) Math.Floor ((image.X + image.Width) * (double) (Width - 1) / (this.Pixbuf.Width - 1) + 0.5) - win.X + x_offset;
-			win.Height = (int) Math.Floor ((image.Y + image.Height) * (double) (Height - 1) / (this.Pixbuf.Height - 1) + 0.5) - win.Y + y_offset;
+			win.X = (int) Math.Floor (image.X * (double) (scaled_width - 1) / (this.Pixbuf.Width - 1) + 0.5) + x_offset;
+			win.Y = (int) Math.Floor (image.Y * (double) (scaled_height - 1) / (this.Pixbuf.Height - 1) + 0.5) + y_offset;
+			win.Width = (int) Math.Floor ((image.X + image.Width) * (double) (scaled_width - 1) / (this.Pixbuf.Width - 1) + 0.5) - win.X + x_offset;
+			win.Height = (int) Math.Floor ((image.Y + image.Height) * (double) (scaled_height - 1) / (this.Pixbuf.Height - 1) + 0.5) - win.Y + y_offset;
 	
 			return win;
 		}
@@ -226,28 +219,28 @@ Console.WriteLine ("DoZoom");
 		void PaintRectangle (Rectangle area, InterpType interpolation)
 		{
 Console.WriteLine ("PaintRectangle {0}", area);
-			int x_offset = (int)Width < Allocation.Width ? (Allocation.Width - (int)Width) / 2 : -XOffset;
-			int y_offset = (int)Height < Allocation.Height ? (Allocation.Height - (int)Height) / 2 : -YOffset;
+			int x_offset = scaled_width < Allocation.Width ? (int)(Allocation.Width - scaled_width) / 2 : -XOffset;
+			int y_offset = scaled_height < Allocation.Height ? (int)(Allocation.Height - scaled_height) / 2 : -YOffset;
 			//Draw background
 			if (y_offset > 0) 	//Top
 				PaintBackground (new Rectangle (0, 0, Allocation.Width, y_offset), area);
 			if (x_offset > 0) 	//Left
-				PaintBackground (new Rectangle (0, y_offset, x_offset, (int)Height), area);
+				PaintBackground (new Rectangle (0, y_offset, x_offset, (int)scaled_height), area);
 			if (x_offset >= 0)	//Right
-				PaintBackground (new Rectangle (x_offset + (int)Width, y_offset, Allocation.Width - x_offset - (int)Width, (int)Height), area);
+				PaintBackground (new Rectangle (x_offset + (int)scaled_width, y_offset, Allocation.Width - x_offset - (int)scaled_width, (int)scaled_height), area);
 			if (y_offset >= 0)	//Bottom
-				PaintBackground (new Rectangle (0, y_offset + (int)Height, Allocation.Width, Allocation.Height - y_offset - (int)Height), area);
+				PaintBackground (new Rectangle (0, y_offset + (int)scaled_height, Allocation.Width, Allocation.Height - y_offset - (int)scaled_height), area);
 
 			if (Pixbuf == null)
 				return;
 
-			area.Intersect (new Rectangle (x_offset, y_offset, (int)Width, (int)Height));
+			area.Intersect (new Rectangle (x_offset, y_offset, (int)scaled_width, (int)scaled_height));
 
 			//Short circuit for 1:1 zoom
 			if (zoom == 1.0 &&
 			    !Pixbuf.HasAlpha &&
 			    Pixbuf.BitsPerSample == 8) {
-				BinWindow.DrawPixbuf (Style.BlackGC,
+				GdkWindow.DrawPixbuf (Style.BlackGC,
 						      Pixbuf,
 						      area.X - x_offset, area.Y - y_offset,
 						      area.X, area.Y,
@@ -270,7 +263,7 @@ Console.WriteLine ("PaintRectangle {0}", area);
 						       area.X - x_offset, area.Y - y_offset,
 						       CheckPattern.CheckSize, CheckPattern.Color1, CheckPattern.Color2);
 
-				BinWindow.DrawPixbuf (Style.BlackGC,
+				GdkWindow.DrawPixbuf (Style.BlackGC,
 						      temp_pixbuf,
 						      0, 0,
 						      area.X, area.Y,
@@ -278,56 +271,6 @@ Console.WriteLine ("PaintRectangle {0}", area);
 						      RgbDither.Max,
 						      area.X - x_offset, area.Y - y_offset);
 			}
-		}
-
-		protected override void OnSizeAllocated (Rectangle allocation)
-		{
-Console.WriteLine ("ImageView.OnSizeAllocated");
-			if (Pixbuf == null)
-				min_zoom = 0.1;
-			else {
-				min_zoom = Math.Min (1.0,
-					Math.Min ((double)allocation.Width / (double)Pixbuf.Width,
-					(double)allocation.Height / (double)Pixbuf.Height));
-			}
-
-			if (zoom < min_zoom)
-				zoom = min_zoom;
-			// Since this affects the zoom_scale we should alert it
-			EventHandler eh = ZoomChanged;
-			if (eh != null)
-				eh (this, System.EventArgs.Empty);
-
-			base.OnSizeAllocated (allocation);
-	
-		}
-
-		protected override bool OnExposeEvent (EventExpose evnt)
-		{
-Console.WriteLine ("ImageView.OnExposeEvent");
-			if (evnt == null)
-				return true;
-
-			foreach (Rectangle area in evnt.Region.GetRectangles ())
-			{
-				var p_area = new Rectangle (Math.Max (0, area.X), Math.Max (0, area.Y),
-						      Math.Min (Allocation.Width, area.Width), Math.Min (Allocation.Height, area.Height));
-				if (p_area == Rectangle.Zero)
-					continue;
-
-				//draw synchronously if InterpType.Nearest or zoom 1:1
-				if (Interpolation == InterpType.Nearest || zoom == 1.0) {
-					PaintRectangle (p_area, Interpolation);
-					continue;
-				}
-				
-				//delay all other interpolation types
-//				GLib.Idle.Add (...);
-
-				PaintRectangle (p_area, InterpType.Nearest);
-			}
-
-			return true;
 		}
 
 		bool dragging = false;
@@ -366,18 +309,227 @@ Console.WriteLine ("ImageView.OnExposeEvent");
 			return base.OnScrollEvent (evnt);
 		}
 
-		void UpdateScaledSize ()
+		uint scaled_width, scaled_height;
+		void ComputeScaledSize ()
 		{
-			uint scaled_width, scaled_height;
 			if (Pixbuf != null) {
 				scaled_width = (uint)Math.Floor (Pixbuf.Width * Zoom + .5);
 				scaled_height = (uint)Math.Floor (Pixbuf.Height * Zoom + .5);
 			} else {
 				scaled_width = scaled_height = 0;
 			}
-			Hadjustment.Upper = (double)scaled_width;
-			Vadjustment.Upper = (double)scaled_height;
-			SetSize (scaled_width, scaled_height);
+
+			Hadjustment.Value = scaled_width;
+			Vadjustment.Value = scaled_height;
+		}
+#region widgetry
+		protected override void OnRealized ()
+		{
+Console.WriteLine ("ImageView.OnRealized");
+			SetFlag (Gtk.WidgetFlags.Realized);
+
+			Gdk.WindowAttr attributes = new Gdk.WindowAttr {
+							     WindowType = Gdk.WindowType.Child,
+							     X = Allocation.X,
+							     Y = Allocation.Y,
+							     Width = Allocation.Width,
+							     Height = Allocation.Height,
+							     Wclass = Gdk.WindowClass.InputOutput,
+							     Visual = this.Visual,
+							     Colormap = this.Colormap,
+							     Mask = this.Events
+							     	  | EventMask.ExposureMask
+								  | EventMask.ButtonPressMask
+								  | EventMask.ButtonReleaseMask
+								  | EventMask.PointerMotionMask
+								  | EventMask.PointerMotionHintMask
+								  | EventMask.ScrollMask
+								  | EventMask.KeyPressMask };
+			GdkWindow = new Gdk.Window (ParentWindow, attributes, 
+						     Gdk.WindowAttributesType.X | Gdk.WindowAttributesType.Y | Gdk.WindowAttributesType.Visual | Gdk.WindowAttributesType.Colormap);
+
+			GdkWindow.SetBackPixmap (null, false);
+			GdkWindow.UserData = Handle;
+
+			Style.Attach (GdkWindow);
+			Style.SetBackground (GdkWindow, Gtk.StateType.Normal);
+
+			foreach (var child in children) {
+				child.Widget.ParentWindow = GdkWindow;
+			}
+
+		}
+
+		protected override void OnMapped ()
+		{
+			SetFlag (Gtk.WidgetFlags.Mapped);
+
+			foreach (var child in children) {
+				if (child.Widget.Visible && !child.Widget.IsMapped)
+					child.Widget.Map ();
+			}
+			GdkWindow.Show ();
+		}
+
+		protected override void OnSizeRequested (ref Gtk.Requisition requisition)
+		{
+			requisition.Width = requisition.Height = 0;
+
+			foreach (var child in children) {
+				child.Widget.SizeRequest ();
+			}
+		}
+
+		protected override void OnSizeAllocated (Gdk.Rectangle allocation)
+		{
+			if (Pixbuf == null)
+				min_zoom = 0.1;
+			else {
+				min_zoom = Math.Min (1.0,
+					Math.Min ((double)allocation.Width / (double)Pixbuf.Width,
+					(double)allocation.Height / (double)Pixbuf.Height));
+			}
+
+			if (zoom < min_zoom)
+				zoom = min_zoom;
+			// Since this affects the zoom_scale we should alert it
+			EventHandler eh = ZoomChanged;
+			if (eh != null)
+				eh (this, System.EventArgs.Empty);
+
+			ComputeScaledSize ();
+
+			foreach (var child in children) {
+				Gtk.Requisition req = child.Widget.ChildRequisition;
+				child.Widget.SizeAllocate (new Gdk.Rectangle (child.X, child.Y, req.Width, req.Height));
+			}
+
+			if (IsRealized) {
+				GdkWindow.MoveResize (allocation.X, allocation.Y, allocation.Width, allocation.Height);
+			}
+
+			Hadjustment.PageSize = allocation.Width;
+			Hadjustment.PageIncrement = scaled_width * .9;
+			Hadjustment.Lower = 0;
+			Hadjustment.Upper = Math.Max (scaled_width, allocation.Width);
+
+			Vadjustment.PageSize = allocation.Height;
+			Vadjustment.PageIncrement = scaled_height * .9;
+			Vadjustment.Lower = 0;
+			Vadjustment.Upper = Math.Max (scaled_height, allocation.Height);
+			base.OnSizeAllocated (allocation);
+		}
+
+		protected override bool OnExposeEvent (Gdk.EventExpose evnt)
+		{
+			if (evnt.Window != GdkWindow)
+				return false;
+
+			foreach (Rectangle area in evnt.Region.GetRectangles ())
+			{
+				var p_area = new Rectangle (Math.Max (0, area.X), Math.Max (0, area.Y),
+						      Math.Min (Allocation.Width, area.Width), Math.Min (Allocation.Height, area.Height));
+				if (p_area == Rectangle.Zero)
+					continue;
+
+				//draw synchronously if InterpType.Nearest or zoom 1:1
+				if (Interpolation == InterpType.Nearest || zoom == 1.0) {
+					PaintRectangle (p_area, Interpolation);
+					continue;
+				}
+				
+				//delay all other interpolation types
+//				GLib.Idle.Add (...);
+
+				PaintRectangle (p_area, InterpType.Nearest);
+			}
+
+			return true;
+		}
+
+		protected override void OnSetScrollAdjustments (Gtk.Adjustment hadjustment, Gtk.Adjustment vadjustment)
+		{
+Console.WriteLine ("\n\nLayout.OnSetScrollAdjustments");
+			if (hadjustment == null)
+				hadjustment = new Gtk.Adjustment (0, 0, 0, 0, 0, 0);
+			if (vadjustment == null)
+				vadjustment = new Gtk.Adjustment (0, 0, 0, 0, 0, 0);
+			bool need_change = false;
+			if (Hadjustment != hadjustment) {
+				this.hadjustment = hadjustment;
+				this.hadjustment.Upper = scaled_width;
+				this.hadjustment.ValueChanged += HandleAdjustmentsValueChanged;
+				need_change = true;
+			}
+			if (Vadjustment != vadjustment) {
+				this.vadjustment = vadjustment;
+				this.vadjustment.Upper = scaled_height;
+				this.vadjustment.ValueChanged += HandleAdjustmentsValueChanged;
+				need_change = true;
+			}
+
+			if (need_change)
+				HandleAdjustmentsValueChanged (this, EventArgs.Empty);
+		}	
+
+		void HandleAdjustmentsValueChanged (object sender, EventArgs e) {
+			Console.WriteLine ("Adjustment(s) value changed");
+		}
+#endregion
+		class LayoutChild {
+			Gtk.Widget widget;
+			public Gtk.Widget Widget {
+				get { return widget; }
+			}
+
+			int x;
+			public int X {
+				get { return x; } 
+				set { x = value; }
+			}
+
+			int y;
+			public int Y {
+				get { return y; }
+				set { y = value; }
+			}
+
+			public LayoutChild (Gtk.Widget widget, int x, int y)
+			{
+				this.widget = widget;
+				this.x = x;
+				this.y = y;
+			}
+		}
+
+
+		List<LayoutChild> children;
+		public void Put (Gtk.Widget widget, int x, int y)
+		{
+			children.Add (new LayoutChild (widget, x, y));
+			if (IsRealized)
+				widget.ParentWindow = GdkWindow;
+			widget.Parent = this;
+		}
+
+		LayoutChild GetChild (Gtk.Widget widget)
+		{
+			foreach (var child in children)
+				if (child.Widget == widget)
+					return child;
+			return null;
+		}
+	
+		public void Move (Gtk.Widget widget, int x, int y)
+		{
+			LayoutChild child = GetChild (widget);
+			if (child == null)
+				return;
+
+			child.X = x;
+			child.Y = y;
+			if (Visible && widget.Visible)
+				QueueResize ();
 		}
 	}
 }

@@ -237,18 +237,28 @@ Console.WriteLine ("\n\nLayout.OnSetScrollAdjustments");
 				hadjustment = new Gtk.Adjustment (0, 0, 0, 0, 0, 0);
 			if (vadjustment == null)
 				vadjustment = new Gtk.Adjustment (0, 0, 0, 0, 0, 0);
+			bool need_change = false;
 			if (Hadjustment != hadjustment) {
 				this.hadjustment = hadjustment;
 				this.hadjustment.Upper = Width;
-				this.hadjustment.ValueChanged += delegate {Console.WriteLine ("Hadjustment.ValueChanged");};
+				this.hadjustment.ValueChanged += HandleAdjustmentsValueChanged;
+				need_change = true;
 			}
 			if (Vadjustment != vadjustment) {
 				this.vadjustment = vadjustment;
 				this.vadjustment.Upper = Width;
-				this.vadjustment.ValueChanged += delegate {Console.WriteLine ("Vadjustment.ValueChanged");};
+				this.vadjustment.ValueChanged += HandleAdjustmentsValueChanged;
+				need_change = true;
 			}
 
-			//FIXME: trigger the AdjustmentChanged
+			if (need_change)
+				HandleAdjustmentsValueChanged (this, EventArgs.Empty);
+		}
+
+		void HandleAdjustmentsValueChanged (object sender, EventArgs e)
+		{
+			if (IsRealized)
+				bin_window.Move (-(int)Hadjustment.Value, -(int)Vadjustment.Value);
 		}
 #endregion widgetry
 
