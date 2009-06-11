@@ -150,6 +150,28 @@ namespace FSpot.Widgets
 			return win;
 		}
 
+		List<LayoutChild> children;
+		public void Put (Gtk.Widget widget, int x, int y)
+		{
+			children.Add (new LayoutChild (widget, x, y));
+			if (IsRealized)
+				widget.ParentWindow = GdkWindow;
+			widget.Parent = this;
+		}
+
+		public void Move (Gtk.Widget widget, int x, int y)
+		{
+			LayoutChild child = GetChild (widget);
+			if (child == null)
+				return;
+
+			child.X = x;
+			child.Y = y;
+			if (Visible && widget.Visible)
+				QueueResize ();
+		}
+
+
 		public event EventHandler ZoomChanged;
 		public event EventHandler SelectionChanged;
 #endregion
@@ -410,7 +432,23 @@ Console.WriteLine ("DoZoom {0} {1} {2} {3}", zoom, use_anchor, x, y);
 				zoom = MIN_ZOOM;
 
 			this.zoom = zoom;
+			
+			if (!use_anchor) {
+				x = (int)Allocation.Width / 2;
+				y = (int)Allocation.Height / 2;
+			}
+
+			double x_anchor = (double)(XOffset + x) / (double)scaled_width;
+			double y_anchor = (double)(YOffset + y) / (double)scaled_height;
 			ComputeScaledSize ();
+
+			Console.WriteLine ("offset {0} {1}", XOffset, YOffset);
+			Console.WriteLine ("anchor {0} {1}", x_anchor, y_anchor);
+			AdjustmentsChanged -= ScrollToAdjustments;
+			Hadjustment.Value = XOffset = (int)(x_anchor * scaled_width - x); 
+			Vadjustment.Value = YOffset = (int)(y_anchor * scaled_height - y); 
+			AdjustmentsChanged += ScrollToAdjustments;
+			Console.WriteLine ("offset {0} {1}", XOffset, YOffset);
 
 			EventHandler eh = ZoomChanged;
 			if (eh != null)
@@ -519,8 +557,6 @@ Console.WriteLine ("PaintRectangle {0}", area);
 			else if (y > Vadjustment.Upper - Vadjustment.PageSize) 
 				y = (int)(Vadjustment.Upper - Vadjustment.PageSize);
 
-			Console.WriteLine ("ScrollTo {0} {1}", x, y);
-			
 			int xof = x - XOffset;
 			int yof = y - YOffset;
 			XOffset = x;
@@ -563,33 +599,12 @@ Console.WriteLine ("PaintRectangle {0}", area);
 			}
 		}
 
-		List<LayoutChild> children;
-		public void Put (Gtk.Widget widget, int x, int y)
-		{
-			children.Add (new LayoutChild (widget, x, y));
-			if (IsRealized)
-				widget.ParentWindow = GdkWindow;
-			widget.Parent = this;
-		}
-
 		LayoutChild GetChild (Gtk.Widget widget)
 		{
 			foreach (var child in children)
 				if (child.Widget == widget)
 					return child;
 			return null;
-		}
-	
-		public void Move (Gtk.Widget widget, int x, int y)
-		{
-			LayoutChild child = GetChild (widget);
-			if (child == null)
-				return;
-
-			child.X = x;
-			child.Y = y;
-			if (Visible && widget.Visible)
-				QueueResize ();
 		}
 #endregion
 	}
