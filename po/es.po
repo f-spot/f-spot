@@ -13,8 +13,8 @@ msgstr ""
 "Project-Id-Version: f-spot.HEAD\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=f-"
 "spot&component=General\n"
-"POT-Creation-Date: 2009-05-29 07:53+0000\n"
-"PO-Revision-Date: 2009-06-03 20:00+0200\n"
+"POT-Creation-Date: 2009-06-10 08:46+0000\n"
+"PO-Revision-Date: 2009-06-11 08:59+0200\n"
 "Last-Translator: Jorge González <jorgegonz@svn.gnome.org>\n"
 "Language-Team: Español <gnome-es-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -249,9 +249,9 @@ msgstr "Desactivar"
 #: ../extensions/Exporters/FolderExport/FolderExport.cs:250
 #: ../extensions/Exporters/GalleryExport/GalleryExport.cs:799
 #: ../extensions/Exporters/FacebookExport/FacebookExport.cs:543
-#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:694
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:693
 #: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:596
-#: ../extensions/Exporters/TabbloExport/TabbloExport.cs:177
+#: ../extensions/Exporters/TabbloExport/TabbloExport.cs:314
 msgid "Error"
 msgstr "Error"
 
@@ -909,33 +909,33 @@ msgstr "Género intelectual del objeto"
 msgid "Unknown IIM DataSet"
 msgstr "Conjunto de datos IIM desconocido"
 
-#: ../src/ImportCommand.cs:47 ../src/SingleView.cs:357
+#: ../src/ImportCommand.cs:48 ../src/SingleView.cs:357
 msgid "Select Folder"
 msgstr "Seleccionar la carpeta"
 
-#: ../src/ImportCommand.cs:259
+#: ../src/ImportCommand.cs:260
 msgid "(No Cameras Detected)"
 msgstr "(No se detectó ninguna cámara)"
 
-#: ../src/ImportCommand.cs:404
+#: ../src/ImportCommand.cs:405
 #, csharp-format
 msgid "Loading {0} of {1}"
 msgstr "Cargando {0} de {1}"
 
-#: ../src/ImportCommand.cs:470
+#: ../src/ImportCommand.cs:471
 msgid "Done Loading"
 msgstr "Finalizó la carga"
 
-#: ../src/ImportCommand.cs:540 ../src/MainWindow.cs:279
+#: ../src/ImportCommand.cs:541 ../src/MainWindow.cs:279
 #: ../src/f-spot.glade.h:78
 msgid "Import"
 msgstr "Importar"
 
-#: ../src/ImportCommand.cs:670
+#: ../src/ImportCommand.cs:671
 msgid "Directory does not exist."
 msgstr "La carpeta no existe."
 
-#: ../src/ImportCommand.cs:671
+#: ../src/ImportCommand.cs:672
 #, csharp-format
 msgid ""
 "The directory you selected \"{0}\" does not exist.  Please choose a "
@@ -945,7 +945,7 @@ msgstr ""
 "distinta"
 
 #. Note for translators: 'Import Tags' is no command, it means 'Tags used in Import'
-#: ../src/ImportCommand.cs:724 ../src/ImportCommand.cs:726
+#: ../src/ImportCommand.cs:725 ../src/ImportCommand.cs:727
 #: ../src/XmpTagsImporter.cs:89
 msgid "Import Tags"
 msgstr "Importar etiquetas"
@@ -1600,7 +1600,7 @@ msgstr "Rotar la fotografía a la derecha"
 
 #. Obsolete, remove after db rev4
 #: ../src/SingleView.cs:128 ../src/UI.Dialog/ui/PreferenceDialog.glade.h:14
-#: ../src/Widgets/MetadataDisplay.cs:221 ../src/Widgets/MetadataDisplay.cs:223
+#: ../src/Widgets/MetadataDisplay.cs:223 ../src/Widgets/MetadataDisplay.cs:225
 msgid "Folder"
 msgstr "Carpeta"
 
@@ -1612,51 +1612,51 @@ msgstr "Abrir"
 msgid "Set as Background"
 msgstr "Establecer como fondo"
 
-#: ../src/TagCommands.cs:91 ../src/TagCommands.cs:219
+#: ../src/TagCommands.cs:92 ../src/TagCommands.cs:220
 #: ../src/TagSelectionWidget.cs:506
 msgid "This name is already in use"
 msgstr "Este nombre ya está siendo usado"
 
-#: ../src/TagCommands.cs:138
+#: ../src/TagCommands.cs:139
 msgid "Create New Tag"
 msgstr "Crear nueva etiqueta"
 
-#: ../src/TagCommands.cs:139
+#: ../src/TagCommands.cs:140
 msgid "Name of New Tag:"
 msgstr "Nombre de la etiqueta nueva:"
 
-#: ../src/TagCommands.cs:285
+#: ../src/TagCommands.cs:286
 msgid "Edit Tag"
 msgstr "Editar etiqueta"
 
-#: ../src/TagCommands.cs:286
+#: ../src/TagCommands.cs:287
 msgid "Tag Name:"
 msgstr "Nombre de la etiqueta:"
 
-#: ../src/TagCommands.cs:402
+#: ../src/TagCommands.cs:403
 msgid "Unable to load image"
 msgstr "No se pudo cargar la imagen"
 
-#: ../src/TagCommands.cs:403
+#: ../src/TagCommands.cs:404
 #, csharp-format
 msgid "Unable to load \"{0}\" as icon for the tag"
 msgstr "No se pudo cargar «{0}» como icono para la etiqueta"
 
-#: ../src/TagCommands.cs:447
+#: ../src/TagCommands.cs:448
 #, csharp-format
 msgid "Photo {0} of {1}"
 msgstr "Fotografía {0} de {1}"
 
-#: ../src/TagCommands.cs:477
+#: ../src/TagCommands.cs:478
 #, csharp-format
 msgid "Edit Icon for Tag {0}"
 msgstr "Editar el icono para la etiqueta {0}"
 
-#: ../src/TagCommands.cs:493
+#: ../src/TagCommands.cs:494
 msgid "Select Photo from file"
 msgstr "Seleccionar foto desde archivo"
 
-#: ../src/TagCommands.cs:516
+#: ../src/TagCommands.cs:517
 #, csharp-format
 msgid ""
 "\n"
@@ -1936,8 +1936,6 @@ msgstr ""
 "imágenes, o un pequeño conjunto basado en las etiquetas.</i></small>"
 
 #: ../src/UI.Dialog/ui/PreferenceDialog.glade.h:10
-#| msgid ""
-#| "<small><i>You'll have to restart f-spot to load the new theme.</i></small>"
 msgid ""
 "<small><i>You'll have to restart F-Spot to load the new theme.</i></small>"
 msgstr ""
@@ -2224,33 +2222,33 @@ msgstr "Metadatos"
 msgid "Extended Metadata"
 msgstr "Metadatos extendidos"
 
-#: ../src/Widgets/MetadataDisplay.cs:225
+#: ../src/Widgets/MetadataDisplay.cs:227
 msgid "Picasaweb"
 msgstr "Picasaweb"
 
-#: ../src/Widgets/MetadataDisplay.cs:227
+#: ../src/Widgets/MetadataDisplay.cs:229
 msgid "SmugMug"
 msgstr "SmugMug"
 
-#: ../src/Widgets/MetadataDisplay.cs:229
+#: ../src/Widgets/MetadataDisplay.cs:231
 msgid "Gallery2"
 msgstr "Galería2"
 
 #. clear Extended Metadata
-#: ../src/Widgets/MetadataDisplay.cs:389
+#: ../src/Widgets/MetadataDisplay.cs:391
 msgid "No Extended Metadata Available"
 msgstr "No hay metadatos adicionales disponibles"
 
-#: ../src/Widgets/MetadataDisplay.cs:407
+#: ../src/Widgets/MetadataDisplay.cs:409
 msgid "No active photo"
 msgstr "No hay una foto activa"
 
-#: ../src/Widgets/MetadataDisplay.cs:409
+#: ../src/Widgets/MetadataDisplay.cs:411
 #, csharp-format
 msgid "The photo \"{0}\" does not exist"
 msgstr "La fotografía «{0}» no existe"
 
-#: ../src/Widgets/MetadataDisplay.cs:412
+#: ../src/Widgets/MetadataDisplay.cs:414
 msgid "No metadata available"
 msgstr "No hay metadatos disponibles"
 
@@ -2380,7 +2378,7 @@ msgstr "<b>Mínima puntuación</b>"
 #: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:3
 #: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:2
 #: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:2
-#: ../extensions/Exporters/TabbloExport/TabbloExport.glade.h:1
+#: ../extensions/Exporters/TabbloExport/TabbloExport.glade.h:2
 msgid "<b>Photos</b>"
 msgstr "<b>Fotografías</b>"
 
@@ -2591,7 +2589,7 @@ msgstr "Tamaño nuevo estimado"
 #: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:8
 #: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:9
 #: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:6
-#: ../extensions/Exporters/TabbloExport/TabbloExport.glade.h:3
+#: ../extensions/Exporters/TabbloExport/TabbloExport.glade.h:5
 msgid "Export"
 msgstr "Exportar"
 
@@ -3146,7 +3144,7 @@ msgstr "Transfiriendo fotografía «{0}» al CD"
 #: ../extensions/Exporters/FolderExport/FolderExport.cs:285
 #: ../extensions/Exporters/GalleryExport/GalleryExport.cs:808
 #: ../extensions/Exporters/FacebookExport/FacebookExport.cs:551
-#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:702
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:704
 #: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:607
 msgid "Done Sending Photos"
 msgstr "Finalizó el envío de fotos"
@@ -3273,7 +3271,7 @@ msgstr "Error al cargar en {0}: {1}"
 #: ../extensions/Exporters/FlickrExport/FlickrExport.cs:381
 #: ../extensions/Exporters/GalleryExport/GalleryExport.cs:810
 #: ../extensions/Exporters/FacebookExport/FacebookExport.cs:553
-#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:704
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:706
 #: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:609
 msgid "Upload Complete"
 msgstr "Carga completada"
@@ -3294,7 +3292,7 @@ msgstr ""
 #: ../extensions/Exporters/FlickrExport/FlickrExport.cs:475
 #: ../extensions/Exporters/GalleryExport/GalleryExport.cs:732
 #: ../extensions/Exporters/FacebookExport/FacebookExport.cs:477
-#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:598
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:597
 #: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:522
 msgid "Uploading Pictures"
 msgstr "Cargando fotografías"
@@ -3517,25 +3515,25 @@ msgid "Error uploading picture \"{0}\" to Gallery: {1}"
 msgstr "Error al subir la imagen «{0}» a Gallery: {1}"
 
 #: ../extensions/Exporters/GalleryExport/GalleryExport.cs:826
-#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:725
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:727
 #: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:630
 msgid "(No Gallery)"
 msgstr "(No hay ninguna galería)"
 
 #: ../extensions/Exporters/GalleryExport/GalleryExport.cs:918
-#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:848
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:849
 #: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:726
 msgid "(Not Connected)"
 msgstr "(Desconectado)"
 
 #: ../extensions/Exporters/GalleryExport/GalleryExport.cs:919
-#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:849
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:850
 #: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:727
 msgid "(No Albums)"
 msgstr "(No hay álbumes)"
 
 #: ../extensions/Exporters/GalleryExport/GalleryExport.cs:971
-#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:914
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:915
 #: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:768
 msgid "No account selected"
 msgstr "No se seleccionó ninguna cuenta"
@@ -3591,7 +3589,7 @@ msgstr "Álbum pa_dre:"
 #: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:19
 #: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:23
 #: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:14
-#: ../extensions/Exporters/TabbloExport/TabbloExport.glade.h:4
+#: ../extensions/Exporters/TabbloExport/TabbloExport.glade.h:9
 msgid "_Password:"
 msgstr "Contrase_ña:"
 
@@ -3602,7 +3600,7 @@ msgstr "_Título:"
 #: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:22
 #: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:25
 #: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:16
-#: ../extensions/Exporters/TabbloExport/TabbloExport.glade.h:5
+#: ../extensions/Exporters/TabbloExport/TabbloExport.glade.h:10
 msgid "_Username:"
 msgstr "_Usuario:"
 
@@ -3707,7 +3705,7 @@ msgstr ""
 "{0}"
 
 #: ../extensions/Exporters/FacebookExport/FacebookExport.cs:528
-#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:661
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:660
 #: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:565
 #, csharp-format
 msgid "Uploading picture \"{0}\" ({1} of {2})"
@@ -3875,7 +3873,6 @@ msgid "Keep the images at their original location"
 msgstr "Mantener las imágenes en su ubicación original"
 
 #: ../extensions/Tools/MergeDb/MergeDb.glade.h:13
-#| msgid "Merge another f-spot collection"
 msgid "Merge another F-Spot collection"
 msgstr "Mezclar otra colección de F-Spot"
 
@@ -3894,12 +3891,10 @@ msgstr ""
 "Seleccione esa carpeta para que se pueda realizar el mapeo.</big>"
 
 #: ../extensions/Tools/MetaPixel/MetaPixel.addin.xml.h:1
-#| msgid "Rated photos"
 msgid "Create p_hotomosaic"
 msgstr "Crear _fotomosaico"
 
 #: ../extensions/Tools/MetaPixel/MetaPixel.cs:65
-#| msgid "No metadata available"
 msgid "Metapixel not available"
 msgstr "Metapixel no está disponible"
 
@@ -3913,33 +3908,26 @@ msgstr ""
 
 #. There is no photo for the selected tags! :(
 #: ../extensions/Tools/MetaPixel/MetaPixel.cs:121
-#| msgid "Size of the exported selection:"
 msgid "No photos for the selection"
 msgstr "No existen fotos para la selección"
 
 #: ../extensions/Tools/MetaPixel/MetaPixel.cs:122
-#| msgid ""
-#| "The directory you selected \"{0}\" does not exist.  Please choose a "
-#| "different directory"
 msgid "The tags selected provided no pictures. Please select different tags"
 msgstr ""
 "Las etiquetas seleccionadas no proporcionaron ninguna imagen. Seleccione "
 "otras etiquetas."
 
 #: ../extensions/Tools/MetaPixel/MetaPixel.cs:129
-#| msgid "Transferring Pictures"
 msgid "Creating miniatures"
 msgstr "Creando miniaturas"
 
 #: ../extensions/Tools/MetaPixel/MetaPixel.cs:180
-#| msgid "Rotating photos"
 msgid "Creating photomosaics"
 msgstr "Creando fotomosaicos"
 
 #: ../extensions/Tools/MetaPixel/MetaPixel.cs:187
 #: ../extensions/Tools/PictureTile/PictureTile.cs:120
 #, csharp-format
-#| msgid "Preparing photo \"{0}\""
 msgid "Processing \"{0}\""
 msgstr "Procesando «{0}»"
 
@@ -3949,19 +3937,16 @@ msgstr "Fotomosaicos generados"
 
 #: ../extensions/Tools/MetaPixel/MetaPixel.cs:254
 #, csharp-format
-#| msgid "Photos"
 msgid "PhotoMosaic"
 msgid_plural "PhotoMosaic ({0})"
 msgstr[0] "Fotomosaico"
 msgstr[1] "Fotomosaico ({0})"
 
 #: ../extensions/Tools/PictureTile/PictureTile.addin.xml.h:1
-#| msgid "Create Mail"
 msgid "Create photo_wall"
 msgstr "Crear _mural de fotos"
 
 #: ../extensions/Tools/PictureTile/PictureTile.cs:71
-#| msgid "No applications available"
 msgid "PictureTile not available"
 msgstr "PictreTile no está disponible"
 
@@ -3974,12 +3959,10 @@ msgstr ""
 "tiene instalado y que tiene permisos para ejecutarlo."
 
 #: ../extensions/Tools/PictureTile/PictureTile.cs:110
-#| msgid "Previous picture"
 msgid "Preparing selected pictures"
 msgstr "Preperando las imágenes seleccionadas"
 
 #: ../extensions/Tools/PictureTile/PictureTile.cs:201
-#| msgid "Gallery generated by"
 msgid "PhotoWall generated!"
 msgstr "Mural de fotos generado"
 
@@ -3992,7 +3975,6 @@ msgstr ""
 "carrete para verlo."
 
 #: ../extensions/Tools/PictureTile/PictureTile.cs:205
-#| msgid "Error editing photo"
 msgid "Error importing photowall"
 msgstr "Error al importar el mural de fotos"
 
@@ -4035,28 +4017,28 @@ msgid ""
 "The following error was encountered while attempting to create an album: {0}"
 msgstr "Se encontró el siguiente error al intentar crear un álbum: {0}"
 
-#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:621
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:620
 #, csharp-format
 msgid "{0} Sent"
 msgstr "{0} enviadas"
 
-#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:623
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:622
 #, csharp-format
 msgid "{0} of approx. {1}"
 msgstr "{0} de aproximadamente {1}"
 
-#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:692
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:691
 #: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:594
 #, csharp-format
 msgid "Error Uploading To Gallery: {0}"
 msgstr "Error al subir a la galería: {0}"
 
-#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:776
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:778
 #, csharp-format
 msgid "Available space: {0}, {1}% used out of {2}"
 msgstr "Espacio disponible: {0}, {1} usado de {2}"
 
-#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:890
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:891
 #, csharp-format
 msgid ""
 "The selected album has a limit of {0} pictures,\n"
@@ -4115,16 +4097,16 @@ msgstr "C_uenta:"
 msgid "_SmugMug..."
 msgstr "_SmugMug…"
 
-#: ../extensions/Exporters/TabbloExport/Tabblo/Connection.cs:126
+#: ../extensions/Exporters/TabbloExport/Tabblo/Connection.cs:132
 #, csharp-format
 msgid "Uploading photo \"{0}\""
 msgstr "Subiendo la foto «{0}»"
 
-#: ../extensions/Exporters/TabbloExport/Tabblo/Connection.cs:181
+#: ../extensions/Exporters/TabbloExport/Tabblo/Connection.cs:206
 msgid "Logging into Tabblo"
 msgstr "Iniciando sesión en Tabblo"
 
-#: ../extensions/Exporters/TabbloExport/Tabblo/Connection.cs:241
+#: ../extensions/Exporters/TabbloExport/Tabblo/Connection.cs:267
 msgid "Obtaining URL for upload"
 msgstr "Obteniendo URL para la carga"
 
@@ -4132,21 +4114,51 @@ msgstr "Obteniendo URL para la carga"
 msgid "_Tabblo..."
 msgstr "_Tabblo…"
 
-#: ../extensions/Exporters/TabbloExport/TabbloExport.cs:166
+#: ../extensions/Exporters/TabbloExport/TabbloExport.cs:303
 msgid "Done sending photos"
 msgstr "Finalizó el envío de fotos"
 
-#: ../extensions/Exporters/TabbloExport/TabbloExport.cs:168
+#: ../extensions/Exporters/TabbloExport/TabbloExport.cs:305
 msgid "Upload complete"
 msgstr "Carga completada"
 
-#: ../extensions/Exporters/TabbloExport/TabbloExport.cs:174
+#: ../extensions/Exporters/TabbloExport/TabbloExport.cs:311
 msgid "Error uploading to Tabblo: "
 msgstr "Error al subir a Tabblo: "
 
-#: ../extensions/Exporters/TabbloExport/TabbloExport.glade.h:2
+#: ../extensions/Exporters/TabbloExport/TabbloExport.glade.h:1
+#| msgid "<b>Import Settings</b>"
+msgid "<b>F-Spot tags</b>"
+msgstr "<b>Etiquetas de F-Spot</b>"
+
+#: ../extensions/Exporters/TabbloExport/TabbloExport.glade.h:3
 msgid "<b>Tabblo account</b>"
 msgstr "<b>Cuenta en Tabblo</b>"
+
+#: ../extensions/Exporters/TabbloExport/TabbloExport.glade.h:4
+msgid ""
+"<small><i>F-Spot tags can help you track the export status of photos. "
+"Example: Use one tag for the photos that you plan to export, and another one "
+"for those already exported. Here, you can tell F-Spot to automatically "
+"replace these tags as appropriate.</i></small>"
+msgstr ""
+"<small><i>Las etiquetas de F-Spot le ayudan a exportar el estado de las "
+"fotos. Por ejemplo: use una etiqueta para las fotos que piensa exportar, y "
+"otra para las que ya ha exportado. Aquí puede decirle a F-Spot que reemplace "
+"automáticamente esas etiquetas de forma apropiada.</i></small>"
+
+#: ../extensions/Exporters/TabbloExport/TabbloExport.glade.h:6
+msgid "Rem_ove from exported photos:"
+msgstr "_Qitar de las fotos exportadas:"
+
+#: ../extensions/Exporters/TabbloExport/TabbloExport.glade.h:7
+#| msgid "Select a Tag..."
+msgid "Select..."
+msgstr "Seleccionar…"
+
+#: ../extensions/Exporters/TabbloExport/TabbloExport.glade.h:8
+msgid "_Attach to exported photos:"
+msgstr "_Añadir a las fotos exportadas:"
 
 #: ../extensions/Exporters/TabbloExport/TrustError.glade.h:1
 msgid "<b>{0}</b>."
