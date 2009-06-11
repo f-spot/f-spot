@@ -495,6 +495,10 @@ namespace FSpot.Widgets {
 			case Gdk.Key.KP_Home:
 				this.Item.Index = 0;
 				break;
+			case Gdk.Key.r:
+			case Gdk.Key.R:
+				this.Item.Index = new Random().Next(0, this.Query.Count - 1);
+				break;
 			case Gdk.Key.End:
 			case Gdk.Key.KP_End:
 				this.Item.Index = this.Query.Count - 1;

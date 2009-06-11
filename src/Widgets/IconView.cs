@@ -1537,6 +1537,10 @@ namespace FSpot.Widgets
 			case Gdk.Key.End:
 				FocusCell = collection.Count - 1;
 				break;
+			case Gdk.Key.R:
+			case Gdk.Key.r:
+                                FocusCell = new Random().Next(0, collection.Count - 1);
+                                break;
 			case Gdk.Key.space:
 				ToggleCell (FocusCell);
 				break;
