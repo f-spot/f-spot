@@ -132,15 +132,21 @@ namespace FSpot.Widgets {
 			args.RetVal = false;
 			if (args.Event.Key == Gdk.Key.Escape) { 
 				args.RetVal = false;
-			} else if (args.Event.Key == Gdk.Key.Return) { 
+			} else if (args.Event.Key == Gdk.Key.comma) { 
 				if (tag_completion_index != -1) {
 					// If we are completing a tag, then finish that
 					FinishTagCompletion ();
 					args.RetVal = true;
-				} else
-					// Otherwise, pass the event to Gtk.Entry
-					// which will call OnActivated
+				} else 
+					// Otherwise do not handle this event here
 					args.RetVal = false;
+			} else if (args.Event.Key == Gdk.Key.Return) { 
+				// If we are completing a tag, then finish that
+				if (tag_completion_index != -1) 
+					FinishTagCompletion ();
+				// And pass the event to Gtk.Entry in any case,
+				// which will call OnActivated
+				args.RetVal = false;
 			} else if (args.Event.Key == Gdk.Key.Tab) {
 				DoTagCompletion (true);
 				args.RetVal = true;
