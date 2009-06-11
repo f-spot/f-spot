@@ -395,9 +395,9 @@ namespace FSpot.Widgets
 
 
 #endregion
+#region private painting and misc 
 		int XOffset { get; set;}
 		int YOffset { get; set;}
-
 		void DoZoom (double zoom, bool use_anchor, int x, int y)
 		{
 Console.WriteLine ("DoZoom {0} {1} {2} {3}", zoom, use_anchor, x, y);
@@ -421,6 +421,7 @@ Console.WriteLine ("DoZoom {0} {1} {2} {3}", zoom, use_anchor, x, y);
 
 		void PaintBackground (Rectangle backgound, Rectangle area)
 		{
+			GdkWindow.DrawRectangle (Style.BackgroundGCs [(int)StateType.Normal], true, area);
 		}
 
 		void PaintRectangle (Rectangle area, InterpType interpolation)
@@ -495,10 +496,8 @@ Console.WriteLine ("PaintRectangle {0}", area);
 		}
 
 		event EventHandler AdjustmentsChanged;
-
 		void HandleAdjustmentsValueChanged (object sender, EventArgs e)
 		{
-			Console.WriteLine ("Adjustment(s) value changed");
 			EventHandler eh = AdjustmentsChanged;
 			if (eh != null)
 				eh (this, EventArgs.Empty);
@@ -511,10 +510,14 @@ Console.WriteLine ("PaintRectangle {0}", area);
 
 		void ScrollTo (int x, int y, bool change_adjustments)
 		{
-			if (x < 0) x = 0;
-			if (x > Hadjustment.Upper - Hadjustment.PageSize) x = (int)(Hadjustment.Upper - Hadjustment.PageSize);
-			if (y < 0) y = 0;
-			if (y > Vadjustment.Upper - Vadjustment.PageSize) y = (int)(Vadjustment.Upper - Vadjustment.PageSize);
+			if (x < 0)
+				x = 0;
+			else if (x > Hadjustment.Upper - Hadjustment.PageSize) 
+				x = (int)(Hadjustment.Upper - Hadjustment.PageSize);
+			if (y < 0) 
+				y = 0;
+			else if (y > Vadjustment.Upper - Vadjustment.PageSize) 
+				y = (int)(Vadjustment.Upper - Vadjustment.PageSize);
 
 			Console.WriteLine ("ScrollTo {0} {1}", x, y);
 			
@@ -540,6 +543,7 @@ Console.WriteLine ("PaintRectangle {0}", area);
 		{
 			ScrollTo (XOffset + x, YOffset + y, true);
 		}
+#endregion
 
 #region children
 		class LayoutChild {
