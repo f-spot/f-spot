@@ -1,14 +1,14 @@
 # translation of f-spot.docs.HEAD.po to Español
 #
-# Jorge González <jorgegonz@svn.gnome.org>, 2007, 2008.
 # Javier Mazorra Rodríguez <mazi.debian@gmail.com>, 2007.
 # Eduardo Retamales <eretamales@gnome.cl>, 2007.
+# Jorge González <jorgegonz@svn.gnome.org>, 2007, 200, 2009.
 msgid ""
 msgstr ""
 "Project-Id-Version: f-spot.docs.HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-10-18 12:45+0000\n"
-"PO-Revision-Date: 2008-10-18 16:22+0200\n"
+"POT-Creation-Date: 2009-06-11 13:35+0000\n"
+"PO-Revision-Date: 2009-06-11 19:25+0200\n"
 "Last-Translator: Jorge González <jorgegonz@svn.gnome.org>\n"
 "Language-Team: Español <gnome-es-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -1673,7 +1673,7 @@ msgstr "Quitar las fotos seleccionadas del catálogo de F-Spot"
 
 #: C/f-spot.xml:1120(keycap) C/f-spot.xml:1213(keycap)
 #: C/f-spot.xml:1247(keycap) C/f-spot.xml:1256(keycap)
-#: C/f-spot.xml:1273(keycap) C/f-spot.xml:1427(keycap)
+#: C/f-spot.xml:1273(keycap) C/f-spot.xml:1435(keycap)
 msgid "Shift"
 msgstr "Mayús"
 
@@ -1693,7 +1693,7 @@ msgstr "Ver o editar las etiquetas de las fotos seleccionadas"
 msgid "F11"
 msgstr "F11"
 
-#: C/f-spot.xml:1139(entry) C/f-spot.xml:1380(entry)
+#: C/f-spot.xml:1139(entry) C/f-spot.xml:1388(entry)
 msgid "Full screen view"
 msgstr "Ver a pantalla completa"
 
@@ -1829,7 +1829,7 @@ msgstr ""
 "selección"
 
 #: C/f-spot.xml:1265(keycap) C/f-spot.xml:1273(keycap)
-#: C/f-spot.xml:1418(keycap)
+#: C/f-spot.xml:1426(keycap)
 msgid "V"
 msgstr "V"
 
@@ -1917,47 +1917,56 @@ msgid "Go to Previous/Next photo or move around a zoomed photo"
 msgstr "Ir a la Anterior/Siguiente foto o moverse por una foto ampliada"
 
 #: C/f-spot.xml:1378(keycap)
+msgid "R"
+msgstr "R"
+
+#: C/f-spot.xml:1380(entry)
+#| msgid "Go to Previous Photo"
+msgid "Go to a random photo"
+msgstr "Ir a una foto aleatoria"
+
+#: C/f-spot.xml:1386(keycap)
 msgid "f"
 msgstr "f"
 
-#: C/f-spot.xml:1386(keycap)
+#: C/f-spot.xml:1394(keycap)
 msgid "0"
 msgstr "0"
 
-#: C/f-spot.xml:1388(entry)
+#: C/f-spot.xml:1396(entry)
 msgid "Fit the image to the screen"
 msgstr "Ajustar la imagen a la pantalla"
 
-#: C/f-spot.xml:1394(keycap)
+#: C/f-spot.xml:1402(keycap)
 msgid "1"
 msgstr "1"
 
-#: C/f-spot.xml:1396(entry)
+#: C/f-spot.xml:1404(entry)
 msgid "Zoom Factor to 1.0 (1 screen pixel per image pixel)"
 msgstr "Factor de ampliación por 1.0 (1 píxel de pantalla por píxel de imagen)"
 
-#: C/f-spot.xml:1402(keycap)
+#: C/f-spot.xml:1410(keycap)
 msgid "2"
 msgstr "2"
 
-#: C/f-spot.xml:1404(entry)
+#: C/f-spot.xml:1412(entry)
 msgid "Zoom Factor to 2.0 (4 screen pixels per image pixel)"
 msgstr ""
 "Factor de ampliación de 2.0 (4 píxeles de pantalla por píxel de imagen)"
 
-#: C/f-spot.xml:1410(keycap)
+#: C/f-spot.xml:1418(keycap)
 msgid "Escape"
 msgstr "Escape"
 
-#: C/f-spot.xml:1412(entry)
+#: C/f-spot.xml:1420(entry)
 msgid "Returns to Browser mode"
 msgstr "Vuelve al modo examinador"
 
-#: C/f-spot.xml:1422(keycap)
+#: C/f-spot.xml:1430(keycap)
 msgid "v"
 msgstr "v"
 
-#: C/f-spot.xml:1420(entry)
+#: C/f-spot.xml:1428(entry)
 msgid ""
 "Examine photo with magnifying glass (Loupe). Doubleclick on the Loupe, or "
 "type <placeholder-1/> again to close it."
@@ -1965,19 +1974,19 @@ msgstr ""
 "Examine la foto con la lupa. Pulse dos veces sobre la lupa o pulse "
 "<placeholder-1/> de nuevo para cerrarla."
 
-#: C/f-spot.xml:1426(entry)
+#: C/f-spot.xml:1434(entry)
 msgid "<placeholder-1/>-Mousewheel"
 msgstr "<placeholder-1/>-rueda del ratón"
 
-#: C/f-spot.xml:1429(entry)
+#: C/f-spot.xml:1437(entry)
 msgid "Faster filmstrip scrolling"
 msgstr "Desplazamiento de carrete más rápido"
 
-#: C/f-spot.xml:1435(keycap)
+#: C/f-spot.xml:1443(keycap)
 msgid "i"
 msgstr "i"
 
-#: C/f-spot.xml:1437(entry)
+#: C/f-spot.xml:1445(entry)
 msgid "Toggle infobox visibility ''(only when in full screen)''"
 msgstr ""
 "Mostrar la visibilidad de la caja de información «(sólo en modo a pantalla "
@@ -1987,7 +1996,7 @@ msgstr ""
 #: C/f-spot.xml:0(None)
 msgid "translator-credits"
 msgstr ""
-"Jorge González <jorgegonz@svn.gnome.org>, 2007-2008\n"
+"Jorge González <jorgegonz@svn.gnome.org>, 2007-2009\n"
 "Eduardo Retamales <eretamales@gnome.cl>, 2007\n"
 "Javier Mazorra <mazi.debian@gmail.com>, 2007\n"
 "QA: Jorge González <jorgegonz@svn.gnome.org>, 2007"
