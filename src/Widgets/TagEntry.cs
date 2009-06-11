@@ -215,13 +215,19 @@ namespace FSpot.Widgets {
 
 		void FinishTagCompletion ()
 		{
-			int sel_start, sel_end;
-			if (GetSelectionBounds (out sel_start, out sel_end) && tag_completion_index != -1) {
-				InsertText (", ", ref sel_end);
+			if (tag_completion_index == -1)
+				return;
+
+			int sel_start, sel_end, pos;
+			pos = Position;
+			if (GetSelectionBounds (out sel_start, out sel_end)) {
+				pos = sel_end;
 				SelectRegion (-1, -1);
-				Position = sel_end + 2;
-				ClearTagCompletions ();
 			}
+
+			InsertText (", ", ref pos);
+			Position = pos + 2;
+			ClearTagCompletions ();
 			
 		}
 
