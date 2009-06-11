@@ -217,12 +217,7 @@ namespace FSpot.Widgets {
 
 
 		public double Zoom {
-			get {
-				double x, y;
-				this.GetZoom (out x, out y);
-				return x;
-			}
-			
+			get { return base.Zoom; }
 			set {
 				//Console.WriteLine ("Setting zoom to {0}, MIN = {1}", value, MIN_ZOOM);
 				value = System.Math.Min (value, MAX_ZOOM);
@@ -239,7 +234,7 @@ namespace FSpot.Widgets {
 					this.Fit = true;
 				else {
 					this.Fit = false;
-					this.SetZoom (value, value);
+					base.Zoom = value;
 				}
 			}
 		}
@@ -374,7 +369,7 @@ namespace FSpot.Widgets {
 
 			double image_zoom = zoom_to_fit;
 
-			this.SetZoom (image_zoom, image_zoom);
+			base.Zoom = image_zoom;
 			
 			if (scrolled != null)
 				scrolled.SetPolicy (Gtk.PolicyType.Automatic, Gtk.PolicyType.Automatic);

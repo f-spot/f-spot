@@ -29,7 +29,8 @@ namespace FSpot.Widgets
 		protected double MIN_ZOOM {
 			get { return min_zoom; }
 		}
-		
+
+#region public API
 		public ImageView () : base ()
 		{
 			OnSetScrollAdjustments (hadjustment, vadjustment);
@@ -124,21 +125,10 @@ namespace FSpot.Widgets
 			get { return zoom; }
 			set { DoZoom (value, false, 0, 0); }
 		}
+#endregion
 
 		int XOffset { get; set;}
 		int YOffset { get; set;}
-
-		[Obsolete ("use the Zoom Property")]
-		public void GetZoom (out double zoomx, out double zoomy)
-		{
-			zoomx = zoomy = Zoom;
-		}
-
-		[Obsolete ("use the Zoom Property, or ZoomAboutPoint method")]
-		public void SetZoom (double zoom_x, double zoom_y)
-		{
-			Zoom = zoom_x;
-		}
 
 		void DoZoom (double zoom, bool use_anchor, int x, int y)
 		{
