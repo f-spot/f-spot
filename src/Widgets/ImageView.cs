@@ -422,7 +422,6 @@ namespace FSpot.Widgets
 		int YOffset { get; set;}
 		void DoZoom (double zoom, bool use_anchor, int x, int y)
 		{
-Console.WriteLine ("DoZoom {0} {1} {2} {3}", zoom, use_anchor, x, y);
 			if (zoom == this.zoom)
 				return;
 
@@ -438,17 +437,22 @@ Console.WriteLine ("DoZoom {0} {1} {2} {3}", zoom, use_anchor, x, y);
 				y = (int)Allocation.Height / 2;
 			}
 
-			double x_anchor = (double)(XOffset + x) / (double)scaled_width;
-			double y_anchor = (double)(YOffset + y) / (double)scaled_height;
+			int x_offset = scaled_width < Allocation.Width ? (int)(Allocation.Width - scaled_width) / 2 : -XOffset;
+			int y_offset = scaled_height < Allocation.Height ? (int)(Allocation.Height - scaled_height) / 2 : -YOffset;
+			double x_anchor = (double)(x - x_offset) / (double)scaled_width;
+			double y_anchor = (double)(y - y_offset) / (double)scaled_height;
 			ComputeScaledSize ();
 
-			Console.WriteLine ("offset {0} {1}", XOffset, YOffset);
-			Console.WriteLine ("anchor {0} {1}", x_anchor, y_anchor);
 			AdjustmentsChanged -= ScrollToAdjustments;
-			Hadjustment.Value = XOffset = (int)(x_anchor * scaled_width - x); 
-			Vadjustment.Value = YOffset = (int)(y_anchor * scaled_height - y); 
+			if (scaled_width < Allocation.Width)
+				Hadjustment.Value = XOffset = 0;
+			else
+				Hadjustment.Value = XOffset = Clamp ((int)(x_anchor * scaled_width - x), 0, (int)(Hadjustment.Upper - Hadjustment.PageSize));
+			if (scaled_height < Allocation.Height)
+				Vadjustment.Value = YOffset = 0;
+			else
+				Vadjustment.Value = YOffset = Clamp ((int)(y_anchor * scaled_height - y), 0, (int)(Vadjustment.Upper - Vadjustment.PageSize));
 			AdjustmentsChanged += ScrollToAdjustments;
-			Console.WriteLine ("offset {0} {1}", XOffset, YOffset);
 
 			EventHandler eh = ZoomChanged;
 			if (eh != null)
@@ -578,6 +582,11 @@ Console.WriteLine ("PaintRectangle {0}", area);
 		void ScrollBy (int x, int y)
 		{
 			ScrollTo (XOffset + x, YOffset + y, true);
+		}
+
+		static int Clamp (int value, int min, int max)
+		{
+			return Math.Min (Math.Max (value, min), max);
 		}
 #endregion
 
