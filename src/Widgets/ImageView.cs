@@ -636,6 +636,10 @@ Console.WriteLine ("PaintRectangle {0}", area);
 		{
 			return Math.Min (Math.Max (value, min), max);
 		}
+
+		bool SelectionActive {
+			get { return Selection == Rectangle.Zero ; }
+		}
 #endregion
 
 #region children
