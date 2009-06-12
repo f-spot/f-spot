@@ -25,7 +25,8 @@ namespace FSpot.Widgets
 			OnSetScrollAdjustments (hadjustment, vadjustment);
 			children = new List<LayoutChild> ();
 			AdjustmentsChanged += ScrollToAdjustments;
-			//DoubleBuffered = false;
+			WidgetFlags &= ~WidgetFlags.NoWindow;
+			SetFlag (WidgetFlags.CanFocus);
 		}
 
 		public ImageView () : this (null, null)
@@ -222,6 +223,7 @@ namespace FSpot.Widgets
 #region GtkWidgetry
 		protected override void OnRealized ()
 		{
+Console.WriteLine ("IsNoWindow: " + IsNoWindow);
 			SetFlag (Gtk.WidgetFlags.Realized);
 			GdkWindow = new Gdk.Window (ParentWindow,
 						    new Gdk.WindowAttr { WindowType = Gdk.WindowType.Child,
@@ -251,6 +253,8 @@ namespace FSpot.Widgets
 
 			foreach (var child in children)
 				child.Widget.ParentWindow = GdkWindow;
+
+Console.WriteLine ("IsNoWindow: " + IsNoWindow);
 		}
 
 		protected override void OnMapped ()
@@ -415,6 +419,50 @@ namespace FSpot.Widgets
 			return base.OnScrollEvent (evnt);
 		}
 
+		protected override bool OnKeyPressEvent (EventKey key)
+		{
+			int step = 32;
+			bool handled = true;
+			int x, y;
+			Gdk.ModifierType type;
+			switch(key.Key) {
+			case Gdk.Key.Up:
+				ScrollBy (0, -step);
+				break;
+			case Gdk.Key.Down:
+				ScrollBy (0, step);
+				break;
+			case Gdk.Key.Left:
+				ScrollBy (-step, 0);
+				break;
+			case Gdk.Key.Right:
+				ScrollBy (step, 0);
+				break;
+			case Gdk.Key.plus:
+			case Gdk.Key.KP_Add:
+				GdkWindow.GetPointer (out x, out y, out type);
+				ZoomAboutPoint (ZOOM_FACTOR, x, y);
+				break;
+			case Gdk.Key.minus:
+			case Gdk.Key.KP_Subtract:
+				GdkWindow.GetPointer (out x, out y, out type);
+				ZoomAboutPoint (1.0/ZOOM_FACTOR, x, y);
+				break;
+			case Gdk.Key.Key_1:
+				GdkWindow.GetPointer (out x, out y, out type);
+				DoZoom (1.0, true, x, y);
+				break;
+
+			default:
+				handled = false;
+				break;
+			}
+			
+			if (handled)
+				return true;
+
+			return base.OnKeyPressEvent (key);
+		}
 
 #endregion
 #region private painting and misc 
