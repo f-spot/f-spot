@@ -188,7 +188,6 @@ namespace FSpotTabbloExport {
 		}
 
 
-		// Returns the value to be set on the property.
 		private void OnMaybePropertyChanged (object old_value,
 				object new_value, EventHandler handler)
 		{

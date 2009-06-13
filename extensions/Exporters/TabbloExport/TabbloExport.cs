@@ -161,15 +161,18 @@ namespace FSpotTabbloExport {
 		                                      EventArgs args)
 		{
 			if (model == sender) {
+				if (model.AttachTags && 0 == model
+							.AttachedTags.Length) {
+					model.AttachedTags = SelectTags ();
+					model.AttachTags =
+						0 < model.AttachedTags.Length;
+				}
+
 				main_dialog.attach_tags_button.Active =
 						model.AttachTags;
 				main_dialog.attached_tags_select_button
 						.Sensitive = model.AttachTags;
 
-				if (model.AttachTags && 0 == model
-							.AttachedTags.Length) {
-					model.AttachedTags = SelectTags ();
-				}
 			} else {
 				model.AttachTags =
 					main_dialog.attach_tags_button.Active;
@@ -180,15 +183,17 @@ namespace FSpotTabbloExport {
 		                                      EventArgs args)
 		{
 			if (model == sender) {
+				if (model.RemoveTags && 0 == model
+							.RemovedTags.Length) {
+					model.RemovedTags = SelectTags ();
+					model.RemoveTags =
+						0 < model.RemovedTags.Length;
+				}
+
 				main_dialog.remove_tags_button.Active =
 						model.RemoveTags;
 				main_dialog.removed_tags_select_button
 						.Sensitive = model.RemoveTags;
-
-				if (model.RemoveTags && 0 == model
-							.RemovedTags.Length) {
-					model.RemovedTags = SelectTags ();
-				}
 			} else {
 				model.RemoveTags =
 					main_dialog.remove_tags_button.Active;
