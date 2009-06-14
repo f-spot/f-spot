@@ -28,7 +28,6 @@ namespace FSpot.Widgets {
 		ImageInfo next;
 		BrowsablePointer item;
 		ITransition transition;
-		IEffect effect;
 		Delay delay;
 		int index = 0;
 		int block_size = 256;
@@ -73,9 +72,6 @@ namespace FSpot.Widgets {
 			}
 
 			Transition = null;
-			
-			if (effect != null)
-				effect.Dispose ();
 			
 			base.OnDestroyed ();
 		}
@@ -166,17 +162,6 @@ namespace FSpot.Widgets {
 				if (done) {
 					System.Console.WriteLine ("frames = {0}", Transition.Frames);
 					Transition = null;
-				}
-			} else if (effect != null) {
-				foreach (Gdk.Rectangle area in GetRectangles (region)) {
-					BlockProcessor proc = new BlockProcessor (area, block_size);
-					Gdk.Rectangle subarea;
-					while (proc.Step (out subarea)) {
-						ctx.Save ();
-						SetClip (ctx, subarea);
-						effect.OnExpose (ctx, Allocation);
-						ctx.Restore ();
-					}
 				}
 			} else {
 				ctx.Operator = Operator.Source;
