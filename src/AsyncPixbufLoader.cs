@@ -1,3 +1,4 @@
+using Gtk;
 using System;
 using System.IO;
 using System.Runtime.Remoting.Messaging;
@@ -45,8 +46,7 @@ namespace FSpot {
 		private System.EventHandler ap;
 		private System.EventHandler ev;
 
-		//byte [] buffer = new byte [8192];
-		byte [] buffer = new byte [1 << 15];
+		byte [] buffer = new byte [1 << 16];
 
 		public event EventHandler<AreaUpdatedEventArgs> AreaUpdated;
 		public event EventHandler<AreaPreparedEventArgs> AreaPrepared;
@@ -160,18 +160,16 @@ namespace FSpot {
 
 		}			
 
-	        private void LoadToAreaPrepared ()
+		private void LoadToAreaPrepared ()
 		{
-			delay.Stop  ();
-			while (!area_prepared && AsyncRead ())
-				; //step
+			while (!area_prepared && delay.IsPending)
+				Application.RunIteration ();
 		}
 
 		public void LoadToDone ()
 		{
-			delay.Stop ();
-			while (!done_reading && AsyncRead ())
-				; //step
+			while (!done_reading && delay.IsPending)
+				Application.RunIteration ();
 		}
 
 		private void Close () {
