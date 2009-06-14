@@ -283,11 +283,11 @@ public class MainWindow {
 	
 		toolbar.Insert (new SeparatorToolItem (), -1);
 
-		ToolButton rl_button = GtkUtil.ToolButtonFromTheme ("object-rotate-left", Catalog.GetString ("Rotate Left"), true);
+		rl_button = GtkUtil.ToolButtonFromTheme ("object-rotate-left", Catalog.GetString ("Rotate Left"), true);
 		rl_button.Clicked += HandleRotate270Command;
 		toolbar.Insert (rl_button, -1);
 
-		ToolButton rr_button = GtkUtil.ToolButtonFromTheme ("object-rotate-right", Catalog.GetString ("Rotate Right"), true);
+		rr_button = GtkUtil.ToolButtonFromTheme ("object-rotate-right", Catalog.GetString ("Rotate Right"), true);
 		rr_button.Clicked += HandleRotate90Command;
 		toolbar.Insert (rr_button, -1);
 
