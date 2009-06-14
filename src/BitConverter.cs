@@ -2,7 +2,7 @@ using System;
 using System.Runtime.InteropServices;
 
 namespace FSpot {
-	[Obsolete ("use Mono.DataConvert instead")]
+	//[Obsolete ("use Mono.DataConvert instead")]
 	public class BitConverter {
 		public static uint Swap (uint val, bool little) 
 		{
