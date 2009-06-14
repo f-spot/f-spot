@@ -420,7 +420,7 @@ namespace Banshee.Database
             get { return insert_id; }
         }
         
-        public new CommandType CommandType {
+        public CommandType CommandType {
             get { return command_type; }
             set { command_type = value; }
         }
