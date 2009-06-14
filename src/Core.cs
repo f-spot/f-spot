@@ -29,14 +29,9 @@ namespace FSpot {
 		const string ServicePath = "org.gnome.FSpot";
 		static ObjectPath CorePath = new ObjectPath ("/org/gnome/FSpot/Core");
 
-		public Core () : this (false)
-		{
-		}
-
-		public Core (bool nodb)
+		public Core ()
 		{
 			toplevels = new System.Collections.ArrayList ();
-			
 		}
 
 		public static Db Database {

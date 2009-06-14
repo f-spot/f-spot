@@ -243,7 +243,7 @@ namespace FSpot
 							};
 						} catch {}
 
-						core = new Core (view);
+						core = new Core ();
 						core.RegisterServer ();
 
 						empty = view || Core.Database.Empty;
