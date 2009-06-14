@@ -20,8 +20,8 @@ using Mono.Unix;
 
 namespace FSpot {
 	public class SendEmail : GladeDialog {
+		Window parent_window;
 		PhotoQuery query;
-		Gtk.Window parent_window;
 
 		[Glade.Widget] private ScrolledWindow   tray_scrolled;
 		[Glade.Widget] private Button 		ok_button;
@@ -50,9 +50,10 @@ namespace FSpot {
 		System.Threading.Thread command_thread;
 		IBrowsableCollection selection;
 
-		public SendEmail (IBrowsableCollection selection) : base ("mail_dialog")
+		public SendEmail (IBrowsableCollection selection, Window parent_window) : base ("mail_dialog")
 		{
 			this.selection = selection;
+			this.parent_window = parent_window;
 
 			for (int i = 0; i < selection.Count; i++) {
 				Photo p = selection[i] as Photo;
