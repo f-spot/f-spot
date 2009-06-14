@@ -139,7 +139,7 @@ namespace FSpot {
 			return texture_id;
 		}
 
-		protected void Close ()
+		private void Close ()
 		{
 			//Log.DebugFormat ("Disposing {0} IsTexture {1}", texture_id, Gl.glIsTexture (texture_id));
 			int [] ids = new int [] { texture_id };
