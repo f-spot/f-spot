@@ -30,7 +30,6 @@ namespace FSpot {
 							large_size, x_large_size, original_size;
 		[Glade.Widget] private CheckButton 	rotate_check;
 
-		int photo_index;
 		bool clean;
 		long Orig_Photo_Size 	= 0;
 		double scale_percentage = 0.3;
@@ -305,13 +304,13 @@ namespace FSpot {
 						// Mark the path for deletion
 						tmp_paths.Add (request.Current.LocalPath);
 					} catch (Exception e) {
-						Console.WriteLine("Error preparing {0}: {1}", selection[photo_index].Name, e.Message);
+						Console.WriteLine("Error preparing {0}: {1}", selection[i].Name, e.Message);
 						HigMessageDialog md = new HigMessageDialog (parent_window, 
 											    DialogFlags.DestroyWithParent,
 											    MessageType.Error,
 											    ButtonsType.Close,
 											    Catalog.GetString("Error processing image"), 
-											    String.Format(Catalog.GetString("An error occured while processing \"{0}\": {1}"), selection[photo_index].Name, e.Message));
+											    String.Format(Catalog.GetString("An error occured while processing \"{0}\": {1}"), selection[i].Name, e.Message));
 						md.Run();
 						md.Destroy();
 						UserCancelled = true;
