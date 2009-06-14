@@ -33,7 +33,7 @@ namespace FSpot.Widgets {
 			loader.Done += HandleDone;
 			
 			FSpot.ColorManagement.PhotoImageView = this;
-			this.Transform = FSpot.ColorManagement.StandartTransform (); //for preview windows
+			this.Transform = FSpot.ColorManagement.StandardTransform (); //for preview windows
 
 			Accelerometer.OrientationChanged += HandleOrientationChanged;
 

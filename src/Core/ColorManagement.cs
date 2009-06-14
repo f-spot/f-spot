@@ -20,7 +20,7 @@ public class ColorManagement {
 		private static Cms.Profile XProfile;		
 		private static Cms.Profile display_profile;
 		private static Cms.Profile destination_profile;
-		private static Cms.Transform standart_transform;
+		private static Cms.Transform standard_transform;
 		
 		private static FSpot.Widgets.PhotoImageView photo_image_view;
 
@@ -55,7 +55,7 @@ public class ColorManagement {
 			get { return destination_profile; }
 		}
 		
-		private static void GetStandartProfiles ()
+		private static void GetStandardProfiles ()
 		{
 			Profiles.Add (Cms.Profile.CreateStandardRgb ());
 			Profiles.Add (Cms.Profile.CreateAlternateRgb ());
@@ -124,37 +124,37 @@ public class ColorManagement {
 		public static void LoadSettings ()
 		{
 			Profiles.Clear ();
-			GetStandartProfiles ();
+			GetStandardProfiles ();
 			foreach (string dir in search_dir)
 				GetProfiles (dir);
 			GetXProfile ();
 			GetSettings ();
-			CreateStandartTransform ();
+			CreateStandardTransform ();
 		}
 		
 		public static void ReloadSettings()
 		{
 			GetXProfile ();
 			GetSettings ();
-			CreateStandartTransform ();
+			CreateStandardTransform ();
 			PhotoImageView.Reload ();
 		}
 		
-		private static void CreateStandartTransform ()
+		private static void CreateStandardTransform ()
 		{
 			Cms.Profile [] list = new Cms.Profile [] { Cms.Profile.CreateStandardRgb (), display_profile };
 			
-			standart_transform = new Cms.Transform (list,
+			standard_transform = new Cms.Transform (list,
 			                                        Cms.Format.Rgb8,
 			                                        Cms.Format.Rgb8,
 			                                        Cms.Intent.Perceptual, 0x0000);
 		}
 		
 		//it returns the cached transformation
-		public static Cms.Transform StandartTransform ()
+		public static Cms.Transform StandardTransform ()
 		{
 			if (IsEnabled)
-				return standart_transform;
+				return standard_transform;
 			else
 				return null;
 		}
@@ -178,11 +178,11 @@ public class ColorManagement {
 				return null;
 		}
 		
-		//the main apply color profile method. it use the _standart_ image profile and current display profile
+		//the main apply color profile method. it use the _standard_ image profile and current display profile
 		public static void ApplyScreenProfile (Gdk.Pixbuf pixbuf)
 		{
 			if (IsEnabled && pixbuf != null && !pixbuf.HasAlpha)
-				PixbufUtils.ColorAdjust (pixbuf, pixbuf, standart_transform);
+				PixbufUtils.ColorAdjust (pixbuf, pixbuf, standard_transform);
 		}
 		
 		//it works also but it uses the image_profile too
@@ -204,7 +204,7 @@ public class ColorManagement {
 		
 //		public static void ApplyScreenProfile (Gdk.Pixbuf src, Gdk.Pixbuf dest)
 //		{
-//			PixbufUtils.ColorAdjust (src, dest, standart_transform);
+//			PixbufUtils.ColorAdjust (src, dest, standard_transform);
 //		}
 		
 		public static void ApplyPrinterProfile (Gdk.Pixbuf pixbuf, Cms.Profile image_profile)
