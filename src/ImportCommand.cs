@@ -186,7 +186,6 @@ public class ImportCommand : GladeDialog
 	}
 
 	internal abstract class ImportSource {
-		public object Backend;
 		public Gdk.Pixbuf Icon;
 		public string Name;
 	}
