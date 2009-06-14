@@ -62,7 +62,12 @@ public class TagStore : DbStore<Tag> {
 
 	static void SetIconFromString (Tag tag, string icon_string)
 	{
-		if (icon_string == null || icon_string == String.Empty)
+		if (icon_string == null) {
+			tag.Icon = null;
+			// IconWasCleared automatically set already, override
+			// it in this case since it was NULL in the db.
+			tag.IconWasCleared = false;
+		} else if (icon_string == String.Empty)
 			tag.Icon = null;
 		else if (icon_string.StartsWith (STOCK_ICON_DB_PREFIX))
 			tag.ThemeIconName = icon_string.Substring (STOCK_ICON_DB_PREFIX.Length);
@@ -195,12 +200,12 @@ public class TagStore : DbStore<Tag> {
 
 	private void CreateDefaultTags ()
 	{
-		Category favorites_category = CreateCategory (RootCategory, Catalog.GetString ("Favorites"));
+		Category favorites_category = CreateCategory (RootCategory, Catalog.GetString ("Favorites"), false);
 		favorites_category.ThemeIconName = "emblem-favorite";
 		favorites_category.SortPriority = -10;
 		Commit (favorites_category);
 
-		Tag hidden_tag = CreateTag (RootCategory, Catalog.GetString ("Hidden"));
+		Tag hidden_tag = CreateTag (RootCategory, Catalog.GetString ("Hidden"), false);
 		hidden_tag.ThemeIconName = "emblem-readonly";
 		hidden_tag.SortPriority = -9;
 		this.hidden = hidden_tag;
@@ -208,17 +213,17 @@ public class TagStore : DbStore<Tag> {
 		FSpot.Core.Database.Meta.HiddenTagId.ValueAsInt = (int) hidden_tag.Id;
 		FSpot.Core.Database.Meta.Commit (FSpot.Core.Database.Meta.HiddenTagId);
 
-		Tag people_category = CreateCategory (RootCategory, Catalog.GetString ("People"));
+		Tag people_category = CreateCategory (RootCategory, Catalog.GetString ("People"), false);
 		people_category.ThemeIconName = "emblem-people";
 		people_category.SortPriority = -8;
 		Commit (people_category);
 
-		Tag places_category = CreateCategory (RootCategory, Catalog.GetString ("Places"));
+		Tag places_category = CreateCategory (RootCategory, Catalog.GetString ("Places"), false);
 		places_category.ThemeIconName = "emblem-places";
 		places_category.SortPriority = -8;
 		Commit (places_category);
 
-		Tag events_category = CreateCategory (RootCategory, Catalog.GetString ("Events"));
+		Tag events_category = CreateCategory (RootCategory, Catalog.GetString ("Events"), false);
 		events_category.ThemeIconName = "emblem-event";
 		events_category.SortPriority = -7;
 		Commit (events_category);
@@ -241,29 +246,32 @@ public class TagStore : DbStore<Tag> {
 		}
 	}
 
-	private uint InsertTagIntoTable (Category parent_category, string name, bool is_category)
+	private uint InsertTagIntoTable (Category parent_category, string name, bool is_category, bool autoicon)
 	{
 
 		uint parent_category_id = parent_category.Id;
+		String default_tag_icon_value = autoicon ? null : String.Empty;
 
-		int id = Database.Execute (new DbCommand ("INSERT INTO tags (name, category_id, is_category, sort_priority)"
-                          + "VALUES (:name, :category_id, :is_category, 0)",
+		int id = Database.Execute (new DbCommand ("INSERT INTO tags (name, category_id, is_category, sort_priority, icon)"
+                          + "VALUES (:name, :category_id, :is_category, 0, :icon)",
 						  "name", name,
 						  "category_id", parent_category_id,
-						  "is_category", is_category ? 1 : 0));
+						  "is_category", is_category ? 1 : 0,
+						  "icon", default_tag_icon_value));
 
 
 		return (uint) id;
 	}
 
-	public Tag CreateTag (Category category, string name)
+	public Tag CreateTag (Category category, string name, bool autoicon)
 	{
 		if (category == null)
 			category = RootCategory;
 
-		uint id = InsertTagIntoTable (category, name, false);
+		uint id = InsertTagIntoTable (category, name, false, autoicon);
 
 		Tag tag = new Tag (category, id, name);
+		tag.IconWasCleared = !autoicon;
 
 		AddToCache (tag);
 		EmitAdded (tag);
@@ -271,14 +279,15 @@ public class TagStore : DbStore<Tag> {
 		return tag;
 	}
 
-	public Category CreateCategory (Category parent_category, string name)
+	public Category CreateCategory (Category parent_category, string name, bool autoicon)
 	{
 		if (parent_category == null)
 			parent_category = RootCategory;
 
-		uint id = InsertTagIntoTable (parent_category, name, true);
+		uint id = InsertTagIntoTable (parent_category, name, true, autoicon);
 
 		Category new_category = new Category (parent_category, id, name);
+		new_category.IconWasCleared = !autoicon;
 
 		AddToCache (new_category);
 		EmitAdded (new_category);
@@ -316,8 +325,11 @@ public class TagStore : DbStore<Tag> {
 	{
 		if (tag.ThemeIconName != null)
 			return STOCK_ICON_DB_PREFIX + tag.ThemeIconName;
-		if (tag.Icon == null)
-			return String.Empty;
+		if (tag.Icon == null) {
+			if (tag.IconWasCleared)
+				return String.Empty;
+			return null;
+		}
 
 		byte [] data = GdkUtils.Serialize (tag.Icon);
 		return Convert.ToBase64String (data);

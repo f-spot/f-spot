@@ -143,7 +143,7 @@ namespace MergeDbExtension
 					Category parent = (tag_to_merge.Category == from_store.RootCategory) ?
 							to_store.RootCategory :
 							to_store.GetTagByName (tag_to_merge.Category.Name) as Category;
-					dest_tag = to_store.CreateTag (parent, tag_to_merge.Name);
+					dest_tag = to_store.CreateTag (parent, tag_to_merge.Name, false);
 					//FIXME: copy the tag icon and commit
 				}
 				tag_map [tag_to_merge.Id] = dest_tag;

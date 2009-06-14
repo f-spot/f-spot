@@ -724,10 +724,10 @@ public class ImportCommand : GladeDialog
 				// Note for translators: 'Import Tags' is no command, it means 'Tags used in Import'
 				Category default_category = db.Tags.GetTagByName (Catalog.GetString ("Import Tags")) as Category;
 				if (default_category == null) {
-					default_category = db.Tags.CreateCategory (null, Catalog.GetString ("Import Tags"));
+					default_category = db.Tags.CreateCategory (null, Catalog.GetString ("Import Tags"), false);
 					default_category.ThemeIconName = "f-spot-imported-xmp-tags.png"; 
 				}
-				t = db.Tags.CreateCategory (default_category, tagname) as Tag;
+				t = db.Tags.CreateCategory (default_category, tagname, false) as Tag;
 				db.Tags.Commit (t);
 			}
 

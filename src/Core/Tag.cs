@@ -69,7 +69,14 @@ namespace FSpot
 					icon.Dispose ();
 				icon = value;
 				cached_icon_size = IconSize.Hidden;
+				IconWasCleared = value == null;
 			}
+		}
+
+		bool icon_was_cleared = false;
+		public bool IconWasCleared {
+			get { return icon_was_cleared; }
+			set { icon_was_cleared = value; }
 		}
 	
 		public enum IconSize {

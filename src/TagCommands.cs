@@ -37,6 +37,7 @@ public class TagCommands {
 		[Glade.Widget] private Label photo_label;
 		[Glade.Widget] private ScrolledWindow photo_scrolled_window;
 		[Glade.Widget] private OptionMenu category_option_menu;
+		[Glade.Widget] private CheckButton auto_icon_checkbutton;
 
 		Gtk.Widget parent_window;
 
@@ -138,6 +139,7 @@ public class TagCommands {
 
 			this.Dialog.Title = Catalog.GetString ("Create New Tag");
 			prompt_label.Text = Catalog.GetString ("Name of New Tag:");
+			this.auto_icon_checkbutton.Active = Preferences.Get<bool> (Preferences.TAG_ICON_AUTOMATIC);
 
 			PopulateCategoryOptionMenu ();
 			this.Category = default_category;
@@ -146,15 +148,18 @@ public class TagCommands {
 
 			ResponseType response = (ResponseType) this.Dialog.Run ();
 
+
 			Tag new_tag = null;
 			if (response == ResponseType.Ok) {
+				bool autoicon = this.auto_icon_checkbutton.Active;
+				Preferences.Set (Preferences.TAG_ICON_AUTOMATIC, autoicon);
 				try {
 					Category parent_category = Category;
 
 					if (type == TagType.Category)
-						new_tag = tag_store.CreateCategory (parent_category, tag_name_entry.Text) as Tag;
+						new_tag = tag_store.CreateCategory (parent_category, tag_name_entry.Text, autoicon) as Tag;
 					else
-						new_tag = tag_store.CreateTag (parent_category, tag_name_entry.Text);
+						new_tag = tag_store.CreateTag (parent_category, tag_name_entry.Text, autoicon);
 				} catch (Exception ex) {
 					// FIXME error dialog.
 					Console.WriteLine ("error {0}", ex);
