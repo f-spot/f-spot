@@ -18,8 +18,6 @@ fspotlib_LTLIBRARIES = libfspot.la
 libfspot_la_SOURCES =				\
 	f-image-surface.c			\
 	f-image-surface.h			\
-	f-image-view.c				\
-	f-image-view.h				\
 	f-jpeg-utils.c				\
 	f-jpeg-utils.h				\
 	f-pixbuf-save.c				\
@@ -36,8 +34,7 @@ libfspot_la_LIBADD = 					\
 	$(LCMS_LIBS)					\
 	$(EXIF_LIBS)					\
 	$(GIO_LIBS)					\
-	$(top_builddir)/libjpegtran/libfspotjpegtran.la	\
-	$(top_builddir)/libeog/libfspoteog.la
+	$(top_builddir)/libjpegtran/libfspotjpegtran.la	
 
 
 # GLib marshalling cruft

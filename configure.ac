@@ -307,8 +307,6 @@ dpap-sharp/DPAPBrowser/Makefile
 docs/Makefile
 gnome-keyring-sharp/Makefile
 icons/Makefile
-libeog/Makefile
-libeog/cursors/Makefile
 libjpegtran/Makefile
 libfspot/Makefile
 libgphoto2-sharp/Makefile

@@ -9,7 +9,6 @@ SUBDIRS = 		\
 	glitz-sharp	\
 	gnome-keyring-sharp \
 	icons		\
-	libeog		\
 	libjpegtran	\
 	libfspot	\
 	libgphoto2-sharp \
@@ -32,7 +31,6 @@ DIST_SUBDIRS = 		\
 	glitz-sharp	\
 	gnome-keyring-sharp \
 	icons		\
-	libeog		\
 	libjpegtran	\
 	libfspot	\
 	libgphoto2-sharp \
