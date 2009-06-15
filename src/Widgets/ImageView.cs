@@ -134,9 +134,22 @@ namespace FSpot.Widgets
 			}
 		}
 
+		double selection_xy_ratio = 0;
 		public double SelectionXyRatio {
-			get { throw new NotImplementedException ();} 
-			set { throw new NotImplementedException ();} 
+			get { return selection_xy_ratio; } 
+			set {
+				if (selection_xy_ratio == value)
+					return;
+				selection_xy_ratio = value;
+
+				if (selection_xy_ratio == 0)
+					return;
+
+				if (Selection == Rectangle.Zero)
+					return;
+
+				ConstrainSelection ();
+			} 
 		}
 
 		Cms.Transform transform;
@@ -961,6 +974,35 @@ namespace FSpot.Widgets
 
 			//set the pointer according to DragMode
 			return true;
+		}
+
+		void ConstrainSelection ()
+		{
+			double constrain = selection_xy_ratio;
+			if ((double)Selection.Width > (double)Selection.Height && selection_xy_ratio < 1 ||
+			    (double)Selection.Width < (double)Selection.Height && selection_xy_ratio > 1)
+				constrain = 1.0 / constrain;
+
+			double ratio = (double)Selection.Width / (double)Selection.Height;
+			int height = Selection.Height;
+			int width = Selection.Width;
+			if (ratio > constrain) {
+				height = (int)((double)Selection.Width / constrain);
+				if (height > Pixbuf.Height) {
+					height = Selection.Height;
+					width = (int)(height * constrain);
+				}
+			} else {
+				width = (int)(height * constrain);
+				if (width > Pixbuf.Width) {
+					width = Selection.Width;
+					height = (int)((double)width / constrain);
+				}
+			}
+
+			Selection = new Rectangle (Selection.X + Selection.Width < Pixbuf.Width ? Selection.X : Pixbuf.Width - Selection.Width,
+						   Selection.Y + Selection.Height < Pixbuf.Height ? Selection.Y : Pixbuf.Height - Selection.Height,
+						   width, height);
 		}
 #endregion
 	}
