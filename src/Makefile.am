@@ -331,6 +331,7 @@ WIDGETS_ASSEMBLIES =				\
 	-pkg:gtk-sharp-2.0			\
 	-pkg:gnome-sharp-2.0			\
 	$(LINK_GTKSHARPBEANS)			\
+	-r:Mono.Cairo				\
 	-r:Cms.dll				\
 	-r:Mono.Posix				\
 	-r:FSpot.Core.dll			\

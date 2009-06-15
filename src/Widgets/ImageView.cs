@@ -20,16 +20,22 @@ namespace FSpot.Widgets
 	{
 
 #region public API
-		public ImageView (Adjustment hadjustment, Adjustment vadjustment) : base ()
+		public ImageView (Adjustment hadjustment, Adjustment vadjustment, bool can_select) : base ()
 		{
 			OnSetScrollAdjustments (hadjustment, vadjustment);
 			children = new List<LayoutChild> ();
 			AdjustmentsChanged += ScrollToAdjustments;
 			WidgetFlags &= ~WidgetFlags.NoWindow;
 			SetFlag (WidgetFlags.CanFocus);
+
+			this.can_select = can_select;
 		}
 
-		public ImageView () : this (null, null)
+		public ImageView (bool can_select) : this (null, null, can_select)
+		{
+		}
+
+		public ImageView () : this (true)
 		{
 		}
 
@@ -66,9 +72,13 @@ namespace FSpot.Widgets
 			} 
 		}
 
+		PointerMode pointer_mode = PointerMode.Select;
 		public PointerMode PointerMode {
-			get { throw new NotImplementedException ();} 
-			set { throw new NotImplementedException ();} 
+			get { return pointer_mode; } 
+			set { 
+				pointer_mode = value;
+				Console.WriteLine ("FIXME: Set the Pointer mode");
+			} 
 		}
 
 		Adjustment hadjustment;
@@ -81,10 +91,37 @@ namespace FSpot.Widgets
 			get { return vadjustment; }
 		}
 
+		bool can_select = false;
+		public bool CanSelect {
+			get { return can_select; }
+			set { 
+				if (can_select == value)
+					return;
+				can_select = value;
+				if (!can_select)
+					selection = Rectangle.Zero;
+
+				if (!IsRealized)
+					return;
+
+				if (can_select)
+					OnSelectionRealized ();
+				else
+					OnSelectionUnrealized ();
+			}
+		}
+
 		Gdk.Rectangle selection = Rectangle.Zero;
 		public Gdk.Rectangle Selection {
-			get { return selection; }
+			get {
+				if (!can_select)
+					return Rectangle.Zero;
+				return selection;
+			}
 			set { 
+				if (!can_select)
+					return;
+
 				if (value == selection)
 					return;
 
@@ -93,6 +130,7 @@ namespace FSpot.Widgets
 				EventHandler eh = SelectionChanged;
 				if (eh != null)
 					eh (this, EventArgs.Empty);
+				QueueDraw ();
 			}
 		}
 
@@ -129,12 +167,53 @@ namespace FSpot.Widgets
 			DoZoom (zoom * zoom_increment, true, x, y);
 		}	
 
-		public Gdk.Point WindowCoordsToImage (Point win)
+		public Point WindowCoordsToImage (Point win)
 		{
-			throw new NotImplementedException ();
+			if (Pixbuf == null)
+				return Point.Zero;
+
+			int x_offset = scaled_width < Allocation.Width ? (int)(Allocation.Width - scaled_width) / 2 : -XOffset;
+			int y_offset = scaled_height < Allocation.Height ? (int)(Allocation.Height - scaled_height) / 2 : -YOffset;
+
+			win.X = Clamp (win.X, x_offset, x_offset + (int)scaled_width - 1);
+			win.Y = Clamp (win.Y, y_offset, y_offset + (int)scaled_height - 1);
+
+			return new Point ((int) Math.Floor ((win.X - x_offset) * (double)(Pixbuf.Width - 1) / (double)(scaled_width - 1) + .5),
+					  (int) Math.Floor ((win.Y - y_offset) * (double)(Pixbuf.Height - 1) / (double)(scaled_height - 1) + .5));
 		}
 
-		public Gdk.Rectangle ImageCoordsToWindow (Gdk.Rectangle image)
+		public Rectangle WindowCoordsToImage (Rectangle win)
+		{
+			if (Pixbuf == null)
+				return Rectangle.Zero;
+
+			int x_offset = scaled_width < Allocation.Width ? (int)(Allocation.Width - scaled_width) / 2 : -XOffset;
+			int y_offset = scaled_height < Allocation.Height ? (int)(Allocation.Height - scaled_height) / 2 : -YOffset;
+
+			win.Intersect (new Rectangle (x_offset, y_offset, (int)scaled_width - 1, (int)scaled_height - 1));
+
+			Rectangle img = Rectangle.Zero;
+			img.X = (int) Math.Floor ((win.X - x_offset) * (double)(Pixbuf.Width - 1) / (double)(scaled_width - 1) + .5);
+			img.Y = (int) Math.Floor ((win.Y - y_offset) * (double)(Pixbuf.Height - 1) / (double)(scaled_height - 1) + .5);
+			img.Width = (int) Math.Floor ((win.X + win.Width - x_offset) * (double)(Pixbuf.Width - 1) / (double)(scaled_width - 1) + .5) - win.X;
+			img.Height = (int) Math.Floor ((win.Y + win.Height - y_offset) * (double)(Pixbuf.Height - 1) / (double)(scaled_height - 1) + .5) - win.Y;
+
+			return img;
+		}
+
+		public Point ImageCoordsToWindow (Point image)
+		{
+			if (this.Pixbuf == null)
+				return Point.Zero;
+
+			int x_offset = scaled_width < Allocation.Width ? (int)(Allocation.Width - scaled_width) / 2 : -XOffset;
+			int y_offset = scaled_height < Allocation.Height ? (int)(Allocation.Height - scaled_height) / 2 : -YOffset;
+
+			return new Point ((int) Math.Floor (image.X * (double) (scaled_width - 1) / (this.Pixbuf.Width - 1) + 0.5) + x_offset,
+					  (int) Math.Floor (image.Y * (double) (scaled_height - 1) / (this.Pixbuf.Height - 1) + 0.5) + y_offset);
+		}
+
+		public Rectangle ImageCoordsToWindow (Rectangle image)
 		{
 			if (this.Pixbuf == null)
 				return Gdk.Rectangle.Zero;
@@ -171,7 +250,6 @@ namespace FSpot.Widgets
 			if (Visible && widget.Visible)
 				QueueResize ();
 		}
-
 
 		public event EventHandler ZoomChanged;
 		public event EventHandler SelectionChanged;
@@ -221,9 +299,9 @@ namespace FSpot.Widgets
 #endregion
 
 #region GtkWidgetry
+		Gdk.GC selection_gc;
 		protected override void OnRealized ()
 		{
-Console.WriteLine ("IsNoWindow: " + IsNoWindow);
 			SetFlag (Gtk.WidgetFlags.Realized);
 			GdkWindow = new Gdk.Window (ParentWindow,
 						    new Gdk.WindowAttr { WindowType = Gdk.WindowType.Child,
@@ -254,7 +332,14 @@ Console.WriteLine ("IsNoWindow: " + IsNoWindow);
 			foreach (var child in children)
 				child.Widget.ParentWindow = GdkWindow;
 
-Console.WriteLine ("IsNoWindow: " + IsNoWindow);
+			if (can_select) 
+				OnSelectionRealized ();
+		}
+
+		protected override void OnUnrealized ()
+		{
+			if (can_select)
+				OnSelectionUnrealized ();
 		}
 
 		protected override void OnMapped ()
@@ -343,6 +428,9 @@ Console.WriteLine ("IsNoWindow: " + IsNoWindow);
 
 				PaintRectangle (p_area, InterpType.Nearest);
 			}
+			
+			if (can_select)
+				OnSelectionExposeEvent (evnt);
 
 			return true;
 		}
@@ -371,30 +459,60 @@ Console.WriteLine ("IsNoWindow: " + IsNoWindow);
 				HandleAdjustmentsValueChanged (this, EventArgs.Empty);
 		}	
 
-		bool dragging = false;
-		int draganchor_x = 0;
-		int draganchor_y = 0;
+//		bool dragging = false;
+//		int draganchor_x = 0;
+//		int draganchor_y = 0;
 		protected override bool OnButtonPressEvent (EventButton evnt)
 		{
-			Console.WriteLine ("OnButtonPressEvent {0}", evnt.Button);
+			bool handled = false;
 			if (!HasFocus)
 				GrabFocus ();
 
-			if (dragging)
-				return base.OnButtonPressEvent (evnt);
+			if (can_select)
+				handled |= OnSelectionButtonPressEvent (evnt);
 
-			switch (evnt.Button) {
-			case 1:	
-				dragging = true;
-				draganchor_x = (int)evnt.X;
-				draganchor_y = (int)evnt.Y;
+			if (handled)
+				return handled;
 
-				return true;
-			default:
-				break;
-			}
+	//		if (dragging)
+	//			return base.OnButtonPressEvent (evnt);
 
-			return base.OnButtonPressEvent (evnt);
+	//		switch (evnt.Button) {
+	//		case 1:	
+	//			dragging = true;
+	//			draganchor_x = (int)evnt.X;
+	//			draganchor_y = (int)evnt.Y;
+
+	//			handled = true;
+	//		default:
+	//			break;
+	//		}
+
+			return handled || base.OnButtonPressEvent (evnt);
+		}
+
+		protected override bool OnButtonReleaseEvent (EventButton evnt)
+		{
+			bool handled = false;
+
+			if (can_select)
+				handled |= OnSelectionButtonReleaseEvent (evnt);
+
+			if (handled)
+				return handled;
+
+			return handled |= base.OnButtonReleaseEvent (evnt);
+		}
+
+		protected override bool OnMotionNotifyEvent (EventMotion evnt)
+		{
+			bool handled = false;
+
+			if (can_select)
+				handled |= OnSelectionMotionNotifyEvent (evnt);
+
+			return handled || base.OnMotionNotifyEvent (evnt);
+
 		}
 
 		protected override bool OnScrollEvent (EventScroll evnt)
@@ -516,7 +634,6 @@ Console.WriteLine ("IsNoWindow: " + IsNoWindow);
 
 		void PaintRectangle (Rectangle area, InterpType interpolation)
 		{
-Console.WriteLine ("PaintRectangle {0}", area);
 			int x_offset = scaled_width < Allocation.Width ? (int)(Allocation.Width - scaled_width) / 2 : -XOffset;
 			int y_offset = scaled_height < Allocation.Height ? (int)(Allocation.Height - scaled_height) / 2 : -YOffset;
 			//Draw background
@@ -666,6 +783,151 @@ Console.WriteLine ("PaintRectangle {0}", area);
 				if (child.Widget == widget)
 					return child;
 			return null;
+		}
+#endregion
+
+#region selection
+		void OnSelectionRealized ()
+		{
+			//FIXME SetCUrsor
+
+			selection_gc = new Gdk.GC (GdkWindow);
+			selection_gc.Copy (Style.ForegroundGCs [(int)StateType.Normal]);
+			selection_gc.Function = Gdk.Function.Invert;
+			selection_gc.SetLineAttributes (1, LineStyle.Solid, CapStyle.NotLast, JoinStyle.Miter);
+		}
+
+		void OnSelectionUnrealized ()
+		{
+			selection_gc.Unref ();
+			selection_gc = null;
+		}
+
+		bool OnSelectionExposeEvent (EventExpose evnt)
+		{
+			if (selection == Rectangle.Zero)
+				return false;
+
+			Rectangle win_selection = ImageCoordsToWindow (selection);
+			Region r = new Region ();
+			r.UnionWithRect (win_selection);
+			evnt.Region.Subtract (r);
+			r.Destroy ();
+
+			using (Cairo.Context ctx = CairoHelper.Create (GdkWindow)) {
+				ctx.SetSourceRGBA (.5, .5, .5, .7);
+				CairoHelper.Region (ctx, evnt.Region);
+				ctx.Fill ();
+			}
+
+			return true;
+		}
+
+		enum DragMode {
+			None,
+			Move,
+			Extend,
+		}
+
+		const int SELECTION_SNAP_DISTANCE = 8;
+		DragMode GetDragMode (int x, int y)
+		{
+			Rectangle win_selection = ImageCoordsToWindow (selection);
+			if (Rectangle.Inflate (win_selection, -SELECTION_SNAP_DISTANCE, -SELECTION_SNAP_DISTANCE).Contains (x, y))
+				return DragMode.Move;
+			if (Rectangle.Inflate (win_selection, SELECTION_SNAP_DISTANCE, SELECTION_SNAP_DISTANCE).Contains (x, y))
+				return DragMode.Extend;
+			return DragMode.None;
+		}
+
+		bool is_dragging_selection = false;
+		bool is_moving_selection = false;
+		Point selection_anchor = Point.Zero;
+		bool OnSelectionButtonPressEvent (EventButton evnt)
+		{
+			if (evnt.Button != 1)
+				return false;
+
+			if (PointerMode == PointerMode.None)
+				return false;
+
+			if (evnt.Type == EventType.TwoButtonPress) {
+				return false;
+			}
+			
+			bool is_new_selection;
+			switch (GetDragMode ((int)evnt.X, (int)evnt.Y)) {
+				case DragMode.None:
+					is_dragging_selection = true;
+					PointerMode = PointerMode.Select;
+					Selection = Rectangle.Zero;
+					selection_anchor = WindowCoordsToImage (new Point ((int)evnt.X, (int)evnt.Y));
+					break;
+				case DragMode.Extend:
+					//is_dragging_selection = true;
+					//SetPointer
+					break;
+				case DragMode.Move:
+					Console.WriteLine ("DragMode: Move");
+					is_moving_selection = true;
+					selection_anchor = WindowCoordsToImage (new Point ((int)evnt.X, (int)evnt.Y));
+					//SetPointer
+					break;
+			}
+
+			return true;
+		}
+
+		bool OnSelectionButtonReleaseEvent (EventButton evnt)
+		{
+			if (evnt.Button != 1)
+				return false;
+
+			is_dragging_selection = false;
+			is_moving_selection = false;
+			//SetCursor
+			return true;
+		}
+
+		const int SELECTION_THRESHOLD = 5;
+		bool OnSelectionMotionNotifyEvent (EventMotion evnt)
+		{
+			int x, y;
+			ModifierType mod;
+
+			if (evnt.IsHint)
+				GdkWindow.GetPointer (out x, out y, out mod);
+			else {
+				x = (int)evnt.X;
+				y = (int)evnt.Y;
+			}
+
+
+			Point img = WindowCoordsToImage (new Point (x, y));
+			if (is_dragging_selection) {
+				Point win_anchor = ImageCoordsToWindow (selection_anchor);
+				if (Selection == Rectangle.Zero &&
+				    Math.Abs (evnt.X - win_anchor.X) < SELECTION_THRESHOLD &&
+				    Math.Abs (evnt.Y - win_anchor.Y) < SELECTION_THRESHOLD)
+					return true;
+	
+				Selection = new Rectangle (Math.Min (selection_anchor.X, img.X),
+							   Math.Min (selection_anchor.Y, img.Y),
+							   Math.Abs (selection_anchor.X - img.X),
+							   Math.Abs (selection_anchor.Y - img.Y));	
+				return true;
+			}
+
+			if (is_moving_selection) {
+				Selection = new Rectangle (Selection.X + img.X - selection_anchor.X,
+							   Selection.Y + img.Y - selection_anchor.Y,
+							   Selection.Width, Selection.Height);
+				selection_anchor = img;
+				return true;
+			}
+
+			//set the pointer according to DragMode
+			return true;
 		}
 #endregion
 	}
