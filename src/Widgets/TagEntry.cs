@@ -132,17 +132,28 @@ namespace FSpot.Widgets {
 			args.RetVal = false;
 			if (args.Event.Key == Gdk.Key.Escape) { 
 				args.RetVal = false;
-			} else if (args.Event.Key == Gdk.Key.Return) { 
+			} else if (args.Event.Key == Gdk.Key.comma) { 
 				if (tag_completion_index != -1) {
-					OnActivated ();
+					// If we are completing a tag, then finish that
+					FinishTagCompletion ();
 					args.RetVal = true;
-				} else
+				} else 
+					// Otherwise do not handle this event here
 					args.RetVal = false;
+			} else if (args.Event.Key == Gdk.Key.Return) { 
+				// If we are completing a tag, then finish that
+				if (tag_completion_index != -1) 
+					FinishTagCompletion ();
+				// And pass the event to Gtk.Entry in any case,
+				// which will call OnActivated
+				args.RetVal = false;
 			} else if (args.Event.Key == Gdk.Key.Tab) {
-				DoTagCompletion ();
+				DoTagCompletion (true);
 				args.RetVal = true;
-			} else 
-				ClearTagCompletions ();
+			} else if (args.Event.Key == Gdk.Key.ISO_Left_Tab) {
+				DoTagCompletion (false);
+				args.RetVal = true;
+			}
 		}
 
 		bool tag_ignore_changes = false;
@@ -158,12 +169,15 @@ namespace FSpot.Widgets {
 		string tag_completion_typed_so_far;
 		int tag_completion_typed_position;
 
-		private void DoTagCompletion ()
+		private void DoTagCompletion (bool forward)
 		{
 			string completion;
 			
 			if (tag_completion_index != -1) {
-				tag_completion_index = (tag_completion_index + 1) % tag_completions.Length;
+				if (forward)
+					tag_completion_index = (tag_completion_index + 1) % tag_completions.Length;
+				else
+					tag_completion_index = (tag_completion_index + tag_completions.Length - 1) % tag_completions.Length;
 			} else {
 	
 				tag_completion_typed_position = Position;
@@ -184,7 +198,10 @@ namespace FSpot.Widgets {
 				if (tag_completions == null)
 					return;
 	
-				tag_completion_index = 0;
+				if (forward)
+					tag_completion_index = 0;
+				else
+					tag_completion_index = tag_completions.Length - 1;
 			}
 	
 			tag_ignore_changes = true;
@@ -196,6 +213,24 @@ namespace FSpot.Widgets {
 			SelectRegion (tag_completion_typed_position, Text.Length);
 		}
 
+		void FinishTagCompletion ()
+		{
+			if (tag_completion_index == -1)
+				return;
+
+			int sel_start, sel_end, pos;
+			pos = Position;
+			if (GetSelectionBounds (out sel_start, out sel_end)) {
+				pos = sel_end;
+				SelectRegion (-1, -1);
+			}
+
+			InsertText (", ", ref pos);
+			Position = pos + 2;
+			ClearTagCompletions ();
+			
+		}
+
 		//Activated means the user pressed 'Enter'
 		protected override void OnActivated ()
 		{
@@ -203,15 +238,6 @@ namespace FSpot.Widgets {
 	
 			if (tagnames == null)
 				return;
-
-			int sel_start, sel_end;
-			if (GetSelectionBounds (out sel_start, out sel_end) && tag_completion_index != -1) {
-				InsertText (", ", ref sel_end);
-				SelectRegion (-1, -1);
-				Position = sel_end + 2;
-				ClearTagCompletions ();
-				return;
-			}
 
 			// Add any new tags to the selected photos
 			ArrayList new_tags = new ArrayList ();
