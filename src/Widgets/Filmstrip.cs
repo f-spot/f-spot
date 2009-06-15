@@ -311,11 +311,12 @@ namespace FSpot.Widgets
 		int min_length = 400;
 		protected override void OnSizeRequested (ref Gtk.Requisition requisition)
 		{
-			requisition.Width = min_length + 2 * x_offset;
+			base.OnSizeRequested (ref requisition);
+			requisition.Width = Math.Max (min_length + 2 * x_offset, requisition.Width);
 			if (min_length % BackgroundTile.Width != 0)
 				requisition.Width += BackgroundTile.Width - min_length % BackgroundTile.Width;	
 
-			requisition.Height = BackgroundTile.Height + (2 * y_offset);
+			requisition.Height = Math.Max (requisition.Height, BackgroundTile.Height + (2 * y_offset));
 		}
 
 		Pixbuf background_pixbuf;

@@ -2,339 +2,966 @@
 // FSpot.Widgets.ImageView.cs
 //
 // Author(s):
-//	Ettore Perazzoli
-//	Larry Ewing  <lewing@novell.com>
-//	Stephane Delcrxoi  <stephane@delcroix.org>
+//	Stephane Delcroix  <stephane@delcroix.org>
 //
-// This is free software. See COPYING for details
+// This is free software. See COPYING for details.
 //
 
-using Gdk;
-using Gtk;
 using System;
-using System.Collections;
+using System.Collections.Generic;
 using System.Runtime.InteropServices;
 
-namespace FSpot.Widgets {
-public class ImageView : Layout {
-	private Cms.Transform transform;
+using Gtk;
+using Gdk;
 
-	public static double ZOOM_FACTOR = 1.1;
+namespace FSpot.Widgets
+{
+	public class ImageView : Container
+	{
 
-	protected const double MAX_ZOOM = 10.0;
+#region public API
+		public ImageView (Adjustment hadjustment, Adjustment vadjustment, bool can_select) : base ()
+		{
+			OnSetScrollAdjustments (hadjustment, vadjustment);
+			children = new List<LayoutChild> ();
+			AdjustmentsChanged += ScrollToAdjustments;
+			WidgetFlags &= ~WidgetFlags.NoWindow;
+			SetFlag (WidgetFlags.CanFocus);
 
-	protected double min_zoom = 0.1;
-	protected double MIN_ZOOM {
-		get {
-			return min_zoom;
+			this.can_select = can_select;
 		}
-	}
 
-	[DllImport ("libfspot")]
-	static extern IntPtr f_image_view_new ();
-
-	[DllImport ("libgobject-2.0-0.dll")]
-	static extern uint g_signal_connect_data (IntPtr obj, String name, SelectionChangedDelegate cb, int key, IntPtr p, int flags);
-
-	SelectionChangedDelegate selection_holder;
-	SelectionChangedDelegate zoom_holder;
-
-	public ImageView () : base (null, null)
-	{
-		Raw = f_image_view_new ();
-
-		g_signal_connect_data (Raw, "selection_changed", 
-				       selection_holder = new SelectionChangedDelegate (SelectionChangedCallback), 0,
-				       IntPtr.Zero, 0);
-
-		g_signal_connect_data (Raw, "zoom_changed", 
-				       zoom_holder = new SelectionChangedDelegate (ZoomChangedCallback), 0,
-				       IntPtr.Zero, 0);
-	}
-
-	protected override void OnDestroyed ()
-	{
-		if (selection_holder != null)
-			selection_holder = null;
-
-		if (zoom_holder != null)
-			zoom_holder = null;
-	}
-
-	public enum PointerModeType {
-		None,
-		Select,
-		Scroll
-	}
-
-	[DllImport ("libfspot")]
-	static extern PointerModeType f_image_view_get_pointer_mode  (IntPtr image_view);
-	[DllImport ("libfspot")]
-	static extern void f_image_view_set_pointer_mode (IntPtr image_view, PointerModeType mode);
-
-	public PointerModeType PointerMode {
-		get {
-			return f_image_view_get_pointer_mode (Handle);
+		public ImageView (bool can_select) : this (null, null, can_select)
+		{
 		}
-		set {
-			f_image_view_set_pointer_mode (Handle, value);
+
+		public ImageView () : this (true)
+		{
 		}
-	}
 
+		Pixbuf pixbuf;
+		public Pixbuf Pixbuf {
+			get { return pixbuf; } 
+			set {
+				pixbuf = value;
+				if (pixbuf == null)
+					min_zoom = 0.1;
+				else
+					min_zoom = Math.Min (1.0,
+						Math.Min ((double)Allocation.Width / (double)Pixbuf.Width,
+						(double)Allocation.Height / (double)Pixbuf.Height));
 
-	[DllImport ("libfspot")]
-	static extern void f_image_view_set_selection_xy_ratio  (IntPtr image_view, double selection_xy_ratio);
-	[DllImport ("libfspot")]
-	static extern double f_image_view_get_selection_xy_ratio (IntPtr image_view);
-
-	double delayed_ratio = -2;
-	public double SelectionXyRatio {
-		get { return f_image_view_get_selection_xy_ratio (Handle); }
-		set { 
-			if (Pixbuf != null) 
-				f_image_view_set_selection_xy_ratio (Handle, value);
-			else
-				delayed_ratio = value;
+				ComputeScaledSize ();
+				AdjustmentsChanged -= ScrollToAdjustments;
+				Hadjustment.Value = Vadjustment.Value = 0;
+				XOffset = YOffset = 0;
+				AdjustmentsChanged += ScrollToAdjustments;
+				QueueDraw ();
+			} 
 		}
-	}
 
-
-	[DllImport ("libfspot")]
-	static extern bool f_image_view_get_selection (IntPtr image_view,
-						       out int x_return, out int y_return,
-						       out int width_return, out int height_return);
-
-	// FIXME property?  Kinda sucky.
-	public bool GetSelection (out int x, out int y, out int width, out int height)
-	{
-		return f_image_view_get_selection (Handle, out x, out y, out width, out height);
-	}
-
-	
-	[DllImport ("libfspot")]
-	static extern void f_image_view_unset_selection (IntPtr image_view);
-
-	public void UnsetSelection ()
-	{
-		f_image_view_unset_selection (Handle);
-	}
-
-	[DllImport ("libfspoteog")]
-	static extern void image_view_set_transparent_color (IntPtr view, out Gdk.Color color);
-
-	public void SetTransparentColor (Gdk.Color color)
-	{
-		image_view_set_transparent_color (Handle, out color);
-	} 
-
-	public void SetTransparentColor (string color) //format "#000000"
-	{
-		SetTransparentColor (new Gdk.Color (
-				Byte.Parse (color.Substring (1,2), System.Globalization.NumberStyles.AllowHexSpecifier),
-				Byte.Parse (color.Substring (3,2), System.Globalization.NumberStyles.AllowHexSpecifier),
-				Byte.Parse (color.Substring (5,2), System.Globalization.NumberStyles.AllowHexSpecifier)
-		));
-	}
-
-	[DllImport ("libfspoteog")]
-	static extern void image_view_set_check_size (IntPtr view, int size);
-
-	public void SetCheckSize (int size)
-	{
-		image_view_set_check_size (Handle, size);
-	}
-
-	[DllImport ("libfspoteog")]
-	static extern void image_view_set_pixbuf (IntPtr view, IntPtr pixbuf);
-	[DllImport ("libfspoteog")]
-	static extern IntPtr image_view_get_pixbuf (IntPtr view);
-
-	public Pixbuf Pixbuf {
-		get {
-			IntPtr raw_pixbuf = image_view_get_pixbuf (Handle);
-			if (raw_pixbuf == IntPtr.Zero)
-				return null;
-
-			Pixbuf result = (Gdk.Pixbuf) GLib.Object.GetObject (raw_pixbuf, true);
-			return result;
+		CheckPattern check_pattern = CheckPattern.Dark;
+		public CheckPattern CheckPattern {
+			get { return check_pattern; } 
+			set { 
+				if (check_pattern == value)
+					return;
+				check_pattern = value;
+				if (Pixbuf != null && Pixbuf.HasAlpha)
+					QueueDraw ();
+			} 
 		}
-		set {
-			if (value == null)
-				image_view_set_pixbuf (Handle, IntPtr.Zero);
-			else {
-				image_view_set_pixbuf (Handle, value.Handle);
-				if (delayed_ratio != -2) {
-					SelectionXyRatio = delayed_ratio;
-					delayed_ratio = -2;
-				}
+
+		PointerMode pointer_mode = PointerMode.Select;
+		public PointerMode PointerMode {
+			get { return pointer_mode; } 
+			set { 
+				pointer_mode = value;
+				Console.WriteLine ("FIXME: Set the Pointer mode");
+			} 
+		}
+
+		Adjustment hadjustment;
+		public Adjustment Hadjustment {
+			get { return hadjustment; }
+		}
+
+		Adjustment vadjustment;
+		public Adjustment Vadjustment {
+			get { return vadjustment; }
+		}
+
+		bool can_select = false;
+		public bool CanSelect {
+			get { return can_select; }
+			set { 
+				if (can_select == value)
+					return;
+				can_select = value;
+				if (!can_select)
+					selection = Rectangle.Zero;
+
+				if (!IsRealized)
+					return;
+
+				if (can_select)
+					OnSelectionRealized ();
+				else
+					OnSelectionUnrealized ();
 			}
 		}
-	}
 
-	[DllImport ("libfspoteog")]
-	static extern void image_view_set_zoom (IntPtr view, double zoomx, double zoomy,
-						bool have_anchor, int anchorx, int anchory);
+		Gdk.Rectangle selection = Rectangle.Zero;
+		public Gdk.Rectangle Selection {
+			get {
+				if (!can_select)
+					return Rectangle.Zero;
+				return selection;
+			}
+			set { 
+				if (!can_select)
+					return;
 
-	public void SetZoom (double zoom_x, double zoom_y)
-	{
-		double old_zoom_x, old_zoom_y;
+				if (value == selection)
+					return;
 
-		GetZoom (out old_zoom_x, out old_zoom_y);
-		if (System.Math.Abs (old_zoom_y - zoom_y) > System.Double.Epsilon
-		    || System.Math.Abs (old_zoom_x - zoom_x) > System.Double.Epsilon) {
-			//System.Console.WriteLine ("{0} {1} zooming", zoom_x, zoom_y);
-			image_view_set_zoom (Handle, zoom_x, zoom_y, false, 0, 0);
+				selection = value;
+
+				EventHandler eh = SelectionChanged;
+				if (eh != null)
+					eh (this, EventArgs.Empty);
+				QueueDraw ();
+			}
 		}
-	}
 
-	public void SetZoom (double zoom_x, double zoom_y, int anchor_x, int anchor_y)
-	{
-		image_view_set_zoom (Handle, zoom_x, zoom_y, true, anchor_x, anchor_y);
-	}
-
-	[DllImport ("libfspoteog")]
-	static extern void image_view_get_zoom (IntPtr view, out double zoomx, out double zoomy);
-
-	public void GetZoom (out double zoomx, out double zoomy)
-	{
-		image_view_get_zoom (Handle, out zoomx, out zoomy);
-	}
-
-	[DllImport ("libfspoteog")]
-	static extern void image_view_get_offsets_and_size (IntPtr view,
-							    out int xofs_return, out int yofs_return,
-							    out int scaled_width, out int scaled_height);
-
-	public void GetOffsets (out int x_offset, out int y_offset, out int scaled_width, out int scaled_height)
-	{
-		image_view_get_offsets_and_size (Handle,
-						 out x_offset, out y_offset, out scaled_width, out scaled_height);
-	}
-
-	[DllImport ("libfspot")]
-	static extern void f_image_view_window_coords_to_image (IntPtr view,
-								int window_x, int window_y,
-								out int image_x, out int image_y);
-
-	public Gdk.Point WindowCoordsToImage (Gdk.Point win)
-	{
-		Gdk.Point img;
-
-		f_image_view_window_coords_to_image (Handle, win.X, win.Y, out img.X, out img.Y);
-		return img;
-	}
-
-
-	public Gdk.Rectangle ImageCoordsToWindow (Gdk.Rectangle image)
-	{
-		int x, y;
-		int width, height;
-
-		if (this.Pixbuf == null)
-			return Gdk.Rectangle.Zero;
-		
-		this.GetOffsets (out x, out y, out width, out height);
-
-		Gdk.Rectangle win = Gdk.Rectangle.Zero;
-		win.X = (int) Math.Floor (image.X * (double) (width - 1) / (this.Pixbuf.Width - 1) + 0.5) + x;
-		win.Y = (int) Math.Floor (image.Y * (double) (height - 1) / (this.Pixbuf.Height - 1) + 0.5) + y;
-		win.Width = (int) Math.Floor ((image.X + image.Width) * (double) (width - 1) / (this.Pixbuf.Width - 1) + 0.5) - win.X + x;
-		win.Height = (int) Math.Floor ((image.Y + image.Height) * (double) (height - 1) / (this.Pixbuf.Height - 1) + 0.5) - win.Y + y;
-
-		return win;
-	}
-
-	[DllImport ("libfspoteog")]
-	static extern void image_view_set_display_brightness (IntPtr view, float display_brightness);
-
-	public double DisplayBrightness
-	{
-		set {
-			image_view_set_display_brightness (Handle, (float) value);
+		public double SelectionXyRatio {
+			get { throw new NotImplementedException ();} 
+			set { throw new NotImplementedException ();} 
 		}
-	}
 
-	[DllImport ("libfspoteog")]
-	static extern void image_view_set_interp_type (IntPtr view, Gdk.InterpType interpolation);
+		Cms.Transform transform;
+		public Cms.Transform Transform {
+			get { return transform; } 
+			set { transform = value;} 
+		}
+
+		InterpType interpolation = InterpType.Bilinear;
+		public Gdk.InterpType Interpolation {
+			get { return interpolation; } 
+			set { 
+				if (interpolation == value)
+					return;
+				interpolation = value;
+				QueueDraw ();
+			} 
+		}
+
+		double zoom = 1.0;
+		public virtual double Zoom {
+			get { return zoom; }
+			set { DoZoom (value, false, 0, 0); }
+		}
+
+		public void ZoomAboutPoint (double zoom_increment, int x, int y)
+		{
+			DoZoom (zoom * zoom_increment, true, x, y);
+		}	
+
+		public Point WindowCoordsToImage (Point win)
+		{
+			if (Pixbuf == null)
+				return Point.Zero;
+
+			int x_offset = scaled_width < Allocation.Width ? (int)(Allocation.Width - scaled_width) / 2 : -XOffset;
+			int y_offset = scaled_height < Allocation.Height ? (int)(Allocation.Height - scaled_height) / 2 : -YOffset;
+
+			win.X = Clamp (win.X, x_offset, x_offset + (int)scaled_width - 1);
+			win.Y = Clamp (win.Y, y_offset, y_offset + (int)scaled_height - 1);
+
+			return new Point ((int) Math.Floor ((win.X - x_offset) * (double)(Pixbuf.Width - 1) / (double)(scaled_width - 1) + .5),
+					  (int) Math.Floor ((win.Y - y_offset) * (double)(Pixbuf.Height - 1) / (double)(scaled_height - 1) + .5));
+		}
+
+		public Rectangle WindowCoordsToImage (Rectangle win)
+		{
+			if (Pixbuf == null)
+				return Rectangle.Zero;
+
+			int x_offset = scaled_width < Allocation.Width ? (int)(Allocation.Width - scaled_width) / 2 : -XOffset;
+			int y_offset = scaled_height < Allocation.Height ? (int)(Allocation.Height - scaled_height) / 2 : -YOffset;
+
+			win.Intersect (new Rectangle (x_offset, y_offset, (int)scaled_width - 1, (int)scaled_height - 1));
+
+			Rectangle img = Rectangle.Zero;
+			img.X = (int) Math.Floor ((win.X - x_offset) * (double)(Pixbuf.Width - 1) / (double)(scaled_width - 1) + .5);
+			img.Y = (int) Math.Floor ((win.Y - y_offset) * (double)(Pixbuf.Height - 1) / (double)(scaled_height - 1) + .5);
+			img.Width = (int) Math.Floor ((win.X + win.Width - x_offset) * (double)(Pixbuf.Width - 1) / (double)(scaled_width - 1) + .5) - win.X;
+			img.Height = (int) Math.Floor ((win.Y + win.Height - y_offset) * (double)(Pixbuf.Height - 1) / (double)(scaled_height - 1) + .5) - win.Y;
+
+			return img;
+		}
+
+		public Point ImageCoordsToWindow (Point image)
+		{
+			if (this.Pixbuf == null)
+				return Point.Zero;
+
+			int x_offset = scaled_width < Allocation.Width ? (int)(Allocation.Width - scaled_width) / 2 : -XOffset;
+			int y_offset = scaled_height < Allocation.Height ? (int)(Allocation.Height - scaled_height) / 2 : -YOffset;
+
+			return new Point ((int) Math.Floor (image.X * (double) (scaled_width - 1) / (this.Pixbuf.Width - 1) + 0.5) + x_offset,
+					  (int) Math.Floor (image.Y * (double) (scaled_height - 1) / (this.Pixbuf.Height - 1) + 0.5) + y_offset);
+		}
+
+		public Rectangle ImageCoordsToWindow (Rectangle image)
+		{
+			if (this.Pixbuf == null)
+				return Gdk.Rectangle.Zero;
+
+			int x_offset = scaled_width < Allocation.Width ? (int)(Allocation.Width - scaled_width) / 2 : -XOffset;
+			int y_offset = scaled_height < Allocation.Height ? (int)(Allocation.Height - scaled_height) / 2 : -YOffset;
+
+			Gdk.Rectangle win = Gdk.Rectangle.Zero;
+			win.X = (int) Math.Floor (image.X * (double) (scaled_width - 1) / (this.Pixbuf.Width - 1) + 0.5) + x_offset;
+			win.Y = (int) Math.Floor (image.Y * (double) (scaled_height - 1) / (this.Pixbuf.Height - 1) + 0.5) + y_offset;
+			win.Width = (int) Math.Floor ((image.X + image.Width) * (double) (scaled_width - 1) / (this.Pixbuf.Width - 1) + 0.5) - win.X + x_offset;
+			win.Height = (int) Math.Floor ((image.Y + image.Height) * (double) (scaled_height - 1) / (this.Pixbuf.Height - 1) + 0.5) - win.Y + y_offset;
 	
-	[DllImport ("libfspoteog")]
-	static extern Gdk.InterpType image_view_get_interp_type (IntPtr view);
-
-	public Gdk.InterpType Interpolation 
-	{
-		set {
-			image_view_set_interp_type (Handle, value);
+			return win;
 		}
-		get {
-			return image_view_get_interp_type (Handle);
+
+		List<LayoutChild> children;
+		public void Put (Gtk.Widget widget, int x, int y)
+		{
+			children.Add (new LayoutChild (widget, x, y));
+			if (IsRealized)
+				widget.ParentWindow = GdkWindow;
+			widget.Parent = this;
 		}
-	}
 
+		public void Move (Gtk.Widget widget, int x, int y)
+		{
+			LayoutChild child = GetChild (widget);
+			if (child == null)
+				return;
 
-	[DllImport ("libfspoteog")]
-	static extern void image_view_set_display_contrast (IntPtr view, float display_contrast);
-
-	public double DisplayContrast
-	{
-		set {
-			image_view_set_display_contrast (Handle, (float) value);
+			child.X = x;
+			child.Y = y;
+			if (Visible && widget.Visible)
+				QueueResize ();
 		}
-	}
 
-	[DllImport ("libfspoteog")]
-	static extern void image_view_set_display_transform (IntPtr view, HandleRef transform);
+		public event EventHandler ZoomChanged;
+		public event EventHandler SelectionChanged;
+#endregion
+
+#region protectedAPI
+		protected static double ZOOM_FACTOR = 1.1;
+		protected double max_zoom = 10.0;
+		protected double MAX_ZOOM {
+			get { return max_zoom; }
+		}
+
+		protected double min_zoom = 0.1;
+		protected double MIN_ZOOM {
+			get { return min_zoom; }
+		}
+
+#endregion
+
+#region container
+		protected override void OnAdded (Gtk.Widget widget)
+		{
+			Put (widget, 0, 0);
+		}
+
+		protected override void OnRemoved (Gtk.Widget widget)
+		{
+			LayoutChild child = null;
+			foreach (var c in children) {
+				if (child.Widget == widget) {
+					child = c;
+					break;
+				}
+			}
+
+			if (child != null) {
+				widget.Unparent ();
+				children.Remove (child);
+			}
+		}
+
+		protected override void ForAll (bool include_internals, Gtk.Callback callback)
+		{
+			foreach (var child in children) 
+				callback (child.Widget);
+		}
+#endregion
+
+#region GtkWidgetry
+		Gdk.GC selection_gc;
+		protected override void OnRealized ()
+		{
+			SetFlag (Gtk.WidgetFlags.Realized);
+			GdkWindow = new Gdk.Window (ParentWindow,
+						    new Gdk.WindowAttr { WindowType = Gdk.WindowType.Child,
+									 X = Allocation.X,
+									 Y = Allocation.Y,
+									 Width = Allocation.Width,
+									 Height = Allocation.Height,
+									 Wclass = Gdk.WindowClass.InputOutput,
+									 Visual = this.Visual,
+									 Colormap = this.Colormap,
+									 Mask = this.Events
+									      | EventMask.ExposureMask
+									      | EventMask.ButtonPressMask
+									      | EventMask.ButtonReleaseMask
+									      | EventMask.PointerMotionMask
+									      | EventMask.PointerMotionHintMask
+									      | EventMask.ScrollMask
+									      | EventMask.KeyPressMask },
+						     Gdk.WindowAttributesType.X | Gdk.WindowAttributesType.Y |
+						     Gdk.WindowAttributesType.Visual | Gdk.WindowAttributesType.Colormap);
+
+			GdkWindow.SetBackPixmap (null, false);
+			GdkWindow.UserData = Handle;
+
+			Style.Attach (GdkWindow);
+			Style.SetBackground (GdkWindow, Gtk.StateType.Normal);
+
+			foreach (var child in children)
+				child.Widget.ParentWindow = GdkWindow;
+
+			if (can_select) 
+				OnSelectionRealized ();
+		}
+
+		protected override void OnUnrealized ()
+		{
+			if (can_select)
+				OnSelectionUnrealized ();
+		}
+
+		protected override void OnMapped ()
+		{
+			SetFlag (Gtk.WidgetFlags.Mapped);
+
+			foreach (var child in children)
+				if (child.Widget.Visible && !child.Widget.IsMapped)
+					child.Widget.Map ();
+			GdkWindow.Show ();
+		}
+
+		protected override void OnSizeRequested (ref Gtk.Requisition requisition)
+		{
+			requisition.Width = requisition.Height = 0;
+
+			foreach (var child in children)
+				child.Widget.SizeRequest ();
+		}
+
+		protected override void OnSizeAllocated (Gdk.Rectangle allocation)
+		{
+			if (Pixbuf == null)
+				min_zoom = 0.1;
+			else
+				min_zoom = Math.Min (1.0,
+					Math.Min ((double)allocation.Width / (double)Pixbuf.Width,
+					(double)allocation.Height / (double)Pixbuf.Height));
+
+			if (zoom < min_zoom)
+				zoom = min_zoom;
+			// Since this affects the zoom_scale we should alert it
+			EventHandler eh = ZoomChanged;
+			if (eh != null)
+				eh (this, System.EventArgs.Empty);
+
+			ComputeScaledSize ();
+
+			foreach (var child in children) {
+				Gtk.Requisition req = child.Widget.ChildRequisition;
+				child.Widget.SizeAllocate (new Gdk.Rectangle (child.X, child.Y, req.Width, req.Height));
+			}
+
+			if (IsRealized) {
+				GdkWindow.MoveResize (allocation.X, allocation.Y, allocation.Width, allocation.Height);
+			}
+
+			Hadjustment.PageSize = Math.Min (scaled_width, allocation.Width);
+			Hadjustment.PageIncrement = scaled_width * .9;
+			Hadjustment.StepIncrement = 32;
+			Hadjustment.Lower = 0;
+
+			Vadjustment.PageSize = Math.Min (scaled_height, allocation.Height);
+			Vadjustment.PageIncrement = scaled_height * .9;
+			Vadjustment.StepIncrement = 32;
+			Vadjustment.Lower = 0;
+
+			if (XOffset > Hadjustment.Upper - Hadjustment.PageSize)
+				ScrollTo ((int)(Hadjustment.Upper - Hadjustment.PageSize), YOffset, false);
+			if (YOffset > Vadjustment.Upper - Vadjustment.PageSize)
+				ScrollTo (XOffset, (int)(Vadjustment.Upper - Vadjustment.PageSize), false);
+
+			base.OnSizeAllocated (allocation);
+		}
+
+		protected override bool OnExposeEvent (Gdk.EventExpose evnt)
+		{
+			if (evnt.Window != GdkWindow)
+				return false;
+
+			foreach (Rectangle area in evnt.Region.GetRectangles ())
+			{
+				var p_area = new Rectangle (Math.Max (0, area.X), Math.Max (0, area.Y),
+						      Math.Min (Allocation.Width, area.Width), Math.Min (Allocation.Height, area.Height));
+				if (p_area == Rectangle.Zero)
+					continue;
+
+				//draw synchronously if InterpType.Nearest or zoom 1:1
+				if (Interpolation == InterpType.Nearest || zoom == 1.0) {
+					PaintRectangle (p_area, Interpolation);
+					continue;
+				}
+				
+				//delay all other interpolation types
+//				GLib.Idle.Add (...);
+
+				PaintRectangle (p_area, InterpType.Nearest);
+			}
+			
+			if (can_select)
+				OnSelectionExposeEvent (evnt);
+
+			return true;
+		}
+
+		protected override void OnSetScrollAdjustments (Gtk.Adjustment hadjustment, Gtk.Adjustment vadjustment)
+		{
+			if (hadjustment == null)
+				hadjustment = new Gtk.Adjustment (0, 0, 0, 0, 0, 0);
+			if (vadjustment == null)
+				vadjustment = new Gtk.Adjustment (0, 0, 0, 0, 0, 0);
+			bool need_change = false;
+			if (this.hadjustment != hadjustment) {
+				this.hadjustment = hadjustment;
+				this.hadjustment.Upper = scaled_width;
+				this.hadjustment.ValueChanged += HandleAdjustmentsValueChanged;
+				need_change = true;
+			}
+			if (this.vadjustment != vadjustment) {
+				this.vadjustment = vadjustment;
+				this.vadjustment.Upper = scaled_height;
+				this.vadjustment.ValueChanged += HandleAdjustmentsValueChanged;
+				need_change = true;
+			}
+
+			if (need_change)
+				HandleAdjustmentsValueChanged (this, EventArgs.Empty);
+		}	
+
+//		bool dragging = false;
+//		int draganchor_x = 0;
+//		int draganchor_y = 0;
+		protected override bool OnButtonPressEvent (EventButton evnt)
+		{
+			bool handled = false;
+			if (!HasFocus)
+				GrabFocus ();
+
+			if (PointerMode == PointerMode.None)
+				return false;
+
+			if (can_select)
+				handled |= OnSelectionButtonPressEvent (evnt);
+
+			if (handled)
+				return handled;
+
+	//		if (dragging)
+	//			return base.OnButtonPressEvent (evnt);
+
+	//		switch (evnt.Button) {
+	//		case 1:	
+	//			dragging = true;
+	//			draganchor_x = (int)evnt.X;
+	//			draganchor_y = (int)evnt.Y;
+
+	//			handled = true;
+	//		default:
+	//			break;
+	//		}
+
+			return handled || base.OnButtonPressEvent (evnt);
+		}
+
+		protected override bool OnButtonReleaseEvent (EventButton evnt)
+		{
+			bool handled = false;
+
+			if (can_select)
+				handled |= OnSelectionButtonReleaseEvent (evnt);
+
+			if (handled)
+				return handled;
+
+			return handled |= base.OnButtonReleaseEvent (evnt);
+		}
+
+		protected override bool OnMotionNotifyEvent (EventMotion evnt)
+		{
+			bool handled = false;
+
+			if (can_select)
+				handled |= OnSelectionMotionNotifyEvent (evnt);
+
+			return handled || base.OnMotionNotifyEvent (evnt);
+
+		}
+
+		protected override bool OnScrollEvent (EventScroll evnt)
+		{
+			if ((evnt.State & ModifierType.ShiftMask) == 0) {//no shift, let's zoom
+				ZoomAboutPoint ((evnt.Direction == ScrollDirection.Up || evnt.Direction == ScrollDirection.Right) ? ZOOM_FACTOR : 1.0 / ZOOM_FACTOR,
+						 (int)evnt.X, (int)evnt.Y);
+				return true;
+			}
+
+			int x_incr = (int)Hadjustment.PageIncrement / 4;
+			int y_incr = (int)Vadjustment.PageIncrement / 4;
+			if ((evnt.State & ModifierType.ControlMask) == 0) {//no control scroll
+				ScrollBy ((evnt.Direction == ScrollDirection.Left) ? -x_incr : (evnt.Direction == ScrollDirection.Right) ? x_incr : 0,
+					  (evnt.Direction == ScrollDirection.Up) ? -y_incr : (evnt.Direction == ScrollDirection.Down) ? y_incr : 0);
+				return true;
+			} else { //invert x and y for scrolling
+				ScrollBy ((evnt.Direction == ScrollDirection.Up) ? -y_incr : (evnt.Direction == ScrollDirection.Down) ? y_incr : 0,
+					  (evnt.Direction == ScrollDirection.Left) ? -x_incr : (evnt.Direction == ScrollDirection.Right) ? x_incr : 0);	
+				return true;
+			}
+			return base.OnScrollEvent (evnt);
+		}
+
+		protected override bool OnKeyPressEvent (EventKey key)
+		{
+			int step = 32;
+			bool handled = true;
+			int x, y;
+			Gdk.ModifierType type;
+			switch(key.Key) {
+			case Gdk.Key.Up:
+				ScrollBy (0, -step);
+				break;
+			case Gdk.Key.Down:
+				ScrollBy (0, step);
+				break;
+			case Gdk.Key.Left:
+				ScrollBy (-step, 0);
+				break;
+			case Gdk.Key.Right:
+				ScrollBy (step, 0);
+				break;
+			case Gdk.Key.plus:
+			case Gdk.Key.KP_Add:
+				GdkWindow.GetPointer (out x, out y, out type);
+				ZoomAboutPoint (ZOOM_FACTOR, x, y);
+				break;
+			case Gdk.Key.minus:
+			case Gdk.Key.KP_Subtract:
+				GdkWindow.GetPointer (out x, out y, out type);
+				ZoomAboutPoint (1.0/ZOOM_FACTOR, x, y);
+				break;
+			case Gdk.Key.Key_1:
+				GdkWindow.GetPointer (out x, out y, out type);
+				DoZoom (1.0, true, x, y);
+				break;
+
+			default:
+				handled = false;
+				break;
+			}
+			
+			if (handled)
+				return true;
+
+			return base.OnKeyPressEvent (key);
+		}
+
+#endregion
+#region private painting and misc 
+		int XOffset { get; set;}
+		int YOffset { get; set;}
+		void DoZoom (double zoom, bool use_anchor, int x, int y)
+		{
+			if (zoom == this.zoom)
+				return;
+
+			if (zoom > MAX_ZOOM)
+				zoom = MAX_ZOOM;
+			else if (zoom < MIN_ZOOM)
+				zoom = MIN_ZOOM;
+
+			this.zoom = zoom;
+			
+			if (!use_anchor) {
+				x = (int)Allocation.Width / 2;
+				y = (int)Allocation.Height / 2;
+			}
+
+			int x_offset = scaled_width < Allocation.Width ? (int)(Allocation.Width - scaled_width) / 2 : -XOffset;
+			int y_offset = scaled_height < Allocation.Height ? (int)(Allocation.Height - scaled_height) / 2 : -YOffset;
+			double x_anchor = (double)(x - x_offset) / (double)scaled_width;
+			double y_anchor = (double)(y - y_offset) / (double)scaled_height;
+			ComputeScaledSize ();
+
+			AdjustmentsChanged -= ScrollToAdjustments;
+			if (scaled_width < Allocation.Width)
+				Hadjustment.Value = XOffset = 0;
+			else
+				Hadjustment.Value = XOffset = Clamp ((int)(x_anchor * scaled_width - x), 0, (int)(Hadjustment.Upper - Hadjustment.PageSize));
+			if (scaled_height < Allocation.Height)
+				Vadjustment.Value = YOffset = 0;
+			else
+				Vadjustment.Value = YOffset = Clamp ((int)(y_anchor * scaled_height - y), 0, (int)(Vadjustment.Upper - Vadjustment.PageSize));
+			AdjustmentsChanged += ScrollToAdjustments;
+
+			EventHandler eh = ZoomChanged;
+			if (eh != null)
+				eh (this, EventArgs.Empty);
+
+			QueueDraw ();
+		}
+
+		void PaintBackground (Rectangle backgound, Rectangle area)
+		{
+			GdkWindow.DrawRectangle (Style.BackgroundGCs [(int)StateType.Normal], true, area);
+		}
+
+		void PaintRectangle (Rectangle area, InterpType interpolation)
+		{
+			int x_offset = scaled_width < Allocation.Width ? (int)(Allocation.Width - scaled_width) / 2 : -XOffset;
+			int y_offset = scaled_height < Allocation.Height ? (int)(Allocation.Height - scaled_height) / 2 : -YOffset;
+			//Draw background
+			if (y_offset > 0) 	//Top
+				PaintBackground (new Rectangle (0, 0, Allocation.Width, y_offset), area);
+			if (x_offset > 0) 	//Left
+				PaintBackground (new Rectangle (0, y_offset, x_offset, (int)scaled_height), area);
+			if (x_offset >= 0)	//Right
+				PaintBackground (new Rectangle (x_offset + (int)scaled_width, y_offset, Allocation.Width - x_offset - (int)scaled_width, (int)scaled_height), area);
+			if (y_offset >= 0)	//Bottom
+				PaintBackground (new Rectangle (0, y_offset + (int)scaled_height, Allocation.Width, Allocation.Height - y_offset - (int)scaled_height), area);
+
+			if (Pixbuf == null)
+				return;
+
+			area.Intersect (new Rectangle (x_offset, y_offset, (int)scaled_width, (int)scaled_height));
+
+			//Short circuit for 1:1 zoom
+			if (zoom == 1.0 &&
+			    !Pixbuf.HasAlpha &&
+			    Pixbuf.BitsPerSample == 8) {
+				GdkWindow.DrawPixbuf (Style.BlackGC,
+						      Pixbuf,
+						      area.X - x_offset, area.Y - y_offset,
+						      area.X, area.Y,
+						      area.Width, area.Height,
+						      RgbDither.Max,
+						      area.X - x_offset, area.Y - y_offset);
+				return;
+			}
+
+			using (Pixbuf temp_pixbuf = new Pixbuf (Colorspace.Rgb, false, 8, area.Width, area.Height)) {
+				if (Pixbuf.HasAlpha)
+					temp_pixbuf.Fill (0x00000000);
+
+				Pixbuf.CompositeColor (temp_pixbuf,
+						       0, 0,
+						       area.Width, area.Height,
+						       -(area.X - x_offset), -(area.Y - y_offset),
+						       zoom, zoom,
+						       zoom == 1.0 ? InterpType.Nearest : interpolation, 255,
+						       area.X - x_offset, area.Y - y_offset,
+						       CheckPattern.CheckSize, CheckPattern.Color1, CheckPattern.Color2);
+
+				GdkWindow.DrawPixbuf (Style.BlackGC,
+						      temp_pixbuf,
+						      0, 0,
+						      area.X, area.Y,
+						      area.Width, area.Height,
+						      RgbDither.Max,
+						      area.X - x_offset, area.Y - y_offset);
+			}
+		}
+
+		uint scaled_width, scaled_height;
+		void ComputeScaledSize ()
+		{
+			if (Pixbuf != null) {
+				scaled_width = (uint)Math.Floor (Pixbuf.Width * Zoom + .5);
+				scaled_height = (uint)Math.Floor (Pixbuf.Height * Zoom + .5);
+			} else {
+				scaled_width = scaled_height = 0;
+			}
+
+			Hadjustment.Upper = scaled_width;
+			Vadjustment.Upper = scaled_height;
+		}
+
+		event EventHandler AdjustmentsChanged;
+		void HandleAdjustmentsValueChanged (object sender, EventArgs e)
+		{
+			EventHandler eh = AdjustmentsChanged;
+			if (eh != null)
+				eh (this, EventArgs.Empty);
+		}
+
+		void ScrollToAdjustments (object sender, EventArgs e)
+		{
+			ScrollTo ((int)Hadjustment.Value, (int)Vadjustment.Value, false);
+		}
+
+		void ScrollTo (int x, int y, bool change_adjustments)
+		{
+			if (x < 0)
+				x = 0;
+			else if (x > Hadjustment.Upper - Hadjustment.PageSize) 
+				x = (int)(Hadjustment.Upper - Hadjustment.PageSize);
+			if (y < 0) 
+				y = 0;
+			else if (y > Vadjustment.Upper - Vadjustment.PageSize) 
+				y = (int)(Vadjustment.Upper - Vadjustment.PageSize);
+
+			int xof = x - XOffset;
+			int yof = y - YOffset;
+			XOffset = x;
+			YOffset = y;
+
+			if (IsRealized) {
+				GdkWindow.Scroll (-xof, -yof);
+				GdkWindow.ProcessUpdates (true);
+			}
+
+			if (change_adjustments) {
+				AdjustmentsChanged -= ScrollToAdjustments;
+				Hadjustment.Value = XOffset;
+				Vadjustment.Value = YOffset;
+				AdjustmentsChanged += ScrollToAdjustments;
+			}
+		}
+
+		void ScrollBy (int x, int y)
+		{
+			ScrollTo (XOffset + x, YOffset + y, true);
+		}
+
+		static int Clamp (int value, int min, int max)
+		{
+			return Math.Min (Math.Max (value, min), max);
+		}
+
+		bool SelectionActive {
+			get { return Selection == Rectangle.Zero ; }
+		}
+#endregion
+
+#region children
+		class LayoutChild {
+			Gtk.Widget widget;
+			public Gtk.Widget Widget {
+				get { return widget; }
+			}
+
+			public int X {get; set; }
+			public int Y {get; set; }
+
+			public LayoutChild (Gtk.Widget widget, int x, int y)
+			{
+				this.widget = widget;
+				X = x;
+				Y = y;
+			}
+		}
+
+		LayoutChild GetChild (Gtk.Widget widget)
+		{
+			foreach (var child in children)
+				if (child.Widget == widget)
+					return child;
+			return null;
+		}
+#endregion
+
+#region selection
+		void OnSelectionRealized ()
+		{
+			//FIXME SetCUrsor
+
+			selection_gc = new Gdk.GC (GdkWindow);
+			selection_gc.Copy (Style.ForegroundGCs [(int)StateType.Normal]);
+			selection_gc.Function = Gdk.Function.Invert;
+			selection_gc.SetLineAttributes (1, LineStyle.Solid, CapStyle.NotLast, JoinStyle.Miter);
+		}
+
+		void OnSelectionUnrealized ()
+		{
+			selection_gc.Unref ();
+			selection_gc = null;
+		}
+
+		bool OnSelectionExposeEvent (EventExpose evnt)
+		{
+			if (selection == Rectangle.Zero)
+				return false;
+
+			Rectangle win_selection = ImageCoordsToWindow (selection);
+			Region r = new Region ();
+			r.UnionWithRect (win_selection);
+			evnt.Region.Subtract (r);
+			r.Destroy ();
+
+			using (Cairo.Context ctx = CairoHelper.Create (GdkWindow)) {
+				ctx.SetSourceRGBA (.5, .5, .5, .7);
+				CairoHelper.Region (ctx, evnt.Region);
+				ctx.Fill ();
+			}
+
+			return true;
+		}
+
+		enum DragMode {
+			None,
+			Move,
+			Extend,
+		}
+
+		const int SELECTION_SNAP_DISTANCE = 8;
+		DragMode GetDragMode (int x, int y)
+		{
+			Rectangle win_selection = ImageCoordsToWindow (selection);
+			if (Rectangle.Inflate (win_selection, -SELECTION_SNAP_DISTANCE, -SELECTION_SNAP_DISTANCE).Contains (x, y))
+				return DragMode.Move;
+			if (Rectangle.Inflate (win_selection, SELECTION_SNAP_DISTANCE, SELECTION_SNAP_DISTANCE).Contains (x, y))
+				return DragMode.Extend;
+			return DragMode.None;
+		}
+
+		bool is_dragging_selection = false;
+		bool fixed_height = false;
+		bool fixed_width = false;
+		bool is_moving_selection = false;
+		Point selection_anchor = Point.Zero;
+		bool OnSelectionButtonPressEvent (EventButton evnt)
+		{
+			if (evnt.Button != 1)
+				return false;
+
+			if (evnt.Type == EventType.TwoButtonPress) {
+				return false;
+			}
+			
+			bool is_new_selection;
+			Point img = WindowCoordsToImage (new Point ((int)evnt.X, (int)evnt.Y));
+			switch (GetDragMode ((int)evnt.X, (int)evnt.Y)) {
+				case DragMode.None:
+					is_dragging_selection = true;
+					PointerMode = PointerMode.Select;
+					Selection = Rectangle.Zero;
+					selection_anchor = img;
+					break;
+				case DragMode.Extend:
+					Rectangle win_sel = ImageCoordsToWindow (Selection);
+					is_dragging_selection = true;
+					if (Math.Abs (win_sel.X - evnt.X) < SELECTION_SNAP_DISTANCE &&
+					    Math.Abs (win_sel.Y - evnt.Y) < SELECTION_SNAP_DISTANCE) {	 			//TopLeft
+						selection_anchor = new Point (Selection.X + Selection.Width, Selection.Y + Selection.Height);
+					} else if (Math.Abs (win_sel.X + win_sel.Width - evnt.X) < SELECTION_SNAP_DISTANCE &&
+						   Math.Abs (win_sel.Y - evnt.Y) < SELECTION_SNAP_DISTANCE) { 			//TopRight
+						selection_anchor = new Point (Selection.X, Selection.Y + Selection.Height);
+					} else if (Math.Abs (win_sel.X - evnt.X) < SELECTION_SNAP_DISTANCE &&
+						   Math.Abs (win_sel.Y + win_sel.Height - evnt.Y) < SELECTION_SNAP_DISTANCE) {	//BottomLeft
+						selection_anchor = new Point (Selection.X + Selection.Width, Selection.Y);
+					} else if (Math.Abs (win_sel.X + win_sel.Width - evnt.X) < SELECTION_SNAP_DISTANCE &&
+						   Math.Abs (win_sel.Y + win_sel.Height - evnt.Y) < SELECTION_SNAP_DISTANCE) {	//BottomRight
+						selection_anchor = new Point (Selection.X, Selection.Y);
+					} else if (Math.Abs (win_sel.X - evnt.X) < SELECTION_SNAP_DISTANCE) {			//Left
+						selection_anchor = new Point (Selection.X + Selection.Width, Selection.Y);
+						fixed_height = true;
+					} else if (Math.Abs (win_sel.X + win_sel.Width - evnt.X) < SELECTION_SNAP_DISTANCE) {	//Right
+						selection_anchor = new Point (Selection.X, Selection.Y);
+						fixed_height = true;
+					} else if (Math.Abs (win_sel.Y - evnt.Y) < SELECTION_SNAP_DISTANCE) {			//Top
+						selection_anchor = new Point (Selection.X, Selection.Y + Selection.Height);
+						fixed_width = true;
+					} else if (Math.Abs (win_sel.Y + win_sel.Height - evnt.Y) < SELECTION_SNAP_DISTANCE) {	//Bottom
+						selection_anchor = new Point (Selection.X, Selection.Y);
+						fixed_width = true;
+					} else {
+						fixed_width = fixed_height = false;
+						is_dragging_selection = false;
+					}
+						
+					//SetPointer
+					break;
+				case DragMode.Move:
+					is_moving_selection = true;
+					selection_anchor = img;
+					//SetPointer
+					break;
+			}
+
+			return true;
+		}
+
+		bool OnSelectionButtonReleaseEvent (EventButton evnt)
+		{
+			if (evnt.Button != 1)
+				return false;
+
+			is_dragging_selection = false;
+			is_moving_selection = false;
+			fixed_width = fixed_height = false;
+			//SetCursor
+			return true;
+		}
+
+		const int SELECTION_THRESHOLD = 5;
+		bool OnSelectionMotionNotifyEvent (EventMotion evnt)
+		{
+			int x, y;
+			ModifierType mod;
+
+			if (evnt.IsHint)
+				GdkWindow.GetPointer (out x, out y, out mod);
+			else {
+				x = (int)evnt.X;
+				y = (int)evnt.Y;
+			}
+
+
+			Point img = WindowCoordsToImage (new Point (x, y));
+			if (is_dragging_selection) {
+				Point win_anchor = ImageCoordsToWindow (selection_anchor);
+				if (Selection == Rectangle.Zero &&
+				    Math.Abs (evnt.X - win_anchor.X) < SELECTION_THRESHOLD &&
+				    Math.Abs (evnt.Y - win_anchor.Y) < SELECTION_THRESHOLD)
+					return true;
 	
-	[DllImport ("libfspoteog")]
-	static extern void image_view_update_min_zoom (IntPtr view);
-	protected void UpdateMinZoom ()
-	{
-		if (Pixbuf != null) {
-			min_zoom = Math.Min (1.0,
-					Math.Min ((double)Allocation.Width / (double)Pixbuf.Width,
-					(double)Allocation.Height / (double)Pixbuf.Height));
+				Selection = new Rectangle (fixed_width ? Selection.X : Math.Min (selection_anchor.X, img.X),
+							   fixed_height ? Selection.Y : Math.Min (selection_anchor.Y, img.Y),
+							   fixed_width ? Selection.Width : Math.Abs (selection_anchor.X - img.X),
+							   fixed_height ? Selection.Height : Math.Abs (selection_anchor.Y - img.Y));	
+				return true;
+			}
 
-		} else {
-			min_zoom = 0.1;
+			if (is_moving_selection) {
+				Selection = new Rectangle (Selection.X + img.X - selection_anchor.X,
+							   Selection.Y + img.Y - selection_anchor.Y,
+							   Selection.Width, Selection.Height);
+				selection_anchor = img;
+				return true;
+			}
+
+			//set the pointer according to DragMode
+			return true;
 		}
-
-		image_view_update_min_zoom (Handle);
-		
-		// Since this affects the zoom_scale we should alert it
-		if (ZoomChanged != null)
-			ZoomChanged (this, System.EventArgs.Empty);
+#endregion
 	}
-
-	public Cms.Transform Transform {
-		set {
-			this.transform = value;
-			if (value != null)
-				image_view_set_display_transform (Handle, transform.Handle);
-			else 
-				image_view_set_display_transform (Handle, new HandleRef (value, IntPtr.Zero));
-		}
-		get {
-			return transform;
-		}
-	}
-
-	private delegate void SelectionChangedDelegate (IntPtr obj, IntPtr data);
-	private static void SelectionChangedCallback (IntPtr raw, IntPtr unused_data)
-	{
-		ImageView view = GLib.Object.GetObject (raw, false) as ImageView;
-
-		if (view.SelectionChanged != null)
-			view.SelectionChanged ();
-	}
-	public delegate void SelectionChangedHandler ();
-	public event SelectionChangedHandler SelectionChanged;
-
-	private static void ZoomChangedCallback (IntPtr raw, IntPtr unused_data)
-	{
-		ImageView view = GLib.Object.GetObject (raw, false) as ImageView;
-
-		if (view.ZoomChanged != null)
-			view.ZoomChanged (view, System.EventArgs.Empty);
-	}
-	public event EventHandler ZoomChanged;
-}
 }

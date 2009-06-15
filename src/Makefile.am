@@ -77,14 +77,17 @@ WIDGETS_CSDISTFILES =				\
 	$(srcdir)/Bling/EasingMode.cs		\
 	$(srcdir)/Bling/EasedAnimation.cs	\
 	$(srcdir)/Bling/QuinticEase.cs		\
+	$(srcdir)/Widgets/CheckPattern.cs	\
 	$(srcdir)/Widgets/ComplexMenuItem.cs	\
 	$(srcdir)/Widgets/CustomPrintWidget.cs	\
 	$(srcdir)/Widgets/DateEdit.cs		\
 	$(srcdir)/Widgets/DateEditFlags.cs	\
 	$(srcdir)/Widgets/HighlightedBox.cs	\
 	$(srcdir)/Widgets/ImageView.cs		\
+	$(srcdir)/Widgets/Layout.cs		\
 	$(srcdir)/Widgets/MenuButton.cs		\
 	$(srcdir)/Widgets/OpenWithMenu.cs	\
+	$(srcdir)/Widgets/PointerMode.cs	\
 	$(srcdir)/Widgets/Rating.cs		\
 	$(srcdir)/Widgets/SaneTreeView.cs	\
 	$(srcdir)/Widgets/ScrolledView.cs
@@ -328,6 +331,7 @@ WIDGETS_ASSEMBLIES =				\
 	-pkg:gtk-sharp-2.0			\
 	-pkg:gnome-sharp-2.0			\
 	$(LINK_GTKSHARPBEANS)			\
+	-r:Mono.Cairo				\
 	-r:Cms.dll				\
 	-r:Mono.Posix				\
 	-r:FSpot.Core.dll			\

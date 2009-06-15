@@ -33,13 +33,12 @@ namespace FSpot.Widgets {
 			loader.Done += HandleDone;
 			
 			FSpot.ColorManagement.PhotoImageView = this;
-			this.Transform = FSpot.ColorManagement.StandardTransform (); //for preview windows
+			Transform = FSpot.ColorManagement.StandardTransform (); //for preview windows
 
 			Accelerometer.OrientationChanged += HandleOrientationChanged;
 
 			HandleRealized (null, null);
 
-			this.SizeAllocated += HandleSizeAllocated;
 			this.KeyPressEvent += HandleKeyPressEvent;
 			//this.Realized += HandleRealized;
 			this.Unrealized += HandleUnrealized;
@@ -47,12 +46,11 @@ namespace FSpot.Widgets {
 			this.item = item;
 			item.Changed += PhotoItemChanged;
 			this.Destroyed += HandleDestroyed;
-			this.SetTransparentColor (this.Style.BaseColors [(int)Gtk.StateType.Normal]);
 		}
 		
 		protected override void OnStyleSet (Gtk.Style previous)
 		{
-			this.SetTransparentColor (this.Style.Backgrounds [(int)Gtk.StateType.Normal]);
+			CheckPattern = new CheckPattern (this.Style.Backgrounds [(int)Gtk.StateType.Normal]);
 		}
 
 		new public BrowsablePointer Item {
@@ -150,7 +148,6 @@ namespace FSpot.Widgets {
 			if (prev != null)
 				prev.Dispose ();
 
-			UpdateMinZoom ();
 			this.ZoomFit (args.ReducedResolution);
 		}
 
@@ -183,14 +180,12 @@ namespace FSpot.Widgets {
 				if (this.Pixbuf == null) {
 					LoadErrorImage (ex);
 				} else {
-					UpdateMinZoom ();
 					this.ZoomFit ();
 				}
 			} else {
 				this.Pixbuf = loader.Pixbuf;
 
 				if (!loader.Prepared || !ShowProgress) {
-					UpdateMinZoom ();
 					this.ZoomFit ();
 				}
 			}
@@ -222,12 +217,7 @@ namespace FSpot.Widgets {
 
 
 		public double Zoom {
-			get {
-				double x, y;
-				this.GetZoom (out x, out y);
-				return x;
-			}
-			
+			get { return base.Zoom; }
 			set {
 				//Console.WriteLine ("Setting zoom to {0}, MIN = {1}", value, MIN_ZOOM);
 				value = System.Math.Min (value, MAX_ZOOM);
@@ -244,7 +234,7 @@ namespace FSpot.Widgets {
 					this.Fit = true;
 				else {
 					this.Fit = false;
-					this.SetZoom (value, value);
+					base.Zoom = value;
 				}
 			}
 		}
@@ -259,10 +249,11 @@ namespace FSpot.Widgets {
 			}
 		}
 		
-		private void HandleSizeAllocated (object sender, Gtk.SizeAllocatedArgs args)
+		protected override void OnSizeAllocated (Gdk.Rectangle allocation)
 		{
 			if (fit)
 				ZoomFit ();
+			base.OnSizeAllocated (allocation);
 		}
 
 		FSpot.AsyncPixbufLoader loader;
@@ -280,7 +271,6 @@ namespace FSpot.Widgets {
 			if (old != null)
 				old.Dispose ();
 			
-			UpdateMinZoom ();
 			this.ZoomFit ();
 		}
 
@@ -331,11 +321,10 @@ namespace FSpot.Widgets {
 				if (old != null)
 					old.Dispose ();
 
-				UpdateMinZoom ();
 				this.ZoomFit ();
 			}
 			
-			this.UnsetSelection ();
+			Selection = Gdk.Rectangle.Zero;
 
 			if (PhotoChanged != null)
 				PhotoChanged (this);
@@ -380,7 +369,7 @@ namespace FSpot.Widgets {
 
 			double image_zoom = zoom_to_fit;
 
-			this.SetZoom (image_zoom, image_zoom);
+			base.Zoom = image_zoom;
 			
 			if (scrolled != null)
 				scrolled.SetPolicy (Gtk.PolicyType.Automatic, Gtk.PolicyType.Automatic);

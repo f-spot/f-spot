@@ -30,6 +30,7 @@ namespace FSpot.Editors {
 		}
 	}
 
+	[Obsolete ("use a Gdk.Rectangle")]
 	public class EditorSelection {
 		public int x, y;
 		public int width, height;

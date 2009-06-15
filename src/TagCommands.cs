@@ -419,25 +419,24 @@ public class TagCommands {
 			}
 		}
 
-		private void HandleSelectionChanged ()
+		private void HandleSelectionChanged (object sender, EventArgs e)
 		{
-			int x, y, width, height;
-			Gdk.Pixbuf tmp = null;
+		       	int x = image_view.Selection.X;
+		       	int y = image_view.Selection.Y;
+			int width = image_view.Selection.Width;
+			int height = image_view.Selection.Height;
 		       
-			image_view.GetSelection (out x, out y, out width, out height);
 //			if (width > 0 && height > 0) 
 //				icon_view.Selection.Clear ();
 				
 			if (image_view.Pixbuf != null) {
 				if (width > 0 && height > 0) {
-					tmp = new Gdk.Pixbuf (image_view.Pixbuf, x, y, width, height);
-					
-					//FIXME
-					PreviewPixbuf = PixbufUtils.TagIconFromPixbuf (tmp);
-					PreviewPixbuf_WithoutProfile = PreviewPixbuf.Copy();
-					FSpot.ColorManagement.ApplyScreenProfile (PreviewPixbuf);
-					
-					tmp.Dispose ();
+					using (var tmp = new Gdk.Pixbuf (image_view.Pixbuf, x, y, width, height)) {	
+						//FIXME
+						PreviewPixbuf = PixbufUtils.TagIconFromPixbuf (tmp);
+						PreviewPixbuf_WithoutProfile = PreviewPixbuf.Copy();
+						FSpot.ColorManagement.ApplyScreenProfile (PreviewPixbuf);
+					}
 				} else {
 					//FIXME
 					PreviewPixbuf = PixbufUtils.TagIconFromPixbuf (image_view.Pixbuf);

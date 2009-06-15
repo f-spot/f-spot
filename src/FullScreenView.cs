@@ -99,7 +99,7 @@ namespace FSpot {
 				this.Add (notebook);
 				view.Show ();
 				view.MotionNotifyEvent += HandleViewMotion;
-				view.PointerMode = ImageView.PointerModeType.Scroll;
+				view.PointerMode = PointerMode.Scroll;
 				
 				scroll.ScrolledWindow.Add (view);
 
@@ -190,7 +190,7 @@ namespace FSpot {
 		
 		private void ShowCursor () 
 		{
-			view.PointerMode = ImageView.PointerModeType.Scroll;
+			view.PointerMode = PointerMode.Scroll;
 			this.GdkWindow.Cursor = null;
 		}
 		
