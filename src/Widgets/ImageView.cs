@@ -148,7 +148,7 @@ namespace FSpot.Widgets
 				if (Selection == Rectangle.Zero)
 					return;
 
-				ConstrainSelection ();
+				Selection = ConstrainSelection (Selection, false, false);
 			} 
 		}
 
@@ -953,10 +953,20 @@ namespace FSpot.Widgets
 				    Math.Abs (evnt.Y - win_anchor.Y) < SELECTION_THRESHOLD)
 					return true;
 	
-				Selection = new Rectangle (fixed_width ? Selection.X : Math.Min (selection_anchor.X, img.X),
-							   fixed_height ? Selection.Y : Math.Min (selection_anchor.Y, img.Y),
-							   fixed_width ? Selection.Width : Math.Abs (selection_anchor.X - img.X),
-							   fixed_height ? Selection.Height : Math.Abs (selection_anchor.Y - img.Y));	
+				
+				if (selection_xy_ratio == 0)
+					Selection = new Rectangle (fixed_width ? Selection.X : Math.Min (selection_anchor.X, img.X),
+								   fixed_height ? Selection.Y : Math.Min (selection_anchor.Y, img.Y),
+								   fixed_width ? Selection.Width : Math.Abs (selection_anchor.X - img.X),
+								   fixed_height ? Selection.Height : Math.Abs (selection_anchor.Y - img.Y));
+
+				else
+					Selection = ConstrainSelection (new Rectangle (Math.Min (selection_anchor.X, img.X),
+										       Math.Min (selection_anchor.Y, img.Y),
+										       Math.Abs (selection_anchor.X - img.X),
+										       Math.Abs (selection_anchor.Y - img.Y)),
+									fixed_width, fixed_height);
+
 				return true;
 			}
 
@@ -972,33 +982,34 @@ namespace FSpot.Widgets
 			return true;
 		}
 
-		void ConstrainSelection ()
+		Rectangle ConstrainSelection (Rectangle sel, bool fixed_width, bool fixed_height)
 		{
 			double constrain = selection_xy_ratio;
-			if ((double)Selection.Width > (double)Selection.Height && selection_xy_ratio < 1 ||
-			    (double)Selection.Width < (double)Selection.Height && selection_xy_ratio > 1)
+			if ((double)sel.Width > (double)sel.Height && selection_xy_ratio < 1 ||
+			    (double)sel.Width < (double)sel.Height && selection_xy_ratio > 1)
 				constrain = 1.0 / constrain;
 
-			double ratio = (double)Selection.Width / (double)Selection.Height;
-			int height = Selection.Height;
-			int width = Selection.Width;
+
+			double ratio = (double)sel.Width / (double)sel.Height;
+			int height = sel.Height;
+			int width = sel.Width;
 			if (ratio > constrain) {
-				height = (int)((double)Selection.Width / constrain);
+				height = (int)((double)sel.Width / constrain);
 				if (height > Pixbuf.Height) {
-					height = Selection.Height;
+					height = sel.Height;
 					width = (int)(height * constrain);
 				}
 			} else {
 				width = (int)(height * constrain);
 				if (width > Pixbuf.Width) {
-					width = Selection.Width;
+					width = sel.Width;
 					height = (int)((double)width / constrain);
 				}
 			}
 
-			Selection = new Rectangle (Selection.X + Selection.Width < Pixbuf.Width ? Selection.X : Pixbuf.Width - Selection.Width,
-						   Selection.Y + Selection.Height < Pixbuf.Height ? Selection.Y : Pixbuf.Height - Selection.Height,
-						   width, height);
+			return new Rectangle (sel.X + width < Pixbuf.Width ? sel.X : Pixbuf.Width - width,
+					      sel.Y + height < Pixbuf.Height ? sel.Y : Pixbuf.Height - height,
+					      width, height);
 		}
 #endregion
 	}
