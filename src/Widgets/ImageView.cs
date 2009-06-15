@@ -769,10 +769,6 @@ namespace FSpot.Widgets
 		{
 			return Math.Min (Math.Max (value, min), max);
 		}
-
-		bool SelectionActive {
-			get { return Selection == Rectangle.Zero ; }
-		}
 #endregion
 
 #region children
@@ -965,8 +961,8 @@ namespace FSpot.Widgets
 			}
 
 			if (is_moving_selection) {
-				Selection = new Rectangle (Selection.X + img.X - selection_anchor.X,
-							   Selection.Y + img.Y - selection_anchor.Y,
+				Selection = new Rectangle (Clamp (Selection.X + img.X - selection_anchor.X, 0, Pixbuf.Width - Selection.Width),
+							   Clamp (Selection.Y + img.Y - selection_anchor.Y, 0, Pixbuf.Height - Selection.Height),
 							   Selection.Width, Selection.Height);
 				selection_anchor = img;
 				return true;
