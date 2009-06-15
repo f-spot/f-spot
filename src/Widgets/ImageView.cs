@@ -468,6 +468,9 @@ namespace FSpot.Widgets
 			if (!HasFocus)
 				GrabFocus ();
 
+			if (PointerMode == PointerMode.None)
+				return false;
+
 			if (can_select)
 				handled |= OnSelectionButtonPressEvent (evnt);
 
@@ -841,6 +844,8 @@ namespace FSpot.Widgets
 		}
 
 		bool is_dragging_selection = false;
+		bool fixed_height = false;
+		bool fixed_width = false;
 		bool is_moving_selection = false;
 		Point selection_anchor = Point.Zero;
 		bool OnSelectionButtonPressEvent (EventButton evnt)
@@ -848,29 +853,56 @@ namespace FSpot.Widgets
 			if (evnt.Button != 1)
 				return false;
 
-			if (PointerMode == PointerMode.None)
-				return false;
-
 			if (evnt.Type == EventType.TwoButtonPress) {
 				return false;
 			}
 			
 			bool is_new_selection;
+			Point img = WindowCoordsToImage (new Point ((int)evnt.X, (int)evnt.Y));
 			switch (GetDragMode ((int)evnt.X, (int)evnt.Y)) {
 				case DragMode.None:
 					is_dragging_selection = true;
 					PointerMode = PointerMode.Select;
 					Selection = Rectangle.Zero;
-					selection_anchor = WindowCoordsToImage (new Point ((int)evnt.X, (int)evnt.Y));
+					selection_anchor = img;
 					break;
 				case DragMode.Extend:
-					//is_dragging_selection = true;
+					Rectangle win_sel = ImageCoordsToWindow (Selection);
+					is_dragging_selection = true;
+					if (Math.Abs (win_sel.X - evnt.X) < SELECTION_SNAP_DISTANCE &&
+					    Math.Abs (win_sel.Y - evnt.Y) < SELECTION_SNAP_DISTANCE) {	 			//TopLeft
+						selection_anchor = new Point (Selection.X + Selection.Width, Selection.Y + Selection.Height);
+					} else if (Math.Abs (win_sel.X + win_sel.Width - evnt.X) < SELECTION_SNAP_DISTANCE &&
+						   Math.Abs (win_sel.Y - evnt.Y) < SELECTION_SNAP_DISTANCE) { 			//TopRight
+						selection_anchor = new Point (Selection.X, Selection.Y + Selection.Height);
+					} else if (Math.Abs (win_sel.X - evnt.X) < SELECTION_SNAP_DISTANCE &&
+						   Math.Abs (win_sel.Y + win_sel.Height - evnt.Y) < SELECTION_SNAP_DISTANCE) {	//BottomLeft
+						selection_anchor = new Point (Selection.X + Selection.Width, Selection.Y);
+					} else if (Math.Abs (win_sel.X + win_sel.Width - evnt.X) < SELECTION_SNAP_DISTANCE &&
+						   Math.Abs (win_sel.Y + win_sel.Height - evnt.Y) < SELECTION_SNAP_DISTANCE) {	//BottomRight
+						selection_anchor = new Point (Selection.X, Selection.Y);
+					} else if (Math.Abs (win_sel.X - evnt.X) < SELECTION_SNAP_DISTANCE) {			//Left
+						selection_anchor = new Point (Selection.X + Selection.Width, Selection.Y);
+						fixed_height = true;
+					} else if (Math.Abs (win_sel.X + win_sel.Width - evnt.X) < SELECTION_SNAP_DISTANCE) {	//Right
+						selection_anchor = new Point (Selection.X, Selection.Y);
+						fixed_height = true;
+					} else if (Math.Abs (win_sel.Y - evnt.Y) < SELECTION_SNAP_DISTANCE) {			//Top
+						selection_anchor = new Point (Selection.X, Selection.Y + Selection.Height);
+						fixed_width = true;
+					} else if (Math.Abs (win_sel.Y + win_sel.Height - evnt.Y) < SELECTION_SNAP_DISTANCE) {	//Bottom
+						selection_anchor = new Point (Selection.X, Selection.Y);
+						fixed_width = true;
+					} else {
+						fixed_width = fixed_height = false;
+						is_dragging_selection = false;
+					}
+						
 					//SetPointer
 					break;
 				case DragMode.Move:
-					Console.WriteLine ("DragMode: Move");
 					is_moving_selection = true;
-					selection_anchor = WindowCoordsToImage (new Point ((int)evnt.X, (int)evnt.Y));
+					selection_anchor = img;
 					//SetPointer
 					break;
 			}
@@ -885,6 +917,7 @@ namespace FSpot.Widgets
 
 			is_dragging_selection = false;
 			is_moving_selection = false;
+			fixed_width = fixed_height = false;
 			//SetCursor
 			return true;
 		}
@@ -911,10 +944,10 @@ namespace FSpot.Widgets
 				    Math.Abs (evnt.Y - win_anchor.Y) < SELECTION_THRESHOLD)
 					return true;
 	
-				Selection = new Rectangle (Math.Min (selection_anchor.X, img.X),
-							   Math.Min (selection_anchor.Y, img.Y),
-							   Math.Abs (selection_anchor.X - img.X),
-							   Math.Abs (selection_anchor.Y - img.Y));	
+				Selection = new Rectangle (fixed_width ? Selection.X : Math.Min (selection_anchor.X, img.X),
+							   fixed_height ? Selection.Y : Math.Min (selection_anchor.Y, img.Y),
+							   fixed_width ? Selection.Width : Math.Abs (selection_anchor.X - img.X),
+							   fixed_height ? Selection.Height : Math.Abs (selection_anchor.Y - img.Y));	
 				return true;
 			}
 
