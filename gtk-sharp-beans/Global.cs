@@ -1,4 +1,4 @@
-// Gtk.Widget.cs
+// GtkBeans.Global.cs
 //
 // Author(s):
 //      Stephane Delcroix <stephane@delcroix.org>
@@ -23,17 +23,18 @@ using System;
 using System.Collections;
 using System.Runtime.InteropServices;
 
-namespace Gtk {
-	public static class WidgetExtensions {
+namespace GtkBeans {
+	public static class Global {
 		[DllImport("libgtk-win32-2.0-0.dll")]
-		static extern IntPtr gtk_widget_get_snapshot(IntPtr raw, IntPtr clip_rect);
+		static extern unsafe bool gtk_show_uri(IntPtr screen, IntPtr uri, uint timestamp, out IntPtr error);
 
-		public static Gdk.Pixmap GetSnapshot(this Widget widget, Gdk.Rectangle clip_rect) {
-			IntPtr native_clip_rect = GLib.Marshaller.StructureToPtrAlloc (clip_rect);
-			IntPtr raw_ret = gtk_widget_get_snapshot(widget.Handle, native_clip_rect);
-			Gdk.Pixmap ret = GLib.Object.GetObject(raw_ret) as Gdk.Pixmap;
-			clip_rect = Gdk.Rectangle.New (native_clip_rect);
-			Marshal.FreeHGlobal (native_clip_rect);
+		public static unsafe bool ShowUri(Gdk.Screen screen, string uri, uint timestamp) {
+			IntPtr native_uri = GLib.Marshaller.StringToPtrGStrdup (uri);
+			IntPtr error = IntPtr.Zero;
+			bool raw_ret = gtk_show_uri(screen == null ? IntPtr.Zero : screen.Handle, native_uri, timestamp, out error);
+			bool ret = raw_ret;
+			GLib.Marshaller.Free (native_uri);
+			if (error != IntPtr.Zero) throw new GLib.GException (error);
 			return ret;
 		}
 	}

@@ -3,6 +3,7 @@ include ../Makefile.include
 SRCS =					\
 	$(srcdir)/Dialog.cs		\
 	$(srcdir)/Drawable.cs		\
+	$(srcdir)/Global.cs		\
 	$(srcdir)/Image.cs		\
 	$(srcdir)/Widget.cs		\
 	$(srcdir)/Format.cs		\
