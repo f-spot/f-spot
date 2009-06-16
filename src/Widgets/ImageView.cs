@@ -552,13 +552,13 @@ namespace FSpot.Widgets
 			}
 		}
 
-		protected override bool OnKeyPressEvent (EventKey key)
+		protected override bool OnKeyPressEvent (EventKey evnt)
 		{
 			bool handled = true;
 			int x, y;
 			Gdk.ModifierType type;
 
-			switch(key.Key) {
+			switch(evnt.Key) {
 			case Gdk.Key.Up:
 			case Gdk.Key.KP_Up:
 			case Gdk.Key.k:
@@ -604,7 +604,7 @@ namespace FSpot.Widgets
 			if (handled)
 				return true;
 
-			return base.OnKeyPressEvent (key);
+			return base.OnKeyPressEvent (evnt);
 		}
 
 #endregion
