@@ -79,6 +79,18 @@ namespace FSpot.Widgets
 			       (left.color1 != left.color2 && left.check_size != right.check_size);
 		}
 
+		public override int GetHashCode ()
+		{
+			return (int)color1 ^ (int)color2 ^ check_size;
+		}
+
+		public override bool Equals (object other)
+		{
+			if (!(other is CheckPattern))
+				return false;
+			return this == (CheckPattern)other;
+		}
+
 		static uint s_to_h (string color)
 		{
 			return (uint)(Byte.Parse (color.Substring (1,2), System.Globalization.NumberStyles.AllowHexSpecifier) << 16) +

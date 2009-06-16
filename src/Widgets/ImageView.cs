@@ -550,7 +550,6 @@ namespace FSpot.Widgets
 					  (evnt.Direction == ScrollDirection.Left) ? -x_incr : (evnt.Direction == ScrollDirection.Right) ? x_incr : 0);	
 				return true;
 			}
-			return base.OnScrollEvent (evnt);
 		}
 
 		protected override bool OnKeyPressEvent (EventKey key)
@@ -811,7 +810,6 @@ namespace FSpot.Widgets
 
 		void OnSelectionUnrealized ()
 		{
-			selection_gc.Unref ();
 			selection_gc = null;
 		}
 
@@ -821,10 +819,10 @@ namespace FSpot.Widgets
 				return false;
 
 			Rectangle win_selection = ImageCoordsToWindow (selection);
-			Region r = new Region ();
-			r.UnionWithRect (win_selection);
-			evnt.Region.Subtract (r);
-			r.Destroy ();
+			using (Region r = new Region ()) {
+				r.UnionWithRect (win_selection);
+				evnt.Region.Subtract (r);
+			}
 
 			using (Cairo.Context ctx = CairoHelper.Create (GdkWindow)) {
 				ctx.SetSourceRGBA (.5, .5, .5, .7);
@@ -862,11 +860,9 @@ namespace FSpot.Widgets
 			if (evnt.Button != 1)
 				return false;
 
-			if (evnt.Type == EventType.TwoButtonPress) {
+			if (evnt.Type == EventType.TwoButtonPress) 
 				return false;
-			}
 			
-			bool is_new_selection;
 			Point img = WindowCoordsToImage (new Point ((int)evnt.X, (int)evnt.Y));
 			switch (GetDragMode ((int)evnt.X, (int)evnt.Y)) {
 				case DragMode.None:
