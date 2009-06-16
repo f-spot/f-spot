@@ -2,6 +2,8 @@ using System;
 using FSpot.Editors;
 using FSpot.Utils;
 
+using Gdk;
+
 namespace FSpot.Widgets {
 	public enum ProgressType {
 		None,
@@ -37,7 +39,6 @@ namespace FSpot.Widgets {
 
 			Accelerometer.OrientationChanged += HandleOrientationChanged;
 
-			this.KeyPressEvent += HandleKeyPressEvent;
 			this.ScrollEvent += HandleScrollEvent;
 			this.item = item;
 			item.Changed += PhotoItemChanged;
@@ -383,21 +384,19 @@ namespace FSpot.Widgets {
 
 		}
 
-		[GLib.ConnectBefore]
-		private void HandleKeyPressEvent (object sender, Gtk.KeyPressEventArgs args)
+		protected override bool OnKeyPressEvent (Gdk.EventKey evnt)
 		{
-			bool alt = Gdk.ModifierType.Mod1Mask == (args.Event.State & Gdk.ModifierType.Mod1Mask);
+			if ((evnt.State & (ModifierType.Mod1Mask | ModifierType.ControlMask)) != 0)
+				return base.OnKeyPressEvent (evnt);
 
-			// FIXME I really need to figure out why overriding is not working
-			// for any of the default handlers.
-			args.RetVal = true;
+			bool handled = true;
 		
 			// Scroll if image is zoomed in (scrollbars are visible)
 			Gtk.ScrolledWindow scrolled = this.Parent as Gtk.ScrolledWindow;
 			if (scrolled != null && !this.Fit) {
-				Gtk.Adjustment vadj = scrolled.Vadjustment;
-				Gtk.Adjustment hadj = scrolled.Hadjustment;
-				switch (args.Event.Key) {					
+				Gtk.Adjustment vadj = Vadjustment;
+				Gtk.Adjustment hadj = Hadjustment;
+				switch (evnt.Key) {					
 				case Gdk.Key.Up:
 				case Gdk.Key.KP_Up:
 				case Gdk.Key.k:
@@ -405,14 +404,14 @@ namespace FSpot.Widgets {
 					vadj.Value -= vadj.StepIncrement;
 					if (vadj.Value < vadj.Lower)
 						vadj.Value = vadj.Lower;
-					return;
+					break;
 				case Gdk.Key.Left:
 				case Gdk.Key.KP_Left:
 				case Gdk.Key.h:
 					hadj.Value -= hadj.StepIncrement;
 					if (hadj.Value < hadj.Lower)
 						hadj.Value = hadj.Lower;
-					return;
+					break;
 				case Gdk.Key.Down:
 				case Gdk.Key.KP_Down:
 				case Gdk.Key.j:
@@ -420,19 +419,28 @@ namespace FSpot.Widgets {
 					vadj.Value += vadj.StepIncrement;
 					if (vadj.Value > vadj.Upper - vadj.PageSize)
 						vadj.Value = vadj.Upper - vadj.PageSize;
-					return;
+					break;
 				case Gdk.Key.Right:
 				case Gdk.Key.KP_Right:
 				case Gdk.Key.l:
 					hadj.Value += hadj.StepIncrement;
 					if (hadj.Value > hadj.Upper - hadj.PageSize)
 						hadj.Value = hadj.Upper - hadj.PageSize;
-					return;
+					break;
+				default:
+					handled = false;
+					break;
 				}
-			}
+			} else
+				handled = false;
+
+			if (handled)
+				return true;
+
+			handled = true;
 			
 			// Go to the next/previous photo when not zoomed (no scrollbars)
-			switch (args.Event.Key) {
+			switch (evnt.Key) {
 			case Gdk.Key.Up:
 			case Gdk.Key.KP_Up:
 			case Gdk.Key.Left:
@@ -478,24 +486,15 @@ namespace FSpot.Widgets {
 				break;
 			case Gdk.Key.Key_0:
 			case Gdk.Key.KP_0:
-				if (alt) 
-					args.RetVal = false;
-				else
-					this.Fit = true;
+				this.Fit = true;
 				break;
 			case Gdk.Key.Key_1:
 			case Gdk.Key.KP_1:
-				if (alt)
-					args.RetVal = false;
-				else
-					this.Zoom =  1.0;
+				this.Zoom =  1.0;
 				break;
 			case Gdk.Key.Key_2:
 			case Gdk.Key.KP_2:
-				if (alt) 
-					args.RetVal = false;
-				else
-					this.Zoom = 2.0;
+				this.Zoom = 2.0;
 				break;
 			case Gdk.Key.minus:
 			case Gdk.Key.KP_Subtract:
@@ -507,11 +506,11 @@ namespace FSpot.Widgets {
 				ZoomIn ();
 				break;
 			default:
-				args.RetVal = false;
-				return;
+				handled = false;
+				break;
 			}
 
-			return;
+			return handled || base.OnKeyPressEvent (evnt);
 		}
 
 		public void ShowHideLoupe ()

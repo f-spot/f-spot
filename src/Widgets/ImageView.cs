@@ -554,6 +554,9 @@ namespace FSpot.Widgets
 
 		protected override bool OnKeyPressEvent (EventKey evnt)
 		{
+			if ((evnt.State & (ModifierType.Mod1Mask | ModifierType.ControlMask)) != 0)
+				return base.OnKeyPressEvent (evnt);
+
 			bool handled = true;
 			int x, y;
 			Gdk.ModifierType type;
