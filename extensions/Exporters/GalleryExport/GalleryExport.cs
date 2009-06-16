@@ -811,7 +811,7 @@ namespace G2Export {
 			progress_dialog.ButtonLabel = Gtk.Stock.Ok;
 
 			if (browser) {
-				GnomeUtil.UrlShow (album.GetUrl());
+				GtkBeans.Global.ShowUri (export_dialog.Screen, album.GetUrl());
 			}
 		}
 

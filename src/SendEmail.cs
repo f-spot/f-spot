@@ -345,7 +345,7 @@ namespace FSpot {
 						System.Diagnostics.Process.Start("kmail", "  --composer --subject \"" + mail_subject + "\"" + mail_attach);
 					break;
 					default: 
-						GnomeUtil.UrlShow ("mailto:?subject=" + System.Web.HttpUtility.UrlEncode(mail_subject) + mail_attach);
+						GtkBeans.Global.ShowUri (Dialog.Screen, "mailto:?subject=" + System.Web.HttpUtility.UrlEncode(mail_subject) + mail_attach);
 					break;
 				}
 				                

@@ -1782,7 +1782,7 @@ public class MainWindow {
 
 	public static void HandleHelp (object sender, EventArgs args)
 	{
-		GnomeUtil.ShowHelp ("f-spot.xml", null, FSpot.Global.HelpDirectory, Toplevel.Window.Screen);
+		GtkBeans.Global.ShowUri (Toplevel.Window.Screen, "ghelp:f-spot");
 	}
 
 	public static void HandleAbout (object sender, EventArgs args)

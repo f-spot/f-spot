@@ -52,7 +52,6 @@ UTILS_CSDISTFILES =				\
 	$(srcdir)/Utils/CairoUtils.cs		\
 	$(srcdir)/Utils/ConsoleCrayon.cs	\
 	$(srcdir)/Utils/DbUtils.cs		\
-	$(srcdir)/Utils/GnomeUtil.cs		\
 	$(srcdir)/Utils/GdkUtils.cs		\
 	$(srcdir)/Utils/GtkUtil.cs		\
 	$(srcdir)/Utils/Log.cs			\

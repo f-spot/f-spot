@@ -317,7 +317,7 @@ namespace FSpot.Exporter.Facebook
 			account = new FacebookAccount();
 
 			Uri token = account.CreateToken ();
-			GnomeUtil.UrlShow (token.ToString ());
+			GtkBeans.Global.ShowUri (Dialog.Screen, token.ToString ());
 
 			HigMessageDialog mbox = new HigMessageDialog (Dialog, Gtk.DialogFlags.DestroyWithParent | Gtk.DialogFlags.Modal, Gtk.MessageType.Info, Gtk.ButtonsType.Ok, Catalog.GetString ("Waiting for authentication"), Catalog.GetString ("F-Spot will now launch your browser so that you can log into Facebook.  Turn on the \"Save my login information\" checkbox on Facebook and F-Spot will log into Facebook automatically from now on."));
 

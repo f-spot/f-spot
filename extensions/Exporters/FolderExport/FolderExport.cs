@@ -293,7 +293,7 @@ namespace FSpotFolderExport {
 				}
 
 				if (open) {
-					GnomeUtil.UrlShow (target.ToString ());
+					GtkBeans.Global.ShowUri (Dialog.Screen, target.ToString ());
 				}
 
 				// Save these settings for next time

@@ -395,7 +395,7 @@ namespace FSpotFlickrExport {
 					}
 				}
 
-				GnomeUtil.UrlShow (view_url);
+				GtkBeans.Global.ShowUri (Dialog.Screen, view_url);
 			}
 		}
 

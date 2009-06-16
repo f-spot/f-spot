@@ -15,6 +15,7 @@ REFS =					\
 	-r:$(top_builddir)/src/FSpot.Utils.dll	\
 	$(LINK_SEMWEB)			\
 	-r:SmugMugNet/SmugMugNet.dll	\
+	$(LINK_GTKSHARPBEANS)		\
 	$(LINK_KEYRING)			\
 	-r:Mono.Posix
 

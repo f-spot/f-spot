@@ -15,6 +15,7 @@ REFS =					\
 	-r:$(top_builddir)/src/FSpot.Core.dll	\
 	-r:$(top_builddir)/src/FSpot.Utils.dll	\
 	$(LINK_SEMWEB)			\
+	$(LINK_GTKSHARPBEANS)		\
 	-r:FlickrNet/FlickrNet.dll	\
 	-r:Mono.Posix
 

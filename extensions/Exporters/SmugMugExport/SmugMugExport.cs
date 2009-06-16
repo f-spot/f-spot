@@ -610,7 +610,7 @@ namespace FSpotSmugMugExport {
 			progress_dialog.ButtonLabel = Gtk.Stock.Ok;
 
 			if (browser && album_uri != null) {
-				GnomeUtil.UrlShow (album_uri.ToString ());
+				GtkBeans.Global.ShowUri (Dialog.Screen, album_uri.ToString ());
 			}
 		}
 
