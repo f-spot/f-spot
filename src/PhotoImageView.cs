@@ -37,11 +37,7 @@ namespace FSpot.Widgets {
 
 			Accelerometer.OrientationChanged += HandleOrientationChanged;
 
-			HandleRealized (null, null);
-
 			this.KeyPressEvent += HandleKeyPressEvent;
-			//this.Realized += HandleRealized;
-			this.Unrealized += HandleUnrealized;
 			this.ScrollEvent += HandleScrollEvent;
 			this.item = item;
 			item.Changed += PhotoItemChanged;
@@ -54,28 +50,12 @@ namespace FSpot.Widgets {
 		}
 
 		new public BrowsablePointer Item {
-			get {
-				return item;
-			}
+			get { return item; }
 		}
 
 		private IBrowsableCollection query;
 		public IBrowsableCollection Query {
-			get {
-				return item.Collection;
-			}
-#if false
-			set {
-				if (query != null) {
-					query.Changed -= HandleQueryChanged;
-					query.ItemsChanged -= HandleQueryItemsChanged;
-				}
-
-				query = value;
-				query.Changed += HandleQueryChanged;
-				query.ItemsChanged += HandleQueryItemsChanged;
-			}
-#endif
+			get { return item.Collection; }
 		}
 
 		public Loupe Loupe {
@@ -101,8 +81,7 @@ namespace FSpot.Widgets {
 			PhotoItemChanged (Item, null);
 		}
 
-		[GLib.ConnectBefore]
-		private void HandleRealized (object sender, EventArgs args)
+		protected override void OnRealized ()
 		{
 			int [] attr = new int [] {
 				(int) GdkGlx.GlxAttribute.Rgba,
@@ -117,10 +96,14 @@ namespace FSpot.Widgets {
 			} catch (GdkGlx.GlxException e) {
 				Console.WriteLine ("Error initializing the OpenGL context:{1} {0}", e, Environment.NewLine);
 			}
+
+			base.OnRealized ();
 		}
 
-		private void HandleUnrealized (object sender, EventArgs args)
+		protected override void OnUnrealized ()
 		{
+			base.OnUnrealized ();
+
 			if (Glx != null)
 				Glx.Destroy ();
 		}
