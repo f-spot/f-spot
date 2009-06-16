@@ -769,9 +769,9 @@ namespace FSpot.Widgets
 			}
 		}
 
-		void ScrollBy (int x, int y)
+		void ScrollBy (double x, double y)
 		{
-			ScrollTo (XOffset + x, YOffset + y, true);
+			ScrollTo ((int)(XOffset + x), (int)(YOffset + y), true);
 		}
 
 		static int Clamp (int value, int min, int max)
