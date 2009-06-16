@@ -183,7 +183,8 @@ namespace FSpot.Widgets {
 					this.ZoomFit ();
 				}
 			} else {
-				this.Pixbuf = loader.Pixbuf;
+				if (Pixbuf != loader.Pixbuf)
+					Pixbuf = loader.Pixbuf;
 
 				if (!loader.Prepared || !ShowProgress) {
 					this.ZoomFit ();
