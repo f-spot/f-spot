@@ -1731,12 +1731,6 @@ public class MainWindow {
 		print.Run (PrintOperationAction.PrintDialog, null);
 	}
 
-	private Gtk.Dialog info_display_window;
-	public void HandleInfoDisplayDestroy (object sender, EventArgs args)
-	{
-		info_display_window = null;
-	}
-
 	public void HandlePreferences (object sender, EventArgs args)
 	{
 		PreferenceDialog.Show ();
