@@ -19,7 +19,7 @@ namespace FSpot
 		static void Version ()
 		{
 			Console.WriteLine (
-				"F-Spot  {0} - (c)2003-2008, Novell Inc" + Environment.NewLine +
+				"F-Spot  {0} - (c)2003-2009, Novell Inc" + Environment.NewLine +
 				"Personal photo management for the GNOME Desktop" + Environment.NewLine,
 				FSpot.Defines.VERSION);
 		}
