@@ -171,11 +171,10 @@ namespace FSpot.Widgets {
 		private bool SetupEditor (Editor editor) {
 			EditorState state = editor.CreateState ();
 
-			Gdk.Rectangle selection = Gdk.Rectangle.Zero;;
 			PhotoImageView photo_view = MainWindow.Toplevel.PhotoView.View;
 
 			if (Page.InPhotoView && photo_view != null) {
-				state.Selection = selection = photo_view.Selection;
+				state.Selection = photo_view.Selection;
 				state.PhotoImageView = photo_view;
 			} else {
 				state.Selection = Gdk.Rectangle.Zero;
