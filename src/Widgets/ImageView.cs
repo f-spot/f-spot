@@ -554,22 +554,32 @@ namespace FSpot.Widgets
 
 		protected override bool OnKeyPressEvent (EventKey key)
 		{
-			int step = 32;
 			bool handled = true;
 			int x, y;
 			Gdk.ModifierType type;
+
 			switch(key.Key) {
 			case Gdk.Key.Up:
-				ScrollBy (0, -step);
+			case Gdk.Key.KP_Up:
+			case Gdk.Key.k:
+			case Gdk.Key.K:
+				ScrollBy (0, -Vadjustment.StepIncrement);
 				break;
 			case Gdk.Key.Down:
-				ScrollBy (0, step);
+			case Gdk.Key.KP_Down:
+			case Gdk.Key.j:
+			case Gdk.Key.J:
+				ScrollBy (0, Vadjustment.StepIncrement);
 				break;
 			case Gdk.Key.Left:
-				ScrollBy (-step, 0);
+			case Gdk.Key.KP_Left:
+			case Gdk.Key.h:
+				ScrollBy (-Hadjustment.StepIncrement, 0);
 				break;
 			case Gdk.Key.Right:
-				ScrollBy (step, 0);
+			case Gdk.Key.KP_Right:
+			case Gdk.Key.l:
+				ScrollBy (Hadjustment.StepIncrement, 0);
 				break;
 			case Gdk.Key.plus:
 			case Gdk.Key.KP_Add:
