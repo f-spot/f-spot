@@ -37,5 +37,10 @@ namespace GtkBeans {
 			if (error != IntPtr.Zero) throw new GLib.GException (error);
 			return ret;
 		}
+
+		public static bool ShowUri (Gdk.Screen screen, string uri)
+		{
+			return ShowUri (screen, uri, Gdk.EventHelper.GetTime (new Gdk.Event(IntPtr.Zero)));
+		}
 	}
 }
