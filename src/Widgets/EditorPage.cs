@@ -171,21 +171,14 @@ namespace FSpot.Widgets {
 		private bool SetupEditor (Editor editor) {
 			EditorState state = editor.CreateState ();
 
-			EditorSelection selection = new EditorSelection ();
+			Gdk.Rectangle selection = Gdk.Rectangle.Zero;;
 			PhotoImageView photo_view = MainWindow.Toplevel.PhotoView.View;
 
 			if (Page.InPhotoView && photo_view != null) {
-				if (photo_view.Selection != Gdk.Rectangle.Zero) {
-					selection.x = photo_view.Selection.X;
-					selection.y = photo_view.Selection.Y;
-					selection.width = photo_view.Selection.Width;
-					selection.height = photo_view.Selection.Height;
-					state.Selection = selection;
-				} else
-					state.Selection = null;
+				state.Selection = selection = photo_view.Selection;
 				state.PhotoImageView = photo_view;
 			} else {
-				state.Selection = null;
+				state.Selection = Gdk.Rectangle.Zero;
 				state.PhotoImageView = null;
 			}
 			if (Page.Sidebar.Selection == null)

@@ -172,10 +172,10 @@ namespace FSpot.Editors {
 		protected override Pixbuf Process (Pixbuf input, Cms.Profile input_profile) {
 			Pixbuf edited = new Pixbuf (input.Colorspace,
 						 input.HasAlpha, input.BitsPerSample,
-						 State.Selection.width, State.Selection.height);
+						 State.Selection.Width, State.Selection.Height);
 
-			input.CopyArea (State.Selection.x, State.Selection.y,
-					State.Selection.width, State.Selection.height, edited, 0, 0);
+			input.CopyArea (State.Selection.X, State.Selection.Y,
+					State.Selection.Width, State.Selection.Height, edited, 0, 0);
 			return edited;
 		}
 	}

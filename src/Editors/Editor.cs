@@ -30,15 +30,9 @@ namespace FSpot.Editors {
 		}
 	}
 
-	[Obsolete ("use a Gdk.Rectangle")]
-	public class EditorSelection {
-		public int x, y;
-		public int width, height;
-	}
-
 	public class EditorState {
 		// The area selected by the user.
-		public EditorSelection Selection;
+		public Rectangle Selection;
 
 		// The images selected by the user.
 		public IBrowsableItem [] Items;
