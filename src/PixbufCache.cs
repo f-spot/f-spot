@@ -36,7 +36,7 @@ namespace FSpot {
 			ThumbnailGenerator.Default.OnPixbufLoaded += HandleThumbnailLoaded;
 		}
 		
-		public void HandleThumbnailLoaded (PixbufLoader loader, Uri uri, int order, Gdk.Pixbuf result)
+		public void HandleThumbnailLoaded (ImageLoaderThread loader, Uri uri, int order, Gdk.Pixbuf result)
 		{
 			if (result != null)
 				Reload (uri);

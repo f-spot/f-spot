@@ -170,6 +170,7 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/GroupSelector.cs		\
 	$(srcdir)/Accelerometer.cs		\
 	$(srcdir)/Histogram.cs			\
+	$(srcdir)/ImageLoaderThread.cs		\
 	$(srcdir)/ImportBackend.cs		\
 	$(srcdir)/ImportCommand.cs		\
 	$(srcdir)/InfoOverlay.cs		\
@@ -213,7 +214,6 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/PhotoVersionCommands.cs	\
 	$(srcdir)/PhotoVersionMenu.cs		\
 	$(srcdir)/PhotoView.cs			\
-	$(srcdir)/PixbufLoader.cs		\
 	$(srcdir)/PixbufUtils.cs		\
 	$(srcdir)/PixbufCache.cs		\
 	$(srcdir)/PixelBuffer.cs		\

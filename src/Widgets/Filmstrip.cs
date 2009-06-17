@@ -486,7 +486,7 @@ namespace FSpot.Widgets
 			QueueDraw ();
 		}
 
-		void HandlePixbufLoaded (PixbufLoader pl, Uri uri, int order, Pixbuf p) {
+		void HandlePixbufLoaded (ImageLoaderThread pl, Uri uri, int order, Pixbuf p) {
 			if (!thumb_cache.Contains (uri)) {
 				return;
 			}

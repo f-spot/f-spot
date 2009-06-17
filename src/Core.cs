@@ -273,7 +273,7 @@ namespace FSpot {
 			if (toplevels.Count == 0) {
 				Banshee.Kernel.Scheduler.Dispose ();
 				Core.Database.Dispose ();
-				PixbufLoader.Cleanup ();
+				ImageLoaderThread.Cleanup ();
 				Gtk.Application.Quit ();
 				System.Environment.Exit (0);
 			}

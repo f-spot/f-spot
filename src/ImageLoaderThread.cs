@@ -1,5 +1,5 @@
 /*
- * PixbufLoader.cs
+ * ImageLoaderThread.cs
  *
  * Author(s):
  *	Ettore Perazzoli <ettore@perazzoli.org>
@@ -16,7 +16,7 @@ using System;
 
 using FSpot.Utils;
 
-public class PixbufLoader {
+public class ImageLoaderThread {
 
 	// Types.
 
@@ -79,10 +79,10 @@ public class PixbufLoader {
 
 	// Public API.
 
-	public delegate void PixbufLoadedHandler (PixbufLoader loader, Uri uri, int order, Pixbuf result);
+	public delegate void PixbufLoadedHandler (ImageLoaderThread loader, Uri uri, int order, Pixbuf result);
 	public event PixbufLoadedHandler OnPixbufLoaded;
 
-	public PixbufLoader ()
+	public ImageLoaderThread ()
 	{
 		queue = new ArrayList ();
 		requests_by_uri = new Dictionary<Uri, RequestItem> ();
