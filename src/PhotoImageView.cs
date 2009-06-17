@@ -68,7 +68,7 @@ namespace FSpot.Widgets {
 			return this.Pixbuf;
 		}
 
-		public void HandleOrientationChanged (object sender)
+		public void HandleOrientationChanged (object sender, EventArgs e)
 		{
 			Reload ();
 		}

@@ -7,12 +7,10 @@ using System.IO;
 
 namespace FSpot {
 
-	public delegate void OrientationChangedHandler (object sender);
-
 	public class Accelerometer {
 		public const string SYSFS_FILE = "/sys/devices/platform/hdaps/position";
 
-		public static event OrientationChangedHandler OrientationChanged;
+		public static event EventHandler OrientationChanged;
 
 		public enum Orient {
 			Normal,
@@ -73,8 +71,9 @@ namespace FSpot {
 			if (new_orient != current_orientation) {
 				current_orientation = new_orient;
 
-				if (OrientationChanged != null)
-					OrientationChanged (null);
+				EventHandler eh = OrientationChanged;
+				if (eh != null)
+					eh (null, EventArgs.Empty);
 
 				Console.WriteLine ("Laptop orientation changed...");
 			}
