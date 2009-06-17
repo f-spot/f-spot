@@ -14,6 +14,8 @@ using System.Runtime.InteropServices;
 using Gtk;
 using Gdk;
 
+using FSpot.Utils;
+
 namespace FSpot.Widgets
 {
 	public class ImageView : Container
@@ -52,6 +54,14 @@ namespace FSpot.Widgets
 				AdjustmentsChanged += ScrollToAdjustments;
 				QueueDraw ();
 			} 
+		}
+
+		PixbufOrientation pixbuf_orientation;
+		public PixbufOrientation PixbufOrientation {
+			get { return pixbuf_orientation; }
+			set {
+				Console.WriteLine ("pixbuf orientation changed");
+			}
 		}
 
 		CheckPattern check_pattern = CheckPattern.Dark;
