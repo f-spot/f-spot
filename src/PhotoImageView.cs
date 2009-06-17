@@ -1,3 +1,13 @@
+//
+// FSpot.Widgets.PhotoImageView.cs
+//
+// Author(s)
+//	Larry Ewing  <lewing@novell.com>
+//	Stephane Delcroix  <stephane@delcroix.org>
+//
+// This is free software. See COPYING for details.
+//
+
 using System;
 using FSpot.Editors;
 using FSpot.Utils;
