@@ -25,7 +25,7 @@ namespace FSpot.Xmp {
 		private TagStore tag_store;
 		private Stack<Tag> tags_created;
 
-		static private string LastImportIcon = "f-spot-imported-xmp-tags.png";
+		static private string LastImportIcon = "gtk-new";
 		static private string PlacesIcon = "emblem-places";
 
 	        const string UserComment = MetadataStore.ExifNS + "UserComment";

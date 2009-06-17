@@ -723,7 +723,7 @@ public class ImportCommand : GladeDialog
 				Category default_category = db.Tags.GetTagByName (Catalog.GetString ("Import Tags")) as Category;
 				if (default_category == null) {
 					default_category = db.Tags.CreateCategory (null, Catalog.GetString ("Import Tags"), false);
-					default_category.ThemeIconName = "f-spot-imported-xmp-tags.png"; 
+					default_category.ThemeIconName = "gtk-new"; 
 				}
 				t = db.Tags.CreateCategory (default_category, tagname, false) as Tag;
 				db.Tags.Commit (t);
