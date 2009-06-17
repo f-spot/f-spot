@@ -1,4 +1,4 @@
-# translation of gu.po to Gujarati
+# translation of f-spot.master.gu.po to Gujarati
 # Gujarati translation of f-spot.
 # Copyright (C) 2009 f-spot's COPYRIGHT HOLDER
 # This file is distributed under the same license as the f-spot package.
@@ -6,10 +6,10 @@
 # Sweta Kothari <swkothar@redhat.com>, 2009.
 msgid ""
 msgstr ""
-"Project-Id-Version: gu\n"
+"Project-Id-Version: f-spot.master.gu\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=f-spot&component=General\n"
-"POT-Creation-Date: 2009-06-01 09:52+0000\n"
-"PO-Revision-Date: 2009-06-09 14:54+0530\n"
+"POT-Creation-Date: 2009-06-15 12:52+0000\n"
+"PO-Revision-Date: 2009-06-17 10:55+0530\n"
 "Last-Translator: Sweta Kothari <swkothar@redhat.com>\n"
 "Language-Team: Gujarati\n"
 "MIME-Version: 1.0\n"
@@ -181,7 +181,7 @@ msgid "_Unselect All"
 msgstr "બધુ પસંદ ન કરો (_U)"
 
 #: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:259
-#: ../src/f-spot.glade.h:105
+#: ../src/f-spot.glade.h:106
 msgid "Select _All"
 msgstr "બધુ પસંદ કરો (_A)"
 
@@ -242,7 +242,7 @@ msgstr "નિષ્ક્રિય"
 #: ../extensions/Exporters/FacebookExport/FacebookExport.cs:543
 #: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:693
 #: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:596
-#: ../extensions/Exporters/TabbloExport/TabbloExport.cs:177
+#: ../extensions/Exporters/TabbloExport/TabbloExport.cs:319
 msgid "Error"
 msgstr "ભૂલ"
 
@@ -332,34 +332,6 @@ msgstr "ફોટો વ્યવસ્થાપક"
 msgid "Organize, enjoy, and share your photos"
 msgstr "તમારા ફોટોને સંચાલિત, આનંદ માણો, અને વહેંચો"
 
-#: ../libeog/image-view.c:2124
-msgid "interpolation type"
-msgstr "ઇન્ટરપોલેશન પ્રકાર"
-
-#: ../libeog/image-view.c:2125
-msgid "the type of interpolation to use"
-msgstr "વાપરવા માટે ઇન્ટરપોલેશન નો પ્રકાર"
-
-#: ../libeog/image-view.c:2131 ../libeog/image-view.c:2138
-msgid "check type"
-msgstr "પ્રકારને ચકાસો"
-
-#: ../libeog/image-view.c:2132
-msgid "the type of chequering to use"
-msgstr "વાપરવા માટે ચેકરીંગનો પ્રકાર"
-
-#: ../libeog/image-view.c:2139
-msgid "the size of chequers to use"
-msgstr "વાપરવા માટે ચેકરોનું માપ"
-
-#: ../libeog/image-view.c:2145
-msgid "dither"
-msgstr "ધ્રુજારી"
-
-#: ../libeog/image-view.c:2146
-msgid "dither type"
-msgstr "ધ્રુજારી પ્રકાર"
-
 #: ../libfspot/f-jpeg-utils.c:441 ../src/RotateCommand.cs:222
 msgid "File not found"
 msgstr "ફાઇલ શોધાઇ નથી"
@@ -381,7 +353,7 @@ msgstr "પૂર્વદર્શન"
 msgid "Path"
 msgstr "પાથ"
 
-#: ../src/CameraFileSelectionDialog.cs:80 ../src/f-spot.glade.h:73
+#: ../src/CameraFileSelectionDialog.cs:80 ../src/f-spot.glade.h:74
 msgid "File"
 msgstr "ફાઇલ"
 
@@ -440,12 +412,12 @@ msgstr "કેમેરા"
 msgid "Port"
 msgstr "પોર્ટ"
 
-#: ../src/Core.cs:203
+#: ../src/Core.cs:200
 #, csharp-format
 msgid "No photos matching {0} found"
 msgstr "ફોટો બંધબેસતા {0} શોધાયા નથી"
 
-#: ../src/Core.cs:204
+#: ../src/Core.cs:201
 #, csharp-format
 msgid ""
 "The tag \"{0}\" is not applied to any photos. Try adding\n"
@@ -456,11 +428,11 @@ msgstr ""
 "ટેગને ઉમેરવાનું પ્રયત્ન કરો અથવા F-Spot પસંદગી સંવાદમાં વિવિધ ટેગને પસંદ કરી\n"
 "કરી રહ્યા છે."
 
-#: ../src/Core.cs:208
+#: ../src/Core.cs:205
 msgid "Search returned no results"
 msgstr "શોધ પરિણામો પાછા મળ્યા નહિં"
 
-#: ../src/Core.cs:209
+#: ../src/Core.cs:206
 msgid ""
 "The tag F-Spot is looking for does not exist. Try\n"
 "selecting a different tag in the F-Spot preference\n"
@@ -498,7 +470,7 @@ msgstr "{1} ({0}) માં બદલાયેલ"
 
 #. Note that the original version is never stored in the photo_versions table in the
 #. database.
-#: ../src/Core/Photo.cs:671 ../src/f-spot.glade.h:91
+#: ../src/Core/Photo.cs:671 ../src/f-spot.glade.h:92
 msgid "Original"
 msgstr "મૂળભૂત"
 
@@ -594,17 +566,17 @@ msgstr "તેમાં નિકાસ કરો"
 msgid "Open _With"
 msgstr "ની સાથે ખોલો (_W)"
 
-#: ../src/FSpot.addin.xml.h:4 ../src/f-spot.glade.h:100
+#: ../src/FSpot.addin.xml.h:4 ../src/f-spot.glade.h:101
 msgid "Rem_ove Tag"
 msgstr "ટેગને દૂર કરો (_o)"
 
 #: ../src/FSpot.addin.xml.h:5 ../src/SingleView.cs:451
-#: ../src/f-spot.glade.h:102
+#: ../src/f-spot.glade.h:103
 msgid "Rotate _Left"
 msgstr "ડાબી તરફ ફેરવો (_L)"
 
 #: ../src/FSpot.addin.xml.h:6 ../src/SingleView.cs:452
-#: ../src/f-spot.glade.h:103
+#: ../src/f-spot.glade.h:104
 msgid "Rotate _Right"
 msgstr "જમણે ફેરવો (_R)"
 
@@ -612,15 +584,15 @@ msgstr "જમણે ફેરવો (_R)"
 msgid "Tools"
 msgstr "સાધનો"
 
-#: ../src/FSpot.addin.xml.h:8 ../src/f-spot.glade.h:137
+#: ../src/FSpot.addin.xml.h:8 ../src/f-spot.glade.h:138
 msgid "_Attach Tag"
 msgstr "ટેગને જોડો (_A)"
 
-#: ../src/FSpot.addin.xml.h:9 ../src/f-spot.glade.h:148
+#: ../src/FSpot.addin.xml.h:9 ../src/f-spot.glade.h:149
 msgid "_Delete From Drive"
 msgstr "ડ્રાઇવ માંથી કાઢી નાંખો (_D)"
 
-#: ../src/FSpot.addin.xml.h:10 ../src/f-spot.glade.h:180
+#: ../src/FSpot.addin.xml.h:10 ../src/f-spot.glade.h:181
 msgid "_Remove From Catalog"
 msgstr "કેટલોગ માંથી દૂર કરો (_R)"
 
@@ -728,11 +700,11 @@ msgstr "મહિના પ્રમાણે ગોઠવો (_M)"
 msgid "Arrange by _Folder"
 msgstr "ફોલ્ડર પ્રમાણે ગોઠવો (_F)"
 
-#: ../src/GroupSelector.cs:523 ../src/f-spot.glade.h:184
+#: ../src/GroupSelector.cs:523 ../src/f-spot.glade.h:185
 msgid "_Reverse Order"
 msgstr "વિપરીત ક્રમ (_R)"
 
-#: ../src/GroupSelector.cs:529 ../src/f-spot.glade.h:140
+#: ../src/GroupSelector.cs:529 ../src/f-spot.glade.h:141
 msgid "_Clear Date Range"
 msgstr "તારીખની સીમાને સાફ કરો (_C)"
 
@@ -894,37 +866,39 @@ msgstr "અજ્ઞાત IIM માહિતી સુયોજન"
 msgid "Select Folder"
 msgstr "ફોલ્ડરને પસંદ કરો"
 
-#: ../src/ImportCommand.cs:259
+#: ../src/ImportCommand.cs:258
 msgid "(No Cameras Detected)"
 msgstr "(કેમેરાઓ શોધાયેલ નથી)"
 
-#: ../src/ImportCommand.cs:404
+#: ../src/ImportCommand.cs:403
 #, csharp-format
 msgid "Loading {0} of {1}"
 msgstr "{1} નાં {0} ને લોડ કરી રહ્યા છે"
 
-#: ../src/ImportCommand.cs:470
+#: ../src/ImportCommand.cs:469
 msgid "Done Loading"
 msgstr "લોડ કરવાનું પૂરુ થયુ"
 
-#: ../src/ImportCommand.cs:540 ../src/MainWindow.cs:279
-#: ../src/f-spot.glade.h:78
+#: ../src/ImportCommand.cs:539 ../src/MainWindow.cs:279
+#: ../src/f-spot.glade.h:79
 msgid "Import"
 msgstr "આયાત કરો"
 
-#: ../src/ImportCommand.cs:670
+#: ../src/ImportCommand.cs:669
 msgid "Directory does not exist."
 msgstr "ડિરેક્ટરી અસ્તિત્વ ધરાવતી નથી."
 
-#: ../src/ImportCommand.cs:671
+#: ../src/ImportCommand.cs:670
 #, csharp-format
 msgid ""
 "The directory you selected \"{0}\" does not exist.  Please choose a "
 "different directory"
-msgstr "ડિરેક્ટરી જે તમે પસંદ કરેલ \"{0}\" છે તે અસ્તિત્વ ધરાવતી નથી.  મહેરબાની કરીને વિવિધ ડિરેક્ટરીને પસંદ કરો"
+msgstr ""
+"ડિરેક્ટરી જે તમે પસંદ કરેલ \"{0}\" છે તે અસ્તિત્વ ધરાવતી નથી.  મહેરબાની કરીને વિવિધ "
+"ડિરેક્ટરીને પસંદ કરો"
 
 #. Note for translators: 'Import Tags' is no command, it means 'Tags used in Import'
-#: ../src/ImportCommand.cs:724 ../src/ImportCommand.cs:726
+#: ../src/ImportCommand.cs:723 ../src/ImportCommand.cs:725
 #: ../src/XmpTagsImporter.cs:89
 msgid "Import Tags"
 msgstr "ટેગોને આયાત કરો"
@@ -945,7 +919,7 @@ msgstr "જમણે ફેરવો"
 msgid "Rotate picture right"
 msgstr "ચિત્રને જમણે ફેરવો"
 
-#: ../src/ItemAction.cs:102 ../src/f-spot.glade.h:86
+#: ../src/ItemAction.cs:102 ../src/f-spot.glade.h:87
 #: ../extensions/Exporters/FolderExport/FolderExport.cs:999
 msgid "Next"
 msgstr "પછીનું"
@@ -954,7 +928,7 @@ msgstr "પછીનું"
 msgid "Next picture"
 msgstr "પછીનું ચિત્ર"
 
-#: ../src/ItemAction.cs:123 ../src/f-spot.glade.h:98
+#: ../src/ItemAction.cs:123 ../src/f-spot.glade.h:99
 msgid "Previous"
 msgstr "પહેલાનું"
 
@@ -1056,8 +1030,8 @@ msgid ""
 "F-Spot was unable to find any cameras attached to this system.  Double check "
 "that the camera is connected and has power"
 msgstr ""
-"F-Spot એ આ સિસ્ટમમાં કોઇપણ કેમેરાને શોધવામાં અસમર્થ હતી.  બેવાર ચકાસો કે જે કેમેરા જોડાયેલ છે "
-"અને તેની પાસે પાવર છે"
+"F-Spot એ આ સિસ્ટમમાં કોઇપણ કેમેરાને શોધવામાં અસમર્થ હતી.  બેવાર ચકાસો કે જે કેમેરા "
+"જોડાયેલ છે અને તેની પાસે પાવર છે"
 
 #: ../src/MainWindow.cs:1713
 msgid "Error connecting to camera"
@@ -1157,8 +1131,8 @@ msgid ""
 "lost. The photos remain on your computer and can be imported into F-Spot "
 "again."
 msgstr ""
-"જો તમે F-Spot કેટલોગ માંથી ફોટાઓને દૂર કરો તો બધી ટેગ જાણકારી ગુમ થઇ જશે. ફોટાઓ તમારા કૉમ્પ્યુટર પર રહેલાં છે અને "
-"ફરીથી F-Spot માં આયાત કરી શકાય છે."
+"જો તમે F-Spot કેટલોગ માંથી ફોટાઓને દૂર કરો તો બધી ટેગ જાણકારી ગુમ થઇ જશે. ફોટાઓ "
+"તમારા કૉમ્પ્યુટર પર રહેલાં છે અને ફરીથી F-Spot માં આયાત કરી શકાય છે."
 
 #: ../src/MainWindow.cs:2464
 msgid "_Remove from Catalog"
@@ -1203,7 +1177,9 @@ msgstr "ટેગ એ ખાલી નથી"
 msgid ""
 "Can not delete tags that have tags within them.  Please delete tags under "
 "\"{0}\" first"
-msgstr "ટેગોને કાઢી શકાતુ નથી કે જે તેઓની અંદર ટેગો છે.  મહેરબાની કરીને પહેલાં \"{0}\" ની હેઠળ ટેગોને કાઢો"
+msgstr ""
+"ટેગોને કાઢી શકાતુ નથી કે જે તેઓની અંદર ટેગો છે.  મહેરબાની કરીને પહેલાં \"{0}\" ની હેઠળ "
+"ટેગોને કાઢો"
 
 #: ../src/MainWindow.cs:2994
 msgid "Rotate selected photo left"
@@ -1246,11 +1222,11 @@ msgid_plural ""
 "Before launching {1}, should F-Spot create new versions of the selected "
 "photos to preserve the originals?"
 msgstr[0] ""
-"{1} ને લોન્ચ કરતા પહેલા, શું મૂળભૂત ને સાચવવા માટે પસંદ થયેલ ફોટોની નવી આવૃત્તિ "
-"F-Spot એ બનાવવી જોઇએ?"
+"{1} ને લોન્ચ કરતા પહેલા, શું મૂળભૂત ને સાચવવા માટે પસંદ થયેલ ફોટોની નવી આવૃત્તિ F-Spot એ "
+"બનાવવી જોઇએ?"
 msgstr[1] ""
-"{1} ને લોન્ચ કરતા પહેલા, શું મૂળભૂત ને સાચવવા માટે પસંદ થયેલ ફોટાઓની નવી આવૃત્તિ "
-"F-Spot એ બનાવવી જોઇએ?"
+"{1} ને લોન્ચ કરતા પહેલા, શું મૂળભૂત ને સાચવવા માટે પસંદ થયેલ ફોટાઓની નવી આવૃત્તિ F-Spot એ "
+"બનાવવી જોઇએ?"
 
 #: ../src/MainWindow.cs:3081
 msgid "XCF version"
@@ -1438,7 +1414,7 @@ msgstr "ફોટોમાં ફેરફાર કરતી વખતે ભ�
 msgid "Comment:"
 msgstr "ટિપ્પણી:"
 
-#: ../src/Preferences.cs:148
+#: ../src/Preferences.cs:152
 msgid "Photos"
 msgstr "ફોટાઓ"
 
@@ -1520,11 +1496,11 @@ msgid_plural ""
 "{0} photos could not be rotated because they are on a read only file system "
 "or media such as a CDROM.  Please check the permissions and try again."
 msgstr[0] ""
-"ફોટોને ફેરવી શકાયુ નહિં કારણ કે તે ફક્ત વંચાય તેવી ફાઇલ સિસ્ટમ છે અથવા મીડિયા જેવા કે CDROM. "
-"  મહેરબાની કરીને પરવાનગીઓને ચકાસો અને ફરીથી પ્રયત્ન કરો."
+"ફોટોને ફેરવી શકાયુ નહિં કારણ કે તે ફક્ત વંચાય તેવી ફાઇલ સિસ્ટમ છે અથવા મીડિયા જેવા કે "
+"CDROM.   મહેરબાની કરીને પરવાનગીઓને ચકાસો અને ફરીથી પ્રયત્ન કરો."
 msgstr[1] ""
-"{0} ફોટાઓ ફેરવી શક્યા નહિં કારણ કે તે ફક્ત વંચાય તેવી ફાઇલ સિસ્ટમ છે અથવા મીડિયા જેવા કે CDROM. "
-"  મહેરબાની કરીને પરવાનગીઓને ચકાસો અને ફરીથી પ્રયત્ન કરો."
+"{0} ફોટાઓ ફેરવી શક્યા નહિં કારણ કે તે ફક્ત વંચાય તેવી ફાઇલ સિસ્ટમ છે અથવા મીડિયા જેવા કે "
+"CDROM.   મહેરબાની કરીને પરવાનગીઓને ચકાસો અને ફરીથી પ્રયત્ન કરો."
 
 #: ../src/RotateCommand.cs:269
 #, csharp-format
@@ -1568,7 +1544,7 @@ msgstr "ફોટોને જમણી તરફ ફેરવો"
 
 #. Obsolete, remove after db rev4
 #: ../src/SingleView.cs:128 ../src/UI.Dialog/ui/PreferenceDialog.glade.h:14
-#: ../src/Widgets/MetadataDisplay.cs:221 ../src/Widgets/MetadataDisplay.cs:223
+#: ../src/Widgets/MetadataDisplay.cs:223 ../src/Widgets/MetadataDisplay.cs:225
 msgid "Folder"
 msgstr "ફોલ્ડર"
 
@@ -1580,51 +1556,51 @@ msgstr "ખોલો"
 msgid "Set as Background"
 msgstr "પાશ્ર્વ ભાગ તરીકે સુયોજિત કરો"
 
-#: ../src/TagCommands.cs:91 ../src/TagCommands.cs:219
+#: ../src/TagCommands.cs:93 ../src/TagCommands.cs:225
 #: ../src/TagSelectionWidget.cs:506
 msgid "This name is already in use"
 msgstr "આ નામ પહેલેથી જ વપરાશમાં છે"
 
-#: ../src/TagCommands.cs:138
+#: ../src/TagCommands.cs:140
 msgid "Create New Tag"
 msgstr "નવા ટેગને બનાવો"
 
-#: ../src/TagCommands.cs:139
+#: ../src/TagCommands.cs:141
 msgid "Name of New Tag:"
 msgstr "નવા ટેગનું નામ:"
 
-#: ../src/TagCommands.cs:285
+#: ../src/TagCommands.cs:291
 msgid "Edit Tag"
 msgstr "ટેગમાં ફેરફાર કરો"
 
-#: ../src/TagCommands.cs:286
+#: ../src/TagCommands.cs:292
 msgid "Tag Name:"
 msgstr "ટેગ નામ:"
 
-#: ../src/TagCommands.cs:402
+#: ../src/TagCommands.cs:408
 msgid "Unable to load image"
 msgstr "ઇમેજને લોડ કરવામાં અસમર્થ"
 
-#: ../src/TagCommands.cs:403
+#: ../src/TagCommands.cs:409
 #, csharp-format
 msgid "Unable to load \"{0}\" as icon for the tag"
 msgstr "ટેગ માટે ચિહ્ન તરીકે \"{0}\" ને લોડ કરવામાં અસમર્થ"
 
-#: ../src/TagCommands.cs:447
+#: ../src/TagCommands.cs:452
 #, csharp-format
 msgid "Photo {0} of {1}"
 msgstr "{1} માંનો {0} ફોટો"
 
-#: ../src/TagCommands.cs:477
+#: ../src/TagCommands.cs:482
 #, csharp-format
 msgid "Edit Icon for Tag {0}"
 msgstr "ટેગ {0} માટે ચિહ્નમાં ફેરફાર કરો"
 
-#: ../src/TagCommands.cs:493
+#: ../src/TagCommands.cs:498
 msgid "Select Photo from file"
 msgstr "ફાઇલ માંથી ફોટાને પસંદ કરો"
 
-#: ../src/TagCommands.cs:516
+#: ../src/TagCommands.cs:521
 #, csharp-format
 msgid ""
 "\n"
@@ -1638,7 +1614,8 @@ msgstr ""
 "<b>ફોટો માંથી</b>\n"
 " તમે આ ટેગ માટે ચિહ્ન તરીકે તમારી લાઇબ્રેરીનાં એકને વાપરી શકો છો.\n"
 " છતાંપણ, પહેલા તમારી પાસે આ ટેગ સાથે સંકળાયેલ ઓછામાં ઓછો એક ફોટો હોવો જ\n"
-" હોવો જ જોઇએ. મહેરબાની કરીને '{0}' તરીકે ફોટોનો ટેગ કરો અને ચિહ્ન તરીકે તેને વાપરવા માટે\n"
+" હોવો જ જોઇએ. મહેરબાની કરીને '{0}' તરીકે ફોટોનો ટેગ કરો અને ચિહ્ન તરીકે તેને વાપરવા "
+"માટે\n"
 " અહિંયા પાછુ લાવો."
 
 #: ../src/TagPopup.cs:26
@@ -1716,28 +1693,28 @@ msgstr "તેઓનાં માટે શોધવા માટે અહિ�
 msgid "Error renaming tag"
 msgstr "ટેગનું નામ બદલતી વખતે ભૂલ"
 
-#: ../src/TagStore.cs:198
+#: ../src/TagStore.cs:203
 msgid "Favorites"
 msgstr "પસંદીદાઓ"
 
-#: ../src/TagStore.cs:203
+#: ../src/TagStore.cs:208
 msgid "Hidden"
 msgstr "છુપાયેલ"
 
-#: ../src/TagStore.cs:211
+#: ../src/TagStore.cs:216
 msgid "People"
 msgstr "લોકો"
 
-#: ../src/TagStore.cs:216
+#: ../src/TagStore.cs:221
 msgid "Places"
 msgstr "જગ્યાઓ"
 
-#: ../src/TagStore.cs:221
+#: ../src/TagStore.cs:226
 msgid "Events"
 msgstr "ઘટનાઓ"
 
 #. The label for the root category is used in new and edit tag dialogs
-#: ../src/TagStore.cs:234 ../src/Widgets/InfoBox.cs:400
+#: ../src/TagStore.cs:239 ../src/Widgets/InfoBox.cs:400
 msgid "(None)"
 msgstr "(કંઇ નહિં)"
 
@@ -1776,7 +1753,7 @@ msgstr "શ્ર્વેતા કોઠારી <swkothar@redhat.com>"
 msgid "F-Spot Website"
 msgstr "F-Spot વેબસાઇટ"
 
-#: ../src/UI.Dialog/AdjustTimeDialog.cs:118 ../src/f-spot.glade.h:114
+#: ../src/UI.Dialog/AdjustTimeDialog.cs:118 ../src/f-spot.glade.h:115
 #, csharp-format
 msgid "Shift all photos by {0}"
 msgstr "{0} દ્દારા બધા ફોટાઓને ખસેડો"
@@ -1844,8 +1821,8 @@ msgid ""
 "F-Spot encountered an error while loading the photo database. The old "
 "database has be moved to {0} and a new database has been created."
 msgstr ""
-"F-Spot એ ભૂલ શોધી જ્યારે ફોટો ડેટાબેઝને લોડ કરી રહ્યા હોય. જૂનું ડેટાબેઝને {0} માં ખસેડેલ છે અને "
-"નવા ડેટાબેઝને બનાવી દેવામાં આવ્યુ છે."
+"F-Spot એ ભૂલ શોધી જ્યારે ફોટો ડેટાબેઝને લોડ કરી રહ્યા હોય. જૂનું ડેટાબેઝને {0} માં ખસેડેલ છે "
+"અને નવા ડેટાબેઝને બનાવી દેવામાં આવ્યુ છે."
 
 #: ../src/UI.Dialog/SelectionRatioDialog.cs:60
 msgid "Label"
@@ -1891,15 +1868,17 @@ msgstr ""
 msgid ""
 "<small><i>Enable this option to store tags and descriptions inside \n"
 "supported image formats.</i></small>"
-msgstr "<small><i>આધારભૂત ઇમેજ બંધારણોની અંદર ટેગો અને વર્ણનોનો સંગ્રહ કરવા માટે આ વિકલ્પને સક્રિય કરો.</i></small>"
+msgstr ""
+"<small><i>આધારભૂત ઇમેજ બંધારણોની અંદર ટેગો અને વર્ણનોનો સંગ્રહ કરવા માટે આ વિકલ્પને "
+"સક્રિય કરો.</i></small>"
 
 #: ../src/UI.Dialog/ui/PreferenceDialog.glade.h:9
 msgid ""
 "<small><i>While acting as a screensaver, F-Spot can display all of your "
 "images, or a small subset based on tags.</i></small>"
 msgstr ""
-"<small><i>જ્યારે સ્ક્રીનસેવર તરીકે કાર્ય કરી રહ્યુ હોય ત્યારે, F-Spot એ બધી તમારી ઇમેજોને દર્શાવી શકે છે "
-", અથવા ટેગો પર આધારિત નાનો ઉપસેટ.</i></small>"
+"<small><i>જ્યારે સ્ક્રીનસેવર તરીકે કાર્ય કરી રહ્યુ હોય ત્યારે, F-Spot એ બધી તમારી ઇમેજોને "
+"દર્શાવી શકે છે , અથવા ટેગો પર આધારિત નાનો ઉપસેટ.</i></small>"
 
 #: ../src/UI.Dialog/ui/PreferenceDialog.glade.h:10
 msgid "<small><i>You'll have to restart F-Spot to load the new theme.</i></small>"
@@ -1925,7 +1904,7 @@ msgstr "ની સાથે ટેગ થયેલ ઇમેજો:"
 msgid "Make F-Spot your screensaver"
 msgstr "તમારા સ્ક્રીનસેવર માટે F-Spot ને બનાવો"
 
-#: ../src/UI.Dialog/ui/PreferenceDialog.glade.h:19 ../src/f-spot.glade.h:97
+#: ../src/UI.Dialog/ui/PreferenceDialog.glade.h:19 ../src/f-spot.glade.h:98
 msgid "Preferences"
 msgstr "પસંદગીઓ"
 
@@ -1965,7 +1944,9 @@ msgstr "F-Spot ડેટાબેઝને સુધારી રહ્યા �
 msgid ""
 "Please wait while your F-Spot gallery's database is updated. This may take "
 "some time."
-msgstr "મહેરબાની કરીને થોભો જ્યારે તમારો F-Spot ગેલરિનો ડેટાબેઝ સુધારેલ છે. આને અમુક સમય લાગી શકે છે."
+msgstr ""
+"મહેરબાની કરીને થોભો જ્યારે તમારો F-Spot ગેલરિનો ડેટાબેઝ સુધારેલ છે. આને અમુક સમય લાગી શકે "
+"છે."
 
 #. Mono.Unix.Error error = Mono.Unix.Stdlib.GetLastError ();
 #: ../src/Utils/Unix.cs:35
@@ -1977,8 +1958,8 @@ msgid ""
 "The \"F-Spot Manual\" could not be found.  Please verify that your "
 "installation has been completed successfully."
 msgstr ""
-"\"F-Spot પુસ્તિકા\" શોધી શકાયુ નહિં.  મહેરબાની કરીને ચકાસો કે જે તમારુ સ્થાપન સફળતાપૂર્વક સમાપ્ત "
-"કરી દેવામાં આવ્યુ છે."
+"\"F-Spot પુસ્તિકા\" શોધી શકાયુ નહિં.  મહેરબાની કરીને ચકાસો કે જે તમારુ સ્થાપન "
+"સફળતાપૂર્વક સમાપ્ત કરી દેવામાં આવ્યુ છે."
 
 #: ../src/Widgets/CustomPrintWidget.cs:98
 msgid "Page Setup"
@@ -2040,14 +2021,14 @@ msgstr "વૈવિધ્ય લખાણ: "
 msgid "Edit"
 msgstr "ફેરફાર કરો"
 
-#: ../src/Widgets/EditorPage.cs:201
+#: ../src/Widgets/EditorPage.cs:204
 #: ../extensions/Exporters/ZipExport/ZipExport.cs:46
 #: ../extensions/Tools/MetaPixel/MetaPixel.cs:45
 #: ../extensions/Tools/PictureTile/PictureTile.cs:51
 msgid "No selection available"
 msgstr "પસંદગી ઉપલ્બધ નથી"
 
-#: ../src/Widgets/EditorPage.cs:202
+#: ../src/Widgets/EditorPage.cs:205
 msgid ""
 "This tool requires an active selection. Please select a region of the photo "
 "and try the operation again"
@@ -2055,26 +2036,26 @@ msgstr ""
 "આ સાધનને સક્રિય પસંદગીની જરૂર છે. મહેરબાની કરીને ફોટોનાં વિસ્તારને પસંદ કરો અને ફરીથી "
 "ક્રિયાનો પ્રયત્ન કરો"
 
-#: ../src/Widgets/EditorPage.cs:220
+#: ../src/Widgets/EditorPage.cs:223
 msgid "Error saving adjusted photo"
 msgid_plural "Error saving adjusted photos"
 msgstr[0] "ગોઠવાયેલ ફોટોને સંગ્રહ કરતી વખતે ભૂલ"
 msgstr[1] "ગોઠવાયેલ ફોટાઓને સંગ્રહ કરતી વખતે ભૂલ"
 
-#: ../src/Widgets/EditorPage.cs:222
+#: ../src/Widgets/EditorPage.cs:225
 #, csharp-format
 msgid ""
 "Received exception \"{0}\". Note that you have to develop RAW files into "
 "JPEG before you can edit them."
 msgstr ""
-"અપવાદ \"{0}\" મળેલ છે. નોંધો કે તમે તેઓમાં ફેરફાર કરી શકો તે પહેલા JPEG માં RAW "
-"ફાઇલોને વિકસાવવુ જ પડશે."
+"અપવાદ \"{0}\" મળેલ છે. નોંધો કે તમે તેઓમાં ફેરફાર કરી શકો તે પહેલા JPEG માં RAW ફાઇલોને "
+"વિકસાવવુ જ પડશે."
 
 #: ../src/Widgets/FindBar.cs:58
 msgid "Find:"
 msgstr "શોધો:"
 
-#: ../src/Widgets/FindBar.cs:177 ../src/f-spot.glade.h:206
+#: ../src/Widgets/FindBar.cs:177 ../src/f-spot.glade.h:207
 msgid "and"
 msgstr "અને"
 
@@ -2184,33 +2165,33 @@ msgstr "મેટાડેટા"
 msgid "Extended Metadata"
 msgstr "વિસ્તરેલ મેટાડેટા"
 
-#: ../src/Widgets/MetadataDisplay.cs:225
+#: ../src/Widgets/MetadataDisplay.cs:227
 msgid "Picasaweb"
 msgstr "પિકાસાવેબ"
 
-#: ../src/Widgets/MetadataDisplay.cs:227
+#: ../src/Widgets/MetadataDisplay.cs:229
 msgid "SmugMug"
 msgstr "SmugMug"
 
-#: ../src/Widgets/MetadataDisplay.cs:229
+#: ../src/Widgets/MetadataDisplay.cs:231
 msgid "Gallery2"
 msgstr "ગેલરિ 2"
 
 #. clear Extended Metadata
-#: ../src/Widgets/MetadataDisplay.cs:389
+#: ../src/Widgets/MetadataDisplay.cs:391
 msgid "No Extended Metadata Available"
 msgstr "વિસ્તરેલ મેટાડેટા ઉપલ્બધ નથી"
 
-#: ../src/Widgets/MetadataDisplay.cs:407
+#: ../src/Widgets/MetadataDisplay.cs:409
 msgid "No active photo"
 msgstr "સક્રિય ફોટો નથી"
 
-#: ../src/Widgets/MetadataDisplay.cs:409
+#: ../src/Widgets/MetadataDisplay.cs:411
 #, csharp-format
 msgid "The photo \"{0}\" does not exist"
 msgstr "ફોટો \"{0}\" અસ્તિત્વ ધરાવતુ નથી"
 
-#: ../src/Widgets/MetadataDisplay.cs:412
+#: ../src/Widgets/MetadataDisplay.cs:414
 msgid "No metadata available"
 msgstr "મેટાડેટા ઉપલ્બધ નથી"
 
@@ -2340,7 +2321,7 @@ msgstr "<b>ન્યૂનત્તમ રેટિંગ</b>"
 #: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:3
 #: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:2
 #: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:2
-#: ../extensions/Exporters/TabbloExport/TabbloExport.glade.h:1
+#: ../extensions/Exporters/TabbloExport/TabbloExport.glade.h:2
 msgid "<b>Photos</b>"
 msgstr "<b>ફોટાઓ</b>"
 
@@ -2396,8 +2377,8 @@ msgid ""
 "usefull in icon design.</i></small>"
 msgstr ""
 "<small><i>નાનુ મોટુ થાય તેવી ઇમેજો પર ઇન્ટરપોલેશનને પરવાનગી આપવા માટે આને સક્રિય કરો. "
-"તમે ફોટાઓને દર્શાવવા માટે આને નિષ્ક્રિય કરવુ જોઇએ નહિં, પરંતુ ઇન્ટરપોલેશનને નિષ્ક્રિય કરવાનું એ ચિહ્ન રચનામાં ઉપયોગી "
-"થઇ શકે છે.</i></small>"
+"તમે ફોટાઓને દર્શાવવા માટે આને નિષ્ક્રિય કરવુ જોઇએ નહિં, પરંતુ ઇન્ટરપોલેશનને નિષ્ક્રિય કરવાનું "
+"એ ચિહ્ન રચનામાં ઉપયોગી થઇ શકે છે.</i></small>"
 
 #: ../src/f-spot.glade.h:35
 msgid ""
@@ -2406,10 +2387,10 @@ msgid ""
 "color could be usefull when viewing icons or other artworks with transparent "
 "parts.</i></small>"
 msgstr ""
-"<small><i>ઇમેજોમાં પારદર્શક ભાગોને કેવી રીતે દર્શાવાય તે તમે પસંદ કરી શકો છો. આ "
-"વિકલ્પ એ ફોટાઓ પર અસર કરતુ નથી, પરંતુ ભાતને ચકાસો તે પ્રમાણે આને સુયોજિત કરી રહ્યા છે અથવા વૈવિધ્ય "
-"રંગ ઉપયોગી થઇ શકે છે જ્યારે ચિહ્નોને અથવા પારદર્શક ભાગો સાથે બીજા કલાકામોને દેખાડી રહ્યા છે "
-".</i></small>"
+"<small><i>ઇમેજોમાં પારદર્શક ભાગોને કેવી રીતે દર્શાવાય તે તમે પસંદ કરી શકો છો. આ વિકલ્પ "
+"એ ફોટાઓ પર અસર કરતુ નથી, પરંતુ ભાતને ચકાસો તે પ્રમાણે આને સુયોજિત કરી રહ્યા છે અથવા "
+"વૈવિધ્ય રંગ ઉપયોગી થઇ શકે છે જ્યારે ચિહ્નોને અથવા પારદર્શક ભાગો સાથે બીજા કલાકામોને "
+"દેખાડી રહ્યા છે .</i></small>"
 
 #: ../src/f-spot.glade.h:36
 msgid "Adjust Time"
@@ -2500,457 +2481,463 @@ msgid "Create _New Version..."
 msgstr "નવી આવૃત્તિને બનાવો (_N)..."
 
 #: ../src/f-spot.glade.h:58
+msgid "Create _icon for this tag when first used"
+msgstr "જ્યારે પહેલા વાપરેલ હોય ત્યારે આ ટેગ માટે ચિહ્નને બનાવો (_i)"
+
+#: ../src/f-spot.glade.h:59
 msgid "Create a mail with the selected photos (possibly resized) attached"
 msgstr "જોડાયેલ પસંદ થયેલ ફોટાઓ (કદાચ પુન:માપ થયેલ છે) સાથે મેઇલને બનાવો"
 
-#: ../src/f-spot.glade.h:59
+#: ../src/f-spot.glade.h:60
 msgid "Current date:"
 msgstr "હાલની તારીખ:"
 
-#: ../src/f-spot.glade.h:60
+#: ../src/f-spot.glade.h:61
 msgid "Detect duplicates"
 msgstr "નકલોને શોધો"
 
-#: ../src/f-spot.glade.h:61
+#: ../src/f-spot.glade.h:62
 msgid "Display File _Names"
 msgstr "ફાઇલ નામોને દર્શાવો (_N)"
 
-#: ../src/f-spot.glade.h:62
+#: ../src/f-spot.glade.h:63
 msgid "Display only those photos that were imported in specified Rolls."
 msgstr "ફક્ત પેલા ફોટોઓને દર્શાવો કે જે સ્પષ્ટ થયેલ રોલોમાં આયાત થયેલ હતા."
 
-#: ../src/f-spot.glade.h:63
+#: ../src/f-spot.glade.h:64
 msgid "Do not send a mail"
 msgstr "મેઇલ મોકલો નહિં"
 
-#: ../src/f-spot.glade.h:64
+#: ../src/f-spot.glade.h:65
 msgid "E-_Mail:"
 msgstr "ઇ-મેઇલ (_M):"
 
-#: ../src/f-spot.glade.h:65
+#: ../src/f-spot.glade.h:66
 msgid "E_xport titles and comments"
 msgstr "શીર્ષકો અને ટિપ્પણીઓની નિકાસ કરો (_x)"
 
-#: ../src/f-spot.glade.h:66
+#: ../src/f-spot.glade.h:67
 msgid "Edit Tag Icon"
 msgstr "ટેગ ચિહ્નમાં ફેરફાર કરો"
 
-#: ../src/f-spot.glade.h:67
+#: ../src/f-spot.glade.h:68
 msgid "Edit icon"
 msgstr "ચિહ્નમાં ફેરફાર કરો"
 
-#: ../src/f-spot.glade.h:68
+#: ../src/f-spot.glade.h:69
 msgid "Estimated new size"
 msgstr "અંદાજિત નવુ માપ"
 
-#: ../src/f-spot.glade.h:69
+#: ../src/f-spot.glade.h:70
 #: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:6
 #: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:8
 #: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:9
 #: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:6
-#: ../extensions/Exporters/TabbloExport/TabbloExport.glade.h:3
+#: ../extensions/Exporters/TabbloExport/TabbloExport.glade.h:5
 msgid "Export"
 msgstr "નિકાસ કરો"
 
-#: ../src/f-spot.glade.h:70
+#: ../src/f-spot.glade.h:71
 msgid "Extra large"
 msgstr "વધારે મોટુ"
 
-#: ../src/f-spot.glade.h:71
+#: ../src/f-spot.glade.h:72
 msgid "F-Spot"
 msgstr "F-Spot"
 
-#: ../src/f-spot.glade.h:72
+#: ../src/f-spot.glade.h:73
 msgid "F-Spot View"
 msgstr "F-Spot દ્રશ્ય"
 
-#: ../src/f-spot.glade.h:74
+#: ../src/f-spot.glade.h:75
 msgid "Filter on selected rolls"
 msgstr "પસંદ થયેલ રોલો પર ફિલ્ટર"
 
-#: ../src/f-spot.glade.h:75
+#: ../src/f-spot.glade.h:76
 msgid "Fin_d"
 msgstr "શોધો (_d)"
 
-#: ../src/f-spot.glade.h:76
+#: ../src/f-spot.glade.h:77
 msgid "G_allery:"
 msgstr "ગેલરિ (_a):"
 
-#: ../src/f-spot.glade.h:77
+#: ../src/f-spot.glade.h:78
 msgid "Gallery"
 msgstr "ગેલરિ"
 
 #. Translators: this string means 'source of import'
-#: ../src/f-spot.glade.h:80
+#: ../src/f-spot.glade.h:81
 msgid "Import Source:"
 msgstr "સ્ત્રોતની નિકાસ કરો:"
 
-#: ../src/f-spot.glade.h:81
+#: ../src/f-spot.glade.h:82
 msgid "Include subfolders"
 msgstr "ઉપફોલ્ડરોને સમાવો"
 
-#: ../src/f-spot.glade.h:82
+#: ../src/f-spot.glade.h:83
 msgid "Large"
 msgstr "વિશાળ"
 
-#: ../src/f-spot.glade.h:83
+#: ../src/f-spot.glade.h:84
 msgid "Manage _Extensions"
 msgstr "એક્સટેન્શનોને સંચાલિત કરો (_E)"
 
-#: ../src/f-spot.glade.h:84
+#: ../src/f-spot.glade.h:85
 msgid "Manage your custom selection ratios"
 msgstr "તમારા વૈવિધ્ય પસંદગી દરોને સંચાલિત કરો"
 
-#: ../src/f-spot.glade.h:85
+#: ../src/f-spot.glade.h:86
 msgid "Medium"
 msgstr "માધ્યમ"
 
-#: ../src/f-spot.glade.h:87
+#: ../src/f-spot.glade.h:88
 msgid "No _image"
 msgstr "ઇમેજ નથી (_i)"
 
-#: ../src/f-spot.glade.h:88
+#: ../src/f-spot.glade.h:89
 msgid "Number of photos in selected rolls:"
 msgstr "પસંદ થયેલ રોલોમાં ફોટાઓની સંખ્યા:"
 
-#: ../src/f-spot.glade.h:89
+#: ../src/f-spot.glade.h:90
 msgid "Number of pictures"
 msgstr "ચિત્રોની સંખ્યા"
 
-#: ../src/f-spot.glade.h:90
+#: ../src/f-spot.glade.h:91
 msgid "Open _Folder..."
 msgstr "ફોલ્ડરને ખોલો (_F)..."
 
-#: ../src/f-spot.glade.h:92
+#: ../src/f-spot.glade.h:93
 msgid "Original size (possible very large file size)"
 msgstr "મૂળભૂત માપ (કદાચ ઘણુ લાંબુ ફાઇલ માપ)"
 
-#: ../src/f-spot.glade.h:93
+#: ../src/f-spot.glade.h:94
 msgid "P_arent Tag:"
 msgstr "પિતૃ ટેગ (_a):"
 
-#: ../src/f-spot.glade.h:94
+#: ../src/f-spot.glade.h:95
 msgid "Page Set_up..."
 msgstr "પાનાનું સુયોજન (_u)..."
 
-#: ../src/f-spot.glade.h:95
+#: ../src/f-spot.glade.h:96
 msgid "Pause"
 msgstr "અટકાવો"
 
-#: ../src/f-spot.glade.h:96
+#: ../src/f-spot.glade.h:97
 msgid "Photo 0 of 0"
 msgstr "0 માંનો 0 ફોટો"
 
-#: ../src/f-spot.glade.h:99
+#: ../src/f-spot.glade.h:100
 msgid "Re_fresh Thumbnail"
 msgstr "થમ્ભનેઇલને તાજુ કરો (_f)"
 
-#: ../src/f-spot.glade.h:101
+#: ../src/f-spot.glade.h:102
 msgid "Repair"
 msgstr "સુધારો"
 
-#: ../src/f-spot.glade.h:104
+#: ../src/f-spot.glade.h:105
 msgid "Select Photos to Copy From Camera..."
 msgstr "કેમેરા માંથી નકલ કરવા માટે ફોટાઓને પસંદ કરો..."
 
-#: ../src/f-spot.glade.h:106
+#: ../src/f-spot.glade.h:107
 msgid "Select _None"
 msgstr "કંઇ નહિં પસંદ કરો (_N)"
 
-#: ../src/f-spot.glade.h:107
+#: ../src/f-spot.glade.h:108
 msgid "Select a Tag..."
 msgstr "ટેગને પસંદ કરો..."
 
-#: ../src/f-spot.glade.h:108
+#: ../src/f-spot.glade.h:109
 msgid "Select the camera from which you want to transfer files"
 msgstr "તમે કઇ ફાઇલોનું પરિવહન કરવા માંગો છો તેમાંથી કેમેરા ને પસંદ કરો"
 
-#: ../src/f-spot.glade.h:109
+#: ../src/f-spot.glade.h:110
 msgid "Selected Camera: "
 msgstr "પસંદ થયેલ કેમેરા: "
 
-#: ../src/f-spot.glade.h:110
+#: ../src/f-spot.glade.h:111
 msgid "Selection Constraints"
 msgstr "મૂંઝવણોને પસંદ કરો"
 
-#: ../src/f-spot.glade.h:111
+#: ../src/f-spot.glade.h:112
 msgid "Send by _Mail..."
 msgstr "મેઇલ દ્દારા મોકલો (_M)..."
 
-#: ../src/f-spot.glade.h:112
+#: ../src/f-spot.glade.h:113
 msgid "Set Rating Filter"
 msgstr "રેટિંગ ફિલ્ટરને સુયોજિત કરો"
 
-#: ../src/f-spot.glade.h:113
+#: ../src/f-spot.glade.h:114
 msgid "Set as _Background"
 msgstr "પાશ્ર્વ ભાગ તરીકે સુયોજિત કરો (_B)"
 
-#: ../src/f-spot.glade.h:115
+#: ../src/f-spot.glade.h:116
 msgid "Show all photos."
 msgstr "બધા ફોટાઓને બતાવો."
 
-#: ../src/f-spot.glade.h:116
+#: ../src/f-spot.glade.h:117
 msgid "Show or hide the side pane"
 msgstr "બાજુ પેનલને બતાવો અથવા છુપાડો"
 
-#: ../src/f-spot.glade.h:117
+#: ../src/f-spot.glade.h:118
 msgid "Show or hide the toolbar"
 msgstr "સાધનપટ્ટીને બતાવો અથવા છુપાડો"
 
-#: ../src/f-spot.glade.h:118
+#: ../src/f-spot.glade.h:119
 msgid "Side _pane"
 msgstr "બાજુ પેનલ (_p)"
 
-#: ../src/f-spot.glade.h:119
+#: ../src/f-spot.glade.h:120
 msgid "Side_bar"
 msgstr "બાજુપટ્ટી (_b)"
 
-#: ../src/f-spot.glade.h:120
+#: ../src/f-spot.glade.h:121
 msgid "Small"
 msgstr "નાનું"
 
-#: ../src/f-spot.glade.h:121
+#: ../src/f-spot.glade.h:122
 msgid "Space all photos by"
 msgstr "ને દ્દારા બધા ફોટાઓમાં જગ્યા રાખો"
 
-#: ../src/f-spot.glade.h:122
+#: ../src/f-spot.glade.h:123
 msgid ""
 "Specify if an original size picture should be rotated or not. Smaller sizes "
 "are automatically rotated."
-msgstr "સ્પષ્ટ કરો જો મૂળભૂત ચિત્ર માપ એ ફેરવાવુ જોઇએ કે નહિં. નાનામાં નાના માપો એ આપમેળે ફેરવાય છે."
+msgstr ""
+"સ્પષ્ટ કરો જો મૂળભૂત ચિત્ર માપ એ ફેરવાવુ જોઇએ કે નહિં. નાનામાં નાના માપો એ આપમેળે ફેરવાય "
+"છે."
 
-#: ../src/f-spot.glade.h:123
+#: ../src/f-spot.glade.h:124
 msgid "Strip image _metadata"
 msgstr "ઇમેજ મેટાડેટા કાઢી લેવુ (_m)"
 
-#: ../src/f-spot.glade.h:124
+#: ../src/f-spot.glade.h:125
 msgid "T_ags"
 msgstr "ટેગો (_a)"
 
-#: ../src/f-spot.glade.h:125
+#: ../src/f-spot.glade.h:126
 #: ../extensions/Exporters/FolderExport/FolderExport.cs:1179
 #: ../extensions/Exporters/FolderExport/FolderExport.cs:1180
 msgid "Tags: "
 msgstr "ટેગો: "
 
 #. Note for translators: meant as Temperature
-#: ../src/f-spot.glade.h:127
+#: ../src/f-spot.glade.h:128
 msgid "Te_mp:"
 msgstr "ટેમ્પ (_m):"
 
-#: ../src/f-spot.glade.h:128
+#: ../src/f-spot.glade.h:129
 msgid "Thumbnail _elements"
 msgstr "થમ્ભનેઇલ ઘટકો (_e)"
 
-#: ../src/f-spot.glade.h:129
+#: ../src/f-spot.glade.h:130
 msgid "Tiny"
 msgstr "બહુ નાનું"
 
-#: ../src/f-spot.glade.h:130
+#: ../src/f-spot.glade.h:131
 msgid "Too_lbar"
 msgstr "સાધનપટ્ટી (_l)"
 
-#: ../src/f-spot.glade.h:131
+#: ../src/f-spot.glade.h:132
 msgid "Total original size"
 msgstr "કુલ મૂળભૂત માપ"
 
-#: ../src/f-spot.glade.h:132
+#: ../src/f-spot.glade.h:133
 msgid "View"
 msgstr "દ્રશ્ય"
 
-#: ../src/f-spot.glade.h:133
+#: ../src/f-spot.glade.h:134
 msgid "Zoom _in"
 msgstr "નાનું કરો (_i)"
 
-#: ../src/f-spot.glade.h:134
+#: ../src/f-spot.glade.h:135
 msgid "Zoom _out"
 msgstr "મોટુ કરો (_o)"
 
-#: ../src/f-spot.glade.h:135
+#: ../src/f-spot.glade.h:136
 msgid "Zoom in"
 msgstr "નાનું કરો"
 
-#: ../src/f-spot.glade.h:136
+#: ../src/f-spot.glade.h:137
 msgid "Zoom out"
 msgstr "મોટુ કરો"
 
-#: ../src/f-spot.glade.h:138
+#: ../src/f-spot.glade.h:139
 msgid "_Attach Tag to Selection"
 msgstr "પસંદગીનાં ટેગને જોડો (_A)"
 
-#: ../src/f-spot.glade.h:139
+#: ../src/f-spot.glade.h:140
 msgid "_Brightness:"
 msgstr "તેજસ્વિતા (_B):"
 
-#: ../src/f-spot.glade.h:141
+#: ../src/f-spot.glade.h:142
 msgid "_Clear Rating Filter"
 msgstr "રેટિંગ ફિલ્ટરને સાફ કરો (_C)"
 
-#: ../src/f-spot.glade.h:142
+#: ../src/f-spot.glade.h:143
 msgid "_Clear Roll Filter"
 msgstr "રોલ ફિલ્ટરને સાફ કરો (_C)"
 
-#: ../src/f-spot.glade.h:143
+#: ../src/f-spot.glade.h:144
 msgid "_Components"
 msgstr "ઘટકો (_C)"
 
-#: ../src/f-spot.glade.h:144
+#: ../src/f-spot.glade.h:145
 msgid "_Contents"
 msgstr "સમાવિષ્ટો (_C)"
 
-#: ../src/f-spot.glade.h:145
+#: ../src/f-spot.glade.h:146
 #: ../extensions/Exporters/ZipExport/ZipExport.glade.h:1
 msgid "_Create"
 msgstr "બનાવો (_C)"
 
-#: ../src/f-spot.glade.h:146
+#: ../src/f-spot.glade.h:147
 msgid "_Create Mail"
 msgstr "મેઇલને બનાવો (_C)"
 
-#: ../src/f-spot.glade.h:147
+#: ../src/f-spot.glade.h:148
 msgid "_Dates"
 msgstr "તારીખો (_D)"
 
-#: ../src/f-spot.glade.h:149
+#: ../src/f-spot.glade.h:150
 msgid "_Delete Selected Tag"
 msgstr "પસંદ થયેલ ટેગને કાઢી નાંખો (_D)"
 
-#: ../src/f-spot.glade.h:150
+#: ../src/f-spot.glade.h:151
 msgid "_Delete Version"
 msgstr "આવૃત્તિને કાઢી નાંખો (_D)"
 
-#: ../src/f-spot.glade.h:151
+#: ../src/f-spot.glade.h:152
 msgid "_Edit"
 msgstr "ફેરફાર કરો (_E)"
 
-#: ../src/f-spot.glade.h:152
+#: ../src/f-spot.glade.h:153
 msgid "_Edit Selected Tag..."
 msgstr "પસંદ થયેલ ટેગમાં ફેરફાર કરો (_E)..."
 
-#: ../src/f-spot.glade.h:153
+#: ../src/f-spot.glade.h:154
 #: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:15
 #: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:12
 msgid "_Export"
 msgstr "નિકાસ કરો (_E)"
 
-#: ../src/f-spot.glade.h:154
+#: ../src/f-spot.glade.h:155
 #: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:16
 #: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:20
 msgid "_Export tags"
 msgstr "ટેગોની નિકાસ કરો (_E)"
 
-#: ../src/f-spot.glade.h:155
+#: ../src/f-spot.glade.h:156
 msgid "_Export to"
 msgstr "માં નિકાસ કરો (_E)"
 
-#: ../src/f-spot.glade.h:156
+#: ../src/f-spot.glade.h:157
 #: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:15
 #: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:21
 #: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:13
 msgid "_Export to Album:"
 msgstr "આલ્બમમાં નિકાસ કરો (_E):"
 
-#: ../src/f-spot.glade.h:157
+#: ../src/f-spot.glade.h:158
 msgid "_Exposure:"
 msgstr "ખુલ્લું પાડો (_E):"
 
-#: ../src/f-spot.glade.h:158
+#: ../src/f-spot.glade.h:159
 msgid "_Filmstrip"
 msgstr "ફિલ્મસ્ટ્રીપ (_F)"
 
-#: ../src/f-spot.glade.h:159
+#: ../src/f-spot.glade.h:160
 msgid "_Flickr"
 msgstr "Flickr (_F)"
 
-#: ../src/f-spot.glade.h:160
+#: ../src/f-spot.glade.h:161
 msgid "_Folder"
 msgstr "ફોલ્ડર (_F)"
 
-#: ../src/f-spot.glade.h:161
+#: ../src/f-spot.glade.h:162
 msgid "_Fullscreen"
 msgstr "સંપૂર્ણસ્ક્રીન (_F)"
 
-#: ../src/f-spot.glade.h:162
+#: ../src/f-spot.glade.h:163
 msgid "_Gallery"
 msgstr "ગેલરિ (_G)"
 
-#: ../src/f-spot.glade.h:163
+#: ../src/f-spot.glade.h:164
 msgid "_Help"
 msgstr "મદદ (_H)"
 
-#: ../src/f-spot.glade.h:164
+#: ../src/f-spot.glade.h:165
 msgid "_Hidden"
 msgstr "છુપાયેલ (_H)"
 
-#: ../src/f-spot.glade.h:165
+#: ../src/f-spot.glade.h:166
 msgid "_Hue:"
 msgstr "હ્યુ (_H):"
 
-#: ../src/f-spot.glade.h:166
+#: ../src/f-spot.glade.h:167
 msgid "_Icon:"
 msgstr "ચિહ્ન (_I):"
 
-#: ../src/f-spot.glade.h:167
+#: ../src/f-spot.glade.h:168
 msgid "_Import..."
 msgstr "આયાત કરો (_I)..."
 
-#: ../src/f-spot.glade.h:168
+#: ../src/f-spot.glade.h:169
 msgid "_Interpolate image on zoom"
 msgstr "નાનુ મોટુ કરવાનુ પર ઇમેજને ઇન્ટરપોલેટ કરો (_I)"
 
-#: ../src/f-spot.glade.h:169
+#: ../src/f-spot.glade.h:170
 msgid "_Large"
 msgstr "વિશાળ (_L)"
 
-#: ../src/f-spot.glade.h:170
+#: ../src/f-spot.glade.h:171
 msgid "_Last Import Roll"
 msgstr "છેલ્લો આયાત રોલ (_L)"
 
-#: ../src/f-spot.glade.h:171
+#: ../src/f-spot.glade.h:172
 msgid "_Loupe"
 msgstr "Loupe (_L)"
 
-#: ../src/f-spot.glade.h:172
+#: ../src/f-spot.glade.h:173
 msgid "_Medium"
 msgstr "માધ્યમ (_M)"
 
-#: ../src/f-spot.glade.h:173
+#: ../src/f-spot.glade.h:174
 msgid "_Month"
 msgstr "મહિનો (_M)"
 
-#: ../src/f-spot.glade.h:174
+#: ../src/f-spot.glade.h:175
 msgid "_New Window"
 msgstr "નવી વિન્ડો (_N)"
 
-#: ../src/f-spot.glade.h:175
+#: ../src/f-spot.glade.h:176
 msgid "_Open album in browser when done uploading"
 msgstr "જ્યારે અપલોડ કરવાનું પૂરુ થયુ હોય ત્યારે બ્રાઉઝરમાં આલ્બમને ખોલો (_O)"
 
-#: ../src/f-spot.glade.h:176
+#: ../src/f-spot.glade.h:177
 msgid "_Open destination when done exporting"
 msgstr "જ્યારે નિકાસ કરવાનું પૂરુ થાય ત્યારે લક્ષ્યને ખોલો (_O)"
 
-#: ../src/f-spot.glade.h:177
+#: ../src/f-spot.glade.h:178
 msgid "_Photo"
 msgstr "ફોટો (_P)"
 
-#: ../src/f-spot.glade.h:178
+#: ../src/f-spot.glade.h:179
 msgid "_Quit"
 msgstr "બહાર નીકળો (_Q)"
 
-#: ../src/f-spot.glade.h:179
+#: ../src/f-spot.glade.h:180
 msgid "_Ratings"
 msgstr "રેટિંગો (_R)"
 
-#: ../src/f-spot.glade.h:181
+#: ../src/f-spot.glade.h:182
 msgid "_Remove Tag From Selection"
 msgstr "પસંદગીમાંથી ટેગને દૂર કરો (_R)"
 
-#: ../src/f-spot.glade.h:182
+#: ../src/f-spot.glade.h:183
 msgid "_Rename Version"
 msgstr "આવૃત્તિનું નામ બદલો (_R)"
 
-#: ../src/f-spot.glade.h:183
+#: ../src/f-spot.glade.h:184
 #: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:17
 #: ../extensions/Exporters/FolderExport/FolderExport.glade.h:17
 #: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:20
@@ -2959,92 +2946,92 @@ msgstr "આવૃત્તિનું નામ બદલો (_R)"
 msgid "_Resize to: "
 msgstr "માં માપને બદલો (_R): "
 
-#: ../src/f-spot.glade.h:185
+#: ../src/f-spot.glade.h:186
 msgid "_Saturation:"
 msgstr "સંતૃપ્તિ (_S):"
 
-#: ../src/f-spot.glade.h:186
+#: ../src/f-spot.glade.h:187
 msgid "_Scale photos to no larger than: "
 msgstr "કરતા મોટો નથી તે ફોટાઓને પ્રમાણિત કરો: "
 
-#: ../src/f-spot.glade.h:187
+#: ../src/f-spot.glade.h:188
 msgid "_Select Import Rolls..."
 msgstr "આયાત રોલોને પસંદ કરો (_S)..."
 
-#: ../src/f-spot.glade.h:188
+#: ../src/f-spot.glade.h:189
 msgid "_Set Date Range..."
 msgstr "તારીખ સીમાને સુયોજિત કરો (_S)..."
 
-#: ../src/f-spot.glade.h:189
+#: ../src/f-spot.glade.h:190
 msgid "_Set Rating filter..."
 msgstr "રેટિંગ ફિલ્ટરને સુયોજિત કરો (_S)..."
 
-#: ../src/f-spot.glade.h:190
+#: ../src/f-spot.glade.h:191
 msgid "_Sharpen..."
 msgstr "સ્પષ્ટ કરો (_S)..."
 
-#: ../src/f-spot.glade.h:191
+#: ../src/f-spot.glade.h:192
 msgid "_Slideshow"
 msgstr "તકતી પૂર્વદર્શન (_S)"
 
-#: ../src/f-spot.glade.h:192
+#: ../src/f-spot.glade.h:193
 msgid "_Small"
 msgstr "નાનું (_S)"
 
-#: ../src/f-spot.glade.h:193
+#: ../src/f-spot.glade.h:194
 msgid "_Strip metadata"
 msgstr "મેટાડેટા કાઢી લેવુ (_S)"
 
-#: ../src/f-spot.glade.h:194
+#: ../src/f-spot.glade.h:195
 msgid "_Tag Icons"
 msgstr "ટેગ ચિહ્નો (_T)"
 
-#: ../src/f-spot.glade.h:195
+#: ../src/f-spot.glade.h:196
 msgid "_Tag Name:"
 msgstr "ટેગ નામ (_T):"
 
-#: ../src/f-spot.glade.h:196
+#: ../src/f-spot.glade.h:197
 msgid "_Tags"
 msgstr "ટેગો (_T)"
 
-#: ../src/f-spot.glade.h:197
+#: ../src/f-spot.glade.h:198
 msgid "_Timeline"
 msgstr "ટાઇમલાઇન (_T)"
 
-#: ../src/f-spot.glade.h:198
+#: ../src/f-spot.glade.h:199
 msgid "_Tint:"
 msgstr "ટિન્ટ (_T):"
 
-#: ../src/f-spot.glade.h:199
+#: ../src/f-spot.glade.h:200
 msgid "_Toolbar"
 msgstr "સાધનપટ્ટી (_T)"
 
-#: ../src/f-spot.glade.h:200
+#: ../src/f-spot.glade.h:201
 msgid "_Tools"
 msgstr "સાધનો (_T)"
 
-#: ../src/f-spot.glade.h:201
+#: ../src/f-spot.glade.h:202
 msgid "_URI:"
 msgstr "URI (_U):"
 
-#: ../src/f-spot.glade.h:202
+#: ../src/f-spot.glade.h:203
 msgid "_Untagged Photos"
 msgstr "ટેગ ન થયેલ ફોટાઓ (_U)"
 
-#: ../src/f-spot.glade.h:203
+#: ../src/f-spot.glade.h:204
 msgid "_Version"
 msgstr "આવૃત્તિ (_V)"
 
-#: ../src/f-spot.glade.h:204
+#: ../src/f-spot.glade.h:205
 msgid "_View"
 msgstr "દ્રશ્ય (_V)"
 
-#: ../src/f-spot.glade.h:205
+#: ../src/f-spot.glade.h:206
 msgid "_Virtual Filesystem"
 msgstr "વર્ચ્યુઅલ ફાઇલસિસ્ટમ (_V)"
 
 #. at, or after a date, or between dates
-#: ../src/f-spot.glade.h:208
+#: ../src/f-spot.glade.h:209
 msgid ""
 "at\n"
 "after\n"
@@ -3054,19 +3041,19 @@ msgstr ""
 "પછી\n"
 "વચ્ચે"
 
-#: ../src/f-spot.glade.h:211
+#: ../src/f-spot.glade.h:212
 msgid "difference:"
 msgstr "તફાવત:"
 
-#: ../src/f-spot.glade.h:212
+#: ../src/f-spot.glade.h:213
 msgid "img_000.jpg"
 msgstr "img_000.jpg"
 
-#: ../src/f-spot.glade.h:213
+#: ../src/f-spot.glade.h:214
 msgid "min. Starting at {0}"
 msgstr "ન્યૂનત્તમ {0} પર શરૂ થઇ રહ્યુ છે"
 
-#: ../src/f-spot.glade.h:214
+#: ../src/f-spot.glade.h:215
 #: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:19
 #: ../extensions/Exporters/FolderExport/FolderExport.glade.h:19
 #: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:23
@@ -3075,7 +3062,7 @@ msgstr "ન્યૂનત્તમ {0} પર શરૂ થઇ રહ્યુ 
 msgid "pixels"
 msgstr "પિક્સેલો"
 
-#: ../src/f-spot.glade.h:215
+#: ../src/f-spot.glade.h:216
 msgid "x"
 msgstr "x"
 
@@ -3172,8 +3159,8 @@ msgid ""
 "Return to this window after you have finished the authorization process on "
 "{0} and click the \"Complete Authorization\" button below"
 msgstr ""
-"{0} પર સત્તાધિકરણ પ્રક્રિયા તમે સમાપ્ત કરો તે પછી આ વિન્ડોમાં પાછા આવો અને નીચે \"Complete Authorization\" "
-"બટન પર ક્લિક કરો"
+"{0} પર સત્તાધિકરણ પ્રક્રિયા તમે સમાપ્ત કરો તે પછી આ વિન્ડોમાં પાછા આવો અને નીચે "
+"\"Complete Authorization\" બટન પર ક્લિક કરો"
 
 #: ../extensions/Exporters/FlickrExport/FlickrExport.cs:112
 msgid "Complete Authorization"
@@ -3242,8 +3229,8 @@ msgid ""
 "F-Spot was unable to log on to {0}.  Make sure you have given the "
 "authentication using {0} web browser interface."
 msgstr ""
-"F-Spot એ {0} પર પ્રવેશવા માટે અસમર્થ હતુ. ખાતરી કરો તમે {0} વેબ બ્રાઉઝર ઇન્ટરફેસની મદદથી "
-"સત્તાધિકરણ આપેલ છે."
+"F-Spot એ {0} પર પ્રવેશવા માટે અસમર્થ હતુ. ખાતરી કરો તમે {0} વેબ બ્રાઉઝર ઇન્ટરફેસની "
+"મદદથી સત્તાધિકરણ આપેલ છે."
 
 #: ../extensions/Exporters/FlickrExport/FlickrExport.cs:475
 #: ../extensions/Exporters/GalleryExport/GalleryExport.cs:732
@@ -3267,8 +3254,8 @@ msgid ""
 "account. Press the \"Authorize\" button to open a web browser and give F-"
 "Spot the authorization. "
 msgstr ""
-"F-Spot ને તમારા {0} ખાતામાં ફોટાઓને અપલેડ કરવા માટે તમારા સત્તાધિકરણની જરૂર છે. "
-"વેબ બ્રાઉઝરને ખોલવા માટે \"Authorize\" બટનને દબાવો અને સત્તાધિકરણ F-Spot ને આપો. "
+"F-Spot ને તમારા {0} ખાતામાં ફોટાઓને અપલેડ કરવા માટે તમારા સત્તાધિકરણની જરૂર છે. વેબ "
+"બ્રાઉઝરને ખોલવા માટે \"Authorize\" બટનને દબાવો અને સત્તાધિકરણ F-Spot ને આપો. "
 
 #: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:9
 msgid "Ignore _top level tags"
@@ -3445,8 +3432,8 @@ msgid ""
 "There is already a Gallery with the same name in your registered Galleries. "
 "Please choose a unique name."
 msgstr ""
-"ત્યાં તમારી રજીસ્ટર થયેલ ગેલરિઓમાં એજ નામ સાથે પહેલેથી જ ગેલરિ છે. "
-"મહેરબાની કરીને અનન્ય નામ ને પસંદ કરો."
+"ત્યાં તમારી રજીસ્ટર થયેલ ગેલરિઓમાં એજ નામ સાથે પહેલેથી જ ગેલરિ છે. મહેરબાની કરીને અનન્ય "
+"નામ ને પસંદ કરો."
 
 #: ../extensions/Exporters/GalleryExport/GalleryExport.cs:530
 msgid "(TopLevel)"
@@ -3543,7 +3530,7 @@ msgstr "પિતૃ આલ્બમ (_P):"
 #: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:19
 #: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:23
 #: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:14
-#: ../extensions/Exporters/TabbloExport/TabbloExport.glade.h:4
+#: ../extensions/Exporters/TabbloExport/TabbloExport.glade.h:9
 msgid "_Password:"
 msgstr "પાસવર્ડ (_P):"
 
@@ -3554,7 +3541,7 @@ msgstr "શીર્ષક (_T):"
 #: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:22
 #: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:25
 #: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:16
-#: ../extensions/Exporters/TabbloExport/TabbloExport.glade.h:5
+#: ../extensions/Exporters/TabbloExport/TabbloExport.glade.h:10
 msgid "_Username:"
 msgstr "વપરાશકર્તા નામ (_U):"
 
@@ -3612,9 +3599,8 @@ msgid ""
 "on the \"Save my login information\" checkbox on Facebook and F-Spot will "
 "log into Facebook automatically from now on."
 msgstr ""
-"F-Spot એ તમારા બ્રાઉઝરને દાખલ કરશે કે જે તમે ફેસબુકમાં પ્રવેશી શકો છો.  ફેસબુક પર "
-"\"Save my login information\" ચેકબોક્સ પર ફેરો અને F-Spot એ હવે ફેસબુકમાં "
-"આપોઆપ દાખલ કરશે."
+"F-Spot એ તમારા બ્રાઉઝરને દાખલ કરશે કે જે તમે ફેસબુકમાં પ્રવેશી શકો છો.  ફેસબુક પર \"Save "
+"my login information\" ચેકબોક્સ પર ફેરો અને F-Spot એ હવે ફેસબુકમાં આપોઆપ દાખલ કરશે."
 
 #: ../extensions/Exporters/FacebookExport/FacebookExport.cs:328
 msgid "Error logging into Facebook"
@@ -3717,7 +3703,9 @@ msgstr "દબાયેલ ફાઇલ (_e)..."
 msgid ""
 "This tool requires an active selection. Please select one or more pictures "
 "and try again"
-msgstr "આ સાધનને સક્રિય પસંદગીની જરૂર છે. મહેરબાની કરીને એક અથવા વધારે ચિત્રોને પસંદ કરો અને ફરીથી પ્રયત્ન કરો"
+msgstr ""
+"આ સાધનને સક્રિય પસંદગીની જરૂર છે. મહેરબાની કરીને એક અથવા વધારે ચિત્રોને પસંદ કરો અને "
+"ફરીથી પ્રયત્ન કરો"
 
 #: ../extensions/Exporters/ZipExport/ZipExport.cs:63
 msgid "Select export folder"
@@ -3782,11 +3770,11 @@ msgid ""
 "imported from that database.</i></small>"
 msgstr ""
 "<small><i>પસંદ થયેલ db માંથી શુ આયાત કરવુ છે તેને પસંદ કરો.\n"
-"\"New Rolls Only\" એ યોગ્ય વિકલ્પ ચે કે જે ફોટાઓને પુન:આયાત કરવાનું અવગણશે જે તમે "
-"પહેલાંની ક્રિયા દરમ્યાન આયાત કરી શક્યા હોત.\n"
+"\"New Rolls Only\" એ યોગ્ય વિકલ્પ ચે કે જે ફોટાઓને પુન:આયાત કરવાનું અવગણશે જે તમે પહેલાંની "
+"ક્રિયા દરમ્યાન આયાત કરી શક્યા હોત.\n"
 "\"A Single Import Roll\" તમારે ક્યો રોલ પાછા ભેગા કરવા ની ઇચ્છા છે તે તમે પસંદ કરો.\n"
-"\"Everything\" એ બધુ આયાત કરશે, નકલોને બનાવી રહ્યા છે જો તમે પેલા ડેટાબેઝમાં પહેલેથી જ આયાત થયેલ હોય તો "
-".</i></small>"
+"\"Everything\" એ બધુ આયાત કરશે, નકલોને બનાવી રહ્યા છે જો તમે પેલા ડેટાબેઝમાં પહેલેથી જ "
+"આયાત થયેલ હોય તો .</i></small>"
 
 #: ../extensions/Tools/MergeDb/MergeDb.glade.h:6
 msgid ""
@@ -3794,9 +3782,9 @@ msgid ""
 "the later, be sure that this location will stay accessible from f-spot.</i></"
 "small>"
 msgstr ""
-"<small><i>સ્થાનિક રીતે ઇમેજો ની નકલ કરો અથવા તેઓને ત્યાંજ રાખો જ્યાં તેઓ છે. જો તમે પછીથી "
-"પસંદ કરો તો, ખાતરી કરો કે જે આ સ્થાન એ f-spot માંથી પ્રવેશ કરવા માટે રાહ જોશે.</i></"
-"small>"
+"<small><i>સ્થાનિક રીતે ઇમેજો ની નકલ કરો અથવા તેઓને ત્યાંજ રાખો જ્યાં તેઓ છે. જો તમે "
+"પછીથી પસંદ કરો તો, ખાતરી કરો કે જે આ સ્થાન એ f-spot માંથી પ્રવેશ કરવા માટે રાહ જોશે.</"
+"i></small>"
 
 #: ../extensions/Tools/MergeDb/MergeDb.glade.h:7
 msgid "A Single Import Roll"
@@ -3852,8 +3840,8 @@ msgid ""
 "The metapixel executable was not found in path. Please check that you have "
 "it installed and that you have permissions to execute it"
 msgstr ""
-"મેટાપિક્સેલ એક્ઝીક્યુટેબલ પાથમાં શોધાયુ નથી. મહેરબાની કરીને ચકાસો કે તમારે તેને સ્થાપિત કરેલ છે અને "
-"તેને ચલાવવા માટે તમારી પાસે પરવાનગીઓ છે"
+"મેટાપિક્સેલ એક્ઝીક્યુટેબલ પાથમાં શોધાયુ નથી. મહેરબાની કરીને ચકાસો કે તમારે તેને સ્થાપિત કરેલ "
+"છે અને તેને ચલાવવા માટે તમારી પાસે પરવાનગીઓ છે"
 
 #. There is no photo for the selected tags! :(
 #: ../extensions/Tools/MetaPixel/MetaPixel.cs:121
@@ -3902,8 +3890,8 @@ msgid ""
 "The picturetile.pl executable was not found in path. Please check that you "
 "have it installed and that you have permissions to execute it"
 msgstr ""
-"picturetile.pl એક્ઝીક્યુટેબલ પાથમાં શોધાયુ ન હતુ. મહેરબાની કરીને ચકાસો કે જે તમે તેને સ્થાપિત કરેલ છે "
-"અને તેને ચલાવવા માટે તમારી પાસે પરવાનગીઓ છે"
+"picturetile.pl એક્ઝીક્યુટેબલ પાથમાં શોધાયુ ન હતુ. મહેરબાની કરીને ચકાસો કે જે તમે તેને "
+"સ્થાપિત કરેલ છે અને તેને ચલાવવા માટે તમારી પાસે પરવાનગીઓ છે"
 
 #: ../extensions/Tools/PictureTile/PictureTile.cs:110
 msgid "Preparing selected pictures"
@@ -3918,8 +3906,8 @@ msgid ""
 "Your photo wall have been generated and imported in F-Spot. Select the last "
 "roll to see it"
 msgstr ""
-"તમારા photo wall ને ઉત્પન્ન કરી દેવામાં આવ્યુ છે અને F-Spot માં આયાત થયેલ છે. તેને જોવા માટે છેલ્લા "
-"રોલને પસંદ કરો"
+"તમારા photo wall ને ઉત્પન્ન કરી દેવામાં આવ્યુ છે અને F-Spot માં આયાત થયેલ છે. તેને જોવા "
+"માટે છેલ્લા રોલને પસંદ કરો"
 
 #: ../extensions/Tools/PictureTile/PictureTile.cs:205
 msgid "Error importing photowall"
@@ -3935,9 +3923,9 @@ msgid ""
 "needs to analyze your image collection. This is not done by default as it's "
 "time consuming. You can Start or Pause this update process using this dialog."
 msgstr ""
-"0.5.0 પેહલાં તમે આયાત કરેલ ચિત્રો પર નકલોને શોધવાનું ક્રમમાં, F-Spot ને તમારી ચિત્ર સંગ્રહ ને "
-"વિશ્લેષણ કરવાની જરૂર છે. તે સમયને વાપરી રહ્યુ છે તે પ્રમાણે મૂળભૂત દ્દારા આ પૂરુ કરેલ નથી. "
-"આ સંવાદની મદદથી આ સુધારા પ્રક્રિયાને તમે શરૂ અથવા અટકાવી શકો છો."
+"0.5.0 પેહલાં તમે આયાત કરેલ ચિત્રો પર નકલોને શોધવાનું ક્રમમાં, F-Spot ને તમારી ચિત્ર સંગ્રહ "
+"ને વિશ્લેષણ કરવાની જરૂર છે. તે સમયને વાપરી રહ્યુ છે તે પ્રમાણે મૂળભૂત દ્દારા આ પૂરુ કરેલ નથી. આ "
+"સંવાદની મદદથી આ સુધારા પ્રક્રિયાને તમે શરૂ અથવા અટકાવી શકો છો."
 
 #: ../extensions/Tools/HashJob/HashJob.cs:102
 msgid "Processing images..."
@@ -4005,8 +3993,8 @@ msgid ""
 "the 'Captcha' field. <i>Letters are not case-sensitive</i>"
 msgstr ""
 "મહેરબાની કરીને ચકાસો કે જે આ ગેલરિ માટે સુયોજનો એ યોગ્ય નથી.\n"
-"તેઓએ 'Captcha' ક્ષેત્રમાં ઇમેજમાં બતાવેલ છે તે પ્રમાણે અક્ષરોને દાખલ કરો. "
-"<i>અક્ષરો કેસ-સંવેદનશીલ નથી</i>"
+"તેઓએ 'Captcha' ક્ષેત્રમાં ઇમેજમાં બતાવેલ છે તે પ્રમાણે અક્ષરોને દાખલ કરો. <i>અક્ષરો કેસ-"
+"સંવેદનશીલ નથી</i>"
 
 #: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:15
 #: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:8
@@ -4038,16 +4026,16 @@ msgstr "ખાતુ (_A):"
 msgid "_SmugMug..."
 msgstr "SmugMug (_S)..."
 
-#: ../extensions/Exporters/TabbloExport/Tabblo/Connection.cs:126
+#: ../extensions/Exporters/TabbloExport/Tabblo/Connection.cs:132
 #, csharp-format
 msgid "Uploading photo \"{0}\""
 msgstr "ફોટો \"{0}\" ને અપલોડ કરી રહ્યા છે"
 
-#: ../extensions/Exporters/TabbloExport/Tabblo/Connection.cs:181
+#: ../extensions/Exporters/TabbloExport/Tabblo/Connection.cs:206
 msgid "Logging into Tabblo"
 msgstr "Tabblo માં પ્રવેશી રહ્યા છે"
 
-#: ../extensions/Exporters/TabbloExport/Tabblo/Connection.cs:241
+#: ../extensions/Exporters/TabbloExport/Tabblo/Connection.cs:267
 msgid "Obtaining URL for upload"
 msgstr "અપલોડ કરવા માટે URL ને પ્રાપ્ત કરી રહ્યા છે"
 
@@ -4055,21 +4043,50 @@ msgstr "અપલોડ કરવા માટે URL ને પ્રાપ્�
 msgid "_Tabblo..."
 msgstr "Tabblo (_T)..."
 
-#: ../extensions/Exporters/TabbloExport/TabbloExport.cs:166
+#: ../extensions/Exporters/TabbloExport/TabbloExport.cs:308
 msgid "Done sending photos"
 msgstr "ફોટાઓને મોકલવાનું પૂરુ થયુ"
 
-#: ../extensions/Exporters/TabbloExport/TabbloExport.cs:168
+#: ../extensions/Exporters/TabbloExport/TabbloExport.cs:310
 msgid "Upload complete"
 msgstr "અપલોડ સમાપ્ત"
 
-#: ../extensions/Exporters/TabbloExport/TabbloExport.cs:174
+#: ../extensions/Exporters/TabbloExport/TabbloExport.cs:316
 msgid "Error uploading to Tabblo: "
 msgstr "Tabblo ને અપલોડ કરતી વખતે ભૂલ: "
 
-#: ../extensions/Exporters/TabbloExport/TabbloExport.glade.h:2
+#: ../extensions/Exporters/TabbloExport/TabbloExport.glade.h:1
+#| msgid "<b>Import Settings</b>"
+msgid "<b>F-Spot tags</b>"
+msgstr "<b>F-Spot ટેગો</b>"
+
+#: ../extensions/Exporters/TabbloExport/TabbloExport.glade.h:3
 msgid "<b>Tabblo account</b>"
 msgstr "<b>Tabblo ખાતુ</b>"
+
+#: ../extensions/Exporters/TabbloExport/TabbloExport.glade.h:4
+msgid ""
+"<small><i>F-Spot tags can help you track the export status of photos. "
+"Example: Use one tag for the photos that you plan to export, and another one "
+"for those already exported. Here, you can tell F-Spot to automatically "
+"replace these tags as appropriate.</i></small>"
+msgstr ""
+"<small><i>F-Spot ટેગો એ ફોટોની નિકાસ પરિસ્થિતિને ટ્રેક કરવા માટે તમને મદદ કરી શકે છે. "
+"ઉદાહરણ: ફોટાઓ માટે એક ટેગને વાપરો કે જે નિકાસ કરવા માટે પ્લાન કરો, અને જે પહેલેથી જ નિકાસ થયેલ છે "
+"તેને માટે બીજુ એક. અહિંયા, તમે અનૂકુળ પ્રમાણે આ ટેગો ને આપમેળે બદલવા માટે F-Spot ને કહી શકો છો.</i></small>"
+
+#: ../extensions/Exporters/TabbloExport/TabbloExport.glade.h:6
+msgid "Rem_ove from exported photos:"
+msgstr "નિકાસ થયેલ ફોટાઓ માંથી દૂર કરો (_o):"
+
+#: ../extensions/Exporters/TabbloExport/TabbloExport.glade.h:7
+#| msgid "Select a Tag..."
+msgid "Select..."
+msgstr "પસંદ કરો..."
+
+#: ../extensions/Exporters/TabbloExport/TabbloExport.glade.h:8
+msgid "_Attach to exported photos:"
+msgstr "નિકાસ થયેલ ફોટાઓને જોડો (_A):"
 
 #: ../extensions/Exporters/TabbloExport/TrustError.glade.h:1
 msgid "<b>{0}</b>."
