@@ -39,7 +39,6 @@ namespace FSpot.Widgets {
 
 			Accelerometer.OrientationChanged += HandleOrientationChanged;
 
-			this.ScrollEvent += HandleScrollEvent;
 			this.item = item;
 			item.Changed += PhotoItemChanged;
 			this.Destroyed += HandleDestroyed;
@@ -186,44 +185,7 @@ namespace FSpot.Widgets {
 				return !(load_async != ProgressType.Full || !progressive_display);
 			}
 		}
-
-		private bool fit = true;
-		public bool Fit {
-			get {
-				return (Zoom == MIN_ZOOM);
-			}
-			set {
-				if (!fit && value)
-					ZoomFit ();
-				
-				fit = value;
-			}
-		}
-
-
-		public double Zoom {
-			get { return base.Zoom; }
-			set {
-				//Console.WriteLine ("Setting zoom to {0}, MIN = {1}", value, MIN_ZOOM);
-				value = System.Math.Min (value, MAX_ZOOM);
-				value = System.Math.Max (value, MIN_ZOOM);
-
-				double zoom = Zoom;
-				if (value == zoom)
-					return;
-
-				if (System.Math.Abs (zoom - value) < System.Double.Epsilon)
-					return;
-
-				if (value == MIN_ZOOM)
-					this.Fit = true;
-				else {
-					this.Fit = false;
-					base.Zoom = value;
-				}
-			}
-		}
-		
+	
 		// Zoom scaled between 0.0 and 1.0
 		public double NormalizedZoom {
 			get {
@@ -234,13 +196,6 @@ namespace FSpot.Widgets {
 			}
 		}
 		
-		protected override void OnSizeAllocated (Gdk.Rectangle allocation)
-		{
-			if (fit)
-				ZoomFit ();
-			base.OnSizeAllocated (allocation);
-		}
-
 		FSpot.AsyncPixbufLoader loader;
 
 		private void LoadErrorImage (System.Exception e)
@@ -315,65 +270,7 @@ namespace FSpot.Widgets {
 				PhotoChanged (this);
 		}
 		
-		public void ZoomIn ()
-		{
-			Zoom = Zoom * ZOOM_FACTOR;
-		}
-		
-		public void ZoomOut ()
-		{
-			Zoom = Zoom / ZOOM_FACTOR;
-		}
-		
-		bool upscale;
-		private void ZoomFit ()
-		{
-			ZoomFit (upscale);
-		}
 
-		public void ZoomFit (bool upscale)
-		{			
-			Gdk.Pixbuf pixbuf = this.Pixbuf;
-			Gtk.ScrolledWindow scrolled = this.Parent as Gtk.ScrolledWindow;
-			this.upscale = upscale;
-			
-			if (pixbuf == null)
-				return;
-
-			if (scrolled != null)
-				scrolled.SetPolicy (Gtk.PolicyType.Never, Gtk.PolicyType.Never);
-
-			int available_width = (scrolled != null) ? scrolled.Allocation.Width : this.Allocation.Width;
-			int available_height = (scrolled != null) ? scrolled.Allocation.Height : this.Allocation.Height;
-
-			double zoom_to_fit = FitToScale ((uint) available_width, 
-							(uint) available_height,
-							(uint) pixbuf.Width, 
-							(uint) pixbuf.Height, 
-							upscale);
-
-			double image_zoom = zoom_to_fit;
-
-			base.Zoom = image_zoom;
-			
-			if (scrolled != null)
-				scrolled.SetPolicy (Gtk.PolicyType.Automatic, Gtk.PolicyType.Automatic);
-		}
-
-		static double FitToScale (uint dest_width, uint dest_height, uint src_width, uint src_height, bool upscale_smaller)
-		{
-			if (src_width == 0 || src_height == 0)
-				return 1.0;
-	
-			if (dest_width == 0 || dest_height == 0)
-				return 0.0;
-	
-			if (src_width <= dest_width && src_height <= dest_height && !upscale_smaller)
-				return 1.0;
-	
-			return Math.Min ((double)dest_width / src_width, (double)dest_height / src_height);
-		}
-	
 		private void HandleLoupeDestroy (object sender, EventArgs args)
 		{
 			if (sender == loupe)
@@ -392,66 +289,27 @@ namespace FSpot.Widgets {
 			bool handled = true;
 		
 			// Scroll if image is zoomed in (scrollbars are visible)
-			Gtk.ScrolledWindow scrolled = this.Parent as Gtk.ScrolledWindow;
-			if (scrolled != null && !this.Fit) {
-				Gtk.Adjustment vadj = Vadjustment;
-				Gtk.Adjustment hadj = Hadjustment;
-				switch (evnt.Key) {					
-				case Gdk.Key.Up:
-				case Gdk.Key.KP_Up:
-				case Gdk.Key.k:
-				case Gdk.Key.K:
-					vadj.Value -= vadj.StepIncrement;
-					if (vadj.Value < vadj.Lower)
-						vadj.Value = vadj.Lower;
-					break;
-				case Gdk.Key.Left:
-				case Gdk.Key.KP_Left:
-				case Gdk.Key.h:
-					hadj.Value -= hadj.StepIncrement;
-					if (hadj.Value < hadj.Lower)
-						hadj.Value = hadj.Lower;
-					break;
-				case Gdk.Key.Down:
-				case Gdk.Key.KP_Down:
-				case Gdk.Key.j:
-				case Gdk.Key.J:
-					vadj.Value += vadj.StepIncrement;
-					if (vadj.Value > vadj.Upper - vadj.PageSize)
-						vadj.Value = vadj.Upper - vadj.PageSize;
-					break;
-				case Gdk.Key.Right:
-				case Gdk.Key.KP_Right:
-				case Gdk.Key.l:
-					hadj.Value += hadj.StepIncrement;
-					if (hadj.Value > hadj.Upper - hadj.PageSize)
-						hadj.Value = hadj.Upper - hadj.PageSize;
-					break;
-				default:
-					handled = false;
-					break;
-				}
-			} else
-				handled = false;
-
-			if (handled)
-				return true;
-
-			handled = true;
-			
+			Gtk.ScrolledWindow scrolled_w = this.Parent as Gtk.ScrolledWindow;
+			bool scrolled = scrolled_w != null && !this.Fit;
+		
 			// Go to the next/previous photo when not zoomed (no scrollbars)
 			switch (evnt.Key) {
 			case Gdk.Key.Up:
 			case Gdk.Key.KP_Up:
 			case Gdk.Key.Left:
 			case Gdk.Key.KP_Left:
-			case Gdk.Key.Page_Up:
-			case Gdk.Key.KP_Page_Up:
-			case Gdk.Key.BackSpace:
 			case Gdk.Key.h:
 			case Gdk.Key.H:
 			case Gdk.Key.k:
 			case Gdk.Key.K:
+				if (scrolled)
+					handled = false;
+				else
+					this.Item.MovePrevious ();
+				break;
+			case Gdk.Key.Page_Up:
+			case Gdk.Key.KP_Page_Up:
+			case Gdk.Key.BackSpace:
 			case Gdk.Key.b:
 			case Gdk.Key.B:
 				this.Item.MovePrevious ();
@@ -460,14 +318,19 @@ namespace FSpot.Widgets {
 			case Gdk.Key.KP_Down:
 			case Gdk.Key.Right:
 			case Gdk.Key.KP_Right:
-			case Gdk.Key.Page_Down:
-			case Gdk.Key.KP_Page_Down:
-			case Gdk.Key.space:
-			case Gdk.Key.KP_Space:
 			case Gdk.Key.j:
 			case Gdk.Key.J:
 			case Gdk.Key.l:
 			case Gdk.Key.L:
+				if (scrolled)
+					handled = false;
+				else
+					this.Item.MoveNext ();
+				break;
+			case Gdk.Key.Page_Down:
+			case Gdk.Key.KP_Page_Down:
+			case Gdk.Key.space:
+			case Gdk.Key.KP_Space:
 			case Gdk.Key.n:
 			case Gdk.Key.N:
 				this.Item.MoveNext ();
@@ -483,27 +346,6 @@ namespace FSpot.Widgets {
 			case Gdk.Key.End:
 			case Gdk.Key.KP_End:
 				this.Item.Index = this.Query.Count - 1;
-				break;
-			case Gdk.Key.Key_0:
-			case Gdk.Key.KP_0:
-				this.Fit = true;
-				break;
-			case Gdk.Key.Key_1:
-			case Gdk.Key.KP_1:
-				this.Zoom =  1.0;
-				break;
-			case Gdk.Key.Key_2:
-			case Gdk.Key.KP_2:
-				this.Zoom = 2.0;
-				break;
-			case Gdk.Key.minus:
-			case Gdk.Key.KP_Subtract:
-				ZoomOut ();
-				break;
-			case Gdk.Key.equal:
-			case Gdk.Key.plus:
-			case Gdk.Key.KP_Add:
-				ZoomIn ();
 				break;
 			default:
 				handled = false;
@@ -533,14 +375,6 @@ namespace FSpot.Widgets {
 			}
 
 			sharpener.Show ();	
-		}
-		
-		[GLib.ConnectBefore]
-		private void HandleScrollEvent (object sender, Gtk.ScrollEventArgs args)
-		{
-			//For right now we just disable fit mode and let the parent event handlers deal
-			//with the real actions.
-			this.Fit = false;
 		}
 		
 		private void HandleDestroyed (object sender, System.EventArgs args)

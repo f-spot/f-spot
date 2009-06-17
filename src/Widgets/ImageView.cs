@@ -18,7 +18,6 @@ namespace FSpot.Widgets
 {
 	public class ImageView : Container
 	{
-
 #region public API
 		public ImageView (Adjustment hadjustment, Adjustment vadjustment, bool can_select) : base ()
 		{
@@ -44,12 +43,7 @@ namespace FSpot.Widgets
 			get { return pixbuf; } 
 			set {
 				pixbuf = value;
-				if (pixbuf == null)
-					min_zoom = 0.1;
-				else
-					min_zoom = Math.Min (1.0,
-						Math.Min ((double)Allocation.Width / (double)Pixbuf.Width,
-						(double)Allocation.Height / (double)Pixbuf.Height));
+				min_zoom = ComputeMinZoom (upscale);
 
 				ComputeScaledSize ();
 				AdjustmentsChanged -= ScrollToAdjustments;
@@ -170,15 +164,39 @@ namespace FSpot.Widgets
 		}
 
 		double zoom = 1.0;
-		public virtual double Zoom {
+		public double Zoom {
 			get { return zoom; }
 			set { DoZoom (value, false, 0, 0); }
+		}
+
+		public void ZoomIn ()
+		{
+			Zoom *= ZOOM_FACTOR;
+		}
+
+		public void ZoomOut ()
+		{
+			Zoom *= 1.0/ZOOM_FACTOR;
 		}
 
 		public void ZoomAboutPoint (double zoom_increment, int x, int y)
 		{
 			DoZoom (zoom * zoom_increment, true, x, y);
 		}	
+
+		bool fit;
+		public bool Fit {
+			get { return fit; } 
+		}
+
+		public void ZoomFit (bool upscale)
+		{
+			if (this.upscale != upscale)
+				min_zoom = ComputeMinZoom (upscale);
+			this.upscale = upscale;
+			fit = true;
+			DoZoom (MIN_ZOOM, false, 0, 0);
+		}
 
 		public Point WindowCoordsToImage (Point win)
 		{
@@ -280,6 +298,11 @@ namespace FSpot.Widgets
 			get { return min_zoom; }
 		}
 
+		bool upscale;
+		protected void ZoomFit ()
+		{
+			ZoomFit (upscale);
+		}
 #endregion
 
 #region container
@@ -375,15 +398,10 @@ namespace FSpot.Widgets
 
 		protected override void OnSizeAllocated (Gdk.Rectangle allocation)
 		{
-			if (Pixbuf == null)
-				min_zoom = 0.1;
-			else
-				min_zoom = Math.Min (1.0,
-					Math.Min ((double)allocation.Width / (double)Pixbuf.Width,
-					(double)allocation.Height / (double)Pixbuf.Height));
+			min_zoom = ComputeMinZoom (upscale);
 
-			if (zoom < min_zoom)
-				zoom = min_zoom;
+			if (fit || zoom < MIN_ZOOM)
+				zoom = MIN_ZOOM;
 			// Since this affects the zoom_scale we should alert it
 			EventHandler eh = ZoomChanged;
 			if (eh != null)
@@ -577,46 +595,58 @@ namespace FSpot.Widgets
 			case Gdk.Key.Left:
 			case Gdk.Key.KP_Left:
 			case Gdk.Key.h:
+			case Gdk.Key.H:
 				ScrollBy (-Hadjustment.StepIncrement, 0);
 				break;
 			case Gdk.Key.Right:
 			case Gdk.Key.KP_Right:
 			case Gdk.Key.l:
+			case Gdk.Key.L:
 				ScrollBy (Hadjustment.StepIncrement, 0);
 				break;
+			case Gdk.Key.equal:
 			case Gdk.Key.plus:
 			case Gdk.Key.KP_Add:
-				GdkWindow.GetPointer (out x, out y, out type);
-				ZoomAboutPoint (ZOOM_FACTOR, x, y);
+				ZoomIn ();
 				break;
 			case Gdk.Key.minus:
 			case Gdk.Key.KP_Subtract:
-				GdkWindow.GetPointer (out x, out y, out type);
-				ZoomAboutPoint (1.0/ZOOM_FACTOR, x, y);
+				ZoomOut ();
 				break;
+			case Gdk.Key.Key_0:
+			case Gdk.Key.KP_0:
+				ZoomFit ();
+				break;
+			case Gdk.Key.KP_1:
 			case Gdk.Key.Key_1:
 				GdkWindow.GetPointer (out x, out y, out type);
 				DoZoom (1.0, true, x, y);
 				break;
-
+			case Gdk.Key.Key_2:
+			case Gdk.Key.KP_2:
+				GdkWindow.GetPointer (out x, out y, out type);
+				DoZoom (2.0, true, x, y);
+				break;
 			default:
 				handled = false;
 				break;
 			}
 			
-			if (handled)
-				return true;
-
-			return base.OnKeyPressEvent (evnt);
+			return handled || base.OnKeyPressEvent (evnt);
 		}
 
 #endregion
-#region private painting and misc 
+#region private painting, zooming and misc 
 		int XOffset { get; set;}
 		int YOffset { get; set;}
 		void DoZoom (double zoom, bool use_anchor, int x, int y)
 		{
+			fit = zoom == MIN_ZOOM;
+
 			if (zoom == this.zoom)
+				return;
+			
+			if (System.Math.Abs (this.zoom - zoom) < System.Double.Epsilon)
 				return;
 
 			if (zoom > MAX_ZOOM)
@@ -745,14 +775,8 @@ namespace FSpot.Widgets
 
 		void ScrollTo (int x, int y, bool change_adjustments)
 		{
-			if (x < 0)
-				x = 0;
-			else if (x > Hadjustment.Upper - Hadjustment.PageSize) 
-				x = (int)(Hadjustment.Upper - Hadjustment.PageSize);
-			if (y < 0) 
-				y = 0;
-			else if (y > Vadjustment.Upper - Vadjustment.PageSize) 
-				y = (int)(Vadjustment.Upper - Vadjustment.PageSize);
+			x = Clamp (x, 0, (int)(Hadjustment.Upper - Hadjustment.PageSize));
+			y = Clamp (y, 0, (int)(Vadjustment.Upper - Vadjustment.PageSize));
 
 			int xof = x - XOffset;
 			int yof = y - YOffset;
@@ -780,6 +804,18 @@ namespace FSpot.Widgets
 		static int Clamp (int value, int min, int max)
 		{
 			return Math.Min (Math.Max (value, min), max);
+		}
+
+		double ComputeMinZoom (bool upscale)
+		{
+			if (Pixbuf == null)
+				return 0.1;
+			if (upscale)
+				return Math.Min ((double)Allocation.Width / (double)Pixbuf.Width,
+						 (double)Allocation.Height / (double)Pixbuf.Height);
+			return Math.Min (1.0,
+					 Math.Min ((double)Allocation.Width / (double)Pixbuf.Width,
+						   (double)Allocation.Height / (double)Pixbuf.Height));
 		}
 #endregion
 
