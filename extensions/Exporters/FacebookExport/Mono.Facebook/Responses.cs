@@ -193,12 +193,12 @@ namespace Mono.Facebook
 	public class FriendsResponse
 	{
 		[XmlElement ("uid")]
-		public int[] uids;
+		public long[] uids;
 
 		[XmlIgnore ()]
-		public int[] UIds
+		public long[] UIds
 		{
-			get { return uids ?? new int[0]; }
+			get { return uids ?? new long[0]; }
 		}
 	}
 

@@ -89,8 +89,15 @@ namespace Mono.Facebook
 				T response = (T)response_serializer.Deserialize(new MemoryStream(response_bytes));
 				return response;
 			}
-			catch {
-				Error error = (Error) ErrorSerializer.Deserialize (new MemoryStream (response_bytes));
+			catch (Exception outer) {
+				Error error;
+				try {
+					error = (Error) ErrorSerializer.Deserialize (new MemoryStream (response_bytes));
+				}
+				catch {
+					Console.Error.Write (outer.ToString());
+					throw new FacebookException (-1, "Internal error: Could not parse facebook response");
+				}
 				throw new FacebookException (error.ErrorCode, error.ErrorMsg);
 			}
 		}
