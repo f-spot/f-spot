@@ -113,6 +113,7 @@ namespace FSpot.Exporter.Facebook
 		public TagStore (FacebookSession session, List<Mono.Facebook.Tag> tags, Dictionary<long, User> friends) : base (typeof (string))
 		{
 			_tags = tags;
+			_friends = friends;
 
 			foreach (Mono.Facebook.Tag tag in Tags) {
 				long subject = tag.Subject;
@@ -293,6 +294,9 @@ namespace FSpot.Exporter.Facebook
 
 			tag_image_eventbox.ButtonPressEvent += HandleTagImageButtonPressEvent;
 
+			tag_treeview.Sensitive = false;
+			caption_textview.Sensitive = false;
+
 			Dialog.Response += HandleResponse;
 			Dialog.Show ();
 		}
@@ -407,6 +411,7 @@ namespace FSpot.Exporter.Facebook
 			if (caption == null)
 				captions [current_item] = caption = "";
 			caption_textview.Buffer.Text = caption;
+			caption_textview.Sensitive = true;
 
 			tag_treeview.Model = new TagStore (account.Facebook, tags [current_item], friends);
 
@@ -455,7 +460,7 @@ namespace FSpot.Exporter.Facebook
 			if (y < 0 || y > tag_image_height)
 				return;
 
-			FacebookTagPopup popup = new FacebookTagPopup (friends);
+			//FacebookTagPopup popup = new FacebookTagPopup (friends);
 		}
 
 		private void HandleThumbnailIconViewKeyPressEvent (object sender, Gtk.KeyPressEventArgs args)
