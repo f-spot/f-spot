@@ -13,7 +13,7 @@ using FSpot.Utils;
 using FSpot.Platform;
 
 namespace FSpot {
-	public class ThumbnailGenerator : PixbufLoader {
+	public class ThumbnailGenerator : global::PixbufLoader {
 
 		static public ThumbnailGenerator Default = new ThumbnailGenerator ();
 		

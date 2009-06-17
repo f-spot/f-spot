@@ -37,12 +37,13 @@ namespace FSpot.Widgets {
 			FSpot.ColorManagement.PhotoImageView = this;
 		}
 
+//		ImageLoader loader;
 		public PhotoImageView (BrowsablePointer item)
 		{
-			loader = new FSpot.AsyncPixbufLoader ();
-			loader.AreaUpdated += HandlePixbufAreaUpdated;
-			loader.AreaPrepared += HandlePixbufPrepared;
-			loader.Done += HandleDone;
+//			loader = new ImageLoader ();
+//			loader.AreaUpdated += HandlePixbufAreaUpdated;
+//			loader.AreaPrepared += HandlePixbufPrepared;
+//			loader.Completed += HandleDone;
 			
 			FSpot.ColorManagement.PhotoImageView = this;
 			Transform = FSpot.ColorManagement.StandardTransform (); //for preview windows
@@ -74,7 +75,9 @@ namespace FSpot.Widgets {
 
 		public Gdk.Pixbuf CompletePixbuf ()
 		{
-			loader.LoadToDone ();
+			//FIXME: this should be an async call
+//			while (loader.Loading)
+//				Gtk.Application.RunIteration ();
 			return this.Pixbuf;
 		}
 
@@ -131,6 +134,7 @@ namespace FSpot.Widgets {
 
 		private void HandlePixbufPrepared (object sender, AreaPreparedEventArgs args)
 		{
+			ImageLoader loader = sender as ImageLoader;
 			if (!ShowProgress)
 				return;
 
@@ -146,6 +150,8 @@ namespace FSpot.Widgets {
 
 		private void HandleDone (object sender, System.EventArgs args)
 		{
+Log.Warning ("PhotoImageView: loading DONE");
+			ImageLoader loader = sender as ImageLoader;
 			// FIXME the error hander here needs to provide proper information and we should
 			// pass the state and the write exception in the args
 			Gdk.Pixbuf prev = this.Pixbuf;
@@ -206,7 +212,6 @@ namespace FSpot.Widgets {
 			}
 		}
 		
-		FSpot.AsyncPixbufLoader loader;
 
 		private void LoadErrorImage (System.Exception e)
 		{
@@ -254,6 +259,11 @@ namespace FSpot.Widgets {
 				try {
 					if (Item.IsValid) {
 						System.Uri uri = Item.Current.DefaultVersionUri;
+Log.Warning ("PhotoImageView: Loader.Load");
+						ImageLoader loader = new ImageLoader ();
+						loader.AreaUpdated += HandlePixbufAreaUpdated;
+						loader.AreaPrepared += HandlePixbufPrepared;
+						loader.Completed += HandleDone;
 						loader.Load (uri);
 					} else
 						LoadErrorImage (null);
@@ -391,7 +401,7 @@ namespace FSpot.Widgets {
 		{
 			//loader.AreaUpdated -= HandlePixbufAreaUpdated;
 			//loader.AreaPrepared -= HandlePixbufPrepared;
-			loader.Dispose ();
+			//loader.Dispose ();
 		}
 	}
 }

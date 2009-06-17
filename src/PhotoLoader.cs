@@ -4,6 +4,7 @@ using FSpot.Platform;
 using FSpot.Utils;
 
 namespace FSpot {
+	[Obsolete ("nuke or rename this")]
 	public class PhotoLoader {
 		public PhotoQuery query;
 

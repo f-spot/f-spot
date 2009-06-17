@@ -107,7 +107,6 @@ NULL_PLATFORM_CSDISTFILES =				\
 	$(srcdir)/Platform/Null/WebProxy.cs
 
 F_SPOT_CSDISTFILES =				\
-	$(srcdir)/AsyncPixbufLoader.cs		\
 	$(srcdir)/BlockProcessor.cs		\
 	$(srcdir)/BitConverter.cs		\
 	$(srcdir)/PhotoArray.cs 		\
@@ -170,6 +169,7 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/GroupSelector.cs		\
 	$(srcdir)/Accelerometer.cs		\
 	$(srcdir)/Histogram.cs			\
+	$(srcdir)/ImageLoader.cs		\
 	$(srcdir)/ImportBackend.cs		\
 	$(srcdir)/ImportCommand.cs		\
 	$(srcdir)/InfoOverlay.cs		\
