@@ -18,6 +18,8 @@ using FSpot;
 using FSpot.Png;
 using FSpot.UI.Dialog;
 
+using FSpot.Utils;
+
 using Mono.Unix;
 
 namespace FSpot {
@@ -70,8 +72,8 @@ namespace FSpot {
 				if (img is JpegFile) {
 					FSpot.JpegFile jimg = img as FSpot.JpegFile;
 					PixbufOrientation orientation = direction == RotateDirection.Clockwise
-						? PixbufUtils.Rotate90 (img.Orientation)
-						: PixbufUtils.Rotate270 (img.Orientation);
+						? FSpot.Utils.PixbufUtils.Rotate90 (img.Orientation)
+						: FSpot.Utils.PixbufUtils.Rotate270 (img.Orientation);
 				
 					jimg.SetOrientation (orientation);
 					jimg.SaveMetaData (original_path);

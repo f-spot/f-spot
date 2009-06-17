@@ -3,6 +3,7 @@ using System;
 using System.IO;
 using FSpot.Xmp;
 using FSpot.Tiff;
+using FSpot.Utils;
 
 namespace FSpot {
 	public interface IThumbnailContainer {

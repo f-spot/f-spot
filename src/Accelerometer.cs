@@ -5,6 +5,8 @@
 using System;
 using System.IO;
 
+using FSpot.Utils;
+
 namespace FSpot {
 
 	public class Accelerometer {
@@ -36,10 +38,10 @@ namespace FSpot {
 				SetupAccelerometer ();
 				
 			if (current_orientation == Orient.TiltCounterclockwise)
-				return PixbufUtils.Rotate90 (po);
+				return FSpot.Utils.PixbufUtils.Rotate90 (po);
 
 			if (current_orientation == Orient.TiltClockwise)
-				return PixbufUtils.Rotate270 (po);
+				return FSpot.Utils.PixbufUtils.Rotate270 (po);
 
 			return po;
 		}

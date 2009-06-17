@@ -2,6 +2,7 @@ using SemWeb;
 using SemWeb.Util;
 using Mono.Unix;
 using FSpot.Xmp;
+using FSpot.Utils;
 
 namespace FSpot {
         internal class Description {

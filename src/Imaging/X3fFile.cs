@@ -1,6 +1,7 @@
 using System;
 using System.IO;
 using FSpot;
+using FSpot.Utils;
 using SemWeb;
 
 namespace FSpot.X3f {

@@ -1,5 +1,6 @@
 //#define DEBUG_LOADER
 using FSpot;
+using FSpot.Utils;
 using SemWeb;
 using System;
 using System.IO;

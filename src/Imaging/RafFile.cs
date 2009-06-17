@@ -1,3 +1,5 @@
+using FSpot.Utils;
+
 namespace FSpot.Raf {
 	// This is reverse engineered from looking at the sample files I have
 	// from what I can tell the file is always BigEndian, although the embedded jpeg may not be

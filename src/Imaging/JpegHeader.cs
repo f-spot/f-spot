@@ -22,6 +22,7 @@ using System.IO;
 using System.Collections;
 using FSpot.Xmp;
 using FSpot;
+using FSpot.Utils;
 
 #if ENABLE_NUNIT
 using NUnit.Framework;

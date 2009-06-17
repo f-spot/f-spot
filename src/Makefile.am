@@ -55,6 +55,7 @@ UTILS_CSDISTFILES =				\
 	$(srcdir)/Utils/GdkUtils.cs		\
 	$(srcdir)/Utils/GtkUtil.cs		\
 	$(srcdir)/Utils/Log.cs			\
+	$(srcdir)/Utils/PixbufOrientation.cs	\
 	$(srcdir)/Utils/Unix.cs			\
 	$(srcdir)/Utils/UriUtils.cs
 

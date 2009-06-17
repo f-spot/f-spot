@@ -1,4 +1,5 @@
 using System;
+using FSpot.Utils;
 
 namespace FSpot.Ciff {
 	public enum Tag {

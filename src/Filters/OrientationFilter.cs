@@ -9,6 +9,8 @@
  *
  */
 
+using FSpot.Utils;
+
 namespace FSpot.Filters {
 	public class OrientationFilter : IFilter {
 		public bool Convert (FilterRequest req)
