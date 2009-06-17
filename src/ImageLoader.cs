@@ -72,6 +72,11 @@ namespace FSpot {
 		public bool Prepared {
 			get { return prepared; }
 		}
+
+		PixbufOrientation pixbuf_orientation;
+		public PixbufOrientation PixbufOrientation {
+			get { return pixbuf_orientation; }
+		}
 #endregion
 
 #region event handlers

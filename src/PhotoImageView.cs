@@ -83,7 +83,7 @@ namespace FSpot.Widgets {
 
 		public void HandleOrientationChanged (object sender, EventArgs e)
 		{
-			Reload ();
+			PixbufOrientation = Accelerometer.GetViewOrientation (PixbufOrientation);
 		}
 
 		public void Reload ()
@@ -139,9 +139,8 @@ namespace FSpot.Widgets {
 				return;
 
 			Gdk.Pixbuf prev = this.Pixbuf;
-			Gdk.Pixbuf next = loader.Pixbuf;
-
-			this.Pixbuf = next;
+			this.Pixbuf = loader.Pixbuf;
+			PixbufOrientation = Accelerometer.GetViewOrientation (loader.PixbufOrientation);
 			if (prev != null)
 				prev.Dispose ();
 

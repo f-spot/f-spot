@@ -271,7 +271,9 @@ namespace FSpot {
 				System.Console.WriteLine ("error checking orientation");
 			}
 #else						     
+Console.WriteLine (">>>");
 			Exif.ExifEntry e = this.ExifData.GetContents (Exif.Ifd.Zero).Lookup (Exif.Tag.Orientation);
+Console.WriteLine ("<<<");
 			
 			if (e != null) {
 				ushort [] value = e.GetDataUShort ();
