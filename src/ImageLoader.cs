@@ -122,32 +122,13 @@ namespace FSpot {
 				OnCompleted ();
 				return;
 			}
-			Gtk.Application.Invoke (this, new ReadDoneEventArgs (byte_read), HandleReadDoneInMainLoop);
-		}
 
-		void HandleReadDoneInMainLoop (object sender, EventArgs e)
-		{
-			ReadDoneEventArgs rdea = e as ReadDoneEventArgs;
-			int byte_read = rdea.ByteRead;
-
-			if (Write (buffer, (ulong)byte_read)) {
-				image_stream.BeginRead (buffer, 0, count, HandleReadDone, null);
-			} else
-				OnWriteError ();
-		}
-
-		class ReadDoneEventArgs : EventArgs
-		{
-			int byte_read;
-			public int ByteRead {
-				get { return byte_read; }
-			}
-
-			public ReadDoneEventArgs (int byte_read) : base ()
-			{
-				this.byte_read = byte_read;
-			}
-
+			Gtk.Application.Invoke (this, null, delegate (object sender, EventArgs e) {
+				if (Write (buffer, (ulong)byte_read)) {
+					image_stream.BeginRead (buffer, 0, count, HandleReadDone, null);
+				} else
+					OnWriteError ();
+			});
 		}
 
 		void OnWriteError ()
