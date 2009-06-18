@@ -23,6 +23,7 @@ namespace FSpot
 		int photos_per_page = 1;
 		CustomPrintWidget.FitMode fit = CustomPrintWidget.FitMode.Scaled;
 		bool repeat, white_borders, crop_marks;
+		string print_label_format;
 		string comment;
 
 		public PrintOperation (IBrowsableItem [] selected_photos) : base ()
@@ -57,6 +58,7 @@ namespace FSpot
 			fit = cpw.Fitmode;
 			white_borders = cpw.WhiteBorders;
 			crop_marks = cpw.CropMarks;
+			print_label_format = cpw.PrintLabelFormat;
 			comment = cpw.CustomText;
 		}
 
@@ -125,7 +127,21 @@ namespace FSpot
 						}
 
 						DrawImage (cr, pixbuf, x * w, y * h, w, h);
-						DrawComment (context, (x + 1) * w, (rotated ? y : y + 1) * h, (rotated ? w : h) * .025, comment, rotated);
+
+						string tag_string = "";
+						foreach (Tag t in selected_photos[p_index].Tags)
+							tag_string = String.Concat (tag_string, t.Name);
+
+						string label = String.Format (print_label_format,
+									      comment,
+									      selected_photos[p_index].Name,
+									      selected_photos[p_index].Time.ToLocalTime ().ToShortDateString (),
+									      selected_photos[p_index].Time.ToLocalTime ().ToShortTimeString (),
+									      tag_string,
+									      selected_photos[p_index].Description);
+
+						DrawComment (context, (x + 1) * w, (rotated ? y : y + 1) * h, (rotated ? w : h) * .025, label, rotated);
+
 						pixbuf.Dispose ();
 					}
 				}
