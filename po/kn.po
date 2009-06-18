@@ -1,14 +1,14 @@
-# translation of f-spot.HEAD.po to Kannada
+# translation of f-spot.master.kn.po to Kannada
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 #
 # Shankar Prasad <svenkate@redhat.com>, 2009.
 msgid ""
 msgstr ""
-"Project-Id-Version: f-spot.HEAD\n"
+"Project-Id-Version: f-spot.master.kn\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=f-spot&component=General\n"
-"POT-Creation-Date: 2009-03-18 14:14+0000\n"
-"PO-Revision-Date: 2009-04-22 16:52+0530\n"
+"POT-Creation-Date: 2009-06-15 12:52+0000\n"
+"PO-Revision-Date: 2009-06-18 15:53+0530\n"
 "Last-Translator: Shankar Prasad <svenkate@redhat.com>\n"
 "Language-Team: Kannada <en@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -31,7 +31,7 @@ msgstr "ಹಕ್ಕು:"
 
 #: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInfoDialog.cs:71
 msgid "Extension Dependencies:"
-msgstr ""
+msgstr "ವಿಸ್ತರಣೆಯ ಅವಲಂಬನೆಗಳು:"
 
 #: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:97
 msgid "All registered repositories"
@@ -49,13 +49,13 @@ msgstr "ಅನುಸ್ಥಾಪಿಸಲಾದ ಈ ಕೆಳಗಿನ ಪ್ಯ
 msgid ""
 "There are other extensions that depend on the previous ones which will also "
 "be uninstalled:"
-msgstr ""
+msgstr "ಹಿಂದಿನ ವಿಸ್ತರಣೆಗಳಿಗೆ ಅವಲಂಬಿತವಾಗಿರುವ ಬೇರೆ ವಿಸ್ತರಣೆಗಳಿವೆ ಹಾಗು ಅವನ್ನೂ ಸಹ ತೆಗೆದು ಹಾಕಲಾಗುತ್ತದೆ:"
 
 #: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:384
 msgid ""
 "The selected extensions can't be installed because there are dependency "
 "conflicts."
-msgstr ""
+msgstr "ಕೆಲವು ಅವಲಂಬನೆಯ ಅಸಂಜಸತೆಯ ಕಾರಣದಿಂದಾಗಿ ಆಯ್ಕೆ ಮಾಡಲಾದ ವಿಸ್ತರಣೆಗಳನ್ನು ಅನುಸ್ಥಾಪಿಸಲು ಸಾಧ್ಯವಿಲ್ಲ."
 
 #: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:398
 msgid "The following packages will be installed:"
@@ -180,7 +180,7 @@ msgid "_Unselect All"
 msgstr ""
 
 #: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:259
-#: ../src/f-spot.glade.h:110
+#: ../src/f-spot.glade.h:106
 msgid "Select _All"
 msgstr "ಎಲ್ಲವನ್ನೂ ಆರಿಸು(_A)"
 
@@ -239,9 +239,9 @@ msgstr "ಅಶಕ್ತಗೊಳಿಸಿ"
 #: ../extensions/Exporters/FolderExport/FolderExport.cs:250
 #: ../extensions/Exporters/GalleryExport/GalleryExport.cs:799
 #: ../extensions/Exporters/FacebookExport/FacebookExport.cs:543
-#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:694
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:693
 #: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:596
-#: ../extensions/Exporters/TabbloExport/TabbloExport.cs:177
+#: ../extensions/Exporters/TabbloExport/TabbloExport.cs:319
 msgid "Error"
 msgstr "ದೋಷ"
 
@@ -331,34 +331,6 @@ msgstr "ಫೋಟೊ ವ್ಯವಸ್ಥಾಪಕ"
 msgid "Organize, enjoy, and share your photos"
 msgstr "ನಿಮ್ಮ ಫೋಟೊಗಳನ್ನು ವ್ಯವಸ್ಥಿತವಾಗಿ ಜೋಡಿಸಿ, ಆನಂದಿಸಿ ಹಾಗು ಇತರರೊಂದಿಗೆ ಹಂಚಿಕೊಳ್ಳಿ"
 
-#: ../libeog/image-view.c:2124
-msgid "interpolation type"
-msgstr ""
-
-#: ../libeog/image-view.c:2125
-msgid "the type of interpolation to use"
-msgstr ""
-
-#: ../libeog/image-view.c:2131 ../libeog/image-view.c:2138
-msgid "check type"
-msgstr ""
-
-#: ../libeog/image-view.c:2132
-msgid "the type of chequering to use"
-msgstr ""
-
-#: ../libeog/image-view.c:2139
-msgid "the size of chequers to use"
-msgstr ""
-
-#: ../libeog/image-view.c:2145
-msgid "dither"
-msgstr ""
-
-#: ../libeog/image-view.c:2146
-msgid "dither type"
-msgstr ""
-
 #: ../libfspot/f-jpeg-utils.c:441 ../src/RotateCommand.cs:222
 msgid "File not found"
 msgstr "ಕಡತ ಕಂಡುಬಂದಿಲ್ಲ"
@@ -366,7 +338,7 @@ msgstr "ಕಡತ ಕಂಡುಬಂದಿಲ್ಲ"
 #: ../libfspot/f-jpeg-utils.c:464
 #, c-format
 msgid "Unknown transform type %d"
-msgstr ""
+msgstr "ತಿಳಿದಿರದ ರೂಪಾಂತರದ ಬಗೆ %d"
 
 #: ../libfspot/f-jpeg-utils.c:472
 msgid "Operation failed"
@@ -380,7 +352,7 @@ msgstr "ಮುನ್ನೋಟ"
 msgid "Path"
 msgstr "ಮಾರ್ಗ"
 
-#: ../src/CameraFileSelectionDialog.cs:80 ../src/f-spot.glade.h:77
+#: ../src/CameraFileSelectionDialog.cs:80 ../src/f-spot.glade.h:74
 msgid "File"
 msgstr "ಕಡತ"
 
@@ -439,12 +411,12 @@ msgstr "ಕ್ಯಾಮೆರಾ"
 msgid "Port"
 msgstr "ಸಂಪರ್ಕಸ್ಥಾನ"
 
-#: ../src/Core.cs:203
+#: ../src/Core.cs:200
 #, csharp-format
 msgid "No photos matching {0} found"
 msgstr "{0} ಗೆ ತಾಳೆಯಾಗುವ ಯಾವುದೆ ಫೋಟೊಗಳಿಲ್ಲ"
 
-#: ../src/Core.cs:204
+#: ../src/Core.cs:201
 #, csharp-format
 msgid ""
 "The tag \"{0}\" is not applied to any photos. Try adding\n"
@@ -452,11 +424,11 @@ msgid ""
 "F-Spot preference dialog."
 msgstr ""
 
-#: ../src/Core.cs:208
+#: ../src/Core.cs:205
 msgid "Search returned no results"
 msgstr "ಹುಡುಕಾಟಕ್ಕೆ ಯಾವುದೆ ಫಲಿತಾಂಶ ದೊರೆತಿಲ್ಲ"
 
-#: ../src/Core.cs:209
+#: ../src/Core.cs:206
 msgid ""
 "The tag F-Spot is looking for does not exist. Try\n"
 "selecting a different tag in the F-Spot preference\n"
@@ -464,16 +436,16 @@ msgid ""
 msgstr ""
 
 #. Note for translators: Reparented is a picture becoming a version of another one
-#: ../src/Core/Photo.cs:478
+#: ../src/Core/Photo.cs:473
 msgid "Reparented"
 msgstr ""
 
-#: ../src/Core/Photo.cs:478
+#: ../src/Core/Photo.cs:473
 #, csharp-format
 msgid "Reparented ({0})"
 msgstr ""
 
-#: ../src/Core/Photo.cs:497
+#: ../src/Core/Photo.cs:492
 #, csharp-format
 msgid "Modified"
 msgid_plural "Modified ({0})"
@@ -492,49 +464,9 @@ msgstr "{1} ನಲ್ಲಿ ಮಾರ್ಪಡಿಸಲಾದ ({0})"
 
 #. Note that the original version is never stored in the photo_versions table in the
 #. database.
-#: ../src/Core/Photo.cs:671 ../src/f-spot.glade.h:96
+#: ../src/Core/Photo.cs:671 ../src/f-spot.glade.h:92
 msgid "Original"
 msgstr "ಮೂಲ"
-
-#: ../src/DateCommands.cs:56
-msgid "Today"
-msgstr "ಇಂದು"
-
-#: ../src/DateCommands.cs:58
-msgid "Yesterday"
-msgstr "ನಿನ್ನೆ"
-
-#: ../src/DateCommands.cs:60
-msgid "Last 7 days"
-msgstr "ಕೊನೆಯ 7 ದಿನಗಳು"
-
-#: ../src/DateCommands.cs:62
-msgid "Last 30 days"
-msgstr "ಕೊನೆಯ 30 ದಿನಗಳು"
-
-#: ../src/DateCommands.cs:64
-msgid "Last 90 days"
-msgstr "ಕೊನೆಯ 90 ದಿನಗಳು"
-
-#: ../src/DateCommands.cs:66
-msgid "Last 360 days"
-msgstr "ಕೊನೆಯ 360 ದಿನಗಳು"
-
-#: ../src/DateCommands.cs:68
-msgid "Current Week (Mon-Sun)"
-msgstr "ಪ್ರಸಕ್ತ ವಾರ (ಸೋಮ-ಭಾನು)"
-
-#: ../src/DateCommands.cs:70
-msgid "Previous Week (Mon-Sun)"
-msgstr "ಹಿಂದಿನ ವಾರ (ಸೋಮ-ಭಾನು)"
-
-#: ../src/DateCommands.cs:86 ../src/UI.Dialog/ui/PreferenceDialog.glade.h:11
-msgid "All Images"
-msgstr "ಎಲ್ಲಾ ಚಿತ್ರಗಳು"
-
-#: ../src/DateCommands.cs:88
-msgid "Customized Range"
-msgstr "ಇಚ್ಛೆಗೆ ತಕ್ಕಂತೆ ಬದಲಾಯಿಸಲಾದ ವ್ಯಾಪ್ತಿ"
 
 #: ../src/Editors/AutoStretchEditor.cs:17
 msgid "Auto Color"
@@ -628,17 +560,17 @@ msgstr ""
 msgid "Open _With"
 msgstr "ಇದರೊಂದಿಗೆ ತೆಗೆ(_W)"
 
-#: ../src/FSpot.addin.xml.h:4 ../src/f-spot.glade.h:105
+#: ../src/FSpot.addin.xml.h:4 ../src/f-spot.glade.h:101
 msgid "Rem_ove Tag"
 msgstr ""
 
 #: ../src/FSpot.addin.xml.h:5 ../src/SingleView.cs:451
-#: ../src/f-spot.glade.h:107
+#: ../src/f-spot.glade.h:103
 msgid "Rotate _Left"
 msgstr "ಎಡಕ್ಕೆ ತಿರುಗಿಸು(_L)"
 
 #: ../src/FSpot.addin.xml.h:6 ../src/SingleView.cs:452
-#: ../src/f-spot.glade.h:108
+#: ../src/f-spot.glade.h:104
 msgid "Rotate _Right"
 msgstr "ಬಲಕ್ಕೆ ತಿರುಗಿಸು(_R)"
 
@@ -646,15 +578,15 @@ msgstr "ಬಲಕ್ಕೆ ತಿರುಗಿಸು(_R)"
 msgid "Tools"
 msgstr "ಸಾಧನಗಳು"
 
-#: ../src/FSpot.addin.xml.h:8 ../src/f-spot.glade.h:143
+#: ../src/FSpot.addin.xml.h:8 ../src/f-spot.glade.h:138
 msgid "_Attach Tag"
 msgstr "ಟ್ಯಾಗ್‌ ಅನ್ನು ಲಗತ್ತಿಸು(_A)"
 
-#: ../src/FSpot.addin.xml.h:9 ../src/f-spot.glade.h:154
+#: ../src/FSpot.addin.xml.h:9 ../src/f-spot.glade.h:149
 msgid "_Delete From Drive"
 msgstr "ಡ್ರೈವಿನಿಂದ ಅಳಿಸು(_D)"
 
-#: ../src/FSpot.addin.xml.h:10 ../src/f-spot.glade.h:186
+#: ../src/FSpot.addin.xml.h:10 ../src/f-spot.glade.h:181
 msgid "_Remove From Catalog"
 msgstr ""
 
@@ -723,8 +655,9 @@ msgid "Flip"
 msgstr "ತಿರುಗಿಸು"
 
 #: ../src/GlTransition.cs:147
+#, fuzzy
 msgid "Cover"
-msgstr ""
+msgstr "ಕೋವರ್"
 
 #: ../src/GlTransition.cs:174
 msgid "Reveal"
@@ -762,11 +695,11 @@ msgstr "ತಿಂಗಳಿನ ಆಧಾರದ ಮೇಲೆ ಜೋಡಿಸು(_M
 msgid "Arrange by _Folder"
 msgstr "ಕಡತಕೋಶದ ಆಧಾರದ ಮೇಲೆ ಜೋಡಿಸು(_F)"
 
-#: ../src/GroupSelector.cs:523 ../src/f-spot.glade.h:190
+#: ../src/GroupSelector.cs:523 ../src/f-spot.glade.h:185
 msgid "_Reverse Order"
 msgstr "ವಿಲೋಮ ಕ್ರಮ(_R)"
 
-#: ../src/GroupSelector.cs:529 ../src/f-spot.glade.h:146
+#: ../src/GroupSelector.cs:529 ../src/f-spot.glade.h:141
 msgid "_Clear Date Range"
 msgstr ""
 
@@ -794,7 +727,7 @@ msgstr "InterOperability ಕೋಶ"
 msgid "Unknown Directory"
 msgstr "ಗೊತ್ತಿರದ ಕೋಶ"
 
-#: ../src/Imaging/ImageFile.cs:90
+#: ../src/Imaging/ImageFile.cs:91
 msgid "Writing to this file format is not supported"
 msgstr "ಈ ಕಡತ ನಮೂನೆಗೆ ಬರೆಯಲು ಅನುಮತಿ ಇಲ್ಲ"
 
@@ -910,7 +843,7 @@ msgstr ""
 
 #: ../src/Imaging/IptcFile.cs:222
 msgid "Headline of the content"
-msgstr ""
+msgstr "ವಿಷಯದ ಶೀರ್ಷಿಕೆ"
 
 #: ../src/Imaging/IptcFile.cs:225
 msgid "Instructions from the creator to the receiver not covered by other fields"
@@ -922,35 +855,35 @@ msgstr ""
 
 #: ../src/Imaging/IptcFile.cs:241
 msgid "Unknown IIM DataSet"
-msgstr ""
+msgstr "ಗೊತ್ತಿರದ IIM DataSet"
 
 #: ../src/ImportCommand.cs:47 ../src/SingleView.cs:357
 msgid "Select Folder"
 msgstr "ಕಡತಕೋಶವನ್ನು ಆರಿಸಿ"
 
-#: ../src/ImportCommand.cs:259
+#: ../src/ImportCommand.cs:258
 msgid "(No Cameras Detected)"
 msgstr "(ಯಾವುದೆ ಕ್ಯಾಮೆರಾಗಳು ಕಂಡುಬಂದಿಲ್ಲ)"
 
-#: ../src/ImportCommand.cs:404
+#: ../src/ImportCommand.cs:403
 #, csharp-format
 msgid "Loading {0} of {1}"
 msgstr "{1} ನಲ್ಲಿ {0} ಅನ್ನು ಲೋಡ್ ಮಾಡಲಾಗುತ್ತಿದೆ"
 
-#: ../src/ImportCommand.cs:470
+#: ../src/ImportCommand.cs:469
 msgid "Done Loading"
 msgstr "ಲೋಡ್ ಮಾಡುವಿಕೆಯು ಪೂರ್ಣಗೊಂಡಿದೆ"
 
-#: ../src/ImportCommand.cs:540 ../src/MainWindow.cs:279
-#: ../src/f-spot.glade.h:82
+#: ../src/ImportCommand.cs:539 ../src/MainWindow.cs:279
+#: ../src/f-spot.glade.h:79
 msgid "Import"
 msgstr "ಆಮದು"
 
-#: ../src/ImportCommand.cs:670
+#: ../src/ImportCommand.cs:669
 msgid "Directory does not exist."
 msgstr "ಕೋಶವು ಅಸ್ತಿತ್ವದಲ್ಲಿಲ್ಲ."
 
-#: ../src/ImportCommand.cs:671
+#: ../src/ImportCommand.cs:670
 #, csharp-format
 msgid ""
 "The directory you selected \"{0}\" does not exist.  Please choose a "
@@ -958,8 +891,8 @@ msgid ""
 msgstr ""
 
 #. Note for translators: 'Import Tags' is no command, it means 'Tags used in Import'
-#: ../src/ImportCommand.cs:724 ../src/ImportCommand.cs:726
-#: ../src/XmpTagsImporter.cs:88
+#: ../src/ImportCommand.cs:723 ../src/ImportCommand.cs:725
+#: ../src/XmpTagsImporter.cs:89
 msgid "Import Tags"
 msgstr ""
 
@@ -977,24 +910,24 @@ msgstr ""
 
 #: ../src/ItemAction.cs:92
 msgid "Rotate picture right"
-msgstr ""
+msgstr "ಚಿತ್ರವನ್ನು ಬಲಕ್ಕೆ ತಿರುಗಿಸು"
 
-#: ../src/ItemAction.cs:102 ../src/f-spot.glade.h:90
+#: ../src/ItemAction.cs:102 ../src/f-spot.glade.h:87
 #: ../extensions/Exporters/FolderExport/FolderExport.cs:999
 msgid "Next"
 msgstr "ಮುಂದಿನ"
 
 #: ../src/ItemAction.cs:103
 msgid "Next picture"
-msgstr ""
+msgstr "ಮುಂದಿನ ಚಿತ್ರ"
 
-#: ../src/ItemAction.cs:123 ../src/f-spot.glade.h:103
+#: ../src/ItemAction.cs:123 ../src/f-spot.glade.h:99
 msgid "Previous"
 msgstr "ಹಿಂದಿನ"
 
 #: ../src/ItemAction.cs:124
 msgid "Previous picture"
-msgstr ""
+msgstr "ಹಿಂದಿನ ಚಿತ್ರ"
 
 #: ../src/Loupe.cs:62
 msgid "Error saving sharpened photo"
@@ -1012,31 +945,31 @@ msgstr ""
 
 #: ../src/Loupe.cs:102
 msgid "Amount:"
-msgstr ""
+msgstr "ಪ್ರಮಾಣ:"
 
 #: ../src/Loupe.cs:103
 msgid "Radius:"
-msgstr ""
+msgstr "ತ್ರಿಜ್ಯ:"
 
 #: ../src/Loupe.cs:104
 msgid "Threshold:"
-msgstr ""
+msgstr "ಮಿತಿ:"
 
 #: ../src/MainWindow.cs:281
 msgid "Import new images"
-msgstr ""
+msgstr "ಹೊಸ ಚಿತ್ರವನ್ನು ಆಮದು ಮಾಡಿಕೊಳ್ಳಿ"
 
-#: ../src/MainWindow.cs:297 ../src/f-spot.glade.h:49
+#: ../src/MainWindow.cs:297 ../src/f-spot.glade.h:46
 msgid "Browse"
 msgstr "ವೀಕ್ಷಿಸು"
 
 #: ../src/MainWindow.cs:301
 msgid "Browse many photos simultaneously"
-msgstr ""
+msgstr "ಹಲವಾರು ಚಿತ್ರಗಳನ್ನು ಒಟ್ಟಿಗೆ ವೀಕ್ಷಿಸಿ"
 
 #: ../src/MainWindow.cs:305
 msgid "Edit Image"
-msgstr ""
+msgstr "ಚಿತ್ರವನ್ನು ಸಂಪಾದಿಸಿ"
 
 #: ../src/MainWindow.cs:309
 msgid "View and edit a photo"
@@ -1044,11 +977,11 @@ msgstr ""
 
 #: ../src/MainWindow.cs:314 ../src/SingleView.cs:98
 msgid "Fullscreen"
-msgstr ""
+msgstr "ಪೂರ್ಣತೆರೆ"
 
 #: ../src/MainWindow.cs:316 ../src/SingleView.cs:100
 msgid "View photos fullscreen"
-msgstr ""
+msgstr "ಫೋಟೊಗಳನ್ನು ಪೂರ್ಣತೆರೆಯಲ್ಲಿ ನೋಡಿ"
 
 #: ../src/MainWindow.cs:321 ../src/SingleView.cs:105
 msgid "View photos in a slideshow"
@@ -1056,11 +989,11 @@ msgstr ""
 
 #: ../src/MainWindow.cs:336
 msgid "Previous photo"
-msgstr ""
+msgstr "ಹಿಂದಿನ ಫೋಟೊ"
 
 #: ../src/MainWindow.cs:341
 msgid "Next photo"
-msgstr ""
+msgstr "ಮುಂದಿನ ಫೋಟೊ"
 
 #. Don't care otherwise, Tags sounds reasonable
 #: ../src/MainWindow.cs:354 ../src/Widgets/Sidebar.cs:73
@@ -1079,195 +1012,195 @@ msgstr "ಟ್ಯಾಗ್‌ಗಳು"
 #: ../extensions/Exporters/GalleryExport/GalleryExport.cs:783
 #, csharp-format
 msgid "{0} of {1}"
-msgstr ""
+msgstr "{1} ರಲ್ಲಿ {0}"
 
-#: ../src/MainWindow.cs:1682
+#: ../src/MainWindow.cs:1673
 msgid "No cameras detected."
-msgstr ""
+msgstr "ಯಾವುದೆ ಕ್ಯಾಮೆರಗಳು ಕಂಡು ಬಂದಿಲ್ಲ"
 
-#: ../src/MainWindow.cs:1683
+#: ../src/MainWindow.cs:1674
 msgid ""
 "F-Spot was unable to find any cameras attached to this system.  Double check "
 "that the camera is connected and has power"
 msgstr ""
 
-#: ../src/MainWindow.cs:1722
+#: ../src/MainWindow.cs:1713
 msgid "Error connecting to camera"
 msgstr ""
 
-#: ../src/MainWindow.cs:1723
+#: ../src/MainWindow.cs:1714
 #, csharp-format
 msgid "Received error \"{0}\" while connecting to camera"
 msgstr ""
 
 #. Translators, The singular case will never happen here.
-#: ../src/MainWindow.cs:2062
+#: ../src/MainWindow.cs:2053
 #, csharp-format
 msgid "Merge the selected tag"
 msgid_plural "Merge the {0} selected tags?"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../src/MainWindow.cs:2089
+#: ../src/MainWindow.cs:2080
 msgid ""
 "This operation will merge the selected tags and any sub-tags into a single "
 "tag."
 msgstr ""
 
-#: ../src/MainWindow.cs:2091
+#: ../src/MainWindow.cs:2082
 msgid "_Merge Tags"
 msgstr ""
 
-#: ../src/MainWindow.cs:2296
+#: ../src/MainWindow.cs:2287
 #, csharp-format
 msgid "{0} Photo out of {1}"
 msgid_plural "{0} Photos out of {1}"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../src/MainWindow.cs:2298 ../src/SingleView.cs:494
+#: ../src/MainWindow.cs:2289 ../src/SingleView.cs:494
 #, csharp-format
 msgid "{0} Photo"
 msgid_plural "{0} Photos"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../src/MainWindow.cs:2301
+#: ../src/MainWindow.cs:2292
 #, csharp-format
 msgid " ({0} selected)"
 msgid_plural " ({0} selected)"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../src/MainWindow.cs:2382
+#: ../src/MainWindow.cs:2373
 msgid "_Ok"
-msgstr ""
+msgstr "ಸರಿ(_O)"
 
-#: ../src/MainWindow.cs:2383
+#: ../src/MainWindow.cs:2374
 msgid "Error Deleting Picture"
 msgstr ""
 
-#: ../src/MainWindow.cs:2388
+#: ../src/MainWindow.cs:2379
 #, csharp-format
 msgid "No permission to delete the file:{1}{0}"
 msgstr ""
 
-#: ../src/MainWindow.cs:2392
+#: ../src/MainWindow.cs:2383
 #, csharp-format
 msgid "An error of type {0} occurred while deleting the file:{2}{1}"
 msgstr ""
 
-#: ../src/MainWindow.cs:2424
+#: ../src/MainWindow.cs:2415
 #, csharp-format
 msgid "Delete the selected photo permanently?"
 msgid_plural "Delete the {0} selected photos permanently?"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../src/MainWindow.cs:2428
+#: ../src/MainWindow.cs:2419
 msgid "This deletes all versions of the selected photo from your drive."
 msgid_plural "This deletes all versions of the selected photos from your drive."
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../src/MainWindow.cs:2431
+#: ../src/MainWindow.cs:2422
 msgid "_Delete photo"
 msgid_plural "_Delete photos"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../src/MainWindow.cs:2467
+#: ../src/MainWindow.cs:2458
 #, csharp-format
 msgid "Remove the selected photo from F-Spot?"
 msgid_plural "Remove the {0} selected photos from F-Spot?"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../src/MainWindow.cs:2472
+#: ../src/MainWindow.cs:2463
 msgid ""
 "If you remove photos from the F-Spot catalog all tag information will be "
 "lost. The photos remain on your computer and can be imported into F-Spot "
 "again."
 msgstr ""
 
-#: ../src/MainWindow.cs:2473
+#: ../src/MainWindow.cs:2464
 msgid "_Remove from Catalog"
 msgstr ""
 
-#: ../src/MainWindow.cs:2536
+#: ../src/MainWindow.cs:2527
 #, csharp-format
 msgid "Delete tag \"{0}\"?"
 msgstr ""
 
-#: ../src/MainWindow.cs:2538
+#: ../src/MainWindow.cs:2529
 #, csharp-format
 msgid "Delete the {0} selected tags?"
 msgstr ""
 
-#: ../src/MainWindow.cs:2543
+#: ../src/MainWindow.cs:2534
 msgid "photo"
 msgid_plural "photos"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../src/MainWindow.cs:2545
+#: ../src/MainWindow.cs:2536
 #, csharp-format
 msgid "If you delete this tag, the association with {0} {1} will be lost."
 msgid_plural "If you delete these tags, the association with {0} {1} will be lost."
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../src/MainWindow.cs:2550
+#: ../src/MainWindow.cs:2541
 msgid "_Delete tag"
 msgid_plural "_Delete tags"
 msgstr[0] ""
 msgstr[1] ""
 
 #. A Category is not empty. Can not delete it.
-#: ../src/MainWindow.cs:2564
+#: ../src/MainWindow.cs:2555
 msgid "Tag is not empty"
 msgstr ""
 
-#: ../src/MainWindow.cs:2565
+#: ../src/MainWindow.cs:2556
 #, csharp-format
 msgid ""
 "Can not delete tags that have tags within them.  Please delete tags under "
 "\"{0}\" first"
 msgstr ""
 
-#: ../src/MainWindow.cs:3008
+#: ../src/MainWindow.cs:2994
 msgid "Rotate selected photo left"
 msgid_plural "Rotate selected photos left"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../src/MainWindow.cs:3021
+#: ../src/MainWindow.cs:3007
 msgid "Rotate selected photo right"
 msgid_plural "Rotate selected photos right"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../src/MainWindow.cs:3029
+#: ../src/MainWindow.cs:3015
 #, csharp-format
 msgid "Find _Selected Tag"
 msgid_plural "Find _Selected Tags"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../src/MainWindow.cs:3033
+#: ../src/MainWindow.cs:3019
 #, csharp-format
 msgid "Find Selected Tag _With"
 msgid_plural "Find Selected Tags _With"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../src/MainWindow.cs:3071
+#: ../src/MainWindow.cs:3057
 msgid "Create New Version?"
 msgid_plural "Create New Versions?"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../src/MainWindow.cs:3073
+#: ../src/MainWindow.cs:3059
 #, csharp-format
 msgid ""
 "Before launching {1}, should F-Spot create a new version of the selected "
@@ -1278,9 +1211,15 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
+#: ../src/MainWindow.cs:3081
+#| msgid "Version"
+msgid "XCF version"
+msgstr "XCF ಆವೃತ್ತಿ"
+
 #: ../src/MetadataStore.cs:18
+#, fuzzy
 msgid "Creator"
-msgstr ""
+msgstr "ಕ್ರಿಯೇಟರ್"
 
 #: ../src/MetadataStore.cs:19
 msgid "Title"
@@ -1460,7 +1399,7 @@ msgstr ""
 msgid "Comment:"
 msgstr "ಟಿಪ್ಪಣಿ:"
 
-#: ../src/Preferences.cs:147
+#: ../src/Preferences.cs:152
 msgid "Photos"
 msgstr "ಚಿತ್ರಗಳು"
 
@@ -1564,7 +1503,7 @@ msgstr ""
 
 #: ../src/SendEmail.cs:313
 msgid "Error processing image"
-msgstr ""
+msgstr "ಚಿತ್ರವನ್ನು ಸಂಸ್ಕರಿಸುವಲ್ಲಿ ದೋಷ ಉಂಟಾಗಿದೆ"
 
 #: ../src/SendEmail.cs:314
 #, csharp-format
@@ -1574,7 +1513,7 @@ msgstr ""
 #. Send the mail :)
 #: ../src/SendEmail.cs:329
 msgid "my photos"
-msgstr ""
+msgstr "ನನ್ನ ಫೋಟೊಗಳು"
 
 #: ../src/SingleView.cs:88
 msgid "Rotate photo left"
@@ -1586,7 +1525,7 @@ msgstr ""
 
 #. Obsolete, remove after db rev4
 #: ../src/SingleView.cs:128 ../src/UI.Dialog/ui/PreferenceDialog.glade.h:14
-#: ../src/Widgets/MetadataDisplay.cs:221 ../src/Widgets/MetadataDisplay.cs:223
+#: ../src/Widgets/MetadataDisplay.cs:223 ../src/Widgets/MetadataDisplay.cs:225
 msgid "Folder"
 msgstr "ಕಡತಕೋಶ"
 
@@ -1596,53 +1535,53 @@ msgstr "ತೆರೆ"
 
 #: ../src/SingleView.cs:454
 msgid "Set as Background"
-msgstr ""
+msgstr "ಹಿನ್ನಲೆಯಾಗಿ ಹೊಂದಿಸು"
 
-#: ../src/TagCommands.cs:91 ../src/TagCommands.cs:219
-#: ../src/TagSelectionWidget.cs:512
+#: ../src/TagCommands.cs:93 ../src/TagCommands.cs:225
+#: ../src/TagSelectionWidget.cs:506
 msgid "This name is already in use"
-msgstr ""
+msgstr "ಈ ಹೆಸರು ಈಗಾಗಲೆ ಬಳಕೆಯಲ್ಲಿದೆ"
 
-#: ../src/TagCommands.cs:138
+#: ../src/TagCommands.cs:140
 msgid "Create New Tag"
 msgstr ""
 
-#: ../src/TagCommands.cs:139
+#: ../src/TagCommands.cs:141
 msgid "Name of New Tag:"
 msgstr ""
 
-#: ../src/TagCommands.cs:285
+#: ../src/TagCommands.cs:291
 msgid "Edit Tag"
 msgstr ""
 
-#: ../src/TagCommands.cs:286
+#: ../src/TagCommands.cs:292
 msgid "Tag Name:"
 msgstr ""
 
-#: ../src/TagCommands.cs:402
+#: ../src/TagCommands.cs:408
 msgid "Unable to load image"
-msgstr ""
+msgstr "ಚಿತ್ರವನ್ನು ಲೋಡ್ ಮಾಡಲು ಸಾಧ್ಯವಾಗಿಲ್ಲ"
 
-#: ../src/TagCommands.cs:403
+#: ../src/TagCommands.cs:409
 #, csharp-format
 msgid "Unable to load \"{0}\" as icon for the tag"
 msgstr ""
 
-#: ../src/TagCommands.cs:447
+#: ../src/TagCommands.cs:452
 #, csharp-format
 msgid "Photo {0} of {1}"
-msgstr ""
+msgstr "{1} ರಲ್ಲಿ {0} ಫೋಟೊ"
 
-#: ../src/TagCommands.cs:477
+#: ../src/TagCommands.cs:482
 #, csharp-format
 msgid "Edit Icon for Tag {0}"
 msgstr ""
 
-#: ../src/TagCommands.cs:493
+#: ../src/TagCommands.cs:498
 msgid "Select Photo from file"
-msgstr ""
+msgstr "ಕಡತದಿಂದ ಫೋಟೊಗಳನ್ನು ಆಯ್ಕೆ ಮಾಡಿ"
 
-#: ../src/TagCommands.cs:516
+#: ../src/TagCommands.cs:521
 #, csharp-format
 msgid ""
 "\n"
@@ -1724,32 +1663,32 @@ msgstr ""
 msgid "Drag tags here to search for them"
 msgstr ""
 
-#: ../src/TagSelectionWidget.cs:511
+#: ../src/TagSelectionWidget.cs:505
 msgid "Error renaming tag"
 msgstr ""
 
-#: ../src/TagStore.cs:198
+#: ../src/TagStore.cs:203
 msgid "Favorites"
 msgstr "ಅಚ್ಚುಮೆಚ್ಚಿನವುಗಳು"
 
-#: ../src/TagStore.cs:203
+#: ../src/TagStore.cs:208
 msgid "Hidden"
 msgstr "ಅಡಗಿಸಲಾಗಿದೆ"
 
-#: ../src/TagStore.cs:211
+#: ../src/TagStore.cs:216
 msgid "People"
 msgstr "ಜನರು"
 
-#: ../src/TagStore.cs:216
+#: ../src/TagStore.cs:221
 msgid "Places"
 msgstr "ಸ್ಥಳಗಳು"
 
-#: ../src/TagStore.cs:221
+#: ../src/TagStore.cs:226
 msgid "Events"
 msgstr "ಕಾರ್ಯಕ್ರಮಗಳು"
 
 #. The label for the root category is used in new and edit tag dialogs
-#: ../src/TagStore.cs:234 ../src/Widgets/InfoBox.cs:400
+#: ../src/TagStore.cs:239 ../src/Widgets/InfoBox.cs:400
 msgid "(None)"
 msgstr "(ಯಾವುದು ಅಲ್ಲ)"
 
@@ -1768,7 +1707,7 @@ msgstr " ಅಥವ "
 
 #. OPS The operators we support, case insensitive
 #. private static string op_str = "(?'Ops' or | and |, | \\s+ )";
-#: ../src/Term.cs:380 ../src/Widgets/FindBar.cs:177 ../src/f-spot.glade.h:220
+#: ../src/Term.cs:380 ../src/Widgets/FindBar.cs:177
 msgid "or"
 msgstr "ಅಥವ"
 
@@ -1778,7 +1717,7 @@ msgstr ""
 
 #: ../src/UI.Dialog/AboutDialog.cs:71
 msgid "Copyright © 2003-2008 Novell Inc."
-msgstr ""
+msgstr "ಹಕ್ಕು © 2003-2008 Novell Inc."
 
 #: ../src/UI.Dialog/AboutDialog.cs:94
 msgid "translator-credits"
@@ -1786,20 +1725,61 @@ msgstr "ಶಂಕರ್ ಪ್ರಸಾದ್ <svenkate@redhat.com>"
 
 #: ../src/UI.Dialog/AboutDialog.cs:99
 msgid "F-Spot Website"
-msgstr ""
+msgstr "F-Spot ಜಾಲತಾಣ"
 
-#: ../src/UI.Dialog/AdjustTimeDialog.cs:118 ../src/f-spot.glade.h:120
+#: ../src/UI.Dialog/AdjustTimeDialog.cs:118 ../src/f-spot.glade.h:115
 #, csharp-format
 msgid "Shift all photos by {0}"
 msgstr ""
 
+#: ../src/UI.Dialog/DateRangeDialog.cs:102
+msgid "Today"
+msgstr "ಇಂದು"
+
+#: ../src/UI.Dialog/DateRangeDialog.cs:104
+msgid "Yesterday"
+msgstr "ನಿನ್ನೆ"
+
+#: ../src/UI.Dialog/DateRangeDialog.cs:106
+msgid "Last 7 days"
+msgstr "ಕೊನೆಯ 7 ದಿನಗಳು"
+
+#: ../src/UI.Dialog/DateRangeDialog.cs:108
+msgid "Last 30 days"
+msgstr "ಕೊನೆಯ 30 ದಿನಗಳು"
+
+#: ../src/UI.Dialog/DateRangeDialog.cs:110
+msgid "Last 90 days"
+msgstr "ಕೊನೆಯ 90 ದಿನಗಳು"
+
+#: ../src/UI.Dialog/DateRangeDialog.cs:112
+msgid "Last 360 days"
+msgstr "ಕೊನೆಯ 360 ದಿನಗಳು"
+
+#: ../src/UI.Dialog/DateRangeDialog.cs:114
+msgid "Current Week (Mon-Sun)"
+msgstr "ಪ್ರಸಕ್ತ ವಾರ (ಸೋಮ-ಭಾನು)"
+
+#: ../src/UI.Dialog/DateRangeDialog.cs:116
+msgid "Previous Week (Mon-Sun)"
+msgstr "ಹಿಂದಿನ ವಾರ (ಸೋಮ-ಭಾನು)"
+
+#: ../src/UI.Dialog/DateRangeDialog.cs:132
+#: ../src/UI.Dialog/ui/PreferenceDialog.glade.h:11
+msgid "All Images"
+msgstr "ಎಲ್ಲಾ ಚಿತ್ರಗಳು"
+
+#: ../src/UI.Dialog/DateRangeDialog.cs:134
+msgid "Customized Range"
+msgstr "ಇಚ್ಛೆಗೆ ತಕ್ಕಂತೆ ಬದಲಾಯಿಸಲಾದ ವ್ಯಾಪ್ತಿ"
+
 #: ../src/UI.Dialog/ExceptionDialog.cs:24
 msgid "F-Spot Encountered a Fatal Error"
-msgstr ""
+msgstr "F-Spot ಗೆ ಒಂದು ಮಾರಕ ದೋಷ ಎದುರಾಗಿದೆ"
 
 #: ../src/UI.Dialog/ExceptionDialog.cs:60
 msgid "Error Details"
-msgstr ""
+msgstr "ದೋಷದ ವಿವರಗಳು"
 
 #: ../src/UI.Dialog/ExceptionDialog.cs:104
 msgid "An unhandled exception was thrown: "
@@ -1807,7 +1787,7 @@ msgstr ""
 
 #: ../src/UI.Dialog/RepairDbDialog.cs:20
 msgid "Error loading database."
-msgstr ""
+msgstr "ದತ್ತಸಂಚಯವನ್ನು ಲೋಡ್ ಮಾಡುವಲ್ಲಿ ದೋಷ ಉಂಟಾಗಿದೆ."
 
 #: ../src/UI.Dialog/RepairDbDialog.cs:21
 #, csharp-format
@@ -1826,19 +1806,19 @@ msgstr "ಅನುಪಾತ"
 
 #: ../src/UI.Dialog/ThreadProgressDialog.cs:49
 msgid "Retry"
-msgstr ""
+msgstr "ಮರಳಿ ಪ್ರಯತ್ನಿಸು"
 
 #: ../src/UI.Dialog/ui/PreferenceDialog.glade.h:1
 msgid "<b>Color Management</b>"
-msgstr ""
+msgstr "<b>ಬಣ್ಣದ ನಿರ್ವಹಣೆ</b>"
 
 #: ../src/UI.Dialog/ui/PreferenceDialog.glade.h:2
 msgid "<b>Import Settings</b>"
-msgstr ""
+msgstr "<b>ಸಿದ್ಧತೆಗಳನ್ನು ಆಮದು ಮಾಡಿಕೊ</b>"
 
 #: ../src/UI.Dialog/ui/PreferenceDialog.glade.h:3
 msgid "<b>Metadata</b>"
-msgstr ""
+msgstr "<b>ಮೆಟಾಡೇಟಾ</b>"
 
 #: ../src/UI.Dialog/ui/PreferenceDialog.glade.h:4
 msgid "<b>Screensaver</b>"
@@ -1867,20 +1847,20 @@ msgid ""
 msgstr ""
 
 #: ../src/UI.Dialog/ui/PreferenceDialog.glade.h:10
-msgid "<small><i>You'll have to restart f-spot to load the new theme.</i></small>"
+msgid "<small><i>You'll have to restart F-Spot to load the new theme.</i></small>"
 msgstr ""
 
 #: ../src/UI.Dialog/ui/PreferenceDialog.glade.h:12
 msgid "Custom Theme"
-msgstr ""
+msgstr "ಇಚ್ಛೆಯ ಪರಿಸರ ವಿನ್ಯಾಸ"
 
 #: ../src/UI.Dialog/ui/PreferenceDialog.glade.h:15
 msgid "From List:"
-msgstr ""
+msgstr "ಪಟ್ಟಿಯಿಂದ:"
 
 #: ../src/UI.Dialog/ui/PreferenceDialog.glade.h:16
 msgid "From gtkrc File:"
-msgstr ""
+msgstr "gtkrc ಕಡತದಿಂದ:"
 
 #: ../src/UI.Dialog/ui/PreferenceDialog.glade.h:17
 msgid "Images tagged with:"
@@ -1888,9 +1868,9 @@ msgstr ""
 
 #: ../src/UI.Dialog/ui/PreferenceDialog.glade.h:18
 msgid "Make F-Spot your screensaver"
-msgstr ""
+msgstr "F-Spot ಅನ್ನು ನಿಮ್ಮ ತೆರೆಚಿತ್ರವನ್ನಾಗಿ ಮಾಡಿ"
 
-#: ../src/UI.Dialog/ui/PreferenceDialog.glade.h:19 ../src/f-spot.glade.h:102
+#: ../src/UI.Dialog/ui/PreferenceDialog.glade.h:19 ../src/f-spot.glade.h:98
 msgid "Preferences"
 msgstr "ಆದ್ಯತೆಗಳು"
 
@@ -1900,7 +1880,7 @@ msgstr "ಒಂದು ಕಡತಕೋಶವನ್ನು ಆಯ್ಕೆ ಮಾಡ
 
 #: ../src/UI.Dialog/ui/PreferenceDialog.glade.h:21
 msgid "Select A gtkrc File"
-msgstr ""
+msgstr "ಒಂದು gtkrc ಕಡತವನ್ನು ಆಯ್ಕೆ ಮಾಡು"
 
 #: ../src/UI.Dialog/ui/PreferenceDialog.glade.h:22
 msgid "System Theme"
@@ -1924,7 +1904,7 @@ msgstr ""
 
 #: ../src/Updater.cs:528
 msgid "Updating F-Spot Database"
-msgstr ""
+msgstr "F-Spot ದತ್ತಸಂಚಯವನ್ನು ಅಪ್‌ಡೇಟ್ ಮಾಡಲಾಗುತ್ತಿದೆ"
 
 #: ../src/Updater.cs:529
 msgid ""
@@ -1952,11 +1932,15 @@ msgstr "ಪುಟದ ಸಿದ್ಧತೆ"
 #: ../src/Widgets/CustomPrintWidget.cs:112
 #, csharp-format
 msgid "Paper Size: {0} x {1} mm"
+msgstr "ಕಾಗದದ ಗಾತ್ರ: {0} x {1} mm"
+
+#: ../src/Widgets/CustomPrintWidget.cs:109
+msgid "Set Page Size and Orientation"
 msgstr ""
 
 #: ../src/Widgets/CustomPrintWidget.cs:124
 msgid "Photos per page"
-msgstr ""
+msgstr "ಪ್ರತಿ ಪುಟದಲ್ಲಿನ ಫೋಟೊಗಳು"
 
 #. ppp1.Toggled += TriggerChanged;
 #. ppp2.Toggled += TriggerChanged;
@@ -1972,7 +1956,7 @@ msgstr ""
 
 #: ../src/Widgets/CustomPrintWidget.cs:145
 msgid "Full Page (no margin)"
-msgstr ""
+msgstr "ಸಂಪೂರ್ಣ ಪುಟ (ಯಾವುದೆ ಅಂಚು ಇಲ್ಲ)"
 
 #. Note for translators: "Zoom" is a Fit Mode
 #: ../src/Widgets/CustomPrintWidget.cs:149
@@ -1989,8 +1973,9 @@ msgid "Scaled"
 msgstr "ಪದರವನ್ನೊಳಗೊಂಡ"
 
 #: ../src/Widgets/CustomPrintWidget.cs:157
+#, fuzzy
 msgid "White borders"
-msgstr ""
+msgstr "ಬಿಳಿ ಅಂಚುಗಳು"
 
 #: ../src/Widgets/CustomPrintWidget.cs:161
 msgid "Custom Text: "
@@ -2000,24 +1985,26 @@ msgstr ""
 msgid "Edit"
 msgstr "ಸಂಪಾದಿಸು"
 
-#: ../src/Widgets/EditorPage.cs:201
+#: ../src/Widgets/EditorPage.cs:204
 #: ../extensions/Exporters/ZipExport/ZipExport.cs:46
+#: ../extensions/Tools/MetaPixel/MetaPixel.cs:45
+#: ../extensions/Tools/PictureTile/PictureTile.cs:51
 msgid "No selection available"
 msgstr ""
 
-#: ../src/Widgets/EditorPage.cs:202
+#: ../src/Widgets/EditorPage.cs:205
 msgid ""
 "This tool requires an active selection. Please select a region of the photo "
 "and try the operation again"
 msgstr ""
 
-#: ../src/Widgets/EditorPage.cs:220
+#: ../src/Widgets/EditorPage.cs:223
 msgid "Error saving adjusted photo"
 msgid_plural "Error saving adjusted photos"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../src/Widgets/EditorPage.cs:222
+#: ../src/Widgets/EditorPage.cs:225
 #, csharp-format
 msgid ""
 "Received exception \"{0}\". Note that you have to develop RAW files into "
@@ -2028,7 +2015,7 @@ msgstr ""
 msgid "Find:"
 msgstr "ಹುಡುಕು:"
 
-#: ../src/Widgets/FindBar.cs:177 ../src/f-spot.glade.h:212
+#: ../src/Widgets/FindBar.cs:177 ../src/f-spot.glade.h:207
 msgid "and"
 msgstr "ಮತ್ತು"
 
@@ -2076,8 +2063,9 @@ msgstr ""
 
 #: ../src/Widgets/InfoBox.cs:603
 #, csharp-format
+#, fuzzy
 msgid "{0} Photos"
-msgstr ""
+msgstr "{0} ಫೋಟೊಗಳು"
 
 #. Note for translators: {0} is a date, {1} and {2} are times.
 #: ../src/Widgets/InfoBox.cs:623
@@ -2099,16 +2087,19 @@ msgid "(At least one File not found)"
 msgstr ""
 
 #: ../src/Widgets/InfoBox.cs:772
+#, fuzzy
 msgid "Show Photo Name"
-msgstr ""
+msgstr "ಫೋಟೊ ಹೆಸರನ್ನು ತೋರಿಸು"
 
 #: ../src/Widgets/InfoBox.cs:781
+#, fuzzy
 msgid "Show Date"
-msgstr ""
+msgstr "ದಿನಾಂಕವನ್ನು ತೋರಿಸು"
 
 #: ../src/Widgets/InfoBox.cs:790
+#, fuzzy
 msgid "Show Size"
-msgstr ""
+msgstr "ಗಾತ್ರವನ್ನು ತೋರಿಸು"
 
 #: ../src/Widgets/InfoBox.cs:799
 msgid "Show Exposure"
@@ -2119,12 +2110,14 @@ msgid "Show Focal Length"
 msgstr ""
 
 #: ../src/Widgets/InfoBox.cs:817
+#, fuzzy
 msgid "Show Camera"
-msgstr ""
+msgstr "ಕ್ಯಾಮೆರವನ್ನು ತೋರಿಸು"
 
 #: ../src/Widgets/InfoBox.cs:826
+#, fuzzy
 msgid "Show File Size"
-msgstr ""
+msgstr "ಕಡತದ ಗಾತ್ರವನ್ನು ತೋರಿಸು"
 
 #: ../src/Widgets/MetadataDisplay.cs:23
 msgid "Metadata"
@@ -2134,33 +2127,33 @@ msgstr "ಮೆಟಾಡಾಟ"
 msgid "Extended Metadata"
 msgstr ""
 
-#: ../src/Widgets/MetadataDisplay.cs:225
+#: ../src/Widgets/MetadataDisplay.cs:227
 msgid "Picasaweb"
 msgstr ""
 
-#: ../src/Widgets/MetadataDisplay.cs:227
+#: ../src/Widgets/MetadataDisplay.cs:229
 msgid "SmugMug"
 msgstr ""
 
-#: ../src/Widgets/MetadataDisplay.cs:229
+#: ../src/Widgets/MetadataDisplay.cs:231
 msgid "Gallery2"
 msgstr ""
 
 #. clear Extended Metadata
-#: ../src/Widgets/MetadataDisplay.cs:389
+#: ../src/Widgets/MetadataDisplay.cs:391
 msgid "No Extended Metadata Available"
 msgstr ""
 
-#: ../src/Widgets/MetadataDisplay.cs:407
+#: ../src/Widgets/MetadataDisplay.cs:409
 msgid "No active photo"
 msgstr ""
 
-#: ../src/Widgets/MetadataDisplay.cs:409
+#: ../src/Widgets/MetadataDisplay.cs:411
 #, csharp-format
 msgid "The photo \"{0}\" does not exist"
 msgstr ""
 
-#: ../src/Widgets/MetadataDisplay.cs:412
+#: ../src/Widgets/MetadataDisplay.cs:414
 msgid "No metadata available"
 msgstr ""
 
@@ -2172,20 +2165,20 @@ msgstr ""
 msgid "Rating:"
 msgstr "ರೇಟಿಂಗ್:"
 
-#: ../src/XmpTagsImporter.cs:89
+#: ../src/XmpTagsImporter.cs:90
 #: ../extensions/Exporters/FacebookExport/FacebookExport.glade.h:6
 msgid "Location"
 msgstr "ಸ್ಥಳ"
 
-#: ../src/XmpTagsImporter.cs:90
+#: ../src/XmpTagsImporter.cs:91
 msgid "Country"
 msgstr "ದೇಶ"
 
-#: ../src/XmpTagsImporter.cs:91
+#: ../src/XmpTagsImporter.cs:92
 msgid "City"
 msgstr "ಊರು"
 
-#: ../src/XmpTagsImporter.cs:92
+#: ../src/XmpTagsImporter.cs:93
 msgid "State"
 msgstr "ಸ್ಥಿತಿ"
 
@@ -2240,8 +2233,9 @@ msgid "<b>Account</b>"
 msgstr ""
 
 #: ../src/f-spot.glade.h:13
+#, fuzzy
 msgid "<b>Action</b>"
-msgstr ""
+msgstr "<b>ಕಾರ್ಯ</b>"
 
 #: ../src/f-spot.glade.h:14
 #: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:1
@@ -2260,69 +2254,57 @@ msgid "<b>Destination</b>"
 msgstr ""
 
 #: ../src/f-spot.glade.h:17
-msgid "<b>End Date</b>"
-msgstr ""
-
-#: ../src/f-spot.glade.h:18
 msgid "<b>From External Photo</b>"
 msgstr ""
 
-#: ../src/f-spot.glade.h:19
+#: ../src/f-spot.glade.h:18
 msgid "<b>From Photo</b>"
 msgstr ""
 
-#: ../src/f-spot.glade.h:20
+#: ../src/f-spot.glade.h:19
 #: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:2
 msgid "<b>Gallery</b>"
 msgstr ""
 
-#: ../src/f-spot.glade.h:21
+#: ../src/f-spot.glade.h:20
 msgid "<b>Image Interpolation</b>"
 msgstr ""
 
-#: ../src/f-spot.glade.h:22
+#: ../src/f-spot.glade.h:21
 msgid "<b>Max Rating</b>"
 msgstr ""
 
-#: ../src/f-spot.glade.h:23
+#: ../src/f-spot.glade.h:22
 msgid "<b>Min Rating</b>"
 msgstr ""
 
-#: ../src/f-spot.glade.h:24
+#: ../src/f-spot.glade.h:23
 #: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:2
 #: ../extensions/Exporters/FolderExport/FolderExport.glade.h:5
 #: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:3
 #: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:2
 #: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:2
-#: ../extensions/Exporters/TabbloExport/TabbloExport.glade.h:1
+#: ../extensions/Exporters/TabbloExport/TabbloExport.glade.h:2
 msgid "<b>Photos</b>"
 msgstr ""
 
-#: ../src/f-spot.glade.h:25
+#: ../src/f-spot.glade.h:24
 msgid "<b>Predefined</b>"
 msgstr ""
 
-#: ../src/f-spot.glade.h:26
+#: ../src/f-spot.glade.h:25
 msgid "<b>Preview</b>"
 msgstr "<b>ಮುನ್ನೋಟ</b>"
 
-#: ../src/f-spot.glade.h:27
+#: ../src/f-spot.glade.h:26
 msgid "<b>Reference Photo</b>"
 msgstr ""
 
-#: ../src/f-spot.glade.h:28
-msgid "<b>Select period</b>"
-msgstr ""
-
-#: ../src/f-spot.glade.h:29
+#: ../src/f-spot.glade.h:27
 msgid "<b>Size</b>"
 msgstr "<b>ಗಾತ್ರ</b>"
 
-#: ../src/f-spot.glade.h:30
-msgid "<b>Start Date</b>"
-msgstr ""
-
-#: ../src/f-spot.glade.h:31
+#: ../src/f-spot.glade.h:28
 #: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:3
 #: ../extensions/Exporters/FolderExport/FolderExport.glade.h:6
 #: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:4
@@ -2331,34 +2313,34 @@ msgstr ""
 msgid "<b>Style</b>"
 msgstr "<b>ಶೈಲಿ</b>"
 
-#: ../src/f-spot.glade.h:32
+#: ../src/f-spot.glade.h:29
 msgid "<b>Summary</b>"
 msgstr ""
 
-#: ../src/f-spot.glade.h:33
+#: ../src/f-spot.glade.h:30
 msgid "<b>Transparent Parts</b>"
 msgstr "<b>ಪಾರದರ್ಶಕ ಭಾಗಗಳು</b>"
 
-#: ../src/f-spot.glade.h:34
+#: ../src/f-spot.glade.h:31
 msgid "<b>View all pictures imported</b>"
 msgstr ""
 
-#: ../src/f-spot.glade.h:35
+#: ../src/f-spot.glade.h:32
 msgid "<b>_White Balance</b>"
 msgstr ""
 
-#: ../src/f-spot.glade.h:36
+#: ../src/f-spot.glade.h:33
 msgid "<small></small>"
 msgstr ""
 
-#: ../src/f-spot.glade.h:37
+#: ../src/f-spot.glade.h:34
 msgid ""
 "<small><i>Enable this to allow interpolation on zoomed images. You shouldn't "
 "disable this for viewing photos, but disabling the interpolation could be "
 "usefull in icon design.</i></small>"
 msgstr ""
 
-#: ../src/f-spot.glade.h:38
+#: ../src/f-spot.glade.h:35
 msgid ""
 "<small><i>You can choose how to display transparent parts in images. This "
 "option has no effect on photos, but setting this as check pattern or custom "
@@ -2366,43 +2348,43 @@ msgid ""
 "parts.</i></small>"
 msgstr ""
 
-#: ../src/f-spot.glade.h:39
+#: ../src/f-spot.glade.h:36
 msgid "Adjust Time"
 msgstr ""
 
-#: ../src/f-spot.glade.h:40
+#: ../src/f-spot.glade.h:37
 msgid "Adjust _Time..."
 msgstr ""
 
-#: ../src/f-spot.glade.h:41
+#: ../src/f-spot.glade.h:38
 msgid "Adjusted date: "
 msgstr ""
 
-#: ../src/f-spot.glade.h:42
+#: ../src/f-spot.glade.h:39
 msgid "Arrange _by"
 msgstr ""
 
-#: ../src/f-spot.glade.h:43
+#: ../src/f-spot.glade.h:40
 msgid "As _background"
 msgstr "ಹಿನ್ನಲೆಯಾಗಿ(_b)"
 
-#: ../src/f-spot.glade.h:44
+#: ../src/f-spot.glade.h:41
 msgid "As _custom color: "
 msgstr ""
 
-#: ../src/f-spot.glade.h:45
+#: ../src/f-spot.glade.h:42
 msgid "As check _pattern"
 msgstr "ಪರೀಕ್ಷಾ ವಿನ್ಯಾಸವಾಗಿ(_p)"
 
-#: ../src/f-spot.glade.h:46
+#: ../src/f-spot.glade.h:43
 msgid "Attach Tags:"
 msgstr ""
 
-#: ../src/f-spot.glade.h:47
+#: ../src/f-spot.glade.h:44
 msgid "Attach tag:"
 msgstr ""
 
-#: ../src/f-spot.glade.h:48
+#: ../src/f-spot.glade.h:45
 #: ../extensions/Exporters/CDExport/CDExport.glade.h:3
 #: ../extensions/Exporters/FolderExport/FolderExport.glade.h:7
 #: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:7
@@ -2410,514 +2392,513 @@ msgstr ""
 msgid "Autorotate"
 msgstr ""
 
-#: ../src/f-spot.glade.h:50
+#: ../src/f-spot.glade.h:47
 msgid "By _Date"
 msgstr ""
 
-#: ../src/f-spot.glade.h:51
+#: ../src/f-spot.glade.h:48
 msgid "By _Import Roll"
 msgstr ""
 
-#: ../src/f-spot.glade.h:52
+#: ../src/f-spot.glade.h:49
 msgid "By _Rating"
 msgstr ""
 
-#: ../src/f-spot.glade.h:53
+#: ../src/f-spot.glade.h:50
+#, fuzzy
 msgid "CD"
-msgstr ""
+msgstr "CD"
 
-#: ../src/f-spot.glade.h:54
+#: ../src/f-spot.glade.h:51
 msgid "C_ontrast:"
 msgstr ""
 
-#: ../src/f-spot.glade.h:55
+#: ../src/f-spot.glade.h:52
 msgid "Camera Selection"
 msgstr ""
 
-#: ../src/f-spot.glade.h:56
-msgid "Cancel, do not change the current timeline. "
-msgstr ""
-
-#: ../src/f-spot.glade.h:57
+#: ../src/f-spot.glade.h:53
 msgid "Copy Locat_ion"
 msgstr ""
 
-#: ../src/f-spot.glade.h:58
+#: ../src/f-spot.glade.h:54
 msgid "Copy files to the Photos folder"
 msgstr ""
 
-#: ../src/f-spot.glade.h:59
+#: ../src/f-spot.glade.h:55
 msgid "Create Mail"
 msgstr ""
 
-#: ../src/f-spot.glade.h:60
+#: ../src/f-spot.glade.h:56
 msgid "Create New _Tag..."
 msgstr ""
 
-#: ../src/f-spot.glade.h:61
+#: ../src/f-spot.glade.h:57
 msgid "Create _New Version..."
 msgstr ""
 
-#: ../src/f-spot.glade.h:62
+#: ../src/f-spot.glade.h:58
+msgid "Create _icon for this tag when first used"
+msgstr ""
+
+#: ../src/f-spot.glade.h:59
 msgid "Create a mail with the selected photos (possibly resized) attached"
 msgstr ""
 
-#: ../src/f-spot.glade.h:63
+#: ../src/f-spot.glade.h:60
 msgid "Current date:"
 msgstr ""
 
-#: ../src/f-spot.glade.h:64
+#: ../src/f-spot.glade.h:61
 msgid "Detect duplicates"
 msgstr ""
 
-#: ../src/f-spot.glade.h:65
+#: ../src/f-spot.glade.h:62
 msgid "Display File _Names"
 msgstr ""
 
-#: ../src/f-spot.glade.h:66
+#: ../src/f-spot.glade.h:63
 msgid "Display only those photos that were imported in specified Rolls."
 msgstr ""
 
-#: ../src/f-spot.glade.h:67
+#: ../src/f-spot.glade.h:64
 msgid "Do not send a mail"
 msgstr ""
 
-#: ../src/f-spot.glade.h:68
+#: ../src/f-spot.glade.h:65
 msgid "E-_Mail:"
 msgstr ""
 
-#: ../src/f-spot.glade.h:69
+#: ../src/f-spot.glade.h:66
 msgid "E_xport titles and comments"
 msgstr ""
 
-#: ../src/f-spot.glade.h:70
+#: ../src/f-spot.glade.h:67
 msgid "Edit Tag Icon"
 msgstr ""
 
-#: ../src/f-spot.glade.h:71
+#: ../src/f-spot.glade.h:68
 msgid "Edit icon"
 msgstr ""
 
-#: ../src/f-spot.glade.h:72
+#: ../src/f-spot.glade.h:69
 msgid "Estimated new size"
 msgstr ""
 
-#: ../src/f-spot.glade.h:73
+#: ../src/f-spot.glade.h:70
 #: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:6
 #: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:8
 #: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:9
 #: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:6
-#: ../extensions/Exporters/TabbloExport/TabbloExport.glade.h:3
+#: ../extensions/Exporters/TabbloExport/TabbloExport.glade.h:5
 msgid "Export"
 msgstr "ರಫ್ತುಮಾಡು"
 
-#: ../src/f-spot.glade.h:74
+#: ../src/f-spot.glade.h:71
 msgid "Extra large"
 msgstr ""
 
-#: ../src/f-spot.glade.h:75
+#: ../src/f-spot.glade.h:72
 msgid "F-Spot"
 msgstr ""
 
-#: ../src/f-spot.glade.h:76
+#: ../src/f-spot.glade.h:73
 msgid "F-Spot View"
 msgstr ""
 
-#: ../src/f-spot.glade.h:78
+#: ../src/f-spot.glade.h:75
 msgid "Filter on selected rolls"
 msgstr ""
 
-#: ../src/f-spot.glade.h:79
+#: ../src/f-spot.glade.h:76
 msgid "Fin_d"
 msgstr ""
 
-#: ../src/f-spot.glade.h:80
+#: ../src/f-spot.glade.h:77
 msgid "G_allery:"
 msgstr ""
 
-#: ../src/f-spot.glade.h:81
+#: ../src/f-spot.glade.h:78
 msgid "Gallery"
 msgstr ""
 
 #. Translators: this string means 'source of import'
-#: ../src/f-spot.glade.h:84
+#: ../src/f-spot.glade.h:81
 msgid "Import Source:"
 msgstr ""
 
-#: ../src/f-spot.glade.h:85
+#: ../src/f-spot.glade.h:82
 msgid "Include subfolders"
 msgstr ""
 
-#: ../src/f-spot.glade.h:86
+#: ../src/f-spot.glade.h:83
 msgid "Large"
 msgstr "ದೊಡ್ಡದಾದ"
 
-#: ../src/f-spot.glade.h:87
+#: ../src/f-spot.glade.h:84
 msgid "Manage _Extensions"
 msgstr ""
 
-#: ../src/f-spot.glade.h:88
+#: ../src/f-spot.glade.h:85
 msgid "Manage your custom selection ratios"
 msgstr ""
 
-#: ../src/f-spot.glade.h:89
+#: ../src/f-spot.glade.h:86
 msgid "Medium"
 msgstr "ಮಧ್ಯಮ"
 
-#: ../src/f-spot.glade.h:91
+#: ../src/f-spot.glade.h:88
 msgid "No _image"
 msgstr ""
 
-#: ../src/f-spot.glade.h:92
+#: ../src/f-spot.glade.h:89
 msgid "Number of photos in selected rolls:"
 msgstr ""
 
-#: ../src/f-spot.glade.h:93
+#: ../src/f-spot.glade.h:90
 msgid "Number of pictures"
 msgstr ""
 
-#: ../src/f-spot.glade.h:94
-msgid "Only photos taken within these dates will be displayed."
-msgstr ""
-
-#: ../src/f-spot.glade.h:95
+#: ../src/f-spot.glade.h:91
 msgid "Open _Folder..."
 msgstr ""
 
-#: ../src/f-spot.glade.h:97
+#: ../src/f-spot.glade.h:93
 msgid "Original size (possible very large file size)"
 msgstr ""
 
-#: ../src/f-spot.glade.h:98
+#: ../src/f-spot.glade.h:94
 msgid "P_arent Tag:"
 msgstr ""
 
-#: ../src/f-spot.glade.h:99
+#: ../src/f-spot.glade.h:95
 msgid "Page Set_up..."
 msgstr "ಪುಟದ ಸಿದ್ಧತೆಗಳು(_u)..."
 
-#: ../src/f-spot.glade.h:100
+#: ../src/f-spot.glade.h:96
 msgid "Pause"
 msgstr "ವಿರಮಿಸು"
 
-#: ../src/f-spot.glade.h:101
+#: ../src/f-spot.glade.h:97
 msgid "Photo 0 of 0"
 msgstr ""
 
-#: ../src/f-spot.glade.h:104
+#: ../src/f-spot.glade.h:100
 msgid "Re_fresh Thumbnail"
 msgstr ""
 
-#: ../src/f-spot.glade.h:106
+#: ../src/f-spot.glade.h:102
 msgid "Repair"
 msgstr ""
 
-#: ../src/f-spot.glade.h:109
+#: ../src/f-spot.glade.h:105
 msgid "Select Photos to Copy From Camera..."
 msgstr ""
 
-#: ../src/f-spot.glade.h:111
+#: ../src/f-spot.glade.h:107
 msgid "Select _None"
 msgstr ""
 
-#: ../src/f-spot.glade.h:112
+#: ../src/f-spot.glade.h:108
 msgid "Select a Tag..."
 msgstr ""
 
-#: ../src/f-spot.glade.h:113
+#: ../src/f-spot.glade.h:109
 msgid "Select the camera from which you want to transfer files"
 msgstr ""
 
-#: ../src/f-spot.glade.h:114
+#: ../src/f-spot.glade.h:110
 msgid "Selected Camera: "
 msgstr ""
 
-#: ../src/f-spot.glade.h:115
+#: ../src/f-spot.glade.h:111
 msgid "Selection Constraints"
 msgstr ""
 
-#: ../src/f-spot.glade.h:116
+#: ../src/f-spot.glade.h:112
 msgid "Send by _Mail..."
 msgstr ""
 
-#: ../src/f-spot.glade.h:117
+#: ../src/f-spot.glade.h:113
 msgid "Set Rating Filter"
 msgstr ""
 
-#: ../src/f-spot.glade.h:118
+#: ../src/f-spot.glade.h:114
 msgid "Set as _Background"
 msgstr "ಹಿನ್ನಲೆಯಾಗಿ ಬಳಸು(_B)"
 
-#: ../src/f-spot.glade.h:119
-msgid "Set date range"
-msgstr ""
-
-#: ../src/f-spot.glade.h:121
+#: ../src/f-spot.glade.h:116
+#, fuzzy
 msgid "Show all photos."
-msgstr ""
+msgstr "ಎಲ್ಲಾ ಫೋಟೊಗಳನ್ನು ತೋರಿಸು."
 
-#: ../src/f-spot.glade.h:122
+#: ../src/f-spot.glade.h:117
 msgid "Show or hide the side pane"
 msgstr "ಬಲಬದಿಯ ಫಲಕವನ್ನು ಕಾಣಿಸು ಅಥವ ಅಡಗಿಸು"
 
-#: ../src/f-spot.glade.h:123
+#: ../src/f-spot.glade.h:118
 msgid "Show or hide the toolbar"
 msgstr "ಉಪಕರಣಪಟ್ಟಿಯನ್ನು ಕಾಣಿಸು ಅಥವ ಅಡಗಿಸು"
 
-#: ../src/f-spot.glade.h:124
+#: ../src/f-spot.glade.h:119
 msgid "Side _pane"
 msgstr ""
 
-#: ../src/f-spot.glade.h:125
+#: ../src/f-spot.glade.h:120
 msgid "Side_bar"
 msgstr ""
 
-#: ../src/f-spot.glade.h:126
+#: ../src/f-spot.glade.h:121
 msgid "Small"
 msgstr "ಚಿಕ್ಕದಾದ"
 
-#: ../src/f-spot.glade.h:127
+#: ../src/f-spot.glade.h:122
 msgid "Space all photos by"
 msgstr ""
 
-#: ../src/f-spot.glade.h:128
+#: ../src/f-spot.glade.h:123
 msgid ""
 "Specify if an original size picture should be rotated or not. Smaller sizes "
 "are automatically rotated."
 msgstr ""
 
-#: ../src/f-spot.glade.h:129
+#: ../src/f-spot.glade.h:124
 msgid "Strip image _metadata"
 msgstr ""
 
-#: ../src/f-spot.glade.h:130
+#: ../src/f-spot.glade.h:125
 msgid "T_ags"
 msgstr ""
 
-#: ../src/f-spot.glade.h:131
+#: ../src/f-spot.glade.h:126
 #: ../extensions/Exporters/FolderExport/FolderExport.cs:1179
 #: ../extensions/Exporters/FolderExport/FolderExport.cs:1180
 msgid "Tags: "
 msgstr ""
 
 #. Note for translators: meant as Temperature
-#: ../src/f-spot.glade.h:133
+#: ../src/f-spot.glade.h:128
 msgid "Te_mp:"
 msgstr ""
 
-#: ../src/f-spot.glade.h:134
+#: ../src/f-spot.glade.h:129
 msgid "Thumbnail _elements"
 msgstr ""
 
-#: ../src/f-spot.glade.h:135
+#: ../src/f-spot.glade.h:130
+#, fuzzy
 msgid "Tiny"
-msgstr ""
+msgstr "ಅತ್ಯಂತ ಚಿಕ್ಕದಾದ"
 
-#: ../src/f-spot.glade.h:136
+#: ../src/f-spot.glade.h:131
 msgid "Too_lbar"
 msgstr ""
 
-#: ../src/f-spot.glade.h:137
+#: ../src/f-spot.glade.h:132
 msgid "Total original size"
 msgstr ""
 
-#: ../src/f-spot.glade.h:138
+#: ../src/f-spot.glade.h:133
 msgid "View"
 msgstr "ನೋಟ"
 
-#: ../src/f-spot.glade.h:139
+#: ../src/f-spot.glade.h:134
 msgid "Zoom _in"
 msgstr ""
 
-#: ../src/f-spot.glade.h:140
+#: ../src/f-spot.glade.h:135
 msgid "Zoom _out"
 msgstr ""
 
-#: ../src/f-spot.glade.h:141
+#: ../src/f-spot.glade.h:136
 msgid "Zoom in"
 msgstr "ಹಿಗ್ಗಿಸು"
 
-#: ../src/f-spot.glade.h:142
+#: ../src/f-spot.glade.h:137
 msgid "Zoom out"
 msgstr "ಕುಗ್ಗಿಸು"
 
-#: ../src/f-spot.glade.h:144
+#: ../src/f-spot.glade.h:139
 msgid "_Attach Tag to Selection"
 msgstr ""
 
-#: ../src/f-spot.glade.h:145
+#: ../src/f-spot.glade.h:140
 msgid "_Brightness:"
 msgstr "ಪ್ರಕಾಶತೆ(_B):"
 
-#: ../src/f-spot.glade.h:147
+#: ../src/f-spot.glade.h:142
 msgid "_Clear Rating Filter"
 msgstr ""
 
-#: ../src/f-spot.glade.h:148
+#: ../src/f-spot.glade.h:143
 msgid "_Clear Roll Filter"
 msgstr ""
 
-#: ../src/f-spot.glade.h:149
+#: ../src/f-spot.glade.h:144
 msgid "_Components"
 msgstr ""
 
-#: ../src/f-spot.glade.h:150
+#: ../src/f-spot.glade.h:145
 msgid "_Contents"
 msgstr "ವಿಷಯಗಳು(_C)"
 
-#: ../src/f-spot.glade.h:151
+#: ../src/f-spot.glade.h:146
 #: ../extensions/Exporters/ZipExport/ZipExport.glade.h:1
 msgid "_Create"
 msgstr "ನಿರ್ಮಿಸು(_C)"
 
-#: ../src/f-spot.glade.h:152
+#: ../src/f-spot.glade.h:147
 msgid "_Create Mail"
 msgstr ""
 
-#: ../src/f-spot.glade.h:153
+#: ../src/f-spot.glade.h:148
+#, fuzzy
 msgid "_Dates"
-msgstr ""
+msgstr "ದಿನಾಂಕಗಳು(_D)"
 
-#: ../src/f-spot.glade.h:155
+#: ../src/f-spot.glade.h:150
 msgid "_Delete Selected Tag"
 msgstr ""
 
-#: ../src/f-spot.glade.h:156
+#: ../src/f-spot.glade.h:151
 msgid "_Delete Version"
 msgstr ""
 
-#: ../src/f-spot.glade.h:157
+#: ../src/f-spot.glade.h:152
 msgid "_Edit"
 msgstr "ಸಂಪಾದನೆ(_E)"
 
-#: ../src/f-spot.glade.h:158
+#: ../src/f-spot.glade.h:153
 msgid "_Edit Selected Tag..."
 msgstr ""
 
-#: ../src/f-spot.glade.h:159
+#: ../src/f-spot.glade.h:154
 #: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:15
 #: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:12
 msgid "_Export"
 msgstr ""
 
-#: ../src/f-spot.glade.h:160
+#: ../src/f-spot.glade.h:155
 #: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:16
 #: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:20
 msgid "_Export tags"
 msgstr ""
 
-#: ../src/f-spot.glade.h:161
+#: ../src/f-spot.glade.h:156
 msgid "_Export to"
 msgstr ""
 
-#: ../src/f-spot.glade.h:162
+#: ../src/f-spot.glade.h:157
 #: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:15
 #: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:21
 #: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:13
 msgid "_Export to Album:"
 msgstr ""
 
-#: ../src/f-spot.glade.h:163
+#: ../src/f-spot.glade.h:158
 msgid "_Exposure:"
 msgstr ""
 
-#: ../src/f-spot.glade.h:164
+#: ../src/f-spot.glade.h:159
+#, fuzzy
 msgid "_Filmstrip"
-msgstr ""
+msgstr "_Filmstrip"
 
-#: ../src/f-spot.glade.h:165
+#: ../src/f-spot.glade.h:160
+#, fuzzy
 msgid "_Flickr"
-msgstr ""
+msgstr "_Flickr"
 
-#: ../src/f-spot.glade.h:166
+#: ../src/f-spot.glade.h:161
 msgid "_Folder"
 msgstr ""
 
-#: ../src/f-spot.glade.h:167
+#: ../src/f-spot.glade.h:162
 msgid "_Fullscreen"
 msgstr "ಪೂರ್ಣತೆರೆ(_F)"
 
-#: ../src/f-spot.glade.h:168
+#: ../src/f-spot.glade.h:163
+#, fuzzy
 msgid "_Gallery"
-msgstr ""
+msgstr "ಗ್ಯಾಲರಿ(_G)"
 
-#: ../src/f-spot.glade.h:169
+#: ../src/f-spot.glade.h:164
 msgid "_Help"
 msgstr "ಸಹಾಯ(_H)"
 
-#: ../src/f-spot.glade.h:170
+#: ../src/f-spot.glade.h:165
 msgid "_Hidden"
 msgstr "ಅಡಗಿಸಲಾದ(_H)"
 
-#: ../src/f-spot.glade.h:171
+#: ../src/f-spot.glade.h:166
 msgid "_Hue:"
 msgstr "ಬಣ್ಣ(_H):"
 
-#: ../src/f-spot.glade.h:172
+#: ../src/f-spot.glade.h:167
 msgid "_Icon:"
 msgstr "ಚಿಹ್ನೆ(_I):"
 
-#: ../src/f-spot.glade.h:173
+#: ../src/f-spot.glade.h:168
 msgid "_Import..."
 msgstr "ಆಮದು ಮಾಡಿಕೊ(_I)..."
 
-#: ../src/f-spot.glade.h:174
+#: ../src/f-spot.glade.h:169
 msgid "_Interpolate image on zoom"
 msgstr ""
 
-#: ../src/f-spot.glade.h:175
+#: ../src/f-spot.glade.h:170
 msgid "_Large"
 msgstr "ದೊಡ್ಡದಾದ(_L)"
 
-#: ../src/f-spot.glade.h:176
+#: ../src/f-spot.glade.h:171
 msgid "_Last Import Roll"
 msgstr ""
 
-#: ../src/f-spot.glade.h:177
+#: ../src/f-spot.glade.h:172
 msgid "_Loupe"
 msgstr ""
 
-#: ../src/f-spot.glade.h:178
+#: ../src/f-spot.glade.h:173
 msgid "_Medium"
 msgstr "ಮಧ್ಯಮ(_M)"
 
-#: ../src/f-spot.glade.h:179
+#: ../src/f-spot.glade.h:174
 msgid "_Month"
 msgstr "ತಿಂಗಳು(_M)"
 
-#: ../src/f-spot.glade.h:180
+#: ../src/f-spot.glade.h:175
 msgid "_New Window"
 msgstr "ಹೊಸ ವಿಂಡೋ(_N)"
 
-#: ../src/f-spot.glade.h:181
+#: ../src/f-spot.glade.h:176
 msgid "_Open album in browser when done uploading"
 msgstr ""
 
-#: ../src/f-spot.glade.h:182
+#: ../src/f-spot.glade.h:177
 msgid "_Open destination when done exporting"
 msgstr ""
 
-#: ../src/f-spot.glade.h:183
+#: ../src/f-spot.glade.h:178
 msgid "_Photo"
 msgstr "ಚಿತ್ರ(_P)"
 
-#: ../src/f-spot.glade.h:184
+#: ../src/f-spot.glade.h:179
 msgid "_Quit"
 msgstr "ನಿರ್ಗಮಿಸು(_Q)"
 
-#: ../src/f-spot.glade.h:185
+#: ../src/f-spot.glade.h:180
 msgid "_Ratings"
 msgstr ""
 
-#: ../src/f-spot.glade.h:187
+#: ../src/f-spot.glade.h:182
 msgid "_Remove Tag From Selection"
 msgstr ""
 
-#: ../src/f-spot.glade.h:188
+#: ../src/f-spot.glade.h:183
 msgid "_Rename Version"
 msgstr ""
 
-#: ../src/f-spot.glade.h:189
+#: ../src/f-spot.glade.h:184
 #: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:17
 #: ../extensions/Exporters/FolderExport/FolderExport.glade.h:17
 #: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:20
@@ -2926,111 +2907,112 @@ msgstr ""
 msgid "_Resize to: "
 msgstr ""
 
-#: ../src/f-spot.glade.h:191
+#: ../src/f-spot.glade.h:186
 msgid "_Saturation:"
 msgstr "ಸ್ಯಾಚುರೇಶನ್(_S):"
 
-#: ../src/f-spot.glade.h:192
+#: ../src/f-spot.glade.h:187
 msgid "_Scale photos to no larger than: "
 msgstr ""
 
-#: ../src/f-spot.glade.h:193
+#: ../src/f-spot.glade.h:188
 msgid "_Select Import Rolls..."
 msgstr ""
 
-#: ../src/f-spot.glade.h:194
+#: ../src/f-spot.glade.h:189
 msgid "_Set Date Range..."
 msgstr ""
 
-#: ../src/f-spot.glade.h:195
+#: ../src/f-spot.glade.h:190
 msgid "_Set Rating filter..."
 msgstr ""
 
-#: ../src/f-spot.glade.h:196
+#: ../src/f-spot.glade.h:191
 msgid "_Sharpen..."
 msgstr ""
 
-#: ../src/f-spot.glade.h:197
+#: ../src/f-spot.glade.h:192
 msgid "_Slideshow"
 msgstr "ಜಾರುಫಲಕ ಪ್ರದರ್ಶನ(_S)"
 
-#: ../src/f-spot.glade.h:198
+#: ../src/f-spot.glade.h:193
 msgid "_Small"
 msgstr "ಚಿಕ್ಕದಾದ(_S)"
 
-#: ../src/f-spot.glade.h:199
+#: ../src/f-spot.glade.h:194
 msgid "_Strip metadata"
 msgstr ""
 
-#: ../src/f-spot.glade.h:200
+#: ../src/f-spot.glade.h:195
 msgid "_Tag Icons"
 msgstr ""
 
-#: ../src/f-spot.glade.h:201
+#: ../src/f-spot.glade.h:196
 msgid "_Tag Name:"
 msgstr ""
 
-#: ../src/f-spot.glade.h:202
+#: ../src/f-spot.glade.h:197
 msgid "_Tags"
 msgstr ""
 
-#: ../src/f-spot.glade.h:203
+#: ../src/f-spot.glade.h:198
 msgid "_Timeline"
 msgstr ""
 
-#: ../src/f-spot.glade.h:204
+#: ../src/f-spot.glade.h:199
 msgid "_Tint:"
 msgstr ""
 
-#: ../src/f-spot.glade.h:205
+#: ../src/f-spot.glade.h:200
 msgid "_Toolbar"
 msgstr "ಉಪಕರಣಪಟ್ಟಿ(_T)"
 
-#: ../src/f-spot.glade.h:206
+#: ../src/f-spot.glade.h:201
 msgid "_Tools"
 msgstr "ಉಪಕರಣಗಳು(_T)"
 
-#: ../src/f-spot.glade.h:207
+#: ../src/f-spot.glade.h:202
 msgid "_URI:"
 msgstr "_URI:"
 
-#: ../src/f-spot.glade.h:208
+#: ../src/f-spot.glade.h:203
 msgid "_Untagged Photos"
 msgstr ""
 
-#: ../src/f-spot.glade.h:209
+#: ../src/f-spot.glade.h:204
+#, fuzzy
 msgid "_Version"
-msgstr ""
+msgstr "ಆವೃತ್ತಿ(_V)"
 
-#: ../src/f-spot.glade.h:210
+#: ../src/f-spot.glade.h:205
 msgid "_View"
 msgstr "ನೋಟ(_V)"
 
-#: ../src/f-spot.glade.h:211
+#: ../src/f-spot.glade.h:206
 msgid "_Virtual Filesystem"
 msgstr ""
 
 #. at, or after a date, or between dates
-#: ../src/f-spot.glade.h:214
+#: ../src/f-spot.glade.h:209
 msgid ""
 "at\n"
 "after\n"
 "between"
 msgstr ""
 
-#: ../src/f-spot.glade.h:217
+#: ../src/f-spot.glade.h:212
 msgid "difference:"
 msgstr "ವ್ಯತ್ಯಾಸ:"
 
-#: ../src/f-spot.glade.h:218
+#: ../src/f-spot.glade.h:213
 msgid "img_000.jpg"
 msgstr "img_000.jpg"
 
-#: ../src/f-spot.glade.h:219
+#: ../src/f-spot.glade.h:214
 msgid "min. Starting at {0}"
 msgstr ""
 
-#: ../src/f-spot.glade.h:221
+#: ../src/f-spot.glade.h:215
 #: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:19
 #: ../extensions/Exporters/FolderExport/FolderExport.glade.h:19
 #: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:23
@@ -3039,7 +3021,7 @@ msgstr ""
 msgid "pixels"
 msgstr "ಪಿಕ್ಸೆಲ್ಲುಗಳು"
 
-#: ../src/f-spot.glade.h:222
+#: ../src/f-spot.glade.h:216
 msgid "x"
 msgstr "x"
 
@@ -3057,15 +3039,16 @@ msgstr "_CD..."
 
 #: ../extensions/Exporters/CDExport/CDExport.cs:162
 #, csharp-format
+#, fuzzy
 msgid "Transferring picture \"{0}\" To CD"
-msgstr ""
+msgstr "ಚಿತ್ರ \"{0}\" ಅನ್ನು CD ಗೆ ವರ್ಗಾಯಿಸಲಾಗುತ್ತಿದೆ"
 
 #: ../extensions/Exporters/CDExport/CDExport.cs:177
 #: ../extensions/Exporters/FlickrExport/FlickrExport.cs:379
 #: ../extensions/Exporters/FolderExport/FolderExport.cs:285
 #: ../extensions/Exporters/GalleryExport/GalleryExport.cs:808
 #: ../extensions/Exporters/FacebookExport/FacebookExport.cs:551
-#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:702
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:704
 #: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:607
 msgid "Done Sending Photos"
 msgstr "ಫೋಟೊಗಳನ್ನು ಕಳುಹಿಸುವಿಕೆಯು ಪೂರ್ಣಗೊಂಡಿದೆ"
@@ -3178,18 +3161,20 @@ msgstr ""
 #: ../extensions/Exporters/FolderExport/FolderExport.cs:242
 #: ../extensions/Exporters/GalleryExport/GalleryExport.cs:779
 #, csharp-format
+#, fuzzy
 msgid "Uploading picture \"{0}\""
-msgstr ""
+msgstr "ಚಿತ್ರ \"{0}\" ಅನ್ನು ಅಪ್‌ಲೋಡ್ ಮಾಡಲಾಗುತ್ತಿದೆ"
 
 #: ../extensions/Exporters/FlickrExport/FlickrExport.cs:367
 #, csharp-format
+#, fuzzy
 msgid "Error Uploading To {0}: {1}"
-msgstr ""
+msgstr "{0} ಗೆ ಅಪ್‌ಲೋಡ್ ಮಾಡುವಲ್ಲಿ ದೋಷ ಉಂಟಾಗಿದೆ: {1}"
 
 #: ../extensions/Exporters/FlickrExport/FlickrExport.cs:381
 #: ../extensions/Exporters/GalleryExport/GalleryExport.cs:810
 #: ../extensions/Exporters/FacebookExport/FacebookExport.cs:553
-#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:704
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:706
 #: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:609
 msgid "Upload Complete"
 msgstr "ಪೂರ್ಣಗೊಳಿಸಲು ಸಾಧ್ಯವಾಗಿಲ್ಲ"
@@ -3208,7 +3193,7 @@ msgstr ""
 #: ../extensions/Exporters/FlickrExport/FlickrExport.cs:475
 #: ../extensions/Exporters/GalleryExport/GalleryExport.cs:732
 #: ../extensions/Exporters/FacebookExport/FacebookExport.cs:477
-#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:598
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:597
 #: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:522
 msgid "Uploading Pictures"
 msgstr "ಚಿತ್ರಗಳನ್ನು ಅಪ್‌ಲೋಡ್ ಮಾಡಲಾಗುತ್ತಿದೆ"
@@ -3265,13 +3250,15 @@ msgid "Select Export Folder"
 msgstr ""
 
 #: ../extensions/Exporters/FolderExport/FolderExport.cs:198
+#, fuzzy
 msgid "Building Gallery"
-msgstr ""
+msgstr "ಗ್ಯಾಲರಿಯನ್ನು ನಿರ್ಮಿಸಲಾಗುತ್ತಿದೆ"
 
 #: ../extensions/Exporters/FolderExport/FolderExport.cs:248
 #, csharp-format
+#, fuzzy
 msgid "Error uploading picture \"{0}\" to Gallery:{2}{1}"
-msgstr ""
+msgstr "ಚಿತ್ರ \"{0}\" ಅನ್ನು ಗ್ಯಾಲರಿಗೆ ಅಪ್‌ಲೋಡ್ ಮಾಡುವಲ್ಲಿ ದೋಷ ಉಂಟಾಗಿದೆ:{2}{1}"
 
 #: ../extensions/Exporters/FolderExport/FolderExport.cs:333
 msgid "Error: Error while transferring; Aborting"
@@ -3422,25 +3409,25 @@ msgid "Error uploading picture \"{0}\" to Gallery: {1}"
 msgstr "ಈ ಗ್ಯಾಲರಿಗೆ ಚಿತ್ರ \"{0}\" ಅನ್ನು ಅಪ್‌ಲೋಡ್ ಮಾಡುವಲ್ಲಿ ದೋಷ: {1}"
 
 #: ../extensions/Exporters/GalleryExport/GalleryExport.cs:826
-#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:725
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:727
 #: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:630
 msgid "(No Gallery)"
 msgstr "(ಗ್ಯಾಲರಿ ಇಲ್ಲ)"
 
 #: ../extensions/Exporters/GalleryExport/GalleryExport.cs:918
-#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:848
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:849
 #: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:726
 msgid "(Not Connected)"
 msgstr "(ಸಂಪರ್ಕಿತಗೊಂಡಿಲ್ಲ)"
 
 #: ../extensions/Exporters/GalleryExport/GalleryExport.cs:919
-#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:849
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:850
 #: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:727
 msgid "(No Albums)"
 msgstr "(ಯಾವುದೆ ಆಲ್ಬಮ್‌ಗಳಿಲ್ಲ)"
 
 #: ../extensions/Exporters/GalleryExport/GalleryExport.cs:971
-#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:914
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:915
 #: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:768
 msgid "No account selected"
 msgstr "ಯಾವುದೆ ಖಾತೆಯನ್ನು ಆರಿಸಲಾಗಿಲ್ಲ"
@@ -3495,7 +3482,7 @@ msgstr "ಮೂಲ ಆಲ್ಬಮ್(_P):"
 #: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:19
 #: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:23
 #: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:14
-#: ../extensions/Exporters/TabbloExport/TabbloExport.glade.h:4
+#: ../extensions/Exporters/TabbloExport/TabbloExport.glade.h:9
 msgid "_Password:"
 msgstr "ಗುಪ್ತಪದ(_P):"
 
@@ -3506,7 +3493,7 @@ msgstr "ಶೀರ್ಷಿಕೆ(_T):"
 #: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:22
 #: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:25
 #: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:16
-#: ../extensions/Exporters/TabbloExport/TabbloExport.glade.h:5
+#: ../extensions/Exporters/TabbloExport/TabbloExport.glade.h:10
 msgid "_Username:"
 msgstr "ಬಳಕೆದಾರ ಹೆಸರು(_U):"
 
@@ -3543,7 +3530,9 @@ msgstr "ರಫ್ತು ಮಾಡಲು ಬಹಳಷ್ಟು ಚಿತ್ರಗ
 msgid ""
 "Facebook only permits 60 photographs per album.  Please refine your "
 "selection and try again."
-msgstr "Facebook ಕೇವಲ 60 ಫೋಟೊಗ್ರಾಫ್‌ಗಳನ್ನು ಮಾತ್ರವೆ ಅನುಮತಿಸುತ್ತದೆ.  ದಯವಿಟ್ಟು ನಿಮ್ಮ ಆಯ್ಕೆಯನ್ನು ಸಂಸ್ಕರಿಸಿ ನಂತರ ಇನ್ನೊಮ್ಮೆ ಪ್ರಯತ್ನಿಸಿ."
+msgstr ""
+"Facebook ಕೇವಲ 60 ಫೋಟೊಗ್ರಾಫ್‌ಗಳನ್ನು ಮಾತ್ರವೆ ಅನುಮತಿಸುತ್ತದೆ.  ದಯವಿಟ್ಟು ನಿಮ್ಮ ಆಯ್ಕೆಯನ್ನು "
+"ಸಂಸ್ಕರಿಸಿ ನಂತರ ಇನ್ನೊಮ್ಮೆ ಪ್ರಯತ್ನಿಸಿ."
 
 #: ../extensions/Exporters/FacebookExport/FacebookExport.cs:281
 #: ../extensions/Exporters/FacebookExport/FacebookExport.cs:367
@@ -3569,7 +3558,9 @@ msgstr "Facebook ಗೆ ಪ್ರವೇಶೀಸುವಲ್ಲಿ ದೋಷ"
 msgid ""
 "There was a problem logging into Facebook.  Check your credentials and try "
 "again."
-msgstr "Facebook ಗೆ ಪ್ರವೇಶಿಸುವಲ್ಲಿ ಒಂದು ತೊಂದರೆ ಉಂಟಾಗಿದೆ.  ನಿಮ್ಮ ಹಕ್ಕುಗಳನ್ನು ಪರಿಶೀಲಿಸಿ ಹಾಗು ನಂತರ ಪುನಃ ಪ್ರಯತ್ನಿಸಿ."
+msgstr ""
+"Facebook ಗೆ ಪ್ರವೇಶಿಸುವಲ್ಲಿ ಒಂದು ತೊಂದರೆ ಉಂಟಾಗಿದೆ.  ನಿಮ್ಮ ಹಕ್ಕುಗಳನ್ನು ಪರಿಶೀಲಿಸಿ "
+"ಹಾಗು ನಂತರ ಪುನಃ ಪ್ರಯತ್ನಿಸಿ."
 
 #. Note for translators: {0} and {1} are respectively firstname and surname of the user
 #: ../extensions/Exporters/FacebookExport/FacebookExport.cs:341
@@ -3582,8 +3573,9 @@ msgid "Album must have a name"
 msgstr "ಆಲ್ಬಮ್ ಒಂದು ಹೆಸರನ್ನು ಹೊಂದಿರಬೇಕು"
 
 #: ../extensions/Exporters/FacebookExport/FacebookExport.cs:491
+#, fuzzy
 msgid "Please name your album or choose an existing album."
-msgstr ""
+msgstr "ದಯವಿಟ್ಟು ನಿಮ್ಮ ಆಲ್ಬಮ್ ಅನ್ನು ಆಯ್ಕೆ ಮಾಡಿ ಅಥವ ಈಗಿರುವ ಒಂದು ಆಲ್ಬಮ್ ಅನ್ನು ಆಯ್ಕೆ ಮಾಡಿ."
 
 #: ../extensions/Exporters/FacebookExport/FacebookExport.cs:504
 msgid "Creating a new album failed"
@@ -3601,7 +3593,7 @@ msgstr ""
 "{0}"
 
 #: ../extensions/Exporters/FacebookExport/FacebookExport.cs:528
-#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:661
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:660
 #: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:565
 #, csharp-format
 msgid "Uploading picture \"{0}\" ({1} of {2})"
@@ -3657,6 +3649,8 @@ msgid "Compressed fil_e..."
 msgstr "ಸಂಕುಚನಗೊಳಿಸಲಾದ ಕಡತ(_e)..."
 
 #: ../extensions/Exporters/ZipExport/ZipExport.cs:47
+#: ../extensions/Tools/MetaPixel/MetaPixel.cs:46
+#: ../extensions/Tools/PictureTile/PictureTile.cs:52
 msgid ""
 "This tool requires an active selection. Please select one or more pictures "
 "and try again"
@@ -3671,6 +3665,7 @@ msgid "Exporting files"
 msgstr "ಕಡತಗಳನ್ನು ರಫ್ತು ಮಾಡಲಾಗುತ್ತಿದೆ"
 
 #: ../extensions/Exporters/ZipExport/ZipExport.cs:107
+#: ../extensions/Tools/MetaPixel/MetaPixel.cs:140
 #, csharp-format
 msgid "Preparing photo \"{0}\""
 msgstr "ಫೋಟೊ \"{0}\" ಅನ್ನು ಸಿದ್ಧಗೊಳಿಸಲಾಗುತ್ತಿದೆ"
@@ -3751,7 +3746,9 @@ msgid "Keep the images at their original location"
 msgstr "ಚಿತ್ರಗಳನ್ನು ಅವುಗಳ ಮೂಲ ಸ್ಥಾನದಲ್ಲಿಯೆ ಇರಿಸು"
 
 #: ../extensions/Tools/MergeDb/MergeDb.glade.h:13
-msgid "Merge another f-spot collection"
+#, fuzzy
+#| msgid "Merge another f-spot collection"
+msgid "Merge another F-Spot collection"
 msgstr "ಬೇರೊಂದು f-spot ಸಂಗ್ರಹದಿಂದ ಒಗ್ಗೂಡಿಸು"
 
 #: ../extensions/Tools/MergeDb/MergeDb.glade.h:14
@@ -3763,6 +3760,96 @@ msgstr "ಹೊಸ ರೋಲುಗಳು ಮಾತ್ರ"
 msgid ""
 "<big>The database refers to files contained in the <b>{0}</b> folder.\n"
 " Please select that folder so I can do the mapping.</big>"
+msgstr ""
+
+#: ../extensions/Tools/MetaPixel/MetaPixel.addin.xml.h:1
+msgid "Create p_hotomosaic"
+msgstr ""
+
+#: ../extensions/Tools/MetaPixel/MetaPixel.cs:65
+msgid "Metapixel not available"
+msgstr ""
+
+#: ../extensions/Tools/MetaPixel/MetaPixel.cs:66
+msgid ""
+"The metapixel executable was not found in path. Please check that you have "
+"it installed and that you have permissions to execute it"
+msgstr ""
+
+#. There is no photo for the selected tags! :(
+#: ../extensions/Tools/MetaPixel/MetaPixel.cs:121
+msgid "No photos for the selection"
+msgstr ""
+
+#: ../extensions/Tools/MetaPixel/MetaPixel.cs:122
+msgid "The tags selected provided no pictures. Please select different tags"
+msgstr ""
+
+#: ../extensions/Tools/MetaPixel/MetaPixel.cs:129
+#, fuzzy
+#| msgid "Transferring Pictures"
+msgid "Creating miniatures"
+msgstr "ಚಿತ್ರಗಳನ್ನು ವರ್ಗಾಯಿಸಲಾಗುತ್ತಿದೆ"
+
+#: ../extensions/Tools/MetaPixel/MetaPixel.cs:180
+msgid "Creating photomosaics"
+msgstr ""
+
+#: ../extensions/Tools/MetaPixel/MetaPixel.cs:187
+#: ../extensions/Tools/PictureTile/PictureTile.cs:120
+#, fuzzy, csharp-format
+#| msgid "Preparing photo \"{0}\""
+msgid "Processing \"{0}\""
+msgstr "ಫೋಟೊ \"{0}\" ಅನ್ನು ಸಿದ್ಧಗೊಳಿಸಲಾಗುತ್ತಿದೆ"
+
+#: ../extensions/Tools/MetaPixel/MetaPixel.cs:236
+msgid "PhotoMosaics generated!"
+msgstr ""
+
+#: ../extensions/Tools/MetaPixel/MetaPixel.cs:254
+#, fuzzy, csharp-format
+#| msgid "Photos"
+msgid "PhotoMosaic"
+msgid_plural "PhotoMosaic ({0})"
+msgstr[0] "ಚಿತ್ರಗಳು"
+msgstr[1] "ಚಿತ್ರಗಳು"
+
+#: ../extensions/Tools/PictureTile/PictureTile.addin.xml.h:1
+msgid "Create photo_wall"
+msgstr ""
+
+#: ../extensions/Tools/PictureTile/PictureTile.cs:71
+msgid "PictureTile not available"
+msgstr ""
+
+#: ../extensions/Tools/PictureTile/PictureTile.cs:72
+msgid ""
+"The picturetile.pl executable was not found in path. Please check that you "
+"have it installed and that you have permissions to execute it"
+msgstr ""
+
+#: ../extensions/Tools/PictureTile/PictureTile.cs:110
+msgid "Preparing selected pictures"
+msgstr ""
+
+#: ../extensions/Tools/PictureTile/PictureTile.cs:201
+msgid "PhotoWall generated!"
+msgstr ""
+
+#: ../extensions/Tools/PictureTile/PictureTile.cs:202
+msgid ""
+"Your photo wall have been generated and imported in F-Spot. Select the last "
+"roll to see it"
+msgstr ""
+
+#: ../extensions/Tools/PictureTile/PictureTile.cs:205
+#, fuzzy
+#| msgid "Error while connecting to Gallery"
+msgid "Error importing photowall"
+msgstr "ಗ್ಯಾಲರಿಯೊಂದಿಗೆ ಸಂಪರ್ಕ ಹೊಂದುವಲ್ಲಿ ದೋಷ ಉಂಟಾಗಿದೆ"
+
+#: ../extensions/Tools/PictureTile/PictureTile.cs:206
+msgid "An error occurred while importing the newly generated photowall to F-Spot"
 msgstr ""
 
 #: ../extensions/Tools/HashJob/HashJob.cs:53
@@ -3793,28 +3880,28 @@ msgstr "ಆಲ್ಬಮ್ ಅನ್ನು ನಿರ್ಮಿಸುವಾಗಿ�
 msgid "The following error was encountered while attempting to create an album: {0}"
 msgstr "ಒಂದು ಆಲ್ಬಮ್ ಅನ್ನು ನಿರ್ಮಿಸಲು ಪ್ರಯತ್ನಿಸಿದಾಗ ಈ ಕೆಳಗಿದ ದೋಷವು ಎದುರಾಗಿದೆ: {0}"
 
-#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:621
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:620
 #, csharp-format
 msgid "{0} Sent"
 msgstr "{0} ಕಳುಹಿಸಲಾಗಿದೆ"
 
-#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:623
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:622
 #, csharp-format
 msgid "{0} of approx. {1}"
 msgstr "{1} ರಲ್ಲಿ ಅಂದಾಜು {0}"
 
-#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:692
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:691
 #: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:594
 #, csharp-format
 msgid "Error Uploading To Gallery: {0}"
 msgstr "ಗ್ಯಾಲರಿಗೆ ಅಪ್‌ಲೋಡ್ ಮಾಡುವಲ್ಲಿ ದೋಷ: {0}"
 
-#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:776
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:778
 #, csharp-format
 msgid "Available space: {0}, {1}% used out of {2}"
 msgstr "ಲಭ್ಯವಿರುವ ಸ್ಥಳಾವಕಾಶ: {0}, {2} ರಲ್ಲಿ {1}% ಅನ್ನು ಬಳಸಲಾಗಿದೆ"
 
-#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:890
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:891
 #, csharp-format
 msgid ""
 "The selected album has a limit of {0} pictures,\n"
@@ -3866,16 +3953,16 @@ msgstr "ಖಾತೆ(_A):"
 msgid "_SmugMug..."
 msgstr "_SmugMug..."
 
-#: ../extensions/Exporters/TabbloExport/Tabblo/Connection.cs:126
+#: ../extensions/Exporters/TabbloExport/Tabblo/Connection.cs:132
 #, csharp-format
 msgid "Uploading photo \"{0}\""
 msgstr "ಫೋಟೊ \"{0}\" ಅನ್ನು ಅಪ್‌ಲೋಡ್ ಮಾಡಲಾಗುತ್ತಿದೆ"
 
-#: ../extensions/Exporters/TabbloExport/Tabblo/Connection.cs:181
+#: ../extensions/Exporters/TabbloExport/Tabblo/Connection.cs:206
 msgid "Logging into Tabblo"
 msgstr "Tabblo ಗೆ ಪ್ರವೇಶಿಸಲಾಗುತ್ತಿದೆ"
 
-#: ../extensions/Exporters/TabbloExport/Tabblo/Connection.cs:241
+#: ../extensions/Exporters/TabbloExport/Tabblo/Connection.cs:267
 msgid "Obtaining URL for upload"
 msgstr "ಅಪ್‌ಲೋಡ್ ಮಾಡಲು URL ಅನ್ನು ಪಡೆಯಲಾಗುತ್ತಿದೆ"
 
@@ -3883,29 +3970,58 @@ msgstr "ಅಪ್‌ಲೋಡ್ ಮಾಡಲು URL ಅನ್ನು ಪಡೆ�
 msgid "_Tabblo..."
 msgstr "_Tabblo..."
 
-#: ../extensions/Exporters/TabbloExport/TabbloExport.cs:166
+#: ../extensions/Exporters/TabbloExport/TabbloExport.cs:308
 msgid "Done sending photos"
 msgstr "ಫೋಟೊಗಳನ್ನು ಕಳುಹಿಸುವುದು ಪೂರ್ಣಗೊಂಡಿದೆ"
 
-#: ../extensions/Exporters/TabbloExport/TabbloExport.cs:168
+#: ../extensions/Exporters/TabbloExport/TabbloExport.cs:310
 msgid "Upload complete"
 msgstr "ಅಪ್‌ಲೋಡ್ ಪೂರ್ಣಗೊಂಡಿದೆ"
 
-#: ../extensions/Exporters/TabbloExport/TabbloExport.cs:174
+#: ../extensions/Exporters/TabbloExport/TabbloExport.cs:316
 msgid "Error uploading to Tabblo: "
 msgstr "Tabblo ಗೆ ಅಪ್‌ಲೋಡ್ ಮಾಡುವಲ್ಲಿ ದೋಷ: "
 
-#: ../extensions/Exporters/TabbloExport/TabbloExport.glade.h:2
+#: ../extensions/Exporters/TabbloExport/TabbloExport.glade.h:1
+#, fuzzy
+#| msgid "<b>Export Method</b>"
+msgid "<b>F-Spot tags</b>"
+msgstr "<b>ರಫ್ತು ವಿಧಾನ</b>"
+
+#: ../extensions/Exporters/TabbloExport/TabbloExport.glade.h:3
 msgid "<b>Tabblo account</b>"
 msgstr "<b>Tabblo ಖಾತೆ</b>"
+
+#: ../extensions/Exporters/TabbloExport/TabbloExport.glade.h:4
+msgid ""
+"<small><i>F-Spot tags can help you track the export status of photos. "
+"Example: Use one tag for the photos that you plan to export, and another one "
+"for those already exported. Here, you can tell F-Spot to automatically "
+"replace these tags as appropriate.</i></small>"
+msgstr ""
+
+#: ../extensions/Exporters/TabbloExport/TabbloExport.glade.h:6
+msgid "Rem_ove from exported photos:"
+msgstr ""
+
+#: ../extensions/Exporters/TabbloExport/TabbloExport.glade.h:7
+#, fuzzy
+#| msgid "Select Tag"
+msgid "Select..."
+msgstr "ಆರಿಸು..."
+
+#: ../extensions/Exporters/TabbloExport/TabbloExport.glade.h:8
+msgid "_Attach to exported photos:"
+msgstr ""
 
 #: ../extensions/Exporters/TabbloExport/TrustError.glade.h:1
 msgid "<b>{0}</b>."
 msgstr "<b>{0}</b>."
 
 #: ../extensions/Exporters/TabbloExport/TrustError.glade.h:2
+#, fuzzy
 msgid "A trust error occured while attempting to access"
-msgstr ""
+msgstr "ನಿಲುಕಿಸಿಕೊಳ್ಳಲು ಪ್ರಯತ್ನಿಸಿದಾಗ ಒಂದು ನಂಬಿಕಾ ದೋಷವು ಎದುರಾಗಿದೆ"
 
 #: ../extensions/Exporters/TabbloExport/TrustError.glade.h:3
 msgid "Abort this session"
@@ -3926,20 +4042,4 @@ msgstr "ನಂಬಿಕೆ ದೋಷ"
 #: ../extensions/Exporters/TabbloExport/TrustError.glade.h:7
 msgid "Trust the site's certificate this once"
 msgstr "ತಾಣದ ಪ್ರಮಾಣಪತ್ರವನ್ನು ಒಮ್ಮೆ ನಂಬಿ"
-
-#: ../extensions/Editors/BlackoutEditor/BlackoutEditor.cs:18
-msgid "Blackout"
-msgstr "ಕಪ್ಪಾಗಿಸುವಿಕೆ"
-
-#: ../extensions/Editors/BlackoutEditor/BlackoutEditor.cs:26
-msgid "Select the area that you want blacked out."
-msgstr "ನೀವು ಕಪ್ಪಾಗಿಸಬೇಕಿರುವ ಜಾಗವನ್ನು ಆಯ್ಕೆ ಮಾಡಿ."
-
-#: ../extensions/Editors/PixelateEditor/PixelateEditor.cs:18
-msgid "Pixelate"
-msgstr ""
-
-#: ../extensions/Editors/PixelateEditor/PixelateEditor.cs:26
-msgid "Select the area that you want pixelated."
-msgstr ""
 
