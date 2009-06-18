@@ -800,60 +800,9 @@ public class PixbufUtils {
 		return TransformOrientation (src, orientation, true);
 	}
 
-	public static Gdk.Rectangle TransformOrientation (Gdk.Pixbuf src, Gdk.Rectangle args, PixbufOrientation orientation)
-	{
-		return TransformOrientation (src.Width, src.Height, args, orientation);
-	}
-	
-	public static Gdk.Rectangle TransformOrientation (int total_width, int total_height, Gdk.Rectangle args, PixbufOrientation orientation)
-	{
-		Gdk.Rectangle area = args;
-		
-		switch (orientation) {
-		case PixbufOrientation.BottomRight:
-			area.X = total_width - args.X - args.Width;
-			area.Y = total_height - args.Y - args.Height;
-			break;
-		case PixbufOrientation.TopRight:
-			area.X = total_width - args.X - args.Width;
-			break;
-		case PixbufOrientation.BottomLeft:
-			area.Y = total_height - args.Y - args.Height;
-			break;
-		case PixbufOrientation.LeftTop:
-			area.X = args.Y;
-			area.Y = args.X;
-			area.Width = args.Height;
-			area.Height = args.Width;
-			break;
-		case PixbufOrientation.RightBottom:
-			area.X = total_height - args.Y - args.Height;
-			area.Y = total_width - args.X - args.Width;
-			area.Width = args.Height;
-			area.Height = args.Width;
-			break;
-		case PixbufOrientation.RightTop:
-			area.X = total_height - args.Y - args.Height;
-			area.Y = args.X;
-			area.Width = args.Height;
-			area.Height = args.Width;
-			break;
-		case PixbufOrientation.LeftBottom:
-			area.X = args.Y;
-			area.Y = total_width - args.X - args.Width;
-			area.Width = args.Height;
-			area.Height = args.Width;
-			break;
-		default:
-			break;
-		}
-		
-		return area;
-	}
-	
 	public static Gdk.Rectangle TransformAndCopy (Gdk.Pixbuf src, Gdk.Pixbuf dest, PixbufOrientation orientation, Gdk.Rectangle args)
 	{
-		Gdk.Rectangle area = TransformOrientation (src, args, orientation);
+		Gdk.Rectangle area = FSpot.Utils.PixbufUtils.TransformOrientation (src, args, orientation);
 
 		int step = 256;
 
@@ -861,7 +810,7 @@ public class PixbufUtils {
 							Math.Min (step, args.Width),
 							Math.Min (step, args.Height));
 
-		Gdk.Rectangle trect = TransformOrientation (src, rect, orientation);
+		Gdk.Rectangle trect = FSpot.Utils.PixbufUtils.TransformOrientation (src, rect, orientation);
 		Gdk.Pixbuf tmp = new Gdk.Pixbuf (src.Colorspace, src.HasAlpha, 
 						 src.BitsPerSample,
 						 trect.Width, trect.Height);
@@ -869,7 +818,7 @@ public class PixbufUtils {
 		Gdk.Rectangle subarea;
 		BlockProcessor proc = new BlockProcessor (args, 256);
 		while (proc.Step (out subarea)) {
-			Gdk.Rectangle trans = TransformOrientation (src, subarea, orientation);
+			Gdk.Rectangle trans = FSpot.Utils.PixbufUtils.TransformOrientation (src, subarea, orientation);
 			Gdk.Pixbuf ssub = new Gdk.Pixbuf (src, subarea.X, subarea.Y,
 							  subarea.Width, subarea.Height);
 
