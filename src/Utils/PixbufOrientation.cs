@@ -34,32 +34,4 @@ namespace FSpot.Utils
 		RightBottom = 7,
 		LeftBottom = 8
 	}
-
-	public static class PixbufUtils
-	{
-		static public PixbufOrientation Rotate270 (PixbufOrientation orientation)
-		{
-			PixbufOrientation [] rot = new PixbufOrientation [] {
-				PixbufOrientation.LeftBottom, 
-				PixbufOrientation.LeftTop,
-				PixbufOrientation.RightTop,
-				PixbufOrientation.RightBottom, 
-				PixbufOrientation.BottomLeft,
-				PixbufOrientation.TopLeft,
-				PixbufOrientation.TopRight,
-				PixbufOrientation.BottomRight
-			};
-	
-			orientation = rot [((int)orientation) -1];
-			return orientation;
-		}
-	
-		static public PixbufOrientation Rotate90 (PixbufOrientation orientation)
-		{
-			orientation = Rotate270 (orientation);
-			orientation = Rotate270 (orientation);
-			orientation = Rotate270 (orientation);
-			return orientation;
-		}
-	}
 }
