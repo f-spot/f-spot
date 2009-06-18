@@ -54,6 +54,20 @@ namespace FSpot {
 			}
 		}
 
+		public override Stream PixbufStream ()
+		{
+			if (header != null)
+				return Open ();
+
+			Stream s = Open ();
+			if (s.CanSeek) {
+				header = new JpegHeader (s, true);
+				s.Position = 0;
+			} else
+				Console.WriteLine ("{0} can not seek :(", s);
+			return s;
+		}
+
 		public void Select (SemWeb.StatementSink sink)
 		{
 			Header.Select (sink);

@@ -29,6 +29,8 @@ namespace FSpot {
 		protected Stream Open ()
 		{
 			Log.DebugFormat ("open uri = {0}", uri.ToString ());
+//			if (uri.IsFile)
+//				return new FileStream (uri.LocalPath, FileMode.Open);
 			return new GLib.GioStream (GLib.FileFactory.NewForUri (uri).Read (null));
 		}
 
@@ -104,6 +106,7 @@ namespace FSpot {
 			return rotated;
 		}
 		
+		[Obsolete ("Use an Async way to load the pixbuf")]
 		public virtual Gdk.Pixbuf Load ()
 		{
 			using (Stream stream = PixbufStream ()) {
@@ -112,6 +115,7 @@ namespace FSpot {
 			}
 		}
 		
+		[Obsolete ("Use an Async way to load the pixbuf")]
 		public virtual Gdk.Pixbuf Load (int max_width, int max_height)
 		{
 			System.IO.Stream stream = PixbufStream ();

@@ -113,7 +113,6 @@ namespace FSpot {
 			damage = Gdk.Rectangle.Zero;
 
 			using (ImageFile img = ImageFile.Create (uri)) {
-				orientation = Accelerometer.GetViewOrientation (img.Orientation);
 			
 				try {
 					PixbufOrientation thumb_orientation = Accelerometer.GetViewOrientation (PixbufOrientation.TopLeft);
@@ -134,6 +133,7 @@ namespace FSpot {
 				}
 
 				System.IO.Stream nstream = img.PixbufStream ();
+				orientation = Accelerometer.GetViewOrientation (img.Orientation);
 				if (nstream == null) {
 					FileLoad (img);
 					return;
