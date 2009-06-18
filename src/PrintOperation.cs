@@ -88,12 +88,18 @@ namespace FSpot
 			case 2: ppx = 1; ppy = 2; break;
 			case 4: ppx = ppy = 2; break;
 			case 9: ppx = ppy = 3; break;
+			case 12: ppx = 3; ppy = 4; break;
+			case 20: ppx = 4; ppy = 5; break;
+			case 30: ppx = 5; ppy = 6; break;
 			}
 
 			//FIXME: if paper is landscape, swap ppx with ppy
 
 			double w = context.Width / ppx;
 			double h = context.Height / ppy;
+
+			// compute picture size using 4800DPI
+			double mx=(w / 25.4) * 4800, my=(h / 25.4) * 4800;
 
 			for (int x = 0; x <= ppx; x++) {
 				for (int y = 0; y <= ppy; y++) {
@@ -106,7 +112,7 @@ namespace FSpot
 					{
 						Gdk.Pixbuf pixbuf;
 						try {
-							pixbuf = img.Load ();
+						  pixbuf = img.Load ((int) mx, (int) my);
 							FSpot.ColorManagement.ApplyPrinterProfile (pixbuf, img.GetProfile ());
 						} catch (Exception e) {
 							Log.Exception ("Unable to load image " + selected_photos[p_index].DefaultVersionUri + "\n", e);

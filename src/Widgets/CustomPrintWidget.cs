@@ -27,7 +27,7 @@ namespace FSpot.Widgets
 		Gtk.Image preview_image;
 		CheckButton fullpage;
 
-		RadioButton ppp1, ppp2, ppp4, ppp9;
+		RadioButton ppp1, ppp2, ppp4, ppp9, ppp20, ppp30;
 		RadioButton zoom, fill, scaled;
 
 		CheckButton repeat, white_border, crop_marks;
@@ -66,6 +66,8 @@ namespace FSpot.Widgets
 				else if (ppp2.Active)	return 2;
 				else if (ppp4.Active)	return 4;
 				else if (ppp9.Active)	return 9;
+				else if (ppp20.Active)	return 20;
+				else if (ppp30.Active)	return 30;
 				else
 					throw new Exception ("Something is wrong on this GUI");
 			}
@@ -121,24 +123,22 @@ namespace FSpot.Widgets
 			VBox right_vb = new VBox ();
 			right_vb.PackStart (page_size, true, true, 0);
 
-			Frame ppp_frame = new Frame (Catalog.GetString ("Photos per page"));
-			vb = new VBox ();
+			Frame tbl_frame = new Frame (Catalog.GetString ("Photos per page"));
+			Table tbl = new Table (2, 7, false);
 
-			vb.PackStart (ppp1 = new RadioButton ("1"), false, false, 0);
-			vb.PackStart (ppp2 = new RadioButton (ppp1, "2"), false, false, 0);
-			vb.PackStart (ppp4 = new RadioButton (ppp1, "4"), false, false, 0);
-			vb.PackStart (ppp9 = new RadioButton (ppp1, "9"), false, false, 0);
-//			ppp1.Toggled += TriggerChanged;
-//			ppp2.Toggled += TriggerChanged;
-//			ppp4.Toggled += TriggerChanged;
-//			ppp9.Toggled += TriggerChanged;
+			tbl.Attach (ppp1 = new RadioButton ("1"), 0, 1, 1, 2);
+			tbl.Attach (ppp2 = new RadioButton (ppp1, "2"), 0, 1, 2, 3);
+			tbl.Attach (ppp4 = new RadioButton (ppp1, "2 x 2"), 0, 1, 3, 4);
+			tbl.Attach (ppp9 = new RadioButton (ppp1, "3 x 3"), 0, 1, 4, 5);
+			tbl.Attach (ppp20 = new RadioButton (ppp1, "4 x 5"), 0, 1, 5, 6);
+			tbl.Attach (ppp30 = new RadioButton (ppp1, "5 x 6"), 0, 1, 6, 7);
 
-			vb.PackStart (repeat = new CheckButton (Catalog.GetString ("Repeat")), false, false, 0);
-			vb.PackStart (crop_marks = new CheckButton (Catalog.GetString ("Print cut marks")), false, false, 0);
+			tbl.Attach (repeat = new CheckButton (Catalog.GetString ("Repeat")), 1, 2, 0, 1);
+			tbl.Attach (crop_marks = new CheckButton (Catalog.GetString ("Print cut marks")), 1, 2, 1, 2);
 //			crop_marks.Toggled += TriggerChanged;
 
-			ppp_frame.Child = vb;
-			right_vb.PackStart (ppp_frame, true, true, 0);
+			tbl_frame.Child = tbl;
+			right_vb.PackStart (tbl_frame, true, true, 0);
 			upper.PackStart (right_vb, true, true, 0);
 
 			this.PackStart (upper, true, true, 0);
