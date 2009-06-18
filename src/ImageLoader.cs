@@ -54,7 +54,7 @@ namespace FSpot {
 		{
 			using (ImageFile image_file = ImageFile.Create (uri)) {
 				image_stream = image_file.PixbufStream ();
-				orientation = image_file.Orientation;
+				pixbuf_orientation = image_file.Orientation;
 			}
 			image_stream.BeginRead (buffer, 0, count, HandleReadDone, null);
 			loading = true;

@@ -37,14 +37,8 @@ namespace FSpot.Widgets {
 			FSpot.ColorManagement.PhotoImageView = this;
 		}
 
-//		ImageLoader loader;
 		public PhotoImageView (BrowsablePointer item)
 		{
-//			loader = new ImageLoader ();
-//			loader.AreaUpdated += HandlePixbufAreaUpdated;
-//			loader.AreaPrepared += HandlePixbufPrepared;
-//			loader.Completed += HandleDone;
-			
 			FSpot.ColorManagement.PhotoImageView = this;
 			Transform = FSpot.ColorManagement.StandardTransform (); //for preview windows
 
@@ -83,7 +77,7 @@ namespace FSpot.Widgets {
 
 		public void HandleOrientationChanged (object sender, EventArgs e)
 		{
-			PixbufOrientation = Accelerometer.GetViewOrientation (PixbufOrientation);
+			Reload ();
 		}
 
 		public void Reload ()
@@ -149,7 +143,6 @@ namespace FSpot.Widgets {
 
 		private void HandleDone (object sender, System.EventArgs args)
 		{
-Log.Warning ("PhotoImageView: loading DONE");
 			ImageLoader loader = sender as ImageLoader;
 			// FIXME the error hander here needs to provide proper information and we should
 			// pass the state and the write exception in the args

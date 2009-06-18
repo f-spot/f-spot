@@ -60,7 +60,10 @@ namespace FSpot.Widgets
 		public PixbufOrientation PixbufOrientation {
 			get { return pixbuf_orientation; }
 			set {
-				Console.WriteLine ("pixbuf orientation changed");
+				if (value == pixbuf_orientation)
+					return;
+				pixbuf_orientation = value;
+				Console.WriteLine ("pixbuf orientation changed to {0}", value);
 			}
 		}
 
