@@ -9,13 +9,15 @@ msgstr ""
 "Project-Id-Version: f-spot.master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=f-spot&component=General\n"
 "POT-Creation-Date: 2009-06-16 08:53+0000\n"
-"PO-Revision-Date: 2009-06-17 16:25+0530\n"
+"PO-Revision-Date: 2009-06-18 12:55+0530\n"
 "Last-Translator: Rajesh Ranjan <rajesh672@gmail.com>\n"
 "Language-Team: Hindi <hindi.sf.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n\n"
+"\n"
+"\n"
 "\n"
 "X-Generator: KBabel 1.11.4\n"
 
@@ -2390,7 +2392,7 @@ msgid ""
 "option has no effect on photos, but setting this as check pattern or custom "
 "color could be usefull when viewing icons or other artworks with transparent "
 "parts.</i></small>"
-msgstr ""
+msgstr "<small><i>आप चुन सकते हैं कि कैसे आप छवि में पारदर्शी हिस्से को दिखाएंगे. इस विकल्प का फोटो पर कोई प्रभाव नहीं है, लेकिन इसे सेटिंग करना चेक प्रारूप या पसंदीदा रंग के रूप में उपयोगी हो सकता जब पारदर्शी हिस्से के साथ प्रतीक या दूसरे आर्टवर्क को देखा जाए.</i></small>"
 
 #: ../src/f-spot.glade.h:36
 msgid "Adjust Time"
@@ -2707,7 +2709,7 @@ msgstr "इसके सभी फोटो से स्थान"
 msgid ""
 "Specify if an original size picture should be rotated or not. Smaller sizes "
 "are automatically rotated."
-msgstr ""
+msgstr "निर्दिष्ट करें कि मौलिक आकार के फोटो को घुमाया जाए या नहीं. छोटा आकार स्वतः घुमाया जाता है."
 
 #: ../src/f-spot.glade.h:124
 msgid "Strip image _metadata"
@@ -2918,38 +2920,32 @@ msgid "_New Window"
 msgstr "नया विंडो (_N)"
 
 #: ../src/f-spot.glade.h:176
-#, fuzzy
 msgid "_Open album in browser when done uploading"
-msgstr "खोलें इंच सम्पन्न"
+msgstr "ब्राउजर में एल्बम खोलें जब अपलोडिंग किया जाता है (_O)"
 
 #: ../src/f-spot.glade.h:177
-#, fuzzy
 msgid "_Open destination when done exporting"
-msgstr "खोलें सम्पन्न"
+msgstr "जब निर्यात किया जाए गंतव्य खोला जाए (_O)"
 
 #: ../src/f-spot.glade.h:178
-#, fuzzy
 msgid "_Photo"
-msgstr "संपादन फोटो"
+msgstr "फोटो (_P)"
 
 #: ../src/f-spot.glade.h:179
 msgid "_Quit"
 msgstr "बाहर (_Q)"
 
 #: ../src/f-spot.glade.h:180
-#, fuzzy
 msgid "_Ratings"
-msgstr "टैग्स"
+msgstr "रेटिंग (_R)"
 
 #: ../src/f-spot.glade.h:182
-#, fuzzy
 msgid "_Remove Tag From Selection"
-msgstr "हटाओ टैग से चयन"
+msgstr "चयन से टैग हटाएँ (_R)"
 
 #: ../src/f-spot.glade.h:183
-#, fuzzy
 msgid "_Rename Version"
-msgstr "नाम बदलें  संस्करण"
+msgstr "संस्करण का नाम बदलें (_R)"
 
 #: ../src/f-spot.glade.h:184
 #: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:17
@@ -2957,43 +2953,35 @@ msgstr "नाम बदलें  संस्करण"
 #: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:20
 #: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:24
 #: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:15
-#, fuzzy
 msgid "_Resize to: "
-msgstr "आकार बदलें को "
+msgstr "इसमें फिर आकार बदलें (_R): "
 
 #: ../src/f-spot.glade.h:186
-#, fuzzy
 msgid "_Saturation:"
 msgstr "संतृप्ति (_S):"
 
 #: ../src/f-spot.glade.h:187
-#, fuzzy
 msgid "_Scale photos to no larger than: "
-msgstr "स्केल को नहीं "
+msgstr "इससे बड़े फोटो को स्केल मत करें (_S): "
 
 #: ../src/f-spot.glade.h:188
-#, fuzzy
 #| msgid "Select Export Folder"
 msgid "_Select Import Rolls..."
-msgstr "निर्यात फ़ोल्डर चुनें"
+msgstr "रोल आयात चुनें (_S)..."
 
 #: ../src/f-spot.glade.h:189
-#, fuzzy
 msgid "_Set Date Range..."
-msgstr "सेट तारीख़ सीमा."
+msgstr "दिनांक परिसर सेट करें (_S)..."
 
 #: ../src/f-spot.glade.h:190
-#, fuzzy
 msgid "_Set Rating filter..."
-msgstr "सेट तारीख़ सीमा."
+msgstr "रेटिंग फिल्टर सेट करें (_S)..."
 
 #: ../src/f-spot.glade.h:191
-#, fuzzy
 msgid "_Sharpen..."
 msgstr "तीक्ष्ण बनाएं (_S)..."
 
 #: ../src/f-spot.glade.h:192
-#, fuzzy
 msgid "_Slideshow"
 msgstr "स्लाइड शो (_S)"
 
@@ -3002,70 +2990,58 @@ msgid "_Small"
 msgstr "छोटा (_S)"
 
 #: ../src/f-spot.glade.h:194
-#, fuzzy
 msgid "_Strip metadata"
-msgstr "स्ट्रिप"
+msgstr "मेटाडेटा काटें (_S)"
 
 #: ../src/f-spot.glade.h:195
-#, fuzzy
 msgid "_Tag Icons"
-msgstr "संपादन टैग प्रतीक"
+msgstr "प्रतीक टैग करें (_T)"
 
 #: ../src/f-spot.glade.h:196
-#, fuzzy
 msgid "_Tag Name:"
-msgstr "टैग नाम:"
+msgstr "टैग नाम (_T):"
 
 #: ../src/f-spot.glade.h:197
-#, fuzzy
 msgid "_Tags"
-msgstr "टैग्स"
+msgstr "टैग (_T)"
 
 #: ../src/f-spot.glade.h:198
-#, fuzzy
 msgid "_Timeline"
-msgstr "प्रदर्शक टाइम-लाइन"
+msgstr "समयसीमा (_T)"
 
 #: ../src/f-spot.glade.h:199
-#, fuzzy
 msgid "_Tint:"
-msgstr "शीर्षक (_T):"
+msgstr "रंजीकृत (_T):"
 
 #: ../src/f-spot.glade.h:200
-#, fuzzy
 #| msgid "Toolbar"
 msgid "_Toolbar"
 msgstr "औजारपट्टी (_T)"
 
 #: ../src/f-spot.glade.h:201
-#, fuzzy
 #| msgid "Toolbar"
 msgid "_Tools"
 msgstr "औजार (_T)"
 
 #: ../src/f-spot.glade.h:202
-#, fuzzy
 msgid "_URI:"
-msgstr "यूआरआई:"
+msgstr "_URI:"
 
 #: ../src/f-spot.glade.h:203
 msgid "_Untagged Photos"
 msgstr "टैग नहीं किया फोटो (_U)"
 
 #: ../src/f-spot.glade.h:204
-#, fuzzy
 msgid "_Version"
-msgstr "संस्करण"
+msgstr "संस्करण (_V)"
 
 #: ../src/f-spot.glade.h:205
-#, fuzzy
 msgid "_View"
 msgstr "देखें (_V)"
 
 #: ../src/f-spot.glade.h:206
-#, fuzzy
 msgid "_Virtual Filesystem"
-msgstr "वर्च्युएल, आभासी,मायावी फ़ाइलसिस्टम,फ़ाइलतंत्र"
+msgstr "आभासी फ़ाइलतंत्र (_V)"
 
 #. at, or after a date, or between dates
 #: ../src/f-spot.glade.h:209
@@ -3079,7 +3055,6 @@ msgstr ""
 "मध्य"
 
 #: ../src/f-spot.glade.h:212
-#, fuzzy
 msgid "difference:"
 msgstr "भिन्नता:"
 
@@ -3088,9 +3063,8 @@ msgid "img_000.jpg"
 msgstr "img_000.jpg"
 
 #: ../src/f-spot.glade.h:214
-#, fuzzy
 msgid "min. Starting at {0}"
-msgstr "मि. प्रारंभिक पर"
+msgstr "न्यूनतम यहाँ {0} आरंभ"
 
 #: ../src/f-spot.glade.h:215
 #: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:19
@@ -3098,35 +3072,30 @@ msgstr "मि. प्रारंभिक पर"
 #: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:23
 #: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:26
 #: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:17
-#, fuzzy
 msgid "pixels"
-msgstr "पिक्सेल्स"
+msgstr "पिक्सेल"
 
 #: ../src/f-spot.glade.h:216
-#, fuzzy
 msgid "x"
-msgstr "एक्स"
+msgstr "x"
 
 #: ../tools/f-spot-screensaver.desktop.in.h:1
-#, fuzzy
 msgid "Display a slideshow from F-Spot"
-msgstr "प्रदर्शक ए एफ़ स्पॉट"
+msgstr "F-Spot से कोई स्लाइड शो दिखाएँ"
 
 #: ../tools/f-spot-screensaver.desktop.in.h:2
-#, fuzzy
 msgid "F-Spot photos"
-msgstr "एफ़ स्पॉट"
+msgstr "F-Spot फोटो"
 
 #: ../extensions/Exporters/CDExport/CDExport.addin.xml.h:1
-#, fuzzy
 #| msgid "..."
 msgid "_CD..."
-msgstr "..."
+msgstr "_CD..."
 
 #: ../extensions/Exporters/CDExport/CDExport.cs:162
-#, fuzzy, csharp-format
+#, csharp-format
 msgid "Transferring picture \"{0}\" To CD"
-msgstr "को सीडी"
+msgstr "तस्वीर \"{0}\" को CD में हस्तांतरित कर रहा है"
 
 #: ../extensions/Exporters/CDExport/CDExport.cs:177
 #: ../extensions/Exporters/FlickrExport/FlickrExport.cs:379
@@ -3135,9 +3104,8 @@ msgstr "को सीडी"
 #: ../extensions/Exporters/FacebookExport/FacebookExport.cs:551
 #: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:704
 #: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:607
-#, fuzzy
 msgid "Done Sending Photos"
-msgstr "सम्पन्न भेजा जा रहा है"
+msgstr "फोटो भेजना संपन्न"
 
 #: ../extensions/Exporters/CDExport/CDExport.cs:179
 #: ../extensions/Exporters/FolderExport/FolderExport.cs:287
@@ -3146,15 +3114,13 @@ msgstr "हस्तांतरण पूर्ण"
 
 #: ../extensions/Exporters/CDExport/CDExport.cs:186
 #: ../extensions/Exporters/FolderExport/FolderExport.cs:292
-#, fuzzy
 msgid "Error While Transferring"
-msgstr "त्रुटि"
+msgstr "हस्तांतरण के दौरान त्रुटि"
 
 #: ../extensions/Exporters/CDExport/CDExport.cs:193
 #: ../extensions/Exporters/FolderExport/FolderExport.cs:311
-#, fuzzy
 msgid "Error Transferring"
-msgstr "त्रुटि"
+msgstr "हस्तांतरण में त्रुटि"
 
 #: ../extensions/Exporters/CDExport/CDExport.cs:206
 msgid "copying..."
@@ -3165,9 +3131,8 @@ msgid "<b><i>There is some previously scheduled items to write</i></b>"
 msgstr "<b><i>लिखने के पहले से कुछ अनुसूचित मद रह गए हैं</i></b>"
 
 #: ../extensions/Exporters/CDExport/CDExport.glade.h:2
-#, fuzzy
 msgid "<b>Photos to Burn</b>"
-msgstr "<b> को बर्न</b>"
+msgstr "<b>जलाने के लिए फोटो</b>"
 
 #: ../extensions/Exporters/CDExport/CDExport.glade.h:4
 msgid "Create CD"
@@ -3178,68 +3143,61 @@ msgid "Size of the exported selection:"
 msgstr "निर्यातित चयन का आकार:"
 
 #: ../extensions/Exporters/CDExport/CDExport.glade.h:7
-#, fuzzy
 msgid "_Browse Previously Scheduled Files"
-msgstr "ब्राउज़ फ़ाइलें"
+msgstr "पहले से अनुसूचित फ़ाइलें ब्राउज़ करें (_B)"
 
 #: ../extensions/Exporters/CDExport/CDExport.glade.h:8
-#, fuzzy
 msgid "_Write only these photos to CD"
-msgstr "लिखें को सीडी"
+msgstr "केवल इन फोटो को सीडी में लिखें (_W)"
 
 #: ../extensions/Exporters/FlickrExport/FlickrExport.addin.xml.h:1
 msgid "_23hq..."
 msgstr "_23hq..."
 
 #: ../extensions/Exporters/FlickrExport/FlickrExport.addin.xml.h:2
-#, fuzzy
 #| msgid "_Flickr"
 msgid "_Flickr..."
-msgstr "फ्लिकर (_F)"
+msgstr "फ्लिकर (_F)..."
 
 #: ../extensions/Exporters/FlickrExport/FlickrExport.addin.xml.h:3
-#, fuzzy
 #| msgid "_Import..."
 msgid "_Zooomr..."
-msgstr "आयात (_I)..."
+msgstr "_Zooomr..."
 
 #: ../extensions/Exporters/FlickrExport/FlickrExport.cs:105
 #: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:5
-#, fuzzy
 msgid "Authorize"
 msgstr "प्राधिकृत करें"
 
 #: ../extensions/Exporters/FlickrExport/FlickrExport.cs:111
-#, fuzzy, csharp-format
+#, csharp-format
 msgid ""
 "Return to this window after you have finished the authorization process on "
 "{0} and click the \"Complete Authorization\" button below"
-msgstr "रिटर्न,वापस को विंडो पश्चात आप पूर्ण पर और क्लिक पूर्ण"
+msgstr "इस विंडो में वापस लौटें जब आपने प्राधिकार प्रक्रिया पूरी कर लिया है {0} पर और \"Complete Authorization\" बटन को नीचे क्लिक करें"
 
 #: ../extensions/Exporters/FlickrExport/FlickrExport.cs:112
-#, fuzzy
 msgid "Complete Authorization"
-msgstr "पूर्ण"
+msgstr "प्राधिकार पूरा करें"
 
 #: ../extensions/Exporters/FlickrExport/FlickrExport.cs:117
-#, fuzzy, csharp-format
+#, csharp-format
 msgid "Logging into {0}"
-msgstr "लॉग किया जा रहा है"
+msgstr "{0} में लॉगिन करें"
 
 #: ../extensions/Exporters/FlickrExport/FlickrExport.cs:118
-#, fuzzy
 msgid "Checking credentials..."
-msgstr "जांच."
+msgstr "श्रेय जांच रहा है..."
 
 #: ../extensions/Exporters/FlickrExport/FlickrExport.cs:125
-#, fuzzy, csharp-format
+#, csharp-format
 msgid "Welcome {0} you are connected to {1}"
-msgstr "सुस्वागतम आप कनेक्टेड को"
+msgstr "{0} स्वागत है जिसमें आप {1} कनेक्टेड हैं"
 
 #: ../extensions/Exporters/FlickrExport/FlickrExport.cs:128
-#, fuzzy, csharp-format
+#, csharp-format
 msgid "Sign in as a different user"
-msgstr "हस्ताक्षर इंच ए"
+msgstr "बतौर भिन्न उपयोक्ता साइन इन करें"
 
 #: ../extensions/Exporters/FlickrExport/FlickrExport.cs:133
 #, csharp-format
@@ -3276,42 +3234,40 @@ msgid "Upload Complete"
 msgstr "अपलोड संपन्न"
 
 #: ../extensions/Exporters/FlickrExport/FlickrExport.cs:454
-#, fuzzy
 msgid "Unable to log on."
-msgstr "को पर."
+msgstr "लॉग ऑन में असमर्थ."
 
 #: ../extensions/Exporters/FlickrExport/FlickrExport.cs:455
-#, fuzzy, csharp-format
+#, csharp-format
 msgid ""
 "F-Spot was unable to log on to {0}.  Make sure you have given the "
 "authentication using {0} web browser interface."
-msgstr "एफ़ स्पॉट को पर को मेक आप प्रामाणीकरण इंटरफेस."
+msgstr "F-Spot {0} में लॉग ऑन करने में असमर्थ था.  निश्चित करें कि आपने {0} वेब ब्राउजर अंतरफलके के प्रयोग से सत्यापन दिया है."
 
 #: ../extensions/Exporters/FlickrExport/FlickrExport.cs:475
 #: ../extensions/Exporters/GalleryExport/GalleryExport.cs:732
 #: ../extensions/Exporters/FacebookExport/FacebookExport.cs:477
 #: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:597
 #: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:522
-#, fuzzy
 msgid "Uploading Pictures"
-msgstr "अपलोडिंग छवियाँ"
+msgstr "तस्वीर अपलोडिंग कर रहा है"
 
 #: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:4
 msgid "<b>Viewing permissions</b>"
 msgstr "<b>देखने की अनुमति</b>"
 
 #: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:7
-#, fuzzy
 msgid "Export tag _hierarchy"
-msgstr "निर्यात को वेब गलियारा."
+msgstr "टैग पदक्रम निर्यात करें (_h)"
 
 #: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:8
-#, fuzzy
 msgid ""
 "F-Spot needs your authorization in order to upload photos to your {0} "
 "account. Press the \"Authorize\" button to open a web browser and give F-"
 "Spot the authorization. "
-msgstr "एफ़ स्पॉट इंच को को खाता दबाएँ अधिकृत को खोलें ए और एफ़ स्पॉट "
+msgstr ""
+"F-Spot को आपके प्राधिकरण की जरूरत है अपने फोटो को अपने खाते {0} "
+"में अपलोड करने के लिए. \"प्राधिकार दें\" बटन को दबाएँ किसी वेब ब्राउजर को खोलने और F-Spot को प्राधिकरण देने के लिए."
 
 #: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:9
 msgid "Ignore _top level tags"
@@ -3326,53 +3282,45 @@ msgid "Public"
 msgstr "सार्वजनिक"
 
 #: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:12
-#, fuzzy
 msgid "Strip _metadata"
-msgstr "स्ट्रिप"
+msgstr "मेटाडेटा काटें (_m)"
 
 #: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:13
-#, fuzzy
 msgid "Visible to Family"
-msgstr "दृष्टिगोचर को परिवार"
+msgstr "परिवार को दृश्य"
 
 #: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:14
-#, fuzzy
 msgid "Visible to Friends"
-msgstr "दृष्टिगोचर को"
+msgstr "मित्रों को दृश्य"
 
 #: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:18
-#, fuzzy
 msgid "_View photos in browser when done uploading"
-msgstr "दृश्य इंच सम्पन्न"
+msgstr "अपलोडिंग करने पर ब्राउज़र में फोटो देखें (_V)"
 
 #: ../extensions/Exporters/FolderExport/FolderExport.addin.xml.h:1
-#, fuzzy
 msgid "F_older..."
-msgstr "फ़ोल्डर (_F)"
+msgstr "फ़ोल्डर (_F)..."
 
 #: ../extensions/Exporters/FolderExport/FolderExport.cs:140
 msgid "Select Export Folder"
 msgstr "निर्यात फ़ोल्डर चुनें"
 
 #: ../extensions/Exporters/FolderExport/FolderExport.cs:198
-#, fuzzy
 msgid "Building Gallery"
-msgstr "गलियारा"
+msgstr "दीर्घा बना रहा है"
 
 #: ../extensions/Exporters/FolderExport/FolderExport.cs:248
-#, fuzzy, csharp-format
+#, csharp-format
 msgid "Error uploading picture \"{0}\" to Gallery:{2}{1}"
-msgstr "त्रुटि अपलोडिंग को गलियारा"
+msgstr "तस्वीर \"{0}\" को दीर्घा में अपलोडिंग में त्रुटि:{2}{1}"
 
 #: ../extensions/Exporters/FolderExport/FolderExport.cs:333
-#, fuzzy
 msgid "Error: Error while transferring; Aborting"
-msgstr "त्रुटि त्रुटि"
+msgstr "त्रुटि: हस्तांतरण में त्रुटि; छोड़ रहा है"
 
 #: ../extensions/Exporters/FolderExport/FolderExport.cs:336
-#, fuzzy
 msgid "Error: File Already Exists; Aborting"
-msgstr "त्रुटि फ़ाइल"
+msgstr "त्रुटि: फ़ाइल पहले से मौजूद; छोड़ रहा है"
 
 #. Note for translators: light as clear, opposite as dark
 #: ../extensions/Exporters/FolderExport/FolderExport.cs:810
@@ -3389,9 +3337,8 @@ msgid "Prev"
 msgstr "पिछला"
 
 #: ../extensions/Exporters/FolderExport/FolderExport.cs:1103
-#, fuzzy
 msgid "Gallery generated by"
-msgstr "गलियारा"
+msgstr "दीर्घा जो इसके द्वारा उत्पन्न किया गया"
 
 #: ../extensions/Exporters/FolderExport/FolderExport.cs:1143
 msgid "Show Styles"
@@ -3415,93 +3362,83 @@ msgid "<b>Export Method</b>"
 msgstr "<b>निर्यात विधि</b>"
 
 #: ../extensions/Exporters/FolderExport/FolderExport.glade.h:8
-#, fuzzy
 msgid "Create _gallery using \"Original\""
-msgstr "बनाएँ असली"
+msgstr "\"Original\" के प्रयोग से दीर्घा बनाएँ (_g)"
 
 #: ../extensions/Exporters/FolderExport/FolderExport.glade.h:9
-#, fuzzy
 msgid "Create standalone _web gallery"
-msgstr "बनाएँ"
+msgstr "पृथक वेब दीर्घा बनाएँ (_w)"
 
 #: ../extensions/Exporters/FolderExport/FolderExport.glade.h:10
 msgid "D_escription:"
 msgstr "विवरण (_e):"
 
 #: ../extensions/Exporters/FolderExport/FolderExport.glade.h:11
-#, fuzzy
 #| msgid "_Export tags"
 msgid "Export _tags"
-msgstr "टैग निर्यात (_E)"
+msgstr "टैग निर्यात करें (_t)"
 
 #: ../extensions/Exporters/FolderExport/FolderExport.glade.h:12
-#, fuzzy
 #| msgid "_Export tags"
 msgid "Export tag _icons"
-msgstr "टैग निर्यात (_E)"
+msgstr "टैग प्रतीक निर्यात करें (_i)"
 
 #: ../extensions/Exporters/FolderExport/FolderExport.glade.h:13
-#, fuzzy
 msgid "Folder Export"
 msgstr "फ़ोल्डर निर्यात"
 
 #: ../extensions/Exporters/FolderExport/FolderExport.glade.h:14
-#, fuzzy
 msgid "G_allery Name:"
-msgstr "गलियारा नाम:"
+msgstr "दीर्घा नाम (_a):"
 
 #: ../extensions/Exporters/FolderExport/FolderExport.glade.h:15
-#, fuzzy
 msgid "Open _destination when done exporting"
-msgstr "खोलें सम्पन्न"
+msgstr "निर्यात करने पर गंतव्य खोलें (_d)"
 
 #: ../extensions/Exporters/FolderExport/FolderExport.glade.h:16
 msgid "_Folder:"
 msgstr "फ़ोल्डर (_F):"
 
 #: ../extensions/Exporters/FolderExport/FolderExport.glade.h:18
-#, fuzzy
 msgid "_Save the files only"
-msgstr "सहेजें"
+msgstr "केवल फ़ाइल सहेजें (_S)"
 
 #: ../extensions/Exporters/GalleryExport/GalleryExport.addin.xml.h:1
-#, fuzzy
 msgid "Web _Gallery..."
-msgstr "निर्यात को वेब गलियारा."
+msgstr "वेब दीर्घा (_G)..."
 
 #: ../extensions/Exporters/GalleryExport/GalleryExport.cs:52
 msgid ""
 "Cannot connect to a Gallery for which the version is unknown.\n"
 "Please check that you have Remote plugin 1.0.8 or later"
 msgstr ""
+"किसी दीर्घा से कनेक्ट नहीं हो सकता है जिसके लिए संस्करण अज्ञात है.\n"
+"कृपया जांचे कि आपको दूरस्थ प्लगिन 1.0.8 या पश्चातवर्ती है"
 
 #: ../extensions/Exporters/GalleryExport/GalleryExport.cs:393
-#, fuzzy
 msgid "Invalid URL"
 msgstr "अवैध यूआरएल"
 
 #: ../extensions/Exporters/GalleryExport/GalleryExport.cs:394
-#, fuzzy
 msgid "The gallery URL entry does not appear to be a valid URL"
-msgstr "यूआरएल प्रविष्टि नहीं को ए यूआरएल"
+msgstr "दीर्घा URL प्रविष्ट कोई वैध URL नहीं प्रकट होता है"
 
 #: ../extensions/Exporters/GalleryExport/GalleryExport.cs:404
 #: ../extensions/Exporters/GalleryExport/GalleryExport.cs:431
 #: ../extensions/Exporters/GalleryExport/GalleryExport.cs:442
-#, fuzzy
 msgid "Error while connecting to Gallery"
-msgstr "त्रुटि जुड़ रहा है को कैमरा"
+msgstr "किसी दीर्घा में कनेक्ट किए जाने के दौरान त्रुटि"
 
 #: ../extensions/Exporters/GalleryExport/GalleryExport.cs:405
 #: ../extensions/Exporters/GalleryExport/GalleryExport.cs:432
 #: ../extensions/Exporters/GalleryExport/GalleryExport.cs:443
 #, csharp-format
 msgid "The following error was encountered while attempting to log in: {0}"
-msgstr ""
+msgstr "लॉगिन के प्रयास के दौरान निम्नलिखित त्रुटि आई: {0}"
 
 #: ../extensions/Exporters/GalleryExport/GalleryExport.cs:419
 msgid "A Gallery with this name already exists"
-msgstr ""
+msgstr "इस नाम से दीर्घा पहले से मौजूद है"
 
 #: ../extensions/Exporters/GalleryExport/GalleryExport.cs:420
 #, csharp-format
@@ -3509,10 +3446,12 @@ msgid ""
 "There is already a Gallery with the same name in your registered Galleries. "
 "Please choose a unique name."
 msgstr ""
+"पहले से एक दीर्घा है समान नाम के साथ आपके पंजीकृत दीर्घा में. "
+"कृपया कोई अद्वितीय नाम चुनें."
 
 #: ../extensions/Exporters/GalleryExport/GalleryExport.cs:530
 msgid "(TopLevel)"
-msgstr ""
+msgstr "(TopLevel)"
 
 #: ../extensions/Exporters/GalleryExport/GalleryExport.cs:592
 msgid "Invalid Gallery name"
@@ -3523,6 +3462,8 @@ msgid ""
 "The gallery name contains invalid characters.\n"
 "Only letters, numbers, - and _ are allowed"
 msgstr ""
+"दीर्घा नाम अवैध वर्ण समाहित करता है.\n"
+"केवल अक्षर, संख्या, - और _ को अनुमति है"
 
 #: ../extensions/Exporters/GalleryExport/GalleryExport.cs:798
 #, csharp-format
@@ -3620,17 +3561,16 @@ msgstr "उपयोक्ता नाम (_U):"
 
 #: ../extensions/Exporters/GalleryExport/GalleryRemote.cs:361
 msgid "Error reading server response"
-msgstr ""
+msgstr "सर्वर अनुक्रिया पढ़ने में त्रुटि"
 
 #. failed to find the response
 #: ../extensions/Exporters/GalleryExport/GalleryRemote.cs:373
 msgid "Server returned response without Gallery content"
-msgstr ""
+msgstr "बिना दीर्घा सामग्री के सर्वर ने अऩुक्रिया दी"
 
 #: ../extensions/Exporters/GalleryExport/GalleryRemote.cs:710
-#, fuzzy
 msgid "Error while creating new album"
-msgstr "त्रुटि."
+msgstr "नया एल्बम बनाने में त्रुटि"
 
 #: ../extensions/Exporters/GalleryExport/GalleryRemote.cs:711
 #, csharp-format
@@ -3639,65 +3579,66 @@ msgid ""
 "requested operation:\n"
 "{0} ({1})"
 msgstr ""
+"निम्नलिखित त्रुटि का सामना हुआ जब किसी ने निवेदित संक्रिया करने का प्रयास किया:\n"
+"{0} ({1})"
 
 #: ../extensions/Exporters/FacebookExport/FacebookExport.addin.xml.h:1
 msgid "F_acebook..."
-msgstr ""
+msgstr "फेसबुक (_a)..."
 
 #: ../extensions/Exporters/FacebookExport/FacebookExport.cs:257
 msgid "Too many images to export"
-msgstr ""
+msgstr "निर्यात करने के लिए कई छवियां"
 
 #: ../extensions/Exporters/FacebookExport/FacebookExport.cs:257
 msgid ""
 "Facebook only permits 60 photographs per album.  Please refine your "
 "selection and try again."
-msgstr ""
+msgstr "फेसबुक केवल प्रति एल्बम 60 फोटो की अनुमति देता है.  कृपया अपना चयन परिष्कृत करें और फिर कोशिश करें."
 
 #: ../extensions/Exporters/FacebookExport/FacebookExport.cs:281
 #: ../extensions/Exporters/FacebookExport/FacebookExport.cs:367
 msgid "You are not logged in."
-msgstr ""
+msgstr "आप लॉगिन नहीं हैं."
 
 #: ../extensions/Exporters/FacebookExport/FacebookExport.cs:322
 msgid "Waiting for authentication"
-msgstr ""
+msgstr "सत्यापन के लिए प्रतीक्षारत"
 
 #: ../extensions/Exporters/FacebookExport/FacebookExport.cs:322
 msgid ""
 "F-Spot will now launch your browser so that you can log into Facebook.  Turn "
 "on the \"Save my login information\" checkbox on Facebook and F-Spot will "
 "log into Facebook automatically from now on."
-msgstr ""
+msgstr "F-Spot अब आपके ब्राउज़र को लॉन्च करेगा ताकि आप फेसबुक में लॉगिन कर सकें.  \"मेरी लॉगिन सूचना सहेजें\" जाँचपेटी को चालू करें फेसबुक पर और F-Spot फेसबुक में अबसे स्वतः लॉगिन हो जाएगा."
 
 #: ../extensions/Exporters/FacebookExport/FacebookExport.cs:328
-#, fuzzy
 msgid "Error logging into Facebook"
-msgstr "त्रुटि जुड़ रहा है को कैमरा"
+msgstr "फेसबुक से जुड़ने में त्रुटि"
 
 #: ../extensions/Exporters/FacebookExport/FacebookExport.cs:328
 msgid ""
 "There was a problem logging into Facebook.  Check your credentials and try "
 "again."
-msgstr ""
+msgstr "फेसबुक में लॉगिन करने में त्रुटि थी.  अपने श्रेय जाँचें और फिर कोशिश करें."
 
 #. Note for translators: {0} and {1} are respectively firstname and surname of the user
 #: ../extensions/Exporters/FacebookExport/FacebookExport.cs:341
 #, csharp-format
 msgid "{0} {1} is logged into Facebook"
-msgstr ""
+msgstr "{0} {1} फेसबुक में लॉग इन है"
 
 #: ../extensions/Exporters/FacebookExport/FacebookExport.cs:491
 msgid "Album must have a name"
-msgstr ""
+msgstr "एल्बम का जरूर कोई नाम होना चाहिए"
 
 #: ../extensions/Exporters/FacebookExport/FacebookExport.cs:491
 msgid "Please name your album or choose an existing album."
-msgstr ""
+msgstr "अपने एल्बम का नाम दें या किसी मौजूदा को चुनें."
 
 #: ../extensions/Exporters/FacebookExport/FacebookExport.cs:504
 msgid "Creating a new album failed"
-msgstr ""
+msgstr "नया एल्बम बना विफल"
 
 #: ../extensions/Exporters/FacebookExport/FacebookExport.cs:504
 #, csharp-format
@@ -3706,124 +3647,111 @@ msgid ""
 "\n"
 "{0}"
 msgstr ""
+"नया एल्बम बनाने में एक त्रुटि आई.\n"
+"\n"
+"{0}"
 
 #: ../extensions/Exporters/FacebookExport/FacebookExport.cs:528
 #: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:660
 #: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:565
-#, fuzzy, csharp-format
+#, csharp-format
 msgid "Uploading picture \"{0}\" ({1} of {2})"
-msgstr "अपलोडिंग"
+msgstr "{2}) के तस्वीर \"{0}\" ({1} को अपलोड कर रहा है"
 
 #: ../extensions/Exporters/FacebookExport/FacebookExport.cs:542
-#, fuzzy, csharp-format
+#, csharp-format
 msgid "Error Uploading To Facebook: {0}"
-msgstr "त्रुटि अपलोडिंग को"
+msgstr "फेसबुक में अपलोड करने में त्रुटि: {0}"
 
 #: ../extensions/Exporters/FacebookExport/FacebookExport.glade.h:1
-#, fuzzy
 #| msgid "C_aption:"
 msgid "Caption"
 msgstr "शीर्षक"
 
 #: ../extensions/Exporters/FacebookExport/FacebookExport.glade.h:2
-#, fuzzy
 msgid "Create a new album"
-msgstr "बनाएँ नया टैग"
+msgstr "नया एल्बम बनाएँ"
 
 #: ../extensions/Exporters/FacebookExport/FacebookExport.glade.h:3
-#, fuzzy
 #| msgid "D_escription:"
 msgid "Description"
 msgstr "वर्णन"
 
 #: ../extensions/Exporters/FacebookExport/FacebookExport.glade.h:4
-#, fuzzy
 msgid "Export to Facebook"
-msgstr "निर्यात को."
+msgstr "फेसबुक में निर्यात करें"
 
 #: ../extensions/Exporters/FacebookExport/FacebookExport.glade.h:5
-#, fuzzy
 msgid "In this photo"
-msgstr "नहीं सक्रिय"
+msgstr "इस फोटो में"
 
 #: ../extensions/Exporters/FacebookExport/FacebookExport.glade.h:7
-#, fuzzy
 msgid "Login"
 msgstr "लॉगिन"
 
 #: ../extensions/Exporters/FacebookExport/FacebookExport.glade.h:8
-#, fuzzy
 msgid "Logout"
 msgstr "लॉगआउट"
 
 #: ../extensions/Exporters/FacebookExport/FacebookExport.glade.h:10
 msgid "This is who I am"
-msgstr ""
+msgstr "यह मैं हूँ"
 
 #: ../extensions/Exporters/FacebookExport/FacebookExport.glade.h:11
 msgid "Use an existing album"
-msgstr ""
+msgstr "किसी मौजूदा एल्बम का प्रयोग करें"
 
 #: ../extensions/Exporters/FacebookExport/FacebookExport.glade.h:12
 msgid "Who is this?"
-msgstr ""
+msgstr "यह कौन है?"
 
 #: ../extensions/Exporters/ZipExport/ZipExport.addin.xml.h:1
-#, fuzzy
 msgid "Compressed fil_e..."
-msgstr "नया टैग.बनाएँ (_T)..."
+msgstr "संकुचित फ़ाइल (_e)..."
 
 #: ../extensions/Exporters/ZipExport/ZipExport.cs:47
 #: ../extensions/Tools/MetaPixel/MetaPixel.cs:46
 #: ../extensions/Tools/PictureTile/PictureTile.cs:52
-#, fuzzy
 msgid ""
 "This tool requires an active selection. Please select one or more pictures "
 "and try again"
-msgstr "सक्रिय ए का और"
+msgstr "इस औज़ार को किसी सक्रिय चयन की जरूरत है. कृपया एक या अधिक तस्वीर चुनें और फिर कोशिश करें"
 
 #: ../extensions/Exporters/ZipExport/ZipExport.cs:63
-#, fuzzy
 #| msgid "Select Export Folder"
 msgid "Select export folder"
-msgstr "निर्यात फ़ोल्डर चुनें"
+msgstr "निर्यात फोल्डर चुनें"
 
 #: ../extensions/Exporters/ZipExport/ZipExport.cs:101
-#, fuzzy
 msgid "Exporting files"
-msgstr "ऑपरेशन"
+msgstr "फ़ाइल निर्यात कर रहा है"
 
 #: ../extensions/Exporters/ZipExport/ZipExport.cs:107
 #: ../extensions/Tools/MetaPixel/MetaPixel.cs:140
-#, fuzzy, csharp-format
+#, csharp-format
 msgid "Preparing photo \"{0}\""
-msgstr "अपलोडिंग"
+msgstr "फोटो \"{0}\" तैयार कर रहा है"
 
 #: ../extensions/Exporters/ZipExport/ZipExport.glade.h:2
-#, fuzzy
 msgid "_File name:"
-msgstr "नया नाम"
+msgstr "फ़ाइल नाम (_F):"
 
 #: ../extensions/Exporters/ZipExport/ZipExport.glade.h:3
-#, fuzzy
 #| msgid "C_aption:"
 msgid "_Location:"
 msgstr "स्थान (_L):"
 
 #: ../extensions/Exporters/ZipExport/ZipExport.glade.h:4
-#, fuzzy
 msgid "_Scale:"
 msgstr "मापक (_S):"
 
 #: ../extensions/Tools/MergeDb/MergeDb.addin.xml.h:1
-#, fuzzy
 msgid "Merge Db"
-msgstr "मिलाएँ टैग्स"
+msgstr "Db मिलाएँ"
 
 #: ../extensions/Tools/MergeDb/MergeDb.cs:73
-#, fuzzy
 msgid "Error opening the selected file"
-msgstr "मिलाएँ चयनित टैग,पुछल्ला"
+msgstr "चुने फ़ाइल खोलने में त्रुटि"
 
 #: ../extensions/Tools/MergeDb/MergeDb.cs:74
 #, csharp-format
@@ -3832,13 +3760,17 @@ msgid ""
 "\n"
 "Received exception \"{0}\"."
 msgstr ""
+"फ़ाइल जिसे आपने चुना एक वैध या समर्थित डेटाबेस नहीं है.\n"
+"\n"
+"अपवाद \"{0} पाया\"."
 
 #: ../extensions/Tools/MergeDb/MergeDb.glade.h:1
-#, fuzzy
 msgid ""
 "<small><i>Choose the location of the database you want to import from</i></"
 "small>"
-msgstr "<small><i> सक्षम करें को और छवि</i></small>"
+msgstr ""
+"<small><i>डेटाबेस का स्थान चुनें जिससे आप आयात करना चाहते हैं</i></"
+"small>"
 
 #: ../extensions/Tools/MergeDb/MergeDb.glade.h:2
 msgid ""
@@ -3849,6 +3781,10 @@ msgid ""
 "\"Everything\" will import everything, creating duplicates if you already "
 "imported from that database.</i></small>"
 msgstr ""
+"<small><i>चुनें कि चयनित db से क्या आयात करना है.\n"
+"\"New Rolls Only\" एक बढ़िया विकल्प है जो फोटो को फिर आयात करने को बचाएगा जिसे आपने आयात किया है पिछले ऑपरेशन के दौरान.\n"
+"\"A Single Import Roll\" आपको चुनने की छूट देता है कि किस रोल को आप मिलाना चाहते हैं.\n"
+"\"Everything\" सभी चीजों को आयात करेगा, डुप्लीकेट को बनाते हुए यदि आपने उस डेटाबेस से पहले से आयात किया है.</i></small>"
 
 #: ../extensions/Tools/MergeDb/MergeDb.glade.h:6
 msgid ""
@@ -3856,41 +3792,41 @@ msgid ""
 "the later, be sure that this location will stay accessible from f-spot.</i></"
 "small>"
 msgstr ""
+"<small><i>छवि को स्थानीय रूप से नक़ल लें या उन्हें वहाँ रखें जहाँ वे हैं. यदि आप बाद का चुनते हैं, निश्चित रहें कि स्थान f-spot से पहुंच योग्य है.</i></"
+"small>"
 
 #: ../extensions/Tools/MergeDb/MergeDb.glade.h:7
 msgid "A Single Import Roll"
-msgstr ""
+msgstr "एकल आयात रोल"
 
 #: ../extensions/Tools/MergeDb/MergeDb.glade.h:8
-#, fuzzy
 msgid "Copy images to photos folder"
-msgstr "प्रतिलिपि फाइल को फ़ोल्डर"
+msgstr "फोटो फोल्डर में छवि की नक़ल लें"
 
 #: ../extensions/Tools/MergeDb/MergeDb.glade.h:9
 msgid "Database Location:"
-msgstr ""
+msgstr "डेटाबेस स्थान:"
 
 #: ../extensions/Tools/MergeDb/MergeDb.glade.h:10
 msgid "Everything"
 msgstr "सभी"
 
 #: ../extensions/Tools/MergeDb/MergeDb.glade.h:11
-#, fuzzy
 #| msgid "Import"
 msgid "Import:"
-msgstr "आयात"
+msgstr "आयात:"
 
 #: ../extensions/Tools/MergeDb/MergeDb.glade.h:12
 msgid "Keep the images at their original location"
-msgstr ""
+msgstr "मौलिक स्थान पर छवियां रखें"
 
 #: ../extensions/Tools/MergeDb/MergeDb.glade.h:13
 msgid "Merge another F-Spot collection"
-msgstr ""
+msgstr "दूसरे F-Spot संग्रह को मिलाएँ"
 
 #: ../extensions/Tools/MergeDb/MergeDb.glade.h:14
 msgid "New Rolls Only"
-msgstr ""
+msgstr "केवल नया रोल"
 
 #: ../extensions/Tools/MergeDb/PickFolderDialog.cs:33
 #, csharp-format
@@ -3898,100 +3834,92 @@ msgid ""
 "<big>The database refers to files contained in the <b>{0}</b> folder.\n"
 " Please select that folder so I can do the mapping.</big>"
 msgstr ""
+"<big>यह डेटाबेस फ़ाइल को संदर्भित करता है जो कि <b>{0}</b> फोल्डर में समाहित है.\n"
+" कृपया उन फ़ोल्डर को चुनें जिस फ़ोल्डर में मैं मैपिंग कर सकता हूँ.</big>"
 
 #: ../extensions/Tools/MetaPixel/MetaPixel.addin.xml.h:1
-#, fuzzy
 msgid "Create p_hotomosaic"
-msgstr "नया टैग.बनाएँ (_T)..."
+msgstr "फोटोमोजैक बनाएँ (_h)"
 
 #: ../extensions/Tools/MetaPixel/MetaPixel.cs:65
-#, fuzzy
 msgid "Metapixel not available"
-msgstr "नहीं उपलब्ध"
+msgstr "मेटापिक्सेल उपलब्ध नहीं"
 
 #: ../extensions/Tools/MetaPixel/MetaPixel.cs:66
 msgid ""
 "The metapixel executable was not found in path. Please check that you have "
 "it installed and that you have permissions to execute it"
-msgstr ""
+msgstr "मेटापिक्सेल निष्पादनीय पथ में नहीं मिला था. कृपया जाँचें कि आपने इसे संस्थापित किया है और आपके पास इसे चलाने की अनुमति है"
 
 #. There is no photo for the selected tags! :(
 #: ../extensions/Tools/MetaPixel/MetaPixel.cs:121
-#, fuzzy
 msgid "No photos for the selection"
-msgstr "अनुपात का"
+msgstr "चयन के लिए कोई फोटो नहीं"
 
 #: ../extensions/Tools/MetaPixel/MetaPixel.cs:122
-#, fuzzy
 msgid "The tags selected provided no pictures. Please select different tags"
-msgstr "आप चयनित नहीं ए"
+msgstr "चयनित टैह कोई तस्वीर नहीं देता है. कृपया कोई भिन्न टैग चुनें"
 
 #: ../extensions/Tools/MetaPixel/MetaPixel.cs:129
-#, fuzzy
 msgid "Creating miniatures"
-msgstr "छवियाँ"
+msgstr "लघुछवियां बना रहा है"
 
 #: ../extensions/Tools/MetaPixel/MetaPixel.cs:180
-#, fuzzy
 msgid "Creating photomosaics"
-msgstr "त्रुटि"
+msgstr "फोटोमौजेक बना रहा है"
 
 #: ../extensions/Tools/MetaPixel/MetaPixel.cs:187
 #: ../extensions/Tools/PictureTile/PictureTile.cs:120
 #, csharp-format
 msgid "Processing \"{0}\""
-msgstr ""
+msgstr "\"{0}\" की प्रक्रिया कर रहा है"
 
 #: ../extensions/Tools/MetaPixel/MetaPixel.cs:236
 msgid "PhotoMosaics generated!"
-msgstr ""
+msgstr "फोटो मौजेक बनाया गया!"
 
 #: ../extensions/Tools/MetaPixel/MetaPixel.cs:254
 #, csharp-format
 msgid "PhotoMosaic"
 msgid_plural "PhotoMosaic ({0})"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "फोटोमोजैक"
+msgstr[1] "फोटोमोजैक ({0})"
 
 #: ../extensions/Tools/PictureTile/PictureTile.addin.xml.h:1
-#, fuzzy
 msgid "Create photo_wall"
-msgstr "मिटाएँ"
+msgstr "फोटोवॉल बनाएँ (_w)"
 
 #: ../extensions/Tools/PictureTile/PictureTile.cs:71
-#, fuzzy
 msgid "PictureTile not available"
-msgstr "नहीं उपलब्ध"
+msgstr "PictureTile उपलब्ध नहीं"
 
 #: ../extensions/Tools/PictureTile/PictureTile.cs:72
 msgid ""
 "The picturetile.pl executable was not found in path. Please check that you "
 "have it installed and that you have permissions to execute it"
-msgstr ""
+msgstr "picturetile.pl निष्पादनीय पथ में नहीं मिला था. जाँचें कि आपने इसे संस्थापित किया है और आपके पास इसे चलाने की अनुमति है"
 
 #: ../extensions/Tools/PictureTile/PictureTile.cs:110
 msgid "Preparing selected pictures"
-msgstr ""
+msgstr "चयनित तस्वीर तैयार कर रहा है"
 
 #: ../extensions/Tools/PictureTile/PictureTile.cs:201
-#, fuzzy
 msgid "PhotoWall generated!"
-msgstr "गलियारा"
+msgstr "PhotoWall निर्मित!"
 
 #: ../extensions/Tools/PictureTile/PictureTile.cs:202
 msgid ""
 "Your photo wall have been generated and imported in F-Spot. Select the last "
 "roll to see it"
-msgstr ""
+msgstr "आपका फोटो उत्पन्न किया गया है और F-Spot में आयात किया गया है. अंतिम रोल को इसे देखने के लिए चुनें"
 
 #: ../extensions/Tools/PictureTile/PictureTile.cs:205
-#, fuzzy
 msgid "Error importing photowall"
-msgstr "त्रुटि"
+msgstr "फोटोवॉल आयात में त्रुटि"
 
 #: ../extensions/Tools/PictureTile/PictureTile.cs:206
 msgid "An error occurred while importing the newly generated photowall to F-Spot"
-msgstr ""
+msgstr "नव निर्मित फोटोवॉल को F-Spot में आयात करने में त्रुटि आई"
 
 #: ../extensions/Tools/HashJob/HashJob.cs:53
 msgid ""
@@ -3999,29 +3927,29 @@ msgid ""
 "needs to analyze your image collection. This is not done by default as it's "
 "time consuming. You can Start or Pause this update process using this dialog."
 msgstr ""
+"तस्वीर पर डुप्लीकेट को पता करने के लिए जिसे आपने 0.5.0 के पहले आयात किया है, F-Spot "
+"को आपके छवि संग्रह को विश्लेषित करने की जरूरत है. यह तयशुदा रूप से नहीं किया जाता है क्योंकि यह अधिक समय लेता है. आप इस अद्यतन को आरंभ या रोक सकते हैं इस संवाद के प्रयोग से."
 
 #: ../extensions/Tools/HashJob/HashJob.cs:102
 msgid "Processing images..."
-msgstr ""
+msgstr "छवियां प्रक्रिया कर रहा है..."
 
 #: ../extensions/Tools/HashJob/HashJob.cs:108
 msgid "Stopped"
 msgstr "रुक गया"
 
 #: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.addin.xml.h:1
-#, fuzzy
 msgid "_PicasaWeb..."
-msgstr "निर्यात को."
+msgstr "पिकासवेब (_P)..."
 
 #: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:441
-#, fuzzy
 msgid "Error while creating Album"
-msgstr "त्रुटि."
+msgstr "एल्बम बनाने के दौरान त्रुटि"
 
 #: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:442
 #, csharp-format
 msgid "The following error was encountered while attempting to create an album: {0}"
-msgstr ""
+msgstr "निम्नलिखित त्रुटि आई जब किसी एल्बम को बनाने की कोशिश हुई: {0}"
 
 #: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:620
 #, csharp-format
@@ -4029,20 +3957,20 @@ msgid "{0} Sent"
 msgstr "{0} प्रेषित"
 
 #: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:622
-#, fuzzy, csharp-format
+#, csharp-format
 msgid "{0} of approx. {1}"
-msgstr "का"
+msgstr "{1} का अनुमानित रूप से {0}"
 
 #: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:691
 #: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:594
-#, fuzzy, csharp-format
+#, csharp-format
 msgid "Error Uploading To Gallery: {0}"
-msgstr "त्रुटि अपलोडिंग को गलियारा"
+msgstr "दीर्घा में अपलोड करने में त्रुटि: {0}"
 
 #: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:778
 #, csharp-format
 msgid "Available space: {0}, {1}% used out of {2}"
-msgstr ""
+msgstr "उपलब्ध स्थान: {0}, {2} में से {1}% प्रयुक्त"
 
 #: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:891
 #, csharp-format
@@ -4050,16 +3978,16 @@ msgid ""
 "The selected album has a limit of {0} pictures,\n"
 "which would be passed with the current selection of {1} images"
 msgstr ""
+"चयनित एल्बम के पास {0} तस्वीर की सीमा है,\n"
+"जो कि {1} छवि के मौजूदा चयन से अधिक हो जाएगा"
 
 #: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:3
-#, fuzzy
 msgid "<b>PicasaWeb Export</b>"
-msgstr "<b>एक्सपोज़र</b>"
+msgstr "<b>पिकासावेब निर्यात</b>"
 
 #: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:7
-#, fuzzy
 msgid "<span weight='bold' size='larger'>Your Google Account is locked</span>\n"
-msgstr "<span weight='bold' size='larger'> त्रुटि कनेक्शन हो रहा है को गलियारा</span> n"
+msgstr "<span weight='bold' size='larger'>आपका गूगल खाता बंद है</span>\n"
 
 #: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:12
 msgid ""
@@ -4067,52 +3995,49 @@ msgid ""
 "Enter the letters as they are shown in the image in\n"
 "the 'Captcha' field. <i>Letters are not case-sensitive</i>"
 msgstr ""
+"जांचें कि इस दीर्घा के लिए सेटिंग सही है.\n"
+"अक्षर को दाखिल करें जो कि छवि में दिखाए गए हैं\n"
+"'कैप्टचा' क्षेत्र में. <i>अक्षर स्थिति संवेद्य नहीं है</i>"
 
 #: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:15
 #: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:8
-#, fuzzy
 msgid "Public Album"
-msgstr "सार्वजनिक"
+msgstr "सार्वजनिक एल्बम"
 
 #: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:16
 #: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:10
-#, fuzzy
 msgid "_Album Title:"
-msgstr "एल्बम नाम (_A):"
+msgstr "एल्बम शीर्षक (_A):"
 
 #: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:17
-#, fuzzy
 msgid "_Autorotate"
-msgstr "अधिकृत"
+msgstr "स्वतः घुमाएँ (_A)"
 
 #: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:18
 msgid "_Captcha:"
 msgstr "_Captcha:"
 
 #: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:3
-#, fuzzy
 #| msgid "<b>Exposure</b>"
 msgid "<b>SmugMug Export</b>"
-msgstr "<b>एक्सपोज़र</b>"
+msgstr "<b>SmugMug निर्यात</b>"
 
 #: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:9
-#, fuzzy
 msgid "_Account:"
-msgstr "खाता: (_A)"
+msgstr "खाता (_A) :"
 
 #: ../extensions/Exporters/SmugMugExport/SmugMugExport.addin.xml.h:1
 msgid "_SmugMug..."
 msgstr "_SmugMug..."
 
 #: ../extensions/Exporters/TabbloExport/Tabblo/Connection.cs:132
-#, fuzzy, csharp-format
+#, csharp-format
 msgid "Uploading photo \"{0}\""
-msgstr "अपलोडिंग"
+msgstr "फोटो \"{0}\" अपलोड कर रहा है"
 
 #: ../extensions/Exporters/TabbloExport/Tabblo/Connection.cs:206
-#, fuzzy
 msgid "Logging into Tabblo"
-msgstr "लॉग किया जा रहा है"
+msgstr "टैब्लो में लॉग किया जा रहा है"
 
 #: ../extensions/Exporters/TabbloExport/Tabblo/Connection.cs:267
 msgid "Obtaining URL for upload"
@@ -4123,30 +4048,25 @@ msgid "_Tabblo..."
 msgstr "टैब्लो (_T)..."
 
 #: ../extensions/Exporters/TabbloExport/TabbloExport.cs:308
-#, fuzzy
 msgid "Done sending photos"
-msgstr "सम्पन्न भेजा जा रहा है"
+msgstr "फोटो भेजना संपन्न"
 
 #: ../extensions/Exporters/TabbloExport/TabbloExport.cs:310
-#, fuzzy
 msgid "Upload complete"
-msgstr "पूर्ण"
+msgstr "अपलोड संपन्न"
 
 #: ../extensions/Exporters/TabbloExport/TabbloExport.cs:316
-#, fuzzy
 msgid "Error uploading to Tabblo: "
-msgstr "त्रुटि अपलोडिंग को गलियारा"
+msgstr "Tabblo में अपलोडिंग में त्रुटि: "
 
 #: ../extensions/Exporters/TabbloExport/TabbloExport.glade.h:1
-#, fuzzy
 msgid "<b>F-Spot tags</b>"
-msgstr "<b>निर्यात विधि</b>"
+msgstr "<b>F-Spot टैग</b>"
 
 #: ../extensions/Exporters/TabbloExport/TabbloExport.glade.h:3
-#, fuzzy
 #| msgid "<b>Account</b>"
 msgid "<b>Tabblo account</b>"
-msgstr "<b>खाता</b>"
+msgstr "<b>Tabblo खाता</b>"
 
 #: ../extensions/Exporters/TabbloExport/TabbloExport.glade.h:4
 msgid ""
@@ -4155,13 +4075,14 @@ msgid ""
 "for those already exported. Here, you can tell F-Spot to automatically "
 "replace these tags as appropriate.</i></small>"
 msgstr ""
+"<small><i>F-Spot टैग फोटो को निर्यात स्थिति को ट्रैक करने में आपकी मदद करता है. "
+"उदाहरण: फोटो के लिए कोई एक टैग का प्रयोग करें जिसे आप निर्यात करने की योजना रखते हैं और दूसरे को जो कि पहले से निर्यात किया है. यहाँ आप F-Spot को कह सकते हैं उचित के रूप में इन टैग को प्रतिस्थापित करने के लिए.</i></small>"
 
 #: ../extensions/Exporters/TabbloExport/TabbloExport.glade.h:6
 msgid "Rem_ove from exported photos:"
 msgstr "निर्यात किए फोटो से हटाएँ (_o):"
 
 #: ../extensions/Exporters/TabbloExport/TabbloExport.glade.h:7
-#, fuzzy
 #| msgid "Select a Tag..."
 msgid "Select..."
 msgstr "चुनें..."
@@ -4171,15 +4092,13 @@ msgid "_Attach to exported photos:"
 msgstr "निर्यात किए फोटो में जोड़े (_A):"
 
 #: ../extensions/Exporters/TabbloExport/TrustError.glade.h:1
-#, fuzzy
 #| msgid "<b>Album</b>"
 msgid "<b>{0}</b>."
-msgstr "<b>एल्बम</b>"
+msgstr "<b>{0}</b>."
 
 #: ../extensions/Exporters/TabbloExport/TrustError.glade.h:2
-#, fuzzy
 msgid "A trust error occured while attempting to access"
-msgstr "हस्तगत त्रुटि को घुमाएँ"
+msgstr "पहुंच के लिए प्रयास के दौरान एक विश्वसनीयता त्रुटि आई"
 
 #: ../extensions/Exporters/TabbloExport/TrustError.glade.h:3
 msgid "Abort this session"
