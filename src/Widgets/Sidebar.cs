@@ -134,7 +134,7 @@ namespace FSpot.Widgets {
 	public class Sidebar : VBox  {
 		
 		private HBox button_box;
-		private Notebook notebook;
+		public Notebook Notebook { get; private set; }
 		private MenuButton choose_button;
 		private EventBox eventBox;
 		private Menu choose_menu;
@@ -178,10 +178,10 @@ namespace FSpot.Widgets {
 			button_box = new HBox ();
 			PackStart (button_box, false, false, 0);
 			
-			notebook = new Notebook ();
-			notebook.ShowTabs = false;
-			notebook.ShowBorder = false;
-			PackStart (notebook, true, true, 0);
+			Notebook = new Notebook ();
+			Notebook.ShowTabs = false;
+			Notebook.ShowBorder = false;
+			PackStart (Notebook, true, true, 0);
 			
 			Button button = new Button ();
 			button.Image = new Image ("gtk-close", IconSize.Button);
@@ -238,7 +238,7 @@ namespace FSpot.Widgets {
 			string label = page.Label;
 			string icon_name = page.IconName;
 
-			notebook.AppendPage (page.SidebarWidget, new Label (label));
+			Notebook.AppendPage (page.SidebarWidget, new Label (label));
 			page.SidebarWidget.Show ();
 			
 			MenuItem item; 
@@ -254,7 +254,7 @@ namespace FSpot.Widgets {
 			choose_menu.Append (item);
 			item.Show ();
 			
-			if (notebook.Children.Length == 1) {
+			if (Notebook.Children.Length == 1) {
 				choose_button.Label = label;
 				choose_button.Image.IconName = icon_name;
 			}
@@ -286,18 +286,18 @@ namespace FSpot.Widgets {
 		
 		public void SwitchTo (int n)
 		{
-			if (n >= notebook.Children.Length) {
+			if (n >= Notebook.Children.Length) {
 				n = 0;
 			}
 
-			notebook.CurrentPage = n;
+			Notebook.CurrentPage = n;
 			choose_button.Label = menu_list [n];
 			choose_button.Image.IconName = image_list [n];
 		}
 
 		public int CurrentPage
 		{
-			get { return notebook.CurrentPage; }
+			get { return Notebook.CurrentPage; }
 		}
 
 		public void SwitchTo (string name)
@@ -308,7 +308,7 @@ namespace FSpot.Widgets {
 		
 		public bool IsActive (SidebarPage page)
 		{
-			return (notebook.GetNthPage (notebook.CurrentPage) == page.SidebarWidget);
+			return (Notebook.GetNthPage (Notebook.CurrentPage) == page.SidebarWidget);
 		}
 
 		public void HandleSelectionChanged (IBrowsableCollection collection) {
