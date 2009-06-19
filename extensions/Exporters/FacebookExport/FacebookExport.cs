@@ -200,7 +200,7 @@ namespace FSpot.Exporter.Facebook
 		Gtk.Button logout_button;
 
 		[Glade.WidgetAttribute]
-		Gtk.Label whoami_label;
+		Gtk.ProgressBar login_progress;
 
 		[Glade.WidgetAttribute]
 		Gtk.RadioButton existing_album_radiobutton;
@@ -279,7 +279,8 @@ namespace FSpot.Exporter.Facebook
 			logout_button.Visible = false;
 			logout_button.Clicked += HandleLogoutClicked;
 
-			whoami_label.Text = Catalog.GetString ("You are not logged in.");
+			login_progress.Fraction = 0;
+			login_progress.Text = Catalog.GetString ("You are not logged in.");
 
 			album_info_vbox.Sensitive = false;
 			picture_info_vbox.Sensitive = false;
@@ -340,15 +341,27 @@ namespace FSpot.Exporter.Facebook
 				album_info_vbox.Sensitive = true;
 				picture_info_vbox.Sensitive = true;
 
-				User me = account.Facebook.GetLoggedInUser ().GetUserInfo ();
-				// Note for translators: {0} and {1} are respectively firstname and surname of the user 
-				whoami_label.Text = String.Format (Catalog.GetString ("{0} {1} is logged into Facebook"), me.FirstName, me.LastName);
+				login_progress.Fraction = 0.2;
+				login_progress.Text = Catalog.GetString ("Session established, fetching user info...");
+				Log.Debug (login_progress.Text);
+				while (Application.EventsPending ()) Application.RunIteration ();
 
+				User me = account.Facebook.GetLoggedInUser ().GetUserInfo ();
+
+				login_progress.Fraction = 0.4;
+				login_progress.Text = Catalog.GetString ("Session established, fetching friend list...");
+				Log.Debug (login_progress.Text);
+				while (Application.EventsPending ()) Application.RunIteration ();
 				Friend[] friend_list = account.Facebook.GetFriends ();
 				long[] uids = new long [friend_list.Length];
 
 				for (int i = 0; i < friend_list.Length; i++)
 					uids [i] = friend_list [i].UId;
+
+				login_progress.Fraction = 0.6;
+				login_progress.Text = Catalog.GetString ("Session established, fetching friend details...");
+				Log.Debug (login_progress.Text);
+				while (Application.EventsPending ()) Application.RunIteration ();
 
 				User[] infos = account.Facebook.GetUserInfo (uids, new string[] { "first_name", "last_name" });
 				friends = new Dictionary<long, User> ();
@@ -356,10 +369,20 @@ namespace FSpot.Exporter.Facebook
 				foreach (User user in infos)
 					friends.Add (user.UId, user);
 
+				login_progress.Fraction = 0.8;
+				login_progress.Text = Catalog.GetString ("Session established, fetching photo album list");
+				Log.Debug (login_progress.Text);
+				while (Application.EventsPending ()) Application.RunIteration ();
+
 				Album[] albums = account.Facebook.GetAlbums ();
 				AlbumStore store = new AlbumStore (albums);
 				existing_album_combobox.Model = store;
 				existing_album_combobox.Active = 0;
+
+				// Note for translators: {0} and {1} are respectively firstname and surname of the user
+				login_progress.Fraction = 1.0;
+				login_progress.Text = String.Format (Catalog.GetString ("{0} {1} is logged into Facebook"), me.FirstName, me.LastName);
+				Log.Debug (login_progress.Text);
 			}
 		}
 
@@ -368,7 +391,8 @@ namespace FSpot.Exporter.Facebook
 			login_button.Visible = true;
 			logout_button.Visible = false;
 
-			whoami_label.Text = Catalog.GetString ("You are not logged in.");
+			login_progress.Fraction = 0;
+			login_progress.Text = Catalog.GetString ("You are not logged in.");
 
 			album_info_vbox.Sensitive = false;
 			picture_info_vbox.Sensitive = false;
