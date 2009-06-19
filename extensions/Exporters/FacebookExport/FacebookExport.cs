@@ -338,47 +338,31 @@ namespace FSpot.Exporter.Facebook
 				album_info_vbox.Sensitive = true;
 				picture_info_vbox.Sensitive = true;
 
-				login_progress.Fraction = 0.2;
-				login_progress.Text = Catalog.GetString ("Session established, fetching user info...");
-				Log.Debug (login_progress.Text);
-				while (Application.EventsPending ()) Application.RunIteration ();
-
+				LoginProgress (0.2, Catalog.GetString ("Session established, fetching user info..."));
 				User me = account.Facebook.GetLoggedInUser ().GetUserInfo ();
 
-				login_progress.Fraction = 0.4;
-				login_progress.Text = Catalog.GetString ("Session established, fetching friend list...");
-				Log.Debug (login_progress.Text);
-				while (Application.EventsPending ()) Application.RunIteration ();
+				LoginProgress (0.4, Catalog.GetString ("Session established, fetching friend list..."));
 				Friend[] friend_list = account.Facebook.GetFriends ();
 				long[] uids = new long [friend_list.Length];
 
 				for (int i = 0; i < friend_list.Length; i++)
 					uids [i] = friend_list [i].UId;
 
-				login_progress.Fraction = 0.6;
-				login_progress.Text = Catalog.GetString ("Session established, fetching friend details...");
-				Log.Debug (login_progress.Text);
-				while (Application.EventsPending ()) Application.RunIteration ();
-
+				LoginProgress (0.6, Catalog.GetString ("Session established, fetching friend details..."));
 				User[] infos = account.Facebook.GetUserInfo (uids, new string[] { "first_name", "last_name" });
 				friends = new Dictionary<long, User> ();
 
 				foreach (User user in infos)
 					friends.Add (user.UId, user);
 
-				login_progress.Fraction = 0.8;
-				login_progress.Text = Catalog.GetString ("Session established, fetching photo album list");
-				Log.Debug (login_progress.Text);
-				while (Application.EventsPending ()) Application.RunIteration ();
-
+				LoginProgress (0.8, Catalog.GetString ("Session established, fetching photo albums..."));
 				Album[] albums = account.Facebook.GetAlbums ();
 				AlbumStore store = new AlbumStore (albums);
 				existing_album_combobox.Model = store;
 				existing_album_combobox.Active = 0;
 
 				// Note for translators: {0} and {1} are respectively firstname and surname of the user
-				login_progress.Fraction = 1.0;
-				login_progress.Text = String.Format (Catalog.GetString ("{0} {1} is logged into Facebook"), me.FirstName, me.LastName);
+				LoginProgress (1.0, String.Format (Catalog.GetString ("{0} {1} is logged into Facebook"), me.FirstName, me.LastName));
 				Log.Debug (login_progress.Text);
 			}
 		}
@@ -501,6 +485,14 @@ namespace FSpot.Exporter.Facebook
 				progress_dialog = new ThreadProgressDialog (command_thread, items.Length);
 				progress_dialog.Start ();
 			}
+		}
+
+		private void LoginProgress (double percentage, string message)
+		{
+			login_progress.Fraction = percentage;
+			login_progress.Text = message;
+			Log.Debug (message);
+			while (Application.EventsPending ()) Application.RunIteration ();
 		}
 
 		private void Upload ()
