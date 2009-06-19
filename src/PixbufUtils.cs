@@ -417,28 +417,6 @@ public class PixbufUtils {
 		return scaled;
 	}
 
-	public static string Resize (string orig_path, int size, bool copy_meta)
-	{
-		string version_path = System.IO.Path.GetTempFileName ();
-		Resize (orig_path, version_path, size, copy_meta);
-		return version_path;
-	}
-
-	public static void Resize (string orig_path, string dest_path, int size, bool copy_meta)
-	{
-		Exif.ExifData exif_data;
-		if (copy_meta)
-			exif_data = new Exif.ExifData (orig_path);
-		else 
-			exif_data = new Exif.ExifData ();
-
-		Gdk.Pixbuf image = PixbufUtils.LoadAtMaxSize (orig_path, size, size);
-
-		PixbufUtils.SaveJpeg (image, dest_path, 95, exif_data);
-		image.Dispose ();
-	}
-	
-
 	public static Pixbuf Flatten (Pixbuf pixbuf)
 	{
 		if (!pixbuf.HasAlpha)
