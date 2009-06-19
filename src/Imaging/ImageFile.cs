@@ -237,6 +237,7 @@ namespace FSpot {
 				".orf", 
 				".pef", 
 				".raw",
+				".raf"
 			};
 			foreach (string ext in raw_extensions)
 				if (ext == System.IO.Path.GetExtension (name).ToLower ())
