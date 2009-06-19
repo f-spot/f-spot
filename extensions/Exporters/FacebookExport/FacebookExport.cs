@@ -285,6 +285,12 @@ namespace FSpot.Exporter.Facebook
 		Gtk.VBox picture_info_vbox;
 
 		[Glade.WidgetAttribute]
+		Gtk.HBox log_buttons_hbox;
+
+		[Glade.WidgetAttribute]
+		Gtk.HButtonBox dialog_action_area;
+
+		[Glade.WidgetAttribute]
 		Gtk.Button login_button;
 
 		[Glade.WidgetAttribute]
@@ -361,17 +367,8 @@ namespace FSpot.Exporter.Facebook
 			thumbnail_iconview.Show ();
 			thumbnails_scrolled_window.Add (thumbnail_iconview);
 
-			login_button.Visible = true;
 			login_button.Clicked += HandleLoginClicked;
-
-			logout_button.Visible = false;
 			logout_button.Clicked += HandleLogoutClicked;
-
-			login_progress.Fraction = 0;
-			login_progress.Text = Catalog.GetString ("You are not logged in.");
-
-			album_info_vbox.Sensitive = false;
-			picture_info_vbox.Sensitive = false;
 
 			create_album_radiobutton.Toggled += HandleCreateAlbumToggled;
 			create_album_radiobutton.Active = true;
@@ -386,8 +383,14 @@ namespace FSpot.Exporter.Facebook
 			tag_treeview.Sensitive = false;
 			caption_textview.Sensitive = false;
 
+			DoLogout ();
+
 			Dialog.Response += HandleResponse;
 			Dialog.Show ();
+
+			account = new FacebookAccount();
+			if (account.Authenticated)
+				DoLogin ();
 		}
 
 		public void CreateDialog ()
@@ -407,8 +410,6 @@ namespace FSpot.Exporter.Facebook
 
 		public void HandleLoginClicked (object sender, EventArgs args)
 		{
-			account = new FacebookAccount();
-
 			if (!account.Authenticated) {
 				Uri uri = account.GetLoginUri ();
 				GtkBeans.Global.ShowUri (Dialog.Screen, uri.ToString ());
@@ -421,18 +422,21 @@ namespace FSpot.Exporter.Facebook
 				LoginProgress (0.0, Catalog.GetString (" Authenticating..."));
 				account.Authenticate ();
 			}
+			DoLogin ();
+		}
 
+		private void DoLogin ()
+		{
 			if (!account.Authenticated) {
 				HigMessageDialog error = new HigMessageDialog (Dialog, Gtk.DialogFlags.DestroyWithParent | Gtk.DialogFlags.Modal, Gtk.MessageType.Error, Gtk.ButtonsType.Ok, Catalog.GetString ("Error logging into Facebook"), Catalog.GetString ("There was a problem logging into Facebook.  Check your credentials and try again."));
 				error.Run ();
 				error.Destroy ();
+
+				DoLogout ();
 			}
 			else {
-				login_button.Visible = false;
-				logout_button.Visible = true;
-
-				album_info_vbox.Sensitive = true;
-				picture_info_vbox.Sensitive = true;
+				log_buttons_hbox.Sensitive = false;
+				dialog_action_area.Sensitive = false;
 
 				LoginProgress (0.2, Catalog.GetString ("Session established, fetching user info..."));
 				User me = account.Facebook.GetLoggedInUser ().GetUserInfo ();
@@ -457,6 +461,12 @@ namespace FSpot.Exporter.Facebook
 				existing_album_combobox.Model = store;
 				existing_album_combobox.Active = 0;
 
+				album_info_vbox.Sensitive = true;
+				picture_info_vbox.Sensitive = true;
+				login_button.Visible = false;
+				logout_button.Visible = true;
+				log_buttons_hbox.Sensitive = true;
+				dialog_action_area.Sensitive = true;
 				// Note for translators: {0} and {1} are respectively firstname and surname of the user
 				LoginProgress (1.0, String.Format (Catalog.GetString ("{0} {1} is logged into Facebook"), me.FirstName, me.LastName));
 			}
@@ -465,7 +475,11 @@ namespace FSpot.Exporter.Facebook
 		private void HandleLogoutClicked (object sender, EventArgs args)
 		{
 			account.Deauthenticate ();
+			DoLogout ();
+		}
 
+		private void DoLogout ()
+		{
 			login_button.Visible = true;
 			logout_button.Visible = false;
 
