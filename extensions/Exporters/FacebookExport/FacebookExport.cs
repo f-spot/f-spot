@@ -2,10 +2,12 @@
  * FacebookExport.cs
  *
  * Authors:
+ *   Jim Ramsay <i.am@jimramsay.com>
  *   George Talusan <george@convolve.ca>
  *   Stephane Delcroix <stephane@delcroix.org>
  *
  * Copyright (C) 2007 George Talusan
+ * Later changes (2009) by Jim Ramsay
  */
 
 using System;
@@ -19,6 +21,7 @@ using System.Collections.Specialized;
 using System.Web;
 using Mono.Unix;
 using Gtk;
+using Gnome.Keyring;
 
 using FSpot;
 using FSpot.Utils;
@@ -39,18 +42,25 @@ namespace FSpot.Exporter.Facebook
 		private static string secret = "743e9a2e6a1c35ce961321bceea7b514";
 
 		private FacebookSession facebookSession;
-		private bool connected;
+		private bool connected = false;
 
 		public FacebookAccount ()
-		{ }
+		{
+			SessionInfo info = ReadSessionInfo ();
+			if (info != null) {
+				facebookSession = new FacebookSession (api_key, info);
+				/* TODO: Check if the session is still valid? */
+				connected = true;
+			}
+		}
 
-		public Uri CreateToken ()
+		public Uri GetLoginUri ()
 		{
 			FacebookSession session = new FacebookSession (api_key, secret);
-			Uri token = session.CreateToken();
+			Uri uri = session.CreateToken();
 			facebookSession = session;
 			connected = false;
-			return token;
+			return uri;
 		}
 
 		public FacebookSession Facebook
@@ -60,30 +70,111 @@ namespace FSpot.Exporter.Facebook
 
 		public bool Authenticated
 		{
-			get {
-				try {
-					if (connected)
-						return true;
-					facebookSession.GetSession();
-					connected = true;
-					return true;
-				}
-				catch (FacebookException fe) {
-					Console.WriteLine (fe);
-					return false;
-				}
-			}
+			get { return connected; }
 		}
 
-		public bool HasInfiniteSession
+		private bool SaveSessionInfo (SessionInfo info)
 		{
-			get {
-				if (Authenticated)
-					return true;
-
-				return true;
+			string keyring;
+			try {
+				keyring = Ring.GetDefaultKeyring();
+				Log.DebugFormat ("Got default keyring {0}", keyring);
+			} catch (Exception e) {
+				Log.DebugException (e);
+				return false;
 			}
+
+			Hashtable attribs = new Hashtable();
+			attribs["name"] = keyring_item_name;
+			attribs["uid"] = info.UId.ToString ();
+			attribs["session_key"] = info.SessionKey;
+			try {
+				Ring.CreateItem (keyring, ItemType.GenericSecret, keyring_item_name, attribs, info.Secret, true);
+			} catch (Exception e) {
+				Log.DebugException (e);
+				return false;
+			}
+
+			return true;
 		}
+
+		private SessionInfo ReadSessionInfo ()
+		{
+			SessionInfo info = null;
+
+			Hashtable request_attributes = new Hashtable ();
+			request_attributes["name"] = keyring_item_name;
+			try {
+				foreach (ItemData result in Ring.Find (ItemType.GenericSecret, request_attributes)) {
+					if (!result.Attributes.ContainsKey ("name") ||
+						!result.Attributes.ContainsKey ("uid") ||
+						!result.Attributes.ContainsKey ("session_key") ||
+						(result.Attributes["name"] as string) != keyring_item_name)
+							continue;
+
+					string session_key = (string)result.Attributes["session_key"];
+					long uid = Int64.Parse((string)result.Attributes["uid"]);
+					string secret = result.Secret;
+					info = new SessionInfo (session_key, uid, secret);
+					break;
+				}
+			} catch (Exception e) {
+				Log.DebugException (e);
+			}
+
+			return info;
+		}
+
+		private bool ForgetSessionInfo()
+		{
+			string keyring;
+			bool success = false;
+
+			try {
+				keyring = Ring.GetDefaultKeyring();
+			} catch (Exception e) {
+				Log.DebugException (e);
+				return false;
+			}
+
+			Hashtable request_attributes = new Hashtable ();
+			request_attributes["name"] = keyring_item_name;
+			try {
+				foreach (ItemData result in Ring.Find (ItemType.GenericSecret, request_attributes)) {
+					Ring.DeleteItem(keyring, result.ItemID);
+					success = true;
+				}
+			} catch (Exception e) {
+				Log.DebugException (e);
+			}
+
+			return success;
+		}
+
+		public bool Authenticate ()
+		{
+			if (connected)
+				return true;
+			try {
+				SessionInfo info = facebookSession.GetSession();
+				connected = true;
+				if (SaveSessionInfo (info))
+					Log.Information ("Saved session information to keyring");
+				else
+					Log.Warning ("Could not save session information to keyring");
+			} catch (Exception e) {
+				connected = false;
+				Log.DebugException (e);
+			}
+			return connected;
+		}
+
+		public void Deauthenticate ()
+		{
+			connected = false;
+			ForgetSessionInfo ();
+		}
+
 	}
 
 	internal class AlbumStore : ListStore
@@ -318,15 +409,20 @@ namespace FSpot.Exporter.Facebook
 		{
 			account = new FacebookAccount();
 
-			Uri token = account.CreateToken ();
-			GtkBeans.Global.ShowUri (Dialog.Screen, token.ToString ());
+			if (!account.Authenticated) {
+				Uri uri = account.GetLoginUri ();
+				GtkBeans.Global.ShowUri (Dialog.Screen, uri.ToString ());
 
-			HigMessageDialog mbox = new HigMessageDialog (Dialog, Gtk.DialogFlags.DestroyWithParent | Gtk.DialogFlags.Modal, Gtk.MessageType.Info, Gtk.ButtonsType.Ok, Catalog.GetString ("Waiting for authentication"), Catalog.GetString ("F-Spot will now launch your browser so that you can log into Facebook.  Turn on the \"Save my login information\" checkbox on Facebook and F-Spot will log into Facebook automatically from now on."));
+				HigMessageDialog mbox = new HigMessageDialog (Dialog, Gtk.DialogFlags.DestroyWithParent | Gtk.DialogFlags.Modal, Gtk.MessageType.Info, Gtk.ButtonsType.Ok, Catalog.GetString ("Waiting for authentication"), Catalog.GetString ("F-Spot will now launch your browser so that you can log into Facebook.  Turn on the \"Save my login information\" checkbox on Facebook and F-Spot will log into Facebook automatically from now on."));
 
-			mbox.Run ();
-			mbox.Destroy ();
+				mbox.Run ();
+				mbox.Destroy ();
 
-			if (account.Authenticated == false) {
+				LoginProgress (0.0, Catalog.GetString (" Authenticating..."));
+				account.Authenticate ();
+			}
+
+			if (!account.Authenticated) {
 				HigMessageDialog error = new HigMessageDialog (Dialog, Gtk.DialogFlags.DestroyWithParent | Gtk.DialogFlags.Modal, Gtk.MessageType.Error, Gtk.ButtonsType.Ok, Catalog.GetString ("Error logging into Facebook"), Catalog.GetString ("There was a problem logging into Facebook.  Check your credentials and try again."));
 				error.Run ();
 				error.Destroy ();
@@ -363,12 +459,13 @@ namespace FSpot.Exporter.Facebook
 
 				// Note for translators: {0} and {1} are respectively firstname and surname of the user
 				LoginProgress (1.0, String.Format (Catalog.GetString ("{0} {1} is logged into Facebook"), me.FirstName, me.LastName));
-				Log.Debug (login_progress.Text);
 			}
 		}
 
 		private void HandleLogoutClicked (object sender, EventArgs args)
 		{
+			account.Deauthenticate ();
+
 			login_button.Visible = true;
 			logout_button.Visible = false;
 

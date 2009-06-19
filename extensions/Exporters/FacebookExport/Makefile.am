@@ -34,6 +34,7 @@ REFS =					\
 	-r:$(top_builddir)/src/FSpot.Utils.dll	\
 	-r:$(top_builddir)/src/FSpot.Platform.dll	\
 	$(LINK_GTKSHARPBEANS)				\
+	$(LINK_KEYRING)                     \
 	-r:Mono.Posix
 
 PKGS =					\
