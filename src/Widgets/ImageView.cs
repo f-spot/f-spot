@@ -64,6 +64,9 @@ namespace FSpot.Widgets
 					return;
 				pixbuf_orientation = value;
 				Console.WriteLine ("pixbuf orientation changed to {0}", value);
+				min_zoom = ComputeMinZoom (upscale);
+				ComputeScaledSize ();
+				QueueDraw ();
 			}
 		}
 
@@ -725,7 +728,8 @@ namespace FSpot.Widgets
 			//Short circuit for 1:1 zoom
 			if (zoom == 1.0 &&
 			    !Pixbuf.HasAlpha &&
-			    Pixbuf.BitsPerSample == 8) {
+			    Pixbuf.BitsPerSample == 8 &&
+			    pixbuf_orientation == PixbufOrientation.TopLeft) {
 				GdkWindow.DrawPixbuf (Style.BlackGC,
 						      Pixbuf,
 						      area.X - x_offset, area.Y - y_offset,
@@ -762,11 +766,20 @@ namespace FSpot.Widgets
 		uint scaled_width, scaled_height;
 		void ComputeScaledSize ()
 		{
-			if (Pixbuf != null) {
-				scaled_width = (uint)Math.Floor (Pixbuf.Width * Zoom + .5);
-				scaled_height = (uint)Math.Floor (Pixbuf.Height * Zoom + .5);
-			} else {
+			if (Pixbuf == null)
 				scaled_width = scaled_height = 0;
+			else {
+				double width;
+				double height;
+				if ((int)pixbuf_orientation <= 4 ) { //TopLeft, TopRight, BottomRight, BottomLeft
+					width = Pixbuf.Width;
+					height = Pixbuf.Height;
+				} else {			//LeftTop, RightTop, RightBottom, LeftBottom
+					width = Pixbuf.Height;
+					height = Pixbuf.Width;
+				}
+				scaled_width = (uint)Math.Floor (width * Zoom + .5);
+				scaled_height = (uint)Math.Floor (height * Zoom + .5);
 			}
 
 			Hadjustment.Upper = scaled_width;
@@ -823,12 +836,22 @@ namespace FSpot.Widgets
 		{
 			if (Pixbuf == null)
 				return 0.1;
+
+			double width;
+			double height;
+			if ((int)pixbuf_orientation <= 4 ) { //TopLeft, TopRight, BottomRight, BottomLeft
+				width = Pixbuf.Width;
+				height = Pixbuf.Height;
+			} else {			//LeftTop, RightTop, RightBottom, LeftBottom
+				width = Pixbuf.Height;
+				height = Pixbuf.Width;
+			}
 			if (upscale)
-				return Math.Min ((double)Allocation.Width / (double)Pixbuf.Width,
-						 (double)Allocation.Height / (double)Pixbuf.Height);
+				return Math.Min ((double)Allocation.Width / width,
+						 (double)Allocation.Height / height);
 			return Math.Min (1.0,
-					 Math.Min ((double)Allocation.Width / (double)Pixbuf.Width,
-						   (double)Allocation.Height / (double)Pixbuf.Height));
+					 Math.Min ((double)Allocation.Width / width,
+						   (double)Allocation.Height / height));
 		}
 #endregion
 
