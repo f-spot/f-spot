@@ -212,10 +212,7 @@ namespace FSpot.Exporter.Facebook
 		Gtk.ComboBox existing_album_combobox;
 
 		[Glade.WidgetAttribute]
-		Gtk.HBox new_album_info1_hbox;
-
-		[Glade.WidgetAttribute]
-		Gtk.HBox new_album_info2_hbox;
+		Gtk.Table new_album_info_table;
 
 		[Glade.WidgetAttribute]
 		Gtk.Entry album_name_entry;
@@ -403,9 +400,7 @@ namespace FSpot.Exporter.Facebook
 			if (create_album_radiobutton.Active == false)
 				return;
 
-			new_album_info1_hbox.Sensitive = true;
-			new_album_info2_hbox.Sensitive = true;
-
+			new_album_info_table.Sensitive = true;
 			existing_album_combobox.Sensitive = false;
 		}
 
@@ -414,9 +409,7 @@ namespace FSpot.Exporter.Facebook
 			if (existing_album_radiobutton.Active == false)
 				return;
 
-			new_album_info1_hbox.Sensitive = false;
-			new_album_info2_hbox.Sensitive = false;
-
+			new_album_info_table.Sensitive = false;
 			existing_album_combobox.Sensitive = true;
 		}
 
