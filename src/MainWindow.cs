@@ -32,7 +32,7 @@ public class MainWindow {
 
 	Db db;
 
-	Sidebar sidebar;
+	public Sidebar Sidebar;
 
 	TagSelectionWidget tag_selection_widget;
 	[Glade.Widget] Gtk.Window main_window;
@@ -341,9 +341,9 @@ public class MainWindow {
 		display_next_button.SetTooltip (ToolTips, Catalog.GetString ("Next photo"), String.Empty);
 		display_next_button.Clicked += new EventHandler (HandleDisplayNextButtonClicked);
 
-		sidebar = new Sidebar ();
-		ViewModeChanged += sidebar.HandleMainWindowViewModeChanged;
-		sidebar_vbox.Add (sidebar);
+		Sidebar = new Sidebar ();
+		ViewModeChanged += Sidebar.HandleMainWindowViewModeChanged;
+		sidebar_vbox.Add (Sidebar);
 
 		tag_selection_scrolled = new ScrolledWindow ();
 		tag_selection_scrolled.ShadowType = ShadowType.In;
@@ -351,14 +351,14 @@ public class MainWindow {
 		tag_selection_widget = new TagSelectionWidget (db.Tags);
 		tag_selection_scrolled.Add (tag_selection_widget);
 
-		sidebar.AppendPage (tag_selection_scrolled, Catalog.GetString ("Tags"), "tag");
+		Sidebar.AppendPage (tag_selection_scrolled, Catalog.GetString ("Tags"), "tag");
 
 		AddinManager.AddExtensionNodeHandler ("/FSpot/Sidebar", OnSidebarExtensionChanged);
 
-		sidebar.Context = ViewContext.Library;
+		Sidebar.Context = ViewContext.Library;
  		
-		sidebar.CloseRequested += HideSidebar;
-		sidebar.Show ();
+		Sidebar.CloseRequested += HideSidebar;
+		Sidebar.Show ();
 
 		info_box = new InfoBox ();
 		ViewModeChanged += info_box.HandleMainWindowViewModeChanged;
@@ -503,8 +503,8 @@ public class MainWindow {
 		this.selection = new MainSelection (this);
 		this.selection.Changed += HandleSelectionChanged;
 		this.selection.ItemsChanged += HandleSelectionItemsChanged;
-		this.selection.Changed += sidebar.HandleSelectionChanged;
-		this.selection.ItemsChanged += sidebar.HandleSelectionItemsChanged;
+		this.selection.Changed += Sidebar.HandleSelectionChanged;
+		this.selection.ItemsChanged += Sidebar.HandleSelectionItemsChanged;
 
 		Mono.Addins.AddinManager.ExtensionChanged += PopulateExtendableMenus;
 		PopulateExtendableMenus (null, null);
@@ -554,7 +554,7 @@ public class MainWindow {
 	private void OnSidebarExtensionChanged (object s, ExtensionNodeEventArgs args) {
 		// FIXME: No sidebar page removal yet!
 		if (args.Change == ExtensionChange.Add)
-			sidebar.AppendPage ((args.ExtensionNode as SidebarPageNode).GetSidebarPage ());
+			Sidebar.AppendPage ((args.ExtensionNode as SidebarPageNode).GetSidebarPage ());
 	}
 
 	private Photo CurrentPhoto {
