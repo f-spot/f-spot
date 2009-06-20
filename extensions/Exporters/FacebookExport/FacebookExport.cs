@@ -2,11 +2,12 @@
  * FacebookExport.cs
  *
  * Authors:
- *   Jim Ramsay <i.am@jimramsay.com>
  *   George Talusan <george@convolve.ca>
  *   Stephane Delcroix <stephane@delcroix.org>
+ *   Jim Ramsay <i.am@jimramsay.com>
  *
  * Copyright (C) 2007 George Talusan
+ * Copyright (c) 2008 Novell, Inc.
  * Later changes (2009) by Jim Ramsay
  */
 
@@ -22,6 +23,7 @@ using System.Web;
 using Mono.Unix;
 using Gtk;
 using Gnome.Keyring;
+using Glade;
 
 using FSpot;
 using FSpot.Utils;
@@ -36,13 +38,13 @@ namespace FSpot.Exporter.Facebook
 {
 	internal class FacebookAccount
 	{
-		private static string keyring_item_name = "Facebook Account";
+		static string keyring_item_name = "Facebook Account";
 
-		private static string api_key = "c23d1683e87313fa046954ea253a240e";
-		private static string secret = "743e9a2e6a1c35ce961321bceea7b514";
+		static string api_key = "c23d1683e87313fa046954ea253a240e";
+		static string secret = "743e9a2e6a1c35ce961321bceea7b514";
 
-		private FacebookSession facebookSession;
-		private bool connected = false;
+		FacebookSession facebookSession;
+		bool connected = false;
 
 		public FacebookAccount ()
 		{
@@ -73,7 +75,7 @@ namespace FSpot.Exporter.Facebook
 			get { return connected; }
 		}
 
-		private bool SaveSessionInfo (SessionInfo info)
+		bool SaveSessionInfo (SessionInfo info)
 		{
 			string keyring;
 			try {
@@ -98,7 +100,7 @@ namespace FSpot.Exporter.Facebook
 			return true;
 		}
 
-		private SessionInfo ReadSessionInfo ()
+		SessionInfo ReadSessionInfo ()
 		{
 			SessionInfo info = null;
 
@@ -125,7 +127,7 @@ namespace FSpot.Exporter.Facebook
 			return info;
 		}
 
-		private bool ForgetSessionInfo()
+		bool ForgetSessionInfo()
 		{
 			string keyring;
 			bool success = false;
@@ -278,63 +280,28 @@ namespace FSpot.Exporter.Facebook
 
 		ThreadProgressDialog progress_dialog;
 
-		[Glade.WidgetAttribute]
-		Gtk.VBox album_info_vbox;
+		[Widget]VBox album_info_vbox;
+		[Widget]VBox picture_info_vbox;
+		[Widget]HBox log_buttons_hbox;
+		[Widget]HButtonBox dialog_action_area;
+		[Widget]Button login_button;
+		[Widget]Button logout_button;
+		[Widget]ProgressBar login_progress;
+		[Widget]RadioButton existing_album_radiobutton;
+		[Widget]RadioButton create_album_radiobutton;
+		[Widget]ComboBox existing_album_combobox;
+		[Widget]Table new_album_info_table;
+		[Widget]Entry album_name_entry;
+		[Widget]Entry album_location_entry;
+		[Widget]Entry album_description_entry;
+		[Widget]ScrolledWindow thumbnails_scrolled_window;
+		[Widget]TextView caption_textview;
+		[Widget]TreeView tag_treeview;
+		[Widget]EventBox tag_image_eventbox;
 
-		[Glade.WidgetAttribute]
-		Gtk.VBox picture_info_vbox;
-
-		[Glade.WidgetAttribute]
-		Gtk.HBox log_buttons_hbox;
-
-		[Glade.WidgetAttribute]
-		Gtk.HButtonBox dialog_action_area;
-
-		[Glade.WidgetAttribute]
-		Gtk.Button login_button;
-
-		[Glade.WidgetAttribute]
-		Gtk.Button logout_button;
-
-		[Glade.WidgetAttribute]
-		Gtk.ProgressBar login_progress;
-
-		[Glade.WidgetAttribute]
-		Gtk.RadioButton existing_album_radiobutton;
-
-		[Glade.WidgetAttribute]
-		Gtk.RadioButton create_album_radiobutton;
-
-		[Glade.WidgetAttribute]
-		Gtk.ComboBox existing_album_combobox;
-
-		[Glade.WidgetAttribute]
-		Gtk.Table new_album_info_table;
-
-		[Glade.WidgetAttribute]
-		Gtk.Entry album_name_entry;
-
-		[Glade.WidgetAttribute]
-		Gtk.Entry album_location_entry;
-
-		[Glade.WidgetAttribute]
-		Gtk.Entry album_description_entry;
-
-		[Glade.WidgetAttribute]
-		Gtk.ScrolledWindow thumbnails_scrolled_window;
-
-		[Glade.WidgetAttribute]
-		Gtk.TextView caption_textview;
-
-		[Glade.WidgetAttribute]
-		Gtk.TreeView tag_treeview;
-
-		[Glade.WidgetAttribute]
-		Gtk.EventBox tag_image_eventbox;
-
-		private Gtk.Image tag_image;
-		private int tag_image_height;
-		private int tag_image_width;
+		Gtk.Image tag_image;
+		int tag_image_height;
+		int tag_image_width;
 
 		System.Threading.Thread command_thread;
 
@@ -399,7 +366,7 @@ namespace FSpot.Exporter.Facebook
 			xml.Autoconnect (this);
 		}
 
-		private Gtk.Dialog Dialog {
+		Gtk.Dialog Dialog {
 			get {
 				if (dialog == null)
 					dialog = (Gtk.Dialog) xml.GetWidget (dialog_name);
@@ -425,7 +392,7 @@ namespace FSpot.Exporter.Facebook
 			DoLogin ();
 		}
 
-		private void DoLogin ()
+		void DoLogin ()
 		{
 			if (!account.Authenticated) {
 				HigMessageDialog error = new HigMessageDialog (Dialog, Gtk.DialogFlags.DestroyWithParent | Gtk.DialogFlags.Modal, Gtk.MessageType.Error, Gtk.ButtonsType.Ok, Catalog.GetString ("Error logging into Facebook"), Catalog.GetString ("There was a problem logging into Facebook.  Check your credentials and try again."));
@@ -484,13 +451,13 @@ namespace FSpot.Exporter.Facebook
 			}
 		}
 
-		private void HandleLogoutClicked (object sender, EventArgs args)
+		void HandleLogoutClicked (object sender, EventArgs args)
 		{
 			account.Deauthenticate ();
 			DoLogout ();
 		}
 
-		private void DoLogout ()
+		void DoLogout ()
 		{
 			login_button.Visible = true;
 			logout_button.Visible = false;
@@ -502,7 +469,7 @@ namespace FSpot.Exporter.Facebook
 			picture_info_vbox.Sensitive = false;
 		}
 
-		private void HandleCreateAlbumToggled (object sender, EventArgs args)
+		void HandleCreateAlbumToggled (object sender, EventArgs args)
 		{
 			if (create_album_radiobutton.Active == false)
 				return;
@@ -511,7 +478,7 @@ namespace FSpot.Exporter.Facebook
 			existing_album_combobox.Sensitive = false;
 		}
 
-		private void HandleExistingAlbumToggled (object sender, EventArgs args)
+		void HandleExistingAlbumToggled (object sender, EventArgs args)
 		{
 			if (existing_album_radiobutton.Active == false)
 				return;
@@ -520,7 +487,7 @@ namespace FSpot.Exporter.Facebook
 			existing_album_combobox.Sensitive = true;
 		}
 
-		private void HandleThumbnailIconViewButtonPressEvent (object sender, Gtk.ButtonPressEventArgs args)
+		void HandleThumbnailIconViewButtonPressEvent (object sender, Gtk.ButtonPressEventArgs args)
 		{
 			int old_item = current_item;
 			current_item = thumbnail_iconview.CellAtPosition ((int) args.Event.X, (int) args.Event.Y, false);
@@ -555,7 +522,7 @@ namespace FSpot.Exporter.Facebook
 			}
 		}
 
-		private void HandleTagImageButtonPressEvent (object sender, Gtk.ButtonPressEventArgs args)
+		void HandleTagImageButtonPressEvent (object sender, Gtk.ButtonPressEventArgs args)
 		{
 			double x = args.Event.X;
 			double y = args.Event.Y;
@@ -587,12 +554,12 @@ namespace FSpot.Exporter.Facebook
 			//FacebookTagPopup popup = new FacebookTagPopup (friends);
 		}
 
-		private void HandleThumbnailIconViewKeyPressEvent (object sender, Gtk.KeyPressEventArgs args)
+		void HandleThumbnailIconViewKeyPressEvent (object sender, Gtk.KeyPressEventArgs args)
 		{
 			thumbnail_iconview.Selection.Clear ();
 		}
 
-		private void HandleResponse (object sender, Gtk.ResponseArgs args)
+		void HandleResponse (object sender, Gtk.ResponseArgs args)
 		{
 			if (args.ResponseId != Gtk.ResponseType.Ok) {
 				Dialog.Destroy ();
@@ -610,7 +577,7 @@ namespace FSpot.Exporter.Facebook
 			}
 		}
 
-		private void LoginProgress (double percentage, string message)
+		void LoginProgress (double percentage, string message)
 		{
 			login_progress.Fraction = percentage;
 			login_progress.Text = message;
@@ -618,7 +585,7 @@ namespace FSpot.Exporter.Facebook
 			while (Application.EventsPending ()) Application.RunIteration ();
 		}
 
-		private void Upload ()
+		void Upload ()
 		{
 			Album album = null;
 
