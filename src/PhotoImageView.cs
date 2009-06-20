@@ -177,6 +177,8 @@ namespace FSpot.Widgets {
 				if (Pixbuf != loader.Pixbuf)
 					Pixbuf = loader.Pixbuf;
 
+				PixbufOrientation = Accelerometer.GetViewOrientation (loader.PixbufOrientation);
+
 				if (!loader.Prepared || !ShowProgress) {
 					this.ZoomFit ();
 				}
@@ -251,10 +253,9 @@ namespace FSpot.Widgets {
 				try {
 					if (Item.IsValid) {
 						System.Uri uri = Item.Current.DefaultVersionUri;
-Log.Warning ("PhotoImageView: Loader.Load");
 						ImageLoader loader = new ImageLoader ();
-						loader.AreaUpdated += HandlePixbufAreaUpdated;
 						loader.AreaPrepared += HandlePixbufPrepared;
+						loader.AreaUpdated += HandlePixbufAreaUpdated;
 						loader.Completed += HandleDone;
 						loader.Load (uri);
 					} else
