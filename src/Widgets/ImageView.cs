@@ -740,26 +740,69 @@ namespace FSpot.Widgets
 				return;
 			}
 
-			using (Pixbuf temp_pixbuf = new Pixbuf (Colorspace.Rgb, false, 8, area.Width, area.Height)) {
+			Rectangle pixbuf_area = PixbufUtils.TransformOrientation ((int)scaled_width,
+										  (int)scaled_height,
+										  new Rectangle (-(area.X - x_offset),
+										  		 -(area.Y - y_offset),
+												 area.Width,
+												 area.Height),
+										  pixbuf_orientation);
+			using (Pixbuf temp_pixbuf = new Pixbuf (Colorspace.Rgb, false, 8, pixbuf_area.Width, pixbuf_area.Height)) {
 				if (Pixbuf.HasAlpha)
 					temp_pixbuf.Fill (0x00000000);
 
 				Pixbuf.CompositeColor (temp_pixbuf,
 						       0, 0,
-						       area.Width, area.Height,
-						       -(area.X - x_offset), -(area.Y - y_offset),
+						       pixbuf_area.Width, pixbuf_area.Height,
+						       pixbuf_area.X, pixbuf_area.Y,
 						       zoom, zoom,
 						       zoom == 1.0 ? InterpType.Nearest : interpolation, 255,
-						       area.X - x_offset, area.Y - y_offset,
+						       -pixbuf_area.X, -pixbuf_area.Y,
 						       CheckPattern.CheckSize, CheckPattern.Color1, CheckPattern.Color2);
 
+
+				Pixbuf dest_pixbuf;
+				switch (pixbuf_orientation) {
+				default:
+				case PixbufOrientation.TopLeft:
+					dest_pixbuf = temp_pixbuf;
+					break;
+				case PixbufOrientation.TopRight:
+					dest_pixbuf = temp_pixbuf.Flip (false);
+					break;
+				case PixbufOrientation.BottomRight:
+					dest_pixbuf = temp_pixbuf.RotateSimple (PixbufRotation.Upsidedown);
+					break;
+				case PixbufOrientation.BottomLeft:
+					dest_pixbuf = temp_pixbuf.Flip (true);
+					break;
+				case PixbufOrientation.LeftTop:
+					using (var rotated = temp_pixbuf.RotateSimple (PixbufRotation.Clockwise)) {
+						dest_pixbuf = rotated.Flip (false);
+					}
+					break;
+				case PixbufOrientation.RightTop:
+					dest_pixbuf = temp_pixbuf.RotateSimple (PixbufRotation.Clockwise);
+					break;
+				case PixbufOrientation.RightBottom:
+					using (var rotated = temp_pixbuf.RotateSimple (PixbufRotation.Counterclockwise)) {
+						dest_pixbuf = rotated.Flip (false);
+					}
+					break;
+				case PixbufOrientation.LeftBottom:
+					dest_pixbuf = temp_pixbuf.RotateSimple (PixbufRotation.Counterclockwise);
+					break;
+				}
+
 				GdkWindow.DrawPixbuf (Style.BlackGC,
-						      temp_pixbuf,
+						      dest_pixbuf,
 						      0, 0,
 						      area.X, area.Y,
 						      area.Width, area.Height,
 						      RgbDither.Max,
 						      area.X - x_offset, area.Y - y_offset);
+				if (dest_pixbuf != temp_pixbuf)
+					dest_pixbuf.Dispose ();
 			}
 		}
 
