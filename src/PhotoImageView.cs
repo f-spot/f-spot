@@ -1,6 +1,8 @@
 //
 // FSpot.Widgets.PhotoImageView.cs
 //
+// Copyright (c) 2004-2009 Novell, Inc.
+//
 // Author(s)
 //	Larry Ewing  <lewing@novell.com>
 //	Stephane Delcroix  <stephane@delcroix.org>
@@ -22,8 +24,7 @@ namespace FSpot.Widgets {
 	}
 
 	public class PhotoImageView : ImageView {
-		public delegate void PhotoChangedHandler (PhotoImageView view);
-		public event PhotoChangedHandler PhotoChanged;
+		public event EventHandler PhotoChanged;
 		
 		protected BrowsablePointer item;
 		protected FSpot.Loupe loupe;
@@ -296,8 +297,9 @@ namespace FSpot.Widgets {
 			
 			Selection = Gdk.Rectangle.Zero;
 
-			if (PhotoChanged != null)
-				PhotoChanged (this);
+			EventHandler eh = PhotoChanged;
+			if (eh != null)
+				eh (this, EventArgs.Empty);
 		}
 		
 

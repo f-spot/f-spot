@@ -446,7 +446,7 @@ public class TagCommands {
 			}
 		}
 
-		public void HandlePhotoChanged (PhotoImageView sender)
+		public void HandlePhotoChanged (object sender, EventArgs e)
 		{
 			int item = image_view.Item.Index;
 			photo_label.Text = String.Format (Catalog.GetString ("Photo {0} of {1}"), 
