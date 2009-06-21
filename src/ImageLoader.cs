@@ -87,7 +87,8 @@ namespace FSpot {
 		public override void Dispose ()
 		{
 			is_disposed = true;
-			image_stream.Close ();
+			if (image_stream != null)
+				image_stream.Close ();
 			try {
 				Close ();
 			} catch (GLib.GException) {
