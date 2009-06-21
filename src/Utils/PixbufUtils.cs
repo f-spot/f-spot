@@ -9,6 +9,8 @@
 // This is free softwae. See cOPYING for details
 //
 
+using Gdk;
+
 namespace FSpot.Utils
 {
 	public static class PixbufUtils
@@ -38,14 +40,14 @@ namespace FSpot.Utils
 			return orientation;
 		}
 
-		public static Gdk.Rectangle TransformOrientation (Gdk.Pixbuf src, Gdk.Rectangle args, PixbufOrientation orientation)
+		public static Rectangle TransformOrientation (Pixbuf src, Rectangle args, PixbufOrientation orientation)
 		{
 			return TransformOrientation (src.Width, src.Height, args, orientation);
 		}
 		
-		public static Gdk.Rectangle TransformOrientation (int total_width, int total_height, Gdk.Rectangle args, PixbufOrientation orientation)
+		public static Rectangle TransformOrientation (int total_width, int total_height, Rectangle args, PixbufOrientation orientation)
 		{
-			Gdk.Rectangle area = args;
+			Rectangle area = args;
 			
 			switch (orientation) {
 			case PixbufOrientation.BottomRight:
@@ -87,6 +89,45 @@ namespace FSpot.Utils
 			}
 			
 			return area;
+		}
+
+		public static Pixbuf TransformOrientation (Pixbuf src, PixbufOrientation orientation)
+		{
+			Pixbuf dest;
+
+			switch (orientation) {
+			default:
+			case PixbufOrientation.TopLeft:
+				dest = src;
+				break;
+			case PixbufOrientation.TopRight:
+				dest = src.Flip (false);
+				break;
+			case PixbufOrientation.BottomRight:
+				dest = src.RotateSimple (PixbufRotation.Upsidedown);
+				break;
+			case PixbufOrientation.BottomLeft:
+				dest = src.Flip (true);
+				break;
+			case PixbufOrientation.LeftTop:
+				using (var rotated = src.RotateSimple (PixbufRotation.Clockwise)) {
+					dest = rotated.Flip (false);
+				}
+				break;
+			case PixbufOrientation.RightTop:
+				dest = src.RotateSimple (PixbufRotation.Clockwise);
+				break;
+			case PixbufOrientation.RightBottom:
+				using (var rotated = src.RotateSimple (PixbufRotation.Counterclockwise)) {
+					dest = rotated.Flip (false);
+				}
+				break;
+			case PixbufOrientation.LeftBottom:
+				dest = src.RotateSimple (PixbufRotation.Counterclockwise);
+				break;
+			}
+			
+			return dest;
 		}
 	}
 }

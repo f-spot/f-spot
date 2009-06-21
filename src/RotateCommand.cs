@@ -100,7 +100,7 @@ namespace FSpot {
 					using (Stream stream = File.Open (backup, FileMode.Truncate, FileAccess.Write)) {
 						using (Pixbuf pixbuf = img.Load ()) {
 							PixbufOrientation fake = (direction == RotateDirection.Clockwise) ? PixbufOrientation.RightTop : PixbufOrientation.LeftBottom;
-							using (Pixbuf rotated = PixbufUtils.TransformOrientation (pixbuf, fake)) {
+							using (Pixbuf rotated = FSpot.Utils.PixbufUtils.TransformOrientation (pixbuf, fake)) {
 								img.Save (rotated, stream);
 							}
 						}

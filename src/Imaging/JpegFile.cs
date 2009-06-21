@@ -233,7 +233,7 @@ namespace FSpot {
 			if (this.ExifData.Data.Length > 0) {
 				MemoryStream mem = new MemoryStream (this.ExifData.Data);
 				Gdk.Pixbuf thumb = new Gdk.Pixbuf (mem);
-				Gdk.Pixbuf rotated = PixbufUtils.TransformOrientation (thumb, this.Orientation);
+				Gdk.Pixbuf rotated = FSpot.Utils.PixbufUtils.TransformOrientation (thumb, this.Orientation);
 				
 				if (rotated != thumb)
 					thumb.Dispose ();

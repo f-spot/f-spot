@@ -79,7 +79,7 @@ namespace FSpot.Raf {
 		public override Gdk.Pixbuf Load (int width, int height)
 		{
 			Gdk.Pixbuf full = this.Load ();
-			Gdk.Pixbuf rotated = PixbufUtils.TransformOrientation (full, this.GetOrientation(), true);
+			Gdk.Pixbuf rotated = FSpot.Utils.PixbufUtils.TransformOrientation (full, this.GetOrientation());
 			Gdk.Pixbuf scaled  = PixbufUtils.ScaleToMaxSize (rotated, width, height);
 			full.Dispose ();
 			return scaled;
