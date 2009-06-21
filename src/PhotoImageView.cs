@@ -233,6 +233,7 @@ namespace FSpot.Widgets {
 
 		void HandlePixbufAreaUpdated (object sender, AreaUpdatedEventArgs args)
 		{
+			ImageLoader loader = sender as ImageLoader;
 			if (loader != this.loader)
 				return;
 
@@ -326,6 +327,7 @@ namespace FSpot.Widgets {
 			this.Pixbuf = new Gdk.Pixbuf (PixbufUtils.ErrorPixbuf, 0, 0, 
 						      PixbufUtils.ErrorPixbuf.Width, 
 						      PixbufUtils.ErrorPixbuf.Height);
+			PixbufOrientation = PixbufOrientation.TopLeft;
 			if (old != null)
 				old.Dispose ();
 			
