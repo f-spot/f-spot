@@ -24,21 +24,12 @@ namespace FSpot.Widgets {
 	}
 
 	public class PhotoImageView : ImageView {
-		public event EventHandler PhotoChanged;
-		
-		protected BrowsablePointer item;
-		protected FSpot.Loupe loupe;
-		protected FSpot.Loupe sharpener;
-		ProgressType load_async = ProgressType.Full;
-		bool progressive_display;
-		public GdkGlx.Context Glx;
-
+#region public API
 		public PhotoImageView (IBrowsableCollection query) : this (new BrowsablePointer (query, -1))
 		{
-			FSpot.ColorManagement.PhotoImageView = this;
 		}
 
-		public PhotoImageView (BrowsablePointer item)
+		public PhotoImageView (BrowsablePointer item) : base ()
 		{
 			FSpot.ColorManagement.PhotoImageView = this;
 			Transform = FSpot.ColorManagement.StandardTransform (); //for preview windows
@@ -46,20 +37,14 @@ namespace FSpot.Widgets {
 			Accelerometer.OrientationChanged += HandleOrientationChanged;
 
 			this.item = item;
-			item.Changed += PhotoItemChanged;
-			this.Destroyed += HandleDestroyed;
-		}
-		
-		protected override void OnStyleSet (Gtk.Style previous)
-		{
-			CheckPattern = new CheckPattern (this.Style.Backgrounds [(int)Gtk.StateType.Normal]);
+			item.Changed += HandlePhotoItemChanged;
 		}
 
 		new public BrowsablePointer Item {
 			get { return item; }
 		}
 
-		private IBrowsableCollection query;
+		IBrowsableCollection query;
 		public IBrowsableCollection Query {
 			get { return item.Collection; }
 		}
@@ -71,14 +56,10 @@ namespace FSpot.Widgets {
 		public Gdk.Pixbuf CompletePixbuf ()
 		{
 			//FIXME: this should be an async call
-//			while (loader.Loading)
-//				Gtk.Application.RunIteration ();
+			if (loader != null)
+				while (loader.Loading)
+					Gtk.Application.RunIteration ();
 			return this.Pixbuf;
-		}
-
-		public void HandleOrientationChanged (object sender, EventArgs e)
-		{
-			Reload ();
 		}
 
 		public void Reload ()
@@ -86,9 +67,110 @@ namespace FSpot.Widgets {
 			if (Item == null || !Item.IsValid)
 				return;
 			
-			PhotoItemChanged (Item, null);
+			HandlePhotoItemChanged (this, null);
 		}
 
+		// Zoom scaled between 0.0 and 1.0
+		public double NormalizedZoom {
+			get { return (Zoom - MIN_ZOOM) / (MAX_ZOOM - MIN_ZOOM); }
+			set { Zoom = (value * (MAX_ZOOM - MIN_ZOOM)) + MIN_ZOOM; }
+		}
+		
+		public event EventHandler PhotoChanged;
+#endregion
+
+#region Gtk widgetry
+		protected override void OnStyleSet (Gtk.Style previous)
+		{
+			CheckPattern = new CheckPattern (this.Style.Backgrounds [(int)Gtk.StateType.Normal]);
+		}
+
+		protected override bool OnKeyPressEvent (Gdk.EventKey evnt)
+		{
+			if ((evnt.State & (ModifierType.Mod1Mask | ModifierType.ControlMask)) != 0)
+				return base.OnKeyPressEvent (evnt);
+
+			bool handled = true;
+		
+			// Scroll if image is zoomed in (scrollbars are visible)
+			Gtk.ScrolledWindow scrolled_w = this.Parent as Gtk.ScrolledWindow;
+			bool scrolled = scrolled_w != null && !this.Fit;
+		
+			// Go to the next/previous photo when not zoomed (no scrollbars)
+			switch (evnt.Key) {
+			case Gdk.Key.Up:
+			case Gdk.Key.KP_Up:
+			case Gdk.Key.Left:
+			case Gdk.Key.KP_Left:
+			case Gdk.Key.h:
+			case Gdk.Key.H:
+			case Gdk.Key.k:
+			case Gdk.Key.K:
+				if (scrolled)
+					handled = false;
+				else
+					this.Item.MovePrevious ();
+				break;
+			case Gdk.Key.Page_Up:
+			case Gdk.Key.KP_Page_Up:
+			case Gdk.Key.BackSpace:
+			case Gdk.Key.b:
+			case Gdk.Key.B:
+				this.Item.MovePrevious ();
+				break;
+			case Gdk.Key.Down:
+			case Gdk.Key.KP_Down:
+			case Gdk.Key.Right:
+			case Gdk.Key.KP_Right:
+			case Gdk.Key.j:
+			case Gdk.Key.J:
+			case Gdk.Key.l:
+			case Gdk.Key.L:
+				if (scrolled)
+					handled = false;
+				else
+					this.Item.MoveNext ();
+				break;
+			case Gdk.Key.Page_Down:
+			case Gdk.Key.KP_Page_Down:
+			case Gdk.Key.space:
+			case Gdk.Key.KP_Space:
+			case Gdk.Key.n:
+			case Gdk.Key.N:
+				this.Item.MoveNext ();
+				break;
+			case Gdk.Key.Home:
+			case Gdk.Key.KP_Home:
+				this.Item.Index = 0;
+				break;
+			case Gdk.Key.r:
+			case Gdk.Key.R:
+				this.Item.Index = new Random().Next(0, this.Query.Count - 1);
+				break;
+			case Gdk.Key.End:
+			case Gdk.Key.KP_End:
+				this.Item.Index = this.Query.Count - 1;
+				break;
+			default:
+				handled = false;
+				break;
+			}
+
+			return handled || base.OnKeyPressEvent (evnt);
+		}
+
+		protected override void OnDestroyed ()
+		{
+			if (loader != null) {
+				loader.AreaUpdated -= HandlePixbufAreaUpdated;
+				loader.AreaPrepared -= HandlePixbufPrepared;
+				loader.Dispose ();
+			}
+			base.OnDestroyed ();
+		}
+
+		//FIXME: I think OnRealized and OnUnrealized are here for the Loupe to work. If it's true, the Loupe should
+		//listen to the Realized/Unrealized events and do its initialization on its own
 		protected override void OnRealized ()
 		{
 			int [] attr = new int [] {
@@ -115,10 +197,10 @@ namespace FSpot.Widgets {
 			if (Glx != null)
 				Glx.Destroy ();
 		}
+#endregion
 
 #region loader		
 		ImageLoader loader;
-
 		void Load (Uri uri)
 		{
 			if (loader != null)
@@ -214,22 +296,27 @@ namespace FSpot.Widgets {
 		}
 #endregion
 		
-		private bool ShowProgress {
+		protected BrowsablePointer item;
+		protected FSpot.Loupe loupe;
+		protected FSpot.Loupe sharpener;
+		ProgressType load_async = ProgressType.Full;
+		bool progressive_display;
+		GdkGlx.Context Glx;
+
+		void HandleOrientationChanged (object sender, EventArgs e)
+		{
+			Reload ();
+		}
+
+
+		
+		bool ShowProgress {
 			get { return !(load_async != ProgressType.Full || !progressive_display); }
 		}
 	
-		// Zoom scaled between 0.0 and 1.0
-		public double NormalizedZoom {
-			get {
-				return (Zoom - MIN_ZOOM) / (MAX_ZOOM - MIN_ZOOM);
-			}
-			set {
-				Zoom = (value * (MAX_ZOOM - MIN_ZOOM)) + MIN_ZOOM;
-			}
-		}
-		
+	
 
-		private void LoadErrorImage (System.Exception e)
+		void LoadErrorImage (System.Exception e)
 		{
 			// FIXME we should check the exception type and do something
 			// like offer the user a chance to locate the moved file and
@@ -245,7 +332,7 @@ namespace FSpot.Widgets {
 			this.ZoomFit ();
 		}
 
-		private void PhotoItemChanged (object sender, BrowsablePointerChangedEventArgs args) 
+		void HandlePhotoItemChanged (object sender, BrowsablePointerChangedEventArgs args) 
 		{
 			// If it is just the position that changed fall out
 			if (args != null && 
@@ -313,79 +400,6 @@ namespace FSpot.Widgets {
 
 		}
 
-		protected override bool OnKeyPressEvent (Gdk.EventKey evnt)
-		{
-			if ((evnt.State & (ModifierType.Mod1Mask | ModifierType.ControlMask)) != 0)
-				return base.OnKeyPressEvent (evnt);
-
-			bool handled = true;
-		
-			// Scroll if image is zoomed in (scrollbars are visible)
-			Gtk.ScrolledWindow scrolled_w = this.Parent as Gtk.ScrolledWindow;
-			bool scrolled = scrolled_w != null && !this.Fit;
-		
-			// Go to the next/previous photo when not zoomed (no scrollbars)
-			switch (evnt.Key) {
-			case Gdk.Key.Up:
-			case Gdk.Key.KP_Up:
-			case Gdk.Key.Left:
-			case Gdk.Key.KP_Left:
-			case Gdk.Key.h:
-			case Gdk.Key.H:
-			case Gdk.Key.k:
-			case Gdk.Key.K:
-				if (scrolled)
-					handled = false;
-				else
-					this.Item.MovePrevious ();
-				break;
-			case Gdk.Key.Page_Up:
-			case Gdk.Key.KP_Page_Up:
-			case Gdk.Key.BackSpace:
-			case Gdk.Key.b:
-			case Gdk.Key.B:
-				this.Item.MovePrevious ();
-				break;
-			case Gdk.Key.Down:
-			case Gdk.Key.KP_Down:
-			case Gdk.Key.Right:
-			case Gdk.Key.KP_Right:
-			case Gdk.Key.j:
-			case Gdk.Key.J:
-			case Gdk.Key.l:
-			case Gdk.Key.L:
-				if (scrolled)
-					handled = false;
-				else
-					this.Item.MoveNext ();
-				break;
-			case Gdk.Key.Page_Down:
-			case Gdk.Key.KP_Page_Down:
-			case Gdk.Key.space:
-			case Gdk.Key.KP_Space:
-			case Gdk.Key.n:
-			case Gdk.Key.N:
-				this.Item.MoveNext ();
-				break;
-			case Gdk.Key.Home:
-			case Gdk.Key.KP_Home:
-				this.Item.Index = 0;
-				break;
-			case Gdk.Key.r:
-			case Gdk.Key.R:
-				this.Item.Index = new Random().Next(0, this.Query.Count - 1);
-				break;
-			case Gdk.Key.End:
-			case Gdk.Key.KP_End:
-				this.Item.Index = this.Query.Count - 1;
-				break;
-			default:
-				handled = false;
-				break;
-			}
-
-			return handled || base.OnKeyPressEvent (evnt);
-		}
 
 		public void ShowHideLoupe ()
 		{
@@ -409,13 +423,5 @@ namespace FSpot.Widgets {
 			sharpener.Show ();	
 		}
 		
-		private void HandleDestroyed (object sender, System.EventArgs args)
-		{
-			//loader.AreaUpdated -= HandlePixbufAreaUpdated;
-			//loader.AreaPrepared -= HandlePixbufPrepared;
-			//loader.Dispose ();
-			if (loader != null)
-				loader.Dispose ();
-		}
 	}
 }
