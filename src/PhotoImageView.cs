@@ -250,45 +250,33 @@ namespace FSpot.Widgets {
 			if (loader != this.loader)
 				return;
 
-			// FIXME the error hander here needs to provide proper information and we should
-			// pass the state and the write exception in the args
-			Gdk.Pixbuf prev = this.Pixbuf;
-			if (loader.Pixbuf == null) {
-				System.Exception ex = null;
+			Pixbuf prev = this.Pixbuf;
+			if (Pixbuf != loader.Pixbuf)
+				Pixbuf = loader.Pixbuf;
+
+			if (Pixbuf == null) {
+				// FIXME: Do we have test cases for this ???
 
 				// FIXME in some cases the image passes completely through the
 				// pixbuf loader without properly loading... I'm not sure what to do about this other
 				// than try to load the image one last time.
-				this.Pixbuf = null;
-				if (!loader.Loading) {
-					try {
-						Log.Warning ("Falling back to file loader");
-
-						this.Pixbuf = FSpot.PhotoLoader.Load (item.Collection, 
-										      item.Index);
-					} catch (System.Exception e) {
-						if (!(e is GLib.GException))
-							System.Console.WriteLine (e.ToString ());
-
-						ex = e;
-					}
-				}
-
-				if (this.Pixbuf == null) {
-					LoadErrorImage (ex);
-				} else {
-					this.ZoomFit ();
-				}
-			} else {
-				if (Pixbuf != loader.Pixbuf)
-					Pixbuf = loader.Pixbuf;
-
-				PixbufOrientation = Accelerometer.GetViewOrientation (loader.PixbufOrientation);
-
-				if (!loader.Prepared || !ShowProgress) {
-					this.ZoomFit ();
+				try {
+					Log.Warning ("Falling back to file loader");
+					Pixbuf = PhotoLoader.Load (item.Collection, item.Index);
+				} catch (Exception e) {
+					LoadErrorImage (e);
 				}
 			}
+
+			if (loader.Pixbuf != null) //FIXME: this test in case the photo was loaded with the direct loader
+				PixbufOrientation = Accelerometer.GetViewOrientation (loader.PixbufOrientation);
+			else
+				PixbufOrientation = PixbufOrientation.TopLeft;
+
+			if (Pixbuf == null)
+				LoadErrorImage (null);
+			else
+				ZoomFit ();
 
 			progressive_display = true;
 
@@ -308,14 +296,10 @@ namespace FSpot.Widgets {
 		{
 			Reload ();
 		}
-
-
 		
 		bool ShowProgress {
 			get { return !(load_async != ProgressType.Full || !progressive_display); }
 		}
-	
-	
 
 		void LoadErrorImage (System.Exception e)
 		{
@@ -323,15 +307,15 @@ namespace FSpot.Widgets {
 			// like offer the user a chance to locate the moved file and
 			// update the db entry, but for now just set the error pixbuf
 			
-			Gdk.Pixbuf old = this.Pixbuf;
-			this.Pixbuf = new Gdk.Pixbuf (PixbufUtils.ErrorPixbuf, 0, 0, 
-						      PixbufUtils.ErrorPixbuf.Width, 
-						      PixbufUtils.ErrorPixbuf.Height);
+			Pixbuf old = Pixbuf;
+			Pixbuf = new Pixbuf (PixbufUtils.ErrorPixbuf, 0, 0, 
+					     PixbufUtils.ErrorPixbuf.Width, 
+					     PixbufUtils.ErrorPixbuf.Height);
 			PixbufOrientation = PixbufOrientation.TopLeft;
 			if (old != null)
 				old.Dispose ();
 			
-			this.ZoomFit ();
+			ZoomFit ();
 		}
 
 		void HandlePhotoItemChanged (object sender, BrowsablePointerChangedEventArgs args) 
