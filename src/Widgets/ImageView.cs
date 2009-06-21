@@ -761,48 +761,15 @@ namespace FSpot.Widgets
 						       CheckPattern.CheckSize, CheckPattern.Color1, CheckPattern.Color2);
 
 
-				Pixbuf dest_pixbuf;
-				switch (pixbuf_orientation) {
-				default:
-				case PixbufOrientation.TopLeft:
-					dest_pixbuf = temp_pixbuf;
-					break;
-				case PixbufOrientation.TopRight:
-					dest_pixbuf = temp_pixbuf.Flip (false);
-					break;
-				case PixbufOrientation.BottomRight:
-					dest_pixbuf = temp_pixbuf.RotateSimple (PixbufRotation.Upsidedown);
-					break;
-				case PixbufOrientation.BottomLeft:
-					dest_pixbuf = temp_pixbuf.Flip (true);
-					break;
-				case PixbufOrientation.LeftTop:
-					using (var rotated = temp_pixbuf.RotateSimple (PixbufRotation.Clockwise)) {
-						dest_pixbuf = rotated.Flip (false);
-					}
-					break;
-				case PixbufOrientation.RightTop:
-					dest_pixbuf = temp_pixbuf.RotateSimple (PixbufRotation.Clockwise);
-					break;
-				case PixbufOrientation.RightBottom:
-					using (var rotated = temp_pixbuf.RotateSimple (PixbufRotation.Counterclockwise)) {
-						dest_pixbuf = rotated.Flip (false);
-					}
-					break;
-				case PixbufOrientation.LeftBottom:
-					dest_pixbuf = temp_pixbuf.RotateSimple (PixbufRotation.Counterclockwise);
-					break;
+				using (var dest_pixbuf = PixbufUtils.TransformOrientation (temp_pixbuf, pixbuf_orientation)) {
+					GdkWindow.DrawPixbuf (Style.BlackGC,
+							      dest_pixbuf,
+							      0, 0,
+							      area.X, area.Y,
+							      area.Width, area.Height,
+							      RgbDither.Max,
+							      area.X - x_offset, area.Y - y_offset);
 				}
-
-				GdkWindow.DrawPixbuf (Style.BlackGC,
-						      dest_pixbuf,
-						      0, 0,
-						      area.X, area.Y,
-						      area.Width, area.Height,
-						      RgbDither.Max,
-						      area.X - x_offset, area.Y - y_offset);
-				if (dest_pixbuf != temp_pixbuf)
-					dest_pixbuf.Dispose ();
 			}
 		}
 
