@@ -115,20 +115,27 @@ namespace FSpot.Widgets {
 				Glx.Destroy ();
 		}
 
-		// Display.
-		private void HandlePixbufAreaUpdated (object sender, AreaUpdatedEventArgs args)
+#region loader		
+		ImageLoader loader;
+
+		void Load (Uri uri)
 		{
-			if (!ShowProgress)
-				return;
+			if (loader != null)
+				loader.Dispose ();
 
-			Gdk.Rectangle area = this.ImageCoordsToWindow (args.Area);
-			this.QueueDrawArea (area.X, area.Y, area.Width, area.Height);
+			loader = new ImageLoader ();
+			loader.AreaPrepared += HandlePixbufPrepared;
+			loader.AreaUpdated += HandlePixbufAreaUpdated;
+			loader.Completed += HandleDone;
+			loader.Load (uri);
 		}
-		
 
-		private void HandlePixbufPrepared (object sender, AreaPreparedEventArgs args)
+		void HandlePixbufPrepared (object sender, AreaPreparedEventArgs args)
 		{
 			ImageLoader loader = sender as ImageLoader;
+			if (loader != this.loader)
+				return;
+
 			if (!ShowProgress)
 				return;
 
@@ -141,9 +148,24 @@ namespace FSpot.Widgets {
 			this.ZoomFit (args.ReducedResolution);
 		}
 
-		private void HandleDone (object sender, System.EventArgs args)
+		void HandlePixbufAreaUpdated (object sender, AreaUpdatedEventArgs args)
+		{
+			if (loader != this.loader)
+				return;
+
+			if (!ShowProgress)
+				return;
+
+			Gdk.Rectangle area = this.ImageCoordsToWindow (args.Area);
+			this.QueueDrawArea (area.X, area.Y, area.Width, area.Height);
+		}
+
+		void HandleDone (object sender, System.EventArgs args)
 		{
 			ImageLoader loader = sender as ImageLoader;
+			if (loader != this.loader)
+				return;
+
 			// FIXME the error hander here needs to provide proper information and we should
 			// pass the state and the write exception in the args
 			Gdk.Pixbuf prev = this.Pixbuf;
@@ -189,11 +211,10 @@ namespace FSpot.Widgets {
 			if (prev != this.Pixbuf && prev != null)
 				prev.Dispose ();
 		}
+#endregion
 		
 		private bool ShowProgress {
-			get {
-				return !(load_async != ProgressType.Full || !progressive_display);
-			}
+			get { return !(load_async != ProgressType.Full || !progressive_display); }
 		}
 	
 		// Zoom scaled between 0.0 and 1.0
@@ -253,11 +274,7 @@ namespace FSpot.Widgets {
 				try {
 					if (Item.IsValid) {
 						System.Uri uri = Item.Current.DefaultVersionUri;
-						ImageLoader loader = new ImageLoader ();
-						loader.AreaPrepared += HandlePixbufPrepared;
-						loader.AreaUpdated += HandlePixbufAreaUpdated;
-						loader.Completed += HandleDone;
-						loader.Load (uri);
+						Load (uri);
 					} else
 						LoadErrorImage (null);
 
@@ -395,6 +412,8 @@ namespace FSpot.Widgets {
 			//loader.AreaUpdated -= HandlePixbufAreaUpdated;
 			//loader.AreaPrepared -= HandlePixbufPrepared;
 			//loader.Dispose ();
+			if (loader != null)
+				loader.Dispose ();
 		}
 	}
 }
