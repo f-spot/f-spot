@@ -44,6 +44,9 @@ namespace FSpot.Widgets
 		public Pixbuf Pixbuf {
 			get { return pixbuf; } 
 			set {
+				if (pixbuf == value)
+					return;
+
 				pixbuf = value;
 				min_zoom = ComputeMinZoom (upscale);
 
@@ -63,7 +66,6 @@ namespace FSpot.Widgets
 				if (value == pixbuf_orientation)
 					return;
 				pixbuf_orientation = value;
-				Console.WriteLine ("pixbuf orientation changed to {0}", value);
 				min_zoom = ComputeMinZoom (upscale);
 				ComputeScaledSize ();
 				QueueDraw ();
@@ -87,7 +89,7 @@ namespace FSpot.Widgets
 			get { return pointer_mode; } 
 			set { 
 				pointer_mode = value;
-				Console.WriteLine ("FIXME: Set the Pointer mode");
+				Log.Debug ("FIXME: Set the Pointer mode");
 			} 
 		}
 
