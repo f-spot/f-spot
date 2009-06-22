@@ -80,8 +80,7 @@ namespace FSpot.Exporter.Facebook
 			string keyring;
 			try {
 				keyring = Ring.GetDefaultKeyring();
-				Log.Debug ("Got default keyring {0}", keyring);
-			} catch (Exception e) {
+			} catch (KeyringException e) {
 				Log.DebugException (e);
 				return false;
 			}
@@ -92,7 +91,7 @@ namespace FSpot.Exporter.Facebook
 			attribs["session_key"] = info.SessionKey;
 			try {
 				Ring.CreateItem (keyring, ItemType.GenericSecret, keyring_item_name, attribs, info.Secret, true);
-			} catch (Exception e) {
+			} catch (KeyringException e) {
 				Log.DebugException (e);
 				return false;
 			}
@@ -120,7 +119,7 @@ namespace FSpot.Exporter.Facebook
 					info = new SessionInfo (session_key, uid, secret);
 					break;
 				}
-			} catch (Exception e) {
+			} catch (KeyringException e) {
 				Log.DebugException (e);
 			}
 
@@ -134,7 +133,7 @@ namespace FSpot.Exporter.Facebook
 
 			try {
 				keyring = Ring.GetDefaultKeyring();
-			} catch (Exception e) {
+			} catch (KeyringException e) {
 				Log.DebugException (e);
 				return false;
 			}
@@ -146,7 +145,7 @@ namespace FSpot.Exporter.Facebook
 					Ring.DeleteItem(keyring, result.ItemID);
 					success = true;
 				}
-			} catch (Exception e) {
+			} catch (KeyringException e) {
 				Log.DebugException (e);
 			}
 
@@ -164,7 +163,7 @@ namespace FSpot.Exporter.Facebook
 					Log.Information ("Saved session information to keyring");
 				else
 					Log.Warning ("Could not save session information to keyring");
-			} catch (Exception e) {
+			} catch (KeyringException e) {
 				connected = false;
 				Log.DebugException (e);
 			}
@@ -316,7 +315,10 @@ namespace FSpot.Exporter.Facebook
 			items = selection.Items;
 
 			if (items.Length > 60) {
-				HigMessageDialog mbox = new HigMessageDialog (Dialog, Gtk.DialogFlags.DestroyWithParent | Gtk.DialogFlags.Modal, Gtk.MessageType.Error, Gtk.ButtonsType.Ok, Catalog.GetString ("Too many images to export"), Catalog.GetString ("Facebook only permits 60 photographs per album.  Please refine your selection and try again."));
+				HigMessageDialog mbox = new HigMessageDialog (Dialog,
+						Gtk.DialogFlags.DestroyWithParent | Gtk.DialogFlags.Modal, Gtk.MessageType.Error,
+						Gtk.ButtonsType.Ok, Catalog.GetString ("Too many images to export"),
+						Catalog.GetString ("Facebook only permits 60 photographs per album.  Please refine your selection and try again."));
 				mbox.Run ();
 				mbox.Destroy ();
 				return;
@@ -381,7 +383,9 @@ namespace FSpot.Exporter.Facebook
 				Uri uri = account.GetLoginUri ();
 				GtkBeans.Global.ShowUri (Dialog.Screen, uri.ToString ());
 
-				HigMessageDialog mbox = new HigMessageDialog (Dialog, Gtk.DialogFlags.DestroyWithParent | Gtk.DialogFlags.Modal, Gtk.MessageType.Info, Gtk.ButtonsType.Ok, Catalog.GetString ("Waiting for authentication"), Catalog.GetString ("F-Spot will now launch your browser so that you can log into Facebook.  Turn on the \"Save my login information\" checkbox on Facebook and F-Spot will log into Facebook automatically from now on."));
+				HigMessageDialog mbox = new HigMessageDialog (Dialog, Gtk.DialogFlags.DestroyWithParent | Gtk.DialogFlags.Modal,
+						Gtk.MessageType.Info, Gtk.ButtonsType.Ok, Catalog.GetString ("Waiting for authentication"),
+						Catalog.GetString ("F-Spot will now launch your browser so that you can log into Facebook.\n\nOnce you are directed by Facebook to return to this application, click \"Ok\" below.  F-Spot will cache your session in gnome-keyring, if possible, and re-use it on future Facebook exports." ));
 
 				mbox.Run ();
 				mbox.Destroy ();
@@ -395,7 +399,9 @@ namespace FSpot.Exporter.Facebook
 		void DoLogin ()
 		{
 			if (!account.Authenticated) {
-				HigMessageDialog error = new HigMessageDialog (Dialog, Gtk.DialogFlags.DestroyWithParent | Gtk.DialogFlags.Modal, Gtk.MessageType.Error, Gtk.ButtonsType.Ok, Catalog.GetString ("Error logging into Facebook"), Catalog.GetString ("There was a problem logging into Facebook.  Check your credentials and try again."));
+				HigMessageDialog error = new HigMessageDialog (Dialog, Gtk.DialogFlags.DestroyWithParent | Gtk.DialogFlags.Modal,
+						Gtk.MessageType.Error, Gtk.ButtonsType.Ok, Catalog.GetString ("Error logging into Facebook"),
+						Catalog.GetString ("There was a problem logging into Facebook.  Check your credentials and try again."));
 				error.Run ();
 				error.Destroy ();
 
@@ -433,20 +439,20 @@ namespace FSpot.Exporter.Facebook
 					picture_info_vbox.Sensitive = true;
 					login_button.Visible = false;
 					logout_button.Visible = true;
-					log_buttons_hbox.Sensitive = true;
-					dialog_action_area.Sensitive = true;
 					// Note for translators: {0} and {1} are respectively firstname and surname of the user
 					LoginProgress (1.0, String.Format (Catalog.GetString ("{0} {1} is logged into Facebook"), me.FirstName, me.LastName));
-				} catch (Exception e) {
-					Log.DebugException (e);
-					HigMessageDialog error = new HigMessageDialog (Dialog, Gtk.DialogFlags.DestroyWithParent | Gtk.DialogFlags.Modal, Gtk.MessageType.Error, Gtk.ButtonsType.Ok, Catalog.GetString ("Error connecting to Facebook"), Catalog.GetString ("There was an unexpected problem when downloading your information from Facebook."));
+				} catch (FacebookException fe) {
+					Log.DebugException (fe);
+					HigMessageDialog error = new HigMessageDialog (Dialog, Gtk.DialogFlags.DestroyWithParent | Gtk.DialogFlags.Modal,
+							Gtk.MessageType.Error, Gtk.ButtonsType.Ok, Catalog.GetString ("Facebook Connection Error"),
+							String.Format (Catalog.GetString ("There was an error when downloading your information from Facebook.\n\nFacebook said: {0}"), fe.Message));
 					error.Run ();
 					error.Destroy ();
 
+					DoLogout ();
+				} finally {
 					log_buttons_hbox.Sensitive = true;
 					dialog_action_area.Sensitive = true;
-
-					DoLogout ();
 				}
 			}
 		}
@@ -492,9 +498,10 @@ namespace FSpot.Exporter.Facebook
 			int old_item = current_item;
 			current_item = thumbnail_iconview.CellAtPosition ((int) args.Event.X, (int) args.Event.Y, false);
 
-			if (current_item < 0 || current_item >=  items.Length) {                                current_item = old_item;
+			if (current_item < 0 || current_item >=  items.Length) {
+				current_item = old_item;
 				return;
-                        }
+			}
 
 			captions [old_item] = caption_textview.Buffer.Text;
 
@@ -592,7 +599,9 @@ namespace FSpot.Exporter.Facebook
 			if (create_album_radiobutton.Active) {
 				string name = album_name_entry.Text;
 				if (name.Length == 0) {
-					HigMessageDialog mbox = new HigMessageDialog (Dialog, Gtk.DialogFlags.DestroyWithParent | Gtk.DialogFlags.Modal, Gtk.MessageType.Error, Gtk.ButtonsType.Ok, Catalog.GetString ("Album must have a name"), Catalog.GetString ("Please name your album or choose an existing album."));
+					HigMessageDialog mbox = new HigMessageDialog (Dialog, Gtk.DialogFlags.DestroyWithParent | Gtk.DialogFlags.Modal,
+							Gtk.MessageType.Error, Gtk.ButtonsType.Ok, Catalog.GetString ("Album must have a name"),
+							Catalog.GetString ("Please name your album or choose an existing album."));
 					mbox.Run ();
 					mbox.Destroy ();
 					return;
@@ -605,7 +614,9 @@ namespace FSpot.Exporter.Facebook
 					album = account.Facebook.CreateAlbum (name, description, location);
 				}
 				catch (FacebookException fe) {
-					HigMessageDialog mbox = new HigMessageDialog (Dialog, Gtk.DialogFlags.DestroyWithParent | Gtk.DialogFlags.Modal, Gtk.MessageType.Error, Gtk.ButtonsType.Ok, Catalog.GetString ("Creating a new album failed"), String.Format (Catalog.GetString ("An error occurred creating a new album.\n\n{0}"), fe.Message));
+					HigMessageDialog mbox = new HigMessageDialog (Dialog, Gtk.DialogFlags.DestroyWithParent | Gtk.DialogFlags.Modal,
+							Gtk.MessageType.Error, Gtk.ButtonsType.Ok, Catalog.GetString ("Creating a new album failed"),
+							String.Format (Catalog.GetString ("An error occurred creating a new album.\n\n{0}"), fe.Message));
 					mbox.Run ();
 					mbox.Destroy ();
 					return;
