@@ -280,8 +280,8 @@ namespace FSpot.Widgets {
 #endregion
 		
 		protected BrowsablePointer item;
-		protected FSpot.Loupe loupe;
-		protected FSpot.Loupe sharpener;
+		protected Loupe loupe;
+		protected Loupe sharpener;
 		GdkGlx.Context Glx;
 
 		void HandleOrientationChanged (object sender, EventArgs e)
