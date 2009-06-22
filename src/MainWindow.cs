@@ -23,7 +23,7 @@ using FSpot.Widgets;
 using FSpot.Utils;
 using FSpot.UI.Dialog;
 using FSpot.Platform;
-using FSpot.GuiUtils;
+using FSpot.Gui;
 
 using LibGPhoto2;
 
@@ -176,31 +176,31 @@ public class MainWindow {
 
 	private static TargetEntry [] icon_source_target_table = 
 		new TargetEntry [] {
-			DragDrop.PhotoListEntry,
-			DragDrop.TagQueryEntry,
-			DragDrop.UriListEntry,
-			DragDrop.RootWindowEntry
+			DragDropTargets.PhotoListEntry,
+			DragDropTargets.TagQueryEntry,
+			DragDropTargets.UriListEntry,
+			DragDropTargets.RootWindowEntry
 	};
 	
 	private static TargetEntry [] icon_dest_target_table = 
 		new TargetEntry [] {
 #if ENABLE_REPARENTING
-			DragDrop.PhotoListEntry,
+			DragDropTargets.PhotoListEntry,
 #endif
-			DragDrop.TagListEntry,
-			DragDrop.UriListEntry
+			DragDropTargets.TagListEntry,
+			DragDropTargets.UriListEntry
 	};
 	
 	private static TargetEntry [] tag_target_table = 
 		new TargetEntry [] {
-			DragDrop.TagListEntry
+			DragDropTargets.TagListEntry
 	};
 	
 	private static TargetEntry [] tag_dest_target_table = 
 		new TargetEntry [] {
-			DragDrop.PhotoListEntry,
-			DragDrop.UriListEntry,
-			DragDrop.TagListEntry
+			DragDropTargets.PhotoListEntry,
+			DragDropTargets.UriListEntry,
+			DragDropTargets.TagListEntry
 	};
 
 	const int PHOTO_IDX_NONE = -1;
@@ -1285,32 +1285,18 @@ public class MainWindow {
 	}
 
 	void HandleIconViewDragDataGet (object sender, DragDataGetArgs args)
-	{		
-		/*if (args.Info == DragDrop.UriListEntry.Info || args.Info == DragDrop.PhotoListEntry.Info) {
-			UriList list = new UriList (SelectedPhotos ());
-			Byte [] data = Encoding.UTF8.GetBytes (list.ToString ());
-			Atom [] targets = args.Context.Targets;
-			args.SelectionData.Set (targets[0], 8, data, data.Length);
+	{	
+		if (args.Info == DragDropTargets.UriListEntry.Info) {
+			DragDropUtils.SetUriListData (new UriList (SelectedPhotos ()), args.SelectionData, args.Context.Targets[0]);
 			return;
 		}
 		
-		if (args.Info == DragDrop.RootWindowEntry.Info) {
-			HandleSetAsBackgroundCommand (null, null);
-			return;
-		}
-		  */
-		
-		if (args.Info == DragDrop.UriListEntry.Info) {
-			DragDrop.SetUriListData (new UriList (SelectedPhotos ()), args.SelectionData, args.Context.Targets[0]);
+		if (args.Info == DragDropTargets.PhotoListEntry.Info) {
+			DragDropUtils.SetPhotosData (SelectedPhotos (), args.SelectionData, args.Context.Targets[0]);
 			return;
 		}
 		
-		if (args.Info == DragDrop.PhotoListEntry.Info) {
-			DragDrop.SetPhotosData (SelectedPhotos (), args.SelectionData, args.Context.Targets[0]);
-			return;
-		}
-		
-		if (args.Info == DragDrop.RootWindowEntry.Info) {
+		if (args.Info == DragDropTargets.RootWindowEntry.Info) {
 			HandleSetAsBackgroundCommand (null, null);
 			return;
 		}
@@ -1318,17 +1304,11 @@ public class MainWindow {
 
 	void HandleIconViewDragDrop (object sender, DragDropArgs args)
 	{
-		//Widget source = Gtk.Drag.GetSourceWidget (args.Context);
-		//Console.WriteLine ("Drag Drop {0}", source == null ? "null" : source.TypeName);
-		
 		args.RetVal = true;
 	}
 
 	void HandleIconViewDragMotion (object sender, DragMotionArgs args)
 	{
-		//Widget source = Gtk.Drag.GetSourceWidget (args.Context);
-		//Console.WriteLine ("Drag Motion {0}", source == null ? "null" : source.TypeName);
-
 		Gdk.Drag.Status (args.Context, args.Context.SuggestedAction, args.Time);
 		args.RetVal = true;
 	}
@@ -1376,7 +1356,7 @@ public class MainWindow {
 	{
 	 	Widget source = Gtk.Drag.GetSourceWidget (args.Context);     
 		
-		if (args.Info == DragDrop.TagListEntry.Info) {
+		if (args.Info == DragDropTargets.TagListEntry.Info) {
 			//
 			// Translate the event args from viewport space to window space,
 			// drag events use the viewport.  Owen sends his regrets.
@@ -1396,7 +1376,7 @@ public class MainWindow {
 			return;
 		}
 		
-		if (args.Info == DragDrop.UriListEntry.Info) {
+		if (args.Info == DragDropTargets.UriListEntry.Info) {
 
 			/* 
 			 * If the drop is coming from inside f-spot then we don't want to import 
@@ -1412,7 +1392,7 @@ public class MainWindow {
 		}
 		
 #if ENABLE_REPARENTING
-		if (args.Info == DragDrop.PhotoListEntry.Info) {
+		if (args.Info == DragDropTargets.PhotoListEntry.Info) {
 			int p_item = icon_view.CellAtPosition (args.X + (int) icon_view.Hadjustment.Value, 
 							     args.Y + (int) icon_view.Vadjustment.Value);
 

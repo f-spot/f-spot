@@ -127,7 +127,8 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/DependentListStore.cs		\
 	$(srcdir)/DirectoryAdaptor.cs		\
 	$(srcdir)/DirectoryCollection.cs	\
-	$(srcdir)/DragDrop.cs				\
+	$(srcdir)/DragDropTargets.cs				\
+	$(srcdir)/DragDropUtils.cs				\
 	$(srcdir)/Editors/Editor.cs		\
 	$(srcdir)/Editors/AutoStretchEditor.cs		\
 	$(srcdir)/Editors/CropEditor.cs		\
@@ -256,7 +257,6 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/UI.Dialog/ProgressDialog.cs		\
 	$(srcdir)/UI.Dialog/RepairDbDialog.cs		\
 	$(srcdir)/UI.Dialog/SelectionRatioDialog.cs	\
-	$(srcdir)/UI.Dialog/TagSelectionDialog.cs	\
 	$(srcdir)/UI.Dialog/ThreadProgressDialog.cs	\
 	$(srcdir)/Updater.cs			\
 	$(srcdir)/UriCollection.cs		\

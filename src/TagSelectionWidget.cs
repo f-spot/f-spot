@@ -21,13 +21,14 @@ using Gtk;
 using Mono.Unix;
 
 using FSpot;
+using FSpot.Gui;
 using FSpot.Utils;
 using FSpot.Widgets;
 using FSpot.UI.Dialog;
 
 
 
-namespace FSpot {
+namespace FSpot.Gui {
 	
 	public class TagSelectionWidget : SaneTreeView {
 		
@@ -516,19 +517,17 @@ namespace FSpot {
 		
 		private static TargetEntry [] tag_source_target_table = 
 			new TargetEntry [] {
-				FSpot.GuiUtils.DragDrop.TagListEntry
+				DragDropTargets.TagListEntry
 			};
 	
 		private static TargetEntry [] tag_dest_target_table = 
 			new TargetEntry [] {
-				FSpot.GuiUtils.DragDrop.PhotoListEntry,
-				FSpot.GuiUtils.DragDrop.UriListEntry,
-				FSpot.GuiUtils.DragDrop.TagListEntry
+				DragDropTargets.PhotoListEntry,
+				DragDropTargets.UriListEntry,
+				DragDropTargets.TagListEntry
 			};
 	
-		//TreeViewColumn check_column;
-		//TreeViewColumn icon_column;
-		//TreeViewColumn name_column;
+		
 		CellRendererPixbuf pix_render;
 		TreeViewColumn complete_column;
 		CellRendererText text_render;
@@ -594,29 +593,6 @@ namespace FSpot {
 			                  tag_dest_target_table,
 			                  DragAction.Copy | DragAction.Move); 
 		}
-		
-		/*void HandleTagSelectionRowActivated (object sender, RowActivatedArgs args)
-		{
-			ShowQueryWidget ();
-			query_widget.Include (new Tag [] {tag_selection_widget.TagByPath (args.Path)});
-		}*/
-	
-		/*void HandleTagSelectionButtonPressEvent (object sender, ButtonPressEventArgs args)
-		{
-			if (args.Event.Button == 3) {
-				TagPopup popup = new TagPopup ();
-				popup.Activate (args.Event, tag_selection_widget.TagAtPosition (args.Event.X, args.Event.Y),
-				tag_selection_widget.TagHighlight);
-				args.RetVal = true;
-			}
-		}*/
-	
-		/*void HandleTagSelectionPopupMenu (object sender, PopupMenuArgs args)
-		{
-			TagPopup popup = new TagPopup ();
-			popup.Activate (null, null, tag_selection_widget.TagHighlight);
-			args.RetVal = true;
-		}*/
 	
 		void HandleDragBegin (object sender, DragBeginArgs args)
 		{
@@ -653,8 +629,8 @@ namespace FSpot {
 		
 		void HandleDragDataGet (object sender, DragDataGetArgs args)
 		{
-			if (args.Info == FSpot.GuiUtils.DragDrop.TagListEntry.Info) {
-				FSpot.GuiUtils.DragDrop.SetTagsData (TagHighlight, args.SelectionData, args.Context.Targets[0]);
+			if (args.Info == DragDropTargets.TagListEntry.Info) {
+				DragDropUtils.SetTagsData (TagHighlight, args.SelectionData, args.Context.Targets[0]);
 				return;
 			}
 		}
@@ -705,10 +681,10 @@ namespace FSpot {
 			if (tag == null)
 				return;
 	
-			if (args.Info == GuiUtils.DragDrop.PhotoListEntry.Info) {
+			if (args.Info == DragDropTargets.PhotoListEntry.Info) {
 				database.BeginTransaction ();
 				
-				Photo[] photos = FSpot.GuiUtils.DragDrop.GetPhotosData (args.SelectionData);
+				Photo[] photos = DragDropUtils.GetPhotosData (args.SelectionData);
 
 				foreach (Photo photo in photos) {
 
@@ -728,8 +704,8 @@ namespace FSpot {
 				return;
 			}
 			
-			if (args.Info == GuiUtils.DragDrop.UriListEntry.Info) {
-				UriList list = FSpot.GuiUtils.DragDrop.GetUriListData (args.SelectionData);
+			if (args.Info == DragDropTargets.UriListEntry.Info) {
+				UriList list = DragDropUtils.GetUriListData (args.SelectionData);
 				
 				database.BeginTransaction ();
 				List<Photo> photos = new List<Photo> ();
@@ -752,7 +728,7 @@ namespace FSpot {
 				return;
 			}
 	
-			if (args.Info == GuiUtils.DragDrop.TagListEntry.Info) {
+			if (args.Info == DragDropTargets.TagListEntry.Info) {
 				Category parent;
 	            if (position == TreeViewDropPosition.Before || position == TreeViewDropPosition.After) {
 	                parent = tag.Category;

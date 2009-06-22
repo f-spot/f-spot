@@ -12,7 +12,7 @@ using Mono.Unix;
 using Gtk;
 using Gdk;
 
-using FSpot.GuiUtils;
+using FSpot.Gui;
 
 
 
@@ -763,7 +763,7 @@ namespace FSpot {
 		{
 			args.RetVal = true;
 			
-			if (args.Info == DragDrop.TagListEntry.Info || args.Info == DragDrop.TagQueryEntry.Info) {
+			if (args.Info == DragDropTargets.TagListEntry.Info || args.Info == DragDropTargets.TagQueryEntry.Info) {
 				
 				// FIXME: do really write data
 				Byte [] data = Encoding.UTF8.GetBytes (String.Empty);
@@ -812,15 +812,15 @@ namespace FSpot {
 		{
 			args.RetVal = true;
 			
-			if (args.Info == GuiUtils.DragDrop.TagListEntry.Info) {
+			if (args.Info == DragDropTargets.TagListEntry.Info) {
 
 				if (TagsAdded != null)
-					TagsAdded (FSpot.GuiUtils.DragDrop.GetTagsData (args.SelectionData), Parent, this);
+					TagsAdded (DragDropUtils.GetTagsData (args.SelectionData), Parent, this);
 				
 				return;
 			}
 			
-			if (args.Info == GuiUtils.DragDrop.TagQueryEntry.Info) {
+			if (args.Info == DragDropTargets.TagQueryEntry.Info) {
 
 				if (! focusedLiterals.Contains(this))
 					if (LiteralsMoved != null)
@@ -884,12 +884,12 @@ namespace FSpot {
 		private const int overlay_size = (int) (.40 * ICON_SIZE);
 
 		private static TargetEntry [] tag_target_table =
-			new TargetEntry [] {FSpot.GuiUtils.DragDrop.TagQueryEntry};
+			new TargetEntry [] { DragDropTargets.TagQueryEntry };
 
 		private static TargetEntry [] tag_dest_target_table =
 			new TargetEntry [] {
-				FSpot.GuiUtils.DragDrop.TagListEntry,
-				FSpot.GuiUtils.DragDrop.TagQueryEntry
+				DragDropTargets.TagListEntry,
+				DragDropTargets.TagQueryEntry
 			};
 
 		private static ArrayList focusedLiterals = new ArrayList();

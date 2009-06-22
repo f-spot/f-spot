@@ -6,6 +6,7 @@ using Gtk;
 using Gdk;
 
 using FSpot.Utils;
+using FSpot.Gui;
 
 namespace FSpot
 {
@@ -236,8 +237,8 @@ namespace FSpot
 		// Drag and Drop
 		private static TargetEntry [] tag_dest_target_table =
 			new TargetEntry [] {
-				FSpot.GuiUtils.DragDrop.TagListEntry,
-				FSpot.GuiUtils.DragDrop.TagQueryEntry
+				DragDropTargets.TagListEntry,
+				DragDropTargets.TagQueryEntry
 			};
 
 		public LogicWidget (PhotoQuery query, TagStore tag_store) : base ()
@@ -429,13 +430,13 @@ namespace FSpot
 		{
 			args.RetVal = true;
 			
-			if (args.Info == GuiUtils.DragDrop.TagListEntry.Info) {
+			if (args.Info == DragDropTargets.TagListEntry.Info) {
 
-				InsertTerm (FSpot.GuiUtils.DragDrop.GetTagsData (args.SelectionData), rootTerm, null);
+				InsertTerm (DragDropUtils.GetTagsData (args.SelectionData), rootTerm, null);
 				return;
 			}
 			
-			if (args.Info == GuiUtils.DragDrop.TagQueryEntry.Info) {
+			if (args.Info == DragDropTargets.TagQueryEntry.Info) {
 
 				// FIXME: use drag data
 				HandleLiteralsMoved (Literal.FocusedLiterals, rootTerm, null);
