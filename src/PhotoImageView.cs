@@ -289,7 +289,7 @@ namespace FSpot.Widgets {
 			Reload ();
 		}
 		
-		bool progressive_display;
+		bool progressive_display = true;
 		bool ShowProgress {
 			get { return progressive_display; }
 		}
@@ -307,7 +307,7 @@ namespace FSpot.Widgets {
 				old.Dispose ();
 
 			PixbufOrientation = PixbufOrientation.TopLeft;
-			ZoomFit ();
+			ZoomFit (false);
 		}
 
 		void HandlePhotoItemChanged (object sender, BrowsablePointerChangedEventArgs args) 
