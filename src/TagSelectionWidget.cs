@@ -654,7 +654,7 @@ namespace FSpot {
 		void HandleDragDataGet (object sender, DragDataGetArgs args)
 		{
 			if (args.Info == FSpot.GuiUtils.DragDrop.TagListEntry.Info) {
-				FSpot.GuiUtils.DragDrop.SetTagsData (TagHighlight, args.SelectionData);
+				FSpot.GuiUtils.DragDrop.SetTagsData (TagHighlight, args.SelectionData, args.Context.Targets[0]);
 				return;
 			}
 		}
@@ -707,9 +707,9 @@ namespace FSpot {
 	
 			if (args.Info == GuiUtils.DragDrop.PhotoListEntry.Info) {
 				database.BeginTransaction ();
-
-				Photo[] photos = FSpot.GuiUtils.DragDrop.GetPhotosData (args.SelectionData);
 				
+				Photo[] photos = FSpot.GuiUtils.DragDrop.GetPhotosData (args.SelectionData);
+
 				foreach (Photo photo in photos) {
 
 					if (photo == null)
@@ -784,6 +784,11 @@ namespace FSpot {
 	            args.RetVal = moved_count > 0;
 				return;
 			}
+		}
+		
+		protected override void OnRowActivated (Gtk.TreePath path, Gtk.TreeViewColumn column)
+		{
+			MainWindow.Toplevel.AddTagsQuery (new Tag [] {TagByPath (path)});			
 		}
 	
 	

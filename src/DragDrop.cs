@@ -52,94 +52,97 @@ namespace FSpot.GuiUtils
 		public static readonly TargetEntry RootWindowEntry =
 			new TargetEntry ("application/x-root-window-drop", 0, (uint) TargetType.RootWindow);
 		
-		/* FIXME: we use a list of photo ids. Maybe this can be encoded more efficiently */
-		public static void SetPhotosData (Photo [] photos, SelectionData selection_data)
-		{
-			StringBuilder builder = new StringBuilder ();
-			foreach (Photo photo in photos) {
 
-				if (builder.Length == 0)
-					builder.Append (photo.Id);
-				else
-					builder.AppendFormat (" {0}", photo.Id);
+		public static void SetPhotosData (Photo [] photos, SelectionData selection_data, Gdk.Atom target)
+		{
+			byte [] data = new byte [photos.Length * sizeof (uint)];
+			
+			int i = 0;
+			foreach (Photo photo in photos) {
+				byte [] bytes = System.BitConverter.GetBytes (photo.Id);
+				
+				foreach (byte b in bytes) {
+					data[i] = b;
+					i++;
+				}
 			}
 			
-			Byte [] data = Encoding.UTF8.GetBytes (builder.ToString ());
-			Gdk.Atom [] targets = args.Context.Targets;
-			
-			selection_data.Set (targets[0], 8, data, data.Length);
+			selection_data.Set (target, 8, data, data.Length);
 		}
 		
-		public static Photo [] GetPhotosData (SelectionData data)
+		public static Photo [] GetPhotosData (SelectionData selection_data)
 		{
-			string [] values = GetStringData (data).Split (' ');
+			int size = sizeof (uint);
+			int length = selection_data.Length / size;
 			
-			Photo [] photos = new Photo [values.Length];
+			PhotoStore photo_store = MainWindow.Toplevel.Database.Photos;
+
+			Photo [] photos = new Photo [length];
 			
-			for (int i = 0; i < values.Length; i++) {
-				uint id = Convert.ToUInt32 (values[i]);
-				
-				photos[i] = MainWindow.Toplevel.Database.Photos.Get (id);
+			for (int i = 0; i < length; i ++) {
+				uint id = System.BitConverter.ToUInt32 (selection_data.Data, i * size);
+				photos[i] = photo_store.Get (id);
 			}
 
 			return photos;
 		}
 		
-		public static void SetTagsData (Tag [] tags, SelectionData selection_data)
+		public static void SetTagsData (Tag [] tags, SelectionData selection_data, Gdk.Atom target)
 		{
-			StringBuilder builder = new StringBuilder ();
+			byte [] data = new byte [tags.Length * sizeof (uint)];
+			
+			int i = 0;
 			foreach (Tag tag in tags) {
-
-				if (builder.Length == 0)
-					builder.Append (tag.Id);
-				else
-					builder.AppendFormat (" {0}", tag.Id);
+				byte [] bytes = System.BitConverter.GetBytes (tag.Id);
+				
+				foreach (byte b in bytes) {
+					data[i] = b;
+					i++;
+				}
 			}
 			
-			Byte [] data = Encoding.UTF8.GetBytes (builder.ToString ());
-			Gdk.Atom [] targets = args.Context.Targets;
-			
-			selection_data.Set (targets[0], 8, data, data.Length);
+			selection_data.Set (target, 8, data, data.Length);
 		}
 		
-		public static Tag [] GetTagsData (SelectionData data)
+		public static Tag [] GetTagsData (SelectionData selection_data)
 		{
-			string [] values = GetStringData (data).Split (' ');
+			int size = sizeof (uint);
+			int length = selection_data.Length / size;
 			
-			Tag [] tags = new Tag [values.Length];
+			TagStore tag_store = MainWindow.Toplevel.Database.Tags;
+
+			Tag [] tags = new Tag [length];
 			
-			for (int i = 0; i < values.Length; i++) {
-				uint id = Convert.ToUInt32 (values[i]);
-				
-				tags[i] = MainWindow.Toplevel.Database.Tags.Get (id);
+			for (int i = 0; i < length; i ++) {
+				uint id = System.BitConverter.ToUInt32 (selection_data.Data, i * size);
+				tags[i] = tag_store.Get (id);
 			}
 
 			return tags;
 		}
 		
-		public static string GetStringData (SelectionData data)
+		public static string GetStringData (SelectionData selection_data)
 		{
-			if (data.Length <= 0)
+			if (selection_data.Length <= 0)
 				return String.Empty;
 			
 			try {
-				return Encoding.UTF8.GetString (data.Data);
+				return Encoding.UTF8.GetString (selection_data.Data);
 			} catch (Exception) {
 				return String.Empty;
 			}
 		}
 		
-		public static void SetUriListData (UriList uri_list, DragDataGetArgs args)
+		public static void SetUriListData (UriList uri_list, SelectionData selection_data, Gdk.Atom target)
 		{
 			Byte [] data = Encoding.UTF8.GetBytes (uri_list.ToString ());
-			Gdk.Atom [] targets = args.Context.Targets;
 			
-			args.SelectionData.Set (targets[0], 8, data, data.Length);
+			selection_data.Set (target, 8, data, data.Length);
 		}
 		
-		public static UriList GetUriListData (SelectionData data)
+		public static UriList GetUriListData (SelectionData selection_data)
 		{
-			string [] uris = GetStringData (data).Split ('\n');
+			string [] uris = GetStringData (selection_data).Split ('\n');
 			
 			return new UriList (uris);
 		}

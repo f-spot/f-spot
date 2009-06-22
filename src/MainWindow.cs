@@ -378,7 +378,7 @@ public class MainWindow {
 
 		tag_selection_widget.ButtonPressEvent += HandleTagSelectionButtonPressEvent;
 		tag_selection_widget.PopupMenu += HandleTagSelectionPopupMenu;
-		tag_selection_widget.RowActivated += HandleTagSelectionRowActivated;
+//		tag_selection_widget.RowActivated += HandleTagSelectionRowActivated;
 		
 		LoadPreference (Preferences.TAG_ICON_SIZE);
 		
@@ -953,6 +953,12 @@ public class MainWindow {
 			db.Tags.Commit (t);
 		}
 	}
+	
+	public void AddTagsQuery (Tag [] tags)
+	{
+		ShowQueryWidget ();
+		query_widget.Include (tags);
+	}
 
 	public void RemoveTags (int [] nums, Tag [] tags)
 	{
@@ -961,11 +967,11 @@ public class MainWindow {
 		query.Commit (nums);
 	}
 
-	void HandleTagSelectionRowActivated (object sender, RowActivatedArgs args)
+/*	void HandleTagSelectionRowActivated (object sender, RowActivatedArgs args)
 	{
 		ShowQueryWidget ();
 		query_widget.Include (new Tag [] {tag_selection_widget.TagByPath (args.Path)});
-	}
+	}*/
 
 	void HandleTagSelectionButtonPressEvent (object sender, ButtonPressEventArgs args)
 	{
@@ -1295,12 +1301,12 @@ public class MainWindow {
 		  */
 		
 		if (args.Info == DragDrop.UriListEntry.Info) {
-			DragDrop.SetUriListData (new UriList (SelectedPhotos ()), args);
+			DragDrop.SetUriListData (new UriList (SelectedPhotos ()), args.SelectionData, args.Context.Targets[0]);
 			return;
 		}
 		
 		if (args.Info == DragDrop.PhotoListEntry.Info) {
-			DragDrop.SetPhotosData (SelectedPhotos (), args.SelectionData);
+			DragDrop.SetPhotosData (SelectedPhotos (), args.SelectionData, args.Context.Targets[0]);
 			return;
 		}
 		

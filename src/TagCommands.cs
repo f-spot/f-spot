@@ -123,6 +123,7 @@ public class TagCommands {
 				}
 			}
 		}
+		
 		public Tag Execute (TagType type, Tag [] selection)
 		{
 			this.CreateDialog ("create_tag_dialog");
