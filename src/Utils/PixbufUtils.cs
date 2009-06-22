@@ -91,6 +91,26 @@ namespace FSpot.Utils
 			return area;
 		}
 
+		public static PixbufOrientation ReverseTransformation (PixbufOrientation orientation)
+		{
+			switch (orientation) {
+			default:
+			case PixbufOrientation.TopLeft:
+			case PixbufOrientation.TopRight:
+			case PixbufOrientation.BottomRight:
+			case PixbufOrientation.BottomLeft:
+				return orientation;
+			case PixbufOrientation.LeftTop:
+				return PixbufOrientation.RightBottom;
+			case PixbufOrientation.RightTop:
+				return PixbufOrientation.LeftBottom;
+			case PixbufOrientation.RightBottom:
+				return PixbufOrientation.LeftTop;
+			case PixbufOrientation.LeftBottom:
+				return PixbufOrientation.RightTop;
+			}
+		}
+
 		public static Pixbuf TransformOrientation (Pixbuf src, PixbufOrientation orientation)
 		{
 			Pixbuf dest;

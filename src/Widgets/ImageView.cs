@@ -744,11 +744,11 @@ namespace FSpot.Widgets
 
 			Rectangle pixbuf_area = PixbufUtils.TransformOrientation ((int)scaled_width,
 										  (int)scaled_height,
-										  new Rectangle (-(area.X - x_offset),
-										  		 -(area.Y - y_offset),
+										  new Rectangle ((area.X - x_offset),
+												 (area.Y - y_offset),
 												 area.Width,
 												 area.Height),
-										  pixbuf_orientation);
+										  PixbufUtils.ReverseTransformation (pixbuf_orientation));
 			using (Pixbuf temp_pixbuf = new Pixbuf (Colorspace.Rgb, false, 8, pixbuf_area.Width, pixbuf_area.Height)) {
 				if (Pixbuf.HasAlpha)
 					temp_pixbuf.Fill (0x00000000);
@@ -756,10 +756,10 @@ namespace FSpot.Widgets
 				Pixbuf.CompositeColor (temp_pixbuf,
 						       0, 0,
 						       pixbuf_area.Width, pixbuf_area.Height,
-						       pixbuf_area.X, pixbuf_area.Y,
+						       -pixbuf_area.X, -pixbuf_area.Y,
 						       zoom, zoom,
 						       zoom == 1.0 ? InterpType.Nearest : interpolation, 255,
-						       -pixbuf_area.X, -pixbuf_area.Y,
+						       pixbuf_area.X, pixbuf_area.Y,
 						       CheckPattern.CheckSize, CheckPattern.Color1, CheckPattern.Color2);
 
 
