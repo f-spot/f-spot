@@ -298,23 +298,22 @@ namespace FSpot.Widgets {
 		}
 		
 		bool ShowProgress {
-			get { return !(load_async != ProgressType.Full || !progressive_display); }
+			get { return load_async == ProgressType.Full && progressive_display; }
 		}
 
 		void LoadErrorImage (System.Exception e)
 		{
 			// FIXME we should check the exception type and do something
 			// like offer the user a chance to locate the moved file and
-			// update the db entry, but for now just set the error pixbuf
-			
+			// update the db entry, but for now just set the error pixbuf	
 			Pixbuf old = Pixbuf;
 			Pixbuf = new Pixbuf (PixbufUtils.ErrorPixbuf, 0, 0, 
 					     PixbufUtils.ErrorPixbuf.Width, 
 					     PixbufUtils.ErrorPixbuf.Height);
-			PixbufOrientation = PixbufOrientation.TopLeft;
 			if (old != null)
 				old.Dispose ();
-			
+
+			PixbufOrientation = PixbufOrientation.TopLeft;
 			ZoomFit ();
 		}
 
