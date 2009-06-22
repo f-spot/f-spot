@@ -1213,7 +1213,7 @@ public class MainWindow {
 			if (source != null)
 				return;
 
-			UriList list = new UriList (args.SelectionData);
+			UriList list = DragDropUtils.GetUriListData (args.SelectionData); 
 			ImportUriList (list, (args.Context.Action & Gdk.DragAction.Copy) != 0);
 			
 			Gtk.Drag.Finish (args.Context, true, false, args.Time);

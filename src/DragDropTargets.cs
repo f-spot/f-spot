@@ -19,6 +19,7 @@ namespace FSpot.Gui
 	public static class DragDropTargets
 	{
 		public enum TargetType {
+			PlainText,
 			UriList,
 			TagList,
 			TagQueryItem,
@@ -27,6 +28,9 @@ namespace FSpot.Gui
 			RootWindow
 		};
 
+		public static readonly TargetEntry PlainTextEntry =
+			new TargetEntry ("text/plain", 0, (uint) TargetType.PhotoList);
+		
 		public static readonly TargetEntry PhotoListEntry =
 			new TargetEntry ("application/x-fspot-photos", 0, (uint) TargetType.PhotoList);
 		

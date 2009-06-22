@@ -107,8 +107,10 @@ namespace FSpot {
 
 			collection = new UriCollection (uris);
 
-			TargetEntry [] dest_table = {   new TargetEntry ("text/uri-list", 0, 0),
-							new TargetEntry ("text/plain", 0, 1)};
+			TargetEntry [] dest_table = {
+				FSpot.Gui.DragDropTargets.UriListEntry,
+				FSpot.Gui.DragDropTargets.PlainTextEntry
+			};
 			
 			directory_view = new FSpot.Widgets.IconView (collection);
 			directory_view.Selection.Changed += HandleSelectionChanged;
@@ -465,23 +467,22 @@ namespace FSpot {
 
 		void HandleDragDataReceived (object sender, DragDataReceivedArgs args) 
 		{
-		
-		switch (args.Info) {
-		case 0:
-		case 1:
-			/* 
-			 * If the drop is coming from inside f-spot then we don't want to import 
-			 */
-			if (Gtk.Drag.GetSourceWidget (args.Context) != null)
+			if (args.Info == FSpot.Gui.DragDropTargets.UriListEntry.Info
+			    || args.Info == FSpot.Gui.DragDropTargets.PlainTextEntry.Info) {
+				
+				/* 
+				 * If the drop is coming from inside f-spot then we don't want to import 
+				 */
+				if (Gtk.Drag.GetSourceWidget (args.Context) != null)
+					return;
+				
+				UriList list = FSpot.Gui.DragDropUtils.GetUriListData (args.SelectionData);
+				collection.LoadItems (list.ToArray());
+				
+				Gtk.Drag.Finish (args.Context, true, false, args.Time);
+				
 				return;
-
-			UriList list = new UriList (args.SelectionData);
-			collection.LoadItems (list.ToArray());
-
-			break;
-		}
-
-		Gtk.Drag.Finish (args.Context, true, false, args.Time);
+			}
 		}
 
 		private void UpdateStatusLabel ()
