@@ -10,10 +10,9 @@
 //
 
 using System;
-
 using Gdk;
-
 using FSpot.Utils;
+using FSpot.Platform;
 
 namespace FSpot {
 	public class AreaPreparedEventArgs : EventArgs
@@ -55,6 +54,16 @@ namespace FSpot {
 			if (is_disposed)
 				return;
 
+			//First, send a thumbnail if we have one
+			if ((thumb = ThumbnailFactory.LoadThumbnail (uri)) != null) {
+				EventHandler<AreaPreparedEventArgs> prep = AreaPrepared;
+				if (prep != null)
+					prep (this, new AreaPreparedEventArgs (true));
+				EventHandler<AreaUpdatedEventArgs> upd = AreaUpdated;
+				if (upd != null)
+					upd (this, new AreaUpdatedEventArgs (new Rectangle (0, 0, thumb.Width, thumb.Height)));
+			}
+
 			using (ImageFile image_file = ImageFile.Create (uri)) {
 				image_stream = image_file.PixbufStream ();
 				pixbuf_orientation = image_file.Orientation;
@@ -63,9 +72,19 @@ namespace FSpot {
 			loading = true;
 		}
 
-		new public event EventHandler<AreaUpdatedEventArgs> AreaUpdated;
 		new public event EventHandler<AreaPreparedEventArgs> AreaPrepared;
+		new public event EventHandler<AreaUpdatedEventArgs> AreaUpdated;
 		public event EventHandler Completed;
+
+
+		Pixbuf thumb;
+		new public Pixbuf Pixbuf {
+			get {
+				if (thumb != null)
+					return thumb;
+				return base.Pixbuf;
+			}
+		}
 
 		bool loading = false;
 		public bool Loading {
@@ -95,6 +114,10 @@ namespace FSpot {
 				//it's normal to get an exception here if we're closing in the early loading stages, and it's safe to ignore
 				// that exception as we don't want the loading to finish but want to cancel it.
 			}
+			if (thumb != null) {
+				thumb.Dispose ();
+				thumb = null;
+			}
 			base.Dispose ();
 		}
 #endregion
@@ -104,6 +127,11 @@ namespace FSpot {
 		{
 			if (is_disposed)
 				return;
+
+			if (thumb != null) {
+				thumb.Dispose ();
+				thumb = null;
+			}
 
 			prepared = notify_prepared = true;
 			damage = Rectangle.Zero;
