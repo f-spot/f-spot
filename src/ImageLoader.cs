@@ -9,11 +9,10 @@
 // This is free software. See COPYING for details
 //
 
-using Gtk;
 using System;
-using System.IO;
-using System.Runtime.Remoting.Messaging;
-using FSpot.Platform;
+
+using Gdk;
+
 using FSpot.Utils;
 
 namespace FSpot {
@@ -73,6 +72,7 @@ namespace FSpot {
 			get { return loading; }
 		}
 
+		bool notify_prepared = false;
 		bool prepared = false;
 		public bool Prepared {
 			get { return prepared; }
@@ -105,11 +105,9 @@ namespace FSpot {
 			if (is_disposed)
 				return;
 
+			prepared = notify_prepared = true;
+			damage = Rectangle.Zero;
 			base.OnAreaPrepared ();
-			prepared = true;
-			EventHandler<AreaPreparedEventArgs> eh = AreaPrepared;
-			if (eh != null)
-				eh (this, new AreaPreparedEventArgs (false));
 		}
 
 		protected override void OnAreaUpdated (int x, int y, int width, int height)
@@ -117,10 +115,9 @@ namespace FSpot {
 			if (is_disposed)
 				return;
 
+			Rectangle area = new Rectangle (x, y, width, height);
+			damage = damage == Rectangle.Zero ? area : damage.Union (area);
 			base.OnAreaUpdated (x, y, width, height);
-			EventHandler<AreaUpdatedEventArgs> eh = AreaUpdated;
-			if (eh != null)
-				eh (this, new AreaUpdatedEventArgs (new Gdk.Rectangle (x, y, width, height)));
 		}
 
 		protected virtual void OnCompleted ()
@@ -128,7 +125,6 @@ namespace FSpot {
 			if (is_disposed)
 				return;
 
-			loading = false;
 			EventHandler eh = Completed;
 			if (eh != null)
 				eh (this, EventArgs.Empty);
@@ -138,9 +134,10 @@ namespace FSpot {
 
 #region private stuffs
 		System.IO.Stream image_stream;
-		const int count = 1 << 16; //64k
-
+		const int count = 1 << 20;
 		byte [] buffer = new byte [count];
+		bool notify_completed = false;
+		Rectangle damage;
 
 		void HandleReadDone (IAsyncResult ar)
 		{
@@ -150,16 +147,39 @@ namespace FSpot {
 			int byte_read = image_stream.EndRead (ar);
 			if (byte_read == 0) {
 				image_stream.Close ();
-				OnCompleted ();
-				return;
+				loading = false;
+				notify_completed = true;
 			}
 
 			Gtk.Application.Invoke (this, null, delegate (object sender, EventArgs e) {
-				try {
-					if (!is_disposed && Write (buffer, (ulong)byte_read))
-						image_stream.BeginRead (buffer, 0, count, HandleReadDone, null);
-				} catch (System.ObjectDisposedException od) {
-				} catch (GLib.GException ge) {
+				if (loading)
+					try {
+						if (!is_disposed && Write (buffer, (ulong)byte_read))
+							image_stream.BeginRead (buffer, 0, count, HandleReadDone, null);
+					} catch (System.ObjectDisposedException od) {
+					} catch (GLib.GException ge) {
+					}
+
+				//Send the AreaPrepared event
+				if (notify_prepared) {
+					notify_prepared = false;
+					EventHandler<AreaPreparedEventArgs> eh = AreaPrepared;
+					if (eh != null)
+						eh (this, new AreaPreparedEventArgs (false));
+				}
+
+				//Send the AreaUpdated events
+				if (damage != Rectangle.Zero) {
+					EventHandler<AreaUpdatedEventArgs> eh = AreaUpdated;
+					if (eh != null)
+						eh (this, new AreaUpdatedEventArgs (damage));
+					damage = Rectangle.Zero;
+				}
+
+				//Send the Completed event
+				if (notify_completed) {
+					notify_completed = false;
+					OnCompleted ();
 				}
 			});
 		}
