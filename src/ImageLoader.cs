@@ -56,6 +56,7 @@ namespace FSpot {
 
 			//First, send a thumbnail if we have one
 			if ((thumb = ThumbnailFactory.LoadThumbnail (uri)) != null) {
+				pixbuf_orientation = PixbufOrientation.TopLeft;
 				EventHandler<AreaPreparedEventArgs> prep = AreaPrepared;
 				if (prep != null)
 					prep (this, new AreaPreparedEventArgs (true));
@@ -128,11 +129,6 @@ namespace FSpot {
 			if (is_disposed)
 				return;
 
-			if (thumb != null) {
-				thumb.Dispose ();
-				thumb = null;
-			}
-
 			prepared = notify_prepared = true;
 			damage = Rectangle.Zero;
 			base.OnAreaPrepared ();
@@ -177,20 +173,24 @@ namespace FSpot {
 				image_stream.Close ();
 				loading = false;
 				notify_completed = true;
+			} else {
+				try {
+					if (!is_disposed && Write (buffer, (ulong)byte_read))
+						image_stream.BeginRead (buffer, 0, count, HandleReadDone, null);
+				} catch (System.ObjectDisposedException od) {
+				} catch (GLib.GException ge) {
+				}
 			}
 
-			Gtk.Application.Invoke (this, null, delegate (object sender, EventArgs e) {
-				if (loading)
-					try {
-						if (!is_disposed && Write (buffer, (ulong)byte_read))
-							image_stream.BeginRead (buffer, 0, count, HandleReadDone, null);
-					} catch (System.ObjectDisposedException od) {
-					} catch (GLib.GException ge) {
-					}
-
+			GLib.Idle.Add (delegate {
 				//Send the AreaPrepared event
 				if (notify_prepared) {
 					notify_prepared = false;
+					if (thumb != null) {
+						thumb.Dispose ();
+						thumb = null;
+					}
+
 					EventHandler<AreaPreparedEventArgs> eh = AreaPrepared;
 					if (eh != null)
 						eh (this, new AreaPreparedEventArgs (false));
@@ -209,6 +209,8 @@ namespace FSpot {
 					notify_completed = false;
 					OnCompleted ();
 				}
+
+				return false;
 			});
 		}
 #endregion
