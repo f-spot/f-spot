@@ -10,6 +10,7 @@
 //
 
 using System;
+using System.Threading;
 using Gdk;
 using FSpot.Utils;
 using FSpot.Platform;
@@ -69,7 +70,9 @@ namespace FSpot {
 				image_stream = image_file.PixbufStream ();
 				pixbuf_orientation = image_file.Orientation;
 			}
-			image_stream.BeginRead (buffer, 0, count, HandleReadDone, null);
+			image_stream.BeginRead (buffer, 0, count, delegate (IAsyncResult r) {
+				ThreadPool.QueueUserWorkItem (delegate {HandleReadDone (r);});
+			}, null);
 			loading = true;
 		}
 
