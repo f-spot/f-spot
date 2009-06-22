@@ -364,21 +364,9 @@ public class MainWindow {
 		info_box.Context = ViewContext.Library;
 		
 		tag_selection_widget.Selection.Changed += HandleTagSelectionChanged;
-//		tag_selection_widget.DragDataGet += HandleTagSelectionDragDataGet;
-//		tag_selection_widget.DragDrop += HandleTagSelectionDragDrop;
-//		tag_selection_widget.DragBegin += HandleTagSelectionDragBegin;
 		tag_selection_widget.KeyPressEvent += HandleTagSelectionKeyPress;
-//		Gtk.Drag.SourceSet (tag_selection_widget, Gdk.ModifierType.Button1Mask | Gdk.ModifierType.Button3Mask,
-//				    tag_target_table, DragAction.Copy | DragAction.Move);
-
-//		tag_selection_widget.DragDataReceived += HandleTagSelectionDragDataReceived;
-//		tag_selection_widget.DragMotion += HandleTagSelectionDragMotion;
-//		Gtk.Drag.DestSet (tag_selection_widget, DestDefaults.All, tag_dest_target_table, 
-//				  DragAction.Copy | DragAction.Move ); 
-
 		tag_selection_widget.ButtonPressEvent += HandleTagSelectionButtonPressEvent;
 		tag_selection_widget.PopupMenu += HandleTagSelectionPopupMenu;
-//		tag_selection_widget.RowActivated += HandleTagSelectionRowActivated;
 		
 		LoadPreference (Preferences.TAG_ICON_SIZE);
 		
@@ -967,12 +955,6 @@ public class MainWindow {
 		query.Commit (nums);
 	}
 
-/*	void HandleTagSelectionRowActivated (object sender, RowActivatedArgs args)
-	{
-		ShowQueryWidget ();
-		query_widget.Include (new Tag [] {tag_selection_widget.TagByPath (args.Path)});
-	}*/
-
 	void HandleTagSelectionButtonPressEvent (object sender, ButtonPressEventArgs args)
 	{
 		if (args.Event.Button == 3) {
@@ -990,159 +972,6 @@ public class MainWindow {
 		args.RetVal = true;
 	}
 
-/*	void HandleTagSelectionDragBegin (object sender, DragBeginArgs args)
-	{
-		Tag [] tags = tag_selection_widget.TagHighlight;
-		int len = tags.Length;
-		int size = 32;
-		int csize = size/2 + len * size / 2 + 2;
-		
-		Pixbuf container = new Pixbuf (Gdk.Colorspace.Rgb, true, 8, csize, csize);
-		container.Fill (0x00000000);
-		
-		bool use_icon = false;;
-		while (len-- > 0) {
-			Pixbuf thumbnail = tags[len].Icon;
-			
-			if (thumbnail != null) {
-				Pixbuf small = PixbufUtils.ScaleToMaxSize (thumbnail, size, size);				
-				
-				int x = len * (size/2) + (size - small.Width)/2;
-				int y = len * (size/2) + (size - small.Height)/2;
-
-				small.Composite (container, x, y, small.Width, small.Height, x, y, 1.0, 1.0, Gdk.InterpType.Nearest, 0xff);
-				small.Dispose ();
-
-				use_icon = true;
-			}
-		}
-		if (use_icon)
-			Gtk.Drag.SetIconPixbuf (args.Context, container, 0, 0);
-		container.Dispose ();
-	}
-*/	
-/*	void HandleTagSelectionDragDataGet (object sender, DragDataGetArgs args)
-	{		
-		UriList list = new UriList (SelectedPhotos ());
-
-		if (args.Info == DragDrop.TagListEntry.Info) {
-			Byte [] data = Encoding.UTF8.GetBytes (list.ToString ());
-			Atom [] targets = args.Context.Targets;
-			
-			args.SelectionData.Set (targets[0], 8, data, data.Length);
-			return;
-		}
-	}
-*/
-/*	void HandleTagSelectionDragDrop (object sender, DragDropArgs args)
-	{
-		args.RetVal = true;
-	}
-*/
-/*	public void HandleTagSelectionDragMotion (object o, DragMotionArgs args)
-	{
-		TreePath path;
-        TreeViewDropPosition position = TreeViewDropPosition.IntoOrAfter;
-		tag_selection_widget.GetPathAtPos (args.X, args.Y, out path);
-
-        if (path == null)
-            return;
-
-        // Tags can be dropped before, after, or into another tag
-        if (args.Context.Targets[0].Name == "application/x-fspot-tags") {
-            Gdk.Rectangle rect = tag_selection_widget.GetCellArea(path, tag_selection_widget.Columns[0]);
-            double vpos = Math.Abs(rect.Y - args.Y) / (double)rect.Height;
-            if (vpos < 0.2) {
-                position = TreeViewDropPosition.Before;
-            } else if (vpos > 0.8) {
-                position = TreeViewDropPosition.After;
-            }
-        }
-
-		tag_selection_widget.SetDragDestRow (path, position);
-
-		// Scroll if within 20 pixels of the top or bottom of the tag list
-		if (args.Y < 20)
-			tag_selection_scrolled.Vadjustment.Value -= 30;
-        else if (((o as Gtk.Widget).Allocation.Height - args.Y) < 20)
-			tag_selection_scrolled.Vadjustment.Value += 30;
-	}
-*/
-/*	public void HandleTagSelectionDragDataReceived (object o, DragDataReceivedArgs args)
-	{
-        TreePath path;
-        TreeViewDropPosition position;
-        if (!tag_selection_widget.GetDestRowAtPos((int)args.X, (int)args.Y, out path, out position))
-            return;
-
-        Tag tag = path == null ? null : tag_selection_widget.TagByPath (path);
-		if (tag == null)
-			return;
-
-		if (args.Info == DragDrop.PhotoListEntry.Info) {
-			db.BeginTransaction ();
-			AddTagExtended (SelectedIds (), new Tag[] {tag});
-			db.CommitTransaction ();
-			query_widget.PhotoTagsChanged (new Tag[] {tag});
-			return;
-		}
-		
-		if (args.Info == DragDrop.UriListEntry.Info) {
-			UriList list = new UriList (args.SelectionData);
-			
-			db.BeginTransaction ();
-			List<Photo> photos = new List<Photo> ();
-			foreach (Uri photo_uri in list) {
-				Photo photo = db.Photos.GetByUri (photo_uri);
-				
-				// FIXME - at this point we should import the photo, and then continue
-				if (photo == null)
-					continue;
-				
-				// FIXME this should really follow the AddTagsExtended path too
-				photo.AddTag (new Tag[] {tag});
-				photos.Add (photo);
-			}
-			db.Photos.Commit (photos.ToArray ());
-			db.CommitTransaction ();
-			InvalidateViews ();
-			return;
-		}
-
-		if (args.Info == DragDrop.TagListEntry.Info) {
-			Category parent;
-            if (position == TreeViewDropPosition.Before || position == TreeViewDropPosition.After) {
-                parent = tag.Category;
-            } else {
-                parent = tag as Category;
-            }
-
-			if (parent == null || tag_selection_widget.TagHighlight.Length < 1) {
-                args.RetVal = false;
-				return;
-            }
-
-            int moved_count = 0;
-            Tag [] highlighted_tags = tag_selection_widget.TagHighlight;
-			foreach (Tag child in tag_selection_widget.TagHighlight) {
-                // FIXME with this reparenting via dnd, you cannot move a tag to root.
-                if (child != parent && child.Category != parent && !child.IsAncestorOf(parent)) {
-                    child.Category = parent as Category;
-
-                    // Saving changes will automatically cause the TreeView to be updated
-                    db.Tags.Commit (child);
-                    moved_count++;
-                }
-            }
-
-            // Reselect the same tags
-            tag_selection_widget.TagHighlight = highlighted_tags;
-
-            args.RetVal = moved_count > 0;
-			return;
-		}
-	}
-*/
 #if SHOW_CALENDAR
 	void HandleCalendarDaySelected (object sender, System.EventArgs args)
 	{
