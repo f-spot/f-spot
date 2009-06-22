@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: f-spot.master.kn\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=f-spot&component=General\n"
 "POT-Creation-Date: 2009-06-15 12:52+0000\n"
-"PO-Revision-Date: 2009-06-18 23:49+0530\n"
+"PO-Revision-Date: 2009-06-21 23:22+0530\n"
 "Last-Translator: Shankar Prasad <svenkate@redhat.com>\n"
 "Language-Team: Kannada <en@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -177,7 +177,7 @@ msgstr "ಕೇವಲ ಅಪ್‌ಡೇಟ್‌ಗಳನ್ನು ಮಾತ್�
 
 #: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:247
 msgid "_Unselect All"
-msgstr ""
+msgstr "ಎಲ್ಲಾ ಆಯ್ಕೆಗಳನ್ನು ರದ್ದುಗೊಳಿಸು(_U)"
 
 #: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:259
 #: ../src/f-spot.glade.h:106
@@ -223,7 +223,7 @@ msgstr "ವಿಸ್ತರಣೆಗಳನ್ನು ಅನುಸ್ಥಾಪಿ�
 
 #: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:210
 msgid "_Uninstall..."
-msgstr ""
+msgstr " "
 
 #: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:236
 #: ../src/UI.Dialog/ui/PreferenceDialog.glade.h:13
@@ -251,7 +251,7 @@ msgstr "ವಿವರಗಳು"
 
 #: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.ManageSitesDialog.cs:34
 msgid "Extension Repository Management"
-msgstr ""
+msgstr "ವಿಸ್ತರಣಾ ರೆಪೊಸಿಟರಿ ನಿರ್ವಹಣೆ"
 
 #: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.NewSiteDialog.cs:52
 msgid "Add New Repository"
@@ -423,6 +423,9 @@ msgid ""
 "the tag to some photos or selecting a different tag in the\n"
 "F-Spot preference dialog."
 msgstr ""
+"ಟ್ಯಾಗ್\"{0}\" ಅನ್ನು ಯಾವುದೆ ಫೋಟೊಗಳಿಗೆ ಅನ್ವಯಿಸಲಾಗಿಲ್ಲ. ಕೆಲವು ಫೋಟೊಗಳಿಗೆ\n "
+"ಟ್ಯಾಗ್ ಅನ್ನು ಅನ್ವಯಿಸಲು ಅಥವ F-Spot ಆದ್ಯತೆಗಳ ಸಂವಾದದಲ್ಲಿ ಬೇರೊಂದು ಟ್ಯಾಗ್ ಅನ್ನು \n"
+"ಆಯ್ಕೆ ಮಾಡಲು ಪ್ರಯತ್ನಿಸಿ."
 
 #: ../src/Core.cs:205
 msgid "Search returned no results"
@@ -434,6 +437,9 @@ msgid ""
 "selecting a different tag in the F-Spot preference\n"
 "dialog."
 msgstr ""
+"ಹುಡುಕಲು ಪ್ರಯತ್ನಿಸುತ್ತಿರುವ F-Spot ಟ್ಯಾಗ್ ಕಾಣಿಸುತ್ತಿಲ್ಲ. F-Spot \n"
+"ಆದ್ಯತೆಗಳ ಸಂವಾದದಲ್ಲಿ ಬೇರೊಂದು ಟ್ಯಾಗ್ ಅನ್ನು \n"
+"ಆಯ್ಕೆ ಮಾಡಲು ಪ್ರಯತ್ನಿಸಿ."
 
 #. Note for translators: Reparented is a picture becoming a version of another one
 #: ../src/Core/Photo.cs:473
@@ -510,7 +516,7 @@ msgstr "ಕತ್ತರಿಸಿ ಓರಣಗೊಳಿಸಬೇಕಿರುವ �
 
 #: ../src/Editors/CropEditor.cs:98
 msgid "No Constraint"
-msgstr ""
+msgstr "ಯಾವುದೆ ಮಿತಿ ಇಲ್ಲ"
 
 #: ../src/Editors/CropEditor.cs:99
 msgid "Same as photo"
@@ -644,7 +650,7 @@ msgstr "ಜಾರುಫಲಕವನ್ನು ಆರಂಭಿಸು"
 
 #: ../src/FullScreenView.cs:128
 msgid "Slide transition:"
-msgstr ""
+msgstr "ಜಾರುಫಲಕದ ರೂಪಾಂತರ:"
 
 #: ../src/GlTransition.cs:36
 msgid "Dissolve"
@@ -756,7 +762,7 @@ msgstr "ವಿಶಿಷ್ಟವಾದ ಸಂಖ್ಯೆ"
 
 #: ../src/Imaging/IptcFile.cs:157
 msgid "The envelope handling priority between 1 (most urgent) and 9 (least urgent)"
-msgstr ""
+msgstr "ಲಕೋಟೆಯ ನಿಭಾವಣೆಯ ಆದ್ಯತೆ 1 (ಅತಿ ತುರ್ತು) ಹಾಗು 9 ರ ನಡುವೆ (ಕಡಿಮೆ ತುರ್ತು)"
 
 #: ../src/Imaging/IptcFile.cs:159
 msgid "The year, month and day (CCYYMMDD) the service sent the material"
@@ -772,7 +778,7 @@ msgstr ""
 
 #: ../src/Imaging/IptcFile.cs:165
 msgid "External globally unique object identifier"
-msgstr ""
+msgstr "ಹೊರಗಿನ ಜಾಗತಿಕ ವಿಶಿಷ್ಟವಾದ ವಸ್ತು ಐಡೆಂಟಿಫೈರ್"
 
 #: ../src/Imaging/IptcFile.cs:170
 msgid "Abstract Relationship Method (ARM) identifier"
@@ -788,11 +794,11 @@ msgstr ""
 
 #: ../src/Imaging/IptcFile.cs:177
 msgid "Object type reference"
-msgstr ""
+msgstr "ವಸ್ತು ಬಗೆಯ ಉಲ್ಲೇಖ"
 
 #: ../src/Imaging/IptcFile.cs:182
 msgid "Object attribute reference"
-msgstr ""
+msgstr "ವಸ್ತು ಗುಣವಿಶೇಷದ ಉಲ್ಲೇಖ"
 
 #: ../src/Imaging/IptcFile.cs:188 ../src/Imaging/IptcFile.cs:192
 msgid "Object name"
@@ -804,11 +810,11 @@ msgstr ""
 
 #: ../src/Imaging/IptcFile.cs:194
 msgid "Location within a city or area where the object originates"
-msgstr ""
+msgstr "ಒಂದು ಊರು ಅಥವ ಪ್ರದೇಶದ ಒಳಗೆ ವಸ್ತು ಉತ್ಪಾದನೆಗೊಳ್ಳುವ ಸ್ಥಳ"
 
 #: ../src/Imaging/IptcFile.cs:197
 msgid "Name of the city the content is focussing on"
-msgstr ""
+msgstr "ವಿಷಯವು ಕೇಂದ್ರೀಕೃತವಾಗಿರುವ ಊರಿನ ಹೆಸರು"
 
 #: ../src/Imaging/IptcFile.cs:200
 msgid "Copyright information for"
@@ -816,11 +822,11 @@ msgstr "ಇದರ ಹಕ್ಕು ಮಾಹಿತಿ"
 
 #: ../src/Imaging/IptcFile.cs:203
 msgid "Full name of the country of the focus of the content"
-msgstr ""
+msgstr "ವಿಷಯವು ಕೇಂದ್ರೀಕೃತವಾಗಿರುವ ದೇಶದ ಸಂಪೂರ್ಣ ಹೆಸರು"
 
 #: ../src/Imaging/IptcFile.cs:206
 msgid "Two or three letter ISO3166 code of the country of the focus of the content"
-msgstr ""
+msgstr "ವಿಷಯವು ಕೇಂದ್ರೀಕೃತವಾಗಿರುವ ದೇಶದ ಎರಡು ಅಥವ ಮೂರು ಅಕ್ಷರದ ISO3166"
 
 #: ../src/Imaging/IptcFile.cs:209
 msgid "Creator of the content"
@@ -835,10 +841,11 @@ msgid "The title of the author or creator"
 msgstr "ಕತೃ ಅಥವ ನಿರ್ಮಾತೃಗಳ ಶೀರ್ಷಿಕೆ"
 
 #: ../src/Imaging/IptcFile.cs:218
+#, fuzzy
 msgid ""
 "The person involved in writing, editing or correcting the object data or "
 "caption/abstract"
-msgstr ""
+msgstr "ವಸ್ತುವಿನ ಮಾಹಿತಿ ಅಥವ ಶೀರ್ಷಿಕೆ/ ಅನ್ನು ಬರೆಯುವಲ್ಲಿ, ಸಂಪಾದಿಸುವಲ್ಲ ಅಥವ ಸರಿಪಡಿಸುವಲ್ಲಿ ಭಾಗಿಯಾದ ವ್ಯಕ್ತಿ"
 
 #: ../src/Imaging/IptcFile.cs:222
 msgid "Headline of the content"
@@ -887,7 +894,7 @@ msgstr "ಕೋಶವು ಅಸ್ತಿತ್ವದಲ್ಲಿಲ್ಲ."
 msgid ""
 "The directory you selected \"{0}\" does not exist.  Please choose a "
 "different directory"
-msgstr ""
+msgstr "ಆಯ್ಕೆ ಮಾಡಲಾದ ಕೋಶ \"{0}\" ಅಸ್ತಿತ್ವದಲ್ಲಿಲ್ಲ.  ದಯವಿಟ್ಟು ಬೇರೊಂದು ಕೋಶವನ್ನು ಆಯ್ಕೆ ಮಾಡಿ"
 
 #. Note for translators: 'Import Tags' is no command, it means 'Tags used in Import'
 #: ../src/ImportCommand.cs:723 ../src/ImportCommand.cs:725
@@ -930,7 +937,7 @@ msgstr "ಹಿಂದಿನ ಚಿತ್ರ"
 
 #: ../src/Loupe.cs:62
 msgid "Error saving sharpened photo"
-msgstr ""
+msgstr "ತೀಕ್ಷ್ಣಗೊಳಿಸಲಾದ ಫೋಟೊವನ್ನು ಉಳಿಸುವಲ್ಲಿ ದೋಷ ಉಂಟಾಗಿದೆ"
 
 #: ../src/Loupe.cs:63 ../src/PhotoView.cs:164
 #: ../src/UI.Dialog/EditExceptionDialog.cs:25
@@ -940,7 +947,7 @@ msgstr "ಆಕ್ಷೇಪಣೆ \"{0}\" ಎದುರಾಗಿದೆ. ಫೋಟ�
 
 #: ../src/Loupe.cs:92
 msgid "Sharpen"
-msgstr ""
+msgstr "ತೀಕ್ಷ್ಣಗೊಳಿಸು"
 
 #: ../src/Loupe.cs:102
 msgid "Amount:"
@@ -1044,7 +1051,7 @@ msgstr[1] "ಆಯ್ಕೆ ಮಾಡಲಾದ {0} ಟ್ಯಾಗ್‌ಗಳನ
 msgid ""
 "This operation will merge the selected tags and any sub-tags into a single "
 "tag."
-msgstr ""
+msgstr "ಈ ಕಾರ್ಯವು ಆಯ್ಕೆ ಮಾಡಲಾದ ಟ್ಯಾಗ್‌ಗಳನ್ನು ಹಾಗು ಉಪ ಟ್ಯಾಗ್‌ಗಳನ್ನು ಒಂದು ಟ್ಯಾಗ್ ಆಗಿ ವಿಲೀನಗೊಳಿಸುತ್ತದೆ."
 
 #: ../src/MainWindow.cs:2082
 msgid "_Merge Tags"
@@ -1087,78 +1094,78 @@ msgstr "ಕಡತವನ್ನು ಅಳಿಸಲು ಅನುಮತಿ ಇಲ್
 #: ../src/MainWindow.cs:2383
 #, csharp-format
 msgid "An error of type {0} occurred while deleting the file:{2}{1}"
-msgstr ""
+msgstr "ಕಡತವನ್ನು ಅಳಿಸುವಾಗ {0} ಬಗೆಯ ಒಂದು ದೋಷವು ಎದುರಾಗಿದೆ:{2}{1}"
 
 #: ../src/MainWindow.cs:2415
 #, csharp-format
 msgid "Delete the selected photo permanently?"
 msgid_plural "Delete the {0} selected photos permanently?"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "ಆಯ್ಕೆ ಮಾಡಲಾದ ಫೋಟೊವನ್ನು ಶಾಶ್ವತವಾಗಿ ಅಳಿಸಬೇಕೆ?"
+msgstr[1] "ಆಯ್ಕೆ ಮಾಡಲಾದ {0} ಫೋಟೊಗಳನ್ನು ಶಾಶ್ವತವಾಗಿ ಅಳಿಸಬೇಕೆ?"
 
 #: ../src/MainWindow.cs:2419
 msgid "This deletes all versions of the selected photo from your drive."
 msgid_plural "This deletes all versions of the selected photos from your drive."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "ಇದರಿಂದಾಗಿ ಆಯ್ಕೆ ಮಾಡಲಾದ ಫೋಟೊದ ಎಲ್ಲಾ ಆವೃತ್ತಿಗಳನ್ನು ನಿಮ್ಮ ಡ್ರೈವಿನಿಂದ ಅಳಿಸಿ ಹಾಕಲಾಗುತ್ತದೆ."
+msgstr[1] "ಇದರಿಂದಾಗಿ ಆಯ್ಕೆ ಮಾಡಲಾದ ಫೋಟೊಗಳ ಎಲ್ಲಾ ಆವೃತ್ತಿಗಳನ್ನು ನಿಮ್ಮ ಡ್ರೈವಿನಿಂದ ಅಳಿಸಿ ಹಾಕಲಾಗುತ್ತದೆ."
 
 #: ../src/MainWindow.cs:2422
 msgid "_Delete photo"
 msgid_plural "_Delete photos"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "ಫೋಟೊವನ್ನು ಅಳಿಸು(_D)"
+msgstr[1] "ಫೋಟೊಗಳನ್ನು ಅಳಿಸು(_D)"
 
 #: ../src/MainWindow.cs:2458
 #, csharp-format
 msgid "Remove the selected photo from F-Spot?"
 msgid_plural "Remove the {0} selected photos from F-Spot?"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "ಆಯ್ಕೆ ಮಾಡಲಾದ ಫೋಟೊವನ್ನು F-Spot ನಿಂದ ಅಳಿಸಿ ಹಾಕಬೇಕೆ?"
+msgstr[1] "ಆಯ್ಕೆ ಮಾಡಲಾದ {0} ಫೋಟೊಗಳನ್ನು F-Spot ನಿಂದ ಅಳಿಸಿ ಹಾಕಬೇಕೆ?"
 
 #: ../src/MainWindow.cs:2463
 msgid ""
 "If you remove photos from the F-Spot catalog all tag information will be "
 "lost. The photos remain on your computer and can be imported into F-Spot "
 "again."
-msgstr ""
+msgstr "ನೀವು F-Spot ಕೆಟಾಲಾಗ್‌ನಿಂದ ಫೋಟೊಗಳನ್ನು ತೆಗೆದು ಹಾಕಿದಲ್ಲಿ ಎಲ್ಲಾ ಟ್ಯಾಗ್ ಮಾಹಿತಿಯು ಇಲ್ಲವಾಗುತ್ತವೆ. ನಿಮ್ಮ ಫೋಟೊಗಳು ನಿಮ್ಮ ಗಣಕದಲ್ಲಿಯೆ ಇರುತ್ತವೆ ಹಾಗು ಬೇಕಿದ್ದಾಗ F-Spot ಗೇ ಮತ್ತೆ ಇನ್ನೊಮ್ಮೆ ಆಮದು ಮಾಡಿಕೊಳ್ಳಬಹುದು."
 
 #: ../src/MainWindow.cs:2464
 msgid "_Remove from Catalog"
-msgstr ""
+msgstr "ಕೆಟಲಾಗ್‌ನಿಂದ ತೆಗೆದು ಹಾಕು(_R)"
 
 #: ../src/MainWindow.cs:2527
 #, csharp-format
 msgid "Delete tag \"{0}\"?"
-msgstr ""
+msgstr "ಟ್ಯಾಗ್ \"{0}\" ಅನ್ನು ಅಳಿಸಿಹಾಕಬೇಕೆ?"
 
 #: ../src/MainWindow.cs:2529
 #, csharp-format
 msgid "Delete the {0} selected tags?"
-msgstr ""
+msgstr "ಆಯ್ಕೆ ಮಾಡಲಾದ {0} ಟ್ಯಾಗ್‌ಗಳನ್ನು ಅಳಿಸಬೇಕೆ?"
 
 #: ../src/MainWindow.cs:2534
 msgid "photo"
 msgid_plural "photos"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "ಫೋಟೊ"
+msgstr[1] "ಫೋಟೊಗಳು"
 
 #: ../src/MainWindow.cs:2536
 #, csharp-format
 msgid "If you delete this tag, the association with {0} {1} will be lost."
 msgid_plural "If you delete these tags, the association with {0} {1} will be lost."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "ನೀವು ಈ ಟ್ಯಾಗ್‌ ಅನ್ನು ಅಳಿಸಿಹಾಕಿದರೆ, {0} {1} ನಡುವಿನ ಹೊಂದಾಣಿಕೆಯು ಇಲ್ಲವಾಗುತ್ತದೆ."
+msgstr[1] "ನೀವು ಈ ಟ್ಯಾಗ್‌ಗಳನ್ನು ಅಳಿಸಿಹಾಕಿದರೆ, {0} {1} ನಡುವಿನ ಹೊಂದಾಣಿಕೆಯು ಇಲ್ಲವಾಗುತ್ತದೆ."
 
 #: ../src/MainWindow.cs:2541
 msgid "_Delete tag"
 msgid_plural "_Delete tags"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "ಟ್ಯಾಗ್ ಅನ್ನು ಅಳಿಸು(_D)"
+msgstr[1] "ಟ್ಯಾಗ್‌ಗಳನ್ನು ಅನ್ನು ಅಳಿಸು(_D)"
 
 #. A Category is not empty. Can not delete it.
 #: ../src/MainWindow.cs:2555
 msgid "Tag is not empty"
-msgstr ""
+msgstr "ಟ್ಯಾಗ್ ಖಾಲಿ ಇಲ್ಲ"
 
 #: ../src/MainWindow.cs:2556
 #, csharp-format
@@ -1166,25 +1173,27 @@ msgid ""
 "Can not delete tags that have tags within them.  Please delete tags under "
 "\"{0}\" first"
 msgstr ""
+"ಟ್ಯಾಗ್‌ಗಳನ್ನು ಹೊಂದಿರುವ ಟ್ಯಾಗ್‌ಗಳನ್ನು ಅಳಿಸಲು ಸಾಧ್ಯವಿಲ್ಲ.  ದಯವಿಟ್ಟು ಮೊದಲು"
+"\"{0}\" ನ ಅಡಿಯಲ್ಲಿರುವ ಟ್ಯಾಗ್‌ಗಳನ್ನು ಅಳಿಸಿಹಾಕಿ"
 
 #: ../src/MainWindow.cs:2994
 msgid "Rotate selected photo left"
 msgid_plural "Rotate selected photos left"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "ಆಯ್ಕೆ ಮಾಡಲಾದ ಫೋಟೊವನ್ನು ಎಡಕ್ಕೆ ತಿರುಗಿಸಿ"
+msgstr[1] "ಆಯ್ಕೆ ಮಾಡಲಾದ ಫೋಟೊಗಳನ್ನು ಎಡಕ್ಕೆ ತಿರುಗಿಸಿ"
 
 #: ../src/MainWindow.cs:3007
 msgid "Rotate selected photo right"
 msgid_plural "Rotate selected photos right"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "ಆಯ್ಕೆ ಮಾಡಲಾದ ಫೋಟೊವನ್ನು ಬಲಕ್ಕೆ ತಿರುಗಿಸಿ"
+msgstr[1] "ಆಯ್ಕೆ ಮಾಡಲಾದ ಫೋಟೊಗಳನ್ನು ಬಲಕ್ಕೆ ತಿರುಗಿಸಿ"
 
 #: ../src/MainWindow.cs:3015
 #, csharp-format
 msgid "Find _Selected Tag"
 msgid_plural "Find _Selected Tags"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "ಆಯ್ಕೆ ಮಾಡಲಾದ ಟ್ಯಾಗ್‌ ಅನ್ನು ಪತ್ತೆ ಮಾಡು(_S)"
+msgstr[1] "ಆಯ್ಕೆ ಮಾಡಲಾದ ಟ್ಯಾಗ್‌ಗಳನ್ನು ಪತ್ತೆ ಮಾಡು(_S)"
 
 #: ../src/MainWindow.cs:3019
 #, csharp-format
@@ -1196,8 +1205,8 @@ msgstr[1] ""
 #: ../src/MainWindow.cs:3057
 msgid "Create New Version?"
 msgid_plural "Create New Versions?"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "ಹೊಸ ಆವೃತ್ತಿಯನ್ನು ನಿರ್ಮಿಸಬೇಕೆ?"
+msgstr[1] "ಹೊಸ ಆವೃತ್ತಿಗಳನ್ನು ನಿರ್ಮಿಸಬೇಕೆ?"
 
 #: ../src/MainWindow.cs:3059
 #, csharp-format
@@ -1207,8 +1216,8 @@ msgid ""
 msgid_plural ""
 "Before launching {1}, should F-Spot create new versions of the selected "
 "photos to preserve the originals?"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{1} ಅನ್ನು ಆರಂಭಿಸುವ ಮೊದಲು, ಮೂಲ ಫೋಟೊವನ್ನು ಉಳಿಸಿಕೊಳ್ಳುವ ಸಲುವಾಗಿ ಆಯ್ಕೆ ಮಾಡಲಾದ ಫೋಟೊದ ಒಂದು ಹೊಸ ಆವೃತ್ತಿಯನ್ನು F-Spot ನಿರ್ಮಿಸಿಕೊಳ್ಳಬೇಕೆ?"
+msgstr[1] "{1} ಅನ್ನು ಆರಂಭಿಸುವ ಮೊದಲು, ಮೂಲ ಫೋಟೊವನ್ನು ಉಳಿಸಿಕೊಳ್ಳುವ ಸಲುವಾಗಿ ಆಯ್ಕೆ ಮಾಡಲಾದ ಫೋಟೊಗಳ ಒಂದು ಹೊಸ ಆವೃತ್ತಿಯನ್ನು F-Spot ನಿರ್ಮಿಸಿಕೊಳ್ಳಬೇಕೆ?"
 
 #: ../src/MainWindow.cs:3081
 #| msgid "Version"
@@ -1216,9 +1225,8 @@ msgid "XCF version"
 msgstr "XCF ಆವೃತ್ತಿ"
 
 #: ../src/MetadataStore.cs:18
-#, fuzzy
 msgid "Creator"
-msgstr "ಕ್ರಿಯೇಟರ್"
+msgstr "ನಿರ್ಮಾತೃ"
 
 #: ../src/MetadataStore.cs:19
 msgid "Title"
@@ -1230,11 +1238,11 @@ msgstr "ಹಕ್ಕು"
 
 #: ../src/MetadataStore.cs:21
 msgid "Subject and Keywords"
-msgstr ""
+msgstr "ವಿಷಯ ಹಾಗು ಕೀಲಿಪದಗಳು"
 
 #: ../src/MetadataStore.cs:22
 msgid "Compression"
-msgstr ""
+msgstr "ಸಂಕುಚನೆ"
 
 #: ../src/MetadataStore.cs:24
 msgid "Planar Configuration"
@@ -1270,11 +1278,11 @@ msgstr ""
 
 #: ../src/MetadataStore.cs:40
 msgid "Components Configuration"
-msgstr ""
+msgstr "ಘಟಕಗಳ ಸಂರಚನೆ"
 
 #: ../src/MetadataStore.cs:42
 msgid "Light Source"
-msgstr ""
+msgstr "ಬೆಳಕಿನ ಮೂಲ"
 
 #: ../src/MetadataStore.cs:44
 msgid "Sensing Method"
@@ -1282,11 +1290,11 @@ msgstr ""
 
 #: ../src/MetadataStore.cs:46
 msgid "Color Space"
-msgstr ""
+msgstr "ವರ್ಣ ಸ್ಥಳ"
 
 #: ../src/MetadataStore.cs:48
 msgid "White Balance"
-msgstr ""
+msgstr "ಬಿಳಿ ಬಣ್ಣದ ಸಮತೋಲನ"
 
 #: ../src/MetadataStore.cs:50
 msgid "Focal Plane Resolution Unit"
@@ -1294,15 +1302,16 @@ msgstr ""
 
 #: ../src/MetadataStore.cs:52
 msgid "File Source Type"
-msgstr ""
+msgstr "ಕಡತದ ಮೂಲದ ಬಗೆ"
 
 #: ../src/MetadataStore.cs:54
 msgid "Scene Capture Type"
-msgstr ""
+msgstr "ದೃಶ್ಯ ಸೆರೆಹಿಡಿಯುವ ಬಗೆ"
 
 #: ../src/MetadataStore.cs:56
+#, fuzzy
 msgid "Gain Control"
-msgstr ""
+msgstr "ನಿಯಂತ್ರಣವನ್ನು "
 
 #: ../src/MetadataStore.cs:58
 msgid "Contrast"
@@ -1314,21 +1323,21 @@ msgstr "ಸ್ಯಾಚುರೇಶನ್"
 
 #: ../src/MetadataStore.cs:62
 msgid "Sharpness"
-msgstr ""
+msgstr "ತೀಕ್ಷ್ಣತೆ"
 
 #: ../src/MetadataStore.cs:64
 msgid "Scene Type"
-msgstr ""
+msgstr "ದೃಶ್ಯದ ಬಗೆ"
 
 #. Fixme this should really set parent menu
 #. items insensitve
 #: ../src/PhotoTagMenu.cs:74
 msgid "(No Tags)"
-msgstr ""
+msgstr "(ಟ್ಯಾಗ್‌ಗಳಿಲ್ಲ)"
 
 #: ../src/PhotoVersionCommands.cs:58
 msgid "Create New Version"
-msgstr ""
+msgstr "ಹೊಸ ಆವೃತ್ತಿಯನ್ನು ನಿರ್ಮಿಸಿ"
 
 #: ../src/PhotoVersionCommands.cs:59
 msgid "Name:"
@@ -1336,24 +1345,24 @@ msgstr "ಹೆಸರು:"
 
 #: ../src/PhotoVersionCommands.cs:63
 msgid "Rename Version"
-msgstr ""
+msgstr "ಆವೃತ್ತಿಯ ಹೆಸರನ್ನು ಬದಲಾಯಿಸಿ"
 
 #: ../src/PhotoVersionCommands.cs:64
 msgid "New name:"
-msgstr ""
+msgstr "ಹೊಸ ಹೆಸರು:"
 
 #: ../src/PhotoVersionCommands.cs:110
 msgid "Could not create a new version"
-msgstr ""
+msgstr "ಒಂದು ಹೊಸ ಆವೃತ್ತಿಯನ್ನು ನಿರ್ಮಿಸಲು ಸಾಧ್ಯವಾಗಿಲ್ಲ"
 
 #: ../src/PhotoVersionCommands.cs:111
 #, csharp-format
 msgid "Received exception \"{0}\". Unable to create version \"{1}\""
-msgstr ""
+msgstr "ಆಕ್ಷೇಪಣೆ \"{0}\" ಎದುರಾಗಿದೆ. ಆವೃತ್ತಿ \"{1}\" ಅನ್ನು ನಿರ್ಮಿಸಲು ಸಾಧ್ಯವಾಗಿಲ್ಲ"
 
 #: ../src/PhotoVersionCommands.cs:138
 msgid "Really Delete?"
-msgstr ""
+msgstr "ನಿಜವಾಗಿಯೂ ಅಳಿಸಬೇಕೆ?"
 
 #: ../src/PhotoVersionCommands.cs:139
 msgid "Cancel"
@@ -1366,33 +1375,33 @@ msgstr "ಅಳಿಸು"
 #: ../src/PhotoVersionCommands.cs:144
 #, csharp-format
 msgid "Really delete version \"{0}\"?"
-msgstr ""
+msgstr "ಆವೃತ್ತಿ \"{0}\" ಅನ್ನು ನಿಜವಾಗಿಯೂ ಅಳಿಸಬೇಕೆ?"
 
 #: ../src/PhotoVersionCommands.cs:154
 msgid "Could not delete a version"
-msgstr ""
+msgstr "ಒಂದು ಆವೃತ್ತಿಯನ್ನು ಅಳಿಸಲು ಸಾಧ್ಯವಾಗಿಲ್ಲ"
 
 #: ../src/PhotoVersionCommands.cs:155
 #, csharp-format
 msgid "Received exception \"{0}\". Unable to delete version \"{1}\""
-msgstr ""
+msgstr "ಆಕ್ಷೇಪಣೆ \"{0}\" ಎದುರಾಗಿದೆ. ಆವೃತ್ತಿ \"{1}\" ಅನ್ನು ಅಳಿಸಲು ಸಾಧ್ಯವಾಗಿಲ್ಲ"
 
 #: ../src/PhotoVersionCommands.cs:196
 msgid "Could not rename a version"
-msgstr ""
+msgstr "ಒಂದು ಆವೃತ್ತಿಯ ಹೆಸರನ್ನು ಬದಲಾಯಿಸಲು ಸಾಧ್ಯವಾಗಿಲ್ಲ"
 
 #: ../src/PhotoVersionCommands.cs:197
 #, csharp-format
 msgid "Received exception \"{0}\". Unable to rename version to \"{1}\""
-msgstr ""
+msgstr "ಆಕ್ಷೇಪಣೆ \"{0}\" ಎದುರಾಗಿದೆ. ಆವೃತ್ತಿ \"{1}\" ಯ ಹೆಸರನ್ನು ಬದಲಾಯಿಸಲು ಸಾಧ್ಯವಾಗಿಲ್ಲ"
 
 #: ../src/PhotoVersionMenu.cs:66 ../src/Widgets/InfoBox.cs:549
 msgid "(No Edits)"
-msgstr ""
+msgstr "(ಸಂಪಾದಿಸುವಂತಿಲ್ಲ)"
 
 #: ../src/PhotoView.cs:163 ../src/UI.Dialog/EditExceptionDialog.cs:38
 msgid "Error editing photo"
-msgstr ""
+msgstr "ಫೋಟೊವನ್ನು ಸಂಪಾದಿಸುವಲ್ಲಿ ದೋಷ"
 
 #: ../src/PhotoView.cs:301
 msgid "Comment:"
@@ -1408,11 +1417,11 @@ msgstr "ಚಿತ್ರದ ಸಿದ್ಧತೆಗಳು"
 
 #: ../src/QueryWidget.cs:47
 msgid "Find: "
-msgstr ""
+msgstr "ಹುಡುಕು: "
 
 #: ../src/QueryWidget.cs:52
 msgid "Untagged photos"
-msgstr ""
+msgstr "ಟ್ಯಾಗ್‌ ಮಾಡಲಾದ ಫೋಟೊಗಳು"
 
 #: ../src/QueryWidget.cs:60
 msgid "Rated photos"
@@ -1421,55 +1430,55 @@ msgstr ""
 #. Note for translators: 'Import roll' is no command, it means 'Roll that has been imported'
 #: ../src/QueryWidget.cs:69
 msgid "Import roll"
-msgstr ""
+msgstr "ಸುರುಳಿಯನ್ನು ಆಮದು ಮಾಡು"
 
 #: ../src/QueryWidget.cs:89
 msgid "Clear search"
-msgstr ""
+msgstr "ಹುಡುಕನ್ನು ಅಳಿಸು"
 
 #: ../src/QueryWidget.cs:96
 msgid "Refresh search"
-msgstr ""
+msgstr "ಹುಡುಕನ್ನು ಪುನಶ್ಚೇತನಗೊಳಿಸು"
 
 #: ../src/QueryWidget.cs:98
 msgid "No matching photos found"
-msgstr ""
+msgstr "ತಾಳೆಯಾಗುವ ಯಾವುದೆ ಫೋಟೊಗಳು ಕಂಡುಬಂದಿಲ್ಲ"
 
 #: ../src/QueryWidget.cs:136
 msgid "Hide _Find Bar"
-msgstr ""
+msgstr "ಹುಡುಕು ಪಟ್ಟಿಯನ್ನು ಅಡಗಿಸು(_F)"
 
 #: ../src/QueryWidget.cs:142
 msgid "Show _Find Bar"
-msgstr ""
+msgstr "ಹುಡುಕು ಪಟ್ಟಿಯನ್ನು ತೋರಿಸು(_F)"
 
 #: ../src/RotateCommand.cs:94 ../src/RotateCommand.cs:109
 msgid "Unable to rotate this type of photo"
-msgstr ""
+msgstr "ಈ ಬಗೆಯ ಫೋಟೊ ಅನ್ನು ತಿರುಗಿಸಲು ಸಾಧ್ಯವಾಗಿಲ್ಲ"
 
 #: ../src/RotateCommand.cs:129
 msgid "Unable to rotate readonly file"
-msgstr ""
+msgstr "ಓದಲು ಮಾತ್ರವಾದ ಫೋಟೊ ಅನ್ನು ತಿರುಗಿಸಲು ಸಾಧ್ಯವಾಗಿಲ್ಲ"
 
 #: ../src/RotateCommand.cs:196
 msgid "Rotating photos"
-msgstr ""
+msgstr "ಫೋಟೊಗಳನ್ನು ತಿರುಗಿಸಲಾಗುತ್ತಿದೆ"
 
 #: ../src/RotateCommand.cs:207
 #, csharp-format
 msgid "Rotating photo \"{0}\""
-msgstr ""
+msgstr "\"{0}\" ಫೋಟೊಗಳನ್ನು ತಿರುಗಿಸಲಾಗುತ್ತಿದೆ"
 
 #: ../src/RotateCommand.cs:220
 msgid "Directory not found"
-msgstr ""
+msgstr "ಕೋಶವು ಕಂಡುಬಂದಿಲ್ಲ"
 
 #: ../src/RotateCommand.cs:240
 #, csharp-format
 msgid "Unable to rotate photo"
 msgid_plural "Unable to rotate {0} photos"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "ಫೋಟೊವನ್ನು ತಿರುಗಿಸಲು ಸಾಧ್ಯವಾಗಿಲ್ಲ"
+msgstr[1] "{0} ಫೋಟೊಗಳನ್ನು ತಿರುಗಿಸಲು ಸಾಧ್ಯವಾಗಿಲ್ಲ"
 
 #: ../src/RotateCommand.cs:242
 #, csharp-format
@@ -1479,26 +1488,26 @@ msgid ""
 msgid_plural ""
 "{0} photos could not be rotated because they are on a read only file system "
 "or media such as a CDROM.  Please check the permissions and try again."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "ಫೋಟೊವನ್ನು ತಿರುಗಿಸಲು ಸಾಧ್ಯವಿಲ್ಲ ಏಕೆಂದರೆ ಅದು ಓದಲು ಮಾತ್ರವಾದ ಕಡತ ವ್ಯವಸ್ಥೆ ಅಥವ ಒಂದು CDROM ನಲ್ಲಿದೆ.  ದಯವಿಟ್ಟು ಅನುಮತಿಗಳನ್ನು ಪರಿಶೀಲಿಸಿ ಹಾಗು ನಂತರ ಪ್ರಯತ್ನಿಸಿ."
+msgstr[1] "{0} ಫೋಟೊಗಳನ್ನು ತಿರುಗಿಸಲು ಸಾಧ್ಯವಿಲ್ಲ ಏಕೆಂದರೆ ಅವುಗಳು ಓದಲು ಮಾತ್ರವಾದ ಕಡತ ವ್ಯವಸ್ಥೆ ಅಥವ ಒಂದು CDROM ನಲ್ಲಿವೆ.  ದಯವಿಟ್ಟು ಅನುಮತಿಗಳನ್ನು ಪರಿಶೀಲಿಸಿ ಹಾಗು ನಂತರ ಪ್ರಯತ್ನಿಸಿ."
 
 #: ../src/RotateCommand.cs:269
 #, csharp-format
 msgid "Received error \"{0}\" while attempting to rotate {1}"
-msgstr ""
+msgstr "{1} ಅನ್ನು ತಿರುಗಿಸಲು ಪ್ರಯತ್ನಿಸಿದಾಗ ದೋಷ \"{0}\" ಎದುರಾಗಿದೆ"
 
 #: ../src/RotateCommand.cs:274
 msgid "Error while rotating photo."
-msgstr ""
+msgstr "ಫೋಟೊವನ್ನು ತಿರುಗಿಸಲು ಪ್ರಯತ್ನಿಸಿದಾಗ ದೋಷ ಉಂಟಾಗಿದೆ."
 
 #: ../src/SendEmail.cs:239
 msgid "Preparing email"
-msgstr ""
+msgstr "ಇಮೈಲ್ ಅನ್ನು ಸಿದ್ಧಪಡಿಸಲಾಗುತ್ತಿದೆ"
 
 #: ../src/SendEmail.cs:291
 #, csharp-format
 msgid "Exporting picture \"{0}\""
-msgstr ""
+msgstr "ಚಿತ್ರ \"{0}\" ಅನ್ನು ರಫ್ತು ಮಾಡಲಾಗುತ್ತಿದೆ"
 
 #: ../src/SendEmail.cs:313
 msgid "Error processing image"
@@ -1507,7 +1516,7 @@ msgstr "ಚಿತ್ರವನ್ನು ಸಂಸ್ಕರಿಸುವಲ್ಲ�
 #: ../src/SendEmail.cs:314
 #, csharp-format
 msgid "An error occured while processing \"{0}\": {1}"
-msgstr ""
+msgstr "\"{0}\" ಅನ್ನು ಸಂಸ್ಕರಿಸುವಾಗ ಒಂದು ದೋಷ ಉಂಟಾಗಿದೆ: {1}"
 
 #. Send the mail :)
 #: ../src/SendEmail.cs:329
@@ -1516,11 +1525,11 @@ msgstr "ನನ್ನ ಫೋಟೊಗಳು"
 
 #: ../src/SingleView.cs:88
 msgid "Rotate photo left"
-msgstr ""
+msgstr "ಫೋಟೊವನ್ನು ಎಡಕ್ಕೆ ತಿರುಗಿಸು"
 
 #: ../src/SingleView.cs:93
 msgid "Rotate photo right"
-msgstr ""
+msgstr "ಫೋಟೊವನ್ನು ಬಲಕ್ಕೆ ತಿರುಗಿಸು"
 
 #. Obsolete, remove after db rev4
 #: ../src/SingleView.cs:128 ../src/UI.Dialog/ui/PreferenceDialog.glade.h:14
@@ -1543,19 +1552,19 @@ msgstr "ಈ ಹೆಸರು ಈಗಾಗಲೆ ಬಳಕೆಯಲ್ಲಿದೆ
 
 #: ../src/TagCommands.cs:140
 msgid "Create New Tag"
-msgstr ""
+msgstr "ಹೊಸ ಟ್ಯಾಗ್ ಅನ್ನು ರಚಿಸು"
 
 #: ../src/TagCommands.cs:141
 msgid "Name of New Tag:"
-msgstr ""
+msgstr "ಹೊಸ ಟ್ಯಾಗ್‌ನ ಹೆಸರು:"
 
 #: ../src/TagCommands.cs:291
 msgid "Edit Tag"
-msgstr ""
+msgstr "ಟ್ಯಾಗ್ ಅನ್ನು ಸಂಪಾದಿಸು"
 
 #: ../src/TagCommands.cs:292
 msgid "Tag Name:"
-msgstr ""
+msgstr "ಟ್ಯಾಗ್‌ನ ಹೆಸರು:"
 
 #: ../src/TagCommands.cs:408
 msgid "Unable to load image"
@@ -1564,7 +1573,7 @@ msgstr "ಚಿತ್ರವನ್ನು ಲೋಡ್ ಮಾಡಲು ಸಾಧ್
 #: ../src/TagCommands.cs:409
 #, csharp-format
 msgid "Unable to load \"{0}\" as icon for the tag"
-msgstr ""
+msgstr "ಟ್ಯಾಗ್‌ಗಾಗಿ \"{0}\" ಅನ್ನು ಚಿಹ್ನೆಯಾಗಿ ಲೋಡ್ ಮಾಡಲು ಸಾಧ್ಯವಾಗಿಲ್ಲ"
 
 #: ../src/TagCommands.cs:452
 #, csharp-format
@@ -1574,7 +1583,7 @@ msgstr "{1} ರಲ್ಲಿ {0} ಫೋಟೊ"
 #: ../src/TagCommands.cs:482
 #, csharp-format
 msgid "Edit Icon for Tag {0}"
-msgstr ""
+msgstr "ಟ್ಯಾಗ್ {0} ಗಾಗಿ ಚಿಹ್ನೆಯನ್ನು ಸಂಪಾದಿಸು"
 
 #: ../src/TagCommands.cs:498
 msgid "Select Photo from file"
@@ -1590,6 +1599,12 @@ msgid ""
 " with this tag. Please tag a photo as '{0}' and return here\n"
 " to use it as an icon."
 msgstr ""
+"\n"
+"<b>ಫೋಟೊ</b>\n"
+" ನೀವು ನಿಮ್ಮ ಲೈಬ್ರರಿಯಲ್ಲಿನ ಫೋಟೊಗಳಲ್ಲಿ ಒಂದನ್ನು ಈ ಚಿಹ್ನೆಗಾಗಿನ ಟ್ಯಾಗ್‌ ಆಗಿ ಬಳಸಿ.\n"
+" ಆದರೆ, ಅದಕ್ಕೂ ಮೊದಲು ಈ ಟ್ಯಾಗ್‌ ಸಂಬಂಧಿಸಿದ ಒಂದು ಫೋಟೊವನ್ನು ಹೊಂದಿರಬೇಕು.\n"
+" ದಯವಿಟ್ಟು ಒಂದು ಫೋಟೊವನ್ನು '{0}' ಆಗಿ ಟ್ಯಾಗ್ ಮಾಡಿ ನಂತರ ಇಲ್ಲಿ ಬಂದು\n"
+" ಅದನ್ನು ಚಿಹ್ನೆಯಾಗಿ ಬಳಸಿ."
 
 #: ../src/TagPopup.cs:26
 #, csharp-format
@@ -1600,54 +1615,54 @@ msgstr[1] "ಪತ್ತೆ ಹಚ್ಚು"
 
 #: ../src/TagPopup.cs:36 ../src/Widgets/TagMenu.cs:91
 msgid "Create New Tag..."
-msgstr ""
+msgstr "ಹೊಸ ಟ್ಯಾಗ್ ಅನ್ನು ರಚಿಸಲಾಗುತ್ತಿದೆ..."
 
 #: ../src/TagPopup.cs:42
 msgid "Edit Selected Tag..."
-msgstr ""
+msgstr "ಆಯ್ಕೆ ಮಾಡಲಾದ ಟ್ಯಾಗ್ ಅನ್ನು ಸಂಪಾದಿಸು..."
 
 #: ../src/TagPopup.cs:46
 msgid "Delete Tag"
 msgid_plural "Delete Tags"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "ಟ್ಯಾಗ್‌ ಅನ್ನು ಅಳಿಸು"
+msgstr[1] "ಟ್ಯಾಗ್‌ಗಳನ್ನು ಅಳಿಸು"
 
 #: ../src/TagPopup.cs:52
 msgid "Attach Tag to Selection"
 msgid_plural "Attach Tags to Selection"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "ಆಯ್ಕೆಗಾಗಿ ಟ್ಯಾಗ್‌ ಅನ್ನು ಲಗತ್ತಿಸು"
+msgstr[1] "ಆಯ್ಕೆಗಾಗಿ ಟ್ಯಾಗ್‌ಗಳನ್ನು ಲಗತ್ತಿಸು"
 
 #: ../src/TagPopup.cs:56
 msgid "Remove Tag From Selection"
 msgid_plural "Remove Tags From Selection"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "ಆಯ್ಕೆಯಿಂದ ಟ್ಯಾಗ್‌ ಅನ್ನು ತೆಗೆದು ಹಾಕು"
+msgstr[1] "ಆಯ್ಕೆಯಿಂದ ಟ್ಯಾಗ್‌ಗಳನ್ನು ತೆಗೆದು ಹಾಕು"
 
 #: ../src/TagPopup.cs:62
 msgid "Merge Tags"
-msgstr ""
+msgstr "ಟ್ಯಾಗ್‌ಗಳನ್ನು ವಿಲೀನಗೊಳಿಸು"
 
 #: ../src/TagQueryWidget.cs:32
 #, csharp-format
 msgid "Include Photos Tagged \"{0}\""
-msgstr ""
+msgstr "\"{0}\" ಎಂದು ಟ್ಯಾಗ್ ಮಾಡಲಾದ ಫೋಟೊಗಳನ್ನು ಒಳಗೊಳ್ಳಿಸು"
 
 #: ../src/TagQueryWidget.cs:37
 #, csharp-format
 msgid "Exclude Photos Tagged \"{0}\""
-msgstr ""
+msgstr "\"{0}\" ಎಂದು ಟ್ಯಾಗ್ ಮಾಡಲಾದ ಫೋಟೊಗಳನ್ನು ಹೊರತುಪಡಿಸು"
 
 #: ../src/TagQueryWidget.cs:42
 msgid "Remove From Search"
-msgstr ""
+msgstr "ಹುಡುಕಿನಿಂದ ತೆಗೆದು ಹಾಕು"
 
 #: ../src/TagQueryWidget.cs:86
 #, csharp-format
 msgid "Find _With"
 msgid_plural "Find _With"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "ಇದರಿಂದ ಹುಡುಕು(_W)"
+msgstr[1] "ಇದರಿಂದ ಹುಡುಕು(_W)"
 
 #: ../src/TagQueryWidget.cs:112
 msgid "All"
@@ -1656,15 +1671,15 @@ msgstr "ಎಲ್ಲಾ"
 #: ../src/TagQueryWidget.cs:147 ../src/Term.cs:592
 #, csharp-format
 msgid "Not {0}"
-msgstr ""
+msgstr "{0} ಆಗಿಲ್ಲ"
 
 #: ../src/TagQueryWidget.cs:277
 msgid "Drag tags here to search for them"
-msgstr ""
+msgstr "ಟ್ಯಾಗ್‌ಗಳನ್ನು ಹುಡುಕಲು ಇಲ್ಲಿ ಎಳೆದು ಸೇರಿಸಿ"
 
 #: ../src/TagSelectionWidget.cs:505
 msgid "Error renaming tag"
-msgstr ""
+msgstr "ಟ್ಯಾಗ್‌ನ ಹೆಸರನ್ನು ಬದಲಾಯಿಸುವಲ್ಲಿ ದೋಷ ಉಂಟಾಗಿದೆ"
 
 #: ../src/TagStore.cs:203
 msgid "Favorites"
@@ -1712,7 +1727,7 @@ msgstr "ಅಥವ"
 
 #: ../src/UI.Dialog/AboutDialog.cs:70
 msgid "Photo management for GNOME"
-msgstr ""
+msgstr "GNOME ಗಾಗಿನ ಫೋಟೊ ನಿರ್ವಹಣೆ"
 
 #: ../src/UI.Dialog/AboutDialog.cs:71
 msgid "Copyright © 2003-2008 Novell Inc."
@@ -1729,7 +1744,7 @@ msgstr "F-Spot ಜಾಲತಾಣ"
 #: ../src/UI.Dialog/AdjustTimeDialog.cs:118 ../src/f-spot.glade.h:115
 #, csharp-format
 msgid "Shift all photos by {0}"
-msgstr ""
+msgstr "ಎಲ್ಲಾ ಫೋಟೊಗಳನ್ನು {0} ಇಂದು ಸ್ಥಳಾಂತರಿಸು"
 
 #: ../src/UI.Dialog/DateRangeDialog.cs:102
 msgid "Today"
@@ -1782,7 +1797,7 @@ msgstr "ದೋಷದ ವಿವರಗಳು"
 
 #: ../src/UI.Dialog/ExceptionDialog.cs:104
 msgid "An unhandled exception was thrown: "
-msgstr ""
+msgstr "ನಿಭಾಯಸದೆ ಇರುವ ಒಂದು ಆಕ್ಷೇಪಣೆಯು ಒದಗಿಬಂದಿದೆ: "
 
 #: ../src/UI.Dialog/RepairDbDialog.cs:20
 msgid "Error loading database."
@@ -1794,6 +1809,8 @@ msgid ""
 "F-Spot encountered an error while loading the photo database. The old "
 "database has be moved to {0} and a new database has been created."
 msgstr ""
+"ಒಂದು ಫೋಟೊ ದತ್ತಸಂಚಯವನ್ನು ಲೋಡ್ ಮಾಡುವಾಗ F-Spot ಗೆ ಒಂದು ದೋಷವು ಎದುರಾಗಿದೆ. "
+"ಹಳೆಯ ದತ್ತಸಂಚಯವನ್ನು {0} ಗೆ ಸ್ಥಳಾಂತರಿಸಲಾಗಿದೆ ಹಾಗು ಒಂದು ಹೊಸ ದತ್ತಸಂಚಯವನ್ನು ರಚಿಸಲಾಗಿದೆ."
 
 #: ../src/UI.Dialog/SelectionRatioDialog.cs:60
 msgid "Label"
@@ -1821,33 +1838,35 @@ msgstr "<b>ಮೆಟಾಡೇಟಾ</b>"
 
 #: ../src/UI.Dialog/ui/PreferenceDialog.glade.h:4
 msgid "<b>Screensaver</b>"
-msgstr ""
+msgstr "<b>ಸ್ಕ್ರೀನ್‌ಸೇವರ್</b>"
 
 #: ../src/UI.Dialog/ui/PreferenceDialog.glade.h:5
 msgid "<b>Theming</b>"
-msgstr ""
+msgstr "<b>ಪರಿಸರವಿನ್ಯಾಸ</b>"
 
 #: ../src/UI.Dialog/ui/PreferenceDialog.glade.h:6
 msgid ""
 "<small><i>Choose the folder where F-Spot should store newly imported photos</"
 "i></small>"
-msgstr ""
+msgstr "<small><i>ಹೊಸದಾಗಿ ಆಮದು ಮಾಡಿಕೊಳ್ಳಲಾದ ಫೋಟೊಗಳನ್ನು F-Spot ಯಾವ ಕಡತಕೋಶದಲ್ಲಿ ಶೇಖರಿಸಿಡಬೇಕು ಎಂದು ಆಯ್ಕೆ ಮಾಡಿ</i></small>"
 
 #: ../src/UI.Dialog/ui/PreferenceDialog.glade.h:7
 msgid ""
 "<small><i>Enable this option to store tags and descriptions inside \n"
 "supported image formats.</i></small>"
 msgstr ""
+"<small><i>ಟ್ಯಾಗ್‌ಗಳನ್ನು ಹಾಗು ವಿವರಗಳನ್ನು ಒಂದು ಬೆಂಬಲಿತವಾದ ಚಿತ್ರ ವಿನ್ಯಾಸದಲ್ಲಿ ಶೇಖರಿಸಿಡಲು \n"
+"ಈ ಆಯ್ಕೆಯನ್ನು ಶಕ್ತಗೊಳಿಸಿ.</i></small>"
 
 #: ../src/UI.Dialog/ui/PreferenceDialog.glade.h:9
 msgid ""
 "<small><i>While acting as a screensaver, F-Spot can display all of your "
 "images, or a small subset based on tags.</i></small>"
-msgstr ""
+msgstr "<small><i>ಒಂದು ಸ್ಕ್ರೀನ್ ಸೇವರ್ ಆಗಿದ್ದಾಗ, F-Spot ನಿಮ್ಮ ಎಲ್ಲಾ ಚಿತ್ರಗಳನ್ನು, ಅಥವ ಟ್ಯಾಗ್‌ಗಳಿಗೆ ಅನುಗುಣವಾಗಿ ಕೇವಲ ಒಂದು ಸಣ್ಣ ಗುಂಪನ್ನು ಮಾತ್ರವೆ ತೋರಿಸಲಾಗುತ್ತದೆ.</i></small>"
 
 #: ../src/UI.Dialog/ui/PreferenceDialog.glade.h:10
 msgid "<small><i>You'll have to restart F-Spot to load the new theme.</i></small>"
-msgstr ""
+msgstr "<small><i>ಹೊಸ ಪರಿಸರವಿನ್ಯಾಸವನ್ನು ಲೋಡ್ ಮಾಡಲು F-Spot ಅನ್ನು ನೀವು ಮರಳಿ ಆರಂಭಿಸಬೇಕಾಗುತ್ತದೆ.</i></small>"
 
 #: ../src/UI.Dialog/ui/PreferenceDialog.glade.h:12
 msgid "Custom Theme"
@@ -1863,7 +1882,7 @@ msgstr "gtkrc ಕಡತದಿಂದ:"
 
 #: ../src/UI.Dialog/ui/PreferenceDialog.glade.h:17
 msgid "Images tagged with:"
-msgstr ""
+msgstr "ಇದರೊಂದಿಗೆ ಟ್ಯಾಗ್ ಮಾಡಲಾದ ಚಿತ್ರಗಳು:"
 
 #: ../src/UI.Dialog/ui/PreferenceDialog.glade.h:18
 msgid "Make F-Spot your screensaver"
@@ -1883,23 +1902,23 @@ msgstr "ಒಂದು gtkrc ಕಡತವನ್ನು ಆಯ್ಕೆ ಮಾಡು
 
 #: ../src/UI.Dialog/ui/PreferenceDialog.glade.h:22
 msgid "System Theme"
-msgstr ""
+msgstr "ವ್ಯವಸ್ಥೆಯ ಪರಿಸರವಿನ್ಯಾಸ"
 
 #: ../src/UI.Dialog/ui/PreferenceDialog.glade.h:23
 msgid "Try to use the system display profile"
-msgstr ""
+msgstr "ವ್ಯವಸ್ಥೆಯ ಪ್ರದರ್ಶಕದ ಪ್ರೊಫೈಲ್ ಅನ್ನು ಬಳಸಲು ಪ್ರಯತ್ನಿಸಿ"
 
 #: ../src/UI.Dialog/ui/PreferenceDialog.glade.h:24
 msgid "Write _metadata to file"
-msgstr ""
+msgstr "ಮೆಟಾಡಾಟವನ್ನು ಕಡತಕ್ಕೆ ಬರೆ(_m)"
 
 #: ../src/UI.Dialog/ui/PreferenceDialog.glade.h:25
 msgid "_Display:"
-msgstr ""
+msgstr "ಪ್ರದರ್ಶಕ(_D):"
 
 #: ../src/UI.Dialog/ui/PreferenceDialog.glade.h:26
 msgid "_Print output:"
-msgstr ""
+msgstr "ಔಟ್‌ಪುಟ್ ಅನ್ನು ಮುದ್ರಿಸು(_P):"
 
 #: ../src/Updater.cs:528
 msgid "Updating F-Spot Database"
@@ -1909,7 +1928,7 @@ msgstr "F-Spot ದತ್ತಸಂಚಯವನ್ನು ಅಪ್‌ಡೇಟ್ 
 msgid ""
 "Please wait while your F-Spot gallery's database is updated. This may take "
 "some time."
-msgstr ""
+msgstr "ನಿಮ್ಮ F-Spot ಗ್ಯಾಲರಿಯ ದತ್ತಸಂಚಯವು ಅಪ್‌ಡೇಟ್ ಆಗುವವರೆಗೂ ಕಾಯಿರಿ. ಇದಕ್ಕಾಗಿ ಸ್ವಲ್ಪ ಸಮಯ ಹಿಡಿಯಬಹುದು."
 
 #. Mono.Unix.Error error = Mono.Unix.Stdlib.GetLastError ();
 #: ../src/Utils/Unix.cs:35
@@ -1921,6 +1940,8 @@ msgid ""
 "The \"F-Spot Manual\" could not be found.  Please verify that your "
 "installation has been completed successfully."
 msgstr ""
+"\"F-Spot ಕೈಪಿಡಿ\" ಕಂಡುಬಂದಿಲ್ಲ.  ನಿಮ್ಮ ಅನುಸ್ಥಾಪನೆಯು ಯಶಸ್ವಿಯಾಗಿ ಪೂರ್ಣಗೊಂಡಿದೆಯೆ "
+"ಎಂದು ದಯವಿಟ್ಟು ಪರಿಶೀಲಿಸಿ."
 
 #: ../src/Widgets/CustomPrintWidget.cs:98
 msgid "Page Setup"
@@ -1935,7 +1956,7 @@ msgstr "ಕಾಗದದ ಗಾತ್ರ: {0} x {1} mm"
 
 #: ../src/Widgets/CustomPrintWidget.cs:109
 msgid "Set Page Size and Orientation"
-msgstr ""
+msgstr "ಪುಟದ ಗಾತ್ರ ಹಾಗು ವಾಲಿಕೆಯನ್ನು ಹೊಂದಿಸಿ"
 
 #: ../src/Widgets/CustomPrintWidget.cs:124
 msgid "Photos per page"
@@ -1951,7 +1972,7 @@ msgstr "ಮರುಕಳಿಸು"
 
 #: ../src/Widgets/CustomPrintWidget.cs:137
 msgid "Print cut marks"
-msgstr ""
+msgstr "ಕತ್ತರಿಸದ ಗುರುತುಗಳನ್ನು ಮುದ್ರಿಸು"
 
 #: ../src/Widgets/CustomPrintWidget.cs:145
 msgid "Full Page (no margin)"
@@ -1967,7 +1988,6 @@ msgid "Fill"
 msgstr "ತುಂಬಿಸು"
 
 #: ../src/Widgets/CustomPrintWidget.cs:151
-#, fuzzy
 msgid "Scaled"
 msgstr "ಪದರವನ್ನೊಳಗೊಂಡ"
 
@@ -1977,7 +1997,7 @@ msgstr "ಬಿಳಿ ಅಂಚುಗಳು"
 
 #: ../src/Widgets/CustomPrintWidget.cs:161
 msgid "Custom Text: "
-msgstr ""
+msgstr "ಇಚ್ಛೆಯ ಪಠ್ಯ:"
 
 #: ../src/Widgets/EditorPage.cs:29 ../src/Widgets/Sidebar.cs:71
 msgid "Edit"
@@ -1988,26 +2008,26 @@ msgstr "ಸಂಪಾದಿಸು"
 #: ../extensions/Tools/MetaPixel/MetaPixel.cs:45
 #: ../extensions/Tools/PictureTile/PictureTile.cs:51
 msgid "No selection available"
-msgstr ""
+msgstr "ಯಾವುದೆ ಆಯ್ಕೆಯು ಲಭ್ಯವಿಲ್ಲ"
 
 #: ../src/Widgets/EditorPage.cs:205
 msgid ""
 "This tool requires an active selection. Please select a region of the photo "
 "and try the operation again"
-msgstr ""
+msgstr "ಈ ಉಪಕರಣಕ್ಕಾಗಿ ಒಂದು ಸಕ್ರಿಯ ಆಯ್ಕೆಯ ಅಗತ್ಯವಿರುತ್ತದೆ. ದಯವಿಟ್ಟು ಫೋಟೊದಲ್ಲಿನ ಒಂದು ಜಾಗವನ್ನು ಆಯ್ಕೆ ಮಾಡಿ ನಂತರ ಇನ್ನೊಮ್ಮೆ ಈ ಕಾರ್ಯವನ್ನು ಪ್ರಯತ್ನಿಸಿ."
 
 #: ../src/Widgets/EditorPage.cs:223
 msgid "Error saving adjusted photo"
 msgid_plural "Error saving adjusted photos"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "ಸರಿಹೊಂದಿಸಲಾದ ಫೋಟೊವನ್ನು ಉಳಿಸುವಲ್ಲಿ ದೋಷ ಉಂಟಾಗಿದೆ"
+msgstr[1] "ಸರಿಹೊಂದಿಸಲಾದ ಫೋಟೊಗಳನ್ನು ಉಳಿಸುವಲ್ಲಿ ದೋಷ ಉಂಟಾಗಿದೆ"
 
 #: ../src/Widgets/EditorPage.cs:225
 #, csharp-format
 msgid ""
 "Received exception \"{0}\". Note that you have to develop RAW files into "
 "JPEG before you can edit them."
-msgstr ""
+msgstr "\"{0}\" ಆಕ್ಷೇಪಣೆಯು ಎದುರಾಗಿದೆ.  JPEG ಅನ್ನು ಸಂಪಾದಿಸುವ ಮೊದಲು ಅದರ ಒಳಗೆ RAW ಕಡತಗಳನ್ನು ಉತ್ಪಾದಿಸಬೇಕು ಎನ್ನುವುದನ್ನು ನೆನಪಿಡಿ."
 
 #: ../src/Widgets/FindBar.cs:58
 msgid "Find:"
@@ -2019,7 +2039,7 @@ msgstr "ಮತ್ತು"
 
 #: ../src/Widgets/InfoBox.cs:182
 msgid "Histogram"
-msgstr ""
+msgstr "ಹಿಸ್ಟೊಗ್ರಾಮ್‌"
 
 #: ../src/Widgets/InfoBox.cs:217
 msgid "Date"
@@ -2053,11 +2073,11 @@ msgstr "(ಗೊತ್ತಿರದ)"
 
 #: ../src/Widgets/InfoBox.cs:419
 msgid "(wrong format)"
-msgstr ""
+msgstr "(ಸರಿಯಲ್ಲದ ವಿನ್ಯಾಸ)"
 
 #: ../src/Widgets/InfoBox.cs:558
 msgid "(File read error)"
-msgstr ""
+msgstr "(ಕಡತವನ್ನು ಓದುವಲ್ಲಿ ದೋಷ)"
 
 #: ../src/Widgets/InfoBox.cs:603
 #, csharp-format
@@ -2071,6 +2091,8 @@ msgid ""
 "On {0} between \n"
 "{1} and {2}"
 msgstr ""
+"{0} ರಲ್ಲಿ, \n"
+"{1} ಹಾಗು {2} ರ ನಡುವೆ"
 
 #: ../src/Widgets/InfoBox.cs:628
 #, csharp-format
@@ -2078,10 +2100,12 @@ msgid ""
 "Between {0} \n"
 "and {1}"
 msgstr ""
+"{0} \n"
+"ಹಾಗು {1} ನಡುವೆ"
 
 #: ../src/Widgets/InfoBox.cs:655
 msgid "(At least one File not found)"
-msgstr ""
+msgstr "(ಕನಿಷ್ಟ ಒಂದು ಕಡತವು ಕಂಡುಬಂದಿಲ್ಲ)"
 
 #: ../src/Widgets/InfoBox.cs:772
 msgid "Show Photo Name"
@@ -2101,7 +2125,7 @@ msgstr ""
 
 #: ../src/Widgets/InfoBox.cs:808
 msgid "Show Focal Length"
-msgstr ""
+msgstr "ಫೋಕಲ್ ದೂರವನ್ನು ತೋರಿಸು"
 
 #: ../src/Widgets/InfoBox.cs:817
 msgid "Show Camera"
@@ -2117,41 +2141,41 @@ msgstr "ಮೆಟಾಡಾಟ"
 
 #: ../src/Widgets/MetadataDisplay.cs:104
 msgid "Extended Metadata"
-msgstr ""
+msgstr "ವಿಸ್ತರಿಸಲಾದ ಮೆಟಾಡೇಟ"
 
 #: ../src/Widgets/MetadataDisplay.cs:227
 msgid "Picasaweb"
-msgstr ""
+msgstr "Picasaweb"
 
 #: ../src/Widgets/MetadataDisplay.cs:229
 msgid "SmugMug"
-msgstr ""
+msgstr "SmugMug"
 
 #: ../src/Widgets/MetadataDisplay.cs:231
 msgid "Gallery2"
-msgstr ""
+msgstr "Gallery2"
 
 #. clear Extended Metadata
 #: ../src/Widgets/MetadataDisplay.cs:391
 msgid "No Extended Metadata Available"
-msgstr ""
+msgstr "ವಿಸ್ತರಿಸಲಾದ ಯಾವುದೆ ಮೆಟಾಡೇಟ ಕಂಡುಬಂದಿಲ್ಲ"
 
 #: ../src/Widgets/MetadataDisplay.cs:409
 msgid "No active photo"
-msgstr ""
+msgstr "ಯಾವುದೆ ಸಕ್ರಿಯ ಫೋಟೊ ಇಲ್ಲ"
 
 #: ../src/Widgets/MetadataDisplay.cs:411
 #, csharp-format
 msgid "The photo \"{0}\" does not exist"
-msgstr ""
+msgstr "ಫೋಟೊ \"{0}\" ಈಗಾಗಲೆ ಅಸ್ತಿತ್ವದಲ್ಲಿದೆ"
 
 #: ../src/Widgets/MetadataDisplay.cs:414
 msgid "No metadata available"
-msgstr ""
+msgstr "ಯಾವುದೆ ಮೆಟಾಡೇಟ ಕಂಡುಬಂದಿಲ್ಲ"
 
 #: ../src/Widgets/OpenWithMenu.cs:69
 msgid "No applications available"
-msgstr ""
+msgstr "ಯಾವುದೆ ಅನ್ವಯಗಳು ಲಭ್ಯಬಂದಿಲ್ಲ"
 
 #: ../src/Widgets/RatingMenuItem.cs:56
 msgid "Rating:"
@@ -2189,7 +2213,7 @@ msgstr "00:00:00"
 
 #: ../src/f-spot.glade.h:4
 msgid "1 of 1"
-msgstr ""
+msgstr "1 ರಲ್ಲಿ 1"
 
 #: ../src/f-spot.glade.h:5
 msgid "1024 px"
@@ -2222,7 +2246,7 @@ msgstr "<b></b>"
 #: ../src/f-spot.glade.h:12
 #: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:1
 msgid "<b>Account</b>"
-msgstr ""
+msgstr "<b>ಖಾತೆ</b>"
 
 #: ../src/f-spot.glade.h:13
 msgid "<b>Action</b>"
@@ -2233,29 +2257,29 @@ msgstr "<b>ಕಾರ್ಯ</b>"
 #: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:1
 #: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:1
 msgid "<b>Album</b>"
-msgstr ""
+msgstr "<b>ಆಲ್ಬಮ್</b>"
 
 #: ../src/f-spot.glade.h:15
 msgid "<b>Co_rrections</b>"
-msgstr ""
+msgstr "<b>ಸರಿಪಡಿಕೆಗಳು(_r)</b>"
 
 #: ../src/f-spot.glade.h:16
 #: ../extensions/Exporters/FolderExport/FolderExport.glade.h:3
 msgid "<b>Destination</b>"
-msgstr ""
+msgstr "<b>ಗುರಿ</b>"
 
 #: ../src/f-spot.glade.h:17
 msgid "<b>From External Photo</b>"
-msgstr ""
+msgstr "<b>ಹೊರಗಿನ ಫೋಟೊದಿಂದ</b>"
 
 #: ../src/f-spot.glade.h:18
 msgid "<b>From Photo</b>"
-msgstr ""
+msgstr "<b>ಫೋಟೊದಿಂದ</b>"
 
 #: ../src/f-spot.glade.h:19
 #: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:2
 msgid "<b>Gallery</b>"
-msgstr ""
+msgstr "<b>ಗ್ಯಾಲರಿ</b>"
 
 #: ../src/f-spot.glade.h:20
 msgid "<b>Image Interpolation</b>"
@@ -2277,11 +2301,11 @@ msgstr ""
 #: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:2
 #: ../extensions/Exporters/TabbloExport/TabbloExport.glade.h:2
 msgid "<b>Photos</b>"
-msgstr ""
+msgstr "<b>ಫೋಟೊಗಳು</b>"
 
 #: ../src/f-spot.glade.h:24
 msgid "<b>Predefined</b>"
-msgstr ""
+msgstr "<b>ಪೂರ್ವನಿರ್ಧಾರಿತ</b>"
 
 #: ../src/f-spot.glade.h:25
 msgid "<b>Preview</b>"
@@ -2289,7 +2313,7 @@ msgstr "<b>ಮುನ್ನೋಟ</b>"
 
 #: ../src/f-spot.glade.h:26
 msgid "<b>Reference Photo</b>"
-msgstr ""
+msgstr "<b>ಉಲ್ಲೇಖಿತ ಫೋಟೊ</b>"
 
 #: ../src/f-spot.glade.h:27
 msgid "<b>Size</b>"
@@ -2306,7 +2330,7 @@ msgstr "<b>ಶೈಲಿ</b>"
 
 #: ../src/f-spot.glade.h:29
 msgid "<b>Summary</b>"
-msgstr ""
+msgstr "<b>ಸಾರಾಂಶ</b>"
 
 #: ../src/f-spot.glade.h:30
 msgid "<b>Transparent Parts</b>"
@@ -2322,7 +2346,7 @@ msgstr ""
 
 #: ../src/f-spot.glade.h:33
 msgid "<small></small>"
-msgstr ""
+msgstr "<small></small>"
 
 #: ../src/f-spot.glade.h:34
 msgid ""
@@ -2341,15 +2365,15 @@ msgstr ""
 
 #: ../src/f-spot.glade.h:36
 msgid "Adjust Time"
-msgstr ""
+msgstr "ಸಮಯವನ್ನು ಹೊಂದಿಸಿ"
 
 #: ../src/f-spot.glade.h:37
 msgid "Adjust _Time..."
-msgstr ""
+msgstr "ಸಮಯವನ್ನು ಹೊಂದಿಸು(_T)..."
 
 #: ../src/f-spot.glade.h:38
 msgid "Adjusted date: "
-msgstr ""
+msgstr "ಹೊಂದಿಸಲಾದ ಸಮಯ: "
 
 #: ../src/f-spot.glade.h:39
 msgid "Arrange _by"
@@ -2369,11 +2393,11 @@ msgstr "ಪರೀಕ್ಷಾ ವಿನ್ಯಾಸವಾಗಿ(_p)"
 
 #: ../src/f-spot.glade.h:43
 msgid "Attach Tags:"
-msgstr ""
+msgstr "ಟ್ಯಾಗ್‌ಗಳನ್ನು ಲಗತ್ತಿಸು: "
 
 #: ../src/f-spot.glade.h:44
 msgid "Attach tag:"
-msgstr ""
+msgstr "ಟ್ಯಾಗ್‌ ಅನ್ನು ಲಗತ್ತಿಸು: "
 
 #: ../src/f-spot.glade.h:45
 #: ../extensions/Exporters/CDExport/CDExport.glade.h:3
@@ -2381,11 +2405,11 @@ msgstr ""
 #: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:7
 #: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:5
 msgid "Autorotate"
-msgstr ""
+msgstr "ಸ್ವಯಂತಿರುಗಿಸುವಿಕೆ"
 
 #: ../src/f-spot.glade.h:47
 msgid "By _Date"
-msgstr ""
+msgstr "ದಿನಾಂಕದಿಂದ(_D)"
 
 #: ../src/f-spot.glade.h:48
 msgid "By _Import Roll"
@@ -2405,27 +2429,27 @@ msgstr ""
 
 #: ../src/f-spot.glade.h:52
 msgid "Camera Selection"
-msgstr ""
+msgstr "ಕ್ಯಾಮೆರ ಆಯ್ಕೆ"
 
 #: ../src/f-spot.glade.h:53
 msgid "Copy Locat_ion"
-msgstr ""
+msgstr "ಸ್ಥಳವನ್ನು ಆಯ್ಕೆ ಮಾಡು(_i)"
 
 #: ../src/f-spot.glade.h:54
 msgid "Copy files to the Photos folder"
-msgstr ""
+msgstr "ಕಡತಗಳನ್ನು ಫೋಟೊಗಳ ಕಡತಕೋಶಕ್ಕೆ ಕಾಪಿ ಮಾಡು"
 
 #: ../src/f-spot.glade.h:55
 msgid "Create Mail"
-msgstr ""
+msgstr "ಮೈಲ್ ಅನ್ನು ರಚಿಸು"
 
 #: ../src/f-spot.glade.h:56
 msgid "Create New _Tag..."
-msgstr ""
+msgstr "ಹೊಸ ಟ್ಯಾಗ್ ಅನ್ನು ರಚಿಸು(_T)..."
 
 #: ../src/f-spot.glade.h:57
 msgid "Create _New Version..."
-msgstr ""
+msgstr "ಹೊಸ ಆವೃತ್ತಿಯನ್ನು ರಚಿಸು(_N)..."
 
 #: ../src/f-spot.glade.h:58
 msgid "Create _icon for this tag when first used"
@@ -2437,7 +2461,7 @@ msgstr ""
 
 #: ../src/f-spot.glade.h:60
 msgid "Current date:"
-msgstr ""
+msgstr "ಪ್ರಸಕ್ರ ದಿನಾಂಕ:"
 
 #: ../src/f-spot.glade.h:61
 msgid "Detect duplicates"
@@ -2445,7 +2469,7 @@ msgstr ""
 
 #: ../src/f-spot.glade.h:62
 msgid "Display File _Names"
-msgstr ""
+msgstr "ಕಡತದ ಹೆಸರುಗಳನ್ನು ತೋರಿಸು(_N)"
 
 #: ../src/f-spot.glade.h:63
 msgid "Display only those photos that were imported in specified Rolls."
@@ -2453,11 +2477,11 @@ msgstr ""
 
 #: ../src/f-spot.glade.h:64
 msgid "Do not send a mail"
-msgstr ""
+msgstr "ಒಂದು ಮೈಲ್ ಅನ್ನು ಕಳುಹಿಸಬೇಡ"
 
 #: ../src/f-spot.glade.h:65
 msgid "E-_Mail:"
-msgstr ""
+msgstr "ಇ-ಮೈಲ್(_M):"
 
 #: ../src/f-spot.glade.h:66
 msgid "E_xport titles and comments"
@@ -2469,7 +2493,7 @@ msgstr ""
 
 #: ../src/f-spot.glade.h:68
 msgid "Edit icon"
-msgstr ""
+msgstr "ಚಿಹ್ನೆಯನ್ನು ಸಂಪಾದಿಸು"
 
 #: ../src/f-spot.glade.h:69
 msgid "Estimated new size"
@@ -2490,11 +2514,11 @@ msgstr ""
 
 #: ../src/f-spot.glade.h:72
 msgid "F-Spot"
-msgstr ""
+msgstr "F-Spot"
 
 #: ../src/f-spot.glade.h:73
 msgid "F-Spot View"
-msgstr ""
+msgstr "F-Spot ನೋಟ"
 
 #: ../src/f-spot.glade.h:75
 msgid "Filter on selected rolls"
@@ -2502,15 +2526,15 @@ msgstr ""
 
 #: ../src/f-spot.glade.h:76
 msgid "Fin_d"
-msgstr ""
+msgstr "ಹುಡುಕು(_d)"
 
 #: ../src/f-spot.glade.h:77
 msgid "G_allery:"
-msgstr ""
+msgstr "ಗ್ಯಾಲರಿ(_a):"
 
 #: ../src/f-spot.glade.h:78
 msgid "Gallery"
-msgstr ""
+msgstr "ಗ್ಯಾಲರಿ"
 
 #. Translators: this string means 'source of import'
 #: ../src/f-spot.glade.h:81
@@ -2519,7 +2543,7 @@ msgstr ""
 
 #: ../src/f-spot.glade.h:82
 msgid "Include subfolders"
-msgstr ""
+msgstr "ಉಪಕಡತಕೋಶಗಳನ್ನು ಸೇರ್ಪಡಿಸು"
 
 #: ../src/f-spot.glade.h:83
 msgid "Large"
@@ -2539,19 +2563,19 @@ msgstr "ಮಧ್ಯಮ"
 
 #: ../src/f-spot.glade.h:88
 msgid "No _image"
-msgstr ""
+msgstr "ಯಾವುದೆ ಚಿತ್ರಗಳಿಲ್ಲ (_i)"
 
 #: ../src/f-spot.glade.h:89
 msgid "Number of photos in selected rolls:"
-msgstr ""
+msgstr "ಆಯ್ಕೆ ಮಾಡಲಾದ ಸುರುಳಿಯಲ್ಲಿನ ಫೋಟೊಗಳ ಸಂಖ್ಯೆ:"
 
 #: ../src/f-spot.glade.h:90
 msgid "Number of pictures"
-msgstr ""
+msgstr "ಚಿತ್ರಗಳ ಸಂಖ್ಯೆ"
 
 #: ../src/f-spot.glade.h:91
 msgid "Open _Folder..."
-msgstr ""
+msgstr "ಕಡತಕೋಶವನ್ನು ತೆರೆ(_F)..."
 
 #: ../src/f-spot.glade.h:93
 msgid "Original size (possible very large file size)"
@@ -2571,7 +2595,7 @@ msgstr "ವಿರಮಿಸು"
 
 #: ../src/f-spot.glade.h:97
 msgid "Photo 0 of 0"
-msgstr ""
+msgstr "0 ಯಲ್ಲಿ 0 ಫೋಟೊ"
 
 #: ../src/f-spot.glade.h:100
 msgid "Re_fresh Thumbnail"
@@ -2579,7 +2603,7 @@ msgstr ""
 
 #: ../src/f-spot.glade.h:102
 msgid "Repair"
-msgstr ""
+msgstr "ಸರಿಪಡಿಸು"
 
 #: ../src/f-spot.glade.h:105
 msgid "Select Photos to Copy From Camera..."
@@ -2587,11 +2611,11 @@ msgstr ""
 
 #: ../src/f-spot.glade.h:107
 msgid "Select _None"
-msgstr ""
+msgstr "ಏನನ್ನೂ ಆರಿಸಬೇಡ(_N)"
 
 #: ../src/f-spot.glade.h:108
 msgid "Select a Tag..."
-msgstr ""
+msgstr "ಒಂದು ಟ್ಯಾಗ್ ಅನ್ನು ಆಯ್ಕೆ ಮಾಡು..."
 
 #: ../src/f-spot.glade.h:109
 msgid "Select the camera from which you want to transfer files"
@@ -2599,7 +2623,7 @@ msgstr ""
 
 #: ../src/f-spot.glade.h:110
 msgid "Selected Camera: "
-msgstr ""
+msgstr "ಆಯ್ಕೆ ಮಾಡಲಾದ ಕ್ಯಾಮೆರ:"
 
 #: ../src/f-spot.glade.h:111
 msgid "Selection Constraints"
@@ -2607,7 +2631,7 @@ msgstr ""
 
 #: ../src/f-spot.glade.h:112
 msgid "Send by _Mail..."
-msgstr ""
+msgstr "ಮೈಲ್ ಮೂಲಕ ಕಳುಹಿಸು(_M)..."
 
 #: ../src/f-spot.glade.h:113
 msgid "Set Rating Filter"
@@ -2657,13 +2681,13 @@ msgstr ""
 
 #: ../src/f-spot.glade.h:125
 msgid "T_ags"
-msgstr ""
+msgstr "ಟ್ಯಾಗ್‌ಗಳು(_a)"
 
 #: ../src/f-spot.glade.h:126
 #: ../extensions/Exporters/FolderExport/FolderExport.cs:1179
 #: ../extensions/Exporters/FolderExport/FolderExport.cs:1180
 msgid "Tags: "
-msgstr ""
+msgstr "ಟ್ಯಾಗ್‌ಗಳು: "
 
 #. Note for translators: meant as Temperature
 #: ../src/f-spot.glade.h:128
@@ -2937,7 +2961,7 @@ msgstr ""
 
 #: ../src/f-spot.glade.h:197
 msgid "_Tags"
-msgstr ""
+msgstr "ಟ್ಯಾಗ್‌ಗಳು(_T)"
 
 #: ../src/f-spot.glade.h:198
 msgid "_Timeline"
