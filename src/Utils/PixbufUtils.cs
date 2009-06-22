@@ -91,6 +91,44 @@ namespace FSpot.Utils
 			return area;
 		}
 
+		public static Point TransformOrientation (int total_width, int total_height, Point args, PixbufOrientation orientation)
+		{
+			Point p = args;
+
+			switch (orientation) {
+			default:
+			case PixbufOrientation.TopLeft:
+				break;
+			case PixbufOrientation.TopRight:
+				p.X = total_width - p.X;
+				break;
+			case PixbufOrientation.BottomRight:
+				p.X = total_width - p.X;
+				p.Y = total_height - p.Y;
+				break;
+			case PixbufOrientation.BottomLeft:
+				p.Y = total_height - p.Y;
+				break;
+			case PixbufOrientation.LeftTop:
+				p.X = args.Y;
+				p.Y = args.X;
+				break;
+			case PixbufOrientation.RightTop:
+				p.X = total_height - args.Y;
+				p.Y = args.X;
+				break;
+			case PixbufOrientation.RightBottom:
+				p.X = total_height - args.Y;
+				p.Y = total_width - args.X;
+				break;
+			case PixbufOrientation.LeftBottom:
+				p.X = args.Y;
+				p.Y = total_width - args.X;
+				break;
+			}
+			return p;
+		}
+
 		public static PixbufOrientation ReverseTransformation (PixbufOrientation orientation)
 		{
 			switch (orientation) {

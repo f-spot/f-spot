@@ -15,6 +15,7 @@ using Gdk;
 using System;
 using System.Runtime.InteropServices;
 using Mono.Unix;
+using FSpot.Utils;
 
 namespace FSpot.Widgets {
 	public class Loupe : Gtk.Window {
@@ -127,7 +128,7 @@ namespace FSpot.Widgets {
 			ShapeWindow ();
 		}
 
-		public void SetSamplePoint (Gdk.Point p)
+		void SetSamplePoint (Gdk.Point p)
 		{
 			region.X = p.X;
 			region.Y = p.Y;
@@ -135,12 +136,10 @@ namespace FSpot.Widgets {
 			region.Height = 2 * radius;
 			
 			if (view.Pixbuf != null) {
-				Gdk.Pixbuf pixbuf = view.Pixbuf;
-				
-				region.Offset (- Math.Min (region.X, Math.Max (region.Right - pixbuf.Width, radius)), 
-					       - Math.Min (region.Y, Math.Max (region.Bottom - pixbuf.Height, radius)));
+				region.Offset (- Math.Min (region.X, Math.Max (region.Right - view.Pixbuf.Width, radius)), 
+					       - Math.Min (region.Y, Math.Max (region.Bottom - view.Pixbuf.Height, radius)));
 
-				region.Intersect (new Gdk.Rectangle (0, 0, pixbuf.Width, pixbuf.Height));
+				region.Intersect (new Gdk.Rectangle (0, 0, view.Pixbuf.Width, view.Pixbuf.Height));
 			}
 			UpdateSample ();
 		}
@@ -161,9 +160,12 @@ namespace FSpot.Widgets {
 				QueueResize ();
 			}
 
-			source = new Gdk.Pixbuf (view.Pixbuf,
+			Pixbuf tmp = new Gdk.Pixbuf (view.Pixbuf,
 						 region.X, region.Y,
 						 region.Width, region.Height);
+			source = FSpot.Utils.PixbufUtils.TransformOrientation (tmp, view.PixbufOrientation);
+			if (source != tmp)
+				tmp.Dispose ();
 			
 			//FIXME sometimes that ctor returns results with a null
 			//handle this case ourselves

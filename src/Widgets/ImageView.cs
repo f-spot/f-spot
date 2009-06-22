@@ -224,13 +224,16 @@ namespace FSpot.Widgets
 			int x_offset = scaled_width < Allocation.Width ? (int)(Allocation.Width - scaled_width) / 2 : -XOffset;
 			int y_offset = scaled_height < Allocation.Height ? (int)(Allocation.Height - scaled_height) / 2 : -YOffset;
 
-			win.X = Clamp (win.X, x_offset, x_offset + (int)scaled_width - 1);
-			win.Y = Clamp (win.Y, y_offset, y_offset + (int)scaled_height - 1);
+			win.X = Clamp (win.X - x_offset, 0, (int)scaled_width - 1);
+			win.Y = Clamp (win.Y - y_offset, 0, (int)scaled_height - 1);
 
-			return new Point ((int) Math.Floor ((win.X - x_offset) * (double)(Pixbuf.Width - 1) / (double)(scaled_width - 1) + .5),
-					  (int) Math.Floor ((win.Y - y_offset) * (double)(Pixbuf.Height - 1) / (double)(scaled_height - 1) + .5));
+			win = PixbufUtils.TransformOrientation ((int)scaled_width, (int)scaled_height, win, PixbufUtils.ReverseTransformation (pixbuf_orientation));
+
+			return  new Point ((int) Math.Floor (win.X * (double)(((int)PixbufOrientation <= 4 ? Pixbuf.Width : Pixbuf.Height) - 1) / (double)(scaled_width - 1) + .5),
+					   (int) Math.Floor (win.Y * (double)(((int)PixbufOrientation <= 4 ? Pixbuf.Height : Pixbuf.Width) - 1) / (double)(scaled_height - 1) + .5));
 		}
 
+//FIXME
 		public Rectangle WindowCoordsToImage (Rectangle win)
 		{
 			if (Pixbuf == null)
@@ -250,6 +253,7 @@ namespace FSpot.Widgets
 			return img;
 		}
 
+//FIXME
 		public Point ImageCoordsToWindow (Point image)
 		{
 			if (this.Pixbuf == null)
@@ -262,6 +266,7 @@ namespace FSpot.Widgets
 					  (int) Math.Floor (image.Y * (double) (scaled_height - 1) / (this.Pixbuf.Height - 1) + 0.5) + y_offset);
 		}
 
+//FIXME
 		public Rectangle ImageCoordsToWindow (Rectangle image)
 		{
 			if (this.Pixbuf == null)
