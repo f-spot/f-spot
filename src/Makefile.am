@@ -127,6 +127,7 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/DependentListStore.cs		\
 	$(srcdir)/DirectoryAdaptor.cs		\
 	$(srcdir)/DirectoryCollection.cs	\
+	$(srcdir)/DragDrop.cs				\
 	$(srcdir)/Editors/Editor.cs		\
 	$(srcdir)/Editors/AutoStretchEditor.cs		\
 	$(srcdir)/Editors/CropEditor.cs		\

@@ -33,7 +33,7 @@ namespace FSpot {
 			get { return logic_widget; }
 		}
 
-		public QueryWidget (PhotoQuery query, Db db, TagSelectionWidget selector) : base(new HBox())
+		public QueryWidget (PhotoQuery query, Db db) : base(new HBox())
 		{
 			box = Child as HBox;
 			box.Spacing = 6;
@@ -70,7 +70,7 @@ namespace FSpot {
 			rollfilter.Visible = false;
 			box.PackStart (rollfilter, false, false, 0);
 
-			logic_widget = new LogicWidget (query, db.Tags, selector);
+			logic_widget = new LogicWidget (query, db.Tags);
 			logic_widget.Show ();
 			box.PackStart (logic_widget, true, true, 0);
 

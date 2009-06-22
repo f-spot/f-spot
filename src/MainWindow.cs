@@ -23,6 +23,7 @@ using FSpot.Widgets;
 using FSpot.Utils;
 using FSpot.UI.Dialog;
 using FSpot.Platform;
+using FSpot.GuiUtils;
 
 using LibGPhoto2;
 
@@ -173,38 +174,33 @@ public class MainWindow {
 		get { return photo_view; }
 	}
 
-	// Drag and Drop
-	public enum TargetType {
-		UriList,
-		TagList,
-		TagQueryItem,
-		PhotoList,
-		RootWindow
+	private static TargetEntry [] icon_source_target_table = 
+		new TargetEntry [] {
+			DragDrop.PhotoListEntry,
+			DragDrop.TagQueryEntry,
+			DragDrop.UriListEntry,
+			DragDrop.RootWindowEntry
 	};
-
-	private static TargetEntry [] icon_source_target_table = new TargetEntry [] {
-		new TargetEntry ("application/x-fspot-photos", 0, (uint) TargetType.PhotoList),
-		new TargetEntry ("application/x-fspot-tag-query-item", 0, (uint) TargetType.TagQueryItem),
-		new TargetEntry ("text/uri-list", 0, (uint) TargetType.UriList),
-		new TargetEntry ("application/x-root-window-drop", 0, (uint) TargetType.RootWindow)
-	};
-
-	private static TargetEntry [] icon_dest_target_table = new TargetEntry [] {
+	
+	private static TargetEntry [] icon_dest_target_table = 
+		new TargetEntry [] {
 #if ENABLE_REPARENTING
-		new TargetEntry ("application/x-fspot-photos", 0, (uint) TargetType.PhotoList),
+			DragDrop.PhotoListEntry,
 #endif
-		new TargetEntry ("application/x-fspot-tags", 0, (uint) TargetType.TagList),
-		new TargetEntry ("text/uri-list", 0, (uint) TargetType.UriList),
+			DragDrop.TagListEntry,
+			DragDrop.UriListEntry
 	};
-
-	private static TargetEntry [] tag_target_table = new TargetEntry [] {
-		new TargetEntry ("application/x-fspot-tags", 0, (uint) TargetType.TagList),
+	
+	private static TargetEntry [] tag_target_table = 
+		new TargetEntry [] {
+			DragDrop.TagListEntry
 	};
-
-	private static TargetEntry [] tag_dest_target_table = new TargetEntry [] {
-		new TargetEntry ("application/x-fspot-photos", 0, (uint) TargetType.PhotoList),
-		new TargetEntry ("text/uri-list", 0, (uint) TargetType.UriList),
-		new TargetEntry ("application/x-fspot-tags", 0, (uint) TargetType.TagList),
+	
+	private static TargetEntry [] tag_dest_target_table = 
+		new TargetEntry [] {
+			DragDrop.PhotoListEntry,
+			DragDrop.UriListEntry,
+			DragDrop.TagListEntry
 	};
 
 	const int PHOTO_IDX_NONE = -1;
@@ -368,17 +364,17 @@ public class MainWindow {
 		info_box.Context = ViewContext.Library;
 		
 		tag_selection_widget.Selection.Changed += HandleTagSelectionChanged;
-		tag_selection_widget.DragDataGet += HandleTagSelectionDragDataGet;
-		tag_selection_widget.DragDrop += HandleTagSelectionDragDrop;
-		tag_selection_widget.DragBegin += HandleTagSelectionDragBegin;
+//		tag_selection_widget.DragDataGet += HandleTagSelectionDragDataGet;
+//		tag_selection_widget.DragDrop += HandleTagSelectionDragDrop;
+//		tag_selection_widget.DragBegin += HandleTagSelectionDragBegin;
 		tag_selection_widget.KeyPressEvent += HandleTagSelectionKeyPress;
-		Gtk.Drag.SourceSet (tag_selection_widget, Gdk.ModifierType.Button1Mask | Gdk.ModifierType.Button3Mask,
-				    tag_target_table, DragAction.Copy | DragAction.Move);
+//		Gtk.Drag.SourceSet (tag_selection_widget, Gdk.ModifierType.Button1Mask | Gdk.ModifierType.Button3Mask,
+//				    tag_target_table, DragAction.Copy | DragAction.Move);
 
-		tag_selection_widget.DragDataReceived += HandleTagSelectionDragDataReceived;
-		tag_selection_widget.DragMotion += HandleTagSelectionDragMotion;
-		Gtk.Drag.DestSet (tag_selection_widget, DestDefaults.All, tag_dest_target_table, 
-				  DragAction.Copy | DragAction.Move ); 
+//		tag_selection_widget.DragDataReceived += HandleTagSelectionDragDataReceived;
+//		tag_selection_widget.DragMotion += HandleTagSelectionDragMotion;
+//		Gtk.Drag.DestSet (tag_selection_widget, DestDefaults.All, tag_dest_target_table, 
+//				  DragAction.Copy | DragAction.Move ); 
 
 		tag_selection_widget.ButtonPressEvent += HandleTagSelectionButtonPressEvent;
 		tag_selection_widget.PopupMenu += HandleTagSelectionPopupMenu;
@@ -424,7 +420,7 @@ public class MainWindow {
 		view_vbox.ReorderChild (find_bar, 1);
 		main_window.KeyPressEvent += HandleKeyPressEvent;
 		
-		query_widget = new FSpot.QueryWidget (query, db, tag_selection_widget);
+		query_widget = new FSpot.QueryWidget (query, db);
 		query_widget.Logic.Changed += HandleQueryLogicChanged;
 		view_vbox.PackStart (query_widget, false, false, 0);
 		view_vbox.ReorderChild (query_widget, 2);
@@ -988,7 +984,7 @@ public class MainWindow {
 		args.RetVal = true;
 	}
 
-	void HandleTagSelectionDragBegin (object sender, DragBeginArgs args)
+/*	void HandleTagSelectionDragBegin (object sender, DragBeginArgs args)
 	{
 		Tag [] tags = tag_selection_widget.TagHighlight;
 		int len = tags.Length;
@@ -1018,27 +1014,26 @@ public class MainWindow {
 			Gtk.Drag.SetIconPixbuf (args.Context, container, 0, 0);
 		container.Dispose ();
 	}
-	
-	void HandleTagSelectionDragDataGet (object sender, DragDataGetArgs args)
+*/	
+/*	void HandleTagSelectionDragDataGet (object sender, DragDataGetArgs args)
 	{		
 		UriList list = new UriList (SelectedPhotos ());
 
-		switch (args.Info) {
-		case (uint) TargetType.TagList:
+		if (args.Info == DragDrop.TagListEntry.Info) {
 			Byte [] data = Encoding.UTF8.GetBytes (list.ToString ());
 			Atom [] targets = args.Context.Targets;
 			
 			args.SelectionData.Set (targets[0], 8, data, data.Length);
-			break;
+			return;
 		}
 	}
-
-	void HandleTagSelectionDragDrop (object sender, DragDropArgs args)
+*/
+/*	void HandleTagSelectionDragDrop (object sender, DragDropArgs args)
 	{
 		args.RetVal = true;
 	}
-
-	public void HandleTagSelectionDragMotion (object o, DragMotionArgs args)
+*/
+/*	public void HandleTagSelectionDragMotion (object o, DragMotionArgs args)
 	{
 		TreePath path;
         TreeViewDropPosition position = TreeViewDropPosition.IntoOrAfter;
@@ -1066,8 +1061,8 @@ public class MainWindow {
         else if (((o as Gtk.Widget).Allocation.Height - args.Y) < 20)
 			tag_selection_scrolled.Vadjustment.Value += 30;
 	}
-
-	public void HandleTagSelectionDragDataReceived (object o, DragDataReceivedArgs args)
+*/
+/*	public void HandleTagSelectionDragDataReceived (object o, DragDataReceivedArgs args)
 	{
         TreePath path;
         TreeViewDropPosition position;
@@ -1078,14 +1073,15 @@ public class MainWindow {
 		if (tag == null)
 			return;
 
-		switch (args.Info) {
-		case (uint)TargetType.PhotoList:
+		if (args.Info == DragDrop.PhotoListEntry.Info) {
 			db.BeginTransaction ();
 			AddTagExtended (SelectedIds (), new Tag[] {tag});
 			db.CommitTransaction ();
 			query_widget.PhotoTagsChanged (new Tag[] {tag});
-			break;
-		case (uint)TargetType.UriList:
+			return;
+		}
+		
+		if (args.Info == DragDrop.UriListEntry.Info) {
 			UriList list = new UriList (args.SelectionData);
 			
 			db.BeginTransaction ();
@@ -1104,8 +1100,10 @@ public class MainWindow {
 			db.Photos.Commit (photos.ToArray ());
 			db.CommitTransaction ();
 			InvalidateViews ();
-			break;
-		case (uint)TargetType.TagList:
+			return;
+		}
+
+		if (args.Info == DragDrop.TagListEntry.Info) {
 			Category parent;
             if (position == TreeViewDropPosition.Before || position == TreeViewDropPosition.After) {
                 parent = tag.Category;
@@ -1135,10 +1133,10 @@ public class MainWindow {
             tag_selection_widget.TagHighlight = highlighted_tags;
 
             args.RetVal = moved_count > 0;
-			break;
+			return;
 		}
 	}
-
+*/
 #if SHOW_CALENDAR
 	void HandleCalendarDaySelected (object sender, System.EventArgs args)
 	{
@@ -1282,19 +1280,34 @@ public class MainWindow {
 
 	void HandleIconViewDragDataGet (object sender, DragDataGetArgs args)
 	{		
-		switch (args.Info) {
-		case (uint) TargetType.UriList:
-		case (uint) TargetType.PhotoList:
+		/*if (args.Info == DragDrop.UriListEntry.Info || args.Info == DragDrop.PhotoListEntry.Info) {
 			UriList list = new UriList (SelectedPhotos ());
 			Byte [] data = Encoding.UTF8.GetBytes (list.ToString ());
 			Atom [] targets = args.Context.Targets;
 			args.SelectionData.Set (targets[0], 8, data, data.Length);
-			break;
-		case (uint) TargetType.RootWindow:
-			HandleSetAsBackgroundCommand (null, null);
-                        break;
+			return;
 		}
-		       
+		
+		if (args.Info == DragDrop.RootWindowEntry.Info) {
+			HandleSetAsBackgroundCommand (null, null);
+			return;
+		}
+		  */
+		
+		if (args.Info == DragDrop.UriListEntry.Info) {
+			DragDrop.SetUriListData (new UriList (SelectedPhotos ()), args);
+			return;
+		}
+		
+		if (args.Info == DragDrop.PhotoListEntry.Info) {
+			DragDrop.SetPhotosData (SelectedPhotos (), args.SelectionData);
+			return;
+		}
+		
+		if (args.Info == DragDrop.RootWindowEntry.Info) {
+			HandleSetAsBackgroundCommand (null, null);
+			return;
+		}
 	}
 
 	void HandleIconViewDragDrop (object sender, DragDropArgs args)
@@ -1357,8 +1370,7 @@ public class MainWindow {
 	{
 	 	Widget source = Gtk.Drag.GetSourceWidget (args.Context);     
 		
-		switch (args.Info) {
-		case (uint)TargetType.TagList:
+		if (args.Info == DragDrop.TagListEntry.Info) {
 			//
 			// Translate the event args from viewport space to window space,
 			// drag events use the viewport.  Owen sends his regrets.
@@ -1373,8 +1385,12 @@ public class MainWindow {
 				else 
 					AttachTags (tag_selection_widget.TagHighlight, new int [] {item});
 			}
-			break;
-		case (uint)TargetType.UriList:
+			
+			Gtk.Drag.Finish (args.Context, true, false, args.Time);
+			return;
+		}
+		
+		if (args.Info == DragDrop.UriListEntry.Info) {
 
 			/* 
 			 * If the drop is coming from inside f-spot then we don't want to import 
@@ -1384,9 +1400,13 @@ public class MainWindow {
 
 			UriList list = new UriList (args.SelectionData);
 			ImportUriList (list, (args.Context.Action & Gdk.DragAction.Copy) != 0);
-			break;
+			
+			Gtk.Drag.Finish (args.Context, true, false, args.Time);
+			return;
+		}
+		
 #if ENABLE_REPARENTING
-		case (uint)TargetType.PhotoList:
+		if (args.Info == DragDrop.PhotoListEntry.Info) {
 			int p_item = icon_view.CellAtPosition (args.X + (int) icon_view.Hadjustment.Value, 
 							     args.Y + (int) icon_view.Vadjustment.Value);
 
@@ -1398,12 +1418,10 @@ public class MainWindow {
 				cmd.Execute (db.Photos, SelectedPhotos(), query.Photos [p_item], GetToplevel (null));
 				UpdateQuery ();
 			}
-	
-			break;
-#endif
+			Gtk.Drag.Finish (args.Context, true, false, args.Time);
+			return;
 		}
-
-		Gtk.Drag.Finish (args.Context, true, false, args.Time);
+#endif
 	}
 
 	//

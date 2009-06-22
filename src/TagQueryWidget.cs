@@ -6,6 +6,7 @@ using Gtk;
 using Gdk;
 
 using FSpot.Utils;
+
 namespace FSpot
 {
 	public class LiteralPopup
@@ -206,7 +207,6 @@ namespace FSpot
 
 	public class LogicWidget : HBox {
 		private PhotoQuery query;
-		private TagSelectionWidget tag_selection_widget;
 
 		private static Tooltips tips = new Tooltips ();
 
@@ -234,16 +234,16 @@ namespace FSpot
 		}
 
 		// Drag and Drop
-		private static TargetEntry [] tag_dest_target_table = new TargetEntry [] {
-					new TargetEntry ("application/x-fspot-tags", 0, (uint) MainWindow.TargetType.TagList),
-					new TargetEntry ("application/x-fspot-tag-query-item", 0, (uint) MainWindow.TargetType.TagQueryItem),
-				};
+		private static TargetEntry [] tag_dest_target_table =
+			new TargetEntry [] {
+				FSpot.GuiUtils.DragDrop.TagListEntry,
+				FSpot.GuiUtils.DragDrop.TagQueryEntry
+			};
 
-		public LogicWidget (PhotoQuery query, TagStore tag_store, TagSelectionWidget selector) : base ()
+		public LogicWidget (PhotoQuery query, TagStore tag_store) : base ()
 		{
 			//SetFlag (WidgetFlags.NoWindow);
 			this.query = query;
-			this.tag_selection_widget = selector;
 
 			CanFocus = true;
 			Sensitive = true;
@@ -368,9 +368,9 @@ namespace FSpot
 			UpdateQuery ();
 		}
 
-		private void HandleTermAdded (Term parent, Literal after)
+		private void HandleTagsAdded (Tag[] tags, Term parent, Literal after)
 		{
-			InsertTerm (parent, after);
+			InsertTerm (tags, parent, after);
 		}
 
 		private void HandleAttachTag (Tag tag, Term parent, Literal after)
@@ -427,9 +427,24 @@ namespace FSpot
 
 		private void HandleDragDataReceived (object o, DragDataReceivedArgs args)
 		{
-			InsertTerm (rootTerm, null);
-
 			args.RetVal = true;
+			
+			if (args.Info == GuiUtils.DragDrop.TagListEntry.Info) {
+
+				InsertTerm (FSpot.GuiUtils.DragDrop.GetTagsData (args.SelectionData), rootTerm, null);
+				return;
+			}
+			
+			if (args.Info == GuiUtils.DragDrop.TagQueryEntry.Info) {
+
+				// FIXME: use drag data
+				HandleLiteralsMoved (Literal.FocusedLiterals, rootTerm, null);
+
+				// Prevent them from being removed again
+				Literal.FocusedLiterals = null;
+				
+				return;
+			}
 		}
 
 		/** Helper Functions **/
@@ -594,18 +609,6 @@ namespace FSpot
 			UpdateQuery ();
 		}
 
-		private void InsertTerm (Term parent, Literal after)
-		{
-			if (Literal.FocusedLiterals.Count != 0) {
-				HandleLiteralsMoved (Literal.FocusedLiterals, parent, after);
-
-				// Prevent them from being removed again
-				Literal.FocusedLiterals = null;
-			}
-			else
-				InsertTerm (tag_selection_widget.TagHighlight, parent, after);
-		}
-
 		public ArrayList InsertTerm (Tag [] tags, Term parent, Literal after)
 		{
 			int position;
@@ -642,7 +645,7 @@ namespace FSpot
 				}
 
 				Literal term  = new Literal (parent, tag, after);
-				term.TermAdded  += HandleTermAdded;
+				term.TagsAdded  += HandleTagsAdded;
 				term.LiteralsMoved += HandleLiteralsMoved;
 				term.AttachTag  += HandleAttachTag;
 				term.NegatedToggled += HandleNegated;

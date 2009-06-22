@@ -12,6 +12,10 @@ using Mono.Unix;
 using Gtk;
 using Gdk;
 
+using FSpot.GuiUtils;
+
+
+
 namespace FSpot {
 	public abstract class Term {
 		private ArrayList sub_terms = new ArrayList ();
@@ -758,25 +762,25 @@ namespace FSpot {
 		void HandleDragDataGet (object sender, DragDataGetArgs args)
 		{
 			args.RetVal = true;
-			switch (args.Info) {
-			case (uint) MainWindow.TargetType.TagList:
-			case (uint) MainWindow.TargetType.TagQueryItem:
+			
+			if (args.Info == DragDrop.TagListEntry.Info || args.Info == DragDrop.TagQueryEntry.Info) {
+				
+				// FIXME: do really write data
 				Byte [] data = Encoding.UTF8.GetBytes (String.Empty);
 				Atom [] targets = args.Context.Targets;
 
 				args.SelectionData.Set (targets[0], 8, data, data.Length);
 
 				return;
-			default:
-				// Drop cancelled
-				args.RetVal = false;
+			}
+			
+			// Drop cancelled
+			args.RetVal = false;
 
-				foreach (Widget w in hiddenWidgets)
+			foreach (Widget w in hiddenWidgets)
 				w.Visible = true;
 
-				focusedLiterals = null;
-				break;
-			}
+			focusedLiterals = null;
 		}
 
 		void HandleDragBegin (object sender, DragBeginArgs args)
@@ -804,16 +808,20 @@ namespace FSpot {
 			args.RetVal = true;
 		}
 
-		private void HandleDragDataReceived (object o, EventArgs args)
+		private void HandleDragDataReceived (object o, DragDataReceivedArgs args)
 		{
-			// If focusedLiterals is not null, this is a drag of a tag that's already been placed
-			if (focusedLiterals.Count == 0)
-			{
-				if (TermAdded != null)
-					TermAdded (Parent, this);
+			args.RetVal = true;
+			
+			if (args.Info == GuiUtils.DragDrop.TagListEntry.Info) {
+
+				if (TagsAdded != null)
+					TagsAdded (FSpot.GuiUtils.DragDrop.GetTagsData (args.SelectionData), Parent, this);
+				
+				return;
 			}
-			else
-			{
+			
+			if (args.Info == GuiUtils.DragDrop.TagQueryEntry.Info) {
+
 				if (! focusedLiterals.Contains(this))
 					if (LiteralsMoved != null)
 						LiteralsMoved (focusedLiterals, Parent, this);
@@ -875,14 +883,14 @@ namespace FSpot {
 
 		private const int overlay_size = (int) (.40 * ICON_SIZE);
 
-		private static TargetEntry [] tag_target_table = new TargetEntry [] {
-					new TargetEntry ("application/x-fspot-tag-query-item", 0, (uint) MainWindow.TargetType.TagQueryItem),
-				};
+		private static TargetEntry [] tag_target_table =
+			new TargetEntry [] {FSpot.GuiUtils.DragDrop.TagQueryEntry};
 
-		private static TargetEntry [] tag_dest_target_table = new TargetEntry [] {
-					new TargetEntry ("application/x-fspot-tags", 0, (uint) MainWindow.TargetType.TagList),
-					new TargetEntry ("application/x-fspot-tag-query-item", 0, (uint) MainWindow.TargetType.TagQueryItem),
-				};
+		private static TargetEntry [] tag_dest_target_table =
+			new TargetEntry [] {
+				FSpot.GuiUtils.DragDrop.TagListEntry,
+				FSpot.GuiUtils.DragDrop.TagQueryEntry
+			};
 
 		private static ArrayList focusedLiterals = new ArrayList();
 		private static ArrayList hiddenWidgets = new ArrayList();
@@ -909,8 +917,8 @@ namespace FSpot {
 		public delegate void RemovedHandler (Literal group);
 		public event RemovedHandler Removed;
 
-		public delegate void TermAddedHandler (Term parent, Literal after);
-		public event TermAddedHandler TermAdded;
+		public delegate void TagsAddedHandler (Tag[] tags, Term parent, Literal after);
+		public event TagsAddedHandler TagsAdded;
 
 		public delegate void AttachTagHandler (Tag tag, Term parent, Literal after);
 		public event AttachTagHandler AttachTag;
