@@ -70,6 +70,9 @@ namespace FSpot {
 				image_stream = image_file.PixbufStream ();
 				pixbuf_orientation = image_file.Orientation;
 			}
+
+			// The ThreadPool.QueueUserWorkItem hack is there cause, as the bytes to read are present in the stream,
+			// the Read is CompletedAsynchronously, blocking the mainloop
 			image_stream.BeginRead (buffer, 0, count, delegate (IAsyncResult r) {
 				ThreadPool.QueueUserWorkItem (delegate {HandleReadDone (r);});
 			}, null);
