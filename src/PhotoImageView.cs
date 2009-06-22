@@ -17,12 +17,6 @@ using FSpot.Utils;
 using Gdk;
 
 namespace FSpot.Widgets {
-	public enum ProgressType {
-		None,
-		Async,
-		Full
-	}
-
 	public class PhotoImageView : ImageView {
 #region public API
 		public PhotoImageView (IBrowsableCollection query) : this (new BrowsablePointer (query, -1))
@@ -288,8 +282,6 @@ namespace FSpot.Widgets {
 		protected BrowsablePointer item;
 		protected FSpot.Loupe loupe;
 		protected FSpot.Loupe sharpener;
-		ProgressType load_async = ProgressType.Full;
-		bool progressive_display;
 		GdkGlx.Context Glx;
 
 		void HandleOrientationChanged (object sender, EventArgs e)
@@ -297,8 +289,9 @@ namespace FSpot.Widgets {
 			Reload ();
 		}
 		
+		bool progressive_display;
 		bool ShowProgress {
-			get { return load_async == ProgressType.Full && progressive_display; }
+			get { return progressive_display; }
 		}
 
 		void LoadErrorImage (System.Exception e)
@@ -335,36 +328,21 @@ namespace FSpot.Widgets {
 			    this.Item.Current.DefaultVersionUri == args.PreviousItem.DefaultVersionUri)
 				return;
 
+			// Same image, don't load it progressively
 			if (args != null &&
 			    args.PreviousItem != null && 
 			    Item.IsValid && 
-			    Item.Current.DefaultVersionUri == args.PreviousItem.DefaultVersionUri &&
-			    load_async == ProgressType.Full)
+			    Item.Current.DefaultVersionUri == args.PreviousItem.DefaultVersionUri)
 				progressive_display = false;
 
-			if (load_async != ProgressType.None) {
-				Gdk.Pixbuf old = this.Pixbuf;
-				try {
-					if (Item.IsValid) {
-						System.Uri uri = Item.Current.DefaultVersionUri;
-						Load (uri);
-					} else
-						LoadErrorImage (null);
-
-				} catch (System.Exception e) {
-					System.Console.WriteLine (e.ToString ());
-					LoadErrorImage (e);
-				}
-				if (old != null)
-					old.Dispose ();
-			} else {	
-				Gdk.Pixbuf old = this.Pixbuf;
-				this.Pixbuf = FSpot.PhotoLoader.Load (item.Collection, 
-								      item.Index);
-				if (old != null)
-					old.Dispose ();
-
-				this.ZoomFit ();
+			try {
+				if (Item.IsValid) 
+					Load (Item.Current.DefaultVersionUri);
+				else
+					LoadErrorImage (null);
+			} catch (System.Exception e) {
+				Log.DebugException (e);
+				LoadErrorImage (e);
 			}
 			
 			Selection = Gdk.Rectangle.Zero;
