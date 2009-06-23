@@ -273,40 +273,35 @@ namespace FSpot.Utils
         #endregion
 
         #region Public Trace Methods
-
-        public static void Trace (string group, string details)
-        {
-            if (Tracing) {
-                Commit (LogEntryType.Trace, group, details, false);
-            }
-        }
-
+	[Obsolete ("use Trace ()")]
         public static void TraceFormat (string group, string format, params object [] args)
+	{
+		Trace (group, format, args);
+	}
+
+        public static void Trace (string group, string format, params object [] args)
         {
             if (Tracing) {
-                Trace (group, String.Format (format, args));
+                Commit (LogEntryType.Trace, group, String.Format (format, args), false);
             }
         }
-
         #endregion
         
         #region Public Debug Methods
-                                    
-        public static void Debug (string message, string details)
-        {
-            if (Debugging) {
-                Commit (LogEntryType.Debug, message, details, false);
-            }
-        }
-        
         public static void Debug (string message)
         {
             if (Debugging) {
-                Debug (message, null);
+                Commit (LogEntryType.Debug, message, null, false);
             }
         }
         
+	[Obsolete ("use Debug ()")]
         public static void DebugFormat (string format, params object [] args)
+	{
+		Debug (format, args);
+	}
+
+        public static void Debug (string format, params object [] args)
         {
             if (Debugging) {
                 Debug (String.Format (format, args));
@@ -325,21 +320,9 @@ namespace FSpot.Utils
 		Exception (message, e);
 
 	}
-                
         #endregion
         
         #region Public Information Methods
-            
-        public static void Information (string message)
-        {
-            Information (message, null);
-        }
-        
-        public static void Information (string message, string details)
-        {
-            Information (message, details, false);
-        }
-        
         public static void Information (string message, string details, bool showUser)
         {
             Commit (LogEntryType.Information, message, details, showUser);
@@ -350,25 +333,19 @@ namespace FSpot.Utils
             Information (message, null, showUser);
         }
         
+	[Obsolete ("use Information ()")]
         public static void InformationFormat (string format, params object [] args)
+	{
+		Information (format, args);
+	}
+
+        public static void Information (string format, params object [] args)
         {
-            Information (String.Format (format, args));
+            Information (String.Format (format, args), null, false);
         }
-        
         #endregion
         
         #region Public Warning Methods
-        
-        public static void Warning (string message)
-        {
-            Warning (message, null);
-        }
-        
-        public static void Warning (string message, string details)
-        {
-            Warning (message, details, false);
-        }
-        
         public static void Warning (string message, string details, bool showUser)
         {
             Commit (LogEntryType.Warning, message, details, showUser);
@@ -379,25 +356,19 @@ namespace FSpot.Utils
             Warning (message, null, showUser);
         }
         
+	[Obsolete ("use Warning ()")]
         public static void WarningFormat (string format, params object [] args)
+	{
+		Warning (format, args);	
+	}
+
+        public static void Warning (string format, params object [] args)
         {
-            Warning (String.Format (format, args));
+            Warning (String.Format (format, args), false);
         }
-        
         #endregion
         
         #region Public Error Methods
-        
-        public static void Error (string message)
-        {
-            Error (message, null);
-        }
-        
-        public static void Error (string message, string details)
-        {
-            Error (message, details, false);
-        }
-        
         public static void Error (string message, string details, bool showUser)
         {
             Commit (LogEntryType.Error, message, details, showUser);
@@ -408,11 +379,16 @@ namespace FSpot.Utils
             Error (message, null, showUser);
         }
 
+	[Obsolete ("use Error ()")]
         public static void ErrorFormat (string format, params object [] args)
+	{
+		Error (format, args);
+	}
+
+        public static void Error (string format, params object [] args)
         {
-            Error (String.Format (format, args));
+            Error (String.Format (format, args), null, false);
         }
-        
         #endregion
         
         #region Public Exception Methods
@@ -445,7 +421,13 @@ namespace FSpot.Utils
             Log.Warning (message ?? "Caught an exception", builder.ToString (), false);
         }
         
+	[Obsolete ("use Exception ()")]
 	public static void ExceptionFormat (Exception e, string format, params object [] args)
+	{
+		Exception (e, format, args);
+	}
+
+	public static void Exception (Exception e, string format, params object [] args)
 	{
 		Exception (String.Format (format, args), e);
 	}
