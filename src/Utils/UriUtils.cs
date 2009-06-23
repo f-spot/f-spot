@@ -14,7 +14,7 @@ using System.IO;
 namespace FSpot.Utils
 {
 	public static class UriUtils
-	{
+	{		
 		public static string UriToStringEscaped (Uri uri)
 		{
 			return EscapeString (uri.ToString (), false, true, false);

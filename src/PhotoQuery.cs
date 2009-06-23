@@ -274,6 +274,7 @@ namespace FSpot {
 
 			if (Changed != null)
 				Changed (this);
+			
 			Log.DebugTimerPrint (timer, "Reloading the query took {0}");
 		}
 		

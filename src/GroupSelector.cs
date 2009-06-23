@@ -56,9 +56,6 @@ namespace FSpot {
 				if (adaptor is TimeAdaptor) {
 					MainWindow.ToolTips.SetTip (left, Catalog.GetString ("More dates"), null);
 					MainWindow.ToolTips.SetTip (right, Catalog.GetString ("More dates"), null);
-				} else if (adaptor is DirectoryAdaptor) {
-					MainWindow.ToolTips.SetTip (left, Catalog.GetString ("More directories"), null);
-					MainWindow.ToolTips.SetTip (right, Catalog.GetString ("More directories"), null);
 				} else {
 					MainWindow.ToolTips.SetTip (left, Catalog.GetString ("More"), null);
 					MainWindow.ToolTips.SetTip (right, Catalog.GetString ("More"), null);
@@ -512,14 +509,6 @@ namespace FSpot {
 		{
 			Gtk.Menu order_menu = new Gtk.Menu();
 			
-			GtkUtil.MakeCheckMenuItem (order_menu, Catalog.GetString ("Arrange by _Month"),
-					      MainWindow.Toplevel.HandleArrangeByTime, true, (adaptor is TimeAdaptor), true);
-			
-			GtkUtil.MakeCheckMenuItem (order_menu, Catalog.GetString ("Arrange by _Folder"),
-					      MainWindow.Toplevel.HandleArrangeByDirectory, true, (adaptor is DirectoryAdaptor), true);
-
-			GtkUtil.MakeMenuSeparator (order_menu);
-
 			GtkUtil.MakeCheckMenuItem (order_menu, Catalog.GetString ("_Reverse Order"),
 					      MainWindow.Toplevel.HandleReverseOrder, true, adaptor.OrderAscending, false);
 

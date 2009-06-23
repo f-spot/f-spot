@@ -190,7 +190,7 @@ namespace FSpot.Query
 				foreach (LogicalTerm t in (term as AndTerm).terms)
 					Add (t);
 			else
-				terms.Add (term);			
+				terms.Add (term);
 		}
 
 		public override string SqlClause ()

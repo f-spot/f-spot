@@ -17,6 +17,11 @@ namespace FSpot.Widgets
     {
         protected bool row_selected_on_button_down, ignore_button_release, drag_started;
 
+		public SaneTreeView()
+        {
+            Selection.Mode = SelectionMode.Multiple;
+        }
+		
         public SaneTreeView(TreeStore store) : base(store)
         {
             Selection.Mode = SelectionMode.Multiple;

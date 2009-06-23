@@ -494,6 +494,94 @@ namespace FSpot.Database {
 			//AddUpdate (new Version (14,0), delegate () {
 			//	do update here
 			//});
+			
+			// Update to version 17.0, split uri and filename
+			AddUpdate (new Version (17,0),delegate () {
+				string tmp_photos = MoveTableToTemp ("photos");
+				string tmp_versions = MoveTableToTemp ("photo_versions");
+				
+				Execute (
+					"CREATE TABLE photos (\n" +
+					"	id			INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, \n" +
+					"	time			INTEGER NOT NULL, \n" +
+					"	base_uri		STRING NOT NULL, \n" +
+				    "	filename		STRING NOT NULL, \n" +
+					"	description		TEXT NOT NULL, \n" +
+					"	roll_id			INTEGER NOT NULL, \n" +
+					"	default_version_id	INTEGER NOT NULL, \n" +
+					"	rating			INTEGER NULL, \n" +
+					"	md5_sum			TEXT NULL\n" +
+					")");
+				
+				Execute (
+					"CREATE TABLE photo_versions (\n"+
+					"	photo_id	INTEGER, \n" +
+					"	version_id	INTEGER, \n" +
+					"	name		STRING, \n" +
+					"	base_uri		STRING NOT NULL, \n" +
+				    "	filename		STRING NOT NULL, \n" +
+					"	md5_sum		TEXT NULL, \n" +
+					"	protected	BOOLEAN, \n" +
+					"	UNIQUE (photo_id, version_id)\n" +
+					")");
+				
+				SqliteDataReader reader = ExecuteReader (String.Format (
+					"SELECT id, time, uri, description, roll_id, default_version_id, rating, md5_sum " +
+					"FROM {0} ", tmp_photos));
+		
+				while (reader.Read ()) {
+					System.Uri photo_uri = new System.Uri (reader ["uri"] as string);
+					
+					string filename = photo_uri.GetFilename ();
+					Uri base_uri = photo_uri.GetDirectoryUri ();
+
+					string md5 = reader ["md5_sum"].ToString ();
+					
+					Execute (new DbCommand (
+						"INSERT INTO photos (id, time, base_uri, filename, description, roll_id, default_version_id, rating, md5_sum) "	+
+						"VALUES (:id, :time, :base_uri, :filename, :description, :roll_id, :default_version_id, :rating, :md5_sum)",
+					    "id", Convert.ToUInt32 (reader ["id"]),
+						"time", Convert.ToUInt32 (reader ["time"]),
+						"base_uri", base_uri.ToString (),
+						"filename", filename,
+						"description", reader["description"].ToString (),
+						"roll_id", Convert.ToUInt32 (reader ["roll_id"]),
+						"default_version_id", Convert.ToUInt32 (reader ["default_version_id"]),
+						"rating", Convert.ToUInt32 (reader ["rating"]),
+						"md5_sum", (md5 != String.Empty ? md5 : null)));
+				}
+				
+				reader.Close ();
+				
+				reader = ExecuteReader (String.Format (
+						"SELECT photo_id, version_id, name, uri, md5_sum, protected " +
+						"FROM {0} ", tmp_versions));
+				
+				while (reader.Read ()) {
+					System.Uri photo_uri = new System.Uri (reader ["uri"] as string);
+					
+					string filename = photo_uri.GetFilename ();
+					Uri base_uri = photo_uri.GetDirectoryUri ();
+
+					string md5 = reader ["md5_sum"].ToString ();
+					
+					Execute (new DbCommand (				
+						"INSERT INTO photo_versions (photo_id, version_id, name, base_uri, filename, protected, md5_sum) " +
+						"VALUES (:photo_id, :version_id, :name, :base_uri, :filename, :is_protected, :md5_sum)",
+						"photo_id", Convert.ToUInt32 (reader ["photo_id"]),
+						"version_id", Convert.ToUInt32 (reader ["version_id"]),
+						"name", reader["name"].ToString (),
+				        "base_uri", base_uri.ToString (),
+						"filename", filename,
+						"is_protected", Convert.ToBoolean (reader["protected"]),
+						"md5_sum", (md5 != String.Empty ? md5 : null)));
+				}
+				
+				Execute ("CREATE INDEX idx_photos_roll_id ON photos(roll_id)");
+				Execute ("CREATE INDEX idx_photo_versions_id ON photo_versions(photo_id)");
+				
+
+			}, true);
 		}
 
 		public static void Run (Db database)
@@ -549,7 +637,7 @@ namespace FSpot.Database {
 				}
 
 				db.CommitTransaction ();
-			} catch (Exception e) {
+			} catch (Exception e) {Log.DebugException (e);
 				Log.Warning ("Rolling back database changes because of Exception");
 				// There was an error, roll back the database
 				db.RollbackTransaction ();

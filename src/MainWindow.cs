@@ -477,7 +477,6 @@ public class MainWindow {
 		view_notebook.SwitchPage += HandleViewNotebookSwitchPage;
 		group_selector.Adaptor.GlassSet += HandleAdaptorGlassSet;
 		group_selector.Adaptor.Changed += HandleAdaptorChanged;
-		LoadPreference (Preferences.GROUP_ADAPTOR);
 		LoadPreference (Preferences.GROUP_ADAPTOR_ORDER_ASC);
 
 		this.selection = new MainSelection (this);
@@ -933,6 +932,12 @@ public class MainWindow {
 		}
 	}
 	
+	public void SetFolderQuery (UriList uri_list)
+	{
+		ShowQueryWidget ();
+		query_widget.SetFolders (uri_list);
+	}
+	
 	public void AddTagsQuery (Tag [] tags)
 	{
 		ShowQueryWidget ();
@@ -976,12 +981,12 @@ public class MainWindow {
 		//FIXME this should make sure the photos are sorted by
 		//time.  This should be handled via a property that
 		//does all the needed switching.
-		if (!(group_selector.Adaptor is FSpot.TimeAdaptor))
+		/*if (!(group_selector.Adaptor is FSpot.TimeAdaptor))
 			HandleArrangeByTime (null, null);
 		
 		FSpot.TimeAdaptor time_adaptor = group_selector.Adaptor as FSpot.TimeAdaptor;
 		if (time_adaptor != null)
-			JumpTo (query.LookupItem (time));
+			JumpTo (query.LookupItem (time));*/
 	}
 
 	private void JumpTo (int index)
@@ -1618,44 +1623,6 @@ public class MainWindow {
 			Preferences.Set (Preferences.TAG_ICON_SIZE, TagsIconSize);
 		}
 	}
-
-	public void HandleArrangeByTime (object sender, EventArgs args)
-	{
-		if (group_selector.Adaptor is TimeAdaptor)
-			return;
-
-		group_selector.Adaptor.GlassSet -= HandleAdaptorGlassSet;
-		group_selector.Adaptor.Changed -= HandleAdaptorChanged;
-		group_selector.Adaptor = new FSpot.TimeAdaptor (query, reverse_order.Active);
-
-		group_selector.Mode = FSpot.GroupSelector.RangeType.Min;
-		group_selector.Adaptor.GlassSet += HandleAdaptorGlassSet;
-		group_selector.Adaptor.Changed += HandleAdaptorChanged;
-
-		if (sender != month)
-			month.Active = true;
-
-		//update the selection in the Timeline
-		if (query.Range != null)
-			group_selector.SetLimitsToDates(query.Range.Start, query.Range.End);
-	}
-
-	public void HandleArrangeByDirectory (object sender, EventArgs args)
-	{
-		if (group_selector.Adaptor is DirectoryAdaptor)
-			return;
-
-		group_selector.Adaptor.GlassSet -= HandleAdaptorGlassSet;
-		group_selector.Adaptor.Changed -= HandleAdaptorChanged;
-		group_selector.Adaptor = new FSpot.DirectoryAdaptor (query, reverse_order.Active); 	
-
-		group_selector.Mode = FSpot.GroupSelector.RangeType.Min;
-		group_selector.Adaptor.GlassSet += HandleAdaptorGlassSet;
-		group_selector.Adaptor.Changed += HandleAdaptorChanged;
-
-		if (sender != directory)
-			directory.Active = true;
-	}
 	
 	public void HandleReverseOrder (object sender, EventArgs args)
 	{
@@ -1715,8 +1682,6 @@ public class MainWindow {
 		Preferences.Set (Preferences.SHOW_DATES,		icon_view.DisplayDates);
 		Preferences.Set (Preferences.SHOW_RATINGS,		icon_view.DisplayRatings);
 
-		Preferences.Set (Preferences.GROUP_ADAPTOR,		(group_selector.Adaptor is DirectoryAdaptor) ? 1 : 0);
-		Preferences.Set (Preferences.GROUP_ADAPTOR_ORDER_ASC,   group_selector.Adaptor.OrderAscending);
 		Preferences.Set (Preferences.GLASS_POSITION,		group_selector.GlassPosition);
 		
 		Preferences.Set (Preferences.SIDEBAR_POSITION,		main_hpaned.Position);
@@ -2535,11 +2500,6 @@ public class MainWindow {
 		case Preferences.SHOW_RATINGS:
 			if (display_ratings_menu_item.Active != Preferences.Get<bool> (key))
 				display_ratings_menu_item.Active = Preferences.Get<bool> (key);
-			break;
-		
-		case Preferences.GROUP_ADAPTOR:
-			if (Preferences.Get<int> (key) == 1)
-				directory.Active = true;
 			break;
 
 		case Preferences.GROUP_ADAPTOR_ORDER_ASC:
