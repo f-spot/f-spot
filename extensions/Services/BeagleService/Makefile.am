@@ -16,6 +16,7 @@ REFS =					\
 	-r:$(top_builddir)/src/FSpot.Core.dll	\
 	-r:$(top_builddir)/src/FSpot.Utils.dll	\
 	$(LINK_MONO_ADDINS)			\
+	$(LINK_SEMWEB)				\
 	$(LINK_BEAGLE)
 
 PKGS =
