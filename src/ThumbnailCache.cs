@@ -109,7 +109,7 @@ public class ThumbnailCache : IDisposable {
 
 	~ThumbnailCache ()
 	{
-		Log.DebugFormat ("Finalizer called on {0}. Should be Disposed", GetType ());		
+		Log.Debug ("Finalizer called on {0}. Should be Disposed", GetType ());		
 		foreach (object item in pixbuf_mru) {
 			Thumbnail thumb = item as Thumbnail;
 			pixbuf_hash.Remove (thumb.uri);

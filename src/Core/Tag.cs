@@ -176,7 +176,7 @@ namespace FSpot
 
 		~Tag ()
 		{
-			Log.DebugFormat ("Finalizer called on {0}. Should be Disposed", GetType ());		
+			Log.Debug ("Finalizer called on {0}. Should be Disposed", GetType ());		
 			if (icon != null)
 				icon.Dispose ();
 			if (cached_icon != null)

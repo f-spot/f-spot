@@ -276,7 +276,7 @@ namespace FSpotTabbloExport {
 				}
 			
 				if (1 <= items.Length) {
-					Log.DebugFormat ("{0} data found in "
+					Log.Debug ("{0} data found in "
 							+ "keyring",
 							KeyringItemName);
 					attrs =	items [0].Attributes;

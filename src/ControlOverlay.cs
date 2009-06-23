@@ -167,7 +167,7 @@ namespace FSpot {
 
 		bool FadeToTarget ()
 		{
-			//Log.DebugFormat ("op {0}\ttarget{1}", opacity, target);
+			//Log.Debug ("op {0}\ttarget{1}", opacity, target);
 			Visible = (opacity > 0.05);
 			if (Math.Abs (target - opacity) < .05)
 				return false;
@@ -184,7 +184,7 @@ namespace FSpot {
 
 		bool FadeToTarget (double target)
 		{
-			//Log.DebugFormat ("FadeToTarget {0}", target);
+			//Log.Debug ("FadeToTarget {0}", target);
 			Realize ();
 			this.target = target;
 			fade.Start ();

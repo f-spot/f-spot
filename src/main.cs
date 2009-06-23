@@ -160,7 +160,7 @@ namespace FSpot
 						break;
 					if (args [i].StartsWith ("--trace"))
 						break;
-					Log.DebugFormat ("Unparsed argument >>{0}<<", args [i]);
+					Log.Debug ("Unparsed argument >>{0}<<", args [i]);
 					break;
 				}
 			}
@@ -336,7 +336,7 @@ namespace FSpot
 					else if (max_size == 0)
 						Log.Warning ("maximum_size is 0 (tin-hat mode), not overriding");
 					else if (max_size < size) {
-						Log.DebugFormat ("Setting maximum_size to a saner value ({0}MB), according to your db size", size);
+						Log.Debug ("Setting maximum_size to a saner value ({0}MB), according to your db size", size);
 						Preferences.Set (Preferences.GSD_THUMBS_MAX_SIZE, size);
 					}
 				}

@@ -70,11 +70,11 @@ public class GPhotoCamera
 
 		
 		string path  = camera_list.GetValue (selected_camera__camera_list_index);
-		Log.DebugFormat ("Testing gphoto path = {0}", path);
+		Log.Debug ("Testing gphoto path = {0}", path);
 		selected_camera__port_info_list_index = port_info_list.LookupPath (path);
 
 		port_info = port_info_list.GetInfo (selected_camera__port_info_list_index);
-		Log.DebugFormat ("PortInfo {0}, {1}", port_info.Name, port_info.Path);
+		Log.Debug ("PortInfo {0}, {1}", port_info.Name, port_info.Path);
 
 		camera.SetPortInfo (port_info);
 	}

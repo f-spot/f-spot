@@ -198,7 +198,7 @@ namespace MergeDbExtension
 				foreach (string key in PathMap.Keys) {
 					string path = photo_path;
 					path = path.Replace (key, PathMap [key]);
-					Log.DebugFormat ("Replaced path {0}", path);
+					Log.Debug ("Replaced path {0}", path);
 					if (System.IO.File.Exists (path)) {
 						photo_path = path;
 						break;;
@@ -218,7 +218,7 @@ namespace MergeDbExtension
 					pfd.Dialog.Destroy ();
 					if (new_folder == null) //Skip
 						return;
-					Log.DebugFormat ("{0} maps to {1}", folder, new_folder);
+					Log.Debug ("{0} maps to {1}", folder, new_folder);
 
 					PathMap[folder] = new_folder;
 

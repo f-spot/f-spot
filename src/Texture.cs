@@ -88,7 +88,7 @@ namespace FSpot {
 			int max_size;
 			Gl.glGetIntegerv (Gl.GL_MAX_RECTANGLE_TEXTURE_SIZE_ARB, out max_size);
 			float scale = (float)Math.Min (1.0, max_size / (double) Math.Max (width, height));
-			//Log.DebugFormat ("max texture size {0} scaling to {1}", max_size, scale);
+			//Log.Debug ("max texture size {0} scaling to {1}", max_size, scale);
 			
 			if (surface.DataPtr == IntPtr.Zero)
 				throw new TextureException ("Surface has no data");
@@ -102,7 +102,7 @@ namespace FSpot {
 				int swidth = (int)(width * scale);
 				int sheight = (int) (height * scale);
 				tmp = Marshal.AllocHGlobal (swidth * sheight * 4);
-				//LogDebugFormat ("scaling image {0} x {1}", swidth, sheight);
+				//LogDebug ("scaling image {0} x {1}", swidth, sheight);
 
 				Glu.gluScaleImage (Gl.GL_BGRA,
 						  width,
@@ -141,10 +141,10 @@ namespace FSpot {
 
 		void Close ()
 		{
-			//Log.DebugFormat ("Disposing {0} IsTexture {1}", texture_id, Gl.glIsTexture (texture_id));
+			//Log.Debug ("Disposing {0} IsTexture {1}", texture_id, Gl.glIsTexture (texture_id));
 			int [] ids = new int [] { texture_id };
 			Gl.glDeleteTextures (1, ids);
-			//Log.DebugFormat ("Done Disposing {0}", ids [0]);
+			//Log.Debug ("Done Disposing {0}", ids [0]);
 		}
 
 		public void Dispose ()

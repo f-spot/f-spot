@@ -124,7 +124,7 @@ namespace FSpot {
 			int max_year = endyear;
 
 			if (year < min_year || year > max_year) {
-				Log.DebugFormat ("TimeAdaptor.IndexFromDate year out of range[{1},{2}]: {0}", year, min_year, max_year);
+				Log.Debug ("TimeAdaptor.IndexFromDate year out of range[{1},{2}]: {0}", year, min_year, max_year);
 				return 0;
 			}
 
@@ -138,7 +138,7 @@ namespace FSpot {
 			int max_year = endyear;
 		
 			if (year < min_year || year > max_year) {
-				Log.DebugFormat ("TimeAdaptor.IndexFromPhoto year out of range[{1},{2}]: {0}", year, min_year, max_year);
+				Log.Debug ("TimeAdaptor.IndexFromPhoto year out of range[{1},{2}]: {0}", year, min_year, max_year);
 				return 0;
 			}
 

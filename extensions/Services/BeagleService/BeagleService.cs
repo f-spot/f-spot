@@ -44,7 +44,7 @@ namespace BeagleService {
 					try {
 						BeagleNotifier.SendUpdate (item as Photo);
 					} catch (Exception e) {
-						Log.DebugFormat ("BeagleNotifier.SendUpdate failed with {0}", e.Message);
+						Log.Debug ("BeagleNotifier.SendUpdate failed with {0}", e.Message);
 					}
 			}
 #endif

@@ -54,7 +54,7 @@ namespace FSpot.Utils {
 		public static void Touch (string filename)
 		{
 			if (NativeMethods.UTime (filename, IntPtr.Zero) != 0)
-				Log.DebugFormat ("touch on {0} failed", filename);
+				Log.Debug ("touch on {0} failed", filename);
 		}
 	}
 }

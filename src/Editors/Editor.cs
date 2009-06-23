@@ -84,7 +84,7 @@ namespace FSpot.Editors {
 		// A tool can be applied if it doesn't need a selection, or if it has one.
 		public bool CanBeApplied {
 			get {
-				Log.DebugFormat ("{0} can be applied? {1}", this, !NeedsSelection || (NeedsSelection && State.HasSelection));
+				Log.Debug ("{0} can be applied? {1}", this, !NeedsSelection || (NeedsSelection && State.HasSelection));
 				return !NeedsSelection || (NeedsSelection && State.HasSelection);
 			}
 		}
@@ -230,7 +230,7 @@ namespace FSpot.Editors {
 				width = (int) (iwidth / ratio);
 				height = (int) (iheight / ratio);
 			}
-			//Log.DebugFormat ("Preview size: Allocation: {0}x{1}, Input: {2}x{3}, Result: {4}x{5}", awidth, aheight, iwidth, iheight, width, height);
+			//Log.Debug ("Preview size: Allocation: {0}x{1}, Input: {2}x{3}, Result: {4}x{5}", awidth, aheight, iwidth, iheight, width, height);
 		}
 
 		public void Restore () {

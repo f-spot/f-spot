@@ -80,7 +80,7 @@ namespace FSpot.Exporter.Facebook
 			string keyring;
 			try {
 				keyring = Ring.GetDefaultKeyring();
-				Log.DebugFormat ("Got default keyring {0}", keyring);
+				Log.Debug ("Got default keyring {0}", keyring);
 			} catch (Exception e) {
 				Log.DebugException (e);
 				return false;

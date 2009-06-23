@@ -319,7 +319,7 @@ namespace FSpot {
 
 		~PhotoView ()
 		{
-			FSpot.Utils.Log.DebugFormat ("Finalizer called on {0}. Should be Disposed", GetType ());		
+			FSpot.Utils.Log.Debug ("Finalizer called on {0}. Should be Disposed", GetType ());		
 			Dispose (false);	
 		}
 

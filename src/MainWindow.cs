@@ -1660,7 +1660,7 @@ public class MainWindow {
 
 	public void ImportCamera (string camera_device)
 	{
-		Log.DebugFormat ("ImportCamera {0}", camera_device);
+		Log.Debug ("ImportCamera {0}", camera_device);
 		GPhotoCamera cam = new GPhotoCamera();
 
 		try {

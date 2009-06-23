@@ -139,7 +139,7 @@ namespace FSpot.Widgets {
 				//w.GdkWindow.Scroll (- (n_x - pan_x), - (n_y - pan_y));
 				w.QueueDraw ();
 				w.GdkWindow.ProcessUpdates (false);
-				//Log.DebugFormat ("{0} {1} elapsed", DateTime.UtcNow, DateTime.UtcNow - start);
+				//Log.Debug ("{0} {1} elapsed", DateTime.UtcNow, DateTime.UtcNow - start);
 			}
 			pan_x = n_x;
 			pan_y = n_y;

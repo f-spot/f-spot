@@ -75,7 +75,7 @@ public class FileImportBackend : ImportBackend {
 
 	private void GetListing (System.IO.DirectoryInfo dirinfo, System.IO.FileInfo [] files, bool recurse)
 	{
-		Log.DebugFormat ("Scanning {0} for new photos", dirinfo.FullName);
+		Log.Debug ("Scanning {0} for new photos", dirinfo.FullName);
 		List<Uri> existing_entries = new List<Uri> ();
 
 		foreach (Photo p in store.Query (new Uri (dirinfo.FullName)))

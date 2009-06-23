@@ -200,7 +200,7 @@ namespace FSpot.Xmp {
 							tmp_ui = System.Convert.ToUInt32 (l.Value);
 						} catch {
 							// Set rating to 0, and continue
-							Log.DebugFormat ("Found illegal rating >{0}< in predicate {1}. Rating cleared",
+							Log.Debug ("Found illegal rating >{0}< in predicate {1}. Rating cleared",
 										 l.Value, stmt.Predicate.Uri);
 							tmp_ui = 0;
 						}

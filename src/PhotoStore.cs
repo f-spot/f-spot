@@ -71,7 +71,7 @@ public class PhotoStore : DbStore<Photo> {
 			try {
 				thumbnail = ((FSpot.IThumbnailContainer)img).GetEmbeddedThumbnail ();
 			} catch (Exception e) {
-				Log.DebugFormat ("Exception while loading embedded thumbail {0}", e.ToString ());
+				Log.Debug ("Exception while loading embedded thumbail {0}", e.ToString ());
 			}
 		}
 
@@ -930,7 +930,7 @@ public class PhotoStore : DbStore<Photo> {
 
 	public Photo [] Query (System.Uri uri)
 	{
-		Log.DebugFormat ("Query Uri {0}", uri);
+		Log.Debug ("Query Uri {0}", uri);
 		return Query (new DbCommand (
 			"SELECT id, "			+
 				"time, "			+

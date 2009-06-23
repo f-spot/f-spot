@@ -110,7 +110,7 @@ namespace Banshee.Database
 
         ~QueuedSqliteDatabase ()
         {
-            Log.DebugFormat ("Finalizer called on {0}. Should be Disposed", GetType ());
+            Log.Debug ("Finalizer called on {0}. Should be Disposed", GetType ());
             Dispose (false);
         }
         

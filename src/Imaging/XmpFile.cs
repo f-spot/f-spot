@@ -37,7 +37,7 @@ namespace FSpot.Xmp {
 				store.Import (reader);
 				//Dump ();
 			} catch (System.Exception e) {
-				Log.DebugFormat ("Caught an exception :{0}", e.ToString ());
+				Log.Debug ("Caught an exception :{0}", e.ToString ());
 			}
 		}
 

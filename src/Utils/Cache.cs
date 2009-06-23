@@ -152,7 +152,7 @@ namespace FSpot.Utils
 
 		~DisposableCache ()
 		{
-			Log.DebugFormat ("Finalizer called on {0}. Should be Disposed", GetType ());		
+			Log.Debug ("Finalizer called on {0}. Should be Disposed", GetType ());		
 			Clear ();	
 		}
 	}

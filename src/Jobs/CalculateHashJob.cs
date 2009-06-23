@@ -35,14 +35,14 @@ namespace FSpot.Jobs {
 			System.Threading.Thread.Sleep (200);
 
 			uint photo_id = Convert.ToUInt32 (JobOptions);
-			Log.DebugFormat ("Calculating Hash {0}...", photo_id);
+			Log.Debug ("Calculating Hash {0}...", photo_id);
 
 			try {
 			 	Photo photo = FSpot.Core.Database.Photos.Get (Convert.ToUInt32 (photo_id)) as Photo;
 				FSpot.Core.Database.Photos.UpdateMD5Sum (photo);
 				return true;
 			} catch (System.Exception e) {
-			 	Log.DebugFormat ("Error Calculating Hash for photo {0}: {1}", JobOptions, e.Message);
+			 	Log.Debug ("Error Calculating Hash for photo {0}: {1}", JobOptions, e.Message);
 			}
 			return false;
 		}

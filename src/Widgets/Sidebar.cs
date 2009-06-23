@@ -221,7 +221,7 @@ namespace FSpot.Widgets {
 
 		private void HandleCanSelectChanged (object sender, EventArgs args)
 		{
-			//Log.DebugFormat ("Can select changed for {0} to {1}", sender, (sender as SidebarPage).CanSelect);
+			//Log.Debug ("Can select changed for {0} to {1}", sender, (sender as SidebarPage).CanSelect);
 		}
 
 		public void AppendPage (Widget widget, string label, string icon_name)

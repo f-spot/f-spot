@@ -675,7 +675,7 @@ namespace FSpot.Database {
 			{
 				code ();
 				
-				Log.DebugFormat ("Updated database from version {0} to {1}",
+				Log.Debug ("Updated database from version {0} to {1}",
 						db_version.Value,
 						Version.ToString ());
 

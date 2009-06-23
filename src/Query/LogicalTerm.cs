@@ -62,7 +62,7 @@ namespace FSpot.Query
 
 		~TagTerm ()
 		{
-			Log.DebugFormat ("Finalizer called on {0}. Should be Disposed", GetType ());
+			Log.Debug ("Finalizer called on {0}. Should be Disposed", GetType ());
 			if (tag != null)
 				tag.Dispose ();
 		}

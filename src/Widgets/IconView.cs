@@ -1033,7 +1033,7 @@ namespace FSpot.Widgets
 			i ++) {
 				int cell_x = start_cell_x;
 
-				//Log.DebugFormat ("Drawing row {0}", start_cell_row + i);
+				//Log.Debug ("Drawing row {0}", start_cell_row + i);
 				for (int j = 0; j < num_cols && cell_num + j < collection.Count; j ++) {
 					DrawCell (cell_num + j, area);
 					cell_x += cell_width;
@@ -1082,7 +1082,7 @@ namespace FSpot.Widgets
 
 			Gdk.Region offscreen = new Gdk.Region ();
 			/*
-			Log.DebugFormat ("step ({0}, {1}) allocation ({2},{3},{4},{5})",
+			Log.Debug ("step ({0}, {1}) allocation ({2},{3},{4},{5})",
 					xstep, ystep, Hadjustment.Value, Vadjustment.Value,
 					Allocation.Width, Allocation.Height);
 			*/

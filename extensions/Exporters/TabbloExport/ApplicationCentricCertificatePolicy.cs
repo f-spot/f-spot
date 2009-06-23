@@ -62,7 +62,7 @@ namespace FSpotTabbloExport {
 		                                   WebRequest request,
 						   int problem)
 		{
-			Log.DebugFormat ("Checking validation result for {0}: "
+			Log.Debug ("Checking validation result for {0}: "
 					+ "problem={1}",
 					request.RequestUri, problem);
 
