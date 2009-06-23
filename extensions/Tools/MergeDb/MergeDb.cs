@@ -109,7 +109,7 @@ namespace MergeDbExtension
 
 		public static void Merge (string path, Db to_db)
 		{
-			Log.WarningFormat ("Will merge db {0} into main f-spot db {1}", path, FSpot.Global.BaseDirectory + "/photos.db" );
+			Log.Warning ("Will merge db {0} into main f-spot db {1}", path, FSpot.Global.BaseDirectory + "/photos.db" );
 			Db from_db = new Db ();
 			from_db.Init (path, true);
 			//MergeDb mdb = new MergeDb (from_db, to_db);
@@ -187,7 +187,7 @@ namespace MergeDbExtension
 
 		void ImportPhoto (Photo photo, bool copy)
 		{
-			Log.WarningFormat ("Importing {0}", photo.Name);
+			Log.Warning ("Importing {0}", photo.Name);
 			PhotoStore from_store = from_db.Photos;
 			PhotoStore to_store = to_db.Photos;
 
@@ -259,7 +259,7 @@ namespace MergeDbExtension
 				return;
 
 			foreach (Tag t in photo.Tags) {
-				Log.WarningFormat ("Tagging with {0}", t.Name);
+				Log.Warning ("Tagging with {0}", t.Name);
 				newp.AddTag (tag_map [t.Id]);
 			}
 

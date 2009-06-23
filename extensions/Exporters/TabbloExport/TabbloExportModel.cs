@@ -270,7 +270,7 @@ namespace FSpotTabbloExport {
 						Gnome.Keyring.Ring.Find (
 								type, attrs);
 				if (1 < items.Length) {
-					Log.WarningFormat ("More than one {0} "
+					Log.Warning ("More than one {0} "
 							+ " found in keyring",
 							KeyringItemName);
 				}
