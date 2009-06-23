@@ -234,26 +234,6 @@ namespace FSpot.Widgets
 		}
 
 //FIXME
-		public Rectangle WindowCoordsToImage (Rectangle win)
-		{
-			if (Pixbuf == null)
-				return Rectangle.Zero;
-
-			int x_offset = scaled_width < Allocation.Width ? (int)(Allocation.Width - scaled_width) / 2 : -XOffset;
-			int y_offset = scaled_height < Allocation.Height ? (int)(Allocation.Height - scaled_height) / 2 : -YOffset;
-
-			win.Intersect (new Rectangle (x_offset, y_offset, (int)scaled_width - 1, (int)scaled_height - 1));
-
-			Rectangle img = Rectangle.Zero;
-			img.X = (int) Math.Floor ((win.X - x_offset) * (double)(Pixbuf.Width - 1) / (double)(scaled_width - 1) + .5);
-			img.Y = (int) Math.Floor ((win.Y - y_offset) * (double)(Pixbuf.Height - 1) / (double)(scaled_height - 1) + .5);
-			img.Width = (int) Math.Floor ((win.X + win.Width - x_offset) * (double)(Pixbuf.Width - 1) / (double)(scaled_width - 1) + .5) - win.X;
-			img.Height = (int) Math.Floor ((win.Y + win.Height - y_offset) * (double)(Pixbuf.Height - 1) / (double)(scaled_height - 1) + .5) - win.Y;
-
-			return img;
-		}
-
-//FIXME
 		public Point ImageCoordsToWindow (Point image)
 		{
 			if (this.Pixbuf == null)
