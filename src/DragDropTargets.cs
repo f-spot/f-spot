@@ -1,5 +1,5 @@
 /*
- * DragDropTargets.cs
+ * FSpot.Gui.DragDropTargets.cs
  *
  * Author(s)
  * 	Mike Gemuende <mike@gemuende.de>
@@ -7,19 +7,15 @@
  * This is free software. See COPYING for details.
  */
 
-
 using System;
-
 using Gtk;
-
-
 
 namespace FSpot.Gui
 {	
 	public static class DragDropTargets
 	{
-		public enum TargetType {
-			PlainText,
+		enum TargetType {
+			PlainText = 0,
 			UriList,
 			TagList,
 			TagQueryItem,
