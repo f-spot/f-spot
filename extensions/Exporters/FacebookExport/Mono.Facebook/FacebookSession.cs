@@ -73,9 +73,26 @@ namespace Mono.Facebook
 			return new Uri (string.Format ("http://www.facebook.com/login.php?api_key={0}&v=1.0&auth_token={1}", util.ApiKey, auth_token));
 		}
 
-		public Uri GetUriForInfiniteToken()
+		public Uri GetGrantUri (string permission)
 		{
-			return new Uri(string.Format("http://www.facebook.com/code_gen.php?v=1.0&api_key={0}", util.ApiKey));
+			return new Uri(string.Format("http://www.facebook.com/authorize.php?api_key={0}&v=1.0&ext_perm={1}", util.ApiKey, permission));
+		}
+
+		public bool HasAppPermission(string permission)
+		{
+			return util.GetBoolResponse("facebook.users.hasAppPermission",
+				FacebookParam.Create ("call_id", DateTime.Now.Ticks),
+				FacebookParam.Create ("session_key", session_info.SessionKey),
+				FacebookParam.Create ("ext_perm", permission));
+		}
+
+		public bool RevokeAppPermission(string permission)
+		{
+			return util.GetBoolResponse
+				("facebook.auth.revokeExtendedPermission",
+					FacebookParam.Create ("call_id", DateTime.Now.Ticks),
+					FacebookParam.Create ("session_key", session_info.SessionKey),
+					FacebookParam.Create ("perm", permission));
 		}
 
 		public SessionInfo GetSession ()
