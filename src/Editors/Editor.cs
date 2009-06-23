@@ -42,7 +42,7 @@ namespace FSpot.Editors {
 
 		// Has a portion of the image been selected?
 		public bool HasSelection {
-			get { return Selection != null; }
+			get { return Selection != Rectangle.Zero; }
 		}
 
 		// Is the user in browse mode?
