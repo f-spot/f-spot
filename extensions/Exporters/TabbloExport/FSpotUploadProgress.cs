@@ -31,6 +31,7 @@ using Mono.Tabblo;
 using Mono.Unix;
 using System;
 using FSpot.UI.Dialog;
+using FSpot.Utils;
 
 namespace FSpotTabbloExport {
 

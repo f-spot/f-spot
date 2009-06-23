@@ -16,7 +16,10 @@ REFS =					\
 	-r:$(top_builddir)/src/f-spot.exe		\
 	-r:$(top_builddir)/src/FSpot.Core.dll	\
 	-r:$(top_builddir)/src/FSpot.Utils.dll	\
-	-r:$(top_builddir)/src/FSpot.Query.dll
+	-r:$(top_builddir)/src/FSpot.Query.dll	\
+	$(LINK_SEMWEB)				\
+	$(LINK_MONO_ADDINS)			\
+	$(LINK_GPHOTO2)
 
 PKGS =					\
 	-pkg:gtk-sharp-2.0		\

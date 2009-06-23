@@ -13,7 +13,9 @@ REFS =					\
 	-r:$(top_builddir)/src/f-spot.exe		\
 	-r:$(top_builddir)/src/FSpot.Core.dll	\
 	-r:$(top_builddir)/src/FSpot.Utils.dll	\
-	$(LINK_SEMWEB)			\
+	$(LINK_SEMWEB)				\
+	$(LINK_MONO_ADDINS)			\
+	$(LINK_GPHOTO2)				\
 	-r:SmugMugNet/SmugMugNet.dll	\
 	$(LINK_GTKSHARPBEANS)		\
 	$(LINK_KEYRING)			\
