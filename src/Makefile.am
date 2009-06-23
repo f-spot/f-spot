@@ -39,6 +39,7 @@ CORE_CSDISTFILES =				\
 
 QUERY_CSDISTFILES =				\
 	$(srcdir)/Query/DateRange.cs		\
+	$(srcdir)/Query/FolderSet.cs		\
 	$(srcdir)/Query/IOrderCondition.cs	\
 	$(srcdir)/Query/IQueryCondition.cs	\
 	$(srcdir)/Query/LogicalTerm.cs		\
@@ -129,8 +130,6 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/Core/PhotoVersion.cs		\
 	$(srcdir)/Db.cs				\
 	$(srcdir)/DependentListStore.cs		\
-	$(srcdir)/DirectoryAdaptor.cs		\
-	$(srcdir)/DirectoryCollection.cs	\
 	$(srcdir)/DragDropTargets.cs				\
 	$(srcdir)/Editors/Editor.cs		\
 	$(srcdir)/Editors/AutoStretchEditor.cs		\
@@ -168,6 +167,7 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/Filters/SharpFilter.cs	\
 	$(srcdir)/Filters/UniqueNameFilter.cs	\
 	$(srcdir)/Filters/WhiteListFilter.cs	\
+	$(srcdir)/FolderQueryWidget.cs			\
 	$(srcdir)/FormClient.cs			\
 	$(srcdir)/FullScreenView.cs		\
 	$(srcdir)/GdkGlx.cs			\
@@ -279,6 +279,7 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/Widgets/EditorPage.cs		\
 	$(srcdir)/Widgets/Filmstrip.cs		\
 	$(srcdir)/Widgets/FindBar.cs		\
+	$(srcdir)/Widgets/FolderTreePage.cs	\
 	$(srcdir)/Widgets/IEffect.cs		\
 	$(srcdir)/Widgets/ITransition.cs	\
 	$(srcdir)/Widgets/IconView.cs		\

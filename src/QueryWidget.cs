@@ -7,17 +7,29 @@
  * This is free software. See COPYING for details.
  */
 
+
+using System;
+using System.Collections.Generic;
+
+using Mono.Unix;
+
+using Gtk;
+
+using FSpot.Gui;
+using FSpot.Utils;
 using FSpot.Query;
 using FSpot.Widgets;
-using Mono.Unix;
-using Gtk;
+
+
 
 namespace FSpot {
 
 	public class QueryWidget : HighlightedBox {
 		PhotoQuery query;
 		LogicWidget logic_widget;
-	        Gtk.HBox box;
+		FolderQueryWidget folder_query_widget;
+		
+		Gtk.HBox box;
 		Gtk.Label label;
 		Gtk.Label untagged;
 		Gtk.Label rated;
@@ -70,6 +82,10 @@ namespace FSpot {
 			rollfilter.Visible = false;
 			box.PackStart (rollfilter, false, false, 0);
 
+			folder_query_widget = new FolderQueryWidget ();
+			folder_query_widget.Visible = false;
+			box.PackStart (folder_query_widget, false, false, 0);
+			
 			logic_widget = new LogicWidget (query, db.Tags);
 			logic_widget.Show ();
 			box.PackStart (logic_widget, true, true, 0);
@@ -127,6 +143,10 @@ namespace FSpot {
 			query.RatingRange = null;
 			logic_widget.Clear = true;
 			logic_widget.UpdateQuery ();
+			
+			folder_query_widget.Clear ();
+			query.RequestReload ();
+			
 			HideBar ();
 		}
 
@@ -147,11 +167,14 @@ namespace FSpot {
 			if (query.ExtraCondition == null)
 				logic_widget.Clear = true;
 
-			if (!logic_widget.Clear || query.Untagged || (query.RollSet != null) || (query.RatingRange != null)) {
-		                ShowBar ();
-			} else {
+			if ( ! logic_widget.Clear
+			    || query.Untagged
+			    || (query.RollSet != null)
+			    || (query.RatingRange != null)
+			    || folder_query_widget.Visible)
+				ShowBar ();
+			else
 				HideBar ();
-			}
 
 			untagged.Visible = query.Untagged;
 			rated.Visible = (query.RatingRange != null);
@@ -196,6 +219,12 @@ namespace FSpot {
 		public bool TagRequired (Tag tag)
 		{
 			return logic_widget.TagRequired (tag);
+		}
+		
+		public void SetFolders (IEnumerable<Uri> uri_list)
+		{
+			folder_query_widget.SetFolders (uri_list);
+			query.RequestReload ();
 		}
 	}
 }

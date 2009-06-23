@@ -51,7 +51,6 @@ namespace FSpot
 		public const string TAG_ICON_AUTOMATIC = APP_FSPOT + "ui/tag_icon_automatic";
 		
 		public const string GLASS_POSITION = APP_FSPOT + "ui/glass_position";
-		public const string GROUP_ADAPTOR = APP_FSPOT + "ui/group_adaptor";
 		public const string GROUP_ADAPTOR_ORDER_ASC = APP_FSPOT + "ui/group_adaptor_sort_asc";
 		
 		public const string SIDEBAR_POSITION = APP_FSPOT + "ui/sidebar_size";
@@ -118,7 +117,6 @@ namespace FSpot
 			case GROUP_ADAPTOR_ORDER_ASC:
 				return false;
 
-			case GROUP_ADAPTOR:
 			case GLASS_POSITION:
 				return null;
 
