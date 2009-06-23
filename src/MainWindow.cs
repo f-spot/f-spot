@@ -1116,12 +1116,12 @@ public class MainWindow {
 	void HandleIconViewDragDataGet (object sender, DragDataGetArgs args)
 	{	
 		if (args.Info == DragDropTargets.UriListEntry.Info) {
-			DragDropUtils.SetUriListData (new UriList (SelectedPhotos ()), args.SelectionData, args.Context.Targets[0]);
+			args.SelectionData.SetUriListData (new UriList (SelectedPhotos ()), args.Context.Targets[0]);
 			return;
 		}
 		
 		if (args.Info == DragDropTargets.PhotoListEntry.Info) {
-			DragDropUtils.SetPhotosData (SelectedPhotos (), args.SelectionData, args.Context.Targets[0]);
+			args.SelectionData.SetPhotosData (SelectedPhotos (), args.Context.Targets[0]);
 			return;
 		}
 		
@@ -1213,7 +1213,7 @@ public class MainWindow {
 			if (source != null)
 				return;
 
-			UriList list = DragDropUtils.GetUriListData (args.SelectionData); 
+			UriList list = args.SelectionData.GetUriListData (); 
 			ImportUriList (list, (args.Context.Action & Gdk.DragAction.Copy) != 0);
 			
 			Gtk.Drag.Finish (args.Context, true, false, args.Time);

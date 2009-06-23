@@ -815,7 +815,7 @@ namespace FSpot {
 			if (args.Info == DragDropTargets.TagListEntry.Info) {
 
 				if (TagsAdded != null)
-					TagsAdded (DragDropUtils.GetTagsData (args.SelectionData), Parent, this);
+					TagsAdded (args.SelectionData.GetTagsData (), Parent, this);
 				
 				return;
 			}

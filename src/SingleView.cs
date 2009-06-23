@@ -9,6 +9,7 @@ using FSpot.Utils;
 using FSpot.UI.Dialog;
 using FSpot.Widgets;
 using FSpot.Platform;
+using FSpot.Gui;
 
 namespace FSpot {
 	public class SingleView {
@@ -476,7 +477,7 @@ namespace FSpot {
 				if (Gtk.Drag.GetSourceWidget (args.Context) != null)
 					return;
 				
-				UriList list = FSpot.Gui.DragDropUtils.GetUriListData (args.SelectionData);
+				UriList list = args.SelectionData.GetUriListData ();
 				collection.LoadItems (list.ToArray());
 				
 				Gtk.Drag.Finish (args.Context, true, false, args.Time);

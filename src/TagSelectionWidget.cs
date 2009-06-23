@@ -630,7 +630,7 @@ namespace FSpot.Gui {
 		void HandleDragDataGet (object sender, DragDataGetArgs args)
 		{
 			if (args.Info == DragDropTargets.TagListEntry.Info) {
-				DragDropUtils.SetTagsData (TagHighlight, args.SelectionData, args.Context.Targets[0]);
+				args.SelectionData.SetTagsData (TagHighlight, args.Context.Targets[0]);
 				return;
 			}
 		}
@@ -684,7 +684,7 @@ namespace FSpot.Gui {
 			if (args.Info == DragDropTargets.PhotoListEntry.Info) {
 				database.BeginTransaction ();
 				
-				Photo[] photos = DragDropUtils.GetPhotosData (args.SelectionData);
+				Photo[] photos = args.SelectionData.GetPhotosData ();
 
 				foreach (Photo photo in photos) {
 
@@ -705,7 +705,7 @@ namespace FSpot.Gui {
 			}
 			
 			if (args.Info == DragDropTargets.UriListEntry.Info) {
-				UriList list = DragDropUtils.GetUriListData (args.SelectionData);
+				UriList list = args.SelectionData.GetUriListData ();
 				
 				database.BeginTransaction ();
 				List<Photo> photos = new List<Photo> ();

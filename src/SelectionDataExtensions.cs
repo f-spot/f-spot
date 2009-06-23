@@ -1,34 +1,27 @@
 /*
- * DragDropUtils.cs
+ * FSpot.Gui.SelectionDataExtensions.cs
  *
  * Author(s)
  * 	Mike Gemuende <mike@gemuende.de>
+ *	Stephane Delcroix <stephane@delcroix.org>
  *
  * This is free software. See COPYING for details.
  */
-
-
 
 using System;
 using System.Text;
 
 using Gtk;
-
 using Gdk;
 
 using FSpot;
 using FSpot.Utils;
 
-
-
-
 namespace FSpot.Gui
 {
-	
-	public static class DragDropUtils
+	public static class SelectionDataExtensions
 	{
-		
-		public static void SetPhotosData (Photo [] photos, SelectionData selection_data, Atom target)
+		public static void SetPhotosData (this SelectionData selection_data, Photo [] photos, Atom target)
 		{
 			byte [] data = new byte [photos.Length * sizeof (uint)];
 			
@@ -45,7 +38,7 @@ namespace FSpot.Gui
 			selection_data.Set (target, 8, data, data.Length);
 		}
 		
-		public static Photo [] GetPhotosData (SelectionData selection_data)
+		public static Photo [] GetPhotosData (this SelectionData selection_data)
 		{
 			int size = sizeof (uint);
 			int length = selection_data.Length / size;
@@ -62,7 +55,7 @@ namespace FSpot.Gui
 			return photos;
 		}
 		
-		public static void SetTagsData (Tag [] tags, SelectionData selection_data, Atom target)
+		public static void SetTagsData (this SelectionData selection_data, Tag [] tags, Atom target)
 		{
 			byte [] data = new byte [tags.Length * sizeof (uint)];
 			
@@ -79,7 +72,7 @@ namespace FSpot.Gui
 			selection_data.Set (target, 8, data, data.Length);
 		}
 		
-		public static Tag [] GetTagsData (SelectionData selection_data)
+		public static Tag [] GetTagsData (this SelectionData selection_data)
 		{
 			int size = sizeof (uint);
 			int length = selection_data.Length / size;
@@ -96,7 +89,7 @@ namespace FSpot.Gui
 			return tags;
 		}
 		
-		public static string GetStringData (SelectionData selection_data)
+		public static string GetStringData (this SelectionData selection_data)
 		{
 			if (selection_data.Length <= 0)
 				return String.Empty;
@@ -108,14 +101,14 @@ namespace FSpot.Gui
 			}
 		}
 		
-		public static void SetUriListData (UriList uri_list, SelectionData selection_data, Atom target)
+		public static void SetUriListData (this SelectionData selection_data, UriList uri_list, Atom target)
 		{
 			Byte [] data = Encoding.UTF8.GetBytes (uri_list.ToString ());
 			
 			selection_data.Set (target, 8, data, data.Length);
 		}
 		
-		public static UriList GetUriListData (SelectionData selection_data)
+		public static UriList GetUriListData (this SelectionData selection_data)
 		{
 			string [] uris = GetStringData (selection_data).Split ('\n');
 			

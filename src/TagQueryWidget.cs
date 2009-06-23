@@ -432,7 +432,7 @@ namespace FSpot
 			
 			if (args.Info == DragDropTargets.TagListEntry.Info) {
 
-				InsertTerm (DragDropUtils.GetTagsData (args.SelectionData), rootTerm, null);
+				InsertTerm (args.SelectionData.GetTagsData (), rootTerm, null);
 				return;
 			}
 			

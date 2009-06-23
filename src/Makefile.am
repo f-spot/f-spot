@@ -128,7 +128,6 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/DirectoryAdaptor.cs		\
 	$(srcdir)/DirectoryCollection.cs	\
 	$(srcdir)/DragDropTargets.cs				\
-	$(srcdir)/DragDropUtils.cs				\
 	$(srcdir)/Editors/Editor.cs		\
 	$(srcdir)/Editors/AutoStretchEditor.cs		\
 	$(srcdir)/Editors/CropEditor.cs		\
@@ -227,6 +226,7 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/QueuedSqliteDatabase.cs	\
 	$(srcdir)/RotateCommand.cs		\
 	$(srcdir)/RollStore.cs			\
+	$(srcdir)/SelectionDataExtensions.cs	\
 	$(srcdir)/SendEmail.cs                  \
 	$(srcdir)/SlideView.cs			\
 	$(srcdir)/SingleView.cs			\
