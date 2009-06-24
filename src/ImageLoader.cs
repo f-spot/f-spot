@@ -71,12 +71,12 @@ namespace FSpot {
 				pixbuf_orientation = image_file.Orientation;
 			}
 
+			loading = true;
 			// The ThreadPool.QueueUserWorkItem hack is there cause, as the bytes to read are present in the stream,
 			// the Read is CompletedAsynchronously, blocking the mainloop
 			image_stream.BeginRead (buffer, 0, count, delegate (IAsyncResult r) {
 				ThreadPool.QueueUserWorkItem (delegate {HandleReadDone (r);});
 			}, null);
-			loading = true;
 		}
 
 		new public event EventHandler<AreaPreparedEventArgs> AreaPrepared;
@@ -127,6 +127,19 @@ namespace FSpot {
 			}
 			base.Dispose ();
 		}
+
+		bool close_loader;
+		public new bool Close ()
+		{
+			bool ret = false;
+			lock (sync_handle) {
+				if (loading) {
+					close_loader = true;
+					ret = true;
+				}
+			}
+			return ret || base.Close ();
+		}
 #endregion
 
 #region event handlers
@@ -168,6 +181,7 @@ namespace FSpot {
 		byte [] buffer = new byte [count];
 		bool notify_completed = false;
 		Rectangle damage;
+		object sync_handle = new object ();
 
 		void HandleReadDone (IAsyncResult ar)
 		{
@@ -175,16 +189,20 @@ namespace FSpot {
 				return;
 
 			int byte_read = image_stream.EndRead (ar);
-			if (byte_read == 0) {
-				image_stream.Close ();
-				loading = false;
-				notify_completed = true;
-			} else {
-				try {
-					if (!is_disposed && Write (buffer, (ulong)byte_read))
-						image_stream.BeginRead (buffer, 0, count, HandleReadDone, null);
-				} catch (System.ObjectDisposedException od) {
-				} catch (GLib.GException ge) {
+			lock (sync_handle) {
+				if (byte_read == 0) {
+					image_stream.Close ();
+					loading = false;
+					notify_completed = true;
+				} else {
+					try {
+						if (close_loader)
+							base.Close (); //could throw a GException
+						else if (!is_disposed && Write (buffer, (ulong)byte_read))
+							image_stream.BeginRead (buffer, 0, count, HandleReadDone, null);
+					} catch (System.ObjectDisposedException od) {
+					} catch (GLib.GException ge) {
+					}
 				}
 			}
 
