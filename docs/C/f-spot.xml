@@ -421,8 +421,20 @@
 				</listitem>
 				<listitem>
 					<para>
-						by typing them in (press <keycap>t</keycap> to pop up the tag entry bar, 
-						enter comma-separated tags) - with tab completion!
+						by typing them in. Press <keycap>t</keycap> to pop up the tag
+						entry bar. Here you can enter the tags, separated by commas.
+					</para>
+					<para>
+						You can also use auto-completion in this entry bar: After
+						entering the beginning of a tag name, press
+						<keycap>Tab</keycap> to see the first possible completion. You can
+						cycle between other possible completions by pressing
+						<keycap>Tab</keycap> again, and backwards with
+						<keycombo action="simul"><keycap>Shift</keycap><keycap>Tab</keycap></keycombo>.
+						To confirm the suggested completion and enter a new tag, press
+						<keycap>,</keycap>. By pressing <keycap>Enter</keycap> you
+						leave the tag entry bar, possibly confirming the current
+						completion. To abort the auto completion, just keep on typing.
 					</para>
 				</listitem>
 			</itemizedlist>
