@@ -11,6 +11,7 @@ SRCS =					\
 	$(srcdir)/Sources.cs		\
 	$(srcdir)/Timeout.cs		\
 	$(srcdir)/PixbufFormat.cs	\
+	$(srcdir)/PixbufLoader.cs	\
 	$(srcdir)/AssemblyInfo.cs
 
 
