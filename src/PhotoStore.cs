@@ -779,19 +779,25 @@ public class PhotoStore : DbStore<Photo> {
 	public Photo [] Query (Tag [] tags) {
 		return Query (tags, null, null, null, null);
 	}
-
-	public Photo [] Query (params IQueryCondition [] conditions)
+	
+	private string BuildQuery (params IQueryCondition [] conditions)
 	{
 		StringBuilder query_builder = new StringBuilder ("SELECT * FROM photos ");
-		
+
 		bool where_added = false;
 		foreach (IQueryCondition condition in conditions) {
 			if (condition == null)
 				continue;
 			if (condition is IOrderCondition)
 				continue;
+			
+			string sql_clause = condition.SqlClause ();
+			
+			if (sql_clause == null || sql_clause.Trim () == String.Empty)
+				continue;
+			
 			query_builder.Append (where_added ? " AND " : " WHERE ");
-			query_builder.Append (condition.SqlClause ());
+			query_builder.Append (sql_clause);
 			where_added = true;
 		}
 
@@ -801,39 +807,28 @@ public class PhotoStore : DbStore<Photo> {
 				continue;
 			if (!(condition is IOrderCondition))
 				continue;
+			
+			string sql_clause = condition.SqlClause ();
+			
+			if (sql_clause == null || sql_clause.Trim () == String.Empty)
+				continue;
+			
 			query_builder.Append (order_added ? " , " : "ORDER BY ");
-			query_builder.Append (condition.SqlClause ());
+			query_builder.Append (sql_clause);
 			order_added = true;
 		}
-		return Query (query_builder.ToString ());
+		
+		return query_builder.ToString ();
+	}
+
+	public Photo [] Query (params IQueryCondition [] conditions)
+	{
+		return Query (BuildQuery (conditions));
 	}
 
 	public void QueryToTemp (string temp_table, params IQueryCondition [] conditions)
 	{
-		StringBuilder query_builder = new StringBuilder ("SELECT * FROM photos ");
-
-		bool where_added = false;
-		foreach (IQueryCondition condition in conditions) {
-			if (condition == null)
-				continue;
-			if (condition is IOrderCondition)
-				continue;
-			query_builder.Append (where_added ? " AND " : " WHERE ");
-			query_builder.Append (condition.SqlClause ());
-			where_added = true;
-		}
-
-		bool order_added = false;
-		foreach (IQueryCondition condition in conditions) {
-			if (condition == null)
-				continue;
-			if (!(condition is IOrderCondition))
-				continue;
-			query_builder.Append (order_added ? " , " : "ORDER BY ");
-			query_builder.Append (condition.SqlClause ());
-			order_added = true;
-		}
-		QueryToTemp (temp_table, query_builder.ToString ());
+		QueryToTemp (temp_table, BuildQuery (conditions));
 	}
 
 	public void QueryToTemp(string temp_table, string query)

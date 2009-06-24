@@ -251,10 +251,31 @@ namespace FSpot {
 		public void RequestReload ()
 		{
 			uint timer = Log.DebugTimerStart ();
-			if (untagged)
+		/*	if (untagged)
 				store.QueryToTemp (temp_table, new UntaggedCondition (), Range, RollSet, RatingRange, OrderByTime, OrderByUri);
 			else
 				store.QueryToTemp (temp_table, terms, extra_condition, Range, RollSet, RatingRange, OrderByTime, OrderByUri);
+*/
+			IQueryCondition[] condition_array;
+			
+			int i = 0;
+			if (untagged) {
+				condition_array = new IQueryCondition[conditions.Count + 1];
+				condition_array[0] = new UntaggedCondition ();
+				i = 1;
+			} else {
+				condition_array = new IQueryCondition[conditions.Count + 2];
+				condition_array[0] = new TagConditionWrapper (extra_condition);
+				condition_array[1] = new TagConditionWrapper (terms != null ? terms.SqlCondition () : null);
+				i = 2;
+			}
+			
+			foreach (IQueryCondition condition in Conditions.Values) {
+				condition_array[i] = condition;
+				i++;
+			}
+	
+			store.QueryToTemp (temp_table, condition_array);
 
 			count = -1;
 			cache = new PhotoCache (store, temp_table);
@@ -357,6 +378,21 @@ namespace FSpot {
 		public void MarkChanged (int [] indexes, IBrowsableItemChanges changes)
 		{
 			ItemsChanged (this, new BrowsableEventArgs (indexes, changes));
+		}
+		
+		private class TagConditionWrapper : IQueryCondition
+		{
+			string condition;
+			
+			public TagConditionWrapper (string condition)
+			{
+				this.condition = condition;
+			}
+			
+			public string SqlClause ()
+			{
+				return condition;
+			}
 		}
 	}
 }
