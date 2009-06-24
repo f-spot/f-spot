@@ -221,8 +221,9 @@ namespace FSpot {
 			tag_view.QueueDraw ();
 		}
 	
-		private void HandlePhotoChanged (PhotoImageView view)
+		void HandlePhotoChanged (object sender, EventArgs e)
 		{
+			PhotoImageView view = sender as PhotoImageView;
 			if (query is PhotoQuery) {
 				CommitPendingChanges ();
 			}

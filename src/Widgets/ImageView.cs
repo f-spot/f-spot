@@ -14,6 +14,8 @@ using System.Runtime.InteropServices;
 using Gtk;
 using Gdk;
 
+using FSpot.Utils;
+
 namespace FSpot.Widgets
 {
 	public class ImageView : Container
@@ -42,6 +44,9 @@ namespace FSpot.Widgets
 		public Pixbuf Pixbuf {
 			get { return pixbuf; } 
 			set {
+				if (pixbuf == value)
+					return;
+
 				pixbuf = value;
 				min_zoom = ComputeMinZoom (upscale);
 
@@ -52,6 +57,19 @@ namespace FSpot.Widgets
 				AdjustmentsChanged += ScrollToAdjustments;
 				QueueDraw ();
 			} 
+		}
+
+		PixbufOrientation pixbuf_orientation;
+		public PixbufOrientation PixbufOrientation {
+			get { return pixbuf_orientation; }
+			set {
+				if (value == pixbuf_orientation)
+					return;
+				pixbuf_orientation = value;
+				min_zoom = ComputeMinZoom (upscale);
+				ComputeScaledSize ();
+				QueueDraw ();
+			}
 		}
 
 		CheckPattern check_pattern = CheckPattern.Dark;
@@ -71,7 +89,7 @@ namespace FSpot.Widgets
 			get { return pointer_mode; } 
 			set { 
 				pointer_mode = value;
-				Console.WriteLine ("FIXME: Set the Pointer mode");
+				Log.Debug ("FIXME: Set the Pointer mode");
 			} 
 		}
 
@@ -206,58 +224,43 @@ namespace FSpot.Widgets
 			int x_offset = scaled_width < Allocation.Width ? (int)(Allocation.Width - scaled_width) / 2 : -XOffset;
 			int y_offset = scaled_height < Allocation.Height ? (int)(Allocation.Height - scaled_height) / 2 : -YOffset;
 
-			win.X = Clamp (win.X, x_offset, x_offset + (int)scaled_width - 1);
-			win.Y = Clamp (win.Y, y_offset, y_offset + (int)scaled_height - 1);
+			win.X = Clamp (win.X - x_offset, 0, (int)scaled_width - 1);
+			win.Y = Clamp (win.Y - y_offset, 0, (int)scaled_height - 1);
 
-			return new Point ((int) Math.Floor ((win.X - x_offset) * (double)(Pixbuf.Width - 1) / (double)(scaled_width - 1) + .5),
-					  (int) Math.Floor ((win.Y - y_offset) * (double)(Pixbuf.Height - 1) / (double)(scaled_height - 1) + .5));
+			win = PixbufUtils.TransformOrientation ((int)scaled_width, (int)scaled_height, win, PixbufUtils.ReverseTransformation (pixbuf_orientation));
+
+			return  new Point ((int) Math.Floor (win.X * (double)(((int)PixbufOrientation <= 4 ? Pixbuf.Width : Pixbuf.Height) - 1) / (double)(scaled_width - 1) + .5),
+					   (int) Math.Floor (win.Y * (double)(((int)PixbufOrientation <= 4 ? Pixbuf.Height : Pixbuf.Width) - 1) / (double)(scaled_height - 1) + .5));
 		}
 
-		public Rectangle WindowCoordsToImage (Rectangle win)
-		{
-			if (Pixbuf == null)
-				return Rectangle.Zero;
-
-			int x_offset = scaled_width < Allocation.Width ? (int)(Allocation.Width - scaled_width) / 2 : -XOffset;
-			int y_offset = scaled_height < Allocation.Height ? (int)(Allocation.Height - scaled_height) / 2 : -YOffset;
-
-			win.Intersect (new Rectangle (x_offset, y_offset, (int)scaled_width - 1, (int)scaled_height - 1));
-
-			Rectangle img = Rectangle.Zero;
-			img.X = (int) Math.Floor ((win.X - x_offset) * (double)(Pixbuf.Width - 1) / (double)(scaled_width - 1) + .5);
-			img.Y = (int) Math.Floor ((win.Y - y_offset) * (double)(Pixbuf.Height - 1) / (double)(scaled_height - 1) + .5);
-			img.Width = (int) Math.Floor ((win.X + win.Width - x_offset) * (double)(Pixbuf.Width - 1) / (double)(scaled_width - 1) + .5) - win.X;
-			img.Height = (int) Math.Floor ((win.Y + win.Height - y_offset) * (double)(Pixbuf.Height - 1) / (double)(scaled_height - 1) + .5) - win.Y;
-
-			return img;
-		}
-
-		public Point ImageCoordsToWindow (Point image)
+		protected Point ImageCoordsToWindow (Point image)
 		{
 			if (this.Pixbuf == null)
 				return Point.Zero;
 
+			image = PixbufUtils.TransformOrientation (Pixbuf.Width, Pixbuf.Height, image, pixbuf_orientation);
 			int x_offset = scaled_width < Allocation.Width ? (int)(Allocation.Width - scaled_width) / 2 : -XOffset;
 			int y_offset = scaled_height < Allocation.Height ? (int)(Allocation.Height - scaled_height) / 2 : -YOffset;
 
-			return new Point ((int) Math.Floor (image.X * (double) (scaled_width - 1) / (this.Pixbuf.Width - 1) + 0.5) + x_offset,
-					  (int) Math.Floor (image.Y * (double) (scaled_height - 1) / (this.Pixbuf.Height - 1) + 0.5) + y_offset);
+			return new Point ((int) Math.Floor (image.X * (double) (scaled_width - 1) / (Pixbuf.Width - 1) + 0.5) + x_offset,
+					  (int) Math.Floor (image.Y * (double) (scaled_height - 1) / (Pixbuf.Height - 1) + 0.5) + y_offset);
 		}
 
-		public Rectangle ImageCoordsToWindow (Rectangle image)
+		protected Rectangle ImageCoordsToWindow (Rectangle image)
 		{
 			if (this.Pixbuf == null)
 				return Gdk.Rectangle.Zero;
 
+			image = PixbufUtils.TransformOrientation (Pixbuf.Width, Pixbuf.Height, image, pixbuf_orientation);
 			int x_offset = scaled_width < Allocation.Width ? (int)(Allocation.Width - scaled_width) / 2 : -XOffset;
 			int y_offset = scaled_height < Allocation.Height ? (int)(Allocation.Height - scaled_height) / 2 : -YOffset;
 
 			Gdk.Rectangle win = Gdk.Rectangle.Zero;
-			win.X = (int) Math.Floor (image.X * (double) (scaled_width - 1) / (this.Pixbuf.Width - 1) + 0.5) + x_offset;
-			win.Y = (int) Math.Floor (image.Y * (double) (scaled_height - 1) / (this.Pixbuf.Height - 1) + 0.5) + y_offset;
-			win.Width = (int) Math.Floor ((image.X + image.Width) * (double) (scaled_width - 1) / (this.Pixbuf.Width - 1) + 0.5) - win.X + x_offset;
-			win.Height = (int) Math.Floor ((image.Y + image.Height) * (double) (scaled_height - 1) / (this.Pixbuf.Height - 1) + 0.5) - win.Y + y_offset;
-	
+			win.X = (int) Math.Floor (image.X * (double) (scaled_width - 1) / (((int)pixbuf_orientation <= 4 ? Pixbuf.Width : Pixbuf.Height) - 1) + 0.5) + x_offset;
+			win.Y = (int) Math.Floor (image.Y * (double) (scaled_height - 1) / (((int)pixbuf_orientation <= 4 ? Pixbuf.Height : Pixbuf.Width) - 1) + 0.5) + y_offset;
+			win.Width = (int) Math.Floor ((image.X + image.Width) * (double) (scaled_width - 1) / (((int)pixbuf_orientation <= 4 ? Pixbuf.Width : Pixbuf.Height) - 1) + 0.5) - win.X + x_offset;
+			win.Height = (int) Math.Floor ((image.Y + image.Height) * (double) (scaled_height - 1) / (((int)pixbuf_orientation <= 4 ? Pixbuf.Height : Pixbuf.Width) - 1) + 0.5) - win.Y + y_offset;
+
 			return win;
 		}
 
@@ -712,7 +715,8 @@ namespace FSpot.Widgets
 			//Short circuit for 1:1 zoom
 			if (zoom == 1.0 &&
 			    !Pixbuf.HasAlpha &&
-			    Pixbuf.BitsPerSample == 8) {
+			    Pixbuf.BitsPerSample == 8 &&
+			    pixbuf_orientation == PixbufOrientation.TopLeft) {
 				GdkWindow.DrawPixbuf (Style.BlackGC,
 						      Pixbuf,
 						      area.X - x_offset, area.Y - y_offset,
@@ -723,37 +727,56 @@ namespace FSpot.Widgets
 				return;
 			}
 
-			using (Pixbuf temp_pixbuf = new Pixbuf (Colorspace.Rgb, false, 8, area.Width, area.Height)) {
+			Rectangle pixbuf_area = PixbufUtils.TransformOrientation ((int)scaled_width,
+										  (int)scaled_height,
+										  new Rectangle ((area.X - x_offset),
+												 (area.Y - y_offset),
+												 area.Width,
+												 area.Height),
+										  PixbufUtils.ReverseTransformation (pixbuf_orientation));
+			using (Pixbuf temp_pixbuf = new Pixbuf (Colorspace.Rgb, false, 8, pixbuf_area.Width, pixbuf_area.Height)) {
 				if (Pixbuf.HasAlpha)
 					temp_pixbuf.Fill (0x00000000);
 
 				Pixbuf.CompositeColor (temp_pixbuf,
 						       0, 0,
-						       area.Width, area.Height,
-						       -(area.X - x_offset), -(area.Y - y_offset),
+						       pixbuf_area.Width, pixbuf_area.Height,
+						       -pixbuf_area.X, -pixbuf_area.Y,
 						       zoom, zoom,
 						       zoom == 1.0 ? InterpType.Nearest : interpolation, 255,
-						       area.X - x_offset, area.Y - y_offset,
+						       pixbuf_area.X, pixbuf_area.Y,
 						       CheckPattern.CheckSize, CheckPattern.Color1, CheckPattern.Color2);
 
-				GdkWindow.DrawPixbuf (Style.BlackGC,
-						      temp_pixbuf,
-						      0, 0,
-						      area.X, area.Y,
-						      area.Width, area.Height,
-						      RgbDither.Max,
-						      area.X - x_offset, area.Y - y_offset);
+
+				using (var dest_pixbuf = PixbufUtils.TransformOrientation (temp_pixbuf, pixbuf_orientation)) {
+					GdkWindow.DrawPixbuf (Style.BlackGC,
+							      dest_pixbuf,
+							      0, 0,
+							      area.X, area.Y,
+							      area.Width, area.Height,
+							      RgbDither.Max,
+							      area.X - x_offset, area.Y - y_offset);
+				}
 			}
 		}
 
 		uint scaled_width, scaled_height;
 		void ComputeScaledSize ()
 		{
-			if (Pixbuf != null) {
-				scaled_width = (uint)Math.Floor (Pixbuf.Width * Zoom + .5);
-				scaled_height = (uint)Math.Floor (Pixbuf.Height * Zoom + .5);
-			} else {
+			if (Pixbuf == null)
 				scaled_width = scaled_height = 0;
+			else {
+				double width;
+				double height;
+				if ((int)pixbuf_orientation <= 4 ) { //TopLeft, TopRight, BottomRight, BottomLeft
+					width = Pixbuf.Width;
+					height = Pixbuf.Height;
+				} else {			//LeftTop, RightTop, RightBottom, LeftBottom
+					width = Pixbuf.Height;
+					height = Pixbuf.Width;
+				}
+				scaled_width = (uint)Math.Floor (width * Zoom + .5);
+				scaled_height = (uint)Math.Floor (height * Zoom + .5);
 			}
 
 			Hadjustment.Upper = scaled_width;
@@ -810,12 +833,22 @@ namespace FSpot.Widgets
 		{
 			if (Pixbuf == null)
 				return 0.1;
+
+			double width;
+			double height;
+			if ((int)pixbuf_orientation <= 4 ) { //TopLeft, TopRight, BottomRight, BottomLeft
+				width = Pixbuf.Width;
+				height = Pixbuf.Height;
+			} else {			//LeftTop, RightTop, RightBottom, LeftBottom
+				width = Pixbuf.Height;
+				height = Pixbuf.Width;
+			}
 			if (upscale)
-				return Math.Min ((double)Allocation.Width / (double)Pixbuf.Width,
-						 (double)Allocation.Height / (double)Pixbuf.Height);
+				return Math.Min ((double)Allocation.Width / width,
+						 (double)Allocation.Height / height);
 			return Math.Min (1.0,
-					 Math.Min ((double)Allocation.Width / (double)Pixbuf.Width,
-						   (double)Allocation.Height / (double)Pixbuf.Height));
+					 Math.Min ((double)Allocation.Width / width,
+						   (double)Allocation.Height / height));
 		}
 #endregion
 

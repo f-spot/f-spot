@@ -1,6 +1,8 @@
 //
 // FSpot.Widgets.PhotoImageView.cs
 //
+// Copyright (c) 2004-2009 Novell, Inc.
+//
 // Author(s)
 //	Larry Ewing  <lewing@novell.com>
 //	Stephane Delcroix  <stephane@delcroix.org>
@@ -15,55 +17,28 @@ using FSpot.Utils;
 using Gdk;
 
 namespace FSpot.Widgets {
-	public enum ProgressType {
-		None,
-		Async,
-		Full
-	}
-
 	public class PhotoImageView : ImageView {
-		public delegate void PhotoChangedHandler (PhotoImageView view);
-		public event PhotoChangedHandler PhotoChanged;
-		
-		protected BrowsablePointer item;
-		protected FSpot.Loupe loupe;
-		protected FSpot.Loupe sharpener;
-		ProgressType load_async = ProgressType.Full;
-		bool progressive_display;
-		public GdkGlx.Context Glx;
-
+#region public API
 		public PhotoImageView (IBrowsableCollection query) : this (new BrowsablePointer (query, -1))
 		{
-			FSpot.ColorManagement.PhotoImageView = this;
 		}
 
-		public PhotoImageView (BrowsablePointer item)
+		public PhotoImageView (BrowsablePointer item) : base ()
 		{
-			loader = new FSpot.AsyncPixbufLoader ();
-			loader.AreaUpdated += HandlePixbufAreaUpdated;
-			loader.AreaPrepared += HandlePixbufPrepared;
-			loader.Done += HandleDone;
-			
 			FSpot.ColorManagement.PhotoImageView = this;
 			Transform = FSpot.ColorManagement.StandardTransform (); //for preview windows
 
 			Accelerometer.OrientationChanged += HandleOrientationChanged;
 
 			this.item = item;
-			item.Changed += PhotoItemChanged;
-			this.Destroyed += HandleDestroyed;
-		}
-		
-		protected override void OnStyleSet (Gtk.Style previous)
-		{
-			CheckPattern = new CheckPattern (this.Style.Backgrounds [(int)Gtk.StateType.Normal]);
+			item.Changed += HandlePhotoItemChanged;
 		}
 
 		new public BrowsablePointer Item {
 			get { return item; }
 		}
 
-		private IBrowsableCollection query;
+		IBrowsableCollection query;
 		public IBrowsableCollection Query {
 			get { return item.Collection; }
 		}
@@ -74,13 +49,11 @@ namespace FSpot.Widgets {
 
 		public Gdk.Pixbuf CompletePixbuf ()
 		{
-			loader.LoadToDone ();
+			//FIXME: this should be an async call
+			if (loader != null)
+				while (loader.Loading)
+					Gtk.Application.RunIteration ();
 			return this.Pixbuf;
-		}
-
-		public void HandleOrientationChanged (object sender, EventArgs e)
-		{
-			Reload ();
 		}
 
 		public void Reload ()
@@ -88,207 +61,22 @@ namespace FSpot.Widgets {
 			if (Item == null || !Item.IsValid)
 				return;
 			
-			PhotoItemChanged (Item, null);
+			HandlePhotoItemChanged (this, null);
 		}
 
-		protected override void OnRealized ()
-		{
-			int [] attr = new int [] {
-				(int) GdkGlx.GlxAttribute.Rgba,
-				(int) GdkGlx.GlxAttribute.DepthSize, 16,
-				(int) GdkGlx.GlxAttribute.DoubleBuffer,
-				(int) GdkGlx.GlxAttribute.None
-			};
-
-			try {
-				Glx = new GdkGlx.Context (Screen, attr);
-				Colormap = Glx.GetColormap ();
-			} catch (GdkGlx.GlxException e) {
-				Console.WriteLine ("Error initializing the OpenGL context:{1} {0}", e, Environment.NewLine);
-			}
-
-			base.OnRealized ();
-		}
-
-		protected override void OnUnrealized ()
-		{
-			base.OnUnrealized ();
-
-			if (Glx != null)
-				Glx.Destroy ();
-		}
-
-		// Display.
-		private void HandlePixbufAreaUpdated (object sender, AreaUpdatedEventArgs args)
-		{
-			if (!ShowProgress)
-				return;
-
-			Gdk.Rectangle area = this.ImageCoordsToWindow (args.Area);
-			this.QueueDrawArea (area.X, area.Y, area.Width, area.Height);
-		}
-		
-
-		private void HandlePixbufPrepared (object sender, AreaPreparedEventArgs args)
-		{
-			if (!ShowProgress)
-				return;
-
-			Gdk.Pixbuf prev = this.Pixbuf;
-			Gdk.Pixbuf next = loader.Pixbuf;
-
-			this.Pixbuf = next;
-			if (prev != null)
-				prev.Dispose ();
-
-			this.ZoomFit (args.ReducedResolution);
-		}
-
-		private void HandleDone (object sender, System.EventArgs args)
-		{
-			// FIXME the error hander here needs to provide proper information and we should
-			// pass the state and the write exception in the args
-			Gdk.Pixbuf prev = this.Pixbuf;
-			if (loader.Pixbuf == null) {
-				System.Exception ex = null;
-
-				// FIXME in some cases the image passes completely through the
-				// pixbuf loader without properly loading... I'm not sure what to do about this other
-				// than try to load the image one last time.
-				this.Pixbuf = null;
-				if (!loader.Loading) {
-					try {
-						Log.Warning ("Falling back to file loader");
-
-						this.Pixbuf = FSpot.PhotoLoader.Load (item.Collection, 
-										      item.Index);
-					} catch (System.Exception e) {
-						if (!(e is GLib.GException))
-							System.Console.WriteLine (e.ToString ());
-
-						ex = e;
-					}
-				}
-
-				if (this.Pixbuf == null) {
-					LoadErrorImage (ex);
-				} else {
-					this.ZoomFit ();
-				}
-			} else {
-				if (Pixbuf != loader.Pixbuf)
-					Pixbuf = loader.Pixbuf;
-
-				if (!loader.Prepared || !ShowProgress) {
-					this.ZoomFit ();
-				}
-			}
-
-			progressive_display = true;
-
-			if (prev != this.Pixbuf && prev != null)
-				prev.Dispose ();
-		}
-		
-		private bool ShowProgress {
-			get {
-				return !(load_async != ProgressType.Full || !progressive_display);
-			}
-		}
-	
 		// Zoom scaled between 0.0 and 1.0
 		public double NormalizedZoom {
-			get {
-				return (Zoom - MIN_ZOOM) / (MAX_ZOOM - MIN_ZOOM);
-			}
-			set {
-				Zoom = (value * (MAX_ZOOM - MIN_ZOOM)) + MIN_ZOOM;
-			}
+			get { return (Zoom - MIN_ZOOM) / (MAX_ZOOM - MIN_ZOOM); }
+			set { Zoom = (value * (MAX_ZOOM - MIN_ZOOM)) + MIN_ZOOM; }
 		}
 		
-		FSpot.AsyncPixbufLoader loader;
+		public event EventHandler PhotoChanged;
+#endregion
 
-		private void LoadErrorImage (System.Exception e)
+#region Gtk widgetry
+		protected override void OnStyleSet (Gtk.Style previous)
 		{
-			// FIXME we should check the exception type and do something
-			// like offer the user a chance to locate the moved file and
-			// update the db entry, but for now just set the error pixbuf
-			
-			Gdk.Pixbuf old = this.Pixbuf;
-			this.Pixbuf = new Gdk.Pixbuf (PixbufUtils.ErrorPixbuf, 0, 0, 
-						      PixbufUtils.ErrorPixbuf.Width, 
-						      PixbufUtils.ErrorPixbuf.Height);
-			if (old != null)
-				old.Dispose ();
-			
-			this.ZoomFit ();
-		}
-
-		private void PhotoItemChanged (object sender, BrowsablePointerChangedEventArgs args) 
-		{
-			// If it is just the position that changed fall out
-			if (args != null && 
-			    args.PreviousItem != null &&
-			    Item.IsValid &&
-			    (args.PreviousIndex != item.Index) &&
-			    (this.Item.Current.DefaultVersionUri == args.PreviousItem.DefaultVersionUri))
-				return;
-
-			// Don't reload if the image didn't change at all.
-			if (args != null && args.Changes != null &&
-			    !args.Changes.DataChanged &&
-			    args.PreviousItem != null &&
-			    Item.IsValid &&
-			    this.Item.Current.DefaultVersionUri == args.PreviousItem.DefaultVersionUri)
-				return;
-
-			if (args != null &&
-			    args.PreviousItem != null && 
-			    Item.IsValid && 
-			    Item.Current.DefaultVersionUri == args.PreviousItem.DefaultVersionUri &&
-			    load_async == ProgressType.Full)
-				progressive_display = false;
-
-			if (load_async != ProgressType.None) {
-				Gdk.Pixbuf old = this.Pixbuf;
-				try {
-					if (Item.IsValid) {
-						System.Uri uri = Item.Current.DefaultVersionUri;
-						loader.Load (uri);
-					} else
-						LoadErrorImage (null);
-
-				} catch (System.Exception e) {
-					System.Console.WriteLine (e.ToString ());
-					LoadErrorImage (e);
-				}
-				if (old != null)
-					old.Dispose ();
-			} else {	
-				Gdk.Pixbuf old = this.Pixbuf;
-				this.Pixbuf = FSpot.PhotoLoader.Load (item.Collection, 
-								      item.Index);
-				if (old != null)
-					old.Dispose ();
-
-				this.ZoomFit ();
-			}
-			
-			Selection = Gdk.Rectangle.Zero;
-
-			if (PhotoChanged != null)
-				PhotoChanged (this);
-		}
-		
-
-		private void HandleLoupeDestroy (object sender, EventArgs args)
-		{
-			if (sender == loupe)
-				loupe = null;
-
-			if (sender == sharpener)
-				sharpener = null;
-
+			CheckPattern = new CheckPattern (this.Style.Backgrounds [(int)Gtk.StateType.Normal]);
 		}
 
 		protected override bool OnKeyPressEvent (Gdk.EventKey evnt)
@@ -365,6 +153,220 @@ namespace FSpot.Widgets {
 			return handled || base.OnKeyPressEvent (evnt);
 		}
 
+		protected override void OnDestroyed ()
+		{
+			if (loader != null) {
+				loader.AreaUpdated -= HandlePixbufAreaUpdated;
+				loader.AreaPrepared -= HandlePixbufPrepared;
+				loader.Dispose ();
+			}
+			base.OnDestroyed ();
+		}
+
+		//FIXME: I think OnRealized and OnUnrealized are here for the Loupe to work. If it's true, the Loupe should
+		//listen to the Realized/Unrealized events and do its initialization on its own
+		protected override void OnRealized ()
+		{
+			int [] attr = new int [] {
+				(int) GdkGlx.GlxAttribute.Rgba,
+				(int) GdkGlx.GlxAttribute.DepthSize, 16,
+				(int) GdkGlx.GlxAttribute.DoubleBuffer,
+				(int) GdkGlx.GlxAttribute.None
+			};
+
+			try {
+				Glx = new GdkGlx.Context (Screen, attr);
+				Colormap = Glx.GetColormap ();
+			} catch (GdkGlx.GlxException e) {
+				Console.WriteLine ("Error initializing the OpenGL context:{1} {0}", e, Environment.NewLine);
+			}
+
+			base.OnRealized ();
+		}
+
+		protected override void OnUnrealized ()
+		{
+			base.OnUnrealized ();
+
+			if (Glx != null)
+				Glx.Destroy ();
+		}
+#endregion
+
+#region loader		
+		uint timer;
+		ImageLoader loader;
+		void Load (Uri uri)
+		{
+			timer = Log.DebugTimerStart ();
+			if (loader != null)
+				loader.Dispose ();
+
+			loader = new ImageLoader ();
+			loader.AreaPrepared += HandlePixbufPrepared;
+			loader.AreaUpdated += HandlePixbufAreaUpdated;
+			loader.Completed += HandleDone;
+			loader.Load (uri);
+		}
+
+		void HandlePixbufPrepared (object sender, AreaPreparedEventArgs args)
+		{
+			ImageLoader loader = sender as ImageLoader;
+			if (loader != this.loader)
+				return;
+
+			if (!ShowProgress)
+				return;
+
+			Gdk.Pixbuf prev = this.Pixbuf;
+			this.Pixbuf = loader.Pixbuf;
+			PixbufOrientation = Accelerometer.GetViewOrientation (loader.PixbufOrientation);
+			if (prev != null)
+				prev.Dispose ();
+
+			this.ZoomFit (args.ReducedResolution);
+		}
+
+		void HandlePixbufAreaUpdated (object sender, AreaUpdatedEventArgs args)
+		{
+			ImageLoader loader = sender as ImageLoader;
+			if (loader != this.loader)
+				return;
+
+			if (!ShowProgress)
+				return;
+
+			Gdk.Rectangle area = this.ImageCoordsToWindow (args.Area);
+			this.QueueDrawArea (area.X, area.Y, area.Width, area.Height);
+		}
+
+		void HandleDone (object sender, System.EventArgs args)
+		{
+			Log.DebugTimerPrint (timer, "Loading image took {0}");
+			ImageLoader loader = sender as ImageLoader;
+			if (loader != this.loader)
+				return;
+
+			Pixbuf prev = this.Pixbuf;
+			if (Pixbuf != loader.Pixbuf)
+				Pixbuf = loader.Pixbuf;
+
+			if (Pixbuf == null) {
+				// FIXME: Do we have test cases for this ???
+
+				// FIXME in some cases the image passes completely through the
+				// pixbuf loader without properly loading... I'm not sure what to do about this other
+				// than try to load the image one last time.
+				try {
+					Log.Warning ("Falling back to file loader");
+					Pixbuf = PhotoLoader.Load (item.Collection, item.Index);
+				} catch (Exception e) {
+					LoadErrorImage (e);
+				}
+			}
+
+			if (loader.Pixbuf != null) //FIXME: this test in case the photo was loaded with the direct loader
+				PixbufOrientation = Accelerometer.GetViewOrientation (loader.PixbufOrientation);
+			else
+				PixbufOrientation = PixbufOrientation.TopLeft;
+
+			if (Pixbuf == null)
+				LoadErrorImage (null);
+			else
+				ZoomFit ();
+
+			progressive_display = true;
+
+			if (prev != this.Pixbuf && prev != null)
+				prev.Dispose ();
+		}
+#endregion
+		
+		protected BrowsablePointer item;
+		protected Loupe loupe;
+		protected Loupe sharpener;
+		GdkGlx.Context Glx;
+
+		void HandleOrientationChanged (object sender, EventArgs e)
+		{
+			Reload ();
+		}
+		
+		bool progressive_display = true;
+		bool ShowProgress {
+			get { return progressive_display; }
+		}
+
+		void LoadErrorImage (System.Exception e)
+		{
+			// FIXME we should check the exception type and do something
+			// like offer the user a chance to locate the moved file and
+			// update the db entry, but for now just set the error pixbuf	
+			Pixbuf old = Pixbuf;
+			Pixbuf = new Pixbuf (PixbufUtils.ErrorPixbuf, 0, 0, 
+					     PixbufUtils.ErrorPixbuf.Width, 
+					     PixbufUtils.ErrorPixbuf.Height);
+			if (old != null)
+				old.Dispose ();
+
+			PixbufOrientation = PixbufOrientation.TopLeft;
+			ZoomFit (false);
+		}
+
+		void HandlePhotoItemChanged (object sender, BrowsablePointerChangedEventArgs args) 
+		{
+			// If it is just the position that changed fall out
+			if (args != null && 
+			    args.PreviousItem != null &&
+			    Item.IsValid &&
+			    (args.PreviousIndex != item.Index) &&
+			    (this.Item.Current.DefaultVersionUri == args.PreviousItem.DefaultVersionUri))
+				return;
+
+			// Don't reload if the image didn't change at all.
+			if (args != null && args.Changes != null &&
+			    !args.Changes.DataChanged &&
+			    args.PreviousItem != null &&
+			    Item.IsValid &&
+			    this.Item.Current.DefaultVersionUri == args.PreviousItem.DefaultVersionUri)
+				return;
+
+			// Same image, don't load it progressively
+			if (args != null &&
+			    args.PreviousItem != null && 
+			    Item.IsValid && 
+			    Item.Current.DefaultVersionUri == args.PreviousItem.DefaultVersionUri)
+				progressive_display = false;
+
+			try {
+				if (Item.IsValid) 
+					Load (Item.Current.DefaultVersionUri);
+				else
+					LoadErrorImage (null);
+			} catch (System.Exception e) {
+				Log.DebugException (e);
+				LoadErrorImage (e);
+			}
+			
+			Selection = Gdk.Rectangle.Zero;
+
+			EventHandler eh = PhotoChanged;
+			if (eh != null)
+				eh (this, EventArgs.Empty);
+		}
+		
+
+		private void HandleLoupeDestroy (object sender, EventArgs args)
+		{
+			if (sender == loupe)
+				loupe = null;
+
+			if (sender == sharpener)
+				sharpener = null;
+
+		}
+
+
 		public void ShowHideLoupe ()
 		{
 			if (loupe == null) {
@@ -387,11 +389,5 @@ namespace FSpot.Widgets {
 			sharpener.Show ();	
 		}
 		
-		private void HandleDestroyed (object sender, System.EventArgs args)
-		{
-			//loader.AreaUpdated -= HandlePixbufAreaUpdated;
-			//loader.AreaPrepared -= HandlePixbufPrepared;
-			loader.Dispose ();
-		}
 	}
 }

@@ -26,10 +26,11 @@ namespace FSpot.Editors {
 		}
 
 		protected override Pixbuf Process (Pixbuf input, Cms.Profile input_profile) {
-			Gdk.Rectangle area = new Gdk.Rectangle (State.Selection.X, State.Selection.Y,
-					State.Selection.Width, State.Selection.Height);
+			Rectangle selection = FSpot.Utils.PixbufUtils.TransformOrientation ((int)State.PhotoImageView.PixbufOrientation <= 4 ? input.Width : input.Height,
+											    (int)State.PhotoImageView.PixbufOrientation <= 4 ? input.Height : input.Width,
+											    State.Selection, State.PhotoImageView.PixbufOrientation);
 			int threshold = Preferences.Get<int> (Preferences.EDIT_REDEYE_THRESHOLD);
-			return PixbufUtils.RemoveRedeye (input, area, threshold);
+			return PixbufUtils.RemoveRedeye (input, selection, threshold);
 		}
 	}
 }

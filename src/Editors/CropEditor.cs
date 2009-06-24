@@ -170,12 +170,15 @@ namespace FSpot.Editors {
 		}
 
 		protected override Pixbuf Process (Pixbuf input, Cms.Profile input_profile) {
+			Rectangle selection = FSpot.Utils.PixbufUtils.TransformOrientation ((int)State.PhotoImageView.PixbufOrientation <= 4 ? input.Width : input.Height,
+											    (int)State.PhotoImageView.PixbufOrientation <= 4 ? input.Height : input.Width,
+											    State.Selection, State.PhotoImageView.PixbufOrientation);
 			Pixbuf edited = new Pixbuf (input.Colorspace,
 						 input.HasAlpha, input.BitsPerSample,
-						 State.Selection.Width, State.Selection.Height);
+						 selection.Width, selection.Height);
 
-			input.CopyArea (State.Selection.X, State.Selection.Y,
-					State.Selection.Width, State.Selection.Height, edited, 0, 0);
+			input.CopyArea (selection.X, selection.Y,
+					selection.Width, selection.Height, edited, 0, 0);
 			return edited;
 		}
 	}

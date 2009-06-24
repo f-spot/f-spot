@@ -118,7 +118,7 @@ public class PixbufUtils {
 			
 			loader.Close ();
 			Pixbuf orig = loader.Pixbuf;
-			Gdk.Pixbuf rotated = TransformOrientation (orig, orientation, true);
+			Gdk.Pixbuf rotated = FSpot.Utils.PixbufUtils.TransformOrientation (orig, orientation);
 			
 			if (orig != rotated) {
 				CopyThumbnailOptions (orig, rotated);
@@ -687,7 +687,7 @@ public class PixbufUtils {
 			using (MemoryStream mem = new MemoryStream (thumb_data)) {
 				Gdk.Pixbuf thumb = new Gdk.Pixbuf (mem);
 
-				Gdk.Pixbuf rotated = PixbufUtils.TransformOrientation (thumb, orientation);
+				Gdk.Pixbuf rotated = FSpot.Utils.PixbufUtils.TransformOrientation (thumb, orientation);
 				
 				if (rotated != thumb)
 					thumb.Dispose ();
@@ -740,77 +740,6 @@ public class PixbufUtils {
 		return ret;
 	}
 
-	public static Gdk.Pixbuf TransformOrientation (Gdk.Pixbuf src, PixbufOrientation orientation, bool copy_data)
-	{
-		Gdk.Pixbuf pixbuf;
-		if (src == null)
-			return null;
-		
-		switch (orientation) {
-		case PixbufOrientation.LeftTop:
-		case PixbufOrientation.LeftBottom:
-		case PixbufOrientation.RightTop:
-		case PixbufOrientation.RightBottom:	
-			pixbuf = new Gdk.Pixbuf (src.Colorspace, src.HasAlpha, 
-						 src.BitsPerSample,
-						 src.Height, src.Width);
-			break;
-		case PixbufOrientation.TopRight:
-		case PixbufOrientation.BottomRight:
-		case PixbufOrientation.BottomLeft:
-			pixbuf = new Gdk.Pixbuf (src.Colorspace, src.HasAlpha, 
-						 src.BitsPerSample,
-						 src.Width, src.Height);
-			break;
-		default:
-			pixbuf = src;
-			break;
-		}
-
-		if (copy_data && src != pixbuf) 
-			TransformAndCopy (src, pixbuf, orientation, new Gdk.Rectangle (0, 0, src.Width, src.Height));
-
-		return pixbuf;
-	}
-
-	public static Gdk.Pixbuf TransformOrientation (Gdk.Pixbuf src, PixbufOrientation orientation)
-	{
-		return TransformOrientation (src, orientation, true);
-	}
-
-	public static Gdk.Rectangle TransformAndCopy (Gdk.Pixbuf src, Gdk.Pixbuf dest, PixbufOrientation orientation, Gdk.Rectangle args)
-	{
-		Gdk.Rectangle area = FSpot.Utils.PixbufUtils.TransformOrientation (src, args, orientation);
-
-		int step = 256;
-
-		Gdk.Rectangle rect = new Gdk.Rectangle (args.X, args.Y, 
-							Math.Min (step, args.Width),
-							Math.Min (step, args.Height));
-
-		Gdk.Rectangle trect = FSpot.Utils.PixbufUtils.TransformOrientation (src, rect, orientation);
-		Gdk.Pixbuf tmp = new Gdk.Pixbuf (src.Colorspace, src.HasAlpha, 
-						 src.BitsPerSample,
-						 trect.Width, trect.Height);
-
-		Gdk.Rectangle subarea;
-		BlockProcessor proc = new BlockProcessor (args, 256);
-		while (proc.Step (out subarea)) {
-			Gdk.Rectangle trans = FSpot.Utils.PixbufUtils.TransformOrientation (src, subarea, orientation);
-			Gdk.Pixbuf ssub = new Gdk.Pixbuf (src, subarea.X, subarea.Y,
-							  subarea.Width, subarea.Height);
-
-			Gdk.Pixbuf tsub = new Gdk.Pixbuf (tmp, 0, 0, trans.Width, trans.Height);
-			CopyWithOrientation (ssub, tsub, orientation);
-
-			tsub.CopyArea (0, 0, trans.Width, trans.Height, dest, trans.X, trans.Y);
-			ssub.Dispose ();
-			tsub.Dispose ();
-		}
-
-		tmp.Dispose ();
-		return area;
-	}
 	// Bindings from libf.
 
 	[DllImport ("libfspot")]
@@ -833,13 +762,13 @@ public class PixbufUtils {
 		}
 	}
 
-	[DllImport ("libfspot")]
-	static extern void f_pixbuf_copy_with_orientation (IntPtr src, IntPtr dest, int orientation);
-
-	public static void CopyWithOrientation (Gdk.Pixbuf src, Gdk.Pixbuf dest, PixbufOrientation orientation)
-	{
-		f_pixbuf_copy_with_orientation (src.Handle, dest.Handle, (int)orientation);
-	}
+//	[DllImport ("libfspot")]
+//	static extern void f_pixbuf_copy_with_orientation (IntPtr src, IntPtr dest, int orientation);
+//
+//	public static void CopyWithOrientation (Gdk.Pixbuf src, Gdk.Pixbuf dest, PixbufOrientation orientation)
+//	{
+//		f_pixbuf_copy_with_orientation (src.Handle, dest.Handle, (int)orientation);
+//	}
 
 #if false
 	[DllImport("glibsharpglue")]
