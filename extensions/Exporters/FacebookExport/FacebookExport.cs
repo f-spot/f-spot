@@ -41,6 +41,14 @@ namespace FSpot.Exporter.Facebook
 		static string keyring_item_name = "Facebook Account";
 
 		static string api_key = "c23d1683e87313fa046954ea253a240e";
+
+		/* INSECURE! According to:
+		 *
+		 * http://wiki.developers.facebook.com/index.php/Desktop_App_Auth_Process
+		 *
+		 * We should *NOT* put our secret code here, but do an external
+		 * authorization using our own PHP page somewhere.
+		 */
 		static string secret = "743e9a2e6a1c35ce961321bceea7b514";
 
 		FacebookSession facebookSession;
@@ -51,8 +59,15 @@ namespace FSpot.Exporter.Facebook
 			SessionInfo info = ReadSessionInfo ();
 			if (info != null) {
 				facebookSession = new FacebookSession (api_key, info);
-				/* TODO: Check if the session is still valid? */
-				connected = true;
+				try {
+					/* This basically functions like a ping to ensure the
+					 * session is still valid:
+					 */
+					facebookSession.HasAppPermission("offline_access");
+					connected = true;
+				} catch (FacebookException) {
+					connected = false;
+				}
 			}
 		}
 
@@ -63,6 +78,34 @@ namespace FSpot.Exporter.Facebook
 			facebookSession = session;
 			connected = false;
 			return uri;
+		}
+
+		public bool RevokePermission (string permission)
+		{
+			return facebookSession.RevokeAppPermission(permission);
+		}
+
+		public bool GrantPermission (string permission, Window parent)
+		{
+			if (facebookSession.HasAppPermission(permission))
+				return true;
+
+			Uri uri = facebookSession.GetGrantUri (permission);
+			GtkBeans.Global.ShowUri (parent.Screen, uri.ToString ());
+
+			HigMessageDialog mbox = new HigMessageDialog (parent, Gtk.DialogFlags.DestroyWithParent | Gtk.DialogFlags.Modal,
+					Gtk.MessageType.Info, Gtk.ButtonsType.Ok, Catalog.GetString ("Waiting for authorization"),
+					Catalog.GetString ("F-Spot will now launch your browser so that you can enable the permission you just selected.\n\nOnce you are directed by Facebook to return to this application, click \"Ok\" below." ));
+
+			mbox.Run ();
+			mbox.Destroy ();
+
+			return facebookSession.HasAppPermission(permission);
+		}
+
+		public bool HasPermission(string permission)
+		{
+			return facebookSession.HasAppPermission(permission);
 		}
 
 		public FacebookSession Facebook
@@ -166,6 +209,9 @@ namespace FSpot.Exporter.Facebook
 			} catch (KeyringException e) {
 				connected = false;
 				Log.DebugException (e);
+			} catch (FacebookException fe) {
+				connected = false;
+				Log.DebugException (fe);
 			}
 			return connected;
 		}
@@ -175,7 +221,6 @@ namespace FSpot.Exporter.Facebook
 			connected = false;
 			ForgetSessionInfo ();
 		}
-
 	}
 
 	internal class AlbumStore : ListStore
@@ -297,6 +342,9 @@ namespace FSpot.Exporter.Facebook
 		[Widget]TextView caption_textview;
 		[Widget]TreeView tag_treeview;
 		[Widget]EventBox tag_image_eventbox;
+		[Widget]HBox permissions_hbox;
+		[Widget]CheckButton offline_perm_check;
+		[Widget]CheckButton photo_perm_check;
 
 		Gtk.Image tag_image;
 		int tag_image_height;
@@ -338,6 +386,8 @@ namespace FSpot.Exporter.Facebook
 
 			login_button.Clicked += HandleLoginClicked;
 			logout_button.Clicked += HandleLogoutClicked;
+			offline_perm_check.Toggled += HandlePermissionToggled;
+			photo_perm_check.Toggled += HandlePermissionToggled;
 
 			create_album_radiobutton.Toggled += HandleCreateAlbumToggled;
 			create_album_radiobutton.Active = true;
@@ -390,7 +440,7 @@ namespace FSpot.Exporter.Facebook
 				mbox.Run ();
 				mbox.Destroy ();
 
-				LoginProgress (0.0, Catalog.GetString (" Authenticating..."));
+				LoginProgress (0.0, Catalog.GetString ("Authenticating..."));
 				account.Authenticate ();
 			}
 			DoLogin ();
@@ -412,6 +462,10 @@ namespace FSpot.Exporter.Facebook
 				dialog_action_area.Sensitive = false;
 
 				try {
+					LoginProgress (0.0, Catalog.GetString ("Authorizing Session"));
+					offline_perm_check.Active = account.HasPermission("offline_access");
+					photo_perm_check.Active = account.HasPermission("photo_upload");
+
 					LoginProgress (0.2, Catalog.GetString ("Session established, fetching user info..."));
 					User me = account.Facebook.GetLoggedInUser ().GetUserInfo ();
 
@@ -437,6 +491,7 @@ namespace FSpot.Exporter.Facebook
 
 					album_info_vbox.Sensitive = true;
 					picture_info_vbox.Sensitive = true;
+					permissions_hbox.Sensitive = true;
 					login_button.Visible = false;
 					logout_button.Visible = true;
 					// Note for translators: {0} and {1} are respectively firstname and surname of the user
@@ -449,6 +504,7 @@ namespace FSpot.Exporter.Facebook
 					error.Run ();
 					error.Destroy ();
 
+					account.Deauthenticate ();
 					DoLogout ();
 				} finally {
 					log_buttons_hbox.Sensitive = true;
@@ -473,6 +529,39 @@ namespace FSpot.Exporter.Facebook
 
 			album_info_vbox.Sensitive = false;
 			picture_info_vbox.Sensitive = false;
+			offline_perm_check.Active = false;
+			photo_perm_check.Active = false;
+			permissions_hbox.Sensitive = false;
+		}
+
+		public void HandlePermissionToggled (object sender, EventArgs args)
+		{
+			string permission;
+			if (sender == offline_perm_check) {
+				permission = "offline_access";
+			} else if (sender == photo_perm_check) {
+				permission = "photo_upload";
+			} else {
+				throw new Exception ("Unknown Source object");
+			}
+			CheckButton origin = (CheckButton)sender;
+			bool desired = origin.Active;
+			bool actual = account.HasPermission (permission);
+			if (desired != actual) {
+				if (desired) {
+					Log.DebugFormat("Granting {0}", permission);
+					account.GrantPermission (permission, Dialog);
+				} else {
+					Log.DebugFormat("Revoking {0}", permission);
+					account.RevokePermission (permission);
+				}
+				/* Double-check that things work... */
+				actual = account.HasPermission (permission);
+				if (actual != desired) {
+					Log.Warning("Failed to alter permissions");
+				}
+				origin.Active = account.HasPermission (permission);
+			}
 		}
 
 		void HandleCreateAlbumToggled (object sender, EventArgs args)

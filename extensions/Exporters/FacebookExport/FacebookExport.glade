@@ -26,6 +26,7 @@
             <child>
               <widget class="GtkTable" id="table3">
                 <property name="visible">True</property>
+                <property name="n_rows">2</property>
                 <property name="n_columns">4</property>
                 <property name="homogeneous">True</property>
                 <child>
@@ -67,6 +68,57 @@
                       </packing>
                     </child>
                   </widget>
+                  <packing>
+                    <property name="bottom_attach">2</property>
+                  </packing>
+                </child>
+                <child>
+                  <widget class="GtkHBox" id="permissions_hbox">
+                    <property name="visible">True</property>
+                    <child>
+                      <widget class="GtkLabel" id="label6">
+                        <property name="visible">True</property>
+                        <property name="xalign">1</property>
+                        <property name="xpad">2</property>
+                        <property name="label" translatable="yes">Permissions:</property>
+                      </widget>
+                      <packing>
+                        <property name="position">0</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <widget class="GtkCheckButton" id="offline_perm_check">
+                        <property name="label" translatable="yes">Stay Connected</property>
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="receives_default">False</property>
+                        <property name="draw_indicator">True</property>
+                      </widget>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="position">1</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <widget class="GtkCheckButton" id="photo_perm_check">
+                        <property name="label" translatable="yes">Auto-confirm Photos</property>
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="receives_default">False</property>
+                        <property name="draw_indicator">True</property>
+                      </widget>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="position">2</property>
+                      </packing>
+                    </child>
+                  </widget>
+                  <packing>
+                    <property name="left_attach">1</property>
+                    <property name="right_attach">4</property>
+                    <property name="top_attach">1</property>
+                    <property name="bottom_attach">2</property>
+                  </packing>
                 </child>
               </widget>
               <packing>
