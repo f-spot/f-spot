@@ -115,12 +115,7 @@ namespace FSpot {
 			is_disposed = true;
 			if (image_stream != null)
 				image_stream.Close ();
-			try {
-				Close ();
-			} catch (GLib.GException) {
-				//it's normal to get an exception here if we're closing in the early loading stages, and it's safe to ignore
-				// that exception as we don't want the loading to finish but want to cancel it.
-			}
+			Close ();
 			if (thumb != null) {
 				thumb.Dispose ();
 				thumb = null;
@@ -138,7 +133,7 @@ namespace FSpot {
 					ret = true;
 				}
 			}
-			return ret || base.Close ();
+			return ret || base.Close (true);
 		}
 #endregion
 
@@ -197,7 +192,7 @@ namespace FSpot {
 				} else {
 					try {
 						if (close_loader)
-							base.Close (); //could throw a GException
+							base.Close (true);
 						else if (!is_disposed && Write (buffer, (ulong)byte_read))
 							image_stream.BeginRead (buffer, 0, count, HandleReadDone, null);
 					} catch (System.ObjectDisposedException od) {
