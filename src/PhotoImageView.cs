@@ -194,9 +194,11 @@ namespace FSpot.Widgets {
 #endregion
 
 #region loader		
+		uint timer;
 		ImageLoader loader;
 		void Load (Uri uri)
 		{
+			timer = Log.DebugTimerStart ();
 			if (loader != null)
 				loader.Dispose ();
 
@@ -240,6 +242,7 @@ namespace FSpot.Widgets {
 
 		void HandleDone (object sender, System.EventArgs args)
 		{
+			Log.DebugTimerPrint (timer, "Loading image took {0}");
 			ImageLoader loader = sender as ImageLoader;
 			if (loader != this.loader)
 				return;
