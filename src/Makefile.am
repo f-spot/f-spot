@@ -59,6 +59,7 @@ UTILS_CSDISTFILES =				\
 	$(srcdir)/Utils/PixbufOrientation.cs	\
 	$(srcdir)/Utils/PixbufUtils.cs		\
 	$(srcdir)/Utils/Unix.cs			\
+	$(srcdir)/Utils/UriExtensions.cs			\
 	$(srcdir)/Utils/UriUtils.cs
 
 JOBSCHEDULER_CSDISTFILES =				\
