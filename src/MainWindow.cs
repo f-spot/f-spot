@@ -631,11 +631,6 @@ public class MainWindow {
 			bool prev = valid && photo_view.View.Item.Index > 0;
 			bool next = valid && photo_view.View.Item.Index < query.Count - 1;
 
-			if (valid) {
-				Gnome.Vfs.Uri vfs = new Gnome.Vfs.Uri (photo_view.View.Item.Current.DefaultVersionUri.ToString ());
-				valid = vfs.Scheme == "file";
-			}
-
 			display_previous_button.Sensitive = prev;
 			display_next_button.Sensitive = next;
 
@@ -3095,18 +3090,18 @@ public class MainWindow {
 		}
 	}
 
-	public string [] SelectedMimeTypes ()
+	public List<string> SelectedMimeTypes ()
 	{
-		ArrayList mimes = new ArrayList ();
+		List<string> contents = new List<string> ();
 
 		foreach (Photo p in SelectedPhotos ()) {
-			string mime = Gnome.Vfs.MimeType.GetMimeTypeForUri (p.DefaultVersionUri.ToString ());
+			string content = GLib.FileFactory.NewForUri (p.DefaultVersionUri).QueryInfo ("standard::content-type", GLib.FileQueryInfoFlags.None, null).ContentType;
 
-			if (! mimes.Contains (mime))
-				mimes.Add (mime);
+			if (! contents.Contains (content))
+				contents.Add (content);
 		}
 
-		return mimes.ToArray (typeof (string)) as string [];
+		return contents;
 	}
 
 	private void ShowQueryWidget ()

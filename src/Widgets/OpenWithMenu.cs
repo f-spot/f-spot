@@ -26,7 +26,7 @@ namespace FSpot.Widgets {
 	public class OpenWithMenu: Gtk.Menu {
 		public event EventHandler<ApplicationActivatedEventArgs> ApplicationActivated;
 
-		public delegate string [] TypeFetcher ();
+		public delegate IEnumerable<string> TypeFetcher ();
 		TypeFetcher type_fetcher;
 
 		List<string> ignore_apps;
@@ -76,7 +76,7 @@ namespace FSpot.Widgets {
 			ShowAll ();
 		}
 
-		AppInfo[] ApplicationsFor (string [] types)
+		AppInfo[] ApplicationsFor (IEnumerable<string> types)
 		{
 			List<AppInfo> app_infos = new List<AppInfo> ();
 			List<string> existing_ids = new List<string> ();
