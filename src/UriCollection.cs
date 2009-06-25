@@ -5,6 +5,9 @@
  *	Larry Ewing  (lewing@novell.com)
  *	Stephane Delcroix  (stephane@delcroix.org)
  *
+ * Copyright (c) 2005-2009 Novell, Inc.
+ * Copyright (c) 2007 Stephane Delcroix
+ *
  * This is free software. See COPYING for details
  */
 
@@ -14,13 +17,15 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Xml;
 
+using GLib;
+
 namespace FSpot {
 	public class UriCollection : PhotoList {
 		public UriCollection () : base (new IBrowsableItem [0])
 		{
 		}
 
-		public UriCollection (FileInfo [] files) : this ()
+		public UriCollection (System.IO.FileInfo [] files) : this ()
 		{
 			LoadItems (files);
 		}
@@ -36,20 +41,16 @@ namespace FSpot {
 				//Console.WriteLine ("using image loader {0}", uri.ToString ());
 				Add (new FileBrowsableItem (uri));
 			} else {
-				Gnome.Vfs.FileInfo info = new Gnome.Vfs.FileInfo (uri.ToString (),
-						Gnome.Vfs.FileInfoOptions.GetMimeType);
+				GLib.FileInfo info = FileFactory.NewForUri (uri).QueryInfo ("standard::type,standard::content-type", FileQueryInfoFlags.None, null);
 
-
-				//Console.WriteLine ("url {0} MimeType {1}", uri, info.MimeType);
-
-				if (info.Type == Gnome.Vfs.FileType.Directory)
+				if (info.FileType == FileType.Directory)
 					new DirectoryLoader (this, uri);
 				else {
 					// FIXME ugh...
-					if (info.MimeType == "text/xml"
-						|| info.MimeType == "application/xml"
-					|| info.MimeType == "application/rss+xml"
-					|| info.MimeType == "text/plain") {
+					if (info.ContentType == "text/xml"
+					 || info.ContentType == "application/xml"
+					 || info.ContentType == "application/rss+xml"
+					 || info.ContentType == "text/plain") {
 						new RssLoader (this, uri);
 					}
 				}
@@ -142,10 +143,10 @@ namespace FSpot {
 			}
 		}
 
-		protected void LoadItems (FileInfo [] files)
+		protected void LoadItems (System.IO.FileInfo [] files)
 		{
 			List<IBrowsableItem> items = new List<IBrowsableItem> ();
-			foreach (FileInfo f in files) {
+			foreach (var f in files) {
 				if (FSpot.ImageFile.HasLoader (f.FullName)) {
 					Console.WriteLine (f.FullName);
 					items.Add (new FileBrowsableItem (f.FullName));
