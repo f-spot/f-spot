@@ -9,6 +9,7 @@
  */
 
 using Gtk;
+using GLib;
 using System;
 
 using FSpot.Widgets;
@@ -57,7 +58,7 @@ namespace FSpot {
 
 			for (int i = 0; i < selection.Count; i++) {
 				Photo p = selection[i] as Photo;
-				if (Gnome.Vfs.MimeType.GetMimeTypeForUri (p.DefaultVersionUri.ToString ()) != "image/jpeg")
+				if (FileFactory.NewForUri (p.DefaultVersionUri).QueryInfo ("standard::content-type", FileQueryInfoFlags.None, null).ContentType != "image/jpeg")
 					force_original = true;
 			}
 
@@ -90,7 +91,7 @@ namespace FSpot {
 			for (int i = 0; i < selection.Count; i++) {
 				Photo photo = selection[i] as Photo;
 				try {
-					Orig_Photo_Size += (new Gnome.Vfs.FileInfo (photo.DefaultVersionUri.ToString ())).Size;
+					Orig_Photo_Size += FileFactory.NewForUri (photo.DefaultVersionUri).QueryInfo ("standard::size", FileQueryInfoFlags.None, null).Size;
 				} catch {
 				}
 			}
@@ -104,14 +105,14 @@ namespace FSpot {
 			if (scalephoto != null && !force_original) {
 				
 				// Get first photos file size
-				long orig_size = (new Gnome.Vfs.FileInfo (scalephoto.DefaultVersionUri.ToString ())).Size;
+				long orig_size = FileFactory.NewForUri (scalephoto.DefaultVersionUri).QueryInfo ("standard::size", FileQueryInfoFlags.None, null).Size;
 				
 				FilterSet filters = new FilterSet ();
 				filters.Add (new ResizeFilter ((uint)(sizes [3])));
 				long new_size;
 				using (FilterRequest request = new FilterRequest (scalephoto.DefaultVersionUri)) {
 					filters.Convert (request);
-					new_size = (new Gnome.Vfs.FileInfo (request.Current.ToString ())).Size;
+					new_size = FileFactory.NewForUri (request.Current).QueryInfo ("standard::size", FileQueryInfoFlags.None, null).Size;
 				}
 				
 				if (orig_size > 0) {
