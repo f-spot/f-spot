@@ -78,6 +78,7 @@ WIDGETS_CSDISTFILES =				\
 	$(srcdir)/Bling/EasingMode.cs		\
 	$(srcdir)/Bling/EasedAnimation.cs	\
 	$(srcdir)/Bling/QuinticEase.cs		\
+	$(srcdir)/Widgets/ApplicationActivatedEventArgs.cs	\
 	$(srcdir)/Widgets/BuilderWindow.cs	\
 	$(srcdir)/Widgets/CheckPattern.cs	\
 	$(srcdir)/Widgets/ComplexMenuItem.cs	\

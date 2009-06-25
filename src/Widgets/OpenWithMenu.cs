@@ -7,6 +7,9 @@
  * 	Gabriel Burt  <gabriel.burt@gmail.com>
  * 	Larry Ewing  <lewing@novell.com>
  *
+ * Copyright (c) 2007 Stephane Delcroix
+ * Copyright (c) 2007-2009 Novell, Inc.
+ *
  * This is free software. See COPYING for details.
  */
 
@@ -21,8 +24,7 @@ using Mono.Unix;
 
 namespace FSpot.Widgets {
 	public class OpenWithMenu: Gtk.Menu {
-		public delegate void OpenWithHandler (AppInfo app_info);
-		public event OpenWithHandler ApplicationActivated;
+		public event EventHandler<ApplicationActivatedEventArgs> ApplicationActivated;
 
 		public delegate string [] TypeFetcher ();
 		TypeFetcher type_fetcher;
@@ -97,11 +99,11 @@ namespace FSpot.Widgets {
 			AppMenuItem app = (sender as AppMenuItem);
 
 			if (ApplicationActivated != null)
-				ApplicationActivated (app.App);
+				ApplicationActivated (this, new ApplicationActivatedEventArgs (app.App));
 		}
 
-		private class AppMenuItem : ImageMenuItem {
-
+		private class AppMenuItem : ImageMenuItem
+		{
 			AppInfo app;
 			public AppInfo App {
 				get { return app; }

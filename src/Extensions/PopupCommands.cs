@@ -9,8 +9,8 @@
  */
 
 using System;
-
 using GLib;
+using FSpot.Widgets;
 
 namespace FSpot.Extensions 
 {
@@ -61,7 +61,7 @@ namespace FSpot.Extensions
 		public Gtk.Menu GetMenu ()
 		{
 			owm = new Widgets.OpenWithMenu (MainWindow.Toplevel.SelectedMimeTypes, "f-spot");
-			owm.ApplicationActivated += delegate (AppInfo app) { MainWindow.Toplevel.HandleOpenWith (this, app); };
+			owm.ApplicationActivated += MainWindow.Toplevel.HandleOpenWith;
 			return (Gtk.Menu) owm;
 		}
 

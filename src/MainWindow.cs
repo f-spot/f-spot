@@ -2874,8 +2874,9 @@ public class MainWindow {
 		}
 	}
 
-	public void HandleOpenWith (object sender, GLib.AppInfo application)
+	public void HandleOpenWith (object sender, ApplicationActivatedEventArgs e)
 	{
+		GLib.AppInfo application = e.AppInfo;
 		Photo[] selected = SelectedPhotos ();
 
 		if (selected == null || selected.Length < 1)
@@ -2908,7 +2909,7 @@ public class MainWindow {
 			CheckButton cb = new CheckButton (Catalog.GetString ("XCF version"));
 			cb.Active = Preferences.Get<bool> (Preferences.EDIT_CREATE_XCF_VERSION);
 			hmd.VBox.Add (cb);
-			cb.Toggled += delegate (object s, EventArgs e) {
+			cb.Toggled += delegate (object s, EventArgs ea) {
 				Preferences.Set (Preferences.EDIT_CREATE_XCF_VERSION, (s as CheckButton).Active);
 			};
 			cb.Show ();
@@ -2941,8 +2942,8 @@ public class MainWindow {
 					uint version = photo.CreateNamedVersion (application.Name, create_xcf ? ".xcf" : null, photo.DefaultVersionId, true);
 					photo.DefaultVersionId = version;
 				}
-			} catch (Exception e) {
-				errors.Add (new EditException (photo, e));
+			} catch (Exception ex) {
+				errors.Add (new EditException (photo, ex));
 			}
 
 			uri_list.Append (photo.DefaultVersionUri.ToString ());
