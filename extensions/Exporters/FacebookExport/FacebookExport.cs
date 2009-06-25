@@ -7,8 +7,10 @@
  *   Jim Ramsay <i.am@jimramsay.com>
  *
  * Copyright (C) 2007 George Talusan
- * Copyright (c) 2008 Novell, Inc.
+ * Copyright (c) 2008-2009 Novell, Inc.
  * Later changes (2009) by Jim Ramsay
+ *
+ * This is free software. See COPYING for details.
  */
 
 using System;
@@ -23,7 +25,7 @@ using System.Web;
 using Mono.Unix;
 using Gtk;
 using Gnome.Keyring;
-using Glade;
+using GtkBeans;
 
 using FSpot;
 using FSpot.Utils;
@@ -270,36 +272,6 @@ namespace FSpot.Exporter.Facebook
 		public List<Mono.Facebook.Tag> Tags
 		{
 			get { return _tags ?? new List<Mono.Facebook.Tag> (); }
-		}
-	}
-
-	internal class FacebookTagPopup
-	{
-		private Dictionary<long, User> _friends;
-
-		private Gtk.Window _popup;
-
-		public FacebookTagPopup (Dictionary<long, User> friends)
-		{
-			Friends = friends;
-
-			Glade.XML xml = new Glade.XML (null, "FacebookExport.glade", "facebook_tag_popup", "f-spot");
-			xml.Autoconnect (this);
-
-			Popup = xml.GetWidget ("facebook_tag_popup") as Gtk.Window;
-			Popup.Show ();
-		}
-
-		public Dictionary<long, User> Friends
-		{
-			get { return _friends; }
-			set { _friends = value; }
-		}
-
-		protected Gtk.Window Popup
-		{
-			get { return _popup; }
-			set { _popup = value; }
 		}
 	}
 
