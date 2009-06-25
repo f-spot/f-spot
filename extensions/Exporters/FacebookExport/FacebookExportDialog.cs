@@ -87,7 +87,8 @@ namespace FSpot.Exporter.Facebook
 			existing_album_radiobutton.Toggled += HandleExistingAlbumToggled;
 
 			CellRendererText cell = new CellRendererText ();
-			existing_album_combobox.PackStart (cell, false);
+			existing_album_combobox.PackStart (cell, true);
+			existing_album_combobox.SetAttributes (cell, "text", 0);
 
 			tag_image_eventbox.ButtonPressEvent += HandleTagImageButtonPressEvent;
 
@@ -242,8 +243,7 @@ namespace FSpot.Exporter.Facebook
 
 					LoginProgress (0.8, Catalog.GetString ("Session established, fetching photo albums..."));
 					Album[] albums = account.Facebook.GetAlbums ();
-					AlbumStore store = new AlbumStore (albums);
-					existing_album_combobox.Model = store;
+					existing_album_combobox.Model = new AlbumStore (albums);
 					existing_album_combobox.Active = 0;
 
 					album_info_vbox.Sensitive = true;
@@ -377,7 +377,25 @@ namespace FSpot.Exporter.Facebook
 			Log.Debug (message);
 			while (Application.EventsPending ()) Application.RunIteration ();
 		}
-
-
 	}
+
+	internal class AlbumStore : ListStore
+	{
+		private Album[] _albums;
+
+		public AlbumStore (Album[] albums) : base (typeof (string))
+		{
+			_albums = albums;
+
+			foreach (Album album in Albums) {
+				AppendValues (album.Name);
+			}
+		}
+
+		public Album[] Albums
+		{
+			get { return _albums; }
+		}
+	}
+
 }

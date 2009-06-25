@@ -225,24 +225,6 @@ namespace FSpot.Exporter.Facebook
 		}
 	}
 
-	internal class AlbumStore : ListStore
-	{
-		private Album[] _albums;
-
-		public AlbumStore (Album[] albums) : base (typeof (string))
-		{
-			_albums = albums;
-
-			foreach (Album album in Albums)
-				AppendValues (album.Name);
-		}
-
-		public Album[] Albums
-		{
-			get { return _albums; }
-		}
-	}
-
 	internal class TagStore : ListStore
 	{
 		private List<Mono.Facebook.Tag> _tags;
