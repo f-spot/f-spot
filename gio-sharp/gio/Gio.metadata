@@ -14,6 +14,7 @@
   <attr path="/api/namespace/interface[@cname='GFile']/method[@name='GetParseName']" name="name">GetParsedName</attr>
   <attr path="/api/namespace/interface[@cname='GFile']/method[@name='GetUri']" name="hidden">1</attr>
   <attr path="/api/namespace/interface[@cname='GLoadableIcon']/method[@name='LoadAsync']/*/*[@type='GAsyncReadyCallback']" name="scope">async</attr>
+  <attr path="/api/namespace/interface/method/*/*[@type='GAsyncReadyCallback']" name="scope">async</attr>
   <attr path="/api/namespace/interface[@cname='GMount']" name="consume_only">1</attr>
   <attr path="/api/namespace/interface[@cname='GMount']/method[@name='CanUnmount']" name="name">GetCanUnmount</attr>
   <attr path="/api/namespace/interface[@cname='GSeekable']/method[@cname='g_seekable_can_seek']" name="name">GetCanSeek</attr>
