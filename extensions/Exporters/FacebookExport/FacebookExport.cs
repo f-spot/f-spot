@@ -8,7 +8,7 @@
  *
  * Copyright (C) 2007 George Talusan
  * Copyright (c) 2008-2009 Novell, Inc.
- * Copyright (c) 2009 Jim Rasay
+ * Copyright (c) 2009 Jim Ramsay
  *
  * This is free software. See COPYING for details.
  */
@@ -294,9 +294,6 @@ namespace FSpot.Exporter.Facebook
 
 		public void Run (IBrowsableCollection selection)
 		{
-
-			dialog = new FacebookExportDialog (selection);
-
 			if (selection.Items.Length > 60) {
 				HigMessageDialog mbox = new HigMessageDialog (dialog,
 						Gtk.DialogFlags.DestroyWithParent | Gtk.DialogFlags.Modal, Gtk.MessageType.Error,
@@ -307,8 +304,7 @@ namespace FSpot.Exporter.Facebook
 				return;
 			}
 
-
-
+			dialog = new FacebookExportDialog (selection);
 			if (dialog.Run () != (int)ResponseType.Ok) {
 				dialog.Destroy ();
 				return;
