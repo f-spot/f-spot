@@ -108,37 +108,32 @@ namespace FSpot {
 		{
 			UriCollection collection;
 			Uri uri;
+			GLib.File file;
 
 			public DirectoryLoader (UriCollection collection, System.Uri uri)
 			{
 				this.collection = collection;
 				this.uri = uri;
-				Gnome.Vfs.Directory.GetEntries (uri.ToString (),
-						Gnome.Vfs.FileInfoOptions.Default,
-						20,
-						(int)Gnome.Vfs.Async.Priority.Default,
-						InfoLoaded);
+				file = FileFactory.NewForUri (uri);
+				file.EnumerateChildrenAsync ("standard::*",
+							     FileQueryInfoFlags.None,
+							     500,
+							     null,
+							     InfoLoaded);
+										    
 			}
 
-			private void InfoLoaded (Gnome.Vfs.Result result, Gnome.Vfs.FileInfo []info, uint entries_read)
+			void InfoLoaded (GLib.Object o, GLib.AsyncResult res)
 			{
-				if (result != Gnome.Vfs.Result.Ok && result != Gnome.Vfs.Result.ErrorEof)
-					return;
-
-				ArrayList items = new ArrayList ();
-
-				for (int i = 0; i < entries_read; i++) {
-					Gnome.Vfs.Uri vfs = new Gnome.Vfs.Uri (uri.ToString ());
-					vfs = vfs.AppendFileName (info [i].Name);
-					Uri file = new Uri (vfs.ToString ());
-					System.Console.WriteLine ("tesing uri = {0}", file.ToString ());
-
-					if (FSpot.ImageFile.HasLoader (file))
-						items.Add (new FileBrowsableItem (file));
+				List<FileBrowsableItem> items = new List<FileBrowsableItem> ();
+				foreach (GLib.FileInfo info in file.EnumerateChildrenFinish (res)) {
+					Uri i = file.GetChild (info.Name).Uri;
+					FSpot.Utils.Log.Debug ("testing uri = {0}", i);
+					if (FSpot.ImageFile.HasLoader (i))
+						items.Add (new FileBrowsableItem (i));
 				}
-
 				Gtk.Application.Invoke (items, System.EventArgs.Empty, delegate (object sender, EventArgs args) {
-					collection.Add (items.ToArray (typeof (FileBrowsableItem)) as FileBrowsableItem []);
+					collection.Add (items.ToArray ());
 				});
 			}
 		}
