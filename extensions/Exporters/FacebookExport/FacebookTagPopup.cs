@@ -11,6 +11,7 @@
  * This is free software. See COPYING for details.
  */
 
+using System.Reflection;
 using System.Collections.Generic;
 using FSpot.Widgets;
 using Mono.Facebook;
@@ -23,7 +24,7 @@ namespace FSpot.Exporter.Facebook
 
 		private Gtk.Window _popup;
 
-		public FacebookTagPopup (Dictionary<long, User> friends) : base ("FacebookExport.ui", "facebook_tag_popup")
+		public FacebookTagPopup (Dictionary<long, User> friends) : base (Assembly.GetExecutingAssembly (), "FacebookExport.ui", "facebook_tag_popup")
 		{
 			Friends = friends;
 		}

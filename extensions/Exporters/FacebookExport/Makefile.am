@@ -8,6 +8,7 @@ PLUGIN_ASSEMBLY = $(PLUGIN_NAME).dll
 
 PLUGIN_SOURCES =			\
 	$(srcdir)/FacebookExport.cs			\
+	$(srcdir)/FacebookExportDialog.cs		\
 	$(srcdir)/FacebookTagPopup.cs			\
 	$(srcdir)/Mono.Facebook/Album.cs		\
 	$(srcdir)/Mono.Facebook/AssemblyInfo.cs		\
@@ -58,9 +59,6 @@ $(PLUGIN_ASSEMBLY): $(PLUGIN_SOURCES) $(PLUGIN_MANIFEST) $(PLUGIN_NAME).ui
 	$(CSC_LIB) -out:$@ $(PLUGIN_SOURCES) $(REFS) $(PKGS) $(ASSEMBLIES) $(RESOURCES)
 
 plugindir = $(pkglibdir)/extensions
-
-install-data-hook:
-	rm -f $(plugindir)/$(PLUGIN_NAME).addin.xml
 
 plugin_DATA =			\
 	$(PLUGIN_ASSEMBLY)

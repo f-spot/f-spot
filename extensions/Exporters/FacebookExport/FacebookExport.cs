@@ -8,7 +8,7 @@
  *
  * Copyright (C) 2007 George Talusan
  * Copyright (c) 2008-2009 Novell, Inc.
- * Later changes (2009) by Jim Ramsay
+ * Copyright (c) 2009 Jim Rasay
  *
  * This is free software. See COPYING for details.
  */
@@ -279,48 +279,12 @@ namespace FSpot.Exporter.Facebook
 	{
 		private int size = 604;
 
-		private FacebookAccount account;
-		private Dictionary<long, User> friends;
-
-		/* parallel arrays */
-		private int current_item;
-		private IBrowsableItem[] items;
 		private string[] captions;
 		private List<Mono.Facebook.Tag>[] tags;
 
-		private Glade.XML xml;
-		private string dialog_name = "facebook_export_dialog";
-		private Gtk.Dialog dialog;
-
-		private FSpot.Widgets.IconView thumbnail_iconview;
+		FacebookExportDialog dialog;
 
 		ThreadProgressDialog progress_dialog;
-
-		[Widget]VBox album_info_vbox;
-		[Widget]VBox picture_info_vbox;
-		[Widget]HBox log_buttons_hbox;
-		[Widget]HButtonBox dialog_action_area;
-		[Widget]Button login_button;
-		[Widget]Button logout_button;
-		[Widget]ProgressBar login_progress;
-		[Widget]RadioButton existing_album_radiobutton;
-		[Widget]RadioButton create_album_radiobutton;
-		[Widget]ComboBox existing_album_combobox;
-		[Widget]Table new_album_info_table;
-		[Widget]Entry album_name_entry;
-		[Widget]Entry album_location_entry;
-		[Widget]Entry album_description_entry;
-		[Widget]ScrolledWindow thumbnails_scrolled_window;
-		[Widget]TextView caption_textview;
-		[Widget]TreeView tag_treeview;
-		[Widget]EventBox tag_image_eventbox;
-		[Widget]HBox permissions_hbox;
-		[Widget]CheckButton offline_perm_check;
-		[Widget]CheckButton photo_perm_check;
-
-		Gtk.Image tag_image;
-		int tag_image_height;
-		int tag_image_width;
 
 		System.Threading.Thread command_thread;
 
@@ -330,12 +294,11 @@ namespace FSpot.Exporter.Facebook
 
 		public void Run (IBrowsableCollection selection)
 		{
-			CreateDialog ();
 
-			items = selection.Items;
+			dialog = new FacebookExportDialog (selection);
 
-			if (items.Length > 60) {
-				HigMessageDialog mbox = new HigMessageDialog (Dialog,
+			if (selection.Items.Length > 60) {
+				HigMessageDialog mbox = new HigMessageDialog (dialog,
 						Gtk.DialogFlags.DestroyWithParent | Gtk.DialogFlags.Modal, Gtk.MessageType.Error,
 						Gtk.ButtonsType.Ok, Catalog.GetString ("Too many images to export"),
 						Catalog.GetString ("Facebook only permits 60 photographs per album.  Please refine your selection and try again."));
@@ -344,323 +307,37 @@ namespace FSpot.Exporter.Facebook
 				return;
 			}
 
-			captions = new string [items.Length];
-			tags = new List<Mono.Facebook.Tag> [items.Length];
 
-			thumbnail_iconview = new FSpot.Widgets.IconView (selection);
-			thumbnail_iconview.DisplayDates = false;
-			thumbnail_iconview.DisplayTags = false;
-			thumbnail_iconview.DisplayRatings = false;
-			thumbnail_iconview.ButtonPressEvent += HandleThumbnailIconViewButtonPressEvent;
-			thumbnail_iconview.KeyPressEvent += HandleThumbnailIconViewKeyPressEvent;
-			thumbnail_iconview.Show ();
-			thumbnails_scrolled_window.Add (thumbnail_iconview);
 
-			login_button.Clicked += HandleLoginClicked;
-			logout_button.Clicked += HandleLogoutClicked;
-			offline_perm_check.Toggled += HandlePermissionToggled;
-			photo_perm_check.Toggled += HandlePermissionToggled;
-
-			create_album_radiobutton.Toggled += HandleCreateAlbumToggled;
-			create_album_radiobutton.Active = true;
-
-			existing_album_radiobutton.Toggled += HandleExistingAlbumToggled;
-
-			CellRendererText cell = new CellRendererText ();
-			existing_album_combobox.PackStart (cell, false);
-
-			tag_image_eventbox.ButtonPressEvent += HandleTagImageButtonPressEvent;
-
-			tag_treeview.Sensitive = false;
-			caption_textview.Sensitive = false;
-
-			DoLogout ();
-
-			Dialog.Response += HandleResponse;
-			Dialog.Show ();
-
-			account = new FacebookAccount();
-			if (account.Authenticated)
-				DoLogin ();
-		}
-
-		public void CreateDialog ()
-		{
-			xml = new Glade.XML (null, "FacebookExport.glade", dialog_name, "f-spot");
-			xml.Autoconnect (this);
-		}
-
-		Gtk.Dialog Dialog {
-			get {
-				if (dialog == null)
-					dialog = (Gtk.Dialog) xml.GetWidget (dialog_name);
-
-				return dialog;
-			}
-		}
-
-		public void HandleLoginClicked (object sender, EventArgs args)
-		{
-			if (!account.Authenticated) {
-				Uri uri = account.GetLoginUri ();
-				GtkBeans.Global.ShowUri (Dialog.Screen, uri.ToString ());
-
-				HigMessageDialog mbox = new HigMessageDialog (Dialog, Gtk.DialogFlags.DestroyWithParent | Gtk.DialogFlags.Modal,
-						Gtk.MessageType.Info, Gtk.ButtonsType.Ok, Catalog.GetString ("Waiting for authentication"),
-						Catalog.GetString ("F-Spot will now launch your browser so that you can log into Facebook.\n\nOnce you are directed by Facebook to return to this application, click \"Ok\" below.  F-Spot will cache your session in gnome-keyring, if possible, and re-use it on future Facebook exports." ));
-
-				mbox.Run ();
-				mbox.Destroy ();
-
-				LoginProgress (0.0, Catalog.GetString ("Authenticating..."));
-				account.Authenticate ();
-			}
-			DoLogin ();
-		}
-
-		void DoLogin ()
-		{
-			if (!account.Authenticated) {
-				HigMessageDialog error = new HigMessageDialog (Dialog, Gtk.DialogFlags.DestroyWithParent | Gtk.DialogFlags.Modal,
-						Gtk.MessageType.Error, Gtk.ButtonsType.Ok, Catalog.GetString ("Error logging into Facebook"),
-						Catalog.GetString ("There was a problem logging into Facebook.  Check your credentials and try again."));
-				error.Run ();
-				error.Destroy ();
-
-				DoLogout ();
-			}
-			else {
-				log_buttons_hbox.Sensitive = false;
-				dialog_action_area.Sensitive = false;
-
-				try {
-					LoginProgress (0.0, Catalog.GetString ("Authorizing Session"));
-					offline_perm_check.Active = account.HasPermission("offline_access");
-					photo_perm_check.Active = account.HasPermission("photo_upload");
-
-					LoginProgress (0.2, Catalog.GetString ("Session established, fetching user info..."));
-					User me = account.Facebook.GetLoggedInUser ().GetUserInfo ();
-
-					LoginProgress (0.4, Catalog.GetString ("Session established, fetching friend list..."));
-					Friend[] friend_list = account.Facebook.GetFriends ();
-					long[] uids = new long [friend_list.Length];
-
-					for (int i = 0; i < friend_list.Length; i++)
-						uids [i] = friend_list [i].UId;
-
-					LoginProgress (0.6, Catalog.GetString ("Session established, fetching friend details..."));
-					User[] infos = account.Facebook.GetUserInfo (uids, new string[] { "first_name", "last_name" });
-					friends = new Dictionary<long, User> ();
-
-					foreach (User user in infos)
-						friends.Add (user.UId, user);
-
-					LoginProgress (0.8, Catalog.GetString ("Session established, fetching photo albums..."));
-					Album[] albums = account.Facebook.GetAlbums ();
-					AlbumStore store = new AlbumStore (albums);
-					existing_album_combobox.Model = store;
-					existing_album_combobox.Active = 0;
-
-					album_info_vbox.Sensitive = true;
-					picture_info_vbox.Sensitive = true;
-					permissions_hbox.Sensitive = true;
-					login_button.Visible = false;
-					logout_button.Visible = true;
-					// Note for translators: {0} and {1} are respectively firstname and surname of the user
-					LoginProgress (1.0, String.Format (Catalog.GetString ("{0} {1} is logged into Facebook"), me.FirstName, me.LastName));
-				} catch (FacebookException fe) {
-					Log.DebugException (fe);
-					HigMessageDialog error = new HigMessageDialog (Dialog, Gtk.DialogFlags.DestroyWithParent | Gtk.DialogFlags.Modal,
-							Gtk.MessageType.Error, Gtk.ButtonsType.Ok, Catalog.GetString ("Facebook Connection Error"),
-							String.Format (Catalog.GetString ("There was an error when downloading your information from Facebook.\n\nFacebook said: {0}"), fe.Message));
-					error.Run ();
-					error.Destroy ();
-
-					account.Deauthenticate ();
-					DoLogout ();
-				} finally {
-					log_buttons_hbox.Sensitive = true;
-					dialog_action_area.Sensitive = true;
-				}
-			}
-		}
-
-		void HandleLogoutClicked (object sender, EventArgs args)
-		{
-			account.Deauthenticate ();
-			DoLogout ();
-		}
-
-		void DoLogout ()
-		{
-			login_button.Visible = true;
-			logout_button.Visible = false;
-
-			login_progress.Fraction = 0;
-			login_progress.Text = Catalog.GetString ("You are not logged in.");
-
-			album_info_vbox.Sensitive = false;
-			picture_info_vbox.Sensitive = false;
-			offline_perm_check.Active = false;
-			photo_perm_check.Active = false;
-			permissions_hbox.Sensitive = false;
-		}
-
-		public void HandlePermissionToggled (object sender, EventArgs args)
-		{
-			string permission;
-			if (sender == offline_perm_check) {
-				permission = "offline_access";
-			} else if (sender == photo_perm_check) {
-				permission = "photo_upload";
-			} else {
-				throw new Exception ("Unknown Source object");
-			}
-			CheckButton origin = (CheckButton)sender;
-			bool desired = origin.Active;
-			bool actual = account.HasPermission (permission);
-			if (desired != actual) {
-				if (desired) {
-					Log.DebugFormat("Granting {0}", permission);
-					account.GrantPermission (permission, Dialog);
-				} else {
-					Log.DebugFormat("Revoking {0}", permission);
-					account.RevokePermission (permission);
-				}
-				/* Double-check that things work... */
-				actual = account.HasPermission (permission);
-				if (actual != desired) {
-					Log.Warning("Failed to alter permissions");
-				}
-				origin.Active = account.HasPermission (permission);
-			}
-		}
-
-		void HandleCreateAlbumToggled (object sender, EventArgs args)
-		{
-			if (create_album_radiobutton.Active == false)
-				return;
-
-			new_album_info_table.Sensitive = true;
-			existing_album_combobox.Sensitive = false;
-		}
-
-		void HandleExistingAlbumToggled (object sender, EventArgs args)
-		{
-			if (existing_album_radiobutton.Active == false)
-				return;
-
-			new_album_info_table.Sensitive = false;
-			existing_album_combobox.Sensitive = true;
-		}
-
-		void HandleThumbnailIconViewButtonPressEvent (object sender, Gtk.ButtonPressEventArgs args)
-		{
-			int old_item = current_item;
-			current_item = thumbnail_iconview.CellAtPosition ((int) args.Event.X, (int) args.Event.Y, false);
-
-			if (current_item < 0 || current_item >=  items.Length) {
-				current_item = old_item;
+			if (dialog.Run () != (int)ResponseType.Ok) {
+				dialog.Destroy ();
 				return;
 			}
 
-			captions [old_item] = caption_textview.Buffer.Text;
-
-			string caption = captions [current_item];
-			if (caption == null)
-				captions [current_item] = caption = "";
-			caption_textview.Buffer.Text = caption;
-			caption_textview.Sensitive = true;
-
-			tag_treeview.Model = new TagStore (account.Facebook, tags [current_item], friends);
-
-			IBrowsableItem item = items [current_item];
-
-			if (tag_image_eventbox.Children.Length > 0) {
-				tag_image_eventbox.Remove (tag_image);
-				tag_image.Destroy ();
-			}
-
-			using (Gdk.Pixbuf data = PixbufUtils.ScaleToMaxSize (ThumbnailFactory.LoadThumbnail (item.DefaultVersionUri), 400, 400)) {
-				tag_image_height = data.Height;
-				tag_image_width = data.Width;
-				tag_image = new Gtk.Image (data);
-				tag_image_eventbox.Add (tag_image);
-				tag_image_eventbox.ShowAll ();
-			}
-		}
-
-		void HandleTagImageButtonPressEvent (object sender, Gtk.ButtonPressEventArgs args)
-		{
-			double x = args.Event.X;
-			double y = args.Event.Y;
-
-			// translate the centered image to top left corner
-			double tag_image_center_x = tag_image_width / 2;
-			double tag_image_center_y = tag_image_height / 2;
-
-			double allocation_center_x = tag_image_eventbox.Allocation.Width / 2;
-			double allocation_center_y = tag_image_eventbox.Allocation.Height / 2;
-
-			double dx = allocation_center_x - tag_image_center_x;
-			double dy = allocation_center_y - tag_image_center_y;
-
-			if (dx < 0)
-				dx = 0;
-			if (dy < 0)
-				dy = 0;
-
-			x -= dx;
-			y -= dy;
-
-			// bail if we're in the eventbox but not the image
-			if (x < 0 || x > tag_image_width)
-				return;
-			if (y < 0 || y > tag_image_height)
-				return;
-
-			//FacebookTagPopup popup = new FacebookTagPopup (friends);
-		}
-
-		void HandleThumbnailIconViewKeyPressEvent (object sender, Gtk.KeyPressEventArgs args)
-		{
-			thumbnail_iconview.Selection.Clear ();
-		}
-
-		void HandleResponse (object sender, Gtk.ResponseArgs args)
-		{
-			if (args.ResponseId != Gtk.ResponseType.Ok) {
-				Dialog.Destroy ();
-				return;
-			}
-
-			if (account != null) {
-				Dialog.Hide ();
+			if (dialog.Account != null) {
+				dialog.Hide ();
 
 				command_thread = new System.Threading.Thread (new System.Threading.ThreadStart (Upload));
 				command_thread.Name = Mono.Unix.Catalog.GetString ("Uploading Pictures");
 
-				progress_dialog = new ThreadProgressDialog (command_thread, items.Length);
+				progress_dialog = new ThreadProgressDialog (command_thread, selection.Items.Length);
 				progress_dialog.Start ();
 			}
-		}
 
-		void LoginProgress (double percentage, string message)
-		{
-			login_progress.Fraction = percentage;
-			login_progress.Text = message;
-			Log.Debug (message);
-			while (Application.EventsPending ()) Application.RunIteration ();
+			dialog.Destroy ();
 		}
 
 		void Upload ()
 		{
 			Album album = null;
 
-			if (create_album_radiobutton.Active) {
-				string name = album_name_entry.Text;
-				if (name.Length == 0) {
-					HigMessageDialog mbox = new HigMessageDialog (Dialog, Gtk.DialogFlags.DestroyWithParent | Gtk.DialogFlags.Modal,
+			IBrowsableItem [] items = dialog.Items;
+			string [] captions = dialog.Captions;
+
+			if (dialog.CreateAlbum) {
+				string name = dialog.AlbumName;
+				if (String.IsNullOrEmpty (name)) {
+					HigMessageDialog mbox = new HigMessageDialog (dialog, Gtk.DialogFlags.DestroyWithParent | Gtk.DialogFlags.Modal,
 							Gtk.MessageType.Error, Gtk.ButtonsType.Ok, Catalog.GetString ("Album must have a name"),
 							Catalog.GetString ("Please name your album or choose an existing album."));
 					mbox.Run ();
@@ -668,24 +345,22 @@ namespace FSpot.Exporter.Facebook
 					return;
 				}
 
-				string description = album_description_entry.Text;
-				string location = album_location_entry.Text;
+				string description = dialog.AlbumDescription;
+				string location = dialog.AlbumLocation;
 
 				try {
-					album = account.Facebook.CreateAlbum (name, description, location);
+					album = dialog.Account.Facebook.CreateAlbum (name, description, location);
 				}
 				catch (FacebookException fe) {
-					HigMessageDialog mbox = new HigMessageDialog (Dialog, Gtk.DialogFlags.DestroyWithParent | Gtk.DialogFlags.Modal,
+					HigMessageDialog mbox = new HigMessageDialog (dialog, Gtk.DialogFlags.DestroyWithParent | Gtk.DialogFlags.Modal,
 							Gtk.MessageType.Error, Gtk.ButtonsType.Ok, Catalog.GetString ("Creating a new album failed"),
 							String.Format (Catalog.GetString ("An error occurred creating a new album.\n\n{0}"), fe.Message));
 					mbox.Run ();
 					mbox.Destroy ();
 					return;
 				}
-			}
-			else {
-				AlbumStore store = (AlbumStore) existing_album_combobox.Model;
-				album = store.Albums [existing_album_combobox.Active];
+			} else {
+				album = dialog.ActiveAlbum;
 			}
 
 			long sent_bytes = 0;
@@ -728,8 +403,6 @@ namespace FSpot.Exporter.Facebook
 			progress_dialog.Fraction = 1.0;
 			progress_dialog.ProgressText = Catalog.GetString ("Upload Complete");
 			progress_dialog.ButtonLabel = Gtk.Stock.Ok;
-
-			Dialog.Destroy ();
 		}
 	}
 }
