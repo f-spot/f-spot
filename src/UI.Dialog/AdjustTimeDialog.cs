@@ -5,6 +5,9 @@
  *	Larry Ewing  <lewing@novell.com>
  *	Stephane Delcroix  <stephane@delcroix.org>
  *
+ *
+ * Copyright (c) 2006-2009 Novell, Inc.
+ *
  * This is free software. See COPYING for details.
  */
 
@@ -15,34 +18,25 @@ using Mono.Unix;
 using FSpot.Widgets;
 
 namespace FSpot.UI.Dialog {
-	public class AdjustTimeDialog : GladeDialog 
+	public class AdjustTimeDialog : BuilderDialog 
 	{
-		[Glade.Widget] ScrolledWindow view_scrolled;
-		[Glade.Widget] ScrolledWindow tray_scrolled;
-
-		//[Glade.Widget] Button back_button;
-		//[Glade.Widget] Button forward_button;
-		[Glade.Widget] Button ok_button;
-		[Glade.Widget] Button cancel_button;
-
-		[Glade.Widget] SpinButton photo_spin;
-
-		[Glade.Widget] Label name_label;
-		[Glade.Widget] Label old_label;
-		[Glade.Widget] Label count_label;
-
-		[Glade.Widget] Gnome.DateEdit date_edit;
-
-		[Glade.Widget] Frame tray_frame;
-		
-		[Glade.Widget] Gtk.Entry entry;
-		[Glade.Widget] Gtk.Entry offset_entry;
-		
-		[Glade.Widget] Gtk.CheckButton difference_check;
-		[Glade.Widget] Gtk.CheckButton interval_check;
-		[Glade.Widget] Gtk.Frame action_frame;
-		[Glade.Widget] Gtk.Entry spacing_entry;
-		[Glade.Widget] Gtk.Label starting_label;
+		[GtkBeans.Builder.Object] ScrolledWindow view_scrolled;
+		[GtkBeans.Builder.Object] ScrolledWindow tray_scrolled;
+		[GtkBeans.Builder.Object] Button ok_button;
+		[GtkBeans.Builder.Object] Button cancel_button;
+		[GtkBeans.Builder.Object] SpinButton photo_spin;
+		[GtkBeans.Builder.Object] Label name_label;
+		[GtkBeans.Builder.Object] Label old_label;
+		[GtkBeans.Builder.Object] Label count_label;
+		[GtkBeans.Builder.Object] Gnome.DateEdit date_edit;
+		[GtkBeans.Builder.Object] Frame tray_frame;
+		[GtkBeans.Builder.Object] Gtk.Entry entry;
+		[GtkBeans.Builder.Object] Gtk.Entry offset_entry;
+		[GtkBeans.Builder.Object] Gtk.CheckButton difference_check;
+		[GtkBeans.Builder.Object] Gtk.CheckButton interval_check;
+		[GtkBeans.Builder.Object] Gtk.Frame action_frame;
+		[GtkBeans.Builder.Object] Gtk.Entry spacing_entry;
+		[GtkBeans.Builder.Object] Gtk.Label starting_label;
 		
 		IBrowsableCollection collection;
 		BrowsablePointer Item;
@@ -51,7 +45,7 @@ namespace FSpot.UI.Dialog {
 		Db db;
 		TimeSpan gnome_dateedit_sucks;
 
-		public AdjustTimeDialog (Db db, IBrowsableCollection collection) : base ("time_dialog")
+		public AdjustTimeDialog (Db db, IBrowsableCollection collection) : base ("AdjustTimeDialog.ui", "time_dialog")
 		{
 			this.db = db;
 			this.collection = collection;
@@ -83,7 +77,7 @@ namespace FSpot.UI.Dialog {
 			entry = (Gtk.Entry) date_edit.Children [2];
 			entry.Changed += HandleTimeChanged;
 			offset_entry.Changed += HandleOffsetChanged;
-			Dialog.ShowAll ();
+			ShowAll ();
 			HandleCollectionChanged (collection);
 
 			spacing_entry.Changed += HandleSpacingChanged;
@@ -198,7 +192,7 @@ namespace FSpot.UI.Dialog {
 			if (! Item.IsValid)
 				throw new ApplicationException ("invalid item selected");
 
-			Dialog.Sensitive = false;
+			Sensitive = false;
 			
 			if (difference_check.Active)
 				ShiftByDifference ();
@@ -206,7 +200,7 @@ namespace FSpot.UI.Dialog {
 				SpaceByInterval ();
 
 
-			Dialog.Destroy ();
+			Destroy ();
 		}
 
 		void HandleOffsetChanged (object sender, EventArgs args)
@@ -243,7 +237,7 @@ namespace FSpot.UI.Dialog {
 
 		void HandleCancelClicked (object sender, EventArgs args)
 		{
-			Dialog.Destroy ();
+			Destroy ();
 		}
 
 		void HandleForwardClicked (object sender, EventArgs args)
