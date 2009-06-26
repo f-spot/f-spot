@@ -213,48 +213,49 @@ namespace FSpot.Widgets {
 				open_list.Remove (expander.Label);
 		}		
 		
-		private static string GetExportLabel (ExportItem export)
-		{
-			switch (export.ExportType) {
-			case ExportStore.FlickrExportType:
-				string[] split_token = export.ExportToken.Split (':');
-				return String.Format ("Flickr ({0})", split_token[1]);
-			case ExportStore.OldFolderExportType:	//Obsolete, remove after db rev4
-				return Catalog.GetString ("Folder");
-			case ExportStore.FolderExportType:
-				return Catalog.GetString ("Folder");
-			case ExportStore.PicasaExportType:
-				return Catalog.GetString ("Picasaweb");
-			case ExportStore.SmugMugExportType:
-				return Catalog.GetString ("SmugMug");
-			case ExportStore.Gallery2ExportType:
-				return Catalog.GetString ("Gallery2");
-			default:
-				return null;
-			}
-		}
-		
-		private static string GetExportUrl (ExportItem export)
-		{
-			switch (export.ExportType) {
-			case ExportStore.FlickrExportType:
-				string[] split_token = export.ExportToken.Split (':');
-				return String.Format ("http://www.{0}/photos/{1}/{2}/", split_token[2],
-                                                      split_token[0], split_token[3]);
-			case ExportStore.FolderExportType:
-				Gnome.Vfs.Uri uri = new Gnome.Vfs.Uri (export.ExportToken);
-				return (uri.HasParent) ? uri.Parent.ToString () : export.ExportToken;
-			case ExportStore.Gallery2ExportType:
-				string[] split_item = export.ExportToken.Split (':');
-				return String.Format ("{0}:{1}?g2_itemId={2}",split_item[0], split_item[1], split_item[2]);
-			case ExportStore.OldFolderExportType:	//This is obsolete and meant to be removed once db reach rev4
-			case ExportStore.PicasaExportType:
-			case ExportStore.SmugMugExportType:
-				return export.ExportToken;
-			default:
-				return null;
-			}
-		}
+// FIXME: re-hook this in the UI
+//		static string GetExportLabel (ExportItem export)
+//		{
+//			switch (export.ExportType) {
+//			case ExportStore.FlickrExportType:
+//				string[] split_token = export.ExportToken.Split (':');
+//				return String.Format ("Flickr ({0})", split_token[1]);
+//			case ExportStore.OldFolderExportType:	//Obsolete, remove after db rev4
+//				return Catalog.GetString ("Folder");
+//			case ExportStore.FolderExportType:
+//				return Catalog.GetString ("Folder");
+//			case ExportStore.PicasaExportType:
+//				return Catalog.GetString ("Picasaweb");
+//			case ExportStore.SmugMugExportType:
+//				return Catalog.GetString ("SmugMug");
+//			case ExportStore.Gallery2ExportType:
+//				return Catalog.GetString ("Gallery2");
+//			default:
+//				return null;
+//			}
+//		}
+//		
+//		static string GetExportUrl (ExportItem export)
+//		{
+//			switch (export.ExportType) {
+//			case ExportStore.FlickrExportType:
+//				string[] split_token = export.ExportToken.Split (':');
+//				return String.Format ("http://www.{0}/photos/{1}/{2}/", split_token[2],
+//                                                      split_token[0], split_token[3]);
+//			case ExportStore.FolderExportType:
+//				Gnome.Vfs.Uri uri = new Gnome.Vfs.Uri (export.ExportToken);
+//				return (uri.HasParent) ? uri.Parent.ToString () : export.ExportToken;
+//			case ExportStore.Gallery2ExportType:
+//				string[] split_item = export.ExportToken.Split (':');
+//				return String.Format ("{0}:{1}?g2_itemId={2}",split_item[0], split_item[1], split_item[2]);
+//			case ExportStore.OldFolderExportType:	//This is obsolete and meant to be removed once db reach rev4
+//			case ExportStore.PicasaExportType:
+//			case ExportStore.SmugMugExportType:
+//				return export.ExportToken;
+//			default:
+//				return null;
+//			}
+//		}
 		
 		private bool Update ()
 		{
