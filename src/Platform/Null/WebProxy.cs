@@ -1,5 +1,5 @@
 /*
- * FSpot.Null.Gnome.WebProxy.cs
+ * FSpot.Platform.Null.WebProxy.cs
  *
  * Author(s):
  *	Stephane Delcroix  <stephane@delcroix.org>

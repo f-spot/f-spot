@@ -1,5 +1,5 @@
 /*
- * FSpot.Platform.Gnome.ThumnailFactory.cs
+ * FSpot.Platform.Null.ThumnailFactory.cs
  *
  * Author(s):
  * 	Stephane Delcroix  <stephane@delcroix.org>
