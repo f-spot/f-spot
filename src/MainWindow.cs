@@ -36,101 +36,101 @@ public class MainWindow {
 	public Sidebar Sidebar;
 
 	TagSelectionWidget tag_selection_widget;
-	[Glade.Widget] Gtk.Window main_window;
+	[GtkBeans.Builder.Object] Gtk.Window main_window;
 
-	[Glade.Widget] Gtk.HPaned main_hpaned;
-	[Glade.Widget] Gtk.VBox left_vbox;
-	[Glade.Widget] Gtk.VBox group_vbox;
-	[Glade.Widget] Gtk.VBox view_vbox;
+	[GtkBeans.Builder.Object] Gtk.HPaned main_hpaned;
+	[GtkBeans.Builder.Object] Gtk.VBox left_vbox;
+	[GtkBeans.Builder.Object] Gtk.VBox group_vbox;
+	[GtkBeans.Builder.Object] Gtk.VBox view_vbox;
 
-	[Glade.Widget] Gtk.VBox toolbar_vbox;
+	[GtkBeans.Builder.Object] Gtk.VBox toolbar_vbox;
 
-	[Glade.Widget] ScrolledWindow icon_view_scrolled;
-	[Glade.Widget] Box photo_box;
-	[Glade.Widget] Notebook view_notebook;
+	[GtkBeans.Builder.Object] ScrolledWindow icon_view_scrolled;
+	[GtkBeans.Builder.Object] Box photo_box;
+	[GtkBeans.Builder.Object] Notebook view_notebook;
 	
 	ScrolledWindow tag_selection_scrolled;
 
-	[Glade.Widget] Label status_label;
+	[GtkBeans.Builder.Object] Label status_label;
 
 	// File
-	[Glade.Widget] MenuItem version_menu_item;
-	[Glade.Widget] MenuItem create_version_menu_item;
-	[Glade.Widget] MenuItem delete_version_menu_item;
-	[Glade.Widget] MenuItem rename_version_menu_item;
+	[GtkBeans.Builder.Object] MenuItem version_menu_item;
+	[GtkBeans.Builder.Object] MenuItem create_version_menu_item;
+	[GtkBeans.Builder.Object] MenuItem delete_version_menu_item;
+	[GtkBeans.Builder.Object] MenuItem rename_version_menu_item;
 	
-	[Glade.Widget] MenuItem tools;
-	[Glade.Widget] MenuItem export;
-	[Glade.Widget] MenuItem pagesetup_menu_item;
-	[Glade.Widget] MenuItem print;
-	[Glade.Widget] MenuItem send_mail;
+	[GtkBeans.Builder.Object] MenuItem tools;
+	[GtkBeans.Builder.Object] MenuItem export;
+	[GtkBeans.Builder.Object] MenuItem pagesetup_menu_item;
+	[GtkBeans.Builder.Object] MenuItem print;
+	[GtkBeans.Builder.Object] MenuItem send_mail;
 
 	// Edit
-	[Glade.Widget] MenuItem copy_location;
-	[Glade.Widget] MenuItem select_none;
-	[Glade.Widget] MenuItem rotate_left;
-	[Glade.Widget] MenuItem rotate_right;
+	[GtkBeans.Builder.Object] MenuItem copy_location;
+	[GtkBeans.Builder.Object] MenuItem select_none;
+	[GtkBeans.Builder.Object] MenuItem rotate_left;
+	[GtkBeans.Builder.Object] MenuItem rotate_right;
 
-	[Glade.Widget] MenuItem sharpen;
-	[Glade.Widget] MenuItem adjust_time;
+	[GtkBeans.Builder.Object] MenuItem sharpen;
+	[GtkBeans.Builder.Object] MenuItem adjust_time;
 
-	[Glade.Widget] MenuItem update_thumbnail;
-	[Glade.Widget] MenuItem delete_from_drive;
-	[Glade.Widget] MenuItem remove_from_catalog;
-	[Glade.Widget] MenuItem set_as_background;
+	[GtkBeans.Builder.Object] MenuItem update_thumbnail;
+	[GtkBeans.Builder.Object] MenuItem delete_from_drive;
+	[GtkBeans.Builder.Object] MenuItem remove_from_catalog;
+	[GtkBeans.Builder.Object] MenuItem set_as_background;
 
-	[Glade.Widget] MenuItem attach_tag;
-	[Glade.Widget] MenuItem remove_tag;
+	[GtkBeans.Builder.Object] MenuItem attach_tag;
+	[GtkBeans.Builder.Object] MenuItem remove_tag;
 
 	// View
-	[Glade.Widget] CheckMenuItem display_toolbar;
-	[Glade.Widget] CheckMenuItem display_sidebar;
-	[Glade.Widget] CheckMenuItem display_timeline;
-	[Glade.Widget] CheckMenuItem display_filmstrip;
-	[Glade.Widget] CheckMenuItem display_dates_menu_item;
-	[Glade.Widget] CheckMenuItem display_tags_menu_item;
-	[Glade.Widget] CheckMenuItem display_ratings_menu_item;
+	[GtkBeans.Builder.Object] RadioMenuItem month;
+	[GtkBeans.Builder.Object] RadioMenuItem directory;
+	[GtkBeans.Builder.Object] CheckMenuItem display_toolbar;
+	[GtkBeans.Builder.Object] CheckMenuItem display_sidebar;
+	[GtkBeans.Builder.Object] CheckMenuItem display_timeline;
+	[GtkBeans.Builder.Object] CheckMenuItem display_filmstrip;
+	[GtkBeans.Builder.Object] CheckMenuItem display_dates_menu_item;
+	[GtkBeans.Builder.Object] CheckMenuItem display_tags_menu_item;
+	[GtkBeans.Builder.Object] CheckMenuItem display_ratings_menu_item;
 
-	[Glade.Widget] MenuItem zoom_in;
-	[Glade.Widget] MenuItem zoom_out;
-	[Glade.Widget] CheckMenuItem loupe_menu_item;
+	[GtkBeans.Builder.Object] MenuItem zoom_in;
+	[GtkBeans.Builder.Object] MenuItem zoom_out;
+	[GtkBeans.Builder.Object] CheckMenuItem loupe_menu_item;
 
-	[Glade.Widget] RadioMenuItem tag_icon_hidden;
-	[Glade.Widget] RadioMenuItem tag_icon_small;
-	[Glade.Widget] RadioMenuItem tag_icon_medium;
-	[Glade.Widget] RadioMenuItem tag_icon_large;
+	[GtkBeans.Builder.Object] RadioMenuItem tag_icon_hidden;
+	[GtkBeans.Builder.Object] RadioMenuItem tag_icon_small;
+	[GtkBeans.Builder.Object] RadioMenuItem tag_icon_medium;
+	[GtkBeans.Builder.Object] RadioMenuItem tag_icon_large;
 
-	[Glade.Widget] RadioMenuItem month;
-	[Glade.Widget] RadioMenuItem directory;
-	[Glade.Widget] CheckMenuItem reverse_order;
+	[GtkBeans.Builder.Object] CheckMenuItem reverse_order;
 
 	// Find
-	[Glade.Widget] MenuItem find_by_tag;
-	[Glade.Widget] MenuItem find_add_tag;
-	[Glade.Widget] MenuItem find_add_tag_with;
+	[GtkBeans.Builder.Object] MenuItem find_by_tag;
+	[GtkBeans.Builder.Object] MenuItem find_add_tag;
+	[GtkBeans.Builder.Object] MenuItem find_add_tag_with;
 	
-	[Glade.Widget] MenuItem clear_date_range;
-	[Glade.Widget] MenuItem clear_rating_filter;
+	[GtkBeans.Builder.Object] MenuItem clear_date_range;
+	[GtkBeans.Builder.Object] MenuItem clear_rating_filter;
 
-	[Glade.Widget] CheckMenuItem find_untagged;
+	[GtkBeans.Builder.Object] CheckMenuItem find_untagged;
 	
-	[Glade.Widget] MenuItem clear_roll_filter;	
+	[GtkBeans.Builder.Object] MenuItem clear_roll_filter;	
 	
 	// Tags
-	[Glade.Widget] MenuItem edit_selected_tag;
-	[Glade.Widget] MenuItem delete_selected_tag;
+	[GtkBeans.Builder.Object] MenuItem edit_selected_tag;
+	[GtkBeans.Builder.Object] MenuItem delete_selected_tag;
 
-	[Glade.Widget] MenuItem attach_tag_to_selection;
-	[Glade.Widget] MenuItem remove_tag_from_selection;
+	[GtkBeans.Builder.Object] MenuItem attach_tag_to_selection;
+	[GtkBeans.Builder.Object] MenuItem remove_tag_from_selection;
 	
 	// Other Widgets
-	[Glade.Widget] Scale zoom_scale;
+	[GtkBeans.Builder.Object] Scale zoom_scale;
 
-	[Glade.Widget] VBox info_vbox;
+	[GtkBeans.Builder.Object] VBox info_vbox;
 
-	[Glade.Widget] Gtk.HBox tagbar;
-	[Glade.Widget] Gtk.VBox tag_entry_container;
-	[Glade.Widget] Gtk.VBox sidebar_vbox;
+	[GtkBeans.Builder.Object] Gtk.HBox tagbar;
+	[GtkBeans.Builder.Object] Gtk.VBox tag_entry_container;
+	[GtkBeans.Builder.Object] Gtk.VBox sidebar_vbox;
 	TagEntry tag_entry;
 
 	Gtk.Toolbar toolbar;
@@ -252,8 +252,8 @@ public class MainWindow {
 		if (Toplevel == null)
 			Toplevel = this;
 
-		Glade.XML gui = new Glade.XML (null, "f-spot.glade", "main_window", "f-spot");
-		gui.Autoconnect (this);
+		GtkBeans.Builder builder = new GtkBeans.Builder ("main_window.ui");
+		builder.Autoconnect (this);
 
 		LoadPreference (Preferences.MAIN_WINDOW_WIDTH);
 		LoadPreference (Preferences.MAIN_WINDOW_X);

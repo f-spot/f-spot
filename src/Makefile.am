@@ -399,6 +399,7 @@ F_SPOT_DISTRESOURCES =					\
 	$(srcdir)/dces.rdf				\
 	$(srcdir)/f-spot.glade				\
 	$(srcdir)/UI.Dialog/ui/AdjustTimeDialog.ui		\
+	$(srcdir)/main_window.ui				\
 	$(srcdir)/UI.Dialog/ui/DateRangeDialog.ui	\
 	$(srcdir)/UI.Dialog/ui/PreferenceDialog.glade	\
 	$(srcdir)/FSpot.addin.xml
