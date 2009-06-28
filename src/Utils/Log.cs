@@ -264,9 +264,9 @@ namespace FSpot.Utils
             }
             
             if (isInfo) {
-                InformationFormat (message, d_message);
+                Information (message, d_message);
             } else {
-                DebugFormat (message, d_message);
+                Debug (message, d_message);
             }
         }
         

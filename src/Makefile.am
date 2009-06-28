@@ -463,7 +463,7 @@ FSpot.Query.dll: $(QUERY_CSFILES) FSpot.Utils.dll FSpot.Core.dll
 
 FSpot.Utils.dll: $(UTILS_CSFILES)
 	@echo -e "\n*** Compiling $@"
-	$(CSC_LIB) -out:$@ $(EXTRAFLAGS) $(UTILS_CSFILES) $(UTILS_ASSEMBLIES)
+	$(CSC_LIB) -out:$@ $(EXTRAFLAGS) $(WARNASERROR) $(UTILS_CSFILES) $(UTILS_ASSEMBLIES)
 
 FSpot.JobScheduler.dll: $(JOBSCHEDULER_CSFILES) FSpot.Utils.dll
 	@echo -e "\n*** Compiling $@"
