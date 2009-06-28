@@ -31,38 +31,29 @@ namespace FSpot.Widgets {
 	// Decides which sidebar page should be shown for each context. Implemented
 	// using the Strategy pattern, to make it swappable easily, in case the 
 	// default MRUSidebarContextSwitchStrategy is not sufficiently usable.
-	public abstract class SidebarContextSwitchStrategy {
-		private readonly Sidebar Sidebar;
+	public interface ISidebarContextSwitchStrategy {
+		string PageForContext (ViewContext context);
 
-		public SidebarContextSwitchStrategy (Sidebar sidebar) {
-			Sidebar = sidebar;
-		}
-
-		public abstract string PageForContext (ViewContext context);
-
-		public abstract void SwitchedToPage (ViewContext context, string name);
+		void SwitchedToPage (ViewContext context, string name);
 	}
 
 	// Implements a Most Recently Used switching strategy. The last page you used
 	// for a given context is used.
-	public class MRUSidebarContextSwitchStrategy : SidebarContextSwitchStrategy {
+	public class MRUSidebarContextSwitchStrategy : ISidebarContextSwitchStrategy {
 		public const string PREF_PREFIX = Preferences.APP_FSPOT + "ui/sidebar";
-
-		public MRUSidebarContextSwitchStrategy (Sidebar sidebar) : base (sidebar) {
-		}
 
 		private string PrefKeyForContext (ViewContext context) {
 			return String.Format ("{0}/{1}", PREF_PREFIX, context);
 		}
 
-		public override string PageForContext (ViewContext context) {
+		public string PageForContext (ViewContext context) {
 			string name = Preferences.Get<string> (PrefKeyForContext (context));
 			if (name == null) 
 				name = DefaultForContext (context);
 			return name;
 		}
 
-		public override void SwitchedToPage (ViewContext context, string name) {
+		public void SwitchedToPage (ViewContext context, string name) {
 			Preferences.Set (PrefKeyForContext (context), name);
 		}
 
@@ -168,11 +159,11 @@ namespace FSpot.Widgets {
 			}
 		}
 
-		private readonly SidebarContextSwitchStrategy ContextSwitchStrategy;
+		private readonly ISidebarContextSwitchStrategy ContextSwitchStrategy;
 
 		public Sidebar () : base ()
 		{
-			ContextSwitchStrategy = new MRUSidebarContextSwitchStrategy (this);
+			ContextSwitchStrategy = new MRUSidebarContextSwitchStrategy ();
 			ContextChanged += HandleContextChanged;
 
 			button_box = new HBox ();
