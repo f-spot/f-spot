@@ -8,6 +8,8 @@ PLUGIN_ASSEMBLY = $(PLUGIN_NAME).dll
 
 PLUGIN_SOURCES =			\
 	$(srcdir)/FacebookExport.cs			\
+	$(srcdir)/FacebookExportDialog.cs		\
+	$(srcdir)/FacebookTagPopup.cs			\
 	$(srcdir)/Mono.Facebook/Album.cs		\
 	$(srcdir)/Mono.Facebook/AssemblyInfo.cs		\
 	$(srcdir)/Mono.Facebook/Error.cs		\
@@ -33,6 +35,7 @@ REFS =					\
 	-r:$(top_builddir)/src/FSpot.Core.dll	\
 	-r:$(top_builddir)/src/FSpot.Utils.dll	\
 	-r:$(top_builddir)/src/FSpot.Platform.dll	\
+	-r:$(top_builddir)/src/FSpot.Widgets.dll	\
 	$(LINK_GTKSHARPBEANS)				\
 	$(LINK_KEYRING)                     \
 	$(LINK_MONO_ADDINS)					\
@@ -41,25 +44,21 @@ REFS =					\
 	-r:Mono.Posix
 
 PKGS =					\
-	-pkg:gtk-sharp-2.0		\
-	-pkg:glade-sharp-2.0
+	-pkg:gtk-sharp-2.0
 
 RESOURCES =				\
 	-resource:$(srcdir)/$(PLUGIN_MANIFEST)	\
-	-resource:$(srcdir)/$(PLUGIN_NAME).glade
+	-resource:$(srcdir)/$(PLUGIN_NAME).ui
 
 all: $(PLUGIN_ASSEMBLY)
 
 mpack: $(PLUGIN_ASSEMBLY)
 	mautil p $(PLUGIN_ASSEMBLY)
 
-$(PLUGIN_ASSEMBLY): $(PLUGIN_SOURCES) $(PLUGIN_MANIFEST) $(PLUGIN_NAME).glade
+$(PLUGIN_ASSEMBLY): $(PLUGIN_SOURCES) $(PLUGIN_MANIFEST) $(PLUGIN_NAME).ui
 	$(CSC_LIB) -out:$@ $(PLUGIN_SOURCES) $(REFS) $(PKGS) $(ASSEMBLIES) $(RESOURCES)
 
 plugindir = $(pkglibdir)/extensions
-
-install-data-hook:
-	rm -f $(plugindir)/$(PLUGIN_NAME).addin.xml
 
 plugin_DATA =			\
 	$(PLUGIN_ASSEMBLY)
@@ -67,7 +66,7 @@ plugin_DATA =			\
 EXTRA_DIST = 			\
 	$(PLUGIN_SOURCES)	\
 	$(PLUGIN_MANIFEST)	\
-	$(PLUGIN_NAME).glade
+	$(PLUGIN_NAME).ui
 
 CLEANFILES =			\
 	$(PLUGIN_ASSEMBLY)	\
