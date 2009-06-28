@@ -131,7 +131,10 @@ namespace FSpot.Bling
 
 		protected abstract T Interpolate (T from, T to, double progress);
 
+// Do not error out on this not being used
+#pragma warning disable 67
 		public event EventHandler Completed;
+#pragma warning restore 67
 		public event EventHandler<ProgressChangedEventArgs> ProgressChanged;
 
 		public bool IsRunning {

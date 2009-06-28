@@ -1,6 +1,7 @@
 include $(top_srcdir)/Makefile.include
 UNSAFE = -unsafe
 NOWARN = -nowarn:0169 -nowarn:0612 -nowarn:0414  
+WARNASERROR = -warnaserror
 EXTRAFLAGS = -d:TEST_METADATA -d:BROKEN_RSVG -d:GSD_2_24 $(CSC_DEFINES)
 
 CMS_CSDISTFILES =				\
@@ -450,15 +451,15 @@ F_SPOT_CSFILES = $(F_SPOT_CSDISTFILES)	\
 
 Cms.dll: $(CMS_CSFILES)
 	@echo -e "\n*** Compiling $@"
-	$(CSC_LIB) -out:$@ $(EXTRAFLAGS) $(UNSAFE) $(CMS_CSFILES) $(CMS_ASSEMBLIES)
+	$(CSC_LIB) -out:$@ $(EXTRAFLAGS) $(UNSAFE) $(WARNASERROR) $(CMS_CSFILES) $(CMS_ASSEMBLIES)
 
 FSpot.Core.dll: $(CORE_CSFILES) FSpot.Utils.dll Cms.dll
 	@echo -e "\n*** Compiling $@"
-	$(CSC_LIB) -out:$@ $(EXTRAFLAGS) $(CORE_CSFILES) $(CORE_ASSEMBLIES)
+	$(CSC_LIB) -out:$@ $(EXTRAFLAGS) $(WARNASERROR) $(CORE_CSFILES) $(CORE_ASSEMBLIES)
 
 FSpot.Query.dll: $(QUERY_CSFILES) FSpot.Utils.dll FSpot.Core.dll
 	@echo -e "\n*** Compiling $@"
-	$(CSC_LIB) -out:$@ $(EXTRAFLAGS) $(QUERY_CSFILES) $(QUERY_ASSEMBLIES)
+	$(CSC_LIB) -out:$@ $(EXTRAFLAGS) $(WARNASERROR) $(QUERY_CSFILES) $(QUERY_ASSEMBLIES)
 
 FSpot.Utils.dll: $(UTILS_CSFILES)
 	@echo -e "\n*** Compiling $@"
@@ -466,18 +467,18 @@ FSpot.Utils.dll: $(UTILS_CSFILES)
 
 FSpot.JobScheduler.dll: $(JOBSCHEDULER_CSFILES) FSpot.Utils.dll
 	@echo -e "\n*** Compiling $@"
-	$(CSC_LIB) -out:$@ $(EXTRAFLAGS) $(JOBSCHEDULER_CSFILES) $(JOBSCHEDULER_ASSEMBLIES)
+	$(CSC_LIB) -out:$@ $(EXTRAFLAGS) $(WARNASERROR) $(JOBSCHEDULER_CSFILES) $(JOBSCHEDULER_ASSEMBLIES)
 
 FSpot.Widgets.dll: $(WIDGETS_CSFILES) FSpot.Utils.dll FSpot.Core.dll
 	@echo -e "\n*** Compiling $@"
-	$(CSC_LIB) -out:$@ $(EXTRAFLAGS) $(WIDGETS_CSFILES) $(WIDGETS_ASSEMBLIES)
+	$(CSC_LIB) -out:$@ $(EXTRAFLAGS) $(WARNASERROR) $(WIDGETS_CSFILES) $(WIDGETS_ASSEMBLIES)
 
 PLATFORM_CSFILES = $(GNOME_PLATFORM_CSFILES)
 PLATFORM_ASSEMBLIES = $(GNOME_PLATFORM_ASSEMBLIES)
 
 FSpot.Platform.dll: $(PLATFORM_CSFILES) FSpot.Utils.dll
 	@echo -e "\n*** Compiling $@"
-	$(CSC_LIB) -out:$@ $(EXTRAFLAGS) $(PLATFORM_CSFILES) $(PLATFORM_ASSEMBLIES)
+	$(CSC_LIB) -out:$@ $(EXTRAFLAGS) $(WARNASERROR) $(PLATFORM_CSFILES) $(PLATFORM_ASSEMBLIES)
 
 f-spot.exe: $(F_SPOT_CSFILES) FSpot.Utils.dll FSpot.Core.dll FSpot.Query.dll FSpot.JobScheduler.dll FSpot.Widgets.dll Cms.dll FSpot.Platform.dll $(F_SPOT_RESOURCES)
 	@echo -e "\n*** Compiling $@"
