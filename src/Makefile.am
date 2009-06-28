@@ -157,7 +157,6 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/FileImportBackend.cs		\
 	$(srcdir)/FileBrowsableItem.cs		\
 	$(srcdir)/Filters/ChmodFilter.cs	\
-	$(srcdir)/Filters/ColorFilter.cs	\
 	$(srcdir)/Filters/FilterRequest.cs	\
 	$(srcdir)/Filters/FilterSet.cs		\
 	$(srcdir)/Filters/IFilter.cs		\

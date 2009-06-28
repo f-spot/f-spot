@@ -555,7 +555,6 @@
     <Compile Include="src\Extensions\PopupCommands.cs" />
     <Compile Include="src\Extensions\ServiceNode.cs" />
     <Compile Include="src\Filters\ChmodFilter.cs" />
-    <Compile Include="src\Filters\ColorFilter.cs" />
     <Compile Include="src\Filters\FilterRequest.cs" />
     <Compile Include="src\Filters\FilterSet.cs" />
     <Compile Include="src\Filters\IFilter.cs" />
@@ -661,7 +660,6 @@
     <Compile Include="GKeyFile\generated\Flags.cs" />
     <Compile Include="GKeyFile\generated\GKeyFile.cs" />
     <Compile Include="Tests\src\ImageTest.cs" />
-    <Compile Include="Tests\src\Filters\ColorFilter.cs" />
     <Compile Include="Tests\src\Filters\JpegFilter.cs" />
     <Compile Include="Tests\src\Filters\OrientationFilter.cs" />
     <Compile Include="Tests\src\Imaging\JpegFile.cs" />
