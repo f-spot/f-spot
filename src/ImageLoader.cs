@@ -195,8 +195,8 @@ namespace FSpot {
 							base.Close (true);
 						else if (!is_disposed && Write (buffer, (ulong)byte_read))
 							image_stream.BeginRead (buffer, 0, count, HandleReadDone, null);
-					} catch (System.ObjectDisposedException od) {
-					} catch (GLib.GException ge) {
+					} catch (System.ObjectDisposedException) {
+					} catch (GLib.GException) {
 					}
 				}
 			}
