@@ -17,6 +17,7 @@ REFS =					\
 	-r:google-sharp/Mono.Google.dll	\
 	$(LINK_KEYRING)			\
 	$(LINK_MONO_ADDINS)		\
+	$(LINK_GIOSHARP)			\
 	$(LINK_GPHOTO2)			\
 	-r:System.Web			\
 	-r:Mono.Posix

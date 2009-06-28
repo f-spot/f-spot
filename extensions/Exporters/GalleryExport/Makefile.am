@@ -17,6 +17,7 @@ REFS =					\
 	$(LINK_SEMWEB)				\
 	$(LINK_MONO_ADDINS)			\
 	$(LINK_GPHOTO2)				\
+	$(LINK_GIOSHARP)				\
 	$(LINK_GTKSHARPBEANS)		\
 	-r:Mono.Posix
 

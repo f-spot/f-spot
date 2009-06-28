@@ -18,6 +18,7 @@ REFS =					\
 	-r:Mono.Data.SqliteClient				\
 	$(LINK_SEMWEB)				\
 	$(LINK_MONO_ADDINS)			\
+	$(LINK_GIOSHARP)			\
 	$(LINK_GPHOTO2)
 
 PKGS =					\

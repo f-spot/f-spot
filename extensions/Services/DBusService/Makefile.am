@@ -20,6 +20,7 @@ REFS =					\
 	$(LINK_DBUS)				\
 	$(LINK_MONO_ADDINS)			\
 	$(LINK_SEMWEB)				\
+	$(LINK_GIOSHARP)				\
 	$(LINK_GPHOTO2)
 
 PKGS =

@@ -26,6 +26,7 @@ REFS = \
 	$(LINK_KEYRING)		\
 	$(LINK_MONO_ADDINS)					\
 	$(LINK_SEMWEB)						\
+	$(LINK_GIOSHARP)						\
 	$(LINK_GPHOTO2)						\
 	-r:Mono.Posix.dll
 

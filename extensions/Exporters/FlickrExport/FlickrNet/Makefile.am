@@ -58,7 +58,8 @@ ASSEMBLY_SOURCES =				\
 	$(srcdir)/Utils.cs
 
 
-REFS =  -r:System.Web.dll	\
+REFS = \
+	-r:System.Web.dll	\
 	-r:System.Drawing.dll
 
 PKGS =
