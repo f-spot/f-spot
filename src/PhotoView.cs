@@ -223,7 +223,6 @@ namespace FSpot {
 	
 		void HandlePhotoChanged (object sender, EventArgs e)
 		{
-			PhotoImageView view = sender as PhotoImageView;
 			if (query is PhotoQuery) {
 				CommitPendingChanges ();
 			}
