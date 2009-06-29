@@ -127,17 +127,11 @@ namespace FSpot {
 			base.Dispose ();
 		}
 
-		bool close_loader;
 		public new bool Close ()
 		{
-			bool ret = false;
 			lock (sync_handle) {
-				if (loading) {
-					close_loader = true;
-					ret = true;
-				}
+				return base.Close (true);
 			}
-			return ret || base.Close (true);
 		}
 #endregion
 
@@ -195,9 +189,7 @@ namespace FSpot {
 					notify_completed = true;
 				} else {
 					try {
-						if (close_loader)
-							base.Close (true);
-						else if (!is_disposed && Write (buffer, (ulong)byte_read))
+						if (!is_disposed && Write (buffer, (ulong)byte_read))
 							image_stream.BeginRead (buffer, 0, count, HandleReadDone, null);
 					} catch (System.ObjectDisposedException) {
 					} catch (GLib.GException) {
