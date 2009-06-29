@@ -63,6 +63,7 @@ src/PrintOperation.cs
 src/QueryWidget.cs
 src/RotateCommand.cs
 src/SendEmail.cs
+src/Sharpener.cs
 src/SingleView.cs
 src/TagCommands.cs
 src/TagPopup.cs
@@ -80,6 +81,7 @@ src/UI.Dialog/ProgressDialog.cs
 src/UI.Dialog/RepairDbDialog.cs
 src/UI.Dialog/SelectionRatioDialog.cs
 src/UI.Dialog/ThreadProgressDialog.cs
+src/UI.Dialog/ui/AdjustTimeDialog.ui
 src/UI.Dialog/ui/PreferenceDialog.glade
 src/UI.Dialog/ui/DateRangeDialog.ui
 src/Updater.cs
@@ -97,6 +99,8 @@ src/Widgets/TagMenu.cs
 src/XmpTagsImporter.cs
 src/f-spot.glade
 tools/f-spot-screensaver.desktop.in
+extensions/Editors/BlackoutEditor/BlackoutEditor.cs
+extensions/Editors/PixelateEditor/PixelateEditor.cs
 extensions/Exporters/CDExport/CDExport.addin.xml
 extensions/Exporters/CDExport/CDExport.cs
 extensions/Exporters/CDExport/CDExport.glade
@@ -113,6 +117,7 @@ extensions/Exporters/GalleryExport/GalleryRemote.cs
 extensions/Exporters/FacebookExport/FacebookExport.addin.xml
 extensions/Exporters/FacebookExport/FacebookExport.cs
 extensions/Exporters/FacebookExport/FacebookExportDialog.cs
+extensions/Exporters/FacebookExport/FacebookExport.ui
 extensions/Exporters/ZipExport/ZipExport.addin.xml
 extensions/Exporters/ZipExport/ZipExport.cs
 extensions/Exporters/ZipExport/ZipExport.glade

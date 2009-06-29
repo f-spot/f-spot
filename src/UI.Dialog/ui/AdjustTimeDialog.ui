@@ -44,7 +44,7 @@
                                 <child>
                                   <object class="GtkLabel" id="name_label">
                                     <property name="visible">True</property>
-                                    <property name="label" translatable="yes">img_000.jpg</property>
+                                    <property name="label">img_000.jpg</property>
                                     <property name="use_markup">True</property>
                                   </object>
                                   <packing>
@@ -85,7 +85,7 @@
                                       <object class="GtkLabel" id="count_label">
                                         <property name="visible">True</property>
                                         <property name="xpad">30</property>
-                                        <property name="label" translatable="yes">1 of 1</property>
+                                        <property name="label">1 of 1</property>
                                         <property name="justify">GTK_JUSTIFY_CENTER</property>
                                       </object>
                                       <packing>
