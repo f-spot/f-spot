@@ -16,6 +16,7 @@
 using System;
 using System.Reflection;
 using System.Collections.Generic;
+using System.Threading;
 
 using Gtk;
 using GtkBeans;
@@ -208,55 +209,72 @@ namespace FSpot.Exporter.Facebook
 			else {
 				log_buttons_hbox.Sensitive = false;
 				dialog_action_area.Sensitive = false;
+				ThreadPool.QueueUserWorkItem (delegate {	
+					try {
+						Gtk.Application.Invoke (delegate {
+							LoginProgress (0.0, Catalog.GetString ("Authorizing Session"));
+							offline_perm_check.Active = account.HasPermission("offline_access");
+							photo_perm_check.Active = account.HasPermission("photo_upload");
+							LoginProgress (0.2, Catalog.GetString ("Session established, fetching user info..."));
+						});
+	
+						User me = account.Facebook.GetLoggedInUser ().GetUserInfo ();
+	
+						Gtk.Application.Invoke (delegate {
+							LoginProgress (0.4, Catalog.GetString ("Session established, fetching friend list..."));
+						});
 
-				try {
-					LoginProgress (0.0, Catalog.GetString ("Authorizing Session"));
-					offline_perm_check.Active = account.HasPermission("offline_access");
-					photo_perm_check.Active = account.HasPermission("photo_upload");
+						Friend[] friend_list = account.Facebook.GetFriends ();
+						long[] uids = new long [friend_list.Length];
+	
+						for (int i = 0; i < friend_list.Length; i++)
+							uids [i] = friend_list [i].UId;
+	
+						Gtk.Application.Invoke (delegate {
+							LoginProgress (0.6, Catalog.GetString ("Session established, fetching friend details..."));
+						});
 
-					LoginProgress (0.2, Catalog.GetString ("Session established, fetching user info..."));
-					User me = account.Facebook.GetLoggedInUser ().GetUserInfo ();
-
-					LoginProgress (0.4, Catalog.GetString ("Session established, fetching friend list..."));
-					Friend[] friend_list = account.Facebook.GetFriends ();
-					long[] uids = new long [friend_list.Length];
-
-					for (int i = 0; i < friend_list.Length; i++)
-						uids [i] = friend_list [i].UId;
-
-					LoginProgress (0.6, Catalog.GetString ("Session established, fetching friend details..."));
-					User[] infos = account.Facebook.GetUserInfo (uids, new string[] { "first_name", "last_name" });
-					friends = new Dictionary<long, User> ();
-
-					foreach (User user in infos)
-						friends.Add (user.UId, user);
-
-					LoginProgress (0.8, Catalog.GetString ("Session established, fetching photo albums..."));
-					Album[] albums = account.Facebook.GetAlbums ();
-					existing_album_combobox.Model = new AlbumStore (albums);
-					existing_album_combobox.Active = 0;
-
-					album_info_vbox.Sensitive = true;
-					picture_info_vbox.Sensitive = true;
-					permissions_hbox.Sensitive = true;
-					login_button.Visible = false;
-					logout_button.Visible = true;
-					// Note for translators: {0} and {1} are respectively firstname and surname of the user
-					LoginProgress (1.0, String.Format (Catalog.GetString ("{0} {1} is logged into Facebook"), me.FirstName, me.LastName));
-				} catch (FacebookException fe) {
-					Log.DebugException (fe);
-					HigMessageDialog error = new HigMessageDialog (this, Gtk.DialogFlags.DestroyWithParent | Gtk.DialogFlags.Modal,
-							Gtk.MessageType.Error, Gtk.ButtonsType.Ok, Catalog.GetString ("Facebook Connection Error"),
-							String.Format (Catalog.GetString ("There was an error when downloading your information from Facebook.\n\nFacebook said: {0}"), fe.Message));
-					error.Run ();
-					error.Destroy ();
-
-					account.Deauthenticate ();
-					DoLogout ();
-				} finally {
-					log_buttons_hbox.Sensitive = true;
-					dialog_action_area.Sensitive = true;
-				}
+						User[] infos = account.Facebook.GetUserInfo (uids, new string[] { "first_name", "last_name" });
+						friends = new Dictionary<long, User> ();
+	
+						foreach (User user in infos)
+							friends.Add (user.UId, user);
+	
+						Gtk.Application.Invoke (delegate {
+							LoginProgress (0.8, Catalog.GetString ("Session established, fetching photo albums..."));
+						});
+						Album[] albums = account.Facebook.GetAlbums ();
+						Gtk.Application.Invoke (delegate {
+							existing_album_combobox.Model = new AlbumStore (albums);
+							existing_album_combobox.Active = 0;
+	
+							album_info_vbox.Sensitive = true;
+							picture_info_vbox.Sensitive = true;
+							permissions_hbox.Sensitive = true;
+							login_button.Visible = false;
+							logout_button.Visible = true;
+							// Note for translators: {0} and {1} are respectively firstname and surname of the user
+							LoginProgress (1.0, String.Format (Catalog.GetString ("{0} {1} is logged into Facebook"), me.FirstName, me.LastName));
+						});
+					} catch (FacebookException fe) {
+						Log.DebugException (fe);
+						Gtk.Application.Invoke (delegate {
+							HigMessageDialog error = new HigMessageDialog (this, Gtk.DialogFlags.DestroyWithParent | Gtk.DialogFlags.Modal,
+									Gtk.MessageType.Error, Gtk.ButtonsType.Ok, Catalog.GetString ("Facebook Connection Error"),
+									String.Format (Catalog.GetString ("There was an error when downloading your information from Facebook.\n\nFacebook said: {0}"), fe.Message));
+							error.Run ();
+							error.Destroy ();
+						});
+	
+						account.Deauthenticate ();
+						DoLogout ();
+					} finally {
+						Gtk.Application.Invoke (delegate {
+							log_buttons_hbox.Sensitive = true;
+							dialog_action_area.Sensitive = true;
+						});
+					}
+				});
 			}
 		}
 
@@ -371,7 +389,6 @@ namespace FSpot.Exporter.Facebook
 			login_progress.Fraction = percentage;
 			login_progress.Text = message;
 			Log.Debug (message);
-			while (Application.EventsPending ()) Application.RunIteration ();
 		}
 	}
 
