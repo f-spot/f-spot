@@ -70,6 +70,7 @@ src/TagQueryWidget.cs
 src/TagSelectionWidget.cs
 src/TagStore.cs
 src/Term.cs
+src/ThumbnailCommand.cs
 src/UI.Dialog/AboutDialog.cs
 src/UI.Dialog/AdjustTimeDialog.cs
 src/UI.Dialog/DateRangeDialog.cs
@@ -84,7 +85,6 @@ src/UI.Dialog/ui/DateRangeDialog.ui
 src/Updater.cs
 src/Util.cs
 src/Utils/Unix.cs
-src/Utils/GnomeUtil.cs
 src/Widgets/CustomPrintWidget.cs
 src/Widgets/EditorPage.cs
 src/Widgets/FindBar.cs
@@ -112,7 +112,7 @@ extensions/Exporters/GalleryExport/GalleryExport.glade
 extensions/Exporters/GalleryExport/GalleryRemote.cs
 extensions/Exporters/FacebookExport/FacebookExport.addin.xml
 extensions/Exporters/FacebookExport/FacebookExport.cs
-extensions/Exporters/FacebookExport/FacebookExport.glade
+extensions/Exporters/FacebookExport/FacebookExportDialog.cs
 extensions/Exporters/ZipExport/ZipExport.addin.xml
 extensions/Exporters/ZipExport/ZipExport.cs
 extensions/Exporters/ZipExport/ZipExport.glade

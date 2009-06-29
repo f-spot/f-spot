@@ -17,7 +17,7 @@ public class ThumbnailCommand {
 		ProgressDialog progress_dialog = null;
 
 		if (photos.Length > 1) {
-			progress_dialog = new ProgressDialog ("Updating Thumbnails",
+			progress_dialog = new ProgressDialog (Mono.Unix.Catalog.GetString ("Updating Thumbnails"),
 							      ProgressDialog.CancelButtonType.Stop,
 							      photos.Length, parent_window);
 		}
@@ -25,7 +25,7 @@ public class ThumbnailCommand {
 		int count = 0;
 		foreach (Photo p in photos) {
 			if (progress_dialog != null
-			    && progress_dialog.Update (String.Format ("Updating picture \"{0}\"", p.Name)))
+			    && progress_dialog.Update (String.Format (Mono.Unix.Catalog.GetString ("Updating picture \"{0}\""), p.Name)))
 				break;
 
 			foreach (uint version_id in p.VersionIds) {
