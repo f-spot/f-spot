@@ -521,12 +521,6 @@ public class PixbufUtils {
 		return ret;
 	}	
 
-#if OLDREDEYE
-	[DllImport ("libfspot")]
-	static extern void f_pixbuf_remove_redeye (IntPtr src);
-
-	public static Gdk.Pixbuf RemoveRedeye (Gdk.Pixbuf src, Gdk.Rectangle area)
-#else
 	public unsafe static Gdk.Pixbuf RemoveRedeye (Gdk.Pixbuf src, Gdk.Rectangle area)
 	{
 		return RemoveRedeye (src, area, -15);
@@ -534,14 +528,9 @@ public class PixbufUtils {
 
 	public unsafe static Gdk.Pixbuf RemoveRedeye (Gdk.Pixbuf src, Gdk.Rectangle area, int threshold)
 	//threshold, factors and comparisons borrowed from the gimp plugin 'redeye.c' by Robert Merkel
-#endif
 	{
 		Gdk.Pixbuf copy = src.Copy ();
 		Gdk.Pixbuf selection = new Gdk.Pixbuf (copy, area.X, area.Y, area.Width, area.Height);
-#if OLREDEYE
-		f_pixbuf_remove_redeye (selection.Handle);
-		selection.Dispose ();
-#else
 		byte *spix = (byte *)selection.Pixels;
 		int h = selection.Height;
 		int w = selection.Width;
@@ -566,7 +555,6 @@ public class PixbufUtils {
 			spix += selection.Rowstride;
 		}
 
-#endif
 		return copy;
 	}
 
