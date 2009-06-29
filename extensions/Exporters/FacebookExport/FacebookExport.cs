@@ -260,14 +260,8 @@ namespace FSpot.Exporter.Facebook
 	public class FacebookExport : IExporter
 	{
 		private int size = 604;
-
-		private string[] captions;
-		private List<Mono.Facebook.Tag>[] tags;
-
 		FacebookExportDialog dialog;
-
 		ThreadProgressDialog progress_dialog;
-
 		System.Threading.Thread command_thread;
 
 		public FacebookExport ()
@@ -367,7 +361,7 @@ namespace FSpot.Exporter.Facebook
 
 					file_info = new FileInfo (request.Current.LocalPath);
 
-					Mono.Facebook.Photo photo = album.Upload (captions [i] ?? "", request.Current.LocalPath);
+					album.Upload (captions [i] ?? "", request.Current.LocalPath);
 
 					sent_bytes += file_info.Length;
 				}

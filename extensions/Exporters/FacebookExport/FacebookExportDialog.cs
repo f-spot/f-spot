@@ -113,10 +113,6 @@ namespace FSpot.Exporter.Facebook
 		}
 
 		List<Mono.Facebook.Tag>[] tags;
-		List<Mono.Facebook.Tag>[] Tags {
-			get { return tags; }
-		}
-
 		int current_item;
 		IBrowsableItem[] items;
 		public IBrowsableItem[] Items {
@@ -299,10 +295,10 @@ namespace FSpot.Exporter.Facebook
 			bool actual = account.HasPermission (permission);
 			if (desired != actual) {
 				if (desired) {
-					Log.DebugFormat("Granting {0}", permission);
+					Log.Debug ("Granting {0}", permission);
 					account.GrantPermission (permission, this);
 				} else {
-					Log.DebugFormat("Revoking {0}", permission);
+					Log.Debug ("Revoking {0}", permission);
 					account.RevokePermission (permission);
 				}
 				/* Double-check that things work... */

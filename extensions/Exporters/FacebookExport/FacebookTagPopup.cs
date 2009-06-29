@@ -20,9 +20,7 @@ namespace FSpot.Exporter.Facebook
 {	
 	internal class FacebookTagPopup : BuilderWindow
 	{
-		private Dictionary<long, User> _friends;
-
-		private Gtk.Window _popup;
+		Dictionary<long, User> _friends;
 
 		public FacebookTagPopup (Dictionary<long, User> friends) : base (Assembly.GetExecutingAssembly (), "FacebookExport.ui", "facebook_tag_popup")
 		{
