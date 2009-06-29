@@ -8,7 +8,7 @@
  *
  * Copyright (C) 2007 George Talusan
  * Copyright (c) 2008-2009 Novell, Inc.
- * Copyright (c) 2009 Jim Ramsay
+ * Later changes (2009) by Jim Ramsay
  *
  * This is free software. See COPYING for details.
  */
@@ -286,9 +286,10 @@ namespace FSpot.Exporter.Facebook
 
 			album_info_vbox.Sensitive = false;
 			picture_info_vbox.Sensitive = false;
+			offline_perm_check.Active = false;
+			photo_perm_check.Active = false;
 			permissions_hbox.Sensitive = false;
 		}
-
 		public void HandlePermissionToggled (object sender, EventArgs args)
 		{
 			string permission;
@@ -304,10 +305,10 @@ namespace FSpot.Exporter.Facebook
 			bool actual = account.HasPermission (permission);
 			if (desired != actual) {
 				if (desired) {
-					Log.Debug("Granting {0}", permission);
+					Log.DebugFormat("Granting {0}", permission);
 					account.GrantPermission (permission, this);
 				} else {
-					Log.Debug("Revoking {0}", permission);
+					Log.DebugFormat("Revoking {0}", permission);
 					account.RevokePermission (permission);
 				}
 				/* Double-check that things work... */
@@ -366,10 +367,8 @@ namespace FSpot.Exporter.Facebook
 			if (y < 0 || y > tag_image_height)
 				return;
 
-			/* TODO: Actual facebook friend tagging */
 			//FacebookTagPopup popup = new FacebookTagPopup (friends);
 		}
-
 		void LoginProgress (double percentage, string message)
 		{
 			login_progress.Fraction = percentage;
