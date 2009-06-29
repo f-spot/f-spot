@@ -114,7 +114,11 @@ namespace FSpot {
 		{
 			is_disposed = true;
 			if (image_stream != null)
-				image_stream.Close ();
+				try {
+					image_stream.Close ();
+				} catch (GLib.GException)
+				{
+				}
 			Close ();
 			if (thumb != null) {
 				thumb.Dispose ();
