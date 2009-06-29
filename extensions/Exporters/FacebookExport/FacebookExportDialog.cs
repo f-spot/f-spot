@@ -274,12 +274,18 @@ namespace FSpot.Exporter.Facebook
 			login_progress.Fraction = 0;
 			login_progress.Text = Catalog.GetString ("You are not logged in.");
 
+
 			album_info_vbox.Sensitive = false;
 			picture_info_vbox.Sensitive = false;
+			offline_perm_check.Toggled -= HandlePermissionToggled;
+			photo_perm_check.Toggled -= HandlePermissionToggled;
 			offline_perm_check.Active = false;
 			photo_perm_check.Active = false;
+			offline_perm_check.Toggled += HandlePermissionToggled;
+			photo_perm_check.Toggled += HandlePermissionToggled;
 			permissions_hbox.Sensitive = false;
 		}
+
 		public void HandlePermissionToggled (object sender, EventArgs args)
 		{
 			string permission;
@@ -359,6 +365,7 @@ namespace FSpot.Exporter.Facebook
 
 			//FacebookTagPopup popup = new FacebookTagPopup (friends);
 		}
+
 		void LoginProgress (double percentage, string message)
 		{
 			login_progress.Fraction = percentage;
