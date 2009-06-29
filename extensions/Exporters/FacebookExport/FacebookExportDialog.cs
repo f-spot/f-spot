@@ -209,12 +209,15 @@ namespace FSpot.Exporter.Facebook
 			else {
 				log_buttons_hbox.Sensitive = false;
 				dialog_action_area.Sensitive = false;
+				LoginProgress (0.0, Catalog.GetString ("Authorizing Session"));
 				ThreadPool.QueueUserWorkItem (delegate {	
 					try {
+						bool perm_offline = account.HasPermission("offline_access");
+						bool perm_upload = photo_perm_check.Active = account.HasPermission("photo_upload");
+
 						Gtk.Application.Invoke (delegate {
-							LoginProgress (0.0, Catalog.GetString ("Authorizing Session"));
-							offline_perm_check.Active = account.HasPermission("offline_access");
-							photo_perm_check.Active = account.HasPermission("photo_upload");
+							offline_perm_check.Active = perm_offline;
+							photo_perm_check.Active = perm_upload;
 							LoginProgress (0.2, Catalog.GetString ("Session established, fetching user info..."));
 						});
 	
