@@ -96,16 +96,10 @@ namespace FSpot.Exporter.Facebook
 			caption_textview.Sensitive = false;
 
 			DoLogout ();
-		}
-
-		public int Run () {
-			this.Show ();
-			while (Application.EventsPending ()) Application.RunIteration ();
 
 			account = new FacebookAccount();
 			if (account.Authenticated)
 				DoLogin ();
-			return ((Dialog)this).Run ();
 		}
 
 		FacebookAccount account;
