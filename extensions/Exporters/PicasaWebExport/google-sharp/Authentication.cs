@@ -53,10 +53,9 @@ namespace Mono.Google {
 			string service_code = service.ServiceCode;
 
 			StringBuilder content = new StringBuilder ();
-			content.Append ("accountType=HOSTED_OR_GOOGLE");
+			content.Append ("accountType=GOOGLE");
 			content.AppendFormat ("&Email={0}", email);
 			content.AppendFormat ("&Passwd={0}", password);
-			content.AppendFormat ("&email={0}", email);
 			content.AppendFormat ("&service={0}", service_code);
 			content.AppendFormat ("&source={0}", appname);
 
