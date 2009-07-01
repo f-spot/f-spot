@@ -70,15 +70,17 @@ JOBSCHEDULER_CSDISTFILES =				\
 	$(srcdir)/JobScheduler/JobStatus.cs		\
 	$(srcdir)/JobScheduler/Scheduler.cs
 
-WIDGETS_CSDISTFILES =				\
+BLING_CSDISTFILES =					\
 	$(srcdir)/Bling/Animation.cs		\
 	$(srcdir)/Bling/BackEase.cs		\
-	$(srcdir)/Bling/DoubleAnimation.cs	\
 	$(srcdir)/Bling/CubicEase.cs		\
+	$(srcdir)/Bling/DoubleAnimation.cs	\
+	$(srcdir)/Bling/EasedAnimation.cs	\
 	$(srcdir)/Bling/EasingFunction.cs	\
 	$(srcdir)/Bling/EasingMode.cs		\
-	$(srcdir)/Bling/EasedAnimation.cs	\
-	$(srcdir)/Bling/QuinticEase.cs		\
+	$(srcdir)/Bling/QuinticEase.cs
+
+WIDGETS_CSDISTFILES =				\
 	$(srcdir)/Widgets/ApplicationActivatedEventArgs.cs	\
 	$(srcdir)/Widgets/BuilderWindow.cs	\
 	$(srcdir)/Widgets/CheckPattern.cs	\
@@ -332,6 +334,10 @@ UTILS_ASSEMBLIES =				\
 JOBSCHEDULER_ASSEMBLIES =			\
 	-r:FSpot.Utils.dll
 
+BLING_ASSEMBLIES =				\
+	-pkg:gtk-sharp-2.0			\
+	$(LINK_GTKSHARPBEANS)
+
 WIDGETS_ASSEMBLIES =				\
 	$(LINK_MONO_ADDINS)			\
 	$(LINK_GIOSHARP)			\
@@ -378,6 +384,7 @@ F_SPOT_ASSEMBLIES = 				\
 	-r:FSpot.Query.dll			\
 	-r:FSpot.Utils.dll			\
 	-r:FSpot.JobScheduler.dll		\
+	-r:FSpot.Bling.dll			\
 	-r:FSpot.Widgets.dll			\
 	-r:FSpot.Platform.dll			\
 	-r:Cms.dll				\
@@ -421,6 +428,8 @@ fspotlib_DATA = f-spot.exe.config	\
 		FSpot.Core.dll.mdb	\
 		FSpot.JobScheduler.dll	\
 		FSpot.JobScheduler.dll.mdb \
+		FSpot.Bling.dll		\
+		FSpot.Bling.dll.mdb \
 		FSpot.Widgets.dll	\
 		FSpot.Widgets.dll.mdb	\
 		FSpot.Widgets.dll.config\
@@ -439,6 +448,8 @@ QUERY_CSFILES = $(QUERY_CSDISTFILES)
 UTILS_CSFILES = $(UTILS_CSDISTFILES)
 
 JOBSCHEDULER_CSFILES = $(JOBSCHEDULER_CSDISTFILES)
+
+BLING_CSFILES = $(BLING_CSDISTFILES)
 
 WIDGETS_CSFILES = $(WIDGETS_CSDISTFILES)
 
@@ -469,6 +480,10 @@ FSpot.JobScheduler.dll: $(JOBSCHEDULER_CSFILES) FSpot.Utils.dll
 	@echo -e "\n*** Compiling $@"
 	$(CSC_LIB) -out:$@ $(EXTRAFLAGS) $(WARNASERROR) $(JOBSCHEDULER_CSFILES) $(JOBSCHEDULER_ASSEMBLIES)
 
+FSpot.Bling.dll: $(BLING_CSFILES)
+	@echo -e "\n*** Compiling $@"
+	$(CSC_LIB) -out:$@ $(EXTRAFLAGS) $(WARNASERROR) $(BLING_CSFILES) $(BLING_ASSEMBLIES)
+
 FSpot.Widgets.dll: $(WIDGETS_CSFILES) FSpot.Utils.dll FSpot.Core.dll
 	@echo -e "\n*** Compiling $@"
 	$(CSC_LIB) -out:$@ $(EXTRAFLAGS) $(WARNASERROR) $(WIDGETS_CSFILES) $(WIDGETS_ASSEMBLIES)
@@ -480,7 +495,7 @@ FSpot.Platform.dll: $(PLATFORM_CSFILES) FSpot.Utils.dll
 	@echo -e "\n*** Compiling $@"
 	$(CSC_LIB) -out:$@ $(EXTRAFLAGS) $(WARNASERROR) $(PLATFORM_CSFILES) $(PLATFORM_ASSEMBLIES)
 
-f-spot.exe: $(F_SPOT_CSFILES) FSpot.Utils.dll FSpot.Core.dll FSpot.Query.dll FSpot.JobScheduler.dll FSpot.Widgets.dll Cms.dll FSpot.Platform.dll $(F_SPOT_RESOURCES)
+f-spot.exe: $(F_SPOT_CSFILES) FSpot.Utils.dll FSpot.Core.dll FSpot.Query.dll FSpot.JobScheduler.dll FSpot.Bling.dll FSpot.Widgets.dll Cms.dll FSpot.Platform.dll $(F_SPOT_RESOURCES)
 	@echo -e "\n*** Compiling $@"
 	$(CSC) -target:winexe -out:$@ $(EXTRAFLAGS) $(UNSAFE) $(NOWARN) $(NUNIT_DEFINES) $(F_SPOT_CSFILES) $(F_SPOT_ASSEMBLIES) $(RESOURCES)
 
@@ -492,6 +507,7 @@ EXTRA_DIST =					\
 	$(CORE_CSDISTFILES)			\
 	$(QUERY_CSDISTFILES)			\
 	$(JOBSCHEDULER_CSDISTFILES)		\
+	$(BLING_CSDISTFILES)			\
 	$(WIDGETS_CSDISTFILES)			\
 	$(GNOME_PLATFORM_CSDISTFILES)		\
 	$(NULL_PLATFORM_CSDISTFILES)		\
@@ -518,7 +534,9 @@ CLEANFILES =					\
 	FSpot.Core.dll				\
 	FSpot.JobScheduler.dll			\
 	FSpot.JobScheduler.dll.mdb		\
-	FSpot.Widgets.dll			\
+	FSpot.Bling.dll.mdb				\
+	FSpot.Bling.dll					\
+	FSpot.Widgets.dll				\
 	FSpot.Widgets.dll.mdb			\
 	FSpot.Widgets.dll.config		\
 	FSpot.Platform.dll			\
