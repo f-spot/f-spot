@@ -1,4 +1,4 @@
-# translation of f-spot.master.ta.po to Tamil
+# translation of f-spot.master.ta.po to
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 #
@@ -7,14 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: f-spot.master.ta\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=f-spot&component=General\n"
-"POT-Creation-Date: 2009-06-15 12:52+0000\n"
-"PO-Revision-Date: 2009-07-01 15:40+0530\n"
-"Last-Translator: I. Felix <ifelix@redhat.com>\n"
-"Language-Team: Tamil <fedora-trans-ta@redhat.com>\n"
+"POT-Creation-Date: 2009-07-02 05:49+0000\n"
+"PO-Revision-Date: 2009-07-02 12:27+0530\n"
+"Last-Translator: \n"
+"Language-Team:  <en@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n!=1);\\n\n"
+"Plural-Forms: nplurals=2; plural=(n!=1);\\n"
+"\n"
 "\n"
 "\n"
 "\n"
@@ -136,7 +137,6 @@ msgstr "வேறு"
 
 #: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/ManageSitesDialog.cs:51
 #: ../src/Widgets/InfoBox.cs:211
-#: ../extensions/Exporters/FacebookExport/FacebookExport.glade.h:9
 msgid "Name"
 msgstr "பெயர்"
 
@@ -188,7 +188,7 @@ msgid "_Unselect All"
 msgstr "அனைத்தையும் தேர்வு நீக்கு (_U)"
 
 #: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:259
-#: ../src/f-spot.glade.h:106
+#: ../src/f-spot.glade.h:97
 msgid "Select _All"
 msgstr "அனைத்தையும் தேர்ந்தெடு (_A)"
 
@@ -246,7 +246,7 @@ msgstr "செய்யமுடியாத"
 #: ../extensions/Exporters/FlickrExport/FlickrExport.cs:370
 #: ../extensions/Exporters/FolderExport/FolderExport.cs:250
 #: ../extensions/Exporters/GalleryExport/GalleryExport.cs:799
-#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:543
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:370
 #: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:693
 #: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:596
 #: ../extensions/Exporters/TabbloExport/TabbloExport.cs:319
@@ -339,7 +339,7 @@ msgstr "நிழற்பட மேலாளர்"
 msgid "Organize, enjoy, and share your photos"
 msgstr "உங்கள் நிழற்படங்களை ஒழுங்குபடுத்தி, பகிர்ந்து, மகிழவும்"
 
-#: ../libfspot/f-jpeg-utils.c:441 ../src/RotateCommand.cs:222
+#: ../libfspot/f-jpeg-utils.c:441 ../src/RotateCommand.cs:224
 msgid "File not found"
 msgstr "கோப்பு காணப்படவில்லை "
 
@@ -360,7 +360,7 @@ msgstr "முன்பார்வை"
 msgid "Path"
 msgstr "பாதை"
 
-#: ../src/CameraFileSelectionDialog.cs:80 ../src/f-spot.glade.h:74
+#: ../src/CameraFileSelectionDialog.cs:80 ../src/f-spot.glade.h:65
 msgid "File"
 msgstr "கோப்பு"
 
@@ -478,7 +478,7 @@ msgstr "{1} ({0}) இதில் மாற்றியமைக்கப்ப�
 
 #. Note that the original version is never stored in the photo_versions table in the
 #. database.
-#: ../src/Core/Photo.cs:671 ../src/f-spot.glade.h:92
+#: ../src/Core/Photo.cs:671 ../src/f-spot.glade.h:83
 msgid "Original"
 msgstr "அசல்"
 
@@ -574,17 +574,17 @@ msgstr "ஏற்று"
 msgid "Open _With"
 msgstr "இதனுடன் திற (_W)"
 
-#: ../src/FSpot.addin.xml.h:4 ../src/f-spot.glade.h:101
+#: ../src/FSpot.addin.xml.h:4 ../src/f-spot.glade.h:92
 msgid "Rem_ove Tag"
 msgstr "ஒட்டு நீக்கு (_o)"
 
-#: ../src/FSpot.addin.xml.h:5 ../src/SingleView.cs:451
-#: ../src/f-spot.glade.h:103
+#: ../src/FSpot.addin.xml.h:5 ../src/SingleView.cs:454
+#: ../src/f-spot.glade.h:94
 msgid "Rotate _Left"
 msgstr "இடதுபுறமாக சுழற்று (_L)"
 
-#: ../src/FSpot.addin.xml.h:6 ../src/SingleView.cs:452
-#: ../src/f-spot.glade.h:104
+#: ../src/FSpot.addin.xml.h:6 ../src/SingleView.cs:455
+#: ../src/f-spot.glade.h:95
 msgid "Rotate _Right"
 msgstr "வலதுபுறமாக சுழற்று (_R)"
 
@@ -592,15 +592,15 @@ msgstr "வலதுபுறமாக சுழற்று (_R)"
 msgid "Tools"
 msgstr "கருவிகள்"
 
-#: ../src/FSpot.addin.xml.h:8 ../src/f-spot.glade.h:138
+#: ../src/FSpot.addin.xml.h:8 ../src/f-spot.glade.h:127
 msgid "_Attach Tag"
 msgstr "ஒட்டு இணை (_A)"
 
-#: ../src/FSpot.addin.xml.h:9 ../src/f-spot.glade.h:149
+#: ../src/FSpot.addin.xml.h:9 ../src/f-spot.glade.h:138
 msgid "_Delete From Drive"
 msgstr "இயக்கியிலிருந்து அழி (_D)"
 
-#: ../src/FSpot.addin.xml.h:10 ../src/f-spot.glade.h:181
+#: ../src/FSpot.addin.xml.h:10 ../src/f-spot.glade.h:170
 msgid "_Remove From Catalog"
 msgstr "கேட்லாக்கிலிருந்து நீக்கு (_R)"
 
@@ -647,8 +647,8 @@ msgstr "படத் தகவல்"
 msgid "Exit fullscreen"
 msgstr "முழுத்திரையிலிருந்து வெளியேறு"
 
-#: ../src/FullScreenView.cs:81 ../src/MainWindow.cs:319
-#: ../src/SingleView.cs:103
+#: ../src/FullScreenView.cs:81 ../src/MainWindow.cs:315
+#: ../src/SingleView.cs:104
 msgid "Slideshow"
 msgstr "ஸ்லைடு காட்சி"
 
@@ -708,11 +708,11 @@ msgstr "மாதத்தால் ஒழுங்குபடுத்து (
 msgid "Arrange by _Folder"
 msgstr "கோப்புறையால் ஒழுங்குப்படுத்து (_F)"
 
-#: ../src/GroupSelector.cs:523 ../src/f-spot.glade.h:185
+#: ../src/GroupSelector.cs:523 ../src/f-spot.glade.h:174
 msgid "_Reverse Order"
 msgstr "தலைகீழ் வரிசை (_R)"
 
-#: ../src/GroupSelector.cs:529 ../src/f-spot.glade.h:141
+#: ../src/GroupSelector.cs:529 ../src/f-spot.glade.h:130
 msgid "_Clear Date Range"
 msgstr "தேதி வரம்பை துடை (_C)"
 
@@ -740,7 +740,7 @@ msgstr "InterOperability அடைவு"
 msgid "Unknown Directory"
 msgstr "தெரியாத அடைவு"
 
-#: ../src/Imaging/ImageFile.cs:91
+#: ../src/Imaging/ImageFile.cs:93
 msgid "Writing to this file format is not supported"
 msgstr "இந்த கோப்பு முறை எழுதுவதற்கு துணைபுரியவில்லை"
 
@@ -874,7 +874,7 @@ msgstr "பொருளின் அறிவார்ந்த வகை"
 msgid "Unknown IIM DataSet"
 msgstr "தெரியாத IIM DataSet"
 
-#: ../src/ImportCommand.cs:47 ../src/SingleView.cs:357
+#: ../src/ImportCommand.cs:47 ../src/SingleView.cs:360
 msgid "Select Folder"
 msgstr "கோப்புறையை தேர்வு செய்"
 
@@ -891,8 +891,8 @@ msgstr "{1} இல் {0}ஐ ஏற்றுகிறது"
 msgid "Done Loading"
 msgstr "ஏற்றுதல் முடிவுற்றது"
 
-#: ../src/ImportCommand.cs:539 ../src/MainWindow.cs:279
-#: ../src/f-spot.glade.h:79
+#: ../src/ImportCommand.cs:539 ../src/MainWindow.cs:275
+#: ../src/f-spot.glade.h:70
 msgid "Import"
 msgstr "இறக்குமதி"
 
@@ -913,7 +913,7 @@ msgstr "நீங்கள் தேர்ந்தெடுத்த அடை�
 msgid "Import Tags"
 msgstr "ஒட்டுகளை இறக்கு"
 
-#: ../src/ItemAction.cs:79 ../src/MainWindow.cs:286 ../src/SingleView.cs:86
+#: ../src/ItemAction.cs:79 ../src/MainWindow.cs:282 ../src/SingleView.cs:87
 msgid "Rotate Left"
 msgstr "இடமாக சுழற்று"
 
@@ -921,7 +921,7 @@ msgstr "இடமாக சுழற்று"
 msgid "Rotate picture left"
 msgstr "படத்தை இடமாக சுழற்று"
 
-#: ../src/ItemAction.cs:91 ../src/MainWindow.cs:290 ../src/SingleView.cs:91
+#: ../src/ItemAction.cs:91 ../src/MainWindow.cs:286 ../src/SingleView.cs:92
 msgid "Rotate Right"
 msgstr "வலமாக சுழற்று"
 
@@ -929,7 +929,7 @@ msgstr "வலமாக சுழற்று"
 msgid "Rotate picture right"
 msgstr "நிழற்படத்தை வலமாக சுழற்று"
 
-#: ../src/ItemAction.cs:102 ../src/f-spot.glade.h:87
+#: ../src/ItemAction.cs:102 ../src/f-spot.glade.h:78
 #: ../extensions/Exporters/FolderExport/FolderExport.cs:999
 msgid "Next"
 msgstr "அடுத்து"
@@ -938,7 +938,7 @@ msgstr "அடுத்து"
 msgid "Next picture"
 msgstr "அடுத்த படம்"
 
-#: ../src/ItemAction.cs:123 ../src/f-spot.glade.h:99
+#: ../src/ItemAction.cs:123 ../src/f-spot.glade.h:90
 msgid "Previous"
 msgstr "முந்தைய"
 
@@ -946,74 +946,48 @@ msgstr "முந்தைய"
 msgid "Previous picture"
 msgstr "முந்தைய படம்"
 
-#: ../src/Loupe.cs:62
-msgid "Error saving sharpened photo"
-msgstr "கூர்மை செய்யப்பட்ட நிழற்படத்தை சேமிக்கும் போது பிழை"
-
-#: ../src/Loupe.cs:63 ../src/PhotoView.cs:164
-#: ../src/UI.Dialog/EditExceptionDialog.cs:25
-#, csharp-format
-msgid "Received exception \"{0}\". Unable to save photo {1}"
-msgstr "விதிவிலக்கு \"{0}\" பெறப்பட்டது. நிழற்படம் {1}ஐ சேமிக்க முடியவில்லை"
-
-#: ../src/Loupe.cs:92
-msgid "Sharpen"
-msgstr "கூர்மையான"
-
-#: ../src/Loupe.cs:102
-msgid "Amount:"
-msgstr "தொகை:"
-
-#: ../src/Loupe.cs:103
-msgid "Radius:"
-msgstr "ரேடியஸ்:"
-
-#: ../src/Loupe.cs:104
-msgid "Threshold:"
-msgstr "வாயில்:"
-
-#: ../src/MainWindow.cs:281
+#: ../src/MainWindow.cs:277
 msgid "Import new images"
 msgstr "புதிய படங்களை இறக்கவும்"
 
-#: ../src/MainWindow.cs:297 ../src/f-spot.glade.h:46
+#: ../src/MainWindow.cs:293 ../src/f-spot.glade.h:38
 msgid "Browse"
 msgstr "உலாவு"
 
-#: ../src/MainWindow.cs:301
+#: ../src/MainWindow.cs:297
 msgid "Browse many photos simultaneously"
 msgstr "ஒரே நேரத்தில் பல நிழற்படங்களில் உலாவு"
 
-#: ../src/MainWindow.cs:305
+#: ../src/MainWindow.cs:301
 msgid "Edit Image"
 msgstr "படத்தை திருத்தவும்"
 
-#: ../src/MainWindow.cs:309
+#: ../src/MainWindow.cs:305
 msgid "View and edit a photo"
 msgstr "ஒரு நிழற்படத்தை காட்டி திருத்து"
 
-#: ../src/MainWindow.cs:314 ../src/SingleView.cs:98
+#: ../src/MainWindow.cs:310 ../src/SingleView.cs:99
 msgid "Fullscreen"
 msgstr "முழுத்திரை"
 
-#: ../src/MainWindow.cs:316 ../src/SingleView.cs:100
+#: ../src/MainWindow.cs:312 ../src/SingleView.cs:101
 msgid "View photos fullscreen"
 msgstr "நிழற்படங்களின் முழுத்திரையாக காட்டு"
 
-#: ../src/MainWindow.cs:321 ../src/SingleView.cs:105
+#: ../src/MainWindow.cs:317 ../src/SingleView.cs:106
 msgid "View photos in a slideshow"
 msgstr "நிழற்படங்களை ஸ்லைடு காட்சியாக காட்டு"
 
-#: ../src/MainWindow.cs:336
+#: ../src/MainWindow.cs:332
 msgid "Previous photo"
 msgstr "முந்தைய நிழற்படம்"
 
-#: ../src/MainWindow.cs:341
+#: ../src/MainWindow.cs:337
 msgid "Next photo"
 msgstr "அடுத்த நிழற்படம்"
 
 #. Don't care otherwise, Tags sounds reasonable
-#: ../src/MainWindow.cs:354 ../src/Widgets/Sidebar.cs:73
+#: ../src/MainWindow.cs:350 ../src/Widgets/Sidebar.cs:64
 #: ../extensions/Exporters/FolderExport/FolderExport.cs:996
 #: ../extensions/Exporters/FolderExport/FolderExport.cs:1168
 #: ../extensions/Exporters/FolderExport/FolderExport.cs:1208
@@ -1021,7 +995,7 @@ msgid "Tags"
 msgstr "ஒட்டுகள்"
 
 #. Note for translators: This indicates the current photo is photo {0} of {1} out of photos
-#: ../src/MainWindow.cs:662 ../src/UI.Dialog/AdjustTimeDialog.cs:135
+#: ../src/MainWindow.cs:641 ../src/UI.Dialog/AdjustTimeDialog.cs:129
 #: ../src/UI.Dialog/ProgressDialog.cs:92
 #: ../extensions/Exporters/CDExport/CDExport.cs:164
 #: ../extensions/Exporters/FlickrExport/FlickrExport.cs:349
@@ -1031,11 +1005,11 @@ msgstr "ஒட்டுகள்"
 msgid "{0} of {1}"
 msgstr "{1} இல் {0}"
 
-#: ../src/MainWindow.cs:1673
+#: ../src/MainWindow.cs:1501
 msgid "No cameras detected."
 msgstr "கேமராக்கள் கண்டுபிடிக்கப்படவில்லை."
 
-#: ../src/MainWindow.cs:1674
+#: ../src/MainWindow.cs:1502
 msgid ""
 "F-Spot was unable to find any cameras attached to this system.  Double check "
 "that the camera is connected and has power"
@@ -1043,80 +1017,80 @@ msgstr ""
 "F-Spot உங்கள் கணினியில் எந்த கேமிராவையும் காண முடியவில்லை. கேமிரா இணைக்கப்பட்டு "
 "மின்சாரம் உள்ளதா எனவும் சரி பார்க்கவும்"
 
-#: ../src/MainWindow.cs:1713
+#: ../src/MainWindow.cs:1541
 msgid "Error connecting to camera"
 msgstr "கேமராவுடன் இணைப்பதில் பிழை"
 
-#: ../src/MainWindow.cs:1714
+#: ../src/MainWindow.cs:1542
 #, csharp-format
 msgid "Received error \"{0}\" while connecting to camera"
 msgstr "பிழை \"{0}\" கேமிராவுடன் இணைக்கும் போது பெறப்பட்டது"
 
 #. Translators, The singular case will never happen here.
-#: ../src/MainWindow.cs:2053
+#: ../src/MainWindow.cs:1875
 #, csharp-format
 msgid "Merge the selected tag"
 msgid_plural "Merge the {0} selected tags?"
 msgstr[0] "தேர்ந்தெடுக்கப்பட்ட ஒட்டினை ஒருங்கிணை"
 msgstr[1] "{0} தேர்ந்தெடுக்கப்பட்ட ஒட்டினை ஒருங்கிணைக்கவா?"
 
-#: ../src/MainWindow.cs:2080
+#: ../src/MainWindow.cs:1902
 msgid ""
 "This operation will merge the selected tags and any sub-tags into a single "
 "tag."
 msgstr "செயல்பாடு தேர்ந்தெடுக்கப்பட்ட ஒட்டுடனும் துணை ஒட்டுகள் ஒரு ஒற்றை ஒட்டுடன் ஒருங்கிணைக்கப்படும்."
 
-#: ../src/MainWindow.cs:2082
+#: ../src/MainWindow.cs:1904
 msgid "_Merge Tags"
 msgstr "ஒட்டுகளை ஒருங்கிணை (_M)"
 
-#: ../src/MainWindow.cs:2287
+#: ../src/MainWindow.cs:2109
 #, csharp-format
 msgid "{0} Photo out of {1}"
 msgid_plural "{0} Photos out of {1}"
 msgstr[0] "{1} இல் {0} நிழற்படம்"
 msgstr[1] "{1} இல் {0} நிழற்படங்கள்"
 
-#: ../src/MainWindow.cs:2289 ../src/SingleView.cs:494
+#: ../src/MainWindow.cs:2111 ../src/SingleView.cs:496
 #, csharp-format
 msgid "{0} Photo"
 msgid_plural "{0} Photos"
 msgstr[0] "{0} நிழற்படம்"
 msgstr[1] "{0} நிழற்படம்"
 
-#: ../src/MainWindow.cs:2292
+#: ../src/MainWindow.cs:2114
 #, csharp-format
 msgid " ({0} selected)"
 msgid_plural " ({0} selected)"
 msgstr[0] " ({0} தேர்ந்தெடுக்கப்பட்டது)"
 msgstr[1] " ({0} தேர்ந்தெடுக்கப்பட்டது)"
 
-#: ../src/MainWindow.cs:2373
+#: ../src/MainWindow.cs:2195
 msgid "_Ok"
 msgstr "சரி (_O)"
 
-#: ../src/MainWindow.cs:2374
+#: ../src/MainWindow.cs:2196
 msgid "Error Deleting Picture"
 msgstr "படத்தை அழிப்பதில் பிழை"
 
-#: ../src/MainWindow.cs:2379
+#: ../src/MainWindow.cs:2201
 #, csharp-format
 msgid "No permission to delete the file:{1}{0}"
 msgstr "கோப்பினை அழிப்பதற்கு அடுமதி இல்லை:{1}{0}"
 
-#: ../src/MainWindow.cs:2383
+#: ../src/MainWindow.cs:2205
 #, csharp-format
 msgid "An error of type {0} occurred while deleting the file:{2}{1}"
 msgstr "கோப்பினை அழிக்கும் போது ஒரு வகையான பிழை {0} நிகழ்ந்துவிட்டது:{2}{1}"
 
-#: ../src/MainWindow.cs:2415
+#: ../src/MainWindow.cs:2237
 #, csharp-format
 msgid "Delete the selected photo permanently?"
 msgid_plural "Delete the {0} selected photos permanently?"
 msgstr[0] "தேர்ந்தெடுக்கப்பட்ட நிழற்படத்தை நிரந்தரமாக அழிக்க வேண்டுமா?"
 msgstr[1] "{0} தேர்ந்தெடுக்கப்பட்ட நிழற்படத்தை நிரந்தரமாக அழிக்க வேண்டுமா?"
 
-#: ../src/MainWindow.cs:2419
+#: ../src/MainWindow.cs:2241
 msgid "This deletes all versions of the selected photo from your drive."
 msgid_plural "This deletes all versions of the selected photos from your drive."
 msgstr[0] ""
@@ -1126,20 +1100,20 @@ msgstr[1] ""
 "இது உங்கள் இயக்கியிலிருந்து தேர்ந்தெடுக்கப்பட்ட நிழற்படத்தின் அனைத்து பதிப்புகளையும் "
 "அழிக்கிறது."
 
-#: ../src/MainWindow.cs:2422
+#: ../src/MainWindow.cs:2244
 msgid "_Delete photo"
 msgid_plural "_Delete photos"
 msgstr[0] "நிழற்படத்தை அழி (_D)"
 msgstr[1] "நிழற்படங்களை அழி (_D)"
 
-#: ../src/MainWindow.cs:2458
+#: ../src/MainWindow.cs:2280
 #, csharp-format
 msgid "Remove the selected photo from F-Spot?"
 msgid_plural "Remove the {0} selected photos from F-Spot?"
 msgstr[0] "F-Spotலிருந்து தேர்ந்தெடுக்கப்பட்ட நிழற்படத்தை நீக்க வேண்டுமா?"
 msgstr[1] "F-Spotலிருந்து {0} தேர்ந்தெடுக்கப்பட்ட நிழற்படங்களை நீக்க வேண்டுமா?"
 
-#: ../src/MainWindow.cs:2463
+#: ../src/MainWindow.cs:2285
 msgid ""
 "If you remove photos from the F-Spot catalog all tag information will be "
 "lost. The photos remain on your computer and can be imported into F-Spot "
@@ -1148,45 +1122,45 @@ msgstr ""
 "நீங்கள் F-Spot கேட்லாக்கை நீக்கினால் ஒட்டு தகவல்கள் அனைத்தும் இழக்கப்படும். நிழற்படங்கள் உங்கள் "
 "கணினியில் இருக்கும் அவற்றை மீண்டும் F-Spotஇல் இறக்கி கொள்ளலாம்."
 
-#: ../src/MainWindow.cs:2464
+#: ../src/MainWindow.cs:2286
 msgid "_Remove from Catalog"
 msgstr "கேட்லாக்கிலிருந்து நீக்கு (_R)"
 
-#: ../src/MainWindow.cs:2527
+#: ../src/MainWindow.cs:2349
 #, csharp-format
 msgid "Delete tag \"{0}\"?"
 msgstr "\"{0}\"ஒட்டினை அழிக்க வேண்டுமா?"
 
-#: ../src/MainWindow.cs:2529
+#: ../src/MainWindow.cs:2351
 #, csharp-format
 msgid "Delete the {0} selected tags?"
 msgstr "தேர்ந்தெடுக்கப்பட்ட {0} ஒட்டுக்களை அழிக்க வேண்டுமா?"
 
-#: ../src/MainWindow.cs:2534
+#: ../src/MainWindow.cs:2356
 msgid "photo"
 msgid_plural "photos"
 msgstr[0] "நிழற்படம்"
 msgstr[1] "நிழற்படங்கள்"
 
-#: ../src/MainWindow.cs:2536
+#: ../src/MainWindow.cs:2358
 #, csharp-format
 msgid "If you delete this tag, the association with {0} {1} will be lost."
 msgid_plural "If you delete these tags, the association with {0} {1} will be lost."
 msgstr[0] "நீங்கள் இந்த டேக்கை அழித்தால். அது தொடர்புடைய {0} {1} இழக்கப்படும்."
 msgstr[1] "நீங்கள் இந்த டேக்களை அழித்தால். அது தொடர்புடைய {0} {1} இழக்கப்படும்."
 
-#: ../src/MainWindow.cs:2541
+#: ../src/MainWindow.cs:2363
 msgid "_Delete tag"
 msgid_plural "_Delete tags"
 msgstr[0] "ஒட்டினை அழி (_D)"
 msgstr[1] "ஒட்டினை அழி (_D)"
 
 #. A Category is not empty. Can not delete it.
-#: ../src/MainWindow.cs:2555
+#: ../src/MainWindow.cs:2377
 msgid "Tag is not empty"
 msgstr "ஒட்டு வெற்றாக இல்லை"
 
-#: ../src/MainWindow.cs:2556
+#: ../src/MainWindow.cs:2378
 #, csharp-format
 msgid ""
 "Can not delete tags that have tags within them.  Please delete tags under "
@@ -1195,39 +1169,39 @@ msgstr ""
 "ஒட்டுகள் அதனுள் ஒட்டுகளை கொண்டிருந்தால் அழிக்க முடியவில்லை.  முதலில் \"{0}\" இன் கீழ் "
 "ஒட்டுகளை அழிக்கவும்"
 
-#: ../src/MainWindow.cs:2994
+#: ../src/MainWindow.cs:2816
 msgid "Rotate selected photo left"
 msgid_plural "Rotate selected photos left"
 msgstr[0] "தேர்ந்தெடுக்கப்பட்ட நிழற்படத்தை இடப்பக்கம் சுழற்று"
 msgstr[1] "தேர்ந்தெடுக்கப்பட்ட நிழற்படத்தை இடப்பக்கம் சுழற்று"
 
-#: ../src/MainWindow.cs:3007
+#: ../src/MainWindow.cs:2829
 msgid "Rotate selected photo right"
 msgid_plural "Rotate selected photos right"
 msgstr[0] "தேர்ந்தெடுக்கப்பட்ட நிழற்படத்தை வலப்பக்கம் சுழற்று"
 msgstr[1] "தேர்ந்தெடுக்கப்பட்ட நிழற்படத்தை வலப்பக்கம் சுழற்று"
 
-#: ../src/MainWindow.cs:3015
+#: ../src/MainWindow.cs:2837
 #, csharp-format
 msgid "Find _Selected Tag"
 msgid_plural "Find _Selected Tags"
 msgstr[0] "தேர்ந்தெடுக்கப்பட்ட ஒட்டுகளை கண்டுபிடி(_S)"
 msgstr[1] ""
 
-#: ../src/MainWindow.cs:3019
+#: ../src/MainWindow.cs:2841
 #, csharp-format
 msgid "Find Selected Tag _With"
 msgid_plural "Find Selected Tags _With"
 msgstr[0] "இதனுடன் தேர்ந்தெடுக்கப்பட்ட ஒட்டை கண்டுபிடி(_W)"
 msgstr[1] ""
 
-#: ../src/MainWindow.cs:3057
+#: ../src/MainWindow.cs:2880
 msgid "Create New Version?"
 msgid_plural "Create New Versions?"
 msgstr[0] "புதிய பதிப்பை உருவாக்க வேண்டுமா?"
 msgstr[1] "புதிய பதிப்பை உருவாக்க வேண்டுமா?"
 
-#: ../src/MainWindow.cs:3059
+#: ../src/MainWindow.cs:2882
 #, csharp-format
 msgid ""
 "Before launching {1}, should F-Spot create a new version of the selected "
@@ -1242,111 +1216,111 @@ msgstr[1] ""
 "{1}ஐ துவக்கும் முனை, F-Spot தேர்ந்தெடுக்கப்பட்ட நிழற்படத்திற்கு ஒரு புதிய பதிப்பை "
 "உருவாக்கி அசலை வைத்திருக்குமா?"
 
-#: ../src/MainWindow.cs:3081
+#: ../src/MainWindow.cs:2904
 msgid "XCF version"
 msgstr "XCF பதிப்பு"
 
-#: ../src/MetadataStore.cs:18
+#: ../src/MetadataStore.cs:19
 msgid "Creator"
 msgstr "உருவாக்குபவர்"
 
-#: ../src/MetadataStore.cs:19
+#: ../src/MetadataStore.cs:20
 msgid "Title"
 msgstr "தலைப்பு"
 
-#: ../src/MetadataStore.cs:20
+#: ../src/MetadataStore.cs:21
 msgid "Copyright"
 msgstr "பதிப்புரிமை"
 
-#: ../src/MetadataStore.cs:21
+#: ../src/MetadataStore.cs:22
 msgid "Subject and Keywords"
 msgstr "பொருள் மற்றும் முக்கியச்சொற்கள்"
 
-#: ../src/MetadataStore.cs:22
+#: ../src/MetadataStore.cs:23
 msgid "Compression"
 msgstr "சுருக்குதல்"
 
-#: ../src/MetadataStore.cs:24
+#: ../src/MetadataStore.cs:25
 msgid "Planar Configuration"
 msgstr "ப்ளனர் கட்டமைப்பு"
 
-#: ../src/MetadataStore.cs:26
+#: ../src/MetadataStore.cs:27
 msgid "Orientation"
 msgstr "திசையமைப்பு"
 
-#: ../src/MetadataStore.cs:28
+#: ../src/MetadataStore.cs:29
 msgid "Photometric Interpretation"
 msgstr "ஃபோட்டோமெட்ரிக் மொழிபெயர்த்தல்"
 
-#: ../src/MetadataStore.cs:30
+#: ../src/MetadataStore.cs:31
 msgid "Resolution Unit"
 msgstr "திரைத்திறன் அலகு"
 
-#: ../src/MetadataStore.cs:32
+#: ../src/MetadataStore.cs:33
 msgid "Exposure Program"
 msgstr "ஒளிப்படுதல் நிரல்"
 
-#: ../src/MetadataStore.cs:34
+#: ../src/MetadataStore.cs:35
 msgid "Metering Mode"
 msgstr "மீட்டரிங் முறை"
 
-#: ../src/MetadataStore.cs:36
+#: ../src/MetadataStore.cs:37
 msgid "Exposure Mode"
 msgstr "ஒளிப்படுதல் முறை"
 
-#: ../src/MetadataStore.cs:38
+#: ../src/MetadataStore.cs:39
 msgid "Custom Rendered"
 msgstr "தனிபயன் கொடுக்கப்பட்டது"
 
-#: ../src/MetadataStore.cs:40
+#: ../src/MetadataStore.cs:41
 msgid "Components Configuration"
 msgstr "கூறுகள் கட்டமைப்பு"
 
-#: ../src/MetadataStore.cs:42
+#: ../src/MetadataStore.cs:43
 msgid "Light Source"
 msgstr "ஒளி மூலம்"
 
-#: ../src/MetadataStore.cs:44
+#: ../src/MetadataStore.cs:45
 msgid "Sensing Method"
 msgstr "உணரும் முறை"
 
-#: ../src/MetadataStore.cs:46
+#: ../src/MetadataStore.cs:47
 msgid "Color Space"
 msgstr "நிற இடம்"
 
-#: ../src/MetadataStore.cs:48
+#: ../src/MetadataStore.cs:49
 msgid "White Balance"
 msgstr "வெள்ளை சமன்"
 
-#: ../src/MetadataStore.cs:50
+#: ../src/MetadataStore.cs:51
 msgid "Focal Plane Resolution Unit"
 msgstr "ஃபோகல் சமதள திரைத்திறன் அலகு"
 
-#: ../src/MetadataStore.cs:52
+#: ../src/MetadataStore.cs:53
 msgid "File Source Type"
 msgstr "கோப்பு மூல வகை"
 
-#: ../src/MetadataStore.cs:54
+#: ../src/MetadataStore.cs:55
 msgid "Scene Capture Type"
 msgstr "காட்சி பிடித்தல் வகை"
 
-#: ../src/MetadataStore.cs:56
+#: ../src/MetadataStore.cs:57
 msgid "Gain Control"
 msgstr "ஆதாய கட்டுப்பாடு"
 
-#: ../src/MetadataStore.cs:58
+#: ../src/MetadataStore.cs:59
 msgid "Contrast"
 msgstr "வேறுபாடு"
 
-#: ../src/MetadataStore.cs:60
+#: ../src/MetadataStore.cs:61
 msgid "Saturation"
 msgstr "சேச்சுரேஷன்"
 
-#: ../src/MetadataStore.cs:62
+#: ../src/MetadataStore.cs:63
 msgid "Sharpness"
 msgstr "கூர்மை"
 
-#: ../src/MetadataStore.cs:64
+#: ../src/MetadataStore.cs:65
 msgid "Scene Type"
 msgstr "காட்சி வகை"
 
@@ -1424,6 +1398,12 @@ msgstr "(திருத்தங்கள் இல்லை)"
 msgid "Error editing photo"
 msgstr "நிழற்படத்தை திருத்தும் போது பிழை"
 
+#: ../src/PhotoView.cs:164 ../src/Sharpener.cs:73
+#: ../src/UI.Dialog/EditExceptionDialog.cs:25
+#, csharp-format
+msgid "Received exception \"{0}\". Unable to save photo {1}"
+msgstr "விதிவிலக்கு \"{0}\" பெறப்பட்டது. நிழற்படம் {1}ஐ சேமிக்க முடியவில்லை"
+
 #: ../src/PhotoView.cs:301
 msgid "Comment:"
 msgstr "குறிப்பு:"
@@ -1432,7 +1412,7 @@ msgstr "குறிப்பு:"
 msgid "Photos"
 msgstr "நிழற்படங்கள்"
 
-#: ../src/PrintOperation.cs:31
+#: ../src/PrintOperation.cs:32
 msgid "Image Settings"
 msgstr "பட அமைவுகள்"
 
@@ -1473,35 +1453,35 @@ msgstr "பைன்டு பாரை மறை(_F)"
 msgid "Show _Find Bar"
 msgstr "பைன்டு பாரை காட்டு((_F)"
 
-#: ../src/RotateCommand.cs:94 ../src/RotateCommand.cs:109
+#: ../src/RotateCommand.cs:96 ../src/RotateCommand.cs:111
 msgid "Unable to rotate this type of photo"
 msgstr "இந்த வகையான நிழற்படத்தை சுழற்ற முசியவில்லை"
 
-#: ../src/RotateCommand.cs:129
+#: ../src/RotateCommand.cs:131
 msgid "Unable to rotate readonly file"
 msgstr "வாசிப்பு மட்டும் கோப்பினை சுழற்ற முடியவில்லை"
 
-#: ../src/RotateCommand.cs:196
+#: ../src/RotateCommand.cs:198
 msgid "Rotating photos"
 msgstr "சுழற்றும் நிழற்படங்கள்"
 
-#: ../src/RotateCommand.cs:207
+#: ../src/RotateCommand.cs:209
 #, csharp-format
 msgid "Rotating photo \"{0}\""
 msgstr "சுழற்றும் நிழற்படம் \"{0}\""
 
-#: ../src/RotateCommand.cs:220
+#: ../src/RotateCommand.cs:222
 msgid "Directory not found"
 msgstr "அடைவு காணப்படவில்லை"
 
-#: ../src/RotateCommand.cs:240
+#: ../src/RotateCommand.cs:242
 #, csharp-format
 msgid "Unable to rotate photo"
 msgid_plural "Unable to rotate {0} photos"
 msgstr[0] "நிழற்படத்தை சுழற்ற முடியவில்லை"
 msgstr[1] "{0} நிழற்படங்களை சுழற்ற முடியவில்லை"
 
-#: ../src/RotateCommand.cs:242
+#: ../src/RotateCommand.cs:244
 #, csharp-format
 msgid ""
 "The photo could not be rotated because it is on a read only file system or "
@@ -1516,105 +1496,123 @@ msgstr[1] ""
 "{0} நிழற்படங்களை சுழற்ற முடியாது ஏனெனில் அது வாசிப்பு மட்டும் உள்ள கோப்பு முறைமை "
 "அல்லது குறுவட்டு. அனுமதியை சரிபார்த்து மீண்டும் முயற்சிக்கவும்."
 
-#: ../src/RotateCommand.cs:269
+#: ../src/RotateCommand.cs:271
 #, csharp-format
 msgid "Received error \"{0}\" while attempting to rotate {1}"
 msgstr "பிழை \"{0}\" {1}ஐ சுழற்ற முயற்சிக்கும் போது பெறப்பட்டது"
 
-#: ../src/RotateCommand.cs:274
+#: ../src/RotateCommand.cs:276
 msgid "Error while rotating photo."
 msgstr "நிழற்படத்தை சுழற்றும் போது பிழை."
 
-#: ../src/SendEmail.cs:239
+#: ../src/SendEmail.cs:240
 msgid "Preparing email"
 msgstr "மின்னஞ்சலை தயார் செய்கிறது"
 
-#: ../src/SendEmail.cs:291
+#: ../src/SendEmail.cs:292
 #, csharp-format
 msgid "Exporting picture \"{0}\""
 msgstr "படம் \"{0}\"ஐ ஏற்றுகிறது"
 
-#: ../src/SendEmail.cs:313
+#: ../src/SendEmail.cs:314
 msgid "Error processing image"
 msgstr "படத்தை செயல்படுத்தும் போது பிழை"
 
-#: ../src/SendEmail.cs:314
+#: ../src/SendEmail.cs:315
 #, csharp-format
 msgid "An error occured while processing \"{0}\": {1}"
 msgstr "செயல்பாட்டின் போது ஒரு பிழை ஏற்படுகிறது \"{0}\": {1}"
 
 #. Send the mail :)
-#: ../src/SendEmail.cs:329
+#: ../src/SendEmail.cs:330
 msgid "my photos"
 msgstr "எனது நிழற்படங்கள்"
 
-#: ../src/SingleView.cs:88
+#: ../src/Sharpener.cs:72
+msgid "Error saving sharpened photo"
+msgstr "கூர்மை செய்யப்பட்ட நிழற்படத்தை சேமிக்கும் போது பிழை"
+
+#: ../src/Sharpener.cs:102
+msgid "Sharpen"
+msgstr "கூர்மையான"
+
+#: ../src/Sharpener.cs:112
+msgid "Amount:"
+msgstr "தொகை:"
+
+#: ../src/Sharpener.cs:113
+msgid "Radius:"
+msgstr "ரேடியஸ்:"
+
+#: ../src/Sharpener.cs:114
+msgid "Threshold:"
+msgstr "வாயில்:"
+
+#: ../src/SingleView.cs:89
 msgid "Rotate photo left"
 msgstr "நிழற்படத்தை இடப்பக்கம் சுழற்று"
 
-#: ../src/SingleView.cs:93
+#: ../src/SingleView.cs:94
 msgid "Rotate photo right"
 msgstr "நிழற்படத்தை வலப்பக்கம் சுழற்று"
 
-#. Obsolete, remove after db rev4
-#: ../src/SingleView.cs:128 ../src/UI.Dialog/ui/PreferenceDialog.glade.h:14
-#: ../src/Widgets/MetadataDisplay.cs:223 ../src/Widgets/MetadataDisplay.cs:225
+#: ../src/SingleView.cs:131 ../src/UI.Dialog/ui/PreferenceDialog.glade.h:14
 msgid "Folder"
 msgstr "கோப்புறை"
 
-#: ../src/SingleView.cs:354
+#: ../src/SingleView.cs:357
 msgid "Open"
 msgstr "திற"
 
-#: ../src/SingleView.cs:454
+#: ../src/SingleView.cs:457
 msgid "Set as Background"
 msgstr "பின்னணியாக அமை"
 
-#: ../src/TagCommands.cs:93 ../src/TagCommands.cs:225
-#: ../src/TagSelectionWidget.cs:506
+#: ../src/TagCommands.cs:93 ../src/TagCommands.cs:226
+#: ../src/TagSelectionWidget.cs:501
 msgid "This name is already in use"
 msgstr "இந்த பெயர் ஏற்கனவே பயன்பாட்டில் உள்ளது"
 
-#: ../src/TagCommands.cs:140
+#: ../src/TagCommands.cs:141
 msgid "Create New Tag"
 msgstr "புதிய ஒட்டினை உருவாக்கு"
 
-#: ../src/TagCommands.cs:141
+#: ../src/TagCommands.cs:142
 msgid "Name of New Tag:"
 msgstr "புதிய ஒட்டின் பெயர்:"
 
-#: ../src/TagCommands.cs:291
+#: ../src/TagCommands.cs:292
 msgid "Edit Tag"
 msgstr "ஒட்டினை திருத்து"
 
-#: ../src/TagCommands.cs:292
+#: ../src/TagCommands.cs:293
 msgid "Tag Name:"
 msgstr "ஒட்டு பெயர்:"
 
-#: ../src/TagCommands.cs:408
+#: ../src/TagCommands.cs:409
 msgid "Unable to load image"
 msgstr "படத்தை ஏற்ற முடியவில்லை"
 
-#: ../src/TagCommands.cs:409
+#: ../src/TagCommands.cs:410
 #, csharp-format
 msgid "Unable to load \"{0}\" as icon for the tag"
 msgstr "ஒட்டுக்கு சின்னமாக ஏற்ற \"{0}\" முடியவில்லை"
 
-#: ../src/TagCommands.cs:452
+#: ../src/TagCommands.cs:453
 #, csharp-format
 msgid "Photo {0} of {1}"
 msgstr "நிழற்படம் {1}ஆல் {0}"
 
-#: ../src/TagCommands.cs:482
+#: ../src/TagCommands.cs:483
 #, csharp-format
 msgid "Edit Icon for Tag {0}"
 msgstr "ஒட்டு {0}க்கான சிறுபடத்தை திருத்து"
 
-#: ../src/TagCommands.cs:498
+#: ../src/TagCommands.cs:499
 msgid "Select Photo from file"
 msgstr "கோப்பிலிருந்து நிழற்படத்தை தேர்ந்தெடுக்கவும்"
 
-#: ../src/TagCommands.cs:521
+#: ../src/TagCommands.cs:522
 #, csharp-format
 msgid ""
 "\n"
@@ -1668,41 +1666,41 @@ msgstr[1] "ஒட்டினை தேர்ந்தெடுப்பதி�
 msgid "Merge Tags"
 msgstr "ஒட்டுகளை ஒருங்கிணை"
 
-#: ../src/TagQueryWidget.cs:32
+#: ../src/TagQueryWidget.cs:34
 #, csharp-format
 msgid "Include Photos Tagged \"{0}\""
 msgstr "ஒட்டப்பட்டுவிட்ட நிழற்படங்கள் சேர்ந்தது \"{0}\""
 
-#: ../src/TagQueryWidget.cs:37
+#: ../src/TagQueryWidget.cs:39
 #, csharp-format
 msgid "Exclude Photos Tagged \"{0}\""
 msgstr "ஒட்டப்பட்டுவிட்ட நிழற்படங்கள் இல்லாமல் \"{0}\""
 
-#: ../src/TagQueryWidget.cs:42
+#: ../src/TagQueryWidget.cs:44
 msgid "Remove From Search"
 msgstr "தேடுதலிலிருந்து நீக்கு"
 
-#: ../src/TagQueryWidget.cs:86
+#: ../src/TagQueryWidget.cs:88
 #, csharp-format
 msgid "Find _With"
 msgid_plural "Find _With"
 msgstr[0] "அதனுடன் கண்டுபிடி (_W)"
 msgstr[1] "அதனுடன் கண்டுபிடி (_W)"
 
-#: ../src/TagQueryWidget.cs:112
+#: ../src/TagQueryWidget.cs:114
 msgid "All"
 msgstr "அனைத்தும்"
 
-#: ../src/TagQueryWidget.cs:147 ../src/Term.cs:592
+#: ../src/TagQueryWidget.cs:149 ../src/Term.cs:596
 #, csharp-format
 msgid "Not {0}"
 msgstr "இல்லை {0}"
 
-#: ../src/TagQueryWidget.cs:277
+#: ../src/TagQueryWidget.cs:278
 msgid "Drag tags here to search for them"
 msgstr "அவற்றை தேட ஒட்டை இங்கிருந்து இழுக்கவும்"
 
-#: ../src/TagSelectionWidget.cs:505
+#: ../src/TagSelectionWidget.cs:500
 msgid "Error renaming tag"
 msgstr "ஒட்டு மறுபெயரிடுவதில் பிழை"
 
@@ -1731,31 +1729,42 @@ msgstr "நிகழ்வுகள்"
 msgid "(None)"
 msgstr "(ஒன்றுமில்லை)"
 
-#: ../src/Term.cs:298
+#: ../src/Term.cs:302
 msgid " and "
 msgstr " மற்றும் "
 
 #. operators.Add (Catalog.GetString (" && "));
-#: ../src/Term.cs:300
+#: ../src/Term.cs:304
 msgid ", "
 msgstr ", "
 
-#: ../src/Term.cs:356
+#: ../src/Term.cs:360
 msgid " or "
 msgstr " அல்லது "
 
 #. OPS The operators we support, case insensitive
 #. private static string op_str = "(?'Ops' or | and |, | \\s+ )";
-#: ../src/Term.cs:380 ../src/Widgets/FindBar.cs:177
+#: ../src/Term.cs:384 ../src/Widgets/FindBar.cs:177
 msgid "or"
 msgstr "அல்லது"
+
+#: ../src/ThumbnailCommand.cs:20
+msgid "Updating Thumbnails"
+msgstr "சிறுபடங்களை மேம்படுத்துகிறது"
+
+#: ../src/ThumbnailCommand.cs:28
+#, csharp-format
+#| msgid "Uploading picture \"{0}\""
+msgid "Updating picture \"{0}\""
+msgstr "படம் \"{0}\" பதிவேற்றப்படுகிறது"
 
 #: ../src/UI.Dialog/AboutDialog.cs:70
 msgid "Photo management for GNOME"
 msgstr "GNOMEக்கிற்கான நிழற்பட மேலாண்மை"
 
 #: ../src/UI.Dialog/AboutDialog.cs:71
-msgid "Copyright © 2003-2008 Novell Inc."
+#| msgid "Copyright © 2003-2008 Novell Inc."
+msgid "Copyright © 2003-2009 Novell Inc."
 msgstr "பதிப்புரிமை © 2003-2008 Novell Inc."
 
 #: ../src/UI.Dialog/AboutDialog.cs:94
@@ -1766,7 +1775,7 @@ msgstr "மொழிபெயர்பாளர்-சன்மானம்"
 msgid "F-Spot Website"
 msgstr "F-Spot இணைய தளம்"
 
-#: ../src/UI.Dialog/AdjustTimeDialog.cs:118 ../src/f-spot.glade.h:115
+#: ../src/UI.Dialog/AdjustTimeDialog.cs:112
 #, csharp-format
 msgid "Shift all photos by {0}"
 msgstr "{0}ஆல் அனைத்து நிழற்படங்களையும் மாற்று"
@@ -1917,7 +1926,7 @@ msgstr "உருவங்கள் இதனுடன் ஒட்டப்ப�
 msgid "Make F-Spot your screensaver"
 msgstr "F-Spot உங்கள் திரைச்சேமிப்பாக்கு"
 
-#: ../src/UI.Dialog/ui/PreferenceDialog.glade.h:19 ../src/f-spot.glade.h:98
+#: ../src/UI.Dialog/ui/PreferenceDialog.glade.h:19 ../src/f-spot.glade.h:89
 msgid "Preferences"
 msgstr "முன்னுரிமைகள்"
 
@@ -1966,82 +1975,104 @@ msgstr ""
 msgid "Unable to create temporary file"
 msgstr "தற்காலிகமான கோப்பினை உருவாக்க முடியவில்லை"
 
-#: ../src/Utils/GnomeUtil.cs:49
-msgid ""
-"The \"F-Spot Manual\" could not be found.  Please verify that your "
-"installation has been completed successfully."
-msgstr ""
-"\"F-Spot கையேட்டை\" காண முடியவில்லை.  உங்கள் நிறுவல் வெற்றிகரமாக முழுவதும் முடிந்ததா "
-"என சரிபார்க்கவும்."
-
-#: ../src/Widgets/CustomPrintWidget.cs:98
+#: ../src/Widgets/CustomPrintWidget.cs:119
 msgid "Page Setup"
 msgstr "பக்க அமைவு"
 
-#: ../src/Widgets/CustomPrintWidget.cs:102
-#: ../src/Widgets/CustomPrintWidget.cs:106
-#: ../src/Widgets/CustomPrintWidget.cs:112
+#: ../src/Widgets/CustomPrintWidget.cs:123
+#: ../src/Widgets/CustomPrintWidget.cs:127
+#: ../src/Widgets/CustomPrintWidget.cs:133
 #, csharp-format
 msgid "Paper Size: {0} x {1} mm"
 msgstr "தாள் அளவு : {0} x {1} mm"
 
-#: ../src/Widgets/CustomPrintWidget.cs:109
+#: ../src/Widgets/CustomPrintWidget.cs:130
 msgid "Set Page Size and Orientation"
 msgstr "பக்க அளவு மற்றும் திசையமைப்பை அமை"
 
-#: ../src/Widgets/CustomPrintWidget.cs:124
+#: ../src/Widgets/CustomPrintWidget.cs:141
 msgid "Photos per page"
 msgstr "பக்கத்தின்கான நிழற்படங்கள்"
 
-#. ppp1.Toggled += TriggerChanged;
-#. ppp2.Toggled += TriggerChanged;
-#. ppp4.Toggled += TriggerChanged;
-#. ppp9.Toggled += TriggerChanged;
-#: ../src/Widgets/CustomPrintWidget.cs:136
+#: ../src/Widgets/CustomPrintWidget.cs:151
 msgid "Repeat"
 msgstr "மறுபடியும்"
 
-#: ../src/Widgets/CustomPrintWidget.cs:137
+#: ../src/Widgets/CustomPrintWidget.cs:152
 msgid "Print cut marks"
 msgstr "அச்சிடும் வெட்டு குறிப்புகள்"
 
-#: ../src/Widgets/CustomPrintWidget.cs:145
+#: ../src/Widgets/CustomPrintWidget.cs:158
+#| msgid "Photos"
+msgid "Photos layout"
+msgstr "நிழற்படங்கள் அமைப்பு"
+
+#: ../src/Widgets/CustomPrintWidget.cs:160
 msgid "Full Page (no margin)"
 msgstr "முழு பக்கம் ஓரம் இல்லை)("
 
 #. Note for translators: "Zoom" is a Fit Mode
-#: ../src/Widgets/CustomPrintWidget.cs:149
+#: ../src/Widgets/CustomPrintWidget.cs:163
 msgid "Zoom"
 msgstr "அளவீடு"
 
-#: ../src/Widgets/CustomPrintWidget.cs:150
+#: ../src/Widgets/CustomPrintWidget.cs:164
 msgid "Fill"
 msgstr "நிரப்பு"
 
-#: ../src/Widgets/CustomPrintWidget.cs:151
+#: ../src/Widgets/CustomPrintWidget.cs:165
 msgid "Scaled"
 msgstr "அளவிடப்பட்டது"
 
-#: ../src/Widgets/CustomPrintWidget.cs:157
+#: ../src/Widgets/CustomPrintWidget.cs:170
 msgid "White borders"
 msgstr "வெள்ளை எல்லைக்கோடுகள்"
 
-#: ../src/Widgets/CustomPrintWidget.cs:161
+#: ../src/Widgets/CustomPrintWidget.cs:176
 msgid "Custom Text: "
 msgstr "தனிபயன் உரை:"
 
-#: ../src/Widgets/EditorPage.cs:29 ../src/Widgets/Sidebar.cs:71
+#: ../src/Widgets/CustomPrintWidget.cs:180
+#| msgid "Photos"
+msgid "Photos infos"
+msgstr "நிழற்படங்கள் தகவல்கள்"
+
+#: ../src/Widgets/CustomPrintWidget.cs:182
+#| msgid "_File name:"
+msgid "Print file name"
+msgstr "கோப்பு பெயரை அச்சடி"
+
+#: ../src/Widgets/CustomPrintWidget.cs:183
+#| msgid "Previous photo"
+msgid "Print photo date"
+msgstr "நிழற்படம் தேதியை அச்சிடு"
+
+#: ../src/Widgets/CustomPrintWidget.cs:184
+#| msgid "Previous photo"
+msgid "Print photo time"
+msgstr "நிழற்படம் நேரத்தை அச்சிடு"
+
+#: ../src/Widgets/CustomPrintWidget.cs:185
+#| msgid "Print cut marks"
+msgid "Print photo tags"
+msgstr "நிழற்பட டேக்குகளை அச்சிடு"
+
+#: ../src/Widgets/CustomPrintWidget.cs:186
+msgid "Print photo comment"
+msgstr "நிழற்பட கருத்துக்களை அச்சிடு"
+
+#: ../src/Widgets/EditorPage.cs:29 ../src/Widgets/Sidebar.cs:62
 msgid "Edit"
 msgstr "திருத்து"
 
-#: ../src/Widgets/EditorPage.cs:204
+#: ../src/Widgets/EditorPage.cs:196
 #: ../extensions/Exporters/ZipExport/ZipExport.cs:46
 #: ../extensions/Tools/MetaPixel/MetaPixel.cs:45
 #: ../extensions/Tools/PictureTile/PictureTile.cs:51
 msgid "No selection available"
 msgstr "தேர்வு எதுவும் இல்லை"
 
-#: ../src/Widgets/EditorPage.cs:205
+#: ../src/Widgets/EditorPage.cs:197
 msgid ""
 "This tool requires an active selection. Please select a region of the photo "
 "and try the operation again"
@@ -2049,13 +2080,13 @@ msgstr ""
 "இந்த கருவிக்கு ஒரு செயல் தேர்வு தேவைப்படுகிறது. ஒரு பகுதியின் நிழற்படத்தை "
 "தேர்ந்தெடுத்து செயல்பாட்டை மீண்டும் செய்யவும்"
 
-#: ../src/Widgets/EditorPage.cs:223
+#: ../src/Widgets/EditorPage.cs:215
 msgid "Error saving adjusted photo"
 msgid_plural "Error saving adjusted photos"
 msgstr[0] "சரிபடுத்தப்பட்ட நிழற்படத்தை சேமிப்பதில் பிழை"
 msgstr[1] "சரிபடுத்தப்பட்ட நிழற்படத்தை சேமிப்பதில் பிழை"
 
-#: ../src/Widgets/EditorPage.cs:225
+#: ../src/Widgets/EditorPage.cs:217
 #, csharp-format
 msgid ""
 "Received exception \"{0}\". Note that you have to develop RAW files into "
@@ -2068,7 +2099,7 @@ msgstr ""
 msgid "Find:"
 msgstr "தேடு:"
 
-#: ../src/Widgets/FindBar.cs:177 ../src/f-spot.glade.h:207
+#: ../src/Widgets/FindBar.cs:177 ../src/f-spot.glade.h:196
 msgid "and"
 msgstr "மற்றும்"
 
@@ -2178,37 +2209,25 @@ msgstr "மெட்டாதரவு"
 msgid "Extended Metadata"
 msgstr "விரிவாக்கப்பட்ட மெட்டாதரவு"
 
-#: ../src/Widgets/MetadataDisplay.cs:227
-msgid "Picasaweb"
-msgstr "Picasaweb"
-
-#: ../src/Widgets/MetadataDisplay.cs:229
-msgid "SmugMug"
-msgstr "SmugMug"
-
-#: ../src/Widgets/MetadataDisplay.cs:231
-msgid "Gallery2"
-msgstr "Gallery2"
-
 #. clear Extended Metadata
-#: ../src/Widgets/MetadataDisplay.cs:391
+#: ../src/Widgets/MetadataDisplay.cs:392
 msgid "No Extended Metadata Available"
 msgstr "விரிக்கப்பட்ட மெட்டாடேட்டா கிடைக்கப் பெறவில்லை"
 
-#: ../src/Widgets/MetadataDisplay.cs:409
+#: ../src/Widgets/MetadataDisplay.cs:410
 msgid "No active photo"
 msgstr "செயலிலுள்ள நிழற்படம் இல்லை"
 
-#: ../src/Widgets/MetadataDisplay.cs:411
+#: ../src/Widgets/MetadataDisplay.cs:412
 #, csharp-format
 msgid "The photo \"{0}\" does not exist"
 msgstr "நிழற்படம் \"{0}\" இல்லை"
 
-#: ../src/Widgets/MetadataDisplay.cs:414
+#: ../src/Widgets/MetadataDisplay.cs:415
 msgid "No metadata available"
 msgstr "மெட்டா தரவு எதவும் இல்லை"
 
-#: ../src/Widgets/OpenWithMenu.cs:69
+#: ../src/Widgets/OpenWithMenu.cs:71
 msgid "No applications available"
 msgstr "பயன்பாடுகள் இல்லை"
 
@@ -2217,7 +2236,6 @@ msgid "Rating:"
 msgstr "மதிப்பிடுதல்:"
 
 #: ../src/XmpTagsImporter.cs:90
-#: ../extensions/Exporters/FacebookExport/FacebookExport.glade.h:6
 msgid "Location"
 msgstr "இடம்"
 
@@ -2239,96 +2257,76 @@ msgid " "
 msgstr " "
 
 #: ../src/f-spot.glade.h:2
-msgid "0000:00:00 00:00:00"
-msgstr "0000:00:00 00:00:00"
-
-#: ../src/f-spot.glade.h:3
-msgid "00:00:00"
-msgstr "00:00:00"
-
-#: ../src/f-spot.glade.h:4
-msgid "1 of 1"
-msgstr "1 இல் 1"
-
-#: ../src/f-spot.glade.h:5
 msgid "1024 px"
 msgstr "1024 px"
 
-#: ../src/f-spot.glade.h:6
+#: ../src/f-spot.glade.h:3
 msgid "320 px"
 msgstr "320 px"
 
-#: ../src/f-spot.glade.h:7
+#: ../src/f-spot.glade.h:4
 msgid "480 px"
 msgstr "480 px"
 
-#: ../src/f-spot.glade.h:8
-msgid "5"
-msgstr "5"
-
-#: ../src/f-spot.glade.h:9
+#: ../src/f-spot.glade.h:5
 msgid "640 px"
 msgstr "640 px"
 
-#: ../src/f-spot.glade.h:10
+#: ../src/f-spot.glade.h:6
 msgid "800 px"
 msgstr "800 px"
 
-#: ../src/f-spot.glade.h:11
+#: ../src/f-spot.glade.h:7
 msgid "<b></b>"
 msgstr "<b></b>"
 
-#: ../src/f-spot.glade.h:12
+#: ../src/f-spot.glade.h:8
 #: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:1
 msgid "<b>Account</b>"
 msgstr "<b>கணக்கு</b>"
 
-#: ../src/f-spot.glade.h:13
-msgid "<b>Action</b>"
-msgstr "<b>செயல்</b>"
-
-#: ../src/f-spot.glade.h:14
+#: ../src/f-spot.glade.h:9
 #: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:1
 #: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:1
 #: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:1
 msgid "<b>Album</b>"
 msgstr "<b>ஆல்பம்</b>"
 
-#: ../src/f-spot.glade.h:15
+#: ../src/f-spot.glade.h:10
 msgid "<b>Co_rrections</b>"
 msgstr "<b>திருத்தங்கள் (_r)</b>"
 
-#: ../src/f-spot.glade.h:16
+#: ../src/f-spot.glade.h:11
 #: ../extensions/Exporters/FolderExport/FolderExport.glade.h:3
 msgid "<b>Destination</b>"
 msgstr "<b>இலக்கு</b>"
 
-#: ../src/f-spot.glade.h:17
+#: ../src/f-spot.glade.h:12
 msgid "<b>From External Photo</b>"
 msgstr "<b>வெளி நிழற்படத்திலிருந்து</b>"
 
-#: ../src/f-spot.glade.h:18
+#: ../src/f-spot.glade.h:13
 msgid "<b>From Photo</b>"
 msgstr "<b>நிழற்படத்திலிருந்து</b>"
 
-#: ../src/f-spot.glade.h:19
+#: ../src/f-spot.glade.h:14
 #: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:2
 msgid "<b>Gallery</b>"
 msgstr "<b>படத்தொகுப்பு</b>"
 
-#: ../src/f-spot.glade.h:20
+#: ../src/f-spot.glade.h:15
 msgid "<b>Image Interpolation</b>"
 msgstr "<b>பட இடைசெருகல்</b>"
 
-#: ../src/f-spot.glade.h:21
+#: ../src/f-spot.glade.h:16
 msgid "<b>Max Rating</b>"
 msgstr "<b>அதிக மதிப்பிடுதல்</b>"
 
-#: ../src/f-spot.glade.h:22
+#: ../src/f-spot.glade.h:17
 msgid "<b>Min Rating</b>"
 msgstr "<b>குறைந்த மதிப்பிடுதல்</b>"
 
-#: ../src/f-spot.glade.h:23
+#: ../src/f-spot.glade.h:18
 #: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:2
 #: ../extensions/Exporters/FolderExport/FolderExport.glade.h:5
 #: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:3
@@ -2338,23 +2336,19 @@ msgstr "<b>குறைந்த மதிப்பிடுதல்</b>"
 msgid "<b>Photos</b>"
 msgstr "<b>நிழற்படங்கள்</b>"
 
-#: ../src/f-spot.glade.h:24
+#: ../src/f-spot.glade.h:19
 msgid "<b>Predefined</b>"
 msgstr "<b>முன்வரையறுக்கப்பட்டது</b>"
 
-#: ../src/f-spot.glade.h:25
+#: ../src/f-spot.glade.h:20
 msgid "<b>Preview</b>"
 msgstr "<b>முன்பார்வை</b>"
 
-#: ../src/f-spot.glade.h:26
-msgid "<b>Reference Photo</b>"
-msgstr "<b>குறிப்பு நிழற்படம்</b>"
-
-#: ../src/f-spot.glade.h:27
+#: ../src/f-spot.glade.h:21
 msgid "<b>Size</b>"
 msgstr "<b>அளவு</b>"
 
-#: ../src/f-spot.glade.h:28
+#: ../src/f-spot.glade.h:22
 #: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:3
 #: ../extensions/Exporters/FolderExport/FolderExport.glade.h:6
 #: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:4
@@ -2363,27 +2357,27 @@ msgstr "<b>அளவு</b>"
 msgid "<b>Style</b>"
 msgstr "<b>பாணி</b>"
 
-#: ../src/f-spot.glade.h:29
+#: ../src/f-spot.glade.h:23
 msgid "<b>Summary</b>"
 msgstr "<b>சுருக்கம்</b>"
 
-#: ../src/f-spot.glade.h:30
+#: ../src/f-spot.glade.h:24
 msgid "<b>Transparent Parts</b>"
 msgstr "<b>ஒளிஊடுருவும் பாகங்கள்</b>"
 
-#: ../src/f-spot.glade.h:31
+#: ../src/f-spot.glade.h:25
 msgid "<b>View all pictures imported</b>"
 msgstr "<b>இறக்கப்பட்ட அனைத்து படங்களையும் காட்டு</b>"
 
-#: ../src/f-spot.glade.h:32
+#: ../src/f-spot.glade.h:26
 msgid "<b>_White Balance</b>"
 msgstr "<b>வெள்ளை சமன் (_W)</b>"
 
-#: ../src/f-spot.glade.h:33
+#: ../src/f-spot.glade.h:27
 msgid "<small></small>"
 msgstr "<small></small>"
 
-#: ../src/f-spot.glade.h:34
+#: ../src/f-spot.glade.h:28
 msgid ""
 "<small><i>Enable this to allow interpolation on zoomed images. You shouldn't "
 "disable this for viewing photos, but disabling the interpolation could be "
@@ -2393,7 +2387,7 @@ msgstr ""
 "பார்க்க செயல்நீக்கக்கூடாது ஆனால் செயல்நீக்கினால் சின்ன வடிவங்களில் பயனுள்ளதாக இருக்கும்.</i></"
 "small>"
 
-#: ../src/f-spot.glade.h:35
+#: ../src/f-spot.glade.h:29
 msgid ""
 "<small><i>You can choose how to display transparent parts in images. This "
 "option has no effect on photos, but setting this as check pattern or custom "
@@ -2405,43 +2399,35 @@ msgstr ""
 "தோற்றம் அல்லது தனிபயன் நிறங்களுக்கு அமைத்தால் சின்னங்கள் அல்லது வேறு கலைவேலைகளை "
 "ஒளிஊடுருவும் பகுதிகளுடன் பார்க்கும் போது பயனுள்ளதாக இருக்கும்.</i></small>"
 
-#: ../src/f-spot.glade.h:36
-msgid "Adjust Time"
-msgstr "நேரத்தை சரிசெய்"
-
-#: ../src/f-spot.glade.h:37
+#: ../src/f-spot.glade.h:30
 msgid "Adjust _Time..."
 msgstr "நேரத்தை சரிசெய் (_T)..."
 
-#: ../src/f-spot.glade.h:38
-msgid "Adjusted date: "
-msgstr "சரிசெய்யப்பட்ட தேதி: "
-
-#: ../src/f-spot.glade.h:39
+#: ../src/f-spot.glade.h:31
 msgid "Arrange _by"
 msgstr "ஒழுங்குபடுத்தல் (_b)"
 
-#: ../src/f-spot.glade.h:40
+#: ../src/f-spot.glade.h:32
 msgid "As _background"
 msgstr "பின்னணியாக (_b)"
 
-#: ../src/f-spot.glade.h:41
+#: ../src/f-spot.glade.h:33
 msgid "As _custom color: "
 msgstr "தனிபயன் நிறமாக (_c): "
 
-#: ../src/f-spot.glade.h:42
+#: ../src/f-spot.glade.h:34
 msgid "As check _pattern"
 msgstr "சோதிக்கும் தோற்றத்தால் (_p)"
 
-#: ../src/f-spot.glade.h:43
+#: ../src/f-spot.glade.h:35
 msgid "Attach Tags:"
 msgstr "ஒட்டுகளை சேர்:"
 
-#: ../src/f-spot.glade.h:44
+#: ../src/f-spot.glade.h:36
 msgid "Attach tag:"
 msgstr "ஒட்டு இணை:"
 
-#: ../src/f-spot.glade.h:45
+#: ../src/f-spot.glade.h:37
 #: ../extensions/Exporters/CDExport/CDExport.glade.h:3
 #: ../extensions/Exporters/FolderExport/FolderExport.glade.h:7
 #: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:7
@@ -2449,99 +2435,95 @@ msgstr "ஒட்டு இணை:"
 msgid "Autorotate"
 msgstr "தானியக்க சுழற்சி"
 
-#: ../src/f-spot.glade.h:47
+#: ../src/f-spot.glade.h:39
 msgid "By _Date"
 msgstr "தேதியால் (_D)"
 
-#: ../src/f-spot.glade.h:48
+#: ../src/f-spot.glade.h:40
 msgid "By _Import Roll"
 msgstr "இறக்கு ரோலால் (_I)"
 
-#: ../src/f-spot.glade.h:49
+#: ../src/f-spot.glade.h:41
 msgid "By _Rating"
 msgstr "விகிதப்படுத்துதலால்( _R)"
 
-#: ../src/f-spot.glade.h:50
+#: ../src/f-spot.glade.h:42
 msgid "CD"
 msgstr "குறுவட்டு"
 
-#: ../src/f-spot.glade.h:51
+#: ../src/f-spot.glade.h:43
 msgid "C_ontrast:"
 msgstr "வேறுபாடு (_o):"
 
-#: ../src/f-spot.glade.h:52
+#: ../src/f-spot.glade.h:44
 msgid "Camera Selection"
 msgstr "கேமரா தேர்வு"
 
-#: ../src/f-spot.glade.h:53
+#: ../src/f-spot.glade.h:45
 msgid "Copy Locat_ion"
 msgstr "இடத்தை நகலெடு (_i)"
 
-#: ../src/f-spot.glade.h:54
+#: ../src/f-spot.glade.h:46
 msgid "Copy files to the Photos folder"
 msgstr "நிழற்பட அடைவுக்கு கோப்புகளை நகலெடு"
 
-#: ../src/f-spot.glade.h:55
+#: ../src/f-spot.glade.h:47
 msgid "Create Mail"
 msgstr "மின்னஞ்சலை உருவாக்கு"
 
-#: ../src/f-spot.glade.h:56
+#: ../src/f-spot.glade.h:48
 msgid "Create New _Tag..."
 msgstr "புதிய ஒட்டு உருவாக்கு (_T)..."
 
-#: ../src/f-spot.glade.h:57
+#: ../src/f-spot.glade.h:49
 msgid "Create _New Version..."
 msgstr "புதிய பதிப்பை உருவாக்கு (_N)..."
 
-#: ../src/f-spot.glade.h:58
+#: ../src/f-spot.glade.h:50
 msgid "Create _icon for this tag when first used"
 msgstr "முதலில் பயன்படுத்தும் போது இந்த டேக்கிற்கு ஒரு சின்னத்தை உருவாக்கவும் (_i)"
 
-#: ../src/f-spot.glade.h:59
+#: ../src/f-spot.glade.h:51
 msgid "Create a mail with the selected photos (possibly resized) attached"
 msgstr "தேர்ந்தெடுக்கப்பட்ட நிழற்படங்களுடன் ஒரு மின்னஞ்சலை உருவாக்கி (மறுஅளவிடப்பட்ட) சேர்க்கப்பட்டது"
 
-#: ../src/f-spot.glade.h:60
-msgid "Current date:"
-msgstr "நடப்பு தேதி:"
-
-#: ../src/f-spot.glade.h:61
+#: ../src/f-spot.glade.h:52
 msgid "Detect duplicates"
 msgstr "போலிகளை கண்டுபிடி"
 
-#: ../src/f-spot.glade.h:62
+#: ../src/f-spot.glade.h:53
 msgid "Display File _Names"
 msgstr "கோப்பு பெயர்களை காட்டு (_N)"
 
-#: ../src/f-spot.glade.h:63
+#: ../src/f-spot.glade.h:54
 msgid "Display only those photos that were imported in specified Rolls."
 msgstr "குறிப்பட்ட ரோல்களில் இறக்கப்பட்ட அந்த நிழற்படங்களை மட்டும் காட்டு."
 
-#: ../src/f-spot.glade.h:64
+#: ../src/f-spot.glade.h:55
 msgid "Do not send a mail"
 msgstr "மின்னஞ்சலை அனுப்ப வேண்டாம்"
 
-#: ../src/f-spot.glade.h:65
+#: ../src/f-spot.glade.h:56
 msgid "E-_Mail:"
 msgstr "மின்னஞ்சல் (_M):"
 
-#: ../src/f-spot.glade.h:66
+#: ../src/f-spot.glade.h:57
 msgid "E_xport titles and comments"
 msgstr "தலைப்புகள் மற்றும் குறிப்புரைகளை ஏற்று (_x)"
 
-#: ../src/f-spot.glade.h:67
+#: ../src/f-spot.glade.h:58
 msgid "Edit Tag Icon"
 msgstr "ஒட்டு சிறுபடத்தை திருத்து"
 
-#: ../src/f-spot.glade.h:68
+#: ../src/f-spot.glade.h:59
 msgid "Edit icon"
 msgstr "சின்னத்தைத் திருத்து"
 
-#: ../src/f-spot.glade.h:69
+#: ../src/f-spot.glade.h:60
 msgid "Estimated new size"
 msgstr "புதிய அளவின் மதிப்பிடப்பட்டது"
 
-#: ../src/f-spot.glade.h:70
+#: ../src/f-spot.glade.h:61
 #: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:6
 #: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:8
 #: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:9
@@ -2550,168 +2532,164 @@ msgstr "புதிய அளவின் மதிப்பிடப்பட�
 msgid "Export"
 msgstr "ஏற்றுமதி"
 
-#: ../src/f-spot.glade.h:71
+#: ../src/f-spot.glade.h:62
 msgid "Extra large"
 msgstr "மேலும் பெரிய"
 
-#: ../src/f-spot.glade.h:72
+#: ../src/f-spot.glade.h:63
 msgid "F-Spot"
 msgstr "F-Spot"
 
-#: ../src/f-spot.glade.h:73
+#: ../src/f-spot.glade.h:64
 msgid "F-Spot View"
 msgstr "F-Spot காட்டி"
 
-#: ../src/f-spot.glade.h:75
+#: ../src/f-spot.glade.h:66
 msgid "Filter on selected rolls"
 msgstr "தேர்ந்தெடுக்கப்பட்ட ரோல்களில் மேல் வடிக்கவும்"
 
-#: ../src/f-spot.glade.h:76
+#: ../src/f-spot.glade.h:67
 msgid "Fin_d"
 msgstr "கண்டுபிடி (_d)"
 
-#: ../src/f-spot.glade.h:77
+#: ../src/f-spot.glade.h:68
 msgid "G_allery:"
 msgstr "படத்தொகுப்பு (_a):"
 
-#: ../src/f-spot.glade.h:78
+#: ../src/f-spot.glade.h:69
 msgid "Gallery"
 msgstr "படத்தொகுப்பு"
 
 #. Translators: this string means 'source of import'
-#: ../src/f-spot.glade.h:81
+#: ../src/f-spot.glade.h:72
 msgid "Import Source:"
 msgstr "மூலங்களை இறக்கு:"
 
-#: ../src/f-spot.glade.h:82
+#: ../src/f-spot.glade.h:73
 msgid "Include subfolders"
 msgstr "துணைகோப்புகளையும் சேர்க்கவும்"
 
-#: ../src/f-spot.glade.h:83
+#: ../src/f-spot.glade.h:74
 msgid "Large"
 msgstr "பெரிய"
 
-#: ../src/f-spot.glade.h:84
+#: ../src/f-spot.glade.h:75
 msgid "Manage _Extensions"
 msgstr "விரிவாக்கங்களை மேலான்மை செய் (_E)"
 
-#: ../src/f-spot.glade.h:85
+#: ../src/f-spot.glade.h:76
 msgid "Manage your custom selection ratios"
 msgstr "உங்களுடைய தேர்ந்தெடுக்கப்பட்ட தனிபயன் வரம்புகளை மேலாண்மை செய்யவும்"
 
-#: ../src/f-spot.glade.h:86
+#: ../src/f-spot.glade.h:77
 msgid "Medium"
 msgstr "நடுத்தரம்"
 
-#: ../src/f-spot.glade.h:88
+#: ../src/f-spot.glade.h:79
 msgid "No _image"
 msgstr "படம் இல்லை (_i)"
 
-#: ../src/f-spot.glade.h:89
+#: ../src/f-spot.glade.h:80
 msgid "Number of photos in selected rolls:"
 msgstr "பல தேர்ந்தெடுக்கப்பட்ட நிழற்படங்கள் ரோலில் உள்ளன:"
 
-#: ../src/f-spot.glade.h:90
+#: ../src/f-spot.glade.h:81
 msgid "Number of pictures"
 msgstr "படங்களின் எண்ணிக்கை"
 
-#: ../src/f-spot.glade.h:91
+#: ../src/f-spot.glade.h:82
 msgid "Open _Folder..."
 msgstr "கோப்புறையை திற (_F)..."
 
-#: ../src/f-spot.glade.h:93
+#: ../src/f-spot.glade.h:84
 msgid "Original size (possible very large file size)"
 msgstr "அசல் அளவு (மிகப் பெரிய கோப்பு அளவு வரலாம்)"
 
-#: ../src/f-spot.glade.h:94
+#: ../src/f-spot.glade.h:85
 msgid "P_arent Tag:"
 msgstr "தாய் ஒட்டு (_a):"
 
-#: ../src/f-spot.glade.h:95
+#: ../src/f-spot.glade.h:86
 msgid "Page Set_up..."
 msgstr "பக்க அமைப்பு (_u)..."
 
-#: ../src/f-spot.glade.h:96
+#: ../src/f-spot.glade.h:87
 msgid "Pause"
 msgstr "இடைநிறுத்தம்"
 
-#: ../src/f-spot.glade.h:97
+#: ../src/f-spot.glade.h:88
 msgid "Photo 0 of 0"
 msgstr "நிழற்படம் 0 இல் 0"
 
-#: ../src/f-spot.glade.h:100
+#: ../src/f-spot.glade.h:91
 msgid "Re_fresh Thumbnail"
 msgstr "சிறுபடத்தைப் புதுப்பி (_f)"
 
-#: ../src/f-spot.glade.h:102
+#: ../src/f-spot.glade.h:93
 msgid "Repair"
 msgstr "பழுதுபார்"
 
-#: ../src/f-spot.glade.h:105
+#: ../src/f-spot.glade.h:96
 msgid "Select Photos to Copy From Camera..."
 msgstr "கேமிராவிலிருந்து நிழற்படங்களை தேர்ந்தெடுக்கவும்..."
 
-#: ../src/f-spot.glade.h:107
+#: ../src/f-spot.glade.h:98
 msgid "Select _None"
 msgstr "ஒன்றையும் தேர்ந்தெடுக்க வேண்டாம் (_N)"
 
-#: ../src/f-spot.glade.h:108
+#: ../src/f-spot.glade.h:99
 msgid "Select a Tag..."
 msgstr "ஒரு ஒட்டினை தேர்ந்தெடு..."
 
-#: ../src/f-spot.glade.h:109
+#: ../src/f-spot.glade.h:100
 msgid "Select the camera from which you want to transfer files"
 msgstr "இடமாற்றம் செய்ய வேண்டிய கோப்புகள் உள்ள கேமிராவை தேர்ந்தெடுக்கவும்"
 
-#: ../src/f-spot.glade.h:110
+#: ../src/f-spot.glade.h:101
 msgid "Selected Camera: "
 msgstr "தேர்ந்தெடுக்கப்பட்ட கேமரா: "
 
-#: ../src/f-spot.glade.h:111
+#: ../src/f-spot.glade.h:102
 msgid "Selection Constraints"
 msgstr "தேர்ந்தெடுத்தல் வகைகள்"
 
-#: ../src/f-spot.glade.h:112
+#: ../src/f-spot.glade.h:103
 msgid "Send by _Mail..."
 msgstr "மின்னஞ்சல் வழியாக அனுப்பு (_M)..."
 
-#: ../src/f-spot.glade.h:113
+#: ../src/f-spot.glade.h:104
 msgid "Set Rating Filter"
 msgstr "மதிப்பீடு வடிப்பியை அமைக்கவும்"
 
-#: ../src/f-spot.glade.h:114
+#: ../src/f-spot.glade.h:105
 msgid "Set as _Background"
 msgstr "பின்னணியாக அமை (_B)"
 
-#: ../src/f-spot.glade.h:116
+#: ../src/f-spot.glade.h:106
 msgid "Show all photos."
 msgstr "அனைத்து நிழற்படங்களையும் காட்டு."
 
-#: ../src/f-spot.glade.h:117
+#: ../src/f-spot.glade.h:107
 msgid "Show or hide the side pane"
 msgstr "பக்கப் பலகத்தை காட்டு அல்லது மறை"
 
-#: ../src/f-spot.glade.h:118
+#: ../src/f-spot.glade.h:108
 msgid "Show or hide the toolbar"
 msgstr "கருவிப்பட்டையைக் காட்டு அல்லது மறை"
 
-#: ../src/f-spot.glade.h:119
+#: ../src/f-spot.glade.h:109
 msgid "Side _pane"
 msgstr "பக்கப் பலகம் (_p)"
 
-#: ../src/f-spot.glade.h:120
+#: ../src/f-spot.glade.h:110
 msgid "Side_bar"
 msgstr "பக்க பட்டி (_b)"
 
-#: ../src/f-spot.glade.h:121
+#: ../src/f-spot.glade.h:111
 msgid "Small"
 msgstr "சிறிய"
 
-#: ../src/f-spot.glade.h:122
-msgid "Space all photos by"
-msgstr "அனைத்து நிழற்படங்களையும் இடைவெளியிடுதல்"
-
-#: ../src/f-spot.glade.h:123
+#: ../src/f-spot.glade.h:112
 msgid ""
 "Specify if an original size picture should be rotated or not. Smaller sizes "
 "are automatically rotated."
@@ -2719,238 +2697,238 @@ msgstr ""
 "ஒரு அசல் அளவு படம் சுழற்ற வேண்டுமா அல்லது வேண்டாமா என குறிப்பிடு. சிறிய அளவுகள் "
 "தானாக சுழற்றப்படும்."
 
-#: ../src/f-spot.glade.h:124
+#: ../src/f-spot.glade.h:113
 msgid "Strip image _metadata"
 msgstr "பட மெட்டா தரவை கழற்று (_m)"
 
-#: ../src/f-spot.glade.h:125
+#: ../src/f-spot.glade.h:114
 msgid "T_ags"
 msgstr "ஒட்டுகள் (_a)"
 
-#: ../src/f-spot.glade.h:126
+#: ../src/f-spot.glade.h:115
 #: ../extensions/Exporters/FolderExport/FolderExport.cs:1179
 #: ../extensions/Exporters/FolderExport/FolderExport.cs:1180
 msgid "Tags: "
 msgstr "ஒட்டுகள்: "
 
 #. Note for translators: meant as Temperature
-#: ../src/f-spot.glade.h:128
+#: ../src/f-spot.glade.h:117
 msgid "Te_mp:"
 msgstr "தற்காலிக (_m):"
 
-#: ../src/f-spot.glade.h:129
+#: ../src/f-spot.glade.h:118
 msgid "Thumbnail _elements"
 msgstr "சின்னப்படம் உருப்படிகள் (_e)"
 
-#: ../src/f-spot.glade.h:130
+#: ../src/f-spot.glade.h:119
 msgid "Tiny"
 msgstr "மெலிந்த"
 
-#: ../src/f-spot.glade.h:131
+#: ../src/f-spot.glade.h:120
 msgid "Too_lbar"
 msgstr "கருவி பட்டி (_l)"
 
-#: ../src/f-spot.glade.h:132
+#: ../src/f-spot.glade.h:121
 msgid "Total original size"
 msgstr "மொத்த அசல் அளவு"
 
-#: ../src/f-spot.glade.h:133
+#: ../src/f-spot.glade.h:122
 msgid "View"
 msgstr "பார்வை"
 
-#: ../src/f-spot.glade.h:134
+#: ../src/f-spot.glade.h:123
 msgid "Zoom _in"
 msgstr "சிறியதாக்கு (_i)"
 
-#: ../src/f-spot.glade.h:135
+#: ../src/f-spot.glade.h:124
 msgid "Zoom _out"
 msgstr "பெரியதாக்கு ( _o)"
 
-#: ../src/f-spot.glade.h:136
+#: ../src/f-spot.glade.h:125
 msgid "Zoom in"
 msgstr "சிறியதாக்கு"
 
-#: ../src/f-spot.glade.h:137
+#: ../src/f-spot.glade.h:126
 msgid "Zoom out"
 msgstr "பெரிதாக்கு"
 
-#: ../src/f-spot.glade.h:139
+#: ../src/f-spot.glade.h:128
 msgid "_Attach Tag to Selection"
 msgstr "தேர்வுக்கு ஒட்டினை இணை (_A)"
 
-#: ../src/f-spot.glade.h:140
+#: ../src/f-spot.glade.h:129
 msgid "_Brightness:"
 msgstr "வெளிச்சம் (_B):"
 
-#: ../src/f-spot.glade.h:142
+#: ../src/f-spot.glade.h:131
 msgid "_Clear Rating Filter"
 msgstr "மதிப்பீடு வடிப்பியை சரிசெய் (_C)"
 
-#: ../src/f-spot.glade.h:143
+#: ../src/f-spot.glade.h:132
 msgid "_Clear Roll Filter"
 msgstr "ரோல் வடிப்பியை சரிசெய் (_C)"
 
-#: ../src/f-spot.glade.h:144
+#: ../src/f-spot.glade.h:133
 msgid "_Components"
 msgstr "கூறுகள் (_C)"
 
-#: ../src/f-spot.glade.h:145
+#: ../src/f-spot.glade.h:134
 msgid "_Contents"
 msgstr "உள்ளடக்கம் (_C)"
 
-#: ../src/f-spot.glade.h:146
+#: ../src/f-spot.glade.h:135
 #: ../extensions/Exporters/ZipExport/ZipExport.glade.h:1
 msgid "_Create"
 msgstr "உருவாக்கு (_C)"
 
-#: ../src/f-spot.glade.h:147
+#: ../src/f-spot.glade.h:136
 msgid "_Create Mail"
 msgstr "மின்னஞ்சலை உருவாக்கு (_C)"
 
-#: ../src/f-spot.glade.h:148
+#: ../src/f-spot.glade.h:137
 msgid "_Dates"
 msgstr "தேதிகள் (_D)"
 
-#: ../src/f-spot.glade.h:150
+#: ../src/f-spot.glade.h:139
 msgid "_Delete Selected Tag"
 msgstr "தேர்ந்தெடுக்கப்பட்ட ஒட்டினை அழி (_D)"
 
-#: ../src/f-spot.glade.h:151
+#: ../src/f-spot.glade.h:140
 msgid "_Delete Version"
 msgstr "பதிப்பை அழி (_D)"
 
-#: ../src/f-spot.glade.h:152
+#: ../src/f-spot.glade.h:141
 msgid "_Edit"
 msgstr "திருத்து (_E)"
 
-#: ../src/f-spot.glade.h:153
+#: ../src/f-spot.glade.h:142
 msgid "_Edit Selected Tag..."
 msgstr "தேர்ந்தெடுக்கப்பட்ட ஒட்டினை திருத்து (_E)..."
 
-#: ../src/f-spot.glade.h:154
+#: ../src/f-spot.glade.h:143
 #: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:15
 #: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:12
 msgid "_Export"
 msgstr "ஏற்றுமதி (_E)"
 
-#: ../src/f-spot.glade.h:155
+#: ../src/f-spot.glade.h:144
 #: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:16
 #: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:20
 msgid "_Export tags"
 msgstr "ஒட்டுகளை ஏற்று (_E)"
 
-#: ../src/f-spot.glade.h:156
+#: ../src/f-spot.glade.h:145
 msgid "_Export to"
 msgstr "இதற்கு ஏற்று (_E)"
 
-#: ../src/f-spot.glade.h:157
+#: ../src/f-spot.glade.h:146
 #: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:15
 #: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:21
 #: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:13
 msgid "_Export to Album:"
 msgstr "ஆல்பத்திற்கு ஏற்று (_E):"
 
-#: ../src/f-spot.glade.h:158
+#: ../src/f-spot.glade.h:147
 msgid "_Exposure:"
 msgstr "வெளிகாட்டு (_E):"
 
-#: ../src/f-spot.glade.h:159
+#: ../src/f-spot.glade.h:148
 msgid "_Filmstrip"
 msgstr "ஃபிலிம்ஸ்ட்ரீப் (_F)"
 
-#: ../src/f-spot.glade.h:160
+#: ../src/f-spot.glade.h:149
 msgid "_Flickr"
 msgstr "_Flickr"
 
-#: ../src/f-spot.glade.h:161
+#: ../src/f-spot.glade.h:150
 msgid "_Folder"
 msgstr "கோப்புறை (_F)"
 
-#: ../src/f-spot.glade.h:162
+#: ../src/f-spot.glade.h:151
 msgid "_Fullscreen"
 msgstr "முழுத்திரை (_F)"
 
-#: ../src/f-spot.glade.h:163
+#: ../src/f-spot.glade.h:152
 msgid "_Gallery"
 msgstr "படத்தொகுப்பு (_G)"
 
-#: ../src/f-spot.glade.h:164
+#: ../src/f-spot.glade.h:153
 msgid "_Help"
 msgstr "உதவி (_H)"
 
-#: ../src/f-spot.glade.h:165
+#: ../src/f-spot.glade.h:154
 msgid "_Hidden"
 msgstr "மறைக்கப்பட்டது (_H)"
 
-#: ../src/f-spot.glade.h:166
+#: ../src/f-spot.glade.h:155
 msgid "_Hue:"
 msgstr "ஹ்யூ (_H):"
 
-#: ../src/f-spot.glade.h:167
+#: ../src/f-spot.glade.h:156
 msgid "_Icon:"
 msgstr "சின்னம் (_I):"
 
-#: ../src/f-spot.glade.h:168
+#: ../src/f-spot.glade.h:157
 msgid "_Import..."
 msgstr "இறக்கு (_I)..."
 
-#: ../src/f-spot.glade.h:169
+#: ../src/f-spot.glade.h:158
 msgid "_Interpolate image on zoom"
 msgstr "படத்தை அளவிடுதலில் இண்டர்போலைட் (_I)"
 
-#: ../src/f-spot.glade.h:170
+#: ../src/f-spot.glade.h:159
 msgid "_Large"
 msgstr "பெரியதுனது (_L)"
 
-#: ../src/f-spot.glade.h:171
+#: ../src/f-spot.glade.h:160
 msgid "_Last Import Roll"
 msgstr "கடைசியாக இறக்கப்பட்ட ரோல் (_L)"
 
-#: ../src/f-spot.glade.h:172
+#: ../src/f-spot.glade.h:161
 msgid "_Loupe"
 msgstr "_Loupe"
 
-#: ../src/f-spot.glade.h:173
+#: ../src/f-spot.glade.h:162
 msgid "_Medium"
 msgstr "நடுத்தரமான (_M)"
 
-#: ../src/f-spot.glade.h:174
+#: ../src/f-spot.glade.h:163
 msgid "_Month"
 msgstr "மாதம் (_M)"
 
-#: ../src/f-spot.glade.h:175
+#: ../src/f-spot.glade.h:164
 msgid "_New Window"
 msgstr "புதிய சாளரம் (_N)"
 
-#: ../src/f-spot.glade.h:176
+#: ../src/f-spot.glade.h:165
 msgid "_Open album in browser when done uploading"
 msgstr "பதிவேற்றுதல் முடிந்தவுடன் ஆல்பத்தைத் திற (_O)"
 
-#: ../src/f-spot.glade.h:177
+#: ../src/f-spot.glade.h:166
 msgid "_Open destination when done exporting"
 msgstr "ஏற்றுதல் முடிந்தவுடன் இலக்கைத் திற (_O)"
 
-#: ../src/f-spot.glade.h:178
+#: ../src/f-spot.glade.h:167
 msgid "_Photo"
 msgstr "நிழற்படம் (_P)"
 
-#: ../src/f-spot.glade.h:179
+#: ../src/f-spot.glade.h:168
 msgid "_Quit"
 msgstr "வெளியேறு (_Q)"
 
-#: ../src/f-spot.glade.h:180
+#: ../src/f-spot.glade.h:169
 msgid "_Ratings"
 msgstr "மதிப்பிடுதல் (_R)"
 
-#: ../src/f-spot.glade.h:182
+#: ../src/f-spot.glade.h:171
 msgid "_Remove Tag From Selection"
 msgstr "தேர்விலிருந்து ஒட்டை நீக்கு (_R)"
 
-#: ../src/f-spot.glade.h:183
+#: ../src/f-spot.glade.h:172
 msgid "_Rename Version"
 msgstr "பதிப்பை மறுபெயரிடு (_R)"
 
-#: ../src/f-spot.glade.h:184
+#: ../src/f-spot.glade.h:173
 #: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:17
 #: ../extensions/Exporters/FolderExport/FolderExport.glade.h:17
 #: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:20
@@ -2959,92 +2937,92 @@ msgstr "பதிப்பை மறுபெயரிடு (_R)"
 msgid "_Resize to: "
 msgstr "மறுஅளவிடல் (_R):"
 
-#: ../src/f-spot.glade.h:186
+#: ../src/f-spot.glade.h:175
 msgid "_Saturation:"
 msgstr "சேச்சுரேஷன் (_S):"
 
-#: ../src/f-spot.glade.h:187
+#: ../src/f-spot.glade.h:176
 msgid "_Scale photos to no larger than: "
 msgstr "நிழற்படங்களை பெரியது இல்லாமல் அளவிடு (_S):"
 
-#: ../src/f-spot.glade.h:188
+#: ../src/f-spot.glade.h:177
 msgid "_Select Import Rolls..."
 msgstr "இறக்கப்பட்ட ரோல்களை தேர்ந்தெடு (_S)..."
 
-#: ../src/f-spot.glade.h:189
+#: ../src/f-spot.glade.h:178
 msgid "_Set Date Range..."
 msgstr "தேதி வரம்பை அமைக்கவும் (_S)..."
 
-#: ../src/f-spot.glade.h:190
+#: ../src/f-spot.glade.h:179
 msgid "_Set Rating filter..."
 msgstr "மதிப்பீடு வடிப்பியை அமைக்கவும் (_S)..."
 
-#: ../src/f-spot.glade.h:191
+#: ../src/f-spot.glade.h:180
 msgid "_Sharpen..."
 msgstr "கூர்மையான (_S)..."
 
-#: ../src/f-spot.glade.h:192
+#: ../src/f-spot.glade.h:181
 msgid "_Slideshow"
 msgstr "ஸ்லைடு காட்சி (_S)"
 
-#: ../src/f-spot.glade.h:193
+#: ../src/f-spot.glade.h:182
 msgid "_Small"
 msgstr "சிறிய (_S)"
 
-#: ../src/f-spot.glade.h:194
+#: ../src/f-spot.glade.h:183
 msgid "_Strip metadata"
 msgstr "மெட்டா தரவை கழற்று (_S)"
 
-#: ../src/f-spot.glade.h:195
+#: ../src/f-spot.glade.h:184
 msgid "_Tag Icons"
 msgstr "சின்னங்களை ஒட்டு (_T)"
 
-#: ../src/f-spot.glade.h:196
+#: ../src/f-spot.glade.h:185
 msgid "_Tag Name:"
 msgstr "ஒட்டு பெயர் (_T):"
 
-#: ../src/f-spot.glade.h:197
+#: ../src/f-spot.glade.h:186
 msgid "_Tags"
 msgstr "ஒட்டுக்கள் (_T)"
 
-#: ../src/f-spot.glade.h:198
+#: ../src/f-spot.glade.h:187
 msgid "_Timeline"
 msgstr "டைம்லான் (_T)"
 
-#: ../src/f-spot.glade.h:199
+#: ../src/f-spot.glade.h:188
 msgid "_Tint:"
 msgstr "டின்ட் (_T):"
 
-#: ../src/f-spot.glade.h:200
+#: ../src/f-spot.glade.h:189
 msgid "_Toolbar"
 msgstr "கருவிபட்டி (_T)"
 
-#: ../src/f-spot.glade.h:201
+#: ../src/f-spot.glade.h:190
 msgid "_Tools"
 msgstr "கருவிகள் (_T)"
 
-#: ../src/f-spot.glade.h:202
+#: ../src/f-spot.glade.h:191
 msgid "_URI:"
 msgstr "_URI:"
 
-#: ../src/f-spot.glade.h:203
+#: ../src/f-spot.glade.h:192
 msgid "_Untagged Photos"
 msgstr "ஒட்டுநீக்கப்பட்ட நிழற்படங்கள் (_U)"
 
-#: ../src/f-spot.glade.h:204
+#: ../src/f-spot.glade.h:193
 msgid "_Version"
 msgstr "பதிப்பு (_V)"
 
-#: ../src/f-spot.glade.h:205
+#: ../src/f-spot.glade.h:194
 msgid "_View"
 msgstr "பார்வை (_V)"
 
-#: ../src/f-spot.glade.h:206
+#: ../src/f-spot.glade.h:195
 msgid "_Virtual Filesystem"
 msgstr "மெய்நிகர் கோப்பு முறைமை (_V)"
 
 #. at, or after a date, or between dates
-#: ../src/f-spot.glade.h:209
+#: ../src/f-spot.glade.h:198
 msgid ""
 "at\n"
 "after\n"
@@ -3054,19 +3032,7 @@ msgstr ""
 "பிறகு\n"
 "இதற்கிடையில்"
 
-#: ../src/f-spot.glade.h:212
-msgid "difference:"
-msgstr "வேறுபாடு:"
-
-#: ../src/f-spot.glade.h:213
-msgid "img_000.jpg"
-msgstr "img_000.jpg"
-
-#: ../src/f-spot.glade.h:214
-msgid "min. Starting at {0}"
-msgstr "குறைந்தது {0} இல் துவக்குதல்"
-
-#: ../src/f-spot.glade.h:215
+#: ../src/f-spot.glade.h:201
 #: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:19
 #: ../extensions/Exporters/FolderExport/FolderExport.glade.h:19
 #: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:23
@@ -3075,7 +3041,7 @@ msgstr "குறைந்தது {0} இல் துவக்குதல்
 msgid "pixels"
 msgstr "பிக்செல்கள்"
 
-#: ../src/f-spot.glade.h:216
+#: ../src/f-spot.glade.h:202
 msgid "x"
 msgstr "x"
 
@@ -3086,6 +3052,25 @@ msgstr "F-Spotஇலிருந்து ஒரு ஸ்லைடு காட
 #: ../tools/f-spot-screensaver.desktop.in.h:2
 msgid "F-Spot photos"
 msgstr "F-Spot நிழற்படங்கள்"
+
+#: ../extensions/Editors/BlackoutEditor/BlackoutEditor.cs:18
+msgid "Blackout"
+msgstr "கருமையாக்கப்பட்ட"
+
+#: ../extensions/Editors/BlackoutEditor/BlackoutEditor.cs:26
+#| msgid "Select the area that needs cropping."
+msgid "Select the area that you want blacked out."
+msgstr "நீங்கள் கருமையாக்க வேண்டிய தேர்ந்தெடுக்கப்பட்ட இடம்."
+
+#: ../extensions/Editors/PixelateEditor/PixelateEditor.cs:18
+#| msgid "Private"
+msgid "Pixelate"
+msgstr "பிக்ஸல் செய்யப்பட்ட"
+
+#: ../extensions/Editors/PixelateEditor/PixelateEditor.cs:26
+#| msgid "Select the area that needs cropping."
+msgid "Select the area that you want pixelated."
+msgstr "நீங்கள் பிக்ஸெலேட் செய்ய வேண்டிய தேர்ந்தெடுக்கப்பட்ட இடம்."
 
 #: ../extensions/Exporters/CDExport/CDExport.addin.xml.h:1
 msgid "_CD..."
@@ -3100,7 +3085,7 @@ msgstr "படங்களை \"{0}\" குறுவட்டிற்கு �
 #: ../extensions/Exporters/FlickrExport/FlickrExport.cs:379
 #: ../extensions/Exporters/FolderExport/FolderExport.cs:285
 #: ../extensions/Exporters/GalleryExport/GalleryExport.cs:808
-#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:551
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:378
 #: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:704
 #: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:607
 msgid "Done Sending Photos"
@@ -3226,7 +3211,7 @@ msgstr "{0}இல் பதிவேற்றுவதில் பிழை: {1
 
 #: ../extensions/Exporters/FlickrExport/FlickrExport.cs:381
 #: ../extensions/Exporters/GalleryExport/GalleryExport.cs:810
-#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:553
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:380
 #: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:706
 #: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:609
 msgid "Upload Complete"
@@ -3247,7 +3232,7 @@ msgstr ""
 
 #: ../extensions/Exporters/FlickrExport/FlickrExport.cs:475
 #: ../extensions/Exporters/GalleryExport/GalleryExport.cs:732
-#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:477
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:297
 #: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:597
 #: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:522
 msgid "Uploading Pictures"
@@ -3586,11 +3571,30 @@ msgstr ""
 msgid "F_acebook..."
 msgstr "F_acebook..."
 
-#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:257
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:99
+#| msgid "Waiting for authentication"
+msgid "Waiting for authorization"
+msgstr "அங்கீகாரத்திற்காக காத்திருக்கிறது"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:100
+msgid ""
+"F-Spot will now launch your browser so that you can enable the permission "
+"you just selected.\n"
+"\n"
+"Once you are directed by Facebook to return to this application, click \"Ok"
+"\" below."
+msgstr ""
+"F-Spot will now launch your browser so that you can enable the permission "
+"you just selected.\n"
+"\n"
+"Once you are directed by Facebook to return to this application, click \"Ok"
+"\" below."
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:279
 msgid "Too many images to export"
 msgstr "ஏற்றுவதற்கு நிறைய படங்கள் உள்ளன"
 
-#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:257
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:280
 msgid ""
 "Facebook only permits 60 photographs per album.  Please refine your "
 "selection and try again."
@@ -3598,54 +3602,19 @@ msgstr ""
 "ஆல்பம் ஒன்றுக்கு 60 நிழற்படங்கள் மட்டுமே ஃபேஸ் புத்தகத்தில் அனுமதிக்கிறது.  உங்களுடைய "
 "தேர்ந்தெடுத்தலை மெருகூட்டி மீண்டும் தேர்ந்தெடுக்கவும்."
 
-#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:281
-#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:367
-msgid "You are not logged in."
-msgstr "நீங்கள் உட்புகவில்லை."
-
-#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:322
-msgid "Waiting for authentication"
-msgstr "அங்கீகாரத்திற்காக காத்திருக்கிறது"
-
-#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:322
-msgid ""
-"F-Spot will now launch your browser so that you can log into Facebook.  Turn "
-"on the \"Save my login information\" checkbox on Facebook and F-Spot will "
-"log into Facebook automatically from now on."
-msgstr ""
-"F-Spot will now launch your browser so that you can log into Facebook.  Turn "
-"on the \"Save my login information\" checkbox on Facebook and F-Spot will "
-"log into Facebook automatically from now on."
-
-#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:328
-msgid "Error logging into Facebook"
-msgstr "ஃபேஸ் புத்தகத்தினுள் உட்புகுவதில் பிழை"
-
-#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:328
-msgid ""
-"There was a problem logging into Facebook.  Check your credentials and try "
-"again."
-msgstr "Facebookஇல் புகுபதிவு செய்யப்படும் போது சிக்கல். அதனை சரிபார்த்து மீண்டும் முயற்சிக்கவும்."
-
-#. Note for translators: {0} and {1} are respectively firstname and surname of the user
-#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:341
-#, csharp-format
-msgid "{0} {1} is logged into Facebook"
-msgstr "{0} {1} ஃபேஸ்புத்தகத்தினுள் உட்புகுதல்"
-
-#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:491
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:317
 msgid "Album must have a name"
 msgstr "ஆல்பம் ஒரு பெயரை பெற்றிருக்க வேண்டும்"
 
-#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:491
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:318
 msgid "Please name your album or choose an existing album."
 msgstr "உங்களுடைய ஆல்பத்திற்கு பெயரிடவும் அல்லது இருக்கிற ஒரு ஆல்பத்தை தேர்ந்தெடு."
 
-#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:504
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:332
 msgid "Creating a new album failed"
 msgstr "புதிய ஆல்பத்தை உருவாக்குவதில் தோல்வி"
 
-#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:504
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:333
 #, csharp-format
 msgid ""
 "An error occurred creating a new album.\n"
@@ -3656,57 +3625,95 @@ msgstr ""
 "\n"
 "{0}"
 
-#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:528
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:355
 #: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:660
 #: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:565
 #, csharp-format
 msgid "Uploading picture \"{0}\" ({1} of {2})"
 msgstr "\"{0}\" படத்தை பதிவேற்றுகிறது ({2} இல் {1})"
 
-#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:542
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:369
 #, csharp-format
 msgid "Error Uploading To Facebook: {0}"
 msgstr "ஃபேஸ்புத்தக்கத்துடன் மேம்படுத்துவதில் பிழை: {0}"
 
-#: ../extensions/Exporters/FacebookExport/FacebookExport.glade.h:1
-msgid "Caption"
-msgstr "தலைப்பு"
+#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:186
+msgid "Waiting for authentication"
+msgstr "அங்கீகாரத்திற்காக காத்திருக்கிறது"
 
-#: ../extensions/Exporters/FacebookExport/FacebookExport.glade.h:2
-msgid "Create a new album"
-msgstr "ஒரு புதிய ஆல்பத்ததை உருவாக்கு"
+#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:187
+msgid ""
+"F-Spot will now launch your browser so that you can log into Facebook.\n"
+"\n"
+"Once you are directed by Facebook to return to this application, click \"Ok"
+"\" below.  F-Spot will cache your session in gnome-keyring, if possible, and "
+"re-use it on future Facebook exports."
+msgstr ""
+" F-Spot will now launch your browser so that you can log into Facebook.\n"
+"\n"
+"Once you are directed by Facebook to return to this application, click \"Ok"
+"\" below.  F-Spot will cache your session in gnome-keyring, if possible, and "
+"re-use it on future Facebook exports."
 
-#: ../extensions/Exporters/FacebookExport/FacebookExport.glade.h:3
-msgid "Description"
-msgstr "விளக்கம்"
+#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:192
+msgid "Authenticating..."
+msgstr "அங்கீகரிக்கிறது..."
 
-#: ../extensions/Exporters/FacebookExport/FacebookExport.glade.h:4
-msgid "Export to Facebook"
-msgstr "ஃபேஸ்புத்தகத்துடன் ஏற்றவும்"
+#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:202
+msgid "Error logging into Facebook"
+msgstr "ஃபேஸ் புத்தகத்தினுள் உட்புகுவதில் பிழை"
 
-#: ../extensions/Exporters/FacebookExport/FacebookExport.glade.h:5
-msgid "In this photo"
-msgstr "இந்த நிழற்படத்தில்"
+#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:203
+msgid ""
+"There was a problem logging into Facebook.  Check your credentials and try "
+"again."
+msgstr "Facebookஇல் புகுபதிவு செய்யப்படும் போது சிக்கல். அதனை சரிபார்த்து மீண்டும் முயற்சிக்கவும்."
 
-#: ../extensions/Exporters/FacebookExport/FacebookExport.glade.h:7
-msgid "Login"
-msgstr "உட்புகு"
+#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:212
+#| msgid "Authorize"
+msgid "Authorizing Session"
+msgstr "அங்கீகார அமர்வு"
 
-#: ../extensions/Exporters/FacebookExport/FacebookExport.glade.h:8
-msgid "Logout"
-msgstr "வெளியேறுதல்"
+#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:221
+msgid "Session established, fetching user info..."
+msgstr "அமர்வு துவக்கப்பட்டது, பயனர் தகவலை எடுக்கிறது..."
 
-#: ../extensions/Exporters/FacebookExport/FacebookExport.glade.h:10
-msgid "This is who I am"
-msgstr "இது யார் தெரியுமா"
+#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:227
+msgid "Session established, fetching friend list..."
+msgstr "அமர்வு துவக்கப்பட்டது, நண்பர் பட்டியலை எடுக்கிறது..."
 
-#: ../extensions/Exporters/FacebookExport/FacebookExport.glade.h:11
-msgid "Use an existing album"
-msgstr "இருக்கிற ஆல்பத்தை பயன்படுத்து"
+#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:237
+msgid "Session established, fetching friend details..."
+msgstr "அமர்வு துவக்கப்பட்டது, நண்பர் விவரங்களை எடுக்கிறது..."
 
-#: ../extensions/Exporters/FacebookExport/FacebookExport.glade.h:12
-msgid "Who is this?"
-msgstr "இது யார்?"
+#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:247
+msgid "Session established, fetching photo albums..."
+msgstr "அமர்வு துவக்கப்பட்டது, நிழற்பட ஆல்பங்களை எடுக்கிறது..."
+
+#. Note for translators: {0} and {1} are respectively firstname and surname of the user
+#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:260
+#, csharp-format
+msgid "{0} {1} is logged into Facebook"
+msgstr "{0} {1} ஃபேஸ்புத்தகத்தினுள் உட்புகுதல்"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:266
+msgid "Facebook Connection Error"
+msgstr "Facebook இணைப்பு பிழை"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:267
+#, csharp-format
+msgid ""
+"There was an error when downloading your information from Facebook.\n"
+"\n"
+"Facebook said: {0}"
+msgstr ""
+"There was an error when downloading your information from Facebook.\n"
+"\n"
+"Facebook said: {0}"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:296
+msgid "You are not logged in."
+msgstr "நீங்கள் உட்புகவில்லை."
 
 #: ../extensions/Exporters/ZipExport/ZipExport.addin.xml.h:1
 msgid "Compressed fil_e..."
