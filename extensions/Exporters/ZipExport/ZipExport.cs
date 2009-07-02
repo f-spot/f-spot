@@ -16,6 +16,7 @@ using FSpot;
 using FSpot.UI.Dialog;
 using FSpot.Extensions;
 using FSpot.Filters;
+using FSpot.Utils;
 using System;
 using System.IO;
 using System.Collections;
@@ -39,7 +40,7 @@ namespace ZipExport {
 		Gtk.FileChooserButton uri_chooser;
 
 		public void Run (IBrowsableCollection p) {
-			Console.WriteLine ("Executing ZipExport extension");
+			Log.Information ("Executing ZipExport extension");
 			if (p.Count == 0) {
 				HigMessageDialog md = new HigMessageDialog (MainWindow.Toplevel.Window, DialogFlags.DestroyWithParent,
 							  Gtk.MessageType.Error, ButtonsType.Ok,
@@ -93,10 +94,10 @@ namespace ZipExport {
 			Gnome.Vfs.Uri dest = new Gnome.Vfs.Uri (uri_chooser.Uri);
 			Crc32 crc = new Crc32 ();
 			string filedest = Gnome.Vfs.Uri.GetLocalPathFromUri (dest.ToString ()) + "/" + filename.Text;
-			Console.WriteLine ("Creating zip file {0}", filedest);
+			Log.Debug ("Creating zip file {0}", filedest);
 			ZipOutputStream s = new ZipOutputStream (File.Create(filedest));
 			if (scale_check.Active)
-				Console.WriteLine ("Scaling to {0}", scale_size.ValueAsInt);
+				Log.Debug ("Scaling to {0}", scale_size.ValueAsInt);
 
 			ProgressDialog progress_dialog = new ProgressDialog (Catalog.GetString ("Exporting files"),
 							      ProgressDialog.CancelButtonType.Stop,
@@ -109,6 +110,7 @@ namespace ZipExport {
 					return;
 				}
 				string f = null;
+				// FIXME: embed in a try/catch
 				if (scale_check.Active) {
 					FilterSet filters = new FilterSet ();
 					filters.Add (new JpegFilter ());
@@ -123,7 +125,7 @@ namespace ZipExport {
 
 				byte [] buffer = new byte [fs.Length];
 				fs.Read (buffer, 0, buffer.Length);
-				ZipEntry entry = new ZipEntry (photos [i].Name);
+				ZipEntry entry = new ZipEntry (System.IO.Path.GetFileName (photos [i].DefaultVersionUri.LocalPath));
 
 				entry.DateTime = DateTime.Now;
 
