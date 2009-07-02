@@ -7,14 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: f-spot.master.ta\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=f-spot&component=General\n"
-"POT-Creation-Date: 2009-06-10 12:09+0000\n"
-"PO-Revision-Date: 2009-06-10 17:42+0530\n"
+"POT-Creation-Date: 2009-06-15 12:52+0000\n"
+"PO-Revision-Date: 2009-07-01 15:40+0530\n"
 "Last-Translator: I. Felix <ifelix@redhat.com>\n"
 "Language-Team: Tamil <fedora-trans-ta@redhat.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\\n\n"
+"\n"
 "\n"
 "\n"
 "\n"
@@ -187,7 +188,7 @@ msgid "_Unselect All"
 msgstr "அனைத்தையும் தேர்வு நீக்கு (_U)"
 
 #: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:259
-#: ../src/f-spot.glade.h:105
+#: ../src/f-spot.glade.h:106
 msgid "Select _All"
 msgstr "அனைத்தையும் தேர்ந்தெடு (_A)"
 
@@ -248,7 +249,7 @@ msgstr "செய்யமுடியாத"
 #: ../extensions/Exporters/FacebookExport/FacebookExport.cs:543
 #: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:693
 #: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:596
-#: ../extensions/Exporters/TabbloExport/TabbloExport.cs:314
+#: ../extensions/Exporters/TabbloExport/TabbloExport.cs:319
 msgid "Error"
 msgstr "பிழை"
 
@@ -338,34 +339,6 @@ msgstr "நிழற்பட மேலாளர்"
 msgid "Organize, enjoy, and share your photos"
 msgstr "உங்கள் நிழற்படங்களை ஒழுங்குபடுத்தி, பகிர்ந்து, மகிழவும்"
 
-#: ../libeog/image-view.c:2124
-msgid "interpolation type"
-msgstr "இடைச்செருகுதல் வகை"
-
-#: ../libeog/image-view.c:2125
-msgid "the type of interpolation to use"
-msgstr "இந்த வகை இடைச்செருகுதலை பயன்படுத்த"
-
-#: ../libeog/image-view.c:2131 ../libeog/image-view.c:2138
-msgid "check type"
-msgstr "வகையை சரிபார்"
-
-#: ../libeog/image-view.c:2132
-msgid "the type of chequering to use"
-msgstr "பயன்படுத்த செக்கரின் வகை"
-
-#: ../libeog/image-view.c:2139
-msgid "the size of chequers to use"
-msgstr "பயன்படுத்த செக்கரின் அளவு"
-
-#: ../libeog/image-view.c:2145
-msgid "dither"
-msgstr "அதிர்வு"
-
-#: ../libeog/image-view.c:2146
-msgid "dither type"
-msgstr "அதிரும் வகை"
-
 #: ../libfspot/f-jpeg-utils.c:441 ../src/RotateCommand.cs:222
 msgid "File not found"
 msgstr "கோப்பு காணப்படவில்லை "
@@ -387,7 +360,7 @@ msgstr "முன்பார்வை"
 msgid "Path"
 msgstr "பாதை"
 
-#: ../src/CameraFileSelectionDialog.cs:80 ../src/f-spot.glade.h:73
+#: ../src/CameraFileSelectionDialog.cs:80 ../src/f-spot.glade.h:74
 msgid "File"
 msgstr "கோப்பு"
 
@@ -446,12 +419,12 @@ msgstr "கேமரா"
 msgid "Port"
 msgstr "துறை"
 
-#: ../src/Core.cs:203
+#: ../src/Core.cs:200
 #, csharp-format
 msgid "No photos matching {0} found"
 msgstr "நிழற்படங்கள் {0} பொருத்தம் காண முடியவில்லை"
 
-#: ../src/Core.cs:204
+#: ../src/Core.cs:201
 #, csharp-format
 msgid ""
 "The tag \"{0}\" is not applied to any photos. Try adding\n"
@@ -462,11 +435,11 @@ msgstr ""
 "நிழற்படங்களுக்கு ஒட்டினை சேர்க்க முயற்சிக்கவும் அல்லது வேறு ஒட்டினை\n"
 "F-Spot முன்னுரிமை உரையாடலில் தேர்ந்தெடுக்கவும்."
 
-#: ../src/Core.cs:208
+#: ../src/Core.cs:205
 msgid "Search returned no results"
 msgstr "தேடுதல் எந்த முடிவையும் கொடுக்கவில்லை"
 
-#: ../src/Core.cs:209
+#: ../src/Core.cs:206
 msgid ""
 "The tag F-Spot is looking for does not exist. Try\n"
 "selecting a different tag in the F-Spot preference\n"
@@ -505,7 +478,7 @@ msgstr "{1} ({0}) இதில் மாற்றியமைக்கப்ப�
 
 #. Note that the original version is never stored in the photo_versions table in the
 #. database.
-#: ../src/Core/Photo.cs:671 ../src/f-spot.glade.h:91
+#: ../src/Core/Photo.cs:671 ../src/f-spot.glade.h:92
 msgid "Original"
 msgstr "அசல்"
 
@@ -601,17 +574,17 @@ msgstr "ஏற்று"
 msgid "Open _With"
 msgstr "இதனுடன் திற (_W)"
 
-#: ../src/FSpot.addin.xml.h:4 ../src/f-spot.glade.h:100
+#: ../src/FSpot.addin.xml.h:4 ../src/f-spot.glade.h:101
 msgid "Rem_ove Tag"
 msgstr "ஒட்டு நீக்கு (_o)"
 
 #: ../src/FSpot.addin.xml.h:5 ../src/SingleView.cs:451
-#: ../src/f-spot.glade.h:102
+#: ../src/f-spot.glade.h:103
 msgid "Rotate _Left"
 msgstr "இடதுபுறமாக சுழற்று (_L)"
 
 #: ../src/FSpot.addin.xml.h:6 ../src/SingleView.cs:452
-#: ../src/f-spot.glade.h:103
+#: ../src/f-spot.glade.h:104
 msgid "Rotate _Right"
 msgstr "வலதுபுறமாக சுழற்று (_R)"
 
@@ -619,15 +592,15 @@ msgstr "வலதுபுறமாக சுழற்று (_R)"
 msgid "Tools"
 msgstr "கருவிகள்"
 
-#: ../src/FSpot.addin.xml.h:8 ../src/f-spot.glade.h:137
+#: ../src/FSpot.addin.xml.h:8 ../src/f-spot.glade.h:138
 msgid "_Attach Tag"
 msgstr "ஒட்டு இணை (_A)"
 
-#: ../src/FSpot.addin.xml.h:9 ../src/f-spot.glade.h:148
+#: ../src/FSpot.addin.xml.h:9 ../src/f-spot.glade.h:149
 msgid "_Delete From Drive"
 msgstr "இயக்கியிலிருந்து அழி (_D)"
 
-#: ../src/FSpot.addin.xml.h:10 ../src/f-spot.glade.h:180
+#: ../src/FSpot.addin.xml.h:10 ../src/f-spot.glade.h:181
 msgid "_Remove From Catalog"
 msgstr "கேட்லாக்கிலிருந்து நீக்கு (_R)"
 
@@ -735,11 +708,11 @@ msgstr "மாதத்தால் ஒழுங்குபடுத்து (
 msgid "Arrange by _Folder"
 msgstr "கோப்புறையால் ஒழுங்குப்படுத்து (_F)"
 
-#: ../src/GroupSelector.cs:523 ../src/f-spot.glade.h:184
+#: ../src/GroupSelector.cs:523 ../src/f-spot.glade.h:185
 msgid "_Reverse Order"
 msgstr "தலைகீழ் வரிசை (_R)"
 
-#: ../src/GroupSelector.cs:529 ../src/f-spot.glade.h:140
+#: ../src/GroupSelector.cs:529 ../src/f-spot.glade.h:141
 msgid "_Clear Date Range"
 msgstr "தேதி வரம்பை துடை (_C)"
 
@@ -901,33 +874,33 @@ msgstr "பொருளின் அறிவார்ந்த வகை"
 msgid "Unknown IIM DataSet"
 msgstr "தெரியாத IIM DataSet"
 
-#: ../src/ImportCommand.cs:48 ../src/SingleView.cs:357
+#: ../src/ImportCommand.cs:47 ../src/SingleView.cs:357
 msgid "Select Folder"
 msgstr "கோப்புறையை தேர்வு செய்"
 
-#: ../src/ImportCommand.cs:260
+#: ../src/ImportCommand.cs:258
 msgid "(No Cameras Detected)"
 msgstr "(கேமிராக்கள் எதுவும் கண்டறியப்படவில்லை)"
 
-#: ../src/ImportCommand.cs:405
+#: ../src/ImportCommand.cs:403
 #, csharp-format
 msgid "Loading {0} of {1}"
 msgstr "{1} இல் {0}ஐ ஏற்றுகிறது"
 
-#: ../src/ImportCommand.cs:471
+#: ../src/ImportCommand.cs:469
 msgid "Done Loading"
 msgstr "ஏற்றுதல் முடிவுற்றது"
 
-#: ../src/ImportCommand.cs:541 ../src/MainWindow.cs:279
-#: ../src/f-spot.glade.h:78
+#: ../src/ImportCommand.cs:539 ../src/MainWindow.cs:279
+#: ../src/f-spot.glade.h:79
 msgid "Import"
 msgstr "இறக்குமதி"
 
-#: ../src/ImportCommand.cs:671
+#: ../src/ImportCommand.cs:669
 msgid "Directory does not exist."
 msgstr "அடைவு இல்லை."
 
-#: ../src/ImportCommand.cs:672
+#: ../src/ImportCommand.cs:670
 #, csharp-format
 msgid ""
 "The directory you selected \"{0}\" does not exist.  Please choose a "
@@ -935,7 +908,7 @@ msgid ""
 msgstr "நீங்கள் தேர்ந்தெடுத்த அடைவு \"{0}\" இல்லை. ஒரு வேறு அடைவைத் தேர்ந்தெடு"
 
 #. Note for translators: 'Import Tags' is no command, it means 'Tags used in Import'
-#: ../src/ImportCommand.cs:725 ../src/ImportCommand.cs:727
+#: ../src/ImportCommand.cs:723 ../src/ImportCommand.cs:725
 #: ../src/XmpTagsImporter.cs:89
 msgid "Import Tags"
 msgstr "ஒட்டுகளை இறக்கு"
@@ -956,7 +929,7 @@ msgstr "வலமாக சுழற்று"
 msgid "Rotate picture right"
 msgstr "நிழற்படத்தை வலமாக சுழற்று"
 
-#: ../src/ItemAction.cs:102 ../src/f-spot.glade.h:86
+#: ../src/ItemAction.cs:102 ../src/f-spot.glade.h:87
 #: ../extensions/Exporters/FolderExport/FolderExport.cs:999
 msgid "Next"
 msgstr "அடுத்து"
@@ -965,7 +938,7 @@ msgstr "அடுத்து"
 msgid "Next picture"
 msgstr "அடுத்த படம்"
 
-#: ../src/ItemAction.cs:123 ../src/f-spot.glade.h:98
+#: ../src/ItemAction.cs:123 ../src/f-spot.glade.h:99
 msgid "Previous"
 msgstr "முந்தைய"
 
@@ -1455,7 +1428,7 @@ msgstr "நிழற்படத்தை திருத்தும் போ�
 msgid "Comment:"
 msgstr "குறிப்பு:"
 
-#: ../src/Preferences.cs:148
+#: ../src/Preferences.cs:152
 msgid "Photos"
 msgstr "நிழற்படங்கள்"
 
@@ -1597,51 +1570,51 @@ msgstr "திற"
 msgid "Set as Background"
 msgstr "பின்னணியாக அமை"
 
-#: ../src/TagCommands.cs:92 ../src/TagCommands.cs:220
+#: ../src/TagCommands.cs:93 ../src/TagCommands.cs:225
 #: ../src/TagSelectionWidget.cs:506
 msgid "This name is already in use"
 msgstr "இந்த பெயர் ஏற்கனவே பயன்பாட்டில் உள்ளது"
 
-#: ../src/TagCommands.cs:139
+#: ../src/TagCommands.cs:140
 msgid "Create New Tag"
 msgstr "புதிய ஒட்டினை உருவாக்கு"
 
-#: ../src/TagCommands.cs:140
+#: ../src/TagCommands.cs:141
 msgid "Name of New Tag:"
 msgstr "புதிய ஒட்டின் பெயர்:"
 
-#: ../src/TagCommands.cs:286
+#: ../src/TagCommands.cs:291
 msgid "Edit Tag"
 msgstr "ஒட்டினை திருத்து"
 
-#: ../src/TagCommands.cs:287
+#: ../src/TagCommands.cs:292
 msgid "Tag Name:"
 msgstr "ஒட்டு பெயர்:"
 
-#: ../src/TagCommands.cs:403
+#: ../src/TagCommands.cs:408
 msgid "Unable to load image"
 msgstr "படத்தை ஏற்ற முடியவில்லை"
 
-#: ../src/TagCommands.cs:404
+#: ../src/TagCommands.cs:409
 #, csharp-format
 msgid "Unable to load \"{0}\" as icon for the tag"
 msgstr "ஒட்டுக்கு சின்னமாக ஏற்ற \"{0}\" முடியவில்லை"
 
-#: ../src/TagCommands.cs:448
+#: ../src/TagCommands.cs:452
 #, csharp-format
 msgid "Photo {0} of {1}"
 msgstr "நிழற்படம் {1}ஆல் {0}"
 
-#: ../src/TagCommands.cs:478
+#: ../src/TagCommands.cs:482
 #, csharp-format
 msgid "Edit Icon for Tag {0}"
 msgstr "ஒட்டு {0}க்கான சிறுபடத்தை திருத்து"
 
-#: ../src/TagCommands.cs:494
+#: ../src/TagCommands.cs:498
 msgid "Select Photo from file"
 msgstr "கோப்பிலிருந்து நிழற்படத்தை தேர்ந்தெடுக்கவும்"
 
-#: ../src/TagCommands.cs:517
+#: ../src/TagCommands.cs:521
 #, csharp-format
 msgid ""
 "\n"
@@ -1733,28 +1706,28 @@ msgstr "அவற்றை தேட ஒட்டை இங்கிருந்
 msgid "Error renaming tag"
 msgstr "ஒட்டு மறுபெயரிடுவதில் பிழை"
 
-#: ../src/TagStore.cs:198
+#: ../src/TagStore.cs:203
 msgid "Favorites"
 msgstr "பிடித்தவைகள்"
 
-#: ../src/TagStore.cs:203
+#: ../src/TagStore.cs:208
 msgid "Hidden"
 msgstr "மறைக்கப்பட்டது"
 
-#: ../src/TagStore.cs:211
+#: ../src/TagStore.cs:216
 msgid "People"
 msgstr "மக்கள்"
 
-#: ../src/TagStore.cs:216
+#: ../src/TagStore.cs:221
 msgid "Places"
 msgstr "இடங்கள்"
 
-#: ../src/TagStore.cs:221
+#: ../src/TagStore.cs:226
 msgid "Events"
 msgstr "நிகழ்வுகள்"
 
 #. The label for the root category is used in new and edit tag dialogs
-#: ../src/TagStore.cs:234 ../src/Widgets/InfoBox.cs:400
+#: ../src/TagStore.cs:239 ../src/Widgets/InfoBox.cs:400
 msgid "(None)"
 msgstr "(ஒன்றுமில்லை)"
 
@@ -1793,7 +1766,7 @@ msgstr "மொழிபெயர்பாளர்-சன்மானம்"
 msgid "F-Spot Website"
 msgstr "F-Spot இணைய தளம்"
 
-#: ../src/UI.Dialog/AdjustTimeDialog.cs:118 ../src/f-spot.glade.h:114
+#: ../src/UI.Dialog/AdjustTimeDialog.cs:118 ../src/f-spot.glade.h:115
 #, csharp-format
 msgid "Shift all photos by {0}"
 msgstr "{0}ஆல் அனைத்து நிழற்படங்களையும் மாற்று"
@@ -1944,7 +1917,7 @@ msgstr "உருவங்கள் இதனுடன் ஒட்டப்ப�
 msgid "Make F-Spot your screensaver"
 msgstr "F-Spot உங்கள் திரைச்சேமிப்பாக்கு"
 
-#: ../src/UI.Dialog/ui/PreferenceDialog.glade.h:19 ../src/f-spot.glade.h:97
+#: ../src/UI.Dialog/ui/PreferenceDialog.glade.h:19 ../src/f-spot.glade.h:98
 msgid "Preferences"
 msgstr "முன்னுரிமைகள்"
 
@@ -2061,14 +2034,14 @@ msgstr "தனிபயன் உரை:"
 msgid "Edit"
 msgstr "திருத்து"
 
-#: ../src/Widgets/EditorPage.cs:201
+#: ../src/Widgets/EditorPage.cs:204
 #: ../extensions/Exporters/ZipExport/ZipExport.cs:46
 #: ../extensions/Tools/MetaPixel/MetaPixel.cs:45
 #: ../extensions/Tools/PictureTile/PictureTile.cs:51
 msgid "No selection available"
 msgstr "தேர்வு எதுவும் இல்லை"
 
-#: ../src/Widgets/EditorPage.cs:202
+#: ../src/Widgets/EditorPage.cs:205
 msgid ""
 "This tool requires an active selection. Please select a region of the photo "
 "and try the operation again"
@@ -2076,13 +2049,13 @@ msgstr ""
 "இந்த கருவிக்கு ஒரு செயல் தேர்வு தேவைப்படுகிறது. ஒரு பகுதியின் நிழற்படத்தை "
 "தேர்ந்தெடுத்து செயல்பாட்டை மீண்டும் செய்யவும்"
 
-#: ../src/Widgets/EditorPage.cs:220
+#: ../src/Widgets/EditorPage.cs:223
 msgid "Error saving adjusted photo"
 msgid_plural "Error saving adjusted photos"
 msgstr[0] "சரிபடுத்தப்பட்ட நிழற்படத்தை சேமிப்பதில் பிழை"
 msgstr[1] "சரிபடுத்தப்பட்ட நிழற்படத்தை சேமிப்பதில் பிழை"
 
-#: ../src/Widgets/EditorPage.cs:222
+#: ../src/Widgets/EditorPage.cs:225
 #, csharp-format
 msgid ""
 "Received exception \"{0}\". Note that you have to develop RAW files into "
@@ -2095,7 +2068,7 @@ msgstr ""
 msgid "Find:"
 msgstr "தேடு:"
 
-#: ../src/Widgets/FindBar.cs:177 ../src/f-spot.glade.h:206
+#: ../src/Widgets/FindBar.cs:177 ../src/f-spot.glade.h:207
 msgid "and"
 msgstr "மற்றும்"
 
@@ -2521,50 +2494,54 @@ msgid "Create _New Version..."
 msgstr "புதிய பதிப்பை உருவாக்கு (_N)..."
 
 #: ../src/f-spot.glade.h:58
+msgid "Create _icon for this tag when first used"
+msgstr "முதலில் பயன்படுத்தும் போது இந்த டேக்கிற்கு ஒரு சின்னத்தை உருவாக்கவும் (_i)"
+
+#: ../src/f-spot.glade.h:59
 msgid "Create a mail with the selected photos (possibly resized) attached"
 msgstr "தேர்ந்தெடுக்கப்பட்ட நிழற்படங்களுடன் ஒரு மின்னஞ்சலை உருவாக்கி (மறுஅளவிடப்பட்ட) சேர்க்கப்பட்டது"
 
-#: ../src/f-spot.glade.h:59
+#: ../src/f-spot.glade.h:60
 msgid "Current date:"
 msgstr "நடப்பு தேதி:"
 
-#: ../src/f-spot.glade.h:60
+#: ../src/f-spot.glade.h:61
 msgid "Detect duplicates"
 msgstr "போலிகளை கண்டுபிடி"
 
-#: ../src/f-spot.glade.h:61
+#: ../src/f-spot.glade.h:62
 msgid "Display File _Names"
 msgstr "கோப்பு பெயர்களை காட்டு (_N)"
 
-#: ../src/f-spot.glade.h:62
+#: ../src/f-spot.glade.h:63
 msgid "Display only those photos that were imported in specified Rolls."
 msgstr "குறிப்பட்ட ரோல்களில் இறக்கப்பட்ட அந்த நிழற்படங்களை மட்டும் காட்டு."
 
-#: ../src/f-spot.glade.h:63
+#: ../src/f-spot.glade.h:64
 msgid "Do not send a mail"
 msgstr "மின்னஞ்சலை அனுப்ப வேண்டாம்"
 
-#: ../src/f-spot.glade.h:64
+#: ../src/f-spot.glade.h:65
 msgid "E-_Mail:"
 msgstr "மின்னஞ்சல் (_M):"
 
-#: ../src/f-spot.glade.h:65
+#: ../src/f-spot.glade.h:66
 msgid "E_xport titles and comments"
 msgstr "தலைப்புகள் மற்றும் குறிப்புரைகளை ஏற்று (_x)"
 
-#: ../src/f-spot.glade.h:66
+#: ../src/f-spot.glade.h:67
 msgid "Edit Tag Icon"
 msgstr "ஒட்டு சிறுபடத்தை திருத்து"
 
-#: ../src/f-spot.glade.h:67
+#: ../src/f-spot.glade.h:68
 msgid "Edit icon"
 msgstr "சின்னத்தைத் திருத்து"
 
-#: ../src/f-spot.glade.h:68
+#: ../src/f-spot.glade.h:69
 msgid "Estimated new size"
 msgstr "புதிய அளவின் மதிப்பிடப்பட்டது"
 
-#: ../src/f-spot.glade.h:69
+#: ../src/f-spot.glade.h:70
 #: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:6
 #: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:8
 #: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:9
@@ -2573,168 +2550,168 @@ msgstr "புதிய அளவின் மதிப்பிடப்பட�
 msgid "Export"
 msgstr "ஏற்றுமதி"
 
-#: ../src/f-spot.glade.h:70
+#: ../src/f-spot.glade.h:71
 msgid "Extra large"
 msgstr "மேலும் பெரிய"
 
-#: ../src/f-spot.glade.h:71
+#: ../src/f-spot.glade.h:72
 msgid "F-Spot"
 msgstr "F-Spot"
 
-#: ../src/f-spot.glade.h:72
+#: ../src/f-spot.glade.h:73
 msgid "F-Spot View"
 msgstr "F-Spot காட்டி"
 
-#: ../src/f-spot.glade.h:74
+#: ../src/f-spot.glade.h:75
 msgid "Filter on selected rolls"
 msgstr "தேர்ந்தெடுக்கப்பட்ட ரோல்களில் மேல் வடிக்கவும்"
 
-#: ../src/f-spot.glade.h:75
+#: ../src/f-spot.glade.h:76
 msgid "Fin_d"
 msgstr "கண்டுபிடி (_d)"
 
-#: ../src/f-spot.glade.h:76
+#: ../src/f-spot.glade.h:77
 msgid "G_allery:"
 msgstr "படத்தொகுப்பு (_a):"
 
-#: ../src/f-spot.glade.h:77
+#: ../src/f-spot.glade.h:78
 msgid "Gallery"
 msgstr "படத்தொகுப்பு"
 
 #. Translators: this string means 'source of import'
-#: ../src/f-spot.glade.h:80
+#: ../src/f-spot.glade.h:81
 msgid "Import Source:"
 msgstr "மூலங்களை இறக்கு:"
 
-#: ../src/f-spot.glade.h:81
+#: ../src/f-spot.glade.h:82
 msgid "Include subfolders"
 msgstr "துணைகோப்புகளையும் சேர்க்கவும்"
 
-#: ../src/f-spot.glade.h:82
+#: ../src/f-spot.glade.h:83
 msgid "Large"
 msgstr "பெரிய"
 
-#: ../src/f-spot.glade.h:83
+#: ../src/f-spot.glade.h:84
 msgid "Manage _Extensions"
 msgstr "விரிவாக்கங்களை மேலான்மை செய் (_E)"
 
-#: ../src/f-spot.glade.h:84
+#: ../src/f-spot.glade.h:85
 msgid "Manage your custom selection ratios"
 msgstr "உங்களுடைய தேர்ந்தெடுக்கப்பட்ட தனிபயன் வரம்புகளை மேலாண்மை செய்யவும்"
 
-#: ../src/f-spot.glade.h:85
+#: ../src/f-spot.glade.h:86
 msgid "Medium"
 msgstr "நடுத்தரம்"
 
-#: ../src/f-spot.glade.h:87
+#: ../src/f-spot.glade.h:88
 msgid "No _image"
 msgstr "படம் இல்லை (_i)"
 
-#: ../src/f-spot.glade.h:88
+#: ../src/f-spot.glade.h:89
 msgid "Number of photos in selected rolls:"
 msgstr "பல தேர்ந்தெடுக்கப்பட்ட நிழற்படங்கள் ரோலில் உள்ளன:"
 
-#: ../src/f-spot.glade.h:89
+#: ../src/f-spot.glade.h:90
 msgid "Number of pictures"
 msgstr "படங்களின் எண்ணிக்கை"
 
-#: ../src/f-spot.glade.h:90
+#: ../src/f-spot.glade.h:91
 msgid "Open _Folder..."
 msgstr "கோப்புறையை திற (_F)..."
 
-#: ../src/f-spot.glade.h:92
+#: ../src/f-spot.glade.h:93
 msgid "Original size (possible very large file size)"
 msgstr "அசல் அளவு (மிகப் பெரிய கோப்பு அளவு வரலாம்)"
 
-#: ../src/f-spot.glade.h:93
+#: ../src/f-spot.glade.h:94
 msgid "P_arent Tag:"
 msgstr "தாய் ஒட்டு (_a):"
 
-#: ../src/f-spot.glade.h:94
+#: ../src/f-spot.glade.h:95
 msgid "Page Set_up..."
 msgstr "பக்க அமைப்பு (_u)..."
 
-#: ../src/f-spot.glade.h:95
+#: ../src/f-spot.glade.h:96
 msgid "Pause"
 msgstr "இடைநிறுத்தம்"
 
-#: ../src/f-spot.glade.h:96
+#: ../src/f-spot.glade.h:97
 msgid "Photo 0 of 0"
 msgstr "நிழற்படம் 0 இல் 0"
 
-#: ../src/f-spot.glade.h:99
+#: ../src/f-spot.glade.h:100
 msgid "Re_fresh Thumbnail"
 msgstr "சிறுபடத்தைப் புதுப்பி (_f)"
 
-#: ../src/f-spot.glade.h:101
+#: ../src/f-spot.glade.h:102
 msgid "Repair"
 msgstr "பழுதுபார்"
 
-#: ../src/f-spot.glade.h:104
+#: ../src/f-spot.glade.h:105
 msgid "Select Photos to Copy From Camera..."
 msgstr "கேமிராவிலிருந்து நிழற்படங்களை தேர்ந்தெடுக்கவும்..."
 
-#: ../src/f-spot.glade.h:106
+#: ../src/f-spot.glade.h:107
 msgid "Select _None"
 msgstr "ஒன்றையும் தேர்ந்தெடுக்க வேண்டாம் (_N)"
 
-#: ../src/f-spot.glade.h:107
+#: ../src/f-spot.glade.h:108
 msgid "Select a Tag..."
 msgstr "ஒரு ஒட்டினை தேர்ந்தெடு..."
 
-#: ../src/f-spot.glade.h:108
+#: ../src/f-spot.glade.h:109
 msgid "Select the camera from which you want to transfer files"
 msgstr "இடமாற்றம் செய்ய வேண்டிய கோப்புகள் உள்ள கேமிராவை தேர்ந்தெடுக்கவும்"
 
-#: ../src/f-spot.glade.h:109
+#: ../src/f-spot.glade.h:110
 msgid "Selected Camera: "
 msgstr "தேர்ந்தெடுக்கப்பட்ட கேமரா: "
 
-#: ../src/f-spot.glade.h:110
+#: ../src/f-spot.glade.h:111
 msgid "Selection Constraints"
 msgstr "தேர்ந்தெடுத்தல் வகைகள்"
 
-#: ../src/f-spot.glade.h:111
+#: ../src/f-spot.glade.h:112
 msgid "Send by _Mail..."
 msgstr "மின்னஞ்சல் வழியாக அனுப்பு (_M)..."
 
-#: ../src/f-spot.glade.h:112
+#: ../src/f-spot.glade.h:113
 msgid "Set Rating Filter"
 msgstr "மதிப்பீடு வடிப்பியை அமைக்கவும்"
 
-#: ../src/f-spot.glade.h:113
+#: ../src/f-spot.glade.h:114
 msgid "Set as _Background"
 msgstr "பின்னணியாக அமை (_B)"
 
-#: ../src/f-spot.glade.h:115
+#: ../src/f-spot.glade.h:116
 msgid "Show all photos."
 msgstr "அனைத்து நிழற்படங்களையும் காட்டு."
 
-#: ../src/f-spot.glade.h:116
+#: ../src/f-spot.glade.h:117
 msgid "Show or hide the side pane"
 msgstr "பக்கப் பலகத்தை காட்டு அல்லது மறை"
 
-#: ../src/f-spot.glade.h:117
+#: ../src/f-spot.glade.h:118
 msgid "Show or hide the toolbar"
 msgstr "கருவிப்பட்டையைக் காட்டு அல்லது மறை"
 
-#: ../src/f-spot.glade.h:118
+#: ../src/f-spot.glade.h:119
 msgid "Side _pane"
 msgstr "பக்கப் பலகம் (_p)"
 
-#: ../src/f-spot.glade.h:119
+#: ../src/f-spot.glade.h:120
 msgid "Side_bar"
 msgstr "பக்க பட்டி (_b)"
 
-#: ../src/f-spot.glade.h:120
+#: ../src/f-spot.glade.h:121
 msgid "Small"
 msgstr "சிறிய"
 
-#: ../src/f-spot.glade.h:121
+#: ../src/f-spot.glade.h:122
 msgid "Space all photos by"
 msgstr "அனைத்து நிழற்படங்களையும் இடைவெளியிடுதல்"
 
-#: ../src/f-spot.glade.h:122
+#: ../src/f-spot.glade.h:123
 msgid ""
 "Specify if an original size picture should be rotated or not. Smaller sizes "
 "are automatically rotated."
@@ -2742,238 +2719,238 @@ msgstr ""
 "ஒரு அசல் அளவு படம் சுழற்ற வேண்டுமா அல்லது வேண்டாமா என குறிப்பிடு. சிறிய அளவுகள் "
 "தானாக சுழற்றப்படும்."
 
-#: ../src/f-spot.glade.h:123
+#: ../src/f-spot.glade.h:124
 msgid "Strip image _metadata"
 msgstr "பட மெட்டா தரவை கழற்று (_m)"
 
-#: ../src/f-spot.glade.h:124
+#: ../src/f-spot.glade.h:125
 msgid "T_ags"
 msgstr "ஒட்டுகள் (_a)"
 
-#: ../src/f-spot.glade.h:125
+#: ../src/f-spot.glade.h:126
 #: ../extensions/Exporters/FolderExport/FolderExport.cs:1179
 #: ../extensions/Exporters/FolderExport/FolderExport.cs:1180
 msgid "Tags: "
 msgstr "ஒட்டுகள்: "
 
 #. Note for translators: meant as Temperature
-#: ../src/f-spot.glade.h:127
+#: ../src/f-spot.glade.h:128
 msgid "Te_mp:"
 msgstr "தற்காலிக (_m):"
 
-#: ../src/f-spot.glade.h:128
+#: ../src/f-spot.glade.h:129
 msgid "Thumbnail _elements"
 msgstr "சின்னப்படம் உருப்படிகள் (_e)"
 
-#: ../src/f-spot.glade.h:129
+#: ../src/f-spot.glade.h:130
 msgid "Tiny"
 msgstr "மெலிந்த"
 
-#: ../src/f-spot.glade.h:130
+#: ../src/f-spot.glade.h:131
 msgid "Too_lbar"
 msgstr "கருவி பட்டி (_l)"
 
-#: ../src/f-spot.glade.h:131
+#: ../src/f-spot.glade.h:132
 msgid "Total original size"
 msgstr "மொத்த அசல் அளவு"
 
-#: ../src/f-spot.glade.h:132
+#: ../src/f-spot.glade.h:133
 msgid "View"
 msgstr "பார்வை"
 
-#: ../src/f-spot.glade.h:133
+#: ../src/f-spot.glade.h:134
 msgid "Zoom _in"
 msgstr "சிறியதாக்கு (_i)"
 
-#: ../src/f-spot.glade.h:134
+#: ../src/f-spot.glade.h:135
 msgid "Zoom _out"
 msgstr "பெரியதாக்கு ( _o)"
 
-#: ../src/f-spot.glade.h:135
+#: ../src/f-spot.glade.h:136
 msgid "Zoom in"
 msgstr "சிறியதாக்கு"
 
-#: ../src/f-spot.glade.h:136
+#: ../src/f-spot.glade.h:137
 msgid "Zoom out"
 msgstr "பெரிதாக்கு"
 
-#: ../src/f-spot.glade.h:138
+#: ../src/f-spot.glade.h:139
 msgid "_Attach Tag to Selection"
 msgstr "தேர்வுக்கு ஒட்டினை இணை (_A)"
 
-#: ../src/f-spot.glade.h:139
+#: ../src/f-spot.glade.h:140
 msgid "_Brightness:"
 msgstr "வெளிச்சம் (_B):"
 
-#: ../src/f-spot.glade.h:141
+#: ../src/f-spot.glade.h:142
 msgid "_Clear Rating Filter"
 msgstr "மதிப்பீடு வடிப்பியை சரிசெய் (_C)"
 
-#: ../src/f-spot.glade.h:142
+#: ../src/f-spot.glade.h:143
 msgid "_Clear Roll Filter"
 msgstr "ரோல் வடிப்பியை சரிசெய் (_C)"
 
-#: ../src/f-spot.glade.h:143
+#: ../src/f-spot.glade.h:144
 msgid "_Components"
 msgstr "கூறுகள் (_C)"
 
-#: ../src/f-spot.glade.h:144
+#: ../src/f-spot.glade.h:145
 msgid "_Contents"
 msgstr "உள்ளடக்கம் (_C)"
 
-#: ../src/f-spot.glade.h:145
+#: ../src/f-spot.glade.h:146
 #: ../extensions/Exporters/ZipExport/ZipExport.glade.h:1
 msgid "_Create"
 msgstr "உருவாக்கு (_C)"
 
-#: ../src/f-spot.glade.h:146
+#: ../src/f-spot.glade.h:147
 msgid "_Create Mail"
 msgstr "மின்னஞ்சலை உருவாக்கு (_C)"
 
-#: ../src/f-spot.glade.h:147
+#: ../src/f-spot.glade.h:148
 msgid "_Dates"
 msgstr "தேதிகள் (_D)"
 
-#: ../src/f-spot.glade.h:149
+#: ../src/f-spot.glade.h:150
 msgid "_Delete Selected Tag"
 msgstr "தேர்ந்தெடுக்கப்பட்ட ஒட்டினை அழி (_D)"
 
-#: ../src/f-spot.glade.h:150
+#: ../src/f-spot.glade.h:151
 msgid "_Delete Version"
 msgstr "பதிப்பை அழி (_D)"
 
-#: ../src/f-spot.glade.h:151
+#: ../src/f-spot.glade.h:152
 msgid "_Edit"
 msgstr "திருத்து (_E)"
 
-#: ../src/f-spot.glade.h:152
+#: ../src/f-spot.glade.h:153
 msgid "_Edit Selected Tag..."
 msgstr "தேர்ந்தெடுக்கப்பட்ட ஒட்டினை திருத்து (_E)..."
 
-#: ../src/f-spot.glade.h:153
+#: ../src/f-spot.glade.h:154
 #: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:15
 #: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:12
 msgid "_Export"
 msgstr "ஏற்றுமதி (_E)"
 
-#: ../src/f-spot.glade.h:154
+#: ../src/f-spot.glade.h:155
 #: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:16
 #: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:20
 msgid "_Export tags"
 msgstr "ஒட்டுகளை ஏற்று (_E)"
 
-#: ../src/f-spot.glade.h:155
+#: ../src/f-spot.glade.h:156
 msgid "_Export to"
 msgstr "இதற்கு ஏற்று (_E)"
 
-#: ../src/f-spot.glade.h:156
+#: ../src/f-spot.glade.h:157
 #: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:15
 #: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:21
 #: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:13
 msgid "_Export to Album:"
 msgstr "ஆல்பத்திற்கு ஏற்று (_E):"
 
-#: ../src/f-spot.glade.h:157
+#: ../src/f-spot.glade.h:158
 msgid "_Exposure:"
 msgstr "வெளிகாட்டு (_E):"
 
-#: ../src/f-spot.glade.h:158
+#: ../src/f-spot.glade.h:159
 msgid "_Filmstrip"
 msgstr "ஃபிலிம்ஸ்ட்ரீப் (_F)"
 
-#: ../src/f-spot.glade.h:159
+#: ../src/f-spot.glade.h:160
 msgid "_Flickr"
 msgstr "_Flickr"
 
-#: ../src/f-spot.glade.h:160
+#: ../src/f-spot.glade.h:161
 msgid "_Folder"
 msgstr "கோப்புறை (_F)"
 
-#: ../src/f-spot.glade.h:161
+#: ../src/f-spot.glade.h:162
 msgid "_Fullscreen"
 msgstr "முழுத்திரை (_F)"
 
-#: ../src/f-spot.glade.h:162
+#: ../src/f-spot.glade.h:163
 msgid "_Gallery"
 msgstr "படத்தொகுப்பு (_G)"
 
-#: ../src/f-spot.glade.h:163
+#: ../src/f-spot.glade.h:164
 msgid "_Help"
 msgstr "உதவி (_H)"
 
-#: ../src/f-spot.glade.h:164
+#: ../src/f-spot.glade.h:165
 msgid "_Hidden"
 msgstr "மறைக்கப்பட்டது (_H)"
 
-#: ../src/f-spot.glade.h:165
+#: ../src/f-spot.glade.h:166
 msgid "_Hue:"
 msgstr "ஹ்யூ (_H):"
 
-#: ../src/f-spot.glade.h:166
+#: ../src/f-spot.glade.h:167
 msgid "_Icon:"
 msgstr "சின்னம் (_I):"
 
-#: ../src/f-spot.glade.h:167
+#: ../src/f-spot.glade.h:168
 msgid "_Import..."
 msgstr "இறக்கு (_I)..."
 
-#: ../src/f-spot.glade.h:168
+#: ../src/f-spot.glade.h:169
 msgid "_Interpolate image on zoom"
 msgstr "படத்தை அளவிடுதலில் இண்டர்போலைட் (_I)"
 
-#: ../src/f-spot.glade.h:169
+#: ../src/f-spot.glade.h:170
 msgid "_Large"
 msgstr "பெரியதுனது (_L)"
 
-#: ../src/f-spot.glade.h:170
+#: ../src/f-spot.glade.h:171
 msgid "_Last Import Roll"
 msgstr "கடைசியாக இறக்கப்பட்ட ரோல் (_L)"
 
-#: ../src/f-spot.glade.h:171
+#: ../src/f-spot.glade.h:172
 msgid "_Loupe"
 msgstr "_Loupe"
 
-#: ../src/f-spot.glade.h:172
+#: ../src/f-spot.glade.h:173
 msgid "_Medium"
 msgstr "நடுத்தரமான (_M)"
 
-#: ../src/f-spot.glade.h:173
+#: ../src/f-spot.glade.h:174
 msgid "_Month"
 msgstr "மாதம் (_M)"
 
-#: ../src/f-spot.glade.h:174
+#: ../src/f-spot.glade.h:175
 msgid "_New Window"
 msgstr "புதிய சாளரம் (_N)"
 
-#: ../src/f-spot.glade.h:175
+#: ../src/f-spot.glade.h:176
 msgid "_Open album in browser when done uploading"
 msgstr "பதிவேற்றுதல் முடிந்தவுடன் ஆல்பத்தைத் திற (_O)"
 
-#: ../src/f-spot.glade.h:176
+#: ../src/f-spot.glade.h:177
 msgid "_Open destination when done exporting"
 msgstr "ஏற்றுதல் முடிந்தவுடன் இலக்கைத் திற (_O)"
 
-#: ../src/f-spot.glade.h:177
+#: ../src/f-spot.glade.h:178
 msgid "_Photo"
 msgstr "நிழற்படம் (_P)"
 
-#: ../src/f-spot.glade.h:178
+#: ../src/f-spot.glade.h:179
 msgid "_Quit"
 msgstr "வெளியேறு (_Q)"
 
-#: ../src/f-spot.glade.h:179
+#: ../src/f-spot.glade.h:180
 msgid "_Ratings"
 msgstr "மதிப்பிடுதல் (_R)"
 
-#: ../src/f-spot.glade.h:181
+#: ../src/f-spot.glade.h:182
 msgid "_Remove Tag From Selection"
 msgstr "தேர்விலிருந்து ஒட்டை நீக்கு (_R)"
 
-#: ../src/f-spot.glade.h:182
+#: ../src/f-spot.glade.h:183
 msgid "_Rename Version"
 msgstr "பதிப்பை மறுபெயரிடு (_R)"
 
-#: ../src/f-spot.glade.h:183
+#: ../src/f-spot.glade.h:184
 #: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:17
 #: ../extensions/Exporters/FolderExport/FolderExport.glade.h:17
 #: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:20
@@ -2982,92 +2959,92 @@ msgstr "பதிப்பை மறுபெயரிடு (_R)"
 msgid "_Resize to: "
 msgstr "மறுஅளவிடல் (_R):"
 
-#: ../src/f-spot.glade.h:185
+#: ../src/f-spot.glade.h:186
 msgid "_Saturation:"
 msgstr "சேச்சுரேஷன் (_S):"
 
-#: ../src/f-spot.glade.h:186
+#: ../src/f-spot.glade.h:187
 msgid "_Scale photos to no larger than: "
 msgstr "நிழற்படங்களை பெரியது இல்லாமல் அளவிடு (_S):"
 
-#: ../src/f-spot.glade.h:187
+#: ../src/f-spot.glade.h:188
 msgid "_Select Import Rolls..."
 msgstr "இறக்கப்பட்ட ரோல்களை தேர்ந்தெடு (_S)..."
 
-#: ../src/f-spot.glade.h:188
+#: ../src/f-spot.glade.h:189
 msgid "_Set Date Range..."
 msgstr "தேதி வரம்பை அமைக்கவும் (_S)..."
 
-#: ../src/f-spot.glade.h:189
+#: ../src/f-spot.glade.h:190
 msgid "_Set Rating filter..."
 msgstr "மதிப்பீடு வடிப்பியை அமைக்கவும் (_S)..."
 
-#: ../src/f-spot.glade.h:190
+#: ../src/f-spot.glade.h:191
 msgid "_Sharpen..."
 msgstr "கூர்மையான (_S)..."
 
-#: ../src/f-spot.glade.h:191
+#: ../src/f-spot.glade.h:192
 msgid "_Slideshow"
 msgstr "ஸ்லைடு காட்சி (_S)"
 
-#: ../src/f-spot.glade.h:192
+#: ../src/f-spot.glade.h:193
 msgid "_Small"
 msgstr "சிறிய (_S)"
 
-#: ../src/f-spot.glade.h:193
+#: ../src/f-spot.glade.h:194
 msgid "_Strip metadata"
 msgstr "மெட்டா தரவை கழற்று (_S)"
 
-#: ../src/f-spot.glade.h:194
+#: ../src/f-spot.glade.h:195
 msgid "_Tag Icons"
 msgstr "சின்னங்களை ஒட்டு (_T)"
 
-#: ../src/f-spot.glade.h:195
+#: ../src/f-spot.glade.h:196
 msgid "_Tag Name:"
 msgstr "ஒட்டு பெயர் (_T):"
 
-#: ../src/f-spot.glade.h:196
+#: ../src/f-spot.glade.h:197
 msgid "_Tags"
 msgstr "ஒட்டுக்கள் (_T)"
 
-#: ../src/f-spot.glade.h:197
+#: ../src/f-spot.glade.h:198
 msgid "_Timeline"
 msgstr "டைம்லான் (_T)"
 
-#: ../src/f-spot.glade.h:198
+#: ../src/f-spot.glade.h:199
 msgid "_Tint:"
 msgstr "டின்ட் (_T):"
 
-#: ../src/f-spot.glade.h:199
+#: ../src/f-spot.glade.h:200
 msgid "_Toolbar"
 msgstr "கருவிபட்டி (_T)"
 
-#: ../src/f-spot.glade.h:200
+#: ../src/f-spot.glade.h:201
 msgid "_Tools"
 msgstr "கருவிகள் (_T)"
 
-#: ../src/f-spot.glade.h:201
+#: ../src/f-spot.glade.h:202
 msgid "_URI:"
 msgstr "_URI:"
 
-#: ../src/f-spot.glade.h:202
+#: ../src/f-spot.glade.h:203
 msgid "_Untagged Photos"
 msgstr "ஒட்டுநீக்கப்பட்ட நிழற்படங்கள் (_U)"
 
-#: ../src/f-spot.glade.h:203
+#: ../src/f-spot.glade.h:204
 msgid "_Version"
 msgstr "பதிப்பு (_V)"
 
-#: ../src/f-spot.glade.h:204
+#: ../src/f-spot.glade.h:205
 msgid "_View"
 msgstr "பார்வை (_V)"
 
-#: ../src/f-spot.glade.h:205
+#: ../src/f-spot.glade.h:206
 msgid "_Virtual Filesystem"
 msgstr "மெய்நிகர் கோப்பு முறைமை (_V)"
 
 #. at, or after a date, or between dates
-#: ../src/f-spot.glade.h:208
+#: ../src/f-spot.glade.h:209
 msgid ""
 "at\n"
 "after\n"
@@ -3077,19 +3054,19 @@ msgstr ""
 "பிறகு\n"
 "இதற்கிடையில்"
 
-#: ../src/f-spot.glade.h:211
+#: ../src/f-spot.glade.h:212
 msgid "difference:"
 msgstr "வேறுபாடு:"
 
-#: ../src/f-spot.glade.h:212
+#: ../src/f-spot.glade.h:213
 msgid "img_000.jpg"
 msgstr "img_000.jpg"
 
-#: ../src/f-spot.glade.h:213
+#: ../src/f-spot.glade.h:214
 msgid "min. Starting at {0}"
 msgstr "குறைந்தது {0} இல் துவக்குதல்"
 
-#: ../src/f-spot.glade.h:214
+#: ../src/f-spot.glade.h:215
 #: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:19
 #: ../extensions/Exporters/FolderExport/FolderExport.glade.h:19
 #: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:23
@@ -3098,7 +3075,7 @@ msgstr "குறைந்தது {0} இல் துவக்குதல்
 msgid "pixels"
 msgstr "பிக்செல்கள்"
 
-#: ../src/f-spot.glade.h:215
+#: ../src/f-spot.glade.h:216
 msgid "x"
 msgstr "x"
 
@@ -4079,20 +4056,19 @@ msgstr "URLஐ பதிவேற்ற எடுக்கிறது"
 msgid "_Tabblo..."
 msgstr "_Tabblo..."
 
-#: ../extensions/Exporters/TabbloExport/TabbloExport.cs:303
+#: ../extensions/Exporters/TabbloExport/TabbloExport.cs:308
 msgid "Done sending photos"
 msgstr "நிழற்படங்களை அனுப்புவது முடிவடைந்தது"
 
-#: ../extensions/Exporters/TabbloExport/TabbloExport.cs:305
+#: ../extensions/Exporters/TabbloExport/TabbloExport.cs:310
 msgid "Upload complete"
 msgstr "மேம்படுத்துதல் முடிவடைந்தது"
 
-#: ../extensions/Exporters/TabbloExport/TabbloExport.cs:311
+#: ../extensions/Exporters/TabbloExport/TabbloExport.cs:316
 msgid "Error uploading to Tabblo: "
 msgstr "Tabbloக்கு பதிவேற்றுவதில் பிழை: "
 
 #: ../extensions/Exporters/TabbloExport/TabbloExport.glade.h:1
-#| msgid "<b>Import Settings</b>"
 msgid "<b>F-Spot tags</b>"
 msgstr "<b>F-Spot டேக்குகள்</b>"
 
@@ -4117,7 +4093,6 @@ msgid "Rem_ove from exported photos:"
 msgstr "ஏற்றப்பட்ட நிழற்படங்களிலிருந்து நீக்கு (_o):"
 
 #: ../extensions/Exporters/TabbloExport/TabbloExport.glade.h:7
-#| msgid "Select a Tag..."
 msgid "Select..."
 msgstr "தேர்ந்தெடு..."
 
