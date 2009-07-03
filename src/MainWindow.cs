@@ -3099,7 +3099,12 @@ public class MainWindow {
 		List<string> contents = new List<string> ();
 
 		foreach (Photo p in SelectedPhotos ()) {
-			string content = GLib.FileFactory.NewForUri (p.DefaultVersionUri).QueryInfo ("standard::content-type", GLib.FileQueryInfoFlags.None, null).ContentType;
+			string content;
+			try {
+				content = GLib.FileFactory.NewForUri (p.DefaultVersionUri).QueryInfo ("standard::content-type", GLib.FileQueryInfoFlags.None, null).ContentType;
+			} catch (GLib.GException) {
+				content = null;
+			}
 
 			if (! contents.Contains (content))
 				contents.Add (content);
