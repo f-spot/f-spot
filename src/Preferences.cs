@@ -41,6 +41,7 @@ namespace FSpot
 		public const string SHOW_SIDEBAR = APP_FSPOT + "ui/show_sidebar";
 		public const string SHOW_TIMELINE = APP_FSPOT + "ui/show_timeline";
 		public const string SHOW_FILMSTRIP = APP_FSPOT + "ui/show_filmstrip";
+		public const string FILMSTRIP_POSITION = APP_FSPOT + "ui/filmstrip_position";
 		public const string SHOW_TAGS = APP_FSPOT + "ui/show_tags";
 		public const string SHOW_DATES = APP_FSPOT + "ui/show_dates";
 		public const string EXPANDED_TAGS = APP_FSPOT + "ui/expanded_tags";
@@ -108,11 +109,14 @@ namespace FSpot
 			case IMPORT_WINDOW_HEIGHT:
 			case IMPORT_WINDOW_WIDTH:
 			case IMPORT_WINDOW_PANE_POSITION:
+			case FILMSTRIP_POSITION:
 				return 0;
 					
 			case METADATA_EMBED_IN_IMAGE:
 			case MAIN_WINDOW_MAXIMIZED:
 			case GROUP_ADAPTOR_ORDER_ASC:
+			case COLOR_MANAGEMENT_ENABLED:
+			case COLOR_MANAGEMENT_USE_X_PROFILE:
 				return false;
 
 			case GLASS_POSITION:

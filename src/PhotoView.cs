@@ -33,6 +33,8 @@ namespace FSpot {
 		private EventBox background;
 		
 		private Filmstrip filmstrip;
+		VBox inner_vbox;
+		HBox inner_hbox;
 	
 		private Widgets.TagView tag_view;
 		
@@ -53,6 +55,10 @@ namespace FSpot {
 		public event UpdateFinishedHandler UpdateFinished;
 
 		public event EventHandler<BrowsableEventArgs> DoubleClicked;
+	
+		public Orientation FilmstripOrientation {
+			get { return filmstrip.Orientation; }
+		}
 	
 		public PhotoImageView View {
 			get { return photo_view; }
@@ -240,6 +246,56 @@ namespace FSpot {
 			Dispose ();
 		}
 	
+		private void OnPreferencesChanged (object sender, NotifyEventArgs args)
+		{
+			LoadPreference (args.Key);
+		}
+
+		private void LoadPreference (String key)
+		{
+			switch (key) {
+			case Preferences.FILMSTRIP_POSITION:
+				PlaceFilmstrip ((Orientation) Preferences.Get<int> (key));
+				break;
+			}
+		}
+
+		public void PlaceFilmstrip (Orientation pos)
+		{
+			PlaceFilmstrip (pos, false);
+		}
+
+		public void PlaceFilmstrip (Orientation pos, bool force)
+		{
+			if (!force && filmstrip.Orientation == pos)
+				return;
+			filmstrip.Orientation = pos;
+
+			System.Collections.IEnumerator widgets;
+			switch (pos) {
+			case Orientation.Horizontal:
+				widgets = inner_hbox.AllChildren.GetEnumerator ();
+				while (widgets.MoveNext ())
+					if (widgets.Current == filmstrip) {
+						inner_hbox.Remove (filmstrip);
+						break;
+					}
+				inner_vbox.PackStart (filmstrip, false, false, 0); 
+				inner_vbox.ReorderChild (filmstrip, 0);
+				break;
+			case Orientation.Vertical:
+				widgets = inner_vbox.AllChildren.GetEnumerator ();
+				while (widgets.MoveNext ())
+					if (widgets.Current == filmstrip) {
+						inner_vbox.Remove (filmstrip);
+						break;
+					}
+				inner_hbox.PackEnd (filmstrip, false, false, 0);
+				break;
+			}
+			Preferences.Set (Preferences.FILMSTRIP_POSITION, (int) pos);
+		}
+	
 		public bool FilmStripVisibility {
 			get { return filmstrip.Visible; }
 			set { filmstrip.Visible = value; }
@@ -266,9 +322,10 @@ namespace FSpot {
 			frame.ShadowType = ShadowType.In;
 			vbox.PackStart (background, true, true, 0);
 			
-			Box inner_vbox = new VBox (false , 2);
+			inner_vbox = new VBox (false , 2);
+			inner_hbox = new HBox (false , 2);
 	
-			frame.Add (inner_vbox);
+			frame.Add (inner_hbox);
 			
 			BrowsablePointer bp = new BrowsablePointer (query, -1);
 			photo_view = new PhotoImageView (bp);
@@ -279,7 +336,7 @@ namespace FSpot {
 			filmstrip.BackgroundTile = bg;
 			filmstrip.ThumbOffset = 1;
 			filmstrip.Spacing = 4;
-			inner_vbox.PackStart (filmstrip, false, false, 0);
+			PlaceFilmstrip ((Orientation) Preferences.Get <int> (Preferences.FILMSTRIP_POSITION), true);
 	
 			photo_view.PhotoChanged += HandlePhotoChanged;
 	
@@ -291,30 +348,32 @@ namespace FSpot {
 			photo_view_scrolled.Child.ButtonPressEvent += HandleButtonPressEvent;
 			photo_view.AddEvents ((int) EventMask.KeyPressMask);
 			inner_vbox.PackStart (photo_view_scrolled, true, true, 0);
+			inner_hbox.PackStart (inner_vbox, true, true, 0);
 			
-			HBox inner_hbox = new HBox (false, 2);
+			HBox lower_hbox = new HBox (false, 2);
 			//inner_hbox.BorderWidth = 6;
 	
 			tag_view = new Widgets.TagView (MainWindow.ToolTips);
-			inner_hbox.PackStart (tag_view, false, true, 0);
+			lower_hbox.PackStart (tag_view, false, true, 0);
 	
 			Label comment = new Label (Catalog.GetString ("Comment:"));
-			inner_hbox.PackStart (comment, false, false, 0);
+			lower_hbox.PackStart (comment, false, false, 0);
 			description_entry = new Entry ();
-			inner_hbox.PackStart (description_entry, true, true, 0);
+			lower_hbox.PackStart (description_entry, true, true, 0);
 			description_entry.Changed += HandleDescriptionChanged;
 	
 			rating = new Widgets.Rating();
-			inner_hbox.PackStart (rating, false, false, 0);
+			lower_hbox.PackStart (rating, false, false, 0);
 			rating.Changed += HandleRatingChanged;
 	
 			SetColors ();
 			
-			inner_vbox.PackStart (inner_hbox, false, true, 0);
+			inner_vbox.PackStart (lower_hbox, false, true, 0);
 	
 			vbox.ShowAll ();
 	
 			Realized += delegate (object o, EventArgs e) {SetColors ();};
+			Preferences.SettingChanged += OnPreferencesChanged;
 		}
 
 		~PhotoView ()

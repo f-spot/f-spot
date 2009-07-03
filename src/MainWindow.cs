@@ -474,6 +474,7 @@ public class MainWindow {
 		group_selector.Adaptor.GlassSet += HandleAdaptorGlassSet;
 		group_selector.Adaptor.Changed += HandleAdaptorChanged;
 		LoadPreference (Preferences.GROUP_ADAPTOR_ORDER_ASC);
+		LoadPreference (Preferences.FILMSTRIP_POSITION);
 
 		this.selection = new MainSelection (this);
 		this.selection.Changed += HandleSelectionChanged;
@@ -1606,7 +1607,23 @@ public class MainWindow {
 			Preferences.Set (Preferences.TAG_ICON_SIZE, TagsIconSize);
 		}
 	}
-	
+
+	public void HandleFilmstripHorizontal (object sender, EventArgs args)
+	{
+		if (photo_view.FilmstripOrientation == Orientation.Horizontal)
+			return;
+		(sender as Gtk.CheckMenuItem).Active = false;
+		photo_view.PlaceFilmstrip (Orientation.Horizontal);
+	}
+
+	public void HandleFilmstripVertical (object sender, EventArgs args)
+	{
+		if (photo_view.FilmstripOrientation == Orientation.Vertical)
+			return;
+		(sender as Gtk.CheckMenuItem).Active = false;
+		photo_view.PlaceFilmstrip (Orientation.Vertical);
+	}
+
 	public void HandleReverseOrder (object sender, EventArgs args)
 	{
 		ToggleAction item = sender as ToggleAction;
@@ -2479,8 +2496,9 @@ public class MainWindow {
 			break;
 		
 		case Preferences.SHOW_FILMSTRIP:
-			if (display_filmstrip.Active != Preferences.Get<bool> (key))
+			if (display_filmstrip.Active != Preferences.Get<bool> (key)) {
 				display_filmstrip.Active = Preferences.Get<bool> (key);
+			}
 			break;
 		
 		case Preferences.SHOW_TAGS:
