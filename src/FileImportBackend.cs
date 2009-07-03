@@ -222,7 +222,7 @@ public class FileImportBackend : ImportBackend {
 					photo = store.CheckForDuplicate (UriUtils.PathToFileUri (destination));
 
 				if (photo == null)
-					photo = store.Create (info.DestinationPath, roll.Id, out thumbnail);
+					photo = store.Create (UriUtils.PathToFileUri (info.DestinationPath), roll.Id, out thumbnail);
 				else
 				 	is_duplicate = true;
 			} else {
@@ -234,7 +234,10 @@ public class FileImportBackend : ImportBackend {
 
 				if (photo == null)
 				{
-					photo = store.Create (info.DestinationPath, info.OriginalPath, roll.Id, out thumbnail);
+					photo = store.Create (UriUtils.PathToFileUri (info.DestinationPath),
+					                      UriUtils.PathToFileUri (info.OriginalPath),
+					                      roll.Id,
+					                      out thumbnail);
 				 	
 
 					try {

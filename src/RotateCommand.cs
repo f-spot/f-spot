@@ -133,7 +133,7 @@ namespace FSpot {
 
 			Rotate (original_path, direction);
 
-			Gdk.Pixbuf thumb = FSpot.ThumbnailGenerator.Create (original_path);
+			Gdk.Pixbuf thumb = FSpot.ThumbnailGenerator.Create (UriUtils.PathToFileUri (original_path));
 			if (thumb != null)
 				thumb.Dispose ();
 		

@@ -41,13 +41,6 @@ namespace FSpot {
 			return ValidateThumbnail (item.DefaultVersionUri, pixbuf);
 		}
 
-		[Obsolete ("Use ValidateThumbnail (uri, Pixbuf) instead")]
-		static public Gdk.Pixbuf ValidateThumbnail (string photo_path, Gdk.Pixbuf pixbuf)
-		{			
-			System.Uri uri = UriUtils.PathToFileUri (photo_path);
-			return ValidateThumbnail (uri, pixbuf);
-		}
-		
 		static public Gdk.Pixbuf ValidateThumbnail (System.Uri uri, Gdk.Pixbuf pixbuf)
 		{			
 			using (Gdk.Pixbuf thumbnail = ThumbnailCache.Default.GetThumbnailForUri (uri)) {

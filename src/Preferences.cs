@@ -171,25 +171,6 @@ namespace FSpot
 			}
 		}
 		
-		[Obsolete ("use Get<T> (string key) instead")]
-		public static object Get (string key)
-		{
-			lock (cache) {
-				object val = null;
-				if (cache.TryGetValue (key, out val)) 
-					return val;
-
-				try {
-					val = Backend.Get (key);
-				} catch (NoSuchKeyException) {
-					val = GetDefault (key);
-				}
-				
-				cache.Add (key, val);
-				return val;
-			}
-		}
-
 		//return true if the key exists in the backend
 		public static bool TryGet<T> (string key, out T value)
 		{
