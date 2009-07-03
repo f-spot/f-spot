@@ -53,75 +53,71 @@ public class MainWindow {
 
 	[GtkBeans.Builder.Object] Label status_label;
 
+	[GtkBeans.Builder.Object] Gtk.UIManager uimanager;
 	// File
-	[GtkBeans.Builder.Object] MenuItem version_menu_item;
-	[GtkBeans.Builder.Object] MenuItem create_version_menu_item;
-	[GtkBeans.Builder.Object] MenuItem delete_version_menu_item;
-	[GtkBeans.Builder.Object] MenuItem rename_version_menu_item;
+	[GtkBeans.Builder.Object] Gtk.Action create_version_menu_item;
+	[GtkBeans.Builder.Object] Gtk.Action delete_version_menu_item;
+	[GtkBeans.Builder.Object] Gtk.Action rename_version_menu_item;
 	
-	[GtkBeans.Builder.Object] MenuItem tools;
-	[GtkBeans.Builder.Object] MenuItem export;
-	[GtkBeans.Builder.Object] MenuItem pagesetup_menu_item;
-	[GtkBeans.Builder.Object] MenuItem print;
-	[GtkBeans.Builder.Object] MenuItem send_mail;
+	[GtkBeans.Builder.Object] Gtk.Action tools;
+	[GtkBeans.Builder.Object] Gtk.Action export;
+	[GtkBeans.Builder.Object] Gtk.Action pagesetup_menu_item;
+	[GtkBeans.Builder.Object] Gtk.Action print;
+	[GtkBeans.Builder.Object] Gtk.Action send_mail;
 
 	// Edit
-	[GtkBeans.Builder.Object] MenuItem copy_location;
-	[GtkBeans.Builder.Object] MenuItem select_none;
-	[GtkBeans.Builder.Object] MenuItem rotate_left;
-	[GtkBeans.Builder.Object] MenuItem rotate_right;
+	[GtkBeans.Builder.Object] Gtk.Action copy_location;
+	[GtkBeans.Builder.Object] Gtk.Action select_none;
+	[GtkBeans.Builder.Object] Gtk.Action rotate_left;
+	[GtkBeans.Builder.Object] Gtk.Action rotate_right;
 
-	[GtkBeans.Builder.Object] MenuItem sharpen;
-	[GtkBeans.Builder.Object] MenuItem adjust_time;
+	[GtkBeans.Builder.Object] Gtk.Action sharpen;
+	[GtkBeans.Builder.Object] Gtk.Action adjust_time;
 
-	[GtkBeans.Builder.Object] MenuItem update_thumbnail;
-	[GtkBeans.Builder.Object] MenuItem delete_from_drive;
-	[GtkBeans.Builder.Object] MenuItem remove_from_catalog;
-	[GtkBeans.Builder.Object] MenuItem set_as_background;
+	[GtkBeans.Builder.Object] Gtk.Action update_thumbnail;
+	[GtkBeans.Builder.Object] Gtk.Action delete_from_drive;
+	[GtkBeans.Builder.Object] Gtk.Action remove_from_catalog;
+	[GtkBeans.Builder.Object] Gtk.Action set_as_background;
 
-	[GtkBeans.Builder.Object] MenuItem attach_tag;
-	[GtkBeans.Builder.Object] MenuItem remove_tag;
+	[GtkBeans.Builder.Object] Gtk.Action attach_tag;
+	[GtkBeans.Builder.Object] Gtk.Action remove_tag;
 
 	// View
-	[GtkBeans.Builder.Object] RadioMenuItem month;
-	[GtkBeans.Builder.Object] RadioMenuItem directory;
-	[GtkBeans.Builder.Object] CheckMenuItem display_toolbar;
-	[GtkBeans.Builder.Object] CheckMenuItem display_sidebar;
-	[GtkBeans.Builder.Object] CheckMenuItem display_timeline;
-	[GtkBeans.Builder.Object] CheckMenuItem display_filmstrip;
-	[GtkBeans.Builder.Object] CheckMenuItem display_dates_menu_item;
-	[GtkBeans.Builder.Object] CheckMenuItem display_tags_menu_item;
-	[GtkBeans.Builder.Object] CheckMenuItem display_ratings_menu_item;
+	[GtkBeans.Builder.Object] Gtk.RadioAction month;
+	[GtkBeans.Builder.Object] Gtk.RadioAction directory;
+	[GtkBeans.Builder.Object] Gtk.ToggleAction display_toolbar;
+	[GtkBeans.Builder.Object] Gtk.ToggleAction display_sidebar;
+	[GtkBeans.Builder.Object] Gtk.ToggleAction display_timeline;
+	[GtkBeans.Builder.Object] Gtk.ToggleAction display_filmstrip;
+	[GtkBeans.Builder.Object] Gtk.ToggleAction display_dates_menu_item;
+	[GtkBeans.Builder.Object] Gtk.ToggleAction display_tags_menu_item;
+	[GtkBeans.Builder.Object] Gtk.ToggleAction display_ratings_menu_item;
 
-	[GtkBeans.Builder.Object] MenuItem zoom_in;
-	[GtkBeans.Builder.Object] MenuItem zoom_out;
-	[GtkBeans.Builder.Object] CheckMenuItem loupe_menu_item;
+	[GtkBeans.Builder.Object] Gtk.Action zoom_in;
+	[GtkBeans.Builder.Object] Gtk.Action zoom_out;
+	[GtkBeans.Builder.Object] Gtk.ToggleAction loupe_menu_item;
 
-	[GtkBeans.Builder.Object] RadioMenuItem tag_icon_hidden;
-	[GtkBeans.Builder.Object] RadioMenuItem tag_icon_small;
-	[GtkBeans.Builder.Object] RadioMenuItem tag_icon_medium;
-	[GtkBeans.Builder.Object] RadioMenuItem tag_icon_large;
+	[GtkBeans.Builder.Object] Gtk.RadioAction tag_icon_hidden;
+	[GtkBeans.Builder.Object] Gtk.RadioAction tag_icon_small;
+	[GtkBeans.Builder.Object] Gtk.RadioAction tag_icon_medium;
+	[GtkBeans.Builder.Object] Gtk.RadioAction tag_icon_large;
 
-	[GtkBeans.Builder.Object] CheckMenuItem reverse_order;
+	[GtkBeans.Builder.Object] Gtk.ToggleAction reverse_order;
 
 	// Find
-	[GtkBeans.Builder.Object] MenuItem find_by_tag;
-	[GtkBeans.Builder.Object] MenuItem find_add_tag;
-	[GtkBeans.Builder.Object] MenuItem find_add_tag_with;
-	
-	[GtkBeans.Builder.Object] MenuItem clear_date_range;
-	[GtkBeans.Builder.Object] MenuItem clear_rating_filter;
+	[GtkBeans.Builder.Object] Gtk.Action clear_date_range;
+	[GtkBeans.Builder.Object] Gtk.Action clear_rating_filter;
 
-	[GtkBeans.Builder.Object] CheckMenuItem find_untagged;
+	[GtkBeans.Builder.Object] Gtk.ToggleAction find_untagged;
 	
-	[GtkBeans.Builder.Object] MenuItem clear_roll_filter;	
+	[GtkBeans.Builder.Object] Gtk.Action clear_roll_filter;	
 	
 	// Tags
-	[GtkBeans.Builder.Object] MenuItem edit_selected_tag;
-	[GtkBeans.Builder.Object] MenuItem delete_selected_tag;
+	[GtkBeans.Builder.Object] Gtk.Action edit_selected_tag;
+	[GtkBeans.Builder.Object] Gtk.Action delete_selected_tag;
 
-	[GtkBeans.Builder.Object] MenuItem attach_tag_to_selection;
-	[GtkBeans.Builder.Object] MenuItem remove_tag_from_selection;
+	[GtkBeans.Builder.Object] Gtk.Action attach_tag_to_selection;
+	[GtkBeans.Builder.Object] Gtk.Action remove_tag_from_selection;
 	
 	// Other Widgets
 	[GtkBeans.Builder.Object] Scale zoom_scale;
@@ -235,7 +231,7 @@ public class MainWindow {
 	}
 
 	public MenuItem FindByTag {
-		get { return find_by_tag; }
+		get { return uimanager.GetWidget ("/ui/menubar1/find/find_by_tag") as MenuItem; }
 	}
 
 	public InfoBox InfoBox {
@@ -436,11 +432,11 @@ public class MainWindow {
 		tag_menu.NewTagHandler += delegate { HandleCreateTagAndAttach (this, null); };
 		tag_menu.TagSelected += HandleAttachTagMenuSelected;
 		tag_menu.Populate();
-		attach_tag.Submenu = tag_menu;
+		(uimanager.GetWidget("/ui/menubar1/edit2/attach_tag") as MenuItem).Submenu = tag_menu;
 		
 		PhotoTagMenu pmenu = new PhotoTagMenu ();
 		pmenu.TagSelected += HandleRemoveTagMenuSelected;
-		remove_tag.Submenu = pmenu;
+		(uimanager.GetWidget("/ui/menubar1/edit2/remove_tag") as MenuItem).Submenu = pmenu;
 		
 		Gtk.Drag.DestSet (icon_view, DestDefaults.All, icon_dest_target_table, 
 				  DragAction.Copy | DragAction.Move); 
@@ -1620,7 +1616,7 @@ public class MainWindow {
 
 	void HandleTagSizeChange (object sender, EventArgs args)
 	{
-		RadioMenuItem choice = sender as RadioMenuItem;
+		RadioAction choice = sender as RadioAction;
 	
 		//Get this callback twice. Once for the active going menuitem,
 		//once for the inactive leaving one. Ignore the inactive.
@@ -1687,7 +1683,7 @@ public class MainWindow {
 	
 	public void HandleReverseOrder (object sender, EventArgs args)
 	{
-		Gtk.CheckMenuItem item = sender as Gtk.CheckMenuItem;
+		ToggleAction item = sender as ToggleAction;
 
 		if (group_selector.Adaptor.OrderAscending == item.Active)
 			return;
@@ -2686,6 +2682,7 @@ public class MainWindow {
 	
 	void HandleFindAddTagWith (object sender, EventArgs args)
 	{
+		MenuItem find_add_tag_with = uimanager.GetWidget ("/ui/menubar1/find/find_add_tag_with") as MenuItem;
 		if (find_add_tag_with.Submenu != null)
 			find_add_tag_with.Submenu.Dispose ();
 		
@@ -2739,6 +2736,7 @@ public class MainWindow {
 		bool tag_sensitive = tags_selected > 0;
 		bool active_selection = selection.Count > 0;
 		bool single_active = CurrentPhoto != null;
+		MenuItem version_menu_item = uimanager.GetWidget ("/ui/menubar1/file1/version_menu_item") as MenuItem;
 		
 		if (!single_active) {
 			version_menu_item.Sensitive = false;
@@ -2800,8 +2798,9 @@ public class MainWindow {
 	
 		export.Sensitive = active_selection;
 
+		MenuItem toolsmenu = uimanager.GetWidget ("/ui/menubar1/tools") as MenuItem;
 		try {
-			tools.Visible = (tools.Submenu as Menu).Children.Length > 0;
+			tools.Visible = (toolsmenu.Submenu as Menu).Children.Length > 0;
 		} catch {
 			tools.Visible = false;
 		}
@@ -2833,6 +2832,9 @@ public class MainWindow {
 		}
 
 		//if (last_tags_selected_count != tags_selected) {
+		MenuItem find_add_tag = uimanager.GetWidget ("/ui/menubar1/find/find_add_tag") as MenuItem;
+		MenuItem find_add_tag_with = uimanager.GetWidget ("/ui/menubar1/find/find_add_tag_with") as MenuItem;
+
 		((Gtk.Label)find_add_tag.Child).TextWithMnemonic = String.Format (
 			Catalog.GetPluralString ("Find _Selected Tag", "Find _Selected Tags", tags_selected), tags_selected
 		);
@@ -2850,22 +2852,24 @@ public class MainWindow {
 
 	void PopulateExtendableMenus (object o, EventArgs args)
 	{
+		MenuItem exportmenu = uimanager.GetWidget ("/ui/menubar1/file1/export") as MenuItem;
+		MenuItem toolsmenu = uimanager.GetWidget ("/ui/menubar1/tools") as MenuItem;
 		try {
-			if (export.Submenu != null)
-				export.Submenu.Dispose ();
-			if (tools.Submenu != null)
-				tools.RemoveSubmenu ();
+			if (exportmenu.Submenu != null)
+				exportmenu.Submenu.Dispose ();
+			if (toolsmenu.Submenu != null)
+				toolsmenu.RemoveSubmenu ();
 
-			export.Submenu = (Mono.Addins.AddinManager.GetExtensionNode ("/FSpot/Menus/Exports") as FSpot.Extensions.SubmenuNode).GetSubmenu ();
-			export.Submenu.ShowAll ();
+			exportmenu.Submenu = (Mono.Addins.AddinManager.GetExtensionNode ("/FSpot/Menus/Exports") as FSpot.Extensions.SubmenuNode).GetSubmenu ();
+			exportmenu.Submenu.ShowAll ();
 
-			tools.Submenu = (Mono.Addins.AddinManager.GetExtensionNode ("/FSpot/Menus/Tools") as FSpot.Extensions.SubmenuNode).GetSubmenu ();
-			tools.Submenu.ShowAll ();
+			toolsmenu.Submenu = (Mono.Addins.AddinManager.GetExtensionNode ("/FSpot/Menus/Tools") as FSpot.Extensions.SubmenuNode).GetSubmenu ();
+			toolsmenu.Submenu.ShowAll ();
 
-			tools.Visible = (tools.Submenu as Menu).Children.Length > 0;
+			tools.Visible = (toolsmenu.Submenu as Menu).Children.Length > 0;
 		} catch {
-			Console.WriteLine ("There's (maybe) something wrong with some of the installed extensions. You can try removing the directory addin-db-000 from ~/.gnome2/f-spot/");
-			tools.Visible = false;
+			Log.Warning ("There's (maybe) something wrong with some of the installed extensions. You can try removing the directory addin-db-000 from ~/.config/f-spot/");
+			toolsmenu.Visible = false;
 		}
 	}
 

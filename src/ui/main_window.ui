@@ -1,772 +1,700 @@
 <?xml version="1.0"?>
+<!--*- mode: xml -*-->
 <interface>
-  <requires lib="gtk+" version="2.16"/>
-  <!-- interface-naming-policy toplevel-contextual -->
+  <object class="GtkAdjustment" id="adjustment1">
+    <property name="upper">1</property>
+    <property name="lower">0</property>
+    <property name="page_increment">0</property>
+    <property name="step_increment">0.10000000149</property>
+    <property name="page_size">0</property>
+    <property name="value">0.78461538461500002</property>
+  </object>
+  <object class="GtkUIManager" id="uimanager">
+    <child>
+      <object class="GtkActionGroup" id="actiongroup1">
+        <child>
+          <object class="GtkAction" id="file1">
+            <property name="name">file1</property>
+            <property name="label" translatable="yes">_Photo</property>
+          </object>
+        </child>
+        <child>
+          <object class="GtkAction" id="new1">
+            <property name="stock_id">gtk-add</property>
+            <property name="name">new1</property>
+            <property name="label" translatable="yes">_Import...</property>
+            <signal handler="HandleImportCommand" name="activate"/>
+          </object>
+          <accelerator key="n" modifiers="GDK_CONTROL_MASK"/>
+        </child>
+        <child>
+          <object class="GtkAction" id="version_menu_item">
+            <property name="name">version_menu_item</property>
+            <property name="label" translatable="yes">_Version</property>
+          </object>
+        </child>
+        <child>
+          <object class="GtkAction" id="create_version_menu_item">
+            <property name="name">create_version_menu_item</property>
+            <property name="label" translatable="yes">Create _New Version...</property>
+            <signal handler="HandleCreateVersionCommand" name="activate"/>
+          </object>
+        </child>
+        <child>
+          <object class="GtkAction" id="delete_version_menu_item">
+            <property name="name">delete_version_menu_item</property>
+            <property name="label" translatable="yes">_Delete Version</property>
+            <signal handler="HandleDeleteVersionCommand" name="activate"/>
+          </object>
+        </child>
+        <child>
+          <object class="GtkAction" id="rename_version_menu_item">
+            <property name="name">rename_version_menu_item</property>
+            <property name="label" translatable="yes">_Rename Version</property>
+            <signal handler="HandleRenameVersionCommand" name="activate"/>
+          </object>
+        </child>
+        <child>
+          <object class="GtkAction" id="export">
+            <property name="name">export</property>
+            <property name="label" translatable="yes">_Export to</property>
+          </object>
+        </child>
+        <child>
+          <object class="GtkAction" id="print">
+            <property name="stock_id">gtk-print</property>
+            <property name="name">print</property>
+            <signal handler="HandlePrintCommand" name="activate"/>
+          </object>
+          <accelerator key="p" modifiers="GDK_CONTROL_MASK"/>
+        </child>
+        <child>
+          <object class="GtkAction" id="pagesetup_menu_item">
+            <property name="name">pagesetup_menu_item</property>
+            <property name="label" translatable="yes">Page Set_up...</property>
+          </object>
+        </child>
+        <child>
+          <object class="GtkAction" id="send_mail">
+            <property name="name">send_mail</property>
+            <property name="label" translatable="yes">Send by _Mail...</property>
+            <signal handler="HandleSendMailCommand" name="activate"/>
+          </object>
+        </child>
+        <child>
+          <object class="GtkAction" id="close1">
+            <property name="stock_id">gtk-quit</property>
+            <property name="name">close1</property>
+            <property name="label" translatable="yes">_Quit</property>
+            <signal handler="HandleCloseCommand" name="activate"/>
+          </object>
+          <accelerator key="q" modifiers="GDK_CONTROL_MASK"/>
+          <accelerator key="w" modifiers="GDK_CONTROL_MASK"/>
+        </child>
+        <child>
+          <object class="GtkAction" id="edit2">
+            <property name="name">edit2</property>
+            <property name="label" translatable="yes">_Edit</property>
+          </object>
+        </child>
+        <child>
+          <object class="GtkAction" id="copy_location">
+            <property name="name">copy_location</property>
+            <property name="label" translatable="yes">Copy Locat_ion</property>
+            <signal handler="HandleCopyLocation" name="activate"/>
+          </object>
+        </child>
+        <child>
+          <object class="GtkAction" id="select_all">
+            <property name="name">select_all</property>
+            <property name="label" translatable="yes">Select _All</property>
+            <signal handler="HandleSelectAllCommand" name="activate"/>
+          </object>
+          <accelerator key="A" modifiers="GDK_CONTROL_MASK"/>
+        </child>
+        <child>
+          <object class="GtkAction" id="select_none">
+            <property name="name">select_none</property>
+            <property name="label" translatable="yes">Select _None</property>
+            <signal handler="HandleSelectNoneCommand" name="activate"/>
+          </object>
+          <accelerator key="A" modifiers="GDK_SHIFT_MASK | GDK_CONTROL_MASK"/>
+        </child>
+        <child>
+          <object class="GtkAction" id="rotate_left">
+            <property name="name">rotate_left</property>
+            <property name="label" translatable="yes">Rotate _Left</property>
+            <signal handler="HandleRotate270Command" name="activate"/>
+          </object>
+          <accelerator key="bracketleft" modifiers=""/>
+        </child>
+        <child>
+          <object class="GtkAction" id="rotate_right">
+            <property name="name">rotate_right</property>
+            <property name="label" translatable="yes">Rotate _Right</property>
+            <signal handler="HandleRotate90Command" name="activate"/>
+          </object>
+          <accelerator key="bracketright" modifiers=""/>
+        </child>
+        <child>
+          <object class="GtkAction" id="sharpen">
+            <property name="name">sharpen</property>
+            <property name="label" translatable="yes">_Sharpen...</property>
+            <signal handler="HandleSharpen" name="activate"/>
+          </object>
+          <accelerator key="s"/>
+        </child>
+        <child>
+          <object class="GtkAction" id="adjust_time">
+            <property name="name">adjust_time</property>
+            <property name="label" translatable="yes">Adjust _Time...</property>
+            <signal handler="HandleAdjustTime" name="activate"/>
+          </object>
+        </child>
+        <child>
+          <object class="GtkAction" id="update_thumbnail">
+            <property name="name">update_thumbnail</property>
+            <property name="label" translatable="yes">Re_fresh Thumbnail</property>
+            <signal handler="HandleUpdateThumbnailCommand" name="activate"/>
+          </object>
+        </child>
+        <child>
+          <object class="GtkAction" id="delete_from_drive">
+            <property name="name">delete_from_drive</property>
+            <property name="label" translatable="yes">_Delete From Drive</property>
+            <signal handler="HandleDeleteCommand" name="activate"/>
+          </object>
+          <accelerator key="Delete" modifiers="GDK_SHIFT_MASK"/>
+        </child>
+        <child>
+          <object class="GtkAction" id="remove_from_catalog">
+            <property name="name">remove_from_catalog</property>
+            <property name="label" translatable="yes">_Remove From Catalog</property>
+            <signal handler="HandleRemoveCommand" name="activate"/>
+          </object>
+          <accelerator key="Delete"/>
+        </child>
+        <child>
+          <object class="GtkAction" id="set_as_background">
+            <property name="name">set_as_background</property>
+            <property name="label" translatable="yes">Set as _Background</property>
+            <signal handler="HandleSetAsBackgroundCommand" name="activate"/>
+          </object>
+        </child>
+        <child>
+          <object class="GtkAction" id="attach_tag">
+            <property name="stock_id">gtk-add</property>
+            <property name="name">attach_tag</property>
+            <property name="label" translatable="yes">_Attach Tag</property>
+            <signal handler="HandleTagMenuActivate" name="activate"/>
+          </object>
+        </child>
+        <child>
+          <object class="GtkAction" id="remove_tag">
+            <property name="stock_id">gtk-remove</property>
+            <property name="name">remove_tag</property>
+            <property name="label" translatable="yes">Rem_ove Tag</property>
+            <signal handler="HandleTagMenuActivate" name="activate"/>
+          </object>
+        </child>
+        <child>
+          <object class="GtkAction" id="preferences3">
+            <property name="stock_id">gtk-preferences</property>
+            <property name="name">preferences3</property>
+            <signal handler="HandlePreferences" name="activate"/>
+          </object>
+        </child>
+        <child>
+          <object class="GtkAction" id="extensions">
+            <property name="name">extensions</property>
+            <property name="label" translatable="yes">Manage _Extensions</property>
+            <signal handler="HandleManageExtensions" name="activate"/>
+          </object>
+        </child>
+        <child>
+          <object class="GtkAction" id="view1">
+            <property name="name">view1</property>
+            <property name="label" translatable="yes">_View</property>
+          </object>
+        </child>
+        <child>
+          <object class="GtkAction" id="slide_show">
+            <property name="name">slide_show</property>
+            <property name="label" translatable="yes">_Slideshow</property>
+            <signal handler="HandleViewSlideShow" name="activate"/>
+          </object>
+          <accelerator key="F5" modifiers=""/>
+        </child>
+        <child>
+          <object class="GtkAction" id="fullscreen1">
+            <property name="name">fullscreen1</property>
+            <property name="label" translatable="yes">_Fullscreen</property>
+            <signal handler="HandleViewFullscreen" name="activate"/>
+          </object>
+          <accelerator key="F11" modifiers=""/>
+        </child>
+        <child>
+          <object class="GtkAction" id="thumbnails_elements_menu">
+            <property name="name">thumbnails_elements_menu</property>
+            <property name="label" translatable="yes">Thumbnail _elements</property>
+          </object>
+        </child>
+        <child>
+          <object class="GtkToggleAction" id="display_dates_menu_item">
+            <property name="active">True</property>
+            <property name="name">display_dates_menu_item</property>
+            <property name="label" translatable="yes">_Dates</property>
+            <signal handler="HandleDisplayDates" name="activate"/>
+          </object>
+        </child>
+        <child>
+          <object class="GtkToggleAction" id="display_tags_menu_item">
+            <property name="active">True</property>
+            <property name="name">display_tags_menu_item</property>
+            <property name="label" translatable="yes">T_ags</property>
+            <signal handler="HandleDisplayTags" name="activate"/>
+          </object>
+        </child>
+        <child>
+          <object class="GtkToggleAction" id="display_ratings_menu_item">
+            <property name="active">True</property>
+            <property name="name">display_ratings_menu_item</property>
+            <property name="label" translatable="yes">_Ratings</property>
+            <signal handler="HandleDisplayRatings" name="activate"/>
+          </object>
+        </child>
+        <child>
+          <object class="GtkAction" id="components_menu">
+            <property name="name">components_menu</property>
+            <property name="label" translatable="yes">_Components</property>
+          </object>
+        </child>
+        <child>
+          <object class="GtkToggleAction" id="display_sidebar">
+            <property name="active">True</property>
+            <property name="name">display_sidebar</property>
+            <property name="label" translatable="yes">Side_bar</property>
+            <signal handler="HandleDisplayInfoSidebar" name="activate"/>
+          </object>
+          <accelerator key="F9" modifiers=""/>
+        </child>
+        <child>
+          <object class="GtkToggleAction" id="display_timeline">
+            <property name="active">True</property>
+            <property name="name">display_timeline</property>
+            <property name="label" translatable="yes">_Timeline</property>
+            <signal handler="HandleDisplayGroupSelector" name="activate"/>
+          </object>
+        </child>
+        <child>
+          <object class="GtkToggleAction" id="display_filmstrip">
+            <property name="active">True</property>
+            <property name="name">display_filmstrip</property>
+            <property name="label" translatable="yes">_Filmstrip</property>
+            <signal handler="HandleDisplayFilmstrip" name="activate"/>
+          </object>
+        </child>
+        <child>
+          <object class="GtkToggleAction" id="display_toolbar">
+            <property name="active">True</property>
+            <property name="name">display_toolbar</property>
+            <property name="label" translatable="yes">Too_lbar</property>
+            <signal handler="HandleDisplayToolbar" name="activate"/>
+          </object>
+        </child>
+        <child>
+          <object class="GtkAction" id="zoom_in">
+            <property name="stock_id">gtk-zoom-in</property>
+            <property name="name">zoom_in</property>
+            <property name="label" translatable="yes">Zoom _in</property>
+            <signal handler="HandleZoomIn" name="activate"/>
+          </object>
+          <accelerator key="equal" modifiers="GDK_CONTROL_MASK"/>
+          <accelerator key="plus" modifiers="GDK_CONTROL_MASK"/>
+        </child>
+        <child>
+          <object class="GtkAction" id="zoom_out">
+            <property name="stock_id">gtk-zoom-out</property>
+            <property name="name">zoom_out</property>
+            <property name="label" translatable="yes">Zoom _out</property>
+            <signal handler="HandleZoomOut" name="activate"/>
+          </object>
+          <accelerator key="minus" modifiers="GDK_CONTROL_MASK"/>
+        </child>
+        <child>
+          <object class="GtkToggleAction" id="loupe_menu_item">
+            <property name="name">loupe_menu_item</property>
+            <property name="label" translatable="yes">_Loupe</property>
+            <signal handler="HandleLoupe" name="activate"/>
+          </object>
+          <accelerator key="v"/>
+        </child>
+        <child>
+          <object class="GtkAction" id="tag_icon_size">
+            <property name="name">tag_icon_size</property>
+            <property name="label" translatable="yes">_Tag Icons</property>
+          </object>
+        </child>
+        <child>
+          <object class="GtkRadioAction" id="tag_icon_hidden">
+            <property name="name">tag_icon_hidden</property>
+            <property name="label" translatable="yes">_Hidden</property>
+            <signal handler="HandleTagSizeChange" name="activate"/>
+          </object>
+        </child>
+        <child>
+          <object class="GtkRadioAction" id="tag_icon_small">
+            <property name="group">tag_icon_hidden</property>
+            <property name="name">tag_icon_small</property>
+            <property name="label" translatable="yes">_Small</property>
+            <signal handler="HandleTagSizeChange" name="activate"/>
+          </object>
+        </child>
+        <child>
+          <object class="GtkRadioAction" id="tag_icon_medium">
+            <property name="group">tag_icon_hidden</property>
+            <property name="name">tag_icon_medium</property>
+            <property name="label" translatable="yes">_Medium</property>
+            <signal handler="HandleTagSizeChange" name="activate"/>
+          </object>
+        </child>
+        <child>
+          <object class="GtkRadioAction" id="tag_icon_large">
+            <property name="group">tag_icon_hidden</property>
+            <property name="name">tag_icon_large</property>
+            <property name="label" translatable="yes">_Large</property>
+            <signal handler="HandleTagSizeChange" name="activate"/>
+          </object>
+        </child>
+        <child>
+          <object class="GtkAction" id="arranged_by">
+            <property name="name">arranged_by</property>
+            <property name="label" translatable="yes">Arrange _by</property>
+          </object>
+        </child>
+        <child>
+          <object class="GtkRadioAction" id="month">
+            <property name="active">True</property>
+            <property name="name">month</property>
+            <property name="label" translatable="yes">_Month</property>
+            <signal handler="HandleArrangeByTime" name="activate"/>
+          </object>
+        </child>
+        <child>
+          <object class="GtkRadioAction" id="directory">
+            <property name="group">month</property>
+            <property name="name">directory</property>
+            <property name="label" translatable="yes">_Folder</property>
+            <signal handler="HandleArrangeByDirectory" name="activate"/>
+          </object>
+        </child>
+        <child>
+          <object class="GtkToggleAction" id="reverse_order">
+            <property name="name">reverse_order</property>
+            <property name="label" translatable="yes">_Reverse Order</property>
+            <signal handler="HandleReverseOrder" name="activate"/>
+          </object>
+        </child>
+        <child>
+          <object class="GtkAction" id="find">
+            <property name="name">find</property>
+            <property name="label" translatable="yes">Fin_d</property>
+          </object>
+        </child>
+        <child>
+          <object class="GtkAction" id="find_by_tag">
+            <property name="stock_id">gtk-find</property>
+            <property name="name">find_by_tag</property>
+            <signal handler="HandleFindByTag" name="activate"/>
+          </object>
+          <accelerator key="f" modifiers="GDK_CONTROL_MASK"/>
+        </child>
+        <child>
+          <object class="GtkAction" id="find_add_tag">
+            <property name="stock_id">gtk-add</property>
+            <property name="name">find_add_tag</property>
+            <signal handler="HandleIncludeTag" name="activate"/>
+          </object>
+        </child>
+        <child>
+          <object class="GtkAction" id="find_add_tag_with">
+            <property name="name">find_add_tag_with</property>
+            <signal handler="HandleFindAddTagWith" name="activate"/>
+          </object>
+        </child>
+        <child>
+          <object class="GtkAction" id="rate_submenu">
+            <property name="name">rate_submenu</property>
+            <property name="label" translatable="yes">By _Rating</property>
+          </object>
+        </child>
+        <child>
+          <object class="GtkAction" id="set_rating_filter1">
+            <property name="name">set_rating_filter1</property>
+            <property name="label" translatable="yes">_Set Rating filter...</property>
+            <signal handler="HandleSetRatingFilter" name="activate"/>
+          </object>
+        </child>
+        <child>
+          <object class="GtkAction" id="clear_rating_filter">
+            <property name="name">clear_rating_filter</property>
+            <property name="label" translatable="yes">_Clear Rating Filter</property>
+            <signal handler="HandleClearRatingFilter" name="activate"/>
+          </object>
+        </child>
+        <child>
+          <object class="GtkAction" id="date_submenu">
+            <property name="name">date_submenu</property>
+            <property name="label" translatable="yes">By _Date</property>
+          </object>
+        </child>
+        <child>
+          <object class="GtkAction" id="set_date_range1">
+            <property name="name">set_date_range1</property>
+            <property name="label" translatable="yes">_Set Date Range...</property>
+            <signal handler="HandleSetDateRange" name="activate"/>
+          </object>
+        </child>
+        <child>
+          <object class="GtkAction" id="clear_date_range">
+            <property name="name">clear_date_range</property>
+            <property name="label" translatable="yes">_Clear Date Range</property>
+            <signal handler="HandleClearDateRange" name="activate"/>
+          </object>
+        </child>
+        <child>
+          <object class="GtkAction" id="rolls_submenu">
+            <property name="name">rolls_submenu</property>
+            <property name="label" translatable="yes">By _Import Roll</property>
+          </object>
+        </child>
+        <child>
+          <object class="GtkAction" id="last_roll">
+            <property name="name">last_roll</property>
+            <property name="label" translatable="yes">_Last Import Roll</property>
+            <signal handler="HandleSelectLastRoll" name="activate"/>
+          </object>
+        </child>
+        <child>
+          <object class="GtkAction" id="select_rolls">
+            <property name="name">select_rolls</property>
+            <property name="label" translatable="yes">_Select Import Rolls...</property>
+            <signal handler="HandleSelectRolls" name="activate"/>
+          </object>
+        </child>
+        <child>
+          <object class="GtkAction" id="clear_roll_filter">
+            <property name="name">clear_roll_filter</property>
+            <property name="label" translatable="yes">_Clear Roll Filter</property>
+            <signal handler="HandleClearRollFilter" name="activate"/>
+          </object>
+        </child>
+        <child>
+          <object class="GtkToggleAction" id="find_untagged">
+            <property name="name">find_untagged</property>
+            <property name="label" translatable="yes">_Untagged Photos</property>
+            <signal handler="HandleFindUntagged" name="activate"/>
+          </object>
+        </child>
+        <child>
+          <object class="GtkAction" id="tags1">
+            <property name="name">tags1</property>
+            <property name="label" translatable="yes">_Tags</property>
+          </object>
+        </child>
+        <child>
+          <object class="GtkAction" id="create_new_category1">
+            <property name="name">create_new_category1</property>
+            <property name="label" translatable="yes">Create New _Tag...</property>
+            <signal handler="HandleCreateNewCategoryCommand" name="activate"/>
+          </object>
+        </child>
+        <child>
+          <object class="GtkAction" id="edit_selected_tag">
+            <property name="stock_id">gtk-edit</property>
+            <property name="name">edit_selected_tag</property>
+            <property name="label" translatable="yes">_Edit Selected Tag...</property>
+            <signal handler="HandleEditSelectedTag" name="activate"/>
+          </object>
+        </child>
+        <child>
+          <object class="GtkAction" id="delete_selected_tag">
+            <property name="stock_id">gtk-delete</property>
+            <property name="name">delete_selected_tag</property>
+            <property name="label" translatable="yes">_Delete Selected Tag</property>
+            <signal handler="HandleDeleteSelectedTagCommand" name="activate"/>
+          </object>
+        </child>
+        <child>
+          <object class="GtkAction" id="attach_tag_to_selection">
+            <property name="stock_id">gtk-add</property>
+            <property name="name">attach_tag_to_selection</property>
+            <property name="label" translatable="yes">_Attach Tag to Selection</property>
+            <signal handler="HandleAttachTagCommand" name="activate"/>
+          </object>
+          <accelerator key="t" modifiers="GDK_CONTROL_MASK"/>
+        </child>
+        <child>
+          <object class="GtkAction" id="remove_tag_from_selection">
+            <property name="stock_id">gtk-remove</property>
+            <property name="name">remove_tag_from_selection</property>
+            <property name="label" translatable="yes">_Remove Tag From Selection</property>
+            <signal handler="HandleRemoveTagCommand" name="activate"/>
+          </object>
+        </child>
+        <child>
+          <object class="GtkAction" id="tools">
+            <property name="name">tools</property>
+            <property name="label" translatable="yes">_Tools</property>
+          </object>
+        </child>
+        <child>
+          <object class="GtkAction" id="help">
+            <property name="name">help</property>
+            <property name="label" translatable="yes">_Help</property>
+          </object>
+        </child>
+        <child>
+          <object class="GtkAction" id="help1">
+            <property name="stock_id">gtk-help</property>
+            <property name="name">help1</property>
+            <property name="label" translatable="yes">_Contents</property>
+            <signal handler="HandleHelp" name="activate"/>
+          </object>
+          <accelerator key="F1" modifiers=""/>
+        </child>
+        <child>
+          <object class="GtkAction" id="about1">
+            <property name="stock_id">gtk-about</property>
+            <property name="name">about1</property>
+            <signal handler="HandleAbout" name="activate"/>
+          </object>
+        </child>
+      </object>
+    </child>
+    <ui>
+      <menubar name="menubar1">
+        <menu action="file1">
+          <menuitem action="new1"/>
+          <separator/>
+          <menuitem action="version_menu_item"/>
+          <menuitem action="create_version_menu_item"/>
+          <menuitem action="delete_version_menu_item"/>
+          <menuitem action="rename_version_menu_item"/>
+          <separator/>
+          <menuitem action="export"/>
+          <menuitem action="print"/>
+          <menuitem action="pagesetup_menu_item"/>
+          <menuitem action="send_mail"/>
+          <separator/>
+          <menuitem action="close1"/>
+        </menu>
+        <menu action="edit2">
+          <menuitem action="copy_location"/>
+          <menuitem action="select_all"/>
+          <menuitem action="select_none"/>
+          <separator/>
+          <menuitem action="rotate_left"/>
+          <menuitem action="rotate_right"/>
+          <separator/>
+          <menuitem action="sharpen"/>
+          <menuitem action="adjust_time"/>
+          <separator/>
+          <menuitem action="update_thumbnail"/>
+          <menuitem action="delete_from_drive"/>
+          <menuitem action="remove_from_catalog"/>
+          <menuitem action="set_as_background"/>
+          <separator/>
+          <menuitem action="attach_tag"/>
+          <menuitem action="remove_tag"/>
+          <separator/>
+          <menuitem action="preferences3"/>
+          <menuitem action="extensions"/>
+        </menu>
+        <menu action="view1">
+          <menuitem action="slide_show"/>
+          <menuitem action="fullscreen1"/>
+          <separator/>
+          <menu action="thumbnails_elements_menu">
+            <menuitem action="display_dates_menu_item"/>
+            <menuitem action="display_tags_menu_item"/>
+            <menuitem action="display_ratings_menu_item"/>
+          </menu>
+          <menu action="components_menu">
+            <menuitem action="display_sidebar"/>
+            <menuitem action="display_timeline"/>
+            <menuitem action="display_filmstrip"/>
+            <menuitem action="display_toolbar"/>
+          </menu>
+          <separator/>
+          <menuitem action="zoom_in"/>
+          <menuitem action="zoom_out"/>
+          <menuitem action="loupe_menu_item"/>
+          <separator/>
+          <menu action="tag_icon_size">
+            <menuitem action="tag_icon_hidden"/>
+            <menuitem action="tag_icon_small"/>
+            <menuitem action="tag_icon_medium"/>
+            <menuitem action="tag_icon_large"/>
+          </menu>
+          <separator/>
+          <menu action="arranged_by">
+            <menuitem action="month"/>
+            <menuitem action="directory"/>
+          </menu>
+          <menuitem action="reverse_order"/>
+        </menu>
+        <menu action="find">
+          <menuitem action="find_by_tag"/>
+          <menuitem action="find_add_tag"/>
+          <menuitem action="find_add_tag_with"/>
+          <separator/>
+          <menu action="rate_submenu">
+            <menuitem action="set_rating_filter1"/>
+            <menuitem action="clear_rating_filter"/>
+          </menu>
+          <menu action="date_submenu">
+            <menuitem action="set_date_range1"/>
+            <menuitem action="clear_date_range"/>
+          </menu>
+          <menu action="rolls_submenu">
+            <menuitem action="last_roll"/>
+            <menuitem action="select_rolls"/>
+            <menuitem action="clear_roll_filter"/>
+          </menu>
+          <separator/>
+          <menuitem action="find_untagged"/>
+        </menu>
+        <menu action="tags1">
+          <menuitem action="create_new_category1"/>
+          <separator/>
+          <menuitem action="edit_selected_tag"/>
+          <menuitem action="delete_selected_tag"/>
+          <separator/>
+          <menuitem action="attach_tag_to_selection"/>
+          <menuitem action="remove_tag_from_selection"/>
+        </menu>
+        <menuitem action="tools"/>
+        <menu action="help">
+          <menuitem action="help1"/>
+          <menuitem action="about1"/>
+        </menu>
+      </menubar>
+    </ui>
+  </object>
   <object class="GtkWindow" id="main_window">
     <property name="title" translatable="yes">F-Spot</property>
-    <property name="window_position">center</property>
+    <property name="window_position">GTK_WIN_POS_CENTER</property>
     <child>
       <object class="GtkVBox" id="vbox41">
         <property name="visible">True</property>
         <child>
-          <object class="GtkMenuBar" id="menubar1">
+          <object class="GtkMenuBar" constructor="uimanager" id="menubar1">
             <property name="visible">True</property>
-            <child>
-              <object class="GtkMenuItem" id="file1">
-                <property name="visible">True</property>
-                <property name="label" translatable="yes">_Photo</property>
-                <property name="use_underline">True</property>
-                <child type="submenu">
-                  <object class="GtkMenu" id="file1_menu">
-                    <child>
-                      <object class="GtkImageMenuItem" id="new1">
-                        <property name="label" translatable="yes">_Import...</property>
-                        <property name="visible">True</property>
-                        <property name="use_underline">True</property>
-                        <property name="use_stock">True</property>
-                        <accelerator key="n" signal="activate" modifiers="GDK_CONTROL_MASK"/>
-                        <signal name="activate" handler="HandleImportCommand"/>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="GtkSeparatorMenuItem" id="separator4">
-                        <property name="visible">True</property>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="GtkMenuItem" id="version_menu_item">
-                        <property name="visible">True</property>
-                        <property name="label" translatable="yes">_Version</property>
-                        <property name="use_underline">True</property>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="GtkMenuItem" id="create_version_menu_item">
-                        <property name="visible">True</property>
-                        <property name="label" translatable="yes">Create _New Version...</property>
-                        <property name="use_underline">True</property>
-                        <signal name="activate" handler="HandleCreateVersionCommand"/>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="GtkMenuItem" id="delete_version_menu_item">
-                        <property name="visible">True</property>
-                        <property name="label" translatable="yes">_Delete Version</property>
-                        <property name="use_underline">True</property>
-                        <signal name="activate" handler="HandleDeleteVersionCommand"/>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="GtkMenuItem" id="rename_version_menu_item">
-                        <property name="visible">True</property>
-                        <property name="label" translatable="yes">_Rename Version</property>
-                        <property name="use_underline">True</property>
-                        <signal name="activate" handler="HandleRenameVersionCommand"/>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="GtkSeparatorMenuItem" id="separator1">
-                        <property name="visible">True</property>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="GtkMenuItem" id="export">
-                        <property name="visible">True</property>
-                        <property name="label" translatable="yes">_Export to</property>
-                        <property name="use_underline">True</property>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="GtkImageMenuItem" id="print">
-                        <property name="label">gtk-print</property>
-                        <property name="visible">True</property>
-                        <property name="use_underline">True</property>
-                        <property name="use_stock">True</property>
-                        <accelerator key="p" signal="activate" modifiers="GDK_CONTROL_MASK"/>
-                        <signal name="activate" handler="HandlePrintCommand"/>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="GtkMenuItem" id="pagesetup_menu_item">
-                        <property name="visible">True</property>
-                        <property name="label" translatable="yes">Page Set_up...</property>
-                        <property name="use_underline">True</property>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="GtkImageMenuItem" id="send_mail">
-                        <property name="label" translatable="yes">Send by _Mail...</property>
-                        <property name="visible">True</property>
-                        <property name="use_underline">True</property>
-                        <property name="use_stock">True</property>
-                        <signal name="activate" handler="HandleSendMailCommand"/>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="GtkSeparatorMenuItem" id="separator10">
-                        <property name="visible">True</property>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="GtkImageMenuItem" id="close1">
-                        <property name="label" translatable="yes">_Quit</property>
-                        <property name="visible">True</property>
-                        <property name="use_underline">True</property>
-                        <property name="use_stock">True</property>
-                        <accelerator key="w" signal="activate" modifiers="GDK_CONTROL_MASK"/>
-                        <accelerator key="q" signal="activate" modifiers="GDK_CONTROL_MASK"/>
-                        <signal name="activate" handler="HandleCloseCommand"/>
-                      </object>
-                    </child>
-                  </object>
-                </child>
-              </object>
-            </child>
-            <child>
-              <object class="GtkMenuItem" id="edit2">
-                <property name="visible">True</property>
-                <property name="label" translatable="yes">_Edit</property>
-                <property name="use_underline">True</property>
-                <child type="submenu">
-                  <object class="GtkMenu" id="edit2_menu">
-                    <child>
-                      <object class="GtkMenuItem" id="copy_location">
-                        <property name="visible">True</property>
-                        <property name="label" translatable="yes">Copy Locat_ion</property>
-                        <property name="use_underline">True</property>
-                        <signal name="activate" handler="HandleCopyLocation"/>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="GtkMenuItem" id="select_all">
-                        <property name="visible">True</property>
-                        <property name="label" translatable="yes">Select _All</property>
-                        <property name="use_underline">True</property>
-                        <accelerator key="A" signal="activate" modifiers="GDK_CONTROL_MASK"/>
-                        <signal name="activate" handler="HandleSelectAllCommand"/>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="GtkMenuItem" id="select_none">
-                        <property name="visible">True</property>
-                        <property name="label" translatable="yes">Select _None</property>
-                        <property name="use_underline">True</property>
-                        <accelerator key="A" signal="activate" modifiers="GDK_SHIFT_MASK | GDK_CONTROL_MASK"/>
-                        <signal name="activate" handler="HandleSelectNoneCommand"/>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="GtkSeparatorMenuItem" id="separator13">
-                        <property name="visible">True</property>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="GtkImageMenuItem" id="rotate_left">
-                        <property name="label" translatable="yes">Rotate _Left</property>
-                        <property name="visible">True</property>
-                        <property name="use_underline">True</property>
-                        <property name="use_stock">True</property>
-                        <accelerator key="bracketleft" signal="activate"/>
-                        <signal name="activate" handler="HandleRotate270Command"/>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="GtkImageMenuItem" id="rotate_right">
-                        <property name="label" translatable="yes">Rotate _Right</property>
-                        <property name="visible">True</property>
-                        <property name="use_underline">True</property>
-                        <property name="use_stock">True</property>
-                        <accelerator key="bracketright" signal="activate"/>
-                        <signal name="activate" handler="HandleRotate90Command"/>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="GtkSeparatorMenuItem" id="separator2">
-                        <property name="visible">True</property>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="GtkMenuItem" id="sharpen">
-                        <property name="visible">True</property>
-                        <property name="label" translatable="yes">_Sharpen...</property>
-                        <property name="use_underline">True</property>
-                        <accelerator key="s" signal="activate"/>
-                        <signal name="activate" handler="HandleSharpen"/>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="GtkMenuItem" id="adjust_time">
-                        <property name="visible">True</property>
-                        <property name="label" translatable="yes">Adjust _Time...</property>
-                        <property name="use_underline">True</property>
-                        <signal name="activate" handler="HandleAdjustTime"/>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="GtkSeparatorMenuItem" id="separator19">
-                        <property name="visible">True</property>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="GtkMenuItem" id="update_thumbnail">
-                        <property name="visible">True</property>
-                        <property name="label" translatable="yes">Re_fresh Thumbnail</property>
-                        <property name="use_underline">True</property>
-                        <signal name="activate" handler="HandleUpdateThumbnailCommand"/>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="GtkMenuItem" id="delete_from_drive">
-                        <property name="visible">True</property>
-                        <property name="label" translatable="yes">_Delete From Drive</property>
-                        <property name="use_underline">True</property>
-                        <accelerator key="Delete" signal="activate" modifiers="GDK_SHIFT_MASK"/>
-                        <signal name="activate" handler="HandleDeleteCommand"/>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="GtkMenuItem" id="remove_from_catalog">
-                        <property name="visible">True</property>
-                        <property name="label" translatable="yes">_Remove From Catalog</property>
-                        <property name="use_underline">True</property>
-                        <accelerator key="Delete" signal="activate"/>
-                        <signal name="activate" handler="HandleRemoveCommand"/>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="GtkMenuItem" id="set_as_background">
-                        <property name="visible">True</property>
-                        <property name="label" translatable="yes">Set as _Background</property>
-                        <property name="use_underline">True</property>
-                        <signal name="activate" handler="HandleSetAsBackgroundCommand"/>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="GtkSeparatorMenuItem" id="separator11">
-                        <property name="visible">True</property>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="GtkImageMenuItem" id="attach_tag">
-                        <property name="label" translatable="yes">_Attach Tag</property>
-                        <property name="visible">True</property>
-                        <property name="use_underline">True</property>
-                        <property name="use_stock">True</property>
-                        <signal name="activate" handler="HandleTagMenuActivate"/>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="GtkImageMenuItem" id="remove_tag">
-                        <property name="label" translatable="yes">Rem_ove Tag</property>
-                        <property name="visible">True</property>
-                        <property name="use_underline">True</property>
-                        <property name="use_stock">True</property>
-                        <signal name="activate" handler="HandleTagMenuActivate"/>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="GtkSeparatorMenuItem" id="separator111">
-                        <property name="visible">True</property>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="GtkImageMenuItem" id="preferences3">
-                        <property name="label">gtk-preferences</property>
-                        <property name="visible">True</property>
-                        <property name="use_underline">True</property>
-                        <property name="use_stock">True</property>
-                        <signal name="activate" handler="HandlePreferences"/>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="GtkMenuItem" id="extensions">
-                        <property name="visible">True</property>
-                        <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                        <property name="label" translatable="yes">Manage _Extensions</property>
-                        <property name="use_underline">True</property>
-                        <signal name="activate" handler="HandleManageExtensions"/>
-                      </object>
-                    </child>
-                  </object>
-                </child>
-              </object>
-            </child>
-            <child>
-              <object class="GtkMenuItem" id="view1">
-                <property name="visible">True</property>
-                <property name="label" translatable="yes">_View</property>
-                <property name="use_underline">True</property>
-                <child type="submenu">
-                  <object class="GtkMenu" id="view1_menu">
-                    <child>
-                      <object class="GtkImageMenuItem" id="slide_show">
-                        <property name="label" translatable="yes">_Slideshow</property>
-                        <property name="visible">True</property>
-                        <property name="use_underline">True</property>
-                        <property name="use_stock">True</property>
-                        <accelerator key="F5" signal="activate"/>
-                        <signal name="activate" handler="HandleViewSlideShow"/>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="GtkImageMenuItem" id="fullscreen1">
-                        <property name="label" translatable="yes">_Fullscreen</property>
-                        <property name="visible">True</property>
-                        <property name="use_underline">True</property>
-                        <property name="use_stock">True</property>
-                        <accelerator key="F11" signal="activate"/>
-                        <signal name="activate" handler="HandleViewFullscreen"/>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="GtkSeparatorMenuItem" id="separator18">
-                        <property name="visible">True</property>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="GtkMenuItem" id="thumbnails_elements_menu">
-                        <property name="visible">True</property>
-                        <property name="label" translatable="yes">Thumbnail _elements</property>
-                        <property name="use_underline">True</property>
-                        <child type="submenu">
-                          <object class="GtkMenu" id="tag_icon_size_menu">
-                            <child>
-                              <object class="GtkCheckMenuItem" id="display_dates_menu_item">
-                                <property name="visible">True</property>
-                                <property name="label" translatable="yes">_Dates</property>
-                                <property name="use_underline">True</property>
-                                <property name="active">True</property>
-                                <signal name="activate" handler="HandleDisplayDates"/>
-                              </object>
-                            </child>
-                            <child>
-                              <object class="GtkCheckMenuItem" id="display_tags_menu_item">
-                                <property name="visible">True</property>
-                                <property name="label" translatable="yes">T_ags</property>
-                                <property name="use_underline">True</property>
-                                <property name="active">True</property>
-                                <signal name="activate" handler="HandleDisplayTags"/>
-                              </object>
-                            </child>
-                            <child>
-                              <object class="GtkCheckMenuItem" id="display_ratings_menu_item">
-                                <property name="visible">True</property>
-                                <property name="label" translatable="yes">_Ratings</property>
-                                <property name="use_underline">True</property>
-                                <property name="active">True</property>
-                                <signal name="activate" handler="HandleDisplayRatings"/>
-                              </object>
-                            </child>
-                          </object>
-                        </child>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="GtkMenuItem" id="components_menu">
-                        <property name="visible">True</property>
-                        <property name="label" translatable="yes">_Components</property>
-                        <property name="use_underline">True</property>
-                        <child type="submenu">
-                          <object class="GtkMenu" id="tag_icon_size_menu1">
-                            <child>
-                              <object class="GtkCheckMenuItem" id="display_sidebar">
-                                <property name="visible">True</property>
-                                <property name="label" translatable="yes">Side_bar</property>
-                                <property name="use_underline">True</property>
-                                <property name="active">True</property>
-                                <accelerator key="F9" signal="activate"/>
-                                <signal name="activate" handler="HandleDisplayInfoSidebar"/>
-                              </object>
-                            </child>
-                            <child>
-                              <object class="GtkCheckMenuItem" id="display_timeline">
-                                <property name="visible">True</property>
-                                <property name="label" translatable="yes">_Timeline</property>
-                                <property name="use_underline">True</property>
-                                <property name="active">True</property>
-                                <signal name="activate" handler="HandleDisplayGroupSelector"/>
-                              </object>
-                            </child>
-                            <child>
-                              <object class="GtkCheckMenuItem" id="display_filmstrip">
-                                <property name="visible">True</property>
-                                <property name="sensitive">False</property>
-                                <property name="label" translatable="yes">_Filmstrip</property>
-                                <property name="use_underline">True</property>
-                                <property name="active">True</property>
-                                <signal name="activate" handler="HandleDisplayFilmstrip"/>
-                              </object>
-                            </child>
-                            <child>
-                              <object class="GtkCheckMenuItem" id="display_toolbar">
-                                <property name="visible">True</property>
-                                <property name="label" translatable="yes">Too_lbar</property>
-                                <property name="use_underline">True</property>
-                                <property name="active">True</property>
-                                <signal name="activate" handler="HandleDisplayToolbar"/>
-                              </object>
-                            </child>
-                          </object>
-                        </child>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="GtkSeparatorMenuItem" id="separator17">
-                        <property name="visible">True</property>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="GtkImageMenuItem" id="zoom_in">
-                        <property name="label">Zoom _in</property>
-                        <property name="visible">True</property>
-                        <property name="use_underline">True</property>
-                        <property name="use_stock">True</property>
-                        <accelerator key="plus" signal="activate" modifiers="GDK_CONTROL_MASK"/>
-                        <accelerator key="equal" signal="activate" modifiers="GDK_CONTROL_MASK"/>
-                        <signal name="activate" handler="HandleZoomIn"/>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="GtkImageMenuItem" id="zoom_out">
-                        <property name="label">Zoom _out</property>
-                        <property name="visible">True</property>
-                        <property name="use_underline">True</property>
-                        <property name="use_stock">True</property>
-                        <accelerator key="minus" signal="activate" modifiers="GDK_CONTROL_MASK"/>
-                        <signal name="activate" handler="HandleZoomOut"/>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="GtkCheckMenuItem" id="loupe_menu_item">
-                        <property name="visible">True</property>
-                        <property name="label" translatable="yes">_Loupe</property>
-                        <property name="use_underline">True</property>
-                        <accelerator key="v" signal="activate"/>
-                        <signal name="activate" handler="HandleLoupe"/>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="GtkSeparatorMenuItem" id="separator16">
-                        <property name="visible">True</property>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="GtkMenuItem" id="tag_icon_size">
-                        <property name="visible">True</property>
-                        <property name="label" translatable="yes">_Tag Icons</property>
-                        <property name="use_underline">True</property>
-                        <child type="submenu">
-                          <object class="GtkMenu" id="tag_icon_size_menu2">
-                            <child>
-                              <object class="GtkRadioMenuItem" id="tag_icon_hidden">
-                                <property name="visible">True</property>
-                                <property name="label" translatable="yes">_Hidden</property>
-                                <property name="use_underline">True</property>
-                                <signal name="activate" handler="HandleTagSizeChange"/>
-                              </object>
-                            </child>
-                            <child>
-                              <object class="GtkRadioMenuItem" id="tag_icon_small">
-                                <property name="visible">True</property>
-                                <property name="label" translatable="yes">_Small</property>
-                                <property name="use_underline">True</property>
-                                <property name="group">tag_icon_hidden</property>
-                                <signal name="activate" handler="HandleTagSizeChange"/>
-                              </object>
-                            </child>
-                            <child>
-                              <object class="GtkRadioMenuItem" id="tag_icon_medium">
-                                <property name="visible">True</property>
-                                <property name="label" translatable="yes">_Medium</property>
-                                <property name="use_underline">True</property>
-                                <property name="group">tag_icon_hidden</property>
-                                <signal name="activate" handler="HandleTagSizeChange"/>
-                              </object>
-                            </child>
-                            <child>
-                              <object class="GtkRadioMenuItem" id="tag_icon_large">
-                                <property name="visible">True</property>
-                                <property name="label" translatable="yes">_Large</property>
-                                <property name="use_underline">True</property>
-                                <property name="group">tag_icon_hidden</property>
-                                <signal name="activate" handler="HandleTagSizeChange"/>
-                              </object>
-                            </child>
-                          </object>
-                        </child>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="GtkSeparatorMenuItem" id="separator3">
-                        <property name="visible">True</property>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="GtkCheckMenuItem" id="reverse_order">
-                        <property name="visible">True</property>
-                        <property name="label" translatable="yes">_Reverse Order</property>
-                        <property name="use_underline">True</property>
-                        <signal name="activate" handler="HandleReverseOrder"/>
-                      </object>
-                    </child>
-                  </object>
-                </child>
-              </object>
-            </child>
-            <child>
-              <object class="GtkMenuItem" id="find">
-                <property name="visible">True</property>
-                <property name="label" translatable="yes">Fin_d</property>
-                <property name="use_underline">True</property>
-                <child type="submenu">
-                  <object class="GtkMenu" id="find_menu">
-                    <child>
-                      <object class="GtkImageMenuItem" id="find_by_tag">
-                        <property name="visible">True</property>
-                        <property name="use_underline">True</property>
-                        <property name="use_stock">True</property>
-                        <accelerator key="f" signal="activate" modifiers="GDK_CONTROL_MASK"/>
-                        <signal name="activate" handler="HandleFindByTag"/>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="GtkImageMenuItem" id="find_add_tag">
-                        <property name="visible">True</property>
-                        <property name="use_underline">True</property>
-                        <property name="use_stock">True</property>
-                        <signal name="activate" handler="HandleIncludeTag"/>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="GtkMenuItem" id="find_add_tag_with">
-                        <property name="visible">True</property>
-                        <property name="sensitive">False</property>
-                        <property name="use_underline">True</property>
-                        <signal name="activate" handler="HandleFindAddTagWith"/>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="GtkSeparatorMenuItem" id="separator225">
-                        <property name="visible">True</property>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="GtkMenuItem" id="rate_submenu">
-                        <property name="visible">True</property>
-                        <property name="label" translatable="yes">By _Rating</property>
-                        <property name="use_underline">True</property>
-                        <child type="submenu">
-                          <object class="GtkMenu" id="rate_find_menu">
-                            <child>
-                              <object class="GtkMenuItem" id="set_rating_filter1">
-                                <property name="visible">True</property>
-                                <property name="label" translatable="yes">_Set Rating filter...</property>
-                                <property name="use_underline">True</property>
-                                <signal name="activate" handler="HandleSetRatingFilter"/>
-                              </object>
-                            </child>
-                            <child>
-                              <object class="GtkMenuItem" id="clear_rating_filter">
-                                <property name="visible">True</property>
-                                <property name="label" translatable="yes">_Clear Rating Filter</property>
-                                <property name="use_underline">True</property>
-                                <signal name="activate" handler="HandleClearRatingFilter"/>
-                              </object>
-                            </child>
-                          </object>
-                        </child>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="GtkMenuItem" id="date_submenu">
-                        <property name="visible">True</property>
-                        <property name="label" translatable="yes">By _Date</property>
-                        <property name="use_underline">True</property>
-                        <child type="submenu">
-                          <object class="GtkMenu" id="date_find_menu">
-                            <child>
-                              <object class="GtkMenuItem" id="set_date_range1">
-                                <property name="visible">True</property>
-                                <property name="label" translatable="yes">_Set Date Range...</property>
-                                <property name="use_underline">True</property>
-                                <signal name="activate" handler="HandleSetDateRange"/>
-                              </object>
-                            </child>
-                            <child>
-                              <object class="GtkMenuItem" id="clear_date_range">
-                                <property name="visible">True</property>
-                                <property name="sensitive">False</property>
-                                <property name="label" translatable="yes">_Clear Date Range</property>
-                                <property name="use_underline">True</property>
-                                <signal name="activate" handler="HandleClearDateRange"/>
-                              </object>
-                            </child>
-                          </object>
-                        </child>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="GtkImageMenuItem" id="rolls_submenu">
-                        <property name="label" translatable="yes">By _Import Roll</property>
-                        <property name="visible">True</property>
-                        <property name="use_underline">True</property>
-                        <property name="use_stock">True</property>
-                        <child type="submenu">
-                          <object class="GtkMenu" id="rolls_find_menu">
-                            <child>
-                              <object class="GtkMenuItem" id="last_roll">
-                                <property name="visible">True</property>
-                                <property name="label" translatable="yes">_Last Import Roll</property>
-                                <property name="use_underline">True</property>
-                                <signal name="activate" handler="HandleSelectLastRoll"/>
-                              </object>
-                            </child>
-                            <child>
-                              <object class="GtkMenuItem" id="select_rolls">
-                                <property name="visible">True</property>
-                                <property name="label" translatable="yes">_Select Import Rolls...</property>
-                                <property name="use_underline">True</property>
-                                <signal name="activate" handler="HandleSelectRolls"/>
-                              </object>
-                            </child>
-                            <child>
-                              <object class="GtkMenuItem" id="clear_roll_filter">
-                                <property name="visible">True</property>
-                                <property name="label" translatable="yes">_Clear Roll Filter</property>
-                                <property name="use_underline">True</property>
-                                <signal name="activate" handler="HandleClearRollFilter"/>
-                              </object>
-                            </child>
-                          </object>
-                        </child>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="GtkSeparatorMenuItem" id="separator15">
-                        <property name="visible">True</property>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="GtkCheckMenuItem" id="find_untagged">
-                        <property name="visible">True</property>
-                        <property name="label" translatable="yes">_Untagged Photos</property>
-                        <property name="use_underline">True</property>
-                        <signal name="activate" handler="HandleFindUntagged"/>
-                      </object>
-                    </child>
-                  </object>
-                </child>
-              </object>
-            </child>
-            <child>
-              <object class="GtkMenuItem" id="tags1">
-                <property name="visible">True</property>
-                <property name="label" translatable="yes">_Tags</property>
-                <property name="use_underline">True</property>
-                <child type="submenu">
-                  <object class="GtkMenu" id="tags1_menu">
-                    <child>
-                      <object class="GtkImageMenuItem" id="create_new_category1">
-                        <property name="label" translatable="yes">Create New _Tag...</property>
-                        <property name="visible">True</property>
-                        <property name="use_underline">True</property>
-                        <property name="use_stock">True</property>
-                        <signal name="activate" handler="HandleCreateNewCategoryCommand"/>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="GtkSeparatorMenuItem" id="separator8">
-                        <property name="visible">True</property>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="GtkImageMenuItem" id="edit_selected_tag">
-                        <property name="label" translatable="yes">_Edit Selected Tag...</property>
-                        <property name="visible">True</property>
-                        <property name="use_underline">True</property>
-                        <property name="use_stock">True</property>
-                        <signal name="activate" handler="HandleEditSelectedTag"/>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="GtkImageMenuItem" id="delete_selected_tag">
-                        <property name="label" translatable="yes">_Delete Selected Tag</property>
-                        <property name="visible">True</property>
-                        <property name="use_underline">True</property>
-                        <property name="use_stock">True</property>
-                        <signal name="activate" handler="HandleDeleteSelectedTagCommand"/>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="GtkSeparatorMenuItem" id="separator12">
-                        <property name="visible">True</property>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="GtkImageMenuItem" id="attach_tag_to_selection">
-                        <property name="label" translatable="yes">_Attach Tag to Selection</property>
-                        <property name="visible">True</property>
-                        <property name="use_underline">True</property>
-                        <property name="use_stock">True</property>
-                        <accelerator key="t" signal="activate" modifiers="GDK_CONTROL_MASK"/>
-                        <signal name="activate" handler="HandleAttachTagCommand"/>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="GtkImageMenuItem" id="remove_tag_from_selection">
-                        <property name="label" translatable="yes">_Remove Tag From Selection</property>
-                        <property name="visible">True</property>
-                        <property name="use_underline">True</property>
-                        <property name="use_stock">True</property>
-                        <signal name="activate" handler="HandleRemoveTagCommand"/>
-                      </object>
-                    </child>
-                  </object>
-                </child>
-              </object>
-            </child>
-            <child>
-              <object class="GtkMenuItem" id="tools">
-                <property name="visible">True</property>
-                <property name="label" translatable="yes">_Tools</property>
-                <property name="use_underline">True</property>
-              </object>
-            </child>
-            <child>
-              <object class="GtkMenuItem" id="help1">
-                <property name="visible">True</property>
-                <property name="label" translatable="yes">_Help</property>
-                <property name="use_underline">True</property>
-                <child type="submenu">
-                  <object class="GtkMenu" id="help1_menu">
-                    <child>
-                      <object class="GtkImageMenuItem" id="help2">
-                        <property name="label" translatable="yes">_Contents</property>
-                        <property name="visible">True</property>
-                        <property name="use_underline">True</property>
-                        <property name="use_stock">True</property>
-                        <accelerator key="F1" signal="activate"/>
-                        <signal name="activate" handler="HandleHelp"/>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="GtkImageMenuItem" id="about1">
-                        <property name="label">gtk-about</property>
-                        <property name="visible">True</property>
-                        <property name="use_underline">True</property>
-                        <property name="use_stock">True</property>
-                        <signal name="activate" handler="HandleAbout"/>
-                      </object>
-                    </child>
-                  </object>
-                </child>
-              </object>
-            </child>
           </object>
           <packing>
             <property name="expand">False</property>
             <property name="fill">False</property>
-            <property name="position">0</property>
           </packing>
         </child>
         <child>
@@ -800,9 +728,6 @@
                           <placeholder/>
                         </child>
                       </object>
-                      <packing>
-                        <property name="position">0</property>
-                      </packing>
                     </child>
                     <child>
                       <object class="GtkVBox" id="left_vbox">
@@ -834,8 +759,8 @@
                           <object class="GtkScrolledWindow" id="icon_view_scrolled">
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
-                            <property name="hscrollbar_policy">never</property>
-                            <property name="shadow_type">in</property>
+                            <property name="hscrollbar_policy">GTK_POLICY_NEVER</property>
+                            <property name="shadow_type">GTK_SHADOW_IN</property>
                             <child>
                               <placeholder/>
                             </child>
@@ -847,6 +772,7 @@
                             <property name="label" translatable="yes">Browse</property>
                           </object>
                           <packing>
+                            <property name="tab_expand">False</property>
                             <property name="tab_fill">False</property>
                           </packing>
                         </child>
@@ -859,6 +785,7 @@
                           </object>
                           <packing>
                             <property name="position">1</property>
+                            <property name="tab_expand">False</property>
                           </packing>
                         </child>
                         <child type="tab">
@@ -868,6 +795,7 @@
                           </object>
                           <packing>
                             <property name="position">1</property>
+                            <property name="tab_expand">False</property>
                             <property name="tab_fill">False</property>
                           </packing>
                         </child>
@@ -888,7 +816,6 @@
                           <packing>
                             <property name="expand">False</property>
                             <property name="fill">False</property>
-                            <property name="position">0</property>
                           </packing>
                         </child>
                         <child>
@@ -903,9 +830,8 @@
                           <object class="GtkButton" id="tag_close_button">
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
-                            <property name="receives_default">False</property>
-                            <property name="relief">none</property>
-                            <signal name="pressed" handler="HandleTagBarCloseButtonPressed"/>
+                            <property name="relief">GTK_RELIEF_NONE</property>
+                            <signal handler="HandleTagBarCloseButtonPressed" name="pressed"/>
                             <child>
                               <object class="GtkImage" id="image23">
                                 <property name="visible">True</property>
@@ -922,7 +848,7 @@
                       </object>
                       <packing>
                         <property name="expand">False</property>
-                        <property name="pack_type">end</property>
+                        <property name="pack_type">GTK_PACK_END</property>
                         <property name="position">1</property>
                       </packing>
                     </child>
@@ -933,9 +859,6 @@
                   </packing>
                 </child>
               </object>
-              <packing>
-                <property name="position">0</property>
-              </packing>
             </child>
           </object>
           <packing>
@@ -959,7 +882,6 @@
               <packing>
                 <property name="expand">False</property>
                 <property name="fill">False</property>
-                <property name="position">0</property>
               </packing>
             </child>
             <child>
@@ -978,12 +900,12 @@
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="events">GDK_BUTTON_PRESS_MASK</property>
-                    <signal name="button_press_event" handler="HandleZoomOut"/>
+                    <property name="tooltip-text" translatable="yes">Zoom out</property>
+                    <signal handler="HandleZoomOut" name="button_press_event"/>
                     <child>
                       <object class="GtkImage" id="far_image">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
-                        <property name="tooltip_text" translatable="yes">Zoom Out</property>
                         <property name="icon_name">view-far</property>
                       </object>
                     </child>
@@ -991,7 +913,6 @@
                   <packing>
                     <property name="expand">False</property>
                     <property name="fill">False</property>
-                    <property name="position">0</property>
                   </packing>
                 </child>
                 <child>
@@ -999,7 +920,7 @@
                     <property name="width_request">100</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
-                    <property name="adjustment">zoom_adjustment</property>
+                    <property name="adjustment">adjustment1</property>
                     <property name="draw_value">False</property>
                   </object>
                   <packing>
@@ -1011,12 +932,12 @@
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="events">GDK_BUTTON_PRESS_MASK</property>
-                    <signal name="button_press_event" handler="HandleZoomIn"/>
+                    <property name="tooltip-text" translatable="yes">Zoom in</property>
+                    <signal handler="HandleZoomIn" name="button_press_event"/>
                     <child>
                       <object class="GtkImage" id="near_image">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
-                        <property name="tooltip_text" translatable="yes">Zoom In</property>
                         <property name="icon_name">view-near</property>
                       </object>
                     </child>
@@ -1039,16 +960,11 @@
           <packing>
             <property name="expand">False</property>
             <property name="fill">False</property>
-            <property name="pack_type">end</property>
+            <property name="pack_type">GTK_PACK_END</property>
             <property name="position">3</property>
           </packing>
         </child>
       </object>
     </child>
-  </object>
-  <object class="GtkAdjustment" id="zoom_adjustment">
-    <property name="value">0.78000000000000003</property>
-    <property name="upper">1</property>
-    <property name="step_increment">0.10000000000000001</property>
   </object>
 </interface>
