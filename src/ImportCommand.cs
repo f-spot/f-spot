@@ -623,8 +623,8 @@ public class ImportCommand : GladeDialog
 		GtkUtil.ModifyColors (photo_scrolled);
 		GtkUtil.ModifyColors (photo_view);
 
-		photo_view.Pixbuf = GtkUtil.TryLoadIcon (FSpot.Global.IconTheme, "f-spot", 48, (Gtk.IconLookupFlags)0);
-		photo_view.ZoomFit (true);
+		photo_view.Pixbuf = GtkUtil.TryLoadIcon (FSpot.Global.IconTheme, "f-spot", 128, (Gtk.IconLookupFlags)0);
+		photo_view.ZoomFit (false);
 			
 		tag_entry = new FSpot.Widgets.TagEntry (MainWindow.Toplevel.Database.Tags, false);
 		tag_entry.UpdateFromTagNames (new string []{});
