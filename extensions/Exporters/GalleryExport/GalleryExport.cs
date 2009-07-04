@@ -59,9 +59,7 @@ namespace G2Export {
 			gallery = gal;
 			connected = true;
 
-			object val = Preferences.Get (LIGHTTPD_WORKAROUND_KEY);
-			if (val != null)
-				gallery.expect_continue = !(bool)val;
+			gallery.expect_continue = Preferences.Get<bool> (LIGHTTPD_WORKAROUND_KEY);
 
 			return gallery;
 		}
@@ -975,35 +973,29 @@ namespace G2Export {
 
 		void LoadPreference (string key)
 		{
-			object val = Preferences.Get (key);
-
-			if (val == null)
-				return;
-
-			//System.Console.WriteLine ("Setting {0} to {1}", key, val);
-
 			switch (key) {
 			case SCALE_KEY:
-				if (scale_check.Active != (bool) val)
-					scale_check.Active = (bool) val;
+				if (scale_check.Active != Preferences.Get<bool> (key))
+					scale_check.Active = Preferences.Get<bool> (key);
 				break;
 
 			case SIZE_KEY:
-				size_spin.Value = (double) (int) val;
+				size_spin.Value = (double) Preferences.Get<int> (key);
 				break;
 
 			case BROWSER_KEY:
-				if (browser_check.Active != (bool) val)
-					browser_check.Active = (bool) val;
+				if (browser_check.Active != Preferences.Get<bool> (key))
+					browser_check.Active = Preferences.Get<bool> (key);
 				break;
 
 			case META_KEY:
-				if (meta_check.Active != (bool) val)
-					meta_check.Active = (bool) val;
+				if (meta_check.Active != Preferences.Get<bool> (key))
+					meta_check.Active = Preferences.Get<bool> (key);
 				break;
+				
 			case ROTATE_KEY:
-				if (rotate_check.Active != (bool) val)
-					rotate_check.Active = (bool) val;
+				if (rotate_check.Active != Preferences.Get<bool> (key))
+					rotate_check.Active = Preferences.Get<bool> (key);
 				break;
 			}
 		}

@@ -239,11 +239,11 @@ namespace MergeDbExtension
 
 			// Don't copy if we are already home
 			if (photo_path == destination)
-				newp = to_store.Create (destination, roll_map [photo.RollId], out pixbuf);
+				newp = to_store.Create (UriUtils.PathToFileUri (destination), roll_map [photo.RollId], out pixbuf);
 			else {
 				System.IO.File.Copy (photo_path, destination);
 
-				newp = to_store.Create (destination, photo_path, roll_map [photo.RollId], out pixbuf);
+				newp = to_store.Create (UriUtils.PathToFileUri (destination), UriUtils.PathToFileUri (photo_path), roll_map [photo.RollId], out pixbuf);
 				try {
 					File.SetAttributes (destination, File.GetAttributes (destination) & ~FileAttributes.ReadOnly);
 					DateTime create = File.GetCreationTime (photo_path);
