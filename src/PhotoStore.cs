@@ -949,9 +949,9 @@ public class PhotoStore : DbStore<Photo> {
 	}
 
 	[Obsolete ("drop this, use IQueryCondition correctly instead")]
-	public void QueryToTemp (string temp_table, Tag [] tags, string extra_condition, DateRange range, RollSet importidrange, RatingRange ratingrange, OrderByTime orderbytime, OrderByUri orderbyuri)
+	public void QueryToTemp (string temp_table, Tag [] tags, string extra_condition, DateRange range, RollSet importidrange, RatingRange ratingrange, OrderByTime orderbytime)
 	{
-		QueryToTemp (temp_table, FSpot.OrTerm.FromTags(tags), extra_condition, range, importidrange, ratingrange, orderbytime, orderbyuri);
+		QueryToTemp (temp_table, FSpot.OrTerm.FromTags(tags), extra_condition, range, importidrange, ratingrange, orderbytime);
 	}
 
 	[Obsolete ("drop this, use IQueryCondition correctly instead")]
@@ -961,7 +961,7 @@ public class PhotoStore : DbStore<Photo> {
 	}
 
 	[Obsolete ("drop this, use IQueryCondition correctly instead")]
-	public void QueryToTemp (string temp_table, Term searchexpression, string extra_condition, DateRange range, RollSet importidrange, RatingRange ratingrange, OrderByTime orderbytime, OrderByUri orderbyuri)
+	public void QueryToTemp (string temp_table, Term searchexpression, string extra_condition, DateRange range, RollSet importidrange, RatingRange ratingrange, OrderByTime orderbytime)
 	{
 		bool hide = (extra_condition == null);
 
@@ -1029,8 +1029,6 @@ public class PhotoStore : DbStore<Photo> {
 		query_builder.Append (" ORDER BY ");
 		query_builder.Append (orderbytime.SqlClause ());
 
-		query_builder.Append (", ");
-		query_builder.Append (orderbyuri.SqlClause ());
 		QueryToTemp (temp_table, query_builder.ToString ());
 	}
 

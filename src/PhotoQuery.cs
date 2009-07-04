@@ -90,7 +90,7 @@ namespace FSpot {
 			foreach (IQueryCondition condition in conditions)
 				SetCondition (condition);
 
-			store.QueryToTemp (temp_table, (Tag [])null, null, Range, RollSet, RatingRange, OrderByTime, OrderByUri);
+			RequestReload ();
 		}
 
 		public int Count {
@@ -236,10 +236,6 @@ namespace FSpot {
 			}
 		}
 
-		OrderByUri OrderByUri {
-			get { return new OrderByUri (OrderByTime.Asc);}
-		}
-
 		public bool TimeOrderAsc {
 			get { return OrderByTime.Asc; }
 			set {
@@ -251,11 +247,6 @@ namespace FSpot {
 		public void RequestReload ()
 		{
 			uint timer = Log.DebugTimerStart ();
-		/*	if (untagged)
-				store.QueryToTemp (temp_table, new UntaggedCondition (), Range, RollSet, RatingRange, OrderByTime, OrderByUri);
-			else
-				store.QueryToTemp (temp_table, terms, extra_condition, Range, RollSet, RatingRange, OrderByTime, OrderByUri);
-*/
 			IQueryCondition[] condition_array;
 			
 			int i = 0;

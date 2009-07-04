@@ -29,7 +29,7 @@ namespace FSpot.Query {
 
 		public string SqlClause ()
 		{
-			return String.Format (" time {0}", asc ? "ASC" : "DESC");
+			return String.Format (" time {0}, uri {0} ", asc ? "ASC" : "DESC");
 		}
 	}
 }
