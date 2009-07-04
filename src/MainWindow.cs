@@ -1564,30 +1564,6 @@ public class MainWindow {
 	{
 		Mono.Addins.Gui.AddinManagerWindow.Run (main_window);
 	}
-	
-	void HandleViewDirectory (object sender, EventArgs args)
-	{
-		Gtk.Window win = new Gtk.Window ("Directory View");
-		FSpot.Widgets.IconView view = new FSpot.Widgets.IconView (new FSpot.DirectoryCollection (System.IO.Directory.GetCurrentDirectory ()));
-		new FSpot.PreviewPopup (view);
-
-		view.DisplayTags = false;
-
-		Gtk.ScrolledWindow scrolled = new ScrolledWindow ();
-		win.Add (scrolled);
-		scrolled.Add (view);
-		win.ShowAll ();
-	}
-
-	void HandleViewSelection (object sender, EventArgs args)
-	{
-		Gtk.Window win = new Gtk.Window ("This is a window");
-		Gtk.ScrolledWindow scroll = new Gtk.ScrolledWindow ();
-	
-		win.Add (scroll);
-		scroll.Add (new TrayView (icon_view.Selection));
-		win.ShowAll ();
-	}
 
 	private void TestDisplay ()
 	{
