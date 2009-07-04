@@ -308,7 +308,7 @@ GCONF_PKG = -pkg:gconf-sharp-2.0
 endif
 
 CMS_ASSEMBLIES = 				\
-	$(NUNIT_PKG)				\
+	$(NUNIT_LIBS)				\
 	-pkg:gtk-sharp-2.0
 
 CORE_ASSEMBLIES =				\
@@ -388,7 +388,7 @@ F_SPOT_ASSEMBLIES = 				\
 	-r:FSpot.Widgets.dll			\
 	-r:FSpot.Platform.dll			\
 	-r:Cms.dll				\
-	$(NUNIT_PKG)				\
+	$(NUNIT_LIBS)				\
 	$(GCONF_PKG)				\
 	$(GTKHTML_SHARP_PKG)			\
 	-pkg:glade-sharp-2.0			\

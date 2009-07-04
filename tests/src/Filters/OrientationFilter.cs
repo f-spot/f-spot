@@ -1,4 +1,3 @@
-#if ENABLE_NUNIT
 using NUnit.Framework;
 namespace FSpot.Filters.Test
 {
@@ -14,5 +13,3 @@ namespace FSpot.Filters.Test
 		}
 	}
 }
-#endif
-

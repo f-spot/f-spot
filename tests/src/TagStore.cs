@@ -1,4 +1,3 @@
-#if ENABLE_NUNIT
 using NUnit.Framework;
 using System;
 using System.IO;
@@ -34,20 +33,20 @@ namespace FSpot.Tests
 		public void InsertCloseAndCheck ()
 		{
 			Category people_category = db.Tags.GetTagByName ("People") as Category;
-			db.Tags.CreateTag (people_category, "Anna");
-			db.Tags.CreateTag (people_category, "Ettore");
-			Tag miggy_tag = db.Tags.CreateTag (people_category, "Miggy");
+			db.Tags.CreateTag (people_category, "Anna", true);
+			db.Tags.CreateTag (people_category, "Ettore", true);
+			Tag miggy_tag = db.Tags.CreateTag (people_category, "Miggy", true);
 			miggy_tag.SortPriority = -1;
 			db.Tags.Commit (miggy_tag);
 	
 			Category places_category = db.Tags.GetTagByName ("Places") as Category;
-			db.Tags.CreateTag (places_category, "Milan");
-			db.Tags.CreateTag (places_category, "Boston");
+			db.Tags.CreateTag (places_category, "Milan", true);
+			db.Tags.CreateTag (places_category, "Boston", true);
 	
-			Category exotic_category = db.Tags.CreateCategory (places_category, "Exotic");
-			db.Tags.CreateTag (exotic_category, "Bengalore");
-			db.Tags.CreateTag (exotic_category, "Manila");
-			Tag tokyo_tag = db.Tags.CreateTag (exotic_category, "Tokyo");
+			Category exotic_category = db.Tags.CreateCategory (places_category, "Exotic", true);
+			db.Tags.CreateTag (exotic_category, "Bengalore", true);
+			db.Tags.CreateTag (exotic_category, "Manila", true);
+			Tag tokyo_tag = db.Tags.CreateTag (exotic_category, "Tokyo", true);
 	
 			tokyo_tag.Category = places_category;
 			tokyo_tag.Name = "Paris";
@@ -80,5 +79,3 @@ namespace FSpot.Tests
 
 	}
 }
-#endif
-

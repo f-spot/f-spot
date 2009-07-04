@@ -1,4 +1,5 @@
 #if ENABLE_NUNIT
+using FSpot.Utils;
 using NUnit.Framework;
 using System.Collections;
 using System.IO;
@@ -94,18 +95,18 @@ namespace FSpot.Tests
 		[Test]
 		public void PopulatendRetrieve ()
 		{
-			Tag portraits_tag = db.Tags.CreateTag (null, "Portraits");
-			Tag landscapes_tag = db.Tags.CreateTag (null, "Landscapes");
-			Tag favorites_tag = db.Tags.CreateTag (null, "Street");
+			/*Tag portraits_tag = */db.Tags.CreateTag (null, "Portraits", false);
+			Tag landscapes_tag = db.Tags.CreateTag (null, "Landscapes", false);
+			Tag favorites_tag = db.Tags.CreateTag (null, "Street", false);
 	
-			uint portraits_tag_id = portraits_tag.Id;
-			uint landscapes_tag_id = landscapes_tag.Id;
-			uint favorites_tag_id = favorites_tag.Id;
+			//uint portraits_tag_id = portraits_tag.Id;
+			//uint landscapes_tag_id = landscapes_tag.Id;
+			//uint favorites_tag_id = favorites_tag.Id;
 	
 			Pixbuf unused_thumbnail;
 	
-			Photo ny_landscape = db.Photos.Create ("./pano.jpg", 0, out unused_thumbnail);
-			ny_landscape.Description = "Pretty NY skyline";
+			Photo ny_landscape = db.Photos.Create (UriUtils.PathToFileUri ("../images/pano.jpg"), 0, out unused_thumbnail);
+			ny_landscape.Description = "Snowy landscape";
 			ny_landscape.AddTag (landscapes_tag);
 			ny_landscape.AddTag (favorites_tag);
 			db.Photos.Commit (ny_landscape);

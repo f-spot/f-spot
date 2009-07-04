@@ -1,4 +1,3 @@
-#if ENABLE_NUNIT
 using NUnit.Framework;
 using Gdk;
 using System.IO;
@@ -47,5 +46,4 @@ namespace FSpot.Filters.Tests
 		}
 	}
 }
-#endif	
 

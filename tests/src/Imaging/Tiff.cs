@@ -1,6 +1,5 @@
 // Author: Larry
 
-#if ENABLE_NUNIT
 	[TestFixture]
 	public class Tests {
 		public Tests ()
@@ -72,5 +71,4 @@
 			}
 		}
 	}
-#endif
 

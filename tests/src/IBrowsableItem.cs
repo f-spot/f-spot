@@ -1,4 +1,3 @@
-#if ENABLE_NUNIT
 using NUnit.Framework;
 
 namespace FSpot.Tests
@@ -78,5 +77,3 @@ namespace FSpot.Tests
 		}
 	}
 }
-#endif
-

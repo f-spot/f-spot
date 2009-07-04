@@ -146,42 +146,27 @@ AC_SUBST(LINK_DBUS)
 AC_SUBST(PATH_DBUS)
 
 dnl -- nunit
-AC_ARG_ENABLE([nunit],[AC_HELP_STRING([--disable-unit], [build without unit tests])],,)
-AM_CONDITIONAL(DISABLE_NUNIT, test "x$enable_nunit" = "xno")
+PKG_CHECK_MODULES(NUNIT, nunit >= $NUNIT_REQUIRED, 
+	do_tests="yes", do_tests="no")
 
-if test "x$enable_nunit" = "xno"; then
-	NUNIT_DEFINES=''
-	NUNIT_PKG=''
+AC_SUBST(NUNIT_LIBS)
+AM_CONDITIONAL(ENABLE_TESTS, test "x$do_tests" = "xyes")
 
-else 	
-NUNIT_DEFINES='-d:ENABLE_NUNIT'
-PKG_CHECK_MODULES(MONO_NUNIT, mono-nunit >= $MONO_REQUIRED,
-[
-  NUNIT_LIBS=$MONO_NUNIT_LIBS
-  NUNIT_PKG='-pkg:mono-nunit'
-],
-[
-  PKG_CHECK_MODULES(NUNIT22, nunit-2.2 >= $MONO_REQUIRED,
-  [
-    NUNIT_LIBS=$NUNIT22_LIBS
-    NUNIT_PKG='-pkg:nunit-2.2'
-  ],
-  [
-    PKG_CHECK_MODULES(NUNIT, nunit >= $MONO_REQUIRED,
-    [
-	NUNIT_LIBS=$NUNIT_LIBS
-	NUNIT_PKG='-pkg:nunit'
-    ],
-    [
-        NUNIT_DEFINES=''
-	NUNIT_PKG=''
-    ])
-  ])
-])
+if test "x$do_tests" = "xno"; then
+	PKG_CHECK_MODULES(NUNIT, mono-nunit >= 2.0, 
+		do_tests="yes", do_tests="no")
+	
+	AC_SUBST(NUNIT_LIBS)
+	AM_CONDITIONAL(ENABLE_TESTS, test "x$do_tests" = "xyes")
+
+	if test "x$do_tests" = "xno"; then
+		NUNIT_DEFINES=''
+		AC_MSG_WARN([Could not find nunit: tests will not be available.])
+	else
+		NUNIT_DEFINES='-d:ENABLE_NUNIT'
+	fi
+	AC_SUBST(NUNIT_DEFINES)
 fi
-
-AC_SUBST(NUNIT_PKG)
-AC_SUBST(NUNIT_DEFINES)
 
 
 dnl --- GConf
@@ -356,6 +341,8 @@ extensions/Tools/ChangePhotoPath/Makefile
 extensions/Tools/HashJob/Makefile
 extensions/Tools/DevelopInUFraw/Makefile
 extensions/Tools/MergeDb/Makefile
+tests/Makefile
+tests/src/Makefile
 f-spot.pc
 f-spot.spec
 f-spot.desktop.in

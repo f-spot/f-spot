@@ -18,6 +18,7 @@ SUBDIRS = 		\
 	po		\
 	src		\
 	extensions	\
+	tests		\
 	GKeyFile
 
 DIST_SUBDIRS = 		\
@@ -40,6 +41,7 @@ DIST_SUBDIRS = 		\
 	po		\
 	src		\
 	extensions	\
+	tests		\
 	GKeyFile
 
 desktop_in_files=	\
@@ -95,3 +97,10 @@ install-data-hook:
 
 uninstall-hook: 
 	$(UPDATE_DESKTOP)
+
+if ENABLE_TESTS
+test:
+	@pushd tests/src/; \
+	make test; \
+	popd;
+endif

@@ -1,4 +1,3 @@
-#if ENABLE_NUNIT
 using NUnit.Framework;
 
 namespace Cms.Tests
@@ -58,4 +57,3 @@ namespace Cms.Tests
 		}
 	}
 }
-#endif 		
