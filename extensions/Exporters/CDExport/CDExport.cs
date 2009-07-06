@@ -65,7 +65,7 @@ namespace FSpotCDExport {
 			Dialog.Modal = false;
 			Dialog.TransientFor = null;
 
-			size_label.Text = SizeUtil.ToHumanReadable (total_size);
+			size_label.Text = Format.SizeForDisplay (total_size);
 
 			thumb_scrolledwindow.Add (view);
 			Dialog.ShowAll ();

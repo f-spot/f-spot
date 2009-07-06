@@ -27,6 +27,7 @@ REFS = \
 	$(LINK_MONO_ADDINS)					\
 	$(LINK_SEMWEB)						\
 	$(LINK_GIOSHARP)						\
+	$(LINK_GTKSHARPBEANS)		\	
 	$(LINK_GPHOTO2)						\
 	-r:Mono.Posix.dll
 

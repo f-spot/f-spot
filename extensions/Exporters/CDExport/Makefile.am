@@ -20,6 +20,7 @@ REFS =					\
 
 PKGS =					\
 	-pkg:gnome-vfs-sharp-2.0	\
+	$(LINK_GTKSHARPBEANS)		\	
 	-pkg:gtk-sharp-2.0		\
 	$(LINK_GIOSHARP)		\
 	-pkg:glade-sharp-2.0
