@@ -280,6 +280,9 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/Widgets/Filmstrip.cs		\
 	$(srcdir)/Widgets/FindBar.cs		\
 	$(srcdir)/Widgets/FolderTreePage.cs	\
+	$(srcdir)/Widgets/FolderTreeView.cs	\
+	$(srcdir)/Widgets/FolderTreeModel.cs	\
+	$(srcdir)/Widgets/CellRendererTextProgress.cs\
 	$(srcdir)/Widgets/IEffect.cs		\
 	$(srcdir)/Widgets/ITransition.cs	\
 	$(srcdir)/Widgets/IconView.cs		\
