@@ -862,12 +862,6 @@ public class MainWindow {
 		return SelectedPhotos (SelectedIds ());
 	}
 
-	[Obsolete ("MARKED FOR REMOVAL")]
-	public Photo [] ActivePhotos () 
-	{
-		return query.Photos;
-	}
-
 	public PhotoQuery Query {
 		get { return query; }
 	}
@@ -900,12 +894,7 @@ public class MainWindow {
 	//
 	// Tag Selection Drag Handlers
 	//
-	[Obsolete ("Use AddTagExtended (int [], Tag []) instead")]
-	public void AddTagExtended (int num, Tag [] tags)
-	{
-		AddTagExtended (new int [] {num}, tags);
-	}
-
+	
 	public void AddTagExtended (int [] nums, Tag [] tags)
 	{
 		foreach (int num in nums)
@@ -2887,7 +2876,7 @@ public class MainWindow {
 		try {
 			application.LaunchUris (uri_list, null);
 		} catch (System.Exception) {
-			Log.ErrorFormat ("Failed to lauch {0}", application.Name);
+			Log.Error ("Failed to lauch {0}", application.Name);
 		}
 	}
 

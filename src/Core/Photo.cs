@@ -349,13 +349,13 @@ namespace FSpot
 					version = CreateDefaultModifiedVersion (DefaultVersionId, false);
 	
 				try {
-					string version_path = VersionUri (version).LocalPath;
-				
-					using (Stream stream = System.IO.File.OpenWrite (version_path)) {
+					Uri versionUri = VersionUri (version);
+
+					using (Stream stream = System.IO.File.OpenWrite (versionUri.LocalPath)) {
 						img.Save (buffer, stream);
 					}
 					(GetVersion (version) as PhotoVersion).MD5Sum = GenerateMD5 (VersionUri (version));
-					FSpot.ThumbnailGenerator.Create (version_path).Dispose ();
+					FSpot.ThumbnailGenerator.Create (versionUri).Dispose ();
 					DefaultVersionId = version;
 				} catch (System.Exception e) {
 					System.Console.WriteLine (e);

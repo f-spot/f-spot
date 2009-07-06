@@ -919,31 +919,26 @@ namespace FSpotGoogleExport {
 
 		void LoadPreference (string key)
 		{
-			object val = Preferences.Get (key);
-
-			if (val == null)
-				return;
-
 			switch (key) {
 			case SCALE_KEY:
-				if (scale_check.Active != (bool) val) {
-					scale_check.Active = (bool) val;
-					rotate_check.Sensitive = !(bool) val;
+				if (scale_check.Active != Preferences.Get<bool> (key)) {
+					scale_check.Active = Preferences.Get<bool> (key);
+					rotate_check.Sensitive = ! Preferences.Get<bool> (key);
 				}
 				break;
 
 			case SIZE_KEY:
-				size_spin.Value = (double) (int) val;
+				size_spin.Value = (double) Preferences.Get<int> (key);
 				break;
 
 			case BROWSER_KEY:
-				if (browser_check.Active != (bool) val)
-					browser_check.Active = (bool) val;
+				if (browser_check.Active != Preferences.Get<bool> (key))
+					browser_check.Active = Preferences.Get<bool> (key);
 				break;
 
 			case ROTATE_KEY:
-				if (rotate_check.Active != (bool) val)
-					rotate_check.Active = (bool) val;
+				if (rotate_check.Active != Preferences.Get<bool> (key))
+					rotate_check.Active = Preferences.Get<bool> (key);
 				break;
 
 //			case Preferences.EXPORT_GALLERY_META:
@@ -952,8 +947,8 @@ namespace FSpotGoogleExport {
 //				break;
 
 			case TAG_KEY:
-				if (tag_check.Active != (bool) val)
-					tag_check.Active = (bool) val;
+				if (tag_check.Active != Preferences.Get<bool> (key))
+					tag_check.Active = Preferences.Get<bool> (key);
 				break;
 			}
 		}

@@ -317,7 +317,7 @@ namespace FSpot.Widgets {
 	        static void SetSourcePixbuf (Context ctx, Gdk.Pixbuf pixbuf, double x, double y) 	 
 	        { 	 
 	                gdk_cairo_set_source_pixbuf (ctx.Handle, pixbuf.Handle, x, y); 	 
-	        } 	 
+	        }	 
 #endif				
 
 		protected override bool OnExposeEvent (Gdk.EventExpose args)
@@ -334,15 +334,6 @@ namespace FSpot.Widgets {
 			return false;
 
 		}
-		
-//                [DllImport ("libcairo-2.dll")]
-//                static extern void cairo_user_to_device (IntPtr cr, ref double x, ref double y);
-//
-//		private static void UserToDevice (Context ctx, ref double x, ref double y)
-//		{
-//			cairo_user_to_device (ctx.Handle, ref x, ref y);
-//		}
-
 		
 		bool dragging = false;
 		bool rotate = false;

@@ -71,7 +71,7 @@ public class PhotoStore : DbStore<Photo> {
 			try {
 				thumbnail = ((FSpot.IThumbnailContainer)img).GetEmbeddedThumbnail ();
 			} catch (Exception e) {
-				Log.DebugFormat ("Exception while loading embedded thumbail {0}", e.ToString ());
+				Log.Debug ("Exception while loading embedded thumbail {0}", e.ToString ());
 			}
 		}
 
@@ -160,18 +160,6 @@ public class PhotoStore : DbStore<Photo> {
 		}
 
 		return null;
-	}
-
-	[Obsolete ("Use Create (Uri, uint, out Pixbuf) instead")]
-	public Photo Create (string path, uint roll_id, out Pixbuf thumbnail)
-	{
-		return Create (path, path, roll_id, out thumbnail);
-	}
-
-	[Obsolete ("Use Create (Uri, Uri, uint, out Pixbuf) instead")]
-	public Photo Create (string new_path, string orig_path, uint roll_id, out Pixbuf thumbnail)
-	{
-		return Create (UriUtils.PathToFileUri (new_path), UriUtils.PathToFileUri (orig_path), roll_id, out thumbnail);
 	}
 
 	public Photo Create (System.Uri uri, uint roll_id, out Pixbuf thumbnail)
@@ -346,12 +334,6 @@ public class PhotoStore : DbStore<Photo> {
 
 		return photo;
 	}
-
-	[Obsolete ("Use GetByUri instead")]
-	public Photo GetByPath (string path)
-	{
-		return GetByUri (UriUtils.PathToFileUri (path));
-	}	
 
 	public Photo GetByUri (System.Uri uri)
 	{
@@ -632,7 +614,7 @@ public class PhotoStore : DbStore<Photo> {
 	public event EventHandler<DbItemEventArgs<Photo>> ItemsRemovedOverDBus;
 
 	public Photo CreateOverDBus (string new_path, string orig_path, uint roll_id, out Gdk.Pixbuf pixbuf)  {
-		Photo photo = Create (new_path, orig_path, roll_id, out pixbuf);
+		Photo photo = Create (UriUtils.PathToFileUri (new_path), UriUtils.PathToFileUri (orig_path), roll_id, out pixbuf);
 		EmitAddedOverDBus (photo);
 
 		return photo;
@@ -916,27 +898,8 @@ public class PhotoStore : DbStore<Photo> {
 		return query_result.ToArray ();
 	}
 
-//	[Obsolete ("No longer make any sense with uris...")]
-//	public Photo [] Query (System.IO.DirectoryInfo dir)
-//	{
-//		return Query (new DbCommand (
-//			"SELECT photos.id, "			+
-//				"photos.time, "			+
-//				"photos.uri, "			+
-//				"photos.description, "		+
-//				"photos.roll_id, "		+
-//				"photos.default_version_id, "	+
-//				"photos.rating "		+
-//			"FROM photos " 				+
-//			"WHERE uri LIKE \"file://:dir%\" "	+
-//			"AND uri NOT LIKE \"file://:dir/%/%\"",
-//			"dir", dir.FullName ));
-//	}
-
 	public Photo [] Query (System.Uri uri)
 	{
-		Log.DebugFormat ("Query Uri {0}", uri);
-		
 		/* query by file */
 		if (uri.IsFile) {
 			return Query (new DbCommand (

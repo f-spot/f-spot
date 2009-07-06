@@ -494,61 +494,60 @@ namespace FSpotFlickrExport {
 
 		void LoadPreference (string key)
 		{
-			object val = Preferences.Get (key);
-
-			if (val == null)
-				return;
-
-			//System.Console.WriteLine("Setting {0} to {1}", key, val);
-			bool active;
-
 			switch (key) {
 			case SCALE_KEY:
-				if (scale_check.Active != (bool) val)
-					scale_check.Active = (bool) val;
+				if (scale_check.Active != Preferences.Get<bool> (key))
+					scale_check.Active = Preferences.Get<bool> (key);
 				break;
+				
 			case SIZE_KEY:
-				size_spin.Value = (double) (int) val;
+				size_spin.Value = (double) Preferences.Get<int> (key);
 				break;
+				
 			case BROWSER_KEY:
-				if (open_check.Active != (bool) val)
-					open_check.Active = (bool) val;
+				if (open_check.Active != Preferences.Get<bool> (key))
+					open_check.Active = Preferences.Get<bool> (key);
 				break;
+				
 			case TAGS_KEY:
-				if (tag_check.Active != (bool) val)
-					tag_check.Active = (bool) val;
+				if (tag_check.Active != Preferences.Get<bool> (key))
+					tag_check.Active = Preferences.Get<bool> (key);
 				break;
+				
 			case TAG_HIERARCHY_KEY:
-				if (hierarchy_check.Active != (bool) val)
-					hierarchy_check.Active = (bool) val;
+				if (hierarchy_check.Active != Preferences.Get<bool> (key))
+					hierarchy_check.Active = Preferences.Get<bool> (key);
 				break;
+				
 			case IGNORE_TOP_LEVEL_KEY:
-				if (ignore_top_level_check.Active != (bool) val)
-					ignore_top_level_check.Active = (bool) val;
+				if (ignore_top_level_check.Active != Preferences.Get<bool> (key))
+					ignore_top_level_check.Active = Preferences.Get<bool> (key);
 				break;
+				
 			case STRIP_META_KEY:
-				if (meta_check.Active != (bool) val)
-					meta_check.Active = (bool) val;
+				if (meta_check.Active != Preferences.Get<bool> (key))
+					meta_check.Active = Preferences.Get<bool> (key);
 				break;
+				
 			case FlickrRemote.TOKEN_FLICKR:
 			case FlickrRemote.TOKEN_23HQ:
 			case FlickrRemote.TOKEN_ZOOOMR:
-				token = (string) val;
-			        break;
+				token = Preferences.Get<string> (key);
+				break;
+				
 			case PUBLIC_KEY:
-				active = (bool) val;
-				if (public_radio.Active != active)
-					public_radio.Active = active;
+				if (public_radio.Active != Preferences.Get<bool> (key))
+					public_radio.Active = Preferences.Get<bool> (key);
 				break;
+				
 			case FAMILY_KEY:
-				active = (bool) val;
-				if (family_check.Active != active)
-					family_check.Active = active;
+				if (family_check.Active != Preferences.Get<bool> (key))
+					family_check.Active = Preferences.Get<bool> (key);
 				break;
+				
 			case FRIENDS_KEY:
-				active = (bool) val;
-				if (friend_check.Active != active)
-					friend_check.Active = active;
+				if (friend_check.Active != Preferences.Get<bool> (key))
+					friend_check.Active = Preferences.Get<bool> (key);
 				break;
 				/*
 			case Preferences.EXPORT_FLICKR_EMAIL:

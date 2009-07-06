@@ -182,22 +182,15 @@ namespace DevelopInUFRawExtension
 
 		void LoadPreference (string key)
 		{
-			object val = Preferences.Get (key);
-
-			if (val == null)
-				return;
-
-			Log.Debug (String.Format ("Setting {0} to {1}", key, val));
-
 			switch (key) {
 				case UFRAW_JPEG_QUALITY_KEY:
-					ufraw_jpeg_quality = (int) val;
+					ufraw_jpeg_quality = Preferences.Get<int> (key);
 					break;
 				case UFRAW_ARGUMENTS_KEY:
-					ufraw_args = (string) val;
+					ufraw_args = Preferences.Get<string> (key);
 					break;
 				case UFRAW_BATCH_ARGUMENTS_KEY:
-					ufraw_batch_args = (string) val;
+					ufraw_batch_args = Preferences.Get<string> (key);
 					break;
 			}
 		}

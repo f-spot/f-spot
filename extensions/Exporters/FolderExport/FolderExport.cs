@@ -142,8 +142,8 @@ namespace FSpotFolderExport {
 
 			uri_chooser.LocalOnly = false;
 
-			if (Preferences.Get (URI_KEY) != null && Preferences.Get (URI_KEY) as string != String.Empty)
-				uri_chooser.SetUri (Preferences.Get (URI_KEY) as string);
+			if (Preferences.Get<string> (URI_KEY) != String.Empty)
+				uri_chooser.SetUri (Preferences.Get<string> (URI_KEY));
 			else
 				uri_chooser.SetFilename (uri_path);
 
@@ -259,7 +259,7 @@ namespace FSpotFolderExport {
 				if (gallery is OriginalGallery) {
 					bool include_tarballs;
 					try {
-						include_tarballs = (bool)Preferences.Get (INCLUDE_TARBALLS_KEY);
+						include_tarballs = Preferences.Get<bool> (INCLUDE_TARBALLS_KEY);
 					} catch (NullReferenceException){
 						include_tarballs = true;
 						Preferences.Set (INCLUDE_TARBALLS_KEY, true);
@@ -402,47 +402,40 @@ namespace FSpotFolderExport {
 
 		void LoadPreference (string key)
 		{
-			object val = Preferences.Get (key);
-
-			if (val == null)
-				return;
-
-			//System.Console.WriteLine ("Setting {0} to {1}", key, val);
-
 			switch (key) {
 			case SCALE_KEY:
-				if (scale_check.Active != (bool) val)
-					scale_check.Active = (bool) val;
+				if (scale_check.Active != Preferences.Get<bool> (key))
+					scale_check.Active = Preferences.Get<bool> (key);
 				break;
 
 			case SIZE_KEY:
-				size_spin.Value = (double) (int) val;
+				size_spin.Value = (double) Preferences.Get<int> (key);
 				break;
 
 			case OPEN_KEY:
-				if (open_check.Active != (bool) val)
-					open_check.Active = (bool) val;
+				if (open_check.Active != Preferences.Get<bool> (key))
+					open_check.Active = Preferences.Get<bool> (key);
 				break;
 
 			case ROTATE_KEY:
-				if (rotate_check.Active != (bool) val)
-					rotate_check.Active = (bool) val;
+				if (rotate_check.Active != Preferences.Get<bool> (key))
+					rotate_check.Active = Preferences.Get<bool> (key);
 				break;
 
 			case EXPORT_TAGS_KEY:
-				if (export_tags_check.Active != (bool) val)
-					export_tags_check.Active = (bool) val;
+				if (export_tags_check.Active != Preferences.Get<bool> (key))
+					export_tags_check.Active = Preferences.Get<bool> (key);
 				break;
 
 			case EXPORT_TAG_ICONS_KEY:
-				if (export_tag_icons_check.Active != (bool) val)
-					export_tag_icons_check.Active = (bool) val;
+				if (export_tag_icons_check.Active != Preferences.Get<bool> (key))
+					export_tag_icons_check.Active = Preferences.Get<bool> (key);
 				break;
 
 			case METHOD_KEY:
-				static_radio.Active = (string) val == "static";
-				original_radio.Active = (string) val == "original";
-				plain_radio.Active = (string) val == "folder";
+				static_radio.Active = (Preferences.Get<string> (key) == "static");
+				original_radio.Active = (Preferences.Get<string> (key) == "original");
+				plain_radio.Active = (Preferences.Get<string> (key) == "folder");
 				break;
 			}
 		}
@@ -559,7 +552,7 @@ namespace FSpotFolderExport {
 
 						bool sharpen;
 						try {
-							sharpen = (bool)Preferences.Get (FolderExport.SHARPEN_KEY);
+							sharpen = Preferences.Get<bool> (FolderExport.SHARPEN_KEY);
 						} catch (NullReferenceException) {
 							sharpen = true;
 							Preferences.Set (FolderExport.SHARPEN_KEY, true);

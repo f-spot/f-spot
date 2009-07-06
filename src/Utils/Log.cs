@@ -273,12 +273,6 @@ namespace FSpot.Utils
         #endregion
 
         #region Public Trace Methods
-	[Obsolete ("use Trace ()")]
-        public static void TraceFormat (string group, string format, params object [] args)
-	{
-		Trace (group, format, args);
-	}
-
         public static void Trace (string group, string format, params object [] args)
         {
             if (Tracing) {
@@ -294,32 +288,26 @@ namespace FSpot.Utils
                 Commit (LogEntryType.Debug, message, null, false);
             }
         }
-        
-	[Obsolete ("use Debug ()")]
-        public static void DebugFormat (string format, params object [] args)
-	{
-		Debug (format, args);
-	}
-
-        public static void Debug (string format, params object [] args)
+ 
+		public static void Debug (string format, params object [] args)
         {
             if (Debugging) {
                 Debug (String.Format (format, args));
             }
         }
 	
-	public static void DebugException (Exception e)
-	{
-	    if (Debugging)
-	        Exception (e);
-	}
-
-	public static void DebugException (string message, Exception e)
-	{
-	    if (Debugging)
-		Exception (message, e);
-
-	}
+		public static void DebugException (Exception e)
+		{
+		    if (Debugging)
+		        Exception (e);
+		}
+	
+		public static void DebugException (string message, Exception e)
+		{
+		    if (Debugging)
+			Exception (message, e);
+	
+		}
         #endregion
         
         #region Public Information Methods
@@ -333,12 +321,6 @@ namespace FSpot.Utils
             Information (message, null, showUser);
         }
         
-	[Obsolete ("use Information ()")]
-        public static void InformationFormat (string format, params object [] args)
-	{
-		Information (format, args);
-	}
-
         public static void Information (string format, params object [] args)
         {
             Information (String.Format (format, args), null, false);
@@ -355,14 +337,8 @@ namespace FSpot.Utils
         {
             Warning (message, null, showUser);
         }
-        
-	[Obsolete ("use Warning ()")]
-        public static void WarningFormat (string format, params object [] args)
-	{
-		Warning (format, args);	
-	}
 
-        public static void Warning (string format, params object [] args)
+		public static void Warning (string format, params object [] args)
         {
             Warning (String.Format (format, args), false);
         }
@@ -378,12 +354,6 @@ namespace FSpot.Utils
         {
             Error (message, null, showUser);
         }
-
-	[Obsolete ("use Error ()")]
-        public static void ErrorFormat (string format, params object [] args)
-	{
-		Error (format, args);
-	}
 
         public static void Error (string format, params object [] args)
         {
@@ -420,17 +390,12 @@ namespace FSpot.Utils
             // FIXME: We should save these to an actual log file
             Log.Warning (message ?? "Caught an exception", builder.ToString (), false);
         }
-        
-	[Obsolete ("use Exception ()")]
-	public static void ExceptionFormat (Exception e, string format, params object [] args)
-	{
-		Exception (e, format, args);
-	}
-
-	public static void Exception (Exception e, string format, params object [] args)
-	{
-		Exception (String.Format (format, args), e);
-	}
-        #endregion
+		
+		public static void Exception (Exception e, string format, params object [] args)
+		{
+			Exception (String.Format (format, args), e);
+		}
+		
+	#endregion
     }
 }

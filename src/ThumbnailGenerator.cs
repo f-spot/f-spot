@@ -22,12 +22,6 @@ namespace FSpot {
 		public const string ThumbImageWidth = "tEXt::Thumb::Image::Width";
 		public const string ThumbImageHeight = "tEXt::Thumb::Image::Height"; 
 
-		[Obsolete ("Use Create (Uri) instead")]
-		public static Gdk.Pixbuf Create (string path)
-		{
-			return Create (UriUtils.PathToFileUri (path));
-		}
-		
 		public static Gdk.Pixbuf Create (Uri uri)
 		{
 			try {
