@@ -209,11 +209,19 @@ namespace FSpot.Widgets
 
 		public void ZoomFit (bool upscale)
 		{
-			if (this.upscale != upscale)
-				min_zoom = ComputeMinZoom (upscale);
+			Gtk.ScrolledWindow scrolled = Parent as Gtk.ScrolledWindow;
+			if (scrolled != null)
+				scrolled.SetPolicy (Gtk.PolicyType.Never, Gtk.PolicyType.Never);
+			
+			min_zoom = ComputeMinZoom (upscale);
+			
 			this.upscale = upscale;
+
 			fit = true;
 			DoZoom (MIN_ZOOM, false, 0, 0);
+
+			if (scrolled != null)
+				GLib.Idle.Add (delegate {scrolled.SetPolicy (Gtk.PolicyType.Automatic, Gtk.PolicyType.Automatic); return false;});
 		}
 
 		public Point WindowCoordsToImage (Point win)
@@ -437,6 +445,9 @@ namespace FSpot.Widgets
 				ScrollTo (XOffset, (int)(Vadjustment.Upper - Vadjustment.PageSize), false);
 
 			base.OnSizeAllocated (allocation);
+
+			if (fit)
+				ZoomFit (upscale);
 		}
 
 		protected override bool OnExposeEvent (Gdk.EventExpose evnt)
