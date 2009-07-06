@@ -17,10 +17,7 @@ using GLib;
 using FSpot;
 using FSpot.Utils;
 
-using Banshee.Database;
-
 using Mono.Unix;
-using Mono.Data.SqliteClient;
 
 namespace FSpot.Widgets
 {
@@ -67,7 +64,7 @@ namespace FSpot.Widgets
 			}
 		}
 		
-		private void PixbufDataFunc (TreeViewColumn tree_column, CellRenderer cell, TreeModel tree_model, TreeIter iter)
+		void PixbufDataFunc (TreeViewColumn tree_column, CellRenderer cell, TreeModel tree_model, TreeIter iter)
 		{
 			CellRendererPixbuf renderer = cell as CellRendererPixbuf;
 			string text = folder_tree_model.GetFolderNameByIter (iter);
@@ -98,7 +95,7 @@ namespace FSpot.Widgets
 			}
 		}
 		
-		private void FolderDataFunc (TreeViewColumn tree_column, CellRenderer cell, TreeModel tree_model, TreeIter iter)
+		void FolderDataFunc (TreeViewColumn tree_column, CellRenderer cell, TreeModel tree_model, TreeIter iter)
 		{
 			CellRendererTextProgress renderer = cell as CellRendererTextProgress;
 			

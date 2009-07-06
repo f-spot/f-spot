@@ -35,6 +35,7 @@ namespace FSpot.Widgets
 		
 		protected override bool OnButtonPressEvent (Gdk.EventButton button)
 		{
+Console.WriteLine ("OnButtonPress");
 			bool call_parent = true;
 			bool on_expander;
 			drag_started = ignore_button_release = false;
@@ -56,8 +57,10 @@ namespace FSpot.Widgets
 						((button.State & ModifierType.ControlMask) != 0 || (button.State & ModifierType.ShiftMask) == 0)) {
 						int expander_size = (int) StyleGetProperty("expander-size");
 						int horizontal_separator = (int) StyleGetProperty("horizontal-separator");
+						// EXPANDER_EXTRA_PADDING from GtkTreeView
+						expander_size += 4;
 						on_expander = (button.X <= horizontal_separator / 2 + path.Depth * expander_size);
-						
+Console.WriteLine ("onexpander = {0}", on_expander);	
 						row_selected_on_button_down = Selection.PathIsSelected (path);
 						if (row_selected_on_button_down) {
 							call_parent = on_expander;
@@ -85,6 +88,7 @@ namespace FSpot.Widgets
 		
 		protected override bool OnButtonReleaseEvent (Gdk.EventButton button)
 		{
+Console.WriteLine ("OnButtonRelease");
 			if (!drag_started && !ignore_button_release)
 				DidNotDrag (button);
 			
