@@ -35,7 +35,6 @@ namespace FSpot.Widgets
 		
 		protected override bool OnButtonPressEvent (Gdk.EventButton button)
 		{
-Console.WriteLine ("OnButtonPress");
 			bool call_parent = true;
 			bool on_expander;
 			drag_started = ignore_button_release = false;
@@ -60,7 +59,6 @@ Console.WriteLine ("OnButtonPress");
 						// EXPANDER_EXTRA_PADDING from GtkTreeView
 						expander_size += 4;
 						on_expander = (button.X <= horizontal_separator / 2 + path.Depth * expander_size);
-Console.WriteLine ("onexpander = {0}", on_expander);	
 						row_selected_on_button_down = Selection.PathIsSelected (path);
 						if (row_selected_on_button_down) {
 							call_parent = on_expander;
@@ -88,7 +86,6 @@ Console.WriteLine ("onexpander = {0}", on_expander);
 		
 		protected override bool OnButtonReleaseEvent (Gdk.EventButton button)
 		{
-Console.WriteLine ("OnButtonRelease");
 			if (!drag_started && !ignore_button_release)
 				DidNotDrag (button);
 			
