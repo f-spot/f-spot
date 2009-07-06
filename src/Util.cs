@@ -10,6 +10,7 @@
 using System.Runtime.InteropServices;
 using System.Threading;
 using System.Collections;
+using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using System;
@@ -18,7 +19,7 @@ using System;
 namespace FSpot.Utils
 {
 
-	public class UriList : ArrayList {
+	public class UriList : List<Uri> {
 		public UriList (FSpot.IBrowsableItem [] photos) {
 			foreach (FSpot.IBrowsableItem p in photos) {
 				Uri uri;
@@ -107,20 +108,10 @@ namespace FSpot.Utils
 			LoadFromString (System.Text.Encoding.UTF8.GetString (selection.Data));
 		}*/
 	
-		public new Uri [] ToArray ()
-		{
-			return ToArray (typeof (Uri)) as Uri [];
-		}
-		
 		/*public void Add (string path)
 		{
 			AddUnknown (path);
 		}*/
-	
-		public void Add (Uri uri)
-		{
-			Add ((object)uri);
-		}
 	
 		public void Add (FSpot.IBrowsableItem item)
 		{
