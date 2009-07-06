@@ -21,14 +21,13 @@ using Gtk;
 using Mono.Unix;
 
 using FSpot;
-using FSpot.Gui;
 using FSpot.Utils;
 using FSpot.Widgets;
 using FSpot.UI.Dialog;
 
 
 
-namespace FSpot.Gui {
+namespace FSpot {
 	
 	public class TagSelectionWidget : SaneTreeView {
 		

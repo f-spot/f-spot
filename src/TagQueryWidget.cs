@@ -6,7 +6,6 @@ using Gtk;
 using Gdk;
 
 using FSpot.Utils;
-using FSpot.Gui;
 
 namespace FSpot
 {

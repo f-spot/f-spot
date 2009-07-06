@@ -2,7 +2,6 @@ using System;
 using Gdk;
 using Gtk;
 using Glade;
-using FSpot.Gui;
 
 namespace FSpot.UI.Dialog {
 	public class TagSelectionDialog : GladeDialog 

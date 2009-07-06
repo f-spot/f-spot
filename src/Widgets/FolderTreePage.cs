@@ -16,7 +16,6 @@ using Gtk;
 using GLib;
 
 using FSpot;
-using FSpot.Gui;
 using FSpot.Utils;
 
 using Banshee.Database;

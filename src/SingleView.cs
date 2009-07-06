@@ -9,7 +9,6 @@ using FSpot.Utils;
 using FSpot.UI.Dialog;
 using FSpot.Widgets;
 using FSpot.Platform;
-using FSpot.Gui;
 
 namespace FSpot {
 	public class SingleView {
@@ -109,8 +108,8 @@ namespace FSpot {
 			collection = new UriCollection (uris);
 
 			TargetEntry [] dest_table = {
-				FSpot.Gui.DragDropTargets.UriListEntry,
-				FSpot.Gui.DragDropTargets.PlainTextEntry
+				FSpot.DragDropTargets.UriListEntry,
+				FSpot.DragDropTargets.PlainTextEntry
 			};
 			
 			directory_view = new FSpot.Widgets.IconView (collection);
@@ -468,8 +467,8 @@ namespace FSpot {
 
 		void HandleDragDataReceived (object sender, DragDataReceivedArgs args) 
 		{
-			if (args.Info == FSpot.Gui.DragDropTargets.UriListEntry.Info
-			    || args.Info == FSpot.Gui.DragDropTargets.PlainTextEntry.Info) {
+			if (args.Info == FSpot.DragDropTargets.UriListEntry.Info
+			    || args.Info == FSpot.DragDropTargets.PlainTextEntry.Info) {
 				
 				/* 
 				 * If the drop is coming from inside f-spot then we don't want to import 

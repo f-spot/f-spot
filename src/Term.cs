@@ -12,10 +12,6 @@ using Mono.Unix;
 using Gtk;
 using Gdk;
 
-using FSpot.Gui;
-
-
-
 namespace FSpot {
 	public abstract class Term {
 		private ArrayList sub_terms = new ArrayList ();

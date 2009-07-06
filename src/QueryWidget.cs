@@ -15,7 +15,6 @@ using Mono.Unix;
 
 using Gtk;
 
-using FSpot.Gui;
 using FSpot.Utils;
 using FSpot.Query;
 using FSpot.Widgets;

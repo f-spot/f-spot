@@ -1,5 +1,5 @@
 /*
- * FSpot.Gui.DragDropTargets.cs
+ * FSpot.DragDropTargets.cs
  *
  * Author(s)
  * 	Mike Gemuende <mike@gemuende.de>
@@ -10,7 +10,7 @@
 using System;
 using Gtk;
 
-namespace FSpot.Gui
+namespace FSpot
 {	
 	public static class DragDropTargets
 	{

@@ -1,5 +1,5 @@
 /*
- * FSpot.Gui.SelectionDataExtensions.cs
+ * FSpot.SelectionDataExtensions.cs
  *
  * Author(s)
  * 	Mike Gemuende <mike@gemuende.de>
@@ -17,7 +17,7 @@ using Gdk;
 using FSpot;
 using FSpot.Utils;
 
-namespace FSpot.Gui
+namespace FSpot
 {
 	public static class SelectionDataExtensions
 	{

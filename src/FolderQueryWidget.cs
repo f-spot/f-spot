@@ -1,5 +1,5 @@
 /*
- * FSpot.Gui.FolderQueryWidget.cs
+ * FSpot.FolderQueryWidget.cs
  *
  * Author(s)
  * 	Mike Gemuende <mike@gemuende.de>
@@ -20,7 +20,7 @@ using FSpot;
 using FSpot.Utils;
 using FSpot.Query;
 
-namespace FSpot.Gui
+namespace FSpot
 {
 	
 	
