@@ -34,10 +34,14 @@ namespace FSpot.Widgets
 		readonly int progress_width;
 		readonly int progress_height;
 		
-		Gdk.Color green;
-		Gdk.Color yellow;
-		Gdk.Color red;
+		static Gdk.Color green = new Gdk.Color (0xcc, 0x00, 0x00);
+		static Gdk.Color yellow = new Gdk.Color (0xed, 0xd4, 0x00);
+		static Gdk.Color red = new Gdk.Color (0x73, 0xd2, 0x16);
 		
+		public CellRendererTextProgress () : this (70, 8)
+		{
+		}
+
 		public CellRendererTextProgress (int progress_width, int progress_height)
 		{
 			this.progress_width = progress_width;
@@ -46,17 +50,9 @@ namespace FSpot.Widgets
 			Xalign = 0.0f;
 			Yalign = 0.5f;
 			
-			Xpad = 2;
-			Ypad = 2;
-			
-			green = new Gdk.Color (0xcc, 0x00, 0x00);
-			yellow = new Gdk.Color (0xed, 0xd4, 0x00);
-			red = new Gdk.Color (0x73, 0xd2, 0x16);
+			Xpad = Ypad = 2;
 		}
 		
-		public CellRendererTextProgress () : this (70, 8)
-		{
-		}
 		
 		int progress_value;
 		
@@ -96,7 +92,7 @@ namespace FSpot.Widgets
 			}
 		}
 		
-		private void UpdateLayout (Widget widget)
+		void UpdateLayout (Widget widget)
 		{
 			text_layout = new Pango.Layout (widget.PangoContext);
 
@@ -106,7 +102,7 @@ namespace FSpot.Widgets
 				text_layout.SetText (text);
 		}
 		
-		private Gdk.Color GetValueColor ()
+		Gdk.Color GetValueColor ()
 		{
 			if (progress_value <= 33)
 				return green;
@@ -163,8 +159,6 @@ namespace FSpot.Widgets
 			
 			
 			/* second render the progress bar */
-			
-			/* dispose cairo object after usage */
 			using (Cairo.Context cairo_context = Gdk.CairoHelper.Create (window)) {
 				
 				width = progress_width;
@@ -193,6 +187,5 @@ namespace FSpot.Widgets
 				cairo_context.Fill ();
 			}
 		}
-
 	}
 }
