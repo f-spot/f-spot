@@ -373,22 +373,6 @@
           </object>
         </child>
         <child>
-          <object class="GtkRadioAction" id="month">
-            <property name="active">True</property>
-            <property name="name">month</property>
-            <property name="label" translatable="yes">_Month</property>
-            <signal handler="HandleArrangeByTime" name="activate"/>
-          </object>
-        </child>
-        <child>
-          <object class="GtkRadioAction" id="directory">
-            <property name="group">month</property>
-            <property name="name">directory</property>
-            <property name="label" translatable="yes">_Folder</property>
-            <signal handler="HandleArrangeByDirectory" name="activate"/>
-          </object>
-        </child>
-        <child>
           <object class="GtkToggleAction" id="reverse_order">
             <property name="name">reverse_order</property>
             <property name="label" translatable="yes">_Reverse Order</property>
@@ -638,10 +622,6 @@
             <menuitem action="tag_icon_large"/>
           </menu>
           <separator/>
-          <menu action="arranged_by">
-            <menuitem action="month"/>
-            <menuitem action="directory"/>
-          </menu>
           <menuitem action="reverse_order"/>
         </menu>
         <menu action="find">

@@ -52,10 +52,13 @@ namespace FSpot.Widgets
 	{	
 		FolderTreeModel folder_tree_model;
 	
-		public FolderTreeWidget ()
+		public FolderTreeWidget () : this (new FolderTreeModel ())
+		{
+		}
+
+		public FolderTreeWidget (FolderTreeModel tree_model) : base (tree_model)
 		{		
-			folder_tree_model = new FolderTreeModel ();
-			Model = folder_tree_model;
+			folder_tree_model = tree_model;
 			
 			HeadersVisible = false;
 			
@@ -63,11 +66,11 @@ namespace FSpot.Widgets
 			
 			CellRendererPixbuf pixbuf_renderer = new CellRendererPixbuf ();
 			column.PackStart (pixbuf_renderer, false);
-			column.SetCellDataFunc (pixbuf_renderer, PixbufDataFunc);
+			column.SetCellDataFunc (pixbuf_renderer, PixbufDataFunc as TreeCellDataFunc);
 			
 			CellRendererTextProgress folder_renderer = new CellRendererTextProgress ();
 			column.PackStart (folder_renderer, true);
-			column.SetCellDataFunc (folder_renderer, FolderDataFunc);
+			column.SetCellDataFunc (folder_renderer, FolderDataFunc as TreeCellDataFunc);
 			
 			AppendColumn (column);
 			

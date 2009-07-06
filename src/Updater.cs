@@ -505,7 +505,7 @@ namespace FSpot.Database {
 					"	id			INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, \n" +
 					"	time			INTEGER NOT NULL, \n" +
 					"	base_uri		STRING NOT NULL, \n" +
-				    "	filename		STRING NOT NULL, \n" +
+					"	filename		STRING NOT NULL, \n" +
 					"	description		TEXT NOT NULL, \n" +
 					"	roll_id			INTEGER NOT NULL, \n" +
 					"	default_version_id	INTEGER NOT NULL, \n" +
@@ -519,7 +519,7 @@ namespace FSpot.Database {
 					"	version_id	INTEGER, \n" +
 					"	name		STRING, \n" +
 					"	base_uri		STRING NOT NULL, \n" +
-				    "	filename		STRING NOT NULL, \n" +
+					"	filename		STRING NOT NULL, \n" +
 					"	md5_sum		TEXT NULL, \n" +
 					"	protected	BOOLEAN, \n" +
 					"	UNIQUE (photo_id, version_id)\n" +
@@ -535,12 +535,12 @@ namespace FSpot.Database {
 					string filename = photo_uri.GetFilename ();
 					Uri base_uri = photo_uri.GetDirectoryUri ();
 
-					string md5 = reader ["md5_sum"].ToString ();
+					string md5 = reader["md5_sum"] != null ? reader ["md5_sum"].ToString () : null;
 					
 					Execute (new DbCommand (
 						"INSERT INTO photos (id, time, base_uri, filename, description, roll_id, default_version_id, rating, md5_sum) "	+
 						"VALUES (:id, :time, :base_uri, :filename, :description, :roll_id, :default_version_id, :rating, :md5_sum)",
-					    "id", Convert.ToUInt32 (reader ["id"]),
+						"id", Convert.ToUInt32 (reader ["id"]),
 						"time", Convert.ToUInt32 (reader ["time"]),
 						"base_uri", base_uri.ToString (),
 						"filename", filename,
@@ -548,7 +548,7 @@ namespace FSpot.Database {
 						"roll_id", Convert.ToUInt32 (reader ["roll_id"]),
 						"default_version_id", Convert.ToUInt32 (reader ["default_version_id"]),
 						"rating", Convert.ToUInt32 (reader ["rating"]),
-						"md5_sum", (md5 != String.Empty ? md5 : null)));
+						"md5_sum", String.IsNullOrEmpty (md5) ? null : md5));
 				}
 				
 				reader.Close ();
@@ -563,7 +563,7 @@ namespace FSpot.Database {
 					string filename = photo_uri.GetFilename ();
 					Uri base_uri = photo_uri.GetDirectoryUri ();
 
-					string md5 = reader ["md5_sum"].ToString ();
+					string md5 = reader["md5_sum"] != null ? reader ["md5_sum"].ToString () : null;
 					
 					Execute (new DbCommand (				
 						"INSERT INTO photo_versions (photo_id, version_id, name, base_uri, filename, protected, md5_sum) " +
@@ -571,10 +571,10 @@ namespace FSpot.Database {
 						"photo_id", Convert.ToUInt32 (reader ["photo_id"]),
 						"version_id", Convert.ToUInt32 (reader ["version_id"]),
 						"name", reader["name"].ToString (),
-				        "base_uri", base_uri.ToString (),
+						"base_uri", base_uri.ToString (),
 						"filename", filename,
 						"is_protected", Convert.ToBoolean (reader["protected"]),
-						"md5_sum", (md5 != String.Empty ? md5 : null)));
+						"md5_sum", String.IsNullOrEmpty (md5) ? null : md5));
 				}
 				
 				Execute ("CREATE INDEX idx_photos_roll_id ON photos(roll_id)");

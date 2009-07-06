@@ -9,6 +9,7 @@
 
 
 using System;
+using System.Collections.Generic;
 
 using Mono.Unix;
 
@@ -220,7 +221,7 @@ namespace FSpot {
 			return logic_widget.TagRequired (tag);
 		}
 		
-		public void SetFolders (UriList uri_list)
+		public void SetFolders (IEnumerable<Uri> uri_list)
 		{
 			folder_query_widget.SetFolders (uri_list);
 			query.RequestReload ();

@@ -9,46 +9,23 @@
 
 
 using System;
-using System.Collections;
+using System.Collections.Generic;
 
 
 namespace FSpot.Query
 {
-	
-	
 	public class FolderSet : IQueryCondition
 	{
-		/* we use ArrayList, because UriList is located in the f-spot.exe
-		 * assembly, which is (not yet) available here
-		 */
-		ArrayList uri_list;
+		HashSet<Uri> uri_list;
 		
 		public FolderSet ()
 		{
-			uri_list = new ArrayList ();
+			uri_list = new HashSet<Uri> ();
 		}
 		
-		private bool AddFolderInternal (Uri uri)
-		{
-			if (uri_list.Contains (uri))
-				return false;
-			
-			uri_list.Add (uri);
-			
-			return true;
-		}
-		
-		public ArrayList UriList {
+		public IEnumerable<Uri> Folders {
 			get { return uri_list; }
-			set {
-				uri_list = new ArrayList ();
-				
-				if (value == null)
-					return;
-				
-				foreach (Uri uri in value)
-					AddFolderInternal (uri);
-			}
+			set { uri_list = (value == null) ? new HashSet<Uri> () : new HashSet<Uri> (value); }
 		}
 		
 		protected static string EscapeQuotes (string v)

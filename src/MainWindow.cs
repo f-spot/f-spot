@@ -83,8 +83,6 @@ public class MainWindow {
 	[GtkBeans.Builder.Object] Gtk.Action remove_tag;
 
 	// View
-	[GtkBeans.Builder.Object] Gtk.RadioAction month;
-	[GtkBeans.Builder.Object] Gtk.RadioAction directory;
 	[GtkBeans.Builder.Object] Gtk.ToggleAction display_toolbar;
 	[GtkBeans.Builder.Object] Gtk.ToggleAction display_sidebar;
 	[GtkBeans.Builder.Object] Gtk.ToggleAction display_timeline;
@@ -932,7 +930,7 @@ public class MainWindow {
 		}
 	}
 	
-	public void SetFolderQuery (UriList uri_list)
+	public void SetFolderQuery (IEnumerable<Uri> uri_list)
 	{
 		ShowQueryWidget ();
 		query_widget.SetFolders (uri_list);
@@ -974,22 +972,14 @@ public class MainWindow {
 		FSpot.SimpleCalendar cal = sender as FSpot.SimpleCalendar;
 		JumpTo (cal.Date);
 	}
+
+	void JumpTo (System.DateTime time)
+	{
+		JumpTo (query.LookupItem (time));*/
+	}
 #endif
 
-	private void JumpTo (System.DateTime time)
-	{
-		//FIXME this should make sure the photos are sorted by
-		//time.  This should be handled via a property that
-		//does all the needed switching.
-		/*if (!(group_selector.Adaptor is FSpot.TimeAdaptor))
-			HandleArrangeByTime (null, null);
-		
-		FSpot.TimeAdaptor time_adaptor = group_selector.Adaptor as FSpot.TimeAdaptor;
-		if (time_adaptor != null)
-			JumpTo (query.LookupItem (time));*/
-	}
-
-	private void JumpTo (int index)
+	void JumpTo (int index)
 	{
 		switch (view_mode) {
 		case ModeType.PhotoView:

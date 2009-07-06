@@ -11,6 +11,8 @@
 using System;
 using System.Text;
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 
 using Gtk;
 
@@ -44,7 +46,7 @@ namespace FSpot.Gui
 			while (Children.Length != 0)
 				Remove (Children[0]);
 			
-			int length = folder_set.UriList.Count;
+			int length = folder_set.Folders.Count ();
 			
 			if (length == 0) {
 				Hide ();
@@ -53,7 +55,7 @@ namespace FSpot.Gui
 			
 			if (length < 4) {
 				
-				foreach (Uri uri in folder_set.UriList) {
+				foreach (Uri uri in folder_set.Folders) {
 					Image image = new Image ("gtk-directory", IconSize.Button);
 					image.TooltipText = uri.ToString ();
 					PackStart (image);
@@ -71,7 +73,7 @@ namespace FSpot.Gui
 				PackStart (image);
 				
 				StringBuilder builder = new StringBuilder ();
-				foreach (Uri uri in folder_set.UriList) {
+				foreach (Uri uri in folder_set.Folders) {
 					if (builder.Length > 0)
 						builder.AppendLine ();
 					
@@ -84,16 +86,16 @@ namespace FSpot.Gui
 			ShowAll ();
 		}
 		
-		public void SetFolders (UriList uri_list)
+		public void SetFolders (IEnumerable<Uri> uris)
 		{
-			folder_set.UriList = uri_list;
+			folder_set.Folders = uris;
 			
 			UpdateGui ();
 		}
 		
 		public void Clear ()
 		{
-			folder_set.UriList = null;
+			folder_set.Folders = null;
 		}
 		
 		private static TargetEntry [] folder_query_widget_source_table =
