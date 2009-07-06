@@ -11,8 +11,7 @@ SOURCES = 				\
 	Query/LogicalTerm.cs		\
 	Cms/Cms.cs			\
 	Filters/JpegFilter.cs		\
-	Filters/OrientationFilter.cs	\
-	Filters/ColorFilter.cs
+	Filters/OrientationFilter.cs
 
 PKGS = 					\
 	-pkg:mono-nunit			\
