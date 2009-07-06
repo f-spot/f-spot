@@ -131,8 +131,8 @@ namespace FSpotFlickrExport {
 					if (used_bandwidth.Visible) {
 						used_bandwidth.Fraction = fr.Connection.PeopleGetUploadStatus().PercentageUsed;
 						used_bandwidth.Text = string.Format (Catalog.GetString("Used {0} of your allowed {1} monthly quota"),
-									SizeUtil.ToHumanReadable(fr.Connection.PeopleGetUploadStatus().BandwidthUsed),
-									SizeUtil.ToHumanReadable(fr.Connection.PeopleGetUploadStatus().BandwidthMax));
+									GLib.Format.SizeForDisplay (fr.Connection.PeopleGetUploadStatus().BandwidthUsed),
+									GLib.Format.SizeForDisplay (fr.Connection.PeopleGetUploadStatus().BandwidthMax));
 					}
 					break;
 				}

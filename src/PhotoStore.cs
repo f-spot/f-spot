@@ -944,88 +944,9 @@ public class PhotoStore : DbStore<Photo> {
 	}
 
 	[Obsolete ("drop this, use IQueryCondition correctly instead")]
-	public void QueryToTemp (string temp_table, Tag [] tags, string extra_condition, DateRange range, RollSet importidrange, RatingRange ratingrange, OrderByTime orderbytime)
-	{
-		QueryToTemp (temp_table, FSpot.OrTerm.FromTags(tags), extra_condition, range, importidrange, ratingrange, orderbytime);
-	}
-
-	[Obsolete ("drop this, use IQueryCondition correctly instead")]
 	public Photo [] Query (Tag [] tags, string extra_condition, DateRange range, RollSet importidrange, RatingRange ratingrange)
 	{
 		return Query (FSpot.OrTerm.FromTags(tags), extra_condition, range, importidrange, ratingrange);
-	}
-
-	[Obsolete ("drop this, use IQueryCondition correctly instead")]
-	public void QueryToTemp (string temp_table, Term searchexpression, string extra_condition, DateRange range, RollSet importidrange, RatingRange ratingrange, OrderByTime orderbytime)
-	{
-		bool hide = (extra_condition == null);
-
-		// The SQL query that we want to construct is:
-		//
-		// SELECT photos.id
-		//        photos.time
-		//        photos.uri,
-		//        photos.description,
-		//	  photos.roll_id,
-		//        photos.default_version_id
-		//        photos.rating
-		//                  FROM photos, photo_tags
-		//		    WHERE photos.time >= time1 AND photos.time <= time2
-		//				AND photos.rating >= rat1 AND photos.rating <= rat2
-		//				AND photos.id NOT IN (select photo_id FROM photo_tags WHERE tag_id = HIDDEN)
-		//				AND photos.id IN (select photo_id FROM photo_tags where tag_id IN (tag1, tag2..)
-		//				AND extra_condition_string
-		//                  GROUP BY photos.id
-
-		StringBuilder query_builder = new StringBuilder ();
-		ArrayList where_clauses = new ArrayList ();
-		query_builder.Append ("SELECT id, " 			+
-					     "time, "			+
-					     "base_uri, "			+
-					     "filename, "			+
-					     "description, "		+
-					     "roll_id, "   		+
-					     "default_version_id, "	+
-					     "rating, "			+
-					     "md5_sum "			+
-				      "FROM photos ");
-
-		if (range != null) {
-			where_clauses.Add (String.Format ("time >= {0} AND time <= {1}",
-							  DbUtils.UnixTimeFromDateTime (range.Start),
-							  DbUtils.UnixTimeFromDateTime (range.End)));
-
-		}
-
-		if (ratingrange != null) {
-			where_clauses.Add (ratingrange.SqlClause ());
-		}
-
-		if (importidrange != null) {
-			where_clauses.Add (importidrange.SqlClause ());
-		}
-
-		if (hide && Core.Database.Tags.Hidden != null) {
-			where_clauses.Add (String.Format ("id NOT IN (SELECT photo_id FROM photo_tags WHERE tag_id = {0})",
-							  FSpot.Core.Database.Tags.Hidden.Id));
-		}
-
-		if (searchexpression != null) {
-			where_clauses.Add (searchexpression.SqlCondition ());
-		}
-
-		if (extra_condition != null && extra_condition.Trim () != String.Empty) {
-			where_clauses.Add (extra_condition);
-		}
-
-		if (where_clauses.Count > 0) {
-			query_builder.Append (" WHERE ");
-			query_builder.Append (String.Join (" AND ", ((String []) where_clauses.ToArray (typeof(String)))));
-		}
-		query_builder.Append (" ORDER BY ");
-		query_builder.Append (orderbytime.SqlClause ());
-
-		QueryToTemp (temp_table, query_builder.ToString ());
 	}
 
 	[Obsolete ("drop this, use IQueryCondition correctly instead")]
