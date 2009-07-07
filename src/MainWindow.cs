@@ -100,6 +100,9 @@ public class MainWindow {
 	[GtkBeans.Builder.Object] Gtk.RadioAction tag_icon_large;
 
 	[GtkBeans.Builder.Object] Gtk.ToggleAction reverse_order;
+	public Gtk.ToggleAction ReverseOrderAction {
+		get { return reverse_order; }
+	}
 
 	// Find
 	[GtkBeans.Builder.Object] Gtk.Action clear_date_range;
