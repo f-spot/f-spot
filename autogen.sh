@@ -1,6 +1,38 @@
 #!/bin/sh
 # Run this to generate all the initial makefiles, etc.
 
+error () {
+	echo "Error: $1" 1>&2
+	exit 1
+}
+
+check_autotool_version () {
+	which $1 &>/dev/null || {
+		error "$1 is not installed, and is required to configure $PACKAGE"
+	}
+
+	version=$($1 --version | head -n 1 | cut -f4 -d' ')
+	major=$(echo $version | cut -f1 -d.)
+	minor=$(echo $version | cut -f2 -d.)
+	rev=$(echo $version | cut -f3 -d.)
+	major_check=$(echo $2 | cut -f1 -d.)
+	minor_check=$(echo $2 | cut -f2 -d.)
+	rev_check=$(echo $2 | cut -f3 -d.)
+
+	if [ $major -lt $major_check ]; then
+		do_bail=yes
+	elif [ $minor -lt $minor_check ] && [ $major = $major_check ]; then
+		do_bail=yes
+	elif [ x"$rev_check" != x"" ] && [ $rev -lt $rev_check ] && [ $minor = $minor_check ] && [ $major = $major_check ]; then
+		do_bail=yes
+	fi
+
+	if [ x"$do_bail" = x"yes" ]; then
+		error "$1 version $2 or better is required to configure $PROJECT"
+	fi
+}
+
+
 srcdir=`dirname $0`
 test -z "$srcdir" && srcdir=.
 
@@ -20,21 +52,11 @@ DIE=0
 	DIE=1
 }
 
-AUTOMAKE=automake-1.9
-ACLOCAL=aclocal-1.9
+AUTOMAKE=automake
+ACLOCAL=aclocal
 
-($AUTOMAKE --version) < /dev/null > /dev/null 2>&1 || {
-        AUTOMAKE=automake
-        ACLOCAL=aclocal
-}
-
-($AUTOMAKE --version) < /dev/null > /dev/null 2>&1 || {
-	echo
-	echo "You must have automake installed to compile $PROJECT."
-	echo "Get ftp://sourceware.cygnus.com/pub/automake/automake-1.4.tar.gz"
-	echo "(or a newer version if it is available)"
-	DIE=1
-}
+check_autotool_version $ACLOCAL 1.10
+check_autotool_version $AUTOMAKE 1.10
 
 (grep "^AM_PROG_LIBTOOL" configure.ac >/dev/null) && {
   (libtool --version) < /dev/null > /dev/null 2>&1 || {
