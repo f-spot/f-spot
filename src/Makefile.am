@@ -549,3 +549,9 @@ CLEANFILES =					\
 DISTCLEANFILES = 				\
 	Makefile
 
+if ENABLE_TESTS
+test:
+	@pushd $(top_srcdir)/tests/src/; \
+	make test; \
+	popd;
+endif
