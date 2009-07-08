@@ -176,6 +176,7 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/Histogram.cs			\
 	$(srcdir)/Loaders/AreaPreparedEventArgs.cs		\
 	$(srcdir)/Loaders/AreaUpdatedEventArgs.cs		\
+	$(srcdir)/Loaders/ImageLoader.cs		\
 	$(srcdir)/Loaders/IImageLoader.cs		\
 	$(srcdir)/Loaders/GdkImageLoader.cs		\
 	$(srcdir)/ImageLoaderThread.cs		\

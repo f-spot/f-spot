@@ -203,7 +203,7 @@ namespace FSpot.Widgets {
 			if (loader != null)
 				loader.Dispose ();
 
-			loader = new GdkImageLoader ();
+			loader = ImageLoader.Create (uri);
 			loader.AreaPrepared += HandlePixbufPrepared;
 			loader.AreaUpdated += HandlePixbufAreaUpdated;
 			loader.Completed += HandleDone;
