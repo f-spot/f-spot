@@ -195,7 +195,7 @@ namespace FSpot.Widgets {
 
 #region loader		
 		uint timer;
-		ImageLoader loader;
+		IImageLoader loader;
 		void Load (Uri uri)
 		{
 			timer = Log.DebugTimerStart ();
@@ -211,7 +211,7 @@ namespace FSpot.Widgets {
 
 		void HandlePixbufPrepared (object sender, AreaPreparedEventArgs args)
 		{
-			ImageLoader loader = sender as ImageLoader;
+			IImageLoader loader = sender as IImageLoader;
 			if (loader != this.loader)
 				return;
 
@@ -229,7 +229,7 @@ namespace FSpot.Widgets {
 
 		void HandlePixbufAreaUpdated (object sender, AreaUpdatedEventArgs args)
 		{
-			ImageLoader loader = sender as ImageLoader;
+			IImageLoader loader = sender as IImageLoader;
 			if (loader != this.loader)
 				return;
 
@@ -243,7 +243,7 @@ namespace FSpot.Widgets {
 		void HandleDone (object sender, System.EventArgs args)
 		{
 			Log.DebugTimerPrint (timer, "Loading image took {0}");
-			ImageLoader loader = sender as ImageLoader;
+			IImageLoader loader = sender as IImageLoader;
 			if (loader != this.loader)
 				return;
 

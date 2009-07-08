@@ -43,7 +43,7 @@ namespace FSpot {
 		}
 	}
 
-	public class ImageLoader : Gdk.PixbufLoader
+	public class ImageLoader : Gdk.PixbufLoader, IImageLoader
 	{
 #region public api
 		public ImageLoader () : base ()
