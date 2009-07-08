@@ -1410,6 +1410,8 @@ public class MainWindow {
 	{
 
 		MenuItem parent = sender as MenuItem;
+		if (parent == null) // We have a Gtk.Action for UI menus, so the "Edit > Remove tag" item needs special treatment
+			parent = uimanager.GetWidget("/ui/menubar1/edit2/remove_tag") as MenuItem;
 		if (parent != null && parent.Submenu is PhotoTagMenu) {
 			PhotoTagMenu menu = (PhotoTagMenu) parent.Submenu;
 			menu.Populate (SelectedPhotos ()); 
