@@ -16,33 +16,6 @@ using FSpot.Utils;
 using FSpot.Platform;
 
 namespace FSpot {
-	public class AreaPreparedEventArgs : EventArgs
-	{
-		bool reduced_resolution;
-
-		public bool ReducedResolution {
-			get { return reduced_resolution; }
-		}
-	
-		public AreaPreparedEventArgs (bool reduced_resolution) : base ()
-		{
-			this.reduced_resolution = reduced_resolution;
-		}
-	}
-
-	public class AreaUpdatedEventArgs : EventArgs
-	{
-		Gdk.Rectangle area;
-		public Gdk.Rectangle Area { 
-			get { return area; }
-		}
-
-		public AreaUpdatedEventArgs (Gdk.Rectangle area) : base ()
-		{
-			this.area = area;
-		}
-	}
-
 	public class ImageLoader : Gdk.PixbufLoader, IImageLoader
 	{
 #region public api
