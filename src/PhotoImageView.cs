@@ -13,6 +13,7 @@
 using System;
 using FSpot.Editors;
 using FSpot.Utils;
+using FSpot.Loaders;
 
 using Gdk;
 
@@ -202,7 +203,7 @@ namespace FSpot.Widgets {
 			if (loader != null)
 				loader.Dispose ();
 
-			loader = new ImageLoader ();
+			loader = new GdkImageLoader ();
 			loader.AreaPrepared += HandlePixbufPrepared;
 			loader.AreaUpdated += HandlePixbufAreaUpdated;
 			loader.Completed += HandleDone;

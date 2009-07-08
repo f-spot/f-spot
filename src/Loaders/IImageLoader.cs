@@ -1,5 +1,5 @@
 //
-// Fspot.IImageLoader.cs
+// Fspot.Loaders.IImageLoader.cs
 //
 // Copyright (c) 2009 Novell, Inc.
 //
@@ -14,7 +14,7 @@ using FSpot.Utils;
 using System;
 using Gdk;
 
-namespace FSpot {
+namespace FSpot.Loaders {
 	public class AreaPreparedEventArgs : EventArgs
 	{
 		bool reduced_resolution;

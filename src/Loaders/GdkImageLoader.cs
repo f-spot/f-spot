@@ -15,11 +15,11 @@ using Gdk;
 using FSpot.Utils;
 using FSpot.Platform;
 
-namespace FSpot {
-	public class ImageLoader : Gdk.PixbufLoader, IImageLoader
+namespace FSpot.Loaders {
+	public class GdkImageLoader : Gdk.PixbufLoader, IImageLoader
 	{
 #region public api
-		public ImageLoader () : base ()
+		public GdkImageLoader () : base ()
 		{	
 		}
 

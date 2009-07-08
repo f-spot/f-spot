@@ -174,9 +174,9 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/GroupSelector.cs		\
 	$(srcdir)/Accelerometer.cs		\
 	$(srcdir)/Histogram.cs			\
-	$(srcdir)/IImageLoader.cs		\
+	$(srcdir)/Loaders/IImageLoader.cs		\
+	$(srcdir)/Loaders/GdkImageLoader.cs		\
 	$(srcdir)/ImageLoaderThread.cs		\
-	$(srcdir)/ImageLoader.cs		\
 	$(srcdir)/ImportBackend.cs		\
 	$(srcdir)/ImportCommand.cs		\
 	$(srcdir)/InfoOverlay.cs		\
