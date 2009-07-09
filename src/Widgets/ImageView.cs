@@ -723,6 +723,9 @@ namespace FSpot.Widgets
 
 			area.Intersect (new Rectangle (x_offset, y_offset, (int)scaled_width, (int)scaled_height));
 
+			if (area.Width <= 0  || area.Height <= 0)
+				return;
+
 			//Short circuit for 1:1 zoom
 			if (zoom == 1.0 &&
 			    !Pixbuf.HasAlpha &&
