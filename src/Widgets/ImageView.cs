@@ -89,7 +89,6 @@ namespace FSpot.Widgets
 			get { return pointer_mode; } 
 			set { 
 				pointer_mode = value;
-				Log.Debug ("FIXME: Set the Pointer mode");
 			} 
 		}
 
