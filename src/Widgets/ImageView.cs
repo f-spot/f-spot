@@ -1002,7 +1002,7 @@ namespace FSpot.Widgets
 				case DragMode.Move:
 					is_moving_selection = true;
 					selection_anchor = img;
-					GdkWindow.Cursor = new Cursor (CursorType.Fleur);
+					SelectionSetPointer ((int)evnt.X, (int)evnt.Y);
 					break;
 			}
 
@@ -1018,12 +1018,50 @@ namespace FSpot.Widgets
 			is_moving_selection = false;
 			fixed_width = fixed_height = false;
 
-			switch (GetDragMode ((int)evnt.X, (int)evnt.Y)) {
-			case DragMode.Move:
-				GdkWindow.Cursor = new Cursor (CursorType.Hand1);
-				break;
-			}
+			SelectionSetPointer ((int)evnt.X, (int)evnt.Y);
 			return true;
+		}
+
+		void SelectionSetPointer (int x, int y)
+		{
+			if (is_moving_selection)
+				GdkWindow.Cursor = new Cursor (CursorType.Fleur);
+			else {
+				switch (GetDragMode (x, y)) {
+				case DragMode.Move:
+					GdkWindow.Cursor = new Cursor (CursorType.Hand1);
+					break;
+				default:
+					GdkWindow.Cursor = null;
+					break;
+				case DragMode.Extend:
+					Rectangle win_sel = ImageCoordsToWindow (Selection);
+					if (Math.Abs (win_sel.X - x) < SELECTION_SNAP_DISTANCE &&
+					    Math.Abs (win_sel.Y - y) < SELECTION_SNAP_DISTANCE) {	 			//TopLeft
+						GdkWindow.Cursor = new Cursor (CursorType.TopLeftCorner);
+					} else if (Math.Abs (win_sel.X + win_sel.Width - x) < SELECTION_SNAP_DISTANCE &&
+						   Math.Abs (win_sel.Y - y) < SELECTION_SNAP_DISTANCE) { 			//TopRight
+						GdkWindow.Cursor = new Cursor (CursorType.TopRightCorner);
+					} else if (Math.Abs (win_sel.X - x) < SELECTION_SNAP_DISTANCE &&
+						   Math.Abs (win_sel.Y + win_sel.Height - y) < SELECTION_SNAP_DISTANCE) {	//BottomLeft
+						GdkWindow.Cursor = new Cursor (CursorType.BottomLeftCorner);
+					} else if (Math.Abs (win_sel.X + win_sel.Width - x) < SELECTION_SNAP_DISTANCE &&
+						   Math.Abs (win_sel.Y + win_sel.Height - y) < SELECTION_SNAP_DISTANCE) {	//BottomRight
+						GdkWindow.Cursor = new Cursor (CursorType.BottomRightCorner);
+					} else if (Math.Abs (win_sel.X - x) < SELECTION_SNAP_DISTANCE) {			//Left
+						GdkWindow.Cursor = new Cursor (CursorType.LeftSide);
+					} else if (Math.Abs (win_sel.X + win_sel.Width - x) < SELECTION_SNAP_DISTANCE) {	//Right
+						GdkWindow.Cursor = new Cursor (CursorType.RightSide);
+					} else if (Math.Abs (win_sel.Y - y) < SELECTION_SNAP_DISTANCE) {			//Top
+						GdkWindow.Cursor = new Cursor (CursorType.TopSide);
+					} else if (Math.Abs (win_sel.Y + win_sel.Height - y) < SELECTION_SNAP_DISTANCE) {	//Bottom
+						GdkWindow.Cursor = new Cursor (CursorType.BottomSide);
+					}
+					break;
+				}
+			}
+
+			
 		}
 
 		const int SELECTION_THRESHOLD = 5;
@@ -1039,49 +1077,16 @@ namespace FSpot.Widgets
 				y = (int)evnt.Y;
 			}
 
-			if (!is_moving_selection) {
-				switch (GetDragMode (x, y)) {
-				case DragMode.Move:
-					GdkWindow.Cursor = new Cursor (CursorType.Hand1);
-					break;
-				default:
-					GdkWindow.Cursor = null;
-					break;
-				case DragMode.Extend:
-					Rectangle win_sel = ImageCoordsToWindow (Selection);
-					if (Math.Abs (win_sel.X - evnt.X) < SELECTION_SNAP_DISTANCE &&
-					    Math.Abs (win_sel.Y - evnt.Y) < SELECTION_SNAP_DISTANCE) {	 			//TopLeft
-						GdkWindow.Cursor = new Cursor (CursorType.TopLeftCorner);
-					} else if (Math.Abs (win_sel.X + win_sel.Width - evnt.X) < SELECTION_SNAP_DISTANCE &&
-						   Math.Abs (win_sel.Y - evnt.Y) < SELECTION_SNAP_DISTANCE) { 			//TopRight
-						GdkWindow.Cursor = new Cursor (CursorType.TopRightCorner);
-					} else if (Math.Abs (win_sel.X - evnt.X) < SELECTION_SNAP_DISTANCE &&
-						   Math.Abs (win_sel.Y + win_sel.Height - evnt.Y) < SELECTION_SNAP_DISTANCE) {	//BottomLeft
-						GdkWindow.Cursor = new Cursor (CursorType.BottomLeftCorner);
-					} else if (Math.Abs (win_sel.X + win_sel.Width - evnt.X) < SELECTION_SNAP_DISTANCE &&
-						   Math.Abs (win_sel.Y + win_sel.Height - evnt.Y) < SELECTION_SNAP_DISTANCE) {	//BottomRight
-						GdkWindow.Cursor = new Cursor (CursorType.BottomRightCorner);
-					} else if (Math.Abs (win_sel.X - evnt.X) < SELECTION_SNAP_DISTANCE) {			//Left
-						GdkWindow.Cursor = new Cursor (CursorType.LeftSide);
-					} else if (Math.Abs (win_sel.X + win_sel.Width - evnt.X) < SELECTION_SNAP_DISTANCE) {	//Right
-						GdkWindow.Cursor = new Cursor (CursorType.RightSide);
-					} else if (Math.Abs (win_sel.Y - evnt.Y) < SELECTION_SNAP_DISTANCE) {			//Top
-						GdkWindow.Cursor = new Cursor (CursorType.TopSide);
-					} else if (Math.Abs (win_sel.Y + win_sel.Height - evnt.Y) < SELECTION_SNAP_DISTANCE) {	//Bottom
-						GdkWindow.Cursor = new Cursor (CursorType.BottomSide);
-					}
-					break;
-				}
-			}
-
 
 			Point img = WindowCoordsToImage (new Point (x, y));
 			if (is_dragging_selection) {
 				Point win_anchor = ImageCoordsToWindow (selection_anchor);
 				if (Selection == Rectangle.Zero &&
 				    Math.Abs (evnt.X - win_anchor.X) < SELECTION_THRESHOLD &&
-				    Math.Abs (evnt.Y - win_anchor.Y) < SELECTION_THRESHOLD)
+				    Math.Abs (evnt.Y - win_anchor.Y) < SELECTION_THRESHOLD) {
+					SelectionSetPointer (x, y);
 					return true;
+				}
 	
 				
 				if (selection_xy_ratio == 0)
@@ -1097,6 +1102,7 @@ namespace FSpot.Widgets
 										       Math.Abs (selection_anchor.Y - img.Y)),
 									fixed_width, fixed_height);
 
+				SelectionSetPointer (x, y);
 				return true;
 			}
 
@@ -1105,10 +1111,11 @@ namespace FSpot.Widgets
 							   Clamp (Selection.Y + img.Y - selection_anchor.Y, 0, Pixbuf.Height - Selection.Height),
 							   Selection.Width, Selection.Height);
 				selection_anchor = img;
+				SelectionSetPointer (x, y);
 				return true;
 			}
 
-			//set the pointer according to DragMode
+			SelectionSetPointer (x, y);
 			return true;
 		}
 
