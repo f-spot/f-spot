@@ -593,6 +593,8 @@ public class MainWindow {
 			
 			JumpTo (icon_view.FocusCell);
 			zoom_scale.Value = photo_view.NormalizedZoom;
+
+			photo_view.View.GrabFocus();
 			break;
 		}
 		Selection.MarkChanged ();
@@ -1380,6 +1382,8 @@ public class MainWindow {
 		HandleAttachTagCommand (sender, null);
 		
 		Gtk.Drag.Finish (args.Context, true, false, args.Time);
+
+ 		photo_view.View.GrabFocus();
 	}	
 
 	//
@@ -2502,6 +2506,8 @@ public class MainWindow {
 						JumpTo (query.IndexOf (photo));
 				} catch (Exception) {}
 			}
+
+			icon_view.GrabFocus ();
 			break;
 		case Preferences.SIDEBAR_POSITION:
 			if (main_hpaned.Position !=Preferences.Get<int> (key) )
