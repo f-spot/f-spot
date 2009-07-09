@@ -26,10 +26,8 @@ namespace FSpot.Widgets {
 
 		public PhotoImageView (BrowsablePointer item) : base ()
 		{
-			FSpot.ColorManagement.PhotoImageView = this;
-			Transform = FSpot.ColorManagement.StandardTransform (); //for preview windows
-
 			Accelerometer.OrientationChanged += HandleOrientationChanged;
+			Preferences.SettingChanged += OnPreferencesChanged;
 
 			this.item = item;
 			item.Changed += HandlePhotoItemChanged;
@@ -388,6 +386,26 @@ namespace FSpot.Widgets {
 			}
 
 			sharpener.Show ();	
+		}
+
+		void OnPreferencesChanged (object sender, NotifyEventArgs args)
+		{
+			LoadPreference (args.Key);
+		}
+
+		void LoadPreference (String key)
+		{
+			switch (key) {
+			case Preferences.COLOR_MANAGEMENT_DISPLAY_PROFILE:
+			case Preferences.COLOR_MANAGEMENT_ENABLED:
+				Reload ();
+				break;
+			}
+		}
+
+		protected override void ApplyColorTransform (Pixbuf pixbuf)
+		{
+			FSpot.ColorManagement.ApplyScreenProfile (pixbuf);
 		}
 		
 	}

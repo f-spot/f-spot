@@ -163,12 +163,6 @@ namespace FSpot.Widgets
 			} 
 		}
 
-		Cms.Transform transform;
-		public Cms.Transform Transform {
-			get { return transform; } 
-			set { transform = value;} 
-		}
-
 		InterpType interpolation = InterpType.Bilinear;
 		public Gdk.InterpType Interpolation {
 			get { return interpolation; } 
@@ -240,37 +234,6 @@ namespace FSpot.Widgets
 					   (int) Math.Floor (win.Y * (double)(((int)PixbufOrientation <= 4 ? Pixbuf.Height : Pixbuf.Width) - 1) / (double)(scaled_height - 1) + .5));
 		}
 
-		protected Point ImageCoordsToWindow (Point image)
-		{
-			if (this.Pixbuf == null)
-				return Point.Zero;
-
-			image = PixbufUtils.TransformOrientation (Pixbuf.Width, Pixbuf.Height, image, pixbuf_orientation);
-			int x_offset = scaled_width < Allocation.Width ? (int)(Allocation.Width - scaled_width) / 2 : -XOffset;
-			int y_offset = scaled_height < Allocation.Height ? (int)(Allocation.Height - scaled_height) / 2 : -YOffset;
-
-			return new Point ((int) Math.Floor (image.X * (double) (scaled_width - 1) / (Pixbuf.Width - 1) + 0.5) + x_offset,
-					  (int) Math.Floor (image.Y * (double) (scaled_height - 1) / (Pixbuf.Height - 1) + 0.5) + y_offset);
-		}
-
-		protected Rectangle ImageCoordsToWindow (Rectangle image)
-		{
-			if (this.Pixbuf == null)
-				return Gdk.Rectangle.Zero;
-
-			image = PixbufUtils.TransformOrientation (Pixbuf.Width, Pixbuf.Height, image, pixbuf_orientation);
-			int x_offset = scaled_width < Allocation.Width ? (int)(Allocation.Width - scaled_width) / 2 : -XOffset;
-			int y_offset = scaled_height < Allocation.Height ? (int)(Allocation.Height - scaled_height) / 2 : -YOffset;
-
-			Gdk.Rectangle win = Gdk.Rectangle.Zero;
-			win.X = (int) Math.Floor (image.X * (double) (scaled_width - 1) / (((int)pixbuf_orientation <= 4 ? Pixbuf.Width : Pixbuf.Height) - 1) + 0.5) + x_offset;
-			win.Y = (int) Math.Floor (image.Y * (double) (scaled_height - 1) / (((int)pixbuf_orientation <= 4 ? Pixbuf.Height : Pixbuf.Width) - 1) + 0.5) + y_offset;
-			win.Width = (int) Math.Floor ((image.X + image.Width) * (double) (scaled_width - 1) / (((int)pixbuf_orientation <= 4 ? Pixbuf.Width : Pixbuf.Height) - 1) + 0.5) - win.X + x_offset;
-			win.Height = (int) Math.Floor ((image.Y + image.Height) * (double) (scaled_height - 1) / (((int)pixbuf_orientation <= 4 ? Pixbuf.Height : Pixbuf.Width) - 1) + 0.5) - win.Y + y_offset;
-
-			return win;
-		}
-
 		List<LayoutChild> children;
 		public void Put (Gtk.Widget widget, int x, int y)
 		{
@@ -313,6 +276,43 @@ namespace FSpot.Widgets
 		{
 			ZoomFit (upscale);
 		}
+
+		protected virtual void ApplyColorTransform (Pixbuf pixbuf)
+		{
+		}
+
+		protected Point ImageCoordsToWindow (Point image)
+		{
+			if (this.Pixbuf == null)
+				return Point.Zero;
+
+			image = PixbufUtils.TransformOrientation (Pixbuf.Width, Pixbuf.Height, image, pixbuf_orientation);
+			int x_offset = scaled_width < Allocation.Width ? (int)(Allocation.Width - scaled_width) / 2 : -XOffset;
+			int y_offset = scaled_height < Allocation.Height ? (int)(Allocation.Height - scaled_height) / 2 : -YOffset;
+
+			return new Point ((int) Math.Floor (image.X * (double) (scaled_width - 1) / (Pixbuf.Width - 1) + 0.5) + x_offset,
+					  (int) Math.Floor (image.Y * (double) (scaled_height - 1) / (Pixbuf.Height - 1) + 0.5) + y_offset);
+		}
+
+		protected Rectangle ImageCoordsToWindow (Rectangle image)
+		{
+			if (this.Pixbuf == null)
+				return Gdk.Rectangle.Zero;
+
+			image = PixbufUtils.TransformOrientation (Pixbuf.Width, Pixbuf.Height, image, pixbuf_orientation);
+			int x_offset = scaled_width < Allocation.Width ? (int)(Allocation.Width - scaled_width) / 2 : -XOffset;
+			int y_offset = scaled_height < Allocation.Height ? (int)(Allocation.Height - scaled_height) / 2 : -YOffset;
+
+			Gdk.Rectangle win = Gdk.Rectangle.Zero;
+			win.X = (int) Math.Floor (image.X * (double) (scaled_width - 1) / (((int)pixbuf_orientation <= 4 ? Pixbuf.Width : Pixbuf.Height) - 1) + 0.5) + x_offset;
+			win.Y = (int) Math.Floor (image.Y * (double) (scaled_height - 1) / (((int)pixbuf_orientation <= 4 ? Pixbuf.Height : Pixbuf.Width) - 1) + 0.5) + y_offset;
+			win.Width = (int) Math.Floor ((image.X + image.Width) * (double) (scaled_width - 1) / (((int)pixbuf_orientation <= 4 ? Pixbuf.Width : Pixbuf.Height) - 1) + 0.5) - win.X + x_offset;
+			win.Height = (int) Math.Floor ((image.Y + image.Height) * (double) (scaled_height - 1) / (((int)pixbuf_orientation <= 4 ? Pixbuf.Height : Pixbuf.Width) - 1) + 0.5) - win.Y + y_offset;
+
+			return win;
+		}
+
+
 #endregion
 
 #region container
@@ -760,6 +760,8 @@ namespace FSpot.Widgets
 						       pixbuf_area.X, pixbuf_area.Y,
 						       CheckPattern.CheckSize, CheckPattern.Color1, CheckPattern.Color2);
 
+
+				ApplyColorTransform (temp_pixbuf);
 
 				using (var dest_pixbuf = PixbufUtils.TransformOrientation (temp_pixbuf, pixbuf_orientation)) {
 					GdkWindow.DrawPixbuf (Style.BlackGC,

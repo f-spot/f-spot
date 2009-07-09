@@ -22,18 +22,8 @@ public class ColorManagement {
 		private static Cms.Profile destination_profile;
 		private static Cms.Transform standard_transform;
 		
-		private static FSpot.Widgets.PhotoImageView photo_image_view;
-
 		private static string [] search_dir = { "/usr/share/color/icc", "~/.color/icc", "/usr/local/share/color/icc " }; //the main directory list to find a profiles
 		public static ArrayList Profiles = new ArrayList();
-		
-		public static FSpot.Widgets.PhotoImageView PhotoImageView {
-			set {
-				if (photo_image_view == null)
-					photo_image_view = value;
-			}
-			get { return photo_image_view; }
-		}
 		
 		public static Cms.Profile DisplayProfile {
 			set {
@@ -137,7 +127,6 @@ public class ColorManagement {
 			GetXProfile ();
 			GetSettings ();
 			CreateStandardTransform ();
-			PhotoImageView.Reload ();
 		}
 		
 		private static void CreateStandardTransform ()
