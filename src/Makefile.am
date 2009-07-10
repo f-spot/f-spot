@@ -257,6 +257,7 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/UI.Dialog/BuilderDialog.cs	\
 	$(srcdir)/UI.Dialog/DateRangeDialog.cs		\
 	$(srcdir)/UI.Dialog/EditExceptionDialog.cs	\
+	$(srcdir)/UI.Dialog/EditTagDialog.cs	\
 	$(srcdir)/UI.Dialog/ExceptionDialog.cs	\
 	$(srcdir)/UI.Dialog/GladeDialog.cs	\
 	$(srcdir)/UI.Dialog/HigMessageDialog.cs	\
@@ -404,9 +405,10 @@ F_SPOT_ASSEMBLIES = 				\
 F_SPOT_DISTRESOURCES =					\
 	$(srcdir)/dces.rdf				\
 	$(srcdir)/f-spot.glade				\
-	$(srcdir)/UI.Dialog/ui/AdjustTimeDialog.ui	\
 	$(srcdir)/ui/main_window.ui			\
+	$(srcdir)/UI.Dialog/ui/AdjustTimeDialog.ui	\
 	$(srcdir)/UI.Dialog/ui/DateRangeDialog.ui	\
+	$(srcdir)/UI.Dialog/ui/EditTagDialog.ui		\
 	$(srcdir)/UI.Dialog/ui/PreferenceDialog.glade	\
 	$(srcdir)/FSpot.addin.xml
 

@@ -1785,8 +1785,22 @@ public class MainWindow {
 		if (tag == null)
 			return;
 		
-		TagCommands.Edit command = new TagCommands.Edit (db, main_window);
-		command.Execute (tag);
+		EditTagDialog dialog = new EditTagDialog (db, tag, main_window);
+		if ((ResponseType)dialog.Run () == ResponseType.Ok) {
+			bool name_changed = false;
+			try {
+				if (tag.Name != dialog.TagName) {
+					tag.Name = dialog.TagName;
+					name_changed = true;
+				}
+				tag.Category = dialog.TagCategory;
+				db.Tags.Commit (tag, name_changed);
+			} catch (Exception ex) {
+				Log.Exception (ex);
+			}
+		}
+
+		dialog.Destroy ();
 	}
 
 	public void HandleMergeTagsCommand (object obj, EventArgs args)
