@@ -1,5 +1,5 @@
 /*
- * EditTagDialog.cs
+ * FSpot.UI.Dialog.EditTagDialog.cs
  *
  * Author(s):
  * 	Larry Ewing <lewing@novell.com>
@@ -13,7 +13,7 @@
 
 using System;
 using System.Collections;
-using Mono.Posix;
+using Mono.Unix;
 using Gtk;
 
 namespace FSpot.UI.Dialog
@@ -108,16 +108,26 @@ namespace FSpot.UI.Dialog
 
 		void HandleIconButtonClicked (object sender, EventArgs args)
 		{
-			TagCommands.EditIcon command = new TagCommands.EditIcon (db, this);
-			//FIXME
-			if (command.Execute (tag)) {
-				if (FSpot.ColorManagement.IsEnabled && tag.Icon != null) {
-					icon_image.Pixbuf = tag.Icon.Copy();
-					FSpot.ColorManagement.ApplyScreenProfile(icon_image.Pixbuf);
+			EditTagIconDialog dialog = new EditTagIconDialog (db, tag, this);
+
+			ResponseType response = (ResponseType) dialog.Run ();
+			if (response == ResponseType.Ok) {
+				if (dialog.ThemeIconName != null) {
+					tag.ThemeIconName = dialog.ThemeIconName;
+				} else {
+					tag.ThemeIconName = null;
+					tag.Icon = dialog.PreviewPixbuf;
 				}
-				else
-					icon_image.Pixbuf = tag.Icon;
-			}
+			} else if (response == (ResponseType)1)
+				tag.Icon = null;
+			
+			if (FSpot.ColorManagement.IsEnabled && tag.Icon != null) {
+				icon_image.Pixbuf = tag.Icon.Copy();
+				FSpot.ColorManagement.ApplyScreenProfile(icon_image.Pixbuf);
+			} else
+				icon_image.Pixbuf = tag.Icon;
+			
+			dialog.Destroy ();
 		}
 
 		void PopulateCategoryOptionMenu (Tag t)

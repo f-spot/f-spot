@@ -142,6 +142,9 @@ namespace FSpot
 					// Debug GdkPixbuf critical warnings
 					GLib.LogFunc logFunc = new GLib.LogFunc (GLib.Log.PrintTraceLogFunction);
 					GLib.Log.SetLogHandler ("GdkPixbuf", GLib.LogLevelFlags.Critical, logFunc);
+
+					// Debug Gdk critical warnings
+					GLib.Log.SetLogHandler ("Gdk", GLib.LogLevelFlags.Critical, logFunc);
 			
 					// Debug Gtk critical warnings
 					GLib.Log.SetLogHandler ("Gtk", GLib.LogLevelFlags.Critical, logFunc);
