@@ -186,16 +186,18 @@ namespace FSpot.UI.Dialog
 			int width = image_view.Selection.Width;
 			int height = image_view.Selection.Height;
 		       
-//			if (width > 0 && height > 0) 
-//				icon_view.Selection.Clear ();
-				
 			if (image_view.Pixbuf != null) {
-				if (width > 0 && height > 0) {
-					using (var tmp = new Gdk.Pixbuf (image_view.Pixbuf, x, y, width, height)) {	
-						PreviewPixbuf = PixbufUtils.TagIconFromPixbuf (tmp);
+				if (image_view.Selection != Gdk.Rectangle.Zero) {
+					using (var tmp = new Gdk.Pixbuf (image_view.Pixbuf, x, y, width, height)) {
+						Gdk.Pixbuf transformed = FSpot.Utils.PixbufUtils.TransformOrientation (tmp, image_view.PixbufOrientation);
+						PreviewPixbuf = PixbufUtils.TagIconFromPixbuf (transformed);
+						if (transformed != tmp)
+							transformed.Dispose ();
 					}
 				} else {
-					PreviewPixbuf = PixbufUtils.TagIconFromPixbuf (image_view.Pixbuf);
+					Gdk.Pixbuf transformed = FSpot.Utils.PixbufUtils.TransformOrientation (image_view.Pixbuf, image_view.PixbufOrientation);
+					PreviewPixbuf = PixbufUtils.TagIconFromPixbuf (transformed);
+					transformed.Dispose ();
 				}
 			}
 		}
