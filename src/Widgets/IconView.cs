@@ -1536,6 +1536,8 @@ namespace FSpot.Widgets
 		private EventButton start_select_event;
 		// timer using when scrolling selection
 		private uint scroll_timeout=0;
+		// initial click
+	        private int start_press_x, start_press_y;
 
 		// during pointer motion, select/toggle pictures between initial x/y (param)
 		// and current x/y (get pointer)
@@ -1651,8 +1653,7 @@ namespace FSpot.Widgets
 		private void HandleSelectMotionNotify (object sender, MotionNotifyEventArgs args)
 		{
 			if ((args.Event.State & (ModifierType.Button1Mask | ModifierType.Button3Mask)) != 0 ) {
-				if (Gtk.Drag.CheckThreshold (this, (int) start_select_event.X,
-							     (int) start_select_event.Y,
+				if (Gtk.Drag.CheckThreshold (this, start_press_x, start_press_y,
 							     (int) args.Event.X, (int) args.Event.Y))
 					if (isRectSelection) {
 						// scroll if out of window
@@ -1672,29 +1673,8 @@ namespace FSpot.Widgets
 						// handle selection
 						SelectMotion();
 					} else  {
-						int cell_num = CellAtPosition ((int) args.Event.X, (int) args.Event.Y, false, false);
-						if (cell_num < 0) {
-							// not on a cell : do rectangular select
-							isRectSelection = true;
-							double d_x, d_y;
-							if (!EventHelper.GetCoords (args.Event, out d_x, out d_y)) {
-								d_x = d_y = 0;
-							}
-							start_select_hadj = (int) Hadjustment.Value;
-							start_select_vadj = (int) Vadjustment.Value;
-							start_select_x = (int) d_x - start_select_hadj;
-							start_select_y = (int) d_y - start_select_vadj;
-
-							// ctrl : toggle selected, shift : keep selected
-							if ((args.Event.State & (ModifierType.ShiftMask | ModifierType.ControlMask)) == 0)
-								selection.Clear ();
-
-							start_select_selection = selection.Ids; // keep initial selection
-							// no rect draw at beginning
-							rect_select = new Rectangle ();
-
-							args.RetVal = false;
-						} else if (selection.Contains (cell_num)) {
+						int cell_num = CellAtPosition (start_press_x, start_press_y, false, false);
+						if (selection.Contains (cell_num)) {
 							// on a selected cell : do drag&drop
 							isDragDrop = true;
 							if (StartDrag != null) {
@@ -1705,6 +1685,23 @@ namespace FSpot.Widgets
 									but = 3;
 								StartDrag (this, new StartDragArgs(but, start_select_event));
 							}
+						} else {
+							// not on a selected cell : do rectangular select
+							isRectSelection = true;
+							start_select_hadj = (int) Hadjustment.Value;
+							start_select_vadj = (int) Vadjustment.Value;
+							start_select_x = start_press_x - start_select_hadj;
+							start_select_y = start_press_y - start_select_vadj;
+
+							// ctrl : toggle selected, shift : keep selected
+							if ((args.Event.State & (ModifierType.ShiftMask | ModifierType.ControlMask)) == 0)
+								selection.Clear ();
+
+							start_select_selection = selection.Ids; // keep initial selection
+							// no rect draw at beginning
+							rect_select = new Rectangle ();
+
+							args.RetVal = false;
 						}
 					}
 			}
@@ -1717,6 +1714,8 @@ namespace FSpot.Widgets
 			args.RetVal = true;
 
 			start_select_event = args.Event;
+			start_press_x = (int) args.Event.X;
+			start_press_y = (int) args.Event.Y;
 			isRectSelection = false;
 			isDragDrop = false;
 
@@ -1758,6 +1757,8 @@ namespace FSpot.Widgets
 					GLib.Source.Remove (scroll_timeout);
 					scroll_timeout = 0;
 				}
+				SelectMotion();
+
 				isRectSelection = false;
 				if (BinWindow != null) {
 					BinWindow.InvalidateRect (rect_select, false);
