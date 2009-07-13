@@ -245,7 +245,6 @@ namespace FSpot.Widgets
 
 		void HandleCalendarDaySelected (object sender, EventArgs e)
 		{
-			Console.WriteLine ("DateTimeOffset += (calendar.Date ({0}) - DateTimeOffset.Date ({1}))", calendar.Date, DateTimeOffset.Date);
 			DateTimeOffset += (calendar.Date - DateTimeOffset.Date);
 		}
 

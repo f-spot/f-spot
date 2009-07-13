@@ -888,6 +888,22 @@ namespace FSpot.Widgets
 				ctx.SetSourceRGBA (.5, .5, .5, .7);
 				CairoHelper.Region (ctx, evnt.Region);
 				ctx.Fill ();
+
+				ctx.SetDash (new double [] {10, 15}, 0);
+				for (int i=1; i<3; i++) {
+					Point s = ImageCoordsToWindow (new Point (selection.X + selection.Width / 3 * i, selection.Y));
+					Point e = ImageCoordsToWindow (new Point (selection.X + selection.Width / 3 * i, selection.Y + selection.Height));
+					ctx.MoveTo (s.X, s.Y);
+					ctx.LineTo (e.X, e.Y);
+					ctx.Stroke ();
+				}
+				for (int i=1; i<3; i++) {
+					Point s = ImageCoordsToWindow (new Point (selection.X, selection.Y + selection.Height / 3 * i));
+					Point e = ImageCoordsToWindow (new Point (selection.X + selection.Width, selection.Y + selection.Height / 3 * i));
+					ctx.MoveTo (s.X, s.Y);
+					ctx.LineTo (e.X, e.Y);
+					ctx.Stroke ();
+				}
 			}
 
 			return true;
