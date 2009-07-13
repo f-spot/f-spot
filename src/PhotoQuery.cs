@@ -306,6 +306,9 @@ namespace FSpot {
 
 		private int LookupItem (System.DateTime date, bool asc)
 		{
+			if (Count == 0)
+				return -1;
+			
 			uint timer = Log.DebugTimerStart ();
 			int low = 0;
 			int high = Count - 1;
