@@ -213,7 +213,7 @@ namespace FSpot.Widgets
 		{
 			DateTimeOffset new_date;
 			if (DateTimeOffset.TryParseExact (date_entry.Text, "d", null, System.Globalization.DateTimeStyles.AssumeLocal | System.Globalization.DateTimeStyles.AllowWhiteSpaces, out new_date))
-				DateTimeOffset += (new_date.Date - DateTimeOffset.Date);
+				DateTimeOffset = new DateTimeOffset (calendar.Date + DateTimeOffset.TimeOfDay, DateTimeOffset.Offset);
 			else 
 				date_entry.ModifyBase (StateType.Normal, red);
 		}
@@ -245,7 +245,7 @@ namespace FSpot.Widgets
 
 		void HandleCalendarDaySelected (object sender, EventArgs e)
 		{
-			DateTimeOffset += (calendar.Date - DateTimeOffset.Date);
+			DateTimeOffset = new DateTimeOffset (calendar.Date + DateTimeOffset.TimeOfDay, DateTimeOffset.Offset);
 		}
 
 		void HandleCalendarDaySelectedDoubleClick (object sender, EventArgs e)
