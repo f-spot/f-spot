@@ -387,7 +387,7 @@ public class PhotoStore : DbStore<Photo> {
 		
 		SqliteDataReader reader = Database.Query (
 			new DbCommand ("SELECT DISTINCT " + 
-				       "id, time, photos.base_uri AS uri, photos.filename AS filename, description, roll_id, default_version_id, rating " + 
+				       "id, time, photos.base_uri AS base_uri, photos.filename AS filename, description, roll_id, default_version_id, rating " + 
 				       "FROM photos " + 
 				       "LEFT JOIN photo_versions " + 
 				       "ON   photos.id = photo_versions.photo_id " +
