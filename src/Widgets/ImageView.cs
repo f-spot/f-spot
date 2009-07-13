@@ -111,14 +111,6 @@ namespace FSpot.Widgets
 				can_select = value;
 				if (!can_select)
 					selection = Rectangle.Zero;
-
-				if (!IsRealized)
-					return;
-
-				if (can_select)
-					OnSelectionRealized ();
-				else
-					OnSelectionUnrealized ();
 			}
 		}
 
@@ -377,15 +369,6 @@ namespace FSpot.Widgets
 
 			foreach (var child in children)
 				child.Widget.ParentWindow = GdkWindow;
-
-			if (can_select) 
-				OnSelectionRealized ();
-		}
-
-		protected override void OnUnrealized ()
-		{
-			if (can_select)
-				OnSelectionUnrealized ();
 		}
 
 		protected override void OnMapped ()
@@ -895,21 +878,6 @@ namespace FSpot.Widgets
 #endregion
 
 #region selection
-		void OnSelectionRealized ()
-		{
-			//FIXME SetCUrsor
-
-			selection_gc = new Gdk.GC (GdkWindow);
-			selection_gc.Copy (Style.ForegroundGCs [(int)StateType.Normal]);
-			selection_gc.Function = Gdk.Function.Invert;
-			selection_gc.SetLineAttributes (1, LineStyle.Solid, CapStyle.NotLast, JoinStyle.Miter);
-		}
-
-		void OnSelectionUnrealized ()
-		{
-			selection_gc = null;
-		}
-
 		bool OnSelectionExposeEvent (EventExpose evnt)
 		{
 			if (selection == Rectangle.Zero)

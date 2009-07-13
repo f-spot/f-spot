@@ -12,7 +12,7 @@
  */
 
 using System;
-using Mono.Posix;
+using Mono.Unix;
 using Gtk;
 using FSpot.Widgets;
 using FSpot.Utils;

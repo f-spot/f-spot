@@ -163,10 +163,9 @@ namespace FSpot {
 		}
 
 		public Term Terms {
-			get {
-				return terms;
-			}
+			get { return terms; }
 			set {
+Console.WriteLine ("terms set: {0}", value.SqlCondition ());
 				terms = value;
 				untagged = false;
 				RequestReload ();
@@ -174,10 +173,7 @@ namespace FSpot {
 		}
 
 		public string ExtraCondition {
-			get {
-				return extra_condition;
-			}
-			
+			get { return extra_condition; }
 			set {
 				if (extra_condition == value)
 					return;
