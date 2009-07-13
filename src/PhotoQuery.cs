@@ -165,7 +165,6 @@ namespace FSpot {
 		public Term Terms {
 			get { return terms; }
 			set {
-Console.WriteLine ("terms set: {0}", value.SqlCondition ());
 				terms = value;
 				untagged = false;
 				RequestReload ();
