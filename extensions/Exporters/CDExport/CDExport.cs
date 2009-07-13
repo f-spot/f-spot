@@ -1,49 +1,56 @@
+/*
+ * CDExport.cs
+ *
+ * Authors:
+ *   Larry Ewing <lewing@novell.com>
+ *   Lorenzo Milesi <maxxer@yetopen.it>
+ *
+ * Copyright (c) 2007-2009 Novell, Inc.
+ *
+ * This is free software. See COPYING for details.
+ */
+
 using System;
 using System.IO;
+using System.Reflection;
 using System.Runtime.InteropServices;
+
 using Mono.Unix;
+
 using FSpot;
 using FSpot.Filters;
 using FSpot.Widgets;
 using FSpot.Utils;
 using FSpot.UI.Dialog;
+
 using GLib;
+using Gtk;
+using GtkBeans;
 
 namespace FSpotCDExport {
-	public class CDExport : FSpot.Extensions.IExporter {
+	class CDExportDialog : BuilderDialog {
 		IBrowsableCollection selection;
-
-		[Glade.Widget] Gtk.Dialog dialog;
-		[Glade.Widget] Gtk.ScrolledWindow thumb_scrolledwindow;
-		[Glade.Widget] Gtk.CheckButton remove_check;
-		[Glade.Widget] Gtk.CheckButton rotate_check;
-		[Glade.Widget] Gtk.Label size_label;
-		[Glade.Widget] Gtk.Frame previous_frame;
-
 		Gtk.Window listwindow;
-		System.Uri dest = new System.Uri ("burn:///");
+		System.Uri dest;
 
-		int photo_index;
-		bool clean;
-		bool rotate;
+		[GtkBeans.Builder.Object] ScrolledWindow thumb_scrolledwindow;
+		[GtkBeans.Builder.Object] CheckButton remove_check;
+		[GtkBeans.Builder.Object] CheckButton rotate_check;
+		[GtkBeans.Builder.Object] Label size_label;
+		[GtkBeans.Builder.Object] Frame previous_frame;
 
-		ThreadProgressDialog progress_dialog;
-		System.Threading.Thread command_thread;
-
-		private Glade.XML xml;
-		private string dialog_name = "cd_export_dialog";
-
-		public CDExport ()
-		{
+		public bool Clean {
+			get { return remove_check.Active; }
 		}
 
-		public void Run (IBrowsableCollection selection)
+		public bool Rotate {
+			get { return rotate_check.Active; }
+		}
+
+		public CDExportDialog (IBrowsableCollection selection, System.Uri dest) : base (Assembly.GetExecutingAssembly (), "CDExport.ui", "cd_export_dialog")
 		{
-
-			xml = new Glade.XML (null, "CDExport.glade", dialog_name, "f-spot");
-			xml.Autoconnect (this);
-
 			this.selection = selection;
+			this.dest = dest;
 
 			// Calculate the total size
 			long total_size = 0;
@@ -58,22 +65,29 @@ namespace FSpotCDExport {
 				}
 			}
 
-			IconView view = new IconView (selection);
+			FSpot.Widgets.IconView view = new FSpot.Widgets.IconView (selection);
 			view.DisplayDates = false;
 			view.DisplayTags = false;
+			view.DisplayRatings = false;
 
-			Dialog.Modal = false;
-			Dialog.TransientFor = null;
+			this.Modal = false;
+			this.TransientFor = null;
 
 			size_label.Text = Format.SizeForDisplay (total_size);
 
 			thumb_scrolledwindow.Add (view);
-			Dialog.ShowAll ();
+			this.ShowAll ();
 
 			previous_frame.Visible = IsEmpty (dest);
 			//LoadHistory ();
 
-			Dialog.Response += HandleResponse;
+		}
+
+		bool IsEmpty (System.Uri path)
+		{
+			foreach (GLib.FileInfo fi in FileFactory.NewForUri (path).EnumerateChildren ("*", FileQueryInfoFlags.None, null))
+				return true;
+			return false;
 		}
 
 		void HandleBrowseExisting (object sender, System.EventArgs args)
@@ -102,6 +116,55 @@ namespace FSpotCDExport {
 				if (info.FileType == FileType.Directory)
 					ListAll (t, new System.Uri (path, info.Name + "/"));
 			}
+		}
+		
+		~CDExportDialog ()
+		{
+			if (listwindow != null)
+				listwindow.Destroy ();
+		}
+
+	}
+
+
+	public class CDExport : FSpot.Extensions.IExporter {
+		IBrowsableCollection selection;
+
+		System.Uri dest = new System.Uri ("burn:///");
+
+		int photo_index;
+		bool clean;
+		bool rotate;
+
+		CDExportDialog dialog;
+		ThreadProgressDialog progress_dialog;
+		System.Threading.Thread command_thread;
+
+		public CDExport ()
+		{
+		}
+
+		public void Run (IBrowsableCollection selection)
+		{
+			this.selection = selection;
+			dialog = new CDExportDialog (selection, dest);
+			//LoadHistory ();
+
+                        if (dialog.Run () != (int)ResponseType.Ok) {
+                                dialog.Destroy ();
+                                return;
+                        }
+
+			clean = dialog.Clean;
+			rotate = dialog.Rotate;
+
+			command_thread = new System.Threading.Thread (new System.Threading.ThreadStart (Transfer));
+			command_thread.Name = Catalog.GetString ("Transferring Pictures");
+
+			progress_dialog = new ThreadProgressDialog (command_thread, selection.Count);
+			progress_dialog.Start ();
+
+			dialog.Destroy ();
 		}
 
 		[DllImport ("libc")]
@@ -132,13 +195,6 @@ namespace FSpotCDExport {
 					Clean (new System.Uri(path, info.Name + "/"));
 				FileFactory.NewForUri (new System.Uri (path, info.Name)).Delete ();
 			}
-		}
-
-		bool IsEmpty (System.Uri path)
-		{
-			foreach (GLib.FileInfo fi in FileFactory.NewForUri (path).EnumerateChildren ("*", FileQueryInfoFlags.None, null))
-				return true;
-			return false;
 		}
 
 		public void Transfer () {
@@ -189,6 +245,7 @@ namespace FSpotCDExport {
 				}
 
 			} catch (System.Exception e) {
+				FSpot.Utils.Log.DebugException (e);
 				progress_dialog.Message = e.ToString ();
 				progress_dialog.ProgressText = Catalog.GetString ("Error Transferring");
 				return;
@@ -229,33 +286,5 @@ namespace FSpotCDExport {
 			fcb.Password = passwd;
 		}
 
-		private void HandleResponse (object sender, Gtk.ResponseArgs args)
-		{
-			if (listwindow != null)
-				listwindow.Destroy ();
-			if (args.ResponseId != Gtk.ResponseType.Ok) {
-				Dialog.Destroy ();
-				return;
-			}
-
-			clean = remove_check.Active;
-			rotate = rotate_check.Active;
-			Dialog.Destroy ();
-
-			command_thread = new System.Threading.Thread (new System.Threading.ThreadStart (Transfer));
-			command_thread.Name = Catalog.GetString ("Transferring Pictures");
-
-			progress_dialog = new ThreadProgressDialog (command_thread, selection.Count);
-			progress_dialog.Start ();
-		}
-
-		private Gtk.Dialog Dialog {
-			get {
-				if (dialog == null)
-					dialog = (Gtk.Dialog) xml.GetWidget (dialog_name);
-
-				return dialog;
-			}
-		}
 	}
 }
