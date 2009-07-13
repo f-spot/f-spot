@@ -87,9 +87,7 @@ namespace FSpot.Widgets
 		PointerMode pointer_mode = PointerMode.Select;
 		public PointerMode PointerMode {
 			get { return pointer_mode; } 
-			set { 
-				pointer_mode = value;
-			} 
+			set { pointer_mode = value; } 
 		}
 
 		Adjustment hadjustment;
@@ -303,8 +301,6 @@ namespace FSpot.Widgets
 
 			return win;
 		}
-
-
 #endregion
 
 #region container
@@ -337,7 +333,6 @@ namespace FSpot.Widgets
 #endregion
 
 #region GtkWidgetry
-		Gdk.GC selection_gc;
 		protected override void OnRealized ()
 		{
 			SetFlag (Gtk.WidgetFlags.Realized);
@@ -630,8 +625,8 @@ namespace FSpot.Widgets
 			
 			return handled || base.OnKeyPressEvent (evnt);
 		}
-
 #endregion
+
 #region private painting, zooming and misc 
 		int XOffset { get; set;}
 		int YOffset { get; set;}
