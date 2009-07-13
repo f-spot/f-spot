@@ -181,12 +181,14 @@ namespace FSpot.Widgets
 				
 			}
 			
-			/* and at least, step back and update photo count */
-			while (IterParent (out iter, iter)) {
-				last_count += (int)GetValue (iter, 1);
-				SetValue (iter, 1, last_count);
+			if (IterIsValid (iter)) {
+				/* and at least, step back and update photo count */
+				while (IterParent (out iter, iter)) {
+					last_count += (int)GetValue (iter, 1);
+					SetValue (iter, 1, last_count);
+				}
+				count_all += (int)last_count;
 			}
-			count_all += (int)last_count;
 		}
 	}
 }
