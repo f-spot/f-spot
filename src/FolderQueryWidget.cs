@@ -98,6 +98,12 @@ namespace FSpot
 			folder_set.Folders = null;
 		}
 		
+		public bool Empty {
+			get {
+				return folder_set.Folders == null || folder_set.Folders.Count () == 0;
+			}
+		}
+		
 		private static TargetEntry [] folder_query_widget_source_table =
 			new TargetEntry [] {
 				DragDropTargets.UriQueryEntry

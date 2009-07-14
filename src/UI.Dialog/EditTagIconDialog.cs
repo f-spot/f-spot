@@ -56,7 +56,7 @@ namespace FSpot.UI.Dialog
 			query = new FSpot.PhotoQuery (db.Photos);
 			
 			if (db.Tags.Hidden != null)
-				query.Terms = FSpot.OrTerm.FromTags (new Tag []{ t, db.Tags.Hidden });
+				query.Terms = FSpot.OrTerm.FromTags (new Tag [] {t});
 			else 
 				query.Terms = new FSpot.Literal (t);
 

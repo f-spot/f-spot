@@ -61,7 +61,6 @@ namespace FSpot {
 		private PhotoStore store;
 		private Term terms;
 		private Tag [] tags;
-		private string extra_condition;
 
 		static int query_count = 0;
 		static int QueryCount {
@@ -170,22 +169,7 @@ namespace FSpot {
 				RequestReload ();
 			}
 		}
-
-		public string ExtraCondition {
-			get { return extra_condition; }
-			set {
-				if (extra_condition == value)
-					return;
-
-				extra_condition = value;
-
-				if (value != null)
-					untagged = false;
-
- 				RequestReload ();
- 			}
- 		}
-		
+	
 		public DateRange Range {
 			get { return GetCondition<DateRange> (); }
 			set {
@@ -200,8 +184,12 @@ namespace FSpot {
 			set {
 				if (untagged != value) {
 					untagged = value;
-					if (untagged)
-						extra_condition = null;
+					
+					if (untagged) {
+						UnSetCondition<TagConditionWrapper> ();
+						UnSetCondition<HiddenTag> ();
+					}
+					
 					RequestReload ();
 				}
 			}
@@ -220,6 +208,32 @@ namespace FSpot {
 			set {
 				if (value == null && UnSetCondition<RatingRange>() || value != null && SetCondition (value))
 					RequestReload ();
+			}
+		}
+		
+		public HiddenTag HiddenTag {
+			get { return GetCondition<HiddenTag> (); }
+			set {
+				if (value == null && UnSetCondition<HiddenTag>() || value != null && SetCondition (value))
+					RequestReload ();
+			}
+		}
+		
+		public TagConditionWrapper TagTerm {
+			get { return GetCondition<TagConditionWrapper> (); }
+			set {
+				if (value == null && UnSetCondition<TagConditionWrapper>()
+				    || value != null && SetCondition (value)) {
+					
+					if (value != null) {
+						untagged = false;
+						SetCondition (HiddenTag.ShowHiddenTag);
+					} else {
+						UnSetCondition<HiddenTag> ();
+					}
+					
+					RequestReload ();
+				}
 			}
 		}
 
@@ -251,7 +265,7 @@ namespace FSpot {
 				i = 1;
 			} else {
 				condition_array = new IQueryCondition[conditions.Count + 2];
-				condition_array[0] = new TagConditionWrapper (extra_condition);
+		//		condition_array[0] = new TagConditionWrapper (extra_condition);
 				condition_array[1] = new TagConditionWrapper (terms != null ? terms.SqlCondition () : null);
 				i = 2;
 			}
@@ -370,7 +384,7 @@ namespace FSpot {
 			ItemsChanged (this, new BrowsableEventArgs (indexes, changes));
 		}
 		
-		private class TagConditionWrapper : IQueryCondition
+		public class TagConditionWrapper : IQueryCondition
 		{
 			string condition;
 			

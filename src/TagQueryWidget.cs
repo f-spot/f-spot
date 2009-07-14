@@ -676,11 +676,10 @@ namespace FSpot
 
 			if (rootTerm.Count == 0) {
 				help.Show ();
-				query.ExtraCondition = null;
+				query.TagTerm = null;
 			} else {
 				help.Hide ();
-				query.ExtraCondition = rootTerm.SqlCondition ();
-				//Console.WriteLine ("extra_condition = {0}", query.ExtraCondition);
+				query.TagTerm = new PhotoQuery.TagConditionWrapper (rootTerm.SqlCondition ());
 			}
 
 			EventHandler handler = Changed;

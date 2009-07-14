@@ -275,6 +275,7 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/Vector.cs			\
 	$(srcdir)/ThumbnailCommand.cs		\
 	$(srcdir)/QueryWidget.cs		\
+	$(srcdir)/Query/HiddenTag.cs		\
 	$(srcdir)/GPhotoCamera.cs		\
 	$(srcdir)/CameraSelectionDialog.cs	\
 	$(srcdir)/CameraFileSelectionDialog.cs	\

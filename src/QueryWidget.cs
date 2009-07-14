@@ -163,14 +163,14 @@ namespace FSpot {
 
 		public void HandleChanged (IBrowsableCollection collection) 
 		{
-			if (query.ExtraCondition == null)
+			if (query.TagTerm == null)
 				logic_widget.Clear = true;
 
 			if ( ! logic_widget.Clear
 			    || query.Untagged
 			    || (query.RollSet != null)
 			    || (query.RatingRange != null)
-			    || folder_query_widget.Visible)
+			    || ! folder_query_widget.Empty)
 				ShowBar ();
 			else
 				HideBar ();

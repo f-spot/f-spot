@@ -774,10 +774,14 @@ public class PhotoStore : DbStore<Photo> {
 		StringBuilder query_builder = new StringBuilder ("SELECT * FROM photos ");
 
 		bool where_added = false;
+		bool hidden_contained = false;
 		foreach (IQueryCondition condition in conditions) {
 			
 			if (condition == null)
 				continue;
+			
+			if (condition is HiddenTag)
+				hidden_contained = true;
 			
 			if (condition is IOrderCondition)
 				continue;
@@ -789,6 +793,16 @@ public class PhotoStore : DbStore<Photo> {
 			query_builder.Append (where_added ? " AND " : " WHERE ");
 			query_builder.Append (sql_clause);
 			where_added = true;
+		}
+		
+		/* if a HiddenTag condition is not explicitly given, we add one */
+		if ( ! hidden_contained) {
+			string sql_clause = HiddenTag.HideHiddenTag.SqlClause ();
+			
+			if (sql_clause != null && sql_clause.Trim () != String.Empty) {
+				query_builder.Append (where_added ? " AND " : " WHERE ");
+				query_builder.Append (sql_clause);
+			}
 		}
 
 		bool order_added = false;
