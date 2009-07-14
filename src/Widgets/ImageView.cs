@@ -112,6 +112,17 @@ namespace FSpot.Widgets
 			}
 		}
 
+		bool crop_helpers = true;
+		public bool CropHelpers {
+			get { return crop_helpers; }
+			set { 
+				if (crop_helpers == value)
+					return;
+				crop_helpers = value;
+				QueueDraw ();
+			}
+		}
+
 		Gdk.Rectangle selection = Rectangle.Zero;
 		public Gdk.Rectangle Selection {
 			get {
@@ -888,6 +899,9 @@ namespace FSpot.Widgets
 				ctx.SetSourceRGBA (.5, .5, .5, .7);
 				CairoHelper.Region (ctx, evnt.Region);
 				ctx.Fill ();
+
+				if (!crop_helpers)
+					return true;
 
 				ctx.SetSourceRGBA (.7, .7, .7, .8);
 				ctx.SetDash (new double [] {10, 15}, 0);
