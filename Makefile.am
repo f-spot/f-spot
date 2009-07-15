@@ -13,7 +13,6 @@ SUBDIRS = 		\
 	libfspot	\
 	libgphoto2-sharp \
 	Tao		\
-	mono-addins	\
 	tools		\
 	po		\
 	src		\
@@ -36,7 +35,6 @@ DIST_SUBDIRS = 		\
 	libfspot	\
 	libgphoto2-sharp \
 	Tao		\
-	mono-addins	\
 	tools		\
 	po		\
 	src		\

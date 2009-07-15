@@ -282,10 +282,14 @@ AC_SUBST(GNOME_ICON_THEME_PREFIX)
 
 AC_OUTPUT(
 Makefile
-lib/Makefile
-lib/libfspotraw/Makefile
 lib/glitz-sharp/Makefile
 lib/glitz-sharp/src/Makefile
+lib/libfspotraw/Makefile
+lib/Makefile
+lib/mono-addins/Makefile
+lib/mono-addins/Mono.Addins.Gui/Makefile
+lib/mono-addins/Mono.Addins/Makefile
+lib/mono-addins/Mono.Addins.Setup/Makefile
 dbus-sharp/Makefile
 dbus-sharp-glib/Makefile
 dpap-sharp/Makefile
@@ -300,10 +304,6 @@ icons/Makefile
 libjpegtran/Makefile
 libfspot/Makefile
 libgphoto2-sharp/Makefile
-mono-addins/Makefile
-mono-addins/Mono.Addins/Makefile
-mono-addins/Mono.Addins.Gui/Makefile
-mono-addins/Mono.Addins.Setup/Makefile
 semweb/Makefile
 tools/Makefile
 po/Makefile.in
