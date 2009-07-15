@@ -5,7 +5,6 @@ SUBDIRS = 		\
 	$(DIR_DBUS_GLIB)\
 	gio-sharp	\
 	gtk-sharp-beans	\
-	semweb		\
 	docs		\
 	gnome-keyring-sharp \
 	icons		\
@@ -23,7 +22,6 @@ DIST_SUBDIRS = 		\
 	lib 		\
 	gio-sharp	\
 	gtk-sharp-beans	\
-	semweb		\
 	dbus-sharp	\
 	dbus-sharp-glib	\
 	dpap-sharp	\

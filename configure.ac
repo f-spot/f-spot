@@ -291,6 +291,7 @@ lib/mono-addins/Makefile
 lib/mono-addins/Mono.Addins.Gui/Makefile
 lib/mono-addins/Mono.Addins/Makefile
 lib/mono-addins/Mono.Addins.Setup/Makefile
+lib/semweb/Makefile
 dbus-sharp/Makefile
 dbus-sharp-glib/Makefile
 dpap-sharp/Makefile
@@ -305,7 +306,6 @@ icons/Makefile
 libjpegtran/Makefile
 libfspot/Makefile
 libgphoto2-sharp/Makefile
-semweb/Makefile
 tools/Makefile
 po/Makefile.in
 src/Core/Defines.cs

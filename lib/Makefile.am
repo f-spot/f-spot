@@ -2,4 +2,5 @@ SUBDIRS = 				\
 	GKeyFile 			\
 	glitz-sharp 		\
 	libfspotraw 		\
-	mono-addins			
+	mono-addins			\
+	semweb

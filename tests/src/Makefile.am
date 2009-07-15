@@ -29,7 +29,7 @@ REFS =										\
 	-r:$(top_srcdir)/src/FSpot.Utils.dll	\
 	-r:$(top_srcdir)/src/FSpot.Platform.dll	\
 	-r:$(top_srcdir)/src/Cms.dll			\
-	-r:$(top_srcdir)/semweb/SemWeb.dll
+	-r:$(top_srcdir)/lib/semweb/SemWeb.dll
 
 EXTRA_DIST =			\
 	$(SOURCES)
@@ -46,7 +46,7 @@ FSpot.Tests.dll: $(SOURCES)
 	gmcs $(MCSFLAGS) $(PKGS) $(REFS) $(SOURCES) $(RESOURCES) -out:FSpot.Tests.dll
 
 test: FSpot.Tests.dll
-	export MONO_PATH=$(top_srcdir)/src:$(top_srcdir)/gio-sharp/gio/:$(top_srcdir)/semweb:$(top_srcdir)/gtk-sharp-beans; nunit-console -noshadow -nologo $(TEST_ASSEMBLIES) 
+	export MONO_PATH=$(top_srcdir)/src:$(top_srcdir)/gio-sharp/gio/:$(top_srcdir)/lib/semweb:$(top_srcdir)/gtk-sharp-beans; nunit-console -noshadow -nologo $(TEST_ASSEMBLIES) 
 
 CLEANFILES =			\
 	FSpot.Tests.dll.mdb	\
