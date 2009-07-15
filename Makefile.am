@@ -11,7 +11,6 @@ SUBDIRS = 		\
 	libjpegtran	\
 	libfspot	\
 	libgphoto2-sharp \
-	Tao		\
 	tools		\
 	po		\
 	src		\
@@ -31,7 +30,6 @@ DIST_SUBDIRS = 		\
 	libjpegtran	\
 	libfspot	\
 	libgphoto2-sharp \
-	Tao		\
 	tools		\
 	po		\
 	src		\

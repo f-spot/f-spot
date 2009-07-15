@@ -16,10 +16,10 @@ DIR_KEYRING = $(top_builddir)/gnome-keyring-sharp
 DIR_LIBFSPOT = $(top_builddir)/libfspot
 DIR_SEMWEB = $(top_builddir)/lib/semweb
 DIR_SRC = $(top_builddir)/src
-DIR_TAO_OPENGL = $(top_builddir)/Tao/Tao.OpenGl
-DIR_TAO_GLU = $(top_builddir)/Tao/Tao.OpenGl.Glu
-DIR_TAO_EXTENSIONLOADER = $(top_builddir)/Tao/Tao.OpenGl.ExtensionLoader
-DIR_TAO_GLPOSTPROCESS = $(top_builddir)/Tao/Tao.GlPostProcess
+DIR_TAO_OPENGL = $(top_builddir)/lib/Tao/Tao.OpenGl
+DIR_TAO_GLU = $(top_builddir)/lib/Tao/Tao.OpenGl.Glu
+DIR_TAO_EXTENSIONLOADER = $(top_builddir)/lib/Tao/Tao.OpenGl.ExtensionLoader
+DIR_TAO_GLPOSTPROCESS = $(top_builddir)/lib/Tao/Tao.GlPostProcess
 DIR_GIOSHARP = $(top_builddir)/gio-sharp/gio
 DIR_GTKSHARPBEANS = $(top_builddir)/gtk-sharp-beans
 

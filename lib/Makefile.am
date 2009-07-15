@@ -3,4 +3,5 @@ SUBDIRS = 				\
 	glitz-sharp 		\
 	libfspotraw 		\
 	mono-addins			\
-	semweb
+	semweb 				\
+	Tao

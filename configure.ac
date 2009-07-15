@@ -292,6 +292,11 @@ lib/mono-addins/Mono.Addins.Gui/Makefile
 lib/mono-addins/Mono.Addins/Makefile
 lib/mono-addins/Mono.Addins.Setup/Makefile
 lib/semweb/Makefile
+lib/Tao/Makefile
+lib/Tao/Tao.GlPostProcess/Makefile
+lib/Tao/Tao.OpenGl.ExtensionLoader/Makefile
+lib/Tao/Tao.OpenGl.Glu/Makefile
+lib/Tao/Tao.OpenGl/Makefile
 dbus-sharp/Makefile
 dbus-sharp-glib/Makefile
 dpap-sharp/Makefile
@@ -314,11 +319,6 @@ src/f-spot.exe.config
 src/Cms.dll.config
 src/FSpot.Widgets.dll.config
 src/Makefile
-Tao/Makefile
-Tao/Tao.OpenGl/Makefile
-Tao/Tao.OpenGl.Glu/Makefile
-Tao/Tao.GlPostProcess/Makefile
-Tao/Tao.OpenGl.ExtensionLoader/Makefile
 extensions/Makefile
 extensions/Exporters/Makefile
 extensions/Exporters/CDExport/Makefile
