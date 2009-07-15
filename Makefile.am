@@ -11,6 +11,7 @@ SUBDIRS = 		\
 	icons		\
 	libjpegtran	\
 	libfspot	\
+	libfspotraw	\
 	libgphoto2-sharp \
 	Tao		\
 	mono-addins	\
@@ -34,6 +35,7 @@ DIST_SUBDIRS = 		\
 	icons		\
 	libjpegtran	\
 	libfspot	\
+	libfspotraw	\
 	libgphoto2-sharp \
 	Tao		\
 	mono-addins	\

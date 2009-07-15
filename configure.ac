@@ -10,6 +10,7 @@ AM_MAINTAINER_MODE
 IT_PROG_INTLTOOL([0.35.0])
 
 AC_PROG_CC
+AC_PROG_CXX
 AC_ISC_POSIX
 AC_HEADER_STDC
 AM_PROG_LIBTOOL
@@ -294,6 +295,7 @@ gnome-keyring-sharp/Makefile
 icons/Makefile
 libjpegtran/Makefile
 libfspot/Makefile
+libfspotraw/Makefile
 libgphoto2-sharp/Makefile
 mono-addins/Makefile
 mono-addins/Mono.Addins/Makefile
