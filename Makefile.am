@@ -7,7 +7,6 @@ SUBDIRS = 		\
 	gtk-sharp-beans	\
 	semweb		\
 	docs		\
-	glitz-sharp	\
 	gnome-keyring-sharp \
 	icons		\
 	libjpegtran	\
@@ -31,7 +30,6 @@ DIST_SUBDIRS = 		\
 	dbus-sharp-glib	\
 	dpap-sharp	\
 	docs		\
-	glitz-sharp	\
 	gnome-keyring-sharp \
 	icons		\
 	libjpegtran	\

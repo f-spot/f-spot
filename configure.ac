@@ -284,6 +284,8 @@ AC_OUTPUT(
 Makefile
 lib/Makefile
 lib/libfspotraw/Makefile
+lib/glitz-sharp/Makefile
+lib/glitz-sharp/src/Makefile
 dbus-sharp/Makefile
 dbus-sharp-glib/Makefile
 dpap-sharp/Makefile
@@ -312,8 +314,6 @@ src/Cms.dll.config
 src/FSpot.Widgets.dll.config
 src/Makefile
 GKeyFile/Makefile
-glitz-sharp/Makefile
-glitz-sharp/src/Makefile
 Tao/Makefile
 Tao/Tao.OpenGl/Makefile
 Tao/Tao.OpenGl.Glu/Makefile
