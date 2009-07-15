@@ -280,8 +280,8 @@ namespace FSpot.Widgets
 			int x_offset = scaled_width < Allocation.Width ? (int)(Allocation.Width - scaled_width) / 2 : -XOffset;
 			int y_offset = scaled_height < Allocation.Height ? (int)(Allocation.Height - scaled_height) / 2 : -YOffset;
 
-			return new Point ((int) Math.Floor (image.X * (double) (scaled_width - 1) / (Pixbuf.Width - 1) + 0.5) + x_offset,
-					  (int) Math.Floor (image.Y * (double) (scaled_height - 1) / (Pixbuf.Height - 1) + 0.5) + y_offset);
+			return new Point ((int) Math.Floor (image.X * (double) (scaled_width - 1) / (((int)pixbuf_orientation <= 4 ? Pixbuf.Width : Pixbuf.Height) - 1) + 0.5) + x_offset,
+					  (int) Math.Floor (image.Y * (double) (scaled_height - 1) / (((int)pixbuf_orientation <= 4 ? Pixbuf.Height : Pixbuf.Width) - 1) + 0.5) + y_offset);
 		}
 
 		protected Rectangle ImageCoordsToWindow (Rectangle image)
@@ -889,7 +889,9 @@ namespace FSpot.Widgets
 				CairoHelper.Region (ctx, evnt.Region);
 				ctx.Fill ();
 
+				ctx.SetSourceRGBA (.7, .7, .7, .8);
 				ctx.SetDash (new double [] {10, 15}, 0);
+				ctx.LineWidth = .8;
 				for (int i=1; i<3; i++) {
 					Point s = ImageCoordsToWindow (new Point (selection.X + selection.Width / 3 * i, selection.Y));
 					Point e = ImageCoordsToWindow (new Point (selection.X + selection.Width / 3 * i, selection.Y + selection.Height));
