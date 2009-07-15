@@ -59,7 +59,7 @@ namespace FSpot.UI.Dialog
 			else 
 				query.Terms = new FSpot.Literal (t);
 
-			image_view = new PhotoImageView (query);
+			image_view = new PhotoImageView (query) {CropHelpers = false};
 			image_view.SelectionXyRatio = 1.0;
 			image_view.SelectionChanged += HandleSelectionChanged;
 			image_view.PhotoChanged += HandlePhotoChanged;
