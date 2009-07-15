@@ -282,6 +282,8 @@ AC_SUBST(GNOME_ICON_THEME_PREFIX)
 
 AC_OUTPUT(
 Makefile
+lib/Makefile
+lib/libfspotraw/Makefile
 dbus-sharp/Makefile
 dbus-sharp-glib/Makefile
 dpap-sharp/Makefile
@@ -295,7 +297,6 @@ gnome-keyring-sharp/Makefile
 icons/Makefile
 libjpegtran/Makefile
 libfspot/Makefile
-libfspotraw/Makefile
 libgphoto2-sharp/Makefile
 mono-addins/Makefile
 mono-addins/Mono.Addins/Makefile

@@ -1,5 +1,6 @@
 SUBDIRS = 		\
 	$(subdirs)	\
+	lib 		\
 	$(DIR_DBUS)	\
 	$(DIR_DBUS_GLIB)\
 	gio-sharp	\
@@ -11,7 +12,6 @@ SUBDIRS = 		\
 	icons		\
 	libjpegtran	\
 	libfspot	\
-	libfspotraw	\
 	libgphoto2-sharp \
 	Tao		\
 	mono-addins	\
@@ -23,6 +23,7 @@ SUBDIRS = 		\
 	GKeyFile
 
 DIST_SUBDIRS = 		\
+	lib 		\
 	gio-sharp	\
 	gtk-sharp-beans	\
 	semweb		\
@@ -35,7 +36,6 @@ DIST_SUBDIRS = 		\
 	icons		\
 	libjpegtran	\
 	libfspot	\
-	libfspotraw	\
 	libgphoto2-sharp \
 	Tao		\
 	mono-addins	\
