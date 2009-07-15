@@ -25,9 +25,6 @@ namespace FSpot.Utils
 		
 		public static string GetFilename (this Uri uri)
 		{
-			if ( ! uri.IsFile)
-				return null;
-			
 			return System.IO.Path.GetFileName (uri.AbsolutePath);
 		}
 	}

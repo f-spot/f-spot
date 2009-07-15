@@ -900,8 +900,10 @@ public class PhotoStore : DbStore<Photo> {
 
 	public Photo [] Query (System.Uri uri)
 	{
+		string filename = uri.GetFilename ();
+		
 		/* query by file */
-		if (uri.IsFile) {
+		if ( ! String.IsNullOrEmpty (filename)) {
 			return Query (new DbCommand (
 			"SELECT id, "			+
 				"time, "			+
@@ -916,7 +918,7 @@ public class PhotoStore : DbStore<Photo> {
 			"WHERE base_uri LIKE :base_uri "		+
 			"AND filename LIKE :filename",
 			"base_uri", uri.GetDirectoryUri ().ToString (),
-			"filename", uri.GetFilename ()));
+			"filename", filename));
 		}
 		
 		/* query by directory */
