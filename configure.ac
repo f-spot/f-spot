@@ -282,6 +282,7 @@ AC_SUBST(GNOME_ICON_THEME_PREFIX)
 
 AC_OUTPUT(
 Makefile
+lib/GKeyFile/Makefile
 lib/glitz-sharp/Makefile
 lib/glitz-sharp/src/Makefile
 lib/libfspotraw/Makefile
@@ -313,7 +314,6 @@ src/f-spot.exe.config
 src/Cms.dll.config
 src/FSpot.Widgets.dll.config
 src/Makefile
-GKeyFile/Makefile
 Tao/Makefile
 Tao/Tao.OpenGl/Makefile
 Tao/Tao.OpenGl.Glu/Makefile

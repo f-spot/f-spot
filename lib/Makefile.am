@@ -1,4 +1,5 @@
 SUBDIRS = 				\
+	GKeyFile 			\
 	glitz-sharp 		\
-	mono-addins			\
-	libfspotraw
+	libfspotraw 		\
+	mono-addins			

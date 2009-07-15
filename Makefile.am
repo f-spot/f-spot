@@ -17,8 +17,7 @@ SUBDIRS = 		\
 	po		\
 	src		\
 	extensions	\
-	tests		\
-	GKeyFile
+	tests
 
 DIST_SUBDIRS = 		\
 	lib 		\
@@ -39,8 +38,7 @@ DIST_SUBDIRS = 		\
 	po		\
 	src		\
 	extensions	\
-	tests		\
-	GKeyFile
+	tests
 
 desktop_in_files=	\
 	f-spot.desktop.in	\
