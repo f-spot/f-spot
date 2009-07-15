@@ -28,7 +28,6 @@ namespace FSpot.UI.Dialog
 		string icon_name = null;
 		Gtk.FileChooserButton external_photo_chooser;
 
-
 		[GtkBeans.Builder.Object] Gtk.Image preview_image;
 		[GtkBeans.Builder.Object] ScrolledWindow photo_scrolled_window;
 		[GtkBeans.Builder.Object] ScrolledWindow icon_scrolled_window;
@@ -71,8 +70,8 @@ namespace FSpot.UI.Dialog
 			external_photo_chooser.Filter = new FileFilter();
 			external_photo_chooser.Filter.AddPixbufFormats();
                         external_photo_chooser.LocalOnly = false;
-                        external_photo_chooser_hbox.PackStart (external_photo_chooser);
-
+			external_photo_chooser_hbox.PackStart (external_photo_chooser);
+			external_photo_chooser.Show ();
 			external_photo_chooser.SelectionChanged += HandleExternalFileSelectionChanged;
 
 			photo_scrolled_window.Add (image_view);
@@ -142,7 +141,6 @@ namespace FSpot.UI.Dialog
 			}
 			
 		}
-
 		
 		void HandleSpinButtonChanged (object sender, EventArgs args)
 		{
@@ -159,7 +157,7 @@ namespace FSpot.UI.Dialog
 		void CreateTagIconFromExternalPhoto ()
 		{
 			try {
-				using (FSpot.ImageFile img = FSpot.ImageFile.Create(new Uri(external_photo_chooser.Uri))) {
+				using (FSpot.ImageFile img = FSpot.ImageFile.Create (new Uri(external_photo_chooser.Uri))) {
 					using (Gdk.Pixbuf external_image = img.Load ()) {
 						PreviewPixbuf = PixbufUtils.TagIconFromPixbuf (external_image);
 					}
