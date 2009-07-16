@@ -112,17 +112,6 @@ namespace FSpot.Widgets
 			}
 		}
 
-		bool crop_helpers = true;
-		public bool CropHelpers {
-			get { return crop_helpers; }
-			set { 
-				if (crop_helpers == value)
-					return;
-				crop_helpers = value;
-				QueueDraw ();
-			}
-		}
-
 		Gdk.Rectangle selection = Rectangle.Zero;
 		public Gdk.Rectangle Selection {
 			get {
@@ -890,38 +879,18 @@ namespace FSpot.Widgets
 				return false;
 
 			Rectangle win_selection = ImageCoordsToWindow (selection);
-			using (Region r = new Region ()) {
-				r.UnionWithRect (win_selection);
-				evnt.Region.Subtract (r);
-			}
-
-			using (Cairo.Context ctx = CairoHelper.Create (GdkWindow)) {
-				ctx.SetSourceRGBA (.5, .5, .5, .7);
-				CairoHelper.Region (ctx, evnt.Region);
-				ctx.Fill ();
-
-				if (!crop_helpers)
-					return true;
-
-				ctx.SetSourceRGBA (.7, .7, .7, .8);
-				ctx.SetDash (new double [] {10, 15}, 0);
-				ctx.LineWidth = .8;
-				for (int i=1; i<3; i++) {
-					Point s = ImageCoordsToWindow (new Point (selection.X + selection.Width / 3 * i, selection.Y));
-					Point e = ImageCoordsToWindow (new Point (selection.X + selection.Width / 3 * i, selection.Y + selection.Height));
-					ctx.MoveTo (s.X, s.Y);
-					ctx.LineTo (e.X, e.Y);
-					ctx.Stroke ();
+			using (var evnt_region = evnt.Region.Copy ()) {
+				using (Region r = new Region ()) {
+					r.UnionWithRect (win_selection);
+					evnt_region.Subtract (r);
 				}
-				for (int i=1; i<3; i++) {
-					Point s = ImageCoordsToWindow (new Point (selection.X, selection.Y + selection.Height / 3 * i));
-					Point e = ImageCoordsToWindow (new Point (selection.X + selection.Width, selection.Y + selection.Height / 3 * i));
-					ctx.MoveTo (s.X, s.Y);
-					ctx.LineTo (e.X, e.Y);
-					ctx.Stroke ();
+
+				using (Cairo.Context ctx = CairoHelper.Create (GdkWindow)) {
+					ctx.SetSourceRGBA (.5, .5, .5, .7);
+					CairoHelper.Region (ctx, evnt_region);
+					ctx.Fill ();
 				}
 			}
-
 			return true;
 		}
 

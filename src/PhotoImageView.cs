@@ -407,6 +407,47 @@ namespace FSpot.Widgets {
 		{
 			FSpot.ColorManagement.ApplyScreenProfile (pixbuf);
 		}
-		
+
+		bool crop_helpers = true;
+		public bool CropHelpers {
+			get { return crop_helpers; }
+			set { 
+				if (crop_helpers == value)
+					return;
+				crop_helpers = value;
+				QueueDraw ();
+			}
+		}
+
+		protected override bool OnExposeEvent (EventExpose evnt)
+		{
+			if (!base.OnExposeEvent (evnt))
+				return false;
+
+			if (!CanSelect || !CropHelpers || Selection == Rectangle.Zero)
+				return true;
+
+			using (Cairo.Context ctx = CairoHelper.Create (GdkWindow)) {
+				ctx.SetSourceRGBA (.7, .7, .7, .8);
+				ctx.SetDash (new double [] {10, 15}, 0);
+				ctx.LineWidth = .8;
+				for (int i=1; i<3; i++) {
+					Point s = ImageCoordsToWindow (new Point (Selection.X + Selection.Width / 3 * i, Selection.Y));
+					Point e = ImageCoordsToWindow (new Point (Selection.X + Selection.Width / 3 * i, Selection.Y + Selection.Height));
+					ctx.MoveTo (s.X, s.Y);
+					ctx.LineTo (e.X, e.Y);
+					ctx.Stroke ();
+				}
+				for (int i=1; i<3; i++) {
+					Point s = ImageCoordsToWindow (new Point (Selection.X, Selection.Y + Selection.Height / 3 * i));
+					Point e = ImageCoordsToWindow (new Point (Selection.X + Selection.Width, Selection.Y + Selection.Height / 3 * i));
+					ctx.MoveTo (s.X, s.Y);
+					ctx.LineTo (e.X, e.Y);
+					ctx.Stroke ();
+				}
+			}
+			return true;
+		}
+	
 	}
 }
