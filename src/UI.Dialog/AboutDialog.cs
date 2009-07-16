@@ -20,6 +20,7 @@ namespace FSpot.UI.Dialog
 		private AboutDialog () {
 			Artists = new string [] {
 				"Jakub Steiner",	
+				"Matthew Paul Thomas",
 			};
 			Authors = new string [] {
 				"Primary Development",
