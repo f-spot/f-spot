@@ -185,18 +185,16 @@ namespace FSpot {
 	
 			SetBackground (renderer, tag);
 	
-			// FIXME I can't set the Pixbuf to null, not sure if it's a GTK# bug...
 			if (tag.SizedIcon != null) {
-				if (FSpot.ColorManagement.IsEnabled) {
-					//FIXME
+				Cms.Profile screen_profile;
+				if (FSpot.ColorManagement.Profiles.TryGetValue (Preferences.Get<string> (Preferences.COLOR_MANAGEMENT_DISPLAY_PROFILE), out screen_profile)) {
+					//FIXME, we're leaking a pixbuf here
 					Gdk.Pixbuf temp = tag.SizedIcon.Copy();
-					FSpot.ColorManagement.ApplyScreenProfile (temp);
+					FSpot.ColorManagement.ApplyProfile (temp, screen_profile);
 					(renderer as CellRendererPixbuf).Pixbuf = temp;
-				}
-				else
+				} else
 					(renderer as CellRendererPixbuf).Pixbuf = tag.SizedIcon;
-			}
-			else
+			} else
 				(renderer as CellRendererPixbuf).Pixbuf = empty_pixbuf;
 		}
 	

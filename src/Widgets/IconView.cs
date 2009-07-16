@@ -863,10 +863,12 @@ namespace FSpot.Widgets
 						draw.Width, draw.Height);
 
 				if (region.Intersect (area, out draw)) {
-					//FIXME
-					if (FSpot.ColorManagement.IsEnabled) {
-						temp_thumbnail = temp_thumbnail.Copy();
-						FSpot.ColorManagement.ApplyScreenProfile (temp_thumbnail);
+					Cms.Profile screen_profile;
+					if (FSpot.ColorManagement.Profiles.TryGetValue (Preferences.Get<string> (Preferences.COLOR_MANAGEMENT_DISPLAY_PROFILE), out screen_profile)) {
+						Pixbuf t = temp_thumbnail.Copy ();
+						temp_thumbnail.Dispose ();
+						temp_thumbnail = t;
+						FSpot.ColorManagement.ApplyProfile (temp_thumbnail, screen_profile);
 					}
 					temp_thumbnail.RenderToDrawable (BinWindow, Style.WhiteGC,
 							draw.X - region.X,
@@ -988,7 +990,9 @@ namespace FSpot.Widgets
 									InterpType.Bilinear);
 						}
 						
-						FSpot.ColorManagement.ApplyScreenProfile (scaled_icon);
+						Cms.Profile screen_profile;
+						if (FSpot.ColorManagement.Profiles.TryGetValue (Preferences.Get<string> (Preferences.COLOR_MANAGEMENT_DISPLAY_PROFILE), out screen_profile))
+							FSpot.ColorManagement.ApplyProfile (scaled_icon, screen_profile);
 
 						scaled_icon.RenderToDrawable (BinWindow, Style.WhiteGC,
 								region.X - tag_bounds.X,

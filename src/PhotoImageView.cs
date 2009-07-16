@@ -397,7 +397,6 @@ namespace FSpot.Widgets {
 		{
 			switch (key) {
 			case Preferences.COLOR_MANAGEMENT_DISPLAY_PROFILE:
-			case Preferences.COLOR_MANAGEMENT_ENABLED:
 				Reload ();
 				break;
 			}
@@ -405,7 +404,9 @@ namespace FSpot.Widgets {
 
 		protected override void ApplyColorTransform (Pixbuf pixbuf)
 		{
-			FSpot.ColorManagement.ApplyScreenProfile (pixbuf);
+			Cms.Profile screen_profile;
+			if (FSpot.ColorManagement.Profiles.TryGetValue (Preferences.Get<string> (Preferences.COLOR_MANAGEMENT_DISPLAY_PROFILE), out screen_profile)) 
+				FSpot.ColorManagement.ApplyProfile (pixbuf, screen_profile);
 		}
 
 		bool crop_helpers = true;

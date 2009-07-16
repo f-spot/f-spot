@@ -95,7 +95,9 @@ public class TagView : EventBox {
 			} else {
 				scaled_icon = icon.ScaleSimple (thumbnail_size, thumbnail_size, InterpType.Bilinear);
 			}
-				FSpot.ColorManagement.ApplyScreenProfile (scaled_icon);
+				Cms.Profile screen_profile;
+				if (FSpot.ColorManagement.Profiles.TryGetValue (Preferences.Get<string> (Preferences.COLOR_MANAGEMENT_DISPLAY_PROFILE), out screen_profile)) 
+					FSpot.ColorManagement.ApplyProfile (scaled_icon, screen_profile);
 
 			scaled_icon.RenderToDrawable (GdkWindow, Style.WhiteGC,
 						      0, 0, tag_x, tag_y, thumbnail_size, thumbnail_size,

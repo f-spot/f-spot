@@ -259,10 +259,6 @@ public class MainWindow {
 		LoadPreference (Preferences.SIDEBAR_POSITION);
 		LoadPreference (Preferences.METADATA_EMBED_IN_IMAGE);
 
-		LoadPreference (Preferences.COLOR_MANAGEMENT_ENABLED);
- 		LoadPreference (Preferences.COLOR_MANAGEMENT_USE_X_PROFILE);
- 		FSpot.ColorManagement.LoadSettings();
-	
 		pagesetup_menu_item.Activated += HandlePageSetupActivated;
 
 		toolbar = new Gtk.Toolbar ();
@@ -1060,13 +1056,11 @@ public class MainWindow {
 
 				Pixbuf thumbnail = null;
 				if (entry != null) {
-					if (FSpot.ColorManagement.IsEnabled) {
-						//FIXME
-						thumbnail = entry.ShallowCopyPixbuf ();
-						thumbnail = thumbnail.Copy ();
-						FSpot.ColorManagement.ApplyScreenProfile (thumbnail);
-					}
-					else
+					Cms.Profile screen_profile;
+					if (FSpot.ColorManagement.Profiles.TryGetValue (Preferences.Get<string> (Preferences.COLOR_MANAGEMENT_DISPLAY_PROFILE), out screen_profile)) {
+						thumbnail = entry.Pixbuf.Copy ();
+						FSpot.ColorManagement.ApplyProfile (thumbnail, screen_profile);
+					} else
 						thumbnail = entry.ShallowCopyPixbuf ();
 				}
 				
@@ -1549,7 +1543,9 @@ public class MainWindow {
 
 	public void HandlePreferences (object sender, EventArgs args)
 	{
-		PreferenceDialog.Show ();
+		var pref = new PreferenceDialog (GetToplevel (sender));
+		pref.Run ();
+		pref.Destroy ();
 	}
 
 	public void HandleManageExtensions (object sender, EventArgs args)
@@ -2543,12 +2539,6 @@ public class MainWindow {
 		
 		case Preferences.METADATA_EMBED_IN_IMAGE:
 			write_metadata =Preferences.Get<bool> (key) ;
-			break;
-		case Preferences.COLOR_MANAGEMENT_ENABLED:
-			FSpot.ColorManagement.IsEnabled = Preferences.Get<bool> (key);
-			break;
-		case Preferences.COLOR_MANAGEMENT_USE_X_PROFILE:
-			FSpot.ColorManagement.UseXProfile = Preferences.Get<bool> (key);
 			break;
 		case Preferences.GNOME_MAILTO_ENABLED:
 			send_mail.Visible = Preferences.Get<bool> (key);

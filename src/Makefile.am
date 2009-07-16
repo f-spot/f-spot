@@ -411,7 +411,7 @@ F_SPOT_DISTRESOURCES =					\
 	$(srcdir)/UI.Dialog/ui/DateRangeDialog.ui	\
 	$(srcdir)/UI.Dialog/ui/EditTagDialog.ui		\
 	$(srcdir)/UI.Dialog/ui/EditTagIconDialog.ui		\
-	$(srcdir)/UI.Dialog/ui/PreferenceDialog.glade	\
+	$(srcdir)/UI.Dialog/ui/PreferenceDialog.ui	\
 	$(srcdir)/FSpot.addin.xml
 
 F_SPOT_RESOURCES =					\

@@ -86,9 +86,6 @@ namespace FSpot.UI.Dialog
 			(cell as CellRendererText).Text = name;
 		}
 
-
-
-
 		private static string GetString(int index)
 		{
 			return GetString (ranges [index]);

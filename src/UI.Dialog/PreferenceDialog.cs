@@ -5,6 +5,9 @@
  *	Larry Ewing  <lewing@novell.com>
  *	Stephane Delcroix  <stephane@delcroix.org>
  *
+ * Copyright (c) 2005-2009 Novell, Inc.
+ * Copyright (c) 2007 Stephane Delcroix <stephane@delcroix.org>
+ *
  * This is free software. See COPYING for details.
  */
 
@@ -12,357 +15,262 @@ using System;
 using System.IO;
 using System.Collections.Generic;
 using Gtk;
+using Mono.Unix;
 
 using FSpot.Widgets;
 
 namespace FSpot.UI.Dialog {
-	public class ProfileList : TreeStore {
-		public ProfileList () : base (typeof (Cms.Profile))
+	public class PreferenceDialog : BuilderDialog
+	{
+		[GtkBeans.Builder.Object] FileChooserButton photosdir_chooser;
+
+		[GtkBeans.Builder.Object] RadioButton writemetadata_radio;
+		[GtkBeans.Builder.Object] RadioButton dontwrite_radio;
+
+		[GtkBeans.Builder.Object] ComboBox theme_combo;
+		[GtkBeans.Builder.Object] ComboBox screenprofile_combo;
+		[GtkBeans.Builder.Object] ComboBox printprofile_combo;
+
+#region public API (ctor)
+		public PreferenceDialog (Window parent) : base ("PreferenceDialog.ui", "preference_dialog")
 		{
-			foreach (Cms.Profile profile in FSpot.ColorManagement.Profiles)
-				this.AppendValues (profile);
-		}
+			TransientFor = parent;
 
-		private const int NameLenth = 50;
-		public static void ProfileNameDataFunc (CellLayout layout, CellRenderer renderer, TreeModel model, TreeIter iter)
-		{
-			if (model.GetValue (iter, 0) != null) {
-				Cms.Profile profile = (Cms.Profile) model.GetValue (iter, 0);
-				if (profile.ProductName.Length < NameLenth)
-					(renderer as Gtk.CellRendererText).Text = profile.ProductName;
-				else
-					(renderer as Gtk.CellRendererText).Text = profile.ProductName.Substring(0, NameLenth) + "...";
-			}
-			else
-				(renderer as Gtk.CellRendererText).Text = "";
-		}
-	}
-
-	public class PreferenceDialog : GladeDialog {
-		[Glade.Widget] private CheckButton metadata_check;
-		[Glade.Widget] private CheckButton colormanagement_check;
-		[Glade.Widget] private CheckButton use_x_profile_check;
-		[Glade.Widget] private ComboBox display_combo;
-		[Glade.Widget] private ComboBox destination_combo;
-		[Glade.Widget] private HBox tagselectionhbox;
-		[Glade.Widget] private Button set_saver_button;
-		[Glade.Widget] private FileChooserButton photosdir_chooser;
-		[Glade.Widget] private RadioButton screensaverall_radio;
-		[Glade.Widget] private RadioButton screensavertagged_radio;
-		[Glade.Widget] private CheckButton dbus_check;
-		[Glade.Widget] private RadioButton themenone_radio;
-		[Glade.Widget] private RadioButton themecustom_radio;
-		[Glade.Widget] private Label themelist_label;
-		[Glade.Widget] private Label restartlabel;
-		[Glade.Widget] private Label themefile_label;
-		[Glade.Widget] private FileChooserButton theme_filechooser;
-		[Glade.Widget] private Table theme_table;
-		[Glade.Widget] private Button refreshtheme_button;
-		private ComboBox themelist_combo;
-		private MenuButton tag_button;
-
-
-		private static PreferenceDialog prefs = null;
-		int screensaver_tag;
-		private const string SaverCommand = "screensavers-f-spot-screensaver";
-		private const string SaverMode = "single";
-		Dictionary<string, string> theme_list;
-
-		public PreferenceDialog () : base ("main_preferences", "PreferenceDialog.glade")
-		{
-			tag_button = new MenuButton ();
-			LoadPreference (Preferences.METADATA_EMBED_IN_IMAGE);
-			LoadPreference (Preferences.COLOR_MANAGEMENT_ENABLED);
-			LoadPreference (Preferences.COLOR_MANAGEMENT_USE_X_PROFILE);
-			LoadPreference (Preferences.SCREENSAVER_TAG);
-			LoadPreference (Preferences.GNOME_SCREENSAVER_THEME);
+			//Photos Folder
 			if (Global.PhotoDirectory == Preferences.Get<string> (Preferences.STORAGE_PATH)) {
-				photosdir_chooser.CurrentFolderChanged += HandlePhotosdirChanged;
 				photosdir_chooser.SetCurrentFolder (Global.PhotoDirectory);
+				photosdir_chooser.CurrentFolderChanged += HandlePhotosdirChanged;
 			} else {
 				photosdir_chooser.SetCurrentFolder(Global.PhotoDirectory);
 				photosdir_chooser.Sensitive = false;
 			}
 
-			Gtk.CellRendererText name_cell = new Gtk.CellRendererText ();
-			Gtk.CellRendererText desc_cell = new Gtk.CellRendererText ();
-			
-			use_x_profile_check.Sensitive = colormanagement_check.Active;
-			
-			display_combo.Sensitive = colormanagement_check.Active;
-			display_combo.Model = new ProfileList ();                                                                                    
-			display_combo.PackStart (desc_cell, false);
-			display_combo.PackStart (name_cell, true);
-			display_combo.SetCellDataFunc (name_cell, new CellLayoutDataFunc (ProfileList.ProfileNameDataFunc));
-			//FIXME
-			int it_ = 0;
-			foreach (Cms.Profile profile in FSpot.ColorManagement.Profiles) {
-				if (profile.ProductName == Preferences.Get<string> (Preferences.COLOR_MANAGEMENT_DISPLAY_PROFILE))
-					display_combo.Active = it_;
-				it_++;
-			}
+			//Write Metadata
+			LoadPreference (Preferences.METADATA_EMBED_IN_IMAGE);
 
-			display_combo.Changed += HandleDisplayChanged;
+			//Screen profile
+			ListStore sprofiles = new ListStore (typeof (string), typeof (int));
+			sprofiles.AppendValues (Catalog.GetString ("None"), 0);
+			if (FSpot.ColorManagement.XProfile != null)
+				sprofiles.AppendValues (Catalog.GetString ("System profile"), -1);
+			sprofiles.AppendValues (null, 0);
+			foreach (string profile_name in FSpot.ColorManagement.Profiles.Keys)
+				if (profile_name != "_x_profile_") //avoid adding the XProfile twice
+					sprofiles.AppendValues (profile_name, 1);
+			CellRendererText profilecellrenderer = new CellRendererText ();
+			profilecellrenderer.Ellipsize = Pango.EllipsizeMode.End;
 
-			destination_combo.Sensitive = colormanagement_check.Active;
-			destination_combo.Model = new ProfileList ();
-			destination_combo.PackStart (desc_cell, false);
-			destination_combo.PackStart (name_cell, true);
-			destination_combo.SetCellDataFunc (name_cell, new CellLayoutDataFunc (ProfileList.ProfileNameDataFunc));
-			destination_combo.Changed += HandleDestinationChanged;
-			//FIXME
-			it_ = 0;
-			foreach (Cms.Profile profile in FSpot.ColorManagement.Profiles) {
-				if (profile.ProductName ==  Preferences.Get<string> (Preferences.COLOR_MANAGEMENT_OUTPUT_PROFILE))
-					destination_combo.Active = it_;
-				it_++;
-			}
+			screenprofile_combo.Model = sprofiles;
+			screenprofile_combo.PackStart (profilecellrenderer, true);
+			screenprofile_combo.RowSeparatorFunc = ProfileSeparatorFunc;
+			screenprofile_combo.SetCellDataFunc (profilecellrenderer, ProfileCellFunc);
+			LoadPreference (Preferences.COLOR_MANAGEMENT_DISPLAY_PROFILE);
 
-			TagMenu tagmenu = new TagMenu (null, MainWindow.Toplevel.Database.Tags);
-	
-			tagmenu.Populate (false);
+			//Print profile
+			ListStore pprofiles = new ListStore (typeof (string), typeof (int));
+			pprofiles.AppendValues (Catalog.GetString ("None"), 0);
+			pprofiles.AppendValues (null, 0);
+			foreach (string profile_name in FSpot.ColorManagement.Profiles.Keys)
+				if (profile_name != "_x_profile_") //don't list XProfile for printers
+					pprofiles.AppendValues (profile_name, 1);
+			printprofile_combo.Model = pprofiles;
+			printprofile_combo.PackStart (profilecellrenderer, true);
+			printprofile_combo.RowSeparatorFunc = ProfileSeparatorFunc;
+			printprofile_combo.SetCellDataFunc (profilecellrenderer, ProfileCellFunc);
+			LoadPreference (Preferences.COLOR_MANAGEMENT_OUTPUT_PROFILE);
 
-			tag_button.Menu = tagmenu;
-			tag_button.ShowAll ();
-			tagselectionhbox.Add (tag_button);
-
-			tagmenu.TagSelected += HandleTagMenuSelected;
-			set_saver_button.Clicked += HandleUseFSpot;
-			screensaverall_radio.Toggled += ToggleTagRadio;
-
-			themelist_combo = ComboBox.NewText ();
-			themenone_radio.Toggled += ToggleThemeRadio;
-			theme_list = new Dictionary<string, string> ();
-			string gtkrc = Path.Combine ("gtk-2.0", "gtkrc");
-			string [] search = {Path.Combine (Global.HomeDirectory, ".themes"), "/usr/share/themes"};
+			//Theme chooser
+			ListStore themes = new ListStore (typeof (string), typeof (string));
+			themes.AppendValues (Catalog.GetString ("Standard theme"), null);
+			themes.AppendValues (null, null); //Separator
+			string gtkrc = System.IO.Path.Combine ("gtk-2.0", "gtkrc");
+			string [] search = {System.IO.Path.Combine (Global.HomeDirectory, ".themes"), "/usr/share/themes"};
 			foreach (string path in search)
-				if (Directory.Exists (path)) 
-					foreach (string dir in Directory.GetDirectories (path))
-						if (File.Exists (Path.Combine (dir, gtkrc)) && !theme_list.ContainsKey (Path.GetFileName (dir)))
-							theme_list.Add (Path.GetFileName (dir), Path.Combine (dir, gtkrc));
-			
-			string active_theme = Preferences.Get<string> (Preferences.GTK_RC);
-			int it = 0;
-			foreach (string theme in theme_list.Keys) {
-				themelist_combo.AppendText (Path.GetFileName (theme));
-				if (active_theme.Contains (Path.DirectorySeparatorChar + Path.GetFileName (theme) + Path.DirectorySeparatorChar))
-					themelist_combo.Active = it;
-				it ++;
-			}
-			
-			theme_table.Attach (themelist_combo, 2, 3, 0, 1);
-			themelist_combo.Changed += HandleThemeComboChanged;
-			themelist_combo.Show ();
-			theme_filechooser.Visible = themefile_label.Visible = FSpot.Utils.Log.Debugging;
-
-			themelist_combo.Sensitive = theme_filechooser.Sensitive = themecustom_radio.Active; 
-			if (File.Exists (active_theme))
-				theme_filechooser.SetFilename (Preferences.Get<string> (Preferences.GTK_RC));
-			theme_filechooser.SelectionChanged += HandleThemeFileActivated;
-			themecustom_radio.Active = (active_theme != String.Empty);	
-
-			restartlabel.Visible = false;
-
-#if DEBUGTHEMES
-			refreshtheme_button = true;
-#endif
+				if (System.IO.Directory.Exists (path)) 
+					foreach (string dir in System.IO.Directory.GetDirectories (path))
+						if (File.Exists (System.IO.Path.Combine (dir, gtkrc)))
+							themes.AppendValues (System.IO.Path.GetFileName (dir), System.IO.Path.Combine (dir, gtkrc));
+			CellRenderer themecellrenderer = new CellRendererText ();
+			theme_combo.Model = themes;
+			theme_combo.PackStart (themecellrenderer, true);
+			theme_combo.RowSeparatorFunc = ThemeSeparatorFunc;
+			theme_combo.SetCellDataFunc (themecellrenderer, ThemeCellFunc);
+			LoadPreference (Preferences.GTK_RC);
 
 			Preferences.SettingChanged += OnPreferencesChanged;
-			this.Dialog.Destroyed += HandleDestroyed;
 		}
+#endregion
 
-		private void ColorManagementEnabledToggled (object sender, System.EventArgs args)
-		{
-			Preferences.Set (Preferences.COLOR_MANAGEMENT_ENABLED, colormanagement_check.Active);
-
-			if (FSpot.ColorManagement.IsEnabled != colormanagement_check.Active) {
-				FSpot.ColorManagement.IsEnabled = colormanagement_check.Active;
-				FSpot.ColorManagement.ReloadSettings();
-			}
-			
-			use_x_profile_check.Sensitive = colormanagement_check.Active;
-			display_combo.Sensitive = colormanagement_check.Active;
-			destination_combo.Sensitive = colormanagement_check.Active;
-		}
-		
-		private void UseXProfileToggled (object sender, System.EventArgs args)
-		{
-			Preferences.Set (Preferences.COLOR_MANAGEMENT_USE_X_PROFILE, use_x_profile_check.Active);
-			if (FSpot.ColorManagement.UseXProfile != use_x_profile_check.Active) {
-				FSpot.ColorManagement.UseXProfile = use_x_profile_check.Active;
-				FSpot.ColorManagement.ReloadSettings();
-			}
-		}
-
-		private void HandleDisplayChanged (object sender, System.EventArgs args)
-		{
-			TreeIter iter;
-//			Gdk.Screen screen = Gdk.Screen.Default;
-			if (display_combo.GetActiveIter (out iter)) {
-				FSpot.ColorManagement.DisplayProfile = (Cms.Profile) display_combo.Model.GetValue (iter, 0);
-//				FSpot.Widgets.CompositeUtils.SetScreenProfile(screen, FSpot.ColorManagement.DisplayProfile);
-				FSpot.ColorManagement.ReloadSettings();
-			}
-		}
-		
-		private void HandleDestinationChanged (object sender, System.EventArgs args)
-		{
-			TreeIter iter;
-			if (destination_combo.GetActiveIter (out iter))
-				FSpot.ColorManagement.DestinationProfile = (Cms.Profile) destination_combo.Model.GetValue (iter, 0);
-		}
-
-		private void HandleTagMenuSelected (Tag t)
-		{
-			tag_button.Label = t.Name;
-			screensaver_tag = (int) t.Id;
-			Preferences.Set (Preferences.SCREENSAVER_TAG, (int) t.Id);
-		}
-
-		private void HandleUseFSpot (object sender, EventArgs args)
-		{
-			Preferences.Set (Preferences.GNOME_SCREENSAVER_MODE, SaverMode);
-			Preferences.Set (Preferences.GNOME_SCREENSAVER_THEME, new string [] { SaverCommand });
-		}
-
-		private void ToggleTagRadio (object o, System.EventArgs e)
-		{
-			tag_button.Sensitive = (screensavertagged_radio.Active);
-			if (screensaverall_radio.Active)
-				Preferences.Set (Preferences.SCREENSAVER_TAG, 0);
-			else
-				HandleTagMenuSelected (((tag_button.Menu as Menu).Active as TagMenu.TagMenuItem).Value);
-		}
-
-		void ToggleThemeRadio (object o, EventArgs e)
-		{
-			themelist_combo.Sensitive = theme_filechooser.Sensitive = themecustom_radio.Active; 
-			if (themenone_radio.Active) {
-				Preferences.Set (Preferences.GTK_RC, String.Empty);
-				Gtk.Rc.DefaultFiles = Global.DefaultRcFiles;
-				Gtk.Rc.ReparseAllForSettings (Gtk.Settings.Default, true);
-			} else {
-				TreeIter iter;
-				if (themelist_combo.GetActiveIter (out iter)) {
-					Preferences.Set (Preferences.GTK_RC, theme_list [(themelist_combo.Model.GetValue (iter, 0)) as string]);
-					Gtk.Rc.DefaultFiles = Global.DefaultRcFiles;
-					Gtk.Rc.AddDefaultFile (Preferences.Get<string> (Preferences.GTK_RC));
-					Gtk.Rc.ReparseAllForSettings (Gtk.Settings.Default, true);
-				}
-			}
-		}
-
-		void HandleThemeComboChanged (object o, EventArgs e)
-		{
-			if (o == null)
-				return;
-			TreeIter iter;
-			if ((o as ComboBox).GetActiveIter (out iter))
-				Preferences.Set (Preferences.GTK_RC, theme_list [((o as ComboBox).Model.GetValue (iter, 0)) as string]);
-			Gtk.Rc.DefaultFiles = Global.DefaultRcFiles;
-			Gtk.Rc.AddDefaultFile (Preferences.Get<string> (Preferences.GTK_RC));
-			Gtk.Rc.ReparseAllForSettings (Gtk.Settings.Default, true);
-		}
-
-		void HandleThemeFileActivated (object o, EventArgs e)
-		{
-			if (theme_filechooser.Filename != null && theme_filechooser.Filename != Preferences.Get<string> (Preferences.GTK_RC)) {
-				Preferences.Set (Preferences.GTK_RC, theme_filechooser.Filename);	
-				Gtk.Rc.DefaultFiles = Global.DefaultRcFiles;
-				Gtk.Rc.AddDefaultFile (Preferences.Get<string> (Preferences.GTK_RC));
-				Gtk.Rc.ReparseAllForSettings (Gtk.Settings.Default, true);
-			}
-		}
-
+#region preferences
 		void OnPreferencesChanged (object sender, NotifyEventArgs args)
 		{
 			LoadPreference (args.Key);
 		}
 
-		void MetadataToggled (object sender, System.EventArgs args)
-		{
-			Preferences.Set (Preferences.METADATA_EMBED_IN_IMAGE, metadata_check.Active);
-		}
-
-		void HandlePhotosdirChanged (object sender, System.EventArgs args)
-		{
-			Preferences.Set (Preferences.STORAGE_PATH, photosdir_chooser.Filename);
-			Global.PhotoDirectory = photosdir_chooser.Filename;
-		}
-
-
-		void HandleRefreshTheme (object o, EventArgs e)
-		{
-			Gtk.Rc.ReparseAllForSettings (Gtk.Settings.Default, true);	
-		}
-
 		void LoadPreference (string key)
 		{
+			string pref;
+			int i;
 			switch (key) {
-			case Preferences.METADATA_EMBED_IN_IMAGE:
-				bool embed_active = Preferences.Get<bool> (key);
-				if (metadata_check.Active != embed_active)
-					metadata_check.Active = embed_active;
-				break;
-			case Preferences.COLOR_MANAGEMENT_ENABLED:
-				bool color_active = Preferences.Get<bool> (key);
-				if (colormanagement_check.Active != color_active)
-					colormanagement_check.Active = color_active;
-				break;
-			case Preferences.COLOR_MANAGEMENT_USE_X_PROFILE:
-				bool use_x_active = Preferences.Get<bool> (key);
-				if (use_x_profile_check.Active != use_x_active)
-					use_x_profile_check.Active = use_x_active;
-				break;
-			case Preferences.SCREENSAVER_TAG:
-				screensaver_tag = Preferences.Get<int> (key);
-				Tag t = MainWindow.Toplevel.Database.Tags.GetTagById (screensaver_tag);
-				if (screensaver_tag == 0 || t == null) {
-					screensaverall_radio.Active = true;
-					tag_button.Sensitive = false;
-				} else {
-					screensavertagged_radio.Active = true;
-					tag_button.Label = t.Name;
-				}
-				break;
-			case Preferences.GNOME_SCREENSAVER_THEME:
-			case Preferences.GNOME_SCREENSAVER_MODE:
-				string [] theme = Preferences.Get<string []> (Preferences.GNOME_SCREENSAVER_THEME);
-				string mode = Preferences.Get<string> (Preferences.GNOME_SCREENSAVER_MODE);
-				
-				bool sensitive = mode != SaverMode;
-				sensitive |= (theme == null || theme.Length != 1 || theme [0] != SaverCommand);
-
-				set_saver_button.Sensitive = sensitive;
-				break;
 			case Preferences.STORAGE_PATH:
 				photosdir_chooser.SetCurrentFolder (Preferences.Get<string> (key));
 				break;
+			case Preferences.METADATA_EMBED_IN_IMAGE:
+				bool embed_active = Preferences.Get<bool> (key);
+				if (writemetadata_radio.Active != embed_active) {
+					if (embed_active)
+						writemetadata_radio.Active = true;
+					else
+						dontwrite_radio.Active = true;
+				}
+				break;
 			case Preferences.GTK_RC:
-				themenone_radio.Active = (Preferences.Get<string> (key) == String.Empty);
-				themecustom_radio.Active = (Preferences.Get<string> (key) != String.Empty);
-				if (theme_filechooser.Sensitive)
-					theme_filechooser.SetFilename (Preferences.Get<string> (key));
+				pref = Preferences.Get<string> (key);
+				if (String.IsNullOrEmpty (pref)) {
+					theme_combo.Active = 0;
+					break;
+				}
+				i = 0;
+				foreach (object [] row in theme_combo.Model as ListStore) {
+					if (pref == (string)row [1]) {
+						theme_combo.Active = i;
+						break;
+					}
+					i++;
+				}
+				break;
+			case Preferences.COLOR_MANAGEMENT_DISPLAY_PROFILE:
+				pref = Preferences.Get<string> (key);
+				if (String.IsNullOrEmpty (pref)) {
+					screenprofile_combo.Active = 0;
+					break;
+				}
+				if (pref == "_x_profile_" && FSpot.ColorManagement.XProfile != null) {
+					screenprofile_combo.Active = 1;
+					break;
+				}
+				i = 0;
+				foreach (object [] row in screenprofile_combo.Model as ListStore) {
+					if (pref == (string)row [0]) {
+						screenprofile_combo.Active = i;
+						break;
+					}
+					i++;
+				}
+				break;
+			case Preferences.COLOR_MANAGEMENT_OUTPUT_PROFILE:
+				pref = Preferences.Get<string> (key);
+				if (String.IsNullOrEmpty (pref)) {
+					printprofile_combo.Active = 0;
+					break;
+				}
+				i = 0;
+				foreach (object [] row in printprofile_combo.Model as ListStore) {
+					if (pref == (string)row [0]) {
+						printprofile_combo.Active = i;
+						break;
+					}
+					i++;
+				}
 				break;
 			}
 		}
+#endregion
 
-		void HandleClose (object sender, EventArgs args)
+#region event handlers
+		void HandlePhotosdirChanged (object sender, System.EventArgs args)
 		{
-			this.Dialog.Destroy ();
+			photosdir_chooser.CurrentFolderChanged -= HandlePhotosdirChanged;
+			Preferences.Set (Preferences.STORAGE_PATH, photosdir_chooser.Filename);
+			photosdir_chooser.CurrentFolderChanged += HandlePhotosdirChanged;
+			Global.PhotoDirectory = photosdir_chooser.Filename;
 		}
 
-		private void HandleDestroyed (object sender, EventArgs args)
+		void HandleWritemetadataGroupChanged (object sender, System.EventArgs args)
 		{
-			prefs = null;
+			Preferences.Set (Preferences.METADATA_EMBED_IN_IMAGE, writemetadata_radio.Active);
 		}
 
-		public static void Show ()
+		void HandleThemeComboChanged (object sender, EventArgs e)
 		{
-			if (prefs == null)
-				prefs = new PreferenceDialog ();
-			
-			prefs.Dialog.Present ();
+			ComboBox combo = sender as ComboBox;
+			if (combo == null)
+				return;
+			TreeIter iter;
+			if (combo.GetActiveIter (out iter)) {
+				string gtkrc = (string)combo.Model.GetValue (iter, 1);
+				if (!String.IsNullOrEmpty (gtkrc))
+					Preferences.Set (Preferences.GTK_RC, gtkrc);
+				else
+					Preferences.Set (Preferences.GTK_RC, String.Empty);
+			}
+			Gtk.Rc.DefaultFiles = Global.DefaultRcFiles;
+			Gtk.Rc.AddDefaultFile (Preferences.Get<string> (Preferences.GTK_RC));
+			Gtk.Rc.ReparseAllForSettings (Gtk.Settings.Default, true);
 		}
+
+		void HandleScreenProfileComboChanged (object sender, EventArgs e)
+		{
+			ComboBox combo = sender as ComboBox;
+			if (combo == null)
+				return;
+			TreeIter iter;
+			if (combo.GetActiveIter (out iter)) {
+				switch ((int)combo.Model.GetValue (iter, 1)) {
+				case 0:
+					Preferences.Set (Preferences.COLOR_MANAGEMENT_DISPLAY_PROFILE, String.Empty);
+					break;
+				case -1:
+					Preferences.Set (Preferences.COLOR_MANAGEMENT_DISPLAY_PROFILE, "_x_profile_");
+					break;
+				case 1:
+					Preferences.Set (Preferences.COLOR_MANAGEMENT_DISPLAY_PROFILE, (string)combo.Model.GetValue (iter, 0));
+					break;
+				}
+			}
+		}
+
+		void HandlePrintProfileComboChanged (object sender, EventArgs e)
+		{
+			ComboBox combo = sender as ComboBox;
+			if (combo == null)
+				return;
+			TreeIter iter;
+			if (combo.GetActiveIter (out iter)) {
+				switch ((int)combo.Model.GetValue (iter, 1)) {
+				case 0:
+					Preferences.Set (Preferences.COLOR_MANAGEMENT_OUTPUT_PROFILE, String.Empty);
+					break;
+				case 1:
+					Preferences.Set (Preferences.COLOR_MANAGEMENT_OUTPUT_PROFILE, (string)combo.Model.GetValue (iter, 0));
+					break;
+				}
+			}
+		}
+#endregion
+
+#region Gtk widgetry
+		void ThemeCellFunc (CellLayout cell_layout, CellRenderer cell, TreeModel tree_model, TreeIter iter)
+		{
+			string name = (string)tree_model.GetValue (iter, 0);
+			(cell as CellRendererText).Text = name;
+		}
+
+		bool ThemeSeparatorFunc (TreeModel tree_model, TreeIter iter)
+		{
+			return tree_model.GetValue (iter, 0) == null;
+		}
+
+		void ProfileCellFunc (CellLayout cell_layout, CellRenderer cell, TreeModel tree_model, TreeIter iter)
+		{
+			string name = (string)tree_model.GetValue (iter, 0);
+			(cell as CellRendererText).Text = name;
+		}
+
+		bool ProfileSeparatorFunc (TreeModel tree_model, TreeIter iter)
+		{
+			return tree_model.GetValue (iter, 0) == null;
+		}
+#endregion
 	}
 }

@@ -41,10 +41,10 @@ namespace FSpot.UI.Dialog
 			tag_name_entry.Text = t.Name;
 
 			icon_image.Pixbuf = t.Icon;
-			//FIXME
-			if (FSpot.ColorManagement.IsEnabled && icon_image.Pixbuf != null) {
+			Cms.Profile screen_profile;
+			if (FSpot.ColorManagement.Profiles.TryGetValue (Preferences.Get<string> (Preferences.COLOR_MANAGEMENT_DISPLAY_PROFILE), out screen_profile)) {
 				icon_image.Pixbuf = icon_image.Pixbuf.Copy();
-				FSpot.ColorManagement.ApplyScreenProfile (icon_image.Pixbuf);
+				FSpot.ColorManagement.ApplyProfile (icon_image.Pixbuf, screen_profile);
 			}
 			PopulateCategoryOptionMenu  (t);
 			
@@ -120,10 +120,11 @@ namespace FSpot.UI.Dialog
 				}
 			} else if (response == (ResponseType)1)
 				tag.Icon = null;
-			
-			if (FSpot.ColorManagement.IsEnabled && tag.Icon != null) {
+
+			Cms.Profile screen_profile;
+			if (FSpot.ColorManagement.Profiles.TryGetValue (Preferences.Get<string> (Preferences.COLOR_MANAGEMENT_DISPLAY_PROFILE), out screen_profile)) {
 				icon_image.Pixbuf = tag.Icon.Copy();
-				FSpot.ColorManagement.ApplyScreenProfile(icon_image.Pixbuf);
+				FSpot.ColorManagement.ApplyProfile(icon_image.Pixbuf, screen_profile);
 			} else
 				icon_image.Pixbuf = tag.Icon;
 			

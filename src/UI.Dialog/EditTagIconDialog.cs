@@ -46,9 +46,10 @@ namespace FSpot.UI.Dialog
 			Title = String.Format (Catalog.GetString ("Edit Icon for Tag {0}"), t.Name);
 
 			preview_pixbuf = t.Icon;
-			if (preview_pixbuf != null && ColorManagement.IsEnabled) {
+			Cms.Profile screen_profile;
+			if (preview_pixbuf != null && FSpot.ColorManagement.Profiles.TryGetValue (Preferences.Get<string> (Preferences.COLOR_MANAGEMENT_DISPLAY_PROFILE), out screen_profile)) { 
 				preview_image.Pixbuf = preview_pixbuf.Copy ();
-				ColorManagement.ApplyScreenProfile (preview_image.Pixbuf);
+				ColorManagement.ApplyProfile (preview_image.Pixbuf, screen_profile);
 			} else
 				preview_image.Pixbuf = preview_pixbuf;
 
@@ -123,9 +124,10 @@ namespace FSpot.UI.Dialog
 			set {
 				icon_name = null;
 				preview_pixbuf = value;
-				if (value != null && ColorManagement.IsEnabled) {
+				Cms.Profile screen_profile;
+				if (value!= null && FSpot.ColorManagement.Profiles.TryGetValue (Preferences.Get<string> (Preferences.COLOR_MANAGEMENT_DISPLAY_PROFILE), out screen_profile)) { 
 					preview_image.Pixbuf = value.Copy ();
-					ColorManagement.ApplyScreenProfile (preview_image.Pixbuf);
+					ColorManagement.ApplyProfile (preview_image.Pixbuf, screen_profile);
 				} else
 					preview_image.Pixbuf = value;
 

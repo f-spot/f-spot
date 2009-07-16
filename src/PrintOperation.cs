@@ -114,8 +114,10 @@ namespace FSpot
 					{
 						Gdk.Pixbuf pixbuf;
 						try {
-						  pixbuf = img.Load ((int) mx, (int) my);
-							FSpot.ColorManagement.ApplyPrinterProfile (pixbuf, img.GetProfile ());
+							pixbuf = img.Load ((int) mx, (int) my);
+							Cms.Profile printer_profile;
+							if (FSpot.ColorManagement.Profiles.TryGetValue (Preferences.Get<string> (Preferences.COLOR_MANAGEMENT_OUTPUT_PROFILE), out printer_profile)) 
+								FSpot.ColorManagement.ApplyProfile (pixbuf, img.GetProfile (), printer_profile);
 						} catch (Exception e) {
 							Log.Exception ("Unable to load image " + selected_photos[p_index].DefaultVersionUri + "\n", e);
 							// If the image is not found load error pixbuf

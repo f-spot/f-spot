@@ -4,6 +4,7 @@ using System.Collections;
 using LibGPhoto2;
 using Gdk;
 using FSpot.Utils;
+using FSpot;
 
 public class GPhotoCamera
 {
@@ -185,7 +186,9 @@ public class GPhotoCamera
 				MemoryStream dataStream = new MemoryStream (bytedata);
 				try {
 					Gdk.Pixbuf temp = new Pixbuf (dataStream);
-					FSpot.ColorManagement.ApplyScreenProfile (temp);
+					Cms.Profile screen_profile;
+					if (FSpot.ColorManagement.Profiles.TryGetValue (Preferences.Get<string> (Preferences.COLOR_MANAGEMENT_DISPLAY_PROFILE), out screen_profile)) 
+						FSpot.ColorManagement.ApplyProfile (temp, screen_profile);
 					return temp;
 				} catch (Exception e) {
 					// Actual errors with the data libgphoto gives us have been

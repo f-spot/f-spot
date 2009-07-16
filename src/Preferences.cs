@@ -34,8 +34,6 @@ namespace FSpot
 		public const string VIEWER_TRANSPARENCY = APP_FSPOT + "viewer/transparency";
 		public const string CUSTOM_CROP_RATIOS = APP_FSPOT + "viewer/custom_crop_ratios";
 		
-		public const string COLOR_MANAGEMENT_ENABLED = APP_FSPOT + "ui/color_management_enabled";
-		public const string COLOR_MANAGEMENT_USE_X_PROFILE = APP_FSPOT + "ui/color_management_use_x_profile";
 		public const string COLOR_MANAGEMENT_DISPLAY_PROFILE = APP_FSPOT + "ui/color_management_display_profile";
 		public const string COLOR_MANAGEMENT_OUTPUT_PROFILE = APP_FSPOT + "ui/color_management_output_profile";
 		
@@ -163,6 +161,8 @@ namespace FSpot
 				return -15;
 
 			case GTK_RC:
+			case COLOR_MANAGEMENT_DISPLAY_PROFILE:
+			case COLOR_MANAGEMENT_OUTPUT_PROFILE:
 				return String.Empty;
 			default:
 				return null;
