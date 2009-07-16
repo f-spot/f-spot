@@ -254,7 +254,7 @@ namespace FSpot {
 		private void LoadPreference (String key)
 		{
 			switch (key) {
-			case Preferences.FILMSTRIP_POSITION:
+			case Preferences.FILMSTRIP_ORIENTATION:
 				PlaceFilmstrip ((Orientation) Preferences.Get<int> (key));
 				break;
 			}
@@ -293,7 +293,7 @@ namespace FSpot {
 				inner_hbox.PackEnd (filmstrip, false, false, 0);
 				break;
 			}
-			Preferences.Set (Preferences.FILMSTRIP_POSITION, (int) pos);
+			Preferences.Set (Preferences.FILMSTRIP_ORIENTATION, (int) pos);
 		}
 	
 		public bool FilmStripVisibility {
@@ -336,7 +336,7 @@ namespace FSpot {
 			filmstrip.BackgroundTile = bg;
 			filmstrip.ThumbOffset = 1;
 			filmstrip.Spacing = 4;
-			PlaceFilmstrip ((Orientation) Preferences.Get <int> (Preferences.FILMSTRIP_POSITION), true);
+			PlaceFilmstrip ((Orientation) Preferences.Get <int> (Preferences.FILMSTRIP_ORIENTATION), true);
 	
 			photo_view.PhotoChanged += HandlePhotoChanged;
 	

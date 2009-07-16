@@ -474,7 +474,7 @@ public class MainWindow {
 		group_selector.Adaptor.GlassSet += HandleAdaptorGlassSet;
 		group_selector.Adaptor.Changed += HandleAdaptorChanged;
 		LoadPreference (Preferences.GROUP_ADAPTOR_ORDER_ASC);
-		LoadPreference (Preferences.FILMSTRIP_POSITION);
+		LoadPreference (Preferences.FILMSTRIP_ORIENTATION);
 
 		this.selection = new MainSelection (this);
 		this.selection.Changed += HandleSelectionChanged;

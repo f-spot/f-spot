@@ -382,6 +382,7 @@ namespace FSpot.Widgets
 		}
 
 		Hashtable start_indexes;
+		int filmstrip_start_pos;
 		int filmstrip_end_pos;
 		protected override bool OnExposeEvent (EventExpose evnt)
 		{
@@ -462,6 +463,7 @@ namespace FSpot.Widgets
 						break;
 				}
 			}
+			filmstrip_start_pos = Orientation == Orientation.Horizontal ? start_x : start_y;
 			
 			GdkWindow.DrawPixbuf (Style.BackgroundGC (StateType.Normal), icon_pixbuf,
 					0, 0, x_offset + xpad, y_offset + ypad + thumb_offset,
@@ -589,8 +591,8 @@ namespace FSpot.Widgets
 				return DrawOrientationMenu (evnt); 
 
 			if (evnt.Button != 1 || (
-				(Orientation == Orientation.Horizontal && evnt.X > filmstrip_end_pos) || 
-				(Orientation == Orientation.Vertical && evnt.Y > filmstrip_end_pos) 
+				(Orientation == Orientation.Horizontal && (evnt.X > filmstrip_end_pos || evnt.X < filmstrip_start_pos)) || 
+				(Orientation == Orientation.Vertical && (evnt.Y > filmstrip_end_pos || evnt.Y < filmstrip_start_pos)) 
 				))
 				return false;
 			HasFocus = true;
