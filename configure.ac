@@ -286,10 +286,11 @@ lib/GKeyFile/Makefile
 lib/glitz-sharp/Makefile
 lib/glitz-sharp/src/Makefile
 lib/gnome-keyring-sharp/Makefile
+lib/gtk-sharp-beans/Makefile
 lib/libfspot/Makefile
 lib/libfspotraw/Makefile
-lib/libjpegtran/Makefile
 lib/libgphoto2-sharp/Makefile
+lib/libjpegtran/Makefile
 lib/Makefile
 lib/mono-addins/Makefile
 lib/mono-addins/Mono.Addins.Gui/Makefile
@@ -354,5 +355,4 @@ f-spot-import.desktop.in
 gio-sharp/Makefile
 gio-sharp/gio/Makefile
 gio-sharp/generator/Makefile
-gtk-sharp-beans/Makefile
 )

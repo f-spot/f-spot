@@ -5,6 +5,7 @@ SUBDIRS = 				\
 	GKeyFile 			\
 	glitz-sharp			\
 	gnome-keyring-sharp	\
+	gtk-sharp-beans		\
 	libjpegtran			\
 	libfspot			\
 	libgphoto2-sharp	\

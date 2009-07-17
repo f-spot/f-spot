@@ -1,10 +1,9 @@
 SUBDIRS = 		\
 	$(subdirs)	\
+	gio-sharp	\
 	lib 		\
 	$(DIR_DBUS)	\
 	$(DIR_DBUS_GLIB)\
-	gio-sharp	\
-	gtk-sharp-beans	\
 	docs		\
 	icons		\
 	tools		\
@@ -16,7 +15,6 @@ SUBDIRS = 		\
 DIST_SUBDIRS = 		\
 	lib 		\
 	gio-sharp	\
-	gtk-sharp-beans	\
 	dbus-sharp	\
 	dbus-sharp-glib	\
 	dpap-sharp	\
