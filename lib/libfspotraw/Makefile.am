@@ -1,7 +1,7 @@
 include $(top_srcdir)/Makefile.include
 
 LIBRAW = LibRaw-0.8.0-Beta3
-INCLUDES = -I $(top_srcdir) -I LibRaw $(F_CFLAGS)
+INCLUDES = -I $(top_srcdir) -I $(top_srcdir)/lib/libfspotraw/LibRaw $(F_CFLAGS)
 
 CFLAGS = -g -O4
 CXXFLAGS = -g -O4
@@ -36,3 +36,6 @@ extract: $(LIBRAW).tar.gz
 	tar xvpzf $(LIBRAW).tar.gz
 	mv $(LIBRAW) LibRaw
 	git add LibRaw
+
+EXTRA_DIST = 	\
+	LibRaw/COPYRIGHT

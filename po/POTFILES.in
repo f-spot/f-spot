@@ -3,7 +3,7 @@
 [encoding: UTF-8]
 extensions/Exporters/CDExport/CDExport.addin.xml
 extensions/Exporters/CDExport/CDExport.cs
-extensions/Exporters/CDExport/CDExport.glade
+extensions/Exporters/CDExport/CDExport.ui
 extensions/Exporters/FacebookExport/FacebookExport.addin.xml
 extensions/Exporters/FacebookExport/FacebookExport.cs
 extensions/Exporters/FacebookExport/FacebookExportDialog.cs
@@ -113,20 +113,26 @@ src/UI.Dialog/AboutDialog.cs
 src/UI.Dialog/AdjustTimeDialog.cs
 src/UI.Dialog/DateRangeDialog.cs
 src/UI.Dialog/EditExceptionDialog.cs
+src/UI.Dialog/EditTagDialog.cs
+src/UI.Dialog/EditTagIconDialog.cs
 src/UI.Dialog/ExceptionDialog.cs
+src/UI.Dialog/PreferenceDialog.cs
 src/UI.Dialog/ProgressDialog.cs
 src/UI.Dialog/RepairDbDialog.cs
 src/UI.Dialog/SelectionRatioDialog.cs
 src/UI.Dialog/ThreadProgressDialog.cs
 src/UI.Dialog/ui/AdjustTimeDialog.ui
 src/UI.Dialog/ui/DateRangeDialog.ui
-src/UI.Dialog/ui/PreferenceDialog.glade
+src/UI.Dialog/ui/EditTagDialog.ui
+src/UI.Dialog/ui/EditTagIconDialog.ui
+src/UI.Dialog/ui/PreferenceDialog.ui
 src/ui/main_window.ui
 src/Updater.cs
 src/Util.cs
 src/Utils/Unix.cs
 src/Widgets/CustomPrintWidget.cs
 src/Widgets/EditorPage.cs
+src/Widgets/Filmstrip.cs
 src/Widgets/FindBar.cs
 src/Widgets/FolderTreePage.cs
 src/Widgets/FolderTreeView.cs
