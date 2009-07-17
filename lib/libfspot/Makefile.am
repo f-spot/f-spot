@@ -1,5 +1,5 @@
 INCLUDES =							\
-	-I $(top_srcdir)					\
+	-I $(top_srcdir) -I $(top_srcdir)/lib/		\
 	-DLIBEOG_ETTORE_CHANGES=1				\
         -DG_LOG_DOMAIN=\"libf\"					\
 	-DG_DISABLE_DEPRECATED -DGTK_DISABLE_DEPRECATED		\
@@ -34,7 +34,7 @@ libfspot_la_LIBADD = 					\
 	$(LCMS_LIBS)					\
 	$(EXIF_LIBS)					\
 	$(GIO_LIBS)					\
-	$(top_builddir)/libjpegtran/libfspotjpegtran.la	
+	$(top_builddir)/lib/libjpegtran/libfspotjpegtran.la	
 
 
 # GLib marshalling cruft
