@@ -285,6 +285,8 @@ Makefile
 lib/GKeyFile/Makefile
 lib/glitz-sharp/Makefile
 lib/glitz-sharp/src/Makefile
+lib/libfspot/Makefile
+lib/libfspotraw/Makefile
 lib/Makefile
 lib/mono-addins/Makefile
 lib/mono-addins/Mono.Addins.Gui/Makefile
@@ -308,7 +310,6 @@ docs/Makefile
 gnome-keyring-sharp/Makefile
 icons/Makefile
 libjpegtran/Makefile
-libfspot/Makefile
 libgphoto2-sharp/Makefile
 tools/Makefile
 po/Makefile.in
