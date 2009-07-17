@@ -285,7 +285,6 @@ Makefile
 lib/GKeyFile/Makefile
 lib/glitz-sharp/Makefile
 lib/glitz-sharp/src/Makefile
-lib/libfspotraw/Makefile
 lib/Makefile
 lib/mono-addins/Makefile
 lib/mono-addins/Mono.Addins.Gui/Makefile
