@@ -20,7 +20,7 @@ DIR_TAO_OPENGL = $(top_builddir)/lib/Tao/Tao.OpenGl
 DIR_TAO_GLU = $(top_builddir)/lib/Tao/Tao.OpenGl.Glu
 DIR_TAO_EXTENSIONLOADER = $(top_builddir)/lib/Tao/Tao.OpenGl.ExtensionLoader
 DIR_TAO_GLPOSTPROCESS = $(top_builddir)/lib/Tao/Tao.GlPostProcess
-DIR_GIOSHARP = $(top_builddir)/gio-sharp/gio
+DIR_GIOSHARP = $(top_builddir)/lib/gio-sharp/gio
 DIR_GTKSHARPBEANS = $(top_builddir)/lib/gtk-sharp-beans
 
 ## Links

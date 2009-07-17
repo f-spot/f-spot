@@ -6,7 +6,7 @@ PACKAGES = \
 	-pkg:glade-sharp-2.0
 
 ASSEMBLIES = \
-	-r:../../../gio-sharp/gio/gio-sharp.dll \
+	-r:../../../lib/gio-sharp/gio/gio-sharp.dll \
 	-r:Mono.Posix
 
 RESOURCES = \

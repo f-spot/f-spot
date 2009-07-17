@@ -1,4 +1,4 @@
-include ../../Makefile.include
+include $(top_srcdir)/Makefile.include
 
 CLEANFILES =				\
 	gapi_codegen.exe		\

@@ -14,7 +14,6 @@ SUBDIRS = 		\
 
 DIST_SUBDIRS = 		\
 	lib 		\
-	gio-sharp	\
 	dbus-sharp	\
 	dbus-sharp-glib	\
 	dpap-sharp	\

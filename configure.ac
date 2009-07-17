@@ -283,6 +283,9 @@ AC_SUBST(GNOME_ICON_THEME_PREFIX)
 AC_OUTPUT(
 Makefile
 lib/GKeyFile/Makefile
+lib/gio-sharp/Makefile
+lib/gio-sharp/gio/Makefile
+lib/gio-sharp/generator/Makefile
 lib/glitz-sharp/Makefile
 lib/glitz-sharp/src/Makefile
 lib/gnome-keyring-sharp/Makefile
@@ -352,7 +355,4 @@ f-spot.spec
 f-spot.desktop.in
 f-spot-view.desktop.in
 f-spot-import.desktop.in
-gio-sharp/Makefile
-gio-sharp/gio/Makefile
-gio-sharp/generator/Makefile
 )
