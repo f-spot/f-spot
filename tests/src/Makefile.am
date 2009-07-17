@@ -1,5 +1,7 @@
 include $(top_srcdir)/Makefile.include
 
+if ENABLE_TESTS
+
 all: FSpot.Tests.dll
 
 SOURCES = 				\
@@ -31,8 +33,6 @@ REFS =										\
 	-r:$(top_srcdir)/src/Cms.dll			\
 	-r:$(top_srcdir)/lib/semweb/SemWeb.dll
 
-EXTRA_DIST =			\
-	$(SOURCES)
 
 RESOURCES =							\
 	-resource:$(top_srcdir)/icons/f-spot-32.png,f-spot-32.png
@@ -55,5 +55,10 @@ CLEANFILES =			\
 	TagTestStore.db		\
 	TestResult.xml
 
+endif
+
 MAINTAINERCLEANFILES = \
 	Makefile.in
+
+EXTRA_DIST =			\
+	$(SOURCES)
