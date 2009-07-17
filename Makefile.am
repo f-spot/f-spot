@@ -8,7 +8,6 @@ SUBDIRS = 		\
 	docs		\
 	gnome-keyring-sharp \
 	icons		\
-	libgphoto2-sharp \
 	tools		\
 	po		\
 	src		\
@@ -25,7 +24,6 @@ DIST_SUBDIRS = 		\
 	docs		\
 	gnome-keyring-sharp \
 	icons		\
-	libgphoto2-sharp \
 	tools		\
 	po		\
 	src		\
