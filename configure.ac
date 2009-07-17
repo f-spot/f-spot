@@ -285,6 +285,7 @@ Makefile
 lib/GKeyFile/Makefile
 lib/glitz-sharp/Makefile
 lib/glitz-sharp/src/Makefile
+lib/gnome-keyring-sharp/Makefile
 lib/libfspot/Makefile
 lib/libfspotraw/Makefile
 lib/libjpegtran/Makefile
@@ -309,7 +310,6 @@ dpap-sharp/dpap-server/Makefile
 dpap-sharp/DPAPService/Makefile
 dpap-sharp/DPAPBrowser/Makefile
 docs/Makefile
-gnome-keyring-sharp/Makefile
 icons/Makefile
 tools/Makefile
 po/Makefile.in

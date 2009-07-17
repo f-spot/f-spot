@@ -6,7 +6,6 @@ SUBDIRS = 		\
 	gio-sharp	\
 	gtk-sharp-beans	\
 	docs		\
-	gnome-keyring-sharp \
 	icons		\
 	tools		\
 	po		\
@@ -22,7 +21,6 @@ DIST_SUBDIRS = 		\
 	dbus-sharp-glib	\
 	dpap-sharp	\
 	docs		\
-	gnome-keyring-sharp \
 	icons		\
 	tools		\
 	po		\
