@@ -136,10 +136,10 @@ PKG_CHECK_MODULES(NDESK_DBUS, ndesk-dbus-1.0 >= $NDESK_DBUS_REQUIRED ndesk-dbus-
 	PATH_DBUS=""
 ],
 [
-	LINK_DBUS='-r:$(top_builddir)/dbus-sharp/NDesk.DBus.dll -r:$(top_builddir)/dbus-sharp-glib/NDesk.DBus.GLib.dll'
-	DIR_DBUS="dbus-sharp"
-	DIR_DBUS_GLIB="dbus-sharp-glib"
-	PATH_DBUS='../dbus-sharp:../dbus-sharp-glib:'
+	LINK_DBUS='-r:$(top_builddir)/lib/dbus-sharp/NDesk.DBus.dll -r:$(top_builddir)/lib/dbus-sharp-glib/NDesk.DBus.GLib.dll'
+	DIR_DBUS="lib/dbus-sharp"
+	DIR_DBUS_GLIB="lib/dbus-sharp-glib"
+	PATH_DBUS='../lib/dbus-sharp:../lib/dbus-sharp-glib:'
 ])
 AC_SUBST(DIR_DBUS)
 AC_SUBST(DIR_DBUS_GLIB)
@@ -282,6 +282,14 @@ AC_SUBST(GNOME_ICON_THEME_PREFIX)
 
 AC_OUTPUT(
 Makefile
+lib/dbus-sharp/Makefile
+lib/dbus-sharp-glib/Makefile
+lib/dpap-sharp/Makefile
+lib/dpap-sharp/lib/Makefile
+lib/dpap-sharp/dpap-client/Makefile
+lib/dpap-sharp/dpap-server/Makefile
+lib/dpap-sharp/DPAPService/Makefile
+lib/dpap-sharp/DPAPBrowser/Makefile
 lib/GKeyFile/Makefile
 lib/gio-sharp/Makefile
 lib/gio-sharp/gio/Makefile
@@ -305,14 +313,6 @@ lib/Tao/Tao.GlPostProcess/Makefile
 lib/Tao/Tao.OpenGl.ExtensionLoader/Makefile
 lib/Tao/Tao.OpenGl.Glu/Makefile
 lib/Tao/Tao.OpenGl/Makefile
-dbus-sharp/Makefile
-dbus-sharp-glib/Makefile
-dpap-sharp/Makefile
-dpap-sharp/lib/Makefile
-dpap-sharp/dpap-client/Makefile
-dpap-sharp/dpap-server/Makefile
-dpap-sharp/DPAPService/Makefile
-dpap-sharp/DPAPBrowser/Makefile
 docs/Makefile
 icons/Makefile
 tools/Makefile

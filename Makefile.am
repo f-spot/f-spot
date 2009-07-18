@@ -1,27 +1,10 @@
 SUBDIRS = 		\
-	$(subdirs)	\
-	gio-sharp	\
 	lib 		\
-	$(DIR_DBUS)	\
-	$(DIR_DBUS_GLIB)\
 	docs		\
 	icons		\
 	tools		\
-	po		\
-	src		\
-	extensions	\
-	tests
-
-DIST_SUBDIRS = 		\
-	lib 		\
-	dbus-sharp	\
-	dbus-sharp-glib	\
-	dpap-sharp	\
-	docs		\
-	icons		\
-	tools		\
-	po		\
-	src		\
+	po			\
+	src			\
 	extensions	\
 	tests
 
