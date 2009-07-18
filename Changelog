@@ -1,0 +1,50 @@
+2009-07-18  The F-Spot Team  <http://f-spot.org>
+
+	* After the migration to Git, the F-Spot team decided to stop using
+	ChangeLog files. For updates on what changed during the past release
+	cycle, please check the NEWS file.
+
+	* If you need more detailed information, please check the Git version
+	control history.
+
+	* The old changelog files are still available (but have not been changed
+	since april 2009). They can be retrieved using the following commands:
+
+		./ChangeLog:
+		   git show c414d761ba9384432ef23a30ce3f0ab3add99940
+
+		./docs/ChangeLog:
+		   git show 80a95fdd778dc9b163869721b242b4d83aad29e8
+
+		./dpap-sharp/ChangeLog:
+		   git show fa751046742b5180a8616650974d3c0882691563
+
+		./extensions/ChangeLog:
+		   git show 88ca8e4afa9a39811173f3d2b42c14cd9352e04c
+
+		./extensions/Editors/ChangeLog:
+		   git show 10a670debbcfdedb847bfda21b392f7d249d179c
+
+		./extensions/Exporters/ChangeLog:
+		   git show 9646e8d9d450189a92f04848e070f4bbe49efbe3
+
+		./extensions/Misc/ChangeLog:
+		   git show c7063f394fc8d89d107714509207a6b20ab60b2f
+
+		./extensions/Services/ChangeLog:
+		   git show c7063f394fc8d89d107714509207a6b20ab60b2f
+
+		./extensions/Tools/ChangeLog:
+		   git show b8deb0711e60561df07b0b02167c11ac178749ab
+
+		./extensions/Tools/ChangePhotoPath/ChangeLog:
+		   git show d621a60c2b4238369d673479dae043d45dc55c54
+
+		./lib/GKeyFile/ChangeLog:
+		   git show 57169a269462ebb096c869c0dc08d425c7d783fd
+
+		./po/ChangeLog:
+		   git show b4071fb478486005950073e0c3b3a3f5bf5bab5e
+
+		./tests/src/ChangeLog:
+		   git show 294ca779e78d89c3f86beed9bb1d063e8c5b5979
