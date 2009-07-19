@@ -299,7 +299,6 @@ lib/glitz-sharp/src/Makefile
 lib/gnome-keyring-sharp/Makefile
 lib/gtk-sharp-beans/Makefile
 lib/libfspot/Makefile
-lib/libfspotraw/Makefile
 lib/libgphoto2-sharp/Makefile
 lib/libjpegtran/Makefile
 lib/Makefile
