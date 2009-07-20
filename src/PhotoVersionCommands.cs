@@ -240,34 +240,36 @@ public class PhotoVersionCommands
 			try {
 				if (ResponseType.Ok == HigMessageDialog.RunHigConfirmation(parent_window, DialogFlags.DestroyWithParent, 
 									   MessageType.Warning, msg, desc, ok_caption)) {
+					uint highest_rating = new_parent.Rating;
+					string new_description = new_parent.Description;
 					foreach (Photo photo in photos) {
+						highest_rating = Math.Max(photo.Rating, highest_rating);
+						// maybe combined description should be created?
+						if (string.IsNullOrEmpty(new_description))
+							new_description = photo.Description;
 						new_parent.AddTag (photo.Tags);
+						
 						foreach (uint version_id in photo.VersionIds) {
-							try {
-								new_parent.DefaultVersionId = new_parent.CreateReparentedVersion (photo.GetVersion (version_id) as PhotoVersion);
-								store.Commit (new_parent);
-							} catch (Exception e) {
-								Log.DebugException (e);	
-							}
+							new_parent.DefaultVersionId = new_parent.CreateReparentedVersion (photo.GetVersion (version_id) as PhotoVersion);
+							store.Commit (new_parent);
 						}
 						uint [] version_ids = photo.VersionIds;
 						Array.Reverse (version_ids);
 						foreach (uint version_id in version_ids) {
-							try {
-								photo.DeleteVersion (version_id, true, true);
-							} catch (Exception e) {
-								Log.DebugException (e);
-							}
+							photo.DeleteVersion (version_id, true, true);
 						}
 						App.Instance.Database.Photos.Remove (photo);
 					}
+					new_parent.Rating = highest_rating;
+					new_parent.Description = new_description;
+					store.Commit (new_parent);
 					return true;
 				}
 			}
 			catch (Exception e) {
 				Log.DebugException (e);
 				msg = Catalog.GetString ("Could not reparent photos");
-				desc = String.Format (Catalog.GetString ("Received exception \"{0}\". Unable to reparent to \"{1}\""),
+				desc = String.Format (Catalog.GetString ("Received exception \"{0}\" while reparenting."),
 							     e.Message, new_parent.Name);
 				HigMessageDialog md = new HigMessageDialog (parent_window, DialogFlags.DestroyWithParent, 
 									    Gtk.MessageType.Error, ButtonsType.Ok, msg, desc);
