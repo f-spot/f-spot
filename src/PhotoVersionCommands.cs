@@ -130,41 +130,26 @@ public class PhotoVersionCommands
 	public class Delete {
 		public bool Execute (PhotoStore store, Photo photo, Gtk.Window parent_window)
 		{
-			// FIXME HIG-ify.
-			Dialog dialog = new Dialog ();
-			dialog.BorderWidth = 6;
-			dialog.TransientFor = parent_window;
-			dialog.HasSeparator = false;
-			dialog.Title = Catalog.GetString ("Really Delete?");
-			dialog.AddButton (Catalog.GetString ("Cancel"), (int) ResponseType.Cancel);
-			dialog.AddButton (Catalog.GetString ("Delete"), (int) ResponseType.Ok);
-			dialog.DefaultResponse = ResponseType.Ok;
-
-			string version_name = photo.GetVersion (photo.DefaultVersionId).Name;
-			Label label = new Label (String.Format (Catalog.GetString ("Really delete version \"{0}\"?"), version_name));
-			label.Show ();
-			dialog.VBox.PackStart (label, false, true, 6);
-
+			string ok_caption = Catalog.GetString ("Delete");
+			string msg = String.Format (Catalog.GetString ("Really delete version \"{0}\"?"), photo.DefaultVersion.Name);
+			string desc = Catalog.GetString ("This removes the version and deletes the corresponding file from disk.");
 			try {
-				if (dialog.Run () == (int) ResponseType.Ok) {
+				if (ResponseType.Ok == HigMessageDialog.RunHigConfirmation(parent_window, DialogFlags.DestroyWithParent, 
+									   MessageType.Warning, msg, desc, ok_caption)) {
 					photo.DeleteVersion (photo.DefaultVersionId);
 					store.Commit (photo);
 					return true;
 				}
 			} catch (Exception e) {
 				Log.DebugException (e);
-				string msg = Catalog.GetString ("Could not delete a version");
-				string desc = String.Format (Catalog.GetString ("Received exception \"{0}\". Unable to delete version \"{1}\""),
+				msg = Catalog.GetString ("Could not delete a version");
+				desc = String.Format (Catalog.GetString ("Received exception \"{0}\". Unable to delete version \"{1}\""),
 							     e.Message, photo.Name);
 				
 				HigMessageDialog md = new HigMessageDialog (parent_window, DialogFlags.DestroyWithParent, 
 									    Gtk.MessageType.Error, ButtonsType.Ok, msg, desc);
 				md.Run ();
 				md.Destroy ();
-				dialog.Destroy (); // Delete confirmation window.
-			}
-			finally {
-				dialog.Destroy ();
 			}
 
 			return false;
