@@ -198,7 +198,7 @@ public class PhotoVersionCommands
 		{
 			string ok_caption = Catalog.GetString ("De_tach");
 			string msg = String.Format (Catalog.GetString ("Really detach version \"{0}\" from \"{1}\"?"), photo.DefaultVersion.Name, photo.Name.Replace("_", "__"));
-			string desc = Catalog.GetString ("This makes the verion appear as a separate photo in the library.");
+			string desc = Catalog.GetString ("This makes the verion appear as a separate photo in the library. To undo, drag the new photo back to its parent.");
 			try {
 				if (ResponseType.Ok == HigMessageDialog.RunHigConfirmation(parent_window, DialogFlags.DestroyWithParent, 
 									   MessageType.Warning, msg, desc, ok_caption)) {
@@ -231,28 +231,51 @@ public class PhotoVersionCommands
 	public class Reparent {
 		public bool Execute (PhotoStore store, Photo [] photos, Photo new_parent, Gtk.Window parent_window)
 		{
-			foreach (Photo photo in photos) {
-				new_parent.AddTag (photo.Tags);
-				foreach (uint version_id in photo.VersionIds) {
-					try {
-						new_parent.DefaultVersionId = new_parent.CreateReparentedVersion (photo.GetVersion (version_id) as PhotoVersion);
-						store.Commit (new_parent);
-					} catch (Exception e) {
-						Log.DebugException (e);	
+			string ok_caption = Catalog.GetString ("Re_parent");
+			string msg = String.Format (Catalog.GetPluralString ("Really reparent selected photo as version of {1}?", 
+			                                                     "Really reparent {0} selected photos as versions of {1}?", photos.Length), 
+			                            photos.Length, new_parent.Name.Replace ("_", "__"));
+			string desc = Catalog.GetString ("The tags will be merged with the new parent.");
+
+			try {
+				if (ResponseType.Ok == HigMessageDialog.RunHigConfirmation(parent_window, DialogFlags.DestroyWithParent, 
+									   MessageType.Warning, msg, desc, ok_caption)) {
+					foreach (Photo photo in photos) {
+						new_parent.AddTag (photo.Tags);
+						foreach (uint version_id in photo.VersionIds) {
+							try {
+								new_parent.DefaultVersionId = new_parent.CreateReparentedVersion (photo.GetVersion (version_id) as PhotoVersion);
+								store.Commit (new_parent);
+							} catch (Exception e) {
+								Log.DebugException (e);	
+							}
+						}
+						uint [] version_ids = photo.VersionIds;
+						Array.Reverse (version_ids);
+						foreach (uint version_id in version_ids) {
+							try {
+								photo.DeleteVersion (version_id, true, true);
+							} catch (Exception e) {
+								Log.DebugException (e);
+							}
+						}
+						App.Instance.Database.Photos.Remove (photo);
 					}
+					return true;
 				}
-				uint [] version_ids = photo.VersionIds;
-				Array.Reverse (version_ids);
-				foreach (uint version_id in version_ids) {
-					try {
-						photo.DeleteVersion (version_id, true, true);
-					} catch (Exception e) {
-						Log.DebugException (e);
-					}
-				}
-				App.Instance.Database.Photos.Remove (photo);
 			}
-			return true;
+			catch (Exception e) {
+				Log.DebugException (e);
+				msg = Catalog.GetString ("Could not reparent photos");
+				desc = String.Format (Catalog.GetString ("Received exception \"{0}\". Unable to reparent to \"{1}\""),
+							     e.Message, new_parent.Name);
+				HigMessageDialog md = new HigMessageDialog (parent_window, DialogFlags.DestroyWithParent, 
+									    Gtk.MessageType.Error, ButtonsType.Ok, msg, desc);
+				md.Run ();
+				md.Destroy ();
+			}
+			
+			return false;
 		}
 	}
 }
