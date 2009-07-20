@@ -57,9 +57,10 @@ namespace FSpot
 		[GtkBeans.Builder.Object] Label status_label;
 	
 		[GtkBeans.Builder.Object] Gtk.UIManager uimanager;
-		// File
+		// Photo
 		[GtkBeans.Builder.Object] Gtk.Action create_version_menu_item;
 		[GtkBeans.Builder.Object] Gtk.Action delete_version_menu_item;
+		[GtkBeans.Builder.Object] Gtk.Action detach_version_menu_item;
 		[GtkBeans.Builder.Object] Gtk.Action rename_version_menu_item;
 		
 		[GtkBeans.Builder.Object] Gtk.Action tools;
@@ -1705,31 +1706,25 @@ namespace FSpot
 		void HandleCreateVersionCommand (object obj, EventArgs args)
 		{
 			PhotoVersionCommands.Create cmd = new PhotoVersionCommands.Create ();
-	
 			cmd.Execute (Database.Photos, CurrentPhoto, GetToplevel (null));
-	//		if (cmd.Execute (db.Photos, CurrentPhoto, GetToplevel (null))) {
-	//			query.MarkChanged (ActiveIndex (), true, false);
-	//		}
 		}
 	
 		void HandleDeleteVersionCommand (object obj, EventArgs args)
 		{
 			PhotoVersionCommands.Delete cmd = new PhotoVersionCommands.Delete ();
-	
 			cmd.Execute (Database.Photos, CurrentPhoto, GetToplevel (null));
-	//		if (cmd.Execute (db.Photos, CurrentPhoto, GetToplevel (null))) {
-	//			query.MarkChanged (ActiveIndex (), true, true);
-	//		}
+		}
+		
+		void HandleDetachVersionCommand (object obj, EventArgs args)
+		{
+			PhotoVersionCommands.Detach cmd = new PhotoVersionCommands.Detach ();
+			cmd.Execute (db.Photos, CurrentPhoto, GetToplevel (null));
 		}
 	
 		void HandleRenameVersionCommand (object obj, EventArgs args)
 		{
 			PhotoVersionCommands.Rename cmd = new PhotoVersionCommands.Rename ();
-	
 			cmd.Execute (Database.Photos, CurrentPhoto, main_window);
-	//		if (cmd.Execute (db.Photos, CurrentPhoto, main_window)) {
-	//			query.MarkChanged (ActiveIndex (), true, false);
-	//		}
 		}
 		
 		public void HandleCreateTagAndAttach (object sender, EventArgs args)
@@ -2699,6 +2694,7 @@ namespace FSpot
 	
 				create_version_menu_item.Sensitive = false;
 				delete_version_menu_item.Sensitive = false;
+				detach_version_menu_item.Sensitive = false;
 				rename_version_menu_item.Sensitive = false;
 	
 				sharpen.Sensitive = false;
@@ -2709,9 +2705,11 @@ namespace FSpot
 				
 				if (CurrentPhoto.DefaultVersionId == Photo.OriginalVersionId) {
 					delete_version_menu_item.Sensitive = false;
+					detach_version_menu_item.Sensitive = false;
 					rename_version_menu_item.Sensitive = false;
 				} else {
 					delete_version_menu_item.Sensitive = true;
+					detach_version_menu_item.Sensitive = true;
 					rename_version_menu_item.Sensitive = true;
 				}
 	
@@ -2921,12 +2919,12 @@ namespace FSpot
 		}
 	
 		public void GetWidgetPosition(Widget widget, out int x, out int y)
-	    {
+		{
 			main_window.GdkWindow.GetOrigin(out x, out y);
 			
 			x += widget.Allocation.X;
 			y += widget.Allocation.Y;
-	 	}
+		}
 	
 		// Tag typing ...
 	

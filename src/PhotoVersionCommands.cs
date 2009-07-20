@@ -143,37 +143,33 @@ public class PhotoVersionCommands
 			string version_name = photo.GetVersion (photo.DefaultVersionId).Name;
 			Label label = new Label (String.Format (Catalog.GetString ("Really delete version \"{0}\"?"), version_name));
 			label.Show ();
-			dialog.VBox.PackStart (label, false, true, 6);;
+			dialog.VBox.PackStart (label, false, true, 6);
 
-			if (dialog.Run () == (int) ResponseType.Ok) {
-				try {
+			try {
+				if (dialog.Run () == (int) ResponseType.Ok) {
 					photo.DeleteVersion (photo.DefaultVersionId);
 					store.Commit (photo);
-				} catch (Exception e) {
-					Log.DebugException (e);
-					string msg = Catalog.GetString ("Could not delete a version");
-					string desc = String.Format (Catalog.GetString ("Received exception \"{0}\". Unable to delete version \"{1}\""),
-								     e.Message, photo.Name);
-					
-					HigMessageDialog md = new HigMessageDialog (parent_window, DialogFlags.DestroyWithParent, 
-										    Gtk.MessageType.Error, ButtonsType.Ok, 
-										    msg,
-										    desc);
-					md.Run ();
-					md.Destroy ();
-					dialog.Destroy (); // Delete confirmation window.
-					return false;
+					return true;
 				}
-
+			} catch (Exception e) {
+				Log.DebugException (e);
+				string msg = Catalog.GetString ("Could not delete a version");
+				string desc = String.Format (Catalog.GetString ("Received exception \"{0}\". Unable to delete version \"{1}\""),
+							     e.Message, photo.Name);
+				
+				HigMessageDialog md = new HigMessageDialog (parent_window, DialogFlags.DestroyWithParent, 
+									    Gtk.MessageType.Error, ButtonsType.Ok, msg, desc);
+				md.Run ();
+				md.Destroy ();
+				dialog.Destroy (); // Delete confirmation window.
+			}
+			finally {
 				dialog.Destroy ();
-				return true;
 			}
 
-			dialog.Destroy ();
 			return false;
 		}
 	}
-
 
 	// Renaming a version.
 
@@ -210,7 +206,43 @@ public class PhotoVersionCommands
 		}
 	}
 
+	// Detaching a version (making it a separate photo).
+	
+	public class Detach {
+		public bool Execute (PhotoStore store, Photo photo, Gtk.Window parent_window)
+		{
+			string ok_caption = Catalog.GetString ("De_tach");
+			string msg = String.Format (Catalog.GetString ("Really detach version \"{0}\" from \"{1}\"?"), photo.DefaultVersion.Name, photo.Name.Replace("_", "__"));
+			string desc = Catalog.GetString ("This makes the verion appear as a separate photo in the library.");
+			try {
+				if (ResponseType.Ok == HigMessageDialog.RunHigConfirmation(parent_window, DialogFlags.DestroyWithParent, 
+									   MessageType.Warning, msg, desc, ok_caption)) {
+					Gdk.Pixbuf thumbnail = null;
+					Photo new_photo = store.Create (photo.DefaultVersionUri, photo.RollId, out thumbnail);
+					new_photo.CopyAttributesFrom (photo.DefaultVersion);
+					store.Commit (new_photo);
+
+					photo.DeleteVersion (photo.DefaultVersionId, false, true);
+					store.Commit (photo);
+					return true;
+				}
+			} catch (Exception e) {
+				Log.DebugException (e);
+				msg = Catalog.GetString ("Could not detach a version");
+				desc = String.Format (Catalog.GetString ("Received exception \"{0}\". Unable to detach version \"{1}\""),
+							     e.Message, photo.Name);
+				HigMessageDialog md = new HigMessageDialog (parent_window, DialogFlags.DestroyWithParent, 
+									    Gtk.MessageType.Error, ButtonsType.Ok, msg, desc);
+				md.Run ();
+				md.Destroy ();					
+			}
+
+			return false;
+		}
+	}
+
 	// Reparenting a photo as version of another one
+	
 	public class Reparent {
 		public bool Execute (PhotoStore store, Photo [] photos, Photo new_parent, Gtk.Window parent_window)
 		{

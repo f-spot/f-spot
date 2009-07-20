@@ -55,6 +55,13 @@
           </object>
         </child>
         <child>
+          <object class="GtkAction" id="detach_version_menu_item">
+            <property name="name">detach_version_menu_item</property>
+            <property name="label" translatable="yes">De_tach Version</property>
+            <signal handler="HandleDetachVersionCommand" name="activate"/>
+          </object>
+        </child>
+        <child>
           <object class="GtkAction" id="export">
             <property name="name">export</property>
             <property name="label" translatable="yes">_Export to</property>
@@ -582,6 +589,7 @@
           <menuitem action="create_version_menu_item"/>
           <menuitem action="delete_version_menu_item"/>
           <menuitem action="rename_version_menu_item"/>
+          <menuitem action="detach_version_menu_item"/>
           <separator/>
           <menuitem action="export"/>
           <menuitem action="print"/>

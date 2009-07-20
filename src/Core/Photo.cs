@@ -437,7 +437,15 @@ namespace FSpot
 	//		File.Move (old_path, new_path);
 	//		PhotoStore.MoveThumbnail (old_path, new_path);
 		}
-	
+		
+		public void CopyAttributesFrom (PhotoVersion that) 
+		{			
+			Time = that.Time;
+			Description = that.Description;
+			Rating = that.Rating;
+			MD5Sum = that.MD5Sum;
+			AddTag (that.Tags);
+		}
 	
 		// Tag management.
 	
