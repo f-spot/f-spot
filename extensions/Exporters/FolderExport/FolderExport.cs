@@ -142,7 +142,7 @@ namespace FSpotFolderExport {
 
 			uri_chooser.LocalOnly = false;
 
-			if (Preferences.Get<string> (URI_KEY) != String.Empty)
+			if (!String.IsNullOrEmpty (Preferences.Get<string> (URI_KEY)))
 				uri_chooser.SetUri (Preferences.Get<string> (URI_KEY));
 			else
 				uri_chooser.SetFilename (uri_path);
