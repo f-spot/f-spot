@@ -1,19 +1,40 @@
-SVN
+GIT
 ---
 
-F-Spot's source repository is in GNOME SVN, in the module 'f-spot'.
+F-Spot's source repository is in GNOME GIT, in the module 'f-spot'.
 
-For information on GNOME SVN, see:
-http://developer.gnome.org/tools/svn.html.
-
+For information on GNOME GIT, see:
+http://live.gnome.org/Git
 
 Patches
 -------
 
-If you have a patch you'd like to submit, please open a tracking bug on
-bugzilla.gnome.org (product 'f-spot').  Attach the patch (and any additional
-required files) to the bug.  We will review it, but if people are busy
-it might not happen right away.
+If you have a patch you'd like to submit, please open a bug describing your fix
+or feature on bugzilla.gnome.org (product 'f-spot'), and submit a merge request
+on Gitorious (http://gitorious.org/f-spot).
+
+First, clone our git repository ("git clone git://git.gnome.org/f-spot"), apply
+your change and "git commit" it.
+
+Then create a clone of f-spot mainline on Gitorious, by selecting "Clone this
+repository on Gitorious" on the page for the "mainline" repository:
+    http://gitorious.org/f-spot/mainline 
+
+Once that's done, you'll end up on a special page for your clone on Gitorious.
+It contains a "push URL", which you'll need in the next step. It should look
+like this:
+    git@gitorious.org:~yourusername/f-spot/yourusernames-clone.git
+
+You can push the change you created in the first step to Gitorious using the
+following command:
+    git push 'push URL' branchname
+
+The change should now show up on the Gitorious web page, and you can request a
+merge using the "Request merge" link on the page for your clone.  Please
+provide a link to the bug you filed in Bugzilla in the merge request.
+
+We will review the patch, but if people are busy it might not happen right
+away.
 
 In the past we'd been doing patch review on the mailing list, but that hasn't
 always worked very well.  Sometimes patches get lost in the shuffle.
