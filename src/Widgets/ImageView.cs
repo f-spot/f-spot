@@ -53,6 +53,7 @@ namespace FSpot.Widgets
 
 			Pixbuf = pixbuf;
 			PixbufOrientation = orientation;
+			Upscale = upscale;
 
 			ComputeMinZoom ();
 			ComputeScaledSize ();
@@ -62,7 +63,7 @@ namespace FSpot.Widgets
 				Hadjustment.Value = Vadjustment.Value = 0;
 				XOffset = YOffset = 0;
 				AdjustmentsChanged += ScrollToAdjustments;
-				ZoomFit (upscale);
+				ZoomFit ();
 			} else {
 				// TODO: Recalculate the adjustments and offsets such that the
 				// view on the image is maintained.
@@ -204,15 +205,13 @@ namespace FSpot.Widgets
 			get { return fit; } 
 		}
 
-		void ZoomFit (bool upscale)
+		public void ZoomFit ()
 		{
 			Gtk.ScrolledWindow scrolled = Parent as Gtk.ScrolledWindow;
 			if (scrolled != null)
 				scrolled.SetPolicy (Gtk.PolicyType.Never, Gtk.PolicyType.Never);
 			
 			ComputeMinZoom ();
-
-			this.upscale = upscale;
 
 			fit = true;
 			DoZoom (MIN_ZOOM, false, 0, 0);
@@ -275,11 +274,8 @@ namespace FSpot.Widgets
 			get { return min_zoom; }
 		}
 
-		bool upscale;
-		protected void ZoomFit ()
-		{
-			ZoomFit (upscale);
-		}
+
+		bool Upscale { get; set; }
 
 		protected virtual void ApplyColorTransform (Pixbuf pixbuf)
 		{
@@ -438,7 +434,7 @@ namespace FSpot.Widgets
 			base.OnSizeAllocated (allocation);
 
 			if (fit)
-				ZoomFit (upscale);
+				ZoomFit ();
 		}
 
 		protected override bool OnExposeEvent (Gdk.EventExpose evnt)
@@ -853,7 +849,7 @@ namespace FSpot.Widgets
 				height = Pixbuf.Width;
 			}
 
-			if (upscale)
+			if (Upscale)
 				min_zoom = Math.Min ((double)Allocation.Width / width,
 									 (double)Allocation.Height / height);
 			else
