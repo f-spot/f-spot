@@ -222,5 +222,10 @@ namespace FSpot.Utils
 				PixbufUtils.SetOption (dest, "tEXt::Thumb::MTime", src.GetOption ("tEXt::Thumb::MTime"));
 			}
 		}
+
+		public static int UprightWidth (Pixbuf src, PixbufOrientation orientation)
+		{
+			return (int)orientation <= 4 ? src.Width : src.Height;
+		}
 	}
 }

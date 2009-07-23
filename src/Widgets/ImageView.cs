@@ -40,6 +40,10 @@ namespace FSpot.Widgets
 		{
 		}
 
+		// This value will be used to calculate the new zoom and offsets when
+		// the image is changed.
+		int prev_width;
+
 		// The is_new parameter denotes whether it's a newly loaded image
 		// (true, in that case the scrolling can be reset), or a new version of
 		// the currently loaded image (false, e.g. a higher resolution
@@ -48,8 +52,6 @@ namespace FSpot.Widgets
 		{
 			if (Pixbuf == pixbuf)
 				return;
-
-			Pixbuf prev = Pixbuf;
 
 			Pixbuf = pixbuf;
 			PixbufOrientation = orientation;
@@ -63,10 +65,18 @@ namespace FSpot.Widgets
 				Hadjustment.Value = Vadjustment.Value = 0;
 				XOffset = YOffset = 0;
 				AdjustmentsChanged += ScrollToAdjustments;
+				prev_width = PixbufUtils.UprightWidth (Pixbuf, PixbufOrientation);
 				ZoomFit ();
 			} else {
 				// TODO: Recalculate the adjustments and offsets such that the
 				// view on the image is maintained.
+
+				// Recalculate the zoom based on the new image size.
+				double ratio = (double) PixbufUtils.UprightWidth (Pixbuf, PixbufOrientation) /
+							   (double) prev_width;
+				Zoom /= ratio;
+
+				prev_width = PixbufUtils.UprightWidth (Pixbuf, PixbufOrientation);
 			}
 
 			QueueDraw ();
@@ -212,7 +222,7 @@ namespace FSpot.Widgets
 				scrolled.SetPolicy (Gtk.PolicyType.Never, Gtk.PolicyType.Never);
 
 			fit = true;
-			DoZoom (MIN_ZOOM, false, 0, 0);
+			Zoom = MIN_ZOOM;
 
 			if (scrolled != null)
 				GLib.Idle.Add (delegate {scrolled.SetPolicy (Gtk.PolicyType.Automatic, Gtk.PolicyType.Automatic); return false;});
