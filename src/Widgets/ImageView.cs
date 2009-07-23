@@ -54,7 +54,7 @@ namespace FSpot.Widgets
 			Pixbuf = pixbuf;
 			PixbufOrientation = orientation;
 
-			min_zoom = ComputeMinZoom (upscale);
+			ComputeMinZoom ();
 			ComputeScaledSize ();
 
 			if (is_new) {
@@ -77,7 +77,7 @@ namespace FSpot.Widgets
 				return;
 
 			PixbufOrientation = orientation;
-			min_zoom = ComputeMinZoom (upscale);
+			ComputeMinZoom ();
 			ComputeScaledSize ();
 			QueueDraw ();
 		}
@@ -210,8 +210,8 @@ namespace FSpot.Widgets
 			if (scrolled != null)
 				scrolled.SetPolicy (Gtk.PolicyType.Never, Gtk.PolicyType.Never);
 			
-			min_zoom = ComputeMinZoom (upscale);
-			
+			ComputeMinZoom ();
+
 			this.upscale = upscale;
 
 			fit = true;
@@ -400,7 +400,7 @@ namespace FSpot.Widgets
 
 		protected override void OnSizeAllocated (Gdk.Rectangle allocation)
 		{
-			min_zoom = ComputeMinZoom (upscale);
+			ComputeMinZoom ();
 
 			if (fit || zoom < MIN_ZOOM)
 				zoom = MIN_ZOOM;
@@ -836,10 +836,12 @@ namespace FSpot.Widgets
 			return Math.Min (Math.Max (value, min), max);
 		}
 
-		double ComputeMinZoom (bool upscale)
+		void ComputeMinZoom ()
 		{
-			if (Pixbuf == null)
-				return 0.1;
+			if (Pixbuf == null) {
+				min_zoom = 0.1;
+				return;
+			}
 
 			double width;
 			double height;
@@ -850,12 +852,14 @@ namespace FSpot.Widgets
 				width = Pixbuf.Height;
 				height = Pixbuf.Width;
 			}
+
 			if (upscale)
-				return Math.Min ((double)Allocation.Width / width,
-						 (double)Allocation.Height / height);
-			return Math.Min (1.0,
-					 Math.Min ((double)Allocation.Width / width,
-						   (double)Allocation.Height / height));
+				min_zoom = Math.Min ((double)Allocation.Width / width,
+									 (double)Allocation.Height / height);
+			else
+				min_zoom = Math.Min (1.0,
+									 Math.Min ((double)Allocation.Width / width,
+											   (double)Allocation.Height / height));
 		}
 #endregion
 
