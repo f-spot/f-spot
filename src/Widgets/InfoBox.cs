@@ -545,8 +545,7 @@ namespace FSpot.Widgets
 					version_combo.Active = i;
 				i++;
 			}
-			if (photo.VersionIds.Length == 1)
-				version_list.AppendValues ((uint)0, Catalog.GetString ("(No Edits)"), false);
+			version_combo.Sensitive = photo.VersionIds.Length > 1;
 			version_combo.Changed += OnVersionComboChanged;
 
 			if (show_file_size) {
