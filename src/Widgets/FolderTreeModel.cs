@@ -160,14 +160,14 @@ namespace FSpot.Widgets
 					if (IterIsValid (parent_iter))
 						iter =
 							AppendValues (parent_iter,
-							              segments[i],
+							              Uri.UnescapeDataString (segments[i]),
 							              (segments.Length - 1 == i)? count : 0,
 							              new Uri ((Uri) GetValue (parent_iter, 2),
 							                       String.Format ("{0}/", segments[i]))
 							              );
 					else
 						iter =
-							AppendValues (segments[i],
+							AppendValues (Uri.UnescapeDataString (segments[i]),
 							              (segments.Length - 1 == i)? count : 0,
 							              new Uri (base_uri, "/"));
 					
