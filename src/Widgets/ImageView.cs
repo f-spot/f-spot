@@ -210,8 +210,6 @@ namespace FSpot.Widgets
 			Gtk.ScrolledWindow scrolled = Parent as Gtk.ScrolledWindow;
 			if (scrolled != null)
 				scrolled.SetPolicy (Gtk.PolicyType.Never, Gtk.PolicyType.Never);
-			
-			ComputeMinZoom ();
 
 			fit = true;
 			DoZoom (MIN_ZOOM, false, 0, 0);
