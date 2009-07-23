@@ -61,20 +61,18 @@ namespace FSpot.Widgets
 			ComputeScaledSize ();
 
 			if (is_new) {
-				AdjustmentsChanged -= ScrollToAdjustments;
-				Hadjustment.Value = Vadjustment.Value = 0;
-				XOffset = YOffset = 0;
-				AdjustmentsChanged += ScrollToAdjustments;
-				prev_width = PixbufUtils.UprightWidth (Pixbuf, PixbufOrientation);
 				ZoomFit ();
+				ScrollTo (0, 0, true);
+				prev_width = PixbufUtils.UprightWidth (Pixbuf, PixbufOrientation);
 			} else {
-				// TODO: Recalculate the adjustments and offsets such that the
-				// view on the image is maintained.
-
-				// Recalculate the zoom based on the new image size.
+				// Recalculate the zoom and offset based on the new image size.
 				double ratio = (double) PixbufUtils.UprightWidth (Pixbuf, PixbufOrientation) /
 							   (double) prev_width;
+
+				int new_x = XOffset;
+				int new_y = YOffset;
 				Zoom /= ratio;
+				ScrollTo (new_x, new_y, true);
 
 				prev_width = PixbufUtils.UprightWidth (Pixbuf, PixbufOrientation);
 			}
