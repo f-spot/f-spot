@@ -410,7 +410,7 @@ namespace FSpot.Widgets {
 						root_term = root_parent;
 					}
 					//Log.Debug ("condition = {0}", RootTerm.SqlCondition ());
-					query.TagTerm = new PhotoQuery.TagConditionWrapper (RootTerm.SqlCondition ());
+					query.TagTerm = new TagConditionWrapper (RootTerm.SqlCondition ());
 				} else {
 					query.TagTerm = null;
 					//Log.Debug ("root term is null");

@@ -6,6 +6,7 @@ using Gtk;
 using Gdk;
 
 using FSpot.Utils;
+using FSpot.Query;
 
 namespace FSpot
 {
@@ -679,7 +680,7 @@ namespace FSpot
 				query.TagTerm = null;
 			} else {
 				help.Hide ();
-				query.TagTerm = new PhotoQuery.TagConditionWrapper (rootTerm.SqlCondition ());
+				query.TagTerm = new TagConditionWrapper (rootTerm.SqlCondition ());
 			}
 
 			EventHandler handler = Changed;

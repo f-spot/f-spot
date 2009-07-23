@@ -7,7 +7,6 @@
  * This is free software. See COPYING for details.
  */
 
-
 using System;
 using System.Text;
 using System.Collections;
@@ -22,14 +21,12 @@ using FSpot.Query;
 
 namespace FSpot
 {
-	
-	
 	public class FolderQueryWidget : HBox
 	{
 		PhotoQuery query;
 		FolderSet folder_set;
 		
-		public FolderQueryWidget ()
+		public FolderQueryWidget () : base ()
 		{
 			folder_set = new FolderSet ();
 			query = MainWindow.Toplevel.Query;
@@ -41,7 +38,7 @@ namespace FSpot
 			              Gdk.DragAction.Copy | Gdk.DragAction.Move);
 		}
 		
-		private void UpdateGui ()
+		void UpdateGui ()
 		{
 			while (Children.Length != 0)
 				Remove (Children[0]);
@@ -99,9 +96,7 @@ namespace FSpot
 		}
 		
 		public bool Empty {
-			get {
-				return folder_set.Folders == null || folder_set.Folders.Count () == 0;
-			}
+			get { return folder_set.Folders == null || folder_set.Folders.Count () == 0; }
 		}
 		
 		private static TargetEntry [] folder_query_widget_source_table =
@@ -116,6 +111,5 @@ namespace FSpot
 			SetFolders (selection_data.GetUriListData ());
 			query.RequestReload ();
 		}
-
 	}
 }

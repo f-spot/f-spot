@@ -45,6 +45,7 @@ QUERY_CSDISTFILES =				\
 	$(srcdir)/Query/OrderByTime.cs		\
 	$(srcdir)/Query/RatingRange.cs		\
 	$(srcdir)/Query/RollSet.cs		\
+	$(srcdir)/Query/TagConditionWrapper.cs	\
 	$(srcdir)/Query/UntaggedCondition.cs
 
 UTILS_CSDISTFILES =				\

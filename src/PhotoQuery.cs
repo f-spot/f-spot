@@ -383,20 +383,5 @@ namespace FSpot {
 		{
 			ItemsChanged (this, new BrowsableEventArgs (indexes, changes));
 		}
-		
-		public class TagConditionWrapper : IQueryCondition
-		{
-			string condition;
-			
-			public TagConditionWrapper (string condition)
-			{
-				this.condition = condition;
-			}
-			
-			public string SqlClause ()
-			{
-				return condition;
-			}
-		}
 	}
 }
