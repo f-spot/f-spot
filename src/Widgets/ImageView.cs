@@ -44,10 +44,12 @@ namespace FSpot.Widgets
 		// (true, in that case the scrolling can be reset), or a new version of
 		// the currently loaded image (false, e.g. a higher resolution
 		// version).
-		public void ChangeImage (Pixbuf pixbuf, PixbufOrientation orientation, bool is_new)
+		public void ChangeImage (Pixbuf pixbuf, PixbufOrientation orientation, bool is_new, bool upscale)
 		{
 			if (Pixbuf == pixbuf)
 				return;
+
+			Pixbuf prev = Pixbuf;
 
 			Pixbuf = pixbuf;
 			PixbufOrientation = orientation;
@@ -60,6 +62,7 @@ namespace FSpot.Widgets
 				Hadjustment.Value = Vadjustment.Value = 0;
 				XOffset = YOffset = 0;
 				AdjustmentsChanged += ScrollToAdjustments;
+				ZoomFit (upscale);
 			} else {
 				// TODO: Recalculate the adjustments and offsets such that the
 				// view on the image is maintained.
@@ -201,7 +204,7 @@ namespace FSpot.Widgets
 			get { return fit; } 
 		}
 
-		public void ZoomFit (bool upscale)
+		void ZoomFit (bool upscale)
 		{
 			Gtk.ScrolledWindow scrolled = Parent as Gtk.ScrolledWindow;
 			if (scrolled != null)

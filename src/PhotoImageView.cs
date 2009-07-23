@@ -222,10 +222,8 @@ namespace FSpot.Widgets {
 
 			Gdk.Pixbuf prev = Pixbuf;
 			PixbufOrientation orientation = Accelerometer.GetViewOrientation (loader.PixbufOrientation);
-			ChangeImage (loader.Pixbuf, orientation, prepared_is_new);
+			ChangeImage (loader.Pixbuf, orientation, prepared_is_new, args.ReducedResolution);
 			prepared_is_new = false;
-
-			this.ZoomFit (args.ReducedResolution);
 
 			if (prev != null)
 				prev.Dispose ();
@@ -253,7 +251,7 @@ namespace FSpot.Widgets {
 
 			Pixbuf prev = this.Pixbuf;
 			if (Pixbuf != loader.Pixbuf)
-				ChangeImage (loader.Pixbuf, Accelerometer.GetViewOrientation (loader.PixbufOrientation), false);
+				ChangeImage (loader.Pixbuf, Accelerometer.GetViewOrientation (loader.PixbufOrientation), false, false);
 
 			if (Pixbuf == null) {
 				// FIXME: Do we have test cases for this ???
@@ -263,7 +261,7 @@ namespace FSpot.Widgets {
 				// than try to load the image one last time.
 				try {
 					Log.Warning ("Falling back to file loader");
-					ChangeImage (PhotoLoader.Load (item.Collection, item.Index), PixbufOrientation.TopLeft, true);
+					ChangeImage (PhotoLoader.Load (item.Collection, item.Index), PixbufOrientation.TopLeft, true, false);
 				} catch (Exception e) {
 					LoadErrorImage (e);
 				}
@@ -271,8 +269,6 @@ namespace FSpot.Widgets {
 
 			if (Pixbuf == null)
 				LoadErrorImage (null);
-			else
-				ZoomFit ();
 
 			progressive_display = true;
 
@@ -305,14 +301,12 @@ namespace FSpot.Widgets {
 			Pixbuf err = new Pixbuf (PixbufUtils.ErrorPixbuf, 0, 0,
 									 PixbufUtils.ErrorPixbuf.Width,
 									 PixbufUtils.ErrorPixbuf.Height);
-			ChangeImage (err, PixbufOrientation.TopLeft, true);
+			ChangeImage (err, PixbufOrientation.TopLeft, true, false);
 			if (old != null)
 				old.Dispose ();
-
-			ZoomFit (false);
 		}
 
-		void HandlePhotoItemChanged (object sender, BrowsablePointerChangedEventArgs args) 
+		void HandlePhotoItemChanged (object sender, BrowsablePointerChangedEventArgs args)
 		{
 			// If it is just the position that changed fall out
 			if (args != null && 
