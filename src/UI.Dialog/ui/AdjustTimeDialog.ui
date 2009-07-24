@@ -125,6 +125,8 @@
                                           <object class="GnomeDateEdit" id="date_edit">
                                             <property name="visible">True</property>
                                             <property name="dateedit_flags">GNOME_DATE_EDIT_SHOW_TIME | GNOME_DATE_EDIT_24_HR</property>
+                                            <property name="lower_hour">0</property>
+                                            <property name="upper_hour">23</property>
                                           </object>
                                           <packing>
                                             <property name="left_attach">1</property>
