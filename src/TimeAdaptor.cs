@@ -168,16 +168,25 @@ namespace FSpot {
 		void DoReload ()
 		{
 			Thread.Sleep (200);
-			years = query.Store.PhotosPerMonth ();
-			foreach (int year in years.Keys) {
-				startyear = Math.Min (year,startyear);
-				endyear = Math.Max (year,endyear);
+			Dictionary <int, int[]> years_tmp = query.Store.PhotosPerMonth ();
+			int startyear_tmp = Int32.MaxValue;
+			int endyear_tmp = Int32.MinValue;
+			
+			foreach (int year in years_tmp.Keys) {
+				startyear_tmp = Math.Min (year, startyear_tmp);
+				endyear_tmp = Math.Max (year, endyear_tmp);
 			}
- 			if (Changed != null)
-				Gtk.Application.Invoke(delegate {
-					if (Changed != null)
-						Changed (this);
-				});
+			
+			Gtk.Application.Invoke(delegate {
+				
+				years = years_tmp;
+				startyear = startyear_tmp;
+				endyear = endyear_tmp;
+				
+				if (Changed != null)
+					Changed (this);
+			});
+			
 			Log.DebugTimerPrint (timer, "TimeAdaptor REAL Reload took {0}");
 		}
 
