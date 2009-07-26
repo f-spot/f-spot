@@ -83,13 +83,21 @@
         </child>
         <child>
           <object class="GtkAction" id="close1">
-            <property name="stock_id">gtk-quit</property>
+            <property name="stock_id">gtk-close</property>
             <property name="name">close1</property>
+            <property name="label" translatable="yes">_Close</property>
+            <signal handler="HandleCloseCommand" name="activate"/>
+          </object>
+          <accelerator key="w" modifiers="GDK_CONTROL_MASK"/>
+        </child>
+        <child>
+          <object class="GtkAction" id="quit">
+            <property name="stock_id">gtk-quit</property>
+            <property name="name">quit</property>
             <property name="label" translatable="yes">_Quit</property>
             <signal handler="HandleCloseCommand" name="activate"/>
           </object>
           <accelerator key="q" modifiers="GDK_CONTROL_MASK"/>
-          <accelerator key="w" modifiers="GDK_CONTROL_MASK"/>
         </child>
         <child>
           <object class="GtkAction" id="edit2">
@@ -572,6 +580,7 @@
           <menuitem action="send_mail"/>
           <separator/>
           <menuitem action="close1"/>
+          <menuitem action="quit"/>
         </menu>
         <menu action="edit2">
           <menuitem action="copy_location"/>

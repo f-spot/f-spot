@@ -514,6 +514,8 @@ public class MainWindow {
 		export.Activated += HandleExportActivated;
 		UpdateToolbar ();
 
+		(uimanager.GetWidget("/ui/menubar1/file1/close1") as MenuItem).Hide ();
+
 		Banshee.Kernel.Scheduler.Resume ();
 	}
 
