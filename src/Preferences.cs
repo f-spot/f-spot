@@ -23,6 +23,10 @@ namespace FSpot
 		public const string IMPORT_WINDOW_WIDTH = APP_FSPOT + "ui/import_window_width";
 		public const string IMPORT_WINDOW_HEIGHT = APP_FSPOT + "ui/import_window_height";
 		public const string IMPORT_WINDOW_PANE_POSITION = APP_FSPOT + "ui/import_window_pane_position";
+
+		public const string IMPORT_COPY_FILES = "/apps/f-spot/import/copy_files";
+		public const string IMPORT_INCLUDE_SUBFOLDERS = "/apps/f-spot/import/include_subfolders";
+		public const string IMPORT_CHECK_DUPLICATES = "/apps/f-spot/import/check_duplicates";
 		
 		public const string VIEWER_WIDTH = APP_FSPOT + "ui/viewer_width";
 		public const string VIEWER_HEIGHT = APP_FSPOT + "ui/viewer_height";
@@ -166,6 +170,10 @@ namespace FSpot
 			case COLOR_MANAGEMENT_DISPLAY_PROFILE:
 			case COLOR_MANAGEMENT_OUTPUT_PROFILE:
 				return String.Empty;
+			case IMPORT_CHECK_DUPLICATES:
+			case IMPORT_COPY_FILES:
+			case IMPORT_INCLUDE_SUBFOLDERS:
+				return true;
 			default:
 				return null;
 			}
