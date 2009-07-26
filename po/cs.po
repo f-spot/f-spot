@@ -1,7 +1,10 @@
 # Czech translation of f-spot.
 # Copyright (C) 2004, 2005, 2006, 2007, 2008, 2009 the author(s) of f-spot.
 # Copyright (C) 2004, 2005, 2006 Miloslav Trmac <mitr@volny.cz>.
+# Copyright (C) 2006, 2007 Jakub Friedl <jfriedl@suse.cz>.
 # Copyright (C) 2008 Pavel Šefránek <ps@pjoul.cz>.
+# Copyright (C) 2008 Petr Kovar <pknbe@volny.cz>.
+# Copyright (C) 2008, 2009 Zdeněk Hataš <zdenek.hatas@gmail.com>.
 # This file is distributed under the same license as the f-spot package.
 # Miloslav Trmac <mitr@volny.cz>, 2004, 2005, 2006.
 # Jakub Friedl <jfriedl@suse.cz>, 2006, 2007.
@@ -13,8 +16,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: f-spot\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-07-12 23:42+0200\n"
-"PO-Revision-Date: 2009-07-10 22:38+0100\n"
+"POT-Creation-Date: 2009-07-26 19:29+0200\n"
+"PO-Revision-Date: 2009-07-24 14:15+0100\n"
 "Last-Translator: Zdeněk Hataš <zdenek.hatas@gmail.com>\n"
 "Language-Team: Czech <gnome-cs-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -25,299 +28,1133 @@ msgstr ""
 "X-Poedit-Country: CZECH REPUBLIC\n"
 "X-Poedit-SourceCharset: utf-8\n"
 
-#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInfoDialog.cs:62
-msgid "Version:"
-msgstr "Verze:"
+#: ../extensions/Exporters/CDExport/CDExport.addin.xml.h:1
+msgid "_CD..."
+msgstr "_CD..."
 
-#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInfoDialog.cs:65
-msgid "Author:"
-msgstr "Autor:"
+#: ../extensions/Exporters/CDExport/CDExport.cs:162
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:392
+#: ../src/CameraFileSelectionDialog.cs:199
+msgid "Transferring Pictures"
+msgstr "Přenáším obrázky"
 
-#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInfoDialog.cs:68
-msgid "Copyright:"
-msgstr "Autorská práva:"
-
-#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInfoDialog.cs:71
-msgid "Extension Dependencies:"
-msgstr "Závislosti rozšíření:"
-
-#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:97
-msgid "All registered repositories"
-msgstr "Všechny registrované repositáře"
-
-#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:184
-msgid "Are you sure you want to cancel the installation?"
-msgstr "Opravdu chcete zrušit instalaci?"
-
-#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:308
-msgid "The following packages will be uninstalled:"
-msgstr "Následující balíčky budou odebrány:"
-
-#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:313
-msgid ""
-"There are other extensions that depend on the previous ones which will also "
-"be uninstalled:"
-msgstr ""
-"Existují další na těchto závislá rozšíření, která budou také odstraněna:"
-
-#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:384
-msgid ""
-"The selected extensions can't be installed because there are dependency "
-"conflicts."
-msgstr ""
-"Vybraná rozšíření nemohou být nainstalována, protože nastal konflikt "
-"závislostí."
-
-#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:398
-msgid "The following packages will be installed:"
-msgstr "Následující balíčky budou nainstalovány:"
-
-#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:402
-msgid " (in user directory)"
-msgstr " (v uživatelském adresáři)"
-
-#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:408
-msgid "The following packages need to be uninstalled:"
-msgstr "Následující balíčky musí být odebrány:"
-
-#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:416
-msgid "The following dependencies could not be resolved:"
-msgstr "Následující závislosti nemohou být vyřešeny:"
-
-#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:441
-msgid "The installation has been successfully completed."
-msgstr "Instalace byla úspěšně dokončena."
-
-#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:442
-msgid "The installation failed!"
-msgstr "Instalace selhala!"
-
-#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:443
-msgid "The installation has completed with warnings."
-msgstr "Instalace byla dokončena s varováními."
-
-#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:446
-msgid "The uninstallation has been successfully completed."
-msgstr "Odebrání bylo úspěšně dokončeno."
-
-#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:447
-msgid "The uninstallation failed!"
-msgstr "Odebrání selhalo!"
-
-#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:448
-msgid "The uninstallation has completed with warnings."
-msgstr "Odebrání bylo dokončeno s varováními."
-
-#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:616
-msgid "Repository"
-msgstr "Repositář"
-
-#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstaller.cs:16
-msgid "Installation cancelled"
-msgstr "Instalace zrušena"
-
-#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallerDialog.cs:159
-msgid "Some of the required extensions were not found"
-msgstr "Některá z požadovaných rozšíření nebyla nalezena"
-
-#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallerDialog.cs:171
-msgid "Installation failed"
-msgstr "Chyba při instalaci"
-
-# TODO: možná rozšíření (?)
-#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinTreeWidget.cs:91
-msgid "Extension"
-msgstr "Přípona"
-
-#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinTreeWidget.cs:112
-#: ../src/Widgets/InfoBox.cs:214
-msgid "Version"
-msgstr "Verze"
-
-#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinTreeWidget.cs:168
-msgid "Other"
-msgstr "Ostatní"
-
-#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/ManageSitesDialog.cs:51
-#: ../src/Widgets/InfoBox.cs:211
-msgid "Name"
-msgstr "Název"
-
-#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/ManageSitesDialog.cs:52
-msgid "Url"
-msgstr "URL"
-
-#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/Services.cs:61
-#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/Services.cs:70
+#: ../extensions/Exporters/CDExport/CDExport.cs:218
 #, csharp-format
-msgid "Exception occurred: {0}"
-msgstr "Došlo k výjimce: {0}"
+msgid "Transferring picture \"{0}\" To CD"
+msgstr "Na CD se přenáší obrázek \"{0}\""
 
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInfoDialog.cs:32
-msgid "Package"
-msgstr "Balíček"
+#. Note for translators: This indicates the current photo is photo {0} of {1} out of photos
+#: ../extensions/Exporters/CDExport/CDExport.cs:220
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:349
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:245
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:781
+#: ../src/MainWindow.cs:637 ../src/UI.Dialog/AdjustTimeDialog.cs:129
+#: ../src/UI.Dialog/ProgressDialog.cs:92
+#, csharp-format
+msgid "{0} of {1}"
+msgstr "{0} z {1}"
 
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:110
-msgid "Extension Installation"
-msgstr "Instalace rozšíření"
+#: ../extensions/Exporters/CDExport/CDExport.cs:233
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:387
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:379
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:285
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:806
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:704
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:607
+msgid "Done Sending Photos"
+msgstr "Odesílání fotografií ukončeno"
 
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:136
-msgid "<b>Select the extensions to install and click on Next</b>"
+#: ../extensions/Exporters/CDExport/CDExport.cs:235
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:287
+msgid "Transfer Complete"
+msgstr "Přenos byl dokončen"
+
+#: ../extensions/Exporters/CDExport/CDExport.cs:242
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:292
+msgid "Error While Transferring"
+msgstr "Chyba při přenosu"
+
+#: ../extensions/Exporters/CDExport/CDExport.cs:250
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:311
+msgid "Error Transferring"
+msgstr "Chyba přenosu"
+
+#: ../extensions/Exporters/CDExport/CDExport.cs:263
+msgid "copying..."
+msgstr "kopíruje se..."
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.addin.xml.h:1
+msgid "F_acebook..."
+msgstr "F_acebook..."
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:99
+msgid "Waiting for authorization"
+msgstr "Čeká se na autorizaci"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:100
+msgid ""
+"F-Spot will now launch your browser so that you can enable the permission "
+"you just selected.\n"
+"\n"
+"Once you are directed by Facebook to return to this application, click \"Ok"
+"\" below."
 msgstr ""
-"<b>Vyberte rozšíření, která chcete nainstalovat, a klikněte na Následující</"
-"b>"
+"F-Spot nyní spustí váš prohlížeč, abyste mohli udělit zvolené oprávnění. \n"
+"\n"
+"Poté co vás Facebook nasměruje k návratu do této aplikace, klikněte na "
+"tlačítko \"OK\" níže."
 
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:150
-msgid "Install from:"
-msgstr "Nainstalovat z:"
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:279
+msgid "Too many images to export"
+msgstr "Příliš mnoho obrázků k exportu"
 
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:179
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:180
-msgid "_Repositories..."
-msgstr "_Repositáře..."
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:280
+msgid ""
+"Facebook only permits 60 photographs per album.  Please refine your "
+"selection and try again."
+msgstr ""
+"Facebook umožňuje vložit pouze 60 fotografií na jedno album. Upravte prosím "
+"výběr a zkuste to znovu."
 
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:220
-msgid "Show all packages"
-msgstr "Zobrazovat všechny balíčky"
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:297
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:475
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:730
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:597
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:522
+msgid "Uploading Pictures"
+msgstr "Přenášejí se obrázky"
 
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:221
-msgid "Show new versions only"
-msgstr "Zobrazovat jen nové verze"
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:326
+msgid "Album must have a name"
+msgstr "Album musí mít název"
 
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:222
-msgid "Show updates only"
-msgstr "Zobrazovat jen aktualizace"
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:327
+msgid "Please name your album or choose an existing album."
+msgstr "Pojmenujte prosím své album, nebo zvolte existující."
 
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:247
-msgid "_Unselect All"
-msgstr "_Zrušit výběr všeho"
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:341
+msgid "Creating a new album failed"
+msgstr "Vytváření nového alba selhalo"
 
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:259
-msgid "Select _All"
-msgstr "Vybrat vš_e"
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:342
+#, csharp-format
+msgid ""
+"An error occurred creating a new album.\n"
+"\n"
+"{0}"
+msgstr ""
+"Při vytváření nového alba došlo k chybě.\n"
+"\n"
+"{0}"
 
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:334
-msgid "label124"
-msgstr "popisek124"
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:364
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:660
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:565
+#, csharp-format
+msgid "Uploading picture \"{0}\" ({1} of {2})"
+msgstr "Nahrává se obrázek \"{0}\" ({1} z {2})"
 
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:346
-msgid "Overall Progress:"
-msgstr "Celkový průběh:"
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:378
+#, csharp-format
+msgid "Error Uploading To Facebook: {0}"
+msgstr "Chyba při nahrávání na Facebook: {0}"
 
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:374
-msgid "Downloading extensions..."
-msgstr "Stahuji rozšíření..."
-
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallerDialog.cs:36
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:58
-msgid "Extension Manager"
-msgstr "Správce rozšíření"
-
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallerDialog.cs:54
-msgid "Additional extensions are required to perform this operation."
-msgstr "K provedení této akce jsou vyžadována další rozšíření."
-
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallerDialog.cs:64
-msgid "The following extensions will be installed:"
-msgstr "Budou nainstalována následující rozšíření:"
-
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:90
-msgid "<big><b>Extension Manager</b></big>"
-msgstr "<big><b>Správce rozšíření</b></big>"
-
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:110
-msgid "The following extensions are currently installed:"
-msgstr "Právě se instalují následující rozšíření:"
-
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:165
-msgid "_Install Extensions..."
-msgstr "_Instalovat rozšíření..."
-
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:210
-msgid "_Uninstall..."
-msgstr "O_debrat..."
-
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:236
-#: ../src/UI.Dialog/ui/PreferenceDialog.glade.h:13
-msgid "Enable"
-msgstr "Povolit"
-
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:262
-msgid "Disable"
-msgstr "Zakázat"
-
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.ErrorDialog.cs:40
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:379
 #: ../extensions/Exporters/FlickrExport/FlickrExport.cs:370
 #: ../extensions/Exporters/FolderExport/FolderExport.cs:250
 #: ../extensions/Exporters/GalleryExport/GalleryExport.cs:797
-#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:379
 #: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:693
 #: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:596
 #: ../extensions/Exporters/TabbloExport/TabbloExport.cs:319
+#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.ErrorDialog.cs:40
 msgid "Error"
 msgstr "Chyba"
 
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.ErrorDialog.cs:111
-msgid "Details"
-msgstr "Detaily"
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:389
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:381
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:808
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:706
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:609
+msgid "Upload Complete"
+msgstr "Nahrávání dokončeno"
 
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.ManageSitesDialog.cs:34
-msgid "Extension Repository Management"
-msgstr "Správa repositářů rozšíření"
+#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:186
+msgid "Waiting for authentication"
+msgstr "Čeká se na autentizaci"
 
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.NewSiteDialog.cs:52
-msgid "Add New Repository"
-msgstr "Přidat nový repositář"
+#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:187
+msgid ""
+"F-Spot will now launch your browser so that you can log into Facebook.\n"
+"\n"
+"Once you are directed by Facebook to return to this application, click \"Ok"
+"\" below.  F-Spot will cache your session in gnome-keyring, if possible, and "
+"re-use it on future Facebook exports."
+msgstr ""
+"F-Spot nyní spustí váš prohlížeč, abyste se mohli přihlásit na Facebook.\n"
+"\n"
+"Poté, co vás Facebook nasměruje k návratu do tého aplikace, klikněte na "
+"tlačítko \"OK\" níže. F-Spot uloží vaši relaci do klíčenky GNOME a pokud to "
+"bude možné, použije ji při příštích exportů na Facebook."
 
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.NewSiteDialog.cs:70
-msgid "Select the location of the repository you want to register:"
-msgstr "Vyberte umístění repositáře, který chcete přidat:"
+#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:192
+msgid "Authenticating..."
+msgstr "Autentizuje se..."
 
-#. Container child vbox89.Gtk.Box+BoxChild
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.NewSiteDialog.cs:77
-msgid "Register an on-line repository"
-msgstr "Přidat vzdálený repositář"
+#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:202
+msgid "Error logging into Facebook"
+msgstr "Chyba při přihlašování k Facebook"
 
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.NewSiteDialog.cs:106
-msgid "Url:"
-msgstr "URL:"
+#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:203
+msgid ""
+"There was a problem logging into Facebook.  Check your credentials and try "
+"again."
+msgstr ""
+"Při pokusu o přihlášení k Facebook došlo k chybě. Zkontrolujte prosím své "
+"přihlašovací údaje a zkuste to znovu."
 
-#. Container child vbox89.Gtk.Box+BoxChild
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.NewSiteDialog.cs:127
-msgid "Register a local repository"
-msgstr "Přidat místní repositář"
+#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:212
+msgid "Authorizing Session"
+msgstr "Relace se autorizuje"
 
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.NewSiteDialog.cs:155
-msgid "Path:"
-msgstr "Umístění:"
+#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:221
+msgid "Session established, fetching user info..."
+msgstr "Relace navázána, stahují se informace o uživateli..."
 
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.NewSiteDialog.cs:179
-msgid "Browse..."
-msgstr "Procházet..."
+#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:227
+msgid "Session established, fetching friend list..."
+msgstr "Relace navázána, stahuje se seznam přátel..."
 
-#: ../mono-addins/Mono.Addins/Mono.Addins.Description/AssemblyDependency.cs:79
+#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:237
+msgid "Session established, fetching friend details..."
+msgstr "Relace navázána, stahují se podrobnosti přátel..."
+
+#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:247
+msgid "Session established, fetching photo albums..."
+msgstr "Relace navázána, stahují se fotoalba..."
+
+#. Note for translators: {0} and {1} are respectively firstname and surname of the user
+#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:260
 #, csharp-format
-msgid "(provided by {0})"
-msgstr "(poskytuje {0})"
+msgid "{0} {1} is logged into Facebook"
+msgstr "{0} {1} je přihlášen na Facebook"
 
-#: ../mono-addins/Mono.Addins/Mono.Addins/AddinSessionService.cs:154
-msgid "Disabled extensions can't be loaded."
-msgstr "Zakázaná rozšíření není možno načíst."
+#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:266
+msgid "Facebook Connection Error"
+msgstr "Chyba připojení k Facebook"
 
-#: ../mono-addins/Mono.Addins/Mono.Addins/AddinSessionService.cs:179
+#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:267
 #, csharp-format
-msgid "Loading {0} extension"
-msgstr "Načítá se {0} rozšíření"
+msgid ""
+"There was an error when downloading your information from Facebook.\n"
+"\n"
+"Facebook said: {0}"
+msgstr ""
+"Při stahování informací z Facebook došlo k chybě.\n"
+"\n"
+"Facebook říká: {0}"
 
-#: ../mono-addins/Mono.Addins/Mono.Addins/AddinSessionService.cs:265
-#, csharp-format
-msgid "The required extension '{0}' is disabled."
-msgstr "Vyžadované rozšíření \"{0}\" je zakázáno."
+#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:296
+msgid "You are not logged in."
+msgstr "Nejste přihlášen."
 
-#: ../mono-addins/Mono.Addins/Mono.Addins/AddinSessionService.cs:267
+#: ../extensions/Exporters/FlickrExport/FlickrExport.addin.xml.h:1
+msgid "_23hq..."
+msgstr "_23hq..."
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.addin.xml.h:2
+msgid "_Flickr..."
+msgstr "_Flickr..."
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.addin.xml.h:3
+msgid "_Zooomr..."
+msgstr "_Zooomr..."
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:105
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:5
+msgid "Authorize"
+msgstr "Autorizovat"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:111
 #, csharp-format
-msgid "The required extension '{0}' is not installed."
-msgstr "Vyžadované rozšíření \"{0}\" není nainstalováno."
+msgid ""
+"Return to this window after you have finished the authorization process on "
+"{0} and click the \"Complete Authorization\" button below"
+msgstr ""
+"Poté, co jste dokončili autorizační proces v {0}, vraťte se do tohoto okna a "
+"stiskněte tlačítko \"Dokončit autorizaci\" umístěné níže"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:112
+msgid "Complete Authorization"
+msgstr "Dokončit autorizaci"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:117
+#, csharp-format
+msgid "Logging into {0}"
+msgstr "Přihlášen k {0}"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:118
+msgid "Checking credentials..."
+msgstr "Ověřují se doklady..."
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:125
+#, csharp-format
+msgid "Welcome {0} you are connected to {1}"
+msgstr "Vítejte {0}, jste připojeni k {1}"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:128
+#, csharp-format
+msgid "Sign in as a different user"
+msgstr "Přihlásit jako jiný uživatel"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:133
+#, csharp-format
+msgid "Used {0} of your allowed {1} monthly quota"
+msgstr "Využito {0} z vaší celkové povolené měsíční kvóty {1}"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:297
+msgid "Unable to log on"
+msgstr "Nelze přihlásit"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:317
+#, csharp-format
+msgid "Waiting for response {0} of {1}"
+msgstr "Čeká se na odpověď {0} z {1}"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:344
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:242
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:777
+#, csharp-format
+msgid "Uploading picture \"{0}\""
+msgstr "Nahrává se obrázek \"{0}\""
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:367
+#, csharp-format
+msgid "Error Uploading To {0}: {1}"
+msgstr "Chyba nahrávání do {0}: {1}"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:454
+msgid "Unable to log on."
+msgstr "Nelze přihlásit."
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:455
+#, csharp-format
+msgid ""
+"F-Spot was unable to log on to {0}.  Make sure you have given the "
+"authentication using {0} web browser interface."
+msgstr ""
+"F-Spot se nebyl schopen přihlásit k {0}. Ujistěte se, že jste povolili "
+"autentizaci prostřednictvím {0} rozhraní webového prohlížeče."
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:1
+#: ../src/f-spot.glade.h:8
+msgid "<b>Account</b>"
+msgstr "<b>Účet</b>"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:2
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:5
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:3
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:2
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:2
+#: ../extensions/Exporters/TabbloExport/TabbloExport.glade.h:2
+#: ../src/f-spot.glade.h:16
+msgid "<b>Photos</b>"
+msgstr "<b>Fotografie</b>"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:3
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:6
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:4
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:4
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:4
+#: ../src/f-spot.glade.h:18
+msgid "<b>Style</b>"
+msgstr "<b>Styl</b>"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:4
+msgid "<b>Viewing permissions</b>"
+msgstr "<b>Oprávnění k prohlížení</b>"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:6
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:8
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:9
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:6
+#: ../extensions/Exporters/TabbloExport/TabbloExport.glade.h:5
+#: ../src/f-spot.glade.h:45
+msgid "Export"
+msgstr "Exportovat"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:7
+msgid "Export tag _hierarchy"
+msgstr "Exportovat _hierarchii štítků"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:8
+msgid ""
+"F-Spot needs your authorization in order to upload photos to your {0} "
+"account. Press the \"Authorize\" button to open a web browser and give F-"
+"Spot the authorization. "
+msgstr ""
+"Pro nahrávání fotografií potřebuje F-Spot autorizaci k vašemu účtu na {0}. "
+"Stisknutím tlačítka \"Autorizovat\" otevřete webový prohlížeč a udělte "
+"programu autorizaci."
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:9
+msgid "Ignore _top level tags"
+msgstr "Ignorovat š_títky nejvyšší úrovně"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:10
+msgid "Private"
+msgstr "Soukromé"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:11
+msgid "Public"
+msgstr "Veřejné"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:12
+msgid "Strip _metadata"
+msgstr "Odstranit _metadata"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:13
+msgid "Visible to Family"
+msgstr "Viditelné pro rodinu"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:14
+msgid "Visible to Friends"
+msgstr "Viditelné pro přátele"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:15
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:12
+#: ../src/f-spot.glade.h:98
+msgid "_Export"
+msgstr "_Exportovat"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:16
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:20
+#: ../src/f-spot.glade.h:99
+msgid "_Export tags"
+msgstr "_Exportovat štítky"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:17
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:17
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:20
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:24
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:15
+#: ../src/f-spot.glade.h:112
+msgid "_Resize to: "
+msgstr "Změnit _velikost na: "
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:18
+msgid "_View photos in browser when done uploading"
+msgstr "Po nahrání otevřít fotografie _v prohlížeči"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:19
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:19
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:23
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:26
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:17
+#: ../src/f-spot.glade.h:128
+msgid "pixels"
+msgstr "pixelů"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.addin.xml.h:1
+msgid "F_older..."
+msgstr "Sl_ožka..."
+
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:140
+msgid "Select Export Folder"
+msgstr "Vybrat složku pro export"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:198
+msgid "Building Gallery"
+msgstr "Vytváří se galerie"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:248
+#, csharp-format
+msgid "Error uploading picture \"{0}\" to Gallery:{2}{1}"
+msgstr "Chyba při nahrávání obrázku \"{0}\" do galerie:{2}{1}"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:333
+msgid "Error: Error while transferring; Aborting"
+msgstr "Chyba: Chyba při přenosu: Přerušuji"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:336
+msgid "Error: File Already Exists; Aborting"
+msgstr "Chyba: Soubor už existuje; ruším"
+
+#. Note for translators: light as clear, opposite as dark
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:803
+msgid "Light"
+msgstr "Světlé"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:804
+msgid "Dark"
+msgstr "Tmavé"
+
+#. Abbreviation of previous
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:984
+msgid "Prev"
+msgstr "Předchozí"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:986
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:1227
+#: ../src/CameraFileSelectionDialog.cs:82
+msgid "Index"
+msgstr "Index"
+
+#. Don't care otherwise, Tags sounds reasonable
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:989
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:1161
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:1201
+#: ../src/MainWindow.cs:342 ../src/Widgets/Sidebar.cs:64
+msgid "Tags"
+msgstr "Štítky"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:992
+#: ../src/f-spot.glade.h:59 ../src/ItemAction.cs:102
+msgid "Next"
+msgstr "Následující"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:1096
+msgid "Gallery generated by"
+msgstr "Galerie generovaná programem"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:1136
+msgid "Show Styles"
+msgstr "Ukázat styly"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:1137
+msgid "Hide Styles"
+msgstr "Skrýt styly"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:1172
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:1173
+msgid "Tags: "
+msgstr "Štítky: "
+
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:1304
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:1437
+msgid "Page:"
+msgstr "Strana:"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:1
+msgid "\n"
+msgstr "\n"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:3
+#: ../src/f-spot.glade.h:11
+msgid "<b>Destination</b>"
+msgstr "<b>Cíl</b>"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:4
+msgid "<b>Export Method</b>"
+msgstr "<b>Metoda exportu</b>"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:7
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:7
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:5
+#: ../src/f-spot.glade.h:30
+msgid "Autorotate"
+msgstr "Automatické otočení"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:8
+msgid "Create _gallery using \"Original\""
+msgstr "Vytvořit _galerii použitím \"Originálu\""
+
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:9
+msgid "Create standalone _web gallery"
+msgstr "Vytvořit samostatnou _webovou galerii"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:10
+msgid "D_escription:"
+msgstr "_Popisek:"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:11
+msgid "Export _tags"
+msgstr "Exportovat š_títky"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:12
+msgid "Export tag _icons"
+msgstr "Exportovat _ikony štítků"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:13
+msgid "Folder Export"
+msgstr "Export složky"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:14
+msgid "G_allery Name:"
+msgstr "Název _galerie:"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:15
+msgid "Open _destination when done exporting"
+msgstr "Po _dokončení exportu otevřít cíl"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:16
+msgid "_Folder:"
+msgstr "_Složka:"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:18
+msgid "_Save the files only"
+msgstr "Pouze uložit _soubory"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.addin.xml.h:1
+msgid "Web _Gallery..."
+msgstr "Webová _galerie..."
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:52
+msgid ""
+"Cannot connect to a Gallery for which the version is unknown.\n"
+"Please check that you have Remote plugin 1.0.8 or later"
+msgstr ""
+"Nelze se připojit ke galerii, jejíž verze není známa.\n"
+"Ujistěte se, že používáte Remote plugin verze 1.0.8 nebo novější"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:391
+msgid "Invalid URL"
+msgstr "Neplatné URL"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:392
+msgid "The gallery URL entry does not appear to be a valid URL"
+msgstr "URL záznam galerie zřejmě není validní."
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:402
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:429
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:440
+msgid "Error while connecting to Gallery"
+msgstr "Chyba při připojování ke Gallery"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:403
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:430
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:441
+#, csharp-format
+msgid "The following error was encountered while attempting to log in: {0}"
+msgstr "Při pokusu o přihlášení došlo k následující chybě: {0}"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:417
+msgid "A Gallery with this name already exists"
+msgstr "Galerie tohoto jména už existuje"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:418
+#, csharp-format
+msgid ""
+"There is already a Gallery with the same name in your registered Galleries. "
+"Please choose a unique name."
+msgstr ""
+"Galerie tohoto jména je již registrována. Zvolte prosím unikátní název."
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:528
+msgid "(TopLevel)"
+msgstr "(Nejvyšší úroveň)"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:590
+msgid "Invalid Gallery name"
+msgstr "Neplatný název galerie"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:591
+msgid ""
+"The gallery name contains invalid characters.\n"
+"Only letters, numbers, - and _ are allowed"
+msgstr ""
+"Název galerie obsahuje neplatné znaky.\n"
+"Jsou povolena pouze písmena, čísla, znaky pomlčka a podtržítko"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:796
+#, csharp-format
+msgid "Error uploading picture \"{0}\" to Gallery: {1}"
+msgstr "Chyba při nahrávání obrázku  \"{0}\" do galerie: {1}"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:824
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:727
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:630
+msgid "(No Gallery)"
+msgstr "(Žádná Galerie)"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:916
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:849
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:726
+msgid "(Not Connected)"
+msgstr "(Nepřipojen)"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:917
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:850
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:727
+msgid "(No Albums)"
+msgstr "(Žádná alba)"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:969
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:915
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:768
+msgid "No account selected"
+msgstr "Není vybrán žádný účet"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:1
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:1
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:1
+#: ../src/f-spot.glade.h:9
+msgid "<b>Album</b>"
+msgstr "<b>Album</b>"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:2
+#: ../src/f-spot.glade.h:12
+msgid "<b>Gallery</b>"
+msgstr "<b>Galerie</b>"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:5
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:5
+msgid "<span weight='bold' size='larger'>Error Connecting to Gallery</span>\n"
+msgstr ""
+"<span weight='bold' size='larger'>Chyba při připojení ke galerii</span>\n"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:9
+msgid "Export _titles and comments"
+msgstr "Exportovat _titulky a poznámky"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:10
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:10
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:7
+msgid "Open _album in browser when done uploading"
+msgstr "Po nahrání otevřít _album v prohlížeči"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:11
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:11
+msgid "Please verify that the settings for this gallery are correct."
+msgstr "Ověřte prosím, že nastavení této galerie jsou v pořádku."
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:12
+msgid "U_RL:"
+msgstr "U_RL:"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:13
+msgid "_Album Name:"
+msgstr "Název _alba:"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:14
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:19
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:11
+msgid "_Description:"
+msgstr "_Popisek:"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:15
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:21
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:13
+#: ../src/f-spot.glade.h:100
+msgid "_Export to Album:"
+msgstr "_Exportovat do alba:"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:16
+msgid "_Gallery Name:"
+msgstr "Název _galerie:"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:17
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:22
+msgid "_Gallery:"
+msgstr "_Galerie:"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:18
+msgid "_Parent Album:"
+msgstr "Nadřazené alb_um:"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:19
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:23
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:14
+#: ../extensions/Exporters/TabbloExport/TabbloExport.glade.h:9
+msgid "_Password:"
+msgstr "_Heslo:"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:21
+msgid "_Title:"
+msgstr "_Titulek:"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:22
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:25
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:16
+#: ../extensions/Exporters/TabbloExport/TabbloExport.glade.h:10
+msgid "_Username:"
+msgstr "_Uživatelské jméno:"
+
+#: ../extensions/Exporters/GalleryExport/GalleryRemote.cs:361
+msgid "Error reading server response"
+msgstr "Chyba při čtení odpovědi serveru"
+
+#. failed to find the response
+#: ../extensions/Exporters/GalleryExport/GalleryRemote.cs:373
+msgid "Server returned response without Gallery content"
+msgstr "Server vrátil odpověď bez obsahu galerie"
+
+#: ../extensions/Exporters/GalleryExport/GalleryRemote.cs:710
+msgid "Error while creating new album"
+msgstr "Chyba při vytváření nového alba"
+
+#: ../extensions/Exporters/GalleryExport/GalleryRemote.cs:711
+#, csharp-format
+msgid ""
+"The following error was encountered while attempting to perform the "
+"requested operation:\n"
+"{0} ({1})"
+msgstr ""
+"Při pokusu o provedení požadované operace došlo k následující chybě:\n"
+"{0} ({1})"
+
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.addin.xml.h:1
+msgid "_PicasaWeb..."
+msgstr "_PicasaWeb..."
+
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:441
+msgid "Error while creating Album"
+msgstr "Chyba při vytváření alba."
+
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:442
+#, csharp-format
+msgid ""
+"The following error was encountered while attempting to create an album: {0}"
+msgstr "Při pokusu o vytvoření alba došlo k následující chybě: {0}"
+
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:620
+#, csharp-format
+msgid "{0} Sent"
+msgstr "Odesláno {0} "
+
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:622
+#, csharp-format
+msgid "{0} of approx. {1}"
+msgstr "{0} z cca {1}"
+
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:691
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:594
+#, csharp-format
+msgid "Error Uploading To Gallery: {0}"
+msgstr "Chyba při nahrávání do Galerie: {0}"
+
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:778
+#, csharp-format
+msgid "Available space: {0}, {1}% used out of {2}"
+msgstr "Dostupný prostor: {0}, využito {1}% z {2}"
+
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:891
+#, csharp-format
+msgid ""
+"The selected album has a limit of {0} pictures,\n"
+"which would be passed with the current selection of {1} images"
+msgstr ""
+"Zvolené album je limitováno na {0} fotografií,\n"
+"které by mohly být odeslány ze současného výběru čítajícího {1} obrázků"
+
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:3
+msgid "<b>PicasaWeb Export</b>"
+msgstr "<b>Export do PicasaWeb</b>"
+
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:7
+msgid ""
+"<span weight='bold' size='larger'>Your Google Account is locked</span>\n"
+msgstr ""
+"<span weight='bold' size='larger'>Váš uživatelský účet Google je uzamčen</"
+"span>\n"
+
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:12
+msgid ""
+"Please verify that the settings for this gallery are correct.\n"
+"Enter the letters as they are shown in the image in\n"
+"the 'Captcha' field. <i>Letters are not case-sensitive</i>"
+msgstr ""
+"Ověřte prosím, že nastavení pro tuto galerii jsou správná.\n"
+"Vložte znaky tak, jak jsou zobrazeny na obrázku\n"
+"v poli 'Captcha'. <i>Velká a malá písmena se nerozlišují</i>"
+
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:15
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:8
+msgid "Public Album"
+msgstr "Veřejné album"
+
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:16
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:10
+msgid "_Album Title:"
+msgstr "Název _alba:"
+
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:17
+msgid "_Autorotate"
+msgstr "_Automatické otočení"
+
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:18
+msgid "_Captcha:"
+msgstr "_Captcha:"
+
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.addin.xml.h:1
+msgid "_SmugMug..."
+msgstr "_SmugMug..."
+
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:3
+msgid "<b>SmugMug Export</b>"
+msgstr "<b>Export do SmugMug</b>"
+
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:9
+msgid "_Account:"
+msgstr "Úče_t:"
+
+#: ../extensions/Exporters/TabbloExport/Tabblo/Connection.cs:132
+#, csharp-format
+msgid "Uploading photo \"{0}\""
+msgstr "Nahrávám fotografii \"{0}\""
+
+#: ../extensions/Exporters/TabbloExport/Tabblo/Connection.cs:206
+msgid "Logging into Tabblo"
+msgstr "Probíhá přihlašování k Tabblo"
+
+#: ../extensions/Exporters/TabbloExport/Tabblo/Connection.cs:267
+msgid "Obtaining URL for upload"
+msgstr "Získat URL pro nahrávání"
+
+#: ../extensions/Exporters/TabbloExport/TabbloExport.addin.xml.h:1
+msgid "_Tabblo..."
+msgstr "_Tabblo..."
+
+#: ../extensions/Exporters/TabbloExport/TabbloExport.cs:308
+msgid "Done sending photos"
+msgstr "Odesílání fotografií ukončeno"
+
+#: ../extensions/Exporters/TabbloExport/TabbloExport.cs:310
+msgid "Upload complete"
+msgstr "Nahrávání ukončeno"
+
+#: ../extensions/Exporters/TabbloExport/TabbloExport.cs:316
+msgid "Error uploading to Tabblo: "
+msgstr "Chyba při nahrávání na Tabblo: "
+
+#: ../extensions/Exporters/TabbloExport/TabbloExport.glade.h:1
+msgid "<b>F-Spot tags</b>"
+msgstr "<b>Štítky F-Spot</b>"
+
+#: ../extensions/Exporters/TabbloExport/TabbloExport.glade.h:3
+msgid "<b>Tabblo account</b>"
+msgstr "<b>Účet Tabblo</b>"
+
+#: ../extensions/Exporters/TabbloExport/TabbloExport.glade.h:4
+msgid ""
+"<small><i>F-Spot tags can help you track the export status of photos. "
+"Example: Use one tag for the photos that you plan to export, and another one "
+"for those already exported. Here, you can tell F-Spot to automatically "
+"replace these tags as appropriate.</i></small>"
+msgstr ""
+"<small><i>Štítky F-Spot vám mohou pomoci kontrolovat stav exportu "
+"fotografií. Příklad: Použijte jeden štítek pro fotografie, které plánujete "
+"exportovat, a jiný pro ty, které jste již exportovali. Zde můžete aplikaci F-"
+"Spot sdělit, aby tyto štítky automaticky změnila, kdy je zapotřebí.</i></"
+"small>"
+
+#: ../extensions/Exporters/TabbloExport/TabbloExport.glade.h:6
+msgid "Rem_ove from exported photos:"
+msgstr "Vyjm_out z exportovaných fotografií:"
+
+#: ../extensions/Exporters/TabbloExport/TabbloExport.glade.h:7
+msgid "Select..."
+msgstr "Vybrat..."
+
+#: ../extensions/Exporters/TabbloExport/TabbloExport.glade.h:8
+msgid "_Attach to exported photos:"
+msgstr "Připojit k exportov_aným fotografiím:"
+
+#: ../extensions/Exporters/TabbloExport/TrustError.glade.h:1
+msgid "<b>{0}</b>."
+msgstr "<b>{0}</b>."
+
+#: ../extensions/Exporters/TabbloExport/TrustError.glade.h:2
+msgid "A trust error occured while attempting to access"
+msgstr "Při pokusu o přístup se objevil problém s důvěryhodností"
+
+#: ../extensions/Exporters/TabbloExport/TrustError.glade.h:3
+msgid "Abort this session"
+msgstr "Přerušit tuto relaci"
+
+#: ../extensions/Exporters/TabbloExport/TrustError.glade.h:4
+msgid "Always trust this site's certificate"
+msgstr "Vždy důvěřovat certifikátu serveru"
+
+#: ../extensions/Exporters/TabbloExport/TrustError.glade.h:5
+msgid "Do you wish to:"
+msgstr "Přejete si:"
+
+#: ../extensions/Exporters/TabbloExport/TrustError.glade.h:6
+msgid "Trust Error"
+msgstr "Problém s důvěryhodností"
+
+#: ../extensions/Exporters/TabbloExport/TrustError.glade.h:7
+msgid "Trust the site's certificate this once"
+msgstr "Důvěřovat certifikátu serveru pouze pro tuto relaci"
+
+#: ../extensions/Exporters/ZipExport/ZipExport.addin.xml.h:1
+msgid "Compressed fil_e..."
+msgstr "Komprimova_ný soubor..."
+
+#: ../extensions/Exporters/ZipExport/ZipExport.cs:47
+#: ../src/Widgets/EditorPage.cs:196
+msgid "No selection available"
+msgstr "Žádný výběr není k dispozici"
+
+#: ../extensions/Exporters/ZipExport/ZipExport.cs:48
+msgid ""
+"This tool requires an active selection. Please select one or more pictures "
+"and try again"
+msgstr ""
+"Tento nástroj vyžaduje aktivní výběr. Vyberte prosím jednu nebo více "
+"fotografií a zkuste to znovu"
+
+#: ../extensions/Exporters/ZipExport/ZipExport.cs:64
+msgid "Select export folder"
+msgstr "Vybrat složku pro export"
+
+#: ../extensions/Exporters/ZipExport/ZipExport.cs:102
+msgid "Exporting files"
+msgstr "Exportují se soubory"
+
+#: ../extensions/Exporters/ZipExport/ZipExport.cs:108
+#, csharp-format
+msgid "Preparing photo \"{0}\""
+msgstr "Připravuje se fotografie \"{0}\""
+
+#: ../extensions/Exporters/ZipExport/ZipExport.glade.h:1
+#: ../src/f-spot.glade.h:95
+msgid "_Create"
+msgstr "Vy_tvořit"
+
+#: ../extensions/Exporters/ZipExport/ZipExport.glade.h:2
+msgid "_File name:"
+msgstr "Název _souboru:"
+
+#: ../extensions/Exporters/ZipExport/ZipExport.glade.h:3
+msgid "_Location:"
+msgstr "_Umístění:"
+
+#: ../extensions/Exporters/ZipExport/ZipExport.glade.h:4
+msgid "_Scale:"
+msgstr "Měřítk_o:"
+
+#: ../extensions/Tools/HashJob/HashJob.cs:53
+msgid ""
+"In order to detect duplicates on pictures you imported before 0.5.0, F-Spot "
+"needs to analyze your image collection. This is not done by default as it's "
+"time consuming. You can Start or Pause this update process using this dialog."
+msgstr ""
+"Aby bylo možné nalézt duplicity v obrázcích, které jste importovali pomocí "
+"verze starší než 0.5.0, musí F-Spot analyzovat vaši kolekci fotografií. "
+"Protože je to časově náročná operace, není provedena automaticky. Pomocí "
+"tohoto okna můžete spustit nebo pozastavit tento proces sami."
+
+#: ../extensions/Tools/HashJob/HashJob.cs:102
+msgid "Processing images..."
+msgstr "Obrázky jsou zpracovávány..."
+
+#: ../extensions/Tools/HashJob/HashJob.cs:108
+msgid "Stopped"
+msgstr "Zastaveno"
+
+#: ../extensions/Tools/MergeDb/MergeDb.addin.xml.h:1
+msgid "Merge Db"
+msgstr "Sloučit Db"
+
+#: ../extensions/Tools/MergeDb/MergeDb.cs:73
+msgid "Error opening the selected file"
+msgstr "Chyba při otevírání zvoleného souboru"
+
+#: ../extensions/Tools/MergeDb/MergeDb.cs:74
+#, csharp-format
+msgid ""
+"The file you selected is not a valid or supported database.\n"
+"\n"
+"Received exception \"{0}\"."
+msgstr ""
+"Soubor, který jste vybrali, není validní nebo podporovanou databází.\n"
+"\n"
+"Zachycena výjimka \"{0}\"."
+
+#: ../extensions/Tools/MergeDb/MergeDb.glade.h:1
+msgid ""
+"<small><i>Choose the location of the database you want to import from</i></"
+"small>"
+msgstr ""
+"<small><i>Zvolte umístění databáze, ze které chcete importovat</i></small>"
+
+#: ../extensions/Tools/MergeDb/MergeDb.glade.h:2
+msgid ""
+"<small><i>Choose what to import from the selected db.\n"
+"\"New Rolls Only\" is the smart option that will avoid re-importing photos "
+"you could have imported during a previous operation.\n"
+"\"A Single Import Roll\" let you choose which roll you want to merge back.\n"
+"\"Everything\" will import everything, creating duplicates if you already "
+"imported from that database.</i></small>"
+msgstr ""
+"<small><i>Vyberte, co importovat ze zvolené databáze.\n"
+"\"Pouze nové filmy\" je volba vhodná v případě, že chcete předejít vložení "
+"fotografií, které jste importovali dříve.\n"
+"\"Samostatný film\" vás nechá vybrat, jaká data importovat.\n"
+"Volba \"Všechno\"  bude importovat všechny obrázky a pokud jste již "
+"importovali z této databáze, vzniknou duplicity.</i></small>"
+
+#: ../extensions/Tools/MergeDb/MergeDb.glade.h:6
+msgid ""
+"<small><i>Copy the images locally or keep them where they are. If you chose "
+"the later, be sure that this location will stay accessible from f-spot.</i></"
+"small>"
+msgstr ""
+"<small><i>Zkopírujte obrázky, nebo je ponechte, kde jsou. Pokud zvolíte "
+"později, ověřte, že umístění zůstalo programu f-spot přístupné.</i></small>"
+
+#: ../extensions/Tools/MergeDb/MergeDb.glade.h:7
+msgid "A Single Import Roll"
+msgstr "Samostatný film"
+
+#: ../extensions/Tools/MergeDb/MergeDb.glade.h:8
+msgid "Copy images to photos folder"
+msgstr "Kopírovat obrázky do složky Photos"
+
+#: ../extensions/Tools/MergeDb/MergeDb.glade.h:9
+msgid "Database Location:"
+msgstr "Umístění databáze:"
+
+#: ../extensions/Tools/MergeDb/MergeDb.glade.h:10
+msgid "Everything"
+msgstr "Všechno"
+
+#: ../extensions/Tools/MergeDb/MergeDb.glade.h:11
+msgid "Import:"
+msgstr "Import:"
+
+#: ../extensions/Tools/MergeDb/MergeDb.glade.h:12
+msgid "Keep the images at their original location"
+msgstr "Nechat obrázky v původním umístění"
+
+#: ../extensions/Tools/MergeDb/MergeDb.glade.h:13
+msgid "Merge another F-Spot collection"
+msgstr "Sloučit s jinou kolekcí F-Spot"
+
+#: ../extensions/Tools/MergeDb/MergeDb.glade.h:14
+msgid "New Rolls Only"
+msgstr "Pouze nové filmy"
+
+#: ../extensions/Tools/MergeDb/MergeDb.glade.h:15
+#: ../src/FileImportBackend.cs:290 ../src/UI.Dialog/ThreadProgressDialog.cs:51
+msgid "Skip"
+msgstr "Přeskočit"
+
+#: ../extensions/Tools/MergeDb/PickFolderDialog.cs:33
+#, csharp-format
+msgid ""
+"<big>The database refers to files contained in the <b>{0}</b> folder.\n"
+" Please select that folder so I can do the mapping.</big>"
+msgstr ""
+"<big>Databáze odkazuje na soubory obsažené ve složce <b>{0}</b>.\n"
+"Vyberte prosím tuto složku, aby mohlo proběhnout mapování.</big>"
+
+#: ../f-spot.desktop.in.in.h:1 ../f-spot-import.desktop.in.in.h:1
+msgid "F-Spot Photo Manager"
+msgstr "Správce fotografií F-Spot"
+
+#: ../f-spot.desktop.in.in.h:2
+msgid "Organize, enjoy, and share your photos"
+msgstr "Organizuje, prohlíží a sdílí vaše fotografie"
+
+#: ../f-spot.desktop.in.in.h:3 ../f-spot-import.desktop.in.in.h:3
+msgid "Photo Manager"
+msgstr "Správce fotografií"
+
+#: ../f-spot-import.desktop.in.in.h:2
+msgid "Import into F-Spot"
+msgstr "Importovat do F-Spot"
 
 #: ../f-spot-view.desktop.in.in.h:1
 msgid "F-Spot Photo Viewer"
@@ -327,34 +1164,300 @@ msgstr "Prohlížeč fotografií F-Spot"
 msgid "Photo Viewer"
 msgstr "Prohlížeč fotografií"
 
-#: ../f-spot-import.desktop.in.in.h:1 ../f-spot.desktop.in.in.h:1
-msgid "F-Spot Photo Manager"
-msgstr "Správce fotografií F-Spot"
-
-#: ../f-spot-import.desktop.in.in.h:2
-msgid "Import into F-Spot"
-msgstr "Importovat do F-Spot"
-
-#: ../f-spot-import.desktop.in.in.h:3 ../f-spot.desktop.in.in.h:3
-msgid "Photo Manager"
-msgstr "Správce fotografií"
-
-#: ../f-spot.desktop.in.in.h:2
-msgid "Organize, enjoy, and share your photos"
-msgstr "Organizuje, prohlíží a sdílí vaše fotografie"
-
-#: ../libfspot/f-jpeg-utils.c:441 ../src/RotateCommand.cs:224
+#: ../lib/libfspot/f-jpeg-utils.c:441 ../src/RotateCommand.cs:224
 msgid "File not found"
 msgstr "Soubor nenalezen"
 
-#: ../libfspot/f-jpeg-utils.c:464
+#: ../lib/libfspot/f-jpeg-utils.c:464
 #, c-format
 msgid "Unknown transform type %d"
 msgstr "Neznámý typ transformace %d"
 
-#: ../libfspot/f-jpeg-utils.c:472
+#: ../lib/libfspot/f-jpeg-utils.c:472
 msgid "Operation failed"
 msgstr "Operace selhala"
+
+#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInfoDialog.cs:32
+msgid "Package"
+msgstr "Balíček"
+
+#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:110
+msgid "Extension Installation"
+msgstr "Instalace rozšíření"
+
+#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:136
+msgid "<b>Select the extensions to install and click on Next</b>"
+msgstr ""
+"<b>Vyberte rozšíření, která chcete nainstalovat, a klikněte na Následující</"
+"b>"
+
+#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:150
+msgid "Install from:"
+msgstr "Nainstalovat z:"
+
+#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:179
+#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:180
+msgid "_Repositories..."
+msgstr "_Repositáře..."
+
+#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:220
+msgid "Show all packages"
+msgstr "Zobrazovat všechny balíčky"
+
+#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:221
+msgid "Show new versions only"
+msgstr "Zobrazovat jen nové verze"
+
+#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:222
+msgid "Show updates only"
+msgstr "Zobrazovat jen aktualizace"
+
+#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:247
+msgid "_Unselect All"
+msgstr "_Zrušit výběr všeho"
+
+#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:259
+msgid "Select _All"
+msgstr "Vybrat vš_e"
+
+#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:334
+msgid "label124"
+msgstr "popisek124"
+
+#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:346
+msgid "Overall Progress:"
+msgstr "Celkový průběh:"
+
+#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:374
+msgid "Downloading extensions..."
+msgstr "Stahuji rozšíření..."
+
+#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallerDialog.cs:36
+#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:58
+msgid "Extension Manager"
+msgstr "Správce rozšíření"
+
+#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallerDialog.cs:54
+msgid "Additional extensions are required to perform this operation."
+msgstr "K provedení této akce jsou vyžadována další rozšíření."
+
+#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallerDialog.cs:64
+msgid "The following extensions will be installed:"
+msgstr "Budou nainstalována následující rozšíření:"
+
+#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:90
+msgid "<big><b>Extension Manager</b></big>"
+msgstr "<big><b>Správce rozšíření</b></big>"
+
+#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:110
+msgid "The following extensions are currently installed:"
+msgstr "Právě se instalují následující rozšíření:"
+
+#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:165
+msgid "_Install Extensions..."
+msgstr "_Instalovat rozšíření..."
+
+#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:210
+msgid "_Uninstall..."
+msgstr "O_debrat..."
+
+#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:236
+msgid "Enable"
+msgstr "Povolit"
+
+#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:262
+msgid "Disable"
+msgstr "Zakázat"
+
+#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.ErrorDialog.cs:111
+msgid "Details"
+msgstr "Detaily"
+
+#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.ManageSitesDialog.cs:34
+msgid "Extension Repository Management"
+msgstr "Správa repositářů rozšíření"
+
+#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.NewSiteDialog.cs:52
+msgid "Add New Repository"
+msgstr "Přidat nový repositář"
+
+#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.NewSiteDialog.cs:70
+msgid "Select the location of the repository you want to register:"
+msgstr "Vyberte umístění repositáře, který chcete přidat:"
+
+#. Container child vbox89.Gtk.Box+BoxChild
+#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.NewSiteDialog.cs:77
+msgid "Register an on-line repository"
+msgstr "Přidat vzdálený repositář"
+
+#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.NewSiteDialog.cs:106
+msgid "Url:"
+msgstr "URL:"
+
+#. Container child vbox89.Gtk.Box+BoxChild
+#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.NewSiteDialog.cs:127
+msgid "Register a local repository"
+msgstr "Přidat místní repositář"
+
+#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.NewSiteDialog.cs:155
+msgid "Path:"
+msgstr "Umístění:"
+
+#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.NewSiteDialog.cs:179
+msgid "Browse..."
+msgstr "Procházet..."
+
+#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInfoDialog.cs:62
+msgid "Version:"
+msgstr "Verze:"
+
+#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInfoDialog.cs:65
+msgid "Author:"
+msgstr "Autor:"
+
+#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInfoDialog.cs:68
+msgid "Copyright:"
+msgstr "Autorská práva:"
+
+#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInfoDialog.cs:71
+msgid "Extension Dependencies:"
+msgstr "Závislosti rozšíření:"
+
+#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:97
+msgid "All registered repositories"
+msgstr "Všechny registrované repositáře"
+
+#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:184
+msgid "Are you sure you want to cancel the installation?"
+msgstr "Opravdu chcete zrušit instalaci?"
+
+#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:308
+msgid "The following packages will be uninstalled:"
+msgstr "Následující balíčky budou odebrány:"
+
+#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:313
+msgid ""
+"There are other extensions that depend on the previous ones which will also "
+"be uninstalled:"
+msgstr ""
+"Existují další na těchto závislá rozšíření, která budou také odstraněna:"
+
+#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:384
+msgid ""
+"The selected extensions can't be installed because there are dependency "
+"conflicts."
+msgstr ""
+"Vybraná rozšíření nemohou být nainstalována, protože nastal konflikt "
+"závislostí."
+
+#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:398
+msgid "The following packages will be installed:"
+msgstr "Následující balíčky budou nainstalovány:"
+
+#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:402
+msgid " (in user directory)"
+msgstr " (v uživatelském adresáři)"
+
+#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:408
+msgid "The following packages need to be uninstalled:"
+msgstr "Následující balíčky musí být odebrány:"
+
+#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:416
+msgid "The following dependencies could not be resolved:"
+msgstr "Následující závislosti nemohou být vyřešeny:"
+
+#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:441
+msgid "The installation has been successfully completed."
+msgstr "Instalace byla úspěšně dokončena."
+
+#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:442
+msgid "The installation failed!"
+msgstr "Instalace selhala!"
+
+#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:443
+msgid "The installation has completed with warnings."
+msgstr "Instalace byla dokončena s varováními."
+
+#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:446
+msgid "The uninstallation has been successfully completed."
+msgstr "Odebrání bylo úspěšně dokončeno."
+
+#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:447
+msgid "The uninstallation failed!"
+msgstr "Odebrání selhalo!"
+
+#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:448
+msgid "The uninstallation has completed with warnings."
+msgstr "Odebrání bylo dokončeno s varováními."
+
+#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:616
+msgid "Repository"
+msgstr "Repositář"
+
+#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstaller.cs:16
+msgid "Installation cancelled"
+msgstr "Instalace zrušena"
+
+#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallerDialog.cs:159
+msgid "Some of the required extensions were not found"
+msgstr "Některá z požadovaných rozšíření nebyla nalezena"
+
+#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallerDialog.cs:171
+msgid "Installation failed"
+msgstr "Chyba při instalaci"
+
+# TODO: možná rozšíření (?)
+#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinTreeWidget.cs:91
+msgid "Extension"
+msgstr "Přípona"
+
+#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinTreeWidget.cs:112
+#: ../src/Widgets/InfoBox.cs:214
+msgid "Version"
+msgstr "Verze"
+
+#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinTreeWidget.cs:168
+msgid "Other"
+msgstr "Ostatní"
+
+#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/ManageSitesDialog.cs:51
+#: ../src/Widgets/InfoBox.cs:211
+msgid "Name"
+msgstr "Název"
+
+#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/ManageSitesDialog.cs:52
+msgid "Url"
+msgstr "URL"
+
+#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/Services.cs:61
+#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/Services.cs:70
+#, csharp-format
+msgid "Exception occurred: {0}"
+msgstr "Došlo k výjimce: {0}"
+
+#: ../lib/mono-addins/Mono.Addins/Mono.Addins/AddinSessionService.cs:154
+msgid "Disabled extensions can't be loaded."
+msgstr "Zakázaná rozšíření není možno načíst."
+
+#: ../lib/mono-addins/Mono.Addins/Mono.Addins/AddinSessionService.cs:179
+#, csharp-format
+msgid "Loading {0} extension"
+msgstr "Načítá se {0} rozšíření"
+
+#: ../lib/mono-addins/Mono.Addins/Mono.Addins/AddinSessionService.cs:265
+#, csharp-format
+msgid "The required extension '{0}' is disabled."
+msgstr "Vyžadované rozšíření \"{0}\" je zakázáno."
+
+#: ../lib/mono-addins/Mono.Addins/Mono.Addins/AddinSessionService.cs:267
+#, csharp-format
+msgid "The required extension '{0}' is not installed."
+msgstr "Vyžadované rozšíření \"{0}\" není nainstalováno."
+
+#: ../lib/mono-addins/Mono.Addins/Mono.Addins.Description/AssemblyDependency.cs:79
+#, csharp-format
+msgid "(provided by {0})"
+msgstr "(poskytuje {0})"
 
 #: ../src/CameraFileSelectionDialog.cs:76
 msgid "Preview"
@@ -368,12 +1471,6 @@ msgstr "Cesta"
 msgid "File"
 msgstr "Soubor"
 
-#: ../src/CameraFileSelectionDialog.cs:82
-#: ../extensions/Exporters/FolderExport/FolderExport.cs:986
-#: ../extensions/Exporters/FolderExport/FolderExport.cs:1227
-msgid "Index"
-msgstr "Index"
-
 #: ../src/CameraFileSelectionDialog.cs:102
 msgid "Select Tag"
 msgstr "Vybrat štítek"
@@ -386,12 +1483,6 @@ msgstr "Stahuji náhledy"
 #, csharp-format
 msgid "Downloading Preview of {0}"
 msgstr "Stahuji náhled {0}"
-
-#: ../src/CameraFileSelectionDialog.cs:199
-#: ../extensions/Exporters/CDExport/CDExport.cs:246
-#: ../extensions/Exporters/FolderExport/FolderExport.cs:392
-msgid "Transferring Pictures"
-msgstr "Přenáším obrázky"
 
 #: ../src/CameraFileSelectionDialog.cs:220
 #, csharp-format
@@ -566,6 +1657,24 @@ msgstr "Změkčení okrajů"
 msgid "Straighten"
 msgstr "Narovnání"
 
+#: ../src/FileImportBackend.cs:288
+msgid "Import error"
+msgstr "Chyba importu"
+
+#: ../src/FileImportBackend.cs:289
+#, csharp-format
+msgid "Error importing {0}{2}{2}{1}"
+msgstr "Chyba importu {0}{2}{2}{1}"
+
+#: ../src/Filters/ResizeFilter.cs:70 ../src/Filters/SharpFilter.cs:52
+#, csharp-format
+msgid "No way to save files of type \"{0}\""
+msgstr "Neexistuje možnost uložení souborů typu \"{0}\""
+
+#: ../src/FormClient.cs:295
+msgid "Unhandled exception"
+msgstr "Neobsloužená výjimka"
+
 #: ../src/FSpot.addin.xml.h:1
 msgid "Copy Photo Locat_ion"
 msgstr "_Kopírovat umístění fotografie"
@@ -582,13 +1691,13 @@ msgstr "Otevřít _v"
 msgid "Rem_ove Tag"
 msgstr "_Odstranit štítek"
 
-#: ../src/FSpot.addin.xml.h:5 ../src/SingleView.cs:453
-#: ../src/f-spot.glade.h:70
+#: ../src/FSpot.addin.xml.h:5 ../src/f-spot.glade.h:70
+#: ../src/SingleView.cs:453
 msgid "Rotate _Left"
 msgstr "Otočit do_leva"
 
-#: ../src/FSpot.addin.xml.h:6 ../src/SingleView.cs:454
-#: ../src/f-spot.glade.h:71
+#: ../src/FSpot.addin.xml.h:6 ../src/f-spot.glade.h:71
+#: ../src/SingleView.cs:454
 msgid "Rotate _Right"
 msgstr "Otočit do_prava"
 
@@ -608,28 +1717,456 @@ msgstr "Vymazat z _disku"
 msgid "_Remove From Catalog"
 msgstr "Odst_ranit z katalogu"
 
-#: ../src/FileImportBackend.cs:288
-msgid "Import error"
-msgstr "Chyba importu"
+#: ../src/f-spot.glade.h:1
+msgid " "
+msgstr " "
 
-#: ../src/FileImportBackend.cs:289
-#, csharp-format
-msgid "Error importing {0}{2}{2}{1}"
-msgstr "Chyba importu {0}{2}{2}{1}"
+#: ../src/f-spot.glade.h:2
+msgid "1024 px"
+msgstr "1024 px"
 
-#: ../src/FileImportBackend.cs:290 ../src/UI.Dialog/ThreadProgressDialog.cs:51
-#: ../extensions/Tools/MergeDb/MergeDb.glade.h:15
-msgid "Skip"
-msgstr "Přeskočit"
+#: ../src/f-spot.glade.h:3
+msgid "320 px"
+msgstr "320 px"
 
-#: ../src/Filters/ResizeFilter.cs:70 ../src/Filters/SharpFilter.cs:52
-#, csharp-format
-msgid "No way to save files of type \"{0}\""
-msgstr "Neexistuje možnost uložení souborů typu \"{0}\""
+#: ../src/f-spot.glade.h:4
+msgid "480 px"
+msgstr "480 px"
 
-#: ../src/FormClient.cs:295
-msgid "Unhandled exception"
-msgstr "Neobsloužená výjimka"
+#: ../src/f-spot.glade.h:5
+msgid "640 px"
+msgstr "640 px"
+
+#: ../src/f-spot.glade.h:6
+msgid "800 px"
+msgstr "800 px"
+
+#: ../src/f-spot.glade.h:7
+msgid "<b></b>"
+msgstr "<b></b>"
+
+#: ../src/f-spot.glade.h:10
+msgid "<b>Co_rrections</b>"
+msgstr "<b>Ko_rekce</b>"
+
+#: ../src/f-spot.glade.h:13
+msgid "<b>Image Interpolation</b>"
+msgstr "<b>Interpolace obrázku</b>"
+
+#: ../src/f-spot.glade.h:14
+msgid "<b>Max Rating</b>"
+msgstr "<b>Nejvyšší hodnocení</b>"
+
+#: ../src/f-spot.glade.h:15
+msgid "<b>Min Rating</b>"
+msgstr "<b>Nejnižší hodnocení</b>"
+
+#: ../src/f-spot.glade.h:17
+msgid "<b>Size</b>"
+msgstr "<b>Velikost</b>"
+
+#: ../src/f-spot.glade.h:19
+msgid "<b>Summary</b>"
+msgstr "<b>Souhrn</b>"
+
+#: ../src/f-spot.glade.h:20
+msgid "<b>Transparent Parts</b>"
+msgstr "<b>Průhledné části</b>"
+
+#: ../src/f-spot.glade.h:21
+msgid "<b>View all pictures imported</b>"
+msgstr "<b>Zobrazit všechny importované obrázky</b>"
+
+#: ../src/f-spot.glade.h:22
+msgid "<b>_White Balance</b>"
+msgstr "<b>_Vyvážení bílé</b>"
+
+#: ../src/f-spot.glade.h:23
+msgid ""
+"<small><i>Enable this to allow interpolation on zoomed images. You shouldn't "
+"disable this for viewing photos, but disabling the interpolation could be "
+"usefull in icon design.</i></small>"
+msgstr ""
+"<small><i>Tuto volbu povolte, chcete-li používat interpolaci při "
+"přibližování obrázků. Pro prohlížení fotografií by volba neměla být "
+"zakázána, zákaz interpolace však může být užitečný například při návrhu "
+"ikonek.</i></small>"
+
+#: ../src/f-spot.glade.h:24
+msgid ""
+"<small><i>You can choose how to display transparent parts in images. This "
+"option has no effect on photos, but setting this as check pattern or custom "
+"color could be usefull when viewing icons or other artworks with transparent "
+"parts.</i></small>"
+msgstr ""
+"<small><i>Můžete zvolit, jak se mají zobrazovat průhledné části obrázků. "
+"Tato volba nemá žádný vliv na fotografie, ale zobrazení průhlednosti v "
+"podobě šachovnice nebo zvolené barvy může být užitečné při prohlížení ikon a "
+"dalších grafických souborů s průhlednými částmi.</i></small>"
+
+#: ../src/f-spot.glade.h:25
+msgid "As _background"
+msgstr "Jako _pozadí"
+
+#: ../src/f-spot.glade.h:26
+msgid "As _custom color: "
+msgstr "Jako v_lastní barva: "
+
+#: ../src/f-spot.glade.h:27
+msgid "As check _pattern"
+msgstr "Jako ša_chovnice"
+
+#: ../src/f-spot.glade.h:28
+msgid "Attach Tags:"
+msgstr "Připojit štítky:"
+
+#: ../src/f-spot.glade.h:29
+msgid "Attach tag:"
+msgstr "Připojit štítek:"
+
+#: ../src/f-spot.glade.h:31
+msgid "CD"
+msgstr "CD"
+
+#: ../src/f-spot.glade.h:32
+msgid "C_ontrast:"
+msgstr "K_ontrast:"
+
+#: ../src/f-spot.glade.h:33
+msgid "Camera Selection"
+msgstr "Výběr fotoaparátu"
+
+#: ../src/f-spot.glade.h:34
+msgid "Copy files to the Photos folder"
+msgstr "Kopírovat soubory do složky Photos"
+
+#: ../src/f-spot.glade.h:35
+msgid "Create Mail"
+msgstr "Vytvořit e-mail"
+
+#: ../src/f-spot.glade.h:36
+msgid "Create _icon for this tag when first used"
+msgstr "Vytvořit _ikonu pro tento štítek poté, co bude prvně použit"
+
+#: ../src/f-spot.glade.h:37
+msgid "Create a mail with the selected photos (possibly resized) attached"
+msgstr ""
+"Vytvořit e-mail s přiloženými vybranými fotografiemi (s možností změny "
+"velikosti)"
+
+#: ../src/f-spot.glade.h:38
+msgid "Detect duplicates"
+msgstr "Detekovat duplicity"
+
+#: ../src/f-spot.glade.h:39
+msgid "Display File _Names"
+msgstr "Zobrazovat _názvy souborů"
+
+#: ../src/f-spot.glade.h:40
+msgid "Display only those photos that were imported in specified Rolls."
+msgstr "Zobrazit pouze fotografie ze zadaných filmů."
+
+#: ../src/f-spot.glade.h:41
+msgid "Do not send a mail"
+msgstr "Neodesílat e-mail"
+
+#: ../src/f-spot.glade.h:42
+msgid "E-_Mail:"
+msgstr "E-_mail:"
+
+#: ../src/f-spot.glade.h:43
+msgid "E_xport titles and comments"
+msgstr "E_xportovat popisky a poznámky"
+
+#: ../src/f-spot.glade.h:44
+msgid "Estimated new size"
+msgstr "Odhadovaná nová velikost"
+
+#: ../src/f-spot.glade.h:46
+msgid "Extra large"
+msgstr "Extra velký"
+
+#: ../src/f-spot.glade.h:47
+msgid "F-Spot View"
+msgstr "Pohled F-Spot"
+
+#: ../src/f-spot.glade.h:49
+msgid "Filter on selected rolls"
+msgstr "Použít filtr hledání na vyfotografované filmy"
+
+#: ../src/f-spot.glade.h:50
+msgid "G_allery:"
+msgstr "G_alerie:"
+
+#: ../src/f-spot.glade.h:51
+msgid "Gallery"
+msgstr "Galerie"
+
+#: ../src/f-spot.glade.h:52 ../src/ImportCommand.cs:539
+#: ../src/MainWindow.cs:267
+msgid "Import"
+msgstr "Import"
+
+#. Translators: this string means 'source of import'
+#: ../src/f-spot.glade.h:54
+msgid "Import Source:"
+msgstr "Zdroj importu:"
+
+#: ../src/f-spot.glade.h:55
+msgid "Include subfolders"
+msgstr "Včetně podadresářů"
+
+#: ../src/f-spot.glade.h:56
+msgid "Large"
+msgstr "Velký"
+
+#: ../src/f-spot.glade.h:57
+msgid "Manage your custom selection ratios"
+msgstr "Spravovat vaše vlastní poměry výběru"
+
+#: ../src/f-spot.glade.h:58
+msgid "Medium"
+msgstr "Střední"
+
+#: ../src/f-spot.glade.h:60
+msgid "Number of photos in selected rolls:"
+msgstr "Počet fotografií ve zvolených filmech:"
+
+#: ../src/f-spot.glade.h:61
+msgid "Number of pictures"
+msgstr "Počet obrázků"
+
+#: ../src/f-spot.glade.h:62
+msgid "Open _Folder..."
+msgstr "Otevřít _složku..."
+
+#: ../src/f-spot.glade.h:64
+msgid "Original size (possible very large file size)"
+msgstr "Původní velikost (pravděpodobně velmi velký soubor)"
+
+#: ../src/f-spot.glade.h:65
+msgid "P_arent Tag:"
+msgstr "_Rodičovský štítek:"
+
+#: ../src/f-spot.glade.h:66
+msgid "Pause"
+msgstr "Pozastavit"
+
+#: ../src/f-spot.glade.h:67
+msgid "Preferences"
+msgstr "Nastavení"
+
+#: ../src/f-spot.glade.h:68 ../src/ItemAction.cs:123
+msgid "Previous"
+msgstr "Předchozí"
+
+#: ../src/f-spot.glade.h:69
+msgid "Repair"
+msgstr "Opravit"
+
+#: ../src/f-spot.glade.h:72
+msgid "Select Photos to Copy From Camera..."
+msgstr "Zvolte fotografie, které se mají kopírovat z fotoaparátu..."
+
+#: ../src/f-spot.glade.h:73
+msgid "Select a Tag..."
+msgstr "Vyberte štítek..."
+
+#: ../src/f-spot.glade.h:74
+msgid "Select the camera from which you want to transfer files"
+msgstr "Vyberte fotoaparát, ze kterého chcete přenést soubory"
+
+#: ../src/f-spot.glade.h:75
+msgid "Selected Camera: "
+msgstr "Zvolený fotoaparát: "
+
+#: ../src/f-spot.glade.h:76
+msgid "Selection Constraints"
+msgstr "Omezení výběru"
+
+#: ../src/f-spot.glade.h:77
+msgid "Set Rating Filter"
+msgstr "Nastavit filtr hodnocení"
+
+#: ../src/f-spot.glade.h:78
+msgid "Set as _Background"
+msgstr "Nastavit jako _pozadí"
+
+#: ../src/f-spot.glade.h:79
+msgid "Show all photos."
+msgstr "Zobrazit všechny fotografie."
+
+#: ../src/f-spot.glade.h:80
+msgid "Show or hide the side pane"
+msgstr "Zobrazit nebo skrýt boční panel"
+
+#: ../src/f-spot.glade.h:81
+msgid "Show or hide the toolbar"
+msgstr "Zobrazit nebo skrýt lištu nástrojů"
+
+#: ../src/f-spot.glade.h:82
+msgid "Side _pane"
+msgstr "Boční _panel"
+
+#: ../src/f-spot.glade.h:83
+msgid "Small"
+msgstr "Malý"
+
+#: ../src/f-spot.glade.h:84
+msgid ""
+"Specify if an original size picture should be rotated or not. Smaller sizes "
+"are automatically rotated."
+msgstr ""
+"Zvolte, zda má být obrázek v původní velikosti otočen či nikoliv. Menší "
+"velikosti jsou otočeny automaticky."
+
+#: ../src/f-spot.glade.h:85
+msgid "Strip image _metadata"
+msgstr "Odstranit _metadata obrázku"
+
+#. Note for translators: meant as Temperature
+#: ../src/f-spot.glade.h:87
+msgid "Te_mp:"
+msgstr "Tep_lota:"
+
+#: ../src/f-spot.glade.h:88
+msgid "Tiny"
+msgstr "Drobný"
+
+#: ../src/f-spot.glade.h:89
+msgid "Total original size"
+msgstr "Celková původní velikost"
+
+#: ../src/f-spot.glade.h:90
+msgid "Zoom _in"
+msgstr "Zvětš_it"
+
+#: ../src/f-spot.glade.h:91
+msgid "Zoom _out"
+msgstr "Z_menšit"
+
+#: ../src/f-spot.glade.h:92
+msgid "Zoom in"
+msgstr "Zvětšit"
+
+#: ../src/f-spot.glade.h:93
+msgid "Zoom out"
+msgstr "Zmenšit"
+
+#: ../src/f-spot.glade.h:94
+msgid "_Brightness:"
+msgstr "_Jas:"
+
+#: ../src/f-spot.glade.h:96
+msgid "_Create Mail"
+msgstr "Vy_tvořit e-mail"
+
+#: ../src/f-spot.glade.h:97
+msgid "_Edit"
+msgstr "Ú_pravy"
+
+#: ../src/f-spot.glade.h:101
+msgid "_Exposure:"
+msgstr "_Expozice:"
+
+#: ../src/f-spot.glade.h:102
+msgid "_Flickr"
+msgstr "_Flickr"
+
+#: ../src/f-spot.glade.h:103
+msgid "_Fullscreen"
+msgstr "_Celá obrazovka"
+
+#: ../src/f-spot.glade.h:104
+msgid "_Gallery"
+msgstr "_Galerie"
+
+#: ../src/f-spot.glade.h:105
+msgid "_Help"
+msgstr "_Nápověda"
+
+#: ../src/f-spot.glade.h:106
+msgid "_Hue:"
+msgstr "_Zabarvení:"
+
+#: ../src/f-spot.glade.h:107
+msgid "_Interpolate image on zoom"
+msgstr "_Interpolovat obrázek při přiblížení"
+
+#: ../src/f-spot.glade.h:108
+msgid "_New Window"
+msgstr "_Nové okno"
+
+#: ../src/f-spot.glade.h:109
+msgid "_Open album in browser when done uploading"
+msgstr "Po nahrání _otevřít album v prohlížeči"
+
+#: ../src/f-spot.glade.h:110
+msgid "_Open destination when done exporting"
+msgstr "Po dokončení exportu _otevřít cíl"
+
+#: ../src/f-spot.glade.h:111
+msgid "_Photo"
+msgstr "_Fotografie"
+
+#: ../src/f-spot.glade.h:113
+msgid "_Saturation:"
+msgstr "_Sytost:"
+
+#: ../src/f-spot.glade.h:114
+msgid "_Scale photos to no larger than: "
+msgstr "Změnit _měřítko fotografií, aby nebyly větší než: "
+
+#: ../src/f-spot.glade.h:115
+msgid "_Slideshow"
+msgstr "_Promítání snímků"
+
+#: ../src/f-spot.glade.h:116
+msgid "_Strip metadata"
+msgstr "_Odstranit metadata"
+
+#: ../src/f-spot.glade.h:117
+msgid "_Tag Name:"
+msgstr "Název š_títku:"
+
+#: ../src/f-spot.glade.h:118
+msgid "_Tint:"
+msgstr "_Tón:"
+
+#: ../src/f-spot.glade.h:119
+msgid "_Toolbar"
+msgstr "Lišta nás_trojů"
+
+#: ../src/f-spot.glade.h:120
+msgid "_URI:"
+msgstr "_URI:"
+
+#: ../src/f-spot.glade.h:121
+msgid "_View"
+msgstr "_Zobrazení"
+
+#: ../src/f-spot.glade.h:122
+msgid "_Virtual Filesystem"
+msgstr "_Virtuální systém souborů"
+
+#: ../src/f-spot.glade.h:123 ../src/Widgets/FindBar.cs:177
+msgid "and"
+msgstr "a"
+
+#. at, or after a date, or between dates
+#: ../src/f-spot.glade.h:125
+msgid ""
+"at\n"
+"after\n"
+"between"
+msgstr ""
+"v\n"
+"po\n"
+"mezi"
+
+#: ../src/f-spot.glade.h:129
+msgid "x"
+msgstr "x"
 
 #: ../src/FullScreenView.cs:58
 msgid "Hide"
@@ -651,7 +2188,7 @@ msgstr "Informace o obrázku"
 msgid "Exit fullscreen"
 msgstr "Ukončit celou obrazovku"
 
-#: ../src/FullScreenView.cs:81 ../src/MainWindow.cs:311
+#: ../src/FullScreenView.cs:81 ../src/MainWindow.cs:307
 #: ../src/SingleView.cs:103
 msgid "Slideshow"
 msgstr "Promítání snímků"
@@ -881,11 +2418,6 @@ msgstr "Načítám {0} z {1}"
 msgid "Done Loading"
 msgstr "Načítání dokončeno"
 
-#: ../src/ImportCommand.cs:539 ../src/MainWindow.cs:271
-#: ../src/f-spot.glade.h:52
-msgid "Import"
-msgstr "Import"
-
 #: ../src/ImportCommand.cs:669
 msgid "Directory does not exist."
 msgstr "Adresář neexistuje."
@@ -904,7 +2436,7 @@ msgstr ""
 msgid "Import Tags"
 msgstr "Importovat štítky"
 
-#: ../src/ItemAction.cs:79 ../src/MainWindow.cs:278 ../src/SingleView.cs:86
+#: ../src/ItemAction.cs:79 ../src/MainWindow.cs:274 ../src/SingleView.cs:86
 msgid "Rotate Left"
 msgstr "Otočit doleva"
 
@@ -912,7 +2444,7 @@ msgstr "Otočit doleva"
 msgid "Rotate picture left"
 msgstr "Otočit obrázek doleva"
 
-#: ../src/ItemAction.cs:91 ../src/MainWindow.cs:282 ../src/SingleView.cs:91
+#: ../src/ItemAction.cs:91 ../src/MainWindow.cs:278 ../src/SingleView.cs:91
 msgid "Rotate Right"
 msgstr "Otočit doprava"
 
@@ -920,87 +2452,59 @@ msgstr "Otočit doprava"
 msgid "Rotate picture right"
 msgstr "Otočit obrázek doprava"
 
-#: ../src/ItemAction.cs:102 ../src/f-spot.glade.h:59
-#: ../extensions/Exporters/FolderExport/FolderExport.cs:992
-msgid "Next"
-msgstr "Následující"
-
 #: ../src/ItemAction.cs:103
 msgid "Next picture"
 msgstr "Další obrázek"
-
-#: ../src/ItemAction.cs:123 ../src/f-spot.glade.h:68
-msgid "Previous"
-msgstr "Předchozí"
 
 #: ../src/ItemAction.cs:124
 msgid "Previous picture"
 msgstr "Předchozí obrázek"
 
-#: ../src/MainWindow.cs:273
+#: ../src/MainWindow.cs:269
 msgid "Import new images"
 msgstr "Importovat nové fotografie"
 
-#: ../src/MainWindow.cs:289
+#: ../src/MainWindow.cs:285
 msgid "Browse"
 msgstr "Procházet"
 
-#: ../src/MainWindow.cs:293
+#: ../src/MainWindow.cs:289
 msgid "Browse many photos simultaneously"
 msgstr "Proházet mnoho fotografií zároveň"
 
-#: ../src/MainWindow.cs:297
+#: ../src/MainWindow.cs:293
 msgid "Edit Image"
 msgstr "Upravit obrázek"
 
-#: ../src/MainWindow.cs:301
+#: ../src/MainWindow.cs:297
 msgid "View and edit a photo"
 msgstr "Zobrazit a upravit fotografii"
 
-#: ../src/MainWindow.cs:306 ../src/SingleView.cs:98
+#: ../src/MainWindow.cs:302 ../src/SingleView.cs:98
 msgid "Fullscreen"
 msgstr "Celá obrazovka"
 
-#: ../src/MainWindow.cs:308 ../src/SingleView.cs:100
+#: ../src/MainWindow.cs:304 ../src/SingleView.cs:100
 msgid "View photos fullscreen"
 msgstr "Zobrazit fotografie na celé obrazovce"
 
-#: ../src/MainWindow.cs:313 ../src/SingleView.cs:105
+#: ../src/MainWindow.cs:309 ../src/SingleView.cs:105
 msgid "View photos in a slideshow"
 msgstr "Zobrazovat fotografie jako prezentaci"
 
-#: ../src/MainWindow.cs:328
+#: ../src/MainWindow.cs:324
 msgid "Previous photo"
 msgstr "Předchozí fotografie"
 
-#: ../src/MainWindow.cs:333
+#: ../src/MainWindow.cs:329
 msgid "Next photo"
 msgstr "Následující fotografie"
 
-#. Don't care otherwise, Tags sounds reasonable
-#: ../src/MainWindow.cs:346 ../src/Widgets/Sidebar.cs:64
-#: ../extensions/Exporters/FolderExport/FolderExport.cs:989
-#: ../extensions/Exporters/FolderExport/FolderExport.cs:1161
-#: ../extensions/Exporters/FolderExport/FolderExport.cs:1201
-msgid "Tags"
-msgstr "Štítky"
-
-#. Note for translators: This indicates the current photo is photo {0} of {1} out of photos
-#: ../src/MainWindow.cs:638 ../src/UI.Dialog/AdjustTimeDialog.cs:129
-#: ../src/UI.Dialog/ProgressDialog.cs:92
-#: ../extensions/Exporters/CDExport/CDExport.cs:164
-#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:349
-#: ../extensions/Exporters/FolderExport/FolderExport.cs:245
-#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:781
-#, csharp-format
-msgid "{0} of {1}"
-msgstr "{0} z {1}"
-
-#: ../src/MainWindow.cs:1489
+#: ../src/MainWindow.cs:1486
 msgid "No cameras detected."
 msgstr "Nedetekován žádný fotoaparát."
 
-#: ../src/MainWindow.cs:1490
+#: ../src/MainWindow.cs:1487
 msgid ""
 "F-Spot was unable to find any cameras attached to this system.  Double check "
 "that the camera is connected and has power"
@@ -1008,17 +2512,17 @@ msgstr ""
 "F-Spot nemohl najít žádný fotoaparát připojený k tomuto systému. "
 "Zkontrolujte, že fotoaparát je připojen a je napájen"
 
-#: ../src/MainWindow.cs:1529
+#: ../src/MainWindow.cs:1526
 msgid "Error connecting to camera"
 msgstr "Chyba při připojování k fotoaparátu"
 
-#: ../src/MainWindow.cs:1530
+#: ../src/MainWindow.cs:1527
 #, csharp-format
 msgid "Received error \"{0}\" while connecting to camera"
 msgstr "Zachycena chyba \"{0}\" při připojování k fotoaparátu"
 
 #. Translators, The singular case will never happen here.
-#: ../src/MainWindow.cs:1813
+#: ../src/MainWindow.cs:1828
 #, csharp-format
 msgid "Merge the selected tag"
 msgid_plural "Merge the {0} selected tags?"
@@ -1026,7 +2530,7 @@ msgstr[0] "Sloučit vybraný štítek"
 msgstr[1] "Sloučit vybrané {0} štítky?"
 msgstr[2] "Sloučit vybraných {0} štítků?"
 
-#: ../src/MainWindow.cs:1840
+#: ../src/MainWindow.cs:1855
 msgid ""
 "This operation will merge the selected tags and any sub-tags into a single "
 "tag."
@@ -1034,11 +2538,11 @@ msgstr ""
 "Tato operace sloučí vybrané štítky a všechny podřízené štítky do jednoho "
 "štítku."
 
-#: ../src/MainWindow.cs:1842
+#: ../src/MainWindow.cs:1857
 msgid "_Merge Tags"
 msgstr "_Sloučit štítky"
 
-#: ../src/MainWindow.cs:2047
+#: ../src/MainWindow.cs:2062
 #, csharp-format
 msgid "{0} Photo out of {1}"
 msgid_plural "{0} Photos out of {1}"
@@ -1046,7 +2550,7 @@ msgstr[0] "Fotografie {0} z {1}"
 msgstr[1] "Fotografie {0} z {1}"
 msgstr[2] "Fotografie {0} z {1}"
 
-#: ../src/MainWindow.cs:2049 ../src/SingleView.cs:495
+#: ../src/MainWindow.cs:2064 ../src/SingleView.cs:495
 #, csharp-format
 msgid "{0} Photo"
 msgid_plural "{0} Photos"
@@ -1054,7 +2558,7 @@ msgstr[0] "{0} fotografie"
 msgstr[1] "{0} fotografie"
 msgstr[2] "{0} fotografií"
 
-#: ../src/MainWindow.cs:2052
+#: ../src/MainWindow.cs:2067
 #, csharp-format
 msgid " ({0} selected)"
 msgid_plural " ({0} selected)"
@@ -1062,25 +2566,25 @@ msgstr[0] " ({0} vybrána)"
 msgstr[1] " ({0} vybrány)"
 msgstr[2] " ({0} vybráno)"
 
-#: ../src/MainWindow.cs:2133
+#: ../src/MainWindow.cs:2148
 msgid "_Ok"
 msgstr "_Budiž"
 
-#: ../src/MainWindow.cs:2134
+#: ../src/MainWindow.cs:2149
 msgid "Error Deleting Picture"
 msgstr "Chyba při odstraňování obrázků"
 
-#: ../src/MainWindow.cs:2139
+#: ../src/MainWindow.cs:2154
 #, csharp-format
 msgid "No permission to delete the file:{1}{0}"
 msgstr "Chybí oprávnění ke smazání souboru:{1}{0}"
 
-#: ../src/MainWindow.cs:2143
+#: ../src/MainWindow.cs:2158
 #, csharp-format
 msgid "An error of type {0} occurred while deleting the file:{2}{1}"
 msgstr "Při mazání souboru {2}{1} došlo k chybě typu {0}"
 
-#: ../src/MainWindow.cs:2175
+#: ../src/MainWindow.cs:2190
 #, csharp-format
 msgid "Delete the selected photo permanently?"
 msgid_plural "Delete the {0} selected photos permanently?"
@@ -1088,7 +2592,7 @@ msgstr[0] "Natrvalo odstranit vybranou fotografii?"
 msgstr[1] "Natrvalo odstranit vybrané {0} fotografie?"
 msgstr[2] "Natrvalo odstranit vybraných {0} fotografií?"
 
-#: ../src/MainWindow.cs:2179
+#: ../src/MainWindow.cs:2194
 msgid "This deletes all versions of the selected photo from your drive."
 msgid_plural ""
 "This deletes all versions of the selected photos from your drive."
@@ -1097,14 +2601,14 @@ msgstr[1] "To odstraní všechny verze vybraných fotografií z vašeho disku."
 msgstr[2] "To odstraní všechny verze vybraných fotografií z vašeho disku."
 
 #
-#: ../src/MainWindow.cs:2182
+#: ../src/MainWindow.cs:2197
 msgid "_Delete photo"
 msgid_plural "_Delete photos"
 msgstr[0] "_Odstranit fotografii"
 msgstr[1] "_Odstranit fotografie"
 msgstr[2] "_Odstranit fotografie"
 
-#: ../src/MainWindow.cs:2218
+#: ../src/MainWindow.cs:2233
 #, csharp-format
 msgid "Remove the selected photo from F-Spot?"
 msgid_plural "Remove the {0} selected photos from F-Spot?"
@@ -1112,7 +2616,7 @@ msgstr[0] "Odstranit vybranou fotografii z F-Spotu?"
 msgstr[1] "Odstranit vybrané {0} fotografie z F-Spotu?"
 msgstr[2] "Odstranit vybraných {0} fotografií z F-Spotu?"
 
-#: ../src/MainWindow.cs:2223
+#: ../src/MainWindow.cs:2238
 msgid ""
 "If you remove photos from the F-Spot catalog all tag information will be "
 "lost. The photos remain on your computer and can be imported into F-Spot "
@@ -1122,28 +2626,28 @@ msgstr ""
 "budou ztraceny. Fotografie zůstávají ve vašem počítači a lze je do F-Spot "
 "znovu importovat."
 
-#: ../src/MainWindow.cs:2224
+#: ../src/MainWindow.cs:2239
 msgid "_Remove from Catalog"
 msgstr "_Odstranit z katalogu"
 
-#: ../src/MainWindow.cs:2287
+#: ../src/MainWindow.cs:2302
 #, csharp-format
 msgid "Delete tag \"{0}\"?"
 msgstr "Odstranit štítek \"{0}\"?"
 
-#: ../src/MainWindow.cs:2289
+#: ../src/MainWindow.cs:2304
 #, csharp-format
 msgid "Delete the {0} selected tags?"
 msgstr "Odstranit {0} vybraných štítků?"
 
-#: ../src/MainWindow.cs:2294
+#: ../src/MainWindow.cs:2309
 msgid "photo"
 msgid_plural "photos"
 msgstr[0] "fotografie"
 msgstr[1] "fotografie"
 msgstr[2] "fotografie"
 
-#: ../src/MainWindow.cs:2296
+#: ../src/MainWindow.cs:2311
 #, csharp-format
 msgid "If you delete this tag, the association with {0} {1} will be lost."
 msgid_plural ""
@@ -1152,7 +2656,7 @@ msgstr[0] "Pokud odstraníte tento štítek, asociace s {0} {1} bude ztracena."
 msgstr[1] "Pokud odstraníte tyto štítky, asociace s {0} {1} bude ztracena."
 msgstr[2] "Pokud odstraníte tyto štítky, asociace s {0} {1} bude ztracena."
 
-#: ../src/MainWindow.cs:2301
+#: ../src/MainWindow.cs:2316
 msgid "_Delete tag"
 msgid_plural "_Delete tags"
 msgstr[0] "O_dstranit štítek"
@@ -1160,11 +2664,11 @@ msgstr[1] "O_dstranit štítky"
 msgstr[2] "O_dstranit štítků"
 
 #. A Category is not empty. Can not delete it.
-#: ../src/MainWindow.cs:2315
+#: ../src/MainWindow.cs:2330
 msgid "Tag is not empty"
 msgstr "Štítek není prázdný"
 
-#: ../src/MainWindow.cs:2316
+#: ../src/MainWindow.cs:2331
 #, csharp-format
 msgid ""
 "Can not delete tags that have tags within them.  Please delete tags under "
@@ -1173,21 +2677,21 @@ msgstr ""
 "Nemohu odstranit štítky, které obsahují štítky. Nejdříve prosím odstraňte "
 "štítky pod \"{0}\""
 
-#: ../src/MainWindow.cs:2754
+#: ../src/MainWindow.cs:2764
 msgid "Rotate selected photo left"
 msgid_plural "Rotate selected photos left"
 msgstr[0] "Otočit vybranou fotografii doleva"
 msgstr[1] "Otočit vybrané fotografie doleva"
 msgstr[2] "Otočit vybrané fotografie doleva"
 
-#: ../src/MainWindow.cs:2767
+#: ../src/MainWindow.cs:2777
 msgid "Rotate selected photo right"
 msgid_plural "Rotate selected photos right"
 msgstr[0] "Otočit vybranou fotografii doprava"
 msgstr[1] "Otočit vybrané fotografie doprava"
 msgstr[2] "Otočit vybrané fotografie doprava"
 
-#: ../src/MainWindow.cs:2778
+#: ../src/MainWindow.cs:2788
 #, csharp-format
 msgid "Find _Selected Tag"
 msgid_plural "Find _Selected Tags"
@@ -1195,7 +2699,7 @@ msgstr[0] "Na_jít vybraný štítek"
 msgstr[1] "Na_jít vybrané štítky"
 msgstr[2] "Na_jít vybraných štítků"
 
-#: ../src/MainWindow.cs:2782
+#: ../src/MainWindow.cs:2792
 #, csharp-format
 msgid "Find Selected Tag _With"
 msgid_plural "Find Selected Tags _With"
@@ -1203,14 +2707,14 @@ msgstr[0] "Najít vybraný štítek _s"
 msgstr[1] "Najít vybrané štítky _s"
 msgstr[2] "Najít vybrané štítky _s"
 
-#: ../src/MainWindow.cs:2823
+#: ../src/MainWindow.cs:2833
 msgid "Create New Version?"
 msgid_plural "Create New Versions?"
 msgstr[0] "Vytvořit novou verzi?"
 msgstr[1] "Vytvořit nové verze?"
 msgstr[2] "Vytvořit nové verze?"
 
-#: ../src/MainWindow.cs:2825
+#: ../src/MainWindow.cs:2835
 #, csharp-format
 msgid ""
 "Before launching {1}, should F-Spot create a new version of the selected "
@@ -1228,7 +2732,7 @@ msgstr[2] ""
 "Má F-Spot vytvořit novou verzi vybrané fotografie před spuštěním {1} pro "
 "zachování originálů?"
 
-#: ../src/MainWindow.cs:2847
+#: ../src/MainWindow.cs:2857
 msgid "XCF version"
 msgstr "Verze XCF"
 
@@ -1406,17 +2910,17 @@ msgstr "Zachycena výjimka \"{0}\". Nelze přejmenovat verzi na \"{1}\""
 msgid "(No Edits)"
 msgstr "(Žádné úpravy)"
 
-#: ../src/PhotoView.cs:163 ../src/UI.Dialog/EditExceptionDialog.cs:38
+#: ../src/PhotoView.cs:169 ../src/UI.Dialog/EditExceptionDialog.cs:38
 msgid "Error editing photo"
 msgstr "Chyba při upravování fotografie"
 
-#: ../src/PhotoView.cs:164 ../src/Sharpener.cs:73
+#: ../src/PhotoView.cs:170 ../src/Sharpener.cs:73
 #: ../src/UI.Dialog/EditExceptionDialog.cs:25
 #, csharp-format
 msgid "Received exception \"{0}\". Unable to save photo {1}"
 msgstr "Zachycena výjimka \"{0}\". Nelze uložit fotografii {1}"
 
-#: ../src/PhotoView.cs:301
+#: ../src/PhotoView.cs:359
 msgid "Comment:"
 msgstr "Poznámka:"
 
@@ -1574,7 +3078,7 @@ msgstr "Otočit fotografii doleva"
 msgid "Rotate photo right"
 msgstr "Otočit fotografii doprava"
 
-#: ../src/SingleView.cs:130 ../src/UI.Dialog/ui/PreferenceDialog.glade.h:14
+#: ../src/SingleView.cs:130
 msgid "Folder"
 msgstr "Složka"
 
@@ -1586,7 +3090,8 @@ msgstr "Otevřít"
 msgid "Set as Background"
 msgstr "Nastavit jako pozadí"
 
-#: ../src/TagCommands.cs:96 ../src/TagSelectionWidget.cs:500
+#: ../src/TagCommands.cs:96 ../src/TagSelectionWidget.cs:498
+#: ../src/UI.Dialog/EditTagDialog.cs:78
 msgid "This name is already in use"
 msgstr "Tento název se již používá"
 
@@ -1639,21 +3144,21 @@ msgstr[2] "Odstranit štítky z výběru"
 msgid "Merge Tags"
 msgstr "Sloučit štítky"
 
-#: ../src/TagQueryWidget.cs:33
+#: ../src/TagQueryWidget.cs:34
 #, csharp-format
 msgid "Include Photos Tagged \"{0}\""
 msgstr "Zahrnout fotografie označené \"{0}\""
 
-#: ../src/TagQueryWidget.cs:38
+#: ../src/TagQueryWidget.cs:39
 #, csharp-format
 msgid "Exclude Photos Tagged \"{0}\""
 msgstr "Vyřadit fotografie označené \"{0}\""
 
-#: ../src/TagQueryWidget.cs:43
+#: ../src/TagQueryWidget.cs:44
 msgid "Remove From Search"
 msgstr "Nezahrnovat do vyhledávání"
 
-#: ../src/TagQueryWidget.cs:87
+#: ../src/TagQueryWidget.cs:88
 #, csharp-format
 msgid "Find _With"
 msgid_plural "Find _With"
@@ -1661,20 +3166,20 @@ msgstr[0] "Najít _s"
 msgstr[1] "Najít _s"
 msgstr[2] "Najít _s"
 
-#: ../src/TagQueryWidget.cs:113
+#: ../src/TagQueryWidget.cs:114
 msgid "All"
 msgstr "Vše"
 
-#: ../src/TagQueryWidget.cs:148 ../src/Term.cs:592
+#: ../src/TagQueryWidget.cs:149 ../src/Term.cs:592
 #, csharp-format
 msgid "Not {0}"
 msgstr "Ne {0}"
 
-#: ../src/TagQueryWidget.cs:277
+#: ../src/TagQueryWidget.cs:278
 msgid "Drag tags here to search for them"
 msgstr "Sem přetáhněte štítky, které chcete hledat"
 
-#: ../src/TagSelectionWidget.cs:499
+#: ../src/TagSelectionWidget.cs:497
 msgid "Error renaming tag"
 msgstr "Chyba při přejmenovávání štítku"
 
@@ -1731,15 +3236,15 @@ msgstr "Aktualizují se náhledy"
 msgid "Updating picture \"{0}\""
 msgstr "Aktualizuje se obrázek \"{0}\""
 
-#: ../src/UI.Dialog/AboutDialog.cs:70
+#: ../src/UI.Dialog/AboutDialog.cs:71
 msgid "Photo management for GNOME"
 msgstr "Správce fotografií pro GNOME"
 
-#: ../src/UI.Dialog/AboutDialog.cs:71
+#: ../src/UI.Dialog/AboutDialog.cs:72
 msgid "Copyright © 2003-2009 Novell Inc."
 msgstr "Copyright © 2003-2009 Novell Inc."
 
-#: ../src/UI.Dialog/AboutDialog.cs:94
+#: ../src/UI.Dialog/AboutDialog.cs:95
 msgid "translator-credits"
 msgstr ""
 "Miloslav Trmač <mitr@volny.cz>\n"
@@ -1748,7 +3253,7 @@ msgstr ""
 "Petr Kovář <pknbe@volny.cz>\n"
 "Zdeněk Hataš <zdenek.hatas@gmail.com>"
 
-#: ../src/UI.Dialog/AboutDialog.cs:99
+#: ../src/UI.Dialog/AboutDialog.cs:100
 msgid "F-Spot Website"
 msgstr "Webová stránka programu F-Spot"
 
@@ -1757,46 +3262,86 @@ msgstr "Webová stránka programu F-Spot"
 msgid "Shift all photos by {0}"
 msgstr "Posunout všechny fotografie o {0}"
 
-#: ../src/UI.Dialog/DateRangeDialog.cs:102
+#: ../src/UI.Dialog/DateRangeDialog.cs:99
 msgid "Today"
 msgstr "Dnes"
 
-#: ../src/UI.Dialog/DateRangeDialog.cs:104
+#: ../src/UI.Dialog/DateRangeDialog.cs:101
 msgid "Yesterday"
 msgstr "Včera"
 
-#: ../src/UI.Dialog/DateRangeDialog.cs:106
+#: ../src/UI.Dialog/DateRangeDialog.cs:103
 msgid "Last 7 days"
 msgstr "Posledních 7 dnů"
 
-#: ../src/UI.Dialog/DateRangeDialog.cs:108
+#: ../src/UI.Dialog/DateRangeDialog.cs:105
 msgid "Last 30 days"
 msgstr "Posledních 30 dnů"
 
-#: ../src/UI.Dialog/DateRangeDialog.cs:110
+#: ../src/UI.Dialog/DateRangeDialog.cs:107
 msgid "Last 90 days"
 msgstr "Posledních 90 dnů"
 
-#: ../src/UI.Dialog/DateRangeDialog.cs:112
+#: ../src/UI.Dialog/DateRangeDialog.cs:109
 msgid "Last 360 days"
 msgstr "Posledních 360 dnů"
 
-#: ../src/UI.Dialog/DateRangeDialog.cs:114
+#: ../src/UI.Dialog/DateRangeDialog.cs:111
 msgid "Current Week (Mon-Sun)"
 msgstr "Tento týden (po-ne)"
 
-#: ../src/UI.Dialog/DateRangeDialog.cs:116
+#: ../src/UI.Dialog/DateRangeDialog.cs:113
 msgid "Previous Week (Mon-Sun)"
 msgstr "Minulý týden (po-ne)"
 
-#: ../src/UI.Dialog/DateRangeDialog.cs:132
-#: ../src/UI.Dialog/ui/PreferenceDialog.glade.h:11
+#: ../src/UI.Dialog/DateRangeDialog.cs:129
 msgid "All Images"
 msgstr "Všechny obrázky"
 
-#: ../src/UI.Dialog/DateRangeDialog.cs:134
+#: ../src/UI.Dialog/DateRangeDialog.cs:131
 msgid "Customized Range"
 msgstr "Upravený rozsah"
+
+#: ../src/UI.Dialog/EditTagIconDialog.cs:46
+#, csharp-format
+msgid "Edit Icon for Tag {0}"
+msgstr "Upravit ikonu pro štítek {0}"
+
+#: ../src/UI.Dialog/EditTagIconDialog.cs:68
+msgid "Select Photo from file"
+msgstr "Vybrat fotografii ze souboru"
+
+#: ../src/UI.Dialog/EditTagIconDialog.cs:90
+#, csharp-format
+msgid ""
+"\n"
+"<b>From Photo</b>\n"
+" You can use one of your library photos as an icon for this tag.\n"
+" However, first you must have at least one photo associated\n"
+" with this tag. Please tag a photo as '{0}' and return here\n"
+" to use it as an icon."
+msgstr ""
+"\n"
+"<b>Z fotografie</b>\n"
+"Jako ikonu pro tento štítek můžete použít jednu z fotografií ze své "
+"kolekce.\n"
+"Nejdříve ale musí být štítek přiřazen alespoň jedné fotografii.\n"
+"Označte prosím některou z fotografií štítkem '{0}'. \n"
+"Poté ji zde můžete použít jako ikonu štítku."
+
+#: ../src/UI.Dialog/EditTagIconDialog.cs:168
+msgid "Unable to load image"
+msgstr "Obrázek nelze nahrát"
+
+#: ../src/UI.Dialog/EditTagIconDialog.cs:169
+#, csharp-format
+msgid "Unable to load \"{0}\" as icon for the tag"
+msgstr "Nelze nahrát \"{0}\" jako ikonu štítku"
+
+#: ../src/UI.Dialog/EditTagIconDialog.cs:208
+#, csharp-format
+msgid "Photo {0} of {1}"
+msgstr "Fotografie {0} z {1}"
 
 #: ../src/UI.Dialog/ExceptionDialog.cs:24
 msgid "F-Spot Encountered a Fatal Error"
@@ -1809,6 +3354,19 @@ msgstr "Podrobnosti o chybě"
 #: ../src/UI.Dialog/ExceptionDialog.cs:104
 msgid "An unhandled exception was thrown: "
 msgstr "Nastala neobsloužená výjimka: "
+
+#: ../src/UI.Dialog/PreferenceDialog.cs:53
+#: ../src/UI.Dialog/PreferenceDialog.cs:71
+msgid "None"
+msgstr "Není"
+
+#: ../src/UI.Dialog/PreferenceDialog.cs:55
+msgid "System profile"
+msgstr "Systémový profil"
+
+#: ../src/UI.Dialog/PreferenceDialog.cs:84
+msgid "Standard theme"
+msgstr "Výchozí motiv"
 
 #: ../src/UI.Dialog/RepairDbDialog.cs:20
 msgid "Error loading database."
@@ -1834,108 +3392,6 @@ msgstr "Poměr"
 #: ../src/UI.Dialog/ThreadProgressDialog.cs:49
 msgid "Retry"
 msgstr "Znovu"
-
-#: ../src/UI.Dialog/ui/PreferenceDialog.glade.h:1
-msgid "<b>Color Management</b>"
-msgstr "<b>Správa barev</b>"
-
-#: ../src/UI.Dialog/ui/PreferenceDialog.glade.h:2
-msgid "<b>Import Settings</b>"
-msgstr "<b>Nastavení importu</b>"
-
-#: ../src/UI.Dialog/ui/PreferenceDialog.glade.h:3
-msgid "<b>Metadata</b>"
-msgstr "<b>Metadata</b>"
-
-#: ../src/UI.Dialog/ui/PreferenceDialog.glade.h:4
-msgid "<b>Screensaver</b>"
-msgstr "<b>Šetřič obrazovky</b>"
-
-#: ../src/UI.Dialog/ui/PreferenceDialog.glade.h:5
-msgid "<b>Theming</b>"
-msgstr "<b>Motivy</b>"
-
-#: ../src/UI.Dialog/ui/PreferenceDialog.glade.h:6
-msgid ""
-"<small><i>Choose the folder where F-Spot should store newly imported photos</"
-"i></small>"
-msgstr ""
-"<small><i>Zvolte složku, do které bude F-Spot ukládat nově importované "
-"fotografie.</i></small>"
-
-#: ../src/UI.Dialog/ui/PreferenceDialog.glade.h:7
-msgid ""
-"<small><i>Enable this option to store tags and descriptions inside \n"
-"supported image formats.</i></small>"
-msgstr ""
-"<small><i>Aktivujte tuto volbu, pokud chcete ukládat štítky a popisy \n"
-"přímo do obrázku (u podporovaných formátů).</i></small>"
-
-#: ../src/UI.Dialog/ui/PreferenceDialog.glade.h:9
-msgid ""
-"<small><i>While acting as a screensaver, F-Spot can display all of your "
-"images, or a small subset based on tags.</i></small>"
-msgstr ""
-"<small><i>Pokud je v režimu spořiče obrazovky, F-Spot zobrazuje všechny vaše "
-"obrázky nebo jejich část založenou na štítcích.</i></small>"
-
-#: ../src/UI.Dialog/ui/PreferenceDialog.glade.h:10
-msgid ""
-"<small><i>You'll have to restart F-Spot to load the new theme.</i></small>"
-msgstr ""
-"<small><i>Aby se nahrál nový motiv, musíte F-Spot restartovat.</i></small>"
-
-#: ../src/UI.Dialog/ui/PreferenceDialog.glade.h:12
-msgid "Custom Theme"
-msgstr "Vlastní motiv"
-
-#: ../src/UI.Dialog/ui/PreferenceDialog.glade.h:15
-msgid "From List:"
-msgstr "Ze seznamu:"
-
-#: ../src/UI.Dialog/ui/PreferenceDialog.glade.h:16
-msgid "From gtkrc File:"
-msgstr "Z gtkrc souboru:"
-
-#: ../src/UI.Dialog/ui/PreferenceDialog.glade.h:17
-msgid "Images tagged with:"
-msgstr "Obrázky se štítky:"
-
-#: ../src/UI.Dialog/ui/PreferenceDialog.glade.h:18
-msgid "Make F-Spot your screensaver"
-msgstr "Použít F-Spot jako spořič obrazovky"
-
-#: ../src/UI.Dialog/ui/PreferenceDialog.glade.h:19 ../src/f-spot.glade.h:67
-msgid "Preferences"
-msgstr "Nastavení"
-
-#: ../src/UI.Dialog/ui/PreferenceDialog.glade.h:20
-msgid "Select A Folder"
-msgstr "Zvolte složku"
-
-#: ../src/UI.Dialog/ui/PreferenceDialog.glade.h:21
-msgid "Select A gtkrc File"
-msgstr "Vybrat gtkrc soubor"
-
-#: ../src/UI.Dialog/ui/PreferenceDialog.glade.h:22
-msgid "System Theme"
-msgstr "Systémový motiv"
-
-#: ../src/UI.Dialog/ui/PreferenceDialog.glade.h:23
-msgid "Try to use the system display profile"
-msgstr "Zkusit použít systémový profil obrazovky"
-
-#: ../src/UI.Dialog/ui/PreferenceDialog.glade.h:24
-msgid "Write _metadata to file"
-msgstr "Vložit _metadata do souboru"
-
-#: ../src/UI.Dialog/ui/PreferenceDialog.glade.h:25
-msgid "_Display:"
-msgstr "_Zobrazení:"
-
-#: ../src/UI.Dialog/ui/PreferenceDialog.glade.h:26
-msgid "_Print output:"
-msgstr "_Tisk výstupu:"
 
 #: ../src/Updater.cs:616
 msgid "Updating F-Spot Database"
@@ -2038,11 +3494,6 @@ msgstr "Tisknout komentář fotografie"
 msgid "Edit"
 msgstr "Úpravy"
 
-#: ../src/Widgets/EditorPage.cs:196
-#: ../extensions/Exporters/ZipExport/ZipExport.cs:47
-msgid "No selection available"
-msgstr "Žádný výběr není k dispozici"
-
 #: ../src/Widgets/EditorPage.cs:197
 msgid ""
 "This tool requires an active selection. Please select a region of the photo "
@@ -2067,13 +3518,17 @@ msgstr ""
 "Zachycena výjimka \"{0}\". RAW soubory musí být před tím, než je možné je "
 "upravovat, převedeny do JPEG."
 
+#: ../src/Widgets/Filmstrip.cs:572
+msgid "_Horizontal"
+msgstr "Na šíř_ku"
+
+#: ../src/Widgets/Filmstrip.cs:576
+msgid "_Vertical"
+msgstr "Na _výšku"
+
 #: ../src/Widgets/FindBar.cs:58
 msgid "Find:"
 msgstr "Hledat:"
-
-#: ../src/Widgets/FindBar.cs:177 ../src/f-spot.glade.h:123
-msgid "and"
-msgstr "a"
 
 #: ../src/Widgets/FolderTreePage.cs:21
 msgid "Folders"
@@ -2092,7 +3547,6 @@ msgid "Date"
 msgstr "Datum"
 
 #: ../src/Widgets/InfoBox.cs:220
-#: ../extensions/Exporters/CDExport/CDExport.glade.h:5
 msgid "Size"
 msgstr "Velikost"
 
@@ -2232,540 +3686,6 @@ msgid "State"
 msgstr "Stát"
 
 #. namespace
-#: ../src/f-spot.glade.h:1
-msgid " "
-msgstr " "
-
-#: ../src/f-spot.glade.h:2
-msgid "1024 px"
-msgstr "1024 px"
-
-#: ../src/f-spot.glade.h:3
-msgid "320 px"
-msgstr "320 px"
-
-#: ../src/f-spot.glade.h:4
-msgid "480 px"
-msgstr "480 px"
-
-#: ../src/f-spot.glade.h:5
-msgid "640 px"
-msgstr "640 px"
-
-#: ../src/f-spot.glade.h:6
-msgid "800 px"
-msgstr "800 px"
-
-#: ../src/f-spot.glade.h:7
-msgid "<b></b>"
-msgstr "<b></b>"
-
-#: ../src/f-spot.glade.h:8
-#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:1
-msgid "<b>Account</b>"
-msgstr "<b>Účet</b>"
-
-#: ../src/f-spot.glade.h:9
-#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:1
-#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:1
-#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:1
-msgid "<b>Album</b>"
-msgstr "<b>Album</b>"
-
-#: ../src/f-spot.glade.h:10
-msgid "<b>Co_rrections</b>"
-msgstr "<b>Ko_rekce</b>"
-
-#: ../src/f-spot.glade.h:11
-#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:3
-msgid "<b>Destination</b>"
-msgstr "<b>Cíl</b>"
-
-#: ../src/f-spot.glade.h:12
-#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:2
-msgid "<b>Gallery</b>"
-msgstr "<b>Galerie</b>"
-
-#: ../src/f-spot.glade.h:13
-msgid "<b>Image Interpolation</b>"
-msgstr "<b>Interpolace obrázku</b>"
-
-#: ../src/f-spot.glade.h:14
-msgid "<b>Max Rating</b>"
-msgstr "<b>Nejvyšší hodnocení</b>"
-
-#: ../src/f-spot.glade.h:15
-msgid "<b>Min Rating</b>"
-msgstr "<b>Nejnižší hodnocení</b>"
-
-#: ../src/f-spot.glade.h:16
-#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:2
-#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:5
-#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:3
-#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:2
-#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:2
-#: ../extensions/Exporters/TabbloExport/TabbloExport.glade.h:2
-msgid "<b>Photos</b>"
-msgstr "<b>Fotografie</b>"
-
-#: ../src/f-spot.glade.h:17
-msgid "<b>Size</b>"
-msgstr "<b>Velikost</b>"
-
-#: ../src/f-spot.glade.h:18
-#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:3
-#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:6
-#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:4
-#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:4
-#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:4
-msgid "<b>Style</b>"
-msgstr "<b>Styl</b>"
-
-#: ../src/f-spot.glade.h:19
-msgid "<b>Summary</b>"
-msgstr "<b>Souhrn</b>"
-
-#: ../src/f-spot.glade.h:20
-msgid "<b>Transparent Parts</b>"
-msgstr "<b>Průhledné části</b>"
-
-#: ../src/f-spot.glade.h:21
-msgid "<b>View all pictures imported</b>"
-msgstr "<b>Zobrazit všechny importované obrázky</b>"
-
-#: ../src/f-spot.glade.h:22
-msgid "<b>_White Balance</b>"
-msgstr "<b>_Vyvážení bílé</b>"
-
-#: ../src/f-spot.glade.h:23
-msgid ""
-"<small><i>Enable this to allow interpolation on zoomed images. You shouldn't "
-"disable this for viewing photos, but disabling the interpolation could be "
-"usefull in icon design.</i></small>"
-msgstr ""
-"<small><i>Tuto volbu povolte, chcete-li používat interpolaci při "
-"přibližování obrázků. Pro prohlížení fotografií by volba neměla být "
-"zakázána, zákaz interpolace však může být užitečný například při návrhu "
-"ikonek.</i></small>"
-
-#: ../src/f-spot.glade.h:24
-msgid ""
-"<small><i>You can choose how to display transparent parts in images. This "
-"option has no effect on photos, but setting this as check pattern or custom "
-"color could be usefull when viewing icons or other artworks with transparent "
-"parts.</i></small>"
-msgstr ""
-"<small><i>Můžete zvolit, jak se mají zobrazovat průhledné části obrázků. "
-"Tato volba nemá žádný vliv na fotografie, ale zobrazení průhlednosti v "
-"podobě šachovnice nebo zvolené barvy může být užitečné při prohlížení ikon a "
-"dalších grafických souborů s průhlednými částmi.</i></small>"
-
-#: ../src/f-spot.glade.h:25
-msgid "As _background"
-msgstr "Jako _pozadí"
-
-#: ../src/f-spot.glade.h:26
-msgid "As _custom color: "
-msgstr "Jako v_lastní barva: "
-
-#: ../src/f-spot.glade.h:27
-msgid "As check _pattern"
-msgstr "Jako ša_chovnice"
-
-#: ../src/f-spot.glade.h:28
-msgid "Attach Tags:"
-msgstr "Připojit štítky:"
-
-#: ../src/f-spot.glade.h:29
-msgid "Attach tag:"
-msgstr "Připojit štítek:"
-
-#: ../src/f-spot.glade.h:30
-#: ../extensions/Exporters/CDExport/CDExport.glade.h:3
-#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:7
-#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:7
-#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:5
-msgid "Autorotate"
-msgstr "Automatické otočení"
-
-#: ../src/f-spot.glade.h:31
-msgid "CD"
-msgstr "CD"
-
-#: ../src/f-spot.glade.h:32
-msgid "C_ontrast:"
-msgstr "K_ontrast:"
-
-#: ../src/f-spot.glade.h:33
-msgid "Camera Selection"
-msgstr "Výběr fotoaparátu"
-
-#: ../src/f-spot.glade.h:34
-msgid "Copy files to the Photos folder"
-msgstr "Kopírovat soubory do složky Photos"
-
-#: ../src/f-spot.glade.h:35
-msgid "Create Mail"
-msgstr "Vytvořit e-mail"
-
-#: ../src/f-spot.glade.h:36
-msgid "Create _icon for this tag when first used"
-msgstr "Vytvořit _ikonu pro tento štítek poté, co bude prvně použit"
-
-#: ../src/f-spot.glade.h:37
-msgid "Create a mail with the selected photos (possibly resized) attached"
-msgstr ""
-"Vytvořit e-mail s přiloženými vybranými fotografiemi (s možností změny "
-"velikosti)"
-
-#: ../src/f-spot.glade.h:38
-msgid "Detect duplicates"
-msgstr "Detekovat duplicity"
-
-#: ../src/f-spot.glade.h:39
-msgid "Display File _Names"
-msgstr "Zobrazovat _názvy souborů"
-
-#: ../src/f-spot.glade.h:40
-msgid "Display only those photos that were imported in specified Rolls."
-msgstr "Zobrazit pouze fotografie ze zadaných filmů."
-
-#: ../src/f-spot.glade.h:41
-msgid "Do not send a mail"
-msgstr "Neodesílat e-mail"
-
-#: ../src/f-spot.glade.h:42
-msgid "E-_Mail:"
-msgstr "E-_mail:"
-
-#: ../src/f-spot.glade.h:43
-msgid "E_xport titles and comments"
-msgstr "E_xportovat popisky a poznámky"
-
-#: ../src/f-spot.glade.h:44
-msgid "Estimated new size"
-msgstr "Odhadovaná nová velikost"
-
-#: ../src/f-spot.glade.h:45
-#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:6
-#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:8
-#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:9
-#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:6
-#: ../extensions/Exporters/TabbloExport/TabbloExport.glade.h:5
-msgid "Export"
-msgstr "Exportovat"
-
-#: ../src/f-spot.glade.h:46
-msgid "Extra large"
-msgstr "Extra velký"
-
-#: ../src/f-spot.glade.h:47
-msgid "F-Spot View"
-msgstr "Pohled F-Spot"
-
-#: ../src/f-spot.glade.h:49
-msgid "Filter on selected rolls"
-msgstr "Použít filtr hledání na vyfotografované filmy"
-
-#: ../src/f-spot.glade.h:50
-msgid "G_allery:"
-msgstr "G_alerie:"
-
-#: ../src/f-spot.glade.h:51
-msgid "Gallery"
-msgstr "Galerie"
-
-#. Translators: this string means 'source of import'
-#: ../src/f-spot.glade.h:54
-msgid "Import Source:"
-msgstr "Zdroj importu:"
-
-#: ../src/f-spot.glade.h:55
-msgid "Include subfolders"
-msgstr "Včetně podadresářů"
-
-#: ../src/f-spot.glade.h:56
-msgid "Large"
-msgstr "Velký"
-
-#: ../src/f-spot.glade.h:57
-msgid "Manage your custom selection ratios"
-msgstr "Spravovat vaše vlastní poměry výběru"
-
-#: ../src/f-spot.glade.h:58
-msgid "Medium"
-msgstr "Střední"
-
-#: ../src/f-spot.glade.h:60
-msgid "Number of photos in selected rolls:"
-msgstr "Počet fotografií ve zvolených filmech:"
-
-#: ../src/f-spot.glade.h:61
-msgid "Number of pictures"
-msgstr "Počet obrázků"
-
-#: ../src/f-spot.glade.h:62
-msgid "Open _Folder..."
-msgstr "Otevřít _složku..."
-
-#: ../src/f-spot.glade.h:64
-msgid "Original size (possible very large file size)"
-msgstr "Původní velikost (pravděpodobně velmi velký soubor)"
-
-#: ../src/f-spot.glade.h:65
-msgid "P_arent Tag:"
-msgstr "_Rodičovský štítek:"
-
-#: ../src/f-spot.glade.h:66
-msgid "Pause"
-msgstr "Pozastavit"
-
-#: ../src/f-spot.glade.h:69
-msgid "Repair"
-msgstr "Opravit"
-
-#: ../src/f-spot.glade.h:72
-msgid "Select Photos to Copy From Camera..."
-msgstr "Zvolte fotografie, které se mají kopírovat z fotoaparátu..."
-
-#: ../src/f-spot.glade.h:73
-msgid "Select a Tag..."
-msgstr "Vyberte štítek..."
-
-#: ../src/f-spot.glade.h:74
-msgid "Select the camera from which you want to transfer files"
-msgstr "Vyberte fotoaparát, ze kterého chcete přenést soubory"
-
-#: ../src/f-spot.glade.h:75
-msgid "Selected Camera: "
-msgstr "Zvolený fotoaparát: "
-
-#: ../src/f-spot.glade.h:76
-msgid "Selection Constraints"
-msgstr "Omezení výběru"
-
-#: ../src/f-spot.glade.h:77
-msgid "Set Rating Filter"
-msgstr "Nastavit filtr hodnocení"
-
-#: ../src/f-spot.glade.h:78
-msgid "Set as _Background"
-msgstr "Nastavit jako _pozadí"
-
-#: ../src/f-spot.glade.h:79
-msgid "Show all photos."
-msgstr "Zobrazit všechny fotografie."
-
-#: ../src/f-spot.glade.h:80
-msgid "Show or hide the side pane"
-msgstr "Zobrazit nebo skrýt boční panel"
-
-#: ../src/f-spot.glade.h:81
-msgid "Show or hide the toolbar"
-msgstr "Zobrazit nebo skrýt lištu nástrojů"
-
-#: ../src/f-spot.glade.h:82
-msgid "Side _pane"
-msgstr "Boční _panel"
-
-#: ../src/f-spot.glade.h:83
-msgid "Small"
-msgstr "Malý"
-
-#: ../src/f-spot.glade.h:84
-msgid ""
-"Specify if an original size picture should be rotated or not. Smaller sizes "
-"are automatically rotated."
-msgstr ""
-"Zvolte, zda má být obrázek v původní velikosti otočen či nikoliv. Menší "
-"velikosti jsou otočeny automaticky."
-
-#: ../src/f-spot.glade.h:85
-msgid "Strip image _metadata"
-msgstr "Odstranit _metadata obrázku"
-
-#. Note for translators: meant as Temperature
-#: ../src/f-spot.glade.h:87
-msgid "Te_mp:"
-msgstr "Tep_lota:"
-
-#: ../src/f-spot.glade.h:88
-msgid "Tiny"
-msgstr "Drobný"
-
-#: ../src/f-spot.glade.h:89
-msgid "Total original size"
-msgstr "Celková původní velikost"
-
-#: ../src/f-spot.glade.h:90
-msgid "Zoom _in"
-msgstr "Zvětš_it"
-
-#: ../src/f-spot.glade.h:91
-msgid "Zoom _out"
-msgstr "Z_menšit"
-
-#: ../src/f-spot.glade.h:92
-msgid "Zoom in"
-msgstr "Zvětšit"
-
-#: ../src/f-spot.glade.h:93
-msgid "Zoom out"
-msgstr "Zmenšit"
-
-#: ../src/f-spot.glade.h:94
-msgid "_Brightness:"
-msgstr "_Jas:"
-
-#: ../src/f-spot.glade.h:95
-#: ../extensions/Exporters/ZipExport/ZipExport.glade.h:1
-msgid "_Create"
-msgstr "Vy_tvořit"
-
-#: ../src/f-spot.glade.h:96
-msgid "_Create Mail"
-msgstr "Vy_tvořit e-mail"
-
-#: ../src/f-spot.glade.h:97
-msgid "_Edit"
-msgstr "Ú_pravy"
-
-#: ../src/f-spot.glade.h:98
-#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:15
-#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:12
-msgid "_Export"
-msgstr "_Exportovat"
-
-#: ../src/f-spot.glade.h:99
-#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:16
-#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:20
-msgid "_Export tags"
-msgstr "_Exportovat štítky"
-
-#: ../src/f-spot.glade.h:100
-#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:15
-#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:21
-#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:13
-msgid "_Export to Album:"
-msgstr "_Exportovat do alba:"
-
-#: ../src/f-spot.glade.h:101
-msgid "_Exposure:"
-msgstr "_Expozice:"
-
-#: ../src/f-spot.glade.h:102
-msgid "_Flickr"
-msgstr "_Flickr"
-
-#: ../src/f-spot.glade.h:103
-msgid "_Fullscreen"
-msgstr "_Celá obrazovka"
-
-#: ../src/f-spot.glade.h:104
-msgid "_Gallery"
-msgstr "_Galerie"
-
-#: ../src/f-spot.glade.h:105
-msgid "_Help"
-msgstr "_Nápověda"
-
-#: ../src/f-spot.glade.h:106
-msgid "_Hue:"
-msgstr "_Zabarvení:"
-
-#: ../src/f-spot.glade.h:107
-msgid "_Interpolate image on zoom"
-msgstr "_Interpolovat obrázek při přiblížení"
-
-#: ../src/f-spot.glade.h:108
-msgid "_New Window"
-msgstr "_Nové okno"
-
-#: ../src/f-spot.glade.h:109
-msgid "_Open album in browser when done uploading"
-msgstr "Po nahrání _otevřít album v prohlížeči"
-
-#: ../src/f-spot.glade.h:110
-msgid "_Open destination when done exporting"
-msgstr "Po dokončení exportu _otevřít cíl"
-
-#: ../src/f-spot.glade.h:111
-msgid "_Photo"
-msgstr "_Fotografie"
-
-#: ../src/f-spot.glade.h:112
-#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:17
-#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:17
-#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:20
-#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:24
-#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:15
-msgid "_Resize to: "
-msgstr "Změnit _velikost na: "
-
-#: ../src/f-spot.glade.h:113
-msgid "_Saturation:"
-msgstr "_Sytost:"
-
-#: ../src/f-spot.glade.h:114
-msgid "_Scale photos to no larger than: "
-msgstr "Změnit _měřítko fotografií, aby nebyly větší než: "
-
-#: ../src/f-spot.glade.h:115
-msgid "_Slideshow"
-msgstr "_Promítání snímků"
-
-#: ../src/f-spot.glade.h:116
-msgid "_Strip metadata"
-msgstr "_Odstranit metadata"
-
-#: ../src/f-spot.glade.h:117
-msgid "_Tag Name:"
-msgstr "Název š_títku:"
-
-#: ../src/f-spot.glade.h:118
-msgid "_Tint:"
-msgstr "_Tón:"
-
-#: ../src/f-spot.glade.h:119
-msgid "_Toolbar"
-msgstr "Lišta nás_trojů"
-
-#: ../src/f-spot.glade.h:120
-msgid "_URI:"
-msgstr "_URI:"
-
-#: ../src/f-spot.glade.h:121
-msgid "_View"
-msgstr "_Zobrazení"
-
-#: ../src/f-spot.glade.h:122
-msgid "_Virtual Filesystem"
-msgstr "_Virtuální systém souborů"
-
-#. at, or after a date, or between dates
-#: ../src/f-spot.glade.h:125
-msgid ""
-"at\n"
-"after\n"
-"between"
-msgstr ""
-"v\n"
-"po\n"
-"mezi"
-
-#: ../src/f-spot.glade.h:128
-#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:19
-#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:19
-#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:23
-#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:26
-#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:17
-msgid "pixels"
-msgstr "pixelů"
-
-#: ../src/f-spot.glade.h:129
-msgid "x"
-msgstr "x"
-
 #: ../tools/f-spot-screensaver.desktop.in.h:1
 msgid "Display a slideshow from F-Spot"
 msgstr "Promítat snímky z F-Spotu"
@@ -2773,983 +3693,3 @@ msgstr "Promítat snímky z F-Spotu"
 #: ../tools/f-spot-screensaver.desktop.in.h:2
 msgid "F-Spot photos"
 msgstr "Fotografie F-Spotu"
-
-#: ../extensions/Exporters/CDExport/CDExport.addin.xml.h:1
-msgid "_CD..."
-msgstr "_CD..."
-
-#: ../extensions/Exporters/CDExport/CDExport.cs:162
-#, csharp-format
-msgid "Transferring picture \"{0}\" To CD"
-msgstr "Na CD se přenáší obrázek \"{0}\""
-
-#: ../extensions/Exporters/CDExport/CDExport.cs:177
-#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:379
-#: ../extensions/Exporters/FolderExport/FolderExport.cs:285
-#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:806
-#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:387
-#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:704
-#: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:607
-msgid "Done Sending Photos"
-msgstr "Odesílání fotografií ukončeno"
-
-#: ../extensions/Exporters/CDExport/CDExport.cs:179
-#: ../extensions/Exporters/FolderExport/FolderExport.cs:287
-msgid "Transfer Complete"
-msgstr "Přenos byl dokončen"
-
-#: ../extensions/Exporters/CDExport/CDExport.cs:186
-#: ../extensions/Exporters/FolderExport/FolderExport.cs:292
-msgid "Error While Transferring"
-msgstr "Chyba při přenosu"
-
-#: ../extensions/Exporters/CDExport/CDExport.cs:193
-#: ../extensions/Exporters/FolderExport/FolderExport.cs:311
-msgid "Error Transferring"
-msgstr "Chyba přenosu"
-
-#: ../extensions/Exporters/CDExport/CDExport.cs:206
-msgid "copying..."
-msgstr "kopíruje se..."
-
-#: ../extensions/Exporters/CDExport/CDExport.glade.h:1
-msgid "<b><i>There is some previously scheduled items to write</i></b>"
-msgstr "<b><i>Existují prvky dříve plánované pro zápis</i></b>"
-
-#: ../extensions/Exporters/CDExport/CDExport.glade.h:2
-msgid "<b>Photos to Burn</b>"
-msgstr "<b>Fotografie k vypálení</b>"
-
-#: ../extensions/Exporters/CDExport/CDExport.glade.h:4
-msgid "Create CD"
-msgstr "Vytvořit CD"
-
-#: ../extensions/Exporters/CDExport/CDExport.glade.h:6
-msgid "Size of the exported selection:"
-msgstr "Velikost exportovaného výběru:"
-
-#: ../extensions/Exporters/CDExport/CDExport.glade.h:7
-msgid "_Browse Previously Scheduled Files"
-msgstr "Procházet dříve plánovanými sou_bory"
-
-#: ../extensions/Exporters/CDExport/CDExport.glade.h:8
-msgid "_Write only these photos to CD"
-msgstr "Na CD za_psat pouze tyto fotografie"
-
-#: ../extensions/Exporters/FlickrExport/FlickrExport.addin.xml.h:1
-msgid "_23hq..."
-msgstr "_23hq..."
-
-#: ../extensions/Exporters/FlickrExport/FlickrExport.addin.xml.h:2
-msgid "_Flickr..."
-msgstr "_Flickr..."
-
-#: ../extensions/Exporters/FlickrExport/FlickrExport.addin.xml.h:3
-msgid "_Zooomr..."
-msgstr "_Zooomr..."
-
-#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:105
-#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:5
-msgid "Authorize"
-msgstr "Autorizovat"
-
-#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:111
-#, csharp-format
-msgid ""
-"Return to this window after you have finished the authorization process on "
-"{0} and click the \"Complete Authorization\" button below"
-msgstr ""
-"Poté, co jste dokončili autorizační proces v {0}, vraťte se do tohoto okna a "
-"stiskněte tlačítko \"Dokončit autorizaci\" umístěné níže"
-
-#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:112
-msgid "Complete Authorization"
-msgstr "Dokončit autorizaci"
-
-#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:117
-#, csharp-format
-msgid "Logging into {0}"
-msgstr "Přihlášen k {0}"
-
-#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:118
-msgid "Checking credentials..."
-msgstr "Ověřují se doklady..."
-
-#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:125
-#, csharp-format
-msgid "Welcome {0} you are connected to {1}"
-msgstr "Vítejte {0}, jste připojeni k {1}"
-
-#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:128
-#, csharp-format
-msgid "Sign in as a different user"
-msgstr "Přihlásit jako jiný uživatel"
-
-#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:133
-#, csharp-format
-msgid "Used {0} of your allowed {1} monthly quota"
-msgstr "Využito {0} z vaší celkové povolené měsíční kvóty {1}"
-
-#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:297
-msgid "Unable to log on"
-msgstr "Nelze přihlásit"
-
-#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:317
-#, csharp-format
-msgid "Waiting for response {0} of {1}"
-msgstr "Čeká se na odpověď {0} z {1}"
-
-#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:344
-#: ../extensions/Exporters/FolderExport/FolderExport.cs:242
-#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:777
-#, csharp-format
-msgid "Uploading picture \"{0}\""
-msgstr "Nahrává se obrázek \"{0}\""
-
-#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:367
-#, csharp-format
-msgid "Error Uploading To {0}: {1}"
-msgstr "Chyba nahrávání do {0}: {1}"
-
-#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:381
-#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:808
-#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:389
-#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:706
-#: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:609
-msgid "Upload Complete"
-msgstr "Nahrávání dokončeno"
-
-#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:454
-msgid "Unable to log on."
-msgstr "Nelze přihlásit."
-
-#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:455
-#, csharp-format
-msgid ""
-"F-Spot was unable to log on to {0}.  Make sure you have given the "
-"authentication using {0} web browser interface."
-msgstr ""
-"F-Spot se nebyl schopen přihlásit k {0}. Ujistěte se, že jste povolili "
-"autentizaci prostřednictvím {0} rozhraní webového prohlížeče."
-
-#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:475
-#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:730
-#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:297
-#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:597
-#: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:522
-msgid "Uploading Pictures"
-msgstr "Přenášejí se obrázky"
-
-#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:4
-msgid "<b>Viewing permissions</b>"
-msgstr "<b>Oprávnění k prohlížení</b>"
-
-#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:7
-msgid "Export tag _hierarchy"
-msgstr "Exportovat _hierarchii štítků"
-
-#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:8
-msgid ""
-"F-Spot needs your authorization in order to upload photos to your {0} "
-"account. Press the \"Authorize\" button to open a web browser and give F-"
-"Spot the authorization. "
-msgstr ""
-"Pro nahrávání fotografií potřebuje F-Spot autorizaci k vašemu účtu na {0}. "
-"Stisknutím tlačítka \"Autorizovat\" otevřete webový prohlížeč a udělte "
-"programu autorizaci."
-
-#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:9
-msgid "Ignore _top level tags"
-msgstr "Ignorovat š_títky nejvyšší úrovně"
-
-#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:10
-msgid "Private"
-msgstr "Soukromé"
-
-#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:11
-msgid "Public"
-msgstr "Veřejné"
-
-#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:12
-msgid "Strip _metadata"
-msgstr "Odstranit _metadata"
-
-#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:13
-msgid "Visible to Family"
-msgstr "Viditelné pro rodinu"
-
-#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:14
-msgid "Visible to Friends"
-msgstr "Viditelné pro přátele"
-
-#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:18
-msgid "_View photos in browser when done uploading"
-msgstr "Po nahrání otevřít fotografie _v prohlížeči"
-
-#: ../extensions/Exporters/FolderExport/FolderExport.addin.xml.h:1
-msgid "F_older..."
-msgstr "Sl_ožka..."
-
-#: ../extensions/Exporters/FolderExport/FolderExport.cs:140
-msgid "Select Export Folder"
-msgstr "Vybrat složku pro export"
-
-#: ../extensions/Exporters/FolderExport/FolderExport.cs:198
-msgid "Building Gallery"
-msgstr "Vytváří se galerie"
-
-#: ../extensions/Exporters/FolderExport/FolderExport.cs:248
-#, csharp-format
-msgid "Error uploading picture \"{0}\" to Gallery:{2}{1}"
-msgstr "Chyba při nahrávání obrázku \"{0}\" do galerie:{2}{1}"
-
-#: ../extensions/Exporters/FolderExport/FolderExport.cs:333
-msgid "Error: Error while transferring; Aborting"
-msgstr "Chyba: Chyba při přenosu: Přerušuji"
-
-#: ../extensions/Exporters/FolderExport/FolderExport.cs:336
-msgid "Error: File Already Exists; Aborting"
-msgstr "Chyba: Soubor už existuje; ruším"
-
-#. Note for translators: light as clear, opposite as dark
-#: ../extensions/Exporters/FolderExport/FolderExport.cs:803
-msgid "Light"
-msgstr "Světlé"
-
-#: ../extensions/Exporters/FolderExport/FolderExport.cs:804
-msgid "Dark"
-msgstr "Tmavé"
-
-#. Abbreviation of previous
-#: ../extensions/Exporters/FolderExport/FolderExport.cs:984
-msgid "Prev"
-msgstr "Předchozí"
-
-#: ../extensions/Exporters/FolderExport/FolderExport.cs:1096
-msgid "Gallery generated by"
-msgstr "Galerie generovaná programem"
-
-#: ../extensions/Exporters/FolderExport/FolderExport.cs:1136
-msgid "Show Styles"
-msgstr "Ukázat styly"
-
-#: ../extensions/Exporters/FolderExport/FolderExport.cs:1137
-msgid "Hide Styles"
-msgstr "Skrýt styly"
-
-#: ../extensions/Exporters/FolderExport/FolderExport.cs:1172
-#: ../extensions/Exporters/FolderExport/FolderExport.cs:1173
-msgid "Tags: "
-msgstr "Štítky: "
-
-#: ../extensions/Exporters/FolderExport/FolderExport.cs:1304
-#: ../extensions/Exporters/FolderExport/FolderExport.cs:1437
-msgid "Page:"
-msgstr "Strana:"
-
-#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:1
-msgid "\n"
-msgstr "\n"
-
-#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:4
-msgid "<b>Export Method</b>"
-msgstr "<b>Metoda exportu</b>"
-
-#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:8
-msgid "Create _gallery using \"Original\""
-msgstr "Vytvořit _galerii použitím \"Originálu\""
-
-#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:9
-msgid "Create standalone _web gallery"
-msgstr "Vytvořit samostatnou _webovou galerii"
-
-#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:10
-msgid "D_escription:"
-msgstr "_Popisek:"
-
-#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:11
-msgid "Export _tags"
-msgstr "Exportovat š_títky"
-
-#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:12
-msgid "Export tag _icons"
-msgstr "Exportovat _ikony štítků"
-
-#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:13
-msgid "Folder Export"
-msgstr "Export složky"
-
-#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:14
-msgid "G_allery Name:"
-msgstr "Název _galerie:"
-
-#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:15
-msgid "Open _destination when done exporting"
-msgstr "Po _dokončení exportu otevřít cíl"
-
-#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:16
-msgid "_Folder:"
-msgstr "_Složka:"
-
-#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:18
-msgid "_Save the files only"
-msgstr "Pouze uložit _soubory"
-
-#: ../extensions/Exporters/GalleryExport/GalleryExport.addin.xml.h:1
-msgid "Web _Gallery..."
-msgstr "Webová _galerie..."
-
-#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:52
-msgid ""
-"Cannot connect to a Gallery for which the version is unknown.\n"
-"Please check that you have Remote plugin 1.0.8 or later"
-msgstr ""
-"Nelze se připojit ke galerii, jejíž verze není známa.\n"
-"Ujistěte se, že používáte Remote plugin verze 1.0.8 nebo novější"
-
-#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:391
-msgid "Invalid URL"
-msgstr "Neplatné URL"
-
-#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:392
-msgid "The gallery URL entry does not appear to be a valid URL"
-msgstr "URL záznam galerie zřejmě není validní."
-
-#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:402
-#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:429
-#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:440
-msgid "Error while connecting to Gallery"
-msgstr "Chyba při připojování ke Gallery"
-
-#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:403
-#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:430
-#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:441
-#, csharp-format
-msgid "The following error was encountered while attempting to log in: {0}"
-msgstr "Při pokusu o přihlášení došlo k následující chybě: {0}"
-
-#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:417
-msgid "A Gallery with this name already exists"
-msgstr "Galerie tohoto jména už existuje"
-
-#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:418
-#, csharp-format
-msgid ""
-"There is already a Gallery with the same name in your registered Galleries. "
-"Please choose a unique name."
-msgstr ""
-"Galerie tohoto jména je již registrována. Zvolte prosím unikátní název."
-
-#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:528
-msgid "(TopLevel)"
-msgstr "(Nejvyšší úroveň)"
-
-#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:590
-msgid "Invalid Gallery name"
-msgstr "Neplatný název galerie"
-
-#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:591
-msgid ""
-"The gallery name contains invalid characters.\n"
-"Only letters, numbers, - and _ are allowed"
-msgstr ""
-"Název galerie obsahuje neplatné znaky.\n"
-"Jsou povolena pouze písmena, čísla, znaky pomlčka a podtržítko"
-
-#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:796
-#, csharp-format
-msgid "Error uploading picture \"{0}\" to Gallery: {1}"
-msgstr "Chyba při nahrávání obrázku  \"{0}\" do galerie: {1}"
-
-#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:824
-#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:727
-#: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:630
-msgid "(No Gallery)"
-msgstr "(Žádná Galerie)"
-
-#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:916
-#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:849
-#: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:726
-msgid "(Not Connected)"
-msgstr "(Nepřipojen)"
-
-#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:917
-#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:850
-#: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:727
-msgid "(No Albums)"
-msgstr "(Žádná alba)"
-
-#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:969
-#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:915
-#: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:768
-msgid "No account selected"
-msgstr "Není vybrán žádný účet"
-
-#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:5
-#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:5
-msgid "<span weight='bold' size='larger'>Error Connecting to Gallery</span>\n"
-msgstr ""
-"<span weight='bold' size='larger'>Chyba při připojení ke galerii</span>\n"
-
-#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:9
-msgid "Export _titles and comments"
-msgstr "Exportovat _titulky a poznámky"
-
-#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:10
-#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:10
-#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:7
-msgid "Open _album in browser when done uploading"
-msgstr "Po nahrání otevřít _album v prohlížeči"
-
-#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:11
-#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:11
-msgid "Please verify that the settings for this gallery are correct."
-msgstr "Ověřte prosím, že nastavení této galerie jsou v pořádku."
-
-#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:12
-msgid "U_RL:"
-msgstr "U_RL:"
-
-#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:13
-msgid "_Album Name:"
-msgstr "Název _alba:"
-
-#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:14
-#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:19
-#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:11
-msgid "_Description:"
-msgstr "_Popisek:"
-
-#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:16
-msgid "_Gallery Name:"
-msgstr "Název _galerie:"
-
-#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:17
-#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:22
-msgid "_Gallery:"
-msgstr "_Galerie:"
-
-#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:18
-msgid "_Parent Album:"
-msgstr "Nadřazené alb_um:"
-
-#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:19
-#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:23
-#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:14
-#: ../extensions/Exporters/TabbloExport/TabbloExport.glade.h:9
-msgid "_Password:"
-msgstr "_Heslo:"
-
-#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:21
-msgid "_Title:"
-msgstr "_Titulek:"
-
-#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:22
-#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:25
-#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:16
-#: ../extensions/Exporters/TabbloExport/TabbloExport.glade.h:10
-msgid "_Username:"
-msgstr "_Uživatelské jméno:"
-
-#: ../extensions/Exporters/GalleryExport/GalleryRemote.cs:361
-msgid "Error reading server response"
-msgstr "Chyba při čtení odpovědi serveru"
-
-#. failed to find the response
-#: ../extensions/Exporters/GalleryExport/GalleryRemote.cs:373
-msgid "Server returned response without Gallery content"
-msgstr "Server vrátil odpověď bez obsahu galerie"
-
-#: ../extensions/Exporters/GalleryExport/GalleryRemote.cs:710
-msgid "Error while creating new album"
-msgstr "Chyba při vytváření nového alba"
-
-#: ../extensions/Exporters/GalleryExport/GalleryRemote.cs:711
-#, csharp-format
-msgid ""
-"The following error was encountered while attempting to perform the "
-"requested operation:\n"
-"{0} ({1})"
-msgstr ""
-"Při pokusu o provedení požadované operace došlo k následující chybě:\n"
-"{0} ({1})"
-
-#: ../extensions/Exporters/FacebookExport/FacebookExport.addin.xml.h:1
-msgid "F_acebook..."
-msgstr "F_acebook..."
-
-#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:99
-msgid "Waiting for authorization"
-msgstr "Čeká se na autorizaci"
-
-#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:100
-msgid ""
-"F-Spot will now launch your browser so that you can enable the permission "
-"you just selected.\n"
-"\n"
-"Once you are directed by Facebook to return to this application, click \"Ok"
-"\" below."
-msgstr ""
-"F-Spot nyní spustí váš prohlížeč, abyste mohli udělit zvolené oprávnění. \n"
-"\n"
-"Poté co vás Facebook nasměruje k návratu do této aplikace, klikněte na "
-"tlačítko \"OK\" níže."
-
-#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:279
-msgid "Too many images to export"
-msgstr "Příliš mnoho obrázků k exportu"
-
-#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:280
-msgid ""
-"Facebook only permits 60 photographs per album.  Please refine your "
-"selection and try again."
-msgstr ""
-"Facebook umožňuje vložit pouze 60 fotografií na jedno album. Upravte prosím "
-"výběr a zkuste to znovu."
-
-#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:326
-msgid "Album must have a name"
-msgstr "Album musí mít název"
-
-#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:327
-msgid "Please name your album or choose an existing album."
-msgstr "Pojmenujte prosím své album, nebo zvolte existující."
-
-#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:341
-msgid "Creating a new album failed"
-msgstr "Vytváření nového alba selhalo"
-
-#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:342
-#, csharp-format
-msgid ""
-"An error occurred creating a new album.\n"
-"\n"
-"{0}"
-msgstr ""
-"Při vytváření nového alba došlo k chybě.\n"
-"\n"
-"{0}"
-
-#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:364
-#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:660
-#: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:565
-#, csharp-format
-msgid "Uploading picture \"{0}\" ({1} of {2})"
-msgstr "Nahrává se obrázek \"{0}\" ({1} z {2})"
-
-#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:378
-#, csharp-format
-msgid "Error Uploading To Facebook: {0}"
-msgstr "Chyba při nahrávání na Facebook: {0}"
-
-#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:186
-msgid "Waiting for authentication"
-msgstr "Čeká se na autentizaci"
-
-#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:187
-msgid ""
-"F-Spot will now launch your browser so that you can log into Facebook.\n"
-"\n"
-"Once you are directed by Facebook to return to this application, click \"Ok"
-"\" below.  F-Spot will cache your session in gnome-keyring, if possible, and "
-"re-use it on future Facebook exports."
-msgstr ""
-"F-Spot nyní spustí váš prohlížeč, abyste se mohli přihlásit na Facebook.\n"
-"\n"
-"Poté, co vás Facebook nasměruje k návratu do tého aplikace, klikněte na "
-"tlačítko \"OK\" níže. F-Spot uloží vaši relaci do klíčenky GNOME a pokud to "
-"bude možné, použije ji při příštích exportů na Facebook."
-
-#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:192
-msgid "Authenticating..."
-msgstr "Autentizuje se..."
-
-#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:202
-msgid "Error logging into Facebook"
-msgstr "Chyba při přihlašování k Facebook"
-
-#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:203
-msgid ""
-"There was a problem logging into Facebook.  Check your credentials and try "
-"again."
-msgstr ""
-"Při pokusu o přihlášení k Facebook došlo k chybě. Zkontrolujte prosím své "
-"přihlašovací údaje a zkuste to znovu."
-
-#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:212
-msgid "Authorizing Session"
-msgstr "Relace se autorizuje"
-
-#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:221
-msgid "Session established, fetching user info..."
-msgstr "Relace navázána, stahují se informace o uživateli..."
-
-#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:227
-msgid "Session established, fetching friend list..."
-msgstr "Relace navázána, stahuje se seznam přátel..."
-
-#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:237
-msgid "Session established, fetching friend details..."
-msgstr "Relace navázána, stahují se podrobnosti přátel..."
-
-#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:247
-msgid "Session established, fetching photo albums..."
-msgstr "Relace navázána, stahují se fotoalba..."
-
-#. Note for translators: {0} and {1} are respectively firstname and surname of the user
-#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:260
-#, csharp-format
-msgid "{0} {1} is logged into Facebook"
-msgstr "{0} {1} je přihlášen na Facebook"
-
-#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:266
-msgid "Facebook Connection Error"
-msgstr "Chyba připojení k Facebook"
-
-#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:267
-#, csharp-format
-msgid ""
-"There was an error when downloading your information from Facebook.\n"
-"\n"
-"Facebook said: {0}"
-msgstr ""
-"Při stahování informací z Facebook došlo k chybě.\n"
-"\n"
-"Facebook říká: {0}"
-
-#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:296
-msgid "You are not logged in."
-msgstr "Nejste přihlášen."
-
-#: ../extensions/Exporters/ZipExport/ZipExport.addin.xml.h:1
-msgid "Compressed fil_e..."
-msgstr "Komprimova_ný soubor..."
-
-#: ../extensions/Exporters/ZipExport/ZipExport.cs:48
-msgid ""
-"This tool requires an active selection. Please select one or more pictures "
-"and try again"
-msgstr ""
-"Tento nástroj vyžaduje aktivní výběr. Vyberte prosím jednu nebo více "
-"fotografií a zkuste to znovu"
-
-#: ../extensions/Exporters/ZipExport/ZipExport.cs:64
-msgid "Select export folder"
-msgstr "Vybrat složku pro export"
-
-#: ../extensions/Exporters/ZipExport/ZipExport.cs:102
-msgid "Exporting files"
-msgstr "Exportují se soubory"
-
-#: ../extensions/Exporters/ZipExport/ZipExport.cs:108
-#, csharp-format
-msgid "Preparing photo \"{0}\""
-msgstr "Připravuje se fotografie \"{0}\""
-
-#: ../extensions/Exporters/ZipExport/ZipExport.glade.h:2
-msgid "_File name:"
-msgstr "Název _souboru:"
-
-#: ../extensions/Exporters/ZipExport/ZipExport.glade.h:3
-msgid "_Location:"
-msgstr "_Umístění:"
-
-#: ../extensions/Exporters/ZipExport/ZipExport.glade.h:4
-msgid "_Scale:"
-msgstr "Měřítk_o:"
-
-#: ../extensions/Tools/MergeDb/MergeDb.addin.xml.h:1
-msgid "Merge Db"
-msgstr "Sloučit Db"
-
-#: ../extensions/Tools/MergeDb/MergeDb.cs:73
-msgid "Error opening the selected file"
-msgstr "Chyba při otevírání zvoleného souboru"
-
-#: ../extensions/Tools/MergeDb/MergeDb.cs:74
-#, csharp-format
-msgid ""
-"The file you selected is not a valid or supported database.\n"
-"\n"
-"Received exception \"{0}\"."
-msgstr ""
-"Soubor, který jste vybrali, není validní nebo podporovanou databází.\n"
-"\n"
-"Zachycena výjimka \"{0}\"."
-
-#: ../extensions/Tools/MergeDb/MergeDb.glade.h:1
-msgid ""
-"<small><i>Choose the location of the database you want to import from</i></"
-"small>"
-msgstr ""
-"<small><i>Zvolte umístění databáze, ze které chcete importovat</i></small>"
-
-#: ../extensions/Tools/MergeDb/MergeDb.glade.h:2
-msgid ""
-"<small><i>Choose what to import from the selected db.\n"
-"\"New Rolls Only\" is the smart option that will avoid re-importing photos "
-"you could have imported during a previous operation.\n"
-"\"A Single Import Roll\" let you choose which roll you want to merge back.\n"
-"\"Everything\" will import everything, creating duplicates if you already "
-"imported from that database.</i></small>"
-msgstr ""
-"<small><i>Vyberte, co importovat ze zvolené databáze.\n"
-"\"Pouze nové filmy\" je volba vhodná v případě, že chcete předejít vložení "
-"fotografií, které jste importovali dříve.\n"
-"\"Samostatný film\" vás nechá vybrat, jaká data importovat.\n"
-"Volba \"Všechno\"  bude importovat všechny obrázky a pokud jste již "
-"importovali z této databáze, vzniknou duplicity.</i></small>"
-
-#: ../extensions/Tools/MergeDb/MergeDb.glade.h:6
-msgid ""
-"<small><i>Copy the images locally or keep them where they are. If you chose "
-"the later, be sure that this location will stay accessible from f-spot.</i></"
-"small>"
-msgstr ""
-"<small><i>Zkopírujte obrázky, nebo je ponechte, kde jsou. Pokud zvolíte "
-"později, ověřte, že umístění zůstalo programu f-spot přístupné.</i></small>"
-
-#: ../extensions/Tools/MergeDb/MergeDb.glade.h:7
-msgid "A Single Import Roll"
-msgstr "Samostatný film"
-
-#: ../extensions/Tools/MergeDb/MergeDb.glade.h:8
-msgid "Copy images to photos folder"
-msgstr "Kopírovat obrázky do složky Photos"
-
-#: ../extensions/Tools/MergeDb/MergeDb.glade.h:9
-msgid "Database Location:"
-msgstr "Umístění databáze:"
-
-#: ../extensions/Tools/MergeDb/MergeDb.glade.h:10
-msgid "Everything"
-msgstr "Všechno"
-
-#: ../extensions/Tools/MergeDb/MergeDb.glade.h:11
-msgid "Import:"
-msgstr "Import:"
-
-#: ../extensions/Tools/MergeDb/MergeDb.glade.h:12
-msgid "Keep the images at their original location"
-msgstr "Nechat obrázky v původním umístění"
-
-#: ../extensions/Tools/MergeDb/MergeDb.glade.h:13
-msgid "Merge another F-Spot collection"
-msgstr "Sloučit s jinou kolekcí F-Spot"
-
-#: ../extensions/Tools/MergeDb/MergeDb.glade.h:14
-msgid "New Rolls Only"
-msgstr "Pouze nové filmy"
-
-#: ../extensions/Tools/MergeDb/PickFolderDialog.cs:33
-#, csharp-format
-msgid ""
-"<big>The database refers to files contained in the <b>{0}</b> folder.\n"
-" Please select that folder so I can do the mapping.</big>"
-msgstr ""
-"<big>Databáze odkazuje na soubory obsažené ve složce <b>{0}</b>.\n"
-"Vyberte prosím tuto složku, aby mohlo proběhnout mapování.</big>"
-
-#: ../extensions/Tools/HashJob/HashJob.cs:53
-msgid ""
-"In order to detect duplicates on pictures you imported before 0.5.0, F-Spot "
-"needs to analyze your image collection. This is not done by default as it's "
-"time consuming. You can Start or Pause this update process using this dialog."
-msgstr ""
-"Aby bylo možné nalézt duplicity v obrázcích, které jste importovali pomocí "
-"verze starší než 0.5.0, musí F-Spot analyzovat vaši kolekci fotografií. "
-"Protože je to časově náročná operace, není provedena automaticky. Pomocí "
-"tohoto okna můžete spustit nebo pozastavit tento proces sami."
-
-#: ../extensions/Tools/HashJob/HashJob.cs:102
-msgid "Processing images..."
-msgstr "Obrázky jsou zpracovávány..."
-
-#: ../extensions/Tools/HashJob/HashJob.cs:108
-msgid "Stopped"
-msgstr "Zastaveno"
-
-#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.addin.xml.h:1
-msgid "_PicasaWeb..."
-msgstr "_PicasaWeb..."
-
-#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:441
-msgid "Error while creating Album"
-msgstr "Chyba při vytváření alba."
-
-#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:442
-#, csharp-format
-msgid ""
-"The following error was encountered while attempting to create an album: {0}"
-msgstr "Při pokusu o vytvoření alba došlo k následující chybě: {0}"
-
-#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:620
-#, csharp-format
-msgid "{0} Sent"
-msgstr "Odesláno {0} "
-
-#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:622
-#, csharp-format
-msgid "{0} of approx. {1}"
-msgstr "{0} z cca {1}"
-
-#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:691
-#: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:594
-#, csharp-format
-msgid "Error Uploading To Gallery: {0}"
-msgstr "Chyba při nahrávání do Galerie: {0}"
-
-#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:778
-#, csharp-format
-msgid "Available space: {0}, {1}% used out of {2}"
-msgstr "Dostupný prostor: {0}, využito {1}% z {2}"
-
-#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:891
-#, csharp-format
-msgid ""
-"The selected album has a limit of {0} pictures,\n"
-"which would be passed with the current selection of {1} images"
-msgstr ""
-"Zvolené album je limitováno na {0} fotografií,\n"
-"které by mohly být odeslány ze současného výběru čítajícího {1} obrázků"
-
-#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:3
-msgid "<b>PicasaWeb Export</b>"
-msgstr "<b>Export do PicasaWeb</b>"
-
-#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:7
-msgid ""
-"<span weight='bold' size='larger'>Your Google Account is locked</span>\n"
-msgstr ""
-"<span weight='bold' size='larger'>Váš uživatelský účet Google je uzamčen</"
-"span>\n"
-
-#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:12
-msgid ""
-"Please verify that the settings for this gallery are correct.\n"
-"Enter the letters as they are shown in the image in\n"
-"the 'Captcha' field. <i>Letters are not case-sensitive</i>"
-msgstr ""
-"Ověřte prosím, že nastavení pro tuto galerii jsou správná.\n"
-"Vložte znaky tak, jak jsou zobrazeny na obrázku\n"
-"v poli 'Captcha'. <i>Velká a malá písmena se nerozlišují</i>"
-
-#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:15
-#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:8
-msgid "Public Album"
-msgstr "Veřejné album"
-
-#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:16
-#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:10
-msgid "_Album Title:"
-msgstr "Název _alba:"
-
-#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:17
-msgid "_Autorotate"
-msgstr "_Automatické otočení"
-
-#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:18
-msgid "_Captcha:"
-msgstr "_Captcha:"
-
-#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:3
-msgid "<b>SmugMug Export</b>"
-msgstr "<b>Export do SmugMug</b>"
-
-#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:9
-msgid "_Account:"
-msgstr "Úče_t:"
-
-#: ../extensions/Exporters/SmugMugExport/SmugMugExport.addin.xml.h:1
-msgid "_SmugMug..."
-msgstr "_SmugMug..."
-
-#: ../extensions/Exporters/TabbloExport/Tabblo/Connection.cs:132
-#, csharp-format
-msgid "Uploading photo \"{0}\""
-msgstr "Nahrávám fotografii \"{0}\""
-
-#: ../extensions/Exporters/TabbloExport/Tabblo/Connection.cs:206
-msgid "Logging into Tabblo"
-msgstr "Probíhá přihlašování k Tabblo"
-
-#: ../extensions/Exporters/TabbloExport/Tabblo/Connection.cs:267
-msgid "Obtaining URL for upload"
-msgstr "Získat URL pro nahrávání"
-
-#: ../extensions/Exporters/TabbloExport/TabbloExport.addin.xml.h:1
-msgid "_Tabblo..."
-msgstr "_Tabblo..."
-
-#: ../extensions/Exporters/TabbloExport/TabbloExport.cs:308
-msgid "Done sending photos"
-msgstr "Odesílání fotografií ukončeno"
-
-#: ../extensions/Exporters/TabbloExport/TabbloExport.cs:310
-msgid "Upload complete"
-msgstr "Nahrávání ukončeno"
-
-#: ../extensions/Exporters/TabbloExport/TabbloExport.cs:316
-msgid "Error uploading to Tabblo: "
-msgstr "Chyba při nahrávání na Tabblo: "
-
-#: ../extensions/Exporters/TabbloExport/TabbloExport.glade.h:1
-msgid "<b>F-Spot tags</b>"
-msgstr "<b>Štítky F-Spot</b>"
-
-#: ../extensions/Exporters/TabbloExport/TabbloExport.glade.h:3
-msgid "<b>Tabblo account</b>"
-msgstr "<b>Účet Tabblo</b>"
-
-#: ../extensions/Exporters/TabbloExport/TabbloExport.glade.h:4
-msgid ""
-"<small><i>F-Spot tags can help you track the export status of photos. "
-"Example: Use one tag for the photos that you plan to export, and another one "
-"for those already exported. Here, you can tell F-Spot to automatically "
-"replace these tags as appropriate.</i></small>"
-msgstr ""
-"<small><i>Štítky F-Spot vám mohou pomoci kontrolovat stav exportu "
-"fotografií. Příklad: Použijte jeden štítek pro fotografie, které plánujete "
-"exportovat, a jiný pro ty, které jste již exportovali. Zde můžete aplikaci F-"
-"Spot sdělit, aby tyto štítky automaticky změnila, kdy je zapotřebí.</i></"
-"small>"
-
-#: ../extensions/Exporters/TabbloExport/TabbloExport.glade.h:6
-msgid "Rem_ove from exported photos:"
-msgstr "Vyjm_out z exportovaných fotografií:"
-
-#: ../extensions/Exporters/TabbloExport/TabbloExport.glade.h:7
-msgid "Select..."
-msgstr "Vybrat..."
-
-#: ../extensions/Exporters/TabbloExport/TabbloExport.glade.h:8
-msgid "_Attach to exported photos:"
-msgstr "Připojit k exportov_aným fotografiím:"
-
-#: ../extensions/Exporters/TabbloExport/TrustError.glade.h:1
-msgid "<b>{0}</b>."
-msgstr "<b>{0}</b>."
-
-#: ../extensions/Exporters/TabbloExport/TrustError.glade.h:2
-msgid "A trust error occured while attempting to access"
-msgstr "Při pokusu o přístup se objevil problém s důvěryhodností"
-
-#: ../extensions/Exporters/TabbloExport/TrustError.glade.h:3
-msgid "Abort this session"
-msgstr "Přerušit tuto relaci"
-
-#: ../extensions/Exporters/TabbloExport/TrustError.glade.h:4
-msgid "Always trust this site's certificate"
-msgstr "Vždy důvěřovat certifikátu serveru"
-
-#: ../extensions/Exporters/TabbloExport/TrustError.glade.h:5
-msgid "Do you wish to:"
-msgstr "Přejete si:"
-
-#: ../extensions/Exporters/TabbloExport/TrustError.glade.h:6
-msgid "Trust Error"
-msgstr "Problém s důvěryhodností"
-
-#: ../extensions/Exporters/TabbloExport/TrustError.glade.h:7
-msgid "Trust the site's certificate this once"
-msgstr "Důvěřovat certifikátu serveru pouze pro tuto relaci"
