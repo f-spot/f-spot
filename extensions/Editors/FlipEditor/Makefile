@@ -14,7 +14,7 @@ SOURCES = \
 	FlipEditor.cs
 
 install: all
-	cp *.dll ~/.gnome2/f-spot/addins/
+	cp *.dll ~/.config/f-spot/addins/
 
 mpack: FlipEditor.dll
 	mautil p FlipEditor.dll

@@ -14,7 +14,7 @@ SOURCES = \
 	ResizeEditor.cs
 
 install: all
-	cp *.dll ~/.gnome2/f-spot/addins/
+	cp *.dll ~/.config/f-spot/addins/
 
 mpack: ResizeEditor.dll
 	mautil p ResizeEditor.dll

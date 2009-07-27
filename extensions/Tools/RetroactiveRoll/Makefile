@@ -14,7 +14,7 @@ SOURCES = \
 	RetroactiveRoll.cs
 
 install: all
-	cp *.dll ~/.gnome2/f-spot/addins/
+	cp *.dll ~/.config/f-spot/addins/
 
 mpack: RetroactiveRoll.dll
 	mautil p RetroactiveRoll.dll

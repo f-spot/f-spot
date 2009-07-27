@@ -21,7 +21,7 @@ ASSEMBLY = $(NAME).dll
 all: $(ASSEMBLY)
 
 install: all
-	cp *.dll ~/.gnome2/f-spot/addins/
+	cp *.dll ~/.config/f-spot/addins/
 
 mpack: $(ASSEMBLY)
 	mautil p $(ASSEMBLY)

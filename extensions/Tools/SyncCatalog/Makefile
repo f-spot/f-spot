@@ -22,7 +22,7 @@ clean:
 	rm -f *.dll *~ *.bak *.mpack
 
 install: $(ADDIN).dll
-	cp $(ADDIN).dll ~/.gnome2/f-spot/addins/
+	cp $(ADDIN).dll ~/.config/f-spot/addins/
 
 mpack: $(ADDIN).dll
 	mautil p $(ADDIN).dll

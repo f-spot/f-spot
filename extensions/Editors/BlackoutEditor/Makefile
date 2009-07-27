@@ -14,7 +14,7 @@ SOURCES = \
 	BlackoutEditor.cs
 
 install: all
-	cp *.dll ~/.gnome2/f-spot/addins/
+	cp *.dll ~/.config/f-spot/addins/
 
 mpack: BlackoutEditor.dll
 	mautil p BlackoutEditor.dll
