@@ -538,14 +538,22 @@ namespace FSpot.Widgets
 			version_combo.Visible = true;
 			version_list.Clear ();
 			version_combo.Changed -= OnVersionComboChanged;
-			int i = 0;
-			foreach (uint version_id in photo.VersionIds) {
-				version_list.AppendValues (version_id, (photo.GetVersion (version_id) as PhotoVersion).Name, true);
-				if (version_id == photo.DefaultVersionId)
-					version_combo.Active = i;
-				i++;
+			
+			bool hasVersions = photo.VersionIds.Length > 1;
+			version_combo.Sensitive = hasVersions;
+			if (hasVersions) {
+				int i = 0;
+				foreach (uint version_id in photo.VersionIds) {
+					version_list.AppendValues (version_id, (photo.GetVersion (version_id) as PhotoVersion).Name, true);
+					if (version_id == photo.DefaultVersionId)
+						version_combo.Active = i;
+					i++;
+				}
+			} else {
+				version_list.AppendValues (photo.DefaultVersionId, photo.DefaultVersion.Name + " " + Catalog.GetString ("(No Edits)"), true);
+				version_combo.Active = 0;
+				version_combo.TooltipText = Catalog.GetString ("(No Edits)");
 			}
-			version_combo.Sensitive = photo.VersionIds.Length > 1;
 			version_combo.Changed += OnVersionComboChanged;
 
 			if (show_file_size) {
