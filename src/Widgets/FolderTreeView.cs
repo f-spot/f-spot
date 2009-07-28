@@ -67,7 +67,6 @@ namespace FSpot.Widgets
 		void PixbufDataFunc (TreeViewColumn tree_column, CellRenderer cell, TreeModel tree_model, TreeIter iter)
 		{
 			CellRendererPixbuf renderer = cell as CellRendererPixbuf;
-			string text = folder_tree_model.GetFolderNameByIter (iter);
 			
 			string stock;
 			File file = FileFactory.NewForUri (folder_tree_model.GetUriByIter (iter));
@@ -81,7 +80,7 @@ namespace FSpot.Widgets
 				else
 					stock = "gtk-directory";
 				
-			} catch (Exception e) {
+			} catch (Exception) {
 				stock = "gtk-directory";
 			}
 
