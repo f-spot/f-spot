@@ -112,14 +112,14 @@ namespace DevelopInUFRawExtension
 					args += ufraw_args;
 					if (new Gnome.Vfs.Uri (Path.ChangeExtension (raw.Uri.ToString (), ".ufraw")).Exists) {
 						// We found an ID file, use that instead of the raw file
-						idfile = "--conf=" + Path.ChangeExtension (raw.Uri.LocalPath, ".ufraw");
+						idfile = "--conf=" + GLib.Shell.Quote (Path.ChangeExtension (raw.Uri.LocalPath, ".ufraw"));
 					}
 					break;
 				case "ufraw-batch":
 					args += ufraw_batch_args;
 					if (new Gnome.Vfs.Uri (Path.Combine (FSpot.Global.BaseDirectory, "batch.ufraw")).Exists) {
 						// We found an ID file, use that instead of the raw file
-						idfile = "--conf=" + Path.Combine (FSpot.Global.BaseDirectory, "batch.ufraw");
+						idfile = "--conf=" + GLib.Shell.Quote (Path.Combine (FSpot.Global.BaseDirectory, "batch.ufraw"));
 					}
 					break;
 			}
