@@ -6,15 +6,19 @@ F-Spot's source repository is in GNOME GIT, in the module 'f-spot'.
 For information on GNOME GIT, see:
 http://live.gnome.org/Git
 
+If you are not familiar with GIT, please read this page:
+http://live.gnome.org/Git/Developers
+
 Patches
 -------
 
 If you have a patch you'd like to submit, please open a bug describing your fix
 or feature on bugzilla.gnome.org (product 'f-spot'), and submit a merge request
-on Gitorious (http://gitorious.org/f-spot).
+on Gitorious (http://gitorious.org/f-spot). The selection below describes how
+to do so:
 
 First, clone our git repository ("git clone git://git.gnome.org/f-spot"), apply
-your change and "git commit" it.
+your change and "git commit" it, preferably to a branch with a suitable name.
 
 Then create a clone of f-spot mainline on Gitorious, by selecting "Clone this
 repository on Gitorious" on the page for the "mainline" repository:
@@ -25,9 +29,14 @@ It contains a "push URL", which you'll need in the next step. It should look
 like this:
     git@gitorious.org:~yourusername/f-spot/yourusernames-clone.git
 
+Add this push URL as a remote to your local repository (replace the words
+yourname and pushURL with applicable values. You can choose the value of
+yourname, pushURL should be the push url for your repository):
+	git remote add yourname pushURL
+
 You can push the change you created in the first step to Gitorious using the
-following command:
-    git push 'push URL' branchname
+following command (again replace yourname and branchname):
+    git push yourname branchname
 
 The change should now show up on the Gitorious web page, and you can request a
 merge using the "Request merge" link on the page for your clone.  Please
