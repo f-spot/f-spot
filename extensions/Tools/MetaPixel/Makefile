@@ -6,6 +6,7 @@ PACKAGES = \
 	-pkg:glade-sharp-2.0
 
 ASSEMBLIES = \
+	-r:../../../lib/gtk-sharp-beans/gtk-sharp-beans.dll \
 	-r:../../../lib/gio-sharp/gio/gio-sharp.dll \
 	-r:Mono.Posix
 

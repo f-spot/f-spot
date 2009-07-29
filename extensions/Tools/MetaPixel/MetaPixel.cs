@@ -160,8 +160,8 @@ namespace MetaPixelExtension {
 				string prepare_command = String.Format ("--prepare -w {0} -h {1} {2} {3} {4}tables.mxt",
 									icon_x_size.Text, //Minis width
 									icon_y_size.Text, //Minis height
-									CheapEscape(freq.Current.LocalPath), //Source image
-									CheapEscape(minifile),  //Dest image
+									GLib.Shell.Quote (freq.Current.LocalPath), //Source image
+									GLib.Shell.Quote (minifile),  //Dest image
 									minidir_tmp);  //Table file
 				Log.Debug ("Executing: metapixel " + prepare_command);
 
@@ -209,8 +209,8 @@ namespace MetaPixelExtension {
 
 				string mosaic_command = String.Format ("--metapixel -l {0} {1} {2}",
 									minidir_tmp,
-									CheapEscape (freq.Current.LocalPath),
-									CheapEscape (mosaic.LocalPath));
+									GLib.Shell.Quote (freq.Current.LocalPath),
+									GLib.Shell.Quote (mosaic.LocalPath));
 				Log.Debug ("Executing: metapixel " + mosaic_command);
 				System.Diagnostics.Process mp_exe = System.Diagnostics.Process.Start ("metapixel", mosaic_command);
 				mp_exe.WaitForExit ();
@@ -263,15 +263,6 @@ namespace MetaPixelExtension {
                         string name_without_ext = System.IO.Path.GetFileNameWithoutExtension (p.Name);
                         return new System.Uri (System.IO.Path.Combine (DirectoryPath (p),  name_without_ext
                                                + " (" + version_name + ")" + ".jpg"));
-                }
-
-                private static string CheapEscape (string input)
-                {
-                        string escaped = input;
-                        escaped = escaped.Replace (" ", "\\ ");
-                        escaped = escaped.Replace ("(", "\\(");
-                        escaped = escaped.Replace (")", "\\)");
-                        return escaped;
                 }
 
                 private static string DirectoryPath (Photo p)

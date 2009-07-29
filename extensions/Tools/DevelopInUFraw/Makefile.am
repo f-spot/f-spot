@@ -17,6 +17,7 @@ REFS =					\
 	-r:$(top_builddir)/src/FSpot.Query.dll	\
 	$(LINK_SEMWEB)				\
 	$(LINK_MONO_ADDINS)			\
+	$(LINK_GTKSHARPBEANS)			\
 	$(LINK_GPHOTO2)
 
 PKGS =					\

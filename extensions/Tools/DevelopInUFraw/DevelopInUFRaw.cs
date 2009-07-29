@@ -127,8 +127,8 @@ namespace DevelopInUFRawExtension
 			args += String.Format(" --overwrite --create-id=also --compression={0} --out-type=jpeg {1} --output={2} {3}",
 				ufraw_jpeg_quality,
 				idfile,
-				CheapEscape (developed.LocalPath),
-				CheapEscape (raw.Uri.ToString ()));
+				GLib.Shell.Quote (developed.LocalPath),
+				GLib.Shell.Quote (raw.Uri.LocalPath));
 			Log.Debug (executable + " " + args);
 
 			System.Diagnostics.Process ufraw = System.Diagnostics.Process.Start (executable, args);
@@ -163,15 +163,6 @@ namespace DevelopInUFRawExtension
 			string name_without_ext = System.IO.Path.GetFileNameWithoutExtension (p.Name);
 			return new System.Uri (System.IO.Path.Combine (DirectoryPath (p),  name_without_ext
 					       + " (" + version_name + ")" + ".jpg"));
-		}
-
-		private static string CheapEscape (string input)
-		{
-			string escaped = input;
-			escaped = escaped.Replace (" ", "\\ ");
-			escaped = escaped.Replace ("(", "\\(");
-			escaped = escaped.Replace (")", "\\)");
-			return escaped;
 		}
 
 		private static string DirectoryPath (Photo p)
