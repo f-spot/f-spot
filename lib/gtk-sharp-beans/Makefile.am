@@ -8,6 +8,7 @@ SRCS =					\
 	$(srcdir)/Widget.cs		\
 	$(srcdir)/Format.cs		\
 	$(srcdir)/Priority.cs		\
+	$(srcdir)/Shell.cs		\
 	$(srcdir)/Sources.cs		\
 	$(srcdir)/Timeout.cs		\
 	$(srcdir)/PixbufFormat.cs	\
