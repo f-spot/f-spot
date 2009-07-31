@@ -45,7 +45,7 @@ namespace FSpot.Utils
 			return new Uri (builder.ToString ());
 		}
 
-		static char[] CharsToQuote = { ';', '?', ':', '@', '&', '=', '$', ',', '#' };
+		static char[] CharsToQuote = { ';', '?', ':', '@', '&', '=', '$', ',', '#', '%' };
 		// NOTE: this was copied from mono's System.Uri where it is internal.
 		public static string EscapeString (string str, bool escapeReserved, bool escapeHex, bool escapeBrackets) 
 		{
