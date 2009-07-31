@@ -5,20 +5,929 @@
 # This file is distributed under the same license as the F-Spot package.
 #
 # Priit Laes <amd@store20.com>, 2005, 2007.
-# Mattias Põldaru <mahfiaz@gmail.com>, 2007-2008.
+# Mattias Põldaru <mahfiaz@gmail.com>, 2007-2009.
 msgid ""
 msgstr ""
 "Project-Id-Version: F-Spot\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=f-"
 "spot&component=General\n"
-"POT-Creation-Date: 2009-06-15 12:52+0000\n"
-"PO-Revision-Date: 2009-06-26 02:34+0300\n"
+"POT-Creation-Date: 2009-07-30 12:10+0000\n"
+"PO-Revision-Date: 2009-07-31 13:43+0300\n"
 "Last-Translator: Mattias Põldaru <mahfiaz gmail com>\n"
 "Language-Team: Estonian <gnome-et@linux.ee>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "_CD..."
+msgstr "_CD..."
+
+msgid "Transferring Pictures"
+msgstr "Piltide edastamine"
+
+#, csharp-format
+msgid "Transferring picture \"{0}\" To CD"
+msgstr "Pildi \"{0}\" edastamine plaadile"
+
+#. Note for translators: This indicates the current photo is photo {0} of {1} out of photos
+#, csharp-format
+msgid "{0} of {1}"
+msgstr "{0} / {1}"
+
+msgid "Done Sending Photos"
+msgstr "Fotode saatmine lõpetatud"
+
+msgid "Transfer Complete"
+msgstr "Edastamine lõpetatud"
+
+msgid "Error While Transferring"
+msgstr "Viga edastamisel"
+
+msgid "Error Transferring"
+msgstr "Edastamise viga"
+
+msgid "copying..."
+msgstr "kopeerimine..."
+
+msgid "F_acebook..."
+msgstr "F_acebook..."
+
+msgid "Waiting for authorization"
+msgstr "Autoriseerimise järel ootamine"
+
+msgid ""
+"F-Spot will now launch your browser so that you can enable the permission "
+"you just selected.\n"
+"\n"
+"Once you are directed by Facebook to return to this application, click \"Ok"
+"\" below."
+msgstr ""
+"F-Spot käivitab nüüd brauseri, et sa saaksid lubada just märgitud õiguse.\n"
+"\n"
+"Kui Facebook suunab sind tagasi siia rakendusse, klõpsa all asuval nupul "
+"\"Olgu\"."
+
+msgid "Too many images to export"
+msgstr "Eksportimiseks liiga palju pilte"
+
+msgid ""
+"Facebook only permits 60 photographs per album.  Please refine your "
+"selection and try again."
+msgstr ""
+"Facebook võimaldab ainult 60 fotot albumi kohta. Muuda valikut ja proovi "
+"uuesti."
+
+msgid "Uploading Pictures"
+msgstr "Piltide üleslaadimine"
+
+msgid "Album must have a name"
+msgstr "Albumil peab olema nimi"
+
+msgid "Please name your album or choose an existing album."
+msgstr "Nimeta album või vali olemasolev album"
+
+msgid "Creating a new album failed"
+msgstr "Uue albumi loomine nurjus"
+
+#, csharp-format
+msgid ""
+"An error occurred creating a new album.\n"
+"\n"
+"{0}"
+msgstr ""
+"Uue albumi loomisel esines viga.\n"
+"\n"
+"{0}"
+
+#, csharp-format
+msgid "Uploading picture \"{0}\" ({1} of {2})"
+msgstr "Pildi \"{0}\" üleslaadimine. ({1} {2}-st)"
+
+#, csharp-format
+msgid "Error Uploading To Facebook: {0}"
+msgstr "Viga Facebook'i üleslaadimisel: {0}"
+
+msgid "Error"
+msgstr "Viga"
+
+msgid "Upload Complete"
+msgstr "Üleslaadimine lõpetatud"
+
+msgid "Waiting for authentication"
+msgstr "Autentimise järel ootamine"
+
+msgid ""
+"F-Spot will now launch your browser so that you can log into Facebook.\n"
+"\n"
+"Once you are directed by Facebook to return to this application, click \"Ok"
+"\" below.  F-Spot will cache your session in gnome-keyring, if possible, and "
+"re-use it on future Facebook exports."
+msgstr ""
+"F-Spot käivitab nüüd brauseri, et sa saaksid Facebook'i sisse logida.\n"
+"\n"
+"Kui Facebook suunab sind tagasi siia rakendusse, klõpsa all asuval nupul "
+"\"Olgu\". Kui võimalik, salvestab F-Spot sinu sessiooni Gnome võtmerõngas ja "
+"kasutab seda tulevikus Facebooki eksportimisel."
+
+msgid "Authenticating..."
+msgstr "Autentimine..."
+
+msgid "Error logging into Facebook"
+msgstr "Viga Facebook'i sisselogimisel"
+
+msgid ""
+"There was a problem logging into Facebook.  Check your credentials and try "
+"again."
+msgstr ""
+"Facebook'i sisselogimisel ei õnnestunud. Kontrolli parooli ja proovi uuesti."
+
+msgid "Authorizing Session"
+msgstr "Seansi autoriseerimine"
+
+msgid "Session established, fetching user info..."
+msgstr "Sessioon alustatud, kasutaja andmete hankimine..."
+
+msgid "Session established, fetching friend list..."
+msgstr "Sessioon alustatud, sõbranimekirja hankimine..."
+
+msgid "Session established, fetching friend details..."
+msgstr "Sessioon alustatud, sõprade andmete hankimine..."
+
+msgid "Session established, fetching photo albums..."
+msgstr "Sessioon alustatud, fotoalbumite hankimine..."
+
+#. Note for translators: {0} and {1} are respectively firstname and surname of the user
+#, csharp-format
+msgid "{0} {1} is logged into Facebook"
+msgstr "{0} {1} on Facebook'i sisse logitud"
+
+msgid "Facebook Connection Error"
+msgstr "Facebooki ühenduse viga"
+
+#, csharp-format
+msgid ""
+"There was an error when downloading your information from Facebook.\n"
+"\n"
+"Facebook said: {0}"
+msgstr ""
+"Facebook'ist andmete allalaadimisel esines viga.\n"
+"\n"
+"Facebook ütles: {0}"
+
+msgid "You are not logged in."
+msgstr "Sa ei ole sisse logitud."
+
+msgid "_23hq..."
+msgstr "_23hq..."
+
+msgid "_Flickr..."
+msgstr "_Flickr..."
+
+msgid "_Zooomr..."
+msgstr "_Zooomr..."
+
+msgid "Authorize"
+msgstr "Autoriseeri"
+
+#, csharp-format
+msgid ""
+"Return to this window after you have finished the authorization process on "
+"{0} and click the \"Complete Authorization\" button below"
+msgstr ""
+"Pärast autoriseerimisprotsessi lõpetamist serveris {0} naase siia aknasse ja "
+"kliki allpool asuval nupul \"Autoriseerimise lõpetamine\""
+
+msgid "Complete Authorization"
+msgstr "Autoriseerimise lõpetamine"
+
+#, csharp-format
+msgid "Logging into {0}"
+msgstr "Sisselogimine {0}"
+
+msgid "Checking credentials..."
+msgstr "Tunnistuse kontroll..."
+
+#, csharp-format
+msgid "Welcome {0} you are connected to {1}"
+msgstr "Tere {0}, oled ühendatud masinaga {1}"
+
+#, csharp-format
+msgid "Sign in as a different user"
+msgstr "Logi sisse teise kasutajana"
+
+#, csharp-format
+msgid "Used {0} of your allowed {1} monthly quota"
+msgstr "Igakuisest kvoodist {1} on kasutusel {0}"
+
+msgid "Unable to log on"
+msgstr "Sisselogimine ei õnnestu"
+
+#, csharp-format
+msgid "Waiting for response {0} of {1}"
+msgstr "Vastuse ootamine {0} / {1}"
+
+#, csharp-format
+msgid "Uploading picture \"{0}\""
+msgstr "Pildi \"{0}\" üleslaadimine"
+
+#, csharp-format
+msgid "Error Uploading To {0}: {1}"
+msgstr "Viga üleslaadimisel serverisse {0}: {1}"
+
+msgid "Unable to log on."
+msgstr "Sisselogimine ei õnnestu."
+
+#, csharp-format
+msgid ""
+"F-Spot was unable to log on to {0}.  Make sure you have given the "
+"authentication using {0} web browser interface."
+msgstr ""
+"F-Spot ei suutnud logida serverisse {0}. Palun veendu {0} veebilehitseja "
+"abil, et sind on autenditud."
+
+msgid "<b>Account</b>"
+msgstr "<b>Konto</b>"
+
+msgid "<b>Photos</b>"
+msgstr "<b>Fotod</b>"
+
+msgid "<b>Style</b>"
+msgstr "<b>Stiil</b>"
+
+msgid "<b>Viewing permissions</b>"
+msgstr "<b>Vaatamise õigused</b>"
+
+msgid "Export"
+msgstr "Eksportimine"
+
+msgid "Export tag _hierarchy"
+msgstr "_Ekspordi märksõnade hierarhia"
+
+msgid ""
+"F-Spot needs your authorization in order to upload photos to your {0} "
+"account. Press the \"Authorize\" button to open a web browser and give F-"
+"Spot the authorization. "
+msgstr ""
+"Fotosde {0} kontole üles laadimiseks tuleb F-Spot autoriseerida. Vajuta "
+"nuppu \"Autoriseerimine\", et avada veebisirvija ja autoriseerida F-Spot."
+
+msgid "Ignore _top level tags"
+msgstr "Ignoreeri kõige ülemise taseme märksõnu"
+
+msgid "Private"
+msgstr "Isiklik"
+
+msgid "Public"
+msgstr "Avalik"
+
+msgid "Strip _metadata"
+msgstr "Eemalda _metaandmed"
+
+msgid "Visible to Family"
+msgstr "Nähtav perele"
+
+msgid "Visible to Friends"
+msgstr "Nähtav sõpradele"
+
+msgid "_Export"
+msgstr "_Eksportimine"
+
+msgid "_Export tags"
+msgstr "_Ekspordi märksõnad"
+
+msgid "_Resize to: "
+msgstr "_Muuda suurust kuni:"
+
+msgid "_View photos in browser when done uploading"
+msgstr "Kui üleslaadimine on valmis, kuva fotod veebilehitsejas"
+
+msgid "pixels"
+msgstr "pikslit"
+
+msgid "F_older..."
+msgstr "_Asukoht..."
+
+msgid "Select Export Folder"
+msgstr "Vali eksportimise kaust"
+
+msgid "Building Gallery"
+msgstr "Galerii loomine"
+
+#, csharp-format
+msgid "Error uploading picture \"{0}\" to Gallery:{2}{1}"
+msgstr "Viga pildi \"{0}\" üleslaadimisel Gallery'sse:{2}{1}"
+
+msgid "Error: Error while transferring; Aborting"
+msgstr "Viga: viga faili edastamisel; katkestatud"
+
+msgid "Error: File Already Exists; Aborting"
+msgstr "Viga: fail on juba olemas; katkestatud"
+
+#. Note for translators: light as clear, opposite as dark
+msgid "Light"
+msgstr "Hele"
+
+msgid "Dark"
+msgstr "Tume"
+
+#. Abbreviation of previous
+msgid "Prev"
+msgstr "Eelmine"
+
+msgid "Index"
+msgstr "Indeks"
+
+#. Don't care otherwise, Tags sounds reasonable
+msgid "Tags"
+msgstr "Märksõnad"
+
+msgid "Next"
+msgstr "Järgmine"
+
+msgid "Gallery generated by"
+msgstr "Galerii genereeris"
+
+msgid "Show Styles"
+msgstr "Näita stiile"
+
+msgid "Hide Styles"
+msgstr "Peida stiilid"
+
+msgid "Tags: "
+msgstr "Märksõnad:"
+
+msgid "Page:"
+msgstr "Leht:"
+
+msgid "\n"
+msgstr "\n"
+
+msgid "<b>Destination</b>"
+msgstr "<b>Sihtkaust</b>"
+
+msgid "<b>Export Method</b>"
+msgstr "<b>Eksportimise meetod</b>"
+
+msgid "Autorotate"
+msgstr "Automaatne pildi pööramine"
+
+msgid "Create _gallery using \"Original\""
+msgstr "Loo \"Original\" _galerii"
+
+msgid "Create standalone _web gallery"
+msgstr "Eraldiseisva _veebigalerii loomine"
+
+msgid "D_escription:"
+msgstr "_Kirjeldus:"
+
+msgid "Export _tags"
+msgstr "Ekspordi _märksõnad"
+
+msgid "Export tag _icons"
+msgstr "Ekspordi märksõnade _ikoonid"
+
+msgid "Folder Export"
+msgstr "Kausta eksportimine"
+
+msgid "G_allery Name:"
+msgstr "Galerii _nimi:"
+
+msgid "Open _destination when done exporting"
+msgstr "_Sihtkausta avamine pärast eksportimise lõppemist"
+
+msgid "_Folder:"
+msgstr "_Asukoht:"
+
+msgid "_Save the files only"
+msgstr "_Salvesta ainult failid"
+
+msgid "Web _Gallery..."
+msgstr "Veebi_galerii..."
+
+msgid ""
+"Cannot connect to a Gallery for which the version is unknown.\n"
+"Please check that you have Remote plugin 1.0.8 or later"
+msgstr ""
+"Gallery'ga, mille versioon pole teada, pole võimalik ühenduda.\n"
+"Veendu, et su Kaugplugina versioon on 1.0.8 või uuem"
+
+msgid "Invalid URL"
+msgstr "Vigane URL"
+
+msgid "The gallery URL entry does not appear to be a valid URL"
+msgstr "Galerii URL pole sobiv"
+
+msgid "Error while connecting to Gallery"
+msgstr "Viga galeriiga ühendumisel"
+
+#, csharp-format
+msgid "The following error was encountered while attempting to log in: {0}"
+msgstr "Sisselogimiskatsel esines järgnev viga: {0}"
+
+msgid "A Gallery with this name already exists"
+msgstr "Sellenimeline galerii on juba olemas"
+
+#, csharp-format
+msgid ""
+"There is already a Gallery with the same name in your registered Galleries. "
+"Please choose a unique name."
+msgstr ""
+"Registreeritud galeriide hulgas juba on selle nimega galerii. Vali unikaalne "
+"nimi."
+
+msgid "(TopLevel)"
+msgstr "(Kõrgeim tase)"
+
+msgid "Invalid Gallery name"
+msgstr "Galerii nimi sobimatu"
+
+msgid ""
+"The gallery name contains invalid characters.\n"
+"Only letters, numbers, - and _ are allowed"
+msgstr ""
+"Galerii nimi sisaldab sobimatuid tähemärke.\n"
+"Lubatud on ainult tähed, numbrid, - ja _"
+
+#, csharp-format
+msgid "Error uploading picture \"{0}\" to Gallery: {1}"
+msgstr "Viga pildi \"{0}\" üleslaadimisel Gallery'sse: {1}"
+
+msgid "(No Gallery)"
+msgstr "(Galeriisid pole)"
+
+msgid "(Not Connected)"
+msgstr "(Pole ühendatud)"
+
+msgid "(No Albums)"
+msgstr "(Albumeid pole)"
+
+msgid "No account selected"
+msgstr "Konto pole valitud"
+
+msgid "<b>Album</b>"
+msgstr "<b>Album</b>"
+
+msgid "<b>Gallery</b>"
+msgstr "<b>Galerii</b>"
+
+msgid "<span weight='bold' size='larger'>Error Connecting to Gallery</span>\n"
+msgstr "<span weight='bold' size='larger'>Viga Gallery'ga ühendumisel</span>\n"
+
+msgid "Export _titles and comments"
+msgstr "_Pealkirjade ja kommentaaride eksportimine"
+
+msgid "Open _album in browser when done uploading"
+msgstr "Kui üleslaadimine on lõpetatud avatakse _album veebilehitsejas"
+
+msgid "Please verify that the settings for this gallery are correct."
+msgstr "Palun veendu, et selle galerii sätted on õiged."
+
+msgid "U_RL:"
+msgstr "U_RL:"
+
+msgid "_Album Name:"
+msgstr "_Albumi nimi:"
+
+msgid "_Description:"
+msgstr "Kirjel_dus:"
+
+msgid "_Export to Album:"
+msgstr "_Ekspordi albumisse:"
+
+msgid "_Gallery Name:"
+msgstr "Galerii _nimi:"
+
+msgid "_Gallery:"
+msgstr "_Galerii:"
+
+msgid "_Parent Album:"
+msgstr "Ema_album:"
+
+msgid "_Password:"
+msgstr "_Parool:"
+
+msgid "_Title:"
+msgstr "_Pealkiri:"
+
+msgid "_Username:"
+msgstr "_Kasutajanimi:"
+
+msgid "Error reading server response"
+msgstr "Viga serveri vastuse lugemisel"
+
+#. failed to find the response
+msgid "Server returned response without Gallery content"
+msgstr "Serveri vastus ei sisalda Gallery infot"
+
+msgid "Error while creating new album"
+msgstr "Viga albumi loomisel"
+
+#, csharp-format
+msgid ""
+"The following error was encountered while attempting to perform the "
+"requested operation:\n"
+"{0} ({1})"
+msgstr ""
+"Nõutud operatsiooni teostamise katsel esines järgnev viga:\n"
+"{0} ({1})"
+
+msgid "_PicasaWeb..."
+msgstr "_PicasaWeb..."
+
+msgid "Error while creating Album"
+msgstr "Viga albumi loomisel"
+
+#, csharp-format
+msgid ""
+"The following error was encountered while attempting to create an album: {0}"
+msgstr "Albumi loomise katsel esines järgnev viga: {0}"
+
+#, csharp-format
+msgid "{0} Sent"
+msgstr "{0} saadetud"
+
+#, csharp-format
+msgid "{0} of approx. {1}"
+msgstr "{0} arvestuslikust {1}-st"
+
+#, csharp-format
+msgid "Error Uploading To Gallery: {0}"
+msgstr "Viga galeriisse \"{0}\" üleslaadimisel."
+
+#, csharp-format
+msgid "Available space: {0}, {1}% used out of {2}"
+msgstr "Vaba ruum: {0}, {1}% {2}-st kasutatud"
+
+#, csharp-format
+msgid ""
+"The selected album has a limit of {0} pictures,\n"
+"which would be passed with the current selection of {1} images"
+msgstr ""
+"Valitud album on piiratud {0} pildiga,\n"
+"piirang ületataks praegu valitud piltide arvuga {1}."
+
+msgid "<b>PicasaWeb Export</b>"
+msgstr "<b>PicasaWeb eksport</b>"
+
+msgid ""
+"<span weight='bold' size='larger'>Your Google Account is locked</span>\n"
+msgstr ""
+"<span weight='bold' size='larger'>Sinu Google konto on lukustatud</span>\n"
+
+msgid ""
+"Please verify that the settings for this gallery are correct.\n"
+"Enter the letters as they are shown in the image in\n"
+"the 'Captcha' field. <i>Letters are not case-sensitive</i>"
+msgstr ""
+"Palun veendu, et selle galerii sätted on õiged.\n"
+"Sisesta tähed, nagu need on 'Captcha' pildil. <i>Tähed ei ole tõstutundlikud."
+"</i>"
+
+msgid "Public Album"
+msgstr "Avalik album"
+
+msgid "_Album Title:"
+msgstr "_Albumi pealkiri:"
+
+msgid "_Autorotate"
+msgstr "_Pööra automaatselt"
+
+msgid "_Captcha:"
+msgstr "_Captcha:"
+
+msgid "_SmugMug..."
+msgstr "_SmugMug..."
+
+msgid "<b>SmugMug Export</b>"
+msgstr "<b>SmugMug eksport</b>"
+
+msgid "_Account:"
+msgstr "_Konto:"
+
+#, csharp-format
+msgid "Uploading photo \"{0}\""
+msgstr "Foto \"{0}\" üleslaadimine"
+
+msgid "Logging into Tabblo"
+msgstr "Tabblo'sse sisselogimine"
+
+msgid "Obtaining URL for upload"
+msgstr "Üleslaadimiseks URL'i hankimine"
+
+msgid "_Tabblo..."
+msgstr "_Tabblo..."
+
+msgid "Done sending photos"
+msgstr "Fotode saatmine lõpetatud"
+
+msgid "Upload complete"
+msgstr "Üleslaadimine lõpetatud"
+
+msgid "Error uploading to Tabblo: "
+msgstr "Viga Tabblo'sse üleslaadimisel:"
+
+msgid "<b>F-Spot tags</b>"
+msgstr "<b>F-Spoti märksõnad</b>"
+
+msgid "<b>Tabblo account</b>"
+msgstr "<b>Tabblo konto</b>"
+
+msgid ""
+"<small><i>F-Spot tags can help you track the export status of photos. "
+"Example: Use one tag for the photos that you plan to export, and another one "
+"for those already exported. Here, you can tell F-Spot to automatically "
+"replace these tags as appropriate.</i></small>"
+msgstr ""
+"<small><i>F-Spoti märksõnad aitavad sul jälgida fotode eksportimist. Näiteks "
+"võid kasutada ühte märksõna fotodel, mida plaanid eksportida, ning teist "
+"fotodel, mis on juba eksporditud. Siin saab määrata, et F-Spot ise asendaks "
+"need märksõnad vastavalt.</i></small>"
+
+msgid "Rem_ove from exported photos:"
+msgstr "Eksporditud fotodelt _eemaldatakse:"
+
+msgid "Select..."
+msgstr "Vali..."
+
+msgid "_Attach to exported photos:"
+msgstr "Eksporditud fotodele _lisatakse:"
+
+msgid "<b>{0}</b>."
+msgstr "<b>{0}</b>."
+
+msgid "A trust error occured while attempting to access"
+msgstr "Ühenduse loomist takistas usalduse puudus"
+
+msgid "Abort this session"
+msgstr "Katkesta see sessioon"
+
+msgid "Always trust this site's certificate"
+msgstr "Alati usalda selle lehekülje sertifikaati"
+
+msgid "Do you wish to:"
+msgstr "Kas sa tahad:"
+
+msgid "Trust Error"
+msgstr "Usaldus puudub"
+
+msgid "Trust the site's certificate this once"
+msgstr "Usalda sel korral selle lehekülje sertifikaati"
+
+msgid "Compressed fil_e..."
+msgstr "Tihendatud _fail..."
+
+msgid "No selection available"
+msgstr "Midagi ei ole valitud"
+
+msgid ""
+"This tool requires an active selection. Please select one or more pictures "
+"and try again"
+msgstr ""
+"See tööriist vajab aktiivset märgistust. Vali vähemalt üks pilt ja proovi "
+"uuesti"
+
+msgid "Select export folder"
+msgstr "Vali eksportimise kaust"
+
+msgid "Exporting files"
+msgstr "Failide eksportimine"
+
+#, csharp-format
+msgid "Preparing photo \"{0}\""
+msgstr "Foto \"{0}\" ettevalmistamine"
+
+msgid "_Create"
+msgstr "_Loo"
+
+msgid "_File name:"
+msgstr "_Faili nimi:"
+
+msgid "_Location:"
+msgstr "_Asukoht:"
+
+msgid "_Scale:"
+msgstr "_Skaala:"
+
+msgid ""
+"In order to detect duplicates on pictures you imported before 0.5.0, F-Spot "
+"needs to analyze your image collection. This is not done by default as it's "
+"time consuming. You can Start or Pause this update process using this dialog."
+msgstr ""
+"Et tuvastada duplikaate enne 0.5.0 versiooni imporditud piltidest, peab F-"
+"Spot analüüsima sinu pildikollektsiooni. Vaikimisi seda ei tehta, kuna "
+"selleks kulub aega. Siit dialoogist saab uuendamisprotsessi käivitada ja "
+"pausida."
+
+msgid "Processing images..."
+msgstr "Piltide töötlemine..."
+
+msgid "Stopped"
+msgstr "Peatatud"
+
+msgid "Merge Db"
+msgstr "Ühenda andmebaasid"
+
+msgid "Error opening the selected file"
+msgstr "Viga valitud faili avamisel"
+
+#, csharp-format
+msgid ""
+"The file you selected is not a valid or supported database.\n"
+"\n"
+"Received exception \"{0}\"."
+msgstr ""
+"Valitud fail ei ole sobiv ega toetatud andmebaas.\n"
+"\n"
+"Saadi erand \"{0}\"."
+
+msgid ""
+"<small><i>Choose the location of the database you want to import from</i></"
+"small>"
+msgstr ""
+"<small><i>Vali andmebaasi asukoht, millest sa tahad pilte importida</i></"
+"small>"
+
+msgid ""
+"<small><i>Choose what to import from the selected db.\n"
+"\"New Rolls Only\" is the smart option that will avoid re-importing photos "
+"you could have imported during a previous operation.\n"
+"\"A Single Import Roll\" let you choose which roll you want to merge back.\n"
+"\"Everything\" will import everything, creating duplicates if you already "
+"imported from that database.</i></small>"
+msgstr ""
+"<small><i>Vali mida andmebaasist importida.\n"
+"\"Ainult uued rullid\" on nutikas valik, mis hoidub varem imporditud fotode "
+"uuesti importimisest.\n"
+"\"Üksainus rull\" laseb sul valida millist rulli sa tahad tagasi liita.\n"
+"\"Kõik\" impordib kõik, luues duplikaadid, kui sa oled sellest andmebaasist "
+"juba importinud.</i></small>"
+
+msgid ""
+"<small><i>Copy the images locally or keep them where they are. If you chose "
+"the later, be sure that this location will stay accessible from f-spot.</i></"
+"small>"
+msgstr ""
+"<small><i>Kopeeri pildid või jäta need esialgsesse asukohta. Viimase "
+"valimisel  veendu, et asukoht jääb f-spotile kättseaadavaks.</i></small>"
+
+msgid "A Single Import Roll"
+msgstr "Üks importrull"
+
+msgid "Copy images to photos folder"
+msgstr "Kopeeri failid piltide kausta"
+
+msgid "Database Location:"
+msgstr "Andmebaasi asukoht:"
+
+msgid "Everything"
+msgstr "Kõik"
+
+msgid "Import:"
+msgstr "Impordi:"
+
+msgid "Keep the images at their original location"
+msgstr "Jäta pildid nende esialgsesse asukohta"
+
+msgid "Merge another F-Spot collection"
+msgstr "Liida juurde teine F-spoti kollektsioon"
+
+msgid "New Rolls Only"
+msgstr "Ainult uued rullid"
+
+msgid "Skip"
+msgstr "Jäta vahele"
+
+#, csharp-format
+msgid ""
+"<big>The database refers to files contained in the <b>{0}</b> folder.\n"
+" Please select that folder so I can do the mapping.</big>"
+msgstr ""
+"<big>Andmebaas viitab failidele kataloogis <b>{0}</b>\n"
+"Palun vali see kataloog, et kirjed saaks sellega seostada.</big>"
+
+msgid "F-Spot Photo Manager"
+msgstr "F-Spot fotoalbum"
+
+msgid "Organize, enjoy, and share your photos"
+msgstr "Naudi fotoalbumi korrastamist ning fotode jagamist"
+
+msgid "Photo Manager"
+msgstr "Fotode haldaja"
+
+msgid "Import into F-Spot"
+msgstr "Impordi F-Spot'i"
+
+msgid "F-Spot Photo Viewer"
+msgstr "F-Spot fotoalbum"
+
+msgid "Photo Viewer"
+msgstr "Fotonäitaja"
+
+msgid "File not found"
+msgstr "Faili ei leitud"
+
+#, c-format
+msgid "Unknown transform type %d"
+msgstr "Tundmatu muutmise tüüp %d"
+
+msgid "Operation failed"
+msgstr "Tegevus nurjus"
+
+msgid "Package"
+msgstr "Pakk"
+
+msgid "Extension Installation"
+msgstr "Lisade paigaldamine"
+
+msgid "<b>Select the extensions to install and click on Next</b>"
+msgstr "<b>Vali millised lisad paigaldada ja kliki nupul Edasi</b>"
+
+msgid "Install from:"
+msgstr "Lisade asukoht:"
+
+msgid "_Repositories..."
+msgstr "_Hoidlad..."
+
+msgid "Show all packages"
+msgstr "Näita kõiki pakke"
+
+msgid "Show new versions only"
+msgstr "Näita ainult uusi versioone"
+
+msgid "Show updates only"
+msgstr "Näita ainult uuendusi"
+
+msgid "_Unselect All"
+msgstr "_Eemalda valik"
+
+msgid "Select _All"
+msgstr "Vali _kõik"
+
+msgid "label124"
+msgstr "label124"
+
+msgid "Overall Progress:"
+msgstr "Üldine edenemine:"
+
+msgid "Downloading extensions..."
+msgstr "Lisade allalaadimine..."
+
+msgid "Extension Manager"
+msgstr "Lisade haldaja"
+
+msgid "Additional extensions are required to perform this operation."
+msgstr "Tegevuse sooritamiseks on vaja veel lisasid."
+
+msgid "The following extensions will be installed:"
+msgstr "Paigaldatakse järgnevad lisad:"
+
+msgid "<big><b>Extension Manager</b></big>"
+msgstr "<big><b>F-Spot lisade haldaja</b></big>"
+
+msgid "The following extensions are currently installed:"
+msgstr "Hetkel on paigaldatud järgnevad lisad:"
+
+msgid "_Install Extensions..."
+msgstr "Lisade _paigaldamine..."
+
+msgid "_Uninstall..."
+msgstr "_Eemaldamine..."
+
+msgid "Enable"
+msgstr "Luba"
+
+msgid "Disable"
+msgstr "Keela"
+
+msgid "Details"
+msgstr "Üksikasjad"
+
+msgid "Extension Repository Management"
+msgstr "Lisade hoidlate haldamine"
+
+msgid "Add New Repository"
+msgstr "Lisa uus hoidla"
+
+msgid "Select the location of the repository you want to register:"
+msgstr "Vali registreeritava hoidla asukoht:  "
+
+#. Container child vbox89.Gtk.Box+BoxChild
+msgid "Register an on-line repository"
+msgstr "Registreeri internetihoidla"
+
+msgid "Url:"
+msgstr "Url:"
+
+#. Container child vbox89.Gtk.Box+BoxChild
+msgid "Register a local repository"
+msgstr "Registreeri kohalik hoidla"
+
+msgid "Path:"
+msgstr "Asukoht:"
+
+msgid "Browse..."
+msgstr "Sirvi..."
 
 msgid "Version:"
 msgstr "Versioon:"
@@ -113,108 +1022,6 @@ msgstr "Url"
 msgid "Exception occurred: {0}"
 msgstr "Erandlik olukord: {0}"
 
-msgid "Package"
-msgstr "Pakk"
-
-msgid "Extension Installation"
-msgstr "Lisade paigaldamine"
-
-msgid "<b>Select the extensions to install and click on Next</b>"
-msgstr "<b>Vali millised lisad paigaldada ja kliki nupul Edasi</b>"
-
-msgid "Install from:"
-msgstr "Lisade asukoht:"
-
-msgid "_Repositories..."
-msgstr "_Hoidlad..."
-
-msgid "Show all packages"
-msgstr "Näita kõiki pakke"
-
-msgid "Show new versions only"
-msgstr "Näita ainult uusi versioone"
-
-msgid "Show updates only"
-msgstr "Näita ainult uuendusi"
-
-msgid "_Unselect All"
-msgstr "_Eemalda valik"
-
-msgid "Select _All"
-msgstr "Vali _kõik"
-
-msgid "label124"
-msgstr "label124"
-
-msgid "Overall Progress:"
-msgstr "Üldine edenemine:"
-
-msgid "Downloading extensions..."
-msgstr "Lisade allalaadimine..."
-
-msgid "Extension Manager"
-msgstr "Lisade haldaja"
-
-msgid "Additional extensions are required to perform this operation."
-msgstr "Tegevuse sooritamiseks on vaja veel lisasid."
-
-msgid "The following extensions will be installed:"
-msgstr "Paigaldatakse järgnevad lisad:"
-
-msgid "<big><b>Extension Manager</b></big>"
-msgstr "<big><b>F-Spot lisade haldaja</b></big>"
-
-msgid "The following extensions are currently installed:"
-msgstr "Hetkel on paigaldatud järgnevad lisad:"
-
-msgid "_Install Extensions..."
-msgstr "Lisade _paigaldamine..."
-
-msgid "_Uninstall..."
-msgstr "_Eemaldamine..."
-
-msgid "Enable"
-msgstr "Luba"
-
-msgid "Disable"
-msgstr "Keela"
-
-msgid "Error"
-msgstr "Viga"
-
-msgid "Details"
-msgstr "Üksikasjad"
-
-msgid "Extension Repository Management"
-msgstr "Lisade hoidlate haldamine"
-
-msgid "Add New Repository"
-msgstr "Lisa uus hoidla"
-
-msgid "Select the location of the repository you want to register:"
-msgstr "Vali registreeritava hoidla asukoht:  "
-
-#. Container child vbox89.Gtk.Box+BoxChild
-msgid "Register an on-line repository"
-msgstr "Registreeri internetihoidla"
-
-msgid "Url:"
-msgstr "Url:"
-
-#. Container child vbox89.Gtk.Box+BoxChild
-msgid "Register a local repository"
-msgstr "Registreeri kohalik hoidla"
-
-msgid "Path:"
-msgstr "Asukoht:"
-
-msgid "Browse..."
-msgstr "Sirvi..."
-
-#, csharp-format
-msgid "(provided by {0})"
-msgstr "(edastas {0})"
-
 msgid "Disabled extensions can't be loaded."
 msgstr "Keelatud lisasid pole võimalik laadida."
 
@@ -230,33 +1037,9 @@ msgstr "Nõutud lisa '{0}' on keelatud."
 msgid "The required extension '{0}' is not installed."
 msgstr "Nõutud lisa '{0}' ei ole paigaldatud."
 
-msgid "F-Spot Photo Viewer"
-msgstr "F-Spot fotoalbum"
-
-msgid "Photo Viewer"
-msgstr "Fotonäitaja"
-
-msgid "F-Spot Photo Manager"
-msgstr "F-Spot fotoalbum"
-
-msgid "Import into F-Spot"
-msgstr "Impordi F-Spot'i"
-
-msgid "Photo Manager"
-msgstr "Fotode haldaja"
-
-msgid "Organize, enjoy, and share your photos"
-msgstr "Naudi fotoalbumi korrastamist ning fotode jagamist"
-
-msgid "File not found"
-msgstr "Faili ei leitud"
-
-#, c-format
-msgid "Unknown transform type %d"
-msgstr "Tundmatu muutmise tüüp %d"
-
-msgid "Operation failed"
-msgstr "Tegevus nurjus"
+#, csharp-format
+msgid "(provided by {0})"
+msgstr "(edastas {0})"
 
 msgid "Preview"
 msgstr "Eelvaade"
@@ -267,9 +1050,6 @@ msgstr "Asukoht"
 msgid "File"
 msgstr "Fail"
 
-msgid "Index"
-msgstr "Indeks"
-
 msgid "Select Tag"
 msgstr "Vali märksõna"
 
@@ -279,9 +1059,6 @@ msgstr "Eelvaadete allalaadimine"
 #, csharp-format
 msgid "Downloading Preview of {0}"
 msgstr "{0} eelvaate allalaadimine"
-
-msgid "Transferring Pictures"
-msgstr "Piltide edastamine"
 
 #, csharp-format
 msgid "Copying file {0} of {1}"
@@ -418,6 +1195,20 @@ msgstr "Pehme fookus"
 msgid "Straighten"
 msgstr "Sirgestamine"
 
+msgid "Import error"
+msgstr "Importimise viga"
+
+#, csharp-format
+msgid "Error importing {0}{2}{2}{1}"
+msgstr "Viga {0}{2}{2}{1} importimisel"
+
+#, csharp-format
+msgid "No way to save files of type \"{0}\""
+msgstr "Ei ole võimalust salvestada \"{0}\" tüüpi faile"
+
+msgid "Unhandled exception"
+msgstr "Käsitsematu erandolukord"
+
 msgid "Copy Photo Locat_ion"
 msgstr "Kopeeri foto _asukoht"
 
@@ -448,22 +1239,347 @@ msgstr "_Kustuta kettalt"
 msgid "_Remove From Catalog"
 msgstr "_Eemalda kataloogist"
 
-msgid "Import error"
-msgstr "Importimise viga"
+msgid " "
+msgstr " "
 
-#, csharp-format
-msgid "Error importing {0}{2}{2}{1}"
-msgstr "Viga {0}{2}{2}{1} importimisel"
+msgid "1024 px"
+msgstr "1024 px"
 
-msgid "Skip"
-msgstr "Jäta vahele"
+msgid "320 px"
+msgstr "320 px"
 
-#, csharp-format
-msgid "No way to save files of type \"{0}\""
-msgstr "Ei ole võimalust salvestada \"{0}\" tüüpi faile"
+msgid "480 px"
+msgstr "480 px"
 
-msgid "Unhandled exception"
-msgstr "Käsitsematu erandolukord"
+msgid "640 px"
+msgstr "640 px"
+
+msgid "800 px"
+msgstr "800 px"
+
+msgid "<b></b>"
+msgstr "<b></b>"
+
+msgid "<b>Co_rrections</b>"
+msgstr "<b>_Parandused</b>"
+
+msgid "<b>Image Interpolation</b>"
+msgstr "<b>Pildi interpoleerimine</b>"
+
+msgid "<b>Max Rating</b>"
+msgstr "<b>Suurim hinnang</b>"
+
+msgid "<b>Min Rating</b>"
+msgstr "<b>Vähim hinnang</b>"
+
+msgid "<b>Size</b>"
+msgstr "<b>Suurus</b>"
+
+msgid "<b>Summary</b>"
+msgstr "<b>Kokkuvõte</b>"
+
+msgid "<b>Transparent Parts</b>"
+msgstr "<b>Läbipaistvad osad</b>"
+
+msgid "<b>View all pictures imported</b>"
+msgstr "<b>Näita kõiki imporditud pilte</b>"
+
+msgid "<b>_White Balance</b>"
+msgstr "<b>_Valge tasakaal</b>"
+
+msgid ""
+"<small><i>Enable this to allow interpolation on zoomed images. You shouldn't "
+"disable this for viewing photos, but disabling the interpolation could be "
+"usefull in icon design.</i></small>"
+msgstr ""
+"<small><i>Märgi see, et lubada suurendatud piltide interpoleerimine. "
+"Interpoleerimist ei peaks keelama fotode kuvamisel, kuid keelamine võib "
+"osutuda kasulikuks näiteks ikoonide disainimisel.</i></small>"
+
+msgid ""
+"<small><i>You can choose how to display transparent parts in images. This "
+"option has no effect on photos, but setting this as check pattern or custom "
+"color could be usefull when viewing icons or other artworks with transparent "
+"parts.</i></small>"
+msgstr ""
+"<small><i>Sa saad valida, kuidas näidatakse piltide läbipaistvaid osi. See "
+"ei muuda midagi fotode kuvamises, kuid selle määramine malelaua mustrile või "
+"muule värvile võib osutuda kasulikuks ikoonide või läbipaistvate osadega "
+"piltide vaatamisel.</i></small>"
+
+msgid "As _background"
+msgstr "Taustaks"
+
+msgid "As _custom color: "
+msgstr "Muu _värvina:"
+
+msgid "As check _pattern"
+msgstr "_Malelaua mustrina"
+
+msgid "Attach Tags:"
+msgstr "Ühenda märksõnadega:"
+
+msgid "Attach tag:"
+msgstr "Ühenda märksõnaga:"
+
+msgid "CD"
+msgstr "CD"
+
+msgid "C_ontrast:"
+msgstr "_Kontrastsus:"
+
+msgid "Camera Selection"
+msgstr "Kaamera valik"
+
+msgid "Copy files to the Photos folder"
+msgstr "Failid kopeeritakse piltide kausta"
+
+msgid "Create Mail"
+msgstr "Uue e-kirja loomine"
+
+msgid "Create _icon for this tag when first used"
+msgstr "Sellele märksõnale luuakse _ikoon esmakasutusel"
+
+msgid "Create a mail with the selected photos (possibly resized) attached"
+msgstr "Märgitud fotodest (muudetud suurusega) kaasapanekuga meili loomine"
+
+msgid "Detect duplicates"
+msgstr "Tuvasta duplikaadid"
+
+msgid "Display File _Names"
+msgstr "_Näita failinimesid"
+
+msgid "Display only those photos that were imported in specified Rolls."
+msgstr "Kuva ainult kindlatelt rullidelt imporditud fotod."
+
+msgid "Do not send a mail"
+msgstr "Ära saada e-kirja"
+
+msgid "E-_Mail:"
+msgstr "_E-post:"
+
+msgid "E_xport titles and comments"
+msgstr "E_kspordi nimed ja kommentaarid"
+
+msgid "Estimated new size"
+msgstr "Arvestuslik maht"
+
+msgid "Extra large"
+msgstr "Eriti suur"
+
+msgid "F-Spot View"
+msgstr "F-Spot vaade"
+
+msgid "Filter on selected rolls"
+msgstr "Filtreeri märgitud rullid"
+
+msgid "G_allery:"
+msgstr "_Galerii:"
+
+msgid "Gallery"
+msgstr "Galerii"
+
+msgid "Import"
+msgstr "Importimine"
+
+#. Translators: this string means 'source of import'
+msgid "Import Source:"
+msgstr "Importimise allikas:"
+
+msgid "Include subfolders"
+msgstr "Kaasa alakaustad"
+
+msgid "Large"
+msgstr "Suur"
+
+msgid "Manage your custom selection ratios"
+msgstr "Halda kohaldatud valikupiirkondi"
+
+msgid "Medium"
+msgstr "Keskmine"
+
+msgid "Number of photos in selected rolls:"
+msgstr "Piltide arv märgitud rullides :"
+
+msgid "Number of pictures"
+msgstr "Piltide arv"
+
+msgid "Open _Folder..."
+msgstr "_Kausta avamine..."
+
+msgid "Original size (possible very large file size)"
+msgstr "Esialgne suurus (võib olla väga suur fail)"
+
+msgid "P_arent Tag:"
+msgstr "_Emamärksõna:"
+
+msgid "Pause"
+msgstr "Paus"
+
+msgid "Preferences"
+msgstr "Eelistused"
+
+msgid "Previous"
+msgstr "Eelmine"
+
+msgid "Repair"
+msgstr "Paranda"
+
+msgid "Select Photos to Copy From Camera..."
+msgstr "Vali millised fotod kaamerast kopeerida..."
+
+msgid "Select a Tag..."
+msgstr "Vali _märksõna..."
+
+msgid "Select the camera from which you want to transfer files"
+msgstr "Vali kaamera, millest tahad faile liigutada"
+
+msgid "Selected Camera: "
+msgstr "Valitud kaamera:"
+
+msgid "Selection Constraints"
+msgstr "Valiku määrang"
+
+msgid "Set Rating Filter"
+msgstr "Hinnangufiltri määramine"
+
+msgid "Set as _Background"
+msgstr "Määra _taustapildiks"
+
+msgid "Show all photos."
+msgstr "Näita kõiki fotosid."
+
+msgid "Show or hide the side pane"
+msgstr "Näita või peida külgpaneel"
+
+msgid "Show or hide the toolbar"
+msgstr "Näita või peida tööriistariba"
+
+msgid "Side _pane"
+msgstr "Külgpaan"
+
+msgid "Small"
+msgstr "Väike"
+
+msgid ""
+"Specify if an original size picture should be rotated or not. Smaller sizes "
+"are automatically rotated."
+msgstr ""
+"Täpsusta kas originaalpilti pöörata või mitte. Vähendatud pilte pööratakse "
+"automaatselt."
+
+msgid "Strip image _metadata"
+msgstr "Eemalda pildi _metaandmed"
+
+#. Note for translators: meant as Temperature
+msgid "Te_mp:"
+msgstr "Te_mperatuur:"
+
+msgid "Tiny"
+msgstr "Pisike"
+
+msgid "Total original size"
+msgstr "Originaalide maht"
+
+msgid "Zoom _in"
+msgstr "_Suurenda"
+
+msgid "Zoom _out"
+msgstr "_Vähenda"
+
+msgid "Zoom in"
+msgstr "Suurenda"
+
+msgid "Zoom out"
+msgstr "Vähenda"
+
+msgid "_Brightness:"
+msgstr "_Heledus:"
+
+msgid "_Create Mail"
+msgstr "_Uus e-mail"
+
+msgid "_Edit"
+msgstr "_Redigeerimine"
+
+msgid "_Exposure:"
+msgstr "_Säriaeg:"
+
+msgid "_Flickr"
+msgstr "_Flickr"
+
+msgid "_Fullscreen"
+msgstr "_Täisekraan"
+
+msgid "_Gallery"
+msgstr "_Galerii"
+
+msgid "_Help"
+msgstr "_Abi"
+
+msgid "_Hue:"
+msgstr "_Hue:"
+
+msgid "_Interpolate image on zoom"
+msgstr "_Pildi interpoleerimine suurendamisel"
+
+msgid "_New Window"
+msgstr "_Uus aken"
+
+msgid "_Open album in browser when done uploading"
+msgstr "_Ava album brauseriga kui üleslaadimine on lõpetatud"
+
+msgid "_Open destination when done exporting"
+msgstr "_Ava sihtkoht, kui eksportimine on lõpetatud"
+
+msgid "_Photo"
+msgstr "_Foto"
+
+msgid "_Saturation:"
+msgstr "_Värviküllastus:"
+
+msgid "_Scale photos to no larger than: "
+msgstr "Ära _suurenda fotosid suuremaks kui:"
+
+msgid "_Slideshow"
+msgstr "_Slaidiesitlus"
+
+msgid "_Strip metadata"
+msgstr "_Eemalda metaandmed"
+
+msgid "_Tag Name:"
+msgstr "_Märksõna nimi:"
+
+msgid "_Tint:"
+msgstr "_Toon:"
+
+msgid "_Toolbar"
+msgstr "_Tööriistariba"
+
+msgid "_URI:"
+msgstr "_URI:"
+
+msgid "_View"
+msgstr "_Vaade"
+
+msgid "_Virtual Filesystem"
+msgstr "_Virtuaalne failisüsteem"
+
+msgid "and"
+msgstr "ja"
+
+#. at, or after a date, or between dates
+msgid ""
+"at\n"
+"after\n"
+"between"
+msgstr ""
+"täpselt\n"
+"pärast\n"
+"vahemikus"
+
+msgid "x"
+msgstr "x"
 
 msgid "Hide"
 msgstr "Peida"
@@ -513,20 +1629,8 @@ msgstr "Lükkamine"
 msgid "More dates"
 msgstr "Rohkem kuupäevi"
 
-msgid "More directories"
-msgstr "Rohkem katalooge"
-
 msgid "More"
 msgstr "Rohkem"
-
-msgid "Arrange by _Month"
-msgstr "Sorteeri _kuu järgi"
-
-msgid "Arrange by _Folder"
-msgstr "Sorteeri _kausta järgi"
-
-msgid "_Reverse Order"
-msgstr "_Pööratud järjekord"
 
 msgid "_Clear Date Range"
 msgstr "_Puhasta ajavahemik"
@@ -669,9 +1773,6 @@ msgstr "Laadimine {0} {1}-st"
 msgid "Done Loading"
 msgstr "Laadimine lõpetatud"
 
-msgid "Import"
-msgstr "Importimine"
-
 msgid "Directory does not exist."
 msgstr "Kataloogi ei eksisteeri."
 
@@ -697,36 +1798,11 @@ msgstr "Paremale"
 msgid "Rotate picture right"
 msgstr "Pööra pilt paremale"
 
-msgid "Next"
-msgstr "Järgmine"
-
 msgid "Next picture"
 msgstr "Järgmine pilt"
 
-msgid "Previous"
-msgstr "Eelmine"
-
 msgid "Previous picture"
 msgstr "Eelmine pilt"
-
-msgid "Error saving sharpened photo"
-msgstr "Viga teravustatud foto salvestamisel"
-
-#, csharp-format
-msgid "Received exception \"{0}\". Unable to save photo {1}"
-msgstr "Erandlik olukord \"{0}\". Fotot pole võimalik salvestada {1}"
-
-msgid "Sharpen"
-msgstr "Teravusta"
-
-msgid "Amount:"
-msgstr "Hulk:"
-
-msgid "Radius:"
-msgstr "Raadius:"
-
-msgid "Threshold:"
-msgstr "Lävi:"
 
 msgid "Import new images"
 msgstr "Impordi uued pildid"
@@ -757,15 +1833,6 @@ msgstr "Eelmine foto"
 
 msgid "Next photo"
 msgstr "Järgmine foto"
-
-#. Don't care otherwise, Tags sounds reasonable
-msgid "Tags"
-msgstr "Märksõnad"
-
-#. Note for translators: This indicates the current photo is photo {0} of {1} out of photos
-#, csharp-format
-msgid "{0} of {1}"
-msgstr "{0} / {1}"
 
 msgid "No cameras detected."
 msgstr "Kaameraid ei tuvastatud."
@@ -905,8 +1972,8 @@ msgid ""
 "Can not delete tags that have tags within them.  Please delete tags under "
 "\"{0}\" first"
 msgstr ""
-"Pole võimalik kustutada märksõnu, millel on alammärksõnad. Kustuta enne \"{0}\" "
-"alammärksõnad."
+"Pole võimalik kustutada märksõnu, millel on alammärksõnad. Kustuta enne \"{0}"
+"\" alammärksõnad."
 
 msgid "Rotate selected photo left"
 msgid_plural "Rotate selected photos left"
@@ -949,7 +2016,6 @@ msgstr[1] ""
 "Kas F-Spot peaks originaalide säilitamiseks enne {1} käivitamist looma "
 "valitud fotodest uued versioonid?"
 
-#| msgid "Version"
 msgid "XCF version"
 msgstr "XCF versioon"
 
@@ -1088,6 +2154,10 @@ msgstr "(versioone pole)"
 msgid "Error editing photo"
 msgstr "Viga foto muutmisel"
 
+#, csharp-format
+msgid "Received exception \"{0}\". Unable to save photo {1}"
+msgstr "Erandlik olukord \"{0}\". Fotot pole võimalik salvestada {1}"
+
 msgid "Comment:"
 msgstr "Kommentaar:"
 
@@ -1155,8 +2225,8 @@ msgid_plural ""
 "{0} photos could not be rotated because they are on a read only file system "
 "or media such as a CDROM.  Please check the permissions and try again."
 msgstr[0] ""
-"Fotot ei saanud pöörata, kuna see asub failisüsteemis või meediumil, mis pole "
-"kirjutatav (nt CDROM). Kontrolli faili õiguseid ja proovi uuesti."
+"Fotot ei saanud pöörata, kuna see asub failisüsteemis või meediumil, mis "
+"pole kirjutatav (nt CDROM). Kontrolli faili õiguseid ja proovi uuesti."
 msgstr[1] ""
 "Kokku {0} fotot ei saanud pöörata, kuna need asuvad failisüsteemis või "
 "meediumil, mis pole kirjutatav (nt CDROM). Kontrolli failide õiguseid ja "
@@ -1187,13 +2257,27 @@ msgstr "\"{0}\" töötlemisel esines viga: {1}"
 msgid "my photos"
 msgstr "minu fotod"
 
+msgid "Error saving sharpened photo"
+msgstr "Viga teravustatud foto salvestamisel"
+
+msgid "Sharpen"
+msgstr "Teravusta"
+
+msgid "Amount:"
+msgstr "Hulk:"
+
+msgid "Radius:"
+msgstr "Raadius:"
+
+msgid "Threshold:"
+msgstr "Lävi:"
+
 msgid "Rotate photo left"
 msgstr "Pööra pilt vasakule"
 
 msgid "Rotate photo right"
 msgstr "Pööra pilt paremale"
 
-#. Obsolete, remove after db rev4
 msgid "Folder"
 msgstr "Kaust"
 
@@ -1211,45 +2295,6 @@ msgstr "Loo uus märksõna"
 
 msgid "Name of New Tag:"
 msgstr "Märksõna uus nimi:"
-
-msgid "Edit Tag"
-msgstr "Muuda märksõna"
-
-msgid "Tag Name:"
-msgstr "Märksõna:"
-
-msgid "Unable to load image"
-msgstr "Pildi laadimine ei õnnestu"
-
-#, csharp-format
-msgid "Unable to load \"{0}\" as icon for the tag"
-msgstr "Pilti \"{0}\" pole võimalik laadida märksõna ikooniks"
-
-#, csharp-format
-msgid "Photo {0} of {1}"
-msgstr "{0} pilt {1}-st"
-
-#, csharp-format
-msgid "Edit Icon for Tag {0}"
-msgstr "Muuda märksõna {0} pilti"
-
-msgid "Select Photo from file"
-msgstr "Vali foto failist"
-
-#, csharp-format
-msgid ""
-"\n"
-"<b>From Photo</b>\n"
-" You can use one of your library photos as an icon for this tag.\n"
-" However, first you must have at least one photo associated\n"
-" with this tag. Please tag a photo as '{0}' and return here\n"
-" to use it as an icon."
-msgstr ""
-"\n"
-"<b>Fotost</b>\n"
-" Märksõna jaoks võib kasutada ühte albumi fotot.\n"
-" Selleks peab selle märksõnaga seostuma vähemalt\n"
-" üks pilt. Märgista vähemalt üks foto märksõnaga '{0}'."
 
 #, csharp-format
 msgid "Find"
@@ -1345,11 +2390,18 @@ msgstr " või "
 msgid "or"
 msgstr "või"
 
+msgid "Updating Thumbnails"
+msgstr "Pisipiltide uuendamine"
+
+#, csharp-format
+msgid "Updating picture \"{0}\""
+msgstr "Pildi \"{0}\" üleslaadimine"
+
 msgid "Photo management for GNOME"
 msgstr "GNOME fotode haldaja"
 
-msgid "Copyright © 2003-2008 Novell Inc."
-msgstr "Autoriõigus © 2003-2008 Novell Inc."
+msgid "Copyright © 2003-2009 Novell Inc."
+msgstr "Autoriõigus © 2003-2009 Novell Inc."
 
 msgid "translator-credits"
 msgstr ""
@@ -1393,6 +2445,39 @@ msgstr "Kõik pildid"
 msgid "Customized Range"
 msgstr "Muu vahemik"
 
+#, csharp-format
+msgid "Edit Icon for Tag {0}"
+msgstr "Muuda märksõna {0} pilti"
+
+msgid "Select Photo from file"
+msgstr "Vali foto failist"
+
+#, csharp-format
+msgid ""
+"\n"
+"<b>From Photo</b>\n"
+" You can use one of your library photos as an icon for this tag.\n"
+" However, first you must have at least one photo associated\n"
+" with this tag. Please tag a photo as '{0}' and return here\n"
+" to use it as an icon."
+msgstr ""
+"\n"
+"<b>Fotost</b>\n"
+" Märksõna jaoks võib kasutada ühte albumi fotot.\n"
+" Selleks peab selle märksõnaga seostuma vähemalt\n"
+" üks pilt. Märgista vähemalt üks foto märksõnaga '{0}'."
+
+msgid "Unable to load image"
+msgstr "Pildi laadimine ei õnnestu"
+
+#, csharp-format
+msgid "Unable to load \"{0}\" as icon for the tag"
+msgstr "Pilti \"{0}\" pole võimalik laadida märksõna ikooniks"
+
+#, csharp-format
+msgid "Photo {0} of {1}"
+msgstr "{0} pilt {1}-st"
+
 msgid "F-Spot Encountered a Fatal Error"
 msgstr "F-Spot'is esines pöördumatu viga"
 
@@ -1401,6 +2486,15 @@ msgstr "Vea üksikasjad"
 
 msgid "An unhandled exception was thrown: "
 msgstr "Käsitsematu erandolukord:"
+
+msgid "None"
+msgstr "Pole"
+
+msgid "System profile"
+msgstr "Süsteemiprofiil"
+
+msgid "Standard theme"
+msgstr "Standardteema"
 
 msgid "Error loading database."
 msgstr "Andmebaasi laadimine nurjus."
@@ -1422,99 +2516,6 @@ msgstr "Suhe"
 msgid "Retry"
 msgstr "Proovi uuesti"
 
-#| msgid "<b>Export Method</b>"
-msgid "<b>Color Management</b>"
-msgstr "<b>Värvihaldus</b>"
-
-#| msgid "<b>Co_rrections</b>"
-msgid "<b>Import Settings</b>"
-msgstr "<b>Importimise sätted</b>"
-
-#| msgid "Metadata"
-msgid "<b>Metadata</b>"
-msgstr "<b>Metaandmed</b>"
-
-#| msgid "<b>Preview</b>"
-msgid "<b>Screensaver</b>"
-msgstr "<b>Ekraanisäästja</b>"
-
-#| msgid "<b></b>"
-msgid "<b>Theming</b>"
-msgstr "<b>Kujundus</b>"
-
-#| msgid ""
-#| "<small><i>Choose the location of the database you want to import from</"
-#| "i></small>"
-msgid ""
-"<small><i>Choose the folder where F-Spot should store newly imported photos</"
-"i></small>"
-msgstr "<small><i>Vali kataloog, kuhu F-Spot impordib uued fotod</i></small>"
-
-#| msgid ""
-#| "<small><i>Choose the location of the database you want to import from</"
-#| "i></small>"
-msgid ""
-"<small><i>Enable this option to store tags and descriptions inside \n"
-"supported image formats.</i></small>"
-msgstr ""
-"<small><i>Märgi see, et märksõnad ja kirjeldused salvestataks seda toetavate "
-"piltide sees.</i></small>"
-
-msgid ""
-"<small><i>While acting as a screensaver, F-Spot can display all of your "
-"images, or a small subset based on tags.</i></small>"
-msgstr ""
-"<small><i>F-Spoti ekraanisäästja võib kasutada kõiki pilte või väikest "
-"märksõnadega määratud osa neist.</i></small>"
-
-msgid ""
-"<small><i>You'll have to restart F-Spot to load the new theme.</i></small>"
-msgstr ""
-"<small><i>Uue teema laadimiseks tuleb F-Spot taaskäivitada.</i></small>"
-
-#| msgid "Custom Text: "
-msgid "Custom Theme"
-msgstr "Muu teema"
-
-msgid "From List:"
-msgstr "Loendist:"
-
-msgid "From gtkrc File:"
-msgstr "Gtkrc failist:"
-
-msgid "Images tagged with:"
-msgstr "Pildid siltidega:"
-
-msgid "Make F-Spot your screensaver"
-msgstr "Määra F-Spot ekraanisäästjaks"
-
-msgid "Preferences"
-msgstr "Eelistused"
-
-#| msgid "Select Folder"
-msgid "Select A Folder"
-msgstr "Kausta valimine"
-
-#| msgid "Select Photo from file"
-msgid "Select A gtkrc File"
-msgstr "Gtkrc faili valimine"
-
-msgid "System Theme"
-msgstr "Süsteemiteema"
-
-msgid "Try to use the system display profile"
-msgstr "Püüab kasutada süsteemi kuvaprofiili"
-
-#| msgid "Strip _metadata"
-msgid "Write _metadata to file"
-msgstr "_Metaandmed kirjutatakse faili"
-
-msgid "_Display:"
-msgstr "_Kuva:"
-
-msgid "_Print output:"
-msgstr "_Printimise väljund:"
-
 msgid "Updating F-Spot Database"
 msgstr "F-Spot'i andmebaasi uuendamine"
 
@@ -1527,12 +2528,6 @@ msgstr ""
 #. Mono.Unix.Error error = Mono.Unix.Stdlib.GetLastError ();
 msgid "Unable to create temporary file"
 msgstr "Ajutist faili pole võimalik luua"
-
-msgid ""
-"The \"F-Spot Manual\" could not be found.  Please verify that your "
-"installation has been completed successfully."
-msgstr ""
-"\"F-Spot käsiraamatut\" ei leitud. Veendu, et paigaldus lõpetati edukalt."
 
 msgid "Page Setup"
 msgstr "Lehekülje sätted"
@@ -1547,15 +2542,14 @@ msgstr "Lehe suuruse ja suuna määramine"
 msgid "Photos per page"
 msgstr "Fotosid lehel"
 
-#. ppp1.Toggled += TriggerChanged;
-#. ppp2.Toggled += TriggerChanged;
-#. ppp4.Toggled += TriggerChanged;
-#. ppp9.Toggled += TriggerChanged;
 msgid "Repeat"
 msgstr "Korda"
 
 msgid "Print cut marks"
 msgstr "Prindi lõikamise märgid"
+
+msgid "Photos layout"
+msgstr "Fotode paigutus"
 
 msgid "Full Page (no margin)"
 msgstr "Täislehekülg (ilma ääristeta)"
@@ -1576,11 +2570,26 @@ msgstr "Valged äärised"
 msgid "Custom Text: "
 msgstr "Muu tekst:"
 
+msgid "Photos infos"
+msgstr "Fotode andmed"
+
+msgid "Print file name"
+msgstr "Prinditakse failinimi"
+
+msgid "Print photo date"
+msgstr "Prinditakse kuupäev"
+
+msgid "Print photo time"
+msgstr "Prinditakse kellaaeg"
+
+msgid "Print photo tags"
+msgstr "Prinditakse märksõnad"
+
+msgid "Print photo comment"
+msgstr "Prinditakse foto kommentaar"
+
 msgid "Edit"
 msgstr "Redigeerimine"
-
-msgid "No selection available"
-msgstr "Midagi ei ole valitud"
 
 msgid ""
 "This tool requires an active selection. Please select a region of the photo "
@@ -1602,11 +2611,20 @@ msgstr ""
 "Saadi erand \"{0}\". Tea, et piltide redigeerimiseks tuleb enne RAW "
 "failidest teha JPEG failid."
 
+msgid "_Horizontal"
+msgstr "_Rõhtne"
+
+msgid "_Vertical"
+msgstr "_Püstine"
+
 msgid "Find:"
 msgstr "Otsi:"
 
-msgid "and"
-msgstr "ja"
+msgid "Folders"
+msgstr "Kaustad"
+
+msgid "Filesystem"
+msgstr "Failisüsteem"
 
 msgid "Histogram"
 msgstr "Histogramm"
@@ -1689,15 +2707,6 @@ msgstr "Metaandmed"
 msgid "Extended Metadata"
 msgstr "Laiendatud metaandmed"
 
-msgid "Picasaweb"
-msgstr "Picasaweb"
-
-msgid "SmugMug"
-msgstr "SmugMug"
-
-msgid "Gallery2"
-msgstr "Gallery2"
-
 #. clear Extended Metadata
 msgid "No Extended Metadata Available"
 msgstr "Laiendatud metaandmed pole saadaval"
@@ -1731,1463 +2740,8 @@ msgid "State"
 msgstr "Osariik"
 
 #. namespace
-msgid " "
-msgstr " "
-
-msgid "0000:00:00 00:00:00"
-msgstr "0000:00:00 00:00:00"
-
-msgid "00:00:00"
-msgstr "00:00:00"
-
-msgid "1 of 1"
-msgstr "1 / 1"
-
-msgid "1024 px"
-msgstr "1024 px"
-
-msgid "320 px"
-msgstr "320 px"
-
-msgid "480 px"
-msgstr "480 px"
-
-msgid "5"
-msgstr "5"
-
-msgid "640 px"
-msgstr "640 px"
-
-msgid "800 px"
-msgstr "800 px"
-
-msgid "<b></b>"
-msgstr "<b></b>"
-
-msgid "<b>Account</b>"
-msgstr "<b>Konto</b>"
-
-msgid "<b>Action</b>"
-msgstr "<b>Tegevus</b>"
-
-msgid "<b>Album</b>"
-msgstr "<b>Album</b>"
-
-msgid "<b>Co_rrections</b>"
-msgstr "<b>_Parandused</b>"
-
-msgid "<b>Destination</b>"
-msgstr "<b>Sihtkaust</b>"
-
-msgid "<b>From External Photo</b>"
-msgstr "<b>Välisest fotost</b>"
-
-msgid "<b>From Photo</b>"
-msgstr "<b>Fotost</b>"
-
-msgid "<b>Gallery</b>"
-msgstr "<b>Galerii</b>"
-
-msgid "<b>Image Interpolation</b>"
-msgstr "<b>Pildi interpoleerimine</b>"
-
-msgid "<b>Max Rating</b>"
-msgstr "<b>Suurim hinnang</b>"
-
-msgid "<b>Min Rating</b>"
-msgstr "<b>Vähim hinnang</b>"
-
-msgid "<b>Photos</b>"
-msgstr "<b>Fotod</b>"
-
-msgid "<b>Predefined</b>"
-msgstr "<b>Eelmääratud</b>"
-
-msgid "<b>Preview</b>"
-msgstr "<b>Eelvaade</b>"
-
-msgid "<b>Reference Photo</b>"
-msgstr "<b>Viitav foto</b>"
-
-msgid "<b>Size</b>"
-msgstr "<b>Suurus</b>"
-
-msgid "<b>Style</b>"
-msgstr "<b>Stiil</b>"
-
-msgid "<b>Summary</b>"
-msgstr "<b>Kokkuvõte</b>"
-
-msgid "<b>Transparent Parts</b>"
-msgstr "<b>Läbipaistvad osad</b>"
-
-msgid "<b>View all pictures imported</b>"
-msgstr "<b>Näita kõiki imporditud pilte</b>"
-
-msgid "<b>_White Balance</b>"
-msgstr "<b>_Valge tasakaal</b>"
-
-msgid "<small></small>"
-msgstr "<small></small>"
-
-msgid ""
-"<small><i>Enable this to allow interpolation on zoomed images. You shouldn't "
-"disable this for viewing photos, but disabling the interpolation could be "
-"usefull in icon design.</i></small>"
-msgstr ""
-"<small><i>Märgi see, et lubada suurendatud piltide interpoleerimine. "
-"Interpoleerimist ei peaks keelama fotode kuvamisel, kuid keelamine võib "
-"osutuda kasulikuks näiteks ikoonide disainimisel.</i></small>"
-
-msgid ""
-"<small><i>You can choose how to display transparent parts in images. This "
-"option has no effect on photos, but setting this as check pattern or custom "
-"color could be usefull when viewing icons or other artworks with transparent "
-"parts.</i></small>"
-msgstr ""
-"<small><i>Sa saad valida, kuidas näidatakse piltide läbipaistvaid osi. See "
-"ei muuda midagi fotode kuvamises, kuid selle määramine malelaua mustrile või "
-"muule värvile võib osutuda kasulikuks ikoonide või läbipaistvate osadega "
-"piltide vaatamisel.</i></small>"
-
-msgid "Adjust Time"
-msgstr "Aja kohendamine"
-
-msgid "Adjust _Time..."
-msgstr "Kohenda _aega..."
-
-msgid "Adjusted date: "
-msgstr "Kohendatud kuupäev:"
-
-msgid "Arrange _by"
-msgstr "Järjestamise _alus"
-
-msgid "As _background"
-msgstr "Taustaks"
-
-msgid "As _custom color: "
-msgstr "Muu _värvina:"
-
-msgid "As check _pattern"
-msgstr "_Malelaua mustrina"
-
-msgid "Attach Tags:"
-msgstr "Ühenda märksõnadega:"
-
-msgid "Attach tag:"
-msgstr "Ühenda märksõnaga:"
-
-msgid "Autorotate"
-msgstr "Automaatne pildi pööramine"
-
-msgid "By _Date"
-msgstr "_Kuupäeva järgi"
-
-msgid "By _Import Roll"
-msgstr "_Filmirullide järgi"
-
-msgid "By _Rating"
-msgstr "_Hinnangu järgi"
-
-msgid "CD"
-msgstr "CD"
-
-msgid "C_ontrast:"
-msgstr "_Kontrastsus:"
-
-msgid "Camera Selection"
-msgstr "Kaamera valik"
-
-msgid "Copy Locat_ion"
-msgstr "Kopeeri _asukoht"
-
-msgid "Copy files to the Photos folder"
-msgstr "Failid kopeeritakse piltide kausta"
-
-msgid "Create Mail"
-msgstr "Uue e-kirja loomine"
-
-msgid "Create New _Tag..."
-msgstr "_Loo uus märksõna..."
-
-msgid "Create _New Version..."
-msgstr "Loo uus _versioon..."
-
-msgid "Create _icon for this tag when first used"
-msgstr "Sellele märksõnale luuakse _ikoon esmakasutusel"
-
-msgid "Create a mail with the selected photos (possibly resized) attached"
-msgstr "Märgitud fotodest (muudetud suurusega) kaasapanekuga meili loomine"
-
-msgid "Current date:"
-msgstr "Praegune kuupäev:"
-
-msgid "Detect duplicates"
-msgstr "Tuvasta duplikaadid"
-
-msgid "Display File _Names"
-msgstr "_Näita failinimesid"
-
-msgid "Display only those photos that were imported in specified Rolls."
-msgstr "Kuva ainult kindlatelt rullidelt imporditud fotod."
-
-msgid "Do not send a mail"
-msgstr "Ära saada e-kirja"
-
-msgid "E-_Mail:"
-msgstr "_E-post:"
-
-msgid "E_xport titles and comments"
-msgstr "E_kspordi nimed ja kommentaarid"
-
-msgid "Edit Tag Icon"
-msgstr "Muuda märksõna ikooni"
-
-msgid "Edit icon"
-msgstr "Ikooni muutmine"
-
-msgid "Estimated new size"
-msgstr "Arvestuslik maht"
-
-msgid "Export"
-msgstr "Eksportimine"
-
-msgid "Extra large"
-msgstr "Eriti suur"
-
-msgid "F-Spot"
-msgstr "F-Spot"
-
-msgid "F-Spot View"
-msgstr "F-Spot vaade"
-
-msgid "Filter on selected rolls"
-msgstr "Filtreeri märgitud rullid"
-
-msgid "Fin_d"
-msgstr "_Otsing"
-
-msgid "G_allery:"
-msgstr "_Galerii:"
-
-msgid "Gallery"
-msgstr "Galerii"
-
-#. Translators: this string means 'source of import'
-msgid "Import Source:"
-msgstr "Importimise allikas:"
-
-msgid "Include subfolders"
-msgstr "Kaasa alakaustad"
-
-msgid "Large"
-msgstr "Suur"
-
-msgid "Manage _Extensions"
-msgstr "_Lisade haldamine"
-
-msgid "Manage your custom selection ratios"
-msgstr "Halda kohaldatud valikupiirkondi"
-
-msgid "Medium"
-msgstr "Keskmine"
-
-msgid "No _image"
-msgstr "_Pildifaili pole laaditud."
-
-msgid "Number of photos in selected rolls:"
-msgstr "Piltide arv märgitud rullides :"
-
-msgid "Number of pictures"
-msgstr "Piltide arv"
-
-msgid "Open _Folder..."
-msgstr "_Kausta avamine..."
-
-msgid "Original size (possible very large file size)"
-msgstr "Esialgne suurus (võib olla väga suur fail)"
-
-msgid "P_arent Tag:"
-msgstr "_Emamärksõna:"
-
-msgid "Page Set_up..."
-msgstr "Lehekülje _sätted..."
-
-msgid "Pause"
-msgstr "Paus"
-
-msgid "Photo 0 of 0"
-msgstr "Foto 0 / 0"
-
-msgid "Re_fresh Thumbnail"
-msgstr "_Värskenda pisipilti"
-
-msgid "Repair"
-msgstr "Paranda"
-
-msgid "Select Photos to Copy From Camera..."
-msgstr "Vali millised fotod kaamerast kopeerida..."
-
-msgid "Select _None"
-msgstr "Ära vali ühtegi"
-
-msgid "Select a Tag..."
-msgstr "Vali _märksõna..."
-
-msgid "Select the camera from which you want to transfer files"
-msgstr "Vali kaamera, millest tahad faile liigutada"
-
-msgid "Selected Camera: "
-msgstr "Valitud kaamera:"
-
-msgid "Selection Constraints"
-msgstr "Valiku määrang"
-
-msgid "Send by _Mail..."
-msgstr "Saada meiliga..."
-
-msgid "Set Rating Filter"
-msgstr "Hinnangufiltri määramine"
-
-msgid "Set as _Background"
-msgstr "Määra _taustapildiks"
-
-msgid "Show all photos."
-msgstr "Näita kõiki fotosid."
-
-msgid "Show or hide the side pane"
-msgstr "Näita või peida külgpaneel"
-
-msgid "Show or hide the toolbar"
-msgstr "Näita või peida tööriistariba"
-
-msgid "Side _pane"
-msgstr "Külgpaan"
-
-msgid "Side_bar"
-msgstr "_Külgriba"
-
-msgid "Small"
-msgstr "Väike"
-
-msgid "Space all photos by"
-msgstr "Kõigi fotode vahele jääb"
-
-msgid ""
-"Specify if an original size picture should be rotated or not. Smaller sizes "
-"are automatically rotated."
-msgstr ""
-"Täpsusta kas originaalpilti pöörata või mitte. Vähendatud pilte pööratakse "
-"automaatselt."
-
-msgid "Strip image _metadata"
-msgstr "Eemalda pildi _metaandmed"
-
-msgid "T_ags"
-msgstr "_Märksõnad"
-
-msgid "Tags: "
-msgstr "Märksõnad:"
-
-#. Note for translators: meant as Temperature
-msgid "Te_mp:"
-msgstr "Te_mperatuur:"
-
-msgid "Thumbnail _elements"
-msgstr "Pisipiltidega näidatakse"
-
-msgid "Tiny"
-msgstr "Pisike"
-
-msgid "Too_lbar"
-msgstr "_Tööriistariba"
-
-msgid "Total original size"
-msgstr "Originaalide maht"
-
-msgid "View"
-msgstr "Vaade"
-
-msgid "Zoom _in"
-msgstr "_Suurenda"
-
-msgid "Zoom _out"
-msgstr "_Vähenda"
-
-msgid "Zoom in"
-msgstr "Suurenda"
-
-msgid "Zoom out"
-msgstr "Vähenda"
-
-msgid "_Attach Tag to Selection"
-msgstr "Ühenda valik _märksõnaga"
-
-msgid "_Brightness:"
-msgstr "_Heledus:"
-
-msgid "_Clear Rating Filter"
-msgstr "_Puhasta hinnangufilter"
-
-msgid "_Clear Roll Filter"
-msgstr "_Puhasta rullifilter"
-
-msgid "_Components"
-msgstr "_Komponendid"
-
-msgid "_Contents"
-msgstr "_Sisu"
-
-msgid "_Create"
-msgstr "_Loo"
-
-msgid "_Create Mail"
-msgstr "_Uus e-mail"
-
-msgid "_Dates"
-msgstr "_Kuupäev"
-
-msgid "_Delete Selected Tag"
-msgstr "_Kustuta valitud märksõna"
-
-msgid "_Delete Version"
-msgstr "_Kustuta see versioon"
-
-msgid "_Edit"
-msgstr "_Redigeerimine"
-
-msgid "_Edit Selected Tag..."
-msgstr "_Muuda valitud märksõna..."
-
-msgid "_Export"
-msgstr "_Eksportimine"
-
-msgid "_Export tags"
-msgstr "_Ekspordi märksõnad"
-
-msgid "_Export to"
-msgstr "_Ekspordi kuhu"
-
-msgid "_Export to Album:"
-msgstr "_Ekspordi albumisse:"
-
-msgid "_Exposure:"
-msgstr "_Säriaeg:"
-
-msgid "_Filmstrip"
-msgstr "_Filmiriba"
-
-msgid "_Flickr"
-msgstr "_Flickr"
-
-msgid "_Folder"
-msgstr "_Kaust"
-
-msgid "_Fullscreen"
-msgstr "_Täisekraan"
-
-msgid "_Gallery"
-msgstr "_Galerii"
-
-msgid "_Help"
-msgstr "_Abi"
-
-msgid "_Hidden"
-msgstr "_Varjatud"
-
-msgid "_Hue:"
-msgstr "_Hue:"
-
-msgid "_Icon:"
-msgstr "_Ikoon:"
-
-msgid "_Import..."
-msgstr "_Impordi..."
-
-msgid "_Interpolate image on zoom"
-msgstr "_Pildi interpoleerimine suurendamisel"
-
-msgid "_Large"
-msgstr "_Suur"
-
-msgid "_Last Import Roll"
-msgstr "_Viimati imporditud rull"
-
-msgid "_Loupe"
-msgstr "_Luup"
-
-msgid "_Medium"
-msgstr "_Keskmine"
-
-msgid "_Month"
-msgstr "_Kuu"
-
-msgid "_New Window"
-msgstr "_Uus aken"
-
-msgid "_Open album in browser when done uploading"
-msgstr "_Ava album brauseriga kui üleslaadimine on lõpetatud"
-
-msgid "_Open destination when done exporting"
-msgstr "_Ava sihtkoht, kui eksportimine on lõpetatud"
-
-msgid "_Photo"
-msgstr "_Foto"
-
-msgid "_Quit"
-msgstr "_Välju"
-
-msgid "_Ratings"
-msgstr "_Hinnang"
-
-msgid "_Remove Tag From Selection"
-msgstr "_Eemalda valikust märksõna"
-
-msgid "_Rename Version"
-msgstr "_Nimeta versioon ümber"
-
-msgid "_Resize to: "
-msgstr "_Muuda suurust kuni:"
-
-msgid "_Saturation:"
-msgstr "_Värviküllastus:"
-
-msgid "_Scale photos to no larger than: "
-msgstr "Ära _suurenda fotosid suuremaks kui:"
-
-msgid "_Select Import Rolls..."
-msgstr "_Vali imporditavad filmirullid..."
-
-msgid "_Set Date Range..."
-msgstr "_Määra ajavahemik..."
-
-msgid "_Set Rating filter..."
-msgstr "_Määra hinnangufilter..."
-
-msgid "_Sharpen..."
-msgstr "_Teravustamine..."
-
-msgid "_Slideshow"
-msgstr "_Slaidiesitlus"
-
-msgid "_Small"
-msgstr "_Väike"
-
-msgid "_Strip metadata"
-msgstr "_Eemalda metaandmed"
-
-msgid "_Tag Icons"
-msgstr "_Märksõnade ikoonid"
-
-msgid "_Tag Name:"
-msgstr "_Märksõna nimi:"
-
-msgid "_Tags"
-msgstr "_Märksõnad"
-
-msgid "_Timeline"
-msgstr "_Ajajoon"
-
-msgid "_Tint:"
-msgstr "_Toon:"
-
-msgid "_Toolbar"
-msgstr "_Tööriistariba"
-
-msgid "_Tools"
-msgstr "_Tööriistad"
-
-msgid "_URI:"
-msgstr "_URI:"
-
-msgid "_Untagged Photos"
-msgstr "_Märksõnadeta fotod"
-
-msgid "_Version"
-msgstr "_Versioon"
-
-msgid "_View"
-msgstr "_Vaade"
-
-msgid "_Virtual Filesystem"
-msgstr "_Virtuaalne failisüsteem"
-
-#. at, or after a date, or between dates
-msgid ""
-"at\n"
-"after\n"
-"between"
-msgstr ""
-"täpselt\n"
-"pärast\n"
-"vahemikus"
-
-msgid "difference:"
-msgstr "erinevus:"
-
-msgid "img_000.jpg"
-msgstr "img_000.jpg"
-
-msgid "min. Starting at {0}"
-msgstr "min. Alates {0}"
-
-msgid "pixels"
-msgstr "pikslit"
-
-msgid "x"
-msgstr "x"
-
 msgid "Display a slideshow from F-Spot"
 msgstr "Näita slaidiesitlust F-Spotiga"
 
 msgid "F-Spot photos"
 msgstr "F-Spot fotoalbum"
-
-msgid "_CD..."
-msgstr "_CD..."
-
-#, csharp-format
-msgid "Transferring picture \"{0}\" To CD"
-msgstr "Pildi \"{0}\" edastamine plaadile"
-
-msgid "Done Sending Photos"
-msgstr "Fotode saatmine lõpetatud"
-
-msgid "Transfer Complete"
-msgstr "Edastamine lõpetatud"
-
-msgid "Error While Transferring"
-msgstr "Viga edastamisel"
-
-msgid "Error Transferring"
-msgstr "Edastamise viga"
-
-msgid "copying..."
-msgstr "kopeerimine..."
-
-msgid "<b><i>There is some previously scheduled items to write</i></b>"
-msgstr "<b><i>Varem valmis pandud kirjed ootavad kirjutamist</i></b>"
-
-msgid "<b>Photos to Burn</b>"
-msgstr "<b>Fotod plaadile kirjutamiseks</b>"
-
-msgid "Create CD"
-msgstr "Loo CD"
-
-msgid "Size of the exported selection:"
-msgstr "Eksporditud valiku suurus:"
-
-msgid "_Browse Previously Scheduled Files"
-msgstr "_Lehitse eelnevalt valmis pandud faile"
-
-msgid "_Write only these photos to CD"
-msgstr "_Kirjuta ainult need fotod plaadile"
-
-msgid "_23hq..."
-msgstr "_23hq..."
-
-msgid "_Flickr..."
-msgstr "_Flickr..."
-
-msgid "_Zooomr..."
-msgstr "_Zooomr..."
-
-msgid "Authorize"
-msgstr "Autoriseeri"
-
-#, csharp-format
-msgid ""
-"Return to this window after you have finished the authorization process on "
-"{0} and click the \"Complete Authorization\" button below"
-msgstr ""
-"Pärast autoriseerimisprotsessi lõpetamist serveris {0} naase siia aknasse ja "
-"kliki allpool asuval nupul \"Autoriseerimise lõpetamine\""
-
-msgid "Complete Authorization"
-msgstr "Autoriseerimise lõpetamine"
-
-#, csharp-format
-msgid "Logging into {0}"
-msgstr "Sisselogimine {0}"
-
-msgid "Checking credentials..."
-msgstr "Tunnistuse kontroll..."
-
-#, csharp-format
-msgid "Welcome {0} you are connected to {1}"
-msgstr "Tere {0}, oled ühendatud masinaga {1}"
-
-#, csharp-format
-msgid "Sign in as a different user"
-msgstr "Logi sisse teise kasutajana"
-
-#, csharp-format
-msgid "Used {0} of your allowed {1} monthly quota"
-msgstr "Igakuisest kvoodist {1} on kasutusel {0}"
-
-msgid "Unable to log on"
-msgstr "Sisselogimine ei õnnestu"
-
-#, csharp-format
-msgid "Waiting for response {0} of {1}"
-msgstr "Vastuse ootamine {0} / {1}"
-
-#, csharp-format
-msgid "Uploading picture \"{0}\""
-msgstr "Pildi \"{0}\" üleslaadimine"
-
-#, csharp-format
-msgid "Error Uploading To {0}: {1}"
-msgstr "Viga üleslaadimisel serverisse {0}: {1}"
-
-msgid "Upload Complete"
-msgstr "Üleslaadimine lõpetatud"
-
-msgid "Unable to log on."
-msgstr "Sisselogimine ei õnnestu."
-
-#, csharp-format
-msgid ""
-"F-Spot was unable to log on to {0}.  Make sure you have given the "
-"authentication using {0} web browser interface."
-msgstr ""
-"F-Spot ei suutnud logida serverisse {0}. Palun veendu {0} veebilehitseja abil, "
-"et sind on autenditud."
-
-msgid "Uploading Pictures"
-msgstr "Piltide üleslaadimine"
-
-msgid "<b>Viewing permissions</b>"
-msgstr "<b>Vaatamise õigused</b>"
-
-msgid "Export tag _hierarchy"
-msgstr "_Ekspordi märksõnade hierarhia"
-
-msgid ""
-"F-Spot needs your authorization in order to upload photos to your {0} "
-"account. Press the \"Authorize\" button to open a web browser and give F-"
-"Spot the authorization. "
-msgstr ""
-"Fotosde {0} kontole üles laadimiseks tuleb F-Spot autoriseerida. Vajuta "
-"nuppu \"Autoriseerimine\", et avada veebisirvija ja autoriseerida F-Spot."
-
-msgid "Ignore _top level tags"
-msgstr "Ignoreeri kõige ülemise taseme märksõnu"
-
-msgid "Private"
-msgstr "Isiklik"
-
-msgid "Public"
-msgstr "Avalik"
-
-msgid "Strip _metadata"
-msgstr "Eemalda _metaandmed"
-
-msgid "Visible to Family"
-msgstr "Nähtav perele"
-
-msgid "Visible to Friends"
-msgstr "Nähtav sõpradele"
-
-msgid "_View photos in browser when done uploading"
-msgstr "Kui üleslaadimine on valmis, kuva fotod veebilehitsejas"
-
-msgid "F_older..."
-msgstr "_Asukoht..."
-
-msgid "Select Export Folder"
-msgstr "Vali eksportimise kaust"
-
-msgid "Building Gallery"
-msgstr "Galerii loomine"
-
-#, csharp-format
-msgid "Error uploading picture \"{0}\" to Gallery:{2}{1}"
-msgstr "Viga pildi \"{0}\" üleslaadimisel Gallery'sse:{2}{1}"
-
-msgid "Error: Error while transferring; Aborting"
-msgstr "Viga: viga faili edastamisel; katkestatud"
-
-msgid "Error: File Already Exists; Aborting"
-msgstr "Viga: fail on juba olemas; katkestatud"
-
-#. Note for translators: light as clear, opposite as dark
-msgid "Light"
-msgstr "Hele"
-
-msgid "Dark"
-msgstr "Tume"
-
-#. Abbreviation of previous
-msgid "Prev"
-msgstr "Eelmine"
-
-msgid "Gallery generated by"
-msgstr "Galerii genereeris"
-
-msgid "Show Styles"
-msgstr "Näita stiile"
-
-msgid "Hide Styles"
-msgstr "Peida stiilid"
-
-msgid "Page:"
-msgstr "Leht:"
-
-msgid "\n"
-msgstr "\n"
-
-msgid "<b>Export Method</b>"
-msgstr "<b>Eksportimise meetod</b>"
-
-msgid "Create _gallery using \"Original\""
-msgstr "Loo \"Original\" _galerii"
-
-msgid "Create standalone _web gallery"
-msgstr "Eraldiseisva _veebigalerii loomine"
-
-msgid "D_escription:"
-msgstr "_Kirjeldus:"
-
-msgid "Export _tags"
-msgstr "Ekspordi _märksõnad"
-
-msgid "Export tag _icons"
-msgstr "Ekspordi märksõnade _ikoonid"
-
-msgid "Folder Export"
-msgstr "Kausta eksportimine"
-
-msgid "G_allery Name:"
-msgstr "Galerii _nimi:"
-
-msgid "Open _destination when done exporting"
-msgstr "_Sihtkausta avamine pärast eksportimise lõppemist"
-
-msgid "_Folder:"
-msgstr "_Asukoht:"
-
-msgid "_Save the files only"
-msgstr "_Salvesta ainult failid"
-
-msgid "Web _Gallery..."
-msgstr "Veebi_galerii..."
-
-msgid ""
-"Cannot connect to a Gallery for which the version is unknown.\n"
-"Please check that you have Remote plugin 1.0.8 or later"
-msgstr ""
-"Gallery'ga, mille versioon pole teada, pole võimalik ühenduda.\n"
-"Veendu, et su Kaugplugina versioon on 1.0.8 või uuem"
-
-msgid "Invalid URL"
-msgstr "Vigane URL"
-
-msgid "The gallery URL entry does not appear to be a valid URL"
-msgstr "Galerii URL pole sobiv"
-
-msgid "Error while connecting to Gallery"
-msgstr "Viga galeriiga ühendumisel"
-
-#, csharp-format
-msgid "The following error was encountered while attempting to log in: {0}"
-msgstr "Sisselogimiskatsel esines järgnev viga: {0}"
-
-msgid "A Gallery with this name already exists"
-msgstr "Sellenimeline galerii on juba olemas"
-
-#, csharp-format
-msgid ""
-"There is already a Gallery with the same name in your registered Galleries. "
-"Please choose a unique name."
-msgstr ""
-"Registreeritud galeriide hulgas juba on selle nimega galerii. Vali unikaalne "
-"nimi."
-
-msgid "(TopLevel)"
-msgstr "(Kõrgeim tase)"
-
-msgid "Invalid Gallery name"
-msgstr "Galerii nimi sobimatu"
-
-msgid ""
-"The gallery name contains invalid characters.\n"
-"Only letters, numbers, - and _ are allowed"
-msgstr ""
-"Galerii nimi sisaldab sobimatuid tähemärke.\n"
-"Lubatud on ainult tähed, numbrid, - ja _"
-
-#, csharp-format
-msgid "Error uploading picture \"{0}\" to Gallery: {1}"
-msgstr "Viga pildi \"{0}\" üleslaadimisel Gallery'sse: {1}"
-
-msgid "(No Gallery)"
-msgstr "(Galeriisid pole)"
-
-msgid "(Not Connected)"
-msgstr "(Pole ühendatud)"
-
-msgid "(No Albums)"
-msgstr "(Albumeid pole)"
-
-msgid "No account selected"
-msgstr "Konto pole valitud"
-
-msgid "<span weight='bold' size='larger'>Error Connecting to Gallery</span>\n"
-msgstr "<span weight='bold' size='larger'>Viga Gallery'ga ühendumisel</span>\n"
-
-msgid "Export _titles and comments"
-msgstr "_Pealkirjade ja kommentaaride eksportimine"
-
-msgid "Open _album in browser when done uploading"
-msgstr "Kui üleslaadimine on lõpetatud avatakse _album veebilehitsejas"
-
-msgid "Please verify that the settings for this gallery are correct."
-msgstr "Palun veendu, et selle galerii sätted on õiged."
-
-msgid "U_RL:"
-msgstr "U_RL:"
-
-msgid "_Album Name:"
-msgstr "_Albumi nimi:"
-
-msgid "_Description:"
-msgstr "Kirjel_dus:"
-
-msgid "_Gallery Name:"
-msgstr "Galerii _nimi:"
-
-msgid "_Gallery:"
-msgstr "_Galerii:"
-
-msgid "_Parent Album:"
-msgstr "Ema_album:"
-
-msgid "_Password:"
-msgstr "_Parool:"
-
-msgid "_Title:"
-msgstr "_Pealkiri:"
-
-msgid "_Username:"
-msgstr "_Kasutajanimi:"
-
-msgid "Error reading server response"
-msgstr "Viga serveri vastuse lugemisel"
-
-#. failed to find the response
-msgid "Server returned response without Gallery content"
-msgstr "Serveri vastus ei sisalda Gallery infot"
-
-msgid "Error while creating new album"
-msgstr "Viga albumi loomisel"
-
-#, csharp-format
-msgid ""
-"The following error was encountered while attempting to perform the "
-"requested operation:\n"
-"{0} ({1})"
-msgstr ""
-"Nõutud operatsiooni teostamise katsel esines järgnev viga:\n"
-"{0} ({1})"
-
-msgid "F_acebook..."
-msgstr "F_acebook..."
-
-msgid "Too many images to export"
-msgstr "Eksportimiseks liiga palju pilte"
-
-msgid ""
-"Facebook only permits 60 photographs per album.  Please refine your "
-"selection and try again."
-msgstr ""
-"Facebook võimaldab ainult 60 fotot albumi kohta. Muuda valikut ja proovi "
-"uuesti."
-
-msgid "You are not logged in."
-msgstr "Sa ei ole sisse logitud."
-
-msgid "Waiting for authentication"
-msgstr "Autentimise järel ootamine"
-
-msgid ""
-"F-Spot will now launch your browser so that you can log into Facebook.  Turn "
-"on the \"Save my login information\" checkbox on Facebook and F-Spot will "
-"log into Facebook automatically from now on."
-msgstr ""
-"F-Spot käivitab nüüd veebibrauseri, milles saad Facebook'i sisse logida. "
-"Luba Facebook'is \"Save my login information\" ja edaspidi logib F-Spot "
-"automaatselt sisse."
-
-msgid "Error logging into Facebook"
-msgstr "Viga Facebook'i sisselogimisel"
-
-msgid ""
-"There was a problem logging into Facebook.  Check your credentials and try "
-"again."
-msgstr ""
-"Facebook'i sisselogimisel ei õnnestunud. Kontrolli parooli ja proovi uuesti."
-
-#. Note for translators: {0} and {1} are respectively firstname and surname of the user
-#, csharp-format
-msgid "{0} {1} is logged into Facebook"
-msgstr "{0} {1} on Facebook'i sisse logitud"
-
-msgid "Album must have a name"
-msgstr "Albumil peab olema nimi"
-
-msgid "Please name your album or choose an existing album."
-msgstr "Nimeta album või vali olemasolev album"
-
-msgid "Creating a new album failed"
-msgstr "Uue albumi loomine nurjus"
-
-#, csharp-format
-msgid ""
-"An error occurred creating a new album.\n"
-"\n"
-"{0}"
-msgstr ""
-"Uue albumi loomisel esines viga.\n"
-"\n"
-"{0}"
-
-#, csharp-format
-msgid "Uploading picture \"{0}\" ({1} of {2})"
-msgstr "Pildi \"{0}\" üleslaadimine. ({1} {2}-st)"
-
-#, csharp-format
-msgid "Error Uploading To Facebook: {0}"
-msgstr "Viga Facebook'i üleslaadimisel: {0}"
-
-msgid "Caption"
-msgstr "Allkiri"
-
-msgid "Create a new album"
-msgstr "Loo uus album"
-
-msgid "Description"
-msgstr "Kirjeldus"
-
-msgid "Export to Facebook"
-msgstr "Ekspordi Facebook'i"
-
-msgid "In this photo"
-msgstr "Sellel fotol"
-
-msgid "Login"
-msgstr "Sisselogimine"
-
-msgid "Logout"
-msgstr "Väljalogimine"
-
-msgid "This is who I am"
-msgstr "Selline ma olengi"
-
-msgid "Use an existing album"
-msgstr "Kasuta olemasolevat albumit"
-
-msgid "Who is this?"
-msgstr "Kes see on?"
-
-msgid "Compressed fil_e..."
-msgstr "Tihendatud _fail..."
-
-msgid ""
-"This tool requires an active selection. Please select one or more pictures "
-"and try again"
-msgstr ""
-"See tööriist vajab aktiivset märgistust. Vali vähemalt üks pilt ja proovi "
-"uuesti"
-
-msgid "Select export folder"
-msgstr "Vali eksportimise kaust"
-
-msgid "Exporting files"
-msgstr "Failide eksportimine"
-
-#, csharp-format
-msgid "Preparing photo \"{0}\""
-msgstr "Foto \"{0}\" ettevalmistamine"
-
-msgid "_File name:"
-msgstr "_Faili nimi:"
-
-msgid "_Location:"
-msgstr "_Asukoht:"
-
-msgid "_Scale:"
-msgstr "_Skaala:"
-
-msgid "Merge Db"
-msgstr "Ühenda andmebaasid"
-
-msgid "Error opening the selected file"
-msgstr "Viga valitud faili avamisel"
-
-#, csharp-format
-msgid ""
-"The file you selected is not a valid or supported database.\n"
-"\n"
-"Received exception \"{0}\"."
-msgstr ""
-"Valitud fail ei ole sobiv ega toetatud andmebaas.\n"
-"\n"
-"Saadi erand \"{0}\"."
-
-msgid ""
-"<small><i>Choose the location of the database you want to import from</i></"
-"small>"
-msgstr ""
-"<small><i>Vali andmebaasi asukoht, millest sa tahad pilte importida</i></"
-"small>"
-
-msgid ""
-"<small><i>Choose what to import from the selected db.\n"
-"\"New Rolls Only\" is the smart option that will avoid re-importing photos "
-"you could have imported during a previous operation.\n"
-"\"A Single Import Roll\" let you choose which roll you want to merge back.\n"
-"\"Everything\" will import everything, creating duplicates if you already "
-"imported from that database.</i></small>"
-msgstr ""
-"<small><i>Vali mida andmebaasist importida.\n"
-"\"Ainult uued rullid\" on nutikas valik, mis hoidub varem imporditud fotode "
-"uuesti importimisest.\n"
-"\"Üksainus rull\" laseb sul valida millist rulli sa tahad tagasi liita.\n"
-"\"Kõik\" impordib kõik, luues duplikaadid, kui sa oled sellest andmebaasist "
-"juba importinud.</i></small>"
-
-msgid ""
-"<small><i>Copy the images locally or keep them where they are. If you chose "
-"the later, be sure that this location will stay accessible from f-spot.</i></"
-"small>"
-msgstr ""
-"<small><i>Kopeeri pildid või jäta need esialgsesse asukohta. Viimase "
-"valimisel  veendu, et asukoht jääb f-spotile kättseaadavaks.</i></small>"
-
-msgid "A Single Import Roll"
-msgstr "Üks importrull"
-
-msgid "Copy images to photos folder"
-msgstr "Kopeeri failid piltide kausta"
-
-msgid "Database Location:"
-msgstr "Andmebaasi asukoht:"
-
-msgid "Everything"
-msgstr "Kõik"
-
-msgid "Import:"
-msgstr "Impordi:"
-
-msgid "Keep the images at their original location"
-msgstr "Jäta pildid nende esialgsesse asukohta"
-
-#| msgid "Merge another f-spot collection"
-msgid "Merge another F-Spot collection"
-msgstr "Liida juurde teine F-spoti kollektsioon"
-
-msgid "New Rolls Only"
-msgstr "Ainult uued rullid"
-
-#, csharp-format
-msgid ""
-"<big>The database refers to files contained in the <b>{0}</b> folder.\n"
-" Please select that folder so I can do the mapping.</big>"
-msgstr ""
-"<big>Andmebaas viitab failidele kataloogis <b>{0}</b>\n"
-"Palun vali see kataloog, et kirjed saaks sellega seostada.</big>"
-
-#| msgid "Rated photos"
-msgid "Create p_hotomosaic"
-msgstr "Loo _fotomosaiik"
-
-#| msgid "No metadata available"
-msgid "Metapixel not available"
-msgstr "Metapixel pole saadaval"
-
-msgid ""
-"The metapixel executable was not found in path. Please check that you have "
-"it installed and that you have permissions to execute it"
-msgstr ""
-"Metapixel'i käivitusfaili ei leitud otsirajalt. Kontrolli paigaldust, ning "
-"et sul oleks õigus seda käivitada."
-
-#. There is no photo for the selected tags! :(
-#| msgid "Size of the exported selection:"
-msgid "No photos for the selection"
-msgstr "Valikusse ei jäänud ühtegi fotot"
-
-#| msgid ""
-#| "The directory you selected \"{0}\" does not exist.  Please choose a "
-#| "different directory"
-msgid "The tags selected provided no pictures. Please select different tags"
-msgstr ""
-"Valitud märksõnad ei sisaldanud fotosid. Palun vali teistsugused märksõnad."
-
-#| msgid "Transferring Pictures"
-msgid "Creating miniatures"
-msgstr "Pisipiltide loomine"
-
-#| msgid "Rotating photos"
-msgid "Creating photomosaics"
-msgstr "Fotomosaiigi loomine"
-
-#, csharp-format
-#| msgid "Preparing photo \"{0}\""
-msgid "Processing \"{0}\""
-msgstr "\"{0}\" töötlemine"
-
-msgid "PhotoMosaics generated!"
-msgstr "Fotomosaiikide genereerimine lõpetati!"
-
-#, csharp-format
-#| msgid "Photos"
-msgid "PhotoMosaic"
-msgid_plural "PhotoMosaic ({0})"
-msgstr[0] "Fotomosaiik"
-msgstr[1] "Fotomosaiik ({0})"
-
-#| msgid "Create Mail"
-msgid "Create photo_wall"
-msgstr "Loo foto_sein"
-
-#| msgid "No applications available"
-msgid "PictureTile not available"
-msgstr "PictureTile pole saadaval"
-
-msgid ""
-"The picturetile.pl executable was not found in path. Please check that you "
-"have it installed and that you have permissions to execute it"
-msgstr ""
-"Picturetile.pl käivitusfaili ei leitud otsingurajalt. Kontrolli paigaldust, "
-"ning et sul oleks õigus seda käivitada."
-
-#| msgid "Previous picture"
-msgid "Preparing selected pictures"
-msgstr "Valitud piltide ettevalmistamine"
-
-#| msgid "Gallery generated by"
-msgid "PhotoWall generated!"
-msgstr "Fotosein genereeritud!"
-
-msgid ""
-"Your photo wall have been generated and imported in F-Spot. Select the last "
-"roll to see it"
-msgstr ""
-"Sinu fotosein genereeriti ja imporditi F-Spoti. Selle nägemiseks vali "
-"viimati imporditud rull."
-
-#| msgid "Error editing photo"
-msgid "Error importing photowall"
-msgstr "Viga fotoseina importimisel"
-
-msgid ""
-"An error occurred while importing the newly generated photowall to F-Spot"
-msgstr "Vastgenereeritud fotoseina importimisel F-Spoti esines viga"
-
-msgid ""
-"In order to detect duplicates on pictures you imported before 0.5.0, F-Spot "
-"needs to analyze your image collection. This is not done by default as it's "
-"time consuming. You can Start or Pause this update process using this dialog."
-msgstr ""
-"Et tuvastada duplikaate enne 0.5.0 versiooni imporditud piltidest, peab F-"
-"Spot analüüsima sinu pildikollektsiooni. Vaikimisi seda ei tehta, kuna "
-"selleks kulub aega. Siit dialoogist saab uuendamisprotsessi käivitada ja "
-"pausida."
-
-#| msgid "Error processing image"
-msgid "Processing images..."
-msgstr "Piltide töötlemine..."
-
-msgid "Stopped"
-msgstr "Peatatud"
-
-msgid "_PicasaWeb..."
-msgstr "_PicasaWeb..."
-
-msgid "Error while creating Album"
-msgstr "Viga albumi loomisel"
-
-#, csharp-format
-msgid ""
-"The following error was encountered while attempting to create an album: {0}"
-msgstr "Albumi loomise katsel esines järgnev viga: {0}"
-
-#, csharp-format
-msgid "{0} Sent"
-msgstr "{0} saadetud"
-
-#, csharp-format
-msgid "{0} of approx. {1}"
-msgstr "{0} arvestuslikust {1}-st"
-
-#, csharp-format
-msgid "Error Uploading To Gallery: {0}"
-msgstr "Viga galeriisse \"{0}\" üleslaadimisel."
-
-#, csharp-format
-msgid "Available space: {0}, {1}% used out of {2}"
-msgstr "Vaba ruum: {0}, {1}% {2}-st kasutatud"
-
-#, csharp-format
-#| msgid ""
-#| "<small>The selected album has a limit of {0} pictures,\n"
-#| "which would be passed with the current selection of {1} images</small>"
-msgid ""
-"The selected album has a limit of {0} pictures,\n"
-"which would be passed with the current selection of {1} images"
-msgstr ""
-"Valitud album on piiratud {0} pildiga,\n"
-"piirang ületataks praegu valitud piltide arvuga {1}."
-
-msgid "<b>PicasaWeb Export</b>"
-msgstr "<b>PicasaWeb eksport</b>"
-
-msgid ""
-"<span weight='bold' size='larger'>Your Google Account is locked</span>\n"
-msgstr ""
-"<span weight='bold' size='larger'>Sinu Google konto on lukustatud</span>\n"
-
-msgid ""
-"Please verify that the settings for this gallery are correct.\n"
-"Enter the letters as they are shown in the image in\n"
-"the 'Captcha' field. <i>Letters are not case-sensitive</i>"
-msgstr ""
-"Palun veendu, et selle galerii sätted on õiged.\n"
-"Sisesta tähed, nagu need on 'Captcha' pildil. <i>Tähed ei ole tõstutundlikud."
-"</i>"
-
-msgid "Public Album"
-msgstr "Avalik album"
-
-msgid "_Album Title:"
-msgstr "_Albumi pealkiri:"
-
-msgid "_Autorotate"
-msgstr "_Pööra automaatselt"
-
-msgid "_Captcha:"
-msgstr "_Captcha:"
-
-msgid "<b>SmugMug Export</b>"
-msgstr "<b>SmugMug eksport</b>"
-
-msgid "_Account:"
-msgstr "_Konto:"
-
-msgid "_SmugMug..."
-msgstr "_SmugMug..."
-
-#, csharp-format
-msgid "Uploading photo \"{0}\""
-msgstr "Foto \"{0}\" üleslaadimine"
-
-msgid "Logging into Tabblo"
-msgstr "Tabblo'sse sisselogimine"
-
-msgid "Obtaining URL for upload"
-msgstr "Üleslaadimiseks URL'i hankimine"
-
-msgid "_Tabblo..."
-msgstr "_Tabblo..."
-
-msgid "Done sending photos"
-msgstr "Fotode saatmine lõpetatud"
-
-msgid "Upload complete"
-msgstr "Üleslaadimine lõpetatud"
-
-msgid "Error uploading to Tabblo: "
-msgstr "Viga Tabblo'sse üleslaadimisel:"
-
-#| msgid "<b>Photos</b>"
-msgid "<b>F-Spot tags</b>"
-msgstr "<b>F-Spoti märksõnad</b>"
-
-msgid "<b>Tabblo account</b>"
-msgstr "<b>Tabblo konto</b>"
-
-msgid ""
-"<small><i>F-Spot tags can help you track the export status of photos. "
-"Example: Use one tag for the photos that you plan to export, and another one "
-"for those already exported. Here, you can tell F-Spot to automatically "
-"replace these tags as appropriate.</i></small>"
-msgstr ""
-"<small><i>F-Spoti märksõnad aitavad sul jälgida fotode eksportimist. Näiteks "
-"võid kasutada ühte märksõna fotodel, mida plaanid eksportida, ning teist "
-"fotodel, mis on juba eksporditud. Siin saab määrata, et F-Spot ise asendaks "
-"need märksõnad vastavalt.</i></small>"
-
-msgid "Rem_ove from exported photos:"
-msgstr "Eksporditud fotodelt _eemaldatakse:"
-
-#| msgid "Select a Tag..."
-msgid "Select..."
-msgstr "Vali..."
-
-msgid "_Attach to exported photos:"
-msgstr "Eksporditud fotodele _lisatakse:"
-
-msgid "<b>{0}</b>."
-msgstr "<b>{0}</b>."
-
-msgid "A trust error occured while attempting to access"
-msgstr "Ühenduse loomist takistas usalduse puudus"
-
-msgid "Abort this session"
-msgstr "Katkesta see sessioon"
-
-msgid "Always trust this site's certificate"
-msgstr "Alati usalda selle lehekülje sertifikaati"
-
-msgid "Do you wish to:"
-msgstr "Kas sa tahad:"
-
-msgid "Trust Error"
-msgstr "Usaldus puudub"
-
-msgid "Trust the site's certificate this once"
-msgstr "Usalda sel korral selle lehekülje sertifikaati"
-
-#~ msgid "interpolation type"
-#~ msgstr "interpoleerimise tüüp"
-
-#~ msgid "the type of interpolation to use"
-#~ msgstr "kasutatava interpoleerimise tüüp"
-
-#~ msgid "check type"
-#~ msgstr "maleruudustiku tüüp"
-
-#~ msgid "the type of chequering to use"
-#~ msgstr "maleruudustiku tüüp"
-
-#~ msgid "the size of chequers to use"
-#~ msgstr "maleruudustiku suurus"
-
-#~ msgid "dither"
-#~ msgstr "virvtoonimine"
-
-#~ msgid "dither type"
-#~ msgstr "virvtoonimise tüüp"
-
-#~ msgid "<b>End Date</b>"
-#~ msgstr "<b>Lõpu kuupäev</b>"
-
-#~ msgid "<b>Select period</b>"
-#~ msgstr "<b>Vali ajavahemik</b>"
-
-#~ msgid "<b>Start Date</b>"
-#~ msgstr "<b>Alguse kuupäev</b>"
-
-#~ msgid "Cancel, do not change the current timeline. "
-#~ msgstr "Tühistamine, praegust ajajoont ei muudeta"
-
-#~ msgid "Only photos taken within these dates will be displayed."
-#~ msgstr "Kuvatakse ainult nendel kuupäevadel võetud fotosid."
-
-#~ msgid "Set date range"
-#~ msgstr "Määra ajavahemik"
-
-#~ msgid "Available space:"
-#~ msgstr "Saadavalolev ruum:"
