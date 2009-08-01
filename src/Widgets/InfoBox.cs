@@ -477,7 +477,7 @@ namespace FSpot.Widgets
 			UpdateHistogram ();
 
 			if (show_name) {
-				name_value_label.Text = photo.Name != null ? System.Uri.UnescapeDataString(photo.Name) : String.Empty;
+				name_value_label.Text = photo.Name != null ? photo.Name : String.Empty;
 			}
 			name_label.Visible = show_name;	
 			name_value_label.Visible = show_name;

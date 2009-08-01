@@ -139,7 +139,7 @@ namespace FSpot
 		}
 	
 		public string Name {
-			get { return System.IO.Path.GetFileName (VersionUri (OriginalVersionId).AbsolutePath); }
+			get { return Uri.UnescapeDataString (System.IO.Path.GetFileName (VersionUri (OriginalVersionId).AbsolutePath)); }
 		}
 	
 		//This property no longer keeps a 'directory' path, but the logical container for the image, like:
