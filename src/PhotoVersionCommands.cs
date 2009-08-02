@@ -235,7 +235,7 @@ public class PhotoVersionCommands
 			string msg = String.Format (Catalog.GetPluralString ("Really reparent selected photo as version of {1}?", 
 			                                                     "Really reparent {0} selected photos as versions of {1}?", photos.Length), 
 			                            photos.Length, new_parent.Name.Replace ("_", "__"));
-			string desc = Catalog.GetString ("The tags will be merged with the new parent.");
+			string desc = Catalog.GetString ("This makes the photos appear as a single one in the library. The versions can be detached using the Photo menu.");
 
 			try {
 				if (ResponseType.Ok == HigMessageDialog.RunHigConfirmation(parent_window, DialogFlags.DestroyWithParent, 
@@ -244,7 +244,6 @@ public class PhotoVersionCommands
 					string new_description = new_parent.Description;
 					foreach (Photo photo in photos) {
 						highest_rating = Math.Max(photo.Rating, highest_rating);
-						// maybe combined description should be created?
 						if (string.IsNullOrEmpty(new_description))
 							new_description = photo.Description;
 						new_parent.AddTag (photo.Tags);
