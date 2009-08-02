@@ -1721,6 +1721,7 @@ namespace FSpot
 		{
 			PhotoVersionCommands.Detach cmd = new PhotoVersionCommands.Detach ();
 			cmd.Execute (db.Photos, CurrentPhoto, GetToplevel (null));
+			UpdateQuery ();
 		}
 	
 		void HandleRenameVersionCommand (object obj, EventArgs args)

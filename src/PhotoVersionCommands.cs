@@ -207,7 +207,6 @@ public class PhotoVersionCommands
 					new_photo.CopyAttributesFrom (photo.DefaultVersion);
 					photo.DeleteVersion (photo.DefaultVersionId, false, true);
 					store.Commit (new Photo[] {new_photo, photo});
-					MainWindow.Toplevel.UpdateQuery ();
 					return true;
 				}
 			} catch (Exception e) {
