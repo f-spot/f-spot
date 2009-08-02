@@ -1227,9 +1227,11 @@ namespace FSpot
 				if (p_item >= 0) {
 					if (icon_view.Selection.Contains (p_item)) //We don't want to reparent ourselves!
 						return;
-					PhotoVersionCommands.Reparent cmd = new PhotoVersionCommands.Reparent ();
-					
-					cmd.Execute (Database.Photos, SelectedPhotos(), query.Photos [p_item], GetToplevel (null));
+					PhotoVersionCommands.Reparent cmd = new PhotoVersionCommands.Reparent ();				
+					Photo[] photos_to_reparent = SelectedPhotos ();
+					// Give feedback to user that something happened, and leave the parent selected after reparenting
+					icon_view.Selection.Add (p_item); 
+					cmd.Execute (db.Photos, photos_to_reparent, query.Photos [p_item], GetToplevel (null));
 					UpdateQuery ();
 				}
 				Gtk.Drag.Finish (args.Context, true, false, args.Time);
