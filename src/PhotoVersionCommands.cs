@@ -198,17 +198,16 @@ public class PhotoVersionCommands
 		{
 			string ok_caption = Catalog.GetString ("De_tach");
 			string msg = String.Format (Catalog.GetString ("Really detach version \"{0}\" from \"{1}\"?"), photo.DefaultVersion.Name, photo.Name.Replace("_", "__"));
-			string desc = Catalog.GetString ("This makes the verion appear as a separate photo in the library. To undo, drag the new photo back to its parent.");
+			string desc = Catalog.GetString ("This makes the version appear as a separate photo in the library. To undo, drag the new photo back to its parent.");
 			try {
 				if (ResponseType.Ok == HigMessageDialog.RunHigConfirmation(parent_window, DialogFlags.DestroyWithParent, 
 									   MessageType.Warning, msg, desc, ok_caption)) {
 					Gdk.Pixbuf thumbnail = null;
 					Photo new_photo = store.Create (photo.DefaultVersionUri, photo.RollId, out thumbnail);
 					new_photo.CopyAttributesFrom (photo.DefaultVersion);
-					store.Commit (new_photo);
-
 					photo.DeleteVersion (photo.DefaultVersionId, false, true);
-					store.Commit (photo);
+					store.Commit (new Photo[] {new_photo, photo});
+					MainWindow.Toplevel.UpdateQuery ();
 					return true;
 				}
 			} catch (Exception e) {
@@ -257,7 +256,7 @@ public class PhotoVersionCommands
 						foreach (uint version_id in version_ids) {
 							photo.DeleteVersion (version_id, true, true);
 						}
-						App.Instance.Database.Photos.Remove (photo);
+						store.Remove (photo);
 					}
 					new_parent.Rating = highest_rating;
 					new_parent.Description = new_description;
