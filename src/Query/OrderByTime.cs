@@ -29,7 +29,8 @@ namespace FSpot.Query {
 
 		public string SqlClause ()
 		{
-			return String.Format (" time {0}, filename {0} ", asc ? "ASC" : "DESC");
+			// filenames must always appear in alphabetical order if times are the same
+			return String.Format (" time {0}, filename ASC ", asc ? "ASC" : "DESC");
 		}
 	}
 }
