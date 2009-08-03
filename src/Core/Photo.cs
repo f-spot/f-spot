@@ -360,22 +360,24 @@ namespace FSpot
 	
 		public uint CreateReparentedVersion (PhotoVersion version, bool is_protected)
 		{
-			int num = 0;
-			while (true) {
-				num++;
+			// Try to derive version name from its filename
+			string filename = Uri.UnescapeDataString (Path.GetFileNameWithoutExtension (version.Uri.AbsolutePath));
+			string parent_filename = Path.GetFileNameWithoutExtension (Name);
+			string name = null;
+			if (filename.StartsWith (parent_filename))
+				name = filename.Substring (parent_filename.Length).Replace ("(", "").Replace (")", "").Replace ("_", " "). Trim();
+			
+			for (int num = 1; name == null || VersionNameExists (name); num++) {
 				// Note for translators: Reparented is a picture becoming a version of another one
-				string name = (num == 1) ? Catalog.GetString ("Reparented") : String.Format (Catalog.GetString( "Reparented ({0})"), num);
+				name = Catalog.GetString (num == 1 ? "Reparented" : "Reparented ({0})");
 				name = String.Format (name, num);
-				if (VersionNameExists (name))
-					continue;
-	
-				highest_version_id ++;
-				versions [highest_version_id] = new PhotoVersion (this, highest_version_id, version.Uri, version.MD5Sum, name, is_protected);
-
-				changes.AddVersion (highest_version_id);
-
-				return highest_version_id;
 			}
+			highest_version_id ++;
+			versions [highest_version_id] = new PhotoVersion (this, highest_version_id, version.Uri, version.MD5Sum, name, is_protected);
+
+			changes.AddVersion (highest_version_id);
+
+			return highest_version_id;
 		}
 	
 		public uint CreateDefaultModifiedVersion (uint base_version_id, bool create_file)
