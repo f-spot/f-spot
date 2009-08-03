@@ -1,7 +1,7 @@
 /*
- * Rating.cs
+ * FSpot.UI.Dialog.RatingFilterDialog.cs
  *
- * Author[s]
+ * Author(s):
  * 	Bengt Thuree <bengt@thuree.com>
  *	Stephane Delcroix <stephane@delcroix.org>
  *
@@ -14,29 +14,28 @@ using FSpot.Query;
 using FSpot.Widgets;
 using FSpot.UI.Dialog;
 
-public class RatingFilter {
-	public class Set : GladeDialog {
+namespace FSpot.UI.Dialog
+{
+	public class RatingFilterDialog : BuilderDialog {
 		FSpot.PhotoQuery query;
 		Gtk.Window parent_window;
 
-		[Glade.Widget] private Button ok_button;
-		[Glade.Widget] private HBox minrating_hbox;
-		[Glade.Widget] private HBox maxrating_hbox;
+		[GtkBeans.Builder.Object] Button ok_button;
+		[GtkBeans.Builder.Object] HBox minrating_hbox;
+		[GtkBeans.Builder.Object] HBox maxrating_hbox;
 		
 		private int minrating_value = 4;
 		private int maxrating_value = 5;
 		private Rating minrating;
 		private Rating maxrating;
 
-		public Set (FSpot.PhotoQuery query, Gtk.Window parent_window)
+		public RatingFilterDialog (FSpot.PhotoQuery query, Gtk.Window parent_window) : base ("RatingFilterDialog.ui", "rating_filter_dialog")
 		{
 			this.query = query;
 			this.parent_window = parent_window;
-		}
-
-		public bool Execute ()
-		{
-			this.CreateDialog ("rating_filter_dialog");
+			TransientFor = parent_window;
+			DefaultResponse = ResponseType.Ok;
+			ok_button.GrabFocus ();
 			
 			if (query.RatingRange != null) {
 				minrating_value = (int) query.RatingRange.MinRating;
@@ -47,20 +46,13 @@ public class RatingFilter {
 			minrating_hbox.PackStart (minrating, false, false, 0);
 			maxrating_hbox.PackStart (maxrating, false, false, 0);
 
-			Dialog.TransientFor = parent_window;
-			Dialog.DefaultResponse = ResponseType.Ok;
-
-			ResponseType response = (ResponseType) this.Dialog.Run ();
-
-			bool success = false;
+			ResponseType response = (ResponseType) Run ();
 
 			if (response == ResponseType.Ok) {
 				query.RatingRange = new RatingRange ((uint) minrating.Value, (uint) maxrating.Value);
-				success = true;
 			}
 			
-			this.Dialog.Destroy ();
-			return success;
+			Destroy ();
 		}
 	}
 }

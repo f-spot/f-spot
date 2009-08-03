@@ -230,7 +230,6 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/Preferences.cs 		\
 	$(srcdir)/PrintOperation.cs		\
 	$(srcdir)/ProgressItem.cs		\
-	$(srcdir)/RatingFilter.cs		\
 	$(srcdir)/QueuedSqliteDatabase.cs	\
 	$(srcdir)/RotateCommand.cs		\
 	$(srcdir)/RollStore.cs			\
@@ -266,6 +265,7 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/UI.Dialog/LastRollDialog.cs		\
 	$(srcdir)/UI.Dialog/PreferenceDialog.cs		\
 	$(srcdir)/UI.Dialog/ProgressDialog.cs		\
+	$(srcdir)/UI.Dialog/RatingFilterDialog.cs	\
 	$(srcdir)/UI.Dialog/RepairDbDialog.cs		\
 	$(srcdir)/UI.Dialog/SelectionRatioDialog.cs	\
 	$(srcdir)/UI.Dialog/TagSelectionDialog.cs	\
@@ -414,6 +414,7 @@ F_SPOT_DISTRESOURCES =					\
 	$(srcdir)/UI.Dialog/ui/EditTagDialog.ui		\
 	$(srcdir)/UI.Dialog/ui/EditTagIconDialog.ui		\
 	$(srcdir)/UI.Dialog/ui/PreferenceDialog.ui	\
+	$(srcdir)/UI.Dialog/ui/RatingFilterDialog.ui	\
 	$(srcdir)/FSpot.addin.xml
 
 F_SPOT_RESOURCES =					\

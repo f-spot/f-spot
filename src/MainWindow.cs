@@ -2437,8 +2437,7 @@ public class MainWindow {
 	}
 
 	void HandleSetRatingFilter (object sender, EventArgs args) {
-		RatingFilter.Set set_command = new RatingFilter.Set (query, main_window);
-		set_command.Execute ();
+		new RatingFilterDialog (query, main_window);
 	}
 
 	public void HandleClearRatingFilter (object sender, EventArgs args) {
