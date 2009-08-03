@@ -541,7 +541,7 @@ namespace FSpot.Database {
 						"INSERT INTO photos (id, time, base_uri, filename, description, roll_id, default_version_id, rating, md5_sum) "	+
 						"VALUES (:id, :time, :base_uri, :filename, :description, :roll_id, :default_version_id, :rating, :md5_sum)",
 						"id", Convert.ToUInt32 (reader ["id"]),
-						"time", Convert.ToUInt32 (reader ["time"]),
+						"time", Convert.ToInt32 (reader ["time"]),
 						"base_uri", base_uri.ToString (),
 						"filename", filename,
 						"description", reader["description"].ToString (),
