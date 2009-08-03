@@ -230,9 +230,9 @@ public class PhotoVersionCommands
 		public bool Execute (PhotoStore store, Photo [] photos, Photo new_parent, Gtk.Window parent_window)
 		{
 			string ok_caption = Catalog.GetString ("Re_parent");
-			string msg = String.Format (Catalog.GetPluralString ("Really reparent selected photo as version of {1}?", 
-			                                                     "Really reparent {0} selected photos as versions of {1}?", photos.Length), 
-			                            photos.Length, new_parent.Name.Replace ("_", "__"));
+			string msg = String.Format (Catalog.GetPluralString ("Really reparent \"{2}\" as version of \"{1}\"?", 
+			                                                     "Really reparent {0} photos as versions of \"{1}\"?", photos.Length), 
+			                            photos.Length, new_parent.Name.Replace ("_", "__"), photos[0].Name.Replace ("_", "__"));
 			string desc = Catalog.GetString ("This makes the photos appear as a single one in the library. The versions can be detached using the Photo menu.");
 
 			try {
