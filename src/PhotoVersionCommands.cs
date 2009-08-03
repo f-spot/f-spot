@@ -106,21 +106,11 @@ public class PhotoVersionCommands
 			try {
 				photo.DefaultVersionId = photo.CreateVersion (name, photo.DefaultVersionId, true);
 				store.Commit (photo);
+				return true;
 			} catch (Exception e) {
-					string msg = Catalog.GetString ("Could not create a new version");
-					string desc = String.Format (Catalog.GetString ("Received exception \"{0}\". Unable to create version \"{1}\""),
-								     e.Message, name);
-					
-					HigMessageDialog md = new HigMessageDialog (parent_window, DialogFlags.DestroyWithParent, 
-										    Gtk.MessageType.Error, ButtonsType.Ok, 
-										    msg,
-										    desc);
-					md.Run ();
-					md.Destroy ();
-					return false;
+				HandleException ("Could not create a new version", e, parent_window);
+				return false;
 			}
-
-			return true;
 		}
 	}
 
@@ -141,17 +131,8 @@ public class PhotoVersionCommands
 					return true;
 				}
 			} catch (Exception e) {
-				Log.DebugException (e);
-				msg = Catalog.GetString ("Could not delete a version");
-				desc = String.Format (Catalog.GetString ("Received exception \"{0}\". Unable to delete version \"{1}\""),
-							     e.Message, photo.Name);
-				
-				HigMessageDialog md = new HigMessageDialog (parent_window, DialogFlags.DestroyWithParent, 
-									    Gtk.MessageType.Error, ButtonsType.Ok, msg, desc);
-				md.Run ();
-				md.Destroy ();
+				HandleException ("Could not delete a version", e, parent_window);
 			}
-
 			return false;
 		}
 	}
@@ -173,21 +154,11 @@ public class PhotoVersionCommands
 			try {
 				photo.RenameVersion (photo.DefaultVersionId, new_name);
 				store.Commit (photo);
+				return true;
 			} catch (Exception e) {
-					string msg = Catalog.GetString ("Could not rename a version");
-					string desc = String.Format (Catalog.GetString ("Received exception \"{0}\". Unable to rename version to \"{1}\""),
-								     e.Message, new_name);
-					
-					HigMessageDialog md = new HigMessageDialog (parent_window, DialogFlags.DestroyWithParent, 
-										    Gtk.MessageType.Error, ButtonsType.Ok, 
-										    msg,
-										    desc);
-					md.Run ();
-					md.Destroy ();
-					return false;
+				HandleException ("Could not rename a version", e, parent_window);
+				return false;
 			}
-
-			return true;
 		}
 	}
 
@@ -210,16 +181,8 @@ public class PhotoVersionCommands
 					return true;
 				}
 			} catch (Exception e) {
-				Log.DebugException (e);
-				msg = Catalog.GetString ("Could not detach a version");
-				desc = String.Format (Catalog.GetString ("Received exception \"{0}\". Unable to detach version \"{1}\""),
-							     e.Message, photo.Name);
-				HigMessageDialog md = new HigMessageDialog (parent_window, DialogFlags.DestroyWithParent, 
-									    Gtk.MessageType.Error, ButtonsType.Ok, msg, desc);
-				md.Run ();
-				md.Destroy ();					
+				HandleException ("Could not detach a version", e, parent_window);
 			}
-
 			return false;
 		}
 	}
@@ -264,17 +227,19 @@ public class PhotoVersionCommands
 				}
 			}
 			catch (Exception e) {
-				Log.DebugException (e);
-				msg = Catalog.GetString ("Could not reparent photos");
-				desc = String.Format (Catalog.GetString ("Received exception \"{0}\" while reparenting."),
-							     e.Message, new_parent.Name);
-				HigMessageDialog md = new HigMessageDialog (parent_window, DialogFlags.DestroyWithParent, 
-									    Gtk.MessageType.Error, ButtonsType.Ok, msg, desc);
-				md.Run ();
-				md.Destroy ();
+				HandleException ("Could not reparent photos", e, parent_window);
 			}
-			
 			return false;
 		}
+	}
+	
+	private static void HandleException (string msg, Exception e, Gtk.Window parent_window) {
+		Log.DebugException (e);
+		msg = Catalog.GetString (msg);
+		string desc = String.Format (Catalog.GetString ("Received exception \"{0}\"."), e.Message);
+		HigMessageDialog md = new HigMessageDialog (parent_window, DialogFlags.DestroyWithParent, 
+							    Gtk.MessageType.Error, ButtonsType.Ok, msg, desc);
+		md.Run ();
+		md.Destroy ();
 	}
 }
