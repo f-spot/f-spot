@@ -304,13 +304,12 @@ namespace FSpot
 
 			changes.RemoveVersion (version_id);
 
-			do {
-				version_id --;
+			for (version_id = highest_version_id; version_id >= OriginalVersionId; version_id--) {
 				if (versions.ContainsKey (version_id)) {
 					DefaultVersionId = version_id;
 					break;
 				}
-			} while (version_id > OriginalVersionId);
+			}
 		}
 
 		public uint CreateVersion (string name, uint base_version_id, bool create)
