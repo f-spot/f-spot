@@ -113,7 +113,7 @@ namespace MetaPixelExtension {
 				mini_query.Terms = FSpot.OrTerm.FromTags ((Tag []) taglist.ToArray (typeof (Tag)));
 				photos = mini_query.Photos;
 			} else {
-				photos = MainWindow.Toplevel.ActivePhotos ();
+				photos = MainWindow.Toplevel.Query.Photos;
 			}
 
 			if (photos.Length == 0) {
