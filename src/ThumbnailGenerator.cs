@@ -38,8 +38,8 @@ namespace FSpot {
 					Gnome.Vfs.FileInfo vfs = new Gnome.Vfs.FileInfo (UriUtils.UriToStringEscaped (uri));
 					DateTime mtime = vfs.Mtime;
 
-					PixbufUtils.SetOption (thumb, ThumbUri, UriUtils.UriToStringEscaped (uri));
-					PixbufUtils.SetOption (thumb, ThumbMTime, ((uint)GLib.Marshaller.DateTimeTotime_t (mtime)).ToString ());
+					FSpot.Utils.PixbufUtils.SetOption (thumb, ThumbUri, UriUtils.UriToStringEscaped (uri));
+					FSpot.Utils.PixbufUtils.SetOption (thumb, ThumbMTime, ((uint)GLib.Marshaller.DateTimeTotime_t (mtime)).ToString ());
 				} catch (System.Exception e) {
 					Log.Exception (e);
 				}

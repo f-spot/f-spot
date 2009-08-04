@@ -843,7 +843,7 @@ namespace FSpot.Widgets
 								InterpType.Bilinear);
 					}
 
-					PixbufUtils.CopyThumbnailOptions (thumbnail, temp_thumbnail);
+					FSpot.Utils.PixbufUtils.CopyThumbnailOptions (thumbnail, temp_thumbnail);
 				} else
 					temp_thumbnail = thumbnail;
 

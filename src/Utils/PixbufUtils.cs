@@ -6,10 +6,12 @@
 //	Larry Ewing  <lewing@novell.com>
 //	Stephane Delcroix  <stephane@declroix.org>
 //
-// This is free softwae. See cOPYING for details
+// This is free software. See COPYING for details
 //
 
 using Gdk;
+using System;
+using System.Runtime.InteropServices;
 
 namespace FSpot.Utils
 {
@@ -156,7 +158,7 @@ namespace FSpot.Utils
 			switch (orientation) {
 			default:
 			case PixbufOrientation.TopLeft:
-				dest = src;
+				dest = PixbufUtils.ShallowCopy (src);
 				break;
 			case PixbufOrientation.TopRight:
 				dest = src.Flip (false);
@@ -186,6 +188,39 @@ namespace FSpot.Utils
 			}
 			
 			return dest;
+		}
+
+		public static Pixbuf ShallowCopy (Pixbuf pixbuf)
+		{
+			if (pixbuf == null)
+				return null;
+			Pixbuf result = new Pixbuf (pixbuf, 0, 0, pixbuf.Width, pixbuf.Height);
+			CopyThumbnailOptions (pixbuf, result);
+			return result;
+		}
+
+		// 
+		// FIXME this is actually not public api and we should do a verison check,
+		// but frankly I'm irritated that it isn't public so I don't much care.
+		//
+		[DllImport("libgdk_pixbuf-2.0-0.dll")]
+		static extern bool gdk_pixbuf_set_option(IntPtr raw, string key, string value);
+		
+		public static bool SetOption(Gdk.Pixbuf pixbuf, string key, string value)
+		{
+			
+			if (value != null)
+				return gdk_pixbuf_set_option(pixbuf.Handle, key, value);
+			else
+				return false;
+		}
+		
+		public static void CopyThumbnailOptions (Gdk.Pixbuf src, Gdk.Pixbuf dest)
+		{
+			if (src != null && dest != null) {
+				PixbufUtils.SetOption (dest, "tEXt::Thumb::URI", src.GetOption ("tEXt::Thumb::URI"));
+				PixbufUtils.SetOption (dest, "tEXt::Thumb::MTime", src.GetOption ("tEXt::Thumb::MTime"));
+			}
 		}
 	}
 }

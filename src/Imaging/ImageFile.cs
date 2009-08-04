@@ -99,9 +99,8 @@ namespace FSpot {
 				return null;
 
 			Gdk.Pixbuf rotated = FSpot.Utils.PixbufUtils.TransformOrientation (orig, this.Orientation);
-			//ValidateThumbnail (photo, rotated);
-			if (rotated != orig)
-				orig.Dispose ();
+
+			orig.Dispose ();
 			
 			return rotated;
 		}

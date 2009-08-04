@@ -6,7 +6,7 @@
 //	Larry Ewing  <lewing@novell.com>
 //	Stephane Delcroix  <stephane@declroix.org>
 //
-// This is free softwae. See cOPYING for details
+// This is free software. See COPYING for details
 //
 
 using Gdk;
@@ -121,7 +121,7 @@ public class PixbufUtils {
 			Gdk.Pixbuf rotated = FSpot.Utils.PixbufUtils.TransformOrientation (orig, orientation);
 			
 			if (orig != rotated) {
-				CopyThumbnailOptions (orig, rotated);
+				FSpot.Utils.PixbufUtils.CopyThumbnailOptions (orig, rotated);
 				orig.Dispose ();
 			}
 			loader.Dispose ();
@@ -147,7 +147,7 @@ public class PixbufUtils {
 		if (pixbuf == null)
 			return null;
 		Pixbuf result = new Pixbuf (pixbuf, 0, 0, pixbuf.Width, pixbuf.Height);
-		CopyThumbnailOptions (pixbuf, result);
+		FSpot.Utils.PixbufUtils.CopyThumbnailOptions (pixbuf, result);
 		return result;
 	}
 
@@ -168,7 +168,7 @@ public class PixbufUtils {
 		else
 			result = pixbuf.Copy ();
 
-		CopyThumbnailOptions (pixbuf, result);
+		FSpot.Utils.PixbufUtils.CopyThumbnailOptions (pixbuf, result);
 
 		return result;
 	}
@@ -237,30 +237,6 @@ public class PixbufUtils {
 		
 	}
 	
-
-	// 
-	// FIXME this is actually not public api and we should do a verison check,
-	// but frankly I'm irritated that it isn't public so I don't much care.
-	//
-	[DllImport("libgdk_pixbuf-2.0-0.dll")]
-	static extern bool gdk_pixbuf_set_option(IntPtr raw, string key, string value);
-	
-	public static bool SetOption(Gdk.Pixbuf pixbuf, string key, string value)
-	{
-		
-		if (value != null)
-			return gdk_pixbuf_set_option(pixbuf.Handle, key, value);
-		else
-			return false;
-	}
-	
-	public static void CopyThumbnailOptions (Gdk.Pixbuf src, Gdk.Pixbuf dest)
-	{
-		if (src != null && dest != null) {
-			PixbufUtils.SetOption (dest, "tEXt::Thumb::URI", src.GetOption ("tEXt::Thumb::URI"));
-			PixbufUtils.SetOption (dest, "tEXt::Thumb::MTime", src.GetOption ("tEXt::Thumb::MTime"));
-		}
-	}
 
 	public static void Save (Gdk.Pixbuf pixbuf, System.IO.Stream stream, string type, string [] options, string [] values)
 	{
@@ -674,11 +650,11 @@ public class PixbufUtils {
 			
 			using (MemoryStream mem = new MemoryStream (thumb_data)) {
 				Gdk.Pixbuf thumb = new Gdk.Pixbuf (mem);
+				Gdk.Pixbuf rotated;
 
-				Gdk.Pixbuf rotated = FSpot.Utils.PixbufUtils.TransformOrientation (thumb, orientation);
+				using (thumb)
+					rotated = FSpot.Utils.PixbufUtils.TransformOrientation (thumb, orientation);
 				
-				if (rotated != thumb)
-					thumb.Dispose ();
 				return rotated;
 			}			
 		}

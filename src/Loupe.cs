@@ -163,9 +163,8 @@ namespace FSpot.Widgets {
 			Pixbuf tmp = new Gdk.Pixbuf (view.Pixbuf,
 						 region.X, region.Y,
 						 region.Width, region.Height);
-			source = FSpot.Utils.PixbufUtils.TransformOrientation (tmp, view.PixbufOrientation);
-			if (source != tmp)
-				tmp.Dispose ();
+			using (tmp)
+				source = FSpot.Utils.PixbufUtils.TransformOrientation (tmp, view.PixbufOrientation);
 			
 			//FIXME sometimes that ctor returns results with a null
 			//handle this case ourselves
