@@ -65,8 +65,8 @@ namespace FSpot.UI.Dialog
 			image_view.SelectionChanged += HandleSelectionChanged;
 			image_view.PhotoChanged += HandlePhotoChanged;
 
-                        external_photo_chooser = new Gtk.FileChooserButton (Catalog.GetString ("Select Photo from file"),
-                                                                 Gtk.FileChooserAction.Open);
+			external_photo_chooser = new Gtk.FileChooserButton (Catalog.GetString ("Select Photo from file"),
+					Gtk.FileChooserAction.Open);
 
 			external_photo_chooser.Filter = new FileFilter();
 			external_photo_chooser.Filter.AddPixbufFormats();
@@ -181,8 +181,8 @@ namespace FSpot.UI.Dialog
 
 		void HandleSelectionChanged (object sender, EventArgs e)
 		{
-		       	int x = image_view.Selection.X;
-		       	int y = image_view.Selection.Y;
+			int x = image_view.Selection.X;
+			int y = image_view.Selection.Y;
 			int width = image_view.Selection.Width;
 			int height = image_view.Selection.Height;
 		       
@@ -208,6 +208,7 @@ namespace FSpot.UI.Dialog
 							  item + 1, query.Count);
 
 			photo_spin_button.Value = item + 1;
+			HandleSelectionChanged (null, null);
 		}
 
 		public void HandleIconSelectionChanged (object o, EventArgs args)
