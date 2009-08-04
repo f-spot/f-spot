@@ -173,7 +173,7 @@ namespace FSpot.Widgets
 			layout_frame.Child = layout_vbox;
 			Attach (layout_frame, 1, 2, 1, 2);
 
-			Frame cmt_frame = new Frame (Catalog.GetString ("Custom Text: "));
+			Frame cmt_frame = new Frame (Catalog.GetString ("Custom Text"));
 			cmt_frame.Child = custom_text = new Entry ();
 			Attach (cmt_frame, 1, 2, 2, 3);
 
