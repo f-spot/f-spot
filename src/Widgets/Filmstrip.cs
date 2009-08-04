@@ -532,7 +532,7 @@ namespace FSpot.Widgets
 
 		void HandleCollectionChanged (IBrowsableCollection coll)
 		{
-			Position = ActiveItem;
+			this.position = ActiveItem;
 			QueueDraw ();
 		}
 
