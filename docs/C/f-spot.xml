@@ -8,7 +8,7 @@
 		</abstract>
 		<subtitle>This is the user manual for F-Spot, a GNOME personal photo manager.</subtitle>
 		<copyright>
-			<year>2007-2008</year>
+			<year>2007-2009</year>
 			<holder>Aaron Bockover, Gabriel Burt, Miguel de Icaza, Bengt Thuree</holder>
 		</copyright>
 		<publisher>
@@ -101,7 +101,7 @@
 			<tip>
 				<para>
 					F-Spot uses a database stored at 
-					<filename>~/.gnome2/f-spot/photos.db</filename>. Note, to access it, use 
+					<filename>~/.config/f-spot/photos.db</filename>. Note, to access it, use 
 					the sqlite3 command. You can also manually specify path to a database by 
 					running F-Spot with <option>-b</option> option.
 				</para>
@@ -137,7 +137,7 @@
 				<para>
 					When you edit your photos, a new copy (called a version) is created, 
 					so your original is never altered. After your first edit to a photo, subsequent 
-					edits will modify the same version. If you want to create mulitple versions 
+					edits will modify the same version. If you want to create multiple versions 
 					of your photo, perhaps with different cropping or coloring, you can do so 
 					via the <menuchoice><guimenu>File</guimenu>
 					<guimenuitem>Create new version</guimenuitem></menuchoice> option.
@@ -149,7 +149,7 @@
 				
 				<para>
 					Cropping an image is a great way to improve the quality of a photograph by 
-					improving how it is framed. You crop a photo by selecting the part of the photo 
+					change how it is framed. You crop a photo by selecting the part of the photo 
 					you want to keep. If you want your photo to be the exact dimensions necessary 
 					for a certain print size, you can constrain the kind of selection F-Spot will allow 
 					you to draw by choosing the appropriate size from the constraint drop down. 
@@ -485,7 +485,7 @@
 			<title>Search</title>
 			
 			<para>
-				F-Spot uses search search filters to help you better define search criteria.
+				F-Spot uses search filters to help you better define search criteria.
 			</para>
 			
 			<sect2 id="enjoying-search-tags">
@@ -542,7 +542,7 @@
 					</listitem>
 					<listitem>
 						<para>
-							<parameter class='option'>After</parameter> — to select all photos imported begining with a particular importing sessio
+							<parameter class='option'>After</parameter> — to select all photos imported begining with a particular importing session
 						</para>
 					</listitem>
 					<listitem>
@@ -552,7 +552,7 @@
 					</listitem>
 				</itemizedlist>
 				<para>
-					Every time you change settings of the filter, amount of selected photos 
+					Every time you change settings of the filter, the amount of selected photos 
 					will appear in the bottom part of the dialog.
 				</para>
 				<para>
@@ -724,7 +724,7 @@
 		<sect1 id="sharing-flickr-or-php-gallery">
 			<title>Post to your online galleries</title>
 			<para>
-				If you use Flickr, SmugMug, 23hq or Picasa Web Album, you can post your files 
+				If you use Flickr, SmugMug, 23hq, Tabblo, Facebook, Zooomr or Picasa Web Album, you can post your files 
 				directly from F-Spot with the <menuchoice><guimenu>File</guimenu>
 				<guisubmenu>Export</guisubmenu></menuchoice> menu, choosing corresponding submenu item.
 			</para>
@@ -1024,7 +1024,6 @@
 				<para>
 					In the <guilabel>Manage Extensions</guilabel> dialog select the extension 
 					package and click <guibutton>Enable</guibutton> or <guibutton>Disable</guibutton>. 
-					You will have to restart F-Spot to let changes apply.
 				</para>
 			</sect2>
 			
@@ -1132,7 +1131,7 @@
 								<keycombo><keycap>Shift</keycap><keycap>Del</keycap></keycombo>
 							</entry>
 							<entry>
-								Delete selected photos permanently from the drive
+								Delete selected photos permanently from the drive. If possible, they will moved to trash.
 							</entry>
 						</row>
  
