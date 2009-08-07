@@ -5,15 +5,15 @@ if ENABLE_TESTS
 all: FSpot.Tests.dll
 
 SOURCES = 				\
-	IBrowsableItem.cs		\
-	ImageTest.cs			\
-	PhotoStore.cs			\
-	TagStore.cs			\
-	ThumbnailGenerator.cs		\
-	Query/LogicalTerm.cs		\
-	Cms/Cms.cs			\
-	Filters/JpegFilter.cs		\
-	Filters/OrientationFilter.cs
+	$(srcdir)/IBrowsableItem.cs		\
+	$(srcdir)/ImageTest.cs			\
+	$(srcdir)/PhotoStore.cs			\
+	$(srcdir)/TagStore.cs			\
+	$(srcdir)/ThumbnailGenerator.cs		\
+	$(srcdir)/Query/LogicalTerm.cs		\
+	$(srcdir)/Cms/Cms.cs			\
+	$(srcdir)/Filters/JpegFilter.cs		\
+	$(srcdir)/Filters/OrientationFilter.cs
 
 PKGS = 					\
 	-pkg:mono-nunit			\
@@ -25,13 +25,13 @@ REFS =										\
 	$(LINK_GPHOTO2)							\
 	$(LINK_MONO_ADDINS)						\
 	$(LINK_GIOSHARP)						\
-	-r:$(top_srcdir)/src/f-spot.exe			\
-	-r:$(top_srcdir)/src/FSpot.Core.dll		\
-	-r:$(top_srcdir)/src/FSpot.Query.dll	\
-	-r:$(top_srcdir)/src/FSpot.Utils.dll	\
-	-r:$(top_srcdir)/src/FSpot.Platform.dll	\
-	-r:$(top_srcdir)/src/Cms.dll			\
-	-r:$(top_srcdir)/lib/semweb/SemWeb.dll
+	-r:$(top_builddir)/src/f-spot.exe			\
+	-r:$(top_builddir)/src/FSpot.Core.dll		\
+	-r:$(top_builddir)/src/FSpot.Query.dll	\
+	-r:$(top_builddir)/src/FSpot.Utils.dll	\
+	-r:$(top_builddir)/src/FSpot.Platform.dll	\
+	-r:$(top_builddir)/src/Cms.dll			\
+	-r:$(top_builddir)/lib/semweb/SemWeb.dll
 
 
 RESOURCES =							\

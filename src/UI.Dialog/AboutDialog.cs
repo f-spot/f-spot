@@ -30,9 +30,7 @@ namespace FSpot.UI.Dialog
 				"Active Contributors to this release",
 				"\tLorenzo Milesi",					//0.5.0
 				"\tMike Gem\x00fcnde",
-				"\tRuben Vermeersch (Google Summer of Code)",		//0,5,0
-				"\tThomas Van Machelen",				//0.5.0
-				"\tVasily Kirilichev (Google Summer of Code)",		//0.5.0
+				"\tRuben Vermeersch",					//0.5.0, 0.6.0
 				"",
 				"Contributors",
 				"\tAaron Bockover",
@@ -60,7 +58,9 @@ namespace FSpot.UI.Dialog
 				"\tPatanjali Somayaji",
 				"\tPeter Johanson",
 				"\tTambet Ingo",
+				"\tThomas Van Machelen",				//0.5.0
 				"\tTodd Berman",
+				"\tVasily Kirilichev (Google Summer of Code)",		//0.5.0
 				"\tVincent Moreau",
 				"\tVladimir Vukicevic",
 				"\tXavier Bouchoux",
