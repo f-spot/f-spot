@@ -1,8 +1,7 @@
 all: RetroactiveRoll.dll
 
 PACKAGES = \
-	-pkg:f-spot \
-	-pkg:gnome-vfs-sharp-2.0
+	-pkg:f-spot
 
 ASSEMBLIES = \
 	-r:Mono.Posix -r:Mono.Data.SqliteClient
