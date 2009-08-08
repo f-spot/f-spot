@@ -44,7 +44,7 @@ namespace FSpot {
 		Counterclockwise,
 	}
 
-	public class RotateOperation : IOperation {
+	public class RotateOperation {
 		IBrowsableItem item;
 		RotateDirection direction;
 		bool done;
@@ -141,7 +141,7 @@ namespace FSpot {
 		}
 	}
 
-	public class RotateMultiple : IOperation {
+	public class RotateMultiple {
 		RotateDirection direction;
 		IBrowsableItem [] items;
 		int index;
