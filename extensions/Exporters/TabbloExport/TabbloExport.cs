@@ -395,13 +395,8 @@ namespace FSpotTabbloExport {
 			FSpot.IBrowsableItem [] items = model.Photos;
 
 			for (int i = 0; i < pictures.Length; ++i) {
-				// FIXME: GnomeVFS is deprecated, we should use
-				// GIO instead.  However, I don't know how to
-				// call `GLib.Content.TypeGuess ()'.
-				string path = items [i].DefaultVersionUri
-						.LocalPath;
-				string mime_type = Gnome.Vfs.MimeType
-						.GetMimeTypeForUri (path);
+				string mime_type = GLib.FileFactory.NewForUri (items [i].DefaultVersionUri).
+							QueryInfo ("standard::content-type", GLib.FileQueryInfoFlags.None, null).ContentType;
 
 				pictures [i] = new Picture (items [i].Name,
 						items [i].DefaultVersionUri,
