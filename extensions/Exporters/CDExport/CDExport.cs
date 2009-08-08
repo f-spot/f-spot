@@ -267,24 +267,5 @@ namespace FSpotCDExport {
 
 		}
 
-		private void HandleMsg (Gnome.Vfs.ModuleCallback cb)
-		{
-			Gnome.Vfs.ModuleCallbackStatusMessage msg = cb as Gnome.Vfs.ModuleCallbackStatusMessage;
-			FSpot.Utils.Log.Debug ("CDExport: " + msg.Message);
-		}
-
-		private void HandleAuth (Gnome.Vfs.ModuleCallback cb)
-		{
-			Gnome.Vfs.ModuleCallbackFullAuthentication fcb = cb as Gnome.Vfs.ModuleCallbackFullAuthentication;
-			System.Console.Write ("Enter your username ({0}): ", fcb.Username);
-			string username = System.Console.ReadLine ();
-			System.Console.Write ("Enter your password : ");
-			string passwd = System.Console.ReadLine ();
-
-			if (username.Length > 0)
-				fcb.Username = username;
-			fcb.Password = passwd;
-		}
-
 	}
 }
