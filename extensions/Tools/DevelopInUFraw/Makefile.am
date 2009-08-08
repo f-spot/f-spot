@@ -18,11 +18,10 @@ REFS =					\
 	$(LINK_SEMWEB)				\
 	$(LINK_MONO_ADDINS)			\
 	$(LINK_GTKSHARPBEANS)			\
+	$(LINK_GIOSHARP)			\
 	$(LINK_GPHOTO2)
 
 PKGS =					\
-	-pkg:gnome-vfs-sharp-2.0	\
-	$(LINK_GIOSHARP)		\
 	-pkg:gtk-sharp-2.0
 
 RESOURCES =				\

@@ -110,14 +110,14 @@ namespace DevelopInUFRawExtension
 			switch (executable) {
 				case "ufraw":
 					args += ufraw_args;
-					if (new Gnome.Vfs.Uri (Path.ChangeExtension (raw.Uri.ToString (), ".ufraw")).Exists) {
+					if (GLib.FileFactory.NewForUri (Path.ChangeExtension (raw.Uri.ToString (), ".ufraw")).Exists) {
 						// We found an ID file, use that instead of the raw file
 						idfile = "--conf=" + GLib.Shell.Quote (Path.ChangeExtension (raw.Uri.LocalPath, ".ufraw"));
 					}
 					break;
 				case "ufraw-batch":
 					args += ufraw_batch_args;
-					if (new Gnome.Vfs.Uri (Path.Combine (FSpot.Global.BaseDirectory, "batch.ufraw")).Exists) {
+					if (GLib.FileFactory.NewForUri (Path.Combine (FSpot.Global.BaseDirectory, "batch.ufraw")).Exists) {
 						// We found an ID file, use that instead of the raw file
 						idfile = "--conf=" + GLib.Shell.Quote (Path.Combine (FSpot.Global.BaseDirectory, "batch.ufraw"));
 					}
@@ -133,12 +133,12 @@ namespace DevelopInUFRawExtension
 
 			System.Diagnostics.Process ufraw = System.Diagnostics.Process.Start (executable, args);
 			ufraw.WaitForExit ();
-			if (!(new Gnome.Vfs.Uri (developed.ToString ())).Exists) {
+			if (!(GLib.FileFactory.NewForUri (developed.ToString ())).Exists) {
 				Log.Warning ("UFRaw quit with an error. Check that you have UFRaw 0.13 or newer. Or did you simply clicked on Cancel?");
 				return;
 			}
 
-			if (new Gnome.Vfs.Uri (Path.ChangeExtension (developed.ToString (), ".ufraw")).Exists) {
+			if (GLib.FileFactory.NewForUri (Path.ChangeExtension (developed.ToString (), ".ufraw")).Exists) {
 				// We save our own copy of the last ufraw settings, as ufraw can overwrite it's own last used settings outside f-spot
 				File.Delete (Path.Combine (FSpot.Global.BaseDirectory, "batch.ufraw"));
 				File.Copy (Path.ChangeExtension (developed.LocalPath, ".ufraw"), Path.Combine (FSpot.Global.BaseDirectory, "batch.ufraw"));
