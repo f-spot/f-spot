@@ -91,9 +91,9 @@ namespace ZipExport {
 		}
 
 		void zip () {
-			Gnome.Vfs.Uri dest = new Gnome.Vfs.Uri (uri_chooser.Uri);
+			System.Uri dest = new System.Uri (uri_chooser.Uri);
 			Crc32 crc = new Crc32 ();
-			string filedest = Gnome.Vfs.Uri.GetLocalPathFromUri (dest.ToString ()) + "/" + filename.Text;
+			string filedest = dest.LocalPath + "/" + filename.Text;
 			Log.Debug ("Creating zip file {0}", filedest);
 			ZipOutputStream s = new ZipOutputStream (File.Create(filedest));
 			if (scale_check.Active)
