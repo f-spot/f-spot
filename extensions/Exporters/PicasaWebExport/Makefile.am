@@ -6,9 +6,6 @@ PLUGIN_MANIFEST = $(PLUGIN_NAME).addin.xml
 
 PLUGIN_ASSEMBLY = $(PLUGIN_NAME).dll
 
-PLUGIN_SOURCES =			\
-	$(srcdir)/PicasaWebExport.cs
-
 REFS =					\
 	-r:$(top_builddir)/src/f-spot.exe		\
 	-r:$(top_builddir)/src/FSpot.Core.dll	\
@@ -23,8 +20,7 @@ REFS =					\
 	-r:Mono.Posix
 
 PKGS =					\
-	-pkg:gnome-vfs-sharp-2.0	\
-	$(LINK_GTKSHARPBEANS)		\	
+	$(LINK_GTKSHARPBEANS)		\
 	-pkg:gtk-sharp-2.0		\
 	-pkg:glade-sharp-2.0
 
