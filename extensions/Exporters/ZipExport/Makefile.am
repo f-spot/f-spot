@@ -6,6 +6,9 @@ PLUGIN_MANIFEST = $(PLUGIN_NAME).addin.xml
 
 PLUGIN_ASSEMBLY = $(PLUGIN_NAME).dll
 
+PLUGIN_SOURCES =			\
+	$(srcdir)/ZipExport.cs
+
 REFS =					\
 	-r:$(top_builddir)/src/f-spot.exe		\
 	-r:$(top_builddir)/src/FSpot.Core.dll	\
