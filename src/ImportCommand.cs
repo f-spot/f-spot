@@ -256,7 +256,7 @@ public class ImportCommand : GladeDialog
 				}
 			} else {
 				ImportSource source = new BrowseSource (Catalog.GetString ("(No Cameras Detected)"),
-									"emblem-camera");
+									"camera-photo");
 				item = new SourceItem (source);
 				item.Activated += HandleActivated;
 				item.Sensitive = false;
