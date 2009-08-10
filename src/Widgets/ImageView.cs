@@ -921,8 +921,11 @@ namespace FSpot.Widgets
 			if (evnt.Button != 1)
 				return false;
 
-			if (evnt.Type == EventType.TwoButtonPress) 
+			if (evnt.Type == EventType.TwoButtonPress) {
+				is_dragging_selection = false;
+				is_moving_selection = false;
 				return false;
+			}
 			
 			Point img = WindowCoordsToImage (new Point ((int)evnt.X, (int)evnt.Y));
 			switch (GetDragMode ((int)evnt.X, (int)evnt.Y)) {
