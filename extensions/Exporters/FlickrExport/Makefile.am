@@ -45,7 +45,7 @@ $(PLUGIN_ASSEMBLY): $(PLUGIN_SOURCES) $(PLUGIN_MANIFEST)
 plugindir = $(pkglibdir)/extensions
 
 install-data-hook:
-	rm -f $(plugindir)/$(PLUGIN_NAME).addin.xml
+	if [ -w $(DESTDIR)$(plugindir)/$(PLUGIN_NAME).addin.xml ] ; then rm -f $(DESTDIR)$(plugindir)/$(PLUGIN_NAME).addin.xml; fi
 
 plugin_DATA =			\
 	$(PLUGIN_ASSEMBLY)
