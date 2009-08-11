@@ -14,13 +14,9 @@ UNCONDITIONAL_SUBDIRS = \
 	semweb				\
 	Tao
 
-# Depending on whether the packaged ndesk-dbus is used, we might not want to
-# build it, but we will always want to ship it. Also, dpap-sharp isn't built,
-# but it is shipped.
+# dpap-sharp isn't built, but it is shipped.
 
 SUBDIRS = 				\
-	$(DIR_DBUS)			\
-	$(DIR_DBUS_GLIB)	\
 	$(UNCONDITIONAL_SUBDIRS)
 
 DIST_SUBDIRS = 			\

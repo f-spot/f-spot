@@ -337,8 +337,7 @@ UTILS_ASSEMBLIES =				\
 	-r:Mono.Posix				\
 	-r:Mono.Cairo				\
 	$(LINK_GLITZ)				\
-	$(GCONF_PKG)				\
-	$(LINK_DBUS)
+	$(GCONF_PKG)
 
 JOBSCHEDULER_ASSEMBLIES =			\
 	-r:FSpot.Utils.dll
@@ -364,7 +363,7 @@ GNOME_PLATFORM_ASSEMBLIES =			\
 	-pkg:gnome-sharp-2.0			\
 	-pkg:gtk-sharp-2.0			\
 	-pkg:gconf-sharp-2.0			\
-	$(LINK_DBUS)				\
+	$(NDESK_DBUS_LIBS)				\
 	-r:Mono.Posix				\
 	-r:FSpot.Utils.dll
 
@@ -372,7 +371,6 @@ NULL_PLATFORM_ASSEMBLIES =			\
 	-r:FSpot.Utils.dll
 
 F_SPOT_ASSEMBLIES = 				\
-	$(LINK_DBUS)				\
 	$(LINK_GPHOTO2)				\
 	$(LINK_MONO_ADDINS)			\
 	$(LINK_FLICKR)				\
@@ -398,6 +396,7 @@ F_SPOT_ASSEMBLIES = 				\
 	-r:FSpot.Platform.dll			\
 	-r:Cms.dll				\
 	$(NUNIT_LIBS)				\
+	$(NDESK_DBUS_LIBS)				\
 	$(GCONF_PKG)				\
 	$(GTKHTML_SHARP_PKG)			\
 	-pkg:glade-sharp-2.0			\

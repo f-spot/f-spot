@@ -17,7 +17,7 @@ REFS =					\
 	-r:$(top_builddir)/src/FSpot.Core.dll	\
 	-r:$(top_builddir)/src/FSpot.Utils.dll	\
 	-r:$(top_builddir)/src/FSpot.Query.dll	\
-	$(LINK_DBUS)				\
+	$(NDESK_DBUS_LIBS)				\
 	$(LINK_MONO_ADDINS)			\
 	$(LINK_SEMWEB)				\
 	$(LINK_GIOSHARP)				\

@@ -19,7 +19,6 @@ REFS =					\
 	$(LINK_SEMWEB)				\
 	$(LINK_GPHOTO2)				\
 	$(LINK_GIOSHARP)			\
-	$(LINK_DBUS)				\
 	$(LINK_BEAGLE)
 
 PKGS =

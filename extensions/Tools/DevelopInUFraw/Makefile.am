@@ -19,7 +19,6 @@ REFS =					\
 	$(LINK_MONO_ADDINS)			\
 	$(LINK_GTKSHARPBEANS)			\
 	$(LINK_GIOSHARP)			\
-	$(LINK_DBUS)			\
 	$(LINK_GPHOTO2)
 
 PKGS =					\

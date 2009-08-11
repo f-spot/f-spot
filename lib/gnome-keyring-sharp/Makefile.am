@@ -20,7 +20,7 @@ ASSEMBLY_SOURCES =			\
 	$(srcdir)/ResultCode.cs  	\
 	$(srcdir)/Ring.cs  
 
-REFS = -r:Mono.Posix $(LINK_DBUS)
+REFS = -r:Mono.Posix $(NDESK_DBUS_LIBS)
 
 PKGS =
 

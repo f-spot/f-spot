@@ -19,7 +19,6 @@ REFS =					\
 	$(LINK_MONO_ADDINS)		\
 	$(LINK_GIOSHARP)			\
 	$(LINK_GPHOTO2)			\
-	$(LINK_DBUS)			\
 	-r:System.Web			\
 	-r:Mono.Posix
 

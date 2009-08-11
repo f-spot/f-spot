@@ -42,7 +42,6 @@ REFS =					\
 	$(LINK_SEMWEB)						\
 	$(LINK_GPHOTO2)						\
 	$(LINK_GIOSHARP)						\
-	$(LINK_DBUS)						\
 	-r:Mono.Posix
 
 PKGS =					\

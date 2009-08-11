@@ -127,24 +127,9 @@ AC_SUBST(LINK_BEAGLE)
 
 AC_SUBST(CSC_DEFINES)
 
-dnl -- dbus-sharp: link or bundle ?
-PKG_CHECK_MODULES(NDESK_DBUS, ndesk-dbus-1.0 >= $NDESK_DBUS_REQUIRED ndesk-dbus-glib-1.0 >= $NDESK_DBUS_GLIB_REQUIRED,
-[
-	LINK_DBUS="-pkg:ndesk-dbus-1.0 -pkg:ndesk-dbus-glib-1.0"
-	DIR_DBUS=""
-	DIR_DBUS_GLIB=""
-	PATH_DBUS=""
-],
-[
-	LINK_DBUS='-r:$(top_builddir)/lib/dbus-sharp/NDesk.DBus.dll -r:$(top_builddir)/lib/dbus-sharp-glib/NDesk.DBus.GLib.dll'
-	DIR_DBUS="dbus-sharp"
-	DIR_DBUS_GLIB="dbus-sharp-glib"
-	PATH_DBUS='../lib/dbus-sharp:../lib/dbus-sharp-glib:'
-])
-AC_SUBST(DIR_DBUS)
-AC_SUBST(DIR_DBUS_GLIB)
-AC_SUBST(LINK_DBUS)
-AC_SUBST(PATH_DBUS)
+dnl -- dbus-sharp
+PKG_CHECK_MODULES(NDESK_DBUS, ndesk-dbus-1.0 >= $NDESK_DBUS_REQUIRED ndesk-dbus-glib-1.0 >= $NDESK_DBUS_GLIB_REQUIRED)
+AC_SUBST(NDESK_DBUS_LIBS)
 
 dnl -- nunit
 PKG_CHECK_MODULES(NUNIT, nunit >= $NUNIT_REQUIRED, 
@@ -282,8 +267,6 @@ AC_SUBST(GNOME_ICON_THEME_PREFIX)
 
 AC_OUTPUT(
 Makefile
-lib/dbus-sharp/Makefile
-lib/dbus-sharp-glib/Makefile
 lib/dpap-sharp/Makefile
 lib/dpap-sharp/lib/Makefile
 lib/dpap-sharp/dpap-client/Makefile
