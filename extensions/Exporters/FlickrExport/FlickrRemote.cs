@@ -67,7 +67,7 @@ public class FlickrRemote {
 			try {
 				licenses = flickr.PhotosLicensesGetInfo();
 			} catch (FlickrNet.FlickrApiException e ) {
-				Log.Error ( e.Code + ": " + e.Verbose );
+				Log.Error (e.Code + ": " + e.Verbose );
 				return null;
 			}
 		}
@@ -104,12 +104,16 @@ public class FlickrRemote {
 
 	public Auth CheckLogin ()
 	{
-		if (frob == null) {
-			frob = flickr.AuthGetFrob ();
-			if (frob ==  null) {
-				Log.Error ("Problems login in Flickr. Don't have a frob");
-				return null;
+		try {
+			if (frob == null) {
+				frob = flickr.AuthGetFrob ();
+				if (frob ==  null) {
+					Log.Error ("ERROR: Problems login in Flickr. Don't have a frob");
+					return null;
+				}
 			}
+		} catch (Exception e) {
+			Log.Error ("Error logging in: {0}", e.Message);
 		}
 
 		if (token == null) {
@@ -120,8 +124,7 @@ public class FlickrRemote {
 
 				return auth;
 			} catch (FlickrNet.FlickrApiException ex) {
-				Log.Error ("Problems login in Flickr - "+ex.Verbose);
-
+				Log.Error ("Problems logging in to Flickr - " + ex.Verbose);
 				return null;
 			}
 		}

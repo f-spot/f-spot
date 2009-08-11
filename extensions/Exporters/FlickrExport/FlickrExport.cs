@@ -230,6 +230,17 @@ namespace FSpotFlickrExport {
 				args.Auth = fr.CheckLogin ();
 			} catch (FlickrException e) {
 				args.Exception = e;
+			} catch (Exception e) {
+				HigMessageDialog md =
+					new HigMessageDialog (Dialog,
+							      Gtk.DialogFlags.Modal |
+							      Gtk.DialogFlags.DestroyWithParent,
+							      Gtk.MessageType.Error, Gtk.ButtonsType.Ok,
+							      Catalog.GetString ("Unable to log on"), e.Message);
+
+				md.Run ();
+				md.Destroy ();
+				return;
 			}
 
 			Gtk.Application.Invoke (this, args, delegate (object sender, EventArgs sargs) {
@@ -286,8 +297,8 @@ namespace FSpotFlickrExport {
 				fr = new FlickrRemote (token, current_service);
 				fr.TryWebLogin();
 				CurrentState = State.Connected;
-			} catch (FlickrApiException e) {
-				if (e.Code == 98) {
+			} catch (Exception e) {
+				if (e is FlickrApiException && (e as FlickrApiException).Code == 98) {
 					Logout ();
 					Login ();
 				} else {
