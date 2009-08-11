@@ -1,5 +1,7 @@
 using System;
 using System.IO;
+using System.Collections;
+
 using FSpot.Utils;
 using Mono.Unix;
 using Gdk;
@@ -14,8 +16,8 @@ namespace FSpot {
 	public class ImageFile : IDisposable {
 		protected Uri uri;
 
-		static System.Collections.Hashtable name_table;
-		internal static System.Collections.Hashtable NameTable { get { return name_table; } }
+		static Hashtable name_table;
+		internal static Hashtable NameTable { get { return name_table; } }
 
 		public ImageFile (string path) 
 		{
@@ -42,7 +44,7 @@ namespace FSpot {
 
 		static ImageFile ()
 		{
-			name_table = new System.Collections.Hashtable ();
+			name_table = new Hashtable ();
 			name_table [".svg"] = typeof (FSpot.Svg.SvgFile);
 			name_table [".gif"] = typeof (ImageFile);
 			name_table [".bmp"] = typeof (ImageFile);
@@ -187,15 +189,15 @@ namespace FSpot {
 			return GetLoaderType (uri) != null;
 		}
 
-		private static System.Type GetLoaderType (Uri uri)
+		static Type GetLoaderType (Uri uri)
 		{
 			string path = uri.AbsolutePath;
 			string extension = System.IO.Path.GetExtension (path).ToLower ();
-			System.Type t = (System.Type) name_table [extension];
+			Type t = (Type) name_table [extension];
 
 			if (t == null) {
 				GLib.FileInfo info = GLib.FileFactory.NewForUri (uri).QueryInfo ("standard::type,standard::content-type", GLib.FileQueryInfoFlags.None, null);
-				t = (System.Type) name_table [info.ContentType];
+				t = (Type) name_table [info.ContentType];
 			}
 
 			return t;
