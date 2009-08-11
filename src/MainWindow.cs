@@ -1714,21 +1714,6 @@ public class MainWindow {
 //		}
 	}
 
-	void HandlePropertiesCommand (object obje, EventArgs args)
-	{
-		Photo [] photos = SelectedPhotos ();
-		
-	        long length = 0;
-
-		foreach (Photo p in photos) {
-			System.IO.FileInfo fi = new System.IO.FileInfo (p.DefaultVersionUri.LocalPath);
-
-			length += fi.Length;
-		}
-
-		Console.WriteLine ("{0} Selected Photos : Total length = {1} - {2}kB - {3}MB", photos.Length, length, length / 1024, length / (1024 * 1024));
-	}
-		
 	void HandleRenameVersionCommand (object obj, EventArgs args)
 	{
 		PhotoVersionCommands.Rename cmd = new PhotoVersionCommands.Rename ();
