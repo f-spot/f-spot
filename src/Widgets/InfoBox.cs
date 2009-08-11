@@ -549,6 +549,7 @@ namespace FSpot.Widgets
 						version_combo.Active = i;
 					i++;
 				}
+				version_combo.TooltipText = Catalog.GetPluralString ("(One Edit)", "({0} Edits)", i-1);
 			} else {
 				version_list.AppendValues (photo.DefaultVersionId, photo.DefaultVersion.Name + " " + Catalog.GetString ("(No Edits)"), true);
 				version_combo.Active = 0;
