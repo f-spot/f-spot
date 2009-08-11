@@ -31,7 +31,7 @@ namespace FSpot.Widgets
 			"SELECT base_uri, COUNT(*) AS count " +
 			"FROM photos " + 
 			"GROUP BY base_uri " +
-			"ORDER BY base_uri DESC";
+			"ORDER BY base_uri ASC";
 		
 		
 		public FolderTreeModel ()
