@@ -25,6 +25,7 @@ REFS =										\
 	$(LINK_GPHOTO2)							\
 	$(LINK_MONO_ADDINS)						\
 	$(LINK_GIOSHARP)						\
+	$(LINK_DBUS)						\
 	-r:$(top_builddir)/src/f-spot.exe			\
 	-r:$(top_builddir)/src/FSpot.Core.dll		\
 	-r:$(top_builddir)/src/FSpot.Query.dll	\
