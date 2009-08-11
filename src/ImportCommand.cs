@@ -527,9 +527,11 @@ public class ImportCommand : GladeDialog
 	
 	private void SavePreferences ()
 	{
-		Preferences.Set(Preferences.IMPORT_COPY_FILES, copy_check.Active);
-		Preferences.Set(Preferences.IMPORT_INCLUDE_SUBFOLDERS, recurse_check.Active);
-		Preferences.Set(Preferences.IMPORT_CHECK_DUPLICATES, duplicate_check.Active);
+		if (copy_check != null) {
+			Preferences.Set(Preferences.IMPORT_COPY_FILES, copy_check.Active);
+			Preferences.Set(Preferences.IMPORT_INCLUDE_SUBFOLDERS, recurse_check.Active);
+			Preferences.Set(Preferences.IMPORT_CHECK_DUPLICATES, duplicate_check.Active);
+		}
 	}
 	
 	public void HandleImportBrowse (object o, EventArgs args) 
