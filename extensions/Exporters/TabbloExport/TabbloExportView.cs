@@ -29,43 +29,55 @@
 
 using System;
 using System.Diagnostics;
+using System.Reflection;
 
 
 namespace FSpotTabbloExport {
 
 
-	class TabbloExportView {
+	class TabbloExportView : FSpot.UI.Dialog.BuilderDialog {
 
 		private const string DialogName = "tabblo_export_dialog";
 
-		[Glade.Widget] internal Gtk.Dialog tabblo_export_dialog;
+		[GtkBeans.Builder.Object]
+		private Gtk.ScrolledWindow thumb_scrolled_window;
 
-		[Glade.Widget] private Gtk.ScrolledWindow thumb_scrolled_window;
+		[GtkBeans.Builder.Object]
+		internal Gtk.Entry username_entry;
 
-		[Glade.Widget] internal Gtk.Entry username_entry;
-		[Glade.Widget] internal Gtk.Entry password_entry;
+		[GtkBeans.Builder.Object]
+		internal Gtk.Entry password_entry;
 
-		[Glade.Widget] internal Gtk.CheckButton attach_tags_button;
-		[Glade.Widget] private Gtk.Alignment attached_tags_alignment;
+		[GtkBeans.Builder.Object]
+		internal Gtk.CheckButton attach_tags_button;
+
+		[GtkBeans.Builder.Object]
+		private Gtk.Alignment attached_tags_alignment;
+
 		internal FSpot.Widgets.TagView attached_tags_view; 
-		[Glade.Widget] internal Gtk.Button attached_tags_select_button;
 
-		[Glade.Widget] internal Gtk.CheckButton remove_tags_button;
-		[Glade.Widget] private Gtk.Alignment removed_tags_alignment;
+		[GtkBeans.Builder.Object]
+		internal Gtk.Button attached_tags_select_button;
+
+		[GtkBeans.Builder.Object]
+		internal Gtk.CheckButton remove_tags_button;
+
+		[GtkBeans.Builder.Object]
+		private Gtk.Alignment removed_tags_alignment;
+
 		internal FSpot.Widgets.TagView removed_tags_view; 
-		[Glade.Widget] internal Gtk.Button removed_tags_select_button;
 
-		[Glade.Widget] private Gtk.Button export_button;
+		[GtkBeans.Builder.Object]
+		internal Gtk.Button removed_tags_select_button;
+
+		[GtkBeans.Builder.Object]
+		private Gtk.Button export_button;
 
 
-		// The dialog is constructed and shown.
 		internal TabbloExportView (FSpot.IBrowsableCollection photos)
+			: base (Assembly.GetExecutingAssembly (),
+					"TabbloExport.ui", DialogName)
 		{
-			Glade.XML glade_xml = new Glade.XML (
-					null, "TabbloExport.glade", DialogName,
-					"f-spot");
-			glade_xml.Autoconnect (this);
-
 			// Thumbnails
 			FSpot.Widgets.IconView icon_view =
 					new FSpot.Widgets.IconView (photos);
@@ -83,15 +95,6 @@ namespace FSpotTabbloExport {
 			removed_tags_view = new FSpot.Widgets.TagView ();
 			removed_tags_alignment.Add (removed_tags_view);
 			removed_tags_view.Show ();
-
-			tabblo_export_dialog.Show ();
-		}
-
-
-		internal void Destroy ()
-		{
-			Debug.Assert (null != tabblo_export_dialog);
-			tabblo_export_dialog.Destroy ();
 		}
 
 

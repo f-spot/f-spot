@@ -30,6 +30,7 @@
 using System;
 using System.Diagnostics;
 using System.Net;
+using System.Reflection;
 using System.Security.Cryptography.X509Certificates;
 using System.Threading;
 
@@ -41,11 +42,11 @@ namespace FSpotTabbloExport {
 			: ApplicationCentricCertificatePolicy {
 
 		private const string DialogName = "trust_error_dialog";
-		[Glade.Widget] Gtk.Dialog dialog;
-		[Glade.Widget] Gtk.Label url_label;
-		[Glade.Widget] Gtk.RadioButton abort_radiobutton;
-		[Glade.Widget] Gtk.RadioButton once_radiobutton;
-		[Glade.Widget] Gtk.RadioButton always_radiobutton;
+		[GtkBeans.Builder.Object] Gtk.Dialog dialog;
+		[GtkBeans.Builder.Object] Gtk.Label url_label;
+		[GtkBeans.Builder.Object] Gtk.RadioButton abort_radiobutton;
+		[GtkBeans.Builder.Object] Gtk.RadioButton once_radiobutton;
+		[GtkBeans.Builder.Object] Gtk.RadioButton always_radiobutton;
 
 		private X509Certificate certificate;
 		private WebRequest request;
@@ -73,12 +74,11 @@ namespace FSpotTabbloExport {
 
 		private bool DoGetDecision ()
 		{
-			Glade.XML glade_xml = new Glade.XML (
-					null, "TrustError.glade", DialogName,
-					"f-spot");
-			glade_xml.Autoconnect (this);
-
-			dialog = (Gtk.Dialog) glade_xml.GetWidget (DialogName);
+			GtkBeans.Builder builder = new GtkBeans.Builder (
+					Assembly.GetExecutingAssembly (),
+					"TrustError.ui", null);
+			builder.Autoconnect (this);
+			dialog = (Gtk.Dialog) builder.GetObject (DialogName);
 
 			url_label.Markup = String.Format (
 					url_label.Text, String.Format (
