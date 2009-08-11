@@ -93,7 +93,7 @@ fi
 if $run_mdb; then
 	mdb $EXE_TO_RUN -args "$@"
 elif $run_gdb; then
-	gdb --eval-command=run --args mono $MONO_OPTIONS $EXE_TO_RUN "$@"
+	gdb --eval-command="handle SIGXCPU SIG33 SIG35 SIGPWR nostop noprint" --eval-command=run --args mono $MONO_OPTIONS $EXE_TO_RUN "$@"
 elif $run_valgrind; then
 	valgrind --tool=memcheck --leak-check=full --show-reachable=yes --log-file=valgrind --smc-check=all --suppressions=/home/sde/Mono/mono/data/mono.supp mono $MONO_OPTIONS $EXE_TO_RUN "$@"
 elif $run_strace; then
