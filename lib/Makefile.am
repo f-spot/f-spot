@@ -20,8 +20,6 @@ SUBDIRS = 				\
 	$(UNCONDITIONAL_SUBDIRS)
 
 DIST_SUBDIRS = 			\
-	dbus-sharp			\
-	dbus-sharp-glib		\
 	dpap-sharp			\
 	$(UNCONDITIONAL_SUBDIRS)
 
