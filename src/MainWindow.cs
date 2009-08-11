@@ -264,18 +264,18 @@ public class MainWindow {
 		toolbar = new Gtk.Toolbar ();
 		toolbar_vbox.PackStart (toolbar);
 
-		ToolButton import_button = GtkUtil.ToolButtonFromTheme ("gtk-add", Catalog.GetString ("Import"), false);
+		ToolButton import_button = GtkUtil.ToolButtonFromTheme ("gtk-add", Catalog.GetString ("Import"), true);
 		import_button.Clicked += HandleImportCommand;
 		import_button.SetTooltip (ToolTips, Catalog.GetString ("Import new images"), null);
 		toolbar.Insert (import_button, -1);
 	
 		toolbar.Insert (new SeparatorToolItem (), -1);
 
-		rl_button = GtkUtil.ToolButtonFromTheme ("object-rotate-left", Catalog.GetString ("Rotate Left"), true);
+		rl_button = GtkUtil.ToolButtonFromTheme ("object-rotate-left", Catalog.GetString ("Rotate Left"), false);
 		rl_button.Clicked += HandleRotate270Command;
 		toolbar.Insert (rl_button, -1);
 
-		rr_button = GtkUtil.ToolButtonFromTheme ("object-rotate-right", Catalog.GetString ("Rotate Right"), true);
+		rr_button = GtkUtil.ToolButtonFromTheme ("object-rotate-right", Catalog.GetString ("Rotate Right"), false);
 		rr_button.Clicked += HandleRotate90Command;
 		toolbar.Insert (rr_button, -1);
 
@@ -299,12 +299,12 @@ public class MainWindow {
 
 		toolbar.Insert (new SeparatorToolItem (), -1);
 
-		ToolButton fs_button = GtkUtil.ToolButtonFromTheme ("view-fullscreen", Catalog.GetString ("Fullscreen"), true);
+		ToolButton fs_button = GtkUtil.ToolButtonFromTheme ("view-fullscreen", Catalog.GetString ("Fullscreen"), false);
 		fs_button.Clicked += HandleViewFullscreen;
 		fs_button.SetTooltip (ToolTips, Catalog.GetString ("View photos fullscreen"), null);
 		toolbar.Insert (fs_button, -1);
 
-		ToolButton ss_button = GtkUtil.ToolButtonFromTheme ("media-playback-start", Catalog.GetString ("Slideshow"), true);
+		ToolButton ss_button = GtkUtil.ToolButtonFromTheme ("media-playback-start", Catalog.GetString ("Slideshow"), false);
 		ss_button.Clicked += HandleViewSlideShow;
 		ss_button.SetTooltip (ToolTips, Catalog.GetString ("View photos in a slideshow"), null);
 		toolbar.Insert (ss_button, -1);
