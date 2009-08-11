@@ -137,8 +137,8 @@ PKG_CHECK_MODULES(NDESK_DBUS, ndesk-dbus-1.0 >= $NDESK_DBUS_REQUIRED ndesk-dbus-
 ],
 [
 	LINK_DBUS='-r:$(top_builddir)/lib/dbus-sharp/NDesk.DBus.dll -r:$(top_builddir)/lib/dbus-sharp-glib/NDesk.DBus.GLib.dll'
-	DIR_DBUS="lib/dbus-sharp"
-	DIR_DBUS_GLIB="lib/dbus-sharp-glib"
+	DIR_DBUS="dbus-sharp"
+	DIR_DBUS_GLIB="dbus-sharp-glib"
 	PATH_DBUS='../lib/dbus-sharp:../lib/dbus-sharp-glib:'
 ])
 AC_SUBST(DIR_DBUS)

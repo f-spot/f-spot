@@ -18,6 +18,7 @@ REFS =					\
 	$(LINK_GPHOTO2)				\
 	$(LINK_GIOSHARP)				\
 	$(LINK_GTKSHARPBEANS)		\
+	$(LINK_DBUS)		\
 	-r:System.Web			\
 	-r:ICSharpCode.SharpZipLib	\
 	-r:Mono.Posix

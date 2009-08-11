@@ -16,6 +16,7 @@ REFS =					\
 	$(LINK_SEMWEB)				\
 	$(LINK_MONO_ADDINS)			\
 	$(LINK_GPHOTO2)				\
+	$(LINK_DBUS)				\
 	-r:System.Web			\
 	-r:ICSharpCode.SharpZipLib	\
 	-r:Mono.Posix

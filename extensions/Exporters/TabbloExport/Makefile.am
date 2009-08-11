@@ -29,6 +29,7 @@ REFS = \
 	$(LINK_GIOSHARP)						\
 	$(LINK_GTKSHARPBEANS)		\	
 	$(LINK_GPHOTO2)						\
+	$(LINK_DBUS)						\
 	-r:Mono.Posix.dll
 
 PKGS = \
