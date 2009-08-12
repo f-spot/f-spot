@@ -522,10 +522,9 @@ public class ImportCommand : GladeDialog
 			importer.Finish ();
 		
 		importer = null;
-		SavePreferences ();
 	}
 	
-	private void SavePreferences ()
+	void SavePreferences ()
 	{
 		Preferences.Set(Preferences.IMPORT_COPY_FILES, copy_check.Active);
 		Preferences.Set(Preferences.IMPORT_INCLUDE_SUBFOLDERS, recurse_check.Active);
@@ -694,6 +693,7 @@ public class ImportCommand : GladeDialog
 
 		if (response == ResponseType.Ok) {
 			this.UpdateTagStore (tag_entry.GetTypedTagNames ());
+			SavePreferences ();
 			this.Finish ();
 
 			if (tags_selected != null && tags_selected.Count > 0) {
