@@ -759,11 +759,6 @@ namespace FSpot {
 			}
 		}
 		
-		protected override void OnRowActivated (Gtk.TreePath path, Gtk.TreeViewColumn column)
-		{
-			MainWindow.Toplevel.AddTagsQuery (new Tag [] {TagByPath (path)});			
-		}
-	
 	
 	#if TEST_TAG_SELECTION_WIDGET
 	

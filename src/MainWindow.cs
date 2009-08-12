@@ -359,6 +359,7 @@ public class MainWindow {
 		tag_selection_widget.KeyPressEvent += HandleTagSelectionKeyPress;
 		tag_selection_widget.ButtonPressEvent += HandleTagSelectionButtonPressEvent;
 		tag_selection_widget.PopupMenu += HandleTagSelectionPopupMenu;
+		tag_selection_widget.RowActivated += HandleTagSelectionRowActivated;
 		
 		LoadPreference (Preferences.TAG_ICON_SIZE);
 		
@@ -928,12 +929,6 @@ public class MainWindow {
 		query_widget.SetFolders (uri_list);
 	}
 	
-	public void AddTagsQuery (Tag [] tags)
-	{
-		ShowQueryWidget ();
-		query_widget.Include (tags);
-	}
-
 	public void RemoveTags (int [] nums, Tag [] tags)
 	{
 		foreach (int num in nums)
@@ -957,6 +952,13 @@ public class MainWindow {
 		popup.Activate (null, null, tag_selection_widget.TagHighlight);
 		args.RetVal = true;
 	}
+
+	void HandleTagSelectionRowActivated (object sender, RowActivatedArgs args)
+ 	{
+ 		ShowQueryWidget ();
+ 		query_widget.Include (new Tag [] {tag_selection_widget.TagByPath (args.Path)});
+	}
+
 
 #if SHOW_CALENDAR
 	void HandleCalendarDaySelected (object sender, System.EventArgs args)
