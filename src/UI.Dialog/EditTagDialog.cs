@@ -42,7 +42,7 @@ namespace FSpot.UI.Dialog
 
 			icon_image.Pixbuf = t.Icon;
 			Cms.Profile screen_profile;
-			if (FSpot.ColorManagement.Profiles.TryGetValue (Preferences.Get<string> (Preferences.COLOR_MANAGEMENT_DISPLAY_PROFILE), out screen_profile)) {
+			if (icon_image.Pixbuf != null && FSpot.ColorManagement.Profiles.TryGetValue (Preferences.Get<string> (Preferences.COLOR_MANAGEMENT_DISPLAY_PROFILE), out screen_profile)) {
 				icon_image.Pixbuf = icon_image.Pixbuf.Copy();
 				FSpot.ColorManagement.ApplyProfile (icon_image.Pixbuf, screen_profile);
 			}
@@ -122,7 +122,7 @@ namespace FSpot.UI.Dialog
 				tag.Icon = null;
 
 			Cms.Profile screen_profile;
-			if (FSpot.ColorManagement.Profiles.TryGetValue (Preferences.Get<string> (Preferences.COLOR_MANAGEMENT_DISPLAY_PROFILE), out screen_profile)) {
+			if (tag.Icon != null && FSpot.ColorManagement.Profiles.TryGetValue (Preferences.Get<string> (Preferences.COLOR_MANAGEMENT_DISPLAY_PROFILE), out screen_profile)) {
 				icon_image.Pixbuf = tag.Icon.Copy();
 				FSpot.ColorManagement.ApplyProfile(icon_image.Pixbuf, screen_profile);
 			} else
