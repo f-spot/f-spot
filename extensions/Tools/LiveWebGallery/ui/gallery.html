@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>TITLE</title>
+	<link media="screen" href="/ui/f-spot.css" rel="stylesheet" type="text/css"/>
+	<script src="/ui/f-spot.js" type="text/javascript"></script>
+</head>
+<body onload="generateThumbs(); resizeThumbs(); showThumbs();">
+	<div class="header">
+		<div id="navi_photo" class="navi" style="display: none">
+			<a href="javascript:showThumbs()">SHOW_ALL</a>
+			<a href="javascript:prevPhoto()">&#x25C4;</a>
+			<a href="javascript:nextPhoto()">&#x25BA;</a>
+		</div>
+		<div id="navi_thumbs" class="navi" style="display: none">
+			<a href="javascript:smallerThumbs()">-</a>
+			<a href="javascript:largerThumbs()">+</a>
+		</div>
+		<div id="title"><a href="http://f-spot.org">F-Spot</a> - QUERY_TYPE - NUM_PHOTOS</div>
+		<div id="offline" style="display:none">OFFLINE_MESSAGE</div>
+	</div>
+	<div id="thumbs" class="thumbs">
+	</div>
+	<div id="photo" class="photo" style="display: none">
+		<img id="photo_img" style="display: none" onload="scalePhoto(event)" src="ui/empty.png"/>
+		<div id="description"></div>
+		<div>
+			<div id="tags"></div>
+			<a id="edit_tag" href="javascript:addRemoveTag()"></a>
+		</div>
+	</div>
+	<script type="text/javascript">
+		editable_tag = "EDITABLE_TAG_NAME";
+		photos = {
+		BEGIN_PHOTO
+			PHOTO_ID: {name: "PHOTO_NAME", version: "VERSION_NAME", description: "PHOTO_DESCRIPTION", tags: "PHOTO_TAGS"},
+		END_PHOTO
+			'eof': null
+		};
+		delete photos['eof'];		
+	</script>
+</body>
+</html>

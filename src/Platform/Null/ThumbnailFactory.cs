@@ -75,5 +75,6 @@ namespace FSpot.Platform
 		public static bool ThumbnailIsRecent (Uri image_uri)
 		{
 			return cache.ContainsKey(image_uri);
+		}
 	}
 }

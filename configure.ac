@@ -334,6 +334,7 @@ extensions/Tools/RawPlusJpeg/Makefile
 extensions/Tools/ChangePhotoPath/Makefile
 extensions/Tools/HashJob/Makefile
 extensions/Tools/DevelopInUFraw/Makefile
+extensions/Tools/LiveWebGallery/Makefile
 extensions/Tools/MergeDb/Makefile
 extensions/Tools/ScreensaverConfig/Makefile
 extensions/Transitions/Makefile

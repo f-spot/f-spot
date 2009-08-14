@@ -1,0 +1,16 @@
+<Addin namespace="FSpot"
+	id="LiveWebGallery"
+	name="LiveWebGallery"
+	version="0.6.0.1"
+	description="Share photos with other people on the same network via Web Browser"
+	author="Anton Keks"
+	url="http://f-spot.org/Extensions"
+	category="Tools"
+	defaultEnabled="true">
+	<Dependencies>
+		<Addin id="Core" version="0.6"/>
+	</Dependencies>
+	<Extension path = "/FSpot/Menus/Tools">
+		<Command id = "LiveWebGallery" _label = "Live Web Gallery" command_type = "LiveWebGalleryExtension.LiveWebGallery" />
+	</Extension>
+</Addin>
