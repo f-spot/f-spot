@@ -28,13 +28,26 @@ if test ! -x "$MCS"; then
 	AC_MSG_ERROR([No $CS compiler found])
 fi
 
-dnl --- Check for gapi post-processor
+dnl --- Check for gapi programs
 
 AC_PATH_PROG(GAPI2FIXUP, gapi2-fixup, no)
 
 if test ! -x "$GAPI2FIXUP"; then
 	AC_MSG_ERROR([No gapi post-processor found])
 fi
+
+AC_PATH_PROG(GAPI2PARSER, gapi2-parser, no)
+
+if test ! -x "$GAPI2PARSER"; then
+	AC_MSG_ERROR([No gapi parser found])
+fi
+
+AC_PATH_PROG(GAPI2CODEGEN, gapi2-codegen, no)
+
+if test ! -x "$GAPI2CODEGEN"; then
+	AC_MSG_ERROR([No gapi code generator found])
+fi
+
 
 dnl -- Initialize docs
 

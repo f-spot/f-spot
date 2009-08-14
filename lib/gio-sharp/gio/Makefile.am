@@ -25,7 +25,7 @@ gio-api.xml: $(srcdir)/gio-api.raw $(srcdir)/Gio.metadata
 	@echo -e "\n*** Massaging the raw api into $@"
 	cp $(srcdir)/gio-api.raw gio-api.xml
 	chmod +w gio-api.xml
-	gapi2-fixup --api=gio-api.xml --metadata=$(srcdir)/Gio.metadata
+	$(GAPI2FIXUP) --api=gio-api.xml --metadata=$(srcdir)/Gio.metadata
 
 $(top_builddir)/gio-sharp/generator/gapi_codegen.exe:
 	$(MAKE) -C $(top_builddir)/lib/gio-sharp/generator

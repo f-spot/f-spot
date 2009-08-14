@@ -32,11 +32,11 @@ gtk-api.xml: $(srcdir)/gtk-api.raw $(srcdir)/Gtk.metadata
 	@echo -e "\n*** Massaging the raw api into $@"
 	cp $(srcdir)/gtk-api.raw gtk-api.xml
 	chmod +w gtk-api.xml
-	gapi2-fixup --api=gtk-api.xml --metadata=$(srcdir)/Gtk.metadata
+	$(GAPI2FIXUP) --api=gtk-api.xml --metadata=$(srcdir)/Gtk.metadata
 
 gtk_generated/Builder.cs: gtk-api.xml $(GTK_CUSTOMS)
 	@echo -e "\n*** Generating C# code"
-	gapi2-codegen $(GLIBSHARP_CFLAGS) --outdir=gtk_generated --customdir=$(srcdir) --generate gtk-api.xml
+	$(GAPI2CODEGEN) $(GLIBSHARP_CFLAGS) --outdir=gtk_generated --customdir=$(srcdir) --generate gtk-api.xml
 
 gtk-sharp-beans.snk: $(SNK)
 	cp $< $@

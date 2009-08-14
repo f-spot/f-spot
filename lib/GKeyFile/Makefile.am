@@ -22,14 +22,14 @@ ASSEMBLY = $(ASSEMBLY_NAME).dll
 all: $(ASSEMBLY)
 
 gkeyfile-api.raw: gkeyfile-sharp-sources.xml
-	gapi2-parser gkeyfile-sharp-sources.xml
+	$(GAPI2PARSER) gkeyfile-sharp-sources.xml
 
 gkeyfile-api.xml: gkeyfile-api.raw GKeyFile.metadata
 	cp gkeyfile-api.raw gkeyfile-api.xml
-	gapi2-fixup --api=gkeyfile-api.xml --metadata=GKeyFile.metadata
+	$(GAPI2FIXUP) --api=gkeyfile-api.xml --metadata=GKeyFile.metadata
 
 .generated_timestamp: gkeyfile-api.xml $(CUSTOMS)
-	gapi2-codegen --outdir=generated --customdir=$(srcdir) --generate gkeyfile-api.xml
+	$(GAPI2CODEGEN) --outdir=generated --customdir=$(srcdir) --generate gkeyfile-api.xml
 	touch $@
 $(ASSEMBLY): .generated_timestamp $(ASSEMBLY_SOURCES) $(ASSEMBLY_CUSTOMS)
 	$(CSC_LIB) -unsafe -out:$@ $(PKGS) $(REFS) $(ASSEMBLY_SOURCES) $(srcdir)/generated/*.cs
