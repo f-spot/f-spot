@@ -28,6 +28,14 @@ if test ! -x "$MCS"; then
 	AC_MSG_ERROR([No $CS compiler found])
 fi
 
+dnl --- Check for gapi post-processor
+
+AC_PATH_PROG(GAPI2FIXUP, gapi2-fixup, no)
+
+if test ! -x "$GAPI2FIXUP"; then
+	AC_MSG_ERROR([No gapi post-processor found])
+fi
+
 dnl -- Initialize docs
 
 GNOME_DOC_INIT
