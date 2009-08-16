@@ -97,7 +97,10 @@ WIDGETS_CSDISTFILES =				\
 	$(srcdir)/Widgets/PointerMode.cs	\
 	$(srcdir)/Widgets/Rating.cs		\
 	$(srcdir)/Widgets/SaneTreeView.cs	\
-	$(srcdir)/Widgets/ScrolledView.cs
+	$(srcdir)/Widgets/ScrolledView.cs	\
+	$(srcdir)/Widgets/PushTransition.cs	\
+	$(srcdir)/Widgets/CairoTransition.cs	\
+	$(srcdir)/Widgets/SlideShowTransition.cs
 
 GNOME_PLATFORM_CSDISTFILES =				\
 	$(srcdir)/Platform/Gnome/Desktop.cs		\
@@ -152,6 +155,7 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/Extensions/PhotoSelectionCondition.cs	\
 	$(srcdir)/Extensions/PopupCommands.cs	\
 	$(srcdir)/Extensions/ServiceNode.cs	\
+	$(srcdir)/Extensions/TransitionNode.cs	\
 	$(srcdir)/Extensions/ViewModeCondition.cs	\
 	$(srcdir)/Fader.cs			\
 	$(srcdir)/FileImportBackend.cs		\
@@ -279,6 +283,7 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/GPhotoCamera.cs		\
 	$(srcdir)/CameraSelectionDialog.cs	\
 	$(srcdir)/CameraFileSelectionDialog.cs	\
+	$(srcdir)/Widgets/SlideShow.cs		\
 	$(srcdir)/Widgets/CompositeUtils.cs	\
 	$(srcdir)/Widgets/Dissolve.cs		\
 	$(srcdir)/Widgets/EditorPage.cs		\
@@ -345,6 +350,8 @@ JOBSCHEDULER_ASSEMBLIES =			\
 
 BLING_ASSEMBLIES =				\
 	-pkg:gtk-sharp-2.0			\
+	-r:Mono.Cairo				\
+	-r:FSpot.Utils.dll			\
 	$(LINK_GTKSHARPBEANS)
 
 WIDGETS_ASSEMBLIES =				\
