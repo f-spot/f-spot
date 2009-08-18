@@ -347,6 +347,8 @@ extensions/Tools/ChangePhotoPath/Makefile
 extensions/Tools/HashJob/Makefile
 extensions/Tools/DevelopInUFraw/Makefile
 extensions/Tools/MergeDb/Makefile
+extensions/Transitions/Makefile
+extensions/Transitions/DissolveTransition/Makefile
 tests/Makefile
 tests/src/Makefile
 f-spot.pc

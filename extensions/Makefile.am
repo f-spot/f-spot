@@ -1,7 +1,8 @@
 SUBDIRS = 			\
 	Services		\
 	Exporters		\
-	Tools
+	Tools			\
+	Transitions
 
 addinsdir = $(pkglibdir)
 addins_DATA = f-spot.global.addins
