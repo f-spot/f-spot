@@ -501,11 +501,6 @@ namespace FSpot
 			}
 		}
 	
-		public uint CreateNamedVersion (string name, uint baseVersionId, bool createFile)
-		{
-			return CreateNamedVersion (name, baseVersionId, createFile);
-		}
-
 		public uint CreateNamedVersion (string name, string extension, uint base_version_id, bool create_file)
 		{
 			int num = 1;
