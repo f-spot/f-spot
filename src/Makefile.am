@@ -89,6 +89,7 @@ WIDGETS_CSDISTFILES =				\
 	$(srcdir)/Widgets/CustomPrintWidget.cs	\
 	$(srcdir)/Widgets/DateEdit.cs		\
 	$(srcdir)/Widgets/DateEditFlags.cs	\
+	$(srcdir)/Widgets/DissolveTransition.cs	\
 	$(srcdir)/Widgets/HighlightedBox.cs	\
 	$(srcdir)/Widgets/ImageView.cs		\
 	$(srcdir)/Widgets/Layout.cs		\

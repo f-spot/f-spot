@@ -1,13 +1,13 @@
 include $(top_srcdir)/Makefile.include
 
-PLUGIN_NAME = DissolveTransition
+PLUGIN_NAME = CoverTransition
 
 PLUGIN_MANIFEST = $(PLUGIN_NAME).addin.xml
 
 PLUGIN_ASSEMBLY = $(PLUGIN_NAME).dll
 
 PLUGIN_SOURCES =			\
-	$(srcdir)/DissolveTransition.cs
+	$(srcdir)/CoverTransition.cs
 
 
 REFS =					\

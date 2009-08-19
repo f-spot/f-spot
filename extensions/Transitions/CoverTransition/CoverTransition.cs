@@ -1,5 +1,5 @@
 //
-// FSpot.Widgets.DissolveTransition.cs
+// FSpot.Widgets.CoverTransition.cs
 //
 // Author(s):
 //	Stephane Delcroix  <stephane@delcroix.org>
@@ -19,20 +19,22 @@ using FSpot.Widgets;
 
 using Color = Cairo.Color;
 
-namespace DissolveTransition
+namespace CoverTransition
 {
-	public class DissolveTransition : CairoTransition
+	public class CoverTransition : CairoTransition
 	{
-		public DissolveTransition () : base ("Dissolve")
+		public CoverTransition () : base ("Cover")
 		{
 		}
 
 		protected override void Draw (Context cr, Pixbuf prev, Pixbuf next, int width, int height, double progress)
 		{
-			cr.Color = new Color (0, 0, 0, progress);
+			cr.Color = new Color (0, 0, 0);
 			if (next != null) {
 				double scale = Math.Min ((double)width/(double)next.Width, (double)height/(double)next.Height);
 				cr.Save ();
+
+				cr.Translate (width * (1.0 - progress), 0);
 
 				cr.Rectangle (0, 0, width, .5 * (height - scale*next.Height));
 				cr.Fill ();
@@ -49,7 +51,7 @@ namespace DissolveTransition
 				cr.Rectangle (0, 0, width, height);
 				cr.Scale (scale, scale);
 				CairoHelper.SetSourcePixbuf (cr, next, .5 * ((double)width/scale - next.Width), .5 * ((double)height/scale - next.Height));
-				cr.PaintWithAlpha (progress);
+				cr.Paint ();
 				cr.Restore ();
 			}
 		}

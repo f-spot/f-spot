@@ -343,7 +343,7 @@ extensions/Tools/HashJob/Makefile
 extensions/Tools/DevelopInUFraw/Makefile
 extensions/Tools/MergeDb/Makefile
 extensions/Transitions/Makefile
-extensions/Transitions/DissolveTransition/Makefile
+extensions/Transitions/CoverTransition/Makefile
 tests/Makefile
 tests/src/Makefile
 f-spot.pc

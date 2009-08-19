@@ -79,6 +79,7 @@
 	</Extension>
 
 	<Extension path = "/FSpot/SlideShow">
+		<Transition transition_type = "FSpot.Widgets.DissolveTransition"/>
 		<Transition transition_type = "FSpot.Widgets.PushTransition"/>
 	</Extension>
 </Addin>
