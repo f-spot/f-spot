@@ -1,0 +1,15 @@
+<Addin namespace="FSpot"
+	id="CoverTransition"
+	version="0.6.0.1"
+	name="Cover Transition"
+	description="A Slideshow transition that covers images"
+	author="Stephane Delcroix"
+	url="http://f-spot.org/Extensions"
+	category="Transitions">
+	<Dependencies>
+		<Addin id="Core" version="0.6.0.1"/>
+	</Dependencies>
+	<Extension path = "/FSpot/SlideShow">
+		<Transition transition_type="CoverTransition.CoverTransition"/>
+	</Extension>
+</Addin>

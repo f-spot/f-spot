@@ -1,6 +1,6 @@
 <Addin namespace = "FSpot" 
        id = "Core" 
-       version = "0.6"
+       version = "0.6.0.1"
        compatVersion = "0.6"
        isroot="true">
 
@@ -23,6 +23,10 @@
 
 	<ExtensionPoint path = "/FSpot/Services">
 		<ExtensionNode name="Service" type="FSpot.Extensions.ServiceNode"/>
+	</ExtensionPoint>
+
+	<ExtensionPoint path = "/FSpot/SlideShow">
+		<ExtensionNode name="Transition" type="FSpot.Extensions.TransitionNode"/>
 	</ExtensionPoint>
 
 	<Extension path = "/FSpot/Menus">
@@ -72,5 +76,10 @@
 		<Editor editor_type = "FSpot.Editors.SoftFocusEditor"/>
 		<Editor editor_type = "FSpot.Editors.AutoStretchEditor"/>
 		<Editor editor_type = "FSpot.Editors.ColorEditor"/>
+	</Extension>
+
+	<Extension path = "/FSpot/SlideShow">
+		<Transition transition_type = "FSpot.Widgets.DissolveTransition"/>
+		<Transition transition_type = "FSpot.Widgets.PushTransition"/>
 	</Extension>
 </Addin>

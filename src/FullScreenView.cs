@@ -22,7 +22,7 @@ namespace FSpot {
 		private Notebook notebook;
 		private ControlOverlay controls;
 		//		private ImageDisplay display;
-		private TextureDisplay display;
+		private SlideShow display;
 		private ToolButton play_pause_button;
 		private ToggleToolButton info_button;
 		private Delay hide_cursor_delay;
@@ -128,14 +128,19 @@ namespace FSpot {
 				t_item.Child = new Label (Catalog.GetString ("Slide transition:"));
 				tbar.Insert (t_item, -1);
 
-				display = new TextureDisplay (view.Item);
+				display = new SlideShow (view.Item);
 				display.AddEvents ((int) (Gdk.EventMask.PointerMotionMask));
 				display.ModifyBg (Gtk.StateType.Normal, this.Style.Black);
 				display.MotionNotifyEvent += HandleViewMotion;
 				display.Show ();
 
 				t_item = new ToolItem ();
-				t_item.Child = display.GetCombo ();
+				ComboBox combo = ComboBox.NewText ();
+				foreach (var transition in display.Transitions)
+					combo.AppendText (transition.Name);
+				combo.Active = 0;
+				combo.Changed += HandleTransitionChanged;
+				t_item.Child = combo;
 				tbar.Insert (t_item, -1);
 
 				action = new RotateLeftAction (view.Item);
@@ -198,6 +203,22 @@ namespace FSpot {
 		{
 			if (scroll.ControlBox.Visible)
 				scroll.ShowControls ();
+		}
+
+		void HandleTransitionChanged (object sender, EventArgs e)
+		{
+			ComboBox combo = sender as ComboBox;
+			if (combo == null)
+				return;
+			TreeIter iter;
+			if (combo.GetActiveIter (out iter)) {
+				string name = combo.Model.GetValue (iter, 0) as string;
+				foreach (var transition in display.Transitions)
+					if (transition.Name == name)
+						display.Transition = transition;
+			}
+
+
 		}
 
 		protected override bool OnExposeEvent (Gdk.EventExpose args)

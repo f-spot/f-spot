@@ -16,7 +16,15 @@ namespace FSpot.Bling
 		{
 		}
 
+		public DoubleAnimation (double from, double to, TimeSpan duration, Action<double> action, GLib.Priority priority) : base (from, to, duration, action, priority)
+		{
+		}
+
 		public DoubleAnimation (double from, double to, TimeSpan duration, Action<double> action, EasingFunction easingFunction) : base (from, to, duration, action, easingFunction)
+		{
+		}
+
+		public DoubleAnimation (double from, double to, TimeSpan duration, Action<double> action, EasingFunction easingFunction, GLib.Priority priority) : base (from, to, duration, action, easingFunction, priority)
 		{
 		}
 
