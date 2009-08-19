@@ -3,7 +3,7 @@
 # This file is distributed under the same license as the f-spot package.
 # Raphael Higino <phhigino@gmail.com>, 2005-2006.
 # Vladimir Melo <vmelo@gnome.org>, 2007, 2008, 2009.
-# Og Maciel <ogmaciel@gnome.org>, 2007-2008.
+# Og Maciel <ogmaciel@gnome.org>, 2007-2009.
 # Amadeu A. Barbosa Júnior <amadeu@gmail.com>, 2008.
 # Michel Recondo <mrecondo@gmail.com>, 2008.
 # Enrico Nicoletto <liverig@gmail.com>, 2009.
@@ -13,11 +13,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: f-spot\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=f-"
-"spot&component=General\n"
-"POT-Creation-Date: 2009-07-04 13:17+0000\n"
-"PO-Revision-Date: 2009-04-02 10:23-0300\n"
-"Last-Translator: Eduardo Brasil <eduebrasil@gmail.com>\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2009-08-18 22:40-0400\n"
+"PO-Revision-Date: 2009-08-18 22:40-0400\n"
+"Last-Translator: Og Maciel <ogmaciel@gnome.org>\n"
 "Language-Team: Brazilian Portuguese <gnome-pt_br-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -27,300 +26,1079 @@ msgstr ""
 "X-Poedit-Country: BRAZIL\n"
 "X-Poedit-Bookmarks: -1,112,-1,-1,-1,-1,-1,-1,-1,-1\n"
 
-#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInfoDialog.cs:62
-msgid "Version:"
-msgstr "Versão:"
+#: ../extensions/Exporters/CDExport/CDExport.addin.xml.h:1
+msgid "_CD..."
+msgstr "_CD..."
 
-#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInfoDialog.cs:65
-msgid "Author:"
-msgstr "Autor:"
+#: ../extensions/Exporters/CDExport/CDExport.cs:162
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:392
+#: ../src/CameraFileSelectionDialog.cs:199
+msgid "Transferring Pictures"
+msgstr "Transferindo fotos"
 
-# No VP mantém-se a o original
-#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInfoDialog.cs:68
-msgid "Copyright:"
-msgstr "Copyright:"
-
-#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInfoDialog.cs:71
-msgid "Extension Dependencies:"
-msgstr "Dependências da extensão:"
-
-#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:97
-msgid "All registered repositories"
-msgstr "Todos os repositórios registrados"
-
-#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:184
-msgid "Are you sure you want to cancel the installation?"
-msgstr "Tem certeza que quer cancelar a instalação?"
-
-#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:308
-msgid "The following packages will be uninstalled:"
-msgstr "Os seguintes pacotes serão desinstalados:"
-
-#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:313
-msgid ""
-"There are other extensions that depend on the previous ones which will also "
-"be uninstalled:"
-msgstr ""
-"Existem outras extensões que dependem das anteriores que também serão "
-"desinstaladas:"
-
-#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:384
-msgid ""
-"The selected extensions can't be installed because there are dependency "
-"conflicts."
-msgstr ""
-"Não foi possível instalar as extensões selecionadas por causa de conflitos "
-"de dependências."
-
-#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:398
-msgid "The following packages will be installed:"
-msgstr "Os seguintes pacotes serão instalados:"
-
-#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:402
-msgid " (in user directory)"
-msgstr " (no diretório do usuário)"
-
-#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:408
-msgid "The following packages need to be uninstalled:"
-msgstr "Os seguintes pacotes precisam ser desinstalados:"
-
-#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:416
-msgid "The following dependencies could not be resolved:"
-msgstr "Não foi possível resolver as seguintes dependências:"
-
-#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:441
-msgid "The installation has been successfully completed."
-msgstr "Instalação realizada com sucesso."
-
-#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:442
-msgid "The installation failed!"
-msgstr "Falha na instalação!"
-
-# Nos diálogos não há nada referente a visualizar os warnings então omiti sua tradução.
-#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:443
-msgid "The installation has completed with warnings."
-msgstr "Instalação realizada com sucesso."
-
-#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:446
-msgid "The uninstallation has been successfully completed."
-msgstr "Desinstalação realizada com sucesso."
-
-#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:447
-msgid "The uninstallation failed!"
-msgstr "Falha na desinstalação!"
-
-#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:448
-msgid "The uninstallation has completed with warnings."
-msgstr "Desinstalação realizada com sucesso."
-
-#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:616
-msgid "Repository"
-msgstr "Repositório"
-
-#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstaller.cs:16
-msgid "Installation cancelled"
-msgstr "Instalação cancelada"
-
-#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallerDialog.cs:159
-msgid "Some of the required extensions were not found"
-msgstr "Algumas das extensões necessárias não foram localizadas"
-
-#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallerDialog.cs:171
-msgid "Installation failed"
-msgstr "Falha na instalação"
-
-#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinTreeWidget.cs:91
-msgid "Extension"
-msgstr "Extensão"
-
-#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinTreeWidget.cs:112
-#: ../src/Widgets/InfoBox.cs:214
-msgid "Version"
-msgstr "Versão"
-
-#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinTreeWidget.cs:168
-msgid "Other"
-msgstr "Outros"
-
-#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/ManageSitesDialog.cs:51
-#: ../src/Widgets/InfoBox.cs:211
-msgid "Name"
-msgstr "Nome"
-
-#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/ManageSitesDialog.cs:52
-msgid "Url"
-msgstr "URL"
-
-#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/Services.cs:61
-#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/Services.cs:70
+#: ../extensions/Exporters/CDExport/CDExport.cs:218
 #, csharp-format
-msgid "Exception occurred: {0}"
-msgstr "Ocorreu uma exceção: {0}"
+msgid "Transferring picture \"{0}\" To CD"
+msgstr "Transferindo figura \"{0}\" para CD"
 
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInfoDialog.cs:32
-msgid "Package"
-msgstr "Pacote F-Spot"
+#. Note for translators: This indicates the current photo is photo {0} of {1} out of photos
+#: ../extensions/Exporters/CDExport/CDExport.cs:220
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:349
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:245
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:781
+#: ../src/MainWindow.cs:638 ../src/UI.Dialog/AdjustTimeDialog.cs:129
+#: ../src/UI.Dialog/ProgressDialog.cs:92
+#, csharp-format
+msgid "{0} of {1}"
+msgstr "{0} de {1}"
 
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:110
-msgid "Extension Installation"
-msgstr "Instalação de extensão"
+#: ../extensions/Exporters/CDExport/CDExport.cs:233
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:387
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:379
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:285
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:806
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:704
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:607
+msgid "Done Sending Photos"
+msgstr "Envio de fotos completo"
 
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:136
-msgid "<b>Select the extensions to install and click on Next</b>"
-msgstr "<b>Selecione as extensões a serem instaladas e clique em Avançar</b>"
+#: ../extensions/Exporters/CDExport/CDExport.cs:235
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:287
+msgid "Transfer Complete"
+msgstr "Transferência completa"
 
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:150
-msgid "Install from:"
-msgstr "Instalar de:"
+#: ../extensions/Exporters/CDExport/CDExport.cs:242
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:292
+msgid "Error While Transferring"
+msgstr "Erro ao transferir"
 
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:179
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:180
-msgid "_Repositories..."
-msgstr "_Repositórios..."
+#: ../extensions/Exporters/CDExport/CDExport.cs:250
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:311
+msgid "Error Transferring"
+msgstr "Erro transferindo"
 
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:220
-msgid "Show all packages"
-msgstr "Mostrar todos os pacotes"
+#: ../extensions/Exporters/CDExport/CDExport.cs:263
+msgid "copying..."
+msgstr "copiando..."
 
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:221
-msgid "Show new versions only"
-msgstr "Mostrar apenas novas versões"
+#: ../extensions/Exporters/FacebookExport/FacebookExport.addin.xml.h:1
+msgid "F_acebook..."
+msgstr "F_acebook..."
 
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:222
-msgid "Show updates only"
-msgstr "Mostrar apenas atualizações"
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:99
+msgid "Waiting for authorization"
+msgstr "Esperando autorização"
 
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:247
-msgid "_Unselect All"
-msgstr "Desmarcar T_odos"
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:100
+msgid ""
+"F-Spot will now launch your browser so that you can enable the permission "
+"you just selected.\n"
+"\n"
+"Once you are directed by Facebook to return to this application, click \"Ok"
+"\" below."
+msgstr ""
+"Agora o F-Spot vai lançar seu navegador de forma que você possa habilitar a "
+"permissão que você acabou de selecionar.\n"
+"\n"
+"Quando você tiver sido orientado pelo Facebook a retornar ao aplicativo, "
+"clique \"OK\" abaixo."
 
-# "Todos" porque refere-se aos pacotes de instalação
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:259
-msgid "Select _All"
-msgstr "Selecionar _todos"
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:279
+msgid "Too many images to export"
+msgstr "Imagens demais para exportar"
 
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:334
-msgid "label124"
-msgstr "label124"
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:280
+msgid ""
+"Facebook only permits 60 photographs per album.  Please refine your "
+"selection and try again."
+msgstr ""
+"O Facebook permite apenas 60 fotografias por álbum. Por favor refine a sua "
+"seleção e tente novamente."
 
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:346
-msgid "Overall Progress:"
-msgstr "Progresso total:"
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:297
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:475
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:730
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:597
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:522
+msgid "Uploading Pictures"
+msgstr "Enviando figuras"
 
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:374
-msgid "Downloading extensions..."
-msgstr "Descarregando extensões..."
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:326
+msgid "Album must have a name"
+msgstr "O álbum precisa ter um nome"
 
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallerDialog.cs:36
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:58
-msgid "Extension Manager"
-msgstr "Gerenciador de extensões"
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:327
+msgid "Please name your album or choose an existing album."
+msgstr "Por favor, dê um nome para o seu álbum ou escolha um álbum existente."
 
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallerDialog.cs:54
-msgid "Additional extensions are required to perform this operation."
-msgstr "Extensões adicionais são requeridas para executar essa operação."
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:341
+msgid "Creating a new album failed"
+msgstr "A criação do novo álbum falhou"
 
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallerDialog.cs:64
-msgid "The following extensions will be installed:"
-msgstr "As seguintes extensões serão instaladas:"
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:342
+#, csharp-format
+msgid ""
+"An error occurred creating a new album.\n"
+"\n"
+"{0}"
+msgstr ""
+"Erro ao criar novo álbum.\n"
+"\n"
+"{0}"
 
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:90
-msgid "<big><b>Extension Manager</b></big>"
-msgstr "<big><b>Gerenciador de Extensões do F-Spot</b></big>"
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:364
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:660
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:565
+#, csharp-format
+msgid "Uploading picture \"{0}\" ({1} of {2})"
+msgstr "Enviando foto \"{0}\" ({1} de {2})"
 
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:110
-msgid "The following extensions are currently installed:"
-msgstr "As seguintes extensões estão instaladas atualmente:"
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:378
+#, csharp-format
+msgid "Error Uploading To Facebook: {0}"
+msgstr "Erro ao enviar para Facebook: {0}"
 
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:165
-msgid "_Install Extensions..."
-msgstr "_Instalar extensões..."
-
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:210
-msgid "_Uninstall..."
-msgstr "_Desinstalar..."
-
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:236
-#: ../src/UI.Dialog/ui/PreferenceDialog.glade.h:13
-msgid "Enable"
-msgstr "Habilitar"
-
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:262
-msgid "Disable"
-msgstr "Desabilitar"
-
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.ErrorDialog.cs:40
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:379
 #: ../extensions/Exporters/FlickrExport/FlickrExport.cs:370
 #: ../extensions/Exporters/FolderExport/FolderExport.cs:250
-#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:799
-#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:370
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:797
 #: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:693
 #: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:596
 #: ../extensions/Exporters/TabbloExport/TabbloExport.cs:319
+#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.ErrorDialog.cs:40
 msgid "Error"
 msgstr "Erro"
 
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.ErrorDialog.cs:111
-msgid "Details"
-msgstr "Detalhes"
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:389
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:381
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:808
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:706
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:609
+msgid "Upload Complete"
+msgstr "Envio completo"
 
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.ManageSitesDialog.cs:34
-msgid "Extension Repository Management"
-msgstr "Gerenciamento dos repositórios de extensões"
+#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:186
+msgid "Waiting for authentication"
+msgstr "Esperando por autenticação"
 
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.NewSiteDialog.cs:52
-msgid "Add New Repository"
-msgstr "Adicionar novo repositório"
+#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:187
+msgid ""
+"F-Spot will now launch your browser so that you can log into Facebook.\n"
+"\n"
+"Once you are directed by Facebook to return to this application, click \"Ok"
+"\" below.  F-Spot will cache your session in gnome-keyring, if possible, and "
+"re-use it on future Facebook exports."
+msgstr ""
+"Agora o F-Spot vai lançar seu navegador para você poder iniciar uma sessão "
+"no Facebook.\n"
+"\n"
+"Quando você tiver sido orientado pelo Facebook a retornar ao aplicativo, "
+"clique \"OK\" abaixo. O F-Spot vai guardar um cache da sua sessão no gnome-"
+"keyring, se possível, e vai reutilizá-lo na próxima exportação para o "
+"Facebook"
 
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.NewSiteDialog.cs:70
-msgid "Select the location of the repository you want to register:"
-msgstr "Selecione a localização do repositório que quer registrar:"
+#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:192
+msgid "Authenticating..."
+msgstr "Autenticando..."
 
-#. Container child vbox89.Gtk.Box+BoxChild
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.NewSiteDialog.cs:77
-msgid "Register an on-line repository"
-msgstr "Registrar um repositório on-line"
+#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:202
+msgid "Error logging into Facebook"
+msgstr "Erro ao conectar com Facebook"
 
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.NewSiteDialog.cs:106
-msgid "Url:"
-msgstr "URL:"
+#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:203
+msgid ""
+"There was a problem logging into Facebook.  Check your credentials and try "
+"again."
+msgstr ""
+"Houve um problema ao registrar no Facebook. Verifique as suas credenciais e "
+"tente novamente."
 
-#. Container child vbox89.Gtk.Box+BoxChild
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.NewSiteDialog.cs:127
-msgid "Register a local repository"
-msgstr "Registrar um repositório local"
+#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:212
+msgid "Authorizing Session"
+msgstr "Autorizando sessão"
 
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.NewSiteDialog.cs:155
-msgid "Path:"
-msgstr "Caminho:"
+#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:221
+msgid "Session established, fetching user info..."
+msgstr "Sessão estabelecida, baixando informações do usuário..."
 
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.NewSiteDialog.cs:179
-msgid "Browse..."
-msgstr "Navegar..."
+#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:227
+msgid "Session established, fetching friend list..."
+msgstr "Sessão estabelecida, baixando lista de amigos..."
 
-#: ../mono-addins/Mono.Addins/Mono.Addins.Description/AssemblyDependency.cs:79
+#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:237
+msgid "Session established, fetching friend details..."
+msgstr "Sessão estabelecida, baixando detalhes dos amigos..."
+
+#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:247
+msgid "Session established, fetching photo albums..."
+msgstr "Sessão estabelecida, baixando álbuns de fotos..."
+
+#. Note for translators: {0} and {1} are respectively firstname and surname of the user
+#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:260
 #, csharp-format
-msgid "(provided by {0})"
-msgstr "(fornecido por {0})"
+msgid "{0} {1} is logged into Facebook"
+msgstr "{0} {1} está registrado no Facebook"
 
-#: ../mono-addins/Mono.Addins/Mono.Addins/AddinSessionService.cs:154
-msgid "Disabled extensions can't be loaded."
-msgstr "Extensões desabilitadas não podem ser carregadas."
+#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:266
+msgid "Facebook Connection Error"
+msgstr "Erro de conexão com o Facebook"
 
-#: ../mono-addins/Mono.Addins/Mono.Addins/AddinSessionService.cs:179
+#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:267
 #, csharp-format
-msgid "Loading {0} extension"
-msgstr "Carregando {0} extensão"
+msgid ""
+"There was an error when downloading your information from Facebook.\n"
+"\n"
+"Facebook said: {0}"
+msgstr ""
+"Houve um erro ao baixar suas informações do Facebook.\n"
+"\n"
+"O Facebook disse: {0}"
 
-#: ../mono-addins/Mono.Addins/Mono.Addins/AddinSessionService.cs:265
-#, csharp-format
-msgid "The required extension '{0}' is disabled."
-msgstr "A extensão requerida \"{0}\" está desabilitada."
+#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:296
+msgid "You are not logged in."
+msgstr "Você não está registrado."
 
-#: ../mono-addins/Mono.Addins/Mono.Addins/AddinSessionService.cs:267
+#: ../extensions/Exporters/FlickrExport/FlickrExport.addin.xml.h:1
+msgid "_23hq..."
+msgstr "_23hq..."
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.addin.xml.h:2
+msgid "_Flickr..."
+msgstr "_Flickr..."
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.addin.xml.h:3
+msgid "_Zooomr..."
+msgstr "_Zoomr..."
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:105
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:5
+msgid "Authorize"
+msgstr "Autorizar"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:111
 #, csharp-format
-msgid "The required extension '{0}' is not installed."
-msgstr "A extensão requerida \"{0}\" não está instalada."
+msgid ""
+"Return to this window after you have finished the authorization process on "
+"{0} and click the \"Complete Authorization\" button below"
+msgstr ""
+"Retorne a esta janela depois de terminado o processo de autorização em {0} e "
+"clique no botão \"Completar autorização\" abaixo"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:112
+msgid "Complete Authorization"
+msgstr "Completar autorização"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:117
+#, csharp-format
+msgid "Logging into {0}"
+msgstr "Efetuando logon em {0}"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:118
+msgid "Checking credentials..."
+msgstr "Verificando credenciais..."
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:125
+#, csharp-format
+msgid "Welcome {0} you are connected to {1}"
+msgstr "Bem-vindo, {0}. Você está conectado a {1}"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:128
+#, csharp-format
+msgid "Sign in as a different user"
+msgstr "Entrar como um usuário diferente"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:133
+#, csharp-format
+msgid "Used {0} of your allowed {1} monthly quota"
+msgstr "Você já utilizou {0} da sua cota mensal de {1}"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:297
+msgid "Unable to log on"
+msgstr "Não foi possível efetuar logon"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:317
+#, csharp-format
+msgid "Waiting for response {0} of {1}"
+msgstr "Esperando por resposta {0} de {1}"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:344
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:242
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:777
+#, csharp-format
+msgid "Uploading picture \"{0}\""
+msgstr "Enviando figura \"{0}\""
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:367
+#, csharp-format
+msgid "Error Uploading To {0}: {1}"
+msgstr "Erro ao enviar para {0}: {1}"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:454
+msgid "Unable to log on."
+msgstr "Não foi possível efetuar logon."
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:455
+#, csharp-format
+msgid ""
+"F-Spot was unable to log on to {0}.  Make sure you have given the "
+"authentication using {0} web browser interface."
+msgstr ""
+"F-Spot não foi possível efetuar logon em {0}. Certifique-se que a "
+"autenticação foi providenciada pela interface do navegador {0}."
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:1
+#: ../src/f-spot.glade.h:8
+msgid "<b>Account</b>"
+msgstr "<b>Conta</b>"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:2
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:5
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:3
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:2
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:2
+#: ../src/f-spot.glade.h:14
+msgid "<b>Photos</b>"
+msgstr "<b>Fotos</b>"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:3
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:6
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:4
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:4
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:4
+#: ../src/f-spot.glade.h:16
+msgid "<b>Style</b>"
+msgstr "<b>Estilo</b>"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:4
+msgid "<b>Viewing permissions</b>"
+msgstr "<b>Permissões de exibição</b>"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:6
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:8
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:9
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:6
+#: ../src/f-spot.glade.h:43
+msgid "Export"
+msgstr "Exportar"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:7
+msgid "Export tag _hierarchy"
+msgstr "Exportar _hierarquia de etiquetas"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:8
+msgid ""
+"F-Spot needs your authorization in order to upload photos to your {0} "
+"account. Press the \"Authorize\" button to open a web browser and give F-"
+"Spot the authorization. "
+msgstr ""
+"F-Spot precisa de sua autorização para enviar fotos para a conta {0}. "
+"Pressione o botão \"Autorizar\" para abrir o navegador web e permitir que o "
+"F-Spot envie suas fotos. "
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:9
+msgid "Ignore _top level tags"
+msgstr "Ignorar as _etiquetas de maior nível"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:10
+msgid "Private"
+msgstr "Particular"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:11
+msgid "Public"
+msgstr "Público"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:12
+msgid "Strip _metadata"
+msgstr "Descartar _metadados"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:13
+msgid "Visible to Family"
+msgstr "Visível para família"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:14
+msgid "Visible to Friends"
+msgstr "Visível para amigos"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:15
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:16
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:15
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:20
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:12
+#: ../src/f-spot.glade.h:95
+msgid "_Export"
+msgstr "_Exportar"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:16
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:21
+#: ../src/f-spot.glade.h:96
+msgid "_Export tags"
+msgstr "_Exportar etiquetas"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:17
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:18
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:21
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:25
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:15
+#: ../src/f-spot.glade.h:109
+msgid "_Resize to: "
+msgstr "_Redimensionar para: "
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:18
+msgid "_View photos in browser when done uploading"
+msgstr "_Ver fotos no navegador ao término do envio"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:19
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:20
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:24
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:27
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:17
+#: ../src/f-spot.glade.h:125
+msgid "pixels"
+msgstr "pixels"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.addin.xml.h:1
+msgid "F_older..."
+msgstr "_Pasta..."
+
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:140
+msgid "Select Export Folder"
+msgstr "Selecionar a pasta de exportação"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:198
+msgid "Building Gallery"
+msgstr "Montando galeria"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:248
+#, csharp-format
+msgid "Error uploading picture \"{0}\" to Gallery:{2}{1}"
+msgstr "Erro ao enviar foto \"{0}\" para o Gallery:{2}{1}"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:333
+msgid "Error: Error while transferring; Aborting"
+msgstr "Erro: Erro ao transferir; Abortando"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:336
+msgid "Error: File Already Exists; Aborting"
+msgstr "Erro: o arquivo já existe; abortando"
+
+#. Note for translators: light as clear, opposite as dark
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:803
+msgid "Light"
+msgstr "Claro"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:804
+msgid "Dark"
+msgstr "Escuro"
+
+#. Abbreviation of previous
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:984
+msgid "Prev"
+msgstr "Ant"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:986
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:1227
+#: ../src/CameraFileSelectionDialog.cs:82
+msgid "Index"
+msgstr "Índice"
+
+#. Don't care otherwise, Tags sounds reasonable
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:989
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:1161
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:1201
+#: ../src/MainWindow.cs:342 ../src/Widgets/Sidebar.cs:64
+msgid "Tags"
+msgstr "Etiquetas"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:992
+#: ../src/f-spot.glade.h:57 ../src/ItemAction.cs:102
+msgid "Next"
+msgstr "Próxima"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:1096
+msgid "Gallery generated by"
+msgstr "Galeria criada por"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:1136
+msgid "Show Styles"
+msgstr "Mostrar estilos"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:1137
+msgid "Hide Styles"
+msgstr "Ocultar estilos"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:1172
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:1173
+msgid "Tags: "
+msgstr "Etiquetas: "
+
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:1304
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:1437
+msgid "Page:"
+msgstr "Página:"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:1
+msgid "\n"
+msgstr "\n"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:3
+#: ../src/f-spot.glade.h:11
+msgid "<b>Destination</b>"
+msgstr "<b>Destino</b>"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:4
+msgid "<b>Export Method</b>"
+msgstr "<b>Método de exportação</b>"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:7
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:7
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:5
+#: ../src/f-spot.glade.h:28
+msgid "Autorotate"
+msgstr "Girar automaticamente"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:8
+msgid "Create _gallery using \"Original\""
+msgstr "Criar _galeria usando \"Original\""
+
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:9
+msgid "Create standalone _web gallery"
+msgstr "Criar galeria da _web autônoma"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:10
+msgid "D_escription:"
+msgstr "D_escrição:"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:11
+msgid "Export _tags"
+msgstr "Exportar e_tiquetas"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:12
+msgid "Export tag _icons"
+msgstr "Exportar ícones das et_iquetas"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:13
+msgid "Folder Export"
+msgstr "Exportar de pasta"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:14
+msgid "G_allery Name:"
+msgstr "Nome da G_aleria:"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:15
+msgid "Open _destination when done exporting"
+msgstr "Abrir _destino ao terminar de exportar"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:17
+msgid "_Folder:"
+msgstr "_Pasta:"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:19
+msgid "_Save the files only"
+msgstr "_Salvar os arquivos apenas"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.addin.xml.h:1
+msgid "Web _Gallery..."
+msgstr "_Gallery na web..."
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:52
+msgid ""
+"Cannot connect to a Gallery for which the version is unknown.\n"
+"Please check that you have Remote plugin 1.0.8 or later"
+msgstr ""
+"Não é possível conectar em um Gallery cuja versão é desconhecida.\n"
+"Por favor, verifique se você possui a extensão Remote 1.0.8 ou mais recente"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:391
+msgid "Invalid URL"
+msgstr "URL inválida"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:392
+msgid "The gallery URL entry does not appear to be a valid URL"
+msgstr "A URL do Gallery não parece ser uma URL válida"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:402
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:429
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:440
+msgid "Error while connecting to Gallery"
+msgstr "Erro ao conectar ao Gallery"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:403
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:430
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:441
+#, csharp-format
+msgid "The following error was encountered while attempting to log in: {0}"
+msgstr "O erro seguinte foi encontrado ao tentar o registro em: {0}"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:417
+msgid "A Gallery with this name already exists"
+msgstr "Já existe uma galeria com este nome"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:418
+#, csharp-format
+msgid ""
+"There is already a Gallery with the same name in your registered Galleries. "
+"Please choose a unique name."
+msgstr ""
+"Já existe uma galeria com este nome nas suas galerias registradas. Por "
+"favor, escolha um nome único."
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:528
+msgid "(TopLevel)"
+msgstr "(Nível mais alto)"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:590
+msgid "Invalid Gallery name"
+msgstr "Nome de galeria inválido"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:591
+msgid ""
+"The gallery name contains invalid characters.\n"
+"Only letters, numbers, - and _ are allowed"
+msgstr ""
+"O nome da galeria contém caracteres inválidos.\n"
+"São permitidos apenas letras, números, - e _"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:796
+#, csharp-format
+msgid "Error uploading picture \"{0}\" to Gallery: {1}"
+msgstr "Erro ao enviar foto \"{0}\" para Galeria: {1}"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:824
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:727
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:630
+msgid "(No Gallery)"
+msgstr "(Sem galeria)"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:916
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:849
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:726
+msgid "(Not Connected)"
+msgstr "(Desconectado)"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:917
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:850
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:727
+msgid "(No Albums)"
+msgstr "(Sem álbuns)"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:969
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:915
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:768
+msgid "No account selected"
+msgstr "Nenhuma conta selecionada"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:1
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:1
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:1
+#: ../src/f-spot.glade.h:9
+msgid "<b>Album</b>"
+msgstr "<b>Álbum</b>"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:2
+#: ../src/f-spot.glade.h:12
+msgid "<b>Gallery</b>"
+msgstr "<b>Galeria</b>"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:5
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:5
+msgid "<span weight='bold' size='larger'>Error Connecting to Gallery</span>\n"
+msgstr ""
+"<span weight=\"bold\" size=\"larger\">Erro ao Conectar à Galeria</span>\n"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:9
+msgid "Export _titles and comments"
+msgstr "Exportar _títulos e comentários"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:10
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:10
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:7
+msgid "Open _album in browser when done uploading"
+msgstr "_Abrir o álbum no navegador ao terminar o envio"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:11
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:11
+msgid "Please verify that the settings for this gallery are correct."
+msgstr ""
+"Por favor, verifique que as configurações desta galeria estão corretas."
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:12
+msgid "U_RL:"
+msgstr "U_RL:"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:13
+msgid "_Album Name:"
+msgstr "_Nome do álbum:"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:14
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:19
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:11
+msgid "_Description:"
+msgstr "_Descrição:"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:16
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:22
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:13
+#: ../src/f-spot.glade.h:97
+msgid "_Export to Album:"
+msgstr "_Exportar para álbum:"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:17
+msgid "_Gallery Name:"
+msgstr "Nome da _galeria:"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:18
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:23
+msgid "_Gallery:"
+msgstr "_Galeria:"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:19
+msgid "_Parent Album:"
+msgstr "Álbum _pai:"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:20
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:24
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:14
+msgid "_Password:"
+msgstr "_Senha:"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:22
+msgid "_Title:"
+msgstr "_Título:"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:23
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:26
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:16
+msgid "_Username:"
+msgstr "Nome do _usuário:"
+
+#: ../extensions/Exporters/GalleryExport/GalleryRemote.cs:361
+msgid "Error reading server response"
+msgstr "Erro ao ler resposta de servidor"
+
+#. failed to find the response
+#: ../extensions/Exporters/GalleryExport/GalleryRemote.cs:373
+msgid "Server returned response without Gallery content"
+msgstr "Servidor retornou resposta sem conteúdo de Galeria"
+
+#: ../extensions/Exporters/GalleryExport/GalleryRemote.cs:710
+msgid "Error while creating new album"
+msgstr "Erro ao criar novo álbum"
+
+#: ../extensions/Exporters/GalleryExport/GalleryRemote.cs:711
+#, csharp-format
+msgid ""
+"The following error was encountered while attempting to perform the "
+"requested operation:\n"
+"{0} ({1})"
+msgstr ""
+"O seguinte erro foi encontrado ao tentar realizar a operação requisitada:\n"
+"{0} ({1})"
+
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.addin.xml.h:1
+msgid "_PicasaWeb..."
+msgstr "Picasa_Web..."
+
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:441
+msgid "Error while creating Album"
+msgstr "Erro ao criar o álbum"
+
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:442
+#, csharp-format
+msgid ""
+"The following error was encountered while attempting to create an album: {0}"
+msgstr "O seguinte erro foi encontrado ao tentar criar um álbum: {0}"
+
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:620
+#, csharp-format
+msgid "{0} Sent"
+msgstr "{0} enviado"
+
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:622
+#, csharp-format
+msgid "{0} of approx. {1}"
+msgstr "{0} de aprox. {1}"
+
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:691
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:594
+#, csharp-format
+msgid "Error Uploading To Gallery: {0}"
+msgstr "Erro ao enviar para o Gallery: {0}"
+
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:778
+#, csharp-format
+msgid "Available space: {0}, {1}% used out of {2}"
+msgstr "Espaço disponível: {0}, {1}% usado de {2}"
+
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:891
+#, csharp-format
+msgid ""
+"The selected album has a limit of {0} pictures,\n"
+"which would be passed with the current selection of {1} images"
+msgstr ""
+"O álbum selecionado possui um limite de {0} fotos,\n"
+"que poderá ser ultrapassado com a seleção atual de {1} imagens"
+
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:3
+msgid "<b>PicasaWeb Export</b>"
+msgstr "<b>Exportação para PicasaWeb</b>"
+
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:7
+msgid ""
+"<span weight='bold' size='larger'>Your Google Account is locked</span>\n"
+msgstr ""
+"<span weight=\"bold\" size=\"larger\">Sua Conta do Google está bloqueada</"
+"span>\n"
+
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:12
+msgid ""
+"Please verify that the settings for this gallery are correct.\n"
+"Enter the letters as they are shown in the image in\n"
+"the 'Captcha' field. <i>Letters are not case-sensitive</i>"
+msgstr ""
+"Por favor, verifique se as configurações desta galeria estão corretas.\n"
+"Digite as letras como são mostradas na imagem no campo \"Captcha\".\n"
+"<i>Letras não são diferenciadas maiúsculas de minúsculas</i>"
+
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:15
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:8
+msgid "Public Album"
+msgstr "Álbum público"
+
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:16
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:10
+msgid "_Album Title:"
+msgstr "Nome do á_lbum:"
+
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:17
+msgid "_Autorotate"
+msgstr "Girar _automaticamente"
+
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:18
+msgid "_Captcha:"
+msgstr "_Captcha:"
+
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.addin.xml.h:1
+msgid "_SmugMug..."
+msgstr "_SmugMug..."
+
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:3
+msgid "<b>SmugMug Export</b>"
+msgstr "<b>Exportação para SmugMug</b>"
+
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:9
+msgid "_Account:"
+msgstr "_Conta:"
+
+#: ../extensions/Exporters/TabbloExport/Tabblo/Connection.cs:132
+#, csharp-format
+msgid "Uploading photo \"{0}\""
+msgstr "Enviando foto \"{0}\""
+
+#: ../extensions/Exporters/TabbloExport/Tabblo/Connection.cs:206
+msgid "Logging into Tabblo"
+msgstr "Efetuando login em Tabblo"
+
+#: ../extensions/Exporters/TabbloExport/Tabblo/Connection.cs:267
+msgid "Obtaining URL for upload"
+msgstr "Obtendo a URL para o envio"
+
+#: ../extensions/Exporters/TabbloExport/TabbloExport.addin.xml.h:1
+msgid "_Tabblo..."
+msgstr "_Tabblo..."
+
+#: ../extensions/Exporters/TabbloExport/TabbloExport.cs:308
+msgid "Done sending photos"
+msgstr "Envio de fotos completo"
+
+#: ../extensions/Exporters/TabbloExport/TabbloExport.cs:310
+msgid "Upload complete"
+msgstr "Envio completo"
+
+#: ../extensions/Exporters/TabbloExport/TabbloExport.cs:316
+msgid "Error uploading to Tabblo: "
+msgstr "Erro ao enviar para Tabblo: "
+
+#: ../extensions/Exporters/ZipExport/ZipExport.addin.xml.h:1
+msgid "Compressed fil_e..."
+msgstr "Arquivo _comprimido"
+
+#: ../extensions/Exporters/ZipExport/ZipExport.cs:47
+#: ../src/Widgets/EditorPage.cs:196
+msgid "No selection available"
+msgstr "Nenhuma seleção disponível"
+
+#: ../extensions/Exporters/ZipExport/ZipExport.cs:48
+msgid ""
+"This tool requires an active selection. Please select one or more pictures "
+"and try again"
+msgstr ""
+"Esta ferramenta requer uma seleção ativa. Por favor, selecione uma ou mais "
+"fotos e tente novamente"
+
+#: ../extensions/Exporters/ZipExport/ZipExport.cs:64
+msgid "Select export folder"
+msgstr "Selecionar a pasta para exportação"
+
+#: ../extensions/Exporters/ZipExport/ZipExport.cs:102
+msgid "Exporting files"
+msgstr "Exportando arquivos"
+
+#: ../extensions/Exporters/ZipExport/ZipExport.cs:108
+#, csharp-format
+msgid "Preparing photo \"{0}\""
+msgstr "Preparando foto \"{0}\""
+
+#: ../extensions/Exporters/ZipExport/ZipExport.glade.h:1
+#: ../src/f-spot.glade.h:92
+msgid "_Create"
+msgstr "_Criar"
+
+#: ../extensions/Exporters/ZipExport/ZipExport.glade.h:2
+msgid "_File name:"
+msgstr "Nome do _arquivo:"
+
+#: ../extensions/Exporters/ZipExport/ZipExport.glade.h:3
+msgid "_Location:"
+msgstr "_Localização:"
+
+#: ../extensions/Exporters/ZipExport/ZipExport.glade.h:4
+msgid "_Scale:"
+msgstr "_Escala"
+
+#: ../extensions/Tools/HashJob/HashJob.cs:53
+msgid ""
+"In order to detect duplicates on pictures you imported before 0.5.0, F-Spot "
+"needs to analyze your image collection. This is not done by default as it's "
+"time consuming. You can Start or Pause this update process using this dialog."
+msgstr ""
+"Para detectar imagens duplicadas que você importou antes da versão 0.5.0, o "
+"F-Spot precisa analisar a sua coleção de imagens. Isto não é feito por "
+"padrão pelo consumo de tempo. Você pode Iniciar ou Pausar este processo de "
+"atualização usando este diálogo."
+
+#: ../extensions/Tools/HashJob/HashJob.cs:102
+msgid "Processing images..."
+msgstr "Processando imagens..."
+
+#: ../extensions/Tools/HashJob/HashJob.cs:108
+msgid "Stopped"
+msgstr "Parado"
+
+#: ../extensions/Tools/MergeDb/MergeDb.addin.xml.h:1
+msgid "Merge Db"
+msgstr "Mesclar Db"
+
+#: ../extensions/Tools/MergeDb/MergeDb.cs:73
+msgid "Error opening the selected file"
+msgstr "Erro ao abrir o arquivo selecionado"
+
+#: ../extensions/Tools/MergeDb/MergeDb.cs:74
+#, csharp-format
+msgid ""
+"The file you selected is not a valid or supported database.\n"
+"\n"
+"Received exception \"{0}\"."
+msgstr ""
+"O arquivo selecionado não é um banco de dados válido ou suportado.\n"
+"\n"
+"Exceção recebida \"{0}\"."
+
+#: ../extensions/Tools/MergeDb/MergeDb.glade.h:1
+msgid ""
+"<small><i>Choose the location of the database you want to import from</i></"
+"small>"
+msgstr ""
+"<small><i>Escolha a localização do banco de dados para importar</i></small>"
+
+#: ../extensions/Tools/MergeDb/MergeDb.glade.h:2
+msgid ""
+"<small><i>Choose what to import from the selected db.\n"
+"\"New Rolls Only\" is the smart option that will avoid re-importing photos "
+"you could have imported during a previous operation.\n"
+"\"A Single Import Roll\" let you choose which roll you want to merge back.\n"
+"\"Everything\" will import everything, creating duplicates if you already "
+"imported from that database.</i></small>"
+msgstr ""
+"<small><i>Escolha o que importar do banco de dados selecionado.\n"
+"\"Apenas novos rolos\" é a opção mais inteligente que evitará reimportar "
+"fotos que você pode ter importado durante uma operação anterior.\n"
+"\"Um único rolo importado\" lhe permite escolher qual rolo você quer "
+"mesclar.\n"
+"\"Todos\" importará tudo, criando cópias se você já tiver importado do banco "
+"de dados.</i></small>"
+
+#: ../extensions/Tools/MergeDb/MergeDb.glade.h:6
+msgid ""
+"<small><i>Copy the images locally or keep them where they are. If you chose "
+"the later, be sure that this location will stay accessible from f-spot.</i></"
+"small>"
+msgstr ""
+"<small><i>Copie as imagens localmente ou as mantenha onde estão. Se elas "
+"forem mantidas, tenha certeza de que esta localização seja acessível pelo f-"
+"spot.</i></small>"
+
+#: ../extensions/Tools/MergeDb/MergeDb.glade.h:7
+msgid "A Single Import Roll"
+msgstr "Um único rolo importado"
+
+#: ../extensions/Tools/MergeDb/MergeDb.glade.h:8
+msgid "Copy images to photos folder"
+msgstr "Copiar imagens para a pasta de fotos"
+
+#: ../extensions/Tools/MergeDb/MergeDb.glade.h:9
+msgid "Database Location:"
+msgstr "Localização do banco de dados:"
+
+#: ../extensions/Tools/MergeDb/MergeDb.glade.h:10
+msgid "Everything"
+msgstr "Tudo"
+
+#: ../extensions/Tools/MergeDb/MergeDb.glade.h:11
+msgid "Import:"
+msgstr "Importar:"
+
+#: ../extensions/Tools/MergeDb/MergeDb.glade.h:12
+msgid "Keep the images at their original location"
+msgstr "Manter as imagens na sua localização original"
+
+#: ../extensions/Tools/MergeDb/MergeDb.glade.h:13
+msgid "Merge another F-Spot collection"
+msgstr "Mesclar outra coleção do F-Spot"
+
+#: ../extensions/Tools/MergeDb/MergeDb.glade.h:14
+msgid "New Rolls Only"
+msgstr "Apenas rolos novos"
+
+#: ../extensions/Tools/MergeDb/MergeDb.glade.h:15
+#: ../src/FileImportBackend.cs:290 ../src/UI.Dialog/ThreadProgressDialog.cs:51
+msgid "Skip"
+msgstr "Ignorar"
+
+#: ../extensions/Tools/MergeDb/PickFolderDialog.cs:33
+#, csharp-format
+msgid ""
+"<big>The database refers to files contained in the <b>{0}</b> folder.\n"
+" Please select that folder so I can do the mapping.</big>"
+msgstr ""
+"<big>O banco de dados remete a arquivos contidos na pasta <b>{0}</b>.\n"
+" Por favor, selecione esta pasta para que eu possa realizar o mapeamento.</"
+"big>"
+
+#: ../f-spot.desktop.in.in.h:1 ../f-spot-import.desktop.in.in.h:1
+msgid "F-Spot Photo Manager"
+msgstr "Gerenciador de fotos F-Spot"
+
+#: ../f-spot.desktop.in.in.h:2
+msgid "Organize, enjoy, and share your photos"
+msgstr "Organize, compartilhe e divirta-se com suas fotos"
+
+#: ../f-spot.desktop.in.in.h:3 ../f-spot-import.desktop.in.in.h:3
+msgid "Photo Manager"
+msgstr "Gerenciador de fotos"
+
+#: ../f-spot-import.desktop.in.in.h:2
+msgid "Import into F-Spot"
+msgstr "Importar para o F-Spot"
 
 #: ../f-spot-view.desktop.in.in.h:1
 msgid "F-Spot Photo Viewer"
@@ -330,34 +1108,301 @@ msgstr "Visualizador de fotos F-Spot"
 msgid "Photo Viewer"
 msgstr "Visualizador de fotos"
 
-#: ../f-spot-import.desktop.in.in.h:1 ../f-spot.desktop.in.in.h:1
-msgid "F-Spot Photo Manager"
-msgstr "Gerenciador de fotos F-Spot"
-
-#: ../f-spot-import.desktop.in.in.h:2
-msgid "Import into F-Spot"
-msgstr "Importar para o F-Spot"
-
-#: ../f-spot-import.desktop.in.in.h:3 ../f-spot.desktop.in.in.h:3
-msgid "Photo Manager"
-msgstr "Gerenciador de fotos"
-
-#: ../f-spot.desktop.in.in.h:2
-msgid "Organize, enjoy, and share your photos"
-msgstr "Organize, compartilhe e divirta-se com suas fotos"
-
-#: ../libfspot/f-jpeg-utils.c:441 ../src/RotateCommand.cs:224
+#: ../lib/libfspot/f-jpeg-utils.c:441 ../src/RotateCommand.cs:224
 msgid "File not found"
 msgstr "Arquivo não localizado"
 
-#: ../libfspot/f-jpeg-utils.c:464
+#: ../lib/libfspot/f-jpeg-utils.c:464
 #, c-format
 msgid "Unknown transform type %d"
 msgstr "Tipo de transformação %d desconhecido"
 
-#: ../libfspot/f-jpeg-utils.c:472
+#: ../lib/libfspot/f-jpeg-utils.c:472
 msgid "Operation failed"
 msgstr "Falha na operação"
+
+#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInfoDialog.cs:32
+msgid "Package"
+msgstr "Pacote F-Spot"
+
+#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:110
+msgid "Extension Installation"
+msgstr "Instalação de extensão"
+
+#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:136
+msgid "<b>Select the extensions to install and click on Next</b>"
+msgstr "<b>Selecione as extensões a serem instaladas e clique em Avançar</b>"
+
+#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:150
+msgid "Install from:"
+msgstr "Instalar de:"
+
+#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:179
+#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:180
+msgid "_Repositories..."
+msgstr "_Repositórios..."
+
+#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:220
+msgid "Show all packages"
+msgstr "Mostrar todos os pacotes"
+
+#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:221
+msgid "Show new versions only"
+msgstr "Mostrar apenas novas versões"
+
+#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:222
+msgid "Show updates only"
+msgstr "Mostrar apenas atualizações"
+
+#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:247
+msgid "_Unselect All"
+msgstr "Desmarcar T_odos"
+
+# "Todos" porque refere-se aos pacotes de instalação
+#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:259
+msgid "Select _All"
+msgstr "Selecionar _todos"
+
+#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:334
+msgid "label124"
+msgstr "label124"
+
+#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:346
+msgid "Overall Progress:"
+msgstr "Progresso total:"
+
+#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:374
+msgid "Downloading extensions..."
+msgstr "Descarregando extensões..."
+
+#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallerDialog.cs:36
+#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:58
+msgid "Extension Manager"
+msgstr "Gerenciador de extensões"
+
+#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallerDialog.cs:54
+msgid "Additional extensions are required to perform this operation."
+msgstr "Extensões adicionais são requeridas para executar essa operação."
+
+#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallerDialog.cs:64
+msgid "The following extensions will be installed:"
+msgstr "As seguintes extensões serão instaladas:"
+
+#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:90
+msgid "<big><b>Extension Manager</b></big>"
+msgstr "<big><b>Gerenciador de Extensões do F-Spot</b></big>"
+
+#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:110
+msgid "The following extensions are currently installed:"
+msgstr "As seguintes extensões estão instaladas atualmente:"
+
+#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:165
+msgid "_Install Extensions..."
+msgstr "_Instalar extensões..."
+
+#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:210
+msgid "_Uninstall..."
+msgstr "_Desinstalar..."
+
+#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:236
+msgid "Enable"
+msgstr "Habilitar"
+
+#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:262
+msgid "Disable"
+msgstr "Desabilitar"
+
+#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.ErrorDialog.cs:111
+msgid "Details"
+msgstr "Detalhes"
+
+#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.ManageSitesDialog.cs:34
+msgid "Extension Repository Management"
+msgstr "Gerenciamento dos repositórios de extensões"
+
+#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.NewSiteDialog.cs:52
+msgid "Add New Repository"
+msgstr "Adicionar novo repositório"
+
+#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.NewSiteDialog.cs:70
+msgid "Select the location of the repository you want to register:"
+msgstr "Selecione a localização do repositório que quer registrar:"
+
+#. Container child vbox89.Gtk.Box+BoxChild
+#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.NewSiteDialog.cs:77
+msgid "Register an on-line repository"
+msgstr "Registrar um repositório on-line"
+
+#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.NewSiteDialog.cs:106
+msgid "Url:"
+msgstr "URL:"
+
+#. Container child vbox89.Gtk.Box+BoxChild
+#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.NewSiteDialog.cs:127
+msgid "Register a local repository"
+msgstr "Registrar um repositório local"
+
+#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.NewSiteDialog.cs:155
+msgid "Path:"
+msgstr "Caminho:"
+
+#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.NewSiteDialog.cs:179
+msgid "Browse..."
+msgstr "Navegar..."
+
+#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInfoDialog.cs:62
+msgid "Version:"
+msgstr "Versão:"
+
+#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInfoDialog.cs:65
+msgid "Author:"
+msgstr "Autor:"
+
+# No VP mantém-se a o original
+#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInfoDialog.cs:68
+msgid "Copyright:"
+msgstr "Copyright:"
+
+#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInfoDialog.cs:71
+msgid "Extension Dependencies:"
+msgstr "Dependências da extensão:"
+
+#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:97
+msgid "All registered repositories"
+msgstr "Todos os repositórios registrados"
+
+#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:184
+msgid "Are you sure you want to cancel the installation?"
+msgstr "Tem certeza que quer cancelar a instalação?"
+
+#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:308
+msgid "The following packages will be uninstalled:"
+msgstr "Os seguintes pacotes serão desinstalados:"
+
+#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:313
+msgid ""
+"There are other extensions that depend on the previous ones which will also "
+"be uninstalled:"
+msgstr ""
+"Existem outras extensões que dependem das anteriores que também serão "
+"desinstaladas:"
+
+#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:384
+msgid ""
+"The selected extensions can't be installed because there are dependency "
+"conflicts."
+msgstr ""
+"Não foi possível instalar as extensões selecionadas por causa de conflitos "
+"de dependências."
+
+#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:398
+msgid "The following packages will be installed:"
+msgstr "Os seguintes pacotes serão instalados:"
+
+#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:402
+msgid " (in user directory)"
+msgstr " (no diretório do usuário)"
+
+#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:408
+msgid "The following packages need to be uninstalled:"
+msgstr "Os seguintes pacotes precisam ser desinstalados:"
+
+#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:416
+msgid "The following dependencies could not be resolved:"
+msgstr "Não foi possível resolver as seguintes dependências:"
+
+#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:441
+msgid "The installation has been successfully completed."
+msgstr "Instalação realizada com sucesso."
+
+#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:442
+msgid "The installation failed!"
+msgstr "Falha na instalação!"
+
+# Nos diálogos não há nada referente a visualizar os warnings então omiti sua tradução.
+#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:443
+msgid "The installation has completed with warnings."
+msgstr "Instalação realizada com sucesso."
+
+#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:446
+msgid "The uninstallation has been successfully completed."
+msgstr "Desinstalação realizada com sucesso."
+
+#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:447
+msgid "The uninstallation failed!"
+msgstr "Falha na desinstalação!"
+
+#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:448
+msgid "The uninstallation has completed with warnings."
+msgstr "Desinstalação realizada com sucesso."
+
+#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:616
+msgid "Repository"
+msgstr "Repositório"
+
+#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstaller.cs:16
+msgid "Installation cancelled"
+msgstr "Instalação cancelada"
+
+#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallerDialog.cs:159
+msgid "Some of the required extensions were not found"
+msgstr "Algumas das extensões necessárias não foram localizadas"
+
+#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallerDialog.cs:171
+msgid "Installation failed"
+msgstr "Falha na instalação"
+
+#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinTreeWidget.cs:91
+msgid "Extension"
+msgstr "Extensão"
+
+#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinTreeWidget.cs:112
+#: ../src/Widgets/InfoBox.cs:214
+msgid "Version"
+msgstr "Versão"
+
+#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinTreeWidget.cs:168
+msgid "Other"
+msgstr "Outros"
+
+#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/ManageSitesDialog.cs:51
+#: ../src/Widgets/InfoBox.cs:211
+msgid "Name"
+msgstr "Nome"
+
+#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/ManageSitesDialog.cs:52
+msgid "Url"
+msgstr "URL"
+
+#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/Services.cs:61
+#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/Services.cs:70
+#, csharp-format
+msgid "Exception occurred: {0}"
+msgstr "Ocorreu uma exceção: {0}"
+
+#: ../lib/mono-addins/Mono.Addins/Mono.Addins/AddinSessionService.cs:154
+msgid "Disabled extensions can't be loaded."
+msgstr "Extensões desabilitadas não podem ser carregadas."
+
+#: ../lib/mono-addins/Mono.Addins/Mono.Addins/AddinSessionService.cs:179
+#, csharp-format
+msgid "Loading {0} extension"
+msgstr "Carregando {0} extensão"
+
+#: ../lib/mono-addins/Mono.Addins/Mono.Addins/AddinSessionService.cs:265
+#, csharp-format
+msgid "The required extension '{0}' is disabled."
+msgstr "A extensão requerida \"{0}\" está desabilitada."
+
+#: ../lib/mono-addins/Mono.Addins/Mono.Addins/AddinSessionService.cs:267
+#, csharp-format
+msgid "The required extension '{0}' is not installed."
+msgstr "A extensão requerida \"{0}\" não está instalada."
+
+#: ../lib/mono-addins/Mono.Addins/Mono.Addins.Description/AssemblyDependency.cs:79
+#, csharp-format
+msgid "(provided by {0})"
+msgstr "(fornecido por {0})"
 
 #: ../src/CameraFileSelectionDialog.cs:76
 msgid "Preview"
@@ -367,15 +1412,9 @@ msgstr "Visualização"
 msgid "Path"
 msgstr "Caminho"
 
-#: ../src/CameraFileSelectionDialog.cs:80 ../src/f-spot.glade.h:55
+#: ../src/CameraFileSelectionDialog.cs:80 ../src/f-spot.glade.h:46
 msgid "File"
 msgstr "Arquivo"
-
-#: ../src/CameraFileSelectionDialog.cs:82
-#: ../extensions/Exporters/FolderExport/FolderExport.cs:993
-#: ../extensions/Exporters/FolderExport/FolderExport.cs:1234
-msgid "Index"
-msgstr "Índice"
 
 #: ../src/CameraFileSelectionDialog.cs:102
 msgid "Select Tag"
@@ -389,12 +1428,6 @@ msgstr "Baixando visualizações"
 #, csharp-format
 msgid "Downloading Preview of {0}"
 msgstr "Baixando visualização de {0}"
-
-#: ../src/CameraFileSelectionDialog.cs:199
-#: ../extensions/Exporters/CDExport/CDExport.cs:246
-#: ../extensions/Exporters/FolderExport/FolderExport.cs:392
-msgid "Transferring Pictures"
-msgstr "Transferindo fotos"
 
 #: ../src/CameraFileSelectionDialog.cs:220
 #, csharp-format
@@ -486,7 +1519,7 @@ msgstr "Modificado em {1} ({0})"
 
 #. Note that the original version is never stored in the photo_versions table in the
 #. database.
-#: ../src/Core/Photo.cs:671 ../src/f-spot.glade.h:71
+#: ../src/Core/Photo.cs:671 ../src/f-spot.glade.h:61
 msgid "Original"
 msgstr "Original"
 
@@ -570,6 +1603,24 @@ msgstr "Foco suave"
 msgid "Straighten"
 msgstr "Retificar"
 
+#: ../src/FileImportBackend.cs:288
+msgid "Import error"
+msgstr "Erro de importação"
+
+#: ../src/FileImportBackend.cs:289
+#, csharp-format
+msgid "Error importing {0}{2}{2}{1}"
+msgstr "Erro ao importar {0}{2}{2}{1}"
+
+#: ../src/Filters/ResizeFilter.cs:70 ../src/Filters/SharpFilter.cs:52
+#, csharp-format
+msgid "No way to save files of type \"{0}\""
+msgstr "Não foi possível salvar arquivos do tipo \"{0}\""
+
+#: ../src/FormClient.cs:295
+msgid "Unhandled exception"
+msgstr "Exceção sem tratamento"
+
 #: ../src/FSpot.addin.xml.h:1
 msgid "Copy Photo Locat_ion"
 msgstr "Copiar Locali_zação da foto"
@@ -586,13 +1637,13 @@ msgstr "Abrir c_om"
 msgid "Rem_ove Tag"
 msgstr "Rem_over etiqueta"
 
-#: ../src/FSpot.addin.xml.h:5 ../src/SingleView.cs:454
-#: ../src/f-spot.glade.h:79
+#: ../src/FSpot.addin.xml.h:5 ../src/f-spot.glade.h:68
+#: ../src/SingleView.cs:453
 msgid "Rotate _Left"
 msgstr "Girar à _esquerda"
 
-#: ../src/FSpot.addin.xml.h:6 ../src/SingleView.cs:455
-#: ../src/f-spot.glade.h:80
+#: ../src/FSpot.addin.xml.h:6 ../src/f-spot.glade.h:69
+#: ../src/SingleView.cs:454
 msgid "Rotate _Right"
 msgstr "Girar à _direita"
 
@@ -606,34 +1657,450 @@ msgstr "_Adicionar etiqueta"
 
 #: ../src/FSpot.addin.xml.h:9
 msgid "_Delete From Drive"
-msgstr "E_xcluir do dispositivo"
+msgstr "E_xcluir da unidade"
 
 #: ../src/FSpot.addin.xml.h:10
 msgid "_Remove From Catalog"
 msgstr "_Remover do catálogo"
 
-#: ../src/FileImportBackend.cs:285
-msgid "Import error"
-msgstr "Erro de importação"
+#: ../src/f-spot.glade.h:1
+msgid " "
+msgstr " "
 
-#: ../src/FileImportBackend.cs:286
-#, csharp-format
-msgid "Error importing {0}{2}{2}{1}"
-msgstr "Erro ao importar {0}{2}{2}{1}"
+#: ../src/f-spot.glade.h:2
+msgid "1024 px"
+msgstr "1024 px"
 
-#: ../src/FileImportBackend.cs:287 ../src/UI.Dialog/ThreadProgressDialog.cs:51
-#: ../extensions/Tools/MergeDb/MergeDb.glade.h:15
-msgid "Skip"
-msgstr "Ignorar"
+#: ../src/f-spot.glade.h:3
+msgid "320 px"
+msgstr "320 px"
 
-#: ../src/Filters/ResizeFilter.cs:70 ../src/Filters/SharpFilter.cs:52
-#, csharp-format
-msgid "No way to save files of type \"{0}\""
-msgstr "Não foi possível salvar arquivos do tipo \"{0}\""
+#: ../src/f-spot.glade.h:4
+msgid "480 px"
+msgstr "480 px"
 
-#: ../src/FormClient.cs:295
-msgid "Unhandled exception"
-msgstr "Exceção sem tratamento"
+#: ../src/f-spot.glade.h:5
+msgid "640 px"
+msgstr "640 px"
+
+#: ../src/f-spot.glade.h:6
+msgid "800 px"
+msgstr "800 px"
+
+#: ../src/f-spot.glade.h:7
+msgid "<b></b>"
+msgstr "<b></b>"
+
+#: ../src/f-spot.glade.h:10
+msgid "<b>Co_rrections</b>"
+msgstr "<b>Co_rreções</b>"
+
+#: ../src/f-spot.glade.h:13
+msgid "<b>Image Interpolation</b>"
+msgstr "<b>Interpolação de imagem</b>"
+
+#: ../src/f-spot.glade.h:15
+msgid "<b>Size</b>"
+msgstr "<b>Tamanho</b>"
+
+#: ../src/f-spot.glade.h:17
+msgid "<b>Summary</b>"
+msgstr "<b>Resumo</b>"
+
+#: ../src/f-spot.glade.h:18
+msgid "<b>Transparent Parts</b>"
+msgstr "<b>Partes transparentes</b>"
+
+#: ../src/f-spot.glade.h:19
+msgid "<b>View all pictures imported</b>"
+msgstr "<b>Ver todas as fotos importadas</b>"
+
+#: ../src/f-spot.glade.h:20
+msgid "<b>_White Balance</b>"
+msgstr "<b>_Equilíbrio de branco</b>"
+
+#: ../src/f-spot.glade.h:21
+msgid ""
+"<small><i>Enable this to allow interpolation on zoomed images. You shouldn't "
+"disable this for viewing photos, but disabling the interpolation could be "
+"usefull in icon design.</i></small>"
+msgstr ""
+"<small><i>Habilite esta opção para permitir a interpolação ao aplicar zoom "
+"nas imagens. Você não deve desabilitar para visualizar fotos, mas "
+"desabilitar a interpolação poderá ser útil no formato de ícone.</i></small>"
+
+#: ../src/f-spot.glade.h:22
+msgid ""
+"<small><i>You can choose how to display transparent parts in images. This "
+"option has no effect on photos, but setting this as check pattern or custom "
+"color could be usefull when viewing icons or other artworks with transparent "
+"parts.</i></small>"
+msgstr ""
+"<small><i>Você pode escolher como exibir partes transparentes em imagens. "
+"Esta opção não tem efeito em fotos, mas configurando isto como um padrão "
+"quadriculado ou cor personalizada pode ser útil ao ver ícones e outros "
+"trabalhos de arte com partes transparentes.</i></small>"
+
+#: ../src/f-spot.glade.h:23
+msgid "As _background"
+msgstr "Como plano de _fundo"
+
+#: ../src/f-spot.glade.h:24
+msgid "As _custom color: "
+msgstr "Como cor _personalizada: "
+
+#: ../src/f-spot.glade.h:25
+msgid "As check _pattern"
+msgstr "Como padrão _quadriculado"
+
+#: ../src/f-spot.glade.h:26
+msgid "Attach Tags:"
+msgstr "Adicionar etiquetas:"
+
+#: ../src/f-spot.glade.h:27
+msgid "Attach tag:"
+msgstr "Adicionar etiqueta:"
+
+#: ../src/f-spot.glade.h:29
+msgid "CD"
+msgstr "CD"
+
+#: ../src/f-spot.glade.h:30
+msgid "C_ontrast:"
+msgstr "C_ontraste:"
+
+#: ../src/f-spot.glade.h:31
+msgid "Camera Selection"
+msgstr "Seleção de câmera"
+
+#: ../src/f-spot.glade.h:32
+msgid "Copy files to the Photos folder"
+msgstr "Copiar arquivos para pasta Photos"
+
+#: ../src/f-spot.glade.h:33
+msgid "Create Mail"
+msgstr "Criar e-mail"
+
+#: ../src/f-spot.glade.h:34
+msgid "Create _icon for this tag when first used"
+msgstr "Criar ícone para esta etiqueta ao _usá-la pela primeira vez"
+
+#: ../src/f-spot.glade.h:35
+msgid "Create a mail with the selected photos (possibly resized) attached"
+msgstr ""
+"Cria um e-mail com as fotos selecionadas (possivelmente redimensionadas) em "
+"anexo"
+
+#: ../src/f-spot.glade.h:36
+msgid "Detect duplicates"
+msgstr "Detectar duplicatas"
+
+#: ../src/f-spot.glade.h:37
+msgid "Display File _Names"
+msgstr "Exibir nomes de _arquivos"
+
+#: ../src/f-spot.glade.h:38
+msgid "Display only those photos that were imported in specified Rolls."
+msgstr ""
+"Exibir apenas aquelas fotos que foram importadas em rolos especificados."
+
+#: ../src/f-spot.glade.h:39
+msgid "Do not send a mail"
+msgstr "Não enviar um e-mail"
+
+#: ../src/f-spot.glade.h:40
+msgid "E-_Mail:"
+msgstr "E-_mail:"
+
+#: ../src/f-spot.glade.h:41
+msgid "E_xport titles and comments"
+msgstr "E_xportar títulos e comentários"
+
+#: ../src/f-spot.glade.h:42
+msgid "Estimated new size"
+msgstr "Novo tamanho estimado"
+
+#: ../src/f-spot.glade.h:44
+msgid "Extra large"
+msgstr "Muito grande"
+
+#: ../src/f-spot.glade.h:45
+msgid "F-Spot View"
+msgstr "Visualização do F-Spot"
+
+#: ../src/f-spot.glade.h:47
+msgid "Filter on selected rolls"
+msgstr "Filtrar rolos selecionados"
+
+#: ../src/f-spot.glade.h:48
+msgid "G_allery:"
+msgstr "G_aleria:"
+
+#: ../src/f-spot.glade.h:49
+msgid "Gallery"
+msgstr "Galeria"
+
+#: ../src/f-spot.glade.h:50 ../src/ImportCommand.cs:547
+#: ../src/MainWindow.cs:267
+msgid "Import"
+msgstr "Importar"
+
+#. Translators: this string means 'source of import'
+#: ../src/f-spot.glade.h:52
+msgid "Import Source:"
+msgstr "Fonte da importação:"
+
+#: ../src/f-spot.glade.h:53
+msgid "Include subfolders"
+msgstr "Incluir subpastas"
+
+#: ../src/f-spot.glade.h:54
+msgid "Large"
+msgstr "Grande"
+
+#: ../src/f-spot.glade.h:55
+msgid "Manage your custom selection ratios"
+msgstr "Gerenciar as suas proporções de seleção personalizadas"
+
+#: ../src/f-spot.glade.h:56
+msgid "Medium"
+msgstr "Médio"
+
+#: ../src/f-spot.glade.h:58
+msgid "Number of photos in selected rolls:"
+msgstr "Número de fotos nos rolos selecionados:"
+
+#: ../src/f-spot.glade.h:59
+msgid "Number of pictures"
+msgstr "Número de fotos"
+
+#: ../src/f-spot.glade.h:60
+msgid "Open _Folder..."
+msgstr "Abrir _pasta..."
+
+#: ../src/f-spot.glade.h:62
+msgid "Original size (possible very large file size)"
+msgstr "Tamanho original (tamanho de arquivo muito grande possível)"
+
+#: ../src/f-spot.glade.h:63
+msgid "P_arent Tag:"
+msgstr "Etiquet_a principal:"
+
+#: ../src/f-spot.glade.h:64
+msgid "Pause"
+msgstr "Pausar"
+
+#: ../src/f-spot.glade.h:65
+msgid "Preferences"
+msgstr "Preferências"
+
+#: ../src/f-spot.glade.h:66 ../src/ItemAction.cs:123
+msgid "Previous"
+msgstr "Anterior"
+
+#: ../src/f-spot.glade.h:67
+msgid "Repair"
+msgstr "Reparar"
+
+#: ../src/f-spot.glade.h:70
+msgid "Select Photos to Copy From Camera..."
+msgstr "Selecione fotos para copiar da câmera..."
+
+#: ../src/f-spot.glade.h:71
+msgid "Select a Tag..."
+msgstr "Selecionar uma etiqueta..."
+
+#: ../src/f-spot.glade.h:72
+msgid "Select the camera from which you want to transfer files"
+msgstr "Selecione a câmera da qual deseja transferir arquivos"
+
+#: ../src/f-spot.glade.h:73
+msgid "Selected Camera: "
+msgstr "Câmera selecionada: "
+
+#: ../src/f-spot.glade.h:74
+msgid "Selection Constraints"
+msgstr "Restrições de seleção"
+
+#: ../src/f-spot.glade.h:75
+msgid "Set as _Background"
+msgstr "Definir como plano de _fundo"
+
+#: ../src/f-spot.glade.h:76
+msgid "Show all photos."
+msgstr "Mostrar todas as fotos."
+
+#: ../src/f-spot.glade.h:77
+msgid "Show or hide the side pane"
+msgstr "Mostra ou oculta a barra lateral"
+
+#: ../src/f-spot.glade.h:78
+msgid "Show or hide the toolbar"
+msgstr "Mostra ou oculta a barra de ferramentas"
+
+#: ../src/f-spot.glade.h:79
+msgid "Side _pane"
+msgstr "_Painel lateral"
+
+#: ../src/f-spot.glade.h:80
+msgid "Small"
+msgstr "Pequeno"
+
+#: ../src/f-spot.glade.h:81
+msgid ""
+"Specify if an original size picture should be rotated or not. Smaller sizes "
+"are automatically rotated."
+msgstr ""
+"Especifica se uma foto de tamanho original deve ser girada ou não. Tamanhos "
+"menores são automaticamente girados."
+
+#: ../src/f-spot.glade.h:82
+msgid "Strip image _metadata"
+msgstr "Descartar _metadados"
+
+#. Note for translators: meant as Temperature
+#: ../src/f-spot.glade.h:84
+msgid "Te_mp:"
+msgstr "Te_mp:"
+
+#: ../src/f-spot.glade.h:85
+msgid "Tiny"
+msgstr "Minúsculo"
+
+#: ../src/f-spot.glade.h:86
+msgid "Total original size"
+msgstr "Tamanho original total"
+
+#: ../src/f-spot.glade.h:87
+msgid "Zoom _in"
+msgstr "_Ampliar"
+
+#: ../src/f-spot.glade.h:88
+msgid "Zoom _out"
+msgstr "Red_uzir"
+
+#: ../src/f-spot.glade.h:89
+msgid "Zoom in"
+msgstr "Amplia"
+
+#: ../src/f-spot.glade.h:90
+msgid "Zoom out"
+msgstr "Reduz"
+
+#: ../src/f-spot.glade.h:91
+msgid "_Brightness:"
+msgstr "_Brilho:"
+
+#: ../src/f-spot.glade.h:93
+msgid "_Create Mail"
+msgstr "Criar e-_mail"
+
+#: ../src/f-spot.glade.h:94
+msgid "_Edit"
+msgstr "_Editar"
+
+#: ../src/f-spot.glade.h:98
+msgid "_Exposure:"
+msgstr "_Exposição"
+
+#: ../src/f-spot.glade.h:99
+msgid "_Flickr"
+msgstr "_Flickr"
+
+#: ../src/f-spot.glade.h:100
+msgid "_Fullscreen"
+msgstr "Tela _cheia"
+
+#: ../src/f-spot.glade.h:101
+msgid "_Gallery"
+msgstr "_Galeria"
+
+#: ../src/f-spot.glade.h:102
+msgid "_Help"
+msgstr "Aj_uda"
+
+#: ../src/f-spot.glade.h:103
+msgid "_Hue:"
+msgstr "Mati_z:"
+
+#: ../src/f-spot.glade.h:104
+msgid "_Interpolate image on zoom"
+msgstr "_Interpolar imagem ao ampliar"
+
+#: ../src/f-spot.glade.h:105
+msgid "_New Window"
+msgstr "_Nova janela"
+
+#: ../src/f-spot.glade.h:106
+msgid "_Open album in browser when done uploading"
+msgstr "_Abrir o álbum no navegador ao terminar o envio"
+
+#: ../src/f-spot.glade.h:107
+msgid "_Open destination when done exporting"
+msgstr "_Abrir destino ao terminar de exportar"
+
+#: ../src/f-spot.glade.h:108
+msgid "_Photo"
+msgstr "_Foto"
+
+#: ../src/f-spot.glade.h:110
+msgid "_Saturation:"
+msgstr "_Saturação:"
+
+#: ../src/f-spot.glade.h:111
+msgid "_Scale photos to no larger than: "
+msgstr "_Dimensionar as imagens para não mais que: "
+
+#: ../src/f-spot.glade.h:112
+msgid "_Slideshow"
+msgstr "Apresentação de _slides"
+
+#: ../src/f-spot.glade.h:113
+msgid "_Strip metadata"
+msgstr "_Descartar metadados"
+
+#: ../src/f-spot.glade.h:114
+msgid "_Tag Name:"
+msgstr "Nome da e_tiqueta:"
+
+#: ../src/f-spot.glade.h:115
+msgid "_Tint:"
+msgstr "_Matiz:"
+
+#: ../src/f-spot.glade.h:116
+msgid "_Toolbar"
+msgstr "Barra de _ferramentas"
+
+#: ../src/f-spot.glade.h:117
+msgid "_URI:"
+msgstr "_URI:"
+
+#: ../src/f-spot.glade.h:118
+msgid "_View"
+msgstr "_Ver"
+
+#: ../src/f-spot.glade.h:119
+msgid "_Virtual Filesystem"
+msgstr "Sistema de arquivos _virtual"
+
+#: ../src/f-spot.glade.h:120 ../src/Widgets/FindBar.cs:177
+msgid "and"
+msgstr "e"
+
+#. at, or after a date, or between dates
+#: ../src/f-spot.glade.h:122
+msgid ""
+"at\n"
+"after\n"
+"between"
+msgstr ""
+"em\n"
+"depois\n"
+"entre"
+
+#: ../src/f-spot.glade.h:126
+msgid "x"
+msgstr "x"
 
 #: ../src/FullScreenView.cs:58
 msgid "Hide"
@@ -655,8 +2122,8 @@ msgstr "Informações da imagem"
 msgid "Exit fullscreen"
 msgstr "Sair da tela cheia"
 
-#: ../src/FullScreenView.cs:81 ../src/MainWindow.cs:311
-#: ../src/SingleView.cs:104
+#: ../src/FullScreenView.cs:81 ../src/MainWindow.cs:307
+#: ../src/SingleView.cs:103
 msgid "Slideshow"
 msgstr "Apresentação"
 
@@ -701,26 +2168,10 @@ msgid "More dates"
 msgstr "Mais datas"
 
 #: ../src/GroupSelector.cs:60 ../src/GroupSelector.cs:61
-msgid "More directories"
-msgstr "Mais diretórios"
-
-#: ../src/GroupSelector.cs:63 ../src/GroupSelector.cs:64
 msgid "More"
 msgstr "Mais"
 
-#: ../src/GroupSelector.cs:515
-msgid "Arrange by _Month"
-msgstr "Organizar por _mês"
-
-#: ../src/GroupSelector.cs:518
-msgid "Arrange by _Folder"
-msgstr "Organizar por _pasta"
-
-#: ../src/GroupSelector.cs:523
-msgid "_Reverse Order"
-msgstr "Inve_rter ordem"
-
-#: ../src/GroupSelector.cs:529
+#: ../src/GroupSelector.cs:514
 msgid "_Clear Date Range"
 msgstr "_Limpar intervalo de datas"
 
@@ -748,7 +2199,7 @@ msgstr "Diretório InterOperability"
 msgid "Unknown Directory"
 msgstr "Diretório desconhecido"
 
-#: ../src/Imaging/ImageFile.cs:93
+#: ../src/Imaging/ImageFile.cs:112
 msgid "Writing to this file format is not supported"
 msgstr "Não há suporte de gravação para este tipo de arquivo"
 
@@ -886,33 +2337,28 @@ msgstr "O gênero intelectual do objeto"
 msgid "Unknown IIM DataSet"
 msgstr "Conjunto de dados IIM desconhecido"
 
-#: ../src/ImportCommand.cs:47 ../src/SingleView.cs:360
+#: ../src/ImportCommand.cs:48 ../src/SingleView.cs:359
 msgid "Select Folder"
 msgstr "Selecionar pasta"
 
-#: ../src/ImportCommand.cs:258
+#: ../src/ImportCommand.cs:259
 msgid "(No Cameras Detected)"
 msgstr "(Nenhuma câmera detectada)"
 
-#: ../src/ImportCommand.cs:403
+#: ../src/ImportCommand.cs:404
 #, csharp-format
 msgid "Loading {0} of {1}"
 msgstr "Carregando {0} de {1}"
 
-#: ../src/ImportCommand.cs:469
+#: ../src/ImportCommand.cs:470
 msgid "Done Loading"
 msgstr "Carregamento pronto"
 
-#: ../src/ImportCommand.cs:539 ../src/MainWindow.cs:271
-#: ../src/f-spot.glade.h:59
-msgid "Import"
-msgstr "Importar"
-
-#: ../src/ImportCommand.cs:669
+#: ../src/ImportCommand.cs:683
 msgid "Directory does not exist."
 msgstr "O diretório não existe."
 
-#: ../src/ImportCommand.cs:670
+#: ../src/ImportCommand.cs:684
 #, csharp-format
 msgid ""
 "The directory you selected \"{0}\" does not exist.  Please choose a "
@@ -922,12 +2368,12 @@ msgstr ""
 "diferente"
 
 #. Note for translators: 'Import Tags' is no command, it means 'Tags used in Import'
-#: ../src/ImportCommand.cs:723 ../src/ImportCommand.cs:725
+#: ../src/ImportCommand.cs:738 ../src/ImportCommand.cs:740
 #: ../src/XmpTagsImporter.cs:89
 msgid "Import Tags"
 msgstr "Importar etiquetas"
 
-#: ../src/ItemAction.cs:79 ../src/MainWindow.cs:278 ../src/SingleView.cs:87
+#: ../src/ItemAction.cs:79 ../src/MainWindow.cs:274 ../src/SingleView.cs:86
 msgid "Rotate Left"
 msgstr "Girar à esquerda"
 
@@ -935,7 +2381,7 @@ msgstr "Girar à esquerda"
 msgid "Rotate picture left"
 msgstr "Gira a foto à esquerda"
 
-#: ../src/ItemAction.cs:91 ../src/MainWindow.cs:282 ../src/SingleView.cs:92
+#: ../src/ItemAction.cs:91 ../src/MainWindow.cs:278 ../src/SingleView.cs:91
 msgid "Rotate Right"
 msgstr "Girar à direita"
 
@@ -943,87 +2389,59 @@ msgstr "Girar à direita"
 msgid "Rotate picture right"
 msgstr "Gira a foto à direita"
 
-#: ../src/ItemAction.cs:102 ../src/f-spot.glade.h:66
-#: ../extensions/Exporters/FolderExport/FolderExport.cs:999
-msgid "Next"
-msgstr "Próxima"
-
 #: ../src/ItemAction.cs:103
 msgid "Next picture"
 msgstr "Próxima foto"
-
-#: ../src/ItemAction.cs:123 ../src/f-spot.glade.h:77
-msgid "Previous"
-msgstr "Anterior"
 
 #: ../src/ItemAction.cs:124
 msgid "Previous picture"
 msgstr "Foto anterior"
 
-#: ../src/MainWindow.cs:273
+#: ../src/MainWindow.cs:269
 msgid "Import new images"
 msgstr "Importar novas imagens"
 
-#: ../src/MainWindow.cs:289
+#: ../src/MainWindow.cs:285
 msgid "Browse"
 msgstr "Navegar"
 
-#: ../src/MainWindow.cs:293
+#: ../src/MainWindow.cs:289
 msgid "Browse many photos simultaneously"
 msgstr "Navega em várias fotos simultaneamente"
 
-#: ../src/MainWindow.cs:297
+#: ../src/MainWindow.cs:293
 msgid "Edit Image"
 msgstr "Editar imagem"
 
-#: ../src/MainWindow.cs:301
+#: ../src/MainWindow.cs:297
 msgid "View and edit a photo"
 msgstr "Vê e edita uma foto"
 
-#: ../src/MainWindow.cs:306 ../src/SingleView.cs:99
+#: ../src/MainWindow.cs:302 ../src/SingleView.cs:98
 msgid "Fullscreen"
 msgstr "Tela cheia"
 
-#: ../src/MainWindow.cs:308 ../src/SingleView.cs:101
+#: ../src/MainWindow.cs:304 ../src/SingleView.cs:100
 msgid "View photos fullscreen"
 msgstr "Vê fotos em tela cheia"
 
-#: ../src/MainWindow.cs:313 ../src/SingleView.cs:106
+#: ../src/MainWindow.cs:309 ../src/SingleView.cs:105
 msgid "View photos in a slideshow"
 msgstr "Vê fotos em uma apresentação de slides"
 
-#: ../src/MainWindow.cs:328
+#: ../src/MainWindow.cs:324
 msgid "Previous photo"
 msgstr "Foto anterior"
 
-#: ../src/MainWindow.cs:333
+#: ../src/MainWindow.cs:329
 msgid "Next photo"
 msgstr "Próxima foto"
 
-#. Don't care otherwise, Tags sounds reasonable
-#: ../src/MainWindow.cs:346 ../src/Widgets/Sidebar.cs:64
-#: ../extensions/Exporters/FolderExport/FolderExport.cs:996
-#: ../extensions/Exporters/FolderExport/FolderExport.cs:1168
-#: ../extensions/Exporters/FolderExport/FolderExport.cs:1208
-msgid "Tags"
-msgstr "Etiquetas"
-
-#. Note for translators: This indicates the current photo is photo {0} of {1} out of photos
-#: ../src/MainWindow.cs:637 ../src/UI.Dialog/AdjustTimeDialog.cs:129
-#: ../src/UI.Dialog/ProgressDialog.cs:92
-#: ../extensions/Exporters/CDExport/CDExport.cs:164
-#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:349
-#: ../extensions/Exporters/FolderExport/FolderExport.cs:245
-#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:783
-#, csharp-format
-msgid "{0} of {1}"
-msgstr "{0} de {1}"
-
-#: ../src/MainWindow.cs:1497
+#: ../src/MainWindow.cs:1488
 msgid "No cameras detected."
 msgstr "Nenhuma câmera detectada."
 
-#: ../src/MainWindow.cs:1498
+#: ../src/MainWindow.cs:1489
 msgid ""
 "F-Spot was unable to find any cameras attached to this system.  Double check "
 "that the camera is connected and has power"
@@ -1031,24 +2449,24 @@ msgstr ""
 "O F-Spot não foi capaz de localizar qualquer câmera anexada a este sistema. "
 "Confira novamente se a câmera está conectada e ligada"
 
-#: ../src/MainWindow.cs:1537
+#: ../src/MainWindow.cs:1528
 msgid "Error connecting to camera"
 msgstr "Erro ao conectar a câmera"
 
-#: ../src/MainWindow.cs:1538
+#: ../src/MainWindow.cs:1529
 #, csharp-format
 msgid "Received error \"{0}\" while connecting to camera"
 msgstr "Erro recebido \"{0}\" ao conectar à câmera"
 
 #. Translators, The singular case will never happen here.
-#: ../src/MainWindow.cs:1847
+#: ../src/MainWindow.cs:1815
 #, csharp-format
 msgid "Merge the selected tag"
 msgid_plural "Merge the {0} selected tags?"
 msgstr[0] "Mesclar a etiqueta selecionada"
 msgstr[1] "Mesclar as {0} etiquetas selecionadas?"
 
-#: ../src/MainWindow.cs:1874
+#: ../src/MainWindow.cs:1842
 msgid ""
 "This operation will merge the selected tags and any sub-tags into a single "
 "tag."
@@ -1056,77 +2474,77 @@ msgstr ""
 "Esta operação mesclará as etiquetas selecionadas e quaisquer sub-etiquetas "
 "numa única etiqueta."
 
-#: ../src/MainWindow.cs:1876
+#: ../src/MainWindow.cs:1844
 msgid "_Merge Tags"
 msgstr "_Mesclar etiquetas"
 
-#: ../src/MainWindow.cs:2081
+#: ../src/MainWindow.cs:2049
 #, csharp-format
 msgid "{0} Photo out of {1}"
 msgid_plural "{0} Photos out of {1}"
 msgstr[0] "{0} foto de {1}"
 msgstr[1] "{0} fotos de {1}"
 
-#: ../src/MainWindow.cs:2083 ../src/SingleView.cs:496
+#: ../src/MainWindow.cs:2051 ../src/SingleView.cs:495
 #, csharp-format
 msgid "{0} Photo"
 msgid_plural "{0} Photos"
 msgstr[0] "{0} foto"
 msgstr[1] "{0} fotos"
 
-#: ../src/MainWindow.cs:2086
+#: ../src/MainWindow.cs:2054
 #, csharp-format
 msgid " ({0} selected)"
 msgid_plural " ({0} selected)"
 msgstr[0] " ({0} selecionada)"
 msgstr[1] " ({0} selecionadas)"
 
-#: ../src/MainWindow.cs:2167
+#: ../src/MainWindow.cs:2135
 msgid "_Ok"
 msgstr "_Ok"
 
-#: ../src/MainWindow.cs:2168
+#: ../src/MainWindow.cs:2136
 msgid "Error Deleting Picture"
 msgstr "Erro ao excluir figura"
 
-#: ../src/MainWindow.cs:2173
+#: ../src/MainWindow.cs:2141
 #, csharp-format
 msgid "No permission to delete the file:{1}{0}"
 msgstr "Não há permissão para excluir o arquivo:{1}{0}"
 
-#: ../src/MainWindow.cs:2177
+#: ../src/MainWindow.cs:2145
 #, csharp-format
 msgid "An error of type {0} occurred while deleting the file:{2}{1}"
 msgstr "Um erro de tipo {0} ocorreu ao excluir o arquivo:{2}{1}"
 
-#: ../src/MainWindow.cs:2209
+#: ../src/MainWindow.cs:2177
 #, csharp-format
 msgid "Delete the selected photo permanently?"
 msgid_plural "Delete the {0} selected photos permanently?"
 msgstr[0] "Remover a foto selecionada permanentemente?"
 msgstr[1] "Remover as {0} fotos selecionadas permanentemente?"
 
-#: ../src/MainWindow.cs:2213
+#: ../src/MainWindow.cs:2181
 msgid "This deletes all versions of the selected photo from your drive."
 msgid_plural ""
 "This deletes all versions of the selected photos from your drive."
-msgstr[0] "Isso exclui todas as versões da foto selecionada de seu drive."
-msgstr[1] "Isso exclui todas as versões das fotos selecionadas de seu drive."
+msgstr[0] "Isso exclui todas as versões da foto selecionada de sua unidade."
+msgstr[1] "Isso exclui todas as versões das fotos selecionadas de sua unidade."
 
-#: ../src/MainWindow.cs:2216
+#: ../src/MainWindow.cs:2184
 msgid "_Delete photo"
 msgid_plural "_Delete photos"
 msgstr[0] "_Excluir foto"
 msgstr[1] "_Excluir fotos"
 
-#: ../src/MainWindow.cs:2252
+#: ../src/MainWindow.cs:2220
 #, csharp-format
 msgid "Remove the selected photo from F-Spot?"
 msgid_plural "Remove the {0} selected photos from F-Spot?"
 msgstr[0] "Remover a foto selecionada do F-Spot?"
 msgstr[1] "Remover as {0} fotos selecionadas do F-Spot?"
 
-#: ../src/MainWindow.cs:2257
+#: ../src/MainWindow.cs:2225
 msgid ""
 "If you remove photos from the F-Spot catalog all tag information will be "
 "lost. The photos remain on your computer and can be imported into F-Spot "
@@ -1136,27 +2554,27 @@ msgstr ""
 "etiqueta são perdidas. As fotos continuam em seu computador e poderão ser "
 "importadas ao F-Spot novamente."
 
-#: ../src/MainWindow.cs:2258
+#: ../src/MainWindow.cs:2226
 msgid "_Remove from Catalog"
 msgstr "_Remover do catálogo"
 
-#: ../src/MainWindow.cs:2321
+#: ../src/MainWindow.cs:2289
 #, csharp-format
 msgid "Delete tag \"{0}\"?"
 msgstr "Excluir etiqueta \"{0}\"?"
 
-#: ../src/MainWindow.cs:2323
+#: ../src/MainWindow.cs:2291
 #, csharp-format
 msgid "Delete the {0} selected tags?"
 msgstr "Excluir as {0} etiquetas selecionadas?"
 
-#: ../src/MainWindow.cs:2328
+#: ../src/MainWindow.cs:2296
 msgid "photo"
 msgid_plural "photos"
 msgstr[0] "foto"
 msgstr[1] "fotos"
 
-#: ../src/MainWindow.cs:2330
+#: ../src/MainWindow.cs:2298
 #, csharp-format
 msgid "If you delete this tag, the association with {0} {1} will be lost."
 msgid_plural ""
@@ -1166,18 +2584,18 @@ msgstr[0] ""
 msgstr[1] ""
 "Se você excluir estas etiqueta, as associações com {0} {1} serão perdidas."
 
-#: ../src/MainWindow.cs:2335
+#: ../src/MainWindow.cs:2303
 msgid "_Delete tag"
 msgid_plural "_Delete tags"
 msgstr[0] "_Excluir etiqueta"
 msgstr[1] "_Excluir etiquetas"
 
 #. A Category is not empty. Can not delete it.
-#: ../src/MainWindow.cs:2349
+#: ../src/MainWindow.cs:2317
 msgid "Tag is not empty"
 msgstr "A etiqueta não está vazia"
 
-#: ../src/MainWindow.cs:2350
+#: ../src/MainWindow.cs:2318
 #, csharp-format
 msgid ""
 "Can not delete tags that have tags within them.  Please delete tags under "
@@ -1186,39 +2604,39 @@ msgstr ""
 "Não é possível excluir etiquetas que contenham outras etiquetas. Por favor, "
 "exclua as etiquetas sob \"{0}\" primeiro"
 
-#: ../src/MainWindow.cs:2791
+#: ../src/MainWindow.cs:2750
 msgid "Rotate selected photo left"
 msgid_plural "Rotate selected photos left"
 msgstr[0] "Girar foto selecionada à esquerda"
 msgstr[1] "Girar fotos selecionadas à esquerda"
 
-#: ../src/MainWindow.cs:2804
+#: ../src/MainWindow.cs:2763
 msgid "Rotate selected photo right"
 msgid_plural "Rotate selected photos right"
 msgstr[0] "Girar foto selecionada à direita"
 msgstr[1] "Girar fotos selecionadas à direita"
 
-#: ../src/MainWindow.cs:2815
+#: ../src/MainWindow.cs:2774
 #, csharp-format
 msgid "Find _Selected Tag"
 msgid_plural "Find _Selected Tags"
 msgstr[0] "_Localizar etiqueta selecionada"
 msgstr[1] "_Localizar etiquetas selecionadas"
 
-#: ../src/MainWindow.cs:2819
+#: ../src/MainWindow.cs:2778
 #, csharp-format
 msgid "Find Selected Tag _With"
 msgid_plural "Find Selected Tags _With"
 msgstr[0] "_Localizar etiqueta selecionada com"
 msgstr[1] "Localizar etiquetas _selecionadas com"
 
-#: ../src/MainWindow.cs:2860
+#: ../src/MainWindow.cs:2819
 msgid "Create New Version?"
 msgid_plural "Create New Versions?"
 msgstr[0] "Criar nova versão?"
 msgstr[1] "criar novas versões?"
 
-#: ../src/MainWindow.cs:2862
+#: ../src/MainWindow.cs:2821
 #, csharp-format
 msgid ""
 "Before launching {1}, should F-Spot create a new version of the selected "
@@ -1233,7 +2651,7 @@ msgstr[1] ""
 "Antes de iniciar {1}, o F-Spot deve criar novas versões das fotos "
 "selecionadas para preservar as originais?"
 
-#: ../src/MainWindow.cs:2884
+#: ../src/MainWindow.cs:2843
 msgid "XCF version"
 msgstr "Versão XCF"
 
@@ -1408,25 +2826,26 @@ msgid "Received exception \"{0}\". Unable to rename version to \"{1}\""
 msgstr ""
 "Exceção \"{0}\" recebida. Não foi possível renomear versão para \"{1}\""
 
-#: ../src/PhotoVersionMenu.cs:66 ../src/Widgets/InfoBox.cs:549
+#: ../src/PhotoVersionMenu.cs:66 ../src/Widgets/InfoBox.cs:554
+#: ../src/Widgets/InfoBox.cs:556
 msgid "(No Edits)"
 msgstr "(Sem edições)"
 
-#: ../src/PhotoView.cs:163 ../src/UI.Dialog/EditExceptionDialog.cs:38
+#: ../src/PhotoView.cs:169 ../src/UI.Dialog/EditExceptionDialog.cs:38
 msgid "Error editing photo"
 msgstr "Erro ao editar foto"
 
-#: ../src/PhotoView.cs:164 ../src/Sharpener.cs:73
+#: ../src/PhotoView.cs:170 ../src/Sharpener.cs:73
 #: ../src/UI.Dialog/EditExceptionDialog.cs:25
 #, csharp-format
 msgid "Received exception \"{0}\". Unable to save photo {1}"
 msgstr "Exceção \"{0}\" recebida. Não foi possível salvar foto {1}"
 
-#: ../src/PhotoView.cs:301
+#: ../src/PhotoView.cs:359
 msgid "Comment:"
 msgstr "Comentário:"
 
-#: ../src/Preferences.cs:152
+#: ../src/Preferences.cs:154
 msgid "Photos"
 msgstr "Fotos"
 
@@ -1434,40 +2853,40 @@ msgstr "Fotos"
 msgid "Image Settings"
 msgstr "Configurações da imagem"
 
-#: ../src/QueryWidget.cs:47
+#: ../src/QueryWidget.cs:58
 msgid "Find: "
 msgstr "Localizar: "
 
-#: ../src/QueryWidget.cs:52
+#: ../src/QueryWidget.cs:63
 msgid "Untagged photos"
 msgstr "Fotos não etiquetadas"
 
-#: ../src/QueryWidget.cs:60
+#: ../src/QueryWidget.cs:71
 msgid "Rated photos"
 msgstr "Fotos avaliadas"
 
 #. Note for translators: 'Import roll' is no command, it means 'Roll that has been imported'
-#: ../src/QueryWidget.cs:69
+#: ../src/QueryWidget.cs:80
 msgid "Import roll"
 msgstr "Rolo importado"
 
-#: ../src/QueryWidget.cs:89
+#: ../src/QueryWidget.cs:104
 msgid "Clear search"
 msgstr "Limpar pesquisa"
 
-#: ../src/QueryWidget.cs:96
+#: ../src/QueryWidget.cs:111
 msgid "Refresh search"
 msgstr "Atualizar pesquisa"
 
-#: ../src/QueryWidget.cs:98
+#: ../src/QueryWidget.cs:113
 msgid "No matching photos found"
 msgstr "Nenhuma foto correspondente localizada"
 
-#: ../src/QueryWidget.cs:136
+#: ../src/QueryWidget.cs:155
 msgid "Hide _Find Bar"
 msgstr "_Ocultar barra de pesquisa"
 
-#: ../src/QueryWidget.cs:142
+#: ../src/QueryWidget.cs:161
 msgid "Show _Find Bar"
 msgstr "Mostrar barra de _pesquisa"
 
@@ -1568,86 +2987,38 @@ msgstr "Raio:"
 msgid "Threshold:"
 msgstr "Limiar:"
 
-#: ../src/SingleView.cs:89
+#: ../src/SingleView.cs:88
 msgid "Rotate photo left"
 msgstr "Gira foto à esquerda"
 
-#: ../src/SingleView.cs:94
+#: ../src/SingleView.cs:93
 msgid "Rotate photo right"
 msgstr "Gira foto à direita"
 
-#: ../src/SingleView.cs:131 ../src/UI.Dialog/ui/PreferenceDialog.glade.h:14
+#: ../src/SingleView.cs:130
 msgid "Folder"
 msgstr "Pasta"
 
-#: ../src/SingleView.cs:357
+#: ../src/SingleView.cs:356
 msgid "Open"
 msgstr "Abrir"
 
-#: ../src/SingleView.cs:457
+#: ../src/SingleView.cs:456
 msgid "Set as Background"
 msgstr "Definir como plano de fundo"
 
-#: ../src/TagCommands.cs:93 ../src/TagCommands.cs:226
-#: ../src/TagSelectionWidget.cs:501
+#: ../src/TagCommands.cs:96 ../src/TagSelectionWidget.cs:498
+#: ../src/UI.Dialog/EditTagDialog.cs:78
 msgid "This name is already in use"
 msgstr "Esse nome já está em uso"
 
-#: ../src/TagCommands.cs:141
+#: ../src/TagCommands.cs:144
 msgid "Create New Tag"
 msgstr "Criar nova etiqueta"
 
-#: ../src/TagCommands.cs:142
+#: ../src/TagCommands.cs:145
 msgid "Name of New Tag:"
 msgstr "Nome da nova etiqueta:"
-
-#: ../src/TagCommands.cs:292
-msgid "Edit Tag"
-msgstr "Editar etiqueta"
-
-#: ../src/TagCommands.cs:293
-msgid "Tag Name:"
-msgstr "Nome de etiqueta:"
-
-#: ../src/TagCommands.cs:409
-msgid "Unable to load image"
-msgstr "Não foi possível carregar a imagem"
-
-#: ../src/TagCommands.cs:410
-#, csharp-format
-msgid "Unable to load \"{0}\" as icon for the tag"
-msgstr "Não foi possível carregar \"{0}\" como ícone de etiqueta"
-
-#: ../src/TagCommands.cs:453
-#, csharp-format
-msgid "Photo {0} of {1}"
-msgstr "Foto {0} de {1}"
-
-#: ../src/TagCommands.cs:483
-#, csharp-format
-msgid "Edit Icon for Tag {0}"
-msgstr "Editar ícone para etiqueta {0}"
-
-#: ../src/TagCommands.cs:499
-msgid "Select Photo from file"
-msgstr "Selecione o arquivo da Foto"
-
-#: ../src/TagCommands.cs:522
-#, csharp-format
-msgid ""
-"\n"
-"<b>From Photo</b>\n"
-" You can use one of your library photos as an icon for this tag.\n"
-" However, first you must have at least one photo associated\n"
-" with this tag. Please tag a photo as '{0}' and return here\n"
-" to use it as an icon."
-msgstr ""
-"\n"
-"<b>A partir da Foto</b>\n"
-" Você pode usar um catálogo de fotos como um ícone para esta etiqueta.\n"
-" Entretanto, é necessário ter ao menos uma foto associada a esta etiqueta.\n"
-" Por favor adicione uma foto à etiqueta \"{0}\" e repita esta ação\n"
-" para usá-la como um ícone."
 
 #: ../src/TagPopup.cs:26
 #, csharp-format
@@ -1711,7 +3082,7 @@ msgstr[1] "Localizar _com"
 msgid "All"
 msgstr "Todos"
 
-#: ../src/TagQueryWidget.cs:149 ../src/Term.cs:596
+#: ../src/TagQueryWidget.cs:149 ../src/Term.cs:592
 #, csharp-format
 msgid "Not {0}"
 msgstr "Não {0}"
@@ -1720,7 +3091,7 @@ msgstr "Não {0}"
 msgid "Drag tags here to search for them"
 msgstr "Arraste as etiquetas e solte-as aqui pesquisar por elas"
 
-#: ../src/TagSelectionWidget.cs:500
+#: ../src/TagSelectionWidget.cs:497
 msgid "Error renaming tag"
 msgstr "Erro ao renomear etiqueta"
 
@@ -1749,22 +3120,22 @@ msgstr "Eventos"
 msgid "(None)"
 msgstr "(Nenhum)"
 
-#: ../src/Term.cs:302
+#: ../src/Term.cs:298
 msgid " and "
 msgstr " e "
 
 #. operators.Add (Catalog.GetString (" && "));
-#: ../src/Term.cs:304
+#: ../src/Term.cs:300
 msgid ", "
 msgstr ", "
 
-#: ../src/Term.cs:360
+#: ../src/Term.cs:356
 msgid " or "
 msgstr " ou "
 
 #. OPS The operators we support, case insensitive
 #. private static string op_str = "(?'Ops' or | and |, | \\s+ )";
-#: ../src/Term.cs:384 ../src/Widgets/FindBar.cs:177
+#: ../src/Term.cs:380 ../src/Widgets/FindBar.cs:177
 msgid "or"
 msgstr "ou"
 
@@ -1777,15 +3148,15 @@ msgstr "Atualizando miniaturas"
 msgid "Updating picture \"{0}\""
 msgstr "Atualizando figura \"{0}\""
 
-#: ../src/UI.Dialog/AboutDialog.cs:70
+#: ../src/UI.Dialog/AboutDialog.cs:71
 msgid "Photo management for GNOME"
 msgstr "Gerenciador de fotos do GNOME"
 
-#: ../src/UI.Dialog/AboutDialog.cs:71
+#: ../src/UI.Dialog/AboutDialog.cs:72
 msgid "Copyright © 2003-2009 Novell Inc."
 msgstr "Copyright © 2003-2009 Novell Inc."
 
-#: ../src/UI.Dialog/AboutDialog.cs:94
+#: ../src/UI.Dialog/AboutDialog.cs:95
 msgid "translator-credits"
 msgstr ""
 "Raphael Higino <In memoriam>\n"
@@ -1797,7 +3168,7 @@ msgstr ""
 "Eduardo Brasil <eduebrasil@gmail.com>\n"
 "Leonardo Ferreira Fontenelle <leonardof@gnome.org>"
 
-#: ../src/UI.Dialog/AboutDialog.cs:99
+#: ../src/UI.Dialog/AboutDialog.cs:100
 msgid "F-Spot Website"
 msgstr "Site do F-Spot"
 
@@ -1806,46 +3177,85 @@ msgstr "Site do F-Spot"
 msgid "Shift all photos by {0}"
 msgstr "Mudar todas as fotos por {0}"
 
-#: ../src/UI.Dialog/DateRangeDialog.cs:102
+#: ../src/UI.Dialog/DateRangeDialog.cs:99
 msgid "Today"
 msgstr "Hoje"
 
-#: ../src/UI.Dialog/DateRangeDialog.cs:104
+#: ../src/UI.Dialog/DateRangeDialog.cs:101
 msgid "Yesterday"
 msgstr "Ontem"
 
-#: ../src/UI.Dialog/DateRangeDialog.cs:106
+#: ../src/UI.Dialog/DateRangeDialog.cs:103
 msgid "Last 7 days"
 msgstr "Últimos 7 dias"
 
-#: ../src/UI.Dialog/DateRangeDialog.cs:108
+#: ../src/UI.Dialog/DateRangeDialog.cs:105
 msgid "Last 30 days"
 msgstr "Últimos 30 dias"
 
-#: ../src/UI.Dialog/DateRangeDialog.cs:110
+#: ../src/UI.Dialog/DateRangeDialog.cs:107
 msgid "Last 90 days"
 msgstr "Últimos 90 dias"
 
-#: ../src/UI.Dialog/DateRangeDialog.cs:112
+#: ../src/UI.Dialog/DateRangeDialog.cs:109
 msgid "Last 360 days"
 msgstr "Últimos 360 dias"
 
-#: ../src/UI.Dialog/DateRangeDialog.cs:114
+#: ../src/UI.Dialog/DateRangeDialog.cs:111
 msgid "Current Week (Mon-Sun)"
 msgstr "Semana atual (Seg-Dom)"
 
-#: ../src/UI.Dialog/DateRangeDialog.cs:116
+#: ../src/UI.Dialog/DateRangeDialog.cs:113
 msgid "Previous Week (Mon-Sun)"
 msgstr "Semana anterior (Seg-Dom)"
 
-#: ../src/UI.Dialog/DateRangeDialog.cs:132
-#: ../src/UI.Dialog/ui/PreferenceDialog.glade.h:11
+#: ../src/UI.Dialog/DateRangeDialog.cs:129
 msgid "All Images"
 msgstr "Todas as imagens"
 
-#: ../src/UI.Dialog/DateRangeDialog.cs:134
+#: ../src/UI.Dialog/DateRangeDialog.cs:131
 msgid "Customized Range"
 msgstr "Intervalo personalizado"
+
+#: ../src/UI.Dialog/EditTagIconDialog.cs:46
+#, csharp-format
+msgid "Edit Icon for Tag {0}"
+msgstr "Editar ícone para etiqueta {0}"
+
+#: ../src/UI.Dialog/EditTagIconDialog.cs:68
+msgid "Select Photo from file"
+msgstr "Selecione o arquivo da Foto"
+
+#: ../src/UI.Dialog/EditTagIconDialog.cs:90
+#, csharp-format
+msgid ""
+"\n"
+"<b>From Photo</b>\n"
+" You can use one of your library photos as an icon for this tag.\n"
+" However, first you must have at least one photo associated\n"
+" with this tag. Please tag a photo as '{0}' and return here\n"
+" to use it as an icon."
+msgstr ""
+"\n"
+"<b>A partir da Foto</b>\n"
+" Você pode usar um catálogo de fotos como um ícone para esta etiqueta.\n"
+" Entretanto, é necessário ter ao menos uma foto associada a esta etiqueta.\n"
+" Por favor adicione uma foto à etiqueta \"{0}\" e repita esta ação\n"
+" para usá-la como um ícone."
+
+#: ../src/UI.Dialog/EditTagIconDialog.cs:168
+msgid "Unable to load image"
+msgstr "Não foi possível carregar a imagem"
+
+#: ../src/UI.Dialog/EditTagIconDialog.cs:169
+#, csharp-format
+msgid "Unable to load \"{0}\" as icon for the tag"
+msgstr "Não foi possível carregar \"{0}\" como ícone de etiqueta"
+
+#: ../src/UI.Dialog/EditTagIconDialog.cs:207
+#, csharp-format
+msgid "Photo {0} of {1}"
+msgstr "Foto {0} de {1}"
 
 #: ../src/UI.Dialog/ExceptionDialog.cs:24
 msgid "F-Spot Encountered a Fatal Error"
@@ -1858,6 +3268,19 @@ msgstr "Detalhes de erro"
 #: ../src/UI.Dialog/ExceptionDialog.cs:104
 msgid "An unhandled exception was thrown: "
 msgstr "Ocorreu uma exceção sem tratamento: "
+
+#: ../src/UI.Dialog/PreferenceDialog.cs:53
+#: ../src/UI.Dialog/PreferenceDialog.cs:71
+msgid "None"
+msgstr "Nenhum"
+
+#: ../src/UI.Dialog/PreferenceDialog.cs:55
+msgid "System profile"
+msgstr "Perfil do sistema"
+
+#: ../src/UI.Dialog/PreferenceDialog.cs:84
+msgid "Standard theme"
+msgstr "Tema padrão"
 
 #: ../src/UI.Dialog/RepairDbDialog.cs:20
 msgid "Error loading database."
@@ -1884,114 +3307,11 @@ msgstr "Proporção"
 msgid "Retry"
 msgstr "Repetir"
 
-#: ../src/UI.Dialog/ui/PreferenceDialog.glade.h:1
-msgid "<b>Color Management</b>"
-msgstr "<b>Gerenciamento de cor</b>"
-
-#: ../src/UI.Dialog/ui/PreferenceDialog.glade.h:2
-msgid "<b>Import Settings</b>"
-msgstr "<b>Configurações de importação</b>"
-
-#: ../src/UI.Dialog/ui/PreferenceDialog.glade.h:3
-msgid "<b>Metadata</b>"
-msgstr "<b>Metadados</b>"
-
-#: ../src/UI.Dialog/ui/PreferenceDialog.glade.h:4
-msgid "<b>Screensaver</b>"
-msgstr "<b>Proteção de tela</b>"
-
-#: ../src/UI.Dialog/ui/PreferenceDialog.glade.h:5
-msgid "<b>Theming</b>"
-msgstr "<b>Temas</b>"
-
-#: ../src/UI.Dialog/ui/PreferenceDialog.glade.h:6
-msgid ""
-"<small><i>Choose the folder where F-Spot should store newly imported photos</"
-"i></small>"
-msgstr ""
-"<small><i>Escolha a pasta onde o F-Spot deve armazenar as fotos importadas "
-"mais recentes</i></small>"
-
-#: ../src/UI.Dialog/ui/PreferenceDialog.glade.h:7
-msgid ""
-"<small><i>Enable this option to store tags and descriptions inside \n"
-"supported image formats.</i></small>"
-msgstr ""
-"<small><i>Habilite esta opção para armazenar etiquetas e descrições \n"
-"dentro dos formatos de imagem com suporte.</i></small>"
-
-#: ../src/UI.Dialog/ui/PreferenceDialog.glade.h:9
-msgid ""
-"<small><i>While acting as a screensaver, F-Spot can display all of your "
-"images, or a small subset based on tags.</i></small>"
-msgstr ""
-"<small><i>Ao funcionar como protetor de tela, o F-spot pode exibir todas as "
-"suas imagens, ou um pequeno subconjunto baseado em etiquetas.</i></small>"
-
-#: ../src/UI.Dialog/ui/PreferenceDialog.glade.h:10
-msgid ""
-"<small><i>You'll have to restart F-Spot to load the new theme.</i></small>"
-msgstr ""
-"<small><i>Você precisa reiniciar o F-Spot para carregar o novo tema.</i></"
-"small>"
-
-#: ../src/UI.Dialog/ui/PreferenceDialog.glade.h:12
-msgid "Custom Theme"
-msgstr "Tema personalizado"
-
-#: ../src/UI.Dialog/ui/PreferenceDialog.glade.h:15
-msgid "From List:"
-msgstr "Da lista"
-
-#: ../src/UI.Dialog/ui/PreferenceDialog.glade.h:16
-msgid "From gtkrc File:"
-msgstr "Do arquivo gtkrc:"
-
-#: ../src/UI.Dialog/ui/PreferenceDialog.glade.h:17
-msgid "Images tagged with:"
-msgstr "Imagens etiquetadas com:"
-
-#: ../src/UI.Dialog/ui/PreferenceDialog.glade.h:18
-msgid "Make F-Spot your screensaver"
-msgstr "Fazer do F-Spot seu protetor de tela"
-
-#: ../src/UI.Dialog/ui/PreferenceDialog.glade.h:19 ../src/f-spot.glade.h:76
-msgid "Preferences"
-msgstr "Preferências"
-
-#: ../src/UI.Dialog/ui/PreferenceDialog.glade.h:20
-msgid "Select A Folder"
-msgstr "Selecionar uma pasta"
-
-#: ../src/UI.Dialog/ui/PreferenceDialog.glade.h:21
-msgid "Select A gtkrc File"
-msgstr "Selecionar um arquivo gtkrc"
-
-#: ../src/UI.Dialog/ui/PreferenceDialog.glade.h:22
-msgid "System Theme"
-msgstr "Tema do sistema"
-
-#: ../src/UI.Dialog/ui/PreferenceDialog.glade.h:23
-msgid "Try to use the system display profile"
-msgstr "Tente usar o perfil de exibição do sistema"
-
-#: ../src/UI.Dialog/ui/PreferenceDialog.glade.h:24
-msgid "Write _metadata to file"
-msgstr "Gravar _metadados para arquivo"
-
-#: ../src/UI.Dialog/ui/PreferenceDialog.glade.h:25
-msgid "_Display:"
-msgstr "_Exibir:"
-
-#: ../src/UI.Dialog/ui/PreferenceDialog.glade.h:26
-msgid "_Print output:"
-msgstr "_Saída de impressão:"
-
-#: ../src/Updater.cs:528
+#: ../src/Updater.cs:616
 msgid "Updating F-Spot Database"
 msgstr "Atualizando o banco de dados do f-Spot"
 
-#: ../src/Updater.cs:529
+#: ../src/Updater.cs:617
 msgid ""
 "Please wait while your F-Spot gallery's database is updated. This may take "
 "some time."
@@ -2057,8 +3377,8 @@ msgid "White borders"
 msgstr "Bordas brancas"
 
 #: ../src/Widgets/CustomPrintWidget.cs:176
-msgid "Custom Text: "
-msgstr "Texto personalizado: "
+msgid "Custom Text"
+msgstr "Texto personalizado"
 
 #: ../src/Widgets/CustomPrintWidget.cs:180
 msgid "Photos infos"
@@ -2088,13 +3408,6 @@ msgstr "Imprime o comentário da foto"
 msgid "Edit"
 msgstr "Editar"
 
-#: ../src/Widgets/EditorPage.cs:196
-#: ../extensions/Exporters/ZipExport/ZipExport.cs:47
-#: ../extensions/Tools/MetaPixel/MetaPixel.cs:45
-#: ../extensions/Tools/PictureTile/PictureTile.cs:51
-msgid "No selection available"
-msgstr "Nenhuma seleção disponível"
-
 #: ../src/Widgets/EditorPage.cs:197
 msgid ""
 "This tool requires an active selection. Please select a region of the photo "
@@ -2118,13 +3431,25 @@ msgstr ""
 "A exceção \"{0}\" foi recebida. Note que você deve revelar arquivos RAW para "
 "JPEG antes de editá-los."
 
+#: ../src/Widgets/Filmstrip.cs:572
+msgid "_Horizontal"
+msgstr "_Horizontal"
+
+#: ../src/Widgets/Filmstrip.cs:576
+msgid "_Vertical"
+msgstr "_Vertical"
+
 #: ../src/Widgets/FindBar.cs:58
 msgid "Find:"
 msgstr "Localizar:"
 
-#: ../src/Widgets/FindBar.cs:177 ../src/f-spot.glade.h:133
-msgid "and"
-msgstr "e"
+#: ../src/Widgets/FolderTreePage.cs:21
+msgid "Folders"
+msgstr "Pastas"
+
+#: ../src/Widgets/FolderTreeView.cs:123
+msgid "Filesystem"
+msgstr "Sistema de arquivos"
 
 #: ../src/Widgets/InfoBox.cs:182
 msgid "Histogram"
@@ -2135,7 +3460,6 @@ msgid "Date"
 msgstr "Data"
 
 #: ../src/Widgets/InfoBox.cs:220
-#: ../extensions/Exporters/CDExport/CDExport.glade.h:5
 msgid "Size"
 msgstr "Tamanho"
 
@@ -2164,17 +3488,24 @@ msgstr "(Desconhecido)"
 msgid "(wrong format)"
 msgstr "(formato incorreto)"
 
-#: ../src/Widgets/InfoBox.cs:558
+#: ../src/Widgets/InfoBox.cs:552
+#, csharp-format
+msgid "(One Edit)"
+msgid_plural "({0} Edits)"
+msgstr[0] "(Uma edição)"
+msgstr[1] "({0} edições)"
+
+#: ../src/Widgets/InfoBox.cs:566
 msgid "(File read error)"
 msgstr "(Erro ao ler o arquivo)"
 
-#: ../src/Widgets/InfoBox.cs:603
+#: ../src/Widgets/InfoBox.cs:611
 #, csharp-format
 msgid "{0} Photos"
 msgstr "{0} Fotos"
 
 #. Note for translators: {0} is a date, {1} and {2} are times.
-#: ../src/Widgets/InfoBox.cs:623
+#: ../src/Widgets/InfoBox.cs:631
 #, csharp-format
 msgid ""
 "On {0} between \n"
@@ -2183,7 +3514,7 @@ msgstr ""
 "Em {0} entre \n"
 "{1} e {2}"
 
-#: ../src/Widgets/InfoBox.cs:628
+#: ../src/Widgets/InfoBox.cs:636
 #, csharp-format
 msgid ""
 "Between {0} \n"
@@ -2192,35 +3523,35 @@ msgstr ""
 "Entre {0} \n"
 "e {1}"
 
-#: ../src/Widgets/InfoBox.cs:655
+#: ../src/Widgets/InfoBox.cs:663
 msgid "(At least one File not found)"
 msgstr "(Ao menos um arquivo não foi localizado)"
 
-#: ../src/Widgets/InfoBox.cs:772
+#: ../src/Widgets/InfoBox.cs:780
 msgid "Show Photo Name"
 msgstr "Mostrar nome da foto"
 
-#: ../src/Widgets/InfoBox.cs:781
+#: ../src/Widgets/InfoBox.cs:789
 msgid "Show Date"
 msgstr "Mostrar data"
 
-#: ../src/Widgets/InfoBox.cs:790
+#: ../src/Widgets/InfoBox.cs:798
 msgid "Show Size"
 msgstr "Mostrar tamanho"
 
-#: ../src/Widgets/InfoBox.cs:799
+#: ../src/Widgets/InfoBox.cs:807
 msgid "Show Exposure"
 msgstr "Mostrar exposição"
 
-#: ../src/Widgets/InfoBox.cs:808
+#: ../src/Widgets/InfoBox.cs:816
 msgid "Show Focal Length"
 msgstr "Mostrar comprimento focal"
 
-#: ../src/Widgets/InfoBox.cs:817
+#: ../src/Widgets/InfoBox.cs:825
 msgid "Show Camera"
 msgstr "Mostrar câmera"
 
-#: ../src/Widgets/InfoBox.cs:826
+#: ../src/Widgets/InfoBox.cs:834
 msgid "Show File Size"
 msgstr "Mostrar tamanho do arquivo"
 
@@ -2275,580 +3606,6 @@ msgid "State"
 msgstr "Estado"
 
 #. namespace
-#: ../src/f-spot.glade.h:1
-msgid " "
-msgstr " "
-
-#: ../src/f-spot.glade.h:2
-msgid "1024 px"
-msgstr "1024 px"
-
-#: ../src/f-spot.glade.h:3
-msgid "320 px"
-msgstr "320 px"
-
-#: ../src/f-spot.glade.h:4
-msgid "480 px"
-msgstr "480 px"
-
-#: ../src/f-spot.glade.h:5
-msgid "640 px"
-msgstr "640 px"
-
-#: ../src/f-spot.glade.h:6
-msgid "800 px"
-msgstr "800 px"
-
-#: ../src/f-spot.glade.h:7
-msgid "<b></b>"
-msgstr "<b></b>"
-
-#: ../src/f-spot.glade.h:8
-#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:1
-msgid "<b>Account</b>"
-msgstr "<b>Conta</b>"
-
-#: ../src/f-spot.glade.h:9
-#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:1
-#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:1
-#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:1
-msgid "<b>Album</b>"
-msgstr "<b>Álbum</b>"
-
-#: ../src/f-spot.glade.h:10
-msgid "<b>Co_rrections</b>"
-msgstr "<b>Co_rreções</b>"
-
-#: ../src/f-spot.glade.h:11
-#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:3
-msgid "<b>Destination</b>"
-msgstr "<b>Destino</b>"
-
-#: ../src/f-spot.glade.h:12
-msgid "<b>From External Photo</b>"
-msgstr "<b>A partir de foto externa</b>"
-
-#: ../src/f-spot.glade.h:13
-msgid "<b>From Photo</b>"
-msgstr "<b>A partir da foto</b>"
-
-#: ../src/f-spot.glade.h:14
-#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:2
-msgid "<b>Gallery</b>"
-msgstr "<b>Galeria</b>"
-
-#: ../src/f-spot.glade.h:15
-msgid "<b>Image Interpolation</b>"
-msgstr "<b>Interpolação de imagem</b>"
-
-#: ../src/f-spot.glade.h:16
-msgid "<b>Max Rating</b>"
-msgstr "<b>Avaliação máxima</b>"
-
-#: ../src/f-spot.glade.h:17
-msgid "<b>Min Rating</b>"
-msgstr "<b>Avaliação mínima</b>"
-
-#: ../src/f-spot.glade.h:18
-#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:2
-#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:5
-#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:3
-#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:2
-#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:2
-#: ../extensions/Exporters/TabbloExport/TabbloExport.glade.h:2
-msgid "<b>Photos</b>"
-msgstr "<b>Fotos</b>"
-
-#: ../src/f-spot.glade.h:19
-msgid "<b>Predefined</b>"
-msgstr "<b>Predefinido</b>"
-
-#: ../src/f-spot.glade.h:20
-msgid "<b>Preview</b>"
-msgstr "<b>Visualização</b>"
-
-#: ../src/f-spot.glade.h:21
-msgid "<b>Size</b>"
-msgstr "<b>Tamanho</b>"
-
-#: ../src/f-spot.glade.h:22
-#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:3
-#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:6
-#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:4
-#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:4
-#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:4
-msgid "<b>Style</b>"
-msgstr "<b>Estilo</b>"
-
-#: ../src/f-spot.glade.h:23
-msgid "<b>Summary</b>"
-msgstr "<b>Resumo</b>"
-
-#: ../src/f-spot.glade.h:24
-msgid "<b>Transparent Parts</b>"
-msgstr "<b>Partes transparentes</b>"
-
-#: ../src/f-spot.glade.h:25
-msgid "<b>View all pictures imported</b>"
-msgstr "<b>Ver todas as fotos importadas</b>"
-
-#: ../src/f-spot.glade.h:26
-msgid "<b>_White Balance</b>"
-msgstr "<b>_Equilíbrio de branco</b>"
-
-#: ../src/f-spot.glade.h:27
-msgid "<small></small>"
-msgstr "<small></small>"
-
-#: ../src/f-spot.glade.h:28
-msgid ""
-"<small><i>Enable this to allow interpolation on zoomed images. You shouldn't "
-"disable this for viewing photos, but disabling the interpolation could be "
-"usefull in icon design.</i></small>"
-msgstr ""
-"<small><i>Habilite esta opção para permitir a interpolação ao aplicar zoom "
-"nas imagens. Você não deve desabilitar para visualizar fotos, mas "
-"desabilitar a interpolação poderá ser útil no formato de ícone.</i></small>"
-
-#: ../src/f-spot.glade.h:29
-msgid ""
-"<small><i>You can choose how to display transparent parts in images. This "
-"option has no effect on photos, but setting this as check pattern or custom "
-"color could be usefull when viewing icons or other artworks with transparent "
-"parts.</i></small>"
-msgstr ""
-"<small><i>Você pode escolher como exibir partes transparentes em imagens. "
-"Esta opção não tem efeito em fotos, mas configurando isto como um padrão "
-"quadriculado ou cor personalizada pode ser útil ao ver ícones e outros "
-"trabalhos de arte com partes transparentes.</i></small>"
-
-#: ../src/f-spot.glade.h:30
-msgid "As _background"
-msgstr "Como plano de _fundo"
-
-#: ../src/f-spot.glade.h:31
-msgid "As _custom color: "
-msgstr "Como cor _personalizada: "
-
-#: ../src/f-spot.glade.h:32
-msgid "As check _pattern"
-msgstr "Como padrão _quadriculado"
-
-#: ../src/f-spot.glade.h:33
-msgid "Attach Tags:"
-msgstr "Adicionar etiquetas:"
-
-#: ../src/f-spot.glade.h:34
-msgid "Attach tag:"
-msgstr "Adicionar etiqueta:"
-
-#: ../src/f-spot.glade.h:35
-#: ../extensions/Exporters/CDExport/CDExport.glade.h:3
-#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:7
-#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:7
-#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:5
-msgid "Autorotate"
-msgstr "Girar automaticamente"
-
-#: ../src/f-spot.glade.h:36
-msgid "CD"
-msgstr "CD"
-
-#: ../src/f-spot.glade.h:37
-msgid "C_ontrast:"
-msgstr "C_ontraste:"
-
-#: ../src/f-spot.glade.h:38
-msgid "Camera Selection"
-msgstr "Seleção de câmera"
-
-#: ../src/f-spot.glade.h:39
-msgid "Copy files to the Photos folder"
-msgstr "Copiar arquivos para pasta Photos"
-
-#: ../src/f-spot.glade.h:40
-msgid "Create Mail"
-msgstr "Criar e-mail"
-
-#: ../src/f-spot.glade.h:41
-msgid "Create _icon for this tag when first used"
-msgstr "Criar ícone para esta etiqueta ao _usá-la pela primeira vez"
-
-#: ../src/f-spot.glade.h:42
-msgid "Create a mail with the selected photos (possibly resized) attached"
-msgstr ""
-"Cria um e-mail com as fotos selecionadas (possivelmente redimensionadas) em "
-"anexo"
-
-#: ../src/f-spot.glade.h:43
-msgid "Detect duplicates"
-msgstr "Detectar duplicatas"
-
-#: ../src/f-spot.glade.h:44
-msgid "Display File _Names"
-msgstr "Exibir nomes de _arquivos"
-
-#: ../src/f-spot.glade.h:45
-msgid "Display only those photos that were imported in specified Rolls."
-msgstr ""
-"Exibir apenas aquelas fotos que foram importadas em rolos especificados."
-
-#: ../src/f-spot.glade.h:46
-msgid "Do not send a mail"
-msgstr "Não enviar um e-mail"
-
-#: ../src/f-spot.glade.h:47
-msgid "E-_Mail:"
-msgstr "E-_mail:"
-
-#: ../src/f-spot.glade.h:48
-msgid "E_xport titles and comments"
-msgstr "E_xportar títulos e comentários"
-
-#: ../src/f-spot.glade.h:49
-msgid "Edit Tag Icon"
-msgstr "Editar ícone da etiqueta"
-
-#: ../src/f-spot.glade.h:50
-msgid "Edit icon"
-msgstr "Editar ícone"
-
-#: ../src/f-spot.glade.h:51
-msgid "Estimated new size"
-msgstr "Novo tamanho estimado"
-
-#: ../src/f-spot.glade.h:52
-#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:6
-#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:8
-#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:9
-#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:6
-#: ../extensions/Exporters/TabbloExport/TabbloExport.glade.h:5
-msgid "Export"
-msgstr "Exportar"
-
-#: ../src/f-spot.glade.h:53
-msgid "Extra large"
-msgstr "Muito grande"
-
-#: ../src/f-spot.glade.h:54
-msgid "F-Spot View"
-msgstr "Visualização do F-Spot"
-
-#: ../src/f-spot.glade.h:56
-msgid "Filter on selected rolls"
-msgstr "Filtrar rolos selecionados"
-
-#: ../src/f-spot.glade.h:57
-msgid "G_allery:"
-msgstr "G_aleria:"
-
-#: ../src/f-spot.glade.h:58
-msgid "Gallery"
-msgstr "Galeria"
-
-#. Translators: this string means 'source of import'
-#: ../src/f-spot.glade.h:61
-msgid "Import Source:"
-msgstr "Fonte da importação:"
-
-#: ../src/f-spot.glade.h:62
-msgid "Include subfolders"
-msgstr "Incluir subpastas"
-
-#: ../src/f-spot.glade.h:63
-msgid "Large"
-msgstr "Grande"
-
-#: ../src/f-spot.glade.h:64
-msgid "Manage your custom selection ratios"
-msgstr "Gerenciar as suas proporções de seleção personalizadas"
-
-#: ../src/f-spot.glade.h:65
-msgid "Medium"
-msgstr "Médio"
-
-#: ../src/f-spot.glade.h:67
-msgid "No _image"
-msgstr "Sem _imagem"
-
-#: ../src/f-spot.glade.h:68
-msgid "Number of photos in selected rolls:"
-msgstr "Número de fotos nos rolos selecionados:"
-
-#: ../src/f-spot.glade.h:69
-msgid "Number of pictures"
-msgstr "Número de fotos"
-
-#: ../src/f-spot.glade.h:70
-msgid "Open _Folder..."
-msgstr "Abrir _pasta..."
-
-#: ../src/f-spot.glade.h:72
-msgid "Original size (possible very large file size)"
-msgstr "Tamanho original (tamanho de arquivo muito grande possível)"
-
-#: ../src/f-spot.glade.h:73
-msgid "P_arent Tag:"
-msgstr "Etiquet_a principal:"
-
-#: ../src/f-spot.glade.h:74
-msgid "Pause"
-msgstr "Pausar"
-
-#: ../src/f-spot.glade.h:75
-msgid "Photo 0 of 0"
-msgstr "Foto 0 de 0"
-
-#: ../src/f-spot.glade.h:78
-msgid "Repair"
-msgstr "Reparar"
-
-#: ../src/f-spot.glade.h:81
-msgid "Select Photos to Copy From Camera..."
-msgstr "Selecione fotos para copiar da câmera..."
-
-#: ../src/f-spot.glade.h:82
-msgid "Select a Tag..."
-msgstr "Selecionar uma etiqueta..."
-
-#: ../src/f-spot.glade.h:83
-msgid "Select the camera from which you want to transfer files"
-msgstr "Selecione a câmera da qual deseja transferir arquivos"
-
-#: ../src/f-spot.glade.h:84
-msgid "Selected Camera: "
-msgstr "Câmera selecionada: "
-
-#: ../src/f-spot.glade.h:85
-msgid "Selection Constraints"
-msgstr "Restrições de seleção"
-
-#: ../src/f-spot.glade.h:86
-msgid "Set Rating Filter"
-msgstr "Definir filtro de avaliações"
-
-#: ../src/f-spot.glade.h:87
-msgid "Set as _Background"
-msgstr "Definir como plano de _fundo"
-
-#: ../src/f-spot.glade.h:88
-msgid "Show all photos."
-msgstr "Mostrar todas as fotos."
-
-#: ../src/f-spot.glade.h:89
-msgid "Show or hide the side pane"
-msgstr "Mostra ou oculta a barra lateral"
-
-#: ../src/f-spot.glade.h:90
-msgid "Show or hide the toolbar"
-msgstr "Mostra ou oculta a barra de ferramentas"
-
-#: ../src/f-spot.glade.h:91
-msgid "Side _pane"
-msgstr "_Painel lateral"
-
-#: ../src/f-spot.glade.h:92
-msgid "Small"
-msgstr "Pequeno"
-
-#: ../src/f-spot.glade.h:93
-msgid ""
-"Specify if an original size picture should be rotated or not. Smaller sizes "
-"are automatically rotated."
-msgstr ""
-"Especifica se uma foto de tamanho original deve ser girada ou não. Tamanhos "
-"menores são automaticamente girados."
-
-#: ../src/f-spot.glade.h:94
-msgid "Strip image _metadata"
-msgstr "Descartar _metadados"
-
-#. Note for translators: meant as Temperature
-#: ../src/f-spot.glade.h:96
-msgid "Te_mp:"
-msgstr "Te_mp:"
-
-#: ../src/f-spot.glade.h:97
-msgid "Tiny"
-msgstr "Minúsculo"
-
-#: ../src/f-spot.glade.h:98
-msgid "Total original size"
-msgstr "Tamanho original total"
-
-#: ../src/f-spot.glade.h:99
-msgid "Zoom _in"
-msgstr "_Ampliar"
-
-#: ../src/f-spot.glade.h:100
-msgid "Zoom _out"
-msgstr "Red_uzir"
-
-#: ../src/f-spot.glade.h:101
-msgid "Zoom in"
-msgstr "Amplia"
-
-#: ../src/f-spot.glade.h:102
-msgid "Zoom out"
-msgstr "Reduz"
-
-#: ../src/f-spot.glade.h:103
-msgid "_Brightness:"
-msgstr "_Brilho:"
-
-#: ../src/f-spot.glade.h:104
-#: ../extensions/Exporters/ZipExport/ZipExport.glade.h:1
-msgid "_Create"
-msgstr "_Criar"
-
-#: ../src/f-spot.glade.h:105
-msgid "_Create Mail"
-msgstr "Criar e-_mail"
-
-#: ../src/f-spot.glade.h:106
-msgid "_Edit"
-msgstr "_Editar"
-
-#: ../src/f-spot.glade.h:107
-#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:15
-#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:12
-msgid "_Export"
-msgstr "_Exportar"
-
-#: ../src/f-spot.glade.h:108
-#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:16
-#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:20
-msgid "_Export tags"
-msgstr "_Exportar etiquetas"
-
-#: ../src/f-spot.glade.h:109
-#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:15
-#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:21
-#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:13
-msgid "_Export to Album:"
-msgstr "_Exportar para álbum:"
-
-#: ../src/f-spot.glade.h:110
-msgid "_Exposure:"
-msgstr "_Exposição"
-
-#: ../src/f-spot.glade.h:111
-msgid "_Flickr"
-msgstr "_Flickr"
-
-#: ../src/f-spot.glade.h:112
-msgid "_Fullscreen"
-msgstr "Tela _cheia"
-
-#: ../src/f-spot.glade.h:113
-msgid "_Gallery"
-msgstr "_Galeria"
-
-#: ../src/f-spot.glade.h:114
-msgid "_Help"
-msgstr "Aj_uda"
-
-#: ../src/f-spot.glade.h:115
-msgid "_Hue:"
-msgstr "Mati_z:"
-
-#: ../src/f-spot.glade.h:116
-msgid "_Icon:"
-msgstr "Í_cone:"
-
-#: ../src/f-spot.glade.h:117
-msgid "_Interpolate image on zoom"
-msgstr "_Interpolar imagem ao ampliar"
-
-#: ../src/f-spot.glade.h:118
-msgid "_New Window"
-msgstr "_Nova janela"
-
-#: ../src/f-spot.glade.h:119
-msgid "_Open album in browser when done uploading"
-msgstr "_Abrir o álbum no navegador ao terminar o envio"
-
-#: ../src/f-spot.glade.h:120
-msgid "_Open destination when done exporting"
-msgstr "_Abrir destino ao terminar de exportar"
-
-#: ../src/f-spot.glade.h:121
-msgid "_Photo"
-msgstr "_Foto"
-
-#: ../src/f-spot.glade.h:122
-#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:17
-#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:17
-#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:20
-#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:24
-#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:15
-msgid "_Resize to: "
-msgstr "_Redimensionar para: "
-
-#: ../src/f-spot.glade.h:123
-msgid "_Saturation:"
-msgstr "_Saturação:"
-
-#: ../src/f-spot.glade.h:124
-msgid "_Scale photos to no larger than: "
-msgstr "_Dimensionar as imagens para não mais que: "
-
-#: ../src/f-spot.glade.h:125
-msgid "_Slideshow"
-msgstr "Apresentação de _slides"
-
-#: ../src/f-spot.glade.h:126
-msgid "_Strip metadata"
-msgstr "_Descartar metadados"
-
-#: ../src/f-spot.glade.h:127
-msgid "_Tag Name:"
-msgstr "Nome da e_tiqueta:"
-
-#: ../src/f-spot.glade.h:128
-msgid "_Tint:"
-msgstr "_Matiz:"
-
-#: ../src/f-spot.glade.h:129
-msgid "_Toolbar"
-msgstr "Barra de _ferramentas"
-
-#: ../src/f-spot.glade.h:130
-msgid "_URI:"
-msgstr "_URI:"
-
-#: ../src/f-spot.glade.h:131
-msgid "_View"
-msgstr "_Ver"
-
-#: ../src/f-spot.glade.h:132
-msgid "_Virtual Filesystem"
-msgstr "Sistema de arquivos _virtual"
-
-#. at, or after a date, or between dates
-#: ../src/f-spot.glade.h:135
-msgid ""
-"at\n"
-"after\n"
-"between"
-msgstr ""
-"em\n"
-"depois\n"
-"entre"
-
-#: ../src/f-spot.glade.h:138
-#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:19
-#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:19
-#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:23
-#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:26
-#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:17
-msgid "pixels"
-msgstr "pixels"
-
-#: ../src/f-spot.glade.h:139
-msgid "x"
-msgstr "x"
-
 #: ../tools/f-spot-screensaver.desktop.in.h:1
 msgid "Display a slideshow from F-Spot"
 msgstr "Exiba uma apresentação de slides do F-Spot"
@@ -2857,1108 +3614,292 @@ msgstr "Exiba uma apresentação de slides do F-Spot"
 msgid "F-Spot photos"
 msgstr "Fotos do F-Spot"
 
-#: ../extensions/Editors/BlackoutEditor/BlackoutEditor.cs:18
-msgid "Blackout"
-msgstr "Escurecer"
-
-#: ../extensions/Editors/BlackoutEditor/BlackoutEditor.cs:26
-msgid "Select the area that you want blacked out."
-msgstr "Seleciona a área em que você deseja escurecer."
-
-#: ../extensions/Editors/PixelateEditor/PixelateEditor.cs:18
-msgid "Pixelate"
-msgstr "Pincelada"
-
-#: ../extensions/Editors/PixelateEditor/PixelateEditor.cs:26
-msgid "Select the area that you want pixelated."
-msgstr "Seleciona a área que você deseja pincelar."
-
-#: ../extensions/Exporters/CDExport/CDExport.addin.xml.h:1
-msgid "_CD..."
-msgstr "_CD..."
-
-#: ../extensions/Exporters/CDExport/CDExport.cs:162
-#, csharp-format
-msgid "Transferring picture \"{0}\" To CD"
-msgstr "Transferindo figura \"{0}\" para CD"
-
-#: ../extensions/Exporters/CDExport/CDExport.cs:177
-#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:379
-#: ../extensions/Exporters/FolderExport/FolderExport.cs:285
-#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:808
-#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:378
-#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:704
-#: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:607
-msgid "Done Sending Photos"
-msgstr "Envio de fotos completo"
-
-#: ../extensions/Exporters/CDExport/CDExport.cs:179
-#: ../extensions/Exporters/FolderExport/FolderExport.cs:287
-msgid "Transfer Complete"
-msgstr "Transferência completa"
-
-#: ../extensions/Exporters/CDExport/CDExport.cs:186
-#: ../extensions/Exporters/FolderExport/FolderExport.cs:292
-msgid "Error While Transferring"
-msgstr "Erro ao transferir"
-
-#: ../extensions/Exporters/CDExport/CDExport.cs:193
-#: ../extensions/Exporters/FolderExport/FolderExport.cs:311
-msgid "Error Transferring"
-msgstr "Erro transferindo"
-
-#: ../extensions/Exporters/CDExport/CDExport.cs:206
-msgid "copying..."
-msgstr "copiando..."
-
-#: ../extensions/Exporters/CDExport/CDExport.glade.h:1
-msgid "<b><i>There is some previously scheduled items to write</i></b>"
-msgstr "<b><i>Existem algums itens previamente agendados para gravação</i></b>"
-
-#: ../extensions/Exporters/CDExport/CDExport.glade.h:2
-msgid "<b>Photos to Burn</b>"
-msgstr "<b>Fotos para gravar</b>"
-
-#: ../extensions/Exporters/CDExport/CDExport.glade.h:4
-msgid "Create CD"
-msgstr "Criar CD"
-
-#: ../extensions/Exporters/CDExport/CDExport.glade.h:6
-msgid "Size of the exported selection:"
-msgstr "Tamanho da seleção exportada:"
-
-#: ../extensions/Exporters/CDExport/CDExport.glade.h:7
-msgid "_Browse Previously Scheduled Files"
-msgstr "_Navegar nos arquivos agendados anteriormente"
-
-#: ../extensions/Exporters/CDExport/CDExport.glade.h:8
-msgid "_Write only these photos to CD"
-msgstr "_Gravar apenas estas fotos no CD"
-
-#: ../extensions/Exporters/FlickrExport/FlickrExport.addin.xml.h:1
-msgid "_23hq..."
-msgstr "_23hq..."
-
-#: ../extensions/Exporters/FlickrExport/FlickrExport.addin.xml.h:2
-msgid "_Flickr..."
-msgstr "_Flickr..."
-
-#: ../extensions/Exporters/FlickrExport/FlickrExport.addin.xml.h:3
-msgid "_Zooomr..."
-msgstr "_Zoomr..."
-
-#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:105
-#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:5
-msgid "Authorize"
-msgstr "Autorizar"
-
-#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:111
-#, csharp-format
-msgid ""
-"Return to this window after you have finished the authorization process on "
-"{0} and click the \"Complete Authorization\" button below"
-msgstr ""
-"Retorne a esta janela depois de terminado o processo de autorização em {0} e "
-"clique no botão \"Completar autorização\" abaixo"
-
-#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:112
-msgid "Complete Authorization"
-msgstr "Completar autorização"
-
-#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:117
-#, csharp-format
-msgid "Logging into {0}"
-msgstr "Efetuando logon em {0}"
-
-#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:118
-msgid "Checking credentials..."
-msgstr "Verificando credenciais..."
-
-#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:125
-#, csharp-format
-msgid "Welcome {0} you are connected to {1}"
-msgstr "Bem-vindo, {0}. Você está conectado a {1}"
-
-#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:128
-#, csharp-format
-msgid "Sign in as a different user"
-msgstr "Entrar como um usuário diferente"
-
-#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:133
-#, csharp-format
-msgid "Used {0} of your allowed {1} monthly quota"
-msgstr "Você já utilizou {0} da sua cota mensal de {1}"
-
-#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:297
-msgid "Unable to log on"
-msgstr "Não foi possível efetuar logon"
-
-#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:317
-#, csharp-format
-msgid "Waiting for response {0} of {1}"
-msgstr "Esperando por resposta {0} de {1}"
-
-#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:344
-#: ../extensions/Exporters/FolderExport/FolderExport.cs:242
-#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:779
-#, csharp-format
-msgid "Uploading picture \"{0}\""
-msgstr "Enviando figura \"{0}\""
-
-#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:367
-#, csharp-format
-msgid "Error Uploading To {0}: {1}"
-msgstr "Erro ao enviar para {0}: {1}"
-
-#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:381
-#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:810
-#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:380
-#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:706
-#: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:609
-msgid "Upload Complete"
-msgstr "Envio completo"
-
-#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:454
-msgid "Unable to log on."
-msgstr "Não foi possível efetuar logon."
-
-#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:455
-#, csharp-format
-msgid ""
-"F-Spot was unable to log on to {0}.  Make sure you have given the "
-"authentication using {0} web browser interface."
-msgstr ""
-"F-Spot não foi possível efetuar logon em {0}. Certifique-se que a "
-"autenticação foi providenciada pela interface do navegador {0}."
-
-#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:475
-#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:732
-#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:297
-#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:597
-#: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:522
-msgid "Uploading Pictures"
-msgstr "Enviando figuras"
-
-#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:4
-msgid "<b>Viewing permissions</b>"
-msgstr "<b>Permissões de exibição</b>"
-
-#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:7
-msgid "Export tag _hierarchy"
-msgstr "Exportar _hierarquia de etiquetas"
-
-#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:8
-msgid ""
-"F-Spot needs your authorization in order to upload photos to your {0} "
-"account. Press the \"Authorize\" button to open a web browser and give F-"
-"Spot the authorization. "
-msgstr ""
-"F-Spot precisa de sua autorização para enviar fotos para a conta {0}. "
-"Pressione o botão \"Autorizar\" para abrir o navegador web e permitir que o "
-"F-Spot envie suas fotos. "
-
-#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:9
-msgid "Ignore _top level tags"
-msgstr "Ignorar as _etiquetas de maior nível"
-
-#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:10
-msgid "Private"
-msgstr "Particular"
-
-#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:11
-msgid "Public"
-msgstr "Público"
-
-#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:12
-msgid "Strip _metadata"
-msgstr "Descartar _metadados"
-
-#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:13
-msgid "Visible to Family"
-msgstr "Visível para família"
-
-#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:14
-msgid "Visible to Friends"
-msgstr "Visível para amigos"
-
-#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:18
-msgid "_View photos in browser when done uploading"
-msgstr "_Ver fotos no navegador ao término do envio"
-
-#: ../extensions/Exporters/FolderExport/FolderExport.addin.xml.h:1
-msgid "F_older..."
-msgstr "_Pasta..."
-
-#: ../extensions/Exporters/FolderExport/FolderExport.cs:140
-msgid "Select Export Folder"
-msgstr "Selecionar a pasta de exportação"
-
-#: ../extensions/Exporters/FolderExport/FolderExport.cs:198
-msgid "Building Gallery"
-msgstr "Montando galeria"
-
-#: ../extensions/Exporters/FolderExport/FolderExport.cs:248
-#, csharp-format
-msgid "Error uploading picture \"{0}\" to Gallery:{2}{1}"
-msgstr "Erro ao enviar foto \"{0}\" para o Gallery:{2}{1}"
-
-#: ../extensions/Exporters/FolderExport/FolderExport.cs:333
-msgid "Error: Error while transferring; Aborting"
-msgstr "Erro: Erro ao transferir; Abortando"
-
-#: ../extensions/Exporters/FolderExport/FolderExport.cs:336
-msgid "Error: File Already Exists; Aborting"
-msgstr "Erro: o arquivo já existe; abortando"
-
-#. Note for translators: light as clear, opposite as dark
-#: ../extensions/Exporters/FolderExport/FolderExport.cs:810
-msgid "Light"
-msgstr "Claro"
-
-#: ../extensions/Exporters/FolderExport/FolderExport.cs:811
-msgid "Dark"
-msgstr "Escuro"
-
-#. Abbreviation of previous
-#: ../extensions/Exporters/FolderExport/FolderExport.cs:991
-msgid "Prev"
-msgstr "Ant"
-
-#: ../extensions/Exporters/FolderExport/FolderExport.cs:1103
-msgid "Gallery generated by"
-msgstr "Galeria criada por"
-
-#: ../extensions/Exporters/FolderExport/FolderExport.cs:1143
-msgid "Show Styles"
-msgstr "Mostrar estilos"
-
-#: ../extensions/Exporters/FolderExport/FolderExport.cs:1144
-msgid "Hide Styles"
-msgstr "Ocultar estilos"
-
-#: ../extensions/Exporters/FolderExport/FolderExport.cs:1179
-#: ../extensions/Exporters/FolderExport/FolderExport.cs:1180
-msgid "Tags: "
-msgstr "Etiquetas: "
-
-#: ../extensions/Exporters/FolderExport/FolderExport.cs:1311
-#: ../extensions/Exporters/FolderExport/FolderExport.cs:1444
-msgid "Page:"
-msgstr "Página:"
-
-#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:1
-msgid "\n"
-msgstr "\n"
-
-#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:4
-msgid "<b>Export Method</b>"
-msgstr "<b>Método de exportação</b>"
-
-#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:8
-msgid "Create _gallery using \"Original\""
-msgstr "Criar _galeria usando \"Original\""
-
-#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:9
-msgid "Create standalone _web gallery"
-msgstr "Criar galeria da _web autônoma"
-
-#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:10
-msgid "D_escription:"
-msgstr "D_escrição:"
-
-#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:11
-msgid "Export _tags"
-msgstr "Exportar e_tiquetas"
-
-#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:12
-msgid "Export tag _icons"
-msgstr "Exportar ícones das et_iquetas"
-
-#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:13
-msgid "Folder Export"
-msgstr "Exportar de pasta"
-
-#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:14
-msgid "G_allery Name:"
-msgstr "Nome da G_aleria:"
-
-#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:15
-msgid "Open _destination when done exporting"
-msgstr "Abrir _destino ao terminar de exportar"
-
-#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:16
-msgid "_Folder:"
-msgstr "_Pasta:"
-
-#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:18
-msgid "_Save the files only"
-msgstr "_Salvar os arquivos apenas"
-
-#: ../extensions/Exporters/GalleryExport/GalleryExport.addin.xml.h:1
-msgid "Web _Gallery..."
-msgstr "_Gallery na web..."
-
-#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:52
-msgid ""
-"Cannot connect to a Gallery for which the version is unknown.\n"
-"Please check that you have Remote plugin 1.0.8 or later"
-msgstr ""
-"Não é possível conectar em um Gallery cuja versão é desconhecida.\n"
-"Por favor, verifique se você possui a extensão Remote 1.0.8 ou mais recente"
-
-#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:393
-msgid "Invalid URL"
-msgstr "URL inválida"
-
-#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:394
-msgid "The gallery URL entry does not appear to be a valid URL"
-msgstr "A URL do Gallery não parece ser uma URL válida"
-
-#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:404
-#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:431
-#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:442
-msgid "Error while connecting to Gallery"
-msgstr "Erro ao conectar ao Gallery"
-
-#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:405
-#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:432
-#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:443
-#, csharp-format
-msgid "The following error was encountered while attempting to log in: {0}"
-msgstr "O erro seguinte foi encontrado ao tentar o registro em: {0}"
-
-#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:419
-msgid "A Gallery with this name already exists"
-msgstr "Já existe uma galeria com este nome"
-
-#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:420
-#, csharp-format
-msgid ""
-"There is already a Gallery with the same name in your registered Galleries. "
-"Please choose a unique name."
-msgstr ""
-"Já existe uma galeria com este nome nas suas galerias registradas. Por "
-"favor, escolha um nome único."
-
-#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:530
-msgid "(TopLevel)"
-msgstr "(Nível mais alto)"
-
-#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:592
-msgid "Invalid Gallery name"
-msgstr "Nome de galeria inválido"
-
-#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:593
-msgid ""
-"The gallery name contains invalid characters.\n"
-"Only letters, numbers, - and _ are allowed"
-msgstr ""
-"O nome da galeria contém caracteres inválidos.\n"
-"São permitidos apenas letras, números, - e _"
-
-#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:798
-#, csharp-format
-msgid "Error uploading picture \"{0}\" to Gallery: {1}"
-msgstr "Erro ao enviar foto \"{0}\" para Galeria: {1}"
-
-#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:826
-#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:727
-#: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:630
-msgid "(No Gallery)"
-msgstr "(Sem galeria)"
-
-#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:918
-#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:849
-#: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:726
-msgid "(Not Connected)"
-msgstr "(Desconectado)"
-
-#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:919
-#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:850
-#: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:727
-msgid "(No Albums)"
-msgstr "(Sem álbuns)"
-
-#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:971
-#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:915
-#: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:768
-msgid "No account selected"
-msgstr "Nenhuma conta selecionada"
-
-#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:5
-#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:5
-msgid "<span weight='bold' size='larger'>Error Connecting to Gallery</span>\n"
-msgstr ""
-"<span weight=\"bold\" size=\"larger\">Erro ao Conectar à Galeria</span>\n"
-
-#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:9
-msgid "Export _titles and comments"
-msgstr "Exportar _títulos e comentários"
-
-#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:10
-#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:10
-#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:7
-msgid "Open _album in browser when done uploading"
-msgstr "_Abrir o álbum no navegador ao terminar o envio"
-
-#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:11
-#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:11
-msgid "Please verify that the settings for this gallery are correct."
-msgstr ""
-"Por favor, verifique que as configurações desta galeria estão corretas."
-
-#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:12
-msgid "U_RL:"
-msgstr "U_RL:"
-
-#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:13
-msgid "_Album Name:"
-msgstr "_Nome do álbum:"
-
-#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:14
-#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:19
-#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:11
-msgid "_Description:"
-msgstr "_Descrição:"
-
-#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:16
-msgid "_Gallery Name:"
-msgstr "Nome da _galeria:"
-
-#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:17
-#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:22
-msgid "_Gallery:"
-msgstr "_Galeria:"
-
-#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:18
-msgid "_Parent Album:"
-msgstr "Álbum _pai:"
-
-#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:19
-#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:23
-#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:14
-#: ../extensions/Exporters/TabbloExport/TabbloExport.glade.h:9
-msgid "_Password:"
-msgstr "_Senha:"
-
-#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:21
-msgid "_Title:"
-msgstr "_Título:"
-
-#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:22
-#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:25
-#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:16
-#: ../extensions/Exporters/TabbloExport/TabbloExport.glade.h:10
-msgid "_Username:"
-msgstr "Nome do _usuário:"
-
-#: ../extensions/Exporters/GalleryExport/GalleryRemote.cs:361
-msgid "Error reading server response"
-msgstr "Erro ao ler resposta de servidor"
-
-#. failed to find the response
-#: ../extensions/Exporters/GalleryExport/GalleryRemote.cs:373
-msgid "Server returned response without Gallery content"
-msgstr "Servidor retornou resposta sem conteúdo de Galeria"
-
-#: ../extensions/Exporters/GalleryExport/GalleryRemote.cs:710
-msgid "Error while creating new album"
-msgstr "Erro ao criar novo álbum"
-
-#: ../extensions/Exporters/GalleryExport/GalleryRemote.cs:711
-#, csharp-format
-msgid ""
-"The following error was encountered while attempting to perform the "
-"requested operation:\n"
-"{0} ({1})"
-msgstr ""
-"O seguinte erro foi encontrado ao tentar realizar a operação requisitada:\n"
-"{0} ({1})"
-
-#: ../extensions/Exporters/FacebookExport/FacebookExport.addin.xml.h:1
-msgid "F_acebook..."
-msgstr "F_acebook..."
-
-#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:99
-msgid "Waiting for authorization"
-msgstr "Esperando autorização"
-
-#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:100
-msgid ""
-"F-Spot will now launch your browser so that you can enable the permission "
-"you just selected.\n"
-"\n"
-"Once you are directed by Facebook to return to this application, click \"Ok"
-"\" below."
-msgstr ""
-"Agora o F-Spot vai lançar seu navegador de forma que você possa habilitar "
-"a permissão que você acabou de selecionar.\n"
-"\n"
-"Quando você tiver sido orientado pelo Facebook a retornar ao aplicativo, "
-"clique \"OK\" abaixo."
-
-#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:279
-msgid "Too many images to export"
-msgstr "Imagens demais para exportar"
-
-#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:280
-msgid ""
-"Facebook only permits 60 photographs per album.  Please refine your "
-"selection and try again."
-msgstr ""
-"O Facebook permite apenas 60 fotografias por álbum. Por favor refine a sua "
-"seleção e tente novamente."
-
-#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:317
-msgid "Album must have a name"
-msgstr "O álbum precisa ter um nome"
-
-#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:318
-msgid "Please name your album or choose an existing album."
-msgstr "Por favor, dê um nome para o seu álbum ou escolha um álbum existente."
-
-#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:332
-msgid "Creating a new album failed"
-msgstr "A criação do novo álbum falhou"
-
-#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:333
-#, csharp-format
-msgid ""
-"An error occurred creating a new album.\n"
-"\n"
-"{0}"
-msgstr ""
-"Erro ao criar novo álbum.\n"
-"\n"
-"{0}"
-
-#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:355
-#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:660
-#: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:565
-#, csharp-format
-msgid "Uploading picture \"{0}\" ({1} of {2})"
-msgstr "Enviando foto \"{0}\" ({1} de {2})"
-
-#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:369
-#, csharp-format
-msgid "Error Uploading To Facebook: {0}"
-msgstr "Erro ao enviar para Facebook: {0}"
-
-#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:186
-msgid "Waiting for authentication"
-msgstr "Esperando por autenticação"
-
-#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:187
-msgid ""
-"F-Spot will now launch your browser so that you can log into Facebook.\n"
-"\n"
-"Once you are directed by Facebook to return to this application, click \"Ok"
-"\" below.  F-Spot will cache your session in gnome-keyring, if possible, and "
-"re-use it on future Facebook exports."
-msgstr ""
-"Agora o F-Spot vai lançar seu navegador para você poder iniciar uma sessão "
-"no Facebook.\n"
-"\n"
-"Quando você tiver sido orientado pelo Facebook a retornar ao aplicativo, "
-"clique \"OK\" abaixo. O F-Spot vai guardar um cache da sua sessão no gnome-"
-"keyring, se possível, e vai reutilizá-lo na próxima exportação para o "
-"Facebook"
-
-#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:192
-msgid "Authenticating..."
-msgstr "Autenticando..."
-
-#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:202
-msgid "Error logging into Facebook"
-msgstr "Erro ao conectar com Facebook"
-
-#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:203
-msgid ""
-"There was a problem logging into Facebook.  Check your credentials and try "
-"again."
-msgstr ""
-"Houve um problema ao registrar no Facebook. Verifique as suas credenciais e "
-"tente novamente."
-
-#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:212
-msgid "Authorizing Session"
-msgstr "Autorizando sessão"
-
-#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:221
-msgid "Session established, fetching user info..."
-msgstr "Sessão estabelecida, baixando informações do usuário..."
-
-#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:227
-msgid "Session established, fetching friend list..."
-msgstr "Sessão estabelecida, baixando lista de amigos..."
-
-#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:237
-msgid "Session established, fetching friend details..."
-msgstr "Sessão estabelecida, baixando detalhes dos amigos..."
-
-#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:247
-msgid "Session established, fetching photo albums..."
-msgstr "Sessão estabelecida, baixando álbuns de fotos..."
-
-#. Note for translators: {0} and {1} are respectively firstname and surname of the user
-#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:260
-#, csharp-format
-msgid "{0} {1} is logged into Facebook"
-msgstr "{0} {1} está registrado no Facebook"
-
-#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:266
-msgid "Facebook Connection Error"
-msgstr "Erro de conexão com o Facebook"
-
-#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:267
-#, csharp-format
-msgid ""
-"There was an error when downloading your information from Facebook.\n"
-"\n"
-"Facebook said: {0}"
-msgstr ""
-"Houve um erro ao baixar suas informações do Facebook.\n"
-"\n"
-"O Facebook disse: {0}"
-
-#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:296
-msgid "You are not logged in."
-msgstr "Você não está registrado."
-
-#: ../extensions/Exporters/ZipExport/ZipExport.addin.xml.h:1
-msgid "Compressed fil_e..."
-msgstr "Arquivo _comprimido"
-
-#: ../extensions/Exporters/ZipExport/ZipExport.cs:48
-#: ../extensions/Tools/MetaPixel/MetaPixel.cs:46
-#: ../extensions/Tools/PictureTile/PictureTile.cs:52
-msgid ""
-"This tool requires an active selection. Please select one or more pictures "
-"and try again"
-msgstr ""
-"Esta ferramenta requer uma seleção ativa. Por favor, selecione uma ou mais "
-"fotos e tente novamente"
-
-#: ../extensions/Exporters/ZipExport/ZipExport.cs:64
-msgid "Select export folder"
-msgstr "Selecionar a pasta para exportação"
-
-#: ../extensions/Exporters/ZipExport/ZipExport.cs:102
-msgid "Exporting files"
-msgstr "Exportando arquivos"
-
-#: ../extensions/Exporters/ZipExport/ZipExport.cs:108
-#: ../extensions/Tools/MetaPixel/MetaPixel.cs:140
-#, csharp-format
-msgid "Preparing photo \"{0}\""
-msgstr "Preparando foto \"{0}\""
-
-#: ../extensions/Exporters/ZipExport/ZipExport.glade.h:2
-msgid "_File name:"
-msgstr "Nome do _arquivo:"
-
-#: ../extensions/Exporters/ZipExport/ZipExport.glade.h:3
-msgid "_Location:"
-msgstr "_Localização:"
-
-#: ../extensions/Exporters/ZipExport/ZipExport.glade.h:4
-msgid "_Scale:"
-msgstr "_Escala"
-
-#: ../extensions/Tools/MergeDb/MergeDb.addin.xml.h:1
-msgid "Merge Db"
-msgstr "Mesclar Db"
-
-#: ../extensions/Tools/MergeDb/MergeDb.cs:73
-msgid "Error opening the selected file"
-msgstr "Erro ao abrir o arquivo selecionado"
-
-#: ../extensions/Tools/MergeDb/MergeDb.cs:74
-#, csharp-format
-msgid ""
-"The file you selected is not a valid or supported database.\n"
-"\n"
-"Received exception \"{0}\"."
-msgstr ""
-"O arquivo selecionado não é um banco de dados válido ou suportado.\n"
-"\n"
-"Exceção recebida \"{0}\"."
-
-#: ../extensions/Tools/MergeDb/MergeDb.glade.h:1
-msgid ""
-"<small><i>Choose the location of the database you want to import from</i></"
-"small>"
-msgstr ""
-"<small><i>Escolha a localização do banco de dados para importar</i></small>"
-
-#: ../extensions/Tools/MergeDb/MergeDb.glade.h:2
-msgid ""
-"<small><i>Choose what to import from the selected db.\n"
-"\"New Rolls Only\" is the smart option that will avoid re-importing photos "
-"you could have imported during a previous operation.\n"
-"\"A Single Import Roll\" let you choose which roll you want to merge back.\n"
-"\"Everything\" will import everything, creating duplicates if you already "
-"imported from that database.</i></small>"
-msgstr ""
-"<small><i>Escolha o que importar do banco de dados selecionado.\n"
-"\"Apenas novos rolos\" é a opção mais inteligente que evitará reimportar "
-"fotos que você pode ter importado durante uma operação anterior.\n"
-"\"Um único rolo importado\" lhe permite escolher qual rolo você quer "
-"mesclar.\n"
-"\"Todos\" importará tudo, criando cópias se você já tiver importado do banco "
-"de dados.</i></small>"
-
-#: ../extensions/Tools/MergeDb/MergeDb.glade.h:6
-msgid ""
-"<small><i>Copy the images locally or keep them where they are. If you chose "
-"the later, be sure that this location will stay accessible from f-spot.</i></"
-"small>"
-msgstr ""
-"<small><i>Copie as imagens localmente ou as mantenha onde estão. Se elas "
-"forem mantidas, tenha certeza de que esta localização seja acessível pelo f-"
-"spot.</i></small>"
-
-#: ../extensions/Tools/MergeDb/MergeDb.glade.h:7
-msgid "A Single Import Roll"
-msgstr "Um único rolo importado"
-
-#: ../extensions/Tools/MergeDb/MergeDb.glade.h:8
-msgid "Copy images to photos folder"
-msgstr "Copiar imagens para a pasta de fotos"
-
-#: ../extensions/Tools/MergeDb/MergeDb.glade.h:9
-msgid "Database Location:"
-msgstr "Localização do banco de dados:"
-
-#: ../extensions/Tools/MergeDb/MergeDb.glade.h:10
-msgid "Everything"
-msgstr "Tudo"
-
-#: ../extensions/Tools/MergeDb/MergeDb.glade.h:11
-msgid "Import:"
-msgstr "Importar:"
-
-#: ../extensions/Tools/MergeDb/MergeDb.glade.h:12
-msgid "Keep the images at their original location"
-msgstr "Manter as imagens na sua localização original"
-
-#: ../extensions/Tools/MergeDb/MergeDb.glade.h:13
-msgid "Merge another F-Spot collection"
-msgstr "Mesclar outra coleção do F-Spot"
-
-#: ../extensions/Tools/MergeDb/MergeDb.glade.h:14
-msgid "New Rolls Only"
-msgstr "Apenas rolos novos"
-
-#: ../extensions/Tools/MergeDb/PickFolderDialog.cs:33
-#, csharp-format
-msgid ""
-"<big>The database refers to files contained in the <b>{0}</b> folder.\n"
-" Please select that folder so I can do the mapping.</big>"
-msgstr ""
-"<big>O banco de dados remete a arquivos contidos na pasta <b>{0}</b>.\n"
-" Por favor, selecione esta pasta para que eu possa realizar o mapeamento.</"
-"big>"
-
-#: ../extensions/Tools/MetaPixel/MetaPixel.addin.xml.h:1
-msgid "Create p_hotomosaic"
-msgstr "Criar _mosaico de fotos"
-
-#: ../extensions/Tools/MetaPixel/MetaPixel.cs:65
-#| msgid "No metadata available"
-msgid "Metapixel not available"
-msgstr "Metapixel não disponível"
-
-#: ../extensions/Tools/MetaPixel/MetaPixel.cs:66
-msgid ""
-"The metapixel executable was not found in path. Please check that you have "
-"it installed and that you have permissions to execute it"
-msgstr ""
-"O executável metapixel não foi encontrado. Por favor, verifique se ele está"
-" instalado e se há permissão para executá-lo."
-
-#. There is no photo for the selected tags! :(
-#: ../extensions/Tools/MetaPixel/MetaPixel.cs:121
-msgid "No photos for the selection"
-msgstr "Nenhuma foto para a seleção"
-
-#: ../extensions/Tools/MetaPixel/MetaPixel.cs:122
-msgid "The tags selected provided no pictures. Please select different tags"
-msgstr ""
-"As etiquetas selecionadas não definem qualquer imagem. Por favor, "
-"selecione etiquetas diferentes"
-
-#: ../extensions/Tools/MetaPixel/MetaPixel.cs:129
-msgid "Creating miniatures"
-msgstr "Criando miniaturas"
-
-#: ../extensions/Tools/MetaPixel/MetaPixel.cs:180
-msgid "Creating photomosaics"
-msgstr "Criando fotomosaicos"
-
-#: ../extensions/Tools/MetaPixel/MetaPixel.cs:187
-#: ../extensions/Tools/PictureTile/PictureTile.cs:120
-#, csharp-format
-msgid "Processing \"{0}\""
-msgstr "Processando \"{0}\""
+#~ msgid "More directories"
+#~ msgstr "Mais diretórios"
+
+#~ msgid "Arrange by _Month"
+#~ msgstr "Organizar por _mês"
+
+#~ msgid "Arrange by _Folder"
+#~ msgstr "Organizar por _pasta"
+
+#~ msgid "_Reverse Order"
+#~ msgstr "Inve_rter ordem"
+
+#~ msgid "Edit Tag"
+#~ msgstr "Editar etiqueta"
+
+#~ msgid "Tag Name:"
+#~ msgstr "Nome de etiqueta:"
+
+#~ msgid "<b>Color Management</b>"
+#~ msgstr "<b>Gerenciamento de cor</b>"
+
+#~ msgid "<b>Import Settings</b>"
+#~ msgstr "<b>Configurações de importação</b>"
+
+#~ msgid "<b>Metadata</b>"
+#~ msgstr "<b>Metadados</b>"
+
+#~ msgid "<b>Screensaver</b>"
+#~ msgstr "<b>Proteção de tela</b>"
+
+#~ msgid "<b>Theming</b>"
+#~ msgstr "<b>Temas</b>"
+
+#~ msgid ""
+#~ "<small><i>Choose the folder where F-Spot should store newly imported "
+#~ "photos</i></small>"
+#~ msgstr ""
+#~ "<small><i>Escolha a pasta onde o F-Spot deve armazenar as fotos "
+#~ "importadas mais recentes</i></small>"
+
+#~ msgid ""
+#~ "<small><i>Enable this option to store tags and descriptions inside \n"
+#~ "supported image formats.</i></small>"
+#~ msgstr ""
+#~ "<small><i>Habilite esta opção para armazenar etiquetas e descrições \n"
+#~ "dentro dos formatos de imagem com suporte.</i></small>"
+
+#~ msgid ""
+#~ "<small><i>While acting as a screensaver, F-Spot can display all of your "
+#~ "images, or a small subset based on tags.</i></small>"
+#~ msgstr ""
+#~ "<small><i>Ao funcionar como protetor de tela, o F-spot pode exibir todas "
+#~ "as suas imagens, ou um pequeno subconjunto baseado em etiquetas.</i></"
+#~ "small>"
+
+#~ msgid ""
+#~ "<small><i>You'll have to restart F-Spot to load the new theme.</i></small>"
+#~ msgstr ""
+#~ "<small><i>Você precisa reiniciar o F-Spot para carregar o novo tema.</i></"
+#~ "small>"
+
+#~ msgid "Custom Theme"
+#~ msgstr "Tema personalizado"
+
+#~ msgid "From List:"
+#~ msgstr "Da lista"
+
+#~ msgid "From gtkrc File:"
+#~ msgstr "Do arquivo gtkrc:"
+
+#~ msgid "Images tagged with:"
+#~ msgstr "Imagens etiquetadas com:"
+
+#~ msgid "Make F-Spot your screensaver"
+#~ msgstr "Fazer do F-Spot seu protetor de tela"
+
+#~ msgid "Select A Folder"
+#~ msgstr "Selecionar uma pasta"
+
+#~ msgid "Select A gtkrc File"
+#~ msgstr "Selecionar um arquivo gtkrc"
+
+#~ msgid "Try to use the system display profile"
+#~ msgstr "Tente usar o perfil de exibição do sistema"
+
+#~ msgid "Write _metadata to file"
+#~ msgstr "Gravar _metadados para arquivo"
+
+#~ msgid "_Display:"
+#~ msgstr "_Exibir:"
+
+#~ msgid "_Print output:"
+#~ msgstr "_Saída de impressão:"
+
+#~ msgid "<b>From External Photo</b>"
+#~ msgstr "<b>A partir de foto externa</b>"
+
+#~ msgid "<b>From Photo</b>"
+#~ msgstr "<b>A partir da foto</b>"
+
+#~ msgid "<b>Max Rating</b>"
+#~ msgstr "<b>Avaliação máxima</b>"
+
+#~ msgid "<b>Min Rating</b>"
+#~ msgstr "<b>Avaliação mínima</b>"
+
+#~ msgid "<b>Predefined</b>"
+#~ msgstr "<b>Predefinido</b>"
+
+#~ msgid "<b>Preview</b>"
+#~ msgstr "<b>Visualização</b>"
+
+#~ msgid "<small></small>"
+#~ msgstr "<small></small>"
+
+#~ msgid "Edit Tag Icon"
+#~ msgstr "Editar ícone da etiqueta"
+
+#~ msgid "Edit icon"
+#~ msgstr "Editar ícone"
+
+#~ msgid "No _image"
+#~ msgstr "Sem _imagem"
+
+#~ msgid "Photo 0 of 0"
+#~ msgstr "Foto 0 de 0"
+
+#~ msgid "Set Rating Filter"
+#~ msgstr "Definir filtro de avaliações"
+
+#~ msgid "_Icon:"
+#~ msgstr "Í_cone:"
+
+#~ msgid "Blackout"
+#~ msgstr "Escurecer"
+
+#~ msgid "Select the area that you want blacked out."
+#~ msgstr "Seleciona a área em que você deseja escurecer."
+
+#~ msgid "Pixelate"
+#~ msgstr "Pincelada"
+
+#~ msgid "Select the area that you want pixelated."
+#~ msgstr "Seleciona a área que você deseja pincelar."
+
+#~ msgid "<b><i>There is some previously scheduled items to write</i></b>"
+#~ msgstr ""
+#~ "<b><i>Existem algums itens previamente agendados para gravação</i></b>"
+
+#~ msgid "<b>Photos to Burn</b>"
+#~ msgstr "<b>Fotos para gravar</b>"
+
+#~ msgid "Create CD"
+#~ msgstr "Criar CD"
+
+#~ msgid "Size of the exported selection:"
+#~ msgstr "Tamanho da seleção exportada:"
+
+#~ msgid "_Browse Previously Scheduled Files"
+#~ msgstr "_Navegar nos arquivos agendados anteriormente"
+
+#~ msgid "_Write only these photos to CD"
+#~ msgstr "_Gravar apenas estas fotos no CD"
+
+#~ msgid "Create p_hotomosaic"
+#~ msgstr "Criar _mosaico de fotos"
+
+#~| msgid "No metadata available"
+#~ msgid "Metapixel not available"
+#~ msgstr "Metapixel não disponível"
+
+#~ msgid ""
+#~ "The metapixel executable was not found in path. Please check that you "
+#~ "have it installed and that you have permissions to execute it"
+#~ msgstr ""
+#~ "O executável metapixel não foi encontrado. Por favor, verifique se ele "
+#~ "está instalado e se há permissão para executá-lo."
+
+#~ msgid "No photos for the selection"
+#~ msgstr "Nenhuma foto para a seleção"
+
+#~ msgid "The tags selected provided no pictures. Please select different tags"
+#~ msgstr ""
+#~ "As etiquetas selecionadas não definem qualquer imagem. Por favor, "
+#~ "selecione etiquetas diferentes"
+
+#~ msgid "Creating miniatures"
+#~ msgstr "Criando miniaturas"
+
+#~ msgid "Creating photomosaics"
+#~ msgstr "Criando fotomosaicos"
+
+#~ msgid "Processing \"{0}\""
+#~ msgstr "Processando \"{0}\""
 
 # Uma pesquisa na web não deu suporte à idéia de que PhotoMosaics seja uma
 # marca.
-#: ../extensions/Tools/MetaPixel/MetaPixel.cs:236
-msgid "PhotoMosaics generated!"
-msgstr "Fotomosaicos gerados!"
+#~ msgid "PhotoMosaics generated!"
+#~ msgstr "Fotomosaicos gerados!"
 
-#: ../extensions/Tools/MetaPixel/MetaPixel.cs:254
-#, csharp-format
-msgid "PhotoMosaic"
-msgid_plural "PhotoMosaic ({0})"
-msgstr[0] "Fotomosaico"
-msgstr[1] "Fotomosaico ({0})"
+#~ msgid "PhotoMosaic"
+#~ msgid_plural "PhotoMosaic ({0})"
+#~ msgstr[0] "Fotomosaico"
+#~ msgstr[1] "Fotomosaico ({0})"
 
-#: ../extensions/Tools/PictureTile/PictureTile.addin.xml.h:1
-msgid "Create photo_wall"
-msgstr "Criar _parede de fotos"
+#~ msgid "Create photo_wall"
+#~ msgstr "Criar _parede de fotos"
 
 # PictureTile é o nome de uma extensão para o F-Spot
-#: ../extensions/Tools/PictureTile/PictureTile.cs:71
-msgid "PictureTile not available"
-msgstr "PictureTile não disponível"
+#~ msgid "PictureTile not available"
+#~ msgstr "PictureTile não disponível"
 
-#: ../extensions/Tools/PictureTile/PictureTile.cs:72
-msgid ""
-"The picturetile.pl executable was not found in path. Please check that you "
-"have it installed and that you have permissions to execute it"
-msgstr ""
-"O executável picturetile.pl não foi encontrado. Por favor, verifique se ele "
-"está instalado e se há permissão para executá-lo"
+#~ msgid ""
+#~ "The picturetile.pl executable was not found in path. Please check that "
+#~ "you have it installed and that you have permissions to execute it"
+#~ msgstr ""
+#~ "O executável picturetile.pl não foi encontrado. Por favor, verifique se "
+#~ "ele está instalado e se há permissão para executá-lo"
 
-#: ../extensions/Tools/PictureTile/PictureTile.cs:110
-msgid "Preparing selected pictures"
-msgstr "Preparando imagens selecionadas"
+#~ msgid "Preparing selected pictures"
+#~ msgstr "Preparando imagens selecionadas"
 
-#: ../extensions/Tools/PictureTile/PictureTile.cs:201
-msgid "PhotoWall generated!"
-msgstr "Parede de fotos gerada!"
+#~ msgid "PhotoWall generated!"
+#~ msgstr "Parede de fotos gerada!"
 
-#: ../extensions/Tools/PictureTile/PictureTile.cs:202
-msgid ""
-"Your photo wall have been generated and imported in F-Spot. Select the last "
-"roll to see it"
-msgstr ""
-"Sua parede de fotos foi gerada e importada pelo F-Spot. Selecione o último "
-"rolo para vê-la."
+#~ msgid ""
+#~ "Your photo wall have been generated and imported in F-Spot. Select the "
+#~ "last roll to see it"
+#~ msgstr ""
+#~ "Sua parede de fotos foi gerada e importada pelo F-Spot. Selecione o "
+#~ "último rolo para vê-la."
 
-#: ../extensions/Tools/PictureTile/PictureTile.cs:205
-msgid "Error importing photowall"
-msgstr "Erro ao importar parede de fotos"
+#~ msgid "Error importing photowall"
+#~ msgstr "Erro ao importar parede de fotos"
 
-#: ../extensions/Tools/PictureTile/PictureTile.cs:206
-msgid ""
-"An error occurred while importing the newly generated photowall to F-Spot"
-msgstr "Ocorreu um erro ao importar o novo photowall gerado para o F-Spot"
+#~ msgid ""
+#~ "An error occurred while importing the newly generated photowall to F-Spot"
+#~ msgstr "Ocorreu um erro ao importar o novo photowall gerado para o F-Spot"
 
-#: ../extensions/Tools/HashJob/HashJob.cs:53
-msgid ""
-"In order to detect duplicates on pictures you imported before 0.5.0, F-Spot "
-"needs to analyze your image collection. This is not done by default as it's "
-"time consuming. You can Start or Pause this update process using this dialog."
-msgstr ""
-"Para detectar imagens duplicadas que você importou antes da versão 0.5.0, o "
-"F-Spot precisa analisar a sua coleção de imagens. Isto não é feito por "
-"padrão pelo consumo de tempo. Você pode Iniciar ou Pausar este processo de "
-"atualização usando este diálogo."
+#~ msgid "<b>F-Spot tags</b>"
+#~ msgstr "<b>Etiquetas do F-Spot</b>"
 
-#: ../extensions/Tools/HashJob/HashJob.cs:102
-msgid "Processing images..."
-msgstr "Processando imagens..."
+#~ msgid "<b>Tabblo account</b>"
+#~ msgstr "<b>Conta Tabblo</b>"
 
-#: ../extensions/Tools/HashJob/HashJob.cs:108
-msgid "Stopped"
-msgstr "Parado"
+#~ msgid ""
+#~ "<small><i>F-Spot tags can help you track the export status of photos. "
+#~ "Example: Use one tag for the photos that you plan to export, and another "
+#~ "one for those already exported. Here, you can tell F-Spot to "
+#~ "automatically replace these tags as appropriate.</i></small>"
+#~ msgstr ""
+#~ "<small><i>As etiquetas do F-Spot podem ajudá-lo a acompanhar o status de "
+#~ "exportação de fotos. Exemplo: Utilize uma etiqueta para as fotos que você "
+#~ "planeja exportar e outra para aquelas já exportadas. Aqui, você pode "
+#~ "dizer ao F-Spot para substituir essas etiquetas conforme necessário.</i></"
+#~ "small>"
 
-#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.addin.xml.h:1
-msgid "_PicasaWeb..."
-msgstr "Picasa_Web..."
+#~ msgid "Rem_ove from exported photos:"
+#~ msgstr "Rem_over das fotos exportadas:"
 
-#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:441
-msgid "Error while creating Album"
-msgstr "Erro ao criar o álbum"
+#~ msgid "Select..."
+#~ msgstr "Selecionar..."
 
-#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:442
-#, csharp-format
-msgid ""
-"The following error was encountered while attempting to create an album: {0}"
-msgstr "O seguinte erro foi encontrado ao tentar criar um álbum: {0}"
+#~ msgid "_Attach to exported photos:"
+#~ msgstr "_Anexar às fotos exportadas:"
 
-#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:620
-#, csharp-format
-msgid "{0} Sent"
-msgstr "{0} enviado"
+#~ msgid "<b>{0}</b>."
+#~ msgstr "<b>{0}</b>"
 
-#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:622
-#, csharp-format
-msgid "{0} of approx. {1}"
-msgstr "{0} de aprox. {1}"
+#~ msgid "A trust error occured while attempting to access"
+#~ msgstr "Ocorreu um erro de confiança ao acessar"
 
-#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:691
-#: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:594
-#, csharp-format
-msgid "Error Uploading To Gallery: {0}"
-msgstr "Erro ao enviar para o Gallery: {0}"
+#~ msgid "Abort this session"
+#~ msgstr "Interromper esta sessão"
 
-#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:778
-#, csharp-format
-msgid "Available space: {0}, {1}% used out of {2}"
-msgstr "Espaço disponível: {0}, {1}% usado de {2}"
+#~ msgid "Always trust this site's certificate"
+#~ msgstr "Sempre confiar neste certificador"
 
-#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:891
-#, csharp-format
-msgid ""
-"The selected album has a limit of {0} pictures,\n"
-"which would be passed with the current selection of {1} images"
-msgstr ""
-"O álbum selecionado possui um limite de {0} fotos,\n"
-"que poderá ser ultrapassado com a seleção atual de {1} imagens"
+#~ msgid "Do you wish to:"
+#~ msgstr "Você gostaria de:"
 
-#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:3
-msgid "<b>PicasaWeb Export</b>"
-msgstr "<b>Exportação para PicasaWeb</b>"
+#~ msgid "Trust Error"
+#~ msgstr "Erro de confiança"
 
-#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:7
-msgid ""
-"<span weight='bold' size='larger'>Your Google Account is locked</span>\n"
-msgstr ""
-"<span weight=\"bold\" size=\"larger\">Sua Conta do Google está bloqueada</"
-"span>\n"
-
-#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:12
-msgid ""
-"Please verify that the settings for this gallery are correct.\n"
-"Enter the letters as they are shown in the image in\n"
-"the 'Captcha' field. <i>Letters are not case-sensitive</i>"
-msgstr ""
-"Por favor, verifique se as configurações desta galeria estão corretas.\n"
-"Digite as letras como são mostradas na imagem no campo \"Captcha\".\n"
-"<i>Letras não são diferenciadas maiúsculas de minúsculas</i>"
-
-#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:15
-#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:8
-msgid "Public Album"
-msgstr "Álbum público"
-
-#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:16
-#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:10
-msgid "_Album Title:"
-msgstr "Nome do á_lbum:"
-
-#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:17
-msgid "_Autorotate"
-msgstr "Girar _automaticamente"
-
-#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:18
-msgid "_Captcha:"
-msgstr "_Captcha:"
-
-#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:3
-msgid "<b>SmugMug Export</b>"
-msgstr "<b>Exportação para SmugMug</b>"
-
-#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:9
-msgid "_Account:"
-msgstr "_Conta:"
-
-#: ../extensions/Exporters/SmugMugExport/SmugMugExport.addin.xml.h:1
-msgid "_SmugMug..."
-msgstr "_SmugMug..."
-
-#: ../extensions/Exporters/TabbloExport/Tabblo/Connection.cs:132
-#, csharp-format
-msgid "Uploading photo \"{0}\""
-msgstr "Enviando foto \"{0}\""
-
-#: ../extensions/Exporters/TabbloExport/Tabblo/Connection.cs:206
-msgid "Logging into Tabblo"
-msgstr "Efetuando login em Tabblo"
-
-#: ../extensions/Exporters/TabbloExport/Tabblo/Connection.cs:267
-msgid "Obtaining URL for upload"
-msgstr "Obtendo a URL para o envio"
-
-#: ../extensions/Exporters/TabbloExport/TabbloExport.addin.xml.h:1
-msgid "_Tabblo..."
-msgstr "_Tabblo..."
-
-#: ../extensions/Exporters/TabbloExport/TabbloExport.cs:308
-msgid "Done sending photos"
-msgstr "Envio de fotos completo"
-
-#: ../extensions/Exporters/TabbloExport/TabbloExport.cs:310
-msgid "Upload complete"
-msgstr "Envio completo"
-
-#: ../extensions/Exporters/TabbloExport/TabbloExport.cs:316
-msgid "Error uploading to Tabblo: "
-msgstr "Erro ao enviar para Tabblo: "
-
-#: ../extensions/Exporters/TabbloExport/TabbloExport.glade.h:1
-msgid "<b>F-Spot tags</b>"
-msgstr "<b>Etiquetas do F-Spot</b>"
-
-#: ../extensions/Exporters/TabbloExport/TabbloExport.glade.h:3
-msgid "<b>Tabblo account</b>"
-msgstr "<b>Conta Tabblo</b>"
-
-#: ../extensions/Exporters/TabbloExport/TabbloExport.glade.h:4
-msgid ""
-"<small><i>F-Spot tags can help you track the export status of photos. "
-"Example: Use one tag for the photos that you plan to export, and another one "
-"for those already exported. Here, you can tell F-Spot to automatically "
-"replace these tags as appropriate.</i></small>"
-msgstr ""
-"<small><i>As etiquetas do F-Spot podem ajudá-lo a acompanhar o status de "
-"exportação de fotos. Exemplo: Utilize uma etiqueta para as fotos que você "
-"planeja exportar e outra para aquelas já exportadas. Aqui, você pode dizer "
-"ao F-Spot para substituir essas etiquetas conforme necessário.</i></small>"
-
-#: ../extensions/Exporters/TabbloExport/TabbloExport.glade.h:6
-msgid "Rem_ove from exported photos:"
-msgstr "Rem_over das fotos exportadas:"
-
-#: ../extensions/Exporters/TabbloExport/TabbloExport.glade.h:7
-msgid "Select..."
-msgstr "Selecionar..."
-
-#: ../extensions/Exporters/TabbloExport/TabbloExport.glade.h:8
-msgid "_Attach to exported photos:"
-msgstr "_Anexar às fotos exportadas:"
-
-#: ../extensions/Exporters/TabbloExport/TrustError.glade.h:1
-msgid "<b>{0}</b>."
-msgstr "<b>{0}</b>"
-
-#: ../extensions/Exporters/TabbloExport/TrustError.glade.h:2
-msgid "A trust error occured while attempting to access"
-msgstr "Ocorreu um erro de confiança ao acessar"
-
-#: ../extensions/Exporters/TabbloExport/TrustError.glade.h:3
-msgid "Abort this session"
-msgstr "Interromper esta sessão"
-
-#: ../extensions/Exporters/TabbloExport/TrustError.glade.h:4
-msgid "Always trust this site's certificate"
-msgstr "Sempre confiar neste certificador"
-
-#: ../extensions/Exporters/TabbloExport/TrustError.glade.h:5
-msgid "Do you wish to:"
-msgstr "Você gostaria de:"
-
-#: ../extensions/Exporters/TabbloExport/TrustError.glade.h:6
-msgid "Trust Error"
-msgstr "Erro de confiança"
-
-#: ../extensions/Exporters/TabbloExport/TrustError.glade.h:7
-msgid "Trust the site's certificate this once"
-msgstr "Confiar neste certificador apenas esta vez"
+#~ msgid "Trust the site's certificate this once"
+#~ msgstr "Confiar neste certificador apenas esta vez"
 
 #~ msgid ""
 #~ "The \"F-Spot Manual\" could not be found.  Please verify that your "
