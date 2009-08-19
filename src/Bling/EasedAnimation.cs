@@ -28,7 +28,16 @@ namespace FSpot.Bling
 		{
 		}
 
+		public EasedAnimation (T from, T to, TimeSpan duration, Action<T> action, GLib.Priority priority) : this (from, to, duration, action, null, priority)
+		{
+		}
+
 		public EasedAnimation (T from, T to, TimeSpan duration, Action<T> action, EasingFunction easingFunction) : base (from, to, duration, action)
+		{
+			this.easingFunction = easingFunction;
+		}
+
+		public EasedAnimation (T from, T to, TimeSpan duration, Action<T> action, EasingFunction easingFunction, GLib.Priority priority) : base (from, to, duration, action, priority)
 		{
 			this.easingFunction = easingFunction;
 		}

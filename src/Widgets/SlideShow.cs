@@ -37,7 +37,7 @@ namespace FSpot.Widgets
 			}
 
 			flip = new Delay (6000, delegate {item.MoveNext (true); return true;});
-			animation = new DoubleAnimation (0, 1, new TimeSpan (0, 0, 2), HandleProgressChanged);
+			animation = new DoubleAnimation (0, 1, new TimeSpan (0, 0, 2), HandleProgressChanged, GLib.Priority.Default);
 		}
 
 		SlideShowTransition transition;
@@ -67,22 +67,6 @@ namespace FSpot.Widgets
 		{
 			flip.Stop ();
 		}
-
-		//DROP THIS
-		public ComboBox GetCombo ()
-		{
-			ComboBox combo = ComboBox.NewText ();
-			combo.HasFrame = false;
-
-//			foreach (GlTransition t in transitions)
-//				combo.AppendText (t.Name);
-//		       
-//			combo.Active = current_transition;
-	//		combo.Changed += HandleComboChanged;
-			combo.Show ();
-			return combo;
-		}
-		
 #endregion
 
 #region Event Handlers
@@ -112,11 +96,10 @@ namespace FSpot.Widgets
 						}
 						Cms.Profile screen_profile;
 						if (FSpot.ColorManagement.Profiles.TryGetValue (Preferences.Get<string> (Preferences.COLOR_MANAGEMENT_DISPLAY_PROFILE), out screen_profile)) 
-							//FIXME: This makes the colormanagement to crash
-							//FSpot.ColorManagement.ApplyProfile (next, img.GetProfile (), screen_profile);
 							FSpot.ColorManagement.ApplyProfile (next, screen_profile);
-					} catch (Exception)
-					{}
+					} catch (Exception) {
+						next = PixbufUtils.ErrorPixbuf;
+					}
 				}
 
 				if (animation.IsRunning)

@@ -31,6 +31,7 @@ namespace FSpot.Bling
 		T to;
 		Action<T> action;
 		AnimationState state;
+		GLib.Priority priority = GLib.Priority.DefaultIdle;
 
 		public Animation ()
 		{
@@ -41,12 +42,17 @@ namespace FSpot.Bling
 			state = AnimationState.NotRunning;
 		}
 
-		public Animation (T from, T to, TimeSpan duration, Action<T> action)
+		public Animation (T from, T to, TimeSpan duration, Action<T> action) : this (from, to, duration, action, GLib.Priority.DefaultIdle)
+		{
+		}
+
+		public Animation (T from, T to, TimeSpan duration, Action<T> action, GLib.Priority priority)
 		{
 			this.from = from;
 			this.to = to;
 			this.duration = duration;
 			this.action = action;
+			this.priority = priority;
 			state = AnimationState.NotRunning;
 		}
 
