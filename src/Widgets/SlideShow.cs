@@ -112,7 +112,9 @@ namespace FSpot.Widgets
 						}
 						Cms.Profile screen_profile;
 						if (FSpot.ColorManagement.Profiles.TryGetValue (Preferences.Get<string> (Preferences.COLOR_MANAGEMENT_DISPLAY_PROFILE), out screen_profile)) 
-							FSpot.ColorManagement.ApplyProfile (next, img.GetProfile (), screen_profile);
+							//FIXME: This makes the colormanagement to crash
+							//FSpot.ColorManagement.ApplyProfile (next, img.GetProfile (), screen_profile);
+							FSpot.ColorManagement.ApplyProfile (next, screen_profile);
 					} catch (Exception)
 					{}
 				}
