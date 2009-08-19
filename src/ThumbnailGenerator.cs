@@ -72,14 +72,6 @@ namespace FSpot {
 				
 		}
 
-		public override void Request (Uri uri, int order, int width, int height)
-		{
-			if (ThumbnailFactory.ThumbnailExists (uri) && ThumbnailFactory.ThumbnailIsRecent (uri))
-				return;
-
-			base.Request (uri, order, width, height);
-		}
-
 		protected override void ProcessRequest (RequestItem request)
 		{
 			try {
