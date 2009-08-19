@@ -80,6 +80,17 @@ namespace FSpot.Widgets
 				if (prev != null)
 					prev.Dispose ();
 				prev = next;
+
+				LoadNext ();
+
+				if (animation.IsRunning)
+					animation.Stop ();
+				animation.Start ();
+			}
+		}
+
+		void LoadNext ()
+		{
 				if (next != null) {
 					next = null;
 				}
@@ -101,11 +112,6 @@ namespace FSpot.Widgets
 						next = PixbufUtils.ErrorPixbuf;
 					}
 				}
-
-				if (animation.IsRunning)
-					animation.Stop ();
-				animation.Start ();
-			}
 		}
 
 		double progress = 0;
@@ -137,6 +143,7 @@ namespace FSpot.Widgets
 		protected override void OnSizeAllocated (Rectangle allocation)
 		{
 			base.OnSizeAllocated (allocation);
+			LoadNext ();
 			QueueDraw ();
 		}
 
