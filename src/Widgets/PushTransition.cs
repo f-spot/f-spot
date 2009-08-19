@@ -13,7 +13,6 @@ using System;
 
 using Cairo;
 using Gdk;
-using Mono.Unix;
 
 using FSpot.Utils;
 
@@ -23,7 +22,7 @@ namespace FSpot.Widgets
 {
 	public class PushTransition : CairoTransition
 	{
-		public PushTransition () : base (Catalog.GetString ("Push"))
+		public PushTransition () : base ("Push")
 		{
 		}
 

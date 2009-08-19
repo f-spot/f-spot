@@ -16,7 +16,6 @@ using Gdk;
 
 using FSpot.Utils;
 using FSpot.Widgets;
-using Mono.Unix;
 
 using Color = Cairo.Color;
 
@@ -24,7 +23,7 @@ namespace DissolveTransition
 {
 	public class DissolveTransition : CairoTransition
 	{
-		public DissolveTransition () : base (Catalog.GetString ("Dissolve"))
+		public DissolveTransition () : base ("Dissolve")
 		{
 		}
 

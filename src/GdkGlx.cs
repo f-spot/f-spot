@@ -2,7 +2,6 @@ using System;
 using System.Runtime.InteropServices;
 using FSpot.Widgets;
 using FSpot.Utils;
-using Tao.OpenGl;
 
 namespace GdkGlx {
 	public enum GlxAttribute {

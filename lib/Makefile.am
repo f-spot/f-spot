@@ -11,8 +11,7 @@ UNCONDITIONAL_SUBDIRS = \
 	libfspot			\
 	libgphoto2-sharp	\
 	mono-addins			\
-	semweb				\
-	Tao
+	semweb
 
 # Depending on whether the packaged ndesk-dbus is used, we might not want to
 # build it, but we will always want to ship it. Also, dpap-sharp isn't built,

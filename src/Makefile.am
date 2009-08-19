@@ -174,7 +174,6 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/FormClient.cs			\
 	$(srcdir)/FullScreenView.cs		\
 	$(srcdir)/GdkGlx.cs			\
-	$(srcdir)/GlTransition.cs		\
 	$(srcdir)/GroupAdaptor.cs		\
 	$(srcdir)/GroupSelector.cs		\
 	$(srcdir)/Accelerometer.cs		\
@@ -250,8 +249,6 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/TagStore.cs			\
 	$(srcdir)/ThumbnailCache.cs		\
 	$(srcdir)/ThumbnailGenerator.cs		\
-	$(srcdir)/Texture.cs			\
-	$(srcdir)/TextureDisplay.cs             \
 	$(srcdir)/Term.cs			\
 	$(srcdir)/TimeAdaptor.cs		\
 	$(srcdir)/TipWindow.cs			\
@@ -385,7 +382,6 @@ F_SPOT_ASSEMBLIES = 				\
 	$(LINK_FLICKR)				\
 	$(LINK_KEYRING)				\
 	$(LINK_SMUGMUG)				\
-	$(LINK_TAO)				\
 	$(LINK_SEMWEB)				\
 	$(LINK_GTKSHARPBEANS)			\
 	$(LINK_GIOSHARP)			\

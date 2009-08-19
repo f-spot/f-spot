@@ -17,7 +17,6 @@ REFS =					\
 	-r:$(top_builddir)/src/FSpot.Widgets.dll\
 	-r:Mono.Cairo				\
 	-pkg:gtk-sharp-2.0			\
-	-r:Mono.Posix				\
 	$(LINK_MONO_ADDINS)			\
 	$(LINK_SEMWEB)				\
 	$(LINK_GPHOTO2)				\

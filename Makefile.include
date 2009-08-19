@@ -16,10 +16,6 @@ DIR_KEYRING = $(top_builddir)/lib/gnome-keyring-sharp
 DIR_LIBFSPOT = $(top_builddir)/lib/libfspot
 DIR_SEMWEB = $(top_builddir)/lib/semweb
 DIR_SRC = $(top_builddir)/src
-DIR_TAO_OPENGL = $(top_builddir)/lib/Tao/Tao.OpenGl
-DIR_TAO_GLU = $(top_builddir)/lib/Tao/Tao.OpenGl.Glu
-DIR_TAO_EXTENSIONLOADER = $(top_builddir)/lib/Tao/Tao.OpenGl.ExtensionLoader
-DIR_TAO_GLPOSTPROCESS = $(top_builddir)/lib/Tao/Tao.GlPostProcess
 DIR_GIOSHARP = $(top_builddir)/lib/gio-sharp/gio
 DIR_GTKSHARPBEANS = $(top_builddir)/lib/gtk-sharp-beans
 
@@ -33,10 +29,6 @@ LINK_MONO_ADDINS =					\
 	-r:$(DIR_ADDINS_SETUP)/Mono.Addins.Setup.dll	\
 	-r:$(DIR_ADDINS_GUI)/Mono.Addins.Gui.dll
 LINK_SEMWEB = -r:$(DIR_SEMWEB)/SemWeb.dll
-LINK_TAO = 								\
-	-r:$(DIR_TAO_OPENGL)/Tao.OpenGl.dll				\
-	-r:$(DIR_TAO_GLU)/Tao.OpenGl.Glu.dll				\
-	-r:$(DIR_TAO_EXTENSIONLOADER)/Tao.OpenGl.ExtensionLoader.dll
 LINK_GIOSHARP = -r:$(DIR_GIOSHARP)/gio-sharp.dll
 LINK_GTKSHARPBEANS = -r:$(DIR_GTKSHARPBEANS)/gtk-sharp-beans.dll
 

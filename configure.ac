@@ -307,11 +307,6 @@ lib/mono-addins/Mono.Addins.Gui/Makefile
 lib/mono-addins/Mono.Addins/Makefile
 lib/mono-addins/Mono.Addins.Setup/Makefile
 lib/semweb/Makefile
-lib/Tao/Makefile
-lib/Tao/Tao.GlPostProcess/Makefile
-lib/Tao/Tao.OpenGl.ExtensionLoader/Makefile
-lib/Tao/Tao.OpenGl.Glu/Makefile
-lib/Tao/Tao.OpenGl/Makefile
 docs/Makefile
 icons/Makefile
 tools/Makefile
