@@ -143,7 +143,7 @@ namespace FSpot.Loaders {
 
 #region private stuffs
 		System.IO.Stream image_stream;
-		const int count = 1 << 20;
+		const int count = 1 << 16;
 		byte [] buffer = new byte [count];
 		bool notify_completed = false;
 		Rectangle damage;
