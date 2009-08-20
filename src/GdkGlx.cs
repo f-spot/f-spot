@@ -88,26 +88,6 @@ namespace GdkGlx {
 			public int bits_per_rgb;
 		}
 
-#if false
-		public Gdk.Colormap GetColormap (Gdk.Screen screen, )
-		{
-			DrawableFormat template = new DrawableFormat ();
-			template.Color = new ColorFormat ();
-			FormatMask mask = FormatMask.None;
-			int num = screen.Number;
-			
-			IntPtr dformat = GlitzAPI.glitz_glx_find_window_format (GdkUtils.GetXDisplay (screen.Display), 
-										num, 
-										mask, 
-										ref template,
-										0);
-			
-			visual_info = GlitzAPI.glitz_glx_get_visual_info_from_format (dpy, scr, dformat);
-			Gdk.Visual visual = new Gdk.Visual (gdkx_visual_get (XVisualIDFromVisual (vinfo)));					
-			new Gdk.Colormap (visual, true);
-			*/
-		}
-#endif
 		public Gdk.Colormap GetColormap ()
 		{
 			return new Gdk.Colormap (visual, false);

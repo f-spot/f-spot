@@ -298,8 +298,6 @@ lib/GKeyFile/Makefile
 lib/gio-sharp/Makefile
 lib/gio-sharp/gio/Makefile
 lib/gio-sharp/generator/Makefile
-lib/glitz-sharp/Makefile
-lib/glitz-sharp/src/Makefile
 lib/gnome-keyring-sharp/Makefile
 lib/gtk-sharp-beans/Makefile
 lib/libfspot/Makefile

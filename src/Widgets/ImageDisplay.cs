@@ -191,8 +191,6 @@ namespace FSpot.Widgets {
 			base.OnExposeEvent (args);
 
 			Context ctx = Gdk.CairoHelper.Create (GdkWindow);
-			//Surface glitz = CairoUtils.CreateGlitzSurface (GdkWindow);
-			//Context ctx = new Context (glitz);
 			if (double_buffer) {
 				ImageSurface cim = new ImageSurface (Format.RGB24, 
 								     Allocation.Width, 
@@ -215,7 +213,6 @@ namespace FSpot.Widgets {
 				OnExpose (ctx, args.Region);
 			}
 
-			//glitz.Flush ();
 			((IDisposable)ctx).Dispose ();
 			return true;
 		}

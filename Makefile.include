@@ -8,7 +8,6 @@ DIR_ADDINS_GUI = $(top_builddir)/lib/mono-addins/Mono.Addins.Gui
 DIR_ADDINS_SETUP = $(top_builddir)/lib/mono-addins/Mono.Addins.Setup
 DIR_DOCS = $(top_builddir)/docs
 DIR_EXTENSIONS = $(top_builddir)/extensions
-DIR_GLITZ = $(top_builddir)/lib/glitz-sharp/src
 DIR_GPHOTO2 = $(top_builddir)/lib/libgphoto2-sharp
 DIR_ICONS = $(top_builddir)/icons
 DIR_JPEGTRAN = $(top_builddir)/lib/libjpegtran
@@ -22,7 +21,6 @@ DIR_GTKSHARPBEANS = $(top_builddir)/lib/gtk-sharp-beans
 ## Links
 
 LINK_KEYRING = -r:$(DIR_KEYRING)/gnome-keyring-sharp.dll
-LINK_GLITZ = -r:$(DIR_GLITZ)/NDesk.Glitz.dll 
 LINK_GPHOTO2 = -r:$(DIR_GPHOTO2)/libgphoto2-sharp.dll
 LINK_MONO_ADDINS =					\
 	-r:$(DIR_ADDINS_ADDINS)/Mono.Addins.dll		\

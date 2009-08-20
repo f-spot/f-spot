@@ -4,7 +4,6 @@
 UNCONDITIONAL_SUBDIRS = \
 	GKeyFile 			\
 	gio-sharp			\
-	glitz-sharp			\
 	gnome-keyring-sharp	\
 	gtk-sharp-beans		\
 	libjpegtran			\

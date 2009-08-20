@@ -339,7 +339,6 @@ UTILS_ASSEMBLIES =				\
 	-pkg:gnome-sharp-2.0			\
 	-r:Mono.Posix				\
 	-r:Mono.Cairo				\
-	$(LINK_GLITZ)				\
 	$(GCONF_PKG)
 
 JOBSCHEDULER_ASSEMBLIES =			\
