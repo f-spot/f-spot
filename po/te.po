@@ -1,0 +1,3560 @@
+# translation of f-spot.po.master.te.po to Telugu
+# Telugu translation for f-spot.
+# Copyright (C) 2009 f-spot's COPYRIGHT HOLDER
+# This file is distributed under the same license as the f-spot package.
+#
+# Krishna Babu K <kkrothap@redhat.com>, 2009.
+msgid ""
+msgstr ""
+"Project-Id-Version: f-spot.po.master.te\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=f-spot&component=General\n"
+"POT-Creation-Date: 2009-08-14 23:45+0000\n"
+"PO-Revision-Date: 2009-08-20 21:53+0530\n"
+"Last-Translator: Krishna Babu K <kkrothap@redhat.com>\n"
+"Language-Team: Telugu <en@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n!=1);\n\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"X-Generator: KBabel 1.11.4\n"
+
+#: ../extensions/Exporters/CDExport/CDExport.addin.xml.h:1
+msgid "_CD..."
+msgstr "_CD..."
+
+#: ../extensions/Exporters/CDExport/CDExport.cs:162
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:392
+#: ../src/CameraFileSelectionDialog.cs:199
+msgid "Transferring Pictures"
+msgstr "చిత్రములను బదిలీకరించుచున్నది"
+
+#: ../extensions/Exporters/CDExport/CDExport.cs:218
+#, csharp-format
+msgid "Transferring picture \"{0}\" To CD"
+msgstr "చిత్రము \"{0}\"ను CDకు బదిలీకరించుచున్నది"
+
+#. Note for translators: This indicates the current photo is photo {0} of {1} out of photos
+#: ../extensions/Exporters/CDExport/CDExport.cs:220
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:349
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:245
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:781
+#: ../src/MainWindow.cs:638 ../src/UI.Dialog/AdjustTimeDialog.cs:129
+#: ../src/UI.Dialog/ProgressDialog.cs:92
+#, csharp-format
+msgid "{0} of {1}"
+msgstr "{1} లో {0}"
+
+#: ../extensions/Exporters/CDExport/CDExport.cs:233
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:387
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:379
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:285
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:806
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:704
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:607
+msgid "Done Sending Photos"
+msgstr "ఛాయాచిత్రములను పంపుట అయినది"
+
+#: ../extensions/Exporters/CDExport/CDExport.cs:235
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:287
+msgid "Transfer Complete"
+msgstr "బదిలీకరణ పూర్తైనది"
+
+#: ../extensions/Exporters/CDExport/CDExport.cs:242
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:292
+msgid "Error While Transferring"
+msgstr "బదిలీకరించుటలో దోషము"
+
+#: ../extensions/Exporters/CDExport/CDExport.cs:250
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:311
+msgid "Error Transferring"
+msgstr "దోష బదిలీకరణ"
+
+#: ../extensions/Exporters/CDExport/CDExport.cs:263
+msgid "copying..."
+msgstr "నకలుతీయుచున్నది..."
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.addin.xml.h:1
+msgid "F_acebook..."
+msgstr "ఫేస్‌బుక్... (_a)"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:99
+msgid "Waiting for authorization"
+msgstr "ధృవీకరణము కొరకు వేచివుంది"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:100
+msgid ""
+"F-Spot will now launch your browser so that you can enable the permission "
+"you just selected.\n"
+"\n"
+"Once you are directed by Facebook to return to this application, click \"Ok"
+"\" below."
+msgstr ""
+"F-Spot మీ బ్రౌజర్‌ను యిప్పుడు ఆరంబిస్తుంది అలా మీరు యెంచుకొనిన అనుమతిని మీరు చేతనం చేయగల్గుతారు.\n"
+"\n"
+"ఈ అనువర్తనమునకు తిరిగివచ్చుటకు మీరు ఫేస్‌బుక్ ద్వారా వొకసారి నిర్దేశించబడినతర్వాత, క్రిందన "
+"\"సరే\" నొక్కుము."
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:279
+msgid "Too many images to export"
+msgstr "ఎగుమతి చేయుటకు చాలా ప్రతిబింబములు"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:280
+msgid ""
+"Facebook only permits 60 photographs per album.  Please refine your "
+"selection and try again."
+msgstr ""
+"ఫేస్‌బుక్ ఆల్బమ్‌నకు 60 చిత్రములను మాత్రమే అనుమతిస్తుంది.  దయచేసి మీ యెంపికను సరిచేసి "
+"మరలా తిరిగి ప్రయత్నించండి."
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:297
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:475
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:730
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:597
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:522
+msgid "Uploading Pictures"
+msgstr "చిత్రములను అప్‌లోడు చేయుచున్నది"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:326
+msgid "Album must have a name"
+msgstr "ఆల్బమ్ తప్పక వొక నామమును కలిగివుండాలి"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:327
+msgid "Please name your album or choose an existing album."
+msgstr "దయచేసి మీ ఆల్బమ్‌కు పేరు పెట్టండి లేదా వున్నదానిని యెంచుకొనండి."
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:341
+msgid "Creating a new album failed"
+msgstr "కొత్త ఆల్బమును సృష్టించుట విఫలమైంది"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:342
+#, csharp-format
+msgid ""
+"An error occurred creating a new album.\n"
+"\n"
+"{0}"
+msgstr ""
+"కొత్త ఆల్బమును సృష్టించుటలో వొక దోషము యెదురైంది.\n"
+"\n"
+"{0}"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:364
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:660
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:565
+#, csharp-format
+msgid "Uploading picture \"{0}\" ({1} of {2})"
+msgstr "చిత్రము \"{0}\"ను అప్‌లోడు చేయుచున్నది ({2} లో {1})"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:378
+#, csharp-format
+msgid "Error Uploading To Facebook: {0}"
+msgstr "ఫేస్‌బుక్‌నకు అప్‌లోడు చేయుటలో దోషము: {0}"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:379
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:370
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:250
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:797
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:693
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:596
+#: ../extensions/Exporters/TabbloExport/TabbloExport.cs:319
+#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.ErrorDialog.cs:40
+msgid "Error"
+msgstr "దోషము"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:389
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:381
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:808
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:706
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:609
+msgid "Upload Complete"
+msgstr "అప్‌లోడు పూర్తైనది"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:186
+msgid "Waiting for authentication"
+msgstr "ధృవీకరణ కొరకు వేచివుంది"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:187
+msgid ""
+"F-Spot will now launch your browser so that you can log into Facebook.\n"
+"\n"
+"Once you are directed by Facebook to return to this application, click \"Ok"
+"\" below.  F-Spot will cache your session in gnome-keyring, if possible, and "
+"re-use it on future Facebook exports."
+msgstr ""
+"F-Spot మీ బ్రౌజర్‌ను ఆరంబిస్తుంది అలా మీరు ఫేస్‌బుక్‌నకు లాగ్ కాగలరు.\n"
+"\n"
+"ఈ అనువర్తనమునకు తిరిగివచ్చుటకు మీరు ఫేస్‌బుక్ ద్వారా వొకసారి నిర్దేశించబడినతర్వాత, క్రిందన "
+"\"సరే\" నొక్కుము. F-Spot మీ సెషన్‌ను gnome-keyringనందు క్యాచీ చేస్తుంది, వీలైతే, "
+"దీనిని భవిష్య ఫేస్‌బుక్ యెగుమతుల కొరకు తిరిగివుపయోగిస్తుంది."
+
+#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:192
+msgid "Authenticating..."
+msgstr "ధృవీకరించుచున్నది..."
+
+#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:202
+msgid "Error logging into Facebook"
+msgstr "ఫేస్‌బుక్ నందు లాగిన్ అవుటలో దోషము"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:203
+msgid ""
+"There was a problem logging into Facebook.  Check your credentials and try "
+"again."
+msgstr "ఫేస్‌బుక్‌నందు లాగిన్ అవ్వుటలో సమస్యవుంది.  మీ గుర్తింపులను పరిశీలించి మరలా తిరిగి ప్రయత్నించండి."
+
+#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:212
+msgid "Authorizing Session"
+msgstr "అధీకృతమైన సెషన్"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:221
+msgid "Session established, fetching user info..."
+msgstr "సెషన్ యేర్పరచబడింది, వినియోగదారి సమాచారమును పొందుచున్నది..."
+
+#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:227
+msgid "Session established, fetching friend list..."
+msgstr "సెషన్ యేర్పరచబడింది, స్నేహితుల జాబితాను సేకరిస్తోంది..."
+
+#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:237
+msgid "Session established, fetching friend details..."
+msgstr "సెషన్ యేర్పరచబడింది, స్నేహితుల జాబితాను సేకరిస్తోంది..."
+
+#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:247
+msgid "Session established, fetching photo albums..."
+msgstr "సెషన్ యేర్పరచబడింది, చిత్ర ఆల్బమ్సు సేకరిస్తోంది..."
+
+#. Note for translators: {0} and {1} are respectively firstname and surname of the user
+#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:260
+#, csharp-format
+msgid "{0} {1} is logged into Facebook"
+msgstr "{0} {1} ఫేస్‌బుక్ నందు లాగిన్ అయ్యారు."
+
+#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:266
+msgid "Facebook Connection Error"
+msgstr "ఫేస్‌బుక్ అనుసంధానము దోషము"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:267
+#, csharp-format
+msgid ""
+"There was an error when downloading your information from Facebook.\n"
+"\n"
+"Facebook said: {0}"
+msgstr ""
+"మీ సమాచారమును ఫేస్‌బుక్ నుండి డౌనులోడు చేయుచున్నప్పుడు అక్కడ వొక దోషమువుంది.\n"
+"\n"
+"ఫేస్‌బుక్ చెప్పింది: {0}"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:296
+msgid "You are not logged in."
+msgstr "మీరు లాగిన్ అయ్యిలేరు."
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.addin.xml.h:1
+msgid "_23hq..."
+msgstr "_23hq..."
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.addin.xml.h:2
+msgid "_Flickr..."
+msgstr "ఫ్లికర్... (_F)"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.addin.xml.h:3
+msgid "_Zooomr..."
+msgstr "_Zooomr..."
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:105
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:5
+msgid "Authorize"
+msgstr "దృవీకరించు"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:111
+#, csharp-format
+msgid ""
+"Return to this window after you have finished the authorization process on "
+"{0} and click the \"Complete Authorization\" button below"
+msgstr ""
+"{0} పైన ధృవీకరణ కార్యక్రమము ముగిసిన తర్వాత ఈ విండోనకు తిరిగివచ్చి \"ధృవీకరణ ముగించు\" "
+"బటన్ వత్తుము"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:112
+msgid "Complete Authorization"
+msgstr "ధృవీకరణ ముగించుము"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:117
+#, csharp-format
+msgid "Logging into {0}"
+msgstr "{0} నందు లాగిన్అవుతోంది"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:118
+msgid "Checking credentials..."
+msgstr "గుర్తింపులను పరిశీలిస్తోంది..."
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:125
+#, csharp-format
+msgid "Welcome {0} you are connected to {1}"
+msgstr "{0}కు స్వాగతము మీరు {1}కు అనుసంధానించబడివున్నారు"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:128
+#, csharp-format
+msgid "Sign in as a different user"
+msgstr "వేరే వినియోగదారివలె ప్రవేశించండి."
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:133
+#, csharp-format
+msgid "Used {0} of your allowed {1} monthly quota"
+msgstr "మీకు నెలవారి కేటాయించబడిన {1} దానిలో {0} వుపయోగించబడింది"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:297
+msgid "Unable to log on"
+msgstr "లాగిన్ కాలేక పోతోంది"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:317
+#, csharp-format
+msgid "Waiting for response {0} of {1}"
+msgstr "{1} లో {0} స్పందన కొరకు వేచివుంది"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:344
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:242
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:777
+#, csharp-format
+msgid "Uploading picture \"{0}\""
+msgstr "చిత్రము \"{0}\"ను అప్‌లోడు చేయుచున్నది"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:367
+#, csharp-format
+msgid "Error Uploading To {0}: {1}"
+msgstr "{0}కు అప్‌లోడు చేయుటలో దోషము: {1}"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:454
+msgid "Unable to log on."
+msgstr "లాగాన్ కాలేక పోయింది."
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:455
+#, csharp-format
+msgid ""
+"F-Spot was unable to log on to {0}.  Make sure you have given the "
+"authentication using {0} web browser interface."
+msgstr ""
+"F-Spot {0}కు లాగాన్ కాలేక పోయింది.  మీరు ధృవీకరణమును {0} వెబ్ బ్రౌజర్ యింటర్ఫేస్ "
+"వుపయోగించి యిచ్చునట్లు చూచుకొనండి."
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:1
+#: ../src/f-spot.glade.h:8
+msgid "<b>Account</b>"
+msgstr "<b>ఖాతా</b>"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:2
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:5
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:3
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:2
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:2
+#: ../src/f-spot.glade.h:14
+msgid "<b>Photos</b>"
+msgstr "<b>ఛాయాచిత్రములు</b>"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:3
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:6
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:4
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:4
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:4
+#: ../src/f-spot.glade.h:16
+msgid "<b>Style</b>"
+msgstr "<b>శైలి</b>"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:4
+msgid "<b>Viewing permissions</b>"
+msgstr "<b>దర్శించు అనుమతులు</b>"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:6
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:8
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:9
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:6
+#: ../src/f-spot.glade.h:43
+msgid "Export"
+msgstr "ఎగుమతి"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:7
+msgid "Export tag _hierarchy"
+msgstr "టాగ్ హైరార్కీను ఎగుమతి చేయుము (_h)"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:8
+msgid ""
+"F-Spot needs your authorization in order to upload photos to your {0} "
+"account. Press the \"Authorize\" button to open a web browser and give F-"
+"Spot the authorization. "
+msgstr ""
+"ఛాయాచిత్రములను మీ {0} ఖాతానకు అప్‌లోడు చేయుటకు F-Spotకు మీ ధృవీకరణము అవసరము. "
+"వెబ్ బ్రౌజర్‌ను తెరిచి F-Spot ధృవీకరణము యిచ్చుటకు \"ధృవీకరించు\" బటన్ వత్తుము."
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:9
+msgid "Ignore _top level tags"
+msgstr "పై స్థాయి టాగ్‌లను వదిలివేయుము (_t)"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:10
+msgid "Private"
+msgstr "వ్యక్తిగత"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:11
+msgid "Public"
+msgstr "పబ్లిక్"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:12
+msgid "Strip _metadata"
+msgstr "స్ట్రిప్ మెటాడాటా (_m)"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:13
+msgid "Visible to Family"
+msgstr "కుటుంబమునకు కనబడునట్లు"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:14
+msgid "Visible to Friends"
+msgstr "స్నేహితులకు కనబడునట్లు"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:15
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:16
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:15
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:20
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:12
+#: ../src/f-spot.glade.h:95
+msgid "_Export"
+msgstr "ఎగుమతి (_E)"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:16
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:21
+#: ../src/f-spot.glade.h:96
+msgid "_Export tags"
+msgstr "టాగ్లను ఎగుమతి చేయుము (_E)"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:17
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:18
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:21
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:25
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:15
+#: ../src/f-spot.glade.h:109
+msgid "_Resize to: "
+msgstr "దీనికి పునఃపరిమాణముకమ్ము (_R): "
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:18
+msgid "_View photos in browser when done uploading"
+msgstr "అప్‌లోడింగ్ అయిపోగానే చిత్రములను బ్రౌజర్‌నందు దర్శించుము (_V)"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:19
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:20
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:24
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:27
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:17
+#: ../src/f-spot.glade.h:125
+msgid "pixels"
+msgstr "పిగ్జెల్సు"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.addin.xml.h:1
+msgid "F_older..."
+msgstr "ఫోల్డర్ (_o)..."
+
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:140
+msgid "Select Export Folder"
+msgstr "ఎగుమతి ఫోల్డరును యెంపికచేయుము"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:198
+msgid "Building Gallery"
+msgstr "గ్యాలరీను నిర్మించుచున్నది"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:248
+#, csharp-format
+msgid "Error uploading picture \"{0}\" to Gallery:{2}{1}"
+msgstr "చిత్రము \"{0}\"ను గ్యాలరీనకు అప్‌లోడు చేయుటలో దోషము: {2}{1}"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:333
+msgid "Error: Error while transferring; Aborting"
+msgstr "దోషము: బదిలీకరించుచున్నప్పుడు దోషము; విరమించబడింది"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:336
+msgid "Error: File Already Exists; Aborting"
+msgstr "దోషము: దస్త్రము యిప్పటికే వుంది; విరమించబడింది"
+
+#. Note for translators: light as clear, opposite as dark
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:803
+msgid "Light"
+msgstr "కాంతి"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:804
+msgid "Dark"
+msgstr "చీకటి"
+
+#. Abbreviation of previous
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:984
+msgid "Prev"
+msgstr "ముందరి"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:986
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:1227
+#: ../src/CameraFileSelectionDialog.cs:82
+msgid "Index"
+msgstr "విషయసూచిక"
+
+#. Don't care otherwise, Tags sounds reasonable
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:989
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:1161
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:1201
+#: ../src/MainWindow.cs:342 ../src/Widgets/Sidebar.cs:64
+msgid "Tags"
+msgstr "టాగ్లు"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:992
+#: ../src/f-spot.glade.h:57 ../src/ItemAction.cs:102
+msgid "Next"
+msgstr "తరువాతి"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:1096
+msgid "Gallery generated by"
+msgstr "దీని ద్వారా గ్యాలరీ వుద్బవించబడింది"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:1136
+msgid "Show Styles"
+msgstr "శైలిలను చూపుము"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:1137
+msgid "Hide Styles"
+msgstr "శైలిలను దాయుము"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:1172
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:1173
+msgid "Tags: "
+msgstr "టాగ్లు: "
+
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:1304
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:1437
+msgid "Page:"
+msgstr "పుట:"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:1
+msgid "\n"
+msgstr "\n"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:3
+#: ../src/f-spot.glade.h:11
+msgid "<b>Destination</b>"
+msgstr "<b>గమ్యము</b>"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:4
+msgid "<b>Export Method</b>"
+msgstr "<b>ఎగుమతి పద్దతి</b>"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:7
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:7
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:5
+#: ../src/f-spot.glade.h:28
+msgid "Autorotate"
+msgstr "స్వయంచాలకభ్రమణము"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:8
+msgid "Create _gallery using \"Original\""
+msgstr "\"వాస్తవము\" వుపయోగించి గ్యాలరీను సృష్టించుము (_g)"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:9
+msgid "Create standalone _web gallery"
+msgstr "స్టాండెలోన్ వెబ్ గ్యాలరీను సృష్టించుము (_w)"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:10
+msgid "D_escription:"
+msgstr "వివరణ (_e):"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:11
+msgid "Export _tags"
+msgstr "టాగ్లను ఎగుమతిచేయుము (_t)"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:12
+msgid "Export tag _icons"
+msgstr "టాగ్ ప్రతిమలను యెగుమతిచేయుము (_i)"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:13
+msgid "Folder Export"
+msgstr "ఫోల్డర్ ఎగుమతి"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:14
+msgid "G_allery Name:"
+msgstr "గ్యాలరీ నామము (_a):"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:15
+msgid "Open _destination when done exporting"
+msgstr "ఎగుమతి పూర్తవగానే గమ్యమును తెరువుము (_d)"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:17
+msgid "_Folder:"
+msgstr "ఫోల్డర్ (_F):"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:19
+msgid "_Save the files only"
+msgstr "దస్త్రములను మాత్రమే దాయుము (_S)"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.addin.xml.h:1
+msgid "Web _Gallery..."
+msgstr "వెబ్ గ్యాలరీ... (_G)"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:52
+msgid ""
+"Cannot connect to a Gallery for which the version is unknown.\n"
+"Please check that you have Remote plugin 1.0.8 or later"
+msgstr ""
+"వర్షన్ తెలియని గ్యాలరీనకు అనుసంధానము కాలేదు.\n"
+"మీరు దూరస్థ ప్లగిన్ 1.0.8 లేదా తరువాతది కలిగివుండునట్లు దయచేసి చూచుకోండి"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:391
+msgid "Invalid URL"
+msgstr "చెల్లని URL"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:392
+msgid "The gallery URL entry does not appear to be a valid URL"
+msgstr "గ్యాలరి URL ప్రవేశము విలువైన URLలా కనిపించుటలేదు"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:402
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:429
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:440
+msgid "Error while connecting to Gallery"
+msgstr "గ్యాలరీనకు అనుసంధానించుటలో దోషము"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:403
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:430
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:441
+#, csharp-format
+msgid "The following error was encountered while attempting to log in: {0}"
+msgstr "{0} లాగిన్‌కు ప్రయత్నించినప్పుడు క్రింది దోషము యెదురైంది:"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:417
+msgid "A Gallery with this name already exists"
+msgstr "ఈ నామముతో వొక గ్యాలరీ యిప్పటికే వుంది"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:418
+#, csharp-format
+msgid ""
+"There is already a Gallery with the same name in your registered Galleries. "
+"Please choose a unique name."
+msgstr ""
+"మీ నమోదైన గ్యాలరీలలో యిదే నామముతో వొక గ్యాలరీ యిప్పటికే వుంది. "
+"దయచేసి వేరే నామమును ప్రవేశపెట్టుము."
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:528
+msgid "(TopLevel)"
+msgstr "(పైస్థాయి)"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:590
+msgid "Invalid Gallery name"
+msgstr "చెల్లని గ్యాలరీ నామము"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:591
+msgid ""
+"The gallery name contains invalid characters.\n"
+"Only letters, numbers, - and _ are allowed"
+msgstr ""
+"గ్యాలరీ నామము చెల్లని అక్షరములను కలిగివుంది.\n"
+"అక్షరములు, సంఖ్యలు, - మరియు _ మాత్రమే అనుమతించబడతాయి."
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:796
+#, csharp-format
+msgid "Error uploading picture \"{0}\" to Gallery: {1}"
+msgstr "\"{0}\" చిత్రమును గ్యాలరీ {1}కు అప్‌లోడు చేయుటలో దోషము"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:824
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:727
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:630
+msgid "(No Gallery)"
+msgstr "(గ్యాలరీ లేదు)"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:916
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:849
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:726
+msgid "(Not Connected)"
+msgstr "(అనుసంధానించబడలేదు)"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:917
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:850
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:727
+msgid "(No Albums)"
+msgstr "(ఆల్బమ్లు లేవు)"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:969
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:915
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:768
+msgid "No account selected"
+msgstr "ఎటువంచి ఖాతా యెంపికకాలేదు"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:1
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:1
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:1
+#: ../src/f-spot.glade.h:9
+msgid "<b>Album</b>"
+msgstr "<b>ఆల్బమ్</b>"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:2
+#: ../src/f-spot.glade.h:12
+msgid "<b>Gallery</b>"
+msgstr "<b>గ్యాలరీ</b>"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:5
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:5
+msgid "<span weight='bold' size='larger'>Error Connecting to Gallery</span>\n"
+msgstr "<span weight='bold' size='larger'>గ్యాలరీనకు అనుసంధానమగుటలో దోషము</span>\n"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:9
+msgid "Export _titles and comments"
+msgstr "శీర్షికలను మరియు వ్యాఖ్యలను యెగుమతిచేయుము (_t)"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:10
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:10
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:7
+msgid "Open _album in browser when done uploading"
+msgstr "అప్‌లోడింగ్ అవ్వగానే ఆల్బమ్‌ను బ్రౌజర్‌నందు తెరువుము (_a)"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:11
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:11
+msgid "Please verify that the settings for this gallery are correct."
+msgstr "ఈ గ్యాలరీనకు వున్న అమరికలు సరిగానే వున్నాయేమో దయచేసి నిర్ధారించండి."
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:12
+msgid "U_RL:"
+msgstr "U_RL:"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:13
+msgid "_Album Name:"
+msgstr "ఆల్బమ్ నామము (_A):"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:14
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:19
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:11
+msgid "_Description:"
+msgstr "వివరణము (_D):"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:16
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:22
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:13
+#: ../src/f-spot.glade.h:97
+msgid "_Export to Album:"
+msgstr "ఆల్బమును యెగుమతి చేయుము (_E):"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:17
+msgid "_Gallery Name:"
+msgstr "గ్యాలరీ నామము (_G):"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:18
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:23
+msgid "_Gallery:"
+msgstr "గ్యాలరీ (_G):"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:19
+msgid "_Parent Album:"
+msgstr "పేరెంట్ ఆల్బమ్ (_P):"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:20
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:24
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:14
+msgid "_Password:"
+msgstr "సంకేతపదము (_P):"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:22
+msgid "_Title:"
+msgstr "శీర్షిక (_T):"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:23
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:26
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:16
+msgid "_Username:"
+msgstr "వినియోగదారినామము (_U):"
+
+#: ../extensions/Exporters/GalleryExport/GalleryRemote.cs:361
+msgid "Error reading server response"
+msgstr "సేవిక స్పందనను చదువుటలో దోషము"
+
+#. failed to find the response
+#: ../extensions/Exporters/GalleryExport/GalleryRemote.cs:373
+msgid "Server returned response without Gallery content"
+msgstr "గ్యాలరీ సారము లేకుండా సేవిక స్పందనను యిచ్చింది"
+
+#: ../extensions/Exporters/GalleryExport/GalleryRemote.cs:710
+msgid "Error while creating new album"
+msgstr "కొత్త ఆల్బము సృష్టించుచున్నప్పుడు దోషము"
+
+#: ../extensions/Exporters/GalleryExport/GalleryRemote.cs:711
+#, csharp-format
+msgid ""
+"The following error was encountered while attempting to perform the "
+"requested operation:\n"
+"{0} ({1})"
+msgstr ""
+"అభ్యర్దించిన ఆపరేషన్ నిర్వహించుటకు ప్రయత్నించునప్పుడు ఈక్రింది దోషము యెదురైంది:\n"
+"{0}{1}"
+
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.addin.xml.h:1
+msgid "_PicasaWeb..."
+msgstr "పికాసావెబ్... (_P)"
+
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:441
+msgid "Error while creating Album"
+msgstr "ఆల్బమ్‌ను సృష్టించుటలో దోషము"
+
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:442
+#, csharp-format
+msgid "The following error was encountered while attempting to create an album: {0}"
+msgstr "ఆల్బమ్‌ను సృష్టించుటకు ప్రయత్నించునప్పుడు ఈ క్రింది దోషము యెదురైంది: {0}"
+
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:620
+#, csharp-format
+msgid "{0} Sent"
+msgstr "{0} పంపబడింది"
+
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:622
+#, csharp-format
+msgid "{0} of approx. {1}"
+msgstr "సుమారు {1} లో {0}"
+
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:691
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:594
+#, csharp-format
+msgid "Error Uploading To Gallery: {0}"
+msgstr "గ్యాలరీనకు అప్‌లోడు చేయుటలో దోషము: {0}"
+
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:778
+#, csharp-format
+msgid "Available space: {0}, {1}% used out of {2}"
+msgstr "అందుబాటులోవున్న జాగా: {0}, {2}లో {1}% వుపయోగించబడింది"
+
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:891
+#, csharp-format
+msgid ""
+"The selected album has a limit of {0} pictures,\n"
+"which would be passed with the current selection of {1} images"
+msgstr ""
+"ఎంపికచేయబడిన ఆల్బమ్ {0} చిత్రముల పరిమితిని కలిగివుంది,\n"
+"అది యిప్పుడు యెంచుకొన్న {1} ప్రతిబింబముల యెంపికతో దాటిపోతోంది."
+
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:3
+msgid "<b>PicasaWeb Export</b>"
+msgstr "<b>పికాసావెబ్ ఎగుమతి</b>"
+
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:7
+msgid "<span weight='bold' size='larger'>Your Google Account is locked</span>\n"
+msgstr "<span weight='bold' size='larger'>మీ Google ఖాతా లాక్ చేయబడింది</span>\n"
+
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:12
+msgid ""
+"Please verify that the settings for this gallery are correct.\n"
+"Enter the letters as they are shown in the image in\n"
+"the 'Captcha' field. <i>Letters are not case-sensitive</i>"
+msgstr ""
+"ఈ గ్యాలరీనకు అమరికలు సరిగావుండునట్లు దయచేసి సరిచూసుకొనండి.\n"
+"ప్రతిబింబపు 'Captcha' క్షేత్రమునందు కనిపించునట్లుగా అక్షరములను ప్రవేశపెట్టుము.\n"
+"<i>అక్షరములు చిన్నా-పెద్దా తేడా గుర్తించునవి కావు</i>"
+
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:15
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:8
+msgid "Public Album"
+msgstr "పబ్లిక్ ఆల్బమ్"
+
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:16
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:10
+msgid "_Album Title:"
+msgstr "ఆల్బమ్ శీర్షిక (_A):"
+
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:17
+msgid "_Autorotate"
+msgstr "స్వయంచాలక భ్రమణము (_A)"
+
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:18
+msgid "_Captcha:"
+msgstr "_Captcha:"
+
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.addin.xml.h:1
+msgid "_SmugMug..."
+msgstr "_SmugMug..."
+
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:3
+msgid "<b>SmugMug Export</b>"
+msgstr "<b>SmugMug ఎగుమతి</b>"
+
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:9
+msgid "_Account:"
+msgstr "ఖాతా (_A):"
+
+#: ../extensions/Exporters/TabbloExport/Tabblo/Connection.cs:132
+#, csharp-format
+msgid "Uploading photo \"{0}\""
+msgstr "ఛాయాచిత్రము \"{0}\" అప్‌లోడు చేయుచున్నది"
+
+#: ../extensions/Exporters/TabbloExport/Tabblo/Connection.cs:206
+msgid "Logging into Tabblo"
+msgstr "టాబ్లోనకు లాగిన్ అవుచున్నది"
+
+#: ../extensions/Exporters/TabbloExport/Tabblo/Connection.cs:267
+msgid "Obtaining URL for upload"
+msgstr "అప్‌లోడునకు URLను పొందుట"
+
+#: ../extensions/Exporters/TabbloExport/TabbloExport.addin.xml.h:1
+msgid "_Tabblo..."
+msgstr "టాబ్లో... (_T)"
+
+#: ../extensions/Exporters/TabbloExport/TabbloExport.cs:308
+msgid "Done sending photos"
+msgstr "ఛాయాచిత్రములను పంపుట అయినది"
+
+#: ../extensions/Exporters/TabbloExport/TabbloExport.cs:310
+msgid "Upload complete"
+msgstr "అప్‌లోడు పూర్తైనది"
+
+#: ../extensions/Exporters/TabbloExport/TabbloExport.cs:316
+msgid "Error uploading to Tabblo: "
+msgstr "టాబ్లోకు అప్‌లోడు చేయుటలో దోషము: "
+
+#: ../extensions/Exporters/ZipExport/ZipExport.addin.xml.h:1
+msgid "Compressed fil_e..."
+msgstr "కుదించిన దస్త్రము... (_e)"
+
+#: ../extensions/Exporters/ZipExport/ZipExport.cs:47
+#: ../src/Widgets/EditorPage.cs:196
+msgid "No selection available"
+msgstr "ఎటువంటి యెంపిక అందుబాటులోలేదు"
+
+#: ../extensions/Exporters/ZipExport/ZipExport.cs:48
+msgid ""
+"This tool requires an active selection. Please select one or more pictures "
+"and try again"
+msgstr ""
+"ఈ సాధనమునకు క్రియాశీల యెంపిక అవసరము. దయచేసి వొకటి లేదా యెక్కువ చిత్రములను యెంపికచేసి "
+"మరలా తిరిగిప్రయత్నించండి."
+
+#: ../extensions/Exporters/ZipExport/ZipExport.cs:64
+msgid "Select export folder"
+msgstr "ఎగుమతి ఫోల్డరును యెంపికచేయుము"
+
+#: ../extensions/Exporters/ZipExport/ZipExport.cs:102
+msgid "Exporting files"
+msgstr "ఫైళ్ళను యెగుమతి చేయుచున్నది"
+
+#: ../extensions/Exporters/ZipExport/ZipExport.cs:108
+#, csharp-format
+msgid "Preparing photo \"{0}\""
+msgstr "ఛాయాచిత్రము \"{0}\"ను సిద్దపరుస్తోంది"
+
+#: ../extensions/Exporters/ZipExport/ZipExport.glade.h:1
+#: ../src/f-spot.glade.h:92
+msgid "_Create"
+msgstr "సృష్టించుము (_C)"
+
+#: ../extensions/Exporters/ZipExport/ZipExport.glade.h:2
+msgid "_File name:"
+msgstr "ఫైలు నామము (_F):"
+
+#: ../extensions/Exporters/ZipExport/ZipExport.glade.h:3
+msgid "_Location:"
+msgstr "స్థానము (_L):"
+
+#: ../extensions/Exporters/ZipExport/ZipExport.glade.h:4
+msgid "_Scale:"
+msgstr "స్కేలు (_S):"
+
+#: ../extensions/Tools/HashJob/HashJob.cs:53
+msgid ""
+"In order to detect duplicates on pictures you imported before 0.5.0, F-Spot "
+"needs to analyze your image collection. This is not done by default as it's "
+"time consuming. You can Start or Pause this update process using this dialog."
+msgstr ""
+"మీరు 0.5.0కు ముందు దిగుమతి చేసిన చిత్రములపై నకిలీలను గుర్తించుటకు, F-Spot మీ ప్రతిబింబపు "
+"సంకలనమును పరిశీలించవలసివుంది. ఇది అధిక సమయంతో కూడిన కార్యక్రమము కావుటవలన ఇది "
+"అప్రమేయంగా జరుగదు. ఈ డైలాగును వుపయోగించి మీరు ఈ నవీకరణ కార్యక్రమమును ప్రారంభించుట "
+"లేదా నిలిపివేయుట చేయవచ్చు."
+
+#: ../extensions/Tools/HashJob/HashJob.cs:102
+msgid "Processing images..."
+msgstr "ప్రతిబింబములను ప్రోసెస్‌చేస్తోంది..."
+
+#: ../extensions/Tools/HashJob/HashJob.cs:108
+msgid "Stopped"
+msgstr "ఆపివేయబడింది"
+
+#: ../extensions/Tools/MergeDb/MergeDb.addin.xml.h:1
+msgid "Merge Db"
+msgstr "Db మిళితంచేయి"
+
+#: ../extensions/Tools/MergeDb/MergeDb.cs:73
+msgid "Error opening the selected file"
+msgstr "ఎంపికచేసిన ఫైలును తెరుచుటలో దోషము"
+
+#: ../extensions/Tools/MergeDb/MergeDb.cs:74
+#, csharp-format
+msgid ""
+"The file you selected is not a valid or supported database.\n"
+"\n"
+"Received exception \"{0}\"."
+msgstr ""
+"మీరు యెంపికచేసిన ఫైలు చెల్లునది లేదా మద్దతిచ్చునటువంటి డాటాబేస్ కాదు.\n"
+"\n"
+"స్వీకరించిన ఆక్షేపణ \"{0}\"."
+
+#: ../extensions/Tools/MergeDb/MergeDb.glade.h:1
+msgid ""
+"<small><i>Choose the location of the database you want to import from</i></"
+"small>"
+msgstr ""
+"<small><i>మీరు దిగుమతి చేయాలనుకొంటున్న డాటాబేస్ స్థానమును యెంచుకొనుము</i></"
+"small>"
+
+#: ../extensions/Tools/MergeDb/MergeDb.glade.h:2
+msgid ""
+"<small><i>Choose what to import from the selected db.\n"
+"\"New Rolls Only\" is the smart option that will avoid re-importing photos "
+"you could have imported during a previous operation.\n"
+"\"A Single Import Roll\" let you choose which roll you want to merge back.\n"
+"\"Everything\" will import everything, creating duplicates if you already "
+"imported from that database.</i></small>"
+msgstr ""
+"<small><i>ఎంపికచేసిన db నుండి యేమి దిగుమతి చేయాలో యెంచుకొనుము.\n"
+"మీరు గత ఆపరేషన్‌నందు దిగుమతి చేయగలిగిన వాటిని తిరిగి-దిగుమతి చేయుటను \"కొత్త రోల్సు మాత్రమే\" అను ఐచ్చికం"
+"తప్పిస్తుంది.\n మీరు ఏ రోలును వెనుకకు మిళితం చేయాలనుకొంటున్నారో యెంచుకొనుటకు \"ఒక వొంటరి దిగుమతి రోల్\" "
+"అనునది మిమ్ములను అనుమతిస్తుంది.\n\"ప్రతివొక్కటి\" ప్రతివొక్క దానిని దిగుమతి చేస్తుంది, మీరు యిప్పటికే ఆడాటాబేస్‌నుండి "
+"దిగుమతి చేస్తే నకిలీలను సృష్టిస్తుంది.</i></small>"
+
+#: ../extensions/Tools/MergeDb/MergeDb.glade.h:6
+msgid ""
+"<small><i>Copy the images locally or keep them where they are. If you chose "
+"the later, be sure that this location will stay accessible from f-spot.</i></"
+"small>"
+msgstr ""
+"<small><i>ప్రతిబింబములను స్థానికంగా నకలుతీయుము లేదా అవి యెక్కడవున్నాయో అక్కడే వుంచుము. "
+"మీరు దానిని తర్వాత యెంచుకొంటే, ఆ స్థానము సమర్ధవంతంగా f-spot నుండి యాక్సెస్ చేయదగునట్లుగా "
+"చూసుకొనుము.</i></small>"
+
+#: ../extensions/Tools/MergeDb/MergeDb.glade.h:7
+msgid "A Single Import Roll"
+msgstr "ఒక వొంటరి దిగుమతి రోల్"
+
+#: ../extensions/Tools/MergeDb/MergeDb.glade.h:8
+msgid "Copy images to photos folder"
+msgstr "ప్రతిబింబములను ఛాయాచిత్రముల ఫోల్డరునకు నకలుతీయుము"
+
+#: ../extensions/Tools/MergeDb/MergeDb.glade.h:9
+msgid "Database Location:"
+msgstr "డాటాబేస్ స్థానము:"
+
+#: ../extensions/Tools/MergeDb/MergeDb.glade.h:10
+msgid "Everything"
+msgstr "ప్రతివొక్కటి"
+
+#: ../extensions/Tools/MergeDb/MergeDb.glade.h:11
+msgid "Import:"
+msgstr "దిగుమతి:"
+
+#: ../extensions/Tools/MergeDb/MergeDb.glade.h:12
+msgid "Keep the images at their original location"
+msgstr "ప్రతిబింబములను వాటి వాస్తవ స్థానమువద్ద వుంచుము"
+
+#: ../extensions/Tools/MergeDb/MergeDb.glade.h:13
+msgid "Merge another F-Spot collection"
+msgstr "వేరొక F-Spot సంకలనమును మిళితంచేయుము"
+
+#: ../extensions/Tools/MergeDb/MergeDb.glade.h:14
+msgid "New Rolls Only"
+msgstr "కొత్త రోల్సు మాత్రమే"
+
+#: ../extensions/Tools/MergeDb/MergeDb.glade.h:15
+#: ../src/FileImportBackend.cs:290 ../src/UI.Dialog/ThreadProgressDialog.cs:51
+msgid "Skip"
+msgstr "వదిలివేయి"
+
+#: ../extensions/Tools/MergeDb/PickFolderDialog.cs:33
+#, csharp-format
+msgid ""
+"<big>The database refers to files contained in the <b>{0}</b> folder.\n"
+" Please select that folder so I can do the mapping.</big>"
+msgstr ""
+"<big><b>{0}</b> ఫోల్డరునందు వున్న ఫైళ్ళనే డాటాబేస్ సంప్రదిస్తుంది.\n"
+" దయచేసి ఫోల్డరును యెంపికచేయుము అలా నేను మాప్ చేయగలను.</big>"
+
+#: ../f-spot.desktop.in.in.h:1 ../f-spot-import.desktop.in.in.h:1
+msgid "F-Spot Photo Manager"
+msgstr "F-Spot ఛాయాచిత్ర నిర్వాహిక"
+
+#: ../f-spot.desktop.in.in.h:2
+msgid "Organize, enjoy, and share your photos"
+msgstr "నిర్వహించు, ఆనందించు, మరియు మీ ఛాయాచిత్రములను పంచుకొనుము"
+
+#: ../f-spot.desktop.in.in.h:3 ../f-spot-import.desktop.in.in.h:3
+msgid "Photo Manager"
+msgstr "ఛాయాచిత్ర నిర్వాహిక"
+
+#: ../f-spot-import.desktop.in.in.h:2
+msgid "Import into F-Spot"
+msgstr "F-Spotనకు దిగుమతి చేయుము"
+
+#: ../f-spot-view.desktop.in.in.h:1
+msgid "F-Spot Photo Viewer"
+msgstr "F-Spot ఛాయాచిత్ర దర్శని"
+
+#: ../f-spot-view.desktop.in.in.h:2
+msgid "Photo Viewer"
+msgstr "ఛాయాచిత్ర దర్శిని"
+
+#: ../lib/libfspot/f-jpeg-utils.c:441 ../src/RotateCommand.cs:224
+msgid "File not found"
+msgstr "దస్త్రము కనుగొనబడలేదు"
+
+#: ../lib/libfspot/f-jpeg-utils.c:464
+#, c-format
+msgid "Unknown transform type %d"
+msgstr "తెలియని బదిలీకరణ రకము %d"
+
+#: ../lib/libfspot/f-jpeg-utils.c:472
+msgid "Operation failed"
+msgstr "ఆపరేషన్ విఫలమైంది"
+
+#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInfoDialog.cs:32
+msgid "Package"
+msgstr "ప్యాకేజి"
+
+#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:110
+msgid "Extension Installation"
+msgstr "పొడిగింపు సంస్థాపన"
+
+#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:136
+msgid "<b>Select the extensions to install and click on Next</b>"
+msgstr "<b>సంస్థాపించుటకు పొడిగింపులను యెంచుకొనుము మరియు తరువాత పై నొక్కుము</b>"
+
+#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:150
+msgid "Install from:"
+msgstr "దీనినుండి సంస్థాపించుము:"
+
+#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:179
+#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:180
+msgid "_Repositories..."
+msgstr "రిపోజటరీలు... (_R)"
+
+#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:220
+msgid "Show all packages"
+msgstr "అన్ని ప్యాకేజీలను చూపుము"
+
+#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:221
+msgid "Show new versions only"
+msgstr "కొత్త వర్షన్లను మాత్రమే చూపుము"
+
+#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:222
+msgid "Show updates only"
+msgstr "నవీకరణలను మాత్రమే చూపుము"
+
+#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:247
+msgid "_Unselect All"
+msgstr "అన్నిటి యెంపికతీసివేయుము (_U)"
+
+#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:259
+msgid "Select _All"
+msgstr "అన్నిటిని యెంపికచేయుము (_A)"
+
+#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:334
+msgid "label124"
+msgstr "లేబుల్124"
+
+#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:346
+msgid "Overall Progress:"
+msgstr "మొత్తము పురోగతి:"
+
+#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:374
+msgid "Downloading extensions..."
+msgstr "పొడిగింపులను దిగుమతిచేయుచున్నది..."
+
+#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallerDialog.cs:36
+#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:58
+msgid "Extension Manager"
+msgstr "పొడిగింపు నిర్వాహిక"
+
+#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallerDialog.cs:54
+msgid "Additional extensions are required to perform this operation."
+msgstr "ఈ ఆపరేషన్ నిర్వహించుటకు అదనపు పొడిగింపులు అవసరము."
+
+#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallerDialog.cs:64
+msgid "The following extensions will be installed:"
+msgstr "ఈ క్రింది పొడిగింపులు సంస్థాపించబడతాయి:"
+
+#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:90
+msgid "<big><b>Extension Manager</b></big>"
+msgstr "<big><b>పొడిగింపు నిర్వాహిక</b></big>"
+
+#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:110
+msgid "The following extensions are currently installed:"
+msgstr "ఈ క్రింది పొడిగింపులు ప్రస్తుతం సంస్థాపించబడినవి:"
+
+#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:165
+msgid "_Install Extensions..."
+msgstr "పొడిగింపులను సంస్థాపించుము... (_I)"
+
+#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:210
+msgid "_Uninstall..."
+msgstr "నిర్మూలించుము... (_U)"
+
+#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:236
+msgid "Enable"
+msgstr "చేతనముచేయి"
+
+#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:262
+msgid "Disable"
+msgstr "అచేతనముచేయి"
+
+#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.ErrorDialog.cs:111
+msgid "Details"
+msgstr "వివరములు"
+
+#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.ManageSitesDialog.cs:34
+msgid "Extension Repository Management"
+msgstr "పొడిగింపు రిపోజిటరీ నిర్వహణ"
+
+#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.NewSiteDialog.cs:52
+msgid "Add New Repository"
+msgstr "కొత్త రిపోజిటరీను జతచేయుము"
+
+#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.NewSiteDialog.cs:70
+msgid "Select the location of the repository you want to register:"
+msgstr "మీరు నమోదు చేయాలని అనుకొనుచున్న రిపోజిటరీ స్థానమును యెంపికచేయుము:"
+
+#. Container child vbox89.Gtk.Box+BoxChild
+#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.NewSiteDialog.cs:77
+msgid "Register an on-line repository"
+msgstr "ఒక ఆన్-లైన్ రిపోజిటరీను నమోదుచేయుము"
+
+#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.NewSiteDialog.cs:106
+msgid "Url:"
+msgstr "Url:"
+
+#. Container child vbox89.Gtk.Box+BoxChild
+#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.NewSiteDialog.cs:127
+msgid "Register a local repository"
+msgstr "ఒక స్థానిక రిపోజిటరీను నమోదుచేయుము"
+
+#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.NewSiteDialog.cs:155
+msgid "Path:"
+msgstr "పాత్:"
+
+#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.NewSiteDialog.cs:179
+msgid "Browse..."
+msgstr "బ్రౌజుచేయి..."
+
+#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInfoDialog.cs:62
+msgid "Version:"
+msgstr "వర్షన్:"
+
+#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInfoDialog.cs:65
+msgid "Author:"
+msgstr "గ్రంధకర్త:"
+
+#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInfoDialog.cs:68
+msgid "Copyright:"
+msgstr "కాపీరైట్:"
+
+#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInfoDialog.cs:71
+msgid "Extension Dependencies:"
+msgstr "పొడిగింపు డిపెన్డెన్సీలు:"
+
+#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:97
+msgid "All registered repositories"
+msgstr "అన్ని నమోదైన రిపోజిటరీలు"
+
+#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:184
+msgid "Are you sure you want to cancel the installation?"
+msgstr "మీరు సంస్థాపనను నింజంగా రద్దుచేయాలని అనుకొనుచున్నారా?"
+
+#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:308
+msgid "The following packages will be uninstalled:"
+msgstr "ఈ క్రింది ప్యాకేజీలు నిర్మూలించబడతాయి:"
+
+#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:313
+msgid ""
+"There are other extensions that depend on the previous ones which will also "
+"be uninstalled:"
+msgstr "గత వాటిపై ఆదారపడే కొన్ని యితర పొడిగింపులు కూడా వున్నాయి అవికూడా నిర్మూలించబడతాయి:"
+
+#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:384
+msgid ""
+"The selected extensions can't be installed because there are dependency "
+"conflicts."
+msgstr "ఎంపికచేసిన పొడిగింపులు సంస్థాపించబడవు యెంచేతంటే అక్కడ డిపెన్డెన్సీ(ఆధార) విభేదాలు వున్నాయి."
+
+#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:398
+msgid "The following packages will be installed:"
+msgstr "ఈ క్రింది ప్యాకేజీలు సంస్థాపించబడతాయి:"
+
+#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:402
+msgid " (in user directory)"
+msgstr " (వినియోగదారి డైరెక్టరీనందు)"
+
+#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:408
+msgid "The following packages need to be uninstalled:"
+msgstr "ఈ క్రింది ప్యాకేజీలు నిర్మూలించవలసివుంది:"
+
+#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:416
+msgid "The following dependencies could not be resolved:"
+msgstr "ఈ క్రింది ఆధారములు పరిష్కరించబడలేక పోయినవి:"
+
+#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:441
+msgid "The installation has been successfully completed."
+msgstr "సంస్థాపన సమర్ధవంతంగా పూర్తైనది."
+
+#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:442
+msgid "The installation failed!"
+msgstr "సంస్థాపన విఫలమైంది!"
+
+#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:443
+msgid "The installation has completed with warnings."
+msgstr "సంస్థాపన హెచ్చరికలతో పూర్తైనది."
+
+#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:446
+msgid "The uninstallation has been successfully completed."
+msgstr "నిర్మూలన పూర్తైనది."
+
+#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:447
+msgid "The uninstallation failed!"
+msgstr "నిర్మూలన విఫలమైంది!"
+
+#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:448
+msgid "The uninstallation has completed with warnings."
+msgstr "నిర్మూలన హెచ్చరికలతో పూర్తైనది."
+
+#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:616
+msgid "Repository"
+msgstr "రిపోజిటరీ"
+
+#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstaller.cs:16
+msgid "Installation cancelled"
+msgstr "సంస్థాపన రద్దుచేయబడింది"
+
+#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallerDialog.cs:159
+msgid "Some of the required extensions were not found"
+msgstr "కావలసిన కొన్ని పొడిగింపులు కనబడలేదు"
+
+#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallerDialog.cs:171
+msgid "Installation failed"
+msgstr "సంస్థాపన విఫలమైంది"
+
+#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinTreeWidget.cs:91
+msgid "Extension"
+msgstr "పొడిగింపు"
+
+#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinTreeWidget.cs:112
+#: ../src/Widgets/InfoBox.cs:214
+msgid "Version"
+msgstr "వర్షన్"
+
+#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinTreeWidget.cs:168
+msgid "Other"
+msgstr "ఇతర"
+
+#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/ManageSitesDialog.cs:51
+#: ../src/Widgets/InfoBox.cs:211
+msgid "Name"
+msgstr "నామము"
+
+#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/ManageSitesDialog.cs:52
+msgid "Url"
+msgstr "Url"
+
+#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/Services.cs:61
+#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/Services.cs:70
+#, csharp-format
+msgid "Exception occurred: {0}"
+msgstr "ఆక్షేపణ యెదురైంది: {0}"
+
+#: ../lib/mono-addins/Mono.Addins/Mono.Addins/AddinSessionService.cs:154
+msgid "Disabled extensions can't be loaded."
+msgstr "అచేతనమైన పొడిగింపులు లోడు కాలేవు."
+
+#: ../lib/mono-addins/Mono.Addins/Mono.Addins/AddinSessionService.cs:179
+#, csharp-format
+msgid "Loading {0} extension"
+msgstr "{0} పొడిగింపును లోడుచేయుచున్నది"
+
+#: ../lib/mono-addins/Mono.Addins/Mono.Addins/AddinSessionService.cs:265
+#, csharp-format
+msgid "The required extension '{0}' is disabled."
+msgstr "అవసరమైన పొడిగింపు '{0}' అచేతనము చేయబడింది."
+
+#: ../lib/mono-addins/Mono.Addins/Mono.Addins/AddinSessionService.cs:267
+#, csharp-format
+msgid "The required extension '{0}' is not installed."
+msgstr "అవసరమైన '{0}' సంస్థాపించబడలేదు."
+
+#: ../lib/mono-addins/Mono.Addins/Mono.Addins.Description/AssemblyDependency.cs:79
+#, csharp-format
+msgid "(provided by {0})"
+msgstr "({0} ద్వారా అందివ్వబడింది)"
+
+#: ../src/CameraFileSelectionDialog.cs:76
+msgid "Preview"
+msgstr "ఉపదర్శనము"
+
+#: ../src/CameraFileSelectionDialog.cs:78
+msgid "Path"
+msgstr "పాత్"
+
+#: ../src/CameraFileSelectionDialog.cs:80 ../src/f-spot.glade.h:46
+msgid "File"
+msgstr "ఫైలు"
+
+#: ../src/CameraFileSelectionDialog.cs:102
+msgid "Select Tag"
+msgstr "టాగ్‌ను యెంపికచేయుము"
+
+#: ../src/CameraFileSelectionDialog.cs:138
+msgid "Downloading Previews"
+msgstr "ఉపదర్శనములను డౌనులోడు చేయుచున్నది"
+
+#: ../src/CameraFileSelectionDialog.cs:148
+#, csharp-format
+msgid "Downloading Preview of {0}"
+msgstr "{0} యొక్క వుపదర్శనమును డౌనులోడుచేయుచున్నది"
+
+#: ../src/CameraFileSelectionDialog.cs:220
+#, csharp-format
+msgid "Copying file {0} of {1}"
+msgstr "{1} యొక్క ఫైలు {0} నకలుతీయుచున్నది"
+
+#: ../src/CameraFileSelectionDialog.cs:235
+msgid "Error transferring file"
+msgstr "ఫైలు బదిలీకరించుటలో దోషము"
+
+#: ../src/CameraFileSelectionDialog.cs:244
+msgid "Done Copying Files"
+msgstr "ఫైళ్ళు నకలుతీయుట పూర్తైనది"
+
+#: ../src/CameraFileSelectionDialog.cs:246
+msgid "Download Complete"
+msgstr "డౌనులోడు పూర్తైనది"
+
+#: ../src/CameraFileSelectionDialog.cs:271
+#, csharp-format
+msgid "Transferring \"{0}\" from camera"
+msgstr "కేమెరానుండి \"{0}\" బదిలీకరించుచున్నది"
+
+#: ../src/CameraSelectionDialog.cs:29 ../src/Widgets/InfoBox.cs:230
+msgid "Camera"
+msgstr "కేమెరా"
+
+#: ../src/CameraSelectionDialog.cs:30
+msgid "Port"
+msgstr "పోర్టు"
+
+#: ../src/Core.cs:200
+#, csharp-format
+msgid "No photos matching {0} found"
+msgstr "ఏ ఛాయాచిత్రములు సరిపోలలేదు {0} కనబడినవి"
+
+#: ../src/Core.cs:201
+#, csharp-format
+msgid ""
+"The tag \"{0}\" is not applied to any photos. Try adding\n"
+"the tag to some photos or selecting a different tag in the\n"
+"F-Spot preference dialog."
+msgstr ""
+"టాగ్ \"{0}\" ఏ ఛాయాచిత్రములకు ఆపాదించబడలేదు. కొన్ని ఛాయాచిత్రములకు\n"
+"టాగ్‌ను జతచేయుటకు ప్రయత్నించుము లేదా F-Spot ఆభీష్ట డైలాగునందు విభిన్న\n"
+"టాగ్‌ను యెచుకొనుట."
+
+#: ../src/Core.cs:205
+msgid "Search returned no results"
+msgstr "శోధన యెటువంటి ఫలితాలను తిరిగియివ్వలేదు"
+
+#: ../src/Core.cs:206
+msgid ""
+"The tag F-Spot is looking for does not exist. Try\n"
+"selecting a different tag in the F-Spot preference\n"
+"dialog."
+msgstr ""
+"F-Spot చూచుచున్న టాగ్ లేదు. F-spot అభీష్ట డైలాగునందు\n"
+"వేరొక టాగ్‌ను యెంచుకొని ప్రయత్నించుము."
+
+#. Note for translators: Reparented is a picture becoming a version of another one
+#: ../src/Core/Photo.cs:473
+msgid "Reparented"
+msgstr "రీపేరెంటె‍డ్"
+
+#: ../src/Core/Photo.cs:473
+#, csharp-format
+msgid "Reparented ({0})"
+msgstr "రీపేరెంటెడ్ ({0})"
+
+#: ../src/Core/Photo.cs:492
+#, csharp-format
+msgid "Modified"
+msgid_plural "Modified ({0})"
+msgstr[0] "సవరించిన"
+msgstr[1] "సవరించిన ({0})"
+
+#: ../src/Core/Photo.cs:516
+#, csharp-format
+msgid "Modified in {1}"
+msgstr "{1} నందు సవరించబడింది"
+
+#: ../src/Core/Photo.cs:516
+#, csharp-format
+msgid "Modified in {1} ({0})"
+msgstr "{1} ({0}) నందు సవరించబడింది"
+
+#. Note that the original version is never stored in the photo_versions table in the
+#. database.
+#: ../src/Core/Photo.cs:671 ../src/f-spot.glade.h:61
+msgid "Original"
+msgstr "వాస్తవ"
+
+#: ../src/Editors/AutoStretchEditor.cs:17
+msgid "Auto Color"
+msgstr "స్వయంచాలక రంగు"
+
+#: ../src/Editors/ColorEditor.cs:38
+msgid "Adjust Colors"
+msgstr "రంగులను సర్దబాటుచేయి"
+
+#: ../src/Editors/ColorEditor.cs:41
+msgid "Adjust"
+msgstr "సర్దుబాటు"
+
+#: ../src/Editors/CropEditor.cs:35
+msgid "4 x 3 (Book)"
+msgstr "4 x 3 (పుస్తకం)"
+
+#: ../src/Editors/CropEditor.cs:36
+msgid "4 x 6 (Postcard)"
+msgstr "4 x 6 (పోస్టుకార్డు)"
+
+#: ../src/Editors/CropEditor.cs:37
+msgid "5 x 7 (L, 2L)"
+msgstr "5 x 7 (L, 2L)"
+
+#: ../src/Editors/CropEditor.cs:38
+msgid "8 x 10"
+msgstr "8 x 10"
+
+#: ../src/Editors/CropEditor.cs:39
+msgid "Square"
+msgstr "చతురస్త్రము"
+
+#: ../src/Editors/CropEditor.cs:42
+msgid "Crop"
+msgstr "కత్తెర"
+
+#: ../src/Editors/CropEditor.cs:73
+msgid "Select the area that needs cropping."
+msgstr "కత్తిరించవలసిన ప్రాంతమును యెంపికచేయుము."
+
+#: ../src/Editors/CropEditor.cs:98
+msgid "No Constraint"
+msgstr "ఎటువంటి నియమంలేదు"
+
+#: ../src/Editors/CropEditor.cs:99
+msgid "Same as photo"
+msgstr "ఛాయాచిత్రము వలెనే"
+
+#: ../src/Editors/CropEditor.cs:104
+msgid "Custom Ratios..."
+msgstr "మలచుకొనిన నిష్పత్తులు..."
+
+#: ../src/Editors/DesaturateEditor.cs:17
+msgid "Desaturate"
+msgstr "డిసాట్యురేట్"
+
+#: ../src/Editors/RedEyeEditor.cs:19
+msgid "Red-eye Reduction"
+msgstr "రెడ్-ఐ తగ్గింపు"
+
+#: ../src/Editors/RedEyeEditor.cs:21
+msgid "Fix!"
+msgstr "పరిష్కరించు!"
+
+#: ../src/Editors/RedEyeEditor.cs:25
+msgid "Select the eyes you wish to fix."
+msgstr "మీరు పరిష్కరించాలనుకొన్న కళ్ళను యెంపికచేయుము."
+
+#: ../src/Editors/SepiaEditor.cs:17
+msgid "Sepia Tone"
+msgstr "సెపియా గొంతు"
+
+#: ../src/Editors/SoftFocusEditor.cs:28
+msgid "Soft Focus"
+msgstr "సున్నిత దృష్టి"
+
+#: ../src/Editors/TiltEditor.cs:28
+msgid "Straighten"
+msgstr "తిన్నగా"
+
+#: ../src/FileImportBackend.cs:288
+msgid "Import error"
+msgstr "దిగుమతి దోషము"
+
+#: ../src/FileImportBackend.cs:289
+#, csharp-format
+msgid "Error importing {0}{2}{2}{1}"
+msgstr "{0}{2}{2}{1} దిగుమతిలో దోషము"
+
+#: ../src/Filters/ResizeFilter.cs:70 ../src/Filters/SharpFilter.cs:52
+#, csharp-format
+msgid "No way to save files of type \"{0}\""
+msgstr "\"{0}\" రకము ఫైళ్ళను దాయుటకు మార్గములేదు"
+
+#: ../src/FormClient.cs:295
+msgid "Unhandled exception"
+msgstr "సంభాలించని ఆక్షేపణ"
+
+#: ../src/FSpot.addin.xml.h:1
+msgid "Copy Photo Locat_ion"
+msgstr "ఛాయాచిత్రము స్థానమును నకలుతీయుము (_i)"
+
+#: ../src/FSpot.addin.xml.h:2
+msgid "Export to"
+msgstr "దీనికి ఎగుమతిచేయుము"
+
+#: ../src/FSpot.addin.xml.h:3
+msgid "Open _With"
+msgstr "దీనితో తెరువుము (_W)"
+
+#: ../src/FSpot.addin.xml.h:4
+msgid "Rem_ove Tag"
+msgstr "టాగ్ తొలగించుము (_o)"
+
+#: ../src/FSpot.addin.xml.h:5 ../src/f-spot.glade.h:68
+#: ../src/SingleView.cs:453
+msgid "Rotate _Left"
+msgstr "ఎడమకు తిప్పుము (_L)"
+
+#: ../src/FSpot.addin.xml.h:6 ../src/f-spot.glade.h:69
+#: ../src/SingleView.cs:454
+msgid "Rotate _Right"
+msgstr "కుడివైపునకు తిప్పుము (_R)"
+
+#: ../src/FSpot.addin.xml.h:7
+msgid "Tools"
+msgstr "సాధనములు"
+
+#: ../src/FSpot.addin.xml.h:8
+msgid "_Attach Tag"
+msgstr "టాగ్‌ను అనుభందించుము (_A)"
+
+#: ../src/FSpot.addin.xml.h:9
+msgid "_Delete From Drive"
+msgstr "డ్రైవ్‌నుండి తొలగించుము (_D)"
+
+#: ../src/FSpot.addin.xml.h:10
+msgid "_Remove From Catalog"
+msgstr "కాటలాగ్‌నుండి తీసివేయుము (_R)"
+
+#: ../src/f-spot.glade.h:1
+msgid " "
+msgstr " "
+
+#: ../src/f-spot.glade.h:2
+msgid "1024 px"
+msgstr "1024 px"
+
+#: ../src/f-spot.glade.h:3
+msgid "320 px"
+msgstr "320 px"
+
+#: ../src/f-spot.glade.h:4
+msgid "480 px"
+msgstr "480 px"
+
+#: ../src/f-spot.glade.h:5
+msgid "640 px"
+msgstr "640 px"
+
+#: ../src/f-spot.glade.h:6
+msgid "800 px"
+msgstr "800 px"
+
+#: ../src/f-spot.glade.h:7
+msgid "<b></b>"
+msgstr "<b></b>"
+
+#: ../src/f-spot.glade.h:10
+msgid "<b>Co_rrections</b>"
+msgstr "<b>దిద్దబాట్లు (_r)</b>"
+
+#: ../src/f-spot.glade.h:13
+msgid "<b>Image Interpolation</b>"
+msgstr "<b>ప్రతిబింబపు యింటర్‌పొలేషన్</b>"
+
+#: ../src/f-spot.glade.h:15
+msgid "<b>Size</b>"
+msgstr "<b>పరిమాణము</b>"
+
+#: ../src/f-spot.glade.h:17
+msgid "<b>Summary</b>"
+msgstr "<b>సంక్షిప్తసమాచారము</b>"
+
+#: ../src/f-spot.glade.h:18
+msgid "<b>Transparent Parts</b>"
+msgstr "<b>పారదృశ్య భాగములు</b>"
+
+#: ../src/f-spot.glade.h:19
+msgid "<b>View all pictures imported</b>"
+msgstr "<b>దిగుమతి చేసిన అన్ని చిత్రములను దర్శించుము</b>"
+
+#: ../src/f-spot.glade.h:20
+msgid "<b>_White Balance</b>"
+msgstr "<b>తెలుపు సమతుల్యత (_W)</b>"
+
+#: ../src/f-spot.glade.h:21
+msgid ""
+"<small><i>Enable this to allow interpolation on zoomed images. You shouldn't "
+"disable this for viewing photos, but disabling the interpolation could be "
+"usefull in icon design.</i></small>"
+msgstr ""
+"<small><i>జూమ్ చేసిన ప్రతిబింబములపైన యింటర్‌పోలేషన్‌ను అనుమతించుటకు దీనిని "
+"చేతనముచేయుము. ఛాయాచిత్రములను దర్శించుటకు మీరు దీనిని అచేతనము చేయకూడదు, అయితే "
+"ఇంటర్‌పొలేషన్‌ను అచేతనము చేయుట ప్రతిమ రూపీకరణనందు వుపయోగం కాగలదు.</i></small>"
+
+#: ../src/f-spot.glade.h:22
+msgid ""
+"<small><i>You can choose how to display transparent parts in images. This "
+"option has no effect on photos, but setting this as check pattern or custom "
+"color could be usefull when viewing icons or other artworks with transparent "
+"parts.</i></small>"
+msgstr ""
+"<small><i>ప్రతిబింబములనందు పారదృశ్య భాగములు యెలా ప్రదర్శించబడవలెనో మీరు యెంచుకొనవచ్చును. ఈ ఐచ్చికము"
+"ఛాయాచిత్రములపైన యెటువంటి ప్రభావము కలిగిలేదు, అయితే కళాకృతులను లేదా ప్రతిమలను పారదృశ్య భాగములతో దర్శించు"
+"నప్పుడు దీనిని చెక్ మాదిరిగా లేదా మలిచిన రంగుగా అమర్చుట వుపయోగకరం కాగలదు.</i></small>"
+
+#: ../src/f-spot.glade.h:23
+msgid "As _background"
+msgstr "బ్యాక్‌గ్రౌండ్ వలె (_b)"
+
+#: ../src/f-spot.glade.h:24
+msgid "As _custom color: "
+msgstr "మలచుకొనిన రంగు వలె (_c):"
+
+#: ../src/f-spot.glade.h:25
+msgid "As check _pattern"
+msgstr "చెక్‌ మాదిరి వలె (_p)"
+
+#: ../src/f-spot.glade.h:26
+msgid "Attach Tags:"
+msgstr "టాగ్లను అనుభందించుము:"
+
+#: ../src/f-spot.glade.h:27
+msgid "Attach tag:"
+msgstr "టాగ్‌ను అనుభందించుము:"
+
+#: ../src/f-spot.glade.h:29
+msgid "CD"
+msgstr "CD"
+
+#: ../src/f-spot.glade.h:30
+msgid "C_ontrast:"
+msgstr "కాంట్రాస్టు (_o):"
+
+#: ../src/f-spot.glade.h:31
+msgid "Camera Selection"
+msgstr "కేమెరా యెంపిక"
+
+#: ../src/f-spot.glade.h:32
+msgid "Copy files to the Photos folder"
+msgstr "ఫైళ్ళను ఛాయాచిత్రముల ఫోల్డరునకు నకలుతీయుము"
+
+#: ../src/f-spot.glade.h:33
+msgid "Create Mail"
+msgstr "మెయిల్ సృష్టించుము"
+
+#: ../src/f-spot.glade.h:34
+msgid "Create _icon for this tag when first used"
+msgstr "మొదటి సారి వుపయోగించినప్పుడు ఈ టాగ్‌నకు ప్రతిమను సృష్టించుము (_i)"
+
+#: ../src/f-spot.glade.h:35
+msgid "Create a mail with the selected photos (possibly resized) attached"
+msgstr "ఎంపికచేసి అనుభందించిన ఛాయాచిత్రములతో మెయిల్ సృష్టించుము"
+
+#: ../src/f-spot.glade.h:36
+msgid "Detect duplicates"
+msgstr "నకిలీలను గుర్తించుము"
+
+#: ../src/f-spot.glade.h:37
+msgid "Display File _Names"
+msgstr "ఫైలు నామములను ప్రదర్శించుము (_N)"
+
+#: ../src/f-spot.glade.h:38
+msgid "Display only those photos that were imported in specified Rolls."
+msgstr "తెలుపబడిన రోల్సునందు దిగుమతి చేసిన ఛాయాచిత్రములను మాత్రమే ప్రదర్శించుము."
+
+#: ../src/f-spot.glade.h:39
+msgid "Do not send a mail"
+msgstr "మెయిల్ పంపవద్దు"
+
+#: ../src/f-spot.glade.h:40
+msgid "E-_Mail:"
+msgstr "ఈ-మెయిల్ (_M):"
+
+#: ../src/f-spot.glade.h:41
+msgid "E_xport titles and comments"
+msgstr "శీర్షికలను మరియు వ్యాఖ్యలను ఎగుమతిచేయుము (_x)"
+
+#: ../src/f-spot.glade.h:42
+msgid "Estimated new size"
+msgstr "అంచనావేసిన కొత్త పరిమాణము"
+
+#: ../src/f-spot.glade.h:44
+msgid "Extra large"
+msgstr "మరీ పెద్ద"
+
+#: ../src/f-spot.glade.h:45
+msgid "F-Spot View"
+msgstr "F-Spot దర్శనము"
+
+#: ../src/f-spot.glade.h:47
+msgid "Filter on selected rolls"
+msgstr "ఎంపికచేసిన రోల్సునందు ఫిల్టర్"
+
+#: ../src/f-spot.glade.h:48
+msgid "G_allery:"
+msgstr "గ్యాలరీ (_a):"
+
+#: ../src/f-spot.glade.h:49
+msgid "Gallery"
+msgstr "గ్యాలరీ"
+
+#: ../src/f-spot.glade.h:50 ../src/ImportCommand.cs:547
+#: ../src/MainWindow.cs:267
+msgid "Import"
+msgstr "దిగుమతి"
+
+#. Translators: this string means 'source of import'
+#: ../src/f-spot.glade.h:52
+msgid "Import Source:"
+msgstr "మూలమును దిగుమతిచేయుము:"
+
+#: ../src/f-spot.glade.h:53
+msgid "Include subfolders"
+msgstr "ఉపఫోల్డరులతో కలుపుకొని"
+
+#: ../src/f-spot.glade.h:54
+msgid "Large"
+msgstr "పెద్ద"
+
+#: ../src/f-spot.glade.h:55
+msgid "Manage your custom selection ratios"
+msgstr "మీరు మలచుకొనిన యెంపిక నిష్పత్తులను నిర్వహించుము"
+
+#: ../src/f-spot.glade.h:56
+msgid "Medium"
+msgstr "మధ్యమ"
+
+#: ../src/f-spot.glade.h:58
+msgid "Number of photos in selected rolls:"
+msgstr "ఎంపికచేసిన రోల్సునందలి ఛాయాచిత్రముల సంఖ్య:"
+
+#: ../src/f-spot.glade.h:59
+msgid "Number of pictures"
+msgstr "చిత్రముల సంఖ్య"
+
+#: ../src/f-spot.glade.h:60
+msgid "Open _Folder..."
+msgstr "ఫోల్డరును తెరువుము... (_F)"
+
+#: ../src/f-spot.glade.h:62
+msgid "Original size (possible very large file size)"
+msgstr "వాస్తవ పరిమాణము (చాలా పెద్ద ఫైలు పరిమాణము సాధ్యము)"
+
+#: ../src/f-spot.glade.h:63
+msgid "P_arent Tag:"
+msgstr "పేరెంట్ టాగ్ (_a):"
+
+#: ../src/f-spot.glade.h:64
+msgid "Pause"
+msgstr "నిలుపుము"
+
+#: ../src/f-spot.glade.h:65
+msgid "Preferences"
+msgstr "అభీష్టాలు"
+
+#: ../src/f-spot.glade.h:66 ../src/ItemAction.cs:123
+msgid "Previous"
+msgstr "ముందరి"
+
+#: ../src/f-spot.glade.h:67
+msgid "Repair"
+msgstr "బాగుచేయి"
+
+#: ../src/f-spot.glade.h:70
+msgid "Select Photos to Copy From Camera..."
+msgstr "కేమెరానుండి నకలుతీయుటకు ఛాయాచిత్రములను యెంపికచేయుము..."
+
+#: ../src/f-spot.glade.h:71
+msgid "Select a Tag..."
+msgstr "టాగ్‌ను యెంపికచేయుము..."
+
+#: ../src/f-spot.glade.h:72
+msgid "Select the camera from which you want to transfer files"
+msgstr "మీరు దేనినుండి ఫైళ్ళను బదిలీకరించాలని అనుకొనుచున్నారో ఆ కేమెరాను యెంపికచేయుము"
+
+#: ../src/f-spot.glade.h:73
+msgid "Selected Camera: "
+msgstr "ఎంపికచేసిన కేమెరా: "
+
+#: ../src/f-spot.glade.h:74
+msgid "Selection Constraints"
+msgstr "ఎంపిక నియమాలు"
+
+#: ../src/f-spot.glade.h:75
+msgid "Set as _Background"
+msgstr "బ్యాక్‌గ్రౌండ్ వలె అమర్చుము (_B)"
+
+#: ../src/f-spot.glade.h:76
+msgid "Show all photos."
+msgstr "అన్ని ఛాయాచిత్రములను చూపుము"
+
+#: ../src/f-spot.glade.h:77
+msgid "Show or hide the side pane"
+msgstr "ప్రక్క పేన్‌ను చూపుము లేదా మరుగునవుంచుము"
+
+#: ../src/f-spot.glade.h:78
+msgid "Show or hide the toolbar"
+msgstr "సాధనపట్టీను చూపుము లేదా మరుగునవుంచుము"
+
+#: ../src/f-spot.glade.h:79
+msgid "Side _pane"
+msgstr "ప్రక్క పేన్ (_p)"
+
+#: ../src/f-spot.glade.h:80
+msgid "Small"
+msgstr "చిన్న"
+
+#: ../src/f-spot.glade.h:81
+msgid ""
+"Specify if an original size picture should be rotated or not. Smaller sizes "
+"are automatically rotated."
+msgstr ""
+"వాస్తవ పరిమాణ చిత్రము భ్రమణం చెందవలెనో లేదో తెలుపండి. చిన్న పరిమాణములు స్వయంచాలకంగా "
+"భ్రమణం చెందుతాయి."
+
+#: ../src/f-spot.glade.h:82
+msgid "Strip image _metadata"
+msgstr "ప్రతిబింబపు మెటాడాటాను స్ట్రిప్‌చేయి"
+
+#. Note for translators: meant as Temperature
+#: ../src/f-spot.glade.h:84
+msgid "Te_mp:"
+msgstr "తాత్కాలిక (_m):"
+
+#: ../src/f-spot.glade.h:85
+msgid "Tiny"
+msgstr "సన్నని"
+
+#: ../src/f-spot.glade.h:86
+msgid "Total original size"
+msgstr "మొత్తము వాస్తవ పరిమాణము"
+
+#: ../src/f-spot.glade.h:87
+msgid "Zoom _in"
+msgstr "జూమ్ చేయి (_i)"
+
+#: ../src/f-spot.glade.h:88
+msgid "Zoom _out"
+msgstr "జూమ్ తగ్గించు (_o)"
+
+#: ../src/f-spot.glade.h:89
+msgid "Zoom in"
+msgstr "జూమ్ చేయి"
+
+#: ../src/f-spot.glade.h:90
+msgid "Zoom out"
+msgstr "జూమ్ తగ్గించు"
+
+#: ../src/f-spot.glade.h:91
+msgid "_Brightness:"
+msgstr "కాంతిప్రకాశం (_B):"
+
+#: ../src/f-spot.glade.h:93
+msgid "_Create Mail"
+msgstr "మెయిల్ సృష్టించుము (_C)"
+
+#: ../src/f-spot.glade.h:94
+msgid "_Edit"
+msgstr "సరికూర్చు (_E)"
+
+#: ../src/f-spot.glade.h:98
+msgid "_Exposure:"
+msgstr "ఎక్సుపోజర్ (_E):"
+
+#: ../src/f-spot.glade.h:99
+msgid "_Flickr"
+msgstr "ఫ్లికర్ (_F)"
+
+#: ../src/f-spot.glade.h:100
+msgid "_Fullscreen"
+msgstr "పూర్తితెర (_F)"
+
+#: ../src/f-spot.glade.h:101
+msgid "_Gallery"
+msgstr "గ్యాలరీ (_G)"
+
+#: ../src/f-spot.glade.h:102
+msgid "_Help"
+msgstr "సహాయము (_H)"
+
+#: ../src/f-spot.glade.h:103
+msgid "_Hue:"
+msgstr "హ్యూ (_H):"
+
+#: ../src/f-spot.glade.h:104
+msgid "_Interpolate image on zoom"
+msgstr "జూమ్‌నందు యింటర్‌పొలేట్ ప్రతిబింబము (_I)"
+
+#: ../src/f-spot.glade.h:105
+msgid "_New Window"
+msgstr "కొత్త విండో (_N)"
+
+#: ../src/f-spot.glade.h:106
+msgid "_Open album in browser when done uploading"
+msgstr "అప్‌లోడింగ్ పూర్తవగానే బ్రౌజర్‌ను ఆల్బమ్‌నందు తెరువుము (_O)"
+
+#: ../src/f-spot.glade.h:107
+msgid "_Open destination when done exporting"
+msgstr "ఎగుమతి పూర్తవగానే గమ్యమును తెరువుము (_O)"
+
+#: ../src/f-spot.glade.h:108
+msgid "_Photo"
+msgstr "ఛాయాచిత్రము (_P)"
+
+#: ../src/f-spot.glade.h:110
+msgid "_Saturation:"
+msgstr "సాట్యురేషన్ (_S):"
+
+#: ../src/f-spot.glade.h:111
+msgid "_Scale photos to no larger than: "
+msgstr "దీనికన్నా పెద్దకాకుండా ఛాయాచిత్రములను స్కేలు చేయుము (_S): "
+
+#: ../src/f-spot.glade.h:112
+msgid "_Slideshow"
+msgstr "స్లైడుప్రదర్శన (_S)"
+
+#: ../src/f-spot.glade.h:113
+msgid "_Strip metadata"
+msgstr "స్ట్రిప్ మెటాడాటా (_S)"
+
+#: ../src/f-spot.glade.h:114
+msgid "_Tag Name:"
+msgstr "టాగ్ నామము (_T):"
+
+#: ../src/f-spot.glade.h:115
+msgid "_Tint:"
+msgstr "టింట్ (_T):"
+
+#: ../src/f-spot.glade.h:116
+msgid "_Toolbar"
+msgstr "సాధనపట్టీ (_T)"
+
+#: ../src/f-spot.glade.h:117
+msgid "_URI:"
+msgstr "_URI:"
+
+#: ../src/f-spot.glade.h:118
+msgid "_View"
+msgstr "దర్శించు (_V)"
+
+#: ../src/f-spot.glade.h:119
+msgid "_Virtual Filesystem"
+msgstr "వర్చ్యువల్ దస్త్రవ్యవస్థ (_V)"
+
+#: ../src/f-spot.glade.h:120 ../src/Widgets/FindBar.cs:177
+msgid "and"
+msgstr "మరియు"
+
+#. at, or after a date, or between dates
+#: ../src/f-spot.glade.h:122
+msgid ""
+"at\n"
+"after\n"
+"between"
+msgstr ""
+"వద్ద\n"
+"తరువాత\n"
+"మధ్య"
+
+#: ../src/f-spot.glade.h:126
+msgid "x"
+msgstr "x"
+
+#: ../src/FullScreenView.cs:58
+msgid "Hide"
+msgstr "మరుగుపరచు"
+
+#: ../src/FullScreenView.cs:60
+msgid "Hide Toolbar"
+msgstr "సాధనపట్టీ మరగునవుంచుము"
+
+#: ../src/FullScreenView.cs:66
+msgid "Info"
+msgstr "సమాచారము"
+
+#: ../src/FullScreenView.cs:68 ../src/Widgets/InfoBox.cs:200
+msgid "Image Information"
+msgstr "ప్రతిబింబము సమాచారము"
+
+#: ../src/FullScreenView.cs:73
+msgid "Exit fullscreen"
+msgstr "పూర్తితెర నిష్క్రమించుము"
+
+#: ../src/FullScreenView.cs:81 ../src/MainWindow.cs:307
+#: ../src/SingleView.cs:103
+msgid "Slideshow"
+msgstr "స్లైడు ప్రదర్శన"
+
+#: ../src/FullScreenView.cs:82
+msgid "Start slideshow"
+msgstr "స్లైడు ప్రదర్శనను ప్రారంభించుము"
+
+#: ../src/FullScreenView.cs:128
+msgid "Slide transition:"
+msgstr "స్లైడు ట్రాన్సిషన్‌:"
+
+#: ../src/GlTransition.cs:36
+msgid "Dissolve"
+msgstr "విలీనం"
+
+#: ../src/GlTransition.cs:104
+msgid "Flip"
+msgstr "తిప్పు"
+
+#: ../src/GlTransition.cs:147
+msgid "Cover"
+msgstr "కప్పివుంచు"
+
+#: ../src/GlTransition.cs:174
+msgid "Reveal"
+msgstr "బయల్పరచు"
+
+#: ../src/GlTransition.cs:201
+msgid "Wipe"
+msgstr "తుడుచు"
+
+#: ../src/GlTransition.cs:259
+msgid "Split"
+msgstr "విభజన"
+
+#: ../src/GlTransition.cs:370
+msgid "Push"
+msgstr "నెట్టు"
+
+#: ../src/GroupSelector.cs:57 ../src/GroupSelector.cs:58
+msgid "More dates"
+msgstr "మరిన్ని రోజులు"
+
+#: ../src/GroupSelector.cs:60 ../src/GroupSelector.cs:61
+msgid "More"
+msgstr "మరిన్ని"
+
+#: ../src/GroupSelector.cs:514
+msgid "_Clear Date Range"
+msgstr "తేది విస్తృతి శుభ్రపరచు (_C)"
+
+#: ../src/Imaging/Exif.cs:228
+msgid "Image Directory"
+msgstr "ప్రతిబింబము డైరెక్టరీ"
+
+#: ../src/Imaging/Exif.cs:230
+msgid "Thumbnail Directory"
+msgstr "థంబ్‌నెయిల్ డైరెక్టరీ"
+
+#: ../src/Imaging/Exif.cs:232
+msgid "Exif Directory"
+msgstr "Exif డైరెక్టరీ"
+
+#: ../src/Imaging/Exif.cs:234
+msgid "GPS Directory"
+msgstr "GPS డైరెక్టరీ"
+
+#: ../src/Imaging/Exif.cs:236
+msgid "InterOperability Directory"
+msgstr "ఇంటరాపరబిలిటి డైరెక్టరీ"
+
+#: ../src/Imaging/Exif.cs:238
+msgid "Unknown Directory"
+msgstr "తెలియని డైరెక్టరీ"
+
+#: ../src/Imaging/ImageFile.cs:112
+msgid "Writing to this file format is not supported"
+msgstr "ఈ ఫైలు ఫార్మాటునకు వ్రాయుట మద్దతీయదు"
+
+#: ../src/Imaging/IptcFile.cs:145
+msgid "IPTC Information Interchange Model (IIM) Version number"
+msgstr "IPTC ఇన్ఫర్మేషన్ యింటర్‌చేంజ్ మోడల్ (IIM) వర్షన్ సంఖ్య"
+
+#: ../src/Imaging/IptcFile.cs:147
+msgid "OSI Destination routing information"
+msgstr "OSI గమ్యపు రూటింగ్ సమాచారము"
+
+#: ../src/Imaging/IptcFile.cs:149
+msgid "IPTC file format"
+msgstr "IPTC ఫైలు ఫార్మాట్"
+
+#: ../src/Imaging/IptcFile.cs:151
+msgid "Identifies the provider and product"
+msgstr "ఉత్పాదకుడిని మరియు ఉత్పత్తిని గుర్తిస్తుంది"
+
+#: ../src/Imaging/IptcFile.cs:153
+msgid "A unique number identifying the envelope"
+msgstr "ఎన్వలప్‌ను గుర్తించే స్వతంత్ర సంఖ్య"
+
+#: ../src/Imaging/IptcFile.cs:155
+msgid "A unique number"
+msgstr "ఒక స్వతంత్ర సంఖ్య"
+
+#: ../src/Imaging/IptcFile.cs:157
+msgid "The envelope handling priority between 1 (most urgent) and 9 (least urgent)"
+msgstr "ఎన్వలప్ సంబాలిక ప్రాముఖ్యత 1 (అత్యవసర) మరియు 9 (తొందరలేని) మధ్యన"
+
+#: ../src/Imaging/IptcFile.cs:159
+msgid "The year, month and day (CCYYMMDD) the service sent the material"
+msgstr "సంవత్సరము, నెల మరియు తేది (CCYYMMDD) సేవ సరుకు పంపినది"
+
+#: ../src/Imaging/IptcFile.cs:161
+msgid "The hour, minute and second (HHMMSS) the service sent the material"
+msgstr "గంట, నిముషము మరియు సెకను (HHMMSS) సేవ సరకు పంపినది"
+
+#: ../src/Imaging/IptcFile.cs:163
+msgid "The character set designation"
+msgstr "అక్షర సమితి డిజిగ్నేషన్"
+
+#: ../src/Imaging/IptcFile.cs:165
+msgid "External globally unique object identifier"
+msgstr "ఎక్సటర్నల్ గ్లోబల్లీ యునిక్ ఆబ్జక్టు ఐడెంటిఫైర్"
+
+#: ../src/Imaging/IptcFile.cs:170
+msgid "Abstract Relationship Method (ARM) identifier"
+msgstr "ఆబ్‌స్ట్రాక్టు రిలేషన్‌షిప్ మెథడ్ (ARM) ఐడెంటిఫైర్"
+
+#: ../src/Imaging/IptcFile.cs:172
+msgid "Abstract Relationship Method (ARM) version number."
+msgstr "ఆబ్‌స్ట్రాక్టు రిలేషన్‌షిప్ మెథడ్ (ARM) వర్షన్ సంఖ్య."
+
+#: ../src/Imaging/IptcFile.cs:175
+msgid "Number identifying the IIM version this application record uses"
+msgstr "ఈ అప్లికేషన్ రికార్డు వుపయోగించే IIM వర్షన్ గుర్తించే సంఖ్య"
+
+#: ../src/Imaging/IptcFile.cs:177
+msgid "Object type reference"
+msgstr "ఆబ్జక్టు రకము రిఫరెన్సు"
+
+#: ../src/Imaging/IptcFile.cs:182
+msgid "Object attribute reference"
+msgstr "ఆబ్జక్టు యాట్రిబ్యూట్ రిఫరెన్సు"
+
+#: ../src/Imaging/IptcFile.cs:188 ../src/Imaging/IptcFile.cs:192
+msgid "Object name"
+msgstr "ఆబ్జక్టు నామము"
+
+#: ../src/Imaging/IptcFile.cs:190
+msgid "Status of the objectdata according to the provider"
+msgstr "ఉత్పాదకుని అనుసరించి ఆబ్జక్టుడాటా స్థితి"
+
+#: ../src/Imaging/IptcFile.cs:194
+msgid "Location within a city or area where the object originates"
+msgstr "ఆబ్జక్టు వుద్బవించిన ప్రాంతము లేదా పట్టణమునందలి స్థానము"
+
+#: ../src/Imaging/IptcFile.cs:197
+msgid "Name of the city the content is focussing on"
+msgstr "సారము దృష్టిసారించే పట్టణము నామము"
+
+#: ../src/Imaging/IptcFile.cs:200
+msgid "Copyright information for"
+msgstr "దీనికొరకు కాపీరైటు సమాచారము"
+
+#: ../src/Imaging/IptcFile.cs:203
+msgid "Full name of the country of the focus of the content"
+msgstr "సారము దృష్టిసారించే దేశము యొక్క పూర్తినామము"
+
+#: ../src/Imaging/IptcFile.cs:206
+msgid "Two or three letter ISO3166 code of the country of the focus of the content"
+msgstr "సారము దృష్టిసారించే దేశము యొక్క రెండు లేదా మూడు అక్షరముల ISO3166 కోడ్"
+
+#: ../src/Imaging/IptcFile.cs:209
+msgid "Creator of the content"
+msgstr "సారము యొక్క సృష్టికర్త"
+
+#: ../src/Imaging/IptcFile.cs:212
+msgid "Provider of the object"
+msgstr "ఆబ్జక్టు యొక్క ఉత్పాదకుడు"
+
+#: ../src/Imaging/IptcFile.cs:215
+msgid "The title of the author or creator"
+msgstr "గ్రంధకర్త లేదా సృష్టకర్త యొక్క శీర్షిక"
+
+#: ../src/Imaging/IptcFile.cs:218
+msgid ""
+"The person involved in writing, editing or correcting the object data or "
+"caption/abstract"
+msgstr ""
+"ఆబ్జక్టు డాటా లేదా కాప్షన్/సంగ్రహమును దిద్దుబాటు చేయుటలో లేదా సంపాదకీయం చేయుటలో, వ్రాయుటలో "
+"సంభందం వున్న వ్యక్తి."
+
+#: ../src/Imaging/IptcFile.cs:222
+msgid "Headline of the content"
+msgstr "సారముయొక్క హెడ్‌లైను"
+
+#: ../src/Imaging/IptcFile.cs:225
+msgid "Instructions from the creator to the receiver not covered by other fields"
+msgstr "ఇతర క్షేత్రముల ద్వారా తెలుపబడని సూచనలు సృష్టికర్తనుండి స్వీకరణదారునకు"
+
+#: ../src/Imaging/IptcFile.cs:228
+msgid "Intellectual genre of the object"
+msgstr "ఆబ్జక్టుయొక్క పరిపక్వ చిత్రీకరణ"
+
+#: ../src/Imaging/IptcFile.cs:241
+msgid "Unknown IIM DataSet"
+msgstr "తెలియని IIM డాటాసమితి"
+
+#: ../src/ImportCommand.cs:48 ../src/SingleView.cs:359
+msgid "Select Folder"
+msgstr "ఫోల్డరును యెంపికచేయుము"
+
+#: ../src/ImportCommand.cs:259
+msgid "(No Cameras Detected)"
+msgstr "(కేమెరాలు గుర్తించబడలేదు)"
+
+#: ../src/ImportCommand.cs:404
+#, csharp-format
+msgid "Loading {0} of {1}"
+msgstr "{1} లో {0} లోడవుచున్నది"
+
+#: ../src/ImportCommand.cs:470
+msgid "Done Loading"
+msgstr "లోడింగు పూర్తైనది"
+
+#: ../src/ImportCommand.cs:683
+msgid "Directory does not exist."
+msgstr "డైరెక్టరీ లేదు."
+
+#: ../src/ImportCommand.cs:684
+#, csharp-format
+msgid ""
+"The directory you selected \"{0}\" does not exist.  Please choose a "
+"different directory"
+msgstr "మీరు యెంపికచేసిన \"{0}\" డైరెక్టరీ లేదు.  దయచేసి వేరొక డైరెక్టరీను యెంచుకొనుము."
+
+#. Note for translators: 'Import Tags' is no command, it means 'Tags used in Import'
+#: ../src/ImportCommand.cs:738 ../src/ImportCommand.cs:740
+#: ../src/XmpTagsImporter.cs:89
+msgid "Import Tags"
+msgstr "టాగ్లను దిగుమతి చేయుము"
+
+#: ../src/ItemAction.cs:79 ../src/MainWindow.cs:274 ../src/SingleView.cs:86
+msgid "Rotate Left"
+msgstr "ఎడమకు తిప్పుము"
+
+#: ../src/ItemAction.cs:80
+msgid "Rotate picture left"
+msgstr "చిత్రము ఎడమకు తిప్పుము"
+
+#: ../src/ItemAction.cs:91 ../src/MainWindow.cs:278 ../src/SingleView.cs:91
+msgid "Rotate Right"
+msgstr "కుడికు తిప్పుము"
+
+#: ../src/ItemAction.cs:92
+msgid "Rotate picture right"
+msgstr "చిత్రము కుడికు తిప్పుము"
+
+#: ../src/ItemAction.cs:103
+msgid "Next picture"
+msgstr "తరువాతి చిత్రము"
+
+#: ../src/ItemAction.cs:124
+msgid "Previous picture"
+msgstr "ముందరి చిత్రము"
+
+#: ../src/MainWindow.cs:269
+msgid "Import new images"
+msgstr "కొత్త ప్రతిబింబములను దిగుమతిచేయుము"
+
+#: ../src/MainWindow.cs:285
+msgid "Browse"
+msgstr "బ్రౌజ్"
+
+#: ../src/MainWindow.cs:289
+msgid "Browse many photos simultaneously"
+msgstr "ఒకే కాలంలో చాలా ఛాయాచిత్రములను అన్వేషించుము"
+
+#: ../src/MainWindow.cs:293
+msgid "Edit Image"
+msgstr "ప్రతిబింబమును సరికూర్చుము"
+
+#: ../src/MainWindow.cs:297
+msgid "View and edit a photo"
+msgstr "ఛాయాచిత్రమును దర్శించుము మరియు సరికూర్చుము"
+
+#: ../src/MainWindow.cs:302 ../src/SingleView.cs:98
+msgid "Fullscreen"
+msgstr "నిండుతెర"
+
+#: ../src/MainWindow.cs:304 ../src/SingleView.cs:100
+msgid "View photos fullscreen"
+msgstr "ఛాయాచిత్రములను నిండుతెరనందు దర్శించుము"
+
+#: ../src/MainWindow.cs:309 ../src/SingleView.cs:105
+msgid "View photos in a slideshow"
+msgstr "ఛాయాచిత్రములను స్లైడుప్రదర్శననందు దర్శించుము"
+
+#: ../src/MainWindow.cs:324
+msgid "Previous photo"
+msgstr "ముందరి ఛాయాచిత్రము"
+
+#: ../src/MainWindow.cs:329
+msgid "Next photo"
+msgstr "తరువాతి ఛాయాచిత్రము"
+
+#: ../src/MainWindow.cs:1488
+msgid "No cameras detected."
+msgstr "ఎటువంటి కేమెరాలు గుర్తించబడలేదు."
+
+#: ../src/MainWindow.cs:1489
+msgid ""
+"F-Spot was unable to find any cameras attached to this system.  Double check "
+"that the camera is connected and has power"
+msgstr ""
+"ఈ సిస్టమునకు అనుభందించిన యే కేమెరాలను F-Spot కనుగొనలేక పోయింది.  కేమెరా అనుసంధానించబడి "
+"వుండునట్లు మరియు పవర్ కలగివుండునట్లు వొకటికి రెండుసార్లు చూసుకొనుము."
+
+#: ../src/MainWindow.cs:1528
+msgid "Error connecting to camera"
+msgstr "కేమెరాకు అనుసంధానమగుటలో దోషము"
+
+#: ../src/MainWindow.cs:1529
+#, csharp-format
+msgid "Received error \"{0}\" while connecting to camera"
+msgstr "కేమెరాకు అనుసంధానమగుటలో దోషము \"{0}\" పొందినది"
+
+#. Translators, The singular case will never happen here.
+#: ../src/MainWindow.cs:1815
+#, csharp-format
+msgid "Merge the selected tag"
+msgid_plural "Merge the {0} selected tags?"
+msgstr[0] "ఎంపికచేసిన టాగ్‌ను మిళితంచేయుము"
+msgstr[1] "{0} యెంపికచేసిన టాగ్లను మిళితం చేయాలా?"
+
+#: ../src/MainWindow.cs:1842
+msgid ""
+"This operation will merge the selected tags and any sub-tags into a single "
+"tag."
+msgstr "ఈ ఆపరేషన్ యెంపికచేసిన టాగ్లను మరియు ఉప-టాగ్‌లను వొంటరి టాగ్‌నకు మిళితం చేయును."
+
+#: ../src/MainWindow.cs:1844
+msgid "_Merge Tags"
+msgstr "టాగ్లను మిళితం చేయుము (_M)"
+
+#: ../src/MainWindow.cs:2049
+#, csharp-format
+msgid "{0} Photo out of {1}"
+msgid_plural "{0} Photos out of {1}"
+msgstr[0] "మొత్త {1} లో {0} ఛాయాచిత్రము"
+msgstr[1] "మొత్తం {1} లో {0} ఛాయాచిత్రము"
+
+#: ../src/MainWindow.cs:2051 ../src/SingleView.cs:495
+#, csharp-format
+msgid "{0} Photo"
+msgid_plural "{0} Photos"
+msgstr[0] "{0} ఛాయాచిత్రము"
+msgstr[1] "{0} ఛాయాచిత్రములు"
+
+#: ../src/MainWindow.cs:2054
+#, csharp-format
+msgid " ({0} selected)"
+msgid_plural " ({0} selected)"
+msgstr[0] " ({0} యెంపికైంది)"
+msgstr[1] " ({0} యెంపికైంది )"
+
+#: ../src/MainWindow.cs:2135
+msgid "_Ok"
+msgstr "సరే (_O)"
+
+#: ../src/MainWindow.cs:2136
+msgid "Error Deleting Picture"
+msgstr "చిత్రమును తొలగించుటలో దోషము"
+
+#: ../src/MainWindow.cs:2141
+#, csharp-format
+msgid "No permission to delete the file:{1}{0}"
+msgstr "ఫైలు తొలగించుటకు యెటువంటి అనుమతిలేదు: {1}{0}"
+
+#: ../src/MainWindow.cs:2145
+#, csharp-format
+msgid "An error of type {0} occurred while deleting the file:{2}{1}"
+msgstr "ఫైలు తొలగించునప్పుడు {0} వంటి దోషము యెదురైంది: {2}{1}"
+
+#: ../src/MainWindow.cs:2177
+#, csharp-format
+msgid "Delete the selected photo permanently?"
+msgid_plural "Delete the {0} selected photos permanently?"
+msgstr[0] "ఎంపికచేసిన ఛాయాచిత్రమును శాశ్వతంగా తొలగించాలా?"
+msgstr[1] "ఎంపికచేసిన {0} ఛాయాచిత్రములను శాశ్వతంగా తొలగించాలా?"
+
+#: ../src/MainWindow.cs:2181
+msgid "This deletes all versions of the selected photo from your drive."
+msgid_plural "This deletes all versions of the selected photos from your drive."
+msgstr[0] "ఇది మీ డ్రైవునుండి యెంపికచేసిన ఛాయాచిత్రము యొక్క అన్ని వర్షన్లను తొలగిస్తుంది."
+msgstr[1] "ఇది మీ డ్రైవ్‌నుండి యెంపికచేసిన ఛాయాచిత్రముల యొక్క అన్ని వర్షన్లను తొలగిస్తుంది."
+
+#: ../src/MainWindow.cs:2184
+msgid "_Delete photo"
+msgid_plural "_Delete photos"
+msgstr[0] "ఛాయాచిత్రము తొలగించుము (_D)"
+msgstr[1] "ఛాయాచిత్రములను తొలగించుము (_D)"
+
+#: ../src/MainWindow.cs:2220
+#, csharp-format
+msgid "Remove the selected photo from F-Spot?"
+msgid_plural "Remove the {0} selected photos from F-Spot?"
+msgstr[0] "ఎంపికచేసిన ఛాయాచిత్రమును F-Spotనుండి తీసివేయాలా?"
+msgstr[1] "ఎంపికచేసిన {0} ఛాయాచిత్రములను F-Spotనుండి తీసివేయాలా?"
+
+#: ../src/MainWindow.cs:2225
+msgid ""
+"If you remove photos from the F-Spot catalog all tag information will be "
+"lost. The photos remain on your computer and can be imported into F-Spot "
+"again."
+msgstr ""
+"మీరు F-Spot కాటలాగ్‌నుండి ఛాయాచిత్రములను తీసివేస్తే టాగ్ సమాచారమంతా పోతుంది. ఛాయాచిత్రము "
+"మీ కంప్యూటరునందే వుంటాయి మరియు మరలా F-Sportనకు ఎగుమతి చేయవచ్చును."
+
+#: ../src/MainWindow.cs:2226
+msgid "_Remove from Catalog"
+msgstr "కాటలాగ్‌నుండి తీసివేయుము (_R)"
+
+#: ../src/MainWindow.cs:2289
+#, csharp-format
+msgid "Delete tag \"{0}\"?"
+msgstr "టాగ్ \"{0}\" తొలగించాలా?"
+
+#: ../src/MainWindow.cs:2291
+#, csharp-format
+msgid "Delete the {0} selected tags?"
+msgstr "{0} యెంపికచేసిన టాగ్లను తొలగించాలా?"
+
+#: ../src/MainWindow.cs:2296
+msgid "photo"
+msgid_plural "photos"
+msgstr[0] "ఛాయాచిత్రము"
+msgstr[1] "ఛాయాచిత్రములు"
+
+#: ../src/MainWindow.cs:2298
+#, csharp-format
+msgid "If you delete this tag, the association with {0} {1} will be lost."
+msgid_plural "If you delete these tags, the association with {0} {1} will be lost."
+msgstr[0] "మీరు ఈ టాగ్‌ను తొలగించితే, {0} {1}తో సంభందము పోతుంది."
+msgstr[1] "మీరు ఈ టాగ్లను తొలగించితే, {0}{1}తో సంభందము పోతుంది."
+
+#: ../src/MainWindow.cs:2303
+msgid "_Delete tag"
+msgid_plural "_Delete tags"
+msgstr[0] "టాగ్‌ను తొలగించుము (_D)"
+msgstr[1] "టాగ్లను తొలగించుము (_D)"
+
+#. A Category is not empty. Can not delete it.
+#: ../src/MainWindow.cs:2317
+msgid "Tag is not empty"
+msgstr "టాగ్ ఖాళీగాలేదు"
+
+#: ../src/MainWindow.cs:2318
+#, csharp-format
+msgid ""
+"Can not delete tags that have tags within them.  Please delete tags under "
+"\"{0}\" first"
+msgstr ""
+"వాటిలో టాగ్లను కలిగివున్న టాగ్లను తొలగించలేము.  దయచేసి \"{0}\" క్రిందవున్న టాగ్లను ముందు "
+"తొలగించుము"
+
+#: ../src/MainWindow.cs:2750
+msgid "Rotate selected photo left"
+msgid_plural "Rotate selected photos left"
+msgstr[0] "ఎంపికచేసిన ఛాయాచిత్రమును ఎడమకు తిప్పుము"
+msgstr[1] "ఎంపికచేసిన ఛాయాచిత్రములను ఎడమకు తిప్పుము"
+
+#: ../src/MainWindow.cs:2763
+msgid "Rotate selected photo right"
+msgid_plural "Rotate selected photos right"
+msgstr[0] "ఎంపికచేసిన ఛాయాచిత్రమును కుడికు తిప్పుము"
+msgstr[1] "ఎంపికచేసిన ఛాయాచిత్రములను కుడికు తిప్పుము"
+
+#: ../src/MainWindow.cs:2774
+#, csharp-format
+msgid "Find _Selected Tag"
+msgid_plural "Find _Selected Tags"
+msgstr[0] "ఎంపికచేసిన టాగ్‌ను కనుగొనుము (_S)"
+msgstr[1] "ఎంపికచేసిన టాగ్లను కనుగొనుము (_S)"
+
+#: ../src/MainWindow.cs:2778
+#, csharp-format
+msgid "Find Selected Tag _With"
+msgid_plural "Find Selected Tags _With"
+msgstr[0] "ఎంపికచేసిన టాగ్‌ను దీనితో కనుగొనుము (_W)"
+msgstr[1] "ఎంపికచేసిన టాగ్లను దీనితో కనుగొనుము"
+
+#: ../src/MainWindow.cs:2819
+msgid "Create New Version?"
+msgid_plural "Create New Versions?"
+msgstr[0] "కొత్త వర్షన్ సృష్టించాలా"
+msgstr[1] "కొత్త వర్షన్లు సృష్టించాలా?"
+
+#: ../src/MainWindow.cs:2821
+#, csharp-format
+msgid ""
+"Before launching {1}, should F-Spot create a new version of the selected "
+"photo to preserve the original?"
+msgid_plural ""
+"Before launching {1}, should F-Spot create new versions of the selected "
+"photos to preserve the originals?"
+msgstr[0] ""
+"{1} ఆరంభించుటకు ముందుగా, వాస్తవాన్ని నిలిపివుంచుటకు F-Spot యెంపికచేసిన ఛాయాచిత్రము యొక్క "
+"కొత్త వర్షన్ సృష్టించాలా?"
+msgstr[1] ""
+"{1} ఆరంభించుటకు ముందుగా, వాస్తవాలను నిలిపివుంచుటకు F-Spot యెంపికచేసిన ఛాయాచిత్రముల యొక్క "
+"కొత్త వర్షన్లను సృష్టించాలా?"
+
+#: ../src/MainWindow.cs:2843
+msgid "XCF version"
+msgstr "XCF ‌వర్షన్"
+
+#: ../src/MetadataStore.cs:19
+msgid "Creator"
+msgstr "సృష్టికర్త"
+
+#: ../src/MetadataStore.cs:20
+msgid "Title"
+msgstr "శీర్షిక"
+
+#: ../src/MetadataStore.cs:21
+msgid "Copyright"
+msgstr "కాపీరైట్"
+
+#: ../src/MetadataStore.cs:22
+msgid "Subject and Keywords"
+msgstr "సబ్జక్టు మరియు కీపదములు"
+
+#: ../src/MetadataStore.cs:23
+msgid "Compression"
+msgstr "కుదింపు"
+
+#: ../src/MetadataStore.cs:25
+msgid "Planar Configuration"
+msgstr "ప్లానార్ ఆకృతీకరణ"
+
+#: ../src/MetadataStore.cs:27
+msgid "Orientation"
+msgstr "సర్దుబాటు"
+
+#: ../src/MetadataStore.cs:29
+msgid "Photometric Interpretation"
+msgstr "ఫోటోమెట్రిక్ యింటర్‌ప్రెటేషన్"
+
+#: ../src/MetadataStore.cs:31
+msgid "Resolution Unit"
+msgstr "రిజొల్యూషన్ యూనిట్"
+
+#: ../src/MetadataStore.cs:33
+msgid "Exposure Program"
+msgstr "ఎక్సుపోజర్ ప్రోగ్రామ్"
+
+#: ../src/MetadataStore.cs:35
+msgid "Metering Mode"
+msgstr "మీటరింగ్ రీతి"
+
+#: ../src/MetadataStore.cs:37
+msgid "Exposure Mode"
+msgstr "ఎక్సుపోజర్ రీతి"
+
+#: ../src/MetadataStore.cs:39
+msgid "Custom Rendered"
+msgstr "మలచుకొనిన రెండర్డు"
+
+#: ../src/MetadataStore.cs:41
+msgid "Components Configuration"
+msgstr "మూలకముల ఆకృతీకరణ"
+
+#: ../src/MetadataStore.cs:43
+msgid "Light Source"
+msgstr "కాంతి మూలము"
+
+#: ../src/MetadataStore.cs:45
+msgid "Sensing Method"
+msgstr "సెన్సింగ్ పద్ధతి"
+
+#: ../src/MetadataStore.cs:47
+msgid "Color Space"
+msgstr "రంగు స్పేసు"
+
+#: ../src/MetadataStore.cs:49
+msgid "White Balance"
+msgstr "తెలుపు సమతుల్యత"
+
+#: ../src/MetadataStore.cs:51
+msgid "Focal Plane Resolution Unit"
+msgstr "ఫోకల్ ప్లేన్ రెజొల్యూషన్ యూనిట్"
+
+#: ../src/MetadataStore.cs:53
+msgid "File Source Type"
+msgstr "ఫైలు మూలము రకము"
+
+#: ../src/MetadataStore.cs:55
+msgid "Scene Capture Type"
+msgstr "సీన్ కాప్చర్ రకము"
+
+#: ../src/MetadataStore.cs:57
+msgid "Gain Control"
+msgstr "నియంత్రణను పొందుము"
+
+#: ../src/MetadataStore.cs:59
+msgid "Contrast"
+msgstr "కాంట్రాస్టు"
+
+#: ../src/MetadataStore.cs:61
+msgid "Saturation"
+msgstr "సాట్యురేషన్"
+
+#: ../src/MetadataStore.cs:63
+msgid "Sharpness"
+msgstr "షార్పునెస్"
+
+#: ../src/MetadataStore.cs:65
+msgid "Scene Type"
+msgstr "స్కీన్ రకము"
+
+#. Fixme this should really set parent menu
+#. items insensitve
+#: ../src/PhotoTagMenu.cs:74
+msgid "(No Tags)"
+msgstr "(టాగ్లు లేవు)"
+
+#: ../src/PhotoVersionCommands.cs:58
+msgid "Create New Version"
+msgstr "కొత్త వర్షన్‌ను సృష్టించుము"
+
+#: ../src/PhotoVersionCommands.cs:59
+msgid "Name:"
+msgstr "నామము:"
+
+#: ../src/PhotoVersionCommands.cs:63
+msgid "Rename Version"
+msgstr "వర్షన్‌ను పునఃనామకరణ చేయుము"
+
+#: ../src/PhotoVersionCommands.cs:64
+msgid "New name:"
+msgstr "కొత్త నామము:"
+
+#: ../src/PhotoVersionCommands.cs:110
+msgid "Could not create a new version"
+msgstr "కొత్త వర్షన్‌ను సృష్టించలేక పోయింది"
+
+#: ../src/PhotoVersionCommands.cs:111
+#, csharp-format
+msgid "Received exception \"{0}\". Unable to create version \"{1}\""
+msgstr "ఆక్షేపణ \"{0}\" పొందింది. వర్షన్ \"{1}\" సృష్టించలేక పోయింది."
+
+#: ../src/PhotoVersionCommands.cs:138
+msgid "Really Delete?"
+msgstr "నిజంగా తొలగించాలా?"
+
+#: ../src/PhotoVersionCommands.cs:139
+msgid "Cancel"
+msgstr "రద్దుచేయి"
+
+#: ../src/PhotoVersionCommands.cs:140
+msgid "Delete"
+msgstr "తొలగించు"
+
+#: ../src/PhotoVersionCommands.cs:144
+#, csharp-format
+msgid "Really delete version \"{0}\"?"
+msgstr "వర్షన్‌ \"{0}\"ను నిజంగా తొలగించాలా?"
+
+#: ../src/PhotoVersionCommands.cs:154
+msgid "Could not delete a version"
+msgstr "వర్షన్‌ను తొలగించలేక పోయింది"
+
+#: ../src/PhotoVersionCommands.cs:155
+#, csharp-format
+msgid "Received exception \"{0}\". Unable to delete version \"{1}\""
+msgstr "ఆక్షేపణ \"{0}\" పొందింది. వర్షన్ {1} తొలగించలేక పోయింది"
+
+#: ../src/PhotoVersionCommands.cs:196
+msgid "Could not rename a version"
+msgstr "వర్షన్ పునఃనామకరణ చేయలేక పోయింది"
+
+#: ../src/PhotoVersionCommands.cs:197
+#, csharp-format
+msgid "Received exception \"{0}\". Unable to rename version to \"{1}\""
+msgstr "ఆక్షేపణ \"{0}\" పొందింది. వర్షన్ {1}కు పునఃనామకరణ చేయలేకపోయింది"
+
+#: ../src/PhotoVersionMenu.cs:66 ../src/Widgets/InfoBox.cs:554
+#: ../src/Widgets/InfoBox.cs:556
+msgid "(No Edits)"
+msgstr "(సరికూర్పులు లేవు)"
+
+#: ../src/PhotoView.cs:169 ../src/UI.Dialog/EditExceptionDialog.cs:38
+msgid "Error editing photo"
+msgstr "ఛాయాచిత్రమును సరికూర్చుటలో దోషము"
+
+#: ../src/PhotoView.cs:170 ../src/Sharpener.cs:73
+#: ../src/UI.Dialog/EditExceptionDialog.cs:25
+#, csharp-format
+msgid "Received exception \"{0}\". Unable to save photo {1}"
+msgstr "ఆక్షేపణ \"{0}\" పొందింది. ఛాయాచిత్రము {1} దాయలేక పోయింది"
+
+#: ../src/PhotoView.cs:359
+msgid "Comment:"
+msgstr "వ్యాఖ్యానము:"
+
+#: ../src/Preferences.cs:154
+msgid "Photos"
+msgstr "ఛాయాచిత్రములు"
+
+#: ../src/PrintOperation.cs:32
+msgid "Image Settings"
+msgstr "ప్రతిబింబపు అమరికలు"
+
+#: ../src/QueryWidget.cs:58
+msgid "Find: "
+msgstr "కనుగొనుము: "
+
+#: ../src/QueryWidget.cs:63
+msgid "Untagged photos"
+msgstr "టాగ్‌చేయని ఛాయాచిత్రములు"
+
+#: ../src/QueryWidget.cs:71
+msgid "Rated photos"
+msgstr "రేటుయిచ్చిన ఛాయాచిత్రములు"
+
+#. Note for translators: 'Import roll' is no command, it means 'Roll that has been imported'
+#: ../src/QueryWidget.cs:80
+msgid "Import roll"
+msgstr "రోల్ దిగుమతి"
+
+#: ../src/QueryWidget.cs:104
+msgid "Clear search"
+msgstr "శోధన శుభ్రముచేయి"
+
+#: ../src/QueryWidget.cs:111
+msgid "Refresh search"
+msgstr "శోధనను తాజాపర్చు"
+
+#: ../src/QueryWidget.cs:113
+msgid "No matching photos found"
+msgstr "సరిపోలు ఛాయాచిత్రములు కనబడలేదు"
+
+#: ../src/QueryWidget.cs:155
+msgid "Hide _Find Bar"
+msgstr "కనుగొను పట్టీను మరుగుపరచుము (_F)"
+
+#: ../src/QueryWidget.cs:161
+msgid "Show _Find Bar"
+msgstr "మరుగుపరచు పట్టీను చూపుము (_F)"
+
+#: ../src/RotateCommand.cs:96 ../src/RotateCommand.cs:111
+msgid "Unable to rotate this type of photo"
+msgstr "ఈ రకమైన ఛాయాచిత్రమును భ్రమణం చేయలేక పోయింది"
+
+#: ../src/RotateCommand.cs:131
+msgid "Unable to rotate readonly file"
+msgstr "చదువుటమాత్రమే ఫైలును భ్రమణం చేయలేక పోయింది"
+
+#: ../src/RotateCommand.cs:198
+msgid "Rotating photos"
+msgstr "ఛాయాచిత్రములను భ్రమణం చేయుట"
+
+#: ../src/RotateCommand.cs:209
+#, csharp-format
+msgid "Rotating photo \"{0}\""
+msgstr "ఛాయాచిత్రము \"{0}\"ను భ్రమణంచేయుట"
+
+#: ../src/RotateCommand.cs:222
+msgid "Directory not found"
+msgstr "డైరెక్టరీ కనబడలేదు"
+
+#: ../src/RotateCommand.cs:242
+#, csharp-format
+msgid "Unable to rotate photo"
+msgid_plural "Unable to rotate {0} photos"
+msgstr[0] "ఫోటొను భ్రమణం చేయలేక పోయింది"
+msgstr[1] "{0} ఛాయాచిత్రములను భ్రమణం చేయలేక పోయింది"
+
+#: ../src/RotateCommand.cs:244
+#, csharp-format
+msgid ""
+"The photo could not be rotated because it is on a read only file system or "
+"media such as a CDROM.  Please check the permissions and try again."
+msgid_plural ""
+"{0} photos could not be rotated because they are on a read only file system "
+"or media such as a CDROM.  Please check the permissions and try again."
+msgstr[0] ""
+"ఆ ఛాయాచిత్రము భ్రమణం చేయబడలేదు యెంచేతంటే అది చదువుటకు మాత్రమే అను దస్త్రవ్యవస్థనందు వుంది లేదా "
+"CDROM వంటి మాధ్యమంలో వుంది.  దయచేసి అనుమతులను పరిశీలించి తిరిగి ప్రయత్నించండి."
+msgstr[1] ""
+"{0} ఛాయాచిత్రములు భ్రమణం చేయబడలేవు యెంచేతంటే అది చదువుటకు మాత్రమే అను దస్త్రవ్యవస్థనందు వుంది లేదా "
+"CDROM వంటి మాధ్యమంలో వుంది.  దయచేసి అనుమతులను పరిశీలించి తిరిగి ప్రయత్నించండి."
+
+#: ../src/RotateCommand.cs:271
+#, csharp-format
+msgid "Received error \"{0}\" while attempting to rotate {1}"
+msgstr "{1} భ్రమణం చేయుటకు ప్రయత్నించునప్పుడు \"{0}\" దోషము పొందినది"
+
+#: ../src/RotateCommand.cs:276
+msgid "Error while rotating photo."
+msgstr "ఛాయాచిత్రమును భ్రమణం చేయుచున్నప్పుడు దోషము"
+
+#: ../src/SendEmail.cs:240
+msgid "Preparing email"
+msgstr "ఈమెయిల్ తయారుచేస్తోంది"
+
+#: ../src/SendEmail.cs:292
+#, csharp-format
+msgid "Exporting picture \"{0}\""
+msgstr "చిత్రము \"{0}\"ను యెగుమతి చేయుచున్నది"
+
+#: ../src/SendEmail.cs:314
+msgid "Error processing image"
+msgstr "ప్రతిబింబమును నిర్వర్తించుటలో దోషము"
+
+#: ../src/SendEmail.cs:315
+#, csharp-format
+msgid "An error occured while processing \"{0}\": {1}"
+msgstr "\"{0}\" నిర్వర్తించునప్పుడు వొక దోషము యెదురైంది: {1}"
+
+#. Send the mail :)
+#: ../src/SendEmail.cs:330
+msgid "my photos"
+msgstr "నా ఛాయాచిత్రములు"
+
+#: ../src/Sharpener.cs:72
+msgid "Error saving sharpened photo"
+msgstr "షార్పుచేసిన ఛాయాచిత్రములను దాయుటలో దోషము"
+
+#: ../src/Sharpener.cs:102
+msgid "Sharpen"
+msgstr "షార్పెన్"
+
+#: ../src/Sharpener.cs:112
+msgid "Amount:"
+msgstr "మొత్తము:"
+
+#: ../src/Sharpener.cs:113
+msgid "Radius:"
+msgstr "వాసార్ధము:"
+
+#: ../src/Sharpener.cs:114
+msgid "Threshold:"
+msgstr "త్రెష్‌హోల్డు:"
+
+#: ../src/SingleView.cs:88
+msgid "Rotate photo left"
+msgstr "ఛాయాచిత్రమును ఎడమకు తిప్పుము"
+
+#: ../src/SingleView.cs:93
+msgid "Rotate photo right"
+msgstr "ఛాయాచిత్రమును కుడికు తిప్పుము"
+
+#: ../src/SingleView.cs:130
+msgid "Folder"
+msgstr "ఫోల్డర్"
+
+#: ../src/SingleView.cs:356
+msgid "Open"
+msgstr "తెరువుము"
+
+#: ../src/SingleView.cs:456
+msgid "Set as Background"
+msgstr "బ్యాక్‌గ్రౌండ్ వలె అమర్చుము"
+
+#: ../src/TagCommands.cs:96 ../src/TagSelectionWidget.cs:498
+#: ../src/UI.Dialog/EditTagDialog.cs:78
+msgid "This name is already in use"
+msgstr "ఈ నామము యిప్పటికే వుపయోగంలో వుంది"
+
+#: ../src/TagCommands.cs:144
+msgid "Create New Tag"
+msgstr "కొత్త టాగ్ సృష్టించుము"
+
+#: ../src/TagCommands.cs:145
+msgid "Name of New Tag:"
+msgstr "కొత్త టాగ్ నామము:"
+
+#: ../src/TagPopup.cs:26
+#, csharp-format
+msgid "Find"
+msgid_plural "Find"
+msgstr[0] "కనుగొనుము"
+msgstr[1] "కనుగొనుము"
+
+#: ../src/TagPopup.cs:36 ../src/Widgets/TagMenu.cs:91
+msgid "Create New Tag..."
+msgstr "కొత్త టాగ్ సృష్టించుము..."
+
+#: ../src/TagPopup.cs:42
+msgid "Edit Selected Tag..."
+msgstr "ఎంపికచేసిన టాగ్ సరికూర్చుము"
+
+#: ../src/TagPopup.cs:46
+msgid "Delete Tag"
+msgid_plural "Delete Tags"
+msgstr[0] "టాగ్ తొలగించుము"
+msgstr[1] "టాగ్లను తొలగించుము"
+
+#: ../src/TagPopup.cs:52
+msgid "Attach Tag to Selection"
+msgid_plural "Attach Tags to Selection"
+msgstr[0] "టాగ్‌ను యెంపికకు అనుభందించుము"
+msgstr[1] "టాగ్లను యెంపికకు అనుభందించుము"
+
+#: ../src/TagPopup.cs:56
+msgid "Remove Tag From Selection"
+msgid_plural "Remove Tags From Selection"
+msgstr[0] "ఎంపికనుండి టాగ్‌ను తీసివేయుము"
+msgstr[1] "ఎంపికనుండి టాగ్లను తీసివేయుము"
+
+#: ../src/TagPopup.cs:62
+msgid "Merge Tags"
+msgstr "టాగ్లను మిళితంచేయుము"
+
+#: ../src/TagQueryWidget.cs:34
+#, csharp-format
+msgid "Include Photos Tagged \"{0}\""
+msgstr "టాగ్ చేసిన ఛాయాచిత్రములను చేర్చుము \"{0}\""
+
+#: ../src/TagQueryWidget.cs:39
+#, csharp-format
+msgid "Exclude Photos Tagged \"{0}\""
+msgstr "టాగ్‌చేసిన ఛాయాచిత్రములను వదిలివేయుము \"{0}\""
+
+#: ../src/TagQueryWidget.cs:44
+msgid "Remove From Search"
+msgstr "శోధననుండి తీసివేయుము"
+
+#: ../src/TagQueryWidget.cs:88
+#, csharp-format
+msgid "Find _With"
+msgid_plural "Find _With"
+msgstr[0] "దీనితో కనుగొనుము (_W)"
+msgstr[1] "దీనితో కనుగొనుము (_W)"
+
+#: ../src/TagQueryWidget.cs:114
+msgid "All"
+msgstr "అన్ని"
+
+#: ../src/TagQueryWidget.cs:149 ../src/Term.cs:592
+#, csharp-format
+msgid "Not {0}"
+msgstr "కాదు {0}"
+
+#: ../src/TagQueryWidget.cs:278
+msgid "Drag tags here to search for them"
+msgstr "వాటి కొరకు శోధించుటకు టాగ్లను యిక్కడకు లాగుము"
+
+#: ../src/TagSelectionWidget.cs:497
+msgid "Error renaming tag"
+msgstr "టాగ్‌ను పునఃనామకరణ చేయుటలో దోషము"
+
+#: ../src/TagStore.cs:203
+msgid "Favorites"
+msgstr "అభీష్టములు"
+
+#: ../src/TagStore.cs:208
+msgid "Hidden"
+msgstr "దాచిన"
+
+#: ../src/TagStore.cs:216
+msgid "People"
+msgstr "ప్రజలు"
+
+#: ../src/TagStore.cs:221
+msgid "Places"
+msgstr "స్థలములు"
+
+#: ../src/TagStore.cs:226
+msgid "Events"
+msgstr "ఘటనలు"
+
+#. The label for the root category is used in new and edit tag dialogs
+#: ../src/TagStore.cs:239 ../src/Widgets/InfoBox.cs:400
+msgid "(None)"
+msgstr "(ఏదీకాదు)"
+
+#: ../src/Term.cs:298
+msgid " and "
+msgstr " మరియు "
+
+#. operators.Add (Catalog.GetString (" && "));
+#: ../src/Term.cs:300
+msgid ", "
+msgstr ", "
+
+#: ../src/Term.cs:356
+msgid " or "
+msgstr " లేదా "
+
+#. OPS The operators we support, case insensitive
+#. private static string op_str = "(?'Ops' or | and |, | \\s+ )";
+#: ../src/Term.cs:380 ../src/Widgets/FindBar.cs:177
+msgid "or"
+msgstr "లేదా"
+
+#: ../src/ThumbnailCommand.cs:20
+msgid "Updating Thumbnails"
+msgstr "థంబ్‌నెయిల్సును నవీకరించుచున్నది"
+
+#: ../src/ThumbnailCommand.cs:28
+#, csharp-format
+msgid "Updating picture \"{0}\""
+msgstr "ఛాయాచిత్రమును నవీకరించుచున్నది \"{0}\""
+
+#: ../src/UI.Dialog/AboutDialog.cs:71
+msgid "Photo management for GNOME"
+msgstr "GNOME కొరకు ఛాయాచిత్రము నిర్వహణ"
+
+#: ../src/UI.Dialog/AboutDialog.cs:72
+msgid "Copyright © 2003-2009 Novell Inc."
+msgstr "కాపీరైట్ © 2003-2009 Novell Inc."
+
+#: ../src/UI.Dialog/AboutDialog.cs:95
+msgid "translator-credits"
+msgstr "కృష్ణబాబు కె <kkrothap@redhat.com> 2009."
+
+#: ../src/UI.Dialog/AboutDialog.cs:100
+msgid "F-Spot Website"
+msgstr "F-Spot వెబ్‌సైటు"
+
+#: ../src/UI.Dialog/AdjustTimeDialog.cs:112
+#, csharp-format
+msgid "Shift all photos by {0}"
+msgstr "అన్ని ఫోటోలను {0} ద్వారా మార్చుము"
+
+#: ../src/UI.Dialog/DateRangeDialog.cs:99
+msgid "Today"
+msgstr "ఈరోజు"
+
+#: ../src/UI.Dialog/DateRangeDialog.cs:101
+msgid "Yesterday"
+msgstr "నిన్న"
+
+#: ../src/UI.Dialog/DateRangeDialog.cs:103
+msgid "Last 7 days"
+msgstr "గత 7 రోజులు"
+
+#: ../src/UI.Dialog/DateRangeDialog.cs:105
+msgid "Last 30 days"
+msgstr "గత 30 రోజులు"
+
+#: ../src/UI.Dialog/DateRangeDialog.cs:107
+msgid "Last 90 days"
+msgstr "గత 90 రోజులు"
+
+#: ../src/UI.Dialog/DateRangeDialog.cs:109
+msgid "Last 360 days"
+msgstr "గత 360 రోజులు"
+
+#: ../src/UI.Dialog/DateRangeDialog.cs:111
+msgid "Current Week (Mon-Sun)"
+msgstr "ప్రస్తుత వారము (సోమ-ఆది)"
+
+#: ../src/UI.Dialog/DateRangeDialog.cs:113
+msgid "Previous Week (Mon-Sun)"
+msgstr "గత వారము (సోమ-ఆది)"
+
+#: ../src/UI.Dialog/DateRangeDialog.cs:129
+msgid "All Images"
+msgstr "అన్ని ప్రతిబింబములు"
+
+#: ../src/UI.Dialog/DateRangeDialog.cs:131
+msgid "Customized Range"
+msgstr "మలచుకొనిన విస్తృతి"
+
+#: ../src/UI.Dialog/EditTagIconDialog.cs:46
+#, csharp-format
+msgid "Edit Icon for Tag {0}"
+msgstr "టాగ్ {0} కొరకు ప్రతిమను సరికూర్చుము"
+
+#: ../src/UI.Dialog/EditTagIconDialog.cs:68
+msgid "Select Photo from file"
+msgstr "ఫైలునుండి ఛాయాచిత్రము యెంపికచేయుము"
+
+#: ../src/UI.Dialog/EditTagIconDialog.cs:90
+#, csharp-format
+msgid ""
+"\n"
+"<b>From Photo</b>\n"
+" You can use one of your library photos as an icon for this tag.\n"
+" However, first you must have at least one photo associated\n"
+" with this tag. Please tag a photo as '{0}' and return here\n"
+" to use it as an icon."
+msgstr ""
+"\n"
+"<b>ఛాయాచిత్రము నుండి</b>\n"
+" ఈ టాగ్‌నకు మీరు మీ లైబ్రరీ ఛాయాచిత్రములనందలి వొక దానిని ప్రతిమలా వుపయోగించవచ్చును.\n"
+" ఏమైనప్పటి, ముందుగా మీరు ఈ టాగ్‌తో కనీసం వొక సంభందిత ఛాయాచిత్రమును కలిగివుండాలి\n"
+" . దయచేసి వొక ఛాయాచిత్రమును '{0}' వలె టాగ్‌చేసి మరియు దానిని ప్రతిమవలె వుపయోగించుటకు\n"
+" తిరిగి యిచటకు రండి."
+
+#: ../src/UI.Dialog/EditTagIconDialog.cs:168
+msgid "Unable to load image"
+msgstr "ప్రతిబింబమును లోడు చేయలేదు"
+
+#: ../src/UI.Dialog/EditTagIconDialog.cs:169
+#, csharp-format
+msgid "Unable to load \"{0}\" as icon for the tag"
+msgstr "టాగ్ కొరకు \"{0}\"ను ప్రతిమలా లోడుచేయలేదు"
+
+#: ../src/UI.Dialog/EditTagIconDialog.cs:207
+#, csharp-format
+msgid "Photo {0} of {1}"
+msgstr "{1} లో ఛాయాచిత్రము {0}"
+
+#: ../src/UI.Dialog/ExceptionDialog.cs:24
+msgid "F-Spot Encountered a Fatal Error"
+msgstr "F-Spotకు క్లిష్టమైన దోషము వచ్చినది"
+
+#: ../src/UI.Dialog/ExceptionDialog.cs:60
+msgid "Error Details"
+msgstr "దోషము వివరములు"
+
+#: ../src/UI.Dialog/ExceptionDialog.cs:104
+msgid "An unhandled exception was thrown: "
+msgstr "ఒక సంభాలించని ఆక్షేపణ యివ్వబడింది: "
+
+#: ../src/UI.Dialog/PreferenceDialog.cs:53
+#: ../src/UI.Dialog/PreferenceDialog.cs:71
+msgid "None"
+msgstr "ఏదీకాదు"
+
+#: ../src/UI.Dialog/PreferenceDialog.cs:55
+msgid "System profile"
+msgstr "సిస్టమ్ ప్రొఫైల్"
+
+#: ../src/UI.Dialog/PreferenceDialog.cs:84
+msgid "Standard theme"
+msgstr "ప్రామాణిక థీమ్"
+
+#: ../src/UI.Dialog/RepairDbDialog.cs:20
+msgid "Error loading database."
+msgstr "డాటాబేస్ లోడుచేయుటలో దోషము."
+
+#: ../src/UI.Dialog/RepairDbDialog.cs:21
+#, csharp-format
+msgid ""
+"F-Spot encountered an error while loading the photo database. The old "
+"database has be moved to {0} and a new database has been created."
+msgstr ""
+"ఛాయాచిత్ర డాటాబేస్ లోడవుతున్నప్పుడు F-Spot వొక దోషాన్ని యెదుర్కొన్నది. పాత డాటాబేస్ {0}నకు "
+"కదుపబడింది మరియు కొత్త డాటాబేస్ సృష్టించబడింది."
+
+#: ../src/UI.Dialog/SelectionRatioDialog.cs:60
+msgid "Label"
+msgstr "లేబుల్"
+
+#: ../src/UI.Dialog/SelectionRatioDialog.cs:64
+msgid "Ratio"
+msgstr "నిష్పత్తి"
+
+#: ../src/UI.Dialog/ThreadProgressDialog.cs:49
+msgid "Retry"
+msgstr "తిరిగిప్రయత్నించు"
+
+#: ../src/Updater.cs:616
+msgid "Updating F-Spot Database"
+msgstr "F-Spot డాటాబేస్ నవీకరించుచున్నది"
+
+#: ../src/Updater.cs:617
+msgid ""
+"Please wait while your F-Spot gallery's database is updated. This may take "
+"some time."
+msgstr ""
+"మీ F-Spot గ్యాలరీయొక్క డాటాబేస్ నవీకరించబడుచున్నప్పుడు దయచేసి వేచివుండండి. ఇది కొంత సమయం "
+"తీసుకోవచ్చు."
+
+#. Mono.Unix.Error error = Mono.Unix.Stdlib.GetLastError ();
+#: ../src/Utils/Unix.cs:35
+msgid "Unable to create temporary file"
+msgstr "తాత్కాలిక ఫైలును సృష్టించలేక పోయింది"
+
+#: ../src/Widgets/CustomPrintWidget.cs:119
+msgid "Page Setup"
+msgstr "పుట అమరిక"
+
+#: ../src/Widgets/CustomPrintWidget.cs:123
+#: ../src/Widgets/CustomPrintWidget.cs:127
+#: ../src/Widgets/CustomPrintWidget.cs:133
+#, csharp-format
+msgid "Paper Size: {0} x {1} mm"
+msgstr "కాగితపు పరిమాణము: {0} x {1} mm"
+
+#: ../src/Widgets/CustomPrintWidget.cs:130
+msgid "Set Page Size and Orientation"
+msgstr "పేజీ పరిమాణమును మరియు సర్దుబాటును అమర్చుము"
+
+#: ../src/Widgets/CustomPrintWidget.cs:141
+msgid "Photos per page"
+msgstr "ఒక్కో పేజీనకు ఛాయాచిత్రములు"
+
+#: ../src/Widgets/CustomPrintWidget.cs:151
+msgid "Repeat"
+msgstr "పునరావృతము"
+
+#: ../src/Widgets/CustomPrintWidget.cs:152
+msgid "Print cut marks"
+msgstr "కత్తిరింపు గుర్తులను ముద్రించుము"
+
+#: ../src/Widgets/CustomPrintWidget.cs:158
+msgid "Photos layout"
+msgstr "ఛాయాచిత్రముల నమూనా"
+
+#: ../src/Widgets/CustomPrintWidget.cs:160
+msgid "Full Page (no margin)"
+msgstr "పూర్తి పేజీ (మార్జిన్ లేదు)"
+
+#. Note for translators: "Zoom" is a Fit Mode
+#: ../src/Widgets/CustomPrintWidget.cs:163
+msgid "Zoom"
+msgstr "జూమ్"
+
+#: ../src/Widgets/CustomPrintWidget.cs:164
+msgid "Fill"
+msgstr "నింపుము"
+
+#: ../src/Widgets/CustomPrintWidget.cs:165
+msgid "Scaled"
+msgstr "స్కేలుచేసిన"
+
+#: ../src/Widgets/CustomPrintWidget.cs:170
+msgid "White borders"
+msgstr "తెలుపు హద్దులు"
+
+#: ../src/Widgets/CustomPrintWidget.cs:176
+msgid "Custom Text"
+msgstr "మలచుకొనిన పాఠ్యము"
+
+#: ../src/Widgets/CustomPrintWidget.cs:180
+msgid "Photos infos"
+msgstr "ఛాయాచిత్రముల సమాచారము"
+
+#: ../src/Widgets/CustomPrintWidget.cs:182
+msgid "Print file name"
+msgstr "ఫైలు నామమును ముద్రించుము"
+
+#: ../src/Widgets/CustomPrintWidget.cs:183
+msgid "Print photo date"
+msgstr "ఛాయాచిత్రము తేదీను ముద్రించుము"
+
+#: ../src/Widgets/CustomPrintWidget.cs:184
+msgid "Print photo time"
+msgstr "ఛాయాచిత్రము సమయం ముద్రించుము"
+
+#: ../src/Widgets/CustomPrintWidget.cs:185
+msgid "Print photo tags"
+msgstr "ఛాయాచిత్రము టాగ్లను ముద్రించుము"
+
+#: ../src/Widgets/CustomPrintWidget.cs:186
+msgid "Print photo comment"
+msgstr "ఛాయాచిత్రము వ్యాఖ్యానమును ముద్రించుము"
+
+#: ../src/Widgets/EditorPage.cs:29 ../src/Widgets/Sidebar.cs:62
+msgid "Edit"
+msgstr "సరికూర్చుము"
+
+#: ../src/Widgets/EditorPage.cs:197
+msgid ""
+"This tool requires an active selection. Please select a region of the photo "
+"and try the operation again"
+msgstr ""
+"ఈ సాధనమునకు క్రియాశీల యెంపిక కావలెను. దయచేసి ఛాయాచిత్రము యొక్క ప్రాంతమును యెంచుకొని "
+"మరియు ఆపరేషన్‌ను మరలా ప్రయత్నించుము."
+
+#: ../src/Widgets/EditorPage.cs:215
+msgid "Error saving adjusted photo"
+msgid_plural "Error saving adjusted photos"
+msgstr[0] "సర్దిన ఛాయాచిత్రము దాయుటలో దోషము"
+msgstr[1] "సర్దిన ఛాయాచిత్రములను దాయుటలో దోషము"
+
+#: ../src/Widgets/EditorPage.cs:217
+#, csharp-format
+msgid ""
+"Received exception \"{0}\". Note that you have to develop RAW files into "
+"JPEG before you can edit them."
+msgstr ""
+"ఆక్షేపణ \"{0}\"ను పొందినది. మీరు వాటిని సరికూర్చ గలుగుటకు ముందుగా మీరు RAW ఫైళ్ళను "
+"JPEGనకు వృద్దిపరచవలెనని గమనించండి."
+
+#: ../src/Widgets/Filmstrip.cs:572
+msgid "_Horizontal"
+msgstr "హారిజాంటల్ (_H)"
+
+#: ../src/Widgets/Filmstrip.cs:576
+msgid "_Vertical"
+msgstr "నిలువుగా (_V)"
+
+#: ../src/Widgets/FindBar.cs:58
+msgid "Find:"
+msgstr "కనుగొనుము:"
+
+#: ../src/Widgets/FolderTreePage.cs:21
+msgid "Folders"
+msgstr "ఫోల్డర్లు"
+
+#: ../src/Widgets/FolderTreeView.cs:123
+msgid "Filesystem"
+msgstr "ఫైలుసిస్టమ్"
+
+#: ../src/Widgets/InfoBox.cs:182
+msgid "Histogram"
+msgstr "హిస్టోగ్రామ్"
+
+#: ../src/Widgets/InfoBox.cs:217
+msgid "Date"
+msgstr "తేది"
+
+#: ../src/Widgets/InfoBox.cs:220
+msgid "Size"
+msgstr "పరిమాణము"
+
+#: ../src/Widgets/InfoBox.cs:223
+msgid "Exposure"
+msgstr "ఎక్సుపోజర్"
+
+#: ../src/Widgets/InfoBox.cs:227
+msgid "Focal Length"
+msgstr "ఫోకల్ పొడవు"
+
+#: ../src/Widgets/InfoBox.cs:233
+msgid "File Size"
+msgstr "ఫైలు పరిమాణము"
+
+#: ../src/Widgets/InfoBox.cs:236
+msgid "Rating"
+msgstr "రేటింగ్"
+
+#: ../src/Widgets/InfoBox.cs:409 ../src/Widgets/InfoBox.cs:432
+#: ../src/Widgets/InfoBox.cs:442 ../src/Widgets/InfoBox.cs:451
+msgid "(Unknown)"
+msgstr "(తెలియని)"
+
+#: ../src/Widgets/InfoBox.cs:419
+msgid "(wrong format)"
+msgstr "(తప్పైన ఫార్మాట్)"
+
+#: ../src/Widgets/InfoBox.cs:552
+#, csharp-format
+msgid "(One Edit)"
+msgid_plural "({0} Edits)"
+msgstr[0] "(ఒక సరికూర్పు)"
+msgstr[1] "({0} సరికూర్పులు)"
+
+#: ../src/Widgets/InfoBox.cs:566
+msgid "(File read error)"
+msgstr "(ఫైలు చదువుటలో దోషము)"
+
+#: ../src/Widgets/InfoBox.cs:611
+#, csharp-format
+msgid "{0} Photos"
+msgstr "{0} ఛాయాచిత్రములు"
+
+#. Note for translators: {0} is a date, {1} and {2} are times.
+#: ../src/Widgets/InfoBox.cs:631
+#, csharp-format
+msgid ""
+"On {0} between \n"
+"{1} and {2}"
+msgstr ""
+"{0} పైన \n"
+"{1} మరియు {2} మధ్యన"
+
+#: ../src/Widgets/InfoBox.cs:636
+#, csharp-format
+msgid ""
+"Between {0} \n"
+"and {1}"
+msgstr ""
+"{0} మరియు \n"
+"{1} మధ్యన"
+
+#: ../src/Widgets/InfoBox.cs:663
+msgid "(At least one File not found)"
+msgstr "(కనీసం వొక్క ఫైలు కనబడలేదు)"
+
+#: ../src/Widgets/InfoBox.cs:780
+msgid "Show Photo Name"
+msgstr "ఛాయాచిత్రము నామమును చూపుము"
+
+#: ../src/Widgets/InfoBox.cs:789
+msgid "Show Date"
+msgstr "తేదీను చూపుము"
+
+#: ../src/Widgets/InfoBox.cs:798
+msgid "Show Size"
+msgstr "పరిమాణమును చూపుము"
+
+#: ../src/Widgets/InfoBox.cs:807
+msgid "Show Exposure"
+msgstr "ఎక్సుపోజర్ చూపుము"
+
+#: ../src/Widgets/InfoBox.cs:816
+msgid "Show Focal Length"
+msgstr "ఫోకల్ పొడవును చూపుము"
+
+#: ../src/Widgets/InfoBox.cs:825
+msgid "Show Camera"
+msgstr "కేమెరా చూపుము"
+
+#: ../src/Widgets/InfoBox.cs:834
+msgid "Show File Size"
+msgstr "ఫైలు పరిమాణమును చూపుము"
+
+#: ../src/Widgets/MetadataDisplay.cs:23
+msgid "Metadata"
+msgstr "మెటాడాటా"
+
+#: ../src/Widgets/MetadataDisplay.cs:104
+msgid "Extended Metadata"
+msgstr "పొడిగించిన మెటాడాటా"
+
+#. clear Extended Metadata
+#: ../src/Widgets/MetadataDisplay.cs:392
+msgid "No Extended Metadata Available"
+msgstr "పొడిగించిన మెటాడాటా అందుబాటులోలేదు"
+
+#: ../src/Widgets/MetadataDisplay.cs:410
+msgid "No active photo"
+msgstr "క్రియాశీల ఛాయాచిత్రములేదు"
+
+#: ../src/Widgets/MetadataDisplay.cs:412
+#, csharp-format
+msgid "The photo \"{0}\" does not exist"
+msgstr "ఛాయాచిత్రము \"{0}\" లేదు"
+
+#: ../src/Widgets/MetadataDisplay.cs:415
+msgid "No metadata available"
+msgstr "మెటాడాటా అందుబాటులోలేదు"
+
+#: ../src/Widgets/OpenWithMenu.cs:71
+msgid "No applications available"
+msgstr "అనువర్తనములు అందుబాటులోలేవు"
+
+#: ../src/Widgets/RatingMenuItem.cs:56
+msgid "Rating:"
+msgstr "రేటింగ్:"
+
+#: ../src/XmpTagsImporter.cs:90
+msgid "Location"
+msgstr "స్థానము"
+
+#: ../src/XmpTagsImporter.cs:91
+msgid "Country"
+msgstr "దేశము"
+
+#: ../src/XmpTagsImporter.cs:92
+msgid "City"
+msgstr "పట్టణము"
+
+#: ../src/XmpTagsImporter.cs:93
+msgid "State"
+msgstr "రాష్ట్రము"
+
+#. namespace
+#: ../tools/f-spot-screensaver.desktop.in.h:1
+msgid "Display a slideshow from F-Spot"
+msgstr "F-Spot నుండి స్లైడుప్రదర్శనను ప్రదర్శించుము"
+
+#: ../tools/f-spot-screensaver.desktop.in.h:2
+msgid "F-Spot photos"
+msgstr "F-Spot ఛాయాచిత్రములు"
+
