@@ -45,6 +45,7 @@ namespace FSpot {
 			name_table [".svg"] = typeof (FSpot.Svg.SvgFile);
 			name_table [".gif"] = typeof (ImageFile);
 			name_table [".bmp"] = typeof (ImageFile);
+			name_table [".pcx"] = typeof (ImageFile);
 			name_table [".jpeg"] = typeof (JpegFile);
 			name_table [".jpg"] = typeof (JpegFile);
 			name_table [".png"] = typeof (FSpot.Png.PngFile);

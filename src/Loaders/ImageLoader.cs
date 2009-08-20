@@ -42,6 +42,7 @@ namespace FSpot.Loaders {
 			name_table [".crw"] = typeof (GdkImageLoader);
 			name_table [".ppm"] = typeof (GdkImageLoader);
 			name_table [".mrw"] = typeof (GdkImageLoader);
+			name_table [".pcx"] = typeof (GdkImageLoader);
 			name_table [".raf"] = typeof (GdkImageLoader);
 			name_table [".x3f"] = typeof (GdkImageLoader);
 
