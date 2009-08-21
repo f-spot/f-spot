@@ -82,10 +82,10 @@ namespace Mono.Facebook
 		}
 
 		[XmlElement ("creator")]
-		public System.Nullable<int> Creator;
+		public System.Nullable<long> Creator;
 
 		[XmlElement ("update_time")]
-		public int UpdateTime;
+		public long UpdateTime;
 
 		[XmlElement ("office")]
 		public string Office;

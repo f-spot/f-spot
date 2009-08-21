@@ -32,10 +32,10 @@ namespace Mono.Facebook
 	public class FriendInfo
 	{
 		[XmlElement ("uid1")]
-		public int UId1;
+		public long UId1;
 
 		[XmlElement ("uid2")]
-		public int UId2;
+		public long UId2;
 
 		[XmlElement ("are_friends")]
 		public bool AreFriends;
