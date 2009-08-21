@@ -55,11 +55,11 @@ namespace FSpot {
 		private delegate bool IOFunc (IntPtr source_channel, IOCondition cond, IntPtr data);
 
 		[DllImport("libglib-2.0-0.dll")]
-		static extern IOFlags g_io_channel_get_flags ();
+		static extern IOFlags g_io_channel_get_flags (HandleRef channel);
 
 		public override bool CanRead {
 			get { 
-				IOFlags flags = g_io_channel_get_flags ();
+				IOFlags flags = g_io_channel_get_flags (handle);
 
 				return (flags & IOFlags.Readable) == IOFlags.Readable; 
 			}
@@ -68,7 +68,7 @@ namespace FSpot {
 		public override bool CanSeek {
 			get {
 #if NOTDONE				
-				IOFlags flags = g_io_channel_get_flags ();
+				IOFlags flags = g_io_channel_get_flags (handle);
 
 				return (flags & IOFlags.Seekable) == IOFlags.Seekable; 
 #else
@@ -79,7 +79,7 @@ namespace FSpot {
 
 		public override bool CanWrite {
 			get {
-				IOFlags flags = g_io_channel_get_flags ();
+				IOFlags flags = g_io_channel_get_flags (handle);
 
 				return (flags & IOFlags.Writable) == IOFlags.Writable; 
 			}
