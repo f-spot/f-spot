@@ -95,6 +95,9 @@ namespace FSpot.Widgets
 					next = null;
 				}
 	
+				if (item == null || item.Current == null)
+					return;
+
 				using (ImageFile img = ImageFile.Create (item.Current.DefaultVersionUri)) {
 					try {
 						using (var pb =  img.Load ()) {

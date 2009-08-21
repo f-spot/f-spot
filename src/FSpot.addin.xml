@@ -63,8 +63,8 @@
 		<SidebarPage sidebar_page_type = "FSpot.Widgets.MetadataDisplayPage" />
 		<Condition id="ViewMode" mode="library">
 			<SidebarPage sidebar_page_type = "FSpot.Widgets.EditorPage" />
+			<SidebarPage sidebar_page_type = "FSpot.Widgets.FolderTreePage" />
 		</Condition>
-		<SidebarPage sidebar_page_type = "FSpot.Widgets.FolderTreePage" />
 	</Extension>
 
 	<Extension path = "/FSpot/Editors">
