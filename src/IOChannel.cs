@@ -290,7 +290,6 @@ namespace FSpot {
 			if (error != IntPtr.Zero)
 				throw new GException (error);
 
-			g_io_channel_unref (handle);
 		}
 
 		~IOChannel ()
@@ -298,6 +297,7 @@ namespace FSpot {
 			if (data_ready_source != 0)
 				GLib.Source.Remove (data_ready_source);
 			data_ready_source = 0;
+			g_io_channel_unref (handle);
 		}
 	}
 }
