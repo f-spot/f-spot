@@ -76,7 +76,7 @@ namespace FSpot {
 			this.ButtonPressEvent += HandleSlideViewButtonPressEvent;
 			this.KeyPressEvent += HandleSlideViewKeyPressEvent;
 			this.AddEvents ((int) (EventMask.ButtonPressMask | EventMask.KeyPressMask | EventMask.PointerMotionMask));
-			slideview = new SlideView (screenshot, items);
+			slideview = new SlideView (screenshot, items, 2.0);
 			this.Add (slideview);
 			this.Decorated = false;
 			this.Fullscreen();
@@ -225,8 +225,6 @@ namespace FSpot {
 			current_idx = next_idx;
 			
 			black = false;
-			transition_interval = 75;
-			flip_interval = 2000;
 		}
 		
 		private bool PreloadNextImage (int idx)
@@ -540,7 +538,7 @@ namespace FSpot {
 			Stop ();
 		}
 
-		public SlideView (Pixbuf background, IBrowsableItem [] photos) : base ()
+		public SlideView (Pixbuf background, IBrowsableItem [] photos, double delay) : base ()
 		{
 			this.photos = photos;
 
@@ -550,7 +548,7 @@ namespace FSpot {
 				
 				current_idx = -1;
 				black = true;
-				flip_interval = 1500;
+				flip_interval = (uint)(delay * 1000);
 			}
 			
 			SizeAllocated += new SizeAllocatedHandler (HandleSizeAllocate);

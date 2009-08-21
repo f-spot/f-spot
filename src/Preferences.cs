@@ -74,9 +74,6 @@ namespace FSpot
 		public const string EDIT_REDEYE_THRESHOLD = APP_FSPOT + "edit/redeye_threshold";
 		public const string EDIT_CREATE_XCF_VERSION = APP_FSPOT + "edit/create_xcf";
 
-		public const string GNOME_SCREENSAVER_THEME = "/apps/gnome-screensaver/themes";
-		public const string GNOME_SCREENSAVER_MODE = "/apps/gnome-screensaver/mode";
-
 		public const string GNOME_MAILTO = "/desktop/gnome/url-handlers/mailto/";
 		public const string GNOME_MAILTO_COMMAND = GNOME_MAILTO + "command";
 		public const string GNOME_MAILTO_ENABLED = GNOME_MAILTO + "enabled";
@@ -93,8 +90,6 @@ namespace FSpot
 					backend = new PreferenceBackend ();
 					changed_handler = new EventHandler<NotifyEventArgs> (OnSettingChanged);
 					backend.AddNotify (APP_FSPOT, changed_handler);
-					backend.AddNotify (GNOME_SCREENSAVER_THEME, changed_handler);
-					backend.AddNotify (GNOME_SCREENSAVER_MODE, changed_handler);
 					backend.AddNotify (GNOME_MAILTO, changed_handler);
 				}
 				return backend;

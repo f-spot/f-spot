@@ -171,6 +171,9 @@ namespace FSpot {
 				else
 					photos = new Photo [0];
 
+				double delay = Preferences.Get<double> (Preferences.APP_FSPOT + "screensaver/delay");
+				delay = Math.Max (1.0, delay);
+
 				window = new XScreenSaverSlide ();
 				SetStyle (window);
 				if (photos.Length > 0) {
@@ -178,7 +181,7 @@ namespace FSpot {
 					
 					Gdk.Pixbuf black = new Gdk.Pixbuf (Gdk.Colorspace.Rgb, false, 8, 1, 1);
 					black.Fill (0x00000000);
-					slideview = new SlideView (black, photos);
+					slideview = new SlideView (black, photos, delay);
 					window.Add (slideview);
 				} else {
 					Gtk.HBox outer = new Gtk.HBox ();
