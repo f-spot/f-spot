@@ -3,4 +3,5 @@ SUBDIRS = 			\
 	DevelopInUFraw		\
 	HashJob			\
 	RawPlusJpeg		\
+	ScreensaverConfig	\
 	MergeDb
