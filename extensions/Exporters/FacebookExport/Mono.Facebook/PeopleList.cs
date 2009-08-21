@@ -32,11 +32,11 @@ namespace Mono.Facebook
 	public class PeopleList
 	{
 		[XmlElement ("uid")]
-		public int[] uid_array;
+		public long[] uid_array;
 
-		public int[] UIds
+		public long[] UIds
 		{
-			get { return uid_array ?? new int[0]; }
+			get { return uid_array ?? new long[0]; }
 		}
 	}
 }

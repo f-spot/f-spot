@@ -40,7 +40,7 @@ namespace Mono.Facebook
 		public long AId;
 
 		[XmlElement ("owner")]
-		public int Owner;
+		public long Owner;
 
 		[XmlElement ("src")]
 		public string Source;
@@ -58,7 +58,7 @@ namespace Mono.Facebook
 		public string Caption;
 
 		[XmlElement ("created")]
-		public int Created;
+		public long Created;
 
 		public Tag[] GetTags ()
 		{

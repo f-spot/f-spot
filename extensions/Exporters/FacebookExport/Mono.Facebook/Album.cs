@@ -45,16 +45,16 @@ namespace Mono.Facebook
 		public long ConverPId;
 
 		[XmlElement ("owner")]
-		public int Owner;
+		public long Owner;
 
 		[XmlElement ("name")]
 		public string Name;
 
 		[XmlElement ("created")]
-		public int Created;
+		public long Created;
 
 		[XmlElement ("modified")]
-		public int Modified;
+		public long Modified;
 
 		[XmlElement ("description")]
 		public string Description;

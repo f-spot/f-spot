@@ -38,7 +38,7 @@ namespace Mono.Facebook
 		public long PId;
 
 		[XmlElement ("subject")]
-		public int Subject;
+		public long Subject;
 
 		[XmlElement ("xcoord")]
 		public decimal XCoordinate;
