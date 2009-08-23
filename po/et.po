@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: F-Spot\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=f-"
 "spot&component=General\n"
-"POT-Creation-Date: 2009-07-30 12:10+0000\n"
-"PO-Revision-Date: 2009-08-01 19:42+0300\n"
+"POT-Creation-Date: 2009-08-22 09:23+0000\n"
+"PO-Revision-Date: 2009-08-22 16:04+0300\n"
 "Last-Translator: Mattias Põldaru <mahfiaz gmail com>\n"
 "Language-Team: Estonian <gnome-et@linux.ee>\n"
 "MIME-Version: 1.0\n"
@@ -627,53 +627,6 @@ msgstr "Üleslaadimine lõpetatud"
 msgid "Error uploading to Tabblo: "
 msgstr "Viga Tabblo'sse üleslaadimisel:"
 
-msgid "<b>F-Spot tags</b>"
-msgstr "<b>F-Spoti märksõnad</b>"
-
-msgid "<b>Tabblo account</b>"
-msgstr "<b>Tabblo konto</b>"
-
-msgid ""
-"<small><i>F-Spot tags can help you track the export status of photos. "
-"Example: Use one tag for the photos that you plan to export, and another one "
-"for those already exported. Here, you can tell F-Spot to automatically "
-"replace these tags as appropriate.</i></small>"
-msgstr ""
-"<small><i>F-Spoti märksõnad aitavad sul jälgida fotode eksportimist. Näiteks "
-"võid kasutada ühte märksõna fotodel, mida plaanid eksportida, ning teist "
-"fotodel, mis on juba eksporditud. Siin saab määrata, et F-Spot ise asendaks "
-"need märksõnad vastavalt.</i></small>"
-
-msgid "Rem_ove from exported photos:"
-msgstr "Eksporditud fotodelt _eemaldatakse:"
-
-msgid "Select..."
-msgstr "Vali..."
-
-msgid "_Attach to exported photos:"
-msgstr "Eksporditud fotodele _lisatakse:"
-
-msgid "<b>{0}</b>."
-msgstr "<b>{0}</b>."
-
-msgid "A trust error occured while attempting to access"
-msgstr "Ühenduse loomist takistas usalduse puudumine"
-
-msgid "Abort this session"
-msgstr "Katkesta see sessioon"
-
-msgid "Always trust this site's certificate"
-msgstr "Alati usalda selle lehekülje sertifikaati"
-
-msgid "Do you wish to:"
-msgstr "Kas sa tahad:"
-
-msgid "Trust Error"
-msgstr "Usalduse puudumine"
-
-msgid "Trust the site's certificate this once"
-msgstr "Usalda sel korral selle lehekülje sertifikaati"
-
 msgid "Compressed fil_e..."
 msgstr "Tihendatud _fail..."
 
@@ -1266,12 +1219,6 @@ msgstr "<b>_Parandused</b>"
 msgid "<b>Image Interpolation</b>"
 msgstr "<b>Pildi interpoleerimine</b>"
 
-msgid "<b>Max Rating</b>"
-msgstr "<b>Suurim hinnang</b>"
-
-msgid "<b>Min Rating</b>"
-msgstr "<b>Vähim hinnang</b>"
-
 msgid "<b>Size</b>"
 msgstr "<b>Suurus</b>"
 
@@ -1440,9 +1387,6 @@ msgstr "Valitud kaamera:"
 msgid "Selection Constraints"
 msgstr "Valiku määrang"
 
-msgid "Set Rating Filter"
-msgstr "Hinnangufiltri määramine"
-
 msgid "Set as _Background"
 msgstr "Määra _taustapildiks"
 
@@ -1604,27 +1548,6 @@ msgstr "Alusta slaidiesitlust"
 
 msgid "Slide transition:"
 msgstr "Slaidide vahetus:"
-
-msgid "Dissolve"
-msgstr "Hajutamine"
-
-msgid "Flip"
-msgstr "Pööramine"
-
-msgid "Cover"
-msgstr "Katmine"
-
-msgid "Reveal"
-msgstr "Avamine"
-
-msgid "Wipe"
-msgstr "Pühkimine"
-
-msgid "Split"
-msgstr "Poolitamine"
-
-msgid "Push"
-msgstr "Lükkamine"
 
 msgid "More dates"
 msgstr "Rohkem kuupäevi"
@@ -2567,8 +2490,8 @@ msgstr "Skaleeritud"
 msgid "White borders"
 msgstr "Valged äärised"
 
-msgid "Custom Text: "
-msgstr "Muu tekst:"
+msgid "Custom Text"
+msgstr "Muu tekst"
 
 msgid "Photos infos"
 msgstr "Fotode andmed"
@@ -2652,6 +2575,12 @@ msgstr "(Tundmatu)"
 
 msgid "(wrong format)"
 msgstr "(vale vorming)"
+
+#, csharp-format
+msgid "(One Edit)"
+msgid_plural "({0} Edits)"
+msgstr[0] "(üks muutmine)"
+msgstr[1] "({0} muutmist)"
 
 msgid "(File read error)"
 msgstr "(Viga faili lugemisel)"
