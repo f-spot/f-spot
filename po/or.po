@@ -1,4 +1,4 @@
-# translation of f-spot.master.or.po to Oriya
+# translation of or.po to Oriya
 # Oriya translation of f-spot.
 # Copyright (C) 2009 f-spot's COPYRIGHT HOLDER
 # This file is distributed under the same license as the f-spot package.
@@ -6,16 +6,17 @@
 # Manoj Kumar Giri <mgiri@redhat.com>, 2009.
 msgid ""
 msgstr ""
-"Project-Id-Version: f-spot.master.or\n"
+"Project-Id-Version: or\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=f-spot&component=General\n"
-"POT-Creation-Date: 2009-08-17 15:49+0000\n"
-"PO-Revision-Date: 2009-08-24 02:44+0530\n"
+"POT-Creation-Date: 2009-08-24 11:31+0000\n"
+"PO-Revision-Date: 2009-08-24 17:21+0530\n"
 "Last-Translator: Manoj Kumar Giri <mgiri@redhat.com>\n"
 "Language-Team: Oriya <oriya-it@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms:  nplurals=2; plural=(n!=1);\n\n"
+"\n"
 "\n"
 "\n"
 "\n"
@@ -76,6 +77,55 @@ msgstr "ପରିବହନ କରିବାରେ ତ୍ରୁଟି"
 msgid "copying..."
 msgstr "ନକଲ କରୁଅଛି..."
 
+#: ../extensions/Exporters/CDExport/CDExport.ui.h:1
+msgid "<b><i>There is some previously scheduled items to write</i></b>"
+msgstr ""
+
+#: ../extensions/Exporters/CDExport/CDExport.ui.h:2
+#| msgid "<b>Photos</b>"
+msgid "<b>Photos to Burn</b>"
+msgstr "<b>ଲେଖିବା ପାଇଁ ଫୋଟୋଗୁଡ଼ିକ</b>"
+
+#: ../extensions/Exporters/CDExport/CDExport.ui.h:3
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:7
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:7
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:5
+#: ../src/f-spot.glade.h:28
+msgid "Autorotate"
+msgstr "ସ୍ୱୟଂଆବର୍ତ୍ତନ"
+
+#: ../extensions/Exporters/CDExport/CDExport.ui.h:4
+#| msgid "_Create"
+msgid "Create CD"
+msgstr "CD ନିର୍ମାଣ କରନ୍ତୁ"
+
+#: ../extensions/Exporters/CDExport/CDExport.ui.h:5
+#: ../src/Widgets/InfoBox.cs:220
+msgid "Size"
+msgstr "ଆକାର"
+
+#: ../extensions/Exporters/CDExport/CDExport.ui.h:6
+msgid "Size of the exported selection:"
+msgstr ""
+
+#: ../extensions/Exporters/CDExport/CDExport.ui.h:7
+msgid "_Browse Previously Scheduled Files"
+msgstr ""
+
+#: ../extensions/Exporters/CDExport/CDExport.ui.h:8
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:15
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:16
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:15
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:20
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:12
+#: ../src/f-spot.glade.h:95
+msgid "_Export"
+msgstr "ରପ୍ତାନୀ କରନ୍ତୁ (_E)"
+
+#: ../extensions/Exporters/CDExport/CDExport.ui.h:9
+msgid "_Write only these photos to CD"
+msgstr ""
+
 #: ../extensions/Exporters/FacebookExport/FacebookExport.addin.xml.h:1
 msgid "F_acebook..."
 msgstr "Facebook (_a)..."
@@ -92,11 +142,11 @@ msgid ""
 "Once you are directed by Facebook to return to this application, click \"Ok"
 "\" below."
 msgstr ""
-"F-Spot ବର୍ତ୍ତମାନ ଆପଣଙ୍କର ବ୍ରାଉଜରକୁ ଆରମ୍ଭ କରିବ ଯାହାଫଳରେ ଆପଣ ବାଛିଥିବା "
-"ଅନୁମତିଗୁଡ଼ିକୁ ସକ୍ରିୟ କରିପାରିବେ।\n"
+"F-Spot ବର୍ତ୍ତମାନ ଆପଣଙ୍କର ବ୍ରାଉଜରକୁ ଆରମ୍ଭ କରିବ ଯାହାଫଳରେ ଆପଣ ବାଛିଥିବା ଅନୁମତିଗୁଡ଼ିକୁ ସକ୍ରିୟ "
+"କରିପାରିବେ।\n"
 "\n"
-"ଥରେ ଆପଣ Facebook ଦ୍ୱାରା ନିର୍ଦ୍ଦେଶିତ ହୋଇସାରିବା ପରେ ଏହି ପ୍ରୟୋଗକୁ ଫେରନ୍ତୁ, "
-"ନିମ୍ନରେ \"Ok\" କୁ କ୍ଲିକ କରନ୍ତୁ।"
+"ଥରେ ଆପଣ Facebook ଦ୍ୱାରା ନିର୍ଦ୍ଦେଶିତ ହୋଇସାରିବା ପରେ ଏହି ପ୍ରୟୋଗକୁ ଫେରନ୍ତୁ, ନିମ୍ନରେ \"Ok\" କୁ "
+"କ୍ଲିକ କରନ୍ତୁ।"
 
 #: ../extensions/Exporters/FacebookExport/FacebookExport.cs:279
 msgid "Too many images to export"
@@ -107,8 +157,8 @@ msgid ""
 "Facebook only permits 60 photographs per album.  Please refine your "
 "selection and try again."
 msgstr ""
-"Facebook ପ୍ରତି ଆଲବମରେ କେବଳ 60 ଫୋଟୋଗ୍ରାଫ ପାଇଁ ଅନୁମତି ଦେଇଥାଏ। ଦୟାକରି "
-"ଆପଣଙ୍କର ଚୟନକୁ ବଦଳାନ୍ତୁ ଏବଂ ପୁଣି ଚେଷ୍ଟାକରନ୍ତୁ।"
+"Facebook ପ୍ରତି ଆଲବମରେ କେବଳ 60 ଫୋଟୋଗ୍ରାଫ ପାଇଁ ଅନୁମତି ଦେଇଥାଏ। ଦୟାକରି ଆପଣଙ୍କର ଚୟନକୁ "
+"ବଦଳାନ୍ତୁ ଏବଂ ପୁଣି ଚେଷ୍ଟାକରନ୍ତୁ।"
 
 #: ../extensions/Exporters/FacebookExport/FacebookExport.cs:297
 #: ../extensions/Exporters/FlickrExport/FlickrExport.cs:475
@@ -198,8 +248,8 @@ msgid ""
 "There was a problem logging into Facebook.  Check your credentials and try "
 "again."
 msgstr ""
-"Facebookରେ ଲଗଇନ କରିବା ସମୟରେ ଗୋଟିଏ ସମସ୍ୟା ଦେଖାଦେଇଥିଲା।  ଆପଣଙ୍କର ପ୍ରମାଣପତ୍ରଗୁଡ଼ିକୁ "
-"ଯାଞ୍ଚ କରନ୍ତୁ ଏବଂ ପୁଣିଥରେ ଚେଷ୍ଟାକରନ୍ତୁ।"
+"Facebookରେ ଲଗଇନ କରିବା ସମୟରେ ଗୋଟିଏ ସମସ୍ୟା ଦେଖାଦେଇଥିଲା।  ଆପଣଙ୍କର ପ୍ରମାଣପତ୍ରଗୁଡ଼ିକୁ ଯାଞ୍ଚ "
+"କରନ୍ତୁ ଏବଂ ପୁଣିଥରେ ଚେଷ୍ଟାକରନ୍ତୁ।"
 
 #: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:212
 msgid "Authorizing Session"
@@ -245,6 +295,78 @@ msgstr ""
 #: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:296
 msgid "You are not logged in."
 msgstr "ଆପଣ ଲଗଇନ ହୋଇନାହାନ୍ତି।"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.ui.h:1
+msgid "Auto-confirm Photos"
+msgstr ""
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.ui.h:2
+#| msgid "Ratio"
+msgid "Caption"
+msgstr "ଶୀର୍ଷକ"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.ui.h:3
+#| msgid "Creating a new album failed"
+msgid "Create a new album"
+msgstr "ଗୋଟିଏ ନୂତନ ଆଲବମ ନିର୍ମାଣ କରନ୍ତୁ"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.ui.h:4
+#| msgid "D_escription:"
+msgid "Description"
+msgstr "ବର୍ଣ୍ଣନା"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.ui.h:5
+#| msgid "Error logging into Facebook"
+msgid "Export to Facebook"
+msgstr "Facebook କୁ ରପ୍ତାନୀ କରନ୍ତୁ"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.ui.h:6
+#| msgid "No active photo"
+msgid "In this photo"
+msgstr "ଏହି ଫୋଟୋରେ"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.ui.h:7
+#: ../src/XmpTagsImporter.cs:90
+msgid "Location"
+msgstr "ଅବସ୍ଥାନ"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.ui.h:8
+#| msgid "Location"
+msgid "Login"
+msgstr "ଲଗଇନ"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.ui.h:9
+msgid "Logout"
+msgstr ""
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.ui.h:10
+#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/ManageSitesDialog.cs:51
+#: ../src/Widgets/InfoBox.cs:211
+msgid "Name"
+msgstr "ନାମ"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.ui.h:11
+#| msgid "You are not logged in."
+msgid "Not logged in"
+msgstr "ଲଗଇନ ହୋଇନାହାନ୍ତି"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.ui.h:12
+#| msgid "Version:"
+msgid "Permissions:"
+msgstr "ଅନୁମତିଗୁଡ଼ିକ:"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.ui.h:13
+#| msgid "(Not Connected)"
+msgid "Stay Connected"
+msgstr "ସଂଯୁକ୍ତ ରୁହନ୍ତୁ"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.ui.h:14
+msgid "Use an existing album"
+msgstr ""
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.ui.h:15
+msgid "Who is this?"
+msgstr ""
 
 #: ../extensions/Exporters/FlickrExport/FlickrExport.addin.xml.h:1
 msgid "_23hq..."
@@ -329,8 +451,8 @@ msgid ""
 "F-Spot was unable to log on to {0}.  Make sure you have given the "
 "authentication using {0} web browser interface."
 msgstr ""
-"F-Spot {0} ରେ ଲଗଇନ କରିବାରେ ଅସମର୍ଥ।  ନିଶ୍ଚିତ ହୁଅନ୍ତୁ ଯେ ଆପଣ {0} ୱେବ ବ୍ରାଉଜର ଅନ୍ତରାପୃଷ୍ଠକୁ ବ୍ୟବହାର "
-"କରି ବୈଧିକରଣ ପ୍ରଦାନ କରିଛନ୍ତି।"
+"F-Spot {0} ରେ ଲଗଇନ କରିବାରେ ଅସମର୍ଥ।  ନିଶ୍ଚିତ ହୁଅନ୍ତୁ ଯେ ଆପଣ {0} ୱେବ ବ୍ରାଉଜର ଅନ୍ତରାପୃଷ୍ଠକୁ "
+"ବ୍ୟବହାର କରି ବୈଧିକରଣ ପ୍ରଦାନ କରିଛନ୍ତି।"
 
 #: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:1
 #: ../src/f-spot.glade.h:8
@@ -342,7 +464,7 @@ msgstr "<b>ଖାତା</b>"
 #: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:3
 #: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:2
 #: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:2
-#: ../src/f-spot.glade.h:14
+#: ../src/f-spot.glade.h:14 ../src/UI.Dialog/ui/AdjustTimeDialog.ui.h:5
 msgid "<b>Photos</b>"
 msgstr "<b>ଫୋଟୋଗୁଡ଼ିକ</b>"
 
@@ -401,15 +523,6 @@ msgstr "ପରିବାର ପାଇଁ ଦୃଶ୍ୟମାନ"
 #: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:14
 msgid "Visible to Friends"
 msgstr "ବନ୍ଧୁମାନଙ୍କ ପାଇଁ ଦୃଶ୍ୟମାନ"
-
-#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:15
-#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:16
-#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:15
-#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:20
-#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:12
-#: ../src/f-spot.glade.h:95
-msgid "_Export"
-msgstr "ରପ୍ତାନୀ କରନ୍ତୁ (_E)"
 
 #: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:16
 #: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:21
@@ -511,6 +624,7 @@ msgstr "ଶୈଳୀ ଲୁଚାନ୍ତୁ"
 
 #: ../extensions/Exporters/FolderExport/FolderExport.cs:1172
 #: ../extensions/Exporters/FolderExport/FolderExport.cs:1173
+#: ../src/ui/main_window.ui.h:24
 msgid "Tags: "
 msgstr "ଟ୍ୟାଗଗୁଡ଼ିକ: "
 
@@ -531,13 +645,6 @@ msgstr "<b>ଗନ୍ତବ୍ଯ ସ୍ଥଳ</b>"
 #: ../extensions/Exporters/FolderExport/FolderExport.glade.h:4
 msgid "<b>Export Method</b>"
 msgstr "<b>ପଦ୍ଧତି ପଠାନ୍ତୁ</b>"
-
-#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:7
-#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:7
-#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:5
-#: ../src/f-spot.glade.h:28
-msgid "Autorotate"
-msgstr "ସ୍ୱୟଂଆବର୍ତ୍ତନ"
 
 #: ../extensions/Exporters/FolderExport/FolderExport.glade.h:8
 msgid "Create _gallery using \"Original\""
@@ -1100,6 +1207,7 @@ msgid "_Unselect All"
 msgstr ""
 
 #: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:259
+#: ../src/ui/main_window.ui.h:18
 msgid "Select _All"
 msgstr "ସବୁକିଛି ଚୟନ କରନ୍ତୁ (_A)"
 
@@ -1299,11 +1407,6 @@ msgstr "ସଂସ୍କରଣ"
 msgid "Other"
 msgstr "ଅନ୍ଯାନ୍ଯ"
 
-#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/ManageSitesDialog.cs:51
-#: ../src/Widgets/InfoBox.cs:211
-msgid "Name"
-msgstr "ନାମ"
-
 #: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/ManageSitesDialog.cs:52
 msgid "Url"
 msgstr ""
@@ -1393,12 +1496,12 @@ msgstr "କ୍ଯାମେରା"
 msgid "Port"
 msgstr "ସଂଯୋଗିକୀ"
 
-#: ../src/Core.cs:200
+#: ../src/Core.cs:203
 #, csharp-format
 msgid "No photos matching {0} found"
 msgstr ""
 
-#: ../src/Core.cs:201
+#: ../src/Core.cs:204
 #, csharp-format
 msgid ""
 "The tag \"{0}\" is not applied to any photos. Try adding\n"
@@ -1406,11 +1509,11 @@ msgid ""
 "F-Spot preference dialog."
 msgstr ""
 
-#: ../src/Core.cs:205
+#: ../src/Core.cs:208
 msgid "Search returned no results"
 msgstr ""
 
-#: ../src/Core.cs:206
+#: ../src/Core.cs:209
 msgid ""
 "The tag F-Spot is looking for does not exist. Try\n"
 "selecting a different tag in the F-Spot preference\n"
@@ -1434,19 +1537,19 @@ msgid_plural "Modified ({0})"
 msgstr[0] "ପରିବର୍ତ୍ତିତ"
 msgstr[1] "ପରିବର୍ତ୍ତିତ ({0})"
 
-#: ../src/Core/Photo.cs:516
+#: ../src/Core/Photo.cs:511
 #, csharp-format
 msgid "Modified in {1}"
 msgstr "{1} ରେ ପରିବର୍ତ୍ତିତ"
 
-#: ../src/Core/Photo.cs:516
+#: ../src/Core/Photo.cs:511
 #, csharp-format
 msgid "Modified in {1} ({0})"
 msgstr "{1} ({0}) ରେ ପରିବର୍ତ୍ତିତ"
 
 #. Note that the original version is never stored in the photo_versions table in the
 #. database.
-#: ../src/Core/Photo.cs:671 ../src/f-spot.glade.h:61
+#: ../src/Core/Photo.cs:666 ../src/f-spot.glade.h:61
 msgid "Original"
 msgstr "ମୂଳ"
 
@@ -1560,17 +1663,17 @@ msgstr ""
 msgid "Open _With"
 msgstr ""
 
-#: ../src/FSpot.addin.xml.h:4
+#: ../src/FSpot.addin.xml.h:4 ../src/ui/main_window.ui.h:15
 msgid "Rem_ove Tag"
 msgstr ""
 
 #: ../src/FSpot.addin.xml.h:5 ../src/f-spot.glade.h:68
-#: ../src/SingleView.cs:453
+#: ../src/SingleView.cs:453 ../src/ui/main_window.ui.h:16
 msgid "Rotate _Left"
 msgstr "ବାମକୁ ଘୂରାନ୍ତୁ (_L)"
 
 #: ../src/FSpot.addin.xml.h:6 ../src/f-spot.glade.h:69
-#: ../src/SingleView.cs:454
+#: ../src/SingleView.cs:454 ../src/ui/main_window.ui.h:17
 msgid "Rotate _Right"
 msgstr "ଡାହାଣକୁ ଘୂରାନ୍ତୁ (_R)"
 
@@ -1578,15 +1681,15 @@ msgstr "ଡାହାଣକୁ ଘୂରାନ୍ତୁ (_R)"
 msgid "Tools"
 msgstr "ଟୁଲଗୁଡିକ"
 
-#: ../src/FSpot.addin.xml.h:8
+#: ../src/FSpot.addin.xml.h:8 ../src/ui/main_window.ui.h:32
 msgid "_Attach Tag"
 msgstr ""
 
-#: ../src/FSpot.addin.xml.h:9
+#: ../src/FSpot.addin.xml.h:9 ../src/ui/main_window.ui.h:41
 msgid "_Delete From Drive"
 msgstr "ଡ୍ରାଇଭରୁ ବିଲୋପ କରନ୍ତୁ (_D)"
 
-#: ../src/FSpot.addin.xml.h:10
+#: ../src/FSpot.addin.xml.h:10 ../src/ui/main_window.ui.h:59
 msgid "_Remove From Catalog"
 msgstr ""
 
@@ -1799,7 +1902,7 @@ msgstr ""
 msgid "Original size (possible very large file size)"
 msgstr ""
 
-#: ../src/f-spot.glade.h:63
+#: ../src/f-spot.glade.h:63 ../src/UI.Dialog/ui/EditTagDialog.ui.h:4
 msgid "P_arent Tag:"
 msgstr ""
 
@@ -1839,7 +1942,7 @@ msgstr ""
 msgid "Selection Constraints"
 msgstr ""
 
-#: ../src/f-spot.glade.h:75
+#: ../src/f-spot.glade.h:75 ../src/ui/main_window.ui.h:21
 msgid "Set as _Background"
 msgstr "ପ୍ରୁଷ୍ଠଭୂମି ଭାବରେ ବିନ୍ଯାସ କରନ୍ତୁ (_B)"
 
@@ -1886,19 +1989,19 @@ msgstr "ଟିନି"
 msgid "Total original size"
 msgstr ""
 
-#: ../src/f-spot.glade.h:87
+#: ../src/f-spot.glade.h:87 ../src/ui/main_window.ui.h:28
 msgid "Zoom _in"
 msgstr ""
 
-#: ../src/f-spot.glade.h:88
+#: ../src/f-spot.glade.h:88 ../src/ui/main_window.ui.h:29
 msgid "Zoom _out"
 msgstr ""
 
-#: ../src/f-spot.glade.h:89
+#: ../src/f-spot.glade.h:89 ../src/ui/main_window.ui.h:30
 msgid "Zoom in"
 msgstr "ବଡ କରନ୍ତୁ"
 
-#: ../src/f-spot.glade.h:90
+#: ../src/f-spot.glade.h:90 ../src/ui/main_window.ui.h:31
 msgid "Zoom out"
 msgstr "ସାନ କରନ୍ତୁ"
 
@@ -1910,7 +2013,7 @@ msgstr "ଉଜ୍ଜ୍ବଳତା (_B):"
 msgid "_Create Mail"
 msgstr ""
 
-#: ../src/f-spot.glade.h:94
+#: ../src/f-spot.glade.h:94 ../src/ui/main_window.ui.h:44
 msgid "_Edit"
 msgstr "ସମ୍ପାଦନ କରନ୍ତୁ (_E)"
 
@@ -1922,7 +2025,7 @@ msgstr ""
 msgid "_Flickr"
 msgstr ""
 
-#: ../src/f-spot.glade.h:100
+#: ../src/f-spot.glade.h:100 ../src/ui/main_window.ui.h:48
 msgid "_Fullscreen"
 msgstr "ସମ୍ପୂର୍ଣ ପରଦା (_F)"
 
@@ -1930,7 +2033,7 @@ msgstr "ସମ୍ପୂର୍ଣ ପରଦା (_F)"
 msgid "_Gallery"
 msgstr "ଗ୍ୟାଲେରୀ (_G)"
 
-#: ../src/f-spot.glade.h:102
+#: ../src/f-spot.glade.h:102 ../src/ui/main_window.ui.h:49
 msgid "_Help"
 msgstr "ସହାୟତା (_H)"
 
@@ -1954,7 +2057,7 @@ msgstr ""
 msgid "_Open destination when done exporting"
 msgstr ""
 
-#: ../src/f-spot.glade.h:108
+#: ../src/f-spot.glade.h:108 ../src/ui/main_window.ui.h:56
 msgid "_Photo"
 msgstr "ଫୋଟୋ (_P)"
 
@@ -1966,7 +2069,7 @@ msgstr "ପରିପୃକ୍ତତା (_S):"
 msgid "_Scale photos to no larger than: "
 msgstr ""
 
-#: ../src/f-spot.glade.h:112
+#: ../src/f-spot.glade.h:112 ../src/ui/main_window.ui.h:67
 msgid "_Slideshow"
 msgstr "ସ୍ଲାଇଡ ପ୍ରଦର୍ଶନ (_S)"
 
@@ -1974,7 +2077,7 @@ msgstr "ସ୍ଲାଇଡ ପ୍ରଦର୍ଶନ (_S)"
 msgid "_Strip metadata"
 msgstr ""
 
-#: ../src/f-spot.glade.h:114
+#: ../src/f-spot.glade.h:114 ../src/UI.Dialog/ui/EditTagDialog.ui.h:6
 msgid "_Tag Name:"
 msgstr ""
 
@@ -1990,7 +2093,7 @@ msgstr "ସାଧନ ପଟି (_T)"
 msgid "_URI:"
 msgstr ""
 
-#: ../src/f-spot.glade.h:118
+#: ../src/f-spot.glade.h:118 ../src/ui/main_window.ui.h:75
 msgid "_View"
 msgstr "ଦ୍ରୁଶ୍ଯ (_V)"
 
@@ -2047,34 +2150,6 @@ msgstr ""
 msgid "Slide transition:"
 msgstr ""
 
-#: ../src/GlTransition.cs:36
-msgid "Dissolve"
-msgstr "ମିଳେଇବା"
-
-#: ../src/GlTransition.cs:104
-msgid "Flip"
-msgstr "ଆଘାତଦିଅ"
-
-#: ../src/GlTransition.cs:147
-msgid "Cover"
-msgstr "ଆବୃତ"
-
-#: ../src/GlTransition.cs:174
-msgid "Reveal"
-msgstr ""
-
-#: ../src/GlTransition.cs:201
-msgid "Wipe"
-msgstr "ପରିସ୍କାରକରିବା"
-
-#: ../src/GlTransition.cs:259
-msgid "Split"
-msgstr "ସ୍ପ୍ଲିଟ"
-
-#: ../src/GlTransition.cs:370
-msgid "Push"
-msgstr "ଧକ୍କାଦିଅ"
-
 #: ../src/GroupSelector.cs:57 ../src/GroupSelector.cs:58
 msgid "More dates"
 msgstr ""
@@ -2083,7 +2158,7 @@ msgstr ""
 msgid "More"
 msgstr "ଅଧିକ"
 
-#: ../src/GroupSelector.cs:514
+#: ../src/GroupSelector.cs:517 ../src/ui/main_window.ui.h:34
 msgid "_Clear Date Range"
 msgstr ""
 
@@ -2111,7 +2186,7 @@ msgstr "ଅନ୍ତର୍କାର୍ୟ୍ଯକ୍ଷମଶୀଳତା ବ�
 msgid "Unknown Directory"
 msgstr "ଅଜ୍ଞାତ ବିବରଣୀପଞ୍ଜିକା"
 
-#: ../src/Imaging/ImageFile.cs:112
+#: ../src/Imaging/ImageFile.cs:113
 msgid "Writing to this file format is not supported"
 msgstr ""
 
@@ -2305,7 +2380,7 @@ msgstr ""
 msgid "Import new images"
 msgstr ""
 
-#: ../src/MainWindow.cs:285
+#: ../src/MainWindow.cs:285 ../src/ui/main_window.ui.h:3
 msgid "Browse"
 msgstr "ଖୋଜନ୍ତୁ"
 
@@ -2731,7 +2806,7 @@ msgstr ""
 msgid "Comment:"
 msgstr "ଟିପ୍ପଣୀ:"
 
-#: ../src/Preferences.cs:154
+#: ../src/Preferences.cs:149
 msgid "Photos"
 msgstr "ଫୋଟୋଗୁଡ଼ିକ"
 
@@ -3015,7 +3090,8 @@ msgstr ""
 
 #. OPS The operators we support, case insensitive
 #. private static string op_str = "(?'Ops' or | and |, | \\s+ )";
-#: ../src/Term.cs:380 ../src/Widgets/FindBar.cs:177
+#: ../src/Term.cs:380 ../src/UI.Dialog/ui/DateRangeDialog.ui.h:7
+#: ../src/Widgets/FindBar.cs:177
 msgid "or"
 msgstr "କିମ୍ବା"
 
@@ -3045,6 +3121,7 @@ msgid "F-Spot Website"
 msgstr ""
 
 #: ../src/UI.Dialog/AdjustTimeDialog.cs:112
+#: ../src/UI.Dialog/ui/AdjustTimeDialog.ui.h:10
 #, csharp-format
 msgid "Shift all photos by {0}"
 msgstr ""
@@ -3170,6 +3247,444 @@ msgstr "ଅନୁପାତ"
 #: ../src/UI.Dialog/ThreadProgressDialog.cs:49
 msgid "Retry"
 msgstr "ପୁନଃପ୍ରଚେଷ୍ଟା କରନ୍ତୁ"
+
+#: ../src/UI.Dialog/ui/AdjustTimeDialog.ui.h:1
+msgid "0000:00:00 00:00:00"
+msgstr ""
+
+#: ../src/UI.Dialog/ui/AdjustTimeDialog.ui.h:2
+msgid "00:00:00"
+msgstr ""
+
+#: ../src/UI.Dialog/ui/AdjustTimeDialog.ui.h:3
+msgid "5"
+msgstr ""
+
+#: ../src/UI.Dialog/ui/AdjustTimeDialog.ui.h:4
+#| msgid "<b>Account</b>"
+msgid "<b>Action</b>"
+msgstr "<b>କାର୍ଯ୍ୟ</b>"
+
+#: ../src/UI.Dialog/ui/AdjustTimeDialog.ui.h:6
+#| msgid "<b>Photos</b>"
+msgid "<b>Reference Photo</b>"
+msgstr "<b>ସନ୍ଦର୍ଭ ଫୋଟୋ</b>"
+
+#: ../src/UI.Dialog/ui/AdjustTimeDialog.ui.h:7
+msgid "Adjust Time"
+msgstr ""
+
+#: ../src/UI.Dialog/ui/AdjustTimeDialog.ui.h:8
+msgid "Adjusted date: "
+msgstr ""
+
+#: ../src/UI.Dialog/ui/AdjustTimeDialog.ui.h:9
+#| msgid "_Create"
+msgid "Current date:"
+msgstr "ପ୍ରଚଳିତ ତାରିଖ:"
+
+#: ../src/UI.Dialog/ui/AdjustTimeDialog.ui.h:11
+msgid "Space all photos by"
+msgstr ""
+
+#: ../src/UI.Dialog/ui/AdjustTimeDialog.ui.h:12
+#| msgid "Preferences"
+msgid "difference:"
+msgstr "ଭିନ୍ନତା:"
+
+#: ../src/UI.Dialog/ui/AdjustTimeDialog.ui.h:13
+msgid "min. Starting at {0}"
+msgstr ""
+
+#: ../src/UI.Dialog/ui/DateRangeDialog.ui.h:1
+#| msgid "<b>Style</b>"
+msgid "<b>End Date</b>"
+msgstr "<b>ସମାପ୍ତି ତାରିଖ</b>"
+
+#: ../src/UI.Dialog/ui/DateRangeDialog.ui.h:2
+#| msgid "<b>Style</b>"
+msgid "<b>Select period</b>"
+msgstr "<b>ଅବଧି ବାଛନ୍ତୁ</b>"
+
+#: ../src/UI.Dialog/ui/DateRangeDialog.ui.h:3
+#| msgid "<b>Style</b>"
+msgid "<b>Start Date</b>"
+msgstr "<b>ଆରମ୍ଭ ତାରିଖ</b>"
+
+#: ../src/UI.Dialog/ui/DateRangeDialog.ui.h:4
+msgid "Cancel, do not change the current timeline. "
+msgstr ""
+
+#: ../src/UI.Dialog/ui/DateRangeDialog.ui.h:5
+msgid "Only photos taken within these dates will be displayed."
+msgstr ""
+
+#: ../src/UI.Dialog/ui/DateRangeDialog.ui.h:6
+msgid "Set date range"
+msgstr ""
+
+#: ../src/UI.Dialog/ui/EditTagDialog.ui.h:1
+msgid "<small></small>"
+msgstr ""
+
+#: ../src/UI.Dialog/ui/EditTagDialog.ui.h:2
+#| msgid "Edit"
+msgid "Edit Tag"
+msgstr "ଟ୍ୟାଗ ସମ୍ପାଦନ କରନ୍ତୁ"
+
+#: ../src/UI.Dialog/ui/EditTagDialog.ui.h:3
+#| msgid "Edit"
+msgid "Edit icon"
+msgstr "ଚିତ୍ର ସଂକେତ ସମ୍ପାଦନ କରନ୍ତୁ"
+
+#: ../src/UI.Dialog/ui/EditTagDialog.ui.h:5
+#| msgid "_Account:"
+msgid "_Icon:"
+msgstr "ଚିତ୍ରସଂକେତ (_I):"
+
+#: ../src/UI.Dialog/ui/EditTagIconDialog.ui.h:1
+#| msgid "<b>Photos</b>"
+msgid "<b>From External Photo</b>"
+msgstr "<b>ବାହ୍ୟ ଫୋଟୋରୁ</b>"
+
+#: ../src/UI.Dialog/ui/EditTagIconDialog.ui.h:2
+#| msgid "<b>Photos</b>"
+msgid "<b>From Photo</b>"
+msgstr "<b>ଫୋଟୋରୁ</b>"
+
+#: ../src/UI.Dialog/ui/EditTagIconDialog.ui.h:3
+#| msgid "<b>Destination</b>"
+msgid "<b>Predefined icons</b>"
+msgstr "<b>ପୂର୍ବ ନିର୍ଦ୍ଧାରିତ ଚିତ୍ରସଂକେତଗୁଡ଼ିକ</b>"
+
+#: ../src/UI.Dialog/ui/EditTagIconDialog.ui.h:4
+#| msgid "<b>Size</b>"
+msgid "<b>Preview</b>"
+msgstr "<b>ପ୍ରାକଦର୍ଶନ</b>"
+
+#: ../src/UI.Dialog/ui/EditTagIconDialog.ui.h:5
+msgid "Design icon from"
+msgstr ""
+
+#: ../src/UI.Dialog/ui/EditTagIconDialog.ui.h:6
+#| msgid "Export tag _icons"
+msgid "Edit Tag Icon"
+msgstr "ଟ୍ୟାଗ ଚିତ୍ରସଂକେତକୁ ସମ୍ପାଦନ କରନ୍ତୁ"
+
+#: ../src/UI.Dialog/ui/EditTagIconDialog.ui.h:7
+msgid "No _image"
+msgstr ""
+
+#: ../src/UI.Dialog/ui/EditTagIconDialog.ui.h:8
+msgid "Photo 0 of 0"
+msgstr ""
+
+#: ../src/UI.Dialog/ui/PreferenceDialog.ui.h:1
+msgid "Color profile for display:"
+msgstr ""
+
+#: ../src/UI.Dialog/ui/PreferenceDialog.ui.h:2
+msgid "Color profile for printing:"
+msgstr ""
+
+#: ../src/UI.Dialog/ui/PreferenceDialog.ui.h:3
+#| msgid "Preferences"
+msgid "F-Spot Preferences"
+msgstr "F-Spot ପସନ୍ଦ"
+
+#: ../src/UI.Dialog/ui/PreferenceDialog.ui.h:4
+msgid "F-Spot appearance:"
+msgstr ""
+
+#: ../src/UI.Dialog/ui/PreferenceDialog.ui.h:5
+msgid ""
+"Inside the image files when possible\n"
+"<small>Makes them accessible to other image-editing programs.</small>"
+msgstr ""
+
+#: ../src/UI.Dialog/ui/PreferenceDialog.ui.h:7
+#| msgid "Select Folder"
+msgid "Select A Folder"
+msgstr "ଗୋଟିଏ ଫୋଲଡ଼ରକୁ ମନୋନିତ କରନ୍ତୁ"
+
+#: ../src/UI.Dialog/ui/PreferenceDialog.ui.h:8
+msgid "Separately from the image files"
+msgstr ""
+
+#: ../src/UI.Dialog/ui/PreferenceDialog.ui.h:9
+msgid "Store tags and descriptions for photos:"
+msgstr ""
+
+#: ../src/UI.Dialog/ui/PreferenceDialog.ui.h:10
+msgid "When importing photos, copy them to:"
+msgstr ""
+
+#: ../src/UI.Dialog/ui/PreferenceDialog.ui.h:11
+msgid "gtk-close"
+msgstr ""
+
+#: ../src/UI.Dialog/ui/RatingFilterDialog.ui.h:1
+#| msgid "<b>Destination</b>"
+msgid "<b>Max Rating</b>"
+msgstr "<b>ସର୍ବାଧିକ ମାନ୍ୟତା</b>"
+
+#: ../src/UI.Dialog/ui/RatingFilterDialog.ui.h:2
+#| msgid "<b>Destination</b>"
+msgid "<b>Min Rating</b>"
+msgstr "<b>ସର୍ବନିମ୍ନ ମାନ୍ୟତା</b>"
+
+#: ../src/UI.Dialog/ui/RatingFilterDialog.ui.h:3
+msgid "Set Rating Filter"
+msgstr ""
+
+#: ../src/ui/main_window.ui.h:1
+msgid "Adjust _Time..."
+msgstr ""
+
+#: ../src/ui/main_window.ui.h:2
+msgid "Arrange _by"
+msgstr ""
+
+#: ../src/ui/main_window.ui.h:4
+#| msgid "Date"
+msgid "By _Date"
+msgstr "ତାରିଖ ସୁଦ୍ଧା (_D)"
+
+#: ../src/ui/main_window.ui.h:5
+msgid "By _Import Roll"
+msgstr ""
+
+#: ../src/ui/main_window.ui.h:6
+#| msgid "Rating"
+msgid "By _Rating"
+msgstr "ରେଟିଙ୍ଗ ଦ୍ୱାରା (_R)"
+
+#: ../src/ui/main_window.ui.h:7
+#| msgid "Location"
+msgid "Copy Locat_ion"
+msgstr "ଅବସ୍ଥାନ ନକଲ କରନ୍ତୁ (_i)"
+
+#: ../src/ui/main_window.ui.h:8
+#| msgid "Create New Tag..."
+msgid "Create New _Tag..."
+msgstr "ନୂତନ ଟ୍ୟାଗ ନିର୍ମାଣ କରନ୍ତୁ (_T)..."
+
+#: ../src/ui/main_window.ui.h:9
+#| msgid "Create New Tag..."
+msgid "Create _New Version..."
+msgstr "ନୂତନ ସଂସ୍କରଣ ନିର୍ମାଣ କରନ୍ତୁ (_N)..."
+
+#: ../src/ui/main_window.ui.h:10
+msgid "F-Spot"
+msgstr ""
+
+#: ../src/ui/main_window.ui.h:11
+#| msgid "Find"
+#| msgid_plural "Find"
+msgid "Fin_d"
+msgstr "ଖୋଜନ୍ତୁ (_d)"
+
+#: ../src/ui/main_window.ui.h:12
+#| msgid "Extension"
+msgid "Manage _Extensions"
+msgstr "ଅନୁଲଗ୍ନଗୁଡ଼ିକୁ ପରିଚାଳନା କରନ୍ତୁ (_E)"
+
+#: ../src/ui/main_window.ui.h:13
+#| msgid "Page Setup"
+msgid "Page Set_up..."
+msgstr "ପୃଷ୍ଠା ବିନ୍ୟାସ (_u)..."
+
+#: ../src/ui/main_window.ui.h:14
+msgid "Re_fresh Thumbnail"
+msgstr ""
+
+#: ../src/ui/main_window.ui.h:19
+#| msgid "Select Folder"
+msgid "Select _None"
+msgstr "କାହାକୁ ମନୋନିତ କରନ୍ତୁ ନାହିଁ (_N)"
+
+#: ../src/ui/main_window.ui.h:20
+msgid "Send by _Mail..."
+msgstr ""
+
+#: ../src/ui/main_window.ui.h:22
+#| msgid "Hide Toolbar"
+msgid "Side_bar"
+msgstr "ପାର୍ଶ୍ୱପଟି (_b)"
+
+#: ../src/ui/main_window.ui.h:23
+#| msgid "Tags"
+msgid "T_ags"
+msgstr "ଟ୍ଯାଗଗୁଡ଼ିକ (_a)"
+
+#: ../src/ui/main_window.ui.h:25
+#| msgid "Thumbnail Directory"
+msgid "Thumbnail _elements"
+msgstr "ବୃଦ୍ଧାଙ୍ଗୁଷ୍ଠିନଖ ଉପାଦାନଗୁଡ଼ିକ (_e)"
+
+#: ../src/ui/main_window.ui.h:26
+#| msgid "_Toolbar"
+msgid "Too_lbar"
+msgstr "ସାଧନ ପଟି (_l)"
+
+#: ../src/ui/main_window.ui.h:27
+#| msgid "_View"
+msgid "View"
+msgstr "ଦ୍ରୁଶ୍ଯ"
+
+#: ../src/ui/main_window.ui.h:33
+msgid "_Attach Tag to Selection"
+msgstr ""
+
+#: ../src/ui/main_window.ui.h:35
+msgid "_Clear Rating Filter"
+msgstr ""
+
+#: ../src/ui/main_window.ui.h:36
+msgid "_Clear Roll Filter"
+msgstr ""
+
+#: ../src/ui/main_window.ui.h:37
+msgid "_Close"
+msgstr ""
+
+#: ../src/ui/main_window.ui.h:38
+#| msgid "Comment:"
+msgid "_Components"
+msgstr "ଉପାଦାନଗୁଡ଼ିକ (_C):"
+
+#: ../src/ui/main_window.ui.h:39
+msgid "_Contents"
+msgstr ""
+
+#: ../src/ui/main_window.ui.h:40
+#| msgid "Date"
+msgid "_Dates"
+msgstr "ତାରିଖ (_D)"
+
+#: ../src/ui/main_window.ui.h:42
+msgid "_Delete Selected Tag"
+msgstr ""
+
+#: ../src/ui/main_window.ui.h:43
+#| msgid "Version"
+msgid "_Delete Version"
+msgstr "ସଂସ୍କରଣକୁ ଅପସାରଣ କରନ୍ତୁ (_D)"
+
+#: ../src/ui/main_window.ui.h:45
+msgid "_Edit Selected Tag..."
+msgstr ""
+
+#: ../src/ui/main_window.ui.h:46
+#| msgid "_Export"
+msgid "_Export to"
+msgstr "କୁ ରପ୍ତାନୀ କରନ୍ତୁ (_E)"
+
+#: ../src/ui/main_window.ui.h:47
+msgid "_Filmstrip"
+msgstr ""
+
+#: ../src/ui/main_window.ui.h:50
+#| msgid "Hidden"
+msgid "_Hidden"
+msgstr "ଲୁକ୍କାଇତ (_H)"
+
+#: ../src/ui/main_window.ui.h:51
+#| msgid "Import"
+msgid "_Import..."
+msgstr "ଆମଦାନୀ କରନ୍ତୁ (_I)..."
+
+#: ../src/ui/main_window.ui.h:52
+#| msgid "Large"
+msgid "_Large"
+msgstr "ବଡ (_L)"
+
+#: ../src/ui/main_window.ui.h:53
+msgid "_Last Import Roll"
+msgstr ""
+
+#: ../src/ui/main_window.ui.h:54
+msgid "_Loupe"
+msgstr ""
+
+#: ../src/ui/main_window.ui.h:55
+#| msgid "Medium"
+msgid "_Medium"
+msgstr "ମଧ୍ଯମ (_M)"
+
+#: ../src/ui/main_window.ui.h:57
+#| msgid "_Edit"
+msgid "_Quit"
+msgstr "ବିଦାୟ ନିଅନ୍ତୁ (_Q)"
+
+#: ../src/ui/main_window.ui.h:58
+#| msgid "Rating"
+msgid "_Ratings"
+msgstr "ମାନ୍ୟତା (_R)"
+
+#: ../src/ui/main_window.ui.h:60
+msgid "_Remove Tag From Selection"
+msgstr ""
+
+#: ../src/ui/main_window.ui.h:61
+#| msgid "Version"
+msgid "_Rename Version"
+msgstr "ସଂସ୍କରଣକୁ ପୁନଃନାମକରଣ କରନ୍ତୁ (_R)"
+
+#: ../src/ui/main_window.ui.h:62
+msgid "_Reverse Order"
+msgstr ""
+
+#: ../src/ui/main_window.ui.h:63
+#| msgid "Select Export Folder"
+msgid "_Select Import Rolls..."
+msgstr "ପଠାଯାଇଥିବା ରୋଲକୁ ବାଛନ୍ତୁ (_S)..."
+
+#: ../src/ui/main_window.ui.h:64
+msgid "_Set Date Range..."
+msgstr ""
+
+#: ../src/ui/main_window.ui.h:65
+msgid "_Set Rating filter..."
+msgstr ""
+
+#: ../src/ui/main_window.ui.h:66
+#| msgid "Sharpen"
+msgid "_Sharpen..."
+msgstr "ତୀକ୍ଷଣ (_S)..."
+
+#: ../src/ui/main_window.ui.h:68
+#| msgid "Small"
+msgid "_Small"
+msgstr "ଛୋଟ (_S)"
+
+#: ../src/ui/main_window.ui.h:69
+msgid "_Tag Icons"
+msgstr ""
+
+#: ../src/ui/main_window.ui.h:70
+#| msgid "Tags"
+msgid "_Tags"
+msgstr "ଟ୍ଯାଗଗୁଡ଼ିକ (_T)"
+
+#: ../src/ui/main_window.ui.h:71
+#| msgid "_Title:"
+msgid "_Timeline"
+msgstr "ସମୟ ସୀମା (_T)"
+
+#: ../src/ui/main_window.ui.h:72
+#| msgid "Tools"
+msgid "_Tools"
+msgstr "ଉପକରଣଗୁଡିକ (_T)"
+
+#: ../src/ui/main_window.ui.h:73
+msgid "_Untagged Photos"
+msgstr ""
+
+#: ../src/ui/main_window.ui.h:74
+#| msgid "Version"
+msgid "_Version"
+msgstr "ସଂସ୍କରଣ (_V)"
 
 #: ../src/Updater.cs:616
 msgid "Updating F-Spot Database"
@@ -3317,10 +3832,6 @@ msgstr "ହିଷ୍ଟୋଗ୍ରାମ୍"
 msgid "Date"
 msgstr "ତାରିଖ"
 
-#: ../src/Widgets/InfoBox.cs:220
-msgid "Size"
-msgstr "ଆକାର"
-
 #: ../src/Widgets/InfoBox.cs:223
 msgid "Exposure"
 msgstr "ଅନାବୃତ"
@@ -3446,10 +3957,6 @@ msgstr "କୌଣସି ପ୍ରୟୋଗ ଉପଲବ୍ଧ ନାହିଁ"
 #: ../src/Widgets/RatingMenuItem.cs:56
 msgid "Rating:"
 msgstr "ମୂଲ୍ଯାଙ୍କନ କରିବା :"
-
-#: ../src/XmpTagsImporter.cs:90
-msgid "Location"
-msgstr "ଅବସ୍ଥାନ"
 
 #: ../src/XmpTagsImporter.cs:91
 msgid "Country"
