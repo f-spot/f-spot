@@ -139,7 +139,7 @@ namespace FSpot.UI.Dialog
 			get { return icon_name; }
 			set {
 				icon_name = value;	
-				preview_image.Pixbuf = GtkUtil.TryLoadIcon (FSpot.Global.IconTheme, value, 48, (IconLookupFlags) 0);
+				PreviewPixbuf = GtkUtil.TryLoadIcon (FSpot.Global.IconTheme, value, 48, (IconLookupFlags) 0);
 			}
 			
 		}
