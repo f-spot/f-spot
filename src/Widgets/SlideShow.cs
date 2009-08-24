@@ -20,6 +20,7 @@ namespace FSpot.Widgets
 {
 	public class SlideShow : DrawingArea
 	{
+		bool running;
 		BrowsablePointer item;
 #region Public API
 		public SlideShow (BrowsablePointer item) : base ()
@@ -60,11 +61,13 @@ namespace FSpot.Widgets
 		Delay flip;
 		public void Start ()
 		{
+			running = true;
 			flip.Start ();	
 		}
 
 		public void Stop ()
 		{
+			running = false;
 			flip.Stop ();
 		}
 #endregion
@@ -75,7 +78,8 @@ namespace FSpot.Widgets
 		void HandleItemChanged (object sender, EventArgs e)
 		{
 			flip.Stop ();
-			flip.Start ();
+			if (running)
+				flip.Start ();
 			lock (sync_handle) {
 				if (prev != null)
 					prev.Dispose ();
