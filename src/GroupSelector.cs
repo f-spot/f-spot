@@ -334,6 +334,9 @@ namespace FSpot {
 			//Rectangle box = glass.Bounds ();
 			//Console.WriteLine ("please {0} and {1} in box {2}", x, y, box);
 
+			if (glass == null)
+				return base.OnMotionNotifyEvent (args);
+
 			if (glass.Dragging) {
 				glass.UpdateDrag (x, y);
 			} else if (min_limit.Dragging) {
