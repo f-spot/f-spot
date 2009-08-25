@@ -155,7 +155,16 @@ namespace DevelopInUFRawExtension
 
 		private static string GetVersionName (Photo p)
 		{
-			return Catalog.GetString ("Developed in UFRaw");
+			return GetVersionName (p, 1);
+		}
+
+		private static string GetVersionName (Photo p, int i)
+		{
+			string name = Catalog.GetPluralString ("Developed in UFRaw", "Developed in UFRaw ({0})", i);
+			name = String.Format (name, i);
+			if (p.VersionNameExists (name))
+				return GetVersionName (p, i + 1);
+			return name;
 		}
 
 		private System.Uri GetUriForVersionName (Photo p, string version_name)
