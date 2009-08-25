@@ -108,7 +108,7 @@ namespace FSpot.Widgets
 			Spacing = 1;
 
 			Add (date_entry = new Entry () {WidthChars = 10, IsEditable = true});
-			date_entry.Activated += HandleDateEntryActivated;
+			date_entry.Changed += HandleDateEntryChanged;
 			date_entry.Show ();
 			var bbox = new HBox ();
 			Widget w;
@@ -121,10 +121,10 @@ namespace FSpot.Widgets
 			date_button.Clicked += HandleCalendarButtonClicked;
 			date_button.Show ();
 			Add (time_entry = new Entry () {WidthChars = 12, IsEditable = true});
-			time_entry.Activated += HandleTimeEntryActivated;
+			time_entry.Changed += HandleTimeEntryChanged;
 			time_entry.Show ();
 			Add (offset_entry = new Entry () {WidthChars = 6, IsEditable = true});
-			offset_entry.Activated += HandleOffsetEntryActivated;
+			offset_entry.Changed += HandleOffsetEntryChanged;
 			offset_entry.Show ();
 
 			calendar = new Calendar ();
@@ -209,16 +209,16 @@ namespace FSpot.Widgets
 			GrabPointerAndKeyboard (calendar_popup.GdkWindow, Gtk.Global.CurrentEventTime);
 		}
 
-		void HandleDateEntryActivated (object sender, EventArgs e)
+		void HandleDateEntryChanged (object sender, EventArgs e)
 		{
 			DateTimeOffset new_date;
 			if (DateTimeOffset.TryParseExact (date_entry.Text, "d", null, System.Globalization.DateTimeStyles.AssumeLocal | System.Globalization.DateTimeStyles.AllowWhiteSpaces, out new_date))
-				DateTimeOffset = new DateTimeOffset (calendar.Date + DateTimeOffset.TimeOfDay, DateTimeOffset.Offset);
+				DateTimeOffset = new DateTimeOffset (new_date.Date + DateTimeOffset.TimeOfDay, DateTimeOffset.Offset);
 			else 
 				date_entry.ModifyBase (StateType.Normal, red);
 		}
 
-		void HandleTimeEntryActivated (object sender, EventArgs e)
+		void HandleTimeEntryChanged (object sender, EventArgs e)
 		{
 			DateTimeOffset new_date;
 			if (DateTimeOffset.TryParseExact (String.Format ("{0} {1}", DateTimeOffset.ToString ("d"), time_entry.Text), ShowSeconds ? "G" : "g", null, System.Globalization.DateTimeStyles.AssumeLocal | System.Globalization.DateTimeStyles.AllowWhiteSpaces, out new_date)) {
@@ -228,7 +228,7 @@ namespace FSpot.Widgets
 
 		}
 
-		void HandleOffsetEntryActivated (object sender, EventArgs e)
+		void HandleOffsetEntryChanged (object sender, EventArgs e)
 		{
 			TimeSpan new_offset;
 			if (TimeSpan.TryParse (offset_entry.Text.Trim ('+'), out new_offset))
