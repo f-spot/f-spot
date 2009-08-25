@@ -1,15 +1,15 @@
 # Swedish messages for f-spot.
 # Copyright (C) 2004, 2006, 2007, 2008, 2009 Free Software Foundation, Inc.
-# Daniel Nylander <po@danielnylander.se>, 2006, 2007, 2008, 2009.
-# Sergej Kotliar <sigge@hystrix.se>, 2006.
 # Christian Rose <menthos@menthos.com>, 2004.
+# Sergej Kotliar <sigge@hystrix.se>, 2006.
+# Daniel Nylander <po@danielnylander.se>, 2006, 2007, 2008, 2009.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: f-spot\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-08-20 22:23+0200\n"
-"PO-Revision-Date: 2009-08-20 22:24+0100\n"
+"POT-Creation-Date: 2009-08-25 07:40+0200\n"
+"PO-Revision-Date: 2009-08-25 07:44+0100\n"
 "Last-Translator: Daniel Nylander <po@danielnylander.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
 "MIME-Version: 1.0\n"
@@ -72,6 +72,53 @@ msgstr "Fel vid överföring"
 #: ../extensions/Exporters/CDExport/CDExport.cs:263
 msgid "copying..."
 msgstr "kopierar..."
+
+#: ../extensions/Exporters/CDExport/CDExport.ui.h:1
+msgid "<b><i>There is some previously scheduled items to write</i></b>"
+msgstr "<b><i>Det finns några tidigare schemalagda objekt att skriva</i></b>"
+
+#: ../extensions/Exporters/CDExport/CDExport.ui.h:2
+msgid "<b>Photos to Burn</b>"
+msgstr "<b>Foton att bränna</b>"
+
+#: ../extensions/Exporters/CDExport/CDExport.ui.h:3
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:7
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:7
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:5
+#: ../src/f-spot.glade.h:28
+msgid "Autorotate"
+msgstr "Rotera automatiskt"
+
+#: ../extensions/Exporters/CDExport/CDExport.ui.h:4
+msgid "Create CD"
+msgstr "Skapa cd"
+
+#: ../extensions/Exporters/CDExport/CDExport.ui.h:5
+#: ../src/Widgets/InfoBox.cs:220
+msgid "Size"
+msgstr "Storlek"
+
+#: ../extensions/Exporters/CDExport/CDExport.ui.h:6
+msgid "Size of the exported selection:"
+msgstr "Storlek på exporterad markering:"
+
+#: ../extensions/Exporters/CDExport/CDExport.ui.h:7
+msgid "_Browse Previously Scheduled Files"
+msgstr "_Bläddra i tidigare schemalagda filer"
+
+#: ../extensions/Exporters/CDExport/CDExport.ui.h:8
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:15
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:16
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:15
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:20
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:12
+#: ../src/f-spot.glade.h:95
+msgid "_Export"
+msgstr "_Exportera"
+
+#: ../extensions/Exporters/CDExport/CDExport.ui.h:9
+msgid "_Write only these photos to CD"
+msgstr "_Skriv endast dessa foton till cd"
 
 #: ../extensions/Exporters/FacebookExport/FacebookExport.addin.xml.h:1
 msgid "F_acebook..."
@@ -232,6 +279,69 @@ msgstr ""
 msgid "You are not logged in."
 msgstr "Du är inte inloggad."
 
+#: ../extensions/Exporters/FacebookExport/FacebookExport.ui.h:1
+msgid "Auto-confirm Photos"
+msgstr "Bekräfta automatiskt foton"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.ui.h:2
+msgid "Caption"
+msgstr "Text"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.ui.h:3
+msgid "Create a new album"
+msgstr "Skapa ett nytt album"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.ui.h:4
+msgid "Description"
+msgstr "Beskrivning"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.ui.h:5
+msgid "Export to Facebook"
+msgstr "Exportera till Facebook"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.ui.h:6
+msgid "In this photo"
+msgstr "I detta foto"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.ui.h:7
+#: ../src/XmpTagsImporter.cs:90
+msgid "Location"
+msgstr "Plats"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.ui.h:8
+msgid "Login"
+msgstr "Inloggning"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.ui.h:9
+msgid "Logout"
+msgstr "Logga ut"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.ui.h:10
+#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/ManageSitesDialog.cs:51
+#: ../src/Widgets/InfoBox.cs:211
+msgid "Name"
+msgstr "Namn"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.ui.h:11
+msgid "Not logged in"
+msgstr "Inte inloggad"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.ui.h:12
+msgid "Permissions:"
+msgstr "Rättigheter:"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.ui.h:13
+msgid "Stay Connected"
+msgstr "Fortsätt vara ansluten"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.ui.h:14
+msgid "Use an existing album"
+msgstr "Använd ett befintligt album"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.ui.h:15
+msgid "Who is this?"
+msgstr "Vem är det här?"
+
 #: ../extensions/Exporters/FlickrExport/FlickrExport.addin.xml.h:1
 msgid "_23hq..."
 msgstr "_23hq..."
@@ -323,6 +433,7 @@ msgstr "<b>Konto</b>"
 #: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:2
 #: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:2
 #: ../src/f-spot.glade.h:14
+#: ../src/UI.Dialog/ui/AdjustTimeDialog.ui.h:5
 msgid "<b>Photos</b>"
 msgstr "<b>Foton</b>"
 
@@ -378,15 +489,6 @@ msgstr "Synlig för familjen"
 #: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:14
 msgid "Visible to Friends"
 msgstr "Synlig för vänner"
-
-#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:15
-#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:16
-#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:15
-#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:20
-#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:12
-#: ../src/f-spot.glade.h:95
-msgid "_Export"
-msgstr "_Exportera"
 
 #: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:16
 #: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:21
@@ -491,6 +593,7 @@ msgstr "Dölj stilar"
 
 #: ../extensions/Exporters/FolderExport/FolderExport.cs:1172
 #: ../extensions/Exporters/FolderExport/FolderExport.cs:1173
+#: ../src/ui/main_window.ui.h:24
 msgid "Tags: "
 msgstr "Taggar: "
 
@@ -511,13 +614,6 @@ msgstr "<b>Mål</b>"
 #: ../extensions/Exporters/FolderExport/FolderExport.glade.h:4
 msgid "<b>Export Method</b>"
 msgstr "<b>Exportmetod</b>"
-
-#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:7
-#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:7
-#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:5
-#: ../src/f-spot.glade.h:28
-msgid "Autorotate"
-msgstr "Rotera automatiskt"
 
 #: ../extensions/Exporters/FolderExport/FolderExport.glade.h:8
 msgid "Create _gallery using \"Original\""
@@ -1011,6 +1107,35 @@ msgstr ""
 "<big>Databasen refererar till filer som finns i mappen <b>{0}</b>.\n"
 " Välj den mappen så att jag kan göra mappningen.</big>"
 
+#: ../extensions/Tools/ScreensaverConfig/ScreensaverConfig.addin.xml.h:1
+msgid "Configure Screensaver"
+msgstr "Konfigurera skärmsläckare"
+
+#: ../extensions/Tools/ScreensaverConfig/ScreensaverConfigDialog.ui.h:1
+#: ../src/UI.Dialog/DateRangeDialog.cs:129
+msgid "All Images"
+msgstr "Alla bilder"
+
+#: ../extensions/Tools/ScreensaverConfig/ScreensaverConfigDialog.ui.h:2
+msgid "Delay:"
+msgstr "Fördröjning:"
+
+#: ../extensions/Tools/ScreensaverConfig/ScreensaverConfigDialog.ui.h:3
+msgid "Display:"
+msgstr "Visa:"
+
+#: ../extensions/Tools/ScreensaverConfig/ScreensaverConfigDialog.ui.h:4
+msgid "Images tagged with:"
+msgstr "Bilder taggade med:"
+
+#: ../extensions/Tools/ScreensaverConfig/ScreensaverConfigDialog.ui.h:5
+msgid "Make F-Spot my screensaver"
+msgstr "Använd F-Spot som skärmsläckare"
+
+#: ../extensions/Tools/ScreensaverConfig/ScreensaverConfigDialog.ui.h:6
+msgid "Screensaver Configuration"
+msgstr "Konfiguration för skärmsläckare"
+
 #: ../f-spot.desktop.in.in.h:1
 #: ../f-spot-import.desktop.in.in.h:1
 msgid "F-Spot Photo Manager"
@@ -1089,6 +1214,7 @@ msgid "_Unselect All"
 msgstr "_Avmarkera allt"
 
 #: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:259
+#: ../src/ui/main_window.ui.h:18
 msgid "Select _All"
 msgstr "Markera _allt"
 
@@ -1284,11 +1410,6 @@ msgstr "Version"
 msgid "Other"
 msgstr "Annan"
 
-#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/ManageSitesDialog.cs:51
-#: ../src/Widgets/InfoBox.cs:211
-msgid "Name"
-msgstr "Namn"
-
 #: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/ManageSitesDialog.cs:52
 msgid "Url"
 msgstr "Url"
@@ -1380,12 +1501,12 @@ msgstr "Kamera"
 msgid "Port"
 msgstr "Port"
 
-#: ../src/Core.cs:200
+#: ../src/Core.cs:203
 #, csharp-format
 msgid "No photos matching {0} found"
 msgstr "Inga foton som matchar {0} hittades"
 
-#: ../src/Core.cs:201
+#: ../src/Core.cs:204
 #, csharp-format
 msgid ""
 "The tag \"{0}\" is not applied to any photos. Try adding\n"
@@ -1396,11 +1517,11 @@ msgstr ""
 "Prova att sätta taggen på några foton, eller välja en\n"
 "annan tagg i F-Spots inställningsdialog."
 
-#: ../src/Core.cs:205
+#: ../src/Core.cs:208
 msgid "Search returned no results"
 msgstr "Sökningen gav inga resultat"
 
-#: ../src/Core.cs:206
+#: ../src/Core.cs:209
 msgid ""
 "The tag F-Spot is looking for does not exist. Try\n"
 "selecting a different tag in the F-Spot preference\n"
@@ -1556,18 +1677,21 @@ msgid "Open _With"
 msgstr "Öppna _med"
 
 #: ../src/FSpot.addin.xml.h:4
+#: ../src/ui/main_window.ui.h:15
 msgid "Rem_ove Tag"
 msgstr "Ta b_ort tagg"
 
 #: ../src/FSpot.addin.xml.h:5
 #: ../src/f-spot.glade.h:68
 #: ../src/SingleView.cs:453
+#: ../src/ui/main_window.ui.h:16
 msgid "Rotate _Left"
 msgstr "Rotera åt _vänster"
 
 #: ../src/FSpot.addin.xml.h:6
 #: ../src/f-spot.glade.h:69
 #: ../src/SingleView.cs:454
+#: ../src/ui/main_window.ui.h:17
 msgid "Rotate _Right"
 msgstr "Rotera åt _höger"
 
@@ -1576,15 +1700,18 @@ msgid "Tools"
 msgstr "Verktyg"
 
 #: ../src/FSpot.addin.xml.h:8
+#: ../src/ui/main_window.ui.h:32
 msgid "_Attach Tag"
 msgstr "_Fäst tagg"
 
 #: ../src/FSpot.addin.xml.h:9
+#: ../src/ui/main_window.ui.h:41
 msgid "_Delete From Drive"
 msgstr "Ta bort från _disk"
 
 # SUN CHANGED MESSAGE
 #: ../src/FSpot.addin.xml.h:10
+#: ../src/ui/main_window.ui.h:59
 msgid "_Remove From Catalog"
 msgstr "Ta bort från _katalog"
 
@@ -1792,6 +1919,7 @@ msgid "Original size (possible very large file size)"
 msgstr "Ursprunglig storlek (möjligen mycket stor filstorlek)"
 
 #: ../src/f-spot.glade.h:63
+#: ../src/UI.Dialog/ui/EditTagDialog.ui.h:4
 msgid "P_arent Tag:"
 msgstr "_Föräldertagg:"
 
@@ -1833,6 +1961,7 @@ msgid "Selection Constraints"
 msgstr "Markeringskriterier"
 
 #: ../src/f-spot.glade.h:75
+#: ../src/ui/main_window.ui.h:21
 msgid "Set as _Background"
 msgstr "Ställ in som _bakgrund"
 
@@ -1878,18 +2007,22 @@ msgid "Total original size"
 msgstr "Total ursprunglig storlek"
 
 #: ../src/f-spot.glade.h:87
+#: ../src/ui/main_window.ui.h:28
 msgid "Zoom _in"
 msgstr "Zooma _in"
 
 #: ../src/f-spot.glade.h:88
+#: ../src/ui/main_window.ui.h:29
 msgid "Zoom _out"
 msgstr "Zooma _ut"
 
 #: ../src/f-spot.glade.h:89
+#: ../src/ui/main_window.ui.h:30
 msgid "Zoom in"
 msgstr "Zooma in"
 
 #: ../src/f-spot.glade.h:90
+#: ../src/ui/main_window.ui.h:31
 msgid "Zoom out"
 msgstr "Zooma ut"
 
@@ -1902,6 +2035,7 @@ msgid "_Create Mail"
 msgstr "S_kapa e-post"
 
 #: ../src/f-spot.glade.h:94
+#: ../src/ui/main_window.ui.h:44
 msgid "_Edit"
 msgstr "R_edigera"
 
@@ -1914,6 +2048,7 @@ msgid "_Flickr"
 msgstr "_Flickr"
 
 #: ../src/f-spot.glade.h:100
+#: ../src/ui/main_window.ui.h:48
 msgid "_Fullscreen"
 msgstr "_Helskärm"
 
@@ -1922,6 +2057,7 @@ msgid "_Gallery"
 msgstr "Bild_galleri"
 
 #: ../src/f-spot.glade.h:102
+#: ../src/ui/main_window.ui.h:49
 msgid "_Help"
 msgstr "_Hjälp"
 
@@ -1946,6 +2082,7 @@ msgid "_Open destination when done exporting"
 msgstr "_Öppna mål när exporteringen är färdig"
 
 #: ../src/f-spot.glade.h:108
+#: ../src/ui/main_window.ui.h:56
 msgid "_Photo"
 msgstr "_Foto"
 
@@ -1958,6 +2095,7 @@ msgid "_Scale photos to no larger than: "
 msgstr "_Skala foton till högst: "
 
 #: ../src/f-spot.glade.h:112
+#: ../src/ui/main_window.ui.h:67
 msgid "_Slideshow"
 msgstr "_Bildspel"
 
@@ -1966,6 +2104,7 @@ msgid "_Strip metadata"
 msgstr "_Ta bort metadata"
 
 #: ../src/f-spot.glade.h:114
+#: ../src/UI.Dialog/ui/EditTagDialog.ui.h:6
 msgid "_Tag Name:"
 msgstr "_Taggnamn:"
 
@@ -1982,6 +2121,7 @@ msgid "_URI:"
 msgstr "_URI:"
 
 #: ../src/f-spot.glade.h:118
+#: ../src/ui/main_window.ui.h:75
 msgid "_View"
 msgstr "_Visa"
 
@@ -2054,7 +2194,8 @@ msgstr "Fler datum"
 msgid "More"
 msgstr "Fler"
 
-#: ../src/GroupSelector.cs:514
+#: ../src/GroupSelector.cs:517
+#: ../src/ui/main_window.ui.h:34
 msgid "_Clear Date Range"
 msgstr "_Rensa datumintervall"
 
@@ -2278,6 +2419,7 @@ msgid "Import new images"
 msgstr "Importera nya bilder"
 
 #: ../src/MainWindow.cs:285
+#: ../src/ui/main_window.ui.h:3
 msgid "Browse"
 msgstr "Bläddra"
 
@@ -2700,7 +2842,7 @@ msgstr "Mottog undantaget \"{0}\". Kunde inte spara fotot {1}"
 msgid "Comment:"
 msgstr "Kommentar:"
 
-#: ../src/Preferences.cs:154
+#: ../src/Preferences.cs:149
 msgid "Photos"
 msgstr "Foton"
 
@@ -2986,6 +3128,7 @@ msgstr " eller "
 #. OPS The operators we support, case insensitive
 #. private static string op_str = "(?'Ops' or | and |, | \\s+ )";
 #: ../src/Term.cs:380
+#: ../src/UI.Dialog/ui/DateRangeDialog.ui.h:7
 #: ../src/Widgets/FindBar.cs:177
 msgid "or"
 msgstr "eller"
@@ -3022,6 +3165,7 @@ msgid "F-Spot Website"
 msgstr "F-Spots webbplats"
 
 #: ../src/UI.Dialog/AdjustTimeDialog.cs:112
+#: ../src/UI.Dialog/ui/AdjustTimeDialog.ui.h:10
 #, csharp-format
 msgid "Shift all photos by {0}"
 msgstr "Förskjut alla foton med {0}"
@@ -3057,10 +3201,6 @@ msgstr "Aktuell vecka (Mån-Sön)"
 #: ../src/UI.Dialog/DateRangeDialog.cs:113
 msgid "Previous Week (Mon-Sun)"
 msgstr "Föregående vecka (Mån-Sön)"
-
-#: ../src/UI.Dialog/DateRangeDialog.cs:129
-msgid "All Images"
-msgstr "Alla bilder"
 
 #: ../src/UI.Dialog/DateRangeDialog.cs:131
 msgid "Customized Range"
@@ -3151,6 +3291,391 @@ msgstr "Förhållande"
 #: ../src/UI.Dialog/ThreadProgressDialog.cs:49
 msgid "Retry"
 msgstr "Försök igen"
+
+#: ../src/UI.Dialog/ui/AdjustTimeDialog.ui.h:1
+msgid "0000:00:00 00:00:00"
+msgstr "0000:00:00 00:00:00"
+
+#: ../src/UI.Dialog/ui/AdjustTimeDialog.ui.h:2
+msgid "00:00:00"
+msgstr "00:00:00"
+
+#: ../src/UI.Dialog/ui/AdjustTimeDialog.ui.h:3
+msgid "5"
+msgstr "5"
+
+#: ../src/UI.Dialog/ui/AdjustTimeDialog.ui.h:4
+msgid "<b>Action</b>"
+msgstr "<b>Åtgärd</b>"
+
+#: ../src/UI.Dialog/ui/AdjustTimeDialog.ui.h:6
+msgid "<b>Reference Photo</b>"
+msgstr "<b>Referensfoto</b>"
+
+#: ../src/UI.Dialog/ui/AdjustTimeDialog.ui.h:7
+msgid "Adjust Time"
+msgstr "Justera tid"
+
+#: ../src/UI.Dialog/ui/AdjustTimeDialog.ui.h:8
+msgid "Adjusted date: "
+msgstr "Justerat datum: "
+
+#: ../src/UI.Dialog/ui/AdjustTimeDialog.ui.h:9
+msgid "Current date:"
+msgstr "Aktuellt datum:"
+
+#: ../src/UI.Dialog/ui/AdjustTimeDialog.ui.h:11
+msgid "Space all photos by"
+msgstr "Ge alla foton mellanrummet "
+
+#: ../src/UI.Dialog/ui/AdjustTimeDialog.ui.h:12
+msgid "difference:"
+msgstr "skillnad:"
+
+#: ../src/UI.Dialog/ui/AdjustTimeDialog.ui.h:13
+msgid "min. Starting at {0}"
+msgstr "min. Början vid {0}"
+
+#: ../src/UI.Dialog/ui/DateRangeDialog.ui.h:1
+msgid "<b>End Date</b>"
+msgstr "<b>Slutdatum<b>"
+
+#: ../src/UI.Dialog/ui/DateRangeDialog.ui.h:2
+msgid "<b>Select period</b>"
+msgstr "<b>Välj period</b>"
+
+#: ../src/UI.Dialog/ui/DateRangeDialog.ui.h:3
+msgid "<b>Start Date</b>"
+msgstr "<b>Startdatum</b>"
+
+#: ../src/UI.Dialog/ui/DateRangeDialog.ui.h:4
+msgid "Cancel, do not change the current timeline. "
+msgstr "Avbryt, ändra inte den aktuella tidslinjen. "
+
+#: ../src/UI.Dialog/ui/DateRangeDialog.ui.h:5
+msgid "Only photos taken within these dates will be displayed."
+msgstr "Endast foton tagna mellan dessa datum kommer att visas."
+
+#: ../src/UI.Dialog/ui/DateRangeDialog.ui.h:6
+msgid "Set date range"
+msgstr "Ställ in datumintervall"
+
+#: ../src/UI.Dialog/ui/EditTagDialog.ui.h:1
+msgid "<small></small>"
+msgstr "<small></small>"
+
+#: ../src/UI.Dialog/ui/EditTagDialog.ui.h:2
+msgid "Edit Tag"
+msgstr "Redigera tagg"
+
+#: ../src/UI.Dialog/ui/EditTagDialog.ui.h:3
+msgid "Edit icon"
+msgstr "Redigera ikon"
+
+#: ../src/UI.Dialog/ui/EditTagDialog.ui.h:5
+msgid "_Icon:"
+msgstr "_Ikon:"
+
+#: ../src/UI.Dialog/ui/EditTagIconDialog.ui.h:1
+msgid "<b>From External Photo</b>"
+msgstr "<b>Från externt foto</b>"
+
+#: ../src/UI.Dialog/ui/EditTagIconDialog.ui.h:2
+msgid "<b>From Photo</b>"
+msgstr "<b>Från foto</b>"
+
+#: ../src/UI.Dialog/ui/EditTagIconDialog.ui.h:3
+msgid "<b>Predefined icons</b>"
+msgstr "<b>Fördefinierade ikoner</b>"
+
+# hoppas att detta är ett verb
+#: ../src/UI.Dialog/ui/EditTagIconDialog.ui.h:4
+msgid "<b>Preview</b>"
+msgstr "<b>Förhandsvisning</b>"
+
+#: ../src/UI.Dialog/ui/EditTagIconDialog.ui.h:5
+msgid "Design icon from"
+msgstr "Designa ikon från"
+
+#: ../src/UI.Dialog/ui/EditTagIconDialog.ui.h:6
+msgid "Edit Tag Icon"
+msgstr "Redigera taggikon"
+
+#: ../src/UI.Dialog/ui/EditTagIconDialog.ui.h:7
+msgid "No _image"
+msgstr "Ingen _bild"
+
+#: ../src/UI.Dialog/ui/EditTagIconDialog.ui.h:8
+msgid "Photo 0 of 0"
+msgstr "Foto 0 av 0"
+
+#: ../src/UI.Dialog/ui/PreferenceDialog.ui.h:1
+msgid "Color profile for display:"
+msgstr "Färgprofil för visning:"
+
+#: ../src/UI.Dialog/ui/PreferenceDialog.ui.h:2
+msgid "Color profile for printing:"
+msgstr "Färgprofil för utskrifter:"
+
+#: ../src/UI.Dialog/ui/PreferenceDialog.ui.h:3
+msgid "F-Spot Preferences"
+msgstr "Inställningar för F-Spot"
+
+#: ../src/UI.Dialog/ui/PreferenceDialog.ui.h:4
+msgid "F-Spot appearance:"
+msgstr "Utseende för F-Spot:"
+
+#: ../src/UI.Dialog/ui/PreferenceDialog.ui.h:5
+msgid ""
+"Inside the image files when possible\n"
+"<small>Makes them accessible to other image-editing programs.</small>"
+msgstr ""
+"Inne i bildfiler när möjligt\n"
+"<small>Gör dem åtkomliga för andra bildredigeringsprogram.</small>"
+
+#: ../src/UI.Dialog/ui/PreferenceDialog.ui.h:7
+msgid "Select A Folder"
+msgstr "Välj en mapp"
+
+#: ../src/UI.Dialog/ui/PreferenceDialog.ui.h:8
+msgid "Separately from the image files"
+msgstr "Separat från bildfilerna"
+
+#: ../src/UI.Dialog/ui/PreferenceDialog.ui.h:9
+msgid "Store tags and descriptions for photos:"
+msgstr "Lagra taggar och beskrivningar för foton:"
+
+#: ../src/UI.Dialog/ui/PreferenceDialog.ui.h:10
+msgid "When importing photos, copy them to:"
+msgstr "När foton importeras, kopiera dem till:"
+
+#: ../src/UI.Dialog/ui/RatingFilterDialog.ui.h:1
+msgid "<b>Max Rating</b>"
+msgstr "<b>Maximalt betyg</b>"
+
+#: ../src/UI.Dialog/ui/RatingFilterDialog.ui.h:2
+msgid "<b>Min Rating</b>"
+msgstr "<b>Minimalt betyg</b>"
+
+#: ../src/UI.Dialog/ui/RatingFilterDialog.ui.h:3
+msgid "Set Rating Filter"
+msgstr "Ställ in betygsfilter"
+
+#: ../src/ui/main_window.ui.h:1
+msgid "Adjust _Time..."
+msgstr "Justera _tid..."
+
+#: ../src/ui/main_window.ui.h:2
+msgid "Arrange _by"
+msgstr "_Ordna efter"
+
+#: ../src/ui/main_window.ui.h:4
+msgid "By _Date"
+msgstr "Efter _datum"
+
+#: ../src/ui/main_window.ui.h:5
+msgid "By _Import Roll"
+msgstr "Efter _importrulle"
+
+#: ../src/ui/main_window.ui.h:6
+msgid "By _Rating"
+msgstr "Efter bet_yg"
+
+#: ../src/ui/main_window.ui.h:7
+msgid "Copy Locat_ion"
+msgstr "Kopiera _plats"
+
+#: ../src/ui/main_window.ui.h:8
+msgid "Create New _Tag..."
+msgstr "Skapa ny _tagg..."
+
+#: ../src/ui/main_window.ui.h:9
+msgid "Create _New Version..."
+msgstr "Skapa _ny version..."
+
+#: ../src/ui/main_window.ui.h:10
+msgid "F-Spot"
+msgstr "F-Spot"
+
+#: ../src/ui/main_window.ui.h:11
+msgid "Fin_d"
+msgstr "_Sök"
+
+#: ../src/ui/main_window.ui.h:12
+msgid "Manage _Extensions"
+msgstr "Hantera _tillägg"
+
+#: ../src/ui/main_window.ui.h:13
+msgid "Page Set_up..."
+msgstr "Sidkonfi_guration..."
+
+#: ../src/ui/main_window.ui.h:14
+msgid "Re_fresh Thumbnail"
+msgstr "_Uppdatera miniatyrbild"
+
+#: ../src/ui/main_window.ui.h:19
+msgid "Select _None"
+msgstr "A_vmarkera allt"
+
+#: ../src/ui/main_window.ui.h:20
+msgid "Send by _Mail..."
+msgstr "Skicka med e-_post..."
+
+#: ../src/ui/main_window.ui.h:22
+msgid "Side_bar"
+msgstr "Sido_panel"
+
+#: ../src/ui/main_window.ui.h:23
+msgid "T_ags"
+msgstr "T_aggar"
+
+#: ../src/ui/main_window.ui.h:25
+msgid "Thumbnail _elements"
+msgstr "Miniatyrbilds_element"
+
+#: ../src/ui/main_window.ui.h:26
+msgid "Too_lbar"
+msgstr "Verktygs_rad"
+
+#: ../src/ui/main_window.ui.h:27
+msgid "View"
+msgstr "Visa"
+
+#: ../src/ui/main_window.ui.h:33
+msgid "_Attach Tag to Selection"
+msgstr "_Fäst tagg till markering"
+
+#: ../src/ui/main_window.ui.h:35
+msgid "_Clear Rating Filter"
+msgstr "_Töm betygsfilter"
+
+#: ../src/ui/main_window.ui.h:36
+msgid "_Clear Roll Filter"
+msgstr "_Töm rullfilter"
+
+#: ../src/ui/main_window.ui.h:37
+msgid "_Close"
+msgstr "S_täng"
+
+#: ../src/ui/main_window.ui.h:38
+msgid "_Components"
+msgstr "_Komponenter"
+
+#: ../src/ui/main_window.ui.h:39
+msgid "_Contents"
+msgstr "_Innehåll"
+
+#: ../src/ui/main_window.ui.h:40
+msgid "_Dates"
+msgstr "_Datum"
+
+#: ../src/ui/main_window.ui.h:42
+msgid "_Delete Selected Tag"
+msgstr "Ta bort _markerad tagg"
+
+#: ../src/ui/main_window.ui.h:43
+msgid "_Delete Version"
+msgstr "_Ta bort version"
+
+#: ../src/ui/main_window.ui.h:45
+msgid "_Edit Selected Tag..."
+msgstr "_Redigera markerad tagg..."
+
+#: ../src/ui/main_window.ui.h:46
+msgid "_Export to"
+msgstr "_Exportera till"
+
+#: ../src/ui/main_window.ui.h:47
+msgid "_Filmstrip"
+msgstr "_Filmremsa"
+
+#: ../src/ui/main_window.ui.h:50
+msgid "_Hidden"
+msgstr "_Dolda"
+
+#: ../src/ui/main_window.ui.h:51
+msgid "_Import..."
+msgstr "_Importera..."
+
+#: ../src/ui/main_window.ui.h:52
+msgid "_Large"
+msgstr "_Stor"
+
+#: ../src/ui/main_window.ui.h:53
+msgid "_Last Import Roll"
+msgstr "Senaste imp_ortrullen"
+
+#: ../src/ui/main_window.ui.h:54
+msgid "_Loupe"
+msgstr "_Loupe"
+
+#: ../src/ui/main_window.ui.h:55
+msgid "_Medium"
+msgstr "_Mellan"
+
+#: ../src/ui/main_window.ui.h:57
+msgid "_Quit"
+msgstr "_Avsluta"
+
+#: ../src/ui/main_window.ui.h:58
+msgid "_Ratings"
+msgstr "_Betyg"
+
+#: ../src/ui/main_window.ui.h:60
+msgid "_Remove Tag From Selection"
+msgstr "_Ta bort tagg från markering"
+
+#: ../src/ui/main_window.ui.h:61
+msgid "_Rename Version"
+msgstr "_Byt namn på versionen"
+
+#: ../src/ui/main_window.ui.h:62
+msgid "_Reverse Order"
+msgstr "Omvä_nd ordning"
+
+#: ../src/ui/main_window.ui.h:63
+msgid "_Select Import Rolls..."
+msgstr "_Välj importrullar..."
+
+#: ../src/ui/main_window.ui.h:64
+msgid "_Set Date Range..."
+msgstr "Ange dat_umintervall..."
+
+#: ../src/ui/main_window.ui.h:65
+msgid "_Set Rating filter..."
+msgstr "Ange _betygsfilter..."
+
+#: ../src/ui/main_window.ui.h:66
+msgid "_Sharpen..."
+msgstr "_Gör skarpare..."
+
+#: ../src/ui/main_window.ui.h:68
+msgid "_Small"
+msgstr "_Liten"
+
+#: ../src/ui/main_window.ui.h:69
+msgid "_Tag Icons"
+msgstr "_Taggikoner"
+
+#: ../src/ui/main_window.ui.h:70
+msgid "_Tags"
+msgstr "_Taggar"
+
+#: ../src/ui/main_window.ui.h:71
+msgid "_Timeline"
+msgstr "_Tidslinje"
+
+#: ../src/ui/main_window.ui.h:72
+msgid "_Tools"
+msgstr "_Verktyg"
+
+#: ../src/ui/main_window.ui.h:73
+msgid "_Untagged Photos"
+msgstr "_Otaggade foton"
+
+#: ../src/ui/main_window.ui.h:74
+msgid "_Version"
+msgstr "_Version"
 
 #: ../src/Updater.cs:616
 msgid "Updating F-Spot Database"
@@ -3293,10 +3818,6 @@ msgstr "Histogram"
 msgid "Date"
 msgstr "Datum"
 
-#: ../src/Widgets/InfoBox.cs:220
-msgid "Size"
-msgstr "Storlek"
-
 #: ../src/Widgets/InfoBox.cs:223
 msgid "Exposure"
 msgstr "Exponering"
@@ -3425,10 +3946,6 @@ msgstr "Inga applikationer tillgängliga"
 msgid "Rating:"
 msgstr "Betyg:"
 
-#: ../src/XmpTagsImporter.cs:90
-msgid "Location"
-msgstr "Plats"
-
 #: ../src/XmpTagsImporter.cs:91
 msgid "Country"
 msgstr "Land"
@@ -3499,8 +4016,6 @@ msgstr "Foton från F-Spot"
 #~ msgstr "Dela"
 #~ msgid "Push"
 #~ msgstr "Tryck ut"
-#~ msgid "Edit Tag"
-#~ msgstr "Redigera tagg"
 #~ msgid "Tag Name:"
 #~ msgstr "Taggnamn:"
 #~ msgid "<b>Color Management</b>"
@@ -3542,51 +4057,16 @@ msgstr "Foton från F-Spot"
 #~ msgstr "Från lista:"
 #~ msgid "From gtkrc File:"
 #~ msgstr "Från gtkrc-fil:"
-#~ msgid "Images tagged with:"
-#~ msgstr "Bilder taggade med:"
-#~ msgid "Make F-Spot your screensaver"
-#~ msgstr "Använd F-Spot som skärmsläckare"
-#~ msgid "Select A Folder"
-#~ msgstr "Välj en mapp"
 #~ msgid "Select A gtkrc File"
 #~ msgstr "Välj en gtkrc-fil"
 #~ msgid "Try to use the system display profile"
 #~ msgstr "Försök att använda systemets visningsprofil"
 #~ msgid "Write _metadata to file"
 #~ msgstr "Skriv _metadata till fil"
-#~ msgid "_Display:"
-#~ msgstr "_Visa:"
 
 # FIXME: Kolla denna
 #~ msgid "_Print output:"
 #~ msgstr "S_kriv ut utdata:"
-#~ msgid "<b>From External Photo</b>"
-#~ msgstr "<b>Från externt foto</b>"
-#~ msgid "<b>From Photo</b>"
-#~ msgstr "<b>Från foto</b>"
-#~ msgid "<b>Max Rating</b>"
-#~ msgstr "<b>Maximalt betyg</b>"
-#~ msgid "<b>Min Rating</b>"
-#~ msgstr "<b>Minimalt betyg</b>"
-#~ msgid "<b>Predefined</b>"
-#~ msgstr "<b>Fördefinierad</b>"
-# hoppas att detta är ett verb
-#~ msgid "<b>Preview</b>"
-#~ msgstr "<b>Förhandsvisning</b>"
-#~ msgid "<small></small>"
-#~ msgstr "<small></small>"
-#~ msgid "Edit Tag Icon"
-#~ msgstr "Redigera taggikon"
-#~ msgid "Edit icon"
-#~ msgstr "Redigera ikon"
-#~ msgid "No _image"
-#~ msgstr "Ingen _bild"
-#~ msgid "Photo 0 of 0"
-#~ msgstr "Foto 0 av 0"
-#~ msgid "Set Rating Filter"
-#~ msgstr "Ställ in betygsfilter"
-#~ msgid "_Icon:"
-#~ msgstr "_Ikon:"
 #~ msgid "Blackout"
 #~ msgstr "Mörklägg"
 #~ msgid "Select the area that you want blacked out."
@@ -3595,19 +4075,6 @@ msgstr "Foton från F-Spot"
 #~ msgstr "Pixelisera"
 #~ msgid "Select the area that you want pixelated."
 #~ msgstr "Välj området som du vill pixelisera."
-#~ msgid "<b><i>There is some previously scheduled items to write</i></b>"
-#~ msgstr ""
-#~ "<b><i>Det finns några tidigare schemalagda objekt att skriva</i></b>"
-#~ msgid "<b>Photos to Burn</b>"
-#~ msgstr "<b>Foton att bränna</b>"
-#~ msgid "Create CD"
-#~ msgstr "Skapa cd"
-#~ msgid "Size of the exported selection:"
-#~ msgstr "Storlek på exporterad markering:"
-#~ msgid "_Browse Previously Scheduled Files"
-#~ msgstr "_Bläddra i tidigare schemalagda filer"
-#~ msgid "_Write only these photos to CD"
-#~ msgstr "_Skriv endast dessa foton till cd"
 #~ msgid "Create p_hotomosaic"
 #~ msgstr "Skapa f_otomosaik"
 #~ msgid "Metapixel not available"
@@ -3682,8 +4149,6 @@ msgstr "Foton från F-Spot"
 #~ msgstr "Ordna efter _månad"
 #~ msgid "Arrange by _Folder"
 #~ msgstr "Ordna efter ma_pp"
-#~ msgid "_Reverse Order"
-#~ msgstr "Omvä_nd ordning"
 #~ msgid ""
 #~ "The \"F-Spot Manual\" could not be found.  Please verify that your "
 #~ "installation has been completed successfully."
@@ -3696,140 +4161,14 @@ msgstr "Foton från F-Spot"
 #~ msgstr "SmugMug"
 #~ msgid "Gallery2"
 #~ msgstr "Gallery2"
-#~ msgid "0000:00:00 00:00:00"
-#~ msgstr "0000:00:00 00:00:00"
-#~ msgid "00:00:00"
-#~ msgstr "00:00:00"
 #~ msgid "1 of 1"
 #~ msgstr "1 av 1"
-#~ msgid "5"
-#~ msgstr "5"
-#~ msgid "<b>Action</b>"
-#~ msgstr "<b>Åtgärd</b>"
-#~ msgid "<b>Reference Photo</b>"
-#~ msgstr "<b>Referensfoto</b>"
-#~ msgid "Adjust Time"
-#~ msgstr "Justera tid"
-#~ msgid "Adjust _Time..."
-#~ msgstr "Justera _tid..."
-#~ msgid "Adjusted date: "
-#~ msgstr "Justerat datum: "
-#~ msgid "Arrange _by"
-#~ msgstr "_Ordna efter"
-#~ msgid "By _Date"
-#~ msgstr "Efter _datum"
-#~ msgid "By _Import Roll"
-#~ msgstr "Efter _importrulle"
-#~ msgid "By _Rating"
-#~ msgstr "Efter bet_yg"
-#~ msgid "Copy Locat_ion"
-#~ msgstr "Kopiera _plats"
-#~ msgid "Create New _Tag..."
-#~ msgstr "Skapa ny _tagg..."
-#~ msgid "Create _New Version..."
-#~ msgstr "Skapa _ny version..."
-#~ msgid "Current date:"
-#~ msgstr "Aktuellt datum:"
-#~ msgid "F-Spot"
-#~ msgstr "F-Spot"
-#~ msgid "Fin_d"
-#~ msgstr "_Sök"
-#~ msgid "Manage _Extensions"
-#~ msgstr "Hantera _tillägg"
-#~ msgid "Page Set_up..."
-#~ msgstr "Sidkonfi_guration..."
-#~ msgid "Re_fresh Thumbnail"
-#~ msgstr "_Uppdatera miniatyrbild"
-#~ msgid "Select _None"
-#~ msgstr "A_vmarkera allt"
-#~ msgid "Send by _Mail..."
-#~ msgstr "Skicka med e-_post..."
-#~ msgid "Side_bar"
-#~ msgstr "Sido_panel"
-#~ msgid "Space all photos by"
-#~ msgstr "Ge alla foton mellanrummet "
-#~ msgid "T_ags"
-#~ msgstr "T_aggar"
-#~ msgid "Thumbnail _elements"
-#~ msgstr "Miniatyrbilds_element"
-#~ msgid "Too_lbar"
-#~ msgstr "Verktygs_rad"
-#~ msgid "View"
-#~ msgstr "Visa"
-#~ msgid "_Attach Tag to Selection"
-#~ msgstr "_Fäst tagg till markering"
-#~ msgid "_Clear Rating Filter"
-#~ msgstr "_Töm betygsfilter"
-#~ msgid "_Clear Roll Filter"
-#~ msgstr "_Töm rullfilter"
-#~ msgid "_Components"
-#~ msgstr "_Komponenter"
-#~ msgid "_Contents"
-#~ msgstr "_Innehåll"
-#~ msgid "_Dates"
-#~ msgstr "_Datum"
-#~ msgid "_Delete Selected Tag"
-#~ msgstr "Ta bort _markerad tagg"
-#~ msgid "_Delete Version"
-#~ msgstr "_Ta bort version"
-#~ msgid "_Edit Selected Tag..."
-#~ msgstr "_Redigera markerad tagg..."
-#~ msgid "_Export to"
-#~ msgstr "_Exportera till"
-#~ msgid "_Filmstrip"
-#~ msgstr "_Filmremsa"
 #~ msgid "_Folder"
 #~ msgstr "Ma_pp"
-#~ msgid "_Hidden"
-#~ msgstr "_Dolda"
-#~ msgid "_Import..."
-#~ msgstr "_Importera..."
-#~ msgid "_Large"
-#~ msgstr "_Stor"
-#~ msgid "_Last Import Roll"
-#~ msgstr "Senaste imp_ortrullen"
-#~ msgid "_Loupe"
-#~ msgstr "_Loupe"
-#~ msgid "_Medium"
-#~ msgstr "_Mellan"
 #~ msgid "_Month"
 #~ msgstr "_Månad"
-#~ msgid "_Quit"
-#~ msgstr "_Avsluta"
-#~ msgid "_Ratings"
-#~ msgstr "_Betyg"
-#~ msgid "_Remove Tag From Selection"
-#~ msgstr "_Ta bort tagg från markering"
-#~ msgid "_Rename Version"
-#~ msgstr "_Byt namn på versionen"
-#~ msgid "_Select Import Rolls..."
-#~ msgstr "_Välj importrullar..."
-#~ msgid "_Set Date Range..."
-#~ msgstr "Ange dat_umintervall..."
-#~ msgid "_Set Rating filter..."
-#~ msgstr "Ange _betygsfilter..."
-#~ msgid "_Sharpen..."
-#~ msgstr "_Gör skarpare..."
-#~ msgid "_Small"
-#~ msgstr "_Liten"
-#~ msgid "_Tag Icons"
-#~ msgstr "_Taggikoner"
-#~ msgid "_Tags"
-#~ msgstr "_Taggar"
-#~ msgid "_Timeline"
-#~ msgstr "_Tidslinje"
-#~ msgid "_Tools"
-#~ msgstr "_Verktyg"
-#~ msgid "_Untagged Photos"
-#~ msgstr "_Otaggade foton"
-#~ msgid "_Version"
-#~ msgstr "_Version"
-#~ msgid "difference:"
-#~ msgstr "skillnad:"
 #~ msgid "img_000.jpg"
 #~ msgstr "bild_000.jpg"
-#~ msgid "min. Starting at {0}"
-#~ msgstr "min. Början vid {0}"
 #~ msgid ""
 #~ "F-Spot will now launch your browser so that you can log into Facebook.  "
 #~ "Turn on the \"Save my login information\" checkbox on Facebook and F-Spot "
@@ -3839,38 +4178,8 @@ msgstr "Foton från F-Spot"
 #~ "Facebook.  Kryssa för kryssrutan \"Spara min inloggningsinformation\" på "
 #~ "Facebook och F-Spot kommer sedan att kunna automatiskt logga in på "
 #~ "Facebook."
-#~ msgid "Caption"
-#~ msgstr "Text"
-#~ msgid "Create a new album"
-#~ msgstr "Skapa ett nytt album"
-#~ msgid "Description"
-#~ msgstr "Beskrivning"
-#~ msgid "Export to Facebook"
-#~ msgstr "Exportera till Facebook"
-#~ msgid "In this photo"
-#~ msgstr "I detta foto"
-#~ msgid "Login"
-#~ msgstr "Inloggning"
-#~ msgid "Logout"
-#~ msgstr "Logga ut"
 #~ msgid "This is who I am"
 #~ msgstr "Detta är jag"
-#~ msgid "Use an existing album"
-#~ msgstr "Använd ett befintligt album"
-#~ msgid "Who is this?"
-#~ msgstr "Vem är det här?"
-#~ msgid "<b>End Date</b>"
-#~ msgstr "<b>Slutdatum<b>"
-#~ msgid "<b>Select period</b>"
-#~ msgstr "<b>Välj period</b>"
-#~ msgid "<b>Start Date</b>"
-#~ msgstr "<b>Startdatum</b>"
-#~ msgid "Cancel, do not change the current timeline. "
-#~ msgstr "Avbryt, ändra inte den aktuella tidslinjen. "
-#~ msgid "Only photos taken within these dates will be displayed."
-#~ msgstr "Endast foton tagna mellan dessa datum kommer att visas."
-#~ msgid "Set date range"
-#~ msgstr "Ställ in datumintervall"
 #~ msgid "Available space:"
 #~ msgstr "Tillgängligt utrymme:"
 #~ msgid "No image loaded."
@@ -4021,8 +4330,6 @@ msgstr "Foton från F-Spot"
 #~ msgstr "Återställ"
 #~ msgid "So_urce Temp"
 #~ msgstr "_Källtemperatur"
-#~ msgid "_Destination Temp"
-#~ msgstr "_Måltemperatur"
 #~ msgid "<b>Interoperability</b>"
 #~ msgstr "<b>Interoperabilitet</b>"
 #~ msgid ""
