@@ -309,6 +309,7 @@ namespace FSpot.Exporter.Facebook
 
 			IBrowsableItem [] items = dialog.Items;
 			string [] captions = dialog.Captions;
+			dialog.StoreCaption ();
 
 			if (dialog.CreateAlbum) {
 				string name = dialog.AlbumName;
