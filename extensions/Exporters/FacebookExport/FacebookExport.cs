@@ -303,20 +303,11 @@ namespace FSpot.Exporter.Facebook
 			dialog.Destroy ();
 		}
 
-		private class DateComparer : IComparer
-		{
-			public int Compare (object left, object right)
-			{
-				return DateTime.Compare ((left as IBrowsableItem).Time, (right as IBrowsableItem).Time);
-			}
-		}
-
 		void Upload ()
 		{
 			Album album = null;
 
 			IBrowsableItem [] items = dialog.Items;
-			Array.Sort (items, new DateComparer ());
 			string [] captions = dialog.Captions;
 
 			if (dialog.CreateAlbum) {

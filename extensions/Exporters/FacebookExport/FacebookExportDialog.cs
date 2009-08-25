@@ -15,6 +15,7 @@
 
 using System;
 using System.Reflection;
+using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
 
@@ -61,9 +62,21 @@ namespace FSpot.Exporter.Facebook
 		FSpot.Widgets.IconView thumbnail_iconview;
 		Dictionary<long, User> friends;
 
+		private class DateComparer : IComparer
+		{
+			public int Compare (object left,
+			                    object right)
+			{
+				return DateTime.Compare ((left as IBrowsableItem).Time,
+					(right as IBrowsableItem).Time);
+			}
+		}
+
 		public FacebookExportDialog (IBrowsableCollection selection) : base (Assembly.GetExecutingAssembly (), "FacebookExport.ui", "facebook_export_dialog")
 		{
+			// Sort selection by date ascending
 			items = selection.Items;
+			Array.Sort (items, new DateComparer ());
 
 			captions = new string [selection.Items.Length];
 			tags = new List<Mono.Facebook.Tag> [selection.Items.Length];
