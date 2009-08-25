@@ -15,6 +15,7 @@
 
 using System;
 using System.Reflection;
+using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
 
@@ -61,9 +62,22 @@ namespace FSpot.Exporter.Facebook
 		FSpot.Widgets.IconView thumbnail_iconview;
 		Dictionary<long, User> friends;
 
+		private class DateComparer : IComparer
+		{
+			public int Compare (object left,
+			                    object right)
+			{
+				return DateTime.Compare ((left as IBrowsableItem).Time,
+					(right as IBrowsableItem).Time);
+			}
+		}
+
 		public FacebookExportDialog (IBrowsableCollection selection) : base (Assembly.GetExecutingAssembly (), "FacebookExport.ui", "facebook_export_dialog")
 		{
+			// Sort selection by date ascending
 			items = selection.Items;
+			Array.Sort (items, new DateComparer ());
+			current_item = -1;
 
 			captions = new string [selection.Items.Length];
 			tags = new List<Mono.Facebook.Tag> [selection.Items.Length];
@@ -140,8 +154,21 @@ namespace FSpot.Exporter.Facebook
 			get { return ((AlbumStore) existing_album_combobox.Model).Albums [existing_album_combobox.Active]; }
 		}
 
+		public void StoreCaption ()
+		{
+			// Check for empty text box
+			if (current_item == -1)
+				return;
+			
+			// Store the caption
+			captions [current_item] = caption_textview.Buffer.Text;
+		}
+
 		void HandleThumbnailIconViewButtonPressEvent (object sender, Gtk.ButtonPressEventArgs args)
 		{
+			// Store caption before switching
+			StoreCaption ();
+			
 			int old_item = current_item;
 			current_item = thumbnail_iconview.CellAtPosition ((int) args.Event.X, (int) args.Event.Y, false);
 
@@ -149,8 +176,6 @@ namespace FSpot.Exporter.Facebook
 				current_item = old_item;
 				return;
 			}
-
-			captions [old_item] = caption_textview.Buffer.Text;
 
 			string caption = captions [current_item];
 			if (caption == null)
