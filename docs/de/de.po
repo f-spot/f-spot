@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: f-spot\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-06-25 09:49+0000\n"
-"PO-Revision-Date: 2009-07-25 22:53+0100\n"
+"POT-Creation-Date: 2009-08-25 07:01+0000\n"
+"PO-Revision-Date: 2009-08-26 21:40+0100\n"
 "Last-Translator: Mario Blättermann <mariobl@gnome.org>\n"
 "Language-Team: German GNOME Translators <gnome-de@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -98,8 +98,9 @@ msgstr ""
 "von Fotos."
 
 #: C/f-spot.xml:11(year)
-msgid "2007-2008"
-msgstr "2007-2008"
+#| msgid "2007-2008"
+msgid "2007-2009"
+msgstr "2007-2009"
 
 #: C/f-spot.xml:12(holder)
 msgid "Aaron Bockover, Gabriel Burt, Miguel de Icaza, Bengt Thuree"
@@ -234,8 +235,8 @@ msgid ""
 "In this case F-Spot will try to find out if exactly this image is already "
 "present in the database and thus new copy of it should not be imported."
 msgstr ""
-"Falls die Wahrscheinlichkeit besteht, dass manche Ihrer Fotos bereits von der "
-"vorhandenen Quelle importiert wurden, können Sie die Option "
+"Falls die geringste Wahrscheinlichkeit besteht, dass manche Ihrer Fotos "
+"bereits von der vorhandenen Quelle importiert wurden, können Sie die Option "
 "<guilabel>Duplikate finden</guilabel> verwenden. In diesem Fall wird F-Spot "
 "versuchen herauszufinden, ob sich das exakt gleiche Bild schon in der "
 "Datenbank befindet. Die neue Kopie wird dann nicht importiert."
@@ -249,7 +250,7 @@ msgid ""
 "them, check the button for <guilabel>Attach Tag</guilabel> and choose the tag "
 "you created."
 msgstr ""
-"Falls alle Fotos, die Sie auf einmal importieren vom gleichen Ereignis sind, "
+"Falls alle Fotos, die Sie auf einmal importieren vom gleichen Ereignis sind "
 "oder andere Gemeinsamkeiten aufweisen, können Sie eine Markierung für diese "
 "Bildergruppe erstellen. Das hilft dabei, die Bilder einfach wieder zu finden. "
 "Folgen Sie dazu den Anweisungen in <xref linkend=\"tag\"/>, um eine neue "
@@ -257,17 +258,21 @@ msgstr ""
 "hinzufügen</guilabel> und wählen die erstellte Markierung aus."
 
 #: C/f-spot.xml:102(para)
+#| msgid ""
+#| "F-Spot uses a database stored at <filename>~/.gnome2/f-spot/photos.db</"
+#| "filename>. Note, to access it, use the sqlite3 command. You can also "
+#| "manually specify path to a database by running F-Spot with <option>-b</"
+#| "option> option."
 msgid ""
-"F-Spot uses a database stored at <filename>~/.gnome2/f-spot/photos.db</"
+"F-Spot uses a database stored at <filename>~/.config/f-spot/photos.db</"
 "filename>. Note, to access it, use the sqlite3 command. You can also manually "
 "specify path to a database by running F-Spot with <option>-b</option> option."
 msgstr ""
-"F-Spot benutzt eine Datenbank, die in <filename>~/.gnome2/f-spot/photos.db</"
+"F-Spot benutzt eine Datenbank, die in <filename>~/.config/f-spot/photos.db</"
 "filename> gespeichert ist. Hinweis: Um auf die Datenbank zuzugreifen, müssen "
 "Sie den sqlite3-Befehl verwenden. Sie können den Pfad zur Datenbank selbst "
 "angeben, indem Sie F-Spot mit der Option <option>-b</option> ausführen."
 
-# War: Import-Vorgang. Bindestriche in zusammengesetzten Substantiven sollten sparsam verwendet werden, eigentlich nur, wenn es aus mehreren Sprachen (englisch und deutsch) zusammengesetzte Wörter sind.
 #: C/f-spot.xml:110(para)
 msgid ""
 "After an import, F-Spot will display the pictures of the latest import roll "
@@ -288,11 +293,11 @@ msgid ""
 "ulink> F-Spot importer extensions written by <ulink url=\"http://"
 "personalpages.tds.net/~cdovel/\">Pizzach</ulink>."
 msgstr ""
-"Sie können auch direkt aus Mozilla <ulink url=\"http://www.mozilla.com/en-US/"
-"firefox/\">Firefox</ulink> und <ulink url=\"http://www.mozilla.com/en-US/"
-"thunderbird/\">Thunderbird</ulink> importieren, indem Sie die <ulink url="
-"\"https://addons.mozilla.org/en-US/firefox/addon/7091\">Firefox</ulink> und "
-"<ulink url=\"https://addons.mozilla.org/en-US/thunderbird/addon/7011"
+"Sie können auch direkt aus Mozilla <ulink url=\"http://www.mozilla-europe.org/"
+"de/firefox/\">Firefox</ulink> und <ulink url=\"http://www.mozilla-europe.org/"
+"de/thunderbird/\">Thunderbird</ulink> importieren, indem Sie die <ulink url="
+"\"https://addons.mozilla.org/de/firefox/addon/7091\">Firefox</ulink> und "
+"<ulink url=\"https://addons.mozilla.org/de/thunderbird/addon/7011"
 "\">Thunderbird</ulink> F-Spot Erweiterungen von <ulink url=\"http://"
 "personalpages.tds.net/~cdovel/\">Pizzach</ulink> verwenden."
 
@@ -305,19 +310,26 @@ msgid ""
 "If you double click or press enter on an image, you enter Edit mode, where "
 "you can remove red-eye, crop, and adjust brightness and colors."
 msgstr ""
-"Durch doppeltes Klicken, oder Drücken der Eingabetaste, kommen Sie in den "
-"Bearbeitungsmodus, wo Sie rote Augen entfernen, Zuschneiden und Farben oder "
-"Helligkeit anpassen können."
+"Durch einen Doppelklick oder durch Drücken der Eingabetaste gelangen Sie in "
+"den Bearbeitungsmodus, wo Sie rote Augen entfernen, Zuschneiden und Farben "
+"oder Helligkeit anpassen können."
 
 #: C/f-spot.xml:135(title)
 msgid "Versions"
 msgstr "Versionen"
 
 #: C/f-spot.xml:137(para)
+#| msgid ""
+#| "When you edit your photos, a new copy (called a version) is created, so "
+#| "your original is never altered. After your first edit to a photo, "
+#| "subsequent edits will modify the same version. If you want to create "
+#| "mulitple versions of your photo, perhaps with different cropping or "
+#| "coloring, you can do so via the <menuchoice><guimenu>File</"
+#| "guimenu><guimenuitem>Create new version</guimenuitem></menuchoice> option."
 msgid ""
 "When you edit your photos, a new copy (called a version) is created, so your "
 "original is never altered. After your first edit to a photo, subsequent edits "
-"will modify the same version. If you want to create mulitple versions of your "
+"will modify the same version. If you want to create multiple versions of your "
 "photo, perhaps with different cropping or coloring, you can do so via the "
 "<menuchoice><guimenu>File</guimenu><guimenuitem>Create new version</"
 "guimenuitem></menuchoice> option."
@@ -327,31 +339,38 @@ msgstr ""
 "bearbeitet haben, werden alle Änderungen in diese Version übernommen. Falls "
 "Sie weitere Versionen dieses Bildes anlegen möchten – etwa mit verschiedenen "
 "Zuschnitten oder Farbanpassungen – dann verwenden Sie die Funktion "
-"<menuchoice><guimenu>Foto</guimenu><guimenuitem>Neue Version erstellen</"
+"<menuchoice><guimenu>Datei</guimenu><guimenuitem>Neue Version erstellen</"
 "guimenuitem></menuchoice>."
 
 #: C/f-spot.xml:148(title)
 msgid "Crop"
 msgstr "Zuschneiden"
 
-# Solche Links, die auf andere Abschnitte des Handbuchs verweisen, stehen später im Text als »Abschnitt x - Auswählen ...«. Das solltest du in der Grammatik des Satzes berücksichtigen.
 #: C/f-spot.xml:150(para)
+#| msgid ""
+#| "Cropping an image is a great way to improve the quality of a photograph by "
+#| "improving how it is framed. You crop a photo by selecting the part of the "
+#| "photo you want to keep. If you want your photo to be the exact dimensions "
+#| "necessary for a certain print size, you can constrain the kind of "
+#| "selection F-Spot will allow you to draw by choosing the appropriate size "
+#| "from the constraint drop down. See the <xref linkend=\"edit-remove-red-eye"
+#| "\"/> below for details on making a selection on your photo."
 msgid ""
 "Cropping an image is a great way to improve the quality of a photograph by "
-"improving how it is framed. You crop a photo by selecting the part of the "
-"photo you want to keep. If you want your photo to be the exact dimensions "
-"necessary for a certain print size, you can constrain the kind of selection F-"
-"Spot will allow you to draw by choosing the appropriate size from the "
-"constraint drop down. See the <xref linkend=\"edit-remove-red-eye\"/> below "
-"for details on making a selection on your photo."
+"change how it is framed. You crop a photo by selecting the part of the photo "
+"you want to keep. If you want your photo to be the exact dimensions necessary "
+"for a certain print size, you can constrain the kind of selection F-Spot will "
+"allow you to draw by choosing the appropriate size from the constraint drop "
+"down. See the <xref linkend=\"edit-remove-red-eye\"/> below for details on "
+"making a selection on your photo."
 msgstr ""
 "Zuschneiden ist eine gute Möglichkeit, die Qualität Ihrer Fotografie zu "
 "verbessern, indem Sie unnötige Bereiche am Rand entfernen. Sie schneiden das "
 "Foto zu, indem Sie den Teil des Bildes auswählen, den Sie erhalten möchten. "
 "Falls Sie Ihr Foto auf ein exaktes Maß zuschneiden möchten, können Sie den "
-"ausgewählten Bereich mit dem angebotenen Ausklapp-Menü auf die gewollte Größe "
-"anpassen. Lesen Sie im nachfolgenden <xref linkend=\"edit-remove-red-eye\"/>, "
-"dort finden Sie mehr Details über das Auswählen auf Ihrer Fotografie."
+"ausgewählten Bereich mit dem angebotenen Auswahlmenü auf die gewünschte Größe "
+"anpassen. Im nachfolgenden <xref linkend=\"edit-remove-red-eye\"/> finden Sie "
+"weitere Details über das Auswählen eines Bereiches Ihrer Fotografie."
 
 #: C/f-spot.xml:160(title)
 msgid "Crop tool"
@@ -402,7 +421,7 @@ msgstr ""
 "Um die Helligkeit, den Kontrast oder Farben eines Fotos anzupassen, klicken "
 "Sie zuerst auf den <guibutton>Farbabgleich</guibutton>-Knopf, um den "
 "Farbabgleichs-Dialog zu öffnen. Ändern Sie die gewünschten Parameter und "
-"speichern sie mit <guibutton>Anpassen</guibutton>."
+"speichern Sie sie mit <guibutton>Anpassen</guibutton>."
 
 #: C/f-spot.xml:203(title)
 msgid "Adjust Colors tool"
@@ -492,7 +511,7 @@ msgid ""
 "red-eye button beneath the photo."
 msgstr ""
 "Sobald Sie den Bereich markiert haben, können Sie die roten Augen entfernen. "
-"Klicken Sie dazu auf den <guibutton>Korrigiere!</guibutton> Kopf."
+"Klicken Sie dazu auf den <guibutton>Korrigiere!</guibutton>-Knopf."
 
 #: C/f-spot.xml:286(title)
 msgid "Red-Eye tool"
@@ -618,7 +637,7 @@ msgid ""
 "ones. For example, if you want to create a tag for specific event, you can "
 "create a new tag named after that event under the Events tag."
 msgstr ""
-"F-Spot erlaubt Ihnen, Ihre Fotos mit Hilfe benutzerdefinierten Markierungen "
+"F-Spot erlaubt Ihnen, Ihre Fotos mit Hilfe benutzerdefinierter Markierungen "
 "zu organisieren. Markierungen sind wie Schlagworte. F-Spot wird bereits mit "
 "vorgegebenen Markierungen ausgeliefert, um Ihnen den Einstieg zu erleichtern. "
 "Sie können diese Markierungen jedoch gerne ändern und/oder Neue hinzufügen. "
@@ -647,9 +666,6 @@ msgid "via the Tags and Edit menus"
 msgstr "Mit den Menüs »Markierung« oder »Bearbeiten«"
 
 #: C/f-spot.xml:423(para)
-#| msgid ""
-#| "by typing them in (press <keycap>t</keycap> to pop up the tag entry bar, "
-#| "enter comma-separated tags) - with tab completion!"
 msgid ""
 "by typing them in. Press <keycap>t</keycap> to pop up the tag entry bar. Here "
 "you can enter the tags, separated by commas."
@@ -743,10 +759,12 @@ msgid "Search"
 msgstr "Suche"
 
 #: C/f-spot.xml:487(para)
-msgid ""
-"F-Spot uses search search filters to help you better define search criteria."
+#| msgid ""
+#| "F-Spot uses search search filters to help you better define search "
+#| "criteria."
+msgid "F-Spot uses search filters to help you better define search criteria."
 msgstr ""
-"F-Spot benutzt Such-Filter, um Ihnen das Festlegen von Suchkriterien zu "
+"F-Spot benutzt Suchfilter, um Ihnen das Festlegen von Suchkriterien zu "
 "erleichtern."
 
 #: C/f-spot.xml:492(title)
@@ -761,6 +779,12 @@ msgid ""
 "menuchoice>. With the find bar shown, you can drag tags from the tag view to "
 "the find bar."
 msgstr ""
+"Sie können eine Suche starten, indem Sie auf eine Markierung doppelklicken "
+"oder diese in der Markierungsliste auswählen. Alternativ können Sie das "
+"Suchfeld mit Hilfe des Menüs <menuchoice><guimenu>Suchen</"
+"guimenu><guimenuitem>Suchfeld anzeigen</guimenuitem></menuchoice>. Bei "
+"angezeigtem Suchfeld können Sie Markierungen aus der Markierungsansicht in "
+"das Suchfeld ziehen."
 
 #: C/f-spot.xml:500(para)
 msgid ""
@@ -833,9 +857,12 @@ msgstr ""
 "Importiervorgangs auszuwählen"
 
 #: C/f-spot.xml:544(para)
+#| msgid ""
+#| "<parameter class=\"option\">After</parameter> — to select all photos "
+#| "imported begining with a particular importing sessio"
 msgid ""
 "<parameter class=\"option\">After</parameter> — to select all photos imported "
-"begining with a particular importing sessio"
+"begining with a particular importing session"
 msgstr ""
 "<parameter class=\"option\">Nach dem</parameter> — Um alle Fotos auszuwählen, "
 "die nach diesem Importvorgang importiert wurden"
@@ -849,9 +876,12 @@ msgstr ""
 "die zwischen zwei bestimmten Importvorgängen liegen"
 
 #: C/f-spot.xml:554(para)
+#| msgid ""
+#| "Every time you change settings of the filter, amount of selected photos "
+#| "will appear in the bottom part of the dialog."
 msgid ""
-"Every time you change settings of the filter, amount of selected photos will "
-"appear in the bottom part of the dialog."
+"Every time you change settings of the filter, the amount of selected photos "
+"will appear in the bottom part of the dialog."
 msgstr ""
 "Jedesmal wenn Sie die Filter-Einstellungen ändern, wird die Anzahl der "
 "gewählten Fotos im unteren Bereich des Dialogs angezeigt."
@@ -872,7 +902,7 @@ msgid ""
 "(<guibutton>X</guibutton>) of the search bar to discard all the current "
 "search options."
 msgstr ""
-"Falls sie den Filmrollen-Importfilter nicht mehr benötigen, wählen Sie "
+"Falls Sie den Filmrollen-Importfilter nicht mehr benötigen, wählen Sie "
 "<menuchoice><guimenu>Suchen</guimenu><guisubmenu>Nach importierten "
 "Filmrollen</guisubmenu><guimenuitem>Filmrollenfilter zurücksetzen</"
 "guimenuitem></menuchoice>, um diesen Filter aus den Suchkriterien zu "
@@ -1090,16 +1120,21 @@ msgid "Post to your online galleries"
 msgstr "Übertragen in Ihre Online-Galerien"
 
 #: C/f-spot.xml:726(para)
+#| msgid ""
+#| "If you use Flickr, SmugMug, 23hq or Picasa Web Album, you can post your "
+#| "files directly from F-Spot with the <menuchoice><guimenu>File</"
+#| "guimenu><guisubmenu>Export</guisubmenu></menuchoice> menu, choosing "
+#| "corresponding submenu item."
 msgid ""
-"If you use Flickr, SmugMug, 23hq or Picasa Web Album, you can post your files "
-"directly from F-Spot with the <menuchoice><guimenu>File</"
-"guimenu><guisubmenu>Export</guisubmenu></menuchoice> menu, choosing "
-"corresponding submenu item."
+"If you use Flickr, SmugMug, 23hq, Tabblo, Facebook, Zooomr or Picasa Web "
+"Album, you can post your files directly from F-Spot with the "
+"<menuchoice><guimenu>File</guimenu><guisubmenu>Export</guisubmenu></"
+"menuchoice> menu, choosing corresponding submenu item."
 msgstr ""
-"Falls Sie Flickr, SmugMug, 23hq, oder Picasa Web-Album verwenden, können Sie "
-"ihre Fotos direkt aus F-Spot übertragen. Die entsprechenden Dialoge finden "
-"Sie im Menü unter <menuchoice><guimenu>Foto</guimenu><guisubmenu>Exportieren "
-"nach</guisubmenu></menuchoice>."
+"Falls Sie Flickr, SmugMug, 23hq,  Tabblo, Facebook, Zooomr oder Picasa Web-"
+"Album verwenden, können Sie Ihre Fotos direkt aus F-Spot übertragen. Die "
+"entsprechenden Dialoge finden Sie im Menü unter <menuchoice><guimenu>Datei</"
+"guimenu><guisubmenu>Exportieren nach</guisubmenu></menuchoice>."
 
 #: C/f-spot.xml:731(para)
 msgid ""
@@ -1321,14 +1356,18 @@ msgstr ""
 "Sie werden keine weiteren Profile in F-Spot sehen)."
 
 #: C/f-spot.xml:887(para)
+#| msgid ""
+#| "Copy your color profiles into the <filename class=\"directory\">/usr/share/"
+#| "color/icc</filename> or <filename class=\"directory\">/usr/local/share./"
+#| "color/icc</filename> directory."
 msgid ""
 "Copy your color profiles into the <filename class=\"directory\">/usr/share/"
-"color/icc</filename> or <filename class=\"directory\">/usr/local/share./color/"
+"color/icc</filename> or <filename class=\"directory\">/usr/local/share/color/"
 "icc</filename> directory."
 msgstr ""
 "Kopieren Sie Ihre Farbprofile in den Ordner <filename class=\"directory\">/"
 "usr/share/color/icc</filename> oder <filename class=\"directory\">/usr/local/"
-"share./color/icc</filename>."
+"share/color/icc</filename>."
 
 #: C/f-spot.xml:895(para)
 msgid ""
@@ -1508,21 +1547,24 @@ msgstr ""
 "können, oder wenn Menüs zu sehr mit Erweiterungen vollgestopft sind."
 
 #: C/f-spot.xml:1024(para)
+#| msgid ""
+#| "In the <guilabel>Manage Extensions</guilabel> dialog select the extension "
+#| "package and click <guibutton>Enable</guibutton> or <guibutton>Disable</"
+#| "guibutton>. You will have to restart F-Spot to let changes apply."
 msgid ""
 "In the <guilabel>Manage Extensions</guilabel> dialog select the extension "
 "package and click <guibutton>Enable</guibutton> or <guibutton>Disable</"
-"guibutton>. You will have to restart F-Spot to let changes apply."
+"guibutton>."
 msgstr ""
 "Im Dialog <guilabel>Erweiterungen verwalten</guilabel> wählen Sie das "
 "Erweiterungspaket aus und klicken auf <guibutton>Aktivieren</guibutton> oder "
-"<guibutton>Deaktivieren</guibutton>. Sie müssen F-Spot neu starten, um die "
-"Änderungen wirksam werden zu lassen."
+"<guibutton>Deaktivieren</guibutton>."
 
-#: C/f-spot.xml:1032(title)
+#: C/f-spot.xml:1031(title)
 msgid "Removing extensions"
 msgstr "Erweiterungen entfernen"
 
-#: C/f-spot.xml:1034(para)
+#: C/f-spot.xml:1033(para)
 msgid ""
 "If you don't need an extension you can remove it from the system completely. "
 "In the <guilabel>Manage Extensions</guilabel> dialog select the extension "
@@ -1533,11 +1575,11 @@ msgstr ""
 "können Sie das Erweiterungspaket auswählen und es durch klicken auf "
 "<guibutton>Deinstallieren …</guibutton> entfernen."
 
-#: C/f-spot.xml:1042(title)
+#: C/f-spot.xml:1041(title)
 msgid "Reading summary of extensions"
 msgstr "Lesen der Erweiterungsbeschreibung"
 
-#: C/f-spot.xml:1044(para)
+#: C/f-spot.xml:1043(para)
 msgid ""
 "Every extension package contains metadata that provides the following "
 "information about the extension:"
@@ -1545,23 +1587,23 @@ msgstr ""
 "Jedes Erweiterungspaket enthält Meta-Informationen, die folgende "
 "Informationen zur Verfügung stellen:"
 
-#: C/f-spot.xml:1050(para)
+#: C/f-spot.xml:1049(para)
 msgid "Description, which usually covers puprose of the extension"
 msgstr "Beschreibung, diese erklärt üblicherweise die Funktion der Erweiterung."
 
-#: C/f-spot.xml:1055(para)
+#: C/f-spot.xml:1054(para)
 msgid "Version"
 msgstr "Version"
 
-#: C/f-spot.xml:1060(para)
+#: C/f-spot.xml:1059(para)
 msgid "Author"
 msgstr "Autor"
 
-#: C/f-spot.xml:1065(para)
+#: C/f-spot.xml:1064(para)
 msgid "Dependencies"
 msgstr "Abhängigkeiten"
 
-#: C/f-spot.xml:1071(para)
+#: C/f-spot.xml:1070(para)
 msgid ""
 "In the <guilabel>Manage Extensions</guilabel> dialog select the extension "
 "package you want to read summary of and click <guibutton>Information</"
@@ -1571,11 +1613,11 @@ msgstr ""
 "Erweiterungspaket aus, dessen Zusammenfassung Sie lesen wollen und klicken "
 "Sie auf <guibutton>Information</guibutton>."
 
-#: C/f-spot.xml:1079(title)
+#: C/f-spot.xml:1078(title)
 msgid "Developing extensions"
 msgstr "Entwickeln von Erweiterungen"
 
-#: C/f-spot.xml:1081(para)
+#: C/f-spot.xml:1080(para)
 msgid ""
 "<ulink url=\"http://f-spot.org/Extend_F-Spot\">Extend F-Spot</ulink> document "
 "gives instructions on developing your own extensions for F-Spot."
@@ -1583,160 +1625,165 @@ msgstr ""
 "Das Dokument <ulink url=\"http://f-spot.org/Extend_F-Spot\">F-Spot erweitern</"
 "ulink> gibt Anweisungen über das Entwickeln von Erweiterungen für F-Spot."
 
-#: C/f-spot.xml:1089(title)
+#: C/f-spot.xml:1088(title)
 msgid "Shortcuts"
 msgstr "Tastenkombinationen"
 
-#: C/f-spot.xml:1092(title)
+#: C/f-spot.xml:1091(title)
 msgid "Global Shortcuts"
 msgstr "Globale Tastenkombinationen"
 
-#: C/f-spot.xml:1097(entry) C/f-spot.xml:1206(entry) C/f-spot.xml:1302(entry)
-#: C/f-spot.xml:1354(entry)
+#: C/f-spot.xml:1096(entry) C/f-spot.xml:1205(entry) C/f-spot.xml:1301(entry)
+#: C/f-spot.xml:1353(entry)
 msgid "Key"
 msgstr "Taste"
 
-#: C/f-spot.xml:1100(entry) C/f-spot.xml:1209(entry) C/f-spot.xml:1305(entry)
-#: C/f-spot.xml:1357(entry)
+#: C/f-spot.xml:1099(entry) C/f-spot.xml:1208(entry) C/f-spot.xml:1304(entry)
+#: C/f-spot.xml:1356(entry)
 msgid "Action"
 msgstr "Aktion"
 
-#: C/f-spot.xml:1108(keycap)
+#: C/f-spot.xml:1107(keycap)
 msgid "["
 msgstr "["
 
-#: C/f-spot.xml:1110(entry)
+#: C/f-spot.xml:1109(entry)
 msgid "Rotate the selected photos to the left"
 msgstr "Die ausgewählten Fotos gegen den Uhrzeigersinn drehen"
 
-#: C/f-spot.xml:1116(keycap)
+#: C/f-spot.xml:1115(keycap)
 msgid "]"
 msgstr "]"
 
-#: C/f-spot.xml:1118(entry)
+#: C/f-spot.xml:1117(entry)
 msgid "Rotate the selected photos to the right"
 msgstr "Die ausgewählten Fotos im Uhrzeigersinn drehen"
 
-#: C/f-spot.xml:1124(keycap) C/f-spot.xml:1132(keycap)
+#: C/f-spot.xml:1123(keycap) C/f-spot.xml:1131(keycap)
 msgid "Del"
 msgstr "Entf"
 
-#: C/f-spot.xml:1126(entry)
+#: C/f-spot.xml:1125(entry)
 msgid "Remove selected photos from F-Spot's catalogue"
 msgstr "Ausgewähltes Foto aus F-Spots Katalog entfernen"
 
-#: C/f-spot.xml:1132(keycap) C/f-spot.xml:1225(keycap)
-#: C/f-spot.xml:1259(keycap) C/f-spot.xml:1268(keycap)
-#: C/f-spot.xml:1285(keycap) C/f-spot.xml:1447(keycap)
+#: C/f-spot.xml:1131(keycap) C/f-spot.xml:1224(keycap)
+#: C/f-spot.xml:1258(keycap) C/f-spot.xml:1267(keycap)
+#: C/f-spot.xml:1284(keycap) C/f-spot.xml:1446(keycap)
 msgid "Shift"
 msgstr "Umschalttaste"
 
-#: C/f-spot.xml:1134(entry)
-msgid "Delete selected photos permanently from the drive"
-msgstr "Ausgewählte Fotos dauerhaft von der Festplatte löschen"
+#: C/f-spot.xml:1133(entry)
+#| msgid "Delete selected photos permanently from the drive"
+msgid ""
+"Delete selected photos permanently from the drive. If possible, they will "
+"moved to trash."
+msgstr ""
+"Ausgewählte Fotos dauerhaft von der Festplatte löschen. Falls möglich, werden "
+"diese in den Müll verschoben."
 
-#: C/f-spot.xml:1141(keycap)
+#: C/f-spot.xml:1140(keycap)
 msgid "t"
 msgstr "t"
 
-#: C/f-spot.xml:1143(entry)
+#: C/f-spot.xml:1142(entry)
 msgid "View or edit tags for selected photos"
 msgstr "Markierungen der ausgewählten Fotos zeigen oder bearbeiten"
 
-#: C/f-spot.xml:1149(keycap)
+#: C/f-spot.xml:1148(keycap)
 msgid "F11"
 msgstr "F11"
 
-#: C/f-spot.xml:1151(entry) C/f-spot.xml:1400(entry)
+#: C/f-spot.xml:1150(entry) C/f-spot.xml:1399(entry)
 msgid "Full screen view"
 msgstr "Vollbildmodus"
 
-#: C/f-spot.xml:1157(keycap) C/f-spot.xml:1165(keycap)
-#: C/f-spot.xml:1173(keycap) C/f-spot.xml:1181(keycap)
-#: C/f-spot.xml:1217(keycap) C/f-spot.xml:1225(keycap)
-#: C/f-spot.xml:1243(keycap) C/f-spot.xml:1268(keycap)
-#: C/f-spot.xml:1321(keycap)
+#: C/f-spot.xml:1156(keycap) C/f-spot.xml:1164(keycap)
+#: C/f-spot.xml:1172(keycap) C/f-spot.xml:1180(keycap)
+#: C/f-spot.xml:1216(keycap) C/f-spot.xml:1224(keycap)
+#: C/f-spot.xml:1242(keycap) C/f-spot.xml:1267(keycap)
+#: C/f-spot.xml:1320(keycap)
 msgid "Ctrl"
 msgstr "Strg"
 
-#: C/f-spot.xml:1157(keycap)
+#: C/f-spot.xml:1156(keycap)
 msgid "I"
 msgstr "I"
 
-#: C/f-spot.xml:1159(entry)
+#: C/f-spot.xml:1158(entry)
 msgid "Displays information about the photo"
 msgstr "Informationen über das Foto anzeigen"
 
-#: C/f-spot.xml:1165(keycap)
+#: C/f-spot.xml:1164(keycap)
 msgid "Equals"
 msgstr "Gleicheits-Zeichen"
 
-#: C/f-spot.xml:1167(entry)
+#: C/f-spot.xml:1166(entry)
 msgid "Zoom-in"
 msgstr "Ansicht vergrößern"
 
-#: C/f-spot.xml:1173(keycap)
+#: C/f-spot.xml:1172(keycap)
 msgid "Minus"
 msgstr "Minus"
 
-#: C/f-spot.xml:1175(entry)
+#: C/f-spot.xml:1174(entry)
 msgid "Zoom-out"
 msgstr "Ansicht verkleinern"
 
-#: C/f-spot.xml:1181(keycap) C/f-spot.xml:1373(keycap)
+#: C/f-spot.xml:1180(keycap) C/f-spot.xml:1372(keycap)
 msgid "N"
 msgstr "N"
 
-#: C/f-spot.xml:1183(entry)
+#: C/f-spot.xml:1182(entry)
 msgid "Import photos"
 msgstr "Fotos importieren"
 
-#: C/f-spot.xml:1189(keycap)
+#: C/f-spot.xml:1188(keycap)
 msgid "Alt"
 msgstr "Alt"
 
-#: C/f-spot.xml:1189(keycap)
+#: C/f-spot.xml:1188(keycap)
 msgid "0-5"
 msgstr "0-5"
 
-#: C/f-spot.xml:1191(entry)
+#: C/f-spot.xml:1190(entry)
 msgid "Alt plus a number from 0 to 5 rate the selected picture(s)"
 msgstr "Alt + eine Nummer zwischen 0 und 5 bewertet ausgewählte Fotos"
 
 # Tastenkombinationen im Übersichtsmodus (kleine Vorschaubilder)
-#: C/f-spot.xml:1201(title)
+#: C/f-spot.xml:1200(title)
 msgid "Browse Mode Shortcuts"
 msgstr "Tastenkombinationen im Übersichtsmodus"
 
-#: C/f-spot.xml:1217(keycap) C/f-spot.xml:1226(keycap)
+#: C/f-spot.xml:1216(keycap) C/f-spot.xml:1225(keycap)
 msgid "A"
 msgstr "A"
 
-#: C/f-spot.xml:1219(entry)
+#: C/f-spot.xml:1218(entry)
 msgid "Select all"
 msgstr "Alles auswählen"
 
-#: C/f-spot.xml:1228(entry)
+#: C/f-spot.xml:1227(entry)
 msgid "Unselect all"
 msgstr "Alles abwählen"
 
-#: C/f-spot.xml:1234(keycap) C/f-spot.xml:1381(keycap)
+#: C/f-spot.xml:1233(keycap) C/f-spot.xml:1380(keycap)
 msgid "H"
 msgstr "H"
 
-#: C/f-spot.xml:1234(keycap) C/f-spot.xml:1381(keycap)
+#: C/f-spot.xml:1233(keycap) C/f-spot.xml:1380(keycap)
 msgid "J"
 msgstr "J"
 
-#: C/f-spot.xml:1235(keycap) C/f-spot.xml:1382(keycap)
+#: C/f-spot.xml:1234(keycap) C/f-spot.xml:1381(keycap)
 msgid "K"
 msgstr "K"
 
-#: C/f-spot.xml:1235(keycap) C/f-spot.xml:1382(keycap)
+#: C/f-spot.xml:1234(keycap) C/f-spot.xml:1381(keycap)
 msgid "L"
 msgstr "L"
 
-#: C/f-spot.xml:1233(entry) C/f-spot.xml:1380(entry)
+#: C/f-spot.xml:1232(entry) C/f-spot.xml:1379(entry)
 msgid ""
 "Arrow keys or <placeholder-1/>, <placeholder-2/>, <placeholder-3/>, "
 "<placeholder-4/>"
@@ -1744,57 +1791,57 @@ msgstr ""
 "Pfeiltasten oder <placeholder-1/>, <placeholder-2/>, <placeholder-3/>, "
 "<placeholder-4/>"
 
-#: C/f-spot.xml:1237(entry)
+#: C/f-spot.xml:1236(entry)
 msgid "Move focus"
 msgstr "Fokus verschieben"
 
-#: C/f-spot.xml:1242(entry)
+#: C/f-spot.xml:1241(entry)
 msgid "<placeholder-1/>-Arrow key"
 msgstr "<placeholder-1/>-Pfeiltaste"
 
-#: C/f-spot.xml:1245(entry)
+#: C/f-spot.xml:1244(entry)
 msgid "Move the focus without changing the selection"
 msgstr "Den Fokus verschieben, ohne die Auswahl zu verändern"
 
-#: C/f-spot.xml:1251(keycap) C/f-spot.xml:1373(keycap)
+#: C/f-spot.xml:1250(keycap) C/f-spot.xml:1372(keycap)
 msgid "Spacebar"
 msgstr "Leertaste"
 
-#: C/f-spot.xml:1253(entry)
+#: C/f-spot.xml:1252(entry)
 msgid "Select or unselect the focused photo"
 msgstr "Aus- oder Abwählen des fokussierten Fotos"
 
-#: C/f-spot.xml:1260(keycap)
+#: C/f-spot.xml:1259(keycap)
 msgid "Arrow key"
 msgstr "Pfeiltaste"
 
 # In den Passiv geändert.
-#: C/f-spot.xml:1262(entry)
+#: C/f-spot.xml:1261(entry)
 msgid "Change the photo selection"
 msgstr "Foto-Auswahl ändern"
 
-#: C/f-spot.xml:1269(keycap)
+#: C/f-spot.xml:1268(keycap)
 msgid "Left arrow or Right arrow"
 msgstr "Linke oder rechte Pfeiltaste"
 
-#: C/f-spot.xml:1271(entry)
+#: C/f-spot.xml:1270(entry)
 msgid ""
 "Add/Remove all photos in the row, in the direction pressed, to the selection"
 msgstr ""
 "Hinzufügen/Entfernen aller Fotos in der Reihe, in die Richtung die gedrückt "
 "wurde, bis zur Auswahl"
 
-#: C/f-spot.xml:1277(keycap) C/f-spot.xml:1285(keycap)
-#: C/f-spot.xml:1438(keycap)
+#: C/f-spot.xml:1276(keycap) C/f-spot.xml:1284(keycap)
+#: C/f-spot.xml:1437(keycap)
 msgid "V"
 msgstr "V"
 
-#: C/f-spot.xml:1279(entry)
+#: C/f-spot.xml:1278(entry)
 msgid "Pops up a larger preview of the picture pointed by the mouse"
 msgstr ""
 "Öffnet eine größere Vorschau des Bildes, auf das Sie mit der Maus zeigen."
 
-#: C/f-spot.xml:1287(entry)
+#: C/f-spot.xml:1286(entry)
 msgid ""
 "Pops up a larger preview and a color histogram of the picture pointed by the "
 "mouse"
@@ -1802,128 +1849,127 @@ msgstr ""
 "Öffnet eine größere Vorschau und ein Farb-Histogramm des Bildes, auf das Sie "
 "mit der Maus zeigen."
 
-#: C/f-spot.xml:1297(title)
+#: C/f-spot.xml:1296(title)
 msgid "Tag Shortcuts"
 msgstr "Tastenkombinationen zum Markieren"
 
-#: C/f-spot.xml:1313(keycap)
+#: C/f-spot.xml:1312(keycap)
 msgid "F2"
 msgstr "F2"
 
-#: C/f-spot.xml:1315(entry)
+#: C/f-spot.xml:1314(entry)
 msgid "Rename selected tag"
 msgstr "Ausgewählte Markierung umbenennen"
 
-#: C/f-spot.xml:1321(keycap)
+#: C/f-spot.xml:1320(keycap)
 msgid "T"
 msgstr "T"
 
-#: C/f-spot.xml:1323(entry)
+#: C/f-spot.xml:1322(entry)
 msgid "Add tags to selected photos"
 msgstr "Markierungen zu ausgewählten Fotos hinzufügen"
 
-#: C/f-spot.xml:1328(entry) C/f-spot.xml:1336(entry)
+#: C/f-spot.xml:1327(entry) C/f-spot.xml:1335(entry)
 msgid "n/a"
 msgstr "Nicht verfügbar"
 
-#: C/f-spot.xml:1331(entry)
+#: C/f-spot.xml:1330(entry)
 msgid "Drag and drop tags to move them"
 msgstr "Markierungen mit der Maus ziehen, um diese zu verschieben"
 
-#: C/f-spot.xml:1339(entry)
+#: C/f-spot.xml:1338(entry)
 msgid "Type a tag's name to jump to it (only works if tag is shown/expanded)"
 msgstr ""
 "Geben Sie den Namen einer Markierung ein, um zu ihr zu springen (funktioniert "
 "nur, wenn alle Markierungen angezeigt werden/ausgeklappt sind)"
 
-#: C/f-spot.xml:1349(title)
+#: C/f-spot.xml:1348(title)
 msgid "Edit Mode Shortcuts"
 msgstr "Bearbeitungsmodus-Tastenkombinationen"
 
-#: C/f-spot.xml:1365(keycap)
+#: C/f-spot.xml:1364(keycap)
 msgid "Page Up"
 msgstr "Bild aufwärts"
 
-#: C/f-spot.xml:1365(keycap)
+#: C/f-spot.xml:1364(keycap)
 msgid "Backspace"
 msgstr "Rücktaste"
 
-#: C/f-spot.xml:1365(keycap)
+#: C/f-spot.xml:1364(keycap)
 msgid "B"
 msgstr "B"
 
-#: C/f-spot.xml:1364(entry) C/f-spot.xml:1372(entry)
+#: C/f-spot.xml:1363(entry) C/f-spot.xml:1371(entry)
 msgid "<placeholder-1/>, <placeholder-2/>, <placeholder-3/>"
 msgstr "<placeholder-1/>, <placeholder-2/>, <placeholder-3/>"
 
-#: C/f-spot.xml:1367(entry)
+#: C/f-spot.xml:1366(entry)
 msgid "Go to Previous Photo"
 msgstr "Zum vorherigen Foto gehen"
 
-#: C/f-spot.xml:1373(keycap)
+#: C/f-spot.xml:1372(keycap)
 msgid "Page Down"
 msgstr "Bild abwärts"
 
-#: C/f-spot.xml:1375(entry)
+#: C/f-spot.xml:1374(entry)
 msgid "Go to Next Photo"
 msgstr "Zum nächsten Foto gehen"
 
-#: C/f-spot.xml:1384(entry)
+#: C/f-spot.xml:1383(entry)
 msgid "Go to Previous/Next photo or move around a zoomed photo"
 msgstr ""
 "Zum vorherigen/nächsten Foto gehen oder ein vergrößertes Foto in der Ansicht "
 "verschieben"
 
-#: C/f-spot.xml:1390(keycap)
+#: C/f-spot.xml:1389(keycap)
 msgid "R"
 msgstr "R"
 
-#: C/f-spot.xml:1392(entry)
-#| msgid "Go to Previous Photo"
+#: C/f-spot.xml:1391(entry)
 msgid "Go to a random photo"
 msgstr "Zu einem zufälligen Foto gehen"
 
-#: C/f-spot.xml:1398(keycap)
+#: C/f-spot.xml:1397(keycap)
 msgid "f"
 msgstr "f"
 
-#: C/f-spot.xml:1406(keycap)
+#: C/f-spot.xml:1405(keycap)
 msgid "0"
 msgstr "0"
 
-#: C/f-spot.xml:1408(entry)
+#: C/f-spot.xml:1407(entry)
 msgid "Fit the image to the screen"
 msgstr "Bild an Bildschirm anpassen"
 
-#: C/f-spot.xml:1414(keycap)
+#: C/f-spot.xml:1413(keycap)
 msgid "1"
 msgstr "1"
 
-#: C/f-spot.xml:1416(entry)
+#: C/f-spot.xml:1415(entry)
 msgid "Zoom Factor to 1.0 (1 screen pixel per image pixel)"
 msgstr "Vergrößerungsstufe auf 1,0 (1 Bilschirmpixel pro Bildpixel)"
 
-#: C/f-spot.xml:1422(keycap)
+#: C/f-spot.xml:1421(keycap)
 msgid "2"
 msgstr "2"
 
-#: C/f-spot.xml:1424(entry)
+#: C/f-spot.xml:1423(entry)
 msgid "Zoom Factor to 2.0 (4 screen pixels per image pixel)"
 msgstr "Vergrößerungsstufe auf 2,0 (4 Bildschirmpixel pro Bildpixel)"
 
-#: C/f-spot.xml:1430(keycap)
+#: C/f-spot.xml:1429(keycap)
 msgid "Escape"
 msgstr "Escape"
 
-#: C/f-spot.xml:1432(entry)
+#: C/f-spot.xml:1431(entry)
 msgid "Returns to Browser mode"
-msgstr "Zum Übersichts-Modus zurückkehren"
+msgstr "Zum Übersichtsmodus zurückkehren"
 
-#: C/f-spot.xml:1442(keycap)
+#: C/f-spot.xml:1441(keycap)
 msgid "v"
 msgstr "v"
 
-#: C/f-spot.xml:1440(entry)
+#: C/f-spot.xml:1439(entry)
 msgid ""
 "Examine photo with magnifying glass (Loupe). Doubleclick on the Loupe, or "
 "type <placeholder-1/> again to close it."
@@ -1931,29 +1977,28 @@ msgstr ""
 "Foto mit mit Vergrößerungsglas (Lupe) vergrößern. Doppelklicken Sie in der "
 "Lupen-Ansicht, oder Drücken Sie nochmal <placeholder-1/> um sie zu schließen."
 
-#: C/f-spot.xml:1446(entry)
+#: C/f-spot.xml:1445(entry)
 msgid "<placeholder-1/>-Mousewheel"
 msgstr "<placeholder-1/>-Mausrad"
 
 # Hierbei handelt es sich um die Beschreibung einer Tastenkombination. Der Filmstreifen wird im Einzelbildmodus über dem Bild angezeigt. Falls unter Ansicht > Komponenten aktiviert.
-#: C/f-spot.xml:1449(entry)
+#: C/f-spot.xml:1448(entry)
 msgid "Faster filmstrip scrolling"
-msgstr "Schnellerer Filmstreifen Lauf"
+msgstr "Schnellerer Filmstreifen-Lauf"
 
-#: C/f-spot.xml:1455(keycap)
+#: C/f-spot.xml:1454(keycap)
 msgid "i"
 msgstr "i"
 
-#: C/f-spot.xml:1457(entry)
+#: C/f-spot.xml:1456(entry)
 msgid "Toggle infobox visibility ''(only when in full screen)''"
 msgstr ""
 "Die Sichtbarkeit der »Infobox« an- und ausschalten (nur im Vollbild-Modus)"
 
-# Hier ist wichtig: Wenn hier mehrere Namen stehen, müssen diese durch den erzwungenen Zeilenumbruch \n
-# getrennt werden. Am Ende der letzten Zeile darf der aber nicht stehen.
 #. Put one translator per line, in the form of NAME <EMAIL>, YEAR1, YEAR2.
 #: C/f-spot.xml:0(None)
 msgid "translator-credits"
 msgstr ""
 "Arun Persaud <arun@nubati.net>, 2008\n"
-"Stefan Horning <stefan@hornings.de>, 2009"
+"Stefan Horning <stefan@hornings.de>, 2009\n"
+"Mario Blättermann <mariobl@gnome.org>, 2009"
