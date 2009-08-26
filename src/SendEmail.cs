@@ -301,7 +301,7 @@ namespace FSpot {
 						filters.Convert (request);
 						request.Preserve(request.Current);
 
-						mail_attach.Append(attach_arg.ToString() + request.Current.ToString ());
+						mail_attach.Append(((i == 0 && attach_arg.ToString () == ",") ? "" : attach_arg.ToString()) + request.Current.ToString ());
 						
 						// Mark the path for deletion
 						tmp_paths.Add (request.Current.LocalPath);
