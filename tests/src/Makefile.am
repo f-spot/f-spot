@@ -1,9 +1,5 @@
 include $(top_srcdir)/Makefile.include
 
-if ENABLE_TESTS
-
-all: FSpot.Tests.dll
-
 SOURCES = 				\
 	$(srcdir)/IBrowsableItem.cs		\
 	$(srcdir)/ImageTest.cs			\
@@ -14,6 +10,10 @@ SOURCES = 				\
 	$(srcdir)/Cms/Cms.cs			\
 	$(srcdir)/Filters/JpegFilter.cs		\
 	$(srcdir)/Filters/OrientationFilter.cs
+
+if ENABLE_TESTS
+
+all: FSpot.Tests.dll
 
 PKGS = 					\
 	-pkg:mono-nunit			\
@@ -33,7 +33,6 @@ REFS =										\
 	-r:$(top_builddir)/src/FSpot.Platform.dll	\
 	-r:$(top_builddir)/src/Cms.dll			\
 	-r:$(top_builddir)/lib/semweb/SemWeb.dll
-
 
 RESOURCES =							\
 	-resource:$(top_srcdir)/icons/f-spot-32.png,f-spot-32.png
