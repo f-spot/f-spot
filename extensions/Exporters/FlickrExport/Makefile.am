@@ -26,7 +26,7 @@ PKGS =					\
 	-pkg:gtk-sharp-2.0		\
 	-pkg:glade-sharp-2.0
 
-SUBDIRS = 			\
+SUBDIR = 			\
 	FlickrNet
 
 RESOURCES =				\
@@ -39,7 +39,7 @@ mpack: $(PLUGIN_ASSEMBLY)
 	mautil p $(PLUGIN_ASSEMBLY)
 
 $(PLUGIN_ASSEMBLY): $(PLUGIN_SOURCES) $(PLUGIN_MANIFEST)
-	$(MAKE) -C $(SUBDIRS)
+	$(MAKE) -C $(SUBDIR)
 	$(CSC_LIB) -out:$@ $(PLUGIN_SOURCES) $(REFS) $(PKGS) $(ASSEMBLIES) $(RESOURCES)
 
 plugindir = $(pkglibdir)/extensions
