@@ -34,13 +34,10 @@ RESOURCES =				\
 	-resource:$(srcdir)/$(PLUGIN_MANIFEST)	\
 	-resource:$(srcdir)/$(PLUGIN_NAME).glade
 
-all: $(PLUGIN_ASSEMBLY)
-
 mpack: $(PLUGIN_ASSEMBLY)
 	mautil p $(PLUGIN_ASSEMBLY)
 
 $(PLUGIN_ASSEMBLY): $(PLUGIN_SOURCES) $(PLUGIN_MANIFEST)
-	$(MAKE) -C $(SUBDIRS)
 	$(CSC_LIB) -out:$@ $(PLUGIN_SOURCES) $(REFS) $(PKGS) $(ASSEMBLIES) $(RESOURCES)
 
 plugindir = $(pkglibdir)/extensions

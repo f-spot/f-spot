@@ -34,14 +34,10 @@ RESOURCES =				\
 SUBDIRS =                      \
 	SmugMugNet
 
-
-all: $(PLUGIN_ASSEMBLY)
-
 mpack: $(PLUGIN_ASSEMBLY)
 	mautil p $(PLUGIN_ASSEMBLY)
 
 $(PLUGIN_ASSEMBLY): $(PLUGIN_SOURCES) $(PLUGIN_MANIFEST)
-	$(MAKE) -C $(SUBDIRS)
 	$(CSC_LIB) -out:$@ $(PLUGIN_SOURCES) $(REFS) $(PKGS) $(ASSEMBLIES) $(RESOURCES)
 
 plugindir = $(pkglibdir)/extensions
