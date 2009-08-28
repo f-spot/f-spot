@@ -1,11 +1,11 @@
 SUBDIRS = 			\
 	CDExport		\
 	DefaultExporters	\
-	GalleryExport		\
 	FacebookExport		\
 	FlickrExport		\
 	FolderExport		\
+	GalleryExport		\
 	PicasaWebExport		\
-	TabbloExport		\
 	SmugMugExport		\
+	TabbloExport		\
 	ZipExport

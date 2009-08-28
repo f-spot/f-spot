@@ -33,14 +33,14 @@ namespace FSpot.Addins.Editors {
 		protected override Pixbuf Process (Pixbuf input, Cms.Profile input_profile) {
 			Pixbuf output = input.Copy ();
 
-			Pixbuf sub = new Pixbuf (output, State.Selection.x, State.Selection.y,
-					State.Selection.width, State.Selection.height);
+			Pixbuf sub = new Pixbuf (output, State.Selection.X, State.Selection.Y,
+					State.Selection.Width, State.Selection.Height);
 			/* lazy man's pixelate: scale down and then back up */
-			Pixbuf down = sub.ScaleSimple (State.Selection.width/75, State.Selection.height/75,
+			Pixbuf down = sub.ScaleSimple (State.Selection.Width/75, State.Selection.Height/75,
 					InterpType.Nearest);
-			Pixbuf up = down.ScaleSimple (State.Selection.width, State.Selection.height,
+			Pixbuf up = down.ScaleSimple (State.Selection.Width, State.Selection.Height,
 					InterpType.Nearest);
-			up.CopyArea (0, 0, State.Selection.width, State.Selection.height, sub, 0, 0);
+			up.CopyArea (0, 0, State.Selection.Width, State.Selection.Height, sub, 0, 0);
 			return output;
 		}
 	}

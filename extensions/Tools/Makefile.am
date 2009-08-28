@@ -2,6 +2,6 @@ SUBDIRS = 			\
 	ChangePhotoPath		\
 	DevelopInUFraw		\
 	HashJob			\
+	MergeDb			\
 	RawPlusJpeg		\
-	ScreensaverConfig	\
-	MergeDb
+	ScreensaverConfig

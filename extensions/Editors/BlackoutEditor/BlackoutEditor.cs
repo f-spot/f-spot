@@ -33,8 +33,8 @@ namespace FSpot.Addins.Editors {
 		protected override Pixbuf Process (Pixbuf input, Cms.Profile input_profile) {
 			Pixbuf output = input.Copy ();
 
-			Pixbuf sub = new Pixbuf (output, State.Selection.x, State.Selection.y,
-					State.Selection.width, State.Selection.height);
+			Pixbuf sub = new Pixbuf (output, State.Selection.X, State.Selection.Y,
+					State.Selection.Width, State.Selection.Height);
 			sub.Fill (0x00000000);
 			return output;
 		}
