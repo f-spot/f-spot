@@ -56,8 +56,8 @@ namespace HashJobExtension {
 			l.LineWrap = true;
 			VBox.PackStart (l);
 
-			Label l2 = new Label (Catalog.GetString (String.Format ("You currently have {0} photos needing md5 calculation, and {1} pending jobs",
-				missing_md5, active_jobs)));
+			Label l2 = new Label (String.Format (Catalog.GetString ("You currently have {0} photos needing md5 calculation, and {1} pending jobs"),
+				missing_md5, active_jobs));
 			l2.LineWrap = true;
 			VBox.PackStart (l2);
 
@@ -72,7 +72,7 @@ namespace HashJobExtension {
 			status_label = new Label ();
 			VBox.PackStart (status_label);
 
-			this.AddButton ("_Close", ResponseType.Close);
+			this.AddButton (Catalog.GetString ("_Close"), ResponseType.Close);
 			this.Response += HandleResponse;
 
 			ShowAll ();
