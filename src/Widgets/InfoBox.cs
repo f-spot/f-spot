@@ -382,12 +382,20 @@ namespace FSpot.Widgets
 					string info = String.Empty;
 	
 					if  (fnumber != null && fnumber != String.Empty) {
-						FSpot.Tiff.Rational rat = new FSpot.Tiff.Rational (fnumber);
-						info += String.Format ("f/{0:.0} ", rat.Value);
+						try {
+							FSpot.Tiff.Rational rat = new FSpot.Tiff.Rational (fnumber);
+							info += String.Format ("f/{0:.0} ", rat.Value);
+						} catch (FormatException) {
+							return Catalog.GetString("(wrong format)");
+						}
 					} else if (aperture != null && aperture != String.Empty) {
-						// Convert from APEX to fnumber
-						FSpot.Tiff.Rational rat = new FSpot.Tiff.Rational (aperture);
-						info += String.Format ("f/{0:.0} ", Math.Pow (2, rat.Value / 2));
+						try {
+							// Convert from APEX to fnumber
+							FSpot.Tiff.Rational rat = new FSpot.Tiff.Rational (aperture);
+							info += String.Format ("f/{0:.0} ", Math.Pow (2, rat.Value / 2));
+						} catch (FormatException) {
+							return Catalog.GetString ("(wrong format)");
+						}
 					}
 	
 					if (exposure != null && exposure != String.Empty)
