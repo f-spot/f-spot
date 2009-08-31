@@ -28,15 +28,22 @@ SNK = snk
 
 all: gtk-sharp-beans.dll
 
+gtkbeans-api.xml: $(srcdir)/gtkbeans-api.raw $(srcdir)/GtkBeans.metadata
+	@echo -e "\n*** Massaging the raw api into $@"
+	cp $(srcdir)/gtkbeans-api.raw gtkbeans-api.xml
+	chmod +w gtkbeans-api.xml
+	$(GAPI2FIXUP) --api=gtkbeans-api.xml --metadata=$(srcdir)/GtkBeans.metadata
+
 gtk-api.xml: $(srcdir)/gtk-api.raw $(srcdir)/Gtk.metadata
 	@echo -e "\n*** Massaging the raw api into $@"
 	cp $(srcdir)/gtk-api.raw gtk-api.xml
 	chmod +w gtk-api.xml
 	$(GAPI2FIXUP) --api=gtk-api.xml --metadata=$(srcdir)/Gtk.metadata
 
-gtk_generated/Builder.cs: gtk-api.xml $(GTK_CUSTOMS)
+gtk_generated/Builder.cs: gtk-api.xml gtkbeans-api.xml $(GTK_CUSTOMS)
 	@echo -e "\n*** Generating C# code"
-	$(GAPI2CODEGEN) $(GLIBSHARP_CFLAGS) --outdir=gtk_generated --customdir=$(srcdir) --generate gtk-api.xml
+	$(GAPI2CODEGEN) $(GLIBSHARP_CFLAGS) --outdir=gtk_generated --customdir=$(srcdir) --generate gtkbeans-api.xml
+	$(GAPI2CODEGEN) $(GLIBSHARP_CFLAGS) $(GTKSHARP_CFLAGS) -I:$(top_builddir)/lib/gio-sharp/gio/gio-api.xml --outdir=gtk_generated --customdir=$(srcdir) --generate gtk-api.xml
 
 gtk-sharp-beans.snk: $(SNK)
 	cp $< $@
@@ -48,6 +55,7 @@ gtk-sharp-beans.dll: gtk_generated/Builder.cs $(SRCS) gtk-sharp-beans.snk
 CLEANFILES = 			\
 	gtk-sharp-beans.dll 	\
 	gtk-sharp-beans.dll.mdb \
+	gtkbeans-api.xml	\
 	gtk-api.xml
 
 DISTCLEANFILES =		\
@@ -75,11 +83,13 @@ fetch:
 update:
 	cp	fetch/*.cs			\
 		fetch/gtk-api.raw		\
+		fetch/gtkbeans-api.raw		\
 		fetch/Gdk.Sources/*.cs		\
 		fetch/GLib.Sources/*.cs		\
 		fetch/Gtk.Customs/*.custom	\
 		fetch/Gtk.Sources/*.cs		\
 		fetch/Gtk.metadata		\
+		fetch/GtkBeans.metadata		\
 		.
 
 .PHONY: fetch update
