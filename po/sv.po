@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: f-spot\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-08-25 07:40+0200\n"
-"PO-Revision-Date: 2009-08-25 07:44+0100\n"
+"POT-Creation-Date: 2009-09-01 00:32+0200\n"
+"PO-Revision-Date: 2009-09-01 00:33+0100\n"
 "Last-Translator: Daniel Nylander <po@danielnylander.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
 "MIME-Version: 1.0\n"
@@ -45,7 +45,7 @@ msgid "{0} of {1}"
 msgstr "{0} av {1}"
 
 #: ../extensions/Exporters/CDExport/CDExport.cs:233
-#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:387
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:379
 #: ../extensions/Exporters/FlickrExport/FlickrExport.cs:379
 #: ../extensions/Exporters/FolderExport/FolderExport.cs:285
 #: ../extensions/Exporters/GalleryExport/GalleryExport.cs:806
@@ -154,19 +154,19 @@ msgstr "Facebook tillåter 60 fotografi per album.  Definiera om ditt val och f�
 msgid "Uploading Pictures"
 msgstr "Skickar upp bilder"
 
-#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:326
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:318
 msgid "Album must have a name"
 msgstr "Albumet måste ha ett namn"
 
-#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:327
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:319
 msgid "Please name your album or choose an existing album."
 msgstr "Namnge ditt album eller välj ett befintligt album."
 
-#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:341
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:333
 msgid "Creating a new album failed"
 msgstr "Skapandet av nytt album misslyckades"
 
-#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:342
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:334
 #, csharp-format
 msgid ""
 "An error occurred creating a new album.\n"
@@ -177,19 +177,19 @@ msgstr ""
 "\n"
 "{0}"
 
-#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:364
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:356
 #: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:660
 #: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:565
 #, csharp-format
 msgid "Uploading picture \"{0}\" ({1} of {2})"
 msgstr "Skickar upp bilden \"{0}\" ({1} av {2})"
 
-#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:378
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:370
 #, csharp-format
 msgid "Error Uploading To Facebook: {0}"
 msgstr "Fel vid sändning till Facebook: {0}"
 
-#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:379
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:371
 #: ../extensions/Exporters/FlickrExport/FlickrExport.cs:370
 #: ../extensions/Exporters/FolderExport/FolderExport.cs:250
 #: ../extensions/Exporters/GalleryExport/GalleryExport.cs:797
@@ -200,7 +200,7 @@ msgstr "Fel vid sändning till Facebook: {0}"
 msgid "Error"
 msgstr "Fel"
 
-#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:389
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:381
 #: ../extensions/Exporters/FlickrExport/FlickrExport.cs:381
 #: ../extensions/Exporters/GalleryExport/GalleryExport.cs:808
 #: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:706
@@ -208,11 +208,11 @@ msgstr "Fel"
 msgid "Upload Complete"
 msgstr "Sändning färdig"
 
-#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:186
+#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:211
 msgid "Waiting for authentication"
 msgstr "Väntar på autentisering"
 
-#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:187
+#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:212
 msgid ""
 "F-Spot will now launch your browser so that you can log into Facebook.\n"
 "\n"
@@ -222,49 +222,49 @@ msgstr ""
 "\n"
 "När du blir dirigerad av Facebook till att återgå till detta program så tryck på \"Ok\" nedan.  F-Spot kommer att mellanlagra din session i gnome-keyring, om möjligt, och återanvända den vid framtida exporter till Facebook."
 
-#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:192
+#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:217
 msgid "Authenticating..."
 msgstr "Autentiserar..."
 
-#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:202
+#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:227
 msgid "Error logging into Facebook"
 msgstr "Fel vid inloggning till Facebook"
 
-#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:203
+#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:228
 msgid "There was a problem logging into Facebook.  Check your credentials and try again."
 msgstr "Det inträffade ett fel vid inloggning mot Facebook. Kontrollera dina inloggningsuppgifter och försök igen."
 
-#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:212
+#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:237
 msgid "Authorizing Session"
 msgstr "Ger behörighet till session"
 
-#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:221
+#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:246
 msgid "Session established, fetching user info..."
 msgstr "Session etablerad, hämtar användarinformation..."
 
-#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:227
+#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:252
 msgid "Session established, fetching friend list..."
 msgstr "Session etablerad, hämtar lista över vänner..."
 
-#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:237
+#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:262
 msgid "Session established, fetching friend details..."
 msgstr "Session etablerad, hämtar detaljer om vänner..."
 
-#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:247
+#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:272
 msgid "Session established, fetching photo albums..."
 msgstr "Session etablerad, hämtar fotoalbum..."
 
 #. Note for translators: {0} and {1} are respectively firstname and surname of the user
-#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:260
+#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:285
 #, csharp-format
 msgid "{0} {1} is logged into Facebook"
 msgstr "{0} {1} är inloggad på Facebook"
 
-#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:266
+#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:291
 msgid "Facebook Connection Error"
 msgstr "Anslutningsfel till Facebook"
 
-#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:267
+#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:292
 #, csharp-format
 msgid ""
 "There was an error when downloading your information from Facebook.\n"
@@ -275,7 +275,7 @@ msgstr ""
 "\n"
 "Facebook svarade: {0}"
 
-#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:296
+#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:321
 msgid "You are not logged in."
 msgstr "Du är inte inloggad."
 
@@ -1011,7 +1011,17 @@ msgstr "_Skala:"
 
 #: ../extensions/Tools/HashJob/HashJob.cs:53
 msgid "In order to detect duplicates on pictures you imported before 0.5.0, F-Spot needs to analyze your image collection. This is not done by default as it's time consuming. You can Start or Pause this update process using this dialog."
-msgstr "F-Spot behöver analysera din bildsamling för att kunna identifiera dubbletter av bilder som du importerade före version 0.5.0. Detta sker inte som standard eftersom det är tidskrävande. Du kan starta eller pausa denna uppdateringsprocess genom denna dialogruta."
+msgstr "F-Spot behöver analysera din bildsamling för att kunna identifiera dubletter av bilder som du importerade före version 0.5.0. Detta sker inte som standard eftersom det är tidskrävande. Du kan starta eller pausa denna uppdateringsprocess genom denna dialogruta."
+
+#: ../extensions/Tools/HashJob/HashJob.cs:59
+#, csharp-format
+msgid "You currently have {0} photos needing md5 calculation, and {1} pending jobs"
+msgstr "Du har för närvarande {0} foton som behöver md5-beräknas och {1} väntande jobb"
+
+#: ../extensions/Tools/HashJob/HashJob.cs:75
+#: ../src/ui/main_window.ui.h:37
+msgid "_Close"
+msgstr "S_täng"
 
 #: ../extensions/Tools/HashJob/HashJob.cs:102
 msgid "Processing images..."
@@ -1020,6 +1030,10 @@ msgstr "Behandlar bilder..."
 #: ../extensions/Tools/HashJob/HashJob.cs:108
 msgid "Stopped"
 msgstr "Stoppad"
+
+#: ../extensions/Tools/HashJob/HashJob.addin.xml.h:1
+msgid "Hash for Duplicates"
+msgstr "Kontrollsumma för dubletter"
 
 #: ../extensions/Tools/MergeDb/MergeDb.addin.xml.h:1
 msgid "Merge Db"
@@ -1054,7 +1068,7 @@ msgstr ""
 "<small><i>Välj vad som ska importeras från den valda databasen.\n"
 "\"Endast nya rullar\" är det smarta alternativet som kommer att undvika att samma foton importeras flera gånger.\n"
 "\"En enstaka importrulle\" låter dig välja vilken rulle som du vill sammanfoga tillbaka.\n"
-"\"Allting\" kommer att importera allting och kan skapa dubbletter om du redan importerat från den databasen.</i></small>"
+"\"Allting\" kommer att importera allting och kan skapa dubletter om du redan importerat från den databasen.</i></small>"
 
 #: ../extensions/Tools/MergeDb/MergeDb.glade.h:6
 msgid "<small><i>Copy the images locally or keep them where they are. If you chose the later, be sure that this location will stay accessible from f-spot.</i></small>"
@@ -3552,10 +3566,6 @@ msgstr "_Töm betygsfilter"
 #: ../src/ui/main_window.ui.h:36
 msgid "_Clear Roll Filter"
 msgstr "_Töm rullfilter"
-
-#: ../src/ui/main_window.ui.h:37
-msgid "_Close"
-msgstr "S_täng"
 
 #: ../src/ui/main_window.ui.h:38
 msgid "_Components"
