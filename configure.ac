@@ -224,20 +224,19 @@ if test "x$with_turtle" != "xno"; then
    AC_SUBST(TURTLEDIR)
 fi
 
+PKG_CHECK_EXISTS(gnome-screensaver, have_gs_pkgconfig=yes, have_gs_pkgconfig=no)
+
 AC_ARG_WITH(gnome-screensaver,
     [ --with-gnome-screensaver=PREFIX  set gnome gnome-screensaver prefix],
     gnome_screensaver_prefix=$with_gnome_screensaver,
-    gnome_screensaver_prefix=$prefix)
-
-PKG_CHECK_EXISTS(gnome-screensaver, have_gs_pkgconfig=yes, have_gs_pkgconfig=no)
-if test "$have_gs_pkgconfig" = "yes"; then
-	gs_pc_prefix=`$PKG_CONFIG --variable=prefix gnome-screensaver`
-	gs_pc_saverdir=`$PKG_CONFIG --variable=privlibexecdir gnome-screensaver`
-	gs_pc_themesdir=`$PKG_CONFIG --variable=themesdir gnome-screensaver`
-fi
+    if test "$have_gs_pkgconfig" = "yes"; then
+        gnome_screensaver_prefix=`$PKG_CONFIG --variable=prefix gnome-screensaver`
+    else
+        gnome_screensaver_prefix=$prefix
+    fi)
 
 if test "$have_gs_pkgconfig" = "yes" && test "x$gs_pc_prefix" = "x$gnome_screensaver_prefix"; then
-	GNOME_SCREENSAVER_SAVERDIR=$gs_pc_saverdir
+	GNOME_SCREENSAVER_SAVERDIR=`$PKG_CONFIG --variable=privlibexecdir gnome-screensaver`
 elif test -d $gnome_screensaver_prefix/lib/gnome-screensaver; then
 	GNOME_SCREENSAVER_SAVERDIR=$gnome_screensaver_prefix/lib/gnome-screensaver/gnome-screensaver
 else 
@@ -245,7 +244,7 @@ else
 fi
 
 if test "$have_gs_pkgconfig" = "yes" && test "x$gs_pc_prefix" = "x$gnome_screensaver_prefix"; then
-	GNOME_SCREENSAVER_THEMESDIR=$gs_pc_themesdir
+	GNOME_SCREENSAVER_THEMESDIR=`$PKG_CONFIG --variable=themesdir gnome-screensaver`
 else
 	GNOME_SCREENSAVER_THEMESDIR=$gnome_screensaver_prefix/share/applications/screensavers
 fi
