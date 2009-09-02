@@ -224,13 +224,10 @@ if test "x$with_turtle" != "xno"; then
    AC_SUBST(TURTLEDIR)
 fi
 
-AC_ARG_WITH(gnome-screensaver,[ --with-gnome-screensaver=PREFIX  set gnome gnome-screensaver prefix])
-
-if test "x$with_gnome_screensaver" != "x"; then
-	gnome_screensaver_prefix=$with_gnome_screensaver
-else
-	gnome_screensaver_prefix=$prefix		   
-fi
+AC_ARG_WITH(gnome-screensaver,
+    [ --with-gnome-screensaver=PREFIX  set gnome gnome-screensaver prefix],
+    gnome_screensaver_prefix=$with_gnome_screensaver,
+    gnome_screensaver_prefix=$prefix)
 
 PKG_CHECK_EXISTS(gnome-screensaver, have_gs_pkgconfig=yes, have_gs_pkgconfig=no)
 if test "$have_gs_pkgconfig" = "yes"; then
