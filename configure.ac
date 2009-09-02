@@ -235,13 +235,16 @@ AC_ARG_WITH(gnome-screensaver,
         gnome_screensaver_prefix=$prefix
     fi)
 
-if test "$have_gs_pkgconfig" = "yes" && test "x$gs_pc_prefix" = "x$gnome_screensaver_prefix"; then
-	GNOME_SCREENSAVER_SAVERDIR=`$PKG_CONFIG --variable=privlibexecdir gnome-screensaver`
-elif test -d $gnome_screensaver_prefix/lib/gnome-screensaver; then
-	GNOME_SCREENSAVER_SAVERDIR=$gnome_screensaver_prefix/lib/gnome-screensaver/gnome-screensaver
-else 
-	GNOME_SCREENSAVER_SAVERDIR=$gnome_screensaver_prefix/libexec/gnome-screensaver
-fi
+AC_ARG_WITH(gnome-screensaver-privlibexecdir,
+    [ --with-gnome-screensaver-privlibexecdir=DIR  set gnome-screensaver privlibexecdir],
+    GNOME_SCREENSAVER_SAVERDIR=$with_gnome_screensaver_privlibexecdir,
+    if test "$have_gs_pkgconfig" = "yes"; then
+        GNOME_SCREENSAVER_SAVERDIR=`$PKG_CONFIG --variable=privlibexecdir gnome-screensaver`
+    elif test -d $gnome_screensaver_prefix/lib/gnome-screensaver; then
+        GNOME_SCREENSAVER_SAVERDIR=$gnome_screensaver_prefix/lib/gnome-screensaver
+    else
+        GNOME_SCREENSAVER_SAVERDIR=$gnome_screensaver_prefix/libexec/gnome-screensaver
+    fi)
 
 if test "$have_gs_pkgconfig" = "yes" && test "x$gs_pc_prefix" = "x$gnome_screensaver_prefix"; then
 	GNOME_SCREENSAVER_THEMESDIR=`$PKG_CONFIG --variable=themesdir gnome-screensaver`
