@@ -246,11 +246,14 @@ AC_ARG_WITH(gnome-screensaver-privlibexecdir,
         GNOME_SCREENSAVER_SAVERDIR=$gnome_screensaver_prefix/libexec/gnome-screensaver
     fi)
 
-if test "$have_gs_pkgconfig" = "yes" && test "x$gs_pc_prefix" = "x$gnome_screensaver_prefix"; then
-	GNOME_SCREENSAVER_THEMESDIR=`$PKG_CONFIG --variable=themesdir gnome-screensaver`
-else
-	GNOME_SCREENSAVER_THEMESDIR=$gnome_screensaver_prefix/share/applications/screensavers
-fi
+AC_ARG_WITH(gnome-screensaver-themesdir,
+    [ --with-gnome-screensaver-themesdir=DIR  set gnome-screensaver themesdir],
+    GNOME_SCREENSAVER_THEMESDIR=$with_gnome_screensaver_themesdir,
+    if test "$have_gs_pkgconfig" = "yes"; then
+        GNOME_SCREENSAVER_THEMESDIR=`$PKG_CONFIG --variable=themesdir gnome-screensaver`
+    else
+        GNOME_SCREENSAVER_THEMESDIR=$gnome_screensaver_prefix/share/applications/screensavers
+    fi)
 
 AC_SUBST(GNOME_SCREENSAVER_SAVERDIR)
 AC_SUBST(GNOME_SCREENSAVER_THEMESDIR)
