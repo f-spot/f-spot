@@ -16,8 +16,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: f-spot\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-08-29 03:36+0200\n"
-"PO-Revision-Date: 2009-08-20 23:13+0100\n"
+"POT-Creation-Date: 2009-09-05 20:10+0200\n"
+"PO-Revision-Date: 2009-08-31 20:55+0100\n"
 "Last-Translator: Zdeněk Hataš <zdenek.hatas@gmail.com>\n"
 "Language-Team: Czech <gnome-cs-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -85,12 +85,11 @@ msgstr "kopíruje se..."
 
 #: ../extensions/Exporters/CDExport/CDExport.ui.h:1
 msgid "<b><i>There is some previously scheduled items to write</i></b>"
-msgstr ""
+msgstr "<b><i>Ve frontě pro zápis jsou dříve plánované objekty</i></b>"
 
 #: ../extensions/Exporters/CDExport/CDExport.ui.h:2
-#, fuzzy
 msgid "<b>Photos to Burn</b>"
-msgstr "<b>Fotografie</b>"
+msgstr "<b>Fotografie k vypálení</b>"
 
 #: ../extensions/Exporters/CDExport/CDExport.ui.h:3
 #: ../extensions/Exporters/FolderExport/FolderExport.glade.h:7
@@ -101,9 +100,8 @@ msgid "Autorotate"
 msgstr "Automatické otočení"
 
 #: ../extensions/Exporters/CDExport/CDExport.ui.h:4
-#, fuzzy
 msgid "Create CD"
-msgstr "Vy_tvořit"
+msgstr "Vytvořit CD"
 
 #: ../extensions/Exporters/CDExport/CDExport.ui.h:5
 #: ../src/Widgets/InfoBox.cs:220
@@ -112,11 +110,11 @@ msgstr "Velikost"
 
 #: ../extensions/Exporters/CDExport/CDExport.ui.h:6
 msgid "Size of the exported selection:"
-msgstr ""
+msgstr "Velikost exportovaného výběru:"
 
 #: ../extensions/Exporters/CDExport/CDExport.ui.h:7
 msgid "_Browse Previously Scheduled Files"
-msgstr ""
+msgstr "Procházet frontu plánovaných sou_borů"
 
 #: ../extensions/Exporters/CDExport/CDExport.ui.h:8
 #: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:15
@@ -130,7 +128,7 @@ msgstr "_Exportovat"
 
 #: ../extensions/Exporters/CDExport/CDExport.ui.h:9
 msgid "_Write only these photos to CD"
-msgstr ""
+msgstr "Na CD zapsat p_ouze tyto fotografie"
 
 #: ../extensions/Exporters/FacebookExport/FacebookExport.addin.xml.h:1
 msgid "F_acebook..."
@@ -308,32 +306,27 @@ msgstr "Nejste přihlášen."
 
 #: ../extensions/Exporters/FacebookExport/FacebookExport.ui.h:1
 msgid "Auto-confirm Photos"
-msgstr ""
+msgstr "Automaticky potvrzovat fotografie"
 
 #: ../extensions/Exporters/FacebookExport/FacebookExport.ui.h:2
-#, fuzzy
 msgid "Caption"
-msgstr "Poměr"
+msgstr "Nadpis"
 
 #: ../extensions/Exporters/FacebookExport/FacebookExport.ui.h:3
-#, fuzzy
 msgid "Create a new album"
-msgstr "Vytváření nového alba selhalo"
+msgstr "Vytvořit nové album"
 
 #: ../extensions/Exporters/FacebookExport/FacebookExport.ui.h:4
-#, fuzzy
 msgid "Description"
-msgstr "_Popisek:"
+msgstr "Popisek"
 
 #: ../extensions/Exporters/FacebookExport/FacebookExport.ui.h:5
-#, fuzzy
 msgid "Export to Facebook"
-msgstr "Chyba při přihlašování k Facebook"
+msgstr "Exportovat na Facebook"
 
 #: ../extensions/Exporters/FacebookExport/FacebookExport.ui.h:6
-#, fuzzy
 msgid "In this photo"
-msgstr "Žádná aktivní fotografie"
+msgstr "Na této fotografii"
 
 #: ../extensions/Exporters/FacebookExport/FacebookExport.ui.h:7
 #: ../src/XmpTagsImporter.cs:90
@@ -341,13 +334,12 @@ msgid "Location"
 msgstr "Umístění"
 
 #: ../extensions/Exporters/FacebookExport/FacebookExport.ui.h:8
-#, fuzzy
 msgid "Login"
-msgstr "Umístění"
+msgstr "Přihlásit"
 
 #: ../extensions/Exporters/FacebookExport/FacebookExport.ui.h:9
 msgid "Logout"
-msgstr ""
+msgstr "Odhlásit"
 
 #: ../extensions/Exporters/FacebookExport/FacebookExport.ui.h:10
 #: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/ManageSitesDialog.cs:51
@@ -356,27 +348,24 @@ msgid "Name"
 msgstr "Název"
 
 #: ../extensions/Exporters/FacebookExport/FacebookExport.ui.h:11
-#, fuzzy
 msgid "Not logged in"
-msgstr "Nejste přihlášen."
+msgstr "Nejste přihlášen"
 
 #: ../extensions/Exporters/FacebookExport/FacebookExport.ui.h:12
-#, fuzzy
 msgid "Permissions:"
-msgstr "Verze:"
+msgstr "Práva:"
 
 #: ../extensions/Exporters/FacebookExport/FacebookExport.ui.h:13
-#, fuzzy
 msgid "Stay Connected"
-msgstr "(Nepřipojen)"
+msgstr "Zůstat připojen"
 
 #: ../extensions/Exporters/FacebookExport/FacebookExport.ui.h:14
 msgid "Use an existing album"
-msgstr ""
+msgstr "Použít existující album"
 
 #: ../extensions/Exporters/FacebookExport/FacebookExport.ui.h:15
 msgid "Who is this?"
-msgstr ""
+msgstr "Kdo je to?"
 
 #: ../extensions/Exporters/FlickrExport/FlickrExport.addin.xml.h:1
 msgid "_23hq..."
@@ -1079,6 +1068,18 @@ msgstr ""
 "Protože je to časově náročná operace, není provedena automaticky. Pomocí "
 "tohoto okna můžete spustit nebo pozastavit tento proces sami."
 
+#: ../extensions/Tools/HashJob/HashJob.cs:59
+#, csharp-format
+msgid ""
+"You currently have {0} photos needing md5 calculation, and {1} pending jobs"
+msgstr ""
+"Máte {0} fotografií, které potřebují kontrolní součet md5 a {1} nevyřízených "
+"úloh"
+
+#: ../extensions/Tools/HashJob/HashJob.cs:75 ../src/ui/main_window.ui.h:37
+msgid "_Close"
+msgstr "_Zavřít"
+
 #: ../extensions/Tools/HashJob/HashJob.cs:102
 msgid "Processing images..."
 msgstr "Obrázky jsou zpracovávány..."
@@ -1086,6 +1087,10 @@ msgstr "Obrázky jsou zpracovávány..."
 #: ../extensions/Tools/HashJob/HashJob.cs:108
 msgid "Stopped"
 msgstr "Zastaveno"
+
+#: ../extensions/Tools/HashJob/HashJob.addin.xml.h:1
+msgid "Hash for Duplicates"
+msgstr "Zjistit duplicity"
 
 #: ../extensions/Tools/MergeDb/MergeDb.addin.xml.h:1
 msgid "Merge Db"
@@ -1186,7 +1191,7 @@ msgstr ""
 
 #: ../extensions/Tools/ScreensaverConfig/ScreensaverConfig.addin.xml.h:1
 msgid "Configure Screensaver"
-msgstr ""
+msgstr "Nastavit spořič obrazovky"
 
 #: ../extensions/Tools/ScreensaverConfig/ScreensaverConfigDialog.ui.h:1
 #: ../src/UI.Dialog/DateRangeDialog.cs:129
@@ -1195,24 +1200,23 @@ msgstr "Všechny obrázky"
 
 #: ../extensions/Tools/ScreensaverConfig/ScreensaverConfigDialog.ui.h:2
 msgid "Delay:"
-msgstr ""
+msgstr "Prodleva:"
 
 #: ../extensions/Tools/ScreensaverConfig/ScreensaverConfigDialog.ui.h:3
 msgid "Display:"
-msgstr ""
+msgstr "Zobrazovací jednotka:"
 
 #: ../extensions/Tools/ScreensaverConfig/ScreensaverConfigDialog.ui.h:4
 msgid "Images tagged with:"
-msgstr ""
+msgstr "Obrázky označené štítkem:"
 
 #: ../extensions/Tools/ScreensaverConfig/ScreensaverConfigDialog.ui.h:5
 msgid "Make F-Spot my screensaver"
-msgstr ""
+msgstr "Nastavit F-Spot jako spořič obrazovky"
 
 #: ../extensions/Tools/ScreensaverConfig/ScreensaverConfigDialog.ui.h:6
-#, fuzzy
 msgid "Screensaver Configuration"
-msgstr "Plošná konfigurace"
+msgstr "Nastavení spořiče obrazovky"
 
 #: ../f-spot.desktop.in.in.h:1 ../f-spot-import.desktop.in.in.h:1
 msgid "F-Spot Photo Manager"
@@ -1422,7 +1426,7 @@ msgid ""
 "The selected extensions can't be installed because there are dependency "
 "conflicts."
 msgstr ""
-"Vybraná rozšíření nemohou být nainstalována, protože nastal konflikt "
+"Zvolená rozšíření nemohou být nainstalována, protože nastal konflikt "
 "závislostí."
 
 #: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:398
@@ -1913,7 +1917,7 @@ msgstr "Vytvořit _ikonu pro tento štítek poté, co bude prvně použit"
 #: ../src/f-spot.glade.h:35
 msgid "Create a mail with the selected photos (possibly resized) attached"
 msgstr ""
-"Vytvořit e-mail s přiloženými vybranými fotografiemi (s možností změny "
+"Vytvořit e-mail s přiloženými zvolenými fotografiemi (s možností změny "
 "velikosti)"
 
 #: ../src/f-spot.glade.h:36
@@ -2556,16 +2560,16 @@ msgstr "Zachycena chyba \"{0}\" při připojování k fotoaparátu"
 #, csharp-format
 msgid "Merge the selected tag"
 msgid_plural "Merge the {0} selected tags?"
-msgstr[0] "Sloučit vybraný štítek"
-msgstr[1] "Sloučit vybrané {0} štítky?"
-msgstr[2] "Sloučit vybraných {0} štítků?"
+msgstr[0] "Sloučit zvolený štítek"
+msgstr[1] "Sloučit zvolené {0} štítky?"
+msgstr[2] "Sloučit zvolených {0} štítků?"
 
 #: ../src/MainWindow.cs:1842
 msgid ""
 "This operation will merge the selected tags and any sub-tags into a single "
 "tag."
 msgstr ""
-"Tato operace sloučí vybrané štítky a všechny podřízené štítky do jednoho "
+"Tato operace sloučí zvolené štítky a všechny podřízené štítky do jednoho "
 "štítku."
 
 #: ../src/MainWindow.cs:1844
@@ -2618,17 +2622,17 @@ msgstr "Při mazání souboru {2}{1} došlo k chybě typu {0}"
 #, csharp-format
 msgid "Delete the selected photo permanently?"
 msgid_plural "Delete the {0} selected photos permanently?"
-msgstr[0] "Natrvalo odstranit vybranou fotografii?"
-msgstr[1] "Natrvalo odstranit vybrané {0} fotografie?"
-msgstr[2] "Natrvalo odstranit vybraných {0} fotografií?"
+msgstr[0] "Natrvalo odstranit zvolenou fotografii?"
+msgstr[1] "Natrvalo odstranit zvolené {0} fotografie?"
+msgstr[2] "Natrvalo odstranit zvolených {0} fotografií?"
 
 #: ../src/MainWindow.cs:2181
 msgid "This deletes all versions of the selected photo from your drive."
 msgid_plural ""
 "This deletes all versions of the selected photos from your drive."
-msgstr[0] "To odstraní všechny verze vybrané fotografie z vašeho disku."
-msgstr[1] "To odstraní všechny verze vybraných fotografií z vašeho disku."
-msgstr[2] "To odstraní všechny verze vybraných fotografií z vašeho disku."
+msgstr[0] "To odstraní všechny verze zvolené fotografie z vašeho disku."
+msgstr[1] "To odstraní všechny verze zvolených fotografií z vašeho disku."
+msgstr[2] "To odstraní všechny verze zvolených fotografií z vašeho disku."
 
 #
 #: ../src/MainWindow.cs:2184
@@ -2642,9 +2646,9 @@ msgstr[2] "_Odstranit fotografie"
 #, csharp-format
 msgid "Remove the selected photo from F-Spot?"
 msgid_plural "Remove the {0} selected photos from F-Spot?"
-msgstr[0] "Odstranit vybranou fotografii z F-Spotu?"
-msgstr[1] "Odstranit vybrané {0} fotografie z F-Spotu?"
-msgstr[2] "Odstranit vybraných {0} fotografií z F-Spotu?"
+msgstr[0] "Odstranit zvolenou fotografii z F-Spot?"
+msgstr[1] "Odstranit zvolené {0} fotografie z F-Spot?"
+msgstr[2] "Odstranit zvolených {0} fotografií z F-Spot?"
 
 #: ../src/MainWindow.cs:2225
 msgid ""
@@ -2668,7 +2672,7 @@ msgstr "Odstranit štítek \"{0}\"?"
 #: ../src/MainWindow.cs:2291
 #, csharp-format
 msgid "Delete the {0} selected tags?"
-msgstr "Odstranit {0} vybraných štítků?"
+msgstr "Odstranit {0} zvolených štítků?"
 
 #: ../src/MainWindow.cs:2296
 msgid "photo"
@@ -2710,32 +2714,32 @@ msgstr ""
 #: ../src/MainWindow.cs:2750
 msgid "Rotate selected photo left"
 msgid_plural "Rotate selected photos left"
-msgstr[0] "Otočit vybranou fotografii doleva"
-msgstr[1] "Otočit vybrané fotografie doleva"
-msgstr[2] "Otočit vybrané fotografie doleva"
+msgstr[0] "Otočit zvolenou fotografii doleva"
+msgstr[1] "Otočit zvolené fotografie doleva"
+msgstr[2] "Otočit zvolené fotografie doleva"
 
 #: ../src/MainWindow.cs:2763
 msgid "Rotate selected photo right"
 msgid_plural "Rotate selected photos right"
-msgstr[0] "Otočit vybranou fotografii doprava"
-msgstr[1] "Otočit vybrané fotografie doprava"
-msgstr[2] "Otočit vybrané fotografie doprava"
+msgstr[0] "Otočit zvolenou fotografii doprava"
+msgstr[1] "Otočit zvolené fotografie doprava"
+msgstr[2] "Otočit zvolené fotografie doprava"
 
 #: ../src/MainWindow.cs:2774
 #, csharp-format
 msgid "Find _Selected Tag"
 msgid_plural "Find _Selected Tags"
-msgstr[0] "Na_jít vybraný štítek"
-msgstr[1] "Na_jít vybrané štítky"
-msgstr[2] "Na_jít vybraných štítků"
+msgstr[0] "Na_jít zvolený štítek"
+msgstr[1] "Na_jít zvolené štítky"
+msgstr[2] "Na_jít zvolené štítky"
 
 #: ../src/MainWindow.cs:2778
 #, csharp-format
 msgid "Find Selected Tag _With"
 msgid_plural "Find Selected Tags _With"
-msgstr[0] "Najít vybraný štítek _s"
-msgstr[1] "Najít vybrané štítky _s"
-msgstr[2] "Najít vybrané štítky _s"
+msgstr[0] "Najít zvolený štítek _s"
+msgstr[1] "Najít zvolené štítky _s"
+msgstr[2] "Najít zvolené štítky _s"
 
 #: ../src/MainWindow.cs:2819
 msgid "Create New Version?"
@@ -2753,13 +2757,13 @@ msgid_plural ""
 "Before launching {1}, should F-Spot create new versions of the selected "
 "photos to preserve the originals?"
 msgstr[0] ""
-"Má F-Spot vytvořit novou verzi vybrané fotografie před spuštěním {1} pro "
+"Má F-Spot vytvořit novou verzi zvolené fotografie před spuštěním {1} pro "
 "zachování originálu?"
 msgstr[1] ""
-"Má F-Spot vytvořit novou verzi vybrané fotografie před spuštěním {1} pro "
+"Má F-Spot vytvořit novou verzi zvolené fotografie před spuštěním {1} pro "
 "zachování originálů?"
 msgstr[2] ""
-"Má F-Spot vytvořit novou verzi vybrané fotografie před spuštěním {1} pro "
+"Má F-Spot vytvořit novou verzi zvolené fotografie před spuštěním {1} pro "
 "zachování originálů?"
 
 #: ../src/MainWindow.cs:2843
@@ -3148,7 +3152,7 @@ msgstr "Vytvořit nový štítek..."
 
 #: ../src/TagPopup.cs:42
 msgid "Edit Selected Tag..."
-msgstr "Upravit vybraný štítek..."
+msgstr "Upravit zvolený štítek..."
 
 #: ../src/TagPopup.cs:46
 msgid "Delete Tag"
@@ -3424,179 +3428,159 @@ msgstr "Znovu"
 
 #: ../src/UI.Dialog/ui/AdjustTimeDialog.ui.h:1
 msgid "0000:00:00 00:00:00"
-msgstr ""
+msgstr "0000:00:00 00:00:00"
 
 #: ../src/UI.Dialog/ui/AdjustTimeDialog.ui.h:2
 msgid "00:00:00"
-msgstr ""
+msgstr "00:00:00"
 
 #: ../src/UI.Dialog/ui/AdjustTimeDialog.ui.h:3
 msgid "5"
-msgstr ""
+msgstr "5"
 
 #: ../src/UI.Dialog/ui/AdjustTimeDialog.ui.h:4
-#, fuzzy
 msgid "<b>Action</b>"
-msgstr "<b>Účet</b>"
+msgstr "<b>Akce</b>"
 
 #: ../src/UI.Dialog/ui/AdjustTimeDialog.ui.h:6
-#, fuzzy
 msgid "<b>Reference Photo</b>"
-msgstr "<b>Fotografie</b>"
+msgstr "<b>Referenční fotografie</b>"
 
 #: ../src/UI.Dialog/ui/AdjustTimeDialog.ui.h:7
-#, fuzzy
 msgid "Adjust Time"
-msgstr "Přizpůsobit"
+msgstr "Přizpůsobit čas"
 
 #: ../src/UI.Dialog/ui/AdjustTimeDialog.ui.h:8
 msgid "Adjusted date: "
-msgstr ""
+msgstr "Přizpůsobený čas:"
 
 #: ../src/UI.Dialog/ui/AdjustTimeDialog.ui.h:9
-#, fuzzy
 msgid "Current date:"
-msgstr "Více dat"
+msgstr "Dnešní datum:"
 
 #: ../src/UI.Dialog/ui/AdjustTimeDialog.ui.h:11
-#, fuzzy
 msgid "Space all photos by"
-msgstr "Posunout všechny fotografie o {0}"
+msgstr "Rozčlenit všechny fotografie "
 
 #: ../src/UI.Dialog/ui/AdjustTimeDialog.ui.h:12
-#, fuzzy
 msgid "difference:"
-msgstr "Nastavení"
+msgstr "rozdíl:"
 
 #: ../src/UI.Dialog/ui/AdjustTimeDialog.ui.h:13
-#, fuzzy
 msgid "min. Starting at {0}"
-msgstr "Rotuji fotografii \"{0}\""
+msgstr "min. Začít na {0}"
 
 #: ../src/UI.Dialog/ui/DateRangeDialog.ui.h:1
-#, fuzzy
 msgid "<b>End Date</b>"
-msgstr "<b>Nejnižší hodnocení</b>"
+msgstr "<b>Koncové datumí</b>"
 
 #: ../src/UI.Dialog/ui/DateRangeDialog.ui.h:2
-#, fuzzy
 msgid "<b>Select period</b>"
-msgstr "<b>Styl</b>"
+msgstr "<b>Vybrat rozmezí</b>"
 
 #: ../src/UI.Dialog/ui/DateRangeDialog.ui.h:3
-#, fuzzy
 msgid "<b>Start Date</b>"
-msgstr "<b>Styl</b>"
+msgstr "<b>Počáteční datum</b>"
 
 #: ../src/UI.Dialog/ui/DateRangeDialog.ui.h:4
 msgid "Cancel, do not change the current timeline. "
-msgstr ""
+msgstr "Zrušit, neměnit současnou časovou osu."
 
 #: ../src/UI.Dialog/ui/DateRangeDialog.ui.h:5
 msgid "Only photos taken within these dates will be displayed."
-msgstr ""
+msgstr "Budou zobrazeny pouze fotografie pořízeny v těchto dnech."
 
 #: ../src/UI.Dialog/ui/DateRangeDialog.ui.h:6
-#, fuzzy
 msgid "Set date range"
-msgstr "_Vymazat rozsah data"
+msgstr "Nastavit rozsah data"
 
 #: ../src/UI.Dialog/ui/EditTagDialog.ui.h:1
 msgid "<small></small>"
-msgstr ""
+msgstr "<small></small>"
 
 #: ../src/UI.Dialog/ui/EditTagDialog.ui.h:2
-#, fuzzy
 msgid "Edit Tag"
-msgstr "Upravit obrázek"
+msgstr "Upravit štítek"
 
 #: ../src/UI.Dialog/ui/EditTagDialog.ui.h:3
-#, fuzzy
 msgid "Edit icon"
-msgstr "Úpravy"
+msgstr "Upravit ikonu"
 
 #: ../src/UI.Dialog/ui/EditTagDialog.ui.h:5
-#, fuzzy
 msgid "_Icon:"
-msgstr "Úče_t:"
+msgstr "_Ikona:"
 
 #: ../src/UI.Dialog/ui/EditTagIconDialog.ui.h:1
-#, fuzzy
 msgid "<b>From External Photo</b>"
-msgstr "<b>Fotografie</b>"
+msgstr "<b>Z externí fotografie</b>"
 
 #: ../src/UI.Dialog/ui/EditTagIconDialog.ui.h:2
-#, fuzzy
 msgid "<b>From Photo</b>"
-msgstr "<b>Fotografie</b>"
+msgstr "<b>Z fotografie</b>"
 
 #: ../src/UI.Dialog/ui/EditTagIconDialog.ui.h:3
-#, fuzzy
 msgid "<b>Predefined icons</b>"
-msgstr "<b>Cíl</b>"
+msgstr "<b>Předdefinované ikony</b>"
 
 #: ../src/UI.Dialog/ui/EditTagIconDialog.ui.h:4
-#, fuzzy
 msgid "<b>Preview</b>"
-msgstr "<b>Velikost</b>"
+msgstr "<b>Náhled</b>"
 
 #: ../src/UI.Dialog/ui/EditTagIconDialog.ui.h:5
 msgid "Design icon from"
-msgstr ""
+msgstr "Vytvořit ikonu z"
 
 #: ../src/UI.Dialog/ui/EditTagIconDialog.ui.h:6
-#, fuzzy
 msgid "Edit Tag Icon"
-msgstr "Upravit obrázek"
+msgstr "Upravit ikonu štítku"
 
 #: ../src/UI.Dialog/ui/EditTagIconDialog.ui.h:7
 msgid "No _image"
-msgstr ""
+msgstr "Žá_dný obrázek"
 
 #: ../src/UI.Dialog/ui/EditTagIconDialog.ui.h:8
-#, fuzzy
 msgid "Photo 0 of 0"
-msgstr "Fotografie {0} z {1}"
+msgstr "Fotografie 0 z 0"
 
 #: ../src/UI.Dialog/ui/PreferenceDialog.ui.h:1
 msgid "Color profile for display:"
-msgstr ""
+msgstr "Profil barev pro zobrazení:"
 
 #: ../src/UI.Dialog/ui/PreferenceDialog.ui.h:2
 msgid "Color profile for printing:"
-msgstr ""
+msgstr "Profil barev pro tisk:"
 
 #: ../src/UI.Dialog/ui/PreferenceDialog.ui.h:3
-#, fuzzy
 msgid "F-Spot Preferences"
-msgstr "Nastavení"
+msgstr "Nastavení F-Spot"
 
 #: ../src/UI.Dialog/ui/PreferenceDialog.ui.h:4
 msgid "F-Spot appearance:"
-msgstr ""
+msgstr "Vzhled F-Spot:"
 
 #: ../src/UI.Dialog/ui/PreferenceDialog.ui.h:5
 msgid ""
 "Inside the image files when possible\n"
 "<small>Makes them accessible to other image-editing programs.</small>"
 msgstr ""
+"V souboru s obrázkem, pokud je to možné\n"
+"<small>Budou zpřístupněny dalším programům pro úpravu obrázků.</small>"
 
 #: ../src/UI.Dialog/ui/PreferenceDialog.ui.h:7
-#, fuzzy
 msgid "Select A Folder"
 msgstr "Vybrat složku"
 
 #: ../src/UI.Dialog/ui/PreferenceDialog.ui.h:8
 msgid "Separately from the image files"
-msgstr ""
+msgstr "Odděleně od souborů s obrázky"
 
 #: ../src/UI.Dialog/ui/PreferenceDialog.ui.h:9
 msgid "Store tags and descriptions for photos:"
-msgstr ""
+msgstr "Uchovat štítky a popisky k fotografiím:"
 
 #: ../src/UI.Dialog/ui/PreferenceDialog.ui.h:10
 msgid "When importing photos, copy them to:"
-msgstr ""
+msgstr "Při importu fotografií kopírovat do:"
 
 #: ../src/UI.Dialog/ui/RatingFilterDialog.ui.h:1
 msgid "<b>Max Rating</b>"
@@ -3612,263 +3596,216 @@ msgstr "Nastavit filtr hodnocení"
 
 #: ../src/ui/main_window.ui.h:1
 msgid "Adjust _Time..."
-msgstr ""
+msgstr "Přizpůsobi_t čas..."
 
 #: ../src/ui/main_window.ui.h:2
 msgid "Arrange _by"
-msgstr ""
+msgstr "Uspořádat po_dle"
 
 #: ../src/ui/main_window.ui.h:4
-#, fuzzy
 msgid "By _Date"
-msgstr "Datum"
+msgstr "Podle _data"
 
 #: ../src/ui/main_window.ui.h:5
-#, fuzzy
 msgid "By _Import Roll"
-msgstr "Importované filmy"
+msgstr "Podle _importovaného filmu"
 
 #: ../src/ui/main_window.ui.h:6
-#, fuzzy
 msgid "By _Rating"
-msgstr "Hodnocení"
+msgstr "Podle _hodnocení"
 
 #: ../src/ui/main_window.ui.h:7
-#, fuzzy
 msgid "Copy Locat_ion"
-msgstr "_Kopírovat umístění fotografie"
+msgstr "K_opírovat umístění"
 
 #: ../src/ui/main_window.ui.h:8
-#, fuzzy
 msgid "Create New _Tag..."
-msgstr "Vytvořit nový štítek..."
+msgstr "Vy_tvořit nový štítek..."
 
 #: ../src/ui/main_window.ui.h:9
-#, fuzzy
 msgid "Create _New Version..."
-msgstr "Vytvořit novou verzi"
+msgstr "Vytvořit _novou verzi..."
 
 #: ../src/ui/main_window.ui.h:10
-#, fuzzy
 msgid "F-Spot"
-msgstr "Pohled F-Spot"
+msgstr "F-Spot"
 
 #: ../src/ui/main_window.ui.h:11
-#, fuzzy
 msgid "Fin_d"
-msgstr "Najít"
+msgstr "_Najít"
 
 # TODO: možná rozšíření (?)
 #: ../src/ui/main_window.ui.h:12
-#, fuzzy
 msgid "Manage _Extensions"
-msgstr "Přípona"
+msgstr "Spravovat rozšíř_ení"
 
 #: ../src/ui/main_window.ui.h:13
-#, fuzzy
 msgid "Page Set_up..."
-msgstr "Nastavení stránky"
+msgstr "Na_stavení stránky..."
 
 #: ../src/ui/main_window.ui.h:14
 msgid "Re_fresh Thumbnail"
-msgstr ""
+msgstr "Obnovit ná_hledy"
 
 #: ../src/ui/main_window.ui.h:19
-#, fuzzy
 msgid "Select _None"
-msgstr "Vybrat složku"
+msgstr "Zrušit _výběr"
 
 #: ../src/ui/main_window.ui.h:20
 msgid "Send by _Mail..."
-msgstr ""
+msgstr "Poslat elektronickou _poštou..."
 
 #: ../src/ui/main_window.ui.h:22
-#, fuzzy
 msgid "Side_bar"
-msgstr "Boční _panel"
+msgstr "_Boční panel"
 
 #: ../src/ui/main_window.ui.h:23
-#, fuzzy
 msgid "T_ags"
-msgstr "Štítky"
+msgstr "Š_títky"
 
 #: ../src/ui/main_window.ui.h:25
-#, fuzzy
 msgid "Thumbnail _elements"
-msgstr "Náhled obrázku"
+msgstr "Prvky náhl_edů"
 
 #: ../src/ui/main_window.ui.h:26
-#, fuzzy
 msgid "Too_lbar"
-msgstr "Lišta nás_trojů"
+msgstr "_Lišta nástrojů"
 
 #: ../src/ui/main_window.ui.h:27
-#, fuzzy
 msgid "View"
-msgstr "_Zobrazení"
+msgstr "Zobrazení"
 
 #: ../src/ui/main_window.ui.h:33
-#, fuzzy
 msgid "_Attach Tag to Selection"
-msgstr "Připojit štítek k výběru"
+msgstr "_Připojit štítek k výběru"
 
 #: ../src/ui/main_window.ui.h:35
-#, fuzzy
 msgid "_Clear Rating Filter"
-msgstr "Nastavit filtr hodnocení"
+msgstr "Vyčistit _filtr hodnocení"
 
 #: ../src/ui/main_window.ui.h:36
 msgid "_Clear Roll Filter"
-msgstr ""
-
-#: ../src/ui/main_window.ui.h:37
-msgid "_Close"
-msgstr ""
+msgstr "Vyčistit _filtr filmů"
 
 #: ../src/ui/main_window.ui.h:38
-#, fuzzy
 msgid "_Components"
-msgstr "Poznámka:"
+msgstr "_Komponenty"
 
 #: ../src/ui/main_window.ui.h:39
 msgid "_Contents"
-msgstr ""
+msgstr "O_bsah"
 
 #: ../src/ui/main_window.ui.h:40
-#, fuzzy
 msgid "_Dates"
-msgstr "Datum"
+msgstr "_Data"
 
 #: ../src/ui/main_window.ui.h:42
-#, fuzzy
 msgid "_Delete Selected Tag"
-msgstr "Sloučit vybraný štítek"
+msgstr "O_dstranit zvolený štítek"
 
 #: ../src/ui/main_window.ui.h:43
-#, fuzzy
 msgid "_Delete Version"
-msgstr "Přejmenovat verzi"
+msgstr "O_dstranit verzi"
 
 #: ../src/ui/main_window.ui.h:45
-#, fuzzy
 msgid "_Edit Selected Tag..."
-msgstr "Upravit vybraný štítek..."
+msgstr "Upravit zvolený štít_ek..."
 
 #: ../src/ui/main_window.ui.h:46
-#, fuzzy
 msgid "_Export to"
-msgstr "Exportovat do"
+msgstr "_Exportovat do"
 
 #: ../src/ui/main_window.ui.h:47
 msgid "_Filmstrip"
-msgstr ""
+msgstr "_Filmový pás"
 
 #: ../src/ui/main_window.ui.h:50
-#, fuzzy
 msgid "_Hidden"
-msgstr "Skryté"
+msgstr "_Skryté"
 
 #: ../src/ui/main_window.ui.h:51
-#, fuzzy
 msgid "_Import..."
-msgstr "Import"
+msgstr "_Importovat"
 
 #: ../src/ui/main_window.ui.h:52
-#, fuzzy
 msgid "_Large"
-msgstr "Velký"
+msgstr "Ve_lký"
 
 #: ../src/ui/main_window.ui.h:53
-#, fuzzy
 msgid "_Last Import Roll"
-msgstr "Importované filmy"
+msgstr "Pos_lední importovaný film"
 
 #: ../src/ui/main_window.ui.h:54
 msgid "_Loupe"
-msgstr ""
+msgstr "_Lupa"
 
 #: ../src/ui/main_window.ui.h:55
-#, fuzzy
 msgid "_Medium"
-msgstr "Střední"
+msgstr "Střed_ní"
 
 #: ../src/ui/main_window.ui.h:57
-#, fuzzy
 msgid "_Quit"
-msgstr "Ú_pravy"
+msgstr "U_končit"
 
 #: ../src/ui/main_window.ui.h:58
-#, fuzzy
 msgid "_Ratings"
-msgstr "Hodnocení"
+msgstr "_Hodnocení"
 
 #: ../src/ui/main_window.ui.h:60
-#, fuzzy
 msgid "_Remove Tag From Selection"
-msgstr "Odstranit štítek z výběru"
+msgstr "Odst_ranit štítek z výběru"
 
 #: ../src/ui/main_window.ui.h:61
-#, fuzzy
 msgid "_Rename Version"
-msgstr "Přejmenovat verzi"
+msgstr "Přejmenovat ve_rzi"
 
 #: ../src/ui/main_window.ui.h:62
 msgid "_Reverse Order"
-msgstr ""
+msgstr "_Otočit třídění"
 
 #: ../src/ui/main_window.ui.h:63
-#, fuzzy
 msgid "_Select Import Rolls..."
-msgstr "Samostatný film"
+msgstr "Vybrat _importovaný film"
 
 #: ../src/ui/main_window.ui.h:64
-#, fuzzy
 msgid "_Set Date Range..."
-msgstr "_Vymazat rozsah data"
+msgstr "Na_stavit rozsah data..."
 
 #: ../src/ui/main_window.ui.h:65
-#, fuzzy
 msgid "_Set Rating filter..."
-msgstr "Nastavit filtr hodnocení"
+msgstr "Na_stavit filtr hodnocení..."
 
 #: ../src/ui/main_window.ui.h:66
-#, fuzzy
 msgid "_Sharpen..."
-msgstr "Zaostřit"
+msgstr "Doo_střit"
 
 #: ../src/ui/main_window.ui.h:68
-#, fuzzy
 msgid "_Small"
-msgstr "Malý"
+msgstr "M_alý"
 
 #: ../src/ui/main_window.ui.h:69
 msgid "_Tag Icons"
-msgstr ""
+msgstr "Ikony š_títků"
 
 #: ../src/ui/main_window.ui.h:70
-#, fuzzy
 msgid "_Tags"
-msgstr "Štítky"
+msgstr "Š_títky"
 
 #: ../src/ui/main_window.ui.h:71
-#, fuzzy
 msgid "_Timeline"
-msgstr "_Titulek:"
+msgstr "Časová _osa"
 
 #: ../src/ui/main_window.ui.h:72
-#, fuzzy
 msgid "_Tools"
-msgstr "Nástroje"
+msgstr "Nás_troje"
 
 #: ../src/ui/main_window.ui.h:73
-#, fuzzy
 msgid "_Untagged Photos"
-msgstr "Fotografie bez štítků"
+msgstr "Fotografie _bez štítků"
 
 #: ../src/ui/main_window.ui.h:74
-#, fuzzy
 msgid "_Version"
-msgstr "Verze"
+msgstr "_Verze"
 
 #: ../src/Updater.cs:616
 msgid "Updating F-Spot Database"
@@ -4170,72 +4107,3 @@ msgstr "Promítat snímky z F-Spotu"
 #: ../tools/f-spot-screensaver.desktop.in.h:2
 msgid "F-Spot photos"
 msgstr "Fotografie F-Spotu"
-
-#~ msgid "<b>F-Spot tags</b>"
-#~ msgstr "<b>Štítky F-Spot</b>"
-
-#~ msgid "<b>Tabblo account</b>"
-#~ msgstr "<b>Účet Tabblo</b>"
-
-#~ msgid ""
-#~ "<small><i>F-Spot tags can help you track the export status of photos. "
-#~ "Example: Use one tag for the photos that you plan to export, and another "
-#~ "one for those already exported. Here, you can tell F-Spot to "
-#~ "automatically replace these tags as appropriate.</i></small>"
-#~ msgstr ""
-#~ "<small><i>Štítky F-Spot vám mohou pomoci kontrolovat stav exportu "
-#~ "fotografií. Příklad: Použijte jeden štítek pro fotografie, které "
-#~ "plánujete exportovat, a jiný pro ty, které jste již exportovali. Zde "
-#~ "můžete aplikaci F-Spot sdělit, aby tyto štítky automaticky změnila, kdy "
-#~ "je zapotřebí.</i></small>"
-
-#~ msgid "Rem_ove from exported photos:"
-#~ msgstr "Vyjm_out z exportovaných fotografií:"
-
-#~ msgid "Select..."
-#~ msgstr "Vybrat..."
-
-#~ msgid "_Attach to exported photos:"
-#~ msgstr "Připojit k exportov_aným fotografiím:"
-
-#~ msgid "<b>{0}</b>."
-#~ msgstr "<b>{0}</b>."
-
-#~ msgid "A trust error occured while attempting to access"
-#~ msgstr "Při pokusu o přístup se objevil problém s důvěryhodností"
-
-#~ msgid "Abort this session"
-#~ msgstr "Přerušit tuto relaci"
-
-#~ msgid "Always trust this site's certificate"
-#~ msgstr "Vždy důvěřovat certifikátu serveru"
-
-#~ msgid "Do you wish to:"
-#~ msgstr "Přejete si:"
-
-#~ msgid "Trust Error"
-#~ msgstr "Problém s důvěryhodností"
-
-#~ msgid "Trust the site's certificate this once"
-#~ msgstr "Důvěřovat certifikátu serveru pouze pro tuto relaci"
-
-#~ msgid "Dissolve"
-#~ msgstr "Rozpustit"
-
-#~ msgid "Flip"
-#~ msgstr "Otočit"
-
-#~ msgid "Cover"
-#~ msgstr "Zakrýt"
-
-#~ msgid "Reveal"
-#~ msgstr "Odhalit"
-
-#~ msgid "Wipe"
-#~ msgstr "Vyčistit"
-
-#~ msgid "Split"
-#~ msgstr "Rozdělit"
-
-#~ msgid "Push"
-#~ msgstr "Posunout"
