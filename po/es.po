@@ -13,13 +13,13 @@ msgstr ""
 "Project-Id-Version: f-spot.HEAD\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=f-"
 "spot&component=General\n"
-"POT-Creation-Date: 2009-08-24 15:14+0000\n"
-"PO-Revision-Date: 2009-08-30 11:30+0200\n"
+"POT-Creation-Date: 2009-08-31 09:17+0000\n"
+"PO-Revision-Date: 2009-09-06 13:47+0200\n"
 "Last-Translator: Jorge González <jorgegonz@svn.gnome.org>\n"
 "Language-Team: Español <gnome-es-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
+"Content-Transfer-Encoding: UTF-8\n"
 "X-Generator: KBabel 1.11.4\n"
 "Plural-Forms:  nplurals=2; plural=(n != 1);\n"
 
@@ -50,7 +50,7 @@ msgid "{0} of {1}"
 msgstr "{0} de {1}"
 
 #: ../extensions/Exporters/CDExport/CDExport.cs:233
-#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:387
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:379
 #: ../extensions/Exporters/FlickrExport/FlickrExport.cs:379
 #: ../extensions/Exporters/FolderExport/FolderExport.cs:285
 #: ../extensions/Exporters/GalleryExport/GalleryExport.cs:806
@@ -168,19 +168,19 @@ msgstr ""
 msgid "Uploading Pictures"
 msgstr "Cargando fotografías"
 
-#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:326
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:318
 msgid "Album must have a name"
 msgstr "El álbum debe tener un nombre"
 
-#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:327
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:319
 msgid "Please name your album or choose an existing album."
 msgstr "Dé un nombre a su álbum o elija un álbum existente."
 
-#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:341
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:333
 msgid "Creating a new album failed"
 msgstr "Falló la creación del álbum nuevo"
 
-#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:342
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:334
 #, csharp-format
 msgid ""
 "An error occurred creating a new album.\n"
@@ -191,19 +191,19 @@ msgstr ""
 "\n"
 "{0}"
 
-#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:364
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:356
 #: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:660
 #: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:565
 #, csharp-format
 msgid "Uploading picture \"{0}\" ({1} of {2})"
 msgstr "Subiendo imagen «{0}» ({1} de {2})"
 
-#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:378
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:370
 #, csharp-format
 msgid "Error Uploading To Facebook: {0}"
 msgstr "Error al subir a Facebook: {0}"
 
-#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:379
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:371
 #: ../extensions/Exporters/FlickrExport/FlickrExport.cs:370
 #: ../extensions/Exporters/FolderExport/FolderExport.cs:250
 #: ../extensions/Exporters/GalleryExport/GalleryExport.cs:797
@@ -214,7 +214,7 @@ msgstr "Error al subir a Facebook: {0}"
 msgid "Error"
 msgstr "Error"
 
-#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:389
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:381
 #: ../extensions/Exporters/FlickrExport/FlickrExport.cs:381
 #: ../extensions/Exporters/GalleryExport/GalleryExport.cs:808
 #: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:706
@@ -222,11 +222,11 @@ msgstr "Error"
 msgid "Upload Complete"
 msgstr "Carga completada"
 
-#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:186
+#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:211
 msgid "Waiting for authentication"
 msgstr "Esperando la autenticación"
 
-#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:187
+#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:212
 msgid ""
 "F-Spot will now launch your browser so that you can log into Facebook.\n"
 "\n"
@@ -241,15 +241,15 @@ msgstr ""
 "«Aceptar» debajo. F-Spot cacheará su sesión en el Depósito de claves, si es "
 "posible, y la reusará en un futuro para exportar a Facebook."
 
-#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:192
+#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:217
 msgid "Authenticating..."
 msgstr "Autenticando…"
 
-#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:202
+#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:227
 msgid "Error logging into Facebook"
 msgstr "Error al iniciar sesión en Facebook"
 
-#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:203
+#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:228
 msgid ""
 "There was a problem logging into Facebook.  Check your credentials and try "
 "again."
@@ -257,37 +257,37 @@ msgstr ""
 "Hubo un problema al iniciar sesión en Facebook. Compruebe sus credenciales e "
 "inténtelo de nuevo."
 
-#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:212
+#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:237
 msgid "Authorizing Session"
 msgstr "Autorizando sesión"
 
-#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:221
+#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:246
 msgid "Session established, fetching user info..."
 msgstr "Sesión establecida, obteniendo información del usuario..."
 
-#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:227
+#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:252
 msgid "Session established, fetching friend list..."
 msgstr "Sesión establecida, obteniendo lista de amigos..."
 
-#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:237
+#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:262
 msgid "Session established, fetching friend details..."
 msgstr "Sesión establecida, obteniendo detalles de amigos..."
 
-#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:247
+#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:272
 msgid "Session established, fetching photo albums..."
 msgstr "Sesión establecida, obteniendo álbumes de fotos..."
 
 #. Note for translators: {0} and {1} are respectively firstname and surname of the user
-#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:260
+#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:285
 #, csharp-format
 msgid "{0} {1} is logged into Facebook"
 msgstr "{0} {1} ha iniciado sesión en Facebook"
 
-#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:266
+#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:291
 msgid "Facebook Connection Error"
 msgstr "Error de conexión con Facebook"
 
-#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:267
+#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:292
 #, csharp-format
 msgid ""
 "There was an error when downloading your information from Facebook.\n"
@@ -298,7 +298,7 @@ msgstr ""
 "\n"
 "Facebook dijo: {0}"
 
-#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:296
+#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:321
 msgid "You are not logged in."
 msgstr "No ha iniciado sesión."
 
@@ -346,17 +346,14 @@ msgid "Name"
 msgstr "Nombre"
 
 #: ../extensions/Exporters/FacebookExport/FacebookExport.ui.h:11
-#| msgid "You are not logged in."
 msgid "Not logged in"
 msgstr "No ha iniciado sesión"
 
 #: ../extensions/Exporters/FacebookExport/FacebookExport.ui.h:12
-#| msgid "Version:"
 msgid "Permissions:"
 msgstr "Permisos:"
 
 #: ../extensions/Exporters/FacebookExport/FacebookExport.ui.h:13
-#| msgid "(Not Connected)"
 msgid "Stay Connected"
 msgstr "Permanecer conectado"
 
@@ -1069,6 +1066,18 @@ msgstr ""
 "hace de forma predeterminada ya que consume mucho tiempo. Puede iniciar o "
 "parar este proceso de actualización usando este diálogo."
 
+#: ../extensions/Tools/HashJob/HashJob.cs:59
+#, csharp-format
+msgid ""
+"You currently have {0} photos needing md5 calculation, and {1} pending jobs"
+msgstr ""
+"Actualmente tiene {0} fotos que requieren calcular su MD5 y {1} trabajo "
+"pendiente"
+
+#: ../extensions/Tools/HashJob/HashJob.cs:75 ../src/ui/main_window.ui.h:37
+msgid "_Close"
+msgstr "_Cerrar"
+
 #: ../extensions/Tools/HashJob/HashJob.cs:102
 msgid "Processing images..."
 msgstr "Procesando imágenes…"
@@ -1076,6 +1085,10 @@ msgstr "Procesando imágenes…"
 #: ../extensions/Tools/HashJob/HashJob.cs:108
 msgid "Stopped"
 msgstr "Detenido"
+
+#: ../extensions/Tools/HashJob/HashJob.addin.xml.h:1
+msgid "Hash for Duplicates"
+msgstr "Buscar duplicados"
 
 #: ../extensions/Tools/MergeDb/MergeDb.addin.xml.h:1
 msgid "Merge Db"
@@ -1186,12 +1199,10 @@ msgid "All Images"
 msgstr "Todas las imágenes"
 
 #: ../extensions/Tools/ScreensaverConfig/ScreensaverConfigDialog.ui.h:2
-#| msgid "_Display:"
 msgid "Delay:"
 msgstr "Retardo:"
 
 #: ../extensions/Tools/ScreensaverConfig/ScreensaverConfigDialog.ui.h:3
-#| msgid "_Display:"
 msgid "Display:"
 msgstr "Mostrar:"
 
@@ -1200,12 +1211,10 @@ msgid "Images tagged with:"
 msgstr "Imágenes etiquetadas con:"
 
 #: ../extensions/Tools/ScreensaverConfig/ScreensaverConfigDialog.ui.h:5
-#| msgid "Make F-Spot your screensaver"
 msgid "Make F-Spot my screensaver"
 msgstr "Hacer de F-Spot su salvapantallas"
 
 #: ../extensions/Tools/ScreensaverConfig/ScreensaverConfigDialog.ui.h:6
-#| msgid "Planar Configuration"
 msgid "Screensaver Configuration"
 msgstr "Configuración del salvapantallas"
 
@@ -3479,7 +3488,6 @@ msgid "<b>From Photo</b>"
 msgstr "<b>Desde la fotografía</b>"
 
 #: ../src/UI.Dialog/ui/EditTagIconDialog.ui.h:3
-#| msgid "<b>Predefined</b>"
 msgid "<b>Predefined icons</b>"
 msgstr "<b>Iconos predefinidos</b>"
 
@@ -3512,7 +3520,6 @@ msgid "Color profile for printing:"
 msgstr "Perfil de color para imprimir:"
 
 #: ../src/UI.Dialog/ui/PreferenceDialog.ui.h:3
-#| msgid "Preferences"
 msgid "F-Spot Preferences"
 msgstr "Preferencias de F-Spot"
 
@@ -3647,10 +3654,6 @@ msgstr "_Limpiar el filtro de puntuación"
 #: ../src/ui/main_window.ui.h:36
 msgid "_Clear Roll Filter"
 msgstr "_Limpiar el filtro de carrete"
-
-#: ../src/ui/main_window.ui.h:37
-msgid "_Close"
-msgstr "_Cerrar"
 
 #: ../src/ui/main_window.ui.h:38
 msgid "_Components"
