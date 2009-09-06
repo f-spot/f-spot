@@ -348,6 +348,7 @@ BLING_ASSEMBLIES =				\
 	-pkg:gtk-sharp-2.0			\
 	-r:Mono.Cairo				\
 	-r:FSpot.Utils.dll			\
+	$(LINK_GIOSHARP)			\
 	$(LINK_GTKSHARPBEANS)
 
 WIDGETS_ASSEMBLIES =				\
