@@ -536,12 +536,12 @@ namespace FSpot.Database {
 					Uri base_uri = photo_uri.GetDirectoryUri ();
 
 					string md5 = reader["md5_sum"] != null ? reader ["md5_sum"].ToString () : null;
-					
+
 					Execute (new DbCommand (
 						"INSERT INTO photos (id, time, base_uri, filename, description, roll_id, default_version_id, rating, md5_sum) "	+
 						"VALUES (:id, :time, :base_uri, :filename, :description, :roll_id, :default_version_id, :rating, :md5_sum)",
 						"id", Convert.ToUInt32 (reader ["id"]),
-						"time", Convert.ToInt32 (reader ["time"]),
+						"time", reader ["time"],
 						"base_uri", base_uri.ToString (),
 						"filename", filename,
 						"description", reader["description"].ToString (),
