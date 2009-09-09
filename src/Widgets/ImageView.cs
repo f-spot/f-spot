@@ -441,14 +441,12 @@ namespace FSpot.Widgets
 
 				//draw synchronously if InterpType.Nearest or zoom 1:1
 				if (Interpolation == InterpType.Nearest || zoom == 1.0) {
-					PaintRectangle (p_area, Interpolation);
+					PaintRectangle (p_area, InterpType.Nearest);
 					continue;
 				}
 				
-				//delay all other interpolation types
-//				GLib.Idle.Add (...);
-
-				PaintRectangle (p_area, InterpType.Nearest);
+				//Do this on idle ???
+				PaintRectangle (p_area, Interpolation);
 			}
 			
 			if (can_select)
