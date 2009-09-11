@@ -195,15 +195,12 @@ namespace FSpot.Widgets {
 #region loader		
 		uint timer;
 		IImageLoader loader;
-		bool prepared_is_new;
-
 		void Load (Uri uri)
 		{
 			timer = Log.DebugTimerStart ();
 			if (loader != null)
 				loader.Dispose ();
 
-			prepared_is_new = true;
 			loader = ImageLoader.Create (uri);
 			loader.AreaPrepared += HandlePixbufPrepared;
 			loader.AreaUpdated += HandlePixbufAreaUpdated;
@@ -220,13 +217,13 @@ namespace FSpot.Widgets {
 			if (!ShowProgress)
 				return;
 
-			Gdk.Pixbuf prev = Pixbuf;
-			PixbufOrientation orientation = Accelerometer.GetViewOrientation (loader.PixbufOrientation);
-			ChangeImage (loader.Pixbuf, orientation, prepared_is_new, args.ReducedResolution);
-			prepared_is_new = false;
-
+			Gdk.Pixbuf prev = this.Pixbuf;
+			this.Pixbuf = loader.Pixbuf;
+			PixbufOrientation = Accelerometer.GetViewOrientation (loader.PixbufOrientation);
 			if (prev != null)
 				prev.Dispose ();
+
+			this.ZoomFit (args.ReducedResolution);
 		}
 
 		void HandlePixbufAreaUpdated (object sender, AreaUpdatedEventArgs args)
@@ -251,7 +248,7 @@ namespace FSpot.Widgets {
 
 			Pixbuf prev = this.Pixbuf;
 			if (Pixbuf != loader.Pixbuf)
-				ChangeImage (loader.Pixbuf, Accelerometer.GetViewOrientation (loader.PixbufOrientation), false, false);
+				Pixbuf = loader.Pixbuf;
 
 			if (Pixbuf == null) {
 				// FIXME: Do we have test cases for this ???
@@ -261,14 +258,21 @@ namespace FSpot.Widgets {
 				// than try to load the image one last time.
 				try {
 					Log.Warning ("Falling back to file loader");
-					ChangeImage (PhotoLoader.Load (item.Collection, item.Index), PixbufOrientation.TopLeft, true, false);
+					Pixbuf = PhotoLoader.Load (item.Collection, item.Index);
 				} catch (Exception e) {
 					LoadErrorImage (e);
 				}
 			}
 
+			if (loader.Pixbuf != null) //FIXME: this test in case the photo was loaded with the direct loader
+				PixbufOrientation = Accelerometer.GetViewOrientation (loader.PixbufOrientation);
+			else
+				PixbufOrientation = PixbufOrientation.TopLeft;
+
 			if (Pixbuf == null)
 				LoadErrorImage (null);
+			else
+				ZoomFit ();
 
 			progressive_display = true;
 
@@ -298,15 +302,17 @@ namespace FSpot.Widgets {
 			// like offer the user a chance to locate the moved file and
 			// update the db entry, but for now just set the error pixbuf	
 			Pixbuf old = Pixbuf;
-			Pixbuf err = new Pixbuf (PixbufUtils.ErrorPixbuf, 0, 0,
-									 PixbufUtils.ErrorPixbuf.Width,
-									 PixbufUtils.ErrorPixbuf.Height);
-			ChangeImage (err, PixbufOrientation.TopLeft, true, false);
+			Pixbuf = new Pixbuf (PixbufUtils.ErrorPixbuf, 0, 0, 
+					     PixbufUtils.ErrorPixbuf.Width, 
+					     PixbufUtils.ErrorPixbuf.Height);
 			if (old != null)
 				old.Dispose ();
+
+			PixbufOrientation = PixbufOrientation.TopLeft;
+			ZoomFit (false);
 		}
 
-		void HandlePhotoItemChanged (object sender, BrowsablePointerChangedEventArgs args)
+		void HandlePhotoItemChanged (object sender, BrowsablePointerChangedEventArgs args) 
 		{
 			// If it is just the position that changed fall out
 			if (args != null && 
