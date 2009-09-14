@@ -31,6 +31,8 @@
   <attr path="/api/namespace/object[@cname='GFileInfo']/method[@cname='g_file_info_set_attribute_int32']" name="name">SetAttributeInt</attr>
   <attr path="/api/namespace/object[@cname='GFileInfo']/method[@cname='g_file_info_get_attribute_uint32']" name="name">GetAttributeUInt</attr>
   <attr path="/api/namespace/object[@cname='GFileInfo']/method[@cname='g_file_info_set_attribute_uint32']" name="name">SetAttributeUInt</attr>
+  <attr path="/api/namespace/object[@cname='GFileInfo']/method[@cname='g_file_info_set_modification_time']" name="hidden">1</attr>
+  <attr path="/api/namespace/object[@cname='GFileInfo']/method[@cname='g_file_info_get_modification_time']" name="hidden">1</attr>
   <attr path="/api/namespace/object[@cname='GInputStream']/method[@cname='g_input_stream_read']/parameters/parameter[@name='buffer']" name="type">guchar*</attr>
   <attr path="/api/namespace/object[@cname='GInputStream']/method[@cname='g_input_stream_read']/parameters/parameter[@name='buffer']" name="array">1</attr>
   <attr path="/api/namespace/object[@cname='GInputStream']/method[@cname='g_input_stream_read_all']/parameters/parameter[@name='buffer']" name="type">guchar*</attr>
