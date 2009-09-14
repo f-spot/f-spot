@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: eu\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-08-29 18:49+0200\n"
-"PO-Revision-Date: 2009-08-29 19:02+0200\n"
+"POT-Creation-Date: 2009-09-14 11:16+0200\n"
+"PO-Revision-Date: 2009-09-14 11:17+0200\n"
 "Last-Translator: Iñaki Larrañaga Murgoitio <dooteo@euskalgnu.org>\n"
 "Language-Team: Basque <itzulpena@euskalgnu.org>\n"
 "MIME-Version: 1.0\n"
@@ -140,10 +140,11 @@ msgid ""
 "Once you are directed by Facebook to return to this application, click \"Ok"
 "\" below."
 msgstr ""
-"F-Spot aplikazioak arakatzailea abiaraziko du orain hautatu duzunari baimena eman dezaiozun.\n"
+"F-Spot aplikazioak arakatzailea abiaraziko du orain hautatu duzunari baimena "
+"eman dezaiozun.\n"
 "\n"
-"Behin Facebook-ek aplikazio honetara itzultzeko adierazten dizunean, egin klik "
-"azpiko \"Ados\" botoian."
+"Behin Facebook-ek aplikazio honetara itzultzeko adierazten dizunean, egin "
+"klik azpiko \"Ados\" botoian."
 
 #: ../extensions/Exporters/FacebookExport/FacebookExport.cs:279
 msgid "Too many images to export"
@@ -231,11 +232,13 @@ msgid ""
 "\" below.  F-Spot will cache your session in gnome-keyring, if possible, and "
 "re-use it on future Facebook exports."
 msgstr ""
-"F-Spot aplikazioak arakatzailea abiaraziko du Facebook webgunean saioa has dezazun.\n"
+"F-Spot aplikazioak arakatzailea abiaraziko du Facebook webgunean saioa has "
+"dezazun.\n"
 "\n"
-"Behin Facebook-ek aplikazio honetara itzultzeko adierazten dizunean, egin klik "
-"azpiko \"Ados\" botoian. F-Spot aplikazioak zure saioa 'gnome-keyring'-en gordeko du, "
-"ahal bada, eta etorkizuneko Facebook webguneko esportaziotan berrerabiliko du."
+"Behin Facebook-ek aplikazio honetara itzultzeko adierazten dizunean, egin "
+"klik azpiko \"Ados\" botoian. F-Spot aplikazioak zure saioa 'gnome-keyring'-"
+"en gordeko du, ahal bada, eta etorkizuneko Facebook webguneko esportaziotan "
+"berrerabiliko du."
 
 #: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:217
 msgid "Authenticating..."
@@ -1060,6 +1063,15 @@ msgstr ""
 "lehenetsi gisa egiten, denbora ugari kontsumitzen duelako. Eguneratze-"
 "prozesu hau Hasi edo Pausarazi dezakezu elkarrizketa-koadro hau erabiliz."
 
+#: ../extensions/Tools/HashJob/HashJob.cs:59
+#, csharp-format
+msgid "You currently have {0} photos needing md5 calculation, and {1} pending jobs"
+msgstr "MD5 kalkuluak behar dituzten {0} argazki dituzu, eta {1} lan falta dira"
+
+#: ../extensions/Tools/HashJob/HashJob.cs:75 ../src/ui/main_window.ui.h:37
+msgid "_Close"
+msgstr "It_xi"
+
 #: ../extensions/Tools/HashJob/HashJob.cs:102
 msgid "Processing images..."
 msgstr "Irudiak prozesatzen..."
@@ -1067,6 +1079,10 @@ msgstr "Irudiak prozesatzen..."
 #: ../extensions/Tools/HashJob/HashJob.cs:108
 msgid "Stopped"
 msgstr "Geldituta"
+
+#: ../extensions/Tools/HashJob/HashJob.addin.xml.h:1
+msgid "Hash for Duplicates"
+msgstr "Hash-a bikoiztuentzako"
 
 #: ../extensions/Tools/MergeDb/MergeDb.addin.xml.h:1
 msgid "Merge Db"
@@ -2415,11 +2431,11 @@ msgstr "Kargatzen: {0} / {1}"
 msgid "Done Loading"
 msgstr "Kargatzea burutu da"
 
-#: ../src/ImportCommand.cs:683
+#: ../src/ImportCommand.cs:684
 msgid "Directory does not exist."
 msgstr "Direktorioa ez da existitzen."
 
-#: ../src/ImportCommand.cs:684
+#: ../src/ImportCommand.cs:685
 #, csharp-format
 msgid ""
 "The directory you selected \"{0}\" does not exist.  Please choose a "
@@ -2427,7 +2443,7 @@ msgid ""
 msgstr "Hautatutako \"{0} direktorioa ez da existitzen. Aukeratu beste direktorio bat"
 
 #. Note for translators: 'Import Tags' is no command, it means 'Tags used in Import'
-#: ../src/ImportCommand.cs:738 ../src/ImportCommand.cs:740
+#: ../src/ImportCommand.cs:739 ../src/ImportCommand.cs:741
 #: ../src/XmpTagsImporter.cs:89
 msgid "Import Tags"
 msgstr "Inportatu etiketak"
@@ -3614,10 +3630,6 @@ msgstr "_Garbitu puntuazio-iragazkia"
 #: ../src/ui/main_window.ui.h:36
 msgid "_Clear Roll Filter"
 msgstr "_Garbitu erroiluaren iragazkia"
-
-#: ../src/ui/main_window.ui.h:37
-msgid "_Close"
-msgstr "It_xi"
 
 #: ../src/ui/main_window.ui.h:38
 msgid "_Components"
