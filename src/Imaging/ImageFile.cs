@@ -6,6 +6,9 @@ using FSpot.Utils;
 using Mono.Unix;
 using Gdk;
 
+using GFile = GLib.File;
+using GFileInfo = GLib.FileInfo;
+
 namespace FSpot {
 	public class ImageFormatException : ApplicationException {
 		public ImageFormatException (string msg) : base (msg)
@@ -167,10 +170,10 @@ namespace FSpot {
 			get {
 				// FIXME mono uses the file change time (ctime) incorrectly
 				// as the creation time so we try to work around that slightly
-				Gnome.Vfs.FileInfo info = new Gnome.Vfs.FileInfo (uri.ToString ());
-
-				DateTime create = info.Ctime;
-				DateTime write = info.Mtime;
+				GFile file = GLib.FileFactory.NewForUri (uri);
+				GFileInfo file_info = file.QueryInfo ("time::*", GLib.FileQueryInfoFlags.None, null);
+				DateTime create = file_info.CreationTime;
+				DateTime write = file_info.ModificationTime;
 
 				if (create < write)
 					return create;
