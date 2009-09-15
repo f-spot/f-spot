@@ -20,7 +20,9 @@
 
 static DateTime epoch = new DateTime (1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
 public DateTime ModificationTime {
-	get {
-		return epoch.AddSeconds (GetAttributeULong ("time::modified"));
-	}
+	get { return epoch.AddSeconds (GetAttributeULong ("time::modified")); }
+}
+
+public DateTime CreationTime {
+	get { return epoch.AddSeconds (GetAttributeULong ("time::created")); }
 }
