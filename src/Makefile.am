@@ -508,13 +508,13 @@ FSpot.JobScheduler.dll: $(JOBSCHEDULER_CSFILES) FSpot.Utils.dll
 
 FSpot.Bling.dll.mdb: FSpot.Bling.dll
 
-FSpot.Bling.dll: $(BLING_CSFILES) FSpot.Utils.dll
+FSpot.Bling.dll: $(BLING_CSFILES)
 	@echo -e "\n*** Compiling $@"
 	$(CSC_LIB) -out:$@ $(EXTRAFLAGS) $(BLING_CSFILES) $(BLING_ASSEMBLIES)
 
 FSpot.Widgets.dll.mdb: FSpot.Widgets.dll
 
-FSpot.Widgets.dll: $(WIDGETS_CSFILES) FSpot.Utils.dll FSpot.Core.dll Cms.dll
+FSpot.Widgets.dll: $(WIDGETS_CSFILES) FSpot.Utils.dll FSpot.Core.dll
 	@echo -e "\n*** Compiling $@"
 	$(CSC_LIB) -out:$@ $(EXTRAFLAGS) $(WIDGETS_CSFILES) $(WIDGETS_ASSEMBLIES)
 

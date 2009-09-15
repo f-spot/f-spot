@@ -30,7 +30,7 @@ RESOURCES =				\
 	-resource:$(srcdir)/$(PLUGIN_MANIFEST)	\
 	-resource:$(srcdir)/$(PLUGIN_NAME).glade
 
-SUBDIR =                      \
+SUBDIRS =                      \
 	SmugMugNet
 
 
@@ -40,7 +40,7 @@ mpack: $(PLUGIN_ASSEMBLY)
 	mautil p $(PLUGIN_ASSEMBLY)
 
 $(PLUGIN_ASSEMBLY): $(PLUGIN_SOURCES) $(PLUGIN_MANIFEST)
-	$(MAKE) -C $(SUBDIR)
+	$(MAKE) -C $(SUBDIRS)
 	$(CSC_LIB) -out:$@ $(PLUGIN_SOURCES) $(REFS) $(PKGS) $(ASSEMBLIES) $(RESOURCES)
 
 plugindir = $(pkglibdir)/extensions
