@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: f-spot\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=f-"
 "spot&component=General\n"
-"POT-Creation-Date: 2009-09-14 09:10+0000\n"
+"POT-Creation-Date: 2009-09-15 12:11+0000\n"
 "PO-Revision-Date: 2008-02-29 22:38+0100\n"
 "Last-Translator: Miloš Popović <gpopac@gmail.com>\n"
 "Language-Team: Serbian (sr) <gnom@prevod.org>\n"
@@ -128,7 +128,6 @@ msgid "F_acebook..."
 msgstr "_Fejsbuk..."
 
 #: ../extensions/Exporters/FacebookExport/FacebookExport.cs:99
-#| msgid "Waiting for authentication"
 msgid "Waiting for authorization"
 msgstr "Čekam na prijavu"
 
@@ -143,8 +142,8 @@ msgstr ""
 "F-broj će pokrenuti Internet preglednika kako bi mogli da uključite ovlašćenja "
 "koja ste izabrali.\n"
 "\n"
-"Kada se direktno povežete na Fejsbuk vratite se u program i kliknite "
-"na „U redu“."
+"Kada se direktno povežete na Fejsbuk vratite se u program i kliknite na „U "
+"redu“."
 
 #: ../extensions/Exporters/FacebookExport/FacebookExport.cs:279
 msgid "Too many images to export"
@@ -255,7 +254,6 @@ msgstr ""
 "pokušajte ponovo."
 
 #: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:237
-#| msgid "Authorize"
 msgid "Authorizing Session"
 msgstr "Ovlasti vezu"
 
@@ -344,17 +342,14 @@ msgid "Name"
 msgstr "Naziv"
 
 #: ../extensions/Exporters/FacebookExport/FacebookExport.ui.h:11
-#| msgid "You are not logged in."
 msgid "Not logged in"
 msgstr "Niste prijavljeni"
 
 #: ../extensions/Exporters/FacebookExport/FacebookExport.ui.h:12
-#| msgid "Version:"
 msgid "Permissions:"
 msgstr "Ovlašćenja:"
 
 #: ../extensions/Exporters/FacebookExport/FacebookExport.ui.h:13
-#| msgid "(Not Connected)"
 msgid "Stay Connected"
 msgstr "Ostani na vezi"
 
@@ -1071,7 +1066,8 @@ msgstr ""
 msgid ""
 "You currently have {0} photos needing md5 calculation, and {1} pending jobs"
 msgstr ""
-"Trenutno imate {0} fotografija kojima treba izračunati md5 i {1} zakazanih zadataka"
+"Trenutno imate {0} fotografija kojima treba izračunati md5 i {1} zakazanih "
+"zadataka"
 
 #: ../extensions/Tools/HashJob/HashJob.cs:75 ../src/ui/main_window.ui.h:37
 msgid "_Close"
@@ -1088,6 +1084,129 @@ msgstr "Zaustavljeno"
 #: ../extensions/Tools/HashJob/HashJob.addin.xml.h:1
 msgid "Hash for Duplicates"
 msgstr "Nađi duplikate"
+
+#: ../extensions/Tools/LiveWebGallery/GalleryRequestHandler.cs:107
+#| msgid "(No Gallery)"
+msgid "F-Spot Gallery"
+msgstr "Galerija F-broja"
+
+#: ../extensions/Tools/LiveWebGallery/GalleryRequestHandler.cs:108
+msgid "The web gallery seems to be offline now"
+msgstr "Izgleda je je galerija trenutno van mreže"
+
+#: ../extensions/Tools/LiveWebGallery/GalleryRequestHandler.cs:109
+#| msgid "Show Styles"
+msgid "Show All"
+msgstr "Prikaži sve"
+
+#: ../extensions/Tools/LiveWebGallery/GalleryRequestHandler.cs:119
+#, csharp-format
+#| msgid "{0} Photo"
+#| msgid_plural "{0} Photos"
+msgid "{0} photo"
+msgid_plural "{0} photos"
+msgstr[0] "{0} slika"
+msgstr[1] "{0} slike"
+msgstr[2] "{0} slika"
+
+#: ../extensions/Tools/LiveWebGallery/GalleryRequestHandler.cs:161
+#: ../extensions/Tools/LiveWebGallery/ui/LiveWebGallery.ui.h:8
+#| msgid "Current date:"
+msgid "Current View"
+msgstr "Trenutni pregled"
+
+#: ../extensions/Tools/LiveWebGallery/GalleryRequestHandler.cs:164
+#| msgid "Delete"
+msgid "Selected"
+msgstr "Izabrano"
+
+#: ../extensions/Tools/LiveWebGallery/LiveWebGallery.addin.xml.h:1
+#| msgid "Web _Gallery..."
+msgid "Live Web Gallery"
+msgstr "Veb galerija uživo"
+
+#: ../extensions/Tools/LiveWebGallery/ui/LiveWebGallery.ui.h:1
+msgid ""
+"<small><i>The gallery stays active until you either deactivate it or close\n"
+"F-Spot. Make sure local viewers access it bypassing HTTP proxy.</i></small>"
+msgstr ""
+"<small><i>Galerija je dostupna dok je ne isključite ili zatvorite F-broj.\n"
+"Osigurajte da joj lokalni korisnici pristupaju van proksija.</i></small>"
+
+#: ../extensions/Tools/LiveWebGallery/ui/LiveWebGallery.ui.h:3
+msgid ""
+"<small><i>When the gallery is active, above is the URL you need to open \n"
+"on another computer to access the shared photos.</i></small>"
+msgstr ""
+"<small><i>Kada je galerija dostupna prikazje se adresa koja je potrebna \n"
+"da joj pristupite sa drugog računara.</i></small>"
+
+#: ../extensions/Tools/LiveWebGallery/ui/LiveWebGallery.ui.h:5
+msgid "Activates and deactivates the web gallery"
+msgstr "Uljljučuje i isključuje dostupnost galerije"
+
+#: ../extensions/Tools/LiveWebGallery/ui/LiveWebGallery.ui.h:6
+msgid "Allow viewers to add tags"
+msgstr "Dozvoli korisnicima da dodaju oznake"
+
+#: ../extensions/Tools/LiveWebGallery/ui/LiveWebGallery.ui.h:7
+msgid "Copy URL to clipboard"
+msgstr "Umnoži adresu i ostavu"
+
+#: ../extensions/Tools/LiveWebGallery/ui/LiveWebGallery.ui.h:9
+msgid "F-Spot Live Web Gallery"
+msgstr "Veb galerija F-broja"
+
+#: ../extensions/Tools/LiveWebGallery/ui/LiveWebGallery.ui.h:10
+#| msgid "_Gallery:"
+msgid "Gallery URL:"
+msgstr "Adresa gelerije:"
+
+#: ../extensions/Tools/LiveWebGallery/ui/LiveWebGallery.ui.h:11
+msgid "Limit number of shared photos to"
+msgstr "Ograniči broj dotografija za deljenje na"
+
+#: ../extensions/Tools/LiveWebGallery/ui/LiveWebGallery.ui.h:12
+#| msgid "Caption"
+msgid "Options:"
+msgstr "Opcije:"
+
+#: ../extensions/Tools/LiveWebGallery/ui/LiveWebGallery.ui.h:13
+#| msgid "Photos per page"
+msgid "Photos with a Tag"
+msgstr "Slike koje su označene"
+
+# bug: no plural forms needed
+#: ../extensions/Tools/LiveWebGallery/ui/LiveWebGallery.ui.h:14
+#| msgid "_Delete photo"
+#| msgid_plural "_Delete photos"
+msgid "Selected Photos"
+msgstr "Izabrane fotografije"
+
+#: ../extensions/Tools/LiveWebGallery/ui/LiveWebGallery.ui.h:15
+#| msgid "Sharpen"
+msgid "Share:"
+msgstr "Deljenje:"
+
+#: ../extensions/Tools/LiveWebGallery/ui/LiveWebGallery.ui.h:16
+#| msgid "View"
+msgid "Views:"
+msgstr "Pregleda:"
+
+#: ../extensions/Tools/LiveWebGallery/LiveWebGalleryDialog.cs:89
+#| msgid "None"
+msgid "none"
+msgstr "ništa"
+
+#: ../extensions/Tools/LiveWebGallery/LiveWebGalleryDialog.cs:92
+#, csharp-format
+msgid " Gallery: {0},  Photos: {1},  Last client: {3}"
+msgstr " Galerija: {0},  Slika: {1},  Poslednji klijent: {3}"
+
+#: ../extensions/Tools/LiveWebGallery/LiveWebGalleryDialog.cs:156
+#| msgid "Gallery generated by"
+msgid "Gallery is inactive"
+msgstr "Galerija je nedostupna"
 
 #: ../extensions/Tools/MergeDb/MergeDb.addin.xml.h:1
 msgid "Merge Db"
@@ -1165,7 +1284,6 @@ msgid "Keep the images at their original location"
 msgstr "Zadrži slike tamo gde su sada"
 
 #: ../extensions/Tools/MergeDb/MergeDb.glade.h:13
-#| msgid "Merge another f-spot collection"
 msgid "Merge another F-Spot collection"
 msgstr "Spoji još jednu kolekciju F-broja"
 
@@ -1197,12 +1315,10 @@ msgid "All Images"
 msgstr "Sve slike"
 
 #: ../extensions/Tools/ScreensaverConfig/ScreensaverConfigDialog.ui.h:2
-#| msgid "_Display:"
 msgid "Delay:"
 msgstr "Trajanje:"
 
 #: ../extensions/Tools/ScreensaverConfig/ScreensaverConfigDialog.ui.h:3
-#| msgid "_Display:"
 msgid "Display:"
 msgstr "Prikaži:"
 
@@ -1211,12 +1327,10 @@ msgid "Images tagged with:"
 msgstr "Slike označene sa:"
 
 #: ../extensions/Tools/ScreensaverConfig/ScreensaverConfigDialog.ui.h:5
-#| msgid "Make F-Spot your screensaver"
 msgid "Make F-Spot my screensaver"
 msgstr "Postavi F-broj za čuvara ekrana"
 
 #: ../extensions/Tools/ScreensaverConfig/ScreensaverConfigDialog.ui.h:6
-#| msgid "Planar Configuration"
 msgid "Screensaver Configuration"
 msgstr "Podešavanje čuvara ekrana"
 
@@ -1789,7 +1903,7 @@ msgstr "_Ukloni sa diska"
 
 #: ../src/FSpot.addin.xml.h:10 ../src/ui/main_window.ui.h:59
 msgid "_Remove From Catalog"
-msgstr "Uklo_ni iz kataloga"
+msgstr "Ukloni iz k_ataloga"
 
 #: ../src/f-spot.glade.h:1
 msgid " "
@@ -3005,7 +3119,7 @@ msgstr "Sakrij liniju za _pretragu"
 
 #: ../src/QueryWidget.cs:161
 msgid "Show _Find Bar"
-msgstr "Prikaži liniju za _pretragu"
+msgstr "_Prikaži liniju za pretragu"
 
 #: ../src/RotateCommand.cs:96 ../src/RotateCommand.cs:111
 msgid "Unable to rotate this type of photo"
@@ -3273,7 +3387,6 @@ msgstr "Ažuriram umanjene prikaze"
 
 #: ../src/ThumbnailCommand.cs:28
 #, csharp-format
-#| msgid "Uploading picture \"{0}\""
 msgid "Updating picture \"{0}\""
 msgstr "Ažuriram sliku „{0}“"
 
@@ -3282,7 +3395,6 @@ msgid "Photo management for GNOME"
 msgstr "Uređivanje foto-albuma u Gnomu"
 
 #: ../src/UI.Dialog/AboutDialog.cs:72
-#| msgid "Copyright © 2003-2008 Novell Inc."
 msgid "Copyright © 2003-2009 Novell Inc."
 msgstr "Autorsko pravo © 2003-2009 Novell Inc."
 
@@ -3394,12 +3506,10 @@ msgstr "Izbečena je nerešiva greška: "
 
 #: ../src/UI.Dialog/PreferenceDialog.cs:53
 #: ../src/UI.Dialog/PreferenceDialog.cs:71
-#| msgid "(None)"
 msgid "None"
 msgstr "Ništa"
 
 #: ../src/UI.Dialog/PreferenceDialog.cs:55
-#| msgid "System Theme"
 msgid "System profile"
 msgstr "Sistemski profil"
 
@@ -3525,7 +3635,6 @@ msgid "<b>From Photo</b>"
 msgstr "<b>Iz slike</b>"
 
 #: ../src/UI.Dialog/ui/EditTagIconDialog.ui.h:3
-#| msgid "<b>Predefined</b>"
 msgid "<b>Predefined icons</b>"
 msgstr "<b>Predodređene ikonice</b>"
 
@@ -3558,7 +3667,6 @@ msgid "Color profile for printing:"
 msgstr "Profil boja za štampu:"
 
 #: ../src/UI.Dialog/ui/PreferenceDialog.ui.h:3
-#| msgid "Preferences"
 msgid "F-Spot Preferences"
 msgstr "Postavke F-broja"
 
@@ -3688,11 +3796,11 @@ msgstr "_Dodaj oznaku na izabrane"
 
 #: ../src/ui/main_window.ui.h:35
 msgid "_Clear Rating Filter"
-msgstr "Očisti filter _ocena"
+msgstr "_Očisti filter ocena"
 
 #: ../src/ui/main_window.ui.h:36
 msgid "_Clear Roll Filter"
-msgstr "Očisti filter _uvoženja"
+msgstr "_Očisti filter uvoženja"
 
 #: ../src/ui/main_window.ui.h:38
 msgid "_Components"
@@ -3728,7 +3836,7 @@ msgstr "_Filmska traka"
 
 #: ../src/ui/main_window.ui.h:50
 msgid "_Hidden"
-msgstr "_Skriveno"
+msgstr "_Sakrij"
 
 #: ../src/ui/main_window.ui.h:51
 msgid "_Import..."
@@ -3736,7 +3844,7 @@ msgstr "Uv_ezi..."
 
 #: ../src/ui/main_window.ui.h:52
 msgid "_Large"
-msgstr "_Velika"
+msgstr "_Velike"
 
 #: ../src/ui/main_window.ui.h:53
 msgid "_Last Import Roll"
@@ -3748,7 +3856,7 @@ msgstr "_Lupa"
 
 #: ../src/ui/main_window.ui.h:55
 msgid "_Medium"
-msgstr "_Srednja"
+msgstr "_Srednje"
 
 #: ../src/ui/main_window.ui.h:57
 msgid "_Quit"
@@ -3756,7 +3864,7 @@ msgstr "_Izađi"
 
 #: ../src/ui/main_window.ui.h:58
 msgid "_Ratings"
-msgstr "_Ocene"
+msgstr "Oc_ene"
 
 #: ../src/ui/main_window.ui.h:60
 msgid "_Remove Tag From Selection"
@@ -3776,11 +3884,11 @@ msgstr "_Izaberi uvoženja..."
 
 #: ../src/ui/main_window.ui.h:64
 msgid "_Set Date Range..."
-msgstr "Postavi opseg _datuma..."
+msgstr "_Postavi opseg datuma..."
 
 #: ../src/ui/main_window.ui.h:65
 msgid "_Set Rating filter..."
-msgstr "Postavi filter _ocena..."
+msgstr "_Postavi filter ocena..."
 
 #: ../src/ui/main_window.ui.h:66
 msgid "_Sharpen..."
@@ -3788,7 +3896,7 @@ msgstr "_Izoštri..."
 
 #: ../src/ui/main_window.ui.h:68
 msgid "_Small"
-msgstr "_Mala"
+msgstr "_Male"
 
 #: ../src/ui/main_window.ui.h:69
 msgid "_Tag Icons"
@@ -3859,7 +3967,6 @@ msgid "Print cut marks"
 msgstr "Štampaj oznake za sečenje"
 
 #: ../src/Widgets/CustomPrintWidget.cs:158
-#| msgid "Photos"
 msgid "Photos layout"
 msgstr "Raspored fotografija"
 
@@ -3885,32 +3992,26 @@ msgid "White borders"
 msgstr "Bele ivice"
 
 #: ../src/Widgets/CustomPrintWidget.cs:176
-#| msgid "Custom Text: "
 msgid "Custom Text"
 msgstr "Proizvoljan tekst"
 
 #: ../src/Widgets/CustomPrintWidget.cs:180
-#| msgid "Photos"
 msgid "Photos infos"
 msgstr "Podaci o slici"
 
 #: ../src/Widgets/CustomPrintWidget.cs:182
-#| msgid "_File name:"
 msgid "Print file name"
 msgstr "Odtampaj ime datoteke"
 
 #: ../src/Widgets/CustomPrintWidget.cs:183
-#| msgid "Previous photo"
 msgid "Print photo date"
 msgstr "Odtampaj datum slikanja"
 
 #: ../src/Widgets/CustomPrintWidget.cs:184
-#| msgid "Previous photo"
 msgid "Print photo time"
 msgstr "Odtampaj vreme slikanja"
 
 #: ../src/Widgets/CustomPrintWidget.cs:185
-#| msgid "Print cut marks"
 msgid "Print photo tags"
 msgstr "Odtampaj oznake slike"
 
@@ -3959,12 +4060,10 @@ msgid "Find:"
 msgstr "Nađi:"
 
 #: ../src/Widgets/FolderTreePage.cs:21
-#| msgid "Folder"
 msgid "Folders"
 msgstr "Fascikle"
 
 #: ../src/Widgets/FolderTreeView.cs:123
-#| msgid "_Virtual Filesystem"
 msgid "Filesystem"
 msgstr "Sistem datoteka"
 
@@ -4003,7 +4102,6 @@ msgstr "(pogrešan format)"
 
 #: ../src/Widgets/InfoBox.cs:552
 #, csharp-format
-#| msgid "(No Edits)"
 msgid "(One Edit)"
 msgid_plural "({0} Edits)"
 msgstr[0] "({0} izmena)"

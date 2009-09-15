@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: f-spot\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=f-"
 "spot&component=General\n"
-"POT-Creation-Date: 2009-09-14 09:10+0000\n"
+"POT-Creation-Date: 2009-09-15 12:11+0000\n"
 "PO-Revision-Date: 2008-02-29 22:38+0100\n"
 "Last-Translator: Милош Поповић <gpopac@gmail.com>\n"
 "Language-Team: Serbian (sr) <gnom@prevod.org>\n"
@@ -128,7 +128,6 @@ msgid "F_acebook..."
 msgstr "_Фејсбук..."
 
 #: ../extensions/Exporters/FacebookExport/FacebookExport.cs:99
-#| msgid "Waiting for authentication"
 msgid "Waiting for authorization"
 msgstr "Чекам на пријаву"
 
@@ -143,8 +142,8 @@ msgstr ""
 "Ф-број ће покренути Интернет прегледника како би могли да укључите овлашћења "
 "која сте изабрали.\n"
 "\n"
-"Када се директно повежете на Фејсбук вратите се у програм и кликните "
-"на „У реду“."
+"Када се директно повежете на Фејсбук вратите се у програм и кликните на „У "
+"реду“."
 
 #: ../extensions/Exporters/FacebookExport/FacebookExport.cs:279
 msgid "Too many images to export"
@@ -255,7 +254,6 @@ msgstr ""
 "покушајте поново."
 
 #: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:237
-#| msgid "Authorize"
 msgid "Authorizing Session"
 msgstr "Овласти везу"
 
@@ -344,17 +342,14 @@ msgid "Name"
 msgstr "Назив"
 
 #: ../extensions/Exporters/FacebookExport/FacebookExport.ui.h:11
-#| msgid "You are not logged in."
 msgid "Not logged in"
 msgstr "Нисте пријављени"
 
 #: ../extensions/Exporters/FacebookExport/FacebookExport.ui.h:12
-#| msgid "Version:"
 msgid "Permissions:"
 msgstr "Овлашћења:"
 
 #: ../extensions/Exporters/FacebookExport/FacebookExport.ui.h:13
-#| msgid "(Not Connected)"
 msgid "Stay Connected"
 msgstr "Остани на вези"
 
@@ -1071,7 +1066,8 @@ msgstr ""
 msgid ""
 "You currently have {0} photos needing md5 calculation, and {1} pending jobs"
 msgstr ""
-"Тренутно имате {0} фотографија којима треба израчунати md5 и {1} заказаних задатака"
+"Тренутно имате {0} фотографија којима треба израчунати md5 и {1} заказаних "
+"задатака"
 
 #: ../extensions/Tools/HashJob/HashJob.cs:75 ../src/ui/main_window.ui.h:37
 msgid "_Close"
@@ -1088,6 +1084,129 @@ msgstr "Заустављено"
 #: ../extensions/Tools/HashJob/HashJob.addin.xml.h:1
 msgid "Hash for Duplicates"
 msgstr "Нађи дупликате"
+
+#: ../extensions/Tools/LiveWebGallery/GalleryRequestHandler.cs:107
+#| msgid "(No Gallery)"
+msgid "F-Spot Gallery"
+msgstr "Галерија Ф-броја"
+
+#: ../extensions/Tools/LiveWebGallery/GalleryRequestHandler.cs:108
+msgid "The web gallery seems to be offline now"
+msgstr "Изгледа је је галерија тренутно ван мреже"
+
+#: ../extensions/Tools/LiveWebGallery/GalleryRequestHandler.cs:109
+#| msgid "Show Styles"
+msgid "Show All"
+msgstr "Прикажи све"
+
+#: ../extensions/Tools/LiveWebGallery/GalleryRequestHandler.cs:119
+#, csharp-format
+#| msgid "{0} Photo"
+#| msgid_plural "{0} Photos"
+msgid "{0} photo"
+msgid_plural "{0} photos"
+msgstr[0] "{0} слика"
+msgstr[1] "{0} слике"
+msgstr[2] "{0} слика"
+
+#: ../extensions/Tools/LiveWebGallery/GalleryRequestHandler.cs:161
+#: ../extensions/Tools/LiveWebGallery/ui/LiveWebGallery.ui.h:8
+#| msgid "Current date:"
+msgid "Current View"
+msgstr "Тренутни преглед"
+
+#: ../extensions/Tools/LiveWebGallery/GalleryRequestHandler.cs:164
+#| msgid "Delete"
+msgid "Selected"
+msgstr "Изабрано"
+
+#: ../extensions/Tools/LiveWebGallery/LiveWebGallery.addin.xml.h:1
+#| msgid "Web _Gallery..."
+msgid "Live Web Gallery"
+msgstr "Веб галерија уживо"
+
+#: ../extensions/Tools/LiveWebGallery/ui/LiveWebGallery.ui.h:1
+msgid ""
+"<small><i>The gallery stays active until you either deactivate it or close\n"
+"F-Spot. Make sure local viewers access it bypassing HTTP proxy.</i></small>"
+msgstr ""
+"<small><i>Галерија је доступна док је не искључите или затворите Ф-број.\n"
+"Осигурајте да јој локални корисници приступају ван проксија.</i></small>"
+
+#: ../extensions/Tools/LiveWebGallery/ui/LiveWebGallery.ui.h:3
+msgid ""
+"<small><i>When the gallery is active, above is the URL you need to open \n"
+"on another computer to access the shared photos.</i></small>"
+msgstr ""
+"<small><i>Када је галерија доступна приказје се адреса која је потребна \n"
+"да јој приступите са другог рачунара.</i></small>"
+
+#: ../extensions/Tools/LiveWebGallery/ui/LiveWebGallery.ui.h:5
+msgid "Activates and deactivates the web gallery"
+msgstr "Уљључује и искључује доступност галерије"
+
+#: ../extensions/Tools/LiveWebGallery/ui/LiveWebGallery.ui.h:6
+msgid "Allow viewers to add tags"
+msgstr "Дозволи корисницима да додају ознаке"
+
+#: ../extensions/Tools/LiveWebGallery/ui/LiveWebGallery.ui.h:7
+msgid "Copy URL to clipboard"
+msgstr "Умножи адресу и оставу"
+
+#: ../extensions/Tools/LiveWebGallery/ui/LiveWebGallery.ui.h:9
+msgid "F-Spot Live Web Gallery"
+msgstr "Веб галерија Ф-броја"
+
+#: ../extensions/Tools/LiveWebGallery/ui/LiveWebGallery.ui.h:10
+#| msgid "_Gallery:"
+msgid "Gallery URL:"
+msgstr "Адреса гелерије:"
+
+#: ../extensions/Tools/LiveWebGallery/ui/LiveWebGallery.ui.h:11
+msgid "Limit number of shared photos to"
+msgstr "Ограничи број дотографија за дељење на"
+
+#: ../extensions/Tools/LiveWebGallery/ui/LiveWebGallery.ui.h:12
+#| msgid "Caption"
+msgid "Options:"
+msgstr "Опције:"
+
+#: ../extensions/Tools/LiveWebGallery/ui/LiveWebGallery.ui.h:13
+#| msgid "Photos per page"
+msgid "Photos with a Tag"
+msgstr "Слике које су означене"
+
+# bug: no plural forms needed
+#: ../extensions/Tools/LiveWebGallery/ui/LiveWebGallery.ui.h:14
+#| msgid "_Delete photo"
+#| msgid_plural "_Delete photos"
+msgid "Selected Photos"
+msgstr "Изабране фотографије"
+
+#: ../extensions/Tools/LiveWebGallery/ui/LiveWebGallery.ui.h:15
+#| msgid "Sharpen"
+msgid "Share:"
+msgstr "Дељење:"
+
+#: ../extensions/Tools/LiveWebGallery/ui/LiveWebGallery.ui.h:16
+#| msgid "View"
+msgid "Views:"
+msgstr "Прегледа:"
+
+#: ../extensions/Tools/LiveWebGallery/LiveWebGalleryDialog.cs:89
+#| msgid "None"
+msgid "none"
+msgstr "ништа"
+
+#: ../extensions/Tools/LiveWebGallery/LiveWebGalleryDialog.cs:92
+#, csharp-format
+msgid " Gallery: {0},  Photos: {1},  Last client: {3}"
+msgstr " Галерија: {0},  Слика: {1},  Последњи клијент: {3}"
+
+#: ../extensions/Tools/LiveWebGallery/LiveWebGalleryDialog.cs:156
+#| msgid "Gallery generated by"
+msgid "Gallery is inactive"
+msgstr "Галерија је недоступна"
 
 #: ../extensions/Tools/MergeDb/MergeDb.addin.xml.h:1
 msgid "Merge Db"
@@ -1165,7 +1284,6 @@ msgid "Keep the images at their original location"
 msgstr "Задржи слике тамо где су сада"
 
 #: ../extensions/Tools/MergeDb/MergeDb.glade.h:13
-#| msgid "Merge another f-spot collection"
 msgid "Merge another F-Spot collection"
 msgstr "Споји још једну колекцију Ф-броја"
 
@@ -1197,12 +1315,10 @@ msgid "All Images"
 msgstr "Све слике"
 
 #: ../extensions/Tools/ScreensaverConfig/ScreensaverConfigDialog.ui.h:2
-#| msgid "_Display:"
 msgid "Delay:"
 msgstr "Трајање:"
 
 #: ../extensions/Tools/ScreensaverConfig/ScreensaverConfigDialog.ui.h:3
-#| msgid "_Display:"
 msgid "Display:"
 msgstr "Прикажи:"
 
@@ -1211,12 +1327,10 @@ msgid "Images tagged with:"
 msgstr "Слике означене са:"
 
 #: ../extensions/Tools/ScreensaverConfig/ScreensaverConfigDialog.ui.h:5
-#| msgid "Make F-Spot your screensaver"
 msgid "Make F-Spot my screensaver"
 msgstr "Постави Ф-број за чувара екрана"
 
 #: ../extensions/Tools/ScreensaverConfig/ScreensaverConfigDialog.ui.h:6
-#| msgid "Planar Configuration"
 msgid "Screensaver Configuration"
 msgstr "Подешавање чувара екрана"
 
@@ -1789,7 +1903,7 @@ msgstr "_Уклони са диска"
 
 #: ../src/FSpot.addin.xml.h:10 ../src/ui/main_window.ui.h:59
 msgid "_Remove From Catalog"
-msgstr "Укло_ни из каталога"
+msgstr "Уклони из к_аталога"
 
 #: ../src/f-spot.glade.h:1
 msgid " "
@@ -3005,7 +3119,7 @@ msgstr "Сакриј линију за _претрагу"
 
 #: ../src/QueryWidget.cs:161
 msgid "Show _Find Bar"
-msgstr "Прикажи линију за _претрагу"
+msgstr "_Прикажи линију за претрагу"
 
 #: ../src/RotateCommand.cs:96 ../src/RotateCommand.cs:111
 msgid "Unable to rotate this type of photo"
@@ -3273,7 +3387,6 @@ msgstr "Ажурирам умањене приказе"
 
 #: ../src/ThumbnailCommand.cs:28
 #, csharp-format
-#| msgid "Uploading picture \"{0}\""
 msgid "Updating picture \"{0}\""
 msgstr "Ажурирам слику „{0}“"
 
@@ -3282,7 +3395,6 @@ msgid "Photo management for GNOME"
 msgstr "Уређивање фото-албума у Гному"
 
 #: ../src/UI.Dialog/AboutDialog.cs:72
-#| msgid "Copyright © 2003-2008 Novell Inc."
 msgid "Copyright © 2003-2009 Novell Inc."
 msgstr "Ауторско право © 2003-2009 Novell Inc."
 
@@ -3394,12 +3506,10 @@ msgstr "Избечена је нерешива грешка: "
 
 #: ../src/UI.Dialog/PreferenceDialog.cs:53
 #: ../src/UI.Dialog/PreferenceDialog.cs:71
-#| msgid "(None)"
 msgid "None"
 msgstr "Ништа"
 
 #: ../src/UI.Dialog/PreferenceDialog.cs:55
-#| msgid "System Theme"
 msgid "System profile"
 msgstr "Системски профил"
 
@@ -3525,7 +3635,6 @@ msgid "<b>From Photo</b>"
 msgstr "<b>Из слике</b>"
 
 #: ../src/UI.Dialog/ui/EditTagIconDialog.ui.h:3
-#| msgid "<b>Predefined</b>"
 msgid "<b>Predefined icons</b>"
 msgstr "<b>Предодређене иконице</b>"
 
@@ -3558,7 +3667,6 @@ msgid "Color profile for printing:"
 msgstr "Профил боја за штампу:"
 
 #: ../src/UI.Dialog/ui/PreferenceDialog.ui.h:3
-#| msgid "Preferences"
 msgid "F-Spot Preferences"
 msgstr "Поставке Ф-броја"
 
@@ -3688,11 +3796,11 @@ msgstr "_Додај ознаку на изабране"
 
 #: ../src/ui/main_window.ui.h:35
 msgid "_Clear Rating Filter"
-msgstr "Очисти филтер _оцена"
+msgstr "_Очисти филтер оцена"
 
 #: ../src/ui/main_window.ui.h:36
 msgid "_Clear Roll Filter"
-msgstr "Очисти филтер _увожења"
+msgstr "_Очисти филтер увожења"
 
 #: ../src/ui/main_window.ui.h:38
 msgid "_Components"
@@ -3728,7 +3836,7 @@ msgstr "_Филмска трака"
 
 #: ../src/ui/main_window.ui.h:50
 msgid "_Hidden"
-msgstr "_Скривено"
+msgstr "_Сакриј"
 
 #: ../src/ui/main_window.ui.h:51
 msgid "_Import..."
@@ -3736,7 +3844,7 @@ msgstr "Ув_ези..."
 
 #: ../src/ui/main_window.ui.h:52
 msgid "_Large"
-msgstr "_Велика"
+msgstr "_Велике"
 
 #: ../src/ui/main_window.ui.h:53
 msgid "_Last Import Roll"
@@ -3748,7 +3856,7 @@ msgstr "_Лупа"
 
 #: ../src/ui/main_window.ui.h:55
 msgid "_Medium"
-msgstr "_Средња"
+msgstr "_Средње"
 
 #: ../src/ui/main_window.ui.h:57
 msgid "_Quit"
@@ -3756,7 +3864,7 @@ msgstr "_Изађи"
 
 #: ../src/ui/main_window.ui.h:58
 msgid "_Ratings"
-msgstr "_Оцене"
+msgstr "Оц_ене"
 
 #: ../src/ui/main_window.ui.h:60
 msgid "_Remove Tag From Selection"
@@ -3776,11 +3884,11 @@ msgstr "_Изабери увожења..."
 
 #: ../src/ui/main_window.ui.h:64
 msgid "_Set Date Range..."
-msgstr "Постави опсег _датума..."
+msgstr "_Постави опсег датума..."
 
 #: ../src/ui/main_window.ui.h:65
 msgid "_Set Rating filter..."
-msgstr "Постави филтер _оцена..."
+msgstr "_Постави филтер оцена..."
 
 #: ../src/ui/main_window.ui.h:66
 msgid "_Sharpen..."
@@ -3788,7 +3896,7 @@ msgstr "_Изоштри..."
 
 #: ../src/ui/main_window.ui.h:68
 msgid "_Small"
-msgstr "_Мала"
+msgstr "_Мале"
 
 #: ../src/ui/main_window.ui.h:69
 msgid "_Tag Icons"
@@ -3859,7 +3967,6 @@ msgid "Print cut marks"
 msgstr "Штампај ознаке за сечење"
 
 #: ../src/Widgets/CustomPrintWidget.cs:158
-#| msgid "Photos"
 msgid "Photos layout"
 msgstr "Распоред фотографија"
 
@@ -3885,32 +3992,26 @@ msgid "White borders"
 msgstr "Беле ивице"
 
 #: ../src/Widgets/CustomPrintWidget.cs:176
-#| msgid "Custom Text: "
 msgid "Custom Text"
 msgstr "Произвољан текст"
 
 #: ../src/Widgets/CustomPrintWidget.cs:180
-#| msgid "Photos"
 msgid "Photos infos"
 msgstr "Подаци о слици"
 
 #: ../src/Widgets/CustomPrintWidget.cs:182
-#| msgid "_File name:"
 msgid "Print file name"
 msgstr "Одтампај име датотеке"
 
 #: ../src/Widgets/CustomPrintWidget.cs:183
-#| msgid "Previous photo"
 msgid "Print photo date"
 msgstr "Одтампај датум сликања"
 
 #: ../src/Widgets/CustomPrintWidget.cs:184
-#| msgid "Previous photo"
 msgid "Print photo time"
 msgstr "Одтампај време сликања"
 
 #: ../src/Widgets/CustomPrintWidget.cs:185
-#| msgid "Print cut marks"
 msgid "Print photo tags"
 msgstr "Одтампај ознаке слике"
 
@@ -3959,12 +4060,10 @@ msgid "Find:"
 msgstr "Нађи:"
 
 #: ../src/Widgets/FolderTreePage.cs:21
-#| msgid "Folder"
 msgid "Folders"
 msgstr "Фасцикле"
 
 #: ../src/Widgets/FolderTreeView.cs:123
-#| msgid "_Virtual Filesystem"
 msgid "Filesystem"
 msgstr "Систем датотека"
 
@@ -4003,7 +4102,6 @@ msgstr "(погрешан формат)"
 
 #: ../src/Widgets/InfoBox.cs:552
 #, csharp-format
-#| msgid "(No Edits)"
 msgid "(One Edit)"
 msgid_plural "({0} Edits)"
 msgstr[0] "({0} измена)"
