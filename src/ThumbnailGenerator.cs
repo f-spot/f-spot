@@ -12,7 +12,7 @@ using System.IO;
 using FSpot.Utils;
 using FSpot.Platform;
 
-using GFile = GLib.File;
+using Mono.Unix.Native;
 using GFileInfo = GLib.FileInfo;
 
 namespace FSpot {
@@ -38,9 +38,8 @@ namespace FSpot {
 					return null;
 
 				try { //Setting the thumb options
-					GFile file = GLib.FileFactory.NewForUri (uri);
-					GFileInfo file_info = file.QueryInfo ("time::modified", GLib.FileQueryInfoFlags.None, null);
-					DateTime mtime = file_info.ModificationTime;
+					GFileInfo info = GLib.FileFactory.NewForUri (uri).QueryInfo ("time::modified", GLib.FileQueryInfoFlags.None, null);
+					DateTime mtime = NativeConvert.ToDateTime ((long)info.GetAttributeULong ("time::modified"));
 
 					FSpot.Utils.PixbufUtils.SetOption (thumb, ThumbUri, UriUtils.UriToStringEscaped (uri));
 					FSpot.Utils.PixbufUtils.SetOption (thumb, ThumbMTime, ((uint)GLib.Marshaller.DateTimeTotime_t (mtime)).ToString ());

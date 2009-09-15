@@ -4,9 +4,9 @@ using System.Collections;
 
 using FSpot.Utils;
 using Mono.Unix;
+using Mono.Unix.Native;
 using Gdk;
 
-using GFile = GLib.File;
 using GFileInfo = GLib.FileInfo;
 
 namespace FSpot {
@@ -170,10 +170,9 @@ namespace FSpot {
 			get {
 				// FIXME mono uses the file change time (ctime) incorrectly
 				// as the creation time so we try to work around that slightly
-				GFile file = GLib.FileFactory.NewForUri (uri);
-				GFileInfo file_info = file.QueryInfo ("time::*", GLib.FileQueryInfoFlags.None, null);
-				DateTime create = file_info.CreationTime;
-				DateTime write = file_info.ModificationTime;
+				GFileInfo info = GLib.FileFactory.NewForUri (uri).QueryInfo ("time::modified,time::created", GLib.FileQueryInfoFlags.None, null);
+				DateTime write = NativeConvert.ToDateTime ((long)info.GetAttributeULong ("time::modified"));
+				DateTime create = NativeConvert.ToDateTime ((long)info.GetAttributeULong ("time::created"));
 
 				if (create < write)
 					return create;
