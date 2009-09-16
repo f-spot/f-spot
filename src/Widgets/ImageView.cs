@@ -469,12 +469,10 @@ namespace FSpot.Widgets
 				HandleAdjustmentsValueChanged (this, EventArgs.Empty);
 		}	
 
-//		bool dragging = false;
-//		int draganchor_x = 0;
-//		int draganchor_y = 0;
 		protected override bool OnButtonPressEvent (EventButton evnt)
 		{
 			bool handled = false;
+
 			if (!HasFocus)
 				GrabFocus ();
 
@@ -484,22 +482,7 @@ namespace FSpot.Widgets
 			if (can_select)
 				handled |= OnSelectionButtonPressEvent (evnt);
 
-			if (handled)
-				return handled;
-
-	//		if (dragging)
-	//			return base.OnButtonPressEvent (evnt);
-
-	//		switch (evnt.Button) {
-	//		case 1:	
-	//			dragging = true;
-	//			draganchor_x = (int)evnt.X;
-	//			draganchor_y = (int)evnt.Y;
-
-	//			handled = true;
-	//		default:
-	//			break;
-	//		}
+			handled |= OnPanButtonPressEvent (evnt);
 
 			return handled || base.OnButtonPressEvent (evnt);
 		}
@@ -511,10 +494,9 @@ namespace FSpot.Widgets
 			if (can_select)
 				handled |= OnSelectionButtonReleaseEvent (evnt);
 
-			if (handled)
-				return handled;
+			handled |= OnPanButtonReleaseEvent (evnt);
 
-			return handled |= base.OnButtonReleaseEvent (evnt);
+			return handled || base.OnButtonReleaseEvent (evnt);
 		}
 
 		protected override bool OnMotionNotifyEvent (EventMotion evnt)
@@ -523,6 +505,8 @@ namespace FSpot.Widgets
 
 			if (can_select)
 				handled |= OnSelectionMotionNotifyEvent (evnt);
+
+			handled |= OnPanMotionNotifyEvent (evnt);
 
 			return handled || base.OnMotionNotifyEvent (evnt);
 
@@ -1030,6 +1014,55 @@ namespace FSpot.Widgets
 
 			
 		}
+
+
+		bool panning = false;
+		int pan_anchor_x = 0;
+		int pan_anchor_y = 0;
+
+		bool OnPanButtonPressEvent (EventButton evnt)
+		{
+			if (2 != evnt.Button) {
+				return false;
+			}
+
+			System.Diagnostics.Debug.Assert (!panning);
+			panning = true;
+
+			pan_anchor_x = (int) evnt.X;
+			pan_anchor_y = (int) evnt.Y;
+
+			return true;
+		}
+
+		bool OnPanMotionNotifyEvent (EventMotion evnt)
+		{
+			if (!panning) {
+				return false;
+			}
+
+			int pan_x = pan_anchor_x - (int) evnt.X;
+			int pan_y = pan_anchor_y - (int) evnt.Y;
+			ScrollBy (pan_x, pan_y);
+
+			pan_anchor_x = (int) evnt.X;
+			pan_anchor_y = (int) evnt.Y;
+
+			return true;
+		}
+
+		bool OnPanButtonReleaseEvent (EventButton evnt)
+		{
+			if (2 != evnt.Button) {
+				return false;
+			}
+
+			System.Diagnostics.Debug.Assert (panning);
+			panning = false;
+
+			return true;
+		}
+
 
 		const int SELECTION_THRESHOLD = 5;
 		bool OnSelectionMotionNotifyEvent (EventMotion evnt)
