@@ -1,0 +1,15 @@
+<Addin namespace="FSpot"
+	id="BWEditor"
+	version="0.6.0.0"
+	name="BWEditor"
+	description="Convert to B/W with control. Require Mono 2.2."
+	author="Stephane Delcroix"
+	url="http://f-spot.org/Extensions"
+	category="Editors">
+	<Dependencies>
+		<Addin id="Core" version="0.6"/>
+	</Dependencies>
+	<Extension path = "/FSpot/Editors">
+		<Editor editor_type = "BWEditor.BWEditor"/>
+	</Extension>
+</Addin>
