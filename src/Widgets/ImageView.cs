@@ -1017,8 +1017,7 @@ namespace FSpot.Widgets
 
 
 		bool panning = false;
-		int pan_anchor_x = 0;
-		int pan_anchor_y = 0;
+		Point pan_anchor = new Point (0, 0);
 
 		bool OnPanButtonPressEvent (EventButton evnt)
 		{
@@ -1029,8 +1028,8 @@ namespace FSpot.Widgets
 			System.Diagnostics.Debug.Assert (!panning);
 			panning = true;
 
-			pan_anchor_x = (int) evnt.X;
-			pan_anchor_y = (int) evnt.Y;
+			pan_anchor.X = (int) evnt.X;
+			pan_anchor.Y = (int) evnt.Y;
 
 			return true;
 		}
@@ -1041,12 +1040,12 @@ namespace FSpot.Widgets
 				return false;
 			}
 
-			int pan_x = pan_anchor_x - (int) evnt.X;
-			int pan_y = pan_anchor_y - (int) evnt.Y;
+			int pan_x = pan_anchor.X - (int) evnt.X;
+			int pan_y = pan_anchor.Y - (int) evnt.Y;
 			ScrollBy (pan_x, pan_y);
 
-			pan_anchor_x = (int) evnt.X;
-			pan_anchor_y = (int) evnt.Y;
+			pan_anchor.X = (int) evnt.X;
+			pan_anchor.Y = (int) evnt.Y;
 
 			return true;
 		}
