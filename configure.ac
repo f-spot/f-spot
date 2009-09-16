@@ -1,4 +1,4 @@
-AC_INIT(F-Spot, 0.6.1.1)
+AC_INIT(F-Spot, 0.6.1.2)
 AC_CONFIG_SRCDIR(src/main.cs)
 
 AM_CONFIG_HEADER(config.h)

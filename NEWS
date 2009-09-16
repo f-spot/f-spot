@@ -1,3 +1,10 @@
+f-spot 0.6.1.2 - Sep 16 2009 - Always Nice To See You
+-----------------------------------------------------
+- bugfix release for 0.6.x branch
+ - fix for bgo#594016, no longer fails to upgrade if you have photos from post 2038 (sic)
+ - use interpolation on drawing
+ - allows to run on gtk2.14
+
 f-spot 0.6.1.1 - Aug 26 2009 - Tea Time Again
 ---------------------------------------------
 - bugfix release for 0.6.1.0
