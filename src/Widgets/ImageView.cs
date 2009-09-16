@@ -479,10 +479,10 @@ namespace FSpot.Widgets
 			if (PointerMode == PointerMode.None)
 				return false;
 
-			if (can_select)
-				handled |= OnSelectionButtonPressEvent (evnt);
+			handled = handled || OnPanButtonPressEvent (evnt);
 
-			handled |= OnPanButtonPressEvent (evnt);
+			if (can_select)
+				handled = handled || OnSelectionButtonPressEvent (evnt);
 
 			return handled || base.OnButtonPressEvent (evnt);
 		}
@@ -491,10 +491,10 @@ namespace FSpot.Widgets
 		{
 			bool handled = false;
 
-			if (can_select)
-				handled |= OnSelectionButtonReleaseEvent (evnt);
+			handled = handled || OnPanButtonReleaseEvent (evnt);
 
-			handled |= OnPanButtonReleaseEvent (evnt);
+			if (can_select)
+				handled = handled || OnSelectionButtonReleaseEvent (evnt);
 
 			return handled || base.OnButtonReleaseEvent (evnt);
 		}
@@ -503,10 +503,10 @@ namespace FSpot.Widgets
 		{
 			bool handled = false;
 
-			if (can_select)
-				handled |= OnSelectionMotionNotifyEvent (evnt);
+			handled = handled || OnPanMotionNotifyEvent (evnt);
 
-			handled |= OnPanMotionNotifyEvent (evnt);
+			if (can_select)
+				handled = handled || OnSelectionMotionNotifyEvent (evnt);
 
 			return handled || base.OnMotionNotifyEvent (evnt);
 
@@ -976,7 +976,7 @@ namespace FSpot.Widgets
 		void SelectionSetPointer (int x, int y)
 		{
 			if (is_moving_selection)
-				GdkWindow.Cursor = new Cursor (CursorType.Fleur);
+				GdkWindow.Cursor = new Cursor (CursorType.Crosshair);
 			else {
 				switch (GetDragMode (x, y)) {
 				case DragMode.Move:
@@ -1031,6 +1031,8 @@ namespace FSpot.Widgets
 			pan_anchor.X = (int) evnt.X;
 			pan_anchor.Y = (int) evnt.Y;
 
+			PanSetPointer ();
+
 			return true;
 		}
 
@@ -1047,6 +1049,8 @@ namespace FSpot.Widgets
 			pan_anchor.X = (int) evnt.X;
 			pan_anchor.Y = (int) evnt.Y;
 
+			PanSetPointer ();
+
 			return true;
 		}
 
@@ -1059,7 +1063,16 @@ namespace FSpot.Widgets
 			System.Diagnostics.Debug.Assert (panning);
 			panning = false;
 
+			PanSetPointer ();
+
 			return true;
+		}
+
+		void PanSetPointer ()
+		{
+			GdkWindow.Cursor = panning
+					? new Cursor (CursorType.Fleur)
+					: null;
 		}
 
 
