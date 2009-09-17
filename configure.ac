@@ -311,6 +311,12 @@ src/Cms.dll.config
 src/FSpot.Widgets.dll.config
 src/Makefile
 extensions/Makefile
+extensions/Editors/Makefile
+extensions/Editors/BlackoutEditor/Makefile
+extensions/Editors/BWEditor/Makefile
+extensions/Editors/FlipEditor/Makefile
+extensions/Editors/PixelateEditor/Makefile
+extensions/Editors/ResizeEditor/Makefile
 extensions/Exporters/Makefile
 extensions/Exporters/CDExport/Makefile
 extensions/Exporters/DefaultExporters/Makefile
