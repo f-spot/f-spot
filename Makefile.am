@@ -35,6 +35,7 @@ EXTRA_DIST =			\
 	f-spot.pc.in		\
 	f-spot.spec		\
 	Makefile.include	\
+	Makefile.addins		\
 	gnome-doc-utils.make	\
 	icon-theme-installer	\
         $(desktop_in_files)     \

@@ -1,0 +1,37 @@
+ASSEMBLY = $(addin).dll
+
+include $(top_srcdir)/Makefile.include
+
+dep_resources = $(addprefix $(srcdir)/, $(addin_resources))
+build_resources = $(foreach res, $(dep_resources), $(addprefix -resource:, $(res)),$(notdir $(res)))
+build_sources = $(addprefix $(srcdir)/, $(addin_sources))
+build_packages = $(addprefix -pkg:, $(addin_packages))
+build_references =				\
+	$(addprefix -r:, $(addin_references))	\
+	-r:$(top_builddir)/src/f-spot.exe	\
+	-r:$(top_builddir)/src/Cms.dll		\
+	-r:$(top_builddir)/src/FSpot.Core.dll	\
+	-r:$(top_builddir)/src/FSpot.Utils.dll	\
+	$(LINK_SEMWEB)				\
+	$(LINK_MONO_ADDINS)			\
+	$(LINK_GPHOTO2)				\
+	$(LINK_GIOSHARP)			\
+	$(LINK_GTKSHARPBEANS)
+
+
+all: $(ASSEMBLY)
+mpack: $(ASSEMBLY)
+	mautil p $(ASSEMBLY)
+
+$(ASSEMBLY): $(build_sources) $(dep_resource)
+	$(CSC_LIB) -out:$@ $(addin_extraflags) $(build_sources) $(build_references) $(build_packages) $(build_resources)
+
+addindir = $(pkglibdir)/extensions
+addin_DATA = $(ASSEMBLY)
+
+CLEANFILES = $(ASSEMBLY) $(ASSEMBLY).mdb *.mpack
+
+ETRA_DIST = 			\
+	$(build_sources)	\
+	$(dep_resources)	\
+	$(addin_extradist)
