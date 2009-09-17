@@ -185,6 +185,10 @@ namespace FSpot {
 		private Gdk.Cursor empty_cursor;
 		private bool HideCursor ()
 		{
+			if (view.Panning) {
+				return false;
+			}
+
 			if (empty_cursor == null) 
 				empty_cursor = GdkUtils.CreateEmptyCursor (GdkWindow.Display);
 			

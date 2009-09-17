@@ -207,6 +207,13 @@ namespace FSpot.Widgets
 				GLib.Idle.Add (delegate {scrolled.SetPolicy (Gtk.PolicyType.Automatic, Gtk.PolicyType.Automatic); return false;});
 		}
 
+		bool panning = false;
+		public bool Panning {
+			get {
+				return panning;
+			}
+		}
+
 		public Point WindowCoordsToImage (Point win)
 		{
 			if (Pixbuf == null)
@@ -1103,7 +1110,6 @@ namespace FSpot.Widgets
 #endregion
 
 #region panning
-		bool panning = false;
 		Point pan_anchor = new Point (0, 0);
 
 		bool OnPanButtonPressEvent (EventButton evnt)
