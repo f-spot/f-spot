@@ -5,7 +5,9 @@
  *	Larry Ewing  <lewing@novell.com>
  *	Stephane Delcroix  <stephane@delcroix.org>
  *
- * This is free software. See COPYING for details.
+ * Copyright (c) 2004-2009 Novell, Inc.
+ *
+ * This is open source software. See COPYING for details.
  */
 
 using System;
@@ -15,17 +17,19 @@ namespace FSpot.UI.Dialog {
 	public class ThreadProgressDialog : Gtk.Dialog {
 		FSpot.Delay delay;
 
-		private Gtk.ProgressBar progress_bar;
-		private Gtk.Label message_label;
-		private Gtk.Button button;
+		Gtk.ProgressBar progress_bar;
+		Gtk.Label message_label;
+		Gtk.Button button;
 
-		private Gtk.Button retry_button;
-		private Gtk.Button skip_button;
-		private Gtk.ResponseType error_response;
-		private AutoResetEvent error_response_event;
-		private AutoResetEvent error_response_ack_event;
+		Gtk.Button retry_button;
+		Gtk.Button skip_button;
+		Gtk.ResponseType error_response;
+		AutoResetEvent error_response_event;
+		AutoResetEvent error_response_ack_event;
 
-		private Thread thread;
+		object syncHandle = new object ();
+
+		Thread thread;
 
 		public ThreadProgressDialog (Thread thread, int total) {
 			/*
@@ -63,60 +67,63 @@ namespace FSpot.UI.Dialog {
 			Destroyed += HandleDestroy;
 		}
 
-		private string progress_text;
+		string progress_text;
 		public string ProgressText {
-			get {
-				return progress_text;
-			}
+			get { return progress_text; }
 			set {
-				lock (this) {
+				lock (syncHandle) {
 					progress_text = value;
 					delay.Start ();
 				}
 			}
 		}
 
-		private string button_label;
+		string button_label;
 		public string ButtonLabel {
-			get {
-				return button_label;
-			}			
+			get { return button_label; }			
 			set {
-				lock (this) {
+				lock (syncHandle) {
 					button_label = value;
 					delay.Start ();
 				}
 			}
 		}
 		
-		private string message;
+		string message;
 		public string Message {
-			get {
-				return message;
-			}
+			get { return message; }
 			set {
-				lock (this) {
+				lock (syncHandle) {
 					message = value;
 					delay.Start ();
 				}
 			}
 		}
 		
-		private double fraction;
+		double fraction;
 		public double Fraction {
-			get {
-				return Fraction;
-			}
+			get { return Fraction; }
 			set {
-				lock (this) {
+				lock (syncHandle) {
 					fraction = value;
 					delay.Start ();
 				}
 			}
 		}
 
-		private bool retry_skip;
-		private bool RetrySkipVisible {
+		internal void SetProperties (string progress_text, string button_label, string message, double fraction)
+		{
+			lock (syncHandle) {
+				this.progress_text = progress_text;
+				this.button_label = button_label;
+				this.message = message;
+				this.fraction = fraction;
+				delay.Start ();
+			}	
+		}
+
+		bool retry_skip;
+		bool RetrySkipVisible {
 			set { 
 				retry_skip = value;
 				delay.Start ();
@@ -137,11 +144,11 @@ namespace FSpot.UI.Dialog {
 			return (error_response == Gtk.ResponseType.Yes);
 		}
 
-		private void HandleResponse (object obj, Gtk.ResponseArgs args) {
+		void HandleResponse (object obj, Gtk.ResponseArgs args) {
 			this.Destroy ();
 		}
 
-		private bool HandleUpdate ()
+		bool HandleUpdate ()
 		{
 			message_label.Text = message;
 			progress_bar.Text = progress_text;
@@ -152,7 +159,7 @@ namespace FSpot.UI.Dialog {
 			return false;
 		}
 
-		private void HandleDestroy (object sender, EventArgs args)
+		void HandleDestroy (object sender, EventArgs args)
 		{
 			delay.Stop ();
 			if (thread.IsAlive) {
@@ -160,13 +167,13 @@ namespace FSpot.UI.Dialog {
 			}
 		}
 
-		private void HandleRetryClicked (object obj, EventArgs args)
+		void HandleRetryClicked (object obj, EventArgs args)
 		{
 			error_response = Gtk.ResponseType.Yes;
 			error_response_event.Set ();
 		}
 
-		private void HandleSkipClicked (object obj, EventArgs args)
+		void HandleSkipClicked (object obj, EventArgs args)
 		{
 			error_response = Gtk.ResponseType.No;
 			error_response_event.Set ();
