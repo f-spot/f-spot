@@ -1016,66 +1016,6 @@ namespace FSpot.Widgets
 		}
 
 
-		bool panning = false;
-		Point pan_anchor = new Point (0, 0);
-
-		bool OnPanButtonPressEvent (EventButton evnt)
-		{
-			if (2 != evnt.Button) {
-				return false;
-			}
-
-			System.Diagnostics.Debug.Assert (!panning);
-			panning = true;
-
-			pan_anchor.X = (int) evnt.X;
-			pan_anchor.Y = (int) evnt.Y;
-
-			PanSetPointer ();
-
-			return true;
-		}
-
-		bool OnPanMotionNotifyEvent (EventMotion evnt)
-		{
-			if (!panning) {
-				return false;
-			}
-
-			int pan_x = pan_anchor.X - (int) evnt.X;
-			int pan_y = pan_anchor.Y - (int) evnt.Y;
-			ScrollBy (pan_x, pan_y);
-
-			pan_anchor.X = (int) evnt.X;
-			pan_anchor.Y = (int) evnt.Y;
-
-			PanSetPointer ();
-
-			return true;
-		}
-
-		bool OnPanButtonReleaseEvent (EventButton evnt)
-		{
-			if (2 != evnt.Button) {
-				return false;
-			}
-
-			System.Diagnostics.Debug.Assert (panning);
-			panning = false;
-
-			PanSetPointer ();
-
-			return true;
-		}
-
-		void PanSetPointer ()
-		{
-			GdkWindow.Cursor = panning
-					? new Cursor (CursorType.Fleur)
-					: null;
-		}
-
-
 		const int SELECTION_THRESHOLD = 5;
 		bool OnSelectionMotionNotifyEvent (EventMotion evnt)
 		{
@@ -1159,6 +1099,67 @@ namespace FSpot.Widgets
 			return new Rectangle (sel.X + width < Pixbuf.Width ? sel.X : Pixbuf.Width - width,
 					      sel.Y + height < Pixbuf.Height ? sel.Y : Pixbuf.Height - height,
 					      width, height);
+		}
+#endregion
+
+#region panning
+		bool panning = false;
+		Point pan_anchor = new Point (0, 0);
+
+		bool OnPanButtonPressEvent (EventButton evnt)
+		{
+			if (2 != evnt.Button) {
+				return false;
+			}
+
+			System.Diagnostics.Debug.Assert (!panning);
+			panning = true;
+
+			pan_anchor.X = (int) evnt.X;
+			pan_anchor.Y = (int) evnt.Y;
+
+			PanSetPointer ();
+
+			return true;
+		}
+
+		bool OnPanMotionNotifyEvent (EventMotion evnt)
+		{
+			if (!panning) {
+				return false;
+			}
+
+			int pan_x = pan_anchor.X - (int) evnt.X;
+			int pan_y = pan_anchor.Y - (int) evnt.Y;
+			ScrollBy (pan_x, pan_y);
+
+			pan_anchor.X = (int) evnt.X;
+			pan_anchor.Y = (int) evnt.Y;
+
+			PanSetPointer ();
+
+			return true;
+		}
+
+		bool OnPanButtonReleaseEvent (EventButton evnt)
+		{
+			if (2 != evnt.Button) {
+				return false;
+			}
+
+			System.Diagnostics.Debug.Assert (panning);
+			panning = false;
+
+			PanSetPointer ();
+
+			return true;
+		}
+
+		void PanSetPointer ()
+		{
+			GdkWindow.Cursor = panning
+					? new Cursor (CursorType.Fleur)
+					: null;
 		}
 #endregion
 	}
