@@ -241,10 +241,7 @@ namespace FSpot {
 					
 				saved_files = (string []) saved.ToArray (typeof (string));
 					
-				progress_dialog.Message = Catalog.GetString ("Done Copying Files");
-				progress_dialog.Fraction = 1.0;
-				progress_dialog.ProgressText = Catalog.GetString ("Download Complete");
-				progress_dialog.ButtonLabel = Gtk.Stock.Ok;
+				progress_dialog.SetProperties (Catalog.GetString ("Download Complete"), Gtk.Stock.Ok, Catalog.GetString ("Done Copying Files"), 1.0);
 			}
 		}
 		
