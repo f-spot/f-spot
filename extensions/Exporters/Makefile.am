@@ -1,6 +1,5 @@
 SUBDIRS = 			\
 	CDExport		\
-	DefaultExporters	\
 	FacebookExport		\
 	FlickrExport		\
 	FolderExport		\
