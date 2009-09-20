@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: f-spot\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-08-31 22:50+0100\n"
-"PO-Revision-Date: 2009-08-31 13:06+0100\n"
+"POT-Creation-Date: 2009-09-20 16:57+0100\n"
+"PO-Revision-Date: 2009-09-20 16:22+0100\n"
 "Last-Translator: Filipe Gomes <filipefgomes@gmail.com>\n"
 "Language-Team: Portuguese <gnome_pt@yahoogroups.com>\n"
 "MIME-Version: 1.0\n"
@@ -1082,6 +1082,112 @@ msgstr "Parado"
 msgid "Hash for Duplicates"
 msgstr "Procurar Duplicados pelo Hash"
 
+#: ../extensions/Tools/LiveWebGallery/GalleryRequestHandler.cs:107
+msgid "F-Spot Gallery"
+msgstr "Galeria do F-Spot"
+
+#: ../extensions/Tools/LiveWebGallery/GalleryRequestHandler.cs:108
+msgid "The web gallery seems to be offline now"
+msgstr "A galeria web parece estar offline neste momento"
+
+#: ../extensions/Tools/LiveWebGallery/GalleryRequestHandler.cs:109
+msgid "Show All"
+msgstr "Apresentar Todos"
+
+#: ../extensions/Tools/LiveWebGallery/GalleryRequestHandler.cs:119
+#, csharp-format
+msgid "{0} photo"
+msgid_plural "{0} photos"
+msgstr[0] "{0} foto"
+msgstr[1] "{0} fotos"
+
+#: ../extensions/Tools/LiveWebGallery/GalleryRequestHandler.cs:161
+#: ../extensions/Tools/LiveWebGallery/ui/LiveWebGallery.ui.h:8
+msgid "Current View"
+msgstr "Vista Actual"
+
+#: ../extensions/Tools/LiveWebGallery/GalleryRequestHandler.cs:164
+msgid "Selected"
+msgstr "Seleccionado"
+
+#: ../extensions/Tools/LiveWebGallery/LiveWebGallery.addin.xml.h:1
+msgid "Live Web Gallery"
+msgstr "Galeria Web em Linha"
+
+#: ../extensions/Tools/LiveWebGallery/ui/LiveWebGallery.ui.h:1
+msgid ""
+"<small><i>The gallery stays active until you either deactivate it or close\n"
+"F-Spot. Make sure local viewers access it bypassing HTTP proxy.</i></small>"
+msgstr ""
+"<small><i>A galeria mantém-se activa até que a desactive ou feche o F-Spot. "
+"Certifique-se de que os visitantes locais acedem-na saltando a proxy HTTP.</"
+"i></small>"
+
+#: ../extensions/Tools/LiveWebGallery/ui/LiveWebGallery.ui.h:3
+msgid ""
+"<small><i>When the gallery is active, above is the URL you need to open \n"
+"on another computer to access the shared photos.</i></small>"
+msgstr ""
+"<small><i>Quando a galeria está activa, em cima está o URL que precisa de "
+"abrir noutro computador para aceder às fotos partilhadas.</i></small>"
+
+#: ../extensions/Tools/LiveWebGallery/ui/LiveWebGallery.ui.h:5
+msgid "Activates and deactivates the web gallery"
+msgstr "Activa e desactiva a galeria web"
+
+#: ../extensions/Tools/LiveWebGallery/ui/LiveWebGallery.ui.h:6
+msgid "Allow viewers to add tags"
+msgstr "Permitir que os visitantes adicionem etiquetas"
+
+#: ../extensions/Tools/LiveWebGallery/ui/LiveWebGallery.ui.h:7
+msgid "Copy URL to clipboard"
+msgstr "Copiar URL para a área de transferência"
+
+#: ../extensions/Tools/LiveWebGallery/ui/LiveWebGallery.ui.h:9
+msgid "F-Spot Live Web Gallery"
+msgstr "Galeria Web em Linha do F-Spot"
+
+#: ../extensions/Tools/LiveWebGallery/ui/LiveWebGallery.ui.h:10
+msgid "Gallery URL:"
+msgstr "URL da Galeria:"
+
+#: ../extensions/Tools/LiveWebGallery/ui/LiveWebGallery.ui.h:11
+msgid "Limit number of shared photos to"
+msgstr "Limitar número de fotos partilhadas a"
+
+#: ../extensions/Tools/LiveWebGallery/ui/LiveWebGallery.ui.h:12
+msgid "Options:"
+msgstr "Opções:"
+
+#: ../extensions/Tools/LiveWebGallery/ui/LiveWebGallery.ui.h:13
+msgid "Photos with a Tag"
+msgstr "Fotos com uma Etiqueta"
+
+#: ../extensions/Tools/LiveWebGallery/ui/LiveWebGallery.ui.h:14
+msgid "Selected Photos"
+msgstr "Fotos Seleccionadas"
+
+#: ../extensions/Tools/LiveWebGallery/ui/LiveWebGallery.ui.h:15
+msgid "Share:"
+msgstr "Partilha:"
+
+#: ../extensions/Tools/LiveWebGallery/ui/LiveWebGallery.ui.h:16
+msgid "Views:"
+msgstr "Vistas:"
+
+#: ../extensions/Tools/LiveWebGallery/LiveWebGalleryDialog.cs:89
+msgid "none"
+msgstr "nenhum"
+
+#: ../extensions/Tools/LiveWebGallery/LiveWebGalleryDialog.cs:92
+#, csharp-format
+msgid " Gallery: {0},  Photos: {1},  Last client: {3}"
+msgstr " Galeria: {0},  Fotos: {1},  Último cliente: {3}"
+
+#: ../extensions/Tools/LiveWebGallery/LiveWebGalleryDialog.cs:156
+msgid "Gallery is inactive"
+msgstr "Galeria está inactiva"
+
 #: ../extensions/Tools/MergeDb/MergeDb.addin.xml.h:1
 msgid "Merge Db"
 msgstr "Juntar Base de Dados"
@@ -1168,7 +1274,7 @@ msgid "New Rolls Only"
 msgstr "Apenas Novos Rolos"
 
 #: ../extensions/Tools/MergeDb/MergeDb.glade.h:15
-#: ../src/FileImportBackend.cs:290 ../src/UI.Dialog/ThreadProgressDialog.cs:51
+#: ../src/FileImportBackend.cs:290 ../src/UI.Dialog/ThreadProgressDialog.cs:55
 msgid "Skip"
 msgstr "Ignorar"
 
@@ -1558,14 +1664,14 @@ msgid "Error transferring file"
 msgstr "Erro ao transferir ficheiro"
 
 #: ../src/CameraFileSelectionDialog.cs:244
-msgid "Done Copying Files"
-msgstr "Cópia de Ficheiros Concluída"
-
-#: ../src/CameraFileSelectionDialog.cs:246
 msgid "Download Complete"
 msgstr "Transferência Concluída"
 
-#: ../src/CameraFileSelectionDialog.cs:271
+#: ../src/CameraFileSelectionDialog.cs:244
+msgid "Done Copying Files"
+msgstr "Cópia de Ficheiros Concluída"
+
+#: ../src/CameraFileSelectionDialog.cs:268
 #, csharp-format
 msgid "Transferring \"{0}\" from camera"
 msgstr "A transferir \"{0}\" da câmara"
@@ -1590,7 +1696,7 @@ msgid ""
 "the tag to some photos or selecting a different tag in the\n"
 "F-Spot preference dialog."
 msgstr ""
-"A etieuta \"{0}\" não está aplicada a nenhuma foto. Tente\n"
+"A etiqueta \"{0}\" não está aplicada a nenhuma foto. Tente\n"
 "adicionar a etiqueta a algumas fotografias ou seleccionar\n"
 "uma etiqueta diferente no diálogo preferências do F-Spot."
 
@@ -2001,7 +2107,7 @@ msgstr "Tamanho original (possivelmente tamanhos muito grandes)"
 
 #: ../src/f-spot.glade.h:63 ../src/UI.Dialog/ui/EditTagDialog.ui.h:4
 msgid "P_arent Tag:"
-msgstr "Etiqueta M_ãe:"
+msgstr "Etiquet_a Mãe:"
 
 #: ../src/f-spot.glade.h:64
 msgid "Pause"
@@ -2288,7 +2394,7 @@ msgstr "Diretório InterOperability"
 msgid "Unknown Directory"
 msgstr "Directório Desconhecido"
 
-#: ../src/Imaging/ImageFile.cs:113
+#: ../src/Imaging/ImageFile.cs:116
 msgid "Writing to this file format is not supported"
 msgstr "A escrita neste formato de ficheiro não é suportada"
 
@@ -2444,11 +2550,11 @@ msgstr "A carregar {0} de {1}"
 msgid "Done Loading"
 msgstr "Carregamento Terminado"
 
-#: ../src/ImportCommand.cs:683
+#: ../src/ImportCommand.cs:684
 msgid "Directory does not exist."
 msgstr "Directório não existe."
 
-#: ../src/ImportCommand.cs:684
+#: ../src/ImportCommand.cs:685
 #, csharp-format
 msgid ""
 "The directory you selected \"{0}\" does not exist.  Please choose a "
@@ -2458,7 +2564,7 @@ msgstr ""
 "directório diferente"
 
 #. Note for translators: 'Import Tags' is no command, it means 'Tags used in Import'
-#: ../src/ImportCommand.cs:738 ../src/ImportCommand.cs:740
+#: ../src/ImportCommand.cs:739 ../src/ImportCommand.cs:741
 #: ../src/XmpTagsImporter.cs:89
 msgid "Import Tags"
 msgstr "Importar Etiquetas"
@@ -2675,7 +2781,7 @@ msgstr[1] "Se apagar estas etiquetas, a associação com {0} {1} será perdida."
 #: ../src/MainWindow.cs:2303
 msgid "_Delete tag"
 msgid_plural "_Delete tags"
-msgstr[0] "_Apagar Etigueta"
+msgstr[0] "_Apagar Etiqueta"
 msgstr[1] "_Apagar Etiquetas"
 
 #. A Category is not empty. Can not delete it.
@@ -3107,7 +3213,7 @@ msgstr "Criar Nova Etiqueta"
 
 #: ../src/TagCommands.cs:145
 msgid "Name of New Tag:"
-msgstr "Nome da Nova Etiqueta"
+msgstr "Nome da Nova Etiqueta:"
 
 #: ../src/TagPopup.cs:26
 #, csharp-format
@@ -3382,7 +3488,7 @@ msgstr "Etiqueta"
 msgid "Ratio"
 msgstr "Rácio"
 
-#: ../src/UI.Dialog/ThreadProgressDialog.cs:49
+#: ../src/UI.Dialog/ThreadProgressDialog.cs:53
 msgid "Retry"
 msgstr "Tentar Novamente"
 
