@@ -132,6 +132,9 @@ else
   fi
 fi
 
+if pkg-config --at-least-version=2.16 gtk+-2.0; then
+	CSC_DEFINES="$CSC_DEFINES -d:GTK_2_16"
+fi
 
 PKG_CHECK_MODULES(BEAGLE, beagle-0.0 >= $BEAGLE_REQUIRED,
 [
