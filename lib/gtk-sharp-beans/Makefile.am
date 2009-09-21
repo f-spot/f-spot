@@ -11,6 +11,7 @@ SRCS =					\
 	$(srcdir)/Priority.cs		\
 	$(srcdir)/Shell.cs		\
 	$(srcdir)/Sources.cs		\
+	$(srcdir)/Style.cs		\
 	$(srcdir)/Timeout.cs		\
 	$(srcdir)/PixbufFormat.cs	\
 	$(srcdir)/PixbufLoader.cs	\
