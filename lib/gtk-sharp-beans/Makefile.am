@@ -5,6 +5,7 @@ SRCS =					\
 	$(srcdir)/Drawable.cs		\
 	$(srcdir)/Global.cs		\
 	$(srcdir)/Image.cs		\
+	$(srcdir)/ImageMenuItem.cs	\
 	$(srcdir)/Widget.cs		\
 	$(srcdir)/Format.cs		\
 	$(srcdir)/Priority.cs		\
@@ -50,7 +51,7 @@ gtk-sharp-beans.snk: $(SNK)
 
 gtk-sharp-beans.dll: gtk_generated/Builder.cs $(SRCS) gtk-sharp-beans.snk
 	@echo -e "\n*** Building $@"
-	$(CSC) -target:library -out:$@ -unsafe $(ASSEMBLIES) $(SRCS) gtk_generated/*.cs
+	$(CSC) -target:library -out:$@ $(CSC_DEFINES) -unsafe $(ASSEMBLIES) $(SRCS) gtk_generated/*.cs
 
 CLEANFILES = 			\
 	gtk-sharp-beans.dll 	\
