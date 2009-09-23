@@ -105,8 +105,6 @@ namespace FSpot {
 				description_entry.Text = String.Empty;
 			}
 	
-			tips.SetTip (description_entry, description_entry.Text ?? String.Empty, description_entry.Text ?? String.Empty);
-	
 			description_entry.Changed += HandleDescriptionChanged;
 		}    
 	
@@ -201,7 +199,6 @@ namespace FSpot {
 				else
 					CommitPendingChanges ();
 			
-			tips.SetTip (description_entry, description_entry.Text, "This is a tip");
 			changed_photo = Item.Index;
 			commit_delay.Start ();
 		}
