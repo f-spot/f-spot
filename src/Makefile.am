@@ -86,6 +86,8 @@ WIDGETS_CSDISTFILES =				\
 	$(srcdir)/Widgets/BuilderWindow.cs	\
 	$(srcdir)/Widgets/CheckPattern.cs	\
 	$(srcdir)/Widgets/ComplexMenuItem.cs	\
+	$(srcdir)/Widgets/Curve.cs		\
+	$(srcdir)/Widgets/CurveType.cs		\
 	$(srcdir)/Widgets/CustomPrintWidget.cs	\
 	$(srcdir)/Widgets/DateEdit.cs		\
 	$(srcdir)/Widgets/DateEditFlags.cs	\
