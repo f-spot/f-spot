@@ -67,6 +67,7 @@ namespace FSpot
 			bool slideshow = false;
 			string import_uri = null;
 
+			GLib.GType.Init ();
 			Catalog.Init ("f-spot", Defines.LOCALE_DIR);
 			
 			FSpot.Global.PhotoDirectory = Preferences.Get<string> (Preferences.STORAGE_PATH);
