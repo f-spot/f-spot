@@ -493,8 +493,11 @@ namespace FSpot
 									 "Modified ({0})", 
 									 num);
 				name = String.Format (name, num);
+				System.Uri uri = GetUriForVersionName (name, System.IO.Path.GetExtension (VersionUri(base_version_id).GetFilename()));
+Console.WriteLine ("NEW VERSION URI {0}", uri);
+				GLib.File file = GLib.FileFactory.NewForUri (uri);
 	
-				if (! VersionNameExists (name))
+				if (! VersionNameExists (name) && ! file.Exists)
 					return CreateVersion (name, base_version_id, create_file);
 	
 				num ++;
@@ -516,7 +519,11 @@ namespace FSpot
 						(num == 1) ? Catalog.GetString ("Modified in {1}") : Catalog.GetString ("Modified in {1} ({0})"),
 						num, name);
 	
-				if (! VersionNameExists (final_name))
+				System.Uri uri = GetUriForVersionName (final_name, System.IO.Path.GetExtension (VersionUri(base_version_id).GetFilename()));
+Console.WriteLine ("NEW VERSION URI {0}", uri);
+				GLib.File file = GLib.FileFactory.NewForUri (uri);
+
+				if (! VersionNameExists (final_name) && ! file.Exists)
 					return CreateVersion (final_name, extension, base_version_id, create_file);
 	
 				num ++;
@@ -531,8 +538,8 @@ namespace FSpot
 			if (VersionNameExists (new_name))
 				throw new Exception ("This name already exists");
 	
-			(GetVersion (version_id) as PhotoVersion).Name = new_name;
 
+			(GetVersion (version_id) as PhotoVersion).Name = new_name;
 			changes.ChangeVersion (version_id);
 	
 			//TODO: rename file too ???
