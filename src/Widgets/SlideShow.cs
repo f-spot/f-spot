@@ -89,6 +89,7 @@ namespace FSpot.Widgets
 
 				if (animation.IsRunning)
 					animation.Stop ();
+				progress = 0;
 				animation.Start ();
 			}
 		}
@@ -124,8 +125,10 @@ namespace FSpot.Widgets
 		double progress = 0;
 		void HandleProgressChanged (double progress)
 		{
-			this.progress = progress;
-			QueueDraw ();
+			lock (sync_handle) {
+				this.progress = progress;
+				QueueDraw ();
+			}
 		}
 #endregion
 
