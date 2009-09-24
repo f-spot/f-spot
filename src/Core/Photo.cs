@@ -494,7 +494,6 @@ namespace FSpot
 									 num);
 				name = String.Format (name, num);
 				System.Uri uri = GetUriForVersionName (name, System.IO.Path.GetExtension (VersionUri(base_version_id).GetFilename()));
-Console.WriteLine ("NEW VERSION URI {0}", uri);
 				GLib.File file = GLib.FileFactory.NewForUri (uri);
 	
 				if (! VersionNameExists (name) && ! file.Exists)
@@ -515,7 +514,6 @@ Console.WriteLine ("NEW VERSION URI {0}", uri);
 						num, name);
 	
 				System.Uri uri = GetUriForVersionName (final_name, System.IO.Path.GetExtension (VersionUri(base_version_id).GetFilename()));
-Console.WriteLine ("NEW VERSION URI {0}", uri);
 				GLib.File file = GLib.FileFactory.NewForUri (uri);
 
 				if (! VersionNameExists (final_name) && ! file.Exists)
