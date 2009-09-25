@@ -71,8 +71,6 @@ namespace FSpot {
 			string glade_name = "single_view";
 			this.uri = uris [0];
 			
-			System.Console.WriteLine ("uri = {0}", uri.ToString ());
-
 			xml = new Glade.XML (null, "f-spot.glade", glade_name, "f-spot");
 			xml.Autoconnect (this);
 			window = (Gtk.Window) xml.GetWidget (glade_name);
