@@ -158,6 +158,7 @@ namespace FSpot.Loaders {
 			lock (sync_handle) {
 				if (byte_read == 0) {
 					image_stream.Close ();
+					Close ();
 					loading = false;
 					notify_completed = true;
 				} else {
