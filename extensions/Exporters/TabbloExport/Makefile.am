@@ -48,13 +48,10 @@ RESOURCES = \
 	-resource:$(srcdir)/ui/$(PLUGIN_NAME).ui \
 	-resource:$(srcdir)/ui/TrustError.ui
 
-all: $(PLUGIN_ASSEMBLY)
-
 mpack: $(PLUGIN_ASSEMBLY)
 	mautil p $(PLUGIN_ASSEMBLY)
 
-$(PLUGIN_ASSEMBLY): $(PLUGIN_INPUT) $(PLUGIN_MANIFEST)
-	$(MAKE) -C $(SUBDIRS)
+$(PLUGIN_ASSEMBLY): $(PLUGIN_INPUT)
 	$(CSC_LIB) -out:$@ $(PLUGIN_SOURCES) $(REFS) $(PKGS) $(ASSEMBLIES) $(RESOURCES)
 
 plugindir = $(pkglibdir)/extensions

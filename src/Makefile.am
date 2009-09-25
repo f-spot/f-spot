@@ -349,7 +349,6 @@ JOBSCHEDULER_ASSEMBLIES =			\
 BLING_ASSEMBLIES =				\
 	-pkg:gtk-sharp-2.0			\
 	-r:Mono.Cairo				\
-	-r:FSpot.Utils.dll			\
 	$(LINK_GIOSHARP)			\
 	$(LINK_GTKSHARPBEANS)
 
@@ -516,7 +515,7 @@ FSpot.Bling.dll: $(BLING_CSFILES)
 
 FSpot.Widgets.dll.mdb: FSpot.Widgets.dll
 
-FSpot.Widgets.dll: $(WIDGETS_CSFILES) FSpot.Utils.dll FSpot.Core.dll
+FSpot.Widgets.dll: $(WIDGETS_CSFILES) FSpot.Utils.dll FSpot.Core.dll Cms.dll
 	@echo -e "\n*** Compiling $@"
 	$(CSC_LIB) -out:$@ $(EXTRAFLAGS) $(WIDGETS_CSFILES) $(WIDGETS_ASSEMBLIES)
 
