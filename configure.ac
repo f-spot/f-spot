@@ -149,7 +149,6 @@ PKG_CHECK_MODULES(BEAGLE, beagle-0.0 >= $BEAGLE_REQUIRED,
 AC_SUBST(BEAGLE_DIR)
 AC_SUBST(LINK_BEAGLE)
 
-AC_SUBST(CSC_DEFINES)
 
 dnl -- dbus-sharp
 PKG_CHECK_MODULES(NDESK_DBUS, ndesk-dbus-1.0 >= $NDESK_DBUS_REQUIRED ndesk-dbus-glib-1.0 >= $NDESK_DBUS_GLIB_REQUIRED)
@@ -205,6 +204,12 @@ PKG_CHECK_MODULES(LCMS, lcms >= $LCMS_REQUIRED, [],
 dnl --- libgphoto2-sharp
 
 PKG_CHECK_MODULES(LIBGPHOTO2, libgphoto2 >= 2.1.4)
+
+if pkg-config --atleast-version=2.4 libgphoto2; then
+	CSC_DEFINES="$CSC_DEFINES -d:GPHOTO2_2_4"
+fi
+
+AC_SUBST(CSC_DEFINES)
 
 dnl --- libexif version check
 

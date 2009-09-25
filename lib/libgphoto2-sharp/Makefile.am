@@ -17,7 +17,7 @@ ASSEMBLY_SOURCES =			\
 	$(srcdir)/PortInfo.cs		\
 	$(srcdir)/PortInfoList.cs
 
-REFS =
+REFS =	-r:Mono.Posix
 
 PKGS =
 
@@ -26,7 +26,7 @@ ASSEMBLY = $(ASSEMBLY_NAME).dll
 all: $(ASSEMBLY)
 
 $(ASSEMBLY): $(ASSEMBLY_SOURCES)
-	$(CSC_LIB) -unsafe -out:$@ $(PKGS) $(REFS) $(ASSEMBLY_SOURCES)
+	$(CSC_LIB) $(CSC_DEFINES) -unsafe -out:$@ $(PKGS) $(REFS) $(ASSEMBLY_SOURCES)
 
 assemblydir = $(pkglibdir)
 assembly_DATA =			\

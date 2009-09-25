@@ -4,6 +4,9 @@
  * Author(s):
  *	Ewen Cheslack-Postava <echeslack@gmail.com>
  *	Larry Ewing <lewing@novell.com>
+ *	Stephane Delcroix <stephane@delcroix.org>
+ *
+ * Copyright (c) 2005-2009 Novell, Inc.
  *
  * This is free software. See COPYING for details.
  */
@@ -16,7 +19,9 @@ namespace LibGPhoto2
 	{
 		None = 0,
 		Serial = 1 << 0,
-		USB = 1 << 2
+		USB = 1 << 2,
+		Disk = 1 << 3,
+		
 	}
 
 	public enum PortSerialParity
