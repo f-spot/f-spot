@@ -5,7 +5,9 @@ using LibGPhoto2;
 using Gdk;
 using FSpot.Utils;
 using FSpot;
-
+#if GPHOTO2_2_4
+using Mono.Unix.Native;
+#endif
 public class GPhotoCamera
 {
 	Context context;
@@ -210,7 +212,18 @@ public class GPhotoCamera
 		//check if the directory exists
 		if (!Directory.Exists (Path.GetDirectoryName (filename))) 
 			throw new Exception (String.Format ("Directory \"{0}\"does not exist", filename)); //FIXME
-		
+#if GPHOTO2_2_4
+		//gp_file_new_from_fd is broken on the directory driver
+		//but using gp_file_new_from_fd doesn't move the files to memory
+		if (camera_abilities.port != PortType.Disk) {
+			GPhotoCameraFile selected_file = (GPhotoCameraFile) files [index];		
+			using (var f = new CameraFile (Syscall.open (filename, OpenFlags.O_CREAT|OpenFlags.O_RDWR, FilePermissions.ALLPERMS))) {
+				camera.GetFile (selected_file.Directory, selected_file.FileName, CameraFileType.Normal, f, context);
+			}
+			return;
+		}
+#endif
+	
 		using (CameraFile camfile = GetFile (index)) {
 			if (camfile == null) 
 				throw new Exception ("Unable to claim file"); //FIXME

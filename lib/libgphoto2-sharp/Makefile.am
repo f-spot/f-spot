@@ -17,7 +17,7 @@ ASSEMBLY_SOURCES =			\
 	$(srcdir)/PortInfo.cs		\
 	$(srcdir)/PortInfoList.cs
 
-REFS =
+REFS =	-r:Mono.Posix
 
 PKGS =
 

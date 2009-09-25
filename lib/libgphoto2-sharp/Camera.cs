@@ -4,6 +4,9 @@
  * Author(s):
  *	Ewen Cheslack-Postava <echeslack@gmail.com>
  *	Larry Ewing <lewing@novell.com>
+ *	Stephane Delcroix <stephane@delcroix.org>
+ *
+ * Copyright (c) 2005-2009 Novell, Inc.
  *
  * This is free software. See COPYING for details.
  */
@@ -299,7 +302,7 @@ namespace LibGPhoto2
 		
 
 		[DllImport ("libgphoto2.so")]
-		internal static extern ErrorCode gp_camera_file_get (HandleRef camera, string folder, string file, CameraFileType type, HandleRef camera_file, HandleRef context);
+		internal static extern ErrorCode gp_camera_file_get (HandleRef camera, [MarshalAs(UnmanagedType.LPTStr)] string folder, [MarshalAs(UnmanagedType.LPTStr)] string file, CameraFileType type, HandleRef camera_file, HandleRef context);
 		
 		public CameraFile GetFile (string folder, string name, CameraFileType type, Context context)
 		{
@@ -308,6 +311,12 @@ namespace LibGPhoto2
 			Error.CheckError (gp_camera_file_get(this.Handle, folder, name, type, file.Handle, context.Handle));
 
 			return file;
+		}
+
+		public void GetFile (string folder, string name, CameraFileType type, CameraFile camera_file, Context context)
+		{
+			Error.CheckError (gp_camera_file_get(this.Handle, folder, name, type, camera_file.Handle, context.Handle));
+			
 		}
 		
 		[DllImport ("libgphoto2.so")]
