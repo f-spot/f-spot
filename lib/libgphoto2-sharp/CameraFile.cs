@@ -4,6 +4,9 @@
  * Author(s):
  *	Ewen Cheslack-Postava <echeslack@gmail.com>
  *	Larry Ewing <lewing@novell.com>
+ *	Stephane Delcroix <stephane@delcroix.org>
+ *
+ * Copyright (c) 2005-2009 Novell, Inc.
  *
  * This is free software. See COPYING for details.
  */
@@ -50,6 +53,20 @@ namespace LibGPhoto2
 
 			this.handle = new HandleRef (this, native);
 		}
+
+#if GPHOTO2_2_4
+		[DllImport ("libgphoto2.so")]
+		internal static extern ErrorCode gp_file_new_from_fd (out IntPtr file, int fd);
+
+		public CameraFile(int fd)
+		{
+			IntPtr native;
+
+			Error.CheckError (gp_file_new_from_fd (out native, fd));
+
+			this.handle = new HandleRef (this, native);
+		}
+#endif
 
 		[DllImport ("libgphoto2.so")]
 		internal static extern ErrorCode gp_file_unref (HandleRef file);
