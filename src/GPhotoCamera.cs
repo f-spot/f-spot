@@ -217,7 +217,7 @@ public class GPhotoCamera
 		//but using gp_file_new_from_fd doesn't move the files to memory
 		if (camera_abilities.port != PortType.Disk) {
 			GPhotoCameraFile selected_file = (GPhotoCameraFile) files [index];		
-			using (var f = new CameraFile (Syscall.open (filename, OpenFlags.O_CREAT|OpenFlags.O_RDWR, FilePermissions.ALLPERMS))) {
+			using (var f = new CameraFile (Syscall.open (filename, OpenFlags.O_CREAT|OpenFlags.O_RDWR, FilePermissions.DEFFILEMODE))) {
 				camera.GetFile (selected_file.Directory, selected_file.FileName, CameraFileType.Normal, f, context);
 			}
 			return;
