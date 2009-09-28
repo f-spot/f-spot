@@ -1,3 +1,20 @@
+f-spot 0.6.1.3 - Sep 28 2009 - Bare Feet In The Grass
+-----------------------------------------------------
+- bugfix release for 0.6.x branch
+ - call g_type_init () prior to using gconf (bgo #593561)
+ - avoid echoing an entry as tip (bgo #595606, bnc #318452)
+ - check for existing files on version creation (bgo #596071)
+ - set the progress dialog properties atomically (bgo #595228)
+ - avoid a crash in the facebook extensions (bgo #595418) (Iain Lane)
+ - fix slideshow transitions on gdk csw (>=2.18)
+ - prevent a crash on broken exif data (bgo #595503) (Karl Mikaelsson)
+ - support for X-GNOME-FullName in .desktop files (bgo #596240)
+ - avoid locking on loading tiffs (bgo #592278)
+ - better support for parallel build (bgo #593243) (Christian Krause)
+ - avoid a crash on some broken color profiles (bgo #596279)
+ - don't copy files to memory first at import (libgphoto2 >= 2.4, for usb cameras only) (bgo #596196)
+ - backported translations from master
+
 f-spot 0.6.1.2 - Sep 16 2009 - Always Nice To See You
 -----------------------------------------------------
 - bugfix release for 0.6.x branch
