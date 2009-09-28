@@ -4,7 +4,9 @@
  * Author(s):
  *	Stephane Delcroix <stephane@delcroix.org>
  *
- * This is free software. See COPYING for details.
+ * Copyright (c) 2008-2009 Novell, Inc.
+ *
+ * This is open source software. See COPYING for details.
  */
 
 using System;
@@ -28,6 +30,9 @@ namespace FSpot.UI.Dialog
 				"\tStephane Delcroix",
 				"",
 				"Active Contributors to this release",
+				"\tChristian Krause",					//0.6.1.3
+				"\tKarl Mikaelsson",					//0.6.1.3
+				"\tIain Lane",						//0.6.1.3
 				"\tLorenzo Milesi",					//0.5.0
 				"\tMike Gem\x00fcnde",
 				"\tRuben Vermeersch",					//0.5.0, 0.6.0
