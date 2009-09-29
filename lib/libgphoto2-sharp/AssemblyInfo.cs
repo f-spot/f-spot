@@ -4,8 +4,9 @@
  * Author(s):
  *	Ewen Cheslack-Postava <echeslack@gmail.com>
  *	Larry Ewing <lewing@novell.com>
+ *	Stephane Delcroix <stephane@delcroix.org>
  *
- * This is free software. See COPYING for details.
+ * This is open source software. See COPYING for details.
  */
 using System.Reflection;
 using System.Runtime.CompilerServices;
@@ -16,8 +17,8 @@ using System.Runtime.CompilerServices;
 // change them to the information which is associated with the assembly
 // you compile.
 
-[assembly: AssemblyTitle("libgphoto2-sharp")]
-[assembly: AssemblyDescription(".NET Bindings for libgphoto2 in C#")]
+[assembly: AssemblyTitle("GPhoto2#")]
+[assembly: AssemblyDescription(".NET Bindings for libgphoto2 (f-spot version)")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("")]
@@ -32,7 +33,7 @@ using System.Runtime.CompilerServices;
 // You can specify all values by your own or you can build default build and revision
 // numbers with the '*' character (the default):
 
-[assembly: AssemblyVersion("1.0.*")]
+[assembly: AssemblyVersion("2.4.*")]
 
 // The following attributes specify the key for the sign of your assembly. See the
 // .NET Framework documentation for more information about signing.

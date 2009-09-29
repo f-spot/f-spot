@@ -27,7 +27,7 @@ using FSpot.Utils;
 using FSpot.UI.Dialog;
 using FSpot.Platform;
 
-using LibGPhoto2;
+using GPhoto2;
 
 namespace FSpot
 {

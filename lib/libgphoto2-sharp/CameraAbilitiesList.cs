@@ -2,105 +2,34 @@
  * CameraAbilitiesList.cs
  *
  * Author(s):
+ *	Stephane Delcroix <stephane@delcroix.org>
  *	Ewen Cheslack-Postava <echeslack@gmail.com>
  *	Larry Ewing <lewing@novell.com>
  *
- * This is free software. See COPYING for details.
+ * Copyright (c) 2005-2009 Novell, Inc.
+ *
+ * This is open source software. See COPYING for details.
  */
+
 using System;
 using System.Runtime.InteropServices;
+using System.Collections.Generic;
+using System.Collections;
 
-namespace LibGPhoto2
+namespace GPhoto2
 {
-
-	public enum CameraDriverStatus
-	{
-		Production,
-		Testing,
-		Experimental
-	}
-	
-	public enum CameraOperation
-	{
-		None		= 0,
-		CaptureImage	= 1 << 0,
-		CaptureVideo	= 1 << 1,
-		CaptureAudio	= 1 << 2,
-		CapturePreview	= 1 << 3,
-		Config		= 1 << 4
-	}
-	
-	public enum CameraFileOperation
-	{
-		None		= 0,
-		Delete		= 1 << 1,
-		Preview		= 1 << 3,
-		Raw			= 1 << 4,
-		Audio		= 1 << 5,
-		Exif		= 1 << 6
-	}
-	
-	public enum CameraFolderOperation
-	{
-		None			= 0,
-		DeleteAll		= 1 << 0,
-		PutFile			= 1 << 1,
-		MakeDirectory		= 1 << 2,
-		RemoveDirectory		= 1 << 3
-	}
-	
-	[StructLayout(LayoutKind.Sequential)]
-	public unsafe struct CameraAbilities
-	{
-		[MarshalAs(UnmanagedType.ByValTStr, SizeConst=128)] public string model;
-		public CameraDriverStatus status;
-		
-		public PortType port;
-		[MarshalAs(UnmanagedType.ByValArray, SizeConst=64)] public int[] speed;
-		
-		public CameraOperation operations;
-		public CameraFileOperation file_operations;
-		public CameraFolderOperation folder_operations;
-		
-		public int usb_vendor;
-		public int usb_product;
-		public int usb_class;
-		public int usb_subclass;
-		public int usb_protocol;
-		
-		[MarshalAs(UnmanagedType.ByValTStr, SizeConst=1024)] public string library;
-		[MarshalAs(UnmanagedType.ByValTStr, SizeConst=1024)] public string id;
-		
-		public int reserved1;
-		public int reserved2;
-		public int reserved3;
-		public int reserved4;
-		public int reserved5;
-		public int reserved6;
-		public int reserved7;
-		public int reserved8;
-	}
-	
-	public class CameraAbilitiesList : Object
+	public class CameraAbilitiesList : GPList<CameraAbilities>
 	{
 		[DllImport ("libgphoto2.so")]
 		internal static extern ErrorCode gp_abilities_list_new (out IntPtr native);
-
-		public CameraAbilitiesList()
-		{
-			IntPtr native;
-
-			Error.CheckError (gp_abilities_list_new (out native));
-
-			this.handle = new HandleRef (this, native);
-		}
-		
 		[DllImport ("libgphoto2.so")]
 		internal static extern ErrorCode gp_abilities_list_free (HandleRef list);
-		
-		protected override void Cleanup ()
+
+		public CameraAbilitiesList () : base (gp_abilities_list_free)
 		{
-			gp_abilities_list_free(this.handle);
+			IntPtr native;
+			Error.CheckError (gp_abilities_list_new (out native));
+			this.handle = new HandleRef (this, native);
 		}
 		
 		[DllImport ("libgphoto2.so")]
@@ -108,67 +37,45 @@ namespace LibGPhoto2
 
 		public void Load (Context context)
 		{
-			unsafe {
-				ErrorCode result = gp_abilities_list_load (this.Handle, context.Handle);
-				
-				if (Error.IsError (result))
-					throw Error.ErrorException(result);
-			}
+			Error.CheckError (gp_abilities_list_load (this.Handle, context.Handle));
 		}
 		
 		[DllImport ("libgphoto2.so")]
 		internal unsafe static extern ErrorCode gp_abilities_list_detect (HandleRef list, HandleRef info_list, HandleRef l, HandleRef context);
 
-		public void Detect (PortInfoList info_list, CameraList l, Context context)
+		public CameraList Detect (PortInfoList info_list, Context context)
 		{
-			Error.CheckError (gp_abilities_list_detect (this.handle, info_list.Handle, 
-								    l.Handle, context.Handle));
+			CameraList camera_list = new CameraList ();
+			Error.CheckError (gp_abilities_list_detect (Handle, info_list.Handle, 
+								    camera_list.Handle, context.Handle));
+			return camera_list;
 		}
 		
 		[DllImport ("libgphoto2.so")]
 		internal static extern ErrorCode gp_abilities_list_count (HandleRef list);
 
-		public int Count ()
-		{
-			ErrorCode result = gp_abilities_list_count (this.handle);
-
-			if (Error.IsError (result)) 
-				throw Error.ErrorException (result);
-
-			return (int)result;
-		}
-		
-		[DllImport ("libgphoto2.so")]
-		internal static extern ErrorCode gp_abilities_list_lookup_model (HandleRef list, string model);
-
-		public int LookupModel (string model)
-		{
-			ErrorCode result = gp_abilities_list_lookup_model(this.handle, model);
-
-			if (Error.IsError (result))
-				throw Error.ErrorException (result);
-	
-			return (int)result;
+		public override int Count {
+			get { return Error.CheckError (gp_abilities_list_count (this.handle)); }
 		}
 		
 		[DllImport ("libgphoto2.so")]
 		internal static extern ErrorCode gp_abilities_list_get_abilities (HandleRef list, int index, out CameraAbilities abilities);
 
-		public CameraAbilities GetAbilities (int index)
-		{
-			CameraAbilities abilities = new CameraAbilities ();
+		public override CameraAbilities this [int index] {
+			get {
+				CameraAbilities abilities;
+				Error.CheckError (gp_abilities_list_get_abilities(this.Handle, index, out abilities));
 
-			Error.CheckError (gp_abilities_list_get_abilities(this.Handle, index, out abilities));
-
-			return abilities;
+				return abilities;
+			}
 		}
-		
+
 		[DllImport ("libgphoto2.so")]
-		internal static extern ErrorCode gp_abilities_list_append (HandleRef list, ref CameraAbilities abilities);
+		internal static extern ErrorCode gp_abilities_list_lookup_model (HandleRef list, [MarshalAs (UnmanagedType.LPTStr)]string model);
 
-		public void Append (CameraAbilities abilities)
-		{
-			Error.CheckError (gp_abilities_list_append (this.Handle, ref abilities));
+		public CameraAbilities this [string model] {
+			get { return this [Error.CheckError (gp_abilities_list_lookup_model(this.handle, model))]; }
 		}
+			
 	}
 }

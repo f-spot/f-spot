@@ -2,48 +2,46 @@
  * PortInfo.cs
  *
  * Author(s):
- *	Ewen Cheslack-Postava <echeslack@gmail.com>
- *	Larry Ewing <lewing@novell.com>
+ *	Stephane Delcroix <stephane@delcroix.org>
  *
- * This is free software. See COPYING for details.
+ * Copyright (c) 2005-2009 Novell, Inc.
+ *
+ * This is open source software. See COPYING for details.
  */
+
 using System;
 using System.Runtime.InteropServices;
 
-namespace LibGPhoto2
+namespace GPhoto2
 {
 	[StructLayout(LayoutKind.Sequential)]
-	internal unsafe struct _PortInfo
+	public unsafe struct PortInfo
 	{
-		internal PortType type;
-		[MarshalAs(UnmanagedType.ByValTStr, SizeConst=64)] internal string name;
-		[MarshalAs(UnmanagedType.ByValTStr, SizeConst=64)] internal string path;
+		PortType type;
+		[MarshalAs(UnmanagedType.ByValTStr, SizeConst=64)] string name;
+		[MarshalAs(UnmanagedType.ByValTStr, SizeConst=64)] string path;
 
 		/* Private */
-		[MarshalAs(UnmanagedType.ByValTStr, SizeConst=1024)] internal string library_filename;
-	}
-	
-	public class PortInfo 
-	{
-		internal _PortInfo Handle;
+#pragma warning disable 169
+		[MarshalAs(UnmanagedType.ByValTStr, SizeConst=1024)] string library_filename;
+#pragma warning restore 169
 
-		internal PortInfo () {
+
+		public PortType Type {
+			get { return type; }
 		}
-		
+
 		public string Name {
-			get {
-				unsafe {
-					return Handle.name;
-				}
-			}
+			get { return name; }
 		}
-		
+
 		public string Path {
-			get {
-				unsafe {
-					return Handle.path;
-				}
-			}
+			get { return path; }
+		}
+
+		public override string ToString ()
+		{
+			return String.Format ("PortInfo: {0}\t{1} ({2})", Name, Path, Type);
 		}
 	}
 }

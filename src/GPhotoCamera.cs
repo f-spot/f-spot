@@ -1,13 +1,12 @@
 using System;
 using System.IO;
 using System.Collections;
-using LibGPhoto2;
+using GPhoto2;
 using Gdk;
 using FSpot.Utils;
 using FSpot;
-#if GPHOTO2_2_4
 using Mono.Unix.Native;
-#endif
+
 public class GPhotoCamera
 {
 	Context context;
@@ -17,11 +16,9 @@ public class GPhotoCamera
 	CameraAbilities camera_abilities;
 	Camera camera;
 	PortInfo port_info;
-	CameraFilesystem camera_fs;
 	ArrayList files;
 	
 	int selected_camera__camera_list_index;
-	int selected_camera__abilities_list_index;
 	int selected_camera__port_info_list_index;
 		
 	public GPhotoCamera()
@@ -34,52 +31,35 @@ public class GPhotoCamera
 		abilities_list = new CameraAbilitiesList ();
 		abilities_list.Load (context);
 			
-		camera_list = new CameraList();
-			
 		selected_camera__camera_list_index = -1;
 
 		camera = null;
-		port_info = null;
-		camera_fs = null;
 	}
 		
 	public int DetectCameras ()
 	{
-		abilities_list.Detect (port_info_list, camera_list, context);
+		camera_list = abilities_list.Detect (port_info_list, context);
 		return CameraCount;
 	}
 		
 	public int CameraCount {
-		get {
-			return camera_list.Count();
-		}
+		get { return camera_list.Count; }
 	}
 	
 	public CameraList CameraList {
-		get {
-			return camera_list;
-		}
+		get { return camera_list; }
 	}
 		
 	public void SelectCamera (int index)
 	{
 		selected_camera__camera_list_index = index;
 
-		selected_camera__abilities_list_index = abilities_list.LookupModel (camera_list.GetName (selected_camera__camera_list_index));			
-		camera_abilities = abilities_list.GetAbilities (selected_camera__abilities_list_index);
+		camera_abilities = abilities_list [camera_list.GetName (selected_camera__camera_list_index)];
+		port_info = port_info_list.LookupPath (camera_list.GetValue (selected_camera__camera_list_index));
 
-		camera = new Camera ();
-		camera.SetAbilities (camera_abilities);
-
-		
-		string path  = camera_list.GetValue (selected_camera__camera_list_index);
-		Log.Debug ("Testing gphoto path = {0}", path);
-		selected_camera__port_info_list_index = port_info_list.LookupPath (path);
-
-		port_info = port_info_list.GetInfo (selected_camera__port_info_list_index);
 		Log.Debug ("PortInfo {0}, {1}", port_info.Name, port_info.Path);
 
-		camera.SetPortInfo (port_info);
+		camera = new Camera () { Abilities = camera_abilities, PortInfo = port_info };
 	}
 		
 	public void InitializeCamera ()
@@ -88,7 +68,6 @@ public class GPhotoCamera
 			throw new InvalidOperationException();
 
 		camera.Init (context);
-		camera_fs = camera.GetFS ();
 
 		files = new ArrayList ();
 		GetFileList ();
@@ -101,7 +80,7 @@ public class GPhotoCamera
 		
 	private void GetFileList (string dir)
 	{
-		if (camera_fs == null) 
+		if (camera == null) 
 			throw new InvalidOperationException ();
 
 		//workaround for nikon dslr in ptp mode
@@ -109,14 +88,14 @@ public class GPhotoCamera
 			return;
 		
 		//files
-		CameraList filelist = camera_fs.ListFiles(dir, context);
-		for (int i = 0; i < filelist.Count(); i++) {
+		CameraList filelist = camera.ListFiles(dir, context);
+		for (int i = 0; i < filelist.Count; i++) {
 			files.Add(new GPhotoCameraFile(dir, filelist.GetName(i)));
 		}
 	
 		//subdirectories
-		CameraList folderlist = camera_fs.ListFolders(dir, context);
-		for (int i = 0; i < folderlist.Count(); i++) {
+		CameraList folderlist = camera.ListFolders(dir, context);
+		for (int i = 0; i < folderlist.Count; i++) {
 			GetFileList(dir + folderlist.GetName(i) + "/");
 		}
 	}
@@ -136,16 +115,14 @@ public class GPhotoCamera
 	
 	public CameraFile GetFile (int index)
 	{
-		if (camera_fs == null || files == null || index < 0 || index >= files.Count) 
+		if (camera == null || files == null || index < 0 || index >= files.Count) 
 			return null;
 
 		GPhotoCameraFile selected_file = (GPhotoCameraFile)files [index];		
 		if (selected_file.NormalFile == null)
 		{
-			selected_file.NormalFile = camera_fs.GetFile (selected_file.Directory, 
-								      selected_file.FileName, 
-								      CameraFileType.Normal,
-								      context);
+			selected_file.NormalFile = new CameraFile ();
+			camera.GetFile (selected_file.Directory, selected_file.FileName, CameraFileType.Normal, selected_file.NormalFile, context);
 		}
 		
 		return selected_file.NormalFile;
@@ -159,17 +136,15 @@ public class GPhotoCamera
 	
 	public CameraFile GetPreview (int index)
 	{      
-		if (camera_fs == null || files == null || index < 0 || index >= files.Count) 
+		if (camera == null || files == null || index < 0 || index >= files.Count) 
 			return null;
 
 		GPhotoCameraFile selected_file = (GPhotoCameraFile) files [index];		
 
 		if (selected_file.PreviewFile == null) {
 			try {
-				selected_file.PreviewFile = camera_fs.GetFile (selected_file.Directory,
-									       selected_file.FileName,
-									       CameraFileType.Preview,
-									       context);
+				selected_file.PreviewFile = new CameraFile ();
+				camera.GetFile (selected_file.Directory, selected_file.FileName, CameraFileType.Preview, selected_file.PreviewFile, context);
 			} catch (System.Exception e) {
 				Log.Exception (e);
 				selected_file.PreviewFile = null;
@@ -212,17 +187,15 @@ public class GPhotoCamera
 		//check if the directory exists
 		if (!Directory.Exists (Path.GetDirectoryName (filename))) 
 			throw new Exception (String.Format ("Directory \"{0}\"does not exist", filename)); //FIXME
-#if GPHOTO2_2_4
 		//gp_file_new_from_fd is broken on the directory driver
 		//but using gp_file_new_from_fd doesn't move the files to memory
-		if (camera_abilities.port != PortType.Disk) {
+		if (camera_abilities.PortType != PortType.Disk) {
 			GPhotoCameraFile selected_file = (GPhotoCameraFile) files [index];		
 			using (var f = new CameraFile (Syscall.open (filename, OpenFlags.O_CREAT|OpenFlags.O_RDWR, FilePermissions.DEFFILEMODE))) {
 				camera.GetFile (selected_file.Directory, selected_file.FileName, CameraFileType.Normal, f, context);
 			}
 			return;
 		}
-#endif
 	
 		using (CameraFile camfile = GetFile (index)) {
 			if (camfile == null) 
@@ -252,8 +225,6 @@ public class GPhotoCamera
 			foreach (GPhotoCameraFile curcamfile in files)
 				curcamfile.ReleaseGPhotoResources ();
 
-		if (camera_fs != null) 
-			camera_fs.Dispose ();
 		if (camera != null) 
 			camera.Dispose ();
 

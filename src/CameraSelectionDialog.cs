@@ -1,7 +1,7 @@
 using System;
 using Gtk;
 using Glade;
-using LibGPhoto2;
+using GPhoto2;
 using Mono.Unix;
 using FSpot.UI.Dialog;
 
@@ -30,7 +30,7 @@ namespace FSpot {
 			cameraList.AppendColumn (Catalog.GetString ("Port"), new CellRendererText (), "text", 1);
 			
 			ListStore tstore = new ListStore (typeof (string), typeof (string));
-			for (int i = 0; i < camlist.Count (); i++) {
+			for (int i = 0; i < camlist.Count; i++) {
 				tstore.AppendValues (camlist.GetName (i), camlist.GetValue (i));
 			}
 			
@@ -50,5 +50,21 @@ namespace FSpot {
 			
 			return return_value;
 		}
+
+	}
+
+	internal static class CameraListExtensions
+	{
+		public static int GetPosition(this CameraList list, string name, string value)
+		{
+			for (int index = 0; index < list.Count; index++)
+			{
+				if (list.GetName(index) == name && list.GetValue(index) == value)
+					return index;
+			}
+			
+			return -1;
+		}
+	
 	}
 }

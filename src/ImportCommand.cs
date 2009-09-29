@@ -235,7 +235,7 @@ public class ImportCommand : GladeDialog
 
 			GPhotoCamera cam = new GPhotoCamera ();
 			cam.DetectCameras ();
-			int camera_count = cam.CameraList.Count ();
+			int camera_count = cam.CameraList.Count;
 
 			if (camera_count > 0) {
 				source_count += camera_count;

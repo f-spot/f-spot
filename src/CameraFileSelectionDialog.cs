@@ -13,7 +13,7 @@ using System.IO;
 using Gdk;
 using Gtk;
 using Glade;
-using LibGPhoto2;
+using GPhoto2;
 using Mono.Unix;
 using FSpot.Utils;
 using FSpot.UI.Dialog;

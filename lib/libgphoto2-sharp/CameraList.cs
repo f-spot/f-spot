@@ -2,22 +2,28 @@
  * CameraList.cs
  *
  * Author(s):
+ *	Stephane Delcroix <stephane@delcroix.org
  *	Ewen Cheslack-Postava <echeslack@gmail.com>
  *	Larry Ewing <lewing@novell.com>
  *
- * This is free software. See COPYING for details.
+ * Copyright (c) 2005-2009 Novell, Inc.
+ *
+ * This is open source software. See COPYING for details.
  */
+
 using System;
 using System.Runtime.InteropServices;
 
-namespace LibGPhoto2
+namespace GPhoto2
 {
-	public class CameraList : Object 
+	public class CameraList : GPObject 
 	{
 		[DllImport ("libgphoto2.so")]
 		internal static extern ErrorCode gp_list_new (out IntPtr list);
+		[DllImport ("libgphoto2.so")]
+		internal static extern ErrorCode gp_list_unref (HandleRef list);
 
-		public CameraList ()
+		public CameraList () : base (gp_list_unref)
 		{
 			IntPtr native;
 			Error.CheckError (gp_list_new (out native));
@@ -26,59 +32,39 @@ namespace LibGPhoto2
 		}
 		
 		[DllImport ("libgphoto2.so")]
-		internal static extern ErrorCode gp_list_unref (HandleRef list);
-
-		protected override void Cleanup ()
-		{
-			gp_list_unref (handle);
-		}
-		
-		[DllImport ("libgphoto2.so")]
 		internal static extern ErrorCode gp_list_count (HandleRef list);
 		
-		public int Count ()
-		{
-			ErrorCode result = gp_list_count (handle);
-
-			if (Error.IsError (result))
-				throw Error.ErrorException (result);
-
-			return (int)result;
+		public int Count {
+			get { return Error.CheckError (gp_list_count (handle)); }
 		}
 		
 		[DllImport ("libgphoto2.so")]
-		internal static extern ErrorCode gp_list_set_name (HandleRef list, int index, string name);
+		internal static extern ErrorCode gp_list_set_name (HandleRef list, int index, [MarshalAs(UnmanagedType.LPTStr)] string name);
 
 		public void SetName (int n, string name)
 		{
-			ErrorCode result = gp_list_set_name(this.Handle, n, name);
-
-			if (Error.IsError (result))
-				throw Error.ErrorException (result);
+			Error.CheckError (gp_list_set_name(this.Handle, n, name));
 		}
-		
-		[DllImport ("libgphoto2.so")]
-		internal static extern ErrorCode gp_list_set_value (HandleRef list, int index, string value);
 
-		public void SetValue (int n, string value)
-		{
-			ErrorCode result = gp_list_set_value (this.Handle, n, value);
-
-			if (Error.IsError (result))
-				throw Error.ErrorException (result);
-		}
-		
 		[DllImport ("libgphoto2.so")]
 		internal static extern ErrorCode gp_list_get_name (HandleRef list, int index, out IntPtr name);
 
 		public string GetName (int index)
 		{
 			IntPtr name;
-
 			Error.CheckError (gp_list_get_name(this.Handle, index, out name));
 
 			return Marshal.PtrToStringAnsi (name);
 		}
+		
+		[DllImport ("libgphoto2.so")]
+		internal static extern ErrorCode gp_list_set_value (HandleRef list, int index, [MarshalAs (UnmanagedType.LPTStr)] string value);
+
+		public void SetValue (int n, string value)
+		{
+			Error.CheckError (gp_list_set_value (this.Handle, n, value));
+		}
+		
 		
 		[DllImport ("libgphoto2.so")]
 		internal static extern ErrorCode gp_list_get_value (HandleRef list, int index, out IntPtr value);
@@ -86,26 +72,9 @@ namespace LibGPhoto2
 		public string GetValue (int index)
 		{
 			IntPtr value;
-
 			Error.CheckError (gp_list_get_value(this.Handle, index, out value));
 
 			return Marshal.PtrToStringAnsi (value);
-		}
-		
-		[DllImport ("libgphoto2.so")]
-		internal static extern ErrorCode gp_list_append (HandleRef list, string name, string value);
-
-		public void Append (string name, string value)
-		{
-			Error.CheckError (gp_list_append(this.Handle, name, value));
-		}
-		
-		[DllImport ("libgphoto2.so")]
-		internal static extern ErrorCode gp_list_populate (HandleRef list, string format, int count);
-
-		public void Populate (string format, int count)
-		{
-			Error.CheckError (gp_list_populate(this.Handle, format, count));
 		}
 		
 		[DllImport ("libgphoto2.so")]
@@ -122,17 +91,6 @@ namespace LibGPhoto2
 		public void Sort ()
 		{
 			Error.CheckError (gp_list_sort(this.Handle));
-		}
-		
-		public int GetPosition(string name, string value)
-		{
-			for (int index = 0; index < Count(); index++)
-			{
-				if (GetName(index) == name && GetValue(index) == value)
-					return index;
-			}
-			
-			return -1;
 		}
 	}
 }
