@@ -14,9 +14,6 @@ namespace FSpot.Widgets {
 
 	public class SoftFocus {
 
-		[DllImport ("cairo")]
-		internal static extern int cairo_version ();
-
 		ImageInfo info;
 		double radius;
 		double amount;
@@ -107,20 +104,11 @@ namespace FSpot.Widgets {
 
 			RadialGradient circle;
 
-			// FIXME ugh cairo 1.0.2 is so broken why are we still shipping it.
-			if (cairo_version () > (1 * 10000 + 2 * 100 + 0)) {
-				circle = new RadialGradient (center.X * scale, center.Y * scale, radius * max * .7,
-							     center.X * scale, center.Y * scale, radius * max + max * .2);
+			circle = new RadialGradient (center.X * scale, center.Y * scale, radius * max * .7,
+						     center.X * scale, center.Y * scale, radius * max + max * .2);
 
-				circle.AddColorStop (0, new Cairo.Color (0.0, 0.0, 0.0, 0.0));
-				circle.AddColorStop (1.0, new Cairo.Color (1.0, 1.0, 1.0, 1.0));
-			} else {
-				circle = new RadialGradient (center.X * scale, center.Y * scale, radius * max + max * .2,
-							     center.X * scale, center.Y * scale, radius * max * .7);
-
-				circle.AddColorStop (1.0, new Cairo.Color (0.0, 0.0, 0.0, 0.0));
-				circle.AddColorStop (0, new Cairo.Color (1.0, 1.0, 1.0, 1.0));
-			}
+			circle.AddColorStop (0, new Cairo.Color (0.0, 0.0, 0.0, 0.0));
+			circle.AddColorStop (1.0, new Cairo.Color (1.0, 1.0, 1.0, 1.0));
 			return circle;
 		}
 
