@@ -31,7 +31,7 @@ addin_DATA = $(ASSEMBLY)
 
 CLEANFILES = $(ASSEMBLY) $(ASSEMBLY).mdb *.mpack
 
-ETRA_DIST = 			\
+EXTRA_DIST = 			\
 	$(build_sources)	\
 	$(dep_resources)	\
 	$(addin_extradist)
