@@ -1,51 +1,20 @@
-include $(top_srcdir)/Makefile.include
+addin = DBusService
 
-PLUGIN_NAME = DBusService
+addin_manifest = $(addin).addin.xml
 
-PLUGIN_MANIFEST = $(PLUGIN_NAME).addin.xml
+addin_sources =			\
+	$(addin).cs		\
+	DBusProxy.cs
 
-PLUGIN_ASSEMBLY = $(PLUGIN_NAME).dll
+addin_resources =		\
+	$(addin_manifest)
 
-PLUGIN_SOURCES =			\
-	$(srcdir)/DBusService.cs	\
-	$(srcdir)/DBusProxy.cs
+addin_references =
+addin_packages =		\
+	gtk-sharp-2.0
 
+addin_extraflags =		\
+	$(NDESK_DBUS_LIBS)
+addin_extradist =
 
-REFS =					\
-	-pkg:gtk-sharp-2.0		\
-	-r:$(top_builddir)/src/f-spot.exe		\
-	-r:$(top_builddir)/src/FSpot.Core.dll	\
-	-r:$(top_builddir)/src/FSpot.Utils.dll	\
-	-r:$(top_builddir)/src/FSpot.Query.dll	\
-	$(NDESK_DBUS_LIBS)				\
-	$(LINK_MONO_ADDINS)			\
-	$(LINK_SEMWEB)				\
-	$(LINK_GIOSHARP)				\
-	$(LINK_GPHOTO2)
-
-PKGS =
-
-RESOURCES =				\
-	-resource:$(srcdir)/$(PLUGIN_MANIFEST)
-
-all: $(PLUGIN_ASSEMBLY)
-
-mpack: $(PLUGIN_ASSEMBLY)
-	mautil p $(PLUGIN_ASSEMBLY)
-
-$(PLUGIN_ASSEMBLY): $(PLUGIN_SOURCES) $(PLUGIN_MANIFEST)
-	$(CSC_LIB) -out:$@ $(CSC_DEFINES) $(PLUGIN_SOURCES) $(REFS) $(PKGS) $(ASSEMBLIES) $(RESOURCES)
-
-plugindir = $(pkglibdir)/extensions
-
-plugin_DATA =			\
-	$(PLUGIN_ASSEMBLY)
-
-EXTRA_DIST = 			\
-	$(PLUGIN_SOURCES)	\
-	$(PLUGIN_MANIFEST)
-
-CLEANFILES =			\
-	$(PLUGIN_ASSEMBLY)	\
-	$(PLUGIN_ASSEMBLY).mdb	\
-	*.mpack
+include $(top_srcdir)/Makefile.addins
