@@ -70,6 +70,8 @@ EXTRA_DIST =			\
 	$(SNK)		\
 	gtk-sharp-beans.dll.config	\
 	Gtk.metadata		\
+	GtkBeans.metadata		\
+	gtkbeans-api.raw	\
 	gtk-api.raw
 
 assemblydir = $(pkglibdir)

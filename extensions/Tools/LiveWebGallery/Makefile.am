@@ -58,8 +58,7 @@ EXTRA_DIST = 			\
 	ui/$(PLUGIN_NAME).ui	\
 	ui/f-spot.css		\
 	ui/f-spot.js		\
-	ui/gallery.html		\
-	ui/photo.html
+	ui/gallery.html
 
 CLEANFILES =			\
 	$(PLUGIN_ASSEMBLY)	\
