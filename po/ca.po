@@ -1169,7 +1169,7 @@ msgstr "S'està preparant la fotografia «{0}»"
 #: ../extensions/Exporters/ZipExport/ZipExport.glade.h:1
 #: ../src/f-spot.glade.h:92
 msgid "_Create"
-msgstr "_Crea"
+msgstr "C_rea"
 
 #
 #: ../extensions/Exporters/ZipExport/ZipExport.glade.h:2
@@ -1193,9 +1193,9 @@ msgid ""
 "needs to analyze your image collection. This is not done by default as it's "
 "time consuming. You can Start or Pause this update process using this dialog."
 msgstr ""
-"Per tal de detectar les imatges duplicades que vareu important abans de la "
+"Per tal de detectar les imatges duplicades que heu importat abans de la "
 "versió 0.5.0, l'F-Spot necessita analitzar la col·lecció d'imatges. Això no "
-"es fa per defecte ja que requereix força temps. Podeu iniciar o fer pausa en "
+"es fa per defecte i requereix força temps. Podeu iniciar o fer pausa en "
 "aquest procés d'actualització utilitzant aquest diàleg."
 
 #: ../extensions/Tools/HashJob/HashJob.cs:59
@@ -1203,7 +1203,7 @@ msgstr ""
 msgid ""
 "You currently have {0} photos needing md5 calculation, and {1} pending jobs"
 msgstr ""
-"Hi ha actualment {0} fotografies que requereixen el càlcul md5, i {1} "
+"Actualment hi ha {0} fotografies que requereixen el càlcul md5 i {1} "
 "treballs pendents"
 
 #: ../extensions/Tools/HashJob/HashJob.cs:75 ../src/ui/main_window.ui.h:37
@@ -1213,7 +1213,7 @@ msgstr "_Tanca"
 #
 #: ../extensions/Tools/HashJob/HashJob.cs:102
 msgid "Processing images..."
-msgstr "S'estant processant les imatges..."
+msgstr "S'estan processant les imatges..."
 
 #: ../extensions/Tools/HashJob/HashJob.cs:108
 msgid "Stopped"
@@ -1342,11 +1342,11 @@ msgstr "Totes les imatges"
 
 #: ../extensions/Tools/ScreensaverConfig/ScreensaverConfigDialog.ui.h:2
 msgid "Delay:"
-msgstr "_Mostra:"
+msgstr "Retard:"
 
 #: ../extensions/Tools/ScreensaverConfig/ScreensaverConfigDialog.ui.h:3
 msgid "Display:"
-msgstr "Retard:"
+msgstr "Mostra:"
 
 #: ../extensions/Tools/ScreensaverConfig/ScreensaverConfigDialog.ui.h:4
 msgid "Images tagged with:"
@@ -1358,7 +1358,7 @@ msgstr "Fes de l'F-Spot el meu estalvi de pantalla"
 
 #: ../extensions/Tools/ScreensaverConfig/ScreensaverConfigDialog.ui.h:6
 msgid "Screensaver Configuration"
-msgstr "Configuració del estalvi de pantalla"
+msgstr "Configuració de l'estalvi de pantalla"
 
 #: ../f-spot.desktop.in.in.h:1 ../f-spot-import.desktop.in.in.h:1
 msgid "F-Spot Photo Manager"
@@ -3876,7 +3876,7 @@ msgstr "Seleccioneu una carpeta"
 
 #: ../src/UI.Dialog/ui/PreferenceDialog.ui.h:8
 msgid "Separately from the image files"
-msgstr "De forma separada dels fitxers de imatge"
+msgstr "De forma separada dels fitxers d'imatge"
 
 #: ../src/UI.Dialog/ui/PreferenceDialog.ui.h:9
 msgid "Store tags and descriptions for photos:"
@@ -3983,7 +3983,7 @@ msgstr "E_tiquetes"
 #
 #: ../src/ui/main_window.ui.h:25
 msgid "Thumbnail _elements"
-msgstr "_Elements de miniatures"
+msgstr "Miniatures dels _elements"
 
 #
 #: ../src/ui/main_window.ui.h:26
