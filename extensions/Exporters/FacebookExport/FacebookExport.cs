@@ -260,6 +260,7 @@ namespace FSpot.Exporter.Facebook
 	public class FacebookExport : IExporter
 	{
 		private int size = 604;
+		private int max_photos_per_album = 200;
 		FacebookExportDialog dialog;
 		ThreadProgressDialog progress_dialog;
 		System.Threading.Thread command_thread;
@@ -273,11 +274,11 @@ namespace FSpot.Exporter.Facebook
 
 			dialog = new FacebookExportDialog (selection);
 
-			if (selection.Items.Length > 60) {
+			if (selection.Items.Length > max_photos_per_album) {
 				HigMessageDialog mbox = new HigMessageDialog (dialog,
 						Gtk.DialogFlags.DestroyWithParent | Gtk.DialogFlags.Modal, Gtk.MessageType.Error,
 						Gtk.ButtonsType.Ok, Catalog.GetString ("Too many images to export"),
-						Catalog.GetString ("Facebook only permits 60 photographs per album.  Please refine your selection and try again."));
+						String.Format (Catalog.GetString ("Facebook only permits {0} photographs per album.  Please refine your selection and try again."), max_photos_per_album));
 				mbox.Run ();
 				mbox.Destroy ();
 				return;
