@@ -52,7 +52,7 @@ namespace FSpot.UI.Dialog {
 			if (args.ResponseId == ResponseType.Ok) {
 				Roll [] selected_rolls = SelectedRolls ();
 				
-				if (selected_rolls.Length > 0 )
+				if (selected_rolls != null && selected_rolls.Length > 0 )
 					query.RollSet = new RollSet (selected_rolls);
 			}
 			Dialog.Destroy ();
