@@ -24,7 +24,7 @@ all: $(ASSEMBLY)
 mpack: $(ASSEMBLY)
 	mautil p $(ASSEMBLY)
 
-$(ASSEMBLY): $(build_sources) $(dep_resource)
+$(ASSEMBLY): $(build_sources) $(dep_resources)
 	$(CSC_LIB) -out:$@ $(addin_extraflags) $(build_sources) $(build_references) $(build_packages) $(build_resources)
 
 addindir = $(pkglibdir)/extensions
