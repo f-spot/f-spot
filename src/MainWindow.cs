@@ -1671,6 +1671,7 @@ namespace FSpot
 			Preferences.Set (Preferences.SHOW_DATES,		icon_view.DisplayDates);
 			Preferences.Set (Preferences.SHOW_RATINGS,		icon_view.DisplayRatings);
 	
+			Preferences.Set (Preferences.GROUP_ADAPTOR_ORDER_ASC,   group_selector.Adaptor.OrderAscending);
 			Preferences.Set (Preferences.GLASS_POSITION,		group_selector.GlassPosition);
 			
 			Preferences.Set (Preferences.SIDEBAR_POSITION,		main_hpaned.Position);
