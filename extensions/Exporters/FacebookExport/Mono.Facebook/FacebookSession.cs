@@ -118,10 +118,22 @@ namespace Mono.Facebook
 				FacebookParam.Create ("session_key", session_info.SessionKey),
 				FacebookParam.Create ("call_id", DateTime.Now.Ticks));
 
-			foreach (Album album in rsp.Albums)
-				album.Session = this;
+			// Fetch "Profile pictures" album ID, and remove it from list. We cannot upload there. Bgo#595952
+			AlbumsResponse rsp_profile = util.GetResponse<AlbumsResponse> ("facebook.photos.getAlbums",
+				FacebookParam.Create ("uid", session_info.UId),
+				FacebookParam.Create ("session_key", session_info.SessionKey),
+				FacebookParam.Create ("aid", "-3"),
+				FacebookParam.Create ("call_id", DateTime.Now.Ticks));
 
-			return rsp.Albums;
+			Album [] rsp_albums = new Album [rsp.Albums.Length - 1];
+			uint id = 0;
+			foreach (Album album in rsp.Albums) 
+				if (album.AId != rsp_profile.Albums [0].AId) {
+					album.Session = this;
+					rsp_albums [id ++] = album;
+				}
+
+			return rsp_albums;
 		}
 
 		public Album CreateAlbum (string name, string description, string location)
