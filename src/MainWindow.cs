@@ -235,6 +235,15 @@ namespace FSpot
 	
 			GtkBeans.Builder builder = new GtkBeans.Builder ("main_window.ui");
 			builder.Autoconnect (this);
+
+			//Set the global DefaultColormap. Allows transparency according
+			//to the theme (work on murrine engine)
+			Gdk.Colormap colormap = ((Widget)main_window).Screen.RgbaColormap;
+			if (colormap == null) {
+				Log.Debug ("Your screen doesn't support alpha channels!");
+				colormap = ((Widget)main_window).Screen.RgbColormap;
+			}
+			Gtk.Widget.DefaultColormap = colormap;
 	
 			LoadPreference (Preferences.MAIN_WINDOW_WIDTH);
 			LoadPreference (Preferences.MAIN_WINDOW_X);
@@ -501,6 +510,7 @@ namespace FSpot
 			UpdateToolbar ();
 	
 			(uimanager.GetWidget("/ui/menubar1/file1/close1") as MenuItem).Hide ();
+
 	
 			Banshee.Kernel.Scheduler.Resume ();
 		}
