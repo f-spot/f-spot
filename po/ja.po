@@ -1,5 +1,5 @@
 # Japanese Messages for F-Spot
-# Copyright (C) 2004,2005,2008 F-spot'S COPYRIGHT HOLDER
+# Copyright (C) 2004,2005,2008,2009 F-spot'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the F-Spot package.
 # Satoru SATOH <ss@gnome.gr.jp>, 2004.
 # Takeshi AIHANA <aihana@gnome.gr.jp>, 2005.
@@ -8,372 +8,1630 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: F-Spot trunk\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-03-16 08:14+0900\n"
-"PO-Revision-Date: 2009-01-24 17:55+0900\n"
+"Project-Id-Version: F-Spot master\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=f-"
+"spot&component=General\n"
+"POT-Creation-Date: 2009-10-22 21:54+0900\n"
+"PO-Revision-Date: 2009-10-20 22:03+0900\n"
 "Last-Translator: Yohizumi ENDO <y-endo@ceres.dti.ne.jp>\n"
 "Language-Team: Japanese <gnome-translation@gnome.gr.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 
-#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInfoDialog.cs:62
+#: ../extensions/Exporters/CDExport/CDExport.addin.xml.h:1
+msgid "_CD..."
+msgstr "CD(_C)..."
+
+#: ../extensions/Exporters/CDExport/CDExport.cs:162
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:392
+#: ../src/CameraFileSelectionDialog.cs:199
+msgid "Transferring Pictures"
+msgstr "写真の転送中"
+
+#: ../extensions/Exporters/CDExport/CDExport.cs:218
+#, csharp-format
+msgid "Transferring picture \"{0}\" To CD"
+msgstr "写真 \"{0}\" を CD へ転送中"
+
+#. Note for translators: This indicates the current photo is photo {0} of {1} out of photos
+#: ../extensions/Exporters/CDExport/CDExport.cs:220
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:349
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:245
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:781
+#: ../src/MainWindow.cs:633 ../src/UI.Dialog/AdjustTimeDialog.cs:129
+#: ../src/UI.Dialog/ProgressDialog.cs:92
+#, csharp-format
+msgid "{0} of {1}"
+msgstr "{0} / {1}"
+
+#: ../extensions/Exporters/CDExport/CDExport.cs:233
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:380
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:379
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:285
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:806
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:704
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:607
+msgid "Done Sending Photos"
+msgstr "写真の送信が完了しました"
+
+#: ../extensions/Exporters/CDExport/CDExport.cs:235
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:287
+msgid "Transfer Complete"
+msgstr "転送の完了"
+
+#: ../extensions/Exporters/CDExport/CDExport.cs:242
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:292
+msgid "Error While Transferring"
+msgstr "転送する際にエラー"
+
+#: ../extensions/Exporters/CDExport/CDExport.cs:250
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:311
+msgid "Error Transferring"
+msgstr "転送中にエラー"
+
+#: ../extensions/Exporters/CDExport/CDExport.cs:263
+msgid "copying..."
+msgstr "コピー中..."
+
+#: ../extensions/Exporters/CDExport/CDExport.ui.h:1
+msgid "<b><i>There is some previously scheduled items to write</i></b>"
+msgstr "<b><i>他に書き込み予約されたアイテムがあります</i></b>"
+
+#: ../extensions/Exporters/CDExport/CDExport.ui.h:2
+msgid "<b>Photos to Burn</b>"
+msgstr "<b>焼き込む写真</b>"
+
+#: ../extensions/Exporters/CDExport/CDExport.ui.h:3
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:7
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:7
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:5
+#: ../src/f-spot.glade.h:28
+msgid "Autorotate"
+msgstr "自動回転"
+
+#: ../extensions/Exporters/CDExport/CDExport.ui.h:4
+msgid "Create CD"
+msgstr "CD の作成"
+
+#: ../extensions/Exporters/CDExport/CDExport.ui.h:5
+#: ../src/Widgets/InfoBox.cs:220
+msgid "Size"
+msgstr "サイズ"
+
+#: ../extensions/Exporters/CDExport/CDExport.ui.h:6
+msgid "Size of the exported selection:"
+msgstr "エキスポートされるサイズ:"
+
+#: ../extensions/Exporters/CDExport/CDExport.ui.h:7
+msgid "_Browse Previously Scheduled Files"
+msgstr "他に書き込み予約されているファイルを参照(_B)"
+
+#: ../extensions/Exporters/CDExport/CDExport.ui.h:8
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:15
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:16
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:15
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:20
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:12
+#: ../src/f-spot.glade.h:95
+msgid "_Export"
+msgstr "エキスポート(_E)"
+
+#: ../extensions/Exporters/CDExport/CDExport.ui.h:9
+msgid "_Write only these photos to CD"
+msgstr "これらの写真のみ CD へ書き込む(_W)"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.addin.xml.h:1
+msgid "F_acebook..."
+msgstr "Facebook(_A)..."
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:99
+msgid "Waiting for authorization"
+msgstr "認証を待っています"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:100
+msgid ""
+"F-Spot will now launch your browser so that you can enable the permission "
+"you just selected.\n"
+"\n"
+"Once you are directed by Facebook to return to this application, click \"Ok"
+"\" below."
+msgstr ""
+"F-Spot がブラウザを起動しますので、そこでアクセス許可を選んでください。\n"
+"\n"
+"Facebook でアプリケーションに戻るよう指示されたら、以下の \"OK\" ボタンをク"
+"リックしてください。"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:280
+msgid "Too many images to export"
+msgstr "エキスポートする画像が多すぎます"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:281
+#, csharp-format
+msgid ""
+"Facebook only permits {0} photographs per album.  Please refine your "
+"selection and try again."
+msgstr ""
+"Facebook では 1 つのアルバムに収められる写真は {0} 枚です。写真を選び直して、"
+"再度試して下さい。"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:298
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:475
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:730
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:597
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:522
+msgid "Uploading Pictures"
+msgstr "写真のアップロード中"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:319
+msgid "Album must have a name"
+msgstr "アルバムには名前が必要です"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:320
+msgid "Please name your album or choose an existing album."
+msgstr "アルバムに名前を付けるか、既存のアルバムを選択して下さい。"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:334
+msgid "Creating a new album failed"
+msgstr "新しいアルバムの作成に失敗"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:335
+#, csharp-format
+msgid ""
+"An error occurred creating a new album.\n"
+"\n"
+"{0}"
+msgstr ""
+"新しいアルバムを作成する際にエラーが発生しました。\n"
+"\n"
+"{0}"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:357
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:660
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:565
+#, csharp-format
+msgid "Uploading picture \"{0}\" ({1} of {2})"
+msgstr "写真 \"{0}\" のアップロード中 ({1} / {2})"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:371
+#, csharp-format
+msgid "Error Uploading To Facebook: {0}"
+msgstr "Facebook へアップロード中にエラー: {0}"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:372
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:370
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:250
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:797
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:693
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:596
+#: ../extensions/Exporters/TabbloExport/TabbloExport.cs:319
+#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.ErrorDialog.cs:40
+msgid "Error"
+msgstr "エラー"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:382
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:381
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:808
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:706
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:609
+msgid "Upload Complete"
+msgstr "アップロードの完了"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:211
+msgid "Waiting for authentication"
+msgstr "認証を待っています"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:212
+msgid ""
+"F-Spot will now launch your browser so that you can log into Facebook.\n"
+"\n"
+"Once you are directed by Facebook to return to this application, click \"Ok"
+"\" below.  F-Spot will cache your session in gnome-keyring, if possible, and "
+"re-use it on future Facebook exports."
+msgstr ""
+"F-Spot は Facebook にログインするためにブラウザを起動します。\n"
+"\n"
+"Facebook にアプリケーションに戻るよう指示されたら、以下の \"OK\" ボタンをク"
+"リックしてください。F-Spot は可能ならばあなたのセッションを Gnome-Keyring に"
+"キャッシュし、後の Facebook へのエキスポートで再利用します。"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:217
+msgid "Authenticating..."
+msgstr "認証中..."
+
+#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:227
+msgid "Error logging into Facebook"
+msgstr "Facebook へのログイン中にエラー"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:228
+msgid ""
+"There was a problem logging into Facebook.  Check your credentials and try "
+"again."
+msgstr ""
+"Facebook へのログイン中に問題がありました。アカウント情報を確認し、再度試して"
+"ください。"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:237
+msgid "Authorizing Session"
+msgstr "セッションを認証中"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:246
+msgid "Session established, fetching user info..."
+msgstr "セッションを確立、ユーザ情報を取り寄せ中..."
+
+#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:252
+msgid "Session established, fetching friend list..."
+msgstr "セッションを確立、フレンドリストを取り寄せ中..."
+
+#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:262
+msgid "Session established, fetching friend details..."
+msgstr "セッションを確立、フレンドの詳細情報を取り寄せ中..."
+
+#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:272
+msgid "Session established, fetching photo albums..."
+msgstr "セッションを確立、写真アルバムを取り寄せ中..."
+
+#. Note for translators: {0} and {1} are respectively firstname and surname of the user
+#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:285
+#, csharp-format
+msgid "{0} {1} is logged into Facebook"
+msgstr "{1} {0} は Facebook にログインしています"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:291
+msgid "Facebook Connection Error"
+msgstr "Facebook 接続エラー"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:292
+#, csharp-format
+msgid ""
+"There was an error when downloading your information from Facebook.\n"
+"\n"
+"Facebook said: {0}"
+msgstr ""
+"Facebook からあなたのユーザ情報をダウンロードする際にエラーが発生しました。\n"
+"\n"
+"Facebook 情報: {0}"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:321
+msgid "You are not logged in."
+msgstr "ログインしていません。"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.ui.h:1
+msgid "Auto-confirm Photos"
+msgstr "写真の自動確認"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.ui.h:2
+msgid "Caption"
+msgstr "キャプション"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.ui.h:3
+msgid "Create a new album"
+msgstr "新しいアルバムの作成"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.ui.h:4
+msgid "Description"
+msgstr "説明"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.ui.h:5
+msgid "Export to Facebook"
+msgstr "Facebook へエキスポート"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.ui.h:6
+msgid "In this photo"
+msgstr "この写真の中"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.ui.h:7
+#: ../src/XmpTagsImporter.cs:90
+msgid "Location"
+msgstr "場所"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.ui.h:8
+msgid "Login"
+msgstr "ログイン"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.ui.h:9
+msgid "Logout"
+msgstr "ログアウト"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.ui.h:10
+#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/ManageSitesDialog.cs:51
+#: ../src/Widgets/InfoBox.cs:211
+msgid "Name"
+msgstr "名前"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.ui.h:11
+msgid "Not logged in"
+msgstr "ログインしていません"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.ui.h:12
+msgid "Permissions:"
+msgstr "許可:"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.ui.h:13
+msgid "Stay Connected"
+msgstr "接続の保持"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.ui.h:14
+msgid "Use an existing album"
+msgstr "既存のアルバムを利用"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.ui.h:15
+msgid "Who is this?"
+msgstr "これは誰ですか？"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.addin.xml.h:1
+msgid "_23hq..."
+msgstr "23hq(_2)..."
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.addin.xml.h:2
+msgid "_Flickr..."
+msgstr "Flickr(_F)..."
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.addin.xml.h:3
+msgid "_Zooomr..."
+msgstr "Zooomr(_Z)..."
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:105
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:5
+msgid "Authorize"
+msgstr "認証"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:111
+#, csharp-format
+msgid ""
+"Return to this window after you have finished the authorization process on "
+"{0} and click the \"Complete Authorization\" button below"
+msgstr ""
+"{0} での認証を完了したらこのウィンドウに戻り、この下にある \"認証を完了する"
+"\" ボタンをクリックして下さい。"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:112
+msgid "Complete Authorization"
+msgstr "認証を完了する"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:117
+#, csharp-format
+msgid "Logging into {0}"
+msgstr "{0} にログイン中"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:118
+msgid "Checking credentials..."
+msgstr "認証中..."
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:125
+#, csharp-format
+msgid "Welcome {0} you are connected to {1}"
+msgstr "{1} にアカウント {0} でログインしています"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:128
+#, csharp-format
+msgid "Sign in as a different user"
+msgstr "別のアカウントでログインする"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:133
+#, csharp-format
+msgid "Used {0} of your allowed {1} monthly quota"
+msgstr "1 ヶ月で利用できる容量 {1} 中 {0} を使用中"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:297
+msgid "Unable to log on"
+msgstr "ログオンできません"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:317
+#, csharp-format
+msgid "Waiting for response {0} of {1}"
+msgstr "応答を待っています ({0} / {1})"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:344
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:242
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:777
+#, csharp-format
+msgid "Uploading picture \"{0}\""
+msgstr "写真 \"{0}\" のアップロード中"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:367
+#, csharp-format
+msgid "Error Uploading To {0}: {1}"
+msgstr "{0} へのアップロード中にエラー: {1}"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:454
+msgid "Unable to log on."
+msgstr "ログオンできません。"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:455
+#, csharp-format
+msgid ""
+"F-Spot was unable to log on to {0}.  Make sure you have given the "
+"authentication using {0} web browser interface."
+msgstr ""
+"F-Spotは {0} にログオンできませんでした。ウェブブラウザから {0} への認証がで"
+"きているかどうか確認して下さい。"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:1
+#: ../src/f-spot.glade.h:8
+msgid "<b>Account</b>"
+msgstr "<b>アカウント</b>"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:2
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:5
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:3
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:2
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:2
+#: ../src/f-spot.glade.h:14 ../src/UI.Dialog/ui/AdjustTimeDialog.ui.h:5
+msgid "<b>Photos</b>"
+msgstr "<b>写真</b>"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:3
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:6
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:4
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:4
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:4
+#: ../src/f-spot.glade.h:16
+msgid "<b>Style</b>"
+msgstr "<b>スタイル</b>"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:4
+msgid "<b>Viewing permissions</b>"
+msgstr "<b>閲覧許可</b>"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:6
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:8
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:9
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:6
+#: ../src/f-spot.glade.h:43
+msgid "Export"
+msgstr "エキスポート"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:7
+msgid "Export tag _hierarchy"
+msgstr "タグの階層をエキスポート(_H)"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:8
+msgid ""
+"F-Spot needs your authorization in order to upload photos to your {0} "
+"account. Press the \"Authorize\" button to open a web browser and give F-"
+"Spot the authorization. "
+msgstr ""
+"F-Spot があなたの {0} アカウントに写真をアップロードするには、あなたの認証が"
+"必要です。\"認証\" ボタンをクリックしてウェブブラウザを開き、そちらで F-Spot "
+"を認証して下さい。"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:9
+msgid "Ignore _top level tags"
+msgstr "トップレベルのタグは無視"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:10
+msgid "Private"
+msgstr "プライベート"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:11
+msgid "Public"
+msgstr "パブリック"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:12
+msgid "Strip _metadata"
+msgstr "メタデータの除去(_M)"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:13
+msgid "Visible to Family"
+msgstr "Family に許可"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:14
+msgid "Visible to Friends"
+msgstr "Friends に許可"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:16
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:21
+#: ../src/f-spot.glade.h:96
+msgid "_Export tags"
+msgstr "タグのエキスポート(_E)"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:17
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:18
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:21
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:25
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:15
+#: ../src/f-spot.glade.h:109
+msgid "_Resize to: "
+msgstr "サイズ変更(_R): "
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:18
+msgid "_View photos in browser when done uploading"
+msgstr "アップロードが完了したらブラウザで写真を表示する(_V)"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:19
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:20
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:24
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:27
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:17
+#: ../src/f-spot.glade.h:125
+msgid "pixels"
+msgstr "ピクセル"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.addin.xml.h:1
+msgid "F_older..."
+msgstr "フォルダ(_F)..."
+
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:140
+msgid "Select Export Folder"
+msgstr "エキスポートするフォルダの選択"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:198
+msgid "Building Gallery"
+msgstr "ギャラリーの作成"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:248
+#, csharp-format
+msgid "Error uploading picture \"{0}\" to Gallery:{2}{1}"
+msgstr "ギャラリーへ写真 \"{0}\" をアップロード中にエラー: {2}{1}"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:333
+msgid "Error: Error while transferring; Aborting"
+msgstr "エラー: 転送する際にエラーが発生したので、処理を中止します"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:336
+msgid "Error: File Already Exists; Aborting"
+msgstr "エラー: 既にファイルが存在するので、処理を中止します。"
+
+#. Note for translators: light as clear, opposite as dark
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:803
+msgid "Light"
+msgstr "明るく"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:804
+msgid "Dark"
+msgstr "暗く"
+
+#. Abbreviation of previous
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:984
+msgid "Prev"
+msgstr "前へ"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:986
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:1227
+#: ../src/CameraFileSelectionDialog.cs:82
+msgid "Index"
+msgstr "インデックス"
+
+#. Don't care otherwise, Tags sounds reasonable
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:989
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:1161
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:1201
+#: ../src/MainWindow.cs:336 ../src/Widgets/Sidebar.cs:64
+msgid "Tags"
+msgstr "タグ"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:992
+#: ../src/f-spot.glade.h:57 ../src/ItemAction.cs:102
+msgid "Next"
+msgstr "次へ"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:1096
+msgid "Gallery generated by"
+msgstr "ギャラリーの作成者: "
+
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:1136
+msgid "Show Styles"
+msgstr "スタイルを表示"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:1137
+msgid "Hide Styles"
+msgstr "スタイルを非表示"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:1172
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:1173
+#: ../src/ui/main_window.ui.h:24
+msgid "Tags: "
+msgstr "タグ: "
+
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:1304
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:1437
+msgid "Page:"
+msgstr "ページ数:"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:1
+msgid "\n"
+msgstr "\n"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:3
+#: ../src/f-spot.glade.h:11
+msgid "<b>Destination</b>"
+msgstr "<b>エキスポート先</b>"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:4
+msgid "<b>Export Method</b>"
+msgstr "<b>エキスポートの方法</b>"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:8
+msgid "Create _gallery using \"Original\""
+msgstr "オリジナルファイルでギャラリーを作成(_G)"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:9
+msgid "Create standalone _web gallery"
+msgstr "スタンドアローンなウェブギャラリーの作成(_W)"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:10
+msgid "D_escription:"
+msgstr "説明(_E):"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:11
+msgid "Export _tags"
+msgstr "タグのエキスポート(_T)"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:12
+msgid "Export tag _icons"
+msgstr "タグ・アイコンのエキスポート(_I)"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:13
+msgid "Folder Export"
+msgstr "フォルダへのエキスポート"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:14
+msgid "G_allery Name:"
+msgstr "ギャラリー名(_A):"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:15
+msgid "Open _destination when done exporting"
+msgstr "エキスポートが完了したら転送先を開く(_D)"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:17
+msgid "_Folder:"
+msgstr "フォルダ(_F):"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:19
+msgid "_Save the files only"
+msgstr "ファイルの保存のみ(_S)"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.addin.xml.h:1
+msgid "Web _Gallery..."
+msgstr "ウェブギャラリー(_G)..."
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:52
+msgid ""
+"Cannot connect to a Gallery for which the version is unknown.\n"
+"Please check that you have Remote plugin 1.0.8 or later"
+msgstr ""
+"このバージョンで対応していないギャラリーには接続できません。\n"
+"お使いのリモートプラグインが 1.08 以降であるか確認して下さい。"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:391
+msgid "Invalid URL"
+msgstr "無効な URL"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:392
+msgid "The gallery URL entry does not appear to be a valid URL"
+msgstr "入力されたギャラリーの URL は正しい URL ではないようです"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:402
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:429
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:440
+msgid "Error while connecting to Gallery"
+msgstr "ギャラリーへ接続する際にエラー"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:403
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:430
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:441
+#, csharp-format
+msgid "The following error was encountered while attempting to log in: {0}"
+msgstr "{0} にログインする際に以下のエラーが発生しました。"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:417
+msgid "A Gallery with this name already exists"
+msgstr "同名のギャラリーが既に存在しています"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:418
+#, csharp-format
+msgid ""
+"There is already a Gallery with the same name in your registered Galleries. "
+"Please choose a unique name."
+msgstr ""
+"入力されたギャラリー名と同名のギャラリーが既に存在します。他の名前を選択して"
+"下さい。"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:528
+msgid "(TopLevel)"
+msgstr "(トップレベル)"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:590
+msgid "Invalid Gallery name"
+msgstr "無効なギャラリー名"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:591
+msgid ""
+"The gallery name contains invalid characters.\n"
+"Only letters, numbers, - and _ are allowed"
+msgstr ""
+"ギャラリー名に不正な文字が含まれています。\n"
+"英数字と \"-\"、\"_\" 以外の文字は使えません。"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:796
+#, csharp-format
+msgid "Error uploading picture \"{0}\" to Gallery: {1}"
+msgstr "ギャラリー {1} へ写真 \"{0}\" をアップロード中にエラー"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:824
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:727
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:630
+msgid "(No Gallery)"
+msgstr "(ギャラリーなし)"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:916
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:849
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:726
+msgid "(Not Connected)"
+msgstr "(未接続)"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:917
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:850
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:727
+msgid "(No Albums)"
+msgstr "(アルバムなし)"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:969
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:915
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:768
+msgid "No account selected"
+msgstr "アカウントが選択されていません"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:1
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:1
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:1
+#: ../src/f-spot.glade.h:9
+msgid "<b>Album</b>"
+msgstr "<b>アルバム</b>"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:2
+#: ../src/f-spot.glade.h:12
+msgid "<b>Gallery</b>"
+msgstr "<b>ギャラリー</b>"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:5
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:5
+msgid "<span weight='bold' size='larger'>Error Connecting to Gallery</span>\n"
+msgstr ""
+"<span weight='bold' size='larger'>ギャラリーへの接続中にエラー</span>\n"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:9
+msgid "Export _titles and comments"
+msgstr "タイトルとコメントのエキスポート(_T)"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:10
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:10
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:7
+msgid "Open _album in browser when done uploading"
+msgstr "アップロードが完了したらブラウザでアルバムを開く(_A)"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:11
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:11
+msgid "Please verify that the settings for this gallery are correct."
+msgstr "このギャラリーの設定が正しいかどうか確認して下さい。"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:12
+msgid "U_RL:"
+msgstr "URL(_U):"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:13
+msgid "_Album Name:"
+msgstr "アルバム名(_A)"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:14
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:19
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:11
+msgid "_Description:"
+msgstr "説明(_D):"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:16
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:22
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:13
+#: ../src/f-spot.glade.h:97
+msgid "_Export to Album:"
+msgstr "アルバムへエキスポート(_E):"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:17
+msgid "_Gallery Name:"
+msgstr "ギャラリー名(_G):"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:18
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:23
+msgid "_Gallery:"
+msgstr "ギャラリー(_G):"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:19
+msgid "_Parent Album:"
+msgstr "親アルバム(_P):"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:20
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:24
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:14
+msgid "_Password:"
+msgstr "パスワード(_P):"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:22
+msgid "_Title:"
+msgstr "タイトル(_T):"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:23
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:26
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:16
+msgid "_Username:"
+msgstr "ユーザ名(_U):"
+
+#: ../extensions/Exporters/GalleryExport/GalleryRemote.cs:361
+msgid "Error reading server response"
+msgstr "サーバからの応答中にエラー"
+
+#. failed to find the response
+#: ../extensions/Exporters/GalleryExport/GalleryRemote.cs:373
+msgid "Server returned response without Gallery content"
+msgstr "サーバからの応答にはギャラリーのコンテンツが含まれていません"
+
+#: ../extensions/Exporters/GalleryExport/GalleryRemote.cs:710
+msgid "Error while creating new album"
+msgstr "新しいアルバムの作成中にエラー"
+
+#: ../extensions/Exporters/GalleryExport/GalleryRemote.cs:711
+#, csharp-format
+msgid ""
+"The following error was encountered while attempting to perform the "
+"requested operation:\n"
+"{0} ({1})"
+msgstr ""
+"要求された処理を行う際に以下のエラーが発生しました:\n"
+"{0} ({1})"
+
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.addin.xml.h:1
+msgid "_PicasaWeb..."
+msgstr "Picasa ウェブアルバム(_P)..."
+
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:441
+msgid "Error while creating Album"
+msgstr "アルバム作成中にエラー"
+
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:442
+#, csharp-format
+msgid ""
+"The following error was encountered while attempting to create an album: {0}"
+msgstr "アルバムの作成中に以下のエラーが発生しました: {0}"
+
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:620
+#, csharp-format
+msgid "{0} Sent"
+msgstr "{0} 枚送信"
+
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:622
+#, csharp-format
+msgid "{0} of approx. {1}"
+msgstr "{0} / 約 {1}"
+
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:691
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:594
+#, csharp-format
+msgid "Error Uploading To Gallery: {0}"
+msgstr "ギャラリーへのアップロード中にエラー: {0}"
+
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:778
+#, csharp-format
+msgid "Available space: {0}, {1}% used out of {2}"
+msgstr "利用可能領域: {0} ({2} 中 {1}% 利用済み)"
+
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:891
+#, csharp-format
+msgid ""
+"The selected album has a limit of {0} pictures,\n"
+"which would be passed with the current selection of {1} images"
+msgstr ""
+"選択したアルバムには利用可能な写真枚数に {0} 枚という制限があります。\n"
+"そのため選択された写真から {1} 枚をアップロードします。"
+
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:3
+msgid "<b>PicasaWeb Export</b>"
+msgstr "<b>Picasa ウェブアルバム エキスポート</b>"
+
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:7
+msgid ""
+"<span weight='bold' size='larger'>Your Google Account is locked</span>\n"
+msgstr ""
+"<span weight='bold' size='larger'>あなたの Google アカウントはロックされてい"
+"ます</span>\n"
+
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:12
+msgid ""
+"Please verify that the settings for this gallery are correct.\n"
+"Enter the letters as they are shown in the image in\n"
+"the 'Captcha' field. <i>Letters are not case-sensitive</i>"
+msgstr ""
+"このギャラリーの設定が正しいか確認して下さい。\n"
+"\"文字の確認\" 欄に画像で表示された文字を入力して下さい。\n"
+"<i>文字の大文字/小文字は区別されません。</i>"
+
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:15
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:8
+msgid "Public Album"
+msgstr "公開アルバム"
+
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:16
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:10
+msgid "_Album Title:"
+msgstr "アルバムのタイトル(_A):"
+
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:17
+msgid "_Autorotate"
+msgstr "自動回転(_A)"
+
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:18
+msgid "_Captcha:"
+msgstr "キャプチャ(_C):"
+
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.addin.xml.h:1
+msgid "_SmugMug..."
+msgstr "SmugMug(_S)..."
+
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:3
+msgid "<b>SmugMug Export</b>"
+msgstr "<b>SmugMug エキスポート</b>"
+
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:9
+msgid "_Account:"
+msgstr "アカウント(_A):"
+
+#: ../extensions/Exporters/TabbloExport/Tabblo/Connection.cs:132
+#, csharp-format
+msgid "Uploading photo \"{0}\""
+msgstr "写真 \"{0}\" のアップロード中"
+
+#: ../extensions/Exporters/TabbloExport/Tabblo/Connection.cs:206
+msgid "Logging into Tabblo"
+msgstr "Tabblo にログイン中"
+
+#: ../extensions/Exporters/TabbloExport/Tabblo/Connection.cs:267
+msgid "Obtaining URL for upload"
+msgstr "アップロード用 URL を取得中"
+
+#: ../extensions/Exporters/TabbloExport/TabbloExport.addin.xml.h:1
+msgid "_Tabblo..."
+msgstr "Tabblo(_T)..."
+
+#: ../extensions/Exporters/TabbloExport/TabbloExport.cs:308
+msgid "Done sending photos"
+msgstr "写真の送信が完了しました"
+
+#: ../extensions/Exporters/TabbloExport/TabbloExport.cs:310
+msgid "Upload complete"
+msgstr "アップロードが完了しました"
+
+#: ../extensions/Exporters/TabbloExport/TabbloExport.cs:316
+msgid "Error uploading to Tabblo: "
+msgstr "Tabblo へのアップロード中にエラー: "
+
+#: ../extensions/Exporters/ZipExport/ZipExport.addin.xml.h:1
+msgid "Compressed fil_e..."
+msgstr "圧縮ファイル(_E)..."
+
+#: ../extensions/Exporters/ZipExport/ZipExport.cs:47
+#: ../src/Widgets/EditorPage.cs:196
+msgid "No selection available"
+msgstr "範囲が選択されていません"
+
+#: ../extensions/Exporters/ZipExport/ZipExport.cs:48
+msgid ""
+"This tool requires an active selection. Please select one or more pictures "
+"and try again"
+msgstr ""
+"このツールでは選択された写真が必要です。1 つ以上の写真を選択してから、再度試"
+"してください。"
+
+#: ../extensions/Exporters/ZipExport/ZipExport.cs:64
+msgid "Select export folder"
+msgstr "エキスポート先のフォルダを選択"
+
+#: ../extensions/Exporters/ZipExport/ZipExport.cs:102
+msgid "Exporting files"
+msgstr "ファイルをエキスポート中"
+
+#: ../extensions/Exporters/ZipExport/ZipExport.cs:108
+#, csharp-format
+msgid "Preparing photo \"{0}\""
+msgstr "写真 \"{0}\" を準備中"
+
+#: ../extensions/Exporters/ZipExport/ZipExport.glade.h:1
+#: ../src/f-spot.glade.h:92
+msgid "_Create"
+msgstr "作成(_C)"
+
+#: ../extensions/Exporters/ZipExport/ZipExport.glade.h:2
+msgid "_File name:"
+msgstr "ファイル名(_F):"
+
+#: ../extensions/Exporters/ZipExport/ZipExport.glade.h:3
+msgid "_Location:"
+msgstr "場所(_L):"
+
+#: ../extensions/Exporters/ZipExport/ZipExport.glade.h:4
+msgid "_Scale:"
+msgstr "大きさ(_S):"
+
+#: ../extensions/Tools/HashJob/HashJob.cs:53
+msgid ""
+"In order to detect duplicates on pictures you imported before 0.5.0, F-Spot "
+"needs to analyze your image collection. This is not done by default as it's "
+"time consuming. You can Start or Pause this update process using this dialog."
+msgstr ""
+"バージョン 0.5.0 以前にインポートした写真の重複を検出するために、F-Spot は画"
+"像コレクションを解析する必要があります。この処理は時間がかかるためにデフォル"
+"トでは行いません。この更新処理の開始・一時停止はこのダイアログから行えます。"
+
+#: ../extensions/Tools/HashJob/HashJob.cs:59
+#, csharp-format
+msgid ""
+"You currently have {0} photos needing md5 calculation, and {1} pending jobs"
+msgstr "MD5 の計算が必要な写真が {0} 枚、保留中の作業が {1} あります。"
+
+#: ../extensions/Tools/HashJob/HashJob.cs:75 ../src/ui/main_window.ui.h:37
+msgid "_Close"
+msgstr "閉じる(_C)"
+
+#: ../extensions/Tools/HashJob/HashJob.cs:102
+msgid "Processing images..."
+msgstr "画像を解析中..."
+
+#: ../extensions/Tools/HashJob/HashJob.cs:108
+msgid "Stopped"
+msgstr "停止"
+
+#: ../extensions/Tools/HashJob/HashJob.addin.xml.h:1
+msgid "Hash for Duplicates"
+msgstr "重複検出ハッシュ"
+
+#: ../extensions/Tools/LiveWebGallery/GalleryRequestHandler.cs:107
+msgid "F-Spot Gallery"
+msgstr "F-Spot ギャラリー"
+
+#: ../extensions/Tools/LiveWebGallery/GalleryRequestHandler.cs:108
+msgid "The web gallery seems to be offline now"
+msgstr "このウェブギャラリーは現在オフラインのようです"
+
+#: ../extensions/Tools/LiveWebGallery/GalleryRequestHandler.cs:109
+msgid "Show All"
+msgstr "全て表示"
+
+#: ../extensions/Tools/LiveWebGallery/GalleryRequestHandler.cs:119
+#, csharp-format
+msgid "{0} photo"
+msgid_plural "{0} photos"
+msgstr[0] "{0} 枚の写真"
+
+#: ../extensions/Tools/LiveWebGallery/GalleryRequestHandler.cs:161
+#: ../extensions/Tools/LiveWebGallery/ui/LiveWebGallery.ui.h:8
+msgid "Current View"
+msgstr "現在のビュー"
+
+#: ../extensions/Tools/LiveWebGallery/GalleryRequestHandler.cs:164
+msgid "Selected"
+msgstr "選択済み"
+
+#: ../extensions/Tools/LiveWebGallery/LiveWebGallery.addin.xml.h:1
+msgid "Live Web Gallery"
+msgstr "ライブウェブギャラリー"
+
+#: ../extensions/Tools/LiveWebGallery/ui/LiveWebGallery.ui.h:1
+msgid ""
+"<small><i>The gallery stays active until you either deactivate it or close\n"
+"F-Spot. Make sure local viewers access it bypassing HTTP proxy.</i></small>"
+msgstr ""
+"<small><i>あなたが無効化するか F-Spot を閉じるまで、このギャラリーにはアクセ"
+"ス可能です。\n"
+"ローカルな閲覧者が HTTP プロキシーを経由せずにアクセスできる確認してくださ"
+"い。</i></small>"
+
+#: ../extensions/Tools/LiveWebGallery/ui/LiveWebGallery.ui.h:3
+msgid ""
+"<small><i>When the gallery is active, above is the URL you need to open \n"
+"on another computer to access the shared photos.</i></small>"
+msgstr ""
+"<small><i>このギャラリーが有効化されたとき、他のコンピュータから\n"
+"共有写真にアクセスする際に上記の URL から開いてください。</i></small>"
+
+#: ../extensions/Tools/LiveWebGallery/ui/LiveWebGallery.ui.h:5
+msgid "Activates and deactivates the web gallery"
+msgstr "ウェブギャラリーの有効化と無効化"
+
+#: ../extensions/Tools/LiveWebGallery/ui/LiveWebGallery.ui.h:6
+msgid "Allow viewers to add tags"
+msgstr "閲覧者にタグの付与を許可する"
+
+#: ../extensions/Tools/LiveWebGallery/ui/LiveWebGallery.ui.h:7
+msgid "Copy URL to clipboard"
+msgstr "URL をクリップボードにコピーする"
+
+#: ../extensions/Tools/LiveWebGallery/ui/LiveWebGallery.ui.h:9
+msgid "F-Spot Live Web Gallery"
+msgstr "F-Spot ライブウェブギャラリー"
+
+#: ../extensions/Tools/LiveWebGallery/ui/LiveWebGallery.ui.h:10
+msgid "Gallery URL:"
+msgstr "ギャラリー URL:"
+
+#: ../extensions/Tools/LiveWebGallery/ui/LiveWebGallery.ui.h:11
+msgid "Limit number of shared photos to"
+msgstr "共有写真の最大枚数:"
+
+#: ../extensions/Tools/LiveWebGallery/ui/LiveWebGallery.ui.h:12
+msgid "Options:"
+msgstr "オプション:"
+
+#: ../extensions/Tools/LiveWebGallery/ui/LiveWebGallery.ui.h:13
+msgid "Photos with a Tag"
+msgstr "タグの付与された写真"
+
+#: ../extensions/Tools/LiveWebGallery/ui/LiveWebGallery.ui.h:14
+msgid "Selected Photos"
+msgstr "選択された写真"
+
+#: ../extensions/Tools/LiveWebGallery/ui/LiveWebGallery.ui.h:15
+msgid "Share:"
+msgstr "共有:"
+
+#: ../extensions/Tools/LiveWebGallery/ui/LiveWebGallery.ui.h:16
+msgid "Views:"
+msgstr "ビュー:"
+
+#: ../extensions/Tools/LiveWebGallery/LiveWebGalleryDialog.cs:89
+msgid "none"
+msgstr "なし"
+
+#: ../extensions/Tools/LiveWebGallery/LiveWebGalleryDialog.cs:92
+#, csharp-format
+msgid " Gallery: {0},  Photos: {1},  Last client: {3}"
+msgstr " ギャラリー: {0},  写真: {1},  最終クライアント: {3}"
+
+#: ../extensions/Tools/LiveWebGallery/LiveWebGalleryDialog.cs:156
+msgid "Gallery is inactive"
+msgstr "ギャラリーはアクティブではありません"
+
+#: ../extensions/Tools/MergeDb/MergeDb.addin.xml.h:1
+msgid "Merge Db"
+msgstr "データベースのマージ"
+
+#: ../extensions/Tools/MergeDb/MergeDb.cs:73
+msgid "Error opening the selected file"
+msgstr "選択したファイルを開く際にエラー"
+
+#: ../extensions/Tools/MergeDb/MergeDb.cs:74
+#, csharp-format
+msgid ""
+"The file you selected is not a valid or supported database.\n"
+"\n"
+"Received exception \"{0}\"."
+msgstr ""
+"選択したファイルは不正なもの、あるいはサポートされていないデータベースで"
+"す。\n"
+"\n"
+"例外 \"{0}\" が発生しました。"
+
+#: ../extensions/Tools/MergeDb/MergeDb.glade.h:1
+msgid ""
+"<small><i>Choose the location of the database you want to import from</i></"
+"small>"
+msgstr ""
+"<small><i>インポートするデータベースの場所を選択してください</i></small>"
+
+#: ../extensions/Tools/MergeDb/MergeDb.glade.h:2
+msgid ""
+"<small><i>Choose what to import from the selected db.\n"
+"\"New Rolls Only\" is the smart option that will avoid re-importing photos "
+"you could have imported during a previous operation.\n"
+"\"A Single Import Roll\" let you choose which roll you want to merge back.\n"
+"\"Everything\" will import everything, creating duplicates if you already "
+"imported from that database.</i></small>"
+msgstr ""
+"<small><i>選択したデータベースからインポートするロールを選択します。\n"
+"\"新しいインポートロールのみ\" は以前にインポートした写真を再\n"
+"度インポートしないために適切な選択です。\n"
+"\"特定のインポートロール\" はマージしたいロールを選択できます。\n"
+"\"全て\" では、全てをインポートします。同じデータベースから既\n"
+"にインポートを行っていた場合は重複が発生します。</i></small>"
+
+#: ../extensions/Tools/MergeDb/MergeDb.glade.h:6
+msgid ""
+"<small><i>Copy the images locally or keep them where they are. If you chose "
+"the later, be sure that this location will stay accessible from f-spot.</i></"
+"small>"
+msgstr ""
+"<small><i>画像をローカルにコピーするか、元の場所に保持し続けるかを選択しま"
+"す。\n"
+"後者を選択した場合、F-Spot が今後もその場所にアクセスできることを確認\n"
+"してください。</i></small>"
+
+#: ../extensions/Tools/MergeDb/MergeDb.glade.h:7
+msgid "A Single Import Roll"
+msgstr "特定のインポートロール"
+
+#: ../extensions/Tools/MergeDb/MergeDb.glade.h:8
+msgid "Copy images to photos folder"
+msgstr "写真フォルダに画像をコピー"
+
+#: ../extensions/Tools/MergeDb/MergeDb.glade.h:9
+msgid "Database Location:"
+msgstr "データベースの場所:"
+
+#: ../extensions/Tools/MergeDb/MergeDb.glade.h:10
+msgid "Everything"
+msgstr "全て"
+
+#: ../extensions/Tools/MergeDb/MergeDb.glade.h:11
+msgid "Import:"
+msgstr "インポート:"
+
+#: ../extensions/Tools/MergeDb/MergeDb.glade.h:12
+msgid "Keep the images at their original location"
+msgstr "画像を元の場所に保持"
+
+#: ../extensions/Tools/MergeDb/MergeDb.glade.h:13
+msgid "Merge another F-Spot collection"
+msgstr "他の F-Spot コレクションをマージ"
+
+#: ../extensions/Tools/MergeDb/MergeDb.glade.h:14
+msgid "New Rolls Only"
+msgstr "新しいインポートロールのみ"
+
+#: ../extensions/Tools/MergeDb/MergeDb.glade.h:15
+#: ../src/FileImportBackend.cs:290 ../src/UI.Dialog/ThreadProgressDialog.cs:55
+msgid "Skip"
+msgstr "スキップする"
+
+#: ../extensions/Tools/MergeDb/PickFolderDialog.cs:33
+#, csharp-format
+msgid ""
+"<big>The database refers to files contained in the <b>{0}</b> folder.\n"
+" Please select that folder so I can do the mapping.</big>"
+msgstr ""
+"<big>データベースは <b>{0}</b> フォルダにあるファイルを参照しています。\n"
+" このフォルダを選択するとマッピングを行います。</big>"
+
+#: ../extensions/Tools/ScreensaverConfig/ScreensaverConfig.addin.xml.h:1
+msgid "Configure Screensaver"
+msgstr "スクリーンセーバーの設定"
+
+#: ../extensions/Tools/ScreensaverConfig/ScreensaverConfigDialog.ui.h:1
+#: ../src/UI.Dialog/DateRangeDialog.cs:129
+msgid "All Images"
+msgstr "全ての画像"
+
+#: ../extensions/Tools/ScreensaverConfig/ScreensaverConfigDialog.ui.h:2
+msgid "Delay:"
+msgstr "表示間隔:"
+
+#: ../extensions/Tools/ScreensaverConfig/ScreensaverConfigDialog.ui.h:3
+msgid "Display:"
+msgstr "表示:"
+
+#: ../extensions/Tools/ScreensaverConfig/ScreensaverConfigDialog.ui.h:4
+msgid "Images tagged with:"
+msgstr "次のタグが付与された画像:"
+
+#: ../extensions/Tools/ScreensaverConfig/ScreensaverConfigDialog.ui.h:5
+msgid "Make F-Spot my screensaver"
+msgstr "F-Spot をスクリーンセーバーに設定する"
+
+#: ../extensions/Tools/ScreensaverConfig/ScreensaverConfigDialog.ui.h:6
+msgid "Screensaver Configuration"
+msgstr "スクリーンセーバーの設定"
+
+#: ../f-spot.desktop.in.in.h:1 ../f-spot-import.desktop.in.in.h:1
+#: ../f-spot-view.desktop.in.in.h:1 ../src/ui/main_window.ui.h:10
+msgid "F-Spot"
+msgstr "F-Spot"
+
+#: ../f-spot.desktop.in.in.h:2 ../f-spot-import.desktop.in.in.h:2
+msgid "F-Spot Photo Manager"
+msgstr "F-Spot 写真マネージャ"
+
+#: ../f-spot.desktop.in.in.h:3
+msgid "Organize, enjoy, and share your photos"
+msgstr "写真を整理し、楽しみ、共有します"
+
+#: ../f-spot.desktop.in.in.h:4 ../f-spot-import.desktop.in.in.h:4
+msgid "Photo Manager"
+msgstr "写真マネージャ"
+
+#: ../f-spot-import.desktop.in.in.h:3
+msgid "Import into F-Spot"
+msgstr "F-Spot にインポート"
+
+#: ../f-spot-view.desktop.in.in.h:2
+msgid "F-Spot Photo Viewer"
+msgstr "F-Spot 写真ビューア"
+
+#: ../f-spot-view.desktop.in.in.h:3
+msgid "Photo Viewer"
+msgstr "写真ビューア"
+
+#: ../lib/libfspot/f-jpeg-utils.c:441 ../src/RotateCommand.cs:224
+msgid "File not found"
+msgstr "ファイルが見つかりません"
+
+#: ../lib/libfspot/f-jpeg-utils.c:464
+#, c-format
+msgid "Unknown transform type %d"
+msgstr "不明な変換タイプ %d"
+
+#: ../lib/libfspot/f-jpeg-utils.c:472
+msgid "Operation failed"
+msgstr "操作に失敗しました"
+
+#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInfoDialog.cs:32
+msgid "Package"
+msgstr "パッケージ"
+
+#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:110
+msgid "Extension Installation"
+msgstr "拡張機能のインストール"
+
+#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:136
+msgid "<b>Select the extensions to install and click on Next</b>"
+msgstr "<b>インストールする拡張機能を選択し「進む」をクリックして下さい</b>"
+
+#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:150
+msgid "Install from:"
+msgstr "インストール元:"
+
+#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:179
+#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:180
+msgid "_Repositories..."
+msgstr "リポジトリ(_R)..."
+
+#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:220
+msgid "Show all packages"
+msgstr "全てのパッケージを表示"
+
+#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:221
+msgid "Show new versions only"
+msgstr "新しいバージョンのパッケージのみ表示"
+
+#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:222
+msgid "Show updates only"
+msgstr "更新のあるパッケージのみ表示"
+
+#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:247
+msgid "_Unselect All"
+msgstr "全ての選択を解除(_U)"
+
+#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:259
+#: ../src/ui/main_window.ui.h:18
+msgid "Select _All"
+msgstr "全て選択(_A)"
+
+#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:334
+msgid "label124"
+msgstr "label124"
+
+#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:346
+msgid "Overall Progress:"
+msgstr "全体の進捗:"
+
+#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:374
+msgid "Downloading extensions..."
+msgstr "拡張機能をダウンロード中..."
+
+#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallerDialog.cs:36
+#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:58
+msgid "Extension Manager"
+msgstr "拡張機能マネージャ"
+
+#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallerDialog.cs:54
+msgid "Additional extensions are required to perform this operation."
+msgstr "この操作には追加の拡張機能が必要です。"
+
+#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallerDialog.cs:64
+msgid "The following extensions will be installed:"
+msgstr "以下の拡張機能がインストールされます:"
+
+#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:90
+msgid "<big><b>Extension Manager</b></big>"
+msgstr "<big><b>拡張機能マネージャ</b></big>"
+
+#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:110
+msgid "The following extensions are currently installed:"
+msgstr "以下の拡張機能が現在インストールされています:"
+
+#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:165
+msgid "_Install Extensions..."
+msgstr "拡張機能のインストール(_I)..."
+
+#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:210
+msgid "_Uninstall..."
+msgstr "アンインストール(_U)..."
+
+#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:236
+msgid "Enable"
+msgstr "有効化"
+
+#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:262
+msgid "Disable"
+msgstr "無効化"
+
+#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.ErrorDialog.cs:111
+msgid "Details"
+msgstr "詳細"
+
+#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.ManageSitesDialog.cs:34
+msgid "Extension Repository Management"
+msgstr "拡張機能リポジトリの管理"
+
+#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.NewSiteDialog.cs:52
+msgid "Add New Repository"
+msgstr "新しいリポジトリを追加"
+
+#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.NewSiteDialog.cs:70
+msgid "Select the location of the repository you want to register:"
+msgstr "登録したいリポジトリの場所を選択して下さい:"
+
+#. Container child vbox89.Gtk.Box+BoxChild
+#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.NewSiteDialog.cs:77
+msgid "Register an on-line repository"
+msgstr "オンライン・リポジトリを登録する"
+
+#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.NewSiteDialog.cs:106
+msgid "Url:"
+msgstr "URL:"
+
+#. Container child vbox89.Gtk.Box+BoxChild
+#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.NewSiteDialog.cs:127
+msgid "Register a local repository"
+msgstr "ローカル・リポジトリを登録する"
+
+#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.NewSiteDialog.cs:155
+msgid "Path:"
+msgstr "パス:"
+
+#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.NewSiteDialog.cs:179
+msgid "Browse..."
+msgstr "参照..."
+
+#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInfoDialog.cs:62
 msgid "Version:"
 msgstr "バージョン:"
 
-#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInfoDialog.cs:65
+#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInfoDialog.cs:65
 msgid "Author:"
 msgstr "作者:"
 
-#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInfoDialog.cs:68
+#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInfoDialog.cs:68
 msgid "Copyright:"
 msgstr "著作権:"
 
-#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInfoDialog.cs:71
+#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInfoDialog.cs:71
 msgid "Extension Dependencies:"
 msgstr "依存する拡張:"
 
-#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:97
+#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:97
 msgid "All registered repositories"
 msgstr "登録されている全てのリポジトリ"
 
-#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:184
+#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:184
 msgid "Are you sure you want to cancel the installation?"
 msgstr "本当にインストールを中止してもよろしいですか？"
 
-#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:308
+#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:308
 msgid "The following packages will be uninstalled:"
 msgstr "以下のパッケージがアンインストールされます:"
 
-#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:313
+#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:313
 msgid ""
 "There are other extensions that depend on the previous ones which will also "
 "be uninstalled:"
 msgstr ""
 "先行してアンインストールされる拡張機能に依存する他の拡張機能があります:"
 
-#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:384
+#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:384
 msgid ""
 "The selected extensions can't be installed because there are dependency "
 "conflicts."
 msgstr "依存関係の衝突のため、選択された拡張機能はインストールできません。"
 
-#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:398
+#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:398
 msgid "The following packages will be installed:"
 msgstr "以下のパッケージがインストールされます:"
 
-#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:402
+#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:402
 msgid " (in user directory)"
 msgstr " (ユーザ・フォルダ内)"
 
-#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:408
+#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:408
 msgid "The following packages need to be uninstalled:"
 msgstr "以下のパッケージのアンインストールが必要です:"
 
-#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:416
+#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:416
 msgid "The following dependencies could not be resolved:"
 msgstr "以下の依存関係が解決できませんでした:"
 
-#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:441
+#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:441
 msgid "The installation has been successfully completed."
 msgstr "インストールは無事に完了しました。"
 
-#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:442
+#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:442
 msgid "The installation failed!"
 msgstr "インストールに失敗しました。"
 
-#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:443
+#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:443
 msgid "The installation has completed with warnings."
 msgstr "警告をともないましたが、インストールは完了しました。"
 
-#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:446
+#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:446
 msgid "The uninstallation has been successfully completed."
 msgstr "アンインストールは無事に完了しました。"
 
-#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:447
+#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:447
 msgid "The uninstallation failed!"
 msgstr "アンインストールに失敗しました。"
 
-#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:448
+#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:448
 msgid "The uninstallation has completed with warnings."
 msgstr "警告をともないましたが、アンインストールは完了しました。"
 
-#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:616
+#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:616
 msgid "Repository"
 msgstr "リポジトリ"
 
-#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstaller.cs:16
+#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstaller.cs:16
 msgid "Installation cancelled"
 msgstr "インストールの中止"
 
-#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallerDialog.cs:159
+#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallerDialog.cs:159
 msgid "Some of the required extensions were not found"
 msgstr "必要な拡張機能が見つかりませんでした"
 
-#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallerDialog.cs:171
+#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallerDialog.cs:171
 msgid "Installation failed"
 msgstr "インストールの失敗"
 
-#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinTreeWidget.cs:91
+#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinTreeWidget.cs:91
 msgid "Extension"
 msgstr "拡張機能"
 
-#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinTreeWidget.cs:112
+#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinTreeWidget.cs:112
 #: ../src/Widgets/InfoBox.cs:214
 msgid "Version"
 msgstr "バージョン"
 
-#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinTreeWidget.cs:168
+#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinTreeWidget.cs:168
 msgid "Other"
 msgstr "その他"
 
-#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/ManageSitesDialog.cs:51
-#: ../src/Widgets/InfoBox.cs:211
-#: ../extensions/Exporters/FacebookExport/FacebookExport.glade.h:9
-msgid "Name"
-msgstr "名前"
-
-#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/ManageSitesDialog.cs:52
+#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/ManageSitesDialog.cs:52
 msgid "Url"
 msgstr "URL"
 
-#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/Services.cs:61
-#: ../mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/Services.cs:70
+#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/Services.cs:61
+#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/Services.cs:70
 #, csharp-format
 msgid "Exception occurred: {0}"
 msgstr "例外が発生しました: {0}"
 
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInfoDialog.cs:32
-msgid "Package"
-msgstr "パッケージ"
-
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:110
-msgid "Extension Installation"
-msgstr "拡張機能のインストール"
-
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:136
-msgid "<b>Select the extensions to install and click on Next</b>"
-msgstr "<b>インストールする拡張機能を選択し「進む」をクリックして下さい</b>"
-
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:150
-msgid "Install from:"
-msgstr "インストール元:"
-
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:179
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:180
-msgid "_Repositories..."
-msgstr "リポジトリ(_R)..."
-
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:220
-msgid "Show all packages"
-msgstr "全てのパッケージを表示"
-
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:221
-msgid "Show new versions only"
-msgstr "新しいバージョンのパッケージのみ表示"
-
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:222
-msgid "Show updates only"
-msgstr "更新のあるパッケージのみ表示"
-
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:247
-msgid "_Unselect All"
-msgstr "全ての選択を解除(_U)"
-
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:259
-#: ../src/f-spot.glade.h:110
-msgid "Select _All"
-msgstr "全て選択(_A)"
-
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:334
-msgid "label124"
-msgstr "label124"
-
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:346
-msgid "Overall Progress:"
-msgstr "全体の進捗:"
-
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:374
-msgid "Downloading extensions..."
-msgstr "拡張機能をダウンロード中..."
-
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallerDialog.cs:36
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:58
-msgid "Extension Manager"
-msgstr "拡張機能マネージャ"
-
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallerDialog.cs:54
-msgid "Additional extensions are required to perform this operation."
-msgstr "この操作には追加の拡張機能が必要です。"
-
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallerDialog.cs:64
-msgid "The following extensions will be installed:"
-msgstr "以下の拡張機能がインストールされます:"
-
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:90
-msgid "<big><b>Extension Manager</b></big>"
-msgstr "<big><b>拡張機能マネージャ</b></big>"
-
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:110
-msgid "The following extensions are currently installed:"
-msgstr "以下の拡張機能が現在インストールされています:"
-
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:165
-msgid "_Install Extensions..."
-msgstr "拡張機能のインストール(_I)..."
-
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:210
-msgid "_Uninstall..."
-msgstr "アンインストール(_U)..."
-
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:236
-#: ../src/UI.Dialog/ui/PreferenceDialog.glade.h:13
-msgid "Enable"
-msgstr "有効化"
-
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:262
-msgid "Disable"
-msgstr "無効化"
-
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.ErrorDialog.cs:40
-#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:370
-#: ../extensions/Exporters/FolderExport/FolderExport.cs:250
-#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:799
-#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:543
-#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:694
-#: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:596
-#: ../extensions/Exporters/TabbloExport/TabbloExport.cs:177
-msgid "Error"
-msgstr "エラー"
-
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.ErrorDialog.cs:111
-msgid "Details"
-msgstr "詳細"
-
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.ManageSitesDialog.cs:34
-msgid "Extension Repository Management"
-msgstr "拡張機能リポジトリの管理"
-
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.NewSiteDialog.cs:52
-msgid "Add New Repository"
-msgstr "新しいリポジトリを追加"
-
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.NewSiteDialog.cs:70
-msgid "Select the location of the repository you want to register:"
-msgstr "登録したいリポジトリの場所を選択して下さい:"
-
-#. Container child vbox89.Gtk.Box+BoxChild
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.NewSiteDialog.cs:77
-msgid "Register an on-line repository"
-msgstr "オンライン・リポジトリを登録する"
-
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.NewSiteDialog.cs:106
-msgid "Url:"
-msgstr "URL:"
-
-#. Container child vbox89.Gtk.Box+BoxChild
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.NewSiteDialog.cs:127
-msgid "Register a local repository"
-msgstr "ローカル・リポジトリを登録する"
-
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.NewSiteDialog.cs:155
-msgid "Path:"
-msgstr "パス:"
-
-#: ../mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.NewSiteDialog.cs:179
-msgid "Browse..."
-msgstr "参照..."
-
-#: ../mono-addins/Mono.Addins/Mono.Addins.Description/AssemblyDependency.cs:79
-#, csharp-format
-msgid "(provided by {0})"
-msgstr "({0} が提供)"
-
-#: ../mono-addins/Mono.Addins/Mono.Addins/AddinSessionService.cs:154
+#: ../lib/mono-addins/Mono.Addins/Mono.Addins/AddinSessionService.cs:154
 msgid "Disabled extensions can't be loaded."
 msgstr "無効化された拡張機能が読み込めません"
 
-#: ../mono-addins/Mono.Addins/Mono.Addins/AddinSessionService.cs:179
+#: ../lib/mono-addins/Mono.Addins/Mono.Addins/AddinSessionService.cs:179
 #, csharp-format
 msgid "Loading {0} extension"
 msgstr "拡張機能 '{0}' を読み込み中"
 
-#: ../mono-addins/Mono.Addins/Mono.Addins/AddinSessionService.cs:265
+#: ../lib/mono-addins/Mono.Addins/Mono.Addins/AddinSessionService.cs:265
 #, csharp-format
 msgid "The required extension '{0}' is disabled."
 msgstr "必要な拡張機能 '{0}' が無効化されています。"
 
-#: ../mono-addins/Mono.Addins/Mono.Addins/AddinSessionService.cs:267
+#: ../lib/mono-addins/Mono.Addins/Mono.Addins/AddinSessionService.cs:267
 #, csharp-format
 msgid "The required extension '{0}' is not installed."
 msgstr "必要な拡張機能 '{0}' がインストールされていません。"
 
-#: ../f-spot-view.desktop.in.in.h:1
-msgid "F-Spot Photo Viewer"
-msgstr "F-Spot 写真ビューア"
-
-#: ../f-spot-view.desktop.in.in.h:2
-msgid "Photo Viewer"
-msgstr "写真ビューア"
-
-#: ../f-spot-import.desktop.in.in.h:1 ../f-spot.desktop.in.in.h:1
-msgid "F-Spot Photo Manager"
-msgstr "F-Spot 写真マネージャ"
-
-#: ../f-spot-import.desktop.in.in.h:2
-msgid "Import into F-Spot"
-msgstr "F-Spot にインポート"
-
-#: ../f-spot-import.desktop.in.in.h:3 ../f-spot.desktop.in.in.h:3
-msgid "Photo Manager"
-msgstr "写真マネージャ"
-
-#: ../f-spot.desktop.in.in.h:2
-msgid "Organize, enjoy, and share your photos"
-msgstr "写真を整理し、楽しみ、共有します"
-
-#: ../libeog/image-view.c:2124
-msgid "interpolation type"
-msgstr "補完の種類"
-
-#: ../libeog/image-view.c:2125
-msgid "the type of interpolation to use"
-msgstr "利用する補間の種類です"
-
-#: ../libeog/image-view.c:2131 ../libeog/image-view.c:2138
-msgid "check type"
-msgstr "格子の種類"
-
-#: ../libeog/image-view.c:2132
-msgid "the type of chequering to use"
-msgstr "利用する格子の種類です"
-
-#: ../libeog/image-view.c:2139
-msgid "the size of chequers to use"
-msgstr "利用するチェッカーのサイズ"
-
-#: ../libeog/image-view.c:2145
-msgid "dither"
-msgstr "ディザ"
-
-#: ../libeog/image-view.c:2146
-msgid "dither type"
-msgstr "ディザの種類"
-
-#: ../libfspot/f-jpeg-utils.c:441 ../src/RotateCommand.cs:222
-msgid "File not found"
-msgstr "ファイルが見つかりません"
-
-#: ../libfspot/f-jpeg-utils.c:464
-#, c-format
-msgid "Unknown transform type %d"
-msgstr "不明な変換タイプ %d"
-
-#: ../libfspot/f-jpeg-utils.c:472
-msgid "Operation failed"
-msgstr "操作に失敗しました"
+#: ../lib/mono-addins/Mono.Addins/Mono.Addins.Description/AssemblyDependency.cs:79
+#, csharp-format
+msgid "(provided by {0})"
+msgstr "({0} が提供)"
 
 #: ../src/CameraFileSelectionDialog.cs:76
 msgid "Preview"
@@ -383,15 +1641,9 @@ msgstr "プレビュー"
 msgid "Path"
 msgstr "パス"
 
-#: ../src/CameraFileSelectionDialog.cs:80 ../src/f-spot.glade.h:77
+#: ../src/CameraFileSelectionDialog.cs:80 ../src/f-spot.glade.h:46
 msgid "File"
 msgstr "ファイル"
-
-#: ../src/CameraFileSelectionDialog.cs:82
-#: ../extensions/Exporters/FolderExport/FolderExport.cs:993
-#: ../extensions/Exporters/FolderExport/FolderExport.cs:1234
-msgid "Index"
-msgstr "インデックス"
 
 #: ../src/CameraFileSelectionDialog.cs:102
 msgid "Select Tag"
@@ -406,12 +1658,6 @@ msgstr "プレビューのダウンロード中"
 msgid "Downloading Preview of {0}"
 msgstr "{0} のプレビューのダウンロード中"
 
-#: ../src/CameraFileSelectionDialog.cs:199
-#: ../extensions/Exporters/CDExport/CDExport.cs:246
-#: ../extensions/Exporters/FolderExport/FolderExport.cs:392
-msgid "Transferring Pictures"
-msgstr "写真の転送中"
-
 #: ../src/CameraFileSelectionDialog.cs:220
 #, csharp-format
 msgid "Copying file {0} of {1}"
@@ -422,14 +1668,14 @@ msgid "Error transferring file"
 msgstr "ファイルの転送中にエラー"
 
 #: ../src/CameraFileSelectionDialog.cs:244
-msgid "Done Copying Files"
-msgstr "ファイルのコピーが完了しました"
-
-#: ../src/CameraFileSelectionDialog.cs:246
 msgid "Download Complete"
 msgstr "ダウンロードが完了しました"
 
-#: ../src/CameraFileSelectionDialog.cs:271
+#: ../src/CameraFileSelectionDialog.cs:244
+msgid "Done Copying Files"
+msgstr "ファイルのコピーが完了しました"
+
+#: ../src/CameraFileSelectionDialog.cs:268
 #, csharp-format
 msgid "Transferring \"{0}\" from camera"
 msgstr "カメラから \"{0}\" の転送中"
@@ -472,77 +1718,36 @@ msgstr ""
 "F-Spot の設定ダイアログで別のタグを選択して下さい。"
 
 #. Note for translators: Reparented is a picture becoming a version of another one
-#: ../src/Core/Photo.cs:471
+#: ../src/Core/Photo.cs:473
 msgid "Reparented"
 msgstr "再関連付け版"
 
-#: ../src/Core/Photo.cs:471
+#: ../src/Core/Photo.cs:473
 #, csharp-format
 msgid "Reparented ({0})"
 msgstr "再関連付け版 ({0})"
 
-#: ../src/Core/Photo.cs:490
+#: ../src/Core/Photo.cs:492
 #, csharp-format
 msgid "Modified"
 msgid_plural "Modified ({0})"
-msgstr[0] "修正版"
-msgstr[1] "修正版 ({0})"
+msgstr[0] "修正版 ({0})"
 
-#: ../src/Core/Photo.cs:509
+#: ../src/Core/Photo.cs:513
 #, csharp-format
 msgid "Modified in {1}"
 msgstr "{1} での修正版"
 
-#: ../src/Core/Photo.cs:509
+#: ../src/Core/Photo.cs:513
 #, csharp-format
 msgid "Modified in {1} ({0})"
 msgstr "{1} での修正版 ({0})"
 
 #. Note that the original version is never stored in the photo_versions table in the
 #. database.
-#: ../src/Core/Photo.cs:667 ../src/f-spot.glade.h:96
+#: ../src/Core/Photo.cs:671 ../src/f-spot.glade.h:61
 msgid "Original"
 msgstr "オリジナル"
-
-#: ../src/DateCommands.cs:56
-msgid "Today"
-msgstr "今日"
-
-#: ../src/DateCommands.cs:58
-msgid "Yesterday"
-msgstr "昨日"
-
-#: ../src/DateCommands.cs:60
-msgid "Last 7 days"
-msgstr "過去 7 日間"
-
-#: ../src/DateCommands.cs:62
-msgid "Last 30 days"
-msgstr "過去 30 日間"
-
-#: ../src/DateCommands.cs:64
-msgid "Last 90 days"
-msgstr "過去 90 日間"
-
-#: ../src/DateCommands.cs:66
-msgid "Last 360 days"
-msgstr "過去 360 日間"
-
-#: ../src/DateCommands.cs:68
-msgid "Current Week (Mon-Sun)"
-msgstr "今週 (月〜日)"
-
-#: ../src/DateCommands.cs:70
-msgid "Previous Week (Mon-Sun)"
-msgstr "先週 (月〜日)"
-
-#: ../src/DateCommands.cs:86 ../src/UI.Dialog/ui/PreferenceDialog.glade.h:11
-msgid "All Images"
-msgstr "全ての画像"
-
-#: ../src/DateCommands.cs:88
-msgid "Customized Range"
-msgstr "範囲の指定"
 
 #: ../src/Editors/AutoStretchEditor.cs:17
 msgid "Auto Color"
@@ -624,6 +1829,24 @@ msgstr "ソフトフォーカス"
 msgid "Straighten"
 msgstr "傾き補正"
 
+#: ../src/FileImportBackend.cs:288
+msgid "Import error"
+msgstr "インポート・エラー"
+
+#: ../src/FileImportBackend.cs:289
+#, csharp-format
+msgid "Error importing {0}{2}{2}{1}"
+msgstr "インポート中にエラー: {0}{2}{2}{1}"
+
+#: ../src/Filters/ResizeFilter.cs:70 ../src/Filters/SharpFilter.cs:52
+#, csharp-format
+msgid "No way to save files of type \"{0}\""
+msgstr "\"{0}\" タイプのファイルを保存できません"
+
+#: ../src/FormClient.cs:295
+msgid "Unhandled exception"
+msgstr "予期されていない例外"
+
 #: ../src/FSpot.addin.xml.h:1
 msgid "Copy Photo Locat_ion"
 msgstr "写真の場所をコピー(_I)"
@@ -636,17 +1859,17 @@ msgstr "エキスポート"
 msgid "Open _With"
 msgstr "別のアプリで開く(_W)"
 
-#: ../src/FSpot.addin.xml.h:4 ../src/f-spot.glade.h:105
+#: ../src/FSpot.addin.xml.h:4 ../src/ui/main_window.ui.h:15
 msgid "Rem_ove Tag"
 msgstr "タグの削除(_O)"
 
-#: ../src/FSpot.addin.xml.h:5 ../src/SingleView.cs:451
-#: ../src/f-spot.glade.h:107
+#: ../src/FSpot.addin.xml.h:5 ../src/f-spot.glade.h:68
+#: ../src/SingleView.cs:451 ../src/ui/main_window.ui.h:16
 msgid "Rotate _Left"
 msgstr "左へ回転(_L)"
 
-#: ../src/FSpot.addin.xml.h:6 ../src/SingleView.cs:452
-#: ../src/f-spot.glade.h:108
+#: ../src/FSpot.addin.xml.h:6 ../src/f-spot.glade.h:69
+#: ../src/SingleView.cs:452 ../src/ui/main_window.ui.h:17
 msgid "Rotate _Right"
 msgstr "右へ回転(_R)"
 
@@ -654,40 +1877,452 @@ msgstr "右へ回転(_R)"
 msgid "Tools"
 msgstr "ツール"
 
-#: ../src/FSpot.addin.xml.h:8 ../src/f-spot.glade.h:143
+#: ../src/FSpot.addin.xml.h:8 ../src/ui/main_window.ui.h:32
 msgid "_Attach Tag"
 msgstr "タグの付与(_A)"
 
-#: ../src/FSpot.addin.xml.h:9 ../src/f-spot.glade.h:154
+#: ../src/FSpot.addin.xml.h:9 ../src/ui/main_window.ui.h:41
 msgid "_Delete From Drive"
 msgstr "ドライブから削除(_D)"
 
-#: ../src/FSpot.addin.xml.h:10 ../src/f-spot.glade.h:186
+#: ../src/FSpot.addin.xml.h:10 ../src/ui/main_window.ui.h:59
 msgid "_Remove From Catalog"
 msgstr "カタログから削除(_R)"
 
-#: ../src/FileImportBackend.cs:285
-msgid "Import error"
-msgstr "インポート・エラー"
+#: ../src/f-spot.glade.h:1
+msgid " "
+msgstr " "
 
-#: ../src/FileImportBackend.cs:286
-#, csharp-format
-msgid "Error importing {0}{2}{2}{1}"
-msgstr "インポート中にエラー: {0}{2}{2}{1}"
+#: ../src/f-spot.glade.h:2
+msgid "1024 px"
+msgstr "1024 px"
 
-#: ../src/FileImportBackend.cs:287 ../src/UI.Dialog/ThreadProgressDialog.cs:51
-#: ../extensions/Tools/MergeDb/MergeDb.glade.h:15
-msgid "Skip"
-msgstr "スキップする"
+#: ../src/f-spot.glade.h:3
+msgid "320 px"
+msgstr "320 px"
 
-#: ../src/Filters/ResizeFilter.cs:70 ../src/Filters/SharpFilter.cs:52
-#, csharp-format
-msgid "No way to save files of type \"{0}\""
-msgstr "\"{0}\" タイプのファイルを保存できません"
+#: ../src/f-spot.glade.h:4
+msgid "480 px"
+msgstr "480 px"
 
-#: ../src/FormClient.cs:295
-msgid "Unhandled exception"
-msgstr "予期されていない例外"
+#: ../src/f-spot.glade.h:5
+msgid "640 px"
+msgstr "640 px"
+
+#: ../src/f-spot.glade.h:6
+msgid "800 px"
+msgstr "800 px"
+
+#: ../src/f-spot.glade.h:7
+msgid "<b></b>"
+msgstr "<b></b>"
+
+#: ../src/f-spot.glade.h:10
+msgid "<b>Co_rrections</b>"
+msgstr "<b>補正(_R)</b>"
+
+#: ../src/f-spot.glade.h:13
+msgid "<b>Image Interpolation</b>"
+msgstr "<b>画像の補正</b>"
+
+#: ../src/f-spot.glade.h:15
+msgid "<b>Size</b>"
+msgstr "<b>サイズ</b>"
+
+#: ../src/f-spot.glade.h:17
+msgid "<b>Summary</b>"
+msgstr "<b>概要</b>"
+
+#: ../src/f-spot.glade.h:18
+msgid "<b>Transparent Parts</b>"
+msgstr "<b>透過する部分</b>"
+
+#: ../src/f-spot.glade.h:19
+msgid "<b>View all pictures imported</b>"
+msgstr "<b>インポートした全ての写真の閲覧</b>"
+
+#: ../src/f-spot.glade.h:20
+msgid "<b>_White Balance</b>"
+msgstr "<b>ホワイトバランス(_W)</b>"
+
+#: ../src/f-spot.glade.h:21
+msgid ""
+"<small><i>Enable this to allow interpolation on zoomed images. You shouldn't "
+"disable this for viewing photos, but disabling the interpolation could be "
+"usefull in icon design.</i></small>"
+msgstr ""
+"<small><i>画像を拡大する際の補間処理を有効化します。写真を閲覧する際は無効化"
+"すべきではありませんが、アイコンを閲覧する際に無効化することは有用でしょう。"
+"</i></small>"
+
+#: ../src/f-spot.glade.h:22
+msgid ""
+"<small><i>You can choose how to display transparent parts in images. This "
+"option has no effect on photos, but setting this as check pattern or custom "
+"color could be usefull when viewing icons or other artworks with transparent "
+"parts.</i></small>"
+msgstr ""
+"<small><i>画像の透過部分をどのように表示するかを選択できます。このオプション"
+"は写真そのものには影響しませんが、市松模様やカスタム色の設定は、透過部分を持"
+"つアイコンや他のアートワークを閲覧する際には有用でしょう。</i></small>"
+
+#: ../src/f-spot.glade.h:23
+msgid "As _background"
+msgstr "背景色と同じ(_B)"
+
+#: ../src/f-spot.glade.h:24
+msgid "As _custom color: "
+msgstr "カスタム色(_C): "
+
+#: ../src/f-spot.glade.h:25
+msgid "As check _pattern"
+msgstr "市松模様(_P)"
+
+#: ../src/f-spot.glade.h:26
+msgid "Attach Tags:"
+msgstr "付与するタグ:"
+
+#: ../src/f-spot.glade.h:27
+msgid "Attach tag:"
+msgstr "付与するタグ:"
+
+#: ../src/f-spot.glade.h:29
+msgid "CD"
+msgstr "CD"
+
+#: ../src/f-spot.glade.h:30
+msgid "C_ontrast:"
+msgstr "コントラスト(_C):"
+
+#: ../src/f-spot.glade.h:31
+msgid "Camera Selection"
+msgstr "カメラの選択"
+
+#: ../src/f-spot.glade.h:32
+msgid "Copy files to the Photos folder"
+msgstr "写真フォルダにファイルをコピー"
+
+#: ../src/f-spot.glade.h:33
+msgid "Create Mail"
+msgstr "メールの作成"
+
+#: ../src/f-spot.glade.h:34
+msgid "Create _icon for this tag when first used"
+msgstr "このタグを初めての利用する際にアイコンを作成する"
+
+#: ../src/f-spot.glade.h:35
+msgid "Create a mail with the selected photos (possibly resized) attached"
+msgstr "写真を添付したメールを作成します。(必要に応じてサイズ変更が可能です。)"
+
+#: ../src/f-spot.glade.h:36
+msgid "Detect duplicates"
+msgstr "重複の検出"
+
+#: ../src/f-spot.glade.h:37
+msgid "Display File _Names"
+msgstr "ファイル名の表示(_N)"
+
+#: ../src/f-spot.glade.h:38
+msgid "Display only those photos that were imported in specified Rolls."
+msgstr "特定のインポートロールの写真のみを表示"
+
+#: ../src/f-spot.glade.h:39
+msgid "Do not send a mail"
+msgstr "メールを送信しません。"
+
+#: ../src/f-spot.glade.h:40
+msgid "E-_Mail:"
+msgstr "E-メール:"
+
+#: ../src/f-spot.glade.h:41
+msgid "E_xport titles and comments"
+msgstr "タイトルとコメントのエキスポート(_X)"
+
+#: ../src/f-spot.glade.h:42
+msgid "Estimated new size"
+msgstr "予想される新規サイズ"
+
+#: ../src/f-spot.glade.h:44
+msgid "Extra large"
+msgstr "特大"
+
+#: ../src/f-spot.glade.h:45
+msgid "F-Spot View"
+msgstr "F-Spot ビュー"
+
+#: ../src/f-spot.glade.h:47
+msgid "Filter on selected rolls"
+msgstr "ロールの選択フィルタ"
+
+#: ../src/f-spot.glade.h:48
+msgid "G_allery:"
+msgstr "ギャラリー(_A):"
+
+#: ../src/f-spot.glade.h:49
+msgid "Gallery"
+msgstr "ギャラリー"
+
+#: ../src/f-spot.glade.h:50 ../src/ImportCommand.cs:547
+#: ../src/MainWindow.cs:261
+msgid "Import"
+msgstr "インポート"
+
+#. Translators: this string means 'source of import'
+#: ../src/f-spot.glade.h:52
+msgid "Import Source:"
+msgstr "インポート元:"
+
+#: ../src/f-spot.glade.h:53
+msgid "Include subfolders"
+msgstr "サブフォルダも含める"
+
+#: ../src/f-spot.glade.h:54
+msgid "Large"
+msgstr "大"
+
+#: ../src/f-spot.glade.h:55
+msgid "Manage your custom selection ratios"
+msgstr "カスタマイズされたアスペクト比を管理"
+
+#: ../src/f-spot.glade.h:56
+msgid "Medium"
+msgstr "中"
+
+#: ../src/f-spot.glade.h:58
+msgid "Number of photos in selected rolls:"
+msgstr "選択したロールに含まれる写真の枚数:"
+
+#: ../src/f-spot.glade.h:59
+msgid "Number of pictures"
+msgstr "写真の枚数"
+
+#: ../src/f-spot.glade.h:60
+msgid "Open _Folder..."
+msgstr "フォルダを開く(_F)..."
+
+#: ../src/f-spot.glade.h:62
+msgid "Original size (possible very large file size)"
+msgstr "オリジナル・サイズ (巨大なファイルサイズになる可能性があります)"
+
+#: ../src/f-spot.glade.h:63 ../src/UI.Dialog/ui/EditTagDialog.ui.h:4
+msgid "P_arent Tag:"
+msgstr "親タグ(_A):"
+
+#: ../src/f-spot.glade.h:64
+msgid "Pause"
+msgstr "一時停止"
+
+#: ../src/f-spot.glade.h:65
+msgid "Preferences"
+msgstr "設定"
+
+#: ../src/f-spot.glade.h:66 ../src/ItemAction.cs:123
+msgid "Previous"
+msgstr "前へ"
+
+#: ../src/f-spot.glade.h:67
+msgid "Repair"
+msgstr "復元"
+
+#: ../src/f-spot.glade.h:70
+msgid "Select Photos to Copy From Camera..."
+msgstr "カメラからコピーする写真の選択..."
+
+#: ../src/f-spot.glade.h:71
+msgid "Select a Tag..."
+msgstr "タグの選択..."
+
+#: ../src/f-spot.glade.h:72
+msgid "Select the camera from which you want to transfer files"
+msgstr "ファイルを転送するカメラを選択して下さい"
+
+#: ../src/f-spot.glade.h:73
+msgid "Selected Camera: "
+msgstr "選択したカメラ: "
+
+#: ../src/f-spot.glade.h:74
+msgid "Selection Constraints"
+msgstr "アスペクト比の管理"
+
+#: ../src/f-spot.glade.h:75 ../src/ui/main_window.ui.h:21
+msgid "Set as _Background"
+msgstr "背景に設定(_B)"
+
+#: ../src/f-spot.glade.h:76
+msgid "Show all photos."
+msgstr "すべての写真を表示"
+
+#: ../src/f-spot.glade.h:77
+msgid "Show or hide the side pane"
+msgstr "サイドペインの表示/非表示"
+
+#: ../src/f-spot.glade.h:78
+msgid "Show or hide the toolbar"
+msgstr "ツールバーの表示/非表示"
+
+#: ../src/f-spot.glade.h:79
+msgid "Side _pane"
+msgstr "サイドペイン(_P)"
+
+#: ../src/f-spot.glade.h:80
+msgid "Small"
+msgstr "小"
+
+#: ../src/f-spot.glade.h:81
+msgid ""
+"Specify if an original size picture should be rotated or not. Smaller sizes "
+"are automatically rotated."
+msgstr ""
+"オリジナルサイズの写真を自動回転するかどうかを指定します。サイズを縮小した場"
+"合は自動回転されます。"
+
+#: ../src/f-spot.glade.h:82
+msgid "Strip image _metadata"
+msgstr "画像からメタデータを除去(_M)"
+
+#. Note for translators: meant as Temperature
+#: ../src/f-spot.glade.h:84
+msgid "Te_mp:"
+msgstr "色温度(_M)"
+
+#: ../src/f-spot.glade.h:85
+msgid "Tiny"
+msgstr "最小"
+
+#: ../src/f-spot.glade.h:86
+msgid "Total original size"
+msgstr "オリジナルの合計サイズ"
+
+#: ../src/f-spot.glade.h:87 ../src/ui/main_window.ui.h:28
+msgid "Zoom _in"
+msgstr "拡大(_I)"
+
+#: ../src/f-spot.glade.h:88 ../src/ui/main_window.ui.h:29
+msgid "Zoom _out"
+msgstr "縮小(_O)"
+
+#: ../src/f-spot.glade.h:89 ../src/ui/main_window.ui.h:30
+msgid "Zoom in"
+msgstr "拡大"
+
+#: ../src/f-spot.glade.h:90 ../src/ui/main_window.ui.h:31
+msgid "Zoom out"
+msgstr "縮小"
+
+#: ../src/f-spot.glade.h:91
+msgid "_Brightness:"
+msgstr "輝度(_B):"
+
+#: ../src/f-spot.glade.h:93
+msgid "_Create Mail"
+msgstr "メールの作成(_C)"
+
+#: ../src/f-spot.glade.h:94 ../src/ui/main_window.ui.h:44
+msgid "_Edit"
+msgstr "編集(_E)"
+
+#: ../src/f-spot.glade.h:98
+msgid "_Exposure:"
+msgstr "露出(_E):"
+
+#: ../src/f-spot.glade.h:99
+msgid "_Flickr"
+msgstr "Flickr(_F)"
+
+#: ../src/f-spot.glade.h:100 ../src/ui/main_window.ui.h:48
+msgid "_Fullscreen"
+msgstr "フルスクリーン表示(_F)"
+
+#: ../src/f-spot.glade.h:101
+msgid "_Gallery"
+msgstr "ギャラリー(_G)"
+
+#: ../src/f-spot.glade.h:102 ../src/ui/main_window.ui.h:49
+msgid "_Help"
+msgstr "ヘルプ(_H)"
+
+#: ../src/f-spot.glade.h:103
+msgid "_Hue:"
+msgstr "色相(_H):"
+
+#: ../src/f-spot.glade.h:104
+msgid "_Interpolate image on zoom"
+msgstr "拡大時に画像を補間(_I)"
+
+#: ../src/f-spot.glade.h:105
+msgid "_New Window"
+msgstr "新しいウインドウ(_N)"
+
+#: ../src/f-spot.glade.h:106
+msgid "_Open album in browser when done uploading"
+msgstr "アップロードが完了したらブラウザでアルバムを開く(_O)"
+
+#: ../src/f-spot.glade.h:107
+msgid "_Open destination when done exporting"
+msgstr "エキスポートが完了したら転送先を開く(_O)"
+
+#: ../src/f-spot.glade.h:108 ../src/ui/main_window.ui.h:56
+msgid "_Photo"
+msgstr "写真(_P)"
+
+#: ../src/f-spot.glade.h:110
+msgid "_Saturation:"
+msgstr "彩度(_S):"
+
+#: ../src/f-spot.glade.h:111
+msgid "_Scale photos to no larger than: "
+msgstr "写真のサイズを以下に収まるように変更(_S): "
+
+#: ../src/f-spot.glade.h:112 ../src/ui/main_window.ui.h:67
+msgid "_Slideshow"
+msgstr "スライドショー(_S)"
+
+#: ../src/f-spot.glade.h:113
+msgid "_Strip metadata"
+msgstr "メタデータを除去(_S)"
+
+#: ../src/f-spot.glade.h:114 ../src/UI.Dialog/ui/EditTagDialog.ui.h:6
+msgid "_Tag Name:"
+msgstr "タグ名(_T):"
+
+#: ../src/f-spot.glade.h:115
+msgid "_Tint:"
+msgstr "色合い(_T):"
+
+#: ../src/f-spot.glade.h:116
+msgid "_Toolbar"
+msgstr "ツールバー(_T)"
+
+#: ../src/f-spot.glade.h:117
+msgid "_URI:"
+msgstr "URI(_U):"
+
+#: ../src/f-spot.glade.h:118 ../src/ui/main_window.ui.h:75
+msgid "_View"
+msgstr "表示(_V)"
+
+#: ../src/f-spot.glade.h:119
+msgid "_Virtual Filesystem"
+msgstr "仮想ファイルシステム(_V)"
+
+#: ../src/f-spot.glade.h:120 ../src/Widgets/FindBar.cs:177
+msgid "and"
+msgstr "と"
+
+#. at, or after a date, or between dates
+#: ../src/f-spot.glade.h:122
+msgid ""
+"at\n"
+"after\n"
+"between"
+msgstr ""
+"これのみ\n"
+"これ以降\n"
+"この間"
+
+#: ../src/f-spot.glade.h:126
+msgid "x"
+msgstr "x"
 
 #: ../src/FullScreenView.cs:58
 msgid "Hide"
@@ -709,8 +2344,8 @@ msgstr "画像情報"
 msgid "Exit fullscreen"
 msgstr "フルスクリーン表示の解除"
 
-#: ../src/FullScreenView.cs:81 ../src/MainWindow.cs:319
-#: ../src/SingleView.cs:103
+#: ../src/FullScreenView.cs:81 ../src/MainWindow.cs:301
+#: ../src/SingleView.cs:101
 msgid "Slideshow"
 msgstr "スライドショー"
 
@@ -722,59 +2357,15 @@ msgstr "スライドショーの開始"
 msgid "Slide transition:"
 msgstr "画面切り替え: "
 
-#: ../src/GlTransition.cs:36
-msgid "Dissolve"
-msgstr "ディゾルブ"
-
-#: ../src/GlTransition.cs:104
-msgid "Flip"
-msgstr "フリップ"
-
-#: ../src/GlTransition.cs:147
-msgid "Cover"
-msgstr "カバー"
-
-#: ../src/GlTransition.cs:174
-msgid "Reveal"
-msgstr "リヴィール"
-
-#: ../src/GlTransition.cs:201
-msgid "Wipe"
-msgstr "ワイプ"
-
-#: ../src/GlTransition.cs:259
-msgid "Split"
-msgstr "スプリット"
-
-#: ../src/GlTransition.cs:370
-msgid "Push"
-msgstr "プッシュ"
-
 #: ../src/GroupSelector.cs:57 ../src/GroupSelector.cs:58
 msgid "More dates"
 msgstr "他の日付"
 
 #: ../src/GroupSelector.cs:60 ../src/GroupSelector.cs:61
-msgid "More directories"
-msgstr "他のフォルダ"
-
-#: ../src/GroupSelector.cs:63 ../src/GroupSelector.cs:64
 msgid "More"
 msgstr "その他"
 
-#: ../src/GroupSelector.cs:515
-msgid "Arrange by _Month"
-msgstr "月別に整理する(_M)"
-
-#: ../src/GroupSelector.cs:518
-msgid "Arrange by _Folder"
-msgstr "フォルダ別に整理する(_F)"
-
-#: ../src/GroupSelector.cs:523 ../src/f-spot.glade.h:190
-msgid "_Reverse Order"
-msgstr "逆順(_R)"
-
-#: ../src/GroupSelector.cs:529 ../src/f-spot.glade.h:146
+#: ../src/GroupSelector.cs:517 ../src/ui/main_window.ui.h:34
 msgid "_Clear Date Range"
 msgstr "表示期間の解除(_C)"
 
@@ -802,7 +2393,7 @@ msgstr "相互運用ディレクトリ"
 msgid "Unknown Directory"
 msgstr "不明なディレクトリ"
 
-#: ../src/Imaging/ImageFile.cs:90
+#: ../src/Imaging/ImageFile.cs:116
 msgid "Writing to this file format is not supported"
 msgstr "このファイル形式への書き込みはサポートされていません"
 
@@ -935,7 +2526,7 @@ msgstr "オブジェクトのジャンル"
 msgid "Unknown IIM DataSet"
 msgstr "不明な IIM データセット"
 
-#: ../src/ImportCommand.cs:47 ../src/SingleView.cs:357
+#: ../src/ImportCommand.cs:48 ../src/SingleView.cs:357
 msgid "Select Folder"
 msgstr "フォルダの選択"
 
@@ -952,16 +2543,11 @@ msgstr "読み込み中 ({0} / {1})"
 msgid "Done Loading"
 msgstr "読み込みが完了しました"
 
-#: ../src/ImportCommand.cs:540 ../src/MainWindow.cs:279
-#: ../src/f-spot.glade.h:82
-msgid "Import"
-msgstr "インポート"
-
-#: ../src/ImportCommand.cs:670
+#: ../src/ImportCommand.cs:684
 msgid "Directory does not exist."
 msgstr "フォルダがありません。"
 
-#: ../src/ImportCommand.cs:671
+#: ../src/ImportCommand.cs:685
 #, csharp-format
 msgid ""
 "The directory you selected \"{0}\" does not exist.  Please choose a "
@@ -970,12 +2556,12 @@ msgstr ""
 "指定したフォルダ \"{0}\" は存在しません。他のフォルダを選択して下さい。"
 
 #. Note for translators: 'Import Tags' is no command, it means 'Tags used in Import'
-#: ../src/ImportCommand.cs:724 ../src/ImportCommand.cs:726
-#: ../src/XmpTagsImporter.cs:88
+#: ../src/ImportCommand.cs:739 ../src/ImportCommand.cs:741
+#: ../src/XmpTagsImporter.cs:89
 msgid "Import Tags"
-msgstr "インポートするタグ"
+msgstr "インポート時のタグ"
 
-#: ../src/ItemAction.cs:79 ../src/MainWindow.cs:286 ../src/SingleView.cs:86
+#: ../src/ItemAction.cs:79 ../src/MainWindow.cs:268 ../src/SingleView.cs:84
 msgid "Rotate Left"
 msgstr "左へ回転"
 
@@ -983,7 +2569,7 @@ msgstr "左へ回転"
 msgid "Rotate picture left"
 msgstr "写真を左へ回転"
 
-#: ../src/ItemAction.cs:91 ../src/MainWindow.cs:290 ../src/SingleView.cs:91
+#: ../src/ItemAction.cs:91 ../src/MainWindow.cs:272 ../src/SingleView.cs:89
 msgid "Rotate Right"
 msgstr "右へ回転"
 
@@ -991,113 +2577,59 @@ msgstr "右へ回転"
 msgid "Rotate picture right"
 msgstr "写真を右へ回転"
 
-#: ../src/ItemAction.cs:102 ../src/f-spot.glade.h:90
-#: ../extensions/Exporters/FolderExport/FolderExport.cs:999
-msgid "Next"
-msgstr "次へ"
-
 #: ../src/ItemAction.cs:103
 msgid "Next picture"
 msgstr "次の写真"
-
-#: ../src/ItemAction.cs:123 ../src/f-spot.glade.h:103
-msgid "Previous"
-msgstr "前へ"
 
 #: ../src/ItemAction.cs:124
 msgid "Previous picture"
 msgstr "前の写真"
 
-#: ../src/Loupe.cs:62
-msgid "Error saving sharpened photo"
-msgstr "シャープ化した写真の保存する際にエラー"
-
-#: ../src/Loupe.cs:63 ../src/PhotoView.cs:164
-#: ../src/UI.Dialog/EditExceptionDialog.cs:25
-#, csharp-format
-msgid "Received exception \"{0}\". Unable to save photo {1}"
-msgstr "例外 \"{0}\" が発生しました。写真 {1} を保存できませんでした。"
-
-#: ../src/Loupe.cs:92
-msgid "Sharpen"
-msgstr "シャープ化"
-
-#: ../src/Loupe.cs:102
-msgid "Amount:"
-msgstr "量:"
-
-#: ../src/Loupe.cs:103
-msgid "Radius:"
-msgstr "半径:"
-
-#: ../src/Loupe.cs:104
-msgid "Threshold:"
-msgstr "しきい値:"
-
-#: ../src/MainWindow.cs:281
+#: ../src/MainWindow.cs:263
 msgid "Import new images"
 msgstr "新しい画像をインポートします"
 
-#: ../src/MainWindow.cs:297 ../src/f-spot.glade.h:49
+#: ../src/MainWindow.cs:279 ../src/ui/main_window.ui.h:3
 msgid "Browse"
 msgstr "参照"
 
-#: ../src/MainWindow.cs:301
+#: ../src/MainWindow.cs:283
 msgid "Browse many photos simultaneously"
 msgstr "たくさんの写真を同時に閲覧します"
 
-#: ../src/MainWindow.cs:305
+#: ../src/MainWindow.cs:287
 msgid "Edit Image"
 msgstr "画像の編集"
 
-#: ../src/MainWindow.cs:309
+#: ../src/MainWindow.cs:291
 msgid "View and edit a photo"
 msgstr "写真を閲覧・編集します"
 
-#: ../src/MainWindow.cs:314 ../src/SingleView.cs:98
+#: ../src/MainWindow.cs:296 ../src/SingleView.cs:96
 msgid "Fullscreen"
 msgstr "フルスクリーン表示"
 
-#: ../src/MainWindow.cs:316 ../src/SingleView.cs:100
+#: ../src/MainWindow.cs:298 ../src/SingleView.cs:98
 msgid "View photos fullscreen"
 msgstr "写真をフルスクリーン表示します"
 
-#: ../src/MainWindow.cs:321 ../src/SingleView.cs:105
+#: ../src/MainWindow.cs:303 ../src/SingleView.cs:103
 msgid "View photos in a slideshow"
 msgstr "スライドショーで写真を閲覧します"
 
-#: ../src/MainWindow.cs:336
+#: ../src/MainWindow.cs:318
 msgid "Previous photo"
 msgstr "前の写真"
 
-#: ../src/MainWindow.cs:341
+#: ../src/MainWindow.cs:323
 msgid "Next photo"
 msgstr "次の写真"
 
-#. Don't care otherwise, Tags sounds reasonable
-#: ../src/MainWindow.cs:354 ../src/Widgets/Sidebar.cs:73
-#: ../extensions/Exporters/FolderExport/FolderExport.cs:996
-#: ../extensions/Exporters/FolderExport/FolderExport.cs:1168
-#: ../extensions/Exporters/FolderExport/FolderExport.cs:1208
-msgid "Tags"
-msgstr "タグ"
-
-#. Note for translators: This indicates the current photo is photo {0} of {1} out of photos
-#: ../src/MainWindow.cs:662 ../src/UI.Dialog/AdjustTimeDialog.cs:135
-#: ../src/UI.Dialog/ProgressDialog.cs:92
-#: ../extensions/Exporters/CDExport/CDExport.cs:164
-#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:349
-#: ../extensions/Exporters/FolderExport/FolderExport.cs:245
-#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:783
-#, csharp-format
-msgid "{0} of {1}"
-msgstr "{0} / {1}"
-
-#: ../src/MainWindow.cs:1682
+#: ../src/MainWindow.cs:1483
 msgid "No cameras detected."
 msgstr "カメラが検出されていません。"
 
-#: ../src/MainWindow.cs:1683
+#: ../src/MainWindow.cs:1484
 msgid ""
 "F-Spot was unable to find any cameras attached to this system.  Double check "
 "that the camera is connected and has power"
@@ -1105,102 +2637,93 @@ msgstr ""
 "お使いのシステムに接続されているカメラを検出できませんでした。カメラが接続さ"
 "れているかどうか、その電源が入っているかどうかを確認して下さい。"
 
-#: ../src/MainWindow.cs:1722
+#: ../src/MainWindow.cs:1523
 msgid "Error connecting to camera"
 msgstr "カメラへ接続する際にエラー"
 
-#: ../src/MainWindow.cs:1723
+#: ../src/MainWindow.cs:1524
 #, csharp-format
 msgid "Received error \"{0}\" while connecting to camera"
 msgstr "カメラへ接続する際にエラー \"{0}\" を受け取りました。"
 
 #. Translators, The singular case will never happen here.
-#: ../src/MainWindow.cs:2062
+#: ../src/MainWindow.cs:1811
 #, csharp-format
 msgid "Merge the selected tag"
 msgid_plural "Merge the {0} selected tags?"
-msgstr[0] "選択したタグのマージ"
-msgstr[1] "選択した {0} 個のタグをマージしますか？"
+msgstr[0] "選択した {0} 個のタグをマージしますか？"
 
-#: ../src/MainWindow.cs:2089
+#: ../src/MainWindow.cs:1838
 msgid ""
 "This operation will merge the selected tags and any sub-tags into a single "
 "tag."
 msgstr "この操作は選択した全てのタグおよび子タグをひとつにまとめます。"
 
-#: ../src/MainWindow.cs:2091
+#: ../src/MainWindow.cs:1840
 msgid "_Merge Tags"
 msgstr "タグのマージ(_M)"
 
-#: ../src/MainWindow.cs:2296
+#: ../src/MainWindow.cs:2045
 #, csharp-format
 msgid "{0} Photo out of {1}"
 msgid_plural "{0} Photos out of {1}"
 msgstr[0] "{1} 枚中 {0} 枚の写真"
-msgstr[1] "{1} 枚中 {0} 枚の写真"
 
-#: ../src/MainWindow.cs:2298 ../src/SingleView.cs:494
+#: ../src/MainWindow.cs:2047 ../src/SingleView.cs:493
 #, csharp-format
 msgid "{0} Photo"
 msgid_plural "{0} Photos"
 msgstr[0] "{0} 枚の写真"
-msgstr[1] "{0} 枚の写真"
 
-#: ../src/MainWindow.cs:2301
+#: ../src/MainWindow.cs:2050
 #, csharp-format
 msgid " ({0} selected)"
 msgid_plural " ({0} selected)"
 msgstr[0] " ({0} 枚を選択中)"
-msgstr[1] " ({0} 枚を選択中)"
 
-#: ../src/MainWindow.cs:2382
+#: ../src/MainWindow.cs:2131
 msgid "_Ok"
 msgstr "OK (_O)"
 
-#: ../src/MainWindow.cs:2383
+#: ../src/MainWindow.cs:2132
 msgid "Error Deleting Picture"
 msgstr "写真の削除エラー"
 
-#: ../src/MainWindow.cs:2388
+#: ../src/MainWindow.cs:2137
 #, csharp-format
 msgid "No permission to delete the file:{1}{0}"
 msgstr "このファイルを削除する権限がありません: {1}{0}"
 
-#: ../src/MainWindow.cs:2392
+#: ../src/MainWindow.cs:2141
 #, csharp-format
 msgid "An error of type {0} occurred while deleting the file:{2}{1}"
 msgstr "ファイルの削除の際にタイプ {0} のエラーが発生しました: {2}{1}"
 
-#: ../src/MainWindow.cs:2424
+#: ../src/MainWindow.cs:2173
 #, csharp-format
 msgid "Delete the selected photo permanently?"
 msgid_plural "Delete the {0} selected photos permanently?"
-msgstr[0] "選択した写真を完全に削除しますか？"
-msgstr[1] "選択した {0} 枚の写真を完全に削除しますか？"
+msgstr[0] "選択した {0} 枚の写真を完全に削除しますか？"
 
-#: ../src/MainWindow.cs:2428
+#: ../src/MainWindow.cs:2177
 msgid "This deletes all versions of the selected photo from your drive."
 msgid_plural ""
 "This deletes all versions of the selected photos from your drive."
 msgstr[0] ""
 "これによりお使いのドライブから選択した写真の全てのバージョンを削除します。"
-msgstr[1] ""
-"これによりお使いのドライブから選択した写真の全てのバージョンを削除します。"
 
-#: ../src/MainWindow.cs:2431
+#: ../src/MainWindow.cs:2180
 msgid "_Delete photo"
 msgid_plural "_Delete photos"
 msgstr[0] "写真の削除(_D)"
-msgstr[1] "写真の削除(_D)"
 
-#: ../src/MainWindow.cs:2467
+#: ../src/MainWindow.cs:2216
 #, csharp-format
 msgid "Remove the selected photo from F-Spot?"
 msgid_plural "Remove the {0} selected photos from F-Spot?"
-msgstr[0] "選択した写真を F-Spot から削除しますか？"
-msgstr[1] "選択した写真 {0} 枚を F-Spot から削除しますか？"
+msgstr[0] "選択した写真 {0} 枚を F-Spot から削除しますか？"
 
-#: ../src/MainWindow.cs:2472
+#: ../src/MainWindow.cs:2221
 msgid ""
 "If you remove photos from the F-Spot catalog all tag information will be "
 "lost. The photos remain on your computer and can be imported into F-Spot "
@@ -1209,46 +2732,43 @@ msgstr ""
 "カタログから写真を削除すると、全てのタグ情報が失われます。お使いのコンピュー"
 "タ上に残っている写真を再度 F-Spot にインポートすることは可能です。"
 
-#: ../src/MainWindow.cs:2473
+#: ../src/MainWindow.cs:2222
 msgid "_Remove from Catalog"
 msgstr "カタログから削除する(_R)"
 
-#: ../src/MainWindow.cs:2536
+#: ../src/MainWindow.cs:2285
 #, csharp-format
 msgid "Delete tag \"{0}\"?"
 msgstr "タグ \"{0}\" を削除しますか？"
 
-#: ../src/MainWindow.cs:2538
+#: ../src/MainWindow.cs:2287
 #, csharp-format
 msgid "Delete the {0} selected tags?"
 msgstr "選択した {0} 個のタグを削除しますか？"
 
-#: ../src/MainWindow.cs:2543
+#: ../src/MainWindow.cs:2292
 msgid "photo"
 msgid_plural "photos"
 msgstr[0] "写真"
-msgstr[1] "写真"
 
-#: ../src/MainWindow.cs:2545
+#: ../src/MainWindow.cs:2294
 #, csharp-format
 msgid "If you delete this tag, the association with {0} {1} will be lost."
 msgid_plural ""
 "If you delete these tags, the association with {0} {1} will be lost."
 msgstr[0] "タグを削除すると、{0} 枚の{1}の関連付けが失われます。"
-msgstr[1] "タグを削除すると、{0} 枚の{1}の関連付けが失われます。"
 
-#: ../src/MainWindow.cs:2550
+#: ../src/MainWindow.cs:2299
 msgid "_Delete tag"
 msgid_plural "_Delete tags"
 msgstr[0] "タグを削除する(_D)"
-msgstr[1] "タグを削除する(_D)"
 
 #. A Category is not empty. Can not delete it.
-#: ../src/MainWindow.cs:2564
+#: ../src/MainWindow.cs:2313
 msgid "Tag is not empty"
 msgstr "タグは空ではありません"
 
-#: ../src/MainWindow.cs:2565
+#: ../src/MainWindow.cs:2314
 #, csharp-format
 msgid ""
 "Can not delete tags that have tags within them.  Please delete tags under "
@@ -1257,39 +2777,34 @@ msgstr ""
 "別のタグを含んでいるため、タグを削除できませんでした。まず \"{0}\" 以下にある"
 "タグを削除して下さい。"
 
-#: ../src/MainWindow.cs:3008
+#: ../src/MainWindow.cs:2746
 msgid "Rotate selected photo left"
 msgid_plural "Rotate selected photos left"
-msgstr[0] "選択した写真を左へ回転"
-msgstr[1] "選択した写真を左へ回転"
+msgstr[0] "選択した写真を左へ回転します"
 
-#: ../src/MainWindow.cs:3021
+#: ../src/MainWindow.cs:2759
 msgid "Rotate selected photo right"
 msgid_plural "Rotate selected photos right"
-msgstr[0] "選択した写真を右へ回転"
-msgstr[1] "選択した写真を右へ回転"
+msgstr[0] "選択した写真を右へ回転します"
 
-#: ../src/MainWindow.cs:3029
+#: ../src/MainWindow.cs:2770
 #, csharp-format
 msgid "Find _Selected Tag"
 msgid_plural "Find _Selected Tags"
 msgstr[0] "選択したタグを検索(_S)"
-msgstr[1] "選択したタグを検索(_S)"
 
-#: ../src/MainWindow.cs:3033
+#: ../src/MainWindow.cs:2774
 #, csharp-format
 msgid "Find Selected Tag _With"
 msgid_plural "Find Selected Tags _With"
 msgstr[0] "選択したタグでさらに検索(_W)"
-msgstr[1] "選択したタグでさらに検索(_W)"
 
-#: ../src/MainWindow.cs:3071
+#: ../src/MainWindow.cs:2815
 msgid "Create New Version?"
 msgid_plural "Create New Versions?"
 msgstr[0] "新しいバージョンを作成しますか？"
-msgstr[1] "新しいバージョンを作成しますか？"
 
-#: ../src/MainWindow.cs:3073
+#: ../src/MainWindow.cs:2817
 #, csharp-format
 msgid ""
 "Before launching {1}, should F-Spot create a new version of the selected "
@@ -1300,111 +2815,112 @@ msgid_plural ""
 msgstr[0] ""
 "オリジナルを維持するために、\"{1}\" 用に選択した写真の新しいバージョンを作成"
 "しますか？"
-msgstr[1] ""
-"オリジナルを維持するために、\"{1}\" 用に選択した写真の新しいバージョンを作成"
-"しますか？"
 
-#: ../src/MetadataStore.cs:18
+#: ../src/MainWindow.cs:2839
+msgid "XCF version"
+msgstr "XCF バージョン"
+
+#: ../src/MetadataStore.cs:19
 msgid "Creator"
 msgstr "作成者"
 
-#: ../src/MetadataStore.cs:19
+#: ../src/MetadataStore.cs:20
 msgid "Title"
 msgstr "タイトル"
 
-#: ../src/MetadataStore.cs:20
+#: ../src/MetadataStore.cs:21
 msgid "Copyright"
 msgstr "著作権"
 
-#: ../src/MetadataStore.cs:21
+#: ../src/MetadataStore.cs:22
 msgid "Subject and Keywords"
 msgstr "テーマとキーワード"
 
-#: ../src/MetadataStore.cs:22
+#: ../src/MetadataStore.cs:23
 msgid "Compression"
 msgstr "圧縮"
 
-#: ../src/MetadataStore.cs:24
+#: ../src/MetadataStore.cs:25
 msgid "Planar Configuration"
 msgstr "画像データの並び"
 
-#: ../src/MetadataStore.cs:26
+#: ../src/MetadataStore.cs:27
 msgid "Orientation"
 msgstr "画像方向"
 
-#: ../src/MetadataStore.cs:28
+#: ../src/MetadataStore.cs:29
 msgid "Photometric Interpretation"
 msgstr "露出計の動作モード"
 
-#: ../src/MetadataStore.cs:30
+#: ../src/MetadataStore.cs:31
 msgid "Resolution Unit"
 msgstr "解像度単位"
 
-#: ../src/MetadataStore.cs:32
+#: ../src/MetadataStore.cs:33
 msgid "Exposure Program"
 msgstr "露出プログラム"
 
-#: ../src/MetadataStore.cs:34
+#: ../src/MetadataStore.cs:35
 msgid "Metering Mode"
 msgstr "測光モード"
 
-#: ../src/MetadataStore.cs:36
+#: ../src/MetadataStore.cs:37
 msgid "Exposure Mode"
 msgstr "露出モード"
 
-#: ../src/MetadataStore.cs:38
+#: ../src/MetadataStore.cs:39
 msgid "Custom Rendered"
 msgstr "カスタムイメージプロセッシング"
 
-#: ../src/MetadataStore.cs:40
+#: ../src/MetadataStore.cs:41
 msgid "Components Configuration"
 msgstr "各コンポーネントの意味"
 
-#: ../src/MetadataStore.cs:42
+#: ../src/MetadataStore.cs:43
 msgid "Light Source"
 msgstr "光源"
 
-#: ../src/MetadataStore.cs:44
+#: ../src/MetadataStore.cs:45
 msgid "Sensing Method"
 msgstr "センサー方式"
 
-#: ../src/MetadataStore.cs:46
+#: ../src/MetadataStore.cs:47
 msgid "Color Space"
 msgstr "色空間情報"
 
-#: ../src/MetadataStore.cs:48
+#: ../src/MetadataStore.cs:49
 msgid "White Balance"
 msgstr "ホワイトバランス"
 
-#: ../src/MetadataStore.cs:50
+#: ../src/MetadataStore.cs:51
 msgid "Focal Plane Resolution Unit"
 msgstr "焦点面解像度単位"
 
-#: ../src/MetadataStore.cs:52
+#: ../src/MetadataStore.cs:53
 msgid "File Source Type"
 msgstr "ファイルソースの種類"
 
-#: ../src/MetadataStore.cs:54
+#: ../src/MetadataStore.cs:55
 msgid "Scene Capture Type"
 msgstr "シーン撮影タイプ"
 
-#: ../src/MetadataStore.cs:56
+#: ../src/MetadataStore.cs:57
 msgid "Gain Control"
 msgstr "ゲインコントロール"
 
-#: ../src/MetadataStore.cs:58
+#: ../src/MetadataStore.cs:59
 msgid "Contrast"
 msgstr "コントラスト"
 
-#: ../src/MetadataStore.cs:60
+#: ../src/MetadataStore.cs:61
 msgid "Saturation"
 msgstr "彩度"
 
-#: ../src/MetadataStore.cs:62
+#: ../src/MetadataStore.cs:63
 msgid "Sharpness"
 msgstr "シャープネス"
 
-#: ../src/MetadataStore.cs:64
+#: ../src/MetadataStore.cs:65
 msgid "Scene Type"
 msgstr "シーンのタイプ"
 
@@ -1475,92 +2991,98 @@ msgid "Received exception \"{0}\". Unable to rename version to \"{1}\""
 msgstr ""
 "例外 \"{0}\" が発生しました。バージョン \"{1}\" の名前を変更できません。"
 
-#: ../src/PhotoVersionMenu.cs:66 ../src/Widgets/InfoBox.cs:549
+#: ../src/PhotoVersionMenu.cs:66 ../src/Widgets/InfoBox.cs:562
+#: ../src/Widgets/InfoBox.cs:564
 msgid "(No Edits)"
 msgstr "(未編集)"
 
-#: ../src/PhotoView.cs:163 ../src/UI.Dialog/EditExceptionDialog.cs:38
+#: ../src/PhotoView.cs:167 ../src/UI.Dialog/EditExceptionDialog.cs:38
 msgid "Error editing photo"
 msgstr "写真の編集エラー"
 
-#: ../src/PhotoView.cs:301
+#: ../src/PhotoView.cs:168 ../src/Sharpener.cs:73
+#: ../src/UI.Dialog/EditExceptionDialog.cs:25
+#, csharp-format
+msgid "Received exception \"{0}\". Unable to save photo {1}"
+msgstr "例外 \"{0}\" が発生しました。写真 {1} を保存できませんでした。"
+
+#: ../src/PhotoView.cs:356
 msgid "Comment:"
 msgstr "コメント:"
 
-#: ../src/Preferences.cs:147
+#: ../src/Preferences.cs:149
 msgid "Photos"
 msgstr "写真"
 
-#: ../src/PrintOperation.cs:31
+#: ../src/PrintOperation.cs:32
 msgid "Image Settings"
 msgstr "画像の設定"
 
-#: ../src/QueryWidget.cs:47
+#: ../src/QueryWidget.cs:58
 msgid "Find: "
 msgstr "検索: "
 
-#: ../src/QueryWidget.cs:52
+#: ../src/QueryWidget.cs:63
 msgid "Untagged photos"
 msgstr "タグのない写真"
 
-#: ../src/QueryWidget.cs:60
+#: ../src/QueryWidget.cs:71
 msgid "Rated photos"
 msgstr "評価済みの写真"
 
 #. Note for translators: 'Import roll' is no command, it means 'Roll that has been imported'
-#: ../src/QueryWidget.cs:69
+#: ../src/QueryWidget.cs:80
 msgid "Import roll"
 msgstr "インポートロール"
 
-#: ../src/QueryWidget.cs:89
+#: ../src/QueryWidget.cs:104
 msgid "Clear search"
 msgstr "検索の解除"
 
-#: ../src/QueryWidget.cs:96
+#: ../src/QueryWidget.cs:111
 msgid "Refresh search"
 msgstr "再検索"
 
-#: ../src/QueryWidget.cs:98
+#: ../src/QueryWidget.cs:113
 msgid "No matching photos found"
 msgstr "マッチする写真は見つかりませんでした"
 
-#: ../src/QueryWidget.cs:136
+#: ../src/QueryWidget.cs:155
 msgid "Hide _Find Bar"
 msgstr "検索バーの非表示(_F)"
 
-#: ../src/QueryWidget.cs:142
+#: ../src/QueryWidget.cs:161
 msgid "Show _Find Bar"
 msgstr "検索バーの表示(_F)"
 
-#: ../src/RotateCommand.cs:94 ../src/RotateCommand.cs:109
+#: ../src/RotateCommand.cs:96 ../src/RotateCommand.cs:111
 msgid "Unable to rotate this type of photo"
 msgstr "この形式の写真は回転できません"
 
-#: ../src/RotateCommand.cs:129
+#: ../src/RotateCommand.cs:131
 msgid "Unable to rotate readonly file"
 msgstr "読み込み専用ファイルは回転できません"
 
-#: ../src/RotateCommand.cs:196
+#: ../src/RotateCommand.cs:198
 msgid "Rotating photos"
 msgstr "写真を回転中"
 
-#: ../src/RotateCommand.cs:207
+#: ../src/RotateCommand.cs:209
 #, csharp-format
 msgid "Rotating photo \"{0}\""
 msgstr "写真 \"{0}\" の回転中"
 
-#: ../src/RotateCommand.cs:220
+#: ../src/RotateCommand.cs:222
 msgid "Directory not found"
 msgstr "フォルダが見つかりません"
 
-#: ../src/RotateCommand.cs:240
+#: ../src/RotateCommand.cs:242
 #, csharp-format
 msgid "Unable to rotate photo"
 msgid_plural "Unable to rotate {0} photos"
-msgstr[0] "写真を回転できません"
-msgstr[1] "{0} 枚の写真を回転できません"
+msgstr[0] "{0} 枚の写真を回転できません"
 
-#: ../src/RotateCommand.cs:242
+#: ../src/RotateCommand.cs:244
 #, csharp-format
 msgid ""
 "The photo could not be rotated because it is on a read only file system or "
@@ -1569,56 +3091,71 @@ msgid_plural ""
 "{0} photos could not be rotated because they are on a read only file system "
 "or media such as a CDROM.  Please check the permissions and try again."
 msgstr[0] ""
-"読み込み専用のファイルシステムまたは CD-ROM のようなメディアにあるため、この"
-"写真を回転させることができませんでした。権限を確認してやり直してみて下さい。"
-msgstr[1] ""
 "読み込み専用のファイルシステムまたは CD-ROM のようなメディアにあるため、{0} "
 "枚の写真を回転させることができませんでした。権限を確認してやり直してみて下さ"
 "い。"
 
-#: ../src/RotateCommand.cs:269
+#: ../src/RotateCommand.cs:271
 #, csharp-format
 msgid "Received error \"{0}\" while attempting to rotate {1}"
 msgstr "{1} の回転中にエラー \"{0}\" が発生しました"
 
-#: ../src/RotateCommand.cs:274
+#: ../src/RotateCommand.cs:276
 msgid "Error while rotating photo."
 msgstr "写真の回転中にエラー"
 
-#: ../src/SendEmail.cs:239
+#: ../src/SendEmail.cs:240
 msgid "Preparing email"
 msgstr "E-メールを準備中"
 
-#: ../src/SendEmail.cs:291
+#: ../src/SendEmail.cs:292
 #, csharp-format
 msgid "Exporting picture \"{0}\""
 msgstr "写真 \"{0}\" をエキスポート中"
 
-#: ../src/SendEmail.cs:313
+#: ../src/SendEmail.cs:314
 msgid "Error processing image"
 msgstr "画像処理エラー"
 
-#: ../src/SendEmail.cs:314
+#: ../src/SendEmail.cs:315
 #, csharp-format
 msgid "An error occured while processing \"{0}\": {1}"
 msgstr "\"{0}\" の処理中にエラー: {1}"
 
 #. Send the mail :)
-#: ../src/SendEmail.cs:329
+#: ../src/SendEmail.cs:330
 msgid "my photos"
 msgstr "私の写真"
 
-#: ../src/SingleView.cs:88
+#: ../src/Sharpener.cs:72
+msgid "Error saving sharpened photo"
+msgstr "シャープ化した写真の保存する際にエラー"
+
+#: ../src/Sharpener.cs:102
+msgid "Sharpen"
+msgstr "シャープ化"
+
+#: ../src/Sharpener.cs:112
+msgid "Amount:"
+msgstr "量:"
+
+#: ../src/Sharpener.cs:113
+msgid "Radius:"
+msgstr "半径:"
+
+#: ../src/Sharpener.cs:114
+msgid "Threshold:"
+msgstr "しきい値:"
+
+#: ../src/SingleView.cs:86
 msgid "Rotate photo left"
 msgstr "写真を左へ回転"
 
-#: ../src/SingleView.cs:93
+#: ../src/SingleView.cs:91
 msgid "Rotate photo right"
 msgstr "写真を右へ回転"
 
-#. Obsolete, remove after db rev4
-#: ../src/SingleView.cs:128 ../src/UI.Dialog/ui/PreferenceDialog.glade.h:14
-#: ../src/Widgets/MetadataDisplay.cs:221 ../src/Widgets/MetadataDisplay.cs:223
+#: ../src/SingleView.cs:128
 msgid "Folder"
 msgstr "フォルダ"
 
@@ -1630,73 +3167,24 @@ msgstr "開く"
 msgid "Set as Background"
 msgstr "背景に設定"
 
-#: ../src/TagCommands.cs:91 ../src/TagCommands.cs:219
-#: ../src/TagSelectionWidget.cs:512
+#: ../src/TagCommands.cs:96 ../src/TagSelectionWidget.cs:498
+#: ../src/UI.Dialog/EditTagDialog.cs:78
 msgid "This name is already in use"
 msgstr "この名前は既に使われています"
 
-#: ../src/TagCommands.cs:138
+#: ../src/TagCommands.cs:144
 msgid "Create New Tag"
 msgstr "新しいタグの作成"
 
-#: ../src/TagCommands.cs:139
+#: ../src/TagCommands.cs:145
 msgid "Name of New Tag:"
 msgstr "新しいタグの名前:"
-
-#: ../src/TagCommands.cs:285
-msgid "Edit Tag"
-msgstr "タグの編集"
-
-#: ../src/TagCommands.cs:286
-msgid "Tag Name:"
-msgstr "タグ名:"
-
-#: ../src/TagCommands.cs:402
-msgid "Unable to load image"
-msgstr "画像を読み込めません"
-
-#: ../src/TagCommands.cs:403
-#, csharp-format
-msgid "Unable to load \"{0}\" as icon for the tag"
-msgstr "タグ・アイコンとして \"{0}\" を読み込めません"
-
-#: ../src/TagCommands.cs:447
-#, csharp-format
-msgid "Photo {0} of {1}"
-msgstr "写真 ({0} / {1})"
-
-#: ../src/TagCommands.cs:477
-#, csharp-format
-msgid "Edit Icon for Tag {0}"
-msgstr "タグ {0} のアイコンの編集"
-
-#: ../src/TagCommands.cs:493
-msgid "Select Photo from file"
-msgstr "ファイルから写真を選択"
-
-#: ../src/TagCommands.cs:516
-#, csharp-format
-msgid ""
-"\n"
-"<b>From Photo</b>\n"
-" You can use one of your library photos as an icon for this tag.\n"
-" However, first you must have at least one photo associated\n"
-" with this tag. Please tag a photo as '{0}' and return here\n"
-" to use it as an icon."
-msgstr ""
-"\n"
-"<b>写真から作成</b>\n"
-" このタグのアイコンとしてライブラリの写真を 1 枚使うことができます。\n"
-" ただし、このタグに関連付けられた写真でなければなりません。お好きな\n"
-" 写真にタグ '{0}' を付与してからここに戻り、アイコンとして\n"
-" 利用して下さい。"
 
 #: ../src/TagPopup.cs:26
 #, csharp-format
 msgid "Find"
 msgid_plural "Find"
 msgstr[0] "検索"
-msgstr[1] "検索"
 
 #: ../src/TagPopup.cs:36 ../src/Widgets/TagMenu.cs:91
 msgid "Create New Tag..."
@@ -1710,84 +3198,80 @@ msgstr "選択したタグの編集..."
 msgid "Delete Tag"
 msgid_plural "Delete Tags"
 msgstr[0] "タグの削除"
-msgstr[1] "タグの削除"
 
 #: ../src/TagPopup.cs:52
 msgid "Attach Tag to Selection"
 msgid_plural "Attach Tags to Selection"
 msgstr[0] "選択したものへタグの付与"
-msgstr[1] "選択したものへタグの付与"
 
 #: ../src/TagPopup.cs:56
 msgid "Remove Tag From Selection"
 msgid_plural "Remove Tags From Selection"
 msgstr[0] "選択したものからタグの削除"
-msgstr[1] "選択したものからタグの削除"
 
 #: ../src/TagPopup.cs:62
 msgid "Merge Tags"
 msgstr "タグのマージ"
 
-#: ../src/TagQueryWidget.cs:32
+#: ../src/TagQueryWidget.cs:34
 #, csharp-format
 msgid "Include Photos Tagged \"{0}\""
 msgstr "タグ \"{0}\" の写真を含める"
 
-#: ../src/TagQueryWidget.cs:37
+#: ../src/TagQueryWidget.cs:39
 #, csharp-format
 msgid "Exclude Photos Tagged \"{0}\""
 msgstr "タグ \"{0}\" の写真を除く"
 
-#: ../src/TagQueryWidget.cs:42
+#: ../src/TagQueryWidget.cs:44
 msgid "Remove From Search"
 msgstr "検索から除く"
 
-#: ../src/TagQueryWidget.cs:86
+#: ../src/TagQueryWidget.cs:88
 #, csharp-format
 msgid "Find _With"
 msgid_plural "Find _With"
 msgstr[0] "さらに検索(_W)"
-msgstr[1] "さらに検索(_W)"
 
-#: ../src/TagQueryWidget.cs:112
+#: ../src/TagQueryWidget.cs:114
 msgid "All"
 msgstr "全て"
 
-#: ../src/TagQueryWidget.cs:147 ../src/Term.cs:592
+#: ../src/TagQueryWidget.cs:149 ../src/Term.cs:592
 #, csharp-format
 msgid "Not {0}"
 msgstr "{0} ではない"
 
-#: ../src/TagQueryWidget.cs:277
+#: ../src/TagQueryWidget.cs:278
 msgid "Drag tags here to search for them"
 msgstr "検索するタグをこちらにドラッグして下さい"
 
-#: ../src/TagSelectionWidget.cs:511
+#: ../src/TagSelectionWidget.cs:497
 msgid "Error renaming tag"
 msgstr "タグの改名の際にエラー"
 
-#: ../src/TagStore.cs:198
+#: ../src/TagStore.cs:203
 msgid "Favorites"
 msgstr "お気に入り"
 
-#: ../src/TagStore.cs:203
+#: ../src/TagStore.cs:208
 msgid "Hidden"
 msgstr "秘密"
 
-#: ../src/TagStore.cs:211
+#: ../src/TagStore.cs:216
 msgid "People"
 msgstr "人々"
 
-#: ../src/TagStore.cs:216
+#: ../src/TagStore.cs:221
 msgid "Places"
 msgstr "場所"
 
-#: ../src/TagStore.cs:221
+#: ../src/TagStore.cs:226
 msgid "Events"
 msgstr "イベント"
 
 #. The label for the root category is used in new and edit tag dialogs
-#: ../src/TagStore.cs:234 ../src/Widgets/InfoBox.cs:400
+#: ../src/TagStore.cs:239 ../src/Widgets/InfoBox.cs:408
 msgid "(None)"
 msgstr "(なし)"
 
@@ -1806,19 +3290,29 @@ msgstr " または "
 
 #. OPS The operators we support, case insensitive
 #. private static string op_str = "(?'Ops' or | and |, | \\s+ )";
-#: ../src/Term.cs:380 ../src/Widgets/FindBar.cs:177 ../src/f-spot.glade.h:220
+#: ../src/Term.cs:380 ../src/UI.Dialog/ui/DateRangeDialog.ui.h:7
+#: ../src/Widgets/FindBar.cs:177
 msgid "or"
 msgstr "または"
 
-#: ../src/UI.Dialog/AboutDialog.cs:70
+#: ../src/ThumbnailCommand.cs:20
+msgid "Updating Thumbnails"
+msgstr "サムネイルの更新中"
+
+#: ../src/ThumbnailCommand.cs:28
+#, csharp-format
+msgid "Updating picture \"{0}\""
+msgstr "写真 \"{0}\" の更新中"
+
+#: ../src/UI.Dialog/AboutDialog.cs:76
 msgid "Photo management for GNOME"
 msgstr "GNOME 向けの写真管理ソフトウェアです。"
 
-#: ../src/UI.Dialog/AboutDialog.cs:71
-msgid "Copyright © 2003-2008 Novell Inc."
-msgstr "Copyright © 2003-2008 Novell Inc."
+#: ../src/UI.Dialog/AboutDialog.cs:77
+msgid "Copyright © 2003-2009 Novell Inc."
+msgstr "Copyright © 2003-2009 Novell Inc."
 
-#: ../src/UI.Dialog/AboutDialog.cs:94
+#: ../src/UI.Dialog/AboutDialog.cs:100
 msgid "translator-credits"
 msgstr ""
 "遠藤 美純 <y-endo@ceres.dti.ne.jp>\n"
@@ -1826,6 +3320,7 @@ msgstr ""
 "相花 毅 <aihana@gnome.gr.jp>\n"
 "Satoru SATOH <ss@gnome.gr.jp>\n"
 "日本GNOMEユーザー会 <http://www.gnome.gr.jp>\n"
+"\n"
 "Launchpad からの貢献者:\n"
 "  Fumihito YOSHIDA <https://launchpad.net/~hito>\n"
 "  Ikuya Awashiro <https://launchpad.net/~ikuya-fruitsbasket>\n"
@@ -1836,14 +3331,91 @@ msgstr ""
 "  Y.Nishiwaki <https://launchpad.net/~annamoito>\n"
 "  Yuji Kaneko <https://launchpad.net/~yujikaneko>"
 
-#: ../src/UI.Dialog/AboutDialog.cs:99
+#: ../src/UI.Dialog/AboutDialog.cs:105
 msgid "F-Spot Website"
 msgstr "F-Spot ウェブサイト"
 
-#: ../src/UI.Dialog/AdjustTimeDialog.cs:118 ../src/f-spot.glade.h:120
+#: ../src/UI.Dialog/AdjustTimeDialog.cs:112
+#: ../src/UI.Dialog/ui/AdjustTimeDialog.ui.h:10
 #, csharp-format
 msgid "Shift all photos by {0}"
 msgstr "全ての写真の日時を {0} だけ変更する"
+
+#: ../src/UI.Dialog/DateRangeDialog.cs:99
+msgid "Today"
+msgstr "今日"
+
+#: ../src/UI.Dialog/DateRangeDialog.cs:101
+msgid "Yesterday"
+msgstr "昨日"
+
+#: ../src/UI.Dialog/DateRangeDialog.cs:103
+msgid "Last 7 days"
+msgstr "過去 7 日間"
+
+#: ../src/UI.Dialog/DateRangeDialog.cs:105
+msgid "Last 30 days"
+msgstr "過去 30 日間"
+
+#: ../src/UI.Dialog/DateRangeDialog.cs:107
+msgid "Last 90 days"
+msgstr "過去 90 日間"
+
+#: ../src/UI.Dialog/DateRangeDialog.cs:109
+msgid "Last 360 days"
+msgstr "過去 360 日間"
+
+#: ../src/UI.Dialog/DateRangeDialog.cs:111
+msgid "Current Week (Mon-Sun)"
+msgstr "今週 (月〜日)"
+
+#: ../src/UI.Dialog/DateRangeDialog.cs:113
+msgid "Previous Week (Mon-Sun)"
+msgstr "先週 (月〜日)"
+
+#: ../src/UI.Dialog/DateRangeDialog.cs:131
+msgid "Customized Range"
+msgstr "範囲の指定"
+
+#: ../src/UI.Dialog/EditTagIconDialog.cs:46
+#, csharp-format
+msgid "Edit Icon for Tag {0}"
+msgstr "タグ {0} のアイコンの編集"
+
+#: ../src/UI.Dialog/EditTagIconDialog.cs:68
+msgid "Select Photo from file"
+msgstr "ファイルから写真を選択"
+
+#: ../src/UI.Dialog/EditTagIconDialog.cs:90
+#, csharp-format
+msgid ""
+"\n"
+"<b>From Photo</b>\n"
+" You can use one of your library photos as an icon for this tag.\n"
+" However, first you must have at least one photo associated\n"
+" with this tag. Please tag a photo as '{0}' and return here\n"
+" to use it as an icon."
+msgstr ""
+"\n"
+"<b>写真から作成</b>\n"
+" このタグのアイコンとしてライブラリの写真を 1 枚使うことができます。\n"
+" ただし、このタグに関連付けられた写真でなければなりません。お好きな\n"
+" 写真にタグ '{0}' を付与してからここに戻り、アイコンとして\n"
+" 利用して下さい。"
+
+#: ../src/UI.Dialog/EditTagIconDialog.cs:168
+msgid "Unable to load image"
+msgstr "画像を読み込めません"
+
+#: ../src/UI.Dialog/EditTagIconDialog.cs:169
+#, csharp-format
+msgid "Unable to load \"{0}\" as icon for the tag"
+msgstr "タグ・アイコンとして \"{0}\" を読み込めません"
+
+#: ../src/UI.Dialog/EditTagIconDialog.cs:207
+#, csharp-format
+msgid "Photo {0} of {1}"
+msgstr "写真 ({0} / {1})"
 
 #: ../src/UI.Dialog/ExceptionDialog.cs:24
 msgid "F-Spot Encountered a Fatal Error"
@@ -1856,6 +3428,19 @@ msgstr "エラーの詳細"
 #: ../src/UI.Dialog/ExceptionDialog.cs:104
 msgid "An unhandled exception was thrown: "
 msgstr "予期されていない例外が発生しました: "
+
+#: ../src/UI.Dialog/PreferenceDialog.cs:53
+#: ../src/UI.Dialog/PreferenceDialog.cs:71
+msgid "None"
+msgstr "なし"
+
+#: ../src/UI.Dialog/PreferenceDialog.cs:55
+msgid "System profile"
+msgstr "システムプロファイル"
+
+#: ../src/UI.Dialog/PreferenceDialog.cs:84
+msgid "Standard theme"
+msgstr "標準テーマ"
 
 #: ../src/UI.Dialog/RepairDbDialog.cs:20
 msgid "Error loading database."
@@ -1878,124 +3463,391 @@ msgstr "ラベル"
 msgid "Ratio"
 msgstr "アスペクト比"
 
-#: ../src/UI.Dialog/ThreadProgressDialog.cs:49
+#: ../src/UI.Dialog/ThreadProgressDialog.cs:53
 msgid "Retry"
 msgstr "再試行"
 
-#: ../src/UI.Dialog/ui/PreferenceDialog.glade.h:1
-#, fuzzy
-msgid "<b>Color Management</b>"
-msgstr "<b>色温度</b>"
+#: ../src/UI.Dialog/ui/AdjustTimeDialog.ui.h:1
+msgid "0000:00:00 00:00:00"
+msgstr "0000:00:00 00:00:00"
 
-#: ../src/UI.Dialog/ui/PreferenceDialog.glade.h:2
-#, fuzzy
-msgid "<b>Import Settings</b>"
-msgstr "<b>補正(_R)</b>"
+#: ../src/UI.Dialog/ui/AdjustTimeDialog.ui.h:2
+msgid "00:00:00"
+msgstr "00:00:00"
 
-#: ../src/UI.Dialog/ui/PreferenceDialog.glade.h:3
-#, fuzzy
-msgid "<b>Metadata</b>"
-msgstr "メタデータ"
+#: ../src/UI.Dialog/ui/AdjustTimeDialog.ui.h:3
+msgid "5"
+msgstr "5"
 
-#: ../src/UI.Dialog/ui/PreferenceDialog.glade.h:4
-#, fuzzy
-msgid "<b>Screensaver</b>"
+#: ../src/UI.Dialog/ui/AdjustTimeDialog.ui.h:4
+msgid "<b>Action</b>"
+msgstr "<b>アクション</b>"
+
+#: ../src/UI.Dialog/ui/AdjustTimeDialog.ui.h:6
+msgid "<b>Reference Photo</b>"
+msgstr "<b>基準とする写真</b>"
+
+#: ../src/UI.Dialog/ui/AdjustTimeDialog.ui.h:7
+msgid "Adjust Time"
+msgstr "日時の調整"
+
+#: ../src/UI.Dialog/ui/AdjustTimeDialog.ui.h:8
+msgid "Adjusted date: "
+msgstr "日時の調整: "
+
+#: ../src/UI.Dialog/ui/AdjustTimeDialog.ui.h:9
+msgid "Current date:"
+msgstr "現在の日時:"
+
+#: ../src/UI.Dialog/ui/AdjustTimeDialog.ui.h:11
+msgid "Space all photos by"
+msgstr "全ての写真の時刻に間隔をあける:"
+
+#: ../src/UI.Dialog/ui/AdjustTimeDialog.ui.h:12
+msgid "difference:"
+msgstr "差:"
+
+#: ../src/UI.Dialog/ui/AdjustTimeDialog.ui.h:13
+msgid "min. Starting at {0}"
+msgstr "分 ({0} から開始)"
+
+#: ../src/UI.Dialog/ui/DateRangeDialog.ui.h:1
+msgid "<b>End Date</b>"
+msgstr "<b>終了日時</b>"
+
+#: ../src/UI.Dialog/ui/DateRangeDialog.ui.h:2
+msgid "<b>Select period</b>"
+msgstr "<b>期間の選択</b>"
+
+#: ../src/UI.Dialog/ui/DateRangeDialog.ui.h:3
+msgid "<b>Start Date</b>"
+msgstr "<b>開始日時</b>"
+
+#: ../src/UI.Dialog/ui/DateRangeDialog.ui.h:4
+msgid "Cancel, do not change the current timeline. "
+msgstr "キャンセルします。現在のタイムラインを変更しません。"
+
+#: ../src/UI.Dialog/ui/DateRangeDialog.ui.h:5
+msgid "Only photos taken within these dates will be displayed."
+msgstr "指定の期間に撮影された写真のみ表示します。"
+
+#: ../src/UI.Dialog/ui/DateRangeDialog.ui.h:6
+msgid "Set date range"
+msgstr "表示期間の設定"
+
+#: ../src/UI.Dialog/ui/EditTagDialog.ui.h:1
+msgid "<small></small>"
+msgstr "<small></small>"
+
+#: ../src/UI.Dialog/ui/EditTagDialog.ui.h:2
+msgid "Edit Tag"
+msgstr "タグの編集"
+
+#: ../src/UI.Dialog/ui/EditTagDialog.ui.h:3
+msgid "Edit icon"
+msgstr "アイコンの編集"
+
+#: ../src/UI.Dialog/ui/EditTagDialog.ui.h:5
+msgid "_Icon:"
+msgstr "アイコン(_I):"
+
+#: ../src/UI.Dialog/ui/EditTagIconDialog.ui.h:1
+msgid "<b>From External Photo</b>"
+msgstr "<b>別の写真から作成</b>"
+
+#: ../src/UI.Dialog/ui/EditTagIconDialog.ui.h:2
+msgid "<b>From Photo</b>"
+msgstr "<b>写真から作成</b>"
+
+#: ../src/UI.Dialog/ui/EditTagIconDialog.ui.h:3
+msgid "<b>Predefined icons</b>"
+msgstr "<b>ストック・アイコン</b>"
+
+#: ../src/UI.Dialog/ui/EditTagIconDialog.ui.h:4
+msgid "<b>Preview</b>"
 msgstr "<b>プレビュー</b>"
 
-#: ../src/UI.Dialog/ui/PreferenceDialog.glade.h:5
-#, fuzzy
-msgid "<b>Theming</b>"
-msgstr "<b></b>"
+#: ../src/UI.Dialog/ui/EditTagIconDialog.ui.h:5
+msgid "Design icon from"
+msgstr "アイコンを以下から選択できます"
 
-#: ../src/UI.Dialog/ui/PreferenceDialog.glade.h:6
-#, fuzzy
+#: ../src/UI.Dialog/ui/EditTagIconDialog.ui.h:6
+msgid "Edit Tag Icon"
+msgstr "タグ・アイコンの編集"
+
+#: ../src/UI.Dialog/ui/EditTagIconDialog.ui.h:7
+msgid "No _image"
+msgstr "画像なし(_I)"
+
+#: ../src/UI.Dialog/ui/EditTagIconDialog.ui.h:8
+msgid "Photo 0 of 0"
+msgstr "写真 (0 / 0)"
+
+#: ../src/UI.Dialog/ui/PreferenceDialog.ui.h:1
+msgid "Color profile for display:"
+msgstr "モニタ用カラープロファイル:"
+
+#: ../src/UI.Dialog/ui/PreferenceDialog.ui.h:2
+msgid "Color profile for printing:"
+msgstr "印刷用カラープロファイル:"
+
+#: ../src/UI.Dialog/ui/PreferenceDialog.ui.h:3
+msgid "F-Spot Preferences"
+msgstr "F-Spot の設定"
+
+#: ../src/UI.Dialog/ui/PreferenceDialog.ui.h:4
+msgid "F-Spot appearance:"
+msgstr "F-Spot の外観:"
+
+#: ../src/UI.Dialog/ui/PreferenceDialog.ui.h:5
 msgid ""
-"<small><i>Choose the folder where F-Spot should store newly imported photos</"
-"i></small>"
+"Inside the image files when possible\n"
+"<small>Makes them accessible to other image-editing programs.</small>"
 msgstr ""
-"<small><i>インポートするデータベースの場所を選択してください</i></small>"
+"可能ならば画像ファイルの内部に保存\n"
+"<small>他の画像処理プログラムとタグを共有できます</small>"
 
-#: ../src/UI.Dialog/ui/PreferenceDialog.glade.h:7
-#, fuzzy
-msgid ""
-"<small><i>Enable this option to store tags and descriptions inside \n"
-"supported image formats.</i></small>"
-msgstr ""
-"<small><i>インポートするデータベースの場所を選択してください</i></small>"
-
-#: ../src/UI.Dialog/ui/PreferenceDialog.glade.h:9
-msgid ""
-"<small><i>While acting as a screensaver, F-Spot can display all of your "
-"images, or a small subset based on tags.</i></small>"
-msgstr ""
-
-#: ../src/UI.Dialog/ui/PreferenceDialog.glade.h:10
-msgid ""
-"<small><i>You'll have to restart f-spot to load the new theme.</i></small>"
-msgstr ""
-
-#: ../src/UI.Dialog/ui/PreferenceDialog.glade.h:12
-#, fuzzy
-msgid "Custom Theme"
-msgstr "カスタム・テキスト: "
-
-#: ../src/UI.Dialog/ui/PreferenceDialog.glade.h:15
-msgid "From List:"
-msgstr ""
-
-#: ../src/UI.Dialog/ui/PreferenceDialog.glade.h:16
-msgid "From gtkrc File:"
-msgstr ""
-
-#: ../src/UI.Dialog/ui/PreferenceDialog.glade.h:17
-msgid "Images tagged with:"
-msgstr ""
-
-#: ../src/UI.Dialog/ui/PreferenceDialog.glade.h:18
-msgid "Make F-Spot your screensaver"
-msgstr ""
-
-#: ../src/UI.Dialog/ui/PreferenceDialog.glade.h:19 ../src/f-spot.glade.h:102
-msgid "Preferences"
-msgstr "設定"
-
-#: ../src/UI.Dialog/ui/PreferenceDialog.glade.h:20
-#, fuzzy
+#: ../src/UI.Dialog/ui/PreferenceDialog.ui.h:7
 msgid "Select A Folder"
 msgstr "フォルダの選択"
 
-#: ../src/UI.Dialog/ui/PreferenceDialog.glade.h:21
-#, fuzzy
-msgid "Select A gtkrc File"
-msgstr "ファイルから写真を選択"
+#: ../src/UI.Dialog/ui/PreferenceDialog.ui.h:8
+msgid "Separately from the image files"
+msgstr "画像ファイルとは別に保存"
 
-#: ../src/UI.Dialog/ui/PreferenceDialog.glade.h:22
-msgid "System Theme"
-msgstr ""
+#: ../src/UI.Dialog/ui/PreferenceDialog.ui.h:9
+msgid "Store tags and descriptions for photos:"
+msgstr "写真のタグや説明の保存:"
 
-#: ../src/UI.Dialog/ui/PreferenceDialog.glade.h:23
-msgid "Try to use the system display profile"
-msgstr ""
+#: ../src/UI.Dialog/ui/PreferenceDialog.ui.h:10
+msgid "When importing photos, copy them to:"
+msgstr "インポートした写真の保存先:"
 
-#: ../src/UI.Dialog/ui/PreferenceDialog.glade.h:24
-#, fuzzy
-msgid "Write _metadata to file"
-msgstr "メタデータの除去(_M)"
+#: ../src/UI.Dialog/ui/RatingFilterDialog.ui.h:1
+msgid "<b>Max Rating</b>"
+msgstr "<b>最大の評価</b>"
 
-#: ../src/UI.Dialog/ui/PreferenceDialog.glade.h:25
-#, fuzzy
-msgid "_Display:"
-msgstr "タグを表示する(_A)"
+#: ../src/UI.Dialog/ui/RatingFilterDialog.ui.h:2
+msgid "<b>Min Rating</b>"
+msgstr "<b>最小の評価</b>"
 
-#: ../src/UI.Dialog/ui/PreferenceDialog.glade.h:26
-msgid "_Print output:"
-msgstr ""
+#: ../src/UI.Dialog/ui/RatingFilterDialog.ui.h:3
+msgid "Set Rating Filter"
+msgstr "評価フィルタの設定"
 
-#: ../src/Updater.cs:528
+#: ../src/ui/main_window.ui.h:1
+msgid "Adjust _Time..."
+msgstr "日時の調整(_T)..."
+
+#: ../src/ui/main_window.ui.h:2
+msgid "Arrange _by"
+msgstr "タイムラインの整理(_B)"
+
+#: ../src/ui/main_window.ui.h:4
+msgid "By _Date"
+msgstr "日付(_D)"
+
+#: ../src/ui/main_window.ui.h:5
+msgid "By _Import Roll"
+msgstr "インポートロール(_I)"
+
+#: ../src/ui/main_window.ui.h:6
+msgid "By _Rating"
+msgstr "評価(_R)"
+
+#: ../src/ui/main_window.ui.h:7
+msgid "Copy Locat_ion"
+msgstr "場所をコピー(_I)"
+
+#: ../src/ui/main_window.ui.h:8
+msgid "Create New _Tag..."
+msgstr "新しいタグの作成(_T)..."
+
+#: ../src/ui/main_window.ui.h:9
+msgid "Create _New Version..."
+msgstr "新しいバージョンの作成(_N)..."
+
+#: ../src/ui/main_window.ui.h:11
+msgid "Fin_d"
+msgstr "検索(_D)"
+
+#: ../src/ui/main_window.ui.h:12
+msgid "Manage _Extensions"
+msgstr "拡張機能の管理(_E)"
+
+#: ../src/ui/main_window.ui.h:13
+msgid "Page Set_up..."
+msgstr "ページ設定(_U)..."
+
+#: ../src/ui/main_window.ui.h:14
+msgid "Re_fresh Thumbnail"
+msgstr "サムネイルの更新(_F)"
+
+#: ../src/ui/main_window.ui.h:19
+msgid "Select _None"
+msgstr "選択の解除(_N)"
+
+#: ../src/ui/main_window.ui.h:20
+msgid "Send by _Mail..."
+msgstr "メールで送信(_M)..."
+
+#: ../src/ui/main_window.ui.h:22
+msgid "Side_bar"
+msgstr "サイドバー(_B)"
+
+#: ../src/ui/main_window.ui.h:23
+msgid "T_ags"
+msgstr "タグ(_T)"
+
+#: ../src/ui/main_window.ui.h:25
+msgid "Thumbnail _elements"
+msgstr "サムネイルの表示項目(_E)"
+
+#: ../src/ui/main_window.ui.h:26
+msgid "Too_lbar"
+msgstr "ツールバー(_L)"
+
+#: ../src/ui/main_window.ui.h:27
+msgid "View"
+msgstr "ビュー"
+
+#: ../src/ui/main_window.ui.h:33
+msgid "_Attach Tag to Selection"
+msgstr "選択したものへタグの付与(_A)"
+
+#: ../src/ui/main_window.ui.h:35
+msgid "_Clear Rating Filter"
+msgstr "評価フィルタの解除(_C)"
+
+#: ../src/ui/main_window.ui.h:36
+msgid "_Clear Roll Filter"
+msgstr "ロール・フィルタの解除(_C)"
+
+#: ../src/ui/main_window.ui.h:38
+msgid "_Components"
+msgstr "コンポーネント(_C)"
+
+#: ../src/ui/main_window.ui.h:39
+msgid "_Contents"
+msgstr "目次(_C)"
+
+#: ../src/ui/main_window.ui.h:40
+msgid "_Dates"
+msgstr "日時(_D)"
+
+#: ../src/ui/main_window.ui.h:42
+msgid "_Delete Selected Tag"
+msgstr "選択したタグの削除(_D)"
+
+#: ../src/ui/main_window.ui.h:43
+msgid "_Delete Version"
+msgstr "バージョンの削除(_D)"
+
+#: ../src/ui/main_window.ui.h:45
+msgid "_Edit Selected Tag..."
+msgstr "選択したタグの編集(_E)..."
+
+#: ../src/ui/main_window.ui.h:46
+msgid "_Export to"
+msgstr "エキスポート(_E)"
+
+#: ../src/ui/main_window.ui.h:47
+msgid "_Filmstrip"
+msgstr "フィルムストリップ(_F)"
+
+#: ../src/ui/main_window.ui.h:50
+msgid "_Hidden"
+msgstr "非表示(_H)"
+
+#: ../src/ui/main_window.ui.h:51
+msgid "_Import..."
+msgstr "インポート(_I)..."
+
+#: ../src/ui/main_window.ui.h:52
+msgid "_Large"
+msgstr "大(_L)"
+
+#: ../src/ui/main_window.ui.h:53
+msgid "_Last Import Roll"
+msgstr "最新のインポートロール(_L)"
+
+#: ../src/ui/main_window.ui.h:54
+msgid "_Loupe"
+msgstr "拡大鏡(_L)"
+
+#: ../src/ui/main_window.ui.h:55
+msgid "_Medium"
+msgstr "中(_M)"
+
+#: ../src/ui/main_window.ui.h:57
+msgid "_Quit"
+msgstr "終了(_Q)"
+
+#: ../src/ui/main_window.ui.h:58
+msgid "_Ratings"
+msgstr "評価(_R)"
+
+#: ../src/ui/main_window.ui.h:60
+msgid "_Remove Tag From Selection"
+msgstr "選択したものからタグの削除(_R)"
+
+#: ../src/ui/main_window.ui.h:61
+msgid "_Rename Version"
+msgstr "バージョン名の変更(_R)"
+
+#: ../src/ui/main_window.ui.h:62
+msgid "_Reverse Order"
+msgstr "逆順(_R)"
+
+#: ../src/ui/main_window.ui.h:63
+msgid "_Select Import Rolls..."
+msgstr "インポートロールの選択(_S)..."
+
+#: ../src/ui/main_window.ui.h:64
+msgid "_Set Date Range..."
+msgstr "表示期間の設定(_S)..."
+
+#: ../src/ui/main_window.ui.h:65
+msgid "_Set Rating filter..."
+msgstr "評価フィルタの設定(_S)..."
+
+#: ../src/ui/main_window.ui.h:66
+msgid "_Sharpen..."
+msgstr "シャープ化(_S)..."
+
+#: ../src/ui/main_window.ui.h:68
+msgid "_Small"
+msgstr "小(_S)"
+
+#: ../src/ui/main_window.ui.h:69
+msgid "_Tag Icons"
+msgstr "タグ・アイコン(_T)"
+
+#: ../src/ui/main_window.ui.h:70
+msgid "_Tags"
+msgstr "タグ(_T)"
+
+#: ../src/ui/main_window.ui.h:71
+msgid "_Timeline"
+msgstr "タイムライン(_T)"
+
+#: ../src/ui/main_window.ui.h:72
+msgid "_Tools"
+msgstr "ツール(_T)"
+
+#: ../src/ui/main_window.ui.h:73
+msgid "_Untagged Photos"
+msgstr "タグのない写真(_U)"
+
+#: ../src/ui/main_window.ui.h:74
+msgid "_Version"
+msgstr "バージョン(_V)"
+
+#: ../src/Updater.cs:616
 msgid "Updating F-Spot Database"
 msgstr "F-Spot データベースを更新中"
 
-#: ../src/Updater.cs:529
+#: ../src/Updater.cs:617
 msgid ""
 "Please wait while your F-Spot gallery's database is updated. This may take "
 "some time."
@@ -2008,76 +3860,91 @@ msgstr ""
 msgid "Unable to create temporary file"
 msgstr "一時ファイルを作成できません"
 
-#: ../src/Utils/GnomeUtil.cs:49
-msgid ""
-"The \"F-Spot Manual\" could not be found.  Please verify that your "
-"installation has been completed successfully."
-msgstr ""
-"\"F-Spotマニュアル\" が見つかりませんでした。インストールが正常に完了している"
-"か確認して下さい。"
-
-#: ../src/Widgets/CustomPrintWidget.cs:98
+#: ../src/Widgets/CustomPrintWidget.cs:119
 msgid "Page Setup"
 msgstr "ページ設定"
 
-#: ../src/Widgets/CustomPrintWidget.cs:102
-#: ../src/Widgets/CustomPrintWidget.cs:106
-#: ../src/Widgets/CustomPrintWidget.cs:112
+#: ../src/Widgets/CustomPrintWidget.cs:123
+#: ../src/Widgets/CustomPrintWidget.cs:127
+#: ../src/Widgets/CustomPrintWidget.cs:133
 #, csharp-format
 msgid "Paper Size: {0} x {1} mm"
 msgstr "用紙サイズ: {0} x {1} mm"
 
-#: ../src/Widgets/CustomPrintWidget.cs:124
+#: ../src/Widgets/CustomPrintWidget.cs:130
+msgid "Set Page Size and Orientation"
+msgstr "用紙のサイズと向きを設定する"
+
+#: ../src/Widgets/CustomPrintWidget.cs:141
 msgid "Photos per page"
 msgstr "1 ページに印刷する写真枚数"
 
-#. ppp1.Toggled += TriggerChanged;
-#. ppp2.Toggled += TriggerChanged;
-#. ppp4.Toggled += TriggerChanged;
-#. ppp9.Toggled += TriggerChanged;
-#: ../src/Widgets/CustomPrintWidget.cs:136
+#: ../src/Widgets/CustomPrintWidget.cs:151
 msgid "Repeat"
 msgstr "繰り返す"
 
-#: ../src/Widgets/CustomPrintWidget.cs:137
+#: ../src/Widgets/CustomPrintWidget.cs:152
 msgid "Print cut marks"
 msgstr "印刷切り取りマーク"
 
-#: ../src/Widgets/CustomPrintWidget.cs:145
+#: ../src/Widgets/CustomPrintWidget.cs:158
+msgid "Photos layout"
+msgstr "写真のレイアウト"
+
+#: ../src/Widgets/CustomPrintWidget.cs:160
 msgid "Full Page (no margin)"
 msgstr "ページ全体 (余白なし)"
 
 #. Note for translators: "Zoom" is a Fit Mode
-#: ../src/Widgets/CustomPrintWidget.cs:149
+#: ../src/Widgets/CustomPrintWidget.cs:163
 msgid "Zoom"
 msgstr "ズーム"
 
-#: ../src/Widgets/CustomPrintWidget.cs:150
+#: ../src/Widgets/CustomPrintWidget.cs:164
 msgid "Fill"
 msgstr "フィル"
 
-#: ../src/Widgets/CustomPrintWidget.cs:151
+#: ../src/Widgets/CustomPrintWidget.cs:165
 msgid "Scaled"
 msgstr "スケール"
 
-#: ../src/Widgets/CustomPrintWidget.cs:157
+#: ../src/Widgets/CustomPrintWidget.cs:170
 msgid "White borders"
 msgstr "白い縁取り"
 
-#: ../src/Widgets/CustomPrintWidget.cs:161
-msgid "Custom Text: "
-msgstr "カスタム・テキスト: "
+#: ../src/Widgets/CustomPrintWidget.cs:176
+msgid "Custom Text"
+msgstr "カスタム・テキスト"
 
-#: ../src/Widgets/EditorPage.cs:29 ../src/Widgets/Sidebar.cs:71
+#: ../src/Widgets/CustomPrintWidget.cs:180
+msgid "Photos infos"
+msgstr "写真の情報"
+
+#: ../src/Widgets/CustomPrintWidget.cs:182
+msgid "Print file name"
+msgstr "ファイル名を印刷する"
+
+#: ../src/Widgets/CustomPrintWidget.cs:183
+msgid "Print photo date"
+msgstr "写真の日付を印刷する"
+
+#: ../src/Widgets/CustomPrintWidget.cs:184
+msgid "Print photo time"
+msgstr "写真の時間を印刷する"
+
+#: ../src/Widgets/CustomPrintWidget.cs:185
+msgid "Print photo tags"
+msgstr "写真のタグを印刷する"
+
+#: ../src/Widgets/CustomPrintWidget.cs:186
+msgid "Print photo comment"
+msgstr "写真のコメントを印刷する"
+
+#: ../src/Widgets/EditorPage.cs:29 ../src/Widgets/Sidebar.cs:62
 msgid "Edit"
 msgstr "編集"
 
-#: ../src/Widgets/EditorPage.cs:201
-#: ../extensions/Exporters/ZipExport/ZipExport.cs:46
-msgid "No selection available"
-msgstr "範囲が選択されていません"
-
-#: ../src/Widgets/EditorPage.cs:202
+#: ../src/Widgets/EditorPage.cs:197
 msgid ""
 "This tool requires an active selection. Please select a region of the photo "
 "and try the operation again"
@@ -2085,13 +3952,12 @@ msgstr ""
 "このツールではあらかじめ範囲を指定する必要があります。写真上で範囲を指定して"
 "からもう一度操作を試して下さい。"
 
-#: ../src/Widgets/EditorPage.cs:220
+#: ../src/Widgets/EditorPage.cs:215
 msgid "Error saving adjusted photo"
 msgid_plural "Error saving adjusted photos"
 msgstr[0] "調整した写真の保存中にエラー"
-msgstr[1] "調整した写真の保存中にエラー"
 
-#: ../src/Widgets/EditorPage.cs:222
+#: ../src/Widgets/EditorPage.cs:217
 #, csharp-format
 msgid ""
 "Received exception \"{0}\". Note that you have to develop RAW files into "
@@ -2100,13 +3966,25 @@ msgstr ""
 "例外 \"{0}\" が発生しました。編集前に RAW ファイルを JPEG ファイルに現像しな"
 "ければならないことに注意して下さい。"
 
+#: ../src/Widgets/Filmstrip.cs:572
+msgid "_Horizontal"
+msgstr "水平(_H)"
+
+#: ../src/Widgets/Filmstrip.cs:576
+msgid "_Vertical"
+msgstr "垂直(_V)"
+
 #: ../src/Widgets/FindBar.cs:58
 msgid "Find:"
 msgstr "検索:"
 
-#: ../src/Widgets/FindBar.cs:177 ../src/f-spot.glade.h:212
-msgid "and"
-msgstr "と"
+#: ../src/Widgets/FolderTreePage.cs:21
+msgid "Folders"
+msgstr "フォルダ"
+
+#: ../src/Widgets/FolderTreeView.cs:123
+msgid "Filesystem"
+msgstr "ファイルシステム"
 
 #: ../src/Widgets/InfoBox.cs:182
 msgid "Histogram"
@@ -2115,11 +3993,6 @@ msgstr "ヒストグラム"
 #: ../src/Widgets/InfoBox.cs:217
 msgid "Date"
 msgstr "日時"
-
-#: ../src/Widgets/InfoBox.cs:220
-#: ../extensions/Exporters/CDExport/CDExport.glade.h:5
-msgid "Size"
-msgstr "サイズ"
 
 #: ../src/Widgets/InfoBox.cs:223
 msgid "Exposure"
@@ -2137,26 +4010,33 @@ msgstr "ファイルサイズ"
 msgid "Rating"
 msgstr "評価"
 
-#: ../src/Widgets/InfoBox.cs:409 ../src/Widgets/InfoBox.cs:432
-#: ../src/Widgets/InfoBox.cs:442 ../src/Widgets/InfoBox.cs:451
-msgid "(Unknown)"
-msgstr "(不明)"
-
-#: ../src/Widgets/InfoBox.cs:419
+#: ../src/Widgets/InfoBox.cs:389 ../src/Widgets/InfoBox.cs:397
+#: ../src/Widgets/InfoBox.cs:427
 msgid "(wrong format)"
 msgstr "(不正な形式)"
 
-#: ../src/Widgets/InfoBox.cs:558
+#: ../src/Widgets/InfoBox.cs:417 ../src/Widgets/InfoBox.cs:440
+#: ../src/Widgets/InfoBox.cs:450 ../src/Widgets/InfoBox.cs:459
+msgid "(Unknown)"
+msgstr "(不明)"
+
+#: ../src/Widgets/InfoBox.cs:560
+#, csharp-format
+msgid "(One Edit)"
+msgid_plural "({0} Edits)"
+msgstr[0] "({0} 枚の編集版)"
+
+#: ../src/Widgets/InfoBox.cs:574
 msgid "(File read error)"
 msgstr "(ファイルの読み込みエラー)"
 
-#: ../src/Widgets/InfoBox.cs:603
+#: ../src/Widgets/InfoBox.cs:619
 #, csharp-format
 msgid "{0} Photos"
 msgstr "{0} 枚の写真"
 
 #. Note for translators: {0} is a date, {1} and {2} are times.
-#: ../src/Widgets/InfoBox.cs:623
+#: ../src/Widgets/InfoBox.cs:639
 #, csharp-format
 msgid ""
 "On {0} between \n"
@@ -2165,7 +4045,7 @@ msgstr ""
 "{0}\n"
 "{1} 〜 {2}"
 
-#: ../src/Widgets/InfoBox.cs:628
+#: ../src/Widgets/InfoBox.cs:644
 #, csharp-format
 msgid ""
 "Between {0} \n"
@@ -2174,35 +4054,35 @@ msgstr ""
 "{0} 〜\n"
 "{1}"
 
-#: ../src/Widgets/InfoBox.cs:655
+#: ../src/Widgets/InfoBox.cs:671
 msgid "(At least one File not found)"
 msgstr "(ファイルが一つも見つかりません)"
 
-#: ../src/Widgets/InfoBox.cs:772
+#: ../src/Widgets/InfoBox.cs:788
 msgid "Show Photo Name"
 msgstr "写真名の表示"
 
-#: ../src/Widgets/InfoBox.cs:781
+#: ../src/Widgets/InfoBox.cs:797
 msgid "Show Date"
 msgstr "日時の表示"
 
-#: ../src/Widgets/InfoBox.cs:790
+#: ../src/Widgets/InfoBox.cs:806
 msgid "Show Size"
 msgstr "サイズの表示"
 
-#: ../src/Widgets/InfoBox.cs:799
+#: ../src/Widgets/InfoBox.cs:815
 msgid "Show Exposure"
 msgstr "露出の表示"
 
-#: ../src/Widgets/InfoBox.cs:808
+#: ../src/Widgets/InfoBox.cs:824
 msgid "Show Focal Length"
 msgstr "焦点距離の表示"
 
-#: ../src/Widgets/InfoBox.cs:817
+#: ../src/Widgets/InfoBox.cs:833
 msgid "Show Camera"
 msgstr "カメラ機種名の表示"
 
-#: ../src/Widgets/InfoBox.cs:826
+#: ../src/Widgets/InfoBox.cs:842
 msgid "Show File Size"
 msgstr "ファイルサイズの表示"
 
@@ -2214,37 +4094,25 @@ msgstr "メタデータ"
 msgid "Extended Metadata"
 msgstr "拡張メタデータ"
 
-#: ../src/Widgets/MetadataDisplay.cs:225
-msgid "Picasaweb"
-msgstr "Picasa ウェブ アルバム"
-
-#: ../src/Widgets/MetadataDisplay.cs:227
-msgid "SmugMug"
-msgstr "SmugMug"
-
-#: ../src/Widgets/MetadataDisplay.cs:229
-msgid "Gallery2"
-msgstr "Gallery2"
-
 #. clear Extended Metadata
-#: ../src/Widgets/MetadataDisplay.cs:389
+#: ../src/Widgets/MetadataDisplay.cs:392
 msgid "No Extended Metadata Available"
 msgstr "利用できる拡張メタデータはありません"
 
-#: ../src/Widgets/MetadataDisplay.cs:407
+#: ../src/Widgets/MetadataDisplay.cs:410
 msgid "No active photo"
 msgstr "写真が選択されていません"
 
-#: ../src/Widgets/MetadataDisplay.cs:409
+#: ../src/Widgets/MetadataDisplay.cs:412
 #, csharp-format
 msgid "The photo \"{0}\" does not exist"
 msgstr "写真 \"{0}\" は存在しません"
 
-#: ../src/Widgets/MetadataDisplay.cs:412
+#: ../src/Widgets/MetadataDisplay.cs:415
 msgid "No metadata available"
 msgstr "利用できるメタデータはありません"
 
-#: ../src/Widgets/OpenWithMenu.cs:69
+#: ../src/Widgets/OpenWithMenu.cs:71
 msgid "No applications available"
 msgstr "利用できるアプリケーションはありません"
 
@@ -2252,888 +4120,19 @@ msgstr "利用できるアプリケーションはありません"
 msgid "Rating:"
 msgstr "評価:"
 
-#: ../src/XmpTagsImporter.cs:89
-#: ../extensions/Exporters/FacebookExport/FacebookExport.glade.h:6
-msgid "Location"
-msgstr "場所"
-
-#: ../src/XmpTagsImporter.cs:90
+#: ../src/XmpTagsImporter.cs:91
 msgid "Country"
 msgstr "国"
 
-#: ../src/XmpTagsImporter.cs:91
+#: ../src/XmpTagsImporter.cs:92
 msgid "City"
 msgstr "都市"
 
-#: ../src/XmpTagsImporter.cs:92
+#: ../src/XmpTagsImporter.cs:93
 msgid "State"
 msgstr "都道府県"
 
 #. namespace
-#: ../src/f-spot.glade.h:1
-msgid " "
-msgstr " "
-
-#: ../src/f-spot.glade.h:2
-msgid "0000:00:00 00:00:00"
-msgstr "0000:00:00 00:00:00"
-
-#: ../src/f-spot.glade.h:3
-msgid "00:00:00"
-msgstr "00:00:00"
-
-#: ../src/f-spot.glade.h:4
-msgid "1 of 1"
-msgstr "1 / 1"
-
-#: ../src/f-spot.glade.h:5
-msgid "1024 px"
-msgstr "1024 px"
-
-#: ../src/f-spot.glade.h:6
-msgid "320 px"
-msgstr "320 px"
-
-#: ../src/f-spot.glade.h:7
-msgid "480 px"
-msgstr "480 px"
-
-#: ../src/f-spot.glade.h:8
-msgid "5"
-msgstr "5"
-
-#: ../src/f-spot.glade.h:9
-msgid "640 px"
-msgstr "640 px"
-
-#: ../src/f-spot.glade.h:10
-msgid "800 px"
-msgstr "800 px"
-
-#: ../src/f-spot.glade.h:11
-msgid "<b></b>"
-msgstr "<b></b>"
-
-#: ../src/f-spot.glade.h:12
-#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:1
-msgid "<b>Account</b>"
-msgstr "<b>アカウント</b>"
-
-#: ../src/f-spot.glade.h:13
-msgid "<b>Action</b>"
-msgstr "<b>アクション</b>"
-
-#: ../src/f-spot.glade.h:14
-#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:1
-#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:1
-#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:1
-msgid "<b>Album</b>"
-msgstr "<b>アルバム</b>"
-
-#: ../src/f-spot.glade.h:15
-msgid "<b>Co_rrections</b>"
-msgstr "<b>補正(_R)</b>"
-
-#: ../src/f-spot.glade.h:16
-#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:3
-msgid "<b>Destination</b>"
-msgstr "<b>エキスポート先</b>"
-
-#: ../src/f-spot.glade.h:17
-msgid "<b>End Date</b>"
-msgstr "<b>終了日時</b>"
-
-#: ../src/f-spot.glade.h:18
-msgid "<b>From External Photo</b>"
-msgstr "<b>別の写真から作成</b>"
-
-#: ../src/f-spot.glade.h:19
-msgid "<b>From Photo</b>"
-msgstr "<b>写真から作成</b>"
-
-#: ../src/f-spot.glade.h:20
-#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:2
-msgid "<b>Gallery</b>"
-msgstr "<b>ギャラリー</b>"
-
-#: ../src/f-spot.glade.h:21
-msgid "<b>Image Interpolation</b>"
-msgstr "<b>画像の補正</b>"
-
-#: ../src/f-spot.glade.h:22
-msgid "<b>Max Rating</b>"
-msgstr "<b>最大の評価</b>"
-
-#: ../src/f-spot.glade.h:23
-msgid "<b>Min Rating</b>"
-msgstr "<b>最小の評価</b>"
-
-#: ../src/f-spot.glade.h:24
-#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:2
-#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:5
-#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:3
-#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:2
-#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:2
-#: ../extensions/Exporters/TabbloExport/TabbloExport.glade.h:1
-msgid "<b>Photos</b>"
-msgstr "<b>写真</b>"
-
-#: ../src/f-spot.glade.h:25
-msgid "<b>Predefined</b>"
-msgstr "<b>ストック・アイコン</b>"
-
-#: ../src/f-spot.glade.h:26
-msgid "<b>Preview</b>"
-msgstr "<b>プレビュー</b>"
-
-#: ../src/f-spot.glade.h:27
-msgid "<b>Reference Photo</b>"
-msgstr "<b>基準とする写真</b>"
-
-#: ../src/f-spot.glade.h:28
-msgid "<b>Select period</b>"
-msgstr "<b>期間の選択</b>"
-
-#: ../src/f-spot.glade.h:29
-msgid "<b>Size</b>"
-msgstr "<b>サイズ</b>"
-
-#: ../src/f-spot.glade.h:30
-msgid "<b>Start Date</b>"
-msgstr "<b>開始日時</b>"
-
-#: ../src/f-spot.glade.h:31
-#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:3
-#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:6
-#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:4
-#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:4
-#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:4
-msgid "<b>Style</b>"
-msgstr "<b>スタイル</b>"
-
-#: ../src/f-spot.glade.h:32
-msgid "<b>Summary</b>"
-msgstr "<b>概要</b>"
-
-#: ../src/f-spot.glade.h:33
-msgid "<b>Transparent Parts</b>"
-msgstr "<b>透過する部分</b>"
-
-#: ../src/f-spot.glade.h:34
-msgid "<b>View all pictures imported</b>"
-msgstr "<b>インポートした全ての写真の閲覧</b>"
-
-#: ../src/f-spot.glade.h:35
-msgid "<b>_White Balance</b>"
-msgstr "<b>ホワイトバランス(_W)</b>"
-
-#: ../src/f-spot.glade.h:36
-msgid "<small></small>"
-msgstr "<small></small>"
-
-#: ../src/f-spot.glade.h:37
-msgid ""
-"<small><i>Enable this to allow interpolation on zoomed images. You shouldn't "
-"disable this for viewing photos, but disabling the interpolation could be "
-"usefull in icon design.</i></small>"
-msgstr ""
-"<small><i>画像を拡大する際の補間処理を有効化します。写真を閲覧する際は無効化"
-"すべきではありませんが、アイコンを閲覧する際に無効化することは有用でしょう。"
-"</i></small>"
-
-#: ../src/f-spot.glade.h:38
-msgid ""
-"<small><i>You can choose how to display transparent parts in images. This "
-"option has no effect on photos, but setting this as check pattern or custom "
-"color could be usefull when viewing icons or other artworks with transparent "
-"parts.</i></small>"
-msgstr ""
-"<small><i>画像の透過部分をどのように表示するかを選択できます。このオプション"
-"は写真そのものには影響しませんが、市松模様やカスタム色の設定は、透過部分を持"
-"つアイコンや他のアートワークを閲覧する際には有用でしょう。</i></small>"
-
-#: ../src/f-spot.glade.h:39
-msgid "Adjust Time"
-msgstr "日時の調整"
-
-#: ../src/f-spot.glade.h:40
-msgid "Adjust _Time..."
-msgstr "日時の調整(_T)..."
-
-#: ../src/f-spot.glade.h:41
-msgid "Adjusted date: "
-msgstr "日時の調整: "
-
-#: ../src/f-spot.glade.h:42
-msgid "Arrange _by"
-msgstr "タイムラインの整理(_B)"
-
-#: ../src/f-spot.glade.h:43
-msgid "As _background"
-msgstr "背景色と同じ(_B)"
-
-#: ../src/f-spot.glade.h:44
-msgid "As _custom color: "
-msgstr "カスタム色(_C): "
-
-#: ../src/f-spot.glade.h:45
-msgid "As check _pattern"
-msgstr "市松模様(_P)"
-
-#: ../src/f-spot.glade.h:46
-msgid "Attach Tags:"
-msgstr "付与するタグ:"
-
-#: ../src/f-spot.glade.h:47
-msgid "Attach tag:"
-msgstr "付与するタグ:"
-
-#: ../src/f-spot.glade.h:48
-#: ../extensions/Exporters/CDExport/CDExport.glade.h:3
-#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:7
-#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:7
-#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:5
-msgid "Autorotate"
-msgstr "自動回転"
-
-#: ../src/f-spot.glade.h:50
-msgid "By _Date"
-msgstr "日付(_D)"
-
-#: ../src/f-spot.glade.h:51
-msgid "By _Import Roll"
-msgstr "インポートロール(_I)"
-
-#: ../src/f-spot.glade.h:52
-msgid "By _Rating"
-msgstr "評価(_R)"
-
-#: ../src/f-spot.glade.h:53
-msgid "CD"
-msgstr "CD"
-
-#: ../src/f-spot.glade.h:54
-msgid "C_ontrast:"
-msgstr "コントラスト(_C):"
-
-#: ../src/f-spot.glade.h:55
-msgid "Camera Selection"
-msgstr "カメラの選択"
-
-#: ../src/f-spot.glade.h:56
-msgid "Cancel, do not change the current timeline. "
-msgstr "キャンセルします。現在のタイムラインを変更しません。"
-
-#: ../src/f-spot.glade.h:57
-msgid "Copy Locat_ion"
-msgstr "場所をコピー(_I)"
-
-#: ../src/f-spot.glade.h:58
-msgid "Copy files to the Photos folder"
-msgstr "写真フォルダにファイルをコピー"
-
-#: ../src/f-spot.glade.h:59
-msgid "Create Mail"
-msgstr "メールの作成"
-
-#: ../src/f-spot.glade.h:60
-msgid "Create New _Tag..."
-msgstr "新しいタグの作成(_T)..."
-
-#: ../src/f-spot.glade.h:61
-msgid "Create _New Version..."
-msgstr "新しいバージョンの作成(_N)..."
-
-#: ../src/f-spot.glade.h:62
-msgid "Create a mail with the selected photos (possibly resized) attached"
-msgstr "写真を添付したメールを作成します。(必要に応じてサイズ変更が可能です。)"
-
-#: ../src/f-spot.glade.h:63
-msgid "Current date:"
-msgstr "現在の日時:"
-
-#: ../src/f-spot.glade.h:64
-msgid "Detect duplicates"
-msgstr "重複の検出"
-
-#: ../src/f-spot.glade.h:65
-msgid "Display File _Names"
-msgstr "ファイル名の表示(_N)"
-
-#: ../src/f-spot.glade.h:66
-msgid "Display only those photos that were imported in specified Rolls."
-msgstr "特定のインポートロールの写真のみを表示"
-
-#: ../src/f-spot.glade.h:67
-msgid "Do not send a mail"
-msgstr "メールを送信しません。"
-
-#: ../src/f-spot.glade.h:68
-msgid "E-_Mail:"
-msgstr "E-メール:"
-
-#: ../src/f-spot.glade.h:69
-msgid "E_xport titles and comments"
-msgstr "タイトルとコメントのエキスポート(_X)"
-
-#: ../src/f-spot.glade.h:70
-msgid "Edit Tag Icon"
-msgstr "タグ・アイコンの編集"
-
-#: ../src/f-spot.glade.h:71
-msgid "Edit icon"
-msgstr "アイコンの編集"
-
-#: ../src/f-spot.glade.h:72
-msgid "Estimated new size"
-msgstr "予想される新規サイズ"
-
-#: ../src/f-spot.glade.h:73
-#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:6
-#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:8
-#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:9
-#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:6
-#: ../extensions/Exporters/TabbloExport/TabbloExport.glade.h:3
-msgid "Export"
-msgstr "エキスポート"
-
-#: ../src/f-spot.glade.h:74
-msgid "Extra large"
-msgstr "特大"
-
-#: ../src/f-spot.glade.h:75
-msgid "F-Spot"
-msgstr "F-Spot"
-
-#: ../src/f-spot.glade.h:76
-msgid "F-Spot View"
-msgstr "F-Spot ビュー"
-
-#: ../src/f-spot.glade.h:78
-msgid "Filter on selected rolls"
-msgstr "ロールの選択フィルタ"
-
-#: ../src/f-spot.glade.h:79
-msgid "Fin_d"
-msgstr "検索(_D)"
-
-#: ../src/f-spot.glade.h:80
-msgid "G_allery:"
-msgstr "ギャラリー(_A):"
-
-#: ../src/f-spot.glade.h:81
-msgid "Gallery"
-msgstr "ギャラリー"
-
-#. Translators: this string means 'source of import'
-#: ../src/f-spot.glade.h:84
-msgid "Import Source:"
-msgstr "インポート元:"
-
-#: ../src/f-spot.glade.h:85
-msgid "Include subfolders"
-msgstr "サブフォルダも含める"
-
-#: ../src/f-spot.glade.h:86
-msgid "Large"
-msgstr "大"
-
-#: ../src/f-spot.glade.h:87
-msgid "Manage _Extensions"
-msgstr "拡張機能の管理(_E)"
-
-#: ../src/f-spot.glade.h:88
-msgid "Manage your custom selection ratios"
-msgstr "カスタマイズされたアスペクト比を管理"
-
-#: ../src/f-spot.glade.h:89
-msgid "Medium"
-msgstr "中"
-
-#: ../src/f-spot.glade.h:91
-msgid "No _image"
-msgstr "画像なし(_I)"
-
-#: ../src/f-spot.glade.h:92
-msgid "Number of photos in selected rolls:"
-msgstr "選択したロールに含まれる写真の枚数:"
-
-#: ../src/f-spot.glade.h:93
-msgid "Number of pictures"
-msgstr "写真の枚数"
-
-#: ../src/f-spot.glade.h:94
-msgid "Only photos taken within these dates will be displayed."
-msgstr "指定の期間に撮影された写真のみ表示します。"
-
-#: ../src/f-spot.glade.h:95
-msgid "Open _Folder..."
-msgstr "フォルダを開く(_F)..."
-
-#: ../src/f-spot.glade.h:97
-msgid "Original size (possible very large file size)"
-msgstr "オリジナル・サイズ (巨大なファイルサイズになる可能性があります)"
-
-#: ../src/f-spot.glade.h:98
-msgid "P_arent Tag:"
-msgstr "親タグ(_A):"
-
-#: ../src/f-spot.glade.h:99
-msgid "Page Set_up..."
-msgstr "ページ設定(_U)..."
-
-#: ../src/f-spot.glade.h:100
-msgid "Pause"
-msgstr "一時停止"
-
-#: ../src/f-spot.glade.h:101
-msgid "Photo 0 of 0"
-msgstr "写真 (0 / 0)"
-
-#: ../src/f-spot.glade.h:104
-msgid "Re_fresh Thumbnail"
-msgstr "サムネイルの更新(_F)"
-
-#: ../src/f-spot.glade.h:106
-msgid "Repair"
-msgstr "復元"
-
-#: ../src/f-spot.glade.h:109
-msgid "Select Photos to Copy From Camera..."
-msgstr "カメラからコピーする写真の選択..."
-
-#: ../src/f-spot.glade.h:111
-msgid "Select _None"
-msgstr "選択の解除(_N)"
-
-#: ../src/f-spot.glade.h:112
-msgid "Select a Tag..."
-msgstr "タグの選択..."
-
-#: ../src/f-spot.glade.h:113
-msgid "Select the camera from which you want to transfer files"
-msgstr "ファイルを転送するカメラを選択して下さい"
-
-#: ../src/f-spot.glade.h:114
-msgid "Selected Camera: "
-msgstr "選択したカメラ: "
-
-#: ../src/f-spot.glade.h:115
-msgid "Selection Constraints"
-msgstr "アスペクト比の管理"
-
-#: ../src/f-spot.glade.h:116
-msgid "Send by _Mail..."
-msgstr "メールで送信(_M)..."
-
-#: ../src/f-spot.glade.h:117
-msgid "Set Rating Filter"
-msgstr "評価フィルタの設定"
-
-#: ../src/f-spot.glade.h:118
-msgid "Set as _Background"
-msgstr "背景に設定(_B)"
-
-#: ../src/f-spot.glade.h:119
-msgid "Set date range"
-msgstr "表示期間の設定"
-
-#: ../src/f-spot.glade.h:121
-msgid "Show all photos."
-msgstr "すべての写真を表示"
-
-#: ../src/f-spot.glade.h:122
-msgid "Show or hide the side pane"
-msgstr "サイドペインの表示/非表示"
-
-#: ../src/f-spot.glade.h:123
-msgid "Show or hide the toolbar"
-msgstr "ツールバーの表示/非表示"
-
-#: ../src/f-spot.glade.h:124
-msgid "Side _pane"
-msgstr "サイドペイン(_P)"
-
-#: ../src/f-spot.glade.h:125
-msgid "Side_bar"
-msgstr "サイドバー(_B)"
-
-#: ../src/f-spot.glade.h:126
-msgid "Small"
-msgstr "小"
-
-#: ../src/f-spot.glade.h:127
-msgid "Space all photos by"
-msgstr "全ての写真の時刻に間隔をあける:"
-
-#: ../src/f-spot.glade.h:128
-msgid ""
-"Specify if an original size picture should be rotated or not. Smaller sizes "
-"are automatically rotated."
-msgstr ""
-"オリジナルサイズの写真を自動回転するかどうかを指定します。サイズを縮小した場"
-"合は自動回転されます。"
-
-#: ../src/f-spot.glade.h:129
-msgid "Strip image _metadata"
-msgstr "画像からメタデータを除去(_M)"
-
-#: ../src/f-spot.glade.h:130
-msgid "T_ags"
-msgstr "タグ(_T)"
-
-#: ../src/f-spot.glade.h:131
-#: ../extensions/Exporters/FolderExport/FolderExport.cs:1179
-#: ../extensions/Exporters/FolderExport/FolderExport.cs:1180
-msgid "Tags: "
-msgstr "タグ: "
-
-#. Note for translators: meant as Temperature
-#: ../src/f-spot.glade.h:133
-msgid "Te_mp:"
-msgstr "色温度(_M)"
-
-#: ../src/f-spot.glade.h:134
-msgid "Thumbnail _elements"
-msgstr "サムネイルの表示項目(_E)"
-
-#: ../src/f-spot.glade.h:135
-msgid "Tiny"
-msgstr "最小"
-
-#: ../src/f-spot.glade.h:136
-msgid "Too_lbar"
-msgstr "ツールバー(_L)"
-
-#: ../src/f-spot.glade.h:137
-msgid "Total original size"
-msgstr "オリジナルの合計サイズ"
-
-#: ../src/f-spot.glade.h:138
-msgid "View"
-msgstr "ビュー"
-
-#: ../src/f-spot.glade.h:139
-msgid "Zoom _in"
-msgstr "拡大(_I)"
-
-#: ../src/f-spot.glade.h:140
-msgid "Zoom _out"
-msgstr "縮小(_O)"
-
-#: ../src/f-spot.glade.h:141
-msgid "Zoom in"
-msgstr "拡大"
-
-#: ../src/f-spot.glade.h:142
-msgid "Zoom out"
-msgstr "縮小"
-
-#: ../src/f-spot.glade.h:144
-msgid "_Attach Tag to Selection"
-msgstr "選択したものへタグの付与(_A)"
-
-#: ../src/f-spot.glade.h:145
-msgid "_Brightness:"
-msgstr "輝度(_B):"
-
-#: ../src/f-spot.glade.h:147
-msgid "_Clear Rating Filter"
-msgstr "評価フィルタの解除(_C)"
-
-#: ../src/f-spot.glade.h:148
-msgid "_Clear Roll Filter"
-msgstr "ロール・フィルタの解除(_C)"
-
-#: ../src/f-spot.glade.h:149
-msgid "_Components"
-msgstr "コンポーネント(_C)"
-
-#: ../src/f-spot.glade.h:150
-msgid "_Contents"
-msgstr "目次(_C)"
-
-#: ../src/f-spot.glade.h:151
-#: ../extensions/Exporters/ZipExport/ZipExport.glade.h:1
-msgid "_Create"
-msgstr "作成(_C)"
-
-#: ../src/f-spot.glade.h:152
-msgid "_Create Mail"
-msgstr "メールの作成(_C)"
-
-#: ../src/f-spot.glade.h:153
-msgid "_Dates"
-msgstr "日時(_D)"
-
-#: ../src/f-spot.glade.h:155
-msgid "_Delete Selected Tag"
-msgstr "選択したタグの削除(_D)"
-
-#: ../src/f-spot.glade.h:156
-msgid "_Delete Version"
-msgstr "バージョンの削除(_D)"
-
-#: ../src/f-spot.glade.h:157
-msgid "_Edit"
-msgstr "編集(_E)"
-
-#: ../src/f-spot.glade.h:158
-msgid "_Edit Selected Tag..."
-msgstr "選択したタグの編集(_E)..."
-
-#: ../src/f-spot.glade.h:159
-#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:15
-#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:12
-msgid "_Export"
-msgstr "エキスポート(_E)"
-
-#: ../src/f-spot.glade.h:160
-#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:16
-#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:20
-msgid "_Export tags"
-msgstr "タグのエキスポート(_E)"
-
-#: ../src/f-spot.glade.h:161
-msgid "_Export to"
-msgstr "エキスポート(_E)"
-
-#: ../src/f-spot.glade.h:162
-#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:15
-#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:21
-#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:13
-msgid "_Export to Album:"
-msgstr "アルバムへエキスポート(_E):"
-
-#: ../src/f-spot.glade.h:163
-msgid "_Exposure:"
-msgstr "露出(_E):"
-
-#: ../src/f-spot.glade.h:164
-msgid "_Filmstrip"
-msgstr "フィルムストリップ(_F)"
-
-#: ../src/f-spot.glade.h:165
-msgid "_Flickr"
-msgstr "Flickr(_F)"
-
-#: ../src/f-spot.glade.h:166
-msgid "_Folder"
-msgstr "フォルダ(_F)"
-
-#: ../src/f-spot.glade.h:167
-msgid "_Fullscreen"
-msgstr "フルスクリーン表示(_F)"
-
-#: ../src/f-spot.glade.h:168
-msgid "_Gallery"
-msgstr "ギャラリー(_G)"
-
-#: ../src/f-spot.glade.h:169
-msgid "_Help"
-msgstr "ヘルプ(_H)"
-
-#: ../src/f-spot.glade.h:170
-msgid "_Hidden"
-msgstr "非表示(_H)"
-
-#: ../src/f-spot.glade.h:171
-msgid "_Hue:"
-msgstr "色相(_H):"
-
-#: ../src/f-spot.glade.h:172
-msgid "_Icon:"
-msgstr "アイコン(_I):"
-
-#: ../src/f-spot.glade.h:173
-msgid "_Import..."
-msgstr "インポート(_I)..."
-
-#: ../src/f-spot.glade.h:174
-msgid "_Interpolate image on zoom"
-msgstr "拡大時に画像を補間(_I)"
-
-#: ../src/f-spot.glade.h:175
-msgid "_Large"
-msgstr "大(_L)"
-
-#: ../src/f-spot.glade.h:176
-msgid "_Last Import Roll"
-msgstr "最新のインポートロール(_L)"
-
-#: ../src/f-spot.glade.h:177
-msgid "_Loupe"
-msgstr "拡大鏡(_L)"
-
-#: ../src/f-spot.glade.h:178
-msgid "_Medium"
-msgstr "中(_M)"
-
-#: ../src/f-spot.glade.h:179
-msgid "_Month"
-msgstr "月(_M)"
-
-#: ../src/f-spot.glade.h:180
-msgid "_New Window"
-msgstr "新しいウインドウ(_N)"
-
-#: ../src/f-spot.glade.h:181
-msgid "_Open album in browser when done uploading"
-msgstr "アップロードが完了したらブラウザでアルバムを開く(_O)"
-
-#: ../src/f-spot.glade.h:182
-msgid "_Open destination when done exporting"
-msgstr "エキスポートが完了したら転送先を開く(_O)"
-
-#: ../src/f-spot.glade.h:183
-msgid "_Photo"
-msgstr "写真(_P)"
-
-#: ../src/f-spot.glade.h:184
-msgid "_Quit"
-msgstr "終了(_Q)"
-
-#: ../src/f-spot.glade.h:185
-msgid "_Ratings"
-msgstr "評価(_R)"
-
-#: ../src/f-spot.glade.h:187
-msgid "_Remove Tag From Selection"
-msgstr "選択したものからタグの削除(_R)"
-
-#: ../src/f-spot.glade.h:188
-msgid "_Rename Version"
-msgstr "バージョン名の変更(_R)"
-
-#: ../src/f-spot.glade.h:189
-#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:17
-#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:17
-#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:20
-#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:24
-#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:15
-msgid "_Resize to: "
-msgstr "サイズ変更(_R): "
-
-#: ../src/f-spot.glade.h:191
-msgid "_Saturation:"
-msgstr "彩度(_S):"
-
-#: ../src/f-spot.glade.h:192
-msgid "_Scale photos to no larger than: "
-msgstr "写真のサイズを以下に収まるように変更(_S): "
-
-#: ../src/f-spot.glade.h:193
-msgid "_Select Import Rolls..."
-msgstr "インポートロールの選択(_S)..."
-
-#: ../src/f-spot.glade.h:194
-msgid "_Set Date Range..."
-msgstr "表示期間の設定(_S)..."
-
-#: ../src/f-spot.glade.h:195
-msgid "_Set Rating filter..."
-msgstr "評価フィルタの設定(_S)..."
-
-#: ../src/f-spot.glade.h:196
-msgid "_Sharpen..."
-msgstr "シャープ化(_S)..."
-
-#: ../src/f-spot.glade.h:197
-msgid "_Slideshow"
-msgstr "スライドショー(_S)"
-
-#: ../src/f-spot.glade.h:198
-msgid "_Small"
-msgstr "小(_S)"
-
-#: ../src/f-spot.glade.h:199
-msgid "_Strip metadata"
-msgstr "メタデータを除去(_S)"
-
-#: ../src/f-spot.glade.h:200
-msgid "_Tag Icons"
-msgstr "タグ・アイコン(_T)"
-
-#: ../src/f-spot.glade.h:201
-msgid "_Tag Name:"
-msgstr "タグ名(_T):"
-
-#: ../src/f-spot.glade.h:202
-msgid "_Tags"
-msgstr "タグ(_T)"
-
-#: ../src/f-spot.glade.h:203
-msgid "_Timeline"
-msgstr "タイムライン(_T)"
-
-#: ../src/f-spot.glade.h:204
-msgid "_Tint:"
-msgstr "色合い(_T):"
-
-#: ../src/f-spot.glade.h:205
-msgid "_Toolbar"
-msgstr "ツールバー(_T)"
-
-#: ../src/f-spot.glade.h:206
-msgid "_Tools"
-msgstr "ツール(_T)"
-
-#: ../src/f-spot.glade.h:207
-msgid "_URI:"
-msgstr "URI(_U):"
-
-#: ../src/f-spot.glade.h:208
-msgid "_Untagged Photos"
-msgstr "タグのない写真(_U)"
-
-#: ../src/f-spot.glade.h:209
-msgid "_Version"
-msgstr "バージョン(_V)"
-
-#: ../src/f-spot.glade.h:210
-msgid "_View"
-msgstr "表示(_V)"
-
-#: ../src/f-spot.glade.h:211
-msgid "_Virtual Filesystem"
-msgstr "仮想ファイルシステム(_V)"
-
-#. at, or after a date, or between dates
-#: ../src/f-spot.glade.h:214
-msgid ""
-"at\n"
-"after\n"
-"between"
-msgstr ""
-"これのみ\n"
-"これ以降\n"
-"この間"
-
-#: ../src/f-spot.glade.h:217
-msgid "difference:"
-msgstr "差:"
-
-#: ../src/f-spot.glade.h:218
-msgid "img_000.jpg"
-msgstr "img_000.jpg"
-
-#: ../src/f-spot.glade.h:219
-msgid "min. Starting at {0}"
-msgstr "分 ({0} から開始)"
-
-#: ../src/f-spot.glade.h:221
-#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:19
-#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:19
-#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:23
-#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:26
-#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:17
-msgid "pixels"
-msgstr "ピクセル"
-
-#: ../src/f-spot.glade.h:222
-msgid "x"
-msgstr "x"
-
 #: ../tools/f-spot-screensaver.desktop.in.h:1
 msgid "Display a slideshow from F-Spot"
 msgstr "F-Spot からスライドショーを表示"
@@ -3142,949 +4141,194 @@ msgstr "F-Spot からスライドショーを表示"
 msgid "F-Spot photos"
 msgstr "F-Spot の写真"
 
-#: ../extensions/Exporters/CDExport/CDExport.addin.xml.h:1
-msgid "_CD..."
-msgstr "CD(_C)..."
+#~ msgid "interpolation type"
+#~ msgstr "補完の種類"
 
-#: ../extensions/Exporters/CDExport/CDExport.cs:162
-#, csharp-format
-msgid "Transferring picture \"{0}\" To CD"
-msgstr "写真 \"{0}\" を CD へ転送中"
+#~ msgid "the type of interpolation to use"
+#~ msgstr "利用する補間の種類です"
 
-#: ../extensions/Exporters/CDExport/CDExport.cs:177
-#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:379
-#: ../extensions/Exporters/FolderExport/FolderExport.cs:285
-#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:808
-#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:551
-#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:702
-#: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:607
-msgid "Done Sending Photos"
-msgstr "写真の送信が完了しました"
+#~ msgid "check type"
+#~ msgstr "格子の種類"
 
-#: ../extensions/Exporters/CDExport/CDExport.cs:179
-#: ../extensions/Exporters/FolderExport/FolderExport.cs:287
-msgid "Transfer Complete"
-msgstr "転送の完了"
+#~ msgid "the type of chequering to use"
+#~ msgstr "利用する格子の種類です"
 
-#: ../extensions/Exporters/CDExport/CDExport.cs:186
-#: ../extensions/Exporters/FolderExport/FolderExport.cs:292
-msgid "Error While Transferring"
-msgstr "転送する際にエラー"
+#~ msgid "the size of chequers to use"
+#~ msgstr "利用するチェッカーのサイズ"
 
-#: ../extensions/Exporters/CDExport/CDExport.cs:193
-#: ../extensions/Exporters/FolderExport/FolderExport.cs:311
-msgid "Error Transferring"
-msgstr "転送中にエラー"
+#~ msgid "dither"
+#~ msgstr "ディザ"
 
-#: ../extensions/Exporters/CDExport/CDExport.cs:206
-msgid "copying..."
-msgstr "コピー中..."
+#~ msgid "dither type"
+#~ msgstr "ディザの種類"
 
-#: ../extensions/Exporters/CDExport/CDExport.glade.h:1
-msgid "<b><i>There is some previously scheduled items to write</i></b>"
-msgstr "<b><i>他に書き込み予約されたアイテムがあります</i></b>"
+#~ msgid "Dissolve"
+#~ msgstr "ディゾルブ"
 
-#: ../extensions/Exporters/CDExport/CDExport.glade.h:2
-msgid "<b>Photos to Burn</b>"
-msgstr "<b>焼き込む写真</b>"
+#~ msgid "Flip"
+#~ msgstr "フリップ"
 
-#: ../extensions/Exporters/CDExport/CDExport.glade.h:4
-msgid "Create CD"
-msgstr "CD の作成"
+#~ msgid "Cover"
+#~ msgstr "カバー"
 
-#: ../extensions/Exporters/CDExport/CDExport.glade.h:6
-msgid "Size of the exported selection:"
-msgstr "エキスポートされるサイズ:"
+#~ msgid "Reveal"
+#~ msgstr "リヴィール"
 
-#: ../extensions/Exporters/CDExport/CDExport.glade.h:7
-msgid "_Browse Previously Scheduled Files"
-msgstr "他に書き込み予約されているファイルを参照(_B)"
+#~ msgid "Wipe"
+#~ msgstr "ワイプ"
 
-#: ../extensions/Exporters/CDExport/CDExport.glade.h:8
-msgid "_Write only these photos to CD"
-msgstr "これらの写真のみ CD へ書き込む(_W)"
+#~ msgid "Split"
+#~ msgstr "スプリット"
 
-#: ../extensions/Exporters/FlickrExport/FlickrExport.addin.xml.h:1
-msgid "_23hq..."
-msgstr "23hq(_2)..."
+#~ msgid "Push"
+#~ msgstr "プッシュ"
 
-#: ../extensions/Exporters/FlickrExport/FlickrExport.addin.xml.h:2
-msgid "_Flickr..."
-msgstr "Flickr(_F)..."
+#~ msgid "More directories"
+#~ msgstr "他のフォルダ"
 
-#: ../extensions/Exporters/FlickrExport/FlickrExport.addin.xml.h:3
-msgid "_Zooomr..."
-msgstr "Zooomr(_Z)..."
+#~ msgid "Arrange by _Month"
+#~ msgstr "月別に整理する(_M)"
 
-#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:105
-#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:5
-msgid "Authorize"
-msgstr "認証"
+#~ msgid "Arrange by _Folder"
+#~ msgstr "フォルダ別に整理する(_F)"
 
-#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:111
-#, csharp-format
-msgid ""
-"Return to this window after you have finished the authorization process on "
-"{0} and click the \"Complete Authorization\" button below"
-msgstr ""
-"{0} での認証を完了したらこのウィンドウに戻り、この下にある \"認証を完了する"
-"\" ボタンをクリックして下さい。"
+#~ msgid "Tag Name:"
+#~ msgstr "タグ名:"
 
-#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:112
-msgid "Complete Authorization"
-msgstr "認証を完了する"
-
-#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:117
-#, csharp-format
-msgid "Logging into {0}"
-msgstr "{0} にログイン中"
-
-#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:118
-msgid "Checking credentials..."
-msgstr "認証中..."
-
-#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:125
-#, csharp-format
-msgid "Welcome {0} you are connected to {1}"
-msgstr "{1} にアカウント {0} でログインしています"
-
-#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:128
-#, csharp-format
-msgid "Sign in as a different user"
-msgstr "別のアカウントでログインする"
-
-#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:133
-#, csharp-format
-msgid "Used {0} of your allowed {1} monthly quota"
-msgstr "1 ヶ月で利用できる容量 {1} 中 {0} を使用中"
-
-#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:297
-msgid "Unable to log on"
-msgstr "ログオンできません"
-
-#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:317
-#, csharp-format
-msgid "Waiting for response {0} of {1}"
-msgstr "応答を待っています ({0} / {1})"
-
-#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:344
-#: ../extensions/Exporters/FolderExport/FolderExport.cs:242
-#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:779
-#, csharp-format
-msgid "Uploading picture \"{0}\""
-msgstr "写真 \"{0}\" のアップロード中"
-
-#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:367
-#, csharp-format
-msgid "Error Uploading To {0}: {1}"
-msgstr "{0} へのアップロード中にエラー: {1}"
-
-#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:381
-#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:810
-#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:553
-#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:704
-#: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:609
-msgid "Upload Complete"
-msgstr "アップロードの完了"
-
-#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:454
-msgid "Unable to log on."
-msgstr "ログオンできません。"
-
-#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:455
-#, csharp-format
-msgid ""
-"F-Spot was unable to log on to {0}.  Make sure you have given the "
-"authentication using {0} web browser interface."
-msgstr ""
-"F-Spotは {0} にログオンできませんでした。ウェブブラウザからの {0} への認証が"
-"できているかどうか確認して下さい。"
-
-#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:475
-#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:732
-#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:477
-#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:598
-#: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:522
-msgid "Uploading Pictures"
-msgstr "写真のアップロード中"
-
-#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:4
-msgid "<b>Viewing permissions</b>"
-msgstr "<b>閲覧許可</b>"
-
-#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:7
-msgid "Export tag _hierarchy"
-msgstr "タグの階層をエキスポート(_H)"
-
-#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:8
-msgid ""
-"F-Spot needs your authorization in order to upload photos to your {0} "
-"account. Press the \"Authorize\" button to open a web browser and give F-"
-"Spot the authorization. "
-msgstr ""
-"F-Spot があなたの {0} アカウントに写真をアップロードするには、あなたの認証が"
-"必要です。\"認証\" ボタンをクリックしてウェブブラウザを開き、そちらで F-Spot "
-"を認証して下さい。"
-
-#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:9
-msgid "Ignore _top level tags"
-msgstr "トップレベルのタグは無視"
-
-#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:10
-msgid "Private"
-msgstr "プライベート"
-
-#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:11
-msgid "Public"
-msgstr "パブリック"
-
-#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:12
-msgid "Strip _metadata"
-msgstr "メタデータの除去(_M)"
-
-#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:13
-msgid "Visible to Family"
-msgstr "Family に許可"
-
-#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:14
-msgid "Visible to Friends"
-msgstr "Friends に許可"
-
-#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:18
-msgid "_View photos in browser when done uploading"
-msgstr "アップロードが完了したらブラウザで写真を表示する(_V)"
-
-#: ../extensions/Exporters/FolderExport/FolderExport.addin.xml.h:1
-msgid "F_older..."
-msgstr "フォルダ(_F)..."
-
-#: ../extensions/Exporters/FolderExport/FolderExport.cs:140
-msgid "Select Export Folder"
-msgstr "エキスポートするフォルダの選択"
-
-#: ../extensions/Exporters/FolderExport/FolderExport.cs:198
-msgid "Building Gallery"
-msgstr "ギャラリーの作成"
-
-#: ../extensions/Exporters/FolderExport/FolderExport.cs:248
-#, csharp-format
-msgid "Error uploading picture \"{0}\" to Gallery:{2}{1}"
-msgstr "ギャラリーへ写真 \"{0}\" をアップロード中にエラー: {2}{1}"
-
-#: ../extensions/Exporters/FolderExport/FolderExport.cs:333
-msgid "Error: Error while transferring; Aborting"
-msgstr "エラー: 転送する際にエラーが発生したので、処理を中止します"
-
-#: ../extensions/Exporters/FolderExport/FolderExport.cs:336
-msgid "Error: File Already Exists; Aborting"
-msgstr "エラー: 既にファイルが存在するので、処理を中止します。"
-
-#. Note for translators: light as clear, opposite as dark
-#: ../extensions/Exporters/FolderExport/FolderExport.cs:810
-msgid "Light"
-msgstr "明るく"
-
-#: ../extensions/Exporters/FolderExport/FolderExport.cs:811
-msgid "Dark"
-msgstr "暗く"
-
-#. Abbreviation of previous
-#: ../extensions/Exporters/FolderExport/FolderExport.cs:991
-msgid "Prev"
-msgstr "前へ"
-
-#: ../extensions/Exporters/FolderExport/FolderExport.cs:1103
-msgid "Gallery generated by"
-msgstr "ギャラリーの作成者: "
-
-#: ../extensions/Exporters/FolderExport/FolderExport.cs:1143
-msgid "Show Styles"
-msgstr "スタイルを表示"
-
-#: ../extensions/Exporters/FolderExport/FolderExport.cs:1144
-msgid "Hide Styles"
-msgstr "スタイルを非表示"
-
-#: ../extensions/Exporters/FolderExport/FolderExport.cs:1311
-#: ../extensions/Exporters/FolderExport/FolderExport.cs:1444
-msgid "Page:"
-msgstr "ページ数:"
-
-#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:1
-msgid "\n"
-msgstr "\n"
-
-#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:4
-msgid "<b>Export Method</b>"
-msgstr "<b>エキスポートの方法</b>"
-
-#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:8
-msgid "Create _gallery using \"Original\""
-msgstr "オリジナルファイルでギャラリーを作成(_G)"
-
-#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:9
-msgid "Create standalone _web gallery"
-msgstr "スタンドアローンなウェブギャラリーの作成(_W)"
-
-#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:10
-msgid "D_escription:"
-msgstr "説明(_E):"
-
-#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:11
-msgid "Export _tags"
-msgstr "タグのエキスポート(_T)"
-
-#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:12
-msgid "Export tag _icons"
-msgstr "タグ・アイコンのエキスポート(_I)"
-
-#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:13
-msgid "Folder Export"
-msgstr "フォルダへのエキスポート"
-
-#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:14
-msgid "G_allery Name:"
-msgstr "ギャラリー名(_A):"
-
-#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:15
-msgid "Open _destination when done exporting"
-msgstr "エキスポートが完了したら転送先を開く(_D)"
-
-#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:16
-msgid "_Folder:"
-msgstr "フォルダ(_F):"
-
-#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:18
-msgid "_Save the files only"
-msgstr "ファイルの保存のみ(_S)"
-
-#: ../extensions/Exporters/GalleryExport/GalleryExport.addin.xml.h:1
-msgid "Web _Gallery..."
-msgstr "ウェブギャラリー(_G)..."
-
-#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:52
-msgid ""
-"Cannot connect to a Gallery for which the version is unknown.\n"
-"Please check that you have Remote plugin 1.0.8 or later"
-msgstr ""
-"このバージョンで対応していないギャラリーには接続できません。\n"
-"お使いのリモートプラグインが 1.08 以降であるか確認して下さい。"
-
-#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:393
-msgid "Invalid URL"
-msgstr "無効な URL"
-
-#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:394
-msgid "The gallery URL entry does not appear to be a valid URL"
-msgstr "入力されたギャラリーの URL は正しい URL ではないようです"
-
-#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:404
-#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:431
-#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:442
-msgid "Error while connecting to Gallery"
-msgstr "ギャラリーへ接続する際にエラー"
-
-#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:405
-#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:432
-#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:443
-#, csharp-format
-msgid "The following error was encountered while attempting to log in: {0}"
-msgstr "{0} にログインする際に以下のエラーが発生しました。"
-
-#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:419
-msgid "A Gallery with this name already exists"
-msgstr "同名のギャラリーが既に存在しています"
-
-#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:420
-#, csharp-format
-msgid ""
-"There is already a Gallery with the same name in your registered Galleries. "
-"Please choose a unique name."
-msgstr ""
-"入力されたギャラリー名と同名のギャラリーが既に存在します。他の名前を選択して"
-"下さい。"
-
-#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:530
-msgid "(TopLevel)"
-msgstr "(トップレベル)"
-
-#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:592
-msgid "Invalid Gallery name"
-msgstr "無効なギャラリー名"
-
-#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:593
-msgid ""
-"The gallery name contains invalid characters.\n"
-"Only letters, numbers, - and _ are allowed"
-msgstr ""
-"ギャラリー名に不正な文字が含まれています。\n"
-"英数字と \"-\"、\"_\" 以外の文字は使えません。"
-
-#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:798
-#, csharp-format
-msgid "Error uploading picture \"{0}\" to Gallery: {1}"
-msgstr "ギャラリー {1} へ写真 \"{0}\" をアップロード中にエラー"
-
-#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:826
-#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:725
-#: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:630
-msgid "(No Gallery)"
-msgstr "(ギャラリーなし)"
-
-#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:918
-#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:848
-#: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:726
-msgid "(Not Connected)"
-msgstr "(未接続)"
-
-#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:919
-#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:849
-#: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:727
-msgid "(No Albums)"
-msgstr "(アルバムなし)"
-
-#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:971
-#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:914
-#: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:768
-msgid "No account selected"
-msgstr "アカウントが選択されていません"
-
-#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:5
-#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:5
-msgid "<span weight='bold' size='larger'>Error Connecting to Gallery</span>\n"
-msgstr ""
-"<span weight='bold' size='larger'>ギャラリーへの接続中にエラー</span>\n"
-
-#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:9
-msgid "Export _titles and comments"
-msgstr "タイトルとコメントのエキスポート(_T)"
-
-#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:10
-#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:10
-#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:7
-msgid "Open _album in browser when done uploading"
-msgstr "アップロードが完了したらブラウザでアルバムを開く(_A)"
-
-#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:11
-#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:11
-msgid "Please verify that the settings for this gallery are correct."
-msgstr "このギャラリーの設定が正しいかどうか確認して下さい。"
-
-#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:12
-msgid "U_RL:"
-msgstr "URL(_U):"
-
-#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:13
-msgid "_Album Name:"
-msgstr "アルバム名(_A)"
-
-#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:14
-#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:19
-#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:11
-msgid "_Description:"
-msgstr "説明(_D):"
-
-#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:16
-msgid "_Gallery Name:"
-msgstr "ギャラリー名(_G):"
-
-#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:17
-#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:22
-msgid "_Gallery:"
-msgstr "ギャラリー(_G):"
-
-#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:18
-msgid "_Parent Album:"
-msgstr "親アルバム(_P):"
-
-#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:19
-#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:23
-#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:14
-#: ../extensions/Exporters/TabbloExport/TabbloExport.glade.h:4
-msgid "_Password:"
-msgstr "パスワード(_P):"
-
-#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:21
-msgid "_Title:"
-msgstr "タイトル(_T):"
-
-#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:22
-#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:25
-#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:16
-#: ../extensions/Exporters/TabbloExport/TabbloExport.glade.h:5
-msgid "_Username:"
-msgstr "ユーザ名(_U):"
-
-#: ../extensions/Exporters/GalleryExport/GalleryRemote.cs:361
-msgid "Error reading server response"
-msgstr "サーバからの応答中にエラー"
-
-#. failed to find the response
-#: ../extensions/Exporters/GalleryExport/GalleryRemote.cs:373
-msgid "Server returned response without Gallery content"
-msgstr "サーバからの応答にはギャラリーのコンテンツが含まれていません"
-
-#: ../extensions/Exporters/GalleryExport/GalleryRemote.cs:710
-msgid "Error while creating new album"
-msgstr "新しいアルバムの作成中にエラー"
-
-#: ../extensions/Exporters/GalleryExport/GalleryRemote.cs:711
-#, csharp-format
-msgid ""
-"The following error was encountered while attempting to perform the "
-"requested operation:\n"
-"{0} ({1})"
-msgstr ""
-"要求された処理を行う際に以下のエラーが発生しました:\n"
-"{0} ({1})"
-
-#: ../extensions/Exporters/FacebookExport/FacebookExport.addin.xml.h:1
-msgid "F_acebook..."
-msgstr "Facebook(_A)..."
-
-#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:257
-msgid "Too many images to export"
-msgstr "エキスポートする画像が多すぎます"
-
-#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:257
-msgid ""
-"Facebook only permits 60 photographs per album.  Please refine your "
-"selection and try again."
-msgstr ""
-"Facebook では 1 つのアルバムに収められる写真は 60 枚です。写真を選び直して、"
-"再度試して下さい。"
-
-#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:281
-#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:367
-msgid "You are not logged in."
-msgstr "ログインしていません。"
-
-#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:322
-msgid "Waiting for authentication"
-msgstr "認証を待っています"
-
-#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:322
-msgid ""
-"F-Spot will now launch your browser so that you can log into Facebook.  Turn "
-"on the \"Save my login information\" checkbox on Facebook and F-Spot will "
-"log into Facebook automatically from now on."
-msgstr ""
-"F-Spot は Facebook にログインするためにブラウザを起動します。Facebook 上で "
-"\"常にログインしている状態を保つ\" というチェックボックスにチェックを入れてく"
-"ださい。F-Spot は今後 Facebook に自動的にログインできるようになります。"
-
-#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:328
-msgid "Error logging into Facebook"
-msgstr "Facebook へのログイン中にエラー"
-
-#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:328
-msgid ""
-"There was a problem logging into Facebook.  Check your credentials and try "
-"again."
-msgstr ""
-"Facebook へのログイン中に問題がありました。アカウント情報を確認し、再度試して"
-"ください。"
-
-#. Note for translators: {0} and {1} are respectively firstname and surname of the user
-#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:341
-#, csharp-format
-msgid "{0} {1} is logged into Facebook"
-msgstr "{1} {0} は Facebook にログインしています"
-
-#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:491
-msgid "Album must have a name"
-msgstr "アルバムには名前が必要です"
-
-#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:491
-msgid "Please name your album or choose an existing album."
-msgstr "アルバムに名前を付けるか、既存のアルバムを選択して下さい。"
-
-#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:504
-msgid "Creating a new album failed"
-msgstr "新しいアルバムの作成に失敗"
-
-#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:504
-#, csharp-format
-msgid ""
-"An error occurred creating a new album.\n"
-"\n"
-"{0}"
-msgstr ""
-"新しいアルバムを作成する際にエラーが発生しました。\n"
-"\n"
-"{0}"
-
-#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:528
-#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:661
-#: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:565
-#, csharp-format
-msgid "Uploading picture \"{0}\" ({1} of {2})"
-msgstr "写真 \"{0}\" のアップロード中 ({1} / {2})"
-
-#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:542
-#, csharp-format
-msgid "Error Uploading To Facebook: {0}"
-msgstr "Facebook へアップロード中にエラー: {0}"
-
-#: ../extensions/Exporters/FacebookExport/FacebookExport.glade.h:1
-msgid "Caption"
-msgstr "キャプション"
-
-#: ../extensions/Exporters/FacebookExport/FacebookExport.glade.h:2
-msgid "Create a new album"
-msgstr "新しいアルバムの作成"
-
-#: ../extensions/Exporters/FacebookExport/FacebookExport.glade.h:3
-msgid "Description"
-msgstr "説明"
-
-#: ../extensions/Exporters/FacebookExport/FacebookExport.glade.h:4
-msgid "Export to Facebook"
-msgstr "Facebook へエキスポート"
-
-#: ../extensions/Exporters/FacebookExport/FacebookExport.glade.h:5
-msgid "In this photo"
-msgstr "この写真の中"
-
-#: ../extensions/Exporters/FacebookExport/FacebookExport.glade.h:7
-msgid "Login"
-msgstr "ログイン"
-
-#: ../extensions/Exporters/FacebookExport/FacebookExport.glade.h:8
-msgid "Logout"
-msgstr "ログアウト"
-
-#: ../extensions/Exporters/FacebookExport/FacebookExport.glade.h:10
-msgid "This is who I am"
-msgstr "これが私です"
-
-#: ../extensions/Exporters/FacebookExport/FacebookExport.glade.h:11
-msgid "Use an existing album"
-msgstr "既存のアルバムを利用"
-
-#: ../extensions/Exporters/FacebookExport/FacebookExport.glade.h:12
-msgid "Who is this?"
-msgstr "これは誰ですか？"
-
-#: ../extensions/Exporters/ZipExport/ZipExport.addin.xml.h:1
-msgid "Compressed fil_e..."
-msgstr "圧縮ファイル(_E)..."
-
-#: ../extensions/Exporters/ZipExport/ZipExport.cs:47
-msgid ""
-"This tool requires an active selection. Please select one or more pictures "
-"and try again"
-msgstr ""
-"このツールでは選択された写真が必要です。1 つ以上の写真を選択してから、再度試"
-"してください。"
-
-#: ../extensions/Exporters/ZipExport/ZipExport.cs:63
-msgid "Select export folder"
-msgstr "エキスポート先のフォルダを選択"
-
-#: ../extensions/Exporters/ZipExport/ZipExport.cs:101
-msgid "Exporting files"
-msgstr "ファイルをエキスポート中"
-
-#: ../extensions/Exporters/ZipExport/ZipExport.cs:107
-#, csharp-format
-msgid "Preparing photo \"{0}\""
-msgstr "写真 \"{0}\" を準備中"
-
-#: ../extensions/Exporters/ZipExport/ZipExport.glade.h:2
-msgid "_File name:"
-msgstr "ファイル名(_F):"
-
-#: ../extensions/Exporters/ZipExport/ZipExport.glade.h:3
-msgid "_Location:"
-msgstr "場所(_L):"
-
-#: ../extensions/Exporters/ZipExport/ZipExport.glade.h:4
-msgid "_Scale:"
-msgstr "大きさ(_S):"
-
-#: ../extensions/Tools/MergeDb/MergeDb.addin.xml.h:1
-msgid "Merge Db"
-msgstr "データベースのマージ"
-
-#: ../extensions/Tools/MergeDb/MergeDb.cs:73
-msgid "Error opening the selected file"
-msgstr "選択したファイルを開く際にエラー"
-
-#: ../extensions/Tools/MergeDb/MergeDb.cs:74
-#, csharp-format
-msgid ""
-"The file you selected is not a valid or supported database.\n"
-"\n"
-"Received exception \"{0}\"."
-msgstr ""
-"選択したファイルは不正なもの、あるいはサポートされていないデータベースで"
-"す。\n"
-"\n"
-"例外 \"{0}\" が発生しました。"
-
-#: ../extensions/Tools/MergeDb/MergeDb.glade.h:1
-msgid ""
-"<small><i>Choose the location of the database you want to import from</i></"
-"small>"
-msgstr ""
-"<small><i>インポートするデータベースの場所を選択してください</i></small>"
-
-#: ../extensions/Tools/MergeDb/MergeDb.glade.h:2
-msgid ""
-"<small><i>Choose what to import from the selected db.\n"
-"\"New Rolls Only\" is the smart option that will avoid re-importing photos "
-"you could have imported during a previous operation.\n"
-"\"A Single Import Roll\" let you choose which roll you want to merge back.\n"
-"\"Everything\" will import everything, creating duplicates if you already "
-"imported from that database.</i></small>"
-msgstr ""
-"<small><i>選択したデータベースからインポートするロールを選択します。\n"
-"\"新しいインポートロールのみ\" は以前にインポートした写真を再\n"
-"度インポートしないために適切な選択です。\n"
-"\"特定のインポートロール\" はマージしたいロールを選択できます。\n"
-"\"全て\" では、全てをインポートします。同じデータベースから既\n"
-"にインポートを行っていた場合は重複が発生します。</i></small>"
-
-#: ../extensions/Tools/MergeDb/MergeDb.glade.h:6
-msgid ""
-"<small><i>Copy the images locally or keep them where they are. If you chose "
-"the later, be sure that this location will stay accessible from f-spot.</i></"
-"small>"
-msgstr ""
-"<small><i>画像をローカルにコピーするか、元の場所に保持し続けるかを選択しま"
-"す。\n"
-"後者を選択した場合、F-Spot が今後もその場所にアクセスできることを確認\n"
-"してください。</i></small>"
-
-#: ../extensions/Tools/MergeDb/MergeDb.glade.h:7
-msgid "A Single Import Roll"
-msgstr "特定のインポートロール"
-
-#: ../extensions/Tools/MergeDb/MergeDb.glade.h:8
-msgid "Copy images to photos folder"
-msgstr "写真フォルダに画像をコピー"
-
-#: ../extensions/Tools/MergeDb/MergeDb.glade.h:9
-msgid "Database Location:"
-msgstr "データベースの場所:"
-
-#: ../extensions/Tools/MergeDb/MergeDb.glade.h:10
-msgid "Everything"
-msgstr "全て"
-
-#: ../extensions/Tools/MergeDb/MergeDb.glade.h:11
-msgid "Import:"
-msgstr "インポート:"
-
-#: ../extensions/Tools/MergeDb/MergeDb.glade.h:12
-msgid "Keep the images at their original location"
-msgstr "画像を元の場所に保持"
-
-#: ../extensions/Tools/MergeDb/MergeDb.glade.h:13
-msgid "Merge another f-spot collection"
-msgstr "他の F-Spot コレクションをマージ"
-
-#: ../extensions/Tools/MergeDb/MergeDb.glade.h:14
-msgid "New Rolls Only"
-msgstr "新しいインポートロールのみ"
-
-#: ../extensions/Tools/MergeDb/PickFolderDialog.cs:33
-#, csharp-format
-msgid ""
-"<big>The database refers to files contained in the <b>{0}</b> folder.\n"
-" Please select that folder so I can do the mapping.</big>"
-msgstr ""
-"<big>データベースは <b>{0}</b> フォルダにあるファイルを参照しています。\n"
-" このフォルダを選択するとマッピングを行います。</big>"
-
-#: ../extensions/Tools/HashJob/HashJob.cs:53
-msgid ""
-"In order to detect duplicates on pictures you imported before 0.5.0, F-Spot "
-"needs to analyze your image collection. This is not done by default as it's "
-"time consuming. You can Start or Pause this update process using this dialog."
-msgstr ""
-
-#: ../extensions/Tools/HashJob/HashJob.cs:102
 #, fuzzy
-msgid "Processing images..."
-msgstr "画像処理エラー"
+#~ msgid "<b>Color Management</b>"
+#~ msgstr "<b>色温度</b>"
 
-#: ../extensions/Tools/HashJob/HashJob.cs:108
-msgid "Stopped"
-msgstr ""
-
-#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.addin.xml.h:1
-msgid "_PicasaWeb..."
-msgstr "Picasa ウェブアルバム(_P)..."
-
-#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:441
-msgid "Error while creating Album"
-msgstr "アルバム作成中にエラー"
-
-#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:442
-#, csharp-format
-msgid ""
-"The following error was encountered while attempting to create an album: {0}"
-msgstr "アルバム {0} を作成中に以下のエラーが発生しました。"
-
-#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:621
-#, csharp-format
-msgid "{0} Sent"
-msgstr "{0} 枚送信"
-
-#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:623
-#, csharp-format
-msgid "{0} of approx. {1}"
-msgstr "{0} / 約 {1}"
-
-#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:692
-#: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:594
-#, csharp-format
-msgid "Error Uploading To Gallery: {0}"
-msgstr "ギャラリーへのアップロード中にエラー: {0}"
-
-#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:776
-#, csharp-format
-msgid "Available space: {0}, {1}% used out of {2}"
-msgstr ""
-
-#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:890
-#, fuzzy, csharp-format
-msgid ""
-"The selected album has a limit of {0} pictures,\n"
-"which would be passed with the current selection of {1} images"
-msgstr ""
-"<small>選択したアルバムには利用可能な写真枚数に {0} 枚という制限があります。"
-"そのため選択された写真から {1} 枚をアップロードします。</small>"
-
-#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:3
-msgid "<b>PicasaWeb Export</b>"
-msgstr "<b>Picasa ウェブアルバム エキスポート</b>"
-
-#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:7
-msgid ""
-"<span weight='bold' size='larger'>Your Google Account is locked</span>\n"
-msgstr ""
-"<span weight='bold' size='larger'>あなたの Google アカウントはロックされてい"
-"ます</span>\n"
-
-#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:12
-msgid ""
-"Please verify that the settings for this gallery are correct.\n"
-"Enter the letters as they are shown in the image in\n"
-"the 'Captcha' field. <i>Letters are not case-sensitive</i>"
-msgstr ""
-"このギャラリーの設定が正しいか確認して下さい。\n"
-"\"文字の確認\" 欄に画像で表示された文字を入力して下さい。\n"
-"<i>文字の大文字/小文字は区別されません。</i>"
-
-#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:15
-#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:8
-msgid "Public Album"
-msgstr "公開アルバム"
-
-#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:16
-#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:10
-msgid "_Album Title:"
-msgstr "アルバムのタイトル(_A):"
-
-#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:17
-msgid "_Autorotate"
-msgstr "自動回転(_A)"
-
-#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:18
-msgid "_Captcha:"
-msgstr "キャプチャ(_C):"
-
-#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:3
-msgid "<b>SmugMug Export</b>"
-msgstr "<b>SmugMug エキスポート</b>"
-
-#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:9
-msgid "_Account:"
-msgstr "アカウント(_A):"
-
-#: ../extensions/Exporters/SmugMugExport/SmugMugExport.addin.xml.h:1
-msgid "_SmugMug..."
-msgstr "SmugMug(_S)..."
-
-#: ../extensions/Exporters/TabbloExport/Tabblo/Connection.cs:126
-#, csharp-format
-msgid "Uploading photo \"{0}\""
-msgstr "写真 \"{0}\" のアップロード中"
-
-#: ../extensions/Exporters/TabbloExport/Tabblo/Connection.cs:181
-msgid "Logging into Tabblo"
-msgstr "Tabblo にログイン中"
-
-#: ../extensions/Exporters/TabbloExport/Tabblo/Connection.cs:241
-msgid "Obtaining URL for upload"
-msgstr "アップロード用 URL を取得中"
-
-#: ../extensions/Exporters/TabbloExport/TabbloExport.addin.xml.h:1
-msgid "_Tabblo..."
-msgstr "Tabblo(_T)..."
-
-#: ../extensions/Exporters/TabbloExport/TabbloExport.cs:166
-msgid "Done sending photos"
-msgstr "写真の送信が完了しました"
-
-#: ../extensions/Exporters/TabbloExport/TabbloExport.cs:168
-msgid "Upload complete"
-msgstr "アップロードが完了しました"
-
-#: ../extensions/Exporters/TabbloExport/TabbloExport.cs:174
-msgid "Error uploading to Tabblo: "
-msgstr "Tabblo へのアップロード中にエラー: "
-
-#: ../extensions/Exporters/TabbloExport/TabbloExport.glade.h:2
-msgid "<b>Tabblo account</b>"
-msgstr "<b>Tabblo アカウント</b>"
-
-#: ../extensions/Exporters/TabbloExport/TrustError.glade.h:1
-msgid "<b>{0}</b>."
-msgstr "<b>{0}</b>."
-
-#: ../extensions/Exporters/TabbloExport/TrustError.glade.h:2
-msgid "A trust error occured while attempting to access"
-msgstr "アクセスの際に認証エラー"
-
-#: ../extensions/Exporters/TabbloExport/TrustError.glade.h:3
-msgid "Abort this session"
-msgstr "このセッションを中断"
-
-#: ../extensions/Exporters/TabbloExport/TrustError.glade.h:4
-msgid "Always trust this site's certificate"
-msgstr "このサイトの認証を常に許可する"
-
-#: ../extensions/Exporters/TabbloExport/TrustError.glade.h:5
-msgid "Do you wish to:"
-msgstr "何をしますか:"
-
-#: ../extensions/Exporters/TabbloExport/TrustError.glade.h:6
-msgid "Trust Error"
-msgstr "認証エラー"
-
-#: ../extensions/Exporters/TabbloExport/TrustError.glade.h:7
-msgid "Trust the site's certificate this once"
-msgstr "このサイトの認証を一度だけ許可する"
-
-#: ../extensions/Editors/BlackoutEditor/BlackoutEditor.cs:18
-msgid "Blackout"
-msgstr ""
-
-#: ../extensions/Editors/BlackoutEditor/BlackoutEditor.cs:26
 #, fuzzy
-msgid "Select the area that you want blacked out."
-msgstr "切り抜く領域を選択して下さい。"
+#~ msgid "<b>Import Settings</b>"
+#~ msgstr "<b>補正(_R)</b>"
 
-#: ../extensions/Editors/PixelateEditor/PixelateEditor.cs:18
 #, fuzzy
-msgid "Pixelate"
-msgstr "プライベート"
+#~ msgid "<b>Metadata</b>"
+#~ msgstr "メタデータ"
 
-#: ../extensions/Editors/PixelateEditor/PixelateEditor.cs:26
 #, fuzzy
-msgid "Select the area that you want pixelated."
-msgstr "切り抜く領域を選択して下さい。"
+#~ msgid "<b>Screensaver</b>"
+#~ msgstr "<b>プレビュー</b>"
+
+#, fuzzy
+#~ msgid "<b>Theming</b>"
+#~ msgstr "<b></b>"
+
+#, fuzzy
+#~ msgid ""
+#~ "<small><i>Choose the folder where F-Spot should store newly imported "
+#~ "photos</i></small>"
+#~ msgstr ""
+#~ "<small><i>インポートするデータベースの場所を選択してください</i></small>"
+
+#, fuzzy
+#~ msgid ""
+#~ "<small><i>Enable this option to store tags and descriptions inside \n"
+#~ "supported image formats.</i></small>"
+#~ msgstr ""
+#~ "<small><i>インポートするデータベースの場所を選択してください</i></small>"
+
+#, fuzzy
+#~ msgid "Custom Theme"
+#~ msgstr "カスタム・テキスト: "
+
+#, fuzzy
+#~ msgid "Select A gtkrc File"
+#~ msgstr "ファイルから写真を選択"
+
+#, fuzzy
+#~ msgid "Write _metadata to file"
+#~ msgstr "メタデータの除去(_M)"
+
+#~ msgid ""
+#~ "The \"F-Spot Manual\" could not be found.  Please verify that your "
+#~ "installation has been completed successfully."
+#~ msgstr ""
+#~ "\"F-Spotマニュアル\" が見つかりませんでした。インストールが正常に完了して"
+#~ "いるか確認して下さい。"
+
+#~ msgid "Picasaweb"
+#~ msgstr "Picasa ウェブ アルバム"
+
+#~ msgid "SmugMug"
+#~ msgstr "SmugMug"
+
+#~ msgid "Gallery2"
+#~ msgstr "Gallery2"
+
+#~ msgid "1 of 1"
+#~ msgstr "1 / 1"
+
+#~ msgid "_Folder"
+#~ msgstr "フォルダ(_F)"
+
+#~ msgid "_Month"
+#~ msgstr "月(_M)"
+
+#~ msgid "img_000.jpg"
+#~ msgstr "img_000.jpg"
+
+#~ msgid ""
+#~ "F-Spot will now launch your browser so that you can log into Facebook.  "
+#~ "Turn on the \"Save my login information\" checkbox on Facebook and F-Spot "
+#~ "will log into Facebook automatically from now on."
+#~ msgstr ""
+#~ "F-Spot は Facebook にログインするためにブラウザを起動します。Facebook 上"
+#~ "で \"常にログインしている状態を保つ\" というチェックボックスにチェックを入"
+#~ "れてください。F-Spot は今後 Facebook に自動的にログインできるようになりま"
+#~ "す。"
+
+#~ msgid "This is who I am"
+#~ msgstr "これが私です"
+
+#~ msgid "<b>Tabblo account</b>"
+#~ msgstr "<b>Tabblo アカウント</b>"
+
+#~ msgid "<b>{0}</b>."
+#~ msgstr "<b>{0}</b>."
+
+#~ msgid "A trust error occured while attempting to access"
+#~ msgstr "アクセスの際に認証エラー"
+
+#~ msgid "Abort this session"
+#~ msgstr "このセッションを中断"
+
+#~ msgid "Always trust this site's certificate"
+#~ msgstr "このサイトの認証を常に許可する"
+
+#~ msgid "Do you wish to:"
+#~ msgstr "何をしますか:"
+
+#~ msgid "Trust Error"
+#~ msgstr "認証エラー"
+
+#~ msgid "Trust the site's certificate this once"
+#~ msgstr "このサイトの認証を一度だけ許可する"
+
+#, fuzzy
+#~ msgid "Select the area that you want blacked out."
+#~ msgstr "切り抜く領域を選択して下さい。"
+
+#, fuzzy
+#~ msgid "Pixelate"
+#~ msgstr "プライベート"
+
+#, fuzzy
+#~ msgid "Select the area that you want pixelated."
+#~ msgstr "切り抜く領域を選択して下さい。"
+
+#~ msgid "Add-in"
+#~ msgstr "拡張機能"
+
+#~ msgid "Add-in Dependencies:"
+#~ msgstr "依存する拡張機能:"
+
+#~ msgid "Add-in Manager"
+#~ msgstr "拡張機能の管理"
+
+#~ msgid "The following add-ins are currently installed:"
+#~ msgstr "現在以下の拡張機能がインストールされています:"
+
+#~ msgid "_Install Add-ins..."
+#~ msgstr "拡張機能のインストール(_I)..."
