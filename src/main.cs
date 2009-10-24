@@ -154,7 +154,7 @@ namespace FSpot
 					GLib.Log.SetLogHandler ("GLib-GObject", GLib.LogLevelFlags.Critical, logFunc);
 
 					break;
-				case "--uninstalled": case "--gdb": case "--valgrind":
+				case "--uninstalled": case "--gdb": case "--valgrind": case "--sync":
 					break;
 				default:
 					if (args [i].StartsWith ("--profile"))
