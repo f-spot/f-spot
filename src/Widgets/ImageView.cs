@@ -343,8 +343,8 @@ namespace FSpot.Widgets
 									 Width = Allocation.Width,
 									 Height = Allocation.Height,
 									 Wclass = Gdk.WindowClass.InputOutput,
-									 Visual = this.Visual,
-									 Colormap = this.Colormap,
+									 Visual = ParentWindow.Visual,
+									 Colormap = ParentWindow.Colormap,
 									 Mask = this.Events
 									      | EventMask.ExposureMask
 									      | EventMask.ButtonPressMask
