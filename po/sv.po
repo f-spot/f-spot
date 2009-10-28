@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: f-spot\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-09-18 13:03+0200\n"
-"PO-Revision-Date: 2009-09-18 13:10+0100\n"
+"POT-Creation-Date: 2009-10-28 23:15+0100\n"
+"PO-Revision-Date: 2009-10-28 23:15+0100\n"
 "Last-Translator: Daniel Nylander <po@danielnylander.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
 "MIME-Version: 1.0\n"
@@ -37,7 +37,7 @@ msgstr "Överför bilden \"{0}\" till cd"
 #: ../extensions/Exporters/FlickrExport/FlickrExport.cs:349
 #: ../extensions/Exporters/FolderExport/FolderExport.cs:245
 #: ../extensions/Exporters/GalleryExport/GalleryExport.cs:781
-#: ../src/MainWindow.cs:638
+#: ../src/MainWindow.cs:633
 #: ../src/UI.Dialog/AdjustTimeDialog.cs:129
 #: ../src/UI.Dialog/ProgressDialog.cs:92
 #, csharp-format
@@ -45,7 +45,7 @@ msgid "{0} of {1}"
 msgstr "{0} av {1}"
 
 #: ../extensions/Exporters/CDExport/CDExport.cs:233
-#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:379
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:380
 #: ../extensions/Exporters/FlickrExport/FlickrExport.cs:379
 #: ../extensions/Exporters/FolderExport/FolderExport.cs:285
 #: ../extensions/Exporters/GalleryExport/GalleryExport.cs:806
@@ -138,15 +138,16 @@ msgstr ""
 "\n"
 "När du blir dirigerad av Facebook till att återgå till detta program så klicka på \"Ok\" nedan."
 
-#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:279
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:280
 msgid "Too many images to export"
 msgstr "För många bilder att exportera"
 
-#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:280
-msgid "Facebook only permits 60 photographs per album.  Please refine your selection and try again."
-msgstr "Facebook tillåter 60 fotografi per album.  Definiera om ditt val och försök igen."
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:281
+#, csharp-format
+msgid "Facebook only permits {0} photographs per album.  Please refine your selection and try again."
+msgstr "Facebook tillåter endast {0} fotografier per album.  Definiera om ditt val och försök igen."
 
-#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:297
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:298
 #: ../extensions/Exporters/FlickrExport/FlickrExport.cs:475
 #: ../extensions/Exporters/GalleryExport/GalleryExport.cs:730
 #: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:597
@@ -154,19 +155,19 @@ msgstr "Facebook tillåter 60 fotografi per album.  Definiera om ditt val och f�
 msgid "Uploading Pictures"
 msgstr "Skickar upp bilder"
 
-#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:318
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:319
 msgid "Album must have a name"
 msgstr "Albumet måste ha ett namn"
 
-#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:319
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:320
 msgid "Please name your album or choose an existing album."
 msgstr "Namnge ditt album eller välj ett befintligt album."
 
-#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:333
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:334
 msgid "Creating a new album failed"
 msgstr "Skapandet av nytt album misslyckades"
 
-#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:334
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:335
 #, csharp-format
 msgid ""
 "An error occurred creating a new album.\n"
@@ -177,19 +178,19 @@ msgstr ""
 "\n"
 "{0}"
 
-#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:356
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:357
 #: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:660
 #: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:565
 #, csharp-format
 msgid "Uploading picture \"{0}\" ({1} of {2})"
 msgstr "Skickar upp bilden \"{0}\" ({1} av {2})"
 
-#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:370
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:371
 #, csharp-format
 msgid "Error Uploading To Facebook: {0}"
 msgstr "Fel vid sändning till Facebook: {0}"
 
-#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:371
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:372
 #: ../extensions/Exporters/FlickrExport/FlickrExport.cs:370
 #: ../extensions/Exporters/FolderExport/FolderExport.cs:250
 #: ../extensions/Exporters/GalleryExport/GalleryExport.cs:797
@@ -200,7 +201,7 @@ msgstr "Fel vid sändning till Facebook: {0}"
 msgid "Error"
 msgstr "Fel"
 
-#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:381
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:382
 #: ../extensions/Exporters/FlickrExport/FlickrExport.cs:381
 #: ../extensions/Exporters/GalleryExport/GalleryExport.cs:808
 #: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:706
@@ -568,7 +569,7 @@ msgstr "Index"
 #: ../extensions/Exporters/FolderExport/FolderExport.cs:989
 #: ../extensions/Exporters/FolderExport/FolderExport.cs:1161
 #: ../extensions/Exporters/FolderExport/FolderExport.cs:1201
-#: ../src/MainWindow.cs:342
+#: ../src/MainWindow.cs:336
 #: ../src/Widgets/Sidebar.cs:64
 msgid "Tags"
 msgstr "Taggar"
@@ -1257,27 +1258,34 @@ msgstr "Konfiguration för skärmsläckare"
 
 #: ../f-spot.desktop.in.in.h:1
 #: ../f-spot-import.desktop.in.in.h:1
+#: ../f-spot-view.desktop.in.in.h:1
+#: ../src/ui/main_window.ui.h:10
+msgid "F-Spot"
+msgstr "F-Spot"
+
+#: ../f-spot.desktop.in.in.h:2
+#: ../f-spot-import.desktop.in.in.h:2
 msgid "F-Spot Photo Manager"
 msgstr "Fotohanteraren F-Spot"
 
-#: ../f-spot.desktop.in.in.h:2
+#: ../f-spot.desktop.in.in.h:3
 msgid "Organize, enjoy, and share your photos"
 msgstr "Organisera, njut av, och dela med dig av dina foton"
 
-#: ../f-spot.desktop.in.in.h:3
-#: ../f-spot-import.desktop.in.in.h:3
+#: ../f-spot.desktop.in.in.h:4
+#: ../f-spot-import.desktop.in.in.h:4
 msgid "Photo Manager"
 msgstr "Fotohanterare"
 
-#: ../f-spot-import.desktop.in.in.h:2
+#: ../f-spot-import.desktop.in.in.h:3
 msgid "Import into F-Spot"
 msgstr "Importera till F-Spot"
 
-#: ../f-spot-view.desktop.in.in.h:1
+#: ../f-spot-view.desktop.in.in.h:2
 msgid "F-Spot Photo Viewer"
 msgstr "Fotovisaren F-Spot"
 
-#: ../f-spot-view.desktop.in.in.h:2
+#: ../f-spot-view.desktop.in.in.h:3
 msgid "Photo Viewer"
 msgstr "Fotovisare"
 
@@ -1667,19 +1675,19 @@ msgid_plural "Modified ({0})"
 msgstr[0] "Ändrad"
 msgstr[1] "Ändrad ({0})"
 
-#: ../src/Core/Photo.cs:511
+#: ../src/Core/Photo.cs:513
 #, csharp-format
 msgid "Modified in {1}"
 msgstr "Ändrad i {1}"
 
-#: ../src/Core/Photo.cs:511
+#: ../src/Core/Photo.cs:513
 #, csharp-format
 msgid "Modified in {1} ({0})"
 msgstr "Ändrad i {1} ({0})"
 
 #. Note that the original version is never stored in the photo_versions table in the
 #. database.
-#: ../src/Core/Photo.cs:666
+#: ../src/Core/Photo.cs:671
 #: ../src/f-spot.glade.h:61
 msgid "Original"
 msgstr "Original"
@@ -1802,14 +1810,14 @@ msgstr "Ta b_ort tagg"
 
 #: ../src/FSpot.addin.xml.h:5
 #: ../src/f-spot.glade.h:68
-#: ../src/SingleView.cs:453
+#: ../src/SingleView.cs:451
 #: ../src/ui/main_window.ui.h:16
 msgid "Rotate _Left"
 msgstr "Rotera åt _vänster"
 
 #: ../src/FSpot.addin.xml.h:6
 #: ../src/f-spot.glade.h:69
-#: ../src/SingleView.cs:454
+#: ../src/SingleView.cs:452
 #: ../src/ui/main_window.ui.h:17
 msgid "Rotate _Right"
 msgstr "Rotera åt _höger"
@@ -1996,7 +2004,7 @@ msgstr "Galleri"
 
 #: ../src/f-spot.glade.h:50
 #: ../src/ImportCommand.cs:547
-#: ../src/MainWindow.cs:267
+#: ../src/MainWindow.cs:261
 msgid "Import"
 msgstr "Importera"
 
@@ -2290,8 +2298,8 @@ msgid "Exit fullscreen"
 msgstr "Lämna helskärmsläge"
 
 #: ../src/FullScreenView.cs:81
-#: ../src/MainWindow.cs:307
-#: ../src/SingleView.cs:103
+#: ../src/MainWindow.cs:301
+#: ../src/SingleView.cs:101
 msgid "Slideshow"
 msgstr "Bildspel"
 
@@ -2472,7 +2480,7 @@ msgid "Unknown IIM DataSet"
 msgstr "Okänt IIM DataSet"
 
 #: ../src/ImportCommand.cs:48
-#: ../src/SingleView.cs:359
+#: ../src/SingleView.cs:357
 msgid "Select Folder"
 msgstr "Välj mapp"
 
@@ -2506,8 +2514,8 @@ msgid "Import Tags"
 msgstr "Importera taggar"
 
 #: ../src/ItemAction.cs:79
-#: ../src/MainWindow.cs:274
-#: ../src/SingleView.cs:86
+#: ../src/MainWindow.cs:268
+#: ../src/SingleView.cs:84
 msgid "Rotate Left"
 msgstr "Rotera åt vänster"
 
@@ -2516,8 +2524,8 @@ msgid "Rotate picture left"
 msgstr "Rotera bild åt vänster"
 
 #: ../src/ItemAction.cs:91
-#: ../src/MainWindow.cs:278
-#: ../src/SingleView.cs:91
+#: ../src/MainWindow.cs:272
+#: ../src/SingleView.cs:89
 msgid "Rotate Right"
 msgstr "Rotera åt höger"
 
@@ -2533,237 +2541,237 @@ msgstr "Nästa bild"
 msgid "Previous picture"
 msgstr "Föregående bild"
 
-#: ../src/MainWindow.cs:269
+#: ../src/MainWindow.cs:263
 msgid "Import new images"
 msgstr "Importera nya bilder"
 
-#: ../src/MainWindow.cs:285
+#: ../src/MainWindow.cs:279
 #: ../src/ui/main_window.ui.h:3
 msgid "Browse"
 msgstr "Bläddra"
 
-#: ../src/MainWindow.cs:289
+#: ../src/MainWindow.cs:283
 msgid "Browse many photos simultaneously"
 msgstr "Bläddra bland många foton samtidigt"
 
-#: ../src/MainWindow.cs:293
+#: ../src/MainWindow.cs:287
 msgid "Edit Image"
 msgstr "Redigera bild"
 
-#: ../src/MainWindow.cs:297
+#: ../src/MainWindow.cs:291
 msgid "View and edit a photo"
 msgstr "Visa och redigera ett foto"
 
-#: ../src/MainWindow.cs:302
-#: ../src/SingleView.cs:98
+#: ../src/MainWindow.cs:296
+#: ../src/SingleView.cs:96
 msgid "Fullscreen"
 msgstr "Helskärm"
 
-#: ../src/MainWindow.cs:304
-#: ../src/SingleView.cs:100
+#: ../src/MainWindow.cs:298
+#: ../src/SingleView.cs:98
 msgid "View photos fullscreen"
 msgstr "Visa foton i helskärmsläge"
 
-#: ../src/MainWindow.cs:309
-#: ../src/SingleView.cs:105
+#: ../src/MainWindow.cs:303
+#: ../src/SingleView.cs:103
 msgid "View photos in a slideshow"
 msgstr "Visa foton i ett bildspel"
 
-#: ../src/MainWindow.cs:324
+#: ../src/MainWindow.cs:318
 msgid "Previous photo"
 msgstr "Föregående foto"
 
-#: ../src/MainWindow.cs:329
+#: ../src/MainWindow.cs:323
 msgid "Next photo"
 msgstr "Nästa foto"
 
-#: ../src/MainWindow.cs:1488
+#: ../src/MainWindow.cs:1483
 msgid "No cameras detected."
 msgstr "Inga kameror hittades"
 
-#: ../src/MainWindow.cs:1489
+#: ../src/MainWindow.cs:1484
 msgid "F-Spot was unable to find any cameras attached to this system.  Double check that the camera is connected and has power"
 msgstr "F-Spot kunde inte hitta några kameror anslutna till detta system.  Kontrollera att kameran är ansluten och att den har ström"
 
-#: ../src/MainWindow.cs:1528
+#: ../src/MainWindow.cs:1523
 msgid "Error connecting to camera"
 msgstr "Fel vid anslutning till kamera"
 
-#: ../src/MainWindow.cs:1529
+#: ../src/MainWindow.cs:1524
 #, csharp-format
 msgid "Received error \"{0}\" while connecting to camera"
 msgstr "Tog emot fel \"{0}\" vid anslutning till kamera"
 
 #. Translators, The singular case will never happen here.
-#: ../src/MainWindow.cs:1815
+#: ../src/MainWindow.cs:1811
 #, csharp-format
 msgid "Merge the selected tag"
 msgid_plural "Merge the {0} selected tags?"
 msgstr[0] "Sammanfoga den markerade taggen"
 msgstr[1] "Sammanfoga de {0} markerade taggarna"
 
-#: ../src/MainWindow.cs:1842
+#: ../src/MainWindow.cs:1838
 msgid "This operation will merge the selected tags and any sub-tags into a single tag."
 msgstr "Denna operation kommer att slå ihop de markerade taggarna och deras undertaggar till en enda tagg."
 
-#: ../src/MainWindow.cs:1844
+#: ../src/MainWindow.cs:1840
 msgid "_Merge Tags"
 msgstr "_Slå ihop taggar"
 
-#: ../src/MainWindow.cs:2049
+#: ../src/MainWindow.cs:2045
 #, csharp-format
 msgid "{0} Photo out of {1}"
 msgid_plural "{0} Photos out of {1}"
 msgstr[0] "{0} foto utav {1}"
 msgstr[1] "{0} foton utav {1}"
 
-#: ../src/MainWindow.cs:2051
-#: ../src/SingleView.cs:495
+#: ../src/MainWindow.cs:2047
+#: ../src/SingleView.cs:493
 #, csharp-format
 msgid "{0} Photo"
 msgid_plural "{0} Photos"
 msgstr[0] "{0} foto"
 msgstr[1] "{0} foton"
 
-#: ../src/MainWindow.cs:2054
+#: ../src/MainWindow.cs:2050
 #, csharp-format
 msgid " ({0} selected)"
 msgid_plural " ({0} selected)"
 msgstr[0] " ({0} markerad)"
 msgstr[1] " ({0} markerade)"
 
-#: ../src/MainWindow.cs:2135
+#: ../src/MainWindow.cs:2131
 msgid "_Ok"
 msgstr "_OK"
 
-#: ../src/MainWindow.cs:2136
+#: ../src/MainWindow.cs:2132
 msgid "Error Deleting Picture"
 msgstr "Fel vid borttagning av foto"
 
-#: ../src/MainWindow.cs:2141
+#: ../src/MainWindow.cs:2137
 #, csharp-format
 msgid "No permission to delete the file:{1}{0}"
 msgstr "Ingen behörighet att ta bort filen:{1}{0}"
 
-#: ../src/MainWindow.cs:2145
+#: ../src/MainWindow.cs:2141
 #, csharp-format
 msgid "An error of type {0} occurred while deleting the file:{2}{1}"
 msgstr "Ett fel av typen {0} inträffade vid borttagning av filen:{2}{1}"
 
-#: ../src/MainWindow.cs:2177
+#: ../src/MainWindow.cs:2173
 #, csharp-format
 msgid "Delete the selected photo permanently?"
 msgid_plural "Delete the {0} selected photos permanently?"
 msgstr[0] "Ta bort det markerade fotot permanent?"
 msgstr[1] "Ta bort de {0} markerade fotona permanent?"
 
-#: ../src/MainWindow.cs:2181
+#: ../src/MainWindow.cs:2177
 msgid "This deletes all versions of the selected photo from your drive."
 msgid_plural "This deletes all versions of the selected photos from your drive."
 msgstr[0] "Detta tar bort alla versioner av det markerade fotot från din disk."
 msgstr[1] "Detta tar bort alla versioner av markerade foton från din disk."
 
-#: ../src/MainWindow.cs:2184
+#: ../src/MainWindow.cs:2180
 msgid "_Delete photo"
 msgid_plural "_Delete photos"
 msgstr[0] "_Ta bort foto"
 msgstr[1] "_Ta bort foton"
 
-#: ../src/MainWindow.cs:2220
+#: ../src/MainWindow.cs:2216
 #, csharp-format
 msgid "Remove the selected photo from F-Spot?"
 msgid_plural "Remove the {0} selected photos from F-Spot?"
 msgstr[0] "Ta bort det markerade fotot från F-Spot?"
 msgstr[1] "Ta bort de {0} markerade fotona från F-Spot?"
 
-#: ../src/MainWindow.cs:2225
+#: ../src/MainWindow.cs:2221
 msgid "If you remove photos from the F-Spot catalog all tag information will be lost. The photos remain on your computer and can be imported into F-Spot again."
 msgstr "Om du tar bort foton från F-Spot-katalogen kommer all tagginformation för dem att gå förlorad. Fotona finns dock kvar på din dator och kan importeras in till F-Spot på nytt."
 
 # SUN CHANGED MESSAGE
-#: ../src/MainWindow.cs:2226
+#: ../src/MainWindow.cs:2222
 msgid "_Remove from Catalog"
 msgstr "Ta bort från _katalog"
 
-#: ../src/MainWindow.cs:2289
+#: ../src/MainWindow.cs:2285
 #, csharp-format
 msgid "Delete tag \"{0}\"?"
 msgstr "Ta bort taggen \"{0}\"?"
 
-#: ../src/MainWindow.cs:2291
+#: ../src/MainWindow.cs:2287
 #, csharp-format
 msgid "Delete the {0} selected tags?"
 msgstr "Ta bort de {0} markerade taggarna?"
 
-#: ../src/MainWindow.cs:2296
+#: ../src/MainWindow.cs:2292
 msgid "photo"
 msgid_plural "photos"
 msgstr[0] "foto"
 msgstr[1] "foton"
 
-#: ../src/MainWindow.cs:2298
+#: ../src/MainWindow.cs:2294
 #, csharp-format
 msgid "If you delete this tag, the association with {0} {1} will be lost."
 msgid_plural "If you delete these tags, the association with {0} {1} will be lost."
 msgstr[0] "Om du tar bort denna tagg så försvinner associationen med {0} {1}."
 msgstr[1] "Om du tar bort dessa taggar så försvinner associationen med {0} {1}."
 
-#: ../src/MainWindow.cs:2303
+#: ../src/MainWindow.cs:2299
 msgid "_Delete tag"
 msgid_plural "_Delete tags"
 msgstr[0] "_Ta bort tagg"
 msgstr[1] "_Ta bort taggar"
 
 #. A Category is not empty. Can not delete it.
-#: ../src/MainWindow.cs:2317
+#: ../src/MainWindow.cs:2313
 msgid "Tag is not empty"
 msgstr "Taggen är inte tom"
 
-#: ../src/MainWindow.cs:2318
+#: ../src/MainWindow.cs:2314
 #, csharp-format
 msgid "Can not delete tags that have tags within them.  Please delete tags under \"{0}\" first"
 msgstr "Kan inte ta bort taggar som har andra taggar under sig.  Ta bort alla taggar under \"{0}\" först"
 
-#: ../src/MainWindow.cs:2750
+#: ../src/MainWindow.cs:2746
 msgid "Rotate selected photo left"
 msgid_plural "Rotate selected photos left"
 msgstr[0] "Rotera det markerade fotot åt vänster"
 msgstr[1] "Rotera de markerade fotona åt vänster"
 
-#: ../src/MainWindow.cs:2763
+#: ../src/MainWindow.cs:2759
 msgid "Rotate selected photo right"
 msgid_plural "Rotate selected photos right"
 msgstr[0] "Rotera det markerade fotot åt höger"
 msgstr[1] "Rotera de markerade fotona åt höger"
 
-#: ../src/MainWindow.cs:2774
+#: ../src/MainWindow.cs:2770
 #, csharp-format
 msgid "Find _Selected Tag"
 msgid_plural "Find _Selected Tags"
 msgstr[0] "Sök efter _vald tagg"
 msgstr[1] "Sök efter _valda taggar"
 
-#: ../src/MainWindow.cs:2778
+#: ../src/MainWindow.cs:2774
 #, csharp-format
 msgid "Find Selected Tag _With"
 msgid_plural "Find Selected Tags _With"
 msgstr[0] "Sök efter vald tagg _med"
 msgstr[1] "Sök efter valda taggar _med"
 
-#: ../src/MainWindow.cs:2819
+#: ../src/MainWindow.cs:2815
 msgid "Create New Version?"
 msgid_plural "Create New Versions?"
 msgstr[0] "Skapa en ny version?"
 msgstr[1] "Skapa nya versioner?"
 
-#: ../src/MainWindow.cs:2821
+#: ../src/MainWindow.cs:2817
 #, csharp-format
 msgid "Before launching {1}, should F-Spot create a new version of the selected photo to preserve the original?"
 msgid_plural "Before launching {1}, should F-Spot create new versions of the selected photos to preserve the originals?"
 msgstr[0] "Innan start av {1}, ska F-Spot skapa en ny version av det markerade fotot för att bibehålla originalet?"
 msgstr[1] "Innan start av {1}, ska F-Spot skapa nya versioner av de markerade fotona för att bibehålla originalen?"
 
-#: ../src/MainWindow.cs:2843
+#: ../src/MainWindow.cs:2839
 msgid "XCF version"
 msgstr "XCF-version"
 
@@ -2940,24 +2948,24 @@ msgid "Received exception \"{0}\". Unable to rename version to \"{1}\""
 msgstr "Tog emot undantag \"{0}\". Kunde inte byta namn på version \"{1}\""
 
 #: ../src/PhotoVersionMenu.cs:66
-#: ../src/Widgets/InfoBox.cs:554
-#: ../src/Widgets/InfoBox.cs:556
+#: ../src/Widgets/InfoBox.cs:562
+#: ../src/Widgets/InfoBox.cs:564
 msgid "(No Edits)"
 msgstr "(Inga ändringar)"
 
-#: ../src/PhotoView.cs:169
+#: ../src/PhotoView.cs:167
 #: ../src/UI.Dialog/EditExceptionDialog.cs:38
 msgid "Error editing photo"
 msgstr "Fel vid redigering av foto"
 
-#: ../src/PhotoView.cs:170
+#: ../src/PhotoView.cs:168
 #: ../src/Sharpener.cs:73
 #: ../src/UI.Dialog/EditExceptionDialog.cs:25
 #, csharp-format
 msgid "Received exception \"{0}\". Unable to save photo {1}"
 msgstr "Mottog undantaget \"{0}\". Kunde inte spara fotot {1}"
 
-#: ../src/PhotoView.cs:359
+#: ../src/PhotoView.cs:356
 msgid "Comment:"
 msgstr "Kommentar:"
 
@@ -3094,23 +3102,23 @@ msgstr "Radie:"
 msgid "Threshold:"
 msgstr "Tröskelvärde:"
 
-#: ../src/SingleView.cs:88
+#: ../src/SingleView.cs:86
 msgid "Rotate photo left"
 msgstr "Rotera fotot åt vänster"
 
-#: ../src/SingleView.cs:93
+#: ../src/SingleView.cs:91
 msgid "Rotate photo right"
 msgstr "Rotera fotot åt höger"
 
-#: ../src/SingleView.cs:130
+#: ../src/SingleView.cs:128
 msgid "Folder"
 msgstr "Mapp"
 
-#: ../src/SingleView.cs:356
+#: ../src/SingleView.cs:354
 msgid "Open"
 msgstr "Öppna"
 
-#: ../src/SingleView.cs:456
+#: ../src/SingleView.cs:454
 msgid "Set as Background"
 msgstr "Ställ in som bakgrund"
 
@@ -3227,7 +3235,7 @@ msgstr "Händelser"
 
 #. The label for the root category is used in new and edit tag dialogs
 #: ../src/TagStore.cs:239
-#: ../src/Widgets/InfoBox.cs:400
+#: ../src/Widgets/InfoBox.cs:408
 msgid "(None)"
 msgstr "(Inget)"
 
@@ -3261,15 +3269,15 @@ msgstr "Uppdaterar miniatyrbilder"
 msgid "Updating picture \"{0}\""
 msgstr "Uppdaterar bilden \"{0}\""
 
-#: ../src/UI.Dialog/AboutDialog.cs:71
+#: ../src/UI.Dialog/AboutDialog.cs:76
 msgid "Photo management for GNOME"
 msgstr "Fotohantering för GNOME"
 
-#: ../src/UI.Dialog/AboutDialog.cs:72
+#: ../src/UI.Dialog/AboutDialog.cs:77
 msgid "Copyright © 2003-2009 Novell Inc."
 msgstr "Copyright © 2003-2009 Novell Inc."
 
-#: ../src/UI.Dialog/AboutDialog.cs:95
+#: ../src/UI.Dialog/AboutDialog.cs:100
 msgid "translator-credits"
 msgstr ""
 "Daniel Nylander\n"
@@ -3279,7 +3287,7 @@ msgstr ""
 "Skicka synpunkter på översättningen till\n"
 "tp-sv@listor.tp-sv.se"
 
-#: ../src/UI.Dialog/AboutDialog.cs:100
+#: ../src/UI.Dialog/AboutDialog.cs:105
 msgid "F-Spot Website"
 msgstr "F-Spots webbplats"
 
@@ -3611,10 +3619,6 @@ msgstr "Skapa ny _tagg..."
 #: ../src/ui/main_window.ui.h:9
 msgid "Create _New Version..."
 msgstr "Skapa _ny version..."
-
-#: ../src/ui/main_window.ui.h:10
-msgid "F-Spot"
-msgstr "F-Spot"
 
 #: ../src/ui/main_window.ui.h:11
 msgid "Fin_d"
@@ -3949,35 +3953,37 @@ msgstr "Filstorlek"
 msgid "Rating"
 msgstr "Betyg"
 
-#: ../src/Widgets/InfoBox.cs:409
-#: ../src/Widgets/InfoBox.cs:432
-#: ../src/Widgets/InfoBox.cs:442
-#: ../src/Widgets/InfoBox.cs:451
-msgid "(Unknown)"
-msgstr "(Okänt)"
-
-#: ../src/Widgets/InfoBox.cs:419
+#: ../src/Widgets/InfoBox.cs:389
+#: ../src/Widgets/InfoBox.cs:397
+#: ../src/Widgets/InfoBox.cs:427
 msgid "(wrong format)"
 msgstr "(felaktigt format)"
 
-#: ../src/Widgets/InfoBox.cs:552
+#: ../src/Widgets/InfoBox.cs:417
+#: ../src/Widgets/InfoBox.cs:440
+#: ../src/Widgets/InfoBox.cs:450
+#: ../src/Widgets/InfoBox.cs:459
+msgid "(Unknown)"
+msgstr "(Okänt)"
+
+#: ../src/Widgets/InfoBox.cs:560
 #, csharp-format
 msgid "(One Edit)"
 msgid_plural "({0} Edits)"
 msgstr[0] "(En redigering)"
 msgstr[1] "({0} redigeringar)"
 
-#: ../src/Widgets/InfoBox.cs:566
+#: ../src/Widgets/InfoBox.cs:574
 msgid "(File read error)"
 msgstr "(Filläsningsfel)"
 
-#: ../src/Widgets/InfoBox.cs:611
+#: ../src/Widgets/InfoBox.cs:619
 #, csharp-format
 msgid "{0} Photos"
 msgstr "{0} foton"
 
 #. Note for translators: {0} is a date, {1} and {2} are times.
-#: ../src/Widgets/InfoBox.cs:631
+#: ../src/Widgets/InfoBox.cs:639
 #, csharp-format
 msgid ""
 "On {0} between \n"
@@ -3986,7 +3992,7 @@ msgstr ""
 "Den {0} mellan \n"
 "{1} och {2}"
 
-#: ../src/Widgets/InfoBox.cs:636
+#: ../src/Widgets/InfoBox.cs:644
 #, csharp-format
 msgid ""
 "Between {0} \n"
@@ -3995,35 +4001,35 @@ msgstr ""
 "Mellan {0} \n"
 "och {1}"
 
-#: ../src/Widgets/InfoBox.cs:663
+#: ../src/Widgets/InfoBox.cs:671
 msgid "(At least one File not found)"
 msgstr "(Minst en fil hittades inte)"
 
-#: ../src/Widgets/InfoBox.cs:780
+#: ../src/Widgets/InfoBox.cs:788
 msgid "Show Photo Name"
 msgstr "Visa Fotonamn"
 
-#: ../src/Widgets/InfoBox.cs:789
+#: ../src/Widgets/InfoBox.cs:797
 msgid "Show Date"
 msgstr "Visa Datum"
 
-#: ../src/Widgets/InfoBox.cs:798
+#: ../src/Widgets/InfoBox.cs:806
 msgid "Show Size"
 msgstr "Visa Storlek"
 
-#: ../src/Widgets/InfoBox.cs:807
+#: ../src/Widgets/InfoBox.cs:815
 msgid "Show Exposure"
 msgstr "Visa Exponering"
 
-#: ../src/Widgets/InfoBox.cs:816
+#: ../src/Widgets/InfoBox.cs:824
 msgid "Show Focal Length"
 msgstr "Visa Brännvidd"
 
-#: ../src/Widgets/InfoBox.cs:825
+#: ../src/Widgets/InfoBox.cs:833
 msgid "Show Camera"
 msgstr "Visa Kamera"
 
-#: ../src/Widgets/InfoBox.cs:834
+#: ../src/Widgets/InfoBox.cs:842
 msgid "Show File Size"
 msgstr "Visa Filstorlek"
 
