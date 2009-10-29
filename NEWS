@@ -1,3 +1,14 @@
+f-spot 0.6.1.4 - Oct 29 2009 - Dedication
+-----------------------------------------
+- bugfix release for 0.6.x branch
+ - keep sorting on startup (bgo #598714) (Lorenzo)
+ - fix a NRE on LastRollDialog (bgo #598009) (Jordi Mas)
+ - fix the toolbar 2.28-ification (bgo #591421) (Michael Monreal)
+ - accept --sync as comandline parameter
+ - avoid crashing on AdjustTimeDialog (bgo #591402)
+ - allow more than 60 pictures per Facebook albums
+ - backported translations
+
 f-spot 0.6.1.3 - Sep 28 2009 - Bare Feet In The Grass
 -----------------------------------------------------
 - bugfix release for 0.6.x branch
