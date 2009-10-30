@@ -213,9 +213,12 @@ namespace FSpot.Widgets
 
 			Destroyed += HandleDestroyed;
 
-			AddEvents ((int) EventMask.KeyPressMask
-			| (int) EventMask.KeyReleaseMask
-			| (int) EventMask.PointerMotionMask);
+			AddEvents (
+				(int) EventMask.KeyPressMask
+				| (int) EventMask.KeyReleaseMask
+				| (int) EventMask.PointerMotionMask
+				| (int) EventMask.ButtonPressMask
+				| (int) EventMask.ButtonReleaseMask);
 
 			CanFocus = true;
 
