@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: bn_IN\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=f-spot&component=General\n"
 "POT-Creation-Date: 2009-10-13 20:41+0000\n"
-"PO-Revision-Date: 2009-10-29 15:36+0530\n"
+"PO-Revision-Date: 2009-10-30 19:09+0530\n"
 "Last-Translator: Runa Bhattacharjee <runab@redhat.com>\n"
 "Language-Team: Bengali INDIA <anubad@lists.ankur.org.in>\n"
 "MIME-Version: 1.0\n"
@@ -75,7 +75,7 @@ msgstr "কপি করা হয়েছে..."
 
 #: ../extensions/Exporters/CDExport/CDExport.ui.h:1
 msgid "<b><i>There is some previously scheduled items to write</i></b>"
-msgstr ""
+msgstr "<b><i>লেখঅর উদ্দেশ্যে পূর্বেই কিছু সামগ্রী নির্ধারণ করা হয়েছে</i></b>"
 
 #: ../extensions/Exporters/CDExport/CDExport.ui.h:2
 #| msgid "<b>Photos</b>"
@@ -88,7 +88,7 @@ msgstr "<b>বার্ন করার উদ্দেশ্যে ছবি</b
 #: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:5
 #: ../src/f-spot.glade.h:28
 msgid "Autorotate"
-msgstr ""
+msgstr "স্বয়ংক্রিয় আবর্তন"
 
 #: ../extensions/Exporters/CDExport/CDExport.ui.h:4
 #| msgid "_Create"
@@ -963,7 +963,7 @@ msgstr "অ্যালবামের শিরোনাম: (_A)"
 
 #: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:17
 msgid "_Autorotate"
-msgstr ""
+msgstr "স্বয়ংক্রিয় আবর্তন (_A)"
 
 #: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:18
 msgid "_Captcha:"
@@ -1086,7 +1086,7 @@ msgstr "বন্ধ করা হয়েছে"
 
 #: ../extensions/Tools/HashJob/HashJob.addin.xml.h:1
 msgid "Hash for Duplicates"
-msgstr ""
+msgstr "প্রতিলিপির ক্ষেত্রে Hash করা হবে"
 
 #: ../extensions/Tools/LiveWebGallery/GalleryRequestHandler.cs:107
 #| msgid "(No Gallery)"
@@ -1241,6 +1241,11 @@ msgid ""
 "\"Everything\" will import everything, creating duplicates if you already "
 "imported from that database.</i></small>"
 msgstr ""
+"<small><i>নির্বাচিত ডাটাবেস থেকে কি ইম্পোর্ট করা হবে তা নির্বাচন করুন।\n"
+"\"New Rolls Only\" প্রয়োগ করা সুবিধাজনক কারণ এর ফলে পূর্ববর্তী কোনো সময়ে "
+"ইম্পোর্ট করা ফটো পুনরায় ইম্পোর্ট করা হবে না।\n"
+"\"A Single Import Roll\" বাছাই করা হলে, একত্রিত করার উদ্দেশ্যে একটি রোল নির্বাচন করা যাবে।\n"
+"\"Everything\" সহযোগে সবকিছু ইম্পোর্ট করা হবে, এবং পূর্বে ইম্পোর্ট করা হলে প্রতিলিপি নির্মিত হবে।</i></small>"
 
 #: ../extensions/Tools/MergeDb/MergeDb.glade.h:6
 msgid ""
@@ -1295,10 +1300,12 @@ msgid ""
 "<big>The database refers to files contained in the <b>{0}</b> folder.\n"
 " Please select that folder so I can do the mapping.</big>"
 msgstr ""
+"<big><b>{0}</b> ফোল্ডারের মধ্যে উপস্থিত ফাইলগুলি ডাটাবেস দ্বারা নির্দেশ করা হয়।\n"
+" ম্যাপিং করার উদ্দেশ্যে অনুগ্রহ করে এই ফোল্ডারটি নির্বাচন করুন।</big>"
 
 #: ../extensions/Tools/ScreensaverConfig/ScreensaverConfig.addin.xml.h:1
 msgid "Configure Screensaver"
-msgstr ""
+msgstr "স্ক্রিন-সেভার কনফিগার করুন"
 
 #: ../extensions/Tools/ScreensaverConfig/ScreensaverConfigDialog.ui.h:1
 #: ../src/UI.Dialog/DateRangeDialog.cs:129
@@ -1307,32 +1314,30 @@ msgstr "সকল ছবি"
 
 #: ../extensions/Tools/ScreensaverConfig/ScreensaverConfigDialog.ui.h:2
 msgid "Delay:"
-msgstr ""
+msgstr "বিলম্ব:"
 
 #: ../extensions/Tools/ScreensaverConfig/ScreensaverConfigDialog.ui.h:3
 msgid "Display:"
-msgstr ""
+msgstr "প্রদর্শন:"
 
 #: ../extensions/Tools/ScreensaverConfig/ScreensaverConfigDialog.ui.h:4
 msgid "Images tagged with:"
-msgstr ""
+msgstr "চিহ্নিত ট্যাগসহ ছবি:"
 
 #: ../extensions/Tools/ScreensaverConfig/ScreensaverConfigDialog.ui.h:5
 msgid "Make F-Spot my screensaver"
-msgstr ""
+msgstr "F-Spot-কে স্ক্রিন-সেভার রূপে ধার্য করা হবে"
 
 #: ../extensions/Tools/ScreensaverConfig/ScreensaverConfigDialog.ui.h:6
-#, fuzzy
 #| msgid "Planar Configuration"
 msgid "Screensaver Configuration"
-msgstr "Planar কনফিগারেশন"
+msgstr "স্ক্রিন-সেভার কনফিগারেশন"
 
 #: ../f-spot.desktop.in.in.h:1 ../f-spot-import.desktop.in.in.h:1
 #: ../f-spot-view.desktop.in.in.h:1 ../src/ui/main_window.ui.h:10
-#, fuzzy
 #| msgid "F-Spot View"
 msgid "F-Spot"
-msgstr "F-Spot প্রদর্শন"
+msgstr "F-Spot"
 
 #: ../f-spot.desktop.in.in.h:2 ../f-spot-import.desktop.in.in.h:2
 msgid "F-Spot Photo Manager"
@@ -1771,11 +1776,11 @@ msgstr "স্বয়ংক্রিয় রং নির্ধারণ"
 
 #: ../src/Editors/ColorEditor.cs:38
 msgid "Adjust Colors"
-msgstr ""
+msgstr "রং পরিবর্তন করুন"
 
 #: ../src/Editors/ColorEditor.cs:41
 msgid "Adjust"
-msgstr ""
+msgstr "পরিবর্তন করুন"
 
 #: ../src/Editors/CropEditor.cs:35
 msgid "4 x 3 (Book)"
@@ -1795,15 +1800,15 @@ msgstr "৮ x ১০"
 
 #: ../src/Editors/CropEditor.cs:39
 msgid "Square"
-msgstr ""
+msgstr "চতুর্ভুজ"
 
 #: ../src/Editors/CropEditor.cs:42
 msgid "Crop"
-msgstr ""
+msgstr "ছাঁটাই করুন"
 
 #: ../src/Editors/CropEditor.cs:73
 msgid "Select the area that needs cropping."
-msgstr ""
+msgstr "ছাঁটাই করার উদ্দেশ্যে প্রয়োজনীয় ক্ষেত্র নির্বাচন করুন।"
 
 #: ../src/Editors/CropEditor.cs:98
 msgid "No Constraint"
@@ -1819,7 +1824,7 @@ msgstr "স্বনির্ধারিত অনুপাত..."
 
 #: ../src/Editors/DesaturateEditor.cs:17
 msgid "Desaturate"
-msgstr ""
+msgstr "ডি-স্যাচুরেট"
 
 #: ../src/Editors/RedEyeEditor.cs:19
 msgid "Red-eye Reduction"
@@ -1843,7 +1848,7 @@ msgstr "হালকা ফোকাস"
 
 #: ../src/Editors/TiltEditor.cs:28
 msgid "Straighten"
-msgstr ""
+msgstr "সোজা করুন"
 
 #: ../src/FileImportBackend.cs:288
 msgid "Import error"
@@ -1873,7 +1878,7 @@ msgstr "এক্সপোর্টের গন্তব্যস্থল"
 
 #: ../src/FSpot.addin.xml.h:3
 msgid "Open _With"
-msgstr ""
+msgstr "চিহ্নিত বস্তু সহযোগে খুলুন (_W)"
 
 #: ../src/FSpot.addin.xml.h:4 ../src/ui/main_window.ui.h:15
 msgid "Rem_ove Tag"
@@ -1939,7 +1944,7 @@ msgstr "<b>সংশোধন (_r)</b>"
 
 #: ../src/f-spot.glade.h:13
 msgid "<b>Image Interpolation</b>"
-msgstr ""
+msgstr "<b>ছবির প্রক্ষেপণ</b>"
 
 #: ../src/f-spot.glade.h:15
 msgid "<b>Size</b>"
@@ -1966,7 +1971,7 @@ msgid ""
 "<small><i>Enable this to allow interpolation on zoomed images. You shouldn't "
 "disable this for viewing photos, but disabling the interpolation could be "
 "usefull in icon design.</i></small>"
-msgstr ""
+msgstr "<small><i>বড় করে প্রদর্শিত ছবিগুলির ক্ষেত্রে প্রক্ষেপণ সক্রিয় করা হবে। ছবি প্রদর্শনের জন্য এটি নিষ্ক্রিয় না করা উচিত, কিন্তু আইকনের বিন্যাসের ক্ষেত্রে প্রক্ষেপণ নিষ্ক্রিয় করা সুবিধাজনক হতে পারে।</i></small>"
 
 #: ../src/f-spot.glade.h:22
 msgid ""
@@ -1974,7 +1979,7 @@ msgid ""
 "option has no effect on photos, but setting this as check pattern or custom "
 "color could be usefull when viewing icons or other artworks with transparent "
 "parts.</i></small>"
-msgstr ""
+msgstr "<small><i>ছবির স্বচ্ছ অংশগুলি প্রদর্শনের পদ্ধতি নির্বাচন করা যাবে। এই বিকল্পের প্রয়োগের ফলে, মূল ফটোর মধ্যে কোনো প্রভাব পড়বে না। কিন্তু এই বৈশিষ্ট্যে ক্ষেত্রে চৌখুপ্পি বিন্যাস অথবা স্বনির্ধারিত রং নির্বাচন করা হলে আইকন অথবা স্বচ্ছ অংশ বিশিষ্ট ছবি প্রদর্শনে সুবিধা হবে।</i></small>"
 
 #: ../src/f-spot.glade.h:23
 msgid "As _background"
@@ -1986,7 +1991,7 @@ msgstr "স্বনির্ধারিত রং রূপ: (_c)"
 
 #: ../src/f-spot.glade.h:25
 msgid "As check _pattern"
-msgstr ""
+msgstr "চৌখুপ্পি বিন্যাসে (_p)"
 
 #: ../src/f-spot.glade.h:26
 msgid "Attach Tags:"
@@ -2034,7 +2039,7 @@ msgstr "ফাইলের নাম প্রদর্শন করা হব�
 
 #: ../src/f-spot.glade.h:38
 msgid "Display only those photos that were imported in specified Rolls."
-msgstr ""
+msgstr "সুনির্দিষ্ট রোলের মধ্যে ইম্পোর্ট করা ফটোগুলি শুধুমাত্র প্রদর্শন করা হবে।"
 
 #: ../src/f-spot.glade.h:39
 msgid "Do not send a mail"
@@ -2062,7 +2067,7 @@ msgstr "F-Spot প্রদর্শন"
 
 #: ../src/f-spot.glade.h:47
 msgid "Filter on selected rolls"
-msgstr ""
+msgstr "নির্বাচিত রোল অনুযায়ী ফিল্টার করা হবে"
 
 #: ../src/f-spot.glade.h:48
 msgid "G_allery:"
@@ -2188,12 +2193,12 @@ msgstr ""
 
 #: ../src/f-spot.glade.h:82
 msgid "Strip image _metadata"
-msgstr ""
+msgstr "ছবির মিটাডাটা ছাঁটাই করা হবে (_m)"
 
 #. Note for translators: meant as Temperature
 #: ../src/f-spot.glade.h:84
 msgid "Te_mp:"
-msgstr ""
+msgstr "তাপমাত্রা: (_m)"
 
 #: ../src/f-spot.glade.h:85
 msgid "Tiny"
@@ -2257,7 +2262,7 @@ msgstr "হিউ: (_H)"
 
 #: ../src/f-spot.glade.h:104
 msgid "_Interpolate image on zoom"
-msgstr ""
+msgstr "বড় মাপে প্রদর্শনকালে প্রক্ষেপণ করা হবে (_I"
 
 #: ../src/f-spot.glade.h:105
 msgid "_New Window"
@@ -2277,7 +2282,7 @@ msgstr "ফটো (_P)"
 
 #: ../src/f-spot.glade.h:110
 msgid "_Saturation:"
-msgstr ""
+msgstr "স্যাচুরেশন: (_S)"
 
 #: ../src/f-spot.glade.h:111
 msgid "_Scale photos to no larger than: "
@@ -2289,7 +2294,7 @@ msgstr "স্লাইড-শো (_S)"
 
 #: ../src/f-spot.glade.h:113
 msgid "_Strip metadata"
-msgstr ""
+msgstr "মিটাডাটা ছাঁটাই করা হবে (_S)"
 
 #: ../src/f-spot.glade.h:114 ../src/UI.Dialog/ui/EditTagDialog.ui.h:6
 msgid "_Tag Name:"
@@ -2297,7 +2302,7 @@ msgstr "ট্যাগের নাম: (_T)"
 
 #: ../src/f-spot.glade.h:115
 msgid "_Tint:"
-msgstr ""
+msgstr "বর্ণাভা: (_T)"
 
 #: ../src/f-spot.glade.h:116
 msgid "_Toolbar"
@@ -2377,7 +2382,7 @@ msgstr "অতিরিক্ত"
 
 #: ../src/GroupSelector.cs:517 ../src/ui/main_window.ui.h:34
 msgid "_Clear Date Range"
-msgstr ""
+msgstr "তারিখের সীমা মুছে ফেলা হবে (_C)"
 
 #: ../src/Imaging/Exif.cs:228
 msgid "Image Directory"
@@ -2433,7 +2438,7 @@ msgstr "স্বতন্ত্র সংখ্যা"
 
 #: ../src/Imaging/IptcFile.cs:157
 msgid "The envelope handling priority between 1 (most urgent) and 9 (least urgent)"
-msgstr ""
+msgstr "১ (অত্যন্ত জরুরি) থেকে ৯-য়ের (স্বল্প জরুরি) মধ্যে গুরুত্বের মাত্রা নির্দেশকারী খাম"
 
 #: ../src/Imaging/IptcFile.cs:159
 msgid "The year, month and day (CCYYMMDD) the service sent the material"
@@ -2449,7 +2454,7 @@ msgstr "ক্যারেক্টার সেট নির্ধারণ"
 
 #: ../src/Imaging/IptcFile.cs:165
 msgid "External globally unique object identifier"
-msgstr ""
+msgstr "বহিস্থিত গ্লোবাল ইউনিক অবজেক্ট আইডেন্টিফায়ার"
 
 #: ../src/Imaging/IptcFile.cs:170
 msgid "Abstract Relationship Method (ARM) identifier"
@@ -2465,11 +2470,11 @@ msgstr "এই অ্যাপ্লিকেশন রেকর্ড দ্ব
 
 #: ../src/Imaging/IptcFile.cs:177
 msgid "Object type reference"
-msgstr ""
+msgstr "অবজেক্টের ধরনের রেফারেন্স"
 
 #: ../src/Imaging/IptcFile.cs:182
 msgid "Object attribute reference"
-msgstr ""
+msgstr "অবজেক্টের অ্যাট্রিবিউটের রেফারেন্স"
 
 #: ../src/Imaging/IptcFile.cs:188 ../src/Imaging/IptcFile.cs:192
 msgid "Object name"
@@ -2481,7 +2486,7 @@ msgstr "উপলব্ধকারী অনুযায়ী objectdata-র অ�
 
 #: ../src/Imaging/IptcFile.cs:194
 msgid "Location within a city or area where the object originates"
-msgstr ""
+msgstr "শহর অথবা অঞ্চলের যে অবস্থান থেকে বস্তুটির উৎপত্তি হচ্ছে"
 
 #: ../src/Imaging/IptcFile.cs:197
 msgid "Name of the city the content is focussing on"
@@ -2509,21 +2514,21 @@ msgstr "অবজেক্ট উপলব্ধকারী"
 
 #: ../src/Imaging/IptcFile.cs:215
 msgid "The title of the author or creator"
-msgstr ""
+msgstr "লেখক অথবা নির্মাতার শিরোনাম"
 
 #: ../src/Imaging/IptcFile.cs:218
 msgid ""
 "The person involved in writing, editing or correcting the object data or "
 "caption/abstract"
-msgstr ""
+msgstr "বস্তুর তথ্য অথবা শিরোনাম/সারসংক্ষেপ লেখা, সম্পাদনা অথবা সংশোধনের কাজের সাথে যুক্ত ব্যক্তি"
 
 #: ../src/Imaging/IptcFile.cs:222
 msgid "Headline of the content"
-msgstr ""
+msgstr "তথ্যের শিরোনাম"
 
 #: ../src/Imaging/IptcFile.cs:225
 msgid "Instructions from the creator to the receiver not covered by other fields"
-msgstr ""
+msgstr "নির্মাতা থেকে প্রাপকের উদ্দেশ্যে উপলব্ধ নির্দেশগুলি অন্য কোনো ক্ষেত্রের এক্তিয়ারভুক্ত নয়"
 
 #: ../src/Imaging/IptcFile.cs:228
 msgid "Intellectual genre of the object"
@@ -2742,7 +2747,7 @@ msgid ""
 "If you remove photos from the F-Spot catalog all tag information will be "
 "lost. The photos remain on your computer and can be imported into F-Spot "
 "again."
-msgstr ""
+msgstr "F-Spot ক্যাটালগ থেকে সকল ফটো সরিয়ে ফেলা হলে ট্যাগ সংক্রান্ত সকল তথ্য হারিয়ে যাবে। ফটোগুলি আপনার কম্পিউটারের মধ্যে উপস্থিত থাকবে ও পুনরায় F-Spot-র মধ্যে ইম্পোর্ট করা যাবে।"
 
 #: ../src/MainWindow.cs:2226
 msgid "_Remove from Catalog"
@@ -2814,8 +2819,8 @@ msgstr[1] "নির্বাচিত ট্যাগ অনুসন্ধা�
 #, csharp-format
 msgid "Find Selected Tag _With"
 msgid_plural "Find Selected Tags _With"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "চিহ্নিত বস্তু সহযোগে ট্যাগ অনুসন্ধান করুন (_W)"
+msgstr[1] "চিহ্নিত বস্তু সহযোগে ট্যাগ অনুসন্ধান করুন (_W)"
 
 #: ../src/MainWindow.cs:2819
 msgid "Create New Version?"
@@ -2831,8 +2836,8 @@ msgid ""
 msgid_plural ""
 "Before launching {1}, should F-Spot create new versions of the selected "
 "photos to preserve the originals?"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{1} আরম্ভ করার পূর্বে, নির্বাচিত ফটোটির মূল সংস্করণ অক্ষত রাখার উদ্দেশ্যে F-Spot দ্বারা এটির একটি নতুন সংস্করণ নির্মাণ করা হবে কি?"
+msgstr[1] "{1} আরম্ভ করার পূর্বে, নির্বাচিত ফটোগুলির মূল সংস্করণ অক্ষত রাখার উদ্দেশ্যে F-Spot দ্বারা এটির একটি নতুন সংস্করণ নির্মাণ করা হবে কি?"
 
 #: ../src/MainWindow.cs:2843
 msgid "XCF version"
@@ -2868,7 +2873,7 @@ msgstr "দিশা"
 
 #: ../src/MetadataStore.cs:29
 msgid "Photometric Interpretation"
-msgstr ""
+msgstr "ফটোমেট্রিক ইন্টারপ্রিটেশন"
 
 #: ../src/MetadataStore.cs:31
 msgid "Resolution Unit"
@@ -2900,11 +2905,11 @@ msgstr "আলোর উৎস"
 
 #: ../src/MetadataStore.cs:45
 msgid "Sensing Method"
-msgstr ""
+msgstr "সংবেদনশিলতার পদ্ধতি"
 
 #: ../src/MetadataStore.cs:47
 msgid "Color Space"
-msgstr ""
+msgstr "রংয়ের ক্ষেত্র"
 
 #: ../src/MetadataStore.cs:49
 msgid "White Balance"
@@ -2912,7 +2917,7 @@ msgstr "সাদা রংয়ের ভারসাম্য"
 
 #: ../src/MetadataStore.cs:51
 msgid "Focal Plane Resolution Unit"
-msgstr ""
+msgstr "ফোকাল প্লেইন রেসোলিউশনের মানক"
 
 #: ../src/MetadataStore.cs:53
 msgid "File Source Type"
@@ -2924,7 +2929,7 @@ msgstr ""
 
 #: ../src/MetadataStore.cs:57
 msgid "Gain Control"
-msgstr ""
+msgstr "গেইন নিয়ন্ত্রণ"
 
 #: ../src/MetadataStore.cs:59
 msgid "Contrast"
@@ -2936,7 +2941,7 @@ msgstr "স্যাচুরেশন"
 
 #: ../src/MetadataStore.cs:63
 msgid "Sharpness"
-msgstr ""
+msgstr "তীক্ষ্ণতা"
 
 #: ../src/MetadataStore.cs:65
 msgid "Scene Type"
@@ -2971,7 +2976,7 @@ msgstr "নতুন সংস্করণ নির্মাণ করতে �
 #: ../src/PhotoVersionCommands.cs:111
 #, csharp-format
 msgid "Received exception \"{0}\". Unable to create version \"{1}\""
-msgstr ""
+msgstr "\"{0}\" একসেপশন প্রাপ্ত হয়েছে। \"{1}\" সংস্করণ নির্মাণ করতে ব্যর্থ"
 
 #: ../src/PhotoVersionCommands.cs:138
 msgid "Really Delete?"
@@ -3045,12 +3050,12 @@ msgstr "ট্যাগবিহীন ফটো"
 
 #: ../src/QueryWidget.cs:71
 msgid "Rated photos"
-msgstr ""
+msgstr "গুণমাপ বিশিষ্ট ফটো"
 
 #. Note for translators: 'Import roll' is no command, it means 'Roll that has been imported'
 #: ../src/QueryWidget.cs:80
 msgid "Import roll"
-msgstr ""
+msgstr "ইম্পোর্ট করা রোল"
 
 #: ../src/QueryWidget.cs:104
 msgid "Clear search"
@@ -3108,8 +3113,8 @@ msgid ""
 msgid_plural ""
 "{0} photos could not be rotated because they are on a read only file system "
 "or media such as a CDROM.  Please check the permissions and try again."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "শুধুমাত্র পাঠযোগ্য কোনো ফাইল-সিস্টেম অথবা মিডিয়া যেমন CDROM-র মধ্যে উপস্থিত থাকার ফলে এই ফটোটি আবর্তন করা সম্ভব হয়নি। অনুগ্রহ করে অনুমতি পরীক্ষা করে পুনরায় প্রচেষ্টা করুন।"
+msgstr[1] "শুধুমাত্র পাঠযোগ্য কোনো ফাইল-সিস্টেম অথবা মিডিয়া যেমন CDROM-র মধ্যে উপস্থিত থাকার ফলে {0}-টি ফটো আবর্তন করা সম্ভব হয়নি। অনুগ্রহ করে অনুমতি পরীক্ষা করে পুনরায় প্রচেষ্টা করুন।"
 
 #: ../src/RotateCommand.cs:271
 #, csharp-format
@@ -3131,12 +3136,12 @@ msgstr "ছবি \"{0}\" এক্সপোর্ট করা হয়েছে"
 
 #: ../src/SendEmail.cs:314
 msgid "Error processing image"
-msgstr ""
+msgstr "ছবি প্রক্রিয়াকরণে ত্রুটি"
 
 #: ../src/SendEmail.cs:315
 #, csharp-format
 msgid "An error occured while processing \"{0}\": {1}"
-msgstr ""
+msgstr "\"{0}\" প্রক্রিয়াকরণে ত্রুটি দেখা দিয়েছে: {1}"
 
 #. Send the mail :)
 #: ../src/SendEmail.cs:330
@@ -3145,11 +3150,11 @@ msgstr "my photos"
 
 #: ../src/Sharpener.cs:72
 msgid "Error saving sharpened photo"
-msgstr ""
+msgstr "তীক্ষ্ণতার মাত্রা বৃদ্ধি করা ফটো সংরক্ষণ করতে ত্রুটি"
 
 #: ../src/Sharpener.cs:102
 msgid "Sharpen"
-msgstr ""
+msgstr "তীক্ষ্ণতা বৃদ্ধি করুন"
 
 #: ../src/Sharpener.cs:112
 msgid "Amount:"
@@ -3157,7 +3162,7 @@ msgstr "পরিমাণ:"
 
 #: ../src/Sharpener.cs:113
 msgid "Radius:"
-msgstr ""
+msgstr "ব্যাসার্ধ:"
 
 #: ../src/Sharpener.cs:114
 msgid "Threshold:"
@@ -3251,8 +3256,8 @@ msgstr "অনুসন্ধান থেকে সরিয়ে ফেলুন
 #, csharp-format
 msgid "Find _With"
 msgid_plural "Find _With"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "চিহ্নিত বস্তু সহযোগে অনুসন্ধান করুন (_W)"
+msgstr[1] "চিহ্নিত বস্তু সহযোগে অনুসন্ধান করুন (_W)"
 
 #: ../src/TagQueryWidget.cs:114
 msgid "All"
@@ -3345,7 +3350,7 @@ msgstr "F-Spot ওয়েব-সাইট"
 #: ../src/UI.Dialog/ui/AdjustTimeDialog.ui.h:10
 #, csharp-format
 msgid "Shift all photos by {0}"
-msgstr ""
+msgstr "প্রত্যেকটি ফটো {0} দ্বারা স্থানান্তর করুন"
 
 #: ../src/UI.Dialog/DateRangeDialog.cs:99
 msgid "Today"
@@ -3402,6 +3407,12 @@ msgid ""
 " with this tag. Please tag a photo as '{0}' and return here\n"
 " to use it as an icon."
 msgstr ""
+"\n"
+"<b>ফটো থেকে</b>\n"
+" এই ট্যাগের জন্য ট্যাগ নির্মাণের উদ্দেশ্যে আপনার লাইব্রেরির কোনো একটি ফটো প্রয়োগ করা যাবে।\n"
+" কিন্তু, প্রথমে এই ট্যাগের সাথে অন্তত একটি ফটো যুক্ত করা আবশ্যক।\n"
+" অনুগ্রহ করে একটি ফটোকে '{0}' রূপে ট্যাগ করুন ও আইকন রূপে সেটি ব্যবহার করার জন্য\n"
+" এইখানে প্রত্যাবর্তন করুন।"
 
 #: ../src/UI.Dialog/EditTagIconDialog.cs:168
 msgid "Unable to load image"
@@ -3469,497 +3480,441 @@ msgstr "পুনঃপ্রচেষ্টা"
 
 #: ../src/UI.Dialog/ui/AdjustTimeDialog.ui.h:1
 msgid "0000:00:00 00:00:00"
-msgstr ""
+msgstr "0000:00:00 00:00:00"
 
 #: ../src/UI.Dialog/ui/AdjustTimeDialog.ui.h:2
 msgid "00:00:00"
-msgstr ""
+msgstr "00:00:00"
 
 #: ../src/UI.Dialog/ui/AdjustTimeDialog.ui.h:3
 msgid "5"
-msgstr ""
+msgstr "৫"
 
 #: ../src/UI.Dialog/ui/AdjustTimeDialog.ui.h:4
-#, fuzzy
 #| msgid "<b>Account</b>"
 msgid "<b>Action</b>"
-msgstr "<b>অ্যাকাউন্ট</b>"
+msgstr "<b>কর্ম</b>"
 
 #: ../src/UI.Dialog/ui/AdjustTimeDialog.ui.h:6
-#, fuzzy
 #| msgid "<b>Photos</b>"
 msgid "<b>Reference Photo</b>"
-msgstr "<b>ছবি</b>"
+msgstr "<b>রেফারেন্সের ফটো</b>"
 
 #: ../src/UI.Dialog/ui/AdjustTimeDialog.ui.h:7
 msgid "Adjust Time"
-msgstr ""
+msgstr "সময় পরিবর্তন করুন"
 
 #: ../src/UI.Dialog/ui/AdjustTimeDialog.ui.h:8
 msgid "Adjusted date: "
-msgstr ""
+msgstr "পরিবর্তিত তারিখ: "
 
 #: ../src/UI.Dialog/ui/AdjustTimeDialog.ui.h:9
-#, fuzzy
 #| msgid "More dates"
 msgid "Current date:"
-msgstr "অতিরিক্ত তারিখ"
+msgstr "বর্তমান তারিখ:"
 
 #: ../src/UI.Dialog/ui/AdjustTimeDialog.ui.h:11
-#, fuzzy
 #| msgid "Same as photo"
 msgid "Space all photos by"
-msgstr "ফটোর অনুরূপ"
+msgstr "প্রতিটি ফটোর মধ্যে চিহ্নিত মাপের শূণ্যস্থান রাখা হবে"
 
 #: ../src/UI.Dialog/ui/AdjustTimeDialog.ui.h:12
-#, fuzzy
 #| msgid "Preferences"
 msgid "difference:"
-msgstr "পছন্দসই মান"
+msgstr "ব্যবধান:"
 
 #: ../src/UI.Dialog/ui/AdjustTimeDialog.ui.h:13
-#, fuzzy
 #| msgid "Rotating photo \"{0}\""
 msgid "min. Starting at {0}"
-msgstr "ফটো \"{0}\" ঘোরানো হচ্ছে"
+msgstr "মিনিট। {0} থেকে আরম্ভ"
 
 #: ../src/UI.Dialog/ui/DateRangeDialog.ui.h:1
-#, fuzzy
 #| msgid "<b>Style</b>"
 msgid "<b>End Date</b>"
-msgstr "<b>বিন্যাস</b>"
+msgstr "<b>সমাপ্তির তারিখ</b>"
 
 #: ../src/UI.Dialog/ui/DateRangeDialog.ui.h:2
-#, fuzzy
 #| msgid "<b>Style</b>"
 msgid "<b>Select period</b>"
-msgstr "<b>বিন্যাস</b>"
+msgstr "<b>নির্বাচিত সময়কাল</b>"
 
 #: ../src/UI.Dialog/ui/DateRangeDialog.ui.h:3
-#, fuzzy
 #| msgid "<b>Style</b>"
 msgid "<b>Start Date</b>"
-msgstr "<b>বিন্যাস</b>"
+msgstr "<b>আরম্ভের তারিখ</b>"
 
 #: ../src/UI.Dialog/ui/DateRangeDialog.ui.h:4
 msgid "Cancel, do not change the current timeline. "
-msgstr ""
+msgstr "বাতিল, বর্তমানে নির্ধারিত সময়ের রেখা পরিবর্তন করা হবে না। "
 
 #: ../src/UI.Dialog/ui/DateRangeDialog.ui.h:5
 msgid "Only photos taken within these dates will be displayed."
-msgstr ""
+msgstr "শুধুমাত্র এই তারিখের মধ্যে তোলা ফটোগুলি প্রদর্শন করা হবে।"
 
 #: ../src/UI.Dialog/ui/DateRangeDialog.ui.h:6
 msgid "Set date range"
-msgstr ""
+msgstr "তারিখের সীমা নির্ধারণ করুন"
 
 #: ../src/UI.Dialog/ui/EditTagDialog.ui.h:1
 msgid "<small></small>"
-msgstr ""
+msgstr "<small></small>"
 
 #: ../src/UI.Dialog/ui/EditTagDialog.ui.h:2
-#, fuzzy
 #| msgid "Edit Image"
 msgid "Edit Tag"
-msgstr "ছবি সম্পাদনা"
+msgstr "ট্যাগ সম্পাদনা"
 
 #: ../src/UI.Dialog/ui/EditTagDialog.ui.h:3
-#, fuzzy
 #| msgid "Edit"
 msgid "Edit icon"
-msgstr "সম্পাদনা"
+msgstr "আইকন সম্পাদনা"
 
 #: ../src/UI.Dialog/ui/EditTagDialog.ui.h:5
-#, fuzzy
 #| msgid "_Account:"
 msgid "_Icon:"
-msgstr "অ্যাকাউন্ট: (_A)"
+msgstr "আইকন: (_I)"
 
 #: ../src/UI.Dialog/ui/EditTagIconDialog.ui.h:1
-#, fuzzy
 #| msgid "<b>Photos</b>"
 msgid "<b>From External Photo</b>"
-msgstr "<b>ছবি</b>"
+msgstr "<b>বহিস্থিত ফটো থেকে</b>"
 
 #: ../src/UI.Dialog/ui/EditTagIconDialog.ui.h:2
-#, fuzzy
 #| msgid "<b>Photos</b>"
 msgid "<b>From Photo</b>"
-msgstr "<b>ছবি</b>"
+msgstr "<b>ফটো থেকে</b>"
 
 #: ../src/UI.Dialog/ui/EditTagIconDialog.ui.h:3
-#, fuzzy
 #| msgid "<b>Destination</b>"
 msgid "<b>Predefined icons</b>"
-msgstr "<b>গন্তব্য</b>"
+msgstr "<b>পূর্বনির্ধারিত আইকন</b>"
 
 #: ../src/UI.Dialog/ui/EditTagIconDialog.ui.h:4
-#, fuzzy
 #| msgid "<b>Size</b>"
 msgid "<b>Preview</b>"
-msgstr "<b>মাপ</b>"
+msgstr "<b>পূর্বদৃশ্য</b>"
 
 #: ../src/UI.Dialog/ui/EditTagIconDialog.ui.h:5
 msgid "Design icon from"
-msgstr ""
+msgstr "চিহ্নিত সামগ্রী থেকে আইকনের বিন্যাস নির্মাণ করা হবে"
 
 #: ../src/UI.Dialog/ui/EditTagIconDialog.ui.h:6
-#, fuzzy
 #| msgid "Edit Image"
 msgid "Edit Tag Icon"
-msgstr "ছবি সম্পাদনা"
+msgstr "ট্যাগ আইকন সম্পাদনা"
 
 #: ../src/UI.Dialog/ui/EditTagIconDialog.ui.h:7
 msgid "No _image"
-msgstr ""
+msgstr "কোনো ছবি উপস্থিত নেই (_i)"
 
 #: ../src/UI.Dialog/ui/EditTagIconDialog.ui.h:8
-#, fuzzy
 #| msgid "Photo {0} of {1}"
 msgid "Photo 0 of 0"
-msgstr "ফটো {0}, সর্বমোট {1}"
+msgstr "ফটো 0, সর্বমোট 0"
 
 #: ../src/UI.Dialog/ui/PreferenceDialog.ui.h:1
 msgid "Color profile for display:"
-msgstr ""
+msgstr "প্রদর্শনের জন্য ব্যবহারযোগ্য রংয়ের প্রোফাইল:"
 
 #: ../src/UI.Dialog/ui/PreferenceDialog.ui.h:2
 msgid "Color profile for printing:"
-msgstr ""
+msgstr "প্রিন্ট করার উদ্দেশ্যে ব্যবহৃত রংয়ের প্রোফাইল"
 
 #: ../src/UI.Dialog/ui/PreferenceDialog.ui.h:3
-#, fuzzy
 #| msgid "Preferences"
 msgid "F-Spot Preferences"
-msgstr "পছন্দসই মান"
+msgstr "F-Spot সংক্রান্ত পছন্দ"
 
 #: ../src/UI.Dialog/ui/PreferenceDialog.ui.h:4
 msgid "F-Spot appearance:"
-msgstr ""
+msgstr "F-Spot-র চেহারা:"
 
 #: ../src/UI.Dialog/ui/PreferenceDialog.ui.h:5
 msgid ""
 "Inside the image files when possible\n"
 "<small>Makes them accessible to other image-editing programs.</small>"
 msgstr ""
+"সম্ভব হলে ছবির ফাইলের মধ্যে\n"
+"<small>অন্যান্য ছবি সম্পাদনার প্রোগ্রামের মধ্যে এইগুলি ব্যবহারযোগ্য করা সম্ভব হবে।</small>"
 
 #: ../src/UI.Dialog/ui/PreferenceDialog.ui.h:7
-#, fuzzy
 #| msgid "Select Folder"
 msgid "Select A Folder"
-msgstr "ফোল্ডার নির্বাচন"
+msgstr "একটি ফোল্ডার নির্বাচন করুন"
 
 #: ../src/UI.Dialog/ui/PreferenceDialog.ui.h:8
 msgid "Separately from the image files"
-msgstr ""
+msgstr "ছবির ফাইল থেকে পৃথকভাবে"
 
 #: ../src/UI.Dialog/ui/PreferenceDialog.ui.h:9
 msgid "Store tags and descriptions for photos:"
-msgstr ""
+msgstr "ফটোর ট্যাগ ও বিবরণ সংরক্ষণ করা হবে:"
 
 #: ../src/UI.Dialog/ui/PreferenceDialog.ui.h:10
 msgid "When importing photos, copy them to:"
-msgstr ""
+msgstr "ফটো ইম্পোর্ট করার সময়, চিহ্নিত স্থানে সেগুলি কপি করা হবে:"
 
 #: ../src/UI.Dialog/ui/RatingFilterDialog.ui.h:1
-#, fuzzy
 #| msgid "<b>Destination</b>"
 msgid "<b>Max Rating</b>"
-msgstr "<b>গন্তব্য</b>"
+msgstr "<b>সর্বাধিক গুণমাপ</b>"
 
 #: ../src/UI.Dialog/ui/RatingFilterDialog.ui.h:2
-#, fuzzy
 #| msgid "<b>Destination</b>"
 msgid "<b>Min Rating</b>"
-msgstr "<b>গন্তব্য</b>"
+msgstr "<b>সর্বনিম্ন গুণমাপ</b>"
 
 #: ../src/UI.Dialog/ui/RatingFilterDialog.ui.h:3
 msgid "Set Rating Filter"
-msgstr ""
+msgstr "গুণমাপের ফিল্টার ধার্য করুন"
 
 #: ../src/ui/main_window.ui.h:1
 msgid "Adjust _Time..."
-msgstr ""
+msgstr "সময় পরিবর্তন করুন...(_T)"
 
 #: ../src/ui/main_window.ui.h:2
 msgid "Arrange _by"
-msgstr ""
+msgstr "ক্রমবিন্যাসের সূত্র (_b)"
 
 #: ../src/ui/main_window.ui.h:4
-#, fuzzy
 #| msgid "Date"
 msgid "By _Date"
-msgstr "তারিখ"
+msgstr "তারিখ অনুযায়ী (_D)"
 
 #: ../src/ui/main_window.ui.h:5
 msgid "By _Import Roll"
-msgstr ""
+msgstr "ইম্পোর্ট করা রোল অনুযায়ী (_I)"
 
 #: ../src/ui/main_window.ui.h:6
 msgid "By _Rating"
-msgstr ""
+msgstr "গুণমাপ অনুযায়ী (_R)"
 
 #: ../src/ui/main_window.ui.h:7
-#, fuzzy
 #| msgid "Copy Photo Locat_ion"
 msgid "Copy Locat_ion"
-msgstr "ফটোর অবস্থান কপি করুন (_i)"
+msgstr "অবস্থান কপি করুন (_i)"
 
 #: ../src/ui/main_window.ui.h:8
-#, fuzzy
 #| msgid "Create New Tag..."
 msgid "Create New _Tag..."
-msgstr "নতুন ট্যাগ নির্মাণ করুন..."
+msgstr "নতুন ট্যাগ নির্মাণ করুন...(_T)"
 
 #: ../src/ui/main_window.ui.h:9
-#, fuzzy
 #| msgid "Create New Version"
 msgid "Create _New Version..."
-msgstr "নতুন সংস্করণ নির্মাণ করুন"
+msgstr "নতুন সংস্করণ নির্মাণ করুন...(_N)"
 
 #: ../src/ui/main_window.ui.h:11
-#, fuzzy
 #| msgid "Find"
 #| msgid_plural "Find"
 msgid "Fin_d"
-msgstr "অনুসন্ধান করুন"
+msgstr "অনুসন্ধান করুন (_d)"
 
 #: ../src/ui/main_window.ui.h:12
-#, fuzzy
 #| msgid "Extension"
 msgid "Manage _Extensions"
-msgstr "অতিরিক্ত সামগ্রী"
+msgstr "অতিরিক্ত সামগ্রী পরিচালনা (_E)"
 
 #: ../src/ui/main_window.ui.h:13
-#, fuzzy
 #| msgid "Page Setup"
 msgid "Page Set_up..."
-msgstr "পৃষ্ঠা প্রস্তুতি"
+msgstr "পৃষ্ঠা প্রস্তুতি...(_u)"
 
 #: ../src/ui/main_window.ui.h:14
 msgid "Re_fresh Thumbnail"
-msgstr ""
+msgstr "থাম্ব-নেইল নতুন করে প্রদর্শন করা হবে (_f)"
 
 #: ../src/ui/main_window.ui.h:19
-#, fuzzy
 #| msgid "Select Folder"
 msgid "Select _None"
-msgstr "ফোল্ডার নির্বাচন"
+msgstr "কিছু নির্বাচন করা হবে না (_N)"
 
 #: ../src/ui/main_window.ui.h:20
 msgid "Send by _Mail..."
-msgstr ""
+msgstr "মেইল দ্বারা পাঠানো হবে...(_M)"
 
 #: ../src/ui/main_window.ui.h:22
-#, fuzzy
 #| msgid "Side _pane"
 msgid "Side_bar"
-msgstr "পার্শ্ববর্তী পেইন (_p)"
+msgstr "সাইড-বার (_b)"
 
 #: ../src/ui/main_window.ui.h:23
-#, fuzzy
 #| msgid "Tags"
 msgid "T_ags"
-msgstr "ট্যাগ"
+msgstr "ট্যাগ (_a)"
 
 #: ../src/ui/main_window.ui.h:25
-#, fuzzy
 #| msgid "Thumbnail Directory"
 msgid "Thumbnail _elements"
-msgstr "থাম্ব-নেইল ডিরেক্টরি"
+msgstr "থাম্ব-নেইলের বস্তু (_e)"
 
 #: ../src/ui/main_window.ui.h:26
-#, fuzzy
 #| msgid "_Toolbar"
 msgid "Too_lbar"
-msgstr "টুল-বার (_T)"
+msgstr "টুল-বার (_l)"
 
 #: ../src/ui/main_window.ui.h:27
-#, fuzzy
 #| msgid "_View"
 msgid "View"
-msgstr "প্রদর্শন (_V)"
+msgstr "প্রদর্শন"
 
 #: ../src/ui/main_window.ui.h:33
-#, fuzzy
 #| msgid "Attach Tag to Selection"
 #| msgid_plural "Attach Tags to Selection"
 msgid "_Attach Tag to Selection"
-msgstr "নির্বাচনের মধ্যে ট্যাগ সংযুক্ত করুন"
+msgstr "নির্বাচনের মধ্যে ট্যাগ সংযুক্ত করুন (_A)"
 
 #: ../src/ui/main_window.ui.h:35
 msgid "_Clear Rating Filter"
-msgstr ""
+msgstr "গুণমাপের ফিল্টার পরিশ্রুত করুন (_C)"
 
 #: ../src/ui/main_window.ui.h:36
 msgid "_Clear Roll Filter"
-msgstr ""
+msgstr "রোল ফিল্টার পরিশ্রুত করুন (_C)"
 
 #: ../src/ui/main_window.ui.h:38
-#, fuzzy
 #| msgid "Comment:"
 msgid "_Components"
-msgstr "মন্তব্য:"
+msgstr "অন্তর্ভুক্ত সামগ্রী (_C)"
 
 #: ../src/ui/main_window.ui.h:39
 msgid "_Contents"
-msgstr ""
+msgstr "সূচি (_C)"
 
 #: ../src/ui/main_window.ui.h:40
-#, fuzzy
 #| msgid "Date"
 msgid "_Dates"
-msgstr "তারিখ"
+msgstr "তারিখ (_D)"
 
 #: ../src/ui/main_window.ui.h:42
-#, fuzzy
 #| msgid "Merge the selected tag"
 #| msgid_plural "Merge the {0} selected tags?"
 msgid "_Delete Selected Tag"
-msgstr "নির্বাচিত ট্যাগ একত্রিত করুন"
+msgstr "নির্বাচিত ট্যাগ মুছে ফেলুন (_D)"
 
 #: ../src/ui/main_window.ui.h:43
-#, fuzzy
 #| msgid "Rename Version"
 msgid "_Delete Version"
-msgstr "সংস্করণের নাম পরিবর্তন করুন"
+msgstr "সংস্করণ মুছে ফেলুন (_D)"
 
 #: ../src/ui/main_window.ui.h:45
-#, fuzzy
 #| msgid "Edit Selected Tag..."
 msgid "_Edit Selected Tag..."
-msgstr "নির্বাচিত ট্যাগ সম্পাদনা করুন..."
+msgstr "নির্বাচিত ট্যাগ সম্পাদনা করুন...(_E)"
 
 #: ../src/ui/main_window.ui.h:46
-#, fuzzy
 #| msgid "Export to"
 msgid "_Export to"
-msgstr "এক্সপোর্টের গন্তব্যস্থল"
+msgstr "এক্সপোর্টের গন্তব্যস্থল (_E)"
 
 #: ../src/ui/main_window.ui.h:47
 msgid "_Filmstrip"
-msgstr ""
+msgstr "ফিল্মের পাতা (_F)"
 
 #: ../src/ui/main_window.ui.h:50
-#, fuzzy
 #| msgid "Hidden"
 msgid "_Hidden"
-msgstr "আড়াল করা"
+msgstr "আড়াল করা (_H)"
 
 #: ../src/ui/main_window.ui.h:51
-#, fuzzy
 #| msgid "Import"
 msgid "_Import..."
-msgstr "ইম্পোর্ট করুন"
+msgstr "ইম্পোর্ট করুন...(_I)"
 
 #: ../src/ui/main_window.ui.h:52
-#, fuzzy
 #| msgid "Large"
 msgid "_Large"
-msgstr "বড়"
+msgstr "বড় (_L)"
 
 #: ../src/ui/main_window.ui.h:53
 msgid "_Last Import Roll"
-msgstr ""
+msgstr "ইম্পোর্ট করা সর্বশেষ রোল (_L)"
 
 #: ../src/ui/main_window.ui.h:54
 msgid "_Loupe"
-msgstr ""
+msgstr "ঘষা কাঁচ (_L)"
 
 #: ../src/ui/main_window.ui.h:55
-#, fuzzy
 #| msgid "Medium"
 msgid "_Medium"
-msgstr "মাঝারি"
+msgstr "মাঝারি (_M)"
 
 #: ../src/ui/main_window.ui.h:57
-#, fuzzy
 #| msgid "_Edit"
 msgid "_Quit"
-msgstr "সম্পাদনা (_E)"
+msgstr "প্রস্থান (_Q)"
 
 #: ../src/ui/main_window.ui.h:58
-#, fuzzy
 #| msgid "Ratio"
 msgid "_Ratings"
-msgstr "অনুপাত"
+msgstr "গুণমাপ (_R)"
 
 #: ../src/ui/main_window.ui.h:60
-#, fuzzy
 #| msgid "Remove Tag From Selection"
 #| msgid_plural "Remove Tags From Selection"
 msgid "_Remove Tag From Selection"
-msgstr "নির্বাচন থেকে ট্যাগ সরিয়ে ফেলুন"
+msgstr "নির্বাচন থেকে ট্যাগ সরিয়ে ফেলুন (_R)"
 
 #: ../src/ui/main_window.ui.h:61
-#, fuzzy
 #| msgid "Rename Version"
 msgid "_Rename Version"
-msgstr "সংস্করণের নাম পরিবর্তন করুন"
+msgstr "সংস্করণের নাম পরিবর্তন করুন (_R)"
 
 #: ../src/ui/main_window.ui.h:62
 msgid "_Reverse Order"
-msgstr ""
+msgstr "বিপরীত অনুক্রম (_R)"
 
 #: ../src/ui/main_window.ui.h:63
-#, fuzzy
 #| msgid "Select Export Folder"
 msgid "_Select Import Rolls..."
-msgstr "এক্সপোর্টের ফোল্ডার নির্বাচন করুন"
+msgstr "ইম্পোর্ট রোল নির্বাচন করুন...(_S)"
 
 #: ../src/ui/main_window.ui.h:64
-#, fuzzy
 #| msgid "Select a Tag..."
 msgid "_Set Date Range..."
-msgstr "একটি ট্যাগ নির্বাচন করুন..."
+msgstr "তারিখের সীমা নির্ধারণ করুন...(_S)"
 
 #: ../src/ui/main_window.ui.h:65
 msgid "_Set Rating filter..."
-msgstr ""
+msgstr "গুণমাপের ফিল্টার নির্ধারণ করুন... (_S)"
 
 #: ../src/ui/main_window.ui.h:66
 msgid "_Sharpen..."
-msgstr ""
+msgstr "তীক্ষ্ণতা...(_S)"
 
 #: ../src/ui/main_window.ui.h:68
-#, fuzzy
 #| msgid "Small"
 msgid "_Small"
-msgstr "ছোট"
+msgstr "ছোট (_S)"
 
 #: ../src/ui/main_window.ui.h:69
 msgid "_Tag Icons"
-msgstr ""
+msgstr "ট্যাগের আইকন (_T)"
 
 #: ../src/ui/main_window.ui.h:70
-#, fuzzy
 #| msgid "Tags"
 msgid "_Tags"
-msgstr "ট্যাগ"
+msgstr "ট্যাগ (_T)"
 
 #: ../src/ui/main_window.ui.h:71
-#, fuzzy
 #| msgid "_Title:"
 msgid "_Timeline"
-msgstr "শিরোনাম: (_T)"
+msgstr "সময়ের রেখার (_T)"
 
 #: ../src/ui/main_window.ui.h:72
-#, fuzzy
 #| msgid "Tools"
 msgid "_Tools"
-msgstr "সরঞ্জাম"
+msgstr "সরঞ্জাম (_T)"
 
 #: ../src/ui/main_window.ui.h:73
-#, fuzzy
 #| msgid "Untagged photos"
 msgid "_Untagged Photos"
-msgstr "ট্যাগবিহীন ফটো"
+msgstr "ট্যাগবিহীন ফটো (_U)"
 
 #: ../src/ui/main_window.ui.h:74
-#, fuzzy
 #| msgid "Version"
 msgid "_Version"
-msgstr "সংস্করণ"
+msgstr "সংস্করণ (_V)"
 
 #: ../src/Updater.cs:616
 msgid "Updating F-Spot Database"
@@ -4003,7 +3958,7 @@ msgstr "পুনরাবৃত্তি"
 
 #: ../src/Widgets/CustomPrintWidget.cs:152
 msgid "Print cut marks"
-msgstr ""
+msgstr "কাটার চিহ্নগুলি প্রিন্ট করা হবে"
 
 #: ../src/Widgets/CustomPrintWidget.cs:158
 msgid "Photos layout"
@@ -4020,11 +3975,11 @@ msgstr "প্রদর্শনের মাপ"
 
 #: ../src/Widgets/CustomPrintWidget.cs:164
 msgid "Fill"
-msgstr ""
+msgstr "পূরণ করুন"
 
 #: ../src/Widgets/CustomPrintWidget.cs:165
 msgid "Scaled"
-msgstr ""
+msgstr "মাপ অনুসারে"
 
 #: ../src/Widgets/CustomPrintWidget.cs:170
 msgid "White borders"
@@ -4073,15 +4028,15 @@ msgstr ""
 #: ../src/Widgets/EditorPage.cs:215
 msgid "Error saving adjusted photo"
 msgid_plural "Error saving adjusted photos"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "পরিবর্তিত ফটো সংরক্ষণ করতে ত্রুটি"
+msgstr[1] "পরিবর্তিত ফটোগুলি সংরক্ষণ করতে ত্রুটি"
 
 #: ../src/Widgets/EditorPage.cs:217
 #, csharp-format
 msgid ""
 "Received exception \"{0}\". Note that you have to develop RAW files into "
 "JPEG before you can edit them."
-msgstr ""
+msgstr "\"{0}\" এক্সেপশন প্রাপ্ত হয়েছে। উল্লেখ্য, সম্পাদনার পূর্বে RAW ফাইলগুলিকে JPEG-এ রূপান্তর করা আবশ্যক।"
 
 #: ../src/Widgets/Filmstrip.cs:572
 msgid "_Horizontal"
@@ -4105,7 +4060,7 @@ msgstr "ফাইল-সিস্টেম"
 
 #: ../src/Widgets/InfoBox.cs:182
 msgid "Histogram"
-msgstr ""
+msgstr "রেখাচিত্র"
 
 #: ../src/Widgets/InfoBox.cs:217
 msgid "Date"
@@ -4117,7 +4072,7 @@ msgstr "এক্সোপাজার"
 
 #: ../src/Widgets/InfoBox.cs:227
 msgid "Focal Length"
-msgstr ""
+msgstr "ফোক্যাল লেংথ"
 
 #: ../src/Widgets/InfoBox.cs:233
 msgid "File Size"
@@ -4125,7 +4080,7 @@ msgstr "ফাইলের মাপ"
 
 #: ../src/Widgets/InfoBox.cs:236
 msgid "Rating"
-msgstr ""
+msgstr "গুণমাপ"
 
 #: ../src/Widgets/InfoBox.cs:389 ../src/Widgets/InfoBox.cs:397
 #: ../src/Widgets/InfoBox.cs:427
@@ -4194,7 +4149,7 @@ msgstr "এক্সপোজার প্রদর্শন করা হবে
 
 #: ../src/Widgets/InfoBox.cs:824
 msgid "Show Focal Length"
-msgstr ""
+msgstr "ফোক্যাল লেংথ প্রদর্শন করা হবে"
 
 #: ../src/Widgets/InfoBox.cs:833
 msgid "Show Camera"
@@ -4236,7 +4191,7 @@ msgstr "কোনো অ্যাপ্লিকেশন উপলব্ধ ন
 
 #: ../src/Widgets/RatingMenuItem.cs:56
 msgid "Rating:"
-msgstr ""
+msgstr "গুণমাপ:"
 
 #: ../src/XmpTagsImporter.cs:91
 msgid "Country"
