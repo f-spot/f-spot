@@ -381,6 +381,10 @@ namespace FSpot.Exporter.Facebook
 			progress_dialog.Fraction = 1.0;
 			progress_dialog.ProgressText = Catalog.GetString ("Upload Complete");
 			progress_dialog.ButtonLabel = Gtk.Stock.Ok;
+
+			var li = new LinkButton ("http://www.facebook.com/group.php?gid=158960179844&ref=mf", Catalog.GetString ("Visit F-Spot group on Facebook"));
+			progress_dialog.VBoxPackEnd (li);
+			li.ShowAll ();
 		}
 	}
 }

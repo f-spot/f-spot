@@ -12,6 +12,9 @@
 
 using System;
 using System.Threading;
+using System.Collections.Generic;
+
+using Gtk;
 
 namespace FSpot.UI.Dialog {
 	public class ThreadProgressDialog : Gtk.Dialog {
@@ -111,6 +114,17 @@ namespace FSpot.UI.Dialog {
 			}
 		}
 
+		List<Widget> widgets;
+		public void VBoxPackEnd (Widget w)
+		{
+			if (widgets == null)
+				widgets = new List<Widget> ();
+			lock (syncHandle) {
+				widgets.Add (w);
+				delay.Start ();
+			}
+		}
+
 		internal void SetProperties (string progress_text, string button_label, string message, double fraction)
 		{
 			lock (syncHandle) {
@@ -155,6 +169,12 @@ namespace FSpot.UI.Dialog {
 			progress_bar.Fraction = System.Math.Min (1.0, System.Math.Max (0.0, fraction));
 			button.Label = button_label;
 			retry_button.Visible = skip_button.Visible = retry_skip;
+
+			if (widgets != null && widgets.Count > 0) {
+				foreach (var w in widgets)
+					VBox.PackEnd (w);
+				widgets.Clear ();
+			}
 
 			return false;
 		}
