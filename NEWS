@@ -1,3 +1,10 @@
+f-spot 0.6.1.5 - Nov 4 2009 - What Next ?
+-----------------------------------------
+- bugfix release for 0.6.x branch
+ - make IconView responsive to mouseclicks on gdk 2.18 (bgo #600032)
+ - do not ignore .rw2 files (bgo #593474)
+ - avoid an Array.OORE on empty dbs (bgo #566977) (Mike Gemuende)
+
 f-spot 0.6.1.4 - Oct 29 2009 - Dedication
 -----------------------------------------
 - bugfix release for 0.6.x branch
