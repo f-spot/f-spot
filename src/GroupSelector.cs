@@ -710,6 +710,9 @@ namespace FSpot {
 
 			public override void StartDrag (double x, double y, uint time)
 			{
+				if (!PositionValid (Position))
+					return;
+
 				base.StartDrag (x, y, time);
 				popup_label.Text = selector.Adaptor.GlassLabel (this.Position);
 				popup_window.Show ();
