@@ -55,6 +55,7 @@ namespace FSpot {
 			name_table [".raw"] = typeof (FSpot.Tiff.NefFile);
 			name_table [".kdc"] = typeof (FSpot.Tiff.NefFile);
 			name_table [".arw"] = typeof (FSpot.Tiff.NefFile);
+			name_table [".rw2"] = typeof (FSpot.DCRawFile);
 			name_table [".tiff"] = typeof (FSpot.Tiff.TiffFile);
 			name_table [".tif"] = typeof (FSpot.Tiff.TiffFile);
 			name_table [".orf"] =  typeof (FSpot.Tiff.NefFile);
@@ -237,7 +238,8 @@ namespace FSpot {
 				".orf", 
 				".pef", 
 				".raw",
-				".raf"
+				".raf",
+				".rw2",
 			};
 			foreach (string ext in raw_extensions)
 				if (ext == System.IO.Path.GetExtension (name).ToLower ())
