@@ -9,9 +9,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: F-Spot master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-11-04 15:01+0200\n"
-"PO-Revision-Date: 2009-11-04 15:01+0300\n"
-"Last-Translator: Gintautas Miliauskas <gintautas@miliauskas.lt>\n"
+"POT-Creation-Date: 2009-11-04 17:32+0200\n"
+"PO-Revision-Date: 2009-11-04 17:35+0200\n"
+"Last-Translator: Žygimantas Beručka <zygis@gnome.org>\n"
 "Language-Team: Lithuanian <gimp-lt@lists.akl.lt>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -126,7 +126,6 @@ msgid "F_acebook..."
 msgstr "F_acebook..."
 
 #: ../extensions/Exporters/FacebookExport/FacebookExport.cs:99
-#, fuzzy
 msgid "Waiting for authorization"
 msgstr "Laukiama tapatybės nustatymo"
 
@@ -138,18 +137,23 @@ msgid ""
 "Once you are directed by Facebook to return to this application, click \"Ok"
 "\" below."
 msgstr ""
+"F-Spot dabar paleis jūsų naršyklę, kad galėtumėte įjungti ką tik parinktas "
+"teises.\n"
+"\n"
+"Kai jums Facebook nurodys grįžti prie šios programos, spustelėkite žemiau "
+"esantį mygtuką „Gerai“."
 
 #: ../extensions/Exporters/FacebookExport/FacebookExport.cs:280
 msgid "Too many images to export"
 msgstr "Per daug eksportuotinų paveikslėlių"
 
 #: ../extensions/Exporters/FacebookExport/FacebookExport.cs:281
-#, fuzzy, csharp-format
+#, csharp-format
 msgid ""
 "Facebook only permits {0} photographs per album.  Please refine your "
 "selection and try again."
 msgstr ""
-"Facebook leidžia tik 60 fotografijų albume. Sumažinkite savo pasirinktų "
+"Facebook leidžia tik {0} fotografijų albume. Sumažinkite savo pasirinktų "
 "fotografijų skaičių ir bandykite dar kartą."
 
 #: ../extensions/Exporters/FacebookExport/FacebookExport.cs:298
@@ -226,11 +230,16 @@ msgid ""
 "\" below.  F-Spot will cache your session in gnome-keyring, if possible, and "
 "re-use it on future Facebook exports."
 msgstr ""
+"F-Spot dabar paleis jūsų naršyklę, kad galėtumėte prisijungti prie "
+"Facebook.\n"
+"\n"
+"Kai Facebook jums nurodys grįžti prie šios programos, spustelėkite žemiau "
+"esantį mygtuką „Gerai“. F-Spot įrašys jūsų seansą gnome-keyring podėlyje, "
+"jei įmanoma, ir naudos jį ateityje eksportuojant į Facebook."
 
 #: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:217
-#, fuzzy
 msgid "Authenticating..."
-msgstr " Nustatoma tapatybė..."
+msgstr "Nustatoma tapatybė..."
 
 #: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:227
 msgid "Error logging into Facebook"
@@ -245,9 +254,8 @@ msgstr ""
 "bandykite dar kartą."
 
 #: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:237
-#, fuzzy
 msgid "Authorizing Session"
-msgstr "Nustatyti tapatybę"
+msgstr "Nustatoma seanso tapatybė"
 
 #: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:246
 msgid "Session established, fetching user info..."
@@ -273,15 +281,18 @@ msgstr "{0} {1} prisijungęs (-usi) prie Facebook"
 
 #: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:291
 msgid "Facebook Connection Error"
-msgstr ""
+msgstr "Facebook ryšio klaida"
 
 #: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:292
-#, fuzzy, csharp-format
+#, csharp-format
 msgid ""
 "There was an error when downloading your information from Facebook.\n"
 "\n"
 "Facebook said: {0}"
-msgstr "Netikėta problema siunčiant jūsų informaciją iš Facebook."
+msgstr ""
+"Klaida atsiunčiant jūsų informaciją iš Facebook.\n"
+"\n"
+"Facebook grąžino: {0}"
 
 #: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:321
 msgid "You are not logged in."
@@ -289,7 +300,7 @@ msgstr "Jūs neprisijungę."
 
 #: ../extensions/Exporters/FacebookExport/FacebookExport.ui.h:1
 msgid "Auto-confirm Photos"
-msgstr ""
+msgstr "Automatiškai patvirtinti fotografijas"
 
 #: ../extensions/Exporters/FacebookExport/FacebookExport.ui.h:2
 msgid "Caption"
@@ -335,14 +346,12 @@ msgid "Not logged in"
 msgstr "Neprisijungę"
 
 #: ../extensions/Exporters/FacebookExport/FacebookExport.ui.h:12
-#, fuzzy
 msgid "Permissions:"
-msgstr "Versija:"
+msgstr "Leidimai:"
 
 #: ../extensions/Exporters/FacebookExport/FacebookExport.ui.h:13
-#, fuzzy
 msgid "Stay Connected"
-msgstr "(Neprisijungta)"
+msgstr "Likti prisijungus"
 
 #: ../extensions/Exporters/FacebookExport/FacebookExport.ui.h:14
 msgid "Use an existing album"
@@ -465,7 +474,7 @@ msgstr "<b>Stilius</b>"
 
 #: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:4
 msgid "<b>Viewing permissions</b>"
-msgstr "<b>Žiūrėjimo leidimai</b>"
+msgstr "<b>Peržiūros leidimai</b>"
 
 #: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:6
 #: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:8
@@ -530,7 +539,7 @@ msgstr "_Keisti dydį į: "
 
 #: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:18
 msgid "_View photos in browser when done uploading"
-msgstr "Pabaigus įkėlimą _rodyti fotografijas naršyklėje"
+msgstr "Įkėlus, _rodyti fotografijas naršyklėje"
 
 #: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:19
 #: ../extensions/Exporters/FolderExport/FolderExport.glade.h:20
@@ -539,7 +548,7 @@ msgstr "Pabaigus įkėlimą _rodyti fotografijas naršyklėje"
 #: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:17
 #: ../src/f-spot.glade.h:125
 msgid "pixels"
-msgstr "taškai"
+msgstr "pikseliai"
 
 #: ../extensions/Exporters/FolderExport/FolderExport.addin.xml.h:1
 msgid "F_older..."
@@ -794,7 +803,7 @@ msgstr "Eksportuoti _pavadinimus ir komentarus"
 #: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:10
 #: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:7
 msgid "Open _album in browser when done uploading"
-msgstr "Baigus siuntimą _atverti albumą naršyklėje"
+msgstr "Įkėlus, _atverti albumą naršyklėje"
 
 #: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:11
 #: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:11
@@ -1050,9 +1059,9 @@ msgid ""
 "needs to analyze your image collection. This is not done by default as it's "
 "time consuming. You can Start or Pause this update process using this dialog."
 msgstr ""
-"Norint aptikti paveikslėlių dublikatus, importuotus prieš 0.5.0, F-Spot turi "
-"išanalizuoti jūsų paveikslėlių kolekciją. Tačiau tai nėra numatytoji "
-"operacija, kadangi ji ilgokai užtrunka. Šį atnaujinimo procesą galite "
+"Norint aptikti paveikslėlių dublikatus, importuotus iki versijos 0.5.0, F-"
+"Spot turi išanalizuoti jūsų paveikslėlių kolekciją. Ši operacija nevykdoma "
+"automatiškai, kadangi ji ilgokai užtrunka. Šį atnaujinimo procesą galite "
 "paleisti arba pristabdyti šiame lange."
 
 #: ../extensions/Tools/HashJob/HashJob.cs:59
@@ -1060,10 +1069,12 @@ msgstr ""
 msgid ""
 "You currently have {0} photos needing md5 calculation, and {1} pending jobs"
 msgstr ""
+"Dabar turite {0} paveikslėlių, kuriems reikia apskaičiuoti md5, ir {1} "
+"nebaigtas užduotis"
 
 #: ../extensions/Tools/HashJob/HashJob.cs:75 ../src/ui/main_window.ui.h:37
 msgid "_Close"
-msgstr ""
+msgstr "_Užverti"
 
 #: ../extensions/Tools/HashJob/HashJob.cs:102
 msgid "Processing images..."
@@ -1075,24 +1086,22 @@ msgstr "Sustabdyta"
 
 #: ../extensions/Tools/HashJob/HashJob.addin.xml.h:1
 msgid "Hash for Duplicates"
-msgstr ""
+msgstr "Maiša dublikatams"
 
 #: ../extensions/Tools/LiveWebGallery/GalleryRequestHandler.cs:107
-#, fuzzy
 msgid "F-Spot Gallery"
-msgstr "(Nėra galerijos)"
+msgstr "F-Spot galerija"
 
 #: ../extensions/Tools/LiveWebGallery/GalleryRequestHandler.cs:108
 msgid "The web gallery seems to be offline now"
-msgstr ""
+msgstr "Atrodo, kad žiniatinklio galerija dabar yra atsijungus"
 
 #: ../extensions/Tools/LiveWebGallery/GalleryRequestHandler.cs:109
-#, fuzzy
 msgid "Show All"
-msgstr "Rodyti stilius"
+msgstr "Rodyti visas"
 
 #: ../extensions/Tools/LiveWebGallery/GalleryRequestHandler.cs:119
-#, fuzzy, csharp-format
+#, csharp-format
 msgid "{0} photo"
 msgid_plural "{0} photos"
 msgstr[0] "{0} fotografija"
@@ -1102,94 +1111,90 @@ msgstr[2] "{0} fotografijų"
 #: ../extensions/Tools/LiveWebGallery/GalleryRequestHandler.cs:161
 #: ../extensions/Tools/LiveWebGallery/ui/LiveWebGallery.ui.h:8
 msgid "Current View"
-msgstr ""
+msgstr "Dabartinis rodinys"
 
 #: ../extensions/Tools/LiveWebGallery/GalleryRequestHandler.cs:164
-#, fuzzy
 msgid "Selected"
-msgstr "Ištrinti"
+msgstr "Pasirinkta"
 
 #: ../extensions/Tools/LiveWebGallery/LiveWebGallery.addin.xml.h:1
-#, fuzzy
 msgid "Live Web Gallery"
-msgstr "Žiniatinklio _galerija..."
+msgstr "Tiesioginė žiniatinklio galerija"
 
 #: ../extensions/Tools/LiveWebGallery/ui/LiveWebGallery.ui.h:1
 msgid ""
 "<small><i>The gallery stays active until you either deactivate it or close\n"
 "F-Spot. Make sure local viewers access it bypassing HTTP proxy.</i></small>"
 msgstr ""
+"<small><i>Ši galerija išlieka aktyvi, kol jos neišjungiate arba neužveriate\n"
+"F-Spot. Įsitikinkite, kad vietiniai žiūrovai prieina ją apeidami tarpinį\n"
+"HTTP serverį.</i></small>"
 
 #: ../extensions/Tools/LiveWebGallery/ui/LiveWebGallery.ui.h:3
 msgid ""
 "<small><i>When the gallery is active, above is the URL you need to open \n"
 "on another computer to access the shared photos.</i></small>"
 msgstr ""
+"<small><i>Kai galerija yra aktyvi, aukščiau pateiktas URL, kurį reikia\n"
+"atverti kitame kompiuteryje, norint gauti prieigą prie viešinamų fotografijų."
+"</i></small>"
 
 #: ../extensions/Tools/LiveWebGallery/ui/LiveWebGallery.ui.h:5
 msgid "Activates and deactivates the web gallery"
-msgstr ""
+msgstr "Įjungia ir išjungia žiniatinklio galeriją"
 
 #: ../extensions/Tools/LiveWebGallery/ui/LiveWebGallery.ui.h:6
 msgid "Allow viewers to add tags"
-msgstr ""
+msgstr "Leisti žiūrovams pridėti žymas"
 
 #: ../extensions/Tools/LiveWebGallery/ui/LiveWebGallery.ui.h:7
 msgid "Copy URL to clipboard"
-msgstr ""
+msgstr "Kopijuoti URL į iškarpinę"
 
 #: ../extensions/Tools/LiveWebGallery/ui/LiveWebGallery.ui.h:9
 msgid "F-Spot Live Web Gallery"
-msgstr ""
+msgstr "F-Spot tiesioginė žiniatinklio galerija"
 
 #: ../extensions/Tools/LiveWebGallery/ui/LiveWebGallery.ui.h:10
-#, fuzzy
 msgid "Gallery URL:"
-msgstr "G_alerija:"
+msgstr "Galerijos URL:"
 
 #: ../extensions/Tools/LiveWebGallery/ui/LiveWebGallery.ui.h:11
 msgid "Limit number of shared photos to"
-msgstr ""
+msgstr "Riboti viešinamų fotografijų skaičių iki"
 
 #: ../extensions/Tools/LiveWebGallery/ui/LiveWebGallery.ui.h:12
-#, fuzzy
 msgid "Options:"
-msgstr "Antraštė"
+msgstr "Parinktys:"
 
 #: ../extensions/Tools/LiveWebGallery/ui/LiveWebGallery.ui.h:13
-#, fuzzy
 msgid "Photos with a Tag"
-msgstr "Fotografijų puslapyje"
+msgstr "Fotografijos su žyma"
 
 #: ../extensions/Tools/LiveWebGallery/ui/LiveWebGallery.ui.h:14
-#, fuzzy
 msgid "Selected Photos"
-msgstr "_Ištrinti fotografiją"
+msgstr "Pasirinktos fotografijos"
 
 #: ../extensions/Tools/LiveWebGallery/ui/LiveWebGallery.ui.h:15
-#, fuzzy
 msgid "Share:"
-msgstr "Kontrastas"
+msgstr "Viešinti:"
 
 #: ../extensions/Tools/LiveWebGallery/ui/LiveWebGallery.ui.h:16
-#, fuzzy
 msgid "Views:"
-msgstr "Vaizduoti"
+msgstr "Peržiūrų:"
 
 #: ../extensions/Tools/LiveWebGallery/LiveWebGalleryDialog.cs:89
-#, fuzzy
 msgid "none"
-msgstr "(Nėra)"
+msgstr "nėra"
 
 #: ../extensions/Tools/LiveWebGallery/LiveWebGalleryDialog.cs:92
 #, csharp-format
 msgid " Gallery: {0},  Photos: {1},  Last client: {3}"
-msgstr ""
+msgstr " Galerija: {0},  Fotografijos: {1},  Paskutinis klientas: {3}"
 
 #: ../extensions/Tools/LiveWebGallery/LiveWebGalleryDialog.cs:156
-#, fuzzy
 msgid "Gallery is inactive"
-msgstr "Galeriją sukūrė"
+msgstr "Galerija neaktyvi"
 
 #: ../extensions/Tools/MergeDb/MergeDb.addin.xml.h:1
 msgid "Merge Db"
@@ -1293,7 +1298,7 @@ msgstr ""
 
 #: ../extensions/Tools/ScreensaverConfig/ScreensaverConfig.addin.xml.h:1
 msgid "Configure Screensaver"
-msgstr ""
+msgstr "Konfigūruoti ekrano užsklandą"
 
 #: ../extensions/Tools/ScreensaverConfig/ScreensaverConfigDialog.ui.h:1
 #: ../src/UI.Dialog/DateRangeDialog.cs:129
@@ -1301,28 +1306,24 @@ msgid "All Images"
 msgstr "Visi paveikslėliai"
 
 #: ../extensions/Tools/ScreensaverConfig/ScreensaverConfigDialog.ui.h:2
-#, fuzzy
 msgid "Delay:"
-msgstr "_Rodyti:"
+msgstr "Delsa:"
 
 #: ../extensions/Tools/ScreensaverConfig/ScreensaverConfigDialog.ui.h:3
-#, fuzzy
 msgid "Display:"
-msgstr "_Rodyti:"
+msgstr "Rodyti:"
 
 #: ../extensions/Tools/ScreensaverConfig/ScreensaverConfigDialog.ui.h:4
 msgid "Images tagged with:"
-msgstr "Paveikslėliai pažymėti:"
+msgstr "Paveikslėliai, turintys žymą:"
 
 #: ../extensions/Tools/ScreensaverConfig/ScreensaverConfigDialog.ui.h:5
-#, fuzzy
 msgid "Make F-Spot my screensaver"
 msgstr "Padaryti F-Spot ekrano užsklanda"
 
 #: ../extensions/Tools/ScreensaverConfig/ScreensaverConfigDialog.ui.h:6
-#, fuzzy
 msgid "Screensaver Configuration"
-msgstr "Plokštuminė konfigūracija"
+msgstr "Ekrano užsklandos konfigūracija"
 
 #: ../f-spot.desktop.in.in.h:1 ../f-spot-import.desktop.in.in.h:1
 #: ../f-spot-view.desktop.in.in.h:1 ../src/ui/main_window.ui.h:10
@@ -2289,7 +2290,7 @@ msgstr "_Ištempti fotografijas ne daugiau kaip: "
 
 #: ../src/f-spot.glade.h:112 ../src/ui/main_window.ui.h:67
 msgid "_Slideshow"
-msgstr "_Peržiūra"
+msgstr "_Skaidrių rodymas"
 
 #: ../src/f-spot.glade.h:113
 msgid "_Strip metadata"
@@ -2361,11 +2362,11 @@ msgstr "Išjungti viso ekrano veikseną"
 #: ../src/FullScreenView.cs:81 ../src/MainWindow.cs:301
 #: ../src/SingleView.cs:101
 msgid "Slideshow"
-msgstr "Peržiūra"
+msgstr "Skaidrių rodymas"
 
 #: ../src/FullScreenView.cs:82
 msgid "Start slideshow"
-msgstr "Pradėti peržiūrą"
+msgstr "Pradėti skaidrių rodymą"
 
 #: ../src/FullScreenView.cs:128
 msgid "Slide transition:"
@@ -3196,27 +3197,24 @@ msgid "my photos"
 msgstr "mano fotografijos"
 
 #: ../src/Sharpener.cs:72
-#, fuzzy
 msgid "Error saving sharpened photo"
-msgstr "Saugant pakoreguotą fotografiją įvyko klaida"
+msgstr "Klaida saugant paryškintą fotografiją"
 
 #: ../src/Sharpener.cs:102
-#, fuzzy
 msgid "Sharpen"
-msgstr "_Paryškinti..."
+msgstr "Paryškinti"
 
 #: ../src/Sharpener.cs:112
-#, fuzzy
 msgid "Amount:"
-msgstr "_Paskyra:"
+msgstr "Kiekis:"
 
 #: ../src/Sharpener.cs:113
 msgid "Radius:"
-msgstr ""
+msgstr "Spindulys"
 
 #: ../src/Sharpener.cs:114
 msgid "Threshold:"
-msgstr ""
+msgstr "Slenkstis:"
 
 #: ../src/SingleView.cs:86
 msgid "Rotate photo left"
@@ -3378,12 +3376,12 @@ msgstr "arba"
 
 #: ../src/ThumbnailCommand.cs:20
 msgid "Updating Thumbnails"
-msgstr ""
+msgstr "Atnaujinamos miniatiūros"
 
 #: ../src/ThumbnailCommand.cs:28
-#, fuzzy, csharp-format
+#, csharp-format
 msgid "Updating picture \"{0}\""
-msgstr "Siunčiamas paveikslėlis „{0}“"
+msgstr "Atnaujinamas paveikslėlis „{0}“"
 
 #: ../src/UI.Dialog/AboutDialog.cs:76
 msgid "Photo management for GNOME"
@@ -3407,7 +3405,7 @@ msgstr "F-Spot tinklalapis"
 #: ../src/UI.Dialog/ui/AdjustTimeDialog.ui.h:10
 #, csharp-format
 msgid "Shift all photos by {0}"
-msgstr "Pakelti visas fotografijas {0}"
+msgstr "Paslinkti visas fotografijas {0}"
 
 #: ../src/UI.Dialog/DateRangeDialog.cs:99
 msgid "Today"
@@ -3499,18 +3497,16 @@ msgstr "Buvo gauta neapdorota išimtis:"
 
 #: ../src/UI.Dialog/PreferenceDialog.cs:53
 #: ../src/UI.Dialog/PreferenceDialog.cs:71
-#, fuzzy
 msgid "None"
-msgstr "(Nėra)"
+msgstr "Nėra"
 
 #: ../src/UI.Dialog/PreferenceDialog.cs:55
-#, fuzzy
 msgid "System profile"
-msgstr "Sistemos tema"
+msgstr "Sistemos profilis"
 
 #: ../src/UI.Dialog/PreferenceDialog.cs:84
 msgid "Standard theme"
-msgstr ""
+msgstr "Standartinė tema"
 
 #: ../src/UI.Dialog/RepairDbDialog.cs:20
 msgid "Error loading database."
@@ -3539,82 +3535,71 @@ msgstr "Kartoti"
 
 #: ../src/UI.Dialog/ui/AdjustTimeDialog.ui.h:1
 msgid "0000:00:00 00:00:00"
-msgstr ""
+msgstr "0000:00:00 00:00:00"
 
 #: ../src/UI.Dialog/ui/AdjustTimeDialog.ui.h:2
 msgid "00:00:00"
-msgstr ""
+msgstr "00:00:00"
 
 #: ../src/UI.Dialog/ui/AdjustTimeDialog.ui.h:3
 msgid "5"
-msgstr ""
+msgstr "5"
 
 #: ../src/UI.Dialog/ui/AdjustTimeDialog.ui.h:4
-#, fuzzy
 msgid "<b>Action</b>"
-msgstr "<b>Paskyra</b>"
+msgstr "<b>Veiksmas</b>"
 
 #: ../src/UI.Dialog/ui/AdjustTimeDialog.ui.h:6
-#, fuzzy
 msgid "<b>Reference Photo</b>"
-msgstr "<b>Iš fotografijos</b>"
+msgstr "<b>Pamatinė fotografija</b>"
 
 #: ../src/UI.Dialog/ui/AdjustTimeDialog.ui.h:7
-#, fuzzy
 msgid "Adjust Time"
-msgstr "Koreguoti _laiką..."
+msgstr "Koreguoti laiką"
 
 #: ../src/UI.Dialog/ui/AdjustTimeDialog.ui.h:8
 msgid "Adjusted date: "
-msgstr ""
+msgstr "Pakoreguota data:"
 
 #: ../src/UI.Dialog/ui/AdjustTimeDialog.ui.h:9
-#, fuzzy
 msgid "Current date:"
-msgstr "Daugiau datų"
+msgstr "Dabartinė data:"
 
 #: ../src/UI.Dialog/ui/AdjustTimeDialog.ui.h:11
-#, fuzzy
 msgid "Space all photos by"
-msgstr "Pakelti visas fotografijas {0}"
+msgstr "Praretinti visas fotografijas"
 
 #: ../src/UI.Dialog/ui/AdjustTimeDialog.ui.h:12
-#, fuzzy
 msgid "difference:"
-msgstr "Nustatymai"
+msgstr "skirtumas:"
 
 #: ../src/UI.Dialog/ui/AdjustTimeDialog.ui.h:13
-#, fuzzy
 msgid "min. Starting at {0}"
-msgstr "Sukama fotografija „{0}“"
+msgstr "min. Pradedant nuo {0}"
 
 #: ../src/UI.Dialog/ui/DateRangeDialog.ui.h:1
-#, fuzzy
 msgid "<b>End Date</b>"
-msgstr "<b>Mažiausias įvertinimas</b>"
+msgstr "<b>Pabaigos data</b>"
 
 #: ../src/UI.Dialog/ui/DateRangeDialog.ui.h:2
-#, fuzzy
 msgid "<b>Select period</b>"
-msgstr "<b>Ekrano užsklanda</b>"
+msgstr "<b>Pasirinkite laikotarpį</b>"
 
 #: ../src/UI.Dialog/ui/DateRangeDialog.ui.h:3
-#, fuzzy
 msgid "<b>Start Date</b>"
-msgstr "<b>Stilius</b>"
+msgstr "<b>Pradžios data</b>"
 
 #: ../src/UI.Dialog/ui/DateRangeDialog.ui.h:4
 msgid "Cancel, do not change the current timeline. "
-msgstr ""
+msgstr "Atšaukti, nekeisti dabartinės laiko juostos."
 
 #: ../src/UI.Dialog/ui/DateRangeDialog.ui.h:5
 msgid "Only photos taken within these dates will be displayed."
-msgstr ""
+msgstr "Bus rodomos tik fotografjos, nufotografuotos šiuo laikotarpiu."
 
 #: ../src/UI.Dialog/ui/DateRangeDialog.ui.h:6
-#, fuzzy
 msgid "Set date range"
-msgstr "_Nustatyti datos diapazoną..."
+msgstr "Nustatyti datos diapazoną"
 
 #: ../src/UI.Dialog/ui/EditTagDialog.ui.h:1
 msgid "<small></small>"
@@ -3641,9 +3626,8 @@ msgid "<b>From Photo</b>"
 msgstr "<b>Iš fotografijos</b>"
 
 #: ../src/UI.Dialog/ui/EditTagIconDialog.ui.h:3
-#, fuzzy
 msgid "<b>Predefined icons</b>"
-msgstr "<b>Iš anksto nustatyta</b>"
+msgstr "<b>Numatytosios piktogramos</b>"
 
 #: ../src/UI.Dialog/ui/EditTagIconDialog.ui.h:4
 msgid "<b>Preview</b>"
@@ -3651,7 +3635,7 @@ msgstr "<b>Peržiūra</b>"
 
 #: ../src/UI.Dialog/ui/EditTagIconDialog.ui.h:5
 msgid "Design icon from"
-msgstr ""
+msgstr "Sukurti piktogramą iš"
 
 #: ../src/UI.Dialog/ui/EditTagIconDialog.ui.h:6
 msgid "Edit Tag Icon"
@@ -3667,26 +3651,27 @@ msgstr "0 fotografija iš 0"
 
 #: ../src/UI.Dialog/ui/PreferenceDialog.ui.h:1
 msgid "Color profile for display:"
-msgstr ""
+msgstr "Spalvos profilis rodymui ekrane:"
 
 #: ../src/UI.Dialog/ui/PreferenceDialog.ui.h:2
 msgid "Color profile for printing:"
-msgstr ""
+msgstr "Spalvos profilis spausdinimui:"
 
 #: ../src/UI.Dialog/ui/PreferenceDialog.ui.h:3
-#, fuzzy
 msgid "F-Spot Preferences"
-msgstr "Nustatymai"
+msgstr "F-Spot nustatymai"
 
 #: ../src/UI.Dialog/ui/PreferenceDialog.ui.h:4
 msgid "F-Spot appearance:"
-msgstr ""
+msgstr "F-Spot išvaizda:"
 
 #: ../src/UI.Dialog/ui/PreferenceDialog.ui.h:5
 msgid ""
 "Inside the image files when possible\n"
 "<small>Makes them accessible to other image-editing programs.</small>"
 msgstr ""
+"Paveikslėlių failuose, kai įmanoma\n"
+"<small>Taip jie prieinami kitoms paveikslėlių redagavimo programoms.</small>"
 
 #: ../src/UI.Dialog/ui/PreferenceDialog.ui.h:7
 msgid "Select A Folder"
@@ -3694,15 +3679,15 @@ msgstr "Pasirinkite aplanką"
 
 #: ../src/UI.Dialog/ui/PreferenceDialog.ui.h:8
 msgid "Separately from the image files"
-msgstr ""
+msgstr "Atskirai nuo paveikslėlių failų"
 
 #: ../src/UI.Dialog/ui/PreferenceDialog.ui.h:9
 msgid "Store tags and descriptions for photos:"
-msgstr ""
+msgstr "Saugoti paveikslėlių žymas ir aprašymus:"
 
 #: ../src/UI.Dialog/ui/PreferenceDialog.ui.h:10
 msgid "When importing photos, copy them to:"
-msgstr ""
+msgstr "Importuojant fotografijas, nukopijuotis juos į:"
 
 #: ../src/UI.Dialog/ui/RatingFilterDialog.ui.h:1
 msgid "<b>Max Rating</b>"
@@ -3910,7 +3895,7 @@ msgstr "Žy_mos"
 
 #: ../src/ui/main_window.ui.h:71
 msgid "_Timeline"
-msgstr "_Laiko juostą"
+msgstr "_Laiko juosta"
 
 #: ../src/ui/main_window.ui.h:72
 msgid "_Tools"
@@ -3994,9 +3979,8 @@ msgid "White borders"
 msgstr "Balti rėmeliai"
 
 #: ../src/Widgets/CustomPrintWidget.cs:176
-#, fuzzy
 msgid "Custom Text"
-msgstr "Pasirinktinis tekstas:"
+msgstr "Pasirinktinis tekstas"
 
 #: ../src/Widgets/CustomPrintWidget.cs:180
 msgid "Photos infos"
@@ -4052,25 +4036,23 @@ msgstr ""
 
 #: ../src/Widgets/Filmstrip.cs:572
 msgid "_Horizontal"
-msgstr ""
+msgstr "_Horizontali"
 
 #: ../src/Widgets/Filmstrip.cs:576
 msgid "_Vertical"
-msgstr ""
+msgstr "_Vertikali"
 
 #: ../src/Widgets/FindBar.cs:58
 msgid "Find:"
 msgstr "Rasti:"
 
 #: ../src/Widgets/FolderTreePage.cs:21
-#, fuzzy
 msgid "Folders"
-msgstr "Aplankas"
+msgstr "Aplankai"
 
 #: ../src/Widgets/FolderTreeView.cs:123
-#, fuzzy
 msgid "Filesystem"
-msgstr "_Virtuali failų sistema"
+msgstr "Failų sistema"
 
 #: ../src/Widgets/InfoBox.cs:182
 msgid "Histogram"
@@ -4107,12 +4089,12 @@ msgid "(Unknown)"
 msgstr "(Nežinoma)"
 
 #: ../src/Widgets/InfoBox.cs:560
-#, fuzzy, csharp-format
+#, csharp-format
 msgid "(One Edit)"
 msgid_plural "({0} Edits)"
-msgstr[0] "(Nėra redagavimų)"
-msgstr[1] "(Nėra redagavimų)"
-msgstr[2] "(Nėra redagavimų)"
+msgstr[0] "({0} kartą redaguota)"
+msgstr[1] "({0} kartus redaguota)"
+msgstr[2] "({0} kartų redaguota)"
 
 #: ../src/Widgets/InfoBox.cs:574
 msgid "(File read error)"
