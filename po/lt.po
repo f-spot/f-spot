@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: F-Spot master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-11-04 14:56+0200\n"
-"PO-Revision-Date: 2009-11-04 14:56+0300\n"
+"POT-Creation-Date: 2009-11-04 15:01+0200\n"
+"PO-Revision-Date: 2009-11-04 15:01+0300\n"
 "Last-Translator: Gintautas Miliauskas <gintautas@miliauskas.lt>\n"
 "Language-Team: Lithuanian <gimp-lt@lists.akl.lt>\n"
 "MIME-Version: 1.0\n"
@@ -1206,7 +1206,7 @@ msgid ""
 "\n"
 "Received exception \"{0}\"."
 msgstr ""
-"Jūsų pasirinktas failas nėra galiojanti ar palaikoma duomenų bazė.\n"
+"Pasirinktas failas nėra galiojanti ar palaikoma duomenų bazė.\n"
 "\n"
 "Gauta išimtis „{0}“."
 
@@ -1793,7 +1793,7 @@ msgstr "Kontrastas"
 
 #: ../src/Editors/CropEditor.cs:42
 msgid "Crop"
-msgstr "Iškirpti"
+msgstr "Apkirpti"
 
 #: ../src/Editors/CropEditor.cs:73
 msgid "Select the area that needs cropping."
@@ -1833,7 +1833,7 @@ msgstr "Sepijos tonas"
 
 #: ../src/Editors/SoftFocusEditor.cs:28
 msgid "Soft Focus"
-msgstr "Nedidelis fokusavimas"
+msgstr "Išfokusavimas"
 
 #: ../src/Editors/TiltEditor.cs:28
 msgid "Straighten"
@@ -2571,7 +2571,7 @@ msgstr "Aplankas neegzistuoja."
 msgid ""
 "The directory you selected \"{0}\" does not exist.  Please choose a "
 "different directory"
-msgstr "Jūsų pasirinktas aplankas „{0}“ neegzistuoja. Pasirinkite kitą aplanką"
+msgstr "Pasirinktas aplankas „{0}“ neegzistuoja. Pasirinkite kitą aplanką"
 
 #. Note for translators: 'Import Tags' is no command, it means 'Tags used in Import'
 #: ../src/ImportCommand.cs:739 ../src/ImportCommand.cs:741
@@ -2705,9 +2705,9 @@ msgstr[2] "{0} fotografijų"
 #, csharp-format
 msgid " ({0} selected)"
 msgid_plural " ({0} selected)"
-msgstr[0] " ({0} pasirinkta)"
-msgstr[1] " ({0} pasirinktos)"
-msgstr[2] " ({0} pasirinktų)"
+msgstr[0] " (pasirinkta {0})"
+msgstr[1] " (pasirinktos {0})"
+msgstr[2] " (pasirinkta {0})"
 
 #: ../src/MainWindow.cs:2131
 msgid "_Ok"
