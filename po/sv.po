@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: f-spot\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-10-28 23:15+0100\n"
-"PO-Revision-Date: 2009-10-28 23:15+0100\n"
+"POT-Creation-Date: 2009-11-05 07:37+0100\n"
+"PO-Revision-Date: 2009-11-05 07:37+0100\n"
 "Last-Translator: Daniel Nylander <po@danielnylander.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
 "MIME-Version: 1.0\n"
@@ -208,6 +208,10 @@ msgstr "Fel"
 #: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:609
 msgid "Upload Complete"
 msgstr "Sändning färdig"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:385
+msgid "Visit F-Spot group on Facebook"
+msgstr "Besök F-Spot-gruppen på Facebook"
 
 #: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:211
 msgid "Waiting for authentication"
@@ -1214,7 +1218,7 @@ msgstr "Endast nya rullar"
 
 #: ../extensions/Tools/MergeDb/MergeDb.glade.h:15
 #: ../src/FileImportBackend.cs:290
-#: ../src/UI.Dialog/ThreadProgressDialog.cs:55
+#: ../src/UI.Dialog/ThreadProgressDialog.cs:58
 msgid "Skip"
 msgstr "Hoppa över"
 
@@ -2350,7 +2354,7 @@ msgstr "InterOperability-katalog"
 msgid "Unknown Directory"
 msgstr "Okänd katalog"
 
-#: ../src/Imaging/ImageFile.cs:116
+#: ../src/Imaging/ImageFile.cs:117
 msgid "Writing to this file format is not supported"
 msgstr "Skrivning till detta filformat stöds inte"
 
@@ -3415,7 +3419,7 @@ msgstr "Etikett"
 msgid "Ratio"
 msgstr "Förhållande"
 
-#: ../src/UI.Dialog/ThreadProgressDialog.cs:53
+#: ../src/UI.Dialog/ThreadProgressDialog.cs:56
 msgid "Retry"
 msgstr "Försök igen"
 
