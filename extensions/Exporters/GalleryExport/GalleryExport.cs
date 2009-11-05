@@ -787,8 +787,8 @@ namespace G2Export {
 					try {
 						int id = album.Add (item, req.Current.LocalPath);
 
-						if (item != null && item is Photo && Core.Database != null && id != 0) {
-							Core.Database.Exports.Create ((item as Photo).Id, (item as Photo).DefaultVersionId,
+						if (item != null && item is Photo && App.Instance.Database != null && id != 0) {
+							App.Instance.Database.Exports.Create ((item as Photo).Id, (item as Photo).DefaultVersionId,
 										      ExportStore.Gallery2ExportType,
 										      String.Format("{0}:{1}",album.Gallery.Uri.ToString (), id.ToString ()));
 						}

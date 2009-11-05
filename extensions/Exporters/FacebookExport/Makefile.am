@@ -30,18 +30,19 @@ PLUGIN_SOURCES =			\
 	$(srcdir)/Mono.Facebook/User.cs			\
 	$(srcdir)/Mono.Facebook/Util.cs
 
-REFS =					\
+REFS =							\
 	-r:$(top_builddir)/src/f-spot.exe		\
-	-r:$(top_builddir)/src/FSpot.Core.dll	\
-	-r:$(top_builddir)/src/FSpot.Utils.dll	\
+	-r:$(top_builddir)/src/FSpot.Core.dll		\
+	-r:$(top_builddir)/src/FSpot.Utils.dll		\
 	-r:$(top_builddir)/src/FSpot.Platform.dll	\
 	-r:$(top_builddir)/src/FSpot.Widgets.dll	\
 	$(LINK_GTKSHARPBEANS)				\
-	$(LINK_KEYRING)                     \
-	$(LINK_MONO_ADDINS)					\
-	$(LINK_SEMWEB)						\
-	$(LINK_GPHOTO2)						\
-	$(LINK_GIOSHARP)						\
+	$(LINK_KEYRING)                     		\
+	$(LINK_MONO_ADDINS)				\
+	$(LINK_SEMWEB)					\
+	$(LINK_GPHOTO2)					\
+	$(LINK_GIOSHARP)				\
+	$(LINK_UNIQUESHARP)				\
 	-r:Mono.Posix
 
 PKGS =					\

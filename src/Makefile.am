@@ -130,7 +130,7 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/ColorAdjustment/FullColorAdjustment.cs		\
 	$(srcdir)/ColorAdjustment/SepiaTone.cs		\
 	$(srcdir)/ControlOverlay.cs		\
-	$(srcdir)/Core.cs			\
+	$(srcdir)/Core/App.cs			\
 	$(srcdir)/Core/ColorManagement.cs	\
 	$(srcdir)/Core/Photo.cs			\
 	$(srcdir)/Core/PhotoVersion.cs		\
@@ -385,6 +385,7 @@ F_SPOT_ASSEMBLIES = 				\
 	$(LINK_SEMWEB)				\
 	$(LINK_GTKSHARPBEANS)			\
 	$(LINK_GIOSHARP)			\
+	$(LINK_UNIQUESHARP)			\
 	-r:System.Data				\
 	-r:System.Web				\
 	-r:Mono.Data.SqliteClient		\

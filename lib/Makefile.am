@@ -10,7 +10,8 @@ UNCONDITIONAL_SUBDIRS = \
 	libfspot			\
 	libgphoto2-sharp	\
 	mono-addins			\
-	semweb
+	semweb				\
+	unique-sharp
 
 # dpap-sharp isn't built, but it is shipped.
 

@@ -330,7 +330,7 @@ namespace FSpot {
 
 			condition.Append (base.SqlCondition());
 
-			Tag hidden = Core.Database.Tags.Hidden;
+			Tag hidden = App.Instance.Database.Tags.Hidden;
 			if (hidden != null) {
 				if (FindByTag (hidden, true).Count == 0) {
 					condition.Append (String.Format (

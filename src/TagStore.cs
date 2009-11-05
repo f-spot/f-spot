@@ -180,8 +180,8 @@ public class TagStore : DbStore<Tag> {
 		}
 		reader.Close ();
 
-		if (FSpot.Core.Database.Meta.HiddenTagId.Value != null)
-			hidden = LookupInCache ((uint) FSpot.Core.Database.Meta.HiddenTagId.ValueAsInt) as Tag;
+		if (FSpot.App.Instance.Database.Meta.HiddenTagId.Value != null)
+			hidden = LookupInCache ((uint) FSpot.App.Instance.Database.Meta.HiddenTagId.ValueAsInt) as Tag;
 	}
 
 
@@ -210,8 +210,8 @@ public class TagStore : DbStore<Tag> {
 		hidden_tag.SortPriority = -9;
 		this.hidden = hidden_tag;
 		Commit (hidden_tag);
-		FSpot.Core.Database.Meta.HiddenTagId.ValueAsInt = (int) hidden_tag.Id;
-		FSpot.Core.Database.Meta.Commit (FSpot.Core.Database.Meta.HiddenTagId);
+		FSpot.App.Instance.Database.Meta.HiddenTagId.ValueAsInt = (int) hidden_tag.Id;
+		FSpot.App.Instance.Database.Meta.Commit (FSpot.App.Instance.Database.Meta.HiddenTagId);
 
 		Tag people_category = CreateCategory (RootCategory, Catalog.GetString ("People"), false);
 		people_category.ThemeIconName = "emblem-people";
@@ -364,10 +364,10 @@ public class TagStore : DbStore<Tag> {
 							  "id", tag.Id));
 			
 			if (update_xmp && Preferences.Get<bool> (Preferences.METADATA_EMBED_IN_IMAGE)) {
-				Photo [] photos = Core.Database.Photos.Query (new Tag [] { tag });
+				Photo [] photos = App.Instance.Database.Photos.Query (new Tag [] { tag });
 				foreach (Photo p in photos)
 					if (p.HasTag (tag)) // the query returns all the pics of the tag and all its child. this avoids updating child tags
-						SyncMetadataJob.Create (Core.Database.Jobs, p);
+						SyncMetadataJob.Create (App.Instance.Database.Jobs, p);
 			}
 		}
 

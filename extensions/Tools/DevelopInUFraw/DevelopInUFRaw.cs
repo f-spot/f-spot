@@ -150,7 +150,7 @@ namespace DevelopInUFRawExtension
 
 			p.DefaultVersionId = p.AddVersion (developed, name, true);
 			p.Changes.DataChanged = true;
-			Core.Database.Photos.Commit (p);
+			App.Instance.Database.Photos.Commit (p);
 		}
 
 		private static string GetVersionName (Photo p)

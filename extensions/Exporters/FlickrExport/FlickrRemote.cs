@@ -159,9 +159,9 @@ public class FlickrRemote {
 						// Go through the tag parents
 						if (ExportTagHierarchy) {
 							tag_iter = t[i].Category;
-							while (tag_iter != Core.Database.Tags.RootCategory && tag_iter != null) {
+							while (tag_iter != App.Instance.Database.Tags.RootCategory && tag_iter != null) {
 								// Skip top level tags because they have no meaning in a linear tag database
-								if (ExportIgnoreTopLevel && tag_iter.Category == Core.Database.Tags.RootCategory) {
+								if (ExportIgnoreTopLevel && tag_iter.Category == App.Instance.Database.Tags.RootCategory) {
 									break;
 								}
 

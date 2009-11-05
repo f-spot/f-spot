@@ -35,7 +35,7 @@ namespace HashJobExtension {
 		public void ShowDialog ()
 		{ 			
 			// This query is not very fast, but it's a 'one-time' so don't care much...
-			SqliteDataReader reader = FSpot.Core.Database.Database.Query (
+			SqliteDataReader reader = FSpot.App.Instance.Database.Database.Query (
 				"SELECT COUNT(*) FROM photos p WHERE md5_sum IS NULL OR md5_sum = '' OR EXISTS " +
 					"(SELECT * FROM photo_versions pv WHERE p.id=pv.photo_id AND version_id <> '1' AND " +
 					"(pv.md5_sum IS NULL OR pv.md5_sum = ''))");
@@ -43,7 +43,7 @@ namespace HashJobExtension {
 			uint missing_md5 = Convert.ToUInt32 (reader[0]);
 			reader.Close ();
 
-			reader = FSpot.Core.Database.Database.Query (String.Format (
+			reader = FSpot.App.Instance.Database.Database.Query (String.Format (
 				"SELECT COUNT(*) FROM jobs WHERE job_type = '{0}' ", typeof(FSpot.Jobs.CalculateHashJob).ToString ()));
 			reader.Read ();
 			uint active_jobs = Convert.ToUInt32 (reader[0]);
@@ -90,21 +90,21 @@ namespace HashJobExtension {
 
 		void HandleExecuteClicked (object o, EventArgs e)
 		{
-			SqliteDataReader reader = FSpot.Core.Database.Database.Query (
+			SqliteDataReader reader = FSpot.App.Instance.Database.Database.Query (
 				"SELECT id FROM photos p WHERE md5_sum IS NULL OR md5_sum = '' OR EXISTS " +
 					"(SELECT * FROM photo_versions pv WHERE p.id=pv.photo_id AND version_id <> '1' AND " +
 					"(pv.md5_sum IS NULL OR pv.md5_sum = '') )");
-			FSpot.Core.Database.Database.BeginTransaction ();
+			FSpot.App.Instance.Database.Database.BeginTransaction ();
 			while (reader.Read ())
-				FSpot.Jobs.CalculateHashJob.Create (FSpot.Core.Database.Jobs, Convert.ToUInt32 (reader[0]));
+				FSpot.Jobs.CalculateHashJob.Create (FSpot.App.Instance.Database.Jobs, Convert.ToUInt32 (reader[0]));
 			reader.Close ();
-			FSpot.Core.Database.Database.CommitTransaction ();
+			FSpot.App.Instance.Database.Database.CommitTransaction ();
 			status_label.Text = Catalog.GetString ("Processing images...");
 		}
 
 		void HandleStopClicked (object o, EventArgs e)
 		{
-			FSpot.Core.Database.Database.ExecuteNonQuery (String.Format ("DELETE FROM jobs WHERE job_type = '{0}'", typeof(FSpot.Jobs.CalculateHashJob).ToString ()));
+			FSpot.App.Instance.Database.Database.ExecuteNonQuery (String.Format ("DELETE FROM jobs WHERE job_type = '{0}'", typeof(FSpot.Jobs.CalculateHashJob).ToString ()));
 			status_label.Text = Catalog.GetString ("Stopped");
 		}
 

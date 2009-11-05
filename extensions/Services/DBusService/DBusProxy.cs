@@ -241,7 +241,7 @@ namespace DBusService {
 
 			try {
 				// remove tags from photos first
-				Core.Database.Photos.Remove (new Tag [] { t });
+				App.Instance.Database.Photos.Remove (new Tag [] { t });
 				// then remove tag
 				tag_store.Remove (t);
 				return true;

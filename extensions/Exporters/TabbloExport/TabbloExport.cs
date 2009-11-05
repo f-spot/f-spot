@@ -252,7 +252,7 @@ namespace FSpotTabbloExport {
 
 		private FSpot.Tag [] SelectTags ()
 		{
-			TagStore tag_store = FSpot.Core.Database.Tags;
+			TagStore tag_store = FSpot.App.Instance.Database.Tags;
 			TagSelectionDialog tagDialog =
 					new TagSelectionDialog (tag_store);
 			FSpot.Tag [] tags = tagDialog.Run ();
@@ -371,7 +371,7 @@ namespace FSpotTabbloExport {
 				return;
 			}
 
-			PhotoStore photo_store = FSpot.Core.Database.Photos;
+			PhotoStore photo_store = FSpot.App.Instance.Database.Photos;
 			FSpot.Photo photo = photo_store.GetByUri (
 					item.DefaultVersionUri);
 			Debug.Assert (null != photo);

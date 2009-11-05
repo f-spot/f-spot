@@ -33,7 +33,7 @@ namespace RawPlusJpegExtension
 				"Do it now"))
 				return;
 
-			Photo [] photos = Core.Database.Photos.Query ((Tag [])null, null, null, null);
+			Photo [] photos = App.Instance.Database.Photos.Query ((Tag [])null, null, null, null);
 			Array.Sort (photos, new Photo.CompareDirectory ());
 
 			Photo raw = null;
@@ -115,8 +115,8 @@ namespace RawPlusJpegExtension
 					}
 				}
 				raw.Changes.DataChanged = true;
-				Core.Database.Photos.Commit (raw);
-				Core.Database.Photos.Remove (jpeg);
+				App.Instance.Database.Photos.Commit (raw);
+				App.Instance.Database.Photos.Remove (jpeg);
 			}
 		}
 	}

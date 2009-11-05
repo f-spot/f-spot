@@ -38,8 +38,8 @@ namespace FSpot.Jobs {
 			Log.Debug ("Calculating Hash {0}...", photo_id);
 
 			try {
-			 	Photo photo = FSpot.Core.Database.Photos.Get (Convert.ToUInt32 (photo_id)) as Photo;
-				FSpot.Core.Database.Photos.UpdateMD5Sum (photo);
+				Photo photo = FSpot.App.Instance.Database.Photos.Get (Convert.ToUInt32 (photo_id)) as Photo;
+				FSpot.App.Instance.Database.Photos.UpdateMD5Sum (photo);
 				return true;
 			} catch (System.Exception e) {
 			 	Log.Debug ("Error Calculating Hash for photo {0}: {1}", JobOptions, e.Message);

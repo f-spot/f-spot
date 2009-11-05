@@ -362,7 +362,7 @@ namespace FSpotTabbloExport {
 			List <FSpot.Tag> tags =
 					new List <FSpot.Tag> (ids.Length);
 			foreach (int id in ids) {
-				FSpot.Tag tag = FSpot.Core.Database.Tags
+				FSpot.Tag tag = FSpot.App.Instance.Database.Tags
 						.GetTagById (id);
 				if (null != tag) {
 					tags.Add (tag);

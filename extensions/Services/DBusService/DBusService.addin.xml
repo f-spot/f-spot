@@ -1,6 +1,6 @@
 <Addin namespace="FSpot"
 	id="DBusService"
-	version="0.6"
+	version="0.7"
 	name="DBus Service"
 	description="Expose F-Spot Photos over DBus"
 	author="Thomas Van Machelen"
@@ -8,7 +8,7 @@
 	defaultEnabled="false"
 	category="Services">
 	<Dependencies>
-		<Addin id="Core" version="0.6"/>
+		<Addin id="Core" version="0.7"/>
 	</Dependencies>
 	<Extension path = "/FSpot/Services">
 		<Service class="DBusService.DBusService"/>

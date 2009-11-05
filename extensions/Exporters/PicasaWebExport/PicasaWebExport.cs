@@ -674,8 +674,8 @@ namespace FSpotGoogleExport {
 						picture = album.UploadPicture (request.Current.LocalPath, Path.ChangeExtension (item.Name, "jpg"), item.Description);
 						sent_bytes += file_info.Length;
 					}
-					if (Core.Database != null && item is Photo)
-						Core.Database.Exports.Create ((item as Photo).Id,
+					if (App.Instance.Database != null && item is Photo)
+						App.Instance.Database.Exports.Create ((item as Photo).Id,
 									      (item as Photo).DefaultVersionId,
 									      ExportStore.PicasaExportType,
 									      picture.Link);

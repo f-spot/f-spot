@@ -17,6 +17,7 @@ DIR_SEMWEB = $(top_builddir)/lib/semweb
 DIR_SRC = $(top_builddir)/src
 DIR_GIOSHARP = $(top_builddir)/lib/gio-sharp/gio
 DIR_GTKSHARPBEANS = $(top_builddir)/lib/gtk-sharp-beans
+DIR_UNIQUESHARP = $(top_builddir)/lib/unique-sharp/unique
 
 ## Links
 
@@ -29,6 +30,7 @@ LINK_MONO_ADDINS =					\
 LINK_SEMWEB = -r:$(DIR_SEMWEB)/SemWeb.dll
 LINK_GIOSHARP = -r:$(DIR_GIOSHARP)/gio-sharp.dll
 LINK_GTKSHARPBEANS = -r:$(DIR_GTKSHARPBEANS)/gtk-sharp-beans.dll
+LINK_UNIQUESHARP = -r:$(DIR_UNIQUESHARP)/unique-sharp.dll
 
 ## Build
 

@@ -9,17 +9,18 @@ PLUGIN_ASSEMBLY = $(PLUGIN_NAME).dll
 PLUGIN_SOURCES =			\
 	$(srcdir)/ZipExport.cs
 
-REFS =					\
-	-r:$(top_builddir)/src/f-spot.exe		\
+REFS =						\
+	-r:$(top_builddir)/src/f-spot.exe	\
 	-r:$(top_builddir)/src/FSpot.Core.dll	\
 	-r:$(top_builddir)/src/FSpot.Utils.dll	\
 	$(LINK_SEMWEB)				\
 	$(LINK_MONO_ADDINS)			\
 	$(LINK_GPHOTO2)				\
-	$(LINK_GTKSHARPBEANS)		\
-	$(LINK_GIOSHARP)		\
-	-r:System.Web			\
-	-r:ICSharpCode.SharpZipLib	\
+	$(LINK_GTKSHARPBEANS)			\
+	$(LINK_GIOSHARP)			\
+	$(LINK_UNIQUESHARP)			\
+	-r:System.Web				\
+	-r:ICSharpCode.SharpZipLib		\
 	-r:Mono.Posix
 
 PKGS =					\

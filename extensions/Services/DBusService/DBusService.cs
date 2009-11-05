@@ -20,7 +20,7 @@ namespace DBusService {
 		{
 			uint timer = Log.InformationTimerStart ("Starting DBusService");
 			try {
-				DBusProxyFactory.Load (Core.Database);
+				DBusProxyFactory.Load (App.Instance.Database);
 			} catch {
 				Log.Warning ("unable init DBus service");
 			}

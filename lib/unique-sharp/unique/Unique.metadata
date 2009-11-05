@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<metadata>
+  <attr path="/api/namespace/object[@cname='UniqueApp']/constructor[@cname='unique_app_new_with_commands']" name="hidden">1</attr>
+  <attr path="/api/namespace/object[@cname='UniqueApp']/method[@cname='unique_app_is_running']" name="name">GetIsRunning</attr>
+  <attr path="/api/namespace/object[@cname='UniqueApp']/method[@cname='unique_app_send_message']/parameters/parameter[@name='command_id']" name="type">UniqueCommand</attr>
+  <attr path="/api/namespace/object[@cname='UniqueApp']/signal[@cname='message-received']" name="hidden">1</attr>
+
+  <add-node path="/api/namespace/boxed[@cname='UniqueMessageData']"><implements><interface name="ICloneable" /></implements></add-node>
+  <attr path="/api/namespace/boxed[@cname='UniqueMessageData']/method[@cname='unique_message_data_copy']" name="accessibility">private</attr>
+  <attr path="/api/namespace/boxed[@cname='UniqueMessageData']/method[@cname='unique_message_data_get_text']" name="hidden">1</attr>
+  <attr path="/api/namespace/boxed[@cname='UniqueMessageData']/method[@cname='unique_message_data_set_text']" name="hidden">1</attr>
+  <attr path="/api/namespace/boxed[@cname='UniqueMessageData']/method[@cname='unique_message_data_get']" name="hidden">1</attr>
+  <attr path="/api/namespace/boxed[@cname='UniqueMessageData']/method[@cname='unique_message_data_set']" name="hidden">1</attr>
+  <attr path="/api/namespace/boxed[@cname='UniqueMessageData']/method[@cname='unique_message_data_set_uris']/*/*[@name='uris']" name="null_term_array">1</attr>
+  <attr path="/api/namespace/boxed[@cname='UniqueMessageData']/method[@cname='unique_message_data_set_uris']/return-type" name="type">void</attr>
+  <attr path="/api/namespace/boxed[@cname='UniqueMessageData']/method[@cname='unique_message_data_get_uris']/return-type"  name="null_term_array">1</attr>
+</metadata>
+

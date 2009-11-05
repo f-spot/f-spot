@@ -1,14 +1,14 @@
 <Addin namespace="FSpot"
 	id="MergeDb"
 	name="MergeDb"
-	version="0.6"
+	version="0.7"
 	description="Merge another db back to the main one"
 	author="Stephane Delcroix"
 	url="http://f-spot.org/Extensions"
 	category="Tools"
 	defaultEnabled="false">
 	<Dependencies>
-		<Addin id="Core" version="0.6"/>
+		<Addin id="Core" version="0.7"/>
 	</Dependencies>
 	<Extension path = "/FSpot/Menus/Tools">
 		<Command id = "MergeDb" _label = "Merge Db" command_type = "MergeDbExtension.MergeDb" />

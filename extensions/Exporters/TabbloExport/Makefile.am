@@ -35,6 +35,7 @@ REFS = \
 	$(LINK_GIOSHARP)	\
 	$(LINK_GTKSHARPBEANS)	\	
 	$(LINK_GPHOTO2)		\
+	$(LINK_UNIQUESHARP)	\
 	-r:Mono.Posix.dll
 
 PKGS = \

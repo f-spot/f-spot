@@ -532,8 +532,8 @@ namespace FSpotFolderExport {
 				else
 					File.Copy (request.Current.LocalPath, path, true);
 
-				if (photo != null && photo is Photo && Core.Database != null) {
-					Core.Database.Exports.Create ((photo as Photo).Id, (photo as Photo).DefaultVersionId,
+				if (photo != null && photo is Photo && App.Instance.Database != null) {
+					App.Instance.Database.Exports.Create ((photo as Photo).Id, (photo as Photo).DefaultVersionId,
 								      ExportStore.FolderExportType,
 								      // FIXME this is wrong, the final path is the one
 								      // after the Xfer.

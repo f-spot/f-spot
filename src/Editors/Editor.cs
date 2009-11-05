@@ -154,7 +154,7 @@ namespace FSpot.Editors {
 				bool create_version = photo.DefaultVersion.IsProtected;
 				photo.SaveVersion (edited, create_version);
 				photo.Changes.DataChanged = true;
-				Core.Database.Photos.Commit (photo);
+				App.Instance.Database.Photos.Commit (photo);
 
 				done++;
 				if (ProcessingStep != null) {

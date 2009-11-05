@@ -580,8 +580,8 @@ namespace FSpotSmugMugExport {
 						approx_size = sent_bytes * items.Length / (photo_index - 1);
 
 					int image_id = account.SmugMug.Upload (request.Current.LocalPath, album.AlbumID);
-					if (Core.Database != null && item is Photo && image_id >= 0)
-						Core.Database.Exports.Create ((item as Photo).Id,
+					if (App.Instance.Database != null && item is Photo && image_id >= 0)
+						App.Instance.Database.Exports.Create ((item as Photo).Id,
 									      (item as Photo).DefaultVersionId,
 									      ExportStore.SmugMugExportType,
 									      account.SmugMug.GetAlbumUrl (image_id).ToString ());

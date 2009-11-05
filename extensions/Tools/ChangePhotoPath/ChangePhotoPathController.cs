@@ -39,7 +39,7 @@ namespace ChangePhotoPath
 
 	public class ChangePathController
 	{
-		PhotoStore photo_store = FSpot.Core.Database.Photos;
+		PhotoStore photo_store = FSpot.App.Instance.Database.Photos;
 		ArrayList photo_id_array, version_id_array;
 		StringCollection old_path_array, new_path_array;
 		int total_photos;

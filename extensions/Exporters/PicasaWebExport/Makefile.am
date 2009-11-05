@@ -9,17 +9,18 @@ PLUGIN_ASSEMBLY = $(PLUGIN_NAME).dll
 PLUGIN_SOURCES =			\
 	$(srcdir)/PicasaWebExport.cs
 
-REFS =					\
-	-r:$(top_builddir)/src/f-spot.exe		\
+REFS =						\
+	-r:$(top_builddir)/src/f-spot.exe	\
 	-r:$(top_builddir)/src/FSpot.Core.dll	\
 	-r:$(top_builddir)/src/FSpot.Utils.dll	\
-	$(LINK_SEMWEB)			\
-	-r:google-sharp/Mono.Google.dll	\
-	$(LINK_KEYRING)			\
-	$(LINK_MONO_ADDINS)		\
+	$(LINK_SEMWEB)				\
+	-r:google-sharp/Mono.Google.dll		\
+	$(LINK_KEYRING)				\
+	$(LINK_MONO_ADDINS)			\
 	$(LINK_GIOSHARP)			\
-	$(LINK_GPHOTO2)			\
-	-r:System.Web			\
+	$(LINK_GPHOTO2)				\
+	$(LINK_UNIQUESHARP)			\
+	-r:System.Web				\
 	-r:Mono.Posix
 
 PKGS =					\

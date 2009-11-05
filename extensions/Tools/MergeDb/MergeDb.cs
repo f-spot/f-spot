@@ -37,7 +37,7 @@ namespace MergeDbExtension
 		{
 			from_db = new Db ();
 			from_db.ExceptionThrown += HandleDbException;
-			to_db = Core.Database;
+			to_db = App.Instance.Database;
 
 			//ShowDialog ();
 			mdd = new MergeDbDialog (this);

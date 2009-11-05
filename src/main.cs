@@ -19,7 +19,9 @@ namespace FSpot
 		static void Version ()
 		{
 			Console.WriteLine (
-				"F-Spot  {0} - (c)2003-2009, Novell Inc" + Environment.NewLine +
+				"F-Spot  {0}" + Environment.NewLine +
+				"\t(c)2003-2009, Novell Inc" + Environment.NewLine +
+				"\t(c)2009 Stephane Delcroix" + Environment.NewLine +
 				"Personal photo management for the GNOME Desktop" + Environment.NewLine,
 				FSpot.Defines.VERSION);
 		}
@@ -57,7 +59,6 @@ namespace FSpot
 		static int Main (string [] args)
 		{
 			bool empty = false;
-			ICore control = null;
 			List<string> uris = new List<string> ();
 			Unix.SetProcessName (Defines.PACKAGE);
 
@@ -174,177 +175,73 @@ namespace FSpot
 				return 1;
 			}
 
+			//Initialize Mono.Addins
+			uint timer = Log.InformationTimerStart ("Initializing Mono.Addins");
+			AddinManager.Initialize (FSpot.Global.BaseDirectory);
+			AddinManager.Registry.Update (null);
+			SetupService setupService = new SetupService (AddinManager.Registry);
+			string maj_version = String.Join (".", Defines.VERSION.Split ('.'), 0, 3);
+			foreach (AddinRepository repo in setupService.Repositories.GetRepositories ())
+				if (repo.Url.StartsWith ("http://addins.f-spot.org/") && !repo.Url.StartsWith ("http://addins.f-spot.org/" + maj_version)) {
+					Log.Information ("Unregistering {0}", repo.Url);
+					setupService.Repositories.RemoveRepository (repo.Url);
+				}
+			setupService.Repositories.RegisterRepository (null, "http://addins.f-spot.org/" + maj_version, false);
+			Log.DebugTimerPrint (timer, "Mono.Addins Initialization took {0}");
+
+
+			//Gtk initialization
 			Application.Init (Defines.PACKAGE, ref args);
+			Gnome.Vfs.Vfs.Initialize ();
 
-			if (slideshow == true) {
-				Gnome.Vfs.Vfs.Initialize ();
-				Core core = new Core ();
-				core.ShowSlides (null);
-				Application.Run ();
-				return 0;
+			// init web proxy globally
+			Platform.WebProxy.Init ();
+
+			if (File.Exists (Preferences.Get<string> (Preferences.GTK_RC))) {
+				if (File.Exists (Path.Combine (Global.BaseDirectory, "gtkrc")))
+					Gtk.Rc.AddDefaultFile (Path.Combine (Global.BaseDirectory, "gtkrc"));
+
+				Global.DefaultRcFiles = Gtk.Rc.DefaultFiles;
+				Gtk.Rc.AddDefaultFile (Preferences.Get<string> (Preferences.GTK_RC));
+				Gtk.Rc.ReparseAllForSettings (Gtk.Settings.Default, true);
 			}
-			
+
 			try {
-				uint timer = Log.InformationTimerStart ("Initializing DBus");
-				try {
-					NDesk.DBus.BusG.Init();
-				} catch (Exception e) {
-					throw new ApplicationException ("F-Spot cannot find the Dbus session bus. " +
-					"Make sure dbus is configured properly or start a new session for f-spot using \"dbus-launch f-spot\"", e);
-				}
-				Log.DebugTimerPrint (timer, "DBusInitialization took {0}");
+				Gtk.Window.DefaultIconList = new Gdk.Pixbuf [] {
+					GtkUtil.TryLoadIcon (FSpot.Global.IconTheme, "f-spot", 16, (Gtk.IconLookupFlags)0),
+					GtkUtil.TryLoadIcon (FSpot.Global.IconTheme, "f-spot", 22, (Gtk.IconLookupFlags)0),
+					GtkUtil.TryLoadIcon (FSpot.Global.IconTheme, "f-spot", 32, (Gtk.IconLookupFlags)0),
+					GtkUtil.TryLoadIcon (FSpot.Global.IconTheme, "f-spot", 48, (Gtk.IconLookupFlags)0)
+				};
+			} catch {}
 
-				timer = Log.InformationTimerStart ("Initializing Mono.Addins");
-				AddinManager.Initialize (FSpot.Global.BaseDirectory);
-				AddinManager.Registry.Update (null);
-				SetupService setupService = new SetupService (AddinManager.Registry);
-				string maj_version = String.Join (".", Defines.VERSION.Split ('.'), 0, 3);
-				foreach (AddinRepository repo in setupService.Repositories.GetRepositories ())
-					if (repo.Url.StartsWith ("http://addins.f-spot.org/") && !repo.Url.StartsWith ("http://addins.f-spot.org/" + maj_version)) {
-						Log.Information ("Unregistering {0}", repo.Url);
-						setupService.Repositories.RemoveRepository (repo.Url);
-					}
-				setupService.Repositories.RegisterRepository (null, "http://addins.f-spot.org/" + maj_version, false);
-				Log.DebugTimerPrint (timer, "Mono.Addins Initialization took {0}");
-
-				bool is_main = true;
-
-				try {
-					control = Core.FindInstance ();
-					is_main = false;
-				} catch (System.Exception) { 
-				}
-
-				if (control == null) {
-					if (!shutdown)
-						Log.Information ("Starting new FSpot server (f-spot {0})", FSpot.Defines.VERSION);
-				} else
-					Log.Information ("Found active FSpot server: {0}", control);
-
-				Core core = null;
-				try {
-					if (control == null) {
-						Gnome.Vfs.Vfs.Initialize ();
-
-						if (File.Exists (Preferences.Get<string> (Preferences.GTK_RC))) {
-							if (File.Exists (Path.Combine (Global.BaseDirectory, "gtkrc")))
-								Gtk.Rc.AddDefaultFile (Path.Combine (Global.BaseDirectory, "gtkrc"));
-
-							Global.DefaultRcFiles = Gtk.Rc.DefaultFiles;
-							Gtk.Rc.AddDefaultFile (Preferences.Get<string> (Preferences.GTK_RC));
-							Gtk.Rc.ReparseAllForSettings (Gtk.Settings.Default, true);
-						}
-
-						try {
-							Gtk.Window.DefaultIconList = new Gdk.Pixbuf [] {
-								GtkUtil.TryLoadIcon (FSpot.Global.IconTheme, "f-spot", 16, (Gtk.IconLookupFlags)0),
-								GtkUtil.TryLoadIcon (FSpot.Global.IconTheme, "f-spot", 22, (Gtk.IconLookupFlags)0),
-								GtkUtil.TryLoadIcon (FSpot.Global.IconTheme, "f-spot", 32, (Gtk.IconLookupFlags)0),
-								GtkUtil.TryLoadIcon (FSpot.Global.IconTheme, "f-spot", 48, (Gtk.IconLookupFlags)0)
-							};
-						} catch {}
-
-						core = new Core ();
-						core.RegisterServer ();
-
-						empty = view || Core.Database.Empty;
-						control = core;
-					}
-				} catch (System.Exception e) {
-					Log.Exception (e);
-					control = null;
-
-					if (core != null)
-						core.UnregisterServer ();
-
-					// if there is a problem with the DB, so is no way we can survive
-					if (e is DbException) {
-						throw;
-					}
-				}
-
-				if (control == null)
-					throw new ApplicationException ("Sorry, couldn't start F-Spot.");
-
-				UriList list = new UriList ();
-
-				if (shutdown) {
+			try {
+				if (slideshow == true) {
+					App.Instance.Slideshow (null);
+				} else if (shutdown) {
 					try {
-						control.Shutdown ();
+						App.Instance.Shutdown ();
 					} catch (System.Exception) { // trap errors
 					}
 					System.Environment.Exit (0);
-				}
-
-				if (import_uri != null) {
-					control.Import (import_uri);
-				}
-
-				if (view) {
+				} else if (view) {
+					UriList list = new UriList ();
 					foreach (string s in uris)
 						list.AddUnknown (s);
 					if (list.Count == 0) {
 						Help ();
 						return 1;
 					}
-					control.View (list.ToString ());
+					App.Instance.View (list.ToString ());
+				} else if (import_uri != null) {
+					App.Instance.Import (import_uri);
+				} else {
+					App.Instance.Organize ();
 				}
-
-				if (empty && import_uri == null && !view)
-					control.Import (null);
-
-				if (is_main && import_uri != null || !view) {
-					control.Organize ();
-					Gdk.Global.NotifyStartupComplete ();
-					foreach (ServiceNode service in AddinManager.GetExtensionNodes ("/FSpot/Services")) {
-						try {
-							service.Initialize ();
-							service.Start ();
-						} catch (Exception e) {
-							Log.Warning ("Something went wrong while starting the {0} extension.", service.Id);
-							Log.DebugException (e);
-						}
-					}
-				}
-
-				if (!is_main)
+	
+				if (App.Instance.IsRunning)
 					return 0;
-
-				// init web proxy globally
-				Platform.WebProxy.Init ();
-
-#if GSD_2_24
-				Log.Information ("Hack for gnome-settings-daemon engaged");
-				int max_age, max_size;
-				if (Preferences.TryGet<int> (Preferences.GSD_THUMBS_MAX_AGE, out max_age)) {
-					if (max_age < 0)
-						Log.Debug ("maximum_age check already disabled, good");
-					else if (max_age == 0)
-						Log.Warning ("maximum_age is 0 (tin-hat mode), not overriding");
-					else if (max_age < 180) {
-						Log.Debug ("Setting maximum_age to a saner value");
-						Preferences.Set (Preferences.GSD_THUMBS_MAX_AGE, 180);
-					}
-				}
-
-				if (Preferences.TryGet<int> (Preferences.GSD_THUMBS_MAX_SIZE, out max_size)) {
-					int count = Core.Database.Photos.Count ("photos");
-					// average thumbs are taking 70K, so this will push the threshold
-					//if f-spot takes more than 70% of the thumbs space
-					int size = count / 10;
-					if (max_size < 0)
-						Log.Debug ("maximum_size check already disabled, good");
-					else if (max_size == 0)
-						Log.Warning ("maximum_size is 0 (tin-hat mode), not overriding");
-					else if (max_size < size) {
-						Log.Debug ("Setting maximum_size to a saner value ({0}MB), according to your db size", size);
-						Preferences.Set (Preferences.GSD_THUMBS_MAX_SIZE, size);
-					}
-				}
-
-#endif
 				Application.Run ();
-				Log.Information ("exiting");
 			} catch (System.Exception e) {
 				Log.Exception (e);
 				ExceptionDialog dlg = new ExceptionDialog(e);

@@ -143,7 +143,7 @@ namespace LiveWebGalleryExtension
 		{
 			switch (query_type) {
 			case QueryType.ByTag:
-				return Core.Database.Photos.Query (new Tag[] {query_tag});
+				return App.Instance.Database.Photos.Query (new Tag[] {query_tag});
 			case QueryType.CurrentView:
 				return MainWindow.Toplevel.Query.Photos;
 			case QueryType.Selected:
@@ -213,12 +213,12 @@ namespace LiveWebGalleryExtension
 				return;
 			}
 			
-			Photo photo = Core.Database.Photos.Get (photo_id);
+			Photo photo = App.Instance.Database.Photos.Get (photo_id);
 			if (addTag)
 				photo.AddTag (options.EditableTag);
 			else
 				photo.RemoveTag (options.EditableTag);
-			Core.Database.Photos.Commit (photo);
+			App.Instance.Database.Photos.Commit (photo);
 			
 			SendHeadersAndStartContent (stream, "Content-type: text/plain;charset=UTF-8");
 			SendLine (stream, TagsToString (photo));

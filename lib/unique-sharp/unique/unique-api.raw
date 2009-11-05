@@ -1,0 +1,143 @@
+<?xml version="1.0"?>
+<api>
+  <!--
+
+        This file was automatically generated.
+        Please DO NOT MODIFY THIS FILE, modify .metadata files instead.
+
+-->
+  <namespace name="Unique" library="libunique-1.0-0.dll">
+    <enum name="Command" cname="UniqueCommand" gtype="unique_command_get_type" type="enum">
+      <member cname="UNIQUE_INVALID" name="Invalid" />
+      <member cname="UNIQUE_ACTIVATE" name="Activate" value="-1" />
+      <member cname="UNIQUE_NEW" name="New" value="-2" />
+      <member cname="UNIQUE_OPEN" name="Open" value="-3" />
+      <member cname="UNIQUE_CLOSE" name="Close" value="-4" />
+    </enum>
+    <enum name="Response" cname="UniqueResponse" gtype="unique_response_get_type" type="enum">
+      <member cname="UNIQUE_RESPONSE_INVALID" name="Invalid" />
+      <member cname="UNIQUE_RESPONSE_OK" name="Ok" />
+      <member cname="UNIQUE_RESPONSE_CANCEL" name="Cancel" />
+      <member cname="UNIQUE_RESPONSE_FAIL" name="Fail" />
+      <member cname="UNIQUE_RESPONSE_PASSTHROUGH" name="Passthrough" />
+    </enum>
+    <object name="App" cname="UniqueApp" parent="GObject">
+      <field name="Priv" cname="priv" type="UniqueAppPrivate*" />
+      <property name="Name" cname="name" type="gchar*" readable="true" writeable="true" construct-only="true" />
+      <property name="StartupId" cname="startup-id" type="gchar*" readable="true" writeable="true" construct-only="true" />
+      <property name="Screen" cname="screen" type="GdkScreen" readable="true" writeable="true" construct="true" />
+      <property name="IsRunning" cname="is-running" type="gboolean" readable="true" />
+      <signal name="MessageReceived" cname="message-received" when="LAST" field_name="message_received">
+        <return-type type="UniqueResponse" />
+        <parameters>
+          <parameter type="UniqueApp*" name="app" />
+          <parameter type="gint" name="command" />
+          <parameter type="UniqueMessageData*" name="message_data" />
+          <parameter type="guint" name="time_" />
+        </parameters>
+      </signal>
+      <method name="AddCommand" cname="unique_app_add_command">
+        <return-type type="void" />
+        <parameters>
+          <parameter type="const-gchar*" name="command_name" />
+          <parameter type="gint" name="command_id" />
+        </parameters>
+      </method>
+      <method name="GetType" cname="unique_app_get_type" shared="true">
+        <return-type type="GType" />
+      </method>
+      <method name="IsRunning" cname="unique_app_is_running">
+        <return-type type="gboolean" />
+      </method>
+      <constructor cname="unique_app_new">
+        <parameters>
+          <parameter type="const-gchar*" name="name" />
+          <parameter type="const-gchar*" name="startup_id" />
+        </parameters>
+      </constructor>
+      <constructor cname="unique_app_new_with_commands">
+        <parameters>
+          <parameter type="const-gchar*" name="name" />
+          <parameter type="const-gchar*" name="startup_id" />
+          <parameter type="const-gchar*" name="first_command_name" />
+          <parameter ellipsis="true" />
+        </parameters>
+      </constructor>
+      <method name="SendMessage" cname="unique_app_send_message">
+        <return-type type="UniqueResponse" />
+        <parameters>
+          <parameter type="gint" name="command_id" />
+          <parameter type="UniqueMessageData*" name="message_data" />
+        </parameters>
+      </method>
+      <method name="WatchWindow" cname="unique_app_watch_window">
+        <return-type type="void" />
+        <parameters>
+          <parameter type="GtkWindow*" name="window" />
+        </parameters>
+      </method>
+    </object>
+    <boxed name="MessageData" cname="UniqueMessageData" opaque="true">
+      <method name="Copy" cname="unique_message_data_copy">
+        <return-type type="UniqueMessageData*" owned="true" />
+      </method>
+      <method name="Free" cname="unique_message_data_free">
+        <return-type type="void" />
+      </method>
+      <method name="Get" cname="unique_message_data_get">
+        <return-type type="const-guchar*" />
+        <parameters>
+          <parameter type="gsize*" name="length" />
+        </parameters>
+      </method>
+      <method name="GetFilename" cname="unique_message_data_get_filename">
+        <return-type type="gchar*" />
+      </method>
+      <method name="GetScreen" cname="unique_message_data_get_screen">
+        <return-type type="GdkScreen*" />
+      </method>
+      <method name="GetStartupId" cname="unique_message_data_get_startup_id">
+        <return-type type="const-gchar*" />
+      </method>
+      <method name="GetText" cname="unique_message_data_get_text">
+        <return-type type="gchar*" />
+      </method>
+      <method name="GetType" cname="unique_message_data_get_type" shared="true">
+        <return-type type="GType" />
+      </method>
+      <method name="GetUris" cname="unique_message_data_get_uris">
+        <return-type type="gchar**" />
+      </method>
+      <method name="GetWorkspace" cname="unique_message_data_get_workspace">
+        <return-type type="guint" />
+      </method>
+      <constructor cname="unique_message_data_new" />
+      <method name="Set" cname="unique_message_data_set">
+        <return-type type="void" />
+        <parameters>
+          <parameter type="const-guchar*" name="data" />
+          <parameter type="gsize" name="length" />
+        </parameters>
+      </method>
+      <method name="SetFilename" cname="unique_message_data_set_filename">
+        <return-type type="void" />
+        <parameters>
+          <parameter type="const-gchar*" name="filename" />
+        </parameters>
+      </method>
+      <method name="SetText" cname="unique_message_data_set_text">
+        <return-type type="gboolean" />
+        <parameters>
+          <parameter type="const-gchar*" name="str" />
+          <parameter type="gssize" name="length" />
+        </parameters>
+      </method>
+      <method name="SetUris" cname="unique_message_data_set_uris">
+        <return-type type="gboolean" />
+        <parameters>
+          <parameter type="gchar**" name="uris" />
+        </parameters>
+      </method>
+    </boxed>
+  </namespace>
+</api>

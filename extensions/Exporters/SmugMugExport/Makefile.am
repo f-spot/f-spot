@@ -9,17 +9,18 @@ PLUGIN_ASSEMBLY = $(PLUGIN_NAME).dll
 PLUGIN_SOURCES =			\
 	$(srcdir)/SmugMugExport.cs
 
-REFS =					\
-	-r:$(top_builddir)/src/f-spot.exe		\
+REFS =						\
+	-r:$(top_builddir)/src/f-spot.exe	\
 	-r:$(top_builddir)/src/FSpot.Core.dll	\
 	-r:$(top_builddir)/src/FSpot.Utils.dll	\
-	-r:SmugMugNet/SmugMugNet.dll	\
+	-r:SmugMugNet/SmugMugNet.dll		\
 	$(LINK_SEMWEB)				\
 	$(LINK_MONO_ADDINS)			\
-	$(LINK_GIOSHARP)		\
+	$(LINK_GIOSHARP)			\
 	$(LINK_GPHOTO2)				\
-	$(LINK_GTKSHARPBEANS)		\
-	$(LINK_KEYRING)			\
+	$(LINK_GTKSHARPBEANS)			\
+	$(LINK_KEYRING)				\
+	$(LINK_UNIQUESHARP)			\
 	-r:Mono.Posix
 
 PKGS =					\

@@ -357,8 +357,8 @@ namespace FSpotFlickrExport {
 					string id = fr.Upload (photo, stack, is_public, is_family, is_friend);
 					ids.Add (id);
 
-					if (Core.Database != null && photo is FSpot.Photo)
-						Core.Database.Exports.Create ((photo as FSpot.Photo).Id,
+					if (App.Instance.Database != null && photo is FSpot.Photo)
+						App.Instance.Database.Exports.Create ((photo as FSpot.Photo).Id,
 									      (photo as FSpot.Photo).DefaultVersionId,
 									      ExportStore.FlickrExportType,
 									      auth.User.UserId + ":" + auth.User.Username + ":" + current_service.Name + ":" + id);

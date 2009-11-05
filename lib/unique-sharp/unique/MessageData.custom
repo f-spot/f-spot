@@ -1,0 +1,54 @@
+//
+// MessageData.custom
+//
+// Author(s):
+//	Stephane Delcroix  <stephane@delcroix.org>
+//
+// Copyright (c) 2009 Stephane Delcroix
+//
+// This is open source software.
+//
+
+		public object Clone ()
+		{
+			return (object)Copy ();
+		}
+		
+		[DllImport("libunique-1.0-0.dll")]
+		static extern bool unique_message_data_set_text(IntPtr raw, IntPtr str, IntPtr length);
+
+		[DllImport("libunique-1.0-0.dll")]
+		static extern IntPtr unique_message_data_get_text(IntPtr raw);
+
+		public string Text {
+			set {
+				IntPtr native_str = GLib.Marshaller.StringToPtrGStrdup (value);
+				bool raw_ret = unique_message_data_set_text(Handle, native_str, new IntPtr ((long) System.Text.Encoding.UTF8.GetByteCount (value)));
+				bool ret = raw_ret;
+				GLib.Marshaller.Free (native_str);
+				if (!ret)
+					throw new Exception ("Failed to convert the text to UTF-8");
+			}
+			get {
+				IntPtr raw_ret = unique_message_data_get_text(Handle);
+				string ret = GLib.Marshaller.PtrToStringGFree(raw_ret);
+				return ret;
+			}
+		}
+
+		[DllImport("libunique-1.0-0.dll")]
+		static extern byte[] unique_message_data_get(IntPtr raw, out UIntPtr length);
+
+		[DllImport("libunique-1.0-0.dll")]
+		static extern void unique_message_data_set(IntPtr raw, byte[] data, UIntPtr n_data);
+
+		public byte[] Data { 
+			set { unique_message_data_set(Handle, value, new UIntPtr ((ulong) (value == null ? -1 : value.Length))); }
+			get {
+				UIntPtr native_length;
+				return unique_message_data_get(Handle, out native_length);
+			}
+		}
+
+
+

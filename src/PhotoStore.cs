@@ -229,7 +229,7 @@ public class PhotoStore : DbStore<Photo> {
 
 		while (reader.Read ()) {
 			uint tag_id = Convert.ToUInt32 (reader ["tag_id"]);
-			Tag tag = Core.Database.Tags.Get (tag_id) as Tag;
+			Tag tag = App.Instance.Database.Tags.Get (tag_id) as Tag;
 			photo.AddTagUnsafely (tag);
 		}
 		reader.Close();
@@ -291,7 +291,7 @@ public class PhotoStore : DbStore<Photo> {
 
 		        if (reader [1] != null) {
 				uint tag_id = Convert.ToUInt32 (reader ["tag_id"]);
-				Tag tag = Core.Database.Tags.Get (tag_id) as Tag;
+				Tag tag = App.Instance.Database.Tags.Get (tag_id) as Tag;
 				photo.AddTagUnsafely (tag);
 			}
 		}
@@ -443,7 +443,7 @@ public class PhotoStore : DbStore<Photo> {
 		Commit (photos);
 
 		foreach (Tag tag in tags)
-			Core.Database.Tags.Remove (tag);
+			App.Instance.Database.Tags.Remove (tag);
 		
 	}
 
@@ -1015,9 +1015,9 @@ public class PhotoStore : DbStore<Photo> {
 			where_clauses.Add (importidrange.SqlClause ());
 		}		
 		
-		if (hide && Core.Database.Tags.Hidden != null) {
+		if (hide && App.Instance.Database.Tags.Hidden != null) {
 			where_clauses.Add (String.Format ("id NOT IN (SELECT photo_id FROM photo_tags WHERE tag_id = {0})", 
-							  FSpot.Core.Database.Tags.Hidden.Id));
+							  App.Instance.Database.Tags.Hidden.Id));
 		}
 		
 		if (searchexpression != null) {

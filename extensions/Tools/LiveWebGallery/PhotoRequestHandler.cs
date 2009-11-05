@@ -29,7 +29,7 @@ namespace LiveWebGalleryExtension
 		public override void Handle (string requested, Stream stream)
 		{
 			uint photo_id = uint.Parse (requested);
-			Photo photo = Core.Database.Photos.Get (photo_id);
+			Photo photo = App.Instance.Database.Photos.Get (photo_id);
 			
 			SendImage (photo, stream);
 					}

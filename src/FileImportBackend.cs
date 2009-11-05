@@ -18,8 +18,8 @@ public class ImportException : System.Exception {
 
 public class FileImportBackend : ImportBackend {
 	PhotoStore store;
- 	RollStore rolls = FSpot.Core.Database.Rolls;
-	TagStore tag_store = FSpot.Core.Database.Tags;
+	RollStore rolls = FSpot.App.Instance.Database.Rolls;
+	TagStore tag_store = FSpot.App.Instance.Database.Tags;
 	bool recurse;
 	bool copy;
 	bool detect_duplicates;

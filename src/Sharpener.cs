@@ -67,7 +67,7 @@ namespace FSpot.Widgets {
 
 				photo.SaveVersion (final, create_version);
 				photo.Changes.DataChanged = true;
-				Core.Database.Photos.Commit (photo);
+				App.Instance.Database.Photos.Commit (photo);
 			} catch (System.Exception e) {
 				string msg = Catalog.GetString ("Error saving sharpened photo");
 				string desc = String.Format (Catalog.GetString ("Received exception \"{0}\". Unable to save photo {1}"),

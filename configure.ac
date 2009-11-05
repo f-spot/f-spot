@@ -219,6 +219,9 @@ AC_SUBST(EXIF_LIBS)
 PKG_CHECK_MODULES(LIBEXIF_VERSION_CHECK, libexif >= 0.6.12, EXIF_SOVERSION=12, EXIF_SOVERSION=10)
 AC_SUBST(EXIF_SOVERSION)
 
+dnl --- libunique check
+PKG_CHECK_MODULES(UNIQUE, unique-1.0 >= 1.0)
+
 dnl --- Set up paths
 
 AC_ARG_WITH(turtle, [ --with-turtle=DIR                set path to source directory for turtle])
@@ -307,6 +310,9 @@ lib/mono-addins/Mono.Addins.Gui/Makefile
 lib/mono-addins/Mono.Addins/Makefile
 lib/mono-addins/Mono.Addins.Setup/Makefile
 lib/semweb/Makefile
+lib/unique-sharp/Makefile
+lib/unique-sharp/generator/Makefile
+lib/unique-sharp/unique/Makefile
 docs/Makefile
 icons/Makefile
 tools/Makefile

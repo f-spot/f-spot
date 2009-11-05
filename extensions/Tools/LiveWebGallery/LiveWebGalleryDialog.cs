@@ -53,10 +53,10 @@ namespace LiveWebGalleryExtension
 			limit_spin.Sensitive = options.LimitMaxPhotos;
 			limit_spin.Value = options.MaxPhotos;
 			UpdateQueryRadios ();
-			HandleQueryTagSelected (options.QueryTag != null ? options.QueryTag : Core.Database.Tags.GetTagById(1));
+			HandleQueryTagSelected (options.QueryTag != null ? options.QueryTag : App.Instance.Database.Tags.GetTagById(1));
 			allow_tagging_checkbox.Active = options.TaggingAllowed;
 			tag_edit_button.Sensitive = options.TaggingAllowed;			
-			HandleEditableTagSelected (options.EditableTag != null ? options.EditableTag : Core.Database.Tags.GetTagById(3));
+			HandleEditableTagSelected (options.EditableTag != null ? options.EditableTag : App.Instance.Database.Tags.GetTagById(3));
 			HandleStatsChanged (null, null);
 						
 			activate_button.Toggled += HandleActivated;
@@ -159,7 +159,7 @@ namespace LiveWebGalleryExtension
 		
 		void ShowTagMenuFor (Widget widget, TagMenu.TagSelectedHandler handler) 
 		{
-			TagMenu tag_menu = new TagMenu (null, Core.Database.Tags);
+			TagMenu tag_menu = new TagMenu (null, App.Instance.Database.Tags);
 			tag_menu.TagSelected += handler;
 			tag_menu.Populate ();
 			int x, y;

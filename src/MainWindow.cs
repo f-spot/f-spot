@@ -228,6 +228,46 @@ namespace FSpot
 		//
 		public MainWindow (Db db)
 		{
+			foreach (ServiceNode service in AddinManager.GetExtensionNodes ("/FSpot/Services")) {
+				try {
+					service.Initialize ();
+					service.Start ();
+				} catch (Exception e) {
+					Log.Warning ("Something went wrong while starting the {0} extension.", service.Id);
+					Log.DebugException (e);
+				}
+			}
+		
+#if GSD_2_24
+			Log.Information ("Hack for gnome-settings-daemon engaged");
+			int max_age, max_size;
+			if (Preferences.TryGet<int> (Preferences.GSD_THUMBS_MAX_AGE, out max_age)) {
+				if (max_age < 0)
+					Log.Debug ("maximum_age check already disabled, good");
+				else if (max_age == 0)
+					Log.Warning ("maximum_age is 0 (tin-hat mode), not overriding");
+				else if (max_age < 180) {
+					Log.Debug ("Setting maximum_age to a saner value");
+					Preferences.Set (Preferences.GSD_THUMBS_MAX_AGE, 180);
+				}
+			}
+
+			if (Preferences.TryGet<int> (Preferences.GSD_THUMBS_MAX_SIZE, out max_size)) {
+				int count = App.Instance.Database.Photos.Count ("photos");
+				// average thumbs are taking 70K, so this will push the threshold
+				//if f-spot takes more than 70% of the thumbs space
+				int size = count / 10;
+				if (max_size < 0)
+					Log.Debug ("maximum_size check already disabled, good");
+				else if (max_size == 0)
+					Log.Warning ("maximum_size is 0 (tin-hat mode), not overriding");
+				else if (max_size < size) {
+					Log.Debug ("Setting maximum_size to a saner value ({0}MB), according to your db size", size);
+					Preferences.Set (Preferences.GSD_THUMBS_MAX_SIZE, size);
+				}
+			}
+
+#endif
 			Database = db;
 	
 			if (Toplevel == null)
@@ -1446,11 +1486,6 @@ namespace FSpot
 		//
 		// Main menu commands
 		//
-	
-		void HandleOpenCommand (object sender, EventArgs e)
-		{
-			new FSpot.SingleView ();
-		}
 	
 		void HandleImportCommand (object sender, EventArgs e)
 		{

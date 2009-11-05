@@ -20,7 +20,7 @@ namespace BeagleService {
 		{
 			uint timer = Log.InformationTimerStart ("Starting BeagleService");
 			try {
-				Core.Database.Photos.ItemsChanged += HandleDbItemsChanged;
+				App.Instance.Database.Photos.ItemsChanged += HandleDbItemsChanged;
 			} catch {
 				Log.Warning ("unable to hook the BeagleNotifier. are you running --view mode?");
 			}
