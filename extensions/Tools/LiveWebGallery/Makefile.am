@@ -1,67 +1,33 @@
-include $(top_srcdir)/Makefile.include
+addin = LiveWebGallery
 
-PLUGIN_NAME = LiveWebGallery
+addin_manifest = $(addin).addin.xml
 
-PLUGIN_MANIFEST = $(PLUGIN_NAME).addin.xml
+addin_sources =				\
+	LiveWebGallery.cs		\
+	LiveWebGalleryDialog.cs		\
+	SimpleWebServer.cs		\
+	GalleryRequestHandler.cs	\
+	PhotoRequestHandler.cs		\
+	ResourceRequestHandler.cs
 
-PLUGIN_ASSEMBLY = $(PLUGIN_NAME).dll
+addin_references =			\
+	Mono.Posix
 
-PLUGIN_SOURCES =				\
-	$(srcdir)/LiveWebGallery.cs		\
-	$(srcdir)/LiveWebGalleryDialog.cs	\
-	$(srcdir)/SimpleWebServer.cs		\
-	$(srcdir)/GalleryRequestHandler.cs	\
-	$(srcdir)/PhotoRequestHandler.cs	\
-	$(srcdir)/ResourceRequestHandler.cs
+addin_packages =			\
+	gtk-sharp-2.0			\
+	gnome-sharp-2.0
 
-REFS =					\
-	-r:Mono.Posix			\
-	-r:$(top_builddir)/src/f-spot.exe	\
-	-r:$(top_builddir)/src/FSpot.Core.dll	\
-	-r:$(top_builddir)/src/FSpot.Utils.dll	\
-	-r:$(top_builddir)/src/FSpot.Query.dll	\
-	-r:$(top_builddir)/src/FSpot.Platform.dll\
-	$(LINK_MONO_ADDINS)			\
-	$(LINK_SEMWEB)				\
-	$(LINK_GIOSHARP)			\
-	$(LINK_GPHOTO2)				\
-	$(LINK_GTKSHARPBEANS)
-
-PKGS =					\
-	-pkg:gtk-sharp-2.0		\
-	-pkg:gnome-sharp-2.0
-
-RESOURCES =				\
-	-resource:$(srcdir)/$(PLUGIN_MANIFEST)	\
-	-resource:$(srcdir)/ui/$(PLUGIN_NAME).ui\
-	-resource:$(srcdir)/ui/empty.png	\
-	-resource:$(srcdir)/ui/f-spot.css	\
-	-resource:$(srcdir)/ui/f-spot.js	\
-	-resource:$(srcdir)/ui/gallery.html
-
-all: $(PLUGIN_ASSEMBLY)
-
-mpack: $(PLUGIN_ASSEMBLY)
-	mautil p $(PLUGIN_ASSEMBLY)
-
-$(PLUGIN_ASSEMBLY): $(PLUGIN_SOURCES) $(PLUGIN_MANIFEST) ui/$(PLUGIN_NAME).ui ui/empty.png ui/f-spot.css ui/f-spot.js ui/gallery.html
-	$(CSC_LIB) -out:$@ $(PLUGIN_SOURCES) $(REFS) $(PKGS) $(ASSEMBLIES) $(RESOURCES)
-
-plugindir = $(pkglibdir)/extensions
-
-plugin_DATA =			\
-	$(PLUGIN_ASSEMBLY)
-
-EXTRA_DIST = 			\
-	$(PLUGIN_SOURCES)	\
-	$(PLUGIN_MANIFEST)	\
-	ui/$(PLUGIN_NAME).ui	\
-	ui/f-spot.css		\
-	ui/f-spot.js		\
-	ui/empty.png		\
+addin_resources =			\
+	$(addin_manifest)		\
+	ui/$(addin).ui			\
+	ui/empty.png			\
+	ui/f-spot.css			\
+	ui/f-spot.js			\
 	ui/gallery.html
 
-CLEANFILES =			\
-	$(PLUGIN_ASSEMBLY)	\
-	$(PLUGIN_ASSEMBLY).mdb	\
-	*.mpack
+addin_packages =			\
+	gtk-sharp-2.0
+
+addin_extradist =
+
+include $(top_builddir)/Makefile.addins

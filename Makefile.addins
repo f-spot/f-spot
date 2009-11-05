@@ -6,17 +6,20 @@ dep_resources = $(addprefix $(srcdir)/, $(addin_resources))
 build_resources = $(foreach res, $(dep_resources), $(addprefix -resource:, $(res)),$(notdir $(res)))
 build_sources = $(addprefix $(srcdir)/, $(addin_sources))
 build_packages = $(addprefix -pkg:, $(addin_packages))
-build_references =				\
-	$(addprefix -r:, $(addin_references))	\
-	-r:$(top_builddir)/src/f-spot.exe	\
-	-r:$(top_builddir)/src/Cms.dll		\
-	-r:$(top_builddir)/src/FSpot.Core.dll	\
-	-r:$(top_builddir)/src/FSpot.Utils.dll	\
-	-r:$(top_builddir)/src/FSpot.Query.dll	\
-	$(LINK_SEMWEB)				\
-	$(LINK_MONO_ADDINS)			\
-	$(LINK_GPHOTO2)				\
-	$(LINK_GIOSHARP)			\
+build_references =					\
+	$(addprefix -r:, $(addin_references))		\
+	-r:$(top_builddir)/src/f-spot.exe		\
+	-r:$(top_builddir)/src/Cms.dll			\
+	-r:$(top_builddir)/src/FSpot.Core.dll		\
+	-r:$(top_builddir)/src/FSpot.Platform.dll	\
+	-r:$(top_builddir)/src/FSpot.Query.dll		\
+	-r:$(top_builddir)/src/FSpot.Utils.dll		\
+	-r:$(top_builddir)/src/FSpot.Widgets.dll	\
+	$(LINK_SEMWEB)					\
+	$(LINK_MONO_ADDINS)				\
+	$(LINK_GPHOTO2)					\
+	$(LINK_GIOSHARP)				\
+	$(LINK_UNIQUESHARP)				\
 	$(LINK_GTKSHARPBEANS)
 
 

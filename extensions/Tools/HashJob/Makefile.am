@@ -1,50 +1,20 @@
-include $(top_srcdir)/Makefile.include
+addin = HashJob
 
-PLUGIN_NAME = HashJob
+addin_manifest = $(addin).addin.xml
 
-PLUGIN_MANIFEST = $(PLUGIN_NAME).addin.xml
+addin_sources =				\
+	$(addin).cs
 
-PLUGIN_ASSEMBLY = $(PLUGIN_NAME).dll
+addin_resources =			\
+	$(addin_manifest)
 
-PLUGIN_SOURCES =			\
-	$(srcdir)/HashJob.cs
+addin_references =			\
+	Mono.Posix			\
+	Mono.Data.SqliteClient
 
-REFS =					\
-	-r:Mono.Posix			\
-	-r:$(top_builddir)/src/f-spot.exe		\
-	-r:$(top_builddir)/src/FSpot.Core.dll	\
-	-r:$(top_builddir)/src/FSpot.Utils.dll	\
-	-r:$(top_builddir)/src/FSpot.Query.dll	\
-	-r:Mono.Data.SqliteClient				\
-	$(LINK_SEMWEB)				\
-	$(LINK_MONO_ADDINS)			\
-	$(LINK_GIOSHARP)			\
-	$(LINK_GPHOTO2)
+addin_packages =			\
+	gtk-sharp-2.0
 
-PKGS =					\
-	-pkg:gtk-sharp-2.0
+addin_extra_dist =
 
-RESOURCES =				\
-	-resource:$(srcdir)/$(PLUGIN_MANIFEST)
-
-all: $(PLUGIN_ASSEMBLY)
-
-mpack: $(PLUGIN_ASSEMBLY)
-	mautil p $(PLUGIN_ASSEMBLY)
-
-$(PLUGIN_ASSEMBLY): $(PLUGIN_SOURCES) $(PLUGIN_MANIFEST)
-	$(CSC_LIB) -out:$@ $(PLUGIN_SOURCES) $(REFS) $(PKGS) $(ASSEMBLIES) $(RESOURCES)
-
-plugindir = $(pkglibdir)/extensions
-
-plugin_DATA =			\
-	$(PLUGIN_ASSEMBLY)
-
-EXTRA_DIST = 			\
-	$(PLUGIN_SOURCES)	\
-	$(PLUGIN_MANIFEST)
-
-CLEANFILES =			\
-	$(PLUGIN_ASSEMBLY)	\
-	$(PLUGIN_ASSEMBLY).mdb	\
-	*.mpack
+include $(top_builddir)/Makefile.addins
