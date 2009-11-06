@@ -34,7 +34,7 @@ generated/File.cs: unique-api.xml $(CUSTOMS) $(top_builddir)/unique-sharp/genera
 unique-sharp.snk: $(SNK)
 	cp $< $@
 
-unique-sharp.dll: generated/File.cs $(SRCS) gtk-sharp.snk
+unique-sharp.dll: generated/File.cs $(SRCS) unique-sharp.snk
 	@echo -e "\n*** Building $@"
 	$(CSC) -target:library -out:$@ $(UNSAFE) $(DEBUG) $(ASSEMBLIES) $(SRCS) generated/*.cs
 
@@ -51,7 +51,7 @@ CLEANFILES = 			\
 
 DISTCLEANFILES =		\
 	generated/*.cs		\
-	gtk-sharp.snk
+	unique-sharp.snk
 
 EXTRA_DIST =			\
 	$(SRCS)			\
