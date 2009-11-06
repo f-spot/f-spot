@@ -1,13 +1,13 @@
 <Addin namespace="FSpot"
 	id="PixelateEditor"
-	version="0.6"
+	version="0.7"
 	name="PixelateEditor"
 	description="Pixelates an area of the image."
 	author="Brian J. Murrell"
 	url="http://f-spot.org/Extensions"
 	category="Editors">
 	<Dependencies>
-		<Addin id="Core" version="0.6"/>
+		<Addin id="Core" version="0.7"/>
 	</Dependencies>
 	<Extension path = "/FSpot/Editors">
 		<Editor editor_type = "FSpot.Addins.Editors.PixelateEditor"/>

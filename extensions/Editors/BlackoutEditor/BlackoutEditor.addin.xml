@@ -1,13 +1,13 @@
 <Addin namespace="FSpot"
 	id="BlackoutEditor"
-	version="0.6"
+	version="0.7"
 	name="BlackoutEditor"
 	description="Blacks out an area of the image."
 	author="Brian J. Murrell"
 	url="http://f-spot.org/Extensions"
 	category="Editors">
 	<Dependencies>
-		<Addin id="Core" version="0.6"/>
+		<Addin id="Core" version="0.7"/>
 	</Dependencies>
 	<Extension path = "/FSpot/Editors">
 		<Editor editor_type = "FSpot.Addins.Editors.BlackoutEditor"/>

@@ -1,13 +1,13 @@
 <Addin namespace="FSpot"
 	id="PictureTileExtension"
-	version="0.6.0.1"
+	version="0.7.0.0"
 	description="Create photo wall using PictureTile by Jamie Zawinski (http://www.jwz.org/picturetile/)"
 	author="Lorenzo Milesi"
 	name="PictureTile"
 	url="http://f-spot.org/Extensions"
 	category="Tools">
 	<Dependencies>
-		<Addin id="Core" version="0.6"/>
+		<Addin id="Core" version="0.7"/>
 	</Dependencies>
 	<Extension path = "/FSpot/Menus/Tools">
 		<Command id = "PictureTile" _label = "Create photo_wall" command_type = "PictureTileExtension.PictureTile" />

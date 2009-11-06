@@ -1,13 +1,13 @@
 <Addin namespace="FSpot"
 	id="SyncMetaData"
-	version="0.6"
+	version="0.7"
 	description="Sync MetaData information of all catalog with Photos"
 	author="Miguel Aguero"
 	url="http://f-spot.org/Extensions"
 	name="SyncMetaData"
 	category="Tools">
 	<Dependencies>
-		<Addin id="Core" version="0.6"/>
+		<Addin id="Core" version="0.7"/>
 	</Dependencies>
 	<Extension path = "/FSpot/Menus/Tools">
 		<Command id = "SyncMetaData" _label = "Sync Catalog with Photos" command_type = "SyncCatalogExtension.SyncCatalog" />

@@ -1,13 +1,13 @@
 <Addin namespace="FSpot"
 	id="ResizeEditor"
-	version="0.6"
+	version="0.7"
 	name="ResizeEditor"
 	description="Resize the image"
 	author="Stephane Delcroix"
 	url="http://f-spot.org/Extensions"
 	category="Editors">
 	<Dependencies>
-		<Addin id="Core" version="0.6"/>
+		<Addin id="Core" version="0.7"/>
 	</Dependencies>
 	<Extension path = "/FSpot/Editors">
 		<Editor editor_type = "FSpot.Addins.Editors.ResizeEditor"/>
