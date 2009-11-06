@@ -122,7 +122,7 @@ namespace FSpot
 
 #region private ctor and stuffs
 		enum Command {
-			Invalid,
+			Invalid = 0, 
 			Import,
 			View,
 			Organize,
@@ -136,7 +136,6 @@ namespace FSpot
 		Db db;
 
 		App (): base ("org.gnome.FSpot.Core", null,
-				  "Invalid", Command.Invalid,
 				  "Import", Command.Import,
 				  "View", Command.View,
 				  "Organize", Command.Organize,
