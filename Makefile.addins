@@ -23,11 +23,13 @@ build_references =					\
 	$(LINK_GTKSHARPBEANS)
 
 
-all: $(ASSEMBLY)
 mpack: $(ASSEMBLY)
 	mautil p $(ASSEMBLY)
 
-$(ASSEMBLY): $(build_sources) $(dep_resources)
+addin_SOURCES =						\
+	$(build_sources)
+
+$(ASSEMBLY): $(addin_SOURCES) $(dep_resources)
 	$(CSC_LIB) -out:$@ $(addin_extraflags) $(build_sources) $(build_references) $(build_packages) $(build_resources)
 
 addindir = $(pkglibdir)/extensions

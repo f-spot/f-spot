@@ -30,4 +30,4 @@ addin_packages =			\
 
 addin_extradist =
 
-include $(top_builddir)/Makefile.addins
+include $(top_srcdir)/Makefile.addins

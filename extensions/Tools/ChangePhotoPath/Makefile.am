@@ -21,4 +21,4 @@ addin_packages =			\
 addin_extradist =			\
 	ChangePhotoPath.glade
 
-include $(top_builddir)/Makefile.addins
+include $(top_srcdir)/Makefile.addins
