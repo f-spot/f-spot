@@ -3,7 +3,7 @@ AC_CONFIG_SRCDIR(src/main.cs)
 
 AM_CONFIG_HEADER(config.h)
 
-AM_INIT_AUTOMAKE([tar-ustar])
+AM_INIT_AUTOMAKE([tar-ustar -Wno-portability])
 
 AM_MAINTAINER_MODE
 
