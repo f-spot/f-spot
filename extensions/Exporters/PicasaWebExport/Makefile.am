@@ -16,7 +16,6 @@ REFS =						\
 	$(LINK_SEMWEB)				\
 	-r:google-sharp/Mono.Google.dll		\
 	$(LINK_KEYRING)				\
-	$(LINK_MONO_ADDINS)			\
 	$(LINK_GIOSHARP)			\
 	$(LINK_GPHOTO2)				\
 	$(LINK_UNIQUESHARP)			\

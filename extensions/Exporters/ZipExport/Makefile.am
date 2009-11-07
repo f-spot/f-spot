@@ -14,7 +14,6 @@ REFS =						\
 	-r:$(top_builddir)/src/FSpot.Core.dll	\
 	-r:$(top_builddir)/src/FSpot.Utils.dll	\
 	$(LINK_SEMWEB)				\
-	$(LINK_MONO_ADDINS)			\
 	$(LINK_GPHOTO2)				\
 	$(LINK_GTKSHARPBEANS)			\
 	$(LINK_GIOSHARP)			\
@@ -25,7 +24,8 @@ REFS =						\
 
 PKGS =					\
 	-pkg:gtk-sharp-2.0		\
-	-pkg:glade-sharp-2.0
+	-pkg:glade-sharp-2.0		\
+	-pkg:mono-addins
 
 RESOURCES =				\
 	-resource:$(srcdir)/$(PLUGIN_MANIFEST)	\

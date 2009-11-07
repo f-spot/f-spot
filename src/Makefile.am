@@ -353,10 +353,10 @@ BLING_ASSEMBLIES =				\
 	$(LINK_GTKSHARPBEANS)
 
 WIDGETS_ASSEMBLIES =				\
-	$(LINK_MONO_ADDINS)			\
 	$(LINK_GIOSHARP)			\
 	-pkg:gtk-sharp-2.0			\
 	-pkg:gnome-sharp-2.0			\
+	-pkg:mono-addins			\
 	$(LINK_GTKSHARPBEANS)			\
 	-r:Mono.Cairo				\
 	-r:Cms.dll				\
@@ -378,7 +378,6 @@ NULL_PLATFORM_ASSEMBLIES =			\
 
 F_SPOT_ASSEMBLIES = 				\
 	$(LINK_GPHOTO2)				\
-	$(LINK_MONO_ADDINS)			\
 	$(LINK_FLICKR)				\
 	$(LINK_KEYRING)				\
 	$(LINK_SMUGMUG)				\
@@ -405,6 +404,9 @@ F_SPOT_ASSEMBLIES = 				\
 	$(NDESK_DBUS_LIBS)				\
 	$(GCONF_PKG)				\
 	$(GTKHTML_SHARP_PKG)			\
+	-pkg:mono-addins			\
+	-pkg:mono-addins-setup			\
+	-pkg:mono-addins-gui			\
 	-pkg:glade-sharp-2.0			\
 	-pkg:gnome-sharp-2.0			\
 	-pkg:gnome-vfs-sharp-2.0

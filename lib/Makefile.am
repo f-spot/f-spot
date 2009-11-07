@@ -9,7 +9,6 @@ UNCONDITIONAL_SUBDIRS = \
 	libjpegtran			\
 	libfspot			\
 	libgphoto2-sharp	\
-	mono-addins			\
 	semweb				\
 	unique-sharp
 

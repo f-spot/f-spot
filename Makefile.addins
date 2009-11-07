@@ -5,7 +5,10 @@ include $(top_srcdir)/Makefile.include
 dep_resources = $(addprefix $(srcdir)/, $(addin_resources))
 build_resources = $(foreach res, $(dep_resources), $(addprefix -resource:, $(res)),$(notdir $(res)))
 build_sources = $(addprefix $(srcdir)/, $(addin_sources))
-build_packages = $(addprefix -pkg:, $(addin_packages))
+build_packages = 					\
+	$(addprefix -pkg:, $(addin_packages))		\
+	-pkg:mono-addins
+
 build_references =					\
 	$(addprefix -r:, $(addin_references))		\
 	-r:$(top_builddir)/src/f-spot.exe		\
@@ -16,7 +19,6 @@ build_references =					\
 	-r:$(top_builddir)/src/FSpot.Utils.dll		\
 	-r:$(top_builddir)/src/FSpot.Widgets.dll	\
 	$(LINK_SEMWEB)					\
-	$(LINK_MONO_ADDINS)				\
 	$(LINK_GPHOTO2)					\
 	$(LINK_GIOSHARP)				\
 	$(LINK_UNIQUESHARP)				\

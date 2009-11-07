@@ -38,7 +38,6 @@ REFS =							\
 	-r:$(top_builddir)/src/FSpot.Widgets.dll	\
 	$(LINK_GTKSHARPBEANS)				\
 	$(LINK_KEYRING)                     		\
-	$(LINK_MONO_ADDINS)				\
 	$(LINK_SEMWEB)					\
 	$(LINK_GPHOTO2)					\
 	$(LINK_GIOSHARP)				\

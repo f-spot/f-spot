@@ -30,7 +30,6 @@ REFS = \
 	-r:$(top_builddir)/src/FSpot.Utils.dll \
 	-r:Tabblo/Mono.Tabblo.dll \
 	$(LINK_KEYRING)		\
-	$(LINK_MONO_ADDINS)	\
 	$(LINK_SEMWEB)		\
 	$(LINK_GIOSHARP)	\
 	$(LINK_GTKSHARPBEANS)	\	

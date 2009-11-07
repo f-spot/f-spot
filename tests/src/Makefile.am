@@ -21,14 +21,14 @@ PKGS = 					\
 	-pkg:gnome-sharp-2.0		\
 	-pkg:gtk-sharp-2.0
 
-REFS =										\
-	$(LINK_GPHOTO2)							\
-	$(LINK_MONO_ADDINS)						\
-	$(LINK_GIOSHARP)						\
-	-r:$(top_builddir)/src/f-spot.exe			\
+REFS =							\
+	$(LINK_GPHOTO2)					\
+	$(LINK_GIOSHARP)				\
+	$(LINK_UNIQUESHARP)				\
+	-r:$(top_builddir)/src/f-spot.exe		\
 	-r:$(top_builddir)/src/FSpot.Core.dll		\
-	-r:$(top_builddir)/src/FSpot.Query.dll	\
-	-r:$(top_builddir)/src/FSpot.Utils.dll	\
+	-r:$(top_builddir)/src/FSpot.Query.dll		\
+	-r:$(top_builddir)/src/FSpot.Utils.dll		\
 	-r:$(top_builddir)/src/FSpot.Platform.dll	\
 	-r:$(top_builddir)/src/Cms.dll			\
 	-r:$(top_builddir)/lib/semweb/SemWeb.dll

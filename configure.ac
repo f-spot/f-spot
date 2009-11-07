@@ -91,11 +91,11 @@ NDESK_DBUS_REQUIRED=0.4.2
 NDESK_DBUS_GLIB_REQUIRED=0.3.0
 MONO_CAIRO_REQUIRED=1.2.4
 CAIRO_REQUIRED=1.4.0
-dnl -- this check is 	
 LCMS_REQUIRED=1.12
 LIBGPHOTO2_REQUIRED=2.4
+MONOADDINS_REQUIRED=0.3
 
-PKG_CHECK_MODULES(F, libgnome-2.0 >= $LIBGNOME_REQUIRED libgnomeui-2.0 >= $LIBGNOMEUI_REQUIRED libexif >= $LIBEXIF_REQUIRED_MIN libexif < $LIBEXIF_REQUIRED_MAX gtk-sharp-2.0 >= $GTKSHARP_REQUIRED glib-sharp-2.0 >= $GTKSHARP_REQUIRED glade-sharp-2.0 >= $GTKSHARP_REQUIRED gnome-vfs-sharp-2.0 >= $GTKSHARP_REQUIRED gtk+-2.0 >= $GTK_REQUIRED mono >= $MONO_REQUIRED mono-cairo >= $MONO_CAIRO_REQUIRED cairo >= $CAIRO_REQUIRED)
+PKG_CHECK_MODULES(F, libgnome-2.0 >= $LIBGNOME_REQUIRED libgnomeui-2.0 >= $LIBGNOMEUI_REQUIRED libexif >= $LIBEXIF_REQUIRED_MIN libexif < $LIBEXIF_REQUIRED_MAX gtk-sharp-2.0 >= $GTKSHARP_REQUIRED glib-sharp-2.0 >= $GTKSHARP_REQUIRED glade-sharp-2.0 >= $GTKSHARP_REQUIRED gnome-vfs-sharp-2.0 >= $GTKSHARP_REQUIRED gtk+-2.0 >= $GTK_REQUIRED mono >= $MONO_REQUIRED mono-cairo >= $MONO_CAIRO_REQUIRED cairo >= $CAIRO_REQUIRED mono-addins >= $MONOADDINS_REQUIRED mono-addins-gui >= $MONOADDINS_REQUIRED mono-addins-setup >= $MONOADDINS_REQUIRED)
 AC_SUBST(F_CFLAGS)
 AC_SUBST(F_LIBS)
 
@@ -305,10 +305,6 @@ lib/libgphoto2-sharp/libgphoto2-sharp.dll.config
 lib/libgphoto2-sharp/glue/Makefile
 lib/libjpegtran/Makefile
 lib/Makefile
-lib/mono-addins/Makefile
-lib/mono-addins/Mono.Addins.Gui/Makefile
-lib/mono-addins/Mono.Addins/Makefile
-lib/mono-addins/Mono.Addins.Setup/Makefile
 lib/semweb/Makefile
 lib/unique-sharp/Makefile
 lib/unique-sharp/generator/Makefile
