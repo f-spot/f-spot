@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: F-Spot\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=f-"
 "spot&component=General\n"
-"POT-Creation-Date: 2009-08-22 09:23+0000\n"
-"PO-Revision-Date: 2009-08-22 16:04+0300\n"
+"POT-Creation-Date: 2009-10-31 03:27+0000\n"
+"PO-Revision-Date: 2009-11-01 23:30+0300\n"
 "Last-Translator: Mattias Põldaru <mahfiaz gmail com>\n"
 "Language-Team: Estonian <gnome-et@linux.ee>\n"
 "MIME-Version: 1.0\n"
@@ -50,6 +50,33 @@ msgstr "Edastamise viga"
 msgid "copying..."
 msgstr "kopeerimine..."
 
+msgid "<b><i>There is some previously scheduled items to write</i></b>"
+msgstr ""
+
+msgid "<b>Photos to Burn</b>"
+msgstr "<b>Fotod, mida kirjutada</b>"
+
+msgid "Autorotate"
+msgstr "Automaatne pildi pööramine"
+
+msgid "Create CD"
+msgstr "Loo CD"
+
+msgid "Size"
+msgstr "Suurus"
+
+msgid "Size of the exported selection:"
+msgstr ""
+
+msgid "_Browse Previously Scheduled Files"
+msgstr ""
+
+msgid "_Export"
+msgstr "_Eksportimine"
+
+msgid "_Write only these photos to CD"
+msgstr ""
+
 msgid "F_acebook..."
 msgstr "F_acebook..."
 
@@ -71,8 +98,9 @@ msgstr ""
 msgid "Too many images to export"
 msgstr "Eksportimiseks on liiga palju pilte"
 
+#, fuzzy, csharp-format
 msgid ""
-"Facebook only permits 60 photographs per album.  Please refine your "
+"Facebook only permits {0} photographs per album.  Please refine your "
 "selection and try again."
 msgstr ""
 "Facebook võimaldab ainult 60 fotot albumi kohta. Muuda piltide valikut ja "
@@ -177,6 +205,59 @@ msgstr ""
 
 msgid "You are not logged in."
 msgstr "Sa ei ole sisse logitud."
+
+msgid "Auto-confirm Photos"
+msgstr ""
+
+#, fuzzy
+msgid "Caption"
+msgstr "Suhe"
+
+#, fuzzy
+msgid "Create a new album"
+msgstr "Uue albumi loomine nurjus"
+
+#, fuzzy
+msgid "Description"
+msgstr "_Kirjeldus:"
+
+#, fuzzy
+msgid "Export to Facebook"
+msgstr "Viga Facebooki sisselogimisel"
+
+#, fuzzy
+msgid "In this photo"
+msgstr "Aktiivset fotot pole"
+
+msgid "Location"
+msgstr "Asukoht"
+
+#, fuzzy
+msgid "Login"
+msgstr "Asukoht"
+
+msgid "Logout"
+msgstr ""
+
+msgid "Name"
+msgstr "Nimi"
+
+#, fuzzy
+msgid "Not logged in"
+msgstr "Sa ei ole sisse logitud."
+
+msgid "Permissions:"
+msgstr "Õigused:"
+
+#, fuzzy
+msgid "Stay Connected"
+msgstr "(Pole ühendatud)"
+
+msgid "Use an existing album"
+msgstr ""
+
+msgid "Who is this?"
+msgstr "Kes see on?"
 
 msgid "_23hq..."
 msgstr "_23hq..."
@@ -290,9 +371,6 @@ msgstr "Nähtav perele"
 msgid "Visible to Friends"
 msgstr "Nähtav sõpradele"
 
-msgid "_Export"
-msgstr "_Eksportimine"
-
 msgid "_Export tags"
 msgstr "_Märksõnad eksporditakse"
 
@@ -368,9 +446,6 @@ msgstr "<b>Sihtkaust</b>"
 
 msgid "<b>Export Method</b>"
 msgstr "<b>Eksportimise meetod</b>"
-
-msgid "Autorotate"
-msgstr "Automaatne pildi pööramine"
 
 msgid "Create _gallery using \"Original\""
 msgstr "_Luuakse \"Original\" galerii"
@@ -672,11 +747,101 @@ msgstr ""
 "selleks kulub aega. Siit dialoogist saab uuendamisprotsessi käivitada ja "
 "pausida."
 
+#, csharp-format
+msgid ""
+"You currently have {0} photos needing md5 calculation, and {1} pending jobs"
+msgstr ""
+
+msgid "_Close"
+msgstr "_Sulge"
+
 msgid "Processing images..."
 msgstr "Piltide töötlemine..."
 
 msgid "Stopped"
 msgstr "Peatatud"
+
+msgid "Hash for Duplicates"
+msgstr ""
+
+msgid "F-Spot Gallery"
+msgstr "F-Spoti galerii"
+
+msgid "The web gallery seems to be offline now"
+msgstr ""
+
+msgid "Show All"
+msgstr "Näita kõiki"
+
+#, csharp-format
+msgid "{0} photo"
+msgid_plural "{0} photos"
+msgstr[0] "{0} foto"
+msgstr[1] "{0} fotot"
+
+msgid "Current View"
+msgstr ""
+
+msgid "Selected"
+msgstr "Valitud"
+
+#, fuzzy
+msgid "Live Web Gallery"
+msgstr "Veebi_galerii..."
+
+msgid ""
+"<small><i>The gallery stays active until you either deactivate it or close\n"
+"F-Spot. Make sure local viewers access it bypassing HTTP proxy.</i></small>"
+msgstr ""
+
+msgid ""
+"<small><i>When the gallery is active, above is the URL you need to open \n"
+"on another computer to access the shared photos.</i></small>"
+msgstr ""
+
+msgid "Activates and deactivates the web gallery"
+msgstr ""
+
+msgid "Allow viewers to add tags"
+msgstr ""
+
+msgid "Copy URL to clipboard"
+msgstr ""
+
+msgid "F-Spot Live Web Gallery"
+msgstr ""
+
+msgid "Gallery URL:"
+msgstr "Galerii URL:"
+
+msgid "Limit number of shared photos to"
+msgstr ""
+
+msgid "Options:"
+msgstr ""
+
+#, fuzzy
+msgid "Photos with a Tag"
+msgstr "Fotosid lehel"
+
+msgid "Selected Photos"
+msgstr "Valitud fotod"
+
+msgid "Share:"
+msgstr "Jaga:"
+
+msgid "Views:"
+msgstr "Vaadatud:"
+
+msgid "none"
+msgstr "pole"
+
+#, csharp-format
+msgid " Gallery: {0},  Photos: {1},  Last client: {3}"
+msgstr ""
+
+msgid "Gallery is inactive"
+msgstr "Galerii pole aktiivne"
 
 msgid "Merge Db"
 msgstr "Andmebaasi liitmine"
@@ -758,6 +923,31 @@ msgid ""
 msgstr ""
 "<big>Andmebaas viitab failidele kataloogis <b>{0}</b>.\n"
 "Palun vali see kataloog, et kirjed saaks sellega seostada.</big>"
+
+msgid "Configure Screensaver"
+msgstr ""
+
+msgid "All Images"
+msgstr "Kõik pildid"
+
+msgid "Delay:"
+msgstr "Viivitus:"
+
+msgid "Display:"
+msgstr "Kuva:"
+
+msgid "Images tagged with:"
+msgstr "Pildid märksõnadega:"
+
+msgid "Make F-Spot my screensaver"
+msgstr ""
+
+#, fuzzy
+msgid "Screensaver Configuration"
+msgstr "Tasandi sätted"
+
+msgid "F-Spot"
+msgstr "F-Spot"
 
 msgid "F-Spot Photo Manager"
 msgstr "F-Spot fotoalbum"
@@ -965,9 +1155,6 @@ msgstr "Versioon"
 msgid "Other"
 msgstr "Teised"
 
-msgid "Name"
-msgstr "Nimi"
-
 msgid "Url"
 msgstr "Url"
 
@@ -1020,11 +1207,11 @@ msgstr "Faili kopeerimine {0} {1}-st"
 msgid "Error transferring file"
 msgstr "Faili edastamine nurjus"
 
-msgid "Done Copying Files"
-msgstr "Failide kopeerimine lõpetatud"
-
 msgid "Download Complete"
 msgstr "Allalaadimine lõpetatud"
+
+msgid "Done Copying Files"
+msgstr "Failide kopeerimine lõpetatud"
 
 #, csharp-format
 msgid "Transferring \"{0}\" from camera"
@@ -2362,9 +2549,6 @@ msgstr "Praegune nädal (E-P)"
 msgid "Previous Week (Mon-Sun)"
 msgstr "Eelmine nädal (E-P)"
 
-msgid "All Images"
-msgstr "Kõik pildid"
-
 msgid "Customized Range"
 msgstr "Muu vahemik"
 
@@ -2438,6 +2622,299 @@ msgstr "Suhe"
 
 msgid "Retry"
 msgstr "Proovi uuesti"
+
+msgid "0000:00:00 00:00:00"
+msgstr "0000:00:00 00:00:00"
+
+msgid "00:00:00"
+msgstr "00:00:00"
+
+msgid "5"
+msgstr "5"
+
+msgid "<b>Action</b>"
+msgstr "<b>Tegevus</b>"
+
+#, fuzzy
+msgid "<b>Reference Photo</b>"
+msgstr "<b>Viitav foto</b>"
+
+msgid "Adjust Time"
+msgstr "Aja kohendamine"
+
+msgid "Adjusted date: "
+msgstr "Kohandatud kuupäev:"
+
+msgid "Current date:"
+msgstr "Tänane kuupäev:"
+
+#, fuzzy
+msgid "Space all photos by"
+msgstr "Nihuta kõiki pilte {0} võrra"
+
+msgid "difference:"
+msgstr "erinevus:"
+
+#, fuzzy
+msgid "min. Starting at {0}"
+msgstr "Foto \"{0}\" pööramine"
+
+#, fuzzy
+msgid "<b>End Date</b>"
+msgstr "<b>Stiil</b>"
+
+#, fuzzy
+msgid "<b>Select period</b>"
+msgstr "<b>Stiil</b>"
+
+#, fuzzy
+msgid "<b>Start Date</b>"
+msgstr "<b>Stiil</b>"
+
+msgid "Cancel, do not change the current timeline. "
+msgstr ""
+
+msgid "Only photos taken within these dates will be displayed."
+msgstr ""
+
+#, fuzzy
+msgid "Set date range"
+msgstr "_Puhasta ajavahemik"
+
+msgid "<small></small>"
+msgstr ""
+
+#, fuzzy
+msgid "Edit Tag"
+msgstr "Muuda pilti"
+
+#, fuzzy
+msgid "Edit icon"
+msgstr "Redigeerimine"
+
+msgid "_Icon:"
+msgstr "_Ikoon:"
+
+msgid "<b>From External Photo</b>"
+msgstr "<b>Välisest fotost</b>"
+
+msgid "<b>From Photo</b>"
+msgstr "<b>Fotost</b>"
+
+msgid "<b>Predefined icons</b>"
+msgstr "<b>Eeldefineeritud ikoonid</b>"
+
+msgid "<b>Preview</b>"
+msgstr "<b>Eelvaade</b>"
+
+msgid "Design icon from"
+msgstr ""
+
+#, fuzzy
+msgid "Edit Tag Icon"
+msgstr "Muuda pilti"
+
+msgid "No _image"
+msgstr ""
+
+msgid "Photo 0 of 0"
+msgstr "{0} foto {1}-st"
+
+msgid "Color profile for display:"
+msgstr ""
+
+msgid "Color profile for printing:"
+msgstr ""
+
+msgid "F-Spot Preferences"
+msgstr "F-Spoti eelistused"
+
+msgid "F-Spot appearance:"
+msgstr "F-Spoti välimus:"
+
+msgid ""
+"Inside the image files when possible\n"
+"<small>Makes them accessible to other image-editing programs.</small>"
+msgstr ""
+
+msgid "Select A Folder"
+msgstr "Kataloogi valimine"
+
+msgid "Separately from the image files"
+msgstr ""
+
+msgid "Store tags and descriptions for photos:"
+msgstr ""
+
+msgid "When importing photos, copy them to:"
+msgstr ""
+
+msgid "<b>Max Rating</b>"
+msgstr "<b>Suurim hinnang</b>"
+
+msgid "<b>Min Rating</b>"
+msgstr "<b>Vähim hinnang</b>"
+
+msgid "Set Rating Filter"
+msgstr ""
+
+msgid "Adjust _Time..."
+msgstr ""
+
+msgid "Arrange _by"
+msgstr ""
+
+msgid "By _Date"
+msgstr "_Kuupäeva järgi"
+
+msgid "By _Import Roll"
+msgstr "_Imporditud rulli järgi"
+
+msgid "By _Rating"
+msgstr "_Hinnangu järgi"
+
+msgid "Copy Locat_ion"
+msgstr "Kopeeri _asukoht"
+
+msgid "Create New _Tag..."
+msgstr "Loo uus _märksõna..."
+
+msgid "Create _New Version..."
+msgstr "Loo _uus versioon..."
+
+msgid "Fin_d"
+msgstr "_Otsi"
+
+msgid "Manage _Extensions"
+msgstr "_Laienduste haldamine"
+
+msgid "Page Set_up..."
+msgstr "Lehekülje _sätted..."
+
+msgid "Re_fresh Thumbnail"
+msgstr ""
+
+#, fuzzy
+msgid "Select _None"
+msgstr "Vali kaust"
+
+msgid "Send by _Mail..."
+msgstr ""
+
+msgid "Side_bar"
+msgstr "_Külgriba"
+
+msgid "T_ags"
+msgstr "_Märksõnad"
+
+#, fuzzy
+msgid "Thumbnail _elements"
+msgstr "Pisipiltide kataloog"
+
+msgid "Too_lbar"
+msgstr "_Tööriistariba"
+
+msgid "View"
+msgstr "_Vaade"
+
+msgid "_Attach Tag to Selection"
+msgstr "Ü_henda valik märksõnaga"
+
+msgid "_Clear Rating Filter"
+msgstr "_Puhasta hinnangufilter"
+
+msgid "_Clear Roll Filter"
+msgstr ""
+
+msgid "_Components"
+msgstr "_Komponendid"
+
+msgid "_Contents"
+msgstr "_Sisukord"
+
+msgid "_Dates"
+msgstr "_Kuupäevad"
+
+msgid "_Delete Selected Tag"
+msgstr "_Kustuta valitud märksõna"
+
+msgid "_Delete Version"
+msgstr "_Kustuta versioon"
+
+msgid "_Edit Selected Tag..."
+msgstr "_Valitud märksõna muutmine..."
+
+msgid "_Export to"
+msgstr "_Ekspordi kuhu"
+
+msgid "_Filmstrip"
+msgstr "_Filmirida"
+
+msgid "_Hidden"
+msgstr "_Varjatud"
+
+msgid "_Import..."
+msgstr "_Importimine..."
+
+msgid "_Large"
+msgstr "_Suur"
+
+msgid "_Last Import Roll"
+msgstr "_Viimati imporditud rull"
+
+msgid "_Loupe"
+msgstr "_Luup"
+
+msgid "_Medium"
+msgstr "_Keskmine"
+
+msgid "_Quit"
+msgstr "_Lõpeta"
+
+msgid "_Ratings"
+msgstr "_Hinnangud"
+
+msgid "_Remove Tag From Selection"
+msgstr "_Eemalda valikust märksõna"
+
+msgid "_Rename Version"
+msgstr "_Nimeta versioon ümber"
+
+msgid "_Reverse Order"
+msgstr "_Pööratud järjekord"
+
+msgid "_Select Import Rolls..."
+msgstr "_Impordirullide valimine..."
+
+msgid "_Set Date Range..."
+msgstr "_Ajavahemiku määramine..."
+
+msgid "_Set Rating filter..."
+msgstr "_Hinnagufiltri määramine..."
+
+msgid "_Sharpen..."
+msgstr "_Teravustamine..."
+
+msgid "_Small"
+msgstr "_Väike"
+
+msgid "_Tag Icons"
+msgstr "_Märksõnade ikoonid"
+
+msgid "_Tags"
+msgstr "_Märksõnad"
+
+msgid "_Timeline"
+msgstr "_Ajajoon"
+
+msgid "_Tools"
+msgstr "_Tööriistad"
+
+msgid "_Untagged Photos"
+msgstr "_Märksõnadeta fotod"
+
+msgid "_Version"
+msgstr "_Versioon"
 
 msgid "Updating F-Spot Database"
 msgstr "F-Spoti andmebaasi uuendamine"
@@ -2555,9 +3032,6 @@ msgstr "Histogramm"
 msgid "Date"
 msgstr "Kuupäev"
 
-msgid "Size"
-msgstr "Suurus"
-
 msgid "Exposure"
 msgstr "Säriaeg"
 
@@ -2570,11 +3044,11 @@ msgstr "Faili suurus"
 msgid "Rating"
 msgstr "Hinnang"
 
-msgid "(Unknown)"
-msgstr "(Tundmatu)"
-
 msgid "(wrong format)"
 msgstr "(vale vorming)"
+
+msgid "(Unknown)"
+msgstr "(Tundmatu)"
 
 #, csharp-format
 msgid "(One Edit)"
@@ -2655,9 +3129,6 @@ msgstr "Rakendusi pole saadaval"
 
 msgid "Rating:"
 msgstr "Hinnang:"
-
-msgid "Location"
-msgstr "Asukoht"
 
 msgid "Country"
 msgstr "Riik"
