@@ -184,16 +184,17 @@ namespace FSpot.Widgets
 				ContextSwitchStrategy.SetHistogramVisible (Context, histogram_expander.Expanded);
 				UpdateHistogram ();
 			};
+			histogram_expander.StyleSet += delegate (object sender, StyleSetArgs args) { 
+				Gdk.Color c = this.Toplevel.Style.Backgrounds [(int)Gtk.StateType.Active];
+				histogram.RedColorHint = (byte) (c.Red / 0xff);
+				histogram.GreenColorHint = (byte) (c.Green / 0xff);
+				histogram.BlueColorHint = (byte) (c.Blue / 0xff);
+				histogram.BackgroundColorHint = 0xff;
+				UpdateHistogram ();
+			};
 			histogram_image = new Gtk.Image ();
 			histogram = new Histogram ();
 			histogram_expander.Add (histogram_image);
-
-			Window window = MainWindow.Toplevel.Window;
-			Gdk.Color c = window.Style.Backgrounds [(int)Gtk.StateType.Active];
-			histogram.RedColorHint = (byte) (c.Red / 0xff);
-			histogram.GreenColorHint = (byte) (c.Green / 0xff);
-			histogram.BlueColorHint = (byte) (c.Blue / 0xff);
-			histogram.BackgroundColorHint = 0xff;
 
 			Add (histogram_expander);
 
