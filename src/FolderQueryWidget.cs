@@ -26,10 +26,10 @@ namespace FSpot
 		PhotoQuery query;
 		FolderSet folder_set;
 		
-		public FolderQueryWidget () : base ()
+		public FolderQueryWidget (PhotoQuery query) : base ()
 		{
 			folder_set = new FolderSet ();
-			query = MainWindow.Toplevel.Query;
+			this.query = query;
 			
 			query.SetCondition (folder_set);
 			

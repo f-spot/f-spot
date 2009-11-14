@@ -81,7 +81,7 @@ namespace FSpot {
 			rollfilter.Visible = false;
 			box.PackStart (rollfilter, false, false, 0);
 
-			folder_query_widget = new FolderQueryWidget ();
+			folder_query_widget = new FolderQueryWidget (query);
 			folder_query_widget.Visible = false;
 			box.PackStart (folder_query_widget, false, false, 0);
 			
