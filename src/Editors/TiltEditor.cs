@@ -1,24 +1,26 @@
 /*
- * TiltEditor.cs
+ * FSpot.Editors.TiltEditor.cs
  *
  * Author(s)
  * 	Ruben Vermeersch <ruben@savanne.be>
+ *	Stephane Delcroix <stephane@delcroix.org>
  *
+ * Copyright (c) 2009 Stephane Delcroix
+ * 
  * This is free software. See COPYING for details.
  */
 
+using System;
+using Mono.Unix;
+
+using Gdk;
+using Gtk;
 using Cairo;
 
 using FSpot.Widgets;
 
-using Gdk;
-using Gtk;
-
-using Mono.Unix;
-
-using System;
-
-namespace FSpot.Editors {
+namespace FSpot.Editors
+{
 	// TODO: there were keybindings (left/right) to adjust tilt, maybe they should be added back.
 	class TiltEditor : Editor
 	{
@@ -52,22 +54,21 @@ namespace FSpot.Editors {
 		private Pixbuf ProcessImpl (Pixbuf input, Cms.Profile input_profile, bool fast) {
 			Pixbuf result;
 			using (ImageInfo info = new ImageInfo (input)) {
-				MemorySurface surface = new MemorySurface (Format.Argb32,
+				using (MemorySurface surface = new MemorySurface (Format.Argb32,
 									   input.Width,
-									   input.Height);
-
-				Context ctx = new Context (surface);
-				ctx.Matrix = info.Fill (info.Bounds, angle);
-				SurfacePattern p = new SurfacePattern (info.Surface);
-				if (fast) {
-					p.Filter =  Filter.Fast;
+									   input.Height)) {
+					using (Context ctx = new Context (surface)) {
+						ctx.Matrix = info.Fill (info.Bounds, angle);
+						using (SurfacePattern p = new SurfacePattern (info.Surface)) {
+							if (fast) 
+								p.Filter =  Filter.Fast;
+							ctx.Source = p;
+							ctx.Paint ();
+						}
+						result = MemorySurface.CreatePixbuf (surface);
+						surface.Flush ();
+					}
 				}
-				ctx.Source = p;
-				ctx.Paint ();
-				((IDisposable)ctx).Dispose ();
-				p.Destroy ();
-				result = MemorySurface.CreatePixbuf (surface);
-				surface.Flush ();
 			}
 			return result;
 		}
