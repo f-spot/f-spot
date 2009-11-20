@@ -115,7 +115,7 @@ namespace FSpot.Widgets {
 		{
 			int length = args.EndPos - args.StartPos;
 			//Log.Debug ("start {0} end {1} len {2} last {3}", args.StartPos, args.EndPos, length, last_entry_text);
-			string txt = last_entry_text.Substring (args.StartPos, length);
+			string txt = length < 0 ? last_entry_text : last_entry_text.Substring (args.StartPos, length);
 
 			for (int i = 0; i < txt.Length; i++) {
 				if (txt [i] == '(')
