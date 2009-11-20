@@ -12,7 +12,7 @@ using System.Runtime.InteropServices;
 
 namespace FSpot.Widgets {
 
-	public class SoftFocus {
+	public class SoftFocus : IDisposable {
 
 		ImageInfo info;
 		double radius;

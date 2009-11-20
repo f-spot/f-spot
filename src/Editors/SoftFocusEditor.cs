@@ -3,32 +3,37 @@
  *
  * Author(s)
  * 	Ruben Vermeersch <ruben@savanne.be>
+ *	Stephane Delcroix <stephane@delcroix.org>
  *
- * This is free software. See COPYING for details.
+ * Copyright (c) 2009 Stephane Delcroix
+ *
+ * This is open source software. See COPYING for details.
  */
 
+using System;
+using Mono.Unix;
 using Cairo;
-
-using FSpot.Widgets;
-
 using Gdk;
 using Gtk;
 
-using Mono.Unix;
+using FSpot.Widgets;
 
-using System;
 
-namespace FSpot.Editors {
+
+
+namespace FSpot.Editors
+{
 	// TODO: This had a keybinding e. Maybe we should add it back, but did people even knew it?
 	class SoftFocusEditor : Editor
 	{
 		double radius;
 		Scale scale;
 
-		public SoftFocusEditor () : base (Catalog.GetString ("Soft Focus"), "filter-soft-focus") {
+		public SoftFocusEditor () : base (Catalog.GetString ("Soft Focus"), "filter-soft-focus")
+		{
 			// FIXME: need tooltip Catalog.GetString ("Create a soft focus visual effect")
 			HasSettings = true;
-        }
+		}
 
 		public override Widget ConfigurationWidget ()
 		{
@@ -52,19 +57,21 @@ namespace FSpot.Editors {
 		private Pixbuf ProcessImpl (Pixbuf input, Cms.Profile input_profile, bool fast) {
 			Pixbuf result;
 			using (ImageInfo info = new ImageInfo (input)) {
-				Widgets.SoftFocus soft = new Widgets.SoftFocus (info);
-				soft.Radius = radius;
+				using (Widgets.SoftFocus soft = new Widgets.SoftFocus (info)) {
+					soft.Radius = radius;
+	
+					using (MemorySurface surface = new MemorySurface (Format.Argb32,
+										   input.Width,
+										   input.Height)) {
+	
+						using (Context ctx = new Context (surface)) {
+							soft.Apply (ctx, info.Bounds);
+						}
 
-				MemorySurface surface = new MemorySurface (Format.Argb32,
-									   input.Width,
-									   input.Height);
-
-				Context ctx = new Context (surface);
-				soft.Apply (ctx, info.Bounds);
-				((IDisposable)ctx).Dispose ();
-
-				result = MemorySurface.CreatePixbuf (surface);
-				surface.Flush ();
+						result = MemorySurface.CreatePixbuf (surface);
+						surface.Flush ();
+					}
+				}
 			}
 			return result;
 		}
