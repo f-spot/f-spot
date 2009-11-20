@@ -406,16 +406,6 @@ namespace FSpot.Widgets
 				GdkWindow.MoveResize (allocation.X, allocation.Y, allocation.Width, allocation.Height);
 			}
 
-			Hadjustment.PageSize = Math.Min (scaled_width, allocation.Width);
-			Hadjustment.PageIncrement = scaled_width * .9;
-			Hadjustment.StepIncrement = 32;
-			Hadjustment.Lower = 0;
-
-			Vadjustment.PageSize = Math.Min (scaled_height, allocation.Height);
-			Vadjustment.PageIncrement = scaled_height * .9;
-			Vadjustment.StepIncrement = 32;
-			Vadjustment.Lower = 0;
-
 			if (XOffset > Hadjustment.Upper - Hadjustment.PageSize)
 				ScrollTo ((int)(Hadjustment.Upper - Hadjustment.PageSize), YOffset, false);
 			if (YOffset > Vadjustment.Upper - Vadjustment.PageSize)
@@ -770,8 +760,18 @@ namespace FSpot.Widgets
 				scaled_height = (uint)Math.Floor (height * Zoom + .5);
 			}
 
+			Hadjustment.PageSize = Math.Min (scaled_width, Allocation.Width);
+			Hadjustment.PageIncrement = scaled_width * .9;
+			Hadjustment.StepIncrement = 32;
 			Hadjustment.Upper = scaled_width;
+			Hadjustment.Lower = 0;
+
+			Vadjustment.PageSize = Math.Min (scaled_height, Allocation.Height);
+			Vadjustment.PageIncrement = scaled_height * .9;
+			Vadjustment.StepIncrement = 32;
 			Vadjustment.Upper = scaled_height;
+			Vadjustment.Lower = 0;
+
 		}
 
 		event EventHandler AdjustmentsChanged;
