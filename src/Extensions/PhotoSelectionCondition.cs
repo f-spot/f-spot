@@ -23,8 +23,7 @@ namespace FSpot.Extensions
 	{
 		public PhotoSelectionCondition()
 		{
-			if (App.Instance.Organizer != null)
-				App.Instance.Organizer.Selection.Changed += delegate { NotifyChanged ();};
+			App.Instance.Organizer.Selection.Changed += delegate { NotifyChanged ();};
 		}
 
 		public override bool Evaluate (NodeElement conditionNode)
