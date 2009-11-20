@@ -533,9 +533,6 @@ namespace FSpot
 			Preferences.SettingChanged += OnPreferencesChanged;
 	
 			main_window.DeleteEvent += HandleDeleteEvent;
-			
-			query_widget.HandleChanged (query);
-			query_widget.Close ();
 	
 			// When the icon_view is loaded, set it's initial scroll position
 			icon_view.SizeAllocated += HandleIconViewReady;
