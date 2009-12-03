@@ -70,7 +70,6 @@ namespace FSpot
 
 			GLib.GType.Init ();
 			Catalog.Init ("f-spot", Defines.LOCALE_DIR);
-			Catalog.Init ("mono-addins", Defines.LOCALE_DIR);
 			
 			FSpot.Global.PhotoDirectory = Preferences.Get<string> (Preferences.STORAGE_PATH);
 			for (int i = 0; i < args.Length && !shutdown; i++) {
