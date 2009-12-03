@@ -70,6 +70,7 @@ namespace FSpot
 
 			GLib.GType.Init ();
 			Catalog.Init ("f-spot", Defines.LOCALE_DIR);
+			Catalog.Init ("mono-addins", Defines.LOCALE_DIR);
 			
 			FSpot.Global.PhotoDirectory = Preferences.Get<string> (Preferences.STORAGE_PATH);
 			for (int i = 0; i < args.Length && !shutdown; i++) {
@@ -191,7 +192,7 @@ namespace FSpot
 
 
 			//Gtk initialization
-			Application.Init (Defines.PACKAGE, ref args);
+			Gtk.Application.Init (Defines.PACKAGE, ref args);
 			Gnome.Vfs.Vfs.Initialize ();
 
 			// init web proxy globally
@@ -241,7 +242,7 @@ namespace FSpot
 	
 				if (App.Instance.IsRunning)
 					return 0;
-				Application.Run ();
+				Gtk.Application.Run ();
 			} catch (System.Exception e) {
 				Log.Exception (e);
 				ExceptionDialog dlg = new ExceptionDialog(e);
