@@ -1,0 +1,4228 @@
+# Romanian translation for f-spot
+# Copyright (c) 2006 Rosetta Contributors and Canonical Ltd 2006
+# This file is distributed under the same license as the f-spot package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2006.
+# Lucian Adrian Grijincu <lucian.grijincu@gmail.com>, 2009
+msgid ""
+msgstr ""
+"Project-Id-Version: f-spot\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=f-"
+"spot&component=General\n"
+"POT-Creation-Date: 2009-11-23 22:55+0000\n"
+"PO-Revision-Date: 2009-11-29 04:24+0300\n"
+"Last-Translator: Lucian Adrian Grijincu <lucian.grijincu@gmail.com>\n"
+"Language-Team: Romanian GNOME Team <gnomero-list@lists.sourceforge.net>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: ro\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
+"20)) ? 1 : 2);;\n"
+"X-Generator: Virtaal 0.4.0\n"
+"X-Launchpad-Export-Date: 2009-11-28 23:20+0000\n"
+"100 > 19) || ((n % 100 == 0) && (n != 0))) ? 2: 1))\n"
+
+#: ../extensions/Exporters/CDExport/CDExport.addin.xml.h:1
+msgid "_CD..."
+msgstr "_CD..."
+
+#: ../extensions/Exporters/CDExport/CDExport.cs:162
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:392
+#: ../src/CameraFileSelectionDialog.cs:199
+msgid "Transferring Pictures"
+msgstr "Se transferă imaginile"
+
+#: ../extensions/Exporters/CDExport/CDExport.cs:218
+#, csharp-format
+msgid "Transferring picture \"{0}\" To CD"
+msgstr "Se transferă imaginea „{0}” către CD"
+
+#. Note for translators: This indicates the current photo is photo {0} of {1} out of photos
+#: ../extensions/Exporters/CDExport/CDExport.cs:220
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:349
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:245
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:781
+#: ../src/MainWindow.cs:673 ../src/UI.Dialog/AdjustTimeDialog.cs:129
+#: ../src/UI.Dialog/ProgressDialog.cs:92
+#, csharp-format
+msgid "{0} of {1}"
+msgstr "{0} din {1}"
+
+#: ../extensions/Exporters/CDExport/CDExport.cs:233
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:380
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:379
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:285
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:806
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:704
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:607
+msgid "Done Sending Photos"
+msgstr "S-a terminat trimiterea fotografiilor"
+
+#: ../extensions/Exporters/CDExport/CDExport.cs:235
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:287
+msgid "Transfer Complete"
+msgstr "Transfer încheiat"
+
+#: ../extensions/Exporters/CDExport/CDExport.cs:242
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:292
+msgid "Error While Transferring"
+msgstr "S-a produs o eroare în timpul transferului"
+
+#: ../extensions/Exporters/CDExport/CDExport.cs:250
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:311
+msgid "Error Transferring"
+msgstr "S-a produs o eroare la transfer"
+
+#: ../extensions/Exporters/CDExport/CDExport.cs:263
+msgid "copying..."
+msgstr "se copiază..."
+
+#: ../extensions/Exporters/CDExport/CDExport.ui.h:1
+msgid "<b><i>There is some previously scheduled items to write</i></b>"
+msgstr "<b><i>Există elemente planificate anterior pentru scriere</i></b>"
+
+#: ../extensions/Exporters/CDExport/CDExport.ui.h:2
+msgid "<b>Photos to Burn</b>"
+msgstr "<b>Fotografii de scris</b>"
+
+#: ../extensions/Exporters/CDExport/CDExport.ui.h:3
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:7
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:7
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:5
+#: ../src/f-spot.glade.h:28
+msgid "Autorotate"
+msgstr "Autorotește"
+
+#: ../extensions/Exporters/CDExport/CDExport.ui.h:4
+msgid "Create CD"
+msgstr "Creare CD"
+
+#: ../extensions/Exporters/CDExport/CDExport.ui.h:5
+#: ../src/Widgets/InfoBox.cs:221
+msgid "Size"
+msgstr "Dimensiune"
+
+#: ../extensions/Exporters/CDExport/CDExport.ui.h:6
+msgid "Size of the exported selection:"
+msgstr "Dimensiunea selecției exportate:"
+
+#: ../extensions/Exporters/CDExport/CDExport.ui.h:7
+msgid "_Browse Previously Scheduled Files"
+msgstr "_Navigați prin fișierele programate anterior"
+
+#: ../extensions/Exporters/CDExport/CDExport.ui.h:8
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:15
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:16
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:15
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:20
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:12
+#: ../src/f-spot.glade.h:95
+msgid "_Export"
+msgstr "_Exportă"
+
+#: ../extensions/Exporters/CDExport/CDExport.ui.h:9
+msgid "_Write only these photos to CD"
+msgstr "_Scrie doar aceste fotografii pe CD"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.addin.xml.h:1
+msgid "F_acebook..."
+msgstr "F_acebook..."
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:99
+msgid "Waiting for authorization"
+msgstr "Se așteaptă autorizarea"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:100
+msgid ""
+"F-Spot will now launch your browser so that you can enable the permission "
+"you just selected.\n"
+"\n"
+"Once you are directed by Facebook to return to this application, click \"Ok"
+"\" below."
+msgstr ""
+"F-Spot va lansa un navigator în care puteți activa permisiunile pe care "
+"tocmai le-ați selectat.\n"
+"\n"
+"De îndată ce sunteți direcționați de Facebook să vă întoarceți la această "
+"aplicație, apăsați pe „Ok” mai jos."
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:280
+msgid "Too many images to export"
+msgstr "Prea multe imagini de exportat"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:281
+#, csharp-format
+msgid ""
+"Facebook only permits {0} photographs per album.  Please refine your "
+"selection and try again."
+msgstr ""
+"Facebook permite numai {0} fotografii într-un album. Refaceți selecția și "
+"încercați din nou."
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:298
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:475
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:730
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:597
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:522
+msgid "Uploading Pictures"
+msgstr "Se trimit fotografiile"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:319
+msgid "Album must have a name"
+msgstr "Albumul trebuie să aibă un nume"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:320
+msgid "Please name your album or choose an existing album."
+msgstr "Numiți albumul sau alegeți un album existent."
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:334
+msgid "Creating a new album failed"
+msgstr "Crearea unui nou album a eșuat"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:335
+#, csharp-format
+msgid ""
+"An error occurred creating a new album.\n"
+"\n"
+"{0}"
+msgstr ""
+"S-a produs o eroare în timpul creării albumului nou.\n"
+"{0}"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:357
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:660
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:565
+#, csharp-format
+msgid "Uploading picture \"{0}\" ({1} of {2})"
+msgstr "Se trimite fotografia „{0}” ({1} din {2})"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:371
+#, csharp-format
+msgid "Error Uploading To Facebook: {0}"
+msgstr "Eroare la încărcarea pe Facebook: {0}"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:372
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:370
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:250
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:797
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:693
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:596
+#: ../extensions/Exporters/TabbloExport/TabbloExport.cs:319
+msgid "Error"
+msgstr "Eroare"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:382
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:381
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:808
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:706
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:609
+msgid "Upload Complete"
+msgstr "Încărcare finalizată"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:385
+msgid "Visit F-Spot group on Facebook"
+msgstr "Vizitați grupul F-Spot pe Facebook"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:211
+msgid "Waiting for authentication"
+msgstr "Se așteaptă autentificarea"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:212
+msgid ""
+"F-Spot will now launch your browser so that you can log into Facebook.\n"
+"\n"
+"Once you are directed by Facebook to return to this application, click \"Ok"
+"\" below.  F-Spot will cache your session in gnome-keyring, if possible, and "
+"re-use it on future Facebook exports."
+msgstr ""
+"F-Spot va porni acum navigatorul web pentru a vă putea autentifica pe "
+"Facebook.\n"
+"\n"
+"După ce Facebook vă indică să vă întoarceți la aplicație, apăsați pe butonul "
+"„OK” mai jos. F-spot va ține minte sesiunea dumneavoastră în inelul de chei "
+"din Gnome, dacă e posibil, și o va folosi în exporturile viitoare către "
+"Facebook."
+
+#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:217
+msgid "Authenticating..."
+msgstr "Autentificare..."
+
+#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:227
+msgid "Error logging into Facebook"
+msgstr "Eroare la autentificarea pe Facebook"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:228
+msgid ""
+"There was a problem logging into Facebook.  Check your credentials and try "
+"again."
+msgstr ""
+"Există o problemă la autentificarea pe Facebook. Verificați datele de "
+"autentificare și încercați din nou."
+
+#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:237
+msgid "Authorizing Session"
+msgstr "Se autorizează sesiunea"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:246
+msgid "Session established, fetching user info..."
+msgstr "Sesiune stabilită, se aduc datele despre utilizator..."
+
+#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:252
+msgid "Session established, fetching friend list..."
+msgstr "Sesiune stabilită, se aduce lista de prieteni..."
+
+#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:262
+msgid "Session established, fetching friend details..."
+msgstr "Sesiune stabilită, se aduc detaliile despre prieteni..."
+
+#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:272
+msgid "Session established, fetching photo albums..."
+msgstr "Sesiune stabilită, se aduc albumele foto..."
+
+#. Note for translators: {0} and {1} are respectively firstname and surname of the user
+#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:285
+#, csharp-format
+msgid "{0} {1} is logged into Facebook"
+msgstr "{0} {1} este autentificat pe Facebook"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:291
+msgid "Facebook Connection Error"
+msgstr "Eroare de conectare la Facebook"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:292
+#, csharp-format
+msgid ""
+"There was an error when downloading your information from Facebook.\n"
+"\n"
+"Facebook said: {0}"
+msgstr ""
+"S-a produs o eroare în timpul descărcării informațiilor dumneavoastră de pe "
+"Facebook.\n"
+"\n"
+"Facebook a comunicat: {0}"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:321
+msgid "You are not logged in."
+msgstr "Nu sunteți autentificat."
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.ui.h:1
+msgid "Auto-confirm Photos"
+msgstr "Confirmă automat fotografiile"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.ui.h:2
+msgid "Caption"
+msgstr "Titlu"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.ui.h:3
+msgid "Create a new album"
+msgstr "Creează un album nou"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.ui.h:4
+msgid "Description"
+msgstr "Descriere"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.ui.h:5
+msgid "Export to Facebook"
+msgstr "Export către Facebook"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.ui.h:6
+msgid "In this photo"
+msgstr "În această fotografie"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.ui.h:7
+#: ../src/XmpTagsImporter.cs:90
+msgid "Location"
+msgstr "Locație"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.ui.h:8
+msgid "Login"
+msgstr "Autentificare"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.ui.h:9
+msgid "Logout"
+msgstr "Ieșire"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.ui.h:10
+#: ../src/Widgets/InfoBox.cs:212
+msgid "Name"
+msgstr "Nume"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.ui.h:11
+msgid "Not logged in"
+msgstr "Nu sunteți autentificat"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.ui.h:12
+msgid "Permissions:"
+msgstr "Permisiuni:"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.ui.h:13
+msgid "Stay Connected"
+msgstr "Rămâi conectat"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.ui.h:14
+msgid "Use an existing album"
+msgstr "Folosește un album existent"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.ui.h:15
+msgid "Who is this?"
+msgstr "Cine este?"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.addin.xml.h:1
+msgid "_23hq..."
+msgstr "_23hq..."
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.addin.xml.h:2
+msgid "_Flickr..."
+msgstr "_Flickr..."
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.addin.xml.h:3
+msgid "_Zooomr..."
+msgstr "_Zooomr..."
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:105
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:5
+msgid "Authorize"
+msgstr "Autorizează"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:111
+#, csharp-format
+msgid ""
+"Return to this window after you have finished the authorization process on "
+"{0} and click the \"Complete Authorization\" button below"
+msgstr ""
+"Reveniți la această fereastră după ați parcurs procesul de autorizare pentru "
+"{0} și apăsați pe butonul „Trimite autorizarea” aflat mai jos."
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:112
+msgid "Complete Authorization"
+msgstr "Trimite autorizarea"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:117
+#, csharp-format
+msgid "Logging into {0}"
+msgstr "Se conectează la {0}"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:118
+msgid "Checking credentials..."
+msgstr "Se verifică datele..."
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:125
+#, csharp-format
+msgid "Welcome {0} you are connected to {1}"
+msgstr "Bine ați venit {0}, sunteți conectat la {1}"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:128
+#, csharp-format
+msgid "Sign in as a different user"
+msgstr "Autentificare ca alt utilizator"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:133
+#, csharp-format
+msgid "Used {0} of your allowed {1} monthly quota"
+msgstr "Utilizați {0} din cota lunară permisă de {1}"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:297
+msgid "Unable to log on"
+msgstr "Nu se poate realiza conectarea"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:317
+#, csharp-format
+msgid "Waiting for response {0} of {1}"
+msgstr "Se așteaptă răspunsul {0} din {1}"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:344
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:242
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:777
+#, csharp-format
+msgid "Uploading picture \"{0}\""
+msgstr "Se trimite fotografia „{0}”"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:367
+#, csharp-format
+msgid "Error Uploading To {0}: {1}"
+msgstr "S-a produs o eroare la trimiterea către {0}: {1}"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:454
+msgid "Unable to log on."
+msgstr "Nu se poate realiza conectarea"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:455
+#, csharp-format
+msgid ""
+"F-Spot was unable to log on to {0}.  Make sure you have given the "
+"authentication using {0} web browser interface."
+msgstr ""
+"F-Spot nu se poate conecta la {0}. Asigurați-vă că ați dat autorizarea "
+"utilizând interfața navigatorului de internet {0}."
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:1
+#: ../src/f-spot.glade.h:8
+msgid "<b>Account</b>"
+msgstr "<b>Cont</b>"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:2
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:5
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:3
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:2
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:2
+#: ../src/f-spot.glade.h:14 ../src/UI.Dialog/ui/AdjustTimeDialog.ui.h:5
+msgid "<b>Photos</b>"
+msgstr "<b>Fotografii</b>"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:3
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:6
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:4
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:4
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:4
+#: ../src/f-spot.glade.h:16
+msgid "<b>Style</b>"
+msgstr "<b>Stil</b>"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:4
+msgid "<b>Viewing permissions</b>"
+msgstr "<b>Permisiuni de vizualizare</b>"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:6
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:8
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:9
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:6
+#: ../src/f-spot.glade.h:43
+msgid "Export"
+msgstr "Exportă"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:7
+msgid "Export tag _hierarchy"
+msgstr "Exportă ierar_hia etichetelor"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:8
+msgid ""
+"F-Spot needs your authorization in order to upload photos to your {0} "
+"account. Press the \"Authorize\" button to open a web browser and give F-"
+"Spot the authorization. "
+msgstr ""
+"F-Spot solicită autorizare pentru a trimite fotografiile dumneavoastră în "
+"contul {0}. Apăsați pe butonul „Autorizează” pentru a deschide un navigator "
+"de internet și a autoriza F-Spot să realizeze operația. "
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:9
+msgid "Ignore _top level tags"
+msgstr "Ignoră _etichetele de nivel superior"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:10
+msgid "Private"
+msgstr "Personale"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:11
+msgid "Public"
+msgstr "Publice"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:12
+msgid "Strip _metadata"
+msgstr "Șterge _metadate"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:13
+msgid "Visible to Family"
+msgstr "Vizibile familiei"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:14
+msgid "Visible to Friends"
+msgstr "Vizibile prietenilor"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:16
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:21
+#: ../src/f-spot.glade.h:96
+msgid "_Export tags"
+msgstr "_Exportă etichete"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:17
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:18
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:21
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:25
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:15
+#: ../src/f-spot.glade.h:109
+msgid "_Resize to: "
+msgstr "Redimensionea_ză la: "
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:18
+msgid "_View photos in browser when done uploading"
+msgstr "_Arată fotografiile în navigator după terminarea transferului"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:19
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:20
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:24
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:27
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:17
+#: ../src/f-spot.glade.h:125
+msgid "pixels"
+msgstr "pixeli"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.addin.xml.h:1
+msgid "F_older..."
+msgstr "D_osar..."
+
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:140
+msgid "Select Export Folder"
+msgstr "Alege dosarul în care se exportă"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:198
+msgid "Building Gallery"
+msgstr "Creare galerie"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:248
+#, csharp-format
+msgid "Error uploading picture \"{0}\" to Gallery:{2}{1}"
+msgstr "S-a produs o eroare la trimiterea fotografiei „{0}” în galeria: {2}{1}"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:333
+msgid "Error: Error while transferring; Aborting"
+msgstr "S-a produs o eroare la trimitere; Operație abandonată"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:336
+msgid "Error: File Already Exists; Aborting"
+msgstr "Eroare: Fișierul există deja; Operație abandonată"
+
+#. Note for translators: light as clear, opposite as dark
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:803
+msgid "Light"
+msgstr "Luminos"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:804
+msgid "Dark"
+msgstr "Întunecat"
+
+#. Abbreviation of previous
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:984
+msgid "Prev"
+msgstr "Prec"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:986
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:1227
+#: ../src/CameraFileSelectionDialog.cs:82
+msgid "Index"
+msgstr "Index"
+
+#. Don't care otherwise, Tags sounds reasonable
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:989
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:1161
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:1201
+#: ../src/MainWindow.cs:376 ../src/Widgets/Sidebar.cs:64
+msgid "Tags"
+msgstr "Etichete"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:992
+#: ../src/f-spot.glade.h:57 ../src/ItemAction.cs:102
+msgid "Next"
+msgstr "Următoarea"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:1096
+msgid "Gallery generated by"
+msgstr "Galerie generată de"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:1136
+msgid "Show Styles"
+msgstr "Arată stilurile"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:1137
+msgid "Hide Styles"
+msgstr "Ascunde stilurile"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:1172
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:1173
+#: ../src/ui/main_window.ui.h:24
+msgid "Tags: "
+msgstr "Etichete: "
+
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:1304
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:1437
+msgid "Page:"
+msgstr "Pagina:"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:1
+msgid "\n"
+msgstr "\n"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:3
+#: ../src/f-spot.glade.h:11
+msgid "<b>Destination</b>"
+msgstr "<b>Destinație</b>"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:4
+msgid "<b>Export Method</b>"
+msgstr "<b>Metodă de export</b>"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:8
+msgid "Create _gallery using \"Original\""
+msgstr "Creează _galerie utilizând „Original”"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:9
+msgid "Create standalone _web gallery"
+msgstr "Creează galerie _web independentă"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:10
+msgid "D_escription:"
+msgstr "D_escriere:"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:11
+msgid "Export _tags"
+msgstr "Exportă e_tichetele"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:12
+msgid "Export tag _icons"
+msgstr "Exportă _iconițele etichetelor"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:13
+msgid "Folder Export"
+msgstr "Exportă dosarul"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:14
+msgid "G_allery Name:"
+msgstr "Nume g_alerie:"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:15
+msgid "Open _destination when done exporting"
+msgstr "Deschide _destinația după terminarea transferului"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:17
+msgid "_Folder:"
+msgstr "D_osar:"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:19
+msgid "_Save the files only"
+msgstr "_Salvează numai fișierele"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.addin.xml.h:1
+msgid "Web _Gallery..."
+msgstr "_Galerie web..."
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:52
+msgid ""
+"Cannot connect to a Gallery for which the version is unknown.\n"
+"Please check that you have Remote plugin 1.0.8 or later"
+msgstr ""
+"Nu se poate realiza conectarea la o galerie pentru care nu este cunoscută "
+"versiunea.\n"
+"Verificați dacă aveți instalat modulul Remote 1.0.8 sau mai nou."
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:391
+msgid "Invalid URL"
+msgstr "URL nevalid"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:392
+msgid "The gallery URL entry does not appear to be a valid URL"
+msgstr "Legătura de internet a galeriei nu pare a fi o legătură validă"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:402
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:429
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:440
+msgid "Error while connecting to Gallery"
+msgstr "S-a produs o eroare în timpul conectării la galerie"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:403
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:430
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:441
+#, csharp-format
+msgid "The following error was encountered while attempting to log in: {0}"
+msgstr "S-a produs următoarea eroare în timpul conectării: {0}"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:417
+msgid "A Gallery with this name already exists"
+msgstr "Există deja o galerie cu acest nume"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:418
+#, csharp-format
+msgid ""
+"There is already a Gallery with the same name in your registered Galleries. "
+"Please choose a unique name."
+msgstr ""
+"Există deja o galerie cu același nume în galeriile definite de "
+"dumneavoastră. Alegeți un alt nume."
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:528
+msgid "(TopLevel)"
+msgstr "(Nivel superior)"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:590
+msgid "Invalid Gallery name"
+msgstr "Nume de galerie nevalid"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:591
+msgid ""
+"The gallery name contains invalid characters.\n"
+"Only letters, numbers, - and _ are allowed"
+msgstr ""
+"Numele galeriei conține caractere nepermise.\n"
+"Sunt acceptate doar litere, numere, „-” și „_”"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:796
+#, csharp-format
+msgid "Error uploading picture \"{0}\" to Gallery: {1}"
+msgstr "Eroare la trimiterea fotografiei „{0}” către galerie: {1}"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:824
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:727
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:630
+msgid "(No Gallery)"
+msgstr "(Galerie inexistentă)"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:916
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:849
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:726
+msgid "(Not Connected)"
+msgstr "(Neconectat)"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:917
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:850
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:727
+msgid "(No Albums)"
+msgstr "(Albume inexistente)"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:969
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:915
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:768
+msgid "No account selected"
+msgstr "Nu ați ales niciun cont"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:1
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:1
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:1
+#: ../src/f-spot.glade.h:9
+msgid "<b>Album</b>"
+msgstr "<b>Album</b>"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:2
+#: ../src/f-spot.glade.h:12
+msgid "<b>Gallery</b>"
+msgstr "<b>Galerie</b>"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:5
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:5
+msgid "<span weight='bold' size='larger'>Error Connecting to Gallery</span>\n"
+msgstr ""
+"<span weight='bold' size='larger'>Eroare în timpul conectării la galerie</"
+"span>\n"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:9
+msgid "Export _titles and comments"
+msgstr "Exportă _titluri și comentarii"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:10
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:10
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:7
+msgid "Open _album in browser when done uploading"
+msgstr "Deschide _albumul în navigator după trimitere"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:11
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:11
+msgid "Please verify that the settings for this gallery are correct."
+msgstr "Verificați dacă configurările pentru această galerie sunt corecte."
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:12
+msgid "U_RL:"
+msgstr "U_RL:"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:13
+msgid "_Album Name:"
+msgstr "Nume _album:"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:14
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:19
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:11
+msgid "_Description:"
+msgstr "_Descriere:"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:16
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:22
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:13
+#: ../src/f-spot.glade.h:97
+msgid "_Export to Album:"
+msgstr "_Exportă către album:"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:17
+msgid "_Gallery Name:"
+msgstr "Nume _galerie:"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:18
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:23
+msgid "_Gallery:"
+msgstr "_Galerie:"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:19
+msgid "_Parent Album:"
+msgstr "Album _părinte:"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:20
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:24
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:14
+msgid "_Password:"
+msgstr "_Parolă:"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:22
+msgid "_Title:"
+msgstr "_Titlu:"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:23
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:26
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:16
+msgid "_Username:"
+msgstr "Nume _utilizator:"
+
+#: ../extensions/Exporters/GalleryExport/GalleryRemote.cs:361
+msgid "Error reading server response"
+msgstr "Eroare la citirea răspunsului primit de la server"
+
+#. failed to find the response
+#: ../extensions/Exporters/GalleryExport/GalleryRemote.cs:373
+msgid "Server returned response without Gallery content"
+msgstr "Serverul a returnat un răspuns incomplet, fără conținutul galeriei"
+
+#: ../extensions/Exporters/GalleryExport/GalleryRemote.cs:710
+msgid "Error while creating new album"
+msgstr "Eroare la crearea albumului nou"
+
+#: ../extensions/Exporters/GalleryExport/GalleryRemote.cs:711
+#, csharp-format
+msgid ""
+"The following error was encountered while attempting to perform the "
+"requested operation:\n"
+"{0} ({1})"
+msgstr ""
+"În timpul execuției operației solicitate a apărut următoarea eroare:\n"
+"{0} ({1})"
+
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.addin.xml.h:1
+msgid "_PicasaWeb..."
+msgstr "_PicasaWeb..."
+
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:441
+msgid "Error while creating Album"
+msgstr "S-a produs o eroare în timpul creării albumului"
+
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:442
+#, csharp-format
+msgid ""
+"The following error was encountered while attempting to create an album: {0}"
+msgstr ""
+"În timpul încercării de creare a unui album nou s-a produs următoarea "
+"eroare: {0}"
+
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:620
+#, csharp-format
+msgid "{0} Sent"
+msgstr "{0} trimise"
+
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:622
+#, csharp-format
+msgid "{0} of approx. {1}"
+msgstr "{0} din aprox. {1}"
+
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:691
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:594
+#, csharp-format
+msgid "Error Uploading To Gallery: {0}"
+msgstr "Eroare la trimiterea către galeria: {0}"
+
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:778
+#, csharp-format
+msgid "Available space: {0}, {1}% used out of {2}"
+msgstr "Spațiu disponibil: {0}, {1}% utilizați din {2}"
+
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:891
+#, csharp-format
+msgid ""
+"The selected album has a limit of {0} pictures,\n"
+"which would be passed with the current selection of {1} images"
+msgstr ""
+"Albumul ales are o limită de {0} fotografii,\n"
+"care va fi depășită prin selecția curentă de {1} imagini."
+
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:3
+msgid "<b>PicasaWeb Export</b>"
+msgstr "<b>Exportă către PicasaWeb</b>"
+
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:7
+msgid ""
+"<span weight='bold' size='larger'>Your Google Account is locked</span>\n"
+msgstr ""
+"<span weight='bold' size='larger'>Contul dumneavoastră de pe Google este "
+"blocat</span>\n"
+
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:12
+msgid ""
+"Please verify that the settings for this gallery are correct.\n"
+"Enter the letters as they are shown in the image in\n"
+"the 'Captcha' field. <i>Letters are not case-sensitive</i>"
+msgstr ""
+"Verificați dacă configurările pentru această galerie sunt corecte.\n"
+"Introduceți literele care sunt arătate în imaginea din\n"
+"câmpul „Captcha”. <i>Literele sunt insensibile la majuscule</i>"
+
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:15
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:8
+msgid "Public Album"
+msgstr "Album public"
+
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:16
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:10
+msgid "_Album Title:"
+msgstr "Titlu _album:"
+
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:17
+msgid "_Autorotate"
+msgstr "Rotire _automată"
+
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:18
+msgid "_Captcha:"
+msgstr "_Captcha:"
+
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.addin.xml.h:1
+msgid "_SmugMug..."
+msgstr "_SmugMug..."
+
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:3
+msgid "<b>SmugMug Export</b>"
+msgstr "<b>Export către SmugMug</b>"
+
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:9
+msgid "_Account:"
+msgstr "_Cont:"
+
+#: ../extensions/Exporters/TabbloExport/Tabblo/Connection.cs:132
+#, csharp-format
+msgid "Uploading photo \"{0}\""
+msgstr "Se trimite fotografia „{0}”"
+
+#: ../extensions/Exporters/TabbloExport/Tabblo/Connection.cs:206
+msgid "Logging into Tabblo"
+msgstr "Conectare la Tabblo"
+
+#: ../extensions/Exporters/TabbloExport/Tabblo/Connection.cs:267
+msgid "Obtaining URL for upload"
+msgstr "Se obține legătura pentru trimitere"
+
+#: ../extensions/Exporters/TabbloExport/TabbloExport.addin.xml.h:1
+msgid "_Tabblo..."
+msgstr "_Tabblo..."
+
+#: ../extensions/Exporters/TabbloExport/TabbloExport.cs:308
+msgid "Done sending photos"
+msgstr "S-a încheiat trimiterea fotografiilor"
+
+#: ../extensions/Exporters/TabbloExport/TabbloExport.cs:310
+msgid "Upload complete"
+msgstr "Trimitere încheiată"
+
+#: ../extensions/Exporters/TabbloExport/TabbloExport.cs:316
+msgid "Error uploading to Tabblo: "
+msgstr "Eroare la trimiterea către Tabblo: "
+
+#: ../extensions/Exporters/ZipExport/ZipExport.addin.xml.h:1
+msgid "Compressed fil_e..."
+msgstr "Fiși_er arhivat..."
+
+#: ../extensions/Exporters/ZipExport/ZipExport.cs:47
+#: ../src/Widgets/EditorPage.cs:196
+msgid "No selection available"
+msgstr "Nicio selecție disponibilă"
+
+#: ../extensions/Exporters/ZipExport/ZipExport.cs:48
+msgid ""
+"This tool requires an active selection. Please select one or more pictures "
+"and try again"
+msgstr ""
+"Acest utilitar solicită o selecție activă. Alegeți una sau mai multe "
+"fotografii și încercați din nou"
+
+#: ../extensions/Exporters/ZipExport/ZipExport.cs:64
+msgid "Select export folder"
+msgstr "Alegeți dosarul în care se exportă"
+
+#: ../extensions/Exporters/ZipExport/ZipExport.cs:102
+msgid "Exporting files"
+msgstr "Se exportă fișiere"
+
+#: ../extensions/Exporters/ZipExport/ZipExport.cs:108
+#, csharp-format
+msgid "Preparing photo \"{0}\""
+msgstr "Se pregătește fotografia „{0}”"
+
+#: ../extensions/Exporters/ZipExport/ZipExport.glade.h:1
+#: ../src/f-spot.glade.h:92
+msgid "_Create"
+msgstr "_Creează"
+
+#: ../extensions/Exporters/ZipExport/ZipExport.glade.h:2
+msgid "_File name:"
+msgstr "Nume _fișier:"
+
+#: ../extensions/Exporters/ZipExport/ZipExport.glade.h:3
+msgid "_Location:"
+msgstr "_Locație:"
+
+#: ../extensions/Exporters/ZipExport/ZipExport.glade.h:4
+msgid "_Scale:"
+msgstr "_Scalare:"
+
+#: ../extensions/Tools/HashJob/HashJob.cs:53
+msgid ""
+"In order to detect duplicates on pictures you imported before 0.5.0, F-Spot "
+"needs to analyze your image collection. This is not done by default as it's "
+"time consuming. You can Start or Pause this update process using this dialog."
+msgstr ""
+"Pentru a detecta duplicatele în fotografiile importate înainte de 0.5.0, F-"
+"Spot trebuie să analizeze colecția dumneavoastră de imagini. Această acțiune "
+"nu este realizată implicit și este mare consumatoare de timp. Puteți porni "
+"sau pune pauză procesului de actualizare folosind acest dialog."
+
+#: ../extensions/Tools/HashJob/HashJob.cs:59
+#, csharp-format
+msgid ""
+"You currently have {0} photos needing md5 calculation, and {1} pending jobs"
+msgstr ""
+"În acest moment aveți {0} fotografii pentru care se calculează md5 și {1} "
+"sarcini în așteptare"
+
+#: ../extensions/Tools/HashJob/HashJob.cs:75 ../src/ui/main_window.ui.h:37
+msgid "_Close"
+msgstr "În_chide"
+
+#: ../extensions/Tools/HashJob/HashJob.cs:102
+msgid "Processing images..."
+msgstr "Se procesează imaginile..."
+
+#: ../extensions/Tools/HashJob/HashJob.cs:108
+msgid "Stopped"
+msgstr "Oprit"
+
+#: ../extensions/Tools/HashJob/HashJob.addin.xml.h:1
+msgid "Hash for Duplicates"
+msgstr "Calculează sume de dispersie pentru a detecta duplicatele"
+
+#: ../extensions/Tools/LiveWebGallery/GalleryRequestHandler.cs:107
+msgid "F-Spot Gallery"
+msgstr "Galerie F-Spot"
+
+#: ../extensions/Tools/LiveWebGallery/GalleryRequestHandler.cs:108
+msgid "The web gallery seems to be offline now"
+msgstr "Galeria web pare să nu fie conectată la internet acum"
+
+#: ../extensions/Tools/LiveWebGallery/GalleryRequestHandler.cs:109
+msgid "Show All"
+msgstr "Arată tot"
+
+#: ../extensions/Tools/LiveWebGallery/GalleryRequestHandler.cs:119
+#, csharp-format
+msgid "{0} photo"
+msgid_plural "{0} photos"
+msgstr[0] "{0} fotografie"
+msgstr[1] "{0} fotografii"
+msgstr[2] "{0} de fotografii"
+
+#: ../extensions/Tools/LiveWebGallery/GalleryRequestHandler.cs:161
+#: ../extensions/Tools/LiveWebGallery/ui/LiveWebGallery.ui.h:8
+msgid "Current View"
+msgstr "Vizualizarea curentă"
+
+#: ../extensions/Tools/LiveWebGallery/GalleryRequestHandler.cs:164
+msgid "Selected"
+msgstr "Selectat"
+
+#: ../extensions/Tools/LiveWebGallery/LiveWebGallery.addin.xml.h:1
+msgid "Live Web Gallery"
+msgstr "Galerie web Live"
+
+#: ../extensions/Tools/LiveWebGallery/ui/LiveWebGallery.ui.h:1
+msgid ""
+"<small><i>The gallery stays active until you either deactivate it or close\n"
+"F-Spot. Make sure local viewers access it bypassing HTTP proxy.</i></small>"
+msgstr ""
+"<small><i>Galeria rămâne activă până când sau o dezactivați sau închideți\n"
+"F-Spot. Aveți grijă ca vizitatorii locali să o acceseze ocolind proxyul HTTP."
+"</i></small>"
+
+#: ../extensions/Tools/LiveWebGallery/ui/LiveWebGallery.ui.h:3
+msgid ""
+"<small><i>When the gallery is active, above is the URL you need to open \n"
+"on another computer to access the shared photos.</i></small>"
+msgstr ""
+"<small><i>Când galeria este activă, trebuie să deschideți URL-ul de mai "
+"sus \n"
+"pe un alt calculator pentru a putea accesa fotografiile partajate.</i></"
+"small>"
+
+#: ../extensions/Tools/LiveWebGallery/ui/LiveWebGallery.ui.h:5
+msgid "Activates and deactivates the web gallery"
+msgstr "Activează și dezactivează galeria web"
+
+#: ../extensions/Tools/LiveWebGallery/ui/LiveWebGallery.ui.h:6
+msgid "Allow viewers to add tags"
+msgstr "Permite vizitatorilor să adauge etichete"
+
+#: ../extensions/Tools/LiveWebGallery/ui/LiveWebGallery.ui.h:7
+msgid "Copy URL to clipboard"
+msgstr "Copiază URL-ul în clipboard"
+
+#: ../extensions/Tools/LiveWebGallery/ui/LiveWebGallery.ui.h:9
+msgid "F-Spot Live Web Gallery"
+msgstr "Galerie web Live F-Spot"
+
+#: ../extensions/Tools/LiveWebGallery/ui/LiveWebGallery.ui.h:10
+msgid "Gallery URL:"
+msgstr "URL galerie:"
+
+#: ../extensions/Tools/LiveWebGallery/ui/LiveWebGallery.ui.h:11
+msgid "Limit number of shared photos to"
+msgstr "Limitează numărul de fotografii partajate la"
+
+#: ../extensions/Tools/LiveWebGallery/ui/LiveWebGallery.ui.h:12
+msgid "Options:"
+msgstr "Opțiuni:"
+
+#: ../extensions/Tools/LiveWebGallery/ui/LiveWebGallery.ui.h:13
+msgid "Photos with a Tag"
+msgstr "Fotografii cu o etichetă"
+
+#: ../extensions/Tools/LiveWebGallery/ui/LiveWebGallery.ui.h:14
+msgid "Selected Photos"
+msgstr "Fotografii selectate"
+
+#: ../extensions/Tools/LiveWebGallery/ui/LiveWebGallery.ui.h:15
+msgid "Share:"
+msgstr "Partajează:"
+
+#: ../extensions/Tools/LiveWebGallery/ui/LiveWebGallery.ui.h:16
+msgid "Views:"
+msgstr "Vizualizări:"
+
+#: ../extensions/Tools/LiveWebGallery/LiveWebGalleryDialog.cs:89
+msgid "none"
+msgstr "niciuna"
+
+#: ../extensions/Tools/LiveWebGallery/LiveWebGalleryDialog.cs:92
+#, csharp-format
+msgid " Gallery: {0},  Photos: {1},  Last client: {3}"
+msgstr " Galerie: {0},  Fotografii: {1},  Ultimul client: {3}"
+
+#: ../extensions/Tools/LiveWebGallery/LiveWebGalleryDialog.cs:156
+msgid "Gallery is inactive"
+msgstr "Galeria este inactivă"
+
+#: ../extensions/Tools/MergeDb/MergeDb.addin.xml.h:1
+msgid "Merge Db"
+msgstr "Combină bazele de date"
+
+#: ../extensions/Tools/MergeDb/MergeDb.cs:73
+msgid "Error opening the selected file"
+msgstr "Eroare la deschiderea fișierului selectat"
+
+#: ../extensions/Tools/MergeDb/MergeDb.cs:74
+#, csharp-format
+msgid ""
+"The file you selected is not a valid or supported database.\n"
+"\n"
+"Received exception \"{0}\"."
+msgstr ""
+"Fișierul selectat nu este unul valid sau recunoscut de baza de date.\n"
+"\n"
+"S-a primit excepția „{0}”."
+
+#: ../extensions/Tools/MergeDb/MergeDb.glade.h:1
+msgid ""
+"<small><i>Choose the location of the database you want to import from</i></"
+"small>"
+msgstr ""
+"<small><i>Arătați locația bazei de date pe care doriți să o importați</i></"
+"small>"
+
+#: ../extensions/Tools/MergeDb/MergeDb.glade.h:2
+msgid ""
+"<small><i>Choose what to import from the selected db.\n"
+"\"New Rolls Only\" is the smart option that will avoid re-importing photos "
+"you could have imported during a previous operation.\n"
+"\"A Single Import Roll\" let you choose which roll you want to merge back.\n"
+"\"Everything\" will import everything, creating duplicates if you already "
+"imported from that database.</i></small>"
+msgstr ""
+"<small><i>Alegeți ce doriți să importați din baza de date selectată.\n"
+"„Numai seturi noi” este opțiunea inteligentă care evită reimportarea "
+"fotografiilor care au fost importate într-o sesiune anterioară.\n"
+"„Un singur set” vă permite să alegeți setul pe care-l doriți combinat.\n"
+"„Totul” va importa toate fotografiile, creând duplicate în cazul în care ați "
+"importat deja fișiere din baza de date respectivă.</i></small>"
+
+#: ../extensions/Tools/MergeDb/MergeDb.glade.h:6
+msgid ""
+"<small><i>Copy the images locally or keep them where they are. If you chose "
+"the later, be sure that this location will stay accessible from f-spot.</i></"
+"small>"
+msgstr ""
+"<small><i>Copiază imaginile local sau păstrează-le acolo unde sunt. Dacă "
+"alegeți ultima opțiune, asigurați-vă că locul va fi accesibil programului f-"
+"spot.</i></small>"
+
+#: ../extensions/Tools/MergeDb/MergeDb.glade.h:7
+msgid "A Single Import Roll"
+msgstr "Un singur set de importat"
+
+#: ../extensions/Tools/MergeDb/MergeDb.glade.h:8
+msgid "Copy images to photos folder"
+msgstr "Copiază imaginile în dosarul fotografiilor"
+
+#: ../extensions/Tools/MergeDb/MergeDb.glade.h:9
+msgid "Database Location:"
+msgstr "Locația bazei de date"
+
+#: ../extensions/Tools/MergeDb/MergeDb.glade.h:10
+msgid "Everything"
+msgstr "Tot"
+
+#: ../extensions/Tools/MergeDb/MergeDb.glade.h:11
+msgid "Import:"
+msgstr "Importă:"
+
+#: ../extensions/Tools/MergeDb/MergeDb.glade.h:12
+msgid "Keep the images at their original location"
+msgstr "Păstrează imaginile în locația originală"
+
+#: ../extensions/Tools/MergeDb/MergeDb.glade.h:13
+msgid "Merge another F-Spot collection"
+msgstr "Combinați altă colecție F-Spot"
+
+#: ../extensions/Tools/MergeDb/MergeDb.glade.h:14
+msgid "New Rolls Only"
+msgstr "Numai seturi noi"
+
+#: ../extensions/Tools/MergeDb/MergeDb.glade.h:15
+#: ../src/FileImportBackend.cs:290 ../src/UI.Dialog/ThreadProgressDialog.cs:58
+msgid "Skip"
+msgstr "Omite"
+
+#: ../extensions/Tools/MergeDb/PickFolderDialog.cs:33
+#, csharp-format
+msgid ""
+"<big>The database refers to files contained in the <b>{0}</b> folder.\n"
+" Please select that folder so I can do the mapping.</big>"
+msgstr ""
+"<big>Baza de date face trimitere la fișiere conținute în dosarul <b>{0}</"
+"b>.\n"
+" Selectați acel dosar pentru a putea realiza maparea.</big>"
+
+#: ../extensions/Tools/ScreensaverConfig/ScreensaverConfig.addin.xml.h:1
+msgid "Configure Screensaver"
+msgstr "Configurează economizorul de ecran"
+
+#: ../extensions/Tools/ScreensaverConfig/ScreensaverConfigDialog.ui.h:1
+#: ../src/UI.Dialog/DateRangeDialog.cs:129
+msgid "All Images"
+msgstr "Toate imaginile"
+
+#: ../extensions/Tools/ScreensaverConfig/ScreensaverConfigDialog.ui.h:2
+msgid "Delay:"
+msgstr "Întârziere:"
+
+#: ../extensions/Tools/ScreensaverConfig/ScreensaverConfigDialog.ui.h:3
+msgid "Display:"
+msgstr "Afișaj:"
+
+#: ../extensions/Tools/ScreensaverConfig/ScreensaverConfigDialog.ui.h:4
+msgid "Images tagged with:"
+msgstr "Imagini etichetate cu:"
+
+#: ../extensions/Tools/ScreensaverConfig/ScreensaverConfigDialog.ui.h:5
+msgid "Make F-Spot my screensaver"
+msgstr "Folosește F-Spot ca economizor de ecran"
+
+#: ../extensions/Tools/ScreensaverConfig/ScreensaverConfigDialog.ui.h:6
+msgid "Screensaver Configuration"
+msgstr "Configurație economizor de ecran"
+
+#: ../f-spot.desktop.in.in.h:1 ../f-spot-import.desktop.in.in.h:1
+#: ../f-spot-view.desktop.in.in.h:1 ../src/ui/main_window.ui.h:10
+msgid "F-Spot"
+msgstr "F-Spot"
+
+#: ../f-spot.desktop.in.in.h:2 ../f-spot-import.desktop.in.in.h:2
+msgid "F-Spot Photo Manager"
+msgstr "Manager Foto F-Spot"
+
+#: ../f-spot.desktop.in.in.h:3
+msgid "Organize, enjoy, and share your photos"
+msgstr "Organizați, priviți și partajați fotografii"
+
+#: ../f-spot.desktop.in.in.h:4 ../f-spot-import.desktop.in.in.h:4
+msgid "Photo Manager"
+msgstr "Manager Foto"
+
+#: ../f-spot-import.desktop.in.in.h:3
+msgid "Import into F-Spot"
+msgstr "Importă în F-Spot"
+
+#: ../f-spot-view.desktop.in.in.h:2
+msgid "F-Spot Photo Viewer"
+msgstr "Vizualizatorul de fotografii F-Spot"
+
+#: ../f-spot-view.desktop.in.in.h:3
+msgid "Photo Viewer"
+msgstr "Vizualizator de fotografii"
+
+#: ../lib/libfspot/f-jpeg-utils.c:441 ../src/RotateCommand.cs:224
+msgid "File not found"
+msgstr "Fișierul nu a fost găsit"
+
+#: ../lib/libfspot/f-jpeg-utils.c:464
+#, c-format
+msgid "Unknown transform type %d"
+msgstr "Tip de transformare necunoscut %d"
+
+#: ../lib/libfspot/f-jpeg-utils.c:472
+msgid "Operation failed"
+msgstr "Operațiune eșuată"
+
+#: ../src/CameraFileSelectionDialog.cs:76
+msgid "Preview"
+msgstr "Previzualizare"
+
+#: ../src/CameraFileSelectionDialog.cs:78
+msgid "Path"
+msgstr "Cale"
+
+#: ../src/CameraFileSelectionDialog.cs:80 ../src/f-spot.glade.h:46
+msgid "File"
+msgstr "Fișier"
+
+#: ../src/CameraFileSelectionDialog.cs:102
+msgid "Select Tag"
+msgstr "Selectare etichetă"
+
+#: ../src/CameraFileSelectionDialog.cs:138
+msgid "Downloading Previews"
+msgstr "Se descarcă previzualizările"
+
+#: ../src/CameraFileSelectionDialog.cs:148
+#, csharp-format
+msgid "Downloading Preview of {0}"
+msgstr "Se descarcă previzualizarea pentru {0}"
+
+#: ../src/CameraFileSelectionDialog.cs:220
+#, csharp-format
+msgid "Copying file {0} of {1}"
+msgstr "Copiere fișier {0} din {1}"
+
+#: ../src/CameraFileSelectionDialog.cs:235
+msgid "Error transferring file"
+msgstr "Eroare transferare fișier"
+
+#: ../src/CameraFileSelectionDialog.cs:244
+msgid "Download Complete"
+msgstr "Descărcare completă"
+
+#: ../src/CameraFileSelectionDialog.cs:244
+msgid "Done Copying Files"
+msgstr "Terminat copiere fișiere"
+
+#: ../src/CameraFileSelectionDialog.cs:268
+#, csharp-format
+msgid "Transferring \"{0}\" from camera"
+msgstr "Se transferă „{0}” de la cameră"
+
+#: ../src/CameraSelectionDialog.cs:29 ../src/Widgets/InfoBox.cs:231
+msgid "Camera"
+msgstr "Cameră foto"
+
+#: ../src/CameraSelectionDialog.cs:30
+msgid "Port"
+msgstr "Port"
+
+#: ../src/Core/App.cs:265
+#, csharp-format
+msgid "No photos matching {0} found"
+msgstr "Nu s-au găsit fotografii care să se potrivească cu {0}"
+
+#: ../src/Core/App.cs:266
+#, csharp-format
+msgid ""
+"The tag \"{0}\" is not applied to any photos. Try adding\n"
+"the tag to some photos or selecting a different tag in the\n"
+"F-Spot preference dialog."
+msgstr ""
+"Eticheta „{0}” nu este aplicată niciunei fotografii. Încercați să adăugați\n"
+"eticheta unor fotografii sau să alegeți o altă etichetă din\n"
+"dialogul de preferințe F-Spot."
+
+#: ../src/Core/App.cs:270
+msgid "Search returned no results"
+msgstr "Căutarea nu a dat rezultate"
+
+#: ../src/Core/App.cs:271
+msgid ""
+"The tag F-Spot is looking for does not exist. Try\n"
+"selecting a different tag in the F-Spot preference\n"
+"dialog."
+msgstr ""
+"Eticheta pe care o caută F-Spot nu există. Încercați\n"
+"să alegeți o altă etichetă din fereastra de \n"
+"preferințe F-Spot"
+
+#. Note for translators: Reparented is a picture becoming a version of another one
+#: ../src/Core/Photo.cs:473
+msgid "Reparented"
+msgstr "Reversionat"
+
+#: ../src/Core/Photo.cs:473
+#, csharp-format
+msgid "Reparented ({0})"
+msgstr "Reversionat ({0})"
+
+#: ../src/Core/Photo.cs:492
+#, csharp-format
+msgid "Modified"
+msgid_plural "Modified ({0})"
+msgstr[0] "Modificată"
+msgstr[1] "Modificate ({0})"
+msgstr[2] "Modificate ({0})"
+
+#: ../src/Core/Photo.cs:513
+#, csharp-format
+msgid "Modified in {1}"
+msgstr "Modificată în {1}"
+
+#: ../src/Core/Photo.cs:513
+#, csharp-format
+msgid "Modified in {1} ({0})"
+msgstr "Modificată în {1} ({0})"
+
+#. Note that the original version is never stored in the photo_versions table in the
+#. database.
+#: ../src/Core/Photo.cs:671 ../src/f-spot.glade.h:61
+msgid "Original"
+msgstr "Original"
+
+#: ../src/Editors/AutoStretchEditor.cs:17
+msgid "Auto Color"
+msgstr "Culoare automată"
+
+#: ../src/Editors/ColorEditor.cs:38
+msgid "Adjust Colors"
+msgstr "Ajustare culori"
+
+#: ../src/Editors/ColorEditor.cs:41
+msgid "Adjust"
+msgstr "Ajustează"
+
+#: ../src/Editors/CropEditor.cs:35
+msgid "4 x 3 (Book)"
+msgstr "4 x 3 (Carte)"
+
+#: ../src/Editors/CropEditor.cs:36
+msgid "4 x 6 (Postcard)"
+msgstr "4 x 6 (Carte poștală)"
+
+#: ../src/Editors/CropEditor.cs:37
+msgid "5 x 7 (L, 2L)"
+msgstr "5 x 7 (L, 2L)"
+
+#: ../src/Editors/CropEditor.cs:38
+msgid "8 x 10"
+msgstr "8 x 10"
+
+#: ../src/Editors/CropEditor.cs:39
+msgid "Square"
+msgstr "Pătrat"
+
+#: ../src/Editors/CropEditor.cs:42
+msgid "Crop"
+msgstr "Decupează"
+
+#: ../src/Editors/CropEditor.cs:73
+msgid "Select the area that needs cropping."
+msgstr "Selectați zona care trebuie tăiată."
+
+#: ../src/Editors/CropEditor.cs:98
+msgid "No Constraint"
+msgstr "Nicio restricție"
+
+#: ../src/Editors/CropEditor.cs:99
+msgid "Same as photo"
+msgstr "La fel ca fotografia"
+
+#: ../src/Editors/CropEditor.cs:104
+msgid "Custom Ratios..."
+msgstr "Proporții personalizate..."
+
+#: ../src/Editors/DesaturateEditor.cs:17
+msgid "Desaturate"
+msgstr "Desaturează"
+
+#: ../src/Editors/RedEyeEditor.cs:19
+msgid "Red-eye Reduction"
+msgstr "Elimină efectul de „ochi roșii”"
+
+#: ../src/Editors/RedEyeEditor.cs:21
+msgid "Fix!"
+msgstr "Repară!"
+
+#: ../src/Editors/RedEyeEditor.cs:25
+msgid "Select the eyes you wish to fix."
+msgstr "Alegeți ochii pe care doriți să-i reparați."
+
+#: ../src/Editors/SepiaEditor.cs:17
+msgid "Sepia Tone"
+msgstr "Tonuri sepia"
+
+#: ../src/Editors/SoftFocusEditor.cs:32
+msgid "Soft Focus"
+msgstr "Focalizează ușor"
+
+#: ../src/Editors/TiltEditor.cs:30
+msgid "Straighten"
+msgstr "Îndreaptă"
+
+#: ../src/FileImportBackend.cs:288
+msgid "Import error"
+msgstr "Eroare importare"
+
+#: ../src/FileImportBackend.cs:289
+#, csharp-format
+msgid "Error importing {0}{2}{2}{1}"
+msgstr "Eroare la importarea {0}{2}{2}{1}"
+
+#: ../src/Filters/ResizeFilter.cs:70 ../src/Filters/SharpFilter.cs:52
+#, csharp-format
+msgid "No way to save files of type \"{0}\""
+msgstr "Fișierele de tip „{0}” nu pot fi salvate"
+
+#: ../src/FormClient.cs:295
+msgid "Unhandled exception"
+msgstr "Excepție netratată"
+
+#: ../src/FSpot.addin.xml.h:1
+msgid "Copy Photo Locat_ion"
+msgstr "Copiază locaț_ia fotografiei"
+
+#: ../src/FSpot.addin.xml.h:2
+msgid "Export to"
+msgstr "Exportă către"
+
+#: ../src/FSpot.addin.xml.h:3
+msgid "Open _With"
+msgstr "Deschide _cu"
+
+#: ../src/FSpot.addin.xml.h:4 ../src/ui/main_window.ui.h:15
+msgid "Rem_ove Tag"
+msgstr "În_lătură eticheta"
+
+#: ../src/FSpot.addin.xml.h:5 ../src/f-spot.glade.h:68
+#: ../src/SingleView.cs:438 ../src/ui/main_window.ui.h:16
+msgid "Rotate _Left"
+msgstr "Rotește la _stânga"
+
+#: ../src/FSpot.addin.xml.h:6 ../src/f-spot.glade.h:69
+#: ../src/SingleView.cs:439 ../src/ui/main_window.ui.h:17
+msgid "Rotate _Right"
+msgstr "Rotește la _dreapta"
+
+#: ../src/FSpot.addin.xml.h:7
+msgid "Tools"
+msgstr "Unelte"
+
+#: ../src/FSpot.addin.xml.h:8 ../src/ui/main_window.ui.h:32
+msgid "_Attach Tag"
+msgstr "_Atașează etichetă"
+
+#: ../src/FSpot.addin.xml.h:9 ../src/ui/main_window.ui.h:41
+msgid "_Delete From Drive"
+msgstr "Ș_terge de pe disc"
+
+#: ../src/FSpot.addin.xml.h:10 ../src/ui/main_window.ui.h:59
+msgid "_Remove From Catalog"
+msgstr "Ște_rge din catalog"
+
+#: ../src/f-spot.glade.h:1
+msgid " "
+msgstr " "
+
+#: ../src/f-spot.glade.h:2
+msgid "1024 px"
+msgstr "1024 px"
+
+#: ../src/f-spot.glade.h:3
+msgid "320 px"
+msgstr "320 px"
+
+#: ../src/f-spot.glade.h:4
+msgid "480 px"
+msgstr "480 px"
+
+#: ../src/f-spot.glade.h:5
+msgid "640 px"
+msgstr "640 px"
+
+#: ../src/f-spot.glade.h:6
+msgid "800 px"
+msgstr "800 px"
+
+#: ../src/f-spot.glade.h:7
+msgid "<b></b>"
+msgstr "<b></b>"
+
+#: ../src/f-spot.glade.h:10
+msgid "<b>Co_rrections</b>"
+msgstr "<b>Co_recții</b>"
+
+#: ../src/f-spot.glade.h:13
+msgid "<b>Image Interpolation</b>"
+msgstr "<b>Interpolare imagine</b>"
+
+#: ../src/f-spot.glade.h:15
+msgid "<b>Size</b>"
+msgstr "<b>Dimensiune</b>"
+
+#: ../src/f-spot.glade.h:17
+msgid "<b>Summary</b>"
+msgstr "<b>Sumar</b>"
+
+#: ../src/f-spot.glade.h:18
+msgid "<b>Transparent Parts</b>"
+msgstr "<b>Părți transparente</b>"
+
+#: ../src/f-spot.glade.h:19
+msgid "<b>View all pictures imported</b>"
+msgstr "<b>Afișează toate fotografiile importate</b>"
+
+#: ../src/f-spot.glade.h:20
+msgid "<b>_White Balance</b>"
+msgstr "<b>_Balans de alb</b>"
+
+#: ../src/f-spot.glade.h:21
+msgid ""
+"<small><i>Enable this to allow interpolation on zoomed images. You shouldn't "
+"disable this for viewing photos, but disabling the interpolation could be "
+"usefull in icon design.</i></small>"
+msgstr ""
+"<small><i>Activați această opțiune pentru a permite interpolarea imaginilor "
+"mărite. Nu ar trebui să o dezactivați pentru vizualizarea fotografiilor, dar "
+"dezactivarea interpolării poate fi utilă la realizarea iconițelor.</i></"
+"small>"
+
+#: ../src/f-spot.glade.h:22
+msgid ""
+"<small><i>You can choose how to display transparent parts in images. This "
+"option has no effect on photos, but setting this as check pattern or custom "
+"color could be usefull when viewing icons or other artworks with transparent "
+"parts.</i></small>"
+msgstr ""
+"<small><i>Puteți alege cum vor fi afișate părțile transparente ale "
+"imaginilor. Această opțiune nu are efect asupra fotografiilor, dar "
+"configurarea opțiunii ca model mozaic sau culoare personalizată poate fi "
+"utilă la vizualizarea iconițelor sau a altor elemente de design care conțin "
+"părți transparente. </i></small>"
+
+#: ../src/f-spot.glade.h:23
+msgid "As _background"
+msgstr "Ca _fundal"
+
+#: ../src/f-spot.glade.h:24
+msgid "As _custom color: "
+msgstr "Ca o _culoare personalizată: "
+
+#: ../src/f-spot.glade.h:25
+msgid "As check _pattern"
+msgstr "Ca _model mozaic"
+
+#: ../src/f-spot.glade.h:26
+msgid "Attach Tags:"
+msgstr "Atașează etichete:"
+
+#: ../src/f-spot.glade.h:27
+msgid "Attach tag:"
+msgstr "Atașează etichetă:"
+
+#: ../src/f-spot.glade.h:29
+msgid "CD"
+msgstr "CD"
+
+#: ../src/f-spot.glade.h:30
+msgid "C_ontrast:"
+msgstr "C_ontrast:"
+
+#: ../src/f-spot.glade.h:31
+msgid "Camera Selection"
+msgstr "Selecția cameră"
+
+#: ../src/f-spot.glade.h:32
+msgid "Copy files to the Photos folder"
+msgstr "Copiază fișierele în dosarul Fotografii"
+
+#: ../src/f-spot.glade.h:33
+msgid "Create Mail"
+msgstr "Creează mail"
+
+#: ../src/f-spot.glade.h:34
+msgid "Create _icon for this tag when first used"
+msgstr "Creează _iconiță pentru această etichetă la prima utilizare"
+
+#: ../src/f-spot.glade.h:35
+msgid "Create a mail with the selected photos (possibly resized) attached"
+msgstr ""
+"Creează un email cu fotografia selectată (posibil redimensionată) atașată"
+
+#: ../src/f-spot.glade.h:36
+msgid "Detect duplicates"
+msgstr "Detectează duplicate"
+
+#: ../src/f-spot.glade.h:37
+msgid "Display File _Names"
+msgstr "Afișează _numele fișierelor"
+
+#: ../src/f-spot.glade.h:38
+msgid "Display only those photos that were imported in specified Rolls."
+msgstr ""
+"Afișează numai fotografiile care au fost importate în seturile specificate."
+
+#: ../src/f-spot.glade.h:39
+msgid "Do not send a mail"
+msgstr "Nu trimite email"
+
+#: ../src/f-spot.glade.h:40
+msgid "E-_Mail:"
+msgstr "E-_Mail:"
+
+#: ../src/f-spot.glade.h:41
+msgid "E_xport titles and comments"
+msgstr "E_xportă titluri și comentarii"
+
+#: ../src/f-spot.glade.h:42
+msgid "Estimated new size"
+msgstr "Dimensiune nouă estimată"
+
+#: ../src/f-spot.glade.h:44
+msgid "Extra large"
+msgstr "Foarte mare"
+
+#: ../src/f-spot.glade.h:45
+msgid "F-Spot View"
+msgstr "Vizualizare F-Spot"
+
+#: ../src/f-spot.glade.h:47
+msgid "Filter on selected rolls"
+msgstr "Filtru pe set selectat"
+
+#: ../src/f-spot.glade.h:48
+msgid "G_allery:"
+msgstr "G_alerie:"
+
+#: ../src/f-spot.glade.h:49
+msgid "Gallery"
+msgstr "Galerie"
+
+#: ../src/f-spot.glade.h:50 ../src/ImportCommand.cs:547
+#: ../src/MainWindow.cs:301
+msgid "Import"
+msgstr "Import"
+
+#. Translators: this string means 'source of import'
+#: ../src/f-spot.glade.h:52
+msgid "Import Source:"
+msgstr "Importă sursă:"
+
+#: ../src/f-spot.glade.h:53
+msgid "Include subfolders"
+msgstr "Include subdirectoare"
+
+#: ../src/f-spot.glade.h:54
+msgid "Large"
+msgstr "Mare"
+
+#: ../src/f-spot.glade.h:55
+msgid "Manage your custom selection ratios"
+msgstr "Administrați proporțiile selectate personalizat"
+
+#: ../src/f-spot.glade.h:56
+msgid "Medium"
+msgstr "Mediu"
+
+#: ../src/f-spot.glade.h:58
+msgid "Number of photos in selected rolls:"
+msgstr "Număr de fotografii în seturile selectate:"
+
+#: ../src/f-spot.glade.h:59
+msgid "Number of pictures"
+msgstr "Număr de imagini"
+
+#: ../src/f-spot.glade.h:60
+msgid "Open _Folder..."
+msgstr "Deschide _dosar..."
+
+#: ../src/f-spot.glade.h:62
+msgid "Original size (possible very large file size)"
+msgstr "Dimensiune originală (posibil fișier de dimensiune foarte mare)"
+
+#: ../src/f-spot.glade.h:63 ../src/UI.Dialog/ui/EditTagDialog.ui.h:4
+msgid "P_arent Tag:"
+msgstr "Etichetă _părinte:"
+
+#: ../src/f-spot.glade.h:64
+msgid "Pause"
+msgstr "Pauză"
+
+#: ../src/f-spot.glade.h:65
+msgid "Preferences"
+msgstr "Preferințe"
+
+#: ../src/f-spot.glade.h:66 ../src/ItemAction.cs:123
+msgid "Previous"
+msgstr "Precedenta"
+
+#: ../src/f-spot.glade.h:67
+msgid "Repair"
+msgstr "Repară"
+
+#: ../src/f-spot.glade.h:70
+msgid "Select Photos to Copy From Camera..."
+msgstr "Selectați fotografiile care vor fi copiate din aparatul foto..."
+
+#: ../src/f-spot.glade.h:71
+msgid "Select a Tag..."
+msgstr "Selectați o etichetă..."
+
+#: ../src/f-spot.glade.h:72
+msgid "Select the camera from which you want to transfer files"
+msgstr "Selectați aparatul foto din care doriți să transferați fișiere"
+
+#: ../src/f-spot.glade.h:73
+msgid "Selected Camera: "
+msgstr "Aparat foto selectat: "
+
+#: ../src/f-spot.glade.h:74
+msgid "Selection Constraints"
+msgstr "Condiționări selecție"
+
+#: ../src/f-spot.glade.h:75 ../src/ui/main_window.ui.h:21
+msgid "Set as _Background"
+msgstr "Definește ca _fundal"
+
+#: ../src/f-spot.glade.h:76
+msgid "Show all photos."
+msgstr "Arată toate fotografiile."
+
+#: ../src/f-spot.glade.h:77
+msgid "Show or hide the side pane"
+msgstr "Afișează sau ascunde panoul lateral"
+
+#: ../src/f-spot.glade.h:78
+msgid "Show or hide the toolbar"
+msgstr "Afișează sau ascunde bara de unelte"
+
+#: ../src/f-spot.glade.h:79
+msgid "Side _pane"
+msgstr "_Panou lateral"
+
+#: ../src/f-spot.glade.h:80
+msgid "Small"
+msgstr "Mic"
+
+#: ../src/f-spot.glade.h:81
+msgid ""
+"Specify if an original size picture should be rotated or not. Smaller sizes "
+"are automatically rotated."
+msgstr ""
+"Specificați dacă o imagine de dimensiune originală ar trebui rotită sau nu. "
+"Imaginile de dimensiuni mai mici sunt rotite automat."
+
+#: ../src/f-spot.glade.h:82
+msgid "Strip image _metadata"
+msgstr "Șterge _metadate din imagine"
+
+#. Note for translators: meant as Temperature
+#: ../src/f-spot.glade.h:84
+msgid "Te_mp:"
+msgstr "Te_mp:"
+
+#: ../src/f-spot.glade.h:85
+msgid "Tiny"
+msgstr "Foarte mic"
+
+#: ../src/f-spot.glade.h:86
+msgid "Total original size"
+msgstr "Totalizare dimensiune originală"
+
+#: ../src/f-spot.glade.h:87 ../src/ui/main_window.ui.h:28
+msgid "Zoom _in"
+msgstr "Măr_ire"
+
+#: ../src/f-spot.glade.h:88 ../src/ui/main_window.ui.h:29
+msgid "Zoom _out"
+msgstr "Micș_orare"
+
+#: ../src/f-spot.glade.h:89 ../src/ui/main_window.ui.h:30
+msgid "Zoom in"
+msgstr "Mărește"
+
+#: ../src/f-spot.glade.h:90 ../src/ui/main_window.ui.h:31
+msgid "Zoom out"
+msgstr "Micșorează"
+
+#: ../src/f-spot.glade.h:91
+msgid "_Brightness:"
+msgstr "_Luminozitate:"
+
+#: ../src/f-spot.glade.h:93
+msgid "_Create Mail"
+msgstr "_Creează email"
+
+#: ../src/f-spot.glade.h:94 ../src/ui/main_window.ui.h:44
+msgid "_Edit"
+msgstr "_Editare"
+
+#: ../src/f-spot.glade.h:98
+msgid "_Exposure:"
+msgstr "_Expunere:"
+
+#: ../src/f-spot.glade.h:99
+msgid "_Flickr"
+msgstr "_Flickr"
+
+#: ../src/f-spot.glade.h:100 ../src/ui/main_window.ui.h:48
+msgid "_Fullscreen"
+msgstr "_Afișare pe tot ecranul"
+
+#: ../src/f-spot.glade.h:101
+msgid "_Gallery"
+msgstr "_Galerie"
+
+#: ../src/f-spot.glade.h:102 ../src/ui/main_window.ui.h:49
+msgid "_Help"
+msgstr "_Ajutor"
+
+#: ../src/f-spot.glade.h:103
+msgid "_Hue:"
+msgstr "_Nuanță:"
+
+#: ../src/f-spot.glade.h:104
+msgid "_Interpolate image on zoom"
+msgstr "_Interpolează imaginea la zoom"
+
+#: ../src/f-spot.glade.h:105
+msgid "_New Window"
+msgstr "Fereastră _nouă"
+
+#: ../src/f-spot.glade.h:106
+msgid "_Open album in browser when done uploading"
+msgstr "_Deschide albumul în navigator după trimitere"
+
+#: ../src/f-spot.glade.h:107
+msgid "_Open destination when done exporting"
+msgstr "_Deschide destinația după exportare"
+
+#: ../src/f-spot.glade.h:108 ../src/ui/main_window.ui.h:56
+msgid "_Photo"
+msgstr "_Fotografie"
+
+#: ../src/f-spot.glade.h:110
+msgid "_Saturation:"
+msgstr "_Saturație:"
+
+#: ../src/f-spot.glade.h:111
+msgid "_Scale photos to no larger than: "
+msgstr "_Scalează fotografiile la o dimensiune maximă de: "
+
+#: ../src/f-spot.glade.h:112 ../src/ui/main_window.ui.h:67
+msgid "_Slideshow"
+msgstr "_Diapozitive"
+
+#: ../src/f-spot.glade.h:113
+msgid "_Strip metadata"
+msgstr "Șterge _metadate"
+
+#: ../src/f-spot.glade.h:114 ../src/UI.Dialog/ui/EditTagDialog.ui.h:6
+msgid "_Tag Name:"
+msgstr "Nume e_tichetă:"
+
+#: ../src/f-spot.glade.h:115
+msgid "_Tint:"
+msgstr "_Nuanță:"
+
+#: ../src/f-spot.glade.h:116
+msgid "_Toolbar"
+msgstr "Bară de unel_te"
+
+#: ../src/f-spot.glade.h:117
+msgid "_URI:"
+msgstr "_URI:"
+
+#: ../src/f-spot.glade.h:118 ../src/ui/main_window.ui.h:75
+msgid "_View"
+msgstr "_Vizualizare"
+
+#: ../src/f-spot.glade.h:119
+msgid "_Virtual Filesystem"
+msgstr "Sistem _virtual de fișiere"
+
+#: ../src/f-spot.glade.h:120 ../src/Widgets/FindBar.cs:177
+msgid "and"
+msgstr "și"
+
+#. at, or after a date, or between dates
+#: ../src/f-spot.glade.h:122
+msgid ""
+"at\n"
+"after\n"
+"between"
+msgstr ""
+"la\n"
+"după\n"
+"între"
+
+#: ../src/f-spot.glade.h:126
+msgid "x"
+msgstr "x"
+
+#: ../src/FullScreenView.cs:58
+msgid "Hide"
+msgstr "Ascunde"
+
+#: ../src/FullScreenView.cs:60
+msgid "Hide Toolbar"
+msgstr "Ascunde bara de unelte"
+
+#: ../src/FullScreenView.cs:66
+msgid "Info"
+msgstr "Informații"
+
+#: ../src/FullScreenView.cs:68 ../src/Widgets/InfoBox.cs:201
+msgid "Image Information"
+msgstr "Informații imagine"
+
+#: ../src/FullScreenView.cs:73
+msgid "Exit fullscreen"
+msgstr "Ieșire din mod pe tot ecranul"
+
+#: ../src/FullScreenView.cs:81 ../src/MainWindow.cs:341
+#: ../src/SingleView.cs:88
+msgid "Slideshow"
+msgstr "Diapozitive"
+
+#: ../src/FullScreenView.cs:82
+msgid "Start slideshow"
+msgstr "Pornire prezentare diapozitive"
+
+#: ../src/FullScreenView.cs:128
+msgid "Slide transition:"
+msgstr "Tranziție diapozitive:"
+
+#: ../src/GroupSelector.cs:57 ../src/GroupSelector.cs:58
+msgid "More dates"
+msgstr "Mai multe date"
+
+#: ../src/GroupSelector.cs:60 ../src/GroupSelector.cs:61
+msgid "More"
+msgstr "Mai mult"
+
+#: ../src/GroupSelector.cs:517 ../src/ui/main_window.ui.h:34
+msgid "_Clear Date Range"
+msgstr "_Curăță intervalul de timp"
+
+#: ../src/Imaging/Exif.cs:228
+msgid "Image Directory"
+msgstr "Dosar imagini"
+
+#: ../src/Imaging/Exif.cs:230
+msgid "Thumbnail Directory"
+msgstr "Dosar miniaturi"
+
+#: ../src/Imaging/Exif.cs:232
+msgid "Exif Directory"
+msgstr "Dosar Exif"
+
+#: ../src/Imaging/Exif.cs:234
+msgid "GPS Directory"
+msgstr "Dosar GPS"
+
+#: ../src/Imaging/Exif.cs:236
+msgid "InterOperability Directory"
+msgstr "Dosar InterOperabilitate"
+
+#: ../src/Imaging/Exif.cs:238
+msgid "Unknown Directory"
+msgstr "Dosar necunoscut"
+
+#: ../src/Imaging/ImageFile.cs:117
+msgid "Writing to this file format is not supported"
+msgstr "Acest format de fișier nu poate fi scris"
+
+#: ../src/Imaging/IptcFile.cs:145
+msgid "IPTC Information Interchange Model (IIM) Version number"
+msgstr "Număr versiune pentru modelul de interschimbare informații (IIM) IPTC"
+
+#: ../src/Imaging/IptcFile.cs:147
+msgid "OSI Destination routing information"
+msgstr "Informații rutare destinație OSI"
+
+#: ../src/Imaging/IptcFile.cs:149
+msgid "IPTC file format"
+msgstr "Format fișier IPTC"
+
+#: ../src/Imaging/IptcFile.cs:151
+msgid "Identifies the provider and product"
+msgstr "Identifică furnizorul și produsul"
+
+#: ../src/Imaging/IptcFile.cs:153
+msgid "A unique number identifying the envelope"
+msgstr "Un număr unic de identificare al plicului"
+
+#: ../src/Imaging/IptcFile.cs:155
+msgid "A unique number"
+msgstr "Număr unic"
+
+#: ../src/Imaging/IptcFile.cs:157
+msgid ""
+"The envelope handling priority between 1 (most urgent) and 9 (least urgent)"
+msgstr ""
+"Prioritate de manevrare a plicurilor între 1 (cel mai urgent) și 9 (mai "
+"puțin urgent)"
+
+#: ../src/Imaging/IptcFile.cs:159
+msgid "The year, month and day (CCYYMMDD) the service sent the material"
+msgstr "Anul, luna și ziua (AAAALLZZ) la care serviciul a trimis materialul"
+
+#: ../src/Imaging/IptcFile.cs:161
+msgid "The hour, minute and second (HHMMSS) the service sent the material"
+msgstr "Ora, minutul și secunda (OOMMSS) la care serviciul a trimis materialul"
+
+#: ../src/Imaging/IptcFile.cs:163
+msgid "The character set designation"
+msgstr "Desemnarea setului de caractere"
+
+#: ../src/Imaging/IptcFile.cs:165
+msgid "External globally unique object identifier"
+msgstr "Identificator extern unic global pentru obiect"
+
+#: ../src/Imaging/IptcFile.cs:170
+msgid "Abstract Relationship Method (ARM) identifier"
+msgstr "Identificator Abstract Relationship Method (ARM)"
+
+#: ../src/Imaging/IptcFile.cs:172
+msgid "Abstract Relationship Method (ARM) version number."
+msgstr "Număr versiune Abstract Relationship Method (ARM)"
+
+#: ../src/Imaging/IptcFile.cs:175
+msgid "Number identifying the IIM version this application record uses"
+msgstr "Număr de identificare al versiunii IIM utilizată de această aplicație"
+
+#: ../src/Imaging/IptcFile.cs:177
+msgid "Object type reference"
+msgstr "Referință tip obiect"
+
+#: ../src/Imaging/IptcFile.cs:182
+msgid "Object attribute reference"
+msgstr "Referință atribut obiect"
+
+#: ../src/Imaging/IptcFile.cs:188 ../src/Imaging/IptcFile.cs:192
+msgid "Object name"
+msgstr "Nume obiect"
+
+#: ../src/Imaging/IptcFile.cs:190
+msgid "Status of the objectdata according to the provider"
+msgstr "Statut al datelor obiect asigurat de furnizor"
+
+#: ../src/Imaging/IptcFile.cs:194
+msgid "Location within a city or area where the object originates"
+msgstr ""
+"Locația din interiorul unui oraș sau al unei arii din care provine obiectul"
+
+#: ../src/Imaging/IptcFile.cs:197
+msgid "Name of the city the content is focussing on"
+msgstr "Numele orașului despre care vorbește conținutul"
+
+#: ../src/Imaging/IptcFile.cs:200
+msgid "Copyright information for"
+msgstr "Informații referitoare la drepturile de autor pentru"
+
+#: ../src/Imaging/IptcFile.cs:203
+msgid "Full name of the country of the focus of the content"
+msgstr "Numele complet al țării despre care vorbește conținutul"
+
+#: ../src/Imaging/IptcFile.cs:206
+msgid ""
+"Two or three letter ISO3166 code of the country of the focus of the content"
+msgstr ""
+"Două sau trei litere conforme codului ISO3166 ale țării despre care vorbește "
+"conținutul"
+
+#: ../src/Imaging/IptcFile.cs:209
+msgid "Creator of the content"
+msgstr "Autorul conținutului"
+
+#: ../src/Imaging/IptcFile.cs:212
+msgid "Provider of the object"
+msgstr "Furnizorul obiectului"
+
+#: ../src/Imaging/IptcFile.cs:215
+msgid "The title of the author or creator"
+msgstr "Titlul autorului sau creatorului"
+
+#: ../src/Imaging/IptcFile.cs:218
+msgid ""
+"The person involved in writing, editing or correcting the object data or "
+"caption/abstract"
+msgstr ""
+"Persoana implicată în scrierea, editarea sau corectarea datelor obiect sau a "
+"părților acestuia"
+
+#: ../src/Imaging/IptcFile.cs:222
+msgid "Headline of the content"
+msgstr "Rezumatul conținutului"
+
+#: ../src/Imaging/IptcFile.cs:225
+msgid ""
+"Instructions from the creator to the receiver not covered by other fields"
+msgstr ""
+"Instrucțiuni ale creatorului, care nu se regăsesc în alte câmpuri, pentru "
+"destinatar"
+
+#: ../src/Imaging/IptcFile.cs:228
+msgid "Intellectual genre of the object"
+msgstr "Genul obiectului"
+
+#: ../src/Imaging/IptcFile.cs:241
+msgid "Unknown IIM DataSet"
+msgstr "Set date IIM necunoscut"
+
+#: ../src/ImportCommand.cs:48 ../src/SingleView.cs:344
+msgid "Select Folder"
+msgstr "Selectare dosar"
+
+#: ../src/ImportCommand.cs:259
+msgid "(No Cameras Detected)"
+msgstr "(Nu s-a detectat nicio cameră)"
+
+#: ../src/ImportCommand.cs:404
+#, csharp-format
+msgid "Loading {0} of {1}"
+msgstr "Se încarcă {0} din {1}"
+
+#: ../src/ImportCommand.cs:470
+msgid "Done Loading"
+msgstr "Încărcare terminată"
+
+#: ../src/ImportCommand.cs:684
+msgid "Directory does not exist."
+msgstr "Dosarul nu există."
+
+#: ../src/ImportCommand.cs:685
+#, csharp-format
+msgid ""
+"The directory you selected \"{0}\" does not exist.  Please choose a "
+"different directory"
+msgstr "Dosarul „{0}” pe care l-ați selectat  nu există. Alegeți un alt dosar"
+
+#. Note for translators: 'Import Tags' is no command, it means 'Tags used in Import'
+#: ../src/ImportCommand.cs:739 ../src/ImportCommand.cs:741
+#: ../src/XmpTagsImporter.cs:89
+msgid "Import Tags"
+msgstr "Etichete utilizate la import"
+
+#: ../src/ItemAction.cs:79 ../src/MainWindow.cs:308 ../src/SingleView.cs:71
+msgid "Rotate Left"
+msgstr "Rotire la stânga"
+
+#: ../src/ItemAction.cs:80
+msgid "Rotate picture left"
+msgstr "Rotește fotografia spre dreapta"
+
+#: ../src/ItemAction.cs:91 ../src/MainWindow.cs:312 ../src/SingleView.cs:76
+msgid "Rotate Right"
+msgstr "Rotire la dreapta"
+
+#: ../src/ItemAction.cs:92
+msgid "Rotate picture right"
+msgstr "Rotește fotografia spre dreapta"
+
+#: ../src/ItemAction.cs:103
+msgid "Next picture"
+msgstr "Următoarea fotografie"
+
+#: ../src/ItemAction.cs:124
+msgid "Previous picture"
+msgstr "Fotografia precedentă"
+
+#: ../src/MainWindow.cs:303
+msgid "Import new images"
+msgstr "Importă imagini noi"
+
+#: ../src/MainWindow.cs:319 ../src/ui/main_window.ui.h:3
+msgid "Browse"
+msgstr "Navigare"
+
+#: ../src/MainWindow.cs:323
+msgid "Browse many photos simultaneously"
+msgstr "Căutați printre mai multe fotografii simultan"
+
+#: ../src/MainWindow.cs:327
+msgid "Edit Image"
+msgstr "Editare imagine"
+
+#: ../src/MainWindow.cs:331
+msgid "View and edit a photo"
+msgstr "Afișează și editează o fotografie"
+
+#: ../src/MainWindow.cs:336 ../src/SingleView.cs:83
+msgid "Fullscreen"
+msgstr "Pe tot ecranul"
+
+#: ../src/MainWindow.cs:338 ../src/SingleView.cs:85
+msgid "View photos fullscreen"
+msgstr "Afișează fotografiile pe tot ecranul"
+
+#: ../src/MainWindow.cs:343 ../src/SingleView.cs:90
+msgid "View photos in a slideshow"
+msgstr "Afișează fotografiile ca prezentare de diapozitive"
+
+#: ../src/MainWindow.cs:358
+msgid "Previous photo"
+msgstr "Fotografia precedentă"
+
+#: ../src/MainWindow.cs:363
+msgid "Next photo"
+msgstr "Fotografia următoare"
+
+#: ../src/MainWindow.cs:1518
+msgid "No cameras detected."
+msgstr "Nu s-a detectat nicio cameră foto"
+
+#: ../src/MainWindow.cs:1519
+msgid ""
+"F-Spot was unable to find any cameras attached to this system.  Double check "
+"that the camera is connected and has power"
+msgstr ""
+"F-Spot nu a putut detecta nicio cameră foto conectată la acest sistem. "
+"Verificați încă o dată dacă aveți camera conectată și dacă ea este "
+"alimentată."
+
+#: ../src/MainWindow.cs:1558
+msgid "Error connecting to camera"
+msgstr "Eroare la conectarea camerei foto"
+
+#: ../src/MainWindow.cs:1559
+#, csharp-format
+msgid "Received error \"{0}\" while connecting to camera"
+msgstr "În timpul conectării la camera foto s-a primit eroarea „{0}”"
+
+#. Translators, The singular case will never happen here.
+#: ../src/MainWindow.cs:1846
+#, csharp-format
+msgid "Merge the selected tag"
+msgid_plural "Merge the {0} selected tags?"
+msgstr[0] "Combină eticheta selectată"
+msgstr[1] "Combin cele {0} etichete selectate?"
+msgstr[2] "Combin cele {0} de etichete selectate?"
+
+#: ../src/MainWindow.cs:1873
+msgid ""
+"This operation will merge the selected tags and any sub-tags into a single "
+"tag."
+msgstr ""
+"Această operație va combina etichetele selectate și toate sub-etichetele "
+"într-o singură etichetă."
+
+#: ../src/MainWindow.cs:1875
+msgid "_Merge Tags"
+msgstr "Co_mbină etichete"
+
+#: ../src/MainWindow.cs:2080
+#, csharp-format
+msgid "{0} Photo out of {1}"
+msgid_plural "{0} Photos out of {1}"
+msgstr[0] "Fotografia {0} din {1}"
+msgstr[1] "{0} fotografii din {1}"
+msgstr[2] "{0} de fotografii din {1}"
+
+#: ../src/MainWindow.cs:2082 ../src/SingleView.cs:480
+#, csharp-format
+msgid "{0} Photo"
+msgid_plural "{0} Photos"
+msgstr[0] "Fotografia {0}"
+msgstr[1] "{0} fotografii"
+msgstr[2] "{0} de fotografii"
+
+#: ../src/MainWindow.cs:2085
+#, csharp-format
+msgid " ({0} selected)"
+msgid_plural " ({0} selected)"
+msgstr[0] " {0} selectată"
+msgstr[1] " {0} selectate"
+msgstr[2] " {0} selectate"
+
+#: ../src/MainWindow.cs:2166
+msgid "_Ok"
+msgstr "_Ok"
+
+#: ../src/MainWindow.cs:2167
+msgid "Error Deleting Picture"
+msgstr "Eroare la ștergerea fotografiei"
+
+#: ../src/MainWindow.cs:2172
+#, csharp-format
+msgid "No permission to delete the file:{1}{0}"
+msgstr "Nu aveți permisiunea de a șterge fișierul: {1}{0}"
+
+#: ../src/MainWindow.cs:2176
+#, csharp-format
+msgid "An error of type {0} occurred while deleting the file:{2}{1}"
+msgstr "La ștergerea fișierului {2}{1} s-a produs o eroare de tipul {0}"
+
+#: ../src/MainWindow.cs:2208
+#, csharp-format
+msgid "Delete the selected photo permanently?"
+msgid_plural "Delete the {0} selected photos permanently?"
+msgstr[0] "Ștergeți definitiv fotografia selectată?"
+msgstr[1] "Ștergeți definitiv cele {0} fotografii?"
+msgstr[2] "Ștergeți definitiv cele {0} de fotografii?"
+
+#: ../src/MainWindow.cs:2212
+msgid "This deletes all versions of the selected photo from your drive."
+msgid_plural ""
+"This deletes all versions of the selected photos from your drive."
+msgstr[0] ""
+"Aceasta va șterge de pe disc toate versiunile fotografiei selectate."
+msgstr[1] ""
+"Aceasta va șterge de pe disc toate versiunile fotografiilor selectate."
+msgstr[2] ""
+"Aceasta va șterge de pe disc toate versiunile fotografiilor selectate."
+
+#: ../src/MainWindow.cs:2215
+msgid "_Delete photo"
+msgid_plural "_Delete photos"
+msgstr[0] "Ște_rge fotografia"
+msgstr[1] "Ște_rge fotografiile"
+msgstr[2] "Ște_rge fotografiile"
+
+#: ../src/MainWindow.cs:2251
+#, csharp-format
+msgid "Remove the selected photo from F-Spot?"
+msgid_plural "Remove the {0} selected photos from F-Spot?"
+msgstr[0] "Ștergeți din F-Spot fotografia selectată?"
+msgstr[1] "Ștergeți din F-Spot cele {0} fotografii selectate?"
+msgstr[2] "Ștergeți din F-Spot cele {0} de fotografii selectate?"
+
+#: ../src/MainWindow.cs:2256
+msgid ""
+"If you remove photos from the F-Spot catalog all tag information will be "
+"lost. The photos remain on your computer and can be imported into F-Spot "
+"again."
+msgstr ""
+"Dacă ștergeți fotografii din catalogul F-Spot, toate informațiile de pe "
+"etichete se vor pierde. Fotografiile rămân în calculator și pot fi importate "
+"din nou în F-Spot."
+
+#: ../src/MainWindow.cs:2257
+msgid "_Remove from Catalog"
+msgstr "Ș_terge din catalog"
+
+#: ../src/MainWindow.cs:2320
+#, csharp-format
+msgid "Delete tag \"{0}\"?"
+msgstr "Ștergeți eticheta „{0}”?"
+
+#: ../src/MainWindow.cs:2322
+#, csharp-format
+msgid "Delete the {0} selected tags?"
+msgstr "Ștergeți cele {0} etichete selectate?"
+
+#: ../src/MainWindow.cs:2327
+msgid "photo"
+msgid_plural "photos"
+msgstr[0] "fotografie"
+msgstr[1] "fotografii"
+msgstr[2] "de fotografii"
+
+#: ../src/MainWindow.cs:2329
+#, csharp-format
+msgid "If you delete this tag, the association with {0} {1} will be lost."
+msgid_plural ""
+"If you delete these tags, the association with {0} {1} will be lost."
+msgstr[0] ""
+"Dacă ștergeți această etichetă, asocierea cu {0} {1} va fi pierdută."
+msgstr[1] ""
+"Dacă ștergeți aceste etichete, asocierile cu {0} {1} vor fi pierdute."
+msgstr[2] ""
+"Dacă ștergeți aceste etichete, asocierile cu {0} {1} vor fi pierdute."
+
+#: ../src/MainWindow.cs:2334
+msgid "_Delete tag"
+msgid_plural "_Delete tags"
+msgstr[0] "Ște_rge etichetă"
+msgstr[1] "Ște_rge etichete"
+msgstr[2] "Ște_rge etichete"
+
+#. A Category is not empty. Can not delete it.
+#: ../src/MainWindow.cs:2348
+msgid "Tag is not empty"
+msgstr "Eticheta părinte nu este goală"
+
+#: ../src/MainWindow.cs:2349
+#, csharp-format
+msgid ""
+"Can not delete tags that have tags within them.  Please delete tags under "
+"\"{0}\" first"
+msgstr ""
+"Nu pot șterge etichete care conțin alte etichete. Ștergeți mai întâi "
+"etichetele conținute de „{0}”"
+
+#: ../src/MainWindow.cs:2781
+msgid "Rotate selected photo left"
+msgid_plural "Rotate selected photos left"
+msgstr[0] "Rotește fotografia selectată către stânga"
+msgstr[1] "Rotește fotografiile selectate către stânga"
+msgstr[2] "Rotește fotografiile selectate către stânga"
+
+#: ../src/MainWindow.cs:2794
+msgid "Rotate selected photo right"
+msgid_plural "Rotate selected photos right"
+msgstr[0] "Rotește fotografia selectată către dreapta"
+msgstr[1] "Rotește fotografiile selectate către dreapta"
+msgstr[2] "Rotește fotografiile selectate către dreapta"
+
+#: ../src/MainWindow.cs:2805
+#, csharp-format
+msgid "Find _Selected Tag"
+msgid_plural "Find _Selected Tags"
+msgstr[0] "Caută _eticheta selectată"
+msgstr[1] "Caută _etichetele selectate"
+msgstr[2] "Caută _etichetele selectate"
+
+#: ../src/MainWindow.cs:2809
+#, csharp-format
+msgid "Find Selected Tag _With"
+msgid_plural "Find Selected Tags _With"
+msgstr[0] "Caută eticheta selectată _cu"
+msgstr[1] "Caută etichetele selectate _cu"
+msgstr[2] "Caută etichetele selectate _cu"
+
+#: ../src/MainWindow.cs:2850
+msgid "Create New Version?"
+msgid_plural "Create New Versions?"
+msgstr[0] "Creez versiune nouă?"
+msgstr[1] "Creez versiuni noi?"
+msgstr[2] "Creez versiuni noi?"
+
+#: ../src/MainWindow.cs:2852
+#, csharp-format
+msgid ""
+"Before launching {1}, should F-Spot create a new version of the selected "
+"photo to preserve the original?"
+msgid_plural ""
+"Before launching {1}, should F-Spot create new versions of the selected "
+"photos to preserve the originals?"
+msgstr[0] ""
+"Înainte de a lansa {1}, doriți ca F-Spot să creeze o versiune nouă a "
+"fotografiei selectate, pentru a păstra originalul nemodificat?"
+msgstr[1] ""
+"Înainte de a lansa {1}, doriți ca F-Spot să creeze versiuni noi ale "
+"fotografiilor selectate, pentru a păstra originalele nemodificate?"
+msgstr[2] ""
+"Înainte de a lansa {1}, doriți ca F-Spot să creeze versiuni noi ale "
+"fotografiilor selectate, pentru a păstra originalele nemodificate?"
+
+#: ../src/MainWindow.cs:2874
+msgid "XCF version"
+msgstr "versiune XCF"
+
+#: ../src/MetadataStore.cs:19
+msgid "Creator"
+msgstr "Realizat de"
+
+#: ../src/MetadataStore.cs:20
+msgid "Title"
+msgstr "Titlu"
+
+#: ../src/MetadataStore.cs:21
+msgid "Copyright"
+msgstr "Drepturi de autor"
+
+#: ../src/MetadataStore.cs:22
+msgid "Subject and Keywords"
+msgstr "Subiect și cuvinte cheie"
+
+#: ../src/MetadataStore.cs:23
+msgid "Compression"
+msgstr "Compresie"
+
+#: ../src/MetadataStore.cs:25
+msgid "Planar Configuration"
+msgstr "Configurație plană"
+
+#: ../src/MetadataStore.cs:27
+msgid "Orientation"
+msgstr "Orientare"
+
+#: ../src/MetadataStore.cs:29
+msgid "Photometric Interpretation"
+msgstr "Interpretare fotometrică"
+
+#: ../src/MetadataStore.cs:31
+msgid "Resolution Unit"
+msgstr "Unitate pentru rezoluție"
+
+#: ../src/MetadataStore.cs:33
+msgid "Exposure Program"
+msgstr "Program de expunere"
+
+#: ../src/MetadataStore.cs:35
+msgid "Metering Mode"
+msgstr "Metoda de măsură"
+
+#: ../src/MetadataStore.cs:37
+msgid "Exposure Mode"
+msgstr "Mod expunere"
+
+#: ../src/MetadataStore.cs:39
+msgid "Custom Rendered"
+msgstr "Randare personalizată"
+
+#: ../src/MetadataStore.cs:41
+msgid "Components Configuration"
+msgstr "Configurație componente"
+
+#: ../src/MetadataStore.cs:43
+msgid "Light Source"
+msgstr "Sursa de lumină"
+
+#: ../src/MetadataStore.cs:45
+msgid "Sensing Method"
+msgstr "Metodă de analiză"
+
+#: ../src/MetadataStore.cs:47
+msgid "Color Space"
+msgstr "Spațiu de culoare"
+
+#: ../src/MetadataStore.cs:49
+msgid "White Balance"
+msgstr "Balanță de alb"
+
+#: ../src/MetadataStore.cs:51
+msgid "Focal Plane Resolution Unit"
+msgstr "Unitate rezoluție plan focal"
+
+#: ../src/MetadataStore.cs:53
+msgid "File Source Type"
+msgstr "Tip fișier sursă"
+
+#: ../src/MetadataStore.cs:55
+msgid "Scene Capture Type"
+msgstr "Tip captură peisaj"
+
+#: ../src/MetadataStore.cs:57
+msgid "Gain Control"
+msgstr "Control amplificare"
+
+#: ../src/MetadataStore.cs:59
+msgid "Contrast"
+msgstr "Contrast"
+
+#: ../src/MetadataStore.cs:61
+msgid "Saturation"
+msgstr "Saturație"
+
+#: ../src/MetadataStore.cs:63
+msgid "Sharpness"
+msgstr "Claritate"
+
+#: ../src/MetadataStore.cs:65
+msgid "Scene Type"
+msgstr "Tip peisaj"
+
+#. Fixme this should really set parent menu
+#. items insensitve
+#: ../src/PhotoTagMenu.cs:74
+msgid "(No Tags)"
+msgstr "(Fără etichetă)"
+
+#: ../src/PhotoVersionCommands.cs:58
+msgid "Create New Version"
+msgstr "Crează o versiune nouă"
+
+#: ../src/PhotoVersionCommands.cs:59
+msgid "Name:"
+msgstr "Nume:"
+
+#: ../src/PhotoVersionCommands.cs:63
+msgid "Rename Version"
+msgstr "Redenumire versiune"
+
+#: ../src/PhotoVersionCommands.cs:64
+msgid "New name:"
+msgstr "Nume nou:"
+
+#: ../src/PhotoVersionCommands.cs:110
+msgid "Could not create a new version"
+msgstr "Nu s-a putut crea o versiune nouă"
+
+#: ../src/PhotoVersionCommands.cs:111
+#, csharp-format
+msgid "Received exception \"{0}\". Unable to create version \"{1}\""
+msgstr "S-a primit excepția „{0}”. Nu se poate crea versiunea „{1}”."
+
+#: ../src/PhotoVersionCommands.cs:138
+msgid "Really Delete?"
+msgstr "Ștergeți definitiv?"
+
+#: ../src/PhotoVersionCommands.cs:139
+msgid "Cancel"
+msgstr "Renunță"
+
+#: ../src/PhotoVersionCommands.cs:140
+msgid "Delete"
+msgstr "Șterge"
+
+#: ../src/PhotoVersionCommands.cs:144
+#, csharp-format
+msgid "Really delete version \"{0}\"?"
+msgstr "Ștergeți definitiv versiunea „{0}”?"
+
+#: ../src/PhotoVersionCommands.cs:154
+msgid "Could not delete a version"
+msgstr "Nu se poate șterge o versiune"
+
+#: ../src/PhotoVersionCommands.cs:155
+#, csharp-format
+msgid "Received exception \"{0}\". Unable to delete version \"{1}\""
+msgstr "S-a primit excepția „{0}”. Nu se poate șterge versiunea „{1}”"
+
+#: ../src/PhotoVersionCommands.cs:196
+msgid "Could not rename a version"
+msgstr "Nu se poate redenumi o versiune"
+
+#: ../src/PhotoVersionCommands.cs:197
+#, csharp-format
+msgid "Received exception \"{0}\". Unable to rename version to \"{1}\""
+msgstr "S-a primit excepția „{0}”. Versiunea nu poate fi redenumită ca „{1}”"
+
+#: ../src/PhotoVersionMenu.cs:66 ../src/Widgets/InfoBox.cs:563
+#: ../src/Widgets/InfoBox.cs:565
+msgid "(No Edits)"
+msgstr "(Fără modificări)"
+
+#: ../src/PhotoView.cs:167 ../src/UI.Dialog/EditExceptionDialog.cs:38
+msgid "Error editing photo"
+msgstr "Eroare la editarea fotografiei"
+
+#: ../src/PhotoView.cs:168 ../src/Sharpener.cs:73
+#: ../src/UI.Dialog/EditExceptionDialog.cs:25
+#, csharp-format
+msgid "Received exception \"{0}\". Unable to save photo {1}"
+msgstr "S-a primit excepția „{0}”. Fotografia {1} nu poate fi salvată."
+
+#: ../src/PhotoView.cs:356
+msgid "Comment:"
+msgstr "Comentariu:"
+
+#: ../src/Preferences.cs:149
+msgid "Photos"
+msgstr "Fotografii"
+
+#: ../src/PrintOperation.cs:32
+msgid "Image Settings"
+msgstr "Preferințe imagine"
+
+#: ../src/QueryWidget.cs:58
+msgid "Find: "
+msgstr "Caută: "
+
+#: ../src/QueryWidget.cs:63
+msgid "Untagged photos"
+msgstr "Fotografii fără etichete"
+
+#: ../src/QueryWidget.cs:71
+msgid "Rated photos"
+msgstr "Fotografii cu apreciere"
+
+#. Note for translators: 'Import roll' is no command, it means 'Roll that has been imported'
+#: ../src/QueryWidget.cs:80
+msgid "Import roll"
+msgstr "Seturi de importat"
+
+#: ../src/QueryWidget.cs:104
+msgid "Clear search"
+msgstr "Resetează căutarea"
+
+#: ../src/QueryWidget.cs:111
+msgid "Refresh search"
+msgstr "Caută din nou"
+
+#: ../src/QueryWidget.cs:113
+msgid "No matching photos found"
+msgstr "Nu au fost găsite fotografii care corespund căutării"
+
+#: ../src/QueryWidget.cs:155
+msgid "Hide _Find Bar"
+msgstr "Ascunde bara „_Caută”"
+
+#: ../src/QueryWidget.cs:161
+msgid "Show _Find Bar"
+msgstr "Arată bara „_Caută”"
+
+#: ../src/RotateCommand.cs:96 ../src/RotateCommand.cs:111
+msgid "Unable to rotate this type of photo"
+msgstr "Acest tip de fotografie nu poate fi rotit"
+
+#: ../src/RotateCommand.cs:131
+msgid "Unable to rotate readonly file"
+msgstr "Fișierul cu proprietăți care nu permit editarea nu poate fi rotit"
+
+#: ../src/RotateCommand.cs:198
+msgid "Rotating photos"
+msgstr "Rotire fotografii"
+
+#: ../src/RotateCommand.cs:209
+#, csharp-format
+msgid "Rotating photo \"{0}\""
+msgstr "Se rotește fotografia „{0}”"
+
+#: ../src/RotateCommand.cs:222
+msgid "Directory not found"
+msgstr "Dosarul nu a fost găsit"
+
+#: ../src/RotateCommand.cs:242
+#, csharp-format
+msgid "Unable to rotate photo"
+msgid_plural "Unable to rotate {0} photos"
+msgstr[0] "Fotografia nu poate fi rotită"
+msgstr[1] "{0} fotografii nu pot fi rotite"
+msgstr[2] "{0} de fotografii nu pot fi rotite"
+
+#: ../src/RotateCommand.cs:244
+#, csharp-format
+msgid ""
+"The photo could not be rotated because it is on a read only file system or "
+"media such as a CDROM.  Please check the permissions and try again."
+msgid_plural ""
+"{0} photos could not be rotated because they are on a read only file system "
+"or media such as a CDROM.  Please check the permissions and try again."
+msgstr[0] ""
+"Fotografia nu poate fi rotită deoarece se află pe un sistem de fișiere cu "
+"permisiunea doar citire sau pe un mediu cum ar fi CD-ROM. Verificați "
+"permisiunile și încercați din nou."
+msgstr[1] ""
+"{0} fotografii nu pot fi rotite deoarece se află pe un sistem de fișiere cu "
+"permisiunea doar citire sau pe un mediu cum ar fi CD-ROM. Verificați "
+"permisiunile și încercați din nou."
+msgstr[2] ""
+"{0} de fotografii nu pot fi rotite deoarece se află pe un sistem de fișiere "
+"cu permisiunea doar citire sau pe un mediu cum ar fi CD-ROM. Verificați "
+"permisiunile și încercați din nou."
+
+#: ../src/RotateCommand.cs:271
+#, csharp-format
+msgid "Received error \"{0}\" while attempting to rotate {1}"
+msgstr "La încercarea de a roti {1} s-a primit eroarea „{0}”"
+
+#: ../src/RotateCommand.cs:276
+msgid "Error while rotating photo."
+msgstr "Eroare la rotirea fotografiei"
+
+#: ../src/SendEmail.cs:240
+msgid "Preparing email"
+msgstr "Se pregătește emailul"
+
+#: ../src/SendEmail.cs:292
+#, csharp-format
+msgid "Exporting picture \"{0}\""
+msgstr "Se exportă fotografia „{0}”"
+
+#: ../src/SendEmail.cs:314
+msgid "Error processing image"
+msgstr "Eroare la procesarea imaginii"
+
+#: ../src/SendEmail.cs:315
+#, csharp-format
+msgid "An error occured while processing \"{0}\": {1}"
+msgstr "S-a produs o eroare în timpul procesării „{0}”: {1}"
+
+#. Send the mail :)
+#: ../src/SendEmail.cs:330
+msgid "my photos"
+msgstr "fotografiile mele"
+
+#: ../src/Sharpener.cs:72
+msgid "Error saving sharpened photo"
+msgstr "Eroare la salvarea fotografiei cu claritatea îmbunătățită"
+
+#: ../src/Sharpener.cs:102
+msgid "Sharpen"
+msgstr "Accentuează claritatea"
+
+#: ../src/Sharpener.cs:112
+msgid "Amount:"
+msgstr "Cantitate:"
+
+#: ../src/Sharpener.cs:113
+msgid "Radius:"
+msgstr "Raza:"
+
+#: ../src/Sharpener.cs:114
+msgid "Threshold:"
+msgstr "Prag:"
+
+#: ../src/SingleView.cs:73
+msgid "Rotate photo left"
+msgstr "Rotește fotografia la stânga"
+
+#: ../src/SingleView.cs:78
+msgid "Rotate photo right"
+msgstr "Rotește fotografia la dreapta"
+
+#: ../src/SingleView.cs:115
+msgid "Folder"
+msgstr "Dosar"
+
+#: ../src/SingleView.cs:341
+msgid "Open"
+msgstr "Deschide"
+
+#: ../src/SingleView.cs:441
+msgid "Set as Background"
+msgstr "Utilizează ca fundal"
+
+#: ../src/TagCommands.cs:96 ../src/TagSelectionWidget.cs:498
+#: ../src/UI.Dialog/EditTagDialog.cs:78
+msgid "This name is already in use"
+msgstr "Acest nume este folosit deja"
+
+#: ../src/TagCommands.cs:144
+msgid "Create New Tag"
+msgstr "Creare etichetă nouă"
+
+#: ../src/TagCommands.cs:145
+msgid "Name of New Tag:"
+msgstr "Numele etichetei noi:"
+
+#: ../src/TagPopup.cs:26
+#, csharp-format
+msgid "Find"
+msgid_plural "Find"
+msgstr[0] "Caută"
+msgstr[1] "Caută"
+msgstr[2] "Caută"
+
+#: ../src/TagPopup.cs:36 ../src/Widgets/TagMenu.cs:91
+msgid "Create New Tag..."
+msgstr "Creează etichetă nouă..."
+
+#: ../src/TagPopup.cs:42
+msgid "Edit Selected Tag..."
+msgstr "Modifică eticheta selectată..."
+
+#: ../src/TagPopup.cs:46
+msgid "Delete Tag"
+msgid_plural "Delete Tags"
+msgstr[0] "Șterge eticheta"
+msgstr[1] "Șterge etichetele"
+msgstr[2] "Șterge etichetele"
+
+#: ../src/TagPopup.cs:52
+msgid "Attach Tag to Selection"
+msgid_plural "Attach Tags to Selection"
+msgstr[0] "Aplică eticheta selecției"
+msgstr[1] "Aplică etichetele selecției"
+msgstr[2] "Aplică etichetele selecției"
+
+#: ../src/TagPopup.cs:56
+msgid "Remove Tag From Selection"
+msgid_plural "Remove Tags From Selection"
+msgstr[0] "Șterge eticheta din selecție"
+msgstr[1] "Șterge etichetele din selecție"
+msgstr[2] "Șterge etichetele din selecție"
+
+#: ../src/TagPopup.cs:62
+msgid "Merge Tags"
+msgstr "Combină etichetele"
+
+#: ../src/TagQueryWidget.cs:34
+#, csharp-format
+msgid "Include Photos Tagged \"{0}\""
+msgstr "Include fotografiile etichetate „{0}”"
+
+#: ../src/TagQueryWidget.cs:39
+#, csharp-format
+msgid "Exclude Photos Tagged \"{0}\""
+msgstr "Exclude fotografiile etichetate „{0}”"
+
+#: ../src/TagQueryWidget.cs:44
+msgid "Remove From Search"
+msgstr "Șterge din căutare"
+
+#: ../src/TagQueryWidget.cs:88
+#, csharp-format
+msgid "Find _With"
+msgid_plural "Find _With"
+msgstr[0] "Caută _cu"
+msgstr[1] "Caută _cu"
+msgstr[2] "Caută _cu"
+
+#: ../src/TagQueryWidget.cs:114
+msgid "All"
+msgstr "Toate"
+
+#: ../src/TagQueryWidget.cs:149 ../src/Term.cs:592
+#, csharp-format
+msgid "Not {0}"
+msgstr "Fără {0}"
+
+#: ../src/TagQueryWidget.cs:278
+msgid "Drag tags here to search for them"
+msgstr "Trage etichetele aici pentru a realiza căutarea"
+
+#: ../src/TagSelectionWidget.cs:497
+msgid "Error renaming tag"
+msgstr "Eroare redenumire etichetă"
+
+#: ../src/TagStore.cs:203
+msgid "Favorites"
+msgstr "Favorite"
+
+#: ../src/TagStore.cs:208
+msgid "Hidden"
+msgstr "Ascunse"
+
+#: ../src/TagStore.cs:216
+msgid "People"
+msgstr "Persoane"
+
+#: ../src/TagStore.cs:221
+msgid "Places"
+msgstr "Locuri"
+
+#: ../src/TagStore.cs:226
+msgid "Events"
+msgstr "Evenimente"
+
+#. The label for the root category is used in new and edit tag dialogs
+#: ../src/TagStore.cs:239 ../src/Widgets/InfoBox.cs:409
+msgid "(None)"
+msgstr "(Niciuna)"
+
+#: ../src/Term.cs:298
+msgid " and "
+msgstr " și "
+
+#. operators.Add (Catalog.GetString (" && "));
+#: ../src/Term.cs:300
+msgid ", "
+msgstr ", "
+
+#: ../src/Term.cs:356
+msgid " or "
+msgstr " sau "
+
+#. OPS The operators we support, case insensitive
+#. private static string op_str = "(?'Ops' or | and |, | \\s+ )";
+#: ../src/Term.cs:380 ../src/UI.Dialog/ui/DateRangeDialog.ui.h:7
+#: ../src/Widgets/FindBar.cs:177
+msgid "or"
+msgstr "sau"
+
+#: ../src/ThumbnailCommand.cs:20
+msgid "Updating Thumbnails"
+msgstr "Actualizare miniaturi"
+
+#: ../src/ThumbnailCommand.cs:28
+#, csharp-format
+msgid "Updating picture \"{0}\""
+msgstr "Se actualizează fotografia „{0}”"
+
+#: ../src/UI.Dialog/AboutDialog.cs:76
+msgid "Photo management for GNOME"
+msgstr "Administrator de fotografii pentru GNOME"
+
+#: ../src/UI.Dialog/AboutDialog.cs:77
+msgid "Copyright © 2003-2009 Novell Inc."
+msgstr "Drepturi de autor © 2003-2009 Novell Inc."
+
+#: ../src/UI.Dialog/AboutDialog.cs:100
+msgid "translator-credits"
+msgstr ""
+"Lucian Adrian Grijincu\n"
+"\n"
+"Launchpad Contributions:\n"
+"  Cosmin https://launchpad.net/~cosminonofre\n"
+"  Doru Horișco https://launchpad.net/~doruhushhush\n"
+"  Ionuț Jula https://launchpad.net/~ionutjula\n"
+"  Lucian Adrian Grijincu https://launchpad.net/~lucian.grijincu\n"
+"  Manuel R. Ciosici https://launchpad.net/~manuelciosici\n"
+"  Riddick https://launchpad.net/~riddickbb\n"
+"  marianvasile https://launchpad.net/~marianvasile-upcmail"
+
+#: ../src/UI.Dialog/AboutDialog.cs:105
+msgid "F-Spot Website"
+msgstr "Pagina web F-Spot"
+
+#: ../src/UI.Dialog/AdjustTimeDialog.cs:112
+#: ../src/UI.Dialog/ui/AdjustTimeDialog.ui.h:10
+#, csharp-format
+msgid "Shift all photos by {0}"
+msgstr "Deplasează toate fotografiile cu {0}"
+
+#: ../src/UI.Dialog/DateRangeDialog.cs:99
+msgid "Today"
+msgstr "Astăzi"
+
+#: ../src/UI.Dialog/DateRangeDialog.cs:101
+msgid "Yesterday"
+msgstr "Ieri"
+
+#: ../src/UI.Dialog/DateRangeDialog.cs:103
+msgid "Last 7 days"
+msgstr "Ultimele 7 zile"
+
+#: ../src/UI.Dialog/DateRangeDialog.cs:105
+msgid "Last 30 days"
+msgstr "Ultimele 30 de zile"
+
+#: ../src/UI.Dialog/DateRangeDialog.cs:107
+msgid "Last 90 days"
+msgstr "Ultimele 90 de zile"
+
+#: ../src/UI.Dialog/DateRangeDialog.cs:109
+msgid "Last 360 days"
+msgstr "Ultimele 360 de zile"
+
+#: ../src/UI.Dialog/DateRangeDialog.cs:111
+msgid "Current Week (Mon-Sun)"
+msgstr "Săptămâna curentă (Lu-Du)"
+
+#: ../src/UI.Dialog/DateRangeDialog.cs:113
+msgid "Previous Week (Mon-Sun)"
+msgstr "Săptămâna trecută (Lu-Du)"
+
+#: ../src/UI.Dialog/DateRangeDialog.cs:131
+msgid "Customized Range"
+msgstr "Perioadă personalizată"
+
+#: ../src/UI.Dialog/EditTagIconDialog.cs:46
+#, csharp-format
+msgid "Edit Icon for Tag {0}"
+msgstr "Modifică iconița pentru eticheta {0}"
+
+#: ../src/UI.Dialog/EditTagIconDialog.cs:68
+msgid "Select Photo from file"
+msgstr "selectează fotografia din fișier"
+
+#: ../src/UI.Dialog/EditTagIconDialog.cs:90
+#, csharp-format
+msgid ""
+"\n"
+"<b>From Photo</b>\n"
+" You can use one of your library photos as an icon for this tag.\n"
+" However, first you must have at least one photo associated\n"
+" with this tag. Please tag a photo as '{0}' and return here\n"
+" to use it as an icon."
+msgstr ""
+"\n"
+"<b>Din fotografie</b>\n"
+" Puteți utiliza una din fotografiile din colecție ca iconiță pentru această "
+"etichetă.\n"
+" Însă trebuie să aveți asociată cu această etichetă\n"
+" cel puțin o fotografie. Etichetați o fotografie ca „{0}” și reveniți aici\n"
+" pentru a o folosi ca iconiță."
+
+#: ../src/UI.Dialog/EditTagIconDialog.cs:168
+msgid "Unable to load image"
+msgstr "Nu se poate încărca imaginea"
+
+#: ../src/UI.Dialog/EditTagIconDialog.cs:169
+#, csharp-format
+msgid "Unable to load \"{0}\" as icon for the tag"
+msgstr "Nu se poate încărca „{0}” ca iconiță pentru etichetă"
+
+#: ../src/UI.Dialog/EditTagIconDialog.cs:207
+#, csharp-format
+msgid "Photo {0} of {1}"
+msgstr "Fotografia {0} din {1}"
+
+#: ../src/UI.Dialog/ExceptionDialog.cs:24
+msgid "F-Spot Encountered a Fatal Error"
+msgstr "S-a produs o eroare majoră în F-Spot"
+
+#: ../src/UI.Dialog/ExceptionDialog.cs:60
+msgid "Error Details"
+msgstr "Detalii eroare"
+
+#: ../src/UI.Dialog/ExceptionDialog.cs:104
+msgid "An unhandled exception was thrown: "
+msgstr "S-a produs o excepție nerecunoscută: "
+
+#: ../src/UI.Dialog/PreferenceDialog.cs:53
+#: ../src/UI.Dialog/PreferenceDialog.cs:71
+msgid "None"
+msgstr "Niciunul"
+
+#: ../src/UI.Dialog/PreferenceDialog.cs:55
+msgid "System profile"
+msgstr "Profil sistem"
+
+#: ../src/UI.Dialog/PreferenceDialog.cs:84
+msgid "Standard theme"
+msgstr "Temă standard"
+
+#: ../src/UI.Dialog/RepairDbDialog.cs:20
+msgid "Error loading database."
+msgstr "Eroare la încărcarea bazei de date."
+
+#: ../src/UI.Dialog/RepairDbDialog.cs:21
+#, csharp-format
+msgid ""
+"F-Spot encountered an error while loading the photo database. The old "
+"database has be moved to {0} and a new database has been created."
+msgstr ""
+"S-a produs o eroare la încărcarea bazei de date cu fotografii de către F-"
+"Spot. Baza de date veche a fost mutată în {0} și a fost creată o bază de "
+"date nouă."
+
+#: ../src/UI.Dialog/SelectionRatioDialog.cs:60
+msgid "Label"
+msgstr "Etichetă"
+
+#: ../src/UI.Dialog/SelectionRatioDialog.cs:64
+msgid "Ratio"
+msgstr "Raport"
+
+#: ../src/UI.Dialog/ThreadProgressDialog.cs:56
+msgid "Retry"
+msgstr "Încearcă din nou"
+
+#: ../src/UI.Dialog/ui/AdjustTimeDialog.ui.h:1
+msgid "0000:00:00 00:00:00"
+msgstr "0000:00:00 00:00:00"
+
+#: ../src/UI.Dialog/ui/AdjustTimeDialog.ui.h:2
+msgid "00:00:00"
+msgstr "00:00:00"
+
+#: ../src/UI.Dialog/ui/AdjustTimeDialog.ui.h:3
+msgid "5"
+msgstr "5"
+
+#: ../src/UI.Dialog/ui/AdjustTimeDialog.ui.h:4
+msgid "<b>Action</b>"
+msgstr "<b>Acțiune</b>"
+
+#: ../src/UI.Dialog/ui/AdjustTimeDialog.ui.h:6
+msgid "<b>Reference Photo</b>"
+msgstr "<b>Fotografia de referință</b>"
+
+#: ../src/UI.Dialog/ui/AdjustTimeDialog.ui.h:7
+msgid "Adjust Time"
+msgstr "Configurează data"
+
+#: ../src/UI.Dialog/ui/AdjustTimeDialog.ui.h:8
+msgid "Adjusted date: "
+msgstr "Data modificată: "
+
+#: ../src/UI.Dialog/ui/AdjustTimeDialog.ui.h:9
+msgid "Current date:"
+msgstr "Data curentă:"
+
+#: ../src/UI.Dialog/ui/AdjustTimeDialog.ui.h:11
+msgid "Space all photos by"
+msgstr "Depărtați toate fotografiile cu"
+
+#: ../src/UI.Dialog/ui/AdjustTimeDialog.ui.h:12
+msgid "difference:"
+msgstr "diferență:"
+
+#: ../src/UI.Dialog/ui/AdjustTimeDialog.ui.h:13
+msgid "min. Starting at {0}"
+msgstr "min. Începe la {0}"
+
+#: ../src/UI.Dialog/ui/DateRangeDialog.ui.h:1
+msgid "<b>End Date</b>"
+msgstr "<b>Se termină la data</b>"
+
+#: ../src/UI.Dialog/ui/DateRangeDialog.ui.h:2
+msgid "<b>Select period</b>"
+msgstr "<b>Alegeți perioada</b>"
+
+#: ../src/UI.Dialog/ui/DateRangeDialog.ui.h:3
+msgid "<b>Start Date</b>"
+msgstr "<b>Se începe la data</b>"
+
+#: ../src/UI.Dialog/ui/DateRangeDialog.ui.h:4
+msgid "Cancel, do not change the current timeline. "
+msgstr "Anulează, nu se modifică selecția cronologică curentă. "
+
+#: ../src/UI.Dialog/ui/DateRangeDialog.ui.h:5
+msgid "Only photos taken within these dates will be displayed."
+msgstr "Se vor afișa numai fotografiile realizate între aceste date."
+
+#: ../src/UI.Dialog/ui/DateRangeDialog.ui.h:6
+msgid "Set date range"
+msgstr "Configurați intervalul de timp"
+
+#: ../src/UI.Dialog/ui/EditTagDialog.ui.h:1
+msgid "<small></small>"
+msgstr "<small></small>"
+
+#: ../src/UI.Dialog/ui/EditTagDialog.ui.h:2
+msgid "Edit Tag"
+msgstr "Editare etichetă"
+
+#: ../src/UI.Dialog/ui/EditTagDialog.ui.h:3
+msgid "Edit icon"
+msgstr "Modifică iconița"
+
+#: ../src/UI.Dialog/ui/EditTagDialog.ui.h:5
+msgid "_Icon:"
+msgstr "_Iconiță:"
+
+#: ../src/UI.Dialog/ui/EditTagIconDialog.ui.h:1
+msgid "<b>From External Photo</b>"
+msgstr "<b>Din altă fotografie</b>"
+
+#: ../src/UI.Dialog/ui/EditTagIconDialog.ui.h:2
+msgid "<b>From Photo</b>"
+msgstr "<b>Din fotografie</b>"
+
+#: ../src/UI.Dialog/ui/EditTagIconDialog.ui.h:3
+msgid "<b>Predefined icons</b>"
+msgstr "<b>Iconițe predefinite</b>"
+
+#: ../src/UI.Dialog/ui/EditTagIconDialog.ui.h:4
+msgid "<b>Preview</b>"
+msgstr "<b>Previzualizare</b>"
+
+#: ../src/UI.Dialog/ui/EditTagIconDialog.ui.h:5
+msgid "Design icon from"
+msgstr "Creează iconiță din"
+
+#: ../src/UI.Dialog/ui/EditTagIconDialog.ui.h:6
+msgid "Edit Tag Icon"
+msgstr "Modifică iconița etichetei"
+
+#: ../src/UI.Dialog/ui/EditTagIconDialog.ui.h:7
+msgid "No _image"
+msgstr "Fără _imagine"
+
+#: ../src/UI.Dialog/ui/EditTagIconDialog.ui.h:8
+msgid "Photo 0 of 0"
+msgstr "Fotografia 0 din 0"
+
+#: ../src/UI.Dialog/ui/PreferenceDialog.ui.h:1
+msgid "Color profile for display:"
+msgstr "Profil de culoare pentru ecran"
+
+#: ../src/UI.Dialog/ui/PreferenceDialog.ui.h:2
+msgid "Color profile for printing:"
+msgstr "Profil de culoare pentru tipărire"
+
+#: ../src/UI.Dialog/ui/PreferenceDialog.ui.h:3
+msgid "F-Spot Preferences"
+msgstr "Preferințe F-Spot"
+
+#: ../src/UI.Dialog/ui/PreferenceDialog.ui.h:4
+msgid "F-Spot appearance:"
+msgstr "Aspect F-Spot"
+
+#: ../src/UI.Dialog/ui/PreferenceDialog.ui.h:5
+msgid ""
+"Inside the image files when possible\n"
+"<small>Makes them accessible to other image-editing programs.</small>"
+msgstr ""
+"În cazul fișierelor imagine, când este posibil\n"
+"<small>permite vizibilitate față de alte programe pentru editare imagini.</"
+"small>"
+
+#: ../src/UI.Dialog/ui/PreferenceDialog.ui.h:7
+msgid "Select A Folder"
+msgstr "Selectați un dosar"
+
+#: ../src/UI.Dialog/ui/PreferenceDialog.ui.h:8
+msgid "Separately from the image files"
+msgstr "Separat față de fișiere imagine"
+
+#: ../src/UI.Dialog/ui/PreferenceDialog.ui.h:9
+msgid "Store tags and descriptions for photos:"
+msgstr "Păstrează etichetele și descrierile pentru fotografii:"
+
+#: ../src/UI.Dialog/ui/PreferenceDialog.ui.h:10
+msgid "When importing photos, copy them to:"
+msgstr "Copiază fotografiile importate în:"
+
+#: ../src/UI.Dialog/ui/RatingFilterDialog.ui.h:1
+msgid "<b>Max Rating</b>"
+msgstr "<b>Apreciere maximă</b>"
+
+#: ../src/UI.Dialog/ui/RatingFilterDialog.ui.h:2
+msgid "<b>Min Rating</b>"
+msgstr "<b>Apreciere minimă</b>"
+
+#: ../src/UI.Dialog/ui/RatingFilterDialog.ui.h:3
+msgid "Set Rating Filter"
+msgstr "Configurează filtru de apreciere"
+
+#: ../src/ui/main_window.ui.h:1
+msgid "Adjust _Time..."
+msgstr "Reglează timp_ul..."
+
+#: ../src/ui/main_window.ui.h:2
+msgid "Arrange _by"
+msgstr "Aranjează _după"
+
+#: ../src/ui/main_window.ui.h:4
+msgid "By _Date"
+msgstr "După _dată"
+
+#: ../src/ui/main_window.ui.h:5
+msgid "By _Import Roll"
+msgstr "După setul _importat"
+
+#: ../src/ui/main_window.ui.h:6
+msgid "By _Rating"
+msgstr "După ap_reciere"
+
+#: ../src/ui/main_window.ui.h:7
+msgid "Copy Locat_ion"
+msgstr "Copiază locaț_ia"
+
+#: ../src/ui/main_window.ui.h:8
+msgid "Create New _Tag..."
+msgstr "Creează e_tichetă nouă..."
+
+#: ../src/ui/main_window.ui.h:9
+msgid "Create _New Version..."
+msgstr "Creează versiune _nouă..."
+
+#: ../src/ui/main_window.ui.h:11
+msgid "Fin_d"
+msgstr "_Căutare"
+
+#: ../src/ui/main_window.ui.h:12
+msgid "Manage _Extensions"
+msgstr "Gestionează _extensii"
+
+#: ../src/ui/main_window.ui.h:13
+msgid "Page Set_up..."
+msgstr "Opți_uni pagină..."
+
+#: ../src/ui/main_window.ui.h:14
+msgid "Re_fresh Thumbnail"
+msgstr "Actualizează _miniaturi"
+
+#: ../src/ui/main_window.ui.h:18
+msgid "Select _All"
+msgstr "_Selectează tot"
+
+#: ../src/ui/main_window.ui.h:19
+msgid "Select _None"
+msgstr "_Fără selecție"
+
+#: ../src/ui/main_window.ui.h:20
+msgid "Send by _Mail..."
+msgstr "Trimite prin e_mail..."
+
+#: ../src/ui/main_window.ui.h:22
+msgid "Side_bar"
+msgstr "_Bară laterală"
+
+#: ../src/ui/main_window.ui.h:23
+msgid "T_ags"
+msgstr "E_tichete"
+
+#: ../src/ui/main_window.ui.h:25
+msgid "Thumbnail _elements"
+msgstr "_Elemente miniatură"
+
+#: ../src/ui/main_window.ui.h:26
+msgid "Too_lbar"
+msgstr "Bară de _unelte"
+
+#: ../src/ui/main_window.ui.h:27
+msgid "View"
+msgstr "Vizualizare"
+
+#: ../src/ui/main_window.ui.h:33
+msgid "_Attach Tag to Selection"
+msgstr "_Aplică eticheta la selecție"
+
+#: ../src/ui/main_window.ui.h:35
+msgid "_Clear Rating Filter"
+msgstr "_Curăță filtrul de apreciere"
+
+#: ../src/ui/main_window.ui.h:36
+msgid "_Clear Roll Filter"
+msgstr "Ș_terge filtrul de seturi"
+
+#: ../src/ui/main_window.ui.h:38
+msgid "_Components"
+msgstr "_Componente"
+
+#: ../src/ui/main_window.ui.h:39
+msgid "_Contents"
+msgstr "_Conținut"
+
+#: ../src/ui/main_window.ui.h:40
+msgid "_Dates"
+msgstr "_Date"
+
+#: ../src/ui/main_window.ui.h:42
+msgid "_Delete Selected Tag"
+msgstr "Ș_terge eticheta selectată"
+
+#: ../src/ui/main_window.ui.h:43
+msgid "_Delete Version"
+msgstr "Ș_terge versiunea"
+
+#: ../src/ui/main_window.ui.h:45
+msgid "_Edit Selected Tag..."
+msgstr "_Modifică eticheta selectată..."
+
+#: ../src/ui/main_window.ui.h:46
+msgid "_Export to"
+msgstr "_Exportă către"
+
+#: ../src/ui/main_window.ui.h:47
+msgid "_Filmstrip"
+msgstr "Dia_film"
+
+#: ../src/ui/main_window.ui.h:50
+msgid "_Hidden"
+msgstr "_Ascuns"
+
+#: ../src/ui/main_window.ui.h:51
+msgid "_Import..."
+msgstr "_Importă..."
+
+#: ../src/ui/main_window.ui.h:52
+msgid "_Large"
+msgstr "_Mare"
+
+#: ../src/ui/main_window.ui.h:53
+msgid "_Last Import Roll"
+msgstr "U_ltimul set importat"
+
+#: ../src/ui/main_window.ui.h:54
+msgid "_Loupe"
+msgstr "_Lupă"
+
+#: ../src/ui/main_window.ui.h:55
+msgid "_Medium"
+msgstr "M_ediu"
+
+#: ../src/ui/main_window.ui.h:57
+msgid "_Quit"
+msgstr "Ieși_re"
+
+#: ../src/ui/main_window.ui.h:58
+msgid "_Ratings"
+msgstr "Ap_reciere"
+
+#: ../src/ui/main_window.ui.h:60
+msgid "_Remove Tag From Selection"
+msgstr "Ș_terge eticheta aplicată selecției"
+
+#: ../src/ui/main_window.ui.h:61
+msgid "_Rename Version"
+msgstr "Re_denumește versiunea"
+
+#: ../src/ui/main_window.ui.h:62
+msgid "_Reverse Order"
+msgstr "Ordine _inversă"
+
+#: ../src/ui/main_window.ui.h:63
+msgid "_Select Import Rolls..."
+msgstr "_Selectează seturi de importat..."
+
+#: ../src/ui/main_window.ui.h:64
+msgid "_Set Date Range..."
+msgstr "_Configurează intervalul calendaristic..."
+
+#: ../src/ui/main_window.ui.h:65
+msgid "_Set Rating filter..."
+msgstr "_Configurează filtrul de apreciere..."
+
+#: ../src/ui/main_window.ui.h:66
+msgid "_Sharpen..."
+msgstr "Inten_sifică claritatea..."
+
+#: ../src/ui/main_window.ui.h:68
+msgid "_Small"
+msgstr "Mi_c"
+
+#: ../src/ui/main_window.ui.h:69
+msgid "_Tag Icons"
+msgstr "Iconițe _etichete"
+
+#: ../src/ui/main_window.ui.h:70
+msgid "_Tags"
+msgstr "E_tichete"
+
+#: ../src/ui/main_window.ui.h:71
+msgid "_Timeline"
+msgstr "_Cronologie"
+
+#: ../src/ui/main_window.ui.h:72
+msgid "_Tools"
+msgstr "_Unelte"
+
+#: ../src/ui/main_window.ui.h:73
+msgid "_Untagged Photos"
+msgstr "Fotografii _fără etichetă"
+
+#: ../src/ui/main_window.ui.h:74
+msgid "_Version"
+msgstr "_Versiune"
+
+#: ../src/Updater.cs:616
+msgid "Updating F-Spot Database"
+msgstr "Se actualizează baza de date F-Spot"
+
+#: ../src/Updater.cs:617
+msgid ""
+"Please wait while your F-Spot gallery's database is updated. This may take "
+"some time."
+msgstr ""
+"Așteptați actualizarea galeriilor din baza de date F-Spot. Această acțiune "
+"poate dura mai mult timp."
+
+#. Mono.Unix.Error error = Mono.Unix.Stdlib.GetLastError ();
+#: ../src/Utils/Unix.cs:35
+msgid "Unable to create temporary file"
+msgstr "Nu s-a putut crea un fișier temporar"
+
+#: ../src/Widgets/CustomPrintWidget.cs:119
+msgid "Page Setup"
+msgstr "Configurare pagină"
+
+#: ../src/Widgets/CustomPrintWidget.cs:123
+#: ../src/Widgets/CustomPrintWidget.cs:127
+#: ../src/Widgets/CustomPrintWidget.cs:133
+#, csharp-format
+msgid "Paper Size: {0} x {1} mm"
+msgstr "Dimensiune pagină: {0} x {1} mm"
+
+#: ../src/Widgets/CustomPrintWidget.cs:130
+msgid "Set Page Size and Orientation"
+msgstr "Configurează dimensiune pagină și orientare"
+
+#: ../src/Widgets/CustomPrintWidget.cs:141
+msgid "Photos per page"
+msgstr "Fotografii pe pagină"
+
+#: ../src/Widgets/CustomPrintWidget.cs:151
+msgid "Repeat"
+msgstr "Repetă"
+
+#: ../src/Widgets/CustomPrintWidget.cs:152
+msgid "Print cut marks"
+msgstr "Tipărește margini de tăiere"
+
+#: ../src/Widgets/CustomPrintWidget.cs:158
+msgid "Photos layout"
+msgstr "Aspect fotografie"
+
+#: ../src/Widgets/CustomPrintWidget.cs:160
+msgid "Full Page (no margin)"
+msgstr "Pagină plină (fără margini)"
+
+#. Note for translators: "Zoom" is a Fit Mode
+#: ../src/Widgets/CustomPrintWidget.cs:163
+msgid "Zoom"
+msgstr "Zoom"
+
+#: ../src/Widgets/CustomPrintWidget.cs:164
+msgid "Fill"
+msgstr "Umple"
+
+#: ../src/Widgets/CustomPrintWidget.cs:165
+msgid "Scaled"
+msgstr "Scalat"
+
+#: ../src/Widgets/CustomPrintWidget.cs:170
+msgid "White borders"
+msgstr "Margini albe"
+
+#: ../src/Widgets/CustomPrintWidget.cs:176
+msgid "Custom Text"
+msgstr "Text personalizat"
+
+#: ../src/Widgets/CustomPrintWidget.cs:180
+msgid "Photos infos"
+msgstr "Informații fotografie"
+
+#: ../src/Widgets/CustomPrintWidget.cs:182
+msgid "Print file name"
+msgstr "Tipărește nume fișier"
+
+#: ../src/Widgets/CustomPrintWidget.cs:183
+msgid "Print photo date"
+msgstr "Tipărește data fotografiei"
+
+#: ../src/Widgets/CustomPrintWidget.cs:184
+msgid "Print photo time"
+msgstr "Tipărește ora fotografiei"
+
+#: ../src/Widgets/CustomPrintWidget.cs:185
+msgid "Print photo tags"
+msgstr "Tipărește etichetele fotografiei"
+
+#: ../src/Widgets/CustomPrintWidget.cs:186
+msgid "Print photo comment"
+msgstr "Tipărește comentariile"
+
+#: ../src/Widgets/EditorPage.cs:29 ../src/Widgets/Sidebar.cs:62
+msgid "Edit"
+msgstr "Editează"
+
+#: ../src/Widgets/EditorPage.cs:197
+msgid ""
+"This tool requires an active selection. Please select a region of the photo "
+"and try the operation again"
+msgstr ""
+"Această unealtă necesită selectarea unei zone. Selectați o regiune a "
+"fotografiei și acționați unealta din nou."
+
+#: ../src/Widgets/EditorPage.cs:215
+msgid "Error saving adjusted photo"
+msgid_plural "Error saving adjusted photos"
+msgstr[0] "Eroare la salvarea fotografiei retușate"
+msgstr[1] "Eroare la salvarea fotografiilor retușate"
+msgstr[2] "Eroare la salvarea fotografiilor retușate"
+
+#: ../src/Widgets/EditorPage.cs:217
+#, csharp-format
+msgid ""
+"Received exception \"{0}\". Note that you have to develop RAW files into "
+"JPEG before you can edit them."
+msgstr ""
+"S-a primit eroarea „{0}”. Luați aminte că trebuie să transformați fișierele "
+"RAW în format JPEG înainte de a le edita."
+
+#: ../src/Widgets/Filmstrip.cs:572
+msgid "_Horizontal"
+msgstr "_Orizontal"
+
+#: ../src/Widgets/Filmstrip.cs:576
+msgid "_Vertical"
+msgstr "_Vertical"
+
+#: ../src/Widgets/FindBar.cs:58
+msgid "Find:"
+msgstr "Caută:"
+
+#: ../src/Widgets/FolderTreePage.cs:21
+msgid "Folders"
+msgstr "Dosare"
+
+#: ../src/Widgets/FolderTreeView.cs:123
+msgid "Filesystem"
+msgstr "Sistem de fișiere"
+
+#: ../src/Widgets/InfoBox.cs:182
+msgid "Histogram"
+msgstr "Histogramă"
+
+#: ../src/Widgets/InfoBox.cs:215
+msgid "Version"
+msgstr "Versiune"
+
+#: ../src/Widgets/InfoBox.cs:218
+msgid "Date"
+msgstr "Dată"
+
+#: ../src/Widgets/InfoBox.cs:224
+msgid "Exposure"
+msgstr "Expunere"
+
+#: ../src/Widgets/InfoBox.cs:228
+msgid "Focal Length"
+msgstr "Distanță focală"
+
+#: ../src/Widgets/InfoBox.cs:234
+msgid "File Size"
+msgstr "Dimensiune fișier"
+
+#: ../src/Widgets/InfoBox.cs:237
+msgid "Rating"
+msgstr "Apreciere"
+
+#: ../src/Widgets/InfoBox.cs:390 ../src/Widgets/InfoBox.cs:398
+#: ../src/Widgets/InfoBox.cs:428
+msgid "(wrong format)"
+msgstr "(format incorect)"
+
+#: ../src/Widgets/InfoBox.cs:418 ../src/Widgets/InfoBox.cs:441
+#: ../src/Widgets/InfoBox.cs:451 ../src/Widgets/InfoBox.cs:460
+msgid "(Unknown)"
+msgstr "(Necunoscut)"
+
+#: ../src/Widgets/InfoBox.cs:561
+#, csharp-format
+msgid "(One Edit)"
+msgid_plural "({0} Edits)"
+msgstr[0] "(o modificare)"
+msgstr[1] "({0} modificări)"
+msgstr[2] "({0} de modificări)"
+
+#: ../src/Widgets/InfoBox.cs:575
+msgid "(File read error)"
+msgstr "(Eroare la citirea fișierului)"
+
+#: ../src/Widgets/InfoBox.cs:620
+#, csharp-format
+msgid "{0} Photos"
+msgstr "{0} fotografii"
+
+#. Note for translators: {0} is a date, {1} and {2} are times.
+#: ../src/Widgets/InfoBox.cs:640
+#, csharp-format
+msgid ""
+"On {0} between \n"
+"{1} and {2}"
+msgstr ""
+"La {0} între \n"
+"{1} și {2}"
+
+#: ../src/Widgets/InfoBox.cs:645
+#, csharp-format
+msgid ""
+"Between {0} \n"
+"and {1}"
+msgstr ""
+"Între {0} \n"
+"și {1}"
+
+#: ../src/Widgets/InfoBox.cs:672
+msgid "(At least one File not found)"
+msgstr "(Cel puțin un fișier nu a fost găsit)"
+
+#: ../src/Widgets/InfoBox.cs:789
+msgid "Show Photo Name"
+msgstr "Arată numele fișierului"
+
+#: ../src/Widgets/InfoBox.cs:798
+msgid "Show Date"
+msgstr "Arată data"
+
+#: ../src/Widgets/InfoBox.cs:807
+msgid "Show Size"
+msgstr "Arată dimensiunea"
+
+#: ../src/Widgets/InfoBox.cs:816
+msgid "Show Exposure"
+msgstr "Arată expunerea"
+
+#: ../src/Widgets/InfoBox.cs:825
+msgid "Show Focal Length"
+msgstr "Arată distanța focală"
+
+#: ../src/Widgets/InfoBox.cs:834
+msgid "Show Camera"
+msgstr "Arată aparatul foto"
+
+#: ../src/Widgets/InfoBox.cs:843
+msgid "Show File Size"
+msgstr "Arată mărimea fișierului"
+
+#: ../src/Widgets/MetadataDisplay.cs:23
+msgid "Metadata"
+msgstr "Metadate"
+
+#: ../src/Widgets/MetadataDisplay.cs:104
+msgid "Extended Metadata"
+msgstr "Metadate extinse"
+
+#. clear Extended Metadata
+#: ../src/Widgets/MetadataDisplay.cs:392
+msgid "No Extended Metadata Available"
+msgstr "Nu sunt disponibile metadate extinse"
+
+#: ../src/Widgets/MetadataDisplay.cs:410
+msgid "No active photo"
+msgstr "Nicio fotografie selectată"
+
+#: ../src/Widgets/MetadataDisplay.cs:412
+#, csharp-format
+msgid "The photo \"{0}\" does not exist"
+msgstr "Fotografia „{0}” nu există"
+
+#: ../src/Widgets/MetadataDisplay.cs:415
+msgid "No metadata available"
+msgstr "Nu există metadate disponibile"
+
+#: ../src/Widgets/OpenWithMenu.cs:71
+msgid "No applications available"
+msgstr "Nu există aplicații disponibile"
+
+#: ../src/Widgets/RatingMenuItem.cs:56
+msgid "Rating:"
+msgstr "Apreciere:"
+
+#: ../src/XmpTagsImporter.cs:91
+msgid "Country"
+msgstr "Țară"
+
+#: ../src/XmpTagsImporter.cs:92
+msgid "City"
+msgstr "Oraș"
+
+#: ../src/XmpTagsImporter.cs:93
+msgid "State"
+msgstr "Județ"
+
+#. namespace
+#: ../tools/f-spot-screensaver.desktop.in.h:1
+msgid "Display a slideshow from F-Spot"
+msgstr "Prezentare diapozitive din F-Spot"
+
+#: ../tools/f-spot-screensaver.desktop.in.h:2
+msgid "F-Spot photos"
+msgstr "Fotografii F-Spot"
+
+#~ msgid "<b>F-Spot tags</b>"
+#~ msgstr "<b>Etichete F-Spot</b>"
+
+#~ msgid "<b>Tabblo account</b>"
+#~ msgstr "<b>Cont Tabblo</b>"
+
+#~ msgid ""
+#~ "<small><i>F-Spot tags can help you track the export status of photos. "
+#~ "Example: Use one tag for the photos that you plan to export, and another "
+#~ "one for those already exported. Here, you can tell F-Spot to "
+#~ "automatically replace these tags as appropriate.</i></small>"
+#~ msgstr ""
+#~ "<small><i>Etichetele F-Spot vă ajută la urmărirea stării fotografiilor "
+#~ "exportate. Exemplu: utilizați o etichetă pentru fotografiile pe care "
+#~ "plănuiți să le exportați și alta pentru cele exportate deja. Apoi puteți "
+#~ "cere programului F-Spot să înlocuiască etichetele în funcție de starea "
+#~ "fotografiilor.</i></small>"
+
+#~ msgid "Rem_ove from exported photos:"
+#~ msgstr "Șterge din f_otografiile exportate:"
+
+#~ msgid "Select..."
+#~ msgstr "Alege..."
+
+#~ msgid "_Attach to exported photos:"
+#~ msgstr "_Adaugă la fotografiile exportate:"
+
+#~ msgid "<b>{0}</b>."
+#~ msgstr "<b>{0}</b>."
+
+#~ msgid "A trust error occured while attempting to access"
+#~ msgstr "S-a produs o eroare de certificare în timpul încercării de accesare"
+
+#~ msgid "Abort this session"
+#~ msgstr "Termină această sesiune"
+
+#~ msgid "Always trust this site's certificate"
+#~ msgstr "Acceptă întotdeauna certificatul acestui site"
+
+#~ msgid "Do you wish to:"
+#~ msgstr "Doriți să:"
+
+#~ msgid "Trust Error"
+#~ msgstr "Eroare de certificare"
+
+#~ msgid "Trust the site's certificate this once"
+#~ msgstr "Acceptați certificatul acestui site o sigură dată"
+
+#~ msgid "Package"
+#~ msgstr "Pachet"
+
+#~ msgid "Extension Installation"
+#~ msgstr "Instalare extensie"
+
+#~ msgid "<b>Select the extensions to install and click on Next</b>"
+#~ msgstr ""
+#~ "<b>Selectați extensiile ce vor fi instalate și apăsați pe „Următorul”</b>"
+
+#~ msgid "Install from:"
+#~ msgstr "Instalează din:"
+
+#~ msgid "_Repositories..."
+#~ msgstr "A_rhive software..."
+
+#~ msgid "Show all packages"
+#~ msgstr "Afișează toate pachetele"
+
+#~ msgid "Show new versions only"
+#~ msgstr "Afișează doar versiunile noi"
+
+#~ msgid "Show updates only"
+#~ msgstr "Afișează doar actualizările"
+
+#~ msgid "_Unselect All"
+#~ msgstr "_Deselectează tot"
+
+#~ msgid "label124"
+#~ msgstr "eticheta124"
+
+#~ msgid "Overall Progress:"
+#~ msgstr "Progres general:"
+
+#~ msgid "Downloading extensions..."
+#~ msgstr "Se descarcă extensiile..."
+
+#~ msgid "Extension Manager"
+#~ msgstr "Manager extensie"
+
+#~ msgid "Additional extensions are required to perform this operation."
+#~ msgstr ""
+#~ "Pentru a executa această operație sunt necesare extensii suplimentare."
+
+#~ msgid "The following extensions will be installed:"
+#~ msgstr "Vor fi instalate următoarele extensii:"
+
+#~ msgid "<big><b>Extension Manager</b></big>"
+#~ msgstr "<big><b>Manager extensii</b></big>"
+
+#~ msgid "The following extensions are currently installed:"
+#~ msgstr "Extensiile următoare sunt deja instalate:"
+
+#~ msgid "_Install Extensions..."
+#~ msgstr "_Instalare extensii..."
+
+#~ msgid "_Uninstall..."
+#~ msgstr "De_zinstalează..."
+
+#~ msgid "Enable"
+#~ msgstr "Activează"
+
+#~ msgid "Disable"
+#~ msgstr "Dezactivează"
+
+#~ msgid "Details"
+#~ msgstr "Detalii"
+
+#~ msgid "Extension Repository Management"
+#~ msgstr "Management al surselor de extensii"
+
+#~ msgid "Add New Repository"
+#~ msgstr "Adaugați o sursă nouă"
+
+#~ msgid "Select the location of the repository you want to register:"
+#~ msgstr "Selectați locația sursei pe care doriți să o adăugați:"
+
+#~ msgid "Register an on-line repository"
+#~ msgstr "Adăugați o sursă on-line:"
+
+#~ msgid "Url:"
+#~ msgstr "Url:"
+
+#~ msgid "Register a local repository"
+#~ msgstr "Adăugați o sursă locală"
+
+#~ msgid "Path:"
+#~ msgstr "Cale:"
+
+#~ msgid "Browse..."
+#~ msgstr "Navigare..."
+
+#~ msgid "Version:"
+#~ msgstr "Versiune:"
+
+#~ msgid "Author:"
+#~ msgstr "Autor:"
+
+#~ msgid "Copyright:"
+#~ msgstr "Drepturi de autor:"
+
+#~ msgid "Extension Dependencies:"
+#~ msgstr "Dependențe ale extensiei:"
+
+#~ msgid "All registered repositories"
+#~ msgstr "Toate depozitele înregistrate"
+
+#~ msgid "Are you sure you want to cancel the installation?"
+#~ msgstr "Sigur doriți anularea instalării?"
+
+#~ msgid "The following packages will be uninstalled:"
+#~ msgstr "Următoarele pachete vor fi dezinstalate:"
+
+#~ msgid ""
+#~ "There are other extensions that depend on the previous ones which will "
+#~ "also be uninstalled:"
+#~ msgstr ""
+#~ "Există deja alte extensii ce depind de primele, care la rândul lor vor fi "
+#~ "dezinstalate:"
+
+#~ msgid ""
+#~ "The selected extensions can't be installed because there are dependency "
+#~ "conflicts."
+#~ msgstr ""
+#~ "Extensiile selectate nu pot fi instalate deoarece există conflicte de "
+#~ "dependențe."
+
+#~ msgid "The following packages will be installed:"
+#~ msgstr "Următoarele pachete vor fi instalate:"
+
+#~ msgid " (in user directory)"
+#~ msgstr " (în dosarul utilizatorului)"
+
+#~ msgid "The following packages need to be uninstalled:"
+#~ msgstr "Următoarele pachete trebuie dezinstalate:"
+
+#~ msgid "The following dependencies could not be resolved:"
+#~ msgstr "Următoarele dependențe nu au putut fi rezolvate:"
+
+#~ msgid "The installation has been successfully completed."
+#~ msgstr "Instalarea a fost efectuată cu succes."
+
+#~ msgid "The installation failed!"
+#~ msgstr "Instalare eșuată!"
+
+#~ msgid "The installation has completed with warnings."
+#~ msgstr "Instalarea s-a finalizat cu atenționări."
+
+#~ msgid "The uninstallation has been successfully completed."
+#~ msgstr "Dezinstalarea s-a încheiat cu succes."
+
+#~ msgid "The uninstallation failed!"
+#~ msgstr "Dezinstalarea a eșuat!"
+
+#~ msgid "The uninstallation has completed with warnings."
+#~ msgstr "Dezinstalarea s-a finalizat cu atenționări."
+
+#~ msgid "Repository"
+#~ msgstr "Sursă software"
+
+#~ msgid "Installation cancelled"
+#~ msgstr "Instalare anulată"
+
+#~ msgid "Some of the required extensions were not found"
+#~ msgstr "O parte din extensiile necesare nu au fost găsite"
+
+#~ msgid "Installation failed"
+#~ msgstr "Instalare eșuată"
+
+#~ msgid "Extension"
+#~ msgstr "Extensie"
+
+#~ msgid "Other"
+#~ msgstr "Altele"
+
+#~ msgid "Url"
+#~ msgstr "Url"
+
+#~ msgid "Exception occurred: {0}"
+#~ msgstr "A apărut o excepție: {0}"
+
+#~ msgid "Disabled extensions can't be loaded."
+#~ msgstr "Extensiile dezactivate nu pot fi încărcate."
+
+#~ msgid "Loading {0} extension"
+#~ msgstr "Se încarcă extensia {0}"
+
+#~ msgid "The required extension '{0}' is disabled."
+#~ msgstr "Extensia necesară „{0}” este dezactivată."
+
+#~ msgid "The required extension '{0}' is not installed."
+#~ msgstr "Extensia necesară „{0}” nu este instalată."
+
+#~ msgid "(provided by {0})"
+#~ msgstr "(furnizat de către {0})"
+
+#~ msgid "Choose destination directory"
+#~ msgstr "Alegeți dosarul destinație"
+
+#~ msgid "Target location:\t"
+#~ msgstr "Locație țintă:\t"
