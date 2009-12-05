@@ -124,6 +124,8 @@ AM_CONDITIONAL(NOGCONF, test "x$enable_gconf" = "xno")
 if test "x$enable_gconf" = "xno"; then
   CSC_DEFINES="$CSC_DEFINES -d:NOGCONF"
 else
+  AC_PATH_PROG(GCONFTOOL, gconftool-2)
+  AM_GCONF_SOURCE_2
   PKG_CHECK_MODULES(GCONF_SHARP, gconf-sharp-2.0 >= $GTKSHARP_REQUIRED)
   if pkg-config --atleast-version=2.18 gconf-sharp-2.0; then
     CSC_DEFINES="$CSC_DEFINES -d:GCONF_SHARP_2_18"

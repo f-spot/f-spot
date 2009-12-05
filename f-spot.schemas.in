@@ -1,0 +1,335 @@
+<gconfschemafile>
+    <schemalist>
+
+      <!-- F-Spot User Interface Preferences -->
+
+      <!-- Gtk Theme Override -->
+      <schema>
+        <key>/schemas/desktop/gnome/f-spot/ui/gtkrc</key>
+	<applyto>/desktop/gnome/f-spot/ui/gtkrc</applyto>
+	<type>string</type>
+	<default></default>
+	<locale name="C">
+	  <short>Path to custom gtkrc for theming F-Spot.</short>
+	  <long>Path to custom gtkrc for theming F-Spot.</long>
+	</locale>
+      </schema>
+
+      <!-- Main Window -->
+      <schema>
+        <key>/schemas/desktop/gnome/f-spot/ui/maximized</key>
+	<applyto>/desktop/gnome/f-spot/ui/maximized</applyto>
+	<type>bool</type>
+	<default>false</default>
+	<locale name="C">
+	  <short>Maximize the main window.</short>
+	  <long>Maximize the main window.</long>
+	</locale>
+      </schema>
+
+      <schema>
+        <key>/schemas/desktop/gnome/f-spot/ui/main_window_width</key>
+	<applyto>/desktop/gnome/f-spot/ui/main_window_width</applyto>
+	<type>int</type>
+	<default>640</default>
+	<locale name="C">
+	  <short>Width of the main window.</short>
+	  <long>The width dimension to use for the main window.</long>
+	</locale>
+      </schema>
+
+      <schema>
+        <key>/schemas/desktop/gnome/f-spot/ui/main_window_height</key>
+	<applyto>/desktop/gnome/f-spot/ui/main_window_height</applyto>
+	<type>int</type>
+	<default>480</default>
+	<locale name="C">
+	  <short>Height of the main window.</short>
+	  <long>The height dimension to use for the main window.</long>
+	</locale>
+      </schema>
+
+      <schema>
+        <key>/schemas/desktop/gnome/f-spot/ui/main_window_x</key>
+	<applyto>/desktop/gnome/f-spot/ui/main_window_x</applyto>
+	<type>int</type>
+	<default></default>
+	<locale name="C">
+	  <short>X position of the main window.</short>
+	  <long>The X position to use for the main window.</long>
+	</locale>
+      </schema>
+
+      <schema>
+        <key>/schemas/desktop/gnome/f-spot/ui/main_window_y</key>
+	<applyto>/desktop/gnome/f-spot/ui/main_window_y</applyto>
+	<type>int</type>
+	<default></default>
+	<locale name="C">
+	  <short>Y position of the main window.</short>
+	  <long>The Y position to use for the main window.</long>
+	</locale>
+      </schema>
+
+      <schema>
+        <key>/schemas/desktop/gnome/f-spot/ui/show_dates</key>
+	<applyto>/desktop/gnome/f-spot/ui/show_dates</applyto>
+	<type>bool</type>
+	<default>true</default>
+	<locale name="C">
+	  <short>Show dates in the thumbnail view.</short>
+	  <long>Show dates in the thumbnail view.</long>
+	</locale>
+      </schema>
+
+      <schema>
+        <key>/schemas/desktop/gnome/f-spot/ui/show_tags</key>
+	<applyto>/desktop/gnome/f-spot/ui/show_tags</applyto>
+	<type>bool</type>
+	<default>true</default>
+	<locale name="C">
+	  <short>Show tags in the thumbnail view.</short>
+	  <long>Show tags in the thumbnail view.</long>
+	</locale>
+      </schema>
+
+      <schema>
+        <key>/schemas/desktop/gnome/f-spot/ui/tag_icon_size</key>
+	<applyto>/desktop/gnome/f-spot/ui/tag_icon_size</applyto>
+	<type>int</type>
+	<default>24</default>
+	<locale name="C">
+	  <short>Size of the tag icons shown in the sidebar.</short>
+	  <long>Size of the tag icons shown in the sidebar.</long>
+	</locale>
+      </schema>
+
+      <schema>
+        <key>/schemas/desktop/gnome/f-spot/ui/show_ratings</key>
+	<applyto>/desktop/gnome/f-spot/ui/show_ratings</applyto>
+	<type>bool</type>
+	<default>true</default>
+	<locale name="C">
+	  <short>Show ratings in the thumbnail view.</short>
+	  <long>Show ratings in the thumbnail view.</long>
+	</locale>
+      </schema>
+
+      <schema>
+        <key>/schemas/desktop/gnome/f-spot/ui/show_filmstrip</key>
+	<applyto>/desktop/gnome/f-spot/ui/show_filmstrip</applyto>
+	<type>bool</type>
+	<default>true</default>
+	<locale name="C">
+	  <short>Show the filmstrip in the main window.</short>
+	  <long>Show the filmstrip in the main window.</long>
+	</locale>
+      </schema>
+
+      <schema>
+        <key>/schemas/desktop/gnome/f-spot/ui/filmstrip_orientation</key>
+	<applyto>/desktop/gnome/f-spot/ui/filmstrip_orientation</applyto>
+	<type>int</type>
+	<default>0</default>
+	<locale name="C">
+	  <short>The orientation of the filmstrip.</short>
+	  <long>The orientation of the filmstrip, if shown.</long>
+	</locale>
+      </schema>
+
+      <schema>
+        <key>/schemas/desktop/gnome/f-spot/ui/show_timeline</key>
+	<applyto>/desktop/gnome/f-spot/ui/show_timeline</applyto>
+	<type>bool</type>
+	<default>true</default>
+	<locale name="C">
+	  <short>Show the timeline in the main window.</short>
+	  <long>Show the timeline in the main window.</long>
+	</locale>
+      </schema>
+
+      <schema>
+        <key>/schemas/desktop/gnome/f-spot/ui/show_toolbar</key>
+	<applyto>/desktop/gnome/f-spot/ui/show_toolbar</applyto>
+	<type>bool</type>
+	<default>true</default>
+	<locale name="C">
+	  <short>Show the toolbar in the main window.</short>
+	  <long>Show the toolbar in the main window.</long>
+	</locale>
+      </schema>
+
+      <schema>
+        <key>/schemas/desktop/gnome/f-spot/ui/show_sidebar</key>
+	<applyto>/desktop/gnome/f-spot/ui/show_sidebar</applyto>
+	<type>bool</type>
+	<default>true</default>
+	<locale name="C">
+	  <short>Show the sidebar in the main window.</short>
+	  <long>Show the sidebar in the main window.</long>
+	</locale>
+      </schema>
+
+      <schema>
+        <key>/schemas/desktop/gnome/f-spot/ui/sidebar_size</key>
+	<applyto>/desktop/gnome/f-spot/ui/sidebar_size</applyto>
+	<type>int</type>
+	<default>130</default>
+	<locale name="C">
+	  <short>The size of the sidebar in the main window.</short>
+	  <long>The size (width) of the sidebar in the main window.</long>
+	</locale>
+      </schema>
+
+      <!-- Import Window -->
+      <schema>
+        <key>/schemas/desktop/gnome/f-spot/ui/import_window_width</key>
+	<applyto>/desktop/gnome/f-spot/ui/import_window_width</applyto>
+	<type>int</type>
+	<default>640</default>
+	<locale name="C">
+	  <short>Width of the import dialog.</short>
+	  <long>The width dimension to use for the import dialog.</long>
+	</locale>
+      </schema>
+
+      <schema>
+        <key>/schemas/desktop/gnome/f-spot/ui/import_window_height</key>
+	<applyto>/desktop/gnome/f-spot/ui/import_window_height</applyto>
+	<type>int</type>
+	<default>480</default>
+	<locale name="C">
+	  <short>Height of the import dialog.</short>
+	  <long>The height dimension to use for the import dialog.</long>
+	</locale>
+      </schema>
+
+      <schema>
+        <key>/schemas/desktop/gnome/f-spot/ui/import_window_pane_position</key>
+	<applyto>/desktop/gnome/f-spot/ui/import_window_pane_position</applyto>
+	<type>int</type>
+	<default>400</default>
+	<locale name="C">
+	  <short>Width of the preview image pane in the import dialog.</short>
+	  <long>Width of the preview image pane in the import dialog.</long>
+	</locale>
+      </schema>
+
+      <!-- Photo Viewer Window -->
+      <schema>
+        <key>/schemas/desktop/gnome/f-spot/ui/viewer_maximized</key>
+	<applyto>/desktop/gnome/f-spot/ui/viewer_maximized</applyto>
+	<type>bool</type>
+	<default>false</default>
+	<locale name="C">
+	  <short>Maximize the photo viewer window.</short>
+	  <long>Maximize the photo viewer window.</long>
+	</locale>
+      </schema>
+
+      <schema>
+        <key>/schemas/desktop/gnome/f-spot/ui/viewer_width</key>
+	<applyto>/desktop/gnome/f-spot/ui/viewer_width</applyto>
+	<type>int</type>
+	<default>640</default>
+	<locale name="C">
+	  <short>Width of the photo viewer window.</short>
+	  <long>The width dimension to use for the photo viewer window.</long>
+	</locale>
+      </schema>
+
+      <schema>
+        <key>/schemas/desktop/gnome/f-spot/ui/viewer_height</key>
+	<applyto>/desktop/gnome/f-spot/ui/viewer_height</applyto>
+	<type>int</type>
+	<default>480</default>
+	<locale name="C">
+	  <short>Height of the photo viewer window.</short>
+	  <long>The height dimension to use for the photo viewer window.</long>
+	</locale>
+      </schema>
+
+      <schema>
+        <key>/schemas/desktop/gnome/f-spot/ui/viewer_x</key>
+	<applyto>/desktop/gnome/f-spot/ui/viewer_x</applyto>
+	<type>int</type>
+	<default></default>
+	<locale name="C">
+	  <short>X position of the photo viewer window.</short>
+	  <long>The X position to use for the photo viewer window.</long>
+	</locale>
+      </schema>
+
+      <schema>
+        <key>/schemas/desktop/gnome/f-spot/ui/viewer_y</key>
+	<applyto>/desktop/gnome/f-spot/ui/viewer_y</applyto>
+	<type>int</type>
+	<default></default>
+	<locale name="C">
+	  <short>Y position of the photo viewer window.</short>
+	  <long>The Y position to use for the photo viewer window.</long>
+	</locale>
+      </schema>
+
+      <schema>
+        <key>/schemas/desktop/gnome/f-spot/ui/viewer_show_toolbar</key>
+	<applyto>/desktop/gnome/f-spot/ui/viewer_show_toolbar</applyto>
+	<type>bool</type>
+	<default>true</default>
+	<locale name="C">
+	  <short>Show the toolbar in the photo viewer window.</short>
+	  <long>Show the toolbar in the photo viewer window.</long>
+	</locale>
+      </schema>
+
+      <schema>
+        <key>/schemas/desktop/gnome/f-spot/ui/viewer_show_filenames</key>
+	<applyto>/desktop/gnome/f-spot/ui/viewer_show_filenames</applyto>
+	<type>bool</type>
+	<default>true</default>
+	<locale name="C">
+	  <short>Show the filename in the viewer window.</short>
+	  <long>Use the current photo's filename as the viewer window's title.</long>
+	</locale>
+      </schema>
+
+      <!-- Photo Viewer Preferences -->
+      <schema>
+        <key>/schemas/desktop/gnome/f-spot/viewer/interpolation</key>
+	<applyto>/desktop/gnome/f-spot/viewer/interpolation</applyto>
+	<type>bool</type>
+	<default>true</default>
+	<locale name="C">
+	  <short>Interpolate image on zoom.</short>
+	  <long>Enable this to allow interpolation on zoomed images.</long>
+	</locale>
+      </schema>
+
+      <schema>
+        <key>/schemas/desktop/gnome/f-spot/viewer/transparency</key>
+	<applyto>/desktop/gnome/f-spot/viewer/transparency</applyto>
+	<type>string</type>
+	<default>NONE</default>
+	<locale name="C">
+	  <short>Display of transparent parts.</short>
+	  <long>You can choose how to display transparent parts in
+	  images. This option has no effect on photos but setting this value
+	  to CHECK_PATTERN or CUSTOM_COLOR could be useful when viewing icons
+	  or other artwork with transparent parts.</long>
+	</locale>
+      </schema>
+
+      <schema>
+        <key>/schemas/desktop/gnome/f-spot/viewer/trans_color</key>
+	<applyto>/desktop/gnome/f-spot/viewer/trans_color</applyto>
+	<type>string</type>
+	<default>#000000</default>
+	<locale name="C">
+	  <short>The color to use for transparent parts.</short>
+	  <long>If the 'transparency' option is set, the color specified in
+	  this option will be used as the transparent color when viewing images.</long>
+	</locale>
+      </schema>
+
+  </schemalist>
+</gconfschemafile>
