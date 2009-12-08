@@ -22,6 +22,10 @@ namespace FSpot {
 				new Description ("dc:subject", Catalog.GetString ("Subject and Keywords")),
 				new Description ("tiff:Compression", Catalog.GetString ("Compression"), 
 						 typeof (FSpot.Tiff.Compression)),
+						 /* Translators: Planar Configuration is the label for the tiff:PlanarConfiguration tag
+						    "when Planar Configuration=1, this implies that all components must have
+						    the same BitsPerSample value; when Planar Configuration=2, different
+						    components could have different bit depths." */
 				new Description ("tiff:PlanarConfiguration", Catalog.GetString ("Planar Configuration"), 
 						 typeof (FSpot.Tiff.PlanarConfiguration)),
 				new Description ("tiff:Orientation", Catalog.GetString ("Orientation"), 
@@ -54,6 +58,8 @@ namespace FSpot {
 						 typeof (FSpot.Tiff.FileSource)),
 				new Description ("exif:SceneCaptureType", Catalog.GetString ("Scene Capture Type"),
 						 typeof (FSpot.Tiff.SceneCaptureType)),
+						 /* Translators: Gain Control is the label for the exif:GainControl tag
+						    "This tag indicates the degree of overall image gain adjustment." */
 				new Description ("exif:GainControl", Catalog.GetString ("Gain Control"),
 						 typeof (FSpot.Tiff.GainControl)),
 				new Description ("exif:Contrast", Catalog.GetString ("Contrast"),
