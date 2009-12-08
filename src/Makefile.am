@@ -174,7 +174,6 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/FolderQueryWidget.cs			\
 	$(srcdir)/FormClient.cs			\
 	$(srcdir)/FullScreenView.cs		\
-	$(srcdir)/GdkGlx.cs			\
 	$(srcdir)/GroupAdaptor.cs		\
 	$(srcdir)/GroupSelector.cs		\
 	$(srcdir)/Accelerometer.cs		\

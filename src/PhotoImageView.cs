@@ -161,35 +161,6 @@ namespace FSpot.Widgets {
 			}
 			base.OnDestroyed ();
 		}
-
-		//FIXME: I think OnRealized and OnUnrealized are here for the Loupe to work. If it's true, the Loupe should
-		//listen to the Realized/Unrealized events and do its initialization on its own
-		protected override void OnRealized ()
-		{
-			int [] attr = new int [] {
-				(int) GdkGlx.GlxAttribute.Rgba,
-				(int) GdkGlx.GlxAttribute.DepthSize, 16,
-				(int) GdkGlx.GlxAttribute.DoubleBuffer,
-				(int) GdkGlx.GlxAttribute.None
-			};
-
-			try {
-				Glx = new GdkGlx.Context (Screen, attr);
-				Colormap = Glx.GetColormap ();
-			} catch (GdkGlx.GlxException e) {
-				Console.WriteLine ("Error initializing the OpenGL context:{1} {0}", e, Environment.NewLine);
-			}
-
-			base.OnRealized ();
-		}
-
-		protected override void OnUnrealized ()
-		{
-			base.OnUnrealized ();
-
-			if (Glx != null)
-				Glx.Destroy ();
-		}
 #endregion
 
 #region loader		
@@ -284,7 +255,6 @@ namespace FSpot.Widgets {
 		protected BrowsablePointer item;
 		protected Loupe loupe;
 		protected Loupe sharpener;
-		GdkGlx.Context Glx;
 
 		void HandleOrientationChanged (object sender, EventArgs e)
 		{
