@@ -7,7 +7,7 @@
  * 	Gabriel Burt
  *	Stephane Delcroix  <stephane@delcroix.org>
  *	Ruben Vermeersch <ruben@savanne.be>
- *  Mike Gemuende <mike@gemuende.de>
+ *	Mike Gemuende <mike@gemuende.de>
  *
  * This is free software. See COPYING for details.
  */
@@ -558,7 +558,7 @@ namespace FSpot.Widgets
 						version_combo.Active = i;
 					i++;
 				}
-				version_combo.TooltipText = Catalog.GetPluralString ("(One Edit)", "({0} Edits)", i-1);
+				version_combo.TooltipText = String.Format (Catalog.GetPluralString ("(One Edit)", "({0} Edits)", i - 1), i - 1);
 			} else {
 				version_list.AppendValues (photo.DefaultVersionId, photo.DefaultVersion.Name + " " + Catalog.GetString ("(No Edits)"), true);
 				version_combo.Active = 0;
