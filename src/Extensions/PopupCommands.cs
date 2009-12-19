@@ -14,11 +14,11 @@ using FSpot.Widgets;
 
 namespace FSpot.Extensions 
 {
-	public class CopyLocation : ICommand
+	public class Copy : ICommand
 	{
 		public void Run (object o, EventArgs e)
 		{
-			MainWindow.Toplevel.HandleCopyLocation (o, e);
+			MainWindow.Toplevel.HandleCopy (o, e);
 		}		
 	}
 

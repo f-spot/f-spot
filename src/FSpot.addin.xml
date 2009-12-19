@@ -45,7 +45,7 @@
 	<ConditionType id="ViewMode" type="FSpot.Extensions.ViewModeCondition" />
 
 	<Extension path = "/FSpot/Menus/PhotoPopup">
-		<Command id = "CopyLocation" _label = "Copy Photo Locat_ion" command_type = "FSpot.Extensions.CopyLocation" />
+		<Command id = "Copy" _label = "Copy Photo" command_type = "FSpot.Extensions.Copy" />
 		<MenuSeparator id = "Separator1" />
 		<Command id = "RLeft" _label = "Rotate _Left" icon = "object-rotate-left" command_type = "FSpot.Extensions.Rotate270" />
 		<Command id = "RRight" _label = "Rotate _Right" icon = "object-rotate-right" command_type = "FSpot.Extensions.Rotate90" />

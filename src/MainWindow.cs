@@ -70,7 +70,7 @@ namespace FSpot
 		[GtkBeans.Builder.Object] Gtk.Action send_mail;
 	
 		// Edit
-		[GtkBeans.Builder.Object] Gtk.Action copy_location;
+		[GtkBeans.Builder.Object] Gtk.Action copy;
 		[GtkBeans.Builder.Object] Gtk.Action select_none;
 		[GtkBeans.Builder.Object] Gtk.Action rotate_left;
 		[GtkBeans.Builder.Object] Gtk.Action rotate_right;
@@ -2391,27 +2391,35 @@ namespace FSpot
 			RotateSelectedPictures (GetToplevel (sender), RotateDirection.Counterclockwise);
 		}
 	
-		public void HandleCopyLocation (object sender, EventArgs args)
+		public void HandleCopy (object sender, EventArgs args)
 		{
-			/*
-			 * FIXME this should really set uri atoms as well as string atoms
-			 */
 			Clipboard primary = Clipboard.Get (Atom.Intern ("PRIMARY", false));
 			Clipboard clipboard = Clipboard.Get (Atom.Intern ("CLIPBOARD", false));
+
+			clipboard.SetWithData (new TargetEntry[] {
+						DragDropTargets.PlainTextEntry,
+						DragDropTargets.UriListEntry,
+						DragDropTargets.CopyFilesEntry,},
+					delegate (Clipboard clip, SelectionData data, uint info) {
+						var paths = new List<string> ();
+						var uris = new List<string> ();
+						foreach (Photo p in SelectedPhotos ()) {
+							paths.Add (System.IO.Path.GetFullPath (p.DefaultVersionUri.LocalPath));
+							uris.Add (p.DefaultVersionUri.ToString ());
+						}
+						data.Text = String.Join (" ", paths.ToArray ());
+						data.SetUris (String.Join (" ", uris.ToArray ()));
+						data.Set (Atom.Intern ("x-special/gnome-copied-files", true), 8, System.Text.Encoding.UTF8.GetBytes ("copy\n" + String.Join ("\n", uris.ToArray ())));
+						
+					},
+					delegate {});
 	
-			StringBuilder paths = new StringBuilder ();
-			
-			int i = 0;
+			var pt = new List<string> ();
 			foreach (Photo p in SelectedPhotos ()) {
-				if (i++ > 0)
-					paths.Append (" ");
-	
-				paths.Append (System.IO.Path.GetFullPath (p.DefaultVersionUri.LocalPath));
+				pt.Add (System.IO.Path.GetFullPath (p.DefaultVersionUri.LocalPath));
 			}
 			
-			String data = paths.ToString ();
-			primary.Text = data;
-			clipboard.Text = data;
+			primary.Text = String.Join (" ", pt.ToArray ());
 		}
 	
 		void HandleSetAsBackgroundCommand (object sender, EventArgs args)
@@ -2748,7 +2756,7 @@ namespace FSpot
 			send_mail.Sensitive = active_selection;
 			print.Sensitive = active_selection;
 			select_none.Sensitive = active_selection;
-			copy_location.Sensitive = active_selection;
+			copy.Sensitive = active_selection;
 			remove_from_catalog.Sensitive = active_selection;
 			
 			clear_rating_filter.Sensitive = (query.RatingRange != null);
