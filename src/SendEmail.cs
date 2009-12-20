@@ -247,17 +247,17 @@ namespace FSpot {
 			// evaluate mailto command and define attachment args for cli
 			System.Text.StringBuilder attach_arg = new System.Text.StringBuilder ();
 			switch (Preferences.Get<string> (Preferences.GNOME_MAILTO_COMMAND)) {
-				case "thunderbird %s":
-				case "mozilla-thunderbird %s":
-				case "seamonkey -mail -compose %s":
-				case "icedove %s":
-					attach_arg.Append(",");
+			case "thunderbird %s":
+			case "mozilla-thunderbird %s":
+			case "seamonkey -mail -compose %s":
+			case "icedove %s":
+				attach_arg.Append(",");
 				break;
-				case "kmail %s":
-					attach_arg.Append(" --attach ");
+			case "kmail %s":
+				attach_arg.Append(" --attach ");
 				break;
-				default:  //evolution falls into default, since it supports mailto uri correctly
-					attach_arg.Append("&attach=");
+			default:  //evolution falls into default, since it supports mailto uri correctly
+				attach_arg.Append("&attach=");
 				break;
 			}
 
@@ -327,26 +327,29 @@ namespace FSpot {
 				DeleteTempFile();
 			else {		
 				// Send the mail :)
-				string mail_subject = Catalog.GetString("my photos");
+				string mail_subject = Catalog.GetString("My Photos");
 				switch (Preferences.Get<string> (Preferences.GNOME_MAILTO_COMMAND)) {
-					// openSuSE
-					case "thunderbird %s":
-						System.Diagnostics.Process.Start("thunderbird", " -compose \"subject=" + mail_subject + ",attachment='" + mail_attach + "'\"");
+				// openSuSE
+				case "thunderbird %s":
+					System.Diagnostics.Process.Start("thunderbird", " -compose \"subject=" + mail_subject + ",attachment='" + mail_attach + "'\"");
 					break;
-					case "icedove %s":
-						System.Diagnostics.Process.Start("icedove", " -compose \"subject=" + mail_subject + ",attachment='" + mail_attach + "'\"");
+				case "icedove %s":
+					System.Diagnostics.Process.Start("icedove", " -compose \"subject=" + mail_subject + ",attachment='" + mail_attach + "'\"");
 					break;
-					case "mozilla-thunderbird %s":
-						System.Diagnostics.Process.Start("mozilla-thunderbird", " -compose \"subject=" + mail_subject + ",attachment='" + mail_attach + "'\"");
+				case "mozilla-thunderbird %s":
+					System.Diagnostics.Process.Start("mozilla-thunderbird", " -compose \"subject=" + mail_subject + ",attachment='" + mail_attach + "'\"");
 					break;
-					case "seamonkey -mail -compose %s":
-						System.Diagnostics.Process.Start("seamonkey", " -mail -compose \"subject=" + mail_subject + ",attachment='" + mail_attach + "'\"");
+				case "seamonkey -mail -compose %s":
+					System.Diagnostics.Process.Start("seamonkey", " -mail -compose \"subject=" + mail_subject + ",attachment='" + mail_attach + "'\"");
 					break;
-					case "kmail %s":
-						System.Diagnostics.Process.Start("kmail", "  --composer --subject \"" + mail_subject + "\"" + mail_attach);
+				case "kmail %s":
+					System.Diagnostics.Process.Start("kmail", "  --composer --subject \"" + mail_subject + "\"" + mail_attach);
 					break;
-					default: 
-						GtkBeans.Global.ShowUri (Dialog.Screen, "mailto:?subject=" + System.Web.HttpUtility.UrlEncode(mail_subject) + mail_attach);
+				case "evolution %s": //evo doesn't urldecode the subject
+					GtkBeans.Global.ShowUri (Dialog.Screen, "mailto:?subject=" + mail_subject + mail_attach);
+					break;
+				default: 
+					GtkBeans.Global.ShowUri (Dialog.Screen, "mailto:?subject=" + System.Web.HttpUtility.UrlEncode(mail_subject) + mail_attach);
 					break;
 				}
 				                
