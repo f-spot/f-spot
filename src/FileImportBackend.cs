@@ -227,6 +227,7 @@ public class FileImportBackend : ImportBackend {
 				 	is_duplicate = true;
 			} else {
 				System.IO.File.Copy (info.OriginalPath, destination);
+				System.IO.File.SetAttributes (destination, System.IO.FileAttributes.Normal);
 				info.DestinationPath = destination;
 
 				if (detect_duplicates)
