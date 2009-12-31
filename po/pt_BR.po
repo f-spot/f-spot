@@ -5,7 +5,7 @@
 # Vladimir Melo <vmelo@gnome.org>, 2007, 2008, 2009.
 # Og Maciel <ogmaciel@gnome.org>, 2007-2009.
 # Amadeu A. Barbosa Júnior <amadeu@gmail.com>, 2008.
-# Michel Recondo <mrecondo@gmail.com>, 2008.
+# Michel Recondo <mrecondo@gmail.com>, 2008-2009
 # Enrico Nicoletto <liverig@gmail.com>, 2009.
 # Eduardo Brasil <eduebrasil@gmail.com>, 2009.
 # Leonardo Ferreira Fontenelle <leonardof@gnome.org>, 2009.
@@ -15,9 +15,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: f-spot\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-11-05 20:17-0200\n"
-"PO-Revision-Date: 2009-11-05 15:01-0300\n"
-"Last-Translator: Vladimir Melo <vmelo@gnome.org>\n"
+"POT-Creation-Date: 2009-12-31 18:39-0200\n"
+"PO-Revision-Date: 2009-12-26 14:41-0200\n"
+"Last-Translator: Michel Recondo <mrecondo@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <gnome-pt_br-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -47,7 +47,7 @@ msgstr "Transferindo figura \"{0}\" para CD"
 #: ../extensions/Exporters/FlickrExport/FlickrExport.cs:349
 #: ../extensions/Exporters/FolderExport/FolderExport.cs:245
 #: ../extensions/Exporters/GalleryExport/GalleryExport.cs:781
-#: ../src/MainWindow.cs:623 ../src/UI.Dialog/AdjustTimeDialog.cs:129
+#: ../src/MainWindow.cs:673 ../src/UI.Dialog/AdjustTimeDialog.cs:129
 #: ../src/UI.Dialog/ProgressDialog.cs:92
 #, csharp-format
 msgid "{0} of {1}"
@@ -103,7 +103,7 @@ msgid "Create CD"
 msgstr "Criar CD"
 
 #: ../extensions/Exporters/CDExport/CDExport.ui.h:5
-#: ../src/Widgets/InfoBox.cs:220
+#: ../src/Widgets/InfoBox.cs:221
 msgid "Size"
 msgstr "Tamanho"
 
@@ -214,7 +214,6 @@ msgstr "Erro ao enviar para Facebook: {0}"
 #: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:693
 #: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:596
 #: ../extensions/Exporters/TabbloExport/TabbloExport.cs:319
-#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.ErrorDialog.cs:40
 msgid "Error"
 msgstr "Erro"
 
@@ -225,6 +224,10 @@ msgstr "Erro"
 #: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:609
 msgid "Upload Complete"
 msgstr "Envio concluído"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:385
+msgid "Visit F-Spot group on Facebook"
+msgstr "Visitar o grupo do F-Spot no Facebook"
 
 #: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:211
 msgid "Waiting for authentication"
@@ -345,8 +348,7 @@ msgid "Logout"
 msgstr "Encerra sessão"
 
 #: ../extensions/Exporters/FacebookExport/FacebookExport.ui.h:10
-#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/ManageSitesDialog.cs:51
-#: ../src/Widgets/InfoBox.cs:211
+#: ../src/Widgets/InfoBox.cs:212
 msgid "Name"
 msgstr "Nome"
 
@@ -608,7 +610,7 @@ msgstr "Índice"
 #: ../extensions/Exporters/FolderExport/FolderExport.cs:989
 #: ../extensions/Exporters/FolderExport/FolderExport.cs:1161
 #: ../extensions/Exporters/FolderExport/FolderExport.cs:1201
-#: ../src/MainWindow.cs:327 ../src/Widgets/Sidebar.cs:64
+#: ../src/MainWindow.cs:376 ../src/Widgets/Sidebar.cs:64
 msgid "Tags"
 msgstr "Etiquetas"
 
@@ -1290,7 +1292,7 @@ msgid "New Rolls Only"
 msgstr "Apenas rolos novos"
 
 #: ../extensions/Tools/MergeDb/MergeDb.glade.h:15
-#: ../src/FileImportBackend.cs:290 ../src/UI.Dialog/ThreadProgressDialog.cs:55
+#: ../src/FileImportBackend.cs:291 ../src/UI.Dialog/ThreadProgressDialog.cs:58
 msgid "Skip"
 msgstr "Ignorar"
 
@@ -1375,284 +1377,6 @@ msgstr "Tipo de transformação %d desconhecido"
 msgid "Operation failed"
 msgstr "Falha na operação"
 
-#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInfoDialog.cs:32
-msgid "Package"
-msgstr "Pacote F-Spot"
-
-#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:110
-msgid "Extension Installation"
-msgstr "Instalação de extensão"
-
-#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:136
-msgid "<b>Select the extensions to install and click on Next</b>"
-msgstr "<b>Selecione as extensões a serem instaladas e clique em Avançar</b>"
-
-#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:150
-msgid "Install from:"
-msgstr "Instalar de:"
-
-#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:179
-#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:180
-msgid "_Repositories..."
-msgstr "_Repositórios..."
-
-#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:220
-msgid "Show all packages"
-msgstr "Mostrar todos os pacotes"
-
-#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:221
-msgid "Show new versions only"
-msgstr "Mostrar apenas novas versões"
-
-#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:222
-msgid "Show updates only"
-msgstr "Mostrar apenas atualizações"
-
-#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:247
-msgid "_Unselect All"
-msgstr "Desmarcar T_odos"
-
-# "Todos" porque refere-se aos pacotes de instalação
-#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:259
-#: ../src/ui/main_window.ui.h:18
-msgid "Select _All"
-msgstr "Selecionar _todos"
-
-#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:334
-msgid "label124"
-msgstr "label124"
-
-#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:346
-msgid "Overall Progress:"
-msgstr "Progresso total:"
-
-#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:374
-msgid "Downloading extensions..."
-msgstr "Descarregando extensões..."
-
-#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallerDialog.cs:36
-#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:58
-msgid "Extension Manager"
-msgstr "Gerenciador de extensões"
-
-#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallerDialog.cs:54
-msgid "Additional extensions are required to perform this operation."
-msgstr "Extensões adicionais são requeridas para executar essa operação."
-
-#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallerDialog.cs:64
-msgid "The following extensions will be installed:"
-msgstr "As seguintes extensões serão instaladas:"
-
-#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:90
-msgid "<big><b>Extension Manager</b></big>"
-msgstr "<big><b>Gerenciador de extensões do F-Spot</b></big>"
-
-#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:110
-msgid "The following extensions are currently installed:"
-msgstr "As seguintes extensões estão instaladas atualmente:"
-
-#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:165
-msgid "_Install Extensions..."
-msgstr "_Instalar extensões..."
-
-#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:210
-msgid "_Uninstall..."
-msgstr "_Desinstalar..."
-
-#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:236
-msgid "Enable"
-msgstr "Habilitar"
-
-#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:262
-msgid "Disable"
-msgstr "Desabilitar"
-
-#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.ErrorDialog.cs:111
-msgid "Details"
-msgstr "Detalhes"
-
-#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.ManageSitesDialog.cs:34
-msgid "Extension Repository Management"
-msgstr "Gerenciamento dos repositórios de extensões"
-
-#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.NewSiteDialog.cs:52
-msgid "Add New Repository"
-msgstr "Adicionar novo repositório"
-
-#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.NewSiteDialog.cs:70
-msgid "Select the location of the repository you want to register:"
-msgstr "Selecione a localização do repositório que quer registrar:"
-
-#. Container child vbox89.Gtk.Box+BoxChild
-#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.NewSiteDialog.cs:77
-msgid "Register an on-line repository"
-msgstr "Registrar um repositório on-line"
-
-#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.NewSiteDialog.cs:106
-msgid "Url:"
-msgstr "URL:"
-
-#. Container child vbox89.Gtk.Box+BoxChild
-#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.NewSiteDialog.cs:127
-msgid "Register a local repository"
-msgstr "Registrar um repositório local"
-
-#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.NewSiteDialog.cs:155
-msgid "Path:"
-msgstr "Caminho:"
-
-#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.NewSiteDialog.cs:179
-msgid "Browse..."
-msgstr "Navegar..."
-
-#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInfoDialog.cs:62
-msgid "Version:"
-msgstr "Versão:"
-
-#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInfoDialog.cs:65
-msgid "Author:"
-msgstr "Autor:"
-
-#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInfoDialog.cs:68
-msgid "Copyright:"
-msgstr "Copyright:"
-
-#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInfoDialog.cs:71
-msgid "Extension Dependencies:"
-msgstr "Dependências da extensão:"
-
-#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:97
-msgid "All registered repositories"
-msgstr "Todos os repositórios registrados"
-
-#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:184
-msgid "Are you sure you want to cancel the installation?"
-msgstr "Tem certeza que quer cancelar a instalação?"
-
-#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:308
-msgid "The following packages will be uninstalled:"
-msgstr "Os seguintes pacotes serão desinstalados:"
-
-#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:313
-msgid ""
-"There are other extensions that depend on the previous ones which will also "
-"be uninstalled:"
-msgstr ""
-"Existem outras extensões que dependem das anteriores que também serão "
-"desinstaladas:"
-
-#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:384
-msgid ""
-"The selected extensions can't be installed because there are dependency "
-"conflicts."
-msgstr ""
-"Não foi possível instalar as extensões selecionadas por causa de conflitos "
-"de dependências."
-
-#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:398
-msgid "The following packages will be installed:"
-msgstr "Os seguintes pacotes serão instalados:"
-
-#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:402
-msgid " (in user directory)"
-msgstr " (no diretório do usuário)"
-
-#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:408
-msgid "The following packages need to be uninstalled:"
-msgstr "Os seguintes pacotes precisam ser desinstalados:"
-
-#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:416
-msgid "The following dependencies could not be resolved:"
-msgstr "Não foi possível resolver as seguintes dependências:"
-
-#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:441
-msgid "The installation has been successfully completed."
-msgstr "Instalação realizada com sucesso."
-
-#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:442
-msgid "The installation failed!"
-msgstr "Falha na instalação!"
-
-# Nos diálogos não há nada referente a visualizar os warnings então omiti sua tradução.
-#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:443
-msgid "The installation has completed with warnings."
-msgstr "Instalação realizada com sucesso."
-
-#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:446
-msgid "The uninstallation has been successfully completed."
-msgstr "Desinstalação realizada com sucesso."
-
-#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:447
-msgid "The uninstallation failed!"
-msgstr "Falha na desinstalação!"
-
-#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:448
-msgid "The uninstallation has completed with warnings."
-msgstr "Desinstalação realizada com sucesso."
-
-#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:616
-msgid "Repository"
-msgstr "Repositório"
-
-#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstaller.cs:16
-msgid "Installation cancelled"
-msgstr "Instalação cancelada"
-
-#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallerDialog.cs:159
-msgid "Some of the required extensions were not found"
-msgstr "Algumas das extensões necessárias não foram localizadas"
-
-#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallerDialog.cs:171
-msgid "Installation failed"
-msgstr "Falha na instalação"
-
-#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinTreeWidget.cs:91
-msgid "Extension"
-msgstr "Extensão"
-
-#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinTreeWidget.cs:112
-#: ../src/Widgets/InfoBox.cs:214
-msgid "Version"
-msgstr "Versão"
-
-#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinTreeWidget.cs:168
-msgid "Other"
-msgstr "Outros"
-
-#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/ManageSitesDialog.cs:52
-msgid "Url"
-msgstr "URL"
-
-#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/Services.cs:61
-#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/Services.cs:70
-#, csharp-format
-msgid "Exception occurred: {0}"
-msgstr "Ocorreu uma exceção: {0}"
-
-#: ../lib/mono-addins/Mono.Addins/Mono.Addins/AddinSessionService.cs:154
-msgid "Disabled extensions can't be loaded."
-msgstr "Extensões desabilitadas não podem ser carregadas."
-
-#: ../lib/mono-addins/Mono.Addins/Mono.Addins/AddinSessionService.cs:179
-#, csharp-format
-msgid "Loading {0} extension"
-msgstr "Carregando {0} extensão"
-
-#: ../lib/mono-addins/Mono.Addins/Mono.Addins/AddinSessionService.cs:265
-#, csharp-format
-msgid "The required extension '{0}' is disabled."
-msgstr "A extensão requerida \"{0}\" está desabilitada."
-
-#: ../lib/mono-addins/Mono.Addins/Mono.Addins/AddinSessionService.cs:267
-#, csharp-format
-msgid "The required extension '{0}' is not installed."
-msgstr "A extensão requerida \"{0}\" não está instalada."
-
-#: ../lib/mono-addins/Mono.Addins/Mono.Addins.Description/AssemblyDependency.cs:79
-#, csharp-format
-msgid "(provided by {0})"
-msgstr "(fornecido por {0})"
-
 #: ../src/CameraFileSelectionDialog.cs:76
 msgid "Preview"
 msgstr "Visualização"
@@ -1700,7 +1424,7 @@ msgstr "Cópia de arquivos pronta"
 msgid "Transferring \"{0}\" from camera"
 msgstr "Transferindo \"{0}\" da câmera"
 
-#: ../src/CameraSelectionDialog.cs:29 ../src/Widgets/InfoBox.cs:230
+#: ../src/CameraSelectionDialog.cs:29 ../src/Widgets/InfoBox.cs:231
 msgid "Camera"
 msgstr "Câmera"
 
@@ -1708,12 +1432,12 @@ msgstr "Câmera"
 msgid "Port"
 msgstr "Porta"
 
-#: ../src/Core.cs:203
+#: ../src/Core/App.cs:265
 #, csharp-format
 msgid "No photos matching {0} found"
 msgstr "Não foi localizada foto correspondendo a {0}"
 
-#: ../src/Core.cs:204
+#: ../src/Core/App.cs:266
 #, csharp-format
 msgid ""
 "The tag \"{0}\" is not applied to any photos. Try adding\n"
@@ -1724,11 +1448,11 @@ msgstr ""
 "a etiqueta a algumas fotos ou selecione uma etiqueta diferente no\n"
 "diálogo de preferência do F-Spot."
 
-#: ../src/Core.cs:208
+#: ../src/Core/App.cs:270
 msgid "Search returned no results"
 msgstr "Nenhum resultado encontrado"
 
-#: ../src/Core.cs:209
+#: ../src/Core/App.cs:271
 msgid ""
 "The tag F-Spot is looking for does not exist. Try\n"
 "selecting a different tag in the F-Spot preference\n"
@@ -1844,19 +1568,19 @@ msgstr "Seleciona os olhos que quer corrigir."
 msgid "Sepia Tone"
 msgstr "Tom de sépia"
 
-#: ../src/Editors/SoftFocusEditor.cs:28
+#: ../src/Editors/SoftFocusEditor.cs:32
 msgid "Soft Focus"
 msgstr "Foco suave"
 
-#: ../src/Editors/TiltEditor.cs:28
+#: ../src/Editors/TiltEditor.cs:30
 msgid "Straighten"
 msgstr "Retificar"
 
-#: ../src/FileImportBackend.cs:288
+#: ../src/FileImportBackend.cs:289
 msgid "Import error"
 msgstr "Erro de importação"
 
-#: ../src/FileImportBackend.cs:289
+#: ../src/FileImportBackend.cs:290
 #, csharp-format
 msgid "Error importing {0}{2}{2}{1}"
 msgstr "Erro ao importar {0}{2}{2}{1}"
@@ -1871,8 +1595,8 @@ msgid "Unhandled exception"
 msgstr "Exceção sem tratamento"
 
 #: ../src/FSpot.addin.xml.h:1
-msgid "Copy Photo Locat_ion"
-msgstr "Copiar Local_ização da foto"
+msgid "Copy Photo"
+msgstr "Copiar foto"
 
 #: ../src/FSpot.addin.xml.h:2
 msgid "Export to"
@@ -1887,12 +1611,12 @@ msgid "Rem_ove Tag"
 msgstr "Rem_over etiqueta"
 
 #: ../src/FSpot.addin.xml.h:5 ../src/f-spot.glade.h:68
-#: ../src/SingleView.cs:451 ../src/ui/main_window.ui.h:16
+#: ../src/SingleView.cs:438 ../src/ui/main_window.ui.h:16
 msgid "Rotate _Left"
 msgstr "Girar à _esquerda"
 
 #: ../src/FSpot.addin.xml.h:6 ../src/f-spot.glade.h:69
-#: ../src/SingleView.cs:452 ../src/ui/main_window.ui.h:17
+#: ../src/SingleView.cs:439 ../src/ui/main_window.ui.h:17
 msgid "Rotate _Right"
 msgstr "Girar à _direita"
 
@@ -2090,7 +1814,7 @@ msgid "Gallery"
 msgstr "Galeria"
 
 #: ../src/f-spot.glade.h:50 ../src/ImportCommand.cs:547
-#: ../src/MainWindow.cs:252
+#: ../src/MainWindow.cs:301
 msgid "Import"
 msgstr "Importar"
 
@@ -2363,7 +2087,7 @@ msgstr "Ocultar barra de ferramentas"
 msgid "Info"
 msgstr "Informações"
 
-#: ../src/FullScreenView.cs:68 ../src/Widgets/InfoBox.cs:200
+#: ../src/FullScreenView.cs:68 ../src/Widgets/InfoBox.cs:201
 msgid "Image Information"
 msgstr "Informações da imagem"
 
@@ -2371,8 +2095,8 @@ msgstr "Informações da imagem"
 msgid "Exit fullscreen"
 msgstr "Sair da tela cheia"
 
-#: ../src/FullScreenView.cs:81 ../src/MainWindow.cs:292
-#: ../src/SingleView.cs:101
+#: ../src/FullScreenView.cs:81 ../src/MainWindow.cs:341
+#: ../src/SingleView.cs:88
 msgid "Slideshow"
 msgstr "Apresentação"
 
@@ -2420,7 +2144,7 @@ msgstr "Diretório InterOperability"
 msgid "Unknown Directory"
 msgstr "Diretório desconhecido"
 
-#: ../src/Imaging/ImageFile.cs:116
+#: ../src/Imaging/ImageFile.cs:117
 msgid "Writing to this file format is not supported"
 msgstr "Não há suporte de gravação para este tipo de arquivo"
 
@@ -2558,7 +2282,7 @@ msgstr "O gênero intelectual do objeto"
 msgid "Unknown IIM DataSet"
 msgstr "Conjunto de dados IIM desconhecido"
 
-#: ../src/ImportCommand.cs:48 ../src/SingleView.cs:357
+#: ../src/ImportCommand.cs:48 ../src/SingleView.cs:344
 msgid "Select Folder"
 msgstr "Selecionar pasta"
 
@@ -2594,7 +2318,7 @@ msgstr ""
 msgid "Import Tags"
 msgstr "Importar etiquetas"
 
-#: ../src/ItemAction.cs:79 ../src/MainWindow.cs:259 ../src/SingleView.cs:84
+#: ../src/ItemAction.cs:79 ../src/MainWindow.cs:308 ../src/SingleView.cs:71
 msgid "Rotate Left"
 msgstr "Girar à esquerda"
 
@@ -2602,7 +2326,7 @@ msgstr "Girar à esquerda"
 msgid "Rotate picture left"
 msgstr "Gira a figura à esquerda"
 
-#: ../src/ItemAction.cs:91 ../src/MainWindow.cs:263 ../src/SingleView.cs:89
+#: ../src/ItemAction.cs:91 ../src/MainWindow.cs:312 ../src/SingleView.cs:76
 msgid "Rotate Right"
 msgstr "Girar à direita"
 
@@ -2618,51 +2342,51 @@ msgstr "Próxima figura"
 msgid "Previous picture"
 msgstr "Figura anterior"
 
-#: ../src/MainWindow.cs:254
+#: ../src/MainWindow.cs:303
 msgid "Import new images"
 msgstr "Importar novas imagens"
 
-#: ../src/MainWindow.cs:270 ../src/ui/main_window.ui.h:3
+#: ../src/MainWindow.cs:319 ../src/ui/main_window.ui.h:3
 msgid "Browse"
 msgstr "Navegar"
 
-#: ../src/MainWindow.cs:274
+#: ../src/MainWindow.cs:323
 msgid "Browse many photos simultaneously"
 msgstr "Navega em várias fotos simultaneamente"
 
-#: ../src/MainWindow.cs:278
+#: ../src/MainWindow.cs:327
 msgid "Edit Image"
 msgstr "Editar imagem"
 
-#: ../src/MainWindow.cs:282
+#: ../src/MainWindow.cs:331
 msgid "View and edit a photo"
 msgstr "Vê e edita uma foto"
 
-#: ../src/MainWindow.cs:287 ../src/SingleView.cs:96
+#: ../src/MainWindow.cs:336 ../src/SingleView.cs:83
 msgid "Fullscreen"
 msgstr "Tela cheia"
 
-#: ../src/MainWindow.cs:289 ../src/SingleView.cs:98
+#: ../src/MainWindow.cs:338 ../src/SingleView.cs:85
 msgid "View photos fullscreen"
 msgstr "Vê fotos em tela cheia"
 
-#: ../src/MainWindow.cs:294 ../src/SingleView.cs:103
+#: ../src/MainWindow.cs:343 ../src/SingleView.cs:90
 msgid "View photos in a slideshow"
 msgstr "Vê fotos em uma apresentação de slides"
 
-#: ../src/MainWindow.cs:309
+#: ../src/MainWindow.cs:358
 msgid "Previous photo"
 msgstr "Foto anterior"
 
-#: ../src/MainWindow.cs:314
+#: ../src/MainWindow.cs:363
 msgid "Next photo"
 msgstr "Próxima foto"
 
-#: ../src/MainWindow.cs:1473
+#: ../src/MainWindow.cs:1518
 msgid "No cameras detected."
 msgstr "Nenhuma câmera detectada."
 
-#: ../src/MainWindow.cs:1474
+#: ../src/MainWindow.cs:1519
 msgid ""
 "F-Spot was unable to find any cameras attached to this system.  Double check "
 "that the camera is connected and has power"
@@ -2670,24 +2394,24 @@ msgstr ""
 "O F-Spot não foi capaz de localizar qualquer câmera anexada a este sistema. "
 "Confira novamente se a câmera está conectada e ligada"
 
-#: ../src/MainWindow.cs:1513
+#: ../src/MainWindow.cs:1558
 msgid "Error connecting to camera"
 msgstr "Erro ao conectar a câmera"
 
-#: ../src/MainWindow.cs:1514
+#: ../src/MainWindow.cs:1559
 #, csharp-format
 msgid "Received error \"{0}\" while connecting to camera"
 msgstr "Erro recebido \"{0}\" ao conectar à câmera"
 
 #. Translators, The singular case will never happen here.
-#: ../src/MainWindow.cs:1801
+#: ../src/MainWindow.cs:1846
 #, csharp-format
 msgid "Merge the selected tag"
 msgid_plural "Merge the {0} selected tags?"
 msgstr[0] "Mesclar a etiqueta selecionada"
 msgstr[1] "Mesclar as {0} etiquetas selecionadas?"
 
-#: ../src/MainWindow.cs:1828
+#: ../src/MainWindow.cs:1873
 msgid ""
 "This operation will merge the selected tags and any sub-tags into a single "
 "tag."
@@ -2695,77 +2419,77 @@ msgstr ""
 "Esta operação mesclará as etiquetas selecionadas e quaisquer sub-etiquetas "
 "numa única etiqueta."
 
-#: ../src/MainWindow.cs:1830
+#: ../src/MainWindow.cs:1875
 msgid "_Merge Tags"
 msgstr "_Mesclar etiquetas"
 
-#: ../src/MainWindow.cs:2035
+#: ../src/MainWindow.cs:2080
 #, csharp-format
 msgid "{0} Photo out of {1}"
 msgid_plural "{0} Photos out of {1}"
 msgstr[0] "{0} foto de {1}"
 msgstr[1] "{0} fotos de {1}"
 
-#: ../src/MainWindow.cs:2037 ../src/SingleView.cs:493
+#: ../src/MainWindow.cs:2082 ../src/SingleView.cs:480
 #, csharp-format
 msgid "{0} Photo"
 msgid_plural "{0} Photos"
 msgstr[0] "{0} foto"
 msgstr[1] "{0} fotos"
 
-#: ../src/MainWindow.cs:2040
+#: ../src/MainWindow.cs:2085
 #, csharp-format
 msgid " ({0} selected)"
 msgid_plural " ({0} selected)"
 msgstr[0] " ({0} selecionada)"
 msgstr[1] " ({0} selecionadas)"
 
-#: ../src/MainWindow.cs:2121
+#: ../src/MainWindow.cs:2166
 msgid "_Ok"
 msgstr "_Ok"
 
-#: ../src/MainWindow.cs:2122
+#: ../src/MainWindow.cs:2167
 msgid "Error Deleting Picture"
 msgstr "Erro ao excluir figura"
 
-#: ../src/MainWindow.cs:2127
+#: ../src/MainWindow.cs:2172
 #, csharp-format
 msgid "No permission to delete the file:{1}{0}"
 msgstr "Não há permissão para excluir o arquivo:{1}{0}"
 
-#: ../src/MainWindow.cs:2131
+#: ../src/MainWindow.cs:2176
 #, csharp-format
 msgid "An error of type {0} occurred while deleting the file:{2}{1}"
 msgstr "Um erro de tipo {0} ocorreu ao excluir o arquivo:{2}{1}"
 
-#: ../src/MainWindow.cs:2163
+#: ../src/MainWindow.cs:2208
 #, csharp-format
 msgid "Delete the selected photo permanently?"
 msgid_plural "Delete the {0} selected photos permanently?"
 msgstr[0] "Remover a foto selecionada permanentemente?"
 msgstr[1] "Remover as {0} fotos selecionadas permanentemente?"
 
-#: ../src/MainWindow.cs:2167
+#: ../src/MainWindow.cs:2212
 msgid "This deletes all versions of the selected photo from your drive."
 msgid_plural ""
 "This deletes all versions of the selected photos from your drive."
 msgstr[0] "Isso exclui todas as versões da foto selecionada de sua unidade."
 msgstr[1] "Isso exclui todas as versões das fotos selecionadas de sua unidade."
 
-#: ../src/MainWindow.cs:2170
+#: ../src/MainWindow.cs:2215
 msgid "_Delete photo"
 msgid_plural "_Delete photos"
 msgstr[0] "_Excluir foto"
 msgstr[1] "_Excluir fotos"
 
-#: ../src/MainWindow.cs:2206
+#: ../src/MainWindow.cs:2251
 #, csharp-format
 msgid "Remove the selected photo from F-Spot?"
 msgid_plural "Remove the {0} selected photos from F-Spot?"
 msgstr[0] "Remover a foto selecionada do F-Spot?"
 msgstr[1] "Remover as {0} fotos selecionadas do F-Spot?"
 
-#: ../src/MainWindow.cs:2211
+#: ../src/MainWindow.cs:2256
 msgid ""
 "If you remove photos from the F-Spot catalog all tag information will be "
 "lost. The photos remain on your computer and can be imported into F-Spot "
@@ -2775,27 +2499,27 @@ msgstr ""
 "etiqueta são perdidas. As fotos continuam em seu computador e poderão ser "
 "importadas ao F-Spot novamente."
 
-#: ../src/MainWindow.cs:2212
+#: ../src/MainWindow.cs:2257
 msgid "_Remove from Catalog"
 msgstr "_Remover do catálogo"
 
-#: ../src/MainWindow.cs:2275
+#: ../src/MainWindow.cs:2320
 #, csharp-format
 msgid "Delete tag \"{0}\"?"
 msgstr "Excluir etiqueta \"{0}\"?"
 
-#: ../src/MainWindow.cs:2277
+#: ../src/MainWindow.cs:2322
 #, csharp-format
 msgid "Delete the {0} selected tags?"
 msgstr "Excluir as {0} etiquetas selecionadas?"
 
-#: ../src/MainWindow.cs:2282
+#: ../src/MainWindow.cs:2327
 msgid "photo"
 msgid_plural "photos"
 msgstr[0] "foto"
 msgstr[1] "fotos"
 
-#: ../src/MainWindow.cs:2284
+#: ../src/MainWindow.cs:2329
 #, csharp-format
 msgid "If you delete this tag, the association with {0} {1} will be lost."
 msgid_plural ""
@@ -2805,18 +2529,18 @@ msgstr[0] ""
 msgstr[1] ""
 "Se você excluir estas etiqueta, as associações com {0} {1} serão perdidas."
 
-#: ../src/MainWindow.cs:2289
+#: ../src/MainWindow.cs:2334
 msgid "_Delete tag"
 msgid_plural "_Delete tags"
 msgstr[0] "_Excluir etiqueta"
 msgstr[1] "_Excluir etiquetas"
 
 #. A Category is not empty. Can not delete it.
-#: ../src/MainWindow.cs:2303
+#: ../src/MainWindow.cs:2348
 msgid "Tag is not empty"
 msgstr "A etiqueta não está vazia"
 
-#: ../src/MainWindow.cs:2304
+#: ../src/MainWindow.cs:2349
 #, csharp-format
 msgid ""
 "Can not delete tags that have tags within them.  Please delete tags under "
@@ -2825,39 +2549,39 @@ msgstr ""
 "Não é possível excluir etiquetas que contenham outras etiquetas. Por favor, "
 "exclua as etiquetas sob \"{0}\" primeiro"
 
-#: ../src/MainWindow.cs:2736
+#: ../src/MainWindow.cs:2789
 msgid "Rotate selected photo left"
 msgid_plural "Rotate selected photos left"
 msgstr[0] "Girar foto selecionada à esquerda"
 msgstr[1] "Girar fotos selecionadas à esquerda"
 
-#: ../src/MainWindow.cs:2749
+#: ../src/MainWindow.cs:2802
 msgid "Rotate selected photo right"
 msgid_plural "Rotate selected photos right"
 msgstr[0] "Girar foto selecionada à direita"
 msgstr[1] "Girar fotos selecionadas à direita"
 
-#: ../src/MainWindow.cs:2760
+#: ../src/MainWindow.cs:2813
 #, csharp-format
 msgid "Find _Selected Tag"
 msgid_plural "Find _Selected Tags"
 msgstr[0] "Localizar etiqueta _selecionada"
 msgstr[1] "Localizar etiquetas _selecionadas"
 
-#: ../src/MainWindow.cs:2764
+#: ../src/MainWindow.cs:2817
 #, csharp-format
 msgid "Find Selected Tag _With"
 msgid_plural "Find Selected Tags _With"
 msgstr[0] "Localizar etiqueta selecionada _com"
 msgstr[1] "Localizar etiquetas selecionadas _com"
 
-#: ../src/MainWindow.cs:2805
+#: ../src/MainWindow.cs:2858
 msgid "Create New Version?"
 msgid_plural "Create New Versions?"
 msgstr[0] "Criar nova versão?"
 msgstr[1] "criar novas versões?"
 
-#: ../src/MainWindow.cs:2807
+#: ../src/MainWindow.cs:2860
 #, csharp-format
 msgid ""
 "Before launching {1}, should F-Spot create a new version of the selected "
@@ -2872,7 +2596,7 @@ msgstr[1] ""
 "Antes de iniciar {1}, o F-Spot deve criar novas versões das fotos "
 "selecionadas para preservar as originais?"
 
-#: ../src/MainWindow.cs:2829
+#: ../src/MainWindow.cs:2882
 msgid "XCF version"
 msgstr "Versão XCF"
 
@@ -2896,87 +2620,93 @@ msgstr "Assunto e palavras-chave"
 msgid "Compression"
 msgstr "Compressão"
 
-#: ../src/MetadataStore.cs:25
+#. Translators: Planar Configuration is the label for the tiff:PlanarConfiguration tag
+#. "when Planar Configuration=1, this implies that all components must have
+#. the same BitsPerSample value; when Planar Configuration=2, different
+#. components could have different bit depths."
+#: ../src/MetadataStore.cs:29
 msgid "Planar Configuration"
 msgstr "Configuração planar"
 
-#: ../src/MetadataStore.cs:27
+#: ../src/MetadataStore.cs:31
 msgid "Orientation"
 msgstr "Orientação"
 
-#: ../src/MetadataStore.cs:29
+#: ../src/MetadataStore.cs:33
 msgid "Photometric Interpretation"
 msgstr "Interpretação fotométrica"
 
-#: ../src/MetadataStore.cs:31
+#: ../src/MetadataStore.cs:35
 msgid "Resolution Unit"
 msgstr "Unidade de resolução"
 
-#: ../src/MetadataStore.cs:33
+#: ../src/MetadataStore.cs:37
 msgid "Exposure Program"
 msgstr "Programa de exposição"
 
-#: ../src/MetadataStore.cs:35
+#: ../src/MetadataStore.cs:39
 msgid "Metering Mode"
 msgstr "Modo de medição"
 
-#: ../src/MetadataStore.cs:37
+#: ../src/MetadataStore.cs:41
 msgid "Exposure Mode"
 msgstr "Modo de exposição"
 
-#: ../src/MetadataStore.cs:39
+#: ../src/MetadataStore.cs:43
 msgid "Custom Rendered"
 msgstr "Processamento personalizado"
 
-#: ../src/MetadataStore.cs:41
+#: ../src/MetadataStore.cs:45
 msgid "Components Configuration"
 msgstr "Configuração de componentes"
 
-#: ../src/MetadataStore.cs:43
+#: ../src/MetadataStore.cs:47
 msgid "Light Source"
 msgstr "Fonte de luz"
 
-#: ../src/MetadataStore.cs:45
+#: ../src/MetadataStore.cs:49
 msgid "Sensing Method"
 msgstr "Modo de sensibilidade"
 
-#: ../src/MetadataStore.cs:47
+#: ../src/MetadataStore.cs:51
 msgid "Color Space"
 msgstr "Espaço de cores"
 
-#: ../src/MetadataStore.cs:49
+#: ../src/MetadataStore.cs:53
 msgid "White Balance"
 msgstr "Equilíbrio de branco"
 
-#: ../src/MetadataStore.cs:51
+#: ../src/MetadataStore.cs:55
 msgid "Focal Plane Resolution Unit"
 msgstr "Unidade de resolução plana focal"
 
-#: ../src/MetadataStore.cs:53
+#: ../src/MetadataStore.cs:57
 msgid "File Source Type"
 msgstr "Tipo de fonte de arquivo"
 
-#: ../src/MetadataStore.cs:55
+#: ../src/MetadataStore.cs:59
 msgid "Scene Capture Type"
 msgstr "Tipo de captura de cena"
 
-#: ../src/MetadataStore.cs:57
+#. Translators: Gain Control is the label for the exif:GainControl tag
+#. "This tag indicates the degree of overall image gain adjustment."
+#: ../src/MetadataStore.cs:63
 msgid "Gain Control"
 msgstr "Controle de ganho"
 
-#: ../src/MetadataStore.cs:59
+#: ../src/MetadataStore.cs:65
 msgid "Contrast"
 msgstr "Contraste"
 
-#: ../src/MetadataStore.cs:61
+#: ../src/MetadataStore.cs:67
 msgid "Saturation"
 msgstr "Saturação"
 
-#: ../src/MetadataStore.cs:63
+#: ../src/MetadataStore.cs:69
 msgid "Sharpness"
 msgstr "Nitidez"
 
-#: ../src/MetadataStore.cs:65
+#: ../src/MetadataStore.cs:71
 msgid "Scene Type"
 msgstr "Tipo de cena"
 
@@ -3047,8 +2777,8 @@ msgid "Received exception \"{0}\". Unable to rename version to \"{1}\""
 msgstr ""
 "Exceção \"{0}\" recebida. Não foi possível renomear versão para \"{1}\""
 
-#: ../src/PhotoVersionMenu.cs:66 ../src/Widgets/InfoBox.cs:562
-#: ../src/Widgets/InfoBox.cs:564
+#: ../src/PhotoVersionMenu.cs:66 ../src/Widgets/InfoBox.cs:563
+#: ../src/Widgets/InfoBox.cs:565
 msgid "(No Edits)"
 msgstr "(Sem edições)"
 
@@ -3185,8 +2915,8 @@ msgstr "Ocorreu um erro ao processar \"{0}\": {1}"
 
 #. Send the mail :)
 #: ../src/SendEmail.cs:330
-msgid "my photos"
-msgstr "minhas fotos"
+msgid "My Photos"
+msgstr "Minhas fotos"
 
 #: ../src/Sharpener.cs:72
 msgid "Error saving sharpened photo"
@@ -3208,23 +2938,23 @@ msgstr "Raio:"
 msgid "Threshold:"
 msgstr "Limiar:"
 
-#: ../src/SingleView.cs:86
+#: ../src/SingleView.cs:73
 msgid "Rotate photo left"
 msgstr "Gira foto à esquerda"
 
-#: ../src/SingleView.cs:91
+#: ../src/SingleView.cs:78
 msgid "Rotate photo right"
 msgstr "Gira foto à direita"
 
-#: ../src/SingleView.cs:128
+#: ../src/SingleView.cs:115
 msgid "Folder"
 msgstr "Pasta"
 
-#: ../src/SingleView.cs:354
+#: ../src/SingleView.cs:341
 msgid "Open"
 msgstr "Abrir"
 
-#: ../src/SingleView.cs:454
+#: ../src/SingleView.cs:441
 msgid "Set as Background"
 msgstr "Definir como plano de fundo"
 
@@ -3337,7 +3067,7 @@ msgid "Events"
 msgstr "Eventos"
 
 #. The label for the root category is used in new and edit tag dialogs
-#: ../src/TagStore.cs:239 ../src/Widgets/InfoBox.cs:408
+#: ../src/TagStore.cs:239 ../src/Widgets/InfoBox.cs:409
 msgid "(None)"
 msgstr "(Nenhum)"
 
@@ -3523,7 +3253,7 @@ msgstr "Rótulo"
 msgid "Ratio"
 msgstr "Proporção"
 
-#: ../src/UI.Dialog/ThreadProgressDialog.cs:53
+#: ../src/UI.Dialog/ThreadProgressDialog.cs:56
 msgid "Retry"
 msgstr "Repetir"
 
@@ -3716,8 +3446,8 @@ msgid "By _Rating"
 msgstr "Por a_valiação"
 
 #: ../src/ui/main_window.ui.h:7
-msgid "Copy Locat_ion"
-msgstr "Copiar local_ização"
+msgid "Copy"
+msgstr "Copiar"
 
 #: ../src/ui/main_window.ui.h:8
 msgid "Create New _Tag..."
@@ -3742,6 +3472,11 @@ msgstr "C_onfigurar página..."
 #: ../src/ui/main_window.ui.h:14
 msgid "Re_fresh Thumbnail"
 msgstr "Atualizar _miniatura"
+
+# "Todos" porque refere-se aos pacotes de instalação
+#: ../src/ui/main_window.ui.h:18
+msgid "Select _All"
+msgstr "Selecionar _todos"
 
 #: ../src/ui/main_window.ui.h:19
 msgid "Select _None"
@@ -4053,54 +3788,58 @@ msgstr "Sistema de arquivos"
 msgid "Histogram"
 msgstr "Histograma"
 
-#: ../src/Widgets/InfoBox.cs:217
+#: ../src/Widgets/InfoBox.cs:215
+msgid "Version"
+msgstr "Versão"
+
+#: ../src/Widgets/InfoBox.cs:218
 msgid "Date"
 msgstr "Data"
 
-#: ../src/Widgets/InfoBox.cs:223
+#: ../src/Widgets/InfoBox.cs:224
 msgid "Exposure"
 msgstr "Exposição"
 
-#: ../src/Widgets/InfoBox.cs:227
+#: ../src/Widgets/InfoBox.cs:228
 msgid "Focal Length"
 msgstr "Comprimento focal"
 
-#: ../src/Widgets/InfoBox.cs:233
+#: ../src/Widgets/InfoBox.cs:234
 msgid "File Size"
 msgstr "Tamanho do arquivo"
 
-#: ../src/Widgets/InfoBox.cs:236
+#: ../src/Widgets/InfoBox.cs:237
 msgid "Rating"
 msgstr "Avaliação:"
 
-#: ../src/Widgets/InfoBox.cs:389 ../src/Widgets/InfoBox.cs:397
-#: ../src/Widgets/InfoBox.cs:427
+#: ../src/Widgets/InfoBox.cs:390 ../src/Widgets/InfoBox.cs:398
+#: ../src/Widgets/InfoBox.cs:428
 msgid "(wrong format)"
 msgstr "(formato incorreto)"
 
-#: ../src/Widgets/InfoBox.cs:417 ../src/Widgets/InfoBox.cs:440
-#: ../src/Widgets/InfoBox.cs:450 ../src/Widgets/InfoBox.cs:459
+#: ../src/Widgets/InfoBox.cs:418 ../src/Widgets/InfoBox.cs:441
+#: ../src/Widgets/InfoBox.cs:451 ../src/Widgets/InfoBox.cs:460
 msgid "(Unknown)"
 msgstr "(Desconhecido)"
 
-#: ../src/Widgets/InfoBox.cs:560
+#: ../src/Widgets/InfoBox.cs:561
 #, csharp-format
 msgid "(One Edit)"
 msgid_plural "({0} Edits)"
 msgstr[0] "(Uma edição)"
 msgstr[1] "({0} edições)"
 
-#: ../src/Widgets/InfoBox.cs:574
+#: ../src/Widgets/InfoBox.cs:575
 msgid "(File read error)"
 msgstr "(Erro ao ler o arquivo)"
 
-#: ../src/Widgets/InfoBox.cs:619
+#: ../src/Widgets/InfoBox.cs:620
 #, csharp-format
 msgid "{0} Photos"
 msgstr "{0} Fotos"
 
 #. Note for translators: {0} is a date, {1} and {2} are times.
-#: ../src/Widgets/InfoBox.cs:639
+#: ../src/Widgets/InfoBox.cs:640
 #, csharp-format
 msgid ""
 "On {0} between \n"
@@ -4109,7 +3848,7 @@ msgstr ""
 "Em {0} entre \n"
 "{1} e {2}"
 
-#: ../src/Widgets/InfoBox.cs:644
+#: ../src/Widgets/InfoBox.cs:645
 #, csharp-format
 msgid ""
 "Between {0} \n"
@@ -4118,35 +3857,35 @@ msgstr ""
 "Entre {0} \n"
 "e {1}"
 
-#: ../src/Widgets/InfoBox.cs:671
+#: ../src/Widgets/InfoBox.cs:672
 msgid "(At least one File not found)"
 msgstr "(Ao menos um arquivo não foi localizado)"
 
-#: ../src/Widgets/InfoBox.cs:788
+#: ../src/Widgets/InfoBox.cs:789
 msgid "Show Photo Name"
 msgstr "Mostrar nome da foto"
 
-#: ../src/Widgets/InfoBox.cs:797
+#: ../src/Widgets/InfoBox.cs:798
 msgid "Show Date"
 msgstr "Mostrar data"
 
-#: ../src/Widgets/InfoBox.cs:806
+#: ../src/Widgets/InfoBox.cs:807
 msgid "Show Size"
 msgstr "Mostrar tamanho"
 
-#: ../src/Widgets/InfoBox.cs:815
+#: ../src/Widgets/InfoBox.cs:816
 msgid "Show Exposure"
 msgstr "Mostrar exposição"
 
-#: ../src/Widgets/InfoBox.cs:824
+#: ../src/Widgets/InfoBox.cs:825
 msgid "Show Focal Length"
 msgstr "Mostrar comprimento focal"
 
-#: ../src/Widgets/InfoBox.cs:833
+#: ../src/Widgets/InfoBox.cs:834
 msgid "Show Camera"
 msgstr "Mostrar câmera"
 
-#: ../src/Widgets/InfoBox.cs:842
+#: ../src/Widgets/InfoBox.cs:843
 msgid "Show File Size"
 msgstr "Mostrar tamanho do arquivo"
 
@@ -4205,8 +3944,207 @@ msgstr "Exiba uma apresentação de slides do F-Spot"
 msgid "F-Spot photos"
 msgstr "Fotos do F-Spot"
 
-#~ msgid "Visit F-Spot group on Facebook"
-#~ msgstr "Visitar o grupo do F-Spot no Facebook"
+#~ msgid "Package"
+#~ msgstr "Pacote F-Spot"
+
+#~ msgid "Extension Installation"
+#~ msgstr "Instalação de extensão"
+
+#~ msgid "<b>Select the extensions to install and click on Next</b>"
+#~ msgstr ""
+#~ "<b>Selecione as extensões a serem instaladas e clique em Avançar</b>"
+
+#~ msgid "Install from:"
+#~ msgstr "Instalar de:"
+
+#~ msgid "_Repositories..."
+#~ msgstr "_Repositórios..."
+
+#~ msgid "Show all packages"
+#~ msgstr "Mostrar todos os pacotes"
+
+#~ msgid "Show new versions only"
+#~ msgstr "Mostrar apenas novas versões"
+
+#~ msgid "Show updates only"
+#~ msgstr "Mostrar apenas atualizações"
+
+#~ msgid "_Unselect All"
+#~ msgstr "Desmarcar T_odos"
+
+#~ msgid "label124"
+#~ msgstr "label124"
+
+#~ msgid "Overall Progress:"
+#~ msgstr "Progresso total:"
+
+#~ msgid "Downloading extensions..."
+#~ msgstr "Descarregando extensões..."
+
+#~ msgid "Extension Manager"
+#~ msgstr "Gerenciador de extensões"
+
+#~ msgid "Additional extensions are required to perform this operation."
+#~ msgstr "Extensões adicionais são requeridas para executar essa operação."
+
+#~ msgid "The following extensions will be installed:"
+#~ msgstr "As seguintes extensões serão instaladas:"
+
+#~ msgid "<big><b>Extension Manager</b></big>"
+#~ msgstr "<big><b>Gerenciador de extensões do F-Spot</b></big>"
+
+#~ msgid "The following extensions are currently installed:"
+#~ msgstr "As seguintes extensões estão instaladas atualmente:"
+
+#~ msgid "_Install Extensions..."
+#~ msgstr "_Instalar extensões..."
+
+#~ msgid "_Uninstall..."
+#~ msgstr "_Desinstalar..."
+
+#~ msgid "Enable"
+#~ msgstr "Habilitar"
+
+#~ msgid "Disable"
+#~ msgstr "Desabilitar"
+
+#~ msgid "Details"
+#~ msgstr "Detalhes"
+
+#~ msgid "Extension Repository Management"
+#~ msgstr "Gerenciamento dos repositórios de extensões"
+
+#~ msgid "Add New Repository"
+#~ msgstr "Adicionar novo repositório"
+
+#~ msgid "Select the location of the repository you want to register:"
+#~ msgstr "Selecione a localização do repositório que quer registrar:"
+
+#~ msgid "Register an on-line repository"
+#~ msgstr "Registrar um repositório on-line"
+
+#~ msgid "Url:"
+#~ msgstr "URL:"
+
+#~ msgid "Register a local repository"
+#~ msgstr "Registrar um repositório local"
+
+#~ msgid "Path:"
+#~ msgstr "Caminho:"
+
+#~ msgid "Browse..."
+#~ msgstr "Navegar..."
+
+#~ msgid "Version:"
+#~ msgstr "Versão:"
+
+#~ msgid "Author:"
+#~ msgstr "Autor:"
+
+#~ msgid "Copyright:"
+#~ msgstr "Copyright:"
+
+#~ msgid "Extension Dependencies:"
+#~ msgstr "Dependências da extensão:"
+
+#~ msgid "All registered repositories"
+#~ msgstr "Todos os repositórios registrados"
+
+#~ msgid "Are you sure you want to cancel the installation?"
+#~ msgstr "Tem certeza que quer cancelar a instalação?"
+
+#~ msgid "The following packages will be uninstalled:"
+#~ msgstr "Os seguintes pacotes serão desinstalados:"
+
+#~ msgid ""
+#~ "There are other extensions that depend on the previous ones which will "
+#~ "also be uninstalled:"
+#~ msgstr ""
+#~ "Existem outras extensões que dependem das anteriores que também serão "
+#~ "desinstaladas:"
+
+#~ msgid ""
+#~ "The selected extensions can't be installed because there are dependency "
+#~ "conflicts."
+#~ msgstr ""
+#~ "Não foi possível instalar as extensões selecionadas por causa de "
+#~ "conflitos de dependências."
+
+#~ msgid "The following packages will be installed:"
+#~ msgstr "Os seguintes pacotes serão instalados:"
+
+#~ msgid " (in user directory)"
+#~ msgstr " (no diretório do usuário)"
+
+#~ msgid "The following packages need to be uninstalled:"
+#~ msgstr "Os seguintes pacotes precisam ser desinstalados:"
+
+#~ msgid "The following dependencies could not be resolved:"
+#~ msgstr "Não foi possível resolver as seguintes dependências:"
+
+#~ msgid "The installation has been successfully completed."
+#~ msgstr "Instalação realizada com sucesso."
+
+#~ msgid "The installation failed!"
+#~ msgstr "Falha na instalação!"
+
+# Nos diálogos não há nada referente a visualizar os warnings então omiti sua tradução.
+#~ msgid "The installation has completed with warnings."
+#~ msgstr "Instalação realizada com sucesso."
+
+#~ msgid "The uninstallation has been successfully completed."
+#~ msgstr "Desinstalação realizada com sucesso."
+
+#~ msgid "The uninstallation failed!"
+#~ msgstr "Falha na desinstalação!"
+
+#~ msgid "The uninstallation has completed with warnings."
+#~ msgstr "Desinstalação realizada com sucesso."
+
+#~ msgid "Repository"
+#~ msgstr "Repositório"
+
+#~ msgid "Installation cancelled"
+#~ msgstr "Instalação cancelada"
+
+#~ msgid "Some of the required extensions were not found"
+#~ msgstr "Algumas das extensões necessárias não foram localizadas"
+
+#~ msgid "Installation failed"
+#~ msgstr "Falha na instalação"
+
+#~ msgid "Extension"
+#~ msgstr "Extensão"
+
+#~ msgid "Other"
+#~ msgstr "Outros"
+
+#~ msgid "Url"
+#~ msgstr "URL"
+
+#~ msgid "Exception occurred: {0}"
+#~ msgstr "Ocorreu uma exceção: {0}"
+
+#~ msgid "Disabled extensions can't be loaded."
+#~ msgstr "Extensões desabilitadas não podem ser carregadas."
+
+#~ msgid "Loading {0} extension"
+#~ msgstr "Carregando {0} extensão"
+
+#~ msgid "The required extension '{0}' is disabled."
+#~ msgstr "A extensão requerida \"{0}\" está desabilitada."
+
+#~ msgid "The required extension '{0}' is not installed."
+#~ msgstr "A extensão requerida \"{0}\" não está instalada."
+
+#~ msgid "(provided by {0})"
+#~ msgstr "(fornecido por {0})"
+
+#~ msgid "my photos"
+#~ msgstr "minhas fotos"
+
+#~ msgid "Copy Locat_ion"
+#~ msgstr "Copiar local_ização"
 
 #~ msgid "Dissolve"
 #~ msgstr "Dissolver"
