@@ -1,17 +1,17 @@
 # Bulgarian translation of f-spot po-file.
 # Copyright (C) 2005, 2009 Free Software Foundation, Inc.
-# Copyright (C) 2009 Krasimir Chonov <mk2616@abv.bg>.
+# Copyright (C) 2009, 2010 Krasimir Chonov <mk2616@abv.bg>.
 # This file is distributed under the same license as the f-spot package.
 # Rostislav "zbrox" Raykov <zbrox@i-space.org>, 2005.
-# Krasimir Chonov <mk2616@abv.bg>, 2009.
+# Krasimir Chonov <mk2616@abv.bg>, 2009, 2010.
 # Alexander Shopov <ash@contact.bg>, 2009
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: f-spot master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-12-08 09:48+0200\n"
-"PO-Revision-Date: 2009-12-08 09:45+0200\n"
+"POT-Creation-Date: 2010-01-03 08:39+0200\n"
+"PO-Revision-Date: 2010-01-02 22:21+0200\n"
 "Last-Translator: Krasimir Chonov <mk2616@abv.bg>\n"
 "Language-Team: Bulgarian <dict@fsa-bg.org>\n"
 "MIME-Version: 1.0\n"
@@ -1278,7 +1278,7 @@ msgid "New Rolls Only"
 msgstr "Само новите фотосесии"
 
 #: ../extensions/Tools/MergeDb/MergeDb.glade.h:15
-#: ../src/FileImportBackend.cs:290 ../src/UI.Dialog/ThreadProgressDialog.cs:58
+#: ../src/FileImportBackend.cs:291 ../src/UI.Dialog/ThreadProgressDialog.cs:58
 msgid "Skip"
 msgstr "Пропускане"
 
@@ -1561,11 +1561,11 @@ msgstr "Мек фокус"
 msgid "Straighten"
 msgstr "Изправяне"
 
-#: ../src/FileImportBackend.cs:288
+#: ../src/FileImportBackend.cs:289
 msgid "Import error"
 msgstr "Грешка при внасянето"
 
-#: ../src/FileImportBackend.cs:289
+#: ../src/FileImportBackend.cs:290
 #, csharp-format
 msgid "Error importing {0}{2}{2}{1}"
 msgstr "Грешка при внасянето на {0}{2}{2}{1}"
@@ -1580,8 +1580,8 @@ msgid "Unhandled exception"
 msgstr "Необработено изключение"
 
 #: ../src/FSpot.addin.xml.h:1
-msgid "Copy Photo Locat_ion"
-msgstr "_Копиране на местоположение на снимката"
+msgid "Copy Photo"
+msgstr "Копиране на снимка"
 
 #: ../src/FSpot.addin.xml.h:2
 msgid "Export to"
@@ -2531,39 +2531,39 @@ msgstr ""
 "Не могат да се изтриват етикети, в които има подетикети. Първо изтрийте "
 "подетикетите в „{0}“."
 
-#: ../src/MainWindow.cs:2781
+#: ../src/MainWindow.cs:2789
 msgid "Rotate selected photo left"
 msgid_plural "Rotate selected photos left"
 msgstr[0] "Завъртане на снимката наляво"
 msgstr[1] "Завъртане на снимките наляво"
 
-#: ../src/MainWindow.cs:2794
+#: ../src/MainWindow.cs:2802
 msgid "Rotate selected photo right"
 msgid_plural "Rotate selected photos right"
 msgstr[0] "Завъртане на снимката наляво"
 msgstr[1] "Завъртане на снимките надясно"
 
-#: ../src/MainWindow.cs:2805
+#: ../src/MainWindow.cs:2813
 #, csharp-format
 msgid "Find _Selected Tag"
 msgid_plural "Find _Selected Tags"
 msgstr[0] "Търсене на избрания _етикет"
 msgstr[1] "Търсене на избраните _етикети"
 
-#: ../src/MainWindow.cs:2809
+#: ../src/MainWindow.cs:2817
 #, csharp-format
 msgid "Find Selected Tag _With"
 msgid_plural "Find Selected Tags _With"
 msgstr[0] "Търсене на избрания етикет _с"
 msgstr[1] "Търсене на избраните етикети _с"
 
-#: ../src/MainWindow.cs:2850
+#: ../src/MainWindow.cs:2858
 msgid "Create New Version?"
 msgid_plural "Create New Versions?"
 msgstr[0] "Създаване на нова версия?"
 msgstr[1] "Създаване на нови версии?"
 
-#: ../src/MainWindow.cs:2852
+#: ../src/MainWindow.cs:2860
 #, csharp-format
 msgid ""
 "Before launching {1}, should F-Spot create a new version of the selected "
@@ -2578,7 +2578,7 @@ msgstr[1] ""
 "Дали F-Spot да създаде нова версия на избраните снимки, преди да стартирате "
 "{1}, за да запазите оригиналите?"
 
-#: ../src/MainWindow.cs:2874
+#: ../src/MainWindow.cs:2882
 msgid "XCF version"
 msgstr "Версия на XCF"
 
@@ -2894,8 +2894,8 @@ msgstr "Възникна грешка при обработка на „{0}“: 
 
 #. Send the mail :)
 #: ../src/SendEmail.cs:330
-msgid "my photos"
-msgstr "моите снимки"
+msgid "My Photos"
+msgstr "Моите снимки"
 
 #: ../src/Sharpener.cs:72
 msgid "Error saving sharpened photo"
@@ -3426,8 +3426,8 @@ msgid "By _Rating"
 msgstr "По _оценка"
 
 #: ../src/ui/main_window.ui.h:7
-msgid "Copy Locat_ion"
-msgstr "_Копиране на местоположението"
+msgid "Copy"
+msgstr "Копиране"
 
 #: ../src/ui/main_window.ui.h:8
 msgid "Create New _Tag..."
