@@ -232,7 +232,7 @@ namespace FSpot
 						Help ();
 						return 1;
 					}
-					App.Instance.View (list.ToString ());
+					App.Instance.View (list);
 				} else if (import_uri != null) {
 					App.Instance.Import (import_uri);
 				} else {

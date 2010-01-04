@@ -12,6 +12,7 @@
 using System;
 using System.IO;
 using System.Collections.Generic;
+using System.Linq;
 
 using Unique;
 
@@ -103,20 +104,31 @@ namespace FSpot
 			HandleSlideshow (tagname);
 		}
 
+		public void View (Uri uri)
+		{
+			View (new Uri[] {uri});
+		}
+
+		public void View (IEnumerable<Uri> uris)
+		{
+			var uri_s = from uri in uris select uri.ToString ();
+			View (uri_s);
+		}
+
 		public void View (string uri)
 		{
 			View (new string[] {uri});
 		}
 
-		public void View (string[] uris)
+		public void View (IEnumerable<string> uris)
 		{
 			if (IsRunning) {
 				var md = new MessageData ();
-				md.Uris = uris;
+				md.Uris = uris.ToArray ();
 				SendMessage (Command.View, md);
 				return;
 			}
-			HandleView (uris);
+			HandleView (uris.ToArray());
 		}
 #endregion
 
