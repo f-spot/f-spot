@@ -85,6 +85,8 @@ namespace FSpot {
 			if (pixbuf == null || pixbuf.HasAlpha)
 				return;
 
+			image_profile = image_profile ?? Cms.Profile.CreateStandardRgb ();
+
 			Cms.Profile [] list = new Cms.Profile [] { image_profile, destination_profile };
 			Cms.Transform transform = new Cms.Transform (list,
 								     PixbufUtils.PixbufCmsFormat (pixbuf),
