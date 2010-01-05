@@ -6,7 +6,7 @@
  *	Stephane Delcroix  <stephane@delcroix.org>
  *
  * Copyright (c) 2005-2009 Novell, Inc.
- * Copyright (c) 2007 Stephane Delcroix <stephane@delcroix.org>
+ * Copyright (c) 2007,2010 Stephane Delcroix
  *
  * This is free software. See COPYING for details.
  */
@@ -14,6 +14,7 @@
 using System;
 using System.IO;
 using System.Collections.Generic;
+using System.Linq;
 using Gtk;
 using Mono.Unix;
 
@@ -54,9 +55,14 @@ namespace FSpot.UI.Dialog {
 			if (FSpot.ColorManagement.XProfile != null)
 				sprofiles.AppendValues (Catalog.GetString ("System profile"), -1);
 			sprofiles.AppendValues (null, 0);
-			foreach (string profile_name in FSpot.ColorManagement.Profiles.Keys)
-				if (profile_name != "_x_profile_") //avoid adding the XProfile twice
-					sprofiles.AppendValues (profile_name, 1);
+			
+			//Pick the display profiles from the full list, avoid _x_profile_
+			var dprofs = from profile in FSpot.ColorManagement.Profiles
+				where (profile.Value.DeviceClass == Cms.IccProfileClass.Display && profile.Key != "_x_profile_")
+				select profile;
+			foreach (var p in dprofs)
+				sprofiles.AppendValues (p.Key, 1);
+
 			CellRendererText profilecellrenderer = new CellRendererText ();
 			profilecellrenderer.Ellipsize = Pango.EllipsizeMode.End;
 
@@ -70,9 +76,13 @@ namespace FSpot.UI.Dialog {
 			ListStore pprofiles = new ListStore (typeof (string), typeof (int));
 			pprofiles.AppendValues (Catalog.GetString ("None"), 0);
 			pprofiles.AppendValues (null, 0);
-			foreach (string profile_name in FSpot.ColorManagement.Profiles.Keys)
-				if (profile_name != "_x_profile_") //don't list XProfile for printers
-					pprofiles.AppendValues (profile_name, 1);
+
+			var pprofs = from profile in FSpot.ColorManagement.Profiles
+				where (profile.Value.DeviceClass == Cms.IccProfileClass.Output && profile.Key != "_x_profile_")
+				select profile;
+			foreach (var p in pprofs)
+				pprofiles.AppendValues (p.Key, 1);
+			
 			printprofile_combo.Model = pprofiles;
 			printprofile_combo.PackStart (profilecellrenderer, true);
 			printprofile_combo.RowSeparatorFunc = ProfileSeparatorFunc;
