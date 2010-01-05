@@ -3,6 +3,10 @@
  *
  * Author(s):
  *	Larry Ewing  <lewing@novell.com>
+ *	Stephane Delcroix  <stephane@delcroix.org>
+ *
+ * Copyright (c) 2005-2008 Novell, Inc.
+ * Copyright (c) 2010 Stephane Delcroix
  *
  * This is free software. See COPYING for details.
  */
@@ -25,14 +29,11 @@ namespace Cms {
 
 		private HandleRef handle;
 		public HandleRef Handle {
-			get {
-				return handle;
-			}
+			get { return handle; }
 		}
 
 		private Profile () : this (NativeMethods.CmsCreateProfilePlaceholder ())
 		{
-			
 		}
 
 		public static Profile CreateSRgb () 
@@ -261,10 +262,12 @@ namespace Cms {
 			}				
 		}
 		
-		public uint ColorSpace {
-			get {
-				return NativeMethods.cmsGetColorSpace (this.handle);
-			}
+		public IccColorSpace ColorSpace {
+			get { return (IccColorSpace) NativeMethods.CmsGetColorSpace (this.handle); }
+		}
+
+		public IccProfileClass DeviceClass {
+			get { return (IccProfileClass) NativeMethods.CmsGetDeviceClass (this.handle); }
 		}
 		
 		public string Model {

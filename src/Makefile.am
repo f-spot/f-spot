@@ -13,6 +13,7 @@ CMS_CSDISTFILES =				\
 	$(srcdir)/Cms/Format.cs			\
 	$(srcdir)/Cms/GammaTable.cs		\
 	$(srcdir)/Cms/IccColorSpace.cs		\
+	$(srcdir)/Cms/IccProfileClass.cs	\
 	$(srcdir)/Cms/Intent.cs			\
 	$(srcdir)/Cms/NativeMethods.cs		\
 	$(srcdir)/Cms/Profile.cs		\
