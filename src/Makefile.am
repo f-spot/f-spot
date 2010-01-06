@@ -159,6 +159,8 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/Extensions/PhotoSelectionCondition.cs	\
 	$(srcdir)/Extensions/PopupCommands.cs	\
 	$(srcdir)/Extensions/ServiceNode.cs	\
+	$(srcdir)/Extensions/SidebarPage.cs	\
+	$(srcdir)/Extensions/SidebarPageNode.cs	\
 	$(srcdir)/Extensions/TransitionNode.cs	\
 	$(srcdir)/Extensions/ViewModeCondition.cs	\
 	$(srcdir)/Fader.cs			\

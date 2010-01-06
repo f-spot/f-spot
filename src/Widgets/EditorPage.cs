@@ -8,6 +8,7 @@
  */
 
 using FSpot;
+using FSpot.Extensions;
 using FSpot.Editors;
 using FSpot.UI.Dialog;
 using FSpot.Utils;
@@ -35,13 +36,13 @@ namespace FSpot.Widgets {
 		}
 
 		protected override void AddedToSidebar () {
-			Sidebar.SelectionChanged += delegate (IBrowsableCollection collection) { EditorPageWidget.ShowTools (); };
-			Sidebar.ContextChanged += HandleContextChanged;
+			(Sidebar as Sidebar).SelectionChanged += delegate (IBrowsableCollection collection) { EditorPageWidget.ShowTools (); };
+			(Sidebar as Sidebar).ContextChanged += HandleContextChanged;
 		}
 
 		private void HandleContextChanged (object sender, EventArgs args)
 		{
-			InPhotoView = (Sidebar.Context == ViewContext.Edit);
+			InPhotoView = ((Sidebar as Sidebar).Context == ViewContext.Edit);
 			EditorPageWidget.ChangeButtonVisibility ();
 		}
 	}
@@ -180,9 +181,9 @@ namespace FSpot.Widgets {
 				state.Selection = Gdk.Rectangle.Zero;
 				state.PhotoImageView = null;
 			}
-			if (Page.Sidebar.Selection == null)
+			if ((Page.Sidebar as Sidebar).Selection == null)
 				return false;
-			state.Items = Page.Sidebar.Selection.Items;
+			state.Items = (Page.Sidebar as Sidebar).Selection.Items;
 
 			editor.Initialize (state);
 			return true;

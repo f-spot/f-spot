@@ -177,7 +177,7 @@ namespace FSpot {
 		private void OnSidebarExtensionChanged (object s, ExtensionNodeEventArgs args) {
 			// FIXME: No sidebar page removal yet!
 			if (args.Change == ExtensionChange.Add)
-				sidebar.AppendPage ((args.ExtensionNode as SidebarPageNode).GetSidebarPage ());
+				sidebar.AppendPage ((args.ExtensionNode as SidebarPageNode).GetPage ());
 		}
 
 		void HandleExportActivated (object o, EventArgs e)

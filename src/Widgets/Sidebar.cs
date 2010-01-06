@@ -17,16 +17,8 @@ using Mono.Unix;
 using System;
 using System.Collections.Generic;
 
-namespace FSpot.Widgets {
-	[ExtensionNode ("SidebarPage")]
-	public class SidebarPageNode : ExtensionNode {
-		[NodeAttribute (Required=true)]
-		protected string sidebar_page_type;
-
-		public SidebarPage GetSidebarPage () {
-			return (SidebarPage) Addin.CreateInstance (sidebar_page_type);
-		}
-	}
+namespace FSpot.Widgets
+{
 
 	// Decides which sidebar page should be shown for each context. Implemented
 	// using the Strategy pattern, to make it swappable easily, in case the 
@@ -62,63 +54,6 @@ namespace FSpot.Widgets {
 				return Catalog.GetString ("Edit");
 			// Don't care otherwise, Tags sounds reasonable
 			return Catalog.GetString ("Tags");
-		}
-	}
-
-	public class SidebarPage {
-		// The widget shown on the sidebar page.
-		private readonly Widget widget;
-		public Widget SidebarWidget {
-			get { return widget; }
-		}
-
-		// Whether this page can be selected
-		private bool can_select;
-		public bool CanSelect {
-			protected set { 
-				can_select = value;
-				if (CanSelectChanged != null)
-					CanSelectChanged (this, null);
-			}
-			get { return can_select; }
-		}
-
-		public event EventHandler CanSelectChanged;
-
-		// The label of the sidebar page.
-		private readonly string label;
-		public string Label {
-			get { return label; }
-		}
-
-		// The icon name, used for the selector
-		private readonly string icon_name;
-		public string IconName {
-			get { return icon_name; }
-		}
-
-		// The sidebar onto which this page is attached
-		private Sidebar sidebar;
-		public Sidebar Sidebar {
-			get { return sidebar; }
-			set { 
-				sidebar = value; 
-				AddedToSidebar ();
-			}
-		}
-
-		// Can be overriden to get notified as soon as we're added to a sidebar.
-		protected virtual void AddedToSidebar () { }
-
-		// Whether this page is currently visible
-		public bool IsActive {
-			get { return Sidebar.IsActive (this); }
-		}
-
-		public SidebarPage (Widget widget, string label, string icon_name) {
-			this.widget = widget;
-			this.label = label;
-			this.icon_name = icon_name;
 		}
 	}
 

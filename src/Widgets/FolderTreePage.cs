@@ -10,6 +10,7 @@
 using System;
 using Gtk;
 using Mono.Unix;
+using FSpot.Extensions;
 
 namespace FSpot.Widgets
 {

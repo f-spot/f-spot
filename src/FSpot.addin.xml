@@ -18,7 +18,7 @@
 	</ExtensionPoint>
 
 	<ExtensionPoint path = "/FSpot/Sidebar">
-		<ExtensionNode type="FSpot.Widgets.SidebarPageNode"/>
+		<ExtensionNode name="SidebarPage" type="FSpot.Extensions.SidebarPageNode"/>
 	</ExtensionPoint>
 
 	<ExtensionPoint path = "/FSpot/Services">

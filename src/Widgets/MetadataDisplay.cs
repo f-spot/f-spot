@@ -17,6 +17,8 @@ using Gtk;
 
 using Mono.Unix;
 
+using FSpot.Extensions;
+
 namespace FSpot.Widgets {
 	public class MetadataDisplayPage : SidebarPage {
 		public MetadataDisplayPage() : base(new MetadataDisplayWidget(), 
@@ -28,8 +30,8 @@ namespace FSpot.Widgets {
 		protected override void AddedToSidebar ()
 		{
 			MetadataDisplayWidget widget = SidebarWidget as MetadataDisplayWidget;
-			Sidebar.SelectionChanged += widget.HandleSelectionChanged;
-			Sidebar.SelectionItemsChanged += widget.HandleSelectionItemsChanged;
+			(Sidebar as Sidebar).SelectionChanged += widget.HandleSelectionChanged;
+			(Sidebar as Sidebar).SelectionItemsChanged += widget.HandleSelectionItemsChanged;
 		}
 	}
 
@@ -135,7 +137,7 @@ namespace FSpot.Widgets {
 					exif_info = null;
 				}
 				
-				if (!Page.IsActive) {
+				if (!((Page.Sidebar as Sidebar).IsActive (Page))) {
 					up_to_date = false;
 				} else {
 					update_delay.Start ();
@@ -162,7 +164,7 @@ namespace FSpot.Widgets {
 			if (!args.Changes.MetadataChanged)
 				return;
 
-			if (!Page.IsActive)
+			if (!((Page.Sidebar as Sidebar).IsActive (Page)))
 				up_to_date = false;
 			else
 				update_delay.Start ();

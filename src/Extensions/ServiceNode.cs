@@ -1,5 +1,5 @@
 /*
- * FSpot.Extensions.ServiceNodea.cs
+ * FSpot.Extensions.ServiceNode.cs
  *
  * Author(s):
  *	Stephane Delcroix  <stephane@delcroix.org>
