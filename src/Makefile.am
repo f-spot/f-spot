@@ -242,7 +242,7 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/RollStore.cs			\
 	$(srcdir)/SelectionDataExtensions.cs	\
 	$(srcdir)/SendEmail.cs                  \
-	$(srcdir)/SlideView.cs			\
+	$(srcdir)/XScreenSaverSlide.cs		\
 	$(srcdir)/SingleView.cs			\
 	$(srcdir)/SimpleCalendar.cs		\
 	$(srcdir)/Sharpener.cs			\

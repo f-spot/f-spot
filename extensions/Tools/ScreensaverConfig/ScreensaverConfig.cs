@@ -27,9 +27,8 @@ namespace ScreensaverConfig
 		const string SaverMode = "single";
 		const string GNOME_SCREENSAVER_THEME = "/apps/gnome-screensaver/themes";
 		const string GNOME_SCREENSAVER_MODE = "/apps/gnome-screensaver/mode";
-		const string SCREENSAVER = "screensaver/";
-		const string SCREENSAVER_TAG = Preferences.APP_FSPOT + SCREENSAVER + "tag_id";
-		const string SCREENSAVER_DELAY = Preferences.APP_FSPOT + SCREENSAVER + "delay";
+		const string SCREENSAVER_TAG = Preferences.SCREENSAVER_TAG;
+		const string SCREENSAVER_DELAY = Preferences.SCREENSAVER_DELAY;
 		const double default_delay = 2.0;
 
 		public void Run (object o, EventArgs e)

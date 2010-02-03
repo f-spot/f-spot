@@ -231,7 +231,7 @@ namespace FSpot
 		void HandleSlideshow (string tagname)
 		{
 			Tag tag;
-			SlideView slideview = null;
+			FSpot.Widgets.SlideShow slideshow = null;
 
 			if (!String.IsNullOrEmpty (tagname))
 				tag = Database.Tags.GetTagByName (tagname);
@@ -246,17 +246,18 @@ namespace FSpot
 			else
 				photos = new Photo [0];
 
-			var delay = Math.Max (1.0, Preferences.Get<double> (Preferences.APP_FSPOT + "screensaver/delay"));
+			// Minimum delay 1 second; default is 4s
+			var delay = Math.Max (1.0, Preferences.Get<double> (Preferences.SCREENSAVER_DELAY));
+
 			var window = new XScreenSaverSlide ();
 			window.ModifyFg (Gtk.StateType.Normal, new Gdk.Color (127, 127, 127));
 			window.ModifyBg (Gtk.StateType.Normal, new Gdk.Color (0, 0, 0));
 
 			if (photos.Length > 0) {
 				Array.Sort (photos, new Photo.RandomSort ());
-				Gdk.Pixbuf black = new Gdk.Pixbuf (Gdk.Colorspace.Rgb, false, 8, 1, 1);
-				black.Fill (0x00000000);
-				slideview = new SlideView (black, photos, delay);
-				window.Add (slideview);
+				slideshow = new FSpot.Widgets.SlideShow (new BrowsablePointer (new PhotoList (photos), 0), (uint)(delay * 1000), true);
+				slideshow.Transition = new FSpot.Widgets.DissolveTransition ();
+				window.Add (slideshow);
 			} else {
 				Gtk.HBox outer = new Gtk.HBox ();
 				Gtk.HBox hbox = new Gtk.HBox ();
@@ -304,8 +305,8 @@ namespace FSpot
 
 			Register (window);
 			GLib.Idle.Add (delegate {
-				if (slideview != null)
-					slideview.Play ();
+				if (slideshow != null)
+					slideshow.Start ();
 				return false;
 			});
 		}

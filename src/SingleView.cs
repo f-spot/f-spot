@@ -360,19 +360,6 @@ namespace FSpot {
 			chooser.Destroy ();
 		}
 
-		private bool SlideShow ()
-		{
-			IBrowsableItem [] items = new IBrowsableItem [collection.Count];
-			for (int i = 0; i < collection.Count; i++) {
-				items [i] = collection [i];
-			}
-
-			FSpot.FullSlide full = new FSpot.FullSlide (Window, items);
-			full.Play ();
-			this.Window.GdkWindow.Cursor = null;
-			return false;
-		}
-
 		private void HandleViewFullscreen (object sender, System.EventArgs args)
 		{
 			if (fsview != null)

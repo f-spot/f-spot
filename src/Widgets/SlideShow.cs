@@ -23,7 +23,12 @@ namespace FSpot.Widgets
 		bool running;
 		BrowsablePointer item;
 #region Public API
-		public SlideShow (BrowsablePointer item) : base ()
+
+		public SlideShow (BrowsablePointer item) : this (item, 6000, false)
+		{
+		}
+
+		public SlideShow (BrowsablePointer item, uint interval_ms, bool init) : base ()
 		{
 			this.item = item;
 			DoubleBuffered = false;
@@ -37,8 +42,12 @@ namespace FSpot.Widgets
 				transitions.Add (transition.Transition);
 			}
 
-			flip = new Delay (6000, delegate {item.MoveNext (true); return true;});
+			flip = new Delay (interval_ms, delegate {item.MoveNext (true); return true;});
 			animation = new DoubleAnimation (0, 1, new TimeSpan (0, 0, 2), HandleProgressChanged, GLib.Priority.Default);
+
+			if (init) {
+				HandleItemChanged (null, null);
+			}
 		}
 
 		SlideShowTransition transition;
