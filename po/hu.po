@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: f-spot master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-01-22 00:38+0100\n"
-"PO-Revision-Date: 2010-01-22 00:34+0100\n"
+"POT-Creation-Date: 2010-02-08 13:46+0100\n"
+"PO-Revision-Date: 2010-02-08 13:47+0100\n"
 "Last-Translator: Gabor Kelemen <kelemeng at gnome dot hu>\n"
 "Language-Team: Hungarian <gnome at fsf dot hu>\n"
 "MIME-Version: 1.0\n"
@@ -791,8 +791,7 @@ msgstr "<b>Galéria</b>"
 #: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:5
 #: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:5
 msgid "<span weight='bold' size='larger'>Error Connecting to Gallery</span>\n"
-msgstr ""
-"<span weight='bold' size='larger'>Hiba a galériához csatlakozáskor</span>\n"
+msgstr "<span weight='bold' size='larger'>Hiba a galériához csatlakozáskor</span>\n"
 
 #: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:9
 msgid "Export _titles and comments"
@@ -893,8 +892,7 @@ msgstr "Hiba az album létrehozásakor"
 
 #: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:442
 #, csharp-format
-msgid ""
-"The following error was encountered while attempting to create an album: {0}"
+msgid "The following error was encountered while attempting to create an album: {0}"
 msgstr "A következő hiba történt az album létrehozásakor: {0}"
 
 #: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:620
@@ -932,8 +930,7 @@ msgid "<b>PicasaWeb Export</b>"
 msgstr "<b>PicasaWeb exportálás</b>"
 
 #: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:7
-msgid ""
-"<span weight='bold' size='larger'>Your Google Account is locked</span>\n"
+msgid "<span weight='bold' size='larger'>Your Google Account is locked</span>\n"
 msgstr "<span weight='bold' size='larger'>A Google fiókja zárolva van</span>\n"
 
 #: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:12
@@ -1066,8 +1063,7 @@ msgstr ""
 
 #: ../extensions/Tools/HashJob/HashJob.cs:59
 #, csharp-format
-msgid ""
-"You currently have {0} photos needing md5 calculation, and {1} pending jobs"
+msgid "You currently have {0} photos needing md5 calculation, and {1} pending jobs"
 msgstr "Jelenleg {0} fénykép vár MD5 számításra és {1} feladat van függőben"
 
 #: ../extensions/Tools/HashJob/HashJob.cs:75 ../src/ui/main_window.ui.h:37
@@ -1420,12 +1416,12 @@ msgstr "Fényképezőgép"
 msgid "Port"
 msgstr "Port"
 
-#: ../src/Core/App.cs:277
+#: ../src/Core/App.cs:278
 #, csharp-format
 msgid "No photos matching {0} found"
 msgstr "Nem találhatóak a következőre illeszkedő fényképek: {0}"
 
-#: ../src/Core/App.cs:278
+#: ../src/Core/App.cs:279
 #, csharp-format
 msgid ""
 "The tag \"{0}\" is not applied to any photos. Try adding\n"
@@ -1436,11 +1432,11 @@ msgstr ""
 "hozzáadni a címkét néhány fényképhez, vagy válasszon másik címkét az\n"
 "F-Spot beállításablakában."
 
-#: ../src/Core/App.cs:282
+#: ../src/Core/App.cs:283
 msgid "Search returned no results"
 msgstr "A keresés nem adott vissza eredményeket"
 
-#: ../src/Core/App.cs:283
+#: ../src/Core/App.cs:284
 msgid ""
 "The tag F-Spot is looking for does not exist. Try\n"
 "selecting a different tag in the F-Spot preference\n"
@@ -1598,12 +1594,12 @@ msgid "Rem_ove Tag"
 msgstr "Cí_mke törlése"
 
 #: ../src/FSpot.addin.xml.h:5 ../src/f-spot.glade.h:68
-#: ../src/SingleView.cs:438 ../src/ui/main_window.ui.h:16
+#: ../src/SingleView.cs:425 ../src/ui/main_window.ui.h:16
 msgid "Rotate _Left"
 msgstr "Forgatás b_alra"
 
 #: ../src/FSpot.addin.xml.h:6 ../src/f-spot.glade.h:69
-#: ../src/SingleView.cs:439 ../src/ui/main_window.ui.h:17
+#: ../src/SingleView.cs:426 ../src/ui/main_window.ui.h:17
 msgid "Rotate _Right"
 msgstr "Forgatás j_obbra"
 
@@ -1747,8 +1743,7 @@ msgstr "I_kon létrehozása címkéhez annak első használatakor"
 
 #: ../src/f-spot.glade.h:35
 msgid "Create a mail with the selected photos (possibly resized) attached"
-msgstr ""
-"Levél létrehozása, csatolva a kijelölt (esetleg átméretezett) fényképeket"
+msgstr "Levél létrehozása, csatolva a kijelölt (esetleg átméretezett) fényképeket"
 
 #: ../src/f-spot.glade.h:36
 msgid "Detect duplicates"
@@ -2158,21 +2153,18 @@ msgid "A unique number"
 msgstr "Egy egyedi szám"
 
 #: ../src/Imaging/IptcFile.cs:157
-msgid ""
-"The envelope handling priority between 1 (most urgent) and 9 (least urgent)"
+msgid "The envelope handling priority between 1 (most urgent) and 9 (least urgent)"
 msgstr ""
 "A boríték kezelésének prioritása 1 (legsürgősebb) és 9 (legkevésbé sürgős) "
 "között"
 
 #: ../src/Imaging/IptcFile.cs:159
 msgid "The year, month and day (CCYYMMDD) the service sent the material"
-msgstr ""
-"Az év, hónap és nap (ÉÉÉÉHHNN), amikor a szolgáltatás az anyagot küldte"
+msgstr "Az év, hónap és nap (ÉÉÉÉHHNN), amikor a szolgáltatás az anyagot küldte"
 
 #: ../src/Imaging/IptcFile.cs:161
 msgid "The hour, minute and second (HHMMSS) the service sent the material"
-msgstr ""
-"Az óra perce és másodperce (ÓÓPPMM), amikor a szolgáltatás az anyagot küldte"
+msgstr "Az óra perce és másodperce (ÓÓPPMM), amikor a szolgáltatás az anyagot küldte"
 
 #: ../src/Imaging/IptcFile.cs:163
 msgid "The character set designation"
@@ -2227,10 +2219,8 @@ msgid "Full name of the country of the focus of the content"
 msgstr "Azon ország teljes neve, amelyre a tartalom fókuszál"
 
 #: ../src/Imaging/IptcFile.cs:206
-msgid ""
-"Two or three letter ISO3166 code of the country of the focus of the content"
-msgstr ""
-"Azon ország két- vagy hárombetűs ISO3166 kódja, amelyre a tartalom fókuszál"
+msgid "Two or three letter ISO3166 code of the country of the focus of the content"
+msgstr "Azon ország két- vagy hárombetűs ISO3166 kódja, amelyre a tartalom fókuszál"
 
 #: ../src/Imaging/IptcFile.cs:209
 msgid "Creator of the content"
@@ -2257,8 +2247,7 @@ msgid "Headline of the content"
 msgstr "A tartalom főcíme"
 
 #: ../src/Imaging/IptcFile.cs:225
-msgid ""
-"Instructions from the creator to the receiver not covered by other fields"
+msgid "Instructions from the creator to the receiver not covered by other fields"
 msgstr "Az alkotó által a fogadóval más mezőkben nem közölt utasítások"
 
 #: ../src/Imaging/IptcFile.cs:228
@@ -2295,8 +2284,7 @@ msgstr "A könyvtár nem létezik."
 msgid ""
 "The directory you selected \"{0}\" does not exist.  Please choose a "
 "different directory"
-msgstr ""
-"Az Ön által kijelölt „{0}” könyvtár nem létezik. Válasszon másik könyvtárat"
+msgstr "Az Ön által kijelölt „{0}” könyvtár nem létezik. Válasszon másik könyvtárat"
 
 #. Note for translators: 'Import Tags' is no command, it means 'Tags used in Import'
 #: ../src/ImportCommand.cs:739 ../src/ImportCommand.cs:741
@@ -2388,7 +2376,7 @@ msgstr "Hiba a fényképezőgéphez való kapcsolódás közben"
 #: ../src/MainWindow.cs:1559
 #, csharp-format
 msgid "Received error \"{0}\" while connecting to camera"
-msgstr "„{0}” hiba következett be a fényképezőgéphez való kapcsolódás közben"
+msgstr "„{0}” hiba következett be a fényképezőgéphez való kapcsolódás közben"
 
 #. Translators, The singular case will never happen here.
 #: ../src/MainWindow.cs:1846
@@ -2417,7 +2405,7 @@ msgid_plural "{0} Photos out of {1}"
 msgstr[0] "{0}/{1} fénykép"
 msgstr[1] "{0}/{1} fénykép"
 
-#: ../src/MainWindow.cs:2082 ../src/SingleView.cs:480
+#: ../src/MainWindow.cs:2082 ../src/SingleView.cs:467
 #, csharp-format
 msgid "{0} Photo"
 msgid_plural "{0} Photos"
@@ -2458,8 +2446,7 @@ msgstr[1] "Véglegesen törli a kijelölt {0} fényképet?"
 
 #: ../src/MainWindow.cs:2212
 msgid "This deletes all versions of the selected photo from your drive."
-msgid_plural ""
-"This deletes all versions of the selected photos from your drive."
+msgid_plural "This deletes all versions of the selected photos from your drive."
 msgstr[0] "Ez a kijelölt fénykép összes verzióját törli a merevlemezéről."
 msgstr[1] "Ez a kijelölt fényképek összes verzióját törli a merevlemezéről."
 
@@ -2482,7 +2469,7 @@ msgid ""
 "lost. The photos remain on your computer and can be imported into F-Spot "
 "again."
 msgstr ""
-"Ha eltávolítja a fényképet az F-Spot katalógusból, minden címkeinformáció "
+"Ha eltávolítja a fényképet az F-Spot katalógusból, minden címkeinformáció "
 "elvész. A fényképek megmaradnak a számítógépén és később újra importálhatóak "
 "lesznek az F-Spotba."
 
@@ -2511,8 +2498,7 @@ msgstr[1] "fényképpel"
 #: ../src/MainWindow.cs:2329
 #, csharp-format
 msgid "If you delete this tag, the association with {0} {1} will be lost."
-msgid_plural ""
-"If you delete these tags, the association with {0} {1} will be lost."
+msgid_plural "If you delete these tags, the association with {0} {1} will be lost."
 msgstr[0] "Ha törli a címkét, akkor annak kapcsolata elvész {0} {1}."
 msgstr[1] "Ha törli a címkét, akkor annak kapcsolata elvész {0} {1}."
 
@@ -2782,7 +2768,7 @@ msgstr "„{0}” kivétel következett be. A(z) {1} kép nem menthető"
 msgid "Comment:"
 msgstr "Megjegyzés:"
 
-#: ../src/Preferences.cs:149
+#: ../src/Preferences.cs:152
 msgid "Photos"
 msgstr "Fényképek"
 
@@ -2940,7 +2926,7 @@ msgstr "Mappa"
 msgid "Open"
 msgstr "Megnyitás"
 
-#: ../src/SingleView.cs:441
+#: ../src/SingleView.cs:428
 msgid "Set as Background"
 msgstr "Beállítás háttérként"
 
@@ -3297,8 +3283,7 @@ msgstr "Megszakítás, az aktuális idővonal változatlanul hagyása. "
 
 #: ../src/UI.Dialog/ui/DateRangeDialog.ui.h:5
 msgid "Only photos taken within these dates will be displayed."
-msgstr ""
-"Csak az ezen dátumok között készített fényképek kerülnek megjelenítésre."
+msgstr "Csak az ezen dátumok között készített fényképek kerülnek megjelenítésre."
 
 #: ../src/UI.Dialog/ui/DateRangeDialog.ui.h:6
 msgid "Set date range"
@@ -3919,3 +3904,4 @@ msgstr "Diavetítés megjelenítése az F-Spotból"
 #: ../tools/f-spot-screensaver.desktop.in.h:2
 msgid "F-Spot photos"
 msgstr "F-Spot fényképek"
+
