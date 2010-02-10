@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: f-spot master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-02-08 13:46+0100\n"
-"PO-Revision-Date: 2010-02-08 13:47+0100\n"
+"POT-Creation-Date: 2010-02-10 09:54+0100\n"
+"PO-Revision-Date: 2010-02-10 10:08+0100\n"
 "Last-Translator: Gabor Kelemen <kelemeng at gnome dot hu>\n"
 "Language-Team: Hungarian <gnome at fsf dot hu>\n"
 "MIME-Version: 1.0\n"
@@ -112,6 +112,7 @@ msgstr "_Korábban beütemezett fájlok böngészése"
 #: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:15
 #: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:20
 #: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:12
+#: ../extensions/Exporters/TabbloExport/ui/TabbloExport.ui.h:9
 #: ../src/f-spot.glade.h:95
 msgid "_Export"
 msgstr "_Exportálás"
@@ -460,6 +461,7 @@ msgstr "<b>Felhasználói fiók</b>"
 #: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:3
 #: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:2
 #: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:2
+#: ../extensions/Exporters/TabbloExport/ui/TabbloExport.ui.h:2
 #: ../src/f-spot.glade.h:14 ../src/UI.Dialog/ui/AdjustTimeDialog.ui.h:5
 msgid "<b>Photos</b>"
 msgstr "<b>Fényképek</b>"
@@ -481,6 +483,7 @@ msgstr "<b>Jogosultságok megtekintése</b>"
 #: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:8
 #: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:9
 #: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:6
+#: ../extensions/Exporters/TabbloExport/ui/TabbloExport.ui.h:5
 #: ../src/f-spot.glade.h:43
 msgid "Export"
 msgstr "Exportálás"
@@ -845,6 +848,7 @@ msgstr "S_zülőalbum:"
 #: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:20
 #: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:24
 #: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:14
+#: ../extensions/Exporters/TabbloExport/ui/TabbloExport.ui.h:10
 msgid "_Password:"
 msgstr "_Jelszó:"
 
@@ -855,6 +859,7 @@ msgstr "_Cím:"
 #: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:23
 #: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:26
 #: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:16
+#: ../extensions/Exporters/TabbloExport/ui/TabbloExport.ui.h:11
 msgid "_Username:"
 msgstr "_Felhasználónév:"
 
@@ -1002,6 +1007,62 @@ msgstr "Feltöltés befejezve"
 #: ../extensions/Exporters/TabbloExport/TabbloExport.cs:316
 msgid "Error uploading to Tabblo: "
 msgstr "Hiba a Tabbloba való feltöltés közben: "
+
+#: ../extensions/Exporters/TabbloExport/ui/TabbloExport.ui.h:1
+msgid "<b>F-Spot tags</b>"
+msgstr "<b>F-Spot címkék</b>"
+
+#: ../extensions/Exporters/TabbloExport/ui/TabbloExport.ui.h:3
+msgid "<b>Tabblo account</b>"
+msgstr "<b>Tabblo fiók</b>"
+
+#: ../extensions/Exporters/TabbloExport/ui/TabbloExport.ui.h:4
+msgid ""
+"<small><i>F-Spot tags can help you track the export status of photos. "
+"Example: Use one tag for the photos that you plan to export, and another one "
+"for those already exported. Here, you can tell F-Spot to automatically "
+"replace these tags as appropriate.</i></small>"
+msgstr "<small><i>Az F-Spot címkék segítik a fényképek exportálási állapotának követését. Például: használja az egyik címkét az exportálni tervezett fotókon, egy másikat pedig a már exportáltakra. Itt megadhatja, hogy az F-Spot automatikusan cserélje le ezeket a címkéket, az állapottól függően.</i></small>"
+
+#: ../extensions/Exporters/TabbloExport/ui/TabbloExport.ui.h:6
+msgid "Rem_ove from exported photos:"
+msgstr "_Eltávolítandó az exportált fényképekről:"
+
+#: ../extensions/Exporters/TabbloExport/ui/TabbloExport.ui.h:7
+msgid "Select..."
+msgstr "Kijelölés…"
+
+#: ../extensions/Exporters/TabbloExport/ui/TabbloExport.ui.h:8
+msgid "_Attach to exported photos:"
+msgstr "Az exportált fényképekhez _csatolandó:"
+
+#: ../extensions/Exporters/TabbloExport/ui/TrustError.ui.h:1
+msgid "<b>{0}</b>."
+msgstr "<b>{0}</b>."
+
+#: ../extensions/Exporters/TabbloExport/ui/TrustError.ui.h:2
+msgid "A trust error occured while attempting to access"
+msgstr "Megbízhatósági hiba az elérési kísérletkor"
+
+#: ../extensions/Exporters/TabbloExport/ui/TrustError.ui.h:3
+msgid "Abort this session"
+msgstr "Megszakítom a munkamenetet"
+
+#: ../extensions/Exporters/TabbloExport/ui/TrustError.ui.h:4
+msgid "Always trust this site's certificate"
+msgstr "Mindig megbízom ezen oldal tanúsítványában"
+
+#: ../extensions/Exporters/TabbloExport/ui/TrustError.ui.h:5
+msgid "Do you wish to:"
+msgstr "Mit szeretne tenni:"
+
+#: ../extensions/Exporters/TabbloExport/ui/TrustError.ui.h:6
+msgid "Trust Error"
+msgstr "Megbízhatósági hiba"
+
+#: ../extensions/Exporters/TabbloExport/ui/TrustError.ui.h:7
+msgid "Trust the site's certificate this once"
+msgstr "Ez alkalommal megbízom az oldal tanúsítványában"
 
 #: ../extensions/Exporters/ZipExport/ZipExport.addin.xml.h:1
 msgid "Compressed fil_e..."
