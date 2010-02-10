@@ -27,8 +27,8 @@ extensions/Exporters/SmugMugExport/SmugMugExport.glade
 extensions/Exporters/TabbloExport/Tabblo/Connection.cs
 extensions/Exporters/TabbloExport/TabbloExport.addin.xml
 extensions/Exporters/TabbloExport/TabbloExport.cs
-extensions/Exporters/TabbloExport/ui/TabbloExport.ui
-extensions/Exporters/TabbloExport/ui/TrustError.ui
+[type: gettext/glade]extensions/Exporters/TabbloExport/ui/TabbloExport.ui
+[type: gettext/glade]extensions/Exporters/TabbloExport/ui/TrustError.ui
 extensions/Exporters/ZipExport/ZipExport.addin.xml
 extensions/Exporters/ZipExport/ZipExport.cs
 extensions/Exporters/ZipExport/ZipExport.glade
