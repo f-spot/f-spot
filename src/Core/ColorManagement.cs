@@ -17,7 +17,7 @@ using System.Collections.Generic;
 
 namespace FSpot {
 	public static class ColorManagement {
-		static string [] search_dir = { "/usr/share/color/icc", "~/.color/icc", "/usr/local/share/color/icc " };
+		static string [] search_dir = { "/usr/share/color/icc", Path.Combine (Global.HomeDirectory, ".color/icc"), "/usr/local/share/color/icc " };
 
 		static Dictionary<string, Cms.Profile> profiles;
 		public static IDictionary<string, Cms.Profile> Profiles {
