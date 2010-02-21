@@ -308,7 +308,7 @@ namespace FSpot.Widgets
 			thumb_cache = new DisposableCache<Uri, Pixbuf> (30);
 			ThumbnailGenerator.Default.OnPixbufLoaded += HandlePixbufLoaded;
 
-			animation = new DoubleAnimation (0, 0, TimeSpan.FromSeconds (4), SetPositionCore, new CubicEase (EasingMode.EaseOut));
+			animation = new DoubleAnimation (0, 0, TimeSpan.FromSeconds (1.5), SetPositionCore, new CubicEase (EasingMode.EaseOut));
 		}
 	
 		int min_length = 400;
