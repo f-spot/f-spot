@@ -506,7 +506,7 @@
           <object class="GtkAction" id="edit_selected_tag">
             <property name="stock_id">gtk-edit</property>
             <property name="name">edit_selected_tag</property>
-            <property name="label" translatable="yes">_Edit Selected Tag...</property>
+            <property name="label" translatable="yes">_Edit Tag...</property>
             <signal handler="HandleEditSelectedTag" name="activate"/>
           </object>
         </child>

@@ -582,6 +582,12 @@ namespace FSpot.Database {
 				
 
 			}, true);
+
+			// Update to version 17.1, Rename 'Import Tags' to 'Imported Tags'
+			AddUpdate (new Version (17,1),delegate () {	
+				Execute ("UPDATE tags SET name = 'Imported Tags' WHERE name = 'Import Tags'");
+			});
+			
 		}
 
 		public static void Run (Db database)

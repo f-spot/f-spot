@@ -4,12 +4,12 @@
 	description="Process your photo collection for duplicate detection"
 	author="Stephane Delcroix"
 	url="http://f-spot.org/Extensions"
-	name="Hash for Duplicates"
+	name="Check for Duplicates"
 	category="Tools">
 	<Dependencies>
 		<Addin id="Core" version="0.7"/>
 	</Dependencies>
 	<Extension path = "/FSpot/Menus/Tools">
-		<Command id = "HashDupes" _label = "Hash for Duplicates" command_type = "HashJobExtension.HashJob" />
+		<Command id = "HashDupes" _label = "Check for Duplicates..." command_type = "HashJobExtension.HashJob" />
 	</Extension>
 </Addin>
