@@ -735,10 +735,9 @@ public class ImportCommand : GladeDialog
 		foreach (string tagname in new_tags) {
 			Tag t = db.Tags.GetTagByName (tagname);
 			if (t == null) {
-				// Note for translators: 'Import Tags' is no command, it means 'Tags used in Import'
-				Category default_category = db.Tags.GetTagByName (Catalog.GetString ("Import Tags")) as Category;
+				Category default_category = db.Tags.GetTagByName (Catalog.GetString ("Imported Tags")) as Category;
 				if (default_category == null) {
-					default_category = db.Tags.CreateCategory (null, Catalog.GetString ("Import Tags"), false);
+					default_category = db.Tags.CreateCategory (null, Catalog.GetString ("Imported Tags"), false);
 					default_category.ThemeIconName = "gtk-new"; 
 				}
 				t = db.Tags.CreateCategory (default_category, tagname, false) as Tag;

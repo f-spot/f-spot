@@ -86,7 +86,7 @@ namespace FSpot.Xmp {
 			this.tag_store = tag_store;
 			tags_created = new Stack<Tag> ();
 			
-			li_root_tag = new TagInfo (Catalog.GetString ("Import Tags"), LastImportIcon);
+			li_root_tag = new TagInfo (Catalog.GetString ("Imported Tags"), LastImportIcon);
 			taginfo_table [(Entity)Location] = new TagInfo (Catalog.GetString ("Location"), PlacesIcon);
 			taginfo_table [(Entity)Country] = new TagInfo (Catalog.GetString ("Country"), PlacesIcon);
 			taginfo_table [(Entity)City] = new TagInfo (Catalog.GetString ("City"), PlacesIcon);
