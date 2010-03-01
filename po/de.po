@@ -13,8 +13,8 @@ msgstr ""
 "Project-Id-Version: f-spot\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=f-"
 "spot&component=General\n"
-"POT-Creation-Date: 2010-02-17 16:59+0000\n"
-"PO-Revision-Date: 2010-02-25 11:40+0100\n"
+"POT-Creation-Date: 2010-03-01 17:06+0000\n"
+"PO-Revision-Date: 2010-03-01 21:50+0100\n"
 "Last-Translator: Mario Blättermann <mariobl@gnome.org>\n"
 "Language-Team: German <gnome-de@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -1160,8 +1160,9 @@ msgstr "Gestoppt"
 # Ist hier "Hash" ein Verb?
 # Und wenn? Wie willst du das dann übersetzen?
 #: ../extensions/Tools/HashJob/HashJob.addin.xml.h:1
-msgid "Hash for Duplicates"
-msgstr "Prüfsumme für Duplikate"
+#| msgid "Hash for Duplicates"
+msgid "Check for Duplicates..."
+msgstr "Nach Duplikaten suchen …"
 
 #: ../extensions/Tools/LiveWebGallery/GalleryRequestHandler.cs:107
 msgid "F-Spot Gallery"
@@ -1808,7 +1809,6 @@ msgid "C_ontrast:"
 msgstr "K_ontrast:"
 
 #: ../src/f-spot.glade.h:31
-#| msgid "_Create"
 msgid "C_reate"
 msgstr "_Erstellen"
 
@@ -2385,11 +2385,11 @@ msgstr ""
 "Der von Ihnen gewählte Ordner »{0}« ist nicht vorhanden. Bitte wählen Sie "
 "einen anderen Ordner"
 
-#. Note for translators: 'Import Tags' is no command, it means 'Tags used in Import'
-#: ../src/ImportCommand.cs:739 ../src/ImportCommand.cs:741
+#: ../src/ImportCommand.cs:738 ../src/ImportCommand.cs:740
 #: ../src/XmpTagsImporter.cs:89
-msgid "Import Tags"
-msgstr "Markierungen importieren"
+#| msgid "Import Tags"
+msgid "Imported Tags"
+msgstr "Importierte Markierungen"
 
 #: ../src/ItemAction.cs:79 ../src/MainWindow.cs:308 ../src/SingleView.cs:71
 msgid "Rotate Left"
@@ -3064,8 +3064,9 @@ msgid "Create New Tag..."
 msgstr "Neue Markierung erstellen …"
 
 #: ../src/TagPopup.cs:42
-msgid "Edit Selected Tag..."
-msgstr "Ausgewählte Markierung bearbeiten …"
+#| msgid "Edit Tag"
+msgid "Edit Tag..."
+msgstr "Markierung bearbeiten …"
 
 #: ../src/TagPopup.cs:46
 msgid "Delete Tag"
@@ -3615,8 +3616,9 @@ msgid "_Delete Version"
 msgstr "Version _löschen"
 
 #: ../src/ui/main_window.ui.h:45
-msgid "_Edit Selected Tag..."
-msgstr "Ausgewählte Markierung _bearbeiten …"
+#| msgid "Edit Tag"
+msgid "_Edit Tag..."
+msgstr "Markierung b_earbeiten …"
 
 #: ../src/ui/main_window.ui.h:46
 msgid "_Export to"
@@ -3714,11 +3716,11 @@ msgstr "_Unmarkierte Fotos"
 msgid "_Version"
 msgstr "_Version"
 
-#: ../src/Updater.cs:616
+#: ../src/Updater.cs:622
 msgid "Updating F-Spot Database"
 msgstr "F-Spot-Datenbank wird aktualisiert"
 
-#: ../src/Updater.cs:617
+#: ../src/Updater.cs:623
 msgid ""
 "Please wait while your F-Spot gallery's database is updated. This may take "
 "some time."
@@ -4017,6 +4019,12 @@ msgstr "Eine Diaschau aus F-Spot anzeigen"
 #: ../tools/f-spot-screensaver.desktop.in.h:2
 msgid "F-Spot photos"
 msgstr "F-Spot Fotos"
+
+#~ msgid "Edit Selected Tag..."
+#~ msgstr "Ausgewählte Markierung bearbeiten …"
+
+#~ msgid "_Edit Selected Tag..."
+#~ msgstr "Ausgewählte Markierung _bearbeiten …"
 
 #~ msgid "Package"
 #~ msgstr "Paket"
