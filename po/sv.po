@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: f-spot\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-02-28 10:01+0100\n"
-"PO-Revision-Date: 2010-02-28 10:02+0100\n"
+"POT-Creation-Date: 2010-03-02 19:01+0100\n"
+"PO-Revision-Date: 2010-03-02 19:01+0100\n"
 "Last-Translator: Daniel Nylander <po@danielnylander.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
 "MIME-Version: 1.0\n"
@@ -1091,8 +1091,8 @@ msgid "Stopped"
 msgstr "Stoppad"
 
 #: ../extensions/Tools/HashJob/HashJob.addin.xml.h:1
-msgid "Hash for Duplicates"
-msgstr "Kontrollsumma för dubletter"
+msgid "Check for Duplicates..."
+msgstr "Leta efter dubletter..."
 
 #: ../extensions/Tools/LiveWebGallery/GalleryRequestHandler.cs:107
 msgid "F-Spot Gallery"
@@ -2300,12 +2300,11 @@ msgstr "Katalogen finns inte."
 msgid "The directory you selected \"{0}\" does not exist.  Please choose a different directory"
 msgstr "Katalogen du valde \"{0}\" finns inte. Välj en annan katalog"
 
-#. Note for translators: 'Import Tags' is no command, it means 'Tags used in Import'
-#: ../src/ImportCommand.cs:739
-#: ../src/ImportCommand.cs:741
+#: ../src/ImportCommand.cs:738
+#: ../src/ImportCommand.cs:740
 #: ../src/XmpTagsImporter.cs:89
-msgid "Import Tags"
-msgstr "Importera taggar"
+msgid "Imported Tags"
+msgstr "Importerade taggar"
 
 #: ../src/ItemAction.cs:79
 #: ../src/MainWindow.cs:308
@@ -2949,8 +2948,8 @@ msgid "Create New Tag..."
 msgstr "Skapa ny tagg..."
 
 #: ../src/TagPopup.cs:42
-msgid "Edit Selected Tag..."
-msgstr "Redigera markerad tagg..."
+msgid "Edit Tag..."
+msgstr "Redigera tagg..."
 
 #: ../src/TagPopup.cs:46
 msgid "Delete Tag"
@@ -3501,8 +3500,8 @@ msgid "_Delete Version"
 msgstr "_Ta bort version"
 
 #: ../src/ui/main_window.ui.h:45
-msgid "_Edit Selected Tag..."
-msgstr "_Redigera markerad tagg..."
+msgid "_Edit Tag..."
+msgstr "R_edigera tagg..."
 
 #: ../src/ui/main_window.ui.h:46
 msgid "_Export to"
@@ -3600,11 +3599,11 @@ msgstr "_Otaggade foton"
 msgid "_Version"
 msgstr "_Version"
 
-#: ../src/Updater.cs:616
+#: ../src/Updater.cs:622
 msgid "Updating F-Spot Database"
 msgstr "Uppdaterar F-Spot-databasen"
 
-#: ../src/Updater.cs:617
+#: ../src/Updater.cs:623
 msgid "Please wait while your F-Spot gallery's database is updated. This may take some time."
 msgstr "Var god vänta medan databasen för ditt F-Spot-galleri uppdateras. Detta kan ta lite tid."
 
@@ -3896,6 +3895,10 @@ msgstr "Visa ett bildspel från F-Spot"
 msgid "F-Spot photos"
 msgstr "Foton från F-Spot"
 
+#~ msgid "Edit Selected Tag..."
+#~ msgstr "Redigera markerad tagg..."
+#~ msgid "_Edit Selected Tag..."
+#~ msgstr "_Redigera markerad tagg..."
 #~ msgid "Package"
 #~ msgstr "Paket"
 #~ msgid "Extension Installation"
