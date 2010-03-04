@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: f-spot master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-02-19 12:11+0100\n"
-"PO-Revision-Date: 2010-02-19 12:23+0100\n"
+"POT-Creation-Date: 2010-03-04 14:06+0100\n"
+"PO-Revision-Date: 2010-03-04 14:07+0100\n"
 "Last-Translator: Gabor Kelemen <kelemeng at gnome dot hu>\n"
 "Language-Team: Hungarian <gnome at fsf dot hu>\n"
 "MIME-Version: 1.0\n"
@@ -1144,8 +1144,8 @@ msgid "Stopped"
 msgstr "Leállítva"
 
 #: ../extensions/Tools/HashJob/HashJob.addin.xml.h:1
-msgid "Hash for Duplicates"
-msgstr "Duplikátumok keresése"
+msgid "Check for Duplicates..."
+msgstr "Duplikátumok keresése…"
 
 #: ../extensions/Tools/LiveWebGallery/GalleryRequestHandler.cs:107
 msgid "F-Spot Gallery"
@@ -2355,10 +2355,9 @@ msgid ""
 "different directory"
 msgstr "Az Ön által kijelölt „{0}” könyvtár nem létezik. Válasszon másik könyvtárat"
 
-#. Note for translators: 'Import Tags' is no command, it means 'Tags used in Import'
-#: ../src/ImportCommand.cs:739 ../src/ImportCommand.cs:741
+#: ../src/ImportCommand.cs:738 ../src/ImportCommand.cs:740
 #: ../src/XmpTagsImporter.cs:89
-msgid "Import Tags"
+msgid "Imported Tags"
 msgstr "Importált címkék"
 
 #: ../src/ItemAction.cs:79 ../src/MainWindow.cs:308 ../src/SingleView.cs:71
@@ -3024,8 +3023,8 @@ msgid "Create New Tag..."
 msgstr "Új címke létrehozása…"
 
 #: ../src/TagPopup.cs:42
-msgid "Edit Selected Tag..."
-msgstr "Kijelölt címke szerkesztése…"
+msgid "Edit Tag..."
+msgstr "Címke szerkesztése…"
 
 #: ../src/TagPopup.cs:46
 msgid "Delete Tag"
@@ -3571,8 +3570,8 @@ msgid "_Delete Version"
 msgstr "Verzió _törlése"
 
 #: ../src/ui/main_window.ui.h:45
-msgid "_Edit Selected Tag..."
-msgstr "Kijelölt címke s_zerkesztése…"
+msgid "_Edit Tag..."
+msgstr "_Címke szerkesztése…"
 
 #: ../src/ui/main_window.ui.h:46
 msgid "_Export to"
@@ -3670,11 +3669,11 @@ msgstr "_Címkézetlen fényképek"
 msgid "_Version"
 msgstr "_Verzió"
 
-#: ../src/Updater.cs:616
+#: ../src/Updater.cs:622
 msgid "Updating F-Spot Database"
 msgstr "Az F-Spot adatbázisának frissítése"
 
-#: ../src/Updater.cs:617
+#: ../src/Updater.cs:623
 msgid ""
 "Please wait while your F-Spot gallery's database is updated. This may take "
 "some time."
