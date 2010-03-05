@@ -16,4 +16,4 @@ DOC_FIGURES =					\
 	figures/f-spot-soft-focus.png		\
 	figures/f-spot-straighten.png
 
-DOC_LINGUAS = cs da de es fr it oc pt_BR ru sv
+DOC_LINGUAS = cs da de es fr it oc pt_BR ru sl sv
