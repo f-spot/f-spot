@@ -1,10 +1,10 @@
-# Andrej Žnidaršič <andrej.znidarsic@gmail.com>, 2009"
+# Andrej Žnidaršič <andrej.znidarsic@gmail.com>, 2009 - 2010.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: f-spot\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=f-spot&component=General\n"
-"POT-Creation-Date: 2010-02-19 11:24+0000\n"
+"POT-Creation-Date: 2010-03-02 18:01+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Andrej Žnidaršič <andrej.znidarsic@gmail.com>\n"
 "Language-Team: Slovenian GNOME Translation Team <gnome-si@googlegroups.com>\n"
@@ -465,7 +465,7 @@ msgstr "Izvoz"
 
 #: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:7
 msgid "Export tag _hierarchy"
-msgstr "Izvoz _hierarhije značk"
+msgstr "Izvoz _hierarhije oznak"
 
 #: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:8
 msgid "F-Spot needs your authorization in order to upload photos to your {0} account. Press the \"Authorize\" button to open a web browser and give F-Spot the authorization. "
@@ -473,7 +473,7 @@ msgstr "F-Spot potrebuje pooblastitev za nalaganje fotografij na vaš {0} račun
 
 #: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:9
 msgid "Ignore _top level tags"
-msgstr "Prezri značke _zgornjih ravni"
+msgstr "Prezri oznake _zgornjih ravni"
 
 #: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:10
 msgid "Private"
@@ -575,7 +575,7 @@ msgstr "Kazalo"
 #: ../src/MainWindow.cs:376
 #: ../src/Widgets/Sidebar.cs:56
 msgid "Tags"
-msgstr "Značke"
+msgstr "Oznake"
 
 #: ../extensions/Exporters/FolderExport/FolderExport.cs:996
 #: ../src/f-spot.glade.h:58
@@ -637,7 +637,7 @@ msgstr "Izvoz z_načk"
 
 #: ../extensions/Exporters/FolderExport/FolderExport.glade.h:12
 msgid "Export tag _icons"
-msgstr "Izvoz _ikon značk"
+msgstr "Izvoz _ikon oznak"
 
 #: ../extensions/Exporters/FolderExport/FolderExport.glade.h:13
 msgid "Folder Export"
@@ -892,7 +892,7 @@ msgid ""
 "The selected album has a limit of {0} pictures,\n"
 "which would be passed with the current selection of {1} images"
 msgstr ""
-"Izbrani album ima mejo {0} fotografij,\n"
+"Izbrani album ima mejo {0} slik,\n"
 "čemur bi zadostovala trenutna izbira {1} slik"
 
 #: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:3
@@ -974,7 +974,7 @@ msgstr "Napaka med nalaganjem v Tabblo:"
 
 #: ../extensions/Exporters/TabbloExport/ui/TabbloExport.ui.h:1
 msgid "<b>F-Spot tags</b>"
-msgstr "<b>F-Spot značke</b>"
+msgstr "<b>F-Spot oznake</b>"
 
 #: ../extensions/Exporters/TabbloExport/ui/TabbloExport.ui.h:3
 msgid "<b>Tabblo account</b>"
@@ -982,7 +982,7 @@ msgstr "<b>Tabblo račun</b>"
 
 #: ../extensions/Exporters/TabbloExport/ui/TabbloExport.ui.h:4
 msgid "<small><i>F-Spot tags can help you track the export status of photos. Example: Use one tag for the photos that you plan to export, and another one for those already exported. Here, you can tell F-Spot to automatically replace these tags as appropriate.</i></small>"
-msgstr "<small><i>F-Spot značke lahko olajšajo sledenje izvoznemu statusu fotografij. Primer: uporaba ene značke za fotografije, pripravljene na izvoz in druge za fotografije, ki so bile že izvožene. Tukaj se nastavi želena samodejna zamenjava značk.</i></small>"
+msgstr "<small><i>F-Spot oznake lahko olajšajo sledenje izvoznemu stanju fotografij. Primer: uporaba ene oznake za fotografije, pripravljene na izvoz in druge za fotografije, ki so bile že izvožene. Tukaj je mogoče nastaviti želeno samodejno zamenjava oznak.</i></small>"
 
 #: ../extensions/Exporters/TabbloExport/ui/TabbloExport.ui.h:6
 msgid "Rem_ove from exported photos:"
@@ -1068,7 +1068,7 @@ msgstr "_Merilo:"
 
 #: ../extensions/Tools/HashJob/HashJob.cs:53
 msgid "In order to detect duplicates on pictures you imported before 0.5.0, F-Spot needs to analyze your image collection. This is not done by default as it's time consuming. You can Start or Pause this update process using this dialog."
-msgstr "Za zaznavo dvojnikov slik, ki so bile uvožene pred 0.5.0, mora F-spot analizirati zbirko slik. To ni storjeno samodejno, ker vzame veliko časa. S tem pogovornim oknom se lahko postopek posodabljanja zažene ali začasno zaustavi."
+msgstr "Za zaznavanje dvojnikov slik, ki so bile uvožene pred 0.5.0, mora F-spot preučiti zbirko slik. To ni storjeno samodejno, ker vzame veliko časa. S tem pogovornim oknom se lahko postopek posodabljanja zažene ali začasno zaustavi."
 
 #: ../extensions/Tools/HashJob/HashJob.cs:59
 #, csharp-format
@@ -1089,8 +1089,8 @@ msgid "Stopped"
 msgstr "Zaustavljeno"
 
 #: ../extensions/Tools/HashJob/HashJob.addin.xml.h:1
-msgid "Hash for Duplicates"
-msgstr "Zaznaj dvojnike"
+msgid "Check for Duplicates..."
+msgstr "Zaznaj dvojnike ..."
 
 #: ../extensions/Tools/LiveWebGallery/GalleryRequestHandler.cs:107
 msgid "F-Spot Gallery"
@@ -1376,7 +1376,7 @@ msgstr "Datoteka"
 
 #: ../src/CameraFileSelectionDialog.cs:102
 msgid "Select Tag"
-msgstr "Izbor značke"
+msgstr "Izbor oznake"
 
 #: ../src/CameraFileSelectionDialog.cs:138
 msgid "Downloading Previews"
@@ -1430,8 +1430,8 @@ msgid ""
 "the tag to some photos or selecting a different tag in the\n"
 "F-Spot preference dialog."
 msgstr ""
-"Značka \"{0}\" ni uporabljena. Poskusite z dodajanjem\n"
-"značke fotografijam ali izberite drugo značko v\n"
+"Oznaka \"{0}\" ni uporabljena. Poskusite z dodajanjem\n"
+"oznake fotografijam ali izberite drugo značko v\n"
 "pogovornem oknu F-Spot možnosti."
 
 #: ../src/Core/App.cs:283
@@ -1444,8 +1444,8 @@ msgid ""
 "selecting a different tag in the F-Spot preference\n"
 "dialog."
 msgstr ""
-"Značka, ki jo išče F-Spot, ne obstaja. Poskusite\n"
-"z izborom druge značke v pogovornem oknu \n"
+"Oznaka, ki jo išče F-Spot, ne obstaja. Poskusite\n"
+"z izborom druge oznake v pogovornem oknu \n"
 "F-Spot možnosti."
 
 #. Note for translators: Reparented is a picture becoming a version of another one
@@ -1598,7 +1598,7 @@ msgstr "Odpri _z"
 #: ../src/FSpot.addin.xml.h:4
 #: ../src/ui/main_window.ui.h:15
 msgid "Rem_ove Tag"
-msgstr "Ods_trani značko"
+msgstr "Ods_trani oznako"
 
 #: ../src/FSpot.addin.xml.h:5
 #: ../src/f-spot.glade.h:69
@@ -1621,7 +1621,7 @@ msgstr "Orodja"
 #: ../src/FSpot.addin.xml.h:8
 #: ../src/ui/main_window.ui.h:32
 msgid "_Attach Tag"
-msgstr "_Pripni značke"
+msgstr "_Pripni oznake"
 
 #: ../src/FSpot.addin.xml.h:9
 #: ../src/ui/main_window.ui.h:41
@@ -1683,7 +1683,7 @@ msgstr "<b>Prozorni deli</b>"
 
 #: ../src/f-spot.glade.h:19
 msgid "<b>View all pictures imported</b>"
-msgstr "<b>Ogled vseh uvoženih fotografij</b>"
+msgstr "<b>Ogled vseh uvoženih slik</b>"
 
 #: ../src/f-spot.glade.h:20
 msgid "<b>_White Balance</b>"
@@ -1711,11 +1711,11 @@ msgstr "Kot preizkusni _vzorec"
 
 #: ../src/f-spot.glade.h:26
 msgid "Attach Tags:"
-msgstr "Pripenjanje značk:"
+msgstr "Pripenjanje oznak:"
 
 #: ../src/f-spot.glade.h:27
 msgid "Attach tag:"
-msgstr "Pripenjanje značke:"
+msgstr "Pripenjanje oznake:"
 
 #: ../src/f-spot.glade.h:29
 msgid "CD"
@@ -1743,7 +1743,7 @@ msgstr "Ustvari sporočilo"
 
 #: ../src/f-spot.glade.h:35
 msgid "Create _icon for this tag when first used"
-msgstr "Ustvari _ikono za to značko ob prvi uporabi"
+msgstr "Ustvari _ikono za to oznako ob prvi uporabi"
 
 #: ../src/f-spot.glade.h:36
 msgid "Create a mail with the selected photos (possibly resized) attached"
@@ -1801,7 +1801,7 @@ msgstr "Galerija"
 #: ../src/ImportCommand.cs:547
 #: ../src/MainWindow.cs:301
 msgid "Import"
-msgstr "Uvoz"
+msgstr "Uvozi"
 
 #. Translators: this string means 'source of import'
 #: ../src/f-spot.glade.h:53
@@ -1826,11 +1826,11 @@ msgstr "Srednja"
 
 #: ../src/f-spot.glade.h:59
 msgid "Number of photos in selected rolls:"
-msgstr "Število fotografij v izbranih zvitkih:"
+msgstr "Število slik v izbranih zvitkih:"
 
 #: ../src/f-spot.glade.h:60
 msgid "Number of pictures"
-msgstr "Število fotografij"
+msgstr "Število slik"
 
 #: ../src/f-spot.glade.h:61
 msgid "Open _Folder..."
@@ -1843,7 +1843,7 @@ msgstr "Originalna velikost (mogoče zelo velika velikost datotek)"
 #: ../src/f-spot.glade.h:64
 #: ../src/UI.Dialog/ui/EditTagDialog.ui.h:4
 msgid "P_arent Tag:"
-msgstr "S_tarševska značka:"
+msgstr "N_adrejena oznaka:"
 
 #: ../src/f-spot.glade.h:65
 msgid "Pause"
@@ -1868,7 +1868,7 @@ msgstr "Izbor fotografij za kopiranje s fotoaparata"
 
 #: ../src/f-spot.glade.h:72
 msgid "Select a Tag..."
-msgstr "Izbor značke ..."
+msgstr "Izbor oznake ..."
 
 #: ../src/f-spot.glade.h:73
 msgid "Select the camera from which you want to transfer files"
@@ -2100,7 +2100,7 @@ msgstr "Predstavitev"
 
 #: ../src/FullScreenView.cs:82
 msgid "Start slideshow"
-msgstr "Zagon diaprojekcije"
+msgstr "Zagon diapredstavitve"
 
 #: ../src/FullScreenView.cs:128
 msgid "Slide transition:"
@@ -2301,12 +2301,11 @@ msgstr "Mapa ne obstaja"
 msgid "The directory you selected \"{0}\" does not exist.  Please choose a different directory"
 msgstr "Mapa \"{0}\", ki ste jo izbrali, ne obstaja. Izberite drugo mapo."
 
-#. Note for translators: 'Import Tags' is no command, it means 'Tags used in Import'
-#: ../src/ImportCommand.cs:739
-#: ../src/ImportCommand.cs:741
+#: ../src/ImportCommand.cs:738
+#: ../src/ImportCommand.cs:740
 #: ../src/XmpTagsImporter.cs:89
-msgid "Import Tags"
-msgstr "Značke uvažanja"
+msgid "Imported Tags"
+msgstr "Uvožene oznake"
 
 #: ../src/ItemAction.cs:79
 #: ../src/MainWindow.cs:308
@@ -2316,7 +2315,7 @@ msgstr "Zavrti levo"
 
 #: ../src/ItemAction.cs:80
 msgid "Rotate picture left"
-msgstr "Vrtenje fotografije levo"
+msgstr "Vrtenje slike levo"
 
 #: ../src/ItemAction.cs:91
 #: ../src/MainWindow.cs:312
@@ -2326,7 +2325,7 @@ msgstr "Zavrti desno"
 
 #: ../src/ItemAction.cs:92
 msgid "Rotate picture right"
-msgstr "Vrtenje fotografij desno"
+msgstr "Vrtenje slike desno"
 
 #: ../src/ItemAction.cs:103
 msgid "Next picture"
@@ -2334,7 +2333,7 @@ msgstr "Naslednja slika"
 
 #: ../src/ItemAction.cs:124
 msgid "Previous picture"
-msgstr "Prejšnja slika"
+msgstr "Predhodna slika"
 
 #: ../src/MainWindow.cs:303
 msgid "Import new images"
@@ -2370,7 +2369,7 @@ msgstr "Celozaslonski ogled fotografij"
 #: ../src/MainWindow.cs:343
 #: ../src/SingleView.cs:90
 msgid "View photos in a slideshow"
-msgstr "Ogled fotografij v diaprojekciji"
+msgstr "Ogled fotografij v diapredstavitvi"
 
 #: ../src/MainWindow.cs:358
 msgid "Previous photo"
@@ -2402,18 +2401,18 @@ msgstr "Med povezovanjem s fotoaparatom je bila prejeta napaka \"{0}\""
 #, csharp-format
 msgid "Merge the selected tag"
 msgid_plural "Merge the {0} selected tags?"
-msgstr[0] "Združitev {0} izbranih značk?"
-msgstr[1] "Združitev {0} izbrane značke?"
-msgstr[2] "Združitev {0} izbranih značk?"
-msgstr[3] "Združitev {0} izbranih značk?"
+msgstr[0] "Združitev {0} izbranih oznak?"
+msgstr[1] "Združitev {0} izbrane oznake?"
+msgstr[2] "Združitev {0} izbranih oznak?"
+msgstr[3] "Združitev {0} izbranih oznak?"
 
 #: ../src/MainWindow.cs:1873
 msgid "This operation will merge the selected tags and any sub-tags into a single tag."
-msgstr "Z dejanjem bodo združene izbrane značke in morebitne pod-značke v eno samo značko."
+msgstr "Z dejanjem bodo združene izbrane oznake in morebitne pod-oznake v eno samo oznako."
 
 #: ../src/MainWindow.cs:1875
 msgid "_Merge Tags"
-msgstr "Z_družitev značk"
+msgstr "Z_druži oznake"
 
 #: ../src/MainWindow.cs:2080
 #, csharp-format
@@ -2449,7 +2448,7 @@ msgstr "_V redu"
 
 #: ../src/MainWindow.cs:2167
 msgid "Error Deleting Picture"
-msgstr "Napaka med brisanjem fotografije"
+msgstr "Napaka med brisanjem slike"
 
 #: ../src/MainWindow.cs:2172
 #, csharp-format
@@ -2497,7 +2496,7 @@ msgstr[3] "Ali naj se odstranijo {0} izbrane fotografije iz F-Spot ?"
 
 #: ../src/MainWindow.cs:2256
 msgid "If you remove photos from the F-Spot catalog all tag information will be lost. The photos remain on your computer and can be imported into F-Spot again."
-msgstr "Ob odstranjevanju fotografij iz F-Spot kataloga bodo vsi podatki o značkah izgubljeni. Fotografije bodo ostale na računalniku in jih lahko ponovno uvozite v F-Spot."
+msgstr "Ob odstranjevanju fotografij iz F-Spot kataloga bodo vsi podatki o oznakah izgubljeni. Fotografije bodo ostale na računalniku in jih lahko ponovno uvozite v F-Spot."
 
 #: ../src/MainWindow.cs:2257
 msgid "_Remove from Catalog"
@@ -2506,12 +2505,12 @@ msgstr "_Odstrani iz kataloga"
 #: ../src/MainWindow.cs:2320
 #, csharp-format
 msgid "Delete tag \"{0}\"?"
-msgstr "Izbris značke \"{0}\"?"
+msgstr "Izbris oznake \"{0}\"?"
 
 #: ../src/MainWindow.cs:2322
 #, csharp-format
 msgid "Delete the {0} selected tags?"
-msgstr "Izbris {0} izbrane značke ?"
+msgstr "Izbris {0} izbrane oznake ?"
 
 #: ../src/MainWindow.cs:2327
 msgid "photo"
@@ -2525,28 +2524,28 @@ msgstr[3] "fotografije"
 #, csharp-format
 msgid "If you delete this tag, the association with {0} {1} will be lost."
 msgid_plural "If you delete these tags, the association with {0} {1} will be lost."
-msgstr[0] "Ob izbrisu značk, bo povezljivost z {0} {1} izgubljena."
-msgstr[1] "Ob izbrisu značke, bo povezljivost z {0} {1} izgubljena."
-msgstr[2] "Ob izbrisu značk, bo povezljivost z {0} {1} izgubljena."
-msgstr[3] "Ob izbrisu značk, bo povezljivost z {0} {1} izgubljena."
+msgstr[0] "Ob izbrisu oznak, bo povezljivost z {0} {1} izgubljena."
+msgstr[1] "Ob izbrisu oznake, bo povezljivost z {0} {1} izgubljena."
+msgstr[2] "Ob izbrisu oznak, bo povezljivost z {0} {1} izgubljena."
+msgstr[3] "Ob izbrisu oznak, bo povezljivost z {0} {1} izgubljena."
 
 #: ../src/MainWindow.cs:2334
 msgid "_Delete tag"
 msgid_plural "_Delete tags"
-msgstr[0] "Iz_bris značk"
-msgstr[1] "Iz_bris značke"
-msgstr[2] "Iz_bris značk"
-msgstr[3] "Iz_bris značk"
+msgstr[0] "Iz_briši oznake"
+msgstr[1] "Iz_briši oznako"
+msgstr[2] "Iz_briši oznaki"
+msgstr[3] "Iz_briši oznake"
 
 #. A Category is not empty. Can not delete it.
 #: ../src/MainWindow.cs:2348
 msgid "Tag is not empty"
-msgstr "Značka ni prazna"
+msgstr "Oznaka ni prazna"
 
 #: ../src/MainWindow.cs:2349
 #, csharp-format
 msgid "Can not delete tags that have tags within them.  Please delete tags under \"{0}\" first"
-msgstr "Ni mogoče izbrisati značk, ki imajo značke znotraj njih. Najprej izbrišite značke pod \"{0}\""
+msgstr "Ni mogoče izbrisati oznak, ki imajo oznake znotraj njih. Najprej izbrišite oznake pod \"{0}\""
 
 #: ../src/MainWindow.cs:2789
 msgid "Rotate selected photo left"
@@ -2568,19 +2567,19 @@ msgstr[3] "Vrtenje izbranih fotografij desno"
 #, csharp-format
 msgid "Find _Selected Tag"
 msgid_plural "Find _Selected Tags"
-msgstr[0] "Iskanje _izbranih značk"
-msgstr[1] "Iskanje _izbrane značke "
-msgstr[2] "Iskanje _izbranih značk _z"
-msgstr[3] "Iskanje _izbranih značk"
+msgstr[0] "Išči _izbranih oznak"
+msgstr[1] "Išči _izbrano oznako "
+msgstr[2] "Išči _izbrani oznaki"
+msgstr[3] "Išči _izbrane oznake"
 
 #: ../src/MainWindow.cs:2817
 #, csharp-format
 msgid "Find Selected Tag _With"
 msgid_plural "Find Selected Tags _With"
-msgstr[0] "Iskanje izbranih značk _z"
-msgstr[1] "Iskanje izbrane značke _z"
-msgstr[2] "Iskanje izbranih značk _z"
-msgstr[3] "Iskanje izbranih značk _z"
+msgstr[0] "Išči izbranih oznakih _z"
+msgstr[1] "Išči izbrano oznako _z"
+msgstr[2] "Išči izbrani oznaki _z"
+msgstr[3] "Išči izbrane oznake _z"
 
 #: ../src/MainWindow.cs:2858
 msgid "Create New Version?"
@@ -2717,7 +2716,7 @@ msgstr "Vrsta scene"
 #. items insensitve
 #: ../src/PhotoTagMenu.cs:74
 msgid "(No Tags)"
-msgstr "(Ni značk)"
+msgstr "(Ni oznak)"
 
 #: ../src/PhotoVersionCommands.cs:58
 msgid "Create New Version"
@@ -2966,11 +2965,11 @@ msgstr "Ime je že v uporabi"
 
 #: ../src/TagCommands.cs:144
 msgid "Create New Tag"
-msgstr "Ustvari novo značko"
+msgstr "Ustvari novo oznako"
 
 #: ../src/TagCommands.cs:145
 msgid "Name of New Tag:"
-msgstr "Ime nove značke:"
+msgstr "Ime nove oznake:"
 
 #: ../src/TagPopup.cs:26
 #, csharp-format
@@ -2984,39 +2983,39 @@ msgstr[3] "Iskanje"
 #: ../src/TagPopup.cs:36
 #: ../src/Widgets/TagMenu.cs:91
 msgid "Create New Tag..."
-msgstr "Ustvari novo značko ..."
+msgstr "Ustvari novo oznako ..."
 
 #: ../src/TagPopup.cs:42
-msgid "Edit Selected Tag..."
-msgstr "Uredi izbrane oznake ..."
+msgid "Edit Tag..."
+msgstr "Urejanje oznake ..."
 
 #: ../src/TagPopup.cs:46
 msgid "Delete Tag"
 msgid_plural "Delete Tags"
-msgstr[0] "Izbriši značke"
-msgstr[1] "Izbriši značko"
-msgstr[2] "Izbriši znački"
-msgstr[3] "Izbriši značke"
+msgstr[0] "Izbriši oznake"
+msgstr[1] "Izbriši oznako"
+msgstr[2] "Izbriši oznaki"
+msgstr[3] "Izbriši oznake"
 
 #: ../src/TagPopup.cs:52
 msgid "Attach Tag to Selection"
 msgid_plural "Attach Tags to Selection"
-msgstr[0] "Dodajanje značk izboru"
-msgstr[1] "Dodajanje značke izboru"
-msgstr[2] "Dodajanje značk izboru"
-msgstr[3] "Dodajanje značk izboru"
+msgstr[0] "Dodajanje oznak izboru"
+msgstr[1] "Dodajanje oznake izboru"
+msgstr[2] "Dodajanje oznak izboru"
+msgstr[3] "Dodajanje oznak izboru"
 
 #: ../src/TagPopup.cs:56
 msgid "Remove Tag From Selection"
 msgid_plural "Remove Tags From Selection"
-msgstr[0] "Odstranitev značk iz izbora"
-msgstr[1] "Odstranitev značke iz izbora"
-msgstr[2] "Odstranitev značk iz izbora"
-msgstr[3] "Odstranitev značk iz izbora"
+msgstr[0] "Odstranitev oznak iz izbora"
+msgstr[1] "Odstranitev oznake iz izbora"
+msgstr[2] "Odstranitev oznak iz izbora"
+msgstr[3] "Odstranitev oznak iz izbora"
 
 #: ../src/TagPopup.cs:62
 msgid "Merge Tags"
-msgstr "Združitev značk"
+msgstr "Združitev oznak"
 
 #: ../src/TagQueryWidget.cs:34
 #, csharp-format
@@ -3053,11 +3052,11 @@ msgstr "Ne {0}"
 
 #: ../src/TagQueryWidget.cs:278
 msgid "Drag tags here to search for them"
-msgstr "Za iskanje po značkah je značke treba povleči sem"
+msgstr "Za iskanje po oznakah jih povlecite sem"
 
 #: ../src/TagSelectionWidget.cs:497
 msgid "Error renaming tag"
-msgstr "Napaka preimenovanja značke"
+msgstr "Napaka med preimenovanjem oznake"
 
 #: ../src/TagStore.cs:203
 msgid "Favorites"
@@ -3065,7 +3064,7 @@ msgstr "Priljubljeno"
 
 #: ../src/TagStore.cs:208
 msgid "Hidden"
-msgstr "Skrite"
+msgstr "Skrito"
 
 #: ../src/TagStore.cs:216
 msgid "People"
@@ -3113,7 +3112,7 @@ msgstr "Posodabljanje sličic"
 #: ../src/ThumbnailCommand.cs:28
 #, csharp-format
 msgid "Updating picture \"{0}\""
-msgstr "Posodabljanje fotografije \"{0}\""
+msgstr "Posodabljanje slike \"{0}\""
 
 #: ../src/UI.Dialog/AboutDialog.cs:76
 msgid "Photo management for GNOME"
@@ -3125,7 +3124,7 @@ msgstr "Avtorske pravice © 2003-2009 Novell Inc."
 
 #: ../src/UI.Dialog/AboutDialog.cs:100
 msgid "translator-credits"
-msgstr "Prevedel: Andrej Žnidaršič <andrej.znidarsic@gmail.com>"
+msgstr "Andrej Žnidaršič <andrej.znidarsic@gmail.com>"
 
 #: ../src/UI.Dialog/AboutDialog.cs:105
 msgid "F-Spot Website"
@@ -3176,7 +3175,7 @@ msgstr "Razmerje po meri"
 #: ../src/UI.Dialog/EditTagIconDialog.cs:46
 #, csharp-format
 msgid "Edit Icon for Tag {0}"
-msgstr "Urejanje ikone kot značke {0}"
+msgstr "Urejanje ikone za oznako {0}"
 
 #: ../src/UI.Dialog/EditTagIconDialog.cs:68
 msgid "Select Photo from file"
@@ -3194,9 +3193,9 @@ msgid ""
 msgstr ""
 "\n"
 "<b>S Fotografije</b>\n"
-" Kot ikono za to značko lahko uporabite eno od fotografij iz vaše\n"
+" Kot ikono za to oznako lahko uporabite eno od fotografij iz vaše\n"
 " knjižnice. Najprej morate imeti vsaj eno fotografijo označeno\n"
-" s to značko. Označite fotografijo kot '{0}' in se vrnite sem,\n"
+" s to oznako. Označite fotografijo kot '{0}' in se vrnite sem,\n"
 "da jo lahko uporabite kot ikono."
 
 #: ../src/UI.Dialog/EditTagIconDialog.cs:168
@@ -3206,7 +3205,7 @@ msgstr "Ni mogoče naložiti slike."
 #: ../src/UI.Dialog/EditTagIconDialog.cs:169
 #, csharp-format
 msgid "Unable to load \"{0}\" as icon for the tag"
-msgstr "Ni mogoče naložiti \"{0}\" kot ikono za značko"
+msgstr "Ni mogoče naložiti \"{0}\" kot ikono za oznako"
 
 #: ../src/UI.Dialog/EditTagIconDialog.cs:207
 #, csharp-format
@@ -3257,7 +3256,7 @@ msgstr "Razmerje"
 
 #: ../src/UI.Dialog/ThreadProgressDialog.cs:56
 msgid "Retry"
-msgstr "Poskusi znova"
+msgstr "Poskusi ponovno"
 
 #: ../src/UI.Dialog/ui/AdjustTimeDialog.ui.h:1
 msgid "0000:00:00 00:00:00"
@@ -3293,7 +3292,7 @@ msgstr "Trenutni datum:"
 
 #: ../src/UI.Dialog/ui/AdjustTimeDialog.ui.h:11
 msgid "Space all photos by"
-msgstr "Razmakne vse fotografije za"
+msgstr "Razmakni vse fotografije za"
 
 #: ../src/UI.Dialog/ui/AdjustTimeDialog.ui.h:12
 msgid "difference:"
@@ -3301,7 +3300,7 @@ msgstr "razlika:"
 
 #: ../src/UI.Dialog/ui/AdjustTimeDialog.ui.h:13
 msgid "min. Starting at {0}"
-msgstr "min. začetek pri {0}"
+msgstr "najmanjši začetek pri {0}"
 
 #: ../src/UI.Dialog/ui/DateRangeDialog.ui.h:1
 msgid "<b>End Date</b>"
@@ -3333,7 +3332,7 @@ msgstr "<small></small>"
 
 #: ../src/UI.Dialog/ui/EditTagDialog.ui.h:2
 msgid "Edit Tag"
-msgstr "Urejanje značke"
+msgstr "Urejanje oznake"
 
 #: ../src/UI.Dialog/ui/EditTagDialog.ui.h:3
 msgid "Edit icon"
@@ -3361,11 +3360,11 @@ msgstr "<b>Predogled</b>"
 
 #: ../src/UI.Dialog/ui/EditTagIconDialog.ui.h:5
 msgid "Design icon from"
-msgstr "Design ikone od "
+msgstr "Oblika ikone od "
 
 #: ../src/UI.Dialog/ui/EditTagIconDialog.ui.h:6
 msgid "Edit Tag Icon"
-msgstr "Urejanje ikone značke"
+msgstr "Urejanje ikone oznake"
 
 #: ../src/UI.Dialog/ui/EditTagIconDialog.ui.h:7
 msgid "No _image"
@@ -3389,7 +3388,7 @@ msgstr "Možnosti F-Spot"
 
 #: ../src/UI.Dialog/ui/PreferenceDialog.ui.h:4
 msgid "F-Spot appearance:"
-msgstr "F-spot videz:"
+msgstr "Videz F-spot:"
 
 #: ../src/UI.Dialog/ui/PreferenceDialog.ui.h:5
 msgid ""
@@ -3409,7 +3408,7 @@ msgstr "Ločeno od slikovnih datotek"
 
 #: ../src/UI.Dialog/ui/PreferenceDialog.ui.h:9
 msgid "Store tags and descriptions for photos:"
-msgstr "Shranjevanje značke in opise fotografij:"
+msgstr "Shranjevanje oznak in opisov fotografij:"
 
 #: ../src/UI.Dialog/ui/PreferenceDialog.ui.h:10
 msgid "When importing photos, copy them to:"
@@ -3453,7 +3452,7 @@ msgstr "Kopiraj"
 
 #: ../src/ui/main_window.ui.h:8
 msgid "Create New _Tag..."
-msgstr "Ustvari novo _značko ..."
+msgstr "Ustvari novo _oznako ..."
 
 #: ../src/ui/main_window.ui.h:9
 msgid "Create _New Version..."
@@ -3493,7 +3492,7 @@ msgstr "Stranska v_rstica"
 
 #: ../src/ui/main_window.ui.h:23
 msgid "T_ags"
-msgstr "Zn_ačke"
+msgstr "Ozn_ake"
 
 #: ../src/ui/main_window.ui.h:25
 msgid "Thumbnail _elements"
@@ -3509,7 +3508,7 @@ msgstr "Pogled"
 
 #: ../src/ui/main_window.ui.h:33
 msgid "_Attach Tag to Selection"
-msgstr "_Pripni značko izboru"
+msgstr "_Pripni oznako izboru"
 
 #: ../src/ui/main_window.ui.h:35
 msgid "_Clear Rating Filter"
@@ -3521,7 +3520,7 @@ msgstr "_Počisti filter zvitkov"
 
 #: ../src/ui/main_window.ui.h:38
 msgid "_Components"
-msgstr "_Komponente"
+msgstr "_Sestavni deli"
 
 #: ../src/ui/main_window.ui.h:39
 msgid "_Contents"
@@ -3533,15 +3532,15 @@ msgstr "_Datumi"
 
 #: ../src/ui/main_window.ui.h:42
 msgid "_Delete Selected Tag"
-msgstr "_Izbriši izbrano značko"
+msgstr "_Izbriši izbrano oznako"
 
 #: ../src/ui/main_window.ui.h:43
 msgid "_Delete Version"
 msgstr "_Izbriši različico"
 
 #: ../src/ui/main_window.ui.h:45
-msgid "_Edit Selected Tag..."
-msgstr "_Uredi izbrane oznake ..."
+msgid "_Edit Tag..."
+msgstr "_Uredi oznako ..."
 
 #: ../src/ui/main_window.ui.h:46
 msgid "_Export to"
@@ -3553,7 +3552,7 @@ msgstr "_Filmski trak"
 
 #: ../src/ui/main_window.ui.h:50
 msgid "_Hidden"
-msgstr "_Skrite"
+msgstr "_Skrito"
 
 #: ../src/ui/main_window.ui.h:51
 msgid "_Import..."
@@ -3585,7 +3584,7 @@ msgstr "_Ocene"
 
 #: ../src/ui/main_window.ui.h:60
 msgid "_Remove Tag From Selection"
-msgstr "_Odstrani značko iz izbora"
+msgstr "_Odstrani oznako iz izbora"
 
 #: ../src/ui/main_window.ui.h:61
 msgid "_Rename Version"
@@ -3597,7 +3596,7 @@ msgstr "_Obrnjen vrstni red"
 
 #: ../src/ui/main_window.ui.h:63
 msgid "_Select Import Rolls..."
-msgstr "Izberi _uvozne zvitke"
+msgstr "Izberi _uvozne zvitke ..."
 
 #: ../src/ui/main_window.ui.h:64
 msgid "_Set Date Range..."
@@ -3617,11 +3616,11 @@ msgstr "_Majhne"
 
 #: ../src/ui/main_window.ui.h:69
 msgid "_Tag Icons"
-msgstr "_Ikone značk"
+msgstr "_Ikone oznak"
 
 #: ../src/ui/main_window.ui.h:70
 msgid "_Tags"
-msgstr "_Značke"
+msgstr "O_znake"
 
 #: ../src/ui/main_window.ui.h:71
 msgid "_Timeline"
@@ -3639,11 +3638,11 @@ msgstr "_Neoznačene fotografije"
 msgid "_Version"
 msgstr "_Različica"
 
-#: ../src/Updater.cs:616
+#: ../src/Updater.cs:622
 msgid "Updating F-Spot Database"
 msgstr "Posodabljanje F-Spot podatkovne zbirke"
 
-#: ../src/Updater.cs:617
+#: ../src/Updater.cs:623
 msgid "Please wait while your F-Spot gallery's database is updated. This may take some time."
 msgstr "Počakati je treba, da se podatkovna zbirka F-Spotove galerije do konca posodobi. Postopek je lahko dolgotrajen."
 
@@ -3702,7 +3701,7 @@ msgstr "Prilagojena velikost"
 
 #: ../src/Widgets/CustomPrintWidget.cs:170
 msgid "White borders"
-msgstr "Bela obroba"
+msgstr "Bele obrobe"
 
 #: ../src/Widgets/CustomPrintWidget.cs:176
 msgid "Custom Text"
@@ -3730,7 +3729,7 @@ msgstr "Natisni oznake fotografij"
 
 #: ../src/Widgets/CustomPrintWidget.cs:186
 msgid "Print photo comment"
-msgstr "Natisni opombe k fotografijam"
+msgstr "Natisni opombe fotografij"
 
 #: ../src/Widgets/EditorPage.cs:30
 #: ../src/Widgets/Sidebar.cs:54
@@ -3739,7 +3738,7 @@ msgstr "Urejanje"
 
 #: ../src/Widgets/EditorPage.cs:198
 msgid "This tool requires an active selection. Please select a region of the photo and try the operation again"
-msgstr "Orodje zahteva dejavno izbiro. Izberite ustrezno območje na fotografiji in poskusite ponovno."
+msgstr "Orodje zahteva dejavno izbiro. Izberite ustrezno območje na fotografiji in poskusite ponovno"
 
 #: ../src/Widgets/EditorPage.cs:216
 msgid "Error saving adjusted photo"
@@ -3854,7 +3853,7 @@ msgstr ""
 
 #: ../src/Widgets/InfoBox.cs:672
 msgid "(At least one File not found)"
-msgstr "(ni najdene niti ene datoteke)"
+msgstr "(ni najdene vsaj ene datoteke)"
 
 #: ../src/Widgets/InfoBox.cs:789
 msgid "Show Photo Name"
@@ -3912,7 +3911,7 @@ msgstr "Metapodatki niso na voljo"
 
 #: ../src/Widgets/OpenWithMenu.cs:71
 msgid "No applications available"
-msgstr "Na voljo ni ustreznega programa"
+msgstr "Ni razpoložljivih programov"
 
 #: ../src/Widgets/RatingMenuItem.cs:56
 msgid "Rating:"
@@ -3928,17 +3927,21 @@ msgstr "Mesto"
 
 #: ../src/XmpTagsImporter.cs:93
 msgid "State"
-msgstr "Stanje"
+msgstr "Regija"
 
 #. namespace
 #: ../tools/f-spot-screensaver.desktop.in.h:1
 msgid "Display a slideshow from F-Spot"
-msgstr "Pokaže F-Spotovo diaprojekcijo"
+msgstr "Prikaže F-Spotovo diapredstavitev"
 
 #: ../tools/f-spot-screensaver.desktop.in.h:2
 msgid "F-Spot photos"
 msgstr "F-Spot fotografije"
 
+#~ msgid "Edit Selected Tag..."
+#~ msgstr "Uredi izbrane oznake ..."
+#~ msgid "_Edit Selected Tag..."
+#~ msgstr "_Uredi izbrane oznake ..."
 #~ msgid "Package"
 #~ msgstr "Paket"
 #~ msgid "Extension Installation"
