@@ -1,0 +1,1253 @@
+# Andrej Žnidaršič <andrej.znidarsic@gmail.com>, 2009 - 2010
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: f-spot documentation\n"
+"POT-Creation-Date: 2010-02-28 09:00+0000\n"
+"PO-Revision-Date: \n"
+"Last-Translator: Andrej Žnidaršič <andrej.znidarsic@gmail.com>\n"
+"Language-Team: Slovenian GNOME Translation Team <gnome-si@googlegroups.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || n%100==4 ? 3 : 0);\n"
+"X-Poedit-Language: Slovenian\n"
+"X-Poedit-Country: SLOVENIA\n"
+"X-Poedit-SourceCharset: utf-8\n"
+
+#. When image changes, this message will be marked fuzzy or untranslated for you.
+#. It doesn't matter what you translate it to: it's not used at all.
+#: C/f-spot.xml:163(None)
+msgid "@@image: 'figures/f-spot-crop.png'; md5=63e18c96702aea4701024837a13ae2d9"
+msgstr "a"
+
+#. When image changes, this message will be marked fuzzy or untranslated for you.
+#. It doesn't matter what you translate it to: it's not used at all.
+#: C/f-spot.xml:187(None)
+msgid "@@image: 'figures/f-spot-straighten.png'; md5=ceeff0cac633d06599fa5760cc4bc568"
+msgstr "a"
+
+#. When image changes, this message will be marked fuzzy or untranslated for you.
+#. It doesn't matter what you translate it to: it's not used at all.
+#: C/f-spot.xml:206(None)
+msgid "@@image: 'figures/f-spot-adjust-colors.png'; md5=6a5d9eaaaaf238ccbf70552bc073898c"
+msgstr "a"
+
+#. When image changes, this message will be marked fuzzy or untranslated for you.
+#. It doesn't matter what you translate it to: it's not used at all.
+#: C/f-spot.xml:224(None)
+msgid "@@image: 'figures/f-spot-autocolor.png'; md5=240c4a86c95c9507755fe790bef0e24a"
+msgstr "a"
+
+#. When image changes, this message will be marked fuzzy or untranslated for you.
+#. It doesn't matter what you translate it to: it's not used at all.
+#: C/f-spot.xml:241(None)
+msgid "@@image: 'figures/f-spot-desaturate.png'; md5=fa54dfd08171658d720be71b6d367139"
+msgstr "a"
+
+#. When image changes, this message will be marked fuzzy or untranslated for you.
+#. It doesn't matter what you translate it to: it's not used at all.
+#: C/f-spot.xml:258(None)
+msgid "@@image: 'figures/f-spot-sepia.png'; md5=154d6e34903664dbd776f2bef405ce91"
+msgstr "a"
+
+#. When image changes, this message will be marked fuzzy or untranslated for you.
+#. It doesn't matter what you translate it to: it's not used at all.
+#: C/f-spot.xml:289(None)
+msgid "@@image: 'figures/f-spot-red-eye.png'; md5=743d0a2ccc9b2fa8fa314855c225cd31"
+msgstr "a"
+
+#. When image changes, this message will be marked fuzzy or untranslated for you.
+#. It doesn't matter what you translate it to: it's not used at all.
+#: C/f-spot.xml:316(None)
+msgid "@@image: 'figures/f-spot-soft-focus.png'; md5=14d1437ce49c83f3ebbcf70b7047ffbe"
+msgstr "a"
+
+#. When image changes, this message will be marked fuzzy or untranslated for you.
+#. It doesn't matter what you translate it to: it's not used at all.
+#: C/f-spot.xml:608(None)
+msgid "@@image: 'figures/f-spot-fullscreen.png'; md5=86040e20ebf1015f6489a56e9589f063"
+msgstr "a"
+
+#. When image changes, this message will be marked fuzzy or untranslated for you.
+#. It doesn't matter what you translate it to: it's not used at all.
+#: C/f-spot.xml:621(None)
+msgid "@@image: 'figures/f-spot-slideshow.png'; md5=84a69bc3bb7a1b8d04c967d3a66e6f23"
+msgstr "a"
+
+#: C/f-spot.xml:5(title)
+msgid "The F-Spot Manual"
+msgstr "F-Spot priročnik"
+
+#: C/f-spot.xml:7(para)
+#: C/f-spot.xml:9(subtitle)
+msgid "This is the user manual for F-Spot, a GNOME personal photo manager."
+msgstr "To je uporabniški priročnik za F-Spot, GNOME upravljalnik fotografij"
+
+#: C/f-spot.xml:11(year)
+msgid "2007-2009"
+msgstr "2007-2009"
+
+#: C/f-spot.xml:12(holder)
+msgid "Aaron Bockover, Gabriel Burt, Miguel de Icaza, Bengt Thuree"
+msgstr "Aaron Bockover, Gabriel Burt, Miguel de Icaza, Bengt Thuree"
+
+#: C/f-spot.xml:15(publishername)
+msgid "GNOME Documentation Project"
+msgstr "GNOME projekt dokumentacije"
+
+#: C/f-spot.xml:19(firstname)
+msgid "Miguel"
+msgstr "Miguel"
+
+#: C/f-spot.xml:20(surname)
+msgid "de Icaza"
+msgstr "de Icaza"
+
+#: C/f-spot.xml:23(firstname)
+msgid "Aaron"
+msgstr "Aaron"
+
+#: C/f-spot.xml:24(surname)
+msgid "Bockover"
+msgstr "Bockover"
+
+#: C/f-spot.xml:27(firstname)
+msgid "Bengt"
+msgstr "Bengt"
+
+#: C/f-spot.xml:28(surname)
+msgid "Thuree"
+msgstr "Thuree"
+
+#: C/f-spot.xml:31(firstname)
+msgid "Gabriel"
+msgstr "Gabriel"
+
+#: C/f-spot.xml:32(surname)
+msgid "Burt"
+msgstr "Burt"
+
+#: C/f-spot.xml:35(firstname)
+msgid "Alexandre"
+msgstr "Alexandre"
+
+#: C/f-spot.xml:36(surname)
+msgid "Prokoudine"
+msgstr "Prokoudine"
+
+#: C/f-spot.xml:39(firstname)
+msgid "Stephane"
+msgstr "Stephane"
+
+#: C/f-spot.xml:40(surname)
+msgid "Delcroix"
+msgstr "Delcroix"
+
+#: C/f-spot.xml:46(revnumber)
+msgid "0.5"
+msgstr "0,5"
+
+#: C/f-spot.xml:47(date)
+msgid "2008-09-25"
+msgstr "2008-09-25"
+
+#: C/f-spot.xml:50(revnumber)
+msgid "0.4"
+msgstr "0,4"
+
+#: C/f-spot.xml:51(date)
+msgid "2008-09-12"
+msgstr "2008-09-12"
+
+#: C/f-spot.xml:54(revnumber)
+msgid "0.3"
+msgstr "0,3"
+
+#: C/f-spot.xml:55(date)
+msgid "2007-07-26"
+msgstr "26-07-2007"
+
+#: C/f-spot.xml:61(title)
+msgid "Organizing your photos"
+msgstr "Organizacija vaših fotografij"
+
+#: C/f-spot.xml:64(title)
+msgid "Import"
+msgstr "Uvažanje"
+
+#: C/f-spot.xml:66(para)
+msgid "You can import photos from your hard drive or your camera. When you import your photos into F-Spot from your camera, it will always make a copy of them, leaving you free to clear your camera's memory. By default, F-Spot will make a copy of photos imported from your hard drive. Uncheck the <guilabel>Copy</guilabel> option on the import dialog or hold <keycap>Shift</keycap> when dragging photos into F-Spot if you do not wish to copy them from your hard drive."
+msgstr "Fotografije lahko uvozite s trdega diska ali fotoaparata. V primeru uvoza fotografij v F-Spot s fotoaparata, bo F-Spot vedno naredil njihovo kopijo in vam omogočil čiščenje pomnilnika vašega fotoaparata. Privzeto F-Spot naredi kopijo fotografij uvoženih s trdega diska. V primeru da datotek ne želite kopirati s trdega diska, odkljukajte možnost <guilabel>Kopiranje datotek v mapo fotografij</guilabel> v pogovornem oknu uvoza ali pa med vlečenjem fotografij v F-Spot držite tipko <keycap>Dvigalka</keycap>."
+
+#: C/f-spot.xml:76(para)
+msgid "By default, F-Spot copies your photos to the <filename class=\"directory\">~/Photos</filename> folder. You can change the folder F-Spot uses in <guilabel>Preferences</guilabel> dialog (<menuchoice><guimenu>Edit</guimenu><guimenuitem>Preferences</guimenuitem></menuchoice>). You can also disable physical copying of images to that directory and make F-Spot only reference to existing files. For that you need to disable checkbox <guilabel>Copy files to the Photos folder</guilabel>."
+msgstr "Privzeto F-Spot kopira vaše fotografije v mapo <filename class=\"directory\">~/Slike</filename>. Mapo, ki jo uporablja F-Spot lahko spremenite v pogovornem oknu <guilabel>Možnosti</guilabel> (<menuchoice><guimenu>Uredi</guimenu><guimenuitem>Možnosti</guimenuitem></menuchoice>)."
+
+#: C/f-spot.xml:85(para)
+msgid "If there is a tiny chance that some of your photos are already imported from the chosen source, you can use <guilabel>Detect duplicates</guilabel> option. In this case F-Spot will try to find out if exactly this image is already present in the database and thus new copy of it should not be imported."
+msgstr "V primeru da ste morda nekatere fotografije iz izbranega vira že uvozili, lahko uporabite možnost <guilabel>Zaznavanje dvojnikov</guilabel>. F-Spot bo poskusil ugotoviti ali natanko ta slika že obstaja v podatkovni zbirki. V tem primeru kopija slike ne bo uvožena."
+
+#: C/f-spot.xml:92(para)
+msgid "If all the photos you are importing at one time are from a particular event, or have some other characteristic in common, you can create a tag for them so you can later find them with ease. To do this, follow the instructions from <xref linkend=\"tag\"/> to create a new tag, then when you are importing them, check the button for <guilabel>Attach Tag</guilabel> and choose the tag you created."
+msgstr "V primeru da so vse uvožene fotografije z določenega dogodka, ali imajo neko drugo skupno značilnost, lahko za njih ustvarite oznako zato da jih kasneje lahko najdete. Za to sledite navodilom z  <xref linkend=\"tag\"/> za ustvarjanje nove oznake, nato med uvažanjem označite gumb <guilabel>Pripni oznako</guilabel> in izberite ustvarjeno oznako."
+
+#: C/f-spot.xml:102(para)
+msgid "F-Spot uses a database stored at <filename>~/.config/f-spot/photos.db</filename>. Note, to access it, use the sqlite3 command. You can also manually specify path to a database by running F-Spot with <option>-b</option> option."
+msgstr "F-Spot uporablja podatkovno zbirko shranjeno v <filename>~/.config/f-spot/photos.db</filename>. Za dostop do nje uporabite ukaz sqlite3. Pot do podatkovne zbirke lahko ročno navedete z zagonom F-Spot z možnostjo <option>-b</option>."
+
+#: C/f-spot.xml:110(para)
+msgid "After an import, F-Spot will display the pictures of the latest import roll only. Read <xref linkend=\"enjoying-search\"/> to learn how to deal with import rolls."
+msgstr "Po uvozu bo F-Spot prikazal le slike zadnjega uvoznega zvitka. Preberite <xref linkend=\"enjoying-search\"/> za podrobnosti o upravljanju z uvoznimi zvitki."
+
+#: C/f-spot.xml:115(para)
+msgid "You can also import directly from Mozilla <ulink url=\"http://www.mozilla.com/en-US/firefox/\">Firefox</ulink> and <ulink url=\"http://www.mozilla.com/en-US/thunderbird/\">Thunderbird</ulink> using <ulink url=\"https://addons.mozilla.org/en-US/firefox/addon/7091\">Firefox</ulink> and <ulink url=\"https://addons.mozilla.org/en-US/thunderbird/addon/7011\">Thunderbird</ulink> F-Spot importer extensions written by <ulink url=\"http://personalpages.tds.net/~cdovel/\">Pizzach</ulink>."
+msgstr "Uvoziti je mogoče tudi neposredno iz Mozilla <ulink url=\"http://www.mozilla.com/en-US/firefox/\">Firefox</ulink> in <ulink url=\"http://www.mozilla.com/en-US/thunderbird/\">Thunderbird</ulink> z uporabo <ulink url=\"https://addons.mozilla.org/en-US/firefox/addon/7091\">Firefox</ulink> in <ulink url=\"https://addons.mozilla.org/en-US/thunderbird/addon/7011\">Thunderbird</ulink> razširitve F-Spot uvoznik, ki jo je napisal<ulink url=\"http://personalpages.tds.net/~cdovel/\">Pizzach</ulink>."
+
+#: C/f-spot.xml:127(title)
+msgid "Edit"
+msgstr "Urejanje"
+
+#: C/f-spot.xml:129(para)
+msgid "If you double click or press enter on an image, you enter Edit mode, where you can remove red-eye, crop, and adjust brightness and colors."
+msgstr "V primeru da dvojno kliknite ali pritisnete vnosno tipko, vstopite v način urejanje, kjer lahko odstranite rdeče oči, obrežete ter prilagodite svetlost in barve."
+
+#: C/f-spot.xml:135(title)
+msgid "Versions"
+msgstr "Različice"
+
+#: C/f-spot.xml:137(para)
+msgid "When you edit your photos, a new copy (called a version) is created, so your original is never altered. After your first edit to a photo, subsequent edits will modify the same version. If you want to create multiple versions of your photo, perhaps with different cropping or coloring, you can do so via the <menuchoice><guimenu>File</guimenu><guimenuitem>Create new version</guimenuitem></menuchoice> option."
+msgstr "Ko urejate fotografije, je ustvarjena nova kopija (imenovana različica), tako izvorna fotografija ni nikoli spremenjena. Po prvem urejanju fotografije bodo naslednja urejanja spremenila isto različico. V primeru da želite ustvariti več različic fotografije, morda z drugim obrezovanjem ali barvami lahko to storite preko možnosti  <menuchoice><guimenu>Fotografija</guimenu><guimenuitem>Ustvari novo različico</guimenuitem></menuchoice>."
+
+#: C/f-spot.xml:148(title)
+msgid "Crop"
+msgstr "Obreži"
+
+#: C/f-spot.xml:150(para)
+msgid "Cropping an image is a great way to improve the quality of a photograph by change how it is framed. You crop a photo by selecting the part of the photo you want to keep. If you want your photo to be the exact dimensions necessary for a certain print size, you can constrain the kind of selection F-Spot will allow you to draw by choosing the appropriate size from the constraint drop down. See the <xref linkend=\"edit-remove-red-eye\"/> below for details on making a selection on your photo."
+msgstr "Obrezovanje slike je dober način za izboljšanje kakovosti slike s spremembo okvirjanja. Fotografijo lahko obrežete z izbiro dela fotografije, ki ga želite obdržati. V primeru da želite imeti fotografijo natančnih mer zahtevanih za določeno velikost tiskanja, lahko z izbiro primerne velikosti s spustnega menija omejitev omejite izbiro, ki vam jo bo dovolil narisati F-Spot. Za podrobnosti o izbiri na fotografiji si oglejte <xref linkend=\"edit-remove-red-eye\"/> spodaj."
+
+#: C/f-spot.xml:160(title)
+msgid "Crop tool"
+msgstr "Orodje obreži"
+
+#: C/f-spot.xml:167(para)
+#: C/f-spot.xml:368(para)
+msgid "Once you have made your crop selection, you must click the crop button beneath the image to finalize the crop. If you are working with the original photo, cropping creates a new version your photo."
+msgstr "Ko ste naredili izbor obreza, morate za končanje obrezovanja klikniti gumb pod sliko. V primeru da delate z izvorno fotografijo, obrezovanje ustvari novo različico vaše fotografije."
+
+#: C/f-spot.xml:175(title)
+msgid "Straighten"
+msgstr "Poravnava"
+
+#: C/f-spot.xml:177(para)
+msgid "Straighten effect is a tool to level a photo, quite helpful for landscapes taken without a tripod, when (imaginary) line of horizon is not at 0°. This tool rotates an image by a specified angle and automagically crops the resulted image, so that you always see a perfect rectangle."
+msgstr "Učinek poravnave je orodje za poravnanje fotografij, precej uporabno za sliko pokrajine posnete brez stativa, ko (navidezna) črta horizonta ni na 0°. To orodje zavrti sliko za določen kot in samodejno čarobno obreže nastalo sliko, tako da vedno vidite idealen pravokotnik."
+
+#: C/f-spot.xml:184(title)
+msgid "Straighten tool"
+msgstr "Orodje poravnave"
+
+#: C/f-spot.xml:194(title)
+msgid "Adjust Colors"
+msgstr "Prilagajanje barv"
+
+#: C/f-spot.xml:196(para)
+msgid "To adjust the brightness, contrast, and colors of a photo, first click the <guibutton>Adjust the photo colors</guibutton> icon to open the adjustment dialog. Change then some settings and save them with <guibutton>OK</guibutton>."
+msgstr "Za prilagajanje svetlosti, kontrasta in barv fotografije najprej kliknite ikono <guibutton>Prilagodi barve fotografije</guibutton> za odpiranje pogovornega okna prilagajanja. Spremenite nekaj nastavitev in jih shranite z <guibutton>V redu</guibutton>."
+
+#: C/f-spot.xml:203(title)
+msgid "Adjust Colors tool"
+msgstr "Orodje prilagajanja barv"
+
+#: C/f-spot.xml:213(title)
+#: C/f-spot.xml:221(title)
+msgid "AutoColor"
+msgstr "Samodejna barva"
+
+#: C/f-spot.xml:215(para)
+msgid "This effect automatically adjusts color levels to make a pretty balanced picture color-wise. It serves best for pictures taken with automatical white balance, when camera didn't manage to do the job well."
+msgstr "Ta učinek samodejno prilagodi barvne ravni za ustvarjanje barvno uravnotežene slike. Najboljše deluje za slike posnete s samodejnim ravnotežjem bele barve, ko fotoaparat ni uspel dobro opraviti dela. "
+
+#: C/f-spot.xml:231(title)
+msgid "Desaturate"
+msgstr "Zmanjšaj nasičenje"
+
+#: C/f-spot.xml:233(para)
+msgid "To make a colorful photo a black and white one, open a photo of choice and press <guibutton>Desaturate</guibutton> button."
+msgstr "Za pretvorbo barve fotografije v črno belo odprite izbrano fotografijo iz pritisnite gumb <guibutton>Zmanjšaj nasičenje</guibutton>."
+
+#: C/f-spot.xml:238(title)
+#: C/f-spot.xml:255(title)
+msgid "Desaturation tool"
+msgstr "Orodje zmanjšanja nasičenja"
+
+#: C/f-spot.xml:248(title)
+msgid "Sepia"
+msgstr "Sepia"
+
+#: C/f-spot.xml:250(para)
+msgid "To make a colorful photo look like an old-style picture in sepia tones, open a photo of choice and press <guibutton>Sepia</guibutton> button."
+msgstr "Za pretvorbo barvne fotografije v staro sliko sepia tonov odprite izbrano fotografijo in pritisnite gumb <guibutton>Sepia učinek staranja</guibutton>."
+
+#: C/f-spot.xml:265(title)
+msgid "Remove Red-Eye"
+msgstr "Odstranjevanje rdečih oči"
+
+#: C/f-spot.xml:267(para)
+msgid "To remove redeye from a photo, you need to select a zone containing the eyes. You may want to zoom in on the image to accurately select the eyes in the photo. You should be able to correct both eyes on the same person in one shot, or even the eyes from multiple people at once. If this doesn't work for you, or the selected zone contains some vivid red parts (lips, ...) you'll probably have to correct one red eye at a time."
+msgstr "Za odstranitev rdečih oči s fotografije morate izbrati področje, ki vsebuje oči. Pametno je povečati sliko za natančno izbiro oči v fotografiji. Naenkrat bi lahko popravite obe oči iste osebe ali celo oči več oseb na enkrat. V primeru da to ne deluje, ali izbrano področje vsebuje druge živo rdeče dele (ustnice, ...) boste najbrž morali popraviti eno oko na enkrat."
+
+#: C/f-spot.xml:275(para)
+msgid "To make your selection, click one corner of the rectangle that will be your selection, and drag your mouse to the diagonal corner and release it. You can resize your selection by dragging its edges, and you can move it by clicking in the middle of it and dragging it to where you want it."
+msgstr "Za izbiranje kliknite en kot kvadrata, ki bo vaš izbor, povlecite vašo miško v diagonalni kot in jo spustite. Izboru lahko spremenite velikost z vlečenjem njegovih robom ali pa ga lahko premaknete s klikom v sredino izbora in ga povlečete kamor ga želite."
+
+#: C/f-spot.xml:281(para)
+msgid "Once you have selected a zone, you can remove the red from it by clicking the red-eye button beneath the photo."
+msgstr "Ko ste izbrali področje, lahko rdeče oko odstranite s klikom na gumb rdeče-oko pod fotografijo."
+
+#: C/f-spot.xml:286(title)
+msgid "Red-Eye tool"
+msgstr "Orodje rdečih oči"
+
+#: C/f-spot.xml:294(para)
+msgid "You can change the threshold for redeyes detection by changing the gconf key <filename class=\"directory\">/apps/f-spot/edit/redeye_threshold</filename>."
+msgstr "Prag za zaznavanje rdečih oči lahko spremenite s spremembo gconf ključa ¸<filename class=\"directory\">/apps/f-spot/edit/redeye_threshold</filename>."
+
+#: C/f-spot.xml:303(title)
+msgid "Soft Focus"
+msgstr "Mehko žarišče"
+
+#: C/f-spot.xml:305(para)
+msgid "In photography sharpening one region of a picture, while blurring all the rest, is a way to make an emphasis and grab attention. It is achieved by using a lens that allows shooting with a short distance in front of and beyond the subject that appears to be in focus. Soft focus effect is a way to emulate such a lens."
+msgstr "V fotografiji je izostritev enega predela slike in zameglitev vsega ostalega način za poudarjanje in pridobitev pozornosti. To je mogoče doseči z uporabo leče ki dovoli snemanje s kratko razdaljo pred in za predmetom, ki je videti v gorišču. Učinek mehkega gorišča je način za posnemanje takšne leče."
+
+#: C/f-spot.xml:313(title)
+msgid "Soft Focus tool"
+msgstr "Orodje mehkega žarišča"
+
+#: C/f-spot.xml:320(para)
+msgid "Click to choose central point of the area you want to be in focus and adjust amount of blurring, then click <guibutton>OK</guibutton>."
+msgstr "Kliknite za izbor središča področja, ki naj bo v gorišču in prilagodite količino megljenja in nato kliknite <guibutton>V redu</guibutton>."
+
+#: C/f-spot.xml:327(title)
+msgid "Sharpen"
+msgstr "Izostritev"
+
+#: C/f-spot.xml:329(para)
+msgid "Out-of-focus photographs and most digitized images often need a sharpness correction. The Unsharp Mask effect sharpens edges of the elements without increasing noise or blemish. To sharpen a photo choose <menuchoice><guimenu>Edit</guimenu><guimenuitem>Sharpen...</guimenuitem></menuchoice> and specify the following values:"
+msgstr "Fotografije izven gorišča in večina digitaliziranih slik pogosto potrebujejo popravek izostritve. Učinek maske odstranitve izostritve izostri robove elementov brez povečanja šuma ali napak. Za izostritev fotografije izberite <menuchoice><guimenu>Uredi</guimenu><guimenuitem>Izostri...</guimenuitem></menuchoice> in navedite naslednje vrednosti:"
+
+#: C/f-spot.xml:340(para)
+msgid "<parameter class=\"option\">Amount</parameter> — strength of sharpening."
+msgstr "<parameter class=\"option\">Količina</parameter> — moč izostritve."
+
+#: C/f-spot.xml:345(para)
+msgid "<parameter class=\"option\">Radius</parameter> — how many pixels on either side of an edge will be affected by sharpening. High resolution images allow higher radius."
+msgstr "<parameter class=\"option\">Polmer</parameter> — na koliko točk na vsaki strani roba bo vplivala izostritev. Slike z visoko ločljivostjo omogočijo večje polmere."
+
+#: C/f-spot.xml:352(para)
+msgid "<parameter class=\"option\">Threshold</parameter> — the minimum difference in pixel values that indicates an edge where sharpen must be applied. This helps avoiding creation of blemishes in face, sky or water surface."
+msgstr "<parameter class=\"option\">Prag</parameter> — najmanjša razlika v vrednostih točk ki določiti rob, kjer mora biti uveljavljena izostritev. To pomaga pri izogibanju ustvarjanja napak v obrazu, nebu ali vodni površini."
+
+#: C/f-spot.xml:362(title)
+msgid "Describe"
+msgstr "Opisovanje"
+
+#: C/f-spot.xml:364(para)
+msgid "You can also enter a description of the image by clicking on the text entry box below the image and typing."
+msgstr "Vpis slike lahko vnesete s klikom na polje besedilnega vnosa pod sliko in tipkanjem."
+
+#: C/f-spot.xml:376(title)
+msgid "Adjust Time"
+msgstr "Prilagodi čas"
+
+#: C/f-spot.xml:378(para)
+msgid "In both 'browse' or 'edit' modes, you can adjust the time of one or multiple pictures (<menuchoice><guimenu>Edit</guimenu><guimenuitem>Adjust Time</guimenuitem></menuchoice>). Adjusting the time of multiple pictures at once helps you shift all an import roll if, e.g. the time on your camera is badly set or if you forgot to change it according to DST."
+msgstr "Tako v načinu 'brskanje' kot 'urejanje' lahko prilagodite čas ene ali več slik (<menuchoice><guimenu>Uredi</guimenu><guimenuitem>Prilagodi čas</guimenuitem></menuchoice>). Prilagajanje časa več slik na enkrat vam pomaga premakniti celoten uvozni zvitek, na primer če je čas na vašem fotoaparatu slabo nastavljen in ste ali če ste ga pozabili spremeniti z/na poletni čas. "
+
+#: C/f-spot.xml:390(title)
+msgid "Tag"
+msgstr "Oznaka"
+
+#: C/f-spot.xml:391(para)
+msgid "F-Spot enables you to organize and enjoy your photos by associating them with various user-customizable tags. A tag is a merely a label. F-Spot comes with default tags to get you started; you are free to change them and add new ones. For example, if you want to create a tag for specific event, you can create a new tag named after that event under the Events tag."
+msgstr "F-Spot vam omogoča organizacijo in uživanje v vaših fotografijah s povezavo z različnimi uporabniško prilagodljivimi oznakami. F-Spot  za začetek vsebuje privzete oznake, lahko jih spremenite in dodate nove. Na primer, če želite ustvariti oznako za določen dogodek, lahko ustvarite oznako imenovano po dogodku pod oznako dogodki."
+
+#: C/f-spot.xml:398(para)
+msgid "There are many ways to tag photos:"
+msgstr "Obstaja več načinov za oznako fotografij:"
+
+#: C/f-spot.xml:403(para)
+msgid "drag and drop the photo(s) onto the tag"
+msgstr "povlecite in spustite fotografij-o/e na oznako"
+
+#: C/f-spot.xml:408(para)
+msgid "drag and drop the tag onto the photo(s)"
+msgstr "povlecite in spustite oznako na fotografij-o/e"
+
+#: C/f-spot.xml:413(para)
+msgid "via the photo's right-click menu"
+msgstr "preko menija desnega klika fotografija"
+
+#: C/f-spot.xml:418(para)
+msgid "via the Tags and Edit menus"
+msgstr "preko menijev Oznake in Uredi"
+
+#: C/f-spot.xml:423(para)
+msgid "by typing them in. Press <keycap>t</keycap> to pop up the tag entry bar. Here you can enter the tags, separated by commas."
+msgstr "s tipkanjem oznak. Pritisnite <keycap>t</keycap> za pojav vnosne vrstice oznak. Sem lahko vnesete oznake, ločene z vejicami."
+
+#: C/f-spot.xml:427(para)
+msgid "You can also use auto-completion in this entry bar: After entering the beginning of a tag name, press <keycap>Tab</keycap> to see the first possible completion. You can cycle between other possible completions by pressing <keycap>Tab</keycap> again, and backwards with <keycombo action=\"simul\"><keycap>Shift</keycap><keycap>Tab</keycap></keycombo>. To confirm the suggested completion and enter a new tag, press <keycap>,</keycap>. By pressing <keycap>Enter</keycap> you leave the tag entry bar, possibly confirming the current completion. To abort the auto completion, just keep on typing."
+msgstr "V vnosni vrstici lahko uporabite samodejno dokončanje. Po vnosu začetka imena oznake pritisnite <keycap>Tabulator</keycap> za ogled prvega mogočega dokončanja. Med mogočimi dokončanji lahko krožite naprej s ponovnim pritiskom na <keycap>Tabulator</keycap> in nazaj s pritiskom na <keycombo action=\"simul\"><keycap>Dvigalka</keycap><keycap>Tabulator</keycap></keycombo>. Za potrditev predlaganega dokončanja in vnos nove oznake pritisnite <keycap>,</keycap>. S pritiskom <keycap>Vnosna tipka</keycap> zapustite vnosno vrstico oznak in s tem morda potrdite trenutno dokončanje. Za preklic samodejnega dokončevanja tipkajte naprej. "
+
+#: C/f-spot.xml:441(para)
+msgid "The first photo you associate with a tag will be used for that tag's icon. You can always edit a tag's name, parent tag, and icon by right clicking on it and choosing <guilabel>Edit tag</guilabel>."
+msgstr "Prva fotografija, ki jo povežete z oznako, bo uporabljena za ikono oznake. Z desnim klikom na oznako in izbiro  <guilabel>Uredi oznako</guilabel> lahko uredite ime oznake, nadrejeno oznako in ikono oznake."
+
+#: C/f-spot.xml:446(para)
+msgid "You can change a tag's parent by dragging and dropping it where you like. Also, you can edit the name of a tag by selecting it and pressing <keycap>F2</keycap>. Lastly, if you have the tag tree widget focused (e.g. you just clicked on a tag), you can start typing the name of a tag, and all the expanded tags in the list will be searched and you'll jump to any matching ones."
+msgstr "Nadrejeni predmet oznake lahko spremenite tako, da ga povlečete in spustite kamor želite. Ime oznake lahko uredite tako, da jo izberete in pritisnete <keycap>F2</keycap>. V primeru da je gradnik drevesa oznak v žarišču, (na primer ste ravnokar kliknili na oznako) lahko začnete tipkati ime oznake, vse razširjene oznake na seznamu bodo preiskane in skočili boste na zadetke."
+
+#: C/f-spot.xml:455(para)
+msgid "You can also change size of tag icons in the sidebar or even make tag icons invisible by selecting preferred option from <menuchoice><guimenu>View</guimenu><guimenuitem>Tag Icons</guimenuitem></menuchoice> menu."
+msgstr "Velikost ikon značk v stranski vrstici lahko spremenite ali pa jih celo napravite nevidne z izbiro prednostne možnosti v meniju <menuchoice><guimenu>Pogled</guimenu><guimenuitem>Ikone oznak</guimenuitem></menuchoice>."
+
+#: C/f-spot.xml:463(para)
+msgid "F-Spot can write tags as metadata fields into JPEG files. Tags for various RAW files, PNG, TIFF, and others are written to F-Spot's database. You will have to re-tag these files if you re-import your collection."
+msgstr "F-Spot lahko oznake zapiše v datoteke JPEG kot polja metapodatkov. Oznake za različne RAW, PNG, TIFF in druge datoteke so zapisane v podatkovno zbirko F-Spot. Te datoteke boste morali ob ponovnem uvozu zbirke ponovno označiti."
+
+#: C/f-spot.xml:474(title)
+msgid "Enjoying your photos"
+msgstr "Uživanje v vaših fotografijah"
+
+#: C/f-spot.xml:476(title)
+msgid "Browse"
+msgstr "Brskanje"
+
+#: C/f-spot.xml:477(para)
+msgid "You can use the slider widget to browse your photos by month or by directory. To change this setting, go to <menuchoice><guimenu>View</guimenu><guimenuitem>Arranged By</guimenuitem></menuchoice>."
+msgstr "Za brskanje po vaših fotografijah po mesecu ali po mapi lahko uporabite drsni gradnik. Za spremembo te nastavitve pojdite na <menuchoice><guimenu>Pogled</guimenu><guimenuitem>Urejeno po</guimenuitem></menuchoice>."
+
+#: C/f-spot.xml:485(title)
+msgid "Search"
+msgstr "Iskanje"
+
+#: C/f-spot.xml:487(para)
+msgid "F-Spot uses search filters to help you better define search criteria."
+msgstr "F-Spot uporablja iskalne filtre za pomoč pri boljšem določanju iskalnih kriterijev."
+
+#: C/f-spot.xml:492(title)
+msgid "Tags"
+msgstr "Oznake"
+
+#: C/f-spot.xml:494(para)
+msgid "You can start a search by double clicking or activating a tag from the tag list. Alternatively, you can show the find bar with <menuchoice><guimenu>Find</guimenu><guimenuitem>Show Find Bar</guimenuitem></menuchoice>. With the find bar shown, you can drag tags from the tag view to the find bar."
+msgstr "Iskanje lahko začnete z dvojnim klikom ali omogočanjem oznake iz seznama oznak. Dodatno lahko pokažete iskalno vrstico z  <menuchoice><guimenu>Najdi</guimenu><guimenuitem>Pokaži iskalno vrstico</guimenuitem></menuchoice>. Ko je iskalna vrstica prikazana, lahko oznake povlečete iz pogleda oznak v iskalno vrstico."
+
+#: C/f-spot.xml:500(para)
+msgid "To find photos that are tagged with both of two tags, activate the first in the tag view or drag it onto the find bar, then drag the second tag and drop it on top of the first. You can also right click on the second tag in the tag view, or use the <guimenu>Find</guimenu> menu, and choose <guimenuitem>Find With...</guimenuitem> and select the first tag (or group of tags)."
+msgstr "Za iskanje fotografij, ki so označene z obema od dveh oznak, omogočite prvo v pogledu oznak ali jo povlecite v iskalno vrstico in nato povlecite drugo oznako in jo spustite na prvo. Lahko tudi desno kliknete na drugo oznako v pogledu oznak ali uporabite meni <guimenu>Najdi</guimenu> in izberite <guimenuitem>Najdi z...</guimenuitem> in izberite prvo oznako (ali skupino oznak)."
+
+#: C/f-spot.xml:507(para)
+msgid "You can drag a tag icon around on the find bar to change from finding it and another tag to finding it or another tag."
+msgstr "Ikono oznake lahko povlečete na iskalno vrstico za spremembo iz iskanja te oznake in druge oznake v iskanje te oznake ali druge oznake. "
+
+#: C/f-spot.xml:511(para)
+msgid "You can search for photos that do not have a particular tag by double-clicking on a tag in the find bar. Alternatively, you can right-click a tag in the find bar and select <guimenuitem>Exclude</guimenuitem>."
+msgstr "Fotografije brez določene oznake lahko iščete z dvojnim klikom na oznako v iskalni vrstici. Dodatna možnost je desni klik na oznako v iskalni vrstici in izbira <guimenuitem>Izključi</guimenuitem>."
+
+#: C/f-spot.xml:516(para)
+msgid "To remove a tag from the search, drag it away from the find bar, or right click and select <guimenuitem>Remove</guimenuitem>."
+msgstr "Za odstranitev oznake iz iskanja jo povlecite vstran od vrstice iskanja ali desno kliknite in izberite <guimenuitem>Odstrani</guimenuitem>."
+
+#: C/f-spot.xml:520(para)
+msgid "By default, photos tagged <emphasis>Hidden</emphasis> will not be shown. You must explicitly include the <emphasis>Hidden</emphasis> tag in your search to show such photos."
+msgstr "Privzeto so fotografije označene <emphasis>Skrito</emphasis> skrite. Za iskanje takšnih fotografij morate eksplicitno vključiti oznako <emphasis>Skrito</emphasis>."
+
+#: C/f-spot.xml:528(title)
+msgid "Import Rolls"
+msgstr "Uvozni zvitki"
+
+#: C/f-spot.xml:529(para)
+msgid "F-Spot remembers what pictures were imported every now and then. Use <menuchoice><guimenu>Find</guimenu><guisubmenu>Import Roll</guisubmenu><guimenuitem>Last import roll</guimenuitem></menuchoice> to limit search to last importing session or use <menuchoice><guimenu>Find</guimenu><guisubmenu>Import Roll</guisubmenu><guimenuitem>Select Import Rolls...</guimenuitem></menuchoice> to make a finer selection of imported photos:"
+msgstr "F-Spot si vsake toliko časa zapomni katere slike so bile uvožene. Uporabite <menuchoice><guimenu>Najdi</guimenu><guisubmenu>Po uvoznem zvitku</guisubmenu><guimenuitem>Zadnji uvozni zvitek</guimenuitem></menuchoice> za omejitev iskanja na zadnjo sejo uvažanja ali uporabite <menuchoice><guimenu>Najdi</guimenu><guisubmenu>Po uvoznem zvitku</guisubmenu><guimenuitem>Izberi uvozne zvitke ...</guimenuitem></menuchoice> za fino izbiro uvoženih fotografij:"
+
+#: C/f-spot.xml:539(para)
+msgid "<parameter class=\"option\">At</parameter> — to select photos from a particular importing session"
+msgstr "<parameter class=\"option\">Ob</parameter> — za izbor fotografij iz določene seje uvažanja"
+
+#: C/f-spot.xml:544(para)
+msgid "<parameter class=\"option\">After</parameter> — to select all photos imported begining with a particular importing session"
+msgstr "<parameter class=\"option\">Za</parameter> — za izbor vseh uvoženih fotografij z začetkom pri določeni seji uvažanja"
+
+#: C/f-spot.xml:549(para)
+msgid "<parameter class=\"option\">Between</parameter> — to select all photos imported between two particular importing sessions"
+msgstr "<parameter class=\"option\">Med</parameter> — za izbor vseh fotografij uvoženih med dvema določenima sejama uvažanja"
+
+#: C/f-spot.xml:554(para)
+msgid "Every time you change settings of the filter, the amount of selected photos will appear in the bottom part of the dialog."
+msgstr "Vsakič ko spremenite nastavitve filtra, se količina izbranih fotografij pojavi na spodnjem delu pogovornega okna."
+
+#: C/f-spot.xml:558(para)
+msgid "When you apply Import Roll filter, in the Find bar you will see <guilabel>Find: Import Roll</guilabel>. Now you can add some other filter to finetune your selection."
+msgstr "Ko boste uveljavili filter uvoznih zvitkov boste videli <guilabel>Najdi: Uvozni zvitek</guilabel>. Sedaj lahko dodate druge filtre za fino nastavljanje vašega izbora."
+
+#: C/f-spot.xml:563(para)
+msgid "If you don't need the Import Roll filter anymore, choose <menuchoice><guimenu>Find</guimenu><guisubmenu>Import Roll</guisubmenu><guimenuitem>Clear roll filter</guimenuitem></menuchoice> to remove Import Roll from search criteria. You can also click the close button (<guibutton>X</guibutton>) of the search bar to discard all the current search options."
+msgstr "V primeru da filtra uvoznih zvitkov ne potrebujete več, za odstranitev uvoznih zvitkov iz iskalnih kriterijev izberite <menuchoice><guimenu>Najdi</guimenu><guisubmenu>Uvozni zvitek</guisubmenu><guimenuitem>Počisti filter uvoznih zvitkov</guimenuitem></menuchoice>.  Za zavračanje vseh trenutnih možnosti iskanja lahko kliknete tudi na gumb zapri (<guibutton>X</guibutton>) v iskalni vrstici."
+
+#: C/f-spot.xml:572(para)
+msgid "The number of displayed rolls in the dialog is defined by the gconf key <filename class=\"directory\">/apps/f-spot/import/gui_roll_history</filename>. Default value is 10."
+msgstr "Število prikazanih zvitkov v pogovornem oknu je določeno z gconf ključem <filename class=\"directory\">/apps/f-spot/import/gui_roll_history</filename>. Privzeta vrednost je 10."
+
+#: C/f-spot.xml:581(title)
+msgid "Type-to-find"
+msgstr "Tipkajte-za-iskanje"
+
+# Govorimo o operatorjih, zato jih ne prevajamo ...
+#: C/f-spot.xml:582(para)
+msgid "There is also a type-to-find entry. Press <keycap>/</keycap> to open it. It cannot be used at the same time as the find bar. You can type queries such as \"TagA and (TagB or (TagC and TagD))\". At any point, if F-Spot recognizes what you've typed as a valid query, it will update your search. The <emphasis>not</emphasis> operator is not yet supported."
+msgstr "Obstaja tudi vnos tipkaj-za-iskanje. Za odpiranje pritisnite <keycap>/</keycap>. Vnosa ni mogoče uporabiti istočasno kot iskalne vrstice. Vtipkate lahko poizvedbe kot so \"OznakaA and (OznakaB or (OznakaC and OznakaD)\". V vsakem primeru bo F-Spot posodobil vaše iskanje, če zazna veljavno poizvedbo. Operator <emphasis>not</emphasis> še ni podprt."
+
+#: C/f-spot.xml:590(para)
+msgid "This function will also search for the typed text into photos comments and filename."
+msgstr "Ta funkcija bo iskala tudi besedilo vneseno v komentarje fotografije in ime datoteke."
+
+#: C/f-spot.xml:597(title)
+msgid "Fullscreen Mode and Slideshows"
+msgstr "Celozaslonski način in diapredstavitve"
+
+#: C/f-spot.xml:598(para)
+msgid "For fewer distractions and larger display, you can view your photos in full screen mode. You control when to show the next photo or to return to the previous. Enter fullscreen mode by pressing <keycap>F11</keycap> at any time or by pressing the button in the toolbar."
+msgstr "Za manj motenj in večji prikaz si lahko ogledate fotografije v celozaslonskem načinu. Nadzirate lahko kdaj naj bo prikazana naslednja ali predhodna fotografija. V celozaslonski način lahko kadarkoli vstopite s pritiskom na <keycap>F11</keycap> ali s pritiskom gumba v orodni vrstici."
+
+#: C/f-spot.xml:605(title)
+msgid "FullScreen"
+msgstr "Celozaslonski način"
+
+#: C/f-spot.xml:612(para)
+msgid "In slideshow mode, you can sit back and view your photos as they are presented to you. You can start a slideshow by pressing the button on the toolbar."
+msgstr "V načinu diapredstavitve se lahko usedete in si ogledate svoje fotografije medtem ko so vam predstavljene. Diapredstavitev lahko zaženete s pritiskom na gumb v orodni vrstici."
+
+#: C/f-spot.xml:618(title)
+msgid "SlideShow"
+msgstr "Diapredstavitev"
+
+#: C/f-spot.xml:629(title)
+msgid "Sharing your photos"
+msgstr "Souporaba vaših fotografij"
+
+#: C/f-spot.xml:632(para)
+msgid "There are many ways to share your photos using F-Spot. All of the following methods will only share the photos you have selected when you run them."
+msgstr "Za souporabo vaših fotografij z F-Spot obstaja več načinov. Vse naslednje metode bodo dale v souporabo le fotografije, ki ste jih izbrali ob zagonu souporabe."
+
+#: C/f-spot.xml:639(title)
+msgid "E-mail"
+msgstr "E-pošta"
+
+#: C/f-spot.xml:640(para)
+msgid "E-mail your photos directly from F-Spot with the <menuchoice><guimenu>File</guimenu><guimenuitem>Send Mail</guimenuitem></menuchoice> menu."
+msgstr "Svoje fotografije lahko pošljete preko elektronske pošte neposredno iz F-Spot z uporabo menija <menuchoice><guimenu>Fotografija</guimenu><guimenuitem>Pošlji po pošti</guimenuitem></menuchoice>. "
+
+#: C/f-spot.xml:646(title)
+msgid "Note 1"
+msgstr "Opomba 1"
+
+#: C/f-spot.xml:647(para)
+msgid "The email program used for this is defined at the GNOME level. You can change the default e-mailer for your user using the <application>Preferred Applications</application> tool in <menuchoice><guimenu>System</guimenu><guisubmenu>Preferences</guisubmenu></menuchoice>."
+msgstr "Uporabljen bo e-poštni program, ki je določen na ravni GNOME. Privzeti e-poštni program lahko spremenite za svoj račun z uporabo orodja <application>Prednostni programi</application> v meniju <menuchoice><guimenu>Sistem</guimenu><guisubmenu>Nastavitve</guisubmenu></menuchoice>."
+
+#: C/f-spot.xml:656(title)
+msgid "Note 2"
+msgstr "Opomba 2"
+
+#: C/f-spot.xml:657(para)
+msgid "If some of the photos you'd like to send by email are in a format that F-Spot can't write (e.g. RAW images), the size selection dialog will become insensitive and the originals will be sent."
+msgstr "V primeru da so fotografije, ki jih želite poslati preko elektronske pošte vrste, ki je F-Spot ne more zapisati (na primer slike RAW) bo pogovorno okno postalo neobčutljivo in bodo poslane izvorne fotografije."
+
+#: C/f-spot.xml:664(para)
+msgid "If you're sending resized pictures, F-Spot will keep the modified versions somewhere in the <filename class=\"directory\">/tmp</filename> directory for 30 seconds. It's not an issue with evolution, which makes it's own local copy of the attachments, but could be a bit shorter if you're using Thunderbird. You can change the delay by editing the gconf key <filename class=\"directory\">/apps/f-spot/export/email/delete_timeout_seconds</filename>."
+msgstr "V primeru da pošiljate slike s spremenjenimi velikostmi, bo F-Spot obdržal spremenjene različice nekje v mapi <filename class=\"directory\">/tmp</filename> za 30 sekund. To ne povzroča težav z evolution, ki naredi svojo krajevno kopijo prilog, toda bi lahko bilo malce krajše, če uporabljate Thunderbird. Zamik lahko spremenite z urejanjem gconf ključa <filename class=\"directory\">/apps/f-spot/export/email/delete_timeout_seconds</filename>."
+
+#: C/f-spot.xml:676(title)
+msgid "Print"
+msgstr "Tisk"
+
+#: C/f-spot.xml:677(para)
+msgid "Print your photos with the <menuchoice><guimenu>File</guimenu><guimenuitem>Print</guimenuitem></menuchoice> menu."
+msgstr "Fotografije lahko natisnite z menijem <menuchoice><guimenu>Datoteka</guimenu><guimenuitem>Natisni</guimenuitem></menuchoice>."
+
+#: C/f-spot.xml:684(title)
+msgid "Burn to CD"
+msgstr "Zapisovanje na CD"
+
+#: C/f-spot.xml:685(para)
+msgid "Burn your photos to CD or DVD with the <menuchoice><guimenu>File</guimenu><guisubmenu>Export</guisubmenu><guimenuitem>Export to CD</guimenuitem></menuchoice> menu."
+msgstr "Zapišite vaše fotografije z menijem <menuchoice><guimenu>Fotografija</guimenu><guisubmenu>Izvozi</guisubmenu><guimenuitem>Izvozi na CD</guimenuitem></menuchoice>."
+
+#: C/f-spot.xml:693(title)
+msgid "Generate a Website Gallery or Folder"
+msgstr "Ustvarjanje spletne galerije ali mape"
+
+#: C/f-spot.xml:694(para)
+msgid "The <menuchoice><guimenu>File</guimenu><guimenuitem>Export</guimenuitem><guimenuitem>Export to Folder</guimenuitem></menuchoice> feature gives you three ways to export your images."
+msgstr "Zmožnost <menuchoice><guimenu>Fotografija</guimenu><guimenuitem>Izvozi v</guimenuitem><guimenuitem>Izvozi v mapo</guimenuitem></menuchoice> vam poda tri načine za izvažanje vaših slik."
+
+#: C/f-spot.xml:702(para)
+msgid "<guilabel>Use Original</guilabel> exports your photos ready for use with Jakub Steiner's free <ulink url=\"http://jimmac.musichall.cz/original.php\"> Original Photo Gallery</ulink> software. If you are unsure about this option, it is probably not the right one for you."
+msgstr "<guilabel>Uporabi izvorno</guilabel> izvozi vaše fotografije pripravljene za uporabo z brezplačnim programom Jakuba Steinerja <ulink url=\"http://jimmac.musichall.cz/original.php\"> Original Photo Gallery</ulink>. V primeru da niste prepričani o tej možnosti, verjetno ni prava za vas."
+
+#: C/f-spot.xml:710(para)
+msgid "<guilabel>Use static HTML files</guilabel> exports your photos to an interactive website, ready for you to upload."
+msgstr "<guilabel>Uporabi statične datoteke HTML</guilabel> izvozi vaše fotografije v interaktivno spletišče, pripravljeno na pošiljanje."
+
+#: C/f-spot.xml:716(para)
+msgid "<guilabel>Plain Files</guilabel> exports your images as files within directories, without putting them into a gallery."
+msgstr "<guilabel>Običajne datoteke</guilabel> izvozi vaše slike kot datoteke v mape, brez pošiljanja v galerijo."
+
+#: C/f-spot.xml:725(title)
+msgid "Post to your online galleries"
+msgstr "Objavljanje v spletne galerije"
+
+# V programu je fotografija, ni datoteka !!
+#: C/f-spot.xml:726(para)
+msgid "If you use Flickr, SmugMug, 23hq, Tabblo, Facebook, Zooomr or Picasa Web Album, you can post your files directly from F-Spot with the <menuchoice><guimenu>File</guimenu><guisubmenu>Export</guisubmenu></menuchoice> menu, choosing corresponding submenu item."
+msgstr "V primeru da uporabljate Flickr, SmugMug, 23hq, Tabblo, Facebook, Zooomr ali Picasa spletne albume lahko svoje datoteke objavite neposredno iz F-Spot z uporabo menija <menuchoice><guimenu>Fotografija</guimenu><guisubmenu>Izvozi v</guisubmenu></menuchoice> in izbiro ustreznega predmeta podmenija."
+
+# V programu je fotografija, ni datoteka !!
+#: C/f-spot.xml:731(para)
+msgid "If you use the PHP software known as <ulink url=\"http://gallery.sourceforge.net/\"> Gallery</ulink>, you can post your photos to your existing album with the <menuchoice><guimenu>File</guimenu><guimenuitem>Export</guimenuitem><guimenuitem>Export to Web Gallery</guimenuitem></menuchoice> menu. You must first enable the Remote module within your Gallery installation."
+msgstr "V primeru da uporabljate PHP program poznan kot <ulink url=\"http://gallery.sourceforge.net/\"> Gallery</ulink>, lahko svoje fotografije objavite v svoj obstoječ album z menijem <menuchoice><guimenu>Fotografija</guimenu><guimenuitem>Izvozi v</guimenuitem><guimenuitem>Izvozi v spletno galerijo</guimenuitem></menuchoice>. Najprej morate v namestitvi Gallery omogočiti modul Oddaljeno. "
+
+# To je ime programa ...
+#: C/f-spot.xml:739(title)
+msgid "Note for Gallery 2.2 users"
+msgstr "Opomba za uporabnike Gallery 2.2"
+
+#: C/f-spot.xml:740(para)
+msgid "The Remote plugin for Gallery should be 1.0.8 or newer."
+msgstr "Oddaljeni vstavek Gallery mora biti 1.0.8 ali novejši."
+
+#: C/f-spot.xml:744(para)
+msgid "<ulink url=\"http://pennave.sourceforge.net\">PennAve</ulink> is a Python web-application that directly uses F-Spot's database to present a dynamic gallery of your photos and tags."
+msgstr "<ulink url=\"http://pennave.sourceforge.net\">PennAve</ulink> je spletni program v Pythonu, ki neposredno uporablja podatkovno zbirko F-Spot za predstavljanje dinamične galerije vaših fotografij in oznak."
+
+#: C/f-spot.xml:749(para)
+msgid "<ulink url=\"http://www.conduit-project.org\">Conduit</ulink> is an application that can sync photos that have a particular tag with your Flickr or Picasa Web Album web storage."
+msgstr "<ulink url=\"http://www.conduit-project.org\">Conduit</ulink> je program, ki lahko uskladi fotografije z določeno oznako s spletno shrambo Flicker ali Picasa spletni albumi."
+
+#: C/f-spot.xml:758(title)
+msgid "Color management"
+msgstr "Upravljanje barv"
+
+#: C/f-spot.xml:761(title)
+msgid "What's color management"
+msgstr "Kaj je upravljanje barv"
+
+#: C/f-spot.xml:763(para)
+msgid "When you capture a photo and look at it on a display, it looks different than on a camera's preview display or on any other display. It will also look different when you print it. This is because every device has unique color reproduction capabilities."
+msgstr "Fotografija je na zaslonu videti drugače kot na zaslonu predogleda fotoaparata ali kateremukoli drugemu zaslonu. Tudi natisnjena fotografija je videti drugačna. To se zgodi zato, ker ima vsaka barva edinstvene zmožnosti poustvaritve barv. "
+
+#: C/f-spot.xml:770(para)
+msgid "Color management system (CMS) is a tool to achieve reliable color reproduction for both display and output (e.g. a printer). A CMS relies on color profiles to map original colors to the color that a device can reproduce so that colors will appear the same way everywhere — on a computer LCD monitor, on a print from your local photolab etc."
+msgstr "Sistem za upravljanje barv (CMS) je orodje za doseganje zanesljive poustvaritve barv tako za zaslon kot izhod (na primer tiskalnik). CMS se zanaša na barvne profile za preslikavo izvornih barv v barve, ki jih lahko poustvarijo naprave, tako, da so barve povsod videti enake - na računalniškem zaslonu LCD, natisnjene, itn."
+
+#: C/f-spot.xml:780(title)
+msgid "What's a color profile"
+msgstr "Kaj je barvni profil"
+
+#: C/f-spot.xml:782(para)
+msgid "A color profile is a file with either .icc (thus its is often called an ICC profile) or .icm extension that describes how device's colors correspond to a universal description of colors."
+msgstr "Barvni profil je datoteka s pripono .icc (zato je pogosto imenovan profil ICC) ali .icm ki opiše kako barve naprave ustrezajo splošnemu opisu naprav."
+
+#: C/f-spot.xml:788(para)
+msgid "There are several types of profiles:"
+msgstr "Obstaja več vrst profilov:"
+
+#: C/f-spot.xml:794(para)
+msgid "Input device profile. It's profile for a camera or a profile that an application like XSane embeds into a scanned image."
+msgstr "Profil vhodne naprave. To je profil fotoaparata ali profil, ki ga lahko program kot je XSane vključi v skenirano sliko."
+
+#: C/f-spot.xml:800(para)
+#, fuzzy
+msgid "Working space profile. It's a profile that describes color space in which all operations are done inside an application. Usually very wide gamut profiles like AdobeRGB1998 or ProPhotoRGB are used for that."
+msgstr "Profil delovnega prostora. To je profil, ki opiše barvni prostor, v katerem so vsa opravila narejena znotraj programa. Običajno so za to uporabljeni zelo široki XXX profili kot AdobeRGB1998 ali ProPhotoRGB."
+
+#: C/f-spot.xml:807(para)
+msgid "Display profile. It's a profile for a monitor."
+msgstr "Profil zaslona. To je profil za zaslon."
+
+#: C/f-spot.xml:812(para)
+msgid "Output profile. This is usually a profile for you printer."
+msgstr "Izhodni profil. To je običajno profil za tiskalnik."
+
+#: C/f-spot.xml:818(para)
+msgid "Currently F-Spot allows setting only display and output profiles. All color operations are done in sRGB color space."
+msgstr "Trenutno F-Spot dovoli le nastavljanje profilov zaslona in izhoda. Vsa barvna opravila so narejena v barvnem prostoru sRGB."
+
+#: C/f-spot.xml:825(title)
+msgid "How to get my screen/printer color profile"
+msgstr "Kako dobiti barvni profil zaslona/tiskalnika"
+
+#: C/f-spot.xml:827(para)
+msgid "There are few ways to get a color profile."
+msgstr "Obstaja več načinov za pridobivanje barvnega profila."
+
+#: C/f-spot.xml:832(title)
+msgid "From CD or Internet"
+msgstr "Iz CD-ja ali medmrežja"
+
+#: C/f-spot.xml:834(para)
+msgid "Many hardware manufacturers put color profiles into CD in the bundle. If you have one (from monitor or printer), you can use it. Or you can download it from the Internet (usually, from support section of the manufacturer's web site). Some camera manufacturers (Nikon, Canon) also provide ICC profiles."
+msgstr "Veliko proizvajalcev strojene opreme priložijo CD z barvnimi profili. V primeru da ga imate (od zaslona ali tiskalnika) ga lahko uporabite. Lahko ga prejmete z medmrežja (običajno z odseka podpore na spletišču proizvajalca). Barvne profile zagotavljajo tudi nekateri proizvajalci fotoaparatov (Nikon, Canon)."
+
+#: C/f-spot.xml:844(title)
+msgid "Calibrating and profiling"
+msgstr "Umerjanje in profiliranje"
+
+#: C/f-spot.xml:846(para)
+msgid "Best results can be achieved by calibrating and profiling devices with a measurement device. It is not so difficult, but it means that you need a spectrophotometer to do all measurements and create an ICC profile."
+msgstr "Najboljše rezultate je mogoče doseči z umerjanjem in profiliranjem naprav z meritveno napravo. To ni težko, vendar pa je za izvajanje vseh meritev in ustvarjanje profila ICC potreben spektrofotometer."
+
+#: C/f-spot.xml:852(para)
+msgid "If you are on Windows or Mac OS X, you can use manufacturer's software coming with a spectrophotometer. On Linux you will have to use either <ulink url=\"http://www.argyllcms.com\">Argyll</ulink>, which is a set of versatile command line tools, or <ulink url=\"http://lprof.sourceforge.net/\">LProf</ulink>, which has a graphical user interface."
+msgstr "V primeru da uporabljate Windows ali Mac OS X lahko uporabite program proizvajalca, ki je prispel s spektrofotometrom. Na Linuxu boste morali uporabiti <ulink url=\"http://www.argyllcms.com\">Argyll</ulink>, ki je niz vsestranskih orodij ukazne vrstice ali <ulink url=\"http://lprof.sourceforge.net/\">LProf</ulink>, ki ima grafični uporabniški vmesnik."
+
+#: C/f-spot.xml:860(para)
+#, fuzzy
+msgid "Please refer to documentation of third party hardware and software vendors for details."
+msgstr "Za podrobnosti si oglede dokumentacijo za "
+
+#: C/f-spot.xml:867(title)
+msgid "Embedding"
+msgstr "Vključevanje"
+
+#: C/f-spot.xml:869(para)
+msgid "Image formats themselves (such as TIFF, JPEG, PNG...) may contain embedded color profiles. If color management is enabled, F-Spot looks for such embedded profiles and takes them into consideration."
+msgstr "Nekatere vrste slik (kot so TIFF, JPEG, PNG ...) lahko vsebujejo vključene barvne profile. V primeru da je upravljanje barv omogočeno, F-Spot poišče vključene profile in jih upošteva."
+
+#: C/f-spot.xml:878(title)
+msgid "How to use color management in F-Spot"
+msgstr "Kako uporabiti upravljanje barv v F-Spot"
+
+#: C/f-spot.xml:880(para)
+msgid "Color management in F-Spot can use only RGB profiles at this time (and you can't see other profiles in the F-Spot)."
+msgstr "Upravljanje barv v F-Spot lahko trenutno uporabi le profile RGB (drugih profilov v F-Spot ni mogoče videti)."
+
+#: C/f-spot.xml:887(para)
+msgid "Copy your color profiles into the <filename class=\"directory\">/usr/share/color/icc</filename> or <filename class=\"directory\">/usr/local/share/color/icc</filename> directory."
+msgstr "Kopirajte svoje barvne profile v mapo <filename class=\"directory\">/usr/share/color/icc</filename> ali <filename class=\"directory\">/usr/local/share/color/icc</filename>."
+
+#: C/f-spot.xml:895(para)
+msgid "Enable the color management with the <menuchoice><guimenu>Edit</guimenu><guimenuitem>Preferences</guimenuitem></menuchoice> menu."
+msgstr "Upravljanje barv omogočite z menijem <menuchoice><guimenu>Uredi</guimenu><guimenuitem>Možnosti</guimenuitem></menuchoice>."
+
+#: C/f-spot.xml:902(para)
+msgid "Select <guilabel>Display</guilabel> and <guilabel>Output</guilabel> profiles."
+msgstr "Izberite profila <guilabel>Prikaz</guilabel> in <guilabel>Izhod</guilabel>."
+
+#: C/f-spot.xml:910(para)
+msgid "You can use <ulink url=\"http://burtonini.com/blog/computers/xicc\">xicc</ulink> to load ICC profile to display and use the loaded profile from F-Spot. Just mark the checkbox <guilabel>Try to use the system display profile</guilabel>."
+msgstr "Za nalaganje profila ICC za prikaz in uporabo naloženega profila iz F-Spot lahko uporabite <ulink url=\"http://burtonini.com/blog/computers/xicc\">xicc</ulink>. Samo označite potrditveno polje <guilabel>Poskus uporabe sistemskega profila prikaza</guilabel>."
+
+#: C/f-spot.xml:921(title)
+msgid "Extend functionality"
+msgstr "Razširitev zmožnosti"
+
+#: C/f-spot.xml:924(title)
+msgid "What extensions are"
+msgstr "Kaj so razširitve"
+
+#: C/f-spot.xml:926(para)
+msgid "F-Spot extensions are means to add new functionality to the application. F-Spot supports two types of extension: exporters (which allow exporting photos to new web services or data storages) and tools (which allow new ways of color correction, duplicate photos finders etc.). Extensions are distributed in form of extension packages."
+msgstr "Razširitve F-Spot dajo programu nove zmožnosti. F-Spot podpira dve vrsti razširitev: izvoznike (omogočajo izvažanje fotografij na spletne storitve ali podatkovne shrambe) in orodja (omogočajo nove načine popravljanja barv, podvajanje fotografij, itn.). Razširitve so distribuirane v obliki paketov razširitev."
+
+#: C/f-spot.xml:933(para)
+msgid "In the best traditions of not reinventing the wheel extensions can use other extensions, which means that one extension cannot work, if another extension is not installed. This concept of dependance actually means that"
+msgstr "Z namenom zmanjšanja podvajanja dela lahko razširitve uporabijo druge razširitve, kar pomeni da lahko razširitev ne deluje, če ni nameščena druga razširitev. Ta koncept odvisnosti pomeni da"
+
+#: C/f-spot.xml:940(para)
+msgid "you cannot install an extension, if the extension it depends on, is not present in the system"
+msgstr "ne morete namestiti razširitve, če je odvisna od druge razširitve, ki je ni na sistemu"
+
+#: C/f-spot.xml:945(para)
+msgid "you cannot remove an extension on which some other extension depends"
+msgstr "ne morete odstraniti razširitve od katere je odvisna druga razširitev"
+
+#: C/f-spot.xml:953(title)
+msgid "Managing extensions"
+msgstr "Upravljanje razširitev"
+
+#: C/f-spot.xml:955(para)
+msgid "To manage extensions choose <menuchoice><guimenu>Edit</guimenu><guimenuitem>Manage Extensions</guimenuitem></menuchoice> menu item."
+msgstr "Za upravljanje razširitev izberite predmet menija <menuchoice><guimenu>Uredi</guimenu><guimenuitem>Upravljanje razširitev</guimenuitem></menuchoice>."
+
+#: C/f-spot.xml:961(title)
+msgid "Managing extension repositories"
+msgstr "Upravljanje s skladišči razširitev"
+
+#: C/f-spot.xml:963(para)
+msgid "Simply put, repositories are extension storages. They can be either network or local. To add a new repository click Repositories button, choose type of the repository you are about to add and provide either URL or path. If the URL or path you specified doesn't contain a description (index) file for extensions, a warning message will pop up to tell you that."
+msgstr "Preprosto povedano so skladišča shrambe razširitev. Lahko so omrežna ali krajevna. Za dodajanje novega skladišča kliknite gumb Skladišča, izberite vrsto skladišča za dodajanje in vnesite URL ali pot. V primeru da navedeni URL ali pot ne vsebuje datoteke opisa (kazala) za razširitve, vas bo o tem obvestilo opozorilno sporočilo."
+
+#: C/f-spot.xml:970(para)
+msgid "To remove a repository click <guibutton>Repositories</guibutton> button again, choose the repository you are about to delete and click <guibutton>Delete</guibutton> button."
+msgstr "Za odstranitev skladišča ponovno kliknite gumb <guibutton>Skladišča</guibutton>, izberite skladišče za izbris in kliknite gumb <guibutton>Izbriši</guibutton>."
+
+#: C/f-spot.xml:978(title)
+msgid "Installing and updating extensions"
+msgstr "Nameščanje in posodabljanje razširitev"
+
+#: C/f-spot.xml:980(para)
+msgid "To install an extension click <guibutton>Install extensions...</guibutton> button. In the newly presented dialog"
+msgstr "Za namestitev razširitve kliknite gumb <guibutton>Namesti razširitve ...</guibutton> . V novo predstavljenem pogovornem oknu"
+
+#: C/f-spot.xml:986(para)
+msgid "Choose repository to install from all known repositories or just one of available repositories."
+msgstr "Izberite skladišče za namestitev iz vseh znanih skladišč ali razpoložljivih skladišč."
+
+#: C/f-spot.xml:992(para)
+msgid "Choose, what extension packages you want to see: All, Only new, Only updates."
+msgstr "Izberite katere pakete razširitev želite videti: Vse, le nove, le posodobitve."
+
+#: C/f-spot.xml:997(para)
+msgid "Click the <guibutton>Update</guibutton> button to update list of available extension packages by given criteria."
+msgstr "Kliknite gumb <guibutton>Posodobi</guibutton> za posodobitev seznama razpoložljivih paketov razširitev glede na dane kriterije."
+
+#: C/f-spot.xml:1003(para)
+msgid "Choose extensions you want to install/update, click <guibutton>Information</guibutton> to see summary on selected package, if you want to."
+msgstr "Izberite razširitve, ki jih želite namestiti/posodobiti, ter kliknite <guibutton>Podrobnosti</guibutton> za ogled povzetka izbranega paketa, če želite."
+
+#: C/f-spot.xml:1009(para)
+msgid "Click <guibutton>Forward</guibutton> to proceed with installation."
+msgstr "Kliknite gumb <guibutton>Naprej</guibutton> za nadaljevanje z namestitvijo."
+
+#: C/f-spot.xml:1017(title)
+msgid "Enabling and disabling extensions"
+msgstr "Omogočanje in onemogočanje razširitev "
+
+#: C/f-spot.xml:1019(para)
+msgid "You might want to temporarily enable or disable a particular extension package, for example, if the extension is not stable enough to handle a large amount of photos or if menus get crowded with extensions."
+msgstr "Morda želite začasno omogočiti ali onemogočiti določen paket razširitve, na primer če razširitev ni dovolj stabilna za upravljanje z veliko količino fotografij ali če so meniji preveč natrpani z razširitvami."
+
+#: C/f-spot.xml:1024(para)
+msgid "In the <guilabel>Manage Extensions</guilabel> dialog select the extension package and click <guibutton>Enable</guibutton> or <guibutton>Disable</guibutton>."
+msgstr "V pogovornem oknu <guilabel>Upravljanje razširitev</guilabel> izberite paket razširitev in kliknite gumb <guibutton>Omogoči</guibutton> ali <guibutton>Onemogoči</guibutton>. "
+
+#: C/f-spot.xml:1031(title)
+msgid "Removing extensions"
+msgstr "Odstranjevanje razširitev"
+
+#: C/f-spot.xml:1033(para)
+msgid "If you don't need an extension you can remove it from the system completely. In the <guilabel>Manage Extensions</guilabel> dialog select the extension package you want to remove and click <guibutton>Delete</guibutton>."
+msgstr "V primeru da razširitve ne potrebujete, jo lahko popolnoma odstranite s sistema. V pogovornem oknu <guilabel>Upravljanje razširitev</guilabel> izberite paket razširitev, ki ga želite izbrisati in kliknite <guibutton>Izbriši</guibutton>."
+
+#: C/f-spot.xml:1041(title)
+msgid "Reading summary of extensions"
+msgstr "Branje povzetka razširitev"
+
+#: C/f-spot.xml:1043(para)
+msgid "Every extension package contains metadata that provides the following information about the extension:"
+msgstr "Vsak paket razširitve vsebuje metapodatke, ki zagotavljajo naslednje podrobnosti o razširitvi:"
+
+#: C/f-spot.xml:1049(para)
+msgid "Description, which usually covers puprose of the extension"
+msgstr "Opis, ki običajno opiše namen razširitve"
+
+#: C/f-spot.xml:1054(para)
+msgid "Version"
+msgstr "Različica"
+
+#: C/f-spot.xml:1059(para)
+msgid "Author"
+msgstr "Avtor"
+
+#: C/f-spot.xml:1064(para)
+msgid "Dependencies"
+msgstr "Odvisnosti"
+
+#: C/f-spot.xml:1070(para)
+msgid "In the <guilabel>Manage Extensions</guilabel> dialog select the extension package you want to read summary of and click <guibutton>Information</guibutton>."
+msgstr "V pogovornem oknu <guilabel>Upravljanje razširitev</guilabel> izberite paket razširitve katerega opis želite prebrati in kliknite <guibutton>Podrobnosti</guibutton>."
+
+#: C/f-spot.xml:1078(title)
+msgid "Developing extensions"
+msgstr "Razvijanje razširitev"
+
+#: C/f-spot.xml:1080(para)
+msgid "<ulink url=\"http://f-spot.org/Extend_F-Spot\">Extend F-Spot</ulink> document gives instructions on developing your own extensions for F-Spot."
+msgstr "Dokument <ulink url=\"http://f-spot.org/Extend_F-Spot\">razširite F-Spot</ulink> vsebuje navodila za razvijanje vaših lastnih razširitev za F-Spot."
+
+#: C/f-spot.xml:1088(title)
+msgid "Shortcuts"
+msgstr "Bližnjice"
+
+#: C/f-spot.xml:1091(title)
+msgid "Global Shortcuts"
+msgstr "Splošne bližnjice"
+
+#: C/f-spot.xml:1096(entry)
+#: C/f-spot.xml:1205(entry)
+#: C/f-spot.xml:1301(entry)
+#: C/f-spot.xml:1353(entry)
+msgid "Key"
+msgstr "Tipka"
+
+#: C/f-spot.xml:1099(entry)
+#: C/f-spot.xml:1208(entry)
+#: C/f-spot.xml:1304(entry)
+#: C/f-spot.xml:1356(entry)
+msgid "Action"
+msgstr "Dejanje"
+
+#: C/f-spot.xml:1107(keycap)
+msgid "["
+msgstr "["
+
+#: C/f-spot.xml:1109(entry)
+msgid "Rotate the selected photos to the left"
+msgstr "Vrtenje izbranih fotografij levo"
+
+#: C/f-spot.xml:1115(keycap)
+msgid "]"
+msgstr "]"
+
+#: C/f-spot.xml:1117(entry)
+msgid "Rotate the selected photos to the right"
+msgstr "Vrtenje izbranih fotografij desno"
+
+#: C/f-spot.xml:1123(keycap)
+#: C/f-spot.xml:1131(keycap)
+msgid "Del"
+msgstr "Del"
+
+#: C/f-spot.xml:1125(entry)
+msgid "Remove selected photos from F-Spot's catalogue"
+msgstr "Odstrani izbrane fotografije iz kataloga F-Spot"
+
+#: C/f-spot.xml:1131(keycap)
+#: C/f-spot.xml:1224(keycap)
+#: C/f-spot.xml:1258(keycap)
+#: C/f-spot.xml:1267(keycap)
+#: C/f-spot.xml:1284(keycap)
+#: C/f-spot.xml:1446(keycap)
+msgid "Shift"
+msgstr "Dvigalka"
+
+#: C/f-spot.xml:1133(entry)
+msgid "Delete selected photos permanently from the drive. If possible, they will moved to trash."
+msgstr "Trajno izbriše izbrane fotografije s pogona. V primeru, da je to mogoče, bodo premaknjene v smeti."
+
+#: C/f-spot.xml:1140(keycap)
+msgid "t"
+msgstr "t"
+
+#: C/f-spot.xml:1142(entry)
+msgid "View or edit tags for selected photos"
+msgstr "Ogled ali urejanje oznak za izbrane fotografije"
+
+#: C/f-spot.xml:1148(keycap)
+msgid "F11"
+msgstr "F11"
+
+#: C/f-spot.xml:1150(entry)
+#: C/f-spot.xml:1399(entry)
+msgid "Full screen view"
+msgstr "Celozaslonski pogled"
+
+#: C/f-spot.xml:1156(keycap)
+#: C/f-spot.xml:1164(keycap)
+#: C/f-spot.xml:1172(keycap)
+#: C/f-spot.xml:1180(keycap)
+#: C/f-spot.xml:1216(keycap)
+#: C/f-spot.xml:1224(keycap)
+#: C/f-spot.xml:1242(keycap)
+#: C/f-spot.xml:1267(keycap)
+#: C/f-spot.xml:1320(keycap)
+msgid "Ctrl"
+msgstr "Ctrl"
+
+#: C/f-spot.xml:1156(keycap)
+msgid "I"
+msgstr "I"
+
+#: C/f-spot.xml:1158(entry)
+msgid "Displays information about the photo"
+msgstr "Prikaz podrobnosti o fotografiji"
+
+#: C/f-spot.xml:1164(keycap)
+msgid "Equals"
+msgstr "Je enako"
+
+#: C/f-spot.xml:1166(entry)
+msgid "Zoom-in"
+msgstr "Približanje"
+
+#: C/f-spot.xml:1172(keycap)
+msgid "Minus"
+msgstr "Minus"
+
+#: C/f-spot.xml:1174(entry)
+msgid "Zoom-out"
+msgstr "Oddaljevanje"
+
+#: C/f-spot.xml:1180(keycap)
+#: C/f-spot.xml:1372(keycap)
+msgid "N"
+msgstr "N"
+
+#: C/f-spot.xml:1182(entry)
+msgid "Import photos"
+msgstr "Uvoz fotografij"
+
+#: C/f-spot.xml:1188(keycap)
+msgid "Alt"
+msgstr "Alt"
+
+#: C/f-spot.xml:1188(keycap)
+msgid "0-5"
+msgstr "0-5"
+
+#: C/f-spot.xml:1190(entry)
+msgid "Alt plus a number from 0 to 5 rate the selected picture(s)"
+msgstr "Alt in število od 0 do 5 za oceno izbran-e/ih slik(e)"
+
+#: C/f-spot.xml:1200(title)
+msgid "Browse Mode Shortcuts"
+msgstr "Bližnjice načina brskanja"
+
+#: C/f-spot.xml:1216(keycap)
+#: C/f-spot.xml:1225(keycap)
+msgid "A"
+msgstr "A"
+
+#: C/f-spot.xml:1218(entry)
+msgid "Select all"
+msgstr "Izbor vsega"
+
+#: C/f-spot.xml:1227(entry)
+msgid "Unselect all"
+msgstr "Preklic izbora"
+
+#: C/f-spot.xml:1233(keycap)
+#: C/f-spot.xml:1380(keycap)
+msgid "H"
+msgstr "H"
+
+#: C/f-spot.xml:1233(keycap)
+#: C/f-spot.xml:1380(keycap)
+msgid "J"
+msgstr "J"
+
+#: C/f-spot.xml:1234(keycap)
+#: C/f-spot.xml:1381(keycap)
+msgid "K"
+msgstr "K"
+
+#: C/f-spot.xml:1234(keycap)
+#: C/f-spot.xml:1381(keycap)
+msgid "L"
+msgstr "L"
+
+#: C/f-spot.xml:1232(entry)
+#: C/f-spot.xml:1379(entry)
+msgid "Arrow keys or <placeholder-1/>, <placeholder-2/>, <placeholder-3/>, <placeholder-4/>"
+msgstr "Tipke puščice ali <placeholder-1/>, <placeholder-2/>, <placeholder-3/>, <placeholder-4/>"
+
+#: C/f-spot.xml:1236(entry)
+msgid "Move focus"
+msgstr "Premakne žarišče"
+
+#: C/f-spot.xml:1241(entry)
+msgid "<placeholder-1/>-Arrow key"
+msgstr "<placeholder-1/>-Tipka puščice"
+
+#: C/f-spot.xml:1244(entry)
+msgid "Move the focus without changing the selection"
+msgstr "Premakne žarišče brez spremembe izbora"
+
+#: C/f-spot.xml:1250(keycap)
+#: C/f-spot.xml:1372(keycap)
+msgid "Spacebar"
+msgstr "Preslednica"
+
+#: C/f-spot.xml:1252(entry)
+msgid "Select or unselect the focused photo"
+msgstr "Izbere ali prekliče izbor fotografije v žarišču"
+
+#: C/f-spot.xml:1259(keycap)
+msgid "Arrow key"
+msgstr "Tipka puščice"
+
+#: C/f-spot.xml:1261(entry)
+msgid "Change the photo selection"
+msgstr "Sprememba izbire fotografije"
+
+#: C/f-spot.xml:1268(keycap)
+msgid "Left arrow or Right arrow"
+msgstr "Leva puščica ali desna puščica"
+
+#: C/f-spot.xml:1270(entry)
+msgid "Add/Remove all photos in the row, in the direction pressed, to the selection"
+msgstr "Doda/odstrani vse fotografije v vrstici v izbrani smeri do izbora"
+
+#: C/f-spot.xml:1276(keycap)
+#: C/f-spot.xml:1284(keycap)
+#: C/f-spot.xml:1437(keycap)
+msgid "V"
+msgstr "V"
+
+#: C/f-spot.xml:1278(entry)
+msgid "Pops up a larger preview of the picture pointed by the mouse"
+msgstr "Pojavi večji predogled slike pokazane z miško"
+
+#: C/f-spot.xml:1286(entry)
+msgid "Pops up a larger preview and a color histogram of the picture pointed by the mouse"
+msgstr "Pojavi večji predogled in barvni histogram slike pokazane z miško"
+
+#: C/f-spot.xml:1296(title)
+msgid "Tag Shortcuts"
+msgstr "Bližnjice oznak"
+
+#: C/f-spot.xml:1312(keycap)
+msgid "F2"
+msgstr "F2"
+
+#: C/f-spot.xml:1314(entry)
+msgid "Rename selected tag"
+msgstr "Preimenovanje izbranih oznak"
+
+#: C/f-spot.xml:1320(keycap)
+msgid "T"
+msgstr "T"
+
+#: C/f-spot.xml:1322(entry)
+msgid "Add tags to selected photos"
+msgstr "Dodajanje oznak izbranim fotografijam"
+
+#: C/f-spot.xml:1327(entry)
+#: C/f-spot.xml:1335(entry)
+msgid "n/a"
+msgstr "n/a"
+
+#: C/f-spot.xml:1330(entry)
+msgid "Drag and drop tags to move them"
+msgstr "Za premikanje oznak jih povlecite in spustite"
+
+#: C/f-spot.xml:1338(entry)
+msgid "Type a tag's name to jump to it (only works if tag is shown/expanded)"
+msgstr "Vtipkajte ime oznake za skok nanjo (deluje le, če je oznaka prikazana/razširjena)"
+
+#: C/f-spot.xml:1348(title)
+msgid "Edit Mode Shortcuts"
+msgstr "Bližnjice načina urejanja"
+
+#: C/f-spot.xml:1364(keycap)
+msgid "Page Up"
+msgstr "Stran navzgor"
+
+#: C/f-spot.xml:1364(keycap)
+msgid "Backspace"
+msgstr "Povratna tipka"
+
+#: C/f-spot.xml:1364(keycap)
+msgid "B"
+msgstr "B"
+
+#: C/f-spot.xml:1363(entry)
+#: C/f-spot.xml:1371(entry)
+msgid "<placeholder-1/>, <placeholder-2/>, <placeholder-3/>"
+msgstr "<placeholder-1/>, <placeholder-2/>, <placeholder-3/>"
+
+#: C/f-spot.xml:1366(entry)
+msgid "Go to Previous Photo"
+msgstr "Pojdi na predhodno fotografijo"
+
+#: C/f-spot.xml:1372(keycap)
+msgid "Page Down"
+msgstr "Stran navzdol"
+
+#: C/f-spot.xml:1374(entry)
+msgid "Go to Next Photo"
+msgstr "Pojdi na naslednjo fotografijo"
+
+#: C/f-spot.xml:1383(entry)
+msgid "Go to Previous/Next photo or move around a zoomed photo"
+msgstr "Gre na predhodno/naslednjo fotografijo ali premakne naokoli povečano fotografijo"
+
+#: C/f-spot.xml:1389(keycap)
+msgid "R"
+msgstr "R"
+
+#: C/f-spot.xml:1391(entry)
+msgid "Go to a random photo"
+msgstr "Pojdi na naključno fotografijo"
+
+#: C/f-spot.xml:1397(keycap)
+msgid "f"
+msgstr "f"
+
+#: C/f-spot.xml:1405(keycap)
+msgid "0"
+msgstr "0"
+
+#: C/f-spot.xml:1407(entry)
+msgid "Fit the image to the screen"
+msgstr "Prilagajanje slike zaslonu"
+
+#: C/f-spot.xml:1413(keycap)
+msgid "1"
+msgstr "1"
+
+#: C/f-spot.xml:1415(entry)
+msgid "Zoom Factor to 1.0 (1 screen pixel per image pixel)"
+msgstr "Faktor povečave 1.0 (1 točka zaslona na točko slike)"
+
+#: C/f-spot.xml:1421(keycap)
+msgid "2"
+msgstr "2"
+
+#: C/f-spot.xml:1423(entry)
+msgid "Zoom Factor to 2.0 (4 screen pixels per image pixel)"
+msgstr "Faktor povečave na 2.0 (4 točke zaslona na točko slike)"
+
+#: C/f-spot.xml:1429(keycap)
+msgid "Escape"
+msgstr "Ubežna tipka"
+
+#: C/f-spot.xml:1431(entry)
+msgid "Returns to Browser mode"
+msgstr "Vrne v način brskalnika"
+
+#: C/f-spot.xml:1441(keycap)
+msgid "v"
+msgstr "v"
+
+#: C/f-spot.xml:1439(entry)
+msgid "Examine photo with magnifying glass (Loupe). Doubleclick on the Loupe, or type <placeholder-1/> again to close it."
+msgstr "Preučevanje fotografije s povečevalnim steklom. Za zaprtje povečevalnega stekla kliknite nanj ali vtipkajte <placeholder-1/>."
+
+#: C/f-spot.xml:1445(entry)
+msgid "<placeholder-1/>-Mousewheel"
+msgstr "<placeholder-1/>-Miškino kolesce"
+
+#: C/f-spot.xml:1448(entry)
+msgid "Faster filmstrip scrolling"
+msgstr "Hitrejše drsenje filmskega traku"
+
+#: C/f-spot.xml:1454(keycap)
+msgid "i"
+msgstr "i"
+
+#: C/f-spot.xml:1456(entry)
+msgid "Toggle infobox visibility ''(only when in full screen)''"
+msgstr "Preklop vidnosti polja podrobnosti \"(le v celozaslonskem načinu)\""
+
+#. Put one translator per line, in the form of NAME <EMAIL>, YEAR1, YEAR2
+#: C/f-spot.xml:0(None)
+msgid "translator-credits"
+msgstr "Andrej Žnidaršič <andrej.znidarsic@gmail.com>"
+
