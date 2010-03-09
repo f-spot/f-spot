@@ -85,7 +85,7 @@ namespace FSpot {
 				slide_show.Activated += SlideShowAction;
 				actions.Add (slide_show);
 
-				new Fader (this, 1.0, 3);
+				new Fader (this, 1.0, 600);
 				notebook = new Notebook ();
 				notebook.ShowBorder = false;
 				notebook.ShowTabs = false;
