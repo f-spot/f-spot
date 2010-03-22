@@ -13,8 +13,8 @@ msgstr ""
 "Project-Id-Version: f-spot.HEAD\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=f-"
 "spot&component=General\n"
-"POT-Creation-Date: 2010-03-01 17:06+0000\n"
-"PO-Revision-Date: 2010-03-01 22:21+0100\n"
+"POT-Creation-Date: 2010-03-01 21:25+0000\n"
+"PO-Revision-Date: 2010-03-22 18:55+0100\n"
 "Last-Translator: Jorge González <jorgegonz@svn.gnome.org>\n"
 "Language-Team: Español <gnome-es-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -1154,7 +1154,6 @@ msgid "Stopped"
 msgstr "Detenido"
 
 #: ../extensions/Tools/HashJob/HashJob.addin.xml.h:1
-#| msgid "Hash for Duplicates"
 msgid "Check for Duplicates..."
 msgstr "Buscar duplicados…"
 
@@ -1688,7 +1687,7 @@ msgstr "_Adjuntar etiqueta"
 
 #: ../src/FSpot.addin.xml.h:9 ../src/ui/main_window.ui.h:41
 msgid "_Delete From Drive"
-msgstr "_Borrar de la unidad"
+msgstr "_Eliminar de la unidad"
 
 #: ../src/FSpot.addin.xml.h:10 ../src/ui/main_window.ui.h:59
 msgid "_Remove From Catalog"
@@ -2377,7 +2376,6 @@ msgstr ""
 
 #: ../src/ImportCommand.cs:738 ../src/ImportCommand.cs:740
 #: ../src/XmpTagsImporter.cs:89
-#| msgid "Import Tags"
 msgid "Imported Tags"
 msgstr "Etiquetas importadas"
 
@@ -2513,40 +2511,41 @@ msgstr "_Aceptar"
 
 #: ../src/MainWindow.cs:2167
 msgid "Error Deleting Picture"
-msgstr "Error al borrar la fotografía"
+msgstr "Error al eliminar la fotografía"
 
 #: ../src/MainWindow.cs:2172
 #, csharp-format
 msgid "No permission to delete the file:{1}{0}"
-msgstr "No tiene permisos para borrar el archivo: {1}{0}"
+msgstr "No tiene permisos para eliminar el archivo: {1}{0}"
 
 #: ../src/MainWindow.cs:2176
 #, csharp-format
 msgid "An error of type {0} occurred while deleting the file:{2}{1}"
-msgstr "Ocurrió un error del tipo {0} al borrar el archivo: {2}{1}"
+msgstr "Ocurrió un error del tipo {0} al eliminar el archivo: {2}{1}"
 
 #: ../src/MainWindow.cs:2208
 #, csharp-format
 msgid "Delete the selected photo permanently?"
 msgid_plural "Delete the {0} selected photos permanently?"
-msgstr[0] "¿Borrar permanentemente la fotografía seleccionada?"
-msgstr[1] "¿Borrar permanentemente las {0} fotografías seleccionadas?"
+msgstr[0] "¿Eliminar permanentemente la fotografía seleccionada?"
+msgstr[1] "¿Eliminar permanentemente las {0} fotografías seleccionadas?"
 
 #: ../src/MainWindow.cs:2212
 msgid "This deletes all versions of the selected photo from your drive."
 msgid_plural ""
 "This deletes all versions of the selected photos from your drive."
 msgstr[0] ""
-"Esto borrará de su unidad todas las versiones de la fotografía seleccionada."
+"Esto eliminará de su unidad todas las versiones de la fotografía "
+"seleccionada."
 msgstr[1] ""
-"Esto borrará de su unidad todas las versiones de las fotografías "
+"Esto eliminará de su unidad todas las versiones de las fotografías "
 "seleccionadas."
 
 #: ../src/MainWindow.cs:2215
 msgid "_Delete photo"
 msgid_plural "_Delete photos"
-msgstr[0] "_Borrar la fotografía"
-msgstr[1] "_Borrar las fotografías"
+msgstr[0] "_Eliminar la fotografía"
+msgstr[1] "_Eliminar las fotografías"
 
 #: ../src/MainWindow.cs:2251
 #, csharp-format
@@ -2572,12 +2571,12 @@ msgstr "_Quitar del catálogo"
 #: ../src/MainWindow.cs:2320
 #, csharp-format
 msgid "Delete tag \"{0}\"?"
-msgstr "¿Borrar etiqueta {0}?"
+msgstr "¿Eliminar etiqueta {0}?"
 
 #: ../src/MainWindow.cs:2322
 #, csharp-format
 msgid "Delete the {0} selected tags?"
-msgstr "¿Borrar las {0} etiquetas seleccionadas?"
+msgstr "¿Eliminar las {0} etiquetas seleccionadas?"
 
 #: ../src/MainWindow.cs:2327
 msgid "photo"
@@ -2596,8 +2595,8 @@ msgstr[1] "Si borra estas etiquetas se perderá la asociación {0} {1}."
 #: ../src/MainWindow.cs:2334
 msgid "_Delete tag"
 msgid_plural "_Delete tags"
-msgstr[0] "_Borrar etiqueta"
-msgstr[1] "_Borrar etiquetas"
+msgstr[0] "_Eliminar etiqueta"
+msgstr[1] "_Eliminar etiquetas"
 
 #. A Category is not empty. Can not delete it.
 #: ../src/MainWindow.cs:2348
@@ -2610,7 +2609,7 @@ msgid ""
 "Can not delete tags that have tags within them.  Please delete tags under "
 "\"{0}\" first"
 msgstr ""
-"No se pueden borrar etiquetas que tengan etiquetas dentro de ellas. Borre "
+"No se pueden eliminar etiquetas que tengan etiquetas dentro de ellas. Borre "
 "antes las etiquetas de «{0}»"
 
 #: ../src/MainWindow.cs:2789
@@ -2807,7 +2806,7 @@ msgstr "Se recibió la excepción «{0}». No es posible crear la versión «{1}
 
 #: ../src/PhotoVersionCommands.cs:138
 msgid "Really Delete?"
-msgstr "¿Realmente desea borrarlo?"
+msgstr "¿Realmente desea eliminarlo?"
 
 #: ../src/PhotoVersionCommands.cs:139
 msgid "Cancel"
@@ -2815,21 +2814,21 @@ msgstr "Cancelar"
 
 #: ../src/PhotoVersionCommands.cs:140
 msgid "Delete"
-msgstr "Borrar"
+msgstr "Eliminar"
 
 #: ../src/PhotoVersionCommands.cs:144
 #, csharp-format
 msgid "Really delete version \"{0}\"?"
-msgstr "¿Borrar la versión «{0}»?"
+msgstr "¿Eliminar la versión «{0}»?"
 
 #: ../src/PhotoVersionCommands.cs:154
 msgid "Could not delete a version"
-msgstr "No se pudo borrar una versión"
+msgstr "No se pudo eliminar una versión"
 
 #: ../src/PhotoVersionCommands.cs:155
 #, csharp-format
 msgid "Received exception \"{0}\". Unable to delete version \"{1}\""
-msgstr "Se recibió la excepción «{0}». No es posible borrar la versión «{1}»"
+msgstr "Se recibió la excepción «{0}». No es posible eliminar la versión «{1}»"
 
 #: ../src/PhotoVersionCommands.cs:196
 msgid "Could not rename a version"
@@ -3045,15 +3044,14 @@ msgid "Create New Tag..."
 msgstr "Crear una etiqueta…"
 
 #: ../src/TagPopup.cs:42
-#| msgid "Edit Tag"
 msgid "Edit Tag..."
 msgstr "Editar etiqueta…"
 
 #: ../src/TagPopup.cs:46
 msgid "Delete Tag"
 msgid_plural "Delete Tags"
-msgstr[0] "Borrar etiqueta"
-msgstr[1] "Borrar etiquetas"
+msgstr[0] "Eliminar etiqueta"
+msgstr[1] "Eliminar etiquetas"
 
 #: ../src/TagPopup.cs:52
 msgid "Attach Tag to Selection"
@@ -3585,14 +3583,13 @@ msgstr "_Fechas"
 
 #: ../src/ui/main_window.ui.h:42
 msgid "_Delete Selected Tag"
-msgstr "_Borrar la etiqueta seleccionada"
+msgstr "_Eliminar la etiqueta seleccionada"
 
 #: ../src/ui/main_window.ui.h:43
 msgid "_Delete Version"
-msgstr "_Borrar la versión"
+msgstr "_Eliminar la versión"
 
 #: ../src/ui/main_window.ui.h:45
-#| msgid "Edit Tag"
 msgid "_Edit Tag..."
 msgstr "_Editar etiqueta…"
 
