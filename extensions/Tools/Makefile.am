@@ -4,4 +4,5 @@ SUBDIRS = 			\
 	HashJob			\
 	MergeDb			\
 	RawPlusJpeg		\
+	RetroactiveRoll		\
 	ScreensaverConfig

@@ -33,14 +33,14 @@ namespace RetroactiveRoll
 				if (p.Time > import_time)
 					import_time = p.Time;
 
-			RollStore rolls = Core.Database.Rolls;
+			RollStore rolls = App.Instance.Database.Rolls;
 			Roll roll = rolls.Create(import_time);
 			foreach (Photo p in photos) {
 				DbCommand cmd = new DbCommand ("UPDATE photos SET roll_id = :roll_id " +
 							       "WHERE id = :id ",
 							       "roll_id", roll.Id,
 							       "id", p.Id);
-				Core.Database.Database.ExecuteNonQuery (cmd);
+				App.Instance.Database.Database.ExecuteNonQuery (cmd);
 				p.RollId = roll.Id;
 			}
 			Console.WriteLine ("RetroactiveRoll done: " + photos.Length + " photos in roll " + roll.Id);
