@@ -5,4 +5,5 @@ SUBDIRS = 			\
 	LiveWebGallery		\
 	MergeDb			\
 	RawPlusJpeg		\
+	RetroactiveRoll		\
 	ScreensaverConfig
