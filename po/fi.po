@@ -2,24 +2,22 @@
 # Copyright (C) 2005-2008 Ilkka Tuohela, Timo Jyrinki.
 # This file is distributed under the same license as the f-spot package.
 # Ilkka Tuohela <hile@iki.fi>, 2005-2007.
-# Timo Jyrinki <timo.jyrinki@iki.fi> 2008-2009.
+# Timo Jyrinki <timo.jyrinki@iki.fi> 2008-2010.
 # Tommi Vainikainen <thv@iki.fi>, 2009.
-# Jiri Grönroos <jiri.gronroos@iki.fi>, 2009.
+# Jiri Grönroos <jiri.gronroos@iki.fi>, 2009-2010.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: f-spot\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-10-08 12:43+0300\n"
-"PO-Revision-Date: 2009-10-08 12:43+0300\n"
-"Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>, 2009.\n"
+"POT-Creation-Date: 2010-04-01 10:05+0300\n"
+"PO-Revision-Date: 2010-04-01 10:05+0300\n"
+"Last-Translator: Timo Jyrinki <timo.jyrinki@iki.fi>\n"
 "Language-Team: Finnish <gnome-fi-laatu@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Launchpad-Export-Date: 2009-10-08 06:08+0000\n"
-"X-Generator: Launchpad (build Unknown)\n"
 
 #: ../extensions/Exporters/CDExport/CDExport.addin.xml.h:1
 msgid "_CD..."
@@ -41,14 +39,14 @@ msgstr "Siirretään kuvaa \"{0}\" CD:lle"
 #: ../extensions/Exporters/FlickrExport/FlickrExport.cs:349
 #: ../extensions/Exporters/FolderExport/FolderExport.cs:245
 #: ../extensions/Exporters/GalleryExport/GalleryExport.cs:781
-#: ../src/MainWindow.cs:638 ../src/UI.Dialog/AdjustTimeDialog.cs:129
+#: ../src/MainWindow.cs:673 ../src/UI.Dialog/AdjustTimeDialog.cs:129
 #: ../src/UI.Dialog/ProgressDialog.cs:92
 #, csharp-format
 msgid "{0} of {1}"
 msgstr "{0}/{1}"
 
 #: ../extensions/Exporters/CDExport/CDExport.cs:233
-#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:379
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:380
 #: ../extensions/Exporters/FlickrExport/FlickrExport.cs:379
 #: ../extensions/Exporters/FolderExport/FolderExport.cs:285
 #: ../extensions/Exporters/GalleryExport/GalleryExport.cs:806
@@ -98,7 +96,7 @@ msgid "Create CD"
 msgstr "Luo CD"
 
 #: ../extensions/Exporters/CDExport/CDExport.ui.h:5
-#: ../src/Widgets/InfoBox.cs:220
+#: ../src/Widgets/InfoBox.cs:221
 msgid "Size"
 msgstr "Koko"
 
@@ -116,6 +114,7 @@ msgstr "S_elaa aiemmin ajastettuja tiedostoja"
 #: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:15
 #: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:20
 #: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:12
+#: ../extensions/Exporters/TabbloExport/ui/TabbloExport.ui.h:9
 #: ../src/f-spot.glade.h:95
 msgid "_Export"
 msgstr "_Vie"
@@ -145,19 +144,20 @@ msgstr ""
 "\n"
 "Kun Facebook ohjaa sinut takaisin tähän sovellukseen, napsauta ”OK” alla."
 
-#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:279
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:280
 msgid "Too many images to export"
 msgstr "Liian monta vietävää kuvaa"
 
-#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:280
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:281
+#, csharp-format
 msgid ""
-"Facebook only permits 60 photographs per album.  Please refine your "
+"Facebook only permits {0} photographs per album.  Please refine your "
 "selection and try again."
 msgstr ""
-"Facebook sallii vain 60 valokuvaa kussakin albumissa. Tarkenna valintaasi ja "
-"yritä uudestaan."
+"Facebook sallii korkeintaan {0} kuvaa per albumi. Määritä valintasi "
+"uudelleen ja koeta uudelleen."
 
-#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:297
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:298
 #: ../extensions/Exporters/FlickrExport/FlickrExport.cs:475
 #: ../extensions/Exporters/GalleryExport/GalleryExport.cs:730
 #: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:597
@@ -165,19 +165,19 @@ msgstr ""
 msgid "Uploading Pictures"
 msgstr "Viedään kuvia"
 
-#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:318
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:319
 msgid "Album must have a name"
 msgstr "Albumilla täytyy olla nimi"
 
-#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:319
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:320
 msgid "Please name your album or choose an existing album."
-msgstr "Anna albumin nimi tai valitse olemassaoleva albumi."
+msgstr "Anna albumin nimi tai valitse olemassa oleva albumi."
 
-#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:333
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:334
 msgid "Creating a new album failed"
 msgstr "Uuden albumin luonti epäonnistui"
 
-#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:334
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:335
 #, csharp-format
 msgid ""
 "An error occurred creating a new album.\n"
@@ -188,36 +188,39 @@ msgstr ""
 "\n"
 "{0}"
 
-#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:356
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:357
 #: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:660
 #: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:565
 #, csharp-format
 msgid "Uploading picture \"{0}\" ({1} of {2})"
 msgstr "Viedään kuvaa \"{0}\" ({1}/{2})"
 
-#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:370
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:371
 #, csharp-format
 msgid "Error Uploading To Facebook: {0}"
-msgstr "Virhe vietäessä facebookiin: {0}"
+msgstr "Virhe vietäessä Facebookiin: {0}"
 
-#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:371
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:372
 #: ../extensions/Exporters/FlickrExport/FlickrExport.cs:370
 #: ../extensions/Exporters/FolderExport/FolderExport.cs:250
 #: ../extensions/Exporters/GalleryExport/GalleryExport.cs:797
 #: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:693
 #: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:596
 #: ../extensions/Exporters/TabbloExport/TabbloExport.cs:319
-#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.ErrorDialog.cs:40
 msgid "Error"
 msgstr "Virhe"
 
-#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:381
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:382
 #: ../extensions/Exporters/FlickrExport/FlickrExport.cs:381
 #: ../extensions/Exporters/GalleryExport/GalleryExport.cs:808
 #: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:706
 #: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:609
 msgid "Upload Complete"
 msgstr "Kuvien vienti valmis"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:385
+msgid "Visit F-Spot group on Facebook"
+msgstr "Vieraile F-Spot-ryhmän Facebook-sivulla"
 
 #: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:211
 msgid "Waiting for authentication"
@@ -300,7 +303,7 @@ msgstr "Et ole kirjautunut sisään."
 
 #: ../extensions/Exporters/FacebookExport/FacebookExport.ui.h:1
 msgid "Auto-confirm Photos"
-msgstr ""
+msgstr "Vahvista kuvien lisääminen automaattisesti"
 
 #: ../extensions/Exporters/FacebookExport/FacebookExport.ui.h:2
 msgid "Caption"
@@ -336,26 +339,25 @@ msgid "Logout"
 msgstr "Kirjaudu ulos"
 
 #: ../extensions/Exporters/FacebookExport/FacebookExport.ui.h:10
-#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/ManageSitesDialog.cs:51
-#: ../src/Widgets/InfoBox.cs:211
+#: ../src/Widgets/InfoBox.cs:212
 msgid "Name"
 msgstr "Nimi"
 
 #: ../extensions/Exporters/FacebookExport/FacebookExport.ui.h:11
 msgid "Not logged in"
-msgstr ""
+msgstr "Et ole kirjautunut sisään"
 
 #: ../extensions/Exporters/FacebookExport/FacebookExport.ui.h:12
 msgid "Permissions:"
-msgstr ""
+msgstr "Oikeudet:"
 
 #: ../extensions/Exporters/FacebookExport/FacebookExport.ui.h:13
 msgid "Stay Connected"
-msgstr ""
+msgstr "Pidä yhteys auki"
 
 #: ../extensions/Exporters/FacebookExport/FacebookExport.ui.h:14
 msgid "Use an existing album"
-msgstr "Käytä olemassaolevaa albumia"
+msgstr "Käytä olemassa olevaa albumia"
 
 #: ../extensions/Exporters/FacebookExport/FacebookExport.ui.h:15
 msgid "Who is this?"
@@ -459,6 +461,7 @@ msgstr "<b>Tili</b>"
 #: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:3
 #: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:2
 #: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:2
+#: ../extensions/Exporters/TabbloExport/ui/TabbloExport.ui.h:2
 #: ../src/f-spot.glade.h:14 ../src/UI.Dialog/ui/AdjustTimeDialog.ui.h:5
 msgid "<b>Photos</b>"
 msgstr "<b>Valokuvat</b>"
@@ -480,7 +483,8 @@ msgstr "<b>Kuvien katseluoikeudet</b>"
 #: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:8
 #: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:9
 #: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:6
-#: ../src/f-spot.glade.h:43
+#: ../extensions/Exporters/TabbloExport/ui/TabbloExport.ui.h:5
+#: ../src/f-spot.glade.h:44
 msgid "Export"
 msgstr "Vie"
 
@@ -499,7 +503,7 @@ msgstr ""
 
 #: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:9
 msgid "Ignore _top level tags"
-msgstr "Jätä huomiotta ylimmän _tason luokitukset"
+msgstr "Jätä huomiotta ylimmän _tason tunnisteet"
 
 #: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:10
 msgid "Private"
@@ -572,61 +576,61 @@ msgstr "Virhe: Virhe siirrettäessä, keskeytetään"
 
 #: ../extensions/Exporters/FolderExport/FolderExport.cs:336
 msgid "Error: File Already Exists; Aborting"
-msgstr "Virh: Tiedosto on jo olemassa, keskeytetään"
+msgstr "Virhe: Tiedosto on jo olemassa, keskeytetään"
 
 #. Note for translators: light as clear, opposite as dark
-#: ../extensions/Exporters/FolderExport/FolderExport.cs:803
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:807
 msgid "Light"
 msgstr "Vaalea"
 
-#: ../extensions/Exporters/FolderExport/FolderExport.cs:804
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:808
 msgid "Dark"
 msgstr "Tumma"
 
 #. Abbreviation of previous
-#: ../extensions/Exporters/FolderExport/FolderExport.cs:984
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:988
 msgid "Prev"
 msgstr "Edellinen"
 
-#: ../extensions/Exporters/FolderExport/FolderExport.cs:986
-#: ../extensions/Exporters/FolderExport/FolderExport.cs:1227
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:990
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:1231
 #: ../src/CameraFileSelectionDialog.cs:82
 msgid "Index"
 msgstr "Indeksi"
 
 #. Don't care otherwise, Tags sounds reasonable
-#: ../extensions/Exporters/FolderExport/FolderExport.cs:989
-#: ../extensions/Exporters/FolderExport/FolderExport.cs:1161
-#: ../extensions/Exporters/FolderExport/FolderExport.cs:1201
-#: ../src/MainWindow.cs:342 ../src/Widgets/Sidebar.cs:64
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:993
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:1165
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:1205
+#: ../src/MainWindow.cs:376 ../src/Widgets/Sidebar.cs:56
 msgid "Tags"
-msgstr "Luokitukset"
+msgstr "Tunnisteet"
 
-#: ../extensions/Exporters/FolderExport/FolderExport.cs:992
-#: ../src/f-spot.glade.h:57 ../src/ItemAction.cs:102
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:996
+#: ../src/f-spot.glade.h:58 ../src/ItemAction.cs:102
 msgid "Next"
 msgstr "Seuraava"
 
-#: ../extensions/Exporters/FolderExport/FolderExport.cs:1096
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:1100
 msgid "Gallery generated by"
 msgstr "Valokuvakokoelman loi"
 
-#: ../extensions/Exporters/FolderExport/FolderExport.cs:1136
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:1140
 msgid "Show Styles"
 msgstr "Näytä tyylit"
 
-#: ../extensions/Exporters/FolderExport/FolderExport.cs:1137
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:1141
 msgid "Hide Styles"
 msgstr "Piilota tyylit"
 
-#: ../extensions/Exporters/FolderExport/FolderExport.cs:1172
-#: ../extensions/Exporters/FolderExport/FolderExport.cs:1173
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:1176
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:1177
 #: ../src/ui/main_window.ui.h:24
 msgid "Tags: "
 msgstr "Tunnisteet: "
 
-#: ../extensions/Exporters/FolderExport/FolderExport.cs:1304
-#: ../extensions/Exporters/FolderExport/FolderExport.cs:1437
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:1308
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:1441
 msgid "Page:"
 msgstr "Sivu:"
 
@@ -826,7 +830,7 @@ msgstr "_Kuvaus:"
 #: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:13
 #: ../src/f-spot.glade.h:97
 msgid "_Export to Album:"
-msgstr "Vi_e albumiiin:"
+msgstr "Vi_e albumiin:"
 
 #: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:17
 msgid "_Gallery Name:"
@@ -839,11 +843,12 @@ msgstr "_Galleria:"
 
 #: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:19
 msgid "_Parent Album:"
-msgstr "_Ylemmän tason album:"
+msgstr "_Ylemmän tason albumi:"
 
 #: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:20
 #: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:24
 #: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:14
+#: ../extensions/Exporters/TabbloExport/ui/TabbloExport.ui.h:10
 msgid "_Password:"
 msgstr "_Salasana:"
 
@@ -854,6 +859,7 @@ msgstr "_Otsikko"
 #: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:23
 #: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:26
 #: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:16
+#: ../extensions/Exporters/TabbloExport/ui/TabbloExport.ui.h:11
 msgid "_Username:"
 msgstr "_Käyttäjätunnus:"
 
@@ -897,7 +903,7 @@ msgstr "Seuraava virhe tapahtui yritettäessä luoda albumia: {0}"
 #: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:620
 #, csharp-format
 msgid "{0} Sent"
-msgstr "{0} kähetetty"
+msgstr "{0} lähetetty"
 
 #: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:622
 #, csharp-format
@@ -1002,12 +1008,73 @@ msgstr "Vienti valmistui"
 msgid "Error uploading to Tabblo: "
 msgstr "Virhe vietäessä Tabbloon: "
 
+#: ../extensions/Exporters/TabbloExport/ui/TabbloExport.ui.h:1
+msgid "<b>F-Spot tags</b>"
+msgstr "<b>F-Spot-tunnisteet</b>"
+
+#: ../extensions/Exporters/TabbloExport/ui/TabbloExport.ui.h:3
+msgid "<b>Tabblo account</b>"
+msgstr "<b>Tabblo-tili</b>"
+
+#: ../extensions/Exporters/TabbloExport/ui/TabbloExport.ui.h:4
+msgid ""
+"<small><i>F-Spot tags can help you track the export status of photos. "
+"Example: Use one tag for the photos that you plan to export, and another one "
+"for those already exported. Here, you can tell F-Spot to automatically "
+"replace these tags as appropriate.</i></small>"
+msgstr ""
+"<small><i>F-Spot-tunnisteet voivat olla avuksi kuvien tuontivaiheessa. "
+"Esimerkki: Käytä yhtä tunnistetta kuville, jotka olet aikeissa tuoda "
+"koneelle, ja toista tunnistetta kuville, jotka olet jo tuonut koneelle. "
+"Tässä kohdassa voit määrittää F-Spotin automaattisesti muuttamaan "
+"tunnisteita, kun kuvat on tuotu.</i></small>"
+
+#: ../extensions/Exporters/TabbloExport/ui/TabbloExport.ui.h:6
+msgid "Rem_ove from exported photos:"
+msgstr "_Poista viedyistä kuvista"
+
+#: ../extensions/Exporters/TabbloExport/ui/TabbloExport.ui.h:7
+msgid "Select..."
+msgstr "Valitse..."
+
+#: ../extensions/Exporters/TabbloExport/ui/TabbloExport.ui.h:8
+msgid "_Attach to exported photos:"
+msgstr "_Liitä vietyihin kuviin"
+
+#: ../extensions/Exporters/TabbloExport/ui/TrustError.ui.h:1
+msgid "<b>{0}</b>."
+msgstr "<b>{0}</b>"
+
+#: ../extensions/Exporters/TabbloExport/ui/TrustError.ui.h:2
+msgid "A trust error occured while attempting to access"
+msgstr "Tapahtui luottamusvirhe yritettäessä yhteyttä"
+
+#: ../extensions/Exporters/TabbloExport/ui/TrustError.ui.h:3
+msgid "Abort this session"
+msgstr "Keskeytä tämä istunto"
+
+#: ../extensions/Exporters/TabbloExport/ui/TrustError.ui.h:4
+msgid "Always trust this site's certificate"
+msgstr "Luota tämän sivuston varmenteeseen aina"
+
+#: ../extensions/Exporters/TabbloExport/ui/TrustError.ui.h:5
+msgid "Do you wish to:"
+msgstr "Haluatko:"
+
+#: ../extensions/Exporters/TabbloExport/ui/TrustError.ui.h:6
+msgid "Trust Error"
+msgstr "Luottamusvirhe"
+
+#: ../extensions/Exporters/TabbloExport/ui/TrustError.ui.h:7
+msgid "Trust the site's certificate this once"
+msgstr "Luota sivuston varmenteeseen tämän kerran"
+
 #: ../extensions/Exporters/ZipExport/ZipExport.addin.xml.h:1
 msgid "Compressed fil_e..."
 msgstr "Pakattu _tiedosto..."
 
 #: ../extensions/Exporters/ZipExport/ZipExport.cs:47
-#: ../src/Widgets/EditorPage.cs:196
+#: ../src/Widgets/EditorPage.cs:197
 msgid "No selection available"
 msgstr "Valintaa ei ole saatavilla"
 
@@ -1033,7 +1100,6 @@ msgid "Preparing photo \"{0}\""
 msgstr "Valmistellaan kuvaa \"{0}\""
 
 #: ../extensions/Exporters/ZipExport/ZipExport.glade.h:1
-#: ../src/f-spot.glade.h:92
 msgid "_Create"
 msgstr "_Luo"
 
@@ -1068,7 +1134,7 @@ msgstr "{0} kuvaasi täytyy analysoida, odottavia tehtäviä on {1} kappaletta"
 
 #: ../extensions/Tools/HashJob/HashJob.cs:75 ../src/ui/main_window.ui.h:37
 msgid "_Close"
-msgstr ""
+msgstr "_Sulje"
 
 #: ../extensions/Tools/HashJob/HashJob.cs:102
 msgid "Processing images..."
@@ -1079,8 +1145,8 @@ msgid "Stopped"
 msgstr "Pysäytetty"
 
 #: ../extensions/Tools/HashJob/HashJob.addin.xml.h:1
-msgid "Hash for Duplicates"
-msgstr "Etsi tuplakuvat"
+msgid "Check for Duplicates..."
+msgstr "Tarkistaa, onko kaksoiskappaleita..."
 
 #: ../extensions/Tools/LiveWebGallery/GalleryRequestHandler.cs:107
 #, fuzzy
@@ -1159,7 +1225,7 @@ msgstr ""
 #: ../extensions/Tools/LiveWebGallery/ui/LiveWebGallery.ui.h:12
 #, fuzzy
 msgid "Options:"
-msgstr "_Otsikko:"
+msgstr "Otsikko"
 
 #: ../extensions/Tools/LiveWebGallery/ui/LiveWebGallery.ui.h:13
 #, fuzzy
@@ -1280,7 +1346,7 @@ msgid "New Rolls Only"
 msgstr "Vain uudet filmirullat"
 
 #: ../extensions/Tools/MergeDb/MergeDb.glade.h:15
-#: ../src/FileImportBackend.cs:290 ../src/UI.Dialog/ThreadProgressDialog.cs:55
+#: ../src/FileImportBackend.cs:291 ../src/UI.Dialog/ThreadProgressDialog.cs:58
 msgid "Skip"
 msgstr "Ohita"
 
@@ -1304,11 +1370,11 @@ msgstr "Kaikki kuvat"
 
 #: ../extensions/Tools/ScreensaverConfig/ScreensaverConfigDialog.ui.h:2
 msgid "Delay:"
-msgstr ""
+msgstr "Viive:"
 
 #: ../extensions/Tools/ScreensaverConfig/ScreensaverConfigDialog.ui.h:3
 msgid "Display:"
-msgstr ""
+msgstr "Näytä:"
 
 #: ../extensions/Tools/ScreensaverConfig/ScreensaverConfigDialog.ui.h:4
 msgid "Images tagged with:"
@@ -1364,282 +1430,6 @@ msgstr "Tuntematon muunnoksen tyyppi %d"
 msgid "Operation failed"
 msgstr "Toiminto epäonnistui"
 
-#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInfoDialog.cs:32
-msgid "Package"
-msgstr "Paketti"
-
-#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:110
-msgid "Extension Installation"
-msgstr "Lisäosien asennus"
-
-#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:136
-msgid "<b>Select the extensions to install and click on Next</b>"
-msgstr "<b>Valitse asennettavat lisäosat ja napsauta Seuraava</b>"
-
-#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:150
-msgid "Install from:"
-msgstr "Asenna lähteestä:"
-
-#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:179
-#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:180
-msgid "_Repositories..."
-msgstr "_Pakettivarastot..."
-
-#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:220
-msgid "Show all packages"
-msgstr "Näytä kaikki paketit"
-
-#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:221
-msgid "Show new versions only"
-msgstr "Näytä vain uudet versiot"
-
-#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:222
-msgid "Show updates only"
-msgstr "Näytä vain päivitykset"
-
-#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:247
-msgid "_Unselect All"
-msgstr "Peru _valinnat"
-
-#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:259
-#: ../src/ui/main_window.ui.h:18
-msgid "Select _All"
-msgstr "Valitse k_aikki"
-
-#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:334
-msgid "label124"
-msgstr "label124"
-
-#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:346
-msgid "Overall Progress:"
-msgstr "Yleinen kehitys:"
-
-#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallDialog.cs:374
-msgid "Downloading extensions..."
-msgstr "Noudetaan lisäosia..."
-
-#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallerDialog.cs:36
-#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:58
-msgid "Extension Manager"
-msgstr "Lisäosien hallinta"
-
-#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallerDialog.cs:54
-msgid "Additional extensions are required to perform this operation."
-msgstr "Tämän toiminnan suorittaminen vaatii lisäosia."
-
-#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinInstallerDialog.cs:64
-msgid "The following extensions will be installed:"
-msgstr "Seuraavat lisäosat asennetaan:"
-
-#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:90
-msgid "<big><b>Extension Manager</b></big>"
-msgstr "<big><b>Lisäosien hallinta</b></big>"
-
-#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:110
-msgid "The following extensions are currently installed:"
-msgstr "Seuraavat lisäosat ovat tällä hetkellä asennettuina:"
-
-#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:165
-msgid "_Install Extensions..."
-msgstr "_Asenna lisäosia..."
-
-#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:210
-msgid "_Uninstall..."
-msgstr "_Peru asennus..."
-
-#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:236
-msgid "Enable"
-msgstr "Ota käyttöön"
-
-#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.AddinManagerDialog.cs:262
-msgid "Disable"
-msgstr "Poista käytöstä"
-
-#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.ErrorDialog.cs:111
-msgid "Details"
-msgstr "Yksityiskohdat"
-
-#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.ManageSitesDialog.cs:34
-msgid "Extension Repository Management"
-msgstr "Lisäosien pakettivarastojen hallinta"
-
-#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.NewSiteDialog.cs:52
-msgid "Add New Repository"
-msgstr "Lisää uusi pakettivarasto"
-
-#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.NewSiteDialog.cs:70
-msgid "Select the location of the repository you want to register:"
-msgstr "Valitse rekisteröitävän pakettivaraston sijainti:"
-
-#. Container child vbox89.Gtk.Box+BoxChild
-#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.NewSiteDialog.cs:77
-msgid "Register an on-line repository"
-msgstr "Rekisteröi pakettivarasto verkosta"
-
-#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.NewSiteDialog.cs:106
-msgid "Url:"
-msgstr "Url:"
-
-#. Container child vbox89.Gtk.Box+BoxChild
-#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.NewSiteDialog.cs:127
-msgid "Register a local repository"
-msgstr "Rekisteröi paikallinen pakettivarasto"
-
-#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.NewSiteDialog.cs:155
-msgid "Path:"
-msgstr "Polku:"
-
-#: ../lib/mono-addins/Mono.Addins.Gui/gtk-gui/Mono.Addins.Gui.NewSiteDialog.cs:179
-msgid "Browse..."
-msgstr "Selaa..."
-
-#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInfoDialog.cs:62
-msgid "Version:"
-msgstr "Versio:"
-
-#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInfoDialog.cs:65
-msgid "Author:"
-msgstr "Tekijä:"
-
-#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInfoDialog.cs:68
-msgid "Copyright:"
-msgstr "Tekijänoikeudet:"
-
-#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInfoDialog.cs:71
-msgid "Extension Dependencies:"
-msgstr "Lisäosan riippuvuudet:"
-
-#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:97
-msgid "All registered repositories"
-msgstr "Kaikki rekisteröidyt pakettivarastot"
-
-#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:184
-msgid "Are you sure you want to cancel the installation?"
-msgstr "Oletko varma että haluat keskeyttää asennuksen?"
-
-#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:308
-msgid "The following packages will be uninstalled:"
-msgstr "Seuraavat paketit poistetaan:"
-
-#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:313
-msgid ""
-"There are other extensions that depend on the previous ones which will also "
-"be uninstalled:"
-msgstr ""
-"Löytyi muita lisäosia, jotka riippuvat aikaisemmista ja jotka täytyy myös "
-"poistaa:"
-
-#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:384
-msgid ""
-"The selected extensions can't be installed because there are dependency "
-"conflicts."
-msgstr ""
-"Valittuja liitännäisiä ei voi asentaa, koska riipppuvuuksissa on "
-"ristiriitaisuuksia."
-
-#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:398
-msgid "The following packages will be installed:"
-msgstr "Seuraavat paketit asennetaan:"
-
-#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:402
-msgid " (in user directory)"
-msgstr " (käyttäjän hakemistossa)"
-
-#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:408
-msgid "The following packages need to be uninstalled:"
-msgstr "Seuraavat paketit täytyy poistaa:"
-
-#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:416
-msgid "The following dependencies could not be resolved:"
-msgstr "Seuraavia riippuvuuksia ei voitu selvittää:"
-
-#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:441
-msgid "The installation has been successfully completed."
-msgstr "Asennus valmistui onnistuneesti."
-
-#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:442
-msgid "The installation failed!"
-msgstr "Asennus epäonnistui!"
-
-#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:443
-msgid "The installation has completed with warnings."
-msgstr "Asennus valmistui onnistuneesti, mutta varoituksin."
-
-#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:446
-msgid "The uninstallation has been successfully completed."
-msgstr "Pakettien poisto valmistui onnistuneesti."
-
-#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:447
-msgid "The uninstallation failed!"
-msgstr "Poistaminen epäonnistui!"
-
-#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:448
-msgid "The uninstallation has completed with warnings."
-msgstr "Pakettien poisto valmistui onnistuneesti, mutta varoituksin."
-
-#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallDialog.cs:616
-msgid "Repository"
-msgstr "Pakettivarasto"
-
-#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstaller.cs:16
-msgid "Installation cancelled"
-msgstr "Asennus peruttiin"
-
-#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallerDialog.cs:159
-msgid "Some of the required extensions were not found"
-msgstr "Joitain vaadituista lisäosista ei löytynyt"
-
-#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinInstallerDialog.cs:171
-msgid "Installation failed"
-msgstr "Asennus epäonnistui"
-
-#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinTreeWidget.cs:91
-msgid "Extension"
-msgstr "Lisäosa"
-
-#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinTreeWidget.cs:112
-#: ../src/Widgets/InfoBox.cs:214
-msgid "Version"
-msgstr "Versio"
-
-#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/AddinTreeWidget.cs:168
-msgid "Other"
-msgstr "Muu"
-
-#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/ManageSitesDialog.cs:52
-msgid "Url"
-msgstr "Url"
-
-#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/Services.cs:61
-#: ../lib/mono-addins/Mono.Addins.Gui/Mono.Addins.Gui/Services.cs:70
-#, csharp-format
-msgid "Exception occurred: {0}"
-msgstr "Tapahtui poikkeus: {0}"
-
-#: ../lib/mono-addins/Mono.Addins/Mono.Addins/AddinSessionService.cs:154
-msgid "Disabled extensions can't be loaded."
-msgstr "Käytöstä poistettuja lisäosia ei voi ladata."
-
-#: ../lib/mono-addins/Mono.Addins/Mono.Addins/AddinSessionService.cs:179
-#, csharp-format
-msgid "Loading {0} extension"
-msgstr "Ladataan {0}-lisäosa"
-
-#: ../lib/mono-addins/Mono.Addins/Mono.Addins/AddinSessionService.cs:265
-#, csharp-format
-msgid "The required extension '{0}' is disabled."
-msgstr "Vaadittu lisäosa \"{0}\" on poistettu käytöstä."
-
-#: ../lib/mono-addins/Mono.Addins/Mono.Addins/AddinSessionService.cs:267
-#, csharp-format
-msgid "The required extension '{0}' is not installed."
-msgstr "Vaadittua lisäosaa \"{0}\" ei ole asennettu."
-
-#: ../lib/mono-addins/Mono.Addins/Mono.Addins.Description/AssemblyDependency.cs:79
-#, csharp-format
-msgid "(provided by {0})"
-msgstr "(tarjoaa {0})"
-
 #: ../src/CameraFileSelectionDialog.cs:76
 msgid "Preview"
 msgstr "Esikatselu"
@@ -1648,7 +1438,7 @@ msgstr "Esikatselu"
 msgid "Path"
 msgstr "Polku"
 
-#: ../src/CameraFileSelectionDialog.cs:80 ../src/f-spot.glade.h:46
+#: ../src/CameraFileSelectionDialog.cs:80 ../src/f-spot.glade.h:47
 msgid "File"
 msgstr "Tiedosto"
 
@@ -1663,7 +1453,7 @@ msgstr "Haetaan esikatseluita"
 #: ../src/CameraFileSelectionDialog.cs:148
 #, csharp-format
 msgid "Downloading Preview of {0}"
-msgstr "Haetaan esikatelu kuvasta {0}"
+msgstr "Haetaan esikatselu kuvasta {0}"
 
 #: ../src/CameraFileSelectionDialog.cs:220
 #, csharp-format
@@ -1687,7 +1477,7 @@ msgstr "Tiedostot kopioitu"
 msgid "Transferring \"{0}\" from camera"
 msgstr "Siirretään \"{0}\" kamerasta"
 
-#: ../src/CameraSelectionDialog.cs:29 ../src/Widgets/InfoBox.cs:230
+#: ../src/CameraSelectionDialog.cs:29 ../src/Widgets/InfoBox.cs:231
 msgid "Camera"
 msgstr "Kamera"
 
@@ -1695,27 +1485,27 @@ msgstr "Kamera"
 msgid "Port"
 msgstr "Portti"
 
-#: ../src/Core.cs:203
+#: ../src/Core/App.cs:278
 #, csharp-format
 msgid "No photos matching {0} found"
 msgstr "Hakua {0} vastaavia valokuvia ei löydy"
 
-#: ../src/Core.cs:204
+#: ../src/Core/App.cs:279
 #, csharp-format
 msgid ""
 "The tag \"{0}\" is not applied to any photos. Try adding\n"
 "the tag to some photos or selecting a different tag in the\n"
 "F-Spot preference dialog."
 msgstr ""
-"Tunniste \"{0}\" ei liityä mihinkään valokuvaan. Lisää tunniste\n"
+"Tunniste \"{0}\" ei liity mihinkään valokuvaan. Lisää tunniste\n"
 "joihinkin valokuviin tai valitse toinen tunniste F-Spotin\n"
 "asetusvalikosta."
 
-#: ../src/Core.cs:208
+#: ../src/Core/App.cs:283
 msgid "Search returned no results"
 msgstr "Haku ei palauttanut tuloksia"
 
-#: ../src/Core.cs:209
+#: ../src/Core/App.cs:284
 msgid ""
 "The tag F-Spot is looking for does not exist. Try\n"
 "selecting a different tag in the F-Spot preference\n"
@@ -1753,7 +1543,7 @@ msgstr "Muokattu {1} ({0})"
 
 #. Note that the original version is never stored in the photo_versions table in the
 #. database.
-#: ../src/Core/Photo.cs:671 ../src/f-spot.glade.h:61
+#: ../src/Core/Photo.cs:671 ../src/f-spot.glade.h:62
 msgid "Original"
 msgstr "Alkuperäinen"
 
@@ -1829,19 +1619,19 @@ msgstr "Valitse korjattavat silmät."
 msgid "Sepia Tone"
 msgstr "Sepia-väritys"
 
-#: ../src/Editors/SoftFocusEditor.cs:28
+#: ../src/Editors/SoftFocusEditor.cs:32
 msgid "Soft Focus"
 msgstr "Pehmytpiirto"
 
-#: ../src/Editors/TiltEditor.cs:28
+#: ../src/Editors/TiltEditor.cs:30
 msgid "Straighten"
 msgstr "Suorista"
 
-#: ../src/FileImportBackend.cs:288
+#: ../src/FileImportBackend.cs:289
 msgid "Import error"
 msgstr "Virhe tuotaessa"
 
-#: ../src/FileImportBackend.cs:289
+#: ../src/FileImportBackend.cs:290
 #, csharp-format
 msgid "Error importing {0}{2}{2}{1}"
 msgstr "Virhe tuotaessa {0}{2}{2}{1}"
@@ -1856,8 +1646,9 @@ msgid "Unhandled exception"
 msgstr "Käsittelemätön poikkeus"
 
 #: ../src/FSpot.addin.xml.h:1
-msgid "Copy Photo Locat_ion"
-msgstr "Kopioi valokuvan s_ijainti"
+#, fuzzy
+msgid "Copy Photo"
+msgstr "Valokuvani"
 
 #: ../src/FSpot.addin.xml.h:2
 msgid "Export to"
@@ -1871,13 +1662,13 @@ msgstr "Avaa _sovelluksella"
 msgid "Rem_ove Tag"
 msgstr "P_oista tunniste"
 
-#: ../src/FSpot.addin.xml.h:5 ../src/f-spot.glade.h:68
-#: ../src/SingleView.cs:451 ../src/ui/main_window.ui.h:16
+#: ../src/FSpot.addin.xml.h:5 ../src/f-spot.glade.h:69
+#: ../src/SingleView.cs:425 ../src/ui/main_window.ui.h:16
 msgid "Rotate _Left"
 msgstr "Kierrä _vasemmalle"
 
-#: ../src/FSpot.addin.xml.h:6 ../src/f-spot.glade.h:69
-#: ../src/SingleView.cs:452 ../src/ui/main_window.ui.h:17
+#: ../src/FSpot.addin.xml.h:6 ../src/f-spot.glade.h:70
+#: ../src/SingleView.cs:426 ../src/ui/main_window.ui.h:17
 msgid "Rotate _Right"
 msgstr "Kierrä _oikealle"
 
@@ -2004,182 +1795,186 @@ msgid "C_ontrast:"
 msgstr "K_ontrasti:"
 
 #: ../src/f-spot.glade.h:31
+msgid "C_reate"
+msgstr "_Luo"
+
+#: ../src/f-spot.glade.h:32
 msgid "Camera Selection"
 msgstr "Kameran valinta"
 
-#: ../src/f-spot.glade.h:32
+#: ../src/f-spot.glade.h:33
 msgid "Copy files to the Photos folder"
 msgstr "Kopioi tiedostot valokuvakansioon"
 
-#: ../src/f-spot.glade.h:33
+#: ../src/f-spot.glade.h:34
 msgid "Create Mail"
 msgstr "Luo sähköposti"
 
-#: ../src/f-spot.glade.h:34
+#: ../src/f-spot.glade.h:35
 msgid "Create _icon for this tag when first used"
 msgstr "Luo _kuvake tälle tunnisteelle ensimmäistä kertaa käytettäessä"
 
-#: ../src/f-spot.glade.h:35
+#: ../src/f-spot.glade.h:36
 msgid "Create a mail with the selected photos (possibly resized) attached"
 msgstr ""
 "Luo sähköpostiviesti, johon valitut kuvat on liitetty (koko voi olla "
 "muutettu)"
 
-#: ../src/f-spot.glade.h:36
+#: ../src/f-spot.glade.h:37
 msgid "Detect duplicates"
 msgstr "Tunnista kaksoiskappaleet"
 
-#: ../src/f-spot.glade.h:37
+#: ../src/f-spot.glade.h:38
 msgid "Display File _Names"
 msgstr "Näytä tiedosto_nimet"
 
-#: ../src/f-spot.glade.h:38
+#: ../src/f-spot.glade.h:39
 msgid "Display only those photos that were imported in specified Rolls."
 msgstr "Näytä vain kuvat, jotka tuotiin annetuilta filmirullilta."
 
-#: ../src/f-spot.glade.h:39
+#: ../src/f-spot.glade.h:40
 msgid "Do not send a mail"
 msgstr "Älä lähetä sähköpostia"
 
-#: ../src/f-spot.glade.h:40
+#: ../src/f-spot.glade.h:41
 msgid "E-_Mail:"
 msgstr "_Sähköposti:"
 
-#: ../src/f-spot.glade.h:41
+#: ../src/f-spot.glade.h:42
 msgid "E_xport titles and comments"
 msgstr "Vi_e otsikot ja kommentit"
 
-#: ../src/f-spot.glade.h:42
+#: ../src/f-spot.glade.h:43
 msgid "Estimated new size"
 msgstr "Arvioitu uusi koko"
 
-#: ../src/f-spot.glade.h:44
+#: ../src/f-spot.glade.h:45
 msgid "Extra large"
 msgstr "Hyvin suuri"
 
-#: ../src/f-spot.glade.h:45
+#: ../src/f-spot.glade.h:46
 msgid "F-Spot View"
 msgstr "F-Spot-näkymä"
 
-#: ../src/f-spot.glade.h:47
+#: ../src/f-spot.glade.h:48
 msgid "Filter on selected rolls"
 msgstr "Suodata valittujen filmirullien mukaan"
 
-#: ../src/f-spot.glade.h:48
+#: ../src/f-spot.glade.h:49
 msgid "G_allery:"
 msgstr "G_alleria:"
 
-#: ../src/f-spot.glade.h:49
+#: ../src/f-spot.glade.h:50
 msgid "Gallery"
 msgstr "Galleria"
 
-#: ../src/f-spot.glade.h:50 ../src/ImportCommand.cs:547
-#: ../src/MainWindow.cs:267
+#: ../src/f-spot.glade.h:51 ../src/ImportCommand.cs:547
+#: ../src/MainWindow.cs:301
 msgid "Import"
 msgstr "Tuo"
 
 #. Translators: this string means 'source of import'
-#: ../src/f-spot.glade.h:52
+#: ../src/f-spot.glade.h:53
 msgid "Import Source:"
 msgstr "Tuonnin lähde:"
 
-#: ../src/f-spot.glade.h:53
+#: ../src/f-spot.glade.h:54
 msgid "Include subfolders"
 msgstr "Tuo myös alikansiot"
 
-#: ../src/f-spot.glade.h:54
+#: ../src/f-spot.glade.h:55
 msgid "Large"
 msgstr "Suuri"
 
-#: ../src/f-spot.glade.h:55
-msgid "Manage your custom selection ratios"
-msgstr "Halitse omia valintasuhteitasi"
-
 #: ../src/f-spot.glade.h:56
+msgid "Manage your custom selection ratios"
+msgstr "Hallitse omia valintakuvasuhteitasi"
+
+#: ../src/f-spot.glade.h:57
 msgid "Medium"
 msgstr "Keskikoko"
 
-#: ../src/f-spot.glade.h:58
+#: ../src/f-spot.glade.h:59
 msgid "Number of photos in selected rolls:"
 msgstr "Valokuvien lukumäärä valituissa filmirullissa:"
 
-#: ../src/f-spot.glade.h:59
+#: ../src/f-spot.glade.h:60
 msgid "Number of pictures"
 msgstr "Kuvien lukumäärä"
 
-#: ../src/f-spot.glade.h:60
+#: ../src/f-spot.glade.h:61
 msgid "Open _Folder..."
 msgstr "Avaa _kansio..."
 
-#: ../src/f-spot.glade.h:62
+#: ../src/f-spot.glade.h:63
 msgid "Original size (possible very large file size)"
 msgstr "Alkuperäinen koko (mahdollisesti hyvin suuri tiedosto)"
 
-#: ../src/f-spot.glade.h:63 ../src/UI.Dialog/ui/EditTagDialog.ui.h:4
+#: ../src/f-spot.glade.h:64 ../src/UI.Dialog/ui/EditTagDialog.ui.h:4
 msgid "P_arent Tag:"
 msgstr "Y_lemmän tason tunniste:"
 
-#: ../src/f-spot.glade.h:64
+#: ../src/f-spot.glade.h:65
 msgid "Pause"
 msgstr "Pysäytä"
 
-#: ../src/f-spot.glade.h:65
+#: ../src/f-spot.glade.h:66
 msgid "Preferences"
 msgstr "Asetukset"
 
-#: ../src/f-spot.glade.h:66 ../src/ItemAction.cs:123
+#: ../src/f-spot.glade.h:67 ../src/ItemAction.cs:123
 msgid "Previous"
 msgstr "Edellinen"
 
-#: ../src/f-spot.glade.h:67
+#: ../src/f-spot.glade.h:68
 msgid "Repair"
 msgstr "Korjaa"
 
-#: ../src/f-spot.glade.h:70
+#: ../src/f-spot.glade.h:71
 msgid "Select Photos to Copy From Camera..."
 msgstr "Valitse kamerasta kopioitavat valokuvat..."
 
-#: ../src/f-spot.glade.h:71
+#: ../src/f-spot.glade.h:72
 msgid "Select a Tag..."
 msgstr "Valitse tunniste..."
 
-#: ../src/f-spot.glade.h:72
+#: ../src/f-spot.glade.h:73
 msgid "Select the camera from which you want to transfer files"
 msgstr "Valitse kamera, josta haluat tuoda kuvia"
 
-#: ../src/f-spot.glade.h:73
+#: ../src/f-spot.glade.h:74
 msgid "Selected Camera: "
 msgstr "Valittu kamera: "
 
-#: ../src/f-spot.glade.h:74
+#: ../src/f-spot.glade.h:75
 msgid "Selection Constraints"
 msgstr "Valinnan rajoitukset"
 
-#: ../src/f-spot.glade.h:75 ../src/ui/main_window.ui.h:21
+#: ../src/f-spot.glade.h:76 ../src/ui/main_window.ui.h:21
 msgid "Set as _Background"
 msgstr "Aseta _taustakuvaksi"
 
-#: ../src/f-spot.glade.h:76
+#: ../src/f-spot.glade.h:77
 msgid "Show all photos."
 msgstr "Näytä kaikki valokuvat."
 
-#: ../src/f-spot.glade.h:77
+#: ../src/f-spot.glade.h:78
 msgid "Show or hide the side pane"
 msgstr "Näytä tai piilota sivupaneeli"
 
-#: ../src/f-spot.glade.h:78
+#: ../src/f-spot.glade.h:79
 msgid "Show or hide the toolbar"
 msgstr "Näytä tai piilota työkalupalkki"
 
-#: ../src/f-spot.glade.h:79
+#: ../src/f-spot.glade.h:80
 msgid "Side _pane"
 msgstr "Sivu_paneeli"
 
-#: ../src/f-spot.glade.h:80
+#: ../src/f-spot.glade.h:81
 msgid "Small"
 msgstr "Pieni"
 
-#: ../src/f-spot.glade.h:81
+#: ../src/f-spot.glade.h:82
 msgid ""
 "Specify if an original size picture should be rotated or not. Smaller sizes "
 "are automatically rotated."
@@ -2187,40 +1982,40 @@ msgstr ""
 "Käännetäänkö alkuperäisen koon kuva vai ei. Pienemmät koot käännetään "
 "automaattisesti."
 
-#: ../src/f-spot.glade.h:82
+#: ../src/f-spot.glade.h:83
 msgid "Strip image _metadata"
 msgstr "Poista _metadata valokuvasta"
 
 #. Note for translators: meant as Temperature
-#: ../src/f-spot.glade.h:84
+#: ../src/f-spot.glade.h:85
 msgid "Te_mp:"
 msgstr "_Lämpö:"
 
-#: ../src/f-spot.glade.h:85
+#: ../src/f-spot.glade.h:86
 msgid "Tiny"
 msgstr "Hyvin pieni"
 
-#: ../src/f-spot.glade.h:86
+#: ../src/f-spot.glade.h:87
 msgid "Total original size"
 msgstr "Alkuperäinen koko kaikkiaan"
 
-#: ../src/f-spot.glade.h:87 ../src/ui/main_window.ui.h:28
+#: ../src/f-spot.glade.h:88 ../src/ui/main_window.ui.h:28
 msgid "Zoom _in"
 msgstr "Lä_hennä"
 
-#: ../src/f-spot.glade.h:88 ../src/ui/main_window.ui.h:29
+#: ../src/f-spot.glade.h:89 ../src/ui/main_window.ui.h:29
 msgid "Zoom _out"
 msgstr "L_oitonna"
 
-#: ../src/f-spot.glade.h:89 ../src/ui/main_window.ui.h:30
+#: ../src/f-spot.glade.h:90 ../src/ui/main_window.ui.h:30
 msgid "Zoom in"
 msgstr "Lähennä"
 
-#: ../src/f-spot.glade.h:90 ../src/ui/main_window.ui.h:31
+#: ../src/f-spot.glade.h:91 ../src/ui/main_window.ui.h:31
 msgid "Zoom out"
 msgstr "Loitonna"
 
-#: ../src/f-spot.glade.h:91
+#: ../src/f-spot.glade.h:92
 msgid "_Brightness:"
 msgstr "_Kirkkaus:"
 
@@ -2347,7 +2142,7 @@ msgstr "Piilota työkalupalkki"
 msgid "Info"
 msgstr "Tietoja"
 
-#: ../src/FullScreenView.cs:68 ../src/Widgets/InfoBox.cs:200
+#: ../src/FullScreenView.cs:68 ../src/Widgets/InfoBox.cs:201
 msgid "Image Information"
 msgstr "Tietoja kuvasta"
 
@@ -2355,8 +2150,8 @@ msgstr "Tietoja kuvasta"
 msgid "Exit fullscreen"
 msgstr "Poistu kokoruututilasta"
 
-#: ../src/FullScreenView.cs:81 ../src/MainWindow.cs:307
-#: ../src/SingleView.cs:101
+#: ../src/FullScreenView.cs:81 ../src/MainWindow.cs:341
+#: ../src/SingleView.cs:88
 msgid "Slideshow"
 msgstr "Diaesitys"
 
@@ -2390,7 +2185,7 @@ msgstr "Pienoiskuvien hakemisto"
 
 #: ../src/Imaging/Exif.cs:232
 msgid "Exif Directory"
-msgstr "Exit-hakemisto"
+msgstr "Exif-hakemisto"
 
 #: ../src/Imaging/Exif.cs:234
 msgid "GPS Directory"
@@ -2404,7 +2199,7 @@ msgstr "Yhteensopivuushakemisto"
 msgid "Unknown Directory"
 msgstr "Tuntematon hakemisto"
 
-#: ../src/Imaging/ImageFile.cs:116
+#: ../src/Imaging/ImageFile.cs:117
 msgid "Writing to this file format is not supported"
 msgstr "Tähän kuvamuotoon kirjoittaminen ei ole tuettu"
 
@@ -2450,7 +2245,7 @@ msgstr ""
 
 #: ../src/Imaging/IptcFile.cs:163
 msgid "The character set designation"
-msgstr "Käytety merkistö"
+msgstr "Käytetty merkistö"
 
 #: ../src/Imaging/IptcFile.cs:165
 msgid "External globally unique object identifier"
@@ -2545,7 +2340,7 @@ msgstr "Kohteen tyylilaji"
 msgid "Unknown IIM DataSet"
 msgstr "Tuntematon IIM-tietojoukko"
 
-#: ../src/ImportCommand.cs:48 ../src/SingleView.cs:357
+#: ../src/ImportCommand.cs:48 ../src/SingleView.cs:344
 msgid "Select Folder"
 msgstr "Valitse kansio"
 
@@ -2573,13 +2368,13 @@ msgid ""
 "different directory"
 msgstr "Valitsemasi kansio \"{0}\" ei ole olemassa. Valitse toinen kansio"
 
-#. Note for translators: 'Import Tags' is no command, it means 'Tags used in Import'
-#: ../src/ImportCommand.cs:739 ../src/ImportCommand.cs:741
+#: ../src/ImportCommand.cs:738 ../src/ImportCommand.cs:740
 #: ../src/XmpTagsImporter.cs:89
-msgid "Import Tags"
+#, fuzzy
+msgid "Imported Tags"
 msgstr "Tuo tunnisteet"
 
-#: ../src/ItemAction.cs:79 ../src/MainWindow.cs:274 ../src/SingleView.cs:84
+#: ../src/ItemAction.cs:79 ../src/MainWindow.cs:308 ../src/SingleView.cs:71
 msgid "Rotate Left"
 msgstr "Kierrä vasemmalle"
 
@@ -2587,7 +2382,7 @@ msgstr "Kierrä vasemmalle"
 msgid "Rotate picture left"
 msgstr "Kierrä kuvaa vasemmalle"
 
-#: ../src/ItemAction.cs:91 ../src/MainWindow.cs:278 ../src/SingleView.cs:89
+#: ../src/ItemAction.cs:91 ../src/MainWindow.cs:312 ../src/SingleView.cs:76
 msgid "Rotate Right"
 msgstr "Kierrä oikealle"
 
@@ -2603,51 +2398,51 @@ msgstr "Seuraava kuva"
 msgid "Previous picture"
 msgstr "Edellinen kuva"
 
-#: ../src/MainWindow.cs:269
+#: ../src/MainWindow.cs:303
 msgid "Import new images"
 msgstr "Tuo uudet kuvat"
 
-#: ../src/MainWindow.cs:285 ../src/ui/main_window.ui.h:3
+#: ../src/MainWindow.cs:319 ../src/ui/main_window.ui.h:3
 msgid "Browse"
 msgstr "Selaa"
 
-#: ../src/MainWindow.cs:289
+#: ../src/MainWindow.cs:323
 msgid "Browse many photos simultaneously"
 msgstr "Selaa useita kuvia samaan aikaan"
 
-#: ../src/MainWindow.cs:293
+#: ../src/MainWindow.cs:327
 msgid "Edit Image"
 msgstr "Muokkaa kuvaa"
 
-#: ../src/MainWindow.cs:297
+#: ../src/MainWindow.cs:331
 msgid "View and edit a photo"
 msgstr "Näytä ja muokkaa kuvaa"
 
-#: ../src/MainWindow.cs:302 ../src/SingleView.cs:96
+#: ../src/MainWindow.cs:336 ../src/SingleView.cs:83
 msgid "Fullscreen"
 msgstr "Kokoruutu"
 
-#: ../src/MainWindow.cs:304 ../src/SingleView.cs:98
+#: ../src/MainWindow.cs:338 ../src/SingleView.cs:85
 msgid "View photos fullscreen"
 msgstr "Näytä kuvia kokoruututilassa"
 
-#: ../src/MainWindow.cs:309 ../src/SingleView.cs:103
+#: ../src/MainWindow.cs:343 ../src/SingleView.cs:90
 msgid "View photos in a slideshow"
 msgstr "Näytä kuvia diaesityksenä"
 
-#: ../src/MainWindow.cs:324
+#: ../src/MainWindow.cs:358
 msgid "Previous photo"
 msgstr "Edellinen valokuva"
 
-#: ../src/MainWindow.cs:329
+#: ../src/MainWindow.cs:363
 msgid "Next photo"
 msgstr "Seuraava valokuva"
 
-#: ../src/MainWindow.cs:1488
+#: ../src/MainWindow.cs:1518
 msgid "No cameras detected."
 msgstr "Kameroita ei löytynyt."
 
-#: ../src/MainWindow.cs:1489
+#: ../src/MainWindow.cs:1519
 msgid ""
 "F-Spot was unable to find any cameras attached to this system.  Double check "
 "that the camera is connected and has power"
@@ -2655,102 +2450,102 @@ msgstr ""
 "F-Spot ei löytänyt järjestelmään liitettyjä kameroita. Tarkista uudestaan, "
 "että kamera on liitetty ja on päällä"
 
-#: ../src/MainWindow.cs:1528
+#: ../src/MainWindow.cs:1558
 msgid "Error connecting to camera"
 msgstr "Virhe yhdistettäessä kameraan"
 
-#: ../src/MainWindow.cs:1529
+#: ../src/MainWindow.cs:1559
 #, csharp-format
 msgid "Received error \"{0}\" while connecting to camera"
 msgstr "Saatiin virhe \"{0}\" otettaessa yhteyttä kameraan"
 
 #. Translators, The singular case will never happen here.
-#: ../src/MainWindow.cs:1815
+#: ../src/MainWindow.cs:1846
 #, csharp-format
 msgid "Merge the selected tag"
 msgid_plural "Merge the {0} selected tags?"
 msgstr[0] "Yhdistä valittu tunniste"
 msgstr[1] "Yhdistä {0} valittua tunnistetta?"
 
-#: ../src/MainWindow.cs:1842
+#: ../src/MainWindow.cs:1873
 msgid ""
 "This operation will merge the selected tags and any sub-tags into a single "
 "tag."
 msgstr ""
-"Tämä toiminto yhdistää valitut tunnisteett ja niiden alitunnisteet yhdeksi "
+"Tämä toiminto yhdistää valitut tunnisteet ja niiden alitunnisteet yhdeksi "
 "tunnisteeksi."
 
-#: ../src/MainWindow.cs:1844
+#: ../src/MainWindow.cs:1875
 msgid "_Merge Tags"
 msgstr "_Yhdistä tunnisteet"
 
-#: ../src/MainWindow.cs:2049
+#: ../src/MainWindow.cs:2080
 #, csharp-format
 msgid "{0} Photo out of {1}"
 msgid_plural "{0} Photos out of {1}"
 msgstr[0] "{0} valokuva / {1}"
 msgstr[1] "{0} valokuvaa / {1}"
 
-#: ../src/MainWindow.cs:2051 ../src/SingleView.cs:493
+#: ../src/MainWindow.cs:2082 ../src/SingleView.cs:467
 #, csharp-format
 msgid "{0} Photo"
 msgid_plural "{0} Photos"
 msgstr[0] "{0} valokuva"
 msgstr[1] "{0} valokuvaa"
 
-#: ../src/MainWindow.cs:2054
+#: ../src/MainWindow.cs:2085
 #, csharp-format
 msgid " ({0} selected)"
 msgid_plural " ({0} selected)"
 msgstr[0] " ({0} valittu)"
 msgstr[1] " ({0} valittu)"
 
-#: ../src/MainWindow.cs:2135
+#: ../src/MainWindow.cs:2166
 msgid "_Ok"
 msgstr "_Ok"
 
-#: ../src/MainWindow.cs:2136
+#: ../src/MainWindow.cs:2167
 msgid "Error Deleting Picture"
 msgstr "Virhe poistettaessa kuvaa"
 
-#: ../src/MainWindow.cs:2141
+#: ../src/MainWindow.cs:2172
 #, csharp-format
 msgid "No permission to delete the file:{1}{0}"
 msgstr "Oikeudet eivät riitä tiedoston poistamiseen:{1}{0}"
 
-#: ../src/MainWindow.cs:2145
+#: ../src/MainWindow.cs:2176
 #, csharp-format
 msgid "An error of type {0} occurred while deleting the file:{2}{1}"
 msgstr "Tiedostoa poistettaessa tapahtui virhe tyyppiä {0}:{2}{1}"
 
-#: ../src/MainWindow.cs:2177
+#: ../src/MainWindow.cs:2208
 #, csharp-format
 msgid "Delete the selected photo permanently?"
 msgid_plural "Delete the {0} selected photos permanently?"
 msgstr[0] "Poista valittu kuva pysyvästi?"
 msgstr[1] "Poista valitut {0} kuvaa pysyvästi?"
 
-#: ../src/MainWindow.cs:2181
+#: ../src/MainWindow.cs:2212
 msgid "This deletes all versions of the selected photo from your drive."
 msgid_plural ""
 "This deletes all versions of the selected photos from your drive."
 msgstr[0] "Tämä poistaa valitun kuvan kaikki versiot kovalevyltäsi."
 msgstr[1] "Tämä poistaa valittujen kuvien kaikki versiot kovalevyltäsi."
 
-#: ../src/MainWindow.cs:2184
+#: ../src/MainWindow.cs:2215
 msgid "_Delete photo"
 msgid_plural "_Delete photos"
 msgstr[0] "_Poista kuva"
 msgstr[1] "_Poista kuvat"
 
-#: ../src/MainWindow.cs:2220
+#: ../src/MainWindow.cs:2251
 #, csharp-format
 msgid "Remove the selected photo from F-Spot?"
 msgid_plural "Remove the {0} selected photos from F-Spot?"
 msgstr[0] "Poista valittu kuva F-Spotista?"
 msgstr[1] "Poista valitut {0} kuvaa F-Spotista?"
 
-#: ../src/MainWindow.cs:2225
+#: ../src/MainWindow.cs:2256
 msgid ""
 "If you remove photos from the F-Spot catalog all tag information will be "
 "lost. The photos remain on your computer and can be imported into F-Spot "
@@ -2760,27 +2555,27 @@ msgstr ""
 "tunnisteiden tiedot menetetään. Valokuvat säilyvät tietokoneellasi ja ne "
 "voidaan tuoda F-Spotiin uudestaan."
 
-#: ../src/MainWindow.cs:2226
+#: ../src/MainWindow.cs:2257
 msgid "_Remove from Catalog"
 msgstr "_Poista luettelosta"
 
-#: ../src/MainWindow.cs:2289
+#: ../src/MainWindow.cs:2320
 #, csharp-format
 msgid "Delete tag \"{0}\"?"
 msgstr "Poistetaanko tunniste \"{0}\"?"
 
-#: ../src/MainWindow.cs:2291
+#: ../src/MainWindow.cs:2322
 #, csharp-format
 msgid "Delete the {0} selected tags?"
 msgstr "Poista {0} valittua tunnistetta?"
 
-#: ../src/MainWindow.cs:2296
+#: ../src/MainWindow.cs:2327
 msgid "photo"
 msgid_plural "photos"
 msgstr[0] "valokuva"
 msgstr[1] "valokuvat"
 
-#: ../src/MainWindow.cs:2298
+#: ../src/MainWindow.cs:2329
 #, csharp-format
 msgid "If you delete this tag, the association with {0} {1} will be lost."
 msgid_plural ""
@@ -2788,18 +2583,18 @@ msgid_plural ""
 msgstr[0] "Jos poistat tunnisteen, menetetään assosiaatiot: {0} {1}."
 msgstr[1] "Jos poistat tunnisteet, menetetään assosiaatiot: {0} {1}."
 
-#: ../src/MainWindow.cs:2303
+#: ../src/MainWindow.cs:2334
 msgid "_Delete tag"
 msgid_plural "_Delete tags"
 msgstr[0] "_Poista tunniste"
 msgstr[1] "_Poista tunnisteet"
 
 #. A Category is not empty. Can not delete it.
-#: ../src/MainWindow.cs:2317
+#: ../src/MainWindow.cs:2348
 msgid "Tag is not empty"
 msgstr "Tunniste ei ole tyhjä"
 
-#: ../src/MainWindow.cs:2318
+#: ../src/MainWindow.cs:2349
 #, csharp-format
 msgid ""
 "Can not delete tags that have tags within them.  Please delete tags under "
@@ -2808,39 +2603,39 @@ msgstr ""
 "Tunnisteita ei voi poistaa, jos ne sisältävät muita tunnisteita. Poista "
 "kohteen \"{0}\" sisällä olevat tunnisteet ensin"
 
-#: ../src/MainWindow.cs:2750
+#: ../src/MainWindow.cs:2789
 msgid "Rotate selected photo left"
 msgid_plural "Rotate selected photos left"
 msgstr[0] "Kierrä valittua kuvaa vasemmalle"
 msgstr[1] "Kierrä valittuja kuvia vasemmalle"
 
-#: ../src/MainWindow.cs:2763
+#: ../src/MainWindow.cs:2802
 msgid "Rotate selected photo right"
 msgid_plural "Rotate selected photos right"
 msgstr[0] "Kierrä valittua kuvaa oikealle"
 msgstr[1] "Kierrä valittuja kuvia oikealle"
 
-#: ../src/MainWindow.cs:2774
+#: ../src/MainWindow.cs:2813
 #, csharp-format
 msgid "Find _Selected Tag"
 msgid_plural "Find _Selected Tags"
 msgstr[0] "Etsi valittu tunni_ste"
 msgstr[1] "Etsi valitut tunni_steet"
 
-#: ../src/MainWindow.cs:2778
+#: ../src/MainWindow.cs:2817
 #, csharp-format
 msgid "Find Selected Tag _With"
 msgid_plural "Find Selected Tags _With"
 msgstr[0] "Etsi valittu tunniste _käyttäen"
 msgstr[1] "Etsi valitut tunnisteet _käyttäen"
 
-#: ../src/MainWindow.cs:2819
+#: ../src/MainWindow.cs:2858
 msgid "Create New Version?"
 msgid_plural "Create New Versions?"
 msgstr[0] "Luo uusi versio?"
 msgstr[1] "Luo uudet versiot?"
 
-#: ../src/MainWindow.cs:2821
+#: ../src/MainWindow.cs:2860
 #, csharp-format
 msgid ""
 "Before launching {1}, should F-Spot create a new version of the selected "
@@ -2855,7 +2650,7 @@ msgstr[1] ""
 "Haluatko F-Spotin luovan ennen {1} käynnistystä kuvista uudet versiot siten, "
 "että alkuperäiskuvat säilytetään?"
 
-#: ../src/MainWindow.cs:2843
+#: ../src/MainWindow.cs:2882
 msgid "XCF version"
 msgstr "XCF-versio"
 
@@ -2879,87 +2674,93 @@ msgstr "Aihe ja avainsanat"
 msgid "Compression"
 msgstr "Pakkaus"
 
-#: ../src/MetadataStore.cs:25
+#. Translators: Planar Configuration is the label for the tiff:PlanarConfiguration tag
+#. "when Planar Configuration=1, this implies that all components must have
+#. the same BitsPerSample value; when Planar Configuration=2, different
+#. components could have different bit depths."
+#: ../src/MetadataStore.cs:29
 msgid "Planar Configuration"
 msgstr "Tason määrittely"
 
-#: ../src/MetadataStore.cs:27
+#: ../src/MetadataStore.cs:31
 msgid "Orientation"
 msgstr "Suunta"
 
-#: ../src/MetadataStore.cs:29
+#: ../src/MetadataStore.cs:33
 msgid "Photometric Interpretation"
 msgstr "Fotometrinen tulkinta"
 
-#: ../src/MetadataStore.cs:31
+#: ../src/MetadataStore.cs:35
 msgid "Resolution Unit"
-msgstr "Tarkkuden yksikkö"
+msgstr "Tarkkuuden yksikkö"
 
-#: ../src/MetadataStore.cs:33
+#: ../src/MetadataStore.cs:37
 msgid "Exposure Program"
 msgstr "Valotusohjelma"
 
-#: ../src/MetadataStore.cs:35
+#: ../src/MetadataStore.cs:39
 msgid "Metering Mode"
 msgstr "Mittaustila"
 
-#: ../src/MetadataStore.cs:37
+#: ../src/MetadataStore.cs:41
 msgid "Exposure Mode"
 msgstr "Valotustila"
 
-#: ../src/MetadataStore.cs:39
+#: ../src/MetadataStore.cs:43
 msgid "Custom Rendered"
 msgstr "Oma esitysmäärittely"
 
-#: ../src/MetadataStore.cs:41
+#: ../src/MetadataStore.cs:45
 msgid "Components Configuration"
 msgstr "Komponenttien määrittely"
 
-#: ../src/MetadataStore.cs:43
+#: ../src/MetadataStore.cs:47
 msgid "Light Source"
 msgstr "Valaistuslähde"
 
-#: ../src/MetadataStore.cs:45
+#: ../src/MetadataStore.cs:49
 msgid "Sensing Method"
 msgstr "Kartoitusmenetelmä"
 
-#: ../src/MetadataStore.cs:47
+#: ../src/MetadataStore.cs:51
 msgid "Color Space"
 msgstr "Väriavaruus"
 
-#: ../src/MetadataStore.cs:49
+#: ../src/MetadataStore.cs:53
 msgid "White Balance"
 msgstr "Valkotasapaino"
 
-#: ../src/MetadataStore.cs:51
+#: ../src/MetadataStore.cs:55
 msgid "Focal Plane Resolution Unit"
 msgstr "Polttotason kuvatarkkuuden yksikkö"
 
-#: ../src/MetadataStore.cs:53
+#: ../src/MetadataStore.cs:57
 msgid "File Source Type"
 msgstr "Tiedoston lähteen tyyppi"
 
-#: ../src/MetadataStore.cs:55
+#: ../src/MetadataStore.cs:59
 msgid "Scene Capture Type"
 msgstr "Näkymän tallennustyyppi"
 
-#: ../src/MetadataStore.cs:57
+#. Translators: Gain Control is the label for the exif:GainControl tag
+#. "This tag indicates the degree of overall image gain adjustment."
+#: ../src/MetadataStore.cs:63
 msgid "Gain Control"
 msgstr "Signaalivahvistuksen ohjaus"
 
-#: ../src/MetadataStore.cs:59
+#: ../src/MetadataStore.cs:65
 msgid "Contrast"
 msgstr "Kontrasti"
 
-#: ../src/MetadataStore.cs:61
+#: ../src/MetadataStore.cs:67
 msgid "Saturation"
 msgstr "Värikylläisyys"
 
-#: ../src/MetadataStore.cs:63
+#: ../src/MetadataStore.cs:69
 msgid "Sharpness"
 msgstr "Terävyys"
 
-#: ../src/MetadataStore.cs:65
+#: ../src/MetadataStore.cs:71
 msgid "Scene Type"
 msgstr "Paikan tyyppi"
 
@@ -3029,8 +2830,8 @@ msgstr "Versiota ei voitu nimetä uudelleen"
 msgid "Received exception \"{0}\". Unable to rename version to \"{1}\""
 msgstr "Saatiin poikkeus \"{0}\". Versiota \"{1}\" ei voitu nimetä uudelleen"
 
-#: ../src/PhotoVersionMenu.cs:66 ../src/Widgets/InfoBox.cs:562
-#: ../src/Widgets/InfoBox.cs:564
+#: ../src/PhotoVersionMenu.cs:66 ../src/Widgets/InfoBox.cs:563
+#: ../src/Widgets/InfoBox.cs:565
 msgid "(No Edits)"
 msgstr "(Ei muokkauksia)"
 
@@ -3048,7 +2849,7 @@ msgstr "Saatiin poikkeus \"{0}\". Kuvaa {1} ei voi tallentaa"
 msgid "Comment:"
 msgstr "Kommentti:"
 
-#: ../src/Preferences.cs:149
+#: ../src/Preferences.cs:152
 msgid "Photos"
 msgstr "Valokuvat"
 
@@ -3167,8 +2968,8 @@ msgstr "Virhe käsiteltäessä \"{0}\": {1}"
 
 #. Send the mail :)
 #: ../src/SendEmail.cs:330
-msgid "my photos"
-msgstr "valokuvat"
+msgid "My Photos"
+msgstr "Valokuvani"
 
 #: ../src/Sharpener.cs:72
 msgid "Error saving sharpened photo"
@@ -3190,23 +2991,23 @@ msgstr "Säde:"
 msgid "Threshold:"
 msgstr "Kynnysarvo:"
 
-#: ../src/SingleView.cs:86
+#: ../src/SingleView.cs:73
 msgid "Rotate photo left"
 msgstr "Kierrä kuvaa vasemmalle"
 
-#: ../src/SingleView.cs:91
+#: ../src/SingleView.cs:78
 msgid "Rotate photo right"
 msgstr "Kierrä kuvaa oikealle"
 
-#: ../src/SingleView.cs:128
+#: ../src/SingleView.cs:115
 msgid "Folder"
 msgstr "Kansio"
 
-#: ../src/SingleView.cs:354
+#: ../src/SingleView.cs:341
 msgid "Open"
 msgstr "Avaa"
 
-#: ../src/SingleView.cs:454
+#: ../src/SingleView.cs:428
 msgid "Set as Background"
 msgstr "Aseta taustakuvaksi"
 
@@ -3235,8 +3036,8 @@ msgid "Create New Tag..."
 msgstr "Luo uusi tunniste..."
 
 #: ../src/TagPopup.cs:42
-msgid "Edit Selected Tag..."
-msgstr "Muokkaa valittua tunnistetta..."
+msgid "Edit Tag..."
+msgstr "Muokaa tunnistetta..."
 
 #: ../src/TagPopup.cs:46
 msgid "Delete Tag"
@@ -3319,7 +3120,7 @@ msgid "Events"
 msgstr "Tapahtumat"
 
 #. The label for the root category is used in new and edit tag dialogs
-#: ../src/TagStore.cs:239 ../src/Widgets/InfoBox.cs:408
+#: ../src/TagStore.cs:239 ../src/Widgets/InfoBox.cs:409
 msgid "(None)"
 msgstr "(Ei mitään)"
 
@@ -3370,13 +3171,12 @@ msgstr ""
 "\n"
 "Launchpad Contributions:\n"
 "  Antti Ruonakoski https://launchpad.net/~anttimr\n"
+"  Christian Hellberg https://launchpad.net/~christian-hellberg\n"
 "  Elias Julkunen https://launchpad.net/~eliasj\n"
-"  Ilkka Tuohela https://launchpad.net/~hile\n"
 "  Jiri Grönroos https://launchpad.net/~jiri-gronroos\n"
-"  Timo Jyrinki https://launchpad.net/~timo-jyrinki\n"
-"  Timo Jyrinki https://launchpad.net/~timo-jyrinki-iki\n"
-"  Tommi Vainikainen https://launchpad.net/~thv\n"
-"  Toni Palonen https://launchpad.net/~tonipalonen"
+"  Jussi Aalto https://launchpad.net/~jtaalto\n"
+"  Tomi Juntunen https://launchpad.net/~tojuntu\n"
+"  Tommi Vainikainen https://launchpad.net/~thv"
 
 #: ../src/UI.Dialog/AboutDialog.cs:105
 msgid "F-Spot Website"
@@ -3476,16 +3276,16 @@ msgstr "Virheen yksityiskohdat"
 msgid "An unhandled exception was thrown: "
 msgstr "Tapahtui käsittelemätön poikkeus: "
 
-#: ../src/UI.Dialog/PreferenceDialog.cs:53
-#: ../src/UI.Dialog/PreferenceDialog.cs:71
+#: ../src/UI.Dialog/PreferenceDialog.cs:54
+#: ../src/UI.Dialog/PreferenceDialog.cs:77
 msgid "None"
 msgstr "Ei mitään"
 
-#: ../src/UI.Dialog/PreferenceDialog.cs:55
+#: ../src/UI.Dialog/PreferenceDialog.cs:56
 msgid "System profile"
 msgstr "Järjestelmän profiili"
 
-#: ../src/UI.Dialog/PreferenceDialog.cs:84
+#: ../src/UI.Dialog/PreferenceDialog.cs:94
 msgid "Standard theme"
 msgstr "Standardi teema"
 
@@ -3510,7 +3310,7 @@ msgstr "Otsake"
 msgid "Ratio"
 msgstr "Suhde"
 
-#: ../src/UI.Dialog/ThreadProgressDialog.cs:53
+#: ../src/UI.Dialog/ThreadProgressDialog.cs:56
 msgid "Retry"
 msgstr "Yritä uudestaan"
 
@@ -3616,7 +3416,7 @@ msgstr "<b>Esikatselu</b>"
 
 #: ../src/UI.Dialog/ui/EditTagIconDialog.ui.h:5
 msgid "Design icon from"
-msgstr ""
+msgstr "Suunnittele kuvake"
 
 #: ../src/UI.Dialog/ui/EditTagIconDialog.ui.h:6
 msgid "Edit Tag Icon"
@@ -3651,6 +3451,8 @@ msgid ""
 "Inside the image files when possible\n"
 "<small>Makes them accessible to other image-editing programs.</small>"
 msgstr ""
+"Kuvatiedostoon kun mahdollista\n"
+"<small>Muut kuvankäsittelyohjelmat voivat lukea luokituksia.</small>"
 
 #: ../src/UI.Dialog/ui/PreferenceDialog.ui.h:7
 msgid "Select A Folder"
@@ -3701,8 +3503,9 @@ msgid "By _Rating"
 msgstr "A_rvioinnin mukaan"
 
 #: ../src/ui/main_window.ui.h:7
-msgid "Copy Locat_ion"
-msgstr "Kopioi _sijainti"
+#, fuzzy
+msgid "Copy"
+msgstr "Rajaa"
 
 #: ../src/ui/main_window.ui.h:8
 msgid "Create New _Tag..."
@@ -3727,6 +3530,10 @@ msgstr "Sivun _asetukset..."
 #: ../src/ui/main_window.ui.h:14
 msgid "Re_fresh Thumbnail"
 msgstr "_Päivitä pienoiskuva"
+
+#: ../src/ui/main_window.ui.h:18
+msgid "Select _All"
+msgstr "Valitse k_aikki"
 
 #: ../src/ui/main_window.ui.h:19
 msgid "Select _None"
@@ -3789,8 +3596,9 @@ msgid "_Delete Version"
 msgstr "_Poista versio"
 
 #: ../src/ui/main_window.ui.h:45
-msgid "_Edit Selected Tag..."
-msgstr "_Muokkaa valittua tunnistetta..."
+#, fuzzy
+msgid "_Edit Tag..."
+msgstr "Muokaa tunnistetta..."
 
 #: ../src/ui/main_window.ui.h:46
 msgid "_Export to"
@@ -3866,11 +3674,11 @@ msgstr "_Pieni"
 
 #: ../src/ui/main_window.ui.h:69
 msgid "_Tag Icons"
-msgstr "Luoki_tusten kuvakkeet"
+msgstr "_Tunnisteiden kuvakkeet"
 
 #: ../src/ui/main_window.ui.h:70
 msgid "_Tags"
-msgstr "_Luokitukset"
+msgstr "Tunn_isteet"
 
 #: ../src/ui/main_window.ui.h:71
 msgid "_Timeline"
@@ -3888,11 +3696,11 @@ msgstr "Luokittelemattomat kuvat"
 msgid "_Version"
 msgstr "_Versio"
 
-#: ../src/Updater.cs:616
+#: ../src/Updater.cs:622
 msgid "Updating F-Spot Database"
 msgstr "Päivitetään F-Spotin tietokantaa"
 
-#: ../src/Updater.cs:617
+#: ../src/Updater.cs:623
 msgid ""
 "Please wait while your F-Spot gallery's database is updated. This may take "
 "some time."
@@ -3985,11 +3793,11 @@ msgstr "Tulosta valokuvan tagit"
 msgid "Print photo comment"
 msgstr "Tulosta valokuvan kommentti"
 
-#: ../src/Widgets/EditorPage.cs:29 ../src/Widgets/Sidebar.cs:62
+#: ../src/Widgets/EditorPage.cs:30 ../src/Widgets/Sidebar.cs:54
 msgid "Edit"
 msgstr "Muokkaa"
 
-#: ../src/Widgets/EditorPage.cs:197
+#: ../src/Widgets/EditorPage.cs:198
 msgid ""
 "This tool requires an active selection. Please select a region of the photo "
 "and try the operation again"
@@ -3997,13 +3805,13 @@ msgstr ""
 "Työkalu vaatii aktiivisen valinnan. Valitse haluttu alue kuvasta ja yritä "
 "uudestaan"
 
-#: ../src/Widgets/EditorPage.cs:215
+#: ../src/Widgets/EditorPage.cs:216
 msgid "Error saving adjusted photo"
 msgid_plural "Error saving adjusted photos"
 msgstr[0] "Virhe tallennettaessa säädettyä kuvaa"
 msgstr[1] "Virhe tallennettaessa säädettyjä kuvia"
 
-#: ../src/Widgets/EditorPage.cs:217
+#: ../src/Widgets/EditorPage.cs:218
 #, csharp-format
 msgid ""
 "Received exception \"{0}\". Note that you have to develop RAW files into "
@@ -4024,7 +3832,7 @@ msgstr "_Pysty"
 msgid "Find:"
 msgstr "Etsi:"
 
-#: ../src/Widgets/FolderTreePage.cs:21
+#: ../src/Widgets/FolderTreePage.cs:22
 msgid "Folders"
 msgstr "Kansiot"
 
@@ -4036,54 +3844,58 @@ msgstr "Tiedostojärjestelmä"
 msgid "Histogram"
 msgstr "Histogrammi"
 
-#: ../src/Widgets/InfoBox.cs:217
+#: ../src/Widgets/InfoBox.cs:215
+msgid "Version"
+msgstr "Versio"
+
+#: ../src/Widgets/InfoBox.cs:218
 msgid "Date"
 msgstr "Päiväys"
 
-#: ../src/Widgets/InfoBox.cs:223
+#: ../src/Widgets/InfoBox.cs:224
 msgid "Exposure"
 msgstr "Valotus"
 
-#: ../src/Widgets/InfoBox.cs:227
+#: ../src/Widgets/InfoBox.cs:228
 msgid "Focal Length"
 msgstr "Polttoväli"
 
-#: ../src/Widgets/InfoBox.cs:233
+#: ../src/Widgets/InfoBox.cs:234
 msgid "File Size"
 msgstr "Tiedoston koko"
 
-#: ../src/Widgets/InfoBox.cs:236
+#: ../src/Widgets/InfoBox.cs:237
 msgid "Rating"
 msgstr "Arvostelu"
 
-#: ../src/Widgets/InfoBox.cs:389 ../src/Widgets/InfoBox.cs:397
-#: ../src/Widgets/InfoBox.cs:427
+#: ../src/Widgets/InfoBox.cs:390 ../src/Widgets/InfoBox.cs:398
+#: ../src/Widgets/InfoBox.cs:428
 msgid "(wrong format)"
 msgstr "(väärä muoto)"
 
-#: ../src/Widgets/InfoBox.cs:417 ../src/Widgets/InfoBox.cs:440
-#: ../src/Widgets/InfoBox.cs:450 ../src/Widgets/InfoBox.cs:459
+#: ../src/Widgets/InfoBox.cs:418 ../src/Widgets/InfoBox.cs:441
+#: ../src/Widgets/InfoBox.cs:451 ../src/Widgets/InfoBox.cs:460
 msgid "(Unknown)"
 msgstr "(Tuntematon)"
 
-#: ../src/Widgets/InfoBox.cs:560
-#, csharp-format
+#: ../src/Widgets/InfoBox.cs:561
+#, fuzzy, csharp-format
 msgid "(One Edit)"
 msgid_plural "({0} Edits)"
-msgstr[0] "(yksi muokkaus)"
-msgstr[1] "({0} muokkausta)"
+msgstr[0] "(Ei muokkauksia)"
+msgstr[1] "(Ei muokkauksia)"
 
-#: ../src/Widgets/InfoBox.cs:574
+#: ../src/Widgets/InfoBox.cs:575
 msgid "(File read error)"
 msgstr "(Tiedoston lukuvirhe)"
 
-#: ../src/Widgets/InfoBox.cs:619
+#: ../src/Widgets/InfoBox.cs:620
 #, csharp-format
 msgid "{0} Photos"
 msgstr "{0} valokuvaa"
 
 #. Note for translators: {0} is a date, {1} and {2} are times.
-#: ../src/Widgets/InfoBox.cs:639
+#: ../src/Widgets/InfoBox.cs:640
 #, csharp-format
 msgid ""
 "On {0} between \n"
@@ -4092,7 +3904,7 @@ msgstr ""
 "{0} kellonaikojen \n"
 "{1} ja {2} välillä"
 
-#: ../src/Widgets/InfoBox.cs:644
+#: ../src/Widgets/InfoBox.cs:645
 #, csharp-format
 msgid ""
 "Between {0} \n"
@@ -4101,61 +3913,61 @@ msgstr ""
 "Välillä {0} \n"
 "ja {1}"
 
-#: ../src/Widgets/InfoBox.cs:671
+#: ../src/Widgets/InfoBox.cs:672
 msgid "(At least one File not found)"
 msgstr "(Ainakaan yhtä tiedostoa ei löydy)"
 
-#: ../src/Widgets/InfoBox.cs:788
+#: ../src/Widgets/InfoBox.cs:789
 msgid "Show Photo Name"
 msgstr "Näytä valokuvan nimi"
 
-#: ../src/Widgets/InfoBox.cs:797
+#: ../src/Widgets/InfoBox.cs:798
 msgid "Show Date"
 msgstr "Näytä päiväys"
 
-#: ../src/Widgets/InfoBox.cs:806
+#: ../src/Widgets/InfoBox.cs:807
 msgid "Show Size"
 msgstr "Näytä koko"
 
-#: ../src/Widgets/InfoBox.cs:815
+#: ../src/Widgets/InfoBox.cs:816
 msgid "Show Exposure"
 msgstr "Näytä valotus"
 
-#: ../src/Widgets/InfoBox.cs:824
+#: ../src/Widgets/InfoBox.cs:825
 msgid "Show Focal Length"
 msgstr "Näytä polttoväli"
 
-#: ../src/Widgets/InfoBox.cs:833
+#: ../src/Widgets/InfoBox.cs:834
 msgid "Show Camera"
 msgstr "Näytä kamera"
 
-#: ../src/Widgets/InfoBox.cs:842
+#: ../src/Widgets/InfoBox.cs:843
 msgid "Show File Size"
 msgstr "Näytä tiedoston koko"
 
-#: ../src/Widgets/MetadataDisplay.cs:23
+#: ../src/Widgets/MetadataDisplay.cs:25
 msgid "Metadata"
 msgstr "Metatiedot"
 
-#: ../src/Widgets/MetadataDisplay.cs:104
+#: ../src/Widgets/MetadataDisplay.cs:106
 msgid "Extended Metadata"
 msgstr "Laajennettu metatieto"
 
 #. clear Extended Metadata
-#: ../src/Widgets/MetadataDisplay.cs:392
+#: ../src/Widgets/MetadataDisplay.cs:394
 msgid "No Extended Metadata Available"
 msgstr "Metatietoja ei ole saatavilla"
 
-#: ../src/Widgets/MetadataDisplay.cs:410
+#: ../src/Widgets/MetadataDisplay.cs:412
 msgid "No active photo"
 msgstr "Ei valittua valokuvaa"
 
-#: ../src/Widgets/MetadataDisplay.cs:412
+#: ../src/Widgets/MetadataDisplay.cs:414
 #, csharp-format
 msgid "The photo \"{0}\" does not exist"
 msgstr "Valokuvaa \"{0}\" ei ole olemassa"
 
-#: ../src/Widgets/MetadataDisplay.cs:415
+#: ../src/Widgets/MetadataDisplay.cs:417
 msgid "No metadata available"
 msgstr "Metatietoja ei ole saatavilla"
 
@@ -4188,44 +4000,202 @@ msgstr "Näytä diaesitys F-Spotista"
 msgid "F-Spot photos"
 msgstr "F-Spot-valokuvat"
 
-#~ msgid "<b>F-Spot tags</b>"
-#~ msgstr "<b>F-Spot-tunnisteet</b>"
+#~ msgid "Package"
+#~ msgstr "Paketti"
 
-#~ msgid "<b>Tabblo account</b>"
-#~ msgstr "<b>Tabblo-tili</b>"
+#~ msgid "Extension Installation"
+#~ msgstr "Lisäosien asennus"
+
+#~ msgid "<b>Select the extensions to install and click on Next</b>"
+#~ msgstr "<b>Valitse asennettavat lisäosat ja napsauta Seuraava</b>"
+
+#~ msgid "Install from:"
+#~ msgstr "Asenna lähteestä:"
+
+#~ msgid "_Repositories..."
+#~ msgstr "_Pakettivarastot..."
+
+#~ msgid "Show all packages"
+#~ msgstr "Näytä kaikki paketit"
+
+#~ msgid "Show new versions only"
+#~ msgstr "Näytä vain uudet versiot"
+
+#~ msgid "Show updates only"
+#~ msgstr "Näytä vain päivitykset"
+
+#~ msgid "_Unselect All"
+#~ msgstr "Peru _valinnat"
+
+#~ msgid "label124"
+#~ msgstr "label124"
+
+#~ msgid "Overall Progress:"
+#~ msgstr "Yleinen kehitys:"
+
+#~ msgid "Downloading extensions..."
+#~ msgstr "Noudetaan lisäosia..."
+
+#~ msgid "Extension Manager"
+#~ msgstr "Lisäosien hallinta"
+
+#~ msgid "Additional extensions are required to perform this operation."
+#~ msgstr "Tämän toiminnan suorittaminen vaatii lisäosia."
+
+#~ msgid "The following extensions will be installed:"
+#~ msgstr "Seuraavat lisäosat asennetaan:"
+
+#~ msgid "<big><b>Extension Manager</b></big>"
+#~ msgstr "<big><b>Lisäosien hallinta</b></big>"
+
+#~ msgid "The following extensions are currently installed:"
+#~ msgstr "Seuraavat lisäosat ovat tällä hetkellä asennettuina:"
+
+#~ msgid "_Install Extensions..."
+#~ msgstr "_Asenna lisäosia..."
+
+#~ msgid "_Uninstall..."
+#~ msgstr "_Peru asennus..."
+
+#~ msgid "Enable"
+#~ msgstr "Ota käyttöön"
+
+#~ msgid "Disable"
+#~ msgstr "Poista käytöstä"
+
+#~ msgid "Details"
+#~ msgstr "Yksityiskohdat"
+
+#~ msgid "Extension Repository Management"
+#~ msgstr "Lisäosien pakettivarastojen hallinta"
+
+#~ msgid "Add New Repository"
+#~ msgstr "Lisää uusi pakettivarasto"
+
+#~ msgid "Select the location of the repository you want to register:"
+#~ msgstr "Valitse rekisteröitävän pakettivaraston sijainti:"
+
+#~ msgid "Register an on-line repository"
+#~ msgstr "Rekisteröi pakettivarasto verkosta"
+
+#~ msgid "Url:"
+#~ msgstr "Url:"
+
+#~ msgid "Register a local repository"
+#~ msgstr "Rekisteröi paikallinen pakettivarasto"
+
+#~ msgid "Path:"
+#~ msgstr "Polku:"
+
+#~ msgid "Browse..."
+#~ msgstr "Selaa..."
+
+#~ msgid "Version:"
+#~ msgstr "Versio:"
+
+#~ msgid "Author:"
+#~ msgstr "Tekijä:"
+
+#~ msgid "Copyright:"
+#~ msgstr "Tekijänoikeudet:"
+
+#~ msgid "Extension Dependencies:"
+#~ msgstr "Lisäosan riippuvuudet:"
+
+#~ msgid "All registered repositories"
+#~ msgstr "Kaikki rekisteröidyt pakettivarastot"
+
+#~ msgid "Are you sure you want to cancel the installation?"
+#~ msgstr "Oletko varma että haluat keskeyttää asennuksen?"
+
+#~ msgid "The following packages will be uninstalled:"
+#~ msgstr "Seuraavat paketit poistetaan:"
 
 #~ msgid ""
-#~ "<small><i>F-Spot tags can help you track the export status of photos. "
-#~ "Example: Use one tag for the photos that you plan to export, and another "
-#~ "one for those already exported. Here, you can tell F-Spot to "
-#~ "automatically replace these tags as appropriate.</i></small>"
+#~ "There are other extensions that depend on the previous ones which will "
+#~ "also be uninstalled:"
 #~ msgstr ""
-#~ "<small><i>F-Spot-tunnisteet voivat olla avuksi kuvien tuontivaiheessa. "
-#~ "Esimerkki: Käytä yhtä tunnistetta kuville, jotka olet aikeissa tuoda "
-#~ "koneelle, ja toista tunnistetta kuville, jotka olet jo tuonut koneelle. "
-#~ "Tässä kohdassa voit määrittää F-Spotin automaattisesti muuttamaan "
-#~ "tunnisteita, kun kuvat on tuotu.</i></small>"
+#~ "Löytyi muita lisäosia, jotka riippuvat aikaisemmista ja jotka täytyy myös "
+#~ "poistaa:"
 
-#~ msgid "<b>{0}</b>."
-#~ msgstr "<b>{0}</b>"
+#~ msgid ""
+#~ "The selected extensions can't be installed because there are dependency "
+#~ "conflicts."
+#~ msgstr ""
+#~ "Valittuja liitännäisiä ei voi asentaa, koska riippuvuuksissa on "
+#~ "ristiriitaisuuksia."
 
-#~ msgid "A trust error occured while attempting to access"
-#~ msgstr "Tapahtui luottamusvirhe yritettäessä yhteyttä"
+#~ msgid "The following packages will be installed:"
+#~ msgstr "Seuraavat paketit asennetaan:"
 
-#~ msgid "Abort this session"
-#~ msgstr "Keskeytä tämä istunto"
+#~ msgid " (in user directory)"
+#~ msgstr " (käyttäjän hakemistossa)"
 
-#~ msgid "Always trust this site's certificate"
-#~ msgstr "Luota tämän sivuston varmenteeseen aina"
+#~ msgid "The following packages need to be uninstalled:"
+#~ msgstr "Seuraavat paketit täytyy poistaa:"
 
-#~ msgid "Do you wish to:"
-#~ msgstr "Haluatko:"
+#~ msgid "The following dependencies could not be resolved:"
+#~ msgstr "Seuraavia riippuvuuksia ei voitu selvittää:"
 
-#~ msgid "Trust Error"
-#~ msgstr "Luottamusvirhe"
+#~ msgid "The installation has been successfully completed."
+#~ msgstr "Asennus valmistui onnistuneesti."
 
-#~ msgid "Trust the site's certificate this once"
-#~ msgstr "Luota sivuston varmenteeseen tämän kerran"
+#~ msgid "The installation failed!"
+#~ msgstr "Asennus epäonnistui!"
+
+#~ msgid "The installation has completed with warnings."
+#~ msgstr "Asennus valmistui onnistuneesti, mutta varoituksin."
+
+#~ msgid "The uninstallation has been successfully completed."
+#~ msgstr "Pakettien poisto valmistui onnistuneesti."
+
+#~ msgid "The uninstallation failed!"
+#~ msgstr "Poistaminen epäonnistui!"
+
+#~ msgid "The uninstallation has completed with warnings."
+#~ msgstr "Pakettien poisto valmistui onnistuneesti, mutta varoituksin."
+
+#~ msgid "Repository"
+#~ msgstr "Pakettivarasto"
+
+#~ msgid "Installation cancelled"
+#~ msgstr "Asennus peruttiin"
+
+#~ msgid "Some of the required extensions were not found"
+#~ msgstr "Joitain vaadituista lisäosista ei löytynyt"
+
+#~ msgid "Installation failed"
+#~ msgstr "Asennus epäonnistui"
+
+#~ msgid "Extension"
+#~ msgstr "Lisäosa"
+
+#~ msgid "Other"
+#~ msgstr "Muu"
+
+#~ msgid "Url"
+#~ msgstr "Url"
+
+#~ msgid "Exception occurred: {0}"
+#~ msgstr "Tapahtui poikkeus: {0}"
+
+#~ msgid "Disabled extensions can't be loaded."
+#~ msgstr "Käytöstä poistettuja lisäosia ei voi ladata."
+
+#~ msgid "Loading {0} extension"
+#~ msgstr "Ladataan {0}-lisäosa"
+
+#~ msgid "The required extension '{0}' is disabled."
+#~ msgstr "Vaadittu lisäosa \"{0}\" on poistettu käytöstä."
+
+#~ msgid "The required extension '{0}' is not installed."
+#~ msgstr "Vaadittua lisäosaa \"{0}\" ei ole asennettu."
+
+#~ msgid "(provided by {0})"
+#~ msgstr "(tarjoaa {0})"
+
+#~ msgid "Copy Photo Locat_ion"
+#~ msgstr "Kopioi valokuvan s_ijainti"
 
 #~ msgid "Choose destination directory"
 #~ msgstr "Valitse kohdekansio"
@@ -4233,267 +4203,49 @@ msgstr "F-Spot-valokuvat"
 #~ msgid "Target location:\t"
 #~ msgstr "Kohdesijainti:\t"
 
-#~ msgid "Available space:"
-#~ msgstr "Vapaa tila:"
-
-#~ msgid "This is who I am"
-#~ msgstr "Minä olen tässä"
-
-#~ msgid ""
-#~ "F-Spot will now launch your browser so that you can log into Facebook.  "
-#~ "Turn on the \"Save my login information\" checkbox on Facebook and F-Spot "
-#~ "will log into Facebook automatically from now on."
-#~ msgstr ""
-#~ "F-spot käynnistää nyt selaimesi, jotta voit kirjautua facebookiin. Laita "
-#~ "\"Save my login information\" valinta päälle, jolloin F-spot voi "
-#~ "kirjautua facebookiin tästä lähtien automaattisesti."
-
-#~ msgid "Try to use the system display profile"
-#~ msgstr "Yritä käyttää järjestelmän näyttöprofiilia"
-
-#~ msgid "From gtkrc File:"
-#~ msgstr "gtkrc-tiedostosta:"
-
-#~ msgid "Print..."
-#~ msgstr "Tulosta..."
-
-#~ msgid "Select A gtkrc File"
-#~ msgstr "Valitse gtkrc-tiedosto"
-
-#~ msgid "Custom Theme"
-#~ msgstr "Oma teema"
+#~ msgid "Save changes to image: {0} before closing?"
+#~ msgid_plural ""
+#~ "Save changes to images:\n"
+#~ "{0}\n"
+#~ "before closing?"
+#~ msgstr[0] "Tallennetaanko muutokset kuvaan: {0} ennen sulkemista?"
+#~ msgstr[1] ""
+#~ "Tallennetaanko muutokset kuviin:\n"
+#~ "{0}\n"
+#~ "ennen sulkemista?"
 
 #~ msgid ""
-#~ "<small><i>You'll have to restart f-spot to load the new theme.</i></small>"
-#~ msgstr ""
-#~ "<small><i>F-Spot tulee käynnistää uudelleen uuden teeman lataamiseksi.</"
-#~ "i></small>"
+#~ "If you don't save, the changes you have made to this image will be "
+#~ "permanently lost"
+#~ msgid_plural ""
+#~ "If you don't save, the changes you have made to these images will be "
+#~ "permanently lost"
+#~ msgstr[0] "Jos et tallenna, kuvaan tehdyt muutokset jätetään huomioimatta"
+#~ msgstr[1] ""
+#~ "Jos et tallenna, näihin kuviin tehdyt muutokset jätetään huomioimatta"
 
-#~ msgid "<b>Theming</b>"
-#~ msgstr "<b>Teemoitus</b>"
+#~ msgid "Discard changes"
+#~ msgstr "Hylkää muutokset"
 
-#~ msgid "Cover"
-#~ msgstr "Peitä"
+#~ msgid "Continue editing"
+#~ msgstr "Jatka muokkaamista"
 
-#~ msgid "P_hoto Source:"
-#~ msgstr "_Valokuvan lähde:"
+#~ msgid "Save"
+#~ msgid_plural "Save all"
+#~ msgstr[0] "Tallenna"
+#~ msgstr[1] "Tallenna kaikki"
 
-#~ msgid "<b>Import Settings</b>"
-#~ msgstr "<b>Tuo asetukset</b>"
+#~ msgid "Copy Locat_ion"
+#~ msgstr "Kopioi _sijainti"
 
-#~ msgid ""
-#~ "The \"F-Spot Manual\" could not be found.  Please verify that your "
-#~ "installation has been completed successfully."
-#~ msgstr ""
-#~ "F-Spotin ohjetta ei löydy. Tarkista että ohjelma on asennettu kokonaan."
+#~ msgid "_Edit Selected Tag..."
+#~ msgstr "_Muokkaa valittua tunnistetta..."
 
-#~ msgid "check type"
-#~ msgstr "tarkista tyyppi"
+#~ msgid "my photos"
+#~ msgstr "valokuvat"
 
-#~ msgid "Arrange by _Folder"
-#~ msgstr "Järjestä k_ansion mukaan"
+#~ msgid "Hash for Duplicates"
+#~ msgstr "Etsi tuplakuvat"
 
-#~ msgid "Write _metadata to file"
-#~ msgstr "Kirjoita _metatiedot tiedostoon"
-
-#~ msgid "Reveal"
-#~ msgstr "Paljasta"
-
-#~ msgid "<b>Screensaver</b>"
-#~ msgstr "<b>Näytönsäästäjä</b>"
-
-#~ msgid "the type of chequering to use"
-#~ msgstr "käytettävän ruudutuksen tyyppi"
-
-#~ msgid "No image loaded."
-#~ msgstr "Ei ladattua kuvaa."
-
-#~ msgid "interpolation type"
-#~ msgstr "interpoloinnin tyyppi"
-
-#~ msgid "Flip"
-#~ msgstr "Peilaa"
-
-#~ msgid "Dissolve"
-#~ msgstr "Ristikuva"
-
-#~ msgid "Co_nfigure"
-#~ msgstr "_Määrittele"
-
-#~ msgid "<b>Printer Details</b>"
-#~ msgstr "<b>Tulostimen yksityiskohdat</b>"
-
-#~ msgid "Push"
-#~ msgstr "Työnnä"
-
-#~ msgid "Arrange by _Month"
-#~ msgstr "Järjestä _kuukauden mukaan"
-
-#~ msgid "SmugMug"
-#~ msgstr "SmugMug"
-
-#~ msgid "the size of chequers to use"
-#~ msgstr "käytettävien ruutujen koko"
-
-#~ msgid "Print crop _marks"
-#~ msgstr "Tulosta rajaus_merkit"
-
-#~ msgid ""
-#~ "Selection\n"
-#~ "Gallery\n"
-#~ "Viewport"
-#~ msgstr ""
-#~ "Valinta\n"
-#~ "Galleria\n"
-#~ "Näkymä"
-
-#~ msgid "<b>Predefined</b>"
-#~ msgstr "<b>Esimääritelty</b>"
-
-#~ msgid ""
-#~ "Full Page\n"
-#~ "Standard - 4x6"
-#~ msgstr ""
-#~ "Koko sivu\n"
-#~ "Normaali - 4x6"
-
-#~ msgid "_Border:"
-#~ msgstr "_Reuna:"
-
-#~ msgid "<b>Color Management</b>"
-#~ msgstr "<b>Värien hallinta</b>"
-
-#~ msgid "the type of interpolation to use"
-#~ msgstr "interpoloinnin tyyppi"
-
-#~ msgid "Page 1 of 3"
-#~ msgstr "Sivu 1/3"
-
-#~ msgid "Tag Name:"
-#~ msgstr "Luokituksen nimi:"
-
-#~ msgid ""
-#~ "<small><i>Enable this option to store tags and descriptions inside \n"
-#~ "supported image formats.</i></small>"
-#~ msgstr ""
-#~ "<small><i>Valitse tämä vaihtoehto, jos haluat tallentaa luokituksia ja\n"
-#~ "kuvauksia tuetun muotoisiin kuviin.</i></small>"
-
-#~ msgid "<b>Photograph Layout</b>"
-#~ msgstr "<b>Valokuvan asettelu</b>"
-
-#~ msgid ""
-#~ "<small><i>While acting as a screensaver, F-Spot can display all of your "
-#~ "images, or a small subset based on tags.</i></small>"
-#~ msgstr ""
-#~ "<small><i>Toimiessaaan näytönsäästäjänä F-Spot voi näyttää kaikkia "
-#~ "kuviasi tai vain osaa, perustuen luokituksiin.</i></small>"
-
-#~ msgid "More directories"
-#~ msgstr "Lisää hakemistoja"
-
-#~ msgid "Can't save non local files."
-#~ msgstr "Verkosta ladattuja kuvia ei voida tallentaa."
-
-#~ msgid "Split"
-#~ msgstr "Jaa"
-
-#~ msgid "<b>Metadata</b>"
-#~ msgstr "<b>Metatiedot</b>"
-
-#~ msgid "Wipe"
-#~ msgstr "Pyyhi"
-
-#~ msgid "img_000.jpg"
-#~ msgstr "kuva_000.jpg"
-
-#~ msgid "dither"
-#~ msgstr "sekoiteväritys"
-
-#~ msgid ""
-#~ "Hairline\n"
-#~ "0.25\"\n"
-#~ "0.5\"\n"
-#~ "1\"\n"
-#~ msgstr ""
-#~ "Hiuksenohut\n"
-#~ "0.25\"\n"
-#~ "0.5\"\n"
-#~ "1\"\n"
-
-#~ msgid "_Display:"
-#~ msgstr "_Näytä:"
-
-#~ msgid "Picasaweb"
-#~ msgstr "Picasaweb"
-
-#~ msgid "N_umber of Copies:"
-#~ msgstr "Kopioiden _lukumäärä:"
-
-#~ msgid "Unsupported image type for saving."
-#~ msgstr "Tuntematon tiedostotyyppi tallennettaessa."
-
-#~ msgid ""
-#~ "None\n"
-#~ "Title\n"
-#~ "Filename\n"
-#~ "Date\n"
-#~ "Photo Details"
-#~ msgstr ""
-#~ "Ei mitään\n"
-#~ "Otsikko\n"
-#~ "Tiedostonimi\n"
-#~ "Päiväys\n"
-#~ "Valokuvan yksityiskohdat"
-
-#~ msgid "1 of 1"
-#~ msgstr "1 - 1"
-
-#~ msgid "Will print using: US Letter size on Generic Postscript"
-#~ msgstr "Tulostetaan käyttäen: US-letter tai yleinen Postscript"
-
-#~ msgid "dither type"
-#~ msgstr "sekoitevärityksen tyyppi"
-
-#~ msgid "Photo _Size:"
-#~ msgstr "Valokuvan _koko:"
-
-#~ msgid "_Folder"
-#~ msgstr "_Kansio"
-
-#~ msgid "Make F-Spot your screensaver"
-#~ msgstr "Käytä F-Spotin näytönsäästäjänä"
-
-#~ msgid "Gallery2"
-#~ msgstr "Galleria2"
-
-#~ msgid "_Month"
-#~ msgstr "_Kuukausi"
-
-#~ msgid "Crop photo to _fit"
-#~ msgstr "Rajaa kuva _mahtumaan"
-
-#~ msgid ""
-#~ "<small><i>Choose the folder where F-Spot should store newly imported "
-#~ "photos</i></small>"
-#~ msgstr ""
-#~ "<small><i>Valitse kansio, johon F-Spot tallentaa tuodut valokuvat</i></"
-#~ "small>"
-
-#~ msgid "From List:"
-#~ msgstr "luettelosta:"
-
-#~ msgid "_Print output:"
-#~ msgstr "_Tulosteiden ulkoasu:"
-
-#~ msgid "Blackout"
-#~ msgstr "Pimennys"
-
-#~ msgid "Select the area that you want blacked out."
-#~ msgstr "Valitse alue jonka haluat pimentää"
-
-#~ msgid "Pixelate"
-#~ msgstr "Pikselöi"
-
-#~ msgid "Select the area that you want pixelated."
-#~ msgstr "Valitse alue jonka haluat pikselöidä"
+#~ msgid "Edit Selected Tag..."
+#~ msgstr "Muokkaa valittua tunnistetta..."
