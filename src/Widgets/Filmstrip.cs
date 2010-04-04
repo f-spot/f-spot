@@ -649,6 +649,12 @@ namespace FSpot.Widgets
 				FSpot.ColorManagement.ApplyProfile (current, screen_profile);
 			}
 			
+			// Add a four pixel white border around the thumbnail
+			Pixbuf whiteBorder = new Pixbuf (Gdk.Colorspace.Rgb, true, 8, current.Width, current.Height);
+			whiteBorder.Fill (0);
+			current.CopyArea (1, 1, current.Width - 8, current.Height - 8, whiteBorder, 4, 4);
+			current = whiteBorder;
+
 			if (!highlighted)
 				return current;
 
@@ -656,7 +662,10 @@ namespace FSpot.Widgets
 			Gdk.Color color = Style.Background (StateType.Selected);
 			uint ucol = (uint)((uint)color.Red / 256 << 24 ) + ((uint)color.Green / 256 << 16) + ((uint)color.Blue / 256 << 8) + 255;
 			highlight.Fill (ucol);
-			current.CopyArea (1, 1, current.Width - 2, current.Height - 2, highlight, 1, 1);	
+
+			// Add a two pixel highlight around the thumbnail
+			current.CopyArea (2, 2, current.Width - 4, current.Height - 4, highlight, 2, 2);
+
 			return highlight;
 		}
 
