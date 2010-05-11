@@ -12,7 +12,10 @@ RESOURCES = \
 SOURCES = \
 	RetroactiveRoll.cs
 
-install: all
+install:
+	@echo "Run make force-install to install"
+
+force-install: all
 	cp *.dll ~/.config/f-spot/addins/
 
 mpack: RetroactiveRoll.dll
