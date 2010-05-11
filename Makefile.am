@@ -1,4 +1,5 @@
 SUBDIRS = 		\
+	build 		\
 	lib 		\
 	docs		\
 	icons		\

@@ -1,19 +1,73 @@
-AC_INIT(F-Spot, 0.6.1.5)
-AC_CONFIG_SRCDIR(src/main.cs)
+dnl Granularly define the version components
+dnl Remember to also update the Display Version
+m4_define([fspot_version_major], [0])
+m4_define([fspot_version_minor], [6])
+m4_define([fspot_version_micro], [1])
+m4_define([fspot_version_nano], [5])
 
-AM_CONFIG_HEADER(config.h)
+dnl set to 0 when doing an official release
+m4_define([fspot_version_pre_release], [0])
 
-AM_INIT_AUTOMAKE([tar-ustar -Wno-portability])
+m4_define([concat], $1$2$3$4)
 
+dnl create base version string
+m4_define([fspot_version], concat(
+	fspot_version_major.,
+	fspot_version_minor.,
+	fspot_version_micro.,
+    fspot_version_nano))
+
+dnl create the release version
+m4_define([fspot_version],
+	m4_if(fspot_version_pre_release, [0],
+		fspot_version,
+		concat(fspot_version, fspot_version_pre_release)))
+
+dnl this can sometimes differ manually
+m4_define([fspot_display_version],
+	["0.6.1.5"])
+
+m4_define([fspot_api_version],
+	[fspot_version_major.fspot_version_minor])
+
+m4_define([fspot_asm_version],
+	[fspot_api_version.0.0])
+
+AC_PREREQ(2.52)
+AC_INIT([fspot], fspot_version,
+	[http://bugzilla.gnome.org/enter_bug.cgi?product=fspot])
+
+AM_INIT_AUTOMAKE([1.9 dist-bzip2 tar-ustar dist-zip foreign])
 AM_MAINTAINER_MODE
+AM_CONFIG_HEADER(config.h)
+AC_SUBST([ACLOCAL_AMFLAGS], ["-I build/m4/shamrock -I build/m4/shave \${ACLOCAL_FLAGS}"])
 
 IT_PROG_INTLTOOL([0.35.0])
+AC_PROG_LIBTOOL
+AC_PROG_INSTALL
+
+dnl How to configure for distcheck
+DISTCHECK_CONFIGURE_FLAGS="--disable-docs --enable-release"
+AC_SUBST(DISTCHECK_CONFIGURE_FLAGS)
+
+dnl Export Version Info
+AC_SUBST([API_VERSION], [fspot_api_version])
+AC_SUBST([ASM_VERSION], [fspot_asm_version])
+AC_SUBST([DISPLAY_VERSION], [fspot_display_version])
+
+dnl Expansions
+SHAMROCK_EXPAND_LIBDIR
+SHAMROCK_EXPAND_BINDIR
+SHAMROCK_EXPAND_DATADIR
+
+
+
+AC_CONFIG_SRCDIR(src/main.cs)
 
 AC_PROG_CC
 AC_PROG_CXX
 AC_ISC_POSIX
 AC_HEADER_STDC
-AM_PROG_LIBTOOL
 
 GNOME_COMPILE_WARNINGS
 AM_PATH_GLIB_2_0
@@ -277,18 +331,21 @@ AC_SUBST(CFLAGS)
 AC_SUBST(CPPFLAGS)
 AC_SUBST(LDFLAGS)
 
-expanded_libdir=`( case $prefix in NONE) prefix=$ac_default_prefix ;; *) ;; esac
-		   case $exec_prefix in NONE) exec_prefix=$prefix ;; *) ;; esac
-		   eval echo $libdir )`
-AC_SUBST(expanded_libdir)
-
 AC_CONFIG_FILES([src/f-spot],[chmod +x src/f-spot])
 
 GNOME_ICON_THEME_PREFIX=`$PKG_CONFIG --variable=prefix gnome-icon-theme`
 AC_SUBST(GNOME_ICON_THEME_PREFIX)
 
+SHAVE_INIT([build/m4/shave], [enable])
+
 AC_OUTPUT(
 Makefile
+
+build/Makefile
+build/m4/Makefile
+build/m4/shave/shave
+build/m4/shave/shave-libtool
+
 lib/dpap-sharp/Makefile
 lib/dpap-sharp/lib/Makefile
 lib/dpap-sharp/dpap-client/Makefile
