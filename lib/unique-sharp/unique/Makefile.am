@@ -27,14 +27,14 @@ unique-api.xml: $(srcdir)/unique-api.raw $(srcdir)/Unique.metadata
 $(top_builddir)/unique-sharp/generator/gapi_codegen.exe:
 	$(MAKE) -C $(top_builddir)/lib/unique-sharp/generator
 
-generated/File.cs: unique-api.xml $(CUSTOMS) $(top_builddir)/unique-sharp/generator/gapi_codegen.exe
+generated/App.cs: unique-api.xml $(CUSTOMS) $(builddir)/../generator/gapi_codegen.exe
 	@echo -e "\n*** Generating C# code"
 	$(MONO) $(top_builddir)/lib/unique-sharp/generator/gapi_codegen.exe $(GLIBSHARP_CFLAGS) --outdir=generated --customdir=$(srcdir) --generate unique-api.xml
 
 unique-sharp.snk: $(SNK)
 	cp $< $@
 
-unique-sharp.dll: generated/File.cs $(SRCS) unique-sharp.snk
+unique-sharp.dll: generated/App.cs $(SRCS) unique-sharp.snk
 	@echo -e "\n*** Building $@"
 	$(CSC) -target:library -out:$@ $(UNSAFE) $(DEBUG) $(ASSEMBLIES) $(SRCS) generated/*.cs
 
