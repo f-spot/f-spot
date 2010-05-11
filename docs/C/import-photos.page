@@ -1,0 +1,36 @@
+<page xmlns="http://projectmallard.org/1.0/"
+      type="topic"
+      id="import-photos">
+  <info>
+    <link type="guide" xref="index#basic-functions" group="import"/>
+    <desc>Import photos to be managed</desc>
+  </info>
+
+  <title>
+    Importing Photos
+  </title>
+  <p>
+    Chances are, the first thing you will want to do is import photos.
+  </p>
+  <p>
+    To import photos:
+  </p>
+  <steps>
+    <item>
+      <p>Select <guiseq><gui>Photo</gui><gui>Import...</gui></guiseq>.
+      Alternatively, click the <gui>Import</gui> button.</p>
+    </item>
+    <item>
+      <p>Select a source from which to import, such as a device or a folder.</p>
+     </item>
+     <item>
+       <p>It may take a while for F-Spot to index the files.  When it is done
+          indexing, your photos will be presented to you.  At this time, you
+          can attach <link xref="tags">tags</link> to all photos, or you can
+          leave that task for later.</p>
+    </item>
+    <item>
+      <p>When you are ready to finish importing photos, click <gui>Import</gui>.</p>
+    </item>
+  </steps>
+</page>

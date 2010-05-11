@@ -1,0 +1,35 @@
+<page xmlns="http://projectmallard.org/1.0/"
+      xmlns:e="http://projectmallard.org/experimental/"
+      type="topic"
+      id="rate-search">
+
+  <info>
+    <link type="guide" xref="index#searching"/>
+    <desc>Search photos by star rating</desc>
+  </info>
+
+  <title>
+    Search by Rating
+  </title>
+
+  <p>To search by rating:</p>
+  <steps>
+    <item>
+      <p>Select <guiseq><gui>Find</gui><gui>By Rating</gui><gui>Set Rating
+         Filter...</gui></guiseq>.</p>
+    </item>
+    <item>
+      <p>Select the rating range which you wish to view.</p>
+    </item>
+    <item>
+      <p>Click <gui>Ok</gui>.</p>
+    </item>
+  </steps>
+  <p>To stop searching by rating:</p>
+  <steps>
+    <item>
+      <p>Select <guiseq><gui>Find</gui><gui>By Rating</gui><gui>Set Rating
+         Filter</gui></guiseq>.</p>
+    </item>
+  </steps>
+</page>

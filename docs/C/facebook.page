@@ -1,0 +1,42 @@
+<page xmlns="http://projectmallard.org/1.0/"
+      xmlns:e="http://projectmallard.org/experimental/"
+      type="topic"
+      id="facebook">
+
+  <info>
+    <link type="guide" xref="upload-to-web"/>
+    <desc>Upload photos to Facebook</desc>
+  </info>
+
+  <title>
+    Facebook
+  </title>
+
+  <p>To upload photos to Facebook you will need a Facebook account, as well as
+     internet access.  Also, the Facebook
+     <link xref="extensions">extension</link> must be installed and enabled.
+     </p>
+
+  <p>To post selected photos to Facebook:</p>
+  <steps>
+    <item>
+      <p>Select <guiseq><gui>Photo</gui><gui>Export To</gui><gui>Facebook</gui>
+      </guiseq>.</p>
+    </item>
+    <item>
+      <p>Click <gui>Login</gui>.  A browser window will be brought up.  Log in
+         to Facebook and click "Allow" to allow F-Spot access to your Facebook
+         profile.</p>
+    </item>
+    <item>
+      <p>Select whether to create a new album or add to an existing album.  If
+         you are creating a new album, fill in the relevant information.</p>
+    </item>
+    <item>
+      <p>Edit captions for each photo, if so desired.</p>
+    </item>
+    <item>
+      <p>When finished, click <gui>Add</gui>.</p>
+    </item>
+  </steps>
+</page>

@@ -1,0 +1,25 @@
+<page xmlns="http://projectmallard.org/1.0/"
+      type="topic"
+      id="tag-delete">
+  <info>
+    <link type="guide" xref="tags#tag-functions" group="delete"/>
+    <desc>Deleting tags from the system</desc>
+  </info>
+
+  <title>
+    Deleting
+  </title>
+  <p>Deleting tags removes them entirely from your system, but leaves behind
+     any photos to which that tag is attached.</p>
+  <p>To delete a tag:</p>
+  <steps>
+    <item>
+      <p>Select the tag you wish to delete from within the tag pane.</p>
+    </item>
+    <item>
+      <p>Click <guiseq><gui>Tags</gui><gui>Delete Select Tag</gui></guiseq>.
+      Alternatively, right click the tag within the pane, and click
+      <gui>Delete Tag</gui>.</p>
+    </item>
+  </steps>
+</page>

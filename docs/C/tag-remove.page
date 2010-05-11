@@ -1,0 +1,41 @@
+<page xmlns="http://projectmallard.org/1.0/"
+      type="topic"
+      id="tag-remove">
+  <info>
+    <link type="guide" xref="tags#tag-functions" group="remove"/>
+    <desc>Removing tags from photos</desc>
+  </info>
+
+  <title>
+    Removing
+  </title>
+  <p>As with attaching tags, there are two main methods of removing tags
+     from photos.</p>
+  <p>Method One:</p>
+  <steps>
+    <item>
+      <p>Select photos from which to remove a tag.</p>
+    </item>
+    <item>
+      <p>In the tag pane, select a tag to remove from the photos you have
+         selected.</p>
+    </item>
+    <item>
+      <p>Click <guiseq><gui>Tags</gui><gui>Remove Tag From Selection</gui>
+      </guiseq>.</p>
+    </item>
+  </steps>
+  <p>Method Two:</p>
+  <steps>
+    <item>
+      <p>Select photos from which to remove a tag.</p>
+    </item>
+    <item>
+      <p>Right click the photos.</p>
+    </item>
+    <item>
+      <p>Select <gui>Remove Tag</gui> and select the tag you wish to remove.
+      </p>
+    </item>
+  </steps>
+</page>

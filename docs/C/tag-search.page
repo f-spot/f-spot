@@ -1,0 +1,40 @@
+<page xmlns="http://projectmallard.org/1.0/"
+      xmlns:e="http://projectmallard.org/experimental/"
+      type="topic"
+      id="tag-search">
+
+  <info>
+    <link type="guide" xref="index#searching"/>
+    <desc>Search photos using tags</desc>
+  </info>
+
+  <title>
+    Search by Tag
+  </title>
+
+  <p>There are several methods to search by tags.</p>
+  <p>Method One:  Double-click the tags you wish to search for.</p>
+  <p>Method Two:</p>
+  <steps>
+    <item>
+      <p>Enable the Find bar by clicking <guiseq><gui>Find</gui>
+         <gui>Show Find bar</gui></guiseq>.</p>
+    </item>
+    <item>
+      <p>Drag the tags you wish to search for into the newly-enabled Find bar.
+      </p>
+    </item>
+  <p>To remove a tag from your search, right-click the tag in the Find bar and
+     click <gui>Remove From Search</gui>.</p>
+  </steps>
+  <p>To exclude a tag from your search:</p>
+  <steps>
+    <item>
+      <p>In the tag pane, double-click the tag you wish to exclude.  This will
+         add it to the Find bar.</p>
+    </item>
+    <item>
+      <p>In the Find bar, double-click the tag you wish to exclude.</p>
+    </item>
+  </steps>
+</page>

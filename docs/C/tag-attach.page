@@ -1,0 +1,42 @@
+<page xmlns="http://projectmallard.org/1.0/"
+      type="topic"
+      id="tag-attach">
+  <info>
+    <link type="guide" xref="tags#tag-functions" group="attach"/>
+    <desc>Attaching tags to photos</desc>
+  </info>
+
+  <title>
+    Attaching
+  </title>
+  <p>By attaching tags you have <link xref="tag-creation">created</link> you
+     make it easier to search through your photos.  As with creating tags,
+     there is more than one method of attaching tags to photos.</p>
+  <p>Method One:</p>
+  <steps>
+    <item>
+      <p>Select photos to which to attach a tag.</p>
+    </item>
+    <item>
+      <p>In the tag pane, select a tag to attach to the photos you have
+         selected.</p>
+    </item>
+    <item>
+      <p>Click <guiseq><gui>Tags</gui><gui>Attach Tag to Selection</gui>
+      </guiseq>.  Alternatively, press Ctrl+T.</p>
+    </item>
+  </steps>
+  <p>Method Two:</p>
+  <steps>
+    <item>
+      <p>Select photos to which to attach a tag.</p>
+    </item>
+    <item>
+      <p>Right click the photos.</p>
+    </item>
+    <item>
+      <p>Select <gui>Attach Tag</gui> and select the tag you wish to attach.
+      </p>
+    </item>
+  </steps>
+</page>

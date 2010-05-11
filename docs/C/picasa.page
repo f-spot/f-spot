@@ -1,0 +1,39 @@
+<page xmlns="http://projectmallard.org/1.0/"
+      xmlns:e="http://projectmallard.org/experimental/"
+      type="topic"
+      id="picasa">
+
+  <info>
+    <link type="guide" xref="upload-to-web"/>
+    <desc>Upload photos to Google's PicasaWeb</desc>
+  </info>
+
+  <title>
+    Picasa
+  </title>
+
+  <p>To upload photos to Picasa you will need a Picasa account, as well as
+     internet access.  Also, the PicasaWeb
+     <link xref="extensions">extension</link> must be installed and enabled.
+     </p>
+  <steps>
+    <item>
+      <p>Select the photos you wish to upload.</p>
+    </item>
+    <item>
+      <p>Click <guiseq><gui>Photo</gui><gui>Export To</gui>
+      <gui>PicasaWeb...</gui></guiseq>.</p>
+    </item>
+    <item>
+      <p>Add a gallery by clicking <gui>Add</gui> and supplying a username and
+         password.</p>
+    </item>j
+    <item>
+      <p>Select a gallery to export to, or click <gui>Add</gui> to create a new
+         gallery.</p>
+    </item>
+    <item>
+      <p>Click <gui>Export</gui>.</p>
+    </item>
+  </steps>
+</page>

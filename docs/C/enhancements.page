@@ -1,0 +1,42 @@
+<page xmlns="http://projectmallard.org/1.0/"
+      type="topic"
+      id="enhancements">
+  <info>
+    <link type="guide" xref="index#editing" group="enhancements"/>
+    <desc>Simple enhancements for your photos</desc>
+  </info>
+
+  <title>
+    Enhancements
+  </title>
+
+  <p>Currently, there are two main enhancements that <app>F-Spot</app>
+     supports: red-eye removal and the automatic enhancement of color.</p>
+  <p>To remove red-eye:</p>
+  <steps>
+    <item>
+      <p>By double-clicking, select the photo on which you wish to use the
+         red-eye removal tool.</p>
+    </item>
+    <item>
+      <p>Click <gui>Red-Eye Removal</gui> in the Edit panel.</p>
+    </item>
+    <item>
+      <p>Select the area from which you wish to remove red-eye.  Note:  If
+         the contains many red areas, you may wish to select each eye
+         individually.</p>
+    </item>
+    <item>
+      <p>Click <gui>Fix!</gui>.</p>
+    </item>
+  </steps>
+  <p>To automatically enhance the colors of the photo:</p>
+  <steps>
+    <item>
+      <p>By double-clicking, select the photo which you wish to enhance.</p>
+    </item>
+    <item>
+      <p>Click <gui>Auto Color</gui>.</p>
+    </item>
+  </steps>
+</page>

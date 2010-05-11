@@ -1,0 +1,60 @@
+<page xmlns="http://projectmallard.org/1.0/"
+      type="topic"
+      id="general-editing">
+  <info>
+    <link type="guide" xref="index#editing" group="general"/>
+    <desc>Make simple edits to your photos</desc>
+  </info>
+
+  <title>
+    General Editing
+  </title>
+
+  <p><app>F-Spot</app> allows you to make simple general edits, including
+     straightening, cropping, and rotating your photos.</p>
+  <p>There are three ways to rotate a selected photo:</p>
+  <steps>
+    <item>
+      <p>Click the appropriate rotate button, to the right of the import
+         button.</p>
+    </item>
+    <item>
+      <p>Select the appropriate option from within the <gui>Edit</gui> menu.
+      </p>
+    </item>
+    <item>
+      <p>Use the bracket keys to rotate the photo.</p>
+    </item>
+  </steps>
+  <p>To straighten a selected photo:</p>
+  <steps>
+    <item>
+      <p>From within the editing pane, select <app>Straighten</app>.</p>
+    </item>
+    <item>
+      <p>Select a rotation, ranging from -45 to 45 degrees.</p>
+    </item>
+    <item>
+      <p>Click <gui>Straighten</gui>.</p>
+    </item>
+  </steps>
+  <p>To crop a selected photo:</p>
+  <steps>
+    <item>
+      <p>Click the <gui>Crop</gui> button in the Edit pane.</p>
+    </item>
+    <item>
+      <p>Select a contraining aspect ratio, that is, a proportion of height
+         to width to which the new photo must fit.  Examples of contraining
+         aspect ratios include 4x3, 4x6, and 5x7.</p>
+    </item>
+    <item>
+      <p>Click and drag to select the desired area to keep.  This box can be
+         dragged around after being sized.</p>
+    </item>
+    <item>
+      <p>When you have selected your area to crop to, click <gui>Crop</gui>.
+      </p>
+    </item>
+  </steps>
+</page>

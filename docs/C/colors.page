@@ -1,0 +1,28 @@
+<page xmlns="http://projectmallard.org/1.0/"
+      type="guide"
+      id="colors">
+  <info>
+    <link type="guide" xref="index#editing" group="colors"/>
+    <desc>Edit the colors of your photos</desc>
+  </info>
+
+  <title>
+    Color Editing
+  </title>
+  <p><app>F-Spot</app> supports several modes of color manipulation.</p>
+  <terms>
+    <item>
+      <title>Desaturate</title>
+      <p>This mode eliminates all saturation, turning a color image into a
+         black and white image.</p>
+    </item>
+    <item>
+      <title>Sepia Tone</title>
+      <p>This mode simulates a photo being created with sepia toner.</p>
+    </item>
+    <item>
+      <title>Auto Color</title>
+      <p>This mode automatically adjusts the colors to a set profile.</p>
+    </item>
+  </terms>
+</page>

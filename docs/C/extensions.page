@@ -1,0 +1,85 @@
+<page xmlns="http://projectmallard.org/1.0/"
+      xmlns:e="http://projectmallard.org/experimental/"
+      type="topic"
+      id="extensions">
+
+  <info>
+    <link type="guide" xref="index#advanced"/>
+    <desc>Working with <app>F-Spot</app> extensions</desc>
+  </info>
+
+  <title>
+    Extensions
+  </title>
+
+  <p><app>F-Spot</app> allows for the use of extensions to provide additional
+     functionality.</p>
+
+  <p>To open the extension manager, select <guiseq><gui>Edit</gui>
+     <gui>Manage Extensions</gui></guiseq>.</p>
+
+  <p>To install extensions:</p>
+  <steps>
+    <item>
+      <p>Open the extension manager.</p>
+    </item>
+    <item>
+      <p>Click <gui>Install Add-ins</gui>.</p>
+    </item>
+    <item>
+      <p>Select an add-on to install from the list.</p>
+    </item>
+    <item>
+      <p>Click <gui>Forward</gui>.</p>
+    </item>
+    <item>
+      <p>Verify all information, and click <gui>Forward</gui> again.</p>
+    </item>
+    <item>
+      <p>Click <gui>Ok</gui>.</p>
+    </item>
+  </steps>
+
+  <p>To enable plugins that are already installed:</p>
+  <steps>
+    <item>
+      <p>Open the extension manager.</p>
+    </item>
+    <item>
+      <p>Select the extension you wish to enable.</p>
+    </item>
+    <item>
+      <p>Click <gui>Enable</gui>.</p>
+    </item>
+  </steps>
+  <p>To disable plugins that are installed:</p>
+  <steps>
+    <item>
+      <p>Open the extension manager.</p>
+    </item>
+    <item>
+      <p>Select the extension you wish to disable.</p>
+    </item>
+    <item>
+      <p>Click <gui>Disable</gui>.</p>
+    </item>
+  </steps>
+  <p>To uninstall plugins:</p>
+  <steps>
+    <item>
+      <p>Open the extension manager.</p>
+    </item>
+    <item>
+      <p>Select the extension you wish to uninstall.</p>
+    </item>
+    <item>
+      <p>Click <gui>Uninstall</gui>.</p>
+    </item>
+    <item>
+      <p>Click <gui>Forward</gui>.</p>
+    </item>
+    <item>
+      <p>Click <gui>Ok</gui>.</p>
+    </item>
+  </steps>
+</page>
