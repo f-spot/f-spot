@@ -409,6 +409,7 @@ extensions/Tools/HashJob/Makefile
 extensions/Tools/DevelopInUFraw/Makefile
 extensions/Tools/LiveWebGallery/Makefile
 extensions/Tools/MergeDb/Makefile
+extensions/Tools/RetroactiveRoll/Makefile
 extensions/Tools/ScreensaverConfig/Makefile
 extensions/Transitions/Makefile
 extensions/Transitions/CoverTransition/Makefile
