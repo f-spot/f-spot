@@ -34,8 +34,8 @@ m4_define([fspot_asm_version],
 	[fspot_api_version.0.0])
 
 AC_PREREQ(2.52)
-AC_INIT([fspot], fspot_version,
-	[http://bugzilla.gnome.org/enter_bug.cgi?product=fspot])
+AC_INIT([f-spot], fspot_version,
+	[http://bugzilla.gnome.org/enter_bug.cgi?product=f-spot])
 
 AM_INIT_AUTOMAKE([1.9 dist-bzip2 tar-ustar dist-zip foreign])
 AM_MAINTAINER_MODE
