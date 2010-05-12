@@ -75,7 +75,7 @@ namespace FSpot.Bling
 				throw new InvalidOperationException ("Can't Resume () a non running animation.");
 			starttime = DateTimeOffset.Now - pausedafter;
 			state = AnimationState.Running;
-			Sources.SetPriority (GLib.Timeout.Add (40, Handler), GLib.Priority.DefaultIdle);
+			Sources.SetPriority (GLib.Timeout.Add (40, Handler), priority);
 		}
 
 		public void Start ()
@@ -84,7 +84,7 @@ namespace FSpot.Bling
 				throw new InvalidOperationException ("Can't Start () a running or paused animation.");
 			starttime = DateTimeOffset.Now;
 			state = AnimationState.Running;
-			Sources.SetPriority (GLib.Timeout.Add (40, Handler), GLib.Priority.DefaultIdle);
+			Sources.SetPriority (GLib.Timeout.Add (40, Handler), priority);
 		}
 
 		public void Stop ()
