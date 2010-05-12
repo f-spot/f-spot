@@ -6,6 +6,7 @@ addin_sources =				\
 	$(addin).cs
 
 addin_resources =			\
+	ScreensaverConfigDialog.ui \
 	$(addin_manifest)
 
 addin_references =			\
