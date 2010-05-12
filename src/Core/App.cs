@@ -16,7 +16,7 @@ using System.Linq;
 
 using Unique;
 
-using Mono.Posix;
+using Mono.Unix;
 
 using FSpot.Utils;
 
