@@ -8,13 +8,14 @@
 # Francisco Javier F. Serrador <serrador@cvs.gnome.org>, 2004, 2005, 2006.
 # Antonio Ognio <gnrfan@gnrfan.orf>, 2004.
 # Jorge González <jorgegonz@svn.gnome.org>, 2004, 2005, 2006, 2007, 2008, 2009, 2010.
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: f-spot.HEAD\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=f-"
 "spot&component=General\n"
-"POT-Creation-Date: 2010-03-01 21:25+0000\n"
-"PO-Revision-Date: 2010-03-22 19:22+0100\n"
+"POT-Creation-Date: 2010-05-11 19:49+0000\n"
+"PO-Revision-Date: 2010-05-12 08:23+0200\n"
 "Last-Translator: Jorge González <jorgegonz@svn.gnome.org>\n"
 "Language-Team: Español <gnome-es-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -1409,6 +1410,203 @@ msgstr "Organice, diviértase y comparta sus fotografías"
 #: ../f-spot.desktop.in.in.h:4 ../f-spot-import.desktop.in.in.h:4
 msgid "Photo Manager"
 msgstr "Gestor de fotografías"
+
+#: ../f-spot.schemas.in.h:1
+msgid "Display of transparent parts."
+msgstr ""
+
+#: ../f-spot.schemas.in.h:2
+msgid "Enable this to allow interpolation on zoomed images."
+msgstr "Activar esto para permitir interpolación en imágenes ampliadas."
+
+#: ../f-spot.schemas.in.h:3
+msgid "Height of the import dialog."
+msgstr "Altura del diálogo de importación."
+
+#: ../f-spot.schemas.in.h:4
+msgid "Height of the main window."
+msgstr "Altura de la ventana principal."
+
+#: ../f-spot.schemas.in.h:5
+msgid "Height of the photo viewer window."
+msgstr "Altura de la ventana del visor de fotos."
+
+#: ../f-spot.schemas.in.h:6
+msgid ""
+"If the 'transparency' option is set, the color specified in this option will "
+"be used as the transparent color when viewing images."
+msgstr ""
+
+#: ../f-spot.schemas.in.h:7
+#| msgid "_Interpolate image on zoom"
+msgid "Interpolate image on zoom."
+msgstr "Interpolar imagen al ampliar."
+
+#: ../f-spot.schemas.in.h:8
+msgid "Maximize the main window."
+msgstr ""
+
+#: ../f-spot.schemas.in.h:9
+msgid "Maximize the photo viewer window."
+msgstr ""
+
+#: ../f-spot.schemas.in.h:10
+msgid "Path to custom gtkrc for theming F-Spot."
+msgstr ""
+
+#: ../f-spot.schemas.in.h:11
+msgid "Show dates in the thumbnail view."
+msgstr ""
+
+#: ../f-spot.schemas.in.h:12
+msgid "Show ratings in the thumbnail view."
+msgstr ""
+
+#: ../f-spot.schemas.in.h:13
+msgid "Show tags in the thumbnail view."
+msgstr ""
+
+#: ../f-spot.schemas.in.h:14
+msgid "Show the filename in the viewer window."
+msgstr ""
+
+#: ../f-spot.schemas.in.h:15
+msgid "Show the filmstrip in the main window."
+msgstr ""
+
+#: ../f-spot.schemas.in.h:16
+msgid "Show the sidebar in the main window."
+msgstr ""
+
+#: ../f-spot.schemas.in.h:17
+msgid "Show the timeline in the main window."
+msgstr ""
+
+#: ../f-spot.schemas.in.h:18
+msgid "Show the toolbar in the main window."
+msgstr ""
+
+#: ../f-spot.schemas.in.h:19
+msgid "Show the toolbar in the photo viewer window."
+msgstr ""
+
+#: ../f-spot.schemas.in.h:20
+msgid "Size of the tag icons shown in the sidebar."
+msgstr ""
+
+#: ../f-spot.schemas.in.h:21
+msgid "The X position to use for the main window."
+msgstr ""
+
+#: ../f-spot.schemas.in.h:22
+msgid "The X position to use for the photo viewer window."
+msgstr ""
+
+#: ../f-spot.schemas.in.h:23
+msgid "The Y position to use for the main window."
+msgstr ""
+
+#: ../f-spot.schemas.in.h:24
+msgid "The Y position to use for the photo viewer window."
+msgstr ""
+
+#: ../f-spot.schemas.in.h:25
+msgid "The color to use for transparent parts."
+msgstr ""
+
+#: ../f-spot.schemas.in.h:26
+msgid "The height dimension to use for the import dialog."
+msgstr ""
+
+#: ../f-spot.schemas.in.h:27
+msgid "The height dimension to use for the main window."
+msgstr ""
+
+#: ../f-spot.schemas.in.h:28
+msgid "The height dimension to use for the photo viewer window."
+msgstr ""
+
+#: ../f-spot.schemas.in.h:29
+msgid "The orientation of the filmstrip, if shown."
+msgstr ""
+
+#: ../f-spot.schemas.in.h:30
+msgid "The orientation of the filmstrip."
+msgstr ""
+
+#: ../f-spot.schemas.in.h:31
+msgid "The size (width) of the sidebar in the main window."
+msgstr "El tamaño (anchura) de la barra lateral en la ventana principal."
+
+#: ../f-spot.schemas.in.h:32
+msgid "The size of the sidebar in the main window."
+msgstr "El tamaño de la barra lateral en la ventana principal."
+
+#: ../f-spot.schemas.in.h:33
+msgid "The width dimension to use for the import dialog."
+msgstr "La dimensión de la anchura que usar para el diálogo de importación."
+
+#: ../f-spot.schemas.in.h:34
+msgid "The width dimension to use for the main window."
+msgstr "La dimensión de la anchura que usar para la ventana principal."
+
+#: ../f-spot.schemas.in.h:35
+msgid "The width dimension to use for the photo viewer window."
+msgstr ""
+"La dimensión de la anchura que usar para la ventana del visor de fotos."
+
+#: ../f-spot.schemas.in.h:36
+msgid "Use the current photo's filename as the viewer window's title."
+msgstr ""
+"Usar el nombre de la foto actual como el título de la ventana del visor."
+
+#: ../f-spot.schemas.in.h:37
+msgid "Width of the import dialog."
+msgstr "Anchura del diálogo de importación."
+
+#: ../f-spot.schemas.in.h:38
+msgid "Width of the main window."
+msgstr "Anchura de la ventana principal."
+
+#: ../f-spot.schemas.in.h:39
+msgid "Width of the photo viewer window."
+msgstr "Anchura de la ventana del visor de fotos."
+
+#: ../f-spot.schemas.in.h:40
+msgid "Width of the preview image pane in the import dialog."
+msgstr "Anchura del panel de vista previa en el diálogo de importación."
+
+#: ../f-spot.schemas.in.h:41
+msgid "X position of the main window."
+msgstr "Posición X de la ventana principal."
+
+#: ../f-spot.schemas.in.h:42
+msgid "X position of the photo viewer window."
+msgstr "Posición X de la ventana del visor de fotos."
+
+#: ../f-spot.schemas.in.h:43
+msgid "Y position of the main window."
+msgstr "Posición Y de la ventana principal."
+
+#: ../f-spot.schemas.in.h:44
+msgid "Y position of the photo viewer window."
+msgstr "Posición Y de la ventana del visor de fotos."
+
+#: ../f-spot.schemas.in.h:45
+#| msgid ""
+#| "<small><i>You can choose how to display transparent parts in images. This "
+#| "option has no effect on photos, but setting this as check pattern or "
+#| "custom color could be usefull when viewing icons or other artworks with "
+#| "transparent parts.</i></small>"
+msgid ""
+"You can choose how to display transparent parts in images. This option has "
+"no effect on photos but setting this value to CHECK_PATTERN or CUSTOM_COLOR "
+"could be useful when viewing icons or other artwork with transparent parts."
+msgstr ""
+"Puede elegir cómo mostrar partes transparentes en las imágenes. Esta opción "
+"no tiene efecto en las fotos, pero establecer esto como un patrón de cuadros "
+"o color personalizado puede ser útil al ver iconos u otros trabajos "
+"artísticos con partes transparentes."
 
 #: ../f-spot-import.desktop.in.in.h:3
 msgid "Import into F-Spot"
@@ -2855,7 +3053,7 @@ msgstr "Error al editar la foto"
 msgid "Received exception \"{0}\". Unable to save photo {1}"
 msgstr "Se recibió la excepción «{0}». No es posible guardar la imagen {1}"
 
-#: ../src/PhotoView.cs:356
+#: ../src/PhotoView.cs:357
 msgid "Comment:"
 msgstr "Comentario:"
 
