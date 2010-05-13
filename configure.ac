@@ -61,6 +61,24 @@ SHAMROCK_EXPAND_BINDIR
 SHAMROCK_EXPAND_DATADIR
 
 
+dnl Mono and gmcs
+SHAMROCK_CHECK_MONO_MODULE(2.2)
+SHAMROCK_FIND_MONO_2_0_COMPILER
+SHAMROCK_FIND_MONO_RUNTIME
+SHAMROCK_CHECK_MONO_2_0_GAC_ASSEMBLIES([
+    Mono.Data.SqliteClient
+    Mono.Posix
+    System.Runtime.Remoting
+    System.Web
+    System.Web.Services
+    Mono.Cairo
+])
+
+
+
+
+
+
 
 AC_CONFIG_SRCDIR(src/main.cs)
 
@@ -116,18 +134,6 @@ else
   AC_MSG_RESULT([found])
 fi
 
-dnl -- check for various mono DLLs that we need.
-
-needed_dlls="Mono.Data.SqliteClient Mono.Posix System.Runtime.Remoting System.Web System.Web.Services Mono.Cairo"
-for i in $needed_dlls; do
-  AC_MSG_CHECKING([for $i.dll])
-  if test ! \( -e `$PKG_CONFIG --variable=prefix mono`/lib/mono/2.0/$i.dll -o -e `$PKG_CONFIG --variable=prefix mono`/lib64/mono/2.0//$i.dll \); then
-    AC_MSG_ERROR([missing required mono 2.0 DLL: $i.dll])
-  else
-    AC_MSG_RESULT([found])
-  fi
-done
-
 dnl --- Required libraries
 
 LIBGNOME_REQUIRED=2.2
@@ -138,7 +144,6 @@ GIO_REQUIRED=2.16.0
 GIOSHARP_REQUIRED=2.13.92
 GTKSHARPBEANS_REQUIRED=2.13.92
 GTKSHARP_REQUIRED=2.12.2
-MONO_REQUIRED=2.2.0
 GTK_REQUIRED=2.14
 BEAGLE_REQUIRED=0.3.0
 NDESK_DBUS_REQUIRED=0.4.2
@@ -149,7 +154,7 @@ LCMS_REQUIRED=1.12
 LIBGPHOTO2_REQUIRED=2.4
 MONOADDINS_REQUIRED=0.3
 
-PKG_CHECK_MODULES(F, libgnome-2.0 >= $LIBGNOME_REQUIRED libgnomeui-2.0 >= $LIBGNOMEUI_REQUIRED libexif >= $LIBEXIF_REQUIRED_MIN libexif < $LIBEXIF_REQUIRED_MAX gtk-sharp-2.0 >= $GTKSHARP_REQUIRED glib-sharp-2.0 >= $GTKSHARP_REQUIRED glade-sharp-2.0 >= $GTKSHARP_REQUIRED gnome-vfs-sharp-2.0 >= $GTKSHARP_REQUIRED gtk+-2.0 >= $GTK_REQUIRED mono >= $MONO_REQUIRED mono-cairo >= $MONO_CAIRO_REQUIRED cairo >= $CAIRO_REQUIRED mono-addins >= $MONOADDINS_REQUIRED mono-addins-gui >= $MONOADDINS_REQUIRED mono-addins-setup >= $MONOADDINS_REQUIRED)
+PKG_CHECK_MODULES(F, libgnome-2.0 >= $LIBGNOME_REQUIRED libgnomeui-2.0 >= $LIBGNOMEUI_REQUIRED libexif >= $LIBEXIF_REQUIRED_MIN libexif < $LIBEXIF_REQUIRED_MAX gtk-sharp-2.0 >= $GTKSHARP_REQUIRED glib-sharp-2.0 >= $GTKSHARP_REQUIRED glade-sharp-2.0 >= $GTKSHARP_REQUIRED gnome-vfs-sharp-2.0 >= $GTKSHARP_REQUIRED gtk+-2.0 >= $GTK_REQUIRED mono-cairo >= $MONO_CAIRO_REQUIRED cairo >= $CAIRO_REQUIRED mono-addins >= $MONOADDINS_REQUIRED mono-addins-gui >= $MONOADDINS_REQUIRED mono-addins-setup >= $MONOADDINS_REQUIRED)
 AC_SUBST(F_CFLAGS)
 AC_SUBST(F_LIBS)
 
