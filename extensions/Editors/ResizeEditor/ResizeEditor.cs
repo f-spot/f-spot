@@ -16,7 +16,6 @@ using Mono.Unix;
 
 namespace FSpot.Addins.Editors {
 	class ResizeEditor : Editor {
-		double ratio;
 		SpinButton size;
 
 		public ResizeEditor () : base (Catalog.GetString ("Resize"), null) {
