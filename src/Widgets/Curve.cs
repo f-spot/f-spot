@@ -130,7 +130,6 @@ namespace FSpot.Widgets
 				break;
 			case CurveType.Free:
 				throw new NotImplementedException ();
-				break;
 			}
 
 			return vector;
@@ -362,7 +361,6 @@ namespace FSpot.Widgets
 				break;
 			case CurveType.Free:
 				throw new NotImplementedException ();
-				break;
 			}
 
 			return true;
@@ -418,7 +416,6 @@ namespace FSpot.Widgets
 				break;
 			case CurveType.Free:
 				throw new NotImplementedException ();
-				break;
 			}
 			return true;
 		}
