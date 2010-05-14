@@ -26,7 +26,6 @@ EXTRA_DIST =			\
 	intltool-extract.in	\
 	intltool-merge.in	\
 	intltool-update.in	\
-	f-spot.spec		\
 	Makefile.include	\
 	Makefile.addins		\
 	gnome-doc-utils.make	\

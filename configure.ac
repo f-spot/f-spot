@@ -408,5 +408,4 @@ extensions/Transitions/Makefile
 extensions/Transitions/CoverTransition/Makefile
 tests/Makefile
 tests/src/Makefile
-f-spot.spec
 )
