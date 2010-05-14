@@ -18,6 +18,7 @@ extensions/Exporters/FlickrExport/FlickrExport.glade
 extensions/Exporters/FolderExport/FolderExport.addin.xml
 extensions/Exporters/FolderExport/FolderExport.cs
 extensions/Exporters/FolderExport/FolderExport.glade
+extensions/Exporters/GalleryExport/FormClient.cs
 extensions/Exporters/GalleryExport/GalleryExport.addin.xml
 extensions/Exporters/GalleryExport/GalleryExport.cs
 extensions/Exporters/GalleryExport/GalleryExport.glade
@@ -65,8 +66,6 @@ src/Editors/TiltEditor.cs
 src/FileImportBackend.cs
 src/Filters/ResizeFilter.cs
 src/Filters/SharpFilter.cs
-src/FormClient.cs
-src/FormClient.cs
 src/FSpot.addin.xml
 src/f-spot.glade
 src/FullScreenView.cs

@@ -7,6 +7,7 @@ PLUGIN_MANIFEST = $(PLUGIN_NAME).addin.xml
 PLUGIN_ASSEMBLY = $(PLUGIN_NAME).dll
 
 PLUGIN_SOURCES =			\
+	$(srcdir)/FormClient.cs	\
 	$(srcdir)/GalleryExport.cs	\
 	$(srcdir)/GalleryRemote.cs
 

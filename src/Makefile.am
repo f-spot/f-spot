@@ -177,7 +177,6 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/Filters/UniqueNameFilter.cs	\
 	$(srcdir)/Filters/WhiteListFilter.cs	\
 	$(srcdir)/FolderQueryWidget.cs			\
-	$(srcdir)/FormClient.cs			\
 	$(srcdir)/FullScreenView.cs		\
 	$(srcdir)/GroupAdaptor.cs		\
 	$(srcdir)/GroupSelector.cs		\
