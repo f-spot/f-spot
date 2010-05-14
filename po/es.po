@@ -14,8 +14,8 @@ msgstr ""
 "Project-Id-Version: f-spot.HEAD\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=f-"
 "spot&component=General\n"
-"POT-Creation-Date: 2010-05-11 19:49+0000\n"
-"PO-Revision-Date: 2010-05-13 22:27+0200\n"
+"POT-Creation-Date: 2010-05-13 20:28+0000\n"
+"PO-Revision-Date: 2010-05-14 17:49+0200\n"
 "Last-Translator: Jorge González <jorgegonz@svn.gnome.org>\n"
 "Language-Team: Español <gnome-es-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -1440,7 +1440,6 @@ msgstr ""
 "opción se usará como el color transparente al ver imágenes."
 
 #: ../f-spot.schemas.in.h:7
-#| msgid "_Interpolate image on zoom"
 msgid "Interpolate image on zoom."
 msgstr "Interpolar imagen al ampliar."
 
@@ -1474,7 +1473,7 @@ msgstr "Mostrar el nombre de archivo en la vista de miniaturas."
 
 #: ../f-spot.schemas.in.h:15
 msgid "Show the filmstrip in the main window."
-msgstr ""
+msgstr "Mostrar la tira de imágenes en la ventana principal."
 
 #: ../f-spot.schemas.in.h:16
 msgid "Show the sidebar in the main window."
@@ -1486,39 +1485,39 @@ msgstr "Mostrar la línea de tiempo en la ventana principal."
 
 #: ../f-spot.schemas.in.h:18
 msgid "Show the toolbar in the main window."
-msgstr ""
+msgstr "Mostrar la barra de herramientas en la ventana principal."
 
 #: ../f-spot.schemas.in.h:19
 msgid "Show the toolbar in the photo viewer window."
-msgstr ""
+msgstr "Mostrar la barra de herramientas en la ventana del visor de fotos."
 
 #: ../f-spot.schemas.in.h:20
 msgid "Size of the tag icons shown in the sidebar."
-msgstr ""
+msgstr "Tamaño de los iconos de etiquetas mostrados en la barra lateral."
 
 #: ../f-spot.schemas.in.h:21
 msgid "The X position to use for the main window."
-msgstr ""
+msgstr "La posición X que usar para la ventana principal."
 
 #: ../f-spot.schemas.in.h:22
 msgid "The X position to use for the photo viewer window."
-msgstr ""
+msgstr "La posición X que usar para la ventana del visor de fotos."
 
 #: ../f-spot.schemas.in.h:23
 msgid "The Y position to use for the main window."
-msgstr ""
+msgstr "La posición Y que usar para la ventana principal."
 
 #: ../f-spot.schemas.in.h:24
 msgid "The Y position to use for the photo viewer window."
-msgstr ""
+msgstr "La posición Y que usar para la ventana del visor de fotos."
 
 #: ../f-spot.schemas.in.h:25
 msgid "The color to use for transparent parts."
-msgstr ""
+msgstr "El color que usar para las partes transparentes."
 
 #: ../f-spot.schemas.in.h:26
 msgid "The height dimension to use for the import dialog."
-msgstr ""
+msgstr "La dimensión de la altura que usar para el diálogo de importación."
 
 #: ../f-spot.schemas.in.h:27
 msgid "The height dimension to use for the main window."
@@ -1595,11 +1594,6 @@ msgid "Y position of the photo viewer window."
 msgstr "Posición Y de la ventana del visor de fotos."
 
 #: ../f-spot.schemas.in.h:45
-#| msgid ""
-#| "<small><i>You can choose how to display transparent parts in images. This "
-#| "option has no effect on photos, but setting this as check pattern or "
-#| "custom color could be usefull when viewing icons or other artworks with "
-#| "transparent parts.</i></small>"
 msgid ""
 "You can choose how to display transparent parts in images. This option has "
 "no effect on photos but setting this value to CHECK_PATTERN or CUSTOM_COLOR "
