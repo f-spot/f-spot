@@ -148,7 +148,7 @@ namespace SemWeb.Stores {
 			try {
 				int id = int.Parse(persistentId);
 				return (BNode)MakeEntity(id, null, null);
-			} catch (Exception e) {
+			} catch (Exception) {
 				return null;
 			}
 		}
@@ -182,9 +182,9 @@ namespace SemWeb.Stores {
 		
 		public override void Clear() {
 			// Drop the tables, if they exist.
-			try { RunCommand("DROP TABLE " + table + "_statements;"); } catch (Exception e) { }
-			try { RunCommand("DROP TABLE " + table + "_literals;"); } catch (Exception e) { }
-			try { RunCommand("DROP TABLE " + table + "_entities;"); } catch (Exception e) { }
+			try { RunCommand("DROP TABLE " + table + "_statements;"); } catch (Exception) { }
+			try { RunCommand("DROP TABLE " + table + "_literals;"); } catch (Exception) { }
+			try { RunCommand("DROP TABLE " + table + "_entities;"); } catch (Exception) { }
 			firstUse = true;
 		
 			Init();
@@ -1219,7 +1219,7 @@ namespace SemWeb.Stores {
 			if (ret is int) return (int)ret;
 			try {
 				return int.Parse(ret.ToString());
-			} catch (FormatException e) {
+			} catch (FormatException) {
 				return def;
 			}
 		}

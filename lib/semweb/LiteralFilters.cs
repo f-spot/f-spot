@@ -125,7 +125,7 @@ namespace SemWeb.Filters {
 				Decimal i = Decimal.Parse(v);
 				int c = i.CompareTo(Number);
 				return CompareFilter(c, Type);
-			} catch (Exception e) {
+			} catch (Exception) {
 				return false;
 			}
 		}
@@ -146,7 +146,7 @@ namespace SemWeb.Filters {
 				DateTime i = DateTime.Parse(v);
 				int c = i.CompareTo(Value);
 				return CompareFilter(c, Type);
-			} catch (Exception e) {
+			} catch (Exception) {
 				return false;
 			}
 		}
@@ -167,7 +167,7 @@ namespace SemWeb.Filters {
 				TimeSpan i = TimeSpan.Parse(v);
 				int c = i.CompareTo(Value);
 				return CompareFilter(c, Type);
-			} catch (Exception e) {
+			} catch (Exception) {
 				return false;
 			}
 		}

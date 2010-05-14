@@ -127,7 +127,7 @@ namespace SemWeb {
 				UriBuilder b = new UriBuilder(baseuri);
 				b.Fragment = null; // per W3 RDF/XML test suite
 				return new Uri(b.Uri, uri, true).ToString();
-			} catch (UriFormatException e) {
+			} catch (UriFormatException) {
 				return baseuri + uri;
 			}			
 		}

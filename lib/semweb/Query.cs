@@ -277,7 +277,7 @@ namespace SemWeb.Query {
 			if (r == null || !(r is Literal)) return -1;
 			try {
 				return int.Parse(((Literal)r).Value);
-			} catch (Exception e) {
+			} catch (Exception) {
 				return -1;
 			}
 		}		
