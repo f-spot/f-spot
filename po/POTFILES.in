@@ -1,6 +1,10 @@
 # List of source files containing translatable strings.
 # Please keep this file in alphabetical order.
 [encoding: UTF-8]
+data/desktop-files/f-spot.desktop.in.in
+data/desktop-files/f-spot.desktop.in.in
+data/desktop-files/f-spot-import.desktop.in.in
+data/desktop-files/f-spot-view.desktop.in.in
 extensions/Exporters/CDExport/CDExport.addin.xml
 extensions/Exporters/CDExport/CDExport.cs
 [type: gettext/glade]extensions/Exporters/CDExport/CDExport.ui
@@ -44,10 +48,7 @@ extensions/Tools/MergeDb/MergeDb.glade
 extensions/Tools/MergeDb/PickFolderDialog.cs
 extensions/Tools/ScreensaverConfig/ScreensaverConfig.addin.xml
 [type: gettext/glade]extensions/Tools/ScreensaverConfig/ScreensaverConfigDialog.ui
-f-spot.desktop.in.in
 f-spot.schemas.in
-f-spot-import.desktop.in.in
-f-spot-view.desktop.in.in
 lib/libfspot/f-jpeg-utils.c
 src/CameraFileSelectionDialog.cs
 src/CameraSelectionDialog.cs
