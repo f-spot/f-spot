@@ -1,3 +1,31 @@
+f-spot 0.6.2 - May X 2010 - Bulldozer Time
+------------------------------------------
+- Stable release before starting large cleanup refactorings, mostly usability,
+  bug fixes and translations as well as some modernization. A large part of this
+  comes from the Ubuntu one hundred papercuts effort.
+ - Replaced the old slow slideshow code with new fast SlideShow (bgo #608849) (Gabriel Burt)
+ - Wording changes for clarity (Edit Tag) (Jeffrey Finkelstein)
+ - Fix version selection tooltip (Lorenzo Milesi)
+ - Add gconf schema (Jeffrey Stedfast)
+ - Added a border to filmstrip thumbnails (bgo #540772) (Matt Perry)
+ - Fix display names of color profiles (Pascal de Bruijn)
+ - Fix histogram colors on theme change (bgo #601565) (Paul Wellner Bou)
+ - Always update ImageView adjustments when scaling. (Wojciech Dzierżanowski)
+ - Correctly set attributes on copying (Yann Leprince)
+ - Correct mnemonics in create tag dialog (Yves Kurz)
+ - Provide sane defaults for image resize size (bgo #608440) (Yves Kurz)
+ - Updates to the build system, including fixes for distcheck (Ruben Vermeersch)
+ - Fix wording for duplicate hashing (bgo #607916) (Matt Perry)
+ - Fix wording for imported tags tag (bgo #603053) (Ian Churcher)
+ - Fix label alignment in preferences dialog (bgo #607318) (Pascal de Bruijn)
+ - Add unique# and use it to handle our activation (Stephane Delcroix)
+ - Stop bundling Mono.Addins (Stephane Delcroix)
+ - Avoid leakage in straighten and softfocus editor (Stephane Delcroix)
+ - Allow to copy files to clipboard (Stephane Delcroix)
+ - Large number of color management related fixes (Stephane Delcroix)
+ - A pile of other cleanups and fixes (Ruben Vermeersch)
+ - Tons of translation updates (seriously)
+
 f-spot 0.6.1.5 - Nov 4 2009 - What Next ?
 -----------------------------------------
 - bugfix release for 0.6.x branch
