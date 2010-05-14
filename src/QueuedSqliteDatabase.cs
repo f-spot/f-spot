@@ -343,6 +343,7 @@ namespace Banshee.Database
         private int insert_id;
         private Exception execution_exception;
         private bool finished = false;
+        private Object finishedLock = new Object();
 
         private SqliteCommand command;
 
@@ -397,12 +398,19 @@ namespace Banshee.Database
             }
             command.Dispose();
             
+            Monitor.Enter(finishedLock);
             finished = true;
+            Monitor.Pulse(finishedLock);
+            Monitor.Exit(finishedLock);
         }
         
         public object WaitForResult()
         {
-            while(!finished);
+            Monitor.Enter(finishedLock);
+            while (!finished) {
+                Monitor.Wait(finishedLock);
+            };
+            Monitor.Exit(finishedLock);
             
             if(execution_exception != null) {
                 throw execution_exception;
