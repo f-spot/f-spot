@@ -143,7 +143,6 @@ GIOSHARP_REQUIRED=2.13.92
 GTKSHARPBEANS_REQUIRED=2.13.92
 GTKSHARP_REQUIRED=2.12.2
 GTK_REQUIRED=2.14
-BEAGLE_REQUIRED=0.3.0
 NDESK_DBUS_REQUIRED=0.4.2
 NDESK_DBUS_GLIB_REQUIRED=0.3.0
 MONO_CAIRO_REQUIRED=1.2.4
@@ -195,20 +194,6 @@ fi
 if pkg-config --at-least-version=2.16 gtk+-2.0; then
 	CSC_DEFINES="$CSC_DEFINES -d:GTK_2_16"
 fi
-
-PKG_CHECK_MODULES(BEAGLE, beagle-0.0 >= $BEAGLE_REQUIRED,
-[
-	dnl this is a work around to avoid linking against beagles Util.dll
-	BEAGLE_DIR=`$PKG_CONFIG --variable=dlldir beagle-0.0`	
-	LINK_BEAGLE="-r:$BEAGLE_DIR/Beagle"
-	CSC_DEFINES="$CSC_DEFINES -d:ENABLE_BEAGLE"
-],
-[
-	AC_MSG_RESULT([beagle not found])
-])
-AC_SUBST(BEAGLE_DIR)
-AC_SUBST(LINK_BEAGLE)
-
 
 dnl -- dbus-sharp
 PKG_CHECK_MODULES(NDESK_DBUS, ndesk-dbus-1.0 >= $NDESK_DBUS_REQUIRED ndesk-dbus-glib-1.0 >= $NDESK_DBUS_GLIB_REQUIRED)
@@ -403,7 +388,6 @@ extensions/Exporters/PicasaWebExport/Makefile
 extensions/Exporters/PicasaWebExport/google-sharp/Makefile
 extensions/Exporters/ZipExport/Makefile
 extensions/Services/Makefile
-extensions/Services/BeagleService/Makefile
 extensions/Services/DBusService/Makefile
 extensions/Tools/Makefile
 extensions/Tools/RawPlusJpeg/Makefile

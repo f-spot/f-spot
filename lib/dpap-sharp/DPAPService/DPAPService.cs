@@ -42,14 +42,6 @@ namespace DPAP {
 			uint timer = Log.InformationTimerStart ("Starting DPAP");
 			StartServer ();
 			
-
-		/*	try {
-				Core.Database.Photos.ItemsChanged += HandleDbItemsChanged;
-			} catch {
-				Log.Warning ("unable to hook the BeagleNotifier. are you running --view mode?");
-			}*/
-		//	Log.DebugTimerPrint (timer, "BeagleService startup took {0}");
-			
 			return true;
 		}
 		private void StartServer ()
@@ -133,7 +125,6 @@ namespace DPAP {
                 //locator.Removed -= OnServiceRemoved;
                 sd = null;
             }
-			//Log.DebugTimerPrint (timer, "BeagleService shutdown took {0}");	
 			return true;
 		}
 
@@ -169,20 +160,5 @@ namespace DPAP {
 			//client.Logout ();
 		//	Console.WriteLine ("Press <enter> to exit...");
 		}		
-		
-		/*private void HandleDbItemsChanged (object sender, DbItemEventArgs args)
-		{
-#if ENABLE_BEAGLE
-			Log.Debug ("Notifying beagle");
-			foreach (DbItem item in args.Items) {
-				if (item as Photo != null)
-					try {
-						BeagleNotifier.SendUpdate (item as Photo);
-					} catch (Exception e) {
-						Log.Debug ("BeagleNotifier.SendUpdate failed with {0}", e.Message);
-					}
-			}
-#endif
-		}*/
 	}
 }

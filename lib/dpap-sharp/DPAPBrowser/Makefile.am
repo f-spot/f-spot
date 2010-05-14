@@ -8,7 +8,6 @@ PLUGIN_ASSEMBLY = $(PLUGIN_NAME).dll
 
 PLUGIN_SOURCES =			\
 	$(srcdir)/DPAPBrowser.cs	
-#	$(srcdir)/BeagleNotifier.cs
 
 
 REFS =					\
@@ -17,7 +16,6 @@ REFS =					\
 	-r:../../src/FSpot.Widgets.dll \
 	-r:../../src/FSpot.Utils.dll	\
 	-r:../lib/dpap-sharp.dll	
-#	$(LINK_BEAGLE)
 
 PKGS =					\
 	-pkg:gtk-sharp-2.0

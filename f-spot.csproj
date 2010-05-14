@@ -392,8 +392,6 @@
     <Compile Include="extensions\Exporters\TabbloExport\Tabblo\Uploader.cs" />
     <Compile Include="extensions\Exporters\ZipExport\ZipExport.cs" />
     <Compile Include="extensions\Misc\LightTable\LightTable.cs" />
-    <Compile Include="extensions\Services\BeagleService\BeagleNotifier.cs" />
-    <Compile Include="extensions\Services\BeagleService\BeagleService.cs" />
     <Compile Include="extensions\Services\DBusService\DBusProxy.cs" />
     <Compile Include="extensions\Services\DBusService\DBusService.cs" />
     <Compile Include="extensions\Tools\ChangePhotoPath\ChangePhotoPathController.cs" />
@@ -921,8 +919,6 @@
     <None Include="extensions\Exporters\ZipExport\ZipExport.glade" />
     <None Include="extensions\Misc\LightTable\LightTable.addin.xml" />
     <None Include="extensions\Misc\LightTable\Photo.xaml" />
-    <None Include="extensions\Services\BeagleService\BeagleService.addin.xml" />
-    <None Include="extensions\Services\BeagleService\BeagleService.dll.mdb" />
     <None Include="extensions\Services\DBusService\DBusService.addin.xml" />
     <None Include="extensions\Services\DBusService\DBusService.dll.mdb" />
     <None Include="extensions\Tools\ChangePhotoPath\ChangeLog" />
