@@ -1,10 +1,10 @@
-# Andrej Žnidaršič <andrej.znidarsic@gmail.com>, 2009 - 2010.
+# Andrej Žnidaršič <andrej.znidarsic@gmail.com>, 2009"
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: f-spot\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=f-spot&component=General\n"
-"POT-Creation-Date: 2010-03-02 18:01+0000\n"
+"POT-Creation-Date: 2010-05-14 15:55+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Andrej Žnidaršič <andrej.znidarsic@gmail.com>\n"
 "Language-Team: Slovenian GNOME Translation Team <gnome-si@googlegroups.com>\n"
@@ -1335,6 +1335,186 @@ msgstr "Urejajte, uživajte in delite vaše fotografije."
 msgid "Photo Manager"
 msgstr "Upravljalnik fotografij"
 
+#: ../f-spot.schemas.in.h:1
+msgid "Display of transparent parts."
+msgstr "Prikaži prozorne dele."
+
+#: ../f-spot.schemas.in.h:2
+msgid "Enable this to allow interpolation on zoomed images."
+msgstr "Omogočite to za interpolacijo povečanih slik."
+
+#: ../f-spot.schemas.in.h:3
+msgid "Height of the import dialog."
+msgstr "Višina pogovornega okna uvoza."
+
+#: ../f-spot.schemas.in.h:4
+msgid "Height of the main window."
+msgstr "Višina glavnega okna."
+
+#: ../f-spot.schemas.in.h:5
+msgid "Height of the photo viewer window."
+msgstr "Višina okna pregledovalnika fotografij."
+
+#: ../f-spot.schemas.in.h:6
+msgid "If the 'transparency' option is set, the color specified in this option will be used as the transparent color when viewing images."
+msgstr "V primeru da je možnost 'prozornost' nastavljena, bo barva navedena v tej možnosti pri ogledu slik uporabljena kot prozorna barva."
+
+#: ../f-spot.schemas.in.h:7
+msgid "Interpolate image on zoom."
+msgstr "Interpolacija slike pri povečavi."
+
+#: ../f-spot.schemas.in.h:8
+msgid "Maximize the main window."
+msgstr "Razpne glavno okno."
+
+#: ../f-spot.schemas.in.h:9
+msgid "Maximize the photo viewer window."
+msgstr "Razpne okno pregledovalnika fotografij."
+
+#: ../f-spot.schemas.in.h:10
+msgid "Path to custom gtkrc for theming F-Spot."
+msgstr "Pot do gtkrc po meri za temo F-Spot."
+
+#: ../f-spot.schemas.in.h:11
+msgid "Show dates in the thumbnail view."
+msgstr "Pokaži datume v pogledu sličic."
+
+#: ../f-spot.schemas.in.h:12
+msgid "Show ratings in the thumbnail view."
+msgstr "Pokaži ocene v pogledu sličic."
+
+#: ../f-spot.schemas.in.h:13
+msgid "Show tags in the thumbnail view."
+msgstr "Pokaži oznake v pogledu sličic."
+
+#: ../f-spot.schemas.in.h:14
+msgid "Show the filename in the viewer window."
+msgstr "Pokaži ime datoteke v oknu pregledovalnika."
+
+#: ../f-spot.schemas.in.h:15
+msgid "Show the filmstrip in the main window."
+msgstr "Pokaži filmski trak v glavnem oknu."
+
+#: ../f-spot.schemas.in.h:16
+msgid "Show the sidebar in the main window."
+msgstr "Pokaži drsnik v glavnem oknu."
+
+#: ../f-spot.schemas.in.h:17
+msgid "Show the timeline in the main window."
+msgstr "Pokaži časovnico v glavnem oknu."
+
+#: ../f-spot.schemas.in.h:18
+msgid "Show the toolbar in the main window."
+msgstr "Pokaži orodno vrstico v glavnem oknu."
+
+#: ../f-spot.schemas.in.h:19
+msgid "Show the toolbar in the photo viewer window."
+msgstr "Pokaži ali skrij orodno vrstico v oknu pregledovalnika fotografij."
+
+#: ../f-spot.schemas.in.h:20
+msgid "Size of the tag icons shown in the sidebar."
+msgstr "Velikost ikon oznak pokazanih v stranski vrstici."
+
+#: ../f-spot.schemas.in.h:21
+msgid "The X position to use for the main window."
+msgstr "X položaj glavnega okna."
+
+#: ../f-spot.schemas.in.h:22
+msgid "The X position to use for the photo viewer window."
+msgstr "X položaj okna pregledovalnika fotografij."
+
+#: ../f-spot.schemas.in.h:23
+msgid "The Y position to use for the main window."
+msgstr "Y položaj glavnega okna."
+
+#: ../f-spot.schemas.in.h:24
+msgid "The Y position to use for the photo viewer window."
+msgstr "Y položaj okna pregledovalnika fotografij."
+
+#: ../f-spot.schemas.in.h:25
+msgid "The color to use for transparent parts."
+msgstr "Barva za prozorne dele."
+
+#: ../f-spot.schemas.in.h:26
+msgid "The height dimension to use for the import dialog."
+msgstr "Višina pogovornega okna."
+
+#: ../f-spot.schemas.in.h:27
+msgid "The height dimension to use for the main window."
+msgstr "Višina glavnega okna."
+
+#: ../f-spot.schemas.in.h:28
+msgid "The height dimension to use for the photo viewer window."
+msgstr "Višina okna pregledovalnika fotografij."
+
+#: ../f-spot.schemas.in.h:29
+msgid "The orientation of the filmstrip, if shown."
+msgstr "Usmeritev filmskega traku, če je prikazan."
+
+#: ../f-spot.schemas.in.h:30
+msgid "The orientation of the filmstrip."
+msgstr "Usmeritev filmskega traku."
+
+#: ../f-spot.schemas.in.h:31
+msgid "The size (width) of the sidebar in the main window."
+msgstr "Velikost (širina) drsnika v glavnemu oknu."
+
+#: ../f-spot.schemas.in.h:32
+msgid "The size of the sidebar in the main window."
+msgstr "Velikost drsnika v glavnemu oknu."
+
+#: ../f-spot.schemas.in.h:33
+msgid "The width dimension to use for the import dialog."
+msgstr "Širina pogovornega okna uvoza."
+
+#: ../f-spot.schemas.in.h:34
+msgid "The width dimension to use for the main window."
+msgstr "Širina glavnega okna."
+
+#: ../f-spot.schemas.in.h:35
+msgid "The width dimension to use for the photo viewer window."
+msgstr "Širina okna pregledovalnika fotografij."
+
+#: ../f-spot.schemas.in.h:36
+msgid "Use the current photo's filename as the viewer window's title."
+msgstr "Uporabi ime datoteke trenutne slike kot naslov okna pregledovalnika."
+
+#: ../f-spot.schemas.in.h:37
+msgid "Width of the import dialog."
+msgstr "Širina pogovornega okna uvoza."
+
+#: ../f-spot.schemas.in.h:38
+msgid "Width of the main window."
+msgstr "Širina glavnega okna."
+
+#: ../f-spot.schemas.in.h:39
+msgid "Width of the photo viewer window."
+msgstr "Širina okna pregledovalnika fotografij."
+
+#: ../f-spot.schemas.in.h:40
+msgid "Width of the preview image pane in the import dialog."
+msgstr "Širina pladnja predogleda slike v pogovornemu oknu."
+
+#: ../f-spot.schemas.in.h:41
+msgid "X position of the main window."
+msgstr "X položaj glavnega okna"
+
+#: ../f-spot.schemas.in.h:42
+msgid "X position of the photo viewer window."
+msgstr "X položaj okna pregledovalnika fotografij."
+
+#: ../f-spot.schemas.in.h:43
+msgid "Y position of the main window."
+msgstr "Y položaj glavnega okna"
+
+#: ../f-spot.schemas.in.h:44
+msgid "Y position of the photo viewer window."
+msgstr "Y položaj okna pregledovalnika fotografij."
+
+#: ../f-spot.schemas.in.h:45
+msgid "You can choose how to display transparent parts in images. This option has no effect on photos but setting this value to CHECK_PATTERN or CUSTOM_COLOR could be useful when viewing icons or other artwork with transparent parts."
+msgstr "Mogoče je izbrati način prikaza prozornih delov slik. Ta možnost ne vpliva na fotografije, vendar je lahko nastavitev te vrednosti na črtast vzroec ali barva po izbira koristna pri ogledu ikon in ostalih delov grafične podobe s prozornimi deli."
+
 #: ../f-spot-import.desktop.in.in.h:3
 msgid "Import into F-Spot"
 msgstr "Uvoz v F-Spot"
@@ -1810,7 +1990,7 @@ msgstr "Uvozni vir:"
 
 #: ../src/f-spot.glade.h:54
 msgid "Include subfolders"
-msgstr "Vključitev podmap"
+msgstr "_Upoštevaj podmape"
 
 #: ../src/f-spot.glade.h:55
 msgid "Large"
@@ -2796,7 +2976,7 @@ msgstr "Napaka med urejanjem fotografije"
 msgid "Received exception \"{0}\". Unable to save photo {1}"
 msgstr "Prejeta je bila izjema \"{0}\". Ni mogoče shraniti fotografije {1}"
 
-#: ../src/PhotoView.cs:356
+#: ../src/PhotoView.cs:357
 msgid "Comment:"
 msgstr "Opomba:"
 
