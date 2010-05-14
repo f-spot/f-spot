@@ -333,6 +333,7 @@ build/Makefile
 build/m4/Makefile
 build/m4/shave/shave
 build/m4/shave/shave-libtool
+build/pkg-config/Makefile
 
 lib/dpap-sharp/Makefile
 lib/dpap-sharp/lib/Makefile
@@ -401,7 +402,6 @@ extensions/Transitions/Makefile
 extensions/Transitions/CoverTransition/Makefile
 tests/Makefile
 tests/src/Makefile
-f-spot.pc
 f-spot.spec
 f-spot.desktop.in
 f-spot-view.desktop.in

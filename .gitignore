@@ -17,7 +17,6 @@ Makefile.in
 /f-spot-view.desktop.in
 /f-spot.desktop
 /f-spot.desktop.in
-/f-spot.pc
 /f-spot.schemas
 /f-spot.spec
 /f-spot.pidb
@@ -39,4 +38,5 @@ Makefile.in
 /stamp-h1
 build/m4/shave/shave
 build/m4/shave/shave-libtool
+build/pkg-config/f-spot.pc
 docs/*/*.mo
