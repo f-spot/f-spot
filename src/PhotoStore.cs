@@ -236,7 +236,7 @@ public class PhotoStore : DbStore<Photo> {
 	}		
 	
 	private void GetAllVersions  (string ids) {
-		SqliteDataReader reader = Database.Query ("SELECT photo_id, version_id, name, base_uri, filename, md5_sum, protected FROM photo_versions WHERE photo_id in " + ids);
+		SqliteDataReader reader = Database.Query ("SELECT photo_id, version_id, name, base_uri, filename, md5_sum, protected FROM photo_versions WHERE photo_id IN " + ids);
 		
 		while (reader.Read ()) {
 			uint id = Convert.ToUInt32 (reader ["photo_id"]);
@@ -273,7 +273,7 @@ public class PhotoStore : DbStore<Photo> {
 	}
 
 	private void GetAllTags (string ids) {
-		SqliteDataReader reader = Database.Query ("SELECT photo_id, tag_id FROM photo_tags WHERE photo_id in " + ids);
+		SqliteDataReader reader = Database.Query ("SELECT photo_id, tag_id FROM photo_tags WHERE photo_id IN " + ids);
 
 		while (reader.Read ()) {
 			uint id = Convert.ToUInt32 (reader ["photo_id"]);
