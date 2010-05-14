@@ -67,7 +67,7 @@ check_autotool_version gnome-doc-prepare 0.17.0
 
 run intltoolize --force --copy
 run $LIBTOOLIZE --force --copy --automake
-run aclocal -I build/m4/shamrock -I build/m4/shave $ACLOCAL_FLAGS
+run aclocal -I build/m4/f-spot -I build/m4/shamrock -I build/m4/shave $ACLOCAL_FLAGS
 run autoconf
 run autoheader
 run gnome-doc-prepare

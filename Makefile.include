@@ -8,7 +8,6 @@ DIR_EXTENSIONS = $(top_builddir)/extensions
 DIR_GPHOTO2 = $(top_builddir)/lib/libgphoto2-sharp
 DIR_ICONS = $(top_builddir)/icons
 DIR_JPEGTRAN = $(top_builddir)/lib/libjpegtran
-DIR_KEYRING = $(top_builddir)/lib/gnome-keyring-sharp
 DIR_LIBFSPOT = $(top_builddir)/lib/libfspot
 DIR_SEMWEB = $(top_builddir)/lib/semweb
 DIR_SRC = $(top_builddir)/src
@@ -18,7 +17,7 @@ DIR_UNIQUESHARP = $(top_builddir)/lib/unique-sharp/unique
 
 ## Links
 
-LINK_KEYRING = -r:$(DIR_KEYRING)/gnome-keyring-sharp.dll
+LINK_KEYRING = $(KEYRINGSHARP_LIBS)
 LINK_GPHOTO2 = -r:$(DIR_GPHOTO2)/libgphoto2-sharp.dll
 LINK_SEMWEB = -r:$(DIR_SEMWEB)/SemWeb.dll
 LINK_GIOSHARP = -r:$(DIR_GIOSHARP)/gio-sharp.dll

@@ -38,7 +38,7 @@ AC_INIT([f-spot], fspot_version,
 AM_INIT_AUTOMAKE([1.9 dist-bzip2 tar-ustar dist-zip foreign])
 AM_MAINTAINER_MODE
 AM_CONFIG_HEADER(config.h)
-AC_SUBST([ACLOCAL_AMFLAGS], ["-I build/m4/shamrock -I build/m4/shave \${ACLOCAL_FLAGS}"])
+AC_SUBST([ACLOCAL_AMFLAGS], ["-I build/m4/f-spot -I build/m4/shamrock -I build/m4/shave \${ACLOCAL_FLAGS}"])
 
 IT_PROG_INTLTOOL([0.35.0])
 AC_PROG_LIBTOOL
@@ -72,7 +72,7 @@ SHAMROCK_CHECK_MONO_2_0_GAC_ASSEMBLIES([
     Mono.Cairo
 ])
 
-
+FSPOT_CHECK_GNOME_KEYRING_SHARP
 
 
 
@@ -344,7 +344,6 @@ lib/GKeyFile/Makefile
 lib/gio-sharp/Makefile
 lib/gio-sharp/gio/Makefile
 lib/gio-sharp/generator/Makefile
-lib/gnome-keyring-sharp/Makefile
 lib/gtk-sharp-beans/Makefile
 lib/libfspot/Makefile
 lib/libgphoto2-sharp/Makefile
