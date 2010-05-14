@@ -235,8 +235,8 @@ public class PhotoStore : DbStore<Photo> {
 		reader.Close();
 	}		
 	
-	private void GetAllVersions  () {
-		SqliteDataReader reader = Database.Query("SELECT photo_id, version_id, name, base_uri, filename, md5_sum, protected FROM photo_versions");
+	private void GetAllVersions  (string ids) {
+		SqliteDataReader reader = Database.Query ("SELECT photo_id, version_id, name, base_uri, filename, md5_sum, protected FROM photo_versions WHERE photo_id in " + ids);
 		
 		while (reader.Read ()) {
 			uint id = Convert.ToUInt32 (reader ["photo_id"]);
@@ -272,8 +272,8 @@ public class PhotoStore : DbStore<Photo> {
 		reader.Close();
 	}
 
-	private void GetAllTags () {
-		SqliteDataReader reader = Database.Query("SELECT photo_id, tag_id FROM photo_tags");
+	private void GetAllTags (string ids) {
+		SqliteDataReader reader = Database.Query ("SELECT photo_id, tag_id FROM photo_tags WHERE photo_id in " + ids);
 
 		while (reader.Read ()) {
 			uint id = Convert.ToUInt32 (reader ["photo_id"]);
@@ -289,7 +289,7 @@ public class PhotoStore : DbStore<Photo> {
 				continue;
 			}
 
-		        if (reader [1] != null) {
+			if (reader [1] != null) {
 				uint tag_id = Convert.ToUInt32 (reader ["tag_id"]);
 				Tag tag = App.Instance.Database.Tags.Get (tag_id) as Tag;
 				photo.AddTagUnsafely (tag);
@@ -892,19 +892,24 @@ public class PhotoStore : DbStore<Photo> {
 		reader.Close();
 
 		bool need_load = false;
+		string photo_ids = "(";
 		foreach (Photo photo in new_photos) {
 			AddToCache (photo);
+			photo_ids = photo_ids + Convert.ToString(photo.Id) + ",";
 			need_load |= !photo.Loaded;
 		}
 		
+		photo_ids = photo_ids + "-1)";
+	
 		if (need_load) {
-			GetAllTags ();
-			GetAllVersions ();
+			GetAllTags (photo_ids);
+			GetAllVersions (photo_ids);
 			foreach (Photo photo in new_photos)
 				photo.Loaded = true;
 		} else {
 			//Console.WriteLine ("Skipped Loading Data");
 		}
+	
 		foreach (Photo photo in new_photos)
 			photo.Changes = null;
 
