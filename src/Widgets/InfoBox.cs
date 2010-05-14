@@ -338,7 +338,7 @@ namespace FSpot.Widgets
 					height = real_height.ToString ();
 				}
 	#if USE_EXIF_DATE
-				date = img.Date.ToLocalTime ();
+				date = img.Date;
 	#endif
 			}
 	
@@ -522,7 +522,7 @@ namespace FSpot.Widgets
 	#if USE_EXIF_DATE
 				date_value_label.Text = info.Date;
 	#else
-				DateTime local_time = photo.Time.ToLocalTime ();
+				DateTime local_time = photo.Time;
 				date_value_label.Text = String.Format ("{0}{2}{1}",
 				                                       local_time.ToShortDateString (),
 				                                       local_time.ToShortTimeString (),
@@ -638,13 +638,13 @@ namespace FSpot.Widgets
 				if (first.Time.Date == last.Time.Date) {
 					//Note for translators: {0} is a date, {1} and {2} are times.
 					date_value_label.Text = String.Format(Catalog.GetString("On {0} between \n{1} and {2}"), 
-					                                      first.Time.ToLocalTime ().ToShortDateString (),
-					                                      first.Time.ToLocalTime ().ToShortTimeString (),
-					                                      last.Time.ToLocalTime ().ToShortTimeString ());
+					                                      first.Time.ToShortDateString (),
+					                                      first.Time.ToShortTimeString (),
+					                                      last.Time.ToShortTimeString ());
 				} else {
 					date_value_label.Text = String.Format(Catalog.GetString("Between {0} \nand {1}"),
-					                                      first.Time.ToLocalTime ().ToShortDateString (),
-					                                      last.Time.ToLocalTime ().ToShortDateString ());
+					                                      first.Time.ToShortDateString (),
+					                                      last.Time.ToShortDateString ());
 				}
 			}
 			date_label.Visible = show_date;

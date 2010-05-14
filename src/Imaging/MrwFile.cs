@@ -201,7 +201,7 @@ namespace FSpot.Mrw {
 				DirectoryEntry e = this.Header.Directory.Lookup (TagId.DateTime);
 				
 				if (e != null)
-					return DirectoryEntry.DateTimeFromString (e.StringValue).ToUniversalTime ();
+					return DirectoryEntry.DateTimeFromString (e.StringValue);
 				else
 					return base.Date;
 			}

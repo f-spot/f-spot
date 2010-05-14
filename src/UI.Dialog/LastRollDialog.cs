@@ -86,6 +86,7 @@ namespace FSpot.UI.Dialog {
 			for (uint k = 0; k < rolls.Length; k++)
 			{
 				uint numphotos = rollstore.PhotosInRoll (rolls [k]);
+				// Roll time is in UTC always
 				DateTime date = rolls [k].Time.ToLocalTime ();
 				
 				string header = String.Format ("{0} ({1})",

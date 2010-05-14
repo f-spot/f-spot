@@ -2066,13 +2066,13 @@ namespace FSpot.Tiff {
 					e = sub.Directory [0].Lookup (TagId.DateTimeOriginal);
 					
 					if (e != null)
-						return DirectoryEntry.DateTimeFromString (e.StringValue).ToUniversalTime ();
+						return DirectoryEntry.DateTimeFromString (e.StringValue);
 				}
 
 				e = this.Header.Directory.Lookup (TagId.DateTime);
 
 				if (e != null)
-					return DirectoryEntry.DateTimeFromString (e.StringValue).ToUniversalTime ();
+					return DirectoryEntry.DateTimeFromString (e.StringValue);
 				else
 					return base.Date;
 			}

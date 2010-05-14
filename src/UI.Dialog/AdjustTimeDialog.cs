@@ -122,7 +122,7 @@ namespace FSpot.UI.Dialog {
 				IBrowsableItem item = Item.Current;
 				
 				name_label.Text = System.Uri.UnescapeDataString(item.Name);
-				old_label.Text = item.Time.ToLocalTime ().ToString ();
+				old_label.Text = (item.Time).ToString ();
 				
 				int i = collection.Count > 0 ? Item.Index + 1: 0;
 				// Note for translators: This indicates the current photo is photo {0} of {1} out of photos

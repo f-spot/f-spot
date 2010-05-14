@@ -441,7 +441,7 @@ namespace FSpot.Ciff {
 					return base.Date;
 				}
 
-				return new CaptureTime (date, little).LocalTime.ToUniversalTime ();
+				return new CaptureTime (date, little).LocalTime;
 			}
 		}
 

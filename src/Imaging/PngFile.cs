@@ -1418,7 +1418,7 @@ namespace FSpot.Png {
 				foreach (Chunk chunk in Chunks) {
 					TimeChunk time = chunk as TimeChunk;
 					if (time != null)
-						return time.Time.ToUniversalTime ();
+						return time.Time;
 				}
 				return base.Date;
 			}

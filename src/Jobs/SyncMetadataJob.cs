@@ -53,7 +53,7 @@ namespace FSpot.Jobs {
 					FSpot.JpegFile jimg = img as FSpot.JpegFile;
 				
 					jimg.SetDescription (photo.Description);
-					jimg.SetDateTimeOriginal (photo.Time.ToLocalTime ());
+					jimg.SetDateTimeOriginal (photo.Time);
 					jimg.SetXmp (UpdateXmp (photo, jimg.Header.GetXmp ()));
 	
 					jimg.SaveMetaData (path);

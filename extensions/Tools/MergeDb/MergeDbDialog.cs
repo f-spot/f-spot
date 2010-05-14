@@ -62,6 +62,7 @@ namespace MergeDbExtension
 				rolls = value;
 				foreach (Roll r in rolls) {
 					uint numphotos = parent.FromDb.Rolls.PhotosInRoll (r);
+					// Roll time is in UTC always
 					DateTime date = r.Time.ToLocalTime ();
 					rolls_combo.AppendText (String.Format ("{0} ({1})", date.ToString("%dd %MMM, %HH:%mm"), numphotos));
 					rolls_combo.Active = 0;

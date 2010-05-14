@@ -206,7 +206,7 @@ namespace FSpot {
 
 			return t;
 		}
-
+		
 		[Obsolete ("use Create (System.Uri) instead")]
 		public static ImageFile Create (string path)
 		{

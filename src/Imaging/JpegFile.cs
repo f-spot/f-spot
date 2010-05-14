@@ -333,13 +333,13 @@ Console.WriteLine ("<<<");
 						e = sub.Directory [0].Lookup (TagId.DateTimeOriginal);
 						
 						if (e != null)
-							return DirectoryEntry.DateTimeFromString (e.StringValue).ToUniversalTime ();
+							return DirectoryEntry.DateTimeFromString (e.StringValue);
 					}
 					
 					e = ExifHeader.Directory.Lookup (TagId.DateTime);
 					
 					if (e != null)
-						return DirectoryEntry.DateTimeFromString (e.StringValue).ToUniversalTime ();
+						return DirectoryEntry.DateTimeFromString (e.StringValue);
 					
 					return base.Date;
 #else
@@ -349,7 +349,7 @@ Console.WriteLine ("<<<");
 					if (time_str == null || time_str == "") 
 						time_str = ExifData.LookupFirstValue (Exif.Tag.DateTime);
 					
-					time = Exif.ExifUtil.DateTimeFromString (time_str).ToUniversalTime (); 
+					time = Exif.ExifUtil.DateTimeFromString (time_str); 
 #endif
 				} catch (System.Exception e) {
 					Console.WriteLine (e);
