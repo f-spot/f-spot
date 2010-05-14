@@ -17,9 +17,6 @@ desktop_in_files=	\
 desktop_files=$(desktop_in_files:.desktop.in=.desktop)
 @INTLTOOL_DESKTOP_RULE@
 
-pkgconfigdir = $(libdir)/pkgconfig
-pkgconfig_DATA = f-spot.pc
-
 schemadir = $(sysconfdir)/gconf/schemas
 schema_in_files = f-spot.schemas.in
 schema_DATA = $(schema_in_files:.schemas.in=.schemas)
@@ -40,7 +37,6 @@ EXTRA_DIST =			\
 	intltool-extract.in	\
 	intltool-merge.in	\
 	intltool-update.in	\
-	f-spot.pc.in		\
 	f-spot.spec		\
 	Makefile.include	\
 	Makefile.addins		\
