@@ -412,11 +412,6 @@ namespace FSpot
 			Database.Tags.ItemsChanged += HandleTagsChanged;
 			Database.Tags.ItemsAdded += HandleTagsChanged;
 			Database.Tags.ItemsRemoved += HandleTagsChanged;
-	#if SHOW_CALENDAR
-			FSpot.SimpleCalendar cal = new FSpot.SimpleCalendar (query);
-			cal.DaySelected += HandleCalendarDaySelected;
-			left_vbox.PackStart (cal, false, true, 0);
-	#endif
 	
 			group_selector = new FSpot.GroupSelector ();
 			group_selector.Adaptor = new FSpot.TimeAdaptor (query, Preferences.Get<bool> (Preferences.GROUP_ADAPTOR_ORDER_ASC));
@@ -993,20 +988,6 @@ namespace FSpot
 	 		ShowQueryWidget ();
 	 		query_widget.Include (new Tag [] {tag_selection_widget.TagByPath (args.Path)});
 		}
-	
-	
-	#if SHOW_CALENDAR
-		void HandleCalendarDaySelected (object sender, System.EventArgs args)
-		{
-			FSpot.SimpleCalendar cal = sender as FSpot.SimpleCalendar;
-			JumpTo (cal.Date);
-		}
-	
-		void JumpTo (System.DateTime time)
-		{
-			JumpTo (query.LookupItem (time));*/
-		}
-	#endif
 	
 		void JumpTo (int index)
 		{

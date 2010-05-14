@@ -243,7 +243,6 @@ F_SPOT_CSDISTFILES =				\
 	$(srcdir)/SendEmail.cs                  \
 	$(srcdir)/XScreenSaverSlide.cs		\
 	$(srcdir)/SingleView.cs			\
-	$(srcdir)/SimpleCalendar.cs		\
 	$(srcdir)/Sharpener.cs			\
 	$(srcdir)/SoftFocus.cs		\
 	$(srcdir)/TagCommands.cs		\
