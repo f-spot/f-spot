@@ -2,8 +2,7 @@ dnl Granularly define the version components
 dnl Remember to also update the Display Version
 m4_define([fspot_version_major], [0])
 m4_define([fspot_version_minor], [6])
-m4_define([fspot_version_micro], [1])
-m4_define([fspot_version_nano], [5])
+m4_define([fspot_version_micro], [2])
 
 dnl set to 0 when doing an official release
 m4_define([fspot_version_pre_release], [0])
@@ -14,8 +13,7 @@ dnl create base version string
 m4_define([fspot_version], concat(
 	fspot_version_major.,
 	fspot_version_minor.,
-	fspot_version_micro.,
-    fspot_version_nano))
+	fspot_version_micro))
 
 dnl create the release version
 m4_define([fspot_version],
@@ -25,7 +23,7 @@ m4_define([fspot_version],
 
 dnl this can sometimes differ manually
 m4_define([fspot_display_version],
-	["0.6.1.5"])
+	["0.6.2"])
 
 m4_define([fspot_api_version],
 	[fspot_version_major.fspot_version_minor])
