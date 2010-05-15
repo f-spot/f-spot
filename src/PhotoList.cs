@@ -37,6 +37,12 @@ namespace FSpot {
 		public int Capacity {
 			set { list.Capacity = value; }
 		}
+        
+		public void AddAll (List<IBrowsableItem> photos)
+		{
+			list = photos;
+			Reload ();
+		}
 
 		public void Add (IBrowsableItem photo)
 		{

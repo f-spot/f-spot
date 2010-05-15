@@ -58,11 +58,11 @@ public class ImportCommand : GladeDialog
 
 	internal class VfsSource : ImportSource
 	{
-		public string uri;
+		public Uri uri;
 
-		public VfsSource (string uri)
+		public VfsSource (Uri uri)
 		{ 
-			string [] components = uri.Split (new char [] { '/' });
+			string [] components = uri.Segments;
 			this.Name = components [components.Length - 1];
 			if (this.Name == String.Empty)
 				this.Name = components [components.Length - 2];
@@ -70,11 +70,6 @@ public class ImportCommand : GladeDialog
 			this.uri = uri;
 			
 			this.Icon = GtkUtil.TryLoadIcon (FSpot.Global.IconTheme, "stock_folder", 32, (Gtk.IconLookupFlags)0);
-		}
-
-		public virtual bool Contains (string path)
-		{
-			return false;
 		}
 
 		protected VfsSource () {}
@@ -96,7 +91,7 @@ public class ImportCommand : GladeDialog
 				System.Console.WriteLine (e);
 			}
 
-			uri = mount_point;
+			uri = mount.Root.Uri;
 			
 			
 			if (this.IsIPodPhoto)
@@ -207,7 +202,7 @@ public class ImportCommand : GladeDialog
 						if (handle.StartsWith ("disk:")) {
 							string path = handle.Substring ("disk:".Length);
 
-							if (FindItemPosition (path) != -1)
+							if (FindItemPosition (UriUtils.PathToFileUri (path)) != -1)
 								continue;
 						}
 			
@@ -251,14 +246,14 @@ public class ImportCommand : GladeDialog
 			return -1;
 		}
 		
-		public int FindItemPosition (string path)
+		public int FindItemPosition (Uri uri)
 		{
 			Gtk.Widget [] children = this.Children;
-			System.Console.WriteLine ("looking for {0}", path);
+			System.Console.WriteLine ("looking for {0}", uri);
 			for (int i = 0; i < children.Length; i++) {
 				if (children [i] is SourceItem) {
 					VfsSource vfs = ((SourceItem)(children [i])).Source as VfsSource;
-					if (vfs != null && (vfs.uri == path || path == (vfs.uri + "/dcim")))
+					if (vfs != null && (vfs.uri == uri || uri.ToString () == (vfs.uri + "/dcim")))
 						return i;
 				}
 			}
@@ -301,10 +296,7 @@ public class ImportCommand : GladeDialog
 
 	string loading_string;
 
-	string import_path;
-	public string ImportPath {
-		get { return import_path; }
-	}
+	public Uri ImportUri { get; private set; }
 	
 	private SourceItem Source {
 		set {
@@ -315,26 +307,22 @@ public class ImportCommand : GladeDialog
 			
 			this.Cancel ();
 			this.copy = copy_check.Active;
-			AllowFinish = false;
-
-			System.Console.WriteLine ("item {0}", item);
 
 			if (!item.Sensitive)
 				return;
 
 			if (item.Source is BrowseSource) {
-				string path = ChoosePath ();
+				Uri uri = ChooseUri ();
 				
-				if (path != null) {
-					SourceItem path_item = new SourceItem (new VfsSource (path));
-					menu.Prepend (path_item);
-					path_item.ShowAll ();
-					//option.SetHistory (0);
-					SetImportPath (path);
+				if (uri != null) {
+					SourceItem uri_item = new SourceItem (new VfsSource (uri));
+					menu.Prepend (uri_item);
+					uri_item.ShowAll ();
+					ImportUri = uri;
 				}
 			} else if (item.Source is VfsSource) {
 				VfsSource vfs = item.Source as VfsSource;
-				SetImportPath (vfs.uri);
+				ImportUri = vfs.uri;
 			} else if (item.Source is CameraSource) {
 				CameraSource csource = item.Source as CameraSource;
 				string port = "gphoto2:" + csource.Port;
@@ -352,7 +340,7 @@ public class ImportCommand : GladeDialog
 		main_window = mw;
 		step = new FSpot.Delay (new GLib.IdleHandler (Step));
 		idle_start = new FSpot.Delay (new IdleHandler (Start));
-		loading_string = Catalog.GetString ("Loading {0} of {1}");
+		loading_string = Catalog.GetString ("Importing {0} of {1}");
 	}
 
 	private void HandleDialogResponse (object obj, ResponseArgs args)
@@ -362,6 +350,23 @@ public class ImportCommand : GladeDialog
 			this.Dialog.Destroy ();
 			return;
 		}
+
+		AllowFinish = false;
+		OptionsEnabled = false;
+		if (total > 0) {
+			UpdateProgressBar (1, total);
+			step.Start ();
+
+			while (total > 0 && this.Step ()) {
+				System.DateTime start_time = System.DateTime.Now;
+				System.TimeSpan span = start_time - start_time;
+
+				while (Application.EventsPending () && span.TotalMilliseconds < 100) {
+					span = System.DateTime.Now - start_time;
+					Application.RunIteration ();
+				}
+			}
+		}
 	}
 
 	private void UpdateProgressBar (int count, int total)
@@ -369,6 +374,8 @@ public class ImportCommand : GladeDialog
 		if (progress_bar == null)
 			return;
 
+		if (count > 0)
+			progress_bar.Show ();
 		progress_bar.Text = String.Format (loading_string, count, total);
 		progress_bar.Fraction = (double) count / System.Math.Max (total, 1);
 	}
@@ -382,7 +389,7 @@ public class ImportCommand : GladeDialog
 
 	private bool Step ()
 	{	
-	 	StepStatusInfo status_info;		
+		StepStatusInfo status_info;		
 		bool ongoing = true;
 
 		if (importer == null)
@@ -397,15 +404,6 @@ public class ImportCommand : GladeDialog
 			return false;
 		}
 
-		if (!status_info.IsDuplicate && (status_info.Photo == null)) {
-			Console.WriteLine ("Could not import file");
-		} else {
-			//icon_scrolled.Visible = true;
-		 	if (!status_info.IsDuplicate)
-				collection.Add (status_info.Photo);
-
-		}
-		
 		if (status_info.Count < total)
 			UpdateProgressBar (status_info.Count + 1, total);
 
@@ -424,8 +422,19 @@ public class ImportCommand : GladeDialog
 	public bool AllowFinish
 	{
 		set {
-			if (this.ok_button != null)
-				this.ok_button.Sensitive = value;
+			if (ok_button != null)
+				ok_button.Sensitive = value;
+		}
+	}
+
+	public bool OptionsEnabled
+	{
+		set {
+			if (source_option_menu != null) source_option_menu.Sensitive = value;
+			if (copy_check != null) copy_check.Sensitive = value;
+			if (recurse_check != null) recurse_check.Sensitive = value;
+			if (duplicate_check != null) duplicate_check.Sensitive = value;
+			if (tagentry_box != null) tagentry_box.Sensitive = value;
 		}
 	}
 
@@ -437,13 +446,14 @@ public class ImportCommand : GladeDialog
 		this.importer = imp;
 		AllowFinish = false;
 		
-		total = importer.Prepare ();
+		var info = importer.Prepare ();
+		total = info.Count;
 
 		if (total > 0)
 			UpdateProgressBar (1, total);
 		
 		collection.Clear ();
-		collection.Capacity = total;
+		collection.AddAll (info);
 
 		while (total > 0 && this.Step ()) {
 			System.DateTime start_time = System.DateTime.Now;
@@ -480,15 +490,15 @@ public class ImportCommand : GladeDialog
 	
 	public void HandleImportBrowse (object o, EventArgs args) 
 	{
-		string path = ChoosePath ();
-		if (path != null) {
-			SetImportPath (path);
+		Uri uri = ChooseUri ();
+		if (uri != null) {
+			ImportUri = uri;
 		}
 	}
 	
-	public string ChoosePath ()
+	public Uri ChooseUri ()
 	{
-		string path = null;
+		Uri uri = null;
 
 		FileChooserDialog file_chooser =
 			new FileChooserDialog (Catalog.GetString ("Import"), this.Dialog,
@@ -498,32 +508,20 @@ public class ImportCommand : GladeDialog
 
 		file_chooser.SelectMultiple = false;
 
-		if (ImportPath != null)
-			file_chooser.SetFilename (ImportPath);
+		if (ImportUri != null)
+			file_chooser.SetCurrentFolderUri (ImportUri.ToString ());
 		else
 			file_chooser.SetFilename (FSpot.Global.HomeDirectory);
 
 		int response = file_chooser.Run ();
 
 		if ((ResponseType) response == ResponseType.Ok) {
-			path = file_chooser.Filename;
+			uri = new Uri (file_chooser.Uri);
 		}
 
 		file_chooser.Destroy ();
-		return path;
+		return uri;
 	}
-
-	public void SetImportPath (string path)
-	{
-		import_path = path;
-	}
-
-//	private void HandleTagMenuSelected (Tag t) 
-//	{
-//		tag_selected = t;
-//		//tag_image.Pixbuf = t.Icon;
-//		//tag_label.Text = t.Name;
-//	}
 
 	private void HandleRecurseToggled (object sender, System.EventArgs args)
 	{
@@ -546,7 +544,7 @@ public class ImportCommand : GladeDialog
 		duplicate_check.Active = Preferences.Get<bool> (Preferences.IMPORT_CHECK_DUPLICATES);
 	}
 
-	public int ImportFromFile (PhotoStore store, string path)
+	public int ImportFromUri (PhotoStore store, Uri uri)
 	{
 		this.store = store;
 		this.CreateDialog ("import_dialog");
@@ -595,19 +593,22 @@ public class ImportCommand : GladeDialog
 		tag_entry.Show ();
 
 		this.Dialog.Show ();
+        progress_bar.Hide ();
 
 		//source_option_menu.Changed += HandleSourceChanged;
-		if (path != null) {
-			SetImportPath (path);
-			int i = menu.FindItemPosition (path);
+		if (uri != null) {
+			ImportUri = uri;
+			int i = menu.FindItemPosition (uri);
+
+			var file = FileFactory.NewForUri (uri);
 
 			if (i > 0) {
 				source_option_menu.SetHistory ((uint)i);
-			} else if (Directory.Exists (path)) {
-				SourceItem path_item = new SourceItem (new VfsSource (path));
-				menu.Prepend (path_item);
-				path_item.ShowAll ();
-				SetImportPath (path);
+			} else if (file.QueryExists (null)) {
+				SourceItem uri_item = new SourceItem (new VfsSource (uri));
+				menu.Prepend (uri_item);
+				uri_item.ShowAll ();
+				ImportUri = uri;
 				source_option_menu.SetHistory (0);
 			} 
 			idle_start.Start ();
@@ -617,7 +618,8 @@ public class ImportCommand : GladeDialog
 		
 		while (response == ResponseType.Ok) {
 			try {
-				if (Directory.Exists (this.ImportPath))
+				var file = FileFactory.NewForUri (uri);
+				if (file.QueryExists (null))
 					break;
 			} catch (System.Exception e){
 				System.Console.WriteLine (e);
@@ -630,7 +632,7 @@ public class ImportCommand : GladeDialog
 				ButtonsType.Ok,
 				Catalog.GetString ("Directory does not exist."),
 				String.Format (Catalog.GetString ("The directory you selected \"{0}\" does not exist.  " + 
-								  "Please choose a different directory"), this.ImportPath));
+								  "Please choose a different directory"), ImportUri));
 
 			md.Run ();
 			md.Destroy ();
@@ -709,27 +711,17 @@ public class ImportCommand : GladeDialog
 			importer.Cancel ();
 			importer = null;
 		}
-		
-		if (collection == null || collection.Count == 0)
-			return;
-		
-		Photo [] photos = new Photo [collection.Count];
-		for (int i = 0; i < collection.Count; i++)
-			photos [i] = (Photo) collection [i];
-
-		store.Remove (photos);
 	}
 
-	public bool Start ()
+	private bool Start ()
 	{
 		if (Dialog != null)
 			Dialog.Sensitive = true;
 
-		if (import_path == null)
+		if (ImportUri == null)
 			return false;
 
-		string [] pathimport =  {ImportPath};
-		//this.Dialog.Destroy();
+		Uri [] uriimport =  {ImportUri};
 		
 		if (copy_check != null)
 			copy = copy_check.Active;
@@ -740,78 +732,41 @@ public class ImportCommand : GladeDialog
 
 		bool detect_duplicates = false;
 		if (duplicate_check != null)
-		 	detect_duplicates = duplicate_check.Active;
+			detect_duplicates = duplicate_check.Active;
 		
-//		importer = new FileImportBackend (store, pathimport, copy, recurse, null);
-		importer = new FileImportBackend (store, pathimport, copy, recurse, detect_duplicates, null, Dialog);
-		AllowFinish = false;
-		
-		total = importer.Prepare ();
-		
-		if (total > 0)
-			UpdateProgressBar (1, total);
-		
-		collection.Clear ();
-		collection.Capacity = total;
+		importer = new FileImportBackend (store, uriimport, copy, recurse, detect_duplicates, null, Dialog);
 
-		if (total > 0)
-			step.Start ();
-	       
+		collection.Clear ();
+		AllowFinish = false;
+
+		var info = importer.Prepare ();
+		total = info.Count;
+
+		AllowFinish = true;
+		collection.AddAll (info);
+
 		return false;
 	}
 
-	public int ImportFromPaths (PhotoStore store, string [] paths, bool copy)
+	public int ImportFromUris (PhotoStore store, Uri [] uris, bool copy)
 	{
-		return ImportFromPaths (store, paths, null, copy);
+		return ImportFromUris (store, uris, null, copy);
 	}
 	
-	public int ImportFromPaths (PhotoStore store, string [] paths, Tag [] tags)
+	public int ImportFromUris (PhotoStore store, Uri [] uris, Tag [] tags)
 	{
-		return ImportFromPaths (store, paths, tags, false);
+		return ImportFromUris (store, uris, tags, false);
 	}
 	
-	public int ImportFromPaths (PhotoStore store, string [] paths, Tag [] tags, bool copy)
+	public int ImportFromUris (PhotoStore store, Uri [] uris, Tag [] tags, bool copy)
 	{
 		collection = new FSpot.PhotoList (new Photo [0]);
-		int count = DoImport (new FileImportBackend (store, paths, copy, true, tags, main_window ));
+		int count = DoImport (new FileImportBackend (store, uris, copy, true, tags, main_window ));
 
 		Finish ();
 
 		return count;
 	}
-	
-#if TEST_IMPORT_COMMAND
-
-	private const string db_path = "/tmp/ImportCommandTest.db";
-	private static string directory_path;
-
-	private static bool OnIdleStartImport ()
-	{
-		Db db = new Db (db_path, true);
-
-		ImportCommand command = new ImportCommand ();
-
-		command.ImportFromPath (db.Photos, directory_path, true);
-
-		Application.Quit ();
-		return false;
-	}
-
-	public static void Main (string [] args)
-	{
-		Program program = new Program ("ImportCommandTest", "0.0", Modules.UI, args);
-
-		try {
-			File.Delete (db_path);
-		} catch {}
-
-		directory_path = args [0];
-
-		Idle.Add (new IdleHandler (OnIdleStartImport));
-		program.Run ();
-	}
-
-#endif
 }
 
 public class StepStatusInfo {

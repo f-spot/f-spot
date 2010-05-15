@@ -10,6 +10,7 @@
 
 using System;
 using System.IO;
+using System.Collections.Generic;
 using Gdk;
 using Gtk;
 using Glade;
@@ -41,7 +42,7 @@ namespace FSpot {
 		ThreadProgressDialog progress_dialog;
 		System.Collections.ArrayList index_list;
 		
-		string[] saved_files;
+		Uri[] saved_files;
 		Tag[] selected_tags;
 		
 		System.Threading.Thread command_thread;
@@ -213,7 +214,7 @@ namespace FSpot {
 		private void Download ()
 		{
 			lock (camera) {
-				System.Collections.ArrayList saved = new System.Collections.ArrayList ();
+				List<Uri> saved = new List<Uri> ();
 					
 				for (int i = 0; i < index_list.Count; i++) {
 					try {
@@ -225,7 +226,7 @@ namespace FSpot {
 						SaveResult result = SaveFile ((int)(index_list [i]));
 
 						if (!result.IsDuplicate)
-						 	saved.Add (result.Path);
+						 	saved.Add (UriUtils.PathToFileUri(result.Path));
 
 						progress_dialog.Fraction = (i + 1)/(double)index_list.Count;
 					}
@@ -239,7 +240,7 @@ namespace FSpot {
 					}
 				}
 					
-				saved_files = (string []) saved.ToArray (typeof (string));
+				saved_files = saved.ToArray ();
 					
 				progress_dialog.SetProperties (Catalog.GetString ("Download Complete"), Gtk.Stock.Ok, Catalog.GetString ("Done Copying Files"), 1.0);
 			}
@@ -276,10 +277,10 @@ namespace FSpot {
 
 				return new SaveResult (path, true);
 			} else {
-				string dest = FileImportBackend.ChooseLocation (path);
-				System.IO.File.Move (path, dest);
+				Uri dest = FileImportBackend.ChooseLocation (UriUtils.PathToFileUri (path));
+				System.IO.File.Move (path, dest.AbsolutePath);
 
-				return new SaveResult (dest, false);
+				return new SaveResult (dest.AbsolutePath, false);
 			}
 		}
 
@@ -305,7 +306,7 @@ namespace FSpot {
 		private int ImportFiles ()
 		{
 			ImportCommand command = new ImportCommand (null);
-			return command.ImportFromPaths (db.Photos, saved_files, selected_tags);
+			return command.ImportFromUris (db.Photos, saved_files, selected_tags);
 		}
 		
 		public Tag[] Tags {

@@ -204,10 +204,8 @@ namespace FSpot
 			Organizer.Window.Present ();
 			if (path != null && path.StartsWith ("gphoto2:"))
 				Organizer.ImportCamera (path);
-			else if (path != null && path.StartsWith ("file:"))
-				Organizer.ImportFile (Uri.UnescapeDataString ((new Uri(path)).AbsolutePath));
 			else
-				Organizer.ImportFile (path);
+				Organizer.ImportFile (path == null ? null : new Uri(path));
 		}
 
 		void HandleOrganize ()

@@ -1,10 +1,10 @@
 using FSpot;
-using Gdk;
+using System.Collections.Generic;
 
 public abstract class ImportBackend {
-	// Prepare for importing; returns the number of pictures available.
-	// If it returns zero, you should not call Step(), Cancel() or Finish() until you call Prepare() again.
-	public abstract int Prepare ();
+	// Prepare for importing; returns the items that should be imported
+	// If it returns an empty list, you should not call Step(), Cancel() or Finish() until you call Prepare() again.
+	public abstract List<IBrowsableItem> Prepare ();
 
 	// Import one picture.  Returns false when done; then you have to call Finish().
 	public abstract bool Step (out StepStatusInfo import_info);

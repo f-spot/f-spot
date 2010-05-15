@@ -59,6 +59,7 @@ UTILS_CSDISTFILES =				\
 	$(srcdir)/Utils/Log.cs			\
 	$(srcdir)/Utils/PixbufOrientation.cs	\
 	$(srcdir)/Utils/PixbufUtils.cs		\
+	$(srcdir)/Utils/RecursiveFileEnumerator.cs		\
 	$(srcdir)/Utils/Unix.cs			\
 	$(srcdir)/Utils/UriExtensions.cs			\
 	$(srcdir)/Utils/UriUtils.cs
@@ -340,6 +341,7 @@ UTILS_ASSEMBLIES =				\
 	-pkg:gnome-sharp-2.0			\
 	-r:Mono.Posix				\
 	-r:Mono.Cairo				\
+	$(LINK_GIOSHARP)			\
 	$(GCONF_PKG)
 
 JOBSCHEDULER_ASSEMBLIES =			\

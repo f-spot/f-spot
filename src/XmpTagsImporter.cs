@@ -271,10 +271,13 @@ namespace FSpot.Xmp {
 #endif
 		}
 		
-		public bool Import (Photo photo, string path, string orig_path)
+		public bool Import (Photo photo, Uri uri, Uri orig_uri)
 		{
 			XmpFile xmp;
 			
+			string path = uri.AbsolutePath;
+			string orig_path = orig_uri.AbsolutePath;
+
 			string source_sidecar = String.Format ("{0}{1}{2}.xmp",
 							       Path.GetDirectoryName (orig_path),
 							       Path.DirectorySeparatorChar,
@@ -293,7 +296,7 @@ namespace FSpot.Xmp {
 				xmp = new XmpFile ();
 			}
 			
-			using (ImageFile img = ImageFile.Create (path)) {
+			using (ImageFile img = ImageFile.Create (uri)) {
 				StatementSource source = img as StatementSource;
 				if (source != null) {
 					try {

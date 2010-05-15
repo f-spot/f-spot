@@ -23,94 +23,56 @@ public class FileImportBackend : ImportBackend {
 	bool recurse;
 	bool copy;
 	bool detect_duplicates;
-	string [] base_paths;
+	Uri [] base_paths;
 	Tag [] tags;
 	Gtk.Window parent;
 
+	bool cancel = false;
 	int count;
 	int duplicate_count;
 	XmpTagsImporter xmptags;
 
-	ArrayList import_info;
+	List<IBrowsableItem> import_info;
 	Stack directories;
 
-	private class ImportInfo {
-		string original_path;
-		public string destination_path;
-		public Photo Photo;
-	       
-		public string OriginalPath {
-			get { return original_path; }
-		}
-		
-		public string DestinationPath {
-			get { return destination_path; }
-			set { destination_path = value; }
-		}
-		
-		public ImportInfo (string original)
+	private class ImportInfo : IBrowsableItem {
+		public ImportInfo (Uri original)
 		{
-			original_path = original;
-		        destination_path = null;
-			Photo = null;
-		}
-	}
-	
-	private void AddPath (string path)
-	{
-		if (FSpot.ImageFile.HasLoader (path))
-			import_info.Add (new ImportInfo (path));
-	}
-
-	private void GetListing (System.IO.DirectoryInfo info)
-	{
-		try {
-			GetListing (info, info.GetFiles (), recurse);
-		} catch (System.UnauthorizedAccessException) {
-			System.Console.WriteLine ("Unable to access directory {0}", info.FullName);
-		} catch (System.Exception e) {
-			System.Console.WriteLine ("{0}", e.ToString ());
-		}
-	}
-
-	private void GetListing (System.IO.DirectoryInfo dirinfo, System.IO.FileInfo [] files, bool recurse)
-	{
-		Log.Debug ("Scanning {0} for new photos", dirinfo.FullName);
-		List<Uri> existing_entries = new List<Uri> ();
-
-		foreach (Photo p in store.Query (new Uri (dirinfo.FullName + "/")))
-			foreach (uint id in p.VersionIds)
-				existing_entries.Add (p.VersionUri (id));
-
-		foreach (System.IO.FileInfo f in files)
-			if (! existing_entries.Contains (UriUtils.PathToFileUri (f.FullName)) && !f.Name.StartsWith (".")) {
-				AddPath (f.FullName);
-			}
-
-		if (recurse) {
-			foreach (System.IO.DirectoryInfo d in dirinfo.GetDirectories ()){
-				if (!d.Name.StartsWith ("."))
-					GetListing (d);
+			DefaultVersionUri = original;
+			try {
+				using (FSpot.ImageFile img = FSpot.ImageFile.Create (original)) {
+					Time = img.Date;
+				}
+			} catch (Exception) {
+				Time = DateTime.Now;
 			}
 		}
+
+		public System.Uri DefaultVersionUri { get; private set; }
+		public System.Uri DestinationUri { get; set; }
+
+		public System.DateTime Time { get; private set; }
+        
+		public Tag [] Tags { get { throw new NotImplementedException (); } }
+		public string Description { get { throw new NotImplementedException (); } }
+		public string Name { get { throw new NotImplementedException (); } }
+		public uint Rating { get { return 0; } }
+
+		internal Photo Photo { get; set; }
 	}
 
-	public override int Prepare ()
+	public override List<IBrowsableItem> Prepare ()
 	{
 		if (import_info != null)
 			throw new ImportException ("Busy");
 
-		import_info = new ArrayList ();
+		import_info = new List<IBrowsableItem> ();
 
-		foreach (string path in base_paths) {
-			try {	
-				if (System.IO.Directory.Exists (path))
-					GetListing (new System.IO.DirectoryInfo (path));
-				else if (System.IO.File.Exists (path))
-					GetListing (new System.IO.DirectoryInfo (System.IO.Path.GetDirectoryName (path)), 
-						    new System.IO.FileInfo [] { new System.IO.FileInfo (path)}, false);
-			} catch (Exception e) {
-				System.Console.WriteLine (e.ToString ());
+		foreach (Uri uri in base_paths) {
+			var enumerator = new RecursiveFileEnumerator (uri, recurse);
+			foreach (var file in enumerator) {
+				if (FSpot.ImageFile.HasLoader (file.Uri))
+					import_info.Add (new ImportInfo (file.Uri));
 			}
 		}	
 
@@ -120,10 +82,11 @@ public class FileImportBackend : ImportBackend {
 		roll = rolls.Create ();
 		Photo.ResetMD5Cache ();
 
-		return import_info.Count;
+		return import_info;
 	}
+	
 
-	public static string UniqueName (string path, string filename)
+	static Uri UniqueName (string path, string filename)
 	{
 		int i = 1;
 		string dest = System.IO.Path.Combine (path, filename);
@@ -137,19 +100,20 @@ public class FileImportBackend : ImportBackend {
 			dest = System.IO.Path.Combine (path, numbered_name);
 		}
 		
-		return dest;
+		return new Uri ("file://"+dest);
 	}
 	
-	public static string ChooseLocation (string path)
+	public static Uri ChooseLocation (Uri uri)
 	{
-		return ChooseLocation (path, null);
+		return ChooseLocation (uri, null);
 	}
 
-	public static string ChooseLocation (string path, Stack created_directories)
+	private static Uri ChooseLocation (Uri uri, Stack created_directories)
 	{
-		string name = System.IO.Path.GetFileName (path);
+		var segments = uri.Segments;
+		string name = segments [segments.Length - 1];
 		DateTime time;
-		using (FSpot.ImageFile img = FSpot.ImageFile.Create (path)) {
+		using (FSpot.ImageFile img = FSpot.ImageFile.Create (uri)) {
 			time = img.Date;
 		}
 
@@ -185,10 +149,10 @@ public class FileImportBackend : ImportBackend {
 		}
 
 		// If the destination we'd like to use is the file itself return that
-		if (Path.Combine (dest_dir, name) == path)
-			return path;
+		if ("file://" + Path.Combine (dest_dir, name) == uri.ToString ())
+			return uri;
 		 
-		string dest = UniqueName (dest_dir, name);
+		Uri dest = UniqueName (dest_dir, name);
 		
 		return dest;
 	}
@@ -210,50 +174,40 @@ public class FileImportBackend : ImportBackend {
 		bool needs_commit = false;
 		bool abort = false;
 		try {
-			string destination = info.OriginalPath;
+			Uri destination = info.DefaultVersionUri;
 			if (copy)
-				destination = ChooseLocation (info.OriginalPath, directories);
+				destination = ChooseLocation (info.DefaultVersionUri, directories);
 
 			// Don't copy if we are already home
-			if (info.OriginalPath == destination) {
-				info.DestinationPath = destination;
+			if (info.DefaultVersionUri == destination) {
+				info.DestinationUri = destination;
 
 				if (detect_duplicates)
-					photo = store.CheckForDuplicate (UriUtils.PathToFileUri (destination));
+					photo = store.CheckForDuplicate (destination);
 
 				if (photo == null)
-					photo = store.Create (UriUtils.PathToFileUri (info.DestinationPath), roll.Id);
+					photo = store.Create (info.DestinationUri, roll.Id);
 				else
 				 	is_duplicate = true;
 			} else {
-				System.IO.File.Copy (info.OriginalPath, destination);
-				System.IO.File.SetAttributes (destination, System.IO.FileAttributes.Normal);
-				info.DestinationPath = destination;
+				var file = GLib.FileFactory.NewForUri (info.DefaultVersionUri);
+				var new_file = GLib.FileFactory.NewForUri (destination);
+				file.Copy (new_file, GLib.FileCopyFlags.AllMetadata, null, null);
+				info.DestinationUri = destination;
 
 				if (detect_duplicates)
-				 	photo = store.CheckForDuplicate (UriUtils.PathToFileUri (destination));
+					photo = store.CheckForDuplicate (destination);
 
 				if (photo == null)
 				{
-					photo = store.Create (UriUtils.PathToFileUri (info.DestinationPath),
-					                      UriUtils.PathToFileUri (info.OriginalPath),
+					photo = store.Create (info.DestinationUri,
+					                      info.DefaultVersionUri,
 					                      roll.Id);
-				 	
-
-					try {
-						File.SetAttributes (destination, File.GetAttributes (info.DestinationPath) & ~FileAttributes.ReadOnly);
-						DateTime create = File.GetCreationTime (info.OriginalPath);
-						File.SetCreationTime (info.DestinationPath, create);
-						DateTime mod = File.GetLastWriteTime (info.OriginalPath);
-						File.SetLastWriteTime (info.DestinationPath, mod);
-					} catch (IOException) {
-						// we don't want an exception here to be fatal.
-					}
 				}
 				else
 				{
 					is_duplicate = true; 
-					System.IO.File.Delete (destination);
+					new_file.Delete (null);
 				}
 			} 
 
@@ -266,15 +220,15 @@ public class FileImportBackend : ImportBackend {
 					needs_commit = true;
 				}
 
-				needs_commit |= xmptags.Import (photo, info.DestinationPath, info.OriginalPath);
+				needs_commit |= xmptags.Import (photo, info.DestinationUri, info.DefaultVersionUri);
 
 				if (needs_commit)
 					store.Commit(photo);
 
-				info.Photo = photo;
+                info.Photo = photo;
 			}
 		} catch (System.Exception e) {
-			System.Console.WriteLine ("Error importing {0}{2}{1}", info.OriginalPath, e.ToString (), Environment.NewLine);
+			System.Console.WriteLine ("Error importing {0}{2}{1}", info.DestinationUri.ToString (), e.ToString (), Environment.NewLine);
 			photo = null;
 
 			HigMessageDialog errordialog = new HigMessageDialog (parent,
@@ -282,7 +236,7 @@ public class FileImportBackend : ImportBackend {
 									     Gtk.MessageType.Error,
 									     Gtk.ButtonsType.Cancel,
 									     Catalog.GetString ("Import error"),
-									     String.Format(Catalog.GetString ("Error importing {0}{2}{2}{1}"), info.OriginalPath, e.Message, Environment.NewLine ));
+									     String.Format(Catalog.GetString ("Error importing {0}{2}{2}{1}"), info.DefaultVersionUri.ToString (), e.Message, Environment.NewLine ));
 			errordialog.AddButton (Catalog.GetString ("Skip"), Gtk.ResponseType.Reject, false);
 			ResponseType response = (ResponseType) errordialog.Run ();
 			errordialog.Destroy ();
@@ -293,9 +247,13 @@ public class FileImportBackend : ImportBackend {
 		this.count ++;
 
 		if (is_duplicate)
-		 	this.duplicate_count ++;
+			this.duplicate_count ++;
 
 		status_info = new StepStatusInfo (photo, this.count, is_duplicate);
+
+		if (cancel) {
+			abort = true;
+		}
 
 		return (!abort && count != import_info.Count);
 	}
@@ -305,13 +263,16 @@ public class FileImportBackend : ImportBackend {
 		if (import_info == null)
 			throw new ImportException ("Not doing anything");
 
-		foreach (ImportInfo info in import_info) {
+		foreach (var item in import_info) {
+            ImportInfo info = item as ImportInfo;
 			
-			if (info.OriginalPath != info.DestinationPath) {
+			if (info.DefaultVersionUri != info.DestinationUri && info.DestinationUri != null) {
 				try {
-					System.IO.File.Delete (info.DestinationPath);
+					var file = GLib.FileFactory.NewForUri (info.DestinationUri);
+					if (file.QueryExists (null))
+						file.Delete (null);
 				} catch (System.ArgumentNullException) {
-					// Do nothing, since if DestinationPath == null, we do not have to remove it
+					// Do nothing, since if DestinationUri == null, we do not have to remove it
 				} catch (System.Exception e) {
 					System.Console.WriteLine (e);
 				}
@@ -354,17 +315,17 @@ public class FileImportBackend : ImportBackend {
 		Photo.ResetMD5Cache ();
 
 		if (count == duplicate_count)
-		 	rolls.Remove (roll);
+			rolls.Remove (roll);
 
 		count = duplicate_count = 0;
 		//rolls.EndImport();    // Clean up the imported session.
 	}
 
-	public FileImportBackend (PhotoStore store, string [] base_paths, bool recurse, Gtk.Window parent) : this (store, base_paths, false, recurse, false, null, parent) {}
+	public FileImportBackend (PhotoStore store, Uri [] base_paths, bool recurse, Gtk.Window parent) : this (store, base_paths, false, recurse, false, null, parent) {}
 
-	public FileImportBackend (PhotoStore store, string [] base_paths, bool copy, bool recurse, Tag [] tags, Gtk.Window parent) : this (store, base_paths, copy, recurse, false, null, parent) {}
+	public FileImportBackend (PhotoStore store, Uri [] base_paths, bool copy, bool recurse, Tag [] tags, Gtk.Window parent) : this (store, base_paths, copy, recurse, false, null, parent) {}
 
-	public FileImportBackend (PhotoStore store, string [] base_paths, bool copy, bool recurse, bool detect_duplicates, Tag [] tags, Gtk.Window parent)
+	public FileImportBackend (PhotoStore store, Uri [] base_paths, bool copy, bool recurse, bool detect_duplicates, Tag [] tags, Gtk.Window parent)
 	{
 		this.store = store;
 		this.copy = copy;

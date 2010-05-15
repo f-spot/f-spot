@@ -1135,16 +1135,16 @@ namespace FSpot
 		public void ImportUriList (UriList list, bool copy) 
 		{
 			ImportCommand command = new ImportCommand (main_window);
-			if (command.ImportFromPaths (Database.Photos, list.ToLocalPaths (), copy) > 0) {
+			if (command.ImportFromUris (Database.Photos, list.ToArray (), copy) > 0) {
 				query.RollSet = new RollSet (Database.Rolls.GetRolls (1)[0]);
 				UpdateQuery ();
 			}
 		}
 	
-		public void ImportFile (string path)
+		public void ImportFile (Uri uri)
 		{
 			ImportCommand command = new ImportCommand (main_window);
-			if (command.ImportFromFile (Database.Photos, path) > 0) {
+			if (command.ImportFromUri (Database.Photos, uri) > 0) {
 				query.RollSet = new RollSet (Database.Rolls.GetRolls (1)[0]);
 				UpdateQuery ();
 			}
@@ -1468,7 +1468,7 @@ namespace FSpot
 		{
 			Database.Sync = false;
 			ImportCommand command = new ImportCommand (main_window);
-			if (command.ImportFromFile (Database.Photos, null) > 0) {
+			if (command.ImportFromUri (Database.Photos, null) > 0) {
 				query.RollSet = new RollSet (Database.Rolls.GetRolls (1)[0]);
 				UpdateQuery ();
 			}
