@@ -229,7 +229,6 @@ namespace MergeDbExtension
 			}
 
 			string destination;
-			Gdk.Pixbuf pixbuf;
 			Photo newp;
 
 			if (copy)
@@ -239,11 +238,11 @@ namespace MergeDbExtension
 
 			// Don't copy if we are already home
 			if (photo_path == destination)
-				newp = to_store.Create (UriUtils.PathToFileUri (destination), roll_map [photo.RollId], out pixbuf);
+				newp = to_store.Create (UriUtils.PathToFileUri (destination), roll_map [photo.RollId]);
 			else {
 				System.IO.File.Copy (photo_path, destination);
 
-				newp = to_store.Create (UriUtils.PathToFileUri (destination), UriUtils.PathToFileUri (photo_path), roll_map [photo.RollId], out pixbuf);
+				newp = to_store.Create (UriUtils.PathToFileUri (destination), UriUtils.PathToFileUri (photo_path), roll_map [photo.RollId]);
 				try {
 					File.SetAttributes (destination, File.GetAttributes (destination) & ~FileAttributes.ReadOnly);
 					DateTime create = File.GetCreationTime (photo_path);

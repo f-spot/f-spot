@@ -83,6 +83,20 @@ namespace FSpot.Utils
 			button.UseUnderline = true;
 			return button;
 		}
+
+		public static Gdk.Pixbuf TryLoadIcon (Gtk.IconTheme theme, string[] names, int size, Gtk.IconLookupFlags flags)
+		{
+			try {
+				var info = theme.ChooseIcon (names, size, flags);
+				return info.LoadIcon ();
+			} catch {
+				try {
+					return theme.LoadIcon ("gtk-missing-image", size, flags);
+				} catch {
+					return null;
+				}
+			}	
+		}
 	
 		public static Gdk.Pixbuf TryLoadIcon (Gtk.IconTheme theme, string icon_name, int size, Gtk.IconLookupFlags flags)
 		{

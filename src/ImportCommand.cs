@@ -80,26 +80,24 @@ public class ImportCommand : GladeDialog
 		protected VfsSource () {}
 	}
 
-	internal class VolumeSource : VfsSource
+	internal class MountSource : VfsSource
 	{
-		public Gnome.Vfs.Volume Volume;
+		public GLib.Mount Mount;
 		public string mount_point;
 
-		public VolumeSource (Gnome.Vfs.Volume vol)
+		public MountSource (GLib.Mount mount)
 		{
-			this.Volume = vol;
-			this.Name = vol.DisplayName;
+			this.Mount = mount;
+			this.Name = mount.Name;
 
 			try {
-				mount_point = new Uri (vol.ActivationUri).LocalPath;
+				mount_point = mount.Root.Uri.LocalPath;
 			} catch (System.Exception e) {
 				System.Console.WriteLine (e);
 			}
 
 			uri = mount_point;
 			
-                        if (this.Icon == null)
-				this.Icon = GtkUtil.TryLoadIcon (FSpot.Global.IconTheme, vol.Icon, 32, (Gtk.IconLookupFlags)0);
 			
 			if (this.IsIPodPhoto)
 				this.Icon = GtkUtil.TryLoadIcon (FSpot.Global.IconTheme, "multimedia-player", 32, (Gtk.IconLookupFlags)0);
@@ -107,11 +105,13 @@ public class ImportCommand : GladeDialog
 			if (this.Icon == null && this.IsCamera)
 				this.Icon = GtkUtil.TryLoadIcon (FSpot.Global.IconTheme, "media-flash", 32, (Gtk.IconLookupFlags)0);
 
-			try {
-				if (this.Icon == null)
-					this.Icon = new Gdk.Pixbuf (vol.Icon);
-			} catch (System.Exception e) {
-				System.Console.WriteLine (e.ToString ());
+			if (this.Icon == null) {
+				if (mount.Icon is GLib.ThemedIcon) {
+					this.Icon = GtkUtil.TryLoadIcon (FSpot.Global.IconTheme, (mount.Icon as GLib.ThemedIcon).Names, 32, (Gtk.IconLookupFlags)0);
+				} else {
+					// TODO
+					throw new Exception ("Unloadable icon type");
+				}
 			}
 		}
 
@@ -127,34 +127,12 @@ public class ImportCommand : GladeDialog
 
 		private bool IsIPodPhoto {
 			get {
-				if (Volume.DeviceType != Gnome.Vfs.DeviceType.MusicPlayer 
-				    && Volume.DeviceType != Gnome.Vfs.DeviceType.Apple)
-					return false;
-
 				try {
 					return (Directory.Exists (Path.Combine (mount_point, "Photos")) &&
 						Directory.Exists (Path.Combine (mount_point, "iPod_Control")));
 				} catch {
 					return false;
 				}
-			}
-		}
-	}
-
-	internal class DriveSource : ImportSource
-	{
-		public Gnome.Vfs.Drive Drive;
-		
-		public DriveSource (Gnome.Vfs.Drive drive) 
-		{
-			this.Name = drive.DisplayName;
-			this.Drive = drive;
-
-			if (drive.IsMounted) {
-				this.Icon = GtkUtil.TryLoadIcon (FSpot.Global.IconTheme, drive.MountedVolume.Icon, 32, (Gtk.IconLookupFlags)0);
-				//this.Sensitive = drive.MountedVolume.IsMounted;
-			} else {
-				this.Icon = GtkUtil.TryLoadIcon (FSpot.Global.IconTheme, drive.Icon, 32, (Gtk.IconLookupFlags)0);
 			}
 		}
 	}
@@ -196,7 +174,7 @@ public class ImportCommand : GladeDialog
 		public int source_count;
 		ImportCommand command;
 
-		private static Gnome.Vfs.VolumeMonitor monitor = Gnome.Vfs.VolumeMonitor.Get ();
+		private static GLib.VolumeMonitor monitor = GLib.VolumeMonitor.Default;
 
 		public SourceMenu (ImportCommand command) {
 			this.command = command;
@@ -208,28 +186,12 @@ public class ImportCommand : GladeDialog
 			this.Append (new Gtk.SeparatorMenuItem ());
 
 			// Add external hard drives to the menu
-			foreach (Gnome.Vfs.Volume vol in monitor.MountedVolumes) {
-				 if (!vol.IsUserVisible || vol.DeviceType == Gnome.Vfs.DeviceType.Unknown)
-					 continue;
-				
-				 System.Console.WriteLine ("{0} - {1} - {2} {3} {4} {5} {6}",
-							  vol.DisplayName, 
-							  vol.Icon, 
-							  vol.VolumeType.ToString (), 
-							  vol.ActivationUri, 
-							  vol.IsUserVisible,
-							  vol.IsMounted,
-							  vol.DeviceType);
-				 
-				 if (vol.Drive != null)
-					 System.Console.WriteLine (vol.Drive.DeviceType.ToString ());
-
-				 ImportSource source = new VolumeSource (vol);
+			foreach (GLib.Mount mount in monitor.Mounts) {
+				 ImportSource source = new MountSource (mount);
 				 item = new SourceItem (source);
 				 item.Activated += HandleActivated;
 				 this.Append (item);
 				 source_count++;
-
 			}
 
 
@@ -263,17 +225,6 @@ public class ImportCommand : GladeDialog
 				item.Sensitive = false;
 				this.Append (item);
 			}
-			/*
-			this.Append (new Gtk.SeparatorMenuItem ());
-			
-			foreach (Gnome.Vfs.Drive drive in monitor.ConnectedDrives) {
-				ImportSource source = new DriveSource (drive);
-				
-				Gtk.ImageMenuItem item = new SourceItem (source);
-				item.Sensitive = drive.IsMounted;
-				this.Append (item);
-			}
-			*/
 
 			this.ShowAll ();
 		}
@@ -446,18 +397,14 @@ public class ImportCommand : GladeDialog
 			return false;
 		}
 
-		if (!status_info.IsDuplicate && (status_info.Photo == null || status_info.Thumbnail == null)) {
+		if (!status_info.IsDuplicate && (status_info.Photo == null)) {
 			Console.WriteLine ("Could not import file");
 		} else {
 			//icon_scrolled.Visible = true;
 		 	if (!status_info.IsDuplicate)
 				collection.Add (status_info.Photo);
-			//grid.AddThumbnail (thumbnail);
 
 		}
-
-		if (status_info.Thumbnail != null)
-			status_info.Thumbnail.Dispose ();
 		
 		if (status_info.Count < total)
 			UpdateProgressBar (status_info.Count + 1, total);
@@ -869,19 +816,12 @@ public class ImportCommand : GladeDialog
 
 public class StepStatusInfo {
 	private Photo photo;
-	private Pixbuf thumbnail;
 	private int count;
 	private bool is_duplicate;
 
 	public Photo Photo {
 		get  {
 			return photo; 
-		} 
-	}
-
-	public Pixbuf Thumbnail {
-		get {
-			return thumbnail; 
 		} 
 	}
 
@@ -897,16 +837,15 @@ public class StepStatusInfo {
 		} 
 	}
 
-	public StepStatusInfo (Photo photo, Pixbuf thumbnail, int count, bool is_duplicate)
+	public StepStatusInfo (Photo photo, int count, bool is_duplicate)
 	{
 		this.photo = photo;
-		this.thumbnail = thumbnail;
 		this.count = count;
 		this.is_duplicate = is_duplicate;
 	}
  
-	public StepStatusInfo (Photo photo, Pixbuf thumbnail, int count)
-		: this (photo, thumbnail, count, false)
+	public StepStatusInfo (Photo photo, int count)
+		: this (photo, count, false)
 	{ }
 }
 

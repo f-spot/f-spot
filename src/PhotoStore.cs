@@ -52,39 +52,6 @@ public class PhotoStore : DbStore<Photo> {
 			System.IO.Directory.CreateDirectory (large_thumbnail_directory_path);
 	}
 
-	//
-	// Generates the thumbnail, returns the Pixbuf, and also stores it as a side effect
-	//
-
-	private static Pixbuf GenerateThumbnail (System.Uri uri)
-	{
-		using (FSpot.ImageFile img = FSpot.ImageFile.Create (uri)) {
-			return GenerateThumbnail (uri, img);
-		}
-	}
-
-	private static Pixbuf GenerateThumbnail (System.Uri uri, ImageFile img)
-	{
-		Pixbuf thumbnail = null;
-
-		if (img is FSpot.IThumbnailContainer) {
-			try {
-				thumbnail = ((FSpot.IThumbnailContainer)img).GetEmbeddedThumbnail ();
-			} catch (Exception e) {
-				Log.Debug ("Exception while loading embedded thumbail {0}", e.ToString ());
-			}
-		}
-
-		// Save embedded thumbnails in a silightly invalid way so that we know to regnerate them later.
-		if (thumbnail != null)
-			//FIXME with gio, set it to uri time minus a few sec
-			ThumbnailFactory.SaveThumbnail (thumbnail, uri, new DateTime (1980, 1, 1));
-		 else
-			thumbnail = FSpot.ThumbnailGenerator.Create (uri);
-		
-		return thumbnail;
-	}
-
 	// Constructor
 
 	public PhotoStore (QueuedSqliteDatabase database, bool is_new)
@@ -140,16 +107,18 @@ public class PhotoStore : DbStore<Photo> {
 		 	return found;
 
 		string md5 = Photo.GenerateMD5 (uri);			
-		Gnome.Vfs.FileInfo info = new Gnome.Vfs.FileInfo (uri.ToString (), Gnome.Vfs.FileInfoOptions.GetMimeType);
+		var file = GLib.FileFactory.NewForUri (uri);
+		var info = file.QueryInfo ("standard::content-type", GLib.FileQueryInfoFlags.None, null);
 
 		Photo[] md5_matches = GetByMD5 (md5);
 
 		foreach (Photo match in md5_matches)
 		{
-			Gnome.Vfs.FileInfo match_info = new Gnome.Vfs.FileInfo (match.DefaultVersionUri.ToString (), Gnome.Vfs.FileInfoOptions.GetMimeType);
+			var file2 = GLib.FileFactory.NewForUri (match.DefaultVersionUri);
+			var info2 = file.QueryInfo ("standard::content-type", GLib.FileQueryInfoFlags.None, null);
 
 			// same mimetype?
-			if (info.MimeType != match_info.MimeType)
+			if (info.ContentType != info2.ContentType)
 			 	continue;
 
 			// other comparisons?
@@ -162,12 +131,12 @@ public class PhotoStore : DbStore<Photo> {
 		return null;
 	}
 
-	public Photo Create (System.Uri uri, uint roll_id, out Pixbuf thumbnail)
+	public Photo Create (System.Uri uri, uint roll_id)
 	{
-		return Create (uri, uri, roll_id, out thumbnail);
+		return Create (uri, uri, roll_id);
 	}
 
-	public Photo Create (System.Uri new_uri, System.Uri orig_uri, uint roll_id, out Pixbuf thumbnail)
+	public Photo Create (System.Uri new_uri, System.Uri orig_uri, uint roll_id)
 	{
 		Photo photo;
 		using (FSpot.ImageFile img = FSpot.ImageFile.Create (orig_uri)) {
@@ -193,8 +162,6 @@ public class PhotoStore : DbStore<Photo> {
 			photo = new Photo (id, unix_time, new_uri, md5_sum);
 			AddToCache (photo);
 			photo.Loaded = true;
-	
-			thumbnail = GenerateThumbnail (new_uri, img);		
 			EmitAdded (photo);
 		}
 		return photo;
@@ -613,8 +580,8 @@ public class PhotoStore : DbStore<Photo> {
 	public event EventHandler<DbItemEventArgs<Photo>> ItemsAddedOverDBus;
 	public event EventHandler<DbItemEventArgs<Photo>> ItemsRemovedOverDBus;
 
-	public Photo CreateOverDBus (string new_path, string orig_path, uint roll_id, out Gdk.Pixbuf pixbuf)  {
-		Photo photo = Create (UriUtils.PathToFileUri (new_path), UriUtils.PathToFileUri (orig_path), roll_id, out pixbuf);
+	public Photo CreateOverDBus (string new_path, string orig_path, uint roll_id)  {
+		Photo photo = Create (UriUtils.PathToFileUri (new_path), UriUtils.PathToFileUri (orig_path), roll_id);
 		EmitAddedOverDBus (photo);
 
 		return photo;

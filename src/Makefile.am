@@ -327,7 +327,6 @@ CMS_ASSEMBLIES = 				\
 
 CORE_ASSEMBLIES =				\
 	-pkg:gtk-sharp-2.0			\
-	-pkg:gnome-vfs-sharp-2.0		\
 	-r:Cms.dll				\
 	-r:Mono.Posix				\
 	-r:FSpot.Utils.dll
@@ -408,8 +407,7 @@ F_SPOT_ASSEMBLIES = 				\
 	-pkg:mono-addins-setup			\
 	-pkg:mono-addins-gui			\
 	-pkg:glade-sharp-2.0			\
-	-pkg:gnome-sharp-2.0			\
-	-pkg:gnome-vfs-sharp-2.0
+	-pkg:gnome-sharp-2.0
 
 F_SPOT_DISTRESOURCES =					\
 	$(srcdir)/dces.rdf				\

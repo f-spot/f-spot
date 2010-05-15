@@ -103,16 +103,13 @@ namespace FSpot.Tests
 			//uint landscapes_tag_id = landscapes_tag.Id;
 			//uint favorites_tag_id = favorites_tag.Id;
 	
-			Pixbuf unused_thumbnail;
-	
-			Photo ny_landscape = db.Photos.Create (UriUtils.PathToFileUri ("../images/pano.jpg"), 0, out unused_thumbnail);
+			Photo ny_landscape = db.Photos.Create (UriUtils.PathToFileUri ("../images/pano.jpg"), 0);
 			ny_landscape.Description = "Snowy landscape";
 			ny_landscape.AddTag (landscapes_tag);
 			ny_landscape.AddTag (favorites_tag);
 			db.Photos.Commit (ny_landscape);
 	
-//			Photo me_in_sf = db.Photos.Create (DateTime.Now.ToUniversalTime (), 2, "/home/ettore/Photos/me_in_sf.jpg",
-//							   out unused_thumbnail);
+//			Photo me_in_sf = db.Photos.Create (DateTime.Now.ToUniversalTime (), 2, "/home/ettore/Photos/me_in_sf.jpg");
 //			me_in_sf.AddTag (landscapes_tag);
 //			me_in_sf.AddTag (portraits_tag);
 //			me_in_sf.AddTag (favorites_tag);
@@ -124,8 +121,7 @@ namespace FSpot.Tests
 //			me_in_sf.CreateVersion ("UM-ed", Photo.OriginalVersionId);
 //			db.Photos.Commit (me_in_sf);
 //	
-//			Photo macro_shot = db.Photos.Create (DateTime.Now.ToUniversalTime (), 2, "/home/ettore/Photos/macro_shot.jpg",
-//							     out unused_thumbnail);
+//			Photo macro_shot = db.Photos.Create (DateTime.Now.ToUniversalTime (), 2, "/home/ettore/Photos/macro_shot.jpg");
 			db.Dispose ();
 	
 			db.Init (path, false);

@@ -413,8 +413,6 @@ namespace DBusService {
 			// add tags that exist in tag store
 			List<Tag> tag_list = GetTagsByNames (tags);
 
-			Gdk.Pixbuf pixbuf = null;
-
 			// FIXME: this is more or less a copy of the file import backend code
 			// this should be streamlined
 			try {
@@ -426,7 +424,7 @@ namespace DBusService {
 				if (new_path != path)
 					System.IO.File.Copy (path, new_path);
 
-				Photo created = db.Photos.CreateOverDBus (new_path, path, current_roll.Id, out pixbuf);
+				Photo created = db.Photos.CreateOverDBus (new_path, path, current_roll.Id);
 
 				try {
 					File.SetAttributes (new_path, File.GetAttributes (new_path) & ~FileAttributes.ReadOnly);

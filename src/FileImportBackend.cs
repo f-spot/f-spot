@@ -222,7 +222,7 @@ public class FileImportBackend : ImportBackend {
 					photo = store.CheckForDuplicate (UriUtils.PathToFileUri (destination));
 
 				if (photo == null)
-					photo = store.Create (UriUtils.PathToFileUri (info.DestinationPath), roll.Id, out thumbnail);
+					photo = store.Create (UriUtils.PathToFileUri (info.DestinationPath), roll.Id);
 				else
 				 	is_duplicate = true;
 			} else {
@@ -237,8 +237,7 @@ public class FileImportBackend : ImportBackend {
 				{
 					photo = store.Create (UriUtils.PathToFileUri (info.DestinationPath),
 					                      UriUtils.PathToFileUri (info.OriginalPath),
-					                      roll.Id,
-					                      out thumbnail);
+					                      roll.Id);
 				 	
 
 					try {
@@ -276,10 +275,6 @@ public class FileImportBackend : ImportBackend {
 			}
 		} catch (System.Exception e) {
 			System.Console.WriteLine ("Error importing {0}{2}{1}", info.OriginalPath, e.ToString (), Environment.NewLine);
-			if (thumbnail != null)
-				thumbnail.Dispose ();
-
-			thumbnail = null;
 			photo = null;
 
 			HigMessageDialog errordialog = new HigMessageDialog (parent,
@@ -300,7 +295,7 @@ public class FileImportBackend : ImportBackend {
 		if (is_duplicate)
 		 	this.duplicate_count ++;
 
-		status_info = new StepStatusInfo (photo, thumbnail, this.count, is_duplicate);
+		status_info = new StepStatusInfo (photo, this.count, is_duplicate);
 
 		return (!abort && count != import_info.Count);
 	}
@@ -379,47 +374,4 @@ public class FileImportBackend : ImportBackend {
 		this.tags = tags;
 		this.parent = parent;
 	}
-
-#if TEST_FILE_IMPORT_BACKEND
-
-	public static void Main (string [] args)
-	{
-		Program program = new Program ("FileImportTest", "0.0", Modules.UI, args);
-
-		const string path = "/tmp/FileImportTest.db";
-
-		try {
-			File.Delete (path);
-		} catch {}
-
-		Db db = new Db (path, true);
-
-		FileImportBackend import = new FileImportBackend (db.Photos, args [0],true, this);
-
-		Console.WriteLine ("Preparing...");
-
-		int total_count = import.Prepare();
-		if (total_count == 0)
-			Console.WriteLine ("(No pictures)");
-
-		Console.WriteLine ("Prepared: {0} picture(s)", total_count);
-
-		bool ongoing;
-		do {
-			Photo photo;
-			Pixbuf thumbnail;
-			int count;
-
-			ongoing = import.Step (out photo, out thumbnail, out count);
-
-			Console.WriteLine ("{0}/{1} - {2}", count, total_count, photo.Path);
-
-			if (thumbnail != null)
-				thumbnail.Dispose ();
-		} while (ongoing);
-
-		import.Finish ();
-	}
-
-#endif
 }

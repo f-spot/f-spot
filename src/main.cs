@@ -175,7 +175,7 @@ namespace FSpot
 				return 1;
 			}
 
-			//Initialize Mono.Addins
+			// Initialize Mono.Addins
 			uint timer = Log.InformationTimerStart ("Initializing Mono.Addins");
 			AddinManager.Initialize (FSpot.Global.BaseDirectory);
 			AddinManager.Registry.Update (null);
@@ -190,9 +190,8 @@ namespace FSpot
 			Log.DebugTimerPrint (timer, "Mono.Addins Initialization took {0}");
 
 
-			//Gtk initialization
+			// Gtk initialization
 			Gtk.Application.Init (Defines.PACKAGE, ref args);
-			Gnome.Vfs.Vfs.Initialize ();
 
 			// init web proxy globally
 			Platform.WebProxy.Init ();
