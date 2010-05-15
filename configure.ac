@@ -409,3 +409,23 @@ extensions/Transitions/CoverTransition/Makefile
 tests/Makefile
 tests/src/Makefile
 )
+
+cat <<EOF
+
+${PACKAGE}-${VERSION}
+
+  Build Environment
+    Install Prefix:    ${prefix}
+    Datadir:           ${expanded_datadir}
+    Libdir:            ${expanded_libdir}
+
+    C Compiler:        ${CC}
+    Mono C# Compiler:  ${MCS} ${GMCS_FLAGS}
+    Mono Runtime:      ${MONO}
+
+  Build/Development:
+    Unit Tests:        ${do_tests}
+
+Run 'make' to build F-Spot.
+
+EOF
