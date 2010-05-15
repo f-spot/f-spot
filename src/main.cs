@@ -58,7 +58,6 @@ namespace FSpot
 
 		static int Main (string [] args)
 		{
-			bool empty = false;
 			List<string> uris = new List<string> ();
 			Unix.SetProcessName (Defines.PACKAGE);
 
