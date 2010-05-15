@@ -31,6 +31,11 @@ namespace FSpot {
 		{
 			this.uri = uri;
 		}
+
+		~ImageFile ()
+		{
+			Dispose ();
+		}
 		
 		protected Stream Open ()
 		{
