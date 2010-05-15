@@ -41,7 +41,7 @@ namespace MetaPixelExtension {
 
 		public void Run (object o, EventArgs e) {
 			Log.Information ("Executing MetaPixel extension");
-			if (MainWindow.Toplevel.SelectedPhotos ().Length == 0) {
+			if (App.Instance.Organizer.SelectedPhotos ().Length == 0) {
 				InfoDialog (Catalog.GetString ("No selection available"),
 					    Catalog.GetString ("This tool requires an active selection. Please select one or more pictures and try again"),
 					    Gtk.MessageType.Error);
@@ -78,7 +78,7 @@ namespace MetaPixelExtension {
 			metapixel_dialog.Modal = false;
 			metapixel_dialog.TransientFor = null;
 
-			miniatures_tags = new FSpot.Widgets.TagEntry (MainWindow.Toplevel.Database.Tags, false);
+			miniatures_tags = new FSpot.Widgets.TagEntry (App.Instance.Database.Tags, false);
 			miniatures_tags.UpdateFromTagNames (new string []{});
 			tagentry_box.Add (miniatures_tags);
 
@@ -98,7 +98,7 @@ namespace MetaPixelExtension {
 
 		void create_mosaics () {
 			//Prepare the query
-			Db db = MainWindow.Toplevel.Database;
+			Db db = App.Instance.Database;
 			FSpot.PhotoQuery mini_query = new FSpot.PhotoQuery (db.Photos);
 			Photo [] photos;
 
@@ -113,7 +113,7 @@ namespace MetaPixelExtension {
 				mini_query.Terms = FSpot.OrTerm.FromTags ((Tag []) taglist.ToArray (typeof (Tag)));
 				photos = mini_query.Photos;
 			} else {
-				photos = MainWindow.Toplevel.Query.Photos;
+				photos = App.Instance.Organizer.Query.Photos;
 			}
 
 			if (photos.Length == 0) {
@@ -179,11 +179,11 @@ namespace MetaPixelExtension {
 			progress_dialog = null;
 			progress_dialog = new ProgressDialog (Catalog.GetString ("Creating photomosaics"),
 							      ProgressDialog.CancelButtonType.Stop,
-							      MainWindow.Toplevel.SelectedPhotos ().Length, metapixel_dialog);
+							      App.Instance.Organizer.SelectedPhotos ().Length, metapixel_dialog);
 
 			//Now create the mosaics!
 			uint error_count = 0;
-			foreach (Photo p in MainWindow.Toplevel.SelectedPhotos ()) {
+			foreach (Photo p in App.Instance.Organizer.SelectedPhotos ()) {
 				if (progress_dialog.Update (String.Format (Catalog.GetString ("Processing \"{0}\""), p.Name))) {
 					progress_dialog.Destroy ();
 					DeleteTmp ();
@@ -232,7 +232,7 @@ namespace MetaPixelExtension {
 			string final_message = "Your mosaics have been generated as new versions of the pictures you selected";
 			if (error_count > 0)
 				final_message += String.Format (".\n{0} images out of {1} had errors",
-							error_count, MainWindow.Toplevel.SelectedPhotos ().Length);
+							error_count, App.Instance.Organizer.SelectedPhotos ().Length);
 			InfoDialog (Catalog.GetString ("PhotoMosaics generated!"),
 				    Catalog.GetString (final_message),
 				    (error_count == 0 ? Gtk.MessageType.Info : Gtk.MessageType.Warning));
@@ -287,7 +287,7 @@ namespace MetaPixelExtension {
 		}
 
 		private void InfoDialog (string title, string msg, Gtk.MessageType type) {
-			HigMessageDialog md = new HigMessageDialog (MainWindow.Toplevel.Window, DialogFlags.DestroyWithParent,
+			HigMessageDialog md = new HigMessageDialog (App.Instance.Organizer.Window, DialogFlags.DestroyWithParent,
 						  type, ButtonsType.Ok, title, msg);
 
 			md.Run ();

@@ -152,13 +152,11 @@ namespace FSpot {
 		public void ShowBar ()
 		{
 			Show ();
-			((Gtk.Label)MainWindow.Toplevel.FindByTag.Child).TextWithMnemonic = Catalog.GetString ("Hide _Find Bar");
 		}
 
 		public void HideBar ()
 		{
 			Hide ();
-			((Gtk.Label)MainWindow.Toplevel.FindByTag.Child).TextWithMnemonic = Catalog.GetString ("Show _Find Bar");
 		}
 
 		public void HandleChanged (IBrowsableCollection collection) 

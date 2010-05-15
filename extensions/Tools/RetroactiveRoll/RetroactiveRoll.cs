@@ -21,7 +21,7 @@ namespace RetroactiveRoll
 	{
 		public void Run (object o, EventArgs e)
 		{
-			Photo[] photos = MainWindow.Toplevel.SelectedPhotos ();
+			Photo[] photos = App.Instance.Organizer.SelectedPhotos ();
 
 			if (photos.Length == 0) {
 				Console.WriteLine ("no photos selected, returning");

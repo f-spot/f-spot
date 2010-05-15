@@ -389,7 +389,7 @@ public class ImportCommand : GladeDialog
 				string port = "gphoto2:" + csource.Port;
 				this.Cancel ();
 				this.Dialog.Destroy ();
-				MainWindow.Toplevel.ImportCamera (port);
+				App.Instance.Organizer.ImportCamera (port);
 			}
 
 			idle_start.Start ();
@@ -641,7 +641,7 @@ public class ImportCommand : GladeDialog
 		photo_view.Pixbuf = GtkUtil.TryLoadIcon (FSpot.Global.IconTheme, "f-spot", 128, (Gtk.IconLookupFlags)0);
 		photo_view.ZoomFit (false);
 			
-		tag_entry = new FSpot.Widgets.TagEntry (MainWindow.Toplevel.Database.Tags, false);
+		tag_entry = new FSpot.Widgets.TagEntry (App.Instance.Database.Tags, false);
 		tag_entry.UpdateFromTagNames (new string []{});
 		tagentry_box.Add (tag_entry);
 
@@ -730,7 +730,7 @@ public class ImportCommand : GladeDialog
 			return;
 
 		tags_selected = new ArrayList ();
-		Db db = MainWindow.Toplevel.Database;	
+		Db db = App.Instance.Database;	
 		db.BeginTransaction ();
 		foreach (string tagname in new_tags) {
 			Tag t = db.Tags.GetTagByName (tagname);

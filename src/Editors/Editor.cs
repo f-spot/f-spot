@@ -205,7 +205,7 @@ namespace FSpot.Editors {
 			Pixbuf previewed = ProcessFast (preview, null);
 			State.PhotoImageView.Pixbuf = previewed;
 			State.PhotoImageView.ZoomFit (false);
-			MainWindow.Toplevel.InfoBox.UpdateHistogram (previewed);
+			App.Instance.Organizer.InfoBox.UpdateHistogram (previewed);
 
 			if (old_preview != null) {
 				old_preview.Dispose ();
@@ -238,7 +238,7 @@ namespace FSpot.Editors {
 				State.PhotoImageView.Pixbuf = original;
 				State.PhotoImageView.ZoomFit (false);
 
-				MainWindow.Toplevel.InfoBox.UpdateHistogram (null);
+				App.Instance.Organizer.InfoBox.UpdateHistogram (null);
 			}
 
 			Reset ();

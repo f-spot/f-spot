@@ -25,7 +25,7 @@ namespace RawPlusJpegExtension
 			Console.WriteLine ("EXECUTING RAW PLUS JPEG EXTENSION");
 
 			if (ResponseType.Ok != HigMessageDialog.RunHigConfirmation (
-				MainWindow.Toplevel.Window,
+				App.Instance.Organizer.Window,
 				DialogFlags.DestroyWithParent,
 				MessageType.Warning,
 				"Merge Raw+Jpegs",
@@ -62,7 +62,7 @@ namespace RawPlusJpegExtension
 			foreach (MergeRequest mr in merge_requests)
 				mr.Merge ();
 
-			MainWindow.Toplevel.UpdateQuery ();
+			App.Instance.Organizer.UpdateQuery ();
 		}
 
 		private static bool SamePlaceAndName (Photo p1, Photo p2)

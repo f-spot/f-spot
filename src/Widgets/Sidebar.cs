@@ -190,7 +190,7 @@ namespace FSpot.Widgets
 
 		public void HandleMainWindowViewModeChanged (object o, EventArgs args)
 		{
-			MainWindow.ModeType mode = MainWindow.Toplevel.ViewMode;
+			MainWindow.ModeType mode = App.Instance.Organizer.ViewMode;
 			if (mode == MainWindow.ModeType.IconView) 
 				Context = ViewContext.Library;
 			else if (mode == MainWindow.ModeType.PhotoView)

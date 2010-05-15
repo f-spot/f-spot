@@ -46,7 +46,7 @@ namespace SyncCatalogExtension {
 			
 			RadioSelectedPhotos = new RadioButton ("Synchronize selected photos");
 			RadioEntireCatalog = new RadioButton (RadioSelectedPhotos, "Synchronize entire catalog");
-			if (MainWindow.Toplevel.SelectedPhotos ().Length > 0)
+			if (App.Instance.Organizer.SelectedPhotos ().Length > 0)
 				RadioSelectedPhotos.Active = true;
 			else
 				RadioEntireCatalog.Active = true;
@@ -78,7 +78,7 @@ namespace SyncCatalogExtension {
 					if (RadioEntireCatalog.Active)
 						photos = Core.Database.Photos.Query ();
 					else if (RadioSelectedPhotos.Active)
-						photos = MainWindow.Toplevel.SelectedPhotos ();
+						photos = App.Instance.Organizer.SelectedPhotos ();
 
 					this.Hide ();
 					foreach (Photo photo in photos) {

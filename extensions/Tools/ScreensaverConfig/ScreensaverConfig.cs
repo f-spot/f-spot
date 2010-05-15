@@ -61,7 +61,7 @@ namespace ScreensaverConfig
 					req.Width += 100;
 					args.Requisition = req;
 				};
-				TagMenu menu = new TagMenu (null, MainWindow.Toplevel.Database.Tags);
+				TagMenu menu = new TagMenu (null, App.Instance.Database.Tags);
 				menu.Populate (false);
 				menu.TagSelected += HandleTagSelected;
 				tag_button.Menu = menu;
@@ -88,7 +88,7 @@ namespace ScreensaverConfig
 					break;
 				case SCREENSAVER_TAG:
 					var screensaver_tag = Preferences.Get<int> (key);
-					Tag t = MainWindow.Toplevel.Database.Tags.GetTagById (screensaver_tag);
+					Tag t = App.Instance.Database.Tags.GetTagById (screensaver_tag);
 					if (screensaver_tag == 0 || t == null) {
 						all_radio.Active = true;
 						tag_button.Sensitive = false;

@@ -491,7 +491,7 @@ namespace FSpot {
 			// Check that the tag doesn't already exist
 			if (String.Compare (args.NewText, tag.Name, true) != 0 &&
 			    tag_store.GetTagByName (args.NewText) != null) {
-				HigMessageDialog md = new HigMessageDialog (MainWindow.Toplevel.Window,
+				HigMessageDialog md = new HigMessageDialog (App.Instance.Organizer.Window,
 					DialogFlags.DestroyWithParent, 
 					MessageType.Warning, ButtonsType.Ok, 
 					Catalog.GetString ("Error renaming tag"),
@@ -533,7 +533,7 @@ namespace FSpot {
 		public TagSelectionWidget (TagStore tag_store)
 			: base (new TreeStore (typeof(uint), typeof(string)))
 		{
-			database = MainWindow.Toplevel.Database;
+			database = App.Instance.Database;
 			
 			HeadersVisible = false;
 	

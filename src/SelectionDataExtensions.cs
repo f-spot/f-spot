@@ -43,7 +43,7 @@ namespace FSpot
 			int size = sizeof (uint);
 			int length = selection_data.Length / size;
 			
-			PhotoStore photo_store = MainWindow.Toplevel.Database.Photos;
+			PhotoStore photo_store = App.Instance.Database.Photos;
 
 			Photo [] photos = new Photo [length];
 			
@@ -77,7 +77,7 @@ namespace FSpot
 			int size = sizeof (uint);
 			int length = selection_data.Length / size;
 			
-			TagStore tag_store = MainWindow.Toplevel.Database.Tags;
+			TagStore tag_store = App.Instance.Database.Tags;
 
 			Tag [] tags = new Tag [length];
 			

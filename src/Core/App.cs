@@ -221,7 +221,7 @@ namespace FSpot
 		void HandleShutdown ()
 		{
 			try {
-				MainWindow.Toplevel.Close ();
+				App.Instance.Organizer.Close ();
 			} catch {
 				System.Environment.Exit (0);
 			}

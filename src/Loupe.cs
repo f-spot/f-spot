@@ -438,7 +438,7 @@ namespace FSpot.Widgets {
 				break;
 			case Gdk.EventType.TwoButtonPress:
 				dragging = false;
-				MainWindow.Toplevel.HideLoupe ();
+				App.Instance.Organizer.HideLoupe ();
 				break;
 			}
 		}
@@ -457,7 +457,7 @@ namespace FSpot.Widgets {
 		{
 			switch (args.Event.Key) {
 			case Gdk.Key.v:
-				MainWindow.Toplevel.HideLoupe ();
+				App.Instance.Organizer.HideLoupe ();
 				args.RetVal = true;
 				break;
 			default:

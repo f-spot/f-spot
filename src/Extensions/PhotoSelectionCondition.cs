@@ -23,13 +23,13 @@ namespace FSpot.Extensions
 	{
 		public PhotoSelectionCondition()
 		{
-			if (MainWindow.Toplevel != null)
-				MainWindow.Toplevel.Selection.Changed += delegate { NotifyChanged ();};
+			if (App.Instance.Organizer != null)
+				App.Instance.Organizer.Selection.Changed += delegate { NotifyChanged ();};
 		}
 
 		public override bool Evaluate (NodeElement conditionNode)
 		{
-			int count = MainWindow.Toplevel.Selection.Count;
+			int count = App.Instance.Organizer.Selection.Count;
 			string val = conditionNode.GetAttribute ("selection");
 			if (val.Length > 0) {
 				foreach (string selection in val.Split(',')) {

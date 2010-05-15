@@ -145,10 +145,10 @@ namespace LiveWebGalleryExtension
 			case QueryType.ByTag:
 				return App.Instance.Database.Photos.Query (new Tag[] {query_tag});
 			case QueryType.CurrentView:
-				return MainWindow.Toplevel.Query.Photos;
+				return App.Instance.Organizer.Query.Photos;
 			case QueryType.Selected:
 			default:
-				return MainWindow.Toplevel.SelectedPhotos ();
+				return App.Instance.Organizer.SelectedPhotos ();
 			}
 		}
 		

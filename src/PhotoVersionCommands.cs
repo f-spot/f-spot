@@ -233,7 +233,7 @@ public class PhotoVersionCommands
 						Log.DebugException (e);
 					}
 				}
-				MainWindow.Toplevel.Database.Photos.Remove (photo);
+				App.Instance.Database.Photos.Remove (photo);
 			}
 			return true;
 		}

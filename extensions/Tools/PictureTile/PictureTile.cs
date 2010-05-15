@@ -47,7 +47,7 @@ namespace PictureTileExtension {
 
 		public void Run (object o, EventArgs e) {
 			Log.Information ("Executing PictureTile extension");
-			if (MainWindow.Toplevel.SelectedPhotos ().Length == 0) {
+			if (App.Instance.Organizer.SelectedPhotos ().Length == 0) {
 				InfoDialog (Catalog.GetString ("No selection available"),
 					    Catalog.GetString ("This tool requires an active selection. Please select one or more pictures and try again"),
 					    Gtk.MessageType.Error);
@@ -109,14 +109,14 @@ namespace PictureTileExtension {
 			ProgressDialog progress_dialog = null;
 			progress_dialog = new ProgressDialog (Catalog.GetString ("Preparing selected pictures"),
 							      ProgressDialog.CancelButtonType.Stop,
-							      MainWindow.Toplevel.SelectedPhotos ().Length, picturetile_dialog);
+							      App.Instance.Organizer.SelectedPhotos ().Length, picturetile_dialog);
 
 			FilterSet filters = new FilterSet ();
 			filters.Add (new JpegFilter ());
 			filters.Add (new OrientationFilter ());
 			uint counter = 0;
 			ArrayList all_tags = new ArrayList ();
-			foreach (Photo p in MainWindow.Toplevel.SelectedPhotos ()) {
+			foreach (Photo p in App.Instance.Organizer.SelectedPhotos ()) {
 				if (progress_dialog.Update (String.Format (Catalog.GetString ("Processing \"{0}\""), p.Name))) {
 					progress_dialog.Destroy ();
 					DeleteTmp ();
@@ -195,7 +195,7 @@ namespace PictureTileExtension {
 			}
 
 			//Add the pic(s) to F-Spot!
-			Db db = MainWindow.Toplevel.Database;
+			Db db = App.Instance.Database;
 			ImportCommand command = new ImportCommand (null);
 			if (command.ImportFromPaths (db.Photos, photo_import_list, photo_tags) > 0) {
 				InfoDialog (Catalog.GetString ("PhotoWall generated!"),
@@ -243,7 +243,7 @@ namespace PictureTileExtension {
 		}
 
 		private void InfoDialog (string title, string msg, Gtk.MessageType type) {
-			HigMessageDialog md = new HigMessageDialog (MainWindow.Toplevel.Window, DialogFlags.DestroyWithParent,
+			HigMessageDialog md = new HigMessageDialog (App.Instance.Organizer.Window, DialogFlags.DestroyWithParent,
 						  type, ButtonsType.Ok, title, msg);
 
 			md.Run ();

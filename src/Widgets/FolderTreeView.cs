@@ -163,7 +163,7 @@ namespace FSpot.Widgets
 		
 		protected override void OnRowActivated (Gtk.TreePath path, Gtk.TreeViewColumn column)
 		{
-			MainWindow.Toplevel.SetFolderQuery (SelectedUris);	
+			App.Instance.Organizer.SetFolderQuery (SelectedUris);	
 		}
 
 	}

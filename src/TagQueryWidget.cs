@@ -24,7 +24,7 @@ namespace FSpot
 			//this.literal = literal;
 
 			/*MenuItem attach_item = new MenuItem (Catalog.GetString ("Find With"));
-			TagMenu attach_menu = new TagMenu (attach_item, MainWindow.Toplevel.Database.Tags);
+			TagMenu attach_menu = new TagMenu (attach_item, App.Instance.Database.Tags);
 			attach_menu.TagSelected += literal.HandleAttachTagCommand;
 			attach_item.ShowAll ();
 			popup_menu.Append (attach_item);*/
@@ -111,7 +111,7 @@ namespace FSpot
 				//Console.WriteLine ("root is not null and has terms");
 				Gtk.Menu m = new Gtk.Menu ();
 
-				Gtk.MenuItem all_item = GtkUtil.MakeMenuItem (m, Catalog.GetString ("All"), new EventHandler (MainWindow.Toplevel.HandleRequireTag));
+				Gtk.MenuItem all_item = GtkUtil.MakeMenuItem (m, Catalog.GetString ("All"), new EventHandler (App.Instance.Organizer.HandleRequireTag));
 				GtkUtil.MakeMenuSeparator (m);
 
 				int sensitive_items = 0;
@@ -122,7 +122,7 @@ namespace FSpot
 
 					string name = "_" + String.Join (", ", (string []) term_parts.ToArray (typeof(string)));
 
-					Gtk.MenuItem item = GtkUtil.MakeMenuItem (m, name, new EventHandler (MainWindow.Toplevel.HandleAddTagToTerm));
+					Gtk.MenuItem item = GtkUtil.MakeMenuItem (m, name, new EventHandler (App.Instance.Organizer.HandleAddTagToTerm));
 					item.Sensitive = !contains_tag;
 
 					if (!contains_tag)

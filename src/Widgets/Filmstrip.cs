@@ -570,11 +570,11 @@ namespace FSpot.Widgets
 			Gtk.Menu placement_menu = new Gtk.Menu ();
 			GtkUtil.MakeCheckMenuItem (placement_menu, 
 							Mono.Unix.Catalog.GetString ("_Horizontal"), 
-							MainWindow.Toplevel.HandleFilmstripHorizontal, 
+							App.Instance.Organizer.HandleFilmstripHorizontal, 
 							true, Orientation == Orientation.Horizontal, true);
 			GtkUtil.MakeCheckMenuItem (placement_menu, 
 							Mono.Unix.Catalog.GetString ("_Vertical"), 
-							MainWindow.Toplevel.HandleFilmstripVertical, 
+							App.Instance.Organizer.HandleFilmstripVertical, 
 							true, Orientation == Orientation.Vertical, true);
 
 			if (args != null)

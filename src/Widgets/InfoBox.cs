@@ -144,7 +144,7 @@ namespace FSpot.Widgets
 
 		private void HandleRatingChanged (object o, EventArgs e)
 		{
-			MainWindow.Toplevel.HandleRatingMenuSelected ((o as Widgets.Rating).Value);
+			App.Instance.Organizer.HandleRatingMenuSelected ((o as Widgets.Rating).Value);
 	 	}
 	
 		private Label CreateRightAlignedLabel (string text)
@@ -747,7 +747,7 @@ namespace FSpot.Widgets
 	
 		public void HandleMainWindowViewModeChanged (object o, EventArgs args)
 		{
-			MainWindow.ModeType mode = MainWindow.Toplevel.ViewMode;
+			MainWindow.ModeType mode = App.Instance.Organizer.ViewMode;
 			if (mode == MainWindow.ModeType.IconView)
 				Context = ViewContext.Library;
 			else if (mode == MainWindow.ModeType.PhotoView)

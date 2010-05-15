@@ -33,7 +33,6 @@ namespace FSpot
 {
 	public class MainWindow
 	{
-		public static MainWindow Toplevel;
 		public Sidebar Sidebar { get; private set; }
 	
 		TagSelectionWidget tag_selection_widget;
@@ -218,11 +217,6 @@ namespace FSpot
 		public MainSelection Selection { get; private set; }
 		public InfoBox InfoBox { get; private set; }
 	
-		public MenuItem FindByTag {
-			get { return uimanager.GetWidget ("/ui/menubar1/find/find_by_tag") as MenuItem; }
-		}
-	
-	
 		//
 		// Constructor
 		//
@@ -269,9 +263,6 @@ namespace FSpot
 
 #endif
 			Database = db;
-	
-			if (Toplevel == null)
-				Toplevel = this;
 	
 			GtkBeans.Builder builder = new GtkBeans.Builder ("main_window.ui");
 			builder.Autoconnect (this);
@@ -434,6 +425,14 @@ namespace FSpot
 			query_widget.Logic.Changed += HandleQueryLogicChanged;
 			view_vbox.PackStart (query_widget, false, false, 0);
 			view_vbox.ReorderChild (query_widget, 2);
+			
+			MenuItem findByTag = uimanager.GetWidget ("/ui/menubar1/find/find_by_tag") as MenuItem;
+			query_widget.Hidden += delegate (object sender, EventArgs args) {
+				((Gtk.Label)findByTag.Child).TextWithMnemonic = Catalog.GetString ("Show _Find Bar");
+			};
+			query_widget.Shown += delegate (object sender, EventArgs args) {
+				((Gtk.Label)findByTag.Child).TextWithMnemonic = Catalog.GetString ("Hide _Find Bar");
+			};
 	
 			icon_view = new QueryView (query);
 			icon_view.ZoomChanged += HandleZoomChanged;
@@ -1586,7 +1585,7 @@ namespace FSpot
 	
 		public static void HandleHelp (object sender, EventArgs args)
 		{
-			GtkBeans.Global.ShowUri (Toplevel.Window.Screen, "ghelp:f-spot");
+			GtkBeans.Global.ShowUri (App.Instance.Organizer.Window.Screen, "ghelp:f-spot");
 		}
 	
 		public static void HandleAbout (object sender, EventArgs args)
@@ -2291,7 +2290,7 @@ namespace FSpot
 			System.Array.Sort (tags, new TagRemoveComparer ());
 		
 			//How many pictures are associated to these tags?
-			Db db = MainWindow.Toplevel.Database;
+			Db db = App.Instance.Database;
 			FSpot.PhotoQuery count_query = new FSpot.PhotoQuery(db.Photos);
 			count_query.Terms = FSpot.OrTerm.FromTags(tags);
 			int associated_photos = count_query.Count;

@@ -69,7 +69,7 @@ namespace LightTableExtension
 				photos = new List<MLPhoto> ();
 				selected_photos = new List<MLPhoto> ();
 
-				foreach (Photo p in MainWindow.Toplevel.SelectedPhotos ()) {
+				foreach (Photo p in App.Instance.Organizer.SelectedPhotos ()) {
 					MLPhoto p1 = new MLPhoto (p.DefaultVersionUri, this);
 					photos.Add (p1);
 				}

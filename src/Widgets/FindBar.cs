@@ -269,7 +269,7 @@ namespace FSpot.Widgets {
 
 				is_negated = is_negated || negated;
 
-				tag = MainWindow.Toplevel.Database.Tags.GetTagByName (literal);
+				tag = App.Instance.Database.Tags.GetTagByName (literal);
 
 				// New OR term so we can match against both tag and text search
 				parent = new OrTerm(parent, null);

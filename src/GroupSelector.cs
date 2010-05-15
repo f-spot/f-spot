@@ -512,10 +512,10 @@ namespace FSpot {
 		{
 			Gtk.Menu order_menu = new Gtk.Menu();
 			
-			order_menu.Append (MainWindow.Toplevel.ReverseOrderAction.CreateMenuItem ());
+			order_menu.Append (App.Instance.Organizer.ReverseOrderAction.CreateMenuItem ());
 
 			GtkUtil.MakeMenuItem (order_menu, Catalog.GetString ("_Clear Date Range"), 
-						MainWindow.Toplevel.HandleClearDateRange);
+						App.Instance.Organizer.HandleClearDateRange);
 			
 			if (args != null)
 				order_menu.Popup (null, null, null, args.Button, args.Time);

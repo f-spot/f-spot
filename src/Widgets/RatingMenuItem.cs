@@ -60,8 +60,8 @@ namespace FSpot.Widgets
 				FSpot.Utils.Log.Debug ("PARENT IS FSVIEW");
 				FullScreenView fsview = parent as FullScreenView;
 				entry = new Rating ((int)fsview.View.Item.Current.Rating, true);
-			} else if (MainWindow.Toplevel.Selection.Count == 1)
-				entry = new Rating ((int)MainWindow.Toplevel.Selection[0].Rating, true);
+			} else if (App.Instance.Organizer.Selection.Count == 1)
+				entry = new Rating ((int)App.Instance.Organizer.Selection[0].Rating, true);
 			else
 				entry = new Rating (-1, true);
 			entry.Changed += OnEntryChanged;

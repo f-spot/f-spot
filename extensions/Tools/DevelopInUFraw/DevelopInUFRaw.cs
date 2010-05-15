@@ -29,7 +29,7 @@ namespace DevelopInUFRawExtension
 		{
 			Log.Information ("Executing DevelopInUFRaw extension");
 
-			foreach (Photo p in MainWindow.Toplevel.SelectedPhotos ()) {
+			foreach (Photo p in App.Instance.Organizer.SelectedPhotos ()) {
 				DevelopPhoto (p);
 			}
 		}
@@ -45,11 +45,11 @@ namespace DevelopInUFRawExtension
 		{
 			ProgressDialog pdialog = new ProgressDialog(Catalog.GetString ("Developing photos"),
 														ProgressDialog.CancelButtonType.Cancel,
-														MainWindow.Toplevel.SelectedPhotos ().Length,
-														MainWindow.Toplevel.Window);
+														App.Instance.Organizer.SelectedPhotos ().Length,
+														App.Instance.Organizer.Window);
 			Log.Information ("Executing DevelopInUFRaw extension in batch mode");
 
-			foreach (Photo p in MainWindow.Toplevel.SelectedPhotos ()) {
+			foreach (Photo p in App.Instance.Organizer.SelectedPhotos ()) {
 				bool cancelled = pdialog.Update(String.Format(Catalog.GetString ("Developing {0}"), p.Name));
 				if (cancelled) {
 					break;

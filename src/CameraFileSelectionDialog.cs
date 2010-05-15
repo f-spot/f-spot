@@ -96,7 +96,7 @@ namespace FSpot {
 		
 		private void CreateTagMenu ()
 		{
-			TagMenu tagmenu = new TagMenu (null, MainWindow.Toplevel.Database.Tags);
+			TagMenu tagmenu = new TagMenu (null, App.Instance.Database.Tags);
 			tagmenu.NewTagHandler = HandleNewTagSelected;
 			
 			tagmenu.Append (new MenuItem (Catalog.GetString ("Select Tag")));
@@ -116,7 +116,7 @@ namespace FSpot {
 
 		private void HandleNewTagSelected (object sender, EventArgs args)
 		{
-			Tag new_tag = MainWindow.Toplevel.CreateTag (Dialog, null);
+			Tag new_tag = App.Instance.Organizer.CreateTag (Dialog, null);
 			
 			if (new_tag != null) {
 				CreateTagMenu ();

@@ -87,7 +87,7 @@ namespace FSpot.Widgets {
 		private ProgressDialog progress;
 
 		private void OnProcessingStarted (string name, int count) {
-			progress = new ProgressDialog (name, ProgressDialog.CancelButtonType.None, count, MainWindow.Toplevel.Window);
+			progress = new ProgressDialog (name, ProgressDialog.CancelButtonType.None, count, App.Instance.Organizer.Window);
 		}
 
 		private void OnProcessingStep (int done) {
@@ -172,7 +172,7 @@ namespace FSpot.Widgets {
 		private bool SetupEditor (Editor editor) {
 			EditorState state = editor.CreateState ();
 
-			PhotoImageView photo_view = MainWindow.Toplevel.PhotoView.View;
+			PhotoImageView photo_view = App.Instance.Organizer.PhotoView.View;
 
 			if (Page.InPhotoView && photo_view != null) {
 				state.Selection = photo_view.Selection;
@@ -197,7 +197,7 @@ namespace FSpot.Widgets {
 				string msg = Catalog.GetString ("No selection available");
 				string desc = Catalog.GetString ("This tool requires an active selection. Please select a region of the photo and try the operation again");
 
-				HigMessageDialog md = new HigMessageDialog (MainWindow.Toplevel.Window,
+				HigMessageDialog md = new HigMessageDialog (App.Instance.Organizer.Window,
 										DialogFlags.DestroyWithParent,
 										Gtk.MessageType.Error, ButtonsType.Ok,
 										msg,
@@ -218,7 +218,7 @@ namespace FSpot.Widgets {
 				string desc = String.Format (Catalog.GetString ("Received exception \"{0}\". Note that you have to develop RAW files into JPEG before you can edit them."),
 							     e.Message);
 
-				HigMessageDialog md = new HigMessageDialog (MainWindow.Toplevel.Window,
+				HigMessageDialog md = new HigMessageDialog (App.Instance.Organizer.Window,
 									    DialogFlags.DestroyWithParent,
 									    Gtk.MessageType.Error, ButtonsType.Ok,
 									    msg,

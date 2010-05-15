@@ -42,7 +42,7 @@ namespace ZipExport {
 		public void Run (IBrowsableCollection p) {
 			Log.Information ("Executing ZipExport extension");
 			if (p.Count == 0) {
-				HigMessageDialog md = new HigMessageDialog (MainWindow.Toplevel.Window, DialogFlags.DestroyWithParent,
+				HigMessageDialog md = new HigMessageDialog (App.Instance.Organizer.Window, DialogFlags.DestroyWithParent,
 							  Gtk.MessageType.Error, ButtonsType.Ok,
 							  Catalog.GetString ("No selection available"),
 							  Catalog.GetString ("This tool requires an active selection. Please select one or more pictures and try again"));

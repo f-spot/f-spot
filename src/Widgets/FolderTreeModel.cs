@@ -37,7 +37,7 @@ namespace FSpot.Widgets
 		public FolderTreeModel ()
 			: base (typeof (string), typeof (int), typeof (Uri))
 		{
-			database = MainWindow.Toplevel.Database;
+			database = App.Instance.Database;
 			database.Photos.ItemsChanged += HandlePhotoItemsChanged;
 			
 			UpdateFolderTree ();

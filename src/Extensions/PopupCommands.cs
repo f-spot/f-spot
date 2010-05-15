@@ -18,7 +18,7 @@ namespace FSpot.Extensions
 	{
 		public void Run (object o, EventArgs e)
 		{
-			MainWindow.Toplevel.HandleCopy (o, e);
+			App.Instance.Organizer.HandleCopy (o, e);
 		}		
 	}
 
@@ -26,7 +26,7 @@ namespace FSpot.Extensions
 	{
 		public void Run (object o, EventArgs e)
 		{
-			MainWindow.Toplevel.HandleRotate270Command (o, e);
+			App.Instance.Organizer.HandleRotate270Command (o, e);
 		}
 	}
 
@@ -34,7 +34,7 @@ namespace FSpot.Extensions
 	{
 		public void Run (object o, EventArgs e)
 		{
-			MainWindow.Toplevel.HandleRotate90Command (o, e);
+			App.Instance.Organizer.HandleRotate90Command (o, e);
 		}
 	}
 
@@ -42,7 +42,7 @@ namespace FSpot.Extensions
 	{
 		public void Run (object o, EventArgs e)
 		{
-			MainWindow.Toplevel.HandleRemoveCommand (o, e);
+			App.Instance.Organizer.HandleRemoveCommand (o, e);
 		}
 	}
 
@@ -50,7 +50,7 @@ namespace FSpot.Extensions
 	{
 		public void Run (object o, EventArgs e)
 		{
-			MainWindow.Toplevel.HandleDeleteCommand (o, e);
+			App.Instance.Organizer.HandleDeleteCommand (o, e);
 		}
 	}
 
@@ -60,8 +60,8 @@ namespace FSpot.Extensions
 
 		public Gtk.Menu GetMenu ()
 		{
-			owm = new Widgets.OpenWithMenu (MainWindow.Toplevel.SelectedMimeTypes, "f-spot");
-			owm.ApplicationActivated += MainWindow.Toplevel.HandleOpenWith;
+			owm = new Widgets.OpenWithMenu (App.Instance.Organizer.SelectedMimeTypes, "f-spot");
+			owm.ApplicationActivated += App.Instance.Organizer.HandleOpenWith;
 			return (Gtk.Menu) owm;
 		}
 
@@ -78,9 +78,9 @@ namespace FSpot.Extensions
 
 		public Gtk.Menu GetMenu ()
 		{
-			tag_menu = new TagMenu (null, MainWindow.Toplevel.Database.Tags);
-			tag_menu.NewTagHandler += delegate { MainWindow.Toplevel.HandleCreateTagAndAttach (this, null); };
-			tag_menu.TagSelected += MainWindow.Toplevel.HandleAttachTagMenuSelected;
+			tag_menu = new TagMenu (null, App.Instance.Database.Tags);
+			tag_menu.NewTagHandler += delegate { App.Instance.Organizer.HandleCreateTagAndAttach (this, null); };
+			tag_menu.TagSelected += App.Instance.Organizer.HandleAttachTagMenuSelected;
 			return (Gtk.Menu) tag_menu;
 		}
 
@@ -96,13 +96,13 @@ namespace FSpot.Extensions
 		public Gtk.Menu GetMenu ()
 		{
 			PhotoTagMenu tag_menu = new PhotoTagMenu ();
-			tag_menu.TagSelected += MainWindow.Toplevel.HandleRemoveTagMenuSelected;
+			tag_menu.TagSelected += App.Instance.Organizer.HandleRemoveTagMenuSelected;
 			return (Gtk.Menu) tag_menu;
 		}
 
 		public void OnActivated (object o, EventArgs e)
 		{
-			MainWindow.Toplevel.HandleTagMenuActivate (o, e);
+			App.Instance.Organizer.HandleTagMenuActivate (o, e);
 		}
 	}
 
@@ -110,7 +110,7 @@ namespace FSpot.Extensions
 	{
 		public void Run (object o, EventArgs e)
 		{
-			MainWindow.Toplevel.HandleRatingMenuSelected ((o as Widgets.Rating).Value);
+			App.Instance.Organizer.HandleRatingMenuSelected ((o as Widgets.Rating).Value);
 		}
 	}
 }
