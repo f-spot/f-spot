@@ -447,11 +447,13 @@ namespace FSpot
 	
 			new FSpot.PreviewPopup (icon_view);
 	
-			Gtk.Drag.SourceSet (icon_view, Gdk.ModifierType.Button1Mask | Gdk.ModifierType.Button3Mask,
-					    icon_source_target_table, DragAction.Copy | DragAction.Move);
-			
 			icon_view.DragBegin += HandleIconViewDragBegin;
+			icon_view.DragEnd += HandleIconViewDragEnd;
 			icon_view.DragDataGet += HandleIconViewDragDataGet;
+			icon_view.DragMotion += HandleIconViewDragMotion;
+			icon_view.DragDrop += HandleIconViewDragDrop;
+			// StartDrag is fired by IconView
+			icon_view.StartDrag += HandleIconViewStartDrag;
 	
 			TagMenu tag_menu = new TagMenu (null, Database.Tags);
 			tag_menu.NewTagHandler += delegate { HandleCreateTagAndAttach (this, null); };
@@ -466,9 +468,6 @@ namespace FSpot
 			Gtk.Drag.DestSet (icon_view, DestDefaults.All, icon_dest_target_table, 
 					  DragAction.Copy | DragAction.Move); 
 	
-			//		icon_view.DragLeave += new DragLeaveHandler (HandleIconViewDragLeave);
-			icon_view.DragMotion += HandleIconViewDragMotion;
-			icon_view.DragDrop += HandleIconViewDragDrop;
 			icon_view.DragDataReceived += HandleIconViewDragDataReceived;
 			icon_view.KeyPressEvent += HandleIconViewKeyPressEvent;
 	
@@ -1053,8 +1052,14 @@ namespace FSpot
 		//
 		// IconView Drag Handlers
 		//
+
+		public void HandleIconViewStartDrag (object sender, StartDragArgs args)
+		{
+			Gtk.Drag.Begin (icon_view, new TargetList (icon_source_target_table),
+					DragAction.Copy | DragAction.Move, (int) args.Button, args.Event);
+		}
 	
-		void HandleIconViewDragBegin (object sender, DragBeginArgs args)
+		public void HandleIconViewDragBegin (object sender, DragBeginArgs args)
 		{
 			Photo [] photos = SelectedPhotos ();
 			
@@ -1101,6 +1106,9 @@ namespace FSpot
 					Gtk.Drag.SetIconPixbuf (args.Context, container, 0, 0);
 				container.Dispose ();
 			}
+		}
+
+		void HandleIconViewDragEnd (object sender, DragEndArgs args) {
 		}
 	
 		void HandleIconViewDragDataGet (object sender, DragDataGetArgs args)
@@ -1371,7 +1379,6 @@ namespace FSpot
 		void HandlePhotoViewDragDrop (object sender, DragDropArgs args)
 		{
 			//Widget source = Gtk.Drag.GetSourceWidget (args.Context);
-			//Console.WriteLine ("Drag Drop {0}", source == null ? "null" : source.TypeName);
 	
 			args.RetVal = true;
 		}
@@ -2241,6 +2248,12 @@ namespace FSpot
 			icon_view.Selection.Clear ();
 			UpdateStatusLabel();
 		}
+
+		void HandleSelectInvertCommand (object sender, EventArgs args)
+		{
+			icon_view.Selection.SelectionInvert ();
+			UpdateStatusLabel();
+		}
 	
 		// This ConnectBefore is needed because otherwise the editability of the name
 		// column will steal returns, spaces, and clicks if the tag name is focused
@@ -2251,7 +2264,7 @@ namespace FSpot
 	
 			switch (args.Event.Key) {
 			case Gdk.Key.Delete:
-	 			HandleDeleteSelectedTagCommand (sender, (EventArgs) args);
+				HandleDeleteSelectedTagCommand (sender, (EventArgs) args);
 				break;
 			
 			case Gdk.Key.space:

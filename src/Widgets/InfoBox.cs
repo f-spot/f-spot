@@ -469,8 +469,10 @@ namespace FSpot.Widgets
 			if (Photos == null || Photos.Length == 0) {
 				Hide ();
 			} else if (Photos.Length == 1) {
+				Show ();
 				UpdateSingle ();
 			} else if (Photos.Length > 1) {
+				Show ();
 				UpdateMultiple ();
 			}
 			return false;
@@ -649,7 +651,7 @@ namespace FSpot.Widgets
 			}
 			date_label.Visible = show_date;
 			date_value_label.Visible = show_date;
-			
+
 			if (show_file_size) {
 				long file_size = 0;
 				foreach (Photo photo in Photos) {

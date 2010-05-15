@@ -19,6 +19,16 @@ using FSpot.Platform;
 
 namespace FSpot.Widgets
 {
+    public class StartDragArgs {
+        public Event Event { get; set; }
+        public uint Button { get; set; }
+
+        public StartDragArgs (uint but, Event evt) {
+            this.Button = but;
+            this.Event = evt;
+        }
+    }
+
 	public class IconView : Gtk.Layout {
 
 		// Public properties.
@@ -144,6 +154,9 @@ namespace FSpot.Widgets
 		// Size of the frame around the thumbnail.
 		protected int cell_border_width = 10;
 
+		// Size of the frame that may be selected
+        protected int cell_border_padding = 3;
+
 		// Border around the scrolled area.
 		protected const int BORDER_SIZE = 6;
 
@@ -163,6 +176,7 @@ namespace FSpot.Widgets
 		protected int cells_per_row;
 		protected int cell_width;
 		protected int cell_height;
+		protected int cell_details;
 		protected int displayed_rows; //for pgUp pgDn support
 
 		// The first pixel line that is currently on the screen (i.e. in the current
@@ -192,9 +206,13 @@ namespace FSpot.Widgets
 		// about.
 		private int click_count;
 
+		private Gdk.GC rect_gc=null;
+
 		// Public events.
 		public event EventHandler<BrowsableEventArgs> DoubleClicked;
 		public event EventHandler ZoomChanged;
+		public delegate void StartDragHandler (object o, StartDragArgs args);
+		public event StartDragHandler StartDrag;
 
 		// Public API.
 		public IconView (IntPtr raw) : base (raw) {}
@@ -210,6 +228,7 @@ namespace FSpot.Widgets
 			ButtonReleaseEvent += new ButtonReleaseEventHandler (HandleButtonReleaseEvent);
 			KeyPressEvent += new KeyPressEventHandler (HandleKeyPressEvent);
 			ScrollEvent += new ScrollEventHandler(HandleScrollEvent);
+			MotionNotifyEvent += new MotionNotifyEventHandler (HandleSelectMotionNotify);
 
 			Destroyed += HandleDestroyed;
 
@@ -287,6 +306,7 @@ namespace FSpot.Widgets
 		public class SelectionCollection : IBrowsableCollection {
 			IBrowsableCollection parent;
 			Hashtable selected_cells;
+			BitArray bit_array;
 			int [] selection;
 			IBrowsableItem [] items;
 			IBrowsableItem [] old;
@@ -295,6 +315,7 @@ namespace FSpot.Widgets
 			{
 				this.selected_cells = new Hashtable ();
 				this.parent = collection;
+				this.bit_array = new BitArray (this.parent.Count);
 				this.parent.Changed += HandleParentChanged;
 				this.parent.ItemsChanged += HandleParentItemsChanged;
 			}
@@ -303,6 +324,7 @@ namespace FSpot.Widgets
 			{
 				IBrowsableItem [] local = old;
 				selected_cells.Clear ();
+				bit_array = new BitArray (parent.Count);
 				ClearCached ();
 
 				if (old != null) {
@@ -355,6 +377,10 @@ namespace FSpot.Widgets
 				ItemsChanged (this, new BrowsableEventArgs (items, args.Changes));
 			}
 
+			public BitArray ToBitArray () {
+				return bit_array;
+			}
+
 			public int [] Ids {
 				get {
 					if (selection != null)
@@ -401,6 +427,7 @@ namespace FSpot.Widgets
 			{
 				int [] ids = Ids;
 				selected_cells.Clear ();
+				bit_array.SetAll (false);
 				SignalChange (ids);
 			}
 
@@ -437,7 +464,7 @@ namespace FSpot.Widgets
 				this.Add (num, true);
 			}
 
-			private void Add (int num, bool notify)
+			public void Add (int num, bool notify)
 			{
 				if (num == -1)
 					return;
@@ -447,6 +474,7 @@ namespace FSpot.Widgets
 
 				IBrowsableItem item = parent [num];
 				selected_cells [item] = num;
+				bit_array.Set (num, true);
 
 				if (notify)
 					SignalChange (new int [] {num});
@@ -469,6 +497,37 @@ namespace FSpot.Widgets
 				}
 
 				SignalChange (ids);
+			}
+
+			public void Remove (int cell, bool notify)
+			{
+				IBrowsableItem item = parent [cell];
+				if (item != null)
+					this.Remove (item, notify);
+
+			}
+
+			public void Remove (IBrowsableItem item)
+			{
+				Remove (item, true);
+			}
+
+			public void Remove (int cell)
+			{
+				Remove (cell, true);
+			}
+
+			private void Remove (IBrowsableItem item, bool notify)
+			{
+				if (item == null)
+					return;
+
+				int parent_index = (int) selected_cells [item];
+				selected_cells.Remove (item);
+				bit_array.Set (parent_index, false);
+
+				if (notify)
+					SignalChange (new int [] {parent_index});
 			}
 
 			// Remove a range, except the start entry
@@ -505,35 +564,50 @@ namespace FSpot.Widgets
 				return System.Array.IndexOf (Ids, parent_index);
 			}
 
-			public void Remove (int cell)
+			private void ToggleCell (int cell_num, bool notify)
 			{
-				Remove (cell, true);
+				if (Contains (cell_num))
+					Remove (cell_num, notify);
+				else
+					Add (cell_num, notify);
 			}
 
-			private void Remove (int cell, bool notify)
+			public void ToggleCell (int cell_num)
 			{
-				IBrowsableItem item = parent [cell];
-				if (item != null)
-					this.Remove (item, notify);
-
+				ToggleCell (cell_num, true);
 			}
 
-			public void Remove (IBrowsableItem item)
+			public void SelectionInvert ()
 			{
-				Remove (item, true);
+				int [] changed_cell = new int[parent.Count];
+				for (int i = 0; i < parent.Count; i++) {
+					ToggleCell (i, false);
+					changed_cell[i] = i;
+				}
+
+				SignalChange (changed_cell);
 			}
 
-			private void Remove (IBrowsableItem item, bool notify)
+			public void SelectRect (int start_row, int end_row, int start_line, int end_line, int cells_per_row)
 			{
-				if (item == null)
-					return;
-
-				int parent_index = (int) selected_cells [item];
-				selected_cells.Remove (item);
-
-				if (notify)
-					SignalChange (new int [] {parent_index});
+				for (int row = start_row; row < end_row; row++)
+					for (int line = start_line; line < end_line; line++) {
+						int index = line*cells_per_row + row;
+						if (index < parent.Count)
+							Add (index, false);
+					}
 			}
+
+			public void ToggleRect (int start_row, int end_row, int start_line, int end_line, int cells_per_row)
+			{
+				for  (int row = start_row; row < end_row; row++)
+					for (int line = start_line; line < end_line; line++) {
+						int index = line*cells_per_row + row;
+						if (index < parent.Count)
+							ToggleCell (index, false);
+					}
+			}
+
 
 			public event IBrowsableCollectionChangedHandler Changed;
 			public event IBrowsableCollectionItemsChangedHandler ItemsChanged;
@@ -547,7 +621,7 @@ namespace FSpot.Widgets
 				items = null;
 			}
 
-			private void SignalChange (int [] ids)
+			public void SignalChange (int [] ids)
 			{
 				ClearCached ();
 				old = this.Items;
@@ -572,18 +646,18 @@ namespace FSpot.Widgets
 		// Cell Geometry
 		public int CellAtPosition (int x, int y)
 		{
-			return CellAtPosition (x, y, true);
+			return CellAtPosition (x, y, true, false);
 		}
 
-		public int CellAtPosition (int x, int y, bool crop_visible)
+		public int CellAtPosition (int x, int y, bool crop_visible, bool include_border)
 		{
 			if (collection == null)
 				return -1;
 
 			if (crop_visible
-				&& ((y < (int)Vadjustment.Value || y > (int)Vadjustment.Value + Allocation.Height)
-			|| (x < (int)Hadjustment.Value || x > (int)Hadjustment.Value + Allocation.Width)))
-			return -1;
+			    && ((y < (int)Vadjustment.Value || y > (int)Vadjustment.Value + Allocation.Height)
+				|| (x < (int)Hadjustment.Value || x > (int)Hadjustment.Value + Allocation.Width)))
+				return -1;
 
 			if (x < BORDER_SIZE || x >= BORDER_SIZE + cells_per_row * cell_width)
 				return -1;
@@ -593,11 +667,22 @@ namespace FSpot.Widgets
 			int column = (int) ((x - BORDER_SIZE) / cell_width);
 			int row = (int) ((y - BORDER_SIZE) / cell_height);
 			int cell_num = column + row * cells_per_row;
-
-			if (cell_num < collection.Count)
-				return (int) cell_num;
-			else
+			if (cell_num >= collection.Count)
 				return -1;
+
+			// check if the click is in the gap between unselected cells
+			if (!include_border) {
+				Gdk.Rectangle displayed = CellBounds (cell_num);
+				displayed.Inflate (-cell_border_padding, -cell_border_padding-cell_details);
+				displayed.Offset (-cell_border_padding, -cell_border_padding);
+				if (displayed.Contains (x, y))
+					return cell_num;
+				else if (selection.Contains (cell_num))
+					return cell_num;
+				else
+					return -1;
+			} else
+				return cell_num;
 		}
 
 		public int TopLeftVisibleCell ()
@@ -631,15 +716,6 @@ namespace FSpot.Widgets
 			selection.Add (0, collection.Count - 1);
 		}
 
-		private void ToggleCell (int cell_num)
-		{
-			if (selection.Contains (cell_num))
-				selection.Remove (cell_num);
-			else
-				selection.Add (cell_num);
-		}
-
-
 		// Layout and drawing.
 
 		// FIXME I can't find a c# wrapper for the C PANGO_PIXELS () macro
@@ -663,24 +739,26 @@ namespace FSpot.Widgets
 			cell_height = ThumbnailHeight + 2 * cell_border_width;
 			cells_per_row = Math.Max ((int) (available_width / cell_width), 1);
 			cell_width += (available_width - cells_per_row * cell_width) / cells_per_row;
+			cell_details = 0;
 
 			if (DisplayTags || DisplayDates || DisplayFilenames)
-				cell_height += tag_icon_vspacing;
+				cell_details += tag_icon_vspacing;
 
 			if (DisplayTags)
-				cell_height += tag_icon_size;
+				cell_details += tag_icon_size;
 
 			if (DisplayDates && this.Style != null) {
 				Pango.FontMetrics metrics = this.PangoContext.GetMetrics (this.Style.FontDescription,
 						Pango.Language.FromString ("en_US"));
-				cell_height += PangoPixels (metrics.Ascent + metrics.Descent);
+				cell_details += PangoPixels (metrics.Ascent + metrics.Descent);
 			}
 
 			if (DisplayFilenames && this.Style != null) {
 				Pango.FontMetrics metrics = this.PangoContext.GetMetrics (this.Style.FontDescription,
 						Pango.Language.FromString ("en_US"));
-				cell_height += PangoPixels (metrics.Ascent + metrics.Descent);
+				cell_details += PangoPixels (metrics.Ascent + metrics.Descent);
 			}
+			cell_height += cell_details;
 
 			displayed_rows = (int)Math.Max (available_height / cell_height, 1);
 
@@ -761,6 +839,9 @@ namespace FSpot.Widgets
 
 			return expansion;
 		}
+
+		// rectangle of dragging selection
+		private Rectangle rect_select;
 
 		System.Collections.Hashtable date_layouts = new Hashtable ();
 		// FIXME Cache the GCs?
@@ -916,7 +997,8 @@ namespace FSpot.Widgets
 
 				layout.GetPixelSize (out layout_bounds.Width, out layout_bounds.Height);
 
-				layout_bounds.Y = bounds.Y + bounds.Height - cell_border_width - layout_bounds.Height + tag_icon_vspacing;
+				layout_bounds.Y = bounds.Y + bounds.Height -
+					cell_border_width - layout_bounds.Height + tag_icon_vspacing;
 				layout_bounds.X = bounds.X + (bounds.Width - layout_bounds.Width) / 2;
 
 				if (DisplayTags)
@@ -1036,8 +1118,8 @@ namespace FSpot.Widgets
 			//Preload (area, false);
 
 			for (i = 0, cell_num = start_cell_num;
-				i < num_rows && cell_num < collection.Count;
-			i ++) {
+			     i < num_rows && cell_num < collection.Count;
+			     i ++) {
 				int cell_x = start_cell_x;
 
 				//Log.Debug ("Drawing row {0}", start_cell_row + i);
@@ -1048,6 +1130,33 @@ namespace FSpot.Widgets
 
 				cell_y += cell_height;
 				cell_num += cells_per_row;
+			}
+
+			// draw dragging selection
+			if (isRectSelection) {
+				Gdk.Rectangle inter;
+				if (area.Intersect(rect_select, out inter)) {
+#if CAIRO_1_2_5
+				        Cairo.Context cairo_g = CairoHelper.Create (BinWindow);
+					Gdk.Color col = Style.Background(StateType.Selected);
+					cairo_g.Color = new Cairo.Color (col.Red/65535.0, col.Green/65535.0, col.Blue/65535.0, 0.5);
+					cairo_g.Rectangle (inter.X, inter.Y, inter.Width, inter.Height);
+					cairo_g.Fill ();
+
+					((IDisposable) cairo_g.Target).Dispose ();
+					((IDisposable) cairo_g).Dispose ();
+#else
+					if (rect_gc == null) {
+						rect_gc = new Gdk.GC(BinWindow);
+						rect_gc.Copy (Style.BackgroundGC(StateType.Selected));
+						rect_gc.Fill = Fill.Stippled;
+						string bitmap_data = new string ((char) 0x02, (char) 0x01);
+						Pixmap pix = Pixmap.CreateBitmapFromData (BinWindow, bitmap_data, 2, 2);
+						rect_gc.Stipple = pix;
+					}
+					BinWindow.DrawRectangle (rect_gc, true, inter);
+#endif
+				}
 			}
 
 		}
@@ -1415,22 +1524,206 @@ namespace FSpot.Widgets
 			return base.OnExposeEvent (args);
 		}
 
+
+		private bool isRectSelection=false;
+		private bool isDragDrop=false;
+
+		// initial click and scroll value
+		private int start_select_x, start_select_y, start_select_vadj, start_select_hadj;
+		// initial selection
+		private int[] start_select_selection;
+		// initial event used to detect drag&drop
+		private EventButton start_select_event;
+		// timer using when scrolling selection
+		private uint scroll_timeout=0;
+
+		// during pointer motion, select/toggle pictures between initial x/y (param)
+		// and current x/y (get pointer)
+		private void SelectMotion ()
+		{
+			int x2, y2;
+			Gdk.ModifierType mod;
+			Display.GetPointer (out x2, out y2, out mod);
+			GetPointer (out x2, out y2);
+
+			// check new coord
+			int x1 = start_select_x;
+			if (x1 < 0)
+				x1 = 0;
+			int y1 = start_select_y;
+			if (y1 < 0)
+				y1 = 0;
+			if (y1 > Allocation.Height)
+				y1 = (int) Allocation.Height;
+			x1 += start_select_hadj;
+			y1 += start_select_vadj;
+
+			if (x2 < 0)
+				x2 = 0;
+			if (y2 < 0)
+				y2 = 0;
+			if (y2 > Allocation.Height)
+				y2 = (int) Allocation.Height;
+			x2 += (int) Hadjustment.Value;
+			y2 += (int) Vadjustment.Value;
+
+			int start_x = x1 < x2 ? x1 : x2;
+			int end_x =   x1 > x2 ? x1 : x2;
+			int start_y = y1 < y2 ? y1 : y2;
+			int end_y =   y1 > y2 ? y1 : y2;
+
+			// Restore initial selection
+			BitArray initial_selection = selection.ToBitArray();
+			selection.Clear (false);
+			foreach (int i in start_select_selection)
+				selection.Add (i, false);
+
+			// Select or toggle according to modifiers
+			int start_row  = (start_x - BORDER_SIZE) / cell_width;
+			int start_line = (start_y - BORDER_SIZE) / cell_height;
+			int end_row    = (end_x - BORDER_SIZE + cell_width - 1) / cell_width;
+			int end_line   = (end_y - BORDER_SIZE + cell_height - 1) / cell_height;
+			if (start_row > cells_per_row)
+				start_row = cells_per_row;
+			if (end_row > cells_per_row)
+				end_row = cells_per_row;
+
+
+			FocusCell = start_line * cells_per_row + start_row;
+
+			if ((mod & ModifierType.ControlMask) == 0)
+				selection.SelectRect (start_row, end_row, start_line, end_line, cells_per_row);
+			else
+				selection.ToggleRect (start_row, end_row, start_line, end_line, cells_per_row);
+
+			// fire events for cells which have changed selection flag
+			BitArray new_selection = selection.ToBitArray();
+			BitArray selection_changed = initial_selection.Xor (new_selection);
+			System.Collections.Generic.List<int> changed = new System.Collections.Generic.List<int>();
+			for (int i = 0; i < selection_changed.Length; i++)
+				if (selection_changed.Get(i))
+					changed.Add (i);
+			if (selection_changed.Length != 0)
+				selection.SignalChange (changed.ToArray());
+
+			// redraw selection box
+			if (BinWindow != null) {
+				BinWindow.InvalidateRect (rect_select, true); // old selection
+				rect_select = new Rectangle (start_x, start_y, end_x - start_x, end_y - start_y);
+				BinWindow.InvalidateRect (rect_select, true); // new selection
+				BinWindow.ProcessUpdates (true);
+			}
+		}
+
+		// if scroll is required, a timeout is fired
+		// until the button is release or the pointer is
+		// in window again
+		private int deltaVscroll;
+		private bool HandleMotionTimeout()
+		{
+			int new_x, new_y;
+			ModifierType new_mod;
+			Display.GetPointer (out new_x, out new_y, out new_mod);
+			GetPointer (out new_x, out new_y);
+
+			// do scroll
+			double newVadj = Vadjustment.Value;
+			if (deltaVscroll < 130)
+				deltaVscroll += 15;
+
+			if (new_y <= 0) {
+				newVadj -= deltaVscroll;
+				if (newVadj < 0)
+					newVadj = 0;
+			} else if ((new_y > Allocation.Height) &&
+				   (newVadj < Vadjustment.Upper - Allocation.Height - deltaVscroll))
+				newVadj += deltaVscroll;
+			Vadjustment.Value = newVadj;
+			Vadjustment.ChangeValue();
+
+			// do again selection after scroll
+			SelectMotion ();
+
+			// stop firing timeout when no button pressed
+			return (new_mod & (ModifierType.Button1Mask | ModifierType.Button3Mask)) != 0;
+		}
+
+		private void HandleSelectMotionNotify (object sender, MotionNotifyEventArgs args)
+		{
+			if ((args.Event.State & (ModifierType.Button1Mask | ModifierType.Button3Mask)) != 0 ) {
+				if (Gtk.Drag.CheckThreshold (this, (int) start_select_event.X,
+							     (int) start_select_event.Y,
+							     (int) args.Event.X, (int) args.Event.Y))
+					if (isRectSelection) {
+						// scroll if out of window
+						double d_x, d_y;
+						deltaVscroll = 30;
+						if (EventHelper.GetCoords (args.Event, out d_x, out d_y)) {
+							int new_y = (int) d_y;
+							if ((new_y <= 0) || (new_y >= Allocation.Height)) {
+								if (scroll_timeout == 0)
+									scroll_timeout = GLib.Timeout.Add (100, new GLib.TimeoutHandler (HandleMotionTimeout));
+							}
+						} else if (scroll_timeout != 0) {
+							GLib.Source.Remove (scroll_timeout);
+							scroll_timeout = 0;
+						}
+
+						// handle selection
+						SelectMotion();
+					} else  {
+						int cell_num = CellAtPosition ((int) args.Event.X, (int) args.Event.Y, false, false);
+						if (cell_num < 0) {
+							// not on a cell : do rectangular select
+							isRectSelection = true;
+							double d_x, d_y;
+							if (!EventHelper.GetCoords (args.Event, out d_x, out d_y)) {
+								d_x = d_y = 0;
+							}
+							start_select_hadj = (int) Hadjustment.Value;
+							start_select_vadj = (int) Vadjustment.Value;
+							start_select_x = (int) d_x - start_select_hadj;
+							start_select_y = (int) d_y - start_select_vadj;
+
+							// ctrl : toggle selected, shift : keep selected
+							if ((args.Event.State & (ModifierType.ShiftMask | ModifierType.ControlMask)) == 0)
+								selection.Clear ();
+
+							start_select_selection = selection.Ids; // keep initial selection
+							// no rect draw at beginning
+							rect_select = new Rectangle ();
+
+							args.RetVal = false;
+						} else if (selection.Contains (cell_num)) {
+							// on a selected cell : do drag&drop
+							isDragDrop = true;
+							if (StartDrag != null) {
+								uint but;
+								if ((args.Event.State & ModifierType.Button1Mask) != 0)
+									but = 1;
+								else
+									but = 3;
+								StartDrag (this, new StartDragArgs(but, start_select_event));
+							}
+						}
+					}
+			}
+		}
+
 		private void HandleButtonPressEvent (object obj, ButtonPressEventArgs args)
 		{
-			int cell_num = CellAtPosition ((int) args.Event.X, (int) args.Event.Y, false);
+			int cell_num = CellAtPosition ((int) args.Event.X, (int) args.Event.Y, false, false);
 
 			args.RetVal = true;
 
-			if (cell_num < 0) {
-				args.RetVal = false;
-				selection.Clear ();
-				return;
-			}
+			start_select_event = args.Event;
+			isRectSelection = false;
+			isDragDrop = false;
 
 			switch (args.Event.Type) {
 			case EventType.TwoButtonPress:
 				if (args.Event.Button != 1 ||
-						(args.Event.State &  (ModifierType.ControlMask | ModifierType.ShiftMask)) != 0)
+				    (args.Event.State &  (ModifierType.ControlMask | ModifierType.ShiftMask)) != 0)
 					return;
 				if (DoubleClicked != null)
 					DoubleClicked (this, new BrowsableEventArgs (cell_num, null));
@@ -1438,29 +1731,18 @@ namespace FSpot.Widgets
 
 			case EventType.ButtonPress:
 				GrabFocus ();
-				if ((args.Event.State & ModifierType.ControlMask) != 0) {
-					ToggleCell (cell_num);
-				} else if ((args.Event.State & ModifierType.ShiftMask) != 0) {
-					selection.Add (FocusCell, cell_num);
-				} else if (!selection.Contains (cell_num)) {
-					selection.Clear ();
-					selection.Add (cell_num);
-				}
-
+				// on a cell : context menu if button 3
+				// cell selection is done on button release
 				if (args.Event.Button == 3){
 					ContextMenu (args, cell_num);
 					return;
-				}
+				} else args.RetVal = false;
 
-				if (args.Event.Button != 1)
-					return;
-
-				FocusCell = cell_num;
-				return;
+				break;
 
 			default:
 				args.RetVal = false;
-				return;
+				break;
 			}
 		}
 
@@ -1470,31 +1752,33 @@ namespace FSpot.Widgets
 
 		private void HandleButtonReleaseEvent (object sender, ButtonReleaseEventArgs args)
 		{
-			int cell_num = CellAtPosition ((int) args.Event.X, (int) args.Event.Y);
-
-			args.RetVal = true;
-
-			if (cell_num < 0) {
-				args.RetVal = false;
-				return;
-			}
-
-			switch (args.Event.Type) {
-			case EventType.ButtonRelease:
-				if ((args.Event.State & ModifierType.ControlMask) == 0 &&
-						(args.Event.State & ModifierType.ShiftMask  ) == 0 &&
-						(selection.Count > 1)) {
-					selection.Clear ();
-					selection.Add (FocusCell);
+			if (isRectSelection) {
+				// remove scrolling and rectangular selection
+				if (scroll_timeout != 0) {
+					GLib.Source.Remove (scroll_timeout);
+					scroll_timeout = 0;
 				}
-
-				break;
-
-			default:
-				args.RetVal = false;
-				break;
+				isRectSelection = false;
+				if (BinWindow != null) {
+					BinWindow.InvalidateRect (rect_select, false);
+					BinWindow.ProcessUpdates (true);
+				}
+				rect_select = new Rectangle();
+			} else if (!isDragDrop) {
+				int cell_num = CellAtPosition ((int) args.Event.X, (int) args.Event.Y, false, true);
+				if (cell_num != -1) {
+					if ((args.Event.State & ModifierType.ControlMask) != 0) {
+						selection.ToggleCell (cell_num);
+					} else if ((args.Event.State & ModifierType.ShiftMask) != 0) {
+						selection.Add (FocusCell, cell_num);
+					} else {
+						selection.Clear ();
+						selection.Add (cell_num);
+					}
+					FocusCell = cell_num;
+				}
 			}
-
+			isDragDrop = false;
 		}
 
 		private void HandleKeyPressEvent (object sender, KeyPressEventArgs args)
@@ -1549,7 +1833,7 @@ namespace FSpot.Widgets
                                 FocusCell = new Random().Next(0, collection.Count - 1);
                                 break;
 			case Gdk.Key.space:
-				ToggleCell (FocusCell);
+				selection.ToggleCell (FocusCell);
 				break;
 			case Gdk.Key.Return:
 				if (DoubleClicked != null)
