@@ -20,6 +20,7 @@ REFS =						\
 	$(LINK_GIOSHARP)			\
 	$(LINK_GTKSHARPBEANS)			\
 	$(LINK_UNIQUESHARP)			\
+	-r:System.Web				\
 	-r:Mono.Posix
 
 PKGS =					\
