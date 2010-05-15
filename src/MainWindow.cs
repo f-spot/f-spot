@@ -2240,19 +2240,19 @@ namespace FSpot
 		void HandleSelectAllCommand (object sender, EventArgs args)
 		{
 			icon_view.SelectAllCells ();
-			UpdateStatusLabel();
+			UpdateStatusLabel ();
 		}
 	
 		void HandleSelectNoneCommand (object sender, EventArgs args)
 		{
 			icon_view.Selection.Clear ();
-			UpdateStatusLabel();
+			UpdateStatusLabel ();
 		}
 
 		void HandleSelectInvertCommand (object sender, EventArgs args)
 		{
 			icon_view.Selection.SelectionInvert ();
-			UpdateStatusLabel();
+			UpdateStatusLabel ();
 		}
 	
 		// This ConnectBefore is needed because otherwise the editability of the name

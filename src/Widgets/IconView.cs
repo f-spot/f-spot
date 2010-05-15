@@ -206,7 +206,7 @@ namespace FSpot.Widgets
 		// about.
 		private int click_count;
 
-		private Gdk.GC rect_gc=null;
+		private Gdk.GC rect_gc = null;
 
 		// Public events.
 		public event EventHandler<BrowsableEventArgs> DoubleClicked;
@@ -1135,7 +1135,7 @@ namespace FSpot.Widgets
 			// draw dragging selection
 			if (isRectSelection) {
 				Gdk.Rectangle inter;
-				if (area.Intersect(rect_select, out inter)) {
+				if (area.Intersect (rect_select, out inter)) {
 #if CAIRO_1_2_5
 				        Cairo.Context cairo_g = CairoHelper.Create (BinWindow);
 					Gdk.Color col = Style.Background(StateType.Selected);
@@ -1525,8 +1525,8 @@ namespace FSpot.Widgets
 		}
 
 
-		private bool isRectSelection=false;
-		private bool isDragDrop=false;
+		private bool isRectSelection = false;
+		private bool isDragDrop = false;
 
 		// initial click and scroll value
 		private int start_select_x, start_select_y, start_select_vadj, start_select_hadj;
@@ -1535,7 +1535,7 @@ namespace FSpot.Widgets
 		// initial event used to detect drag&drop
 		private EventButton start_select_event;
 		// timer using when scrolling selection
-		private uint scroll_timeout=0;
+		private uint scroll_timeout = 0;
 		// initial click
 	        private int start_press_x, start_press_y;
 
@@ -1671,7 +1671,7 @@ namespace FSpot.Widgets
 						}
 
 						// handle selection
-						SelectMotion();
+						SelectMotion ();
 					} else  {
 						int cell_num = CellAtPosition (start_press_x, start_press_y, false, false);
 						if (selection.Contains (cell_num)) {
@@ -1757,7 +1757,7 @@ namespace FSpot.Widgets
 					GLib.Source.Remove (scroll_timeout);
 					scroll_timeout = 0;
 				}
-				SelectMotion();
+				SelectMotion ();
 
 				isRectSelection = false;
 				if (BinWindow != null) {
