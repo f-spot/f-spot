@@ -43,6 +43,12 @@ DISTCHECK_CONFIGURE_FLAGS = --disable-scrollkeeper
 install-data-local:
 	-GCONF_CONFIG_SOURCE=$(GCONF_SCHEMA_CONFIG_SOURCE) $(GCONFTOOL) --makefile-install-rule $(srcdir)/$(schema_DATA)
 
+run:
+	@pushd src/; \
+	./f-spot --uninstalled --debug; \
+	popd;
+
+
 if ENABLE_TESTS
 test:
 	@pushd tests/src/; \
