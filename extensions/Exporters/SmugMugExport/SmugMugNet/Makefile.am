@@ -8,6 +8,7 @@ ASSEMBLY_SOURCES =				\
 
 REFS = \
 	-r:$(top_builddir)/src/FSpot.Utils.dll	\
+	$(LINK_GIOSHARP)			\
 	-r:System.Web
 
 PKGS =

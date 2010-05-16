@@ -334,6 +334,7 @@ CORE_ASSEMBLIES =				\
 	-r:FSpot.Utils.dll
 
 QUERY_ASSEMBLIES =				\
+	$(LINK_GIOSHARP)			\
 	-r:FSpot.Core.dll			\
 	-r:FSpot.Utils.dll
 
@@ -346,6 +347,7 @@ UTILS_ASSEMBLIES =				\
 	$(GCONF_PKG)
 
 JOBSCHEDULER_ASSEMBLIES =			\
+	$(LINK_GIOSHARP)			\
 	-r:FSpot.Utils.dll
 
 BLING_ASSEMBLIES =				\
