@@ -4,116 +4,49 @@ using FSpot.Xmp;
 using FSpot.Tiff;
 using FSpot.Utils;
 using Hyena;
+using TagLib;
 
 namespace FSpot {
 	public interface IThumbnailContainer {
 		Gdk.Pixbuf GetEmbeddedThumbnail ();
 	}
 
-	public class JpegFile : ImageFile, IThumbnailContainer, SemWeb.StatementSource {
-		private Exif.ExifData exif_data;
-		private XmpFile xmp;
-		private JpegHeader header;
-		private FSpot.Tiff.Header exif_header;
+	public class JpegFile : ImageFile, IThumbnailContainer {
+        public Image.File Metadata {
+            get { return metadata_file; }
+        }
 
-                // False seems a safe default
-                public bool Distinct {
-                        get { return false; }
-                }
+        private Image.File metadata_file;
 		
 		public JpegFile (SafeUri uri) : base (uri)
 		{
-			try {
-				// Console.WriteLine ("approximate quality = {0}", Header.GuessQuality ());
-			} catch (Exception e) {
-				Log.Exception (e);
-			}
+            metadata_file = TagLib.File.Create (new GIOTagLibFileAbstraction () { Uri = uri }) as Image.File;
 		}
 		
-		public JpegHeader Header {
-			get {
-				if (header == null) {
-					using (Stream stream = this.Open ()) {
-						header = new JpegHeader (stream, true);
-					}
-				}
-				return header;
-			}
-		}
-
-		public FSpot.Tiff.Header ExifHeader {
-			get {
-				if (exif_header == null) {
-					exif_header = Header.GetExifHeader ();
-				}
-				return exif_header;
-			}
-		}
-
-		public override Stream PixbufStream ()
-		{
-			if (header != null)
-				return Open ();
-
-			Stream s = Open ();
-			if (s.CanSeek) {
-				header = new JpegHeader (s, true);
-				s.Position = 0;
-			} else
-				Log.DebugFormat ("{0} can not seek :(", s);
-			return s;
-		}
-
-		public void Select (SemWeb.StatementSink sink)
-		{
-			Header.Select (sink);
-		}
-
 		public override Cms.Profile GetProfile ()
 		{
-			return Header.GetProfile ();
+			return null;
 		}
 
 		public override string Description {
 			get {
-				try {
-					SubdirectoryEntry sub = (SubdirectoryEntry) ExifHeader.Directory.Lookup (TagId.ExifIfdPointer);
-					if (sub != null) {
-						DirectoryEntry entry = sub.Directory [0].Lookup (TagId.UserComment);
-						if (entry != null)
-							return entry.ValueAsString [0];
-					}
-				} catch (System.Exception) {
-				}
-				return String.Empty;
+                return metadata_file.ImageTag.Comment;
 			}
 		}
 
 		public void SetDescription (string value)
 		{
-			Exif.ExifContent exif_content = this.ExifData.GetContents (Exif.Ifd.Exif);			
-			Exif.ExifEntry entry = exif_content.GetEntry (Exif.Tag.UserComment);
-
-			UserComment comment = new UserComment (value);
-			byte [] data = comment.GetBytes (entry.ByteOrder == Exif.ByteOrder.Intel);
-			entry.SetData (data);
-		}
-		
-		public void SetXmp (XmpFile xmp)
-		{
-			this.xmp = xmp;
+            metadata_file.GetTag (TagTypes.XMP, true); // Ensure XMP tag
+            metadata_file.ImageTag.Comment = value;
 		}
 
 		private void UpdateMeta ()
 		{
-			Exif.ExifContent image_content = this.ExifData.GetContents (Exif.Ifd.Zero);
-			image_content.GetEntry (Exif.Tag.Software).SetData (FSpot.Defines.PACKAGE + " version " + FSpot.Defines.VERSION);
-
-			// set the write time in the datetime tag
-			image_content.GetEntry (Exif.Tag.DateTime).Reset ();
+            metadata_file.GetTag (TagTypes.XMP, true); // Ensure XMP tag
+            metadata_file.ImageTag.Software = FSpot.Defines.PACKAGE + " version " + FSpot.Defines.VERSION;
 		}
 
-		private void SaveMetaData (System.IO.Stream input, System.IO.Stream output)
+		/*private void SaveMetaData (System.IO.Stream input, System.IO.Stream output)
 		{
 			JpegHeader header = new JpegHeader (input);
 			UpdateMeta ();
@@ -126,44 +59,34 @@ namespace FSpot {
 			// Console.WriteLine ("set xmp");
 			header.Save (output);
 			// Console.WriteLine ("saved");
-		}
+		}*/
 		
 		public void SaveMetaData (string path)
 		{
-			UpdateMeta ();
+            // FIXME: This currently copies the file out to a tmp file, overwrites it
+            // and restores the tmp file in case of failure. Should obviously be the
+            // other way around, but Taglib# doesn't have an interface to do this.
+            // https://bugzilla.gnome.org/show_bug.cgi?id=618768
 
-			//Get file permissions... (mkstemp does not keep permissions or ownership)
-			Mono.Unix.Native.Stat stat;
-			int stat_err = Mono.Unix.Native.Syscall.stat (path, out stat);
+            var uri = UriUtils.PathToFileUri (path);
+            var tmp = System.IO.Path.GetTempFileName ();
+            var tmp_uri = UriUtils.PathToFileUri (tmp);
 
-			string  temp_path = path;
-			using (System.IO.FileStream stream = System.IO.File.OpenRead (path)) {
-				using (System.IO.Stream output = FSpot.Utils.Unix.MakeSafeTemp (ref temp_path)) {
-					SaveMetaData (stream, output);
-				}
-			}
+            var orig_file = GLib.FileFactory.NewForUri (uri);
+            var tmp_file = GLib.FileFactory.NewForUri (tmp_uri);
 
-			File.SetAttributes (temp_path, File.GetAttributes (path));
+            orig_file.Copy (tmp_file, GLib.FileCopyFlags.AllMetadata, null, null);
 
-			if (FSpot.Utils.Unix.Rename (temp_path, path) < 0) {
-				System.IO.File.Delete (temp_path);
-				throw new System.Exception (System.String.Format ("Unable to rename {0} to {1}",
-										  temp_path, path));
-			}
-
-			//Set file permissions and gid...
-			if (stat_err == 0) 
-				try {
-					Mono.Unix.Native.Syscall.chmod (path, stat.st_mode |
-									      Mono.Unix.Native.FilePermissions.S_IRUSR | 
-									      Mono.Unix.Native.FilePermissions.S_IWUSR);
-					Mono.Unix.Native.Syscall.chown(path, Mono.Unix.Native.Syscall.getuid (), stat.st_gid);
-				} catch (Exception) {}
+            try {
+                metadata_file.Save ();
+            } catch (Exception) {
+                tmp_file.Copy (orig_file, GLib.FileCopyFlags.AllMetadata, null, null);
+            }
 		}
 
 		public void SetThumbnail (Gdk.Pixbuf source)
 		{
-			// Then create the thumbnail
+			/*// Then create the thumbnail
 			// The DCF spec says thumbnails should be 160x120 always
 			Gdk.Pixbuf thumbnail = PixbufUtils.ScaleToAspect (source, 160, 120);
 			byte [] thumb_data = PixbufUtils.Save (thumbnail, "jpeg", null, null);
@@ -171,12 +94,15 @@ namespace FSpot {
 			// System.Console.WriteLine ("saving thumbnail");				
 
 			// now update the exif data
-			ExifData.Data = thumb_data;
+			ExifData.Data = thumb_data;*/
+            // FIXME: needs to be readded https://bugzilla.gnome.org/show_bug.cgi?id=618769
 		}
 
 		public void SetDimensions (int width, int height)
 		{
-			Exif.ExifEntry e;
+			/* FIXME: disabled, related to metadata copying
+             * https://bugzilla.gnome.org/show_bug.cgi?id=618770
+             * Exif.ExifEntry e;
 			Exif.ExifContent thumb_content;
 			
 			// update the thumbnail related image fields if they exist.
@@ -195,7 +121,7 @@ namespace FSpot {
 			//image_content.GetEntry (Exif.Tag.ImageWidth).SetData ((uint)pixbuf.Width);
 			//image_content.GetEntry (Exif.Tag.ImageHeight).SetData ((uint)pixbuf.Height);
 			image_content.GetEntry (Exif.Tag.PixelXDimension).SetData ((uint)width);
-			image_content.GetEntry (Exif.Tag.PixelYDimension).SetData ((uint)height);
+			image_content.GetEntry (Exif.Tag.PixelYDimension).SetData ((uint)height);*/
 		}
 
 		public override void Save (Gdk.Pixbuf pixbuf, System.IO.Stream stream)
@@ -203,11 +129,12 @@ namespace FSpot {
 
 			// Console.WriteLine ("starting save");
 			// First save the imagedata
-			int quality = Header.GuessQuality ();
+			int quality = metadata_file.Properties.PhotoQuality;
 			quality = quality == 0 ? 75 : quality;
 			byte [] image_data = PixbufUtils.Save (pixbuf, "jpeg", new string [] {"quality" }, new string [] { quality.ToString () });
 			System.IO.MemoryStream buffer = new System.IO.MemoryStream ();
 			buffer.Write (image_data, 0, image_data.Length);
+/*			FIXME: Metadata copying doesn't work yet https://bugzilla.gnome.org/show_bug.cgi?id=618770
 			buffer.Position = 0;
 			
 			// Console.WriteLine ("setting thumbnail");
@@ -217,13 +144,13 @@ namespace FSpot {
 			
 			// Console.WriteLine ("saving metatdata");
 			SaveMetaData (buffer, stream);
-			// Console.WriteLine ("done");
+			// Console.WriteLine ("done");*/
 			buffer.Close ();
 		}
 		
 		public Gdk.Pixbuf GetEmbeddedThumbnail ()
 		{
-			if (this.ExifData.Data.Length > 0) {
+			/*if (this.ExifData.Data.Length > 0) {
 				MemoryStream mem = new MemoryStream (this.ExifData.Data);
 				Gdk.Pixbuf thumb = new Gdk.Pixbuf (mem);
 				Gdk.Pixbuf rotated = FSpot.Utils.PixbufUtils.TransformOrientation (thumb, this.Orientation);
@@ -231,86 +158,31 @@ namespace FSpot {
 				
 				mem.Close ();
 				return rotated;
-			}
+			}*/
+            // FIXME: No thumbnail support in TagLib# https://bugzilla.gnome.org/show_bug.cgi?id=618769
 			return null;
 		}
 		
-		public Exif.ExifData ExifData {
-			get {
-				if (exif_data == null) {
-					exif_data = Header.Exif;
-
-					if (exif_data == null || exif_data.Handle.Handle == System.IntPtr.Zero)
-						exif_data = new Exif.ExifData ();
-				}
-				// System.Console.WriteLine ("loading exif data");
-				return exif_data;
-			}
-			set {
-				this.exif_data = value;
-			}
-		}
-
 		public override PixbufOrientation GetOrientation () 
 		{
-			PixbufOrientation orientation = PixbufOrientation.TopLeft;
-			try {
-				DirectoryEntry e = ExifHeader.Directory.Lookup (TagId.Orientation);
-				orientation = (PixbufOrientation)e.ValueAsLong [0];
-			} catch {
-			}
-			if (orientation < PixbufOrientation.TopLeft || orientation > PixbufOrientation.LeftBottom)
-				orientation = PixbufOrientation.TopLeft;
-
-			return orientation;
+            var orientation = metadata_file.ImageTag.Orientation;
+			return (PixbufOrientation) orientation;
 		}
 		
 		public void SetOrientation (PixbufOrientation orientation)
 		{
-			Exif.ExifEntry e = this.ExifData.GetContents (Exif.Ifd.Zero).GetEntry (Exif.Tag.Orientation);
-			// System.Console.WriteLine ("Saving orientation as {0}", orientation);
-			e.SetData ((ushort)orientation);
-		       
-			e = this.ExifData.GetContents (Exif.Ifd.One).Lookup (Exif.Tag.Orientation);
-			if (e != null)
-				e.SetData ((ushort)orientation);
+            metadata_file.ImageTag.Orientation = (Image.ImageOrientation) orientation;
 		}
 		
 		public void SetDateTimeOriginal (DateTime time)
 		{
-			Exif.ExifEntry e = ExifData.LookupFirst (Exif.Tag.DateTimeOriginal);
-			if (e != null)
-				e.SetData (time);
-			else {
-				Exif.ExifContent exif_content = this.ExifData.GetContents (Exif.Ifd.Exif);
-				Exif.ExifEntry entry = exif_content.GetEntry (Exif.Tag.DateTimeOriginal);
-				entry.SetData (time);
-			}		
+            metadata_file.ImageTag.DateTime = time;
 		}
 
 		public override System.DateTime Date {
 			get {
-				System.DateTime time = base.Date;
-				try {
-					SubdirectoryEntry sub = (SubdirectoryEntry) ExifHeader.Directory.Lookup (TagId.ExifIfdPointer);
-					DirectoryEntry e;
-					
-					if (sub != null) {
-						e = sub.Directory [0].Lookup (TagId.DateTimeOriginal);
-						
-						if (e != null)
-							return DirectoryEntry.DateTimeFromString (e.StringValue);
-					}
-					
-					e = ExifHeader.Directory.Lookup (TagId.DateTime);
-					
-					if (e != null)
-						return DirectoryEntry.DateTimeFromString (e.StringValue);
-					
-					return time;
-				} catch (System.Exception) {
-				}
-				return time;
+                var date = metadata_file.ImageTag.DateTime;
+                return date.HasValue ? date.Value : base.Date;
 			}
 		}
 

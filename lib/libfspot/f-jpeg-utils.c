@@ -304,16 +304,6 @@ do_load_internal (const char *path,
 
 /* Public API.  */
 
-//GdkPixbuf *
-//f_load_scaled_jpeg  (const char *path,
-//		     int target_width,
-//		     int target_height,
-//		     int *original_width_return,
-//		     int *original_height_return)
-//{
-//	return do_load_internal (path, target_width, target_height, original_width_return, original_height_return);
-//}
-
 
 /* FIXME: Error reporting in this function sucks...  */
 void

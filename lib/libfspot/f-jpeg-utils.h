@@ -31,12 +31,6 @@
 
 #include <gdk-pixbuf/gdk-pixbuf.h>
 
-//GdkPixbuf *f_load_scaled_jpeg  (const char *path,
-//				int         target_width,
-//				int         target_heigh,
-//				int        *original_width_return,
-//				int        *original_height_return);
-//
 void  f_get_jpeg_size  (const char *path,
 			int        *width_return,
 			int        *height_return);

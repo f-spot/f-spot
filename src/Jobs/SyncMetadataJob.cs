@@ -47,6 +47,12 @@ namespace FSpot.Jobs {
 		void WriteMetadataToImage (Photo photo)
 		{
 			string path = photo.DefaultVersion.Uri.LocalPath;
+
+            Tag [] tags = photo.Tags;
+            string [] names = new string [tags.Length];
+
+            for (int i = 0; i < tags.Length; i++)
+                names [i] = tags [i].Name;
 	
 			using (FSpot.ImageFile img = FSpot.ImageFile.Create (photo.DefaultVersion.Uri)) {
 				if (img is FSpot.JpegFile) {
@@ -54,7 +60,13 @@ namespace FSpot.Jobs {
 				
 					jimg.SetDescription (photo.Description);
 					jimg.SetDateTimeOriginal (photo.Time);
-					jimg.SetXmp (UpdateXmp (photo, jimg.Header.GetXmp ()));
+
+                    var meta = jimg.Metadata;
+                    meta.GetTag (TagLib.TagTypes.XMP, true);
+
+                    var tag = meta.ImageTag;
+                    tag.Keywords = names;
+                    tag.Rating = photo.Rating;
 	
 					jimg.SaveMetaData (path);
 				} else if (img is FSpot.Png.PngFile) {

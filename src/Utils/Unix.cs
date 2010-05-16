@@ -9,9 +9,6 @@ namespace FSpot.Utils {
 			[DllImport ("libc", EntryPoint="rename", CharSet = CharSet.Auto)]
 			public static extern int Rename (string oldpath, string newpath);
 
-			[DllImport ("libc", EntryPoint="mkstemp")]
-			public static extern int MkSTemp (byte []template);
-
 			[DllImport("libc", EntryPoint="prctl")]
 			public static extern int PrCtl(int option, string name, ulong arg3, ulong arg4, ulong arg5);
 
@@ -22,22 +19,6 @@ namespace FSpot.Utils {
 		public static int Rename (string oldpath, string newpath)
 		{
 			return NativeMethods.Rename (oldpath, newpath);
-		}
-
-
-		public static Mono.Unix.UnixStream MakeSafeTemp (ref string template)
-		{
-			byte [] template_bytes = System.Text.Encoding.UTF8.GetBytes (template + ".XXXXXX\0");
-
-			int fd = NativeMethods.MkSTemp (template_bytes);
-
-			if (fd < 0) {
-				//Mono.Unix.Error error = Mono.Unix.Stdlib.GetLastError ();
-				throw new System.ApplicationException (Mono.Unix.Catalog.GetString ("Unable to create temporary file"));
-			}
-
-			template = System.Text.Encoding.UTF8.GetString (template_bytes, 0, template_bytes.Length - 1);
-			return new Mono.Unix.UnixStream (fd);
 		}
 
 		public static void SetProcessName (string name)

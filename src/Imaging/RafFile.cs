@@ -12,15 +12,6 @@ namespace FSpot.Raf {
 	// completely figured out yet.  More to follow.
 
 	// ALL the sample files I have begin with "FUJIFILMCCD-RAW "
-
-	
-	public class WhiteBalance {
-		// see dcraw parse_fuli
-		public WhiteBalance (System.IO.Stream stream)
-		{
-
-		}
-	}
 	
 	public class RafFile : ImageFile, SemWeb.StatementSource {
 
@@ -84,12 +75,12 @@ namespace FSpot.Raf {
 
 		public void Select (SemWeb.StatementSink sink)
 		{
-			byte [] data = GetEmbeddedJpeg ();
+			/*byte [] data = GetEmbeddedJpeg ();
 			if (data != null) {
 				System.IO.Stream stream = new System.IO.MemoryStream (data);
 				JpegHeader header = new JpegHeader (stream);
 				header.Select (sink);
-			}
+			}*/
 		}
 
 		private byte [] GetEmbeddedJpeg ()
