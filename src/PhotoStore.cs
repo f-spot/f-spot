@@ -160,7 +160,6 @@ public class PhotoStore : DbStore<Photo> {
 			);
 	
 			photo = new Photo (id, unix_time, new_uri, md5_sum);
-			AddToCache (photo);
 			photo.Loaded = true;
 			EmitAdded (photo);
 		}
