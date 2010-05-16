@@ -6,6 +6,8 @@ namespace FSpot.Utils
 {
     public sealed class GIOTagLibFileAbstraction : TagLib.File.IFileAbstraction
     {
+        private FileInputStream gio_stream;
+
         public string Name {
             get {
                 return Uri.ToString ();
@@ -18,7 +20,13 @@ namespace FSpot.Utils
         public Uri Uri { get; set; }
 
         public Stream ReadStream {
-            get { return new GioStream (FileFactory.NewForUri(Uri).Read (null)); }
+            get {
+                if (gio_stream == null) {
+                    var file = FileFactory.NewForUri(Uri);
+                    gio_stream = file.Read (null);
+                }
+                return new GioStream (gio_stream);
+            }
         }
 
         public Stream WriteStream {
@@ -28,6 +36,8 @@ namespace FSpot.Utils
         public void CloseStream (Stream stream)
         {
             stream.Close ();
+            gio_stream.Dispose ();
+            gio_stream = null;
         }
     }
 }

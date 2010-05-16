@@ -23,6 +23,10 @@ namespace FSpot {
             metadata_file = TagLib.File.Create (new GIOTagLibFileAbstraction () { Uri = uri }) as Image.File;
 		}
 		
+		~JpegFile () {
+			metadata_file.Dispose ();
+		}
+
 		public override Cms.Profile GetProfile ()
 		{
 			return null;
