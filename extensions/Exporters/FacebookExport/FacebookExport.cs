@@ -259,7 +259,7 @@ namespace FSpot.Exporter.Facebook
 
 	public class FacebookExport : IExporter
 	{
-		private int size = 604;
+		private int size = 720;
 		private int max_photos_per_album = 200;
 		FacebookExportDialog dialog;
 		ThreadProgressDialog progress_dialog;
