@@ -419,7 +419,7 @@ namespace DBusService {
 				string new_path = path;
 
 				if (copy)
-					new_path = FileImportBackend.ChooseLocation (path);
+					new_path = FileImportBackend.ChooseLocation (UriUtils.PathToFileUri (path)).AbsolutePath;
 
 				if (new_path != path)
 					System.IO.File.Copy (path, new_path);

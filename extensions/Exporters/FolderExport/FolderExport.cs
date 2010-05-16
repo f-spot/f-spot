@@ -514,7 +514,7 @@ namespace FSpotFolderExport {
 
 		protected virtual string ImageName (int image_num)
 		{
-			return System.IO.Path.GetFileName(FileImportBackend.UniqueName(gallery_path, System.IO.Path.GetFileName (collection [image_num].DefaultVersionUri.LocalPath)));
+			return System.IO.Path.GetFileName(FileImportBackend.UniqueName(gallery_path, System.IO.Path.GetFileName (collection [image_num].DefaultVersionUri.LocalPath)).AbsolutePath);
 		}
 
 		public void ProcessImage (int image_num, FilterSet filter_set)

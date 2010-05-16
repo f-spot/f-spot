@@ -86,7 +86,7 @@ public class FileImportBackend : ImportBackend {
 	}
 	
 
-	static Uri UniqueName (string path, string filename)
+	public static Uri UniqueName (string path, string filename)
 	{
 		int i = 1;
 		string dest = System.IO.Path.Combine (path, filename);

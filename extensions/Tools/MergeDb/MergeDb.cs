@@ -232,7 +232,7 @@ namespace MergeDbExtension
 			Photo newp;
 
 			if (copy)
-				destination = FileImportBackend.ChooseLocation (photo_path, null);
+				destination = FileImportBackend.ChooseLocation (UriUtils.PathToFileUri (photo_path)).AbsolutePath;
 			else
 				destination = photo_path;
 
