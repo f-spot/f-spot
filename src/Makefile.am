@@ -327,6 +327,7 @@ CMS_ASSEMBLIES = 				\
 	-pkg:gtk-sharp-2.0
 
 CORE_ASSEMBLIES =				\
+	$(LINK_GIOSHARP)			\
 	-pkg:gtk-sharp-2.0			\
 	-r:Cms.dll				\
 	-r:Mono.Posix				\
