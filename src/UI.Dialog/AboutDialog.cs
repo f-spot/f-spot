@@ -28,6 +28,7 @@ namespace FSpot.UI.Dialog
 				"Primary Development",
 				"\tLawrence Ewing",
 				"\tStephane Delcroix",
+				"\tRuben Vermeersch",
 				"",
 				"Active Contributors to this release",
 				"\tChristian Krause",					//0.6.1.3
@@ -35,7 +36,6 @@ namespace FSpot.UI.Dialog
 				"\tIain Lane",						//0.6.1.3
 				"\tLorenzo Milesi",					//0.5.0
 				"\tMike Gem\x00fcnde",
-				"\tRuben Vermeersch",					//0.5.0, 0.6.0
 				"",
 				"Contributors",
 				"\tAaron Bockover",
@@ -92,7 +92,7 @@ namespace FSpot.UI.Dialog
 					s.Close ();
 				}
 			} catch (Exception e) {
-				Console.WriteLine (e);
+				Log.DebugException (e);
 				License = "GPL v2";
 			}
 			Logo = new Gdk.Pixbuf (System.Reflection.Assembly.GetEntryAssembly (), "f-spot-128.png");
