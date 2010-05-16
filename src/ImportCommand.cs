@@ -404,6 +404,9 @@ public class ImportCommand : GladeDialog
 			return false;
 		}
 
+		if (status_info.Count > 0 && status_info.Count % 25 == 0)
+			System.GC.Collect ();
+
 		if (status_info.Count < total)
 			UpdateProgressBar (status_info.Count + 1, total);
 
