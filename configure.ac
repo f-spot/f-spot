@@ -331,6 +331,7 @@ lib/Hyena/src/Hyena/Makefile
 lib/Hyena/src/Mono.Data.Sqlite/Makefile
 lib/Hyena/src/Hyena.Data.Sqlite/Makefile
 lib/Hyena/src/Hyena.Gui/Makefile
+lib/TagLib/Makefile
 
 docs/Makefile
 icons/Makefile
