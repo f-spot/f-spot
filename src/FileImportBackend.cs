@@ -58,7 +58,7 @@ public class FileImportBackend : ImportBackend {
 		public string Name { get { throw new NotImplementedException (); } }
 		public uint Rating { get { return 0; } }
 
-		internal Photo Photo { get; set; }
+		internal uint PhotoId { get; set; }
 	}
 
 	public override List<IBrowsableItem> Prepare ()
@@ -225,7 +225,7 @@ public class FileImportBackend : ImportBackend {
 				if (needs_commit)
 					store.Commit(photo);
 
-                info.Photo = photo;
+                info.PhotoId = photo.Id;
 			}
 		} catch (System.Exception e) {
 			System.Console.WriteLine ("Error importing {0}{2}{1}", info.DestinationUri.ToString (), e.ToString (), Environment.NewLine);
@@ -278,8 +278,8 @@ public class FileImportBackend : ImportBackend {
 				}
 			}
 			
-			if (info.Photo != null)
-				store.Remove (info.Photo);
+			if (info.PhotoId != 0)
+				store.Remove (store.Get (info.PhotoId));
 		}
 		
 		// clean up all the directories we created.
@@ -306,8 +306,8 @@ public class FileImportBackend : ImportBackend {
 			throw new ImportException ("Not doing anything");
 
 		foreach (ImportInfo info in import_info) {
-			if (info.Photo != null) 
-				FSpot.ThumbnailGenerator.Default.Request (info.Photo.DefaultVersionUri, 0, 256, 256);
+			if (info.PhotoId != 0) 
+				FSpot.ThumbnailGenerator.Default.Request (store.Get (info.PhotoId).DefaultVersionUri, 0, 256, 256);
 		}
 
 		import_info = null;
