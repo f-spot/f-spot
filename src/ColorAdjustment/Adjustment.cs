@@ -64,16 +64,17 @@ namespace FSpot.ColorAdjustment {
 			Cms.Profile [] list = GenerateAdjustments ().ToArray ();
 			
 			if (Input.HasAlpha) {
+				Gdk.Pixbuf input_copy = (Gdk.Pixbuf)Input.Clone ();
 				Pixbuf alpha = PixbufUtils.Flatten (Input);
 				Transform transform = new Transform (list,
 								     PixbufUtils.PixbufCmsFormat (alpha),
 								     PixbufUtils.PixbufCmsFormat (final),
 								     intent, 0x0000);
 				PixbufUtils.ColorAdjust (alpha, final, transform);
-				PixbufUtils.ReplaceColor (final, Input);
+				PixbufUtils.ReplaceColor (final, input_copy);
 				alpha.Dispose ();
 				final.Dispose ();
-				final = Input;
+				final = input_copy;
 			} else {
 				Cms.Transform transform = new Cms.Transform (list,
 									     PixbufUtils.PixbufCmsFormat (Input),
