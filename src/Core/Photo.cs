@@ -22,100 +22,7 @@ using FSpot.Platform;
 namespace FSpot
 {
 	public class Photo : DbItem, IComparable, IBrowsableItem {
-		// IComparable 
-		public int CompareTo (object obj) {
-			if (this.GetType () == obj.GetType ()) {
-				return Compare (this, (Photo)obj);
-			} else if (obj is DateTime) {
-				return this.time.CompareTo ((DateTime)obj);
-			} else {
-				throw new Exception ("Object must be of type Photo");
-			}
-		}
-	
-		public int CompareTo (Photo photo)
-		{
-			return Compare (this, photo);
-		}
 		
-		public static int Compare (Photo photo1, Photo photo2)
-		{
-			int result = photo1.Id.CompareTo (photo2.Id);
-			
-			if (result == 0)
-				return 0;
-			else 
-				result = CompareDate (photo1, photo2);
-	
-			if (result == 0)
-				result = CompareCurrentDir (photo1, photo2);
-			
-			if (result == 0)
-				result = CompareName (photo1, photo2);
-			
-			if (result == 0)
-				result = photo1.Id.CompareTo (photo2.Id);
-			
-			return result;
-		}
-	
-		private static int CompareDate (Photo photo1, Photo photo2)
-		{
-			return DateTime.Compare (photo1.time, photo2.time);
-		}
-	
-		private static int CompareCurrentDir (Photo photo1, Photo photo2)
-		{
-			return string.Compare (photo1.DirectoryPath, photo2.DirectoryPath);
-		}
-	
-		private static int CompareName (Photo photo1, Photo photo2)
-		{
-			return string.Compare (photo1.Name, photo2.Name);
-		}
-	
-		public class CompareDateName : IComparer<IBrowsableItem>
-		{
-			public int Compare (IBrowsableItem obj1, IBrowsableItem obj2)
-			{
-				Photo p1 = (Photo)obj1;
-				Photo p2 = (Photo)obj2;
-	
-				int result = Photo.CompareDate (p1, p2);
-				
-				if (result == 0)
-					result = CompareName (p1, p2);
-	
-				return result;
-			}
-		}
-	
-		public class CompareDirectory : IComparer
-		{
-			public int Compare (object obj1, object obj2)
-			{
-				Photo p1 = (Photo)obj1;
-				Photo p2 = (Photo)obj2;
-	
-				int result = Photo.CompareCurrentDir (p1, p2);
-				
-				if (result == 0)
-					result = CompareName (p1, p2);
-	
-				return result;
-			}
-		}
-	
-		public class RandomSort : IComparer
-		{
-			Random random = new Random ();
-			
-			public int Compare (object obj1, object obj2)
-			{
-				return random.Next (-5, 5);
-			}
-		}
-	
 		PhotoChanges changes = new PhotoChanges ();
 		public PhotoChanges Changes {
 			get{ return changes; }
@@ -670,5 +577,30 @@ namespace FSpot
 			// database.
 			AddVersionUnsafely (OriginalVersionId, uri, md5_sum, Catalog.GetString ("Original"), true);
 		}
+
+#region IComparable implementation
+
+		// IComparable 
+		public int CompareTo (object obj) {
+			if (this.GetType () == obj.GetType ()) {
+				return this.Compare((Photo)obj);
+			} else if (obj is DateTime) {
+				return this.time.CompareTo ((DateTime)obj);
+			} else {
+				throw new Exception ("Object must be of type Photo");
+			}
+		}
+
+		public int CompareTo (Photo photo)
+		{
+			int result = Id.CompareTo (photo.Id);
+			
+			if (result == 0)
+				return 0;
+			else 
+				return (this as IBrowsableItem).Compare (photo);
+		}
+
+#endregion
 	}
 }

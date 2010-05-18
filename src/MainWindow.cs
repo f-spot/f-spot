@@ -1884,7 +1884,7 @@ namespace FSpot
 		void HandleAdjustTime (object sender, EventArgs args)
 		{
 			PhotoList list = new PhotoList (Selection.Items);
-			list.Sort (new Photo.CompareDateName ());
+			list.Sort (new IBrowsableItemComparer.CompareDateName ());
 			(new AdjustTimeDialog (Database, list)).Run ();
 		}
 	
