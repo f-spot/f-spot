@@ -34,7 +34,7 @@ namespace RawPlusJpegExtension
 				return;
 
 			Photo [] photos = App.Instance.Database.Photos.Query ((Tag [])null, null, null, null);
-			Array.Sort (photos, new Photo.CompareDirectory ());
+			Array.Sort (photos, new IBrowsableItemComparer.CompareDirectory ());
 
 			Photo raw = null;
 			Photo jpeg = null;
