@@ -23,8 +23,6 @@ namespace FSpot.Extensions
 		[NodeAttribute]
 		protected string command_type;
 
-		public event EventHandler Changed;
-
 		ICommand cmd;
 
 		public override Gtk.MenuItem GetMenuItem (object parent)

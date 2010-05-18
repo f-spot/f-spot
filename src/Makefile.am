@@ -21,7 +21,6 @@ CMS_CSDISTFILES =				\
 	$(srcdir)/Cms/Transform.cs
 
 CORE_CSDISTFILES =				\
-	$(srcdir)/Core/Animator.cs		\
 	$(srcdir)/Core/BrowsableEventArgs.cs	\
 	$(srcdir)/Core/BrowsablePointer.cs	\
 	$(srcdir)/Core/BrowsablePointerChangedEventArgs.cs	\
