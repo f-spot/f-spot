@@ -16,7 +16,7 @@ namespace FSpot.Utils
 {
 	public static class FileExtensions
 	{
-			public static bool CopyRecursive (GLib.File source, GLib.File target, GLib.FileCopyFlags flags, GLib.Cancellable cancellable, GLib.FileProgressCallback callback)
+		public static bool CopyRecursive (this GLib.File source, GLib.File target, GLib.FileCopyFlags flags, GLib.Cancellable cancellable, GLib.FileProgressCallback callback)
 		{
 			bool result = true;
 			try {
@@ -39,7 +39,7 @@ namespace FSpot.Utils
 					GLib.File source_file = GLib.FileFactory.NewForPath (Path.Combine (source.Path, fi.Name));
 					GLib.File target_file = GLib.FileFactory.NewForPath (Path.Combine (target.Path, fi.Name));
 					Log.Debug (String.Format (Catalog.GetString("Copying {0} -> {1}"), source_file.Path, target_file.Path));
-					result = result && CopyRecursive(source_file, target_file, flags, cancellable, callback);
+					result = result && source_file.CopyRecursive(target_file, flags, cancellable, callback);
 					fi = fe.NextFile ();
 				}
 				fe.Close (cancellable);
