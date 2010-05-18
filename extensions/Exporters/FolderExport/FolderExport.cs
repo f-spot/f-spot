@@ -18,7 +18,7 @@
  */
 
 //This should be used to export the selected pics to an original gallery
-//located on a VFS location.
+//located on a GIO location.
 using System;
 using System.IO;
 using System.Runtime.InteropServices;
@@ -165,7 +165,7 @@ namespace FSpotFolderExport {
 			bool result = true;
 
 			try {
-				Dialog.Hide ();
+				Gtk.Application.Invoke (delegate {Dialog.Hide ();});
 
 				GLib.File source = GLib.FileFactory.NewForPath (Path.Combine (gallery_path, gallery_name));
 				GLib.File target = GLib.FileFactory.NewForPath (Path.Combine (dest.Path, source.Basename));
@@ -250,7 +250,7 @@ namespace FSpotFolderExport {
 				// otherwise we xfer
 				if (!dest.IsNative) {
 					System.Console.WriteLine ("Xfering {0} to {1}", source.ToString (), target.ToString ());
-					result = source.Copy (target, GLib.FileCopyFlags.Overwrite, null, Progress);
+					result = FileExtensions.CopyRecursive (source, target, GLib.FileCopyFlags.Overwrite, null, Progress);
 				}
 
 				if (result == true) {
@@ -264,7 +264,8 @@ namespace FSpotFolderExport {
 				}
 
 				if (open) {
-					GtkBeans.Global.ShowUri (Dialog.Screen, target.Uri.ToString () );
+					Log.Debug (String.Format (Catalog.GetString ("Open URI {0}"), target.Uri.ToString ()));
+					Gtk.Application.Invoke (delegate {GtkBeans.Global.ShowUri (Dialog.Screen, target.Uri.ToString () );});
 				}
 
 				// Save these settings for next time
@@ -277,7 +278,7 @@ namespace FSpotFolderExport {
 				Preferences.Set (METHOD_KEY, static_radio.Active ? "static" : original_radio.Active ? "original" : "folder" );
 				Preferences.Set (URI_KEY, uri_chooser.Uri);
 			} catch (System.Exception e) {
-				// Console.WriteLine (e);
+				Log.Debug (e.ToString ());
 				progress_dialog.Message = e.ToString ();
 				progress_dialog.ProgressText = Catalog.GetString ("Error Transferring");
 			} finally {
