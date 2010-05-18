@@ -152,7 +152,7 @@ namespace FSpot
 			}
 		}
 	
-		public IBrowsableItem GetVersion (uint version_id)
+		public PhotoVersion GetVersion (uint version_id)
 		{
 			if (versions == null)
 				return null;

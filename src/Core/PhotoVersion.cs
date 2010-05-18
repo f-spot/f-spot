@@ -12,7 +12,7 @@
 
 namespace FSpot
 {
-	public class PhotoVersion : FSpot.IBrowsableItem
+	public class PhotoVersion
 	{
 		Photo photo;
 		uint version_id;
@@ -20,22 +20,6 @@ namespace FSpot
 		string md5_sum;
 		string name;
 		bool is_protected;
-	
-		public System.DateTime Time {
-			get { return photo.Time; }
-		}
-	
-		public Tag [] Tags {
-			get { return photo.Tags; }
-		}
-	
-		public System.Uri DefaultVersionUri {
-			get { return uri; }
-		}
-	
-		public string Description {
-			get { return photo.Description; }
-		}
 	
 		public string Name {
 			get { return name; }
@@ -66,10 +50,6 @@ namespace FSpot
 	
 		public bool IsProtected {
 			get { return is_protected; }
-		}
-	
-		public uint Rating {
-			get { return photo.Rating; }
 		}
 	
 		public PhotoVersion (Photo photo, uint version_id, System.Uri uri, string md5_sum, string name, bool is_protected)
