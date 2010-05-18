@@ -33,7 +33,7 @@ namespace FSpot.Widgets {
 			item.Changed += HandlePhotoItemChanged;
 		}
 
-		new public BrowsablePointer Item {
+		public BrowsablePointer Item {
 			get { return item; }
 		}
 

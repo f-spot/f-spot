@@ -493,8 +493,6 @@ namespace FSpot {
 
 		private void HandleFileOpen (object sender, System.EventArgs args)
 		{
-			string open = null;
-			
 			FileChooserDialog file_selector =
 				new FileChooserDialog ("Open", this.Window,
 						       FileChooserAction.Open);
@@ -508,7 +506,6 @@ namespace FSpot {
 					l.Add (new Uri (s));
 				new FSpot.SingleView (l.ToArray ());
 			}
-
 			
 			file_selector.Destroy ();
 		}

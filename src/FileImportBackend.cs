@@ -160,7 +160,6 @@ public class FileImportBackend : ImportBackend {
 	public override bool Step (out StepStatusInfo status_info)
 	{
 		Photo photo = null;
-		Pixbuf thumbnail = null;
 		bool is_duplicate = false;
 
 		if (import_info == null)
