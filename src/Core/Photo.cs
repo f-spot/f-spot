@@ -321,11 +321,6 @@ namespace FSpot
 			} while (version_id > OriginalVersionId);
 		}
 
-		public uint CreateProtectedVersion (string name, uint base_version_id, bool create)
-		{
-			return CreateVersion (name, null, base_version_id, create, true);
-		}
-	
 		public uint CreateVersion (string name, uint base_version_id, bool create)
 		{
 			return CreateVersion (name, null, base_version_id, create, false);
