@@ -250,16 +250,12 @@ namespace FSpotFolderExport {
 					System.Console.WriteLine ("Transferring {0} to {1}", source.ToString (), target.ToString ());
 					result = source.CopyRecursive (target, GLib.FileCopyFlags.Overwrite, new GLib.Cancellable (), Progress);
 				}
-
-				if (result == true) {
-					progress_dialog.Message = Catalog.GetString ("Done Sending Photos");
-					progress_dialog.Fraction = 1.0;
-					progress_dialog.ProgressText = Catalog.GetString ("Transfer Complete");
-					progress_dialog.ButtonLabel = Gtk.Stock.Ok;
-				} else {
-					progress_dialog.ProgressText = result.ToString ();
-					progress_dialog.Message = Catalog.GetString ("Error While Transferring");
-				}
+				
+				// No need to check result here as if result is not true, an Exception will be thrown before
+				progress_dialog.Message = Catalog.GetString ("Done Sending Photos");
+				progress_dialog.Fraction = 1.0;
+				progress_dialog.ProgressText = Catalog.GetString ("Transfer Complete");
+				progress_dialog.ButtonLabel = Gtk.Stock.Ok;
 
 				if (open) {
 					Log.Debug (String.Format (Catalog.GetString ("Open URI {0}"), target.Uri.ToString ()));
