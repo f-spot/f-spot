@@ -90,7 +90,7 @@ namespace FSpot.Widgets
 			if (running)
 				flip.Start ();
 			lock (sync_handle) {
-				if (prev != null)
+				if (prev != null && prev != PixbufUtils.ErrorPixbuf)
 					prev.Dispose ();
 				prev = next;
 
