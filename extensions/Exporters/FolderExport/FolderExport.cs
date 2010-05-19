@@ -129,8 +129,6 @@ namespace FSpotFolderExport {
 			chooser_hbox.PackStart (uri_chooser);
 
 			Dialog.ShowAll ();
-
-			//LoadHistory ();
 			Dialog.Response += HandleResponse;
 
 			LoadPreference (SCALE_KEY);
@@ -217,13 +215,13 @@ namespace FSpotFolderExport {
 				for (int photo_index = 0; photo_index < selection.Count; photo_index++)
 				{
 					try {
-						progress_dialog.Message = System.String.Format (Catalog.GetString ("Uploading picture \"{0}\""), selection[photo_index].Name);
+						progress_dialog.Message = System.String.Format (Catalog.GetString ("Copying \"{0}\""), selection[photo_index].Name);
 						progress_dialog.Fraction = photo_index / (double) selection.Count;
 						gallery.ProcessImage (photo_index, filter_set);
 						progress_dialog.ProgressText = System.String.Format (Catalog.GetString ("{0} of {1}"), (photo_index + 1), selection.Count);
 					}
 					catch (Exception e) {
-						progress_dialog.Message = String.Format (Catalog.GetString ("Error uploading picture \"{0}\" to Gallery:{2}{1}"),
+						progress_dialog.Message = String.Format (Catalog.GetString ("Error Copying \"{0}\" to Gallery:{2}{1}"),
 							selection[photo_index].Name, e.Message, Environment.NewLine);
 						progress_dialog.ProgressText = Catalog.GetString ("Error");
 
@@ -233,7 +231,7 @@ namespace FSpotFolderExport {
 
 				}
 
-				//create the zip tarballs for original
+				// create the zip tarballs for original
 				if (gallery is OriginalGallery) {
 					bool include_tarballs;
 					try {
@@ -249,7 +247,7 @@ namespace FSpotFolderExport {
 				// we've created the structure, now if the destination was local (native) we are done
 				// otherwise we xfer
 				if (!dest.IsNative) {
-					System.Console.WriteLine ("Xfering {0} to {1}", source.ToString (), target.ToString ());
+					System.Console.WriteLine ("Transferring {0} to {1}", source.ToString (), target.ToString ());
 					result = source.CopyRecursive (target, GLib.FileCopyFlags.Overwrite, new GLib.Cancellable (), Progress);
 				}
 
@@ -293,7 +291,7 @@ namespace FSpotFolderExport {
 
 		private void Progress (long current_num_bytes, long total_num_bytes)
 		{
-			progress_dialog.ProgressText = Catalog.GetString ("copying...");
+			progress_dialog.ProgressText = Catalog.GetString ("Transferring...");
 
 			if (total_num_bytes > 0) {
 				progress_dialog.Fraction = current_num_bytes / (double)total_num_bytes;
@@ -331,11 +329,6 @@ namespace FSpotFolderExport {
 			command_thread = new System.Threading.Thread (new System.Threading.ThreadStart (Upload));
 			command_thread.Name = Catalog.GetString ("Transferring Pictures");
 
-			//FIXME: get the files/dirs count in a cleaner way than (* 5 + 2(zip) + 9)
-			// selection * 5 (original, mq, lq, thumbs, comments)
-			// 2: zipfiles
-			// 9: directories + info.txt + .htaccess
-			// this should actually be 1 anyway, because we transfer just one dir
 			progress_dialog = new ThreadProgressDialog (command_thread, 1);
 			progress_dialog.Start ();
 		}
