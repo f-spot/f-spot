@@ -22,6 +22,7 @@ namespace FSpot.Widgets
 	{
 		bool running;
 		BrowsablePointer item;
+		int loadRetries = 0;
 #region Public API
 
 		public SlideShow (BrowsablePointer item) : this (item, 6000, false)
@@ -125,8 +126,13 @@ namespace FSpot.Widgets
 						Cms.Profile screen_profile;
 						if (FSpot.ColorManagement.Profiles.TryGetValue (Preferences.Get<string> (Preferences.COLOR_MANAGEMENT_DISPLAY_PROFILE), out screen_profile)) 
 							FSpot.ColorManagement.ApplyProfile (next, screen_profile);
+						loadRetries = 0;
 					} catch (Exception) {
 						next = PixbufUtils.ErrorPixbuf;
+						if (++loadRetries < 10)
+							item.MoveNext (true);
+						else
+							loadRetries = 0;
 					}
 				}
 		}
