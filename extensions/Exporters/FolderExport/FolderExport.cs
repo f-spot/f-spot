@@ -250,7 +250,7 @@ namespace FSpotFolderExport {
 				// otherwise we xfer
 				if (!dest.IsNative) {
 					System.Console.WriteLine ("Xfering {0} to {1}", source.ToString (), target.ToString ());
-					result = source.CopyRecursive (target, GLib.FileCopyFlags.Overwrite, null, Progress);
+					result = source.CopyRecursive (target, GLib.FileCopyFlags.Overwrite, new GLib.Cancellable (), Progress);
 				}
 
 				if (result == true) {
