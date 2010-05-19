@@ -37,11 +37,13 @@ namespace FSpot.Utils
                 yield break;
             }
 
-            if (root_info.FileType == FileType.Regular) {
-                yield return root;
-            } else if (root_info.FileType == FileType.Directory) {
-                foreach (var child in ScanDirectoryForFiles (root)) {
-                    yield return child;
+             using (root_info) {
+                if (root_info.FileType == FileType.Regular) {
+                    yield return root;
+                } else if (root_info.FileType == FileType.Directory) {
+                    foreach (var child in ScanDirectoryForFiles (root)) {
+                        yield return child;
+                    }
                 }
             }
         }
