@@ -24,8 +24,13 @@ public class TagMenu : Menu {
 		public TagMenuItem (Tag t, string name) : base (name.Replace ("_", "__"))
 		{
 			Value = t;
-			if (t.Icon != null)
+			if (t.Icon != null) {
 				this.Image = new Gtk.Image (t.SizedIcon);
+#if GTK_2_16
+				// override Gnome 2.28+ default setting not to show menuitem icons
+				GtkBeans.ImageMenuItemExtensions.SetAlwaysShowImage (this, true);
+#endif
+			}
 		}
 
 		public static TagMenuItem IndentedItem (Tag t)
