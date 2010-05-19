@@ -39,6 +39,9 @@ namespace FSpot.Utils
             foreach (FileInfo info in enumerator) {
                 File file = root_dir.GetChild (info.Name);
                 
+                // The code below looks like a duplication of ScanForFiles
+                // (which could be invoked here instead), but doing so would
+                // lead to a double type query on files (using QueryInfo).
                 if (info.FileType == FileType.Regular) {
                     yield return file;
                 } else if (info.FileType == FileType.Directory && recurse) {
