@@ -40,7 +40,7 @@ namespace FSpot.Utils
 				GLib.File source_file = GLib.FileFactory.NewForPath (Path.Combine (source.Path, fi.Name));
 				GLib.File target_file = GLib.FileFactory.NewForPath (Path.Combine (target.Path, fi.Name));
 				Log.Debug (Catalog.GetString("CopyRecursive {0} -> {1}"), source_file.Path, target_file.Path);
-				result = result && CopyRecursive(source_file, target_file, flags, cancellable, callback);
+				result = result && source_file.CopyRecursive(target_file, flags, cancellable, callback);
 				fi = fe.NextFile ();
 			}
 			fe.Close (cancellable);
