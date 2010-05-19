@@ -22,15 +22,13 @@ namespace FSpot.Utils
 			
 			GLib.FileType ft = source.QueryFileType (GLib.FileQueryInfoFlags.None, cancellable);
 			
-			Log.Debug (Catalog.GetString("Try to copy {0} -> {1}"), source.Path, target.Path);
-			
 			if (ft != GLib.FileType.Directory) {
-				Log.Debug (Catalog.GetString("Copying {0} -> {1}"), source.Path, target.Path);
+				Log.Debug ("Copying \"{0}\" to \"{1}\"", source.Path, target.Path);
 				return source.Copy (target, flags, cancellable, callback);
 			}
 			
 			if (!target.Exists) {
-				Log.Debug ("Creating directory: "+target.Path);
+				Log.Debug ("Creating directory: \"{0}\"", target.Path);
 				result = result && target.MakeDirectoryWithParents (cancellable);
 			}
 			
@@ -39,7 +37,6 @@ namespace FSpot.Utils
 			while (fi != null) {
 				GLib.File source_file = GLib.FileFactory.NewForPath (Path.Combine (source.Path, fi.Name));
 				GLib.File target_file = GLib.FileFactory.NewForPath (Path.Combine (target.Path, fi.Name));
-				Log.Debug (Catalog.GetString("CopyRecursive {0} -> {1}"), source_file.Path, target_file.Path);
 				result = result && source_file.CopyRecursive(target_file, flags, cancellable, callback);
 				fi = fe.NextFile ();
 			}

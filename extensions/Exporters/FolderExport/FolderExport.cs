@@ -184,14 +184,14 @@ namespace FSpotFolderExport {
 				}
 
 				if (scale) {
-					System.Console.WriteLine ("setting scale to {0}", size);
+					Log.Debug ("Resize Photos to {0}.", size);
 					gallery.SetScale (size);
 				} else {
-					System.Console.WriteLine ("Exporting full size image");
+					Log.Debug ("Exporting full size.");
 				}
 
 				if (rotate) {
-					System.Console.WriteLine ("Exporting rotated image");
+					Log.Debug ("Autorotate images.");
 					gallery.SetRotate();
 				}
 
@@ -202,8 +202,8 @@ namespace FSpotFolderExport {
 					gallery.SetExportTagIcons ();
 
 				gallery.Description = description;
-
 				gallery.GenerateLayout ();
+				
 				FilterSet filter_set = new FilterSet ();
 				if (scale)
 					filter_set.Add (new ResizeFilter ((uint) size));
@@ -215,12 +215,13 @@ namespace FSpotFolderExport {
 				for (int photo_index = 0; photo_index < selection.Count; photo_index++)
 				{
 					try {
-						progress_dialog.Message = System.String.Format (Catalog.GetString ("Copying \"{0}\""), selection[photo_index].Name);
+						progress_dialog.Message = System.String.Format (Catalog.GetString ("Exporting \"{0}\"..."), selection[photo_index].Name);
 						progress_dialog.Fraction = photo_index / (double) selection.Count;
 						gallery.ProcessImage (photo_index, filter_set);
 						progress_dialog.ProgressText = System.String.Format (Catalog.GetString ("{0} of {1}"), (photo_index + 1), selection.Count);
 					}
 					catch (Exception e) {
+						Log.Error (e.ToString ());
 						progress_dialog.Message = String.Format (Catalog.GetString ("Error Copying \"{0}\" to Gallery:{2}{1}"),
 							selection[photo_index].Name, e.Message, Environment.NewLine);
 						progress_dialog.ProgressText = Catalog.GetString ("Error");
@@ -228,7 +229,6 @@ namespace FSpotFolderExport {
 						if (progress_dialog.PerformRetrySkip ())
 							photo_index--;
 					}
-
 				}
 
 				// create the zip tarballs for original
@@ -247,18 +247,20 @@ namespace FSpotFolderExport {
 				// we've created the structure, now if the destination was local (native) we are done
 				// otherwise we xfer
 				if (!dest.IsNative) {
-					System.Console.WriteLine ("Transferring {0} to {1}", source.ToString (), target.ToString ());
+					Log.Debug ("Transferring \"{0}\" to \"{1}\"", source.Path, target.Path);
+					progress_dialog.Message = String.Format (Catalog.GetString ("Transferring to \"{0}\""), target.Path);
+					progress_dialog.ProgressText = Catalog.GetString ("Transferring...");
 					result = source.CopyRecursive (target, GLib.FileCopyFlags.Overwrite, new GLib.Cancellable (), Progress);
 				}
 				
 				// No need to check result here as if result is not true, an Exception will be thrown before
-				progress_dialog.Message = Catalog.GetString ("Done Sending Photos");
+				progress_dialog.Message = Catalog.GetString ("Export Complete.");
 				progress_dialog.Fraction = 1.0;
-				progress_dialog.ProgressText = Catalog.GetString ("Transfer Complete");
+				progress_dialog.ProgressText = Catalog.GetString ("Exporting Photos Completed.");
 				progress_dialog.ButtonLabel = Gtk.Stock.Ok;
 
 				if (open) {
-					Log.Debug (String.Format (Catalog.GetString ("Open URI {0}"), target.Uri.ToString ()));
+					Log.Debug (String.Format ("Open URI \"{0}\"", target.Uri.ToString ()));
 					Gtk.Application.Invoke (delegate {GtkBeans.Global.ShowUri (Dialog.Screen, target.Uri.ToString () );});
 				}
 
@@ -272,7 +274,7 @@ namespace FSpotFolderExport {
 				Preferences.Set (METHOD_KEY, static_radio.Active ? "static" : original_radio.Active ? "original" : "folder" );
 				Preferences.Set (URI_KEY, uri_chooser.Uri);
 			} catch (System.Exception e) {
-				Log.Debug (e.ToString ());
+				Log.Error (e.ToString ());
 				progress_dialog.Message = e.ToString ();
 				progress_dialog.ProgressText = Catalog.GetString ("Error Transferring");
 			} finally {
@@ -287,8 +289,6 @@ namespace FSpotFolderExport {
 
 		private void Progress (long current_num_bytes, long total_num_bytes)
 		{
-			progress_dialog.ProgressText = Catalog.GetString ("Transferring...");
-
 			if (total_num_bytes > 0) {
 				progress_dialog.Fraction = current_num_bytes / (double)total_num_bytes;
 			}
@@ -323,7 +323,7 @@ namespace FSpotFolderExport {
 				size = size_spin.ValueAsInt;
 
 			command_thread = new System.Threading.Thread (new System.Threading.ThreadStart (Upload));
-			command_thread.Name = Catalog.GetString ("Transferring Pictures");
+			command_thread.Name = Catalog.GetString ("Exporting Photos");
 
 			progress_dialog = new ThreadProgressDialog (command_thread, 1);
 			progress_dialog.Start ();
@@ -514,7 +514,7 @@ namespace FSpotFolderExport {
 			try {
 				Directory.CreateDirectory (path);
 			} catch {
-				Console.WriteLine ("Error in creating directory " + path);
+				Log.Error ("Error in creating directory \"{0}\"", path);
 			}
 			return path;
 		}
@@ -640,7 +640,7 @@ namespace FSpotFolderExport {
 
 				Directory.SetLastWriteTimeUtc(gallery_path, collection [0].Time);
 			} catch (System.Exception e) {
-				System.Console.WriteLine (e.ToString ());
+				Log.Error (e.ToString ());
 			}
 		}
 
@@ -655,7 +655,7 @@ namespace FSpotFolderExport {
 				    CreateZipFile("hq");
 
 			} catch (System.Exception e) {
-				System.Console.WriteLine (e.ToString ());
+				Log.Error (e.ToString ());
 			}
 		}
 
