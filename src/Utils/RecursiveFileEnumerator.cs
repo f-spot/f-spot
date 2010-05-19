@@ -22,14 +22,27 @@ namespace FSpot.Utils
 
         IEnumerable<File> ScanForFiles (File root)
         {
-            var enumerator = root.EnumerateChildren ("standard::name,standard::type", FileQueryInfoFlags.None, null);
+            var root_info = root.QueryInfo ("standard::name,standard::type", FileQueryInfoFlags.None, null);
+
+            if (root_info.FileType == FileType.Regular) {
+                yield return root;
+            } else if (root_info.FileType == FileType.Directory) {
+                foreach (var child in ScanDirectoryForFiles (root)) {
+                    yield return child;
+                }
+            }
+        }
+
+        IEnumerable<File> ScanDirectoryForFiles (File root_dir)
+        {
+            var enumerator = root_dir.EnumerateChildren ("standard::name,standard::type", FileQueryInfoFlags.None, null);
             foreach (FileInfo info in enumerator) {
-                File file = root.GetChild (info.Name);
+                File file = root_dir.GetChild (info.Name);
                 
                 if (info.FileType == FileType.Regular) {
                     yield return file;
                 } else if (info.FileType == FileType.Directory && recurse) {
-                    foreach (var child in ScanForFiles (file)) {
+                    foreach (var child in ScanDirectoryForFiles (file)) {
                         yield return child;
                     }
                 }
