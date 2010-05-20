@@ -157,9 +157,9 @@ namespace FSpot.Widgets
 		}
 		protected override void OnDestroyed ()
 		{
-			if (prev != null)
+			if (prev != null && prev != PixbufUtils.ErrorPixbuf)
 				prev.Dispose ();
-			if (next != null)
+			if (next != null && next != PixbufUtils.ErrorPixbuf)
 				next.Dispose ();
 
 			base.OnDestroyed ();
