@@ -510,6 +510,7 @@ public class ImportCommand : GladeDialog
 					Stock.Open, ResponseType.Ok);
 
 		file_chooser.SelectMultiple = false;
+		file_chooser.LocalOnly = false;
 
 		if (ImportUri != null)
 			file_chooser.SetCurrentFolderUri (ImportUri.ToString ());
