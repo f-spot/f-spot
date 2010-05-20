@@ -741,6 +741,9 @@ public class ImportCommand : GladeDialog
 
 		AllowFinish = true;
 		collection.AddAll (info);
+		
+		if(collection.Count == 0)
+			photo_view.Pixbuf = GtkUtil.TryLoadIcon (FSpot.Global.IconTheme, "f-spot", 128, (Gtk.IconLookupFlags)0);
 
 		return false;
 	}
