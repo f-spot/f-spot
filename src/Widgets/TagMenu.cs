@@ -1,4 +1,7 @@
 using Gtk;
+#if GTK_2_16
+using GtkBeans;
+#endif
 using System;
 using FSpot;
 using FSpot.Utils;
@@ -28,7 +31,7 @@ public class TagMenu : Menu {
 				this.Image = new Gtk.Image (t.SizedIcon);
 #if GTK_2_16
 				// override Gnome 2.28+ default setting not to show menuitem icons
-				GtkBeans.ImageMenuItemExtensions.SetAlwaysShowImage (this, true);
+				this.SetAlwaysShowImage (true);
 #endif
 			}
 		}
