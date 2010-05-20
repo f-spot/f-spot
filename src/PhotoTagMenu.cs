@@ -33,19 +33,6 @@ using FSpot;
 public class PhotoTagMenu : Menu {
 	public delegate void TagSelectedHandler (Tag t);
 	public event TagSelectedHandler TagSelected;
-	// This should be reworked to use a Selection interface to
-	// extract the current selection
-	private class TagMenuItem : Gtk.ImageMenuItem {
-		public Tag Value;
-
-		public TagMenuItem (Tag t) : base (t.Name) {
-			Value = t;
-			if (t.Icon != null)
-				this.Image = new Gtk.Image (t.SizedIcon);
-		}
-
-		protected TagMenuItem (IntPtr raw) : base (raw) {}
-	}
 
 	public PhotoTagMenu () : base () {
 	}
@@ -79,7 +66,7 @@ public class PhotoTagMenu : Menu {
 		}
 
 		foreach (Tag t in hash.Values) {
-			TagMenuItem item = new TagMenuItem (t);
+			MenuItem item = new TagMenu.TagMenuItem (t);
 			this.Append (item);
 			item.ShowAll ();
 			item.Activated += HandleActivate;
@@ -90,7 +77,7 @@ public class PhotoTagMenu : Menu {
 	void HandleActivate (object obj, EventArgs args)
 	{
 		if (TagSelected != null) {
-			TagMenuItem t = obj as TagMenuItem;
+			TagMenu.TagMenuItem t = obj as TagMenu.TagMenuItem;
 			if (t != null)
 				TagSelected (t.Value);
 			else 
