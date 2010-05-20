@@ -170,7 +170,7 @@ namespace FSpot.Exporter.Facebook
 			StoreCaption ();
 			
 			int old_item = current_item;
-			current_item = thumbnail_iconview.CellAtPosition ((int) args.Event.X, (int) args.Event.Y, false);
+			current_item = thumbnail_iconview.CellAtPosition ((int) args.Event.X, (int) args.Event.Y, false, false);
 
 			if (current_item < 0 || current_item >=  items.Length) {
 				current_item = old_item;
