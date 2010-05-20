@@ -69,7 +69,7 @@ public class FileImportBackend : ImportBackend {
 		import_info = new List<IBrowsableItem> ();
 
 		foreach (Uri uri in base_paths) {
-			var enumerator = new RecursiveFileEnumerator (uri, recurse);
+			var enumerator = new RecursiveFileEnumerator (uri, recurse, true);
 			foreach (var file in enumerator) {
 				if (FSpot.ImageFile.HasLoader (file.Uri))
 					import_info.Add (new ImportInfo (file.Uri));

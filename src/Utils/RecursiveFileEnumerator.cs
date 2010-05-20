@@ -8,21 +8,34 @@ namespace FSpot.Utils
     public class RecursiveFileEnumerator : IEnumerable<File>
     {
         Uri root;
-		bool recurse;
+        bool recurse;
+        bool catch_no_permission;
 
-        public RecursiveFileEnumerator (Uri root) : this (root, true)
+        public RecursiveFileEnumerator (Uri root) : this (root, true, false)
         {
         }
 
-		public RecursiveFileEnumerator (Uri root, bool recurse)
-		{
-			this.root = root;
-			this.recurse = recurse;
-		}
+        public RecursiveFileEnumerator (Uri root, bool recurse) : this (root, recurse, false)
+        {
+        }
+
+        public RecursiveFileEnumerator (Uri root, bool recurse, bool catch_no_permission)
+        {
+            this.root = root;
+            this.recurse = recurse;
+            this.catch_no_permission = catch_no_permission;
+        }
 
         IEnumerable<File> ScanForFiles (File root)
         {
-            var root_info = root.QueryInfo ("standard::name,standard::type", FileQueryInfoFlags.None, null);
+            GLib.FileInfo root_info = null;
+            try {
+                root_info = root.QueryInfo ("standard::name,standard::type", FileQueryInfoFlags.None, null);
+            } catch (GLib.GException e) {
+                if (!catch_no_permission)
+                    throw e;
+                yield break;
+            }
 
             if (root_info.FileType == FileType.Regular) {
                 yield return root;
@@ -35,7 +48,15 @@ namespace FSpot.Utils
 
         IEnumerable<File> ScanDirectoryForFiles (File root_dir)
         {
-            var enumerator = root_dir.EnumerateChildren ("standard::name,standard::type", FileQueryInfoFlags.None, null);
+            GLib.FileEnumerator enumerator = null;
+            try {
+                enumerator = root_dir.EnumerateChildren ("standard::name,standard::type", FileQueryInfoFlags.None, null);
+            } catch (GLib.GException e) {
+                if (!catch_no_permission)
+                    throw e;
+                yield break;
+            }
+
             foreach (FileInfo info in enumerator) {
                 File file = root_dir.GetChild (info.Name);
                 
