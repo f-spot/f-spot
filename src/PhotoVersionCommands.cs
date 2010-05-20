@@ -173,9 +173,9 @@ public class PhotoVersionCommands
 			try {
 				if (ResponseType.Ok == HigMessageDialog.RunHigConfirmation(parent_window, DialogFlags.DestroyWithParent, 
 									   MessageType.Warning, msg, desc, ok_caption)) {
-					Gdk.Pixbuf thumbnail = null;
-					Photo new_photo = store.Create (photo.DefaultVersionUri, photo.RollId, out thumbnail);
-					new_photo.CopyAttributesFrom (photo.DefaultVersion);
+					Photo new_photo = store.Create (photo.DefaultVersion.Uri, photo.RollId);
+					new_photo.CopyAttributesFrom (photo);
+					new_photo.MD5Sum = (photo.DefaultVersion as PhotoVersion).MD5Sum;
 					photo.DeleteVersion (photo.DefaultVersionId, false, true);
 					store.Commit (new Photo[] {new_photo, photo});
 					return true;

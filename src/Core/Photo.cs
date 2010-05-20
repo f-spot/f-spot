@@ -439,7 +439,7 @@ namespace FSpot
 	//		PhotoStore.MoveThumbnail (old_path, new_path);
 		}
 		
-		public void CopyAttributesFrom (PhotoVersion that) 
+		public void CopyAttributesFrom (Photo that) 
 		{			
 			Time = that.Time;
 			Description = that.Description;

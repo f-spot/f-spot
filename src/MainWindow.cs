@@ -1228,7 +1228,7 @@ namespace FSpot
 					Photo[] photos_to_reparent = SelectedPhotos ();
 					// Give feedback to user that something happened, and leave the parent selected after reparenting
 					icon_view.Selection.Add (p_item); 
-					cmd.Execute (db.Photos, photos_to_reparent, query.Photos [p_item], GetToplevel (null));
+					cmd.Execute (Database.Photos, photos_to_reparent, query.Photos [p_item], GetToplevel (null));
 					UpdateQuery ();
 				}
 				Gtk.Drag.Finish (args.Context, true, false, args.Time);
@@ -1716,7 +1716,7 @@ namespace FSpot
 		void HandleDetachVersionCommand (object obj, EventArgs args)
 		{
 			PhotoVersionCommands.Detach cmd = new PhotoVersionCommands.Detach ();
-			cmd.Execute (db.Photos, CurrentPhoto, GetToplevel (null));
+			cmd.Execute (Database.Photos, CurrentPhoto, GetToplevel (null));
 			UpdateQuery ();
 		}
 	
