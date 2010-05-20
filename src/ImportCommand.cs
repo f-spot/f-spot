@@ -492,14 +492,6 @@ public class ImportCommand : GladeDialog
 		Preferences.Set(Preferences.IMPORT_CHECK_DUPLICATES, duplicate_check.Active);
 	}
 	
-	public void HandleImportBrowse (object o, EventArgs args) 
-	{
-		Uri uri = ChooseUri ();
-		if (uri != null) {
-			ImportUri = uri;
-		}
-	}
-	
 	public Uri ChooseUri ()
 	{
 		Uri uri = null;
