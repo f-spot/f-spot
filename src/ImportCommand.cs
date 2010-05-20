@@ -227,6 +227,17 @@ public class ImportCommand : GladeDialog
 		private void HandleActivated (object sender, EventArgs args)
 		{
 			command.Source = (SourceItem) sender;
+			command.ChangeSelection ();
+		}
+
+		public void HandleSourceSelectionChanged (object sender, EventArgs args)
+		{
+			SourceMenu sm = (sender as OptionMenu).Menu as SourceMenu;
+			SourceItem source = sm.Active as SourceItem;
+			if(source != command.Source) {
+				command.Source = source;
+				command.ChangeSelection ();
+			}
 		}
 
 		public int SourceCount {
@@ -298,42 +309,43 @@ public class ImportCommand : GladeDialog
 
 	public Uri ImportUri { get; private set; }
 	
-	private SourceItem Source {
-		set {
-			if (store == null || collection == null)
-				return;
-			
-			SourceItem item = value;
-			
-			this.Cancel ();
-			this.copy = copy_check.Active;
+	private SourceItem Source;
 
-			if (!item.Sensitive)
-				return;
+	public void ChangeSelection ()
+	{
+		if (store == null || collection == null)
+			return;
 
-			if (item.Source is BrowseSource) {
-				Uri uri = ChooseUri ();
-				
-				if (uri != null) {
-					SourceItem uri_item = new SourceItem (new VfsSource (uri));
-					menu.Prepend (uri_item);
-					uri_item.ShowAll ();
-					source_option_menu.SetHistory (0);
-					ImportUri = uri;
-				}
-			} else if (item.Source is VfsSource) {
-				VfsSource vfs = item.Source as VfsSource;
-				ImportUri = vfs.uri;
-			} else if (item.Source is CameraSource) {
-				CameraSource csource = item.Source as CameraSource;
-				string port = "gphoto2:" + csource.Port;
-				this.Cancel ();
-				this.Dialog.Destroy ();
-				App.Instance.Organizer.ImportCamera (port);
+		SourceItem item = Source;
+
+		this.Cancel ();
+		this.copy = copy_check.Active;
+
+		if (!item.Sensitive)
+			return;
+
+		if (item.Source is BrowseSource) {
+			Uri uri = ChooseUri ();
+			
+			if (uri != null) {
+				SourceItem uri_item = new SourceItem (new VfsSource (uri));
+				menu.Prepend (uri_item);
+				uri_item.ShowAll ();
+				source_option_menu.SetHistory (0);
+				ImportUri = uri;
 			}
-
-			idle_start.Start ();
+		} else if (item.Source is VfsSource) {
+			VfsSource vfs = item.Source as VfsSource;
+			ImportUri = vfs.uri;
+		} else if (item.Source is CameraSource) {
+			CameraSource csource = item.Source as CameraSource;
+			string port = "gphoto2:" + csource.Port;
+			this.Cancel ();
+			this.Dialog.Destroy ();
+			App.Instance.Organizer.ImportCamera (port);
 		}
+
+		idle_start.Start ();
 	}
 
 	public ImportCommand (Gtk.Window mw)
@@ -592,7 +604,7 @@ public class ImportCommand : GladeDialog
 		this.Dialog.Show ();
         progress_bar.Hide ();
 
-		//source_option_menu.Changed += HandleSourceChanged;
+		source_option_menu.Changed += menu.HandleSourceSelectionChanged;
 		if (uri != null) {
 			ImportUri = uri;
 			int i = menu.FindItemPosition (uri);
