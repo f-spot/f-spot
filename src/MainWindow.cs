@@ -183,9 +183,7 @@ namespace FSpot
 		
 		private static TargetEntry [] icon_dest_target_table = 
 			new TargetEntry [] {
-	#if ENABLE_REPARENTING
 				DragDropTargets.PhotoListEntry,
-	#endif
 				DragDropTargets.TagListEntry,
 				DragDropTargets.UriListEntry
 		};
@@ -1219,7 +1217,6 @@ namespace FSpot
 				return;
 			}
 			
-	#if ENABLE_REPARENTING
 			if (args.Info == DragDropTargets.PhotoListEntry.Info) {
 				int p_item = icon_view.CellAtPosition (args.X + (int) icon_view.Hadjustment.Value, 
 								     args.Y + (int) icon_view.Vadjustment.Value);
@@ -1237,7 +1234,6 @@ namespace FSpot
 				Gtk.Drag.Finish (args.Context, true, false, args.Time);
 				return;
 			}
-	#endif
 		}
 	
 		//
