@@ -236,6 +236,7 @@ namespace FSpot.Widgets
 				(int) EventMask.KeyPressMask
 				| (int) EventMask.KeyReleaseMask
 				| (int) EventMask.PointerMotionMask
+				| (int) EventMask.PointerMotionHintMask
 				| (int) EventMask.ButtonPressMask
 				| (int) EventMask.ButtonReleaseMask);
 
