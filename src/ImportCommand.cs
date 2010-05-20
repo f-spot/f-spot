@@ -318,6 +318,7 @@ public class ImportCommand : GladeDialog
 					SourceItem uri_item = new SourceItem (new VfsSource (uri));
 					menu.Prepend (uri_item);
 					uri_item.ShowAll ();
+					source_option_menu.SetHistory (0);
 					ImportUri = uri;
 				}
 			} else if (item.Source is VfsSource) {
