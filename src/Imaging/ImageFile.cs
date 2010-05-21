@@ -205,8 +205,13 @@ namespace FSpot {
 			Type t = (Type) name_table [extension];
 
 			if (t == null) {
-				GLib.FileInfo info = GLib.FileFactory.NewForUri (uri).QueryInfo ("standard::type,standard::content-type", GLib.FileQueryInfoFlags.None, null);
-				t = (Type) name_table [info.ContentType];
+				// check if GIO can find the file, which is not the case
+				// with filenames with invalid encoding
+				GLib.File f = GLib.FileFactory.NewForUri (uri);
+				if (f.QueryExists (null)) {
+					GLib.FileInfo info = f.QueryInfo ("standard::type,standard::content-type", GLib.FileQueryInfoFlags.None, null);
+					t = (Type) name_table [info.ContentType];
+				}
 			}
 
 			return t;
