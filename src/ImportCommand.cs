@@ -234,7 +234,7 @@ public class ImportCommand : GladeDialog
 		{
 			SourceMenu sm = (sender as OptionMenu).Menu as SourceMenu;
 			SourceItem source = sm.Active as SourceItem;
-			if(source != command.Source) {
+			if (source != command.Source) {
 				command.Source = source;
 				command.ChangeSelection ();
 			}
@@ -757,7 +757,7 @@ public class ImportCommand : GladeDialog
 		AllowFinish = true;
 		collection.AddAll (info);
 		
-		if(collection.Count == 0)
+		if (collection.Count == 0)
 			photo_view.Pixbuf = GtkUtil.TryLoadIcon (FSpot.Global.IconTheme, "f-spot", 128, (Gtk.IconLookupFlags)0);
 
 		return false;
