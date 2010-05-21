@@ -63,6 +63,7 @@ theme_icons = 					\
 	apps,f-spot-22.png			\
 	apps,f-spot-24.png			\
 	apps,f-spot-32.png			\
+	apps,f-spot-128.png			\
 	apps,f-spot-256.png			\
 	devices,camera-photo-16.png		\
 	devices,camera-photo-22.png		\
