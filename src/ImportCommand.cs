@@ -321,6 +321,9 @@ public class ImportCommand : GladeDialog
 		this.Cancel ();
 		this.copy = copy_check.Active;
 
+		// scrolling to top
+		tray.ScrollTo (0);
+
 		if (!item.Sensitive)
 			return;
 
