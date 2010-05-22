@@ -30,6 +30,7 @@ using Mono.Facebook.Schemas;
 
 namespace Mono.Facebook
 {
+    [System.Xml.Serialization.XmlRootAttribute("photos_upload_response", Namespace="http://api.facebook.com/1.0/")]
 	public class Photo : photo, SessionWrapper
 	{
         [XmlIgnore]
