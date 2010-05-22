@@ -132,10 +132,10 @@ namespace FSpot.Exporter.Facebook
 
 			Hashtable attribs = new Hashtable();
 			attribs["name"] = keyring_item_name;
-			attribs["uid"] = info.UId.ToString ();
-			attribs["session_key"] = info.SessionKey;
+			attribs["uid"] = info.uid.ToString ();
+			attribs["session_key"] = info.session_key;
 			try {
-				Ring.CreateItem (keyring, ItemType.GenericSecret, keyring_item_name, attribs, info.Secret, true);
+				Ring.CreateItem (keyring, ItemType.GenericSecret, keyring_item_name, attribs, info.secret, true);
 			} catch (KeyringException e) {
 				Log.DebugException (e);
 				return false;
@@ -247,7 +247,7 @@ namespace FSpot.Exporter.Facebook
 						continue;
 					}
 				}
-				AppendValues (String.Format ("{0} {1}", info.FirstName ?? "", info.LastName ?? ""));
+				AppendValues (String.Format ("{0} {1}", info.first_name ?? "", info.last_name ?? ""));
 			}
 		}
 

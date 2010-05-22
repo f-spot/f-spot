@@ -10,6 +10,7 @@ PLUGIN_SOURCES =			\
 	$(srcdir)/FacebookExport.cs			\
 	$(srcdir)/FacebookExportDialog.cs		\
 	$(srcdir)/FacebookTagPopup.cs			\
+	$(srcdir)/Mono.Facebook/facebook.cs		\
 	$(srcdir)/Mono.Facebook/Album.cs		\
 	$(srcdir)/Mono.Facebook/AssemblyInfo.cs		\
 	$(srcdir)/Mono.Facebook/Error.cs		\
@@ -25,6 +26,7 @@ PLUGIN_SOURCES =			\
 	$(srcdir)/Mono.Facebook/PeopleList.cs		\
 	$(srcdir)/Mono.Facebook/Photo.cs		\
 	$(srcdir)/Mono.Facebook/Responses.cs		\
+	$(srcdir)/Mono.Facebook/SessionInfo.cs	\
 	$(srcdir)/Mono.Facebook/SessionWrapper.cs	\
 	$(srcdir)/Mono.Facebook/Tag.cs			\
 	$(srcdir)/Mono.Facebook/User.cs			\
@@ -56,8 +58,16 @@ all: $(PLUGIN_ASSEMBLY)
 mpack: $(PLUGIN_ASSEMBLY)
 	mautil p $(PLUGIN_ASSEMBLY)
 
+update-xsd:
+	curl http://api.facebook.com/1.0/facebook.xsd > Mono.Facebook/facebook.xsd
+	xsd Mono.Facebook/facebook.xsd /classes /outputdir:Mono.Facebook/ /namespace:Mono.Facebook.Schemas
+
+validate-xsd: all
+	gmcs -debug $(REFS) $(PKGS) -out:FindNullableClashes.exe FindNullableClashes.cs
+	MONO_PATH=.:$(top_builddir)/src/ mono --debug FindNullableClashes.exe FacebookExport.dll
+
 $(PLUGIN_ASSEMBLY): $(PLUGIN_SOURCES) $(PLUGIN_MANIFEST) $(PLUGIN_NAME).ui
-	$(CSC_LIB) -out:$@ -warnaserror $(PLUGIN_SOURCES) $(REFS) $(PKGS) $(ASSEMBLIES) $(RESOURCES)
+	$(CSC_LIB) -debug -out:$@ -warnaserror $(PLUGIN_SOURCES) $(REFS) $(PKGS) $(ASSEMBLIES) $(RESOURCES)
 
 plugindir = $(pkglibdir)/extensions
 

@@ -388,7 +388,7 @@ namespace FSpot.Utils
             }
         
             // FIXME: We should save these to an actual log file
-            Log.Warning (message ?? "Caught an exception", builder.ToString (), false);
+            Log.Warning (message ?? String.Format ("Caught an exception {0}", e.GetType ().ToString ()), builder.ToString (), false);
         }
 		
 		public static void Exception (Exception e, string format, params object [] args)

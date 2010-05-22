@@ -262,27 +262,29 @@ namespace FSpot.Exporter.Facebook
 							LoginProgress (0.6, Catalog.GetString ("Session established, fetching friend details..."));
 						});
 
-						User[] infos = account.Facebook.GetUserInfo (uids, new string[] { "first_name", "last_name" });
-						friends = new Dictionary<long, User> ();
-	
-						foreach (User user in infos)
-							friends.Add (user.UId, user);
-	
+						if (uids.Length > 0) {
+							User[] infos = account.Facebook.GetUserInfo (uids, new string[] { "first_name", "last_name" });
+							friends = new Dictionary<long, User> ();
+
+							foreach (User user in infos)
+								friends.Add (user.uid, user);
+						}
+
 						Gtk.Application.Invoke (delegate {
 							LoginProgress (0.8, Catalog.GetString ("Session established, fetching photo albums..."));
 						});
 						Album[] albums = account.Facebook.GetAlbums ();
 						Gtk.Application.Invoke (delegate {
-							existing_album_combobox.Model = new AlbumStore (albums);
-							existing_album_combobox.Active = 0;
-	
 							album_info_vbox.Sensitive = true;
 							picture_info_vbox.Sensitive = true;
 							permissions_hbox.Sensitive = true;
 							login_button.Visible = false;
 							logout_button.Visible = true;
 							// Note for translators: {0} and {1} are respectively firstname and surname of the user
-							LoginProgress (1.0, String.Format (Catalog.GetString ("{0} {1} is logged into Facebook"), me.FirstName, me.LastName));
+							LoginProgress (1.0, String.Format (Catalog.GetString ("{0} {1} is logged into Facebook"), me.first_name, me.last_name));
+
+							existing_album_combobox.Model = new AlbumStore (albums);
+							existing_album_combobox.Active = 0;
 						});
 					} catch (Exception e) {
 						Log.DebugException (e);
@@ -429,7 +431,7 @@ namespace FSpot.Exporter.Facebook
 			_albums = albums;
 
 			foreach (Album album in Albums) {
-				AppendValues (album.Name);
+				AppendValues (album.name);
 			}
 		}
 
