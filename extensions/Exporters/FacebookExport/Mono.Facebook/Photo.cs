@@ -6,7 +6,6 @@
 //
 // (C) Copyright 2007 Novell, Inc. (http://www.novell.com)
 //
-
 // Permission is hereby granted, free of charge, to any person obtaining
 // a copy of this software and associated documentation files (the
 // "Software"), to deal in the Software without restriction, including
@@ -27,43 +26,22 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 using System.Xml.Serialization;
+using Mono.Facebook.Schemas;
 
 namespace Mono.Facebook
 {
-	[XmlRoot ("photos_upload_response", Namespace="http://api.facebook.com/1.0/")]
-	public class Photo : SessionWrapper
+	public class Photo : photo, SessionWrapper
 	{
-		[XmlElement ("pid")]
-		public long PId;
+        [XmlIgnore]
+		public FacebookSession Session { get; set; }
 
-		[XmlElement ("aid")]
-		public long AId;
-
-		[XmlElement ("owner")]
-		public long Owner;
-
-		[XmlElement ("src")]
-		public string Source;
-
-		[XmlElement ("src_big")]
-		public string SourceBig;
-
-		[XmlElement ("src_small")]
-		public string SourceSmall;
-
-		[XmlElement ("link")]
-		public string Link;
-
-		[XmlElement ("caption")]
-		public string Caption;
-
-		[XmlElement ("created")]
-		public long Created;
+        [XmlIgnore]
+        public string PId { get { return pid; } }
 
 		public Tag[] GetTags ()
 		{
 			PhotoTagsResponse rsp = Session.Util.GetResponse<PhotoTagsResponse> ("facebook.photos.getTags",
-				FacebookParam.Create ("pids", PId),
+				FacebookParam.Create ("pids", pid),
 				FacebookParam.Create ("session_key", Session.SessionKey),
 				FacebookParam.Create ("call_id", System.DateTime.Now.Ticks));
 
@@ -75,16 +53,16 @@ namespace Mono.Facebook
 
 		public Album GetAlbum ()
 		{
-			AlbumsResponse rsp = Session.Util.GetResponse<AlbumsResponse> ("facebook.photos.getAlbums",
-				FacebookParam.Create ("aids", AId),
+			var rsp = Session.Util.GetResponse<AlbumsResponse> ("facebook.photos.getAlbums",
+				FacebookParam.Create ("aids", aid),
 				FacebookParam.Create ("session_key", Session.SessionKey),
 				FacebookParam.Create ("call_id", System.DateTime.Now.Ticks));
 
-			if (rsp.Albums.Length < 1)
+			if (rsp.album.Length < 1)
 				return null;
 
-			rsp.Albums[0].Session = Session;
-			return rsp.Albums[0];
+			rsp.album[0].Session = Session;
+			return rsp.album[0];
 		}
 
 		// does not work right now: cannot tag photo already visible on facebook

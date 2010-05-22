@@ -3,7 +3,6 @@
 // // Authors:
 //	George Talusan (george@convolve.ca)
 //
-
 // Permission is hereby granted, free of charge, to any person obtaining
 // a copy of this software and associated documentation files (the
 // "Software"), to deal in the Software without restriction, including
@@ -28,118 +27,67 @@ using System.Collections.Generic;
 using System.IO;
 using System.Xml.Serialization;
 using System.Text;
+using Mono.Facebook.Schemas;
 
 namespace Mono.Facebook
 {
 	public class EventMemberList
 	{
 		public Friend[] Attending;
-
 		public Friend[] Unsure;
-
 		public Friend[] Declined;
-
 		public Friend[] NotReplied;
 	}
 
-	public class Event : SessionWrapper
+	public class Event : @event, SessionWrapper
 	{
-		[XmlElement ("eid")]
-		public long EId;
-
-		[XmlElement ("name")]
-		public string Name;
-
-		[XmlElement ("tagline")]
-		public string Tagline;
-
-		[XmlElement ("nid")]
-		public long NId;
-
-		[XmlElement ("pic")]
-		public string Pic;
+        [XmlIgnore]
+		public FacebookSession Session { get; set; }
 
 		[XmlIgnore ()]
 		public Uri PicUri
 		{
-			get { return new Uri (Pic); }
+			get { return new Uri (pic); }
 		}
-
-		[XmlElement ("pic_big")]
-		public string PicBig;
 
 		[XmlIgnore ()]
 		public Uri PicBigUri
 		{
-			get { return new Uri (PicBig); }
+			get { return new Uri (pic_big); }
 		}
-
-		[XmlElement ("pic_small")]
-		public string PicSmall;
 
 		[XmlIgnore ()]
 		public Uri PicSmallUri
 		{
-			get { return new Uri (PicSmall); }
+			get { return new Uri (pic_small); }
 		}
-
-		[XmlElement ("host")]
-		public string Host;
-
-		[XmlElement ("description")]
-		public string Description;
-
-		[XmlElement ("event_type")]
-		public string EventType;
-
-		[XmlElement ("event_subtype")]
-		public string EventSubType;
-
-		[XmlElement ("start_time")]
-		public long StartTime;
-
-		[XmlElement ("end_time")]
-		public long EndTime;
-
-		[XmlElement ("creator")]
-		public long? Creator;
-
-		[XmlElement ("update_time")]
-		public long UpdateTime;
-
-		[XmlElement ("location")]
-		public string Location;
-
-		[XmlElement ("venue")]
-		public Location Venue;
 
 		[XmlIgnore ()]
 		public EventMemberList MemberList {
 			get {
-				EventMembersResponse rsp = Session.Util.GetResponse<EventMembersResponse> ("facebook.events.getMembers",
+				var rsp = Session.Util.GetResponse<event_members> ("facebook.events.getMembers",
 					FacebookParam.Create ("session_key", Session.SessionKey),
 					FacebookParam.Create ("call_id", DateTime.Now.Ticks),
-					FacebookParam.Create ("eid", EId));
+					FacebookParam.Create ("eid", eid));
 
 				EventMemberList list = new EventMemberList ();
 
-				list.Attending = new Friend [rsp.Attending.UIds.Length];
+				list.Attending = new Friend [rsp.attending.uid.Length];
 				for (int i = 0; i < list.Attending.Length; i++)
-					list.Attending[i] = new Friend (rsp.Attending.UIds [i], this.Session);
+					list.Attending[i] = new Friend (rsp.attending.uid [i], this.Session);
 
-				list.Unsure = new Friend [rsp.Unsure.UIds.Length];
+				list.Unsure = new Friend [rsp.unsure.uid.Length];
 				for (int i = 0; i < list.Unsure.Length; i++)
-					list.Unsure [i] = new Friend (rsp.Unsure.UIds [i], this.Session);
+					list.Unsure [i] = new Friend (rsp.unsure.uid [i], this.Session);
 
-				list.Declined = new Friend [rsp.Declined.UIds.Length];
+				list.Declined = new Friend [rsp.declined.uid.Length];
 				for (int i = 0; i < list.Declined.Length; i ++)
-					list.Declined [i] = new Friend (rsp.Declined.UIds [i], this.Session);
+					list.Declined [i] = new Friend (rsp.declined.uid [i], this.Session);
 
-				list.NotReplied = new Friend [rsp.NotReplied.UIds.Length];
+				list.NotReplied = new Friend [rsp.not_replied.uid.Length];
 
 				return list;
 			}
-
 		}
 	}
 }

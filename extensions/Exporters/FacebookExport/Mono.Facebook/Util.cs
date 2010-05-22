@@ -134,7 +134,7 @@ namespace Mono.Facebook
 			return doc;
 		}
 
-		internal Photo Upload (long aid, string caption, string path, string session_key)
+		internal Photo Upload (string aid, string caption, string path, string session_key)
 		{
 			// check for file
 			FileInfo file = new FileInfo (path);

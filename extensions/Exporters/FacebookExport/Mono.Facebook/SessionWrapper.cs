@@ -30,9 +30,8 @@ using System.Xml.Serialization;
 
 namespace Mono.Facebook
 {
-	public class SessionWrapper
+	internal interface SessionWrapper
 	{
-		[XmlIgnore ()]
-		internal FacebookSession Session;
+		FacebookSession Session { get; set; }
 	}
 }

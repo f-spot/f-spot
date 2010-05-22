@@ -6,7 +6,6 @@
 //
 // (C) Copyright 2007 Novell, Inc. (http://www.novell.com)
 //
-
 // Permission is hereby granted, free of charge, to any person obtaining
 // a copy of this software and associated documentation files (the
 // "Software"), to deal in the Software without restriction, including
@@ -28,27 +27,21 @@
 //
 
 using System.Xml.Serialization;
+using Mono.Facebook.Schemas;
 
 namespace Mono.Facebook
 {
-	[XmlRoot ("photos_addTag_response", Namespace="http://api.facebook.com/v1.0")]
-	public class Tag : SessionWrapper
+	public class Tag : photo_tag, SessionWrapper
 	{
-		[XmlElement ("pid")]
-		public long PId;
-
-		[XmlElement ("subject")]
-		public long Subject;
-
-		[XmlElement ("xcoord")]
-		public decimal XCoordinate;
-
-		[XmlElement ("ycoord")]
-		public decimal YCoordinate;
-
+        [XmlIgnore]
+		public FacebookSession Session { get; set; }
+        
+        [XmlIgnore]
+        public long Subject { get { return subject; } }
+        
 		public Photo GetPhoto ()
 		{
-			PhotosResponse rsp = Session.Util.GetResponse<PhotosResponse> ("facebook.photos.get", FacebookParam.Create ("pids", PId),
+			PhotosResponse rsp = Session.Util.GetResponse<PhotosResponse> ("facebook.photos.get", FacebookParam.Create ("pids", pid),
 					FacebookParam.Create ("session_key", Session.SessionKey),
 					FacebookParam.Create ("call_id", System.DateTime.Now.Ticks));
 

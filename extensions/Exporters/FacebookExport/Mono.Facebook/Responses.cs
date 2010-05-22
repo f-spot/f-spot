@@ -28,59 +28,25 @@
 //
 using System;
 using System.Xml.Serialization;
+using Mono.Facebook.Schemas;
 
 namespace Mono.Facebook
 {
-	[XmlRoot ("auth_getSession_response", Namespace = "http://api.facebook.com/1.0/", IsNullable = false)]
-	public class SessionInfo
-	{
-		[XmlElement ("session_key")]
-		public string SessionKey;
-
-		[XmlElement ("uid")]
-		public long UId;
-
-		[XmlElement ("secret")]
-		public string Secret;
-
-		[XmlElement ("expires")]
-		public long Expires;
-
-		[XmlIgnore ()]
-		public bool IsInfinite
-		{
-			get { return Expires == 0; }
-		}
-
-		public SessionInfo ()
-		{}
-
-		// use this if you want to create a session based on infinite session
-		// credentials
-		public SessionInfo (string session_key, long uid, string secret)
-		{
-			this.SessionKey = session_key;
-			this.UId = uid;
-			this.Secret = secret;
-			this.Expires = 0;
-		}
-	}
-
 	[XmlRoot ("photos_getAlbums_response", Namespace = "http://api.facebook.com/1.0/", IsNullable = false)]
 	public class AlbumsResponse
 	{
-		[XmlElement ("album")]
-		public Album[] album_array;
+        [XmlElement ("album")]
+		public Album[] album;
 
 		[XmlIgnore ()]
-		public Album[] Albums
+		public Album[] albums
 		{
-			get { return album_array ?? new Album[0]; }
+			get { return album ?? new Album[0]; }
 		}
 
-		[XmlAttribute ("list")]
-		public bool List;
+		public bool list;
 	}
+
 
 	[XmlRoot ("photos_get_response", Namespace = "http://api.facebook.com/1.0/", IsNullable = false)]
 	public class PhotosResponse
@@ -171,22 +137,6 @@ namespace Mono.Facebook
 
 		[XmlAttribute ("list")]
 		public bool List;
-	}
-
-	[XmlRoot ("events_getMembers_response", Namespace = "http://api.facebook.com/1.0/", IsNullable = false)]
-	public class EventMembersResponse
-	{
-		[XmlElement ("attending")]
-		public PeopleList Attending;
-
-		[XmlElement ("unsure")]
-		public PeopleList Unsure;
-
-		[XmlElement ("declined")]
-		public PeopleList Declined;
-
-		[XmlElement ("not_replied")]
-		public PeopleList NotReplied;
 	}
 
 	[XmlRoot ("friends_get_response", Namespace = "http://api.facebook.com/1.0/", IsNullable = false)]

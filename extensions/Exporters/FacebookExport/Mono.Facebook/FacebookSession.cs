@@ -33,6 +33,8 @@ using System.Collections.Generic;
 using System.Text;
 using System.IO;
 using System.Net;
+using System.Linq;
+using Mono.Facebook.Schemas;
 
 namespace Mono.Facebook
 {
@@ -42,14 +44,13 @@ namespace Mono.Facebook
 		SessionInfo session_info;
 		string auth_token;
 
+		internal string SessionKey {
+			get { return session_info.session_key; } 
+		}
+
 		internal Util Util
 		{
 			get { return util; }
-		}
-
-		internal string SessionKey
-		{
-			get { return session_info.SessionKey; }
 		}
 
 		// use this for plain sessions
@@ -60,7 +61,7 @@ namespace Mono.Facebook
 
 		// use this if you want to re-start an infinite session
 		public FacebookSession (string api_key, SessionInfo session_info)
-			: this (api_key, session_info.Secret)
+			: this (api_key, session_info.secret)
 		{
 			this.session_info = session_info;
 		}
@@ -82,7 +83,7 @@ namespace Mono.Facebook
 		{
 			return util.GetBoolResponse("facebook.users.hasAppPermission",
 				FacebookParam.Create ("call_id", DateTime.Now.Ticks),
-				FacebookParam.Create ("session_key", session_info.SessionKey),
+				FacebookParam.Create ("session_key", session_info.session_key),
 				FacebookParam.Create ("ext_perm", permission));
 		}
 
@@ -91,7 +92,7 @@ namespace Mono.Facebook
 			return util.GetBoolResponse
 				("facebook.auth.revokeExtendedPermission",
 					FacebookParam.Create ("call_id", DateTime.Now.Ticks),
-					FacebookParam.Create ("session_key", session_info.SessionKey),
+					FacebookParam.Create ("session_key", session_info.session_key),
 					FacebookParam.Create ("perm", permission));
 		}
 
@@ -104,7 +105,7 @@ namespace Mono.Facebook
 		{
 			this.session_info = util.GetResponse<SessionInfo>("facebook.auth.getSession",
 					FacebookParam.Create("auth_token", auth_token));
-			this.util.SharedSecret = session_info.Secret;
+			this.util.SharedSecret = session_info.secret;
 
 			this.auth_token = string.Empty;
 
@@ -113,34 +114,30 @@ namespace Mono.Facebook
 
 		public Album[] GetAlbums ()
 		{
-			AlbumsResponse rsp = util.GetResponse<AlbumsResponse> ("facebook.photos.getAlbums",
-				FacebookParam.Create ("uid", session_info.UId),
-				FacebookParam.Create ("session_key", session_info.SessionKey),
-				FacebookParam.Create ("call_id", DateTime.Now.Ticks));
+			try {
+				var rsp = util.GetResponse<AlbumsResponse> ("facebook.photos.getAlbums",
+					FacebookParam.Create ("uid", session_info.uid),
+					FacebookParam.Create ("session_key", session_info.session_key),
+					FacebookParam.Create ("call_id", DateTime.Now.Ticks));
 
-			// Fetch "Profile pictures" album ID, and remove it from list. We cannot upload there. Bgo#595952
-			AlbumsResponse rsp_profile = util.GetResponse<AlbumsResponse> ("facebook.photos.getAlbums",
-				FacebookParam.Create ("uid", session_info.UId),
-				FacebookParam.Create ("session_key", session_info.SessionKey),
-				FacebookParam.Create ("aid", "-3"),
-				FacebookParam.Create ("call_id", DateTime.Now.Ticks));
+				var profile_rsp = util.GetResponse<AlbumsResponse> ("facebook.photos.getAlbums",
+					FacebookParam.Create ("uid", session_info.uid),
+					FacebookParam.Create ("session_key", session_info.session_key),
+					FacebookParam.Create ("call_id", DateTime.Now.Ticks),
+					FacebookParam.Create ("aid", -3));
 
-			Album [] rsp_albums = new Album [rsp.Albums.Length - 1];
-			uint id = 0;
-			foreach (Album album in rsp.Albums) 
-				if (album.AId != rsp_profile.Albums [0].AId) {
-					album.Session = this;
-					rsp_albums [id ++] = album;
-				}
-
-			return rsp_albums;
+				// Filters out Profile pictures album, can't upload there.
+				return rsp.albums.Where ((a) => a.aid != profile_rsp.album [0].aid).ToArray ();
+			} catch (FormatException) {
+				return new Album[0];
+			}
 		}
 
 		public Album CreateAlbum (string name, string description, string location)
 		{
 			// create parameter list
 			List<FacebookParam> param_list = new List<FacebookParam> ();
-			param_list.Add (FacebookParam.Create ("session_key", session_info.SessionKey));
+			param_list.Add (FacebookParam.Create ("session_key", session_info.session_key));
 			param_list.Add (FacebookParam.Create ("call_id", DateTime.Now.Ticks));
 			param_list.Add (FacebookParam.Create ("name", name));
 
@@ -160,13 +157,13 @@ namespace Mono.Facebook
 
 		public Group[] GetGroups ()
 		{
-			return this.GetGroups (session_info.UId, null);
+			return this.GetGroups (session_info.uid, null);
 		}
 
 		public Group[] GetGroups (long? uid, long[] gids)
 		{
 			List<FacebookParam> param_list = new List<FacebookParam>();
-			param_list.Add (FacebookParam.Create ("session_key", session_info.SessionKey));
+			param_list.Add (FacebookParam.Create ("session_key", session_info.session_key));
 			param_list.Add (FacebookParam.Create ("call_id", DateTime.Now.Ticks));
 			if (uid != null)
 				param_list.Add (FacebookParam.Create ("uid", uid));
@@ -184,13 +181,13 @@ namespace Mono.Facebook
 
 		public Event[] GetEvents ()
 		{
-			return GetEvents (session_info.UId, null, 0, 0, null);
+			return GetEvents (session_info.uid, null, 0, 0, null);
 		}
 
 		public Event[] GetEvents (long? uid, long[] eids, long start_time, long end_time, string rsvp_status)
 		{
 			List<FacebookParam> param_list = new List<FacebookParam>();
-			param_list.Add (FacebookParam.Create ("session_key", session_info.SessionKey));
+			param_list.Add (FacebookParam.Create ("session_key", session_info.session_key));
 			param_list.Add (FacebookParam.Create ("call_id", DateTime.Now.Ticks));
 			if (uid != null)
 				param_list.Add (FacebookParam.Create ("uid", uid));
@@ -224,7 +221,7 @@ namespace Mono.Facebook
 		public User[] GetUserInfo (long[] uids, string[] fields)
 		{
 			List<FacebookParam> param_list = new List<FacebookParam>();
-			param_list.Add (FacebookParam.Create ("session_key", session_info.SessionKey));
+			param_list.Add (FacebookParam.Create ("session_key", session_info.session_key));
 			param_list.Add (FacebookParam.Create ("call_id", DateTime.Now.Ticks));
 
 			if (uids == null || uids.Length == 0)
@@ -239,14 +236,14 @@ namespace Mono.Facebook
 
 		public Me GetLoggedInUser ()
 		{
-			return new Me (session_info.UId, this);
+			return new Me (session_info.uid, this);
 		}
 
 		public Notifications GetNotifications ()
 		{
 			Notifications notifications = util.GetResponse<Notifications>("facebook.notifications.get",
-				FacebookParam.Create ("uid", session_info.UId),
-				FacebookParam.Create ("session_key", session_info.SessionKey),
+				FacebookParam.Create ("uid", session_info.uid),
+				FacebookParam.Create ("session_key", session_info.session_key),
 				FacebookParam.Create ("call_id", DateTime.Now.Ticks));
 
 			foreach (Friend f in notifications.FriendRequests)
@@ -258,7 +255,7 @@ namespace Mono.Facebook
 		public Friend[] GetFriends ()
 		{
 			FriendsResponse response = Util.GetResponse<FriendsResponse>("facebook.friends.get",
-					FacebookParam.Create ("session_key", SessionKey),
+					FacebookParam.Create ("session_key", session_info.session_key),
 					FacebookParam.Create ("call_id", DateTime.Now.Ticks));
 
 			Friend[] friends = new Friend[response.UIds.Length];
@@ -277,7 +274,7 @@ namespace Mono.Facebook
 		public bool AreFriends (long uid1, long uid2)
 		{
 			AreFriendsResponse response = Util.GetResponse<AreFriendsResponse>("facebook.friends.areFriends",
-				   FacebookParam.Create ("session_key", SessionKey),
+				   FacebookParam.Create ("session_key", session_info.session_key),
 				   FacebookParam.Create ("call_id", DateTime.Now.Ticks),
 				   FacebookParam.Create ("uids1", uid1),
 				   FacebookParam.Create ("uids2", uid2));
@@ -288,7 +285,7 @@ namespace Mono.Facebook
 		public FriendInfo[] AreFriends (long[] uids1, long[] uids2)
 		{
 			List<FacebookParam> param_list = new List<FacebookParam> ();
-			param_list.Add (FacebookParam.Create ("session_key", session_info.SessionKey));
+			param_list.Add (FacebookParam.Create ("session_key", session_info.session_key));
 			param_list.Add (FacebookParam.Create ("call_id", DateTime.Now.Ticks));
 
 			if (uids1 == null || uids1.Length == 0)
@@ -307,7 +304,7 @@ namespace Mono.Facebook
 		public XmlDocument Query (string sql_query)
 		{
 			XmlDocument doc = Util.GetResponse ("facebook.fql.query",
-				FacebookParam.Create ("session_key", SessionKey),
+				FacebookParam.Create ("session_key", session_info.session_key),
 				FacebookParam.Create ("call_id", DateTime.Now.Ticks),
 				FacebookParam.Create ("query", sql_query));
 

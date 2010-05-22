@@ -1,13 +1,11 @@
 //
-// Mono.Facebook.User.cs:
+// Mono.Facebook.SessionInfo.cs:
 //
 // Authors:
-//	Thomas Van Machelen (thomas.vanmachelen@gmail.com)
-//	George Talusan (george@convolve.ca)
+//	Ruben Vermeersch (ruben@savanne.be)
 //
 // (C) Copyright 2007 Novell, Inc. (http://www.novell.com)
 //
-
 // Permission is hereby granted, free of charge, to any person obtaining
 // a copy of this software and associated documentation files (the
 // "Software"), to deal in the Software without restriction, including
@@ -33,30 +31,26 @@ using Mono.Facebook.Schemas;
 
 namespace Mono.Facebook
 {
-	public class User : user
+    [System.Xml.Serialization.XmlRootAttribute("auth_getSession_response", Namespace="http://api.facebook.com/1.0/", IsNullable=false)]
+	public class SessionInfo : session_info
 	{
-		public static readonly string[] FIELDS = { "about_me", "activities", "affiliations", "birthday", "books",
-			"current_location", "education_history", "first_name", "hometown_location", "interests", "last_name",
-			"movies", "music", "name", "notes_count", "pic", "pic_big", "pic_small", "political", "profile_update_time",
-			"quotes", "relationship_status", "religion", "sex", "significant_other_id",
-			"status", "timezone", "tv", "uid", "wall_count" };
+		[XmlIgnore]
+			public bool IsInfinite
+			{
+				get { return expires == 0; }
+			}
 
-		[XmlIgnore ()]
-		public Uri PicUri
-		{
-			get { return new Uri (pic); }
-		}
+		public SessionInfo ()
+		{}
 
-		[XmlIgnore ()]
-		public Uri PicBigUri
+		// use this if you want to create a session based on infinite session
+		// credentials
+		public SessionInfo (string session_key, long uid, string secret)
 		{
-			get { return new Uri (pic_big); }
-		}
-
-		[XmlIgnore ()]
-		public Uri PicSmallUri
-		{
-			get { return new Uri (pic_small); }
+			this.session_key = session_key;
+			this.uid = uid;
+			this.secret = secret;
+			this.expires = 0;
 		}
 	}
 }

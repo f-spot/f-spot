@@ -34,17 +34,14 @@ namespace Mono.Facebook
 {
 	public class Friend : SessionWrapper
 	{
-		[XmlElement ("uid")]
-		public long UId;
+		public FacebookSession Session { get; set; }
+        public long UId { get; set; }
 
 		public Friend (long UId, FacebookSession session)
 		{
 			this.UId = UId;
 			this.Session = session;
 		}
-
-		public Friend ()
-		{ }
 
 		public User GetUserInfo ()
 		{

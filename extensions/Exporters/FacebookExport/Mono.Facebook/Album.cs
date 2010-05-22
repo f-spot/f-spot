@@ -32,49 +32,20 @@ using System.IO;
 using System.Xml.Serialization;
 using System.Text;
 using System.Net;
+using Mono.Facebook.Schemas;
 
 namespace Mono.Facebook
 {
-	[XmlRoot ("photos_createAlbum_response", Namespace="http://api.facebook.com/1.0/")]
-	public class Album : SessionWrapper
+    [System.Xml.Serialization.XmlRootAttribute("photos_createAlbum_response", Namespace="http://api.facebook.com/1.0/")]
+	public class Album : album, SessionWrapper
 	{
-		[XmlElement ("aid")]
-		public long AId;
-
-		[XmlElement ("cover_pid")]
-		public long ConverPId;
-
-		[XmlElement ("owner")]
-		public long Owner;
-
-		[XmlElement ("name")]
-		public string Name;
-
-		[XmlElement ("created")]
-		public long Created;
-
-		[XmlElement ("modified")]
-		public long Modified;
-
-		[XmlElement ("description")]
-		public string Description;
-
-		[XmlElement ("location")]
-		public string Location;
-
-		[XmlElement ("link")]
-		public string Link;
-
-		[XmlIgnore ()]
-		public Uri Uri
-		{
-			get { return new Uri (Link); }
-		}
+        [XmlIgnore]
+		public FacebookSession Session { get; set; }
 
 		public Photo[] GetPhotos ()
 		{
 			PhotosResponse rsp = Session.Util.GetResponse<PhotosResponse> ("facebook.photos.get",
-				FacebookParam.Create ("aid", AId),
+				FacebookParam.Create ("aid", aid),
 				FacebookParam.Create ("session_key", Session.SessionKey),
 				FacebookParam.Create ("call_id", DateTime.Now.Ticks));
 
@@ -109,7 +80,7 @@ namespace Mono.Facebook
 
 		public Photo Upload (string caption, string path)
 		{
-			Photo uploaded = Session.Util.Upload (AId, caption, path, Session.SessionKey);
+			Photo uploaded = Session.Util.Upload (aid, caption, path, Session.SessionKey);
 			uploaded.Session = this.Session;
 
 			return uploaded;

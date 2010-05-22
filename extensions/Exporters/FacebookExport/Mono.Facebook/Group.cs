@@ -28,34 +28,14 @@
 //
 using System;
 using System.Xml.Serialization;
+using Mono.Facebook.Schemas;
 
 namespace Mono.Facebook
 {
-	public class Group : SessionWrapper
+	public class Group : group, SessionWrapper
 	{
-		[XmlElement ("gid")]
-		public long GId;
-
-		[XmlElement ("name")]
-		public string Name;
-
-		[XmlElement ("nid")]
-		public int NId;
-
-		[XmlElement ("description")]
-		public string Description;
-
-		[XmlElement ("group_type")]
-		public string GroupType;
-
-		[XmlElement ("group_subtype")]
-		public string GroupSubType;
-
-		[XmlElement ("recent_news")]
-		public string RecentNews;
-
-		[XmlElement ("pic")]
-		public string pic;
+        [XmlIgnore]
+		public FacebookSession Session { get; set; }
 
 		[XmlIgnore ()]
 		public Uri Picture
@@ -63,35 +43,17 @@ namespace Mono.Facebook
 			get { return new Uri (pic); }
 		}
 
-		[XmlElement ("pic_big")]
-		public string pic_big;
-
 		[XmlIgnore ()]
 		public Uri PictureBig
 		{
 			get { return new Uri (pic_big); }
 		}
 
-		[XmlElement ("pic_small")]
-		public string pic_small;
-
 		[XmlIgnore ()]
 		public Uri PictureSmall
 		{
 			get { return new Uri (pic_small); }
 		}
-
-		[XmlElement ("creator")]
-		public System.Nullable<long> Creator;
-
-		[XmlElement ("update_time")]
-		public long UpdateTime;
-
-		[XmlElement ("office")]
-		public string Office;
-
-		[XmlElement ("website")]
-		public string website;
 
 		[XmlIgnore ()]
 		public Uri WebSite
@@ -105,14 +67,10 @@ namespace Mono.Facebook
 			}
 		}
 
-		[XmlElement ("venue")]
-		public Location Venue;
-
-
 		public GroupMemberList GetMembers ()
 		{
 			GroupMembersResponse rsp = Session.Util.GetResponse<GroupMembersResponse>("facebook.groups.getMembers",
-				FacebookParam.Create ("gid", GId),
+				FacebookParam.Create ("gid", gid),
 				FacebookParam.Create ("call_id", DateTime.Now.Ticks),
 				FacebookParam.Create ("session_key", Session.SessionKey));
 
