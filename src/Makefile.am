@@ -489,37 +489,37 @@ F_SPOT_CSFILES = $(F_SPOT_CSDISTFILES)	\
 Cms.dll.mdb: Cms.dll
 
 Cms.dll: $(CMS_CSFILES)
-	$(CSC_LIB) -out:$@ $(EXTRAFLAGS) $(UNSAFE) $(CMS_CSFILES) $(CMS_ASSEMBLIES)
+	$(CSC_LIB) -warnaserror -out:$@ $(EXTRAFLAGS) $(UNSAFE) $(CMS_CSFILES) $(CMS_ASSEMBLIES)
 
 FSpot.Core.dll.mdb: FSpot.Core.dll
 
 FSpot.Core.dll: $(CORE_CSFILES) FSpot.Utils.dll Cms.dll
-	$(CSC_LIB) -out:$@ $(EXTRAFLAGS) $(CORE_CSFILES) $(CORE_ASSEMBLIES)
+	$(CSC_LIB) -warnaserror -out:$@ $(EXTRAFLAGS) $(CORE_CSFILES) $(CORE_ASSEMBLIES)
 
 FSpot.Query.dll.mdb: FSpot.Query.dll
 
 FSpot.Query.dll: $(QUERY_CSFILES) FSpot.Utils.dll FSpot.Core.dll
-	$(CSC_LIB) -out:$@ $(EXTRAFLAGS) $(QUERY_CSFILES) $(QUERY_ASSEMBLIES)
+	$(CSC_LIB) -warnaserror -out:$@ $(EXTRAFLAGS) $(QUERY_CSFILES) $(QUERY_ASSEMBLIES)
 
 FSpot.Utils.dll.mdb: FSpot.Utils.dll
 
 FSpot.Utils.dll: $(UTILS_CSFILES)
-	$(CSC_LIB) -out:$@ $(EXTRAFLAGS) $(UTILS_CSFILES) $(UTILS_ASSEMBLIES)
+	$(CSC_LIB) -warnaserror -out:$@ $(EXTRAFLAGS) $(UTILS_CSFILES) $(UTILS_ASSEMBLIES)
 
 FSpot.JobScheduler.dll.mdb: FSpot.JobScheduler.dll
 
 FSpot.JobScheduler.dll: $(JOBSCHEDULER_CSFILES) FSpot.Utils.dll
-	$(CSC_LIB) -out:$@ $(EXTRAFLAGS) $(JOBSCHEDULER_CSFILES) $(JOBSCHEDULER_ASSEMBLIES)
+	$(CSC_LIB) -warnaserror -out:$@ $(EXTRAFLAGS) $(JOBSCHEDULER_CSFILES) $(JOBSCHEDULER_ASSEMBLIES)
 
 FSpot.Bling.dll.mdb: FSpot.Bling.dll
 
 FSpot.Bling.dll: $(BLING_CSFILES)
-	$(CSC_LIB) -out:$@ $(EXTRAFLAGS) $(BLING_CSFILES) $(BLING_ASSEMBLIES)
+	$(CSC_LIB) -warnaserror -out:$@ $(EXTRAFLAGS) $(BLING_CSFILES) $(BLING_ASSEMBLIES)
 
 FSpot.Widgets.dll.mdb: FSpot.Widgets.dll
 
 FSpot.Widgets.dll: $(WIDGETS_CSFILES) FSpot.Utils.dll FSpot.Core.dll Cms.dll
-	$(CSC_LIB) -out:$@ $(EXTRAFLAGS) $(WIDGETS_CSFILES) $(WIDGETS_ASSEMBLIES)
+	$(CSC_LIB) -warnaserror -out:$@ $(EXTRAFLAGS) $(WIDGETS_CSFILES) $(WIDGETS_ASSEMBLIES)
 
 PLATFORM_CSFILES = $(GNOME_PLATFORM_CSFILES)
 PLATFORM_ASSEMBLIES = $(GNOME_PLATFORM_ASSEMBLIES)
