@@ -128,7 +128,6 @@ NULL_PLATFORM_CSDISTFILES =				\
 F_SPOT_CSDISTFILES =				\
 	$(srcdir)/BlockProcessor.cs		\
 	$(srcdir)/BitConverter.cs		\
-	$(srcdir)/PhotoArray.cs 		\
 	$(srcdir)/PhotoList.cs 		\
 	$(srcdir)/ColorAdjustment/Adjustment.cs		\
 	$(srcdir)/ColorAdjustment/AutoStretch.cs		\

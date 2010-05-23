@@ -672,7 +672,7 @@ namespace FSpot
 	
 		private void HandleExportActivated (object o, EventArgs e)
 		{
-			FSpot.Extensions.ExportMenuItemNode.SelectedImages = delegate () {return new FSpot.PhotoArray (SelectedPhotos ()); };
+			FSpot.Extensions.ExportMenuItemNode.SelectedImages = delegate () {return new PhotoList (SelectedPhotos ()); };
 		}
 	
 		private void HandleDbItemsChanged (object sender, DbItemEventArgs<Photo> args)
@@ -1565,19 +1565,10 @@ namespace FSpot
 			Mono.Addins.Gui.AddinManagerWindow.Run (main_window);
 		}
 	
-		private void TestDisplay ()
-		{
-			Gtk.Window win = new Gtk.Window ("hello");
-			VBox box = new VBox ();
-			box.PackStart (new FSpot.Widgets.ImageDisplay (new BrowsablePointer (new FSpot.PhotoArray (SelectedPhotos ()), 0)));
-			win.Add (box);
-			win.ShowAll ();
-		}
-	
 		void HandleSendMailCommand (object sender, EventArgs args)
 		{
 			//TestDisplay ();
-			new FSpot.SendEmail (new FSpot.PhotoArray (SelectedPhotos ()), Window);
+			new FSpot.SendEmail (new PhotoList (SelectedPhotos ()), Window);
 		}
 	
 		public static void HandleHelp (object sender, EventArgs args)

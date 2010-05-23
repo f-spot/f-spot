@@ -158,8 +158,7 @@ namespace FSpot {
 					if (pointer == null)
 						return;
 					IBrowsableItem [] item = {pointer.Current};
-					PhotoArray item_array = new PhotoArray (item);
-					sidebar.HandleSelectionChanged (item_array);
+					sidebar.HandleSelectionChanged (new PhotoList (item));
 			};
 			
 			image_view.Item.Collection.ItemsChanged += sidebar.HandleSelectionItemsChanged;
@@ -182,7 +181,7 @@ namespace FSpot {
 
 		void HandleExportActivated (object o, EventArgs e)
 		{
-			FSpot.Extensions.ExportMenuItemNode.SelectedImages = delegate () {return new FSpot.PhotoArray (directory_view.Selection.Items); };
+			FSpot.Extensions.ExportMenuItemNode.SelectedImages = delegate () {return new PhotoList (directory_view.Selection.Items); };
 		}
 
 		public void HandleCollectionChanged (IBrowsableCollection collection)

@@ -13,7 +13,7 @@ using System;
 
 namespace FSpot.Extensions
 {
-	public delegate FSpot.PhotoArray SelectedImages ();
+	public delegate PhotoList SelectedImages ();
 
 	[ExtensionNode ("ExportMenuItem")]
 	public class ExportMenuItemNode : MenuItemNode
