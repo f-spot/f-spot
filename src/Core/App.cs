@@ -236,7 +236,7 @@ namespace FSpot
 			else
 				tag = Database.Tags.GetTagById (Preferences.Get<int> (Preferences.SCREENSAVER_TAG));
 
-			Photo[] photos;
+			IBrowsableItem[] photos;
 			if (tag != null)
 				photos = Database.Photos.Query (new Tag[] {tag});
 			else if (Preferences.Get<int> (Preferences.SCREENSAVER_TAG) == 0)
