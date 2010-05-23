@@ -29,4 +29,15 @@ namespace FSpot
 			get { return true; }
 		}
 	}
+
+	public class InvalidateData : IBrowsableItemChanges
+	{
+		static InvalidateData instance = new InvalidateData ();
+		public static InvalidateData Instance {
+			get { return instance; } 
+		}
+
+		public bool DataChanged { get { return true; } }
+		public bool MetadataChanged { get { return false; } }
+	}
 }

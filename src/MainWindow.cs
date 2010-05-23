@@ -918,7 +918,7 @@ namespace FSpot
 			
 			int [] selected_ids = SelectedIds ();
 			if (command.Execute (direction, SelectedPhotos (selected_ids)))
-				query.MarkChanged (selected_ids, new PhotoChanges () {DataChanged = true});
+				query.MarkChanged (selected_ids, InvalidateData.Instance);
 		}
 	
 		//
@@ -2343,7 +2343,7 @@ namespace FSpot
 	
 			int [] selected_ids = SelectedIds ();
 			if (command.Execute (SelectedPhotos (selected_ids)))
-				query.MarkChanged (selected_ids, new PhotoChanges {DataChanged = true});
+				query.MarkChanged (selected_ids, InvalidateData.Instance);
 		}
 	
 		public void HandleRotate90Command (object sender, EventArgs args)
