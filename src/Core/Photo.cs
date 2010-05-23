@@ -11,6 +11,7 @@
 
 using System;
 using System.IO;
+using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -21,7 +22,7 @@ using FSpot.Platform;
 
 namespace FSpot
 {
-	public class Photo : DbItem, IComparable, IBrowsableItem {
+	public class Photo : DbItem, IComparable, IBrowsableItem, IBrowsableItemVersionable {
 		
 		PhotoChanges changes = new PhotoChanges ();
 		public PhotoChanges Changes {
@@ -75,7 +76,7 @@ namespace FSpot
 			get { return loaded; }
 			set { 
 				if (value) {
-					if (DefaultVersionId != OriginalVersionId && !Versions.ContainsKey (DefaultVersionId)) 
+					if (DefaultVersionId != OriginalVersionId && !versions.ContainsKey (DefaultVersionId)) 
 						DefaultVersionId = OriginalVersionId;	
 				}
 				loaded = value; 
@@ -131,27 +132,26 @@ namespace FSpot
 		public const int OriginalVersionId = 1;
 		private uint highest_version_id;
 	
-		private Dictionary<uint, PhotoVersion> versions;
-		private Dictionary<uint, PhotoVersion> Versions {
+		private Dictionary<uint, PhotoVersion> versions = new Dictionary<uint, PhotoVersion> ();
+		public IEnumerable<IBrowsableItemVersion> Versions {
 			get {
-				if (versions == null)
-					versions = new Dictionary<uint, PhotoVersion> ();
-				return versions;
+				foreach (var version in versions.Values)
+					yield return version;
 			}
 		}
-	
+
 		public uint [] VersionIds {
 			get {
 				if (versions == null)
 					return new uint [0];
-	
+
 				uint [] ids = new uint [versions.Count];
 				versions.Keys.CopyTo (ids, 0);
 				Array.Sort (ids);
 				return ids;
 			}
 		}
-	
+
 		public PhotoVersion GetVersion (uint version_id)
 		{
 			if (versions == null)
@@ -175,7 +175,7 @@ namespace FSpot
 		// it's supposed to be used only within the Photo and PhotoStore classes.
 		internal void AddVersionUnsafely (uint version_id, System.Uri uri, string md5_sum, string name, bool is_protected)
 		{
-			Versions [version_id] = new PhotoVersion (this, version_id, uri, md5_sum, name, is_protected);
+			versions [version_id] = new PhotoVersion (this, version_id, uri, md5_sum, name, is_protected);
 	
 			highest_version_id = Math.Max (version_id, highest_version_id);
 			changes.AddVersion (version_id);
@@ -193,7 +193,7 @@ namespace FSpot
 			highest_version_id ++;
 			string md5_sum = GenerateMD5 (uri);
 
-			Versions [highest_version_id] = new PhotoVersion (this, highest_version_id, uri, md5_sum, name, is_protected);
+			versions [highest_version_id] = new PhotoVersion (this, highest_version_id, uri, md5_sum, name, is_protected);
 
 			changes.AddVersion (highest_version_id);
 			return highest_version_id;
@@ -210,19 +210,15 @@ namespace FSpot
 	
 		public bool VersionNameExists (string version_name)
 		{
-			foreach (PhotoVersion v in Versions.Values)
-				if (v.Name == version_name)
-					return true;
-	
-			return false;
+            return Versions.Where ((v) => v.Name == version_name).Any ();
 		}
 
 		public System.Uri VersionUri (uint version_id)
 		{
-			if (!Versions.ContainsKey (version_id))
+			if (!versions.ContainsKey (version_id))
 				return null;
 	
-			PhotoVersion v = Versions [version_id]; 
+			PhotoVersion v = versions [version_id]; 
 			if (v != null)
 				return v.Uri;
 	
@@ -231,9 +227,9 @@ namespace FSpot
 		
 		public IBrowsableItemVersion DefaultVersion {
 			get {
-				if (!Versions.ContainsKey (DefaultVersionId))
-					return null;
-				return Versions [DefaultVersionId]; 
+				if (!versions.ContainsKey (DefaultVersionId))
+					throw new Exception ("Something is horribly wrong, this should never happen: no default version!");
+				return versions [DefaultVersionId]; 
 			}
 		}
 
@@ -304,13 +300,13 @@ namespace FSpot
 					//ignore an error here we don't really care.
 				}
 			}
-			Versions.Remove (version_id);
+			versions.Remove (version_id);
 
 			changes.RemoveVersion (version_id);
 
 			do {
 				version_id --;
-				if (Versions.ContainsKey (version_id)) {
+				if (versions.ContainsKey (version_id)) {
 					DefaultVersionId = version_id;
 					break;
 				}
@@ -350,7 +346,7 @@ namespace FSpot
 			}
 			highest_version_id ++;
 
-			Versions [highest_version_id] = new PhotoVersion (this, highest_version_id, new_uri, md5_sum, name, is_protected);
+			versions [highest_version_id] = new PhotoVersion (this, highest_version_id, new_uri, md5_sum, name, is_protected);
 
 			changes.AddVersion (highest_version_id);
 	
@@ -374,7 +370,7 @@ namespace FSpot
 					continue;
 	
 				highest_version_id ++;
-				Versions [highest_version_id] = new PhotoVersion (this, highest_version_id, version.Uri, version.MD5Sum, name, is_protected);
+				versions [highest_version_id] = new PhotoVersion (this, highest_version_id, version.Uri, version.MD5Sum, name, is_protected);
 
 				changes.AddVersion (highest_version_id);
 
