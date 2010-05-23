@@ -56,8 +56,7 @@ namespace FSpot {
 			this.selection = selection;
 			this.parent_window = parent_window;
 
-			for (int i = 0; i < selection.Count; i++) {
-				Photo p = selection[i] as Photo;
+			foreach (var p in selection.Items) {
 				if (FileFactory.NewForUri (p.DefaultVersion.Uri).QueryInfo ("standard::content-type", FileQueryInfoFlags.None, null).ContentType != "image/jpeg")
 					force_original = true;
 			}
@@ -88,8 +87,7 @@ namespace FSpot {
 			Dialog.Modal = false;
 
 			// Calculate total original filesize 
-			for (int i = 0; i < selection.Count; i++) {
-				Photo photo = selection[i] as Photo;
+			foreach (var photo in selection.Items) {
 				try {
 					Orig_Photo_Size += FileFactory.NewForUri (photo.DefaultVersion.Uri).QueryInfo ("standard::size", FileQueryInfoFlags.None, null).Size;
 				} catch {
@@ -101,7 +99,7 @@ namespace FSpot {
 
 
 			// Calculate approximate size shrinking, use first photo, and shrink to medium size as base.
-			Photo scalephoto = selection [0] as Photo;
+			var scalephoto = selection [0];
 			if (scalephoto != null && !force_original) {
 				
 				// Get first photos file size
@@ -264,7 +262,7 @@ namespace FSpot {
 
 
 			for (int i = 0; i < selection.Count; i++) {
-				Photo photo = selection [i] as Photo;
+				var photo = selection [i];
 				if ( (photo != null) && (!UserCancelled) ) {
 
 					if (progress_dialog != null)
