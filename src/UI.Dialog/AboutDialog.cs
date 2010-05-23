@@ -75,7 +75,7 @@ namespace FSpot.UI.Dialog
 				"\tEttore Perazzoli",
 			};
 			Comments = Catalog.GetString ("Photo management for GNOME");
-			Copyright = Catalog.GetString ("Copyright \x00a9 2003-2009 Novell Inc.");
+			Copyright = Catalog.GetString ("Copyright \x00a9 2003-2010 Novell Inc.");
 			Documenters = new string[] {
 				"Aaron Bockover",
 				"Alexandre Prokoudine",	
