@@ -488,43 +488,36 @@ F_SPOT_CSFILES = $(F_SPOT_CSDISTFILES)	\
 Cms.dll.mdb: Cms.dll
 
 Cms.dll: $(CMS_CSFILES)
-	@echo -e "\n*** Compiling $@"
 	$(CSC_LIB) -out:$@ $(EXTRAFLAGS) $(UNSAFE) $(CMS_CSFILES) $(CMS_ASSEMBLIES)
 
 FSpot.Core.dll.mdb: FSpot.Core.dll
 
 FSpot.Core.dll: $(CORE_CSFILES) FSpot.Utils.dll Cms.dll
-	@echo -e "\n*** Compiling $@"
 	$(CSC_LIB) -out:$@ $(EXTRAFLAGS) $(CORE_CSFILES) $(CORE_ASSEMBLIES)
 
 FSpot.Query.dll.mdb: FSpot.Query.dll
 
 FSpot.Query.dll: $(QUERY_CSFILES) FSpot.Utils.dll FSpot.Core.dll
-	@echo -e "\n*** Compiling $@"
 	$(CSC_LIB) -out:$@ $(EXTRAFLAGS) $(QUERY_CSFILES) $(QUERY_ASSEMBLIES)
 
 FSpot.Utils.dll.mdb: FSpot.Utils.dll
 
 FSpot.Utils.dll: $(UTILS_CSFILES)
-	@echo -e "\n*** Compiling $@"
 	$(CSC_LIB) -out:$@ $(EXTRAFLAGS) $(UTILS_CSFILES) $(UTILS_ASSEMBLIES)
 
 FSpot.JobScheduler.dll.mdb: FSpot.JobScheduler.dll
 
 FSpot.JobScheduler.dll: $(JOBSCHEDULER_CSFILES) FSpot.Utils.dll
-	@echo -e "\n*** Compiling $@"
 	$(CSC_LIB) -out:$@ $(EXTRAFLAGS) $(JOBSCHEDULER_CSFILES) $(JOBSCHEDULER_ASSEMBLIES)
 
 FSpot.Bling.dll.mdb: FSpot.Bling.dll
 
 FSpot.Bling.dll: $(BLING_CSFILES)
-	@echo -e "\n*** Compiling $@"
 	$(CSC_LIB) -out:$@ $(EXTRAFLAGS) $(BLING_CSFILES) $(BLING_ASSEMBLIES)
 
 FSpot.Widgets.dll.mdb: FSpot.Widgets.dll
 
 FSpot.Widgets.dll: $(WIDGETS_CSFILES) FSpot.Utils.dll FSpot.Core.dll Cms.dll
-	@echo -e "\n*** Compiling $@"
 	$(CSC_LIB) -out:$@ $(EXTRAFLAGS) $(WIDGETS_CSFILES) $(WIDGETS_ASSEMBLIES)
 
 PLATFORM_CSFILES = $(GNOME_PLATFORM_CSFILES)
@@ -533,13 +526,11 @@ PLATFORM_ASSEMBLIES = $(GNOME_PLATFORM_ASSEMBLIES)
 FSpot.Platform.dll.mdb: FSpot.Platform.dll
 
 FSpot.Platform.dll: $(PLATFORM_CSFILES) FSpot.Utils.dll
-	@echo -e "\n*** Compiling $@"
 	$(CSC_LIB) -out:$@ $(EXTRAFLAGS) $(PLATFORM_CSFILES) $(PLATFORM_ASSEMBLIES)
 
 f-spot.exe.mdb: f-spot.exe
 
 f-spot.exe: $(F_SPOT_CSFILES) FSpot.Utils.dll FSpot.Core.dll FSpot.Query.dll FSpot.JobScheduler.dll FSpot.Bling.dll FSpot.Widgets.dll Cms.dll FSpot.Platform.dll $(F_SPOT_RESOURCES)
-	@echo -e "\n*** Compiling $@"
 	$(CSC) -target:winexe -out:$@ $(EXTRAFLAGS) $(UNSAFE) $(NOWARN) $(NUNIT_DEFINES) $(F_SPOT_CSFILES) $(F_SPOT_ASSEMBLIES) $(RESOURCES)
 
 all: f-spot.exe
