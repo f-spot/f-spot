@@ -341,12 +341,6 @@ data/desktop-files/f-spot.desktop.in
 data/desktop-files/f-spot-view.desktop.in
 data/desktop-files/f-spot-import.desktop.in
 
-lib/dpap-sharp/Makefile
-lib/dpap-sharp/lib/Makefile
-lib/dpap-sharp/dpap-client/Makefile
-lib/dpap-sharp/dpap-server/Makefile
-lib/dpap-sharp/DPAPService/Makefile
-lib/dpap-sharp/DPAPBrowser/Makefile
 lib/GKeyFile/Makefile
 lib/gio-sharp/Makefile
 lib/gio-sharp/gio/Makefile
