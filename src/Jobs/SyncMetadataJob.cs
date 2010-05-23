@@ -46,9 +46,9 @@ namespace FSpot.Jobs {
 		//FIXME: Won't work on non-file uris
 		void WriteMetadataToImage (Photo photo)
 		{
-			string path = photo.DefaultVersionUri.LocalPath;
+			string path = photo.DefaultVersion.Uri.LocalPath;
 	
-			using (FSpot.ImageFile img = FSpot.ImageFile.Create (photo.DefaultVersionUri)) {
+			using (FSpot.ImageFile img = FSpot.ImageFile.Create (photo.DefaultVersion.Uri)) {
 				if (img is FSpot.JpegFile) {
 					FSpot.JpegFile jimg = img as FSpot.JpegFile;
 				

@@ -24,7 +24,7 @@ namespace FSpot.Utils
 			foreach (FSpot.IBrowsableItem p in photos) {
 				Uri uri;
 				try {
-					uri = p.DefaultVersionUri;
+					uri = p.DefaultVersion.Uri;
 				} catch {
 					continue;
 				}
@@ -115,7 +115,7 @@ namespace FSpot.Utils
 	
 		public void Add (FSpot.IBrowsableItem item)
 		{
-			Add (item.DefaultVersionUri);
+			Add (item.DefaultVersion.Uri);
 		}
 	
 		public override string ToString () {

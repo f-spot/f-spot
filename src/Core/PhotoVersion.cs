@@ -12,9 +12,9 @@
 
 namespace FSpot
 {
-	public class PhotoVersion
+	public class PhotoVersion : IBrowsableItemVersion
 	{
-		Photo photo;
+		IBrowsableItem photo;
 		uint version_id;
 		System.Uri uri;
 		string md5_sum;
@@ -26,7 +26,7 @@ namespace FSpot
 			set { name = value; }
 		}
 	
-		public Photo Photo {
+		public IBrowsableItem Photo {
 			get { return photo; }
 		}
 	
@@ -52,7 +52,7 @@ namespace FSpot
 			get { return is_protected; }
 		}
 	
-		public PhotoVersion (Photo photo, uint version_id, System.Uri uri, string md5_sum, string name, bool is_protected)
+		public PhotoVersion (IBrowsableItem photo, uint version_id, System.Uri uri, string md5_sum, string name, bool is_protected)
 		{
 			this.photo = photo;
 			this.version_id = version_id;

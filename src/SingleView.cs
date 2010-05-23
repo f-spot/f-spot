@@ -280,7 +280,7 @@ namespace FSpot {
 			if (current == null)
 				return;
 
-			Desktop.SetBackgroundImage (current.DefaultVersionUri.LocalPath);
+			Desktop.SetBackgroundImage (current.DefaultVersion.Uri.LocalPath);
 		}
 
 		private void HandleViewToolbar (object sender, System.EventArgs args)
@@ -462,7 +462,7 @@ namespace FSpot {
 			IBrowsableItem item = image_view.Item.Current;
 			System.Text.StringBuilder sb = new System.Text.StringBuilder();
 			if (filenames_item.Active && item != null)
-				sb.Append (System.IO.Path.GetFileName (item.DefaultVersionUri.LocalPath) + "  -  ");
+				sb.Append (System.IO.Path.GetFileName (item.DefaultVersion.Uri.LocalPath) + "  -  ");
 
 			sb.AppendFormat (Catalog.GetPluralString ("{0} Photo", "{0} Photos", collection.Count), collection.Count);
 			status_label.Text = sb.ToString ();

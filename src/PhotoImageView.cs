@@ -289,7 +289,7 @@ namespace FSpot.Widgets {
 			    args.PreviousItem != null &&
 			    Item.IsValid &&
 			    (args.PreviousIndex != item.Index) &&
-			    (this.Item.Current.DefaultVersionUri == args.PreviousItem.DefaultVersionUri))
+			    (this.Item.Current.DefaultVersion.Uri == args.PreviousItem.DefaultVersion.Uri))
 				return;
 
 			// Don't reload if the image didn't change at all.
@@ -297,19 +297,19 @@ namespace FSpot.Widgets {
 			    !args.Changes.DataChanged &&
 			    args.PreviousItem != null &&
 			    Item.IsValid &&
-			    this.Item.Current.DefaultVersionUri == args.PreviousItem.DefaultVersionUri)
+			    this.Item.Current.DefaultVersion.Uri == args.PreviousItem.DefaultVersion.Uri)
 				return;
 
 			// Same image, don't load it progressively
 			if (args != null &&
 			    args.PreviousItem != null && 
 			    Item.IsValid && 
-			    Item.Current.DefaultVersionUri == args.PreviousItem.DefaultVersionUri)
+			    Item.Current.DefaultVersion.Uri == args.PreviousItem.DefaultVersion.Uri)
 				progressive_display = false;
 
 			try {
 				if (Item.IsValid) 
-					Load (Item.Current.DefaultVersionUri);
+					Load (Item.Current.DefaultVersion.Uri);
 				else
 					LoadErrorImage (null);
 			} catch (System.Exception e) {

@@ -33,6 +33,7 @@ CORE_CSDISTFILES =				\
 	$(srcdir)/Core/IBrowsableItemChanges.cs	\
 	$(srcdir)/Core/IBrowsableItemComparer.cs	\
 	$(srcdir)/Core/IBrowsableItemExtensions.cs	\
+	$(srcdir)/Core/IBrowsableItemVersion.cs	\
 	$(srcdir)/Core/IBrowsableCollection.cs	\
 	$(srcdir)/Core/PhotoChanges.cs		\
 	$(srcdir)/Core/PhotosChanges.cs		\

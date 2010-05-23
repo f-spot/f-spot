@@ -85,7 +85,7 @@ namespace GalleryRemote {
 
 		public void Add (FSpot.IBrowsableItem item)
 		{
-			Add (item, item.DefaultVersionUri.LocalPath);
+			Add (item, item.DefaultVersion.Uri.LocalPath);
 		}
 
 		public int Add (FSpot.IBrowsableItem item, string path)
@@ -95,7 +95,7 @@ namespace GalleryRemote {
 
 			return gallery.AddItem (this,
 					 path,
-					 Path.GetFileName (item.DefaultVersionUri.LocalPath),
+					 Path.GetFileName (item.DefaultVersion.Uri.LocalPath),
 					 item.Name,
 					 item.Description,
 					 true);

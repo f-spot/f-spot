@@ -38,7 +38,10 @@ public class FileImportBackend : ImportBackend {
 	private class ImportInfo : IBrowsableItem {
 		public ImportInfo (Uri original)
 		{
-			DefaultVersionUri = original;
+			DefaultVersion = new ImportInfoVersion () {
+				Uri = original
+			};
+
 			try {
 				using (FSpot.ImageFile img = FSpot.ImageFile.Create (original)) {
 					Time = img.Date;
@@ -48,7 +51,7 @@ public class FileImportBackend : ImportBackend {
 			}
 		}
 
-		public System.Uri DefaultVersionUri { get; private set; }
+		public IBrowsableItemVersion DefaultVersion { get; private set; }
 		public System.Uri DestinationUri { get; set; }
 
 		public System.DateTime Time { get; private set; }
@@ -59,6 +62,12 @@ public class FileImportBackend : ImportBackend {
 		public uint Rating { get { return 0; } }
 
 		internal uint PhotoId { get; set; }
+	}
+
+	private class ImportInfoVersion : IBrowsableItemVersion {
+		public string Name { get { return String.Empty; } }
+		public bool IsProtected { get { return true; } }
+		public Uri Uri { get; set; }
 	}
 
 	public override List<IBrowsableItem> Prepare ()
@@ -173,12 +182,12 @@ public class FileImportBackend : ImportBackend {
 		bool needs_commit = false;
 		bool abort = false;
 		try {
-			Uri destination = info.DefaultVersionUri;
+			Uri destination = info.DefaultVersion.Uri;
 			if (copy)
-				destination = ChooseLocation (info.DefaultVersionUri, directories);
+				destination = ChooseLocation (info.DefaultVersion.Uri, directories);
 
 			// Don't copy if we are already home
-			if (info.DefaultVersionUri == destination) {
+			if (info.DefaultVersion.Uri == destination) {
 				info.DestinationUri = destination;
 
 				if (detect_duplicates)
@@ -189,7 +198,7 @@ public class FileImportBackend : ImportBackend {
 				else
 				 	is_duplicate = true;
 			} else {
-				var file = GLib.FileFactory.NewForUri (info.DefaultVersionUri);
+				var file = GLib.FileFactory.NewForUri (info.DefaultVersion.Uri);
 				var new_file = GLib.FileFactory.NewForUri (destination);
 				file.Copy (new_file, GLib.FileCopyFlags.AllMetadata, null, null);
 				info.DestinationUri = destination;
@@ -200,7 +209,7 @@ public class FileImportBackend : ImportBackend {
 				if (photo == null)
 				{
 					photo = store.Create (info.DestinationUri,
-					                      info.DefaultVersionUri,
+					                      info.DefaultVersion.Uri,
 					                      roll.Id);
 				}
 				else
@@ -219,7 +228,7 @@ public class FileImportBackend : ImportBackend {
 					needs_commit = true;
 				}
 
-				needs_commit |= xmptags.Import (photo, info.DestinationUri, info.DefaultVersionUri);
+				needs_commit |= xmptags.Import (photo, info.DestinationUri, info.DefaultVersion.Uri);
 
 				if (needs_commit)
 					store.Commit(photo);
@@ -235,7 +244,7 @@ public class FileImportBackend : ImportBackend {
 									     Gtk.MessageType.Error,
 									     Gtk.ButtonsType.Cancel,
 									     Catalog.GetString ("Import error"),
-									     String.Format(Catalog.GetString ("Error importing {0}{2}{2}{1}"), info.DefaultVersionUri.ToString (), e.Message, Environment.NewLine ));
+									     String.Format(Catalog.GetString ("Error importing {0}{2}{2}{1}"), info.DefaultVersion.Uri.ToString (), e.Message, Environment.NewLine ));
 			errordialog.AddButton (Catalog.GetString ("Skip"), Gtk.ResponseType.Reject, false);
 			ResponseType response = (ResponseType) errordialog.Run ();
 			errordialog.Destroy ();
@@ -265,7 +274,7 @@ public class FileImportBackend : ImportBackend {
 		foreach (var item in import_info) {
             ImportInfo info = item as ImportInfo;
 			
-			if (info.DefaultVersionUri != info.DestinationUri && info.DestinationUri != null) {
+			if (info.DefaultVersion.Uri != info.DestinationUri && info.DestinationUri != null) {
 				try {
 					var file = GLib.FileFactory.NewForUri (info.DestinationUri);
 					if (file.QueryExists (null))
@@ -306,7 +315,7 @@ public class FileImportBackend : ImportBackend {
 
 		foreach (ImportInfo info in import_info) {
 			if (info.PhotoId != 0) 
-				FSpot.ThumbnailGenerator.Default.Request (store.Get (info.PhotoId).DefaultVersionUri, 0, 256, 256);
+				FSpot.ThumbnailGenerator.Default.Request (store.Get (info.PhotoId).DefaultVersion.Uri, 0, 256, 256);
 		}
 
 		import_info = null;

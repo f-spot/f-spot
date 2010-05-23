@@ -70,15 +70,15 @@ namespace DPAP {
 				int i=0;
 
 				foreach (FSpot.Photo photo in photos) {
-					string thumbnail_path = Gnome.Thumbnail.PathForUri (photo.DefaultVersionUri.ToString(), Gnome.ThumbnailSize.Large);
+					string thumbnail_path = Gnome.Thumbnail.PathForUri (photo.DefaultVersion.Uri.ToString(), Gnome.ThumbnailSize.Large);
 					FileInfo f = new FileInfo (thumbnail_path);
 					DPAP.Photo p = new DPAP.Photo ();
 
 					p.FileName = photo.Name;
 					p.Thumbnail = thumbnail_path;
 					p.ThumbSize = (int)f.Length;
-					p.Path = photo.DefaultVersionUri.ToString ().Substring (7);
-					f = new FileInfo (photo.DefaultVersionUri.ToString ().Substring (7));
+					p.Path = photo.DefaultVersion.Uri.ToString ().Substring (7);
+					f = new FileInfo (photo.DefaultVersion.Uri.ToString ().Substring (7));
 					if (!f.Exists)
 						continue;
 

@@ -36,7 +36,7 @@ namespace LiveWebGalleryExtension
 		
 		protected virtual void SendImage (Photo photo, Stream stream) 
 		{
-			string path = photo.DefaultVersionUri.LocalPath;
+			string path = photo.DefaultVersion.Uri.LocalPath;
 			FileInfo file_info = new FileInfo(path);
 			if (!file_info.Exists) {
 				SendError (stream, "404 The file is not on the disk");
@@ -48,7 +48,7 @@ namespace LiveWebGalleryExtension
 			filters.Add (new ResizeFilter (1600));
 			filters.Add (new OrientationFilter ());
 
-			using (FilterRequest request = new FilterRequest (photo.DefaultVersionUri)) {
+			using (FilterRequest request = new FilterRequest (photo.DefaultVersion.Uri)) {
 				filters.Convert (request);
 				file_info = new FileInfo (request.Current.LocalPath);
 				SendFile (file_info, photo, stream);
@@ -82,7 +82,7 @@ namespace LiveWebGalleryExtension
 		
 		protected override void SendImage (Photo photo, Stream dest) 
 		{
-			Gdk.Pixbuf thumb = FSpot.Platform.ThumbnailFactory.LoadThumbnail (photo.DefaultVersionUri);
+			Gdk.Pixbuf thumb = FSpot.Platform.ThumbnailFactory.LoadThumbnail (photo.DefaultVersion.Uri);
 			byte[] buf = thumb.SaveToBuffer ("png");
 			SendHeadersAndStartContent(dest, "Content-Type: " + MimeTypeForExt (".png"),
 											 "Content-Length: " + buf.Length,

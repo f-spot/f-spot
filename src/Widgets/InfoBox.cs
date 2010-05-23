@@ -493,7 +493,7 @@ namespace FSpot.Widgets
 			
 			try {
 				//using (new Timer ("building info")) {
-					using (ImageFile img = ImageFile.Create (photo.DefaultVersionUri))
+					using (ImageFile img = ImageFile.Create (photo.DefaultVersion.Uri))
 					{
 						info = new ImageInfo (img);
 					}
@@ -568,7 +568,7 @@ namespace FSpot.Widgets
 
 			if (show_file_size) {
 				try {
-					GFile file = FileFactory.NewForUri (photo.DefaultVersionUri);
+					GFile file = FileFactory.NewForUri (photo.DefaultVersion.Uri);
 					GFileInfo file_info = file.QueryInfo ("standard::size", FileQueryInfoFlags.None, null);
 					file_size_value_label.Text = Format.SizeForDisplay (file_info.Size);
 				} catch (GLib.GException e) {
@@ -655,7 +655,7 @@ namespace FSpot.Widgets
 				foreach (Photo photo in Photos) {
 					
 					try {
-						GFile file = FileFactory.NewForUri (photo.DefaultVersionUri);
+						GFile file = FileFactory.NewForUri (photo.DefaultVersion.Uri);
 						GFileInfo file_info = file.QueryInfo ("standard::size", FileQueryInfoFlags.None, null);
 						file_size += file_info.Size;
 					} catch (GLib.GException e) {
@@ -706,7 +706,7 @@ namespace FSpot.Widgets
 
 			try {
 				if (hint == null)
-					using (ImageFile img = ImageFile.Create (photo.DefaultVersionUri))
+					using (ImageFile img = ImageFile.Create (photo.DefaultVersion.Uri))
 						hint = img.Load (256, 256);
 				
 				histogram_image.Pixbuf = histogram.Generate (hint, max);

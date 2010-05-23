@@ -443,13 +443,13 @@ namespace FSpotFolderExport {
 
 		protected virtual string ImageName (int image_num)
 		{
-			return System.IO.Path.GetFileName(FileImportBackend.UniqueName(gallery_path, System.IO.Path.GetFileName (collection [image_num].DefaultVersionUri.LocalPath)).AbsolutePath);
+			return System.IO.Path.GetFileName(FileImportBackend.UniqueName(gallery_path, System.IO.Path.GetFileName (collection [image_num].DefaultVersion.Uri.LocalPath)).AbsolutePath);
 		}
 
 		public void ProcessImage (int image_num, FilterSet filter_set)
 		{
 			IBrowsableItem photo = collection [image_num];
-			string photo_path = photo.DefaultVersionUri.LocalPath;
+			string photo_path = photo.DefaultVersion.Uri.LocalPath;
 			string path;
 			ScaleRequest req;
 
@@ -458,7 +458,7 @@ namespace FSpotFolderExport {
 			MakeDir (SubdirPath (req.Name));
 			path = SubdirPath (req.Name, ImageName (image_num));
 
-			using (FilterRequest request = new FilterRequest (photo.DefaultVersionUri)) {
+			using (FilterRequest request = new FilterRequest (photo.DefaultVersion.Uri)) {
 				filter_set.Convert (request);
 				if (request.Current.LocalPath == path)
 					request.Preserve(request.Current);
@@ -497,7 +497,7 @@ namespace FSpotFolderExport {
 							if (req.Name == "thumbs")
 								req_set.Add (new SharpFilter (0.1, 2, 5));
 						}
-						using (FilterRequest tmp_req = new FilterRequest (photo.DefaultVersionUri)) {
+						using (FilterRequest tmp_req = new FilterRequest (photo.DefaultVersion.Uri)) {
 							req_set.Convert (tmp_req);
 							MakeDir (SubdirPath (req.Name));
 							path = SubdirPath (req.Name, ImageName (image_num));
@@ -636,7 +636,7 @@ namespace FSpotFolderExport {
 		{
 			try {
 				for (int i = 0; i < collection.Count; i++)
-					CreateComments (collection [i].DefaultVersionUri.LocalPath, i);
+					CreateComments (collection [i].DefaultVersion.Uri.LocalPath, i);
 
 				Directory.SetLastWriteTimeUtc(gallery_path, collection [0].Time);
 			} catch (System.Exception e) {

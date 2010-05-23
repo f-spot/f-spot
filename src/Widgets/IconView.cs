@@ -565,7 +565,7 @@ namespace FSpot.Widgets
 		public void UpdateThumbnail (int thumbnail_num)
 		{
 			FSpot.IBrowsableItem photo = collection [thumbnail_num];
-			cache.Remove (photo.DefaultVersionUri);
+			cache.Remove (photo.DefaultVersion.Uri);
 			InvalidateCell (thumbnail_num);
 		}
 
@@ -773,9 +773,9 @@ namespace FSpot.Widgets
 
 			FSpot.IBrowsableItem photo = collection [thumbnail_num];
 
-			FSpot.PixbufCache.CacheEntry entry = cache.Lookup (photo.DefaultVersionUri);
+			FSpot.PixbufCache.CacheEntry entry = cache.Lookup (photo.DefaultVersion.Uri);
 			if (entry == null)
-				cache.Request (photo.DefaultVersionUri, thumbnail_num, ThumbnailWidth, ThumbnailHeight);
+				cache.Request (photo.DefaultVersion.Uri, thumbnail_num, ThumbnailWidth, ThumbnailHeight);
 			else
 				entry.Data = thumbnail_num;
 
@@ -938,7 +938,7 @@ namespace FSpot.Widgets
 
 			if (DisplayFilenames) {
 
-				string filename = System.IO.Path.GetFileName (photo.DefaultVersionUri.LocalPath);
+				string filename = System.IO.Path.GetFileName (photo.DefaultVersion.Uri.LocalPath);
 				Pango.Layout layout = new Pango.Layout (this.PangoContext);
 				layout.SetText (filename);
 
@@ -1182,16 +1182,16 @@ namespace FSpot.Widgets
 
 				photo = collection [cell];
 
-				entry = cache.Lookup (photo.DefaultVersionUri);
+				entry = cache.Lookup (photo.DefaultVersion.Uri);
 				if (entry == null)
-					cache.Request (photo.DefaultVersionUri, cell, ThumbnailWidth, ThumbnailHeight);
+					cache.Request (photo.DefaultVersion.Uri, cell, ThumbnailWidth, ThumbnailHeight);
 
 				cell = back ? scell + i : scell + mid - i - 1;
 				photo = collection [cell];
 
-				entry = cache.Lookup (photo.DefaultVersionUri);
+				entry = cache.Lookup (photo.DefaultVersion.Uri);
 				if (entry == null)
-					cache.Request (photo.DefaultVersionUri, cell, ThumbnailWidth, ThumbnailHeight);
+					cache.Request (photo.DefaultVersion.Uri, cell, ThumbnailWidth, ThumbnailHeight);
 			}
 		}
 
@@ -1283,7 +1283,7 @@ namespace FSpot.Widgets
 			int order = (int) entry.Data;
 
 			if (order >= 0 && order < collection.Count) {
-				System.Uri uri = collection [order].DefaultVersionUri;
+				System.Uri uri = collection [order].DefaultVersion.Uri;
 
 				if (result == null && !ThumbnailFactory.ThumbnailExists (uri))
 					FSpot.ThumbnailGenerator.Default.Request (uri, 0, 256, 256);

@@ -28,7 +28,7 @@ namespace FSpot
 
 		public static int CompareDefaultVersionUri (this IBrowsableItem photo1, IBrowsableItem photo2)
 		{
-			return string.Compare (photo1.DefaultVersionUri.ToString (), photo2.DefaultVersionUri.ToString ());
+			return string.Compare (photo1.DefaultVersion.Uri.ToString (), photo2.DefaultVersion.Uri.ToString ());
 		}
 	}
 }

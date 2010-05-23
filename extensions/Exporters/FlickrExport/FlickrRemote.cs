@@ -137,7 +137,7 @@ public class FlickrRemote {
 		// FIXME flickr needs rotation
 		string  error_verbose;
 
-		using (FilterRequest request = new FilterRequest (photo.DefaultVersionUri)) {
+		using (FilterRequest request = new FilterRequest (photo.DefaultVersion.Uri)) {
 
 			try {
 				string tags = null;

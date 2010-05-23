@@ -355,7 +355,7 @@ namespace FSpot.Exporter.Facebook
 					progress_dialog.ProgressText = string.Empty;
 					progress_dialog.Fraction = i / (double) items.Length;
 
-					FilterRequest request = new FilterRequest (item.DefaultVersionUri);
+					FilterRequest request = new FilterRequest (item.DefaultVersion.Uri);
 					filters.Convert (request);
 
 					file_info = new FileInfo (request.Current.LocalPath);

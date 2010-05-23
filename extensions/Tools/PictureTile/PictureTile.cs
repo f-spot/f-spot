@@ -130,12 +130,12 @@ namespace PictureTileExtension {
 				}
 
 				//FIXME should switch to retry/skip
-				if (!GLib.FileFactory.NewForUri (p.DefaultVersionUri).Exists) {
-					Log.Warning (String.Format ("Couldn't access photo {0} while creating mosaics", p.DefaultVersionUri.LocalPath));
+				if (!GLib.FileFactory.NewForUri (p.DefaultVersion.Uri).Exists) {
+					Log.Warning (String.Format ("Couldn't access photo {0} while creating mosaics", p.DefaultVersion.Uri.LocalPath));
 					continue;
 				}
 
-				using (FilterRequest freq = new FilterRequest (p.DefaultVersionUri)) {
+				using (FilterRequest freq = new FilterRequest (p.DefaultVersion.Uri)) {
 					filters.Convert (freq);
 					File.Copy (freq.Current.LocalPath, String.Format ("{0}{1}.jpg", dir_tmp, counter ++));
 				}

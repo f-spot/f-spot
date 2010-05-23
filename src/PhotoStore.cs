@@ -114,7 +114,7 @@ public class PhotoStore : DbStore<Photo> {
 
 		foreach (Photo match in md5_matches)
 		{
-			var file2 = GLib.FileFactory.NewForUri (match.DefaultVersionUri);
+			var file2 = GLib.FileFactory.NewForUri (match.DefaultVersion.Uri);
 			var info2 = file2.QueryInfo ("standard::content-type", GLib.FileQueryInfoFlags.None, null);
 
 			// same mimetype?

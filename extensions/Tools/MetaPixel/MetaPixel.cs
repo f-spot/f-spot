@@ -143,8 +143,8 @@ namespace MetaPixelExtension {
 					return;
 				}
 				//FIXME should switch to retry/skip
-				if (!GLib.FileFactory.NewForUri (p.DefaultVersionUri).Exists) {
-					Log.Warning (String.Format ("Couldn't access photo {0} while creating miniatures", p.DefaultVersionUri.LocalPath));
+				if (!GLib.FileFactory.NewForUri (p.DefaultVersion.Uri).Exists) {
+					Log.Warning (String.Format ("Couldn't access photo {0} while creating miniatures", p.DefaultVersion.Uri.LocalPath));
 					continue;
 				}
 				//FIXME Check if the picture's format is supproted (jpg, gif)
@@ -152,11 +152,11 @@ namespace MetaPixelExtension {
 				FilterSet filters = new FilterSet ();
 				filters.Add (new JpegFilter ());
 				filters.Add (new OrientationFilter ());
-				FilterRequest freq = new FilterRequest (p.DefaultVersionUri);
+				FilterRequest freq = new FilterRequest (p.DefaultVersion.Uri);
 				filters.Convert (freq);
 
 				//We use photo id for minis, instead of photo names, to avoid duplicates
-				string minifile = minidir_tmp + p.Id.ToString() + System.IO.Path.GetExtension (p.DefaultVersionUri.ToString ());
+				string minifile = minidir_tmp + p.Id.ToString() + System.IO.Path.GetExtension (p.DefaultVersion.Uri.ToString ());
 				string prepare_command = String.Format ("--prepare -w {0} -h {1} {2} {3} {4}tables.mxt",
 									icon_x_size.Text, //Minis width
 									icon_y_size.Text, //Minis height
@@ -190,8 +190,8 @@ namespace MetaPixelExtension {
 					return;
 				}
 				//FIXME should switch to retry/skip
-				if (!GLib.FileFactory.NewForUri (p.DefaultVersionUri).Exists) {
-					Log.Warning (String.Format ("Couldn't access photo {0} while creating mosaics", p.DefaultVersionUri.LocalPath));
+				if (!GLib.FileFactory.NewForUri (p.DefaultVersion.Uri).Exists) {
+					Log.Warning (String.Format ("Couldn't access photo {0} while creating mosaics", p.DefaultVersion.Uri.LocalPath));
 					error_count ++;
 					continue;
 				}
@@ -201,7 +201,7 @@ namespace MetaPixelExtension {
 				FilterSet filters = new FilterSet ();
 				filters.Add (new JpegFilter ());
 				filters.Add (new OrientationFilter ());
-				FilterRequest freq = new FilterRequest (p.DefaultVersionUri);
+				FilterRequest freq = new FilterRequest (p.DefaultVersion.Uri);
 				filters.Convert (freq);
 
 				string name = GetVersionName (p);

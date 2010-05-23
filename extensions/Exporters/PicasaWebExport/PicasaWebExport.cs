@@ -662,7 +662,7 @@ namespace FSpotGoogleExport {
 					photo_index++;
 
 					PicasaPicture picture;
-					using (FilterRequest request = new FilterRequest (item.DefaultVersionUri)) {
+					using (FilterRequest request = new FilterRequest (item.DefaultVersion.Uri)) {
 						filters.Convert (request);
 						file_info = new FileInfo (request.Current.LocalPath);
 

@@ -781,7 +781,7 @@ namespace G2Export {
 					progress_dialog.ProgressText = System.String.Format (Catalog.GetString ("{0} of {1}"), photo_index, items.Length);
 
 
-					FilterRequest req = new FilterRequest (item.DefaultVersionUri);
+					FilterRequest req = new FilterRequest (item.DefaultVersion.Uri);
 
 					filters.Convert (req);
 					try {

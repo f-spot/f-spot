@@ -1069,7 +1069,7 @@ namespace FSpot
 	
 				bool use_icon = false;;
 				while (len-- > 0) {
-					FSpot.PixbufCache.CacheEntry entry = icon_view.Cache.Lookup (photos [len].DefaultVersionUri);
+					FSpot.PixbufCache.CacheEntry entry = icon_view.Cache.Lookup (photos [len].DefaultVersion.Uri);
 	
 					Pixbuf thumbnail = null;
 					if (entry != null) {
@@ -2381,8 +2381,8 @@ namespace FSpot
 						var paths = new List<string> ();
 						var uris = new List<string> ();
 						foreach (Photo p in SelectedPhotos ()) {
-							paths.Add (System.IO.Path.GetFullPath (p.DefaultVersionUri.LocalPath));
-							uris.Add (p.DefaultVersionUri.ToString ());
+							paths.Add (System.IO.Path.GetFullPath (p.DefaultVersion.Uri.LocalPath));
+							uris.Add (p.DefaultVersion.Uri.ToString ());
 						}
 						data.Text = String.Join (" ", paths.ToArray ());
 						data.SetUris (String.Join (" ", uris.ToArray ()));
@@ -2393,7 +2393,7 @@ namespace FSpot
 	
 			var pt = new List<string> ();
 			foreach (Photo p in SelectedPhotos ()) {
-				pt.Add (System.IO.Path.GetFullPath (p.DefaultVersionUri.LocalPath));
+				pt.Add (System.IO.Path.GetFullPath (p.DefaultVersion.Uri.LocalPath));
 			}
 			
 			primary.Text = String.Join (" ", pt.ToArray ());
@@ -2406,7 +2406,7 @@ namespace FSpot
 			if (current == null)
 				return;
 	
-			Desktop.SetBackgroundImage (current.DefaultVersionUri.LocalPath);
+			Desktop.SetBackgroundImage (current.DefaultVersion.Uri.LocalPath);
 		}
 	
 		void HandleSetDateRange (object sender, EventArgs args) {
@@ -2896,7 +2896,7 @@ namespace FSpot
 					errors.Add (new EditException (photo, ex));
 				}
 	
-				uri_list.Append (photo.DefaultVersionUri.ToString ());
+				uri_list.Append (photo.DefaultVersion.Uri.ToString ());
 			}
 	
 			// FIXME need to clean up the error dialog here.
@@ -3052,7 +3052,7 @@ namespace FSpot
 			foreach (Photo p in SelectedPhotos ()) {
 				string content;
 				try {
-					content = GLib.FileFactory.NewForUri (p.DefaultVersionUri).QueryInfo ("standard::content-type", GLib.FileQueryInfoFlags.None, null).ContentType;
+					content = GLib.FileFactory.NewForUri (p.DefaultVersion.Uri).QueryInfo ("standard::content-type", GLib.FileQueryInfoFlags.None, null).ContentType;
 				} catch (GLib.GException) {
 					content = null;
 				}

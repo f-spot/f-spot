@@ -110,7 +110,7 @@ namespace FSpot
 						DrawCropMarks (cr, x*w, y*h, w*.1);
 					if (x == ppx || y == ppy || p_index >= selected_photos.Length)
 						continue;
-					using (ImageFile img = new ImageFile (selected_photos[p_index].DefaultVersionUri))
+					using (ImageFile img = new ImageFile (selected_photos[p_index].DefaultVersion.Uri))
 					{
 						Gdk.Pixbuf pixbuf;
 						try {
@@ -119,7 +119,7 @@ namespace FSpot
 							if (FSpot.ColorManagement.Profiles.TryGetValue (Preferences.Get<string> (Preferences.COLOR_MANAGEMENT_OUTPUT_PROFILE), out printer_profile)) 
 								FSpot.ColorManagement.ApplyProfile (pixbuf, img.GetProfile (), printer_profile);
 						} catch (Exception e) {
-							Log.Exception ("Unable to load image " + selected_photos[p_index].DefaultVersionUri + "\n", e);
+							Log.Exception ("Unable to load image " + selected_photos[p_index].DefaultVersion.Uri + "\n", e);
 							// If the image is not found load error pixbuf
 							pixbuf = new Gdk.Pixbuf (PixbufUtils.ErrorPixbuf, 0, 0, 
 										      PixbufUtils.ErrorPixbuf.Width, 

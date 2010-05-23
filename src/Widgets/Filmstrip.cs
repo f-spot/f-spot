@@ -541,7 +541,7 @@ namespace FSpot.Widgets
 			if (!args.Changes.DataChanged)
 				return;
 			foreach (int item in args.Items)
-				thumb_cache.TryRemove ((selection.Collection [item]).DefaultVersionUri);
+				thumb_cache.TryRemove ((selection.Collection [item]).DefaultVersion.Uri);
 
 			//FIXME call QueueDrawArea
 			QueueDraw ();
@@ -612,7 +612,7 @@ namespace FSpot.Widgets
  		protected virtual Pixbuf GetPixbuf (int i, bool highlighted)
 		{
 			Pixbuf current;
-			Uri uri = (selection.Collection [i]).DefaultVersionUri;
+			Uri uri = (selection.Collection [i]).DefaultVersion.Uri;
 			try {
 				current = PixbufUtils.ShallowCopy (thumb_cache.Get (uri));
 			} catch (IndexOutOfRangeException) {
@@ -621,7 +621,7 @@ namespace FSpot.Widgets
 
 			if (current == null) {
 				try {
-					ThumbnailGenerator.Default.Request ((selection.Collection [i]).DefaultVersionUri, 0, 256, 256);
+					ThumbnailGenerator.Default.Request ((selection.Collection [i]).DefaultVersion.Uri, 0, 256, 256);
 
 					if (SquaredThumbs) {
 						using (Pixbuf p = ThumbnailFactory.LoadThumbnail (uri)) {

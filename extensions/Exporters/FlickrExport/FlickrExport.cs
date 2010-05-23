@@ -349,7 +349,7 @@ namespace FSpotFlickrExport {
 						Catalog.GetString ("{0} of {1}"), photo_index,
 						selection.Count);
 
-					info = new FileInfo (photo.DefaultVersionUri.LocalPath);
+					info = new FileInfo (photo.DefaultVersion.Uri.LocalPath);
 					FilterSet stack = new FilterSet ();
 					if (scale)
 						stack.Add (new ResizeFilter ((uint)size));

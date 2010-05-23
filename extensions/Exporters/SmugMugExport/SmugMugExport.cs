@@ -568,7 +568,7 @@ namespace FSpotSmugMugExport {
 					progress_dialog.Fraction = ((photo_index) / (double) items.Length);
 					photo_index++;
 
-					FilterRequest request = new FilterRequest (item.DefaultVersionUri);
+					FilterRequest request = new FilterRequest (item.DefaultVersion.Uri);
 
 					filters.Convert (request);
 

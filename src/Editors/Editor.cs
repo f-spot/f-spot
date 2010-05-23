@@ -98,7 +98,7 @@ namespace FSpot.Editors {
 
 		protected void LoadPhoto (Photo photo, out Pixbuf photo_pixbuf, out Cms.Profile photo_profile) {
 			// FIXME: We might get this value from the PhotoImageView.
-			using (ImageFile img = ImageFile.Create (photo.DefaultVersionUri)) {
+			using (ImageFile img = ImageFile.Create (photo.DefaultVersion.Uri)) {
 				photo_pixbuf = img.Load ();
 				photo_profile = img.GetProfile ();
 			}

@@ -41,7 +41,7 @@ namespace FSpot.UI.Dialog
 
 			for (i = 0; i < source.Count; i++) {
 				IBrowsableItem item = source [i];
-				string path = item.DefaultVersionUri.LocalPath;
+				string path = item.DefaultVersion.Uri.LocalPath;
 				if (! File.Exists (path) || (new FileInfo (path).Length == 0))
 					missing.Add (item);
 			}

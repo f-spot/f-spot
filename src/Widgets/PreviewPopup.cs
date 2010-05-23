@@ -106,7 +106,7 @@ namespace FSpot {
 		{
 			FSpot.IBrowsableItem item = view.Collection [Item];
 			
-			string orig_path = item.DefaultVersionUri.LocalPath;
+			string orig_path = item.DefaultVersion.Uri.LocalPath;
 
 			Gdk.Pixbuf pixbuf = PixbufUtils.ShallowCopy (preview_cache.Get (orig_path + show_histogram.ToString ()));
 			if (pixbuf == null) {

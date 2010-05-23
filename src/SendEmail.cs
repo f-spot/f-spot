@@ -58,7 +58,7 @@ namespace FSpot {
 
 			for (int i = 0; i < selection.Count; i++) {
 				Photo p = selection[i] as Photo;
-				if (FileFactory.NewForUri (p.DefaultVersionUri).QueryInfo ("standard::content-type", FileQueryInfoFlags.None, null).ContentType != "image/jpeg")
+				if (FileFactory.NewForUri (p.DefaultVersion.Uri).QueryInfo ("standard::content-type", FileQueryInfoFlags.None, null).ContentType != "image/jpeg")
 					force_original = true;
 			}
 
@@ -91,7 +91,7 @@ namespace FSpot {
 			for (int i = 0; i < selection.Count; i++) {
 				Photo photo = selection[i] as Photo;
 				try {
-					Orig_Photo_Size += FileFactory.NewForUri (photo.DefaultVersionUri).QueryInfo ("standard::size", FileQueryInfoFlags.None, null).Size;
+					Orig_Photo_Size += FileFactory.NewForUri (photo.DefaultVersion.Uri).QueryInfo ("standard::size", FileQueryInfoFlags.None, null).Size;
 				} catch {
 				}
 			}
@@ -105,12 +105,12 @@ namespace FSpot {
 			if (scalephoto != null && !force_original) {
 				
 				// Get first photos file size
-				long orig_size = FileFactory.NewForUri (scalephoto.DefaultVersionUri).QueryInfo ("standard::size", FileQueryInfoFlags.None, null).Size;
+				long orig_size = FileFactory.NewForUri (scalephoto.DefaultVersion.Uri).QueryInfo ("standard::size", FileQueryInfoFlags.None, null).Size;
 				
 				FilterSet filters = new FilterSet ();
 				filters.Add (new ResizeFilter ((uint)(sizes [3])));
 				long new_size;
-				using (FilterRequest request = new FilterRequest (scalephoto.DefaultVersionUri)) {
+				using (FilterRequest request = new FilterRequest (scalephoto.DefaultVersion.Uri)) {
 					filters.Convert (request);
 					new_size = FileFactory.NewForUri (request.Current).QueryInfo ("standard::size", FileQueryInfoFlags.None, null).Size;
 				}
@@ -276,7 +276,7 @@ namespace FSpot {
 					 	
 					try {
 						// Prepare a tmp_mail file name
-						FilterRequest request = new FilterRequest (photo.DefaultVersionUri);
+						FilterRequest request = new FilterRequest (photo.DefaultVersion.Uri);
 
 						filters.Convert (request);
 						request.Preserve(request.Current);

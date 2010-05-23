@@ -19,23 +19,23 @@ namespace FSpot {
 	public class FileBrowsableItem : IBrowsableItem, IDisposable
 	{
 		ImageFile img;
-		Uri uri;
 		bool attempted;
 
 		public FileBrowsableItem (Uri uri)
 		{
-			this.uri = uri;
+			DefaultVersion = new FileBrowsableItemVersion () {
+                Uri = uri
+            };
 		}
 
-		public FileBrowsableItem (string path)
+		public FileBrowsableItem (string path) : this (UriUtils.PathToFileUri (path))
 		{
-			this.uri = UriUtils.PathToFileUri (path);
 		}
 
 		protected ImageFile Image {
 			get {
 				if (!attempted) {
-					img = ImageFile.Create (uri);
+					img = ImageFile.Create (DefaultVersion.Uri);
 					attempted = true;
 				}
 
@@ -55,11 +55,7 @@ namespace FSpot {
 			}
 		}
 
-		public Uri DefaultVersionUri {
-			get {
-				return uri;
-			}
-		}
+		public IBrowsableItemVersion DefaultVersion { get; private set; }
 
 		public string Description {
 			get {
@@ -91,6 +87,12 @@ namespace FSpot {
 		{
 			img.Dispose ();
 			GC.SuppressFinalize (this);
+		}
+
+		private class FileBrowsableItemVersion : IBrowsableItemVersion {
+			public string Name { get { return String.Empty; } }
+			public bool IsProtected { get { return true; } }
+			public Uri Uri { get; set; }
 		}
 	}
 }

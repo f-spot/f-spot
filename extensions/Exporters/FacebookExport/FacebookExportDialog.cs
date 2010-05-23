@@ -192,7 +192,7 @@ namespace FSpot.Exporter.Facebook
 				tag_image.Destroy ();
 			}
 
-			using (Gdk.Pixbuf data = PixbufUtils.ScaleToMaxSize (ThumbnailFactory.LoadThumbnail (item.DefaultVersionUri), 400, 400)) {
+			using (Gdk.Pixbuf data = PixbufUtils.ScaleToMaxSize (ThumbnailFactory.LoadThumbnail (item.DefaultVersion.Uri), 400, 400)) {
 				tag_image_height = data.Height;
 				tag_image_width = data.Width;
 				tag_image = new Gtk.Image (data);

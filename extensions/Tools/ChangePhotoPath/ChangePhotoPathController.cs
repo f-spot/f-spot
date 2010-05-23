@@ -104,7 +104,7 @@ namespace ChangePhotoPath
 			string res_path = null;
 
 			foreach ( IBrowsableItem photo in photo_store.Query ( "SELECT * FROM photos " ) ) {
-				string tmp_path = (photo as Photo).DefaultVersionUri.AbsolutePath;
+				string tmp_path = (photo as Photo).DefaultVersion.Uri.AbsolutePath;
 				res_path = IsThisPhotoOnOrigBasePath (tmp_path);
 				if (res_path != null)
 					break;

@@ -229,11 +229,7 @@ namespace FSpot
 			return null;
 		}
 		
-		public System.Uri DefaultVersionUri {
-			get { return VersionUri (DefaultVersionId); }
-		}
-	
-		public PhotoVersion DefaultVersion {
+		public IBrowsableItemVersion DefaultVersion {
 			get {
 				if (!Versions.ContainsKey (DefaultVersionId))
 					return null;
@@ -245,7 +241,7 @@ namespace FSpot
 		public uint SaveVersion (Gdk.Pixbuf buffer, bool create_version)
 		{
 			uint version = DefaultVersionId;
-			using (ImageFile img = ImageFile.Create (DefaultVersionUri)) {
+			using (ImageFile img = ImageFile.Create (DefaultVersion.Uri)) {
 				// Always create a version if the source is not a jpeg for now.
 				create_version = create_version || !(img is FSpot.JpegFile);
 	

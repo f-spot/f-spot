@@ -124,7 +124,7 @@ namespace FSpot {
 			if (done)
 				return false;
 
- 			original_path = item.DefaultVersionUri.LocalPath;
+ 			original_path = item.DefaultVersion.Uri.LocalPath;
  			done = true;
 
 			if ((File.GetAttributes(original_path) & FileAttributes.ReadOnly) == FileAttributes.ReadOnly) {
@@ -219,11 +219,11 @@ public class RotateCommand {
 			} catch (GLib.GException) {
 				readonly_count++;
 			} catch (DirectoryNotFoundException e) {
-				RunGenericError (e, op.Items [op.Index].DefaultVersionUri.LocalPath, Catalog.GetString ("Directory not found"));
+				RunGenericError (e, op.Items [op.Index].DefaultVersion.Uri.LocalPath, Catalog.GetString ("Directory not found"));
 			} catch (FileNotFoundException e) {
-				RunGenericError (e, op.Items [op.Index].DefaultVersionUri.LocalPath, Catalog.GetString ("File not found"));
+				RunGenericError (e, op.Items [op.Index].DefaultVersion.Uri.LocalPath, Catalog.GetString ("File not found"));
 			} catch (Exception e) {
-				RunGenericError (e, op.Items [op.Index].DefaultVersionUri.LocalPath);
+				RunGenericError (e, op.Items [op.Index].DefaultVersion.Uri.LocalPath);
 			}
 			index ++;
 		}

@@ -115,17 +115,17 @@ namespace ZipExport {
 					FilterSet filters = new FilterSet ();
 					filters.Add (new JpegFilter ());
 					filters.Add (new ResizeFilter ((uint) scale_size.ValueAsInt));
-					FilterRequest freq = new FilterRequest (photos [i].DefaultVersionUri);
+					FilterRequest freq = new FilterRequest (photos [i].DefaultVersion.Uri);
 					filters.Convert (freq);
 					f = freq.Current.LocalPath;
 				} else {
-					f = photos [i].DefaultVersionUri.LocalPath;
+					f = photos [i].DefaultVersion.Uri.LocalPath;
 				}
 				FileStream fs = File.OpenRead (f);
 
 				byte [] buffer = new byte [fs.Length];
 				fs.Read (buffer, 0, buffer.Length);
-				ZipEntry entry = new ZipEntry (System.IO.Path.GetFileName (photos [i].DefaultVersionUri.LocalPath));
+				ZipEntry entry = new ZipEntry (System.IO.Path.GetFileName (photos [i].DefaultVersion.Uri.LocalPath));
 
 				entry.DateTime = DateTime.Now;
 

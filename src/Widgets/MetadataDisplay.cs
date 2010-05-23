@@ -131,8 +131,8 @@ namespace FSpot.Widgets {
 				}
 
 				if (photo != null) {
-					if (File.Exists (photo.DefaultVersionUri.LocalPath))
-						exif_info = new Exif.ExifData (photo.DefaultVersionUri.LocalPath);
+					if (File.Exists (photo.DefaultVersion.Uri.LocalPath))
+						exif_info = new Exif.ExifData (photo.DefaultVersion.Uri.LocalPath);
 				} else {
 					exif_info = null;
 				}
@@ -329,7 +329,7 @@ namespace FSpot.Widgets {
 			if (photo != null) {
 				MetadataStore store = new MetadataStore ();
 				try {
-					using (ImageFile img = ImageFile.Create (photo.DefaultVersionUri)) {
+					using (ImageFile img = ImageFile.Create (photo.DefaultVersion.Uri)) {
 						if (img is SemWeb.StatementSource) {
 							StatementSource source = (StatementSource)img;
 							source.Select (store);
@@ -339,7 +339,7 @@ namespace FSpot.Widgets {
 					missing = true;
 				} catch (System.Exception e){
 					// Sometimes we don't get the right exception, check for the file
-					if (!System.IO.File.Exists (photo.DefaultVersionUri.LocalPath)) {
+					if (!System.IO.File.Exists (photo.DefaultVersion.Uri.LocalPath)) {
 						missing = true;
 					} else {
 						// if the file is there but we still got an exception display it.
@@ -412,7 +412,7 @@ namespace FSpot.Widgets {
 				     msg = Catalog.GetString ("No active photo");
 				} else if (missing) {
 					msg = String.Format (Catalog.GetString ("The photo \"{0}\" does not exist"),
-					                                        photo.DefaultVersionUri);
+					                                        photo.DefaultVersion.Uri);
 				} else {
 				     msg = Catalog.GetString ("No metadata available");
 

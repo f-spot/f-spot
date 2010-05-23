@@ -18,7 +18,7 @@ namespace FSpot
 			get;
 		}
 
-		System.Uri DefaultVersionUri {
+		IBrowsableItemVersion DefaultVersion {
 			get;
 		}
 
@@ -36,4 +36,4 @@ namespace FSpot
 	}
 
 
-}	
+}

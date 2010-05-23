@@ -52,9 +52,9 @@ namespace FSpot.Widgets {
 		{
 			this.item = item;
 			CanFocus = true;
-			current = new ImageInfo (item.Current.DefaultVersionUri);
+			current = new ImageInfo (item.Current.DefaultVersion.Uri);
 			if (item.Collection.Count > item.Index + 1) {
-				next = new ImageInfo (item.Collection [item.Index + 1].DefaultVersionUri);
+				next = new ImageInfo (item.Collection [item.Index + 1].DefaultVersion.Uri);
 			}
 			delay = new Delay (30, new GLib.IdleHandler (DrawFrame));
 		}

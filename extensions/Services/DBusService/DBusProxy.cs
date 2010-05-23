@@ -323,7 +323,7 @@ namespace DBusService {
 			if (p == null)
 				throw new DBusException ("Photo with id {0} does not exist.", id);
 
-			dict.Add ("Uri", p.DefaultVersionUri.ToString());
+			dict.Add ("Uri", p.DefaultVersion.Uri.ToString());
 			dict.Add ("Id", p.Id);
 			dict.Add ("Name", p.Name);
 			dict.Add ("Description", p.Description ?? string.Empty);
