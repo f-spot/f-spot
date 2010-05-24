@@ -53,7 +53,6 @@
         <key>/schemas/desktop/gnome/f-spot/ui/main_window_x</key>
 	<applyto>/desktop/gnome/f-spot/ui/main_window_x</applyto>
 	<type>int</type>
-	<default></default>
 	<locale name="C">
 	  <short>X position of the main window.</short>
 	  <long>The X position to use for the main window.</long>
@@ -64,7 +63,6 @@
         <key>/schemas/desktop/gnome/f-spot/ui/main_window_y</key>
 	<applyto>/desktop/gnome/f-spot/ui/main_window_y</applyto>
 	<type>int</type>
-	<default></default>
 	<locale name="C">
 	  <short>Y position of the main window.</short>
 	  <long>The Y position to use for the main window.</long>
@@ -253,7 +251,6 @@
         <key>/schemas/desktop/gnome/f-spot/ui/viewer_x</key>
 	<applyto>/desktop/gnome/f-spot/ui/viewer_x</applyto>
 	<type>int</type>
-	<default></default>
 	<locale name="C">
 	  <short>X position of the photo viewer window.</short>
 	  <long>The X position to use for the photo viewer window.</long>
@@ -264,7 +261,6 @@
         <key>/schemas/desktop/gnome/f-spot/ui/viewer_y</key>
 	<applyto>/desktop/gnome/f-spot/ui/viewer_y</applyto>
 	<type>int</type>
-	<default></default>
 	<locale name="C">
 	  <short>Y position of the photo viewer window.</short>
 	  <long>The Y position to use for the photo viewer window.</long>
