@@ -3,6 +3,7 @@ using System.IO;
 using FSpot;
 using FSpot.Utils;
 using SemWeb;
+using Hyena;
 
 namespace FSpot.X3f {
 	internal class Info {
@@ -93,7 +94,7 @@ namespace FSpot.X3f {
 		{
 		}
 
-		public X3fFile (System.Uri uri) : base (uri)
+		public X3fFile (SafeUri uri) : base (uri)
 		{
 		}
 		

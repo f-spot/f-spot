@@ -9,6 +9,7 @@
  * This is free software, See COPYING for details
  */
 
+using Hyena;
 using System;
 using FSpot.Utils;
 using Gdk;
@@ -19,7 +20,7 @@ namespace FSpot.Platform
 	{
 		static Gnome.ThumbnailFactory gnome_thumbnail_factory = new Gnome.ThumbnailFactory (Gnome.ThumbnailSize.Large);
 
-		public static void SaveThumbnail (Pixbuf pixbuf, Uri imageUri)
+		public static void SaveThumbnail (Pixbuf pixbuf, SafeUri imageUri)
 		{
 			if (pixbuf == null)
 				throw new ArgumentNullException ("pixbuf");
@@ -33,17 +34,17 @@ namespace FSpot.Platform
 			SaveThumbnail (pixbuf, imageUri, mtime);
 		}
 
-		public static void SaveThumbnail (Pixbuf pixbuf, Uri imageUri, DateTime originalMtime)
+		public static void SaveThumbnail (Pixbuf pixbuf, SafeUri imageUri, DateTime originalMtime)
 		{
 			if (pixbuf == null)
 				throw new ArgumentNullException ("pixbuf");
 			if (imageUri == null)
 				throw new ArgumentNullException ("imageUri");
 
-			gnome_thumbnail_factory.SaveThumbnail (pixbuf, UriUtils.UriToStringEscaped (imageUri), originalMtime);
+			gnome_thumbnail_factory.SaveThumbnail (pixbuf, imageUri, originalMtime);
 		}
 
-		public static void DeleteThumbnail (Uri imageUri)
+		public static void DeleteThumbnail (SafeUri imageUri)
 		{
 			if (imageUri == null)
 				throw new ArgumentNullException ("imageUri");
@@ -55,7 +56,7 @@ namespace FSpot.Platform
 			}
 		}
 
-		public static void MoveThumbnail (Uri fromUri, Uri toUri)
+		public static void MoveThumbnail (SafeUri fromUri, SafeUri toUri)
 		{
 			if (fromUri == null)
 				throw new ArgumentNullException ("fromUri");
@@ -64,7 +65,7 @@ namespace FSpot.Platform
 			System.IO.File.Move (PathForUri (fromUri), PathForUri (toUri));
 		}
 
-		public static bool ThumbnailIsValid (Pixbuf pixbuf, Uri imageUri)
+		public static bool ThumbnailIsValid (Pixbuf pixbuf, SafeUri imageUri)
 		{
 			if (imageUri == null)
 				throw new ArgumentNullException ("imageUri");
@@ -85,7 +86,7 @@ namespace FSpot.Platform
 			}
 		}
 
-		public static bool ThumbnailIsValid (Pixbuf pixbuf, Uri imageUri, DateTime mtime)
+		public static bool ThumbnailIsValid (Pixbuf pixbuf, SafeUri imageUri, DateTime mtime)
 		{
 			if (pixbuf == null)
 				throw new ArgumentNullException ("pixbuf");
@@ -93,7 +94,7 @@ namespace FSpot.Platform
 				throw new ArgumentNullException ("imageUri");
 
 			try {
-				return  Gnome.Thumbnail.IsValid (pixbuf, UriUtils.UriToStringEscaped (imageUri), mtime);
+				return  Gnome.Thumbnail.IsValid (pixbuf, imageUri, mtime);
 			} catch (System.IO.FileNotFoundException) {
 				// If the original file is not on disk, the thumbnail is as valid as it's going to get
 				return true;
@@ -103,7 +104,7 @@ namespace FSpot.Platform
 			}
 		}
 
-		public static Pixbuf LoadThumbnail (Uri imageUri)
+		public static Pixbuf LoadThumbnail (SafeUri imageUri)
 		{
 			if (imageUri == null)
 				throw new ArgumentNullException ("imageUri");
@@ -118,19 +119,19 @@ namespace FSpot.Platform
 			}
 		}
 
-		public static Pixbuf LoadThumbnail (Uri imageUri, int destWidth, int destHeight)
+		public static Pixbuf LoadThumbnail (SafeUri imageUri, int destWidth, int destHeight)
 		{
 			using (Pixbuf p = LoadThumbnail (imageUri)) {
 				return Gnome.Thumbnail.ScaleDownPixbuf (p, destWidth, destHeight);
 			}
 		}
 
-		public static bool ThumbnailExists (Uri imageUri)
+		public static bool ThumbnailExists (SafeUri imageUri)
 		{
 			return System.IO.File.Exists (PathForUri (imageUri));
 		}
 
-		public static bool ThumbnailIsRecent (Uri imageUri)
+		public static bool ThumbnailIsRecent (SafeUri imageUri)
 		{
 			if (imageUri == null)
 				throw new ArgumentNullException ("imageUri");
@@ -144,9 +145,9 @@ namespace FSpot.Platform
 			return imageUri.IsFile && System.IO.File.Exists (PathForUri (imageUri)) && System.IO.File.GetLastWriteTime (PathForUri (imageUri)) >= System.IO.File.GetLastWriteTime (imageUri.AbsolutePath);
 		}
 
-		static string PathForUri (Uri uri)
+		static string PathForUri (SafeUri uri)
 		{
-			return Gnome.Thumbnail.PathForUri (UriUtils.UriToStringEscaped (uri), Gnome.ThumbnailSize.Large);
+			return Gnome.Thumbnail.PathForUri (uri, Gnome.ThumbnailSize.Large);
 		}
 	}
 }

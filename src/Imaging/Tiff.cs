@@ -5,6 +5,7 @@ using SemWeb;
 using System;
 using System.IO;
 using System.Collections.Generic;
+using Hyena;
 
 namespace FSpot.Tiff {
 
@@ -2037,7 +2038,7 @@ namespace FSpot.Tiff {
 			}
 		}
 
-		public TiffFile (Uri uri) : base (uri)
+		public TiffFile (SafeUri uri) : base (uri)
 		{
 			try {
 				using (System.IO.Stream input = Open ()) {
@@ -2134,7 +2135,7 @@ namespace FSpot.Tiff {
 		{
 		}
 
-		public DngFile (System.Uri uri) : base (uri) 
+		public DngFile (SafeUri uri) : base (uri)
 		{
 		}
 
@@ -2218,7 +2219,7 @@ namespace FSpot.Tiff {
 		{
 		}
 
-		public NefFile (Uri uri) : base (uri)
+		public NefFile (SafeUri uri) : base (uri)
 		{
 		}
 
@@ -2282,7 +2283,7 @@ namespace FSpot.Tiff {
 		{
 		}
 
-		public Cr2File (Uri uri) : base (uri)
+		public Cr2File (SafeUri uri) : base (uri)
 		{
 //							Gtk.MessageDialog md = new Gtk.MessageDialog (null, 
 //							                                              Gtk.DialogFlags.DestroyWithParent,

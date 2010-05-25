@@ -4,6 +4,7 @@ using System.IO;
 using FSpot.Xmp;
 using FSpot.Tiff;
 using FSpot.Utils;
+using Hyena;
 
 namespace FSpot {
 	public interface IThumbnailContainer {
@@ -21,7 +22,7 @@ namespace FSpot {
                         get { return false; }
                 }
 		
-		public JpegFile (Uri uri) : base (uri)
+		public JpegFile (SafeUri uri) : base (uri)
 		{
 			try {
 				// Console.WriteLine ("approximate quality = {0}", Header.GuessQuality ());

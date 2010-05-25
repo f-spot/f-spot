@@ -74,8 +74,7 @@ namespace RawPlusJpegExtension
 
 		private static string DirectoryPath (Photo p)
 		{
-			System.Uri uri = p.VersionUri (Photo.OriginalVersionId);
-			return uri.Scheme + "://" + uri.Host + System.IO.Path.GetDirectoryName (uri.AbsolutePath);
+			return p.VersionUri (Photo.OriginalVersionId).GetBaseUri ();
 		}
 
 		class MergeRequest

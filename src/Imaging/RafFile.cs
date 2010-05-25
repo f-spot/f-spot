@@ -1,4 +1,5 @@
 using FSpot.Utils;
+using Hyena;
 
 namespace FSpot.Raf {
 	// This is reverse engineered from looking at the sample files I have
@@ -28,7 +29,7 @@ namespace FSpot.Raf {
                         get { return false; }
                 }
 
-		public RafFile (System.Uri uri) : base (uri)
+		public RafFile (SafeUri uri) : base (uri)
 		{
 		}
 

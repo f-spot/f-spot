@@ -370,6 +370,7 @@ src/Core/Defines.cs
 src/AssemblyInfo.cs
 src/f-spot.exe.config
 src/Cms.dll.config
+src/FSpot.Core.dll.config
 src/FSpot.Widgets.dll.config
 src/Makefile
 extensions/Makefile

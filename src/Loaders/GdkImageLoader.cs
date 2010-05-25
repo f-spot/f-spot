@@ -14,6 +14,7 @@ using System.Threading;
 using Gdk;
 using FSpot.Utils;
 using FSpot.Platform;
+using Hyena;
 
 namespace FSpot.Loaders {
 	public class GdkImageLoader : Gdk.PixbufLoader, IImageLoader
@@ -23,7 +24,7 @@ namespace FSpot.Loaders {
 		{	
 		}
 
-		public void Load (Uri uri)
+		public void Load (SafeUri uri)
 		{
 			if (is_disposed)
 				return;

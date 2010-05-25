@@ -706,7 +706,7 @@ namespace FSpot {
 				
 				database.BeginTransaction ();
 				List<Photo> photos = new List<Photo> ();
-				foreach (Uri photo_uri in list) {
+				foreach (var photo_uri in list) {
 					Photo photo = database.Photos.GetByUri (photo_uri);
 					
 					// FIXME - at this point we should import the photo, and then continue

@@ -1,5 +1,6 @@
 using System;
 using FSpot.Utils;
+using Hyena;
 
 namespace FSpot.Ciff {
 	public enum Tag {
@@ -334,7 +335,7 @@ namespace FSpot.Ciff {
 			}
 		}
 
-		public CiffFile (Uri uri) : base (uri)
+		public CiffFile (SafeUri uri) : base (uri)
 		{
 		}
 

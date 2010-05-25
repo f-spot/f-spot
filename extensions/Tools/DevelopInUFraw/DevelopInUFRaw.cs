@@ -12,6 +12,7 @@ using System.IO;
 
 using Mono.Unix;
 
+using Hyena;
 using FSpot;
 using FSpot.Utils;
 using FSpot.Extensions;
@@ -148,7 +149,7 @@ namespace DevelopInUFRawExtension
 				File.Move (Path.ChangeExtension (developed.LocalPath, ".ufraw"), Path.ChangeExtension (raw.Uri.LocalPath, ".ufraw"));
 			}
 
-			p.DefaultVersionId = p.AddVersion (developed, name, true);
+			p.DefaultVersionId = p.AddVersion (new SafeUri (developed).GetBaseUri (),new SafeUri (developed).GetFilename (), name, true);
 			p.Changes.DataChanged = true;
 			App.Instance.Database.Photos.Commit (p);
 		}
@@ -176,8 +177,7 @@ namespace DevelopInUFRawExtension
 
 		private static string DirectoryPath (Photo p)
 		{
-			System.Uri uri = p.VersionUri (Photo.OriginalVersionId);
-			return uri.Scheme + "://" + uri.Host + System.IO.Path.GetDirectoryName (uri.AbsolutePath);
+			return p.VersionUri (Photo.OriginalVersionId).GetBaseUri ();
 		}
 
 		void LoadPreference (string key)

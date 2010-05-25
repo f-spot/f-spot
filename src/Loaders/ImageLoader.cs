@@ -14,6 +14,7 @@ using FSpot.Utils;
 using System;
 using System.Collections.Generic;
 using Gdk;
+using Hyena;
 
 namespace FSpot.Loaders {
 	public static class ImageLoader {
@@ -37,7 +38,7 @@ namespace FSpot.Loaders {
 				}
 		}
 
-		public static IImageLoader Create (Uri uri)
+		public static IImageLoader Create (SafeUri uri)
 		{
 			string path = uri.AbsolutePath;
 			string extension = System.IO.Path.GetExtension (path).ToLower ();

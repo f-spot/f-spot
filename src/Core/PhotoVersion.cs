@@ -10,56 +10,30 @@
  * This is free software. See COPYING for details.
  */
 
+using Hyena;
+
 namespace FSpot
 {
 	public class PhotoVersion : IBrowsableItemVersion
 	{
-		IBrowsableItem photo;
-		uint version_id;
-		System.Uri uri;
-		string md5_sum;
-		string name;
-		bool is_protected;
+		public string Name { get; set; }
+		public IBrowsableItem Photo { get; private set; }
+		public SafeUri BaseUri { get; set; }
+        public string Filename { get; set; }
+        public SafeUri Uri { get { return BaseUri.Append (Filename); } }
+		public string MD5Sum { get; internal set; }
+		public uint VersionId { get; private set; }
+		public bool IsProtected { get; private set; }
 	
-		public string Name {
-			get { return name; }
-			set { name = value; }
-		}
-	
-		public IBrowsableItem Photo {
-			get { return photo; }
-		}
-	
-		public System.Uri Uri {
-			get { return uri; }
-			set { 
-				if (value == null)
-					throw new System.ArgumentNullException ("uri");
-				uri = value;
-			}
-		}
-
-		public string MD5Sum {
-			get { return md5_sum; } 
-			internal set { md5_sum = value; }
-		}
-	
-		public uint VersionId {
-			get { return version_id; }
-		}
-	
-		public bool IsProtected {
-			get { return is_protected; }
-		}
-	
-		public PhotoVersion (IBrowsableItem photo, uint version_id, System.Uri uri, string md5_sum, string name, bool is_protected)
+		public PhotoVersion (IBrowsableItem photo, uint version_id, SafeUri base_uri, string filename, string md5_sum, string name, bool is_protected)
 		{
-			this.photo = photo;
-			this.version_id = version_id;
-			this.uri = uri;
-			this.md5_sum = md5_sum;
-			this.name = name;
-			this.is_protected = is_protected;
+			Photo = photo;
+			VersionId = version_id;
+			BaseUri = base_uri;
+            Filename = filename;
+			MD5Sum = md5_sum;
+			Name = name;
+			IsProtected = is_protected;
 		}
 	}
 }

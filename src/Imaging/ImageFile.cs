@@ -1,3 +1,5 @@
+using Hyena;
+
 using System;
 using System.IO;
 using System.Collections;
@@ -17,17 +19,18 @@ namespace FSpot {
 	}
 
 	public class ImageFile : IDisposable {
-		protected Uri uri;
+		protected SafeUri uri;
 
 		static Hashtable name_table;
 		internal static Hashtable NameTable { get { return name_table; } }
 
+		[Obsolete("Use ImageFile (SafeUri) instead!")]
 		public ImageFile (string path) 
 		{
-			this.uri = UriUtils.PathToFileUri (path);
+			this.uri = new SafeUri (path);
 		}
 		
-		public ImageFile (Uri uri)
+		public ImageFile (SafeUri uri)
 		{
 			this.uri = uri;
 		}
@@ -104,7 +107,7 @@ namespace FSpot {
 				}
 		}
 
-		public Uri Uri {
+		public SafeUri Uri {
 			get { return this.uri; }
 		}
 
@@ -187,18 +190,18 @@ namespace FSpot {
 			}
 		}
 
-		[Obsolete ("use HasLoader (System.Uri) instead")]
+		[Obsolete ("use HasLoader (Hyena.SafeUri) instead")]
 		public static bool HasLoader (string path)
 		{
-			return HasLoader (UriUtils.PathToFileUri (path));
+			return HasLoader (new SafeUri (path));
 		}
 		
-		public static bool HasLoader (Uri uri)
+		public static bool HasLoader (SafeUri uri)
 		{
 			return GetLoaderType (uri) != null;
 		}
 
-		static Type GetLoaderType (Uri uri)
+		static Type GetLoaderType (SafeUri uri)
 		{
 			string path = uri.AbsolutePath;
 			string extension = System.IO.Path.GetExtension (path).ToLower ();
@@ -217,13 +220,13 @@ namespace FSpot {
 			return t;
 		}
 		
-		[Obsolete ("use Create (System.Uri) instead")]
+		[Obsolete ("use Create (Hyena.SafeUri) instead")]
 		public static ImageFile Create (string path)
 		{
-			return Create (UriUtils.PathToFileUri (path));
+			return Create (new SafeUri (path));
 		}
 
-		public static ImageFile Create (Uri uri)
+		public static ImageFile Create (SafeUri uri)
 		{
 			System.Type t = GetLoaderType (uri);
 			ImageFile img;

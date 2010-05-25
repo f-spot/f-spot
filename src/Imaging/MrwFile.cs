@@ -1,4 +1,5 @@
 using FSpot.Tiff;
+using Hyena;
 
 namespace FSpot.Mrw {
 	// Minolta raw format
@@ -173,7 +174,7 @@ namespace FSpot.Mrw {
 		MrmBlock mrm;
 		FSpot.Tiff.Header header;
 
-		public MrwFile (System.Uri uri) : base (uri)
+		public MrwFile (SafeUri uri) : base (uri)
 		{
 		}
 

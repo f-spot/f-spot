@@ -19,6 +19,7 @@ using FSpot.Utils;
 using FSpot.Query;
 using FSpot.UI.Dialog;
 using Mono.Unix;
+using Hyena;
 
 namespace MergeDbExtension
 {
@@ -232,17 +233,17 @@ namespace MergeDbExtension
 			Photo newp;
 
 			if (copy)
-				destination = FileImportBackend.ChooseLocation (UriUtils.PathToFileUri (photo_path)).AbsolutePath;
+				destination = FileImportBackend.ChooseLocation (new SafeUri (photo_path)).AbsolutePath;
 			else
 				destination = photo_path;
 
 			// Don't copy if we are already home
 			if (photo_path == destination)
-				newp = to_store.Create (UriUtils.PathToFileUri (destination), roll_map [photo.RollId]);
+				newp = to_store.Create (new SafeUri (destination), roll_map [photo.RollId]);
 			else {
 				System.IO.File.Copy (photo_path, destination);
 
-				newp = to_store.Create (UriUtils.PathToFileUri (destination), UriUtils.PathToFileUri (photo_path), roll_map [photo.RollId]);
+				newp = to_store.Create (new SafeUri (destination), new SafeUri (photo_path), roll_map [photo.RollId]);
 				try {
 					File.SetAttributes (destination, File.GetAttributes (destination) & ~FileAttributes.ReadOnly);
 					DateTime create = File.GetCreationTime (photo_path);
@@ -265,7 +266,7 @@ namespace MergeDbExtension
 			foreach (uint version_id in photo.VersionIds)
 				if (version_id != Photo.OriginalVersionId) {
 					PhotoVersion version = photo.GetVersion (version_id) as PhotoVersion;
-					uint newv = newp.AddVersion (version.Uri, version.Name, version.IsProtected);
+					uint newv = newp.AddVersion (version.BaseUri, version.Filename, version.Name, version.IsProtected);
 					if (version_id == photo.DefaultVersionId)
 						newp.DefaultVersionId = newv;
 				}

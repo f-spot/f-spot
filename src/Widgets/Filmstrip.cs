@@ -20,6 +20,7 @@ using Gdk;
 using FSpot.Utils;
 using FSpot.Platform;
 using FSpot.Bling;
+using Hyena;
 
 namespace FSpot.Widgets
 {
@@ -291,7 +292,7 @@ namespace FSpot.Widgets
 		}
 
 		FSpot.BrowsablePointer selection;
-		DisposableCache<Uri, Pixbuf> thumb_cache;
+		DisposableCache<SafeUri, Pixbuf> thumb_cache;
 
 		public Filmstrip (FSpot.BrowsablePointer selection) : this (selection, true)
 		{
@@ -305,7 +306,7 @@ namespace FSpot.Widgets
 			this.selection.Collection.Changed += HandleCollectionChanged;
 			this.selection.Collection.ItemsChanged += HandleCollectionItemsChanged;
 			this.squared_thumbs = squared_thumbs;
-			thumb_cache = new DisposableCache<Uri, Pixbuf> (30);
+			thumb_cache = new DisposableCache<SafeUri, Pixbuf> (30);
 			ThumbnailGenerator.Default.OnPixbufLoaded += HandlePixbufLoaded;
 
 			animation = new DoubleAnimation (0, 0, TimeSpan.FromSeconds (1.5), SetPositionCore, new CubicEase (EasingMode.EaseOut));
@@ -547,7 +548,7 @@ namespace FSpot.Widgets
 			QueueDraw ();
 		}
 
-		void HandlePixbufLoaded (ImageLoaderThread pl, Uri uri, int order, Pixbuf p) {
+		void HandlePixbufLoaded (ImageLoaderThread pl, SafeUri uri, int order, Pixbuf p) {
 			if (!thumb_cache.Contains (uri)) {
 				return;
 			}
@@ -612,7 +613,7 @@ namespace FSpot.Widgets
  		protected virtual Pixbuf GetPixbuf (int i, bool highlighted)
 		{
 			Pixbuf current;
-			Uri uri = (selection.Collection [i]).DefaultVersion.Uri;
+			SafeUri uri = (selection.Collection [i]).DefaultVersion.Uri;
 			try {
 				current = PixbufUtils.ShallowCopy (thumb_cache.Get (uri));
 			} catch (IndexOutOfRangeException) {

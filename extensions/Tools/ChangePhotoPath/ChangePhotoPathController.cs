@@ -14,6 +14,7 @@ using System;
 using System.IO;
 using System.Collections;
 using System.Collections.Specialized;
+using Hyena;
 
 /*
 	Need to
@@ -182,7 +183,8 @@ namespace ChangePhotoPath
 			if (photo == null)
 				photo = photo_store.Get ( (uint) photo_id_array[index]) as Photo;
 			PhotoVersion version = photo.GetVersion ( (uint) version_id_array[index]) as PhotoVersion;
-			version.Uri = new System.Uri ( path );
+			version.BaseUri = new SafeUri ( path ).GetBaseUri ();
+			version.Filename = new SafeUri ( path ).GetFilename ();
 			photo.Changes.UriChanged = true;
 			photo.Changes.ChangeVersion ( (uint) version_id_array[index] );
 		}

@@ -28,7 +28,7 @@ namespace FSpot.Filters {
 
 		public bool Convert (FilterRequest req)
 		{
-			Uri dest_uri = req.TempUri (System.IO.Path.GetExtension (req.Current.LocalPath));
+			var dest_uri = req.TempUri (System.IO.Path.GetExtension (req.Current.LocalPath));
 
 			using (ImageFile img = ImageFile.Create (req.Current)) {
 				using (Pixbuf in_pixbuf = img.Load ()) {

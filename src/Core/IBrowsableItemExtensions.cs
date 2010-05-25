@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 
 namespace FSpot
 {
@@ -28,7 +29,9 @@ namespace FSpot
 
 		public static int CompareDefaultVersionUri (this IBrowsableItem photo1, IBrowsableItem photo2)
 		{
-			return string.Compare (photo1.DefaultVersion.Uri.ToString (), photo2.DefaultVersion.Uri.ToString ());
+			var photo1_uri = Path.Combine (photo1.DefaultVersion.BaseUri, photo1.DefaultVersion.Filename);
+			var photo2_uri = Path.Combine (photo2.DefaultVersion.BaseUri, photo2.DefaultVersion.Filename);
+			return string.Compare (photo1_uri, photo2_uri);
 		}
 	}
 }

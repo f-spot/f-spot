@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using Mono.Addins;
 using Mono.Unix;
 
+using Hyena;
 using FSpot.Extensions;
 using FSpot.Utils;
 using FSpot.UI.Dialog;
@@ -45,7 +46,7 @@ namespace FSpot {
 		private Gtk.Window window;
 		PhotoImageView image_view;
 		FSpot.Widgets.IconView directory_view;
-		private Uri uri;
+		private SafeUri uri;
 		
 		UriCollection collection;
 		
@@ -53,7 +54,7 @@ namespace FSpot {
 
 		private static Gtk.Tooltips toolTips = new Gtk.Tooltips ();
 
-		public SingleView (Uri [] uris) 
+		public SingleView (SafeUri [] uris)
 		{
 			string glade_name = "single_view";
 			this.uri = uris [0];
@@ -221,7 +222,7 @@ namespace FSpot {
 			}
 		}
 
-		private Uri CurrentUri
+		private SafeUri CurrentUri
 		{
 			get { 
 			 	return this.uri; 
@@ -229,7 +230,7 @@ namespace FSpot {
 			set {
 			 	this.uri = value;
 				collection.Clear ();
-				collection.LoadItems (new Uri[] { this.uri });
+				collection.LoadItems (new SafeUri[] { this.uri });
 			}
 		}
 
@@ -317,7 +318,7 @@ namespace FSpot {
 		private void HandleNewWindow (object sender, System.EventArgs args)
 		{
 			/* FIXME this needs to register witth the core */
-			new SingleView (new Uri[] {uri});
+			new SingleView (new SafeUri[] {uri});
 		}
 
 		private void HandlePreferences (object sender, System.EventArgs args)
@@ -353,7 +354,7 @@ namespace FSpot {
 			int response = chooser.Run ();
 
 			if ((ResponseType) response == ResponseType.Ok)
-				CurrentUri = new System.Uri (chooser.Uri);
+				CurrentUri = new SafeUri (chooser.Uri);
 			
 
 			chooser.Destroy ();
@@ -500,9 +501,9 @@ namespace FSpot {
 			int response = file_selector.Run ();
 			
 			if ((Gtk.ResponseType) response == Gtk.ResponseType.Ok) {
-				var l = new List<Uri> ();
+				var l = new List<SafeUri> ();
 				foreach (var s in file_selector.Uris)
-					l.Add (new Uri (s));
+					l.Add (new SafeUri (s));
 				new FSpot.SingleView (l.ToArray ());
 			}
 			

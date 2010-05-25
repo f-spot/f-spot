@@ -7,19 +7,19 @@ namespace FSpot.Utils
 {
     public class RecursiveFileEnumerator : IEnumerable<File>
     {
-        Uri root;
+        string root;
         bool recurse;
         bool catch_no_permission;
 
-        public RecursiveFileEnumerator (Uri root) : this (root, true, false)
+        public RecursiveFileEnumerator (string root) : this (root, true, false)
         {
         }
 
-        public RecursiveFileEnumerator (Uri root, bool recurse) : this (root, recurse, false)
+        public RecursiveFileEnumerator (string root, bool recurse) : this (root, recurse, false)
         {
         }
 
-        public RecursiveFileEnumerator (Uri root, bool recurse, bool catch_no_permission)
+        public RecursiveFileEnumerator (string root, bool recurse, bool catch_no_permission)
         {
             this.root = root;
             this.recurse = recurse;

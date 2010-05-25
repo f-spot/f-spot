@@ -2,6 +2,7 @@ using System;
 
 using FSpot.Platform;
 using FSpot.Utils;
+using Hyena;
 
 namespace FSpot {
 	[Obsolete ("nuke or rename this")]
@@ -41,7 +42,7 @@ namespace FSpot {
 			return ValidateThumbnail (item.DefaultVersion.Uri, pixbuf);
 		}
 
-		static public Gdk.Pixbuf ValidateThumbnail (System.Uri uri, Gdk.Pixbuf pixbuf)
+		static public Gdk.Pixbuf ValidateThumbnail (SafeUri uri, Gdk.Pixbuf pixbuf)
 		{			
 			using (Gdk.Pixbuf thumbnail = ThumbnailCache.Default.GetThumbnailForUri (uri)) {
 				if (pixbuf != null && thumbnail != null && !ThumbnailFactory.ThumbnailIsValid (thumbnail, uri)) {

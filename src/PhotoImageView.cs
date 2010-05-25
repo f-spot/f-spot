@@ -15,6 +15,7 @@ using FSpot.Editors;
 using FSpot.Utils;
 using FSpot.Loaders;
 
+using Hyena;
 using Gdk;
 
 namespace FSpot.Widgets {
@@ -166,7 +167,7 @@ namespace FSpot.Widgets {
 #region loader		
 		uint timer;
 		IImageLoader loader;
-		void Load (Uri uri)
+		void Load (SafeUri uri)
 		{
 			timer = Log.DebugTimerStart ();
 			if (loader != null)

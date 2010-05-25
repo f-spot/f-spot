@@ -26,6 +26,7 @@ using FSpot.Query;
 using FSpot.Utils;
 using FSpot.Platform;
 
+using Hyena;
 using Banshee.Database;
 
 
@@ -98,7 +99,7 @@ public class PhotoStore : DbStore<Photo> {
 		Database.ExecuteNonQuery ("CREATE INDEX idx_photos_roll_id ON photos(roll_id)");
 	}
 
-	public Photo CheckForDuplicate (System.Uri uri) {
+	public Photo CheckForDuplicate (SafeUri uri) {
 		// Here we can go wild in comparing photos,
 		// for now we check on uri and md5
 		Photo found = GetByUri (uri);
@@ -131,14 +132,18 @@ public class PhotoStore : DbStore<Photo> {
 		return null;
 	}
 
-	public Photo Create (System.Uri uri, uint roll_id)
+	public Photo Create (SafeUri uri, uint roll_id)
 	{
 		return Create (uri, uri, roll_id);
 	}
 
-	public Photo Create (System.Uri new_uri, System.Uri orig_uri, uint roll_id)
+	public Photo Create (SafeUri new_uri, SafeUri orig_uri, uint roll_id)
 	{
 		Photo photo;
+
+		var new_base_uri = new_uri.GetBaseUri ();
+		var filename = new_uri.GetFilename ();
+
 		using (FSpot.ImageFile img = FSpot.ImageFile.Create (orig_uri)) {
 			long unix_time = DbUtils.UnixTimeFromDateTime (img.Date);
 			string description = img.Description != null  ? img.Description.Split ('\0') [0] : String.Empty;
@@ -149,8 +154,8 @@ public class PhotoStore : DbStore<Photo> {
 					"INSERT INTO photos (time, base_uri, filename, description, roll_id, default_version_id, rating, md5_sum) "	+
 					"VALUES (:time, :base_uri, :filename, :description, :roll_id, :default_version_id, :rating, :md5_sum)",
 	 				"time", unix_time,
-					"base_uri", new_uri.GetDirectoryUri ().ToString (),
-					"filename", new_uri.GetFilename (),
+					"base_uri", new_base_uri,
+					"filename", filename,
 	 				"description", description,
 					"roll_id", roll_id,
 	 				"default_version_id", Photo.OriginalVersionId,
@@ -159,7 +164,7 @@ public class PhotoStore : DbStore<Photo> {
 				)
 			);
 	
-			photo = new Photo (id, unix_time, new_uri, md5_sum);
+			photo = new Photo (id, unix_time, new_base_uri, filename, md5_sum);
 			photo.Loaded = true;
 			EmitAdded (photo);
 		}
@@ -180,11 +185,12 @@ public class PhotoStore : DbStore<Photo> {
 		while (reader.Read ()) {
 			uint version_id = Convert.ToUInt32 (reader ["version_id"]);
 			string name = reader["name"].ToString ();
-			System.Uri uri = new Uri (new Uri (reader ["base_uri"].ToString ()), reader ["filename"].ToString ());
+			var base_uri = new SafeUri (reader ["base_uri"].ToString ());
+			var filename = reader ["filename"].ToString ();
 			string md5_sum = reader["md5_sum"] != null ? reader ["md5_sum"].ToString () : null;
 			bool is_protected = Convert.ToBoolean (reader["protected"]);
 			                              
-			photo.AddVersionUnsafely (version_id, uri, md5_sum, name, is_protected);
+			photo.AddVersionUnsafely (version_id, base_uri, filename, md5_sum, name, is_protected);
 		}
 		reader.Close();
 	}
@@ -221,11 +227,12 @@ public class PhotoStore : DbStore<Photo> {
 			if (reader ["version_id"] != null) {
 				uint version_id = Convert.ToUInt32 (reader ["version_id"]);
 				string name = reader["name"].ToString ();
-				System.Uri uri = new Uri (new Uri (reader ["base_uri"].ToString ()), reader ["filename"].ToString ());
+				var base_uri = new SafeUri (reader ["base_uri"].ToString ());
+				var filename = reader ["filename"].ToString ();
 				string md5_sum = reader["md5_sum"] != null ? reader ["md5_sum"].ToString () : null;
 				bool is_protected = Convert.ToBoolean (reader["protected"]);
 				
-				photo.AddVersionUnsafely (version_id, uri, md5_sum, name, is_protected);
+				photo.AddVersionUnsafely (version_id, base_uri, filename, md5_sum, name, is_protected);
 			}
 
 			/*
@@ -278,9 +285,11 @@ public class PhotoStore : DbStore<Photo> {
 		);
 
 		if (reader.Read ()) {
+			var base_uri = new SafeUri (reader ["base_uri"].ToString ());
+			var filename = reader ["filename"].ToString ();
 			photo = new Photo (id,
 				Convert.ToInt64 (reader ["time"]),
-			    new Uri (new Uri (reader ["base_uri"].ToString ()), reader ["filename"].ToString ()),
+			    base_uri, filename,
 				reader["md5_sum"] != null ? reader["md5_sum"].ToString () : null
 			);
 
@@ -301,11 +310,14 @@ public class PhotoStore : DbStore<Photo> {
 		return photo;
 	}
 
-	public Photo GetByUri (System.Uri uri)
+	public Photo GetByUri (SafeUri uri)
 	{
 		Photo photo = null;
 
 		uint timer = Log.DebugTimerStart ();
+
+		var base_uri = uri.GetBaseUri ();
+		var filename = uri.GetFilename ();
 
 		SqliteDataReader reader =
 			Database.Query (new DbCommand ("SELECT id, time, description, roll_id, default_version_id, rating, photos.md5_sum AS md5_sum " +
@@ -313,13 +325,14 @@ public class PhotoStore : DbStore<Photo> {
 			                               " LEFT JOIN photo_versions AS pv ON photos.id = pv.photo_id" +
 			                               " WHERE (photos.base_uri = :base_uri AND photos.filename = :filename)" +
 			                               " OR (pv.base_uri = :base_uri AND pv.filename = :filename)",
-			                               "base_uri", uri.GetDirectoryUri ().ToString (),
-			                               "filename", uri.GetFilename ()));
+			                               "base_uri", base_uri,
+			                               "filename", filename));
 
 		if (reader.Read ()) {
 			photo = new Photo (Convert.ToUInt32 (reader ["id"]),
 					   Convert.ToInt64 (reader ["time"]),
-					   uri,
+					   base_uri,
+					   filename,
 					   reader["md5_sum"] != null ? reader["md5_sum"].ToString () : null);
 
 			photo.Description = reader["description"].ToString ();
@@ -364,10 +377,12 @@ public class PhotoStore : DbStore<Photo> {
 		);
 
 		while (reader.Read ()) {
+			var base_uri = new SafeUri (reader ["base_uri"].ToString ());
+			var filename = reader ["filename"].ToString ();
 			Photo photo =
 				new Photo (Convert.ToUInt32 (reader ["id"]),
 				           Convert.ToInt64 (reader ["time"]),
-				           new Uri (new Uri (reader ["base_uri"].ToString ()), reader ["filename"].ToString ()),
+				           base_uri, filename,
 				           md5_sum);
 
 			photo.Description = reader["description"].ToString ();
@@ -478,7 +493,7 @@ public class PhotoStore : DbStore<Photo> {
 					"description", photo.Description,
 					"default_version_id", photo.DefaultVersionId,
 					"time", DbUtils.UnixTimeFromDateTime (photo.Time),
-					"base_uri", photo.VersionUri (Photo.OriginalVersionId).GetDirectoryUri ().ToString (),
+					"base_uri", photo.VersionUri (Photo.OriginalVersionId).GetBaseUri (),
 					"filename", photo.VersionUri (Photo.OriginalVersionId).GetFilename (),
 					"rating", String.Format ("{0}", photo.Rating),
 					"md5_sum", (photo.MD5Sum != String.Empty ? photo.MD5Sum : null),
@@ -519,8 +534,8 @@ public class PhotoStore : DbStore<Photo> {
 					"photo_id", photo.Id,
 					"version_id", version_id,
 					"name", version.Name,
-			        "base_uri", version.Uri.GetDirectoryUri ().ToString (),
-					"filename", version.Uri.GetFilename (),
+			        "base_uri", version.BaseUri,
+					"filename", version.Filename,
 					"is_protected", version.IsProtected,
 					"md5_sum", (version.MD5Sum != String.Empty ? version.MD5Sum : null)));
 			}
@@ -532,8 +547,8 @@ public class PhotoStore : DbStore<Photo> {
 					"base_uri = :base_uri, filename = :filename, protected = :protected, md5_sum = :md5_sum " +
 					"WHERE photo_id = :photo_id AND version_id = :version_id",
 					"name", version.Name,
-					"base_uri", version.Uri.GetDirectoryUri ().ToString (),
-					"filename", version.Uri.GetFilename (),
+					"base_uri", version.BaseUri,
+					"filename", version.Filename,
 					"protected", version.IsProtected,
 					"photo_id", photo.Id,
 					"md5_sum", (version.MD5Sum != String.Empty ? version.MD5Sum : null),
@@ -580,7 +595,7 @@ public class PhotoStore : DbStore<Photo> {
 	public event EventHandler<DbItemEventArgs<Photo>> ItemsRemovedOverDBus;
 
 	public Photo CreateOverDBus (string new_path, string orig_path, uint roll_id)  {
-		Photo photo = Create (UriUtils.PathToFileUri (new_path), UriUtils.PathToFileUri (orig_path), roll_id);
+		Photo photo = Create (new SafeUri (new_path), new SafeUri (orig_path), roll_id);
 		EmitAddedOverDBus (photo);
 
 		return photo;
@@ -840,10 +855,12 @@ public class PhotoStore : DbStore<Photo> {
 			Photo photo = LookupInCache (id);
 
 			if (photo == null) {
+				var base_uri = new SafeUri (reader ["base_uri"].ToString ());
+				var filename = reader ["filename"].ToString ();
 				photo =
 					new Photo (id,
 					           Convert.ToInt64 (reader ["time"]),
-					           new Uri (new Uri (reader ["base_uri"].ToString ()), reader ["filename"].ToString ()),
+					           base_uri, filename,
 					           reader["md5_sum"] != null ? reader ["md5_sum"].ToString () : null
 				);
 				photo.Description = reader["description"].ToString ();
@@ -883,10 +900,10 @@ public class PhotoStore : DbStore<Photo> {
 		return query_result.ToArray ();
 	}
 
-	public Photo [] Query (System.Uri uri)
+	public Photo [] Query (SafeUri uri)
 	{
 		string filename = uri.GetFilename ();
-		
+
 		/* query by file */
 		if ( ! String.IsNullOrEmpty (filename)) {
 			return Query (new DbCommand (
@@ -902,7 +919,7 @@ public class PhotoStore : DbStore<Photo> {
 			"FROM photos " 				+
 			"WHERE base_uri LIKE :base_uri "		+
 			"AND filename LIKE :filename",
-			"base_uri", uri.GetDirectoryUri ().ToString (),
+			"base_uri", uri.GetBaseUri (),
 			"filename", filename));
 		}
 		

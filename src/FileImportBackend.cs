@@ -9,6 +9,7 @@ using FSpot.Xmp;
 using FSpot.UI.Dialog;
 using System.IO;
 using Mono.Unix;
+using Hyena;
 
 public class ImportException : System.Exception {
 	public ImportException (string msg) : base (msg)
@@ -23,7 +24,7 @@ public class FileImportBackend : ImportBackend {
 	bool recurse;
 	bool copy;
 	bool detect_duplicates;
-	Uri [] base_paths;
+	SafeUri [] base_paths;
 	Tag [] tags;
 	Gtk.Window parent;
 
@@ -36,10 +37,11 @@ public class FileImportBackend : ImportBackend {
 	Stack directories;
 
 	private class ImportInfo : IBrowsableItem {
-		public ImportInfo (Uri original)
+		public ImportInfo (SafeUri original)
 		{
 			DefaultVersion = new ImportInfoVersion () {
-				Uri = original
+				BaseUri = original.GetBaseUri (),
+				Filename = original.GetFilename ()
 			};
 
 			try {
@@ -52,7 +54,7 @@ public class FileImportBackend : ImportBackend {
 		}
 
 		public IBrowsableItemVersion DefaultVersion { get; private set; }
-		public System.Uri DestinationUri { get; set; }
+		public SafeUri DestinationUri { get; set; }
 
 		public System.DateTime Time { get; private set; }
         
@@ -67,7 +69,10 @@ public class FileImportBackend : ImportBackend {
 	private class ImportInfoVersion : IBrowsableItemVersion {
 		public string Name { get { return String.Empty; } }
 		public bool IsProtected { get { return true; } }
-		public Uri Uri { get; set; }
+		public SafeUri BaseUri { get; set; }
+		public string Filename { get; set; }
+
+		public SafeUri Uri { get { return BaseUri.Append (Filename); } }
 	}
 
 	public override List<IBrowsableItem> Prepare ()
@@ -77,11 +82,11 @@ public class FileImportBackend : ImportBackend {
 
 		import_info = new List<IBrowsableItem> ();
 
-		foreach (Uri uri in base_paths) {
+		foreach (var uri in base_paths) {
 			var enumerator = new RecursiveFileEnumerator (uri, recurse, true);
 			foreach (var file in enumerator) {
 				if (FSpot.ImageFile.HasLoader (file.Uri))
-					import_info.Add (new ImportInfo (file.Uri));
+					import_info.Add (new ImportInfo (new SafeUri(file.Uri)));
 			}
 		}	
 
@@ -95,7 +100,7 @@ public class FileImportBackend : ImportBackend {
 	}
 	
 
-	public static Uri UniqueName (string path, string filename)
+	public static SafeUri UniqueName (string path, string filename)
 	{
 		int i = 1;
 		string dest = System.IO.Path.Combine (path, filename);
@@ -109,18 +114,17 @@ public class FileImportBackend : ImportBackend {
 			dest = System.IO.Path.Combine (path, numbered_name);
 		}
 		
-		return new Uri ("file://"+dest);
+		return new SafeUri ("file://"+dest);
 	}
 	
-	public static Uri ChooseLocation (Uri uri)
+	public static SafeUri ChooseLocation (SafeUri uri)
 	{
 		return ChooseLocation (uri, null);
 	}
 
-	private static Uri ChooseLocation (Uri uri, Stack created_directories)
+	private static SafeUri ChooseLocation (SafeUri uri, Stack created_directories)
 	{
-		var segments = uri.Segments;
-		string name = segments [segments.Length - 1];
+		string name = uri.GetFilename ();
 		DateTime time;
 		using (FSpot.ImageFile img = FSpot.ImageFile.Create (uri)) {
 			time = img.Date;
@@ -161,7 +165,7 @@ public class FileImportBackend : ImportBackend {
 		if ("file://" + Path.Combine (dest_dir, name) == uri.ToString ())
 			return uri;
 		 
-		Uri dest = UniqueName (dest_dir, name);
+		var dest = UniqueName (dest_dir, name);
 		
 		return dest;
 	}
@@ -182,7 +186,7 @@ public class FileImportBackend : ImportBackend {
 		bool needs_commit = false;
 		bool abort = false;
 		try {
-			Uri destination = info.DefaultVersion.Uri;
+			var destination = info.DefaultVersion.Uri;
 			if (copy)
 				destination = ChooseLocation (info.DefaultVersion.Uri, directories);
 
@@ -329,11 +333,11 @@ public class FileImportBackend : ImportBackend {
 		//rolls.EndImport();    // Clean up the imported session.
 	}
 
-	public FileImportBackend (PhotoStore store, Uri [] base_paths, bool recurse, Gtk.Window parent) : this (store, base_paths, false, recurse, false, null, parent) {}
+	public FileImportBackend (PhotoStore store, SafeUri [] base_paths, bool recurse, Gtk.Window parent) : this (store, base_paths, false, recurse, false, null, parent) {}
 
-	public FileImportBackend (PhotoStore store, Uri [] base_paths, bool copy, bool recurse, Tag [] tags, Gtk.Window parent) : this (store, base_paths, copy, recurse, false, null, parent) {}
+	public FileImportBackend (PhotoStore store, SafeUri [] base_paths, bool copy, bool recurse, Tag [] tags, Gtk.Window parent) : this (store, base_paths, copy, recurse, false, null, parent) {}
 
-	public FileImportBackend (PhotoStore store, Uri [] base_paths, bool copy, bool recurse, bool detect_duplicates, Tag [] tags, Gtk.Window parent)
+	public FileImportBackend (PhotoStore store, SafeUri [] base_paths, bool copy, bool recurse, bool detect_duplicates, Tag [] tags, Gtk.Window parent)
 	{
 		this.store = store;
 		this.copy = copy;

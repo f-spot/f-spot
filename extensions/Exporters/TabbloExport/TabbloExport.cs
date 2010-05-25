@@ -399,7 +399,7 @@ namespace FSpotTabbloExport {
 							QueryInfo ("standard::content-type", GLib.FileQueryInfoFlags.None, null).ContentType;
 
 				pictures [i] = new Picture (items [i].Name,
-						items [i].DefaultVersion.Uri,
+						new Uri (items [i].DefaultVersion.Uri.AbsoluteUri),
 						mime_type,
 						model.Privacy);
 			}

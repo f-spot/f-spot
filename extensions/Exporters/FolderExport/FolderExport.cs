@@ -24,6 +24,8 @@ using System.IO;
 using System.Runtime.InteropServices;
 using System.Collections;
 
+using Hyena;
+
 using Mono.Unix;
 
 using ICSharpCode.SharpZipLib.Checksums;
@@ -210,7 +212,7 @@ namespace FSpotFolderExport {
 				else if (rotate)
 					filter_set.Add (new OrientationFilter ());
 				filter_set.Add (new ChmodFilter ());
-				filter_set.Add (new UniqueNameFilter (gallery_path));
+				filter_set.Add (new UniqueNameFilter (new SafeUri (gallery_path)));
 
 				for (int photo_index = 0; photo_index < selection.Count; photo_index++)
 				{

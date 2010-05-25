@@ -18,6 +18,7 @@ using GPhoto2;
 using Mono.Unix;
 using FSpot.Utils;
 using FSpot.UI.Dialog;
+using Hyena;
 
 namespace FSpot {
 	public class CameraFileSelectionDialog : GladeDialog
@@ -42,7 +43,7 @@ namespace FSpot {
 		ThreadProgressDialog progress_dialog;
 		System.Collections.ArrayList index_list;
 		
-		Uri[] saved_files;
+		SafeUri[] saved_files;
 		Tag[] selected_tags;
 		
 		System.Threading.Thread command_thread;
@@ -214,7 +215,7 @@ namespace FSpot {
 		private void Download ()
 		{
 			lock (camera) {
-				List<Uri> saved = new List<Uri> ();
+				List<SafeUri> saved = new List<SafeUri> ();
 					
 				for (int i = 0; i < index_list.Count; i++) {
 					try {
@@ -226,7 +227,7 @@ namespace FSpot {
 						SaveResult result = SaveFile ((int)(index_list [i]));
 
 						if (!result.IsDuplicate)
-						 	saved.Add (UriUtils.PathToFileUri(result.Path));
+							saved.Add (new SafeUri(result.Path));
 
 						progress_dialog.Fraction = (i + 1)/(double)index_list.Count;
 					}
@@ -272,12 +273,12 @@ namespace FSpot {
 			
 			camera.SaveFile (index, path);
 
-			if (duplicate_check.Active && db.Photos.CheckForDuplicate (FSpot.Utils.UriUtils.PathToFileUri (path)) != null) {
+			if (duplicate_check.Active && db.Photos.CheckForDuplicate (new SafeUri (path)) != null) {
 			 	System.IO.File.Delete (path);
 
 				return new SaveResult (path, true);
 			} else {
-				Uri dest = FileImportBackend.ChooseLocation (UriUtils.PathToFileUri (path));
+				var dest = FileImportBackend.ChooseLocation (new SafeUri (path));
 				System.IO.File.Move (path, dest.AbsolutePath);
 
 				return new SaveResult (dest.AbsolutePath, false);

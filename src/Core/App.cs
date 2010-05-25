@@ -18,6 +18,7 @@ using Unique;
 
 using Mono.Unix;
 
+using Hyena;
 using FSpot.Utils;
 
 namespace FSpot
@@ -104,12 +105,12 @@ namespace FSpot
 			HandleSlideshow (tagname);
 		}
 
-		public void View (Uri uri)
+		public void View (SafeUri uri)
 		{
-			View (new Uri[] {uri});
+			View (new SafeUri[] {uri});
 		}
 
-		public void View (IEnumerable<Uri> uris)
+		public void View (IEnumerable<SafeUri> uris)
 		{
 			var uri_s = from uri in uris select uri.ToString ();
 			View (uri_s);
@@ -205,7 +206,7 @@ namespace FSpot
 			if (path != null && path.StartsWith ("gphoto2:"))
 				Organizer.ImportCamera (path);
 			else
-				Organizer.ImportFile (path == null ? null : new Uri(path));
+				Organizer.ImportFile (path == null ? null : new SafeUri (path));
 		}
 
 		void HandleOrganize ()
@@ -311,9 +312,9 @@ namespace FSpot
 
 		void HandleView (string[] uris)
 		{
-			List<Uri> ul = new List<Uri> ();
+			List<SafeUri> ul = new List<SafeUri> ();
 			foreach (var u in uris)
-				ul.Add (new Uri (u));
+				ul.Add (new SafeUri (u));
 			try {
 				Register (new FSpot.SingleView (ul.ToArray ()).Window);
 			} catch (System.Exception e) {

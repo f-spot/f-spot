@@ -11,13 +11,14 @@ using Cairo;
 using Gdk;
 using Gtk;
 using FSpot.Utils;
+using Hyena;
 
 namespace FSpot.Widgets {
 	public class ImageInfo : IDisposable {
 		public Surface Surface;
 		public Gdk.Rectangle Bounds;
 		
-		public ImageInfo (Uri uri)
+		public ImageInfo (SafeUri uri)
 		{
 				using (ImageFile img = ImageFile.Create (uri)) {
 					Pixbuf pixbuf = img.Load ();

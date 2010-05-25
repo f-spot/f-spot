@@ -9,6 +9,8 @@
  * This is free software. See COPYING for details.
  */
 
+using Hyena;
+
 using System;
 using System.IO;
 using System.Linq;
@@ -48,17 +50,6 @@ namespace FSpot
 	
 		public string Name {
 			get { return Uri.UnescapeDataString (System.IO.Path.GetFileName (VersionUri (OriginalVersionId).AbsolutePath)); }
-		}
-	
-		//This property no longer keeps a 'directory' path, but the logical container for the image, like:
-		// file:///home/bob/Photos/2007/08/23 or
-		// http://www.google.com/logos
-		[Obsolete ("MARKED FOR REMOVAL. no longer makes sense with versions in different Directories. Any way to get rid of this ?")]
-		public string DirectoryPath {
-			get { 
-				System.Uri uri = VersionUri (OriginalVersionId);
-				return uri.Scheme + "://" + uri.Host + System.IO.Path.GetDirectoryName (uri.AbsolutePath);
-			}
 		}
 	
 		private ArrayList tags;
@@ -173,39 +164,40 @@ namespace FSpot
 	
 		// This doesn't check if a version of that name already exists, 
 		// it's supposed to be used only within the Photo and PhotoStore classes.
-		internal void AddVersionUnsafely (uint version_id, System.Uri uri, string md5_sum, string name, bool is_protected)
+		internal void AddVersionUnsafely (uint version_id, SafeUri base_uri, string filename, string md5_sum, string name, bool is_protected)
 		{
-			versions [version_id] = new PhotoVersion (this, version_id, uri, md5_sum, name, is_protected);
+			versions [version_id] = new PhotoVersion (this, version_id, base_uri, filename, md5_sum, name, is_protected);
 	
 			highest_version_id = Math.Max (version_id, highest_version_id);
 			changes.AddVersion (version_id);
 		}
 	
-		public uint AddVersion (System.Uri uri, string name)
+		public uint AddVersion (SafeUri base_uri, string filename, string name)
 		{
-			return AddVersion (uri, name, false);
+			return AddVersion (base_uri, filename, name, false);
 		}
 	
-		public uint AddVersion (System.Uri uri, string name, bool is_protected)
+		public uint AddVersion (SafeUri base_uri, string filename, string name, bool is_protected)
 		{
 			if (VersionNameExists (name))
 				throw new ApplicationException ("A version with that name already exists");
 			highest_version_id ++;
-			string md5_sum = GenerateMD5 (uri);
+			string md5_sum = GenerateMD5 (base_uri.Append (filename));
 
-			versions [highest_version_id] = new PhotoVersion (this, highest_version_id, uri, md5_sum, name, is_protected);
+			versions [highest_version_id] = new PhotoVersion (this, highest_version_id, base_uri, filename, md5_sum, name, is_protected);
 
 			changes.AddVersion (highest_version_id);
 			return highest_version_id;
 		}
 	
 		//FIXME: store versions next to originals. will crash on ro locations.
-		private System.Uri GetUriForVersionName (string version_name, string extension)
+		private string GetFilenameForVersionName (string version_name, string extension)
 		{
 			string name_without_extension = System.IO.Path.GetFileNameWithoutExtension (Name);
 	
-			return new System.Uri (System.IO.Path.Combine (DirectoryPath,  name_without_extension 
-						       + " (" + UriUtils.EscapeString (version_name, true, true, true) + ")" + extension));
+			return name_without_extension + " (" +
+				UriUtils.EscapeString (version_name, true, true, true)
+				+ ")" + extension;
 		}
 	
 		public bool VersionNameExists (string version_name)
@@ -213,7 +205,7 @@ namespace FSpot
             return Versions.Where ((v) => v.Name == version_name).Any ();
 		}
 
-		public System.Uri VersionUri (uint version_id)
+		public SafeUri VersionUri (uint version_id)
 		{
 			if (!versions.ContainsKey (version_id))
 				return null;
@@ -248,7 +240,7 @@ namespace FSpot
 					version = CreateDefaultModifiedVersion (DefaultVersionId, false);
 	
 				try {
-					Uri versionUri = VersionUri (version);
+					var versionUri = VersionUri (version);
 
 					using (Stream stream = System.IO.File.OpenWrite (versionUri.LocalPath)) {
 						img.Save (buffer, stream);
@@ -283,7 +275,7 @@ namespace FSpot
 			if (version_id == OriginalVersionId && !remove_original)
 				throw new Exception ("Cannot delete original version");
 	
-			System.Uri uri =  VersionUri (version_id);
+			SafeUri uri =  VersionUri (version_id);
 	
 			if (!keep_file) {
 				GLib.File file = GLib.FileFactory.NewForUri (uri);
@@ -325,8 +317,10 @@ namespace FSpot
 		private uint CreateVersion (string name, string extension, uint base_version_id, bool create, bool is_protected)
 		{
 			extension = extension ?? System.IO.Path.GetExtension (VersionUri (base_version_id).AbsolutePath);
-			System.Uri new_uri = GetUriForVersionName (name, extension);
-			System.Uri original_uri = VersionUri (base_version_id);
+			SafeUri new_base_uri = DefaultVersion.BaseUri;
+			string filename = GetFilenameForVersionName (name, extension);
+			SafeUri original_uri = VersionUri (base_version_id);
+			SafeUri new_uri = new_base_uri.Append (filename);
 			string md5_sum = MD5Sum;
 	
 			if (VersionNameExists (name))
@@ -335,7 +329,7 @@ namespace FSpot
 			if (create) {
 				GLib.File destination = GLib.FileFactory.NewForUri (new_uri);
 				if (destination.Exists)
-					throw new Exception (String.Format ("An object at this uri {0} already exists", new_uri.ToString ()));
+					throw new Exception (String.Format ("An object at this uri {0} already exists", new_uri));
 	
 		//FIXME. or better, fix the copy api !
 				GLib.File source = GLib.FileFactory.NewForUri (original_uri);
@@ -345,7 +339,7 @@ namespace FSpot
 			}
 			highest_version_id ++;
 
-			versions [highest_version_id] = new PhotoVersion (this, highest_version_id, new_uri, md5_sum, name, is_protected);
+			versions [highest_version_id] = new PhotoVersion (this, highest_version_id, new_base_uri, filename, md5_sum, name, is_protected);
 
 			changes.AddVersion (highest_version_id);
 	
@@ -372,7 +366,7 @@ namespace FSpot
 				name = String.Format (name, num);
 			}
 			highest_version_id ++;
-			versions [highest_version_id] = new PhotoVersion (this, highest_version_id, version.Uri, version.MD5Sum, name, is_protected);
+			versions [highest_version_id] = new PhotoVersion (this, highest_version_id, version.BaseUri, version.Filename, version.MD5Sum, name, is_protected);
 
 			changes.AddVersion (highest_version_id);
 
@@ -388,7 +382,9 @@ namespace FSpot
 									 "Modified ({0})", 
 									 num);
 				name = String.Format (name, num);
-				System.Uri uri = GetUriForVersionName (name, System.IO.Path.GetExtension (VersionUri(base_version_id).GetFilename()));
+				//SafeUri uri = GetUriForVersionName (name, System.IO.Path.GetExtension (VersionUri(base_version_id).GetFilename()));
+				string filename = GetFilenameForVersionName (name, System.IO.Path.GetExtension (versions[base_version_id].Filename));
+				SafeUri uri = DefaultVersion.BaseUri.Append (filename);
 				GLib.File file = GLib.FileFactory.NewForUri (uri);
 	
 				if (! VersionNameExists (name) && ! file.Exists)
@@ -408,7 +404,8 @@ namespace FSpot
 						(num == 1) ? Catalog.GetString ("Modified in {1}") : Catalog.GetString ("Modified in {1} ({0})"),
 						num, name);
 	
-				System.Uri uri = GetUriForVersionName (final_name, System.IO.Path.GetExtension (VersionUri(base_version_id).GetFilename()));
+				string filename = GetFilenameForVersionName (name, System.IO.Path.GetExtension (versions[base_version_id].Filename));
+				SafeUri uri = DefaultVersion.BaseUri.Append (filename);
 				GLib.File file = GLib.FileFactory.NewForUri (uri);
 
 				if (! VersionNameExists (final_name) && ! file.Exists)
@@ -526,14 +523,14 @@ namespace FSpot
 			} 
 		}
 
-		private static IDictionary<System.Uri, string> md5_cache = new Dictionary<System.Uri, string> ();
+		private static IDictionary<SafeUri, string> md5_cache = new Dictionary<SafeUri, string> ();
 
 		public static void ResetMD5Cache () {
 			if (md5_cache != null)	
 				md5_cache.Clear (); 
 		}
 
-		public static string GenerateMD5 (System.Uri uri)
+		public static string GenerateMD5 (SafeUri uri)
 		{
 		 	try {
 			 	if (md5_cache.ContainsKey (uri))
@@ -557,11 +554,13 @@ namespace FSpot
 
 
 		// Constructor
-		public Photo (uint id, long unix_time, System.Uri uri, string md5_sum)
+		public Photo (uint id, long unix_time, SafeUri base_uri, string filename, string md5_sum)
 			: base (id)
 		{
-			if (uri == null)
-				throw new System.ArgumentNullException ("uri");
+			if (base_uri == null)
+				throw new System.ArgumentNullException ("base_uri");
+			if (filename == String.Empty)
+				throw new System.ArgumentNullException ("filename");
 	
 			time = DbUtils.DateTimeFromUnixTime (unix_time);
 	
@@ -571,7 +570,7 @@ namespace FSpot
 	
 			// Note that the original version is never stored in the photo_versions table in the
 			// database.
-			AddVersionUnsafely (OriginalVersionId, uri, md5_sum, Catalog.GetString ("Original"), true);
+			AddVersionUnsafely (OriginalVersionId, base_uri, filename, md5_sum, Catalog.GetString ("Original"), true);
 		}
 
 #region IComparable implementation

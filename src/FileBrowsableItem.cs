@@ -14,22 +14,20 @@ using System.IO;
 using System.Collections;
 using System.Xml;
 
+using Hyena;
 using FSpot.Utils;
+
 namespace FSpot {
 	public class FileBrowsableItem : IBrowsableItem, IDisposable
 	{
 		ImageFile img;
 		bool attempted;
 
-		public FileBrowsableItem (Uri uri)
+		public FileBrowsableItem (SafeUri uri)
 		{
 			DefaultVersion = new FileBrowsableItemVersion () {
                 Uri = uri
             };
-		}
-
-		public FileBrowsableItem (string path) : this (UriUtils.PathToFileUri (path))
-		{
 		}
 
 		protected ImageFile Image {
@@ -92,7 +90,10 @@ namespace FSpot {
 		private class FileBrowsableItemVersion : IBrowsableItemVersion {
 			public string Name { get { return String.Empty; } }
 			public bool IsProtected { get { return true; } }
-			public Uri Uri { get; set; }
+
+			public SafeUri BaseUri { get { return Uri.GetBaseUri (); } }
+			public string Filename { get { return Uri.GetFilename (); } }
+			public SafeUri Uri { get; set; }
 		}
 	}
 }

@@ -2,6 +2,7 @@ using FSpot.Imaging;
 using SemWeb;
 using System;
 using System.IO;
+using Hyena;
 
 #if ENABLE_NUNIT
 using NUnit.Framework;
@@ -15,7 +16,7 @@ namespace FSpot.Pnm {
                         get { return false; }
                 }
 
-		public PnmFile (Uri uri) : base (uri) 
+		public PnmFile (SafeUri uri) : base (uri)
 		{
 		}
 

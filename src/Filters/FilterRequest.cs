@@ -12,26 +12,23 @@
 using System;
 using System.Collections;
 
+using Hyena;
 using FSpot.Utils;
 
 namespace FSpot.Filters {
 
 	public class FilterRequest : IDisposable
 	{
-		Uri source;
-		Uri current;
+		SafeUri source;
+		SafeUri current;
 
 		ArrayList temp_uris;
 
-		public FilterRequest (Uri source)
+		public FilterRequest (SafeUri source)
 		{
 			this.source = source;
 			this.current = source;
 			temp_uris = new ArrayList ();
-		}
-
-		public FilterRequest (string path) : this (UriUtils.PathToFileUri (path))
-		{
 		}
 
 		~FilterRequest ()
@@ -39,11 +36,11 @@ namespace FSpot.Filters {
 			Close ();
 		}
 
-		public Uri Source {
+		public SafeUri Source {
 			get { return source; }
 		}
 
-		public Uri Current {
+		public SafeUri Current {
 			get { return current; }
 			set { 
 				if (!value.Equals (source) && !temp_uris.Contains (value))
@@ -54,7 +51,7 @@ namespace FSpot.Filters {
 
 		public virtual void Close ()
 		{
-			foreach (Uri uri in temp_uris) {
+			foreach (SafeUri uri in temp_uris) {
 				try {
 					System.IO.File.Delete (uri.LocalPath);
 				} catch (System.IO.IOException e) {
@@ -70,12 +67,12 @@ namespace FSpot.Filters {
 			System.GC.SuppressFinalize (this);
 		}
 		
-		public Uri TempUri ()
+		public SafeUri TempUri ()
 		{
 			return TempUri (null);
 		}
 		
-		public Uri TempUri (string extension)
+		public SafeUri TempUri (string extension)
 		{
 			string imgtemp;
 			if (extension != null) {
@@ -85,13 +82,13 @@ namespace FSpot.Filters {
 			} else
 				imgtemp = System.IO.Path.GetTempFileName ();
 
-			Uri uri = UriUtils.PathToFileUri (imgtemp);
+			SafeUri uri = new SafeUri (imgtemp);
 			if (!temp_uris.Contains (uri))
 				temp_uris.Add (uri);
 			return uri;
 		}
 
-		public void Preserve (Uri uri)
+		public void Preserve (SafeUri uri)
 		{
 			temp_uris.Remove (uri);
 		}

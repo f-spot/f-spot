@@ -8,7 +8,7 @@
  */
 
 using System;
-using System.IO;
+using Hyena;
 using FSpot.Utils;
 using FSpot.Platform;
 
@@ -19,13 +19,8 @@ namespace FSpot {
 	public class ThumbnailGenerator : ImageLoaderThread {
 
 		static public ThumbnailGenerator Default = new ThumbnailGenerator ();
-		
-		public const string ThumbMTime = "tEXt::Thumb::MTime";
-		public const string ThumbUri = "tEXt::Thumb::URI";
-		public const string ThumbImageWidth = "tEXt::Thumb::Image::Width";
-		public const string ThumbImageHeight = "tEXt::Thumb::Image::Height"; 
 
-		public static Gdk.Pixbuf Create (Uri uri)
+		public static Gdk.Pixbuf Create (SafeUri uri)
 		{
 			try {
 				Gdk.Pixbuf thumb;
@@ -37,16 +32,6 @@ namespace FSpot {
 				if (thumb == null)
 					return null;
 
-				try { //Setting the thumb options
-					GFileInfo info = GLib.FileFactory.NewForUri (uri).QueryInfo ("time::modified", GLib.FileQueryInfoFlags.None, null);
-					DateTime mtime = NativeConvert.ToDateTime ((long)info.GetAttributeULong ("time::modified"));
-
-					FSpot.Utils.PixbufUtils.SetOption (thumb, ThumbUri, UriUtils.UriToStringEscaped (uri));
-					FSpot.Utils.PixbufUtils.SetOption (thumb, ThumbMTime, ((uint)GLib.Marshaller.DateTimeTotime_t (mtime)).ToString ());
-				} catch (System.Exception e) {
-					Log.Exception (e);
-				}
-
 				Save (thumb, uri);
 				return thumb;
 			} catch (Exception e) {
@@ -55,7 +40,7 @@ namespace FSpot {
 			}
 		}
 		
-		private static void Save (Gdk.Pixbuf image, Uri uri)
+		private static void Save (Gdk.Pixbuf image, SafeUri uri)
 		{
 			try {
 				ThumbnailCache.Default.RemoveThumbnailForUri (uri);

@@ -17,6 +17,7 @@ using GLib;
 using FSpot;
 using FSpot.Utils;
 
+using Hyena;
 using Mono.Unix;
 
 namespace FSpot.Widgets
@@ -58,7 +59,7 @@ namespace FSpot.Widgets
 				TreePath[] selected_rows = Selection.GetSelectedRows ();
 				
 				foreach (TreePath row in selected_rows)
-					list.Add (folder_tree_model.GetUriByPath (row));
+					list.Add (new SafeUri (folder_tree_model.GetUriByPath (row)));
 				
 				return list;
 			}

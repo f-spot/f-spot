@@ -17,6 +17,7 @@ using FSpot.Filters;
 using FSpot.Utils;
 using FSpot.UI.Dialog;
 
+using Hyena;
 using Mono.Unix;
 
 namespace FSpot {
@@ -258,7 +259,7 @@ namespace FSpot {
 				filters.Add (new ResizeFilter ((uint) size));
 			else if (rotate)
 				filters.Add (new OrientationFilter ());
-			filters.Add (new UniqueNameFilter (tmp_mail_dir));
+			filters.Add (new UniqueNameFilter (new SafeUri (tmp_mail_dir)));
 
 
 			for (int i = 0; i < selection.Count; i++) {

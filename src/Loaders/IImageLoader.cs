@@ -12,6 +12,7 @@
 using FSpot.Utils;
 using System;
 using Gdk;
+using Hyena;
 
 namespace FSpot.Loaders {
 	public interface IImageLoader : IDisposable {
@@ -21,7 +22,7 @@ namespace FSpot.Loaders {
 		event EventHandler<AreaUpdatedEventArgs> AreaUpdated;
 		event EventHandler Completed;
 
-		void Load (Uri uri);
+		void Load (SafeUri uri);
 
 		Pixbuf Pixbuf { get; }
 		PixbufOrientation PixbufOrientation { get; }

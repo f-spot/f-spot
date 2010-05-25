@@ -10,22 +10,23 @@
 
 using System;
 using System.Collections.Generic;
+using Hyena;
 
 
 namespace FSpot.Query
 {
 	public class FolderSet : IQueryCondition
 	{
-		HashSet<Uri> uri_list;
+		HashSet<SafeUri> uri_list;
 		
 		public FolderSet ()
 		{
-			uri_list = new HashSet<Uri> ();
+			uri_list = new HashSet<SafeUri> ();
 		}
 		
-		public IEnumerable<Uri> Folders {
+		public IEnumerable<SafeUri> Folders {
 			get { return uri_list; }
-			set { uri_list = (value == null) ? new HashSet<Uri> () : new HashSet<Uri> (value); }
+			set { uri_list = (value == null) ? new HashSet<SafeUri> () : new HashSet<SafeUri> (value); }
 		}
 		
 		protected static string EscapeQuotes (string v)
@@ -41,7 +42,7 @@ namespace FSpot.Query
 				return null;
 			
 			int i = 0;
-			foreach (Uri uri in uri_list) {
+			foreach (var uri in uri_list) {
 				items[i] =
 					String.Format ("id IN (SELECT id FROM photos WHERE base_uri LIKE '{0}%')",
 					               EscapeQuotes (uri.ToString ()));

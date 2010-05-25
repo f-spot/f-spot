@@ -18,6 +18,7 @@ using FSpot;
 using FSpot.Png;
 using FSpot.UI.Dialog;
 
+using Hyena;
 using FSpot.Utils;
 
 using Mono.Unix;
@@ -133,7 +134,7 @@ namespace FSpot {
 
 			Rotate (original_path, direction);
 
-			Gdk.Pixbuf thumb = FSpot.ThumbnailGenerator.Create (UriUtils.PathToFileUri (original_path));
+			Gdk.Pixbuf thumb = FSpot.ThumbnailGenerator.Create (new SafeUri (original_path));
 			if (thumb != null)
 				thumb.Dispose ();
 		

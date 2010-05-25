@@ -40,7 +40,7 @@ namespace FSpot.Filters {
 		public bool Convert (FilterRequest req)
 		{
 			string source = req.Current.LocalPath;
-			System.Uri dest_uri = req.TempUri (System.IO.Path.GetExtension (source));
+			var dest_uri = req.TempUri (System.IO.Path.GetExtension (source));
 			string dest = dest_uri.LocalPath;
 
 			using (ImageFile img = ImageFile.Create (req.Current)) {

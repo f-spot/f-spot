@@ -17,6 +17,7 @@ using Gtk;
 using Mono.Addins;
 using Mono.Unix;
 
+using Hyena;
 using Banshee.Kernel;
 
 using FSpot;
@@ -947,7 +948,7 @@ namespace FSpot
 			}
 		}
 		
-		public void SetFolderQuery (IEnumerable<Uri> uri_list)
+		public void SetFolderQuery (IEnumerable<SafeUri> uri_list)
 		{
 			ShowQueryWidget ();
 			query_widget.SetFolders (uri_list);
@@ -1148,7 +1149,7 @@ namespace FSpot
 			}
 		}
 	
-		public void ImportFile (Uri uri)
+		public void ImportFile (SafeUri uri)
 		{
 			ImportCommand command = new ImportCommand (main_window);
 			if (command.ImportFromUri (Database.Photos, uri) > 0) {

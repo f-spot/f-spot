@@ -38,7 +38,9 @@ CORE_CSDISTFILES =				\
 	$(srcdir)/Core/IBrowsableCollection.cs	\
 	$(srcdir)/Core/PhotoChanges.cs		\
 	$(srcdir)/Core/PhotosChanges.cs		\
-	$(srcdir)/Core/Roll.cs
+	$(srcdir)/Core/Roll.cs 				\
+	$(srcdir)/Core/SafeUri.cs 			\
+	$(srcdir)/Core/SafeUriExtensions.cs
 
 QUERY_CSDISTFILES =				\
 	$(srcdir)/Query/DateRange.cs		\
@@ -378,9 +380,11 @@ GNOME_PLATFORM_ASSEMBLIES =			\
 	-pkg:gconf-sharp-2.0			\
 	$(NDESK_DBUS_LIBS)				\
 	-r:Mono.Posix				\
+	-r:FSpot.Core.dll			\
 	-r:FSpot.Utils.dll
 
 NULL_PLATFORM_ASSEMBLIES =			\
+	-r:FSpot.Core.dll			\
 	-r:FSpot.Utils.dll
 
 F_SPOT_ASSEMBLIES = 				\
@@ -452,6 +456,7 @@ fspotlib_DATA = f-spot.exe.config	\
 		FSpot.Query.dll.mdb	\
 		FSpot.Core.dll		\
 		FSpot.Core.dll.mdb	\
+		FSpot.Core.dll.config	\
 		FSpot.JobScheduler.dll	\
 		FSpot.JobScheduler.dll.mdb \
 		FSpot.Bling.dll		\
@@ -550,6 +555,7 @@ EXTRA_DIST =					\
 	$(F_SPOT_DISTRESOURCES)			\
 	f-spot.exe.config.in			\
 	f-spot.in				\
+	FSpot.Core.dll.config			\
 	FSpot.Utils.dll.config			\
 	FSpot.Widgets.dll.config.in		\
 	Cms.dll.config.in
@@ -565,6 +571,7 @@ CLEANFILES =					\
 	FSpot.Utils.dll				\
 	FSpot.Query.dll				\
 	FSpot.Query.dll.mdb			\
+	FSpot.Core.dll.config		\
 	FSpot.Core.dll.mdb			\
 	FSpot.Core.dll				\
 	FSpot.JobScheduler.dll			\

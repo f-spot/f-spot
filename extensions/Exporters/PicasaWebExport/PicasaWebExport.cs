@@ -15,6 +15,7 @@ using System.Collections;
 using System.Collections.Specialized;
 using System.Web;
 using Mono.Unix;
+using Hyena;
 
 using FSpot;
 using FSpot.Filters;
@@ -285,7 +286,7 @@ namespace FSpotGoogleExport {
 
 			if (show_captcha) {
 				try {
-					using  (ImageFile img = ImageFile.Create(new Uri(captcha_exception.CaptchaUrl))) {
+					using  (ImageFile img = ImageFile.Create(new SafeUri(captcha_exception.CaptchaUrl))) {
 						captcha_image.Pixbuf = img.Load();
 						token = captcha_exception.Token;
 					}

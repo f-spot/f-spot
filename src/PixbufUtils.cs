@@ -16,6 +16,7 @@ using System;
 using System.IO;
 using FSpot;
 using FSpot.Utils;
+using Hyena;
 
 public class PixbufUtils {
 	static Pixbuf error_pixbuf = null;
@@ -121,7 +122,6 @@ public class PixbufUtils {
 			Gdk.Pixbuf rotated = FSpot.Utils.PixbufUtils.TransformOrientation (orig, orientation);
 			
 			if (orig != rotated) {
-				FSpot.Utils.PixbufUtils.CopyThumbnailOptions (orig, rotated);
 				orig.Dispose ();
 			}
 			loader.Dispose ();
@@ -147,7 +147,6 @@ public class PixbufUtils {
 		if (pixbuf == null)
 			return null;
 		Pixbuf result = new Pixbuf (pixbuf, 0, 0, pixbuf.Width, pixbuf.Height);
-		FSpot.Utils.PixbufUtils.CopyThumbnailOptions (pixbuf, result);
 		return result;
 	}
 
@@ -167,8 +166,6 @@ public class PixbufUtils {
 			result = pixbuf.ScaleSimple (scale_width, scale_height, (scale_width > 20) ? Gdk.InterpType.Bilinear : Gdk.InterpType.Nearest);
 		else
 			result = pixbuf.Copy ();
-
-		FSpot.Utils.PixbufUtils.CopyThumbnailOptions (pixbuf, result);
 
 		return result;
 	}
@@ -675,19 +672,17 @@ public class PixbufUtils {
 		return orientation;
 	}
 
-	public static PixbufOrientation GetOrientation (System.Uri uri)
+	public static PixbufOrientation GetOrientation (SafeUri uri)
 	{
 		using (FSpot.ImageFile img = FSpot.ImageFile.Create (uri)) {
 			return img.Orientation;
 		}	
 	}
 	
-	[Obsolete ("Use GetOrientation (System.Uri) instead")]
+	[Obsolete ("Use GetOrientation (SafeUri) instead")]
 	public static PixbufOrientation GetOrientation (string path)
 	{
-		using (FSpot.ImageFile img = FSpot.ImageFile.Create (path)) {
-			return img.Orientation;
-		}
+        return GetOrientation (new SafeUri (path));
 	}
 
 	[DllImport("libgnomeui-2-0.dll")]

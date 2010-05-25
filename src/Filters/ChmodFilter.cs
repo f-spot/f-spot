@@ -30,7 +30,7 @@ namespace FSpot.Filters {
 		public bool Convert (FilterRequest req)
 		{
 			if (req.Current == req.Source) {
-				System.Uri uri = req.TempUri ();
+				var uri = req.TempUri ();
 				System.IO.File.Copy (req.Current.LocalPath, uri.LocalPath, true);
 				req.Current = uri;
 			}

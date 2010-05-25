@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 
+using Hyena;
 using FSpot;
 using FSpot.Query;
 using FSpot.Utils;
@@ -419,7 +420,7 @@ namespace DBusService {
 				string new_path = path;
 
 				if (copy)
-					new_path = FileImportBackend.ChooseLocation (UriUtils.PathToFileUri (path)).AbsolutePath;
+					new_path = FileImportBackend.ChooseLocation (new SafeUri (path)).AbsolutePath;
 
 				if (new_path != path)
 					System.IO.File.Copy (path, new_path);

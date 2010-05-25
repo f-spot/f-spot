@@ -10,16 +10,14 @@
 
 using System;
 using FSpot.Utils;
+using Hyena;
 
 namespace FSpot.Filters {
 	public class UniqueNameFilter : IFilter
 	{
-		Uri destination;
+		SafeUri destination;
 
-		public UniqueNameFilter (string destination) : this (UriUtils.PathToFileUri (destination))
-		{}
-
-		public UniqueNameFilter (Uri destination)
+		public UniqueNameFilter (SafeUri destination)
 		{
 			this.destination = destination;
 		}
@@ -40,7 +38,7 @@ namespace FSpot.Filters {
 			}
 			
 			System.IO.File.Copy (request.Current.LocalPath, dest);
-			request.Current = UriUtils.PathToFileUri (dest); 
+			request.Current = new SafeUri (dest);
 			return true;
 		}
 	}

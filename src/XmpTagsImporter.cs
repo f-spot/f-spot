@@ -19,6 +19,7 @@ using SemWeb;
 using SemWeb.Util;
 using Mono.Unix;
 using FSpot.Utils;
+using Hyena;
 
 namespace FSpot.Xmp {
         internal class XmpTagsImporter {
@@ -271,7 +272,7 @@ namespace FSpot.Xmp {
 #endif
 		}
 		
-		public bool Import (Photo photo, Uri uri, Uri orig_uri)
+		public bool Import (Photo photo, SafeUri uri, SafeUri orig_uri)
 		{
 			XmpFile xmp;
 			

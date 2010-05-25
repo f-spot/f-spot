@@ -14,6 +14,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 using Gtk;
+using Hyena;
 
 using FSpot;
 using FSpot.Utils;
@@ -52,7 +53,7 @@ namespace FSpot
 			
 			if (length < 4) {
 				
-				foreach (Uri uri in folder_set.Folders) {
+				foreach (var uri in folder_set.Folders) {
 					Image image = new Image ("gtk-directory", IconSize.Button);
 					image.TooltipText = uri.ToString ();
 					PackStart (image);
@@ -70,7 +71,7 @@ namespace FSpot
 				PackStart (image);
 				
 				StringBuilder builder = new StringBuilder ();
-				foreach (Uri uri in folder_set.Folders) {
+				foreach (var uri in folder_set.Folders) {
 					if (builder.Length > 0)
 						builder.AppendLine ();
 					
@@ -83,7 +84,7 @@ namespace FSpot
 			ShowAll ();
 		}
 		
-		public void SetFolders (IEnumerable<Uri> uris)
+		public void SetFolders (IEnumerable<SafeUri> uris)
 		{
 			folder_set.Folders = uris;
 			

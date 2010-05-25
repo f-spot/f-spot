@@ -19,6 +19,7 @@ using System.Collections;
 using System.IO;
 using System;
 using Mono.Unix;
+using Hyena;
 
 using FSpot;
 using FSpot.Utils;
@@ -58,11 +59,11 @@ public class ImportCommand : GladeDialog
 
 	internal class VfsSource : ImportSource
 	{
-		public Uri uri;
+		public SafeUri uri;
 
-		public VfsSource (Uri uri)
+		public VfsSource (SafeUri uri)
 		{ 
-			string [] components = uri.Segments;
+			string [] components = uri.ToString ().Split ('/');
 			this.Name = components [components.Length - 1];
 			if (this.Name == String.Empty)
 				this.Name = components [components.Length - 2];
@@ -86,12 +87,12 @@ public class ImportCommand : GladeDialog
 			this.Name = mount.Name;
 
 			try {
-				mount_point = mount.Root.Uri.LocalPath;
+				mount_point = mount.Root.Uri;
 			} catch (System.Exception e) {
 				System.Console.WriteLine (e);
 			}
 
-			uri = mount.Root.Uri;
+			uri = new SafeUri (mount.Root.Uri);
 			
 			
 			if (this.IsIPodPhoto)
@@ -257,7 +258,7 @@ public class ImportCommand : GladeDialog
 			return -1;
 		}
 		
-		public int FindItemPosition (Uri uri)
+		public int FindItemPosition (SafeUri uri)
 		{
 			Gtk.Widget [] children = this.Children;
 			System.Console.WriteLine ("looking for {0}", uri);
@@ -307,7 +308,7 @@ public class ImportCommand : GladeDialog
 
 	string loading_string;
 
-	public Uri ImportUri { get; private set; }
+	public SafeUri ImportUri { get; private set; }
 	
 	private SourceItem Source;
 
@@ -328,7 +329,7 @@ public class ImportCommand : GladeDialog
 			return;
 
 		if (item.Source is BrowseSource) {
-			Uri uri = ChooseUri ();
+			var uri = ChooseUri ();
 			
 			if (uri != null) {
 				SourceItem uri_item = new SourceItem (new VfsSource (uri));
@@ -507,9 +508,9 @@ public class ImportCommand : GladeDialog
 		Preferences.Set(Preferences.IMPORT_CHECK_DUPLICATES, duplicate_check.Active);
 	}
 	
-	public Uri ChooseUri ()
+	public SafeUri ChooseUri ()
 	{
-		Uri uri = null;
+		SafeUri uri = null;
 
 		FileChooserDialog file_chooser =
 			new FileChooserDialog (Catalog.GetString ("Import"), this.Dialog,
@@ -528,7 +529,7 @@ public class ImportCommand : GladeDialog
 		int response = file_chooser.Run ();
 
 		if ((ResponseType) response == ResponseType.Ok) {
-			uri = new Uri (file_chooser.Uri);
+			uri = new SafeUri (file_chooser.Uri);
 		}
 
 		file_chooser.Destroy ();
@@ -556,7 +557,7 @@ public class ImportCommand : GladeDialog
 		duplicate_check.Active = Preferences.Get<bool> (Preferences.IMPORT_CHECK_DUPLICATES);
 	}
 
-	public int ImportFromUri (PhotoStore store, Uri uri)
+	public int ImportFromUri (PhotoStore store, SafeUri uri)
 	{
 		this.store = store;
 		this.CreateDialog ("import_dialog");
@@ -733,7 +734,7 @@ public class ImportCommand : GladeDialog
 		if (ImportUri == null)
 			return false;
 
-		Uri [] uriimport =  {ImportUri};
+		SafeUri [] uriimport =  {ImportUri};
 		
 		if (copy_check != null)
 			copy = copy_check.Active;
@@ -763,17 +764,17 @@ public class ImportCommand : GladeDialog
 		return false;
 	}
 
-	public int ImportFromUris (PhotoStore store, Uri [] uris, bool copy)
+	public int ImportFromUris (PhotoStore store, SafeUri [] uris, bool copy)
 	{
 		return ImportFromUris (store, uris, null, copy);
 	}
 	
-	public int ImportFromUris (PhotoStore store, Uri [] uris, Tag [] tags)
+	public int ImportFromUris (PhotoStore store, SafeUri [] uris, Tag [] tags)
 	{
 		return ImportFromUris (store, uris, tags, false);
 	}
 	
-	public int ImportFromUris (PhotoStore store, Uri [] uris, Tag [] tags, bool copy)
+	public int ImportFromUris (PhotoStore store, SafeUri [] uris, Tag [] tags, bool copy)
 	{
 		collection = new FSpot.PhotoList (new Photo [0]);
 		int count = DoImport (new FileImportBackend (store, uris, copy, true, tags, main_window ));

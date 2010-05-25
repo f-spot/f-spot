@@ -5,6 +5,7 @@ using System.IO;
 using FSpot.Xmp;
 using System.Collections;
 using System.Reflection;
+using Hyena;
 
 namespace FSpot.Png {
 	public class PngFile : ImageFile, SemWeb.StatementSource {
@@ -31,7 +32,7 @@ namespace FSpot.Png {
 			get { return Header.Chunks; }
 		}
 
-		public PngFile (System.Uri uri) : base (uri)
+		public PngFile (SafeUri uri) : base (uri)
 		{
 		}
 

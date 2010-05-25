@@ -927,8 +927,6 @@ namespace FSpot.Widgets
 						temp_thumbnail = thumbnail.ScaleSimple (region.Width, region.Height,
 								InterpType.Bilinear);
 					}
-
-					FSpot.Utils.PixbufUtils.CopyThumbnailOptions (thumbnail, temp_thumbnail);
 				} else
 					temp_thumbnail = thumbnail;
 
@@ -1381,7 +1379,7 @@ namespace FSpot.Widgets
 			int order = (int) entry.Data;
 
 			if (order >= 0 && order < collection.Count) {
-				System.Uri uri = collection [order].DefaultVersion.Uri;
+				var uri = collection [order].DefaultVersion.Uri;
 
 				if (result == null && !ThumbnailFactory.ThumbnailExists (uri))
 					FSpot.ThumbnailGenerator.Default.Request (uri, 0, 256, 256);

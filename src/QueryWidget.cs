@@ -18,7 +18,7 @@ using Gtk;
 using FSpot.Utils;
 using FSpot.Query;
 using FSpot.Widgets;
-
+using Hyena;
 
 
 namespace FSpot {
@@ -218,7 +218,7 @@ namespace FSpot {
 			return logic_widget.TagRequired (tag);
 		}
 		
-		public void SetFolders (IEnumerable<Uri> uri_list)
+		public void SetFolders (IEnumerable<SafeUri> uri_list)
 		{
 			folder_query_widget.SetFolders (uri_list);
 			query.RequestReload ();

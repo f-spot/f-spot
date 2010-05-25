@@ -14,6 +14,7 @@ using System.Collections.Generic;
 using System.Threading;
 using System;
 
+using Hyena;
 using FSpot.Utils;
 
 public class ImageLoaderThread {
@@ -22,7 +23,7 @@ public class ImageLoaderThread {
 
 	protected class RequestItem {
 		/* The path to the image.  */
-		public Uri uri;
+		public SafeUri uri;
 
 		/* Order value; requests with a lower value get performed first.  */
 		public int order;
@@ -34,7 +35,7 @@ public class ImageLoaderThread {
 		public int width;
 		public int height;
 
-		public RequestItem (Uri uri, int order, int width, int height) {
+		public RequestItem (SafeUri uri, int order, int width, int height) {
 			this.uri = uri;
 			this.order = order;
 			this.width = width;
@@ -57,7 +58,7 @@ public class ImageLoaderThread {
 
 	/* A dict of all the requests; note that the current request
 	   isn't in the dict.  */
-	Dictionary<Uri, RequestItem> requests_by_uri;
+	Dictionary<SafeUri, RequestItem> requests_by_uri;
 //	private Hashtable requests_by_path;
 
 	/* Current request.  Request currently being handled by the
@@ -79,13 +80,13 @@ public class ImageLoaderThread {
 
 	// Public API.
 
-	public delegate void PixbufLoadedHandler (ImageLoaderThread loader, Uri uri, int order, Pixbuf result);
+	public delegate void PixbufLoadedHandler (ImageLoaderThread loader, SafeUri uri, int order, Pixbuf result);
 	public event PixbufLoadedHandler OnPixbufLoaded;
 
 	public ImageLoaderThread ()
 	{
 		queue = new ArrayList ();
-		requests_by_uri = new Dictionary<Uri, RequestItem> ();
+		requests_by_uri = new Dictionary<SafeUri, RequestItem> ();
 //		requests_by_path = Hashtable.Synchronized (new Hashtable ());
 		processed_requests = new Queue ();
 		
@@ -119,12 +120,12 @@ public class ImageLoaderThread {
 			t.Abort ();
 	}
 
-	public void Request (Uri uri, int order)
+	public void Request (SafeUri uri, int order)
 	{
 		Request (uri, order, 0, 0);
 	}
 
-	public virtual void Request (Uri uri, int order, int width, int height)
+	public virtual void Request (SafeUri uri, int order, int width, int height)
 	{
 		lock (queue) {
 			if (InsertRequest (uri, order, width, height))
@@ -132,7 +133,7 @@ public class ImageLoaderThread {
 		}
 	}
 
-	public void Cancel (Uri uri)
+	public void Cancel (SafeUri uri)
 	{
 		lock (queue) {
 			RequestItem r = requests_by_uri [uri];
@@ -170,7 +171,7 @@ public class ImageLoaderThread {
 	/* Insert the request in the queue, return TRUE if the queue actually grew.
 	   NOTE: Lock the queue before calling.  */
 
-	private bool InsertRequest (Uri uri, int order, int width, int height)
+	private bool InsertRequest (SafeUri uri, int order, int width, int height)
 	{
 		/* Check if this is the same as the request currently being processed.  */
 		lock(processed_requests) {
