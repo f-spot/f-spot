@@ -107,6 +107,11 @@ namespace GtkSharp.Generation {
 
 		private void GenerateDeclCommon (StreamWriter sw, ClassBase implementor)
 		{
+			GenerateDeclCommon (sw, implementor, false);
+		}
+
+		private void GenerateDeclCommon (StreamWriter sw, ClassBase implementor, bool is_interface)
+		{
 			if (IsStatic)
 				sw.Write("static ");
 			sw.Write (Safety);
@@ -116,7 +121,7 @@ namespace GtkSharp.Generation {
 			if (implementor != null)
 				dup = implementor.GetMethodRecursively (Name);
 
-			if (Name == "ToString" && Parameters.Count == 0)
+			if (Name == "ToString" && Parameters.Count == 0 && !is_interface)
 				sw.Write("override ");
 			else if (Name == "GetGType" && container_type is ObjectGen)
 				sw.Write("new ");
@@ -148,6 +153,11 @@ namespace GtkSharp.Generation {
 
 		public void GenerateDecl (StreamWriter sw)
 		{
+			GenerateDecl (sw, false);
+		}
+
+		public void GenerateDecl (StreamWriter sw, bool is_interface)
+		{
 			if (IsStatic)
 				return;
 
@@ -173,7 +183,7 @@ namespace GtkSharp.Generation {
 			else
 			{
 				sw.Write("\t\t");
-				GenerateDeclCommon (sw, null);
+				GenerateDeclCommon (sw, null, is_interface);
 				sw.WriteLine (";");
 			}
 

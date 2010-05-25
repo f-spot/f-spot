@@ -12,7 +12,6 @@
   <attr path="/api/namespace/interface[@cname='GAppInfo']/method[@name='SupportsUris']" name="name">GetSupportsUris</attr>
   <attr path="/api/namespace/interface[@cname='GDrive']" name="consume_only">1</attr>
   <attr path="/api/namespace/interface[@cname='GFile']/method[@name='GetParseName']" name="name">GetParsedName</attr>
-  <attr path="/api/namespace/interface[@cname='GFile']/method[@name='GetUri']" name="hidden">1</attr>
   <attr path="/api/namespace/interface[@cname='GLoadableIcon']/method[@name='LoadAsync']/*/*[@type='GAsyncReadyCallback']" name="scope">async</attr>
   <attr path="/api/namespace/interface/method/*/*[@type='GAsyncReadyCallback']" name="scope">async</attr>
   <attr path="/api/namespace/interface[@cname='GMount']" name="consume_only">1</attr>
@@ -58,4 +57,23 @@
   <attr path="/api/namespace/object[@cname='GVolumeMonitor']/method[@name='GetConnectedDrives']/return-type" name="element_type">GDrive*</attr>
   <attr path="/api/namespace/object[@cname='GVolumeMonitor']/method[@name='GetConnectedDrives']/return-type" name="owned">true</attr>
   <attr path="/api/namespace/struct[@cname='GFileAttributeInfoList']/field[@name='Infos']" name="array">1</attr>
+
+  <attr path="/api/namespace/enum[@cname='GSocketFamily']" name="hidden">1</attr>
+  <attr path="/api/namespace/enum[@cname='GSocketMsgFlags']" name="hidden">1</attr>
+  <attr path="/api/namespace/enum[@cname='GSocketProtocol']" name="hidden">1</attr>
+  <attr path="/api/namespace/enum[@cname='GSocketType']" name="hidden">1</attr>
+  <attr path="/api/namespace/enum[@cname='GResolverError']" name="hidden">1</attr>
+  <attr path="/api/namespace/struct[@cname='GResolver']" name="hidden">1</attr>
+  <attr path="/api/namespace/struct[@cname='GSocket']" name="hidden">1</attr>
+  <attr path="/api/namespace/struct[@cname='GSocketAddress']" name="hidden">1</attr>
+  <attr path="/api/namespace/struct[@cname='GSocketAddressEnumerator']" name="hidden">1</attr>
+  <attr path="/api/namespace/struct[@cname='GSocketClient']" name="hidden">1</attr>
+  <attr path="/api/namespace/struct[@cname='GSocketConnectable']" name="hidden">1</attr>
+  <attr path="/api/namespace/struct[@cname='GSocketConnection']" name="hidden">1</attr>
+  <attr path="/api/namespace/struct[@cname='GSocketControlMessage']" name="hidden">1</attr>
+  <attr path="/api/namespace/struct[@cname='GSocketListener']" name="hidden">1</attr>
+  <attr path="/api/namespace/struct[@cname='GSocketService']" name="hidden">1</attr>
+  <attr path="/api/namespace/struct[@cname='GThreadedSocketService']" name="hidden">1</attr>
+  <attr path="/api/namespace/struct[@cname='GTcpConnection']" name="hidden">1</attr>
+
 </metadata>

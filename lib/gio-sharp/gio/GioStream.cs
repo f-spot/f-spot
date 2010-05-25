@@ -1,32 +1,33 @@
-/*
- * GioStream.cs: provide a System.IO.Stream api to [Input|Output]Streams
- *
- * Author(s):
- *	Stephane Delcroix  (stephane@delcroix.org)
- *
- * Copyright (c) 2008 Novell, Inc.
- *
- * 
- * Permission is hereby granted, free of charge, to any person obtaining
- * a copy of this software and associated documentation files (the
- * "Software"), to deal in the Software without restriction, including
- * without limitation the rights to use, copy, modify, merge, publish,
- * distribute, sublicense, and/or sell copies of the Software, and to
- * permit persons to whom the Software is furnished to do so, subject to
- * the following conditions:
- * 
- * The above copyright notice and this permission notice shall be
- * included in all copies or substantial portions of the Software.
- * 
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
- * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
- * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
- * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
- * LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
- * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
- * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
- *
- */
+//
+// GioStream.cs - provide a System.IO.Stream api to [Input|Output]Streams
+//
+// Author(s):
+//	Stephane Delcroix  <stephane@delcroix.org>
+//	Gabriel Burt  <gabriel.burt@gmail.com>
+//
+// Copyright (c) 2008 Stephane Delcroix
+// Copyright (c) 2010 Novell, Inc.
+//
+// Permission is hereby granted, free of charge, to any person obtaining
+// a copy of this software and associated documentation files (the
+// "Software"), to deal in the Software without restriction, including
+// without limitation the rights to use, copy, modify, merge, publish,
+// distribute, sublicense, and/or sell copies of the Software, and to
+// permit persons to whom the Software is furnished to do so, subject to
+// the following conditions:
+//
+// The above copyright notice and this permission notice shall be
+// included in all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+// EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+// NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+// LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+// OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+// WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+//
+
 using System;
 
 namespace GLib
@@ -63,6 +64,16 @@ namespace GLib
 			can_seek = stream is Seekable && (stream as Seekable).CanSeek;
 		}
 
+#if GIO_SHARP_2_22
+		public GioStream (IOStream stream)
+		{
+			this.stream = stream;
+			can_read = true;
+			can_write = true;
+			can_seek = stream is Seekable && (stream as Seekable).CanSeek;
+		}
+#endif
+
 		public override bool CanSeek {
 			get { return can_seek; }
 		}
@@ -90,6 +101,12 @@ namespace GLib
 					FileInfo info = (stream as FileOutputStream).QueryInfo ("standard::size", null);
 					return info.Size;
 				}
+#if GIO_SHARP_2_22
+				if (stream is FileIOStream) {
+					FileInfo info = (stream as FileIOStream).QueryInfo ("standard::size", null);
+					return info.Size;
+				}
+#endif
 				throw new NotImplementedException (String.Format ("not implemented for {0} streams", stream.GetType()));
 			}
 		}
@@ -127,7 +144,13 @@ namespace GLib
 				throw new NotSupportedException ("The stream does not support reading");
 			if (is_disposed)
 				throw new ObjectDisposedException ("The stream is closed");
-			InputStream input_stream = stream as InputStream;
+			InputStream input_stream = null;
+			if (stream is InputStream)
+				input_stream = stream as InputStream;
+#if GIO_SHARP_2_22
+			else if (stream is IOStream)
+				input_stream = (stream as IOStream).InputStream;
+#endif
 			if (input_stream == null)
 				throw new System.Exception ("this shouldn't happen");
 
@@ -155,7 +178,13 @@ namespace GLib
 				throw new NotSupportedException ("The stream does not support writing");
 			if (is_disposed)
 				throw new ObjectDisposedException ("The stream is closed");
-			OutputStream output_stream = stream as OutputStream;
+			OutputStream output_stream = null;
+			if (stream is OutputStream)
+				output_stream = stream as OutputStream;
+#if GIO_SHARP_2_22
+			else if (stream is IOStream)
+				output_stream = (stream as IOStream).OutputStream;
+#endif
 			if (output_stream == null)
 				throw new System.Exception ("this shouldn't happen");
 			if (offset == 0) {
@@ -198,9 +227,16 @@ namespace GLib
 		{
 			if (!CanSeek || !CanWrite)
 				throw new NotSupportedException ("This stream doesn't support seeking");
+
+			var seekable = stream as Seekable;
+
+			if (!seekable.CanTruncate ())
+				throw new NotSupportedException ("This stream doesn't support truncating");
+
 			if (is_disposed)
 				throw new ObjectDisposedException ("The stream is closed");
-			throw new NotImplementedException ();
+
+			seekable.Truncate (value, null);
 		}
 
 		public override void Close ()
@@ -209,6 +245,10 @@ namespace GLib
 				(stream as InputStream).Close (null);
 			if (stream is OutputStream)
 				(stream as OutputStream).Close (null);
+#if GIO_SHARP_2_22
+			if (stream is IOStream)
+				(stream as IOStream).Close (null);
+#endif
 			is_disposed = true;
 		}
 	}

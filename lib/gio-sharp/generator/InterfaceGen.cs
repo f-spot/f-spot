@@ -363,7 +363,7 @@ namespace GtkSharp.Generation {
 			foreach (Method method in methods.Values) {
 				if (IgnoreMethod (method, this))
 					continue;
-				method.GenerateDecl (sw);
+				method.GenerateDecl (sw, true);
 			}
 
 			foreach (Property prop in props.Values)
