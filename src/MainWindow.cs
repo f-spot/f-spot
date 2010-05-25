@@ -57,9 +57,10 @@ namespace FSpot
 		[GtkBeans.Builder.Object] Label status_label;
 	
 		[GtkBeans.Builder.Object] Gtk.UIManager uimanager;
-		// File
+		// Photo
 		[GtkBeans.Builder.Object] Gtk.Action create_version_menu_item;
 		[GtkBeans.Builder.Object] Gtk.Action delete_version_menu_item;
+		[GtkBeans.Builder.Object] Gtk.Action detach_version_menu_item;
 		[GtkBeans.Builder.Object] Gtk.Action rename_version_menu_item;
 		
 		[GtkBeans.Builder.Object] Gtk.Action tools;
@@ -182,9 +183,7 @@ namespace FSpot
 		
 		private static TargetEntry [] icon_dest_target_table = 
 			new TargetEntry [] {
-	#if ENABLE_REPARENTING
 				DragDropTargets.PhotoListEntry,
-	#endif
 				DragDropTargets.TagListEntry,
 				DragDropTargets.UriListEntry
 		};
@@ -1218,7 +1217,6 @@ namespace FSpot
 				return;
 			}
 			
-	#if ENABLE_REPARENTING
 			if (args.Info == DragDropTargets.PhotoListEntry.Info) {
 				int p_item = icon_view.CellAtPosition (args.X + (int) icon_view.Hadjustment.Value, 
 								     args.Y + (int) icon_view.Vadjustment.Value);
@@ -1226,15 +1224,16 @@ namespace FSpot
 				if (p_item >= 0) {
 					if (icon_view.Selection.Contains (p_item)) //We don't want to reparent ourselves!
 						return;
-					PhotoVersionCommands.Reparent cmd = new PhotoVersionCommands.Reparent ();
-					
-					cmd.Execute (Database.Photos, SelectedPhotos(), query.Photos [p_item], GetToplevel (null));
+					PhotoVersionCommands.Reparent cmd = new PhotoVersionCommands.Reparent ();				
+					Photo[] photos_to_reparent = SelectedPhotos ();
+					// Give feedback to user that something happened, and leave the parent selected after reparenting
+					icon_view.Selection.Add (p_item); 
+					cmd.Execute (Database.Photos, photos_to_reparent, query.Photos [p_item], GetToplevel (null));
 					UpdateQuery ();
 				}
 				Gtk.Drag.Finish (args.Context, true, false, args.Time);
 				return;
 			}
-	#endif
 		}
 	
 		//
@@ -1705,31 +1704,26 @@ namespace FSpot
 		void HandleCreateVersionCommand (object obj, EventArgs args)
 		{
 			PhotoVersionCommands.Create cmd = new PhotoVersionCommands.Create ();
-	
 			cmd.Execute (Database.Photos, CurrentPhoto, GetToplevel (null));
-	//		if (cmd.Execute (db.Photos, CurrentPhoto, GetToplevel (null))) {
-	//			query.MarkChanged (ActiveIndex (), true, false);
-	//		}
 		}
 	
 		void HandleDeleteVersionCommand (object obj, EventArgs args)
 		{
 			PhotoVersionCommands.Delete cmd = new PhotoVersionCommands.Delete ();
-	
 			cmd.Execute (Database.Photos, CurrentPhoto, GetToplevel (null));
-	//		if (cmd.Execute (db.Photos, CurrentPhoto, GetToplevel (null))) {
-	//			query.MarkChanged (ActiveIndex (), true, true);
-	//		}
+		}
+		
+		void HandleDetachVersionCommand (object obj, EventArgs args)
+		{
+			PhotoVersionCommands.Detach cmd = new PhotoVersionCommands.Detach ();
+			cmd.Execute (Database.Photos, CurrentPhoto, GetToplevel (null));
+			UpdateQuery ();
 		}
 	
 		void HandleRenameVersionCommand (object obj, EventArgs args)
 		{
 			PhotoVersionCommands.Rename cmd = new PhotoVersionCommands.Rename ();
-	
 			cmd.Execute (Database.Photos, CurrentPhoto, main_window);
-	//		if (cmd.Execute (db.Photos, CurrentPhoto, main_window)) {
-	//			query.MarkChanged (ActiveIndex (), true, false);
-	//		}
 		}
 		
 		public void HandleCreateTagAndAttach (object sender, EventArgs args)
@@ -2699,6 +2693,7 @@ namespace FSpot
 	
 				create_version_menu_item.Sensitive = false;
 				delete_version_menu_item.Sensitive = false;
+				detach_version_menu_item.Sensitive = false;
 				rename_version_menu_item.Sensitive = false;
 	
 				sharpen.Sensitive = false;
@@ -2709,9 +2704,11 @@ namespace FSpot
 				
 				if (CurrentPhoto.DefaultVersionId == Photo.OriginalVersionId) {
 					delete_version_menu_item.Sensitive = false;
+					detach_version_menu_item.Sensitive = false;
 					rename_version_menu_item.Sensitive = false;
 				} else {
 					delete_version_menu_item.Sensitive = true;
+					detach_version_menu_item.Sensitive = true;
 					rename_version_menu_item.Sensitive = true;
 				}
 	
@@ -2921,12 +2918,12 @@ namespace FSpot
 		}
 	
 		public void GetWidgetPosition(Widget widget, out int x, out int y)
-	    {
+		{
 			main_window.GdkWindow.GetOrigin(out x, out y);
 			
 			x += widget.Allocation.X;
 			y += widget.Allocation.Y;
-	 	}
+		}
 	
 		// Tag typing ...
 	
