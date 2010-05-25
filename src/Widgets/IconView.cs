@@ -1137,8 +1137,7 @@ namespace FSpot.Widgets
 			if (isRectSelection) {
 				Gdk.Rectangle inter;
 				if (area.Intersect (rect_select, out inter)) {
-#if CAIRO_1_2_5
-				        Cairo.Context cairo_g = CairoHelper.Create (BinWindow);
+					Cairo.Context cairo_g = CairoHelper.Create (BinWindow);
 					Gdk.Color col = Style.Background(StateType.Selected);
 					cairo_g.Color = new Cairo.Color (col.Red/65535.0, col.Green/65535.0, col.Blue/65535.0, 0.5);
 					cairo_g.Rectangle (inter.X, inter.Y, inter.Width, inter.Height);
@@ -1146,17 +1145,6 @@ namespace FSpot.Widgets
 
 					((IDisposable) cairo_g.Target).Dispose ();
 					((IDisposable) cairo_g).Dispose ();
-#else
-					if (rect_gc == null) {
-						rect_gc = new Gdk.GC(BinWindow);
-						rect_gc.Copy (Style.BackgroundGC(StateType.Selected));
-						rect_gc.Fill = Fill.Stippled;
-						string bitmap_data = new string ((char) 0x02, (char) 0x01);
-						Pixmap pix = Pixmap.CreateBitmapFromData (BinWindow, bitmap_data, 2, 2);
-						rect_gc.Stipple = pix;
-					}
-					BinWindow.DrawRectangle (rect_gc, true, inter);
-#endif
 				}
 			}
 

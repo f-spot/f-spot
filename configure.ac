@@ -145,7 +145,7 @@ GTKSHARP_REQUIRED=2.12.2
 GTK_REQUIRED=2.14
 NDESK_DBUS_REQUIRED=0.4.2
 NDESK_DBUS_GLIB_REQUIRED=0.3.0
-MONO_CAIRO_REQUIRED=1.2.4
+MONO_CAIRO_REQUIRED=1.2.5
 CAIRO_REQUIRED=1.4.0
 LCMS_REQUIRED=1.12
 LIBGPHOTO2_REQUIRED=2.4
@@ -163,10 +163,6 @@ CSC_DEFINES=""
 PKG_CHECK_MODULES(GNOME_SHARP, gnome-sharp-2.0 >= 2.8)
 
 PKG_CHECK_MODULES(GLIBSHARP, glib-sharp-2.0 >= 2.12)
-
-if pkg-config --atleast-version=1.2.5 mono-cairo; then
-   CSC_DEFINES="$CSC_DEFINES -d:CAIRO_1_2_5"
-fi
 
 if pkg-config --atleast-version=2.13.0 gtk-sharp-2.0 && pkg-config --max-version=2.14 gtk-sharp-2.0; then
 	AC_MSG_ERROR([There's a svn version of gtk-sharp 2.13.x installed. Uninstall it.])
