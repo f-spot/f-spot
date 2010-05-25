@@ -85,8 +85,8 @@ public class FileImportBackend : ImportBackend {
 		foreach (var uri in base_paths) {
 			var enumerator = new RecursiveFileEnumerator (uri, recurse, true);
 			foreach (var file in enumerator) {
-				if (FSpot.ImageFile.HasLoader (file.Uri))
-					import_info.Add (new ImportInfo (new SafeUri(file.Uri)));
+				if (FSpot.ImageFile.HasLoader (new SafeUri (file.Uri, true)))
+					import_info.Add (new ImportInfo (new SafeUri(file.Uri, true)));
 			}
 		}	
 
@@ -114,7 +114,7 @@ public class FileImportBackend : ImportBackend {
 			dest = System.IO.Path.Combine (path, numbered_name);
 		}
 		
-		return new SafeUri ("file://"+dest);
+		return new SafeUri ("file://"+dest, true);
 	}
 	
 	public static SafeUri ChooseLocation (SafeUri uri)

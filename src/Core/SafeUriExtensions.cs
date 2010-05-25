@@ -6,19 +6,25 @@ namespace FSpot
     {
         public static SafeUri Append (this SafeUri base_uri, string filename)
         {
-            return new SafeUri (base_uri.AbsoluteUri + (base_uri.AbsoluteUri.EndsWith ("/") ? "" : "/") + filename);
+            return new SafeUri (base_uri.AbsoluteUri + (base_uri.AbsoluteUri.EndsWith ("/") ? "" : "/") + filename, true);
         }
 
         public static SafeUri GetBaseUri (this SafeUri uri)
         {
             var abs_uri = uri.AbsoluteUri;
-            return new SafeUri (abs_uri.Substring (0, abs_uri.LastIndexOf ('/')));
+            return new SafeUri (abs_uri.Substring (0, abs_uri.LastIndexOf ('/')), true);
         }
 
         public static string GetFilename (this SafeUri uri)
         {
             var abs_uri = uri.AbsoluteUri;
             return abs_uri.Substring (abs_uri.LastIndexOf ('/') + 1);
+        }
+
+        public static string GetExtension (this SafeUri uri)
+        {
+            var abs_uri = uri.AbsoluteUri;
+            return abs_uri.Substring (abs_uri.LastIndexOf ('.'));
         }
 
         public static string GetFilenameWithoutExtension (this SafeUri uri)

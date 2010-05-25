@@ -148,7 +148,6 @@ NDESK_DBUS_GLIB_REQUIRED=0.3.0
 MONO_CAIRO_REQUIRED=1.2.5
 CAIRO_REQUIRED=1.4.0
 LCMS_REQUIRED=1.12
-LIBGPHOTO2_REQUIRED=2.4
 MONOADDINS_REQUIRED=0.3
 
 PKG_CHECK_MODULES(F, libgnome-2.0 >= $LIBGNOME_REQUIRED libgnomeui-2.0 >= $LIBGNOMEUI_REQUIRED libexif >= $LIBEXIF_REQUIRED_MIN libexif < $LIBEXIF_REQUIRED_MAX gtk-sharp-2.0 >= $GTKSHARP_REQUIRED glib-sharp-2.0 >= $GTKSHARP_REQUIRED glade-sharp-2.0 >= $GTKSHARP_REQUIRED gtk+-2.0 >= $GTK_REQUIRED mono-cairo >= $MONO_CAIRO_REQUIRED cairo >= $CAIRO_REQUIRED mono-addins >= $MONOADDINS_REQUIRED mono-addins-gui >= $MONOADDINS_REQUIRED mono-addins-setup >= $MONOADDINS_REQUIRED)
@@ -190,6 +189,8 @@ fi
 if pkg-config --atleast-version=2.16 gtk+-2.0; then
 	CSC_DEFINES="$CSC_DEFINES -d:GTK_2_16"
 fi
+
+AC_SUBST(CSC_DEFINES)
 
 dnl -- dbus-sharp
 PKG_CHECK_MODULES(NDESK_DBUS, ndesk-dbus-1.0 >= $NDESK_DBUS_REQUIRED ndesk-dbus-glib-1.0 >= $NDESK_DBUS_GLIB_REQUIRED)
@@ -250,13 +251,6 @@ PKG_CHECK_MODULES(LCMS, lcms >= $LCMS_REQUIRED, [],
 	AC_CHECK_HEADER(lcms.h, , [AC_MSG_ERROR([liblcms not found])])
 	LCMS_LIBS='-llcms'
 	LCMS_CFLAGS=''])
-
-
-dnl --- libgphoto2
-
-PKG_CHECK_MODULES(LIBGPHOTO2, libgphoto2 >= $LIBGPHOTO2_REQUIRED)
-
-AC_SUBST(CSC_DEFINES)
 
 dnl --- libexif version check
 
@@ -353,9 +347,6 @@ lib/gio-sharp/gio/Makefile
 lib/gio-sharp/generator/Makefile
 lib/gtk-sharp-beans/Makefile
 lib/libfspot/Makefile
-lib/libgphoto2-sharp/Makefile
-lib/libgphoto2-sharp/libgphoto2-sharp.dll.config
-lib/libgphoto2-sharp/glue/Makefile
 lib/libjpegtran/Makefile
 lib/Makefile
 lib/semweb/Makefile

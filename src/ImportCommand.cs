@@ -92,8 +92,20 @@ public class ImportCommand : GladeDialog
 				System.Console.WriteLine (e);
 			}
 
-			uri = new SafeUri (mount.Root.Uri);
+			uri = new SafeUri (mount.Root.Uri, true);
 			
+			/* FIXME: Camera identification!
+
+			this.Name = String.Format ("{0} ({1})", cam.CameraList.GetName (index), cam.CameraList.GetValue (index));
+#else
+			this.Name = String.Format ("{0}", cam.CameraList.GetName (index));
+#endif
+			this.Icon = GtkUtil.TryLoadIcon (FSpot.Global.IconTheme, "camera-photo", 32, (Gtk.IconLookupFlags)0);
+			if (this.Icon == null)
+				this.Icon = GtkUtil.TryLoadIcon (FSpot.Global.IconTheme, "media-flash", 32, (Gtk.IconLookupFlags)0);
+
+
+			 */
 			
 			if (this.IsIPodPhoto)
 				this.Icon = GtkUtil.TryLoadIcon (FSpot.Global.IconTheme, "multimedia-player", 32, (Gtk.IconLookupFlags)0);
@@ -129,33 +141,6 @@ public class ImportCommand : GladeDialog
 				} catch {
 					return false;
 				}
-			}
-		}
-	}
-
-	internal class CameraSource : ImportSource
-	{
-		GPhotoCamera cam;
-		int CameraIndex;
-		
-		public CameraSource (GPhotoCamera cam, int index)
-		{
-			this.cam = cam;
-			this.CameraIndex = index;
-
-#if LONG_NAMES
-			this.Name = String.Format ("{0} ({1})", cam.CameraList.GetName (index), cam.CameraList.GetValue (index));
-#else
-			this.Name = String.Format ("{0}", cam.CameraList.GetName (index));
-#endif
-			this.Icon = GtkUtil.TryLoadIcon (FSpot.Global.IconTheme, "camera-photo", 32, (Gtk.IconLookupFlags)0);
-			if (this.Icon == null)
-				this.Icon = GtkUtil.TryLoadIcon (FSpot.Global.IconTheme, "media-flash", 32, (Gtk.IconLookupFlags)0);
-		}
-
-		public string Port {
-			get {
-				return cam.CameraList.GetValue (CameraIndex);
 			}
 		}
 	}
@@ -341,12 +326,6 @@ public class ImportCommand : GladeDialog
 		} else if (item.Source is VfsSource) {
 			VfsSource vfs = item.Source as VfsSource;
 			ImportUri = vfs.uri;
-		} else if (item.Source is CameraSource) {
-			CameraSource csource = item.Source as CameraSource;
-			string port = "gphoto2:" + csource.Port;
-			this.Cancel ();
-			this.Dialog.Destroy ();
-			App.Instance.Organizer.ImportCamera (port);
 		}
 
 		idle_start.Start ();
@@ -529,7 +508,7 @@ public class ImportCommand : GladeDialog
 		int response = file_chooser.Run ();
 
 		if ((ResponseType) response == ResponseType.Ok) {
-			uri = new SafeUri (file_chooser.Uri);
+			uri = new SafeUri (file_chooser.Uri, true);
 		}
 
 		file_chooser.Destroy ();

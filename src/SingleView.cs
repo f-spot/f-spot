@@ -354,7 +354,7 @@ namespace FSpot {
 			int response = chooser.Run ();
 
 			if ((ResponseType) response == ResponseType.Ok)
-				CurrentUri = new SafeUri (chooser.Uri);
+				CurrentUri = new SafeUri (chooser.Uri, true);
 			
 
 			chooser.Destroy ();

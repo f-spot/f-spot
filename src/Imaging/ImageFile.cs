@@ -203,8 +203,7 @@ namespace FSpot {
 
 		static Type GetLoaderType (SafeUri uri)
 		{
-			string path = uri.AbsolutePath;
-			string extension = System.IO.Path.GetExtension (path).ToLower ();
+			string extension = uri.GetExtension ().ToLower ();
 			Type t = (Type) name_table [extension];
 
 			if (t == null) {

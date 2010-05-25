@@ -203,10 +203,7 @@ namespace FSpot
 		void HandleImport (string path)
 		{
 			Organizer.Window.Present ();
-			if (path != null && path.StartsWith ("gphoto2:"))
-				Organizer.ImportCamera (path);
-			else
-				Organizer.ImportFile (path == null ? null : new SafeUri (path));
+			Organizer.ImportFile (path == null ? null : new SafeUri(path));
 		}
 
 		void HandleOrganize ()
@@ -314,7 +311,7 @@ namespace FSpot
 		{
 			List<SafeUri> ul = new List<SafeUri> ();
 			foreach (var u in uris)
-				ul.Add (new SafeUri (u));
+				ul.Add (new SafeUri (u, true));
 			try {
 				Register (new FSpot.SingleView (ul.ToArray ()).Window);
 			} catch (System.Exception e) {

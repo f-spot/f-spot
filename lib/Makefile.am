@@ -6,6 +6,5 @@ SUBDIRS = \
 	gtk-sharp-beans		\
 	libjpegtran			\
 	libfspot			\
-	libgphoto2-sharp	\
 	semweb				\
 	unique-sharp

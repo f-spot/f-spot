@@ -28,8 +28,6 @@ using FSpot.Utils;
 using FSpot.UI.Dialog;
 using FSpot.Platform;
 
-using GPhoto2;
-
 namespace FSpot
 {
 	public class MainWindow
@@ -1158,27 +1156,6 @@ namespace FSpot
 			}
 		}
 	
-	#if false
-		public void ImportUdi (string udi)
-		{
-			/* probably a camera we need to contruct on of our gphoto2 uris */
-			Hal.Device dev = new Hal.Device (Core.HalContext, udi);
-			string mount_point = dev.GetPropertyString ("volume.mount_point");
-			int bus = dev.GetPropertyInt ("usb.bus_number");
-			int device = dev.GetPropertyInt ("usb.linux.device_number");
-			System.Console.WriteLine ("dev = {1} exists = {2} mount_point = {0} {3},{4}", mount_point, dev, dev.Exists, bus, device);
-	
-			if (! dev.Exists || mount_point != null) {
-				ImportFile (mount_point);
-			} else {
-				string gphoto_uri = String.Format ("gphoto2:usb:{0},{1}", bus.ToString ("d3") , device.ToString ("d3"));
-				System.Console.WriteLine ("gphoto_uri = {0}", gphoto_uri);
-				ImportCamera (gphoto_uri);
-			} 
-				
-		}
-	#endif
-	
 		void HandleIconViewDragDataReceived (object sender, DragDataReceivedArgs args)
 		{
 		 	Widget source = Gtk.Drag.GetSourceWidget (args.Context);     
@@ -1482,73 +1459,6 @@ namespace FSpot
 			Database.Sync = true;		
 		}
 	
-		void HandleImportFromCameraCommand (object sender, EventArgs e)
-		{
-			ImportCamera (null);
-		}
-	
-		public void ImportCamera (string camera_device)
-		{
-			Log.Debug ("ImportCamera {0}", camera_device);
-			GPhotoCamera cam = new GPhotoCamera();
-	
-			try {
-				int num_cameras = cam.DetectCameras();
-				int selected_cam = 0;
-	
-				if (num_cameras < 1) {
-					HigMessageDialog md = new HigMessageDialog (main_window, DialogFlags.DestroyWithParent, 
-						MessageType.Warning, ButtonsType.Ok, 
-						Catalog.GetString ("No cameras detected."),
-						Catalog.GetString ("F-Spot was unable to find any cameras attached to this system." + 
-									      "  Double check that the camera is connected and has power")); 
-	
-					md.Run ();
-					md.Destroy ();
-					return;
-				} else if (num_cameras == 1) {
-					selected_cam = 0;
-				} else {
-					bool found = false;
-					if (camera_device != null)
-						for (int i = 0; i < num_cameras; i++) {
-							if (camera_device.IndexOf (cam.CameraList.GetValue(i)) != 0) {
-								selected_cam = i;
-								found = true;
-								break;
-							}
-					}
-					
-					if (!found) {
-						FSpot.CameraSelectionDialog camselect = new FSpot.CameraSelectionDialog (cam.CameraList);
-						selected_cam = camselect.Run ();
-					}
-				}
-	
-				if (selected_cam >= 0) {
-					cam.SelectCamera (selected_cam);	
-					cam.InitializeCamera ();
-	
-					FSpot.CameraFileSelectionDialog selector = new FSpot.CameraFileSelectionDialog (cam, Database);
-					if (selector.Run() > 0)
-						query.RollSet = new RollSet (Database.Rolls.GetRolls (1)[0]);
-					UpdateQuery ();
-				}
-			}
-			catch (GPhotoException ge) {
-				System.Console.WriteLine (ge.ToString ());
-				HigMessageDialog md = new HigMessageDialog (main_window, DialogFlags.DestroyWithParent, 
-					MessageType.Error, ButtonsType.Ok, 
-					Catalog.GetString ("Error connecting to camera"),
-					String.Format (Catalog.GetString ("Received error \"{0}\" while connecting to camera"), 
-					ge.Message));
-	
-				md.Run ();
-				md.Destroy ();
-			} finally {
-				cam.ReleaseGPhotoResources ();
-			}
-		}
 		void HandlePageSetupActivated (object o, EventArgs e)
 		{
 			FSpot.Global.PageSetup = Print.RunPageSetupDialog (this.Window, FSpot.Global.PageSetup, null);

@@ -185,7 +185,7 @@ public class PhotoStore : DbStore<Photo> {
 		while (reader.Read ()) {
 			uint version_id = Convert.ToUInt32 (reader ["version_id"]);
 			string name = reader["name"].ToString ();
-			var base_uri = new SafeUri (reader ["base_uri"].ToString ());
+			var base_uri = new SafeUri (reader ["base_uri"].ToString (), true);
 			var filename = reader ["filename"].ToString ();
 			string md5_sum = reader["md5_sum"] != null ? reader ["md5_sum"].ToString () : null;
 			bool is_protected = Convert.ToBoolean (reader["protected"]);
@@ -227,7 +227,7 @@ public class PhotoStore : DbStore<Photo> {
 			if (reader ["version_id"] != null) {
 				uint version_id = Convert.ToUInt32 (reader ["version_id"]);
 				string name = reader["name"].ToString ();
-				var base_uri = new SafeUri (reader ["base_uri"].ToString ());
+				var base_uri = new SafeUri (reader ["base_uri"].ToString (), true);
 				var filename = reader ["filename"].ToString ();
 				string md5_sum = reader["md5_sum"] != null ? reader ["md5_sum"].ToString () : null;
 				bool is_protected = Convert.ToBoolean (reader["protected"]);
@@ -285,7 +285,7 @@ public class PhotoStore : DbStore<Photo> {
 		);
 
 		if (reader.Read ()) {
-			var base_uri = new SafeUri (reader ["base_uri"].ToString ());
+			var base_uri = new SafeUri (reader ["base_uri"].ToString (), true);
 			var filename = reader ["filename"].ToString ();
 			photo = new Photo (id,
 				Convert.ToInt64 (reader ["time"]),
@@ -377,7 +377,7 @@ public class PhotoStore : DbStore<Photo> {
 		);
 
 		while (reader.Read ()) {
-			var base_uri = new SafeUri (reader ["base_uri"].ToString ());
+			var base_uri = new SafeUri (reader ["base_uri"].ToString (), true);
 			var filename = reader ["filename"].ToString ();
 			Photo photo =
 				new Photo (Convert.ToUInt32 (reader ["id"]),
@@ -855,7 +855,7 @@ public class PhotoStore : DbStore<Photo> {
 			Photo photo = LookupInCache (id);
 
 			if (photo == null) {
-				var base_uri = new SafeUri (reader ["base_uri"].ToString ());
+				var base_uri = new SafeUri (reader ["base_uri"].ToString (), true);
 				var filename = reader ["filename"].ToString ();
 				photo =
 					new Photo (id,
