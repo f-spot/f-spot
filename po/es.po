@@ -14,8 +14,8 @@ msgstr ""
 "Project-Id-Version: f-spot.HEAD\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=f-"
 "spot&component=General\n"
-"POT-Creation-Date: 2010-05-25 12:48+0000\n"
-"PO-Revision-Date: 2010-05-25 18:46+0200\n"
+"POT-Creation-Date: 2010-05-25 16:49+0000\n"
+"PO-Revision-Date: 2010-05-25 18:53+0200\n"
 "Last-Translator: Jorge González <jorgegonz@svn.gnome.org>\n"
 "Language-Team: Español <gnome-es-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -603,30 +603,25 @@ msgstr "Construyendo galería"
 
 #: ../extensions/Exporters/FolderExport/FolderExport.cs:218
 #, csharp-format
-#| msgid "Exporting picture \"{0}\""
 msgid "Exporting \"{0}\"..."
 msgstr "Exportando «{0}»…"
 
 #: ../extensions/Exporters/FolderExport/FolderExport.cs:225
 #, csharp-format
-#| msgid "Error uploading picture \"{0}\" to Gallery:{2}{1}"
 msgid "Error Copying \"{0}\" to Gallery:{2}{1}"
 msgstr "Error al copiar «{0}» a la galería: {2}{1}"
 
 #: ../extensions/Exporters/FolderExport/FolderExport.cs:251
 #, csharp-format
-#| msgid "Transferring picture \"{0}\" To CD"
 msgid "Transferring to \"{0}\""
 msgstr "Transfiriendo a «{0}»"
 
 #: ../extensions/Exporters/FolderExport/FolderExport.cs:252
-#| msgid "Error Transferring"
 msgid "Transferring..."
 msgstr "Transfiriendo…"
 
 #. No need to check result here as if result is not true, an Exception will be thrown before
 #: ../extensions/Exporters/FolderExport/FolderExport.cs:257
-#| msgid "Upload Complete"
 msgid "Export Complete."
 msgstr "Exportación completada."
 
@@ -635,7 +630,6 @@ msgid "Exporting Photos Completed."
 msgstr "Exportación de fotografías completada."
 
 #: ../extensions/Exporters/FolderExport/FolderExport.cs:326
-#| msgid "Export to"
 msgid "Exporting Photos"
 msgstr "Exportando fotos"
 
@@ -3035,7 +3029,6 @@ msgstr "De_sacoplar"
 
 #: ../src/PhotoVersionCommands.cs:171
 #, csharp-format
-#| msgid "Really delete version \"{0}\"?"
 msgid "Really detach version \"{0}\" from \"{1}\"?"
 msgstr "¿Desacoplar la versión «{0}» de «{1}»?"
 
@@ -3048,13 +3041,11 @@ msgstr ""
 "Para deshacerlo, arrastre de nuevo la foto nueva en su padre."
 
 #: ../src/PhotoVersionCommands.cs:195
-#| msgid "Reparented"
 msgid "Re_parent"
 msgstr "Cambiar pa_dre"
 
 #: ../src/PhotoVersionCommands.cs:196
 #, csharp-format
-#| msgid "Really delete version \"{0}\"?"
 msgid "Really reparent \"{2}\" as version of \"{1}\"?"
 msgid_plural "Really reparent {0} photos as versions of \"{1}\"?"
 msgstr[0] ""
@@ -3070,7 +3061,6 @@ msgstr ""
 
 #: ../src/PhotoVersionCommands.cs:239
 #, csharp-format
-#| msgid "Received exception \"{0}\". Unable to save photo {1}"
 msgid "Received exception \"{0}\"."
 msgstr "Se recibió la excepción «{0}»."
 
@@ -3392,7 +3382,6 @@ msgid "Photo management for GNOME"
 msgstr "Gestión de fotografías para GNOME"
 
 #: ../src/UI.Dialog/AboutDialog.cs:78
-#| msgid "Copyright © 2003-2009 Novell Inc."
 msgid "Copyright © 2003-2010 Novell Inc."
 msgstr "Copyright © 2003-2010 Novell Inc."
 
@@ -3737,10 +3726,9 @@ msgid "Create _New Version..."
 msgstr "Crear una _nueva versión…"
 
 #: ../src/ui/main_window.ui.h:10
-#, fuzzy
 #| msgid "_Delete Version"
 msgid "De_tach Version"
-msgstr "_Eliminar la versión"
+msgstr "De_sacoplar versión"
 
 #: ../src/ui/main_window.ui.h:12
 msgid "Fin_d"
@@ -3843,7 +3831,6 @@ msgid "_Import..."
 msgstr "_Importar…"
 
 #: ../src/ui/main_window.ui.h:53
-#| msgid "Camera Selection"
 msgid "_Invert Selection"
 msgstr "_Invertir selección"
 
