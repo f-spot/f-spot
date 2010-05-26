@@ -175,38 +175,6 @@ public class ImportCommand : GladeDialog
 				 source_count++;
 			}
 
-			// FIXME This crashes every time, replace by gvfs https://bugzilla.gnome.org/show_bug.cgi?id=618773
-			//GPhotoCamera cam = new GPhotoCamera ();
-			//cam.DetectCameras ();
-			//int camera_count = cam.CameraList.Count;
-
-			if (/*camera_count > 0*/false) {
-				/*source_count += camera_count;
-				for (int i = 0; i < camera_count; i++) {
-					string handle = cam.CameraList.GetValue (i);
-					if (camera_count == 1 || handle != "usb:") {
-						if (handle.StartsWith ("disk:")) {
-							string path = handle.Substring ("disk:".Length);
-
-							if (FindItemPosition (UriUtils.PathToFileUri (path)) != -1)
-								continue;
-						}
-			
-						ImportSource source = new CameraSource (cam, i);
-						item = new SourceItem (source);
-						item.Activated += HandleActivated;
-						this.Append (item);
-					}
-				}*/
-			} else {
-				ImportSource source = new BrowseSource (Catalog.GetString ("(No Cameras Detected)"),
-									"camera-photo");
-				item = new SourceItem (source);
-				item.Activated += HandleActivated;
-				item.Sensitive = false;
-				this.Append (item);
-			}
-
 			this.ShowAll ();
 		}
 
