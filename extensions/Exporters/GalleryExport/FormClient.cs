@@ -233,9 +233,7 @@ namespace FSpot {
 	
 			Request.Method = "POST";
 			Request.Headers["Accept-Charset"] = "utf-8;";
-			
-			//Request.UserAgent = "F-Spot Gallery Remote Client";
-			Request.UserAgent = "Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.7) Gecko/20040626 Firefox/0.9.1";
+			Request.UserAgent = String.Format("F-Spot {0} (http://www.f-spot.org)", Defines.VERSION);
 	
 			if (multipart) {
 				GenerateBoundary ();
