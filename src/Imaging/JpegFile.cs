@@ -31,10 +31,6 @@ namespace FSpot {
 			}
 		}
 		
-		public JpegFile (string path) : base (path) 
-		{
-		}
-
 		public JpegHeader Header {
 			get {
 				if (header == null) {

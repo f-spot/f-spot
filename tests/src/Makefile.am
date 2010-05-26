@@ -1,15 +1,10 @@
 include $(top_srcdir)/Makefile.include
 
 SOURCES = 				\
-	$(srcdir)/IBrowsableItem.cs		\
 	$(srcdir)/ImageTest.cs			\
-	$(srcdir)/PhotoStore.cs			\
 	$(srcdir)/TagStore.cs			\
-	$(srcdir)/ThumbnailGenerator.cs		\
 	$(srcdir)/Query/LogicalTerm.cs		\
-	$(srcdir)/Cms/Cms.cs			\
-	$(srcdir)/Filters/JpegFilter.cs		\
-	$(srcdir)/Filters/OrientationFilter.cs
+	$(srcdir)/Cms/Cms.cs
 
 if ENABLE_TESTS
 

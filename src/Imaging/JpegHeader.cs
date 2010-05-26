@@ -23,6 +23,7 @@ using System.Collections;
 using FSpot.Xmp;
 using FSpot;
 using FSpot.Utils;
+using Hyena;
 
 #if ENABLE_NUNIT
 using NUnit.Framework;
@@ -664,7 +665,7 @@ public class JpegHeader : SemWeb.StatementSource {
 			PixbufOrientation orient = PixbufOrientation.TopRight;
 
 			PixbufUtils.SaveJpeg (test, path, quality, new Exif.ExifData ());
-			FSpot.JpegFile jimg = new FSpot.JpegFile (path);
+			FSpot.JpegFile jimg = new FSpot.JpegFile (new SafeUri (path));
 			jimg.SetDescription (desc);
 			jimg.SetOrientation (orient);
 			jimg.SaveMetaData (path);

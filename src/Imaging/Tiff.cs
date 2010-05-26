@@ -2023,21 +2023,6 @@ namespace FSpot.Tiff {
                         get { return false; }
                 }
 
-		public TiffFile (string path) : base (path)
-		{
-			try {
-				using (System.IO.Stream input = Open ()) {
-					this.Header = new Header (input);
-				}
-
-#if DEBUG_LOADER
-				Header.Dump (this.ToString () + ":");
-#endif
-			} catch (System.Exception e) {
-				System.Console.WriteLine (e.ToString ());
-			}
-		}
-
 		public TiffFile (SafeUri uri) : base (uri)
 		{
 			try {
@@ -2131,10 +2116,6 @@ namespace FSpot.Tiff {
 	}
 
 	public class DngFile : TiffFile {
-		public DngFile (string path) : base (path) 
-		{
-		}
-
 		public DngFile (SafeUri uri) : base (uri)
 		{
 		}
@@ -2215,10 +2196,6 @@ namespace FSpot.Tiff {
 	}	
 	
 	public class NefFile : TiffFile, IThumbnailContainer {
-		public NefFile (string path) : base (path) 
-		{
-		}
-
 		public NefFile (SafeUri uri) : base (uri)
 		{
 		}
@@ -2279,20 +2256,8 @@ namespace FSpot.Tiff {
 		
 
 	public class Cr2File : TiffFile, IThumbnailContainer {
-		public Cr2File (string path) : base (path) 
-		{
-		}
-
 		public Cr2File (SafeUri uri) : base (uri)
 		{
-//							Gtk.MessageDialog md = new Gtk.MessageDialog (null, 
-//							                                              Gtk.DialogFlags.DestroyWithParent,
-//							                                              Gtk.MessageType.Error, 
-//							                                              Gtk.ButtonsType.Close,
-//							                                              "bca");
-//	
-//							int result = md.Run ();
-//							md.Destroy();
 		}
 
 		/*

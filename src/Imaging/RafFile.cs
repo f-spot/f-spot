@@ -58,10 +58,6 @@ namespace FSpot.Raf {
 			return orientation;
 		}
 
-		public RafFile (string path) : base (path)
-		{
-		}
-
 		public override System.IO.Stream PixbufStream ()
 		{
 			byte [] data = GetEmbeddedJpeg ();

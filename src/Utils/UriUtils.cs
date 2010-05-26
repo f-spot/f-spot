@@ -15,37 +15,6 @@ namespace FSpot.Utils
 {
 	public static class UriUtils
 	{		
-		public static string UriToStringEscaped (Uri uri)
-		{
-			return EscapeString (uri.ToString (), false, true, false);
-		}
-	
-		public static string PathToFileUriEscaped (string path)
-		{
-			return UriToStringEscaped (PathToFileUri (path));
-		}
-	
-		public static Uri PathToFileUri (string path)
-		{
-			path = Path.GetFullPath (path);
-	
-			StringBuilder builder = new StringBuilder ();
-			builder.Append (Uri.UriSchemeFile);
-			builder.Append (Uri.SchemeDelimiter);
-	
-			int i;
-			while ((i = path.IndexOfAny (CharsToQuote)) != -1) {
-				if (i > 0)
-					builder.Append (path.Substring (0, i));
-				builder.Append (Uri.HexEscape (path [i]));
-				path = path.Substring (i+1);
-			}
-			builder.Append (path);
-	
-			return new Uri (builder.ToString ());
-		}
-
-		static char[] CharsToQuote = { ';', '?', ':', '@', '&', '=', '$', ',', '#', '%' };
 		// NOTE: this was copied from mono's System.Uri where it is internal.
 		public static string EscapeString (string str, bool escapeReserved, bool escapeHex, bool escapeBrackets) 
 		{

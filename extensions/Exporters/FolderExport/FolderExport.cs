@@ -472,7 +472,7 @@ namespace FSpotFolderExport {
 								      ExportStore.FolderExportType,
 								      // FIXME this is wrong, the final path is the one
 								      // after the Xfer.
-								      UriUtils.PathToFileUriEscaped (path).ToString ());
+								      new SafeUri (path).ToString ());
 				}
 
 				using (Exif.ExifData data = new Exif.ExifData (photo_path)) {

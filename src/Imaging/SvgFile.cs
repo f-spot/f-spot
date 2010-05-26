@@ -15,10 +15,6 @@ namespace FSpot.Svg {
 		{
 		}
 
-		public SvgFile (string path) : base (path) 
-		{
-		}
-
 		public MetadataStore Store {
 			get {
 				if (store == null) {

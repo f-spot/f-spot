@@ -183,10 +183,6 @@ namespace FSpot.Mrw {
                         get { return false; }
                 }
 
-		public MrwFile (string path) : base (path)
-		{
-		}
-
 		public FSpot.Tiff.Header Header {
 			get {
 				if (mrm == null)

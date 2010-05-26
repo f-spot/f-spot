@@ -36,10 +36,6 @@ namespace FSpot.Png {
 		{
 		}
 
-		public PngFile (string path) : base (path)
-		{
-		}
-
 
 		/**
 		   Title 	Short (one line) title or caption for image 

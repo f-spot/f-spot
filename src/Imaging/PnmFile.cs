@@ -20,10 +20,6 @@ namespace FSpot.Pnm {
 		{
 		}
 
-		public PnmFile (string path) : base (path) 
-		{
-		}
-
 		public class Header {
 			public string Magic;
 			public int Width;
@@ -282,38 +278,4 @@ namespace FSpot.Pnm {
 			}			
 		}
 	}
-
-#if ENABLE_NUNIT
-	[TestFixture]
-	public class Tests {
-		[Test]
-		public void SaveLoad ()
-		{
-			using (Gdk.Pixbuf pixbuf = new Gdk.Pixbuf (null, "f-spot-32.png")) {
-				Gdk.Pixbuf source = pixbuf;
-				if (pixbuf.HasAlpha)
-					source = PixbufUtils.Flatten (pixbuf);
-
-				string path = ImageFile.TempPath ("test.ppm");
-				PnmFile pnm = new PnmFile (path);
-				using (Stream stream = File.OpenWrite (path)) {
-					pnm.Save (source, stream);
-				}
-
-				pnm = new PnmFile (path);
-
-				using (Gdk.Pixbuf saved = pnm.Load ()) {
-					Assert.IsNotNull (saved);
-					Assert.AreEqual (saved.Width, source.Width);
-					Assert.AreEqual (saved.Height, source.Height);
-				}
-				
-				if (source != pixbuf)
-					source.Dispose ();
-
-				File.Delete (path);
-			}
-		}
-	}	
-#endif
 }

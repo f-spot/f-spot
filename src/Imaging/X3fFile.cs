@@ -90,10 +90,6 @@ namespace FSpot.X3f {
 			}
 		}
 
-		public X3fFile (string path) : base (path)
-		{
-		}
-
 		public X3fFile (SafeUri uri) : base (uri)
 		{
 		}

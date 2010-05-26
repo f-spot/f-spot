@@ -23,12 +23,6 @@ namespace FSpot {
 
 		static Hashtable name_table;
 		internal static Hashtable NameTable { get { return name_table; } }
-
-		[Obsolete("Use ImageFile (SafeUri) instead!")]
-		public ImageFile (string path) 
-		{
-			this.uri = new SafeUri (path);
-		}
 		
 		public ImageFile (SafeUri uri)
 		{
