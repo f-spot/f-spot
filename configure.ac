@@ -380,7 +380,6 @@ extensions/Editors/ResizeEditor/Makefile
 extensions/Exporters/Makefile
 extensions/Exporters/CDExport/Makefile
 extensions/Exporters/FlickrExport/Makefile
-extensions/Exporters/FlickrExport/FlickrNet/Makefile
 extensions/Exporters/GalleryExport/Makefile
 extensions/Exporters/FacebookExport/Makefile
 extensions/Exporters/FolderExport/Makefile

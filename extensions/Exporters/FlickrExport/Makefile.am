@@ -19,15 +19,12 @@ REFS =						\
 	$(LINK_GIOSHARP)			\
 	$(LINK_GTKSHARPBEANS)			\
 	$(LINK_UNIQUESHARP)			\
-	-r:FlickrNet/FlickrNet.dll	\
 	-r:Mono.Posix
 
 PKGS =					\
+	-pkg:flickrnet          \
 	-pkg:gtk-sharp-2.0		\
 	-pkg:glade-sharp-2.0
-
-SUBDIRS = 			\
-	FlickrNet
 
 RESOURCES =				\
 	-resource:$(srcdir)/$(PLUGIN_MANIFEST)	\
