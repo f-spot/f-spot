@@ -2,7 +2,6 @@ include $(top_srcdir)/Makefile.include
 
 SOURCES = 				\
 	$(srcdir)/ImageTest.cs			\
-	$(srcdir)/TagStore.cs			\
 	$(srcdir)/Query/LogicalTerm.cs		\
 	$(srcdir)/Cms/Cms.cs
 
