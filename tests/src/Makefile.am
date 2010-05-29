@@ -1,6 +1,7 @@
 include $(top_srcdir)/Makefile.include
 
 SOURCES = 				\
+	$(srcdir)/SafeUriTest.cs			\
 	$(srcdir)/ImageTest.cs			\
 	$(srcdir)/Query/LogicalTerm.cs		\
 	$(srcdir)/Cms/Cms.cs

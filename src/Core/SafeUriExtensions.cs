@@ -1,4 +1,5 @@
 using Hyena;
+using System;
 
 namespace FSpot
 {
@@ -24,7 +25,8 @@ namespace FSpot
         public static string GetExtension (this SafeUri uri)
         {
             var abs_uri = uri.AbsoluteUri;
-            return abs_uri.Substring (abs_uri.LastIndexOf ('.'));
+            var index = abs_uri.LastIndexOf ('.');
+            return index == -1 ? String.Empty : abs_uri.Substring (index);
         }
 
         public static string GetFilenameWithoutExtension (this SafeUri uri)
