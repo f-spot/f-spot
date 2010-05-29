@@ -72,6 +72,7 @@ SHAMROCK_CHECK_MONO_2_0_GAC_ASSEMBLIES([
     Mono.Cairo
 ])
 
+FSPOT_CHECK_GTK_SHARP
 FSPOT_CHECK_GNOME_KEYRING_SHARP
 
 
@@ -150,7 +151,7 @@ CAIRO_REQUIRED=1.4.0
 LCMS_REQUIRED=1.12
 MONOADDINS_REQUIRED=0.3
 
-PKG_CHECK_MODULES(F, libgnome-2.0 >= $LIBGNOME_REQUIRED libgnomeui-2.0 >= $LIBGNOMEUI_REQUIRED libexif >= $LIBEXIF_REQUIRED_MIN libexif < $LIBEXIF_REQUIRED_MAX gtk-sharp-2.0 >= $GTKSHARP_REQUIRED glib-sharp-2.0 >= $GTKSHARP_REQUIRED glade-sharp-2.0 >= $GTKSHARP_REQUIRED gtk+-2.0 >= $GTK_REQUIRED mono-cairo >= $MONO_CAIRO_REQUIRED cairo >= $CAIRO_REQUIRED mono-addins >= $MONOADDINS_REQUIRED mono-addins-gui >= $MONOADDINS_REQUIRED mono-addins-setup >= $MONOADDINS_REQUIRED)
+PKG_CHECK_MODULES(F, libgnome-2.0 >= $LIBGNOME_REQUIRED libgnomeui-2.0 >= $LIBGNOMEUI_REQUIRED libexif >= $LIBEXIF_REQUIRED_MIN libexif < $LIBEXIF_REQUIRED_MAX glade-sharp-2.0 >= $GTKSHARP_REQUIRED gtk+-2.0 >= $GTK_REQUIRED mono-cairo >= $MONO_CAIRO_REQUIRED cairo >= $CAIRO_REQUIRED mono-addins >= $MONOADDINS_REQUIRED mono-addins-gui >= $MONOADDINS_REQUIRED mono-addins-setup >= $MONOADDINS_REQUIRED)
 AC_SUBST(F_CFLAGS)
 AC_SUBST(F_LIBS)
 
@@ -353,6 +354,11 @@ lib/semweb/Makefile
 lib/unique-sharp/Makefile
 lib/unique-sharp/generator/Makefile
 lib/unique-sharp/unique/Makefile
+lib/Hyena/src/Hyena/Makefile
+lib/Hyena/src/Mono.Data.Sqlite/Makefile
+lib/Hyena/src/Hyena.Data.Sqlite/Makefile
+lib/Hyena/src/Hyena.Gui/Makefile
+
 docs/Makefile
 icons/Makefile
 tools/Makefile
