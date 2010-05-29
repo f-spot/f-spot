@@ -154,7 +154,7 @@ public class PhotoStore : DbStore<Photo> {
 					"INSERT INTO photos (time, base_uri, filename, description, roll_id, default_version_id, rating, md5_sum) "	+
 					"VALUES (:time, :base_uri, :filename, :description, :roll_id, :default_version_id, :rating, :md5_sum)",
 	 				"time", unix_time,
-					"base_uri", new_base_uri,
+					"base_uri", new_base_uri.ToString (),
 					"filename", filename,
 	 				"description", description,
 					"roll_id", roll_id,
@@ -325,7 +325,7 @@ public class PhotoStore : DbStore<Photo> {
 			                               " LEFT JOIN photo_versions AS pv ON photos.id = pv.photo_id" +
 			                               " WHERE (photos.base_uri = :base_uri AND photos.filename = :filename)" +
 			                               " OR (pv.base_uri = :base_uri AND pv.filename = :filename)",
-			                               "base_uri", base_uri,
+			                               "base_uri", base_uri.ToString (),
 			                               "filename", filename));
 
 		if (reader.Read ()) {
@@ -493,7 +493,7 @@ public class PhotoStore : DbStore<Photo> {
 					"description", photo.Description,
 					"default_version_id", photo.DefaultVersionId,
 					"time", DbUtils.UnixTimeFromDateTime (photo.Time),
-					"base_uri", photo.VersionUri (Photo.OriginalVersionId).GetBaseUri (),
+					"base_uri", photo.VersionUri (Photo.OriginalVersionId).GetBaseUri ().ToString (),
 					"filename", photo.VersionUri (Photo.OriginalVersionId).GetFilename (),
 					"rating", String.Format ("{0}", photo.Rating),
 					"md5_sum", (photo.MD5Sum != String.Empty ? photo.MD5Sum : null),
@@ -534,7 +534,7 @@ public class PhotoStore : DbStore<Photo> {
 					"photo_id", photo.Id,
 					"version_id", version_id,
 					"name", version.Name,
-			        "base_uri", version.BaseUri,
+			        "base_uri", version.BaseUri.ToString (),
 					"filename", version.Filename,
 					"is_protected", version.IsProtected,
 					"md5_sum", (version.MD5Sum != String.Empty ? version.MD5Sum : null)));
@@ -547,7 +547,7 @@ public class PhotoStore : DbStore<Photo> {
 					"base_uri = :base_uri, filename = :filename, protected = :protected, md5_sum = :md5_sum " +
 					"WHERE photo_id = :photo_id AND version_id = :version_id",
 					"name", version.Name,
-					"base_uri", version.BaseUri,
+					"base_uri", version.BaseUri.ToString (),
 					"filename", version.Filename,
 					"protected", version.IsProtected,
 					"photo_id", photo.Id,
@@ -919,7 +919,7 @@ public class PhotoStore : DbStore<Photo> {
 			"FROM photos " 				+
 			"WHERE base_uri LIKE :base_uri "		+
 			"AND filename LIKE :filename",
-			"base_uri", uri.GetBaseUri (),
+			"base_uri", uri.GetBaseUri ().ToString (),
 			"filename", filename));
 		}
 		

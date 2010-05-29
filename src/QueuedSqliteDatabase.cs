@@ -391,6 +391,7 @@ namespace Banshee.Database
                 Thread.Sleep(SLEEP_TIME);
                 Execute();
             } catch(Exception e) {
+                Log.Debug ("Broken query: {0}", command.CommandText);
                 execution_exception = e;
                 if (command_type == Banshee.Database.CommandType.ExecuteNonQuery) {
                     throw execution_exception;
