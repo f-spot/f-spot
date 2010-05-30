@@ -19,7 +19,6 @@ using Unique;
 using Mono.Unix;
 
 using Hyena;
-using FSpot.Utils;
 
 namespace FSpot
 {

@@ -8,7 +8,7 @@
  */
 
 using FSpot;
-using FSpot.Utils;
+using Hyena;
 using FSpot.Widgets;
 
 using Gdk;
@@ -84,7 +84,7 @@ namespace FSpot.Editors {
 		// A tool can be applied if it doesn't need a selection, or if it has one.
 		public bool CanBeApplied {
 			get {
-				Log.Debug ("{0} can be applied? {1}", this, !NeedsSelection || (NeedsSelection && State.HasSelection));
+				Log.DebugFormat ("{0} can be applied? {1}", this, !NeedsSelection || (NeedsSelection && State.HasSelection));
 				return !NeedsSelection || (NeedsSelection && State.HasSelection);
 			}
 		}

@@ -36,7 +36,7 @@ using System.Diagnostics;
 using System.Net;
 using System.Threading;
 
-using FSpot.Utils;
+using Hyena;
 using FSpot.UI.Dialog;
 
 namespace FSpotTabbloExport {

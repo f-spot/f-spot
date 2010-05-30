@@ -29,6 +29,7 @@
 using System;
 using System.Threading;
 using System.Collections.Generic;
+using Hyena;
 
 namespace Banshee.Kernel
 {
@@ -213,7 +214,7 @@ namespace Banshee.Kernel
                     
                 lock(this_mutex) {
                     if(disposed) {
-                        FSpot.Utils.Log.Debug ("execution thread destroyed, dispose requested");
+                        Log.Debug ("execution thread destroyed, dispose requested");
                         return;
                     }
                 

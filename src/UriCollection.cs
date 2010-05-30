@@ -129,7 +129,7 @@ namespace FSpot {
 				List<FileBrowsableItem> items = new List<FileBrowsableItem> ();
 				foreach (GLib.FileInfo info in file.EnumerateChildrenFinish (res)) {
 					SafeUri i = new SafeUri (file.GetChild (info.Name).Uri);
-					FSpot.Utils.Log.Debug ("testing uri = {0}", i);
+					Hyena.Log.DebugFormat ("testing uri = {0}", i);
 					if (FSpot.ImageFile.HasLoader (i))
 						items.Add (new FileBrowsableItem (i));
 				}

@@ -546,7 +546,8 @@ namespace FSpot
 					return md5_string;
 				}
 			} catch (Exception e) {
-			 	Log.DebugException (String.Format ("Failed to create MD5Sum for Uri: {0}\n", uri), e);
+				Log.DebugFormat ("Failed to create MD5Sum for Uri: {0}\n", uri);
+				Log.DebugException (e);
 			}
 
 			return string.Empty; 

@@ -1,6 +1,7 @@
 using System;
 using Gdk;
 using System.Runtime.InteropServices;
+using Hyena;
 
 namespace FSpot.Utils {
 	public class GdkUtils {

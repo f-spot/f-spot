@@ -11,6 +11,7 @@ using FSpot;
 using FSpot.Jobs;
 using FSpot.Query;
 using FSpot.Utils;
+using Hyena;
 
 public class InvalidTagOperationException : InvalidOperationException {
 	public Tag tag;

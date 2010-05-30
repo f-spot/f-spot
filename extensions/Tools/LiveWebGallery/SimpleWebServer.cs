@@ -18,7 +18,7 @@ using System.Threading;
 
 using FSpot;
 using FSpot.Extensions;
-using FSpot.Utils;
+using Hyena;
 
 namespace LiveWebGalleryExtension
 {		

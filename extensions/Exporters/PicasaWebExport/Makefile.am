@@ -19,8 +19,8 @@ REFS =						\
 	$(LINK_GIOSHARP)			\
 	$(LINK_GPHOTO2)				\
 	$(LINK_UNIQUESHARP)			\
-	-r:System.Web				\
-	-r:Mono.Posix
+	-r:Mono.Posix				\
+	$(LINK_HYENA)
 
 PKGS =					\
 	$(LINK_GTKSHARPBEANS)		\

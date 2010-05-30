@@ -672,7 +672,7 @@ namespace FSpot.Widgets
 
 		~Filmstrip ()
 		{
-			Log.Debug ("Finalizer called on {0}. Should be Disposed", GetType ());		
+			Log.DebugFormat ("Finalizer called on {0}. Should be Disposed", GetType ());
 			Dispose (false);
 		}
 			

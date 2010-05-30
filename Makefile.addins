@@ -22,7 +22,8 @@ build_references =					\
 	$(LINK_GPHOTO2)					\
 	$(LINK_GIOSHARP)				\
 	$(LINK_UNIQUESHARP)				\
-	$(LINK_GTKSHARPBEANS)
+	$(LINK_GTKSHARPBEANS)			\
+	$(LINK_HYENA)
 
 
 mpack: $(ASSEMBLY)

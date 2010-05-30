@@ -1,5 +1,6 @@
 using System;
 using System.Runtime.InteropServices;
+using Hyena;
 
 namespace FSpot.Utils {
 	public static class Unix {
@@ -54,7 +55,7 @@ namespace FSpot.Utils {
 		public static void Touch (string filename)
 		{
 			if (NativeMethods.UTime (filename, IntPtr.Zero) != 0)
-				Log.Debug ("touch on {0} failed", filename);
+				Log.DebugFormat ("touch on {0} failed", filename);
 		}
 	}
 }

@@ -36,7 +36,7 @@ namespace FSpot {
 		
 		protected Stream Open ()
 		{
-			Log.Debug ("open uri = {0}", uri.ToString ());
+			Log.DebugFormat ("open uri = {0}", uri.ToString ());
 //			if (uri.IsFile)
 //				return new FileStream (uri.LocalPath, FileMode.Open);
 			return new GLib.GioStream (GLib.FileFactory.NewForUri (uri).Read (null));

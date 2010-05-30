@@ -28,7 +28,7 @@ using Gnome.Keyring;
 using GtkBeans;
 
 using FSpot;
-using FSpot.Utils;
+using Hyena;
 using FSpot.UI.Dialog;
 using FSpot.Extensions;
 using FSpot.Filters;
@@ -349,7 +349,7 @@ namespace FSpot.Exporter.Facebook
 					IBrowsableItem item = items [i];
 
 					FileInfo file_info;
-					Log.Debug ("uploading {0}", i);
+					Log.DebugFormat ("uploading {0}", i);
 
 					progress_dialog.Message = String.Format (Catalog.GetString ("Uploading picture \"{0}\" ({1} of {2})"), item.Name, i + 1, items.Length);
 					progress_dialog.ProgressText = string.Empty;

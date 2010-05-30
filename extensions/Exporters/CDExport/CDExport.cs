@@ -20,7 +20,7 @@ using Mono.Unix;
 using FSpot;
 using FSpot.Filters;
 using FSpot.Widgets;
-using FSpot.Utils;
+using Hyena;
 using FSpot.UI.Dialog;
 
 using GLib;
@@ -245,7 +245,7 @@ namespace FSpotCDExport {
 				}
 
 			} catch (System.Exception e) {
-				FSpot.Utils.Log.DebugException (e);
+				Hyena.Log.DebugException (e);
 				progress_dialog.Message = e.ToString ();
 				progress_dialog.ProgressText = Catalog.GetString ("Error Transferring");
 				return;

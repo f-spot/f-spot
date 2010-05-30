@@ -11,6 +11,7 @@
 using System;
 using Gdk;
 using FSpot.Utils;
+using Hyena;
 
 namespace FSpot
 {
@@ -176,7 +177,7 @@ namespace FSpot
 
 		~Tag ()
 		{
-			Log.Debug ("Finalizer called on {0}. Should be Disposed", GetType ());		
+			Log.DebugFormat ("Finalizer called on {0}. Should be Disposed", GetType ());
 			if (icon != null)
 				icon.Dispose ();
 			if (cached_icon != null)

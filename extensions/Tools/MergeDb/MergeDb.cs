@@ -15,7 +15,6 @@ using Gtk;
 
 using FSpot;
 using FSpot.Extensions;
-using FSpot.Utils;
 using FSpot.Query;
 using FSpot.UI.Dialog;
 using Mono.Unix;
@@ -110,7 +109,7 @@ namespace MergeDbExtension
 
 		public static void Merge (string path, Db to_db)
 		{
-			Log.Warning ("Will merge db {0} into main f-spot db {1}", path, FSpot.Global.BaseDirectory + "/photos.db" );
+			Log.WarningFormat ("Will merge db {0} into main f-spot db {1}", path, FSpot.Global.BaseDirectory + "/photos.db" );
 			Db from_db = new Db ();
 			from_db.Init (path, true);
 			//MergeDb mdb = new MergeDb (from_db, to_db);
@@ -188,7 +187,7 @@ namespace MergeDbExtension
 
 		void ImportPhoto (Photo photo, bool copy)
 		{
-			Log.Warning ("Importing {0}", photo.Name);
+			Log.WarningFormat ("Importing {0}", photo.Name);
 			PhotoStore from_store = from_db.Photos;
 			PhotoStore to_store = to_db.Photos;
 
@@ -199,7 +198,7 @@ namespace MergeDbExtension
 				foreach (string key in PathMap.Keys) {
 					string path = photo_path;
 					path = path.Replace (key, PathMap [key]);
-					Log.Debug ("Replaced path {0}", path);
+					Log.DebugFormat ("Replaced path {0}", path);
 					if (System.IO.File.Exists (path)) {
 						photo_path = path;
 						break;;
@@ -219,7 +218,7 @@ namespace MergeDbExtension
 					pfd.Dialog.Destroy ();
 					if (new_folder == null) //Skip
 						return;
-					Log.Debug ("{0} maps to {1}", folder, new_folder);
+					Log.DebugFormat ("{0} maps to {1}", folder, new_folder);
 
 					PathMap[folder] = new_folder;
 
@@ -259,7 +258,7 @@ namespace MergeDbExtension
 				return;
 
 			foreach (Tag t in photo.Tags) {
-				Log.Warning ("Tagging with {0}", t.Name);
+				Log.WarningFormat ("Tagging with {0}", t.Name);
 				newp.AddTag (tag_map [t.Id]);
 			}
 

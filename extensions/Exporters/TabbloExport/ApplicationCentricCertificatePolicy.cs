@@ -37,7 +37,7 @@ using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Security.Cryptography.X509Certificates;
 
-using FSpot.Utils;
+using Hyena;
 
 namespace FSpotTabbloExport {
 
@@ -62,7 +62,7 @@ namespace FSpotTabbloExport {
 		                                   WebRequest request,
 						   int problem)
 		{
-			Log.Debug ("Checking validation result for {0}: "
+			Log.DebugFormat ("Checking validation result for {0}: "
 					+ "problem={1}",
 					request.RequestUri, problem);
 

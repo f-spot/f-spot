@@ -9,7 +9,7 @@
 
 using System;
 using System.Collections.Generic;
-using FSpot.Utils;
+using Hyena;
 
 namespace FSpot.Query
 {
@@ -62,7 +62,7 @@ namespace FSpot.Query
 
 		~TagTerm ()
 		{
-			Log.Debug ("Finalizer called on {0}. Should be Disposed", GetType ());
+			Log.DebugFormat ("Finalizer called on {0}. Should be Disposed", GetType ());
 			if (tag != null)
 				tag.Dispose ();
 		}

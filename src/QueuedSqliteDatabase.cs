@@ -32,7 +32,7 @@ using System.Threading;
 using System.Collections.Generic;
 using Mono.Data.SqliteClient;
 
-using FSpot.Utils;
+using Hyena;
 
 namespace Banshee.Database
 {
@@ -110,7 +110,7 @@ namespace Banshee.Database
 
         ~QueuedSqliteDatabase ()
         {
-            Log.Debug ("Finalizer called on {0}. Should be Disposed", GetType ());
+            Log.DebugFormat ("Finalizer called on {0}. Should be Disposed", GetType ());
             Dispose (false);
         }
         
@@ -391,7 +391,7 @@ namespace Banshee.Database
                 Thread.Sleep(SLEEP_TIME);
                 Execute();
             } catch(Exception e) {
-                Log.Debug ("Broken query: {0}", command.CommandText);
+                Log.DebugFormat ("Broken query: {0}", command.CommandText);
                 execution_exception = e;
                 if (command_type == Banshee.Database.CommandType.ExecuteNonQuery) {
                     throw execution_exception;

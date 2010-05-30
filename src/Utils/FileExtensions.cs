@@ -11,6 +11,7 @@ using System;
 using System.IO;
 using Mono.Unix;
 using GLib;
+using Hyena;
 
 namespace FSpot.Utils
 {
@@ -23,12 +24,12 @@ namespace FSpot.Utils
 			GLib.FileType ft = source.QueryFileType (GLib.FileQueryInfoFlags.None, cancellable);
 			
 			if (ft != GLib.FileType.Directory) {
-				Log.Debug ("Copying \"{0}\" to \"{1}\"", source.Path, target.Path);
+				Hyena.Log.DebugFormat ("Copying \"{0}\" to \"{1}\"", source.Path, target.Path);
 				return source.Copy (target, flags, cancellable, callback);
 			}
 			
 			if (!target.Exists) {
-				Log.Debug ("Creating directory: \"{0}\"", target.Path);
+				Hyena.Log.DebugFormat ("Creating directory: \"{0}\"", target.Path);
 				result = result && target.MakeDirectoryWithParents (cancellable);
 			}
 			

@@ -10,6 +10,7 @@
 using System;
 using Banshee.Kernel;
 using FSpot.Utils;
+using Hyena;
 
 namespace FSpot.Jobs {
 	public class CalculateHashJob : Job
@@ -35,14 +36,14 @@ namespace FSpot.Jobs {
 			System.Threading.Thread.Sleep (200);
 
 			uint photo_id = Convert.ToUInt32 (JobOptions);
-			Log.Debug ("Calculating Hash {0}...", photo_id);
+			Log.DebugFormat ("Calculating Hash {0}...", photo_id);
 
 			try {
 				Photo photo = FSpot.App.Instance.Database.Photos.Get (Convert.ToUInt32 (photo_id)) as Photo;
 				FSpot.App.Instance.Database.Photos.UpdateMD5Sum (photo);
 				return true;
 			} catch (System.Exception e) {
-			 	Log.Debug ("Error Calculating Hash for photo {0}: {1}", JobOptions, e.Message);
+				Log.DebugFormat ("Error Calculating Hash for photo {0}: {1}", JobOptions, e.Message);
 			}
 			return false;
 		}

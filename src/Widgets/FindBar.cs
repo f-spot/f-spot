@@ -16,7 +16,7 @@ using Gdk;
 using Mono.Unix;
 
 using FSpot.Query;
-using FSpot.Utils;
+using Hyena;
 
 namespace FSpot.Widgets {
 	public class FindBar : HighlightedBox {
@@ -202,9 +202,9 @@ namespace FSpot.Widgets {
 		private static void PrintGroup (GroupCollection groups, string name)
 		{
 			Group group = groups [name];
-			Log.Debug ("Name: {2} (success = {1}) group: {0}", group, group.Success, name);
+			Log.DebugFormat ("Name: {2} (success = {1}) group: {0}", group, group.Success, name);
 			foreach (Capture capture in group.Captures) {
-				Log.Debug ("  Have capture: {0}", capture);
+				Log.DebugFormat ("  Have capture: {0}", capture);
 			}
 		}
 

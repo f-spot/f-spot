@@ -24,7 +24,7 @@ using FSpot.Extensions;
 using FSpot.Widgets;
 using FSpot.Filters;
 using FSpot.UI.Dialog;
-using FSpot.Utils;
+using Hyena;
 using Mono.Unix;
 
 namespace MetaPixelExtension {
@@ -144,7 +144,7 @@ namespace MetaPixelExtension {
 				}
 				//FIXME should switch to retry/skip
 				if (!GLib.FileFactory.NewForUri (p.DefaultVersion.Uri).Exists) {
-					Log.Warning (String.Format ("Couldn't access photo {0} while creating miniatures", p.DefaultVersion.Uri.LocalPath));
+					Log.WarningFormat (String.Format ("Couldn't access photo {0} while creating miniatures", p.DefaultVersion.Uri.LocalPath));
 					continue;
 				}
 				//FIXME Check if the picture's format is supproted (jpg, gif)
@@ -168,7 +168,7 @@ namespace MetaPixelExtension {
 				System.Diagnostics.Process mp_prep = System.Diagnostics.Process.Start ("metapixel", prepare_command);
 				mp_prep.WaitForExit ();
 				if (!System.IO.File.Exists (minifile)) {
-					Log.Debug ("No mini? No party! {0}", minifile);
+					Log.DebugFormat ("No mini? No party! {0}", minifile);
 					continue;
 				}
 
@@ -191,7 +191,7 @@ namespace MetaPixelExtension {
 				}
 				//FIXME should switch to retry/skip
 				if (!GLib.FileFactory.NewForUri (p.DefaultVersion.Uri).Exists) {
-					Log.Warning (String.Format ("Couldn't access photo {0} while creating mosaics", p.DefaultVersion.Uri.LocalPath));
+					Log.WarningFormat (String.Format ("Couldn't access photo {0} while creating mosaics", p.DefaultVersion.Uri.LocalPath));
 					error_count ++;
 					continue;
 				}

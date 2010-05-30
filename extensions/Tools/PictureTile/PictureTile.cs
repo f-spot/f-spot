@@ -22,7 +22,7 @@ using FSpot.Extensions;
 using FSpot.Widgets;
 using FSpot.Filters;
 using FSpot.UI.Dialog;
-using FSpot.Utils;
+using Hyena;
 using Mono.Unix;
 
 namespace PictureTileExtension {
@@ -131,7 +131,7 @@ namespace PictureTileExtension {
 
 				//FIXME should switch to retry/skip
 				if (!GLib.FileFactory.NewForUri (p.DefaultVersion.Uri).Exists) {
-					Log.Warning (String.Format ("Couldn't access photo {0} while creating mosaics", p.DefaultVersion.Uri.LocalPath));
+					Log.WarningFormat ("Couldn't access photo {0} while creating mosaics", p.DefaultVersion.Uri.LocalPath);
 					continue;
 				}
 

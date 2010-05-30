@@ -27,13 +27,15 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
+using Hyena;
+
 namespace FSpotTabbloExport {
 
 	class FSpotTraceListener : System.Diagnostics.TraceListener {
 
 		public override void Write (string message)
 		{
-			FSpot.Utils.Log.Debug ("Mono.Tabblo", message);
+			Log.Debug ("Mono.Tabblo", message);
 		}
 
 		public override void WriteLine (string message)

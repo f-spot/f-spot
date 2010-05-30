@@ -186,7 +186,7 @@ namespace FSpotFolderExport {
 				}
 
 				if (scale) {
-					Log.Debug ("Resize Photos to {0}.", size);
+					Log.DebugFormat ("Resize Photos to {0}.", size);
 					gallery.SetScale (size);
 				} else {
 					Log.Debug ("Exporting full size.");
@@ -249,7 +249,7 @@ namespace FSpotFolderExport {
 				// we've created the structure, now if the destination was local (native) we are done
 				// otherwise we xfer
 				if (!dest.IsNative) {
-					Log.Debug ("Transferring \"{0}\" to \"{1}\"", source.Path, target.Path);
+					Log.DebugFormat ("Transferring \"{0}\" to \"{1}\"", source.Path, target.Path);
 					progress_dialog.Message = String.Format (Catalog.GetString ("Transferring to \"{0}\""), target.Path);
 					progress_dialog.ProgressText = Catalog.GetString ("Transferring...");
 					result = source.CopyRecursive (target, GLib.FileCopyFlags.Overwrite, new GLib.Cancellable (), Progress);
@@ -262,7 +262,7 @@ namespace FSpotFolderExport {
 				progress_dialog.ButtonLabel = Gtk.Stock.Ok;
 
 				if (open) {
-					Log.Debug (String.Format ("Open URI \"{0}\"", target.Uri.ToString ()));
+					Log.DebugFormat (String.Format ("Open URI \"{0}\"", target.Uri.ToString ()));
 					Gtk.Application.Invoke (delegate {GtkBeans.Global.ShowUri (Dialog.Screen, target.Uri.ToString () );});
 				}
 
@@ -516,7 +516,7 @@ namespace FSpotFolderExport {
 			try {
 				Directory.CreateDirectory (path);
 			} catch {
-				Log.Error ("Error in creating directory \"{0}\"", path);
+				Log.ErrorFormat ("Error in creating directory \"{0}\"", path);
 			}
 			return path;
 		}

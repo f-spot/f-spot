@@ -18,6 +18,7 @@ using System.Text.RegularExpressions;
 using System.Xml;
 using System.Collections.Specialized;
 using FSpot.Utils;
+using Hyena;
 
 namespace SmugMugNet
 {

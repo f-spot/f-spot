@@ -11,7 +11,7 @@
 using System;
 using FSpot;
 using FSpot.Extensions;
-using FSpot.Utils;
+using Hyena;
 
 namespace DBusService {
 	public class DBusService : IService

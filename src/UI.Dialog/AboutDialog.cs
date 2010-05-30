@@ -12,7 +12,7 @@
 using System;
 using System.IO;
 using Mono.Unix;
-using FSpot.Utils;
+using Hyena;
 
 namespace FSpot.UI.Dialog
 {

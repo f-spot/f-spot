@@ -62,7 +62,6 @@ UTILS_CSDISTFILES =				\
 	$(srcdir)/Utils/FileExtensions.cs	\
 	$(srcdir)/Utils/GdkUtils.cs		\
 	$(srcdir)/Utils/GtkUtil.cs		\
-	$(srcdir)/Utils/Log.cs			\
 	$(srcdir)/Utils/PixbufOrientation.cs	\
 	$(srcdir)/Utils/PixbufUtils.cs		\
 	$(srcdir)/Utils/RecursiveFileEnumerator.cs		\
@@ -333,12 +332,14 @@ CORE_ASSEMBLIES =				\
 	-pkg:gtk-sharp-2.0			\
 	-r:Cms.dll				\
 	-r:Mono.Posix				\
-	-r:FSpot.Utils.dll
+	-r:FSpot.Utils.dll			\
+	$(LINK_HYENA)
 
 QUERY_ASSEMBLIES =				\
 	$(LINK_GIOSHARP)			\
 	-r:FSpot.Core.dll			\
-	-r:FSpot.Utils.dll
+	-r:FSpot.Utils.dll			\
+	$(LINK_HYENA)
 
 UTILS_ASSEMBLIES =				\
 	-pkg:gtk-sharp-2.0			\
@@ -346,11 +347,14 @@ UTILS_ASSEMBLIES =				\
 	-r:Mono.Posix				\
 	-r:Mono.Cairo				\
 	$(LINK_GIOSHARP)			\
-	$(GCONF_PKG)
+	$(GCONF_PKG)				\
+	$(LINK_HYENA)
+
 
 JOBSCHEDULER_ASSEMBLIES =			\
 	$(LINK_GIOSHARP)			\
-	-r:FSpot.Utils.dll
+	-r:FSpot.Utils.dll				\
+	$(LINK_HYENA)
 
 BLING_ASSEMBLIES =				\
 	-pkg:gtk-sharp-2.0			\
@@ -378,7 +382,8 @@ GNOME_PLATFORM_ASSEMBLIES =			\
 	$(NDESK_DBUS_LIBS)				\
 	-r:Mono.Posix				\
 	-r:FSpot.Core.dll			\
-	-r:FSpot.Utils.dll
+	-r:FSpot.Utils.dll				\
+	$(LINK_HYENA)
 
 NULL_PLATFORM_ASSEMBLIES =			\
 	-r:FSpot.Core.dll			\
@@ -394,7 +399,6 @@ F_SPOT_ASSEMBLIES = 				\
 	$(LINK_GIOSHARP)			\
 	$(LINK_UNIQUESHARP)			\
 	-r:System.Data				\
-	-r:System.Web				\
 	-r:Mono.Data.SqliteClient		\
 	-r:Mono.Posix				\
 	-r:Mono.Security			\
@@ -416,7 +420,8 @@ F_SPOT_ASSEMBLIES = 				\
 	-pkg:mono-addins-setup			\
 	-pkg:mono-addins-gui			\
 	-pkg:glade-sharp-2.0			\
-	-pkg:gnome-sharp-2.0
+	-pkg:gnome-sharp-2.0			\
+	$(LINK_HYENA)
 
 F_SPOT_DISTRESOURCES =					\
 	$(srcdir)/dces.rdf				\

@@ -12,6 +12,7 @@ using Mono.Addins.Setup;
 using FSpot.Utils;
 using FSpot.UI.Dialog;
 using FSpot.Extensions;
+using Hyena;
 
 namespace FSpot 
 {
@@ -88,7 +89,7 @@ namespace FSpot
 						return 1;
 					}
 					FSpot.Global.BaseDirectory = args [++i];
-					Log.Information ("BaseDirectory is now {0}", FSpot.Global.BaseDirectory);
+					Log.InformationFormat ("BaseDirectory is now {0}", FSpot.Global.BaseDirectory);
 					break;
 
 				case "-p": case "-photodir": case "--photodir":
@@ -97,7 +98,7 @@ namespace FSpot
 						return 1;
 					}
 					FSpot.Global.PhotoDirectory = System.IO.Path.GetFullPath (args [++i]);
-					Log.Information ("PhotoDirectory is now {0}", FSpot.Global.PhotoDirectory);
+					Log.InformationFormat ("PhotoDirectory is now {0}", FSpot.Global.PhotoDirectory);
 					break;
 
 				case "-i": case "-import": case "--import":
@@ -134,10 +135,6 @@ namespace FSpot
 					Version ();
 					return 0;
 
-				case "--strace":
-					Log.Tracing = true;
-					break;
-
 				case "--debug":
 					Log.Debugging = true;
 					// Debug GdkPixbuf critical warnings
@@ -163,7 +160,7 @@ namespace FSpot
 						break;
 					if (args [i].StartsWith ("--trace"))
 						break;
-					Log.Debug ("Unparsed argument >>{0}<<", args [i]);
+					Log.DebugFormat ("Unparsed argument >>{0}<<", args [i]);
 					break;
 				}
 			}
@@ -184,7 +181,7 @@ namespace FSpot
 			string maj_version = String.Join (".", Defines.VERSION.Split ('.'), 0, 3);
 			foreach (AddinRepository repo in setupService.Repositories.GetRepositories ())
 				if (repo.Url.StartsWith ("http://addins.f-spot.org/") && !repo.Url.StartsWith ("http://addins.f-spot.org/" + maj_version)) {
-					Log.Information ("Unregistering {0}", repo.Url);
+					Log.InformationFormat ("Unregistering {0}", repo.Url);
 					setupService.Repositories.RemoveRepository (repo.Url);
 				}
 			setupService.Repositories.RegisterRepository (null, "http://addins.f-spot.org/" + maj_version, false);

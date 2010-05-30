@@ -13,7 +13,7 @@ using System.Runtime.InteropServices;
 using Mono.Unix;
 
 using FSpot.Widgets;
-using FSpot.Utils;
+using Hyena;
 
 namespace FSpot
 {

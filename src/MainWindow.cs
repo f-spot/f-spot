@@ -225,7 +225,7 @@ namespace FSpot
 					service.Initialize ();
 					service.Start ();
 				} catch (Exception e) {
-					Log.Warning ("Something went wrong while starting the {0} extension.", service.Id);
+					Log.WarningFormat ("Something went wrong while starting the {0} extension.", service.Id);
 					Log.DebugException (e);
 				}
 			}
@@ -254,7 +254,7 @@ namespace FSpot
 				else if (max_size == 0)
 					Log.Warning ("maximum_size is 0 (tin-hat mode), not overriding");
 				else if (max_size < size) {
-					Log.Debug ("Setting maximum_size to a saner value ({0}MB), according to your db size", size);
+					Log.DebugFormat ("Setting maximum_size to a saner value ({0}MB), according to your db size", size);
 					Preferences.Set (Preferences.GSD_THUMBS_MAX_SIZE, size);
 				}
 			}
@@ -2824,7 +2824,7 @@ namespace FSpot
 			try {
 				application.LaunchUris (uri_list, null);
 			} catch (System.Exception) {
-				Log.Error ("Failed to lauch {0}", application.Name);
+				Log.ErrorFormat ("Failed to lauch {0}", application.Name);
 			}
 		}
 	

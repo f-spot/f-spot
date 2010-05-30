@@ -5,6 +5,7 @@ using System;
 using System.Collections;
 using Banshee.Database;
 using FSpot.Utils;
+using Hyena;
 using FSpot.UI.Dialog;
 
 namespace FSpot.Database {
@@ -643,7 +644,8 @@ namespace FSpot.Database {
 				}
 
 				db.CommitTransaction ();
-			} catch (Exception e) {Log.DebugException (e);
+			} catch (Exception e) {
+				Log.DebugException (e);
 				Log.Warning ("Rolling back database changes because of Exception");
 				// There was an error, roll back the database
 				db.RollbackTransaction ();
@@ -769,7 +771,7 @@ namespace FSpot.Database {
 			{
 				code ();
 				
-				Log.Debug ("Updated database from version {0} to {1}",
+				Log.DebugFormat ("Updated database from version {0} to {1}",
 						db_version.Value,
 						Version.ToString ());
 

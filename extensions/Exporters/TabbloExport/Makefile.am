@@ -35,7 +35,8 @@ REFS = \
 	$(LINK_GTKSHARPBEANS)	\	
 	$(LINK_GPHOTO2)		\
 	$(LINK_UNIQUESHARP)	\
-	-r:Mono.Posix.dll
+	-r:Mono.Posix.dll				\
+	$(LINK_HYENA)
 
 PKGS = \
 	-pkg:gtk-sharp-2.0 

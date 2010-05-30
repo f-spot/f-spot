@@ -20,6 +20,7 @@ using Mono.Unix;
 
 using System;
 using System.Collections.Generic;
+using Hyena;
 
 namespace FSpot.Widgets {
 	public class EditorPage : SidebarPage {

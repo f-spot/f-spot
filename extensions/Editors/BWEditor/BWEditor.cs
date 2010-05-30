@@ -16,6 +16,7 @@ using Gtk;
 using Gdk;
 using Mono.Unix;
 using Mono.Simd;
+using Hyena;
 
 namespace BWEditor {
 	class BWEditor : Editor {
@@ -33,9 +34,9 @@ namespace BWEditor {
 
 		protected override Pixbuf Process (Pixbuf input, Cms.Profile input_profile)
 		{
-			uint timer = FSpot.Utils.Log.DebugTimerStart ();
+			uint timer = Log.DebugTimerStart ();
 			if (input.BitsPerSample != 8) {
-				FSpot.Utils.Log.Warning ("unsupported pixbuf format");
+				Log.Warning ("unsupported pixbuf format");
 				return (Pixbuf)input.Clone ();
 			}
 			Pixbuf output = new Pixbuf (input.Colorspace, input.HasAlpha, input.BitsPerSample, input.Width, input.Height);
@@ -70,7 +71,7 @@ namespace BWEditor {
 							pix_out[i*rowstride_out + j*chan + 3] = pix_in[i*rowstride_in + j*chan + 3];
 					}
 			}
-			FSpot.Utils.Log.DebugTimerPrint (timer, "Processing took {0}");
+			Log.DebugTimerPrint (timer, "Processing took {0}");
 			return output;
 		}
 

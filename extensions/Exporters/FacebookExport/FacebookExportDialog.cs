@@ -22,7 +22,7 @@ using System.Threading;
 using Gtk;
 using GtkBeans;
 
-using FSpot.Utils;
+using Hyena;
 using FSpot.Platform;
 using FSpot.UI.Dialog;
 
@@ -349,10 +349,10 @@ namespace FSpot.Exporter.Facebook
 			bool actual = account.HasPermission (permission);
 			if (desired != actual) {
 				if (desired) {
-					Log.Debug ("Granting {0}", permission);
+					Log.DebugFormat ("Granting {0}", permission);
 					account.GrantPermission (permission, this);
 				} else {
-					Log.Debug ("Revoking {0}", permission);
+					Log.DebugFormat ("Revoking {0}", permission);
 					account.RevokePermission (permission);
 				}
 				/* Double-check that things work... */

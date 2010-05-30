@@ -21,6 +21,7 @@ using Mono.Unix;
 using FSpot.Xmp;
 using FSpot.Widgets;
 using FSpot.Utils;
+using Hyena;
 using FSpot.UI.Dialog;
 
 namespace FSpot {
@@ -376,7 +377,7 @@ namespace FSpot {
 
 		~PhotoView ()
 		{
-			FSpot.Utils.Log.Debug ("Finalizer called on {0}. Should be Disposed", GetType ());		
+			Hyena.Log.DebugFormat ("Finalizer called on {0}. Should be Disposed", GetType ());
 			Dispose (false);	
 		}
 

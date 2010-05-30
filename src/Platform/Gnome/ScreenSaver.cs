@@ -13,7 +13,7 @@ using System.Runtime.InteropServices;
 
 using NDesk.DBus;
 
-using FSpot.Utils;
+using Hyena;
 
 namespace FSpot.Platform
 {
@@ -43,7 +43,7 @@ namespace FSpot.Platform
 			if (inhibited)
 				return cookie;
 
-			Log.Information ("Inhibit screensaver for {0}", reason);
+			Log.InformationFormat ("Inhibit screensaver for {0}", reason);
 			try {
 				cookie = GnomeScreenSaver.Inhibit ("f-spot", reason);
 				inhibited = true;

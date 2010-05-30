@@ -6,7 +6,7 @@ using System;
 using Banshee.Database;
 using System.Diagnostics;
 using FSpot;
-using FSpot.Utils;
+using Hyena;
 
 // A Store maps to a SQL table.  We have separate stores (i.e. SQL tables) for tags, photos and imports.
 
@@ -274,7 +274,7 @@ public class Db : IDisposable {
 
 	~Db ()
 	{
-		Log.Debug ("Finalizer called on {0}. Should be Disposed", GetType ());
+		Log.DebugFormat ("Finalizer called on {0}. Should be Disposed", GetType ());
 		Dispose (false);
 	}
 

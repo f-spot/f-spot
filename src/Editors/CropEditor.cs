@@ -10,6 +10,7 @@
 using FSpot;
 using FSpot.UI.Dialog;
 using FSpot.Utils;
+using Hyena;
 using Gdk;
 using Gtk;
 using Mono.Unix;
@@ -143,7 +144,7 @@ namespace FSpot.Editors {
 						Pixbuf pb = State.PhotoImageView.CompletePixbuf ();
 						State.PhotoImageView.SelectionXyRatio = (double)pb.Width / (double)pb.Height;
 					} catch (System.Exception ex) {
-						Log.Warning ("Exception in selection ratio's: {0}", ex);
+						Log.WarningFormat ("Exception in selection ratio's: {0}", ex);
 						State.PhotoImageView.SelectionXyRatio = 0;
 					}
 					break;

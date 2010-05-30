@@ -44,7 +44,8 @@ REFS =							\
 	$(LINK_GPHOTO2)					\
 	$(LINK_GIOSHARP)				\
 	$(LINK_UNIQUESHARP)				\
-	-r:Mono.Posix
+	-r:Mono.Posix					\
+	$(LINK_HYENA)
 
 PKGS =					\
 	-pkg:gtk-sharp-2.0

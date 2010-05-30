@@ -16,7 +16,7 @@ using FSpot;
 using FSpot.UI.Dialog;
 using FSpot.Extensions;
 using FSpot.Filters;
-using FSpot.Utils;
+using Hyena;
 using System;
 using System.IO;
 using System.Collections;
@@ -94,10 +94,10 @@ namespace ZipExport {
 			System.Uri dest = new System.Uri (uri_chooser.Uri);
 			Crc32 crc = new Crc32 ();
 			string filedest = dest.LocalPath + "/" + filename.Text;
-			Log.Debug ("Creating zip file {0}", filedest);
+			Log.DebugFormat ("Creating zip file {0}", filedest);
 			ZipOutputStream s = new ZipOutputStream (File.Create(filedest));
 			if (scale_check.Active)
-				Log.Debug ("Scaling to {0}", scale_size.ValueAsInt);
+				Log.DebugFormat ("Scaling to {0}", scale_size.ValueAsInt);
 
 			ProgressDialog progress_dialog = new ProgressDialog (Catalog.GetString ("Exporting files"),
 							      ProgressDialog.CancelButtonType.Stop,

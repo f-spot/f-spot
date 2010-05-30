@@ -20,7 +20,8 @@ REFS =					\
 	$(LINK_UNIQUESHARP)		\
 	-r:System.Web			\
 	-r:ICSharpCode.SharpZipLib	\
-	-r:Mono.Posix
+	-r:Mono.Posix			\
+	$(LINK_HYENA)
 
 PKGS =					\
 	-pkg:gtk-sharp-2.0		\

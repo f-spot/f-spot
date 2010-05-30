@@ -30,7 +30,7 @@
 using System.Net;
 using System.Security.Cryptography.X509Certificates;
 
-using FSpot.Utils;
+using Hyena;
 
 namespace FSpotTabbloExport {
 	class BlindTrustCertificatePolicy : ICertificatePolicy {

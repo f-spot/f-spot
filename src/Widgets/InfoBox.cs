@@ -23,6 +23,7 @@ using FSpot.Utils;
 using GLib;
 using GFile = GLib.File;
 using GFileInfo = GLib.FileInfo;
+using Hyena;
 
 // FIXME TODO: We want to use something like EClippedLabel here throughout so it handles small sizes
 // gracefully using ellipsis.
@@ -501,7 +502,7 @@ namespace FSpot.Widgets
 					}
 					//}
 			} catch (System.Exception e) {
-				FSpot.Utils.Log.Debug (e.StackTrace);
+				Hyena.Log.Debug (e.StackTrace);
 				info = new ImageInfo (null);			
 			}
 
@@ -575,7 +576,7 @@ namespace FSpot.Widgets
 					file_size_value_label.Text = Format.SizeForDisplay (file_info.Size);
 				} catch (GLib.GException e) {
 					file_size_value_label.Text = Catalog.GetString("(File read error)");
-					FSpot.Utils.Log.DebugException (e);
+					Hyena.Log.DebugException (e);
 				}
 			}
 			
@@ -662,7 +663,7 @@ namespace FSpot.Widgets
 						file_size += file_info.Size;
 					} catch (GLib.GException e) {
 						file_size = -1;
-						FSpot.Utils.Log.DebugException (e);
+						Hyena.Log.DebugException (e);
 						break;
 					}
 				}
@@ -715,7 +716,7 @@ namespace FSpot.Widgets
 				
 				hint.Dispose ();
 			} catch (System.Exception e) {
-				FSpot.Utils.Log.Debug (e.StackTrace);
+				Hyena.Log.Debug (e.StackTrace);
 				using (Gdk.Pixbuf empty = new Gdk.Pixbuf (Gdk.Colorspace.Rgb, true, 8, 256, 256)) {
 					empty.Fill (0x0);
 					histogram_image.Pixbuf = histogram.Generate (empty, max);

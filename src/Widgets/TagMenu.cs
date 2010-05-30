@@ -5,6 +5,7 @@ using GtkBeans;
 using System;
 using FSpot;
 using FSpot.Utils;
+using Hyena;
 
 public class TagMenu : Menu {
 	private TagStore tag_store;

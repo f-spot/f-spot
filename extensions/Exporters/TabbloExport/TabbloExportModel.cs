@@ -27,7 +27,7 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using FSpot.Utils;
+using Hyena;
 
 using Mono.Tabblo;
 
@@ -270,13 +270,13 @@ namespace FSpotTabbloExport {
 						Gnome.Keyring.Ring.Find (
 								type, attrs);
 				if (1 < items.Length) {
-					Log.Warning ("More than one {0} "
+					Log.WarningFormat ("More than one {0} "
 							+ " found in keyring",
 							KeyringItemName);
 				}
 			
 				if (1 <= items.Length) {
-					Log.Debug ("{0} data found in "
+					Log.DebugFormat ("{0} data found in "
 							+ "keyring",
 							KeyringItemName);
 					attrs =	items [0].Attributes;

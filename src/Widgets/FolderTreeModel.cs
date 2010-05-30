@@ -14,7 +14,7 @@ using Gtk;
 using GLib;
 
 using FSpot;
-using FSpot.Utils;
+using Hyena;
 
 using Banshee.Database;
 
@@ -110,7 +110,7 @@ namespace FSpot.Widgets
 				Uri base_uri = new Uri (reader["base_uri"].ToString ());
 				
 				if ( ! base_uri.IsAbsoluteUri) {
-					FSpot.Utils.Log.Error ("Uri must be absolute: {0}", base_uri.ToString ());
+					Hyena.Log.ErrorFormat ("Uri must be absolute: {0}", base_uri.ToString ());
 					continue;
 				}
 				

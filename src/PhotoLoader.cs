@@ -1,7 +1,6 @@
 using System;
 
 using FSpot.Platform;
-using FSpot.Utils;
 using Hyena;
 
 namespace FSpot {
@@ -46,7 +45,7 @@ namespace FSpot {
 		{			
 			using (Gdk.Pixbuf thumbnail = ThumbnailCache.Default.GetThumbnailForUri (uri)) {
 				if (pixbuf != null && thumbnail != null && !ThumbnailFactory.ThumbnailIsValid (thumbnail, uri)) {
-					Log.Debug ("regenerating thumbnail for {0}", uri);
+					Log.DebugFormat ("regenerating thumbnail for {0}", uri);
 					FSpot.ThumbnailGenerator.Default.Request (uri, 0, 256, 256);
 				}
 			}

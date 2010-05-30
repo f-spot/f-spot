@@ -12,6 +12,7 @@ using Gtk;
 using Gdk;
 using FSpot.Widgets;
 using FSpot.Utils;
+using Hyena;
 using Mono.Unix;
 
 namespace FSpot {

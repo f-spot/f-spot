@@ -34,7 +34,7 @@ using System.Reflection;
 using System.Security.Cryptography.X509Certificates;
 using System.Threading;
 
-using FSpot.Utils;
+using Hyena;
 
 namespace FSpotTabbloExport {
 

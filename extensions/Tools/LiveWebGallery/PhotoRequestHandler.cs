@@ -13,7 +13,7 @@ using System.Text;
 
 using FSpot;
 using FSpot.Filters;
-using FSpot.Utils;
+using Hyena;
 
 namespace LiveWebGalleryExtension
 {	
@@ -61,7 +61,7 @@ namespace LiveWebGalleryExtension
 		protected void SendFile (FileInfo file, Photo photo, Stream dest)
 		{
 			stats.BytesSent += (int)file.Length;			
-			Log.Debug ("Sending {0}, {1} kb", file.FullName, file.Length / 1024);
+			Log.DebugFormat ("Sending {0}, {1} kb", file.FullName, file.Length / 1024);
 			SendHeadersAndStartContent(dest, "Content-Type: " + MimeTypeForExt (file.Extension),
 											 "Content-Length: " + file.Length,
 								 "Last-Modified: " + photo.Time.ToString ("r"));

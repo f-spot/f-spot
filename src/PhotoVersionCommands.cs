@@ -3,7 +3,7 @@ using Glade;
 using System;
 using Mono.Unix;
 using FSpot;
-using FSpot.Utils;
+using Hyena;
 using FSpot.UI.Dialog;
 
 public class PhotoVersionCommands

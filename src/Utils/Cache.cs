@@ -10,6 +10,7 @@
 
 using System;
 using System.Collections.Generic;
+using Hyena;
 
 
 namespace FSpot.Utils
@@ -152,7 +153,7 @@ namespace FSpot.Utils
 
 		~DisposableCache ()
 		{
-			Log.Debug ("Finalizer called on {0}. Should be Disposed", GetType ());		
+			Log.DebugFormat ("Finalizer called on {0}. Should be Disposed", GetType ());
 			Clear ();	
 		}
 	}

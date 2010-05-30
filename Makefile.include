@@ -13,6 +13,7 @@ DIR_SRC = $(top_builddir)/src
 DIR_GIOSHARP = $(top_builddir)/lib/gio-sharp/gio
 DIR_GTKSHARPBEANS = $(top_builddir)/lib/gtk-sharp-beans
 DIR_UNIQUESHARP = $(top_builddir)/lib/unique-sharp/unique
+DIR_BIN = $(top_builddir)/bin
 
 ## Links
 
@@ -21,6 +22,10 @@ LINK_SEMWEB = -r:$(DIR_SEMWEB)/SemWeb.dll
 LINK_GIOSHARP = -r:$(DIR_GIOSHARP)/gio-sharp.dll
 LINK_GTKSHARPBEANS = -r:$(DIR_GTKSHARPBEANS)/gtk-sharp-beans.dll
 LINK_UNIQUESHARP = -r:$(DIR_UNIQUESHARP)/unique-sharp.dll
+LINK_HYENA = -r:$(DIR_BIN)/Hyena.dll
+LINK_HYENA_GUI = -r:$(DIR_BIN)/Hyena.Gui.dll
+LINK_HYENA_DATA_SQLITE = -r:$(DIR_BIN)/Hyena.Data.Sqlite.dll
+
 
 ## Build
 

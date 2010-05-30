@@ -12,7 +12,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using FSpot.Query;
-using FSpot.Utils;
+using Hyena;
 
 namespace FSpot {
 	public class PhotoQuery : FSpot.IBrowsableCollection {

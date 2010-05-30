@@ -29,6 +29,7 @@
 using System;
 using Gtk;
 using Mono.Unix;
+using Hyena;
 
 namespace FSpot.Widgets
 {
@@ -57,7 +58,7 @@ namespace FSpot.Widgets
 			box.PackStart (label, false, false, 0);
 
 			if (parent is FullScreenView) {
-				FSpot.Utils.Log.Debug ("PARENT IS FSVIEW");
+				Log.Debug ("PARENT IS FSVIEW");
 				FullScreenView fsview = parent as FullScreenView;
 				entry = new Rating ((int)fsview.View.Item.Current.Rating, true);
 			} else if (App.Instance.Organizer.Selection.Count == 1)

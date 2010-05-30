@@ -15,7 +15,7 @@ using System.Threading;
 using System;
 
 using Hyena;
-using FSpot.Utils;
+
 
 public class ImageLoaderThread {
 
@@ -183,7 +183,7 @@ public class ImageLoaderThread {
 		if (requests_by_uri.TryGetValue (uri, out existing_request)) {
 			/* FIXME: At least for now, this shouldn't happen.  */
 			if (existing_request.order != order)
-				Log.Warning ("BUG: Filing another request of order {0} (previously {1}) for `{2}'",
+				Log.WarningFormat ("BUG: Filing another request of order {0} (previously {1}) for `{2}'",
 						   order, existing_request.order, uri);
 
 			queue.Remove (existing_request);
