@@ -12,6 +12,7 @@ using FSpot.UI.Dialog;
 using System;
 //using Gnome.Vfs;
 using Gtk;
+using Hyena;
 
 namespace ChangePhotoPath
 {
@@ -35,7 +36,7 @@ namespace ChangePhotoPath
 			try {
 				contr = new ChangePathController ( this );
 			} catch (Exception e) {
-				Console.WriteLine(e);
+				Log.Exception(e);
 				return false;
 			}
 			return true;
@@ -148,7 +149,7 @@ namespace ChangePhotoPath
 										break;
 				case ProcessResult.NoPhotosFound 	: 	DisplayNoPhotosFoundMsg();
 										break;
-				case ProcessResult.Processing 		: 	System.Console.WriteLine ("processing");
+				case ProcessResult.Processing 		: 	Log.Debug ("processing");
 										break;
 				}
 			} else
@@ -197,7 +198,7 @@ namespace ChangePhotoPath
 			try {
 				LaunchDialog( );
 			} catch (Exception e) {
-				Console.WriteLine(e);
+				Log.Exception(e);
 			}
 		}
 	}

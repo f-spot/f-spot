@@ -11,6 +11,7 @@ using System.Text;
 using Mono.Unix;
 using Gtk;
 using Gdk;
+using Hyena;
 
 namespace FSpot {
 	public abstract class Term {
@@ -287,7 +288,7 @@ namespace FSpot {
 				return new OrTerm (parent, after);
 			}
 
-			Console.WriteLine ("Do not have Term for operator {0}", op);
+			Log.DebugFormat ("Do not have Term for operator {0}", op);
 			return null;
 		}
 	}

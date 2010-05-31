@@ -284,7 +284,7 @@ namespace FSpot {
 						// Mark the path for deletion
 						tmp_paths.Add (request.Current.LocalPath);
 					} catch (Exception e) {
-						Console.WriteLine("Error preparing {0}: {1}", selection[i].Name, e.Message);
+						Hyena.Log.ErrorFormat ("Error preparing {0}: {1}", selection[i].Name, e.Message);
 						HigMessageDialog md = new HigMessageDialog (parent_window, 
 											    DialogFlags.DestroyWithParent,
 											    MessageType.Error,

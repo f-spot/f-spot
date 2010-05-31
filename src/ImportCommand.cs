@@ -89,7 +89,7 @@ public class ImportCommand : GladeDialog
 			try {
 				mount_point = mount.Root.Uri;
 			} catch (System.Exception e) {
-				System.Console.WriteLine (e);
+				Hyena.Log.Exception (e);
 			}
 
 			uri = new SafeUri (mount.Root.Uri, true);
@@ -214,7 +214,7 @@ public class ImportCommand : GladeDialog
 		public int FindItemPosition (SafeUri uri)
 		{
 			Gtk.Widget [] children = this.Children;
-			System.Console.WriteLine ("looking for {0}", uri);
+			Hyena.Log.DebugFormat ("looking for {0}", uri);
 			for (int i = 0; i < children.Length; i++) {
 				if (children [i] is SourceItem) {
 					VfsSource vfs = ((SourceItem)(children [i])).Source as VfsSource;
@@ -364,7 +364,7 @@ public class ImportCommand : GladeDialog
 			// with the recursive DoImport loops we sometimes get into
 			ongoing = importer.Step (out status_info);
 		} catch (ImportException e){
-			System.Console.WriteLine (e);
+			Hyena.Log.Exception (e);
 			return false;
 		}
 
@@ -377,7 +377,7 @@ public class ImportCommand : GladeDialog
 		if (ongoing && total > 0)
 			return true;
 		else {
-			System.Console.WriteLine ("Stopping");
+			Hyena.Log.Debug ("Stopping");
 			if (progress_bar != null)
 				progress_bar.Text = Catalog.GetString ("Done Loading");
 			
@@ -582,7 +582,7 @@ public class ImportCommand : GladeDialog
 				if (file.QueryExists (null))
 					break;
 			} catch (System.Exception e){
-				System.Console.WriteLine (e);
+				Hyena.Log.Exception (e);
 				break;
 			}
 

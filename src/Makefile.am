@@ -372,7 +372,8 @@ WIDGETS_ASSEMBLIES =				\
 	-r:Cms.dll				\
 	-r:Mono.Posix				\
 	-r:FSpot.Core.dll			\
-	-r:FSpot.Utils.dll
+	-r:FSpot.Utils.dll			\
+	$(LINK_HYENA)
 
 GNOME_PLATFORM_ASSEMBLIES =			\
 	$(LINK_GIOSHARP)			\

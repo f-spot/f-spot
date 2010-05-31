@@ -71,7 +71,7 @@ namespace FSpot {
 
 				System.Threading.Thread.Sleep (75);
 			} catch (System.Exception e) {
-				System.Console.WriteLine (e.ToString ());
+				Log.Exception (e);
 			}
 		}
 

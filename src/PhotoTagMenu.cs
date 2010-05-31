@@ -29,6 +29,7 @@ using System.Collections;
 using Gtk;
 
 using FSpot;
+using Hyena;
 
 public class PhotoTagMenu : Menu {
 	public delegate void TagSelectedHandler (Tag t);
@@ -81,7 +82,7 @@ public class PhotoTagMenu : Menu {
 			if (t != null)
 				TagSelected (t.Value);
 			else 
-				Console.WriteLine ("Item was not a TagMenuItem");
+				Log.Debug ("Item was not a TagMenuItem");
 		}
 	}
 }

@@ -14,6 +14,7 @@ using System.Collections;
 using System.Runtime.InteropServices;
 
 using Mono.Unix;
+using Hyena;
 
 namespace Exif {
 	public enum Tag {
@@ -582,7 +583,7 @@ namespace Exif {
 			byte [] tmp = new byte [len + 1];
 			System.Text.Encoding.UTF8.GetBytes (value, 0, value.Length, tmp, 0);
 			tmp[len] = 0;
-			System.Console.WriteLine ("value = {0} len = {1}", value, len);
+			Log.DebugFormat ("value = {0} len = {1}", value, len);
 			SetData (tmp, 1);
 		}
 
@@ -802,7 +803,7 @@ namespace Exif {
 				free (data);
 			}
 				
-			System.Console.WriteLine ("Saved {0} bytes", content.Length);
+			Log.DebugFormat ("Saved {0} bytes", content.Length);
 			return content;
 		}
 		

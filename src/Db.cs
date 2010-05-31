@@ -315,7 +315,7 @@ public class Db : IDisposable {
 		if (upgrader_path == null)
 			throw new DbException ("Failed to upgrade the f-spot sqlite2 database to sqlite3!\n" + "Unable to find the f-spot-sqlite-upgrade script on your system");
 
-		Console.WriteLine ("Running {0}...", upgrader_path);
+		Log.DebugFormat ("Running {0}...", upgrader_path);
 		ProcessStartInfo updaterInfo = new ProcessStartInfo (upgrader_path);
 		updaterInfo.UseShellExecute = false;
 		updaterInfo.RedirectStandardError = true;

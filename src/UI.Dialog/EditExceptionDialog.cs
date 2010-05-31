@@ -10,6 +10,7 @@
 using System;
 using Mono.Unix;
 using Gtk;
+using Hyena;
 
 namespace FSpot.UI.Dialog
 {
@@ -39,7 +40,7 @@ namespace FSpot.UI.Dialog
 											    GenerateMessage (errors))
 		{
 			foreach (Exception e in errors)
-				Console.WriteLine (e);
+				Log.Exception (e);
 		}
 
 		public EditExceptionDialog (Gtk.Window parent, Exception e, IBrowsableItem item) : this (parent, new EditException (item, e))

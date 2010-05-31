@@ -99,7 +99,7 @@ namespace FSpot.Platform
 				// If the original file is not on disk, the thumbnail is as valid as it's going to get
 				return true;
 			} catch (System.Exception e) {
-				System.Console.WriteLine (e);
+				Log.Exception (e);
 				return false;
 			}
 		}

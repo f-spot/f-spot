@@ -223,8 +223,8 @@ namespace MergeDbExtension
 					PathMap[folder] = new_folder;
 
 				} else
-					Console.WriteLine ("point me to the file");
-				Console.WriteLine ("FNF: {0}", photo_path);
+					Log.Debug ("point me to the file");
+				Log.DebugFormat ("FNF: {0}", photo_path);
 
 			}
 

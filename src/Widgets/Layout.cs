@@ -11,6 +11,7 @@
 
 using System;
 using System.Collections.Generic;
+using Hyena;
 
 namespace FSpot.Widgets
 {
@@ -232,7 +233,7 @@ namespace FSpot.Widgets
 
 		protected override void OnSetScrollAdjustments (Gtk.Adjustment hadjustment, Gtk.Adjustment vadjustment)
 		{
-Console.WriteLine ("\n\nLayout.OnSetScrollAdjustments");
+			Log.Debug ("\n\nLayout.OnSetScrollAdjustments");
 			if (hadjustment == null)
 				hadjustment = new Gtk.Adjustment (0, 0, 0, 0, 0, 0);
 			if (vadjustment == null)

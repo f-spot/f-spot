@@ -12,6 +12,7 @@ using Cms;
 using Gdk;
 using System;
 using System.Collections.Generic;
+using Hyena;
 
 namespace FSpot.ColorAdjustment {
 	public class AutoStretch : Adjustment {
@@ -28,7 +29,7 @@ namespace FSpot.ColorAdjustment {
 			for (int channel = 0; channel < tables.Length; channel++) {
 				int high, low;
 				hist.GetHighLow (channel, out high, out low);
-				System.Console.WriteLine ("high = {0}, low = {1}", high, low);
+				Log.DebugFormat ("high = {0}, low = {1}", high, low);
 				tables [channel] = StretchChannel (255, low / 255.0, high / 255.0); 
 			}
 			profiles.Add (new Cms.Profile (IccColorSpace.Rgb, tables));

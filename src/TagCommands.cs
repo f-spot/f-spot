@@ -21,6 +21,7 @@ using FSpot;
 using FSpot.Utils;
 using FSpot.UI.Dialog;
 using FSpot.Widgets;
+using Hyena;
 
 public class TagCommands {
 
@@ -166,7 +167,7 @@ public class TagCommands {
 						new_tag = tag_store.CreateTag (parent_category, tag_name_entry.Text, autoicon);
 				} catch (Exception ex) {
 					// FIXME error dialog.
-					Console.WriteLine ("error {0}", ex);
+					Log.Exception (ex);
 				}
 			}
 

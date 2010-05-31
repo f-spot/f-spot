@@ -188,7 +188,7 @@ namespace FSpot {
 		public void HandleCollectionChanged (IBrowsableCollection collection)
 		{
 			if (collection.Count > 0 && directory_view.Selection.Count == 0) {
-				Console.WriteLine ("Added selection");
+				Log.Debug ("Added selection");
 				directory_view.Selection.Add (0);
 			}
 

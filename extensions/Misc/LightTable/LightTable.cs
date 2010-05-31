@@ -31,7 +31,7 @@ namespace LightTableExtension
 	{
 		public void Run (object o, EventArgs e)
 		{
-			Console.WriteLine ("EXECUTING LIGHTTABLE EXTENSION");
+			Log.Debug ("EXECUTING LIGHTTABLE EXTENSION");
 
 			LightTableWidget light_table;
 
@@ -131,7 +131,7 @@ namespace LightTableExtension
 				foreach (MLPhoto selected in selected_photos) {
 					Children.Remove (selected);
 					photos.Remove (selected);
-					Console.WriteLine ("Children:"+Children.Count);
+					Log.Debug ("Children:"+Children.Count);
 				}
 				selected_photos = new List<MLPhoto> ();
 				ToGrid ();

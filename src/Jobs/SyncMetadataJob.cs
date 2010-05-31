@@ -10,6 +10,7 @@
 using System;
 using Banshee.Kernel;
 using FSpot.Utils;
+using Hyena;
 
 namespace FSpot.Jobs {
 	public class SyncMetadataJob : Job
@@ -32,13 +33,13 @@ namespace FSpot.Jobs {
 		{
 			//this will add some more reactivity to the system
 			System.Threading.Thread.Sleep (500);
-			Console.WriteLine ("Syncing metadata to file...");
+			Log.Debug ("Syncing metadata to file...");
 			try {
 				Photo photo = FSpot.App.Instance.Database.Photos.Get (Convert.ToUInt32 (JobOptions)) as Photo;
 				WriteMetadataToImage (photo);
 				return true;
 			} catch (System.Exception e) {
-				Console.WriteLine ("Error syncing metadata to file\n{0}", e);
+				Log.ErrorFormat ("Error syncing metadata to file\n{0}", e);
 			}
 			return false;
 		}

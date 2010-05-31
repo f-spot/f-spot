@@ -34,7 +34,7 @@ namespace FSpot.Svg {
 				store.Dump ();
 
 			} catch (System.Exception e) {
-				System.Console.WriteLine (e.ToString ());
+				Log.Error (e.ToString ());
 			}
 		}
 

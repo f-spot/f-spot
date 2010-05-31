@@ -62,7 +62,7 @@ namespace FSpot {
 						return Image.Description;
 
 				} catch (System.Exception e) {
-					System.Console.WriteLine (e);
+					Log.Exception (e);
 				}
 
 				return null;

@@ -11,6 +11,7 @@ using System;
 using FSpot;
 using FSpot.Query;
 using Mono.Unix;
+using Hyena;
 
 namespace MergeDbExtension
 {
@@ -24,7 +25,7 @@ namespace MergeDbExtension
 		{
 			Glade.XML xml = new Glade.XML (null, "MergeDb.glade", "pickfolder_dialog", "f-spot");
 			xml.Autoconnect (this);
-			Console.WriteLine ("new pickfolder");
+			Log.Debug ("new pickfolder");
 			pickfolder_dialog.Modal = false;
 			pickfolder_dialog.TransientFor = parent;
 

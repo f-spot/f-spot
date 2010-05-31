@@ -2,6 +2,7 @@ using System;
 using System.IO;
 using System.Runtime.InteropServices;
 using GLib;
+using Hyena;
 
 namespace FSpot {
 
@@ -129,7 +130,7 @@ namespace FSpot {
 			status = g_io_channel_flush (handle, out error);
 
 			if (status != IOStatus.Normal && status != IOStatus.Eof)
-				System.Console.WriteLine ("IOChannel status = {0}", status);
+				Hyena.Log.DebugFormat ("IOChannel status = {0}", status);
 
 			if (error != IntPtr.Zero)
 				throw new GException (error);
@@ -178,7 +179,7 @@ namespace FSpot {
 			}
 
 			if (status != IOStatus.Normal && status != IOStatus.Eof)
-				System.Console.WriteLine ("IOChannel status = {0}", status);
+				Hyena.Log.DebugFormat ("IOChannel status = {0}", status);
 
 			if (error != IntPtr.Zero)
 				throw new GException (error);

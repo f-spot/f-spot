@@ -17,6 +17,7 @@ using FlickrNet;
 using FSpot;
 using FSpot.Utils;
 using FSpot.Filters;
+using Hyena;
 
 public class FlickrRemote {
 	public static Licenses    licenses;
@@ -66,7 +67,7 @@ public class FlickrRemote {
 			try {
 				licenses = flickr.PhotosLicensesGetInfo();
 			} catch (FlickrNet.FlickrApiException e ) {
-				Console.WriteLine ( e.Code + ": " + e.Verbose );
+				Log.Error ( e.Code + ": " + e.Verbose );
 				return null;
 			}
 		}
@@ -106,7 +107,7 @@ public class FlickrRemote {
 		if (frob == null) {
 			frob = flickr.AuthGetFrob ();
 			if (frob ==  null) {
-				Console.WriteLine ("ERROR: Problems login in Flickr. Don't have a frob");
+				Log.Error ("Problems login in Flickr. Don't have a frob");
 				return null;
 			}
 		}
@@ -119,7 +120,7 @@ public class FlickrRemote {
 
 				return auth;
 			} catch (FlickrNet.FlickrApiException ex) {
-				Console.WriteLine ("ERROR: Problems login in Flickr - "+ex.Verbose);
+				Log.Error ("Problems login in Flickr - "+ex.Verbose);
 
 				return null;
 			}
@@ -181,7 +182,7 @@ public class FlickrRemote {
 						flickr.UploadPicture (path, photo.Name, photo.Description, tags, is_public, is_family, is_friend);
 					return photoid;
 				} catch (FlickrNet.FlickrException ex) {
-					Console.WriteLine ("Problems uploading picture: " + ex.ToString());
+					Log.Error ("Problems uploading picture: " + ex.ToString());
 					error_verbose = ex.ToString();
 				}
 			} catch (Exception e) {

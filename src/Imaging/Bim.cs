@@ -1,3 +1,5 @@
+using Hyena;
+
 namespace FSpot.Bim {
 	public enum EntryType : ushort {
 		ObsoleteImageInfo = 0x03e8,  
@@ -193,7 +195,7 @@ namespace FSpot.Bim {
 				try {
 					//System.Console.WriteLine (System.Text.Encoding.ASCII.GetString (current.Data));
 				} catch (System.Exception e) {
-					System.Console.WriteLine (e.ToString ());
+					Log.Exception (e);
 				}
 				entries.Add (current);
 			}

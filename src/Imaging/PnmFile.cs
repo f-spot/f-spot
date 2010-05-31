@@ -42,7 +42,7 @@ namespace FSpot.Pnm {
 
 			public void Dump ()
 			{
-				System.Console.WriteLine ("Loading ({0} - {1},{2} - {3})", 
+				Log.DebugFormat ("Loading ({0} - {1},{2} - {3})",
 							  Magic, Width, Height, Max);
 			}
 		}
@@ -212,7 +212,7 @@ namespace FSpot.Pnm {
 					return pixbuf;
 				}
 			} catch (System.Exception e) {
-				System.Console.WriteLine (e.ToString ());
+				Log.Exception (e);
 			}
 			return null;
 		}

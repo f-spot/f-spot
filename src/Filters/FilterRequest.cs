@@ -55,7 +55,7 @@ namespace FSpot.Filters {
 				try {
 					System.IO.File.Delete (uri.LocalPath);
 				} catch (System.IO.IOException e) {
-					System.Console.WriteLine (e);
+					Log.Exception (e);
 				}
 			}
 			temp_uris.Clear ();

@@ -419,7 +419,7 @@ namespace FSpot.Tiff {
 				try {
 					enc = System.Text.Encoding.GetEncoding ("euc-jp");
 				} catch {
-					System.Console.WriteLine ("missing jis0208 encoding");
+					Log.Warning ("missing jis0208 encoding");
 					enc = System.Text.Encoding.Default;
 				}
 				break;
@@ -467,7 +467,7 @@ namespace FSpot.Tiff {
 			enc.GetBytes (Value, 0, Value.Length, data, heading.Length);
 			
 			UserComment c = new UserComment (data, is_little);
-			System.Console.WriteLine ("old = \"{0}\" new = \"{1}\" heading = \"{2}\"", c.Value, description, heading);
+			Log.DebugFormat ("old = \"{0}\" new = \"{1}\" heading = \"{2}\"", c.Value, description, heading);
 			return data;
 		}
 
@@ -844,7 +844,7 @@ namespace FSpot.Tiff {
 
 		        if (stream.Read (tmp, 0, tmp.Length) < 4) {
 #if DEBUG_LOADER
-				System.Console.WriteLine ("short read XXXXXXXXXXXXXXXXXXXXXXx");
+				Log.Debug ("short read XXXXXXXXXXXXXXXXXXXXXXx");
 #endif
 				throw new ShortReadException ();
 			}
@@ -857,7 +857,7 @@ namespace FSpot.Tiff {
 
 		        if (stream.Read (tmp, 0, tmp.Length) < 2) {
 #if DEBUG_LOADER
-				System.Console.WriteLine ("Short read");
+				Log.Debug ("Short read");
 #endif
 				throw new ShortReadException ();
 			}
@@ -893,13 +893,13 @@ namespace FSpot.Tiff {
 				//System.Console.WriteLine ("Found Standard Tiff Marker {0}", marker);
 				break;
 			case 0x4f52:
-				System.Console.WriteLine ("Found Olympus Tiff Marker {0}", marker.ToString ("x"));
+				Log.DebugFormat ("Found Olympus Tiff Marker {0}", marker.ToString ("x"));
 				break;
 			case 0x4e31:
-				System.Console.WriteLine ("Found Navy Interchange File Format Tiff Marker {0}", marker.ToString ("x")); 
+				Log.DebugFormat ("Found Navy Interchange File Format Tiff Marker {0}", marker.ToString ("x"));
 				break;
 			default:
-				System.Console.WriteLine ("Found Unknown Tiff Marker {0}", marker.ToString ("x"));
+				Log.DebugFormat ("Found Unknown Tiff Marker {0}", marker.ToString ("x"));
 				break;
 			}
 
@@ -910,7 +910,7 @@ namespace FSpot.Tiff {
 				throw new ParseException ("Invalid IFD0 Offset [" + directory_offset.ToString () + "]"); 
 			
 #if DEBUG_LOADER
-			System.Console.WriteLine ("Reading First IFD");
+			Log.Debug ("Reading First IFD");
 #endif
 			Directory = new ImageDirectory (stream, directory_offset, endian); 
 			//}
@@ -928,7 +928,7 @@ namespace FSpot.Tiff {
 		{
 			foreach (DirectoryEntry e in dir.Entries) {
 #if DEBUG_LOADER
-				System.Console.WriteLine ("{0}", e.Id);
+				Log.DebugFormat ("{0}", e.Id);
 #endif
 				switch (e.Id) {
 				case TagId.IPTCNAA:
@@ -965,8 +965,8 @@ namespace FSpot.Tiff {
 					try {
 						ImageDirectory sub = ((SubdirectoryEntry)e).Directory [0];
 						SelectDirectory (sub, sink);
-					} catch (System.Exception exc) {
-						System.Console.WriteLine (exc);
+					} catch (System.Exception ex) {
+						Log.Exception (ex);
 					}
 					break;
 				case TagId.Software:
@@ -978,7 +978,7 @@ namespace FSpot.Tiff {
 					MetadataStore.AddLiteral (sink, "xmp:ModifyDate", 
 								  e.ValueAsDate.ToString ("yyyy-MM-ddThh:mm:ss"));
 					} catch (System.Exception ex) {
-						System.Console.WriteLine (String.Format ("error parsing {0}{2}{1}", e.ValueAsString[0], ex, Environment.NewLine));
+						Log.ErrorFormat ("error parsing {0}{2}{1}", e.ValueAsString[0], ex, Environment.NewLine);
 					}
 
 					break;
@@ -990,7 +990,7 @@ namespace FSpot.Tiff {
 						MetadataStore.AddLiteral (sink, "exif:" + e.Id.ToString (), 
 									  e.ValueAsDate.ToString ("yyyy-MM-ddThh:mm:ss"));
 					} catch (System.Exception ex) {
-						System.Console.WriteLine (String.Format ("error parsing {0}{2}{1}", e.ValueAsString[0], ex, Environment.NewLine));
+						Log.ErrorFormat ("error parsing {0}{2}{1}", e.ValueAsString[0], ex, Environment.NewLine);
 					}
 					break;
 					//case TagId.SpatialFrequencyResponse
@@ -1082,7 +1082,7 @@ namespace FSpot.Tiff {
 					try {
 						MetadataStore.AddLiteral (sink, "tiff:" + e.Id.ToString (), e.ValueAsString [0]);
 					} catch (System.Exception ex) {
-						System.Console.WriteLine (String.Format ("error parsing {0}{2}{1}", e.Id, ex, Environment.NewLine));
+						Log.ErrorFormat ("error parsing {0}{2}{1}", e.Id, ex, Environment.NewLine);
 					}
 					break;
 				}
@@ -1181,7 +1181,7 @@ namespace FSpot.Tiff {
 		{
 			num_entries = Converter.ReadUShort (stream, endian);
 #if DEBUG_LOADER
-			System.Console.WriteLine ("reading {0} entries", num_entries);
+			Log.DebugFormat ("reading {0} entries", num_entries);
 #endif			
 			entries = new List<DirectoryEntry> (num_entries);
 			int entry_length = num_entries * 12;
@@ -1189,7 +1189,7 @@ namespace FSpot.Tiff {
 			
 			if (stream.Read (content, 0, content.Length) < content.Length) {
 #if DEBUG_LOADER
-				System.Console.WriteLine ("short read XXXXXXXXXXXXXXXXXXXXXXx");
+				Log.Debug ("short read XXXXXXXXXXXXXXXXXXXXXXx");
 #endif
 				throw new ShortReadException ();
 			}
@@ -1199,7 +1199,7 @@ namespace FSpot.Tiff {
 				DirectoryEntry entry = CreateEntry (this, content, pos, this.endian);
 				entries.Add (entry);		
 #if DEBUG_LOADER
-				System.Console.WriteLine ("Added Entry {0} {1} - {2} * {3}", entry.Id.ToString (), entry.Id.ToString ("x"), entry.Type, entry.Count);
+				Log.DebugFormat ("Added Entry {0} {1} - {2} * {3}", entry.Id.ToString (), entry.Id.ToString ("x"), entry.Type, entry.Count);
 #endif
 				if (entry.Id == TagId.NewSubfileType) {
 					
@@ -1222,7 +1222,7 @@ namespace FSpot.Tiff {
 		protected void LoadNextDirectory (System.IO.Stream stream)
 		{
 #if DEBUG_LOADER
-			System.Console.WriteLine ("start_position = {1} next_directory_offset = {0}",
+			Log.DebugFormat ("start_position = {1} next_directory_offset = {0}",
 						  next_directory_offset, orig_position);
 #endif
 			next_directory = null;
@@ -1330,7 +1330,7 @@ namespace FSpot.Tiff {
 					try {
 						return new Cms.Profile (e.RawData);
 					} catch (System.Exception ex) {
-						System.Console.WriteLine (ex);
+						Log.Exception (ex);
 					}
 					break;
 				case TagId.ColorSpace:
@@ -1340,7 +1340,7 @@ namespace FSpot.Tiff {
 					case ColorSpace.AdobeRGB:
 						return Cms.Profile.CreateAlternateRgb ();
 					case ColorSpace.Uncalibrated:
-						System.Console.WriteLine ("Uncalibrated colorspace");
+						Log.Debug ("Uncalibrated colorspace");
 						break;
 					}
 					break;
@@ -1368,7 +1368,7 @@ namespace FSpot.Tiff {
 					ushort [] trns = e.ShortValue;
 					ushort gamma_count = (ushort) (1 << bits_per_sample);
 					Cms.GammaTable [] tables = new Cms.GammaTable [3];
-					System.Console.WriteLine ("Parsing transfer function: count = {0}", trns.Length);
+					Log.DebugFormat ("Parsing transfer function: count = {0}", trns.Length);
 
 					// FIXME we should use the TransferRange here
 					// FIXME we should use bits per sample here
@@ -1405,10 +1405,10 @@ namespace FSpot.Tiff {
 
 		public void Dump (string name) 
 		{
-			System.Console.WriteLine ("Starting {0}", name);
+			Log.DebugFormat ("Starting {0}", name);
 			foreach (DirectoryEntry e in this.Entries)
 				e.Dump (name);
-			System.Console.WriteLine ("Ending {0}", name);
+			Log.DebugFormat ("Ending {0}", name);
 		}
 		
 		public string Dump2 ()
@@ -1455,14 +1455,14 @@ namespace FSpot.Tiff {
 		public SubdirectoryEntry (byte [] data, int offset, Endian endian) : base (data, offset, endian)
 		{
 			if (this.GetEntryCount () > 1) {
-				System.Console.WriteLine ("Count is greater than 1 ({1}) on Subdirectory {0} interesting", tagid, count);
+				Log.DebugFormat ("Count is greater than 1 ({1}) on Subdirectory {0} interesting", tagid, count);
 			}
 		}
 
 		public override uint Save (OrderedWriter writer, uint position)
 		{
 #if DEBUG_LOADER			
-			Console.WriteLine ("writing entry {0} {1} {2} - value offset = {3}", Id, Type, Count, position);
+			Log.DebugFormat ("writing entry {0} {1} {2} - value offset = {3}", Id, Type, Count, position);
 #endif
 
 			writer.Write ((ushort)Id);
@@ -1506,7 +1506,7 @@ namespace FSpot.Tiff {
 						throw new Exception ("recursive ifd");
 					Directory [i] = new ImageDirectory (stream, directory_offset, endian);
 				} catch (System.Exception e) {
-					System.Console.WriteLine ("Error loading Subdirectory {0} at {2} of {3}bytes:{4}{1}", 
+					Log.ErrorFormat ("Error loading Subdirectory {0} at {2} of {3}bytes:{4}{1}",
 								  this.Id, e, directory_offset, stream.Length, Environment.NewLine);
 				}
 					
@@ -1522,7 +1522,7 @@ namespace FSpot.Tiff {
 					if (Directory [i] != null)
 						Directory [i].Dump (subdirname);
 				} catch (System.Exception e) {
-					System.Console.WriteLine (e);
+					Log.Exception (e);
 				}
 			}
 		}
@@ -1627,7 +1627,7 @@ namespace FSpot.Tiff {
 		public virtual uint Save (OrderedWriter writer, uint position)
 		{
 #if DEBUG_LOADER			
-			Console.WriteLine ("writing entry {0} {1} {2}", Id, Type, Count);
+			Log.DebugFormat ("writing entry {0} {1} {2}", Id, Type, Count);
 #endif
 			writer.Write ((ushort)Id);
 			writer.Write ((ushort)Type);
@@ -1717,7 +1717,7 @@ namespace FSpot.Tiff {
 				byte [] data = new byte [count * GetTypeSize ()];
 				if (stream.Read (data, 0, data.Length) < data.Length) {
 #if DEBUG_LOADER
-					System.Console.WriteLine ("Short read");
+					Log.Debug ("Short read");
 #endif
 					throw new ShortReadException ();
 				}
@@ -1778,17 +1778,17 @@ namespace FSpot.Tiff {
 			case EntryType.Short:
 			case EntryType.Long:
 				uint [] vals = this.ValueAsLong;
-				System.Console.Write ("{3}{1}({2}) [{0}] (", vals.Length, this.Id, this.Type, name);
+				Log.DebugFormat ("{3}{1}({2}) [{0}] (", vals.Length, this.Id, this.Type, name);
 				for (int i = 0; i < System.Math.Min (15, vals.Length); i++) {
 					System.Console.Write (" {0}", vals [i]);
 				}
-				System.Console.WriteLine (")");
+				Log.Debug (")");
 				break;
 			case EntryType.Ascii:
-				System.Console.WriteLine ("{3}{1}({2}) (\"{0}\")", this.StringValue, this.Id, this.Type, name);
+				Log.DebugFormat ("{3}{1}({2}) (\"{0}\")", this.StringValue, this.Id, this.Type, name);
 				break;
 			default:
-				System.Console.WriteLine ("{3}{1}({2}) [{0}]", this.Count, this.Id, this.Type, name);
+				Log.DebugFormat ("{3}{1}({2}) [{0}]", this.Count, this.Id, this.Type, name);
 				break;
 			}
 		}
@@ -1815,7 +1815,7 @@ namespace FSpot.Tiff {
 			byte [] tmp = new byte [len + 1];
 			System.Text.Encoding.UTF8.GetBytes (value, 0, value.Length, tmp, 0);
 			tmp[len] = 0;
-			System.Console.WriteLine ("SetData: value = {0} len = {1}", value, len);
+			Log.DebugFormat ("SetData: value = {0} len = {1}", value, len);
 			SetData (tmp);
 		}
 	
@@ -1901,7 +1901,7 @@ namespace FSpot.Tiff {
 					case TagId.ComponentsConfiguration:
 						return ArrayToString (ValueAsLong);
 					default:
-						System.Console.WriteLine ("Cannot convert type \"{0}\" to string", Id);
+						Log.DebugFormat ("Cannot convert type \"{0}\" to string", Id);
 						break;
 					}
 					break;
@@ -2034,7 +2034,7 @@ namespace FSpot.Tiff {
 				Header.Dump (this.ToString () + ":");
 #endif
 			} catch (System.Exception e) {
-				System.Console.WriteLine (e.ToString ());
+				Log.Error (e.ToString ());
 			}
 		}
 

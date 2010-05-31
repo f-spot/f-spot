@@ -59,12 +59,12 @@ namespace FSpot.Widgets {
 						    allocation.Height);
 			Context ctx = new Context (Surface);
 			#else
-			Console.WriteLine ("source status = {0}", info.Surface.Status);
+			Log.DebugFormat ("source status = {0}", info.Surface.Status);
 			Surface = info.Surface.CreateSimilar (Content.Color,
 							      allocation.Width,
 							      allocation.Height);
 			
-			System.Console.WriteLine ("status = {1} pointer = {0}", Surface.Handle.ToString (), Surface.Status);
+			Log.DebugFormat ("status = {1} pointer = {0}", Surface.Handle.ToString (), Surface.Status);
 			Context ctx = new Context (Surface);
 			#endif
 			Bounds = allocation;

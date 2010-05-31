@@ -158,7 +158,7 @@ public class ImageLoaderThread {
 				}
 			}
 		} catch (GLib.GException e){
-			System.Console.WriteLine (e.ToString ());
+			Log.Exception (e);
 			return;		
 		}
 		

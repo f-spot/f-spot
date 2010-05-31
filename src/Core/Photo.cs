@@ -249,7 +249,7 @@ namespace FSpot
 					FSpot.ThumbnailGenerator.Create (versionUri).Dispose ();
 					DefaultVersionId = version;
 				} catch (System.Exception e) {
-					System.Console.WriteLine (e);
+					Log.Exception (e);
 					if (create_version)
 						DeleteVersion (version);
 				

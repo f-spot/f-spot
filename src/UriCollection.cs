@@ -80,7 +80,7 @@ namespace FSpot {
 				XmlNodeList list = doc.SelectNodes ("/rss/channel/item/media:content", ns);
 				foreach (XmlNode item in list) {
 					SafeUri image_uri = new SafeUri (item.Attributes ["url"].Value);
-					System.Console.WriteLine ("flickr uri = {0}", image_uri.ToString ());
+					Hyena.Log.DebugFormat ("flickr uri = {0}", image_uri.ToString ());
 					items.Add (new FileBrowsableItem (image_uri));
 				}
 
@@ -88,7 +88,7 @@ namespace FSpot {
 					list = doc.SelectNodes ("/rss/channel/item/pheed:imgsrc", ns);
 					foreach (XmlNode item in list) {
 						SafeUri image_uri = new SafeUri (item.InnerText.Trim ());
-						System.Console.WriteLine ("pheed uri = {0}", uri);
+						Hyena.Log.DebugFormat ("pheed uri = {0}", uri);
 						items.Add (new FileBrowsableItem (image_uri));
 					}
 				}
@@ -97,7 +97,7 @@ namespace FSpot {
 					list = doc.SelectNodes ("/rss/channel/item/apple:image", ns);
 					foreach (XmlNode item in list) {
 						SafeUri image_uri = new SafeUri (item.InnerText.Trim ());
-						System.Console.WriteLine ("apple uri = {0}", uri);
+						Hyena.Log.DebugFormat ("apple uri = {0}", uri);
 						items.Add (new FileBrowsableItem (image_uri));
 					}
 				}
@@ -144,7 +144,7 @@ namespace FSpot {
 			List<IBrowsableItem> items = new List<IBrowsableItem> ();
 			foreach (var f in files) {
 				if (FSpot.ImageFile.HasLoader (f.FullName)) {
-					Console.WriteLine (f.FullName);
+					Hyena.Log.Debug (f.FullName);
 					items.Add (new FileBrowsableItem (new SafeUri (f.FullName)));
 				}
 			}

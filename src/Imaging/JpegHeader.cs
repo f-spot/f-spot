@@ -305,7 +305,7 @@ public class JpegHeader : SemWeb.StatementSource {
 			if (m != null)
 				return new Cms.Profile (m.Data, name.Length, m.Data.Length - name.Length); 
 		} catch (System.Exception e) {
-			System.Console.WriteLine (e);
+			Log.Exception (e);
 		}
 		
 		FSpot.Tiff.Header exif = GetExifHeader ();
@@ -500,8 +500,8 @@ public class JpegHeader : SemWeb.StatementSource {
 		try {
 			Load (stream, metadata_only);
 		} catch (System.Exception e) {
-			Console.WriteLine ("Exeption while reading jpeg headers");
-			Console.WriteLine(e);
+			Log.Warning ("Exeption while reading jpeg headers");
+			Log.Exception(e);
 		}
 	}
 
@@ -754,7 +754,7 @@ public class JpegHeader : SemWeb.StatementSource {
 
 		if (value != null) {
 			string xml = System.Text.Encoding.UTF8.GetString (value, 29, value.Length - 29);
-			System.Console.WriteLine (xml);
+			Log.Debug (xml);
 		}
 		
 		value = data.GetRaw ("ICC_PROFILE");

@@ -47,7 +47,7 @@ namespace FSpot.Utils
 	
 					if (i.EndsWith ("\r")) {
 						s = i.Substring (0, i.Length - 1);
-						Console.WriteLine ("uri = {0}", s);
+						Log.DebugFormat ("uri = {0}", s);
 					}
 					
 					try {
@@ -58,7 +58,7 @@ namespace FSpot.Utils
 							try {
 								s = "file:///" + s.Substring(6);
 								uri = new SafeUri (s);
-								Console.WriteLine ("Converted uri from file:/ to >>{0}<<", s);
+								Log.DebugFormat ("Converted uri from file:/ to >>{0}<<", s);
 							} catch {
 								continue;
 							}

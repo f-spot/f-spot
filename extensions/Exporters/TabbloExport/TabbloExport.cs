@@ -319,7 +319,7 @@ namespace FSpotTabbloExport {
 						Catalog.GetString ("Error");
 				// FIXME:  Retry logic? 
 //				  progressDialog.PerformRetrySkip ();
-				Console.WriteLine (e);
+				Log.Exception (e);
 			} finally {
 				OnUploadFinished ();
 			}

@@ -186,9 +186,9 @@ namespace FSpot {
 		{
 			Gtk.Application.Init ();
 			Gdk.Pixbuf pixbuf = new Gdk.Pixbuf (args [0]);
-			System.Console.WriteLine ("loaded {0}", args [0]);
+			Log.DebugFormat ("loaded {0}", args [0]);
 			Histogram hist = new Histogram ();
-			System.Console.WriteLine ("loaded histgram", args [0]);
+			Log.DebugFormat ("loaded histgram", args [0]);
 			
 			Gtk.Window win = new Gtk.Window ("display");
 			Gtk.Image image = new Gtk.Image ();

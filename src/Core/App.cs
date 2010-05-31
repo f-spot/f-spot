@@ -314,8 +314,8 @@ namespace FSpot
 			try {
 				Register (new FSpot.SingleView (ul.ToArray ()).Window);
 			} catch (System.Exception e) {
-				System.Console.WriteLine (e.ToString ());
-				System.Console.WriteLine ("no real valid path to view from");
+				Log.Exception (e);
+				Log.Debug ("no real valid path to view from");
 			} 
 		}
 

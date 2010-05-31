@@ -14,6 +14,7 @@ using Mono.Unix;
 using System;
 using Mono.Data.SqliteClient;
 using Banshee.Database;
+using Hyena;
 
 namespace RetroactiveRoll
 {
@@ -24,7 +25,7 @@ namespace RetroactiveRoll
 			Photo[] photos = App.Instance.Organizer.SelectedPhotos ();
 
 			if (photos.Length == 0) {
-				Console.WriteLine ("no photos selected, returning");
+				Log.Debug ("no photos selected, returning");
 				return;
 			}
 
@@ -43,7 +44,7 @@ namespace RetroactiveRoll
 				App.Instance.Database.Database.ExecuteNonQuery (cmd);
 				p.RollId = roll.Id;
 			}
-			Console.WriteLine ("RetroactiveRoll done: " + photos.Length + " photos in roll " + roll.Id);
+			Log.Debug ("RetroactiveRoll done: " + photos.Length + " photos in roll " + roll.Id);
 		}
 	}
 }

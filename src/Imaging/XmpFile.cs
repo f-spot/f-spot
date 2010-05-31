@@ -92,7 +92,7 @@ namespace FSpot.Xmp {
 				text.Close ();
 				
 			} catch (System.Exception e) {
-				System.Console.WriteLine (e);
+				Log.Exception (e);
 			}
 		}
 
@@ -109,7 +109,7 @@ namespace FSpot.Xmp {
 		public void Dump ()
 		{
 			foreach (SemWeb.Statement stmt in store) {
-				System.Console.WriteLine(stmt);
+				Log.Debug(stmt.ToString());
 			}
 		}
 

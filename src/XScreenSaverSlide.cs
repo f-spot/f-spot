@@ -5,6 +5,7 @@ using GLib;
 using System.Runtime.InteropServices;
 using FSpot;
 using FSpot.Utils;
+using Hyena;
 
 namespace FSpot {
 	public class XScreenSaverSlide : Gtk.Window {
@@ -47,10 +48,10 @@ namespace FSpot {
 					Resize (geom.Width, geom.Height);
 					return;
 				} catch (System.Exception e) {
-					System.Console.WriteLine (e);
+					Hyena.Log.Exception (e);
 				}
 			} else {
-				System.Console.WriteLine ("{0} not set, falling back to window", ScreenSaverEnviroment);
+				Hyena.Log.DebugFormat ("{0} not set, falling back to window", ScreenSaverEnviroment);
 			}
 
 			SetSizeRequest (640, 480);

@@ -174,7 +174,7 @@ namespace FSpot {
 					ProcessRequest (current);
 					QueueLast (current);
 				} catch (System.Exception e) {
-					System.Console.WriteLine (e);
+					Log.Exception (e);
 					current = null;
 				}
 			}

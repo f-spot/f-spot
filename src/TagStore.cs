@@ -166,7 +166,7 @@ public class TagStore : DbStore<Tag> {
 			else {
 				tag.Category = Get (category_id) as Category;
 				if (tag.Category == null)
-					Console.WriteLine ("Tag Without category found");
+					Log.Warning ("Tag Without category found");
 			}
 
 		}

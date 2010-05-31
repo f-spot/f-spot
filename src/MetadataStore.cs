@@ -3,6 +3,7 @@ using SemWeb.Util;
 using Mono.Unix;
 using FSpot.Xmp;
 using FSpot.Utils;
+using Hyena;
 
 namespace FSpot {
         internal class Description {
@@ -146,7 +147,7 @@ namespace FSpot {
 					object o = System.Enum.Parse (type, obj.Value);
 					result = o.ToString ();
 				} catch (System.Exception e) {
-					System.Console.WriteLine ("Value \"{2}\" not found in {0}{3}{1}", type, e, result, System.Environment.NewLine);
+					Log.WarningFormat ("Value \"{2}\" not found in {0}{3}{1}", type, e, result, System.Environment.NewLine);
 				}
 			}
 			/*
@@ -208,7 +209,7 @@ namespace FSpot {
 					if (stream != null) {
 						descriptions.Import (new RdfXmlReader (stream));
 					} else {
-						System.Console.WriteLine ("Can't find resource");
+						Log.Debug ("Can't find resource");
 					}
 				}
 				
@@ -308,7 +309,7 @@ namespace FSpot {
 		public static void Add (StatementSink sink, Entity subject, string predicate, string type, string [] values)
 		{
 			if (values == null) {
-				System.Console.WriteLine ("{0} has no values; skipping", predicate);
+				Log.DebugFormat ("{0} has no values; skipping", predicate);
 				return;
 			}
 
@@ -340,7 +341,7 @@ namespace FSpot {
 				string predicate = stmt.Predicate.ToString ();
 
 				if (predicate.StartsWith (name))
-					System.Console.WriteLine ("----------- {0}", stmt);
+					Log.DebugFormat ("----------- {0}", stmt);
 
 				return true;
 			}
@@ -360,7 +361,7 @@ namespace FSpot {
 		public void DumpNode (XPathSemWebNavigator navi, int depth)
 		{
 			do { 
-				System.Console.WriteLine ("node [{0}] {1} {2}", depth, navi.Name, navi.Value);
+				Log.DebugFormat ("node [{0}] {1} {2}", depth, navi.Name, navi.Value);
 			} while (navi.MoveToNext ());
 		}
 	       

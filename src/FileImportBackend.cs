@@ -240,7 +240,7 @@ public class FileImportBackend : ImportBackend {
                 info.PhotoId = photo.Id;
 			}
 		} catch (System.Exception e) {
-			System.Console.WriteLine ("Error importing {0}{2}{1}", info.DestinationUri.ToString (), e.ToString (), Environment.NewLine);
+			Log.ErrorFormat ("Error importing {0}{2}{1}", info.DestinationUri.ToString (), e.ToString (), Environment.NewLine);
 			photo = null;
 
 			HigMessageDialog errordialog = new HigMessageDialog (parent,
@@ -286,7 +286,7 @@ public class FileImportBackend : ImportBackend {
 				} catch (System.ArgumentNullException) {
 					// Do nothing, since if DestinationUri == null, we do not have to remove it
 				} catch (System.Exception e) {
-					System.Console.WriteLine (e);
+					Log.Exception (e);
 				}
 			}
 			

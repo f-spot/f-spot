@@ -8,6 +8,7 @@ using System.Web;
 using Mono.Unix;
 using FSpot;
 using FSpot.UI.Dialog;
+using Hyena;
 
 /* These classes are based off the documentation at
  *
@@ -91,7 +92,7 @@ namespace GalleryRemote {
 		public int Add (FSpot.IBrowsableItem item, string path)
 		{
 			if (item == null)
-				Console.WriteLine ("NO PHOTO");
+				Log.Warning ("NO PHOTO");
 
 			return gallery.AddItem (this,
 					 path,
@@ -305,7 +306,7 @@ namespace GalleryRemote {
 		public static GalleryVersion DetectGalleryVersion (string url)
 		{
 			//Figure out if the url is for G1 or G2
-			Console.WriteLine ("Detecting Gallery version");
+			Log.Debug ("Detecting Gallery version");
 
 			GalleryVersion version;
 
@@ -334,7 +335,7 @@ namespace GalleryRemote {
 				}
 			}
 
-			Console.WriteLine ("Detected: " + version.ToString());
+			Log.Debug ("Detected: " + version.ToString());
 			return version;
 		}
 
@@ -423,18 +424,18 @@ namespace GalleryRemote {
 						status = (ResultCode) int.Parse (data [1]);
 					} else if (data[0].StartsWith ("status_text")) {
 						status_text = data[1];
-						Console.WriteLine ("StatusText : {0}", data[1]);
+						Log.DebugFormat ("StatusText : {0}", data[1]);
 					} else if (data[0].StartsWith ("server_version")) {
 						//FIXME we should use the to determine what capabilities the server has
 					} else if (data[0].StartsWith ("auth_token")) {
 						AuthToken = data[1];
 					} else {
-						Console.WriteLine ("Unparsed Line in ParseLogin(): {0}={1}", data[0], data[1]);
+						Log.DebugFormat ("Unparsed Line in ParseLogin(): {0}={1}", data[0], data[1]);
 					}
 				}
 				//Console.WriteLine ("Found: {0} cookies", response.Cookies.Count);
 				if (status != ResultCode.Success) {
-					Console.WriteLine (status_text);
+					Log.Debug (status_text);
 					throw new GalleryCommandException (status_text, status);
 				}
 
@@ -465,7 +466,7 @@ namespace GalleryRemote {
 						status = (ResultCode) int.Parse (data [1]);
 					} else if (data[0].StartsWith ("status_text")) {
 						status_text = data[1];
-						Console.WriteLine ("StatusText : {0}", data[1]);
+						Log.DebugFormat ("StatusText : {0}", data[1]);
 					} else if (data[0].StartsWith ("album.name")) {
 						//this is the URL name
 						int ref_num = -1;
@@ -515,16 +516,16 @@ namespace GalleryRemote {
 							current_album.Perms |= AlbumPermission.CreateSubAlbum;
 					} else if (data[0].StartsWith ("album_count")) {
 						if (Albums.Count != int.Parse (data[1]))
-							Console.WriteLine ("Parsed album count does not match album_count.  Something is amiss");
+							Log.Warning ("Parsed album count does not match album_count.  Something is amiss");
 					} else if (data[0].StartsWith ("auth_token")) {
 						AuthToken = data [1];
 					} else {
-						Console.WriteLine ("Unparsed Line in ParseFetchAlbums(): {0}={1}", data[0], data[1]);
+						Log.DebugFormat ("Unparsed Line in ParseFetchAlbums(): {0}={1}", data[0], data[1]);
 					}
 				}
 				//Console.WriteLine ("Found: {0} cookies", response.Cookies.Count);
 				if (status != ResultCode.Success) {
-					Console.WriteLine (status_text);
+					Log.Debug (status_text);
 					throw new GalleryCommandException (status_text, status);
 				}
 
@@ -553,18 +554,18 @@ namespace GalleryRemote {
 						status = (ResultCode) int.Parse (data [1]);
 					} else if (data[0].StartsWith ("status_text")) {
 						status_text = data[1];
-						Console.WriteLine ("StatusText : {0}", data[1]);
+						Log.DebugFormat ("StatusText : {0}", data[1]);
 					} else if (data[0].StartsWith ("auth_token")) {
 						AuthToken = data[1];
 					} else if (data[0].StartsWith ("item_name")) {
 						item_id = int.Parse (data [1]);
 					} else {
-						Console.WriteLine ("Unparsed Line in ParseAddItem(): {0}={1}", data[0], data[1]);
+						Log.DebugFormat ("Unparsed Line in ParseAddItem(): {0}={1}", data[0], data[1]);
 					}
 				}
 				//Console.WriteLine ("Found: {0} cookies", response.Cookies.Count);
 				if (status != ResultCode.Success) {
-					Console.WriteLine (status_text);
+					Log.Debug (status_text);
 					throw new GalleryCommandException (status_text, status);
 				}
 
@@ -601,16 +602,16 @@ namespace GalleryRemote {
 						status = (ResultCode) int.Parse (data [1]);
 					} else if (data[0].StartsWith ("status_text")) {
 						status_text = data[1];
-						Console.WriteLine ("StatusText : {0}", data[1]);
+						Log.Debug ("StatusText : {0}", data[1]);
 					} else if (data[0].StartsWith ("auto-resize")) {
 						//ignore
 					} else {
-						Console.WriteLine ("Unparsed Line in ParseBasic(): {0}={1}", data[0], data[1]);
+						Log.Debug ("Unparsed Line in ParseBasic(): {0}={1}", data[0], data[1]);
 					}
 				}
 				//Console.WriteLine ("Found: {0} cookies", response.Cookies.Count);
 				if (status != ResultCode.Success) {
-					Console.WriteLine (status_text);
+					Log.Debug (status_text);
 					throw new GalleryCommandException (status_text, status);
 				}
 
@@ -638,16 +639,16 @@ namespace GalleryRemote {
 						status = (ResultCode) int.Parse (data [1]);
 					} else if (data[0].StartsWith ("status_text")) {
 						status_text = data[1];
-						Console.WriteLine ("StatusText : {0}", data[1]);
+						Log.DebugFormat ("StatusText : {0}", data[1]);
 					} else if (data[0].StartsWith ("auth_token")) {
 						AuthToken = data[1];
 					} else {
-						Console.WriteLine ("Unparsed Line in ParseBasic(): {0}={1}", data[0], data[1]);
+						Log.DebugFormat ("Unparsed Line in ParseBasic(): {0}={1}", data[0], data[1]);
 					}
 				}
 				//Console.WriteLine ("Found: {0} cookies", response.Cookies.Count);
 				if (status != ResultCode.Success) {
-					Console.WriteLine (status_text + " Status: " + status);
+					Log.Debug (status_text + " Status: " + status);
 					throw new GalleryCommandException (status_text, status);
 				}
 
@@ -701,7 +702,7 @@ namespace GalleryRemote {
 
 		public void PopupException (GalleryCommandException e, Gtk.Dialog d)
 		{
-			System.Console.WriteLine(String.Format ("{0} : {1} ({2})", e.Message, e.ResponseText, e.Status));
+			Log.DebugFormat ("{0} : {1} ({2})", e.Message, e.ResponseText, e.Status);
 			HigMessageDialog md =
 				new HigMessageDialog (d,
 						      Gtk.DialogFlags.Modal |
@@ -850,7 +851,7 @@ namespace GalleryRemote {
 						status = (ResultCode) int.Parse (data [1]);
 					} else if (data[0].StartsWith ("status_text")) {
 						status_text = data[1];
-						Console.WriteLine ("StatusText : {0}", data[1]);
+						Log.DebugFormat ("StatusText : {0}", data[1]);
 					} else if (data[0].StartsWith ("image.name")) {
 						current_image = new Image (album, data[1]);
 						album.Images.Add (current_image);
@@ -894,14 +895,14 @@ namespace GalleryRemote {
 						album.BaseURL = data[1];
 					} else if (data[0].StartsWith ("image_count")) {
 						if (album.Images.Count != int.Parse (data[1]))
-							Console.WriteLine ("Parsed image count for " + album.Name + "(" + album.Images.Count + ") does not match image_count (" + data[1] + ").  Something is amiss");
+							Log.Warning ("Parsed image count for " + album.Name + "(" + album.Images.Count + ") does not match image_count (" + data[1] + ").  Something is amiss");
 					} else {
-						Console.WriteLine ("Unparsed Line in ParseFetchAlbumImages(): {0}={1}", data[0], data[1]);
+						Log.DebugFormat ("Unparsed Line in ParseFetchAlbumImages(): {0}={1}", data[0], data[1]);
 					}
 				}
 				//Console.WriteLine ("Found: {0} cookies", response.Cookies.Count);
 				if (status != ResultCode.Success) {
-					Console.WriteLine (status_text);
+					Log.Debug (status_text);
 					throw new GalleryCommandException (status_text, status);
 				}
 
@@ -948,7 +949,7 @@ namespace GalleryRemote {
 
 		public override void Login (string username, string passwd)
 		{
-			Console.WriteLine ("Gallery2: Attempting to login");
+			Log.Debug ("Gallery2: Attempting to login");
 			FormClient client = new FormClient (cookies);
 
 			client.Add ("g2_form[cmd]", "login");
@@ -1082,7 +1083,7 @@ namespace GalleryRemote {
 						status = (ResultCode) int.Parse (data [1]);
 					} else if (data[0].StartsWith ("status_text")) {
 						status_text = data[1];
-						Console.WriteLine ("StatusText : {0}", data[1]);
+						Log.DebugFormat ("StatusText : {0}", data[1]);
 					} else if (data[0].StartsWith ("image.name")) {
 						//for G2 this is the number used to download the image.
 						current_image = new Image (album, "awaiting 'title'");
@@ -1133,14 +1134,14 @@ namespace GalleryRemote {
 						album.BaseURL = data[1];
 					} else if (data[0].StartsWith ("image_count")) {
 						if (album.Images.Count != int.Parse (data[1]))
-							Console.WriteLine ("Parsed image count for " + album.Name + "(" + album.Images.Count + ") does not match image_count (" + data[1] + ").  Something is amiss");
+							Log.Warning ("Parsed image count for " + album.Name + "(" + album.Images.Count + ") does not match image_count (" + data[1] + ").  Something is amiss");
 					} else {
-						Console.WriteLine ("Unparsed Line in ParseFetchAlbumImages(): {0}={1}", data[0], data[1]);
+						Log.DebugFormat ("Unparsed Line in ParseFetchAlbumImages(): {0}={1}", data[0], data[1]);
 					}
 				}
-				Console.WriteLine ("Found: {0} cookies", response.Cookies.Count);
+				Log.DebugFormat ("Found: {0} cookies", response.Cookies.Count);
 				if (status != ResultCode.Success) {
-					Console.WriteLine (status_text);
+					Log.Debug (status_text);
 					throw new GalleryCommandException (status_text, status);
 				}
 

@@ -16,6 +16,7 @@ using System;
 using Cairo;
 using FSpot;
 using FSpot.Utils;
+using Hyena;
 
 namespace FSpot.Widgets {
 	[Binding(Gdk.Key.Up, "Up")]
@@ -78,35 +79,35 @@ namespace FSpot.Widgets {
 	
 		public bool Up ()
 		{
-			Console.WriteLine ("Up");
+			Log.Debug ("Up");
 			Transition = new Dissolve (current, next);
 			return true;
 		}
 
 		public bool Down ()
 		{
-			Console.WriteLine ("down");
+			Log.Debug ("down");
 			Transition = new Dissolve (next, current);
 			return true;
 		}
 
 		public bool Pan ()
 		{
-			Console.WriteLine ("space");
+			Log.Debug ("space");
 			Transition = new Wipe (current, next);
 			return true;
 		}
 		
 		public bool RevealImage ()
 		{
-			Console.WriteLine ("r");
+			Log.Debug ("r");
 			Transition = new Reveal (current, next);
 			return true;
 		}
 
 		public bool PushImage ()
 		{
-			Console.WriteLine ("p");
+			Log.Debug ("p");
 			Transition = new Push (current, next);
 			return true;
 		}
@@ -160,7 +161,7 @@ namespace FSpot.Widgets {
 					}
 				}
 				if (done) {
-					System.Console.WriteLine ("frames = {0}", Transition.Frames);
+					Log.DebugFormat ("frames = {0}", Transition.Frames);
 					Transition = null;
 				}
 			} else {

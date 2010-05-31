@@ -1,5 +1,6 @@
 using System;
 using System.Reflection;
+using Hyena;
 
 public class FindNullableClashes {
     public static void Main (string [] args) {
@@ -13,8 +14,8 @@ public class FindNullableClashes {
                         var ftype = field.FieldType;
                         bool is_nullable = ftype.IsGenericType && ftype.GetGenericTypeDefinition() == typeof(Nullable<>);
                         if (xattr.IsNullable && ftype.IsValueType && field.DeclaringType == type && !is_nullable) {
-                            Console.WriteLine ("Possible clash for {0}/{1}", type.FullName, field.Name);
-                            Console.WriteLine ("   Type: {0}", field.FieldType.FullName);
+                            Log.DebugFormat ("Possible clash for {0}/{1}", type.FullName, field.Name);
+                            Log.DebugFormat ("   Type: {0}", field.FieldType.FullName);
                         }
                     }
                 }

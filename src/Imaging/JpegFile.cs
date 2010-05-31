@@ -27,7 +27,7 @@ namespace FSpot {
 			try {
 				// Console.WriteLine ("approximate quality = {0}", Header.GuessQuality ());
 			} catch (Exception e) {
-				System.Console.WriteLine (e);
+				Log.Exception (e);
 			}
 		}
 		
@@ -61,7 +61,7 @@ namespace FSpot {
 				header = new JpegHeader (s, true);
 				s.Position = 0;
 			} else
-				Console.WriteLine ("{0} can not seek :(", s);
+				Log.DebugFormat ("{0} can not seek :(", s);
 			return s;
 		}
 
@@ -86,7 +86,7 @@ namespace FSpot {
 							return entry.ValueAsString [0];
 					}
 				} catch (System.Exception e) {
-					Console.WriteLine (e);
+					Log.Exception (e);
 				}
 				return null;
 #else
@@ -277,12 +277,12 @@ namespace FSpot {
 				DirectoryEntry e = ExifHeader.Directory.Lookup (TagId.Orientation);
 				orientation = (PixbufOrientation)e.ValueAsLong [0];
 			} catch {
-				System.Console.WriteLine ("error checking orientation");
+				Log.Warning ("error checking orientation");
 			}
 #else						     
-Console.WriteLine (">>>");
+Log.Debug (">>>");
 			Exif.ExifEntry e = this.ExifData.GetContents (Exif.Ifd.Zero).Lookup (Exif.Tag.Orientation);
-Console.WriteLine ("<<<");
+Log.Debug ("<<<");
 			
 			if (e != null) {
 				ushort [] value = e.GetDataUShort ();
@@ -349,7 +349,7 @@ Console.WriteLine ("<<<");
 					time = Exif.ExifUtil.DateTimeFromString (time_str); 
 #endif
 				} catch (System.Exception e) {
-					Console.WriteLine (e);
+					Log.Exception (e);
 					time = base.Date;
 				}
 				return time;

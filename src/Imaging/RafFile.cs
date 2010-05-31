@@ -38,7 +38,7 @@ namespace FSpot.Raf {
 			get {
 				if (exif_data == null)
 					exif_data = new Exif.ExifData(uri.LocalPath);
-				System.Console.WriteLine ("loading exif data");
+				Log.Debug ("loading exif data");
 				return exif_data;
 			}
 		}

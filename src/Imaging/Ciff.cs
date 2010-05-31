@@ -108,7 +108,7 @@ namespace FSpot.Ciff {
 			ComponentBitDepth = BitConverter.ToUInt32 (data, 16, little);
 			ColorBitDepth = BitConverter.ToUInt32 (data, 20, little);
 			ColorBW = BitConverter.ToUInt32 (data, 24, little);
-			System.Console.WriteLine ("0x{0}", ColorBW.ToString ("x"));
+			Log.DebugFormat ("0x{0}", ColorBW.ToString ("x"));
 		}
 
 		public PixbufOrientation Orientation {
@@ -261,7 +261,7 @@ namespace FSpot.Ciff {
 			for (int i = 0; i < Count; i++)
 			{
 				stream.Read (buf, 0, 10);
-				System.Console.WriteLine ("reading {0} {1}", i, stream.Position);
+				Log.DebugFormat ("reading {0} {1}", i, stream.Position);
 				Entry entry = new Entry (buf, 0, little);
 				entry_list.Add (entry);
 			}
@@ -269,10 +269,10 @@ namespace FSpot.Ciff {
 
 		public void Dump ()
 		{
-			System.Console.WriteLine ("Dumping directory with {0} entries", entry_list.Count);
+			Log.DebugFormat ("Dumping directory with {0} entries", entry_list.Count);
 			for (int i = 0; i < entry_list.Count; i++) {
 				Entry e = (Entry) entry_list[i];
-				System.Console.WriteLine ("\tentry[{0}] = {1}.{6}.{5}({4}).{2}-{3}", 
+				Log.DebugFormat ("\tentry[{0}] = {1}.{6}.{5}({4}).{2}-{3}",
 							  i, e.Tag, e.Size, e.Offset, e.Tag.ToString ("x"), (uint)e.Tag & ~(uint)Mask.StorageFormat, e.Type); 
 			}
 		}
@@ -427,7 +427,7 @@ namespace FSpot.Ciff {
 			if (data != null)
 				orientation = new ImageSpec (data, little).Orientation;
 			else 
-				System.Console.WriteLine ("NO ORIENTATION");
+				Log.Debug ("NO ORIENTATION");
 
 			return orientation;
 		}
@@ -438,7 +438,7 @@ namespace FSpot.Ciff {
 				byte [] date = props.ReadEntry (Tag.TimeStamp);
 
 				if (date == null) {
-					System.Console.WriteLine ("NO DATE");
+					Log.Debug ("NO DATE");
 					return base.Date;
 				}
 
@@ -475,7 +475,7 @@ namespace FSpot.Ciff {
 
 			System.IO.Stream output = System.IO.File.Open (path, System.IO.FileMode.OpenOrCreate);
 			byte [] data = GetEmbeddedThumbnail ();
-			System.Console.WriteLine ("data length {0}", data != null ? data.Length : -1);
+			Log.DebugFormat ("data length {0}", data != null ? data.Length : -1);
 			output.Write (data, 0, data.Length);
 			output.Close ();
 			*/

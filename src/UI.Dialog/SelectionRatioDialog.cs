@@ -15,6 +15,7 @@ using System.Collections.Generic;
 using Gtk;
 
 using Mono.Unix;
+using Hyena;
 
 namespace FSpot.UI.Dialog {
 	public class SelectionRatioDialog : GladeDialog
@@ -139,7 +140,7 @@ namespace FSpot.UI.Dialog {
 			try {
 				ratio = ParseRatio (args.NewText);
 			} catch (FormatException fe) {
-				Console.WriteLine (fe);
+				Log.Exception (fe);
 				return;
 			}
 			if (ratio < 1.0)

@@ -16,13 +16,15 @@ using FSpot;
 using FSpot.UI.Dialog;
 using FSpot.Extensions;
 
+using Hyena;
+
 namespace RawPlusJpegExtension
 {
 	public class RawPlusJpeg : ICommand
 	{
 		public void Run (object o, EventArgs e)
 		{
-			Console.WriteLine ("EXECUTING RAW PLUS JPEG EXTENSION");
+			Log.Debug ("EXECUTING RAW PLUS JPEG EXTENSION");
 
 			if (ResponseType.Ok != HigMessageDialog.RunHigConfirmation (
 				App.Instance.Organizer.Window,
@@ -90,7 +92,7 @@ namespace RawPlusJpegExtension
 
 			public void Merge ()
 			{
-				Console.WriteLine ("Merging {0} and {1}", raw.VersionUri (Photo.OriginalVersionId), jpeg.VersionUri (Photo.OriginalVersionId));
+				Log.DebugFormat ("Merging {0} and {1}", raw.VersionUri (Photo.OriginalVersionId), jpeg.VersionUri (Photo.OriginalVersionId));
 				foreach (uint version_id in jpeg.VersionIds) {
 					string name = jpeg.GetVersion (version_id).Name;
 					try {
@@ -100,7 +102,7 @@ namespace RawPlusJpegExtension
 						else
 							raw.RenameVersion (raw.DefaultVersionId, name);
 					} catch (Exception e) {
-						Console.WriteLine (e);
+						Log.Exception (e);
 					}
 				}
 				raw.AddTag (jpeg.Tags);
@@ -110,7 +112,7 @@ namespace RawPlusJpegExtension
 					try {
 						jpeg.DeleteVersion (version_id, true, true);
 					} catch (Exception e) {
-						Console.WriteLine (e);
+						Log.Exception (e);
 					}
 				}
 				raw.Changes.DataChanged = true;

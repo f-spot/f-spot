@@ -16,6 +16,7 @@ using System;
 using System.Runtime.InteropServices;
 using Mono.Unix;
 using FSpot.Utils;
+using Hyena;
 
 namespace FSpot.Widgets {
 	public class Loupe : Gtk.Window {
@@ -204,7 +205,7 @@ namespace FSpot.Widgets {
 				try {
 					CompositeUtils.InputShapeCombineMask (this, bitmap, 0,0);
 				} catch (EntryPointNotFoundException) {
-					System.Console.WriteLine ("Warning: gtk+ version doesn't support input shapping");
+					Log.Warning ("gtk+ version doesn't support input shapping");
 				}
 			}
 			bitmap.Dispose ();

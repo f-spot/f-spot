@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using Mono.Unix;
 using FSpot.Platform;
+using Hyena;
 
 namespace FSpot
 {
@@ -215,8 +216,7 @@ namespace FSpot
 					cache [key] = value;				
 					Backend.Set (key, value);
 				} catch (Exception e){
-					Console.WriteLine (e);
-					Console.WriteLine ("Unable to set this :"+key);
+					Log.Exception ("Unable to set this :"+key, e);
 				}
 			}
 		}

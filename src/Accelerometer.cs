@@ -6,6 +6,7 @@ using System;
 using System.IO;
 
 using FSpot.Utils;
+using Hyena;
 
 namespace FSpot {
 
@@ -77,7 +78,7 @@ namespace FSpot {
 				if (eh != null)
 					eh (null, EventArgs.Empty);
 
-				Console.WriteLine ("Laptop orientation changed...");
+				Log.Debug ("Laptop orientation changed...");
 			}
 
 			return true;

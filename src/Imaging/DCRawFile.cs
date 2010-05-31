@@ -112,7 +112,7 @@ namespace FSpot {
 			// FIXME this filename quoting is super lame
 			args = System.String.Format ("-h -w -c \"{0}\"", path);
 
-			System.Console.WriteLine ("path = {0}, args = \"{1}\"", path, args);
+			Log.DebugFormat ("path = {0}, args = \"{1}\"", path, args);
 			 
 			using (System.Diagnostics.Process process = new System.Diagnostics.Process ()) {
 				process.StartInfo = new System.Diagnostics.ProcessStartInfo (dcraw_command, args);

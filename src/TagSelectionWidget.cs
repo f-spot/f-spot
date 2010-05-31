@@ -768,10 +768,10 @@ namespace FSpot {
 	
 			private void OnSelectionChanged ()
 			{
-				Console.WriteLine ("Selection changed:");
+				Log.Debug ("Selection changed:");
 	
 				foreach (Tag t in selection_widget.TagSelection)
-					Console.WriteLine ("\t{0}", t.Name);
+					Log.DebugFormat ("\t{0}", t.Name);
 			}
 	
 			private Test ()

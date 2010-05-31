@@ -15,6 +15,7 @@ using FSpot.UI.Dialog;
 using FSpot.Extensions;
 
 using GalleryRemote;
+using Hyena;
 
 namespace G2Export {
 	public class GalleryAccount {
@@ -52,7 +53,7 @@ namespace G2Export {
 				throw new GalleryException (Catalog.GetString("Cannot connect to a Gallery for which the version is unknown.\nPlease check that you have Remote plugin 1.0.8 or later"));
 			}
 
-			System.Console.WriteLine ("Gallery created: " + gal);
+			Log.Debug ("Gallery created: " + gal);
 
 			gal.Login (username, password);
 
@@ -79,7 +80,7 @@ namespace G2Export {
 					retVal = gallery.IsConnected ();
 				}
 				if (connected != retVal) {
-					System.Console.WriteLine ("Connected and retVal for IsConnected() don't agree");
+					Log.Warning ("Connected and retVal for IsConnected() don't agree");
 				}
 				return retVal;
 			}
@@ -267,7 +268,7 @@ namespace G2Export {
 					else if (versionString == "Version2")
 						version = GalleryVersion.Version2;
 					else
-						Console.WriteLine ("Unexpected versions string: " + versionString);
+						Log.Error ("Unexpected versions string: " + versionString);
 				}
 			}
 			return new GalleryAccount (name, url, username, password, version);
@@ -298,8 +299,7 @@ namespace G2Export {
 				}
 			} catch (System.Exception e) {
 				// FIXME do something
-				System.Console.WriteLine ("Exception loading gallery accounts");
-				System.Console.WriteLine (e);
+				Log.Exception ("Exception loading gallery accounts", e);
 			}
 
 			MarkChanged ();
@@ -402,8 +402,8 @@ namespace G2Export {
 								      Catalog.GetString ("Error while connecting to Gallery"),
 								      String.Format (Catalog.GetString ("The following error was encountered while attempting to log in: {0}"), e.Message));
 					if (e.ResponseText != null) {
-						System.Console.WriteLine (e.Message);
-						System.Console.WriteLine (e.ResponseText);
+						Log.Debug (e.Message);
+						Log.Debug (e.ResponseText);
 					}
 					md.Run ();
 					md.Destroy ();
@@ -416,7 +416,7 @@ namespace G2Export {
 								      Gtk.MessageType.Error, Gtk.ButtonsType.Ok,
 								      Catalog.GetString ("A Gallery with this name already exists"),
 								      String.Format (Catalog.GetString ("There is already a Gallery with the same name in your registered Galleries. Please choose a unique name.")));
-					System.Console.WriteLine (ae);
+					Log.Exception (ae);
 					md.Run ();
 					md.Destroy ();
 					return;
@@ -439,7 +439,7 @@ namespace G2Export {
 								      Gtk.MessageType.Error, Gtk.ButtonsType.Ok,
 								      Catalog.GetString ("Error while connecting to Gallery"),
 								      String.Format (Catalog.GetString ("The following error was encountered while attempting to log in: {0}"), se.Message));
-					Console.WriteLine (se);
+					Log.Exception (se);
 					md.Run ();
 					md.Destroy ();
 					return;
@@ -758,7 +758,7 @@ namespace G2Export {
 				account.Gallery.Progress = new ProgressItem ();
 				account.Gallery.Progress.Changed += HandleProgressChanged;
 
-				System.Console.WriteLine ("Starting upload");
+				Log.Debug ("Starting upload");
 
 				FilterSet filters = new FilterSet ();
 				if (account.Version == GalleryVersion.Version1)
@@ -772,7 +772,7 @@ namespace G2Export {
 				while (photo_index < items.Length) {
 					IBrowsableItem item = items [photo_index];
 
-					System.Console.WriteLine ("uploading {0}", photo_index);
+					Log.DebugFormat ("uploading {0}", photo_index);
 
 					progress_dialog.Message = System.String.Format (Catalog.GetString ("Uploading picture \"{0}\""), item.Name);
 					progress_dialog.Fraction = photo_index / (double) items.Length;
@@ -795,7 +795,7 @@ namespace G2Export {
 					} catch (System.Exception e) {
 						progress_dialog.Message = String.Format (Catalog.GetString ("Error uploading picture \"{0}\" to Gallery: {1}"), item.Name, e.Message);
 						progress_dialog.ProgressText = Catalog.GetString ("Error");
-						Console.WriteLine (e);
+						Log.Exception (e);
 
 						if (progress_dialog.PerformRetrySkip ()) {
 							photo_index--;
@@ -868,7 +868,7 @@ namespace G2Export {
 				if (selected != null)
 					account = selected;
 
-				System.Console.WriteLine ("{0}",ex);
+				Log.Exception (ex);
 				PopulateAlbumOptionMenu (account.Gallery);
 				album_button.Sensitive = false;
 

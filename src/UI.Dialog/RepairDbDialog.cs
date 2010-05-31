@@ -10,6 +10,7 @@
 using System;
 using Gtk;
 using Mono.Unix;
+using Hyena;
 
 namespace FSpot.UI.Dialog
 {
@@ -21,7 +22,7 @@ namespace FSpot.UI.Dialog
 				String.Format (Catalog.GetString ("F-Spot encountered an error while loading the photo database. " +
 		                		"The old database has be moved to {0} and a new database has been created."), backup_path))
 		{
-			Console.WriteLine (e);
+			Log.Exception (e);
 			Run ();
 			Destroy ();
 		}

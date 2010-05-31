@@ -1747,7 +1747,7 @@ namespace FSpot
 			System.Array.Sort (tags, new TagRemoveComparer ());
 	
 			foreach (Tag tag in tags) {
-				System.Console.WriteLine ("tag: {0}", tag.Name);
+				Log.Debug ("tag: {0}", tag.Name);
 			}
 	
 			string msg = Catalog.GetString("This operation will merge the selected tags and any sub-tags into a single tag.");
@@ -2228,7 +2228,7 @@ namespace FSpot
 				try { 				
 					db.Photos.Remove (tags);
 				} catch (InvalidTagOperationException e) {
-					System.Console.WriteLine ("this is something or another");
+					Log.Debug ("this is something or another");
 	
 					// A Category is not empty. Can not delete it.
 					string error_msg = Catalog.GetString ("Tag is not empty");
@@ -2789,7 +2789,7 @@ namespace FSpot
 			if (support_xcf)
 				create_xcf = Preferences.Get<bool> (Preferences.EDIT_CREATE_XCF_VERSION);
 	
-			Console.WriteLine ("XCF ? {0}", create_xcf);
+			Log.DebugFormat ("XCF ? {0}", create_xcf);
 	
 			if (response == Gtk.ResponseType.Cancel)
 				return;

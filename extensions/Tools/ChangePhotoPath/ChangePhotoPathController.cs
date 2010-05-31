@@ -203,11 +203,11 @@ namespace ChangePhotoPath
 				}
 
 				UpdateThisUri (k, old_path_array[k], ref photo);
-				System.Console.WriteLine ("R : {0} - {1}", k, old_path_array[k]);
+				Log.DebugFormat ("R : {0} - {1}", k, old_path_array[k]);
 			}
 			if (photo != null)
 				photo_store.Commit (photo);
-			System.Console.WriteLine ("Changing path failed due to above error. Have reverted any modification that took place.");
+			Log.Debug ("Changing path failed due to above error. Have reverted any modification that took place.");
 		}
 
 		public ProcessResult ChangeAllUris ( ref int  last_index)
@@ -220,7 +220,7 @@ namespace ChangePhotoPath
 				for (last_index = 0; last_index < photo_id_array.Count; last_index++) {
 
 					if (gui_controller.UpdateProgressBar ("Changing photos base path", "Changing photo", photo_id_array.Count)) {
-						Console.WriteLine("User aborted the change of paths...");
+						Log.Debug("User aborted the change of paths...");
 						return ProcessResult.Cancelled;
 					}
 
@@ -230,7 +230,7 @@ namespace ChangePhotoPath
 					}
 
 					UpdateThisUri (last_index, new_path_array[last_index], ref photo);
-					System.Console.WriteLine ("U : {0} - {1}", last_index, new_path_array[last_index]);
+					Log.DebugFormat ("U : {0} - {1}", last_index, new_path_array[last_index]);
 
 					// DEBUG ONLY
 					// Cause an TEST exception on 6'th URI to be changed.
@@ -239,7 +239,7 @@ namespace ChangePhotoPath
 				if (photo != null)
 					photo_store.Commit (photo);
 			} catch (Exception e) {
-				Console.WriteLine(e);
+				Log.Exception(e);
 				return ProcessResult.Error;
 			}
 			return ProcessResult.Ok;
@@ -262,9 +262,9 @@ namespace ChangePhotoPath
 			Photo photo = photo_store.Get ( (uint) photo_id_array[test_index]) as Photo;
 			PhotoVersion version = photo.GetVersion ( (uint) version_id_array[test_index]) as PhotoVersion;
 			if (version.Uri.AbsolutePath.ToString() == path_array[ test_index ])
-				System.Console.WriteLine ("Test URI ({0}) matches --- Should be finished", test_index);
+				Log.DebugFormat ("Test URI ({0}) matches --- Should be finished", test_index);
 			else
-				System.Console.WriteLine ("Test URI ({0}) DO NOT match --- Should NOT BE finished", test_index);
+				Log.DebugFormat ("Test URI ({0}) DO NOT match --- Should NOT BE finished", test_index);
 		}
 */
 

@@ -5,6 +5,7 @@ using System.Text;
 using System.Collections;
 using System.Collections.Specialized;
 using System.Web;
+using Hyena;
 
 namespace FSpot {
 	public class FormClient {

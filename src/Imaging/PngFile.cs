@@ -98,7 +98,7 @@ namespace FSpot.Png {
 							System.DateTime time = System.DateTime.Parse (text.Text);
 							MetadataStore.AddLiteral (sink, "xmp:CreateDate", time.ToString ("yyyy-MM-ddThh:mm:ss"));
 						} catch (System.Exception e) {
-							System.Console.WriteLine (e.ToString ());
+							Log.Exception (e);
 						}
 						break;
 					}
@@ -870,7 +870,7 @@ namespace FSpot.Png {
 					
 					if (col < width) {
 						inflater.Fill ();
-						System.Console.WriteLine ("short read missing {0} {1} {2}", width - col, row, height);
+						Log.DebugFormat ("short read missing {0} {1} {2}", width - col, row, height);
 					}
 				}
 			}
@@ -1089,7 +1089,7 @@ namespace FSpot.Png {
 			}
 
 			IhdrChunk ihdr = (IhdrChunk) Chunks [0];
-			System.Console.WriteLine ("Attempting to to inflate photo {0}.{1}({2}, {3})", ihdr.Color, ihdr.Depth, ihdr.Width, ihdr.Height);
+			Log.DebugFormat ("Attempting to to inflate photo {0}.{1}({2}, {3})", ihdr.Color, ihdr.Depth, ihdr.Width, ihdr.Height);
 			ScanlineDecoder decoder = new ScanlineDecoder (ci, ihdr.GetScanlineLength (0), ihdr.Height);
 			decoder.Fill ();
 			//Gdk.Pixbuf pixbuf = decoder.GetPixbuf ();
@@ -1210,7 +1210,7 @@ namespace FSpot.Png {
 					if (time != null)
 						System.Console.Write(" Time {0}", time.Time);
 
-					System.Console.WriteLine (System.String.Empty);
+					Log.Debug (System.String.Empty);
 #endif
 					
 					if (chunk.Name == "IEND")
@@ -1325,7 +1325,7 @@ namespace FSpot.Png {
 				try {
 					return new Profile (icc.Profile);
 				} catch (System.Exception ex) {
-					System.Console.WriteLine ("Error trying to decode embedded profile" + ex.ToString ());
+					Log.Error ("Error trying to decode embedded profile" + ex.ToString ());
 				}
 			}
 

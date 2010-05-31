@@ -19,7 +19,8 @@ REFS =						\
 	$(LINK_GIOSHARP)			\
 	$(LINK_GTKSHARPBEANS)			\
 	$(LINK_UNIQUESHARP)			\
-	-r:Mono.Posix
+	-r:Mono.Posix				\
+	$(LINK_HYENA)
 
 PKGS =					\
 	-pkg:flickrnet          \
