@@ -205,6 +205,7 @@ public class ImageLoaderThread {
 	/* The worker thread's main function.  */
 	private void WorkerThread ()
 	{
+        Log.Debug (this.ToString (), "Worker starting");
 		try {
 			while (true) {
 				lock (processed_requests) {

@@ -277,7 +277,7 @@ namespace FSpot {
 				DirectoryEntry e = ExifHeader.Directory.Lookup (TagId.Orientation);
 				orientation = (PixbufOrientation)e.ValueAsLong [0];
 			} catch {
-				Log.Warning ("error checking orientation");
+				Log.Warning ("Error checking orientation", uri);
 			}
 #else						     
 Log.Debug (">>>");
