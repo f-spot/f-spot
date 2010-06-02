@@ -618,7 +618,7 @@ namespace G2Export {
 			export_dialog = (Gtk.Dialog) xml.GetWidget ("gallery_export_dialog");
 
 			this.items = selection.Items;
-			Array.Sort<IBrowsableItem> (this.items as Photo[], new IBrowsableItemComparer.CompareDateName());
+			Array.Sort<IBrowsableItem> (this.items, new IBrowsableItemComparer.CompareDateName());
 			album_button.Sensitive = false;
 			IconView view = new IconView (selection);
 			view.DisplayDates = false;
