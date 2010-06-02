@@ -1,5 +1,6 @@
 # List of source files containing translatable strings.
-# Please keep this file in alphabetical order.
+# Please keep this file in alphabetical order; run ./sort-potfiles
+# after adding files here.
 [encoding: UTF-8]
 data/desktop-files/f-spot.desktop.in.in
 data/desktop-files/f-spot.desktop.in.in
@@ -37,12 +38,12 @@ extensions/Exporters/TabbloExport/TabbloExport.cs
 extensions/Exporters/ZipExport/ZipExport.addin.xml
 extensions/Exporters/ZipExport/ZipExport.cs
 extensions/Exporters/ZipExport/ZipExport.glade
-extensions/Tools/HashJob/HashJob.cs
 extensions/Tools/HashJob/HashJob.addin.xml
+extensions/Tools/HashJob/HashJob.cs
 extensions/Tools/LiveWebGallery/GalleryRequestHandler.cs
 extensions/Tools/LiveWebGallery/LiveWebGallery.addin.xml
-[type: gettext/glade]extensions/Tools/LiveWebGallery/ui/LiveWebGallery.ui
 extensions/Tools/LiveWebGallery/LiveWebGalleryDialog.cs
+[type: gettext/glade]extensions/Tools/LiveWebGallery/ui/LiveWebGallery.ui
 extensions/Tools/MergeDb/MergeDb.addin.xml
 extensions/Tools/MergeDb/MergeDb.cs
 extensions/Tools/MergeDb/MergeDb.glade
@@ -51,8 +52,6 @@ extensions/Tools/ScreensaverConfig/ScreensaverConfig.addin.xml
 [type: gettext/glade]extensions/Tools/ScreensaverConfig/ScreensaverConfigDialog.ui
 f-spot.schemas.in
 lib/libfspot/f-jpeg-utils.c
-src/CameraFileSelectionDialog.cs
-src/CameraSelectionDialog.cs
 src/Core/App.cs
 src/Core/Photo.cs
 src/Editors/AutoStretchEditor.cs

@@ -1,0 +1,13 @@
+#!/bin/bash
+
+# copy first 4 lines
+head -n 4 POTFILES.in > POTFILES.in.tmp
+
+# uses everything but the first 4 line. (starting at the 5th line)
+# the first sed command converts "[type: .*]path" to "path[type: .*]",
+# then the paths can be sorted correctly.
+# the second sed command converts it back.
+tail -n +5 POTFILES.in | sed 's/^\(\[type.*\]\)\(.*\)/\2\1/' | sort | sed 's/^\(.*\)\(\[type.*\]\)/\2\1/' >> POTFILES.in.tmp
+
+mv POTFILES.in.tmp POTFILES.in
+
