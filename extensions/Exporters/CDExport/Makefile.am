@@ -1,21 +1,12 @@
-addin = CDExport
+ASSEMBLY = FSpot.Exporters.CDExport
+TARGET = library
+LINK = $(REF_FSPOT_EXTENSION_CDEXPORT)
+INSTALL_DIR = $(EXTENSIONS_INSTALL_DIR)
 
-addin_manifest = $(addin).addin.xml
+SOURCES = CDExport.cs
 
-addin_sources =			\
-	$(addin).cs
+RESOURCES = \
+	CDExport.addin.xml \
+	CDExport.ui
 
-addin_resources =		\
-	$(addin_manifest)	\
-	$(addin).ui
-
-addin_references =		\
-	Mono.Posix
-
-addin_packages =		\	
-	gtk-sharp-2.0
-
-addin_extraflags =
-addin_extradist =
-
-include $(top_srcdir)/Makefile.addins
+include $(top_srcdir)/build/build.mk

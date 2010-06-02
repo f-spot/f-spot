@@ -1,38 +1,21 @@
-include $(top_srcdir)/Makefile.include
+ASSEMBLY = Mono.Tabblo
+TARGET = library
+LINK = $(REF_MONO_TABBLO)
+INSTALL_DIR = $(EXTENSIONS_INSTALL_DIR)
 
-ASSEMBLY_NAME = Mono.Tabblo
+SOURCES = \
+	Connection.cs \
+	IPreferences.cs \
+	MultipartRequest.cs \
+	Picture.cs \
+	TabbloException.cs \
+	TotalUploadProgress.cs \
+	Uploader.cs \
+	UploadProgressEventArgs.cs \
+	UploadProgressEventHandler.cs
 
-ASSEMBLY_SOURCES = \
-	$(srcdir)/AssemblyInfo.cs \
-	$(srcdir)/Connection.cs \
-	$(srcdir)/IPreferences.cs \
-	$(srcdir)/MultipartRequest.cs \
-	$(srcdir)/Picture.cs \
-	$(srcdir)/TabbloException.cs \
-	$(srcdir)/TotalUploadProgress.cs \
-	$(srcdir)/Uploader.cs \
-	$(srcdir)/UploadProgressEventArgs.cs \
-	$(srcdir)/UploadProgressEventHandler.cs
+RESOURCES =
 
-REFS = \
-       -r:Mono.Posix.dll \
-       -r:System.Web.dll
+ASSEMBLY_INFO_SOURCE = AssemblyInfo.cs
 
-PKGS =
-
-ASSEMBLY = $(ASSEMBLY_NAME).dll
-
-all: $(ASSEMBLY)
-
-$(ASSEMBLY): $(ASSEMBLY_SOURCES)
-	$(CSC_LIB) -out:$@ $(PKGS) $(REFS) $(ASSEMBLY_SOURCES)
-
-assemblydir = $(pkglibdir)
-assembly_DATA =	$(ASSEMBLY)
-
-EXTRA_DIST =			\
-	$(ASSEMBLY_SOURCES)
-
-CLEANFILES =			\
-	$(ASSEMBLY)		\
-	$(ASSEMBLY).mdb
+include $(top_srcdir)/build/build.mk

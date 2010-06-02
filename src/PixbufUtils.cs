@@ -728,13 +728,4 @@ public class PixbufUtils {
 //	{
 //		f_pixbuf_copy_with_orientation (src.Handle, dest.Handle, (int)orientation);
 //	}
-
-#if false
-	[DllImport("glibsharpglue")]
-	static extern int gtksharp_object_get_ref_count (IntPtr obj);
-	
-	public static int RefCount (GLib.Object obj) {
-		return gtksharp_object_get_ref_count (obj.Handle);
-	}
-#endif
 }

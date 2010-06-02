@@ -1,71 +1,26 @@
-include $(top_srcdir)/Makefile.include
+ASSEMBLY = FSpot.Exporters.TabbloExport
+TARGET = library
+LINK = $(REF_FSPOT_EXTENSION_TABBLOEXPORT)
+INSTALL_DIR = $(EXTENSIONS_INSTALL_DIR)
 
-PLUGIN_NAME = TabbloExport
+SOURCES = \
+	ApplicationCentricCertificatePolicy.cs \
+	BlindTrustCertificatePolicy.cs \
+	FSpotTraceListener.cs \
+	FSpotUploadProgress.cs \
+	TabbloExport.cs \
+	TabbloExportModel.cs \
+	TabbloExportView.cs \
+	UserDecisionCertificatePolicy.cs
 
-PLUGIN_MANIFEST = $(PLUGIN_NAME).addin.xml
-
-PLUGIN_ASSEMBLY = $(PLUGIN_NAME).dll
-
-PLUGIN_SOURCES = \
-	$(srcdir)/ApplicationCentricCertificatePolicy.cs \
-	$(srcdir)/AssemblyInfo.cs \
-	$(srcdir)/BlindTrustCertificatePolicy.cs \
-	$(srcdir)/FSpotTraceListener.cs \
-	$(srcdir)/FSpotUploadProgress.cs \
-	$(srcdir)/TabbloExport.cs \
-	$(srcdir)/TabbloExportModel.cs \
-	$(srcdir)/TabbloExportView.cs \
-	$(srcdir)/UserDecisionCertificatePolicy.cs
-
-PLUGIN_INPUT = \
-	$(PLUGIN_SOURCES) \
-	$(PLUGIN_MANIFEST) \
-	ui/$(PLUGIN_NAME).ui \
+RESOURCES = \
+	TabbloExport.addin.xml \
+	ui/TabbloExport.ui \
 	ui/TrustError.ui
 
-
-REFS = \
-	-r:$(top_builddir)/src/f-spot.exe \
-	-r:$(top_builddir)/src/FSpot.Core.dll \
-	-r:$(top_builddir)/src/FSpot.Utils.dll \
-	-r:Tabblo/Mono.Tabblo.dll \
-	$(LINK_KEYRING)		\
-	$(LINK_SEMWEB)		\
-	$(LINK_GIOSHARP)	\
-	$(LINK_GTKSHARPBEANS)	\	
-	$(LINK_GPHOTO2)		\
-	$(LINK_UNIQUESHARP)	\
-	-r:Mono.Posix.dll				\
-	$(LINK_HYENA)
-
-PKGS = \
-	-pkg:gtk-sharp-2.0 
+ASSEMBLY_INFO_SOURCE = AssemblyInfo.cs
 
 SUBDIRS = \
 	Tabblo
 
-RESOURCES = \
-	-resource:$(srcdir)/$(PLUGIN_MANIFEST) \
-	-resource:$(srcdir)/ui/$(PLUGIN_NAME).ui \
-	-resource:$(srcdir)/ui/TrustError.ui
-
-mpack: $(PLUGIN_ASSEMBLY)
-	mautil p $(PLUGIN_ASSEMBLY)
-
-$(PLUGIN_ASSEMBLY): $(PLUGIN_INPUT)
-	$(CSC_LIB) -out:$@ $(PLUGIN_SOURCES) $(REFS) $(PKGS) $(ASSEMBLIES) $(RESOURCES)
-
-plugindir = $(pkglibdir)/extensions
-
-install-data-hook:
-	if [ -w $(DESTDIR)$(plugindir)/$(PLUGIN_NAME).addin.xml ] ; then rm -f $(DESTDIR)$(plugindir)/$(PLUGIN_NAME).addin.xml; fi
-
-plugin_DATA =			\
-	$(PLUGIN_ASSEMBLY)
-
-EXTRA_DIST = $(PLUGIN_INPUT)
-
-CLEANFILES =			\
-	$(PLUGIN_ASSEMBLY)	\
-	$(PLUGIN_ASSEMBLY).mdb	\
-	*.mpack
+include $(top_srcdir)/build/build.mk

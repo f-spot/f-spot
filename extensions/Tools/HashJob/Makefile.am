@@ -1,20 +1,9 @@
-addin = HashJob
+ASSEMBLY = FSpot.Exporters.HashJob
+TARGET = library
+LINK = $(REF_FSPOT_EXTENSION_HASHJOB)
+INSTALL_DIR = $(EXTENSIONS_INSTALL_DIR)
 
-addin_manifest = $(addin).addin.xml
+SOURCES = HashJob.cs
+RESOURCES = HashJob.addin.xml
 
-addin_sources =				\
-	$(addin).cs
-
-addin_resources =			\
-	$(addin_manifest)
-
-addin_references =			\
-	Mono.Posix			\
-	Mono.Data.SqliteClient
-
-addin_packages =			\
-	gtk-sharp-2.0
-
-addin_extra_dist =
-
-include $(top_srcdir)/Makefile.addins
+include $(top_srcdir)/build/build.mk

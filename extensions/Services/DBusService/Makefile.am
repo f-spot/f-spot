@@ -1,20 +1,12 @@
-addin = DBusService
+ASSEMBLY = FSpot.Exporters.DBusService
+TARGET = library
+LINK = $(REF_FSPOT_EXTENSION_DBUSSERVICE)
+INSTALL_DIR = $(EXTENSIONS_INSTALL_DIR)
 
-addin_manifest = $(addin).addin.xml
-
-addin_sources =			\
-	$(addin).cs		\
+SOURCES = \
+	DBusService.cs \
 	DBusProxy.cs
 
-addin_resources =		\
-	$(addin_manifest)
+RESOURCES = DBusService.addin.xml
 
-addin_references =
-addin_packages =		\
-	gtk-sharp-2.0
-
-addin_extraflags =		\
-	$(NDESK_DBUS_LIBS)
-addin_extradist =
-
-include $(top_srcdir)/Makefile.addins
+include $(top_srcdir)/build/build.mk

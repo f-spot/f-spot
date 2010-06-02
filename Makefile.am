@@ -22,12 +22,12 @@ CLEANFILES =			\
 	intltool-merge
 
 EXTRA_DIST =			\
-	MAINTAINERS		\
+	COPYING				\
+	MAINTAINERS			\
 	intltool-extract.in	\
 	intltool-merge.in	\
 	intltool-update.in	\
 	Makefile.include	\
-	Makefile.addins		\
 	gnome-doc-utils.make	\
 	icon-theme-installer	\
 	$(schema_in_files)
@@ -44,8 +44,8 @@ install-data-local:
 	-GCONF_CONFIG_SOURCE=$(GCONF_SCHEMA_CONFIG_SOURCE) $(GCONFTOOL) --makefile-install-rule $(srcdir)/$(schema_DATA)
 
 run:
-	@pushd src/; \
-	./f-spot --uninstalled --debug; \
+	@pushd bin/; \
+	../src/f-spot --uninstalled --debug; \
 	popd;
 
 

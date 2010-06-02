@@ -1,33 +1,21 @@
-addin = LiveWebGallery
+ASSEMBLY = FSpot.Exporters.LiveWebGallery
+TARGET = library
+LINK = $(REF_FSPOT_EXTENSION_LIVEWEBGALLERY)
+INSTALL_DIR = $(EXTENSIONS_INSTALL_DIR)
 
-addin_manifest = $(addin).addin.xml
+SOURCES = \
+	GalleryRequestHandler.cs \
+	LiveWebGallery.cs \
+	LiveWebGalleryDialog.cs \
+	PhotoRequestHandler.cs \
+	ResourceRequestHandler.cs \
+	SimpleWebServer.cs
 
-addin_sources =				\
-	LiveWebGallery.cs		\
-	LiveWebGalleryDialog.cs		\
-	SimpleWebServer.cs		\
-	GalleryRequestHandler.cs	\
-	PhotoRequestHandler.cs		\
-	ResourceRequestHandler.cs
+RESOURCES = \
+	LiveWebGallery.addin.xml \
+	ui/LiveWebGallery.ui \
+	ui/gallery.html \
+	ui/f-spot.css \
+	ui/f-spot.js
 
-addin_references =			\
-	Mono.Posix
-
-addin_packages =			\
-	gtk-sharp-2.0			\
-	gnome-sharp-2.0
-
-addin_resources =			\
-	$(addin_manifest)		\
-	ui/$(addin).ui			\
-	ui/empty.png			\
-	ui/f-spot.css			\
-	ui/f-spot.js			\
-	ui/gallery.html
-
-addin_packages =			\
-	gtk-sharp-2.0
-
-addin_extradist =
-
-include $(top_srcdir)/Makefile.addins
+include $(top_srcdir)/build/build.mk

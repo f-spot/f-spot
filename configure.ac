@@ -66,10 +66,15 @@ SHAMROCK_FIND_MONO_RUNTIME
 SHAMROCK_CHECK_MONO_2_0_GAC_ASSEMBLIES([
     Mono.Data.SqliteClient
     Mono.Posix
+    Mono.Simd
+    Mono.Data
+    System
     System.Runtime.Remoting
     System.Web
     System.Web.Services
+    System.Data
     Mono.Cairo
+    ICSharpCode.SharpZipLib
 ])
 
 FSPOT_CHECK_GTK_SHARP
@@ -193,6 +198,9 @@ if pkg-config --atleast-version=2.16 gtk+-2.0; then
 fi
 
 AC_SUBST(CSC_DEFINES)
+
+dnl Mono.Addins libraries
+BANSHEE_CHECK_MONO_ADDINS
 
 dnl -- dbus-sharp
 PKG_CHECK_MODULES(NDESK_DBUS, ndesk-dbus-1.0 >= $NDESK_DBUS_REQUIRED ndesk-dbus-glib-1.0 >= $NDESK_DBUS_GLIB_REQUIRED)
@@ -364,12 +372,20 @@ docs/Makefile
 icons/Makefile
 tools/Makefile
 po/Makefile.in
+src/Cms/FSpot.Cms.dll.config
+src/Cms/Makefile
+src/Utils/Makefile
+src/Bling/Makefile
+src/JobScheduler/Makefile
+src/Query/Makefile
 src/Core/Defines.cs
+src/Core/Makefile
+src/Core/FSpot.Core.dll.config
+src/Widgets/Makefile
+src/Widgets/FSpot.Widgets.dll.config
+src/Platform/Makefile
 src/AssemblyInfo.cs
 src/f-spot.exe.config
-src/Cms.dll.config
-src/FSpot.Core.dll.config
-src/FSpot.Widgets.dll.config
 src/Makefile
 extensions/Makefile
 extensions/Editors/Makefile

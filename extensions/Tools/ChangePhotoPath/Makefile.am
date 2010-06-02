@@ -1,24 +1,15 @@
-addin = ChangePhotoPath
+ASSEMBLY = FSpot.Exporters.ChangePhotoPath
+TARGET = library
+LINK = $(REF_FSPOT_EXTENSION_CHANGEPHOTOPATH)
+INSTALL_DIR = $(EXTENSIONS_INSTALL_DIR)
 
-addin_manifest = $(addin).addin.xml
+SOURCES = \
+	IChangePhotoPathGui.cs \
+	ChangePhotoPathGui.cs \
+	ChangePhotoPathController.cs
 
-addin_sources = 			\
-	ChangePhotoPathController.cs	\
-	ChangePhotoPathGui.cs		\
-	IChangePhotoPathGui.cs
-
-addin_resources =			\
-	$(addin_manifest)		\
+RESOURCES = \
+	ChangePhotoPath.addin.xml \
 	ChangePhotoPath.glade
 
-addin_references =			\
-	Mono.Posix
-
-addin_packages =			\
-	gtk-sharp-2.0			\
-	glade-sharp-2.0
-
-addin_extradist =			\
-	ChangePhotoPath.glade
-
-include $(top_srcdir)/Makefile.addins
+include $(top_srcdir)/build/build.mk

@@ -1,20 +1,10 @@
-addin = FlipEditor
+ASSEMBLY = FSpot.Editors.FlipEditor
+TARGET = library
+LINK = $(REF_FSPOT_EXTENSION_FLIPEDITOR)
+INSTALL_DIR = $(EXTENSIONS_INSTALL_DIR)
 
-addin_manifest = $(addin).addin.xml
+SOURCES = FlipEditor.cs
 
-addin_sources =			\
-	$(addin).cs
+RESOURCES = FlipEditor.addin.xml
 
-addin_resources =		\
-	$(addin_manifest)
-
-addin_references =		\
-	Mono.Posix
-
-addin_packages =		\	
-	gtk-sharp-2.0
-
-addin_extraflags =
-addin_extradist =
-
-include $(top_srcdir)/Makefile.addins
+include $(top_srcdir)/build/build.mk

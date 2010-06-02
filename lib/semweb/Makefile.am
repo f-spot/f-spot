@@ -1,51 +1,33 @@
-include $(top_srcdir)/Makefile.include
+ASSEMBLY = SemWeb
+TARGET = library
+LINK = $(REF_SEMWEB)
 
-ASSEMBLY_NAME = SemWeb
+SOURCES = \
+	NamespaceManager.cs \
+	Util.cs \
+	UriMap.cs \
+	Resource.cs \
+	Statement.cs \
+	Store.cs \
+	MemoryStore.cs \
+	SQLStore.cs \
+	RdfReader.cs \
+	RdfXmlReader.cs \
+	N3Reader.cs \
+	RdfWriter.cs \
+	RdfXmlWriter.cs \
+	N3Writer.cs \
+	RSquary.cs \
+	LiteralFilters.cs \
+	Query.cs \
+	Inference.cs \
+	RDFS.cs \
+	Algos.cs \
+	Remote.cs \
+	XPathSemWebNavigator.cs
 
-ASSEMBLY_SOURCES =				\
-                $(srcdir)/AssemblyInfo.cs       \
-                $(srcdir)/NamespaceManager.cs   \
-                $(srcdir)/Util.cs               \
-                $(srcdir)/UriMap.cs             \
-                $(srcdir)/Resource.cs           \
-                $(srcdir)/Statement.cs          \
-                $(srcdir)/Store.cs              \
-                $(srcdir)/MemoryStore.cs        \
-                $(srcdir)/SQLStore.cs           \
-                $(srcdir)/RdfReader.cs          \
-                $(srcdir)/RdfXmlReader.cs       \
-                $(srcdir)/N3Reader.cs           \
-                $(srcdir)/RdfWriter.cs          \
-                $(srcdir)/RdfXmlWriter.cs       \
-                $(srcdir)/N3Writer.cs           \
-                $(srcdir)/RSquary.cs            \
-                $(srcdir)/LiteralFilters.cs     \
-                $(srcdir)/Query.cs              \
-                $(srcdir)/Inference.cs          \
-                $(srcdir)/RDFS.cs               \
-                $(srcdir)/Algos.cs              \
-                $(srcdir)/Remote.cs             \
-                $(srcdir)/XPathSemWebNavigator.cs             
+RESOURCES =
 
-REFS =			\
-	-r:System.Data	\
-	-r:System.Web
+ASSEMBLY_INFO_SOURCE = AssemblyInfo.cs
 
-PKGS =
-
-ASSEMBLY = $(ASSEMBLY_NAME).dll
-
-all: $(ASSEMBLY)
-
-$(ASSEMBLY): $(ASSEMBLY_SOURCES)
-	$(CSC_LIB) -out:$@ $(PKGS) $(REFS) $(ASSEMBLY_SOURCES)
-
-assemblydir = $(pkglibdir)
-assembly_DATA =	$(ASSEMBLY)
-
-EXTRA_DIST =				\
-	$(ASSEMBLY_SOURCES)
-
-CLEANFILES =			\
-	$(ASSEMBLY)		\
-	$(ASSEMBLY).mdb
+include $(top_srcdir)/build/build.mk

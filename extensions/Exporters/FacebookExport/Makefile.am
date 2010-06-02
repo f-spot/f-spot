@@ -1,86 +1,37 @@
-include $(top_srcdir)/Makefile.include
+ASSEMBLY = FSpot.Exporters.FacebookExport
+TARGET = library
+LINK = $(REF_FSPOT_EXTENSION_FACEBOOKEXPORT)
+INSTALL_DIR = $(EXTENSIONS_INSTALL_DIR)
 
-PLUGIN_NAME = FacebookExport
+SOURCES = \
+	FacebookExport.cs \
+	FacebookExportDialog.cs \
+	FacebookTagPopup.cs \
+	FindNullableClashes.cs \
+	Mono.Facebook/facebook.cs \
+	Mono.Facebook/Album.cs \
+	Mono.Facebook/Error.cs \
+	Mono.Facebook/Event.cs \
+	Mono.Facebook/FacebookException.cs \
+	Mono.Facebook/FacebookParam.cs \
+	Mono.Facebook/FacebookSession.cs \
+	Mono.Facebook/Friend.cs \
+	Mono.Facebook/FriendInfo.cs \
+	Mono.Facebook/Group.cs \
+	Mono.Facebook/Location.cs \
+	Mono.Facebook/Notification.cs \
+	Mono.Facebook/PeopleList.cs \
+	Mono.Facebook/Photo.cs \
+	Mono.Facebook/Responses.cs \
+	Mono.Facebook/SessionInfo.cs \
+	Mono.Facebook/SessionWrapper.cs \
+	Mono.Facebook/Tag.cs \
+	Mono.Facebook/User.cs \
+	Mono.Facebook/Util.cs
+RESOURCES = \
+	FacebookExport.addin.xml \
+	FacebookExport.ui
 
-PLUGIN_MANIFEST = $(PLUGIN_NAME).addin.xml
+ASSEMBLY_INFO_SOURCE = Mono.Facebook/AssemblyInfo.cs
 
-PLUGIN_ASSEMBLY = $(PLUGIN_NAME).dll
-
-PLUGIN_SOURCES =			\
-	$(srcdir)/FacebookExport.cs			\
-	$(srcdir)/FacebookExportDialog.cs		\
-	$(srcdir)/FacebookTagPopup.cs			\
-	$(srcdir)/Mono.Facebook/facebook.cs		\
-	$(srcdir)/Mono.Facebook/Album.cs		\
-	$(srcdir)/Mono.Facebook/AssemblyInfo.cs		\
-	$(srcdir)/Mono.Facebook/Error.cs		\
-	$(srcdir)/Mono.Facebook/Event.cs		\
-	$(srcdir)/Mono.Facebook/FacebookException.cs	\
-	$(srcdir)/Mono.Facebook/FacebookParam.cs	\
-	$(srcdir)/Mono.Facebook/FacebookSession.cs	\
-	$(srcdir)/Mono.Facebook/Friend.cs		\
-	$(srcdir)/Mono.Facebook/FriendInfo.cs		\
-	$(srcdir)/Mono.Facebook/Group.cs		\
-	$(srcdir)/Mono.Facebook/Location.cs		\
-	$(srcdir)/Mono.Facebook/Notification.cs		\
-	$(srcdir)/Mono.Facebook/PeopleList.cs		\
-	$(srcdir)/Mono.Facebook/Photo.cs		\
-	$(srcdir)/Mono.Facebook/Responses.cs		\
-	$(srcdir)/Mono.Facebook/SessionInfo.cs	\
-	$(srcdir)/Mono.Facebook/SessionWrapper.cs	\
-	$(srcdir)/Mono.Facebook/Tag.cs			\
-	$(srcdir)/Mono.Facebook/User.cs			\
-	$(srcdir)/Mono.Facebook/Util.cs
-
-REFS =							\
-	-r:$(top_builddir)/src/f-spot.exe		\
-	-r:$(top_builddir)/src/FSpot.Core.dll		\
-	-r:$(top_builddir)/src/FSpot.Utils.dll		\
-	-r:$(top_builddir)/src/FSpot.Platform.dll	\
-	-r:$(top_builddir)/src/FSpot.Widgets.dll	\
-	$(LINK_GTKSHARPBEANS)				\
-	$(LINK_KEYRING)                     		\
-	$(LINK_SEMWEB)					\
-	$(LINK_GPHOTO2)					\
-	$(LINK_GIOSHARP)				\
-	$(LINK_UNIQUESHARP)				\
-	-r:Mono.Posix					\
-	$(LINK_HYENA)
-
-PKGS =					\
-	-pkg:gtk-sharp-2.0
-
-RESOURCES =				\
-	-resource:$(srcdir)/$(PLUGIN_MANIFEST)	\
-	-resource:$(srcdir)/$(PLUGIN_NAME).ui
-
-all: $(PLUGIN_ASSEMBLY)
-
-mpack: $(PLUGIN_ASSEMBLY)
-	mautil p $(PLUGIN_ASSEMBLY)
-
-update-xsd:
-	curl http://api.facebook.com/1.0/facebook.xsd > Mono.Facebook/facebook.xsd
-	xsd Mono.Facebook/facebook.xsd /classes /outputdir:Mono.Facebook/ /namespace:Mono.Facebook.Schemas
-
-validate-xsd: all
-	gmcs -debug $(REFS) $(PKGS) -out:FindNullableClashes.exe FindNullableClashes.cs
-	MONO_PATH=.:$(top_builddir)/src/ mono --debug FindNullableClashes.exe FacebookExport.dll
-
-$(PLUGIN_ASSEMBLY): $(PLUGIN_SOURCES) $(PLUGIN_MANIFEST) $(PLUGIN_NAME).ui
-	$(CSC_LIB) -debug -out:$@ -warnaserror $(PLUGIN_SOURCES) $(REFS) $(PKGS) $(ASSEMBLIES) $(RESOURCES)
-
-plugindir = $(pkglibdir)/extensions
-
-plugin_DATA =			\
-	$(PLUGIN_ASSEMBLY)
-
-EXTRA_DIST = 			\
-	$(PLUGIN_SOURCES)	\
-	$(PLUGIN_MANIFEST)	\
-	$(PLUGIN_NAME).ui
-
-CLEANFILES =			\
-	$(PLUGIN_ASSEMBLY)	\
-	$(PLUGIN_ASSEMBLY).mdb	\
-	*.mpack
+include $(top_srcdir)/build/build.mk

@@ -1,21 +1,11 @@
-addin = BWEditor
+ASSEMBLY = FSpot.Editors.BWEditor
+ASSEMBLY_BUILD_FLAGS = -unsafe
+TARGET = library
+LINK = $(REF_FSPOT_EXTENSION_BWEDITOR)
+INSTALL_DIR = $(EXTENSIONS_INSTALL_DIR)
 
-addin_manifest = $(addin).addin.xml
+SOURCES = BWEditor.cs
 
-addin_sources =			\
-	$(addin).cs
+RESOURCES = BWEditor.addin.xml
 
-addin_resources =		\
-	$(addin_manifest)
-
-addin_references =		\
-	Mono.Posix		\
-	Mono.Simd
-
-addin_packages =		\	
-	gtk-sharp-2.0
-
-addin_extraflags = -unsafe
-addin_extradist =
-
-include $(top_srcdir)/Makefile.addins
+include $(top_srcdir)/build/build.mk

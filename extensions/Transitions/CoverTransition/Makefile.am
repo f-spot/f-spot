@@ -1,19 +1,10 @@
-addin = CoverTransition
+ASSEMBLY = FSpot.Exporters.CoverTransition
+TARGET = library
+LINK = $(REF_FSPOT_EXTENSION_COVERTRANSITION)
+INSTALL_DIR = $(EXTENSIONS_INSTALL_DIR)
 
-addin_manifest = $(addin).addin.xml
+SOURCES = CoverTransition.cs
 
-addin_sources =				\
-	$(addin).cs
+RESOURCES = CoverTransition.addin.xml
 
-addin_resources =			\
-	$(addin_manifest)
-
-addin_references =			\
-	Mono.Cairo
-
-addin_packages =			\
-	gtk-sharp-2.0
-
-addin_extradist =
-
-include $(top_srcdir)/Makefile.addins
+include $(top_srcdir)/build/build.mk

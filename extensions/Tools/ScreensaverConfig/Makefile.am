@@ -1,20 +1,12 @@
-addin = ScreensaverConfig
+ASSEMBLY = FSpot.Exporters.ScreensaverConfig
+TARGET = library
+LINK = $(REF_FSPOT_EXTENSION_SCREENSAVERCONFIG)
+INSTALL_DIR = $(EXTENSIONS_INSTALL_DIR)
 
-addin_manifest = $(addin).addin.xml
+SOURCES = ScreensaverConfig.cs
 
-addin_sources =				\
-	$(addin).cs
+RESOURCES = \
+	ScreensaverConfig.addin.xml \
+	ScreensaverConfigDialog.ui
 
-addin_resources =			\
-	ScreensaverConfigDialog.ui \
-	$(addin_manifest)
-
-addin_references =			\
-	Mono.Posix
-
-addin_packages =			\
-	gtk-sharp-2.0
-
-addin_extradist =
-
-include $(top_srcdir)/Makefile.addins
+include $(top_srcdir)/build/build.mk

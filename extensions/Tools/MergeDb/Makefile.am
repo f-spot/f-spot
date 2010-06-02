@@ -1,24 +1,15 @@
-addin = MergeDb
+ASSEMBLY = FSpot.Exporters.MergeDb
+TARGET = library
+LINK = $(REF_FSPOT_EXTENSION_MERGEDB)
+INSTALL_DIR = $(EXTENSIONS_INSTALL_DIR)
 
-addin_manifest = $(addin).addin.xml
-
-addin_sources = 			\
-	$(addin).cs			\
-	MergeDbDialog.cs		\
+SOURCES = \
+	MergeDb.cs \
+	MergeDbDialog.cs \
 	PickFolderDialog.cs
 
-addin_resources =			\
-	$(addin_manifest)		\
-	$(addin).glade
+RESOURCES = \
+	MergeDb.addin.xml \
+	MergeDb.glade
 
-addin_references =			\
-	Mono.Posix
-
-addin_packages =			\
-	gtk-sharp-2.0			\
-	glade-sharp-2.0
-
-addin_extradist =
-
-include $(top_srcdir)/Makefile.addins
-
+include $(top_srcdir)/build/build.mk

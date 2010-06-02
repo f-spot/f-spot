@@ -1,45 +1,31 @@
-include $(top_srcdir)/Makefile.include
+ASSEMBLY = Mono.Google
+TARGET = library
+LINK = $(REF_MONO_GOOGLE)
+INSTALL_DIR = $(EXTENSIONS_INSTALL_DIR)
 
-ASSEMBLY_NAME = Mono.Google
+SOURCES = \
+	AlbumAccess.cs \
+	Authentication.cs \
+	CaptchaException.cs \
+	CreateAlbumException.cs\
+	DeleteAlbumException.cs \
+	GDataApi.cs \
+	GoogleConnection.cs \
+	GoogleService.cs \
+	MultipartRequest.cs \
+	NoCheckCertificatePolicy.cs \
+	PicasaAlbum.cs \
+	PicasaAlbumCollection.cs \
+	PicasaPicture.cs \
+	PicasaPictureCollection.cs \
+	PicasaWeb.cs \
+	UploadPictureException.cs \
+	UploadProgressEventArgs.cs \
+	UploadProgressEventHandler.cs \
+	XmlUtil.cs
 
-ASSEMBLY_SOURCES =				\
-	$(srcdir)/AlbumAccess.cs  		\
-	$(srcdir)/AssemblyInfo.cs 		\
-	$(srcdir)/Authentication.cs  		\
-	$(srcdir)/CaptchaException.cs  		\
-	$(srcdir)/CreateAlbumException.cs  	\
-	$(srcdir)/DeleteAlbumException.cs  	\
-	$(srcdir)/GDataApi.cs  			\
-	$(srcdir)/GoogleConnection.cs  		\
-	$(srcdir)/GoogleService.cs  		\
-	$(srcdir)/MultipartRequest.cs  		\
-	$(srcdir)/NoCheckCertificatePolicy.cs  	\
-	$(srcdir)/PicasaAlbum.cs  		\
-	$(srcdir)/PicasaAlbumCollection.cs  	\
-	$(srcdir)/PicasaPicture.cs  		\
-	$(srcdir)/PicasaPictureCollection.cs  	\
-	$(srcdir)/PicasaWeb.cs  		\
-	$(srcdir)/UploadPictureException.cs 	\
-	$(srcdir)/UploadProgressEventArgs.cs  	\
-	$(srcdir)/UploadProgressEventHandler.cs \
-	$(srcdir)/XmlUtil.cs
+RESOURCES =
 
-REFS = -r:System.Web
+ASSEMBLY_INFO_SOURCE = AssemblyInfo.cs
 
-PKGS =
-
-ASSEMBLY = $(ASSEMBLY_NAME).dll
-
-all: $(ASSEMBLY)
-
-$(ASSEMBLY): $(ASSEMBLY_SOURCES)
-	$(CSC_LIB) -out:$@ $(PKGS) $(REFS) $(ASSEMBLY_SOURCES)
-
-assemblydir = $(pkglibdir)
-assembly_DATA =	$(ASSEMBLY)
-
-EXTRA_DIST = $(ASSEMBLY_SOURCES)
-
-CLEANFILES =			\
-	$(ASSEMBLY)		\
-	$(ASSEMBLY).mdb
+include $(top_srcdir)/build/build.mk
