@@ -35,7 +35,7 @@ namespace FSpot.Widgets
 		
 		
 		public FolderTreeModel ()
-			: base (typeof (string), typeof (int), typeof (Uri))
+			: base (typeof (string), typeof (int), typeof (SafeUri))
 		{
 			database = App.Instance.Database;
 			database.Photos.ItemsChanged += HandlePhotoItemsChanged;
@@ -64,15 +64,15 @@ namespace FSpot.Widgets
 			return (int) GetValue (iter, 1);
 		}
 		
-		public Uri GetUriByIter (TreeIter iter)
+		public SafeUri GetUriByIter (TreeIter iter)
 		{
 			if ( ! IterIsValid (iter))
 				return null;
 			
-			return (Uri) GetValue (iter, 2);
+			return (SafeUri) GetValue (iter, 2);
 		}	
 		
-		public Uri GetUriByPath (TreePath row)
+		public SafeUri GetUriByPath (TreePath row)
 		{
 			TreeIter iter;
 			
@@ -107,21 +107,15 @@ namespace FSpot.Widgets
 			SqliteDataReader reader = database.Database.Query (query_string);
 			
 			while (reader.Read ()) {
-				Uri base_uri = new Uri (reader["base_uri"].ToString ());
-				
-				if ( ! base_uri.IsAbsoluteUri) {
-					Hyena.Log.ErrorFormat ("Uri must be absolute: {0}", base_uri.ToString ());
-					continue;
-				}
+				var base_uri = new SafeUri (reader["base_uri"].ToString (), true);
 				
 				int count = Convert.ToInt32 (reader["count"]);
 				
-				string[] segments = base_uri.Segments;
+				string[] segments = base_uri.LocalPath.TrimEnd ('/').Split ('/');
 
-				/* 
-				 * since we have an absolute uri, first segement starts with "/" according
-				 * to the msdn doc. So we can overwrite the first segment for our needs and
-				 * put the scheme here.
+				/* First segment contains nothing (since we split by /), so we
+				 * can overwrite the first segment for our needs and put the
+				 * scheme here.
 				 */
 				segments[0] = base_uri.Scheme;
 				
@@ -129,10 +123,6 @@ namespace FSpot.Widgets
 				
 				/* find first difference of last inserted an current uri */
 				while (i < last_segments.Length && i < segments.Length) {
-					
-					/* remove suffix '/', which are appended to every directory (see msdn-doc) */
-					segments[i] = segments[i].TrimEnd ('/');
-					
 					if (segments[i] != last_segments[i])
 						break;
 					
@@ -155,22 +145,20 @@ namespace FSpot.Widgets
 				}
 				
 				while (i < segments.Length) {
-					segments[i] = segments[i].TrimEnd ('/');
-					
-					if (IterIsValid (parent_iter))
+					if (IterIsValid (parent_iter)) {
 						iter =
 							AppendValues (parent_iter,
 							              Uri.UnescapeDataString (segments[i]),
 							              (segments.Length - 1 == i)? count : 0,
-							              new Uri ((Uri) GetValue (parent_iter, 2),
-							                       String.Format ("{0}/", segments[i]))
+							              (GetValue (parent_iter, 2) as SafeUri).Append (String.Format ("{0}/", segments[i]))
 							              );
-					else
+					} else {
 						iter =
 							AppendValues (Uri.UnescapeDataString (segments[i]),
 							              (segments.Length - 1 == i)? count : 0,
-							              new Uri (base_uri, "/"));
-					
+							              new SafeUri (String.Format ("{0}:///", base_uri.Scheme), true));
+					}
+
 					parent_iter = iter;
 					
 					i++;
