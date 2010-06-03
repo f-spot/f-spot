@@ -182,12 +182,6 @@ namespace FSpot {
 			}
 		}
 
-		[Obsolete ("use HasLoader (Hyena.SafeUri) instead")]
-		public static bool HasLoader (string path)
-		{
-			return HasLoader (new SafeUri (path));
-		}
-		
 		public static bool HasLoader (SafeUri uri)
 		{
 			return GetLoaderType (uri) != null;
@@ -211,12 +205,6 @@ namespace FSpot {
 			return t;
 		}
 		
-		[Obsolete ("use Create (Hyena.SafeUri) instead")]
-		public static ImageFile Create (string path)
-		{
-			return Create (new SafeUri (path));
-		}
-
 		public static ImageFile Create (SafeUri uri)
 		{
 			System.Type t = GetLoaderType (uri);

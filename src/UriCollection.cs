@@ -143,7 +143,7 @@ namespace FSpot {
 		{
 			List<IBrowsableItem> items = new List<IBrowsableItem> ();
 			foreach (var f in files) {
-				if (FSpot.ImageFile.HasLoader (f.FullName)) {
+				if (FSpot.ImageFile.HasLoader (new SafeUri (f.FullName))) {
 					Hyena.Log.Debug (f.FullName);
 					items.Add (new FileBrowsableItem (new SafeUri (f.FullName)));
 				}

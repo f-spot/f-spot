@@ -69,7 +69,7 @@ namespace FSpot {
 
 		private static void RotateOrientation (string original_path, RotateDirection direction)
 		{
-			using (FSpot.ImageFile img = FSpot.ImageFile.Create (original_path)) {
+			using (FSpot.ImageFile img = FSpot.ImageFile.Create (new SafeUri (original_path))) {
 				if (img is JpegFile) {
 					FSpot.JpegFile jimg = img as FSpot.JpegFile;
 					PixbufOrientation orientation = direction == RotateDirection.Clockwise
