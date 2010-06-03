@@ -131,7 +131,6 @@ namespace FSpot {
 			return rotated;
 		}
 		
-		[Obsolete ("Use an Async way to load the pixbuf")]
 		public virtual Gdk.Pixbuf Load ()
 		{
 			using (Stream stream = PixbufStream ()) {
@@ -140,7 +139,6 @@ namespace FSpot {
 			}
 		}
 		
-		[Obsolete ("Use an Async way to load the pixbuf")]
 		public virtual Gdk.Pixbuf Load (int max_width, int max_height)
 		{
 			System.IO.Stream stream = PixbufStream ();
