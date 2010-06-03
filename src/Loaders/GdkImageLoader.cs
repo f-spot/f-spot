@@ -24,6 +24,12 @@ namespace FSpot.Loaders {
 		{	
 		}
 
+        ~GdkImageLoader ()
+        {
+            if (!is_disposed)
+                Dispose ();
+        }
+
 		public void Load (SafeUri uri)
 		{
 			if (is_disposed)
