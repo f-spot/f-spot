@@ -12,7 +12,8 @@ SOURCES = \
 	RatingRange.cs \
 	RollSet.cs \
 	TagConditionWrapper.cs \
-	UntaggedCondition.cs
+	UntaggedCondition.cs \
+	Tests/LogicalTermTests.cs
 
 RESOURCES =
 

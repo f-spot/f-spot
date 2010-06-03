@@ -49,9 +49,7 @@ run:
 	popd;
 
 
-if ENABLE_TESTS
 test:
-	@pushd tests/src/; \
-	make test; \
+	@pushd tests; \
+	make test \
 	popd;
-endif

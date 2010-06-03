@@ -4,10 +4,6 @@ using System;
 using System.IO;
 using Hyena;
 
-#if ENABLE_NUNIT
-using NUnit.Framework;
-#endif
-
 namespace FSpot.Pnm {
 	public class PnmFile : ImageFile, StatementSource {
 

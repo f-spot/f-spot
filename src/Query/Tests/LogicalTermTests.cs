@@ -1,4 +1,4 @@
-#if ENABLE_NUNIT
+#if ENABLE_TESTS
 using NUnit.Framework;
 
 namespace FSpot.Query.Tests

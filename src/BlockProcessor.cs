@@ -11,10 +11,6 @@
 using Gdk;
 using System;
 
-#if ENABLE_NUNIT
-using NUnit.Framework;
-#endif
-
 namespace FSpot {
 	public class BlockProcessor {
 		Rectangle rect;
@@ -40,34 +36,4 @@ namespace FSpot {
 		}
 
 	}
-
-#if ENABLE_NUNIT
-	[TestFixture]
-	public class BlockProcessorTests 
-	{
-		[Test]
-		public void Contained ()
-		{
-			BlockProcessor proc = new BlockProcessor (new Rectangle (0, 0, 10, 10), 1000);
-			Rectangle step;
-
-			Assert.IsTrue (proc.Step (out step));
-			Assert.AreEqual (step, new Rectangle (0, 0, 10, 10));
-			Assert.IsFalse (proc.Step (out step));
-		}
-
-		[Test]
-		public void Step ()
-		{
-			BlockProcessor proc = new BlockProcessor (new Rectangle (10, 100, 25, 15), 20);
-			Rectangle step;
-
-			Assert.AreEqual (proc.Step (out step), true);
-			Assert.AreEqual (step, new Rectangle (10, 100, 20, 15));
-			Assert.AreEqual (proc.Step (out step), true);
-			Assert.AreEqual (step, new Rectangle (30, 100, 5, 15));
-			Assert.AreEqual (proc.Step (out step), false);
-		}
-	}
-#endif
 }

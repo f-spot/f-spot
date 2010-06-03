@@ -80,7 +80,7 @@ SHAMROCK_CHECK_MONO_2_0_GAC_ASSEMBLIES([
 FSPOT_CHECK_GTK_SHARP
 FSPOT_CHECK_GNOME_KEYRING_SHARP
 FSPOT_CHECK_FLICKRNET
-
+SHAMROCK_CHECK_NUNIT
 
 
 
@@ -205,40 +205,6 @@ FSPOT_CHECK_MONO_ADDINS
 dnl -- dbus-sharp
 PKG_CHECK_MODULES(NDESK_DBUS, ndesk-dbus-1.0 >= $NDESK_DBUS_REQUIRED ndesk-dbus-glib-1.0 >= $NDESK_DBUS_GLIB_REQUIRED)
 AC_SUBST(NDESK_DBUS_LIBS)
-
-AC_ARG_ENABLE(tests,
-	AC_HELP_STRING([--enable-tests],
-		[Enable NUnit tests]))
-
-AM_CONDITIONAL(ENABLE_TESTS, test "x$enable_tests" != "xno")
-
-if test "x$enable_tests" != "xno"; then
-	dnl -- nunit
-	PKG_CHECK_MODULES(NUNIT, nunit >= $NUNIT_REQUIRED,
-		do_tests="yes", do_tests="no")
-
-	AC_SUBST(NUNIT_LIBS)
-	AM_CONDITIONAL(ENABLE_TESTS, test "x$do_tests" = "xyes")
-
-	if test "x$do_tests" = "xno"; then
-		PKG_CHECK_MODULES(NUNIT, mono-nunit >= 2.0,
-			do_tests="yes", do_tests="no")
-
-		AC_SUBST(NUNIT_LIBS)
-		AM_CONDITIONAL(ENABLE_TESTS, test "x$do_tests" = "xyes")
-
-		if test "x$do_tests" = "xno"; then
-			NUNIT_DEFINES=''
-			AC_MSG_WARN([Could not find nunit: tests will not be available.])
-		else
-			NUNIT_DEFINES='-d:ENABLE_NUNIT'
-		fi
-		AC_SUBST(NUNIT_DEFINES)
-	fi
-else
-	do_tests="no"
-fi
-
 
 dnl --- GConf
 
@@ -421,7 +387,6 @@ extensions/Tools/ScreensaverConfig/Makefile
 extensions/Transitions/Makefile
 extensions/Transitions/CoverTransition/Makefile
 tests/Makefile
-tests/src/Makefile
 )
 
 cat <<EOF

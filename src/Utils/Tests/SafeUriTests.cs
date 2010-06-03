@@ -1,11 +1,12 @@
+#if ENABLE_TESTS
 using NUnit.Framework;
 using System;
 using Hyena;
 using FSpot;
 
-namespace FSpot.Tests
+namespace FSpot.Utils.Tests
 {
-	[TestFixture]
+    [TestFixture]
     public class SafeUriTests
     {
         static SafeUriTest[] tests = new SafeUriTest[] {
@@ -73,3 +74,4 @@ namespace FSpot.Tests
         public string FilenameWithoutExtension { get; set; }
     }
 }
+#endif
