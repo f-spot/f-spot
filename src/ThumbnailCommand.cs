@@ -1,6 +1,7 @@
 using System;
 using Gtk;
 using FSpot;
+using FSpot.Utils;
 using FSpot.UI.Dialog;
 
 public class ThumbnailCommand {
@@ -15,7 +16,7 @@ public class ThumbnailCommand {
 	public bool Execute (Photo [] photos)
 	{
 		ProgressDialog progress_dialog = null;
-
+        var loader = ThumbnailLoader.Default;
 		if (photos.Length > 1) {
 			progress_dialog = new ProgressDialog (Mono.Unix.Catalog.GetString ("Updating Thumbnails"),
 							      ProgressDialog.CancelButtonType.Stop,
@@ -29,9 +30,7 @@ public class ThumbnailCommand {
 				break;
 
 			foreach (uint version_id in p.VersionIds) {
-				Gdk.Pixbuf thumb = FSpot.ThumbnailGenerator.Create (p.VersionUri (version_id));
-				if (thumb !=  null)
-					thumb.Dispose ();
+				loader.Request (p.VersionUri (version_id), ThumbnailSize.Large, 10);
 			}
 			
 			count++;

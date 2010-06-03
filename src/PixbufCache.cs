@@ -12,6 +12,7 @@ using System.Collections;
 using System.Threading;
 using Hyena;
 
+using FSpot.Utils;
 using FSpot.Platform;
 
 namespace FSpot {
@@ -34,13 +35,12 @@ namespace FSpot {
 			worker = new Thread (new ThreadStart (WorkerTask));
 			worker.Start ();
 
-			ThumbnailGenerator.Default.OnPixbufLoaded += HandleThumbnailLoaded;
+			ThumbnailLoader.Default.OnPixbufLoaded += HandleThumbnailLoaded;
 		}
 		
-		public void HandleThumbnailLoaded (ImageLoaderThread loader, SafeUri uri, int order, Gdk.Pixbuf result)
+		public void HandleThumbnailLoaded (ImageLoaderThread loader, ImageLoaderThread.RequestItem result)
 		{
-			if (result != null)
-				Reload (uri);
+            Reload (result.Uri);
 		}
 
 		public void Request (SafeUri uri, object closure, int width, int height)
@@ -184,7 +184,7 @@ namespace FSpot {
 		{
 			Gdk.Pixbuf loaded = null;
 			try {
-				loaded = ThumbnailFactory.LoadThumbnail (entry.Uri);
+				loaded = XdgThumbnailSpec.LoadThumbnail (entry.Uri, ThumbnailSize.Large);
 				this.Update (entry, loaded);
 			} catch (GLib.GException){
 				if (loaded != null)

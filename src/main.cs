@@ -61,6 +61,11 @@ namespace FSpot
 		{
 			List<string> uris = new List<string> ();
 			Unix.SetProcessName (Defines.PACKAGE);
+            ThreadAssist.InitializeMainThread ();
+            XdgThumbnailSpec.DefaultLoader = (uri) => {
+                using (var file = ImageFile.Create (uri))
+                    return file.Load ();
+            };
 
 			// Options and Option parsing
 			bool shutdown = false;

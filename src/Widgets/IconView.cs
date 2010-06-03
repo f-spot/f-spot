@@ -1380,15 +1380,6 @@ namespace FSpot.Widgets
 
 			if (order >= 0 && order < collection.Count) {
 				var uri = collection [order].DefaultVersion.Uri;
-
-				if (result == null && !ThumbnailFactory.ThumbnailExists (uri))
-					FSpot.ThumbnailGenerator.Default.Request (uri, 0, 256, 256);
-
-				if (result == null)
-					return;
-
-				if (!ThumbnailFactory.ThumbnailIsValid (result, uri))
-					FSpot.ThumbnailGenerator.Default.Request (uri, 0, 256, 256);
 			}
 
 			if (result == null)

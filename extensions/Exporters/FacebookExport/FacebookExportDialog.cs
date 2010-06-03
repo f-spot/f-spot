@@ -23,6 +23,7 @@ using Gtk;
 using GtkBeans;
 
 using Hyena;
+using FSpot.Utils;
 using FSpot.Platform;
 using FSpot.UI.Dialog;
 
@@ -192,7 +193,7 @@ namespace FSpot.Exporter.Facebook
 				tag_image.Destroy ();
 			}
 
-			using (Gdk.Pixbuf data = PixbufUtils.ScaleToMaxSize (ThumbnailFactory.LoadThumbnail (item.DefaultVersion.Uri), 400, 400)) {
+			using (Gdk.Pixbuf data = XdgThumbnailSpec.LoadThumbnail (item.DefaultVersion.Uri, ThumbnailSize.Large)) {
 				tag_image_height = data.Height;
 				tag_image_width = data.Width;
 				tag_image = new Gtk.Image (data);

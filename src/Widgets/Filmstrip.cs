@@ -307,7 +307,7 @@ namespace FSpot.Widgets
 			this.selection.Collection.ItemsChanged += HandleCollectionItemsChanged;
 			this.squared_thumbs = squared_thumbs;
 			thumb_cache = new DisposableCache<SafeUri, Pixbuf> (30);
-			ThumbnailGenerator.Default.OnPixbufLoaded += HandlePixbufLoaded;
+			ThumbnailLoader.Default.OnPixbufLoaded += HandlePixbufLoaded;
 
 			animation = new DoubleAnimation (0, 0, TimeSpan.FromSeconds (1.5), SetPositionCore, new CubicEase (EasingMode.EaseOut));
 		}
@@ -548,8 +548,8 @@ namespace FSpot.Widgets
 			QueueDraw ();
 		}
 
-		void HandlePixbufLoaded (ImageLoaderThread pl, SafeUri uri, int order, Pixbuf p) {
-			if (!thumb_cache.Contains (uri)) {
+		void HandlePixbufLoaded (ImageLoaderThread pl, ImageLoaderThread.RequestItem item) {
+			if (!thumb_cache.Contains (item.Uri)) {
 				return;
 			}
 			
@@ -621,25 +621,19 @@ namespace FSpot.Widgets
 			}
 
 			if (current == null) {
-				try {
-					ThumbnailGenerator.Default.Request ((selection.Collection [i]).DefaultVersion.Uri, 0, 256, 256);
-
+                var pixbuf = XdgThumbnailSpec.LoadThumbnail (uri, ThumbnailSize.Large, null);
+                if (pixbuf == null) {
+					ThumbnailLoader.Default.Request (uri, ThumbnailSize.Large, 0);
+                    current = FSpot.Global.IconTheme.LoadIcon ("gtk-missing-image", ThumbSize, (Gtk.IconLookupFlags)0);
+                } else {
 					if (SquaredThumbs) {
-						using (Pixbuf p = ThumbnailFactory.LoadThumbnail (uri)) {
-							current = PixbufUtils.IconFromPixbuf (p, ThumbSize);
-						}
-					} else 
-						current = ThumbnailFactory.LoadThumbnail (uri, -1, ThumbSize);
+                        current = PixbufUtils.IconFromPixbuf (pixbuf, ThumbSize);
+                    } else {
+                        current = pixbuf.ScaleSimple (ThumbSize, ThumbSize, InterpType.Nearest);
+                    }
+                    pixbuf.Dispose ();
 					thumb_cache.Add (uri, current);
-				} catch {
-					try {
-						current = FSpot.Global.IconTheme.LoadIcon ("gtk-missing-image", ThumbSize, (Gtk.IconLookupFlags)0);
-					} catch {
-						current = null;
-					}
-					thumb_cache.Add (uri, null);
-				}
-
+                }
 			}
 			
 			//FIXME: we might end up leaking a pixbuf here
@@ -692,7 +686,7 @@ namespace FSpot.Widgets
 				this.selection.Changed -= HandlePointerChanged;
 				this.selection.Collection.Changed -= HandleCollectionChanged;
 				this.selection.Collection.ItemsChanged -= HandleCollectionItemsChanged;
-				ThumbnailGenerator.Default.OnPixbufLoaded -= HandlePixbufLoaded;
+				ThumbnailLoader.Default.OnPixbufLoaded -= HandlePixbufLoaded;
 				if (background_pixbuf != null)
 					background_pixbuf.Dispose ();
 				if (background_tile != null)

@@ -246,7 +246,6 @@ namespace FSpot
 						img.Save (buffer, stream);
 					}
 					(GetVersion (version) as PhotoVersion).MD5Sum = GenerateMD5 (VersionUri (version));
-					FSpot.ThumbnailGenerator.Create (versionUri).Dispose ();
 					DefaultVersionId = version;
 				} catch (System.Exception e) {
 					Log.Exception (e);
@@ -287,7 +286,7 @@ namespace FSpot
 						file.Delete ();
 					}	
 				try {
-					ThumbnailFactory.DeleteThumbnail (uri);
+					XdgThumbnailSpec.RemoveThumbnail (uri);
 				} catch {
 					//ignore an error here we don't really care.
 				}
@@ -334,8 +333,6 @@ namespace FSpot
 		//FIXME. or better, fix the copy api !
 				GLib.File source = GLib.FileFactory.NewForUri (original_uri);
 				source.Copy (destination, GLib.FileCopyFlags.None, null, null);
-	
-				FSpot.ThumbnailGenerator.Create (new_uri).Dispose ();
 			}
 			highest_version_id ++;
 
@@ -536,7 +533,7 @@ namespace FSpot
 			 	if (md5_cache.ContainsKey (uri))
 				 	return md5_cache [uri];
 
-				using (Gdk.Pixbuf pixbuf = ThumbnailGenerator.Create (uri))
+				using (Gdk.Pixbuf pixbuf = XdgThumbnailSpec.LoadThumbnail (uri, ThumbnailSize.Large))
 				{
 					byte[] serialized = GdkUtils.Serialize (pixbuf);
 					byte[] md5 = MD5Generator.ComputeHash (serialized);

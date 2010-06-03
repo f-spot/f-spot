@@ -22,7 +22,6 @@ namespace FSpot {
 		{
 			using (ImageFile img = ImageFile.Create (item.DefaultVersion.Uri)) {
 				Gdk.Pixbuf pixbuf = img.Load ();
-				ValidateThumbnail (item, pixbuf);
 				return pixbuf;
 			}
 		}
@@ -31,25 +30,8 @@ namespace FSpot {
 		{
 			using (ImageFile img = ImageFile.Create (item.DefaultVersion.Uri)) {
 				Gdk.Pixbuf pixbuf = img.Load (width, height);
-				ValidateThumbnail (item.DefaultVersion.Uri, pixbuf);
 				return pixbuf;
 			}
-		}
-
-		static public Gdk.Pixbuf ValidateThumbnail (IBrowsableItem item, Gdk.Pixbuf pixbuf)
-		{
-			return ValidateThumbnail (item.DefaultVersion.Uri, pixbuf);
-		}
-
-		static public Gdk.Pixbuf ValidateThumbnail (SafeUri uri, Gdk.Pixbuf pixbuf)
-		{			
-			using (Gdk.Pixbuf thumbnail = ThumbnailCache.Default.GetThumbnailForUri (uri)) {
-				if (pixbuf != null && thumbnail != null && !ThumbnailFactory.ThumbnailIsValid (thumbnail, uri)) {
-					Log.DebugFormat ("regenerating thumbnail for {0}", uri);
-					FSpot.ThumbnailGenerator.Default.Request (uri, 0, 256, 256);
-				}
-			}
-			return pixbuf;
 		}
 
 		public PhotoLoader (PhotoQuery query)

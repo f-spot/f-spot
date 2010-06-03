@@ -317,10 +317,17 @@ public class FileImportBackend : ImportBackend {
 		if (import_info == null)
 			throw new ImportException ("Not doing anything");
 
-		foreach (ImportInfo info in import_info) {
-			if (info.PhotoId != 0) 
-				FSpot.ThumbnailGenerator.Default.Request (store.Get (info.PhotoId).DefaultVersion.Uri, 0, 256, 256);
-		}
+		var infos = import_info;
+		ThreadAssist.SpawnFromMain (() => {
+			// Generate all thumbnails on a different thread, disposing is automatic.
+			var loader = ThumbnailLoader.Default;
+			foreach (ImportInfo info in infos) {
+				if (info.PhotoId != 0) {
+					var uri = store.Get (info.PhotoId).DefaultVersion.Uri;
+					loader.Request (uri, ThumbnailSize.Large, 10);
+				}
+			}
+		});
 
 		import_info = null;
 		xmptags.Finish();

@@ -6,7 +6,6 @@ SOURCES = \
 	Gnome/Desktop.cs \
 	Gnome/PreferenceBackend.cs \
 	Gnome/ScreenSaver.cs \
-	Gnome/ThumbnailFactory.cs \
 	Gnome/WebProxy.cs
 
 # Currently unused
@@ -14,7 +13,6 @@ SOURCES = \
 #	Null/Desktop.cs \
 #	Null/PreferenceBackend.cs \
 #	Null/ScreenSaver.cs \
-#	Null/ThumbnailFactory.cs \
 #	Null/WebProxy.cs
 
 RESOURCES =

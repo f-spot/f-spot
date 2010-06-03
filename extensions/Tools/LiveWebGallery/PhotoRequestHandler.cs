@@ -13,6 +13,7 @@ using System.Text;
 
 using FSpot;
 using FSpot.Filters;
+using FSpot.Utils;
 using Hyena;
 
 namespace LiveWebGalleryExtension
@@ -82,7 +83,7 @@ namespace LiveWebGalleryExtension
 		
 		protected override void SendImage (Photo photo, Stream dest) 
 		{
-			Gdk.Pixbuf thumb = FSpot.Platform.ThumbnailFactory.LoadThumbnail (photo.DefaultVersion.Uri);
+			Gdk.Pixbuf thumb = XdgThumbnailSpec.LoadThumbnail (photo.DefaultVersion.Uri, ThumbnailSize.Large);
 			byte[] buf = thumb.SaveToBuffer ("png");
 			SendHeadersAndStartContent(dest, "Content-Type: " + MimeTypeForExt (".png"),
 											 "Content-Length: " + buf.Length,

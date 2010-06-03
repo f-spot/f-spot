@@ -21,8 +21,6 @@ SOURCES = \
 	PhotoChanges.cs \
 	PhotosChanges.cs \
 	Roll.cs \
-	SafeUri.cs \
-	SafeUriExtensions.cs \
 	Defines.cs
 
 RESOURCES =

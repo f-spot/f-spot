@@ -30,7 +30,7 @@ namespace FSpot.Loaders {
 				return;
 
 			//First, send a thumbnail if we have one
-			if ((thumb = ThumbnailFactory.LoadThumbnail (uri)) != null) {
+			if ((thumb = XdgThumbnailSpec.LoadThumbnail (uri, ThumbnailSize.Large, null)) != null) {
 				pixbuf_orientation = PixbufOrientation.TopLeft;
 				EventHandler<AreaPreparedEventArgs> prep = AreaPrepared;
 				if (prep != null)

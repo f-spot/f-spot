@@ -13,9 +13,12 @@ SOURCES = \
 	PixbufOrientation.cs \
 	PixbufUtils.cs \
 	RecursiveFileEnumerator.cs \
+	SafeUri.cs \
+	SafeUriExtensions.cs \
 	Unix.cs \
 	UriExtensions.cs \
-	UriUtils.cs
+	UriUtils.cs \
+	XdgThumbnailSpec.cs
 
 RESOURCES =
 
