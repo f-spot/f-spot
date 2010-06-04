@@ -54,7 +54,6 @@
 		<Command id = "Remove" _label = "_Remove From Catalog" command_type = "FSpot.Extensions.Remove" />
 		<Command id = "Delete" _label = "_Delete From Drive" command_type = "FSpot.Extensions.Delete" />
 		<MenuSeparator id = "Separator3" />
-		<MenuGenerator id = "AttachTag" _label = "_Attach Tag" icon = "gtk-add" generator_type = "FSpot.Extensions.AttachTag" />
 		<MenuGenerator id = "RemoveTag" _label = "Rem_ove Tag" icon = "gtk-remove" generator_type = "FSpot.Extensions.RemoveTag" />
 		<ComplexMenuItem id = "Rate" widget_type = "FSpot.Widgets.RatingMenuItem"  command_type = "FSpot.Extensions.Rate"/>
 	</Extension>	

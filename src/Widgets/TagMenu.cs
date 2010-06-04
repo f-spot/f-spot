@@ -9,7 +9,6 @@ using Hyena;
 
 public class TagMenu : Menu {
 	private TagStore tag_store;
-	private MenuItem parent_item;
 
 	public delegate void TagSelectedHandler (Tag t);
 	public event TagSelectedHandler TagSelected;
@@ -58,7 +57,6 @@ public class TagMenu : Menu {
 		if (item != null) {
 			item.Submenu = this;
 			item.Activated += HandlePopulate;
-			parent_item = item;
 		}
 
 		tag_store = store;

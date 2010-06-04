@@ -72,25 +72,6 @@ namespace FSpot.Extensions
 		}
 	}
 
-	public class AttachTag : IMenuGenerator
-	{
-		private TagMenu tag_menu;
-
-		public Gtk.Menu GetMenu ()
-		{
-			tag_menu = new TagMenu (null, App.Instance.Database.Tags);
-			tag_menu.NewTagHandler += delegate { App.Instance.Organizer.HandleCreateTagAndAttach (this, null); };
-			tag_menu.TagSelected += App.Instance.Organizer.HandleAttachTagMenuSelected;
-			return (Gtk.Menu) tag_menu;
-		}
-
-		public void OnActivated (object o, EventArgs e)
-		{
-			if (tag_menu != null)
-				tag_menu.Populate ();
-		}
-	}
-
 	public class RemoveTag : IMenuGenerator
 	{
 		public Gtk.Menu GetMenu ()
