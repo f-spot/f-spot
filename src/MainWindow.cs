@@ -27,6 +27,7 @@ using FSpot.Widgets;
 using FSpot.Utils;
 using FSpot.UI.Dialog;
 using FSpot.Platform;
+using FSpot.Import;
 
 namespace FSpot
 {
@@ -1149,11 +1150,12 @@ namespace FSpot
 	
 		public void ImportFile (SafeUri uri)
 		{
-			ImportCommand command = new ImportCommand (main_window);
-			if (command.ImportFromUri (Database.Photos, uri) > 0) {
-				query.RollSet = new RollSet (Database.Rolls.GetRolls (1)[0]);
-				UpdateQuery ();
-			}
+			// FIXME: disabled!
+			//ImportCommand command = new ImportCommand (main_window);
+			//if (command.ImportFromUri (Database.Photos, uri) > 0) {
+			//	query.RollSet = new RollSet (Database.Rolls.GetRolls (1)[0]);
+			//	UpdateQuery ();
+			//}
 		}
 	
 		void HandleIconViewDragDataReceived (object sender, DragDataReceivedArgs args)
@@ -1450,13 +1452,16 @@ namespace FSpot
 	
 		void HandleImportCommand (object sender, EventArgs e)
 		{
-			Database.Sync = false;
+			/*FIXMEDatabase.Sync = false;
 			ImportCommand command = new ImportCommand (main_window);
 			if (command.ImportFromUri (Database.Photos, null) > 0) {
 				query.RollSet = new RollSet (Database.Rolls.GetRolls (1)[0]);
 				UpdateQuery ();
 			}
-			Database.Sync = true;		
+			Database.Sync = true;		*/
+			var controller = new ImportController ();
+			var import_window = new ImportDialog (controller);
+			import_window.Show ();
 		}
 	
 		void HandlePageSetupActivated (object o, EventArgs e)

@@ -100,7 +100,7 @@ public class FileImportBackend : ImportBackend {
 	}
 	
 
-	public static SafeUri UniqueName (string path, string filename)
+/*	public static SafeUri UniqueName (string path, string filename)
 	{
 		int i = 1;
 		string dest = System.IO.Path.Combine (path, filename);
@@ -115,7 +115,7 @@ public class FileImportBackend : ImportBackend {
 		}
 		
 		return new SafeUri ("file://"+dest, true);
-	}
+	}*/
 	
 	public static SafeUri ChooseLocation (SafeUri uri)
 	{
@@ -124,14 +124,14 @@ public class FileImportBackend : ImportBackend {
 
 	private static SafeUri ChooseLocation (SafeUri uri, Stack created_directories)
 	{
-		string name = uri.GetFilename ();
+/*		string name = uri.GetFilename ();
 		DateTime time;
 		using (FSpot.ImageFile img = FSpot.ImageFile.Create (uri)) {
 			time = img.Date;
 		}
 
 		string dest_dir = String.Format ("{0}{1}{2}{1}{3:D2}{1}{4:D2}",
-						 FSpot.Global.PhotoDirectory,
+						 FSpot.Global.PhotoUri, // FIXME broken
 						 System.IO.Path.DirectorySeparatorChar,
 						 time.Year,
 						 time.Month,
@@ -159,15 +159,15 @@ public class FileImportBackend : ImportBackend {
 			}
 			
 			info = System.IO.Directory.CreateDirectory (dest_dir);
-		}
+		}*/
 
 		// If the destination we'd like to use is the file itself return that
-		if ("file://" + Path.Combine (dest_dir, name) == uri.ToString ())
-			return uri;
+		//if ("file://" + Path.Combine (dest_dir, name) == uri.ToString ())
+		//	return uri;
 		 
-		var dest = UniqueName (dest_dir, name);
+		//var dest = UniqueName (dest_dir, name);
 		
-		return dest;
+		return uri;
 	}
 
 	public override bool Step (out StepStatusInfo status_info)
@@ -195,7 +195,7 @@ public class FileImportBackend : ImportBackend {
 				info.DestinationUri = destination;
 
 				if (detect_duplicates)
-					photo = store.CheckForDuplicate (destination);
+					photo = null;//store.CheckForDuplicate (destination);
 
 				if (photo == null)
 					photo = store.Create (info.DestinationUri, roll.Id);
@@ -208,7 +208,7 @@ public class FileImportBackend : ImportBackend {
 				info.DestinationUri = destination;
 
 				if (detect_duplicates)
-					photo = store.CheckForDuplicate (destination);
+					photo = null;// store.CheckForDuplicate (destination);
 
 				if (photo == null)
 				{

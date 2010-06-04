@@ -99,13 +99,13 @@ public class PhotoStore : DbStore<Photo> {
 		Database.ExecuteNonQuery ("CREATE INDEX idx_photos_roll_id ON photos(roll_id)");
 	}
 
-	public Photo CheckForDuplicate (SafeUri uri) {
+	public bool CheckForDuplicate (SafeUri uri, SafeUri dest_uri) {
 		// Here we can go wild in comparing photos,
 		// for now we check on uri and md5
-		Photo found = GetByUri (uri);
+		Photo found = GetByUri (dest_uri);
 		
 		if (found != null)
-		 	return found;
+			return true;
 
 		string md5 = Photo.GenerateMD5 (uri);			
 		var file = GLib.FileFactory.NewForUri (uri);
@@ -126,10 +126,10 @@ public class PhotoStore : DbStore<Photo> {
 
 			// TODO? load pixbuf and compare sizes?	
 
-			return match;
+			return true;
 		}
 
-		return null;
+		return false;
 	}
 
 	public Photo Create (SafeUri uri, uint roll_id)
@@ -314,8 +314,6 @@ public class PhotoStore : DbStore<Photo> {
 	{
 		Photo photo = null;
 
-		uint timer = Log.DebugTimerStart ();
-
 		var base_uri = uri.GetBaseUri ();
 		var filename = uri.GetFilename ();
 
@@ -342,7 +340,6 @@ public class PhotoStore : DbStore<Photo> {
 		}
 		
 		reader.Close();
-		Log.DebugTimerPrint (timer, "GetByUri query took {0}");
 
 		if (photo == null)
 			return null;

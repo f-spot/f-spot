@@ -62,6 +62,7 @@ namespace FSpot
 			List<string> uris = new List<string> ();
 			Unix.SetProcessName (Defines.PACKAGE);
             ThreadAssist.InitializeMainThread ();
+            ThreadAssist.ProxyToMainHandler = RunIdle;
             XdgThumbnailSpec.DefaultLoader = (uri) => {
                 using (var file = ImageFile.Create (uri))
                     return file.Load ();
@@ -76,7 +77,7 @@ namespace FSpot
 			GLib.GType.Init ();
 			Catalog.Init ("f-spot", Defines.LOCALE_DIR);
 			
-			FSpot.Global.PhotoDirectory = Preferences.Get<string> (Preferences.STORAGE_PATH);
+			FSpot.Global.PhotoUri = new SafeUri (Preferences.Get<string> (Preferences.STORAGE_PATH));
 			for (int i = 0; i < args.Length && !shutdown; i++) {
 				switch (args [i]) {
 				case "-h": case "-?": case "-help": case "--help": case "-usage":
@@ -102,8 +103,8 @@ namespace FSpot
 						Log.Error ("f-spot: -photodir option takes one argument");
 						return 1;
 					}
-					FSpot.Global.PhotoDirectory = System.IO.Path.GetFullPath (args [++i]);
-					Log.InformationFormat ("PhotoDirectory is now {0}", FSpot.Global.PhotoDirectory);
+					FSpot.Global.PhotoUri = new SafeUri (args [++i]);
+					Log.InformationFormat ("PhotoDirectory is now {0}", FSpot.Global.PhotoUri);
 					break;
 
 				case "-i": case "-import": case "--import":
@@ -253,5 +254,10 @@ namespace FSpot
 			}
 			return 0;
 		}
+
+        public static void RunIdle (InvokeHandler handler)
+        {
+            GLib.Idle.Add (delegate { handler (); return false; });
+        }
 	}
 }

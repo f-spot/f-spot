@@ -335,19 +335,19 @@ public class ImportCommand : GladeDialog
 
 	private void UpdateProgressBar (int count, int total)
 	{
-		if (progress_bar == null)
+/*		if (progress_bar == null)
 			return;
 
 		if (count > 0)
 			progress_bar.Show ();
 		progress_bar.Text = String.Format (loading_string, count, total);
-		progress_bar.Fraction = (double) count / System.Math.Max (total, 1);
+		progress_bar.Fraction = (double) count / System.Math.Max (total, 1);*/
 	}
 
 	private void HandleTraySelectionChanged (FSpot.IBrowsableCollection coll) 
 	{
-		if (tray.Selection.Count > 0)
-			photo_view.Item.Index = tray.Selection.Ids[0];
+//		if (tray.Selection.Count > 0)
+//			photo_view.Item.Index = tray.Selection.Ids[0];
 		
 	}
 
@@ -493,7 +493,7 @@ public class ImportCommand : GladeDialog
 	
 	private void LoadPreferences ()
 	{
-		if (FSpot.Preferences.Get<int> (FSpot.Preferences.IMPORT_WINDOW_WIDTH) > 0)
+	/*	if (FSpot.Preferences.Get<int> (FSpot.Preferences.IMPORT_WINDOW_WIDTH) > 0)
 			this.Dialog.Resize (FSpot.Preferences.Get<int> (FSpot.Preferences.IMPORT_WINDOW_WIDTH), FSpot.Preferences.Get<int> (FSpot.Preferences.IMPORT_WINDOW_HEIGHT));
 
 		if (FSpot.Preferences.Get<int> (FSpot.Preferences.IMPORT_WINDOW_PANE_POSITION) > 0)
@@ -501,7 +501,7 @@ public class ImportCommand : GladeDialog
 
 		copy_check.Active = Preferences.Get<bool> (Preferences.IMPORT_COPY_FILES);
 		recurse_check.Active = Preferences.Get<bool> (Preferences.IMPORT_INCLUDE_SUBFOLDERS);
-		duplicate_check.Active = Preferences.Get<bool> (Preferences.IMPORT_CHECK_DUPLICATES);
+		duplicate_check.Active = Preferences.Get<bool> (Preferences.IMPORT_CHECK_DUPLICATES);*/
 	}
 
 	public int ImportFromUri (PhotoStore store, SafeUri uri)

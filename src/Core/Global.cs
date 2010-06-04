@@ -5,6 +5,7 @@
  *
  */
 using System;
+using Hyena;
 
 namespace FSpot {
 	public static class Global {
@@ -20,10 +21,10 @@ namespace FSpot {
 			set { base_dir = value; }
 		}
 
-		private static string photo_directory;
-		public static string PhotoDirectory {
-			get { return photo_directory; }
-			set { photo_directory = value; }
+		private static SafeUri photo_uri;
+		public static SafeUri PhotoUri {
+			get { return photo_uri; }
+			set { photo_uri = value; }
 		}
 
 		public static string HelpDirectory {

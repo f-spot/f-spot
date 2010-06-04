@@ -82,6 +82,9 @@ SOURCES = \
 	ImageLoaderThread.cs \
 	ImportBackend.cs \
 	ImportCommand.cs \
+	Import/ImportController.cs \
+	Import/ImportSource.cs \
+	Import/FileImportSource.cs \
 	InfoOverlay.cs \
 	InternalProcess.cs \
 	IOChannel.cs \
@@ -157,6 +160,7 @@ SOURCES = \
 	UI.Dialog/ExceptionDialog.cs \
 	UI.Dialog/GladeDialog.cs \
 	UI.Dialog/HigMessageDialog.cs \
+	UI.Dialog/ImportDialog.cs \
 	UI.Dialog/LastRollDialog.cs \
 	UI.Dialog/PreferenceDialog.cs \
 	UI.Dialog/ProgressDialog.cs \
@@ -215,6 +219,7 @@ RESOURCES = \
 	dces.rdf \
 	f-spot.glade \
 	ui/main_window.ui \
+	ui/import.ui \
 	UI.Dialog/ui/AdjustTimeDialog.ui \
 	UI.Dialog/ui/DateRangeDialog.ui \
 	UI.Dialog/ui/EditTagDialog.ui \

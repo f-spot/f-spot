@@ -17,6 +17,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Gtk;
 using Mono.Unix;
+using Hyena;
 
 using FSpot.Widgets;
 
@@ -38,11 +39,11 @@ namespace FSpot.UI.Dialog {
 			TransientFor = parent;
 
 			//Photos Folder
-			if (Global.PhotoDirectory == Preferences.Get<string> (Preferences.STORAGE_PATH)) {
-				photosdir_chooser.SetCurrentFolder (Global.PhotoDirectory);
+			if (Global.PhotoUri == new SafeUri (Preferences.Get<string> (Preferences.STORAGE_PATH))) {
+				photosdir_chooser.SetCurrentFolderUri (Global.PhotoUri);
 				photosdir_chooser.CurrentFolderChanged += HandlePhotosdirChanged;
 			} else {
-				photosdir_chooser.SetCurrentFolder(Global.PhotoDirectory);
+				photosdir_chooser.SetCurrentFolderUri (Global.PhotoUri);
 				photosdir_chooser.Sensitive = false;
 			}
 
@@ -193,7 +194,7 @@ namespace FSpot.UI.Dialog {
 			photosdir_chooser.CurrentFolderChanged -= HandlePhotosdirChanged;
 			Preferences.Set (Preferences.STORAGE_PATH, photosdir_chooser.Filename);
 			photosdir_chooser.CurrentFolderChanged += HandlePhotosdirChanged;
-			Global.PhotoDirectory = photosdir_chooser.Filename;
+			Global.PhotoUri = new SafeUri (photosdir_chooser.Uri, true);
 		}
 
 		void HandleWritemetadataGroupChanged (object sender, System.EventArgs args)
