@@ -57,7 +57,7 @@ namespace FSpot.Import
                     infos.Add (new FileImportInfo (new SafeUri(file.Uri, true)));
                 }
 
-                if (infos.Count % 10 == 0) {
+                if (infos.Count % 10 == 0 || infos.Count < 10) {
                     var to_add = infos; // prevents race condition
                     ThreadAssist.ProxyToMain (() => controller.Photos.Add (to_add.ToArray ()));
                     infos = new List<FileImportInfo> ();
