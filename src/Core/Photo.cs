@@ -461,7 +461,7 @@ namespace FSpot
 				AddTagUnsafely (tag);
 		}
 	
-		public void AddTag (Tag []taglist)
+		public void AddTag (IEnumerable<Tag> taglist)
 		{
 			/*
 			 * FIXME need a better naming convention here, perhaps just

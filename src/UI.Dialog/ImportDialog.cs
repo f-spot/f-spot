@@ -31,19 +31,23 @@ namespace FSpot.UI.Dialog
         [GtkBeans.Builder.Object] ScrolledWindow photo_scrolled;
 
         private PhotoImageView photo_view;
+        private TagEntry tag_entry;
 
-        public ImportDialog (ImportController controller) : base ("import.ui", "import_dialog")
+        public ImportDialog (ImportController controller, Window parent) : base ("import.ui", "import_dialog")
         {
             Controller = controller;
-            BuildUI ();
+            BuildUI (parent);
             ResetPreview ();
             LoadPreferences ();
             ScanSources ();
             ConnectEvents ();
         }
 
-        void BuildUI ()
+        void BuildUI (Window parent)
         {
+            TransientFor = parent;
+            WindowPosition = WindowPosition.CenterOnParent;
+
             photo_view = new PhotoImageView (Controller.Photos);
             photo_scrolled.Add (photo_view);
             photo_scrolled.SetSizeRequest (200, 200);
@@ -65,7 +69,7 @@ namespace FSpot.UI.Dialog
 
             import_button.Sensitive = false;
 
-            var tag_entry = new FSpot.Widgets.TagEntry (App.Instance.Database.Tags, false);
+            tag_entry = new TagEntry (App.Instance.Database.Tags, false);
             tag_entry.UpdateFromTagNames (new string []{});
             tagentry_box.Add (tag_entry);
             tag_entry.Show ();
@@ -107,6 +111,7 @@ namespace FSpot.UI.Dialog
 
             GLib.Idle.Add (() => {
                 PopulateSourceCombo (null);
+                QueueDraw ();
                 return false;
             });
         }
@@ -265,6 +270,7 @@ namespace FSpot.UI.Dialog
 
         void StartImport ()
         {
+            Controller.AttachTags (tag_entry.GetTypedTagNames ());
             Controller.StartImport ();
         }
 

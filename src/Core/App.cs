@@ -169,6 +169,7 @@ namespace FSpot
 #endregion
 
 #region Command Handlers
+
 		void HandleMessageReceived (object sender, MessageReceivedArgs e)
 		{
 			switch ((Command)e.Command) {

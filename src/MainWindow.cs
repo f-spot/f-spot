@@ -42,8 +42,6 @@ namespace FSpot
 		}
 	
 		[GtkBeans.Builder.Object] Gtk.HPaned main_hpaned;
-		[GtkBeans.Builder.Object] Gtk.VBox left_vbox;
-		[GtkBeans.Builder.Object] Gtk.VBox group_vbox;
 		[GtkBeans.Builder.Object] Gtk.VBox view_vbox;
 	
 		[GtkBeans.Builder.Object] Gtk.VBox toolbar_vbox;
@@ -193,13 +191,6 @@ namespace FSpot
 				DragDropTargets.TagListEntry
 		};
 		
-		private static TargetEntry [] tag_dest_target_table = 
-			new TargetEntry [] {
-				DragDropTargets.PhotoListEntry,
-				DragDropTargets.UriListEntry,
-				DragDropTargets.TagListEntry
-		};
-	
 		const int PHOTO_IDX_NONE = -1;
 	
 		private static Gtk.Tooltips toolTips;
@@ -1159,7 +1150,7 @@ namespace FSpot
 			controller.DuplicateDetect = true;
 			controller.RecurseSubdirectories = true;
 
-			var import_window = new ImportDialog (controller);
+			var import_window = new ImportDialog (controller, Window);
 			import_window.Show ();
 
 			controller.StartImport ();
@@ -1181,7 +1172,7 @@ namespace FSpot
 					}
 				}
 			};
-			var import_window = new ImportDialog (controller);
+			var import_window = new ImportDialog (controller, Window);
 			import_window.Show ();
 		}
 	

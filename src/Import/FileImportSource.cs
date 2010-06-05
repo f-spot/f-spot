@@ -3,6 +3,7 @@ using System;
 using System.Threading;
 using System.Collections.Generic;
 using FSpot.Utils;
+using Gtk;
 
 namespace FSpot.Import
 {
@@ -76,6 +77,15 @@ namespace FSpot.Import
         {
             if (PhotoScanner != null) {
                 run_photoscanner = false;
+                PhotoScanner.Join ();
+
+                // Make sure all photos are added. This is needed to prevent
+                // a race condition where a source is deactivated, yet photos
+                // are still added to the collection because they are
+                // queued on the mainloop.
+                while (Application.EventsPending ())
+                    Application.RunIteration (false);
+
                 PhotoScanner = null;
             }
         }

@@ -3,6 +3,7 @@ using FSpot.Utils;
 using System;
 using System.Collections.Generic;
 using System.Threading;
+using Mono.Unix;
 
 namespace FSpot.Import
 {
@@ -266,7 +267,19 @@ namespace FSpot.Import
                                       item.DefaultVersion.Uri,
                                       roll.Id);
 
-            // FIXME: Add tags, import xmp crap
+            bool needs_commit = false;
+
+            // Add tags
+            if (attach_tags.Count > 0) {
+                photo.AddTag (attach_tags);
+                needs_commit = true;
+            }
+
+            if (needs_commit) {
+                store.Commit (photo);
+            }
+
+            // FIXME: import xmp crap
             imported_photos.Add (photo.Id);
         }
 
@@ -318,6 +331,39 @@ namespace FSpot.Import
                     file.MakeDirectory (null);
                 }
             }
+        }
+
+#endregion
+
+#region Tagging
+
+        List<Tag> attach_tags = new List<Tag> ();
+        TagStore tag_store = App.Instance.Database.Tags;
+
+        // Set the tags that will be added on import.
+        public void AttachTags (IEnumerable<string> tags)
+        {
+            App.Instance.Database.BeginTransaction ();
+            var import_category = GetImportedTagsCategory ();
+            foreach (var tagname in tags) {
+                var tag = tag_store.GetTagByName (tagname);
+                if (tag == null) {
+                    tag = tag_store.CreateCategory (import_category, tagname, false) as Tag;
+                    tag_store.Commit (tag);
+                }
+                attach_tags.Add (tag);
+            }
+            App.Instance.Database.CommitTransaction ();
+        }
+
+        Category GetImportedTagsCategory ()
+        {
+            var default_category = tag_store.GetTagByName (Catalog.GetString ("Imported Tags")) as Category;
+            if (default_category == null) {
+                default_category = tag_store.CreateCategory (null, Catalog.GetString ("Imported Tags"), false);
+                default_category.ThemeIconName = "gtk-new";
+            }
+            return default_category;
         }
 
 #endregion

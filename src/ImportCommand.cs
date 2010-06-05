@@ -40,40 +40,6 @@ public class ImportCommand : GladeDialog
 	
 	private SourceItem Source;
 
-	private bool Step ()
-	{	
-		StepStatusInfo status_info;		
-		bool ongoing = true;
-
-		if (importer == null)
-			return false;
-		
-		try {
-			// FIXME this is really just an incredibly ugly way of dealing
-			// with the recursive DoImport loops we sometimes get into
-			ongoing = importer.Step (out status_info);
-		} catch (ImportException e){
-			Hyena.Log.Exception (e);
-			return false;
-		}
-
-		if (status_info.Count > 0 && status_info.Count % 25 == 0)
-			System.GC.Collect ();
-
-		if (status_info.Count < total)
-			UpdateProgressBar (status_info.Count + 1, total);
-
-		if (ongoing && total > 0)
-			return true;
-		else {
-			Hyena.Log.Debug ("Stopping");
-			if (progress_bar != null)
-				progress_bar.Text = Catalog.GetString ("Done Loading");
-			
-			AllowFinish = true;
-			return false;
-		}
-	}
 
 	private int DoImport (ImportBackend imp)
 	{
@@ -107,73 +73,6 @@ public class ImportCommand : GladeDialog
 
 	public int ImportFromUri (PhotoStore store, SafeUri uri)
 	{
-		this.store = store;
-		this.CreateDialog ("import_dialog");
-		this.Dialog.TransientFor = main_window;
-		this.Dialog.WindowPosition = Gtk.WindowPosition.CenterOnParent;
-		this.Dialog.Response += HandleDialogResponse;
-		this.Dialog.DefaultResponse = ResponseType.Ok;
-
-		AllowFinish = false;
-		
-		LoadPreferences ();
-		
-		//import_folder_entry.Activated += HandleEntryActivate;
-		duplicate_check.Toggled += HandleRecurseToggled;
-		recurse_check.Toggled += HandleRecurseToggled;
-		copy_check.Toggled += HandleRecurseToggled;
-
-		menu = new SourceMenu (this);
-		source_option_menu.Menu = menu;
-
-		collection = new FSpot.PhotoList (new Photo [0]);
-		tray = new ScalingIconView (collection);
-		tray.Selection.Changed += HandleTraySelectionChanged;
-		icon_scrolled.SetSizeRequest (400, 200);
-		icon_scrolled.Add (tray);
-		//icon_scrolled.Visible = false;
-		tray.DisplayTags = false;
-		tray.Show ();
-
-		photo_view = new PhotoImageView (collection);
-		photo_scrolled.Add (photo_view);
-		photo_scrolled.SetSizeRequest (200, 200);
-		photo_view.Show ();
-
-		//GtkUtil.ModifyColors (frame_eventbox);
-		GtkUtil.ModifyColors (photo_scrolled);
-		GtkUtil.ModifyColors (photo_view);
-
-		photo_view.Pixbuf = GtkUtil.TryLoadIcon (FSpot.Global.IconTheme, "f-spot", 128, (Gtk.IconLookupFlags)0);
-		photo_view.ZoomFit (false);
-			
-		tag_entry = new FSpot.Widgets.TagEntry (App.Instance.Database.Tags, false);
-		tag_entry.UpdateFromTagNames (new string []{});
-		tagentry_box.Add (tag_entry);
-
-		tag_entry.Show ();
-
-		this.Dialog.Show ();
-        progress_bar.Hide ();
-
-		source_option_menu.Changed += menu.HandleSourceSelectionChanged;
-		if (uri != null) {
-			ImportUri = uri;
-			int i = menu.FindItemPosition (uri);
-
-			var file = FileFactory.NewForUri (uri);
-
-			if (i > 0) {
-				source_option_menu.SetHistory ((uint)i);
-			} else if (file.QueryExists (null)) {
-				SourceItem uri_item = new SourceItem (new VfsSource (uri));
-				menu.Prepend (uri_item);
-				uri_item.ShowAll ();
-				ImportUri = uri;
-				source_option_menu.SetHistory (0);
-			} 
-			idle_start.Start ();
-		}
 						
 		ResponseType response = (ResponseType) this.Dialog.Run ();
 		
@@ -200,67 +99,5 @@ public class ImportCommand : GladeDialog
 
 			response = (Gtk.ResponseType) this.Dialog.Run ();
 		}
-
-		if (response == ResponseType.Ok) {
-			this.UpdateTagStore (tag_entry.GetTypedTagNames ());
-			SavePreferences ();
-			this.Finish ();
-
-			if (tags_selected != null && tags_selected.Count > 0) {
-				for (int i = 0; i < collection.Count; i++) {
-					Photo p = collection [i] as Photo;
-					
-					if (p == null)
-						continue;
-					
-					p.AddTag ((Tag [])tags_selected.ToArray(typeof(Tag)));
-					store.Commit (p);
-				}
-			}
-
-			int width, height;
-			this.Dialog.GetSize (out width, out height);
-
-			FSpot.Preferences.Set (FSpot.Preferences.IMPORT_WINDOW_WIDTH, width);
-			FSpot.Preferences.Set (FSpot.Preferences.IMPORT_WINDOW_HEIGHT, height);
-			FSpot.Preferences.Set (FSpot.Preferences.IMPORT_WINDOW_PANE_POSITION, import_hpaned.Position);
-
-			this.Dialog.Destroy ();
-			return collection.Count;
-		} else {
-			this.Cancel ();
-			//this.Dialog.Destroy();
-			return 0;
-		}
-	}
-
-	private void UpdateTagStore (string [] new_tags)
-	{
-		if (new_tags == null || new_tags.Length == 0)
-			return;
-
-		tags_selected = new ArrayList ();
-		Db db = App.Instance.Database;	
-		db.BeginTransaction ();
-		foreach (string tagname in new_tags) {
-			Tag t = db.Tags.GetTagByName (tagname);
-			if (t == null) {
-				Category default_category = db.Tags.GetTagByName (Catalog.GetString ("Imported Tags")) as Category;
-				if (default_category == null) {
-					default_category = db.Tags.CreateCategory (null, Catalog.GetString ("Imported Tags"), false);
-					default_category.ThemeIconName = "gtk-new"; 
-				}
-				t = db.Tags.CreateCategory (default_category, tagname, false) as Tag;
-				db.Tags.Commit (t);
-			}
-
-			tags_selected.Add (t);
-		}
-		db.CommitTransaction ();
-		
-		ArrayList tagnames = new ArrayList ();
-		foreach (Tag t in tags_selected)
-			tagnames.Add (t.Name);
-		tag_entry.UpdateFromTagNames ((string [])tagnames.ToArray(typeof(string)));
 	}
 }
