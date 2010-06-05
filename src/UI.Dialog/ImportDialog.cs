@@ -292,7 +292,7 @@ namespace FSpot.UI.Dialog
         void ShowScanSpinner ()
         {
             // TODO: Using a GtkSpinner would be nicer here.
-            progress_bar.Text = Catalog.GetString ("Searching for photos...");
+            progress_bar.Text = Catalog.GetString ("Searching for photos... (You can already click Import to continue)");
             progress_bar.Show ();
             pulse_timeout_running = true;
             GLib.Timeout.Add (40, () => {
