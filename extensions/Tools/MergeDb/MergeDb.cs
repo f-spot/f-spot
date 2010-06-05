@@ -232,7 +232,7 @@ namespace MergeDbExtension
 			Photo newp;
 
 			if (copy)
-				destination = FileImportBackend.ChooseLocation (new SafeUri (photo_path)).AbsolutePath;
+				destination = FindImportDestination (new SafeUri (photo_path)).AbsolutePath;
 			else
 				destination = photo_path;
 
@@ -277,5 +277,50 @@ namespace MergeDbExtension
 
 			to_store.Commit (newp);
 		}
+
+        SafeUri FindImportDestination (SafeUri uri)
+        {
+            // Find a new unique location inside the photo folder
+            string name = uri.GetFilename ();
+            DateTime time;
+            using (FSpot.ImageFile img = FSpot.ImageFile.Create (uri)) {
+                time = img.Date;
+            }
+
+            var dest_uri = FSpot.Global.PhotoUri.Append (time.Year.ToString ())
+                                          .Append (String.Format ("{0:D2}", time.Month))
+                                          .Append (String.Format ("{0:D2}", time.Day));
+            EnsureDirectory (dest_uri);
+
+            // If the destination we'd like to use is the file itself return that
+            if (dest_uri.Append (name) == uri)
+                return uri;
+
+            // Find an unused name
+            int i = 1;
+            var dest = dest_uri.Append (name);
+            var file = GLib.FileFactory.NewForUri (dest);
+            while (file.Exists) {
+                var filename = uri.GetFilenameWithoutExtension ();
+                var extension = uri.GetExtension ();
+                dest = dest_uri.Append (String.Format ("{0}-{1}{2}", filename, i++, extension));
+                file = GLib.FileFactory.NewForUri (dest);
+            }
+
+            return dest;
+        }
+
+        void EnsureDirectory (SafeUri uri)
+        {
+            var parts = uri.AbsolutePath.Split('/');
+            SafeUri current = new SafeUri (uri.Scheme + ":///", true);
+            for (int i = 0; i < parts.Length; i++) {
+                current = current.Append (parts [i]);
+                var file = GLib.FileFactory.NewForUri (current);
+                if (!file.Exists) {
+                    file.MakeDirectory (null);
+                }
+            }
+        }
 	}
 }

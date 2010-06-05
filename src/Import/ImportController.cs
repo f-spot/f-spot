@@ -375,8 +375,6 @@ namespace FSpot.Import
                 current = current.Append (parts [i]);
                 var file = GLib.FileFactory.NewForUri (current);
                 if (!file.Exists) {
-                    created_directories.Push (current);
-                    Log.Debug ("Creating "+current);
                     file.MakeDirectory (null);
                 }
             }
