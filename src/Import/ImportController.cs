@@ -187,8 +187,10 @@ namespace FSpot.Import
 
         public void CancelImport ()
         {
-            // FIXME
-            DeactivateSource (ActiveSource);
+            import_cancelled = true;
+            if (ImportThread != null)
+                ImportThread.Join ();
+            Cleanup ();
         }
 
         Stack<SafeUri> created_directories;
@@ -198,6 +200,7 @@ namespace FSpot.Import
         RollStore rolls = App.Instance.Database.Rolls;
         volatile bool photo_scan_running;
         XmpTagsImporter xmp_importer;
+        volatile bool import_cancelled = false;
 
         void DoImport ()
         {
@@ -219,6 +222,11 @@ namespace FSpot.Import
                 int i = 0;
                 int total = Photos.Count;
                 foreach (var info in Photos.Items) {
+                    if (import_cancelled) {
+                        RollbackImport ();
+                        return;
+                    }
+
                     ThreadAssist.ProxyToMain (() => ReportProgress (i++, total));
                     ImportPhoto (info, CreatedRoll);
                 }
@@ -229,16 +237,21 @@ namespace FSpot.Import
                 RollbackImport ();
                 throw e;
             } finally {
-                if (imported_photos.Count == 0)
-                    rolls.Remove (CreatedRoll);
-                imported_photos = null;
-                created_directories = null;
-                Photo.ResetMD5Cache ();
-                DeactivateSource (ActiveSource);
-                Photos.Clear ();
-                System.GC.Collect ();
-                App.Instance.Database.Sync = true;
+                Cleanup ();
             }
+        }
+
+        void Cleanup ()
+        {
+            if (imported_photos != null && imported_photos.Count == 0)
+                rolls.Remove (CreatedRoll);
+            imported_photos = null;
+            created_directories = null;
+            Photo.ResetMD5Cache ();
+            DeactivateSource (ActiveSource);
+            Photos.Clear ();
+            System.GC.Collect ();
+            App.Instance.Database.Sync = true;
         }
 
         void FinishImport ()
