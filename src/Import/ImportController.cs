@@ -102,9 +102,11 @@ namespace FSpot.Import
 
         void FireEvent (ImportEvent evnt)
         {
-            var h = StatusEvent;
-            if (h != null)
-                h (evnt);
+            ThreadAssist.ProxyToMain (() => {
+                var h = StatusEvent;
+                if (h != null)
+                    h (evnt);
+            });
         }
 
         void ReportProgress (int current, int total)
@@ -113,6 +115,9 @@ namespace FSpot.Import
             if (h != null)
                 h (current, total);
         }
+
+        public int PhotosImported { get; private set; }
+        public Roll CreatedRoll { get; private set; }
 
 #endregion
 
@@ -144,6 +149,10 @@ namespace FSpot.Import
         void RescanPhotos ()
         {
             Photos.Clear ();
+            if (ActiveSource == null)
+                return;
+
+            photo_scan_running = true;
             ActiveSource.StartPhotoScan (this);
             FireEvent (ImportEvent.PhotoScanStarted);
         }
@@ -156,6 +165,7 @@ namespace FSpot.Import
 
         public void PhotoScanFinished ()
         {
+            photo_scan_running = false;
             FireEvent (ImportEvent.PhotoScanFinished);
         }
 
@@ -170,25 +180,32 @@ namespace FSpot.Import
             if (ImportThread != null)
                 throw new Exception ("Import already running!");
 
-            FireEvent (ImportEvent.ImportStarted);
             ImportThread = ThreadAssist.Spawn (() => DoImport ());
         }
 
         public void CancelImport ()
         {
-
+            // FIXME
+            DeactivateSource (ActiveSource);
         }
 
         Stack<SafeUri> created_directories;
         List<uint> imported_photos;
         PhotoStore store = App.Instance.Database.Photos;
         RollStore rolls = FSpot.App.Instance.Database.Rolls;
+        volatile bool photo_scan_running;
 
         void DoImport ()
         {
+            while (photo_scan_running) {
+                Thread.Sleep (1000); // FIXME: we can do this with a better primitive!
+            }
+
+            FireEvent (ImportEvent.ImportStarted);
+            App.Instance.Database.Sync = false;
             created_directories = new Stack<SafeUri> ();
             imported_photos = new List<uint> ();
-            Roll roll = rolls.Create ();
+            CreatedRoll = rolls.Create ();
 
             EnsureDirectory (Global.PhotoUri);
 
@@ -197,22 +214,24 @@ namespace FSpot.Import
                 int total = Photos.Count;
                 foreach (var info in Photos.Items) {
                     ThreadAssist.ProxyToMain (() => ReportProgress (i++, total));
-                    ImportPhoto (info, roll.Id);
+                    ImportPhoto (info, CreatedRoll);
                 }
 
+                PhotosImported = imported_photos.Count;
                 FinishImport ();
             } catch (Exception e) {
                 RollbackImport ();
                 throw e;
             } finally {
                 if (imported_photos.Count == 0)
-                    rolls.Remove (roll);
+                    rolls.Remove (CreatedRoll);
                 imported_photos = null;
                 created_directories = null;
                 Photo.ResetMD5Cache ();
                 DeactivateSource (ActiveSource);
                 Photos.Clear ();
                 System.GC.Collect ();
+                App.Instance.Database.Sync = true;
             }
         }
 
@@ -226,7 +245,7 @@ namespace FSpot.Import
         {
         }
 
-        void ImportPhoto (IBrowsableItem item, uint roll_id)
+        void ImportPhoto (IBrowsableItem item, Roll roll)
         {
             var destination = FindImportDestination (item.DefaultVersion.Uri);
 
@@ -245,7 +264,7 @@ namespace FSpot.Import
             // Import photo
             var photo = store.Create (destination,
                                       item.DefaultVersion.Uri,
-                                      roll_id);
+                                      roll.Id);
 
             // FIXME: Add tags, import xmp crap
             imported_photos.Add (photo.Id);

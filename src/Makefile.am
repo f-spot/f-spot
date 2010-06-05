@@ -56,7 +56,6 @@ SOURCES = \
 	Extensions/TransitionNode.cs \
 	Extensions/ViewModeCondition.cs \
 	Fader.cs \
-	FileImportBackend.cs \
 	FileBrowsableItem.cs \
 	Filters/ChmodFilter.cs \
 	Filters/FilterRequest.cs \
@@ -80,8 +79,6 @@ SOURCES = \
 	Loaders/IImageLoader.cs \
 	Loaders/GdkImageLoader.cs \
 	ImageLoaderThread.cs \
-	ImportBackend.cs \
-	ImportCommand.cs \
 	Import/ImportController.cs \
 	Import/ImportSource.cs \
 	Import/FileImportSource.cs \

@@ -79,7 +79,6 @@ namespace FSpotFolderExport {
 		GLib.File dest;
 		Gtk.FileChooserButton uri_chooser;
 
-		int photo_index;
 		bool open;
 		bool scale;
 		bool rotate;
@@ -161,8 +160,6 @@ namespace FSpotFolderExport {
 		public void Upload ()
 		{
 			// FIXME use mkstemp
-
-			bool result = true;
 
 			try {
 				Gtk.Application.Invoke (delegate {Dialog.Hide ();});
@@ -252,7 +249,7 @@ namespace FSpotFolderExport {
 					Log.DebugFormat ("Transferring \"{0}\" to \"{1}\"", source.Path, target.Path);
 					progress_dialog.Message = String.Format (Catalog.GetString ("Transferring to \"{0}\""), target.Path);
 					progress_dialog.ProgressText = Catalog.GetString ("Transferring...");
-					result = source.CopyRecursive (target, GLib.FileCopyFlags.Overwrite, new GLib.Cancellable (), Progress);
+					source.CopyRecursive (target, GLib.FileCopyFlags.Overwrite, new GLib.Cancellable (), Progress);
 				}
 				
 				// No need to check result here as if result is not true, an Exception will be thrown before
@@ -445,7 +442,21 @@ namespace FSpotFolderExport {
 
 		protected virtual string ImageName (int image_num)
 		{
-			return System.IO.Path.GetFileName(FileImportBackend.UniqueName(gallery_path, System.IO.Path.GetFileName (collection [image_num].DefaultVersion.Uri.LocalPath)).AbsolutePath);
+            var uri = collection [image_num].DefaultVersion.Uri;
+            var dest_uri = new SafeUri (gallery_path);
+
+            // Find an unused name
+            int i = 1;
+            var dest = dest_uri.Append (uri.GetFilename ());
+            var file = GLib.FileFactory.NewForUri (dest);
+            while (file.Exists) {
+                var filename = uri.GetFilenameWithoutExtension ();
+                var extension = uri.GetExtension ();
+                dest = dest_uri.Append (String.Format ("{0}-{1}{2}", filename, i++, extension));
+                file = GLib.FileFactory.NewForUri (dest);
+            }
+
+            return dest.GetFilename ();
 		}
 
 		public void ProcessImage (int image_num, FilterSet filter_set)
@@ -629,11 +640,6 @@ namespace FSpotFolderExport {
 			return String.Format ("img-{0}.jpg", photo_index + 1);
 		}
 
-		private string AlternateName (int photo_index, string extension)
-		{
-			return System.IO.Path.GetFileNameWithoutExtension (ImageName (photo_index)) + extension;
-		}
-
 		private void SetTime ()
 		{
 			try {
@@ -728,7 +734,6 @@ namespace FSpotFolderExport {
 
 	class HtmlGallery : FolderGallery
 	{
-		int current;
 		int perpage = 16;
 		string stylesheet = "f-spot-simple.css";
 		string altstylesheet = "f-spot-simple-white.css";

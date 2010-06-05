@@ -180,7 +180,7 @@ namespace FSpot.UI.Dialog
             file_chooser.Destroy ();
         }
 
-        void SwitchToFolderSource (SafeUri uri)
+        public void SwitchToFolderSource (SafeUri uri)
         {
             ImportSource source = null;
             if (!history_sources.TryGetValue (uri, out source)) {

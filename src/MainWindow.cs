@@ -289,7 +289,7 @@ namespace FSpot
 			toolbar_vbox.PackStart (toolbar);
 	
 			ToolButton import_button = GtkUtil.ToolButtonFromTheme ("gtk-add", Catalog.GetString ("Import"), true);
-			import_button.Clicked += HandleImportCommand;
+			import_button.Clicked += (o, args) => StartImport (null);
 			import_button.SetTooltip (ToolTips, Catalog.GetString ("Import new images"), null);
 			toolbar.Insert (import_button, -1);
 		
@@ -1141,21 +1141,48 @@ namespace FSpot
 	
 		public void ImportUriList (UriList list, bool copy) 
 		{
-			ImportCommand command = new ImportCommand (main_window);
-			if (command.ImportFromUris (Database.Photos, list.ToArray (), copy) > 0) {
-				query.RollSet = new RollSet (Database.Rolls.GetRolls (1)[0]);
-				UpdateQuery ();
-			}
+			var controller = new ImportController ();
+			controller.StatusEvent += (evnt) => {
+				ThreadAssist.ProxyToMain (() => {
+					if (evnt == ImportEvent.ImportFinished) {
+						if (controller.PhotosImported > 0) {
+							query.RollSet = new RollSet (controller.CreatedRoll);
+							UpdateQuery ();
+						}
+					}
+				});
+			};
+
+			var source = new MultiFileImportSource (list.ToArray ());
+			controller.ActiveSource = source;
+			controller.CopyFiles = copy;
+			controller.DuplicateDetect = true;
+			controller.RecurseSubdirectories = true;
+
+			var import_window = new ImportDialog (controller);
+			import_window.Show ();
+
+			controller.StartImport ();
 		}
 	
 		public void ImportFile (SafeUri uri)
 		{
-			// FIXME: disabled!
-			//ImportCommand command = new ImportCommand (main_window);
-			//if (command.ImportFromUri (Database.Photos, uri) > 0) {
-			//	query.RollSet = new RollSet (Database.Rolls.GetRolls (1)[0]);
-			//	UpdateQuery ();
-			//}
+			StartImport (uri);
+		}
+
+		void StartImport (SafeUri uri)
+		{
+			var controller = new ImportController ();
+			controller.StatusEvent += (evnt) => {
+				if (evnt == ImportEvent.ImportFinished) {
+					if (controller.PhotosImported > 0) {
+						query.RollSet = new RollSet (controller.CreatedRoll);
+						UpdateQuery ();
+					}
+				}
+			};
+			var import_window = new ImportDialog (controller);
+			import_window.Show ();
 		}
 	
 		void HandleIconViewDragDataReceived (object sender, DragDataReceivedArgs args)
@@ -1449,20 +1476,6 @@ namespace FSpot
 		//
 		// Main menu commands
 		//
-	
-		void HandleImportCommand (object sender, EventArgs e)
-		{
-			/*FIXMEDatabase.Sync = false;
-			ImportCommand command = new ImportCommand (main_window);
-			if (command.ImportFromUri (Database.Photos, null) > 0) {
-				query.RollSet = new RollSet (Database.Rolls.GetRolls (1)[0]);
-				UpdateQuery ();
-			}
-			Database.Sync = true;		*/
-			var controller = new ImportController ();
-			var import_window = new ImportDialog (controller);
-			import_window.Show ();
-		}
 	
 		void HandlePageSetupActivated (object o, EventArgs e)
 		{

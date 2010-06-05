@@ -12,37 +12,48 @@ namespace FSpot.Import
         public SafeUri Root { get; set; }
 
         public Thread PhotoScanner;
+        bool run_photoscanner = false;
 
         public FileImportSource (SafeUri root, string name, string icon_name)
         {
-            Log.Debug ("Added source "+Name);
             Root = root;
             Name = name;
 
-            if (IsIPodPhoto) {
-                IconName = "multimedia-player";
-            } else if (IsCamera) {
-                IconName = "media-flash";
-            } else {
-                IconName = icon_name;
+            if (root != null) {
+                if (IsIPodPhoto) {
+                    IconName = "multimedia-player";
+                } else if (IsCamera) {
+                    IconName = "media-flash";
+                } else {
+                    IconName = icon_name;
+                }
             }
         }
 
         public void StartPhotoScan (ImportController controller)
         {
-            if (PhotoScanner != null)
-                PhotoScanner.Abort ();
+            if (PhotoScanner != null) {
+                run_photoscanner = false;
+                PhotoScanner.Join ();
+            }
 
+            run_photoscanner = true;
             PhotoScanner = ThreadAssist.Spawn (() => ScanPhotos (controller));
         }
 
-        void ScanPhotos (ImportController controller)
+        protected virtual void ScanPhotos (ImportController controller)
         {
+            ScanPhotoDirectory (controller, Root);
+            ThreadAssist.ProxyToMain (() => controller.PhotoScanFinished ());
+        }
+
+        protected void ScanPhotoDirectory (ImportController controller, SafeUri uri)
+        {
+            var enumerator = new RecursiveFileEnumerator (uri, controller.RecurseSubdirectories, true);
             var infos = new List<FileImportInfo> ();
-			var enumerator = new RecursiveFileEnumerator (Root, controller.RecurseSubdirectories, true);
-			foreach (var file in enumerator) {
-				if (ImageFile.HasLoader (new SafeUri (file.Uri, true))) {
-					infos.Add (new FileImportInfo (new SafeUri(file.Uri, true)));
+            foreach (var file in enumerator) {
+                if (ImageFile.HasLoader (new SafeUri (file.Uri, true))) {
+                    infos.Add (new FileImportInfo (new SafeUri(file.Uri, true)));
                 }
 
                 if (infos.Count % 10 == 0) {
@@ -50,74 +61,96 @@ namespace FSpot.Import
                     ThreadAssist.ProxyToMain (() => controller.Photos.Add (to_add.ToArray ()));
                     infos = new List<FileImportInfo> ();
                 }
-			}
 
-            if (infos.Count > 0) {
-                ThreadAssist.ProxyToMain (() => controller.Photos.Add (infos.ToArray ()));
+                if (!run_photoscanner)
+                    return;
             }
 
-            controller.PhotoScanFinished ();
+            if (infos.Count > 0) {
+                var to_add = infos; // prevents race condition
+                ThreadAssist.ProxyToMain (() => controller.Photos.Add (to_add.ToArray ()));
+            }
         }
 
         public void Deactivate ()
         {
             if (PhotoScanner != null) {
-                PhotoScanner.Abort (); // FIXME: abort is not nice
+                run_photoscanner = false;
                 PhotoScanner = null;
             }
         }
 
-		private bool IsCamera {
-			get {
-				try {
+        private bool IsCamera {
+            get {
+                try {
                     var file = GLib.FileFactory.NewForUri (Root.Append ("DCIM"));
                     return file.Exists;
-				} catch {
-					return false;
-				}
-			}
-		}
+                } catch {
+                    return false;
+                }
+            }
+        }
 
-		private bool IsIPodPhoto {
-			get {
-				try {
+        private bool IsIPodPhoto {
+            get {
+                try {
                     var file = GLib.FileFactory.NewForUri (Root.Append ("Photos"));
                     var file2 = GLib.FileFactory.NewForUri (Root.Append ("iPod_Control"));
                     return file.Exists && file2.Exists;
-				} catch {
-					return false;
-				}
-			}
-		}
+                } catch {
+                    return false;
+                }
+            }
+        }
     }
 
-	internal class FileImportInfo : IBrowsableItem {
-		public FileImportInfo (SafeUri original)
-		{
-			DefaultVersion = new ImportInfoVersion () {
-				BaseUri = original.GetBaseUri (),
-				Filename = original.GetFilename ()
-			};
+    // Multi root version for drag and drop import.
+    internal class MultiFileImportSource : FileImportSource {
+        private IEnumerable<SafeUri> uris;
 
-			try {
-				using (FSpot.ImageFile img = FSpot.ImageFile.Create (original)) {
-					Time = img.Date;
-				}
-			} catch (Exception) {
-				Time = DateTime.Now;
-			}
-		}
+        public MultiFileImportSource (IEnumerable<SafeUri> uris)
+            : base (null, String.Empty, String.Empty)
+        {
+            this.uris = uris;
+        }
 
-		public IBrowsableItemVersion DefaultVersion { get; private set; }
-		public SafeUri DestinationUri { get; set; }
+        protected override void ScanPhotos (ImportController controller)
+        {
+            foreach (var uri in uris) {
+                Log.Debug ("Scanning "+uri);
+                ScanPhotoDirectory (controller, uri);
+            }
+            ThreadAssist.ProxyToMain (() => controller.PhotoScanFinished ());
+        }
+    }
 
-		public System.DateTime Time { get; private set; }
+    internal class FileImportInfo : IBrowsableItem {
+        public FileImportInfo (SafeUri original)
+        {
+            DefaultVersion = new ImportInfoVersion () {
+                BaseUri = original.GetBaseUri (),
+                        Filename = original.GetFilename ()
+            };
 
-		public Tag [] Tags { get { throw new NotImplementedException (); } }
-		public string Description { get { throw new NotImplementedException (); } }
-		public string Name { get { throw new NotImplementedException (); } }
-		public uint Rating { get { return 0; } }
+            try {
+                using (FSpot.ImageFile img = FSpot.ImageFile.Create (original)) {
+                    Time = img.Date;
+                }
+            } catch (Exception) {
+                Time = DateTime.Now;
+            }
+        }
 
-		internal uint PhotoId { get; set; }
-	}
+        public IBrowsableItemVersion DefaultVersion { get; private set; }
+        public SafeUri DestinationUri { get; set; }
+
+        public System.DateTime Time { get; private set; }
+
+        public Tag [] Tags { get { throw new NotImplementedException (); } }
+        public string Description { get { throw new NotImplementedException (); } }
+        public string Name { get { throw new NotImplementedException (); } }
+        public uint Rating { get { return 0; } }
+
+        internal uint PhotoId { get; set; }
+    }
 }

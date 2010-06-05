@@ -11,12 +11,6 @@ using System.IO;
 using Mono.Unix;
 using Hyena;
 
-public class ImportException : System.Exception {
-	public ImportException (string msg) : base (msg)
-	{
-	}
-}
-
 public class FileImportBackend : ImportBackend {
 	PhotoStore store;
 	RollStore rolls = FSpot.App.Instance.Database.Rolls;
@@ -35,45 +29,6 @@ public class FileImportBackend : ImportBackend {
 
 	List<IBrowsableItem> import_info;
 	Stack directories;
-
-	private class ImportInfo : IBrowsableItem {
-		public ImportInfo (SafeUri original)
-		{
-			DefaultVersion = new ImportInfoVersion () {
-				BaseUri = original.GetBaseUri (),
-				Filename = original.GetFilename ()
-			};
-
-			try {
-				using (FSpot.ImageFile img = FSpot.ImageFile.Create (original)) {
-					Time = img.Date;
-				}
-			} catch (Exception) {
-				Time = DateTime.Now;
-			}
-		}
-
-		public IBrowsableItemVersion DefaultVersion { get; private set; }
-		public SafeUri DestinationUri { get; set; }
-
-		public System.DateTime Time { get; private set; }
-        
-		public Tag [] Tags { get { throw new NotImplementedException (); } }
-		public string Description { get { throw new NotImplementedException (); } }
-		public string Name { get { throw new NotImplementedException (); } }
-		public uint Rating { get { return 0; } }
-
-		internal uint PhotoId { get; set; }
-	}
-
-	private class ImportInfoVersion : IBrowsableItemVersion {
-		public string Name { get { return String.Empty; } }
-		public bool IsProtected { get { return true; } }
-		public SafeUri BaseUri { get; set; }
-		public string Filename { get; set; }
-
-		public SafeUri Uri { get { return BaseUri.Append (Filename); } }
-	}
 
 	public override List<IBrowsableItem> Prepare ()
 	{
@@ -99,76 +54,6 @@ public class FileImportBackend : ImportBackend {
 		return import_info;
 	}
 	
-
-/*	public static SafeUri UniqueName (string path, string filename)
-	{
-		int i = 1;
-		string dest = System.IO.Path.Combine (path, filename);
-
-		while (System.IO.File.Exists (dest)) {
-			string numbered_name = String.Format ("{0}-{1}{2}", 
-							      System.IO.Path.GetFileNameWithoutExtension (filename),
-							      i++,
-							      System.IO.Path.GetExtension (filename));
-			
-			dest = System.IO.Path.Combine (path, numbered_name);
-		}
-		
-		return new SafeUri ("file://"+dest, true);
-	}*/
-	
-	public static SafeUri ChooseLocation (SafeUri uri)
-	{
-		return ChooseLocation (uri, null);
-	}
-
-	private static SafeUri ChooseLocation (SafeUri uri, Stack created_directories)
-	{
-/*		string name = uri.GetFilename ();
-		DateTime time;
-		using (FSpot.ImageFile img = FSpot.ImageFile.Create (uri)) {
-			time = img.Date;
-		}
-
-		string dest_dir = String.Format ("{0}{1}{2}{1}{3:D2}{1}{4:D2}",
-						 FSpot.Global.PhotoUri, // FIXME broken
-						 System.IO.Path.DirectorySeparatorChar,
-						 time.Year,
-						 time.Month,
-						 time.Day);
-		
-		if (!System.IO.Directory.Exists (dest_dir)) {
-			System.IO.DirectoryInfo info;
-			// Split dest_dir into constituent parts so we can clean up each individual directory in
-			// event of a cancel.
-			if (created_directories != null) {
-				string [] parts = dest_dir.Split (new char [] {System.IO.Path.DirectorySeparatorChar});
-				string nextPath = String.Empty;
-				for (int i = 0; i < parts.Length; i++) {
-					if (i == 0)
-						nextPath += parts [i];
-					else
-						nextPath += System.IO.Path.DirectorySeparatorChar + parts [i];
-					if (nextPath.Length > 0) {
-						info = new System.IO.DirectoryInfo (nextPath);
-						// only add the directory path if it didn't already exist and we haven't already added it.
-						if (!info.Exists && !created_directories.Contains (nextPath))
-							created_directories.Push (nextPath);
-					}
-				}
-			}
-			
-			info = System.IO.Directory.CreateDirectory (dest_dir);
-		}*/
-
-		// If the destination we'd like to use is the file itself return that
-		//if ("file://" + Path.Combine (dest_dir, name) == uri.ToString ())
-		//	return uri;
-		 
-		//var dest = UniqueName (dest_dir, name);
-		
-		return uri;
-	}
 
 	public override bool Step (out StepStatusInfo status_info)
 	{
@@ -339,19 +224,3 @@ public class FileImportBackend : ImportBackend {
 		count = duplicate_count = 0;
 		//rolls.EndImport();    // Clean up the imported session.
 	}
-
-	public FileImportBackend (PhotoStore store, SafeUri [] base_paths, bool recurse, Gtk.Window parent) : this (store, base_paths, false, recurse, false, null, parent) {}
-
-	public FileImportBackend (PhotoStore store, SafeUri [] base_paths, bool copy, bool recurse, Tag [] tags, Gtk.Window parent) : this (store, base_paths, copy, recurse, false, null, parent) {}
-
-	public FileImportBackend (PhotoStore store, SafeUri [] base_paths, bool copy, bool recurse, bool detect_duplicates, Tag [] tags, Gtk.Window parent)
-	{
-		this.store = store;
-		this.copy = copy;
-		this.base_paths = base_paths;
-		this.recurse = recurse;
-		this.detect_duplicates = detect_duplicates;
-		this.tags = tags;
-		this.parent = parent;
-	}
-}
