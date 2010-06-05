@@ -1259,14 +1259,6 @@ namespace FSpot.Tiff {
 			return null;
 		}
 
-		private DirectoryEntry GetEntry (int i)
-		{
-			if (i < Entries.Count)
-				return Entries [i];
-			else
-				return null;
-		}
-
 		public DirectoryEntry Lookup (uint id) 
 		{
 			foreach (DirectoryEntry entry in entries)

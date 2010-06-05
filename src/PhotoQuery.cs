@@ -60,7 +60,6 @@ namespace FSpot {
 		PhotoCache cache;
 		private PhotoStore store;
 		private Term terms;
-		private Tag [] tags;
 
 		static int query_count = 0;
 		static int QueryCount {

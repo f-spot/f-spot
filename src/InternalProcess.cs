@@ -18,10 +18,8 @@ namespace FSpot {
 	internal class InternalProcess {
 		int stdin;
 		int stdout;
-		int stderr;
 		IOChannel input;
 		IOChannel output;
-		IOChannel errorput;
 
 		public IOChannel StandardInput {
 			get {
@@ -32,12 +30,6 @@ namespace FSpot {
 		public IOChannel StandardOutput {
 			get {
 				return output;
-			}
-		}
-
-		public IOChannel StandardError {
-			get {
-				return errorput;
 			}
 		}
 

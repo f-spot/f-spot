@@ -57,16 +57,6 @@ namespace FSpot {
 			done = false;
 		}
 
-		private static void RotateCoefficients (string original_path, RotateDirection direction)
-		{
-			string temporary_path = original_path + ".tmp";	// FIXME make it unique
-			JpegUtils.Transform (original_path, temporary_path, 
-					     direction == RotateDirection.Clockwise ? JpegUtils.TransformType.Rotate90 
-					     : JpegUtils.TransformType.Rotate270);
-			
-			Utils.Unix.Rename (temporary_path, original_path);
-		}
-
 		private static void RotateOrientation (string original_path, RotateDirection direction)
 		{
 			using (FSpot.ImageFile img = FSpot.ImageFile.Create (new SafeUri (original_path))) {

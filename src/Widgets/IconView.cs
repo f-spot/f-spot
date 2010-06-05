@@ -1372,10 +1372,6 @@ namespace FSpot.Widgets
 			Gdk.Pixbuf result = entry.ShallowCopyPixbuf ();
 			int order = (int) entry.Data;
 
-			if (order >= 0 && order < collection.Count) {
-				var uri = collection [order].DefaultVersion.Uri;
-			}
-
 			if (result == null)
 				return;
 

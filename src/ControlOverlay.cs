@@ -21,7 +21,6 @@ namespace FSpot {
 		Window host_toplevel;
 		bool composited;
 		VisibilityType visibility;
-		double target_opacity;
 		int round = 12;
 		Delay hide; 
 		Delay fade;

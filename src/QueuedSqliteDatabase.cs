@@ -54,7 +54,6 @@ namespace Banshee.Database
         private int version;
         private Thread queue_thread;
         private volatile bool dispose_requested = false;
-        private string dbpath;
         private volatile bool connected;
 
         /// <summary>
@@ -87,8 +86,6 @@ namespace Banshee.Database
 
         public QueuedSqliteDatabase(string dbpath)
         {
-            this.dbpath = dbpath;
-
             // Connect
             if(connection == null) {
                 version = GetFileVersion(dbpath);

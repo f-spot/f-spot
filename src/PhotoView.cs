@@ -28,7 +28,6 @@ namespace FSpot {
 	public class PhotoView : EventBox {
 		FSpot.Delay commit_delay; 
 	
-		private bool has_selection = false;
 		private PhotoImageView photo_view;
 		private ScrolledWindow photo_view_scrolled;
 		private EventBox background;
@@ -41,8 +40,6 @@ namespace FSpot {
 		
 		private Entry description_entry;
 		private Widgets.Rating rating;
-	
-		private uint restore_scrollbars_idle_id;
 	
 		// Public events.
 	
@@ -161,20 +158,6 @@ namespace FSpot {
 			PhotoPopup popup = new PhotoPopup ();
 			popup.Activate (this.Toplevel);
 			return true;
-		}
-	
-		private void ShowError (System.Exception e, Photo photo)
-		{
-			string msg = Catalog.GetString ("Error editing photo");
-			string desc = String.Format (Catalog.GetString ("Received exception \"{0}\". Unable to save photo {1}"),
-						     e.Message, photo.Name);
-			
-			HigMessageDialog md = new HigMessageDialog ((Gtk.Window)this.Toplevel, DialogFlags.DestroyWithParent, 
-								    Gtk.MessageType.Error, ButtonsType.Ok, 
-								    msg,
-								    desc);
-			md.Run ();
-			md.Destroy ();
 		}
 	
 		int changed_photo;
@@ -298,8 +281,6 @@ namespace FSpot {
 			get { return filmstrip.Visible; }
 			set { filmstrip.Visible = value; }
 		}
-	
-		Gtk.Tooltips tips = new Gtk.Tooltips ();
 	
 		public PhotoView (IBrowsableCollection query)
 			: base ()

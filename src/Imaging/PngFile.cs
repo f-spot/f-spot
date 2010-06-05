@@ -140,21 +140,9 @@ namespace FSpot.Png {
 				}
 			}
 			
-			byte compression;
-			public byte Compression {
-			        get {
-					return compression;
-				}
-				set {
-					if (compression != 0)
-						throw new System.Exception ("Unknown compression method");
-				}
-			}
-
 			public ZtxtChunk (string keyword, string text) : base ()
 			{
 				Name = "zTXt";
-				Compression = 0;
 				this.keyword = keyword;
 			}
 
@@ -178,7 +166,7 @@ namespace FSpot.Png {
 				int i = 0;
 				keyword = GetString (ref i);
 				i++;
-				Compression = data [i++];
+				i++;
 
 				text_data = Chunk.Inflate (data, i, data.Length - i);
 			}
@@ -315,7 +303,7 @@ namespace FSpot.Png {
 				keyword = GetString (ref i);
 				i++;
 				compressed = (data [i++] != 0);
-				Compression = data [i++];
+				i++;
 				Language = GetString (ref i);
 				i++;
 				LocalizedKeyword = GetString (ref i, System.Text.Encoding.UTF8);
@@ -348,7 +336,7 @@ namespace FSpot.Png {
 					stream.WriteByte (0);
 					
 					stream.WriteByte ((byte)(compressed ? 1 : 0));
-					stream.WriteByte (Compression);
+					stream.WriteByte (0);
 					
 					if (Language != null && Language != System.String.Empty) {
 						tmp = Latin1.GetBytes (Language);
@@ -386,15 +374,10 @@ namespace FSpot.Png {
 				this.Language = language;
 				this.LocalizedKeyword = System.String.Empty;
 				this.compressed = compressed;
-				this.Compression = 0;
 			}
 		}
 
 		public class TimeChunk : Chunk {
-			//public static string Name = "tIME";
-
-			System.DateTime time;
-
 			public System.DateTime Time {
 				get {
 					return new System.DateTime (FSpot.BitConverter.ToUInt16 (data, 0, false),
@@ -875,20 +858,6 @@ namespace FSpot.Png {
 				}
 			}
 			
-			private static byte PaethPredict (byte a, byte b, byte c)
-			{
-				int p = a + b - c;
-				int pa = System.Math.Abs (p - a);
-				int pb = System.Math.Abs (p - b);
-				int pc = System.Math.Abs (p - c);
-				if (pa <= pb && pa <= pc)
-					return a;
-				else if (pb <= pc)
-					return b;
-				else 
-					return c;
-			}
-
 			public void ReconstructRow (int row, int channels)
 			{
 				int offset = row * width;

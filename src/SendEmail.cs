@@ -22,7 +22,6 @@ using Mono.Unix;
 namespace FSpot {
 	public class SendEmail : GladeDialog {
 		Window parent_window;
-		PhotoQuery query;
 
 		[Glade.Widget] private ScrolledWindow   tray_scrolled;
 		[Glade.Widget] private Button 		ok_button;
@@ -31,7 +30,6 @@ namespace FSpot {
 							large_size, x_large_size, original_size;
 		[Glade.Widget] private CheckButton 	rotate_check;
 
-		bool clean;
 		long Orig_Photo_Size 	= 0;
 		double scale_percentage = 0.3;
 		
@@ -47,8 +45,6 @@ namespace FSpot {
 		string tmp_mail_dir;	// To temporary keep the resized images
 		bool force_original = false;
 
-		ThreadProgressDialog progress_dialog;
-		System.Threading.Thread command_thread;
 		IBrowsableCollection selection;
 
 		public SendEmail (IBrowsableCollection selection, Window parent_window) : base ("mail_dialog")

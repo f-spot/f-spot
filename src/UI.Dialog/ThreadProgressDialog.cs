@@ -28,7 +28,6 @@ namespace FSpot.UI.Dialog {
 		Gtk.Button skip_button;
 		Gtk.ResponseType error_response;
 		AutoResetEvent error_response_event;
-		AutoResetEvent error_response_ack_event;
 
 		object syncHandle = new object ();
 
@@ -150,7 +149,6 @@ namespace FSpot.UI.Dialog {
 			RetrySkipVisible = true;
 
 			error_response_event = new AutoResetEvent (false);
-			error_response_ack_event = new AutoResetEvent (false);
 			error_response_event.WaitOne ();
 
 			RetrySkipVisible = false;

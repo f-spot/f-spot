@@ -8,7 +8,6 @@ using Hyena;
 namespace FSpot {
         internal class Description {
 		string predicate;
-		string description;
 		string title;
 		ValueFormat formater;
 		

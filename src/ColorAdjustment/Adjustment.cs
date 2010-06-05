@@ -18,7 +18,6 @@ using System.Collections.Generic;
 
 namespace FSpot.ColorAdjustment {
 	public abstract class Adjustment {
-		private List <Cms.Profile> profiles;
 		protected int nsteps = 20;
 		private Cms.Intent intent = Cms.Intent.Perceptual;
 

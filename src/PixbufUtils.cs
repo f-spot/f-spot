@@ -77,7 +77,6 @@ public class PixbufUtils {
 		int max_width;
 		int max_height;
 		PixbufOrientation orientation;
-		int orig_width;
 
 		public AspectLoader (int max_width, int max_height) 
 		{

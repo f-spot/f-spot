@@ -31,7 +31,6 @@ namespace FSpot.Widgets {
 		private double angle = Math.PI / 4;
 		Gdk.Point start;
 		Gdk.Point start_hot;
-		Gdk.Point pos_hot;
 		Gdk.Point hotspot;
 
 		public Loupe (PhotoImageView view) : base ("Loupe")

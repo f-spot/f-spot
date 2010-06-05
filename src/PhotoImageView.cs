@@ -38,7 +38,6 @@ namespace FSpot.Widgets {
 			get { return item; }
 		}
 
-		IBrowsableCollection query;
 		public IBrowsableCollection Query {
 			get { return item.Collection; }
 		}

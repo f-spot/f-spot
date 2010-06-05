@@ -18,7 +18,6 @@ namespace FSpot {
 	public class Fader {
 		bool composited;
 		Gtk.Window win;
-		double target_opacity;
 		DoubleAnimation fadin;
 
 		public Fader (Gtk.Window win, double target, double msec)

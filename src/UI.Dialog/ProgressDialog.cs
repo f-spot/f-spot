@@ -42,8 +42,6 @@ namespace FSpot.UI.Dialog {
 			get { return message_label; }
 		}
 	
-		private DateTime start_time;
-	
 		private Gtk.Button button;
 		public Gtk.Button Button {
 			get {

@@ -110,25 +110,6 @@ namespace FSpot.Pnm {
 			return data;
 		}
 
-		static Gdk.Pixbuf LoadRGB16 (Stream stream, int width, int height)
-		{
-			Gdk.Pixbuf pixbuf = new Gdk.Pixbuf (Gdk.Colorspace.Rgb, false, 8, width, height);
-			unsafe {
-				byte *pixels = (byte *)pixbuf.Pixels;
-				int length = width * 6;
-				byte [] buffer = new byte [length];
-				
-				for (int row = 0; row < height; row++) {
-					stream.Read (buffer, 0, buffer.Length);
-					for (int i = 0; i < width * 3; i++) {
-						pixels [i] = (byte) (BitConverter.ToUInt16 (buffer, i * 2, false) >> 8);
-					}
-					pixels += pixbuf.Rowstride;
-				}
-			}
-			return pixbuf;
-		}
-
 		static Gdk.Pixbuf LoadRGB8 (Stream stream, int width, int height)
 		{
 			Gdk.Pixbuf pixbuf = new Gdk.Pixbuf (Gdk.Colorspace.Rgb, false, 8, width, height);

@@ -153,13 +153,6 @@ namespace FSpot {
 		}
 	
 		// Data functions.
-		private static string ToHashColor (Gdk.Color color)
-		{
-			byte r = (byte) (color.Red >> 8);
-			byte g = (byte) (color.Green >> 8);
-			byte b = (byte) (color.Blue >> 8);
-			return String.Format ("#{0:x}{1:x}{2:x}", r, g, b);
-		}
 	
 		private void SetBackground (CellRenderer renderer, Tag tag)
 		{
