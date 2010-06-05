@@ -1498,8 +1498,8 @@ namespace FSpot.Tiff {
 						throw new Exception ("recursive ifd");
 					Directory [i] = new ImageDirectory (stream, directory_offset, endian);
 				} catch (System.Exception e) {
-					Log.ErrorFormat ("Error loading Subdirectory {0} at {2} of {3}bytes:{4}{1}",
-								  this.Id, e, directory_offset, stream.Length, Environment.NewLine);
+					Log.ErrorFormat ("Error loading Subdirectory {0} at {2}: {3}{1}",
+								  this.Id, e, directory_offset, Environment.NewLine);
 				}
 					
 			}
@@ -2056,11 +2056,6 @@ namespace FSpot.Tiff {
 			}
 		}
 		
-		public override System.IO.Stream PixbufStream ()
-		{
-			return Open ();
-		}
-
 		public override PixbufOrientation GetOrientation ()
 		{
 			ShortEntry e = (ShortEntry)(this.Header.Directory.Lookup (TagId.Orientation));
