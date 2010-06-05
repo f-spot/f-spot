@@ -84,7 +84,7 @@ namespace FSpot.Widgets {
 
 		private void HandleEntryTextInserted (object sender, TextInsertedArgs args)
 		{
-			//Log.Debug ("inserting {0}, ( = {1}  ) = {2}", args.Text, open_parens, close_parens);
+			//Log.DebugFormat ("inserting {0}, ( = {1}  ) = {2}", args.Text, open_parens, close_parens);
 
 			//int start = args.Position - args.Length;
 
@@ -105,7 +105,7 @@ namespace FSpot.Widgets {
 				entry.TextInserted += HandleEntryTextInserted;
 				pos++;
 			}
-			//Log.Debugformat ("done w/ insert, {0}, ( = {1}  ) = {2}", args.Text, open_parens, close_parens);
+			//Log.DebugFormat ("done w/ insert, {0}, ( = {1}  ) = {2}", args.Text, open_parens, close_parens);
 			last_entry_text = entry.Text;
 
 			QueueUpdate ();
@@ -114,7 +114,7 @@ namespace FSpot.Widgets {
 		private void HandleEntryTextDeleted (object sender, TextDeletedArgs args)
 		{
 			int length = args.EndPos - args.StartPos;
-			//Log.Debug ("start {0} end {1} len {2} last {3}", args.StartPos, args.EndPos, length, last_entry_text);
+			//Log.DebugFormat ("start {0} end {1} len {2} last {3}", args.StartPos, args.EndPos, length, last_entry_text);
 			string txt = length < 0 ? last_entry_text : last_entry_text.Substring (args.StartPos, length);
 
 			for (int i = 0; i < txt.Length; i++) {
@@ -213,7 +213,7 @@ namespace FSpot.Widgets {
 
 			string indent = String.Format ("{0," + depth*2 + "}", " ");
 
-			//Log.Debug (indent + "Have text: {0}", txt);
+			//Log.DebugFormat (indent + "Have text: {0}", txt);
 
 			// Match the query the user typed against our regular expression
 			Match match = term_regex.Match (txt);
@@ -244,7 +244,7 @@ namespace FSpot.Widgets {
 			}
 
 			if (match.Groups ["Terms"].Captures.Count == 1 && match.Groups["NotTerm"].Captures.Count != 1) {
-				//Log.Debug (indent + "Unbreakable term: {0}", match.Groups ["Terms"].Captures [0]);
+				//Log.DebugFormat (indent + "Unbreakable term: {0}", match.Groups ["Terms"].Captures [0]);
 				string literal;
 				bool is_negated = false;
 				Tag tag = null;
@@ -302,7 +302,7 @@ namespace FSpot.Widgets {
 						subterm = subterm.Remove (0, 1);
 					}
 
-					//Log.Debug (indent + "Breaking subterm apart: {0}", subterm);
+					//Log.DebugFormat (indent + "Breaking subterm apart: {0}", subterm);
 
 					if (!ConstructQuery (us, depth + 1, subterm, negated))
 						return false;
@@ -320,7 +320,7 @@ namespace FSpot.Widgets {
 						subterm = subterm.Remove (0, 1);
 					}
 
-					//Log.Debug (indent + "Breaking not subterm apart: {0}", subterm);
+					//Log.DebugFormat (indent + "Breaking not subterm apart: {0}", subterm);
 
 					if (!ConstructQuery (us, depth + 1, subterm, true))
 						return false;
@@ -382,7 +382,7 @@ namespace FSpot.Widgets {
 
 			if (ParensValid () && ConstructQuery (null, 0, entry.Text)) {
 				if (RootTerm != null) {
-					//Log.Debug("rootTerm = {0}", RootTerm);
+					//Log.DebugFormat("rootTerm = {0}", RootTerm);
 					if (!(RootTerm is AndTerm)) {
 						// A little hacky, here to make sure the root term is a AndTerm which will
 						// ensure we handle the Hidden tag properly
@@ -391,7 +391,7 @@ namespace FSpot.Widgets {
 						root_term = root_parent;
 					}
 
-					//Log.Debug("rootTerm = {0}", RootTerm);
+					//Log.DebugFormat("rootTerm = {0}", RootTerm);
 					if (!(RootTerm is AndTerm)) {
 						// A little hacky, here to make sure the root term is a AndTerm which will
 						// ensure we handle the Hidden tag properly
@@ -399,7 +399,7 @@ namespace FSpot.Widgets {
 						RootTerm.Parent = root_parent;
 						root_term = root_parent;
 					}
-					//Log.Debug ("condition = {0}", RootTerm.SqlCondition ());
+					//Log.DebugFormat ("condition = {0}", RootTerm.SqlCondition ());
 					query.TagTerm = new ConditionWrapper (RootTerm.SqlCondition ());
 				} else {
 					query.TagTerm = null;
@@ -499,7 +499,7 @@ namespace FSpot.Widgets {
 			entry.DeleteText (entry.Position - transformed_key.Length, entry.Position);
 
 			string name = args.Model.GetValue (args.Iter, TextColumn) as string;
-			//Log.Debug ("match selected..{0}", name);
+			//Log.DebugFormat ("match selected..{0}", name);
 			int pos = entry.Position;
 
 			completing = true;
@@ -509,7 +509,7 @@ namespace FSpot.Widgets {
 			entry.Position += name.Length;
 
 			args.RetVal = true;
-			//Log.Debug.Format ("done w/ match selected");
+			//Log.Debug ("done w/ match selected");
 		}
 
 		string last_key = String.Empty;
@@ -533,7 +533,7 @@ namespace FSpot.Widgets {
 					int start = 0;
 					for (int i = entry.Position - 1; i >= 0; i--) {
 						if (key [i] == ' ' || key [i] == ')' || key [i] == '(') {
-							//Log.Debug ("have start break char at {0}", i);
+							//Log.DebugFormat ("have start break char at {0}", i);
 							start = i + 1;
 							break;
 						}
@@ -547,7 +547,7 @@ namespace FSpot.Widgets {
 						}
 					}
 
-					//Log.Debug ("start = {0} end = {1}", start, end);
+					//Log.DebugFormat ("start = {0} end = {1}", start, end);
 
 					int len = end - start + 1;
 					if (len > 0 && start < last_key.Length)
@@ -555,7 +555,7 @@ namespace FSpot.Widgets {
 					else
 						transformed_key = String.Empty;
 				}
-				//Log.Debug ("transformed key {0} into {1}", key, transformed_key);
+				//Log.DebugFormat ("transformed key {0} into {1}", key, transformed_key);
 			}
 
 			if (transformed_key == String.Empty)
@@ -567,7 +567,7 @@ namespace FSpot.Widgets {
 			if (name == null || name.Length <= transformed_key.Length)
 				return false;
 
-			//Log.Debug ("entered = {0} compared to {1}", transformed_key, name);
+			//Log.DebugFormat ("entered = {0} compared to {1}", transformed_key, name);
 			return (String.Compare (transformed_key, name.Substring(0, transformed_key.Length), true) == 0);
 		}
 	}
