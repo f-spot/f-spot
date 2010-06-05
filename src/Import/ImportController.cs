@@ -1,5 +1,6 @@
 using Hyena;
 using FSpot.Utils;
+using FSpot.Xmp;
 using System;
 using System.Collections.Generic;
 using System.Threading;
@@ -192,9 +193,11 @@ namespace FSpot.Import
 
         Stack<SafeUri> created_directories;
         List<uint> imported_photos;
+        List<SafeUri> copied_files;
         PhotoStore store = App.Instance.Database.Photos;
-        RollStore rolls = FSpot.App.Instance.Database.Rolls;
+        RollStore rolls = App.Instance.Database.Rolls;
         volatile bool photo_scan_running;
+        XmpTagsImporter xmp_importer;
 
         void DoImport ()
         {
@@ -206,6 +209,8 @@ namespace FSpot.Import
             App.Instance.Database.Sync = false;
             created_directories = new Stack<SafeUri> ();
             imported_photos = new List<uint> ();
+            copied_files = new List<SafeUri> ();
+            xmp_importer = new XmpTagsImporter (store, App.Instance.Database.Tags);
             CreatedRoll = rolls.Create ();
 
             EnsureDirectory (Global.PhotoUri);
@@ -238,12 +243,46 @@ namespace FSpot.Import
 
         void FinishImport ()
         {
+            ThreadAssist.SpawnFromMain (() => {
+                // Generate all thumbnails on a different thread, disposing is automatic.
+                var loader = ThumbnailLoader.Default;
+                foreach (var id in imported_photos) {
+                    var uri = store.Get (id).DefaultVersion.Uri;
+                    loader.Request (uri, ThumbnailSize.Large, 10);
+                }
+            });
+
             ImportThread = null;
             FireEvent (ImportEvent.ImportFinished);
         }
 
         void RollbackImport ()
         {
+            // Remove photos
+            foreach (var id in imported_photos) {
+                store.Remove (store.Get (id));
+            }
+
+            foreach (var uri in copied_files) {
+                var file = GLib.FileFactory.NewForUri (uri);
+                file.Delete (null);
+            }
+
+            // Clean up directories
+            while (created_directories.Count > 0) {
+                var uri = created_directories.Pop ();
+                var dir = GLib.FileFactory.NewForUri (uri);
+                var enumerator = dir.EnumerateChildren ("standard::name", GLib.FileQueryInfoFlags.None, null);
+                if (!enumerator.HasPending) {
+                    dir.Delete (null);
+                }
+            }
+
+            // Clean created tags
+            xmp_importer.Cancel();
+
+            // Remove created roll
+		    rolls.Remove (CreatedRoll);
         }
 
         void ImportPhoto (IBrowsableItem item, Roll roll)
@@ -260,6 +299,7 @@ namespace FSpot.Import
 				var file = GLib.FileFactory.NewForUri (item.DefaultVersion.Uri);
 				var new_file = GLib.FileFactory.NewForUri (destination);
 				file.Copy (new_file, GLib.FileCopyFlags.AllMetadata, null, null);
+                copied_files.Add (destination);
             }
 
             // Import photo
@@ -274,6 +314,9 @@ namespace FSpot.Import
                 photo.AddTag (attach_tags);
                 needs_commit = true;
             }
+
+            // Import XMP metadata
+            needs_commit |= xmp_importer.Import (photo, destination, item.DefaultVersion.Uri);
 
             if (needs_commit) {
                 store.Commit (photo);
