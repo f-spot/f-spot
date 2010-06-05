@@ -1155,6 +1155,11 @@ namespace FSpot
 
 			controller.StartImport ();
 		}
+
+		void HandleImportCommand (object obj, EventArgs args)
+		{
+			StartImport (null);
+		}
 	
 		public void ImportFile (SafeUri uri)
 		{
