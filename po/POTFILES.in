@@ -78,7 +78,6 @@ src/Editors/RedEyeEditor.cs
 src/Editors/SepiaEditor.cs
 src/Editors/SoftFocusEditor.cs
 src/Editors/TiltEditor.cs
-src/FileImportBackend.cs
 src/Filters/ResizeFilter.cs
 src/Filters/SharpFilter.cs
 src/FSpot.addin.xml
@@ -88,7 +87,7 @@ src/GroupSelector.cs
 src/Imaging/Exif.cs
 src/Imaging/ImageFile.cs
 src/Imaging/IptcFile.cs
-src/ImportCommand.cs
+src/Import/ImportController.cs
 src/ItemAction.cs
 src/Loupe.cs
 src/MainWindow.cs
@@ -120,6 +119,7 @@ src/UI.Dialog/EditExceptionDialog.cs
 src/UI.Dialog/EditTagDialog.cs
 src/UI.Dialog/EditTagIconDialog.cs
 src/UI.Dialog/ExceptionDialog.cs
+src/UI.Dialog/ImportDialog.cs
 src/UI.Dialog/PreferenceDialog.cs
 src/UI.Dialog/ProgressDialog.cs
 src/UI.Dialog/RepairDbDialog.cs
@@ -131,6 +131,7 @@ src/UI.Dialog/ThreadProgressDialog.cs
 [type: gettext/glade]src/UI.Dialog/ui/EditTagIconDialog.ui
 [type: gettext/glade]src/UI.Dialog/ui/PreferenceDialog.ui
 [type: gettext/glade]src/UI.Dialog/ui/RatingFilterDialog.ui
+src/ui/import.ui
 [type: gettext/glade]src/ui/main_window.ui
 src/Updater.cs
 src/Util.cs
