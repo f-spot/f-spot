@@ -25,7 +25,7 @@ namespace FSpot.Widgets {
 		private int open_parens = 0, close_parens = 0;
 		private PhotoQuery query;
 		private Term root_term = null;
-        private HBox box;
+		private HBox box;
 
 		/*
 		 * Properties
@@ -50,10 +50,10 @@ namespace FSpot.Widgets {
 		public FindBar (PhotoQuery query, TreeModel model) : base(new HBox())
 		{
 			this.query = query;
-            box = Child as HBox;
+			box = Child as HBox;
 
 			box.Spacing = 6;
-            box.BorderWidth = 2;
+			box.BorderWidth = 2;
 
 			box.PackStart (new Label (Catalog.GetString ("Find:")), false, false, 0);
 
