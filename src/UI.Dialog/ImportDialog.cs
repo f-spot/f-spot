@@ -245,8 +245,6 @@ namespace FSpot.UI.Dialog
                     break;
 
                 case ImportEvent.ImportStarted:
-                    import_button.Sensitive = false;
-                    OptionsSensitive = false;
                     ShowImportProgress ();
                     break;
 
@@ -272,6 +270,8 @@ namespace FSpot.UI.Dialog
         {
             Controller.AttachTags (tag_entry.GetTypedTagNames ());
             Controller.StartImport ();
+            import_button.Sensitive = false;
+            OptionsSensitive = false;
         }
 
         void CancelImport ()
