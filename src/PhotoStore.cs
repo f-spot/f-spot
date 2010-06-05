@@ -819,7 +819,7 @@ public class PhotoStore : DbStore<Photo> {
 	public void QueryToTemp(string temp_table, string query)
 	{
 		uint timer = Log.DebugTimerStart ();
-		Log.Debug ("Query Started : {0}", query);
+		Log.DebugFormat ("Query Started : {0}", query);
 		Database.BeginTransaction ();
 		Database.ExecuteNonQuery (String.Format ("DROP TABLE IF EXISTS {0}", temp_table));
 		//Database.ExecuteNonQuery (String.Format ("CREATE TEMPORARY TABLE {0} AS {1}", temp_table, query));
