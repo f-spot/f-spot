@@ -17,7 +17,6 @@ namespace FSpot {
 	public abstract class Term {
 		private ArrayList sub_terms = new ArrayList ();
 		private Term parent = null;
-		private string separator;
 
 		protected bool is_negated = false;
 		protected Tag tag = null;

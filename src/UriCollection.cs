@@ -108,13 +108,11 @@ namespace FSpot {
 		private class DirectoryLoader
 		{
 			UriCollection collection;
-			SafeUri uri;
 			GLib.File file;
 
 			public DirectoryLoader (UriCollection collection, SafeUri uri)
 			{
 				this.collection = collection;
-				this.uri = uri;
 				file = FileFactory.NewForUri (uri);
 				file.EnumerateChildrenAsync ("standard::*",
 							     FileQueryInfoFlags.None,

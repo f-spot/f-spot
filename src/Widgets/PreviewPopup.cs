@@ -19,7 +19,6 @@ namespace FSpot {
 		private IconView view;
 		private Gtk.Image image;
 		private Gtk.Label label;
-		private bool composited;
 
 		private bool show_histogram;
 		public bool ShowHistogram {

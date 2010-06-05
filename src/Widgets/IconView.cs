@@ -201,12 +201,6 @@ namespace FSpot.Widgets
 				return real_focus_cell;
 			}
 		}
-		// Number of consecutive GDK_BUTTON_PRESS on the same cell, to
-		// distinguish the GDK_2BUTTON_PRESS events that we actually care
-		// about.
-		private int click_count;
-
-		private Gdk.GC rect_gc = null;
 
 		// Public events.
 		public event EventHandler<BrowsableEventArgs> DoubleClicked;

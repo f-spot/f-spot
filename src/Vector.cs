@@ -48,11 +48,6 @@ namespace FSpot {
 			return v1.X * v2.X + v1.Y * v2.Y;
 		}
 
-		double Dot (Vector v)
-		{
-			return Dot (this, v);
-		}
-
 		double Length {
 			get {
 				return Math.Sqrt (X * X + Y * Y);

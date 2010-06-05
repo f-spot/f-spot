@@ -27,10 +27,8 @@ namespace FSpot.Widgets {
 	public class ImageDisplay : Gtk.EventBox {
 		ImageInfo current;
 		ImageInfo next;
-		BrowsablePointer item;
 		ITransition transition;
 		Delay delay;
-		int index = 0;
 		int block_size = 256;
 
 		ITransition Transition {
@@ -51,7 +49,6 @@ namespace FSpot.Widgets {
 
 		public ImageDisplay (BrowsablePointer item) 
 		{
-			this.item = item;
 			CanFocus = true;
 			current = new ImageInfo (item.Current.DefaultVersion.Uri);
 			if (item.Collection.Count > item.Index + 1) {

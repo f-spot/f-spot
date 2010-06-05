@@ -16,7 +16,6 @@ using Gtk;
 namespace FSpot.Widgets {		
 	public class PanZoomOld : ITransition {
 		ImageInfo info;
-		ImageInfo buffer;
 		TimeSpan duration = new TimeSpan (0, 0, 7);
 		double pan_x;
 		double pan_y;

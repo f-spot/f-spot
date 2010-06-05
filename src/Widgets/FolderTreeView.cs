@@ -129,15 +129,6 @@ namespace FSpot.Widgets
 			}
 		}
 			
-		private string GetStock (string scheme)
-		{
-			/* not very usefull at the moment */
-			if (scheme == Uri.UriSchemeFile)
-				return "gtk-directory";
-		
-			return "gtk-directory";
-		}
-		
 		private static TargetEntry [] folder_tree_source_target_table =
 			new TargetEntry [] {
 				DragDropTargets.UriQueryEntry,

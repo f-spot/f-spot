@@ -198,16 +198,6 @@ namespace FSpot.Widgets {
 							  RegexOptions.IgnoreCase | RegexOptions.Compiled
 						  );
 
-		// Debug method used to print results to verify the regex
-		private static void PrintGroup (GroupCollection groups, string name)
-		{
-			Group group = groups [name];
-			Log.DebugFormat ("Name: {2} (success = {1}) group: {0}", group, group.Success, name);
-			foreach (Capture capture in group.Captures) {
-				Log.DebugFormat ("  Have capture: {0}", capture);
-			}
-		}
-
 		// Breaking the query the user typed into something useful involves running
 		// it through the above regular expression recursively until it is broken down
 		// into literals and operators that we can use to generate SQL queries.

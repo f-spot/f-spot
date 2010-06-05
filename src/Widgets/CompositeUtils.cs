@@ -15,9 +15,6 @@ namespace FSpot.Widgets {
 									IntPtr property);
 
 		[DllImport("libgdk-2.0-0.dll")]
-		static extern IntPtr gdk_x11_get_xatom_by_name_for_display (IntPtr display, string name);
-
-		[DllImport("libgdk-2.0-0.dll")]
 		static extern IntPtr gdk_screen_get_rgba_colormap (IntPtr screen);
 
 		[DllImport("libgdk-2.0-0.dll")]
