@@ -256,15 +256,6 @@ namespace FSpot.Import
 
         void FinishImport ()
         {
-            ThreadAssist.SpawnFromMain (() => {
-                // Generate all thumbnails on a different thread, disposing is automatic.
-                var loader = ThumbnailLoader.Default;
-                foreach (var id in imported_photos) {
-                    var uri = store.Get (id).DefaultVersion.Uri;
-                    loader.Request (uri, ThumbnailSize.Large, 10);
-                }
-            });
-
             ImportThread = null;
             FireEvent (ImportEvent.ImportFinished);
         }
@@ -335,7 +326,9 @@ namespace FSpot.Import
                 store.Commit (photo);
             }
 
-            // FIXME: import xmp crap
+            // Prepare thumbnail (Import is I/O bound anyway)
+            ThumbnailLoader.Default.Request (destination, ThumbnailSize.Large, 10);
+
             imported_photos.Add (photo.Id);
         }
 
