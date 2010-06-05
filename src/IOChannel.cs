@@ -233,41 +233,9 @@ namespace FSpot {
 			End
 		}
 
-		[DllImport("libglib-2.0-0.dll")]
-		static extern IOStatus g_io_channel_seek_position (HandleRef handle, long offset, SeekType type, out IntPtr error);
-
 		public override long Seek (long position, SeekOrigin origin)
 		{
-#if false			
-			// GIOChannels have the interesting property of having a seek interface
-			// but no method to retrieve the current position or length.
-			// we could support these actions for unix iochannels with extra work
-			// but for now we'll just disable them.
-
-			SeekType type;
-			IntPtr error;
-			long final;
-			
-			switch (origin) {
-			case SeekOrigin.Begin:
-				type = SeekType.Set;
-				break;
-			case SeekOrigin.Current:
-				
-				break;
-			}
-
-			g_io_channel_seek_position (handle, position, type, out error);
-
-			if (error != IntPtr.Zero)
-				throw new GException (error);
-			
-			if (SeekOrigin == SeekOrigin.Begin)
-				return position;
-			else
-#else
-				throw new NotSupportedException ();
-#endif
+            throw new NotSupportedException ();
 		}
 
 		[DllImport("libglib-2.0-0.dll")]
