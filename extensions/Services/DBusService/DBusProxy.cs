@@ -7,6 +7,7 @@ using Hyena;
 using FSpot;
 using FSpot.Query;
 using FSpot.Utils;
+using FSpot.Import;
 using NDesk.DBus;
 
 namespace DBusService {
@@ -264,10 +265,6 @@ namespace DBusService {
 		// get all
 		uint[] GetPhotoIds ();
 
-		// import prepare
-		void PrepareRoll ();
-		void FinishRoll ();
-
 		// import
 		int ImportPhoto (string path, bool copy, string []tags);
 
@@ -393,61 +390,15 @@ namespace DBusService {
 			return tag_list;
 		}
 
-		public void PrepareRoll ()
+		public void ImportPhoto (string path, bool copy, string [] tags)
 		{
-			if (current_roll != null)
-				return;
-
-			current_roll = db.Rolls.Create ();
-		}
-
-		public void FinishRoll ()
-		{
-			current_roll = null;
-		}
-
-		public int ImportPhoto (string path, bool copy, string []tags)
-		{
-			if (current_roll == null)
-				throw new DBusException ("You must use PrepareRoll before you can import a photo.");
-
-			// add tags that exist in tag store
-			List<Tag> tag_list = GetTagsByNames (tags);
-
-			// FIXME: this is more or less a copy of the file import backend code
-			// this should be streamlined
-			try {
-				string new_path = path;
-
-				if (copy)
-					new_path = FileImportBackend.ChooseLocation (new SafeUri (path)).AbsolutePath;
-
-				if (new_path != path)
-					System.IO.File.Copy (path, new_path);
-
-				Photo created = db.Photos.CreateOverDBus (new_path, path, current_roll.Id);
-
-				try {
-					File.SetAttributes (new_path, File.GetAttributes (new_path) & ~FileAttributes.ReadOnly);
-					DateTime create = File.GetCreationTime (path);
-					File.SetCreationTime (new_path, create);
-					DateTime mod = File.GetLastWriteTime (path);
-					File.SetLastWriteTime (new_path, mod);
-				} catch (IOException) {
-					// we don't want an exception here to be fatal.
-				}
-
-				// attach tags we got
-				if (tag_list.Count > 0) {
-					created.AddTag (tag_list.ToArray ());
-					db.Photos.Commit (created);
-				}
-
-				return (int)created.Id;
-			// indicate failure
-			} catch {
-				throw new DBusException ("Failed to import the photo.");
-			}
+			var controller = new ImportController ();
+            var uri = new SafeUri (path);
+            var source = new FileImportSource (uri, String.Empty, String.Empty);
+			controller.ActiveSource = source;
+			controller.CopyFiles = copy;
+            controller.AttachTags (tags);
+            controller.StartImport ();
 		}
 
 		public void RemovePhoto (uint id)

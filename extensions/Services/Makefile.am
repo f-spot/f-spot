@@ -1,2 +1,2 @@
-SUBDIRS = 			\
-	DBusService
+#SUBDIRS = 			\
+#	DBusService
