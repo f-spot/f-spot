@@ -13,61 +13,88 @@ using FSpot.Utils;
 using FSpot.UI.Dialog;
 using FSpot.Extensions;
 using Hyena;
+using Hyena.CommandLine;
 
-namespace FSpot 
+namespace FSpot
 {
-	public static class Driver {
-		static void Version ()
+	public static class Driver
+	{
+		private static void ShowVersion ()
 		{
-			Console.WriteLine (
-				"F-Spot  {0}" + Environment.NewLine +
-				"\t(c)2003-2009, Novell Inc" + Environment.NewLine +
-				"\t(c)2009 Stephane Delcroix" + Environment.NewLine +
-				"Personal photo management for the GNOME Desktop" + Environment.NewLine,
-				FSpot.Defines.VERSION);
+			Console.WriteLine ("F-Spot  {0}", FSpot.Defines.VERSION);
+			Console.WriteLine ("http://f-spot.org");
+			Console.WriteLine ("\t(c)2003-2009, Novell Inc");
+			Console.WriteLine ("\t(c)2009 Stephane Delcroix");
+			Console.WriteLine("Personal photo management for the GNOME Desktop");
 		}
 
-		static void Versions ()
+		private static void ShowAssemblyVersions ()
 		{
-		    Version ();
-	            Console.WriteLine (".NET Version: " + Environment.Version.ToString());
-	            Console.WriteLine (String.Format("{0}Assembly Version Information:", Environment.NewLine));
+			ShowVersion ();
+			Console.WriteLine ();
+			Console.WriteLine ("Mono/.NET Version: " + Environment.Version.ToString ());
+			Console.WriteLine (String.Format ("{0}Assembly Version Information:", Environment.NewLine));
 
-	            foreach(Assembly asm in AppDomain.CurrentDomain.GetAssemblies()) {
-			    AssemblyName name = asm.GetName();
-	                    Console.WriteLine ("\t" + name.Name + " (" + name.Version.ToString () + ")");
+			foreach (Assembly asm in AppDomain.CurrentDomain.GetAssemblies ())
+			{
+				AssemblyName name = asm.GetName ();
+				Console.WriteLine ("\t" + name.Name + " (" + name.Version.ToString () + ")");
 			}
 		}
 
-		static void Help ()
+		private static void ShowHelp ()
 		{
-			Version ();
-			Console.WriteLine ();
-			Console.WriteLine (
-				"Usage: f-spot [options] " + Environment.NewLine +
-				"Options:" + Environment.NewLine +
-				"-b -basedir PARAM   path to the photo database folder" + Environment.NewLine +
-				"-? -help -usage     Show this help list" + Environment.NewLine +
-				"-i -import PARAM    import from the given uri" + Environment.NewLine +
-				"-p -photodir PARAM  default import folder" + Environment.NewLine +
-				"-shutdown           shutdown a running f-spot instance" + Environment.NewLine +
-				"-slideshow          display a slideshow" + Environment.NewLine +
-				"-V -version         Display version and licensing information" + Environment.NewLine +
-				"-versions           Display version and dependencies informations" + Environment.NewLine +
-				"-v -view            view file(s) or directory(ies)");
+			Hyena.CommandLine.Layout commands = new Hyena.CommandLine.Layout (
+				new LayoutGroup ("help", "Help Options",
+					new LayoutOption ("help", "Show this help"),
+					new LayoutOption ("help-options", "Show command line options"),
+					new LayoutOption ("help-all", "Show all options"),
+					new LayoutOption ("version", "Show version information"),
+					new LayoutOption ("versions", "Show detailed version information")),
+				new LayoutGroup ("options", "General options",
+					new LayoutOption ("basedir=DIR", "Path to the photo database folder"),
+					new LayoutOption ("import=FILE", "Path to the photo database folder"),
+					new LayoutOption ("photodir=DIR", "Path to the photo database folder"),
+					new LayoutOption ("view ITEM", "View file(s) or directories"),
+					new LayoutOption ("shutdown", "Shut down a running instance of F-Spot"),
+					new LayoutOption ("slideshow", "Display a slideshow"),
+					new LayoutOption ("debug", "Run in debug mode")));
+
+			if (ApplicationContext.CommandLine.Contains ("help-all")) {
+				Console.WriteLine (commands);
+				return;
+			}
+
+			List<string> errors = null;
+			foreach (KeyValuePair<string, string> argument in ApplicationContext.CommandLine.Arguments) {
+				switch (argument.Key) {
+					case "help": Console.WriteLine (commands.ToString ("help")); break;
+					case "help-options": Console.WriteLine (commands.ToString ("options")); break;
+					default:
+						if (argument.Key.StartsWith ("help")) {
+							(errors ?? (errors = new List<string> ())).Add (argument.Key);
+						}
+						break;
+				}
+			}
+
+			if (errors != null) {
+				Console.WriteLine (commands.LayoutLine (String.Format (
+					"The following help arguments are invalid: {0}",
+					Hyena.Collections.CollectionExtensions.Join (errors, "--", null, ", "))));
+			}
 		}
 
 		static int Main (string [] args)
 		{
-			List<string> uris = new List<string> ();
 			Unix.SetProcessName (Defines.PACKAGE);
-            ThreadAssist.InitializeMainThread ();
-            ThreadAssist.ProxyToMainHandler = RunIdle;
-            XdgThumbnailSpec.DefaultLoader = (uri) => {
-                using (var file = ImageFile.Create (uri))
-                    return file.Load ();
-            };
 
+			ThreadAssist.InitializeMainThread ();
+			ThreadAssist.ProxyToMainHandler = RunIdle;
+			XdgThumbnailSpec.DefaultLoader = (uri) => {
+				using (var file = ImageFile.Create (uri))
+					return file.Load ();
+			};
 			// Options and Option parsing
 			bool shutdown = false;
 			bool view = false;
@@ -78,103 +105,107 @@ namespace FSpot
 			Catalog.Init ("f-spot", Defines.LOCALE_DIR);
 			
 			FSpot.Global.PhotoUri = new SafeUri (Preferences.Get<string> (Preferences.STORAGE_PATH));
-			for (int i = 0; i < args.Length && !shutdown; i++) {
-				switch (args [i]) {
-				case "-h": case "-?": case "-help": case "--help": case "-usage":
-					Help ();
-					return 0;
 
-				case "-shutdown": case "--shutdown":
-					Log.Information ("Shutting down existing F-Spot server...");
-					shutdown = true;
-					break;
+			if (ApplicationContext.CommandLine.ContainsStart ("help")) {
+				ShowHelp ();
+				return 0;
+			}
 
-				case "-b": case "-basedir": case "--basedir":
-					if (i+1 == args.Length || args[i+1].StartsWith ("-")) {
-						Log.Error ("f-spot: -basedir option takes one argument");
-						return 1;
-					}
-					FSpot.Global.BaseDirectory = args [++i];
-					Log.InformationFormat ("BaseDirectory is now {0}", FSpot.Global.BaseDirectory);
-					break;
+			if (ApplicationContext.CommandLine.Contains ("version")) {
+				ShowVersion ();
+				return 0;
+			}
 
-				case "-p": case "-photodir": case "--photodir":
-					if (i+1 == args.Length || args[i+1].StartsWith ("-")) {
-						Log.Error ("f-spot: -photodir option takes one argument");
-						return 1;
-					}
-					FSpot.Global.PhotoUri = new SafeUri (args [++i]);
-					Log.InformationFormat ("PhotoDirectory is now {0}", FSpot.Global.PhotoUri);
-					break;
+			if (ApplicationContext.CommandLine.Contains ("versions")) {
+				ShowAssemblyVersions ();
+				return 0;
+			}
 
-				case "-i": case "-import": case "--import":
-					if (i+1 == args.Length) {
-						Log.Error ("f-spot: -import option takes one argument");
-						return 1;
-					}
-					import_uri = args [++i];
-					break;
+			if (ApplicationContext.CommandLine.Contains ("shutdown")) {
+				Log.Information ("Shutting down existing F-Spot server...");
+				shutdown = true;
+			}
 
-				case "-slideshow": case "--slideshow":
-					slideshow = true;
-					break;
+			if (ApplicationContext.CommandLine.Contains ("slideshow")) {
+				Log.Information ("Running F-Spot in slideshow mode.");
+				slideshow = true;
+			}
 
-				case "-v": case "-view": case "--view":
-					if (i+1 == args.Length || args[i+1].StartsWith ("-")) {
-						Log.Error ("f-spot: -view option takes (at least) one argument");
-						return 1;
-					}
-					view = true;
-					while (!(i+1 == args.Length) && !args[i+1].StartsWith ("-"))
-						uris.Add (args [++i]);
-	//				if (!System.IO.Directory.Exists (args[i+1]) && !System.IO.File.Exists (args[i+1])) {
-	//					Log.Error ("f-spot: -view argument must be an existing file or directory");
-	//					return 1;
-	//				}
-					break;
+			if (ApplicationContext.CommandLine.Contains ("basedir")) {
+				string dir = ApplicationContext.CommandLine ["basedir"];
 
-				case "-versions": case "--versions":
-					Versions ();
-					return 0;
-
-				case "-V": case "-version": case "--version":
-					Version ();
-					return 0;
-
-				case "--debug":
-					Log.Debugging = true;
-					// Debug GdkPixbuf critical warnings
-					GLib.LogFunc logFunc = new GLib.LogFunc (GLib.Log.PrintTraceLogFunction);
-					GLib.Log.SetLogHandler ("GdkPixbuf", GLib.LogLevelFlags.Critical, logFunc);
-
-					// Debug Gtk critical warnings
-					GLib.Log.SetLogHandler ("Gtk", GLib.LogLevelFlags.Critical, logFunc);
-
-					// Debug GLib critical warnings
-					GLib.Log.SetLogHandler ("GLib", GLib.LogLevelFlags.Critical, logFunc);
-
-					//Debug GLib-GObject critical warnings
-					GLib.Log.SetLogHandler ("GLib-GObject", GLib.LogLevelFlags.Critical, logFunc);
-
-					GLib.Log.SetLogHandler ("GLib-GIO", GLib.LogLevelFlags.Critical, logFunc);
-
-					break;
-				case "--uninstalled": case "--gdb": case "--valgrind": case "--sync":
-					break;
-				default:
-					if (args [i].StartsWith ("--profile"))
-						break;
-					if (args [i].StartsWith ("--trace"))
-						break;
-					Log.DebugFormat ("Unparsed argument >>{0}<<", args [i]);
-					break;
+				if (!string.IsNullOrEmpty (dir))
+				{
+					FSpot.Global.BaseDirectory = dir;
+					Log.InformationFormat ("BaseDirectory is now {0}", dir);
+				} else {
+					Log.Error ("f-spot: -basedir option takes one argument");
+					return 1;
 				}
+			}
+
+			if (ApplicationContext.CommandLine.Contains ("photodir")) {
+				string dir = ApplicationContext.CommandLine ["photodir"];
+
+				if (!string.IsNullOrEmpty (dir))
+				{
+					FSpot.Global.PhotoUri = new SafeUri (dir);
+					Log.InformationFormat ("PhotoDirectory is now {0}", dir);
+				} else {
+					Log.Error ("f-spot: -photodir option takes one argument");
+					return 1;
+				}
+			}
+
+			if (ApplicationContext.CommandLine.Contains ("import")) {
+				string dir = ApplicationContext.CommandLine ["import"];
+
+				if (!string.IsNullOrEmpty (dir))
+				{
+					import_uri = dir;
+				} else {
+					Log.Error ("f-spot: -import option takes one argument");
+					return 1;
+				}
+			}
+
+			List <string> uris = new List <string> ();
+			if (ApplicationContext.CommandLine.Contains ("view")) {
+
+				var items = ApplicationContext.CommandLine.Files;
+
+				if (items.Count > 0)
+				{
+					uris = new List<string> (items);
+				} else {
+					Log.Error ("f-spot: -view option takes at least one argument");
+					return 1;
+				}
+			}
+
+			if (ApplicationContext.CommandLine.Contains ("debug")) {
+				Log.Debugging = true;
+				// Debug GdkPixbuf critical warnings
+				GLib.LogFunc logFunc = new GLib.LogFunc (GLib.Log.PrintTraceLogFunction);
+				GLib.Log.SetLogHandler ("GdkPixbuf", GLib.LogLevelFlags.Critical, logFunc);
+
+				// Debug Gtk critical warnings
+				GLib.Log.SetLogHandler ("Gtk", GLib.LogLevelFlags.Critical, logFunc);
+
+				// Debug GLib critical warnings
+				GLib.Log.SetLogHandler ("GLib", GLib.LogLevelFlags.Critical, logFunc);
+
+				//Debug GLib-GObject critical warnings
+				GLib.Log.SetLogHandler ("GLib-GObject", GLib.LogLevelFlags.Critical, logFunc);
+
+				GLib.Log.SetLogHandler ("GLib-GIO", GLib.LogLevelFlags.Critical, logFunc);
 			}
 
 			// Validate command line options
 			if ( (import_uri != null && (view || shutdown || slideshow)) ||
-			     (view && (shutdown || slideshow)) ||
-			     (shutdown && slideshow) ) {
+				(view && (shutdown || slideshow)) ||
+				(shutdown && slideshow) )
+			{
 				Log.Error ("Can't mix -import, -view, -shutdown or -slideshow");
 				return 1;
 			}
@@ -232,7 +263,7 @@ namespace FSpot
 					foreach (string s in uris)
 						list.AddUnknown (s);
 					if (list.Count == 0) {
-						Help ();
+						ShowHelp ();
 						return 1;
 					}
 					App.Instance.View (list);
@@ -255,9 +286,9 @@ namespace FSpot
 			return 0;
 		}
 
-        public static void RunIdle (InvokeHandler handler)
-        {
-            GLib.Idle.Add (delegate { handler (); return false; });
-        }
+		public static void RunIdle (InvokeHandler handler)
+		{
+			GLib.Idle.Add (delegate { handler (); return false; });
+		}
 	}
 }
