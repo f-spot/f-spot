@@ -1,0 +1,11 @@
+AC_DEFUN([SHAMROCK_CHECK_GNOME_DOC_UTILS],
+[
+	PKG_CHECK_MODULES(GNOME_DOC_UTILS, gnome-doc-utils >= $1, 
+		HAVE_GNOME_DOC_UTILS=yes, HAVE_GNOME_DOC_UTILS=no)
+
+    AM_CONDITIONAL(ENABLE_GNOME_DOCS, test "x$HAVE_GNOME_DOC_UTILS" = "xyes")
+
+    if test "x$HAVE_GNOME_DOC_UTILS" = "xyes"; then
+        GNOME_DOC_INIT([$1])
+    fi
+])

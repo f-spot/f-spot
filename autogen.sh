@@ -63,15 +63,15 @@ check_autotool_version autoconf 2.53
 check_autotool_version $LIBTOOLIZE 1.4.3
 check_autotool_version intltoolize 0.35.0
 check_autotool_version pkg-config 0.14.0
-check_autotool_version gnome-doc-prepare 0.0.0
+check_autotool_version gnome-doc-prepare 0.17.3
 
 run git submodule update --init
+run gnome-doc-prepare
 run intltoolize --force --copy
 run $LIBTOOLIZE --force --copy --automake
 run aclocal -I build/m4/f-spot -I build/m4/shamrock -I build/m4/shave $ACLOCAL_FLAGS
 run autoconf
 run autoheader
-run gnome-doc-prepare
 test -f config.h.in && touch config.h.in
 run automake --gnu --add-missing --force --copy \
 	-Wno-portability -Wno-portability

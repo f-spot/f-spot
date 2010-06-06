@@ -44,6 +44,9 @@ IT_PROG_INTLTOOL([0.35.0])
 AC_PROG_LIBTOOL
 AC_PROG_INSTALL
 
+dnl User help
+GNOME_DOC_INIT
+
 dnl How to configure for distcheck
 DISTCHECK_CONFIGURE_FLAGS="--disable-docs --enable-release"
 AC_SUBST(DISTCHECK_CONFIGURE_FLAGS)
@@ -58,6 +61,7 @@ SHAMROCK_EXPAND_LIBDIR
 SHAMROCK_EXPAND_BINDIR
 SHAMROCK_EXPAND_DATADIR
 
+SHAMROCK_CHECK_GNOME_DOC_UTILS(0.17.3)
 
 dnl Mono and gmcs
 SHAMROCK_CHECK_MONO_MODULE(2.2)
@@ -124,11 +128,6 @@ AC_PATH_PROG(GAPI2CODEGEN, gapi2-codegen, no)
 if test ! -x "$GAPI2CODEGEN"; then
 	AC_MSG_ERROR([No gapi code generator found])
 fi
-
-
-dnl -- Initialize docs
-
-GNOME_DOC_INIT
 
 dnl -- Check for mono pc file
 
@@ -317,6 +316,8 @@ data/desktop-files/f-spot.desktop.in
 data/desktop-files/f-spot-view.desktop.in
 data/desktop-files/f-spot-import.desktop.in
 
+help/Makefile
+
 lib/GKeyFile/Makefile
 lib/gio-sharp/Makefile
 lib/gio-sharp/gio/Makefile
@@ -403,6 +404,7 @@ ${PACKAGE}-${VERSION}
 
   Build/Development:
     Unit Tests:        ${do_tests}
+    User Help:         ${HAVE_GNOME_DOC_UTILS} (requires gnome-doc-utils >= 0.17.3)
 
 Run 'make' to build F-Spot.
 

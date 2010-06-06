@@ -3,6 +3,7 @@ SUBDIRS = 		\
 	data 		\
 	lib 		\
 	docs		\
+    help        \
 	icons		\
 	tools		\
 	po			\
