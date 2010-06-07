@@ -874,7 +874,7 @@
   <property name="focus_on_map">True</property>
   <property name="urgency_hint">False</property>
 
-  <child internal-child="vbox">
+  <child>
     <widget class="GtkVBox" id="color_editor_prefs">
       <property name="visible">True</property>
       <property name="homogeneous">False</property>
