@@ -10,6 +10,7 @@
 
 using System;
 using System.Collections;
+using System.Text;
 using System.Text.RegularExpressions;
 using Gtk;
 using Gdk;
@@ -518,6 +519,8 @@ namespace FSpot.Widgets {
 		{
 			if (Completing)
 				return false;
+
+			key = key == null ? null : key.Normalize(NormalizationForm.FormC);
 
 			// If this is the fist comparison for this key, convert the key (which is the entire search string)
 			// into just the part that is relevant to completing this tag name.
