@@ -8,13 +8,13 @@ using FSpot.UI.Dialog;
 
 public class PhotoVersionCommands
 {
-	private class VersionNameRequest : GladeDialog {
+	private class VersionNameRequest : BuilderDialog {
 		private Photo photo;
 
-		[Glade.Widget] private Button ok_button;
-		[Glade.Widget] private Entry version_name_entry;
-		[Glade.Widget] private Label prompt_label;
-		[Glade.Widget] private Label already_in_use_label;
+		[GtkBeans.Builder.Object] private Button ok_button;
+		[GtkBeans.Builder.Object] private Entry version_name_entry;
+		[GtkBeans.Builder.Object] private Label prompt_label;
+		[GtkBeans.Builder.Object] private Label already_in_use_label;
 
 		public enum RequestType {
 			Create,
@@ -48,19 +48,19 @@ public class PhotoVersionCommands
 			Update ();
 		}
 
-		public VersionNameRequest (RequestType request_type, Photo photo, Gtk.Window parent_window) : base ("version_name_dialog")
+		public VersionNameRequest (RequestType request_type, Photo photo, Gtk.Window parent_window) : base ("version_name_dialog.ui", "version_name_dialog")
 		{
 			this.request_type = request_type;
 			this.photo = photo;
 
 			switch (request_type) {
 			case RequestType.Create:
-				this.Dialog.Title = Catalog.GetString ("Create New Version");
+				this.Title = Catalog.GetString ("Create New Version");
 				prompt_label.Text = Catalog.GetString ("Name:");
 				break;
 
 			case RequestType.Rename:
-				this.Dialog.Title = Catalog.GetString ("Rename Version");
+				this.Title = Catalog.GetString ("Rename Version");
 				prompt_label.Text = Catalog.GetString ("New name:");
 				version_name_entry.Text = photo.GetVersion (photo.DefaultVersionId).Name;
 				version_name_entry.SelectRegion (0, -1);
@@ -69,21 +69,21 @@ public class PhotoVersionCommands
 
 			version_name_entry.ActivatesDefault = true;
 
-			this.Dialog.TransientFor = parent_window;
-			this.Dialog.DefaultResponse = ResponseType.Ok;
+			this.TransientFor = parent_window;
+			this.DefaultResponse = ResponseType.Ok;
 
 			Update ();
 		}
 
 		public ResponseType Run (out string name)
 		{
-			ResponseType response = (ResponseType) this.Dialog.Run ();
+			ResponseType response = (ResponseType) this.Run ();
 
 			name = version_name_entry.Text;
 			if (request_type == RequestType.Rename && name == photo.GetVersion (photo.DefaultVersionId).Name)
 				response = ResponseType.Cancel;
 
-			this.Dialog.Destroy ();
+			this.Destroy ();
 
 			return response;
 		}

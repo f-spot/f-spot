@@ -216,6 +216,7 @@ RESOURCES = \
 	dces.rdf \
 	f-spot.glade \
 	ui/main_window.ui \
+	ui/version_name_dialog.ui \
 	ui/import.ui \
 	UI.Dialog/ui/AdjustTimeDialog.ui \
 	UI.Dialog/ui/DateRangeDialog.ui \
