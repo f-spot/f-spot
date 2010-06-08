@@ -42,7 +42,11 @@ for arg in "$@";do
         *) args+=("$arg");;
     esac;
 done;
-set -- ${args[@]}
+args=${args[@]}
+args=${args/photodir /photodir=}
+args=${args/basedir /basedir=}
+args=${args/import /import=}
+set -- $args
 
 for arg in "$@"; do
     case "x$arg" in
