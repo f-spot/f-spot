@@ -21,7 +21,7 @@ namespace FSpot
 	{
 		private static void ShowVersion ()
 		{
-			Console.WriteLine ("F-Spot  {0}", FSpot.Defines.VERSION);
+			Console.WriteLine ("F-Spot {0}", FSpot.Defines.VERSION);
 			Console.WriteLine ("http://f-spot.org");
 			Console.WriteLine ("\t(c)2003-2009, Novell Inc");
 			Console.WriteLine ("\t(c)2009 Stephane Delcroix");
@@ -44,6 +44,9 @@ namespace FSpot
 
 		private static void ShowHelp ()
 		{
+			Console.WriteLine ("Usage: f-spot [options...] [files|URIs...]");
+			Console.WriteLine ();
+
 			Hyena.CommandLine.Layout commands = new Hyena.CommandLine.Layout (
 				new LayoutGroup ("help", "Help Options",
 					new LayoutOption ("help", "Show this help"),
