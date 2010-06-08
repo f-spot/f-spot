@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: f-spot master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-06-08 01:49+0200\n"
-"PO-Revision-Date: 2010-06-08 01:49+0200\n"
+"POT-Creation-Date: 2010-06-08 11:43+0200\n"
+"PO-Revision-Date: 2010-06-08 11:42+0200\n"
 "Last-Translator: Gabor Kelemen <kelemeng at gnome dot hu>\n"
 "Language-Team: Hungarian <gnome at fsf dot hu>\n"
 "MIME-Version: 1.0\n"
@@ -2792,10 +2792,10 @@ msgstr "Örökbe a_dás"
 
 #: ../src/PhotoVersionCommands.cs:196
 #, csharp-format
-msgid "Really reparent \"{2}\" as version of \"{1}\"?"
-msgid_plural "Really reparent {0} photos as versions of \"{1}\"?"
-msgstr[0] ""
-msgstr[1] ""
+msgid "Really reparent \"{0}\" as version of \"{1}\"?"
+msgid_plural "Really reparent {2} photos as versions of \"{1}\"?"
+msgstr[0] "Valóban örökbe adja a következőt: „{0}” „{1}” verziójaként?"
+msgstr[1] "Valóban örökbe ad {2} fényképet „{1}” verziójaként?"
 
 #: ../src/PhotoVersionCommands.cs:199
 msgid ""
