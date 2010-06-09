@@ -139,22 +139,28 @@ namespace FSpot.Import
         {
             DefaultVersion = new ImportInfoVersion () {
                 BaseUri = original.GetBaseUri (),
-                        Filename = original.GetFilename ()
+                Filename = original.GetFilename ()
             };
-
-            try {
-                using (FSpot.ImageFile img = FSpot.ImageFile.Create (original)) {
-                    Time = img.Date;
-                }
-            } catch (Exception) {
-                Time = DateTime.Now;
-            }
         }
 
         public IBrowsableItemVersion DefaultVersion { get; private set; }
         public SafeUri DestinationUri { get; set; }
 
-        public System.DateTime Time { get; private set; }
+        private DateTime? time = null;
+        public System.DateTime Time {
+            get {
+                if (!time.HasValue) {
+                    try {
+                        using (FSpot.ImageFile img = FSpot.ImageFile.Create (DefaultVersion.Uri)) {
+                            time = img.Date;
+                        }
+                    } catch (Exception) {
+                        time = DateTime.Now;
+                    }
+                }
+                return time.Value;
+            }
+        }
 
         public Tag [] Tags { get { throw new NotImplementedException (); } }
         public string Description { get { throw new NotImplementedException (); } }
