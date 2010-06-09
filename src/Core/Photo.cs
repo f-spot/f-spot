@@ -509,14 +509,9 @@ namespace FSpot
 		}
 
 		// Constructor
-		public Photo (uint id, long unix_time, SafeUri base_uri, string filename)
+		public Photo (uint id, long unix_time)
 			: base (id)
 		{
-			if (base_uri == null)
-				throw new System.ArgumentNullException ("base_uri");
-			if (filename == String.Empty)
-				throw new System.ArgumentNullException ("filename");
-	
 			time = DbUtils.DateTimeFromUnixTime (unix_time);
 	
 			description = String.Empty;

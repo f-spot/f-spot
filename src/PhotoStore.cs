@@ -141,7 +141,7 @@ public class PhotoStore : DbStore<Photo> {
 				)
 			);
 
-			photo = new Photo (id, unix_time, new_base_uri, filename);
+			photo = new Photo (id, unix_time);
 			photo.AddVersionUnsafely (Photo.OriginalVersionId, new_base_uri, filename, import_md5, Catalog.GetString ("Original"), true);
 			photo.Loaded = true;
 
@@ -270,22 +270,16 @@ public class PhotoStore : DbStore<Photo> {
 		Photo photo = LookupInCache (id);
 		if (photo != null)
 			return photo;
-		
+
 		SqliteDataReader reader = Database.Query(
-			new DbCommand("SELECT time, base_uri, filename, description, roll_id, default_version_id, rating " +
-				      "FROM photos " + 
+			new DbCommand("SELECT time, description, roll_id, default_version_id, rating " +
+				      "FROM photos " +
 				      "WHERE id = :id", "id", id
 				     )
 		);
 
 		if (reader.Read ()) {
-			var base_uri = new SafeUri (reader ["base_uri"].ToString (), true);
-			var filename = reader ["filename"].ToString ();
-			photo = new Photo (id,
-				Convert.ToInt64 (reader ["time"]),
-			    base_uri, filename
-			);
-
+			photo = new Photo (id, Convert.ToInt64 (reader ["time"]));
 			photo.Description = reader["description"].ToString ();
 			photo.RollId = Convert.ToUInt32 (reader["roll_id"]);
 			photo.DefaultVersionId = Convert.ToUInt32 (reader["default_version_id"]);
@@ -321,9 +315,7 @@ public class PhotoStore : DbStore<Photo> {
 
 		if (reader.Read ()) {
 			photo = new Photo (Convert.ToUInt32 (reader ["id"]),
-					   Convert.ToInt64 (reader ["time"]),
-					   base_uri,
-					   filename);
+					   Convert.ToInt64 (reader ["time"]));
 
 			photo.Description = reader["description"].ToString ();
 			photo.RollId = Convert.ToUInt32 (reader["roll_id"]);
@@ -762,11 +754,7 @@ public class PhotoStore : DbStore<Photo> {
 			Photo photo = LookupInCache (id);
 
 			if (photo == null) {
-				var base_uri = new SafeUri (reader ["base_uri"].ToString (), true);
-				var filename = reader ["filename"].ToString ();
-				photo =
-					new Photo (id, Convert.ToInt64 (reader ["time"]),
-					           base_uri, filename);
+				photo = new Photo (id, Convert.ToInt64 (reader ["time"]));
 				photo.Description = reader["description"].ToString ();
 				photo.RollId = Convert.ToUInt32 (reader["roll_id"]);
 				photo.DefaultVersionId = Convert.ToUInt32 (reader["default_version_id"]);
