@@ -94,6 +94,8 @@ namespace FSpot {
 			public SafeUri BaseUri { get { return Uri.GetBaseUri (); } }
 			public string Filename { get { return Uri.GetFilename (); } }
 			public SafeUri Uri { get; set; }
+
+			public string ImportMD5 { get { return String.Empty; } }
 		}
 	}
 }

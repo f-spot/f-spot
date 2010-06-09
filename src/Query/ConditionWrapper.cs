@@ -1,6 +1,6 @@
 /*
- * TagConditionWrapper.cs
- * 
+ * ConditionWrapper.cs
+ *
  * Author(s)
  *	Stephane Delcroix  <stephane@delcroix.org>
  *
@@ -9,11 +9,11 @@
 
 namespace FSpot.Query
 {
-	public class TagConditionWrapper : IQueryCondition
+	public class ConditionWrapper : IQueryCondition
 	{
 		string condition;
 
-		public TagConditionWrapper (string condition)
+		public ConditionWrapper (string condition)
 		{
 			this.condition = condition;
 		}

@@ -18,5 +18,7 @@ namespace FSpot.Import
 		public string Filename { get; set; }
 
 		public SafeUri Uri { get { return BaseUri.Append (Filename); } }
+
+        public string ImportMD5 { get { return String.Empty; } }
 	}
 }

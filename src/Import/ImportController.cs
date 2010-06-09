@@ -294,7 +294,7 @@ namespace FSpot.Import
             var destination = FindImportDestination (item.DefaultVersion.Uri);
 
             // Do duplicate detection
-            if (DuplicateDetect && store.CheckForDuplicate (item.DefaultVersion.Uri, destination)) {
+            if (DuplicateDetect && store.HasDuplicate (item.DefaultVersion.Uri, destination)) {
                 return;
             }
 

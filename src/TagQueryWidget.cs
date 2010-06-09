@@ -680,7 +680,7 @@ namespace FSpot
 				query.TagTerm = null;
 			} else {
 				help.Hide ();
-				query.TagTerm = new TagConditionWrapper (rootTerm.SqlCondition ());
+				query.TagTerm = new ConditionWrapper (rootTerm.SqlCondition ());
 			}
 
 			EventHandler handler = Changed;

@@ -185,7 +185,7 @@ namespace FSpot {
 					untagged = value;
 					
 					if (untagged) {
-						UnSetCondition<TagConditionWrapper> ();
+						UnSetCondition<ConditionWrapper> ();
 						UnSetCondition<HiddenTag> ();
 					}
 					
@@ -218,10 +218,10 @@ namespace FSpot {
 			}
 		}
 		
-		public TagConditionWrapper TagTerm {
-			get { return GetCondition<TagConditionWrapper> (); }
+		public ConditionWrapper TagTerm {
+			get { return GetCondition<ConditionWrapper> (); }
 			set {
-				if (value == null && UnSetCondition<TagConditionWrapper>()
+				if (value == null && UnSetCondition<ConditionWrapper>()
 				    || value != null && SetCondition (value)) {
 					
 					if (value != null) {
@@ -264,8 +264,8 @@ namespace FSpot {
 				i = 1;
 			} else {
 				condition_array = new IQueryCondition[conditions.Count + 2];
-		//		condition_array[0] = new TagConditionWrapper (extra_condition);
-				condition_array[1] = new TagConditionWrapper (terms != null ? terms.SqlCondition () : null);
+		//		condition_array[0] = new ConditionWrapper (extra_condition);
+				condition_array[1] = new ConditionWrapper (terms != null ? terms.SqlCondition () : null);
 				i = 2;
 			}
 			

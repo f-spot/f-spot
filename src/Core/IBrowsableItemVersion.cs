@@ -10,5 +10,7 @@ namespace FSpot
 
         // For convenience
         SafeUri Uri { get; }
+
+		string ImportMD5 { get; }
     }
 }

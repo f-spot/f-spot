@@ -21,7 +21,7 @@ namespace FSpot
 		public SafeUri BaseUri { get; set; }
         public string Filename { get; set; }
         public SafeUri Uri { get { return BaseUri.Append (Filename); } }
-		public string MD5Sum { get; internal set; }
+		public string ImportMD5 { get; internal set; }
 		public uint VersionId { get; private set; }
 		public bool IsProtected { get; private set; }
 	
@@ -31,7 +31,7 @@ namespace FSpot
 			VersionId = version_id;
 			BaseUri = base_uri;
             Filename = filename;
-			MD5Sum = md5_sum;
+			ImportMD5 = md5_sum;
 			Name = name;
 			IsProtected = is_protected;
 		}

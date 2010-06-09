@@ -3,6 +3,7 @@ TARGET = library
 LINK = $(REF_FSPOT_QUERY)
 
 SOURCES = \
+	ConditionWrapper.cs \
 	DateRange.cs \
 	FolderSet.cs \
 	IOrderCondition.cs \
@@ -11,7 +12,6 @@ SOURCES = \
 	OrderByTime.cs \
 	RatingRange.cs \
 	RollSet.cs \
-	TagConditionWrapper.cs \
 	UntaggedCondition.cs \
 	Tests/LogicalTermTests.cs
 
