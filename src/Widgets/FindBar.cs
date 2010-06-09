@@ -497,7 +497,7 @@ namespace FSpot.Widgets {
 		private void HandleMatchSelected (object sender, MatchSelectedArgs args)
 		{
 			// Delete what the user had entered in case their casing wasn't the same
-			entry.DeleteText (entry.Position - transformed_key.Length, entry.Position);
+			entry.DeleteText (entry.Position - completion_logic.TransformedKey.Length, entry.Position);
 
 			string name = args.Model.GetValue (args.Iter, TextColumn) as string;
 			//Log.DebugFormat ("match selected..{0}", name);
@@ -513,28 +513,41 @@ namespace FSpot.Widgets {
 			//Log.Debug ("done w/ match selected");
 		}
 
-		string last_key = String.Empty;
-		string transformed_key = String.Empty;
+		private CompletionLogic completion_logic = new CompletionLogic ();
 		public bool LogicEntryCompletionMatchFunc (EntryCompletion completion, string key, TreeIter iter)
 		{
 			if (Completing)
 				return false;
 
 			key = key == null ? null : key.Normalize(NormalizationForm.FormC);
+			string name = completion.Model.GetValue (iter, completion.TextColumn) as string;
+			int pos = entry.Position - 1;
+			return completion_logic.MatchFunc (name, key, pos);
+		}
+	}
 
+	public class CompletionLogic
+	{
+		string last_key = String.Empty;
+		string transformed_key = String.Empty;
+		public String TransformedKey {
+			get { return transformed_key; }
+		}
+
+		public bool MatchFunc (string name, string key, int pos)
+		{
 			// If this is the fist comparison for this key, convert the key (which is the entire search string)
 			// into just the part that is relevant to completing this tag name.
 			if (key != last_key) {
 				last_key = key;
 
-				int pos = entry.Position - 1;
 				if (key == null || key.Length == 0 || pos < 0 || pos > key.Length - 1)
 					transformed_key = String.Empty;
 				else if (key [pos] == '(' || key [pos] == ')' || key [pos] == ',')
 					transformed_key = String.Empty;
 				else {
 					int start = 0;
-					for (int i = entry.Position - 1; i >= 0; i--) {
+					for (int i = pos; i >= 0; i--) {
 						if (key [i] == ' ' || key [i] == ')' || key [i] == '(') {
 							//Log.DebugFormat ("have start break char at {0}", i);
 							start = i + 1;
@@ -543,7 +556,7 @@ namespace FSpot.Widgets {
 					}
 
 					int end = key.Length - 1;
-					for (int j = entry.Position - 1; j < key.Length; j++) {
+					for (int j = pos; j < key.Length; j++) {
 						if (key [j] == ' ' || key [j] == ')' || key [j] == '(') {
 							end = j - 1;
 							break;
@@ -563,8 +576,6 @@ namespace FSpot.Widgets {
 
 			if (transformed_key == String.Empty)
 				return false;
-
-			string name = completion.Model.GetValue (iter, completion.TextColumn) as string;
 
 			// Ignore null or names that are too short
 			if (name == null || name.Length <= transformed_key.Length)
