@@ -191,9 +191,6 @@ public class JpegHeader : SemWeb.StatementSource {
 			byte [] raw = new byte [2];
 			ushort length;
 		       
-			if (stream.Length - stream.Position < 2)
-				return null;
-
 			// FIXME there is a potential loop here.
 			
 			int read = Read (stream, raw, 0, 2);
