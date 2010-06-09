@@ -219,6 +219,7 @@ RESOURCES = \
 	ui/main_window.ui \
 	ui/version_name_dialog.ui \
 	ui/import.ui \
+	ui/mail_dialog.ui \
 	UI.Dialog/ui/AdjustTimeDialog.ui \
 	UI.Dialog/ui/DateRangeDialog.ui \
 	UI.Dialog/ui/EditTagDialog.ui \

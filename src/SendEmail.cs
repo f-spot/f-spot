@@ -4,6 +4,7 @@
  * Author(s)
  * 	Bengt Thuree  <bengt@thuree.com>
  * 	Stephane Delcroix  <stephane@delcroix.org>
+ * 	Paul Lange <palango@gmx.de>
  *
  * This is free software. See COPYING for details.
  */
@@ -19,16 +20,18 @@ using FSpot.UI.Dialog;
 using Hyena;
 using Mono.Unix;
 
-namespace FSpot {
-	public class SendEmail : GladeDialog {
+namespace FSpot
+{
+	public class SendEmail : BuilderDialog
+	{
 		Window parent_window;
 
-		[Glade.Widget] private ScrolledWindow   tray_scrolled;
-		[Glade.Widget] private Button 		ok_button;
-		[Glade.Widget] private Label 		NumberOfPictures, TotalOriginalSize, ApproxNewSize;	
-		[Glade.Widget] private RadioButton 	tiny_size, small_size, medium_size, 
-							large_size, x_large_size, original_size;
-		[Glade.Widget] private CheckButton 	rotate_check;
+		[GtkBeans.Builder.Object] private ScrolledWindow   tray_scrolled;
+		[GtkBeans.Builder.Object] private Button 		ok_button;
+		[GtkBeans.Builder.Object] private Label 		NumberOfPictures, TotalOriginalSize, ApproxNewSize;
+		[GtkBeans.Builder.Object] private RadioButton 	tiny_size, small_size, medium_size,
+														large_size, x_large_size, original_size;
+		[GtkBeans.Builder.Object] private CheckButton 	rotate_check;
 
 		long Orig_Photo_Size 	= 0;
 		double scale_percentage = 0.3;
@@ -47,7 +50,7 @@ namespace FSpot {
 
 		IBrowsableCollection selection;
 
-		public SendEmail (IBrowsableCollection selection, Window parent_window) : base ("mail_dialog")
+		public SendEmail (IBrowsableCollection selection, Window parent_window) : base ("mail_dialog.ui", "mail_dialog")
 		{
 			this.selection = selection;
 			this.parent_window = parent_window;
@@ -64,7 +67,7 @@ namespace FSpot {
 				medium_size.Sensitive = false;
 				large_size.Sensitive = false;
 				x_large_size.Sensitive = false;
-			} else  
+			} else
 				switch (Preferences.Get<int> (Preferences.EXPORT_EMAIL_SIZE)) {
 					case 0 :  original_size.Active = true; break;
 					case 1 :  tiny_size.Active = true; break;
@@ -80,7 +83,7 @@ namespace FSpot {
 			
 			tray_scrolled.Add (new TrayView (selection));
 
-			Dialog.Modal = false;
+			Modal = false;
 
 			// Calculate total original filesize 
 			foreach (var photo in selection.Items) {
@@ -117,13 +120,13 @@ namespace FSpot {
 					// What is the relation between the estimated medium scale factor, and reality?
 					double scale_scale = scale_percentage / avg_scale_ref[3];
 					
-					//System.Console.WriteLine ("scale_percentage {0}, ref {1}, relative {2}", 
+					//System.Console.WriteLine ("scale_percentage {0}, ref {1}, relative {2}",
 					//	scale_percentage, avg_scale_ref[3], scale_scale  );
 
 					// Re-Calculate the proper relation per size
 					for (int k = 0; k < avg_scale_ref.Length; k++) {
 						avg_scale[k] = avg_scale_ref[k] * scale_scale;
-					//	System.Console.WriteLine ("avg_scale[{0}]={1} (was {2})", 
+					//	System.Console.WriteLine ("avg_scale[{0}]={1} (was {2})",
 					//		k, avg_scale[k], avg_scale_ref[k]  );
 					}
 				}
@@ -135,31 +138,31 @@ namespace FSpot {
 			
 			UpdateEstimatedSize();
 
-			Dialog.ShowAll ();
+			ShowAll ();
 
 			//LoadHistory ();
 
-			Dialog.Response += HandleResponse;
+			Response += HandleResponse;
 		}
 
 		private int GetScaleSize()
 		{
 			// not only convert dialog size to pixel size, but also set preferences se we use same size next time
 			int size_number = 0; // default to original size
-			if (tiny_size.Active) 
+			if (tiny_size.Active)
 				size_number = 1;
-			if (small_size.Active) 
+			if (small_size.Active)
 				size_number = 2;
-			if (medium_size.Active) 
+			if (medium_size.Active)
 				size_number = 3;
-			if (large_size.Active) 
+			if (large_size.Active)
 				size_number = 4;
-			if (x_large_size.Active) 
+			if (x_large_size.Active)
 				size_number = 5;
 			
-			if (!force_original) 
-				Preferences.Set (Preferences.EXPORT_EMAIL_SIZE, size_number);			
-			return sizes [ size_number ];		
+			if (!force_original)
+				Preferences.Set (Preferences.EXPORT_EMAIL_SIZE, size_number);
+			return sizes [ size_number ];
 		}
 		
 		private int GetScaleIndex ()
@@ -204,7 +207,7 @@ namespace FSpot {
 			bool rotate = true;
 
 			// Lets remove the mail "create mail" dialog
-			Dialog.Destroy();			
+			Destroy();
 
 			if (args.ResponseId != Gtk.ResponseType.Ok) {
 				return;
@@ -212,9 +215,9 @@ namespace FSpot {
 			ProgressDialog progress_dialog = null;
 		
 			progress_dialog = new ProgressDialog (Catalog.GetString ("Preparing email"),
-							      ProgressDialog.CancelButtonType.Stop,
-							      selection.Count,
-							      parent_window);
+												ProgressDialog.CancelButtonType.Stop,
+												selection.Count,
+												parent_window);
 			
 			size = GetScaleSize(); // Which size should we scale to. 0 --> Original
 			
@@ -230,7 +233,7 @@ namespace FSpot {
 			case "kmail %s":
 				attach_arg.Append(" --attach ");
 				break;
-			default:  //evolution falls into default, since it supports mailto uri correctly
+			default://evolution falls into default, since it supports mailto uri correctly
 				attach_arg.Append("&attach=");
 				break;
 			}
@@ -266,8 +269,8 @@ namespace FSpot {
 							(Catalog.GetString ("Exporting picture \"{0}\""), photo.Name));
 							
 					if (UserCancelled)
-					 	break;
-					 	
+						break;
+
 					try {
 						// Prepare a tmp_mail file name
 						FilterRequest request = new FilterRequest (photo.DefaultVersion.Uri);
@@ -319,10 +322,10 @@ namespace FSpot {
 					System.Diagnostics.Process.Start("kmail", "  --composer --subject \"" + mail_subject + "\"" + mail_attach);
 					break;
 				case "evolution %s": //evo doesn't urldecode the subject
-					GtkBeans.Global.ShowUri (Dialog.Screen, "mailto:?subject=" + mail_subject + mail_attach);
+					GtkBeans.Global.ShowUri (Screen, "mailto:?subject=" + mail_subject + mail_attach);
 					break;
 				default: 
-					GtkBeans.Global.ShowUri (Dialog.Screen, "mailto:?subject=" + System.Web.HttpUtility.UrlEncode(mail_subject) + mail_attach);
+					GtkBeans.Global.ShowUri (Screen, "mailto:?subject=" + System.Web.HttpUtility.UrlEncode(mail_subject) + mail_attach);
 					break;
 				}
 			}
