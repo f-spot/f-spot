@@ -299,7 +299,7 @@ namespace FSpot.Import
             }
 
             // Copy into photo folder.
-			if (item.DefaultVersion.Uri != destination) {
+			if (!item.DefaultVersion.Uri.Equals (destination)) {
 				var file = GLib.FileFactory.NewForUri (item.DefaultVersion.Uri);
 				var new_file = GLib.FileFactory.NewForUri (destination);
 				file.Copy (new_file, GLib.FileCopyFlags.AllMetadata, null, null);
