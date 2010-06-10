@@ -165,6 +165,10 @@ public class TagCommands {
 				else
 					default_category = selection [0].Category;
 			}
+			else
+			{
+				default_category = tag_store.RootCategory;
+			}
 
 			this.DefaultResponse = ResponseType.Ok;
 
