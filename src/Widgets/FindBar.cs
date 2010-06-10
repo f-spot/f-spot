@@ -496,18 +496,16 @@ namespace FSpot.Widgets {
 		[GLib.ConnectBefore]
 		private void HandleMatchSelected (object sender, MatchSelectedArgs args)
 		{
-			// Delete what the user had entered in case their casing wasn't the same
-			entry.DeleteText (entry.Position - completion_logic.TransformedKey.Length, entry.Position);
-
 			string name = args.Model.GetValue (args.Iter, TextColumn) as string;
 			//Log.DebugFormat ("match selected..{0}", name);
+
 			int pos = entry.Position;
+			string updated_text = completion_logic.ReplaceKey (entry.Text, name, ref pos);
 
 			completing = true;
-			entry.InsertText (name, ref pos);
+			entry.Text = updated_text;
+			entry.Position = pos;
 			completing = false;
-
-			entry.Position += name.Length;
 
 			args.RetVal = true;
 			//Log.Debug ("done w/ match selected");
@@ -530,9 +528,7 @@ namespace FSpot.Widgets {
 	{
 		string last_key = String.Empty;
 		string transformed_key = String.Empty;
-		public String TransformedKey {
-			get { return transformed_key; }
-		}
+		int start = 0;
 
 		public bool MatchFunc (string name, string key, int pos)
 		{
@@ -546,7 +542,7 @@ namespace FSpot.Widgets {
 				else if (key [pos] == '(' || key [pos] == ')' || key [pos] == ',')
 					transformed_key = String.Empty;
 				else {
-					int start = 0;
+					start = 0;
 					for (int i = pos; i >= 0; i--) {
 						if (key [i] == ' ' || key [i] == ')' || key [i] == '(') {
 							//Log.DebugFormat ("have start break char at {0}", i);
@@ -583,6 +579,19 @@ namespace FSpot.Widgets {
 
 			//Log.DebugFormat ("entered = {0} compared to {1}", transformed_key, name);
 			return (String.Compare (transformed_key, name.Substring(0, transformed_key.Length), true) == 0);
+		}
+
+		public string ReplaceKey (string query, string name, ref int pos)
+		{
+			// do some sanity checks first
+			if (start > query.Length) {
+				Log.Error ("ReplaceKey: start > query.length");
+				return query;
+			}
+			// move caret after inserted name, even if it was not
+			// at the end of the key
+			pos = start + name.Length;
+			return query.Substring (0, start) + name + query.Substring (start + transformed_key.Length);
 		}
 	}
 }
