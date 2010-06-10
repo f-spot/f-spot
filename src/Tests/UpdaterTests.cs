@@ -14,6 +14,7 @@ namespace FSpot.Tests
         static bool initialized = false;
         static void Initialize () {
             GLib.GType.Init ();
+            Updater.silent = true;
             initialized = true;
         }
 
@@ -21,6 +22,12 @@ namespace FSpot.Tests
         public void Test_0_6_1_5 ()
         {
             TestUpdate ("0.6.1.5", "17.0");
+        }
+
+        [Test]
+        public void Test_0_6_2 ()
+        {
+            TestUpdate ("0.6.2", "17.1");
         }
 
         private void TestUpdate (string version, string revision)

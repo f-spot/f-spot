@@ -15,6 +15,8 @@ namespace FSpot.Database {
 		private static Version db_version;
 		private static QueuedSqliteDatabase db;
 
+		public static bool silent = false;
+
 
 		public static Version LatestVersion {
 			get {
@@ -614,11 +616,14 @@ namespace FSpot.Database {
 			if (db_version == LatestVersion)
 				return;
 			else if (db_version > LatestVersion) {
-				Log.Information ("The existing database version is more recent than this version of F-Spot expects.");
+				if (!silent)
+					Log.Information ("The existing database version is more recent than this version of F-Spot expects.");
 				return;
 			}
 
-			uint timer = Log.InformationTimerStart ("Updating F-Spot Database");
+			uint timer = 0;
+			if (!silent)
+				timer = Log.InformationTimerStart ("Updating F-Spot Database");
 
 			// Only create and show the dialog if one or more of the updates to be done is
 			// marked as being slow
@@ -629,7 +634,7 @@ namespace FSpot.Database {
 					break;
 			}
 
-			if (slow) {
+			if (slow && !silent) {
 				dialog = new ProgressDialog (Catalog.GetString ("Updating F-Spot Database"), ProgressDialog.CancelButtonType.None, 0, null);
 				dialog.Message.Text = Catalog.GetString ("Please wait while your F-Spot gallery's database is updated. This may take some time.");
 				dialog.Bar.Fraction = 0.0;
@@ -655,8 +660,10 @@ namespace FSpot.Database {
 
 				db.CommitTransaction ();
 			} catch (Exception e) {
-				Log.DebugException (e);
-				Log.Warning ("Rolling back database changes because of Exception");
+				if (!silent) {
+					Log.DebugException (e);
+					Log.Warning ("Rolling back database changes because of Exception");
+				}
 				// There was an error, roll back the database
 				db.RollbackTransaction ();
 
@@ -667,7 +674,7 @@ namespace FSpot.Database {
 			if (dialog != null)
 				dialog.Destroy ();
 			
-			if (db_version == LatestVersion)
+			if (db_version == LatestVersion && !silent)
 				Log.InformationTimerPrint (timer, "Database updates completed successfully (in {0}).");
 		}
 		
@@ -781,9 +788,10 @@ namespace FSpot.Database {
 			{
 				code ();
 				
-				Log.DebugFormat ("Updated database from version {0} to {1}",
-						db_version.ToString (),
-						Version.ToString ());
+				if (!silent)
+					Log.DebugFormat ("Updated database from version {0} to {1}",
+							db_version.ToString (),
+							Version.ToString ());
 
 				db_version = Version;
 				db.ExecuteNonQuery(new DbCommand("UPDATE meta SET data = :data WHERE name = :name", "name", meta_db_version_string, "data", db_version.ToString ()));
