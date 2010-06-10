@@ -60,12 +60,12 @@ public class TagCommands {
 
 		private string Indentation (Category category)
 		{
-			int indentations=0;
+			int indentations = 0;
 			for (Category parent = category.Category;
 			     parent != null && parent.Category != null;
 			     parent = parent.Category)
 				indentations++;
-			return new string(' ', indentations*2);
+			return new string (' ', indentations*2);
 		}
 
 		private void PopulateCategoryOptionMenu ()
@@ -74,27 +74,27 @@ public class TagCommands {
 			categories.Add (tag_store.RootCategory);
 			PopulateCategories (categories, tag_store.RootCategory);
 
-			ListStore category_store = new ListStore(typeof(Pixbuf), typeof(string));
+			ListStore category_store = new ListStore (typeof(Pixbuf), typeof(string));
 
 			foreach (Category category in categories)
 			{
-				category_store.AppendValues(category.SizedIcon, Indentation(category) + category.Name);
+				category_store.AppendValues (category.SizedIcon, Indentation (category) + category.Name);
 			}
 
 			category_option_menu.Sensitive = true;
 
 			category_option_menu.Model = category_store;
-			var icon_renderer = new CellRendererPixbuf();
-			icon_renderer.Width=(int)Tag.TagIconSize;
-			category_option_menu.PackStart(icon_renderer, true);
+			var icon_renderer = new CellRendererPixbuf ();
+			icon_renderer.Width = (int)Tag.TagIconSize;
+			category_option_menu.PackStart (icon_renderer, true);
 
-			var text_renderer = new CellRendererText();
+			var text_renderer = new CellRendererText ();
 			text_renderer.Alignment = Pango.Alignment.Left;
 			text_renderer.Width = 150;
-			category_option_menu.PackStart(text_renderer, true);
+			category_option_menu.PackStart (text_renderer, true);
 
-			category_option_menu.AddAttribute(icon_renderer, "pixbuf", 0);
-			category_option_menu.AddAttribute(text_renderer, "text", 1);
+			category_option_menu.AddAttribute (icon_renderer, "pixbuf", 0);
+			category_option_menu.AddAttribute (text_renderer, "text", 1);
 			category_option_menu.ShowAll ();
 		}
 
@@ -201,7 +201,7 @@ public class TagCommands {
 			return new_tag;
 		}
 
-		public Create (TagStore tag_store, Gtk.Window parent_window) : base("create_tag_dialog.ui", "create_tag_dialog")
+		public Create (TagStore tag_store, Gtk.Window parent_window) : base ("create_tag_dialog.ui", "create_tag_dialog")
 		{
 			this.tag_store = tag_store;
 			this.parent_window = parent_window;
