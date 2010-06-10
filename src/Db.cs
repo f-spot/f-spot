@@ -223,7 +223,7 @@ public class Db : IDisposable {
  		meta_store = new MetaStore (Database, new_db);
 
 		// Update the database schema if necessary
-		FSpot.Database.Updater.Run (this);
+		FSpot.Database.Updater.Run (Database);
 
 		Database.BeginTransaction ();
 

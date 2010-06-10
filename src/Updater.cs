@@ -12,8 +12,8 @@ namespace FSpot.Database {
 	public static class Updater {
 		private static ProgressDialog dialog;
 		private static Hashtable updates = new Hashtable ();
-		private static MetaItem db_version;
-		private static Db db;
+		private static Version db_version;
+		private static QueuedSqliteDatabase db;
 
 
 		public static Version LatestVersion {
@@ -321,7 +321,7 @@ namespace FSpot.Database {
 							)
 				 );
 
-				 JobStore.CreateTable (db.Database);
+				 JobStore.CreateTable (db);
 
 				 // This is kind of hacky but should be a lot faster on
 				 // large photo databases
@@ -591,19 +591,29 @@ namespace FSpot.Database {
 			
 		}
 
-		public static void Run (Db database)
+		private const string meta_db_version_string = "F-Spot Database Version";
+
+		private static Version GetDatabaseVersion ()
+		{
+			if (!TableExists ("meta"))
+				throw new Exception ("No meta table found!");
+
+			var query = String.Format ("SELECT data FROM meta WHERE name = '{0}'", meta_db_version_string);
+			var version_id = SelectSingleString (query);
+			return new Version (version_id);
+		}
+
+		public static void Run (QueuedSqliteDatabase database)
 		{
 			db = database;
-			db_version = db.Meta.DatabaseVersion;
+			db_version = GetDatabaseVersion ();
 
 			if (updates.Count == 0)
 				return;
 
-			Version current_version = new Version (db_version.Value);
-
-			if (current_version == LatestVersion)
+			if (db_version == LatestVersion)
 				return;
-			else if (current_version > LatestVersion) {
+			else if (db_version > LatestVersion) {
 				Log.Information ("The existing database version is more recent than this version of F-Spot expects.");
 				return;
 			}
@@ -614,7 +624,7 @@ namespace FSpot.Database {
 			// marked as being slow
 			bool slow = false;
 			foreach (Version version in updates.Keys) {
-				if (version > current_version && (updates[version] as Update).IsSlow)
+				if (version > db_version && (updates[version] as Update).IsSlow)
 					slow = true;
 					break;
 			}
@@ -636,7 +646,7 @@ namespace FSpot.Database {
 				ArrayList keys = new ArrayList (updates.Keys);
 				keys.Sort ();
 				foreach (Version version in keys) {
-					if (version <= current_version)
+					if (version <= db_version)
 						continue;
 
 					Pulse ();
@@ -657,7 +667,7 @@ namespace FSpot.Database {
 			if (dialog != null)
 				dialog.Destroy ();
 			
-			if (new Version(db_version.Value) == LatestVersion)
+			if (db_version == LatestVersion)
 				Log.InformationTimerPrint (timer, "Database updates completed successfully (in {0}).");
 		}
 		
@@ -681,37 +691,37 @@ namespace FSpot.Database {
 
 		private static int Execute (string statement)
 		{
-			return db.Database.Execute (statement);
+			return db.Execute (statement);
 		}
 
 		private static int Execute (DbCommand command)
 		{
-			return db.Database.Execute (command);
+			return db.Execute (command);
 		}
 
 		private static void ExecuteNonQuery (string statement)
 		{
-			db.Database.ExecuteNonQuery(statement);
+			db.ExecuteNonQuery(statement);
 		}
 
 		private static void ExecuteNonQuery (DbCommand command)
 		{
-			db.Database.ExecuteNonQuery(command);
+			db.ExecuteNonQuery(command);
 		}
 		
 		private static int ExecuteScalar (string statement)
 		{
-			return db.Database.Execute(statement);
+			return db.Execute(statement);
 		}
 
 		private static SqliteDataReader ExecuteReader (string statement)
 		{
-			return db.Database.Query (statement);
+			return db.Query (statement);
 		}
 		
 		private static bool TableExists (string table)
 		{
-			return db.Database.TableExists (table);
+			return db.TableExists (table);
 		}
 
 		private static string SelectSingleString (string statement)
@@ -719,7 +729,7 @@ namespace FSpot.Database {
 			string result = null;
 
 			try {
-				result = (string)db.Database.QuerySingle(statement);
+				result = (string)db.QuerySingle(statement);
 			} catch (Exception) {}
 
 			return result;
@@ -767,17 +777,16 @@ namespace FSpot.Database {
 				this.code = code;
 			}
 
-			public void Execute (Db db, MetaItem db_version)
+			public void Execute (QueuedSqliteDatabase db, Version db_version)
 			{
 				code ();
 				
 				Log.DebugFormat ("Updated database from version {0} to {1}",
-						db_version.Value,
+						db_version.ToString (),
 						Version.ToString ());
 
-
-				db_version.Value = Version.ToString ();
-				db.Meta.Commit (db_version);
+				db_version = Version;
+				db.ExecuteNonQuery(new DbCommand("UPDATE meta SET data = :data WHERE name = :name", "name", meta_db_version_string, "data", db_version.ToString ()));
 			}
 		}
 
