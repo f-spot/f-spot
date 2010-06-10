@@ -292,9 +292,10 @@ namespace FSpot.Import
         void ImportPhoto (IBrowsableItem item, Roll roll)
         {
             var destination = FindImportDestination (item.DefaultVersion.Uri);
+            string hash = String.Empty;
 
             // Do duplicate detection
-            if (DuplicateDetect && store.HasDuplicate (item.DefaultVersion.Uri, destination)) {
+            if (DuplicateDetect && store.HasDuplicate (item.DefaultVersion.Uri, destination, out hash)) {
                 return;
             }
 
@@ -309,7 +310,8 @@ namespace FSpot.Import
             // Import photo
             var photo = store.Create (destination,
                                       item.DefaultVersion.Uri,
-                                      roll.Id);
+                                      roll.Id,
+                                      hash);
 
             bool needs_commit = false;
 

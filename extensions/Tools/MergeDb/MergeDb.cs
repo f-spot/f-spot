@@ -236,13 +236,15 @@ namespace MergeDbExtension
 			else
 				destination = photo_path;
 
+            var hash = Photo.GenerateMD5 (new SafeUri (photo_path));
+
 			// Don't copy if we are already home
 			if (photo_path == destination)
-				newp = to_store.Create (new SafeUri (destination), roll_map [photo.RollId]);
+				newp = to_store.Create (new SafeUri (destination), roll_map [photo.RollId], hash);
 			else {
 				System.IO.File.Copy (photo_path, destination);
 
-				newp = to_store.Create (new SafeUri (destination), new SafeUri (photo_path), roll_map [photo.RollId]);
+				newp = to_store.Create (new SafeUri (destination), new SafeUri (photo_path), roll_map [photo.RollId], hash);
 				try {
 					File.SetAttributes (destination, File.GetAttributes (destination) & ~FileAttributes.ReadOnly);
 					DateTime create = File.GetCreationTime (photo_path);

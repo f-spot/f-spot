@@ -99,8 +99,8 @@ public class PhotoStore : DbStore<Photo> {
 		Database.ExecuteNonQuery ("CREATE INDEX idx_photos_roll_id ON photos(roll_id)");
 	}
 
-	public bool HasDuplicate (SafeUri uri, SafeUri destination) {
-		var hash = Photo.GenerateMD5 (uri);
+	public bool HasDuplicate (SafeUri uri, SafeUri destination, out string hash) {
+		hash = Photo.GenerateMD5 (uri);
 		var condition = new ConditionWrapper (String.Format ("import_md5 = \"{0}\"", hash));
 		var dupes_by_hash = Count ("photo_versions", condition);
 		if (dupes_by_hash > 0)
@@ -110,12 +110,12 @@ public class PhotoStore : DbStore<Photo> {
 		return false;
 	}
 
-	public Photo Create (SafeUri uri, uint roll_id)
+	public Photo Create (SafeUri uri, uint roll_id, string import_md5)
 	{
-		return Create (uri, uri, roll_id);
+		return Create (uri, uri, roll_id, import_md5);
 	}
 
-	public Photo Create (SafeUri new_uri, SafeUri orig_uri, uint roll_id)
+	public Photo Create (SafeUri new_uri, SafeUri orig_uri, uint roll_id, string import_md5)
 	{
 		Photo photo;
 
@@ -125,7 +125,6 @@ public class PhotoStore : DbStore<Photo> {
 		using (FSpot.ImageFile img = FSpot.ImageFile.Create (orig_uri)) {
 			long unix_time = DbUtils.UnixTimeFromDateTime (img.Date);
 			string description = img.Description != null  ? img.Description.Split ('\0') [0] : String.Empty;
-			string import_md5 = Photo.GenerateMD5 (new_uri);
 
 	 		uint id = (uint) Database.Execute (
 				new DbCommand (
@@ -494,7 +493,7 @@ public class PhotoStore : DbStore<Photo> {
 	public event EventHandler<DbItemEventArgs<Photo>> ItemsRemovedOverDBus;
 
 	public Photo CreateOverDBus (string new_path, string orig_path, uint roll_id)  {
-		Photo photo = Create (new SafeUri (new_path), new SafeUri (orig_path), roll_id);
+		Photo photo = Create (new SafeUri (new_path), new SafeUri (orig_path), roll_id, Photo.GenerateMD5 (new SafeUri (new_path)));
 		EmitAddedOverDBus (photo);
 
 		return photo;

@@ -173,7 +173,7 @@ public class PhotoVersionCommands
 			try {
 				if (ResponseType.Ok == HigMessageDialog.RunHigConfirmation(parent_window, DialogFlags.DestroyWithParent, 
 									   MessageType.Warning, msg, desc, ok_caption)) {
-					Photo new_photo = store.Create (photo.DefaultVersion.Uri, photo.RollId);
+					Photo new_photo = store.Create (photo.DefaultVersion.Uri, photo.RollId, photo.DefaultVersion.ImportMD5);
 					new_photo.CopyAttributesFrom (photo);
 					photo.DeleteVersion (photo.DefaultVersionId, false, true);
 					store.Commit (new Photo[] {new_photo, photo});
