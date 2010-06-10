@@ -1,7 +1,8 @@
 include $(top_srcdir)/build/build.environment.mk
 
 EXTRA_DIST = \
-	data/f-spot-0.6.1.5.db
+	data/f-spot-0.6.1.5.db \
+	data/f-spot-0.6.2.db
 
 if ENABLE_TESTS
 
