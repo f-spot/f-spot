@@ -205,7 +205,8 @@ SOURCES = \
 	Widgets/ViewContext.cs \
 	Widgets/Wipe.cs \
 	XmpTagsImporter.cs \
-	main.cs
+	main.cs \
+	Tests/UpdaterTests.cs
 
 
 RESOURCES = \
