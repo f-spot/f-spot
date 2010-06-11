@@ -886,18 +886,6 @@ namespace FSpot
 		}
 	
 		//
-		// Change Notification functions
-		//
-	
-		private void InvalidateViews ()
-		{
-			icon_view.QueueDraw ();
-			photo_view.Reload ();
-			if (fsview != null)
-				fsview.View.Reload ();
-		}
-			
-		//
 		// Commands
 		//
 	
@@ -2587,18 +2575,6 @@ namespace FSpot
 			}
 		}
 		
-		void HandleFindTagIncluded (Tag t)
-		{
-			ShowQueryWidget ();
-			query_widget.Include (new Tag [] {t});
-	 	}
-		
-		void HandleFindTagRequired (Tag t)
-		{
-			ShowQueryWidget ();
-			query_widget.Require (new Tag [] {t});
-		}
-	
 		//
 		// Handle Main Menu 
 	
