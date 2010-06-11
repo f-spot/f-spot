@@ -1,6 +1,7 @@
 using System;
 using System.IO;
 using GLib;
+using Hyena;
 
 namespace FSpot.Utils
 {
@@ -13,11 +14,11 @@ namespace FSpot.Utils
                 return Uri.ToString ();
             }
             set {
-                Uri = new Uri (value);
+                Uri = new SafeUri (value);
             }
         }
 
-        public Uri Uri { get; set; }
+        public SafeUri Uri { get; set; }
 
         public Stream ReadStream {
             get {

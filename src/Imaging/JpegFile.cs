@@ -12,15 +12,15 @@ namespace FSpot {
 	}
 
 	public class JpegFile : ImageFile, IThumbnailContainer {
-        public Image.File Metadata {
+        public TagLib.Image.File Metadata {
             get { return metadata_file; }
         }
 
-        private Image.File metadata_file;
+        private TagLib.Image.File metadata_file;
 		
 		public JpegFile (SafeUri uri) : base (uri)
 		{
-            metadata_file = TagLib.File.Create (new GIOTagLibFileAbstraction () { Uri = uri }) as Image.File;
+            metadata_file = TagLib.File.Create (new GIOTagLibFileAbstraction () { Uri = uri }) as TagLib.Image.File;
 		}
 		
 		~JpegFile () {
@@ -72,9 +72,9 @@ namespace FSpot {
             // other way around, but Taglib# doesn't have an interface to do this.
             // https://bugzilla.gnome.org/show_bug.cgi?id=618768
 
-            var uri = UriUtils.PathToFileUri (path);
+            var uri = new SafeUri (path);
             var tmp = System.IO.Path.GetTempFileName ();
-            var tmp_uri = UriUtils.PathToFileUri (tmp);
+            var tmp_uri = new SafeUri (tmp);
 
             var orig_file = GLib.FileFactory.NewForUri (uri);
             var tmp_file = GLib.FileFactory.NewForUri (tmp_uri);
@@ -175,7 +175,7 @@ namespace FSpot {
 		
 		public void SetOrientation (PixbufOrientation orientation)
 		{
-            metadata_file.ImageTag.Orientation = (Image.ImageOrientation) orientation;
+            metadata_file.ImageTag.Orientation = (TagLib.Image.ImageOrientation) orientation;
 		}
 		
 		public void SetDateTimeOriginal (DateTime time)

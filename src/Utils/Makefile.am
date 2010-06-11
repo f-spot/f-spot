@@ -8,6 +8,7 @@ SOURCES = \
 	ConsoleCrayon.cs \
 	FileExtensions.cs \
 	GdkUtils.cs \
+    GIOTagLibFileAbstraction.cs \
 	GtkUtil.cs \
 	PixbufOrientation.cs \
 	PixbufUtils.cs \
