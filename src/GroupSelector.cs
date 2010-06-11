@@ -46,7 +46,7 @@ namespace FSpot {
 
 				adaptor = value;
 				HandleAdaptorChanged (adaptor);
-				has_limits = adaptor is FSpot.ILimitable;				
+				has_limits = adaptor is FSpot.ILimitable;
 
 				if (has_limits) {
 				    min_limit.SetPosition (0, false);
@@ -65,6 +65,15 @@ namespace FSpot {
 			}
 			get {
 				return adaptor;
+			}
+		}
+
+		public bool GlassUpdating {
+			get {
+				return glass.GlassUpdating;
+			}
+			set {
+				glass.GlassUpdating = value;
 			}
 		}
 
@@ -171,10 +180,14 @@ namespace FSpot {
 			
 			Gdk.Rectangle box = new Box (this, position).Bounds;
 
-			if (box.Right > background.Right)
-			        Offset -= box.X + box.Width - (background.X + background.Width);
-			else if (box.X < background.X)
-				Offset += background.X - box.X;
+			// Only scroll to position if we are not dragging
+			if (!glass.Dragging)
+			{
+				if (box.Right > background.Right)
+			        	Offset -= box.X + box.Width - (background.X + background.Width);
+				else if (box.X < background.X)
+					Offset += background.X - box.X;
+			}
 		}
 
 		private int scroll_offset;
@@ -224,7 +237,7 @@ namespace FSpot {
 			} else {
 				int upper = (int)position;
 				while (upper < box_counts.Length && box_counts [upper] == 0)
-					upper++;					
+					upper++;
 				
 				int lower = (int)position;
 				while (lower >= 0 && box_counts [lower] == 0)
@@ -295,9 +308,9 @@ namespace FSpot {
 				int position;
 				if (BoxHit (x, y, out position)) {
 					BoxXHitFilled (x, out position);
-					glass.Dragging = true;
+					glass.UpdateGlass = true;
 					glass.SetPosition (position);
-					glass.Dragging = false;
+					glass.UpdateGlass = false;
 					return true;
 				}
 			}
@@ -529,6 +542,8 @@ namespace FSpot {
 			protected GroupSelector selector;
 			protected Delay timer;
 			public bool Dragging;
+			public bool UpdateGlass;
+			public bool GlassUpdating;
 			public Point DragStart;
 
 			public Manipulator (GroupSelector selector) 
@@ -555,7 +570,7 @@ namespace FSpot {
 					else
 						return 0;
 				}
-			}					
+			}
 
 			public virtual void StartDrag (double x, double y, uint time) 
 			{
@@ -563,7 +578,7 @@ namespace FSpot {
 				//timer.Start ();
 				Dragging = true;
 				DragStart.X = (int)x;
-				DragStart.Y = (int)y;	
+				DragStart.Y = (int)y;
 			}
 
 			private bool DragTimeout ()
@@ -588,16 +603,31 @@ namespace FSpot {
 			public virtual void UpdateDrag (double x, double y)
 			{
 				Rectangle bounds = Bounds ();
+				double drag_lower_limit = (selector.background.Left) - (bounds.Width/2);
+				double drag_upper_limit = (selector.background.Right) - (bounds.Width/2);
+				double calX = DragStart.X + (x - DragStart.X);
+				
+				if (calX >= drag_lower_limit && calX <= drag_upper_limit) {
+					if (selector.right_delay.IsPending)
+						selector.right_delay.Stop();
 
-				int scroll = selector.background.X - bounds.Left;
-				if (scroll > 0 && selector.Offset < 0) {
-					selector.Offset = Math.Min (selector.Offset + scroll, 0);
-					if (selector.Offset == 0)
-						return;
+					if (selector.left_delay.IsPending)
+						selector.left_delay.Stop();
+
+					DragOffset = (int)x - DragStart.X;
+				} else if (calX >= drag_upper_limit && selector.right.Sensitive && !selector.right_delay.IsPending) {
+					// Ensure selector is at the limit
+					if (bounds.Left != drag_upper_limit)
+						DragOffset = (int)drag_upper_limit - DragStart.X;
+					selector.Offset -= 10;
+					selector.right_delay.Start();
+				} else if (calX <= drag_lower_limit && selector.left.Sensitive && !selector.left_delay.IsPending) {
+					// Ensure selector is at the limit
+					if (bounds.Left != drag_lower_limit)
+						DragOffset = (int)drag_lower_limit - DragStart.X;
+					selector.Offset += 10;
+					selector.left_delay.Start();
 				}
-
-				//System.Console.WriteLine ("scroll {0}, x {1}", scroll, x);
-				DragOffset = (int)x - DragStart.X;
 			}
 
 			public virtual void EndDrag (double x, double y)
@@ -609,13 +639,13 @@ namespace FSpot {
 
 				int position;
 				DragOffset = 0;
+				Dragging = false;
 				if (selector.BoxXHit (middle, out position)) {
 					this.SetPosition (position);
 					State = StateType.Prelight;
 				} else {
 					State = selector.State;
 				}
-				Dragging = false;				
 			}
 
 			private StateType state;
@@ -696,7 +726,7 @@ namespace FSpot {
 			
 			private void UpdatePopupPosition ()
 			{
-				int x = 0, y = 0;				
+				int x = 0, y = 0;
 				Rectangle bounds = Bounds ();
 				Requisition requisition = popup_window.SizeRequest ();
 				popup_window.Resize  (requisition.Width, requisition.Height);
@@ -706,6 +736,21 @@ namespace FSpot {
 				x = Math.Max (x, 0);
 				x = Math.Min (x, selector.Screen.Width - requisition.Width);
 				popup_window.Move (x, y);
+			}
+
+			public void MaintainPosition()
+			{
+				Rectangle box = Bounds ();
+				double middle = box.X + (box.Width / 2.0);
+				int current_position;
+
+				if (selector.BoxXHit (middle, out current_position)) {
+					if (current_position != drag_position)
+						popup_label.Text = selector.Adaptor.GlassLabel (current_position);
+					drag_position = current_position;
+				}
+				UpdatePopupPosition ();
+				selector.ScrollTo (drag_position);
 			}
 
 			public override void StartDrag (double x, double y, uint time)
@@ -726,14 +771,8 @@ namespace FSpot {
 				double middle = box.X + (box.Width / 2.0);
 				int current_position;
 				
-				base.UpdateDrag (x, y);				
-				if (selector.BoxXHit (middle, out current_position)) {
-					if (current_position != drag_position)
-						popup_label.Text = selector.Adaptor.GlassLabel (current_position);
-					drag_position = current_position;
-				}
-				UpdatePopupPosition ();
-				selector.ScrollTo (drag_position);
+				base.UpdateDrag (x, y);
+				MaintainPosition();
 			}
 
 			public override void EndDrag (double x, double y)
@@ -745,18 +784,24 @@ namespace FSpot {
 
 				int position;
 				DragOffset = 0;
-				
-				selector.BoxXHitFilled (middle, out position);
-				this.SetPosition (position);
-				State = StateType.Prelight;
 				Dragging = false;
+
+				selector.BoxXHitFilled (middle, out position);
+				UpdateGlass = true;
+				this.SetPosition (position);
+				UpdateGlass = false;
+				State = StateType.Prelight;
 				popup_window.Hide ();
 			}
 
 			private Rectangle InnerBounds ()
 			{
 				Rectangle box = new Box (selector, Position).Bounds;
-				box.X += DragOffset;
+				if (Dragging) {
+					box.X = DragStart.X + DragOffset;
+				} else {
+					box.X += DragOffset;
+				}
 				return box;
 			}
 			
@@ -814,9 +859,11 @@ namespace FSpot {
 			
 			public override void PositionChanged ()
 			{
-				if (Dragging)
+				GlassUpdating = true;
+				if (Dragging || UpdateGlass)
 					selector.adaptor.SetGlass (Position);
 				selector.ScrollTo (Position);
+				GlassUpdating = false;
 			}
 			
 
@@ -838,7 +885,12 @@ namespace FSpot {
 				int limit_offset = limit_type == LimitType.Max ? 1 : 0;
 
 				Rectangle bounds = new Rectangle (0, 0, width, selector.background.Height + handle_height);
-				bounds.X = DragOffset + selector.BoxX (Position + limit_offset) - bounds.Width /2;
+				
+				if (Dragging) {
+					bounds.X = DragStart.X + DragOffset;
+				} else {
+					bounds.X = DragOffset + selector.BoxX (Position + limit_offset) - bounds.Width /2;
+				}
 				bounds.Y = selector.background.Y - handle_height/2;
 				return bounds;
 			}
@@ -998,12 +1050,18 @@ namespace FSpot {
 
 		private bool HandleScrollRight ()
 		{
+			if (glass.Dragging)
+				glass.MaintainPosition ();
+
 			Offset -= 10;
 			return true;
 		}
 
 		private bool HandleScrollLeft ()
 		{
+			if (glass.Dragging)
+				glass.MaintainPosition ();
+
 			Offset += 10;
 			return true;
 		}

@@ -1000,7 +1000,9 @@ namespace FSpot
 			 * actually operate directly on the adaptor not on the selector but I don't have 
 			 * time to fix it right now.
 			 */
-			group_selector.SetPosition (group_selector.Adaptor.IndexFromPhoto (photo));
+			if (!group_selector.GlassUpdating) {
+				group_selector.SetPosition (group_selector.Adaptor.IndexFromPhoto (photo));
+			}
 	#endif
 		}
 		
