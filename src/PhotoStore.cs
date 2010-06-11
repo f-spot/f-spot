@@ -22,6 +22,7 @@ using System.Text;
 using System;
 
 using FSpot;
+using FSpot.Jobs;
 using FSpot.Query;
 using FSpot.Utils;
 using FSpot.Platform;
@@ -105,6 +106,38 @@ public class PhotoStore : DbStore<Photo> {
 		var dupes_by_hash = Count ("photo_versions", condition);
 		if (dupes_by_hash > 0)
 			return true;
+
+		// This is a very lame check to overcome the lack of duplicate detect data right after transition.
+		//
+		// Does filename matching if there are files with no hash for the original version.
+		condition = new ConditionWrapper ("version_id = 1 AND (import_md5 = \"\" OR import_md5 IS NULL)");
+		var have_no_hashes = Count ("photo_versions", condition);
+		if (have_no_hashes > 0) {
+			var name = uri.GetFilename ();
+			DateTime? time = null;
+
+			// Look for a filename match.
+			var reader = Database.Query (new DbCommand ("SELECT photos.id, photos.time, pv.filename FROM photos LEFT JOIN photo_versions AS pv ON pv.photo_id = photos.id WHERE pv.filename = :filename", "filename", name));
+			while (reader.Read ()) {
+				Log.DebugFormat ("Found one possible duplicate for {0}", reader["filename"].ToString ());
+				if (!time.HasValue) {
+					// Only read time when needed
+					using (FSpot.ImageFile img = FSpot.ImageFile.Create (uri)) {
+						time = img.Date;
+					}
+				}
+
+				if (reader["time"].ToString () == DbUtils.UnixTimeFromDateTime (time.Value).ToString ()) {
+					Log.Debug ("Skipping duplicate", uri);
+					
+					// Schedule a hash calculation job on the existing file.
+					CalculateHashJob.Create (FSpot.App.Instance.Database.Jobs, Convert.ToUInt32 (reader["id"]));
+
+					return true;
+				}
+			}
+			reader.Close ();
+		}
 
 		return false;
 	}
