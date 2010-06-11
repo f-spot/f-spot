@@ -1137,8 +1137,7 @@ namespace FSpot
 				ThreadAssist.ProxyToMain (() => {
 					if (evnt == ImportEvent.ImportFinished) {
 						if (controller.PhotosImported > 0) {
-							query.RollSet = new RollSet (controller.CreatedRoll);
-							UpdateQuery ();
+							query.RollSet = new RollSet (Database.Rolls.GetRolls (1));
 						}
 					}
 				});
@@ -1172,8 +1171,7 @@ namespace FSpot
 			controller.StatusEvent += (evnt) => {
 				if (evnt == ImportEvent.ImportFinished) {
 					if (controller.PhotosImported > 0) {
-						query.RollSet = new RollSet (controller.CreatedRoll);
-						UpdateQuery ();
+						query.RollSet = new RollSet (Database.Rolls.GetRolls (1));
 					}
 				}
 			};
