@@ -38,6 +38,7 @@ namespace FSpot.UI.Dialog
 				"\tChristopher Halse Rogers",
 				"\tDaniel Köb",
 				"\tGabriel Burt",
+				"\tIain Churcher",
 				"\tIain Lane",
 				"\tLorenzo Milesi",
 				"\tMike Gem\x00fcnde",
