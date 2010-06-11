@@ -21,7 +21,6 @@ using Hyena;
 namespace FSpot.UI.Dialog
 {
 	public class EditTagIconDialog : BuilderDialog {
-		Db db;
 		FSpot.PhotoQuery query;
 		PhotoImageView image_view;
 		Gtk.IconView icon_view;
@@ -34,15 +33,11 @@ namespace FSpot.UI.Dialog
 		[GtkBeans.Builder.Object] ScrolledWindow icon_scrolled_window;
 		[GtkBeans.Builder.Object] Label photo_label;
 		[GtkBeans.Builder.Object] Label from_photo_label;
-		[GtkBeans.Builder.Object] Label from_external_photo_label;
-		[GtkBeans.Builder.Object] private Label predefined_icon_label;
 		[GtkBeans.Builder.Object] SpinButton photo_spin_button;
 		[GtkBeans.Builder.Object] HBox external_photo_chooser_hbox;
-		[GtkBeans.Builder.Object] Button noicon_button;
 		
 		public EditTagIconDialog (Db db, Tag t, Gtk.Window parent_window) : base ("EditTagIconDialog.ui", "edit_tag_icon_dialog")
 		{
-			this.db = db;
 			TransientFor = parent_window;
 			Title = String.Format (Catalog.GetString ("Edit Icon for Tag {0}"), t.Name);
 

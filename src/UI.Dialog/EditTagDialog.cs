@@ -24,10 +24,8 @@ namespace FSpot.UI.Dialog
 
 		[GtkBeans.Builder.Object] Button ok_button;
 		[GtkBeans.Builder.Object] Entry tag_name_entry;
-		[GtkBeans.Builder.Object] Label prompt_label;
 		[GtkBeans.Builder.Object] Label already_in_use_label;
 		[GtkBeans.Builder.Object] Gtk.Image icon_image;
-		[GtkBeans.Builder.Object] Button icon_button;
 		[GtkBeans.Builder.Object] OptionMenu category_option_menu;
 
 
