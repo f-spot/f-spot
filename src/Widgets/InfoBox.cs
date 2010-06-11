@@ -276,7 +276,7 @@ namespace FSpot.Widgets
 			rating_view.Changed += HandleRatingChanged;
 			rating_align.Add (rating_view);
 
-			tag_view = new TagView (MainWindow.ToolTips);
+			tag_view = new TagView ();
 			info_table.Attach (tag_view, 0, 2, 9, 10, AttachOptions.Fill, AttachOptions.Fill, TABLE_XPADDING, TABLE_YPADDING);
 
 			info_table.ShowAll ();

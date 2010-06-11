@@ -333,7 +333,7 @@ namespace FSpot {
 			HBox lower_hbox = new HBox (false, 2);
 			//inner_hbox.BorderWidth = 6;
 	
-			tag_view = new Widgets.TagView (MainWindow.ToolTips);
+			tag_view = new Widgets.TagView ();
 			lower_hbox.PackStart (tag_view, false, true, 0);
 	
 			Label comment = new Label (Catalog.GetString ("Comment:"));

@@ -54,11 +54,11 @@ namespace FSpot {
 				}
 			
 				if (adaptor is TimeAdaptor) {
-					MainWindow.ToolTips.SetTip (left, Catalog.GetString ("More dates"), null);
-					MainWindow.ToolTips.SetTip (right, Catalog.GetString ("More dates"), null);
+					left.TooltipText = Catalog.GetString ("More dates");
+					right.TooltipText = Catalog.GetString ("More dates");
 				} else {
-					MainWindow.ToolTips.SetTip (left, Catalog.GetString ("More"), null);
-					MainWindow.ToolTips.SetTip (right, Catalog.GetString ("More"), null);
+					left.TooltipText = Catalog.GetString ("More");
+					right.TooltipText = Catalog.GetString ("More");
 				}
 				
 				adaptor.Changed += HandleAdaptorChanged;

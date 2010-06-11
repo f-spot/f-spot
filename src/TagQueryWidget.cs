@@ -209,7 +209,6 @@ namespace FSpot
 	public class LogicWidget : HBox {
 		private PhotoQuery query;
 
-		private static Tooltips tips = new Tooltips ();
 
 		private static Term rootTerm;
 		private EventBox rootAdd;
@@ -248,10 +247,6 @@ namespace FSpot
 
 			CanFocus = true;
 			Sensitive = true;
-
-			Literal.Tips = tips;
-
-			tips.Enable ();
 
 			Init ();
 

@@ -52,8 +52,6 @@ namespace FSpot {
 		
 		FullScreenView fsview;
 
-		private static Gtk.Tooltips toolTips = new Gtk.Tooltips ();
-
 		public SingleView (SafeUri [] uris)
 		{
 			string glade_name = "single_view";
@@ -71,24 +69,24 @@ namespace FSpot {
 		
 			rl_button = GtkUtil.ToolButtonFromTheme ("object-rotate-left", Catalog.GetString ("Rotate Left"), true);
 			rl_button.Clicked += HandleRotate270Command;
-			rl_button.SetTooltip (toolTips, Catalog.GetString ("Rotate photo left"), null);
+			rl_button.TooltipText = Catalog.GetString ("Rotate photo left");
 			toolbar.Insert (rl_button, -1);
 
 			rr_button = GtkUtil.ToolButtonFromTheme ("object-rotate-right", Catalog.GetString ("Rotate Right"), true);
 			rr_button.Clicked += HandleRotate90Command;
-			rr_button.SetTooltip (toolTips, Catalog.GetString ("Rotate photo right"), null);
+			rr_button.TooltipText = Catalog.GetString ("Rotate photo right");
 			toolbar.Insert (rr_button, -1);
 
 			toolbar.Insert (new SeparatorToolItem (), -1);
 
 			ToolButton fs_button = GtkUtil.ToolButtonFromTheme ("view-fullscreen", Catalog.GetString ("Fullscreen"), true);
 			fs_button.Clicked += HandleViewFullscreen;
-			fs_button.SetTooltip (toolTips, Catalog.GetString ("View photos fullscreen"), null);
+			fs_button.TooltipText = Catalog.GetString ("View photos fullscreen");
 			toolbar.Insert (fs_button, -1);
 
 			ToolButton ss_button = GtkUtil.ToolButtonFromTheme ("media-playback-start", Catalog.GetString ("Slideshow"), true);
 			ss_button.Clicked += HandleViewSlideshow;
-			ss_button.SetTooltip (toolTips, Catalog.GetString ("View photos in a slideshow"), null);
+			ss_button.TooltipText = Catalog.GetString ("View photos in a slideshow");
 			toolbar.Insert (ss_button, -1);
 
 			collection = new UriCollection (uris);

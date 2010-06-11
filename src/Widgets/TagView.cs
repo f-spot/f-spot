@@ -18,17 +18,11 @@ public class TagView : EventBox {
 	private IBrowsableItem photo;
 	private Tag [] tags;
 	private static int TAG_ICON_VSPACING = 5;
-	Tooltips parent_tips = null;
 	
 
 	public TagView ()
 	{
 		VisibleWindow = false;
-	}
-
-	public TagView (Tooltips tips) : this ()
-	{
-		parent_tips = tips;
 	}
 
 	protected TagView (IntPtr raw) : base (raw)
@@ -104,8 +98,8 @@ public class TagView : EventBox {
 						      RgbDither.None, tag_x, tag_y);
 			tag_x += thumbnail_size + TAG_ICON_VSPACING;
 		}
-		if (parent_tips != null)
-			parent_tips.SetTip (this, String.Join (", ", names), null);
+
+        this.TooltipText =  String.Join (", ", names);
 
 		return base.OnExposeEvent (args);
 	}

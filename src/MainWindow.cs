@@ -193,15 +193,6 @@ namespace FSpot
 		
 		const int PHOTO_IDX_NONE = -1;
 	
-		private static Gtk.Tooltips toolTips;
-		public static Gtk.Tooltips ToolTips {
-			get {
-				if (toolTips == null)
-					toolTips = new Gtk.Tooltips ();
-				return toolTips;
-			}
-		}
-	
 		public Db Database { get; private set; }
 		public ModeType ViewMode { get; private set; }
 		public MainSelection Selection { get; private set; }
@@ -281,7 +272,7 @@ namespace FSpot
 	
 			ToolButton import_button = GtkUtil.ToolButtonFromTheme ("gtk-add", Catalog.GetString ("Import"), true);
 			import_button.Clicked += (o, args) => StartImport (null);
-			import_button.SetTooltip (ToolTips, Catalog.GetString ("Import new images"), null);
+			import_button.TooltipText = Catalog.GetString ("Import new images");
 			toolbar.Insert (import_button, -1);
 		
 			toolbar.Insert (new SeparatorToolItem (), -1);
@@ -301,7 +292,7 @@ namespace FSpot
 			browse_button.IconName = "mode-browse";
 			browse_button.IsImportant = true;
 			browse_button.Toggled += HandleToggleViewBrowse;
-			browse_button.SetTooltip (ToolTips, Catalog.GetString ("Browse many photos simultaneously"), null);
+			browse_button.TooltipText = Catalog.GetString ("Browse many photos simultaneously");
 			toolbar.Insert (browse_button, -1);
 	
 			edit_button = new ToggleToolButton ();
@@ -309,19 +300,19 @@ namespace FSpot
 			edit_button.IconName = "mode-image-edit";
 			edit_button.IsImportant = true;
 			edit_button.Toggled += HandleToggleViewPhoto;
-			edit_button.SetTooltip (ToolTips, Catalog.GetString ("View and edit a photo"), null);
+			edit_button.TooltipText = Catalog.GetString ("View and edit a photo");
 			toolbar.Insert (edit_button, -1);
 	
 			toolbar.Insert (new SeparatorToolItem (), -1);
 	
 			ToolButton fs_button = GtkUtil.ToolButtonFromTheme ("view-fullscreen", Catalog.GetString ("Fullscreen"), false);
 			fs_button.Clicked += HandleViewFullscreen;
-			fs_button.SetTooltip (ToolTips, Catalog.GetString ("View photos fullscreen"), null);
+			fs_button.TooltipText = Catalog.GetString ("View photos fullscreen");
 			toolbar.Insert (fs_button, -1);
 	
 			ToolButton ss_button = GtkUtil.ToolButtonFromTheme ("media-playback-start", Catalog.GetString ("Slideshow"), false);
 			ss_button.Clicked += HandleViewSlideShow;
-			ss_button.SetTooltip (ToolTips, Catalog.GetString ("View photos in a slideshow"), null);
+			ss_button.TooltipText = Catalog.GetString ("View photos in a slideshow");
 			toolbar.Insert (ss_button, -1);
 	
 			SeparatorToolItem white_space = new SeparatorToolItem ();
@@ -336,12 +327,12 @@ namespace FSpot
 	
 			display_previous_button = new ToolButton (Stock.GoBack);
 			toolbar.Insert (display_previous_button, -1);
-			display_previous_button.SetTooltip (ToolTips, Catalog.GetString ("Previous photo"), String.Empty);
+			display_previous_button.TooltipText = Catalog.GetString ("Previous photo");
 			display_previous_button.Clicked += new EventHandler (HandleDisplayPreviousButtonClicked);
 	
 			display_next_button = new ToolButton (Stock.GoForward);
 			toolbar.Insert (display_next_button, -1);
-			display_next_button.SetTooltip (ToolTips, Catalog.GetString ("Next photo"), String.Empty);
+			display_next_button.TooltipText = Catalog.GetString ("Next photo");
 			display_next_button.Clicked += new EventHandler (HandleDisplayNextButtonClicked);
 	
 			Sidebar = new Sidebar ();
@@ -2659,26 +2650,26 @@ namespace FSpot
 			if (rl_button != null) {
 				if (Selection.Count == 0) {
 					rl_button.Sensitive = false;
-					rl_button.SetTooltip (ToolTips, Catalog.GetString (String.Empty), null);
+					rl_button.TooltipText = String.Empty;
 				} else {
 					rl_button.Sensitive = true;
 	
 					string msg = Catalog.GetPluralString ("Rotate selected photo left",
 									      "Rotate selected photos left", Selection.Count);
-					rl_button.SetTooltip (ToolTips, String.Format (msg, Selection.Count), null);
+					rl_button.TooltipText = String.Format (msg, Selection.Count);
 				}
 			}
 			
 			if (rr_button != null) {
 				if (Selection.Count == 0) {
 					rr_button.Sensitive = false;
-					rr_button.SetTooltip (ToolTips, Catalog.GetString (String.Empty), null);
+					rr_button.TooltipText = String.Empty;
 				} else {
 					rr_button.Sensitive = true;
 	
 					string msg = Catalog.GetPluralString ("Rotate selected photo right",
 									      "Rotate selected photos right", Selection.Count);
-					rr_button.SetTooltip (ToolTips, String.Format (msg, Selection.Count), null);
+					rr_button.TooltipText = String.Format (msg, Selection.Count);
 				}
 			}
 	
