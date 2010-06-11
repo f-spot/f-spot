@@ -190,6 +190,11 @@ namespace FSpot {
 		static Type GetLoaderType (SafeUri uri)
 		{
 			string extension = uri.GetExtension ().ToLower ();
+			if (extension == ".thm") {
+				// Ignore video thumbnails.
+				return null;
+			}
+
 			Type t = (Type) name_table [extension];
 
 			if (t == null) {
