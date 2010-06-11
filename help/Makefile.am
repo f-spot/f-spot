@@ -1,7 +1,7 @@
 if ENABLE_GNOME_DOCS
 include $(top_srcdir)/gnome-doc-utils.make
 
-DOC_ID = giggle
+DOC_ID = f-spot
 DOC_INCLUDES =
 
 DOC_PAGES = \
