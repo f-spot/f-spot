@@ -101,7 +101,7 @@ namespace FSpot.UI.Dialog
             // Populates the source combo box
             Sources = new TreeStore (typeof(ImportSource), typeof(string), typeof(string), typeof(bool));
             sources_combo.Model = Sources;
-            sources_combo.RowSeparatorFunc = (m, i) => ((string) m.GetValue (i, 1)) == String.Empty;
+            sources_combo.RowSeparatorFunc = (m, i) => (m.GetValue (i, 1) as string) == String.Empty;
             var render = new CellRendererPixbuf ();
             sources_combo.PackStart (render, false);
             sources_combo.SetAttributes (render, "icon-name", 2, "sensitive", 3);
