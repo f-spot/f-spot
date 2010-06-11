@@ -53,6 +53,7 @@ namespace FSpot.Tests
             ValidateTableStructure (db);
 
             CheckPhotosTable (db);
+            CheckPhotoVersionsTable (db);
             CheckTagsTable (db);
         }
 
@@ -103,6 +104,22 @@ namespace FSpot.Tests
             CheckPhoto (db, 19, 1093249257, "file:///tmp/database/", "sample_xmpcrash.jpg", "", 1, 1, 0, "5llGlyyjAUJLXWxJuC8XEQ==");
             CheckPhoto (db, 20, 1276191607, "file:///tmp/database/test/", "sample_tangled1.jpg", "test comment", 1, 1, 0, "2E9IN6W/kXJzcXbaDtmiRA==");
             CheckCount (db, "photos", 20);
+        }
+
+        private void CheckPhotoVersionsTable (QueuedSqliteDatabase db)
+        {
+            CheckPhotoVersion (db, 1, 1, "Original", "file:///tmp/database/", "sample.jpg", "b/ogULNYrufR25QgleoUkw==", 1);
+            CheckPhotoVersion (db, 2, 1, "Original", "file:///tmp/database/", "sample_canon_bibble5.jpg", "Iu9YXBGnE0lualZ+n341oA==", 1);
+            CheckPhotoVersion (db, 3, 1, "Original", "file:///tmp/database/", "sample_canon_zoombrowser.jpg", "B0ys/5Rc/NhKjbMrwwndxA==", 1);
+            CheckPhotoVersion (db, 4, 1, "Original", "file:///tmp/database/", "sample_gimp_exiftool.jpg", "RCXYoQdy2fBVHNiXDq0ulQ==", 1);
+            CheckPhotoVersion (db, 5, 1, "Original", "file:///tmp/database/", "sample_nikon1.jpg", "BYEgKwd3yUrUqTdWevbrFg==", 1);
+            CheckPhotoVersion (db, 6, 1, "Original", "file:///tmp/database/", "sample_nikon1_bibble5.jpg", "rIArPDba9imh6iDY0EZANQ==", 1);
+            CheckPhotoVersion (db, 7, 1, "Original", "file:///tmp/database/", "sample_nikon2.jpg", "kZMLUHQ1fuiA5/UVozhl6g==", 1);
+            CheckPhotoVersion (db, 8, 1, "Original", "file:///tmp/database/", "sample_nikon2_bibble5.jpg", "+qSs5azwrKYZu1xCFeNrOA==", 1);
+            CheckPhotoVersion (db, 9, 1, "Original", "file:///tmp/database/", "sample_nikon3.jpg", "y5Z5zAXqHK+AeJnTwxzU9Q==", 1);
+            CheckPhotoVersion (db, 10, 1, "Original", "file:///tmp/database/", "sample_nikon4.jpg", "ooQJBkEve1LFtY3ScO802g==", 1);
+            CheckPhotoVersion (db, 1, 2, "Modified", "file:///tmp/database/", "sample%20(Modified).jpg", "Gv5LXOHefaxxsA16Ybj2Ow==", 0);
+            CheckCount (db, "photo_versions", 11);
         }
 
         private void CheckTagsTable (QueuedSqliteDatabase db)
@@ -156,6 +173,21 @@ namespace FSpot.Tests
                 Assert.AreEqual (md5, reader[8], "md5 on photo "+id);
             }
         }
+
+        private void CheckPhotoVersion (QueuedSqliteDatabase db, uint photo_id, uint version_id, string name, string base_uri, string filename, string md5, uint is_protected)
+        {
+            var reader = db.Query ("SELECT photo_id, version_id, name, base_uri, filename, md5_sum, protected FROM photo_versions WHERE photo_id = " + photo_id + " AND version_id = " + version_id);
+            while (reader.Read ()) {
+                Assert.AreEqual (photo_id, Convert.ToUInt32 (reader[0]), "photo_id on photo version "+photo_id+"/"+version_id);
+                Assert.AreEqual (version_id, Convert.ToUInt32 (reader[1]), "version_id on photo version "+photo_id+"/"+version_id);
+                Assert.AreEqual (name, reader[2], "name on photo version "+photo_id+"/"+version_id);
+                Assert.AreEqual (base_uri, reader[3], "base_uri on photo version "+photo_id+"/"+version_id);
+                Assert.AreEqual (filename, reader[4], "filename on photo version "+photo_id+"/"+version_id);
+                Assert.AreEqual (md5, reader[5], "md5_sum on photo version "+photo_id+"/"+version_id);
+                Assert.AreEqual (is_protected, Convert.ToUInt32 (reader[6]), "protected on photo version "+photo_id+"/"+version_id);
+            }
+        }
+
         
         private void CheckTag (QueuedSqliteDatabase db, uint id, string name, uint cat_id, int is_cat, int sort, string icon)
         {
