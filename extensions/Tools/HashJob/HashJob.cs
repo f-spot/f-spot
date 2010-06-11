@@ -36,9 +36,9 @@ namespace HashJobExtension {
 		{ 			
 			// This query is not very fast, but it's a 'one-time' so don't care much...
 			SqliteDataReader reader = FSpot.App.Instance.Database.Database.Query (
-				"SELECT COUNT(*) FROM photos p WHERE md5_sum IS NULL OR md5_sum = '' OR EXISTS " +
-					"(SELECT * FROM photo_versions pv WHERE p.id=pv.photo_id AND version_id <> '1' AND " +
-					"(pv.md5_sum IS NULL OR pv.md5_sum = ''))");
+				"SELECT COUNT(*) FROM photos p WHERE EXISTS " +
+					"(SELECT * FROM photo_versions pv WHERE p.id=pv.photo_id AND " +
+					"(pv.import_md5 IS NULL OR pv.import_md5 = ''))");
 			reader.Read ();
 			uint missing_md5 = Convert.ToUInt32 (reader[0]);
 			reader.Close ();
@@ -91,9 +91,9 @@ namespace HashJobExtension {
 		void HandleExecuteClicked (object o, EventArgs e)
 		{
 			SqliteDataReader reader = FSpot.App.Instance.Database.Database.Query (
-				"SELECT id FROM photos p WHERE md5_sum IS NULL OR md5_sum = '' OR EXISTS " +
-					"(SELECT * FROM photo_versions pv WHERE p.id=pv.photo_id AND version_id <> '1' AND " +
-					"(pv.md5_sum IS NULL OR pv.md5_sum = '') )");
+				"SELECT id FROM photos p WHERE EXISTS " +
+					"(SELECT * FROM photo_versions pv WHERE p.id=pv.photo_id AND " +
+					"(pv.import_md5 IS NULL OR pv.import_md5 = '') )");
 			FSpot.App.Instance.Database.Database.BeginTransaction ();
 			while (reader.Read ())
 				FSpot.Jobs.CalculateHashJob.Create (FSpot.App.Instance.Database.Jobs, Convert.ToUInt32 (reader[0]));
