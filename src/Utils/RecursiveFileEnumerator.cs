@@ -8,37 +8,34 @@ namespace FSpot.Utils
     public class RecursiveFileEnumerator : IEnumerable<File>
     {
         string root;
-        bool recurse;
-        bool catch_no_permission;
 
-        public RecursiveFileEnumerator (string root) : this (root, true, false)
-        {
-        }
+        public bool Recurse { get; set; }
+        public bool CatchNoPermission { get; set; }
+        public bool IgnoreSymlinks { get; set; }
 
-        public RecursiveFileEnumerator (string root, bool recurse) : this (root, recurse, false)
-        {
-        }
-
-        public RecursiveFileEnumerator (string root, bool recurse, bool catch_no_permission)
+        public RecursiveFileEnumerator (string root)
         {
             this.root = root;
-            this.recurse = recurse;
-            this.catch_no_permission = catch_no_permission;
+            this.Recurse = true;
+            this.CatchNoPermission = false;
+            this.IgnoreSymlinks = false;
         }
 
         IEnumerable<File> ScanForFiles (File root)
         {
             GLib.FileInfo root_info = null;
             try {
-                root_info = root.QueryInfo ("standard::name,standard::type", FileQueryInfoFlags.None, null);
+                root_info = root.QueryInfo ("standard::name,standard::type,standard::is-symlink", FileQueryInfoFlags.None, null);
             } catch (GLib.GException e) {
-                if (!catch_no_permission)
+                if (!CatchNoPermission)
                     throw e;
                 yield break;
             }
 
-             using (root_info) {
-                if (root_info.FileType == FileType.Regular) {
+            using (root_info) {
+                if (root_info.IsSymlink && IgnoreSymlinks) {
+                    yield break;
+                } else if (root_info.FileType == FileType.Regular) {
                     yield return root;
                 } else if (root_info.FileType == FileType.Directory) {
                     foreach (var child in ScanDirectoryForFiles (root)) {
@@ -52,9 +49,9 @@ namespace FSpot.Utils
         {
             GLib.FileEnumerator enumerator = null;
             try {
-                enumerator = root_dir.EnumerateChildren ("standard::name,standard::type", FileQueryInfoFlags.None, null);
+                enumerator = root_dir.EnumerateChildren ("standard::name,standard::type,standard::is-symlink", FileQueryInfoFlags.None, null);
             } catch (GLib.GException e) {
-                if (!catch_no_permission)
+                if (!CatchNoPermission)
                     throw e;
                 yield break;
             }
@@ -65,9 +62,11 @@ namespace FSpot.Utils
                 // The code below looks like a duplication of ScanForFiles
                 // (which could be invoked here instead), but doing so would
                 // lead to a double type query on files (using QueryInfo).
-                if (info.FileType == FileType.Regular) {
+                if (info.IsSymlink && IgnoreSymlinks) {
+                    continue;
+                } else if (info.FileType == FileType.Regular) {
                     yield return file;
-                } else if (info.FileType == FileType.Directory && recurse) {
+                } else if (info.FileType == FileType.Directory && Recurse) {
                     foreach (var child in ScanDirectoryForFiles (file)) {
                         yield return child;
                     }

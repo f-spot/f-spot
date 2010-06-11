@@ -50,7 +50,11 @@ namespace FSpot.Import
 
         protected void ScanPhotoDirectory (ImportController controller, SafeUri uri)
         {
-            var enumerator = new RecursiveFileEnumerator (uri, controller.RecurseSubdirectories, true);
+            var enumerator = new RecursiveFileEnumerator (uri) {
+                Recurse = controller.RecurseSubdirectories,
+                CatchNoPermission = true,
+                IgnoreSymlinks = true
+            };
             var infos = new List<FileImportInfo> ();
             foreach (var file in enumerator) {
                 if (ImageFile.HasLoader (new SafeUri (file.Uri, true))) {
