@@ -70,7 +70,10 @@ namespace FSpot.Widgets
 			CellRendererPixbuf renderer = cell as CellRendererPixbuf;
 			
 			string stock;
-			File file = FileFactory.NewForUri (folder_tree_model.GetUriByIter (iter));
+			var uri = folder_tree_model.GetUriByIter (iter);
+			if (uri == null)
+				return;
+			File file = FileFactory.NewForUri (uri);
 			try {
 				FileInfo info =
 					file.QueryInfo ("standard::icon", FileQueryInfoFlags.None, null);
