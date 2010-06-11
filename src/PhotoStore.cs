@@ -99,14 +99,13 @@ public class PhotoStore : DbStore<Photo> {
 		Database.ExecuteNonQuery ("CREATE INDEX idx_photos_roll_id ON photos(roll_id)");
 	}
 
-	public bool HasDuplicate (SafeUri uri, SafeUri destination, out string hash) {
+	public bool HasDuplicate (SafeUri uri, out string hash) {
 		hash = Photo.GenerateMD5 (uri);
 		var condition = new ConditionWrapper (String.Format ("import_md5 = \"{0}\"", hash));
 		var dupes_by_hash = Count ("photo_versions", condition);
 		if (dupes_by_hash > 0)
 			return true;
 
-		// FIXME
 		return false;
 	}
 

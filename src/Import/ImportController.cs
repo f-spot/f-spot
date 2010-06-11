@@ -295,7 +295,7 @@ namespace FSpot.Import
             string hash = String.Empty;
 
             // Do duplicate detection
-            if (DuplicateDetect && store.HasDuplicate (item.DefaultVersion.Uri, destination, out hash)) {
+            if (DuplicateDetect && store.HasDuplicate (item.DefaultVersion.Uri, out hash)) {
                 return;
             }
 
