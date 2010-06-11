@@ -36,6 +36,12 @@ namespace FSpot.Tests
             TestUpdate ("0.7.0-17.2", "17.2");
         }
 
+        [Test]
+        public void Test_0_7_0_18_0 ()
+        {
+            TestUpdate ("0.7.0-18.0", "18");
+        }
+
         private void TestUpdate (string version, string revision)
         {
             if (!initialized)
@@ -65,7 +71,7 @@ namespace FSpot.Tests
 
         private void ValidateRevision (QueuedSqliteDatabase db, string revision)
         {
-			var query = "SELECT data FROM meta WHERE name = 'F-Spot Database Version'";
+            var query = "SELECT data FROM meta WHERE name = 'F-Spot Database Version'";
             var found = db.QuerySingle (query).ToString ();
             Assert.AreEqual (revision, found);
         }
@@ -89,42 +95,42 @@ namespace FSpot.Tests
 
         private void CheckPhotosTable (QueuedSqliteDatabase db)
         {
-            CheckPhoto (db, 1, 1249579156, "file:///tmp/database/", "sample.jpg", "Testing!", 1, 2, 5, "b/ogULNYrufR25QgleoUkw==");
-            CheckPhoto (db, 2, 1276191607, "file:///tmp/database/", "sample_canon_bibble5.jpg", "", 1, 1, 0, "Iu9YXBGnE0lualZ+n341oA==");
-            CheckPhoto (db, 3, 1249834364, "file:///tmp/database/", "sample_canon_zoombrowser.jpg", "%test comment%", 1, 1, 0, "B0ys/5Rc/NhKjbMrwwndxA==");
-            CheckPhoto (db, 4, 1276191607, "file:///tmp/database/", "sample_gimp_exiftool.jpg", "", 1, 1, 5, "RCXYoQdy2fBVHNiXDq0ulQ==");
-            CheckPhoto (db, 5, 1242995279, "file:///tmp/database/", "sample_nikon1.jpg", "", 1, 1, 1, "BYEgKwd3yUrUqTdWevbrFg==");
-            CheckPhoto (db, 6, 1276191607, "file:///tmp/database/", "sample_nikon1_bibble5.jpg", "", 1, 1, 0, "rIArPDba9imh6iDY0EZANQ==");
-            CheckPhoto (db, 7, 1167646774, "file:///tmp/database/", "sample_nikon2.jpg", "", 1, 1, 0, "kZMLUHQ1fuiA5/UVozhl6g==");
-            CheckPhoto (db, 8, 1276191607, "file:///tmp/database/", "sample_nikon2_bibble5.jpg", "", 1, 1, 0, "+qSs5azwrKYZu1xCFeNrOA==");
-            CheckPhoto (db, 9, 1256140553, "file:///tmp/database/", "sample_nikon3.jpg", "                                    ", 1, 1, 0, "y5Z5zAXqHK+AeJnTwxzU9Q==");
-            CheckPhoto (db, 10, 1238587697, "file:///tmp/database/", "sample_nikon4.jpg", "                                    ", 1, 1, 0, "ooQJBkEve1LFtY3ScO802g==");
-            CheckPhoto (db, 11, 1276191607, "file:///tmp/database/", "sample_no_metadata.jpg", "", 1, 1, 0, "qXxOC46LwEohjrfaJ+z4yw==");
-            CheckPhoto (db, 12, 1265446642, "file:///tmp/database/", "sample_null_orientation.jpg", "", 1, 1, 0, "Q58WPYqyO71aZ8JoJv1eag==");
-            CheckPhoto (db, 13, 1161575860, "file:///tmp/database/", "sample_olympus1.jpg", "", 1, 1, 0, "r3+pvinrj4TVueijuo9GJQ==");
-            CheckPhoto (db, 14, 1236006332, "file:///tmp/database/", "sample_olympus2.jpg", "", 1, 1, 0, "lYPCdDgxR5mC/94C/YftLA==");
-            CheckPhoto (db, 15, 1246010310, "file:///tmp/database/", "sample_panasonic.jpg", "", 1, 1, 0, "xedkGst5lwojOI3R6NvTMw==");
-            CheckPhoto (db, 16, 1258799979, "file:///tmp/database/", "sample_sony1.jpg", "", 1, 1, 0, "F/yHPIAYg29eKGqDIpfHng==");
-            CheckPhoto (db, 17, 1257533767, "file:///tmp/database/", "sample_sony2.jpg", "", 1, 1, 0, "24XvvaqNpxhhU4q3MPxSHQ==");
-            CheckPhoto (db, 18, 1026565108, "file:///tmp/database/", "sample_xap.jpg", "", 1, 1, 4, "RkXs+95lFeiUQCV8E1/lUQ==");
-            CheckPhoto (db, 19, 1093249257, "file:///tmp/database/", "sample_xmpcrash.jpg", "", 1, 1, 0, "5llGlyyjAUJLXWxJuC8XEQ==");
-            CheckPhoto (db, 20, 1276191607, "file:///tmp/database/test/", "sample_tangled1.jpg", "test comment", 1, 1, 0, "2E9IN6W/kXJzcXbaDtmiRA==");
+            CheckPhoto (db, 1, 1249579156, "file:///tmp/database/", "sample.jpg", "Testing!", 1, 2, 5);
+            CheckPhoto (db, 2, 1276191607, "file:///tmp/database/", "sample_canon_bibble5.jpg", "", 1, 1, 0);
+            CheckPhoto (db, 3, 1249834364, "file:///tmp/database/", "sample_canon_zoombrowser.jpg", "%test comment%", 1, 1, 0);
+            CheckPhoto (db, 4, 1276191607, "file:///tmp/database/", "sample_gimp_exiftool.jpg", "", 1, 1, 5);
+            CheckPhoto (db, 5, 1242995279, "file:///tmp/database/", "sample_nikon1.jpg", "", 1, 1, 1);
+            CheckPhoto (db, 6, 1276191607, "file:///tmp/database/", "sample_nikon1_bibble5.jpg", "", 1, 1, 0);
+            CheckPhoto (db, 7, 1167646774, "file:///tmp/database/", "sample_nikon2.jpg", "", 1, 1, 0);
+            CheckPhoto (db, 8, 1276191607, "file:///tmp/database/", "sample_nikon2_bibble5.jpg", "", 1, 1, 0);
+            CheckPhoto (db, 9, 1256140553, "file:///tmp/database/", "sample_nikon3.jpg", "                                    ", 1, 1, 0);
+            CheckPhoto (db, 10, 1238587697, "file:///tmp/database/", "sample_nikon4.jpg", "                                    ", 1, 1, 0);
+            CheckPhoto (db, 11, 1276191607, "file:///tmp/database/", "sample_no_metadata.jpg", "", 1, 1, 0);
+            CheckPhoto (db, 12, 1265446642, "file:///tmp/database/", "sample_null_orientation.jpg", "", 1, 1, 0);
+            CheckPhoto (db, 13, 1161575860, "file:///tmp/database/", "sample_olympus1.jpg", "", 1, 1, 0);
+            CheckPhoto (db, 14, 1236006332, "file:///tmp/database/", "sample_olympus2.jpg", "", 1, 1, 0);
+            CheckPhoto (db, 15, 1246010310, "file:///tmp/database/", "sample_panasonic.jpg", "", 1, 1, 0);
+            CheckPhoto (db, 16, 1258799979, "file:///tmp/database/", "sample_sony1.jpg", "", 1, 1, 0);
+            CheckPhoto (db, 17, 1257533767, "file:///tmp/database/", "sample_sony2.jpg", "", 1, 1, 0);
+            CheckPhoto (db, 18, 1026565108, "file:///tmp/database/", "sample_xap.jpg", "", 1, 1, 4);
+            CheckPhoto (db, 19, 1093249257, "file:///tmp/database/", "sample_xmpcrash.jpg", "", 1, 1, 0);
+            CheckPhoto (db, 20, 1276191607, "file:///tmp/database/test/", "sample_tangled1.jpg", "test comment", 1, 1, 0);
             CheckCount (db, "photos", 20);
         }
 
         private void CheckPhotoVersionsTable (QueuedSqliteDatabase db)
         {
-            CheckPhotoVersion (db, 1, 1, "Original", "file:///tmp/database/", "sample.jpg", "b/ogULNYrufR25QgleoUkw==", 1);
-            CheckPhotoVersion (db, 2, 1, "Original", "file:///tmp/database/", "sample_canon_bibble5.jpg", "Iu9YXBGnE0lualZ+n341oA==", 1);
-            CheckPhotoVersion (db, 3, 1, "Original", "file:///tmp/database/", "sample_canon_zoombrowser.jpg", "B0ys/5Rc/NhKjbMrwwndxA==", 1);
-            CheckPhotoVersion (db, 4, 1, "Original", "file:///tmp/database/", "sample_gimp_exiftool.jpg", "RCXYoQdy2fBVHNiXDq0ulQ==", 1);
-            CheckPhotoVersion (db, 5, 1, "Original", "file:///tmp/database/", "sample_nikon1.jpg", "BYEgKwd3yUrUqTdWevbrFg==", 1);
-            CheckPhotoVersion (db, 6, 1, "Original", "file:///tmp/database/", "sample_nikon1_bibble5.jpg", "rIArPDba9imh6iDY0EZANQ==", 1);
-            CheckPhotoVersion (db, 7, 1, "Original", "file:///tmp/database/", "sample_nikon2.jpg", "kZMLUHQ1fuiA5/UVozhl6g==", 1);
-            CheckPhotoVersion (db, 8, 1, "Original", "file:///tmp/database/", "sample_nikon2_bibble5.jpg", "+qSs5azwrKYZu1xCFeNrOA==", 1);
-            CheckPhotoVersion (db, 9, 1, "Original", "file:///tmp/database/", "sample_nikon3.jpg", "y5Z5zAXqHK+AeJnTwxzU9Q==", 1);
-            CheckPhotoVersion (db, 10, 1, "Original", "file:///tmp/database/", "sample_nikon4.jpg", "ooQJBkEve1LFtY3ScO802g==", 1);
-            CheckPhotoVersion (db, 1, 2, "Modified", "file:///tmp/database/", "sample%20(Modified).jpg", "Gv5LXOHefaxxsA16Ybj2Ow==", 0);
+            CheckPhotoVersion (db, 1, 1, "Original", "file:///tmp/database/", "sample.jpg", "", 1);
+            CheckPhotoVersion (db, 2, 1, "Original", "file:///tmp/database/", "sample_canon_bibble5.jpg", "", 1);
+            CheckPhotoVersion (db, 3, 1, "Original", "file:///tmp/database/", "sample_canon_zoombrowser.jpg", "", 1);
+            CheckPhotoVersion (db, 4, 1, "Original", "file:///tmp/database/", "sample_gimp_exiftool.jpg", "", 1);
+            CheckPhotoVersion (db, 5, 1, "Original", "file:///tmp/database/", "sample_nikon1.jpg", "", 1);
+            CheckPhotoVersion (db, 6, 1, "Original", "file:///tmp/database/", "sample_nikon1_bibble5.jpg", "", 1);
+            CheckPhotoVersion (db, 7, 1, "Original", "file:///tmp/database/", "sample_nikon2.jpg", "", 1);
+            CheckPhotoVersion (db, 8, 1, "Original", "file:///tmp/database/", "sample_nikon2_bibble5.jpg", "", 1);
+            CheckPhotoVersion (db, 9, 1, "Original", "file:///tmp/database/", "sample_nikon3.jpg", "", 1);
+            CheckPhotoVersion (db, 10, 1, "Original", "file:///tmp/database/", "sample_nikon4.jpg", "", 1);
+            CheckPhotoVersion (db, 1, 2, "Modified", "file:///tmp/database/", "sample%20(Modified).jpg", "", 0);
             CheckPhotoVersion (db, 11, 1, "Original", "file:///tmp/database/", "sample_no_metadata.jpg", "", 1);
             CheckPhotoVersion (db, 12, 1, "Original", "file:///tmp/database/", "sample_null_orientation.jpg", "", 1);
             CheckPhotoVersion (db, 13, 1, "Original", "file:///tmp/database/", "sample_olympus1.jpg", "", 1);
@@ -175,9 +181,9 @@ namespace FSpot.Tests
             CheckCount (db, "tags", 31);
         }
 
-        private void CheckPhoto (QueuedSqliteDatabase db, uint id, uint time, string base_uri, string filename, string description, uint roll_id, uint default_version_id, uint rating, string md5)
+        private void CheckPhoto (QueuedSqliteDatabase db, uint id, uint time, string base_uri, string filename, string description, uint roll_id, uint default_version_id, uint rating)
         {
-            var reader = db.Query ("SELECT id, time, base_uri, filename, description, roll_id, default_version_id, rating, md5_sum FROM photos WHERE id = " + id);
+            var reader = db.Query ("SELECT id, time, base_uri, filename, description, roll_id, default_version_id, rating FROM photos WHERE id = " + id);
             var found = false;
             while (reader.Read ()) {
                 Assert.AreEqual (id, Convert.ToUInt32 (reader[0]), "id on photo "+id);
@@ -188,15 +194,14 @@ namespace FSpot.Tests
                 Assert.AreEqual (roll_id, Convert.ToUInt32 (reader[5]), "roll_id on photo "+id);
                 Assert.AreEqual (default_version_id, Convert.ToUInt32 (reader[6]), "default_version_id on photo "+id);
                 Assert.AreEqual (rating, Convert.ToUInt32 (reader[7]), "rating on photo "+id);
-                Assert.AreEqual (md5, reader[8], "md5 on photo "+id);
                 found = true;
             }
             Assert.IsTrue (found, "photo "+id+" missing");
         }
 
-        private void CheckPhotoVersion (QueuedSqliteDatabase db, uint photo_id, uint version_id, string name, string base_uri, string filename, string md5, uint is_protected)
+        private void CheckPhotoVersion (QueuedSqliteDatabase db, uint photo_id, uint version_id, string name, string base_uri, string filename, string import_md5, uint is_protected)
         {
-            var reader = db.Query ("SELECT photo_id, version_id, name, base_uri, filename, md5_sum, protected FROM photo_versions WHERE photo_id = " + photo_id + " AND version_id = " + version_id);
+            var reader = db.Query ("SELECT photo_id, version_id, name, base_uri, filename, import_md5, protected FROM photo_versions WHERE photo_id = " + photo_id + " AND version_id = " + version_id);
             var found = false;
             while (reader.Read ()) {
                 Assert.AreEqual (photo_id, Convert.ToUInt32 (reader[0]), "photo_id on photo version "+photo_id+"/"+version_id);
@@ -204,7 +209,7 @@ namespace FSpot.Tests
                 Assert.AreEqual (name, reader[2], "name on photo version "+photo_id+"/"+version_id);
                 Assert.AreEqual (base_uri, reader[3], "base_uri on photo version "+photo_id+"/"+version_id);
                 Assert.AreEqual (filename, reader[4], "filename on photo version "+photo_id+"/"+version_id);
-                Assert.AreEqual (md5, reader[5], "md5_sum on photo version "+photo_id+"/"+version_id);
+                Assert.AreEqual (import_md5, reader[5], "import_md5 on photo version "+photo_id+"/"+version_id);
                 Assert.AreEqual (is_protected, Convert.ToUInt32 (reader[6]), "protected on photo version "+photo_id+"/"+version_id);
                 found = true;
             }

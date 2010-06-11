@@ -492,11 +492,6 @@ namespace FSpot.Database {
 				Execute ("UPDATE photos SET md5_sum = NULL WHERE md5_sum = ''");
 				Execute ("UPDATE photo_versions SET md5_sum = NULL WHERE md5_sum = ''");
 			});
-
-			// Update to version 17.0
-			//AddUpdate (new Version (14,0), delegate () {
-			//	do update here
-			//});
 			
 			// Update to version 17.0, split uri and filename
 			AddUpdate (new Version (17,0),delegate () {
@@ -611,6 +606,76 @@ namespace FSpot.Database {
 						"is_protected", 1,
 						"md5_sum", ""));
 				}
+			}, true);
+
+			// Update to version 18.0, Import MD5 hashes
+			AddUpdate (new Version(18,0),delegate () {
+				string tmp_photos = MoveTableToTemp ("photos");
+				string tmp_versions = MoveTableToTemp ("photo_versions");
+
+				Execute (
+					"CREATE TABLE photos (\n" +
+					"	id			INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, \n" +
+					"	time			INTEGER NOT NULL, \n" +
+					"	base_uri		STRING NOT NULL, \n" +
+					"	filename		STRING NOT NULL, \n" +
+					"	description		TEXT NOT NULL, \n" +
+					"	roll_id			INTEGER NOT NULL, \n" +
+					"	default_version_id	INTEGER NOT NULL, \n" +
+					"	rating			INTEGER NULL \n" +
+					")");
+
+				Execute (
+					"CREATE TABLE photo_versions (\n"+
+					"	photo_id	INTEGER, \n" +
+					"	version_id	INTEGER, \n" +
+					"	name		STRING, \n" +
+					"	base_uri		STRING NOT NULL, \n" +
+					"	filename		STRING NOT NULL, \n" +
+					"	import_md5		TEXT NULL, \n" +
+					"	protected	BOOLEAN, \n" +
+					"	UNIQUE (photo_id, version_id)\n" +
+					")");
+
+				var reader = ExecuteReader (String.Format (
+					"SELECT id, time, base_uri, filename, description, roll_id, default_version_id, rating " +
+					"FROM {0} ", tmp_photos));
+
+				while (reader.Read ()) {
+					Execute (new DbCommand (
+						"INSERT INTO photos (id, time, base_uri, filename, description, roll_id, default_version_id, rating) "	+
+						"VALUES (:id, :time, :base_uri, :filename, :description, :roll_id, :default_version_id, :rating)",
+						"id", Convert.ToUInt32 (reader ["id"]),
+						"time", reader ["time"],
+						"base_uri", reader ["base_uri"].ToString (),
+						"filename", reader ["filename"].ToString (),
+						"description", reader["description"].ToString (),
+						"roll_id", Convert.ToUInt32 (reader ["roll_id"]),
+						"default_version_id", Convert.ToUInt32 (reader ["default_version_id"]),
+						"rating", Convert.ToUInt32 (reader ["rating"])));
+				}
+
+				reader.Close ();
+
+				reader = ExecuteReader (String.Format (
+						"SELECT photo_id, version_id, name, base_uri, filename, protected " +
+						"FROM {0} ", tmp_versions));
+
+				while (reader.Read ()) {
+					Execute (new DbCommand (
+						"INSERT INTO photo_versions (photo_id, version_id, name, base_uri, filename, protected, import_md5) " +
+						"VALUES (:photo_id, :version_id, :name, :base_uri, :filename, :is_protected, :import_md5)",
+						"photo_id", Convert.ToUInt32 (reader ["photo_id"]),
+						"version_id", Convert.ToUInt32 (reader ["version_id"]),
+						"name", reader["name"].ToString (),
+						"base_uri", reader["base_uri"].ToString (),
+						"filename", reader["filename"].ToString (),
+						"is_protected", Convert.ToBoolean (reader["protected"]),
+						"import_md5", ""));
+				}
+
+				Execute ("CREATE INDEX idx_photo_versions_import_md5 ON photo_versions(import_md5)");
+
 			}, true);
 		}
 
