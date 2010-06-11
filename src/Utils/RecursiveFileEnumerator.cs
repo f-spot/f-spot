@@ -10,24 +10,24 @@ namespace FSpot.Utils
         string root;
 
         public bool Recurse { get; set; }
-        public bool CatchNoPermission { get; set; }
+        public bool CatchErrors { get; set; }
         public bool IgnoreSymlinks { get; set; }
 
         public RecursiveFileEnumerator (string root)
         {
             this.root = root;
             this.Recurse = true;
-            this.CatchNoPermission = false;
+            this.CatchErrors = false;
             this.IgnoreSymlinks = false;
         }
 
         IEnumerable<File> ScanForFiles (File root)
         {
-            GLib.FileInfo root_info = null;
+            FileInfo root_info = null;
             try {
                 root_info = root.QueryInfo ("standard::name,standard::type,standard::is-symlink", FileQueryInfoFlags.None, null);
-            } catch (GLib.GException e) {
-                if (!CatchNoPermission)
+            } catch (GException e) {
+                if (!CatchErrors)
                     throw e;
                 yield break;
             }
@@ -47,16 +47,28 @@ namespace FSpot.Utils
 
         IEnumerable<File> ScanDirectoryForFiles (File root_dir)
         {
-            GLib.FileEnumerator enumerator = null;
+            FileEnumerator enumerator = null;
             try {
                 enumerator = root_dir.EnumerateChildren ("standard::name,standard::type,standard::is-symlink", FileQueryInfoFlags.None, null);
-            } catch (GLib.GException e) {
-                if (!CatchNoPermission)
+            } catch (GException e) {
+                if (!CatchErrors)
                     throw e;
                 yield break;
             }
 
-            foreach (FileInfo info in enumerator) {
+            while (true) {
+                FileInfo info = null;
+                try {
+                    info = enumerator.NextFile ();
+                } catch (GException e) {
+                    if (!CatchErrors)
+                        throw e;
+                    continue;
+                }
+
+                if (info == null)
+                    break;
+
                 File file = root_dir.GetChild (info.Name);
                 
                 // The code below looks like a duplication of ScanForFiles
@@ -73,6 +85,7 @@ namespace FSpot.Utils
                 }
                 info.Dispose ();
             }
+
             enumerator.Close (null);
         }
 

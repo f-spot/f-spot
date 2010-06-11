@@ -52,7 +52,7 @@ namespace FSpot.Import
         {
             var enumerator = new RecursiveFileEnumerator (uri) {
                 Recurse = controller.RecurseSubdirectories,
-                CatchNoPermission = true,
+                CatchErrors = true,
                 IgnoreSymlinks = true
             };
             var infos = new List<FileImportInfo> ();
