@@ -1,3 +1,21 @@
+f-spot 0.7.0 - Wed 16 2010 - Full Steam Ahead!
+----------------------------------------------
+- First release of the unstable 0.7 development series. Massive changes.
+ - Reparenting and detaching support (Anton Keks)
+ - A new Mallard-based documentation (Harold Schreckengost)
+ - No longer embeds flickrnet, uses distribution copy (Iain Lane)
+ - Adoption of a large amount of Hyena functionality (Paul Lange, Peter Goetz)
+ - No longer embeds gnome-keyring-sharp
+ - Completely rewritten import, much faster and less memory hungry (Ruben Vermeersch)
+ - No longer use gphoto2-sharp, now uses gvfs which is less crash-pron (Ruben Vermeersch)
+ - Fix Facebook support (Ruben Vermeersch)
+ - Modernized unit tests
+ - Revamped build (Mike Gemünde)
+ - Much improved duplicate detection (much faster too) (Ruben Vermeersch)
+ - Mouse selection in Iconview (Vincent Pomey)
+ - Image panning support using middle mouse button (Wojciech Dzierżanowski)
+ - Over 90 bugs closed (http://bit.ly/dkepBm)
+
 f-spot 0.6.2 - May 14 2010 - Bulldozer Time
 -------------------------------------------
 - Stable release before starting large cleanup refactorings, mostly usability,
