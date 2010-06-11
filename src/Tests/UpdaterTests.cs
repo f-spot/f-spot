@@ -30,6 +30,12 @@ namespace FSpot.Tests
             TestUpdate ("0.6.2", "17.1");
         }
 
+        [Test]
+        public void Test_0_7_0_17_2 ()
+        {
+            TestUpdate ("0.7.0-17.2", "17.2");
+        }
+
         private void TestUpdate (string version, string revision)
         {
             if (!initialized)
@@ -119,7 +125,18 @@ namespace FSpot.Tests
             CheckPhotoVersion (db, 9, 1, "Original", "file:///tmp/database/", "sample_nikon3.jpg", "y5Z5zAXqHK+AeJnTwxzU9Q==", 1);
             CheckPhotoVersion (db, 10, 1, "Original", "file:///tmp/database/", "sample_nikon4.jpg", "ooQJBkEve1LFtY3ScO802g==", 1);
             CheckPhotoVersion (db, 1, 2, "Modified", "file:///tmp/database/", "sample%20(Modified).jpg", "Gv5LXOHefaxxsA16Ybj2Ow==", 0);
-            CheckCount (db, "photo_versions", 11);
+            CheckPhotoVersion (db, 11, 1, "Original", "file:///tmp/database/", "sample_no_metadata.jpg", "", 1);
+            CheckPhotoVersion (db, 12, 1, "Original", "file:///tmp/database/", "sample_null_orientation.jpg", "", 1);
+            CheckPhotoVersion (db, 13, 1, "Original", "file:///tmp/database/", "sample_olympus1.jpg", "", 1);
+            CheckPhotoVersion (db, 14, 1, "Original", "file:///tmp/database/", "sample_olympus2.jpg", "", 1);
+            CheckPhotoVersion (db, 15, 1, "Original", "file:///tmp/database/", "sample_panasonic.jpg", "", 1);
+            CheckPhotoVersion (db, 16, 1, "Original", "file:///tmp/database/", "sample_sony1.jpg", "", 1);
+            CheckPhotoVersion (db, 17, 1, "Original", "file:///tmp/database/", "sample_sony2.jpg", "", 1);
+            CheckPhotoVersion (db, 18, 1, "Original", "file:///tmp/database/", "sample_xap.jpg", "", 1);
+            CheckPhotoVersion (db, 19, 1, "Original", "file:///tmp/database/", "sample_xmpcrash.jpg", "", 1);
+            CheckPhotoVersion (db, 20, 1, "Original", "file:///tmp/database/test/", "sample_tangled1.jpg", "", 1);
+            CheckCount (db, "photo_versions", 21);
+            CheckOriginalVersionCount (db);
         }
 
         private void CheckTagsTable (QueuedSqliteDatabase db)
@@ -161,6 +178,7 @@ namespace FSpot.Tests
         private void CheckPhoto (QueuedSqliteDatabase db, uint id, uint time, string base_uri, string filename, string description, uint roll_id, uint default_version_id, uint rating, string md5)
         {
             var reader = db.Query ("SELECT id, time, base_uri, filename, description, roll_id, default_version_id, rating, md5_sum FROM photos WHERE id = " + id);
+            var found = false;
             while (reader.Read ()) {
                 Assert.AreEqual (id, Convert.ToUInt32 (reader[0]), "id on photo "+id);
                 Assert.AreEqual (time, Convert.ToUInt32 (reader[1]), "time on photo "+id);
@@ -171,12 +189,15 @@ namespace FSpot.Tests
                 Assert.AreEqual (default_version_id, Convert.ToUInt32 (reader[6]), "default_version_id on photo "+id);
                 Assert.AreEqual (rating, Convert.ToUInt32 (reader[7]), "rating on photo "+id);
                 Assert.AreEqual (md5, reader[8], "md5 on photo "+id);
+                found = true;
             }
+            Assert.IsTrue (found, "photo "+id+" missing");
         }
 
         private void CheckPhotoVersion (QueuedSqliteDatabase db, uint photo_id, uint version_id, string name, string base_uri, string filename, string md5, uint is_protected)
         {
             var reader = db.Query ("SELECT photo_id, version_id, name, base_uri, filename, md5_sum, protected FROM photo_versions WHERE photo_id = " + photo_id + " AND version_id = " + version_id);
+            var found = false;
             while (reader.Read ()) {
                 Assert.AreEqual (photo_id, Convert.ToUInt32 (reader[0]), "photo_id on photo version "+photo_id+"/"+version_id);
                 Assert.AreEqual (version_id, Convert.ToUInt32 (reader[1]), "version_id on photo version "+photo_id+"/"+version_id);
@@ -185,13 +206,22 @@ namespace FSpot.Tests
                 Assert.AreEqual (filename, reader[4], "filename on photo version "+photo_id+"/"+version_id);
                 Assert.AreEqual (md5, reader[5], "md5_sum on photo version "+photo_id+"/"+version_id);
                 Assert.AreEqual (is_protected, Convert.ToUInt32 (reader[6]), "protected on photo version "+photo_id+"/"+version_id);
+                found = true;
             }
+            Assert.IsTrue (found, "photo version "+photo_id+"/"+version_id+" missing");
         }
 
-        
+        private void CheckOriginalVersionCount (QueuedSqliteDatabase db)
+        {
+            var photo_count = GetCount (db, "photos", "1");
+            var orig_version_count = GetCount (db, "photo_versions", "version_id = 1");
+            Assert.AreEqual (photo_count, orig_version_count, "Expecting an original version for each photo");
+        }
+
         private void CheckTag (QueuedSqliteDatabase db, uint id, string name, uint cat_id, int is_cat, int sort, string icon)
         {
             var reader = db.Query ("SELECT id, name, category_id, is_category, sort_priority, icon FROM tags WHERE id = " + id);
+            var found = false;
             while (reader.Read ()) {
                 Assert.AreEqual (id, Convert.ToUInt32 (reader[0]), "id on tag "+id);
                 Assert.AreEqual (name, reader[1], "name on tag "+id);
@@ -199,12 +229,19 @@ namespace FSpot.Tests
                 Assert.AreEqual (is_cat, Convert.ToInt32 (reader[3]), "is_cat on tag "+id);
                 Assert.AreEqual (sort, reader[4], "sort_priority on tag "+id);
                 Assert.AreEqual (icon, reader[5], "icon on tag "+id);
+                found = true;
             }
+            Assert.IsTrue (found, "tag "+id+" missing");
+        }
+
+        private int GetCount (QueuedSqliteDatabase db, string table, string where)
+        {
+            return Int32.Parse (db.QuerySingle ("SELECT COUNT(*) FROM "+table+" WHERE "+where).ToString ());
         }
 
         private void CheckCount (QueuedSqliteDatabase db, string table, int count)
         {
-            var counted = Int32.Parse (db.QuerySingle ("SELECT COUNT(*) FROM "+table).ToString ());
+            var counted = GetCount (db, table, "1");
             Assert.AreEqual (count, counted, "Count on "+table);
         }
 

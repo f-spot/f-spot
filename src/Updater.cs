@@ -591,6 +591,27 @@ namespace FSpot.Database {
 				Execute ("UPDATE tags SET name = 'Imported Tags' WHERE name = 'Import Tags'");
 			});
 			
+			// Update to version 17.2, Make sure every photo has an Original version in photo_versions
+			AddUpdate (new Version(17,2),delegate () {
+				// Find photos that have no original version;
+				var have_original_query = "SELECT id FROM photos LEFT JOIN photo_versions AS pv ON pv.photo_id = id WHERE pv.version_id = 1";
+				var no_original_query = String.Format ("SELECT id, base_uri, filename FROM photos WHERE id NOT IN ({0})", have_original_query);
+
+				var reader = ExecuteReader (no_original_query);
+
+				while (reader.Read ()) {
+					Execute (new DbCommand (
+						"INSERT INTO photo_versions (photo_id, version_id, name, base_uri, filename, protected, md5_sum) " +
+						"VALUES (:photo_id, :version_id, :name, :base_uri, :filename, :is_protected, :md5_sum)",
+						"photo_id", Convert.ToUInt32 (reader ["id"]),
+						"version_id", 1,
+						"name", "Original",
+						"base_uri", reader["base_uri"].ToString (),
+						"filename", reader["filename"].ToString (),
+						"is_protected", 1,
+						"md5_sum", ""));
+				}
+			}, true);
 		}
 
 		private const string meta_db_version_string = "F-Spot Database Version";
