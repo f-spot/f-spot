@@ -174,7 +174,7 @@ namespace FSpot
 
 			List <string> uris = new List <string> ();
 			if (ApplicationContext.CommandLine.Contains ("view")) {
-
+				view = true;
 				var items = ApplicationContext.CommandLine.Files;
 
 				if (items.Count > 0)
