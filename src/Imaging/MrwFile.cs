@@ -192,18 +192,6 @@ namespace FSpot.Mrw {
 			}
 		}
 
-		public override System.DateTime Date
-		{
-			get {
-				DirectoryEntry e = this.Header.Directory.Lookup (TagId.DateTime);
-				
-				if (e != null)
-					return DirectoryEntry.DateTimeFromString (e.StringValue);
-				else
-					return base.Date;
-			}
-		}
-		
 		public void Select (SemWeb.StatementSink sink)
 		{
 			this.Header.Select (sink);

@@ -1375,20 +1375,5 @@ namespace FSpot.Png {
 			}
 			Header.Insert (itext);
 		}
-
-		public override System.DateTime Date {
-			get {
-				// FIXME: we should first try parsing the
-				// LookupText ("Creation Time") as a valid date
-
-				foreach (Chunk chunk in Chunks) {
-					TimeChunk time = chunk as TimeChunk;
-					if (time != null)
-						return time.Time;
-				}
-				return base.Date;
-			}
-		}
-		
 	}
 }

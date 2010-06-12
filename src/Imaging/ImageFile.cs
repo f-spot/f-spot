@@ -166,15 +166,6 @@ namespace FSpot {
 			return null;
 		}
 		
-		public virtual System.DateTime Date 
-		{
-			get {
-				GFileInfo info = GLib.FileFactory.NewForUri (uri).QueryInfo ("time::modified", GLib.FileQueryInfoFlags.None, null);
-				DateTime create = NativeConvert.ToDateTime ((long)info.GetAttributeULong ("time::modified"));
-				return create;
-			}
-		}
-
 		public static bool HasLoader (SafeUri uri)
 		{
 			return GetLoaderType (uri) != null;

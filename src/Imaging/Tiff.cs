@@ -2035,31 +2035,6 @@ namespace FSpot.Tiff {
 			Header.SelectDirectory (Header.Directory, sink);
 		}
 
-		public override System.DateTime Date {
-			get {
-				SubdirectoryEntry sub = (SubdirectoryEntry) this.Header.Directory.Lookup (TagId.ExifIfdPointer);
-				DirectoryEntry e;
-
-				try {
-					if (sub != null) {
-						e = sub.Directory [0].Lookup (TagId.DateTimeOriginal);
-
-						if (e != null)
-							return DirectoryEntry.DateTimeFromString (e.StringValue);
-					}
-
-					e = this.Header.Directory.Lookup (TagId.DateTime);
-
-					if (e != null)
-						return DirectoryEntry.DateTimeFromString (e.StringValue);
-					else
-						return base.Date;
-				} catch (Exception) {
-					return base.Date;
-				}
-			}
-		}
-		
 		public override PixbufOrientation GetOrientation ()
 		{
 			ShortEntry e = (ShortEntry)(this.Header.Directory.Lookup (TagId.Orientation));

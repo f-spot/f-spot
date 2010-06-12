@@ -432,20 +432,6 @@ namespace FSpot.Ciff {
 			return orientation;
 		}
 
-		public override System.DateTime Date {
-			get {
-				ImageDirectory props = Root.ReadDirectory (Tag.ImageProps);
-				byte [] date = props.ReadEntry (Tag.TimeStamp);
-
-				if (date == null) {
-					Log.Debug ("NO DATE");
-					return base.Date;
-				}
-
-				return new CaptureTime (date, little).LocalTime;
-			}
-		}
-
 		public override System.IO.Stream PixbufStream ()
 		{
 			byte [] data = GetEmbeddedJpeg ();

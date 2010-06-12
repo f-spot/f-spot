@@ -183,12 +183,5 @@ namespace FSpot {
             metadata_file.ImageTag.DateTime = time;
 		}
 
-		public override System.DateTime Date {
-			get {
-                var date = metadata_file.ImageTag.DateTime;
-                return date.HasValue ? date.Value : base.Date;
-			}
-		}
-
 	}
 }

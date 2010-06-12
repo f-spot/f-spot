@@ -16,6 +16,7 @@ using System.Xml;
 
 using Hyena;
 using FSpot.Utils;
+using Mono.Unix.Native;
 
 namespace FSpot {
 	public class FileBrowsableItem : IBrowsableItem
@@ -34,10 +35,11 @@ namespace FSpot {
 			if (metadata_parsed)
 				return;
 
-			using (var img = ImageFile.Create (DefaultVersion.Uri)) {
-				time = img.Date;
-				description = img.Description;
-			}
+            var res = new GIOTagLibFileAbstraction () { Uri = DefaultVersion.Uri };
+            var metadata_file = TagLib.File.Create (res) as TagLib.Image.File;
+            var date = metadata_file.ImageTag.DateTime;
+            time = date.HasValue ? date.Value : CreateDate;
+            description = metadata_file.ImageTag.Comment;
 
 			metadata_parsed = true;
 		}
@@ -55,6 +57,13 @@ namespace FSpot {
 				return time;
 			}
 		}
+
+        private DateTime CreateDate {
+            get {
+                var info = GLib.FileFactory.NewForUri (DefaultVersion.Uri).QueryInfo ("time::created", GLib.FileQueryInfoFlags.None, null);
+                return NativeConvert.ToDateTime ((long)info.GetAttributeULong ("time::created"));
+            }
+        }
 
 		public IBrowsableItemVersion DefaultVersion { get; private set; }
 
