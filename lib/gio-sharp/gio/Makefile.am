@@ -39,7 +39,7 @@ gtk-sharp.snk: $(SNK)
 
 gio-sharp.dll: generated/File.cs $(SRCS) gtk-sharp.snk
 	@echo -e "\n*** Building $@"
-	$(CSC) -target:library -out:$@ $(UNSAFE) $(DEBUG) $(ASSEMBLIES) $(SRCS) generated/*.cs
+	$(CSC) -d:GIO_SHARP_2_22 -target:library -out:$@ $(UNSAFE) $(DEBUG) $(ASSEMBLIES) $(SRCS) generated/*.cs
 
 assemblydir = $(pkglibdir)
 assembly_DATA =			\
