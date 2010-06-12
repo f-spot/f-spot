@@ -145,31 +145,29 @@ public class PhotoStore : DbStore<Photo> {
 	{
 		Photo photo;
 
-		using (FSpot.ImageFile img = FSpot.ImageFile.Create (item.DefaultVersion.Uri)) {
-			long unix_time = DbUtils.UnixTimeFromDateTime (item.Time);
-			string description = img.Description != null  ? img.Description.Split ('\0') [0] : String.Empty;
+		long unix_time = DbUtils.UnixTimeFromDateTime (item.Time);
+		string description = item.Description;
 
-	 		uint id = (uint) Database.Execute (
-				new DbCommand (
-					"INSERT INTO photos (time, base_uri, filename, description, roll_id, default_version_id, rating) "	+
-					"VALUES (:time, :base_uri, :filename, :description, :roll_id, :default_version_id, :rating)",
-	 				"time", unix_time,
-					"base_uri", item.DefaultVersion.BaseUri.ToString (),
-					"filename", item.DefaultVersion.Filename,
-	 				"description", description,
-					"roll_id", roll_id,
-	 				"default_version_id", Photo.OriginalVersionId,
-					"rating", "0"
-				)
-			);
+		uint id = (uint) Database.Execute (
+			new DbCommand (
+				"INSERT INTO photos (time, base_uri, filename, description, roll_id, default_version_id, rating) "	+
+				"VALUES (:time, :base_uri, :filename, :description, :roll_id, :default_version_id, :rating)",
+				"time", unix_time,
+				"base_uri", item.DefaultVersion.BaseUri.ToString (),
+				"filename", item.DefaultVersion.Filename,
+				"description", description,
+				"roll_id", roll_id,
+				"default_version_id", Photo.OriginalVersionId,
+				"rating", "0"
+			)
+		);
 
-			photo = new Photo (id, unix_time);
-			photo.AddVersionUnsafely (Photo.OriginalVersionId, item.DefaultVersion.BaseUri, item.DefaultVersion.Filename, item.DefaultVersion.ImportMD5, Catalog.GetString ("Original"), true);
-			photo.Loaded = true;
+		photo = new Photo (id, unix_time);
+		photo.AddVersionUnsafely (Photo.OriginalVersionId, item.DefaultVersion.BaseUri, item.DefaultVersion.Filename, item.DefaultVersion.ImportMD5, Catalog.GetString ("Original"), true);
+		photo.Loaded = true;
 
-			InsertVersion (photo, photo.DefaultVersion as PhotoVersion);
-			EmitAdded (photo);
-		}
+		InsertVersion (photo, photo.DefaultVersion as PhotoVersion);
+		EmitAdded (photo);
 		return photo;
 	}
 

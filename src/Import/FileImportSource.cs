@@ -139,6 +139,8 @@ namespace FSpot.Import
     }
 
     internal class FileImportInfo : IBrowsableItem {
+		bool metadata_parsed = false;
+
         public FileImportInfo (SafeUri original)
         {
             DefaultVersion = new ImportInfoVersion () {
@@ -147,27 +149,39 @@ namespace FSpot.Import
             };
         }
 
+		private void EnsureMetadataParsed ()
+		{
+			if (metadata_parsed)
+				return;
+
+			using (var img = ImageFile.Create (DefaultVersion.Uri)) {
+				time = img.Date;
+				description = img.Description;
+			}
+
+			metadata_parsed = true;
+		}
+
         public IBrowsableItemVersion DefaultVersion { get; private set; }
         public SafeUri DestinationUri { get; set; }
 
-        private DateTime? time = null;
+        private DateTime time;
         public System.DateTime Time {
-            get {
-                if (!time.HasValue) {
-                    try {
-                        using (FSpot.ImageFile img = FSpot.ImageFile.Create (DefaultVersion.Uri)) {
-                            time = img.Date;
-                        }
-                    } catch (Exception) {
-                        time = DateTime.Now;
-                    }
-                }
-                return time.Value;
-            }
+			get {
+				EnsureMetadataParsed ();
+				return time;
+			}
         }
 
+		private string description;
+		public string Description {
+			get {
+				EnsureMetadataParsed ();
+				return description;
+			}
+		}
+
         public Tag [] Tags { get { throw new NotImplementedException (); } }
-        public string Description { get { throw new NotImplementedException (); } }
         public string Name { get { throw new NotImplementedException (); } }
         public uint Rating { get { return 0; } }
 

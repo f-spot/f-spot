@@ -18,10 +18,9 @@ using Hyena;
 using FSpot.Utils;
 
 namespace FSpot {
-	public class FileBrowsableItem : IBrowsableItem, IDisposable
+	public class FileBrowsableItem : IBrowsableItem
 	{
-		ImageFile img;
-		bool attempted;
+		bool metadata_parsed = false;
 
 		public FileBrowsableItem (SafeUri uri)
 		{
@@ -30,15 +29,17 @@ namespace FSpot {
             };
 		}
 
-		protected ImageFile Image {
-			get {
-				if (!attempted) {
-					img = ImageFile.Create (DefaultVersion.Uri);
-					attempted = true;
-				}
+		private void EnsureMetadataParsed ()
+		{
+			if (metadata_parsed)
+				return;
 
-				return img;
+			using (var img = ImageFile.Create (DefaultVersion.Uri)) {
+				time = img.Date;
+				description = img.Description;
 			}
+
+			metadata_parsed = true;
 		}
 
 		public Tag [] Tags {
@@ -47,31 +48,27 @@ namespace FSpot {
 			}
 		}
 
+		private DateTime time;
 		public DateTime Time {
 			get {
-				return Image.Date;
+				EnsureMetadataParsed ();
+				return time;
 			}
 		}
 
 		public IBrowsableItemVersion DefaultVersion { get; private set; }
 
+		private string description;
 		public string Description {
 			get {
-				try {
-					if (Image != null)
-						return Image.Description;
-
-				} catch (System.Exception e) {
-					Log.Exception (e);
-				}
-
-				return null;
+				EnsureMetadataParsed ();
+				return description;
 			}
 		}
 
 		public string Name {
 			get {
-				return Path.GetFileName (Image.Uri.AbsolutePath);
+				return DefaultVersion.Uri.GetFilename ();
 			}
 		}
 
@@ -79,12 +76,6 @@ namespace FSpot {
 			get {
 				return 0; //FIXME ndMaxxer: correct?
 			}
-		}
-
-		public void Dispose ()
-		{
-			img.Dispose ();
-			GC.SuppressFinalize (this);
 		}
 
 		private class FileBrowsableItemVersion : IBrowsableItemVersion {
