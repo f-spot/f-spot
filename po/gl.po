@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: f-spot.master\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-06-12 15:59+0200\n"
-"PO-Revision-Date: 2010-06-12 16:15+0200\n"
+"PO-Revision-Date: 2010-06-12 16:58+0200\n"
 "Last-Translator: Fran Diéguez <frandieguez@ubuntu.com>\n"
 "Language-Team: Galician <gnome@g11.net>\n"
 "MIME-Version: 1.0\n"
@@ -38,7 +38,7 @@ msgstr "Xestor de fotos F-Spot"
 
 #: ../data/desktop-files/f-spot.desktop.in.in.h:3
 msgid "Organize, enjoy, and share your photos"
-msgstr "Organiza, comparte e divírtete coas túas fotos"
+msgstr "Organice, comparta e divírtase coas súas fotos"
 
 #: ../data/desktop-files/f-spot.desktop.in.in.h:4
 #: ../data/desktop-files/f-spot-import.desktop.in.in.h:4
@@ -51,11 +51,11 @@ msgstr "Importar a F-Spot"
 
 #: ../data/desktop-files/f-spot-view.desktop.in.in.h:2
 msgid "F-Spot Photo Viewer"
-msgstr "Visualizador de fotos F-Spot"
+msgstr "Visor de fotos F-Spot"
 
 #: ../data/desktop-files/f-spot-view.desktop.in.in.h:3
 msgid "Photo Viewer"
-msgstr "Visualizador de fotos"
+msgstr "Visor de fotos"
 
 #: ../extensions/Exporters/CDExport/CDExport.addin.xml.h:1
 msgid "_CD..."
@@ -63,12 +63,12 @@ msgstr "_CD..."
 
 #: ../extensions/Exporters/CDExport/CDExport.cs:162
 msgid "Transferring Pictures"
-msgstr "Transferindo imaxes"
+msgstr "Transferindo as fotografías"
 
 #: ../extensions/Exporters/CDExport/CDExport.cs:218
 #, csharp-format
 msgid "Transferring picture \"{0}\" To CD"
-msgstr "Transferindo imaxe «{0}» ao CD"
+msgstr "Transferindo fotografía «{0}» ao CD"
 
 #. Note for translators: This indicates the current photo is photo {0} of {1} out of photos
 #: ../extensions/Exporters/CDExport/CDExport.cs:220
@@ -92,7 +92,7 @@ msgstr "Completouse o envío de fotos"
 
 #: ../extensions/Exporters/CDExport/CDExport.cs:235
 msgid "Transfer Complete"
-msgstr "Transferencia completa"
+msgstr "Transferencia rematada"
 
 #: ../extensions/Exporters/CDExport/CDExport.cs:242
 msgid "Error While Transferring"
@@ -109,11 +109,11 @@ msgstr "copiando..."
 
 #: ../extensions/Exporters/CDExport/CDExport.ui.h:1
 msgid "<b><i>There is some previously scheduled items to write</i></b>"
-msgstr "<b><i>Está programada a escritura dalgúns elementos</i></b>"
+msgstr "<b><i>Está programada a escritura dalgúns elementos anteriores</i></b>"
 
 #: ../extensions/Exporters/CDExport/CDExport.ui.h:2
 msgid "<b>Photos to Burn</b>"
-msgstr "<b>Fotos para gravar</b>"
+msgstr "<b>Fotografías para gravar</b>"
 
 #: ../extensions/Exporters/CDExport/CDExport.ui.h:3
 #: ../extensions/Exporters/FolderExport/FolderExport.glade.h:7
@@ -121,7 +121,7 @@ msgstr "<b>Fotos para gravar</b>"
 #: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:5
 #: ../src/f-spot.glade.h:20
 msgid "Autorotate"
-msgstr "Rotación automática"
+msgstr "Autorrotar"
 
 #: ../extensions/Exporters/CDExport/CDExport.ui.h:4
 msgid "Create CD"
@@ -138,7 +138,7 @@ msgstr "Tamaño da selección exportada:"
 
 #: ../extensions/Exporters/CDExport/CDExport.ui.h:7
 msgid "_Browse Previously Scheduled Files"
-msgstr "_Examinar ficheiros xa programados"
+msgstr "_Examinar os ficheiros programados anteriormente"
 
 #: ../extensions/Exporters/CDExport/CDExport.ui.h:8
 #: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:15
@@ -161,7 +161,7 @@ msgstr "F_acebook..."
 
 #: ../extensions/Exporters/FacebookExport/FacebookExport.cs:99
 msgid "Waiting for authorization"
-msgstr "Agardando pola autenticación"
+msgstr "Agardando pola autorización"
 
 #: ../extensions/Exporters/FacebookExport/FacebookExport.cs:100
 msgid ""
@@ -171,11 +171,11 @@ msgid ""
 "Once you are directed by Facebook to return to this application, click \"Ok"
 "\" below."
 msgstr ""
-"F-Spot lanzará o navegador web polo que vostede pode activar o permiso que "
-"seleccionou agora mesmo.\n"
+"F-Spot lanzará o navegador web para que vostede poida activar o permiso "
+"acaba de seleccionar.\n"
 "\n"
-"Cando en Facebook lle dirixan de volta a este aplicativo, faga  en \"Aceptar"
-"\"."
+"Cando Facebook lle indique que debe volver a este aplicativo, prema en "
+"\"Aceptar\"."
 
 #: ../extensions/Exporters/FacebookExport/FacebookExport.cs:281
 msgid "Too many images to export"
@@ -219,7 +219,7 @@ msgstr ""
 #: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:598
 #: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:522
 msgid "Uploading Pictures"
-msgstr "Enviando imaxes"
+msgstr "Cargando as fotografías"
 
 #: ../extensions/Exporters/FacebookExport/FacebookExport.cs:354
 #: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:661
@@ -231,7 +231,7 @@ msgstr "Enviando imaxe «{0}» ({1} de {2})"
 #: ../extensions/Exporters/FacebookExport/FacebookExport.cs:368
 #, csharp-format
 msgid "Error Uploading To Facebook: {0}"
-msgstr "Erro ao enviar ao Facebook: {0}"
+msgstr "Erro ao enviar a Facebook: {0}"
 
 #: ../extensions/Exporters/FacebookExport/FacebookExport.cs:369
 #: ../extensions/Exporters/FlickrExport/FlickrExport.cs:371
@@ -249,7 +249,7 @@ msgstr "Erro"
 #: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:707
 #: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:609
 msgid "Upload Complete"
-msgstr "Envío completo"
+msgstr "Carga completa"
 
 #: ../extensions/Exporters/FacebookExport/FacebookExport.cs:382
 msgid "Visit F-Spot group on Facebook"
@@ -270,9 +270,9 @@ msgstr ""
 "F-Spot lanzará agora o navegador web dende o que pode iniciar sesión en "
 "Facebook.\n"
 "\n"
-"En cando Facebook lle suxira voltar a este aplicativo, faga clic en \"Aceptar"
-"\" máis abaixo. F-Spot almacenará a súa sesión en gnome-keyring, Se é "
-"posíbel voltará a empregalo en futuros exportados de Facebook."
+"En cando Facebook lle indique que debe volver a este aplicativo, prema en "
+"\"Aceptar\" máis abaixo. F-Spot almacenará a súa sesión en gnome-keyring, se "
+"é posíbel, e reutilizarao no futuro."
 
 #: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:218
 msgid "Authenticating..."
@@ -280,14 +280,14 @@ msgstr "Autenticando..."
 
 #: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:228
 msgid "Error logging into Facebook"
-msgstr "Erro ao iniciar a sesión no Facebook"
+msgstr "Produciuse un erro ao iniciar a sesión no Facebook"
 
 #: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:229
 msgid ""
 "There was a problem logging into Facebook.  Check your credentials and try "
 "again."
 msgstr ""
-"Houbo un problema ao iniciar a sesión no Facebook. Verifique as súas "
+"Produciuse un erro ao iniciar a sesión no Facebook. Verifique as súas "
 "credenciais e probe de novo."
 
 #: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:238
@@ -296,29 +296,29 @@ msgstr "Autorizando sesión"
 
 #: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:247
 msgid "Session established, fetching user info..."
-msgstr "Sesión establecida, obtendo información do usuario"
+msgstr "Sesión estabelecida, obtendo información do usuario..."
 
 #: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:253
 msgid "Session established, fetching friend list..."
-msgstr "Sesión establecida, obtendo a lista de amigos..."
+msgstr "Sesión estabelecida, obtendo a lista de amigos..."
 
 #: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:263
 msgid "Session established, fetching friend details..."
-msgstr "Sesión establecida, obtendo detalles do amigo..."
+msgstr "Sesión estabelecida, obtendo detalles dos amigos..."
 
 #: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:275
 msgid "Session established, fetching photo albums..."
-msgstr "Sesión establecida, obtendo álbums de fotos..."
+msgstr "Sesión estabelecida, obtendo álbums de fotos..."
 
 #. Note for translators: {0} and {1} are respectively firstname and surname of the user
 #: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:285
 #, csharp-format
 msgid "{0} {1} is logged into Facebook"
-msgstr "{0} {1} iniciaron a sesión no Facebook"
+msgstr "{0} {1} iniciou a sesión en Facebook"
 
 #: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:294
 msgid "Facebook Connection Error"
-msgstr "Ocorreu un erro de conexión con Facebook"
+msgstr "Erro de conexión con Facebook"
 
 #: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:295
 #, csharp-format
@@ -327,13 +327,13 @@ msgid ""
 "\n"
 "Facebook said: {0}"
 msgstr ""
-"Houbo un erro ao descargar a súa información dende Facebook.\n"
+"Produciuse un erro ao descargar a súa información dende Facebook.\n"
 "\n"
 "Facebook dixo: {0}"
 
 #: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:324
 msgid "You are not logged in."
-msgstr "Non está conectado."
+msgstr "Non iniciou a sesión."
 
 #: ../extensions/Exporters/FacebookExport/FacebookExport.ui.h:1
 msgid "Auto-confirm Photos"
@@ -341,7 +341,7 @@ msgstr "Autoconfirmar fotos"
 
 #: ../extensions/Exporters/FacebookExport/FacebookExport.ui.h:2
 msgid "Caption"
-msgstr "Lenda"
+msgstr "Título"
 
 #: ../extensions/Exporters/FacebookExport/FacebookExport.ui.h:3
 msgid "Create a new album"
@@ -353,7 +353,7 @@ msgstr "Descrición"
 
 #: ../extensions/Exporters/FacebookExport/FacebookExport.ui.h:5
 msgid "Export to Facebook"
-msgstr "Exportar ao Facebook"
+msgstr "Exportar a Facebook"
 
 #: ../extensions/Exporters/FacebookExport/FacebookExport.ui.h:6
 msgid "In this photo"
@@ -370,7 +370,7 @@ msgstr "Iniciar sesión"
 
 #: ../extensions/Exporters/FacebookExport/FacebookExport.ui.h:9
 msgid "Logout"
-msgstr "Pechar sesión"
+msgstr "Saír da sesión"
 
 #: ../extensions/Exporters/FacebookExport/FacebookExport.ui.h:10
 #: ../src/Widgets/InfoBox.cs:213
@@ -391,7 +391,7 @@ msgstr "Permanecer conectado"
 
 #: ../extensions/Exporters/FacebookExport/FacebookExport.ui.h:14
 msgid "Use an existing album"
-msgstr "Usar un álbum que xa existe"
+msgstr "Usar un álbum existente"
 
 #: ../extensions/Exporters/FacebookExport/FacebookExport.ui.h:15
 msgid "Who is this?"
@@ -421,20 +421,20 @@ msgid ""
 "{0} and click the \"Complete Authorization\" button below"
 msgstr ""
 "Volva a esta xanela cando termine o proceso de autorización en {0} e prema o "
-"botón \"Autorización completa\""
+"botón \"Completar autorización\""
 
 #: ../extensions/Exporters/FlickrExport/FlickrExport.cs:113
 msgid "Complete Authorization"
-msgstr "Autorización completa"
+msgstr "Completar autorización"
 
 #: ../extensions/Exporters/FlickrExport/FlickrExport.cs:118
 #, csharp-format
 msgid "Logging into {0}"
-msgstr "Inicio de sesión en {0}"
+msgstr "Iniciando a sesión en {0}"
 
 #: ../extensions/Exporters/FlickrExport/FlickrExport.cs:119
 msgid "Checking credentials..."
-msgstr "Comprobando credenciais..."
+msgstr "Comprobando os credenciais..."
 
 #: ../extensions/Exporters/FlickrExport/FlickrExport.cs:126
 #, csharp-format
@@ -449,7 +449,7 @@ msgstr "Iniciar sesión como un usuario diferente"
 #: ../extensions/Exporters/FlickrExport/FlickrExport.cs:134
 #, csharp-format
 msgid "Used {0} of your allowed {1} monthly quota"
-msgstr "Utilizouse o {0} da súa cota mensual permitida {1}"
+msgstr "Usou o {0} da súa cota mensual de  {1}"
 
 #: ../extensions/Exporters/FlickrExport/FlickrExport.cs:298
 msgid "Unable to log on"
@@ -464,16 +464,16 @@ msgstr "Esperando resposta {0} de {1}"
 #: ../extensions/Exporters/GalleryExport/GalleryExport.cs:777
 #, csharp-format
 msgid "Uploading picture \"{0}\""
-msgstr "Enviando imaxe «{0}»"
+msgstr "Cargando foto «{0}»"
 
 #: ../extensions/Exporters/FlickrExport/FlickrExport.cs:368
 #, csharp-format
 msgid "Error Uploading To {0}: {1}"
-msgstr "Erro ao enviar a {0}: {1}"
+msgstr "Erro ao cargar en {0}: {1}"
 
 #: ../extensions/Exporters/FlickrExport/FlickrExport.cs:455
 msgid "Unable to log on."
-msgstr "Non é posíbel iniciar sesión."
+msgstr "Non foi posíbel iniciar sesión."
 
 #: ../extensions/Exporters/FlickrExport/FlickrExport.cs:456
 #, csharp-format
@@ -481,8 +481,8 @@ msgid ""
 "F-Spot was unable to log on to {0}.  Make sure you have given the "
 "authentication using {0} web browser interface."
 msgstr ""
-"O F-Spot non foi quen de iniciar sesión a {0}. Asegúrese de que lle deu a "
-"autenticación usando o {0} navegador web da interface."
+"O F-Spot non puido iniciar a sesión en {0}. Asegúrese de que lle deu a "
+"autorización usando a interface web de {0}."
 
 #: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:1
 msgid "<b>Account</b>"
@@ -496,7 +496,7 @@ msgstr "<b>Conta</b>"
 #: ../extensions/Exporters/TabbloExport/ui/TabbloExport.ui.h:2
 #: ../src/f-spot.glade.h:8 ../src/UI.Dialog/ui/AdjustTimeDialog.ui.h:5
 msgid "<b>Photos</b>"
-msgstr "<b>Fotos</b>"
+msgstr "<b>Fotografías</b>"
 
 #: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:3
 #: ../extensions/Exporters/FolderExport/FolderExport.glade.h:6
@@ -509,7 +509,7 @@ msgstr "<b>Estilo</b>"
 
 #: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:4
 msgid "<b>Viewing permissions</b>"
-msgstr "<b>Verificando os permisos</b>"
+msgstr "<b>Permisos de visionado</b>"
 
 #: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:6
 #: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:8
@@ -535,27 +535,27 @@ msgstr ""
 
 #: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:9
 msgid "Ignore _top level tags"
-msgstr "Ignorar as e_tiquetas do nivel máis alto"
+msgstr "Ignorar as etiquetas do nivel _superior"
 
 #: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:10
 msgid "Private"
-msgstr "Privado"
+msgstr "Privada"
 
 #: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:11
 msgid "Public"
-msgstr "Público"
+msgstr "Pública"
 
 #: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:12
 msgid "Strip _metadata"
-msgstr "Quitar _metadatos"
+msgstr "Recortar _metadatos"
 
 #: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:13
 msgid "Visible to Family"
-msgstr "Visíbel para a familia"
+msgstr "Visíbel para a miña familia"
 
 #: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:14
 msgid "Visible to Friends"
-msgstr "Visíbel para os amigos"
+msgstr "Visíbel para os meus amigos"
 
 #: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:16
 #: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:21
@@ -572,7 +572,7 @@ msgstr "_Redimensionar a: "
 
 #: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:18
 msgid "_View photos in browser when done uploading"
-msgstr "_Ver as fotos no navegador ao terminar de cargalas"
+msgstr "_Ver as fotos nun navegador ao terminar de cargalas"
 
 #: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:19
 #: ../extensions/Exporters/FolderExport/FolderExport.glade.h:20
@@ -588,7 +588,7 @@ msgstr "Cartaf_ol..."
 
 #: ../extensions/Exporters/FolderExport/FolderExport.cs:120
 msgid "Select Export Folder"
-msgstr "Seleccionar cartafol para exportar"
+msgstr "Seleccione un cartafol para exportar"
 
 #: ../extensions/Exporters/FolderExport/FolderExport.cs:173
 msgid "Building Gallery"
@@ -602,7 +602,7 @@ msgstr "Exportando «{0}»..."
 #: ../extensions/Exporters/FolderExport/FolderExport.cs:224
 #, csharp-format
 msgid "Error Copying \"{0}\" to Gallery:{2}{1}"
-msgstr "Erro ao enviar a imaxe «{0}» á galería:{2}{1}"
+msgstr "Erro ao copiar «{0}» á galería: {2}{1}"
 
 #: ../extensions/Exporters/FolderExport/FolderExport.cs:250
 #, csharp-format
@@ -735,7 +735,7 @@ msgstr "_Gardar só estes ficheiros"
 
 #: ../extensions/Exporters/GalleryExport/FormClient.cs:294
 msgid "Unhandled exception"
-msgstr "Excepción non manipulada"
+msgstr "Excepción non xestionada"
 
 #: ../extensions/Exporters/GalleryExport/GalleryExport.addin.xml.h:1
 msgid "Web _Gallery..."
@@ -746,16 +746,16 @@ msgid ""
 "Cannot connect to a Gallery for which the version is unknown.\n"
 "Please check that you have Remote plugin 1.0.8 or later"
 msgstr ""
-"Non se pode conectar a unha galería para a cal a versión é descoñecida.\n"
-"Comprobe que ten un plugin remoto 1.0.8 ou posterior"
+"Non é posíbel conectar a unha galería para a cal  se descoñece a versión.\n"
+"Comprobe que ten un engadido remoto 1.0.8 ou posterior"
 
 #: ../extensions/Exporters/GalleryExport/GalleryExport.cs:391
 msgid "Invalid URL"
-msgstr "URL incorrecto"
+msgstr "URL non válido"
 
 #: ../extensions/Exporters/GalleryExport/GalleryExport.cs:392
 msgid "The gallery URL entry does not appear to be a valid URL"
-msgstr "A entrada URL da galería non parece un URL válido"
+msgstr "O URL da galería non parece ser un URL válido"
 
 #: ../extensions/Exporters/GalleryExport/GalleryExport.cs:402
 #: ../extensions/Exporters/GalleryExport/GalleryExport.cs:429
@@ -781,11 +781,11 @@ msgid ""
 "Please choose a unique name."
 msgstr ""
 "Xa hai unha galería con este nome dentro das galerías que ten rexistradas. "
-"Escolla un único nome."
+"Escolla un nome único."
 
 #: ../extensions/Exporters/GalleryExport/GalleryExport.cs:528
 msgid "(TopLevel)"
-msgstr "(Nivel máis alto)"
+msgstr "(Nivel superior)"
 
 #: ../extensions/Exporters/GalleryExport/GalleryExport.cs:590
 msgid "Invalid Gallery name"
@@ -797,12 +797,12 @@ msgid ""
 "Only letters, numbers, - and _ are allowed"
 msgstr ""
 "O nome da galería contén caracteres non válidos.\n"
-"Só letras, números, - e _ están permitidos"
+"Só se permiten letras, números, «-» e «_» "
 
 #: ../extensions/Exporters/GalleryExport/GalleryExport.cs:796
 #, csharp-format
 msgid "Error uploading picture \"{0}\" to Gallery: {1}"
-msgstr "Erro ao enviar a imaxe «{0}» á galería: {1}"
+msgstr "Produciuse un erro ao enviar a imaxe «{0}» a Gallery: {1}"
 
 #: ../extensions/Exporters/GalleryExport/GalleryExport.cs:824
 #: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:728
@@ -814,7 +814,7 @@ msgstr "(Non hai galerías)"
 #: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:850
 #: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:726
 msgid "(Not Connected)"
-msgstr "(Sen conexión)"
+msgstr "(Desconectado)"
 
 #: ../extensions/Exporters/GalleryExport/GalleryExport.cs:917
 #: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:851
@@ -842,7 +842,7 @@ msgstr "<b>Galería</b>"
 #: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:5
 msgid "<span weight='bold' size='larger'>Error Connecting to Gallery</span>\n"
 msgstr ""
-"<span weight='bold' size='larger'>Erro ao conectar coa galería</span>\n"
+"<span weight='bold' size='larger'>Erro ao conectar coa Gallery</span>\n"
 
 #: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:9
 msgid "Export _titles and comments"
@@ -852,7 +852,7 @@ msgstr "Exportar _títulos e comentarios"
 #: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:10
 #: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:7
 msgid "Open _album in browser when done uploading"
-msgstr "_Abrir o álbum nun navegador ao terminar o envío"
+msgstr "_Abrir o álbum nun navegador ao remate de subir"
 
 #: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:11
 #: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:11
@@ -912,7 +912,7 @@ msgstr "_Nome de usuario:"
 
 #: ../extensions/Exporters/GalleryExport/GalleryRemote.cs:362
 msgid "Error reading server response"
-msgstr "Erro ao ler a resposta do servidor"
+msgstr "Produciuse un erro ao ler a resposta do servidor"
 
 #. failed to find the response
 #: ../extensions/Exporters/GalleryExport/GalleryRemote.cs:374
@@ -935,7 +935,7 @@ msgstr ""
 
 #: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.addin.xml.h:1
 msgid "_PicasaWeb..."
-msgstr "_Picasaweb..."
+msgstr "_PicasaWeb..."
 
 #: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:442
 msgid "Error while creating Album"
@@ -2798,8 +2798,8 @@ msgstr "Reasociada"
 #, csharp-format
 msgid "Really reparent \"{0}\" as version of \"{1}\"?"
 msgid_plural "Really reparent {2} photos as versions of \"{1}\"?"
-msgstr[0] "Está seguro de que quere eliminar a versión «{0}»?"
-msgstr[1] "Está seguro de que quere eliminar a versión «{0}»?"
+msgstr[0] "Ten certeza que quere restructurar «{2}» como versión de «{1}»?"
+msgstr[1] "Ten certeza que quere restructurar {2} fotos como versións de «{1}»?"
 
 #: ../src/PhotoVersionCommands.cs:198
 msgid ""
@@ -2812,7 +2812,7 @@ msgstr ""
 #: ../src/PhotoVersionCommands.cs:238
 #, csharp-format
 msgid "Received exception \"{0}\"."
-msgstr "Recibiuse a excepción «{0}». Non se pode gardar a foto {1}"
+msgstr "Recibiuse a excepción «{0}»."
 
 #: ../src/PhotoVersionMenu.cs:66 ../src/Widgets/InfoBox.cs:566
 #: ../src/Widgets/InfoBox.cs:568
