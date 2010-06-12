@@ -519,41 +519,6 @@ public class PhotoStore : DbStore<Photo> {
 
 		Commit (photo);
 	}
-	
-	// Dbus
-	public event EventHandler<DbItemEventArgs<Photo>> ItemsAddedOverDBus;
-	public event EventHandler<DbItemEventArgs<Photo>> ItemsRemovedOverDBus;
-
-	public Photo CreateOverDBus (string new_path, string orig_path, uint roll_id)  {
-		Photo photo = Create (new SafeUri (new_path), new SafeUri (orig_path), roll_id, Photo.GenerateMD5 (new SafeUri (new_path)));
-		EmitAddedOverDBus (photo);
-
-		return photo;
-	}
-
-	public void RemoveOverDBus (Photo photo) {
-	 	Remove (photo);
-		EmitRemovedOverDBus (photo);
-	}
-
-
-	protected void EmitAddedOverDBus (Photo photo) {
-	 	EmitAddedOverDBus (new Photo [] { photo });
-	}
-
-	protected void EmitAddedOverDBus (Photo [] photos) {
-	 	if (ItemsAddedOverDBus != null)
-		 	ItemsAddedOverDBus (this, new DbItemEventArgs<Photo> (photos));
-	}
-
-	protected void EmitRemovedOverDBus (Photo photo) {
-		EmitRemovedOverDBus (new Photo [] { photo });
-	}
-
-	protected void EmitRemovedOverDBus (Photo [] photos) {
-		if (ItemsRemovedOverDBus != null)
-		 	ItemsRemovedOverDBus (this, new DbItemEventArgs<Photo> (photos)); 
-	}
 
 	public int Count (string table_name, params IQueryCondition [] conditions)
 	{

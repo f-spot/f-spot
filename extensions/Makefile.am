@@ -1,7 +1,6 @@
 SUBDIRS = 			\
 	Editors		\
 	Exporters		\
-	Services		\
 	Tools			\
 	Transitions
 

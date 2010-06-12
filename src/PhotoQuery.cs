@@ -76,10 +76,6 @@ namespace FSpot {
 		public PhotoQuery (PhotoStore store, params IQueryCondition [] conditions)
 		{
 			this.store = store;
-			// Note: this is to let the query pick up
-			// 	 photos that were added or removed over dbus
-			this.store.ItemsAddedOverDBus += delegate { RequestReload(); };
-			this.store.ItemsRemovedOverDBus += delegate { RequestReload(); };
 			this.store.ItemsChanged += MarkChanged;
 			cache = new PhotoCache (store, temp_table);
 			reverse_lookup = new Dictionary<uint, int> ();
