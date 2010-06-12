@@ -7,6 +7,7 @@ using System.IO;
 
 using FSpot.Utils;
 using Hyena;
+using TagLib.Image;
 
 namespace FSpot {
 
@@ -33,7 +34,7 @@ namespace FSpot {
 		{
 		}
 
-		public static PixbufOrientation GetViewOrientation (PixbufOrientation po)
+		public static ImageOrientation GetViewOrientation (ImageOrientation po)
 		{
 			if (timer == 0 && available)
 				SetupAccelerometer ();
@@ -52,7 +53,7 @@ namespace FSpot {
 
 		public static void SetupAccelerometer ()
 		{
-			if (!File.Exists(SYSFS_FILE)) {
+			if (!System.IO.File.Exists (SYSFS_FILE)) {
 				available = false;
 				return;
 			}
@@ -105,7 +106,7 @@ namespace FSpot {
 		private static void GetHDAPSCoords (out int x, out int y)
 		{
 			try {
-				using (Stream file = File.OpenRead (SYSFS_FILE)) {
+				using (Stream file = System.IO.File.OpenRead (SYSFS_FILE)) {
 					StreamReader sr = new StreamReader (file);
 
 					string s = sr.ReadLine ();

@@ -4,6 +4,7 @@ using FSpot;
 using FSpot.Utils;
 using SemWeb;
 using Hyena;
+using TagLib.Image;
 
 namespace FSpot.X3f {
 	internal class Info {
@@ -15,19 +16,19 @@ namespace FSpot.X3f {
 		uint rows;
 		uint rotation;
 
-		public PixbufOrientation Orientation {
+		public ImageOrientation Orientation {
 			get {
 				switch (rotation) {
 				case 0:
-					return PixbufOrientation.TopLeft;
+					return ImageOrientation.TopLeft;
 				case 270:
-					return PixbufOrientation.LeftBottom;
+					return ImageOrientation.LeftBottom;
 				case 180:
-					return PixbufOrientation.BottomRight;
+					return ImageOrientation.BottomRight;
 				case 90:
-					return PixbufOrientation.RightTop;
+					return ImageOrientation.RightTop;
 				default:
-					return PixbufOrientation.TopLeft;
+					return ImageOrientation.TopLeft;
 				}
 			}
 		}
@@ -101,7 +102,7 @@ namespace FSpot.X3f {
 			MetadataStore.AddLiteral (sink, "tiff:ImageLength", Info.Height.ToString ());
 		}
 
-		public override PixbufOrientation GetOrientation ()
+		public override ImageOrientation GetOrientation ()
 		{
 			return Info.Orientation;
 		}

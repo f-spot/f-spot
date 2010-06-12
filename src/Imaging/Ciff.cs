@@ -1,6 +1,7 @@
 using System;
 using FSpot.Utils;
 using Hyena;
+using TagLib.Image;
 
 namespace FSpot.Ciff {
 	public enum Tag {
@@ -89,7 +90,7 @@ namespace FSpot.Ciff {
 
 	
 
-	public struct ImageSpec {
+	internal struct ImageSpec {
 		public uint ImageWidth;  // Number of horizontal pixels
 		public uint ImageHeight; // Number of vertical pixels
 		public float PixelAspectRatio;
@@ -111,19 +112,19 @@ namespace FSpot.Ciff {
 			Log.DebugFormat ("0x{0}", ColorBW.ToString ("x"));
 		}
 
-		public PixbufOrientation Orientation {
+		public ImageOrientation Orientation {
 			get {
 				int angle = RotationAngle % 360;
 				if (angle < 45)
-					return PixbufOrientation.TopLeft;
+					return ImageOrientation.TopLeft;
 				else if (angle < 135)
-					return PixbufOrientation.RightTop;
+					return ImageOrientation.RightTop;
 				else if (angle < 225)
-					return PixbufOrientation.BottomRight;
+					return ImageOrientation.BottomRight;
 				else if (angle < 315)
-					return PixbufOrientation.LeftBottom;
+					return ImageOrientation.LeftBottom;
 				else
-					return PixbufOrientation.TopLeft;
+					return ImageOrientation.TopLeft;
 			}
 		}
 
@@ -418,9 +419,9 @@ namespace FSpot.Ciff {
 			get { return version; }
 		}
 
-		public override PixbufOrientation GetOrientation ()
+		public override ImageOrientation GetOrientation ()
 		{
-			PixbufOrientation orientation = PixbufOrientation.TopLeft;
+			var orientation = ImageOrientation.TopLeft;
 			ImageDirectory props = Root.ReadDirectory (Tag.ImageProps);
 		       	byte [] data = props.ReadEntry (Tag.ImageSpec);
 			

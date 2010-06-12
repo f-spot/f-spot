@@ -5,6 +5,7 @@ using FSpot.Tiff;
 using FSpot.Utils;
 using Hyena;
 using TagLib;
+using TagLib.Image;
 
 namespace FSpot {
 	public interface IThumbnailContainer {
@@ -30,62 +31,6 @@ namespace FSpot {
 		public override Cms.Profile GetProfile ()
 		{
 			return null;
-		}
-
-		public override string Description {
-			get {
-                return metadata_file.ImageTag.Comment;
-			}
-		}
-
-		public void SetDescription (string value)
-		{
-            metadata_file.GetTag (TagTypes.XMP, true); // Ensure XMP tag
-            metadata_file.ImageTag.Comment = value;
-		}
-
-		private void UpdateMeta ()
-		{
-            metadata_file.GetTag (TagTypes.XMP, true); // Ensure XMP tag
-            metadata_file.ImageTag.Software = FSpot.Defines.PACKAGE + " version " + FSpot.Defines.VERSION;
-		}
-
-		/*private void SaveMetaData (System.IO.Stream input, System.IO.Stream output)
-		{
-			JpegHeader header = new JpegHeader (input);
-			UpdateMeta ();
-			
-			// Console.WriteLine ("updated metadata");
-			header.SetExif (this.ExifData);
-			// Console.WriteLine ("set exif");
-			if (xmp != null)
-				header.SetXmp (xmp);
-			// Console.WriteLine ("set xmp");
-			header.Save (output);
-			// Console.WriteLine ("saved");
-		}*/
-		
-		public void SaveMetaData (string path)
-		{
-            // FIXME: This currently copies the file out to a tmp file, overwrites it
-            // and restores the tmp file in case of failure. Should obviously be the
-            // other way around, but Taglib# doesn't have an interface to do this.
-            // https://bugzilla.gnome.org/show_bug.cgi?id=618768
-
-            var uri = new SafeUri (path);
-            var tmp = System.IO.Path.GetTempFileName ();
-            var tmp_uri = new SafeUri (tmp);
-
-            var orig_file = GLib.FileFactory.NewForUri (uri);
-            var tmp_file = GLib.FileFactory.NewForUri (tmp_uri);
-
-            orig_file.Copy (tmp_file, GLib.FileCopyFlags.AllMetadata, null, null);
-
-            try {
-                metadata_file.Save ();
-            } catch (Exception) {
-                tmp_file.Copy (orig_file, GLib.FileCopyFlags.AllMetadata, null, null);
-            }
 		}
 
 		public void SetThumbnail (Gdk.Pixbuf source)
@@ -167,15 +112,15 @@ namespace FSpot {
 			return null;
 		}
 		
-		public override PixbufOrientation GetOrientation () 
+		public override ImageOrientation GetOrientation ()
 		{
             var orientation = metadata_file.ImageTag.Orientation;
-			return (PixbufOrientation) orientation;
+			return orientation;
 		}
 		
-		public void SetOrientation (PixbufOrientation orientation)
+		public void SetOrientation (ImageOrientation orientation)
 		{
-            metadata_file.ImageTag.Orientation = (TagLib.Image.ImageOrientation) orientation;
+            metadata_file.ImageTag.Orientation = orientation;
 		}
 		
 		public void SetDateTimeOriginal (DateTime time)

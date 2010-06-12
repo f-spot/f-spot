@@ -13,6 +13,7 @@ using FSpot.Utils;
 using System;
 using Gdk;
 using Hyena;
+using TagLib.Image;
 
 namespace FSpot.Loaders {
 	public interface IImageLoader : IDisposable {
@@ -25,6 +26,6 @@ namespace FSpot.Loaders {
 		void Load (SafeUri uri);
 
 		Pixbuf Pixbuf { get; }
-		PixbufOrientation PixbufOrientation { get; }
+		ImageOrientation PixbufOrientation { get; }
 	}
 }

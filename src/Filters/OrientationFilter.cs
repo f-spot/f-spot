@@ -18,9 +18,11 @@ namespace FSpot.Filters {
 			string source = req.Current.LocalPath;
 			var dest_uri = req.TempUri (System.IO.Path.GetExtension (source));
 			string dest = dest_uri.LocalPath;
+            bool changed = false;
 
+            // FIXME: needs to be re-added https://bugzilla.gnome.org/show_bug.cgi?id=621369
+            /*
 			using (ImageFile img = ImageFile.Create (req.Current)) {
-				bool changed = false;
 				
 				if (img.Orientation != PixbufOrientation.TopLeft && img is JpegFile) {
 					JpegFile jimg = img as JpegFile;
@@ -58,12 +60,13 @@ namespace FSpot.Filters {
 						jimg.Dispose ();
 					}
 				}
-	
-				if (changed)
-					req.Current = dest_uri;
-	
-				return changed;
 			}
+            */
+
+            if (changed)
+                req.Current = dest_uri;
+
+            return changed;
 		}
 		
 	}

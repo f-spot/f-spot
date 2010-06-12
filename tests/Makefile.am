@@ -4,7 +4,8 @@ EXTRA_DIST = \
 	data/f-spot-0.6.1.5.db \
 	data/f-spot-0.6.2.db \
 	data/f-spot-0.7.0-17.2.db \
-	data/f-spot-0.7.0-18.0.db
+	data/f-spot-0.7.0-18.0.db \
+	data/taglib-sample.jpg
 
 if ENABLE_TESTS
 

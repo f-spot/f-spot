@@ -7,7 +7,7 @@ namespace FSpot.Utils
 {
     public sealed class GIOTagLibFileAbstraction : TagLib.File.IFileAbstraction
     {
-        private FileInputStream gio_stream;
+        private GioStream stream;
 
         public string Name {
             get {
@@ -22,23 +22,32 @@ namespace FSpot.Utils
 
         public Stream ReadStream {
             get {
-                if (gio_stream == null) {
-                    var file = FileFactory.NewForUri(Uri);
-                    gio_stream = file.Read (null);
+                if (stream == null) {
+                    var file = FileFactory.NewForUri (Uri);
+                    stream = new GioStream (file.Read (null));
                 }
-                return new GioStream (gio_stream);
+                return stream;
             }
         }
 
         public Stream WriteStream {
-            get { throw new NotImplementedException (); }
+            get {
+                if (stream == null) {
+                    var file = FileFactory.NewForUri (Uri);
+                    stream = new GioStream (file.ReplaceReadwrite (null, true, FileCreateFlags.None, null));
+                }
+                if (!stream.CanWrite) {
+                    throw new Exception ("Stream still open in reading mode!");
+                }
+                return stream;
+            }
         }
 
         public void CloseStream (Stream stream)
         {
             stream.Close ();
-            gio_stream.Dispose ();
-            gio_stream = null;
+            if (stream == this.stream)
+                this.stream = null;
         }
     }
 }

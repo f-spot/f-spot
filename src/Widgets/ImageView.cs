@@ -15,6 +15,7 @@ using Gtk;
 using Gdk;
 
 using FSpot.Utils;
+using TagLib.Image;
 
 namespace FSpot.Widgets
 {
@@ -61,8 +62,8 @@ namespace FSpot.Widgets
 			} 
 		}
 
-		PixbufOrientation pixbuf_orientation;
-		public PixbufOrientation PixbufOrientation {
+		ImageOrientation pixbuf_orientation;
+		public ImageOrientation PixbufOrientation {
 			get { return pixbuf_orientation; }
 			set {
 				if (value == pixbuf_orientation)
@@ -688,7 +689,7 @@ namespace FSpot.Widgets
 			if (zoom == 1.0 &&
 			    !Pixbuf.HasAlpha &&
 			    Pixbuf.BitsPerSample == 8 &&
-			    pixbuf_orientation == PixbufOrientation.TopLeft) {
+			    pixbuf_orientation == ImageOrientation.TopLeft) {
 				GdkWindow.DrawPixbuf (Style.BlackGC,
 						      Pixbuf,
 						      area.X - x_offset, area.Y - y_offset,

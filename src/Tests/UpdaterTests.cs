@@ -67,6 +67,8 @@ namespace FSpot.Tests
             CheckPhotosTable (db);
             CheckPhotoVersionsTable (db);
             CheckTagsTable (db);
+
+            file2.Delete ();
         }
 
         private void ValidateRevision (QueuedSqliteDatabase db, string revision)

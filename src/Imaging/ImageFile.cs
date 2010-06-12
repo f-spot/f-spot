@@ -9,6 +9,8 @@ using Mono.Unix;
 using Mono.Unix.Native;
 using Gdk;
 
+using TagLib.Image;
+
 using GFileInfo = GLib.FileInfo;
 
 namespace FSpot {
@@ -105,15 +107,10 @@ namespace FSpot {
 			get { return this.uri; }
 		}
 
-		public PixbufOrientation Orientation {
+		public ImageOrientation Orientation {
 			get { return GetOrientation (); }
 		}
 
-		public virtual string Description
-		{
-			get { return null; }
-		}
-		
 		public virtual void Save (Gdk.Pixbuf pixbuf, System.IO.Stream stream)
 		{
 			throw new NotImplementedException (Catalog.GetString ("Writing to this file format is not supported"));
@@ -155,9 +152,9 @@ namespace FSpot {
 			}	
 		}
 	
-		public virtual PixbufOrientation GetOrientation () 
+		public virtual ImageOrientation GetOrientation ()
 		{
-			return PixbufOrientation.TopLeft;
+			return ImageOrientation.TopLeft;
 		}
 		
 		// FIXME this need to have an intent just like the loading stuff.

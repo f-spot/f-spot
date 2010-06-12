@@ -29,7 +29,7 @@ namespace FSpot {
 				new Description ("tiff:PlanarConfiguration", Catalog.GetString ("Planar Configuration"), 
 						 typeof (FSpot.Tiff.PlanarConfiguration)),
 				new Description ("tiff:Orientation", Catalog.GetString ("Orientation"), 
-						 typeof (PixbufOrientation)),
+						 typeof (TagLib.Image.ImageOrientation)),
 				new Description ("tiff:PhotometricInterpretation", Catalog.GetString ("Photometric Interpretation"), 
 						 typeof (FSpot.Tiff.PhotometricInterpretation)),
 				new Description ("tiff:ResolutionUnit", Catalog.GetString ("Resolution Unit"),

@@ -10,7 +10,6 @@ SOURCES = \
 	GdkUtils.cs \
     GIOTagLibFileAbstraction.cs \
 	GtkUtil.cs \
-	PixbufOrientation.cs \
 	PixbufUtils.cs \
 	RecursiveFileEnumerator.cs \
 	SafeUri.cs \
@@ -19,6 +18,7 @@ SOURCES = \
 	UriExtensions.cs \
 	UriUtils.cs \
 	XdgThumbnailSpec.cs \
+	Tests/GIOTagLibFileAbstractionTests.cs \
 	Tests/SafeUriTests.cs \
 	Tests/XdgThumbnailSpecTests.cs
 

@@ -155,11 +155,12 @@ namespace FSpot.Import
 			if (metadata_parsed)
 				return;
 
-            var res = new GIOTagLibFileAbstraction () { Uri = DefaultVersion.Uri };
-            var metadata_file = TagLib.File.Create (res) as TagLib.Image.File;
-            var date = metadata_file.ImageTag.DateTime;
-            time = date.HasValue ? date.Value : CreateDate;
-            description = metadata_file.ImageTag.Comment;
+			var res = new GIOTagLibFileAbstraction () { Uri = DefaultVersion.Uri };
+			using (var metadata = TagLib.File.Create (res) as TagLib.Image.File) {
+				var date = metadata.ImageTag.DateTime;
+				time = date.HasValue ? date.Value : CreateDate;
+				description = metadata.ImageTag.Comment;
+			}
 
 			metadata_parsed = true;
 		}
@@ -169,10 +170,10 @@ namespace FSpot.Import
 
         private DateTime time;
         public System.DateTime Time {
-			get {
+            get {
 				EnsureMetadataParsed ();
-				return time;
-			}
+                return time;
+            }
         }
 
 		private string description;

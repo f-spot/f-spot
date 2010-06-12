@@ -1320,28 +1320,6 @@ namespace FSpot.Png {
 			return null;
 		}
 
-		public override string Description {
-			get {
-				string description = Header.LookupText ("Description");
-
-				if (description != null)
-					return description;
-				else
-					return Header.LookupText ("Comment");
-			}
-		}
-
-		public void SetDescription (string description) 
-		{
-			TextChunk text = null;
-			text = Header.LookupTextChunk ("Description");
-			
-			if (text != null)
-				text.SetText (description);
-			else 
-				Header.Insert (new TextChunk ("Description", description));
-		}
-
 		public XmpFile GetXmp ()
 		{
 			TextChunk xmpchunk  = Header.LookupTextChunk ("XML:com.adobe.xmp");

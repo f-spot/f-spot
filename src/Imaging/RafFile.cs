@@ -1,5 +1,6 @@
 using FSpot.Utils;
 using Hyena;
+using TagLib.Image;
 
 namespace FSpot.Raf {
 	// This is reverse engineered from looking at the sample files I have
@@ -34,17 +35,17 @@ namespace FSpot.Raf {
 			}
 		}
 		
-		public override PixbufOrientation GetOrientation (){
-			PixbufOrientation orientation = PixbufOrientation.TopLeft;
+		public override ImageOrientation GetOrientation (){
+			var orientation = ImageOrientation.TopLeft;
 
 			Exif.ExifEntry e = this.ExifData.GetContents (Exif.Ifd.Zero).Lookup (Exif.Tag.Orientation);
 			if (e != null) {
 				ushort [] value = e.GetDataUShort ();
-				orientation = (PixbufOrientation) value [0];
+				orientation = (ImageOrientation) value [0];
 			}
 
-			if (orientation < PixbufOrientation.TopLeft || orientation > PixbufOrientation.LeftBottom)
-				orientation = PixbufOrientation.TopLeft;
+			if (orientation < ImageOrientation.TopLeft || orientation > ImageOrientation.LeftBottom)
+				orientation = ImageOrientation.TopLeft;
 
 			return orientation;
 		}

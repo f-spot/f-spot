@@ -6,6 +6,7 @@ using System;
 using System.IO;
 using System.Collections.Generic;
 using Hyena;
+using TagLib.Image;
 
 namespace FSpot.Tiff {
 
@@ -2035,13 +2036,13 @@ namespace FSpot.Tiff {
 			Header.SelectDirectory (Header.Directory, sink);
 		}
 
-		public override PixbufOrientation GetOrientation ()
+		public override ImageOrientation GetOrientation ()
 		{
 			ShortEntry e = (ShortEntry)(this.Header.Directory.Lookup (TagId.Orientation));
 			if (e != null) 
-				return (PixbufOrientation)(e.ShortValue[0]);
+				return (ImageOrientation)(e.ShortValue[0]);
 			else
-				return PixbufOrientation.TopLeft;
+				return ImageOrientation.TopLeft;
 		}
 
 		public System.IO.Stream LookupJpegSubstream (ImageDirectory directory)
@@ -2226,20 +2227,12 @@ namespace FSpot.Tiff {
 		{
 		}
 
-		/*
-		public override PixbufOrientation GetOrientation ()
-		{
-			return PixbufOrientation.TopLeft;
-		}
-		*/
-
 		public Gdk.Pixbuf GetEmbeddedThumbnail ()
 		{
 			ImageDirectory directory;
 			directory = Header.Directory.NextDirectory;
 			return TransformAndDispose (LoadJpegInterchangeFormat (directory));
 		}
-
 
 		public override System.IO.Stream PixbufStream ()
 		{

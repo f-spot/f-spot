@@ -15,6 +15,7 @@ using Gdk;
 using FSpot.Utils;
 using FSpot.Platform;
 using Hyena;
+using TagLib.Image;
 
 namespace FSpot.Loaders {
 	public class GdkImageLoader : Gdk.PixbufLoader, IImageLoader
@@ -37,7 +38,7 @@ namespace FSpot.Loaders {
 
 			//First, send a thumbnail if we have one
 			if ((thumb = XdgThumbnailSpec.LoadThumbnail (uri, ThumbnailSize.Large, null)) != null) {
-				pixbuf_orientation = PixbufOrientation.TopLeft;
+				pixbuf_orientation = ImageOrientation.TopLeft;
 				EventHandler<AreaPreparedEventArgs> prep = AreaPrepared;
 				if (prep != null)
 					prep (this, new AreaPreparedEventArgs (true));
@@ -84,8 +85,8 @@ namespace FSpot.Loaders {
 			get { return prepared; }
 		}
 
-		PixbufOrientation pixbuf_orientation = PixbufOrientation.TopLeft;
-		public PixbufOrientation PixbufOrientation {
+		ImageOrientation pixbuf_orientation = ImageOrientation.TopLeft;
+		public ImageOrientation PixbufOrientation {
 			get { return pixbuf_orientation; }
 		}
 

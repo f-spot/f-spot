@@ -18,6 +18,8 @@ using FSpot.Loaders;
 using Hyena;
 using Gdk;
 
+using TagLib.Image;
+
 namespace FSpot.Widgets {
 	public class PhotoImageView : ImageView {
 #region public API
@@ -241,7 +243,7 @@ namespace FSpot.Widgets {
 			if (loader.Pixbuf != null) //FIXME: this test in case the photo was loaded with the direct loader
 				PixbufOrientation = Accelerometer.GetViewOrientation (loader.PixbufOrientation);
 			else
-				PixbufOrientation = PixbufOrientation.TopLeft;
+				PixbufOrientation = ImageOrientation.TopLeft;
 
 			if (Pixbuf == null)
 				LoadErrorImage (null);
@@ -281,7 +283,7 @@ namespace FSpot.Widgets {
 			if (old != null)
 				old.Dispose ();
 
-			PixbufOrientation = PixbufOrientation.TopLeft;
+			PixbufOrientation = ImageOrientation.TopLeft;
 			ZoomFit (false);
 		}
 

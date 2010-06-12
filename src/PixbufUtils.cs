@@ -17,6 +17,7 @@ using System.IO;
 using FSpot;
 using FSpot.Utils;
 using Hyena;
+using TagLib.Image;
 
 public class PixbufUtils {
 	static Pixbuf error_pixbuf = null;
@@ -76,7 +77,7 @@ public class PixbufUtils {
 		Gdk.PixbufLoader loader = new Gdk.PixbufLoader ();
 		int max_width;
 		int max_height;
-		PixbufOrientation orientation;
+		ImageOrientation orientation;
 
 		public AspectLoader (int max_width, int max_height) 
 		{
@@ -88,10 +89,10 @@ public class PixbufUtils {
 		private void HandleSizePrepared (object obj, SizePreparedArgs args)
 		{
 			switch (orientation) {
-			case PixbufOrientation.LeftTop:
-			case PixbufOrientation.LeftBottom:
-			case PixbufOrientation.RightTop:
-			case PixbufOrientation.RightBottom:	
+			case ImageOrientation.LeftTop:
+			case ImageOrientation.LeftBottom:
+			case ImageOrientation.RightTop:
+			case ImageOrientation.RightBottom:
 				int tmp = max_width;
 				max_width = max_height;
 				max_height = tmp;
@@ -109,7 +110,7 @@ public class PixbufUtils {
 				loader.SetSize (scale_width, scale_height);
 		}
 
-		public Pixbuf Load (System.IO.Stream stream, PixbufOrientation orientation)
+		public Pixbuf Load (System.IO.Stream stream, ImageOrientation orientation)
 		{
 			int count;
 			byte [] data = new byte [8192];
@@ -131,7 +132,7 @@ public class PixbufUtils {
 		{
 			try {
 				orientation = GetOrientation (path);
-				using (FileStream fs = File.OpenRead (path)) {
+				using (FileStream fs = System.IO.File.OpenRead (path)) {
 					return Load (fs, orientation);
 				}
 			} catch (Exception) {
@@ -642,7 +643,7 @@ public class PixbufUtils {
 	{
 		byte [] thumb_data = data.Data;
 		if (thumb_data.Length > 0) {
-			PixbufOrientation orientation = GetOrientation (data);
+			ImageOrientation orientation = GetOrientation (data);
 			
 			using (MemoryStream mem = new MemoryStream (thumb_data)) {
 				Gdk.Pixbuf thumb = new Gdk.Pixbuf (mem);
@@ -657,21 +658,21 @@ public class PixbufUtils {
 		return null;
 	}
 
-	public static PixbufOrientation GetOrientation (Exif.ExifData data)
+	public static ImageOrientation GetOrientation (Exif.ExifData data)
 	{
-		PixbufOrientation orientation = PixbufOrientation.TopLeft;
+		ImageOrientation orientation = ImageOrientation.TopLeft;
 		
 		Exif.ExifEntry e = data.GetContents (Exif.Ifd.Zero).Lookup (Exif.Tag.Orientation);
 
 		if (e != null) {
 			ushort [] value = e.GetDataUShort ();
-			orientation = (PixbufOrientation) value [0];
+			orientation = (ImageOrientation) value [0];
 		}
 
 		return orientation;
 	}
 
-	public static PixbufOrientation GetOrientation (SafeUri uri)
+	public static ImageOrientation GetOrientation (SafeUri uri)
 	{
 		using (FSpot.ImageFile img = FSpot.ImageFile.Create (uri)) {
 			return img.Orientation;
@@ -679,7 +680,7 @@ public class PixbufUtils {
 	}
 	
 	[Obsolete ("Use GetOrientation (SafeUri) instead")]
-	public static PixbufOrientation GetOrientation (string path)
+	public static ImageOrientation GetOrientation (string path)
 	{
         return GetOrientation (new SafeUri (path));
 	}

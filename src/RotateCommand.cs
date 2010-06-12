@@ -60,50 +60,46 @@ namespace FSpot {
 
 		private static void RotateOrientation (string original_path, RotateDirection direction)
 		{
-			using (FSpot.ImageFile img = FSpot.ImageFile.Create (new SafeUri (original_path))) {
-				if (img is JpegFile) {
-					FSpot.JpegFile jimg = img as FSpot.JpegFile;
-					PixbufOrientation orientation = direction == RotateDirection.Clockwise
-						? FSpot.Utils.PixbufUtils.Rotate90 (img.Orientation)
-						: FSpot.Utils.PixbufUtils.Rotate270 (img.Orientation);
-				
-					jimg.SetOrientation (orientation);
-					jimg.SaveMetaData (original_path);
-				} else if (img is PngFile) {
-					PngFile png = img as PngFile;
-					bool supported = false;
+            try {
+                var res = new GIOTagLibFileAbstraction () { Uri = new SafeUri (original_path) };
+                using (var metadata = TagLib.File.Create (res) as TagLib.Image.File) {
+                    var tag = metadata.ImageTag;
+                    var orientation = direction == RotateDirection.Clockwise
+                        ? FSpot.Utils.PixbufUtils.Rotate90 (tag.Orientation)
+                        : FSpot.Utils.PixbufUtils.Rotate270 (tag.Orientation);
 
-					//FIXME there isn't much png specific here except the check
-					//the pixbuf is an accurate representation of the real file
-					//by checking the depth.  The check should be abstracted and
-					//this code made generic.
-					foreach (PngFile.Chunk c in png.Chunks) {
-						PngFile.IhdrChunk ihdr = c as PngFile.IhdrChunk;
-					
-						if (ihdr != null && ihdr.Depth == 8)
-							supported = true;
-					}
-
-					if (!supported) {
-						throw new RotateException (Catalog.GetString ("Unable to rotate this type of photo"), original_path);
-					}
-
-					string backup = ImageFile.TempPath (original_path);
-					using (Stream stream = File.Open (backup, FileMode.Truncate, FileAccess.Write)) {
-						using (Pixbuf pixbuf = img.Load ()) {
-							PixbufOrientation fake = (direction == RotateDirection.Clockwise) ? PixbufOrientation.RightTop : PixbufOrientation.LeftBottom;
-							using (Pixbuf rotated = FSpot.Utils.PixbufUtils.TransformOrientation (pixbuf, fake)) {
-								img.Save (rotated, stream);
-							}
-						}
-					}
-					File.Copy (backup, original_path, true);
-					File.Delete (backup);
-				} else {
-					throw new RotateException (Catalog.GetString ("Unable to rotate this type of photo"), original_path);
-				}
-			}
+                    tag.Orientation = orientation;
+                    SaveMetaData (metadata, original_path);
+                }
+            } catch (Exception e) {
+                throw new RotateException (Catalog.GetString ("Unable to rotate this type of photo"), original_path);
+            }
 		}
+
+        private static void SaveMetaData (TagLib.File image, string path)
+        {
+            // FIXME: This currently copies the file out to a tmp file, overwrites it
+            // and restores the tmp file in case of failure. Should obviously be the
+            // other way around, but Taglib# doesn't have an interface to do this.
+            // https://bugzilla.gnome.org/show_bug.cgi?id=618768
+
+            var uri = new SafeUri (path);
+            var tmp = System.IO.Path.GetTempFileName ();
+            var tmp_uri = new SafeUri (tmp);
+
+            var orig_file = GLib.FileFactory.NewForUri (uri);
+            var tmp_file = GLib.FileFactory.NewForUri (tmp_uri);
+
+            tmp_file.Delete ();
+            orig_file.Copy (tmp_file, GLib.FileCopyFlags.AllMetadata | GLib.FileCopyFlags.Overwrite, null, null);
+
+            try {
+                image.Save ();
+            } catch (Exception e) {
+                tmp_file.Copy (orig_file, GLib.FileCopyFlags.AllMetadata | GLib.FileCopyFlags.Overwrite, null, null);
+                throw e;
+            }
+        }
 		       
 		private void Rotate (string original_path, RotateDirection dir)
 		{
