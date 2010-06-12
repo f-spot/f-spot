@@ -17,7 +17,6 @@ namespace MergeDbExtension
 	{
 		[Glade.Widget] Gtk.Dialog mergedb_dialog;
 		[Glade.Widget] Gtk.Button apply_button;
-		[Glade.Widget] Gtk.Button cancel_button;
 		[Glade.Widget] Gtk.FileChooserButton db_filechooser;
 		[Glade.Widget] Gtk.RadioButton newrolls_radio;
 		[Glade.Widget] Gtk.RadioButton allrolls_radio;

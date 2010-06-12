@@ -9,7 +9,7 @@ namespace FSpot
         string Filename { get; }
 
         // For convenience
-        SafeUri Uri { get; }
+        SafeUri Uri { get; set; }
 
 		string ImportMD5 { get; }
     }

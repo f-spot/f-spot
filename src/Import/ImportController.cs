@@ -292,10 +292,9 @@ namespace FSpot.Import
         void ImportPhoto (IBrowsableItem item, Roll roll)
         {
             var destination = FindImportDestination (item);
-            string hash = String.Empty;
 
             // Do duplicate detection
-            if (DuplicateDetect && store.HasDuplicate (item.DefaultVersion.Uri, out hash)) {
+            if (DuplicateDetect && store.HasDuplicate (item)) {
                 return;
             }
 
@@ -305,13 +304,11 @@ namespace FSpot.Import
 				var new_file = GLib.FileFactory.NewForUri (destination);
 				file.Copy (new_file, GLib.FileCopyFlags.AllMetadata, null, null);
                 copied_files.Add (destination);
+                item.DefaultVersion.Uri = destination;
             }
 
             // Import photo
-            var photo = store.Create (destination,
-                                      item.DefaultVersion.Uri,
-                                      roll.Id,
-                                      hash);
+            var photo = store.CreateFrom (item, roll.Id);
 
             bool needs_commit = false;
 

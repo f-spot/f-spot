@@ -188,7 +188,6 @@ namespace MergeDbExtension
 		void ImportPhoto (Photo photo, bool copy)
 		{
 			Log.WarningFormat ("Importing {0}", photo.Name);
-			PhotoStore from_store = from_db.Photos;
 			PhotoStore to_store = to_db.Photos;
 
 			string photo_path = photo.VersionUri (Photo.OriginalVersionId).AbsolutePath;
@@ -232,19 +231,21 @@ namespace MergeDbExtension
 			Photo newp;
 
 			if (copy)
-				destination = FindImportDestination (new SafeUri (photo_path)).AbsolutePath;
+				destination = FindImportDestination (new SafeUri (photo_path), photo.Time).AbsolutePath;
 			else
 				destination = photo_path;
+			var dest_uri = new SafeUri (photo_path);
 
-            var hash = Photo.GenerateMD5 (new SafeUri (photo_path));
+			photo.DefaultVersionId = 1;
+			photo.DefaultVersion.Uri = dest_uri;
 
-			// Don't copy if we are already home
-			if (photo_path == destination)
-				newp = to_store.Create (new SafeUri (destination), roll_map [photo.RollId], hash);
-			else {
+			if (photo.DefaultVersion.ImportMD5 == String.Empty) {
+				(photo.DefaultVersion as PhotoVersion).ImportMD5 = Photo.GenerateMD5 (photo.DefaultVersion.Uri);
+			}
+
+			if (photo_path != destination) {
 				System.IO.File.Copy (photo_path, destination);
 
-				newp = to_store.Create (new SafeUri (destination), new SafeUri (photo_path), roll_map [photo.RollId], hash);
 				try {
 					File.SetAttributes (destination, File.GetAttributes (destination) & ~FileAttributes.ReadOnly);
 					DateTime create = File.GetCreationTime (photo_path);
@@ -255,6 +256,8 @@ namespace MergeDbExtension
 					// we don't want an exception here to be fatal.
 				}
 			}
+
+			newp = to_store.CreateFrom (photo, roll_map [photo.RollId]);
 
 			if (newp == null)
 				return;
@@ -280,14 +283,10 @@ namespace MergeDbExtension
 			to_store.Commit (newp);
 		}
 
-        SafeUri FindImportDestination (SafeUri uri)
+        SafeUri FindImportDestination (SafeUri uri, DateTime time)
         {
             // Find a new unique location inside the photo folder
             string name = uri.GetFilename ();
-            DateTime time;
-            using (FSpot.ImageFile img = FSpot.ImageFile.Create (uri)) {
-                time = img.Date;
-            }
 
             var dest_uri = FSpot.Global.PhotoUri.Append (time.Year.ToString ())
                                           .Append (String.Format ("{0:D2}", time.Month))

@@ -95,7 +95,14 @@ namespace FSpot {
 			public string Filename { get { return Uri.GetFilename (); } }
 			public SafeUri Uri { get; set; }
 
-			public string ImportMD5 { get { return String.Empty; } }
+			private string import_md5 = String.Empty;
+			public string ImportMD5 {
+				get {
+					if (import_md5 == String.Empty)
+						import_md5 = Photo.GenerateMD5 (Uri);
+					return import_md5;
+				}
+			}
 		}
 	}
 }

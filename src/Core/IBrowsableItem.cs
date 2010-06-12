@@ -34,6 +34,4 @@ namespace FSpot
 			get; 
 		}
 	}
-
-
 }

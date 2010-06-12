@@ -17,8 +17,21 @@ namespace FSpot.Import
 		public SafeUri BaseUri { get; set; }
 		public string Filename { get; set; }
 
-		public SafeUri Uri { get { return BaseUri.Append (Filename); } }
+		public SafeUri Uri {
+            get { return BaseUri.Append (Filename); }
+            set {
+                BaseUri = value.GetBaseUri ();
+                Filename = value.GetFilename ();
+            }
+        }
 
-        public string ImportMD5 { get { return String.Empty; } }
+        private string import_md5 = String.Empty;
+        public string ImportMD5 {
+            get {
+                if (import_md5 == String.Empty)
+                    import_md5 = Photo.GenerateMD5 (Uri);
+                return import_md5;
+            }
+        }
 	}
 }

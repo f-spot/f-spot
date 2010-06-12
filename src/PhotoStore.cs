@@ -100,8 +100,9 @@ public class PhotoStore : DbStore<Photo> {
 		Database.ExecuteNonQuery ("CREATE INDEX idx_photos_roll_id ON photos(roll_id)");
 	}
 
-	public bool HasDuplicate (SafeUri uri, out string hash) {
-		hash = Photo.GenerateMD5 (uri);
+	public bool HasDuplicate (IBrowsableItem item) {
+		var uri = item.DefaultVersion.Uri;
+		string hash = item.DefaultVersion.ImportMD5;
 		var condition = new ConditionWrapper (String.Format ("import_md5 = \"{0}\"", hash));
 		var dupes_by_hash = Count ("photo_versions", condition);
 		if (dupes_by_hash > 0)
@@ -122,9 +123,7 @@ public class PhotoStore : DbStore<Photo> {
 				Log.DebugFormat ("Found one possible duplicate for {0}", reader["filename"].ToString ());
 				if (!time.HasValue) {
 					// Only read time when needed
-					using (FSpot.ImageFile img = FSpot.ImageFile.Create (uri)) {
-						time = img.Date;
-					}
+					time = item.Time;
 				}
 
 				if (reader["time"].ToString () == DbUtils.UnixTimeFromDateTime (time.Value).ToString ()) {
@@ -142,20 +141,12 @@ public class PhotoStore : DbStore<Photo> {
 		return false;
 	}
 
-	public Photo Create (SafeUri uri, uint roll_id, string import_md5)
-	{
-		return Create (uri, uri, roll_id, import_md5);
-	}
-
-	public Photo Create (SafeUri new_uri, SafeUri orig_uri, uint roll_id, string import_md5)
+	public Photo CreateFrom (IBrowsableItem item, uint roll_id)
 	{
 		Photo photo;
 
-		var new_base_uri = new_uri.GetBaseUri ();
-		var filename = new_uri.GetFilename ();
-
-		using (FSpot.ImageFile img = FSpot.ImageFile.Create (orig_uri)) {
-			long unix_time = DbUtils.UnixTimeFromDateTime (img.Date);
+		using (FSpot.ImageFile img = FSpot.ImageFile.Create (item.DefaultVersion.Uri)) {
+			long unix_time = DbUtils.UnixTimeFromDateTime (item.Time);
 			string description = img.Description != null  ? img.Description.Split ('\0') [0] : String.Empty;
 
 	 		uint id = (uint) Database.Execute (
@@ -163,8 +154,8 @@ public class PhotoStore : DbStore<Photo> {
 					"INSERT INTO photos (time, base_uri, filename, description, roll_id, default_version_id, rating) "	+
 					"VALUES (:time, :base_uri, :filename, :description, :roll_id, :default_version_id, :rating)",
 	 				"time", unix_time,
-					"base_uri", new_base_uri.ToString (),
-					"filename", filename,
+					"base_uri", item.DefaultVersion.BaseUri.ToString (),
+					"filename", item.DefaultVersion.Filename,
 	 				"description", description,
 					"roll_id", roll_id,
 	 				"default_version_id", Photo.OriginalVersionId,
@@ -173,7 +164,7 @@ public class PhotoStore : DbStore<Photo> {
 			);
 
 			photo = new Photo (id, unix_time);
-			photo.AddVersionUnsafely (Photo.OriginalVersionId, new_base_uri, filename, import_md5, Catalog.GetString ("Original"), true);
+			photo.AddVersionUnsafely (Photo.OriginalVersionId, item.DefaultVersion.BaseUri, item.DefaultVersion.Filename, item.DefaultVersion.ImportMD5, Catalog.GetString ("Original"), true);
 			photo.Loaded = true;
 
 			InsertVersion (photo, photo.DefaultVersion as PhotoVersion);
