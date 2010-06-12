@@ -1224,6 +1224,7 @@ msgid_plural "{0} photos"
 msgstr[0] "{0} слика"
 msgstr[1] "{0} слике"
 msgstr[2] "{0} слика"
+msgstr[3] "Једна слика"
 
 #: ../extensions/Tools/LiveWebGallery/GalleryRequestHandler.cs:161
 #: ../extensions/Tools/LiveWebGallery/ui/LiveWebGallery.ui.h:8
@@ -1689,6 +1690,7 @@ msgid_plural "Modified ({0})"
 msgstr[0] "Измењена ({0})"
 msgstr[1] "Измењене ({0})"
 msgstr[2] "Измењених ({0})"
+msgstr[3] "Измењена ({0})"
 
 #: ../src/Core/Photo.cs:401
 #, csharp-format
@@ -2449,6 +2451,7 @@ msgid_plural "Merge the {0} selected tags?"
 msgstr[0] "Уклони {0} изабрану ознаку?"
 msgstr[1] "Уклони {0} изабране ознаке?"
 msgstr[2] "Уклони {0} изабраних ознака?"
+msgstr[3] "Уклони изабрану ознаку?"
 
 #: ../src/MainWindow.cs:1767
 msgid ""
@@ -2467,6 +2470,7 @@ msgid_plural "{0} Photos out of {1}"
 msgstr[0] "Слика {0} од {1}"
 msgstr[1] "Слике {0} од {1}"
 msgstr[2] "Слика {0} од {1}"
+msgstr[3] "Слика {0} од {1}"
 
 #: ../src/MainWindow.cs:1976 ../src/SingleView.cs:467
 #, csharp-format
@@ -2475,6 +2479,7 @@ msgid_plural "{0} Photos"
 msgstr[0] "{0} слика"
 msgstr[1] "{0} слике"
 msgstr[2] "{0} слика"
+msgstr[3] "Једна слика"
 
 #: ../src/MainWindow.cs:1979
 #, csharp-format
@@ -2483,6 +2488,7 @@ msgid_plural " ({0} selected)"
 msgstr[0] " ({0} изабрана)"
 msgstr[1] " ({0} изабране)"
 msgstr[2] " ({0} изабраних)"
+msgstr[3] " ({0} изабрана)"
 
 #: ../src/MainWindow.cs:2060
 msgid "_Ok"
@@ -2506,34 +2512,38 @@ msgstr "Грешка типа {0} се јавила при брисању дат
 #, csharp-format
 msgid "Delete the selected photo permanently?"
 msgid_plural "Delete the {0} selected photos permanently?"
-msgstr[0] "Трајно обрисати {0} изабрану слику?"
-msgstr[1] "Трајно обрисати {0} изабране слике?"
-msgstr[2] "Трајно обрисати {0} изабраних слика?"
+msgstr[0] "Да ли да обришем {0} изабрану слику?"
+msgstr[1] "Да ли да обришем {0} изабране слике?"
+msgstr[2] "Да ли да обришем {0} изабраних слика?"
+msgstr[3] "Да ли да обришем изабрану слику?"
 
 # bug: no plural forms needed
 #: ../src/MainWindow.cs:2106
 msgid "This deletes all versions of the selected photo from your drive."
 msgid_plural ""
 "This deletes all versions of the selected photos from your drive."
-msgstr[0] "Ово уклања све изабране слике са вашег диска."
-msgstr[1] "Ово уклања све изабране слике са вашег диска."
-msgstr[2] "Ово уклања све изабране слике са вашег диска."
+msgstr[0] "Ово уклања сва издања изабране слике са вашег диска."
+msgstr[1] "Ово уклања сва издања изабраних слика са вашег диска."
+msgstr[2] "Ово уклања сва издања изабраних слика са вашег диска."
+msgstr[3] "Ово уклања сва издања изабране слике са вашег диска."
 
 # bug: no plural forms needed
 #: ../src/MainWindow.cs:2109
 msgid "_Delete photo"
 msgid_plural "_Delete photos"
-msgstr[0] "У_клони слике"
+msgstr[0] "У_клони слику"
 msgstr[1] "У_клони слике"
 msgstr[2] "У_клони слике"
+msgstr[3] "У_клони слику"
 
 #: ../src/MainWindow.cs:2145
 #, csharp-format
 msgid "Remove the selected photo from F-Spot?"
 msgid_plural "Remove the {0} selected photos from F-Spot?"
-msgstr[0] "Уклонити {0} изабрану слику из Ф-броја?"
-msgstr[1] "Уклонити {0} изабране слике из Ф-броја?"
-msgstr[2] "Уклонити {0} изабраних слика из Ф-броја?"
+msgstr[0] "Да ли да уклоним {0} изабрану слику из Ф-броја?"
+msgstr[1] "Да ли да уклоним {0} изабране слике из Ф-броја?"
+msgstr[2] "Да ли да уклоним {0} изабраних слика из Ф-броја?"
+msgstr[3] "Да ли да уклоним изабрану слику из Ф-броја?"
 
 #: ../src/MainWindow.cs:2150
 msgid ""
@@ -2565,7 +2575,8 @@ msgid "photo"
 msgid_plural "photos"
 msgstr[0] "слика"
 msgstr[1] "слике"
-msgstr[2] "слика"
+msgstr[2] "слике"
+msgstr[3] "слика"
 
 #: ../src/MainWindow.cs:2229
 #, csharp-format
@@ -2573,16 +2584,18 @@ msgid "If you delete this tag, the association with {0} {1} will be lost."
 msgid_plural ""
 "If you delete these tags, the association with {0} {1} will be lost."
 msgstr[0] "Уколико уклоните ознаку, веза са {0} {1} ће бити изгубљена."
-msgstr[1] "Уколико уклоните ознаку, везе са {0} {1} ће бити изгубљене."
-msgstr[2] "Уколико уклоните ознаку, везе са {0} {1} ће бити изгубљене."
+msgstr[1] "Уколико уклоните ознаке, везе са {0} {1} ће бити изгубљене."
+msgstr[2] "Уколико уклоните ознаке, везе са {0} {1} ће бити изгубљене."
+msgstr[3] "Уколико уклоните ознаку, веза са {0} {1} ће бити изгубљена."
 
 # bug: no plural forms
 #: ../src/MainWindow.cs:2234
 msgid "_Delete tag"
 msgid_plural "_Delete tags"
-msgstr[0] "_Уклони ознаке"
+msgstr[0] "_Уклони ознаку"
 msgstr[1] "_Уклони ознаке"
 msgstr[2] "_Уклони ознаке"
+msgstr[3] "_Уклони ознаку"
 
 #. A Category is not empty. Can not delete it.
 #: ../src/MainWindow.cs:2248
@@ -2602,15 +2615,17 @@ msgstr ""
 msgid "Rotate selected photo left"
 msgid_plural "Rotate selected photos left"
 msgstr[0] "Ротирај изабрану слику улево"
-msgstr[1] "Ротирај изабране слику улево"
-msgstr[2] "Ротирај изабране слику улево"
+msgstr[1] "Ротирај изабране слике улево"
+msgstr[2] "Ротирај изабране слике улево"
+msgstr[3] "Ротирај изабрану слику улево"
 
 #: ../src/MainWindow.cs:2705
 msgid "Rotate selected photo right"
 msgid_plural "Rotate selected photos right"
 msgstr[0] "Ротирај изабрану слику удесно"
-msgstr[1] "Ротирај изабране слику удесно"
-msgstr[2] "Ротирај изабране слику удесно"
+msgstr[1] "Ротирај изабране слике удесно"
+msgstr[2] "Ротирај изабране слике удесно"
+msgstr[3] "Ротирај изабрану слику удесно"
 
 #: ../src/MainWindow.cs:2716
 #, csharp-format
@@ -2619,6 +2634,7 @@ msgid_plural "Find _Selected Tags"
 msgstr[0] "Нађи изабрану ознаку"
 msgstr[1] "Нађи изабране ознаке"
 msgstr[2] "Нађи изабране ознаке"
+msgstr[3] "Нађи изабрану ознаку"
 
 #: ../src/MainWindow.cs:2720
 #, csharp-format
@@ -2627,6 +2643,7 @@ msgid_plural "Find Selected Tags _With"
 msgstr[0] "Нађи изабрану ознаку са"
 msgstr[1] "Нађи изабране ознаке са"
 msgstr[2] "Нађи изабране ознаке са"
+msgstr[3] "Нађи изабрану ознаку са"
 
 #: ../src/MainWindow.cs:2761
 msgid "Create New Version?"
@@ -2634,6 +2651,7 @@ msgid_plural "Create New Versions?"
 msgstr[0] "Да направим ново издање?"
 msgstr[1] "Да направим нова издања?"
 msgstr[2] "Да направим нова издања?"
+msgstr[3] "Да направим ново издање?"
 
 #: ../src/MainWindow.cs:2763
 #, csharp-format
@@ -2647,11 +2665,14 @@ msgstr[0] ""
 "Да ли да Ф-број направи ново издање изабране фотографије пре покретања {1} "
 "како би оригинал остао нетакнут?"
 msgstr[1] ""
-"Да ли да Ф-број направи ново издање изабраних фотографија пре покретања {1} "
+"Да ли да Ф-број направи нова издања изабраних фотографија пре покретања {1} "
 "како би оригинали остали нетакнути?"
 msgstr[2] ""
-"Да ли да Ф-број направи ново издање изабраних фотографија пре покретања {1} "
+"Да ли да Ф-број направи нова издања изабраних фотографија пре покретања {1} "
 "како би оригинал остали нетакнути?"
+msgstr[3] ""
+"Да ли да Ф-број направи ново издање изабране фотографије пре покретања {1} "
+"како би оригинал остао нетакнут?"
 
 #: ../src/MainWindow.cs:2785
 msgid "XCF version"
@@ -2925,6 +2946,7 @@ msgid_plural "Unable to rotate {0} photos"
 msgstr[0] "Не могу да ротирам {0} слику"
 msgstr[1] "Не могу да ротирам {0} слике"
 msgstr[2] "Не могу да ротирам {0} слика"
+msgstr[3] "Не могу да ротирам слику"
 
 #: ../src/RotateCommand.cs:231
 #, csharp-format
@@ -2944,6 +2966,10 @@ msgstr[1] ""
 "покушајте поново."
 msgstr[2] ""
 "Не могу да ротирам {0} слика зато што се налазе на систему датотека који "
+"омогућава само читање или на медију као што је ЦД.  Проверите овлашћења и "
+"покушајте поново."
+msgstr[3] ""
+"Не могу да ротирам слику зато што се налази на систему датотека који "
 "омогућава само читање или на медију као што је ЦД.  Проверите овлашћења и "
 "покушајте поново."
 
@@ -3049,6 +3075,7 @@ msgid_plural "Find"
 msgstr[0] "_Нађи"
 msgstr[1] "_Нађи"
 msgstr[2] "_Нађи"
+msgstr[3] "_Нађи"
 
 #: ../src/TagPopup.cs:36 ../src/Widgets/TagMenu.cs:98
 msgid "Create New Tag..."
@@ -3064,7 +3091,8 @@ msgid "Delete Tag"
 msgid_plural "Delete Tags"
 msgstr[0] "Уклони ознаку"
 msgstr[1] "Уклони ознаке"
-msgstr[2] "Уклони ознака"
+msgstr[2] "Уклони ознаке"
+msgstr[3] "Уклони ознаку"
 
 #: ../src/TagPopup.cs:52
 msgid "Attach Tag to Selection"
@@ -3072,6 +3100,7 @@ msgid_plural "Attach Tags to Selection"
 msgstr[0] "Додај ознаку на изабрану"
 msgstr[1] "Додај ознаку на изабране"
 msgstr[2] "Додај ознаку на изабране"
+msgstr[3] "Додај ознаку на изабрану"
 
 #: ../src/TagPopup.cs:56
 msgid "Remove Tag From Selection"
@@ -3079,6 +3108,7 @@ msgid_plural "Remove Tags From Selection"
 msgstr[0] "Уклони ознаку са изабране"
 msgstr[1] "Уклони ознаку са изабраних"
 msgstr[2] "Уклони ознаку са изабраних"
+msgstr[3] "Уклони ознаку са изабране"
 
 #: ../src/TagPopup.cs:62
 msgid "Merge Tags"
@@ -3105,6 +3135,7 @@ msgid_plural "Find _With"
 msgstr[0] "Нађи _са"
 msgstr[1] "Нађи _са"
 msgstr[2] "Нађи _са"
+msgstr[3] "Нађи _са"
 
 #: ../src/TagQueryWidget.cs:114
 msgid "All"
@@ -3874,7 +3905,8 @@ msgid "Error saving adjusted photo"
 msgid_plural "Error saving adjusted photos"
 msgstr[0] "Грешка при чувању исправљене слике"
 msgstr[1] "Грешка при чувању исправљених слика"
-msgstr[2] "Грешка при чувању исправљених слике"
+msgstr[2] "Грешка при чувању исправљених слика"
+msgstr[3] "Грешка при чувању исправљене слике"
 
 #: ../src/Widgets/EditorPage.cs:219
 #, csharp-format
@@ -3954,6 +3986,7 @@ msgid_plural "({0} Edits)"
 msgstr[0] "({0} измена)"
 msgstr[1] "({0} измене)"
 msgstr[2] "({0} измена)"
+msgstr[3] "({0} измена)"
 
 #: ../src/Widgets/InfoBox.cs:578
 msgid "(File read error)"
