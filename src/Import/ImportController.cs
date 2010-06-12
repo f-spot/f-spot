@@ -291,7 +291,7 @@ namespace FSpot.Import
 
         void ImportPhoto (IBrowsableItem item, Roll roll)
         {
-            var destination = FindImportDestination (item.DefaultVersion.Uri);
+            var destination = FindImportDestination (item);
             string hash = String.Empty;
 
             // Do duplicate detection
@@ -334,17 +334,16 @@ namespace FSpot.Import
             imported_photos.Add (photo.Id);
         }
 
-        SafeUri FindImportDestination (SafeUri uri)
+        SafeUri FindImportDestination (IBrowsableItem item)
         {
+            var uri = item.DefaultVersion.Uri;
+
             if (!CopyFiles)
                 return uri; // Keep it at the same place
 
             // Find a new unique location inside the photo folder
             string name = uri.GetFilename ();
-            DateTime time;
-            using (FSpot.ImageFile img = FSpot.ImageFile.Create (uri)) {
-                time = img.Date;
-            }
+            DateTime time = item.Time;
 
             var dest_uri = Global.PhotoUri.Append (time.Year.ToString ())
                                           .Append (String.Format ("{0:D2}", time.Month))
