@@ -155,7 +155,7 @@ public class PhotoStore : DbStore<Photo> {
 				"time", unix_time,
 				"base_uri", item.DefaultVersion.BaseUri.ToString (),
 				"filename", item.DefaultVersion.Filename,
-				"description", description,
+				"description", description ?? String.Empty,
 				"roll_id", roll_id,
 				"default_version_id", Photo.OriginalVersionId,
 				"rating", "0"
