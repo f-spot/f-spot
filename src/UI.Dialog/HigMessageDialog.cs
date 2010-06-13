@@ -77,6 +77,7 @@ namespace FSpot.UI.Dialog {
 			label.Justify = Gtk.Justification.Left;
 			label.LineWrap = true;
 			label.SetAlignment (0.0f, 0.5f);
+			label.UseUnderline = false;
 			label.Show ();
 			label_vbox.PackStart (label, false, false, 0);
 	
