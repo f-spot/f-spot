@@ -2040,19 +2040,23 @@ namespace FSpot.Tiff {
 				SubdirectoryEntry sub = (SubdirectoryEntry) this.Header.Directory.Lookup (TagId.ExifIfdPointer);
 				DirectoryEntry e;
 
-				if (sub != null) {
-					e = sub.Directory [0].Lookup (TagId.DateTimeOriginal);
-					
+				try {
+					if (sub != null) {
+						e = sub.Directory [0].Lookup (TagId.DateTimeOriginal);
+
+						if (e != null)
+							return DirectoryEntry.DateTimeFromString (e.StringValue);
+					}
+
+					e = this.Header.Directory.Lookup (TagId.DateTime);
+
 					if (e != null)
 						return DirectoryEntry.DateTimeFromString (e.StringValue);
-				}
-
-				e = this.Header.Directory.Lookup (TagId.DateTime);
-
-				if (e != null)
-					return DirectoryEntry.DateTimeFromString (e.StringValue);
-				else
+					else
+						return base.Date;
+				} catch (Exception) {
 					return base.Date;
+				}
 			}
 		}
 		
