@@ -505,6 +505,7 @@ namespace FSpot
 			var file = GLib.FileFactory.NewForUri (uri);
 			var stream = new GLib.GioStream (file.Read (null));
 			var hash = CryptoUtil.Md5EncodeStream (stream);
+			stream.Close ();
 			return hash;
 		}
 
