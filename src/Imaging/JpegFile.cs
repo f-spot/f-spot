@@ -1,4 +1,3 @@
-#define USE_TIFF
 using System;
 using System.IO;
 using FSpot.Xmp;
@@ -77,7 +76,6 @@ namespace FSpot {
 
 		public override string Description {
 			get {
-#if USE_TIFF
 				try {
 					SubdirectoryEntry sub = (SubdirectoryEntry) ExifHeader.Directory.Lookup (TagId.ExifIfdPointer);
 					if (sub != null) {
@@ -85,25 +83,9 @@ namespace FSpot {
 						if (entry != null)
 							return entry.ValueAsString [0];
 					}
-				} catch (System.Exception e) {
-					Log.Exception (e);
+				} catch (System.Exception) {
 				}
-				return null;
-#else
-				try {
-					Exif.ExifContent exif_content = this.ExifData.GetContents (Exif.Ifd.Exif);
-					Exif.ExifEntry entry = exif_content.Lookup (Exif.Tag.UserComment);
-					
-					if (entry == null)
-						return null;
-					
-					UserComment comment = new UserComment (entry.Data, entry.ByteOrder == Exif.ByteOrder.Intel);
-					return comment.Value;
-				} catch (Exception e) {
-					// errors here shouldn't be fatal
-					return null;
-				}
-#endif				
+				return String.Empty;
 			}
 		}
 
@@ -272,23 +254,11 @@ namespace FSpot {
 		public override PixbufOrientation GetOrientation () 
 		{
 			PixbufOrientation orientation = PixbufOrientation.TopLeft;
-#if USE_TIFF
 			try {
 				DirectoryEntry e = ExifHeader.Directory.Lookup (TagId.Orientation);
 				orientation = (PixbufOrientation)e.ValueAsLong [0];
 			} catch {
-				Log.Warning ("Error checking orientation", uri);
 			}
-#else						     
-Log.Debug (">>>");
-			Exif.ExifEntry e = this.ExifData.GetContents (Exif.Ifd.Zero).Lookup (Exif.Tag.Orientation);
-Log.Debug ("<<<");
-			
-			if (e != null) {
-				ushort [] value = e.GetDataUShort ();
-				orientation = (PixbufOrientation) value [0];
-			}
-#endif			
 			if (orientation < PixbufOrientation.TopLeft || orientation > PixbufOrientation.LeftBottom)
 				orientation = PixbufOrientation.TopLeft;
 
@@ -320,9 +290,8 @@ Log.Debug ("<<<");
 
 		public override System.DateTime Date {
 			get {
-				System.DateTime time;
+				System.DateTime time = base.Date;
 				try {
-#if USE_TIFF
 					SubdirectoryEntry sub = (SubdirectoryEntry) ExifHeader.Directory.Lookup (TagId.ExifIfdPointer);
 					DirectoryEntry e;
 					
@@ -338,19 +307,8 @@ Log.Debug ("<<<");
 					if (e != null)
 						return DirectoryEntry.DateTimeFromString (e.StringValue);
 					
-					return base.Date;
-#else
-					string time_str = "";				
-					time_str = ExifData.LookupFirstValue (Exif.Tag.DateTimeOriginal);
-					
-					if (time_str == null || time_str == "") 
-						time_str = ExifData.LookupFirstValue (Exif.Tag.DateTime);
-					
-					time = Exif.ExifUtil.DateTimeFromString (time_str); 
-#endif
-				} catch (System.Exception e) {
-					Log.Exception (e);
-					time = base.Date;
+					return time;
+				} catch (System.Exception) {
 				}
 				return time;
 			}

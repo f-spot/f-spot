@@ -169,16 +169,9 @@ namespace FSpot {
 		public virtual System.DateTime Date 
 		{
 			get {
-				// FIXME mono uses the file change time (ctime) incorrectly
-				// as the creation time so we try to work around that slightly
-				GFileInfo info = GLib.FileFactory.NewForUri (uri).QueryInfo ("time::modified,time::created", GLib.FileQueryInfoFlags.None, null);
-				DateTime write = NativeConvert.ToDateTime ((long)info.GetAttributeULong ("time::modified"));
-				DateTime create = NativeConvert.ToDateTime ((long)info.GetAttributeULong ("time::created"));
-
-				if (create < write)
-					return create;
-				else 
-					return write;
+				GFileInfo info = GLib.FileFactory.NewForUri (uri).QueryInfo ("time::modified", GLib.FileQueryInfoFlags.None, null);
+				DateTime create = NativeConvert.ToDateTime ((long)info.GetAttributeULong ("time::modified"));
+				return create;
 			}
 		}
 
