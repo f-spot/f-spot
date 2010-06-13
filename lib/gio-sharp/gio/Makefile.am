@@ -12,7 +12,8 @@ CUSTOMS =							\
 	$(srcdir)/AppInfoAdapter.custom				\
 	$(srcdir)/FileAdapter.custom				\
 	$(srcdir)/File.custom					\
-	$(srcdir)/FileEnumerator.custom	
+	$(srcdir)/FileEnumerator.custom	        \
+	$(srcdir)/FileInfo.custom
 
 SNK = 	$(srcdir)/snk
 
