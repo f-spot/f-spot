@@ -201,6 +201,7 @@ SOURCES = \
 	Widgets/TagEntry.cs \
 	Widgets/TagMenu.cs \
 	Widgets/TagView.cs \
+	Widgets/Tests/FindBarTests.cs \
 	Widgets/TrayView.cs \
 	Widgets/ViewContext.cs \
 	Widgets/Wipe.cs \
