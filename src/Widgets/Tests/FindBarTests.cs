@@ -31,6 +31,23 @@ namespace FSpot.Widgets.Tests
 		}
 
 		[Test]
+		public void MatchTagsWithSpaces ()
+		{
+			CompletionLogic logic = new CompletionLogic ();
+
+			Assert.IsTrue (logic.MatchFunc ("Tag with spaces", "Ta", 1), "");
+			Assert.IsTrue (logic.MatchFunc ("Tag with spaces", "Tag", 2), "");
+			Assert.IsTrue (logic.MatchFunc ("Tag with spaces", "Tag ", 3), "");
+			Assert.IsTrue (logic.MatchFunc ("Tag with spaces", "Tag w", 4), "");
+			Assert.IsTrue (logic.MatchFunc ("Tag with spaces", "Tag with", 7), "");
+
+			Assert.IsFalse (logic.MatchFunc ("Tag with spaces", "Tag with spaces", 14), "");
+
+			Assert.IsFalse (logic.MatchFunc ("Tag with spaces", "wit", 2), "");
+			Assert.IsFalse (logic.MatchFunc ("Tag with spaces", "with s", 5), "");
+		}
+
+		[Test]
 		public void UnsuccessfulCompletionTest ()
 		{
 			CompletionLogic logic = new CompletionLogic ();
@@ -57,8 +74,21 @@ namespace FSpot.Widgets.Tests
 		{
 			CompletionLogic logic = new CompletionLogic ();
 
-			Assert.IsTrue (logic.MatchFunc ("Tagname", "XY and T", 7), "first char");
-			Assert.IsTrue (logic.MatchFunc ("Tagname", "XY and tagnam", 12), "except one char, different casing");
+			Assert.IsTrue (logic.MatchFunc ("Tagname", "XY and T", 7), "first char, after operator");
+			Assert.IsTrue (logic.MatchFunc ("Tagname", "XY and tagnam", 12), "except one char, different casing, after operator");
+			Assert.IsTrue (logic.MatchFunc ("Tagname", "T and XY", 0), "first char, before operator");
+			Assert.IsTrue (logic.MatchFunc ("Tagname", "tagnam and XY", 5), "except one char, different casing, before operator");
+		}
+
+		[Test]
+		public void SuccessfulCompletionTestWithOrOperator ()
+		{
+			CompletionLogic logic = new CompletionLogic ();
+
+			Assert.IsTrue (logic.MatchFunc ("Tagname", "XY or T", 6), "first char");
+			Assert.IsTrue (logic.MatchFunc ("Tagname", "XY or tagnam", 11), "except one char, different casing");
+			Assert.IsTrue (logic.MatchFunc ("Tagname", "T or XY", 0), "first char");
+			Assert.IsTrue (logic.MatchFunc ("Tagname", "tagnam or XY", 5), "except one char, different casing");
 		}
 
 		[Test]

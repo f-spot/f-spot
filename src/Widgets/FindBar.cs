@@ -530,6 +530,12 @@ namespace FSpot.Widgets {
 		string transformed_key = String.Empty;
 		int start = 0;
 
+		private static string or_op = " " + Catalog.GetString ("or") + " ";
+		private static string and_op = " " + Catalog.GetString ("and") + " ";
+
+		private static int or_op_len = or_op.Length;
+		private static int and_op_len = and_op.Length;
+
 		public bool MatchFunc (string name, string key, int pos)
 		{
 			// If this is the fist comparison for this key, convert the key (which is the entire search string)
@@ -544,7 +550,9 @@ namespace FSpot.Widgets {
 				else {
 					start = 0;
 					for (int i = pos; i >= 0; i--) {
-						if (key [i] == ' ' || key [i] == ')' || key [i] == '(') {
+						if (key [i] == ')' || key [i] == '(' ||
+						   (i >= and_op_len - 1 && String.Compare (key.Substring (i - and_op_len + 1, and_op_len), and_op, true) == 0) ||
+						   (i >= or_op_len - 1 && String.Compare (key.Substring (i - or_op_len + 1, or_op_len), or_op, true) == 0)) {
 							//Log.DebugFormat ("have start break char at {0}", i);
 							start = i + 1;
 							break;
@@ -553,7 +561,9 @@ namespace FSpot.Widgets {
 
 					int end = key.Length - 1;
 					for (int j = pos; j < key.Length; j++) {
-						if (key [j] == ' ' || key [j] == ')' || key [j] == '(') {
+						if (key [j] == ')' || key [j] == '(' ||
+						   (key.Length >= j + and_op_len && String.Compare (key.Substring (j, and_op_len), and_op, true) == 0) ||
+						   (key.Length >= j + or_op_len && String.Compare (key.Substring (j, or_op_len), or_op, true) == 0)) {
 							end = j - 1;
 							break;
 						}
