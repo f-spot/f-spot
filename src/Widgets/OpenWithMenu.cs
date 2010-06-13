@@ -19,6 +19,7 @@ using System.Collections.Generic;
 using Gtk;
 using Gdk;
 using GLib;
+using GtkBeans;
 
 using Mono.Unix;
 
@@ -117,6 +118,9 @@ namespace FSpot.Widgets {
 					return;
 
 				Image = GtkBeans.Image.NewFromIcon (app.Icon, IconSize.Menu);
+#if GTK_2_16
+				this.SetAlwaysShowImage (true);
+#endif
 			}
 		}
 	}
