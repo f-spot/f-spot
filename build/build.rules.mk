@@ -79,7 +79,7 @@ $(ASSEMBLY_FILE): $(SOURCES_BUILD) $(RESOURCES_EXPANDED) $(DEP_LINK)
 		-nowarn:0278 -nowarn:0078 $$warn \
 		-define:HAVE_GTK_2_10 -define:NET_2_0 \
 		-debug -target:$(TARGET) -out:$@ \
-		$(BUILD_DEFINES) $(ENABLE_TESTS_FLAG) $(ENABLE_ATK_FLAG) \
+		$(BUILD_DEFINES) $(CSC_DEFINES) $(ENABLE_TESTS_FLAG) $(ENABLE_ATK_FLAG) \
 		$(FILTERED_LINK) $(RESOURCES_BUILD) $(SOURCES_BUILD)
 	@if [ -e $(srcdir)/$(notdir $@.config) ]; then \
 		cp $(srcdir)/$(notdir $@.config) $(top_builddir)/bin; \
