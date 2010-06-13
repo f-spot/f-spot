@@ -578,7 +578,16 @@ namespace FSpot.Widgets {
 				return false;
 
 			//Log.DebugFormat ("entered = {0} compared to {1}", transformed_key, name);
-			return (String.Compare (transformed_key, name.Substring(0, transformed_key.Length), true) == 0);
+
+			// Try to match key and name case insensitive
+			if (String.Compare (transformed_key, name.Substring (0, transformed_key.Length), true) == 0) {
+				return true;
+			}
+
+			// Try to match with diacritics removed from name
+			string simplified_name = StringUtil.SearchKey (name.Substring (0, transformed_key.Length));
+			//Log.DebugFormat ("entered = {0} compared to {1}", transformed_key, simplified_name);
+			return (String.Compare (transformed_key, simplified_name, true) == 0);
 		}
 
 		public string ReplaceKey (string query, string name, ref int pos)

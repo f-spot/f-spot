@@ -20,6 +20,17 @@ namespace FSpot.Widgets.Tests
 		}
 
 		[Test]
+		public void MatchTagsWithDiacritics ()
+		{
+			CompletionLogic logic = new CompletionLogic ();
+
+			Assert.IsTrue (logic.MatchFunc ("àáâãäåa", "àáâãäå", 5), "chars with diacritics");
+			Assert.IsTrue (logic.MatchFunc ("ÒÓÔÕÖØO", "òóôõöø", 5), "chars with diacritics, different casing");
+			Assert.IsTrue (logic.MatchFunc ("àáâãäåa", "aaaaaa", 5), "remove diacritics");
+			Assert.IsTrue (logic.MatchFunc ("ÒÓÔÕÖØO", "oooooo", 5), "remove diacritics, different casing");
+		}
+
+		[Test]
 		public void UnsuccessfulCompletionTest ()
 		{
 			CompletionLogic logic = new CompletionLogic ();
