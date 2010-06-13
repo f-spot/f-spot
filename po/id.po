@@ -1,0 +1,4192 @@
+# Indonesian translation of f-spot
+# Copyright (C) 2010 THE f-spot'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the f-spot package.
+# Andika Triwidada <andika@gmail.com>, 2010.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: f-spot master\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=f-"
+"spot&component=General\n"
+"POT-Creation-Date: 2010-06-12 11:21+0000\n"
+"PO-Revision-Date: 2010-06-13 11:40+0700\n"
+"Last-Translator: Andika Triwidada <andika@gmail.com>\n"
+"Language-Team: GNOME Indonesian Translation Team <gnome@i15n.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Poedit-Language: Indonesian\n"
+"X-Poedit-Country: Indonesia\n"
+
+#: ../data/desktop-files/f-spot.desktop.in.in.h:1
+#: ../data/desktop-files/f-spot-import.desktop.in.in.h:1
+#: ../data/desktop-files/f-spot-view.desktop.in.in.h:1
+#: ../src/ui/main_window.ui.h:11
+msgid "F-Spot"
+msgstr "F-Spot"
+
+#: ../data/desktop-files/f-spot.desktop.in.in.h:2
+#: ../data/desktop-files/f-spot-import.desktop.in.in.h:2
+msgid "F-Spot Photo Manager"
+msgstr "F-Spot Photo Manager"
+
+#: ../data/desktop-files/f-spot.desktop.in.in.h:3
+msgid "Organize, enjoy, and share your photos"
+msgstr "Atur, nikmati, dan berbagi foto Anda"
+
+#: ../data/desktop-files/f-spot.desktop.in.in.h:4
+#: ../data/desktop-files/f-spot-import.desktop.in.in.h:4
+msgid "Photo Manager"
+msgstr "Manajer Foto"
+
+#: ../data/desktop-files/f-spot-import.desktop.in.in.h:3
+msgid "Import into F-Spot"
+msgstr "Impor ke F-Spot"
+
+#: ../data/desktop-files/f-spot-view.desktop.in.in.h:2
+msgid "F-Spot Photo Viewer"
+msgstr "F-Spot Photo Viewer"
+
+#: ../data/desktop-files/f-spot-view.desktop.in.in.h:3
+msgid "Photo Viewer"
+msgstr "Penilik Foto"
+
+#: ../extensions/Exporters/CDExport/CDExport.addin.xml.h:1
+msgid "_CD..."
+msgstr "_CD..."
+
+#: ../extensions/Exporters/CDExport/CDExport.cs:162
+msgid "Transferring Pictures"
+msgstr "Memindah Gambar"
+
+#: ../extensions/Exporters/CDExport/CDExport.cs:218
+#, csharp-format
+msgid "Transferring picture \"{0}\" To CD"
+msgstr "Memindah gambar \"{0}\" Ke CD"
+
+#. Note for translators: This indicates the current photo is photo {0} of {1} out of photos
+#: ../extensions/Exporters/CDExport/CDExport.cs:220
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:350
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:220
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:781
+#: ../src/MainWindow.cs:644 ../src/UI.Dialog/AdjustTimeDialog.cs:130
+#: ../src/UI.Dialog/ProgressDialog.cs:90
+#, csharp-format
+msgid "{0} of {1}"
+msgstr "{0} dari {1}"
+
+#: ../extensions/Exporters/CDExport/CDExport.cs:233
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:377
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:380
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:806
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:705
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:607
+msgid "Done Sending Photos"
+msgstr "Selesai Mengirim Foto"
+
+#: ../extensions/Exporters/CDExport/CDExport.cs:235
+msgid "Transfer Complete"
+msgstr "Pemindahan Selesai"
+
+#: ../extensions/Exporters/CDExport/CDExport.cs:242
+msgid "Error While Transferring"
+msgstr "Kesalahan Ketika Memindah"
+
+#: ../extensions/Exporters/CDExport/CDExport.cs:250
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:278
+msgid "Error Transferring"
+msgstr "Kesalahan Memindah"
+
+#: ../extensions/Exporters/CDExport/CDExport.cs:263
+msgid "copying..."
+msgstr "menyalin..."
+
+#: ../extensions/Exporters/CDExport/CDExport.ui.h:1
+msgid "<b><i>There is some previously scheduled items to write</i></b>"
+msgstr ""
+
+#: ../extensions/Exporters/CDExport/CDExport.ui.h:2
+msgid "<b>Photos to Burn</b>"
+msgstr "<b>Foto untuk Dibakar</b>"
+
+#: ../extensions/Exporters/CDExport/CDExport.ui.h:3
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:7
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:7
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:5
+#: ../src/f-spot.glade.h:20
+msgid "Autorotate"
+msgstr "Rotasi otomatis"
+
+#: ../extensions/Exporters/CDExport/CDExport.ui.h:4
+msgid "Create CD"
+msgstr "Buat CD"
+
+#: ../extensions/Exporters/CDExport/CDExport.ui.h:5
+#: ../src/Widgets/InfoBox.cs:222
+msgid "Size"
+msgstr "Ukuran"
+
+#: ../extensions/Exporters/CDExport/CDExport.ui.h:6
+msgid "Size of the exported selection:"
+msgstr "Ukuran dari pilihan yang diekspor:"
+
+#: ../extensions/Exporters/CDExport/CDExport.ui.h:7
+msgid "_Browse Previously Scheduled Files"
+msgstr ""
+
+#: ../extensions/Exporters/CDExport/CDExport.ui.h:8
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:15
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:16
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:15
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:20
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:12
+#: ../extensions/Exporters/TabbloExport/ui/TabbloExport.ui.h:9
+#: ../src/f-spot.glade.h:66
+msgid "_Export"
+msgstr "_Ekspor"
+
+#: ../extensions/Exporters/CDExport/CDExport.ui.h:9
+msgid "_Write only these photos to CD"
+msgstr "_Tulis hanya foto ini ke CD"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.addin.xml.h:1
+msgid "F_acebook..."
+msgstr "F_acebook..."
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:99
+msgid "Waiting for authorization"
+msgstr "Menunggu otorisasi"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:100
+msgid ""
+"F-Spot will now launch your browser so that you can enable the permission "
+"you just selected.\n"
+"\n"
+"Once you are directed by Facebook to return to this application, click \"Ok"
+"\" below."
+msgstr ""
+"F-Spot akan meluncurkan peramban Anda sehingga Anda dapat mengaktifkan ijin "
+"yang baru Anda pilih.\n"
+"\n"
+"Setelah Anda diarahkan oleh Facebook untuk kembali ke aplikasi ini, tekan "
+"\"Ok\" di bawah."
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:281
+msgid "Too many images to export"
+msgstr "Terlalu banyak gambar untuk diekspor"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:282
+#, csharp-format
+msgid ""
+"Facebook only permits {0} photographs per album.  Please refine your "
+"selection and try again."
+msgstr ""
+"Facebook hanya mengijinkan {0} foto per album. Silakan atur lagi pilihan "
+"Anda dan coba lagi."
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:297
+msgid "Album must have a name"
+msgstr "Album mesti punya nama"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:298
+msgid "Please name your album or choose an existing album."
+msgstr "Silakan namai album Anda atau pilih album yang telah ada."
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:312
+msgid "Creating a new album failed"
+msgstr "Pembuatan suatu album baru gagal"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:313
+#, csharp-format
+msgid ""
+"An error occurred creating a new album.\n"
+"\n"
+"{0}"
+msgstr ""
+"Terjadi galat saat membuat suatu album baru.\n"
+"\n"
+"{0}"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:326
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:476
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:730
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:598
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:522
+msgid "Uploading Pictures"
+msgstr "Mengunggah Gambar"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:354
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:661
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:565
+#, csharp-format
+msgid "Uploading picture \"{0}\" ({1} of {2})"
+msgstr "Mengunggah gambar \"{0}\" ({1} dari {2})"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:368
+#, csharp-format
+msgid "Error Uploading To Facebook: {0}"
+msgstr "Galat Saat Mengunggah Ke Facebook: {0}"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:369
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:371
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:226
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:797
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:694
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:596
+#: ../extensions/Exporters/TabbloExport/TabbloExport.cs:319
+msgid "Error"
+msgstr "Galat"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:379
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:382
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:808
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:707
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:609
+msgid "Upload Complete"
+msgstr "Pengunggahan Selesai"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.cs:382
+msgid "Visit F-Spot group on Facebook"
+msgstr "Kunjungi grup F-Spot di Facebook"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:212
+msgid "Waiting for authentication"
+msgstr "Menunggu otentikasi"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:213
+msgid ""
+"F-Spot will now launch your browser so that you can log into Facebook.\n"
+"\n"
+"Once you are directed by Facebook to return to this application, click \"Ok"
+"\" below.  F-Spot will cache your session in gnome-keyring, if possible, and "
+"re-use it on future Facebook exports."
+msgstr ""
+
+#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:218
+msgid "Authenticating..."
+msgstr "Mengotentikasi..."
+
+#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:228
+msgid "Error logging into Facebook"
+msgstr "Galat saat log masuk ke Facebook"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:229
+msgid ""
+"There was a problem logging into Facebook.  Check your credentials and try "
+"again."
+msgstr ""
+
+#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:238
+msgid "Authorizing Session"
+msgstr "Mengotorisasi Sesi"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:247
+msgid "Session established, fetching user info..."
+msgstr ""
+
+#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:253
+msgid "Session established, fetching friend list..."
+msgstr ""
+
+#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:263
+msgid "Session established, fetching friend details..."
+msgstr ""
+
+#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:275
+msgid "Session established, fetching photo albums..."
+msgstr ""
+
+#. Note for translators: {0} and {1} are respectively firstname and surname of the user
+#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:285
+#, csharp-format
+msgid "{0} {1} is logged into Facebook"
+msgstr ""
+
+#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:294
+#, fuzzy
+msgid "Facebook Connection Error"
+msgstr "Kesalahan saat menerima sambungan: %s"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:295
+#, csharp-format
+msgid ""
+"There was an error when downloading your information from Facebook.\n"
+"\n"
+"Facebook said: {0}"
+msgstr ""
+
+#: ../extensions/Exporters/FacebookExport/FacebookExportDialog.cs:324
+#, fuzzy
+msgid "You are not logged in."
+msgstr "Anda kini log masuk sebagai \"%s\"."
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.ui.h:1
+msgid "Auto-confirm Photos"
+msgstr ""
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.ui.h:2
+#, fuzzy
+msgid "Caption"
+msgstr "keterangan gambar"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.ui.h:3
+#, fuzzy
+msgid "Create a new album"
+msgstr "Buat peluncur program"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.ui.h:4
+msgid "Description"
+msgstr "Deskripsi"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.ui.h:5
+#, fuzzy
+msgid "Export to Facebook"
+msgstr "Ekspor ke suatu berkas"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.ui.h:6
+#, fuzzy
+msgid "In this photo"
+msgstr "Buat foto ini foto utama"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.ui.h:7
+#: ../src/XmpTagsImporter.cs:90
+msgid "Location"
+msgstr "Lokasi"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.ui.h:8
+#, fuzzy
+msgid "Login"
+msgstr "Login"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.ui.h:9
+#, fuzzy
+msgid "Logout"
+msgstr "Log keluar"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.ui.h:10
+#: ../src/Widgets/InfoBox.cs:213
+msgid "Name"
+msgstr "Nama"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.ui.h:11
+#, fuzzy
+msgid "Not logged in"
+msgstr "Sukses log masuk."
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.ui.h:12
+#, fuzzy
+msgid "Permissions:"
+msgstr "Hak Akses"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.ui.h:13
+msgid "Stay Connected"
+msgstr "Tetap Tersambung"
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.ui.h:14
+msgid "Use an existing album"
+msgstr ""
+
+#: ../extensions/Exporters/FacebookExport/FacebookExport.ui.h:15
+#, fuzzy
+msgid "Who is this?"
+msgstr "Catatan ini terkunci."
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.addin.xml.h:1
+msgid "_23hq..."
+msgstr "_23hq..."
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.addin.xml.h:2
+msgid "_Flickr..."
+msgstr "_Flickr..."
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.addin.xml.h:3
+msgid "_Zooomr..."
+msgstr "_Zooomr..."
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:106
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:5
+msgid "Authorize"
+msgstr "Otorisasikan"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:112
+#, csharp-format
+msgid ""
+"Return to this window after you have finished the authorization process on "
+"{0} and click the \"Complete Authorization\" button below"
+msgstr ""
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:113
+#, fuzzy
+msgid "Complete Authorization"
+msgstr "Otorisasi gagal."
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:118
+#, fuzzy, csharp-format
+msgid "Logging into {0}"
+msgstr "Sedang log masuk.."
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:119
+#, fuzzy
+msgid "Checking credentials..."
+msgstr "Kredensial bagi %s"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:126
+#, fuzzy, csharp-format
+msgid "Welcome {0} you are connected to {1}"
+msgstr "Anda sekarang tersambung ke '%s'."
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:129
+#, csharp-format
+msgid "Sign in as a different user"
+msgstr ""
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:134
+#, csharp-format
+msgid "Used {0} of your allowed {1} monthly quota"
+msgstr ""
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:298
+msgid "Unable to log on"
+msgstr ""
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:318
+#, fuzzy, csharp-format
+msgid "Waiting for response {0} of {1}"
+msgstr "Menunggu otentikasi"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:345
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:777
+#, fuzzy, csharp-format
+msgid "Uploading picture \"{0}\""
+msgstr "Kecerahan foto"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:368
+#, fuzzy, csharp-format
+msgid "Error Uploading To {0}: {1}"
+msgstr "Ada error saat menyimpan {0} ke {1}: {2}"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:455
+msgid "Unable to log on."
+msgstr ""
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:456
+#, csharp-format
+msgid ""
+"F-Spot was unable to log on to {0}.  Make sure you have given the "
+"authentication using {0} web browser interface."
+msgstr ""
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:1
+msgid "<b>Account</b>"
+msgstr "<b>Akun</b>"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:2
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:5
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:3
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:2
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:2
+#: ../extensions/Exporters/TabbloExport/ui/TabbloExport.ui.h:2
+#: ../src/f-spot.glade.h:8 ../src/UI.Dialog/ui/AdjustTimeDialog.ui.h:5
+msgid "<b>Photos</b>"
+msgstr "<b>Foto</b>"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:3
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:6
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:4
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:4
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:4
+#: ../src/f-spot.glade.h:10
+msgid "<b>Style</b>"
+msgstr "<b>Gaya</b>"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:4
+#, fuzzy
+msgid "<b>Viewing permissions</b>"
+msgstr "Hak akses berkas."
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:6
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:8
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:9
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:6
+#: ../extensions/Exporters/TabbloExport/ui/TabbloExport.ui.h:5
+msgid "Export"
+msgstr "Ekspor"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:7
+msgid "Export tag _hierarchy"
+msgstr ""
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:8
+msgid ""
+"F-Spot needs your authorization in order to upload photos to your {0} "
+"account. Press the \"Authorize\" button to open a web browser and give F-"
+"Spot the authorization. "
+msgstr ""
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:9
+msgid "Ignore _top level tags"
+msgstr ""
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:10
+msgid "Private"
+msgstr "Pribadi"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:11
+msgid "Public"
+msgstr "Publik"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:12
+#, fuzzy
+msgid "Strip _metadata"
+msgstr "Daemon Metadata GVFS"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:13
+msgid "Visible to Family"
+msgstr ""
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:14
+msgid "Visible to Friends"
+msgstr ""
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:16
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:21
+#, fuzzy
+msgid "_Export tags"
+msgstr "S_isip Tag"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:17
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:18
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:21
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:25
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:15
+#, fuzzy
+msgid "_Resize to: "
+msgstr "URI tujuan"
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:18
+msgid "_View photos in browser when done uploading"
+msgstr ""
+
+#: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:19
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:20
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:24
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:27
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:17
+msgid "pixels"
+msgstr "piksel"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.addin.xml.h:1
+msgid "F_older..."
+msgstr "F_older..."
+
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:120
+msgid "Select Export Folder"
+msgstr ""
+
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:173
+msgid "Building Gallery"
+msgstr ""
+
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:217
+#, csharp-format
+msgid "Exporting \"{0}\"..."
+msgstr "Mengekspor \"{0}\"..."
+
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:224
+#, fuzzy, csharp-format
+msgid "Error Copying \"{0}\" to Gallery:{2}{1}"
+msgstr "Galat ketika menyalin ke \"%B\"."
+
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:250
+#, fuzzy, csharp-format
+msgid "Transferring to \"{0}\""
+msgstr "URI tujuan"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:251
+msgid "Transferring..."
+msgstr ""
+
+#. No need to check result here as if result is not true, an Exception will be thrown before
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:256
+msgid "Export Complete."
+msgstr "Pengeksporan Lengkap."
+
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:258
+msgid "Exporting Photos Completed."
+msgstr ""
+
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:325
+msgid "Exporting Photos"
+msgstr "Mengekspor Foto"
+
+#. Note for translators: light as clear, opposite as dark
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:743
+msgid "Light"
+msgstr "Terang"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:744
+msgid "Dark"
+msgstr "Gelap"
+
+#. Abbreviation of previous
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:924
+msgid "Prev"
+msgstr "Sebelumnya"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:926
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:1167
+msgid "Index"
+msgstr "Indeks"
+
+#. Don't care otherwise, Tags sounds reasonable
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:929
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:1101
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:1141
+#: ../src/MainWindow.cs:348 ../src/Widgets/Sidebar.cs:56
+msgid "Tags"
+msgstr "Tag"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:932
+#: ../src/ItemAction.cs:102
+msgid "Next"
+msgstr "Berikutnya"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:1036
+msgid "Gallery generated by"
+msgstr ""
+
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:1076
+#, fuzzy
+msgid "Show Styles"
+msgstr "Tampilkan _temperatur"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:1077
+#, fuzzy
+msgid "Hide Styles"
+msgstr "Sembunyikan Panel"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:1112
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:1113
+#: ../src/ui/main_window.ui.h:25
+msgid "Tags: "
+msgstr "Tag:"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:1244
+#: ../extensions/Exporters/FolderExport/FolderExport.cs:1377
+msgid "Page:"
+msgstr "Halaman:"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:1
+msgid "\n"
+msgstr "\n"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:3
+#, fuzzy
+msgid "<b>Destination</b>"
+msgstr "<b>Tujuan</b>"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:4
+#, fuzzy
+msgid "<b>Export Method</b>"
+msgstr "X Input Method"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:8
+msgid "Create _gallery using \"Original\""
+msgstr ""
+
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:9
+msgid "Create standalone _web gallery"
+msgstr ""
+
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:10
+msgid "D_escription:"
+msgstr "D_eskripsi:"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:11
+msgid "Export _tags"
+msgstr "Ekspor _tag"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:12
+msgid "Export tag _icons"
+msgstr ""
+
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:13
+#, fuzzy
+msgid "Folder Export"
+msgstr "Ekspor snippet"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:14
+#, fuzzy
+msgid "G_allery Name:"
+msgstr "Nama Kota"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:15
+msgid "Open _destination when done exporting"
+msgstr ""
+
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:17
+#, fuzzy
+msgid "_Folder:"
+msgstr "_Folder:"
+
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:19
+#, fuzzy
+msgid "_Save the files only"
+msgstr "Daftarkan hanya berkas"
+
+#: ../extensions/Exporters/GalleryExport/FormClient.cs:294
+#, fuzzy
+msgid "Unhandled exception"
+msgstr "Ada eksepsi yang dikembalikan: %s"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.addin.xml.h:1
+#, fuzzy
+msgid "Web _Gallery..."
+msgstr "Peramban Web"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:53
+msgid ""
+"Cannot connect to a Gallery for which the version is unknown.\n"
+"Please check that you have Remote plugin 1.0.8 or later"
+msgstr ""
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:391
+#, fuzzy
+msgid "Invalid URL"
+msgstr "Buka URL: %s"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:392
+msgid "The gallery URL entry does not appear to be a valid URL"
+msgstr ""
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:402
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:429
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:440
+msgid "Error while connecting to Gallery"
+msgstr ""
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:403
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:430
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:441
+#, csharp-format
+msgid "The following error was encountered while attempting to log in: {0}"
+msgstr ""
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:417
+#, fuzzy
+msgid "A Gallery with this name already exists"
+msgstr "Folder dengan nama ini sudah ada"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:418
+#, csharp-format
+msgid ""
+"There is already a Gallery with the same name in your registered Galleries. "
+"Please choose a unique name."
+msgstr ""
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:528
+#, fuzzy
+msgid "(TopLevel)"
+msgstr "Lebar Aras Puncak"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:590
+#, fuzzy
+msgid "Invalid Gallery name"
+msgstr "Nama berkas tidak benar"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:591
+msgid ""
+"The gallery name contains invalid characters.\n"
+"Only letters, numbers, - and _ are allowed"
+msgstr ""
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:796
+#, csharp-format
+msgid "Error uploading picture \"{0}\" to Gallery: {1}"
+msgstr ""
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:824
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:728
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:630
+#, fuzzy
+msgid "(No Gallery)"
+msgstr "Tanpa nama"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:916
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:850
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:726
+#, fuzzy
+msgid "(Not Connected)"
+msgstr "Tidak tersambung"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:917
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:851
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:727
+#, fuzzy
+msgid "(No Albums)"
+msgstr "Tanpa nama"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.cs:969
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:916
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:768
+#, fuzzy
+msgid "No account selected"
+msgstr "Tak ada aplikasi dipilih"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:1
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:1
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:1
+msgid "<b>Album</b>"
+msgstr "<b>Album</b>"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:2
+msgid "<b>Gallery</b>"
+msgstr "<b>Galeri</b>"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:5
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:5
+msgid "<span weight='bold' size='larger'>Error Connecting to Gallery</span>\n"
+msgstr ""
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:9
+msgid "Export _titles and comments"
+msgstr ""
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:10
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:10
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:7
+msgid "Open _album in browser when done uploading"
+msgstr ""
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:11
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:11
+msgid "Please verify that the settings for this gallery are correct."
+msgstr ""
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:12
+msgid "U_RL:"
+msgstr "U_RL:"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:13
+msgid "_Album Name:"
+msgstr "Nama _Album:"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:14
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:19
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:11
+msgid "_Description:"
+msgstr "_Deskripsi:"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:16
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:22
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:13
+msgid "_Export to Album:"
+msgstr "_Ekspor ke Album:"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:17
+msgid "_Gallery Name:"
+msgstr "Nama _Galeri:"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:18
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:23
+msgid "_Gallery:"
+msgstr "_Galeri:"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:19
+#, fuzzy
+msgid "_Parent Album:"
+msgstr "Jendela Induk"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:20
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:24
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:14
+#: ../extensions/Exporters/TabbloExport/ui/TabbloExport.ui.h:10
+#, fuzzy
+msgid "_Password:"
+msgstr "Kata _sandi:"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:22
+#, fuzzy
+msgid "_Title:"
+msgstr "_Judul:"
+
+#: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:23
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:26
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:16
+#: ../extensions/Exporters/TabbloExport/ui/TabbloExport.ui.h:11
+#, fuzzy
+msgid "_Username:"
+msgstr "Nama _User:"
+
+#: ../extensions/Exporters/GalleryExport/GalleryRemote.cs:362
+msgid "Error reading server response"
+msgstr ""
+
+#. failed to find the response
+#: ../extensions/Exporters/GalleryExport/GalleryRemote.cs:374
+msgid "Server returned response without Gallery content"
+msgstr ""
+
+#: ../extensions/Exporters/GalleryExport/GalleryRemote.cs:711
+#, fuzzy
+msgid "Error while creating new album"
+msgstr "Ada error saat membuat direktori baru"
+
+#: ../extensions/Exporters/GalleryExport/GalleryRemote.cs:712
+#, csharp-format
+msgid ""
+"The following error was encountered while attempting to perform the "
+"requested operation:\n"
+"{0} ({1})"
+msgstr ""
+
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.addin.xml.h:1
+msgid "_PicasaWeb..."
+msgstr "_PicasaWeb..."
+
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:442
+#, fuzzy
+msgid "Error while creating Album"
+msgstr "Kesalahan saat membuat direktori %B."
+
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:443
+#, csharp-format
+msgid ""
+"The following error was encountered while attempting to create an album: {0}"
+msgstr ""
+
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:621
+#, fuzzy, csharp-format
+msgid "{0} Sent"
+msgstr "Email Terkirim"
+
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:623
+#, csharp-format
+msgid "{0} of approx. {1}"
+msgstr ""
+
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:692
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:594
+#, csharp-format
+msgid "Error Uploading To Gallery: {0}"
+msgstr ""
+
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:779
+#, csharp-format
+msgid "Available space: {0}, {1}% used out of {2}"
+msgstr ""
+
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:892
+#, csharp-format
+msgid ""
+"The selected album has a limit of {0} pictures,\n"
+"which would be passed with the current selection of {1} images"
+msgstr ""
+
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:3
+#, fuzzy
+msgid "<b>PicasaWeb Export</b>"
+msgstr "Ekspor snippet"
+
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:7
+msgid ""
+"<span weight='bold' size='larger'>Your Google Account is locked</span>\n"
+msgstr ""
+
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:12
+msgid ""
+"Please verify that the settings for this gallery are correct.\n"
+"Enter the letters as they are shown in the image in\n"
+"the 'Captcha' field. <i>Letters are not case-sensitive</i>"
+msgstr ""
+
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:15
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:8
+#, fuzzy
+msgid "Public Album"
+msgstr "FTP publik"
+
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:16
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:10
+#, fuzzy
+msgid "_Album Title:"
+msgstr "Jabatan"
+
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:17
+msgid "_Autorotate"
+msgstr ""
+
+#: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:18
+msgid "_Captcha:"
+msgstr "_Captcha:"
+
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.addin.xml.h:1
+msgid "_SmugMug..."
+msgstr "_SmugMug..."
+
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:3
+#, fuzzy
+msgid "<b>SmugMug Export</b>"
+msgstr "Ekspor snippet"
+
+#: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:9
+msgid "_Account:"
+msgstr "_Akun:"
+
+#: ../extensions/Exporters/TabbloExport/Tabblo/Connection.cs:132
+#, fuzzy, csharp-format
+msgid "Uploading photo \"{0}\""
+msgstr "Path Foto"
+
+#: ../extensions/Exporters/TabbloExport/Tabblo/Connection.cs:206
+msgid "Logging into Tabblo"
+msgstr ""
+
+#: ../extensions/Exporters/TabbloExport/Tabblo/Connection.cs:267
+msgid "Obtaining URL for upload"
+msgstr ""
+
+#: ../extensions/Exporters/TabbloExport/TabbloExport.addin.xml.h:1
+msgid "_Tabblo..."
+msgstr "_Tabblo..."
+
+#: ../extensions/Exporters/TabbloExport/TabbloExport.cs:308
+msgid "Done sending photos"
+msgstr ""
+
+#: ../extensions/Exporters/TabbloExport/TabbloExport.cs:310
+#, fuzzy
+msgid "Upload complete"
+msgstr "Persentase selesai:"
+
+#: ../extensions/Exporters/TabbloExport/TabbloExport.cs:316
+msgid "Error uploading to Tabblo: "
+msgstr ""
+
+#: ../extensions/Exporters/TabbloExport/ui/TabbloExport.ui.h:1
+#, fuzzy
+msgid "<b>F-Spot tags</b>"
+msgstr "S_isip Tag"
+
+#: ../extensions/Exporters/TabbloExport/ui/TabbloExport.ui.h:3
+#, fuzzy
+msgid "<b>Tabblo account</b>"
+msgstr "Nama _akunt:"
+
+#: ../extensions/Exporters/TabbloExport/ui/TabbloExport.ui.h:4
+msgid ""
+"<small><i>F-Spot tags can help you track the export status of photos. "
+"Example: Use one tag for the photos that you plan to export, and another one "
+"for those already exported. Here, you can tell F-Spot to automatically "
+"replace these tags as appropriate.</i></small>"
+msgstr ""
+
+#: ../extensions/Exporters/TabbloExport/ui/TabbloExport.ui.h:6
+msgid "Rem_ove from exported photos:"
+msgstr ""
+
+#: ../extensions/Exporters/TabbloExport/ui/TabbloExport.ui.h:7
+#, fuzzy
+msgid "Select..."
+msgstr "_Pilih"
+
+#: ../extensions/Exporters/TabbloExport/ui/TabbloExport.ui.h:8
+msgid "_Attach to exported photos:"
+msgstr ""
+
+#: ../extensions/Exporters/TabbloExport/ui/TrustError.ui.h:1
+msgid "<b>{0}</b>."
+msgstr ""
+
+#: ../extensions/Exporters/TabbloExport/ui/TrustError.ui.h:2
+msgid "A trust error occured while attempting to access"
+msgstr ""
+
+#: ../extensions/Exporters/TabbloExport/ui/TrustError.ui.h:3
+msgid "Abort this session"
+msgstr ""
+
+#: ../extensions/Exporters/TabbloExport/ui/TrustError.ui.h:4
+msgid "Always trust this site's certificate"
+msgstr ""
+
+#: ../extensions/Exporters/TabbloExport/ui/TrustError.ui.h:5
+#, fuzzy
+msgid "Do you wish to:"
+msgstr "Anda ingin menyambungkan koneksi?"
+
+#: ../extensions/Exporters/TabbloExport/ui/TrustError.ui.h:6
+#, fuzzy
+msgid "Trust Error"
+msgstr "Galat Tak Dikenal"
+
+#: ../extensions/Exporters/TabbloExport/ui/TrustError.ui.h:7
+msgid "Trust the site's certificate this once"
+msgstr ""
+
+#: ../extensions/Exporters/ZipExport/ZipExport.addin.xml.h:1
+#, fuzzy
+msgid "Compressed fil_e..."
+msgstr "Arsip dimampatkan gzip"
+
+#: ../extensions/Exporters/ZipExport/ZipExport.cs:47
+#: ../src/Widgets/EditorPage.cs:198
+#, fuzzy
+msgid "No selection available"
+msgstr "Tidak tersedia pembuat kode."
+
+#: ../extensions/Exporters/ZipExport/ZipExport.cs:48
+msgid ""
+"This tool requires an active selection. Please select one or more pictures "
+"and try again"
+msgstr ""
+
+#: ../extensions/Exporters/ZipExport/ZipExport.cs:64
+msgid "Select export folder"
+msgstr ""
+
+#: ../extensions/Exporters/ZipExport/ZipExport.cs:102
+#, fuzzy
+msgid "Exporting files"
+msgstr "Berkas Konfigurasi"
+
+#: ../extensions/Exporters/ZipExport/ZipExport.cs:108
+#, fuzzy, csharp-format
+msgid "Preparing photo \"{0}\""
+msgstr "Path Foto"
+
+#: ../extensions/Exporters/ZipExport/ZipExport.glade.h:1
+#, fuzzy
+msgid "_Create"
+msgstr "_Buat"
+
+#: ../extensions/Exporters/ZipExport/ZipExport.glade.h:2
+#, fuzzy
+msgid "_File name:"
+msgstr "Nama file:"
+
+#: ../extensions/Exporters/ZipExport/ZipExport.glade.h:3
+msgid "_Location:"
+msgstr "_Lokasi:"
+
+#: ../extensions/Exporters/ZipExport/ZipExport.glade.h:4
+#, fuzzy
+msgid "_Scale:"
+msgstr "_Skala"
+
+#: ../extensions/Tools/HashJob/HashJob.addin.xml.h:1
+#, fuzzy
+msgid "Check for Duplicates..."
+msgstr "Saring _Spam"
+
+#: ../extensions/Tools/HashJob/HashJob.cs:53
+msgid ""
+"In order to detect duplicates on pictures you imported before 0.5.0, F-Spot "
+"needs to analyze your image collection. This is not done by default as it's "
+"time consuming. You can Start or Pause this update process using this dialog."
+msgstr ""
+
+#: ../extensions/Tools/HashJob/HashJob.cs:59
+#, csharp-format
+msgid ""
+"You currently have {0} photos needing md5 calculation, and {1} pending jobs"
+msgstr ""
+
+#: ../extensions/Tools/HashJob/HashJob.cs:75 ../src/ui/main_window.ui.h:38
+#, fuzzy
+msgid "_Close"
+msgstr "_Tutup"
+
+#: ../extensions/Tools/HashJob/HashJob.cs:102
+#, fuzzy
+msgid "Processing images..."
+msgstr "Gambar yang ditemukan:"
+
+#: ../extensions/Tools/HashJob/HashJob.cs:108
+#, fuzzy
+msgid "Stopped"
+msgstr "Dihentikan"
+
+#: ../extensions/Tools/LiveWebGallery/GalleryRequestHandler.cs:107
+msgid "F-Spot Gallery"
+msgstr ""
+
+#: ../extensions/Tools/LiveWebGallery/GalleryRequestHandler.cs:108
+msgid "The web gallery seems to be offline now"
+msgstr ""
+
+#: ../extensions/Tools/LiveWebGallery/GalleryRequestHandler.cs:109
+#, fuzzy
+msgid "Show All"
+msgstr "Tampilkan semua paket"
+
+#: ../extensions/Tools/LiveWebGallery/GalleryRequestHandler.cs:119
+#, csharp-format
+msgid "{0} photo"
+msgid_plural "{0} photos"
+msgstr[0] "{0} foto"
+
+#: ../extensions/Tools/LiveWebGallery/GalleryRequestHandler.cs:161
+#: ../extensions/Tools/LiveWebGallery/ui/LiveWebGallery.ui.h:8
+#, fuzzy
+msgid "Current View"
+msgstr "Tampilan _Sekarang"
+
+#: ../extensions/Tools/LiveWebGallery/GalleryRequestHandler.cs:164
+#, fuzzy
+msgid "Selected"
+msgstr "Terpilih"
+
+#: ../extensions/Tools/LiveWebGallery/LiveWebGallery.addin.xml.h:1
+msgid "Live Web Gallery"
+msgstr ""
+
+#: ../extensions/Tools/LiveWebGallery/LiveWebGalleryDialog.cs:89
+msgid "none"
+msgstr "tak ada"
+
+#: ../extensions/Tools/LiveWebGallery/LiveWebGalleryDialog.cs:92
+#, csharp-format
+msgid " Gallery: {0},  Photos: {1},  Last client: {3}"
+msgstr ""
+
+#: ../extensions/Tools/LiveWebGallery/LiveWebGalleryDialog.cs:156
+msgid "Gallery is inactive"
+msgstr ""
+
+#: ../extensions/Tools/LiveWebGallery/ui/LiveWebGallery.ui.h:1
+msgid ""
+"<small><i>The gallery stays active until you either deactivate it or close\n"
+"F-Spot. Make sure local viewers access it bypassing HTTP proxy.</i></small>"
+msgstr ""
+
+#: ../extensions/Tools/LiveWebGallery/ui/LiveWebGallery.ui.h:3
+msgid ""
+"<small><i>When the gallery is active, above is the URL you need to open \n"
+"on another computer to access the shared photos.</i></small>"
+msgstr ""
+
+#: ../extensions/Tools/LiveWebGallery/ui/LiveWebGallery.ui.h:5
+msgid "Activates and deactivates the web gallery"
+msgstr ""
+
+#: ../extensions/Tools/LiveWebGallery/ui/LiveWebGallery.ui.h:6
+msgid "Allow viewers to add tags"
+msgstr ""
+
+#: ../extensions/Tools/LiveWebGallery/ui/LiveWebGallery.ui.h:7
+#, fuzzy
+msgid "Copy URL to clipboard"
+msgstr "Salin pilihan ke papan tempel"
+
+#: ../extensions/Tools/LiveWebGallery/ui/LiveWebGallery.ui.h:9
+msgid "F-Spot Live Web Gallery"
+msgstr ""
+
+#: ../extensions/Tools/LiveWebGallery/ui/LiveWebGallery.ui.h:10
+#, fuzzy
+msgid "Gallery URL:"
+msgstr "Buka URL: %s"
+
+#: ../extensions/Tools/LiveWebGallery/ui/LiveWebGallery.ui.h:11
+msgid "Limit number of shared photos to"
+msgstr ""
+
+#: ../extensions/Tools/LiveWebGallery/ui/LiveWebGallery.ui.h:12
+#, fuzzy
+msgid "Options:"
+msgstr "Opsi:"
+
+#: ../extensions/Tools/LiveWebGallery/ui/LiveWebGallery.ui.h:13
+#, fuzzy
+msgid "Photos with a Tag"
+msgstr "Tampilkan ekstensi dengan tag:"
+
+#: ../extensions/Tools/LiveWebGallery/ui/LiveWebGallery.ui.h:14
+#, fuzzy
+msgid "Selected Photos"
+msgstr "Cacah foto"
+
+#: ../extensions/Tools/LiveWebGallery/ui/LiveWebGallery.ui.h:15
+#, fuzzy
+msgid "Share:"
+msgstr "Bagi-Pakai"
+
+#: ../extensions/Tools/LiveWebGallery/ui/LiveWebGallery.ui.h:16
+#, fuzzy
+msgid "Views:"
+msgstr "Bentuk Tampilan"
+
+#: ../extensions/Tools/MergeDb/MergeDb.addin.xml.h:1
+#, fuzzy
+msgid "Merge Db"
+msgstr "Gabung Semu_a"
+
+#: ../extensions/Tools/MergeDb/MergeDb.cs:73
+msgid "Error opening the selected file"
+msgstr ""
+
+#: ../extensions/Tools/MergeDb/MergeDb.cs:74
+#, csharp-format
+msgid ""
+"The file you selected is not a valid or supported database.\n"
+"\n"
+"Received exception \"{0}\"."
+msgstr ""
+
+#: ../extensions/Tools/MergeDb/MergeDb.glade.h:1
+msgid ""
+"<small><i>Choose the location of the database you want to import from</i></"
+"small>"
+msgstr ""
+
+#: ../extensions/Tools/MergeDb/MergeDb.glade.h:2
+msgid ""
+"<small><i>Choose what to import from the selected db.\n"
+"\"New Rolls Only\" is the smart option that will avoid re-importing photos "
+"you could have imported during a previous operation.\n"
+"\"A Single Import Roll\" let you choose which roll you want to merge back.\n"
+"\"Everything\" will import everything, creating duplicates if you already "
+"imported from that database.</i></small>"
+msgstr ""
+
+#: ../extensions/Tools/MergeDb/MergeDb.glade.h:6
+msgid ""
+"<small><i>Copy the images locally or keep them where they are. If you chose "
+"the later, be sure that this location will stay accessible from f-spot.</i></"
+"small>"
+msgstr ""
+
+#: ../extensions/Tools/MergeDb/MergeDb.glade.h:7
+#, fuzzy
+msgid "A Single Import Roll"
+msgstr "Mengimpor _satu file"
+
+#: ../extensions/Tools/MergeDb/MergeDb.glade.h:8
+msgid "Copy images to photos folder"
+msgstr ""
+
+#: ../extensions/Tools/MergeDb/MergeDb.glade.h:9
+#, fuzzy
+msgid "Database Location:"
+msgstr "Pilih Lokasi"
+
+#: ../extensions/Tools/MergeDb/MergeDb.glade.h:10
+msgid "Everything"
+msgstr "Semua"
+
+#: ../extensions/Tools/MergeDb/MergeDb.glade.h:11
+msgid "Import:"
+msgstr "Impor:"
+
+#: ../extensions/Tools/MergeDb/MergeDb.glade.h:12
+msgid "Keep the images at their original location"
+msgstr ""
+
+#: ../extensions/Tools/MergeDb/MergeDb.glade.h:13
+msgid "Merge another F-Spot collection"
+msgstr ""
+
+#: ../extensions/Tools/MergeDb/MergeDb.glade.h:14
+msgid "New Rolls Only"
+msgstr ""
+
+#: ../extensions/Tools/MergeDb/MergeDb.glade.h:15
+#: ../src/UI.Dialog/ThreadProgressDialog.cs:57
+#, fuzzy
+msgid "Skip"
+msgstr "Lewati"
+
+#: ../extensions/Tools/MergeDb/PickFolderDialog.cs:34
+#, csharp-format
+msgid ""
+"<big>The database refers to files contained in the <b>{0}</b> folder.\n"
+" Please select that folder so I can do the mapping.</big>"
+msgstr ""
+
+#: ../extensions/Tools/ScreensaverConfig/ScreensaverConfig.addin.xml.h:1
+#, fuzzy
+msgid "Configure Screensaver"
+msgstr "_Aktifkan Screensaver"
+
+#: ../extensions/Tools/ScreensaverConfig/ScreensaverConfigDialog.ui.h:1
+#: ../src/UI.Dialog/DateRangeDialog.cs:129
+#, fuzzy
+msgid "All Images"
+msgstr "Gambar yang ditemukan:"
+
+#: ../extensions/Tools/ScreensaverConfig/ScreensaverConfigDialog.ui.h:2
+#, fuzzy
+msgid "Delay:"
+msgstr "Je_da:"
+
+#: ../extensions/Tools/ScreensaverConfig/ScreensaverConfigDialog.ui.h:3
+#, fuzzy
+msgid "Display:"
+msgstr "Tampilan:"
+
+#: ../extensions/Tools/ScreensaverConfig/ScreensaverConfigDialog.ui.h:4
+msgid "Images tagged with:"
+msgstr ""
+
+#: ../extensions/Tools/ScreensaverConfig/ScreensaverConfigDialog.ui.h:5
+msgid "Make F-Spot my screensaver"
+msgstr ""
+
+#: ../extensions/Tools/ScreensaverConfig/ScreensaverConfigDialog.ui.h:6
+#, fuzzy
+msgid "Screensaver Configuration"
+msgstr "Berkas Konfigurasi"
+
+#: ../f-spot.schemas.in.h:1
+msgid "Display of transparent parts."
+msgstr ""
+
+#: ../f-spot.schemas.in.h:2
+msgid "Enable this to allow interpolation on zoomed images."
+msgstr ""
+
+#: ../f-spot.schemas.in.h:3
+#, fuzzy
+msgid "Height of the import dialog."
+msgstr "Tinggi standar dialog Berlangganan"
+
+#: ../f-spot.schemas.in.h:4
+#, fuzzy
+msgid "Height of the main window."
+msgstr "Tinggi jendela utama"
+
+#: ../f-spot.schemas.in.h:5
+msgid "Height of the photo viewer window."
+msgstr ""
+
+#: ../f-spot.schemas.in.h:6
+msgid ""
+"If the 'transparency' option is set, the color specified in this option will "
+"be used as the transparent color when viewing images."
+msgstr ""
+
+#: ../f-spot.schemas.in.h:7
+msgid "Interpolate image on zoom."
+msgstr ""
+
+#: ../f-spot.schemas.in.h:8
+#, fuzzy
+msgid "Maximize the main window."
+msgstr "Tampilkan jendela utama"
+
+#: ../f-spot.schemas.in.h:9
+msgid "Maximize the photo viewer window."
+msgstr ""
+
+#: ../f-spot.schemas.in.h:10
+msgid "Path to custom gtkrc for theming F-Spot."
+msgstr ""
+
+#: ../f-spot.schemas.in.h:11
+msgid "Show dates in the thumbnail view."
+msgstr ""
+
+#: ../f-spot.schemas.in.h:12
+msgid "Show ratings in the thumbnail view."
+msgstr ""
+
+#: ../f-spot.schemas.in.h:13
+msgid "Show tags in the thumbnail view."
+msgstr ""
+
+#: ../f-spot.schemas.in.h:14
+msgid "Show the filename in the viewer window."
+msgstr ""
+
+#: ../f-spot.schemas.in.h:15
+msgid "Show the filmstrip in the main window."
+msgstr ""
+
+#: ../f-spot.schemas.in.h:16
+msgid "Show the sidebar in the main window."
+msgstr ""
+
+#: ../f-spot.schemas.in.h:17
+msgid "Show the timeline in the main window."
+msgstr ""
+
+#: ../f-spot.schemas.in.h:18
+msgid "Show the toolbar in the main window."
+msgstr ""
+
+#: ../f-spot.schemas.in.h:19
+msgid "Show the toolbar in the photo viewer window."
+msgstr ""
+
+#: ../f-spot.schemas.in.h:20
+msgid "Size of the tag icons shown in the sidebar."
+msgstr ""
+
+#: ../f-spot.schemas.in.h:21
+msgid "The X position to use for the main window."
+msgstr ""
+
+#: ../f-spot.schemas.in.h:22
+msgid "The X position to use for the photo viewer window."
+msgstr ""
+
+#: ../f-spot.schemas.in.h:23
+msgid "The Y position to use for the main window."
+msgstr ""
+
+#: ../f-spot.schemas.in.h:24
+msgid "The Y position to use for the photo viewer window."
+msgstr ""
+
+#: ../f-spot.schemas.in.h:25
+msgid "The color to use for transparent parts."
+msgstr ""
+
+#: ../f-spot.schemas.in.h:26
+msgid "The height dimension to use for the import dialog."
+msgstr ""
+
+#: ../f-spot.schemas.in.h:27
+msgid "The height dimension to use for the main window."
+msgstr ""
+
+#: ../f-spot.schemas.in.h:28
+msgid "The height dimension to use for the photo viewer window."
+msgstr ""
+
+#: ../f-spot.schemas.in.h:29
+msgid "The orientation of the filmstrip, if shown."
+msgstr ""
+
+#: ../f-spot.schemas.in.h:30
+#, fuzzy
+msgid "The orientation of the filmstrip."
+msgstr "Orientasi Panel"
+
+#: ../f-spot.schemas.in.h:31
+msgid "The size (width) of the sidebar in the main window."
+msgstr ""
+
+#: ../f-spot.schemas.in.h:32
+msgid "The size of the sidebar in the main window."
+msgstr ""
+
+#: ../f-spot.schemas.in.h:33
+msgid "The width dimension to use for the import dialog."
+msgstr ""
+
+#: ../f-spot.schemas.in.h:34
+msgid "The width dimension to use for the main window."
+msgstr ""
+
+#: ../f-spot.schemas.in.h:35
+msgid "The width dimension to use for the photo viewer window."
+msgstr ""
+
+#: ../f-spot.schemas.in.h:36
+msgid "Use the current photo's filename as the viewer window's title."
+msgstr ""
+
+#: ../f-spot.schemas.in.h:37
+#, fuzzy
+msgid "Width of the import dialog."
+msgstr "Lebar standar dialog Berlangganan"
+
+#: ../f-spot.schemas.in.h:38
+#, fuzzy
+msgid "Width of the main window."
+msgstr "Lebar jendela utama."
+
+#: ../f-spot.schemas.in.h:39
+msgid "Width of the photo viewer window."
+msgstr ""
+
+#: ../f-spot.schemas.in.h:40
+msgid "Width of the preview image pane in the import dialog."
+msgstr ""
+
+#: ../f-spot.schemas.in.h:41
+#, fuzzy
+msgid "X position of the main window."
+msgstr "Posisi X jendela utama."
+
+#: ../f-spot.schemas.in.h:42
+msgid "X position of the photo viewer window."
+msgstr ""
+
+#: ../f-spot.schemas.in.h:43
+#, fuzzy
+msgid "Y position of the main window."
+msgstr "Posisi X jendela utama."
+
+#: ../f-spot.schemas.in.h:44
+msgid "Y position of the photo viewer window."
+msgstr ""
+
+#: ../f-spot.schemas.in.h:45
+msgid ""
+"You can choose how to display transparent parts in images. This option has "
+"no effect on photos but setting this value to CHECK_PATTERN or CUSTOM_COLOR "
+"could be useful when viewing icons or other artwork with transparent parts."
+msgstr ""
+
+#: ../lib/libfspot/f-jpeg-utils.c:441 ../src/RotateCommand.cs:211
+#, fuzzy
+msgid "File not found"
+msgstr "Berkas tak ditemukan"
+
+#: ../lib/libfspot/f-jpeg-utils.c:464
+#, fuzzy, c-format
+msgid "Unknown transform type %d"
+msgstr "Jenis blog tidak diketahui"
+
+#: ../lib/libfspot/f-jpeg-utils.c:472
+#, fuzzy
+msgid "Operation failed"
+msgstr "Operasi gagal"
+
+#: ../src/Core/App.cs:274
+#, csharp-format
+msgid "No photos matching {0} found"
+msgstr ""
+
+#: ../src/Core/App.cs:275
+#, csharp-format
+msgid ""
+"The tag \"{0}\" is not applied to any photos. Try adding\n"
+"the tag to some photos or selecting a different tag in the\n"
+"F-Spot preference dialog."
+msgstr ""
+
+#: ../src/Core/App.cs:279
+#, fuzzy
+msgid "Search returned no results"
+msgstr "Tak ada hasil yang dikembalikan."
+
+#: ../src/Core/App.cs:280
+msgid ""
+"The tag F-Spot is looking for does not exist. Try\n"
+"selecting a different tag in the F-Spot preference\n"
+"dialog."
+msgstr ""
+
+#. Note for translators: Reparented is a picture becoming a version of another one
+#: ../src/Core/Photo.cs:350
+msgid "Reparented"
+msgstr ""
+
+#: ../src/Core/Photo.cs:366
+#, fuzzy, csharp-format
+msgid "Modified"
+msgid_plural "Modified ({0})"
+msgstr[0] "Tgl Perubahan"
+msgstr[1] ""
+
+#: ../src/Core/Photo.cs:389
+#, fuzzy, csharp-format
+msgid "Modified in {1}"
+msgstr ""
+"%s:\n"
+"%u%% terpakai"
+
+#: ../src/Core/Photo.cs:389
+#, fuzzy, csharp-format
+msgid "Modified in {1} ({0})"
+msgstr ""
+"%s:\n"
+"%u%% terpakai"
+
+#: ../src/Editors/AutoStretchEditor.cs:17
+#, fuzzy
+msgid "Auto Color"
+msgstr "Pilih warna"
+
+#: ../src/Editors/ColorEditor.cs:38
+#, fuzzy
+msgid "Adjust Colors"
+msgstr "Fonta & Warna"
+
+#: ../src/Editors/ColorEditor.cs:41
+#, fuzzy
+msgid "Adjust"
+msgstr "Atur Skor"
+
+#: ../src/Editors/CropEditor.cs:36
+msgid "4 x 3 (Book)"
+msgstr "4 x 3 (Buku)"
+
+#: ../src/Editors/CropEditor.cs:37
+msgid "4 x 6 (Postcard)"
+msgstr "4 x 6 (Kartu pos)"
+
+#: ../src/Editors/CropEditor.cs:38
+msgid "5 x 7 (L, 2L)"
+msgstr "5 x 7 (L, 2L)"
+
+#: ../src/Editors/CropEditor.cs:39
+msgid "8 x 10"
+msgstr "8 x 10"
+
+#: ../src/Editors/CropEditor.cs:40
+#, fuzzy
+msgid "Square"
+msgstr "Akar pangkat"
+
+#: ../src/Editors/CropEditor.cs:43
+msgid "Crop"
+msgstr ""
+
+#: ../src/Editors/CropEditor.cs:74
+msgid "Select the area that needs cropping."
+msgstr ""
+
+#: ../src/Editors/CropEditor.cs:99
+#, fuzzy
+msgid "No Constraint"
+msgstr "Tanpa nama"
+
+#: ../src/Editors/CropEditor.cs:100
+#, fuzzy
+msgid "Same as photo"
+msgstr "Sama dengan keluaran"
+
+#: ../src/Editors/CropEditor.cs:105
+#, fuzzy
+msgid "Custom Ratios..."
+msgstr "Bentuk bebas"
+
+#: ../src/Editors/DesaturateEditor.cs:17
+msgid "Desaturate"
+msgstr ""
+
+#: ../src/Editors/RedEyeEditor.cs:19
+msgid "Red-eye Reduction"
+msgstr ""
+
+#: ../src/Editors/RedEyeEditor.cs:21
+#, fuzzy
+msgid "Fix!"
+msgstr "Perbaiki"
+
+#: ../src/Editors/RedEyeEditor.cs:25
+msgid "Select the eyes you wish to fix."
+msgstr ""
+
+#: ../src/Editors/SepiaEditor.cs:17
+#, fuzzy
+msgid "Sepia Tone"
+msgstr "Mainkan nada sibuk"
+
+#: ../src/Editors/SoftFocusEditor.cs:32
+#, fuzzy
+msgid "Soft Focus"
+msgstr "Ambil Fokus"
+
+#: ../src/Editors/TiltEditor.cs:30
+msgid "Straighten"
+msgstr ""
+
+#: ../src/Filters/ResizeFilter.cs:70 ../src/Filters/SharpFilter.cs:52
+#, csharp-format
+msgid "No way to save files of type \"{0}\""
+msgstr ""
+
+#: ../src/FSpot.addin.xml.h:1
+#, fuzzy
+msgid "Copy Photo"
+msgstr "Path Foto"
+
+#: ../src/FSpot.addin.xml.h:2
+#, fuzzy
+msgid "Export to"
+msgstr "Ekspor ke suatu berkas"
+
+#: ../src/FSpot.addin.xml.h:3
+#, fuzzy
+msgid "Open _With"
+msgstr "Buka _Dengan"
+
+#: ../src/FSpot.addin.xml.h:4 ../src/ui/main_window.ui.h:16
+msgid "Rem_ove Tag"
+msgstr ""
+
+#: ../src/FSpot.addin.xml.h:5 ../src/f-spot.glade.h:44
+#: ../src/SingleView.cs:423 ../src/ui/main_window.ui.h:17
+#, fuzzy
+msgid "Rotate _Left"
+msgstr "Jempol kiri"
+
+#: ../src/FSpot.addin.xml.h:6 ../src/f-spot.glade.h:45
+#: ../src/SingleView.cs:424 ../src/ui/main_window.ui.h:18
+#, fuzzy
+msgid "Rotate _Right"
+msgstr "Jempol kanan"
+
+#: ../src/FSpot.addin.xml.h:7
+#, fuzzy
+msgid "Tools"
+msgstr "Perkakas"
+
+#: ../src/FSpot.addin.xml.h:8 ../src/ui/main_window.ui.h:42
+#, fuzzy
+msgid "_Delete From Drive"
+msgstr "Menghapus anak %s dari %s"
+
+#: ../src/FSpot.addin.xml.h:9 ../src/ui/main_window.ui.h:61
+#, fuzzy
+msgid "_Remove From Catalog"
+msgstr "_Hilangkan dari Panel"
+
+#: ../src/f-spot.glade.h:1
+msgid "1024 px"
+msgstr "1024 px"
+
+#: ../src/f-spot.glade.h:2
+msgid "320 px"
+msgstr "320 px"
+
+#: ../src/f-spot.glade.h:3
+msgid "480 px"
+msgstr "480 px"
+
+#: ../src/f-spot.glade.h:4
+msgid "640 px"
+msgstr "640 px"
+
+#: ../src/f-spot.glade.h:5
+msgid "800 px"
+msgstr "800 px"
+
+#: ../src/f-spot.glade.h:6
+#, fuzzy
+msgid "<b>Co_rrections</b>"
+msgstr "K_omentar:"
+
+#: ../src/f-spot.glade.h:7
+#, fuzzy
+msgid "<b>Image Interpolation</b>"
+msgstr "Gambar _latar:"
+
+#: ../src/f-spot.glade.h:9
+#, fuzzy
+msgid "<b>Size</b>"
+msgstr "_Ukuran:"
+
+#: ../src/f-spot.glade.h:11
+#, fuzzy
+msgid "<b>Summary</b>"
+msgstr "Ringkasan:"
+
+#: ../src/f-spot.glade.h:12
+#, fuzzy
+msgid "<b>Transparent Parts</b>"
+msgstr "<small>Transparan</small>"
+
+#: ../src/f-spot.glade.h:13
+msgid "<b>View all pictures imported</b>"
+msgstr ""
+
+#: ../src/f-spot.glade.h:14
+#, fuzzy
+msgid "<b>_White Balance</b>"
+msgstr "Penunjuk Putih"
+
+#: ../src/f-spot.glade.h:15
+msgid ""
+"<small><i>Enable this to allow interpolation on zoomed images. You shouldn't "
+"disable this for viewing photos, but disabling the interpolation could be "
+"usefull in icon design.</i></small>"
+msgstr ""
+
+#: ../src/f-spot.glade.h:16
+msgid ""
+"<small><i>You can choose how to display transparent parts in images. This "
+"option has no effect on photos, but setting this as check pattern or custom "
+"color could be usefull when viewing icons or other artworks with transparent "
+"parts.</i></small>"
+msgstr ""
+
+#: ../src/f-spot.glade.h:17
+#, fuzzy
+msgid "As _background"
+msgstr "Jadikan Sebagai Gam_bar Latar"
+
+#: ../src/f-spot.glade.h:18
+#, fuzzy
+msgid "As _custom color: "
+msgstr "Warna latar belakang dalam format GdkColor"
+
+#: ../src/f-spot.glade.h:19
+msgid "As check _pattern"
+msgstr ""
+
+#: ../src/f-spot.glade.h:21
+msgid "C_ontrast:"
+msgstr ""
+
+#: ../src/f-spot.glade.h:22
+#, fuzzy
+msgid "C_reate"
+msgstr "Buat"
+
+#: ../src/f-spot.glade.h:23
+#, fuzzy
+msgid "Create Mail"
+msgstr "Pembaca Surat"
+
+#: ../src/f-spot.glade.h:24
+msgid "Create _icon for this tag when first used"
+msgstr ""
+
+#: ../src/f-spot.glade.h:25
+msgid "Create a mail with the selected photos (possibly resized) attached"
+msgstr ""
+
+#: ../src/f-spot.glade.h:26
+#, fuzzy
+msgid "Display File _Names"
+msgstr "Tampilkan nama area kerja"
+
+#: ../src/f-spot.glade.h:27
+msgid "Display only those photos that were imported in specified Rolls."
+msgstr ""
+
+#: ../src/f-spot.glade.h:28
+msgid "Do not send a mail"
+msgstr ""
+
+#: ../src/f-spot.glade.h:29
+#, fuzzy
+msgid "Estimated new size"
+msgstr "Grup Ukuran Baru"
+
+#: ../src/f-spot.glade.h:30
+#, fuzzy
+msgid "Extra large"
+msgstr "Ekstra Ekstra Besar"
+
+#: ../src/f-spot.glade.h:31
+#, fuzzy
+msgid "F-Spot View"
+msgstr "Tampilan _kompak"
+
+#: ../src/f-spot.glade.h:32
+msgid "Filter on selected rolls"
+msgstr ""
+
+#: ../src/f-spot.glade.h:33
+#, fuzzy
+msgid "Large"
+msgstr "Besar"
+
+#: ../src/f-spot.glade.h:34
+msgid "Manage your custom selection ratios"
+msgstr ""
+
+#: ../src/f-spot.glade.h:35
+#, fuzzy
+msgid "Medium"
+msgstr "Sedang"
+
+#: ../src/f-spot.glade.h:36
+msgid "Number of photos in selected rolls:"
+msgstr ""
+
+#: ../src/f-spot.glade.h:37
+#, fuzzy
+msgid "Number of pictures"
+msgstr "Dalam _gambar"
+
+#: ../src/f-spot.glade.h:38
+#, fuzzy
+msgid "Open _Folder..."
+msgstr "Buka Folder"
+
+#: ../src/f-spot.glade.h:39 ../src/PhotoStore.cs:176
+#, fuzzy
+msgid "Original"
+msgstr "Kontak Asli:"
+
+#: ../src/f-spot.glade.h:40
+msgid "Original size (possible very large file size)"
+msgstr ""
+
+#: ../src/f-spot.glade.h:41 ../src/UI.Dialog/ui/EditTagDialog.ui.h:4
+#, fuzzy
+msgid "P_arent Tag:"
+msgstr "Tag tak tertangani: '%s'"
+
+#: ../src/f-spot.glade.h:42
+#, fuzzy
+msgid "Preferences"
+msgstr "Pengaturan"
+
+#: ../src/f-spot.glade.h:43
+msgid "Repair"
+msgstr ""
+
+#: ../src/f-spot.glade.h:46
+#, fuzzy
+msgid "Select a Tag..."
+msgstr "Tag tak tertangani: '%s'"
+
+#: ../src/f-spot.glade.h:47
+#, fuzzy
+msgid "Selection Constraints"
+msgstr "Pemilihan Jendela"
+
+#: ../src/f-spot.glade.h:48 ../src/ui/main_window.ui.h:22
+#, fuzzy
+msgid "Set as _Background"
+msgstr "Jadikan Sebagai Gam_bar Latar"
+
+#: ../src/f-spot.glade.h:49
+#, fuzzy
+msgid "Show all photos."
+msgstr "Tampilkan semua paket"
+
+#: ../src/f-spot.glade.h:50
+msgid "Show or hide the side pane"
+msgstr ""
+
+#: ../src/f-spot.glade.h:51
+#, fuzzy
+msgid "Show or hide the toolbar"
+msgstr "Tampilkan atau sembunyikan bilah alat"
+
+#: ../src/f-spot.glade.h:52
+#, fuzzy
+msgid "Side _pane"
+msgstr "Panel _Sisi"
+
+#: ../src/f-spot.glade.h:53
+#, fuzzy
+msgid "Small"
+msgstr "Kecil"
+
+#: ../src/f-spot.glade.h:54
+msgid ""
+"Specify if an original size picture should be rotated or not. Smaller sizes "
+"are automatically rotated."
+msgstr ""
+
+#. Note for translators: meant as Temperature
+#: ../src/f-spot.glade.h:56
+#, fuzzy
+msgid "Te_mp:"
+msgstr "_Bisu"
+
+#: ../src/f-spot.glade.h:57
+msgid "Tiny"
+msgstr ""
+
+#: ../src/f-spot.glade.h:58
+#, fuzzy
+msgid "Total original size"
+msgstr "Tampilkan U_kuran Asli"
+
+#: ../src/f-spot.glade.h:59 ../src/ui/main_window.ui.h:29
+#, fuzzy
+msgid "Zoom _in"
+msgstr "_Perbesar"
+
+#: ../src/f-spot.glade.h:60 ../src/ui/main_window.ui.h:30
+#, fuzzy
+msgid "Zoom _out"
+msgstr "P_erkecil"
+
+#: ../src/f-spot.glade.h:61 ../src/ui/main_window.ui.h:31
+#, fuzzy
+msgid "Zoom in"
+msgstr "Perbesar"
+
+#: ../src/f-spot.glade.h:62 ../src/ui/main_window.ui.h:32
+#, fuzzy
+msgid "Zoom out"
+msgstr "Perkecil"
+
+#: ../src/f-spot.glade.h:63
+#, fuzzy
+msgid "_Brightness:"
+msgstr "Kecerahan"
+
+#: ../src/f-spot.glade.h:64
+#, fuzzy
+msgid "_Create Mail"
+msgstr "Pembaca Surat"
+
+#: ../src/f-spot.glade.h:65 ../src/ui/main_window.ui.h:45
+#, fuzzy
+msgid "_Edit"
+msgstr "_Edit"
+
+#: ../src/f-spot.glade.h:67
+#, fuzzy
+msgid "_Exposure:"
+msgstr "Waktu Pencahayaan"
+
+#: ../src/f-spot.glade.h:68 ../src/ui/main_window.ui.h:49
+#, fuzzy
+msgid "_Fullscreen"
+msgstr "Layar Penuh"
+
+#: ../src/f-spot.glade.h:69 ../src/ui/main_window.ui.h:50
+#, fuzzy
+msgid "_Help"
+msgstr "Ba_ntuan"
+
+#: ../src/f-spot.glade.h:70
+#, fuzzy
+msgid "_Hue:"
+msgstr "Corak Warna/_Hue:"
+
+#: ../src/f-spot.glade.h:71
+msgid "_Interpolate image on zoom"
+msgstr ""
+
+#: ../src/f-spot.glade.h:72
+#, fuzzy
+msgid "_New Window"
+msgstr "_Jendela Baru"
+
+#: ../src/f-spot.glade.h:73 ../src/ui/main_window.ui.h:58
+#, fuzzy
+msgid "_Photo"
+msgstr "_Foto"
+
+#: ../src/f-spot.glade.h:74
+#, fuzzy
+msgid "_Saturation:"
+msgstr "Kemurnian Warna/_Saturasi:"
+
+#: ../src/f-spot.glade.h:75 ../src/ui/main_window.ui.h:69
+#, fuzzy
+msgid "_Slideshow"
+msgstr "Acak Pertunjukan Slide"
+
+#: ../src/f-spot.glade.h:76 ../src/UI.Dialog/ui/EditTagDialog.ui.h:6
+#, fuzzy
+msgid "_Tag Name:"
+msgstr "Nama tag"
+
+#: ../src/f-spot.glade.h:77
+msgid "_Tint:"
+msgstr ""
+
+#: ../src/f-spot.glade.h:78
+#, fuzzy
+msgid "_Toolbar"
+msgstr "_Baris Alat"
+
+#: ../src/f-spot.glade.h:79 ../src/ui/main_window.ui.h:77
+#, fuzzy
+msgid "_View"
+msgstr "_Lihat"
+
+#: ../src/f-spot.glade.h:80 ../src/Widgets/FindBar.cs:178
+msgid "and"
+msgstr "dan"
+
+#. at, or after a date, or between dates
+#: ../src/f-spot.glade.h:82
+msgid ""
+"at\n"
+"after\n"
+"between"
+msgstr ""
+
+#: ../src/FullScreenView.cs:59
+#, fuzzy
+msgid "Hide"
+msgstr "Sembunyikan"
+
+#: ../src/FullScreenView.cs:61
+#, fuzzy
+msgid "Hide Toolbar"
+msgstr "Kotak Tombol Uta_ma"
+
+#: ../src/FullScreenView.cs:67
+msgid "Info"
+msgstr "Info"
+
+#: ../src/FullScreenView.cs:69 ../src/Widgets/InfoBox.cs:202
+#, fuzzy
+msgid "Image Information"
+msgstr "Informasi Cuaca"
+
+#: ../src/FullScreenView.cs:74
+#, fuzzy
+msgid "Exit fullscreen"
+msgstr "Tinggalkan Moda _Layar Penuh"
+
+#: ../src/FullScreenView.cs:82 ../src/MainWindow.cs:313
+#: ../src/SingleView.cs:87
+#, fuzzy
+msgid "Slideshow"
+msgstr "Acak Pertunjukan Slide"
+
+#: ../src/FullScreenView.cs:83
+#, fuzzy
+msgid "Start slideshow"
+msgstr "Acak Pertunjukan Slide"
+
+#: ../src/FullScreenView.cs:129
+#, fuzzy
+msgid "Slide transition:"
+msgstr "Deretan Gambar"
+
+#: ../src/GroupSelector.cs:57 ../src/GroupSelector.cs:58
+#, fuzzy
+msgid "More dates"
+msgstr "Informasi lebih"
+
+#: ../src/GroupSelector.cs:60 ../src/GroupSelector.cs:61
+#, fuzzy
+msgid "More"
+msgstr "_Lebih Lanjut..."
+
+#: ../src/GroupSelector.cs:530 ../src/ui/main_window.ui.h:35
+msgid "_Clear Date Range"
+msgstr ""
+
+#: ../src/Imaging/Exif.cs:229
+#, fuzzy
+msgid "Image Directory"
+msgstr "Pengaturan Direktori"
+
+#: ../src/Imaging/Exif.cs:231
+#, fuzzy
+msgid "Thumbnail Directory"
+msgstr "Pengaturan Direktori"
+
+#: ../src/Imaging/Exif.cs:233
+#, fuzzy
+msgid "Exif Directory"
+msgstr "Pengaturan Direktori"
+
+#: ../src/Imaging/Exif.cs:235
+#, fuzzy
+msgid "GPS Directory"
+msgstr "Pengaturan Direktori"
+
+#: ../src/Imaging/Exif.cs:237
+#, fuzzy
+msgid "InterOperability Directory"
+msgstr "Pengaturan Direktori"
+
+#: ../src/Imaging/Exif.cs:239
+#, fuzzy
+msgid "Unknown Directory"
+msgstr "Pengaturan Direktori"
+
+#: ../src/Imaging/ImageFile.cs:119
+msgid "Writing to this file format is not supported"
+msgstr ""
+
+#: ../src/Imaging/IptcFile.cs:145
+msgid "IPTC Information Interchange Model (IIM) Version number"
+msgstr ""
+
+#: ../src/Imaging/IptcFile.cs:147
+msgid "OSI Destination routing information"
+msgstr ""
+
+#: ../src/Imaging/IptcFile.cs:149
+#, fuzzy
+msgid "IPTC file format"
+msgstr "Format berkas projek"
+
+#: ../src/Imaging/IptcFile.cs:151
+msgid "Identifies the provider and product"
+msgstr ""
+
+#: ../src/Imaging/IptcFile.cs:153
+msgid "A unique number identifying the envelope"
+msgstr ""
+
+#: ../src/Imaging/IptcFile.cs:155
+#, fuzzy
+msgid "A unique number"
+msgstr "Jumlah _area kerja:"
+
+#: ../src/Imaging/IptcFile.cs:157
+msgid ""
+"The envelope handling priority between 1 (most urgent) and 9 (least urgent)"
+msgstr ""
+
+#: ../src/Imaging/IptcFile.cs:159
+msgid "The year, month and day (CCYYMMDD) the service sent the material"
+msgstr ""
+
+#: ../src/Imaging/IptcFile.cs:161
+msgid "The hour, minute and second (HHMMSS) the service sent the material"
+msgstr ""
+
+#: ../src/Imaging/IptcFile.cs:163
+#, fuzzy
+msgid "The character set designation"
+msgstr "Gugus karakter tidak dikenal: %s"
+
+#: ../src/Imaging/IptcFile.cs:165
+msgid "External globally unique object identifier"
+msgstr ""
+
+#: ../src/Imaging/IptcFile.cs:170
+msgid "Abstract Relationship Method (ARM) identifier"
+msgstr ""
+
+#: ../src/Imaging/IptcFile.cs:172
+msgid "Abstract Relationship Method (ARM) version number."
+msgstr ""
+
+#: ../src/Imaging/IptcFile.cs:175
+msgid "Number identifying the IIM version this application record uses"
+msgstr ""
+
+#: ../src/Imaging/IptcFile.cs:177
+#, fuzzy
+msgid "Object type reference"
+msgstr "Referensi objek data"
+
+#: ../src/Imaging/IptcFile.cs:182
+#, fuzzy
+msgid "Object attribute reference"
+msgstr "Referensi objek data"
+
+#: ../src/Imaging/IptcFile.cs:188 ../src/Imaging/IptcFile.cs:192
+msgid "Object name"
+msgstr "Nama objek"
+
+#: ../src/Imaging/IptcFile.cs:190
+msgid "Status of the objectdata according to the provider"
+msgstr ""
+
+#: ../src/Imaging/IptcFile.cs:194
+msgid "Location within a city or area where the object originates"
+msgstr ""
+
+#: ../src/Imaging/IptcFile.cs:197
+msgid "Name of the city the content is focussing on"
+msgstr ""
+
+#: ../src/Imaging/IptcFile.cs:200
+#, fuzzy
+msgid "Copyright information for"
+msgstr "Informasi hak cipta program"
+
+#: ../src/Imaging/IptcFile.cs:203
+msgid "Full name of the country of the focus of the content"
+msgstr ""
+
+#: ../src/Imaging/IptcFile.cs:206
+msgid ""
+"Two or three letter ISO3166 code of the country of the focus of the content"
+msgstr ""
+
+#: ../src/Imaging/IptcFile.cs:209
+#, fuzzy
+msgid "Creator of the content"
+msgstr "Tampilan Isi"
+
+#: ../src/Imaging/IptcFile.cs:212
+#, fuzzy
+msgid "Provider of the object"
+msgstr "Objek '%s' telah ditambahkan"
+
+#: ../src/Imaging/IptcFile.cs:215
+msgid "The title of the author or creator"
+msgstr ""
+
+#: ../src/Imaging/IptcFile.cs:218
+msgid ""
+"The person involved in writing, editing or correcting the object data or "
+"caption/abstract"
+msgstr ""
+
+#: ../src/Imaging/IptcFile.cs:222
+#, fuzzy
+msgid "Headline of the content"
+msgstr "Tampilan Isi"
+
+#: ../src/Imaging/IptcFile.cs:225
+msgid ""
+"Instructions from the creator to the receiver not covered by other fields"
+msgstr ""
+
+#: ../src/Imaging/IptcFile.cs:228
+msgid "Intellectual genre of the object"
+msgstr ""
+
+#: ../src/Imaging/IptcFile.cs:241
+msgid "Unknown IIM DataSet"
+msgstr ""
+
+#: ../src/Import/ImportController.cs:410 ../src/Import/ImportController.cs:412
+#: ../src/XmpTagsImporter.cs:89
+#, fuzzy
+msgid "Imported Tags"
+msgstr "S_isip Tag"
+
+#: ../src/ItemAction.cs:79 ../src/MainWindow.cs:280 ../src/SingleView.cs:70
+#, fuzzy
+msgid "Rotate Left"
+msgstr "Jempol kiri"
+
+#: ../src/ItemAction.cs:80
+msgid "Rotate picture left"
+msgstr ""
+
+#: ../src/ItemAction.cs:91 ../src/MainWindow.cs:284 ../src/SingleView.cs:75
+#, fuzzy
+msgid "Rotate Right"
+msgstr "Jempol kanan"
+
+#: ../src/ItemAction.cs:92
+msgid "Rotate picture right"
+msgstr ""
+
+#: ../src/ItemAction.cs:103
+#, fuzzy
+msgid "Next picture"
+msgstr "Kecerahan foto"
+
+#: ../src/ItemAction.cs:123
+#, fuzzy
+msgid "Previous"
+msgstr "Sebelum"
+
+#: ../src/ItemAction.cs:124
+#, fuzzy
+msgid "Previous picture"
+msgstr "Kecerahan foto"
+
+#: ../src/MainWindow.cs:273 ../src/UI.Dialog/ImportDialog.cs:171
+msgid "Import"
+msgstr "Impor"
+
+#: ../src/MainWindow.cs:275
+msgid "Import new images"
+msgstr ""
+
+#: ../src/MainWindow.cs:291 ../src/ui/main_window.ui.h:3
+msgid "Browse"
+msgstr "Ramban"
+
+#: ../src/MainWindow.cs:295
+msgid "Browse many photos simultaneously"
+msgstr ""
+
+#: ../src/MainWindow.cs:299
+#, fuzzy
+msgid "Edit Image"
+msgstr "Sunting Gambar"
+
+#: ../src/MainWindow.cs:303
+msgid "View and edit a photo"
+msgstr ""
+
+#: ../src/MainWindow.cs:308 ../src/SingleView.cs:82
+#, fuzzy
+msgid "Fullscreen"
+msgstr "Layar penuh"
+
+#: ../src/MainWindow.cs:310 ../src/SingleView.cs:84
+msgid "View photos fullscreen"
+msgstr ""
+
+#: ../src/MainWindow.cs:315 ../src/SingleView.cs:89
+msgid "View photos in a slideshow"
+msgstr ""
+
+#: ../src/MainWindow.cs:330
+msgid "Previous photo"
+msgstr "Foto sebelumnya"
+
+#: ../src/MainWindow.cs:335
+msgid "Next photo"
+msgstr "Foto berikutnya"
+
+#: ../src/MainWindow.cs:412
+#, fuzzy
+msgid "Show _Find Bar"
+msgstr "Tam_pilkan Panel Lampiran"
+
+#: ../src/MainWindow.cs:415
+#, fuzzy
+msgid "Hide _Find Bar"
+msgstr "Sem_bunyikan Panel Lampiran"
+
+#. Translators, The singular case will never happen here.
+#: ../src/MainWindow.cs:1719
+#, csharp-format
+msgid "Merge the selected tag"
+msgid_plural "Merge the {0} selected tags?"
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../src/MainWindow.cs:1746
+msgid ""
+"This operation will merge the selected tags and any sub-tags into a single "
+"tag."
+msgstr ""
+
+#: ../src/MainWindow.cs:1748
+#, fuzzy
+msgid "_Merge Tags"
+msgstr "S_isip Tag"
+
+#: ../src/MainWindow.cs:1953
+#, fuzzy, csharp-format
+msgid "{0} Photo out of {1}"
+msgid_plural "{0} Photos out of {1}"
+msgstr[0] "Keluar..."
+msgstr[1] ""
+
+#: ../src/MainWindow.cs:1955 ../src/SingleView.cs:465
+#, fuzzy, csharp-format
+msgid "{0} Photo"
+msgid_plural "{0} Photos"
+msgstr[0] "_Foto"
+msgstr[1] ""
+
+#: ../src/MainWindow.cs:1958
+#, fuzzy, csharp-format
+msgid " ({0} selected)"
+msgid_plural " ({0} selected)"
+msgstr[0] "\"%s\" terpilih"
+msgstr[1] ""
+
+#: ../src/MainWindow.cs:2039
+#, fuzzy
+msgid "_Ok"
+msgstr "OK"
+
+#: ../src/MainWindow.cs:2040
+#, fuzzy
+msgid "Error Deleting Picture"
+msgstr "Error menghapus berkas '%s': %s"
+
+#: ../src/MainWindow.cs:2045
+#, csharp-format
+msgid "No permission to delete the file:{1}{0}"
+msgstr ""
+
+#: ../src/MainWindow.cs:2049
+#, fuzzy, csharp-format
+msgid "An error of type {0} occurred while deleting the file:{2}{1}"
+msgstr "Ada error saat menghapus berkas atau direktori"
+
+#: ../src/MainWindow.cs:2081
+#, fuzzy, csharp-format
+msgid "Delete the selected photo permanently?"
+msgid_plural "Delete the {0} selected photos permanently?"
+msgstr[0] "Hapus semua objek terpilih secara permanan"
+msgstr[1] ""
+
+#: ../src/MainWindow.cs:2085
+msgid "This deletes all versions of the selected photo from your drive."
+msgid_plural ""
+"This deletes all versions of the selected photos from your drive."
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../src/MainWindow.cs:2088
+#, fuzzy
+msgid "_Delete photo"
+msgid_plural "_Delete photos"
+msgstr[0] "Tak bisa menghapus foto"
+msgstr[1] ""
+
+#: ../src/MainWindow.cs:2124
+#, csharp-format
+msgid "Remove the selected photo from F-Spot?"
+msgid_plural "Remove the {0} selected photos from F-Spot?"
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../src/MainWindow.cs:2129
+msgid ""
+"If you remove photos from the F-Spot catalog all tag information will be "
+"lost. The photos remain on your computer and can be imported into F-Spot "
+"again."
+msgstr ""
+
+#: ../src/MainWindow.cs:2130
+#, fuzzy
+msgid "_Remove from Catalog"
+msgstr "_Hilangkan dari Panel"
+
+#: ../src/MainWindow.cs:2199
+#, fuzzy, csharp-format
+msgid "Delete tag \"{0}\"?"
+msgstr "Tag tak tertangani: '%s'"
+
+#: ../src/MainWindow.cs:2201
+#, fuzzy, csharp-format
+msgid "Delete the {0} selected tags?"
+msgstr "Tag untuk dihapus:"
+
+#: ../src/MainWindow.cs:2206
+msgid "photo"
+msgid_plural "photos"
+msgstr[0] "f\toto"
+
+#: ../src/MainWindow.cs:2208
+#, csharp-format
+msgid "If you delete this tag, the association with {0} {1} will be lost."
+msgid_plural ""
+"If you delete these tags, the association with {0} {1} will be lost."
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../src/MainWindow.cs:2213
+#, fuzzy
+msgid "_Delete tag"
+msgid_plural "_Delete tags"
+msgstr[0] "Tag tak tertangani: '%s'"
+msgstr[1] ""
+
+#. A Category is not empty. Can not delete it.
+#: ../src/MainWindow.cs:2227
+#, fuzzy
+msgid "Tag is not empty"
+msgstr "Direktori '%s' belum kosong"
+
+#: ../src/MainWindow.cs:2228
+#, csharp-format
+msgid ""
+"Can not delete tags that have tags within them.  Please delete tags under "
+"\"{0}\" first"
+msgstr ""
+
+#: ../src/MainWindow.cs:2659
+msgid "Rotate selected photo left"
+msgid_plural "Rotate selected photos left"
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../src/MainWindow.cs:2672
+msgid "Rotate selected photo right"
+msgid_plural "Rotate selected photos right"
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../src/MainWindow.cs:2683
+#, csharp-format
+msgid "Find _Selected Tag"
+msgid_plural "Find _Selected Tags"
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../src/MainWindow.cs:2687
+#, csharp-format
+msgid "Find Selected Tag _With"
+msgid_plural "Find Selected Tags _With"
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../src/MainWindow.cs:2728
+#, fuzzy
+msgid "Create New Version?"
+msgid_plural "Create New Versions?"
+msgstr[0] "Buat peluncur program"
+msgstr[1] ""
+
+#: ../src/MainWindow.cs:2730
+#, csharp-format
+msgid ""
+"Before launching {1}, should F-Spot create a new version of the selected "
+"photo to preserve the original?"
+msgid_plural ""
+"Before launching {1}, should F-Spot create new versions of the selected "
+"photos to preserve the originals?"
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../src/MainWindow.cs:2752
+msgid "XCF version"
+msgstr "Versi XCF"
+
+#: ../src/MetadataStore.cs:19
+#, fuzzy
+msgid "Creator"
+msgstr "Pencipta"
+
+#: ../src/MetadataStore.cs:20
+msgid "Title"
+msgstr "Judul"
+
+#: ../src/MetadataStore.cs:21
+msgid "Copyright"
+msgstr "Hak Cipta"
+
+#: ../src/MetadataStore.cs:22
+msgid "Subject and Keywords"
+msgstr ""
+
+#: ../src/MetadataStore.cs:23
+#, fuzzy
+msgid "Compression"
+msgstr "<b>Kompresi</b>"
+
+#. Translators: Planar Configuration is the label for the tiff:PlanarConfiguration tag
+#. "when Planar Configuration=1, this implies that all components must have
+#. the same BitsPerSample value; when Planar Configuration=2, different
+#. components could have different bit depths."
+#: ../src/MetadataStore.cs:29
+#, fuzzy
+msgid "Planar Configuration"
+msgstr "Berkas Konfigurasi"
+
+#: ../src/MetadataStore.cs:31
+#, fuzzy
+msgid "Orientation"
+msgstr "Orientasi"
+
+#: ../src/MetadataStore.cs:33
+#, fuzzy
+msgid "Photometric Interpretation"
+msgstr "Penafsiran nilai"
+
+#: ../src/MetadataStore.cs:35
+#, fuzzy
+msgid "Resolution Unit"
+msgstr "_Unit tekanan:"
+
+#: ../src/MetadataStore.cs:37
+#, fuzzy
+msgid "Exposure Program"
+msgstr "Program Pencahayaan"
+
+#: ../src/MetadataStore.cs:39
+#, fuzzy
+msgid "Metering Mode"
+msgstr "Moda Pengukuran"
+
+#: ../src/MetadataStore.cs:41
+#, fuzzy
+msgid "Exposure Mode"
+msgstr "Moda Kolom..."
+
+#: ../src/MetadataStore.cs:43
+#, fuzzy
+msgid "Custom Rendered"
+msgstr "Bentuk bebas"
+
+#: ../src/MetadataStore.cs:45
+#, fuzzy
+msgid "Components Configuration"
+msgstr "Berkas Konfigurasi"
+
+#: ../src/MetadataStore.cs:47
+#, fuzzy
+msgid "Light Source"
+msgstr "Asal IP"
+
+#: ../src/MetadataStore.cs:49
+#, fuzzy
+msgid "Sensing Method"
+msgstr "X Input Method"
+
+#: ../src/MetadataStore.cs:51
+#, fuzzy
+msgid "Color Space"
+msgstr "Ruang Swap"
+
+#: ../src/MetadataStore.cs:53
+#, fuzzy
+msgid "White Balance"
+msgstr "Penunjuk Putih"
+
+#: ../src/MetadataStore.cs:55
+msgid "Focal Plane Resolution Unit"
+msgstr ""
+
+#: ../src/MetadataStore.cs:57
+#, fuzzy
+msgid "File Source Type"
+msgstr "Tuliskan nama berkas"
+
+#: ../src/MetadataStore.cs:59
+msgid "Scene Capture Type"
+msgstr ""
+
+#. Translators: Gain Control is the label for the exif:GainControl tag
+#. "This tag indicates the degree of overall image gain adjustment."
+#: ../src/MetadataStore.cs:63
+#, fuzzy
+msgid "Gain Control"
+msgstr "Kendali Revisi"
+
+#: ../src/MetadataStore.cs:65
+msgid "Contrast"
+msgstr "Kontras"
+
+#: ../src/MetadataStore.cs:67
+msgid "Saturation"
+msgstr "Saturasi"
+
+#: ../src/MetadataStore.cs:69
+msgid "Sharpness"
+msgstr ""
+
+#: ../src/MetadataStore.cs:71
+#, fuzzy
+msgid "Scene Type"
+msgstr "Tipe Latar"
+
+#. Fixme this should really set parent menu
+#. items insensitve
+#: ../src/PhotoTagMenu.cs:62
+#, fuzzy
+msgid "(No Tags)"
+msgstr "S_isip Tag"
+
+#: ../src/PhotoVersionCommands.cs:58
+#, fuzzy
+msgid "Create New Version"
+msgstr "Buat peluncur program"
+
+#: ../src/PhotoVersionCommands.cs:59
+msgid "Name:"
+msgstr "Nama:"
+
+#: ../src/PhotoVersionCommands.cs:63
+#, fuzzy
+msgid "Rename Version"
+msgstr "Tampilkan versi"
+
+#: ../src/PhotoVersionCommands.cs:64
+msgid "New name:"
+msgstr "Nama baru:"
+
+#: ../src/PhotoVersionCommands.cs:123
+#, fuzzy
+msgid "Delete"
+msgstr "Hapus"
+
+#: ../src/PhotoVersionCommands.cs:124
+#, fuzzy, csharp-format
+msgid "Really delete version \"{0}\"?"
+msgstr "Benarkah ingin menghapus berkas \"%s\"?"
+
+#: ../src/PhotoVersionCommands.cs:125
+msgid "This removes the version and deletes the corresponding file from disk."
+msgstr ""
+
+#: ../src/PhotoVersionCommands.cs:170
+#, fuzzy
+msgid "De_tach"
+msgstr "_Standar"
+
+#: ../src/PhotoVersionCommands.cs:171
+#, csharp-format
+msgid "Really detach version \"{0}\" from \"{1}\"?"
+msgstr ""
+
+#: ../src/PhotoVersionCommands.cs:172
+msgid ""
+"This makes the version appear as a separate photo in the library. To undo, "
+"drag the new photo back to its parent."
+msgstr ""
+
+#: ../src/PhotoVersionCommands.cs:194
+#, fuzzy
+msgid "Re_parent"
+msgstr "Jendela Induk"
+
+#: ../src/PhotoVersionCommands.cs:195
+#, csharp-format
+msgid "Really reparent \"{0}\" as version of \"{1}\"?"
+msgid_plural "Really reparent {2} photos as versions of \"{1}\"?"
+msgstr[0] ""
+
+#: ../src/PhotoVersionCommands.cs:198
+msgid ""
+"This makes the photos appear as a single one in the library. The versions "
+"can be detached using the Photo menu."
+msgstr ""
+
+#: ../src/PhotoVersionCommands.cs:238
+#, fuzzy, csharp-format
+msgid "Received exception \"{0}\"."
+msgstr "Ada eksepsi yang dikembalikan: %s"
+
+#: ../src/PhotoVersionMenu.cs:66 ../src/Widgets/InfoBox.cs:566
+#: ../src/Widgets/InfoBox.cs:568
+#, fuzzy
+msgid "(No Edits)"
+msgstr "Tanpa nama"
+
+#: ../src/PhotoView.cs:339
+#, fuzzy
+msgid "Comment:"
+msgstr "Keterangan: "
+
+#: ../src/Preferences.cs:152
+#, fuzzy
+msgid "Photos"
+msgstr "Koleksi Foto:"
+
+#: ../src/PrintOperation.cs:32
+#, fuzzy
+msgid "Image Settings"
+msgstr "Pengaturan _Waktu"
+
+#: ../src/QueryWidget.cs:55
+#, fuzzy
+msgid "Find: "
+msgstr "_Cari..."
+
+#: ../src/QueryWidget.cs:60
+#, fuzzy
+msgid "Untagged photos"
+msgstr "Cacah foto"
+
+#: ../src/QueryWidget.cs:68
+#, fuzzy
+msgid "Rated photos"
+msgstr "Cacah foto"
+
+#. Note for translators: 'Import roll' is no command, it means 'Roll that has been imported'
+#: ../src/QueryWidget.cs:77
+#, fuzzy
+msgid "Import roll"
+msgstr "Gulung ke atas"
+
+#: ../src/QueryWidget.cs:100
+#, fuzzy
+msgid "Clear search"
+msgstr "Batalkan pencarian"
+
+#: ../src/QueryWidget.cs:107
+#, fuzzy
+msgid "Refresh search"
+msgstr "Batalkan pencarian"
+
+#: ../src/QueryWidget.cs:110
+msgid "No matching photos found"
+msgstr ""
+
+#: ../src/RotateCommand.cs:87 ../src/RotateCommand.cs:102
+msgid "Unable to rotate this type of photo"
+msgstr ""
+
+#: ../src/RotateCommand.cs:122
+msgid "Unable to rotate readonly file"
+msgstr ""
+
+#: ../src/RotateCommand.cs:185
+#, fuzzy
+msgid "Rotating photos"
+msgstr "Cacah foto"
+
+#: ../src/RotateCommand.cs:196
+#, fuzzy, csharp-format
+msgid "Rotating photo \"{0}\""
+msgstr "Path Foto"
+
+#: ../src/RotateCommand.cs:209
+#, fuzzy
+msgid "Directory not found"
+msgstr "Direktori tak ditemukan"
+
+#: ../src/RotateCommand.cs:229
+#, csharp-format
+msgid "Unable to rotate photo"
+msgid_plural "Unable to rotate {0} photos"
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../src/RotateCommand.cs:231
+#, csharp-format
+msgid ""
+"The photo could not be rotated because it is on a read only file system or "
+"media such as a CDROM.  Please check the permissions and try again."
+msgid_plural ""
+"{0} photos could not be rotated because they are on a read only file system "
+"or media such as a CDROM.  Please check the permissions and try again."
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../src/RotateCommand.cs:258
+#, csharp-format
+msgid "Received error \"{0}\" while attempting to rotate {1}"
+msgstr ""
+
+#: ../src/RotateCommand.cs:263
+msgid "Error while rotating photo."
+msgstr ""
+
+#: ../src/SendEmail.cs:214
+#, fuzzy
+msgid "Preparing email"
+msgstr "Perkakas Surel"
+
+#: ../src/SendEmail.cs:266
+#, fuzzy, csharp-format
+msgid "Exporting picture \"{0}\""
+msgstr "Kecerahan foto"
+
+#: ../src/SendEmail.cs:288
+#, fuzzy
+msgid "Error processing image"
+msgstr "Galat saat membaca citra ICNS: %s"
+
+#: ../src/SendEmail.cs:289
+#, csharp-format
+msgid "An error occured while processing \"{0}\": {1}"
+msgstr ""
+
+#. Send the mail :)
+#: ../src/SendEmail.cs:303
+#, fuzzy
+msgid "My Photos"
+msgstr "Cacah foto"
+
+#: ../src/Sharpener.cs:72
+msgid "Error saving sharpened photo"
+msgstr ""
+
+#: ../src/Sharpener.cs:73 ../src/UI.Dialog/EditExceptionDialog.cs:26
+#, csharp-format
+msgid "Received exception \"{0}\". Unable to save photo {1}"
+msgstr ""
+
+#: ../src/Sharpener.cs:102
+msgid "Sharpen"
+msgstr ""
+
+#: ../src/Sharpener.cs:112
+#, fuzzy
+msgid "Amount:"
+msgstr "Sekitar"
+
+#: ../src/Sharpener.cs:113
+msgid "Radius:"
+msgstr "Jari-jari:"
+
+#: ../src/Sharpener.cs:114
+#, fuzzy
+msgid "Threshold:"
+msgstr "Ambang Motion:"
+
+#: ../src/SingleView.cs:72
+msgid "Rotate photo left"
+msgstr ""
+
+#: ../src/SingleView.cs:77
+msgid "Rotate photo right"
+msgstr ""
+
+#: ../src/SingleView.cs:114
+msgid "Folder"
+msgstr "Folder"
+
+#: ../src/SingleView.cs:339
+msgid "Open"
+msgstr "Buka"
+
+#: ../src/SingleView.cs:342
+msgid "Select Folder"
+msgstr "Pilih Folder"
+
+#: ../src/SingleView.cs:426
+#, fuzzy
+msgid "Set as Background"
+msgstr "Jadikan Sebagai Gam_bar Latar"
+
+#: ../src/TagCommands.cs:97 ../src/TagSelectionWidget.cs:491
+#: ../src/UI.Dialog/EditTagDialog.cs:76
+msgid "This name is already in use"
+msgstr ""
+
+#: ../src/TagCommands.cs:145
+#, fuzzy
+msgid "Create New Tag"
+msgstr "Buat peluncur program"
+
+#: ../src/TagCommands.cs:146
+#, fuzzy
+msgid "Name of New Tag:"
+msgstr "Nama tampilan baru:"
+
+#: ../src/TagPopup.cs:26
+#, fuzzy, csharp-format
+msgid "Find"
+msgid_plural "Find"
+msgstr[0] "Temukan"
+msgstr[1] ""
+
+#: ../src/TagPopup.cs:36 ../src/Widgets/TagMenu.cs:98
+#, fuzzy
+msgid "Create New Tag..."
+msgstr "Buat peluncur program"
+
+#: ../src/TagPopup.cs:42
+#, fuzzy
+msgid "Edit Tag..."
+msgstr "Tag tak tertangani: '%s'"
+
+#: ../src/TagPopup.cs:46
+#, fuzzy
+msgid "Delete Tag"
+msgid_plural "Delete Tags"
+msgstr[0] "Tag tak tertangani: '%s'"
+msgstr[1] ""
+
+#: ../src/TagPopup.cs:52
+msgid "Attach Tag to Selection"
+msgid_plural "Attach Tags to Selection"
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../src/TagPopup.cs:56
+msgid "Remove Tag From Selection"
+msgid_plural "Remove Tags From Selection"
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../src/TagPopup.cs:62
+msgid "Merge Tags"
+msgstr "Gabung Tag"
+
+#: ../src/TagQueryWidget.cs:34
+#, csharp-format
+msgid "Include Photos Tagged \"{0}\""
+msgstr ""
+
+#: ../src/TagQueryWidget.cs:39
+#, csharp-format
+msgid "Exclude Photos Tagged \"{0}\""
+msgstr ""
+
+#: ../src/TagQueryWidget.cs:44
+msgid "Remove From Search"
+msgstr "Hapus Dari Pencarian"
+
+#: ../src/TagQueryWidget.cs:88
+#, fuzzy, csharp-format
+msgid "Find _With"
+msgid_plural "Find _With"
+msgstr[0] "Buka dengan \"%s\""
+msgstr[1] ""
+
+#: ../src/TagQueryWidget.cs:114
+msgid "All"
+msgstr "Semua"
+
+#: ../src/TagQueryWidget.cs:149 ../src/Term.cs:586
+#, csharp-format
+msgid "Not {0}"
+msgstr "Bukan {0}"
+
+#: ../src/TagQueryWidget.cs:273
+msgid "Drag tags here to search for them"
+msgstr ""
+
+#: ../src/TagSelectionWidget.cs:490
+#, fuzzy
+msgid "Error renaming tag"
+msgstr "Error mengganti nama berkas \"%s\": %s"
+
+#: ../src/TagStore.cs:204
+msgid "Favorites"
+msgstr "Favorit"
+
+#: ../src/TagStore.cs:209
+msgid "Hidden"
+msgstr "Tersembunyi"
+
+#: ../src/TagStore.cs:217
+msgid "People"
+msgstr "Orang"
+
+#: ../src/TagStore.cs:222
+msgid "Places"
+msgstr "Tempat"
+
+#: ../src/TagStore.cs:227
+msgid "Events"
+msgstr "Peristiwa"
+
+#. The label for the root category is used in new and edit tag dialogs
+#: ../src/TagStore.cs:240 ../src/Widgets/InfoBox.cs:410
+msgid "(None)"
+msgstr "(Tak ada)"
+
+#: ../src/Term.cs:298
+msgid " and "
+msgstr " dan "
+
+#. operators.Add (Catalog.GetString (" && "));
+#: ../src/Term.cs:300
+msgid ", "
+msgstr ", "
+
+#: ../src/Term.cs:356
+msgid " or "
+msgstr " atau "
+
+#. OPS The operators we support, case insensitive
+#. private static string op_str = "(?'Ops' or | and |, | \\s+ )";
+#: ../src/Term.cs:380 ../src/UI.Dialog/ui/DateRangeDialog.ui.h:7
+#: ../src/Widgets/FindBar.cs:178
+msgid "or"
+msgstr "atau"
+
+#: ../src/ThumbnailCommand.cs:21
+#, fuzzy
+msgid "Updating Thumbnails"
+msgstr "_Tampilkan gambar kecil:"
+
+#: ../src/ThumbnailCommand.cs:29
+#, fuzzy, csharp-format
+msgid "Updating picture \"{0}\""
+msgstr "Kecerahan foto"
+
+#: ../src/UI.Dialog/AboutDialog.cs:94
+msgid "Photo management for GNOME"
+msgstr ""
+
+#: ../src/UI.Dialog/AboutDialog.cs:95
+msgid "Copyright © 2003-2010 Novell Inc."
+msgstr ""
+
+#: ../src/UI.Dialog/AboutDialog.cs:119
+msgid "translator-credits"
+msgstr "Andika Triwidada <andika@gmail.com>, 2010."
+
+#: ../src/UI.Dialog/AboutDialog.cs:124
+#, fuzzy
+msgid "F-Spot Website"
+msgstr "Situs Web PackageKit"
+
+#: ../src/UI.Dialog/AdjustTimeDialog.cs:113
+#: ../src/UI.Dialog/ui/AdjustTimeDialog.ui.h:10
+#, csharp-format
+msgid "Shift all photos by {0}"
+msgstr ""
+
+#: ../src/UI.Dialog/DateRangeDialog.cs:99
+msgid "Today"
+msgstr "Hari ini"
+
+#: ../src/UI.Dialog/DateRangeDialog.cs:101
+msgid "Yesterday"
+msgstr "Kemarin"
+
+#: ../src/UI.Dialog/DateRangeDialog.cs:103
+msgid "Last 7 days"
+msgstr "7 hari terakhir"
+
+#: ../src/UI.Dialog/DateRangeDialog.cs:105
+msgid "Last 30 days"
+msgstr "30 hari terakhir"
+
+#: ../src/UI.Dialog/DateRangeDialog.cs:107
+msgid "Last 90 days"
+msgstr "90 hari terakhir"
+
+#: ../src/UI.Dialog/DateRangeDialog.cs:109
+msgid "Last 360 days"
+msgstr "360 hari terakhir"
+
+#: ../src/UI.Dialog/DateRangeDialog.cs:111
+msgid "Current Week (Mon-Sun)"
+msgstr "Minggu Ini (Sen-Mgg)"
+
+#: ../src/UI.Dialog/DateRangeDialog.cs:113
+msgid "Previous Week (Mon-Sun)"
+msgstr "Minggu Lalu (Sen-Mgg)"
+
+#: ../src/UI.Dialog/DateRangeDialog.cs:131
+#, fuzzy
+msgid "Customized Range"
+msgstr "Nilai keluar cakupan.\n"
+
+#: ../src/UI.Dialog/EditExceptionDialog.cs:39
+msgid "Error editing photo"
+msgstr ""
+
+#: ../src/UI.Dialog/EditTagIconDialog.cs:42
+#, csharp-format
+msgid "Edit Icon for Tag {0}"
+msgstr ""
+
+#: ../src/UI.Dialog/EditTagIconDialog.cs:64
+msgid "Select Photo from file"
+msgstr ""
+
+#: ../src/UI.Dialog/EditTagIconDialog.cs:86
+#, csharp-format
+msgid ""
+"\n"
+"<b>From Photo</b>\n"
+" You can use one of your library photos as an icon for this tag.\n"
+" However, first you must have at least one photo associated\n"
+" with this tag. Please tag a photo as '{0}' and return here\n"
+" to use it as an icon."
+msgstr ""
+
+#: ../src/UI.Dialog/EditTagIconDialog.cs:164
+msgid "Unable to load image"
+msgstr "Tak bisa memuat gambar"
+
+#: ../src/UI.Dialog/EditTagIconDialog.cs:165
+#, csharp-format
+msgid "Unable to load \"{0}\" as icon for the tag"
+msgstr "Tak bisa memuat \"{0}\" sebagai ikon bagi tag"
+
+#: ../src/UI.Dialog/EditTagIconDialog.cs:203
+#, csharp-format
+msgid "Photo {0} of {1}"
+msgstr "Foto {0} dari {1}"
+
+#: ../src/UI.Dialog/ExceptionDialog.cs:24
+msgid "F-Spot Encountered a Fatal Error"
+msgstr ""
+
+#: ../src/UI.Dialog/ExceptionDialog.cs:60
+msgid "Error Details"
+msgstr "Rincian Galat"
+
+#: ../src/UI.Dialog/ExceptionDialog.cs:104
+msgid "An unhandled exception was thrown: "
+msgstr ""
+
+#: ../src/UI.Dialog/ImportDialog.cs:15
+msgid "Choose Folder..."
+msgstr "Pilih Folder..."
+
+#: ../src/UI.Dialog/ImportDialog.cs:124
+msgid "Choose Import source..."
+msgstr "Pilih sumber impor..."
+
+#: ../src/UI.Dialog/ImportDialog.cs:136
+msgid "(No Cameras Detected)"
+msgstr "(Kamera Tak Terdeteksi)"
+
+#: ../src/UI.Dialog/ImportDialog.cs:264
+#, csharp-format
+msgid "Importing Photos: {0} of {1}..."
+msgstr "Mengimpor Foto: {0} dari {1}..."
+
+#: ../src/UI.Dialog/ImportDialog.cs:288
+msgid "Importing photos..."
+msgstr "Mengimpor foto..."
+
+#. TODO: Using a GtkSpinner would be nicer here.
+#: ../src/UI.Dialog/ImportDialog.cs:295
+msgid "Searching for photos... (You can already click Import to continue)"
+msgstr ""
+
+#: ../src/UI.Dialog/PreferenceDialog.cs:55
+#: ../src/UI.Dialog/PreferenceDialog.cs:78
+#, fuzzy
+msgid "None"
+msgstr "Tak Ada"
+
+#: ../src/UI.Dialog/PreferenceDialog.cs:57
+msgid "System profile"
+msgstr "Profil sistem"
+
+#: ../src/UI.Dialog/PreferenceDialog.cs:95
+msgid "Standard theme"
+msgstr "Tema standar"
+
+#: ../src/UI.Dialog/RepairDbDialog.cs:21
+msgid "Error loading database."
+msgstr "Galat saat memuat basis data."
+
+#: ../src/UI.Dialog/RepairDbDialog.cs:22
+#, csharp-format
+msgid ""
+"F-Spot encountered an error while loading the photo database. The old "
+"database has be moved to {0} and a new database has been created."
+msgstr ""
+
+#: ../src/UI.Dialog/SelectionRatioDialog.cs:61
+msgid "Label"
+msgstr "Label"
+
+#: ../src/UI.Dialog/SelectionRatioDialog.cs:65
+msgid "Ratio"
+msgstr "Rasio"
+
+#: ../src/UI.Dialog/ThreadProgressDialog.cs:55
+#, fuzzy
+msgid "Retry"
+msgstr "Mencoba kembali"
+
+#: ../src/UI.Dialog/ui/AdjustTimeDialog.ui.h:1
+msgid "0000:00:00 00:00:00"
+msgstr "0000:00:00 00:00:00"
+
+#: ../src/UI.Dialog/ui/AdjustTimeDialog.ui.h:2
+msgid "00:00:00"
+msgstr "00:00:00"
+
+#: ../src/UI.Dialog/ui/AdjustTimeDialog.ui.h:3
+msgid "5"
+msgstr "5"
+
+#: ../src/UI.Dialog/ui/AdjustTimeDialog.ui.h:4
+msgid "<b>Action</b>"
+msgstr "<b>Aksi</b>"
+
+#: ../src/UI.Dialog/ui/AdjustTimeDialog.ui.h:6
+#, fuzzy
+msgid "<b>Reference Photo</b>"
+msgstr "Path Foto"
+
+#: ../src/UI.Dialog/ui/AdjustTimeDialog.ui.h:7
+msgid "Adjust Time"
+msgstr "Atur Waktu"
+
+#: ../src/UI.Dialog/ui/AdjustTimeDialog.ui.h:8
+#, fuzzy
+msgid "Adjusted date: "
+msgstr "Salin Tanggal"
+
+#: ../src/UI.Dialog/ui/AdjustTimeDialog.ui.h:9
+#, fuzzy
+msgid "Current date:"
+msgstr "Salin _Tanggal"
+
+#: ../src/UI.Dialog/ui/AdjustTimeDialog.ui.h:11
+msgid "Space all photos by"
+msgstr ""
+
+#: ../src/UI.Dialog/ui/AdjustTimeDialog.ui.h:12
+msgid "difference:"
+msgstr ""
+
+#: ../src/UI.Dialog/ui/AdjustTimeDialog.ui.h:13
+msgid "min. Starting at {0}"
+msgstr ""
+
+#: ../src/UI.Dialog/ui/DateRangeDialog.ui.h:1
+#, fuzzy
+msgid "<b>End Date</b>"
+msgstr "Tanggal Akhir"
+
+#: ../src/UI.Dialog/ui/DateRangeDialog.ui.h:2
+#, fuzzy
+msgid "<b>Select period</b>"
+msgstr "Pilih sebuah animasi"
+
+#: ../src/UI.Dialog/ui/DateRangeDialog.ui.h:3
+#, fuzzy
+msgid "<b>Start Date</b>"
+msgstr "Tanggal Mulai:"
+
+#: ../src/UI.Dialog/ui/DateRangeDialog.ui.h:4
+msgid "Cancel, do not change the current timeline. "
+msgstr ""
+
+#: ../src/UI.Dialog/ui/DateRangeDialog.ui.h:5
+msgid "Only photos taken within these dates will be displayed."
+msgstr ""
+
+#: ../src/UI.Dialog/ui/DateRangeDialog.ui.h:6
+#, fuzzy
+msgid "Set date range"
+msgstr "Tentukan tanggal kadaluwar_sa"
+
+#: ../src/UI.Dialog/ui/EditTagDialog.ui.h:1
+#, fuzzy
+msgid "<small></small>"
+msgstr "Kecil"
+
+#: ../src/UI.Dialog/ui/EditTagDialog.ui.h:2
+msgid "Edit Tag"
+msgstr "Sunting Tag"
+
+#: ../src/UI.Dialog/ui/EditTagDialog.ui.h:3
+msgid "Edit icon"
+msgstr "Sunting ikon"
+
+#: ../src/UI.Dialog/ui/EditTagDialog.ui.h:5
+msgid "_Icon:"
+msgstr "_Ikon:"
+
+#: ../src/UI.Dialog/ui/EditTagIconDialog.ui.h:1
+msgid "<b>From External Photo</b>"
+msgstr ""
+
+#: ../src/UI.Dialog/ui/EditTagIconDialog.ui.h:2
+#, fuzzy
+msgid "<b>From Photo</b>"
+msgstr "Path Foto"
+
+#: ../src/UI.Dialog/ui/EditTagIconDialog.ui.h:3
+#, fuzzy
+msgid "<b>Predefined icons</b>"
+msgstr "Hanya icon"
+
+#: ../src/UI.Dialog/ui/EditTagIconDialog.ui.h:4
+#, fuzzy
+msgid "<b>Preview</b>"
+msgstr "<b>Tampilan Kalender</b>"
+
+#: ../src/UI.Dialog/ui/EditTagIconDialog.ui.h:5
+#, fuzzy
+msgid "Design icon from"
+msgstr "Nama ikon dari tema ikon"
+
+#: ../src/UI.Dialog/ui/EditTagIconDialog.ui.h:6
+msgid "Edit Tag Icon"
+msgstr ""
+
+#: ../src/UI.Dialog/ui/EditTagIconDialog.ui.h:7
+#, fuzzy
+msgid "No _image"
+msgstr "Tanpa Gambar"
+
+#: ../src/UI.Dialog/ui/EditTagIconDialog.ui.h:8
+msgid "Photo 0 of 0"
+msgstr "Foto 0 dari 0"
+
+#: ../src/UI.Dialog/ui/PreferenceDialog.ui.h:1
+msgid "Color profile for display:"
+msgstr ""
+
+#: ../src/UI.Dialog/ui/PreferenceDialog.ui.h:2
+msgid "Color profile for printing:"
+msgstr ""
+
+#: ../src/UI.Dialog/ui/PreferenceDialog.ui.h:3
+#, fuzzy
+msgid "F-Spot Preferences"
+msgstr "Pengaturan Jam"
+
+#: ../src/UI.Dialog/ui/PreferenceDialog.ui.h:4
+#, fuzzy
+msgid "F-Spot appearance:"
+msgstr "Preferensi Penampilan"
+
+#: ../src/UI.Dialog/ui/PreferenceDialog.ui.h:5
+msgid ""
+"Inside the image files when possible\n"
+"<small>Makes them accessible to other image-editing programs.</small>"
+msgstr ""
+
+#: ../src/UI.Dialog/ui/PreferenceDialog.ui.h:7
+#, fuzzy
+msgid "Select A Folder"
+msgstr "Pilih Folder"
+
+#: ../src/UI.Dialog/ui/PreferenceDialog.ui.h:8
+msgid "Separately from the image files"
+msgstr ""
+
+#: ../src/UI.Dialog/ui/PreferenceDialog.ui.h:9
+msgid "Store tags and descriptions for photos:"
+msgstr ""
+
+#: ../src/UI.Dialog/ui/PreferenceDialog.ui.h:10
+msgid "When importing photos, copy them to:"
+msgstr ""
+
+#: ../src/UI.Dialog/ui/RatingFilterDialog.ui.h:1
+#, fuzzy
+msgid "<b>Max Rating</b>"
+msgstr "Baris Maksimal"
+
+#: ../src/UI.Dialog/ui/RatingFilterDialog.ui.h:2
+#, fuzzy
+msgid "<b>Min Rating</b>"
+msgstr "%d menit lalu"
+
+#: ../src/UI.Dialog/ui/RatingFilterDialog.ui.h:3
+msgid "Set Rating Filter"
+msgstr ""
+
+#: ../src/ui/main_window.ui.h:1
+#, fuzzy
+msgid "Adjust _Time..."
+msgstr "Salin Wak_tu"
+
+#: ../src/ui/main_window.ui.h:2
+#, fuzzy
+msgid "Arrange _by"
+msgstr "Oleh_negara"
+
+#: ../src/ui/main_window.ui.h:4
+#, fuzzy
+msgid "By _Date"
+msgstr "Berdasarkan Tanggal Perubahan"
+
+#: ../src/ui/main_window.ui.h:5
+msgid "By _Import Roll"
+msgstr ""
+
+#: ../src/ui/main_window.ui.h:6
+#, fuzzy
+msgid "By _Rating"
+msgstr "Oleh_negara"
+
+#: ../src/ui/main_window.ui.h:7
+#, fuzzy
+msgid "Copy"
+msgstr "Salin"
+
+#: ../src/ui/main_window.ui.h:8
+#, fuzzy
+msgid "Create New _Tag..."
+msgstr "Buat peluncur program"
+
+#: ../src/ui/main_window.ui.h:9
+#, fuzzy
+msgid "Create _New Version..."
+msgstr "Buat peluncur program"
+
+#: ../src/ui/main_window.ui.h:10
+msgid "De_tach Version"
+msgstr ""
+
+#: ../src/ui/main_window.ui.h:12
+#, fuzzy
+msgid "Fin_d"
+msgstr "Temu_kan:"
+
+#: ../src/ui/main_window.ui.h:13
+#, fuzzy
+msgid "Manage _Extensions"
+msgstr "<b>Ekstensi Aktif</b>"
+
+#: ../src/ui/main_window.ui.h:14
+#, fuzzy
+msgid "Page Set_up..."
+msgstr "Pengat_uran halaman..."
+
+#: ../src/ui/main_window.ui.h:15
+#, fuzzy
+msgid "Re_fresh Thumbnail"
+msgstr "Laju penyega_ran:"
+
+#: ../src/ui/main_window.ui.h:19
+msgid "Select _All"
+msgstr "Pilih Semu_a"
+
+#: ../src/ui/main_window.ui.h:20
+#, fuzzy
+msgid "Select _None"
+msgstr "Tidak Ada Yang DIpilih"
+
+#: ../src/ui/main_window.ui.h:21
+#, fuzzy
+msgid "Send by _Mail..."
+msgstr "Kirim lewat Surel:"
+
+#: ../src/ui/main_window.ui.h:23
+#, fuzzy
+msgid "Side_bar"
+msgstr "Tampilkan Panel _Samping"
+
+#: ../src/ui/main_window.ui.h:24
+msgid "T_ags"
+msgstr ""
+
+#: ../src/ui/main_window.ui.h:26
+#, fuzzy
+msgid "Thumbnail _elements"
+msgstr "XSLT — Elemen"
+
+#: ../src/ui/main_window.ui.h:27
+#, fuzzy
+msgid "Too_lbar"
+msgstr "terlalu panjanga"
+
+#: ../src/ui/main_window.ui.h:28
+#, fuzzy
+msgid "View"
+msgstr "Lihat"
+
+#: ../src/ui/main_window.ui.h:33
+#, fuzzy
+msgid "_Attach Tag"
+msgstr "Tag tak tertangani: '%s'"
+
+#: ../src/ui/main_window.ui.h:34
+msgid "_Attach Tag to Selection"
+msgstr ""
+
+#: ../src/ui/main_window.ui.h:36
+msgid "_Clear Rating Filter"
+msgstr ""
+
+#: ../src/ui/main_window.ui.h:37
+msgid "_Clear Roll Filter"
+msgstr ""
+
+#: ../src/ui/main_window.ui.h:39
+msgid "_Components"
+msgstr ""
+
+#: ../src/ui/main_window.ui.h:40
+#, fuzzy
+msgid "_Contents"
+msgstr "Daftar _Isi"
+
+#: ../src/ui/main_window.ui.h:41
+#, fuzzy
+msgid "_Dates"
+msgstr "Tanggal"
+
+#: ../src/ui/main_window.ui.h:43
+#, fuzzy
+msgid "_Delete Selected Tag"
+msgstr "_Hapus Tugas yang Terpilih"
+
+#: ../src/ui/main_window.ui.h:44
+#, fuzzy
+msgid "_Delete Version"
+msgstr "Tampilkan versi"
+
+#: ../src/ui/main_window.ui.h:46
+#, fuzzy
+msgid "_Edit Tag..."
+msgstr "Tag tak tertangani: '%s'"
+
+#: ../src/ui/main_window.ui.h:47
+#, fuzzy
+msgid "_Export to"
+msgstr "Ekspor ke suatu berkas"
+
+#: ../src/ui/main_window.ui.h:48
+msgid "_Filmstrip"
+msgstr ""
+
+#: ../src/ui/main_window.ui.h:51
+#, fuzzy
+msgid "_Hidden"
+msgstr "tersembunyi\n"
+
+#: ../src/ui/main_window.ui.h:52
+#, fuzzy
+msgid "_Import..."
+msgstr "_Impor..."
+
+#: ../src/ui/main_window.ui.h:53
+#, fuzzy
+msgid "_Invert Selection"
+msgstr "Balik P_ilihan"
+
+#: ../src/ui/main_window.ui.h:54
+#, fuzzy
+msgid "_Large"
+msgstr "Besar"
+
+#: ../src/ui/main_window.ui.h:55
+#, fuzzy
+msgid "_Last Import Roll"
+msgstr "Impor sesi terakhir gagal"
+
+#: ../src/ui/main_window.ui.h:56
+msgid "_Loupe"
+msgstr ""
+
+#: ../src/ui/main_window.ui.h:57
+#, fuzzy
+msgid "_Medium"
+msgstr "_Sedang"
+
+#: ../src/ui/main_window.ui.h:59
+#, fuzzy
+msgid "_Quit"
+msgstr "_Berhenti"
+
+#: ../src/ui/main_window.ui.h:60
+msgid "_Ratings"
+msgstr ""
+
+#: ../src/ui/main_window.ui.h:62
+msgid "_Remove Tag From Selection"
+msgstr ""
+
+#: ../src/ui/main_window.ui.h:63
+#, fuzzy
+msgid "_Rename Version"
+msgstr "Tampilkan versi"
+
+#: ../src/ui/main_window.ui.h:64
+#, fuzzy
+msgid "_Reverse Order"
+msgstr "Balik u_rutan"
+
+#: ../src/ui/main_window.ui.h:65
+#, fuzzy
+msgid "_Select Import Rolls..."
+msgstr "Impor sertifikat..."
+
+#: ../src/ui/main_window.ui.h:66
+#, fuzzy
+msgid "_Set Date Range..."
+msgstr "Tentukan tanggal kadaluwar_sa"
+
+#: ../src/ui/main_window.ui.h:67
+msgid "_Set Rating filter..."
+msgstr ""
+
+#: ../src/ui/main_window.ui.h:68
+msgid "_Sharpen..."
+msgstr ""
+
+#: ../src/ui/main_window.ui.h:70
+#, fuzzy
+msgid "_Small"
+msgstr "Kecil"
+
+#: ../src/ui/main_window.ui.h:71
+#, fuzzy
+msgid "_Tag Icons"
+msgstr "Hanya icon"
+
+#: ../src/ui/main_window.ui.h:72
+#, fuzzy
+msgid "_Tags"
+msgstr "Tag:"
+
+#: ../src/ui/main_window.ui.h:73
+msgid "_Timeline"
+msgstr ""
+
+#: ../src/ui/main_window.ui.h:74
+#, fuzzy
+msgid "_Tools"
+msgstr "_Alat"
+
+#: ../src/ui/main_window.ui.h:75
+#, fuzzy
+msgid "_Untagged Photos"
+msgstr "Cacah foto"
+
+#: ../src/ui/main_window.ui.h:76
+#, fuzzy
+msgid "_Version"
+msgstr "Versi:"
+
+#: ../src/Updater.cs:724
+msgid "Updating F-Spot Database"
+msgstr ""
+
+#: ../src/Updater.cs:725
+msgid ""
+"Please wait while your F-Spot gallery's database is updated. This may take "
+"some time."
+msgstr ""
+
+#. Mono.Unix.Error error = Mono.Unix.Stdlib.GetLastError ();
+#: ../src/Utils/Unix.cs:36
+#, fuzzy
+msgid "Unable to create temporary file"
+msgstr "Tak bisa membuat berkas sementara"
+
+#: ../src/Widgets/CustomPrintWidget.cs:119
+#, fuzzy
+msgid "Page Setup"
+msgstr "Pengaturan Halaman"
+
+#: ../src/Widgets/CustomPrintWidget.cs:123
+#: ../src/Widgets/CustomPrintWidget.cs:127
+#: ../src/Widgets/CustomPrintWidget.cs:133
+#, csharp-format
+msgid "Paper Size: {0} x {1} mm"
+msgstr ""
+
+#: ../src/Widgets/CustomPrintWidget.cs:130
+msgid "Set Page Size and Orientation"
+msgstr ""
+
+#: ../src/Widgets/CustomPrintWidget.cs:141
+msgid "Photos per page"
+msgstr ""
+
+#: ../src/Widgets/CustomPrintWidget.cs:151
+#, fuzzy
+msgid "Repeat"
+msgstr "Ulangi"
+
+#: ../src/Widgets/CustomPrintWidget.cs:152
+msgid "Print cut marks"
+msgstr ""
+
+#: ../src/Widgets/CustomPrintWidget.cs:158
+#, fuzzy
+msgid "Photos layout"
+msgstr "Choose a Layout"
+
+#: ../src/Widgets/CustomPrintWidget.cs:160
+msgid "Full Page (no margin)"
+msgstr ""
+
+#. Note for translators: "Zoom" is a Fit Mode
+#: ../src/Widgets/CustomPrintWidget.cs:163
+#, fuzzy
+msgid "Zoom"
+msgstr "Zum"
+
+#: ../src/Widgets/CustomPrintWidget.cs:164
+#, fuzzy
+msgid "Fill"
+msgstr "Isi"
+
+#: ../src/Widgets/CustomPrintWidget.cs:165
+#, fuzzy
+msgid "Scaled"
+msgstr "Skala"
+
+#: ../src/Widgets/CustomPrintWidget.cs:170
+#, fuzzy
+msgid "White borders"
+msgstr "Gambar garis"
+
+#: ../src/Widgets/CustomPrintWidget.cs:176
+#, fuzzy
+msgid "Custom Text"
+msgstr "Penyunting Teks"
+
+#: ../src/Widgets/CustomPrintWidget.cs:180
+#, fuzzy
+msgid "Photos infos"
+msgstr "Cacah foto"
+
+#: ../src/Widgets/CustomPrintWidget.cs:182
+#, fuzzy
+msgid "Print file name"
+msgstr "Nama berkas tidak benar"
+
+#: ../src/Widgets/CustomPrintWidget.cs:183
+msgid "Print photo date"
+msgstr ""
+
+#: ../src/Widgets/CustomPrintWidget.cs:184
+#, fuzzy
+msgid "Print photo time"
+msgstr "Cetak pada waktu"
+
+#: ../src/Widgets/CustomPrintWidget.cs:185
+msgid "Print photo tags"
+msgstr ""
+
+#: ../src/Widgets/CustomPrintWidget.cs:186
+msgid "Print photo comment"
+msgstr ""
+
+#: ../src/Widgets/EditorPage.cs:31 ../src/Widgets/Sidebar.cs:54
+#, fuzzy
+msgid "Edit"
+msgstr "Edit"
+
+#: ../src/Widgets/EditorPage.cs:199
+msgid ""
+"This tool requires an active selection. Please select a region of the photo "
+"and try the operation again"
+msgstr ""
+
+#: ../src/Widgets/EditorPage.cs:217
+msgid "Error saving adjusted photo"
+msgid_plural "Error saving adjusted photos"
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../src/Widgets/EditorPage.cs:219
+#, csharp-format
+msgid ""
+"Received exception \"{0}\". Note that you have to develop RAW files into "
+"JPEG before you can edit them."
+msgstr ""
+
+#: ../src/Widgets/Filmstrip.cs:573
+msgid "_Horizontal"
+msgstr "_Horisontal"
+
+#: ../src/Widgets/Filmstrip.cs:577
+msgid "_Vertical"
+msgstr "_Vertikal"
+
+#: ../src/Widgets/FindBar.cs:59
+msgid "Find:"
+msgstr "Cari:"
+
+#: ../src/Widgets/FolderTreePage.cs:22
+msgid "Folders"
+msgstr "Folder"
+
+#: ../src/Widgets/FolderTreeView.cs:127
+msgid "Filesystem"
+msgstr "Sistem berkas"
+
+#: ../src/Widgets/InfoBox.cs:183
+msgid "Histogram"
+msgstr "Histogram"
+
+#: ../src/Widgets/InfoBox.cs:216
+msgid "Version"
+msgstr "Versi"
+
+#: ../src/Widgets/InfoBox.cs:219
+msgid "Date"
+msgstr "Tanggal"
+
+#: ../src/Widgets/InfoBox.cs:225
+msgid "Exposure"
+msgstr "Pencahayaan"
+
+#: ../src/Widgets/InfoBox.cs:229
+msgid "Focal Length"
+msgstr "Panjang Fokus"
+
+#: ../src/Widgets/InfoBox.cs:232
+msgid "Camera"
+msgstr "Kamera"
+
+#: ../src/Widgets/InfoBox.cs:235
+msgid "File Size"
+msgstr "Ukuran Berkas"
+
+#: ../src/Widgets/InfoBox.cs:238
+#, fuzzy
+msgid "Rating"
+msgstr "Nilai"
+
+#: ../src/Widgets/InfoBox.cs:391 ../src/Widgets/InfoBox.cs:399
+#: ../src/Widgets/InfoBox.cs:429
+msgid "(wrong format)"
+msgstr "{salah bentuk}"
+
+#: ../src/Widgets/InfoBox.cs:419 ../src/Widgets/InfoBox.cs:442
+#: ../src/Widgets/InfoBox.cs:452 ../src/Widgets/InfoBox.cs:461
+msgid "(Unknown)"
+msgstr "(Tak Diketahui)"
+
+#: ../src/Widgets/InfoBox.cs:564
+#, csharp-format
+msgid "(One Edit)"
+msgid_plural "({0} Edits)"
+msgstr[0] "({0} Suntingan)"
+
+#: ../src/Widgets/InfoBox.cs:578
+#, fuzzy
+msgid "(File read error)"
+msgstr "Ada error saat membaca berkas `%s': %s\n"
+
+#: ../src/Widgets/InfoBox.cs:623
+#, csharp-format
+msgid "{0} Photos"
+msgstr "{0} Foto"
+
+#. Note for translators: {0} is a date, {1} and {2} are times.
+#: ../src/Widgets/InfoBox.cs:643
+#, csharp-format
+msgid ""
+"On {0} between \n"
+"{1} and {2}"
+msgstr ""
+"Pada {0} antara \n"
+"{1} dan {2}"
+
+#: ../src/Widgets/InfoBox.cs:648
+#, csharp-format
+msgid ""
+"Between {0} \n"
+"and {1}"
+msgstr ""
+"Antara {0} \n"
+"dan {1}"
+
+#: ../src/Widgets/InfoBox.cs:675
+msgid "(At least one File not found)"
+msgstr ""
+
+#: ../src/Widgets/InfoBox.cs:792
+msgid "Show Photo Name"
+msgstr "Tampilkan Nama Foto"
+
+#: ../src/Widgets/InfoBox.cs:801
+msgid "Show Date"
+msgstr "Tampilkan Tanggal"
+
+#: ../src/Widgets/InfoBox.cs:810
+msgid "Show Size"
+msgstr "Tampilkan Ukuran"
+
+#: ../src/Widgets/InfoBox.cs:819
+msgid "Show Exposure"
+msgstr "Tampilkan Pencahayaan"
+
+#: ../src/Widgets/InfoBox.cs:828
+msgid "Show Focal Length"
+msgstr "Tampilkan Panjang Fokus"
+
+#: ../src/Widgets/InfoBox.cs:837
+msgid "Show Camera"
+msgstr "Tampilkan Kamera"
+
+#: ../src/Widgets/InfoBox.cs:846
+msgid "Show File Size"
+msgstr "Tampilkan Ukuran Berkas"
+
+#: ../src/Widgets/MetadataDisplay.cs:25
+msgid "Metadata"
+msgstr "Metadata"
+
+#: ../src/Widgets/MetadataDisplay.cs:106
+#, fuzzy
+msgid "Extended Metadata"
+msgstr "Daemon Metadata GVFS"
+
+#. clear Extended Metadata
+#: ../src/Widgets/MetadataDisplay.cs:394
+msgid "No Extended Metadata Available"
+msgstr ""
+
+#: ../src/Widgets/MetadataDisplay.cs:412
+msgid "No active photo"
+msgstr ""
+
+#: ../src/Widgets/MetadataDisplay.cs:414
+#, fuzzy, csharp-format
+msgid "The photo \"{0}\" does not exist"
+msgstr "Jalan pintas  %s tidak ada"
+
+#: ../src/Widgets/MetadataDisplay.cs:417
+#, fuzzy
+msgid "No metadata available"
+msgstr "Tidak tersedia pembuat kode."
+
+#: ../src/Widgets/OpenWithMenu.cs:71
+#, fuzzy
+msgid "No applications available"
+msgstr "Tidak tersedia pembuat kode."
+
+#: ../src/Widgets/RatingMenuItem.cs:57
+#, fuzzy
+msgid "Rating:"
+msgstr "Nilai"
+
+#: ../src/XmpTagsImporter.cs:91
+msgid "Country"
+msgstr "Negara"
+
+#: ../src/XmpTagsImporter.cs:92
+msgid "City"
+msgstr "Kota"
+
+#: ../src/XmpTagsImporter.cs:93
+msgid "State"
+msgstr "Negara Bagian"
+
+#. namespace
+#: ../tools/f-spot-screensaver.desktop.in.h:1
+#, fuzzy
+msgid "Display a slideshow from F-Spot"
+msgstr "Tampilkan suatu slideshow dari F-Spot"
+
+#: ../tools/f-spot-screensaver.desktop.in.h:2
+msgid "F-Spot photos"
+msgstr "Foto F-Spot"
