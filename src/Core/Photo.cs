@@ -345,10 +345,11 @@ namespace FSpot
 			if (filename.StartsWith (parent_filename))
 				name = filename.Substring (parent_filename.Length).Replace ("(", "").Replace (")", "").Replace ("_", " "). Trim();
 			
-			for (int num = 1; name == null || VersionNameExists (name); num++) {
+			if (String.IsNullOrEmpty (name)) {
 				// Note for translators: Reparented is a picture becoming a version of another one
-				name = Catalog.GetString (num == 1 ? "Reparented" : "Reparented ({0})");
-				name = String.Format (name, num);
+				string rep = name = Catalog.GetString ("Reparented");
+				for (int num = 1; VersionNameExists (name); num++) 
+					name = String.Format (rep + " ({0})", num);
 			}
 			highest_version_id ++;
 			versions [highest_version_id] = new PhotoVersion (this, highest_version_id, version.BaseUri, version.Filename, version.ImportMD5, name, is_protected);
