@@ -23,6 +23,7 @@ namespace FSpot {
 
 		static Hashtable name_table;
 		internal static Hashtable NameTable { get { return name_table; } }
+		Stream stream = null;
 		
 		public ImageFile (SafeUri uri)
 		{
@@ -36,10 +37,11 @@ namespace FSpot {
 		
 		protected Stream Open ()
 		{
+			if (stream != null)
+				throw new Exception ("Already open!");
 			Log.DebugFormat ("open uri = {0}", uri.ToString ());
-//			if (uri.IsFile)
-//				return new FileStream (uri.LocalPath, FileMode.Open);
-			return new GLib.GioStream (GLib.FileFactory.NewForUri (uri).Read (null));
+			stream = new GLib.GioStream (GLib.FileFactory.NewForUri (uri).Read (null));
+			return stream;
 		}
 
 		public virtual Stream PixbufStream ()
@@ -237,6 +239,8 @@ namespace FSpot {
 
 		public void Dispose ()
 		{
+			if (stream != null)
+				stream.Close ();
 			Close ();
 			System.GC.SuppressFinalize (this);
 		}
