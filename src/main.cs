@@ -106,13 +106,13 @@ namespace FSpot
 					case "-shutdown":
 						outargs.Add ("--shutdown");
 						break;
-					case "-b": case "-basedir":
+					case "-b": case "-basedir": case "--basedir":
 						outargs.Add ("--basedir=" + (i + 1 == args.Length ? String.Empty : args [++i]));
 						break;
-					case "-p": case "-photodir":
+					case "-p": case "-photodir": case "--photodir":
 						outargs.Add ("--photodir=" + (i + 1 == args.Length ? String.Empty : args [++i]));
 						break;
-					case "-i": case "-import":
+					case "-i": case "-import": case "--import":
 						outargs.Add ("--import=" + (i + 1 == args.Length ? String.Empty : args [++i]));
 						break;
 					case "-v": case "-view":
