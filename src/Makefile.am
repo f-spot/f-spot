@@ -217,11 +217,12 @@ RESOURCES = \
 	../icons/flower.png \
 	dces.rdf \
 	f-spot.glade \
-	ui/main_window.ui \
-	ui/version_name_dialog.ui \
-	ui/viewer_preferences.ui \
 	ui/import.ui \
 	ui/mail_dialog.ui \
+	ui/main_window.ui \
+	ui/single_view.ui \
+	ui/version_name_dialog.ui \
+	ui/viewer_preferences.ui \
 	UI.Dialog/ui/AdjustTimeDialog.ui \
 	UI.Dialog/ui/DateRangeDialog.ui \
 	UI.Dialog/ui/EditTagDialog.ui \
