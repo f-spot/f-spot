@@ -111,6 +111,9 @@ namespace FSpot.Utils
             }
 
             var file = GLib.FileFactory.NewForUri (uri);
+            if (!file.Exists)
+                return false;
+
             var info = file.QueryInfo ("time::modified", GLib.FileQueryInfoFlags.None, null);
 
             if (pixbuf.GetOption (ThumbMTimeOpt) != info.GetAttributeULong ("time::modified").ToString ()) {
