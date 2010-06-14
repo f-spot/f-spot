@@ -26,12 +26,13 @@ namespace FSpot
 	{
 		Window parent_window;
 
+#pragma warning disable 0649
 		[GtkBeans.Builder.Object] private ScrolledWindow   tray_scrolled;
-		[GtkBeans.Builder.Object] private Button 		ok_button;
 		[GtkBeans.Builder.Object] private Label 		NumberOfPictures, TotalOriginalSize, ApproxNewSize;
 		[GtkBeans.Builder.Object] private RadioButton 	tiny_size, small_size, medium_size,
 														large_size, x_large_size, original_size;
 		[GtkBeans.Builder.Object] private CheckButton 	rotate_check;
+#pragma warning restore 0649
 
 		long Orig_Photo_Size 	= 0;
 		double scale_percentage = 0.3;
