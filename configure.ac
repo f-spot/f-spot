@@ -371,7 +371,6 @@ extensions/Exporters/TabbloExport/Tabblo/Makefile
 extensions/Exporters/PicasaWebExport/Makefile
 extensions/Exporters/PicasaWebExport/google-sharp/Makefile
 extensions/Exporters/ZipExport/Makefile
-extensions/Services/Makefile
 extensions/Tools/Makefile
 extensions/Tools/RawPlusJpeg/Makefile
 extensions/Tools/ChangePhotoPath/Makefile
