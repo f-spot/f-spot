@@ -2831,20 +2831,8 @@ namespace FSpot
 			if (Selection.Count == 0 || tagbar.Visible && tag_entry.HasFocus)
 				return;
 	
-	#if !ALLOW_TAG_TYPING_WITHOUT_HOTKEY
 			if (args.Event.Key != Gdk.Key.t)
 				return;
-	#endif
-	
-	#if ALLOW_TAG_TYPING_WITHOUT_HOTKEY
-			char c = System.Convert.ToChar (Gdk.Keyval.ToUnicode ((uint) args.Event.Key));
-			if (! System.Char.IsLetter (c))
-				return;
-	#endif
-			
-	#if ALLOW_TAG_TYPING_WITHOUT_HOTKEY
-			tag_entry.Text += c;
-	#endif
 	
 			tagbar.Show ();
 			UpdateTagEntryFromSelection ();
