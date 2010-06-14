@@ -88,8 +88,51 @@ namespace FSpot
 			}
 		}
 
+		static string [] FixArgs (string [] args)
+		{
+			// Makes sure command line arguments are parsed backwards compatible.
+			var outargs = new List<string> ();
+			for (int i = 0; i < args.Length; i++) {
+				switch (args [i]) {
+					case "-h": case "-help": case "-usage":
+						outargs.Add ("--help");
+						break;
+					case "-V": case "-version":
+						outargs.Add ("--version");
+						break;
+					case "-versions":
+						outargs.Add ("--versions");
+						break;
+					case "-shutdown":
+						outargs.Add ("--shutdown");
+						break;
+					case "-b": case "-basedir":
+						outargs.Add ("--basedir=" + (i + 1 == args.Length ? String.Empty : args [++i]));
+						break;
+					case "-p": case "-photodir":
+						outargs.Add ("--photodir=" + (i + 1 == args.Length ? String.Empty : args [++i]));
+						break;
+					case "-i": case "-import":
+						outargs.Add ("--import=" + (i + 1 == args.Length ? String.Empty : args [++i]));
+						break;
+					case "-v": case "-view":
+						outargs.Add ("--view");
+						break;
+					case "-slideshow":
+						outargs.Add ("--slideshow");
+						break;
+					default:
+						outargs.Add (args [i]);
+						break;
+				}
+			}
+			return outargs.ToArray ();
+		}
+
 		static int Main (string [] args)
 		{
+			args = FixArgs (args);
+
 			Unix.SetProcessName (Defines.PACKAGE);
 
 			ThreadAssist.InitializeMainThread ();
@@ -108,6 +151,8 @@ namespace FSpot
 			Catalog.Init ("f-spot", Defines.LOCALE_DIR);
 			
 			FSpot.Global.PhotoUri = new SafeUri (Preferences.Get<string> (Preferences.STORAGE_PATH));
+
+			ApplicationContext.CommandLine = new CommandLineParser (args, 0);
 
 			if (ApplicationContext.CommandLine.ContainsStart ("help")) {
 				ShowHelp ();

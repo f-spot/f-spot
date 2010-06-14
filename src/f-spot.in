@@ -27,27 +27,6 @@ run_valgrind=false
 run_strace=false
 basedir_set=false
 
-#rewrite old options to new ones
-for arg in "$@";do
-    case $arg in
-        -h|-help|-usage) args+=(--help);;
-        -V|-version) args+=(--version);;
-        -versions) args+=(--versions);;
-        -shutdown) args+=(--shutdown);;
-        -b|-basedir) args+=(--basedir);;
-        -p|-photodir) args+=(--photodir);;
-        -i|-import) args+=(--import);;
-        -v|-view) args+=(--view);;
-        -slideshow) args+=(--slideshow);;
-        *) args+=("$arg");;
-    esac;
-done;
-args=${args[@]}
-args=${args/photodir /photodir=}
-args=${args/basedir /basedir=}
-args=${args/import /import=}
-set -- $args
-
 for arg in "$@"; do
     case "x$arg" in
     	x--debug)
