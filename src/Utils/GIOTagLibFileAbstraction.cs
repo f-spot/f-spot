@@ -75,7 +75,7 @@ namespace FSpot.Utils
 
         private SafeUri CreateTmpFile ()
         {
-            var uri = Uri.GetBaseUri ().Append (Uri.GetFilenameWithoutExtension ());
+            var uri = Uri.GetBaseUri ().Append ("." + Uri.GetFilenameWithoutExtension ());
             var tmp_uri = uri.ToString () + TMP_INFIX + Uri.GetExtension ();
             return new SafeUri (tmp_uri, true);
         }
