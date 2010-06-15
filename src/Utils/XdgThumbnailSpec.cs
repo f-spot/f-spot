@@ -63,7 +63,14 @@ namespace FSpot.Utils
         private static Pixbuf CreateFrom (SafeUri uri, SafeUri thumb_uri, ThumbnailSize size, PixbufLoader loader)
         {
             var pixels = size == ThumbnailSize.Normal ? 128 : 256;
-            var pixbuf = loader (uri); 
+            Pixbuf pixbuf;
+            try {
+                pixbuf = loader (uri);
+            } catch (Exception e) {
+                Log.DebugFormat ("Failed loading image for thumbnailing: {0}", uri);
+                Log.DebugException (e);
+                return null;
+            }
             double scale_x = (double) pixbuf.Width / pixels;
             double scale_y = (double) pixbuf.Height / pixels;
             double scale = Math.Max (1.0, Math.Max (scale_x, scale_y));
@@ -94,9 +101,17 @@ namespace FSpot.Utils
             var file = GLib.FileFactory.NewForUri (uri);
             if (!file.Exists)
                 return null;
-            var stream = new GLib.GioStream (file.Read (null)); 
-            var pixbuf = new Pixbuf (stream);
-            stream.Close ();
+            Pixbuf pixbuf;
+            using (var stream = new GLib.GioStream (file.Read (null))) {
+                try {
+                    pixbuf = new Pixbuf (stream);
+                } catch (Exception e) {
+                    file.Delete ();
+                    Log.DebugFormat ("Failed thumbnail: {0}", uri);
+                    Log.DebugException (e);
+                    return null;
+                }
+            }
             return pixbuf;
         }
 

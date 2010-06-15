@@ -19,7 +19,8 @@ SOURCES = \
 	UriExtensions.cs \
 	UriUtils.cs \
 	XdgThumbnailSpec.cs \
-	Tests/SafeUriTests.cs
+	Tests/SafeUriTests.cs \
+	Tests/XdgThumbnailSpecTests.cs
 
 RESOURCES =
 
