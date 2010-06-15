@@ -21,6 +21,9 @@ using Gdk;
 namespace FSpot.Widgets {
 	public class PhotoImageView : ImageView {
 #region public API
+
+		protected PhotoImageView (IntPtr raw) : base (raw) { }
+
 		public PhotoImageView (IBrowsableCollection query) : this (new BrowsablePointer (query, -1))
 		{
 		}

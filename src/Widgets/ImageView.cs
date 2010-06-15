@@ -21,6 +21,8 @@ namespace FSpot.Widgets
 	public class ImageView : Container
 	{
 #region public API
+		protected ImageView (IntPtr raw) : base (raw) { }
+
 		public ImageView (Adjustment hadjustment, Adjustment vadjustment, bool can_select) : base ()
 		{
 			OnSetScrollAdjustments (hadjustment, vadjustment);
