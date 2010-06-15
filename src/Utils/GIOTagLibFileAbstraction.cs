@@ -70,7 +70,7 @@ namespace FSpot.Utils
             var file = FileFactory.NewForUri (Uri);
             var tmp_file = FileFactory.NewForUri (tmp_write_uri);
 
-            tmp_file.Copy (file, GLib.FileCopyFlags.AllMetadata | GLib.FileCopyFlags.Overwrite, null, null);
+            tmp_file.Move (file, GLib.FileCopyFlags.AllMetadata | GLib.FileCopyFlags.Overwrite, null, null);
         }
 
         private SafeUri CreateTmpFile ()
