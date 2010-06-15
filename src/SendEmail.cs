@@ -45,7 +45,6 @@ namespace FSpot
 		
 		static int NoOfSizes	= sizes.Length;
 		double[] avg_scale	= new double [NoOfSizes];
-		System.Collections.ArrayList tmp_paths; // temporary resized image file name
 		string tmp_mail_dir;	// To temporary keep the resized images
 		bool force_original = false;
 
@@ -241,9 +240,6 @@ namespace FSpot
 
 			rotate = rotate_check.Active;  // Should we automatically rotate original photos.
 			Preferences.Set (Preferences.EXPORT_EMAIL_ROTATE, rotate);
-
-			// Initiate storage for temporary files to be deleted later
-			tmp_paths = new System.Collections.ArrayList();
 			
 			// Create a tmp directory.
 			tmp_mail_dir = System.IO.Path.GetTempFileName ();	// Create a tmp file	
@@ -280,9 +276,6 @@ namespace FSpot
 						request.Preserve(request.Current);
 
 						mail_attach.Append(((i == 0 && attach_arg.ToString () == ",") ? "" : attach_arg.ToString()) + request.Current.ToString ());
-						
-						// Mark the path for deletion
-						tmp_paths.Add (request.Current.LocalPath);
 					} catch (Exception e) {
 						Hyena.Log.ErrorFormat ("Error preparing {0}: {1}", selection[i].Name, e.Message);
 						HigMessageDialog md = new HigMessageDialog (parent_window, 
@@ -300,7 +293,6 @@ namespace FSpot
 			
 			if (progress_dialog != null) 
 				progress_dialog.Destroy (); // No need to keep this window
-
 
 			if (!UserCancelled) {
 				// Send the mail :)
