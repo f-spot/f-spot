@@ -69,38 +69,13 @@ namespace FSpot {
                         : FSpot.Utils.PixbufUtils.Rotate270 (tag.Orientation);
 
                     tag.Orientation = orientation;
-                    SaveMetaData (metadata, original_path);
+                    metadata.Save ();
                 }
             } catch (Exception e) {
                 throw new RotateException (Catalog.GetString ("Unable to rotate this type of photo"), original_path);
             }
 		}
 
-        private static void SaveMetaData (TagLib.File image, string path)
-        {
-            // FIXME: This currently copies the file out to a tmp file, overwrites it
-            // and restores the tmp file in case of failure. Should obviously be the
-            // other way around, but Taglib# doesn't have an interface to do this.
-            // https://bugzilla.gnome.org/show_bug.cgi?id=618768
-
-            var uri = new SafeUri (path);
-            var tmp = System.IO.Path.GetTempFileName ();
-            var tmp_uri = new SafeUri (tmp);
-
-            var orig_file = GLib.FileFactory.NewForUri (uri);
-            var tmp_file = GLib.FileFactory.NewForUri (tmp_uri);
-
-            tmp_file.Delete ();
-            orig_file.Copy (tmp_file, GLib.FileCopyFlags.AllMetadata | GLib.FileCopyFlags.Overwrite, null, null);
-
-            try {
-                image.Save ();
-            } catch (Exception e) {
-                tmp_file.Copy (orig_file, GLib.FileCopyFlags.AllMetadata | GLib.FileCopyFlags.Overwrite, null, null);
-                throw e;
-            }
-        }
-		       
 		private void Rotate (string original_path, RotateDirection dir)
 		{
 			RotateOrientation (original_path, dir);

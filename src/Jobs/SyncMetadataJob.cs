@@ -43,7 +43,6 @@ namespace FSpot.Jobs {
             return false;
         }
 
-        //FIXME: Won't work on non-file uris
         void WriteMetadataToImage (Photo photo)
         {
             string path = photo.DefaultVersion.Uri.LocalPath;
@@ -54,19 +53,19 @@ namespace FSpot.Jobs {
             for (int i = 0; i < tags.Length; i++)
                 names [i] = tags [i].Name;
 
-            //var res = new GIOTagLibFileAbstraction () { Uri = photo.DefaultVersion.Uri };
-            var res = photo.DefaultVersion.Uri.AbsolutePath;
+            var res = new GIOTagLibFileAbstraction () { Uri = photo.DefaultVersion.Uri };
             using (var metadata = TagLib.File.Create (res) as TagLib.Image.File) {
                 metadata.GetTag (TagLib.TagTypes.XMP, true);
 
                 var tag = metadata.ImageTag;
                 tag.DateTime = photo.Time;
-                tag.Comment = photo.Description;
+                tag.Comment = photo.Description ?? String.Empty;
                 tag.Keywords = names;
                 tag.Rating = photo.Rating;
                 tag.Software = FSpot.Defines.PACKAGE + " version " + FSpot.Defines.VERSION;
 
-                SaveMetaData (metadata, path);
+                Hyena.Log.Information (photo.DefaultVersion.Uri);
+                metadata.Save ();
             }
         }
     }
