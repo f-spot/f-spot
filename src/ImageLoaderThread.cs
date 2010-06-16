@@ -135,6 +135,9 @@ public class ImageLoaderThread {
 	{
 		should_cancel = true;
 		if (worker_thread != null) {
+			lock (queue) { 
+				Monitor.Pulse (queue); 
+			}
 			worker_thread.Join ();
 		}
 		worker_thread = null;
@@ -251,8 +254,11 @@ public class ImageLoaderThread {
 	
 				lock (queue) {
 					
-					while (queue.Count == 0 || block_count > 0)
+					while ((queue.Count == 0 || block_count > 0) && !should_cancel)
 						Monitor.Wait (queue);
+
+					if (should_cancel)
+						return;
 					
 					int pos = queue.Count - 1;
 	
