@@ -47,6 +47,6 @@ DOC_FIGURES = \
     figures/f-spot-soft-focus.png \
     figures/f-spot-straighten.png
 
-DOC_LINGUAS = 
+DOC_LINGUAS = de
 dist-hook: doc-dist-hook
 endif

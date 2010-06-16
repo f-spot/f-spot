@@ -1,0 +1,1337 @@
+# German translation for f-spot.
+# Copyright (C) 2010 f-spot's COPYRIGHT HOLDER
+# This file is distributed under the same license as the f-spot package.
+# Mario Blättermann <mariobl@gnome.org>, 2010.
+# Wolfgang Stoeggl <c72578@yahoo.de>, 2010.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: f-spot master\n"
+"POT-Creation-Date: 2010-06-16 19:17+0000\n"
+"PO-Revision-Date: 2010-06-16 22:44+0100\n"
+"Last-Translator: Mario Blättermann <mariobl@gnome.org>\n"
+"Language-Team: German <gnome-de@gnome.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-Language: German\n"
+"X-Poedit-Country: GERMANY\n"
+
+#: C/zooomr.page:8(desc)
+msgid "Upload photos to Zooomr"
+msgstr "Fotos zu Zooomr übertragen"
+
+#: C/zooomr.page:11(title)
+msgid "Zooomr"
+msgstr "Zooomr"
+
+#: C/zooomr.page:15(p)
+msgid ""
+"To upload photos to Zooomr you will need a Zooomr account, as well as "
+"internet access. Also, the Zooomr <link xref=\"extensions\">extension</link> "
+"must be installed and enabled."
+msgstr ""
+"Um Fotos zu Zooomr hochzuladen, benötigen Sie ein Zooomr-Konto sowie einen "
+"aktiven Internetzugang. Außerdem muss die Zooomr-<link xref=\"extensions"
+"\">Erweiterung</link> installiert und aktiviert sein."
+
+#: C/versioning.page:8(desc)
+msgid "Track different versions of your photos"
+msgstr "Verschiedene Versionen Ihrer Fotos bewahren"
+
+#: C/versioning.page:11(title)
+msgid "Versioning"
+msgstr "Versionierung"
+
+#: C/versioning.page:14(p)
+msgid ""
+"<app>F-Spot</app> allows you to keep multiple versions of your photos. This "
+"is especially useful when editing photos, as you can quickly see the "
+"difference between the edited version and the original."
+msgstr ""
+"<app>F-Spot</app> ermöglicht es Ihnen, verschiedene Versionen Ihrer Bilder zu "
+"bewahren. Dies ist insbesondere beim Bearbeiten von Fotos nützlich, da Sie "
+"auf diese Weise schnell die Unterschiede zwischen der bearbeiteten Version "
+"und dem Original erkennen können."
+
+#: C/versioning.page:17(p)
+msgid "To switch between versions while editing:"
+msgstr "So wechseln Sie zwischen verschiedenen Versionen bei der Bearbeitung:"
+
+#: C/versioning.page:20(p)
+msgid "Double-click the photo you wish to edit."
+msgstr "Doppelklicken Sie auf das Foto, das Sie bearbeiten wollen."
+
+#: C/versioning.page:23(p)
+msgid ""
+"In the sidebar, you will see a drop-down box labeled <gui>Version:</gui>. To "
+"select a version to view, select it in the drop-down box."
+msgstr ""
+"In der Seitenleiste finden Sie ein Auswahlfeld mit der Beschriftung "
+"<gui>Version:</gui>. Um eine anzuzeigende Version auszuwählen, wählen Sie sie "
+"in der Auswahlliste aus."
+
+#: C/upload-to-web.page:8(desc)
+msgid "Upload photos to various web services"
+msgstr "Übertragen von Fotos zu verschiedenen Bilderdiensten"
+
+#: C/upload-to-web.page:11(title)
+msgid "Upload to Web"
+msgstr "Übertragen zu Bilderdiensten"
+
+#: C/upload-to-web.page:14(p)
+msgid ""
+"<app>F-Spot</app> allows you to upload photos to popular web services, "
+"including Google's PicasaWeb and Flickr."
+msgstr ""
+"<app>F-Spot</app> ermöglicht Ihnen das Hochladen von Fotos zu populären "
+"Webdiensten wie PicasaWeb von Google oder Flickr."
+
+#: C/tags.page:6(desc)
+msgid "A brief introduction to the tagging capabilities of F-Spot"
+msgstr "Eine kurze Einführung in die Möglichkeiten der Markierung mit F-Spot"
+
+#: C/tags.page:9(title)
+msgid "Tags"
+msgstr "Markierungen"
+
+#: C/tags.page:12(p)
+msgid ""
+"Like certain other photo managers, <app>F-Spot</app> lets you tag your "
+"photos, allowing for quick, easy content-based searching of your photos. You "
+"can tag people, events, places, favorite things, or even make your own groups "
+"of tags."
+msgstr ""
+"Wie von anderen Fotoverwaltungen bereits bekannt, können Sie auch in <app>F-"
+"Spot</app> Ihre Fotos mit Markierungen versehen, wodurch inhaltsbasiertes "
+"Durchsuchen Ihrer Fotos erleichtert wird. Sie können Personen, Ereignisse, "
+"Orte, Vorlieben als Markierungen nutzen oder auch Ihre eigenen "
+"Markierungsgruppen erstellen."
+
+#: C/tags.page:17(title)
+msgid "Working with Tags"
+msgstr "Arbeiten mit Markierungen"
+
+#: C/tag-search.page:8(desc)
+msgid "Search photos using tags"
+msgstr "Fotos anhand von Markierungen durchsuchen"
+
+#: C/tag-search.page:11(title)
+msgid "Search by Tag"
+msgstr "Nach Markierungen suchen"
+
+#: C/tag-search.page:15(p)
+msgid "There are several methods to search by tags."
+msgstr "Es gibt verschiedene Methoden, nach Markierungen zu suchen."
+
+#: C/tag-search.page:16(p)
+msgid "Method One: Double-click the tags you wish to search for."
+msgstr ""
+"Erste Methode: Doppelklicken Sie auf die Markierungen, nach denen Sie suchen "
+"wollen."
+
+#: C/tag-search.page:17(p) C/tag-remove.page:28(p) C/tag-creation.page:32(p)
+#: C/tag-attach.page:29(p) C/ratings.page:25(p)
+msgid "Method Two:"
+msgstr "Zweite Methode:"
+
+#: C/tag-search.page:20(p)
+msgid ""
+"Enable the Find bar by clicking <guiseq><gui>Find</gui><gui>Show Find bar</"
+"gui></guiseq>."
+msgstr ""
+"Aktivieren Sie das Suchfeld mittels <guiseq><gui>Suchen</gui><gui>Suchfeld "
+"anzeigen</gui></guiseq>."
+
+#: C/tag-search.page:24(p)
+msgid "Drag the tags you wish to search for into the newly-enabled Find bar."
+msgstr ""
+"Ziehen Sie die Markierungen, nach denen Sie suchen wollen, in das soeben "
+"aktivierte Suchfeld."
+
+#: C/tag-search.page:27(p)
+msgid ""
+"To remove a tag from your search, right-click the tag in the Find bar and "
+"click <gui>Remove From Search</gui>."
+msgstr ""
+"Um eine Markierung aus Ihrer Suche zu entfernen, klicken Sie mit der rechten "
+"Maustaste in das Suchfeld und klicken Sie auf <gui>Aus der Suche entfernen</"
+"gui>."
+
+#: C/tag-search.page:30(p)
+msgid "To exclude a tag from your search:"
+msgstr "So schließen Sie eine Markierung von Ihrer Suche aus:"
+
+#: C/tag-search.page:33(p)
+msgid ""
+"In the tag pane, double-click the tag you wish to exclude. This will add it "
+"to the Find bar."
+msgstr ""
+"Doppelklicken Sie in der Markierungsleiste auf die Markierung, die Sie "
+"ausschließen wollen. Dadurch wird sie zunächst zur Suchleiste hinzugefügt."
+
+#: C/tag-search.page:37(p)
+msgid "In the Find bar, double-click the tag you wish to exclude."
+msgstr ""
+"Doppelklicken Sie anschließend in der Suchleiste auf die Markierung, die Sie "
+"ausschließen wollen."
+
+#: C/tag-remove.page:6(desc)
+msgid "Removing tags from photos"
+msgstr "Markierungen von Fotos entfernen"
+
+#: C/tag-remove.page:9(title)
+msgid "Removing"
+msgstr "Entfernen"
+
+#: C/tag-remove.page:12(p)
+msgid ""
+"As with attaching tags, there are two main methods of removing tags from "
+"photos."
+msgstr ""
+"Wie beim Hinzufügen von Markierungen gibt es zwei grundlegende Methoden, um "
+"Markierungen von Ihren Fotos zu entfernen."
+
+#: C/tag-remove.page:14(p) C/tag-creation.page:14(p) C/tag-attach.page:15(p)
+#: C/ratings.page:14(p)
+msgid "Method One:"
+msgstr "Erste Methode:"
+
+#: C/tag-remove.page:17(p) C/tag-remove.page:31(p)
+msgid "Select photos from which to remove a tag."
+msgstr ""
+"Wählen Sie die Fotos aus, von denen Sie eine Markierung entfernen wollen."
+
+#: C/tag-remove.page:20(p)
+msgid ""
+"In the tag pane, select a tag to remove from the photos you have selected."
+msgstr ""
+"Wählen Sie in der Markierungsleiste eine Markierung aus, die Sie von den von "
+"Ihnen ausgewählten Fotos entfernen wollen."
+
+#: C/tag-remove.page:24(p)
+msgid ""
+"Click <guiseq><gui>Tags</gui><gui>Remove Tag From Selection</gui></guiseq>."
+msgstr ""
+"Klicken Sie auf <guiseq><gui>Markierungen</gui><gui>Markierung aus der "
+"Auswahl entfernen</gui></guiseq>."
+
+#: C/tag-remove.page:34(p) C/tag-attach.page:35(p)
+msgid "Right click the photos."
+msgstr "Klicken Sie mit der rechten Maustaste auf die Fotos."
+
+#: C/tag-remove.page:37(p)
+msgid "Select <gui>Remove Tag</gui> and select the tag you wish to remove."
+msgstr ""
+"Wählen Sie <gui>Markierung entfernen</gui> und danach die Markierung, die Sie "
+"entfernen wollen."
+
+#: C/tag-delete.page:6(desc)
+msgid "Deleting tags from the system"
+msgstr "Löschen von Markierungen aus dem System"
+
+#: C/tag-delete.page:9(title)
+msgid "Deleting"
+msgstr "Löschen"
+
+#: C/tag-delete.page:12(p)
+msgid ""
+"Deleting tags removes them entirely from your system, but leaves behind any "
+"photos to which that tag is attached."
+msgstr ""
+"Das Löschen von Markierungen entfernt diese vollständig aus dem System, aber "
+"lässt die Fotos zurück, denen diese Markierung zugeordnet ist."
+
+#: C/tag-delete.page:14(p)
+msgid "To delete a tag:"
+msgstr "So löschen Sie eine Markierung:"
+
+#: C/tag-delete.page:17(p)
+msgid "Select the tag you wish to delete from within the tag pane."
+msgstr "Wählen Sie die zu entfernende Markierung in der Markierungsleiste aus."
+
+#: C/tag-delete.page:20(p)
+msgid ""
+"Click <guiseq><gui>Tags</gui><gui>Delete Select Tag</gui></guiseq>. "
+"Alternatively, right click the tag within the pane, and click <gui>Delete "
+"Tag</gui>."
+msgstr ""
+"Klicken Sie auf <guiseq><gui>Markierungen</gui><gui>Ausgewählte Markierung "
+"löschen</gui></guiseq>. Wahlweise können Sie mit der rechten Maustaste in die "
+"Markierungsleiste klicken. Anschließend klicken Sie auf <gui>Markierung "
+"löschen</gui>."
+
+#: C/tag-creation.page:6(desc)
+msgid "Creating tags to be attached to photos"
+msgstr "Erstellen von Markierungen, die Fotos zugeordnet werden können"
+
+#: C/tag-creation.page:9(title)
+msgid "Creating"
+msgstr "Erstellen"
+
+#: C/tag-creation.page:12(p)
+msgid ""
+"In order to use tags, you need to first create a set of tags which you wish "
+"to use. There are three main methods to create tags."
+msgstr ""
+"Um überhaupt Markierungen benutzen zu können, müssen Sie zunächst eine Reihe "
+"von Markierungen erstellen. Es gibt drei grundlegende Methoden zum Erstellen "
+"von Markierungen."
+
+#: C/tag-creation.page:17(p)
+msgid "Select <guiseq><gui>Tags</gui><gui>Create New Tag...</gui></guiseq>."
+msgstr ""
+"Wählen Sie <guiseq><gui>Markierungen</gui><gui>Neue Markierung erstellen …</"
+"gui></guiseq>."
+
+#: C/tag-creation.page:21(p) C/tag-creation.page:39(p)
+#: C/tag-creation.page:61(p)
+msgid ""
+"Select a parent tag for the new tag to appear under, such as people or "
+"events. If you wish to create a new tag without a parent, select <gui>(None)</"
+"gui>."
+msgstr ""
+"Wählen Sie eine übergeordnete Markierung, unter der die neue Markierung "
+"eingeordnet werden soll, wie beispielsweise »Personen« oder »Ereignisse«. Falls "
+"Sie eine neue Markierung ohne übergeordnete Markierung erstellen wollen, "
+"wählen Sie <gui>(Keine)</gui>."
+
+#: C/tag-creation.page:26(p) C/tag-creation.page:44(p)
+#: C/tag-creation.page:66(p)
+msgid "Name the tag."
+msgstr "Benennen Sie die Markierung."
+
+#: C/tag-creation.page:29(p) C/tag-creation.page:47(p)
+#: C/tag-creation.page:69(p)
+msgid "Click <gui>Create</gui>"
+msgstr "Klicken Sie auf <gui>Erstellen</gui>."
+
+#: C/tag-creation.page:35(p)
+msgid "In the tags page, right click, and select <gui>Create New Tag...</gui>"
+msgstr ""
+"Klicken Sie mit der rechten Maustaste in die Markierungsleiste und wählen Sie "
+"<gui>Neue Markierung erstellen …</gui>"
+
+#: C/tag-creation.page:50(p)
+msgid ""
+"Method three has the advantage of also <link xref=\"tag-attach\"> attaching</"
+"link> the new tag to the photos selected. To do this:"
+msgstr ""
+"Die dritte Methode hat den Vorteil, dass die neue Markierung auch zu den "
+"gewählten Fotos <link xref=\"tag-attach\">hinzugefügt</link> wird. Gehen Sie "
+"folgendermaßen vor:"
+
+#: C/tag-creation.page:54(p)
+msgid "Select the photos to which you wish to attach the new tag."
+msgstr ""
+"Wählen Sie die Fotos aus, denen Sie die neue Markierung zuordnen wollen."
+
+#: C/tag-creation.page:57(p)
+msgid ""
+"Right-click on the photos, and select <guiseq><gui>Attach Tag</"
+"gui><gui>Create New Tag...</gui></guiseq>."
+msgstr ""
+"Klicken Sie mit der rechten Maustaste auf die Fotos und wählen Sie "
+"<guiseq><gui>Markierung hinzufügen</gui><gui>Neue Markierung erstellen …</"
+"gui></guiseq>."
+
+#: C/tag-attach.page:6(desc)
+msgid "Attaching tags to photos"
+msgstr "Zuordnen von Markierungen zu Fotos"
+
+#: C/tag-attach.page:9(title)
+msgid "Attaching"
+msgstr "Zuordnen"
+
+#: C/tag-attach.page:12(p)
+msgid ""
+"By attaching tags you have <link xref=\"tag-creation\">created</link> you "
+"make it easier to search through your photos. As with creating tags, there is "
+"more than one method of attaching tags to photos."
+msgstr ""
+"Das Hinzufügen von <link xref=\"tag-creation\">erstellten</link> Markierungen "
+"erleichtert das Durchsuchen Ihrer Fotos. Wie beim Erstellen von Markierungen "
+"gibt es mehrere Methoden, diese Markierungen zu Fotos hinzuzufügen."
+
+#: C/tag-attach.page:18(p) C/tag-attach.page:32(p)
+msgid "Select photos to which to attach a tag."
+msgstr "Wählen Sie Fotos aus, denen Sie eine Markierung zuordnen wollen."
+
+#: C/tag-attach.page:21(p)
+msgid "In the tag pane, select a tag to attach to the photos you have selected."
+msgstr ""
+"Wählen Sie in der Markierungsleiste eine Markierung aus, die Sie zu den "
+"gewählten Fotos hinzufügen wollen."
+
+#: C/tag-attach.page:25(p)
+msgid ""
+"Click <guiseq><gui>Tags</gui><gui>Attach Tag to Selection</gui></guiseq>. "
+"Alternatively, press Ctrl+T."
+msgstr ""
+"Klicken Sie auf <guiseq><gui>Markierungen</gui><gui>Markierung zur Auswahl "
+"hinzufügen</gui></guiseq> oder drücken Sie Strg+T."
+
+#: C/tag-attach.page:38(p)
+msgid "Select <gui>Attach Tag</gui> and select the tag you wish to attach."
+msgstr ""
+"Wählen Sie <gui>Markierung hinzufügen</gui> und wählen Sie die Markierung "
+"aus, die Sie hinzufügen wollen."
+
+#: C/smugmug.page:8(desc)
+msgid "Upload photos to SmugMug"
+msgstr "Fotos zu SmugMug übertragen"
+
+#: C/smugmug.page:11(title)
+msgid "SmugMug"
+msgstr "SmugMug"
+
+#: C/smugmug.page:15(p)
+msgid ""
+"To upload photos to SmugMug you will need a SmugMug account, as well as "
+"internet access. Also, the SmugMug <link xref=\"extensions\">extension</link> "
+"must be installed and enabled."
+msgstr ""
+"Um Fotos zu SmugMug hochzuladen, benötigen Sie ein SmugMug-Konto sowie einen "
+"aktiven Internetzugang. Außerdem muss die SmugMug-<link xref=\"extensions"
+"\">Erweiterung</link> installiert und aktiviert sein."
+
+#: C/ratings.page:6(desc)
+msgid "Rate your photos from one to five stars"
+msgstr "Bewerten Sie Ihre Fotos mit einem bis fünf Sternen"
+
+#: C/ratings.page:9(title)
+msgid "Rating your photos"
+msgstr "Bewerten Ihrer Fotos"
+
+#: C/ratings.page:12(p)
+msgid ""
+"<app>F-Spot</app> allows you to rate your photos from one to five stars. "
+"There are two ways to rate photos."
+msgstr ""
+"<app>F-Spot</app> ermöglicht Ihnen die Bewertung Ihrer Fotos mit einem bis "
+"fünf Sternen. Es gibt zwei Möglichkeiten, Fotos zu bewerten."
+
+#: C/ratings.page:17(p)
+msgid "By double-clicking, select the photo you wish to rate."
+msgstr "Wählen Sie mittels Doppelklick das Foto aus, das Sie bewerten wollen."
+
+#: C/ratings.page:20(p)
+msgid ""
+"In the lower-right corner, you will see five dots, corresponding to the "
+"rating you wish to give; to give a rating of one star, for example, click the "
+"first dot."
+msgstr ""
+"In der unteren rechten Ecke sehen Sie fünf Punkte, die sich auf die zu "
+"vergebende Bewertung beziehen. Um beispielsweise einen Stern zu vergeben, "
+"klicken Sie auf den ersten Punkt."
+
+#: C/ratings.page:28(p)
+msgid "Select the photo(s) you wish to rate."
+msgstr "Wählen Sie das/die Foto(s) zur Bewertung aus."
+
+#: C/ratings.page:31(p)
+msgid ""
+"Right-click the photo(s) you wish to rate, and select a rating at the bottom "
+"of the right-click menu by clicking the corresponding dot."
+msgstr ""
+"Klicken Sie mit der rechten Maustaste auf das oder die zu bewertenden Foto(s) "
+"und wählen Sie eine Bewertung unten im Kontextmenü aus, indem Sie auf den "
+"entsprechenden Punkt klicken."
+
+#: C/rate-search.page:8(desc)
+msgid "Search photos by star rating"
+msgstr "Suchen nach Fotos anhand von Bewertungssternen"
+
+#: C/rate-search.page:11(title)
+msgid "Search by Rating"
+msgstr "Suche nach Bewertung"
+
+#: C/rate-search.page:15(p)
+msgid "To search by rating:"
+msgstr "So suchen Sie nach Fotos anhand von Bewertungssternen:"
+
+# In der GUI-Übersetzung findet man »Bewertungsfilter einstellen …«
+#: C/rate-search.page:18(p)
+msgid ""
+"Select <guiseq><gui>Find</gui><gui>By Rating</gui><gui>Set Rating Filter...</"
+"gui></guiseq>."
+msgstr ""
+"Wählen Sie <guiseq><gui>Suchen</gui><gui>Nach Bewertung</"
+"gui><gui>Bewertungsfilter setzen</gui></guiseq>."
+
+#: C/rate-search.page:22(p)
+msgid "Select the rating range which you wish to view."
+msgstr "Wählen Sie den Bereich der Bewertungen der zu betrachtenden Fotos."
+
+#: C/rate-search.page:25(p) C/extensions.page:39(p) C/extensions.page:82(p)
+#: C/date-search.page:27(p)
+msgid "Click <gui>Ok</gui>."
+msgstr "Klicken Sie auf <gui>OK</gui>."
+
+#: C/rate-search.page:28(p)
+msgid "To stop searching by rating:"
+msgstr "So halten Sie die Suche nach Bewertungssternen an:"
+
+#: C/rate-search.page:31(p)
+msgid ""
+"Select <guiseq><gui>Find</gui><gui>By Rating</gui><gui>Set Rating Filter</"
+"gui></guiseq>."
+msgstr ""
+"Wählen Sie <guiseq><gui>Suchen</gui><gui>Nach Bewertung</"
+"gui><gui>Bewertungsfilter setzen</gui></guiseq>."
+
+#: C/picasa.page:8(desc)
+msgid "Upload photos to Google's PicasaWeb"
+msgstr "Hochladen Ihrer Bilder zum PicasaWeb-Bilderdienst"
+
+#: C/picasa.page:11(title)
+msgid "Picasa"
+msgstr "Picasa"
+
+#: C/picasa.page:15(p)
+msgid ""
+"To upload photos to Picasa you will need a Picasa account, as well as "
+"internet access. Also, the PicasaWeb <link xref=\"extensions\">extension</"
+"link> must be installed and enabled."
+msgstr ""
+"Um Fotos zu Picasa hochzuladen, benötigen Sie ein Picasa-Konto sowie einen "
+"aktiven Internetzugang. Außerdem muss die Picasa-<link xref=\"extensions"
+"\">Erweiterung</link> installiert und aktiviert sein."
+
+#: C/picasa.page:21(p)
+msgid "Select the photos you wish to upload."
+msgstr "Wählen Sie die Fotos aus, die Sie hochladen wollen."
+
+#: C/picasa.page:24(p)
+msgid ""
+"Click <guiseq><gui>Photo</gui><gui>Export To</gui><gui>PicasaWeb...</gui></"
+"guiseq>."
+msgstr ""
+"Klicken Sie auf <guiseq><gui>Foto</gui><gui>Exportieren nach</"
+"gui><gui>PicasaWeb …</gui></guiseq>."
+
+#: C/picasa.page:28(p)
+msgid ""
+"Add a gallery by clicking <gui>Add</gui> and supplying a username and "
+"password."
+msgstr ""
+"Fügen Sie eine Galerie hinzu, indem Sie auf <gui>Hinzufügen</gui> klicken und "
+"einen Benutzernamen und ein Passwort angeben."
+
+#: C/picasa.page:32(p)
+msgid ""
+"Select a gallery to export to, or click <gui>Add</gui> to create a new "
+"gallery."
+msgstr ""
+"Wählen Sie eine Galerie für den Export aus oder klicken Sie auf "
+"<gui>Hinzufügen</gui>, um eine neue Galerie zu erstellen."
+
+#: C/picasa.page:36(p) C/folder.page:39(p)
+msgid "Click <gui>Export</gui>."
+msgstr "Klicken Sie auf <gui>Exportieren</gui>."
+
+#: C/picasa.page:19(steps)
+msgid ""
+"<placeholder-1/><placeholder-2/><placeholder-3/>j <placeholder-4/"
+"><placeholder-5/>"
+msgstr ""
+"<placeholder-1/><placeholder-2/><placeholder-3/>j <placeholder-4/"
+"><placeholder-5/>"
+
+#: C/introduction.page:6(desc)
+msgid "A brief introduction to F-Spot"
+msgstr "Eine kurze Einführung in F-Spot"
+
+#: C/introduction.page:9(title)
+msgid "Introduction"
+msgstr "Einführung"
+
+#: C/introduction.page:12(p)
+msgid ""
+"<app>F-Spot</app> is a full-featured photo manager for the GNOME Desktop, "
+"allowing you to tag, rate, and date photos, edit photo metadata, and even "
+"includes a simple in-program photo editor."
+msgstr ""
+"<app>F-Spot</app> ist eine umfassend ausgestattete Fotoverwaltung für die "
+"GNOME-Arbeitsumgebung. Es ermöglicht Ihnen das Markieren, Bewerten und "
+"Datieren von Fotos und die Bearbeitung von Metadaten. Darüber hinaus enthält "
+"F-Spot ein einfaches eingebautes Bildbearbeitungsprogramm."
+
+#: C/introduction.page:15(p)
+msgid ""
+"For help getting started using <app>F-Spot</app>, check out the <link xref="
+"\"index#basic-functions\">basic functions</link> of the help file."
+msgstr ""
+"Hilfe beim Einstieg in <app>F-Spot</app> erhalten Sie im Abschnitt <link xref="
+"\"index#basic-functions\">Grundlegende Funktionen</link> der Hilfe."
+
+#: C/index.page:7(title) C/index.page:8(title) C/index.page:11(title)
+msgid "F-Spot photo manager"
+msgstr "F-Spot Fotoverwaltung"
+
+#: C/index.page:16(title)
+msgid "Basic Functions"
+msgstr "Grundlegende Funktionen"
+
+#: C/index.page:20(title)
+msgid "Searching"
+msgstr "Suchen"
+
+#: C/index.page:24(title)
+msgid "Photo Editing"
+msgstr "Fotobearbeitung"
+
+#: C/index.page:28(title)
+msgid "Sharing"
+msgstr "Freigeben"
+
+#: C/index.page:32(title)
+msgid "Advanced Options"
+msgstr "Erweiterte Optionen"
+
+#: C/import-roll-search.page:8(desc)
+msgid "Searching by date of import"
+msgstr "Suchen anhand des Importdatums"
+
+#: C/import-roll-search.page:11(title)
+msgid "Search by Import Roll"
+msgstr "Suchen anhand von importierten Rollen"
+
+#: C/import-roll-search.page:15(p)
+msgid ""
+"Import rolls are \"batches\" of imported photos. Regardless of the date the "
+"photo was taken, the import roll timestamp is decided when you import photos."
+msgstr ""
+"Importierte Rollen sind »Stapel« von importierten Fotos. Unabhängig vom "
+"eigentlichen Aufnahmedatum des Bildes ist hier der Zeitstempel des Imports "
+"der Fotos entscheidend."
+
+#: C/import-roll-search.page:18(p)
+msgid "To search by latest import roll:"
+msgstr "So suchen Sie nach der neuesten importierten Rolle:"
+
+#: C/import-roll-search.page:21(p)
+msgid ""
+"Select <guiseq><gui>Find</gui><gui>By Import Roll</gui><gui>Last Import Roll</"
+"gui></guiseq>."
+msgstr ""
+"Wählen Sie <guiseq><gui>Suchen</gui><gui>Nach Importen</gui><gui>Letzter "
+"Import</gui></guiseq>."
+
+#: C/import-roll-search.page:25(p)
+msgid "To select a previous import roll:"
+msgstr "So wählen Sie einen früheren Import:"
+
+#: C/import-roll-search.page:28(p)
+msgid ""
+"Select <guiseq><gui>Find</gui><gui>By Import Roll</gui><gui>Select Import "
+"Rolls</gui></guiseq>."
+msgstr ""
+"Wählen Sie <guiseq><gui>Suchen</gui><gui>Nach Importen</gui><gui>Importe "
+"auswählen</gui></guiseq>."
+
+#: C/import-roll-search.page:32(p)
+msgid ""
+"Select an import roll to search, or select a range by choosing <gui>Between</"
+"gui> and select the dates you wish to include."
+msgstr ""
+"Wählen Sie einen zu durchsuchenden Import aus oder wählen Sie mit "
+"<gui>zwischen</gui> einen Datumsbereich aus, in welchem die Suche ausgeführt "
+"werden soll."
+
+#: C/import-roll-search.page:36(p)
+msgid ""
+"To stop searching by import rolls, select <guiseq><gui>Find</gui><gui>By "
+"Import Roll</gui><gui>Clear Roll Filter</gui></guiseq>."
+msgstr ""
+"Um die Suche nach Importen zu beenden, wählen Sie <guiseq><gui>Suchen</"
+"gui><gui>Nach Importen</gui><gui>Importfilter zurücksetzen</gui></guiseq>."
+
+#: C/import-photos.page:6(desc)
+msgid "Import photos to be managed"
+msgstr "Importieren zu verwaltender Fotos"
+
+#: C/import-photos.page:9(title)
+msgid "Importing Photos"
+msgstr "Importieren von Fotos"
+
+#: C/import-photos.page:12(p)
+msgid "Chances are, the first thing you will want to do is import photos."
+msgstr "Als erstes werden Sie vermutlich Fotos importieren wollen."
+
+#: C/import-photos.page:15(p)
+msgid "To import photos:"
+msgstr "So importieren Sie Fotos:"
+
+#: C/import-photos.page:20(p)
+msgid ""
+"Select <guiseq><gui>Photo</gui><gui>Import...</gui></guiseq>. Alternatively, "
+"click the <gui>Import</gui> button."
+msgstr ""
+"Wählen Sie <guiseq><gui>Foto</gui><gui>Importieren …</gui></guiseq>. "
+"Wahlweise können Sie auch auf den <gui>Import</gui>-Knopf klicken."
+
+#: C/import-photos.page:24(p)
+msgid "Select a source from which to import, such as a device or a folder."
+msgstr ""
+"Wählen Sie eine Quelle für den Import aus, wie ein Gerät oder einen Ordner."
+
+#: C/import-photos.page:27(p)
+msgid ""
+"It may take a while for F-Spot to index the files. When it is done indexing, "
+"your photos will be presented to you. At this time, you can attach <link xref="
+"\"tags\">tags</link> to all photos, or you can leave that task for later."
+msgstr ""
+"F-Spot kann eine gewisse Zeit brauchen, um die Dateien zu indizieren. Wenn "
+"die Indizierung abgeschlossen ist, werden Ihnen die Fotos präsentiert. Nun "
+"können Sie <link xref=\"tags\">Markierungen</link> zu den Fotos hinzufügen. "
+"Dies ist jedoch später auch noch möglich."
+
+#: C/import-photos.page:33(p)
+msgid "When you are ready to finish importing photos, click <gui>Import</gui>."
+msgstr ""
+"Wenn Sie bereit zum Importieren der Fotos sind, klicken Sie auf "
+"<gui>Importieren</gui>."
+
+#: C/general-editing.page:6(desc)
+msgid "Make simple edits to your photos"
+msgstr "Einfache Bearbeitungsmöglichkeiten für Ihre Fotos"
+
+#: C/general-editing.page:9(title)
+msgid "General Editing"
+msgstr "Allgemeine Bearbeitung"
+
+#: C/general-editing.page:13(p)
+msgid ""
+"<app>F-Spot</app> allows you to make simple general edits, including "
+"straightening, cropping, and rotating your photos."
+msgstr ""
+"<app>F-Spot</app> ermöglicht Ihnen einfache Bearbeitungen Ihrer Fotos, wie "
+"Begradigen, Zuschneiden oder Drehen."
+
+#: C/general-editing.page:15(p)
+msgid "There are three ways to rotate a selected photo:"
+msgstr "Sie haben drei Möglichkeiten zum Drehen eines ausgewählten Fotos:"
+
+#: C/general-editing.page:18(p)
+msgid "Click the appropriate rotate button, to the right of the import button."
+msgstr ""
+"Klicken Sie auf den entsprechenden Drehungsknopf rechts neben dem Importknopf."
+
+#: C/general-editing.page:22(p)
+msgid "Select the appropriate option from within the <gui>Edit</gui> menu."
+msgstr "Wählen Sie die entsprechende Option im <gui>Bearbeiten</gui>-Menü."
+
+#: C/general-editing.page:26(p)
+msgid "Use the bracket keys to rotate the photo."
+msgstr "Verwenden Sie die Klammer-Tasten, um das Foto zu drehen."
+
+#: C/general-editing.page:29(p)
+msgid "To straighten a selected photo:"
+msgstr "So begradigen Sie ein gewähltes Foto:"
+
+#: C/general-editing.page:32(p)
+msgid "From within the editing pane, select <app>Straighten</app>."
+msgstr "Wählen Sie <app>Begradigung</app> im Bearbeitungsfenster."
+
+#: C/general-editing.page:35(p)
+msgid "Select a rotation, ranging from -45 to 45 degrees."
+msgstr "Wählen Sie den Drehwinkel im Bereich von -45 bis 45 Grad."
+
+#: C/general-editing.page:38(p)
+msgid "Click <gui>Straighten</gui>."
+msgstr "Klicken Sie auf <gui>Begradigung</gui>."
+
+#: C/general-editing.page:41(p)
+msgid "To crop a selected photo:"
+msgstr "So schneiden Sie ein gewähltes Foto zu:"
+
+#: C/general-editing.page:44(p)
+msgid "Click the <gui>Crop</gui> button in the Edit pane."
+msgstr ""
+"Klicken Sie auf den <gui>Zuschneiden</gui>-Knopf in der Bearbeitungsleiste."
+
+# Hier ist vermutlich ein Tippfehler im Originaltext: 'contraining'
+#: C/general-editing.page:47(p)
+msgid ""
+"Select a contraining aspect ratio, that is, a proportion of height to width "
+"to which the new photo must fit. Examples of contraining aspect ratios "
+"include 4x3, 4x6, and 5x7."
+msgstr ""
+"Wählen Sie ein Seitenverhältnis, also ein Verhältnis zwischen Höhe und "
+"Breite, dem das neue Foto entsprechen soll. Beispiele für Seitenverhältnisse "
+"sind 4x3, 4x6 und 5x7."
+
+#: C/general-editing.page:52(p)
+msgid ""
+"Click and drag to select the desired area to keep. This box can be dragged "
+"around after being sized."
+msgstr ""
+"Klicken und ziehen Sie, um den zu erhaltenden Bereich zu wählen. Dieses "
+"Rechteck können Sie noch als Ganzes verschieben, nachdem die Größe gewählt "
+"wurde."
+
+#: C/general-editing.page:56(p)
+msgid "When you have selected your area to crop to, click <gui>Crop</gui>."
+msgstr ""
+"Wenn Sie den gewünschten Bereich zum Zuschneiden gewählt haben, klicken Sie "
+"auf <gui>Zuschneiden</gui>."
+
+#: C/folder.page:8(desc)
+msgid "Send photos to a folder"
+msgstr "Fotos an einen Ordner senden"
+
+#: C/folder.page:11(title)
+msgid "Folder Export"
+msgstr "Ordner-Export"
+
+#: C/folder.page:15(p)
+msgid ""
+"<app>F-Spot</app> allows you to export to a folder. In order to do so, "
+"however, you will need to have the folder export <link xref=\"extensions"
+"\">extension</link> installed and enabled."
+msgstr ""
+"<app>F-Spot</app> ermöglicht Ihnen den Export in einen Ordner. Dazu muss die "
+"Ordner-Export-<link xref=\"extensions\">Erweiterung</link> installiert und "
+"aktiviert sein."
+
+#: C/folder.page:18(p)
+msgid "To export selected photos to a folder:"
+msgstr "So exportieren Sie Fotos in einen Ordner:"
+
+#: C/folder.page:21(p)
+msgid ""
+"Select <guiseq><gui>Photo</gui><gui>Export To</gui><gui>Folder...</gui></"
+"guiseq>."
+msgstr ""
+"Wählen Sie <guiseq><gui>Foto</gui><gui>Exportieren nach</gui><gui>Ordner …</"
+"gui></guiseq>."
+
+#: C/folder.page:25(p)
+msgid "Select a folder."
+msgstr "Wählen Sie einen Ordner."
+
+#: C/folder.page:28(p)
+msgid "Name the gallery and give it a description."
+msgstr "Benennen Sie die Galerie und versehen Sie sie mit einer Beschreibung."
+
+#: C/folder.page:31(p)
+msgid ""
+"Select an export method. <gui>Create Standalone Web Gallery</gui> will create "
+"a folder with contents fit to be uploaded to a web server to present pictures "
+"in a gallery. <gui>Save the files only</gui> will only move photos to the "
+"selected folder. <gui>Create gallery using \"Original\"</gui> will create a "
+"folder with contents suitable for using with Original Photo Gallery."
+msgstr ""
+"Wählen Sie eine Exportmethode. <gui>Eigenständige Web-Galerie anlegen</gui> "
+"erstellt einen Ordner, der inhaltlich direkt auf einen Webserver geladen und "
+"als Web-Galerie dargestellt werden kann. <gui>Nur die Dateien speichern</gui> "
+"kopiert die Fotos in den gewählten Ordner. <gui>Galerie unter Verwendung von "
+"»Original« anlegen</gui> erstellt einen Ordner, dessen Inhalt für die Nutzung "
+"mit der originalen Fotogalerie geeignet ist."
+
+#: C/flickr.page:8(desc)
+msgid "Upload photos to Flickr"
+msgstr "Fotos zu Flickr übertragen"
+
+#: C/flickr.page:11(title)
+msgid "Flickr"
+msgstr "Flickr"
+
+#: C/flickr.page:15(p)
+msgid ""
+"To upload photos to Flickr you will need a Flickr account, as well as "
+"internet access. Also, the Flickr <link xref=\"extensions\">extension</link> "
+"must be installed and enabled."
+msgstr ""
+"Um Fotos zu Flickr hochzuladen, benötigen Sie ein Flickr-Konto sowie einen "
+"aktiven Internetzugang. Außerdem muss die Flickr-<link xref=\"extensions"
+"\">Erweiterung</link> installiert und aktiviert sein."
+
+#: C/file-management.page:8(desc)
+msgid "Manage files already imported"
+msgstr "Verwalten bereits importierter Dateien"
+
+#: C/file-management.page:11(title)
+msgid "File Management"
+msgstr "Dateiverwaltung"
+
+#: C/file-management.page:15(p)
+msgid ""
+"<app>F-Spot</app> allows for some control over the contents of your catalog, "
+"that is, removing files from your catalog as well as deleting files from your "
+"catalog."
+msgstr ""
+"<app>F-Spot</app> ermöglicht Ihnen, den Inhalt des Kataloges zu bearbeiten. "
+"Dazu zählt das Entfernen aus dem Katalog oder auch das Löschen von Dateien."
+
+#: C/file-management.page:18(p)
+msgid "To remove files from your catalog:"
+msgstr "So löschen Sie Dateien aus Ihrem Katalog:"
+
+#: C/file-management.page:21(p)
+msgid "Select the photos you wish to remove from the catalog."
+msgstr "Wählen Sie die Fotos, die Sie aus dem Katalog entfernen wollen."
+
+#: C/file-management.page:24(p)
+msgid ""
+"Right-click the photos, select <gui>Remove From Catalog</gui>. Alternatively, "
+"select <guiseq><gui>Edit</gui><gui>Remove From Catalog</gui></guiseq> or "
+"press the Delete key on your keyboard."
+msgstr ""
+"Klicken Sie mit der rechten Maustaste auf die Fotos und wählen Sie <gui>Aus "
+"dem Katalog entfernen</gui>. Alternativ wählen Sie <guiseq><gui>Bearbeiten</"
+"gui><gui>Aus dem Katalog entfernen</gui></guiseq> oder drücken Sie die Entf-"
+"Taste auf Ihrer Tastatur."
+
+#: C/file-management.page:29(p)
+msgid "To delete photos from your computer:"
+msgstr "So löschen Sie Fotos von Ihrem Rechner:"
+
+#: C/file-management.page:32(p)
+msgid "Select the photos you wish to delete."
+msgstr "Wählen Sie die Fotos, die Sie löschen wollen."
+
+#: C/file-management.page:35(p)
+msgid ""
+"Right-click the photos, select <gui>Delete From Drive</gui>. Alternatively, "
+"select <guiseq><gui>Edit</gui><gui>Delete From Drive</gui></guiseq> or press "
+"Shift+Delete on your keyboard."
+msgstr ""
+"Klicken Sie mit der rechten Maustaste auf die Fotos und wählen Sie <gui>Vom "
+"Laufwerk löschen</gui>. Alternativ wählen Sie <guiseq><gui>Bearbeiten</"
+"gui><gui>Vom Laufwerk löschen</gui></guiseq> oder drücken Sie Umschalttaste"
+"+Entf auf Ihrer Tastatur."
+
+#: C/facebook.page:8(desc)
+msgid "Upload photos to Facebook"
+msgstr "Fotos zu Facebook übertragen"
+
+#: C/facebook.page:11(title)
+msgid "Facebook"
+msgstr "Facebook"
+
+#: C/facebook.page:15(p)
+msgid ""
+"To upload photos to Facebook you will need a Facebook account, as well as "
+"internet access. Also, the Facebook <link xref=\"extensions\">extension</"
+"link> must be installed and enabled."
+msgstr ""
+"Um Fotos zu Facebook hochzuladen, benötigen Sie ein Facebook-Konto sowie "
+"einen aktiven Internetzugang. Außerdem muss die Facebook-<link xref="
+"\"extensions\">Erweiterung</link> installiert und aktiviert sein."
+
+#: C/facebook.page:20(p)
+msgid "To post selected photos to Facebook:"
+msgstr "So senden Sie die gewählten Fotos an Facebook:"
+
+#: C/facebook.page:23(p)
+msgid ""
+"Select <guiseq><gui>Photo</gui><gui>Export To</gui><gui>Facebook</gui></"
+"guiseq>."
+msgstr ""
+"Wählen Sie <guiseq><gui>Foto</gui><gui>Exportieren nach</gui><gui>Facebook</"
+"gui></guiseq>."
+
+#: C/facebook.page:27(p)
+msgid ""
+"Click <gui>Login</gui>. A browser window will be brought up. Log in to "
+"Facebook and click \"Allow\" to allow F-Spot access to your Facebook profile."
+msgstr ""
+"Klicken Sie auf <gui>Anmelden</gui>. Ein Browser-Fenster wird geöffnet. "
+"Melden Sie sich bei Facebook an und klicken Sie dort auf »Zulassen«, um F-Spot "
+"zu erlauben, auf Ihr Facebook-Profil zuzugreifen."
+
+#: C/facebook.page:32(p)
+msgid ""
+"Select whether to create a new album or add to an existing album. If you are "
+"creating a new album, fill in the relevant information."
+msgstr ""
+"Wählen Sie, ob ein neues Album erstellt werden soll oder zu einem vorhandenen "
+"Album hinzugefügt werden soll. Wenn Sie ein neues Album erstellen, dann geben "
+"Sie die erforderlichen Informationen ein."
+
+#: C/facebook.page:36(p)
+msgid "Edit captions for each photo, if so desired."
+msgstr "Bearbeiten Sie die Beschriftung für jedes Foto, falls gewünscht."
+
+#: C/facebook.page:39(p)
+msgid "When finished, click <gui>Add</gui>."
+msgstr "Sobald Sie fertig sind, klicken Sie auf <gui>Hinzufügen</gui>."
+
+#: C/extensions.page:8(desc)
+msgid "Working with <app>F-Spot</app> extensions"
+msgstr "Arbeiten mit <app>F-Spot</app>-Erweiterungen"
+
+#: C/extensions.page:11(title)
+msgid "Extensions"
+msgstr "Erweiterungen"
+
+#: C/extensions.page:15(p)
+msgid ""
+"<app>F-Spot</app> allows for the use of extensions to provide additional "
+"functionality."
+msgstr ""
+"<app>F-Spot</app> ermöglicht die Nutzung von Erweiterungen, um zusätzliche "
+"Funktionalität bereitzustellen."
+
+#: C/extensions.page:18(p)
+msgid ""
+"To open the extension manager, select <guiseq><gui>Edit</gui><gui>Manage "
+"Extensions</gui></guiseq>."
+msgstr ""
+"Um die Erweiterungsverwaltung zu öffnen, wählen Sie <guiseq><gui>Bearbeiten</"
+"gui><gui>Erweiterungen verwalten</gui></guiseq>."
+
+#: C/extensions.page:21(p)
+msgid "To install extensions:"
+msgstr "So installieren Sie Erweiterungen:"
+
+#: C/extensions.page:24(p) C/extensions.page:46(p) C/extensions.page:58(p)
+#: C/extensions.page:70(p)
+msgid "Open the extension manager."
+msgstr "Öffnen Sie die Erweiterungsverwaltung."
+
+# Die Erweiterungsverwaltung ist derzeit noch englisch.
+#: C/extensions.page:27(p)
+msgid "Click <gui>Install Add-ins</gui>."
+msgstr "Klicken Sie auf <gui>Install Add-ins...</gui>."
+
+#: C/extensions.page:30(p)
+msgid "Select an add-on to install from the list."
+msgstr "Wählen Sie aus der Liste eine zu installierende Erweiterung aus."
+
+#: C/extensions.page:33(p) C/extensions.page:79(p)
+msgid "Click <gui>Forward</gui>."
+msgstr "Klicken Sie auf <gui>Vor</gui>."
+
+#: C/extensions.page:36(p)
+msgid "Verify all information, and click <gui>Forward</gui> again."
+msgstr ""
+"Überprüfen Sie alle Informationen und klicken Sie erneut auf <gui>Vor</gui>."
+
+#: C/extensions.page:43(p)
+msgid "To enable plugins that are already installed:"
+msgstr "So aktivieren Sie Plugins, die bereits installiert sind:"
+
+#: C/extensions.page:49(p)
+msgid "Select the extension you wish to enable."
+msgstr "Wählen Sie die Erweiterung, die Sie aktivieren wollen."
+
+#: C/extensions.page:52(p)
+msgid "Click <gui>Enable</gui>."
+msgstr "Klicken Sie auf <gui>Aktivieren</gui>."
+
+#: C/extensions.page:55(p)
+msgid "To disable plugins that are installed:"
+msgstr "So deaktivieren Sie Plugins, die bereits installiert sind:"
+
+#: C/extensions.page:61(p)
+msgid "Select the extension you wish to disable."
+msgstr "Wählen Sie die Erweiterung, die Sie deaktivieren wollen."
+
+#: C/extensions.page:64(p)
+msgid "Click <gui>Disable</gui>."
+msgstr "Klicken Sie auf <gui>Deaktivieren</gui>."
+
+#: C/extensions.page:67(p)
+msgid "To uninstall plugins:"
+msgstr "So deinstallieren Sie Plugins:"
+
+#: C/extensions.page:73(p)
+msgid "Select the extension you wish to uninstall."
+msgstr "Wählen Sie die Erweiterung, die Sie deinstallieren wollen."
+
+#: C/extensions.page:76(p)
+msgid "Click <gui>Uninstall</gui>."
+msgstr "Klicken Sie auf <gui>Deinstallieren</gui>."
+
+#: C/enhancements.page:6(desc)
+msgid "Simple enhancements for your photos"
+msgstr "Einfache Verbesserungen für Ihre Fotos"
+
+#: C/enhancements.page:9(title)
+msgid "Enhancements"
+msgstr "Verbesserungen"
+
+#: C/enhancements.page:13(p)
+msgid ""
+"Currently, there are two main enhancements that <app>F-Spot</app> supports: "
+"red-eye removal and the automatic enhancement of color."
+msgstr ""
+"Im Wesentlichen unterstützt <app>F-Spot</app> derzeit zwei "
+"Verbesserungsmöglichkeiten: die Entfernung roter Augen und die automatische "
+"Farbanpassung."
+
+#: C/enhancements.page:15(p)
+msgid "To remove red-eye:"
+msgstr "So entfernen Sie rote Augen:"
+
+#: C/enhancements.page:18(p)
+msgid ""
+"By double-clicking, select the photo on which you wish to use the red-eye "
+"removal tool."
+msgstr ""
+"Wählen Sie mittels Doppelklick das Foto aus, welches Sie mit dem Rote-Augen-"
+"Entfernungswerkzeug bearbeiten wollen."
+
+#: C/enhancements.page:22(p)
+msgid "Click <gui>Red-Eye Removal</gui> in the Edit panel."
+msgstr ""
+"Klicken Sie auf <gui>Rote-Augen-Reduzierung</gui> in der Bearbeitungsleiste."
+
+#: C/enhancements.page:25(p)
+msgid ""
+"Select the area from which you wish to remove red-eye. Note: If the contains "
+"many red areas, you may wish to select each eye individually."
+msgstr ""
+"Wählen Sie den Bereich aus, in dem Sie rote Augen entfernen wollen. Falls der "
+"Bereich viele rote Bereiche enthält, müssen Sie möglicherweise jedes Auge "
+"einzeln auswählen."
+
+#: C/enhancements.page:30(p)
+msgid "Click <gui>Fix!</gui>."
+msgstr "Klicken Sie auf <gui>Korrigieren!</gui>."
+
+#: C/enhancements.page:33(p)
+msgid "To automatically enhance the colors of the photo:"
+msgstr "So verbessern Sie automatisch die Farben eines Fotos:"
+
+#: C/enhancements.page:36(p)
+msgid "By double-clicking, select the photo which you wish to enhance."
+msgstr "Wählen Sie mittels Doppelklick das Foto aus, das Sie verbessern wollen."
+
+#: C/enhancements.page:39(p)
+msgid "Click <gui>Auto Color</gui>."
+msgstr "Klicken Sie auf <gui>Automatischer Farbabgleich</gui>."
+
+#: C/date-search.page:8(desc)
+msgid "Search photos by date"
+msgstr "Durchsuchen von Fotos anhand des Datums"
+
+#: C/date-search.page:11(title)
+msgid "Search by Date"
+msgstr "Suchen nach Datum"
+
+#: C/date-search.page:15(p)
+msgid "To search by date:"
+msgstr "So suchen Sie anhand des Datums:"
+
+#: C/date-search.page:18(p)
+msgid ""
+"Select <guiseq><gui>Find</gui><gui>By Date</gui><gui>Set Date Range...</gui></"
+"guiseq>."
+msgstr ""
+"Wählen Sie <guiseq><gui>Suchen</gui><gui>Nach Datum</gui><gui>Datumsbereich "
+"einstellen …</gui></guiseq>."
+
+#: C/date-search.page:22(p)
+msgid ""
+"Select a time period to from which to view photos. This can by done by "
+"selecting a set period, such as a week, or by specifying dates."
+msgstr ""
+"Wählen Sie einen Zeitabschnitt, aus dem Sie Fotos betrachten wollen. Wählen "
+"Sie hierzu einen gesetzten Zeitabschnitt aus oder verwenden Sie Datumsangaben."
+
+#: C/date-search.page:30(p)
+msgid "Alternatively, you can use the timeline. To use the timeline:"
+msgstr ""
+"Alternativ können Sie die Zeitlinie verwenden. So verwenden Sie die Zeitlinie:"
+
+#: C/date-search.page:33(p)
+msgid ""
+"Make sure the timeline is enabled by selecting <guiseq><gui>View</"
+"gui><gui>Components</gui></guiseq> and making sure that <gui>Timeline</gui> "
+"is checked."
+msgstr ""
+"Stellen Sie sicher, dass die Zeitlinie aktiviert ist. Wählen Sie "
+"<guiseq><gui>Ansicht</gui><gui>Komponenten</gui></guiseq> und überprüfen Sie, "
+"ob das Ankreuzfeld <gui>Zeitlinie</gui> aktiviert ist."
+
+#: C/date-search.page:38(p)
+msgid ""
+"In the timeline, click the bar corresponding to the time period you wish to "
+"look at."
+msgstr ""
+"Klicken Sie in der Zeitlinie auf den Balken des Zeitabschnitts, den Sie "
+"betrachten wollen."
+
+#: C/date-search.page:42(p)
+msgid "To stop searching by date:"
+msgstr "So beenden Sie die Suche nach Datum:"
+
+#: C/date-search.page:45(p)
+msgid ""
+"Select <guiseq><gui>Find</gui><gui>By Date</gui><gui>Clear Date Range</gui></"
+"guiseq>."
+msgstr ""
+"Wählen Sie <guiseq><gui>Suchen</gui><gui>Nach Datum</gui><gui>Datumsspanne "
+"zurücksetzen</gui></guiseq>."
+
+#: C/colors.page:6(desc)
+msgid "Edit the colors of your photos"
+msgstr "Bearbeiten der Farben Ihrer Fotos"
+
+#: C/colors.page:9(title)
+msgid "Color Editing"
+msgstr "Bearbeiten von Farben"
+
+#: C/colors.page:12(p)
+msgid "<app>F-Spot</app> supports several modes of color manipulation."
+msgstr "<app>F-Spot</app> unterstützt verschiedene Modi der Farbanpassung."
+
+#: C/colors.page:15(title)
+msgid "Desaturate"
+msgstr "Entsättigen"
+
+# »entfernt die Farbsättigung« würde doch bescheuert klingen, oder nicht?
+#: C/colors.page:16(p)
+msgid ""
+"This mode eliminates all saturation, turning a color image into a black and "
+"white image."
+msgstr ""
+"Dieser Modus entfernt die Farben, wodurch ein farbiges Bild in ein "
+"Schwarzweißbild umgewandelt wird."
+
+#: C/colors.page:20(title)
+msgid "Sepia Tone"
+msgstr "Sepiafarben"
+
+#: C/colors.page:21(p)
+msgid "This mode simulates a photo being created with sepia toner."
+msgstr "Dieser Modus simuliert ein Foto, das mit Sepia-Tönung erstellt wurde."
+
+#: C/colors.page:24(title)
+msgid "Auto Color"
+msgstr "Automatischer Farbabgleich"
+
+#: C/colors.page:25(p)
+msgid "This mode automatically adjusts the colors to a set profile."
+msgstr ""
+"Dieser Modus gleicht die Farben automatisch mit einem gesetzten Profil ab."
+
+#: C/cd.page:8(desc)
+msgid "Burn photos to a CD"
+msgstr "Fotos auf eine CD brennen"
+
+#: C/cd.page:11(title)
+msgid "CD Export"
+msgstr "CD-Export"
+
+#: C/adjust-color.page:6(desc)
+msgid "Adjusting the colors of a photo"
+msgstr "Anpassen der Farben eines Fotos"
+
+#: C/adjust-color.page:9(title)
+msgid "Adjust Color"
+msgstr "Farbe einstellen"
+
+#: C/adjust-color.page:12(p)
+msgid ""
+"As far as the editing tools in F-Spot, adjusting the color is easily the most "
+"powerful. The color editor allows you to adjust:"
+msgstr ""
+"Von den Bearbeitungswerkzeugen in F-Spot ist die Farbanpassung wohl das "
+"mächtigste Werkzeug. Die Farbanpassung ermöglicht Ihnen Folgendes:"
+
+#: C/adjust-color.page:16(title)
+msgid "Exposure"
+msgstr "Belichtung"
+
+#: C/adjust-color.page:17(p)
+msgid "This adjustment simulates lengthening or shortening the exposure time."
+msgstr ""
+"Hierdurch wird die Verlängerung oder Verkürzung der Belichtungszeit simuliert."
+
+#: C/adjust-color.page:21(title)
+msgid "Saturation"
+msgstr "Sättigung"
+
+#: C/adjust-color.page:22(p)
+msgid ""
+"This adjustment simulates adjusting the amount of color in the image, i.e. "
+"sliding it to the left decrease color, making it black and white, while "
+"sliding it to the right will increase the vibrancy of colors."
+msgstr ""
+"Diese Einstellung erlaubt das Anpassen der Farbintensität in einem Bild. "
+"Verschieben nach links verringert die Farben bis hin zum Schwarzweißbild, "
+"wogegen Verschieben nach rechts die Farben intensiviert."
+
+#: C/adjust-color.page:28(title)
+msgid "Brightness"
+msgstr "Helligkeit"
+
+#: C/adjust-color.page:29(p)
+msgid ""
+"This adjustment increase the brightness of colors. Increasing this too much "
+"will make colors appear \"washed out\", while decreasing it too much will "
+"make the image too dark and lacking in contrast."
+msgstr ""
+"Diese Einstellung verstärkt die Helligkeit der Farben. Ein zu hoher Wert "
+"lässt Farben »verwaschen« erscheinen, während ein zu geringer Wert das Bild zu "
+"dunkel und kontrastarm darstellt."
+
+#: C/adjust-color.page:34(title)
+msgid "Hue"
+msgstr "Farbton"
+
+#: C/adjust-color.page:35(p)
+msgid "This adjustment causes colors to \"rotate\" along the color wheel."
+msgstr "Diese Einstellung lässt Farben entlang des Farbrades »rotieren«."
+
+#: C/adjust-color.page:38(title)
+msgid "Contrast"
+msgstr "Kontrast"
+
+#: C/adjust-color.page:39(p)
+msgid ""
+"This adjustment adjusts the contrast ratio, that is, the ratio of difference "
+"between dark and light pixels. Sliding to the left decreases contrast, while "
+"sliding to the right will increase contrast."
+msgstr ""
+"Diese Einstellung passt das Kontrastverhältnis an, also den Unterschied "
+"zwischen den hellen und den dunklen Bildpunkten. Verschieben nach links "
+"verringert den Kontrast, während Verschieben nach rechts den Kontrast erhöht."
+
+#: C/adjust-color.page:45(title)
+msgid "Temp"
+msgstr "Temp"
+
+#: C/adjust-color.page:46(p)
+msgid "This adjust changes the color temperature, measured in degrees Kelvin."
+msgstr "Diese Einstellung ändert die Farbtemperatur, gemessen in Kelvin."
+
+#: C/adjust-color.page:50(title)
+msgid "Tint"
+msgstr "Farbton"
+
+#: C/adjust-color.page:51(p)
+msgid "This adjustment allows you to tinge the photo with a color."
+msgstr ""
+"Diese Einstellung ermöglicht Ihnen die Tönung Ihrer Fotos mit einer Farbe."
+
+#: C/23hq.page:8(desc)
+msgid "Upload photos to 23hq"
+msgstr "Fotos zu 23hq übertragen"
+
+#: C/23hq.page:11(title)
+msgid "23hq"
+msgstr "23hq"
+
+#: C/23hq.page:15(p)
+msgid ""
+"To upload photos to 23hq you will need a 23hq account, as well as internet "
+"access. Also, the 23hq <link xref=\"extensions\">extension</link> must be "
+"installed and enabled."
+msgstr ""
+"Um Fotos zu 23hq hochzuladen, benötigen Sie ein 23hq-Konto sowie einen "
+"aktiven Internetzugang. Außerdem muss die 23hq-<link xref=\"extensions"
+"\">Erweiterung</link> installiert und aktiviert sein."
+
+#. Put one translator per line, in the form of NAME <EMAIL>, YEAR1, YEAR2
+#: C/index.page:0(None)
+msgid "translator-credits"
+msgstr ""
+"Mario Blättermann <mariobl@gnome.org>, 2010\n"
+"Wolfgang Stöggl <c72578@yahoo.de>, 2010"
