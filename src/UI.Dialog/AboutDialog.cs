@@ -42,6 +42,7 @@ namespace FSpot.UI.Dialog
 				"\tIain Lane",
 				"\tLorenzo Milesi",
 				"\tMike Gem\x00fcnde",
+				"\tNick Van Eeckhout",
 				"\tPaul Lange",
 				"\tPaul Wellner Bou",
 				"\tPeter Goetz",
