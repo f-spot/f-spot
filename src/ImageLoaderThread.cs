@@ -87,6 +87,8 @@ public class ImageLoaderThread {
 	   already or not.  */
 	private bool pending_notify_notified;
 
+	volatile bool should_cancel = false;
+
 	// Public API.
 
 	public delegate void PixbufLoadedHandler (ImageLoaderThread loader, RequestItem result);
@@ -109,6 +111,7 @@ public class ImageLoaderThread {
         if (worker_thread != null)
             return;
 
+		should_cancel = false;
 		worker_thread = new Thread (new ThreadStart (WorkerThread));
 		worker_thread.Start ();
     }
@@ -130,11 +133,11 @@ public class ImageLoaderThread {
 
 	public void Cleanup ()
 	{
-        var thread = worker_thread;
-        worker_thread = null;
-        
-        if (thread != null)
-            thread.Abort ();
+		should_cancel = true;
+		if (worker_thread != null) {
+			worker_thread.Join ();
+		}
+		worker_thread = null;
 	}
 
     public static void CleanAll ()
@@ -232,7 +235,7 @@ public class ImageLoaderThread {
 	{
         Log.Debug (this.ToString (), "Worker starting");
 		try {
-			while (true) {
+			while (!should_cancel) {
 				lock (processed_requests) {
 					if (current_request != null) {
 						processed_requests.Enqueue (current_request);
