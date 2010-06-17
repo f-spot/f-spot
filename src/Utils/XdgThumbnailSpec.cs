@@ -76,7 +76,7 @@ namespace FSpot.Utils
             double scale = Math.Max (1.0, Math.Max (scale_x, scale_y));
             int target_x = (int) (pixbuf.Width / scale);
             int target_y = (int) (pixbuf.Height / scale);
-            var thumb_pixbuf = pixbuf.ScaleSimple (target_x, target_y, InterpType.Nearest);
+            var thumb_pixbuf = pixbuf.ScaleSimple (target_x, target_y, InterpType.Bilinear);
             pixbuf.Dispose ();
 
             var file = GLib.FileFactory.NewForUri (uri);
