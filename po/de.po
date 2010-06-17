@@ -14,8 +14,8 @@ msgstr ""
 "Project-Id-Version: f-spot\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=f-"
 "spot&component=General\n"
-"POT-Creation-Date: 2010-06-14 16:14+0000\n"
-"PO-Revision-Date: 2010-06-15 18:46+0100\n"
+"POT-Creation-Date: 2010-06-17 08:11+0000\n"
+"PO-Revision-Date: 2010-06-17 22:59+0100\n"
 "Last-Translator: Mario Blättermann <mariobl@gnome.org>\n"
 "Language-Team: German <gnome-de@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -28,7 +28,6 @@ msgstr ""
 #: ../data/desktop-files/f-spot.desktop.in.in.h:1
 #: ../data/desktop-files/f-spot-import.desktop.in.in.h:1
 #: ../data/desktop-files/f-spot-view.desktop.in.in.h:1
-#: ../src/ui/main_window.ui.h:11
 msgid "F-Spot"
 msgstr "F-Spot"
 
@@ -109,15 +108,16 @@ msgid "copying..."
 msgstr "wird kopiert …"
 
 #: ../extensions/Exporters/CDExport/CDExport.ui.h:1
-msgid "<b><i>There is some previously scheduled items to write</i></b>"
-msgstr "<b><i>Es existieren schon Daten, die gespeichert werden müssen</i></b>"
+msgid "<b><i>There are some previously scheduled items to write</i></b>"
+msgstr ""
+"<b><i>Es existieren schon Objekte, die gespeichert werden müssen</i></b>"
 
 #: ../extensions/Exporters/CDExport/CDExport.ui.h:2
 msgid "<b>Photos to Burn</b>"
 msgstr "<b>Zu schreibende Fotos</b>"
 
 #: ../extensions/Exporters/CDExport/CDExport.ui.h:3
-#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:7
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:5
 #: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:7
 #: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:5
 #: ../src/ui/mail_dialog.ui.h:10
@@ -143,7 +143,7 @@ msgstr "Vorher geplante Dateien durch_suchen"
 
 #: ../extensions/Exporters/CDExport/CDExport.ui.h:8
 #: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:15
-#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:16
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:14
 #: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:15
 #: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:20
 #: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:12
@@ -491,7 +491,7 @@ msgid "<b>Account</b>"
 msgstr "<b>Konto</b>"
 
 #: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:2
-#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:5
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:3
 #: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:3
 #: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:2
 #: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:2
@@ -501,7 +501,7 @@ msgid "<b>Photos</b>"
 msgstr "<b>Fotos</b>"
 
 #: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:3
-#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:6
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:4
 #: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:4
 #: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:4
 #: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:4
@@ -565,7 +565,7 @@ msgid "_Export tags"
 msgstr "Markierungen e_xportieren"
 
 #: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:17
-#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:18
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:16
 #: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:21
 #: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:25
 #: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:15
@@ -577,7 +577,7 @@ msgid "_View photos in browser when done uploading"
 msgstr "Die Fotos nach dem Hochladen im Browser an_zeigen"
 
 #: ../extensions/Exporters/FlickrExport/FlickrExport.glade.h:19
-#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:20
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:18
 #: ../extensions/Exporters/GalleryExport/GalleryExport.glade.h:24
 #: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.glade.h:27
 #: ../extensions/Exporters/SmugMugExport/SmugMugExport.glade.h:17
@@ -674,7 +674,7 @@ msgstr "Stile verbergen"
 
 #: ../extensions/Exporters/FolderExport/FolderExport.cs:1112
 #: ../extensions/Exporters/FolderExport/FolderExport.cs:1113
-#: ../src/ui/main_window.ui.h:25
+#: ../src/ui/main_window.ui.h:24
 msgid "Tags: "
 msgstr "Markierungen: "
 
@@ -684,54 +684,50 @@ msgid "Page:"
 msgstr "Seite:"
 
 #: ../extensions/Exporters/FolderExport/FolderExport.glade.h:1
-msgid "\n"
-msgstr "\n"
-
-#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:3
 msgid "<b>Destination</b>"
 msgstr "<b>Ziel</b>"
 
-#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:4
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:2
 msgid "<b>Export Method</b>"
 msgstr "<b>Exportverfahren</b>"
 
-#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:8
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:6
 msgid "Create _gallery using \"Original\""
 msgstr "_Galerie unter Verwendung von »Original« anlegen"
 
-#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:9
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:7
 msgid "Create standalone _web gallery"
 msgstr "Eigenständige _Web-Galerie anlegen"
 
-#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:10
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:8
 msgid "D_escription:"
 msgstr "_Beschreibung:"
 
-#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:11
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:9
 msgid "Export _tags"
 msgstr "Markierungen e_xportieren"
 
-#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:12
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:10
 msgid "Export tag _icons"
 msgstr "Symbole der Markierungen e_xportieren"
 
-#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:13
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:11
 msgid "Folder Export"
 msgstr "Ordner-Export"
 
-#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:14
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:12
 msgid "G_allery Name:"
 msgstr "G_aleriename:"
 
-#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:15
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:13
 msgid "Open _destination when done exporting"
 msgstr "Das Ziel nach dem Exportieren ö_ffnen"
 
-#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:17
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:15
 msgid "_Folder:"
 msgstr "_Ordner:"
 
-#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:19
+#: ../extensions/Exporters/FolderExport/FolderExport.glade.h:17
 msgid "_Save the files only"
 msgstr "Nur die Dateien _speichern"
 
@@ -1095,30 +1091,26 @@ msgid "_Attach to exported photos:"
 msgstr "An exportierte Fotos _anhängen:"
 
 #: ../extensions/Exporters/TabbloExport/ui/TrustError.ui.h:1
-msgid "<b>{0}</b>."
-msgstr "<b>{0}</b>."
-
-#: ../extensions/Exporters/TabbloExport/ui/TrustError.ui.h:2
 msgid "A trust error occured while attempting to access"
 msgstr "Es gab einen Vertrauensfehler beim Verbindungsaufbau"
 
-#: ../extensions/Exporters/TabbloExport/ui/TrustError.ui.h:3
+#: ../extensions/Exporters/TabbloExport/ui/TrustError.ui.h:2
 msgid "Abort this session"
 msgstr "Sitzung wird abgebrochen"
 
-#: ../extensions/Exporters/TabbloExport/ui/TrustError.ui.h:4
+#: ../extensions/Exporters/TabbloExport/ui/TrustError.ui.h:3
 msgid "Always trust this site's certificate"
 msgstr "Diesem Zertifikat immer vertrauen"
 
-#: ../extensions/Exporters/TabbloExport/ui/TrustError.ui.h:5
+#: ../extensions/Exporters/TabbloExport/ui/TrustError.ui.h:4
 msgid "Do you wish to:"
 msgstr "Möchten Sie:"
 
-#: ../extensions/Exporters/TabbloExport/ui/TrustError.ui.h:6
+#: ../extensions/Exporters/TabbloExport/ui/TrustError.ui.h:5
 msgid "Trust Error"
 msgstr "Vertrauensfehler"
 
-#: ../extensions/Exporters/TabbloExport/ui/TrustError.ui.h:7
+#: ../extensions/Exporters/TabbloExport/ui/TrustError.ui.h:6
 msgid "Trust the site's certificate this once"
 msgstr "Diesem Zertifikat nur dieses Mal vertrauen"
 
@@ -1192,7 +1184,7 @@ msgid ""
 msgstr ""
 "Derzeit benötigen {0} Fotos eine md5-Berechnung, und {1} Aufträge stehen aus"
 
-#: ../extensions/Tools/HashJob/HashJob.cs:75 ../src/ui/main_window.ui.h:38
+#: ../extensions/Tools/HashJob/HashJob.cs:75 ../src/ui/main_window.ui.h:37
 msgid "_Close"
 msgstr "S_chließen"
 
@@ -1797,17 +1789,17 @@ msgstr "Exportieren nach"
 msgid "Open _With"
 msgstr "Öffnen _mit"
 
-#: ../src/FSpot.addin.xml.h:4 ../src/ui/main_window.ui.h:16
+#: ../src/FSpot.addin.xml.h:4 ../src/ui/main_window.ui.h:15
 msgid "Rem_ove Tag"
 msgstr "Markierung ent_fernen"
 
 #: ../src/FSpot.addin.xml.h:5 ../src/f-spot.glade.h:24 ../src/SingleView.cs:423
-#: ../src/ui/main_window.ui.h:17
+#: ../src/ui/main_window.ui.h:16
 msgid "Rotate _Left"
 msgstr "_Links drehen"
 
 #: ../src/FSpot.addin.xml.h:6 ../src/f-spot.glade.h:25 ../src/SingleView.cs:424
-#: ../src/ui/main_window.ui.h:18
+#: ../src/ui/main_window.ui.h:17
 msgid "Rotate _Right"
 msgstr "_Rechts drehen"
 
@@ -1815,11 +1807,11 @@ msgstr "_Rechts drehen"
 msgid "Tools"
 msgstr "Werkzeuge"
 
-#: ../src/FSpot.addin.xml.h:8 ../src/ui/main_window.ui.h:42
+#: ../src/FSpot.addin.xml.h:8 ../src/ui/main_window.ui.h:41
 msgid "_Delete From Drive"
 msgstr "Vom Laufwerk _löschen"
 
-#: ../src/FSpot.addin.xml.h:9 ../src/ui/main_window.ui.h:61
+#: ../src/FSpot.addin.xml.h:9 ../src/ui/main_window.ui.h:60
 msgid "_Remove From Catalog"
 msgstr "Aus dem Katalog ent_fernen"
 
@@ -1919,7 +1911,7 @@ msgstr "Anzahl der Fotos in den ausgewählten Importen:"
 msgid "Open _Folder..."
 msgstr "_Ordner öffnen …"
 
-#: ../src/f-spot.glade.h:21 ../src/UI.Dialog/ui/EditTagDialog.ui.h:4
+#: ../src/f-spot.glade.h:21 ../src/UI.Dialog/ui/EditTagDialog.ui.h:3
 msgid "P_arent Tag:"
 msgstr "Überge_ordnete Markierung:"
 
@@ -1939,7 +1931,7 @@ msgstr "Eine Markierung auswählen …"
 msgid "Selection Constraints"
 msgstr "Beschränkungen der Auswahl"
 
-#: ../src/f-spot.glade.h:28 ../src/ui/main_window.ui.h:22
+#: ../src/f-spot.glade.h:28 ../src/ui/main_window.ui.h:21
 msgid "Set as _Background"
 msgstr "Als Hintergrund_bild verwenden"
 
@@ -1964,19 +1956,19 @@ msgstr "Seiten_leiste"
 msgid "Te_mp:"
 msgstr "Te_mp.:"
 
-#: ../src/f-spot.glade.h:35 ../src/ui/main_window.ui.h:29
+#: ../src/f-spot.glade.h:35 ../src/ui/main_window.ui.h:28
 msgid "Zoom _in"
 msgstr "Ansicht ver_größern"
 
-#: ../src/f-spot.glade.h:36 ../src/ui/main_window.ui.h:30
+#: ../src/f-spot.glade.h:36 ../src/ui/main_window.ui.h:29
 msgid "Zoom _out"
 msgstr "Ansicht ver_kleinern"
 
-#: ../src/f-spot.glade.h:37 ../src/ui/main_window.ui.h:31
+#: ../src/f-spot.glade.h:37 ../src/ui/main_window.ui.h:30
 msgid "Zoom in"
 msgstr "Ansicht vergrößern"
 
-#: ../src/f-spot.glade.h:38 ../src/ui/main_window.ui.h:32
+#: ../src/f-spot.glade.h:38 ../src/ui/main_window.ui.h:31
 msgid "Zoom out"
 msgstr "Ansicht verkleinern"
 
@@ -1984,7 +1976,7 @@ msgstr "Ansicht verkleinern"
 msgid "_Brightness:"
 msgstr "_Helligkeit:"
 
-#: ../src/f-spot.glade.h:40 ../src/ui/main_window.ui.h:45
+#: ../src/f-spot.glade.h:40 ../src/ui/main_window.ui.h:44
 msgid "_Edit"
 msgstr "_Bearbeiten"
 
@@ -1992,11 +1984,11 @@ msgstr "_Bearbeiten"
 msgid "_Exposure:"
 msgstr "B_elichtung:"
 
-#: ../src/f-spot.glade.h:43 ../src/ui/main_window.ui.h:49
+#: ../src/f-spot.glade.h:43 ../src/ui/main_window.ui.h:48
 msgid "_Fullscreen"
 msgstr "_Vollbild"
 
-#: ../src/f-spot.glade.h:44 ../src/ui/main_window.ui.h:50
+#: ../src/f-spot.glade.h:44 ../src/ui/main_window.ui.h:49
 msgid "_Help"
 msgstr "_Hilfe"
 
@@ -2012,7 +2004,7 @@ msgstr "Bild bei Größenänderung _interpolieren"
 msgid "_New Window"
 msgstr "_Neues Fenster"
 
-#: ../src/f-spot.glade.h:48 ../src/ui/main_window.ui.h:58
+#: ../src/f-spot.glade.h:48 ../src/ui/main_window.ui.h:57
 msgid "_Photo"
 msgstr "_Foto"
 
@@ -2020,11 +2012,11 @@ msgstr "_Foto"
 msgid "_Saturation:"
 msgstr "_Sättigung:"
 
-#: ../src/f-spot.glade.h:50 ../src/ui/main_window.ui.h:69
+#: ../src/f-spot.glade.h:50 ../src/ui/main_window.ui.h:68
 msgid "_Slideshow"
 msgstr "_Diashow"
 
-#: ../src/f-spot.glade.h:51 ../src/UI.Dialog/ui/EditTagDialog.ui.h:6
+#: ../src/f-spot.glade.h:51 ../src/UI.Dialog/ui/EditTagDialog.ui.h:5
 msgid "_Tag Name:"
 msgstr "Markierungs_name:"
 
@@ -2036,7 +2028,7 @@ msgstr "_Farbton:"
 msgid "_Toolbar"
 msgstr "_Werkzeugleiste"
 
-#: ../src/f-spot.glade.h:54 ../src/ui/main_window.ui.h:77
+#: ../src/f-spot.glade.h:54 ../src/ui/main_window.ui.h:76
 msgid "_View"
 msgstr "_Ansicht"
 
@@ -2061,15 +2053,15 @@ msgid "Hide"
 msgstr "Verbergen"
 
 #: ../src/FullScreenView.cs:61
-msgid "Hide Toolbar"
+msgid "Hide toolbar"
 msgstr "Werkzeugleiste verbergen"
 
 #: ../src/FullScreenView.cs:67
 msgid "Info"
 msgstr "Info"
 
-#: ../src/FullScreenView.cs:69 ../src/Widgets/InfoBox.cs:202
-msgid "Image Information"
+#: ../src/FullScreenView.cs:69
+msgid "Image information"
 msgstr "Bildinformationen"
 
 #: ../src/FullScreenView.cs:74
@@ -2096,7 +2088,7 @@ msgstr "Weitere Zeitpunkte"
 msgid "More"
 msgstr "Mehr"
 
-#: ../src/GroupSelector.cs:530 ../src/ui/main_window.ui.h:35
+#: ../src/GroupSelector.cs:530 ../src/ui/main_window.ui.h:34
 msgid "_Clear Date Range"
 msgstr "Datumsspanne _zurücksetzen"
 
@@ -2747,7 +2739,7 @@ msgstr ""
 msgid "Received exception \"{0}\"."
 msgstr "Fehler empfangen: »{0}«"
 
-#: ../src/PhotoVersionMenu.cs:66 ../src/Widgets/InfoBox.cs:566
+#: ../src/PhotoVersionMenu.cs:71 ../src/Widgets/InfoBox.cs:566
 #: ../src/Widgets/InfoBox.cs:568
 msgid "(No Edits)"
 msgstr "(Keine Bearbeitungen)"
@@ -2847,26 +2839,26 @@ msgstr "Beim Versuch »{1}« zu drehen, wurde der Fehler »{0}« empfangen"
 msgid "Error while rotating photo."
 msgstr "Fehler beim Drehen des Fotos."
 
-#: ../src/SendEmail.cs:218
+#: ../src/SendEmail.cs:217
 msgid "Preparing email"
 msgstr "E-Mail wird vorbereitet"
 
-#: ../src/SendEmail.cs:270
+#: ../src/SendEmail.cs:266
 #, csharp-format
 msgid "Exporting picture \"{0}\""
 msgstr "Bild »{0}« wird exportiert"
 
-#: ../src/SendEmail.cs:292
+#: ../src/SendEmail.cs:285
 msgid "Error processing image"
 msgstr "Fehler beim Verarbeiten des Bildes"
 
-#: ../src/SendEmail.cs:293
+#: ../src/SendEmail.cs:286
 #, csharp-format
 msgid "An error occured while processing \"{0}\": {1}"
 msgstr "Ein Fehler ist beim Bearbeiten von »{0}« aufgetreten: {1}"
 
 #. Send the mail :)
-#: ../src/SendEmail.cs:307
+#: ../src/SendEmail.cs:299
 msgid "My Photos"
 msgstr "Meine Fotos"
 
@@ -3062,15 +3054,15 @@ msgstr "Vorschaubilder werden aktualisiert"
 msgid "Updating picture \"{0}\""
 msgstr "Bild »{0}« wird aktualisiert"
 
-#: ../src/UI.Dialog/AboutDialog.cs:94
+#: ../src/UI.Dialog/AboutDialog.cs:95
 msgid "Photo management for GNOME"
 msgstr "Fotoverwaltung für GNOME"
 
-#: ../src/UI.Dialog/AboutDialog.cs:95
+#: ../src/UI.Dialog/AboutDialog.cs:96
 msgid "Copyright © 2003-2010 Novell Inc."
 msgstr "Copyright © 2003-2010 Novell Inc."
 
-#: ../src/UI.Dialog/AboutDialog.cs:119
+#: ../src/UI.Dialog/AboutDialog.cs:120
 msgid "translator-credits"
 msgstr ""
 "Frank Arnold <frank@scirocco-5v-turbo.de>\n"
@@ -3079,7 +3071,7 @@ msgstr ""
 "Arun Persaud <arun@nubati.net>\n"
 "Mario Blättermann <mariobl@gnome.org>"
 
-#: ../src/UI.Dialog/AboutDialog.cs:124
+#: ../src/UI.Dialog/AboutDialog.cs:125
 msgid "F-Spot Website"
 msgstr "F-Spot Webseite"
 
@@ -3316,18 +3308,14 @@ msgid "Set date range"
 msgstr "Datumsbereich einstellen"
 
 #: ../src/UI.Dialog/ui/EditTagDialog.ui.h:1
-msgid "<small></small>"
-msgstr "<small></small>"
-
-#: ../src/UI.Dialog/ui/EditTagDialog.ui.h:2
 msgid "Edit Tag"
 msgstr "Markierung bearbeiten"
 
-#: ../src/UI.Dialog/ui/EditTagDialog.ui.h:3
+#: ../src/UI.Dialog/ui/EditTagDialog.ui.h:2
 msgid "Edit icon"
 msgstr "Symbol bearbeiten"
 
-#: ../src/UI.Dialog/ui/EditTagDialog.ui.h:5
+#: ../src/UI.Dialog/ui/EditTagDialog.ui.h:4
 msgid "_Icon:"
 msgstr "_Symbol:"
 
@@ -3358,10 +3346,6 @@ msgstr "Markierungssymbol bearbeiten"
 #: ../src/UI.Dialog/ui/EditTagIconDialog.ui.h:7
 msgid "No _image"
 msgstr "Kein _Bild"
-
-#: ../src/UI.Dialog/ui/EditTagIconDialog.ui.h:8
-msgid "Photo 0 of 0"
-msgstr "Foto 0 von 0"
 
 #: ../src/UI.Dialog/ui/PreferenceDialog.ui.h:1
 msgid "Color profile for display:"
@@ -3562,191 +3546,191 @@ msgstr "_Neue Version erstellen …"
 msgid "De_tach Version"
 msgstr "Version ab_trennen"
 
-#: ../src/ui/main_window.ui.h:12
+#: ../src/ui/main_window.ui.h:11
 msgid "Fin_d"
 msgstr "_Suchen"
 
-#: ../src/ui/main_window.ui.h:13
+#: ../src/ui/main_window.ui.h:12
 msgid "Manage _Extensions"
 msgstr "_Erweiterungen verwalten"
 
-#: ../src/ui/main_window.ui.h:14
+#: ../src/ui/main_window.ui.h:13
 msgid "Page Set_up..."
 msgstr "Sei_teneinstellungen …"
 
-#: ../src/ui/main_window.ui.h:15
+#: ../src/ui/main_window.ui.h:14
 msgid "Re_fresh Thumbnail"
 msgstr "Bildvorschau _aktualisieren"
 
-#: ../src/ui/main_window.ui.h:19
+#: ../src/ui/main_window.ui.h:18
 msgid "Select _All"
 msgstr "_Alles auswählen"
 
-#: ../src/ui/main_window.ui.h:20
+#: ../src/ui/main_window.ui.h:19
 msgid "Select _None"
 msgstr "Alles a_bwählen"
 
-#: ../src/ui/main_window.ui.h:21
+#: ../src/ui/main_window.ui.h:20
 msgid "Send by _Mail..."
 msgstr "Per _E-Mail verschicken …"
 
-#: ../src/ui/main_window.ui.h:23
+#: ../src/ui/main_window.ui.h:22
 msgid "Side_bar"
 msgstr "_Seitenleiste"
 
-#: ../src/ui/main_window.ui.h:24
+#: ../src/ui/main_window.ui.h:23
 msgid "T_ags"
 msgstr "M_arkierungen"
 
-#: ../src/ui/main_window.ui.h:26
+#: ../src/ui/main_window.ui.h:25
 msgid "Thumbnail _elements"
 msgstr "Bildvorschau_elemente"
 
-#: ../src/ui/main_window.ui.h:27
+#: ../src/ui/main_window.ui.h:26
 msgid "Too_lbar"
 msgstr "_Werkzeugleiste"
 
-#: ../src/ui/main_window.ui.h:28
+#: ../src/ui/main_window.ui.h:27
 msgid "View"
 msgstr "Ansicht"
 
-#: ../src/ui/main_window.ui.h:33
+#: ../src/ui/main_window.ui.h:32
 msgid "_Attach Tag"
 msgstr "Markierung hinzu_fügen"
 
-#: ../src/ui/main_window.ui.h:34
+#: ../src/ui/main_window.ui.h:33
 msgid "_Attach Tag to Selection"
 msgstr "Markierung zur Aus_wahl hinzufügen"
 
-#: ../src/ui/main_window.ui.h:36
+#: ../src/ui/main_window.ui.h:35
 msgid "_Clear Rating Filter"
 msgstr "_Bewertungsfilter zurücksetzen"
 
-#: ../src/ui/main_window.ui.h:37
+#: ../src/ui/main_window.ui.h:36
 msgid "_Clear Roll Filter"
 msgstr "_Importfilter zurücksetzen"
 
-#: ../src/ui/main_window.ui.h:39
+#: ../src/ui/main_window.ui.h:38
 msgid "_Components"
 msgstr "_Komponenten"
 
-#: ../src/ui/main_window.ui.h:40
+#: ../src/ui/main_window.ui.h:39
 msgid "_Contents"
 msgstr "_Inhalte"
 
-#: ../src/ui/main_window.ui.h:41
+#: ../src/ui/main_window.ui.h:40
 msgid "_Dates"
 msgstr "_Daten"
 
-#: ../src/ui/main_window.ui.h:43
+#: ../src/ui/main_window.ui.h:42
 msgid "_Delete Selected Tag"
 msgstr "Ausgewählte Markierung _löschen"
 
-#: ../src/ui/main_window.ui.h:44
+#: ../src/ui/main_window.ui.h:43
 msgid "_Delete Version"
 msgstr "Version _löschen"
 
-#: ../src/ui/main_window.ui.h:46
+#: ../src/ui/main_window.ui.h:45
 msgid "_Edit Tag..."
 msgstr "Markierung b_earbeiten …"
 
-#: ../src/ui/main_window.ui.h:47
+#: ../src/ui/main_window.ui.h:46
 msgid "_Export to"
 msgstr "_Exportieren nach"
 
-#: ../src/ui/main_window.ui.h:48
+#: ../src/ui/main_window.ui.h:47
 msgid "_Filmstrip"
 msgstr "_Filmstreifen"
 
-#: ../src/ui/main_window.ui.h:51
+#: ../src/ui/main_window.ui.h:50
 msgid "_Hidden"
 msgstr "_Versteckt"
 
-#: ../src/ui/main_window.ui.h:52
+#: ../src/ui/main_window.ui.h:51
 msgid "_Import..."
 msgstr "I_mportieren …"
 
-#: ../src/ui/main_window.ui.h:53
+#: ../src/ui/main_window.ui.h:52
 msgid "_Invert Selection"
 msgstr "Auswahl _umkehren"
 
-#: ../src/ui/main_window.ui.h:54
+#: ../src/ui/main_window.ui.h:53
 msgid "_Large"
 msgstr "_Groß"
 
-#: ../src/ui/main_window.ui.h:55
+#: ../src/ui/main_window.ui.h:54
 msgid "_Last Import Roll"
 msgstr "_Letzter Import"
 
-#: ../src/ui/main_window.ui.h:56
+#: ../src/ui/main_window.ui.h:55
 msgid "_Loupe"
 msgstr "_Lupe"
 
-#: ../src/ui/main_window.ui.h:57
+#: ../src/ui/main_window.ui.h:56
 msgid "_Medium"
 msgstr "_Mittel"
 
-#: ../src/ui/main_window.ui.h:59
+#: ../src/ui/main_window.ui.h:58
 msgid "_Quit"
 msgstr "_Beenden"
 
-#: ../src/ui/main_window.ui.h:60
+#: ../src/ui/main_window.ui.h:59
 msgid "_Ratings"
 msgstr "_Bewertungen"
 
-#: ../src/ui/main_window.ui.h:62
+#: ../src/ui/main_window.ui.h:61
 msgid "_Remove Tag From Selection"
 msgstr "Markierung der Auswahl ent_fernen"
 
-#: ../src/ui/main_window.ui.h:63
+#: ../src/ui/main_window.ui.h:62
 msgid "_Rename Version"
 msgstr "Version _umbenennen"
 
-#: ../src/ui/main_window.ui.h:64
+#: ../src/ui/main_window.ui.h:63
 msgid "_Reverse Order"
 msgstr "_Umgekehrte Reihenfolge"
 
-#: ../src/ui/main_window.ui.h:65
+#: ../src/ui/main_window.ui.h:64
 msgid "_Select Import Rolls..."
 msgstr "_Importe auswählen …"
 
-#: ../src/ui/main_window.ui.h:66
+#: ../src/ui/main_window.ui.h:65
 msgid "_Set Date Range..."
 msgstr "_Datumsbereich einstellen …"
 
-#: ../src/ui/main_window.ui.h:67
+#: ../src/ui/main_window.ui.h:66
 msgid "_Set Rating filter..."
 msgstr "_Bewertungsfilter einstellen …"
 
-#: ../src/ui/main_window.ui.h:68
+#: ../src/ui/main_window.ui.h:67
 msgid "_Sharpen..."
 msgstr "_Schärfen …"
 
-#: ../src/ui/main_window.ui.h:70
+#: ../src/ui/main_window.ui.h:69
 msgid "_Small"
 msgstr "_Klein"
 
-#: ../src/ui/main_window.ui.h:71
+#: ../src/ui/main_window.ui.h:70
 msgid "_Tag Icons"
 msgstr "_Markierungssymbole"
 
-#: ../src/ui/main_window.ui.h:72
+#: ../src/ui/main_window.ui.h:71
 msgid "_Tags"
 msgstr "_Markierungen"
 
-#: ../src/ui/main_window.ui.h:73
+#: ../src/ui/main_window.ui.h:72
 msgid "_Timeline"
 msgstr "_Zeitleiste"
 
-#: ../src/ui/main_window.ui.h:74
+#: ../src/ui/main_window.ui.h:73
 msgid "_Tools"
 msgstr "_Werkzeuge"
 
-#: ../src/ui/main_window.ui.h:75
+#: ../src/ui/main_window.ui.h:74
 msgid "_Untagged Photos"
 msgstr "_Unmarkierte Fotos"
 
-#: ../src/ui/main_window.ui.h:76
+#: ../src/ui/main_window.ui.h:75
 msgid "_Version"
 msgstr "_Version"
 
@@ -3897,6 +3881,10 @@ msgstr "Dateisystem"
 #: ../src/Widgets/InfoBox.cs:183
 msgid "Histogram"
 msgstr "Histogramm"
+
+#: ../src/Widgets/InfoBox.cs:202
+msgid "Image Information"
+msgstr "Bildinformationen"
 
 #: ../src/Widgets/InfoBox.cs:216
 msgid "Version"
@@ -4057,6 +4045,18 @@ msgstr "Eine Diaschau aus F-Spot anzeigen"
 #: ../tools/f-spot-screensaver.desktop.in.h:2
 msgid "F-Spot photos"
 msgstr "F-Spot Fotos"
+
+#~ msgid "\n"
+#~ msgstr "\n"
+
+#~ msgid "<b>{0}</b>."
+#~ msgstr "<b>{0}</b>."
+
+#~ msgid "<small></small>"
+#~ msgstr "<small></small>"
+
+#~ msgid "Photo 0 of 0"
+#~ msgstr "Foto 0 von 0"
 
 #~ msgid "Preview"
 #~ msgstr "Vorschau"
