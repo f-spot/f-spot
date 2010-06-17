@@ -130,7 +130,7 @@
             <child>
               <object class="GtkLabel" id="already_in_use_label">
                 <property name="visible">True</property>
-                <property name="label" translatable="yes">&lt;small&gt;&lt;/small&gt;</property>
+                <property name="label">&lt;small&gt;&lt;/small&gt;</property>
                 <property name="use_markup">True</property>
               </object>
             </child>

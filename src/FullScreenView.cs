@@ -58,7 +58,7 @@ namespace FSpot {
 					new ActionEntry (HideToolbar, Stock.Close, 
 							 Catalog.GetString ("Hide"), 
 							 null, 
-							 Catalog.GetString ("Hide Toolbar"), 
+							 Catalog.GetString ("Hide toolbar"), 
 							 HideToolbarAction)});
 
 				actions.Add (new ToggleActionEntry [] {
@@ -66,7 +66,7 @@ namespace FSpot {
 							       Stock.Info,
 							       Catalog.GetString ("Info"),
 							       null,
-							       Catalog.GetString ("Image Information"),
+							       Catalog.GetString ("Image information"),
 							       InfoAction,
 							       false)});
 

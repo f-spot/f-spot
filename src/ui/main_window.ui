@@ -689,7 +689,7 @@
     </ui>
   </object>
   <object class="GtkWindow" id="main_window">
-    <property name="title" translatable="yes">F-Spot</property>
+    <property name="title">F-Spot</property>
     <property name="window_position">GTK_WIN_POS_CENTER</property>
     <child>
       <object class="GtkVBox" id="vbox41">
