@@ -400,7 +400,7 @@ ${PACKAGE}-${VERSION}
 
   Build/Development:
     Unit Tests:        ${do_tests}
-    User Help:         ${HAVE_GNOME_DOC_UTILS} (requires gnome-doc-utils >= 0.17.3)
+    User Help:         ${enable_user_help} (requires gnome-doc-utils >= 0.17.3)
 
 Run 'make' to build F-Spot.
 

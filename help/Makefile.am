@@ -1,4 +1,4 @@
-if ENABLE_GNOME_DOCS
+if HAVE_GNOME_DOC_UTILS
 include $(top_srcdir)/gnome-doc-utils.make
 
 DOC_ID = f-spot
