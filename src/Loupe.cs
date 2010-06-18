@@ -306,6 +306,8 @@ namespace FSpot.Widgets {
 		double start_angle = 0;
 		Gdk.Point root_pos;
 		Gdk.Point start_root;
+		Gdk.Cursor opened_hand_cursor = new Gdk.Cursor (Gdk.CursorType.Hand1);
+		Gdk.Cursor closed_hand_cursor = new Gdk.Cursor (Gdk.CursorType.Fleur);
 
 		private void HandleMotionNotifyEvent (object sender, MotionNotifyEventArgs args)
 		{
@@ -436,6 +438,11 @@ namespace FSpot.Widgets {
 			view.MotionNotifyEvent -= HandleImageViewMotion;
 			view.Item.Changed -= HandleItemChanged;
 			view.ZoomChanged -= HandleViewZoomChanged;
+
+			opened_hand_cursor.Dispose ();
+			closed_hand_cursor.Dispose ();
+			opened_hand_cursor = null;
+			closed_hand_cursor = null;
 			
 			base.OnDestroyed ();
 		}
@@ -474,10 +481,30 @@ namespace FSpot.Widgets {
 			ButtonPressEvent += HandleButtonPressEvent;
 			ButtonReleaseEvent += HandleButtonReleaseEvent;
 			MotionNotifyEvent += HandleMotionNotifyEvent;
-
 			KeyPressEvent += HandleKeyPressEvent;
 
 			drag = new Delay (20, new GLib.IdleHandler (DragUpdate));
+
+			// Update the cursor appropriate to indicate dragability/dragging
+			bool inside = false, pressed = false;
+			EnterNotifyEvent += delegate {
+				inside = true;
+				if (!pressed)
+					GdkWindow.Cursor = opened_hand_cursor;
+			};
+			LeaveNotifyEvent += delegate {
+				inside = false;
+				if (!pressed)
+					GdkWindow.Cursor = null;
+			};
+			ButtonPressEvent += delegate {
+				pressed = true;
+				GdkWindow.Cursor = closed_hand_cursor;
+			};
+			ButtonReleaseEvent += delegate {
+				pressed = false;
+				GdkWindow.Cursor = inside ? opened_hand_cursor : null;
+			};
 		}
 	}
 }
