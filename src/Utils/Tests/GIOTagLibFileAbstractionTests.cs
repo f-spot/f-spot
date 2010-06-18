@@ -14,16 +14,15 @@ namespace FSpot.Utils.Tests
     [TestFixture]
     public class GIOTagLibFileAbstractionTests
     {
-        static bool initialized = false;
-        static void Initialize () {
+		[SetUp]
+        public void Initialize () {
             GLib.GType.Init ();
-            initialized = true;
         }
 
         [Test]
         public void StraightIOTest ()
         {
-            var uri = CreateTempFile ();
+            var uri = ImageTestHelper.CreateTempFile ("taglib-sample.jpg");
 
             var file = File.Create (uri.AbsolutePath) as TagLib.Image.File;
             Assert.IsTrue (file != null);
@@ -37,13 +36,13 @@ namespace FSpot.Utils.Tests
             Validate (file);
             ValidateChangedMetadata (file);
 
-            DeleteTempFile (uri);
+            ImageTestHelper.DeleteTempFile (uri);
         }
 
         [Test]
         public void GIOTest ()
         {
-            var uri = CreateTempFile ();
+            var uri = ImageTestHelper.CreateTempFile ("taglib-sample.jpg");
 
             var res = new GIOTagLibFileAbstraction () { Uri = uri };
 
@@ -59,28 +58,7 @@ namespace FSpot.Utils.Tests
             Validate (file);
             ValidateChangedMetadata (file);
 
-            DeleteTempFile (uri);
-        }
-
-        private SafeUri CreateTempFile ()
-        {
-            if (!initialized)
-                Initialize ();
-
-            var uri = new SafeUri (Environment.CurrentDirectory + "/../tests/data/taglib-sample.jpg");
-            var file = GLib.FileFactory.NewForUri (uri);
-
-            var tmp = System.IO.Path.GetTempFileName ()+".jpg"; // hack!
-            var uri2 = new SafeUri (tmp);
-            var file2 = GLib.FileFactory.NewForUri (uri2);
-            file.Copy (file2, GLib.FileCopyFlags.Overwrite, null, null);
-            return uri2;
-        }
-
-        private void DeleteTempFile (SafeUri uri)
-        {
-            var file = GLib.FileFactory.NewForUri (uri);
-            file.Delete ();
+            ImageTestHelper.DeleteTempFile (uri);
         }
 
         private void Validate (TagLib.Image.File file)

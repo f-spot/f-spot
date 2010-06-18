@@ -14,12 +14,15 @@ SOURCES = \
 	RecursiveFileEnumerator.cs \
 	SafeUri.cs \
 	SafeUriExtensions.cs \
+	SidecarXmpExtensions.cs \
 	Unix.cs \
 	UriExtensions.cs \
 	UriUtils.cs \
 	XdgThumbnailSpec.cs \
 	Tests/GIOTagLibFileAbstractionTests.cs \
+	Tests/ImageTestHelper.cs \
 	Tests/SafeUriTests.cs \
+	Tests/SidecarXmpExtensionsTests.cs \
 	Tests/XdgThumbnailSpecTests.cs
 
 RESOURCES =
