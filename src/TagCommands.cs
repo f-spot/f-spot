@@ -76,8 +76,7 @@ public class TagCommands {
 
 			ListStore category_store = new ListStore (typeof(Pixbuf), typeof(string));
 
-			foreach (Category category in categories)
-			{
+			foreach (Category category in categories) {
 				category_store.AppendValues (category.SizedIcon, Indentation (category) + category.Name);
 			}
 
@@ -148,9 +147,7 @@ public class TagCommands {
 							return;
 						}
 					}	
-				}
-				else
-				{
+				} else {
 					category_option_menu.Active = 0;
 				}
 			}
@@ -164,9 +161,7 @@ public class TagCommands {
 					default_category = (Category) selection [0];
 				else
 					default_category = selection [0].Category;
-			}
-			else
-			{
+			} else {
 				default_category = tag_store.RootCategory;
 			}
 
