@@ -13,6 +13,7 @@ using System;
 using System.IO;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 
 using Unique;
 
@@ -24,21 +25,34 @@ namespace FSpot
 {
 	public class App : Unique.App
 	{
+		static object sync_handle = new object ();
+
 #region public API
 		static App app;
 		public static App Instance {
 			get {
-				if (app == null)
-					app = new App ();
+				lock (sync_handle) {
+					if (app == null)
+						app = new App ();
+				}
 				return app;
 			}
 		}
 
+		Thread constructing_organizer = null;
+
 		public MainWindow Organizer {
 			get {
-				if (organizer == null) {
-					organizer = new MainWindow (Database);
-					Register (organizer.Window);
+				lock (sync_handle) {
+					if (organizer == null) {
+						if (constructing_organizer == Thread.CurrentThread) {
+							throw new Exception ("Recursively tried to acquire App.Organizer!");
+						}
+
+						constructing_organizer = Thread.CurrentThread;
+						organizer = new MainWindow (Database);
+						Register (organizer.Window);
+					}
 				}
 				return organizer;
 			}
@@ -46,17 +60,19 @@ namespace FSpot
 
 		public Db Database {
 			get {
-				if (db == null) {
-					if (!File.Exists (FSpot.Global.BaseDirectory))
-						Directory.CreateDirectory (FSpot.Global.BaseDirectory);
+				lock (sync_handle) {
+					if (db == null) {
+						if (!File.Exists (FSpot.Global.BaseDirectory))
+							Directory.CreateDirectory (FSpot.Global.BaseDirectory);
 
-					db = new Db ();
+						db = new Db ();
 
-					try {
-						db.Init (Path.Combine (FSpot.Global.BaseDirectory, "photos.db"), true);
-					} catch (Exception e) {
-						new FSpot.UI.Dialog.RepairDbDialog (e, db.Repair (), null);
-						db.Init (Path.Combine (FSpot.Global.BaseDirectory, "photos.db"), true);
+						try {
+							db.Init (Path.Combine (FSpot.Global.BaseDirectory, "photos.db"), true);
+						} catch (Exception e) {
+							new FSpot.UI.Dialog.RepairDbDialog (e, db.Repair (), null);
+							db.Init (Path.Combine (FSpot.Global.BaseDirectory, "photos.db"), true);
+						}
 					}
 				}
 				return db;
