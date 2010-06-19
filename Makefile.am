@@ -41,8 +41,12 @@ DISTCLEANFILES = \
 
 DISTCHECK_CONFIGURE_FLAGS = --disable-scrollkeeper
 
+if GCONF_SCHEMAS_INSTALL
 install-data-local:
 	-GCONF_CONFIG_SOURCE=$(GCONF_SCHEMA_CONFIG_SOURCE) $(GCONFTOOL) --makefile-install-rule $(srcdir)/$(schema_DATA)
+else
+install-data-local:
+endif
 
 run:
 	@pushd bin/; \
