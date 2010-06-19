@@ -35,5 +35,11 @@ namespace FSpot
             var index = name.LastIndexOf ('.');
             return index > -1 ? name.Substring (0, index) : name;
         }
+
+        public static SafeUri ReplaceExtension (this SafeUri uri, string extension)
+        {
+
+            return uri.GetBaseUri ().Append (uri.GetFilenameWithoutExtension () + extension);
+        }
     }
 }

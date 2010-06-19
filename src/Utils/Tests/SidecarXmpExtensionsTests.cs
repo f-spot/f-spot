@@ -73,9 +73,64 @@ namespace FSpot.Utils.Tests
             ImageTestHelper.DeleteTempFile (sidecar_uri);
         }
 
+        [Test]
+        public void TestSidecarWrite ()
+        {
+            var uri = ImageTestHelper.CreateTempFile ("taglib-sample.jpg");
+            var sidecar_uri = uri.ReplaceExtension (".xmp");
+            var res = new GIOTagLibFileAbstraction () { Uri = uri };
+            var sidecar_res = new GIOTagLibFileAbstraction () { Uri = sidecar_uri };
+            Assert.IsTrue (sidecar_uri.ToString ().EndsWith (".xmp"));
+
+            var sidecar_file = GLib.FileFactory.NewForUri (sidecar_uri);
+            Assert.IsFalse (sidecar_file.Exists);
+
+            var file = File.Create (res) as TagLib.Image.File;
+            Assert.IsTrue (file != null);
+
+            file.ImageTag.Keywords = new string [] { "Kirche Aarschot" };
+
+            // Validate writing of the sidecar
+            file.SaveXmpSidecar (sidecar_res);
+            Assert.IsTrue (sidecar_file.Exists);
+
+            var target = "<x:xmpmeta xmlns:x=\"adobe:ns:meta/\"><rdf:RDF xm"
+                + "lns:rdf=\"http://www.w3.org/1999/02/22-rdf-syntax-ns#\">"
+                + "<rdf:Description MicrosoftPhoto:DateAcquired=\"2009-08-0"
+                + "4T20:42:36Z\" xmp:creatortool=\"Microsoft Windows Photo "
+                + "Gallery 6.0.6001.18000\" tiff:software=\"Microsoft Windo"
+                + "ws Photo Gallery 6.0.6001.18000\" tiff:Orientation=\"1\""
+                + " MicrosoftPhoto:Rating=\"1\" xmp:Rating=\"1\" xmlns:tiff"
+                + "=\"http://ns.adobe.com/tiff/1.0/\" xmlns:xmp=\"http://ns"
+                + ".adobe.com/xap/1.0/\" xmlns:MicrosoftPhoto=\"http://ns.m"
+                + "icrosoft.com/photo/1.0/\"><MicrosoftPhoto:LastKeywordXMP"
+                + "><rdf:Bag><rdf:li>Kirche Sulzbach</rdf:li></rdf:Bag></Mi"
+                + "crosoftPhoto:LastKeywordXMP><dc:subject xmlns:dc=\"http:"
+                + "//purl.org/dc/elements/1.1/\"><rdf:Bag><rdf:li>Kirche Aa"
+                + "rschot</rdf:li></rdf:Bag></dc:subject></rdf:Description>"
+                + "</rdf:RDF></x:xmpmeta>";
+
+            string written;
+            var read_res = new GIOTagLibFileAbstraction () { Uri = sidecar_uri };
+            using (var stream = read_res.ReadStream) {
+                using (var reader = new System.IO.StreamReader (stream)) {
+                    written = reader.ReadToEnd ();
+                }
+            }
+            Assert.AreEqual (target, written);
+
+            // Check that the file is unchanged
+            file = File.Create (res) as TagLib.Image.File;
+            var keywords = file.ImageTag.Keywords;
+            Assert.AreEqual (new string [] { "Kirche Sulzbach" }, keywords);
+
+            ImageTestHelper.DeleteTempFile (uri);
+            ImageTestHelper.DeleteTempFile (sidecar_uri);
+        }
+
         SafeUri CopySidecarToTest (SafeUri uri)
         {
-            var target = uri.GetBaseUri ().Append (uri.GetFilenameWithoutExtension () + ".xmp");
+            var target = uri.ReplaceExtension (".xmp");
 
             var orig_uri = new SafeUri (Environment.CurrentDirectory + "/../tests/data/taglib-sample.xmp");
             var file = GLib.FileFactory.NewForUri (orig_uri);

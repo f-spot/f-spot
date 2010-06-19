@@ -38,6 +38,8 @@ namespace FSpot.Utils
                     var file = FileFactory.NewForUri (Uri);
                     stream = new GioStream (file.Read (null));
                 }
+                if (!stream.CanRead)
+                    throw new Exception ("Can't read from this resource");
                 return stream;
             }
         }
@@ -45,9 +47,14 @@ namespace FSpot.Utils
         public Stream WriteStream {
             get {
                 if (stream == null) {
-                    CopyToTmp ();
-                    var file = FileFactory.NewForUri (tmp_write_uri);
-                    stream = new GioStream (file.OpenReadwrite (null));
+                    var file = FileFactory.NewForUri (Uri);
+                    if (!file.Exists) {
+                        stream = new GioStream (file.Create (GLib.FileCreateFlags.None, null));
+                    } else {
+                        CopyToTmp ();
+                        file = FileFactory.NewForUri (tmp_write_uri);
+                        stream = new GioStream (file.OpenReadwrite (null));
+                    }
                 }
                 if (!stream.CanWrite) {
                     throw new Exception ("Stream still open in reading mode!");
@@ -58,8 +65,8 @@ namespace FSpot.Utils
 
         private void CopyToTmp ()
         {
-            tmp_write_uri = CreateTmpFile ();
             var file = FileFactory.NewForUri (Uri);
+            tmp_write_uri = CreateTmpFile ();
             var tmp_file = FileFactory.NewForUri (tmp_write_uri);
 
             file.Copy (tmp_file, GLib.FileCopyFlags.AllMetadata | GLib.FileCopyFlags.Overwrite, null, null);
@@ -67,6 +74,9 @@ namespace FSpot.Utils
 
         private void CommitTmp ()
         {
+            if (tmp_write_uri == null)
+                return;
+
             var file = FileFactory.NewForUri (Uri);
             var tmp_file = FileFactory.NewForUri (tmp_write_uri);
 

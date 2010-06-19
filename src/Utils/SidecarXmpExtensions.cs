@@ -27,5 +27,18 @@ namespace FSpot.Utils
             xmp_tag.ReplaceFrom (tag);
         }
 
+        public static void SaveXmpSidecar (this TagLib.Image.File file, TagLib.File.IFileAbstraction resource)
+        {
+            var xmp_tag = file.GetTag (TagLib.TagTypes.XMP, false) as XmpTag;
+            if (xmp_tag == null)
+                return;
+
+            var xmp = xmp_tag.Render ();
+            using (var stream = resource.WriteStream) {
+                using (var writer = new StreamWriter (stream)) {
+                    writer.Write (xmp);
+                }
+            }
+        }
     }
 }

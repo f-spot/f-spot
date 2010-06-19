@@ -61,6 +61,15 @@ namespace FSpot.Utils.Tests
                 Assert.AreEqual (suri.GetFilenameWithoutExtension (), test.FilenameWithoutExtension, String.Format("FilenameWithoutExtension for {0}", test.Uri));
             }
         }
+
+        [Test]
+        public void TestReplaceExtension ()
+        {
+            var uri = new SafeUri ("file:///test/image.jpg", true);
+            var goal = new SafeUri ("file:///test/image.xmp", true);
+
+            Assert.AreEqual (goal, uri.ReplaceExtension (".xmp"));
+        }
     }
 
     internal class SafeUriTest
