@@ -2,7 +2,7 @@
 ###
 ### Check for the right version of the Berkeley DB library.
 
-AC_DEFUN(F_CHECK_BERKELEYDB, [
+AC_DEFUN([F_CHECK_BERKELEYDB], [
 
 	AC_ARG_WITH(db4,          [  --with-db4=PREFIX              Location of db4],
 		[with_db4_includes="$withval/include"
