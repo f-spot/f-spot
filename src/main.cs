@@ -136,12 +136,14 @@ namespace FSpot
 
 			ApplicationContext.TrySetProcessName (Defines.PACKAGE);
 
+			Paths.ApplicationName = "f-spot";
 			ThreadAssist.InitializeMainThread ();
 			ThreadAssist.ProxyToMainHandler = RunIdle;
 			XdgThumbnailSpec.DefaultLoader = (uri) => {
 				using (var file = ImageFile.Create (uri))
 					return file.Load ();
 			};
+
 			// Options and Option parsing
 			bool shutdown = false;
 			bool view = false;
