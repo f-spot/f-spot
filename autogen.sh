@@ -78,7 +78,7 @@ run autoconf
 run autoheader
 test -f config.h.in && touch config.h.in
 run automake --gnu --add-missing --force --copy \
-	-Wno-portability -Wno-portability
+	-Wno-portability
 
 if [ ! -z "$NOCONFIGURE" ]; then
 	echo "Done. ./configure skipped."
