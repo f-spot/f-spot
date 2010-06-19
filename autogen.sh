@@ -35,12 +35,9 @@ function check_autotool_version () {
 
 function run () {
 	echo "Running $@ ..."
-	$@ 2>.autogen.log || {
-		cat .autogen.log 1>&2
-		rm .autogen.log
+	$@ || {
 		error "Could not run $1, which is required to configure $PROJECT"
 	}
-	rm .autogen.log
 }
 
 srcdir=`dirname $0`
