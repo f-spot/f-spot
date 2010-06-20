@@ -200,7 +200,7 @@ public class TagCommands {
 			return new_tag;
 		}
 
-		public Create (TagStore tag_store, Gtk.Window parent_window) : base ("create_tag_dialog.ui", "create_tag_dialog")
+		public Create (TagStore tag_store, Gtk.Window parent_window) : base ("CreateTagDialog.ui", "create_tag_dialog")
 		{
 			this.tag_store = tag_store;
 			this.parent_window = parent_window;

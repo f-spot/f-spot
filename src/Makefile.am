@@ -228,8 +228,8 @@ RESOURCES = \
 	UI.Dialog/ui/EditTagIconDialog.ui \
 	UI.Dialog/ui/PreferenceDialog.ui \
 	UI.Dialog/ui/RatingFilterDialog.ui \
-	ui/create_tag_dialog.ui \
-	ui/repair_dialog.ui \
+	UI.Dialog/ui/CreateTagDialog.ui \
+	UI.Dialog/ui/RepairDialog.ui \
 	FSpot.addin.xml
 
 include $(top_srcdir)/build/build.mk

@@ -22,7 +22,7 @@ namespace FSpot. UI.Dialog
 		IBrowsableCollection source;
 		PhotoList missing;
 
-		public RepairDialog (IBrowsableCollection collection) : base ("repair_dialog.ui", "repair_dialog")
+		public RepairDialog (IBrowsableCollection collection) : base ("RepairDialog.ui", "repair_dialog")
 		{
 			source = collection;
 			missing = new PhotoList ();
