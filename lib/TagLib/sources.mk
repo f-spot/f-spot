@@ -25,6 +25,8 @@ SOURCES = \
 	TagLib/src/TagLib/Asf/PaddingObject.cs \
 	TagLib/src/TagLib/Asf/ContentDescriptor.cs \
 	TagLib/src/TagLib/Asf/DescriptionRecord.cs \
+	TagLib/src/TagLib/Cr2/Codec.cs \
+	TagLib/src/TagLib/Cr2/File.cs \
 	TagLib/src/TagLib/Mpc/StreamHeader.cs \
 	TagLib/src/TagLib/Mpc/File.cs \
 	TagLib/src/TagLib/Ogg/GroupedComment.cs \
@@ -125,7 +127,9 @@ SOURCES = \
 	TagLib/src/TagLib/IFD/IFDReader.cs \
 	TagLib/src/TagLib/IFD/IFDRenderer.cs \
 	TagLib/src/TagLib/IFD/Makernotes/Nikon3MakernoteReader.cs \
+	TagLib/src/TagLib/IFD/Tags/CanonFileInfoEntryTag.cs \
 	TagLib/src/TagLib/IFD/Tags/CanonMakerNoteEntryTag.cs \
+	TagLib/src/TagLib/IFD/Tags/CanonPictureInfoEntryTag.cs \
 	TagLib/src/TagLib/IFD/Tags/ExifEntryTag.cs \
 	TagLib/src/TagLib/IFD/Tags/GPSEntryTag.cs \
 	TagLib/src/TagLib/IFD/Tags/IFDEntryTag.cs \
@@ -169,6 +173,7 @@ SOURCES = \
 	TagLib/src/TagLib/Riff/List.cs \
 	TagLib/src/TagLib/Riff/ListTag.cs \
 	TagLib/src/TagLib/Riff/MovieIdTag.cs \
+	TagLib/src/TagLib/Tiff/BaseTiffFile.cs \
 	TagLib/src/TagLib/Tiff/Codec.cs \
 	TagLib/src/TagLib/Tiff/File.cs \
 	TagLib/src/TagLib/WavPack/File.cs \
