@@ -13,16 +13,16 @@ using System;
 using System.IO;
 using FSpot.Widgets;
 
-namespace FSpot.UI.Dialog 
+namespace FSpot. UI.Dialog
 {
-	public class RepairDialog : GladeDialog
+	public class RepairDialog : BuilderDialog
 	{
-		[Glade.Widget] ScrolledWindow view_scrolled;
+		[GtkBeans.Builder.Object] ScrolledWindow view_scrolled;
 		
 		IBrowsableCollection source;
 		PhotoList missing;
 
-		public RepairDialog (IBrowsableCollection collection) : base ("repair_dialog") 
+		public RepairDialog (IBrowsableCollection collection) : base ("repair_dialog.ui", "repair_dialog")
 		{
 			source = collection;
 			missing = new PhotoList ();
@@ -31,7 +31,7 @@ namespace FSpot.UI.Dialog
 			TrayView view = new TrayView (missing);
 			view_scrolled.Add (view);
 				
-			this.Dialog.ShowAll ();
+			this.ShowAll ();
 		}
 
 		public void FindMissing ()

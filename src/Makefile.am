@@ -163,6 +163,7 @@ SOURCES = \
 	UI.Dialog/ProgressDialog.cs \
 	UI.Dialog/RatingFilterDialog.cs \
 	UI.Dialog/RepairDbDialog.cs \
+	UI.Dialog/RepairDialog.cs \
 	UI.Dialog/SelectionRatioDialog.cs \
 	UI.Dialog/TagSelectionDialog.cs \
 	UI.Dialog/ThreadProgressDialog.cs \
@@ -228,6 +229,7 @@ RESOURCES = \
 	UI.Dialog/ui/PreferenceDialog.ui \
 	UI.Dialog/ui/RatingFilterDialog.ui \
 	ui/create_tag_dialog.ui \
+	ui/repair_dialog.ui \
 	FSpot.addin.xml
 
 include $(top_srcdir)/build/build.mk
