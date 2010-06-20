@@ -82,12 +82,17 @@ namespace FSpot.Import
 
         List<ImportSource> ScanSources ()
         {
-		    var monitor = GLib.VolumeMonitor.Default;
+            var monitor = GLib.VolumeMonitor.Default;
             var sources = new List<ImportSource> ();
             foreach (var mount in monitor.Mounts) {
                 var root = new SafeUri (mount.Root.Uri, true);
-                var icon = (mount.Icon as GLib.ThemedIcon).Names [0];
-                sources.Add (new FileImportSource (root, mount.Name, icon));
+
+                var themed_icon = (mount.Icon as GLib.ThemedIcon);
+                if (themed_icon != null && themed_icon.Names.Length > 0) {
+                    sources.Add (new FileImportSource (root, mount.Name, themed_icon.Names [0]));
+                } else {
+                    sources.Add (new FileImportSource (root, mount.Name, null));
+                }
             }
             return sources;
         }
