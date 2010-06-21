@@ -15,20 +15,20 @@ using FSpot.Query;
 using FSpot.UI.Dialog;
 
 namespace FSpot.UI.Dialog {
-	public class LastRolls : GladeDialog {
+	public class LastRolls : BuilderDialog {
 		FSpot.PhotoQuery query;
 		RollStore rollstore;
 		Gtk.Window parent_window;
 		
 		Roll [] rolls;
 
-		[Glade.Widget] private ComboBox combo_filter; // at, after, or between
-		[Glade.Widget] private ComboBox combo_roll_1;
-		[Glade.Widget] private ComboBox combo_roll_2;
-		[Glade.Widget] private Label    and_label; // and label between two comboboxes.
-		[Glade.Widget] private Label    photos_in_selected_rolls; 
+		[GtkBeans.Builder.Object] private ComboBox combo_filter; // at, after, or between
+		[GtkBeans.Builder.Object] private ComboBox combo_roll_1;
+		[GtkBeans.Builder.Object] private ComboBox combo_roll_2;
+		[GtkBeans.Builder.Object] private Label    and_label; // and label between two comboboxes.
+		[GtkBeans.Builder.Object] private Label    photos_in_selected_rolls;
 		
-		public LastRolls (FSpot.PhotoQuery query, RollStore rollstore, Gtk.Window parent_window) : base ("last_import_rolls_filter") 
+		public LastRolls (FSpot.PhotoQuery query, RollStore rollstore, Gtk.Window parent_window) : base ("LastImportRollFilterDialog.ui", "last_import_rolls_filter")
 		{
 			this.query = query;
 			this.rollstore = rollstore;
@@ -41,9 +41,9 @@ namespace FSpot.UI.Dialog {
 			combo_roll_1.Active = 0;
 			combo_roll_2.Active = 0;
 			
-			Dialog.DefaultResponse = ResponseType.Ok;
-			Dialog.Response += HandleResponse;
-			Dialog.Show ();
+			DefaultResponse = ResponseType.Ok;
+			Response += HandleResponse;
+			Show ();
 		}
 
 		[GLib.ConnectBefore]
@@ -55,7 +55,7 @@ namespace FSpot.UI.Dialog {
 				if (selected_rolls != null && selected_rolls.Length > 0 )
 					query.RollSet = new RollSet (selected_rolls);
 			}
-			Dialog.Destroy ();
+			Destroy ();
 		}
 		
 		void HandleComboFilterChanged (object o, EventArgs args)

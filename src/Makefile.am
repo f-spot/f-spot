@@ -230,6 +230,7 @@ RESOURCES = \
 	UI.Dialog/ui/PreferenceDialog.ui \
 	UI.Dialog/ui/RatingFilterDialog.ui \
 	UI.Dialog/ui/CreateTagDialog.ui \
+	UI.Dialog/ui/LastImportRollFilterDialog.ui \
 	UI.Dialog/ui/RepairDialog.ui \
 	FSpot.addin.xml
 
