@@ -21,6 +21,7 @@ using Mono.Unix;
 using System;
 using System.Collections.Generic;
 using Hyena;
+using Hyena.Widgets;
 
 namespace FSpot.Widgets {
 	public class EditorPage : SidebarPage {
@@ -48,7 +49,7 @@ namespace FSpot.Widgets {
 		}
 	}
 
-	public class EditorPageWidget : ScrolledWindow {
+	public class EditorPageWidget : Gtk.ScrolledWindow {
 		private VBox widgets;
 		private VButtonBox buttons;
 		private Widget active_editor;

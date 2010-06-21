@@ -18,6 +18,7 @@ using FSpot.Filters;
 using FSpot.UI.Dialog;
 
 using Hyena;
+using Hyena.Widgets;
 using Mono.Unix;
 
 namespace FSpot
@@ -27,7 +28,7 @@ namespace FSpot
 		Window parent_window;
 
 #pragma warning disable 0649
-		[GtkBeans.Builder.Object] private ScrolledWindow   tray_scrolled;
+		[GtkBeans.Builder.Object] private Gtk.ScrolledWindow   tray_scrolled;
 		[GtkBeans.Builder.Object] private Label 		NumberOfPictures, TotalOriginalSize, ApproxNewSize;
 		[GtkBeans.Builder.Object] private RadioButton 	tiny_size, small_size, medium_size,
 														large_size, x_large_size, original_size;

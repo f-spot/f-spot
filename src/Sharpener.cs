@@ -17,6 +17,7 @@ using System.Runtime.InteropServices;
 using Mono.Unix;
 using FSpot.Widgets;
 using FSpot.UI.Dialog;
+using Hyena.Widgets;
 
 namespace FSpot.Widgets {
 	public class Sharpener : Loupe {

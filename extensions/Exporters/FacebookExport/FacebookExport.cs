@@ -29,6 +29,7 @@ using GtkBeans;
 
 using FSpot;
 using Hyena;
+using Hyena.Widgets;
 using FSpot.UI.Dialog;
 using FSpot.Extensions;
 using FSpot.Filters;

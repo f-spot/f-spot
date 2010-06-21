@@ -17,6 +17,7 @@ using Gtk;
 using FSpot.Widgets;
 using FSpot.Utils;
 using Hyena;
+using Hyena.Widgets;
 
 namespace FSpot.UI.Dialog
 {
@@ -29,8 +30,8 @@ namespace FSpot.UI.Dialog
 		Gtk.FileChooserButton external_photo_chooser;
 
 		[GtkBeans.Builder.Object] Gtk.Image preview_image;
-		[GtkBeans.Builder.Object] ScrolledWindow photo_scrolled_window;
-		[GtkBeans.Builder.Object] ScrolledWindow icon_scrolled_window;
+		[GtkBeans.Builder.Object] Gtk.ScrolledWindow photo_scrolled_window;
+		[GtkBeans.Builder.Object] Gtk.ScrolledWindow icon_scrolled_window;
 		[GtkBeans.Builder.Object] Label photo_label;
 		[GtkBeans.Builder.Object] Label from_photo_label;
 		[GtkBeans.Builder.Object] SpinButton photo_spin_button;

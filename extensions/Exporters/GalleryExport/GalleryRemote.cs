@@ -9,6 +9,7 @@ using Mono.Unix;
 using FSpot;
 using FSpot.UI.Dialog;
 using Hyena;
+using Hyena.Widgets;
 
 /* These classes are based off the documentation at
  *

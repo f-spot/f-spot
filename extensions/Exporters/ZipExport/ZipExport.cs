@@ -17,6 +17,7 @@ using FSpot.UI.Dialog;
 using FSpot.Extensions;
 using FSpot.Filters;
 using Hyena;
+using Hyena.Widgets;
 using System;
 using System.IO;
 using System.Collections;

@@ -13,6 +13,7 @@ using System;
 //using Gnome.Vfs;
 using Gtk;
 using Hyena;
+using Hyena.Widgets;
 
 namespace ChangePhotoPath
 {

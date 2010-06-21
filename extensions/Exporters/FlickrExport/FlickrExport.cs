@@ -11,6 +11,7 @@ using FSpot.Widgets;
 using FSpot.Utils;
 using FSpot.UI.Dialog;
 using Hyena;
+using Hyena.Widgets;
 
 namespace FSpotFlickrExport {
 	public class TwentyThreeHQExport : FlickrExport

@@ -156,7 +156,6 @@ SOURCES = \
 	UI.Dialog/EditTagIconDialog.cs \
 	UI.Dialog/ExceptionDialog.cs \
 	UI.Dialog/GladeDialog.cs \
-	UI.Dialog/HigMessageDialog.cs \
 	UI.Dialog/ImportDialog.cs \
 	UI.Dialog/LastRollDialog.cs \
 	UI.Dialog/PreferenceDialog.cs \

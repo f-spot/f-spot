@@ -11,6 +11,7 @@ using System;
 using Mono.Unix;
 using Gtk;
 using Hyena;
+using Hyena.Widgets;
 
 namespace FSpot.UI.Dialog
 {

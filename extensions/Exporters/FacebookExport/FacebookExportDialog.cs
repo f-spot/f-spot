@@ -23,6 +23,7 @@ using Gtk;
 using GtkBeans;
 
 using Hyena;
+using Hyena.Widgets;
 using FSpot.Utils;
 using FSpot.Platform;
 using FSpot.UI.Dialog;
@@ -48,7 +49,7 @@ namespace FSpot.Exporter.Facebook
 		[GtkBeans.Builder.Object] Entry album_name_entry;
 		[GtkBeans.Builder.Object] Entry album_location_entry;
 		[GtkBeans.Builder.Object] Entry album_description_entry;
-		[GtkBeans.Builder.Object] ScrolledWindow thumbnails_scrolled_window;
+		[GtkBeans.Builder.Object] Gtk.ScrolledWindow thumbnails_scrolled_window;
 		[GtkBeans.Builder.Object] TextView caption_textview;
 		[GtkBeans.Builder.Object] TreeView tag_treeview;
 		[GtkBeans.Builder.Object] EventBox tag_image_eventbox;

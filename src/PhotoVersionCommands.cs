@@ -4,6 +4,7 @@ using System;
 using Mono.Unix;
 using FSpot;
 using Hyena;
+using Hyena.Widgets;
 using FSpot.UI.Dialog;
 
 public class PhotoVersionCommands

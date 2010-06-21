@@ -18,6 +18,7 @@ using Mono.Addins;
 using Mono.Unix;
 
 using Hyena;
+using Hyena.Widgets;
 using Banshee.Kernel;
 
 using FSpot;
@@ -46,11 +47,11 @@ namespace FSpot
 	
 		[GtkBeans.Builder.Object] Gtk.VBox toolbar_vbox;
 	
-		[GtkBeans.Builder.Object] ScrolledWindow icon_view_scrolled;
+		[GtkBeans.Builder.Object] Gtk.ScrolledWindow icon_view_scrolled;
 		[GtkBeans.Builder.Object] Box photo_box;
 		[GtkBeans.Builder.Object] Notebook view_notebook;
 		
-		ScrolledWindow tag_selection_scrolled;
+		Gtk.ScrolledWindow tag_selection_scrolled;
 	
 		[GtkBeans.Builder.Object] Label status_label;
 	
@@ -339,7 +340,7 @@ namespace FSpot
 			ViewModeChanged += Sidebar.HandleMainWindowViewModeChanged;
 			sidebar_vbox.Add (Sidebar);
 	
-			tag_selection_scrolled = new ScrolledWindow ();
+			tag_selection_scrolled = new Gtk.ScrolledWindow ();
 			tag_selection_scrolled.ShadowType = ShadowType.In;
 			
 			tag_selection_widget = new TagSelectionWidget (Database.Tags);

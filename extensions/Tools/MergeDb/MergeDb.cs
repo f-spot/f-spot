@@ -19,6 +19,7 @@ using FSpot.Query;
 using FSpot.UI.Dialog;
 using Mono.Unix;
 using Hyena;
+using Hyena.Widgets;
 
 namespace MergeDbExtension
 {

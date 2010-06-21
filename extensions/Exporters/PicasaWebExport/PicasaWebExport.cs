@@ -16,6 +16,7 @@ using System.Collections.Specialized;
 using System.Web;
 using Mono.Unix;
 using Hyena;
+using Hyena.Widgets;
 
 using FSpot;
 using FSpot.Filters;

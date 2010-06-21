@@ -19,6 +19,7 @@ using FSpot.Png;
 using FSpot.UI.Dialog;
 
 using Hyena;
+using Hyena.Widgets;
 using FSpot.Utils;
 
 using Mono.Unix;

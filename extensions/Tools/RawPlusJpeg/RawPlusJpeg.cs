@@ -17,6 +17,7 @@ using FSpot.UI.Dialog;
 using FSpot.Extensions;
 
 using Hyena;
+using Hyena.Widgets;
 
 namespace RawPlusJpegExtension
 {

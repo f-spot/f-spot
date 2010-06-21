@@ -16,6 +16,7 @@ using FSpot.Extensions;
 
 using GalleryRemote;
 using Hyena;
+using Hyena.Widgets;
 
 namespace G2Export {
 	public class GalleryAccount {
