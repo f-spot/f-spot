@@ -219,6 +219,7 @@ RESOURCES = \
 	f-spot.glade \
 	ui/main_window.ui \
 	ui/version_name_dialog.ui \
+	ui/viewer_preferences.ui \
 	ui/import.ui \
 	ui/mail_dialog.ui \
 	UI.Dialog/ui/AdjustTimeDialog.ui \

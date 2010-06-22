@@ -572,20 +572,20 @@ namespace FSpot {
 			}
 		}
 
-		public class PreferenceDialog : GladeDialog {
-			[Glade.Widget] private CheckButton interpolation_check;
-			[Glade.Widget] private ColorButton color_button;
-			[Glade.Widget] private RadioButton as_background_radio;
-			[Glade.Widget] private RadioButton as_check_radio;
-			[Glade.Widget] private RadioButton as_color_radio;
+		public class PreferenceDialog : BuilderDialog {
+			[GtkBeans.Builder.Object] private CheckButton interpolation_check;
+			[GtkBeans.Builder.Object] private ColorButton color_button;
+			[GtkBeans.Builder.Object] private RadioButton as_background_radio;
+			[GtkBeans.Builder.Object] private RadioButton as_check_radio;
+			[GtkBeans.Builder.Object] private RadioButton as_color_radio;
 
-			public PreferenceDialog () : base ("viewer_preferences")
+			public PreferenceDialog () : base ("viewer_preferences.ui", "viewer_preferences")
 			{
 				this.LoadPreference (Preferences.VIEWER_INTERPOLATION);
 				this.LoadPreference (Preferences.VIEWER_TRANSPARENCY);
 				this.LoadPreference (Preferences.VIEWER_TRANS_COLOR);
 				Preferences.SettingChanged += OnPreferencesChanged;
-				this.Dialog.Destroyed += HandleDestroyed;
+				this.Destroyed += HandleDestroyed;
 			}
 
 			void InterpolationToggled (object sender, System.EventArgs args)
@@ -618,7 +618,7 @@ namespace FSpot {
 				if (prefs == null)
 					prefs = new PreferenceDialog ();
 				
-				prefs.Dialog.Present ();
+				prefs.Present ();
 			}
 
 			void OnPreferencesChanged (object sender, NotifyEventArgs args)
@@ -628,7 +628,7 @@ namespace FSpot {
 
 			void HandleClose (object sender, EventArgs args)
 			{
-				this.Dialog.Destroy ();
+				this.Destroy ();
 			}
 
 			private void HandleDestroyed (object sender, EventArgs args)
