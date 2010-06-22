@@ -121,7 +121,7 @@ namespace FSpot.UI.Dialog
             int activate_index = 0;
             sources_combo.Changed -= OnSourceComboChanged;
             Sources.Clear ();
-            Sources.AppendValues (null, Catalog.GetString ("Choose Import source..."), String.Empty, false);
+            Sources.AppendValues (null, Catalog.GetString ("Choose Import source..."), String.Empty, true);
             Sources.AppendValues (null, select_folder_label, "folder", true);
             Sources.AppendValues (null, String.Empty, String.Empty);
             bool mount_added = false;
