@@ -90,3 +90,42 @@ function toggle_stylebox() {
 	showlink.style.display='';
     }
 }
+ 
+document.onkeyup = Navigate; // if key is pressed call function for navigation
+
+function Navigate(key)
+{
+	var _Key = (window.event) ? event.keyCode : key.keyCode;
+	switch(_Key) 
+	{
+		case 37: //arrow left
+			window.location = nav(-1); break;
+		case 39: //arrow right
+			window.location = nav(+1); break;
+	}
+}
+
+//calculate next file name 
+function nav(direction)
+{
+	var regexp = new RegExp( "img-([0-9\.]*).html" ); 
+	var result = regexp.exec( window.location.href );
+	if ( result == null ) // redirect from index*.html to img-1.hml with any of key
+		return "img-1.html";
+	else
+		var next = parseInt(result[1]) + parseInt(direction); //calculate next file number
+	if( next == 0 || (next > result[1] && !checkobject('next'))) //if next page number is higher then current, check if exist id="next" on page, if next number for page is 0 or if js is called from other then page then img-*.html: redirect to index.html
+		return "index.html";
+	else // return next html page name for redirection
+		return "img-" + next + ".html";
+}
+
+//check if object exist in webpage id="object"
+function checkobject(object)
+{
+	if (document.getElementById(object) != null)
+		return true;
+	else
+		return false;
+}
+
