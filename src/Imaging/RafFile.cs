@@ -76,12 +76,6 @@ namespace FSpot.Raf {
 
 		public void Select (SemWeb.StatementSink sink)
 		{
-			/*byte [] data = GetEmbeddedJpeg ();
-			if (data != null) {
-				System.IO.Stream stream = new System.IO.MemoryStream (data);
-				JpegHeader header = new JpegHeader (stream);
-				header.Select (sink);
-			}*/
 		}
 
 		private byte [] GetEmbeddedJpeg ()

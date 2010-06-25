@@ -92,7 +92,6 @@ SOURCES = \
 	Imaging/ImageFile.cs \
 	Imaging/IptcFile.cs \
 	Imaging/JpegFile.cs \
-	Imaging/JpegHeader.cs \
 	Imaging/JpegUtils.cs \
 	Imaging/MrwFile.cs \
 	Imaging/OrderedWriter.cs \
