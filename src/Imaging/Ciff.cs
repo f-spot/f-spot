@@ -201,7 +201,7 @@ namespace FSpot.Ciff {
 	}
 
 	/* See http://www.sno.phy.queensu.ca/~phil/exiftool/canon_raw.html */
-	public struct Entry {
+	internal struct Entry {
 		internal Tag Tag;
 		internal uint Size;
 		internal uint Offset;
@@ -268,16 +268,6 @@ namespace FSpot.Ciff {
 			}
 		}			
 
-		public void Dump ()
-		{
-			Log.DebugFormat ("Dumping directory with {0} entries", entry_list.Count);
-			for (int i = 0; i < entry_list.Count; i++) {
-				Entry e = (Entry) entry_list[i];
-				Log.DebugFormat ("\tentry[{0}] = {1}.{6}.{5}({4}).{2}-{3}",
-							  i, e.Tag, e.Size, e.Offset, e.Tag.ToString ("x"), (uint)e.Tag & ~(uint)Mask.StorageFormat, e.Type); 
-			}
-		}
-
 		public ImageDirectory ReadDirectory (Tag tag)
 		{
 			foreach (Entry e in entry_list) {
@@ -316,7 +306,6 @@ namespace FSpot.Ciff {
 	
 	public class CiffFile : FSpot.ImageFile , SemWeb.StatementSource {
 		public ImageDirectory root;
-		private uint version;
 		bool little;
 		System.IO.Stream stream;
 
@@ -380,19 +369,10 @@ namespace FSpot.Ciff {
 				MetadataStore.AddLiteral (sink, "tiff:Make", vals [0]); 
 				MetadataStore.AddLiteral (sink, "tiff:Model", vals [1]); 
 			}
-
-			/*
-			// FIXME this doesn't appear to be ascii.
-			data = camera.ReadEntry (Tag.OwnerName);
-			if (data != null) {
-				string name = System.Text.Encoding.ASCII.GetString (data, 0, data.Length - 1);
-				MetadataStore.AddLiteral (sink, "dc:creator", "rdf:Seq", new SemWeb.Literal (name));
-			}
-			*/
 		}
 
 
-		protected ImageDirectory Load (System.IO.Stream stream) 
+		private ImageDirectory Load (System.IO.Stream stream)
 		{
 			byte [] header = new byte [26];  // the spec reserves the first 26 bytes as the header block
 			stream.Read (header, 0, header.Length);
@@ -407,16 +387,8 @@ namespace FSpot.Ciff {
 			if (System.Text.Encoding.ASCII.GetString (header, 6, 8) != "HEAPCCDR") 
 				throw new ImageFormatException ("Invalid Ciff Header Block");
 			
-			version =  BitConverter.ToUInt32 (header, 14, little);
-
-			//
-			
 			long end = stream.Length;
 			return new ImageDirectory (stream, start, end, little);
-		}
-
-		public uint Version {
-			get { return version; }
 		}
 
 		public override ImageOrientation GetOrientation ()
@@ -451,40 +423,10 @@ namespace FSpot.Ciff {
 			return scaled;
 		}
 
-		public void Dump ()
-		{
-			Root.Dump ();
-			ImageDirectory props = Root.ReadDirectory (Tag.ImageProps);
-			props.Dump ();
-			/*
-				 string path = "out2.jpg";
-			System.IO.File.Delete (path);
-
-			System.IO.Stream output = System.IO.File.Open (path, System.IO.FileMode.OpenOrCreate);
-			byte [] data = GetEmbeddedThumbnail ();
-			Log.DebugFormat ("data length {0}", data != null ? data.Length : -1);
-			output.Write (data, 0, data.Length);
-			output.Close ();
-			*/
-		}
-
-		public byte [] GetEmbeddedJpeg ()
+		private byte [] GetEmbeddedJpeg ()
 		{
 			return Root.ReadEntry (Tag.JpgFromRaw);
 		}
-
-		public byte [] GetEmbeddedThumbnail ()
-		{
-			return Root.ReadEntry (Tag.ThumbnailImage); 
-		}
-		
-		/*
-		public static void Main (string [] args)
-		{
-			CiffFile ciff = new CiffFile (args [0]);
-			ciff.Dump ();
-		}
-		*/
 
 		protected override void Close ()
 		{

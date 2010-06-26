@@ -28,12 +28,9 @@ namespace FSpot.Xmp {
 		static private string LastImportIcon = "gtk-new";
 		static private string PlacesIcon = "emblem-places";
 
-	        const string UserComment = MetadataStore.ExifNS + "UserComment";
+		const string UserComment = MetadataStore.ExifNS + "UserComment";
 		const string Headline = MetadataStore.PhotoshopNS + "Headline";
 		const string Caption = MetadataStore.PhotoshopNS + "Caption";
-		const string CaptionWriter = MetadataStore.PhotoshopNS + "CaptionWriter";
-		const string Credit = MetadataStore.PhotoshopNS + "Credit";
-		const string Category = MetadataStore.PhotoshopNS + "Category";
 		const string Source = MetadataStore.PhotoshopNS + "Source";
 		const string State = MetadataStore.PhotoshopNS + "State";
 		const string Country = MetadataStore.PhotoshopNS + "Country";
@@ -245,30 +242,6 @@ namespace FSpot.Xmp {
 				photo.Rating = urgency;
 			if (rating < System.UInt32.MaxValue)
 				photo.Rating = rating;
-
-#if false	
-			//FIXME: looks like we are doing some questionable repurposing of tags here...
-
-			// We want to construct the following : Description = <Headline> :: <Caption>         
-
-			// only check for more title/comment if you still do not have one.
-			if ((photo.Description == null) || (photo.Description.Length == 0)) {
-				if (descriptions.Contains (Headline)) 
-					photo.Description = descriptions [Headline] as String;
-				// Lets add the Caption to the existing Description (Headline).
-				if (descriptions.Contains (Caption))
-					photo.Description += (( (photo.Description == null) ? "" : " :: ") + descriptions [Caption] as String);
-			}	
-			
-			// only check for more title/comment if you still do not have one. 
-			if ((photo.Description == null) || (photo.Description.Length == 0)) {
-				if (descriptions.Contains (Title)) 
-					photo.Description = descriptions [Title] as String;
-				// Lets add the Description  to the existing Description (Title).
-				if (descriptions.Contains (Description))
-					photo.Description += (( (photo.Description == null) ? "" : " :: ") + descriptions [Description] as String);
-			}
-#endif
 		}
 		
 		public bool Import (Photo photo, SafeUri uri, SafeUri orig_uri)
@@ -307,9 +280,6 @@ namespace FSpot.Xmp {
 			}
 
 			ProcessStore (xmp.Store, photo);
-#if enable_debug
-			xmp.Save (Console.OpenStandardOutput ());
-#endif			
 			return true;
 		}
 
