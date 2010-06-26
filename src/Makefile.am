@@ -14,7 +14,6 @@ LINK = $(REF_FSPOT)
 ASSEMBLY_BUILD_FLAGS = -unsafe
 
 SOURCES = \
-	BlockProcessor.cs \
 	BitConverter.cs \
 	PhotoList.cs \
 	ColorAdjustment/Adjustment.cs \
@@ -186,7 +185,6 @@ SOURCES = \
 	Widgets/IEffect.cs \
 	Widgets/ITransition.cs \
 	Widgets/IconView.cs \
-	Widgets/ImageDisplay.cs \
 	Widgets/ImageInfo.cs \
 	Widgets/InfoBox.cs \
 	Widgets/MetadataDisplay.cs \

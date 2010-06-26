@@ -22,7 +22,6 @@ namespace FSpot {
 		private PhotoImageView view;
 		private Notebook notebook;
 		private ControlOverlay controls;
-		//		private ImageDisplay display;
 		private SlideShow display;
 		private ToolButton play_pause_button;
 		private ToggleToolButton info_button;
