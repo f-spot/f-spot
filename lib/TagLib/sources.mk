@@ -67,6 +67,8 @@ SOURCES = \
 	TagLib/src/TagLib/Mpeg/AudioFile.cs \
 	TagLib/src/TagLib/Mpeg/AudioHeader.cs \
 	TagLib/src/TagLib/Mpeg/VideoHeader.cs \
+	TagLib/src/TagLib/Nef/Codec.cs \
+	TagLib/src/TagLib/Nef/File.cs \
 	TagLib/src/TagLib/NonContainer/EndTag.cs \
 	TagLib/src/TagLib/NonContainer/File.cs \
 	TagLib/src/TagLib/NonContainer/StartTag.cs \
@@ -116,6 +118,7 @@ SOURCES = \
 	TagLib/src/TagLib/IFD/Entries/StringIFDEntry.cs \
 	TagLib/src/TagLib/IFD/Entries/StripOffsetsIFDEntry.cs \
 	TagLib/src/TagLib/IFD/Entries/SubIFDEntry.cs \
+	TagLib/src/TagLib/IFD/Entries/SubIFDArrayEntry.cs \
 	TagLib/src/TagLib/IFD/Entries/ThumbnailDataIFDEntry.cs \
 	TagLib/src/TagLib/IFD/Entries/UserCommentIFDEntry.cs \
 	TagLib/src/TagLib/IFD/Entries/UndefinedIFDEntry.cs \
@@ -135,7 +138,13 @@ SOURCES = \
 	TagLib/src/TagLib/IFD/Tags/IFDEntryTag.cs \
 	TagLib/src/TagLib/IFD/Tags/IOPEntryTag.cs \
 	TagLib/src/TagLib/IFD/Tags/Nikon3MakerNoteEntryTag.cs \
+	TagLib/src/TagLib/IFD/Tags/NikonLensData3EntryTag.cs \
+	TagLib/src/TagLib/IFD/Tags/NikonIsoInfoEntryTag.cs \
 	TagLib/src/TagLib/IFD/Tags/NikonPreviewMakerNoteEntryTag.cs \
+	TagLib/src/TagLib/IFD/Tags/NikonPictureControlEntryTag.cs \
+	TagLib/src/TagLib/IFD/Tags/NikonShotInfoEntryTag.cs \
+	TagLib/src/TagLib/IFD/Tags/NikonVibrationReductionEntryTag.cs \
+	TagLib/src/TagLib/IFD/Tags/NikonWorldTimeEntryTag.cs \
 	TagLib/src/TagLib/IFD/Tags/PanasonicMakerNoteEntryTag.cs \
 	TagLib/src/TagLib/Mpeg4/AppleTag.cs \
 	TagLib/src/TagLib/Mpeg4/Box.cs \
