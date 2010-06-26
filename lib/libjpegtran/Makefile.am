@@ -18,5 +18,6 @@ libfspotjpegtran_files =			\
 libfspotjpegtran_la_SOURCES =			\
 	$(libfspotjpegtran_files)
 
+libfspotjpegtran_la_LIBADD = $(F_LIBS)
 
 EXTRA_DIST = README
