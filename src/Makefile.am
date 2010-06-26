@@ -81,19 +81,20 @@ SOURCES = \
 	Import/ImportSource.cs \
 	Import/FileImportSource.cs \
 	InfoOverlay.cs \
-	InternalProcess.cs \
-	IOChannel.cs \
 	ItemAction.cs \
 	Imaging/DCRawFile.cs \
 	Imaging/Bim.cs \
 	Imaging/Ciff.cs \
 	Imaging/Exif.cs \
 	Imaging/ImageFile.cs \
+	Imaging/InternalProcess.cs \
 	Imaging/IptcFile.cs \
+	Imaging/IOChannel.cs \
 	Imaging/JpegFile.cs \
 	Imaging/JpegUtils.cs \
 	Imaging/MrwFile.cs \
 	Imaging/OrderedWriter.cs \
+	Imaging/PixelBuffer.cs \
 	Imaging/PngFile.cs \
 	Imaging/PnmFile.cs \
 	Imaging/RafFile.cs \
@@ -121,7 +122,6 @@ SOURCES = \
 	PhotoView.cs \
 	PixbufUtils.cs \
 	PixbufCache.cs \
-	PixelBuffer.cs \
 	Preferences.cs  \
 	PrintOperation.cs \
 	ProgressItem.cs \

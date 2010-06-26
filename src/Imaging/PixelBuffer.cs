@@ -28,11 +28,11 @@ namespace FSpot.Imaging {
 			width = pixbuf.Width;
 			height = pixbuf.Height;
 			this.nchannels = pixbuf.HasAlpha ? 4 : 3;
-			
+
 			depth = PixelBufferDepth.UInt16;
 
 			data = new ushort [width * height * nchannels];
-			
+
 			unsafe {
 				byte * src_pixels = (byte *) pixbuf.Pixels;
 				int src_stride = pixbuf.Rowstride;
@@ -53,10 +53,10 @@ namespace FSpot.Imaging {
 		public unsafe void Fill8 (int i, int j, byte * src_data, int offset, int count)
 		{
 			ushort * rowpix;
-			
+
 			fixed (ushort * pixels = &data [0]) {
 				rowpix = pixels + i * rowstride + j;
-				
+
 				for (int col = 0; col < count; col++) {
 					int val = src_data [col];
 					rowpix [col] = (ushort) (val << 8 & val);
@@ -80,9 +80,9 @@ namespace FSpot.Imaging {
 			else
 				Fill16Swap (i, j, src_data, offset, count);
 		}
-		
+
 		public void Fill16 (int i, int j, byte [] src_data, int offset, int count)
-		{ 
+		{
 			unsafe {
 				ushort * rowpix;
 
@@ -115,24 +115,24 @@ namespace FSpot.Imaging {
 				}
 			}
 		}
-		
+
 		public override Gdk.Pixbuf ToPixbuf (Cms.Profile destination_profile)
 		{
 #if true //USE_LCMS
 			profile = Cms.Profile.CreateStandardRgb ();
 			Cms.Profile [] list = new Cms.Profile [] { profile, destination_profile };
-			Gdk.Pixbuf pixbuf = new Gdk.Pixbuf (Gdk.Colorspace.Rgb, false, 8, 
+			Gdk.Pixbuf pixbuf = new Gdk.Pixbuf (Gdk.Colorspace.Rgb, false, 8,
 							    width, height);
-			
+
 			Cms.Transform t = new Cms.Transform (list,
 							     Cms.Format.Rgb16,
 							     PixbufUtils.PixbufCmsFormat (pixbuf),
 							     Cms.Intent.Perceptual, 0x0);
-			
+
 			unsafe {
 				fixed (ushort * srcpix  = &data[0]) {
 					byte * destpix = (byte *) pixbuf.Pixels;
-					
+
 					for (int row = 0; row < height; row++)
 						t.Apply ((IntPtr) (srcpix + row * rowstride),
 							 (IntPtr) (destpix + row * pixbuf.Rowstride),
@@ -142,18 +142,18 @@ namespace FSpot.Imaging {
 
 			return pixbuf;
 #else
-			Gdk.Pixbuf pixbuf = new Gdk.Pixbuf (Gdk.Colorspace.Rgb, false, 8, 
+			Gdk.Pixbuf pixbuf = new Gdk.Pixbuf (Gdk.Colorspace.Rgb, false, 8,
 							    width, height);
 
 			unsafe {
 				fixed (ushort * src  = &data[0]) {
 					ushort * srcpix = src;
 					byte * destpix = (byte *) pixbuf.Pixels;
-					
+
 					for (int row = 0; row < height; row++) {
 						for (int col = 0; col < width * nchannels; col++)
 							destpix [col] = (byte) (srcpix [col] >> 8);
-						
+
 						srcpix += rowstride;
 						destpix += pixbuf.Rowstride;
 					}
@@ -168,8 +168,8 @@ namespace FSpot.Imaging {
 #if false
 	public class UInt8Buffer : PixelBuffer {
 		protected ushort [] data;
-		
-		
+
+
 	}
 
 	public class PixbufBuffer : PixelBuffer {
