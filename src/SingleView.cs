@@ -530,8 +530,14 @@ namespace FSpot {
 
 			case Preferences.VIEWER_WIDTH:
 			case Preferences.VIEWER_HEIGHT:
-				Window.SetDefaultSize(Preferences.Get<int> (Preferences.VIEWER_WIDTH),
-						      Preferences.Get<int> (Preferences.VIEWER_HEIGHT));
+				int width, height;
+				width = Preferences.Get<int> (Preferences.VIEWER_WIDTH);
+				height = Preferences.Get<int> (Preferences.VIEWER_HEIGHT);
+
+				if( width == 0 || height == 0 )
+					break;
+
+				Window.SetDefaultSize(width, height);
 
 				Window.ReshowWithInitialSize();
 				break;
