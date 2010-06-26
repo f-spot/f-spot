@@ -1,7 +1,6 @@
 using SemWeb;
 using SemWeb.Util;
 using Mono.Unix;
-using FSpot.Xmp;
 using FSpot.Utils;
 using FSpot.Imaging;
 using FSpot.Imaging.Tiff;

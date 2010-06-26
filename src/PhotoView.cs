@@ -18,7 +18,6 @@ using System.Collections.Generic;
 using System.Xml.Serialization;
 using Mono.Unix;
 
-using FSpot.Xmp;
 using FSpot.Widgets;
 using FSpot.Utils;
 using Hyena;

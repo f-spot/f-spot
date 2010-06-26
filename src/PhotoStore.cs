@@ -146,7 +146,7 @@ public class PhotoStore : DbStore<Photo> {
 		Photo photo;
 
 		long unix_time = DateTimeUtil.FromDateTime (item.Time);
-		string description = item.Description;
+		string description = item.Description ?? String.Empty;
 
 		uint id = (uint) Database.Execute (
 			new DbCommand (
@@ -155,7 +155,7 @@ public class PhotoStore : DbStore<Photo> {
 				"time", unix_time,
 				"base_uri", item.DefaultVersion.BaseUri.ToString (),
 				"filename", item.DefaultVersion.Filename,
-				"description", description ?? String.Empty,
+				"description", description,
 				"roll_id", roll_id,
 				"default_version_id", Photo.OriginalVersionId,
 				"rating", "0"

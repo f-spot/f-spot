@@ -1,6 +1,5 @@
 using Hyena;
 using FSpot.Utils;
-using FSpot.Xmp;
 using System;
 using System.Collections.Generic;
 using System.Threading;
@@ -204,7 +203,7 @@ namespace FSpot.Import
         PhotoStore store = App.Instance.Database.Photos;
         RollStore rolls = App.Instance.Database.Rolls;
         volatile bool photo_scan_running;
-        XmpTagsImporter xmp_importer;
+        MetadataImporter metadata_importer;
         volatile bool import_cancelled = false;
 
         void DoImport ()
@@ -218,7 +217,7 @@ namespace FSpot.Import
             created_directories = new Stack<SafeUri> ();
             imported_photos = new List<uint> ();
             copied_files = new List<SafeUri> ();
-            xmp_importer = new XmpTagsImporter (store, App.Instance.Database.Tags);
+            metadata_importer = new MetadataImporter ();
             CreatedRoll = rolls.Create ();
 
             EnsureDirectory (Global.PhotoUri);
@@ -288,7 +287,7 @@ namespace FSpot.Import
             }
 
             // Clean created tags
-            xmp_importer.Cancel();
+            metadata_importer.Cancel();
 
             // Remove created roll
 		    rolls.Remove (CreatedRoll);
@@ -324,7 +323,7 @@ namespace FSpot.Import
             }
 
             // Import XMP metadata
-            needs_commit |= xmp_importer.Import (photo, destination, item.DefaultVersion.Uri);
+            needs_commit |= metadata_importer.Import (photo, item);
 
             if (needs_commit) {
                 store.Commit (photo);

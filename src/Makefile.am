@@ -80,6 +80,7 @@ SOURCES = \
 	Import/ImportController.cs \
 	Import/ImportSource.cs \
 	Import/FileImportSource.cs \
+	Import/MetadataImporter.cs \
 	InfoOverlay.cs \
 	ItemAction.cs \
 	Imaging/DCRawFile.cs \
@@ -201,7 +202,6 @@ SOURCES = \
 	Widgets/TrayView.cs \
 	Widgets/ViewContext.cs \
 	Widgets/Wipe.cs \
-	XmpTagsImporter.cs \
 	main.cs \
 	Tests/UpdaterTests.cs
 
