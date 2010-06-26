@@ -10,6 +10,7 @@ SOURCES = \
 	GdkUtils.cs \
     GIOTagLibFileAbstraction.cs \
 	GtkUtil.cs \
+	HashUtils.cs \
 	PixbufUtils.cs \
 	RecursiveFileEnumerator.cs \
 	SafeUri.cs \

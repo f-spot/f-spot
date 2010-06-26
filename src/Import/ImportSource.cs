@@ -29,7 +29,7 @@ namespace FSpot.Import
         public string ImportMD5 {
             get {
                 if (import_md5 == String.Empty)
-                    import_md5 = Photo.GenerateMD5 (Uri);
+                    import_md5 = HashUtils.GenerateMD5 (Uri);
                 return import_md5;
             }
         }

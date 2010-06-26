@@ -501,7 +501,7 @@ public class PhotoStore : DbStore<Photo> {
 			if (version.ImportMD5 != String.Empty && version.ImportMD5 != null)
 				continue;
 
-			string version_md5_sum = Photo.GenerateMD5 (version.Uri);
+			string version_md5_sum = HashUtils.GenerateMD5 (version.Uri);
 			version.ImportMD5 = version_md5_sum;
 			photo.Changes.ChangeVersion (version_id);
 		}

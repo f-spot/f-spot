@@ -233,7 +233,7 @@ namespace FSpot
 					using (Stream stream = System.IO.File.OpenWrite (versionUri.LocalPath)) {
 						img.Save (buffer, stream);
 					}
-					(GetVersion (version) as PhotoVersion).ImportMD5 = GenerateMD5 (VersionUri (version));
+					(GetVersion (version) as PhotoVersion).ImportMD5 = HashUtils.GenerateMD5 (VersionUri (version));
 					DefaultVersionId = version;
 				} catch (System.Exception e) {
 					Log.Exception (e);
@@ -499,15 +499,6 @@ namespace FSpot
 		public static void ResetMD5Cache () {
 			if (md5_cache != null)	
 				md5_cache.Clear (); 
-		}
-
-		public static string GenerateMD5 (SafeUri uri)
-		{
-			var file = GLib.FileFactory.NewForUri (uri);
-			var stream = new GLib.GioStream (file.Read (null));
-			var hash = CryptoUtil.Md5EncodeStream (stream);
-			stream.Close ();
-			return hash;
 		}
 
 		// Constructor

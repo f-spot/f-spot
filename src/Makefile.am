@@ -55,7 +55,6 @@ SOURCES = \
 	Extensions/TransitionNode.cs \
 	Extensions/ViewModeCondition.cs \
 	Fader.cs \
-	FileBrowsableItem.cs \
 	Filters/ChmodFilter.cs \
 	Filters/FilterRequest.cs \
 	Filters/FilterSet.cs \

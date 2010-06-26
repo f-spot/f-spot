@@ -11,6 +11,7 @@ SOURCES = \
 	Delay.cs \
 	Tag.cs \
 	Global.cs \
+	FileBrowsableItem.cs \
 	IBrowsableItem.cs \
 	IBrowsableItemChanges.cs \
 	IBrowsableItemComparer.cs \
