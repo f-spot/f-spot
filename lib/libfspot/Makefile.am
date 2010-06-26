@@ -31,6 +31,8 @@ libfspot_la_SOURCES =				\
 	f-utils.h
 
 libfspot_la_LIBADD = 					\
+	-lX11						\
+	$(F_LIBS)					\
 	$(LCMS_LIBS)					\
 	$(EXIF_LIBS)					\
 	$(GIO_LIBS)					\
