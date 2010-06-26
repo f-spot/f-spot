@@ -18,6 +18,8 @@ using Gtk;
 using Mono.Unix;
 
 using FSpot.Extensions;
+using FSpot.Imaging;
+using FSpot.Imaging.Exif;
 
 namespace FSpot.Widgets {
 	public class MetadataDisplayPage : SidebarPage {
@@ -115,7 +117,7 @@ namespace FSpot.Widgets {
 			update_delay.Start ();
 		}
 		
-		private Exif.ExifData exif_info;
+		private ExifData exif_info;
 
 		private IBrowsableItem photo;
 		public IBrowsableItem Photo {
@@ -132,7 +134,7 @@ namespace FSpot.Widgets {
 
 				if (photo != null) {
 					if (File.Exists (photo.DefaultVersion.Uri.LocalPath))
-						exif_info = new Exif.ExifData (photo.DefaultVersion.Uri.LocalPath);
+						exif_info = new ExifData (photo.DefaultVersion.Uri.LocalPath);
 				} else {
 					exif_info = null;
 				}
@@ -275,8 +277,8 @@ namespace FSpot.Widgets {
 			
 			// Write Exif-Data
 			if (exif_info != null) {
-				foreach (Exif.ExifContent content in exif_info.GetContents ()) {
-					Exif.ExifEntry [] entries = content.GetEntries ();
+				foreach (ExifContent content in exif_info.GetContents ()) {
+					ExifEntry [] entries = content.GetEntries ();
 					
 					i++;
 					
@@ -285,7 +287,7 @@ namespace FSpot.Widgets {
 					
 					empty = false;
 										
-					name = Exif.ExifUtil.GetIfdNameExtended ((Exif.Ifd)i - 1);
+					name = ExifUtil.GetIfdNameExtended ((Ifd)i - 1);
 					
 					if (index_of_expander >= exif_vbox.Children.Length)
 						model = AddExpander (name, index_of_expander);
@@ -300,7 +302,7 @@ namespace FSpot.Widgets {
 					
 					model.GetIterFirst(out iter);
 				
-					foreach (Exif.ExifEntry entry in entries) {
+					foreach (ExifEntry entry in entries) {
 						string s;
 						
 						if (entry.Title != null)

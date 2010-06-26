@@ -16,6 +16,8 @@ using System;
 using System.IO;
 using FSpot;
 using FSpot.Utils;
+using FSpot.Imaging;
+using FSpot.Imaging.Exif;
 using Hyena;
 using TagLib.Image;
 
@@ -291,7 +293,7 @@ public class PixbufUtils {
 	
 	public static Pixbuf TagIconFromPixbuf (Pixbuf source)
 	{
-		return IconFromPixbuf (source, (int) Tag.IconSize.Large);
+		return IconFromPixbuf (source, (int) FSpot.Tag.IconSize.Large);
 	}
 
 	public static Pixbuf IconFromPixbuf (Pixbuf source, int size)
@@ -415,7 +417,7 @@ public class PixbufUtils {
 	[DllImport ("libfspot")]
 	static extern bool f_pixbuf_save_jpeg (IntPtr src, string path, int quality, FPixbufJpegMarker [] markers, int num_markers);
 
-	public static void SaveJpeg (Pixbuf pixbuf, string path, int quality, Exif.ExifData exif_data)
+	public static void SaveJpeg (Pixbuf pixbuf, string path, int quality, ExifData exif_data)
 	{
 		Pixbuf temp = null;
 		if (pixbuf.HasAlpha) {
@@ -436,16 +438,16 @@ public class PixbufUtils {
 			exif_data.Data = thumb_data;
 
 			// Most of the things we will set will be in the 0th ifd
-			Exif.ExifContent content = exif_data.GetContents (Exif.Ifd.Zero);
+			var content = exif_data.GetContents (FSpot.Imaging.Exif.Ifd.Zero);
 
 			// reset the orientation tag the default is top/left
-			content.GetEntry (Exif.Tag.Orientation).Reset ();
+			content.GetEntry (FSpot.Imaging.Exif.Tag.Orientation).Reset ();
 
 			// set the write time in the datetime tag
-			content.GetEntry (Exif.Tag.DateTime).Reset ();
+			content.GetEntry (FSpot.Imaging.Exif.Tag.DateTime).Reset ();
 
 			// set the software tag
-			content.GetEntry (Exif.Tag.Software).SetData (FSpot.Defines.PACKAGE + " version " + FSpot.Defines.VERSION);
+			content.GetEntry (FSpot.Imaging.Exif.Tag.Software).SetData (FSpot.Defines.PACKAGE + " version " + FSpot.Defines.VERSION);
 
 			data = exif_data.Save ();
 		}
@@ -639,7 +641,7 @@ public class PixbufUtils {
 		}
 	}
 
-	public static Gdk.Pixbuf GetThumbnail (Exif.ExifData data)
+	public static Gdk.Pixbuf GetThumbnail (ExifData data)
 	{
 		byte [] thumb_data = data.Data;
 		if (thumb_data.Length > 0) {
@@ -658,11 +660,11 @@ public class PixbufUtils {
 		return null;
 	}
 
-	public static ImageOrientation GetOrientation (Exif.ExifData data)
+	public static ImageOrientation GetOrientation (ExifData data)
 	{
 		ImageOrientation orientation = ImageOrientation.TopLeft;
 		
-		Exif.ExifEntry e = data.GetContents (Exif.Ifd.Zero).Lookup (Exif.Tag.Orientation);
+		FSpot.Imaging.Exif.ExifEntry e = data.GetContents (FSpot.Imaging.Exif.Ifd.Zero).Lookup (FSpot.Imaging.Exif.Tag.Orientation);
 
 		if (e != null) {
 			ushort [] value = e.GetDataUShort ();
@@ -674,7 +676,7 @@ public class PixbufUtils {
 
 	public static ImageOrientation GetOrientation (SafeUri uri)
 	{
-		using (FSpot.ImageFile img = FSpot.ImageFile.Create (uri)) {
+		using (ImageFile img = ImageFile.Create (uri)) {
 			return img.Orientation;
 		}	
 	}

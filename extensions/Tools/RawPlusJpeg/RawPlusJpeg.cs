@@ -15,6 +15,7 @@ using Gtk;
 using FSpot;
 using FSpot.UI.Dialog;
 using FSpot.Extensions;
+using FSpot.Imaging;
 
 using Hyena;
 using Hyena.Widgets;

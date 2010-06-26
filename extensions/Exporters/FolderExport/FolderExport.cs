@@ -37,6 +37,7 @@ using FSpot.Filters;
 using FSpot.Widgets;
 using FSpot.Utils;
 using FSpot.UI.Dialog;
+using FSpot.Imaging.Exif;
 
 namespace FSpotFolderExport {
 	public class FolderExport : FSpot.Extensions.IExporter {
@@ -486,7 +487,7 @@ namespace FSpotFolderExport {
 								      new SafeUri (path).ToString ());
 				}
 
-				using (Exif.ExifData data = new Exif.ExifData (photo_path)) {
+				using (ExifData data = new ExifData (photo_path)) {
 					for (int i = 1; i < requests.Length; i++) {
 
 						req = requests [i];
@@ -779,7 +780,7 @@ namespace FSpotFolderExport {
 				// identify tags present in these photos
 				i = 0;
 				foreach (IBrowsableItem photo in photos) {
-					foreach (Tag tag in photo.Tags) {
+					foreach (var tag in photo.Tags) {
 						if (!tagSets.ContainsKey (tag.Name)) {
 							tagSets.Add (tag.Name, new ArrayList ());
 							allTags.Add (tag.Name, tag);
@@ -1079,10 +1080,10 @@ namespace FSpotFolderExport {
 			writer.RenderEndTag (); //div styleboxcontainer
 		}
 
-		public void WriteTagsLinks (System.Web.UI.HtmlTextWriter writer, Tag[] tags)
+		public void WriteTagsLinks (System.Web.UI.HtmlTextWriter writer, FSpot.Tag[] tags)
 		{
 			ArrayList tagsList = new ArrayList (tags.Length);
-			foreach (Tag tag in tags) {
+			foreach (var tag in tags) {
 				tagsList.Add (tag);
 			}
 			WriteTagsLinks (writer, tagsList);
@@ -1102,7 +1103,7 @@ namespace FSpotFolderExport {
 			writer.RenderEndTag (); //h1
 			writer.AddAttribute ("id", "innertagbox");
 			writer.RenderBeginTag ("ul");
-			foreach (Tag tag in tags) {
+			foreach (FSpot.Tag tag in tags) {
 				writer.AddAttribute ("class", "tag");
 				writer.RenderBeginTag ("li");
 				writer.AddAttribute ("href", TagIndexPath (tag.Name, 0));
@@ -1300,11 +1301,11 @@ namespace FSpotFolderExport {
 		public void SaveTagIcons ()
 		{
 			MakeDir (SubdirPath ("tags"));
-			foreach (Tag tag in allTags.Values)
+			foreach (FSpot.Tag tag in allTags.Values)
 				SaveTagIcon (tag);
 		}
 
-		public void SaveTagIcon (Tag tag) {
+		public void SaveTagIcon (FSpot.Tag tag) {
 			Gdk.Pixbuf icon = tag.Icon;
 			Gdk.Pixbuf scaled = null;
 			if (icon.Height != 52 || icon.Width != 52) {
@@ -1315,12 +1316,12 @@ namespace FSpotFolderExport {
 			scaled.Dispose ();
 		}
 
-		public string TagPath (Tag tag)
+		public string TagPath (FSpot.Tag tag)
 		{
 			return System.IO.Path.Combine("tags",TagName(tag));
 		}
 
-		public string TagName (Tag tag)
+		public string TagName (FSpot.Tag tag)
 		{
 			return "tag_"+ ((DbItem)tag).Id+".png";
 		}

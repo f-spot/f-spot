@@ -13,7 +13,7 @@ using TagLib.Image;
 
 using GFileInfo = GLib.FileInfo;
 
-namespace FSpot {
+namespace FSpot.Imaging {
 	public class ImageFormatException : ApplicationException {
 		public ImageFormatException (string msg) : base (msg)
 		{
@@ -52,30 +52,30 @@ namespace FSpot {
 		static ImageFile ()
 		{
 			name_table = new Hashtable ();
-			name_table [".svg"] = typeof (FSpot.Svg.SvgFile);
+			name_table [".svg"] = typeof (FSpot.Imaging.Svg.SvgFile);
 			name_table [".gif"] = typeof (ImageFile);
 			name_table [".bmp"] = typeof (ImageFile);
 			name_table [".pcx"] = typeof (ImageFile);
 			name_table [".jpeg"] = typeof (JpegFile);
 			name_table [".jpg"] = typeof (JpegFile);
-			name_table [".png"] = typeof (FSpot.Png.PngFile);
-			name_table [".cr2"] = typeof (FSpot.Tiff.Cr2File);
-			name_table [".nef"] = typeof (FSpot.Tiff.NefFile);
-			name_table [".pef"] = typeof (FSpot.Tiff.NefFile);
-			name_table [".raw"] = typeof (FSpot.Tiff.NefFile);
-			name_table [".kdc"] = typeof (FSpot.Tiff.NefFile);
-			name_table [".arw"] = typeof (FSpot.Tiff.NefFile);
-			name_table [".rw2"] = typeof (FSpot.DCRawFile);
-			name_table [".tiff"] = typeof (FSpot.Tiff.TiffFile);
-			name_table [".tif"] = typeof (FSpot.Tiff.TiffFile);
-			name_table [".orf"] =  typeof (FSpot.Tiff.NefFile);
-			name_table [".srf"] = typeof (FSpot.Tiff.NefFile);
-			name_table [".dng"] = typeof (FSpot.Tiff.DngFile);
-			name_table [".crw"] = typeof (FSpot.Ciff.CiffFile);
-			name_table [".ppm"] = typeof (FSpot.Pnm.PnmFile);
-			name_table [".mrw"] = typeof (FSpot.Mrw.MrwFile);
-			name_table [".raf"] = typeof (FSpot.Raf.RafFile);
-			name_table [".x3f"] = typeof (FSpot.X3f.X3fFile);
+			name_table [".png"] = typeof (FSpot.Imaging.Png.PngFile);
+			name_table [".cr2"] = typeof (FSpot.Imaging.Tiff.Cr2File);
+			name_table [".nef"] = typeof (FSpot.Imaging.Tiff.NefFile);
+			name_table [".pef"] = typeof (FSpot.Imaging.Tiff.NefFile);
+			name_table [".raw"] = typeof (FSpot.Imaging.Tiff.NefFile);
+			name_table [".kdc"] = typeof (FSpot.Imaging.Tiff.NefFile);
+			name_table [".arw"] = typeof (FSpot.Imaging.Tiff.NefFile);
+			name_table [".rw2"] = typeof (FSpot.Imaging.DCRawFile);
+			name_table [".tiff"] = typeof (FSpot.Imaging.Tiff.TiffFile);
+			name_table [".tif"] = typeof (FSpot.Imaging.Tiff.TiffFile);
+			name_table [".orf"] =  typeof (FSpot.Imaging.Tiff.NefFile);
+			name_table [".srf"] = typeof (FSpot.Imaging.Tiff.NefFile);
+			name_table [".dng"] = typeof (FSpot.Imaging.Tiff.DngFile);
+			name_table [".crw"] = typeof (FSpot.Imaging.Ciff.CiffFile);
+			name_table [".ppm"] = typeof (FSpot.Imaging.Pnm.PnmFile);
+			name_table [".mrw"] = typeof (FSpot.Imaging.Mrw.MrwFile);
+			name_table [".raf"] = typeof (FSpot.Imaging.Raf.RafFile);
+			name_table [".x3f"] = typeof (FSpot.Imaging.X3f.X3fFile);
 
 			// add mimetypes for fallback
 			name_table ["image/bmp"]     = name_table ["image/x-bmp"] = name_table [".bmp"];

@@ -2,12 +2,12 @@ using ICSharpCode.SharpZipLib.Zip.Compression;
 using SemWeb;
 using Cms;
 using System.IO;
-using FSpot.Xmp;
+using FSpot.Imaging.Xmp;
 using System.Collections;
 using System.Reflection;
 using Hyena;
 
-namespace FSpot.Png {
+namespace FSpot.Imaging.Png {
 	public class PngFile : ImageFile, SemWeb.StatementSource {
 		PngHeader header;
 
@@ -71,7 +71,7 @@ namespace FSpot.Png {
 					case "XMP":
 					case "XML:com.adobe.xmp":
 						using (System.IO.Stream xmpstream = new System.IO.MemoryStream (text.TextData)) {
-							FSpot.Xmp.XmpFile xmp = new FSpot.Xmp.XmpFile (xmpstream);
+							FSpot.Imaging.Xmp.XmpFile xmp = new FSpot.Imaging.Xmp.XmpFile (xmpstream);
 							xmp.Select (sink);
 						}
 						break;
@@ -124,8 +124,8 @@ namespace FSpot.Png {
 					uint denominator = (uint) (phys.InMeters ? 100 : 1);
 					
 					MetadataStore.AddLiteral (sink, "tiff:ResolutionUnit", phys.InMeters ? "3" : "1");
-					MetadataStore.AddLiteral (sink, "tiff:XResolution", new FSpot.Tiff.Rational (phys.PixelsPerUnitX, denominator).ToString ());
-					MetadataStore.AddLiteral (sink, "tiff:YResolution", new FSpot.Tiff.Rational (phys.PixelsPerUnitY, denominator).ToString ());
+					MetadataStore.AddLiteral (sink, "tiff:XResolution", new Tiff.Rational (phys.PixelsPerUnitX, denominator).ToString ());
+					MetadataStore.AddLiteral (sink, "tiff:YResolution", new Tiff.Rational (phys.PixelsPerUnitY, denominator).ToString ());
 				}
 			}
 		}
@@ -432,44 +432,44 @@ namespace FSpot.Png {
 
 			public ColorChunk (string name, byte [] data) : base (name, data) {}
 
-			public FSpot.Tiff.Rational WhiteX {
+			public Tiff.Rational WhiteX {
 				get {
-					return new FSpot.Tiff.Rational (FSpot.BitConverter.ToUInt32 (data, 0, false), Denominator);
+					return new Tiff.Rational (FSpot.BitConverter.ToUInt32 (data, 0, false), Denominator);
 				}
 			}
-			public FSpot.Tiff.Rational WhiteY {
+			public Tiff.Rational WhiteY {
 				get { 
-					return new FSpot.Tiff.Rational (FSpot.BitConverter.ToUInt32 (data, 4, false), Denominator);
+					return new Tiff.Rational (FSpot.BitConverter.ToUInt32 (data, 4, false), Denominator);
 				}
 			}
-			public FSpot.Tiff.Rational RedX {
+			public Tiff.Rational RedX {
 				get { 
-					return new FSpot.Tiff.Rational (FSpot.BitConverter.ToUInt32 (data, 8, false), Denominator);
+					return new Tiff.Rational (FSpot.BitConverter.ToUInt32 (data, 8, false), Denominator);
 				}
 			}
-			public FSpot.Tiff.Rational RedY {
+			public Tiff.Rational RedY {
 				get { 
-					return new FSpot.Tiff.Rational (FSpot.BitConverter.ToUInt32 (data, 12, false), Denominator);
+					return new Tiff.Rational (FSpot.BitConverter.ToUInt32 (data, 12, false), Denominator);
 				}
 			}
-			public FSpot.Tiff.Rational GreenX {
+			public Tiff.Rational GreenX {
 				get { 
-					return new FSpot.Tiff.Rational (FSpot.BitConverter.ToUInt32 (data, 16, false), Denominator);
+					return new Tiff.Rational (FSpot.BitConverter.ToUInt32 (data, 16, false), Denominator);
 				}
 			}
-			public FSpot.Tiff.Rational GreenY {
+			public Tiff.Rational GreenY {
 				get { 
-					return new FSpot.Tiff.Rational (FSpot.BitConverter.ToUInt32 (data, 20, false), Denominator);
+					return new Tiff.Rational (FSpot.BitConverter.ToUInt32 (data, 20, false), Denominator);
 				}
 			}
-			public FSpot.Tiff.Rational BlueX {
+			public Tiff.Rational BlueX {
 				get { 
-					return new FSpot.Tiff.Rational (FSpot.BitConverter.ToUInt32 (data, 24, false), Denominator);
+					return new Tiff.Rational (FSpot.BitConverter.ToUInt32 (data, 24, false), Denominator);
 				}
 			}
-			public FSpot.Tiff.Rational BlueY {
+			public Tiff.Rational BlueY {
 				get { 
-					return new FSpot.Tiff.Rational (FSpot.BitConverter.ToUInt32 (data, 28, false), Denominator);
+					return new Tiff.Rational (FSpot.BitConverter.ToUInt32 (data, 28, false), Denominator);
 				}
 			}
 		}

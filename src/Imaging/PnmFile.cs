@@ -4,7 +4,7 @@ using System;
 using System.IO;
 using Hyena;
 
-namespace FSpot.Pnm {
+namespace FSpot.Imaging.Pnm {
 	public class PnmFile : ImageFile, StatementSource {
 
                 // false seems a safe default
@@ -244,7 +244,7 @@ namespace FSpot.Pnm {
 					return LoadRGB16 (stream, header.Width, header.Height);
 #else
 					stream.Position = 0;
-					FSpot.Imaging.PixelBuffer image = FSpot.Pnm.PnmFile.LoadBuffer (stream);
+					Imaging.PixelBuffer image = PnmFile.LoadBuffer (stream);
 					Gdk.Pixbuf result = image.ToPixbuf (Cms.Profile.CreateStandardRgb ());
 					return result;
 #endif

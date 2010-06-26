@@ -1,13 +1,12 @@
 using System;
 using System.IO;
 using FSpot.Xmp;
-using FSpot.Tiff;
 using FSpot.Utils;
 using Hyena;
 using TagLib;
 using TagLib.Image;
 
-namespace FSpot {
+namespace FSpot.Imaging {
 	public interface IThumbnailContainer {
 		Gdk.Pixbuf GetEmbeddedThumbnail ();
 	}

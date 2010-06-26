@@ -12,7 +12,8 @@
 using System;
 using System.IO;
 
-using FSpot;
+using FSpot.Imaging;
+using FSpot.Imaging.Exif;
 
 using Mono.Unix;
 
@@ -61,9 +62,9 @@ namespace FSpot.Filters {
 						// FIXME this is a bit of a nasty hack to work around
 						// the lack of being able to change the path in this filter
 						// and the lack of proper metadata copying yuck
-						Exif.ExifData exif_data;
+						ExifData exif_data;
 	
-						exif_data = new Exif.ExifData (source);
+						exif_data = new ExifData (source);
 						
 						PixbufUtils.SaveJpeg (pixbuf, dest, 95, exif_data);
 					} else 

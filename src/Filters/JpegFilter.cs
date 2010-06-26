@@ -7,7 +7,10 @@
  * This is free software. See COPYING for details.
  *
  */
+
 using System;
+using FSpot.Imaging;
+using FSpot.Imaging.Exif;
 
 namespace FSpot.Filters {
 	public class JpegFilter : IFilter {
@@ -33,17 +36,17 @@ namespace FSpot.Filters {
 			string source = req.Current.LocalPath;
 
 			using (ImageFile img = ImageFile.Create (req.Current)) {
-				if (img is JpegFile)
+				if (img is Imaging.JpegFile)
 					return false;
 
 				req.Current = req.TempUri ("jpg");
 				string dest = req.Current.LocalPath;
 
-				Exif.ExifData exif_data;
+				ExifData exif_data;
 				try {
-					exif_data = new Exif.ExifData (source);
+					exif_data = new ExifData (source);
 				} catch (Exception) {
-					exif_data = new Exif.ExifData();
+					exif_data = new ExifData();
 				}
 
 				PixbufUtils.SaveJpeg (img.Load(), dest, (int) quality, exif_data);

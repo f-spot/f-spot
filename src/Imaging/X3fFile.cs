@@ -6,7 +6,7 @@ using SemWeb;
 using Hyena;
 using TagLib.Image;
 
-namespace FSpot.X3f {
+namespace FSpot.Imaging.X3f {
 	internal class Info {
 		ushort major_version;
 		ushort minor_version;

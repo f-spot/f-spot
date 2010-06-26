@@ -1,6 +1,9 @@
 using Hyena;
 
-namespace FSpot.Bim {
+using FSpot.Imaging.Xmp;
+using FSpot.Imaging.Iptc;
+
+namespace FSpot.Imaging.Bim {
 	public enum EntryType : ushort {
 		ObsoleteImageInfo = 0x03e8,  
 		MacPrintManager = 0x03e9,
@@ -162,12 +165,12 @@ namespace FSpot.Bim {
 				switch (type) {
 				case EntryType.IPTCNAA:
 					System.IO.Stream iptcstream = new System.IO.MemoryStream (e.Data);
-					FSpot.Iptc.IptcFile iptc = new FSpot.Iptc.IptcFile (iptcstream);
+					IptcFile iptc = new IptcFile (iptcstream);
 					iptc.Select (sink);
 					break;
 				case EntryType.XMP:
 					System.IO.Stream xmpstream = new System.IO.MemoryStream (e.Data);
-					FSpot.Xmp.XmpFile xmp = new FSpot.Xmp.XmpFile (xmpstream);
+					XmpFile xmp = new XmpFile (xmpstream);
 					xmp.Select (sink);
 					break;
 				default:

@@ -1,7 +1,6 @@
-using FSpot.Tiff;
 using Hyena;
 
-namespace FSpot.Mrw {
+namespace FSpot.Imaging.Mrw {
 	// Minolta raw format
 	// see http://www.dalibor.cz/minolta/raw_file_format.htm for details
 	// note that the blocks can be in any order.
@@ -117,7 +116,7 @@ namespace FSpot.Mrw {
 	}
 
 	internal class TtwBlock : Block {
-		FSpot.Tiff.Header header;
+		FSpot.Imaging.Tiff.Header header;
 
 		public TtwBlock (System.IO.Stream stream) : base (stream)
 		{
@@ -125,13 +124,13 @@ namespace FSpot.Mrw {
 				throw new System.Exception (System.String.Format ("invalid block name {0}", this.Name));
 		}
 		
-		public FSpot.Tiff.Header TiffHeader {
+		public FSpot.Imaging.Tiff.Header TiffHeader {
 			get {
 				if (header == null) {
 					try {
 						System.IO.MemoryStream mem = new System.IO.MemoryStream (this.Data);
 						Log.Debug ("before header");
-						header = new Header (mem);
+						header = new Tiff.Header (mem);
 					} catch (System.Exception e) {
 						Log.Exception (e);
 					}
@@ -172,7 +171,7 @@ namespace FSpot.Mrw {
 	
 	public class MrwFile : ImageFile, SemWeb.StatementSource {
 		MrmBlock mrm;
-		FSpot.Tiff.Header header;
+		FSpot.Imaging.Tiff.Header header;
 
 		public MrwFile (SafeUri uri) : base (uri)
 		{
@@ -183,7 +182,7 @@ namespace FSpot.Mrw {
                         get { return false; }
                 }
 
-		public FSpot.Tiff.Header Header {
+		public Tiff.Header Header {
 			get {
 				if (mrm == null)
 					LoadBlocks ();

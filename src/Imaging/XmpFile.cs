@@ -4,7 +4,7 @@ using SemWeb;
 
 using Hyena;
 
-namespace FSpot.Xmp {
+namespace FSpot.Imaging.Xmp {
 	public class XmpFile : SemWeb.StatementSource, SemWeb.StatementSink
 	{
 		MetadataStore store;

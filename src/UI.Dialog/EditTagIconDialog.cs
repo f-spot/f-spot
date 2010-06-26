@@ -16,6 +16,7 @@ using Mono.Unix;
 using Gtk;
 using FSpot.Widgets;
 using FSpot.Utils;
+using FSpot.Imaging;
 using Hyena;
 using Hyena.Widgets;
 
@@ -156,7 +157,7 @@ namespace FSpot.UI.Dialog
 		void CreateTagIconFromExternalPhoto ()
 		{
 			try {
-				using (FSpot.ImageFile img = FSpot.ImageFile.Create (new SafeUri(external_photo_chooser.Uri, true))) {
+				using (ImageFile img = ImageFile.Create (new SafeUri(external_photo_chooser.Uri, true))) {
 					using (Gdk.Pixbuf external_image = img.Load ()) {
 						PreviewPixbuf = PixbufUtils.TagIconFromPixbuf (external_image);
 					}

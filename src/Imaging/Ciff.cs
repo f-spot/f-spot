@@ -3,7 +3,7 @@ using FSpot.Utils;
 using Hyena;
 using TagLib.Image;
 
-namespace FSpot.Ciff {
+namespace FSpot.Imaging.Ciff {
 	public enum Tag {
 		// Byte valuesad
 		NullRecord = 0x0000,
@@ -304,7 +304,7 @@ namespace FSpot.Ciff {
 		}
 	}
 	
-	public class CiffFile : FSpot.ImageFile , SemWeb.StatementSource {
+	public class CiffFile : ImageFile , SemWeb.StatementSource {
 		public ImageDirectory root;
 		bool little;
 		System.IO.Stream stream;

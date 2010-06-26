@@ -1,7 +1,7 @@
 using System;
 using Hyena;
 
-namespace FSpot.Svg {
+namespace FSpot.Imaging.Svg {
 	public class SvgFile : ImageFile // SemWeb.StatementSource 
 	{
 		MetadataStore store;

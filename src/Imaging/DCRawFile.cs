@@ -3,7 +3,7 @@ using System.IO;
 using System;
 using Hyena;
 
-namespace FSpot {
+namespace FSpot.Imaging {
 	public class Pipe : System.IO.Stream {
 		// This class is a hack to make sure mono doesn't dispose the process
 		// and by extension the stream from the pipe when we are still using the

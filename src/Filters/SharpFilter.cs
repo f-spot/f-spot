@@ -14,6 +14,9 @@ using Gdk;
 
 using Mono.Unix;
 
+using FSpot.Imaging;
+using FSpot.Imaging.Exif;
+
 namespace FSpot.Filters {
 	public class SharpFilter : IFilter 
 	{	
@@ -43,9 +46,9 @@ namespace FSpot.Filters {
 							// FIXME this is a bit of a nasty hack to work around
 							// the lack of being able to change the path in this filter
 							// and the lack of proper metadata copying yuck
-							Exif.ExifData exif_data;
+							ExifData exif_data;
 		
-							exif_data = new Exif.ExifData (req.Current.LocalPath);
+							exif_data = new ExifData (req.Current.LocalPath);
 							
 							PixbufUtils.SaveJpeg (out_pixbuf, dest_uri.LocalPath, 90, exif_data);
 						} else 

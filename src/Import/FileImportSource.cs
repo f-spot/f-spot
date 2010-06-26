@@ -3,6 +3,7 @@ using System;
 using System.Threading;
 using System.Collections.Generic;
 using FSpot.Utils;
+using FSpot.Imaging;
 using Gtk;
 using Mono.Unix.Native;
 

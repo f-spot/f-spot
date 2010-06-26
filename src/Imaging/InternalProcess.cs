@@ -3,7 +3,7 @@ using System.IO;
 using System.Runtime.InteropServices;
 using GLib;
 
-namespace FSpot {
+namespace FSpot.Imaging {
 	[Flags]
 	internal enum InternalProcessFlags {
 		LeaveDescriptorsOpen =       1 << 0,

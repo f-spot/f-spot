@@ -1,4 +1,3 @@
-//#define DEBUG_LOADER
 using FSpot;
 using FSpot.Utils;
 using SemWeb;
@@ -8,7 +7,7 @@ using System.Collections.Generic;
 using Hyena;
 using TagLib.Image;
 
-namespace FSpot.Tiff {
+namespace FSpot.Imaging.Tiff {
 
 	// This is primarily to preserve the names from the specification
 	// because they differ from the tiff standard names
@@ -844,9 +843,6 @@ namespace FSpot.Tiff {
 			byte [] tmp = new byte [4];
 
 		        if (stream.Read (tmp, 0, tmp.Length) < 4) {
-#if DEBUG_LOADER
-				Log.Debug ("short read XXXXXXXXXXXXXXXXXXXXXXx");
-#endif
 				throw new ShortReadException ();
 			}
 			return BitConverter.ToUInt32 (tmp, 0, endian == Endian.Little);
@@ -857,9 +853,6 @@ namespace FSpot.Tiff {
 			byte [] tmp = new byte [2];
 
 		        if (stream.Read (tmp, 0, tmp.Length) < 2) {
-#if DEBUG_LOADER
-				Log.Debug ("Short read");
-#endif
 				throw new ShortReadException ();
 			}
 
@@ -910,9 +903,6 @@ namespace FSpot.Tiff {
 			if (directory_offset < 8)
 				throw new ParseException ("Invalid IFD0 Offset [" + directory_offset.ToString () + "]"); 
 			
-#if DEBUG_LOADER
-			Log.Debug ("Reading First IFD");
-#endif
 			Directory = new ImageDirectory (stream, directory_offset, endian); 
 			//}
 		}
@@ -928,23 +918,20 @@ namespace FSpot.Tiff {
 		public void SelectDirectory (ImageDirectory dir, StatementSink sink)
 		{
 			foreach (DirectoryEntry e in dir.Entries) {
-#if DEBUG_LOADER
-				Log.DebugFormat ("{0}", e.Id);
-#endif
 				switch (e.Id) {
 				case TagId.IPTCNAA:
 					System.IO.Stream iptcstream = new System.IO.MemoryStream (e.RawData);
-					FSpot.Iptc.IptcFile iptc = new FSpot.Iptc.IptcFile (iptcstream);
+					FSpot.Imaging.Iptc.IptcFile iptc = new FSpot.Imaging.Iptc.IptcFile (iptcstream);
 					iptc.Select (sink);
 					break;
 				case TagId.PhotoshopPrivate:
 					System.IO.Stream bimstream = new System.IO.MemoryStream (e.RawData);
-					FSpot.Bim.BimFile bim = new FSpot.Bim.BimFile (bimstream);
+					FSpot.Imaging.Bim.BimFile bim = new FSpot.Imaging.Bim.BimFile (bimstream);
 					bim.Select (sink);
 					break;
 				case TagId.XMP:
 					System.IO.Stream xmpstream = new System.IO.MemoryStream (e.RawData);
-					FSpot.Xmp.XmpFile xmp = new FSpot.Xmp.XmpFile (xmpstream);
+					FSpot.Imaging.Xmp.XmpFile xmp = new FSpot.Imaging.Xmp.XmpFile (xmpstream);
 					xmp.Select (sink);
 					break;
 				case TagId.ImageDescription:
@@ -1181,17 +1168,11 @@ namespace FSpot.Tiff {
 		protected virtual void ReadEntries (System.IO.Stream stream) 
 		{
 			num_entries = Converter.ReadUShort (stream, endian);
-#if DEBUG_LOADER
-			Log.DebugFormat ("reading {0} entries", num_entries);
-#endif			
 			entries = new List<DirectoryEntry> (num_entries);
 			int entry_length = num_entries * 12;
 			byte [] content = new byte [entry_length];
 			
 			if (stream.Read (content, 0, content.Length) < content.Length) {
-#if DEBUG_LOADER
-				Log.Debug ("short read XXXXXXXXXXXXXXXXXXXXXXx");
-#endif
 				throw new ShortReadException ();
 			}
 
@@ -1199,9 +1180,6 @@ namespace FSpot.Tiff {
 			for (int pos = 0; pos < entry_length; pos += 12) {
 				DirectoryEntry entry = CreateEntry (this, content, pos, this.endian);
 				entries.Add (entry);		
-#if DEBUG_LOADER
-				Log.DebugFormat ("Added Entry {0} {1} - {2} * {3}", entry.Id.ToString (), entry.Id.ToString ("x"), entry.Type, entry.Count);
-#endif
 				if (entry.Id == TagId.NewSubfileType) {
 					
 				}
@@ -1222,10 +1200,6 @@ namespace FSpot.Tiff {
 		
 		protected void LoadNextDirectory (System.IO.Stream stream)
 		{
-#if DEBUG_LOADER
-			Log.DebugFormat ("start_position = {1} next_directory_offset = {0}",
-						  next_directory_offset, orig_position);
-#endif
 			next_directory = null;
 			try {
 				if (next_directory_offset != 0 && next_directory_offset != orig_position)
@@ -1454,10 +1428,6 @@ namespace FSpot.Tiff {
 
 		public override uint Save (OrderedWriter writer, uint position)
 		{
-#if DEBUG_LOADER			
-			Log.DebugFormat ("writing entry {0} {1} {2} - value offset = {3}", Id, Type, Count, position);
-#endif
-
 			writer.Write ((ushort)Id);
 			writer.Write ((ushort)Type);
 			writer.Write ((uint)Count);
@@ -1619,9 +1589,6 @@ namespace FSpot.Tiff {
 
 		public virtual uint Save (OrderedWriter writer, uint position)
 		{
-#if DEBUG_LOADER			
-			Log.DebugFormat ("writing entry {0} {1} {2}", Id, Type, Count);
-#endif
 			writer.Write ((ushort)Id);
 			writer.Write ((ushort)Type);
 			writer.Write ((uint)Count);
@@ -1709,60 +1676,10 @@ namespace FSpot.Tiff {
 				stream.Seek ((long)Position, System.IO.SeekOrigin.Begin);
 				byte [] data = new byte [count * GetTypeSize ()];
 				if (stream.Read (data, 0, data.Length) < data.Length) {
-#if DEBUG_LOADER
-					Log.Debug ("Short read");
-#endif
 					throw new ShortReadException ();
 				}
 				raw_data = data;
 			}
-
-#if DEBUG_LOADER
-			switch ((int)this.Id) {
-			case (int)TagId.NewSubfileType:
-				System.Console.WriteLine ("XXXXXXXXXXXXXXXXXXXXX new NewSubFileType {0}", (NewSubfileType) this.ValueAsLong [0]);
-				break;
-			case (int)TagId.SubfileType:
-				System.Console.WriteLine ("XXXXXXXXXXXXXXXXXXXXX new SubFileType {0}", (SubfileType) this.ValueAsLong [0]);
-				break;
-			case (int)TagId.Compression:
-				//System.Console.WriteLine ("XXXXXXXXXXXXXXXXXXXXX new Compression {0}", (Compression) this.ValueAsLong [0]);
-				
-				break;
-			case (int)TagId.JPEGProc:
-				//System.Console.WriteLine ("XXXXXXXXXXXXXXXXXXXXX new JPEGProc {0}", (JPEGProc) this.ValueAsLong [0]);
-				
-				break;
-			case (int)TagId.PhotometricInterpretation:
-				//System.Console.WriteLine ("XXXXXXXXXXXXXXXXXXXXX new PhotometricInterpretation {0}", (PhotometricInterpretation) this.ValueAsLong [0]);
-				break;
-			case (int)TagId.ImageWidth:
-			case (int)TagId.ImageLength:
-				//System.Console.WriteLine ("XXXXXXXXXXXXXXXXXXXXX new {1} {0}", this.ValueAsLong [0], this.Id);
-				break;
-			case 50648:
-			case 50656:
-			case 50752:
-				System.Console.WriteLine ("XXXXXXXXXXXXXXXXXXXXX {0}({1}) - {2} {3}", this.Id, this.Id.ToString ("x"), this.type, raw_data.Length);
-				System.Console.WriteLine ("XXXX ", System.Text.Encoding.ASCII.GetString (raw_data));
-				switch (this.type) {
-				case EntryType.Long:
-					foreach (uint val in ((LongEntry)this).Value)
-						System.Console.Write (" {0}", val);
-					break;
-				case EntryType.Short:
-					foreach (ushort val in ((ShortEntry)this).ShortValue)
-						System.Console.Write (" {0}", val);
-					break;
-				case EntryType.Byte:
-					foreach (byte val in this.RawData)
-						System.Console.Write (" {0}", val);
-					break;
-				}
-				System.Console.WriteLine (String.Empty);
-				break;
-			}
-#endif
 		}
 
 		public virtual void Dump (string name)
@@ -2022,10 +1939,6 @@ namespace FSpot.Tiff {
 				using (System.IO.Stream input = Open ()) {
 					this.Header = new Header (input);
 				}
-
-#if DEBUG_LOADER
-				Header.Dump (this.ToString () + ":");
-#endif
 			} catch (System.Exception e) {
 				Log.Error (e.ToString ());
 			}
@@ -2121,7 +2034,7 @@ namespace FSpot.Tiff {
 			e = Header.Directory.Lookup (TagId.XMP);
 			if (e != null) {
 				System.IO.Stream xmpstream = new System.IO.MemoryStream (e.RawData);
-				FSpot.Xmp.XmpFile xmp = new FSpot.Xmp.XmpFile (xmpstream);
+				var xmp = new FSpot.Imaging.Xmp.XmpFile (xmpstream);
 				xmp.Select (sink);
 			}
 

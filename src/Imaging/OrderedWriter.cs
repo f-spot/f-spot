@@ -1,6 +1,6 @@
 using System.IO;
 
-namespace FSpot {
+namespace FSpot.Imaging {
 	public class OrderedWriter {
 		Stream stream;
 		bool is_little;

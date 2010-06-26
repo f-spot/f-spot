@@ -22,6 +22,7 @@ using FSpot;
 using FSpot.Filters;
 using FSpot.Widgets;
 using FSpot.Utils;
+using FSpot.Imaging;
 using FSpot.UI.Dialog;
 
 using Gnome.Keyring;

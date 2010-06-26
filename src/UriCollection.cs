@@ -20,6 +20,8 @@ using System.Xml;
 using Hyena;
 using GLib;
 
+using FSpot.Imaging;
+
 namespace FSpot {
 	public class UriCollection : PhotoList {
 		public UriCollection () : base (new IBrowsableItem [0])
@@ -38,7 +40,7 @@ namespace FSpot {
 
 		public void Add (SafeUri uri)
 		{
-			if (FSpot.ImageFile.HasLoader (uri)) {
+			if (ImageFile.HasLoader (uri)) {
 				//Console.WriteLine ("using image loader {0}", uri.ToString ());
 				Add (new FileBrowsableItem (uri));
 			} else {
@@ -128,7 +130,7 @@ namespace FSpot {
 				foreach (GLib.FileInfo info in file.EnumerateChildrenFinish (res)) {
 					SafeUri i = new SafeUri (file.GetChild (info.Name).Uri);
 					Hyena.Log.DebugFormat ("testing uri = {0}", i);
-					if (FSpot.ImageFile.HasLoader (i))
+					if (ImageFile.HasLoader (i))
 						items.Add (new FileBrowsableItem (i));
 				}
 				Gtk.Application.Invoke (items, System.EventArgs.Empty, delegate (object sender, EventArgs args) {
@@ -141,7 +143,7 @@ namespace FSpot {
 		{
 			List<IBrowsableItem> items = new List<IBrowsableItem> ();
 			foreach (var f in files) {
-				if (FSpot.ImageFile.HasLoader (new SafeUri (f.FullName))) {
+				if (ImageFile.HasLoader (new SafeUri (f.FullName))) {
 					Hyena.Log.Debug (f.FullName);
 					items.Add (new FileBrowsableItem (new SafeUri (f.FullName)));
 				}

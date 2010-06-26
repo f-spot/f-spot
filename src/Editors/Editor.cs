@@ -7,9 +7,10 @@
  * This is free software. See COPYING for details.
  */
 
-using FSpot;
 using Hyena;
+
 using FSpot.Widgets;
+using FSpot.Imaging;
 
 using Gdk;
 using Gtk;

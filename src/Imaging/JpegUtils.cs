@@ -2,6 +2,7 @@ using System.Runtime.InteropServices;
 using System;
 using Gdk;
 
+namespace FSpot.Imaging {
 public class JpegUtils {
 
 	[DllImport ("libfspot")]
@@ -31,4 +32,5 @@ public class JpegUtils {
 		if (! f_transform_jpeg (source_path, destination_path, transform, out error_message))
 			throw new Exception (error_message);
 	}
+}
 }

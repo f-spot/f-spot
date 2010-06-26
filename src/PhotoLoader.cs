@@ -1,6 +1,7 @@
 using System;
 
 using FSpot.Platform;
+using FSpot.Imaging;
 using Hyena;
 
 namespace FSpot {

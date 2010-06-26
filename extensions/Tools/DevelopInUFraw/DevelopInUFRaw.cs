@@ -16,6 +16,7 @@ using Hyena;
 using FSpot;
 using FSpot.Utils;
 using FSpot.Extensions;
+using FSpot.Imaging;
 using FSpot.UI.Dialog;
 
 namespace DevelopInUFRawExtension

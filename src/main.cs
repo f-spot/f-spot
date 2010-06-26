@@ -12,6 +12,7 @@ using Mono.Addins.Setup;
 using FSpot.Utils;
 using FSpot.UI.Dialog;
 using FSpot.Extensions;
+using FSpot.Imaging;
 using Hyena;
 using Hyena.CommandLine;
 using Hyena.Gui;

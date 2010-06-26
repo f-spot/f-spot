@@ -15,6 +15,7 @@ using Gdk;
 using Mono.Addins;
 using FSpot.Bling;
 using FSpot.Extensions;
+using FSpot.Imaging;
 
 namespace FSpot.Widgets
 {

@@ -16,6 +16,7 @@ using System;
 
 using Hyena;
 
+using FSpot.Imaging;
 
 public class ImageLoaderThread {
 
@@ -179,7 +180,7 @@ public class ImageLoaderThread {
 	{
 		Pixbuf orig_image;
 		try {
-			using (FSpot.ImageFile img = FSpot.ImageFile.Create (request.Uri)) {
+			using (var img = ImageFile.Create (request.Uri)) {
 				if (request.Width > 0) {
 					orig_image = img.Load (request.Width, request.Height);
 				} else {

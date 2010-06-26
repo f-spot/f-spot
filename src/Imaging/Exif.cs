@@ -16,7 +16,7 @@ using System.Runtime.InteropServices;
 using Mono.Unix;
 using Hyena;
 
-namespace Exif {
+namespace FSpot.Imaging.Exif {
 	public enum Tag {
 		InteroperabilityIndex		= 0x0001,
 		InteroperabilityVersion	        = 0x0002,

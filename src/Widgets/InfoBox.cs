@@ -16,7 +16,8 @@
 using Gtk;
 using System;
 using System.IO;
-using FSpot;
+using FSpot.Imaging;
+using FSpot.Imaging.Tiff;
 using SemWeb;
 using Mono.Unix;
 using FSpot.Utils;
@@ -305,9 +306,6 @@ namespace FSpot.Widgets
 	
 			MemoryStore store;
 			
-	#if USE_EXIF_DATE
-			DateTime date;
-	#endif
 			public ImageInfo (ImageFile img) 
 			{
 				// FIXME We use the memory store to hold the anonymous statements
@@ -330,7 +328,7 @@ namespace FSpot.Widgets
 					}
 				}
 	
-				if (img is JpegFile) {
+				if (img is Imaging.JpegFile) {
 					int real_width;
 					int real_height;
 	
@@ -338,9 +336,6 @@ namespace FSpot.Widgets
 					width = real_width.ToString ();
 					height = real_height.ToString ();
 				}
-	#if USE_EXIF_DATE
-				date = img.Date;
-	#endif
 			}
 	
 			public bool Add (SemWeb.Statement stmt)
@@ -385,7 +380,7 @@ namespace FSpot.Widgets
 	
 					if  (fnumber != null && fnumber != String.Empty) {
 						try {
-							FSpot.Tiff.Rational rat = new FSpot.Tiff.Rational (fnumber);
+							var rat = new Rational (fnumber);
 							info += String.Format ("f/{0:.0} ", rat.Value);
 						} catch (FormatException) {
 							return Catalog.GetString("(wrong format)");
@@ -393,7 +388,7 @@ namespace FSpot.Widgets
 					} else if (aperture != null && aperture != String.Empty) {
 						try {
 							// Convert from APEX to fnumber
-							FSpot.Tiff.Rational rat = new FSpot.Tiff.Rational (aperture);
+							var rat = new Rational (aperture);
 							info += String.Format ("f/{0:.0} ", Math.Pow (2, rat.Value / 2));
 						} catch (FormatException) {
 							return Catalog.GetString ("(wrong format)");
@@ -452,16 +447,6 @@ namespace FSpot.Widgets
 						return Catalog.GetString ("(Unknown)");
 				}
 			}
-	#if USE_EXIF_DATE
-			public string Date {
-				get {
-					if (date > DateTime.MinValue && date < DateTime.MaxValue)
-						return date.ToShortDateString () + Environment.NewLine + date.ToShortTimeString ();
-					else 
-						return Catalog.GetString ("(Unknown)");
-				}
-			}
-	#endif
 		}
 			
 	
@@ -522,16 +507,12 @@ namespace FSpot.Widgets
 			size_value_label.Visible = show_size;
 
 			if (show_date) {
-	#if USE_EXIF_DATE
-				date_value_label.Text = info.Date;
-	#else
 				DateTime local_time = photo.Time;
 				date_value_label.Text = String.Format ("{0}{2}{1}",
 				                                       local_time.ToShortDateString (),
 				                                       local_time.ToShortTimeString (),
 				                                       Environment.NewLine
 				                                       );
-	#endif
 			}
 			date_label.Visible = show_date;
 			date_value_label.Visible = show_date;

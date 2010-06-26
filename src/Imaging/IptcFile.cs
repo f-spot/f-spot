@@ -1,7 +1,7 @@
 using SemWeb;
 using Mono.Unix;
 
-namespace FSpot.Iptc {
+namespace FSpot.Imaging.Iptc {
 	public enum Format
 	{
 		Unknown,

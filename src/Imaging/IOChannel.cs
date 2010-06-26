@@ -4,7 +4,7 @@ using System.Runtime.InteropServices;
 using GLib;
 using Hyena;
 
-namespace FSpot {
+namespace FSpot.Imaging {
 
 	[Flags]
 	public enum IOFlags {

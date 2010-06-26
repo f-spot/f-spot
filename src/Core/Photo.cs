@@ -21,6 +21,7 @@ using Mono.Unix;
 
 using FSpot.Utils;
 using FSpot.Platform;
+using FSpot.Imaging;
 
 namespace FSpot
 {
@@ -219,7 +220,7 @@ namespace FSpot
 			uint version = DefaultVersionId;
 			using (ImageFile img = ImageFile.Create (DefaultVersion.Uri)) {
 				// Always create a version if the source is not a jpeg for now.
-				create_version = create_version || !(img is FSpot.JpegFile);
+				create_version = create_version || !(img is FSpot.Imaging.JpegFile);
 	
 				if (buffer == null)
 					throw new ApplicationException ("invalid (null) image");
