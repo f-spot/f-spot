@@ -336,7 +336,7 @@ namespace FSpot {
 			tag_view = new Widgets.TagView ();
 			lower_hbox.PackStart (tag_view, false, true, 0);
 	
-			Label comment = new Label (Catalog.GetString ("Comment:"));
+			Label comment = new Label (Catalog.GetString ("Description:"));
 			lower_hbox.PackStart (comment, false, false, 0);
 			description_entry = new Entry ();
 			lower_hbox.PackStart (description_entry, true, true, 0);
