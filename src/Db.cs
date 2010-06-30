@@ -61,8 +61,7 @@ public abstract class DbStore<T> where T : DbItem {
 
 	protected void EmitAdded (T [] items)
 	{
-		if (ItemsAdded != null)
-			ItemsAdded (this, new DbItemEventArgs<T> (items));
+		EmitEvent (ItemsAdded, new DbItemEventArgs<T> (items));
 	}
 
 	protected void EmitChanged (T item)
@@ -77,8 +76,7 @@ public abstract class DbStore<T> where T : DbItem {
 
 	protected void EmitChanged (T [] items, DbItemEventArgs<T> args)
 	{
-		if (ItemsChanged != null)
-			ItemsChanged (this, args);
+		EmitEvent (ItemsChanged, args);
 	}
 
 	protected void EmitRemoved (T item)
@@ -88,8 +86,17 @@ public abstract class DbStore<T> where T : DbItem {
 
 	protected void EmitRemoved (T [] items)
 	{
-		if (ItemsRemoved != null)
-			ItemsRemoved (this, new DbItemEventArgs<T> (items));
+		EmitEvent (ItemsRemoved, new DbItemEventArgs<T> (items));
+	}
+
+	private void EmitEvent (EventHandler<DbItemEventArgs<T>> evnt, DbItemEventArgs<T> args)
+	{
+		if (evnt == null) // No subscribers.
+			return;
+
+		ThreadAssist.ProxyToMain (() => {
+			evnt (this, args);
+		});
 	}
 
 	public bool CacheEmpty {
