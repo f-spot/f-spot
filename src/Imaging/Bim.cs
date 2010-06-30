@@ -114,33 +114,6 @@ namespace FSpot.Imaging.Bim {
 
 			return header.Length + Data.Length;
 		}
-		
-		public void Save (System.IO.Stream stream) 
-		{
-			byte [] tmp;
-			tmp = System.Text.Encoding.ASCII.GetBytes (Marker);
-			stream.Write (tmp, 0, tmp.Length);
-			tmp = FSpot.BitConverter.GetBytes (Type, false);
-			stream.Write (tmp, 0, tmp.Length);
-
-			// Write the name
-			stream.WriteByte ((byte)Name.Length);
-			tmp = System.Text.Encoding.ASCII.GetBytes (Name);
-			stream.Write (tmp, 0, tmp.Length);
-
-			// Pad the name
-			if (tmp.Length % 2 == 0)
-				stream.WriteByte (0);
-
-			// Write the data
-			tmp  = FSpot.BitConverter.GetBytes ((uint)Data.Length, false);
-			stream.Write (tmp, 0, tmp.Length);
-
-			stream.Write (Data, 0, Data.Length);
-			// Pad the data
-			if (Data.Length % 2 > 0)
-				stream.WriteByte (0);
-		}
 	}
 
 	public class BimFile : SemWeb.StatementSource
@@ -201,13 +174,6 @@ namespace FSpot.Imaging.Bim {
 					Log.Exception (e);
 				}
 				entries.Add (current);
-			}
-		}
-
-		public void Save (System.IO.Stream stream)
-		{
-			foreach (Entry e in entries) {
-				e.Save (stream);
 			}
 		}
 	}

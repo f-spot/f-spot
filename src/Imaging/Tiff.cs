@@ -1076,34 +1076,6 @@ namespace FSpot.Imaging.Tiff {
 				}
 			}
 		}
-
-		public void Save (System.IO.Stream out_stream)
-		{
-			OrderedWriter writer = new OrderedWriter (out_stream, endian == Endian.Little);
-			
-			/* Header */
-			if (endian == Endian.Little) {
-				writer.Write ((byte)'I');
-				writer.Write ((byte)'I');
-			} else {
-				writer.Write ((byte)'M');
-				writer.Write ((byte)'M');
-			}
-			
-			writer.Write ((ushort)42);
-			
-			/* First IFD */
-			Directory.Save (writer, 8);
-		}
-
-		public void Dump (string name)
-		{
-			ImageDirectory ifd = Directory;
-			for (int i = 0; ifd != null; i++) {
-				ifd.Dump (System.String.Format ("IFD[{0}]:", i));
-				ifd = ifd.NextDirectory;
-			}
-		}
 	}
 
 	public class ImageDirectory {
@@ -1125,30 +1097,6 @@ namespace FSpot.Imaging.Tiff {
 			Load (stream);
 		}
 		
-		public uint Save (OrderedWriter writer, uint position)
-		{
-			writer.Write (position);
-			writer.Stream.Position = position;
-
-			writer.Write ((ushort)entries.Count);
-
-			position += 2;
-			uint  value_position = (uint) (position + 12 * entries.Count + 4);
-
-			for (int i = 0; i < entries.Count; i++) {
-				writer.Stream.Position = position + (12 * i);
-				value_position = (uint)Entries[i].Save (writer, value_position);
-			}
-							
-			writer.Stream.Position = position + (12 * entries.Count);
-			if (next_directory != null)
-				value_position = next_directory.Save (writer, value_position);
-			else 
-				writer.Write ((uint) 0);
-
-			return value_position;
-		}
-
 		protected void Load (System.IO.Stream stream)
 		{
 			ReadHeader (stream);			
@@ -1426,30 +1374,6 @@ namespace FSpot.Imaging.Tiff {
 			}
 		}
 
-		public override uint Save (OrderedWriter writer, uint position)
-		{
-			writer.Write ((ushort)Id);
-			writer.Write ((ushort)Type);
-			writer.Write ((uint)Count);
-
-
-			if (Directory.Length == 1) {
-				writer.Write ((uint)position);
-				position = Directory [0].Save (writer, position);
-			} else if (Directory.Length > 1) {
-				writer.Write ((uint)position);
-				uint value_position = (uint) (position + Directory.Length * 4);
-				for (int i = 0; i < Directory.Length; i++) {
-					writer.Stream.Position = position + i * 4;
-					value_position = Directory [i].Save (writer, value_position);
-				}
-				return value_position;
-			} else
-				writer.Write ((uint) 0);
-
-			return position;
-		}
-
 		public virtual uint GetEntryCount ()
 		{
 			return count;
@@ -1585,24 +1509,6 @@ namespace FSpot.Imaging.Tiff {
 			get {
 				return count;
 			}
-		}
-
-		public virtual uint Save (OrderedWriter writer, uint position)
-		{
-			writer.Write ((ushort)Id);
-			writer.Write ((ushort)Type);
-			writer.Write ((uint)Count);
-			if (Length > 4) {
-				writer.Write ((uint)position);
-				writer.Stream.Position = position;
-				writer.Stream.Write (RawData, 0, RawData.Length);
-				return (uint) (position + RawData.Length);
-			} else {
-				writer.Stream.Write (RawData, 0, RawData.Length);
-				for (int i = 0; i < 4 - RawData.Length; i++)
-					writer.Write ((byte)0);
-			}
-			return position;
 		}
 
 		public void SetOrigin (uint pos)
