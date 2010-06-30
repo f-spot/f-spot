@@ -67,8 +67,6 @@ namespace FSpot.Widgets
 		private List<string> menu_list;
 		private List<string> image_list;
 
-		private List<SidebarPage> pages;
-
 		public event EventHandler CloseRequested;
 
         	// Selection change events, sidebar pages can subscribed to this.
@@ -128,7 +126,6 @@ namespace FSpot.Widgets
 
 			menu_list = new List<string> ();
 			image_list = new List<string> ();
-			pages = new List<SidebarPage> ();
 		}
 
 		private void HandleContextChanged (object sender, EventArgs args)
@@ -159,7 +156,6 @@ namespace FSpot.Widgets
 		{	
 			page.Sidebar = this;
 			page.CanSelectChanged += HandleCanSelectChanged;
-			pages.Add (page);
 
 			string label = page.Label;
 			string icon_name = page.IconName;
