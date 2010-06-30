@@ -1517,6 +1517,8 @@ namespace FSpot
 			
 			if (old_size != TagsIconSize) {
 				tag_selection_widget.ColumnsAutosize();
+				if (photo_view != null)
+					photo_view.UpdateTagView ();
 				Preferences.Set (Preferences.TAG_ICON_SIZE, TagsIconSize);
 			}
 		}

@@ -205,6 +205,7 @@ namespace FSpot {
 
 		public void UpdateTagView ()
 		{
+			tag_view.DrawTags ();
 			tag_view.QueueDraw ();
 		}
 	

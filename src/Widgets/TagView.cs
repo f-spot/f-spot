@@ -19,6 +19,12 @@ public class TagView : EventBox {
 	private Tag [] tags;
 	private static int TAG_ICON_VSPACING = 5;
 	
+	private bool HideTags {
+		get { 
+			return (FSpot.Preferences.Get<int> (FSpot.Preferences.TAG_ICON_SIZE) == (int) Tag.IconSize.Hidden); 
+		}
+	}
+
 
 	public TagView ()
 	{
@@ -34,7 +40,7 @@ public class TagView : EventBox {
 		set {
 			photo = value;
 
-			if (photo != null && photo.Tags != null) {
+			if (photo != null && photo.Tags != null && !HideTags) {
 				SetSizeRequest ((thumbnail_size + TAG_ICON_VSPACING) * photo.Tags.Length,
 						thumbnail_size);
 			} else {
@@ -58,9 +64,18 @@ public class TagView : EventBox {
 		if (photo != null)
 			tags = photo.Tags;
 
-		if (tags == null)
+		if (tags == null || HideTags) {
+			SetSizeRequest(0,thumbnail_size);
 			return base.OnExposeEvent (args);
-
+		}
+		
+		DrawTags();
+		
+		return base.OnExposeEvent (args);
+	}
+	
+	public void DrawTags()
+	{
 		SetSizeRequest ((thumbnail_size + TAG_ICON_VSPACING) * tags.Length,
 				thumbnail_size);
 
@@ -100,8 +115,6 @@ public class TagView : EventBox {
 		}
 
         this.TooltipText =  String.Join (", ", names);
-
-		return base.OnExposeEvent (args);
 	}
 }
 }
