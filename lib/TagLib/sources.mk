@@ -25,8 +25,6 @@ SOURCES = \
 	TagLib/src/TagLib/Asf/PaddingObject.cs \
 	TagLib/src/TagLib/Asf/ContentDescriptor.cs \
 	TagLib/src/TagLib/Asf/DescriptionRecord.cs \
-	TagLib/src/TagLib/Cr2/Codec.cs \
-	TagLib/src/TagLib/Cr2/File.cs \
 	TagLib/src/TagLib/Mpc/StreamHeader.cs \
 	TagLib/src/TagLib/Mpc/File.cs \
 	TagLib/src/TagLib/Ogg/GroupedComment.cs \
@@ -67,8 +65,6 @@ SOURCES = \
 	TagLib/src/TagLib/Mpeg/AudioFile.cs \
 	TagLib/src/TagLib/Mpeg/AudioHeader.cs \
 	TagLib/src/TagLib/Mpeg/VideoHeader.cs \
-	TagLib/src/TagLib/Nef/Codec.cs \
-	TagLib/src/TagLib/Nef/File.cs \
 	TagLib/src/TagLib/NonContainer/EndTag.cs \
 	TagLib/src/TagLib/NonContainer/File.cs \
 	TagLib/src/TagLib/NonContainer/StartTag.cs \
@@ -185,6 +181,8 @@ SOURCES = \
 	TagLib/src/TagLib/Tiff/BaseTiffFile.cs \
 	TagLib/src/TagLib/Tiff/Codec.cs \
 	TagLib/src/TagLib/Tiff/File.cs \
+	TagLib/src/TagLib/Tiff/Cr2/File.cs \
+	TagLib/src/TagLib/Tiff/Nef/File.cs \
 	TagLib/src/TagLib/WavPack/File.cs \
 	TagLib/src/TagLib/WavPack/StreamHeader.cs \
 	TagLib/src/TagLib/Xmp/XmlNodeExtensions.cs \
