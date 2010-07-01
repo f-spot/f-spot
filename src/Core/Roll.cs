@@ -9,7 +9,7 @@
  */
 
 using System;
-using FSpot.Utils;
+using Hyena;
 
 namespace FSpot
 {
@@ -23,7 +23,7 @@ namespace FSpot
 	
 		public Roll (uint id, long unix_time) : base (id)
 		{
-			time = DbUtils.DateTimeFromUnixTime (unix_time);
+			time = DateTimeUtil.ToDateTime (unix_time);
 		}
 	}
 }

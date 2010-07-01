@@ -15,8 +15,8 @@ using System;
 using Banshee.Database;
 using Banshee.Kernel;
 using FSpot.Jobs;
-using FSpot.Utils;
 using FSpot;
+using Hyena;
 
 public abstract class Job : DbItem, IJob
 {
@@ -146,7 +146,7 @@ public class JobStore : DbStore<Job> {
 			id = Database.Execute (new DbCommand ("INSERT INTO jobs (job_type, job_options, run_at, job_priority) VALUES (:job_type, :job_options, :run_at, :job_priority)",
 						"job_type", job_type.ToString (), 
 						"job_options", job_options, 
-						"run_at", DbUtils.UnixTimeFromDateTime (run_at),
+						"run_at", DateTimeUtil.FromDateTime (run_at),
 						"job_priority", Convert.ToInt32 (job_priority)));
 		
                 Job job = (Job) Activator.CreateInstance (job_type, (uint)id, job_options, run_at, job_priority, true);
@@ -171,7 +171,7 @@ public class JobStore : DbStore<Job> {
 									"WHERE id = :item_id", 
 									"job_type", "Empty", //FIXME
 									"job_options", item.JobOptions,
-									"run_at", DbUtils.UnixTimeFromDateTime (item.RunAt),
+									"run_at", DateTimeUtil.FromDateTime (item.RunAt),
 									"job_priority", item.JobPriority));
 		
 		EmitChanged (item);

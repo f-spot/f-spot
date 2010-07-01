@@ -9,13 +9,12 @@
 
 using System;
 using Banshee.Kernel;
-using FSpot.Utils;
 using Hyena;
 
 namespace FSpot.Jobs {
 	public class SyncMetadataJob : Job
 	{
-		public SyncMetadataJob (uint id, string job_options, int run_at, JobPriority job_priority, bool persistent) : this (id, job_options, DbUtils.DateTimeFromUnixTime (run_at), job_priority, persistent)
+		public SyncMetadataJob (uint id, string job_options, int run_at, JobPriority job_priority, bool persistent) : this (id, job_options, DateTimeUtil.ToDateTime (run_at), job_priority, persistent)
 		{
 		}
 

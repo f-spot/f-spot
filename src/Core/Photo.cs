@@ -514,7 +514,7 @@ namespace FSpot
 		public Photo (uint id, long unix_time)
 			: base (id)
 		{
-			time = DbUtils.DateTimeFromUnixTime (unix_time);
+			time = DateTimeUtil.ToDateTime (unix_time);
 	
 			description = String.Empty;
 			rating = 0;

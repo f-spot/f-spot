@@ -6,7 +6,6 @@ SOURCES = \
 	Cache.cs \
 	CairoUtils.cs \
 	ConsoleCrayon.cs \
-	DbUtils.cs \
 	FileExtensions.cs \
 	GdkUtils.cs \
 	GtkUtil.cs \

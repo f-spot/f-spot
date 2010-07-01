@@ -331,7 +331,7 @@ namespace FSpot.Database {
 							 "SELECT '{0}', id, {1}, {2} " +
 							 "FROM   photos ",
 							 typeof(Jobs.CalculateHashJob).ToString (),
-							 FSpot.Utils.DbUtils.UnixTimeFromDateTime (DateTime.Now),
+							 DateTimeUtil.FromDateTime (DateTime.Now),
 							 0
 							)
 				 );

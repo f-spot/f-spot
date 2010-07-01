@@ -53,6 +53,9 @@ namespace FSpot.Widgets
 			Xpad = Ypad = 2;
 		}
 		
+		protected CellRendererTextProgress (IntPtr ptr) : base (ptr)
+		{
+		}
 		
 		int progress_value;
 		

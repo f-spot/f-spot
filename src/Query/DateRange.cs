@@ -9,7 +9,7 @@
  */
 
 using System;
-using FSpot.Utils;
+using Hyena;
 
 namespace FSpot.Query {
 	public class DateRange : IQueryCondition
@@ -39,8 +39,8 @@ namespace FSpot.Query {
 		public string SqlClause ()
 		{
 			return String.Format (" photos.time >= {0} AND photos.time <= {1} ", 
-					DbUtils.UnixTimeFromDateTime (start), 
-					DbUtils.UnixTimeFromDateTime (end));
+					DateTimeUtil.FromDateTime (start),
+					DateTimeUtil.FromDateTime (end));
 		}
 	}
 }

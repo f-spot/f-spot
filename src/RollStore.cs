@@ -14,8 +14,8 @@ using System.Collections;
 using System.IO;
 using System;
 using Banshee.Database;
-using FSpot.Utils;
 using FSpot;
+using Hyena;
 
 public class RollStore : DbStore<Roll>
 {
@@ -33,7 +33,7 @@ public class RollStore : DbStore<Roll>
 
 	public Roll Create (DateTime time_in_utc)
 	{
-		long unix_time = DbUtils.UnixTimeFromDateTime (time_in_utc);
+		long unix_time = DateTimeUtil.FromDateTime (time_in_utc);
 		uint id = (uint) Database.Execute (new DbCommand ("INSERT INTO rolls (time) VALUES (:time)", "time", unix_time));
 
 		Roll roll = new Roll (id, unix_time);
