@@ -19,14 +19,8 @@ libfspot_la_SOURCES =				\
 	f-image-surface.c			\
 	f-image-surface.h			\
 	f-pixbuf-save.c				\
-	f-pixbuf-utils.c			\
-	f-pixbuf-utils.h			\
 	f-pixbuf-unsharp.c			\
-	f-marshal.c				\
-	f-marshal.h				\
-	f-screen-utils.c			\
-	f-utils.c				\
-	f-utils.h
+	f-screen-utils.c
 
 libfspot_la_LIBADD = 					\
 	-lX11						\
@@ -34,26 +28,3 @@ libfspot_la_LIBADD = 					\
 	$(LCMS_LIBS)					\
 	$(EXIF_LIBS)					\
 	$(GIO_LIBS)
-
-
-# GLib marshalling cruft
-
-f-marshal.h: f-marshal.list
-	( @GLIB_GENMARSHAL@ --prefix=f_marshal $(srcdir)/f-marshal.list --header > f-marshal.tmp \
-	&& mv f-marshal.tmp f-marshal.h ) \
-	|| ( rm -f f-marshal.tmp && exit 1 )
-
-f-marshal.c: f-marshal.h
-	( @GLIB_GENMARSHAL@ --prefix=f_marshal $(srcdir)/f-marshal.list --body > f-marshal.tmp \
-	&& mv f-marshal.tmp f-marshal.c ) \
-	|| ( rm -f f-marshal.tmp && exit 1 )
-
-MARSHAL_GENERATED = f-marshal.c f-marshal.h
-
-
-#
-
-BUILT_SOURCES = $(MARSHAL_GENERATED)
-
-EXTRA_DIST =					\
-	f-marshal.list
