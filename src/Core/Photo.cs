@@ -231,9 +231,7 @@ namespace FSpot
 				try {
 					var versionUri = VersionUri (version);
 
-					using (Stream stream = System.IO.File.OpenWrite (versionUri.LocalPath)) {
-						img.Save (buffer, stream);
-					}
+					PixbufUtils.CreateDerivedVersion (DefaultVersion.Uri, versionUri, 95, buffer);
 					(GetVersion (version) as PhotoVersion).ImportMD5 = HashUtils.GenerateMD5 (VersionUri (version));
 					DefaultVersionId = version;
 				} catch (System.Exception e) {

@@ -9,50 +9,34 @@
  */
 
 using System;
+using FSpot.Utils;
 using FSpot.Imaging;
-using FSpot.Imaging.Exif;
 
 namespace FSpot.Filters {
-	public class JpegFilter : IFilter {
-		private uint quality = 95;
-		public uint Quality {
-			get { return quality; }
-			set { quality = value; }
-		}
-		
-		public JpegFilter (uint quality)
-		{
-			this.quality = quality;
-		}
+    public class JpegFilter : IFilter {
+        private uint quality = 95;
+        public uint Quality {
+            get { return quality; }
+            set { quality = value; }
+        }
 
-		public JpegFilter()
-		{
-		}
-			
-		public bool Convert (FilterRequest req)
-		{
-			// FIXME this should copy metadata from the original
-			// even when the source is not a jpeg
-			string source = req.Current.LocalPath;
+        public JpegFilter (uint quality)
+        {
+            this.quality = quality;
+        }
 
-			using (ImageFile img = ImageFile.Create (req.Current)) {
-				if (img is Imaging.JpegFile)
-					return false;
+        public JpegFilter()
+        {
+        }
 
-				req.Current = req.TempUri ("jpg");
-				string dest = req.Current.LocalPath;
+        public bool Convert (FilterRequest req)
+        {
+            var source = req.Current;
+            req.Current = req.TempUri ("jpg");
 
-				ExifData exif_data;
-				try {
-					exif_data = new ExifData (source);
-				} catch (Exception) {
-					exif_data = new ExifData();
-				}
+            PixbufUtils.CreateDerivedVersion (source, req.Current, quality);
 
-				PixbufUtils.SaveJpeg (img.Load(), dest, (int) quality, exif_data);
-			}
-
-			return true;
-		}
-	}
+            return true;
+        }
+    }
 }

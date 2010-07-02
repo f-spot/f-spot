@@ -789,25 +789,6 @@ namespace FSpot.Imaging.Exif {
 		internal static extern IntPtr malloc (uint size);
 		
 		[DllImport ("libexif.dll")]
-		private static extern void exif_data_save_data (HandleRef handle, out IntPtr content, out uint size);		
-		public byte [] Save ()
-		{
-			Byte [] content = null;
-			uint size;
-			IntPtr data;
-			unsafe {
-				exif_data_save_data (handle, out data, out size);
-				
-				content = new byte [size];
-				Marshal.Copy (data, content, 0, (int)size);
-				free (data);
-			}
-				
-			Log.DebugFormat ("Saved {0} bytes", content.Length);
-			return content;
-		}
-		
-		[DllImport ("libexif.dll")]
 		internal static extern void exif_data_unref (HandleRef data);
 		
 		[DllImport ("libexif.dll")]

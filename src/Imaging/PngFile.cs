@@ -294,9 +294,6 @@ namespace FSpot.Imaging.Png {
 		public class ItxtChunk : ZtxtChunk{
 			//public static string Name = "zTXt";
 
-			string Language;
-			string LocalizedKeyword;
-
 			public override void Load (byte [] data)
 			{
 				int i = 0;
@@ -304,9 +301,7 @@ namespace FSpot.Imaging.Png {
 				i++;
 				compressed = (data [i++] != 0);
 				i++;
-				Language = GetString (ref i);
 				i++;
-				LocalizedKeyword = GetString (ref i, System.Text.Encoding.UTF8);
 				i++;
 
 				if (Compressed) {
@@ -315,48 +310,6 @@ namespace FSpot.Imaging.Png {
 					int len = data.Length - i;
 					text_data = new byte [len];
 					System.Array.Copy (data, i, text_data, 0, len);
-				}
-			}
-
-			public override void SetText (string text)
-			{
-				byte [] raw = System.Text.Encoding.UTF8.GetBytes (text);
-				SetText (raw);
-			}
-
-			public void SetText (byte [] raw)
-			{
-				using (MemoryStream stream = new MemoryStream ()) {
-					byte [] tmp;
-					
-					text_data = raw;
-
-					tmp = Latin1.GetBytes (keyword);
-					stream.Write (tmp, 0, tmp.Length);
-					stream.WriteByte (0);
-					
-					stream.WriteByte ((byte)(compressed ? 1 : 0));
-					stream.WriteByte (0);
-					
-					if (Language != null && Language != System.String.Empty) {
-						tmp = Latin1.GetBytes (Language);
-						stream.Write (tmp, 0, tmp.Length);
-					}
-					stream.WriteByte (0);
-					
-					if (LocalizedKeyword != null && LocalizedKeyword != System.String.Empty) {
-						tmp = System.Text.Encoding.UTF8.GetBytes (LocalizedKeyword);
-						stream.Write (tmp, 0, tmp.Length);
-					}
-					stream.WriteByte (0);
-				
-					if (compressed) {
-						tmp = Deflate (text_data, 0, text_data.Length);
-						stream.Write (tmp, 0, tmp.Length);
-					} else {
-						stream.Write (text_data, 0, text_data.Length);
-					}
-					this.data = stream.ToArray ();
 				}
 			}
 
@@ -371,8 +324,6 @@ namespace FSpot.Imaging.Png {
 				encoding = System.Text.Encoding.UTF8;
 				this.Name = "iTXt";
 				this.keyword = keyword;
-				this.Language = language;
-				this.LocalizedKeyword = System.String.Empty;
 				this.compressed = compressed;
 			}
 		}
@@ -698,17 +649,6 @@ namespace FSpot.Imaging.Png {
 				
 			}
 			
-			public virtual void Save (System.IO.Stream stream)
-			{
-				byte [] name_bytes = System.Text.Encoding.ASCII.GetBytes (Name);
-				byte [] length_bytes = BitConverter.GetBytes ((uint)data.Length, false);
-				stream.Write (length_bytes, 0, length_bytes.Length);
-				Crc crc = new Crc (stream);
-				crc.Write (name_bytes);
-				crc.Write (data);
-				crc.WriteSum ();
-			}
-
 			public bool Critical {
 				get {
 					return !System.Char.IsLower (Name, 0);
@@ -1217,49 +1157,6 @@ namespace FSpot.Imaging.Png {
 				else
 					throw new System.Exception ("Uknown ordering for chunk");
 			}
-			
-			public void Save (System.IO.Stream stream)
-			{
-				stream.Write (magic, 0, magic.Length);
-				foreach (Chunk chunk in Chunks) {
-					chunk.Save (stream);
-				}
-			}
-		}
-
-
-		public void Save (System.IO.Stream stream)
-		{
-			Header.Save (stream);
-		}
-
-		public void Save (string path)
-		{
-			string  temp_path = path + ".tmp.png";
-			using (System.IO.Stream output = System.IO.File.OpenWrite (temp_path)) {
-				Save (output);
-			}
-			if (FSpot.Utils.Unix.Rename (temp_path, path) < 0) {
-				System.IO.File.Delete (temp_path);
-				throw new System.Exception (System.String.Format ("Unable to rename {0} to {1}", temp_path, path));
-			}
-		}
-
-		public override void Save (Gdk.Pixbuf pixbuf, System.IO.Stream stream)
-		{
-			byte [] buffer = PixbufUtils.Save (pixbuf, "png", null, null);
-			using (MemoryStream mem = new MemoryStream (buffer)) {
-				PngHeader converted = new PngHeader (mem);
-				
-				/* FIXME we need to update the XMP metadata here */
-				foreach (Chunk c in Chunks) {
-					if (c is TextChunk) {
-						converted.Insert (c);
-					}
-				}
-				
-				converted.Save (stream);
-			}
 		}
 
 		public override Cms.Profile GetProfile ()
@@ -1332,26 +1229,6 @@ namespace FSpot.Imaging.Png {
 			using (MemoryStream stream = new MemoryStream (xmpchunk.TextData)) {
 				return new XmpFile (stream);
 			}
-		}
-
-		public void SetXmp (XmpFile xmp)
-		{
-			TextChunk text = null;
-
-			text = Header.LookupTextChunk ("XML:com.adobe.xmp");
-			if (text != null)
-				Chunks.Remove (text);
-			
-			text = Header.LookupTextChunk ("XMP");
-			if (text != null)
-				Chunks.Remove (text);
-
-			ItxtChunk itext = new ItxtChunk ("XML:com.adobe.xmp", "en", false);
-			using (MemoryStream stream = new MemoryStream ()) {
-				xmp.Save (stream);
-				itext.SetText (stream.ToArray ());
-			}
-			Header.Insert (itext);
 		}
 	}
 }

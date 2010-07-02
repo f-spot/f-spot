@@ -314,23 +314,6 @@ namespace FSpot.Imaging.Iptc {
 			}
 		}
 
-		public void Save (System.IO.Stream stream)
-		{
-			stream.WriteByte (TagMarker);
-			stream.WriteByte (RecordNumber);
-			stream.WriteByte (DataSetNumber);
-			if (Data.Length < LengthMask) {
-				byte [] len = FSpot.BitConverter.GetBytes ((ushort)Data.Length, false);
-				stream.Write (len, 0, len.Length);
-			} else {
-				byte [] len =  FSpot.BitConverter.GetBytes ((ushort)LengthMask & 8, false);
-				stream.Write (len, 0, len.Length);
-				len = FSpot.BitConverter.GetBytes ((ulong) Data.Length, false);
-				stream.Write (len, 0, len.Length);
-			}
-			stream.Write (Data, 0, Data.Length);
-		}
-
 		public string XmpObject 
 		{
 			get {
@@ -417,13 +400,6 @@ namespace FSpot.Imaging.Iptc {
 				//System.Console.WriteLine ("{0}:{1} - {2} {3}", data.RecordNumber, data.DataSetNumber, 
 				//			  data.ID.ToString (), info.Description);
 				sets.Add (data);
-			}
-		}
-
-		public void Save (System.IO.Stream stream) 
-		{
-			foreach (DataSet data in sets) {
-				data.Save (stream);
 			}
 		}
 	}

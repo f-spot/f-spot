@@ -199,39 +199,6 @@ namespace FSpot.Imaging.Pnm {
 			return PixbufUtils.ScaleToMaxSize (this.Load (), width, height);
 		}
 
-		public override void Save (Gdk.Pixbuf pixbuf, System.IO.Stream stream)
-		{
-			if (pixbuf.HasAlpha)
-				throw new NotImplementedException ();
-
-			// FIXME this should be part of the header class
-			string header = String.Format ("P6\n"
-						       + "#Software: {0} {1}\n"
-						       + "{2} {3}  #Width and Height\n"
-						       + "255\n", 
-						       FSpot.Defines.PACKAGE,
-						       FSpot.Defines.VERSION,
-						       pixbuf.Width, 
-						       pixbuf.Height);
-						       
-			byte [] header_bytes = System.Text.Encoding.UTF8.GetBytes (header);
-			stream.Write (header_bytes, 0, header.Length);
-										 
-			unsafe {
-				byte * src_pixels = (byte *) pixbuf.Pixels;
-				int src_stride = pixbuf.Rowstride;
-				int count = pixbuf.Width * pixbuf.NChannels;
-				int height = pixbuf.Height;
-
-				for (int y = 0; y < height; y++) {
-					for (int x = 0; x < count; x++) {
-						stream.WriteByte (* (src_pixels + x));
-					}
-					src_pixels += src_stride;
-				}
-			}
-		}
-
 		public static Gdk.Pixbuf Load (Stream stream)
 		{
 			Header header = new Header (stream);

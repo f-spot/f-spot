@@ -62,40 +62,6 @@ namespace FSpot.Imaging.Xmp {
 			}
 		}
 
-		public void Save (System.IO.Stream stream)
-		{
-			try {
-				XmlTextWriter text;
-				RdfXmlWriter writer;
-                                XmlDocument rdfdoc = new XmlDocument();
-
-                                // first, construct the rdf guts, semweb style
-                                writer = new XmpWriter (rdfdoc);
-				//writer.Namespaces.Parent = MetadataStore.Namespaces;
-				writer.Write (store);
-				writer.Close ();
-			       
-                                // now construct the xmp wrapper packet
-				text = new XmlTextWriter (stream, System.Text.Encoding.UTF8);
- 				text.Formatting = Formatting.Indented;
-                        
-                                text.WriteProcessingInstruction ("xpacket", "begin=\"\ufeff\" id=\"W5M0MpCehiHzreSzNTczkc9d\"");
-                                text.WriteStartElement ("x:xmpmeta");
-                                text.WriteAttributeString ("xmlns", "x", null, "adobe:ns:meta/");
-
-				((XmlElement)rdfdoc.ChildNodes[1]).RemoveAttribute ("xml:base");
-				rdfdoc.ChildNodes[1].WriteTo (text);
-
-                                // now close off the xmp packet
-                                text.WriteEndElement ();
-                                text.WriteProcessingInstruction ("xpacket", "end=\"r\"");
-				text.Close ();
-				
-			} catch (System.Exception e) {
-				Log.Exception (e);
-			}
-		}
-
 		public bool Add (Statement stmt)
 		{
 			return ((SemWeb.StatementSink)store).Add (stmt);
@@ -112,20 +78,5 @@ namespace FSpot.Imaging.Xmp {
 				Log.Debug(stmt.ToString());
 			}
 		}
-
-#if TEST_XMP
-		static void Main (string [] args)
-		{
-			XmpFile xmp = new XmpFile (System.IO.File.OpenRead (args [0]));
-			//xmp.Store.Dump ();
-#if false
-			System.IO.StreamReader stream = new System.IO.StreamReader (System.IO.File.OpenRead (args [0]));
-
-			while (stream.BaseStream.Position < stream.BaseStream.Length) {
-				System.Console.WriteLine (stream.ReadLine ());
-			}
-#endif
-		}
-#endif
 	}
 }

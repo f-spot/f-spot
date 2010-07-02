@@ -111,11 +111,6 @@ namespace FSpot.Imaging {
 			get { return GetOrientation (); }
 		}
 
-		public virtual void Save (Gdk.Pixbuf pixbuf, System.IO.Stream stream)
-		{
-			throw new NotImplementedException (Catalog.GetString ("Writing to this file format is not supported"));
-		}
-
 		protected Gdk.Pixbuf TransformAndDispose (Gdk.Pixbuf orig)
 		{
 			if (orig == null)

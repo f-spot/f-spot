@@ -38,15 +38,4 @@ int f_pixbuf_get_scaled_width (GdkPixbuf *pixbuf, int size);
    thumbnail SIZE.  */
 int f_pixbuf_get_scaled_height (GdkPixbuf *pixbuf, int size);
 
-
-/* Picture ops.  */
-GdkPixbuf *f_pixbuf_copy_apply_brightness_and_contrast (GdkPixbuf *src,
-							float brightness,
-							float contrast);
-
-gboolean  f_pixbuf_save_jpeg_atomic  (GdkPixbuf   *pixbuf,
-				      const char  *filename,
-				      int          quality,
-				      GError     **error);
-
 #endif

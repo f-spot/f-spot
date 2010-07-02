@@ -45,64 +45,6 @@
 #include <gdk/gdk.h>
 #include "f-image-surface.h"
 
-
-/* Helper functions.  */
-
-static unsigned char
-apply_brightness_and_contrast (unsigned char u_value,
-			       float brightness,
-			       float contrast)
-{
-	float  nvalue;
-	double power;
-	float  value;
-
-	value = (float) u_value / 255.0;
-
-	/* apply brightness */
-	if (brightness < 0.0)
-		value = value * (1.0 + brightness);
-	else
-		value = value + ((1.0 - value) * brightness);
-	
-	/* apply contrast */
-	if (contrast < 0.0) {
-		if (value > 0.5)
-			nvalue = 1.0 - value;
-		else
-			nvalue = value;
-
-		if (nvalue < 0.0)
-			nvalue = 0.0;
-
-		nvalue = 0.5 * pow (nvalue * 2.0 , (double) (1.0 + contrast));
-
-		if (value > 0.5)
-			value = 1.0 - nvalue;
-		else
-			value = nvalue;
-	} else {
-		if (value > 0.5)
-			nvalue = 1.0 - value;
-		else
-			nvalue = value;
-		
-		if (nvalue < 0.0)
-			nvalue = 0.0;
-		
-		power = (contrast == 1.0) ? 127 : 1.0 / (1.0 - contrast);
-		nvalue = 0.5 * pow (2.0 * nvalue, power);
-		
-		if (value > 0.5)
-			value = 1.0 - nvalue;
-		else
-			value = nvalue;
-	}
-	
-	return (guchar) (value * 255);
-}
-
-
 /* Public functions.  */
 
 int
@@ -144,68 +86,6 @@ f_pixbuf_get_scaled_height (GdkPixbuf *pixbuf,
 		return size * ((double) orig_height / orig_width);
 	else
 		return size;
-}
-
-/* Return a new GdkPixbuf enhancing/reducing brightness and contrast according
-   to the specified values (from -1.0 to +1.0).  */
-GdkPixbuf *
-f_pixbuf_copy_apply_brightness_and_contrast (GdkPixbuf *src,
-					     float brightness,
-					     float contrast)
-{
-	GdkPixbuf *result_pixbuf;
-	char *sp, *dp;
-	int width, height;
-	int line;
-	int result_rowstride, src_rowstride;
-	int bytes_per_pixel;
-
-	g_return_val_if_fail ((brightness > -1.0 || F_DOUBLE_EQUAL (brightness, -1.0))
-			       && (brightness < 1.0 || F_DOUBLE_EQUAL (brightness, 1.0)),
-			      NULL);
-	g_return_val_if_fail ((contrast > -1.0 || F_DOUBLE_EQUAL (contrast, -1.0))
-			       && (contrast < 1.0 || F_DOUBLE_EQUAL (contrast, 1.0)),
-			      NULL);
-
-	if (F_DOUBLE_EQUAL (brightness, 0.0) && F_DOUBLE_EQUAL (contrast, 0.0))
-		return gdk_pixbuf_copy (src);
-
-	result_pixbuf = gdk_pixbuf_new (gdk_pixbuf_get_colorspace (src),
-					gdk_pixbuf_get_has_alpha (src),
-					gdk_pixbuf_get_bits_per_sample (src),
-					gdk_pixbuf_get_width (src),
-					gdk_pixbuf_get_height (src));
-
-	width = gdk_pixbuf_get_width (result_pixbuf);
-	height = gdk_pixbuf_get_height (result_pixbuf);
-
-	result_rowstride = gdk_pixbuf_get_rowstride (result_pixbuf);
-	src_rowstride = gdk_pixbuf_get_rowstride (src);
-
-	bytes_per_pixel = gdk_pixbuf_get_has_alpha (result_pixbuf) ? 4 : 3;
-
-	sp = gdk_pixbuf_get_pixels (src);
-	dp = gdk_pixbuf_get_pixels (result_pixbuf);
-
-	for (line = 0; line < height; line ++) {
-		char *sq = sp;
-		char *dq = dp;
-		int i;
-
-		for (i = 0; i < width; i ++) {
-			dq[0] = apply_brightness_and_contrast (sq[0], brightness, contrast);
-			dq[1] = apply_brightness_and_contrast (sq[1], brightness, contrast);
-			dq[2] = apply_brightness_and_contrast (sq[2], brightness, contrast);
-
-			dq += bytes_per_pixel;
-			sq += bytes_per_pixel;
-		}
-
-		sp += src_rowstride;
-		dp += result_rowstride;
-	}
-
-	return result_pixbuf;
 }
 
 cairo_surface_t *
@@ -346,37 +226,4 @@ f_pixbuf_from_cairo_surface (cairo_surface_t *source)
   cairo_destroy (ctx);
   cairo_surface_destroy (surface);
   return pixbuf;
-}
-
-gboolean
-f_pixbuf_save_jpeg_atomic  (GdkPixbuf   *pixbuf,
-			    const char  *file_name,
-			    int          quality,
-			    GError     **error)
-{
-	char *tmp_file_name = g_strconcat (file_name, ".tmp", NULL);
-	char *quality_string = g_strdup_printf ("%d", quality);
-	gboolean success;
-
-	if (! gdk_pixbuf_save (pixbuf, tmp_file_name, "jpeg", error,
-			       "quality", quality_string, NULL)) {
-		success = FALSE;
-		goto end;
-	}
-
-	if (rename (tmp_file_name, file_name) != 0) {
-		char *error_message = g_strdup_printf ("Atomic rename failed: %s", g_strerror (errno));
-		g_set_error (error, GDK_PIXBUF_ERROR, GDK_PIXBUF_ERROR_FAILED, error_message);
-		g_free (error_message);
-
-		success = FALSE;
-		goto end;
-	}
-
-	success = TRUE;
-
- end:
-	g_free (quality_string);
-	g_free (tmp_file_name);
-	return TRUE;
 }
