@@ -15,6 +15,7 @@ using System;
 using System.Reflection;
 using System.Collections;
 using System.IO;
+using FSpot.Utils;
 using FSpot.Platform;
 
 namespace FSpot.Widgets
@@ -913,7 +914,7 @@ namespace FSpot.Widgets
 
 						lock (entry) {
 							if (entry.Reload && expansion == 0 && !entry.IsDisposed) {
-								entry.SetPixbufExtended (PixbufUtils.ShallowCopy (temp_thumbnail), false);
+								entry.SetPixbufExtended (temp_thumbnail.ShallowCopy (), false);
 								entry.Reload = true;
 							}
 						}

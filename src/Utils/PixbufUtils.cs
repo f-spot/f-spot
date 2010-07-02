@@ -191,7 +191,7 @@ namespace FSpot.Utils
 			return dest;
 		}
 
-		public static Pixbuf ShallowCopy (Pixbuf pixbuf)
+		public static Pixbuf ShallowCopy (this Pixbuf pixbuf)
 		{
 			if (pixbuf == null)
 				return null;

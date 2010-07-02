@@ -354,7 +354,7 @@ namespace FSpot {
 					if (pixbuf == null)
 						return null;
 					
-					return PixbufUtils.ShallowCopy (pixbuf);
+					return pixbuf.ShallowCopy ();
 				}
 			}
 			

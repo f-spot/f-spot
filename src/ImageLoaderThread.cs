@@ -16,6 +16,7 @@ using System;
 
 using Hyena;
 
+using FSpot.Utils;
 using FSpot.Imaging;
 
 public class ImageLoaderThread {
@@ -32,7 +33,10 @@ public class ImageLoaderThread {
 		/* The pixbuf obtained from the operation.  */
         private Pixbuf result;
 		public Pixbuf Result {
-            get { return PixbufUtils.ShallowCopy (result); }
+            get {
+				if (result == null) return null;
+				return result.ShallowCopy ();
+			}
             set { result = value; }
         }
 

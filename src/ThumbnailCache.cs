@@ -14,6 +14,7 @@ using System.Collections;
 using Gdk;
 
 using Hyena;
+using FSpot.Utils;
 
 namespace FSpot
 {
@@ -80,7 +81,9 @@ public class ThumbnailCache : IDisposable {
 		pixbuf_mru.Remove (item);
 		pixbuf_mru.Insert (0, item);
 
-		return PixbufUtils.ShallowCopy (item.pixbuf);
+        if (item.pixbuf == null)
+            return null;
+        return item.pixbuf.ShallowCopy ();
 	}
 
 	public void RemoveThumbnailForUri (SafeUri uri)

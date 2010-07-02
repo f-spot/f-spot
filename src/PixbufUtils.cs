@@ -144,14 +144,6 @@ public static class PixbufUtils {
 		}
 	}
 
-	public static Pixbuf ShallowCopy (Pixbuf pixbuf)
-	{
-		if (pixbuf == null)
-			return null;
-		Pixbuf result = new Pixbuf (pixbuf, 0, 0, pixbuf.Width, pixbuf.Height);
-		return result;
-	}
-
 	public static Pixbuf ScaleToMaxSize (Pixbuf pixbuf, int width, int height)
 	{
 		return ScaleToMaxSize (pixbuf, width, height, true);
@@ -174,51 +166,16 @@ public static class PixbufUtils {
 		
 	static public void GetSize (string path, out int width, out int height)
 	{
-#if true
 		using (Gdk.Pixbuf pixbuf = new Gdk.Pixbuf (path)) {
 			width = pixbuf.Width;
 			height = pixbuf.Height;
 		}
-#else //yes, the pixbuf loader hack is smarter, but it leaks like an old women
-		Gdk.PixbufLoader loader = new Gdk.PixbufLoader ();
-		int orig_width = 0;
-		int orig_height = 0;
-		bool done = false;
-
-		loader.SizePrepared += delegate (object obj, SizePreparedArgs args) {
-			orig_width = args.Width;
-			orig_height = args.Height;
-			done = true;
-		};
-		
-		using (Stream stream = File.OpenRead (path)) {
-			byte [] data = new byte [4096];
-			int count;
-
-			while (((count = stream.Read (data, 0, data.Length)) > 0) && loader.Write (data, (ulong)count)) {
-				if (done)
-					break;
-			}
-		}
-		
-		width = orig_width;
-		height = orig_height;
-#endif
 	}
 
 	static public Pixbuf LoadAtMaxSize (string path, int max_width, int max_height)
 	{
-#if true
 		PixbufUtils.AspectLoader loader = new AspectLoader (max_width, max_height);
 		return loader.LoadFromFile (path);
-#else
-		int width, height;
-		JpegUtils.GetSize (path, out width, out height);
-		PixbufUtils.Fit (width, height, max_width, max_height, false, out width, out height);
-		Gdk.Pixbuf image = JpegUtils.LoadScaled (path, width, height);
-		
-		return image;
-#endif
 	}
 
 	static public Pixbuf LoadFromStream (System.IO.Stream input)
@@ -235,62 +192,7 @@ public static class PixbufUtils {
 		return loader.Pixbuf;
 		
 	}
-	
 
-	public static void Save (Gdk.Pixbuf pixbuf, System.IO.Stream stream, string type, string [] options, string [] values)
-	{
-		byte [] data;
-
-		data = PixbufUtils.Save (pixbuf, type, options, values);
-		stream.Write (data, 0, data.Length);
-	}
-
-	static string [] NullTerminateArray (string [] options)
-	{
-		string [] terminated_options = options;
-
-		if (options != null && options [ options.Length - 1 ] != null) {
-			terminated_options = new string [options.Length + 1];
-			Array.Copy (options, terminated_options, options.Length);
-		}
-		
-		return terminated_options;
-	}
-
-	[DllImport("libgdk_pixbuf-2.0-0.dll")]
-	static extern bool gdk_pixbuf_save_to_bufferv (IntPtr raw, out IntPtr data, out IntPtr length, 
-						       string type, 
-						       string [] keys, string [] values, out IntPtr error);
-
-					
-	public static byte [] Save (Gdk.Pixbuf pixbuf, string type, string [] options, string [] values)
-	{
-		IntPtr error = IntPtr.Zero;
-		IntPtr data;
-		IntPtr length;
-
-		bool success = gdk_pixbuf_save_to_bufferv (pixbuf.Handle, 
-							   out data, 
-							   out length, 
-							   type,
-							   NullTerminateArray (options),
-							   NullTerminateArray (values),
-							   out error);
-		
-		if (error != IntPtr.Zero) 
-			throw new GLib.GException (error);
-
-		if (!success)
-			throw new ApplicationException ("Unknown error while saving file");
-
-		byte [] content = new byte [(int)length];
-		Marshal.Copy (data, content, 0, (int)length);
-
-		GLib.Marshaller.Free (data);
-
-		return content;
-	}
-	
 	public static Pixbuf TagIconFromPixbuf (Pixbuf source)
 	{
 		return IconFromPixbuf (source, (int) FSpot.Tag.IconSize.Large);
@@ -316,61 +218,14 @@ public static class PixbufUtils {
 		
 		return icon;
 	}
-		
-	static public Pixbuf LoadFromScreen (Gdk.Window win) {
-		Gdk.Screen screen = win.Screen;
-		Drawable d = screen.RootWindow;
-		int monitor = screen.GetMonitorAtWindow (win);
-		Gdk.Rectangle geom = screen.GetMonitorGeometry (monitor);
-		
-		//
-		// We use the screen width and height because that reflects
-		// the current resolution, the RootWindow can actually be different.
-		//
 
-		Pixbuf buf = new Pixbuf (Colorspace.Rgb, false, 8, geom.Width, geom.Height);
-		
-		return buf.GetFromDrawable (d,
-					    d.Colormap, geom.X, geom.Y, 0, 0, 
-					    geom.Width, geom.Height);
-	}
-
-	static public Pixbuf LoadFromScreen () {
-		Screen screen = Display.Default.GetScreen (0);
-		Drawable d = screen.RootWindow;
-		int width = screen.Width;
-		int height = screen.Height;
-		
-		//
-		// We use the screen width and height because that reflects
-		// the current resolution, the RootWindow can actually be different.
-		//
-
-		Pixbuf buf = new Pixbuf (Colorspace.Rgb, false, 8, width, height);
-		
-		return buf.GetFromDrawable (d,
-					    d.Colormap, 0, 0, 0, 0, 
-					    width, height);
-	}
-
-	static public Pixbuf LoadFromAssembly (string resource)
+	static Pixbuf LoadFromAssembly (string resource)
 	{
 		try {
 			return new Pixbuf (System.Reflection.Assembly.GetEntryAssembly (), resource);
 		} catch {
 			return null;
 		}
-	}
-
-	[DllImport ("libc")]
-	static extern int rename (string oldpath, string newpath);
-
-	public static void SaveAtomic (Gdk.Pixbuf src, string filename, string type, string [] keys, string [] values)
-	{
-			string tmpname = filename + ".tmp";
-			src.Savev (tmpname, type, NullTerminateArray (keys), NullTerminateArray (values));
-			if (rename (tmpname, filename) < 0)
-				throw new Exception ("Error renaming file");
 	}
 
 	public static Gdk.Pixbuf ScaleToAspect (Gdk.Pixbuf orig, int width, int height)

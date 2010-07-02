@@ -612,10 +612,12 @@ namespace FSpot.Widgets
 
  		protected virtual Pixbuf GetPixbuf (int i, bool highlighted)
 		{
-			Pixbuf current;
+			Pixbuf current = null;
 			SafeUri uri = (selection.Collection [i]).DefaultVersion.Uri;
 			try {
-				current = PixbufUtils.ShallowCopy (thumb_cache.Get (uri));
+				var pixbuf = thumb_cache.Get (uri);
+				if (pixbuf != null)
+					current = pixbuf.ShallowCopy ();
 			} catch (IndexOutOfRangeException) {
 				current = null;
 			}
