@@ -5,7 +5,7 @@ using System.IO;
 using Hyena;
 
 namespace FSpot.Imaging.Pnm {
-	public class PnmFile : ImageFile, StatementSource {
+	public class PnmFile : BaseImageFile, StatementSource {
 
                 // false seems a safe default
                 public bool Distinct {

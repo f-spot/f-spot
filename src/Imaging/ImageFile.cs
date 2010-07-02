@@ -20,7 +20,7 @@ namespace FSpot.Imaging {
 		}
 	}
 
-	public class ImageFile : IDisposable {
+	public static class ImageFile {
 
 #region Factory functionality
 
@@ -30,10 +30,10 @@ namespace FSpot.Imaging {
 		static ImageFile ()
 		{
 			name_table = new Hashtable ();
-			name_table [".svg"] = typeof (FSpot.Imaging.Svg.SvgFile);
-			name_table [".gif"] = typeof (ImageFile);
-			name_table [".bmp"] = typeof (ImageFile);
-			name_table [".pcx"] = typeof (ImageFile);
+			name_table [".svg"] = typeof (NoMetadataFile);
+			name_table [".gif"] = typeof (NoMetadataFile);
+			name_table [".bmp"] = typeof (NoMetadataFile);
+			name_table [".pcx"] = typeof (NoMetadataFile);
 			name_table [".jpeg"] = typeof (TagLibFile);
 			name_table [".jpg"] = typeof (TagLibFile);
 			name_table [".png"] = typeof (TagLibFile);
@@ -109,17 +109,13 @@ namespace FSpot.Imaging {
 			return t;
 		}
 		
-		public static ImageFile Create (SafeUri uri)
+		public static IImageFile Create (SafeUri uri)
 		{
-			System.Type t = GetLoaderType (uri);
-			ImageFile img;
+			var t = GetLoaderType (uri);
+            if (t == null)
+                throw new Exception (String.Format ("Unsupported image: {0}", uri));
 
-			if (t != null)
-				img = (ImageFile) System.Activator.CreateInstance (t, new object[] { uri });
-			else 
-				img = new ImageFile (uri);
-
-			return img;
+			return (IImageFile) System.Activator.CreateInstance (t, new object[] { uri });
 		}
 
 		public static bool IsRaw (SafeUri uri)
@@ -155,15 +151,26 @@ namespace FSpot.Imaging {
 		}
 
 #endregion
+	}
+
+    public interface IImageFile : IDisposable {
+		Gdk.Pixbuf Load ();
+		Cms.Profile GetProfile ();
+		Gdk.Pixbuf Load (int max_width, int max_height);
+		Stream PixbufStream ();
+		ImageOrientation Orientation { get; }
+    }
+
+    public abstract class BaseImageFile : IImageFile {
 
 		protected SafeUri uri;
 
-		public ImageFile (SafeUri uri)
+		public BaseImageFile (SafeUri uri)
 		{
 			this.uri = uri;
 		}
 
-		~ImageFile ()
+		~BaseImageFile ()
 		{
 			Dispose ();
 		}
@@ -242,9 +249,15 @@ namespace FSpot.Imaging {
 		protected virtual void Close ()
 		{
 		}
-	} 
+    }
 
-    public class TagLibFile : ImageFile {
+    public class NoMetadataFile : BaseImageFile {
+        public NoMetadataFile (SafeUri uri) : base (uri)
+        {
+        }
+    }
+
+    public class TagLibFile : BaseImageFile {
         private TagLib.Image.File metadata_file;
 
         public TagLibFile (SafeUri uri) : base (uri)

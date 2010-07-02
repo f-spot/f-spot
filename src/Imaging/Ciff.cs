@@ -304,7 +304,7 @@ namespace FSpot.Imaging.Ciff {
 		}
 	}
 	
-	public class CiffFile : ImageFile , SemWeb.StatementSource {
+	public class CiffFile : BaseImageFile , SemWeb.StatementSource {
 		public ImageDirectory root;
 		bool little;
 		System.IO.Stream stream;

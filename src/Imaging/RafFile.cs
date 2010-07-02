@@ -14,7 +14,7 @@ namespace FSpot.Imaging.Raf {
 
 	// ALL the sample files I have begin with "FUJIFILMCCD-RAW "
 	
-	public class RafFile : ImageFile, SemWeb.StatementSource {
+	public class RafFile : BaseImageFile, SemWeb.StatementSource {
 
                 // false seems a safe default
                 public bool Distinct {

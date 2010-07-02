@@ -1831,7 +1831,7 @@ namespace FSpot.Imaging.Tiff {
 	}
 
 
-	public class TiffFile : ImageFile, SemWeb.StatementSource {
+	public class TiffFile : BaseImageFile, SemWeb.StatementSource {
 		public Header Header;
 
                 // false seems a safe default

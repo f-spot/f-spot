@@ -288,7 +288,7 @@ namespace FSpotGoogleExport {
 
 			if (show_captcha) {
 				try {
-					using  (ImageFile img = ImageFile.Create(new SafeUri(captcha_exception.CaptchaUrl, true))) {
+					using  (var img = ImageFile.Create(new SafeUri(captcha_exception.CaptchaUrl, true))) {
 						captcha_image.Pixbuf = img.Load();
 						token = captcha_exception.Token;
 					}

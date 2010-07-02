@@ -331,7 +331,7 @@ namespace FSpot.Widgets {
 			if (photo != null) {
 				MetadataStore store = new MetadataStore ();
 				try {
-					using (ImageFile img = ImageFile.Create (photo.DefaultVersion.Uri)) {
+					using (var img = ImageFile.Create (photo.DefaultVersion.Uri)) {
 						if (img is SemWeb.StatementSource) {
 							StatementSource source = (StatementSource)img;
 							source.Select (store);

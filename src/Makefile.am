@@ -95,7 +95,6 @@ SOURCES = \
 	Imaging/PixelBuffer.cs \
 	Imaging/PnmFile.cs \
 	Imaging/RafFile.cs \
-	Imaging/SvgFile.cs \
 	Imaging/X3fFile.cs \
 	Imaging/XmpFile.cs \
 	Imaging/Tiff.cs \

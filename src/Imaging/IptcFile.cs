@@ -317,11 +317,7 @@ namespace FSpot.Imaging.Iptc {
 		public string XmpObject 
 		{
 			get {
-				//DataSetInfo info = (DataSetInfo) DataSetInfo.IDTable [this.ID];
-				//if (info != null && info.Format == Format.String) {
-					return System.Text.Encoding.UTF8.GetString (this.Data);
-					//}
-					//return null;
+				return System.Text.Encoding.UTF8.GetString (this.Data);
 			}
 		}
 	}
@@ -394,11 +390,7 @@ namespace FSpot.Imaging.Iptc {
 				try {
 					data.Load (stream);
 				} catch (System.Exception) {
-					//System.Console.WriteLine (e.ToString ());
 				}
-				//DataSetInfo info = DataSetInfo.FindInfo (data.ID);
-				//System.Console.WriteLine ("{0}:{1} - {2} {3}", data.RecordNumber, data.DataSetNumber, 
-				//			  data.ID.ToString (), info.Description);
 				sets.Add (data);
 			}
 		}

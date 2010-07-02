@@ -306,7 +306,7 @@ namespace FSpot.Widgets
 	
 			MemoryStore store;
 			
-			public ImageInfo (ImageFile img) 
+			public ImageInfo (IImageFile img)
 			{
 				// FIXME We use the memory store to hold the anonymous statements
 				// as they are added so that we can query for them later to 
@@ -471,12 +471,10 @@ namespace FSpot.Widgets
 			name_value_label.Visible = show_name;
 			
 			try {
-				//using (new Timer ("building info")) {
-					using (ImageFile img = ImageFile.Create (photo.DefaultVersion.Uri))
-					{
-						info = new ImageInfo (img);
-					}
-					//}
+                using (var img = ImageFile.Create (photo.DefaultVersion.Uri))
+                {
+                    info = new ImageInfo (img);
+                }
 			} catch (System.Exception e) {
 				Hyena.Log.Debug (e.StackTrace);
 				info = new ImageInfo (null);			
@@ -681,7 +679,7 @@ namespace FSpot.Widgets
 
 			try {
 				if (hint == null)
-					using (ImageFile img = ImageFile.Create (photo.DefaultVersion.Uri))
+					using (var img = ImageFile.Create (photo.DefaultVersion.Uri))
 						hint = img.Load (256, 256);
 				
 				histogram_image.Pixbuf = histogram.Generate (hint, max);

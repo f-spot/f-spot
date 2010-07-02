@@ -21,7 +21,7 @@ namespace FSpot.Widgets {
 		
 		public ImageInfo (SafeUri uri)
 		{
-				using (ImageFile img = ImageFile.Create (uri)) {
+				using (var img = ImageFile.Create (uri)) {
 					Pixbuf pixbuf = img.Load ();
 					SetPixbuf (pixbuf);
 					pixbuf.Dispose ();

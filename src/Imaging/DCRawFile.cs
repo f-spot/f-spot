@@ -72,7 +72,7 @@ namespace FSpot.Imaging {
 		}
 	}
 
-	public class DCRawFile : ImageFile {
+	public class DCRawFile : BaseImageFile {
 		const string dcraw_command = "dcraw";
 
 		public DCRawFile (SafeUri uri) : base (uri)

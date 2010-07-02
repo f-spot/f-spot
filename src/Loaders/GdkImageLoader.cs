@@ -48,7 +48,7 @@ namespace FSpot.Loaders {
 					upd (this, new AreaUpdatedEventArgs (new Rectangle (0, 0, thumb.Width, thumb.Height)));
 			}
 
-			using (ImageFile image_file = ImageFile.Create (uri)) {
+			using (var image_file = ImageFile.Create (uri)) {
 				image_stream = image_file.PixbufStream ();
 				pixbuf_orientation = image_file.Orientation;
 			}

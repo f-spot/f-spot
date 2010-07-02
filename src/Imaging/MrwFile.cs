@@ -169,7 +169,7 @@ namespace FSpot.Imaging.Mrw {
 		
 	}
 	
-	public class MrwFile : ImageFile, SemWeb.StatementSource {
+	public class MrwFile : BaseImageFile, SemWeb.StatementSource {
 		MrmBlock mrm;
 		FSpot.Imaging.Tiff.Header header;
 
