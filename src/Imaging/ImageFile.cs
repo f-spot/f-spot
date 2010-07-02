@@ -58,7 +58,7 @@ namespace FSpot.Imaging {
 			name_table [".pcx"] = typeof (ImageFile);
 			name_table [".jpeg"] = typeof (TagLibFile);
 			name_table [".jpg"] = typeof (TagLibFile);
-			name_table [".png"] = typeof (FSpot.Imaging.Png.PngFile);
+			name_table [".png"] = typeof (TagLibFile);
 			name_table [".cr2"] = typeof (FSpot.Imaging.Tiff.Cr2File);
 			name_table [".nef"] = typeof (FSpot.Imaging.Tiff.NefFile);
 			name_table [".pef"] = typeof (FSpot.Imaging.Tiff.NefFile);
