@@ -66,7 +66,13 @@ namespace FSpot.Jobs {
                 tag.Software = FSpot.Defines.PACKAGE + " version " + FSpot.Defines.VERSION;
 
                 Hyena.Log.Information (photo.DefaultVersion.Uri);
-                metadata.Save ();
+                if (Preferences.Get<bool> (Preferences.METADATA_ALWAYS_USE_SIDECAR) || !metadata.Writeable) {
+                    var sidecar_res = new GIOTagLibFileAbstraction () { Uri = photo.DefaultVersion.Uri.ReplaceExtension (".xmp") };
+
+                    metadata.SaveXmpSidecar (sidecar_res);
+                } else {
+                    metadata.Save ();
+                }
             }
         }
     }

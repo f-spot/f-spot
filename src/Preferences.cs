@@ -72,6 +72,8 @@ namespace FSpot
 
 		public const string METADATA_EMBED_IN_IMAGE = APP_FSPOT + "metadata/embed_in_image";
 
+		public const string METADATA_ALWAYS_USE_SIDECAR = APP_FSPOT + "metadata/always_use_sidecar";
+
 		public const string EDIT_REDEYE_THRESHOLD = APP_FSPOT + "edit/redeye_threshold";
 		public const string EDIT_CREATE_XCF_VERSION = APP_FSPOT + "edit/create_xcf";
 
@@ -113,6 +115,7 @@ namespace FSpot
 				return 0;
 					
 			case METADATA_EMBED_IN_IMAGE:
+			case METADATA_ALWAYS_USE_SIDECAR:
 			case MAIN_WINDOW_MAXIMIZED:
 			case GROUP_ADAPTOR_ORDER_ASC:
 				return false;
