@@ -8,7 +8,6 @@ SUBDIRS = \
 	Hyena/src/Mono.Data.Sqlite     \
 	Hyena/src/Hyena.Data.Sqlite     \
 	Hyena/src/Hyena.Gui     \
-	libjpegtran			\
 	libfspot			\
 	semweb				\
 	TagLib 				\
