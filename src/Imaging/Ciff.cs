@@ -391,20 +391,6 @@ namespace FSpot.Imaging.Ciff {
 			return new ImageDirectory (stream, start, end, little);
 		}
 
-		public override ImageOrientation GetOrientation ()
-		{
-			var orientation = ImageOrientation.TopLeft;
-			ImageDirectory props = Root.ReadDirectory (Tag.ImageProps);
-		       	byte [] data = props.ReadEntry (Tag.ImageSpec);
-			
-			if (data != null)
-				orientation = new ImageSpec (data, little).Orientation;
-			else 
-				Log.Debug ("NO ORIENTATION");
-
-			return orientation;
-		}
-
 		public override System.IO.Stream PixbufStream ()
 		{
 			byte [] data = GetEmbeddedJpeg ();

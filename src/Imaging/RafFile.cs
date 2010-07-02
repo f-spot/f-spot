@@ -34,21 +34,6 @@ namespace FSpot.Imaging.Raf {
 				return exif_data;
 			}
 		}
-		
-		public override ImageOrientation GetOrientation (){
-			var orientation = ImageOrientation.TopLeft;
-
-			Exif.ExifEntry e = this.ExifData.GetContents (Exif.Ifd.Zero).Lookup (Exif.Tag.Orientation);
-			if (e != null) {
-				ushort [] value = e.GetDataUShort ();
-				orientation = (ImageOrientation) value [0];
-			}
-
-			if (orientation < ImageOrientation.TopLeft || orientation > ImageOrientation.LeftBottom)
-				orientation = ImageOrientation.TopLeft;
-
-			return orientation;
-		}
 
 		public override System.IO.Stream PixbufStream ()
 		{
@@ -68,7 +53,7 @@ namespace FSpot.Imaging.Raf {
 		public override Gdk.Pixbuf Load (int width, int height)
 		{
 			Gdk.Pixbuf full = this.Load ();
-			Gdk.Pixbuf rotated = FSpot.Utils.PixbufUtils.TransformOrientation (full, this.GetOrientation());
+			Gdk.Pixbuf rotated = FSpot.Utils.PixbufUtils.TransformOrientation (full, Orientation);
 			Gdk.Pixbuf scaled  = PixbufUtils.ScaleToMaxSize (rotated, width, height);
 			full.Dispose ();
 			return scaled;

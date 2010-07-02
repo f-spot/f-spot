@@ -30,13 +30,13 @@ namespace FSpot.Imaging {
 		static ImageFile ()
 		{
 			name_table = new Hashtable ();
-			name_table [".svg"] = typeof (TagLibFile);
-			name_table [".gif"] = typeof (TagLibFile);
-			name_table [".bmp"] = typeof (TagLibFile);
-			name_table [".pcx"] = typeof (TagLibFile);
-			name_table [".jpeg"] = typeof (TagLibFile);
-			name_table [".jpg"] = typeof (TagLibFile);
-			name_table [".png"] = typeof (TagLibFile);
+			name_table [".svg"] = typeof (BaseImageFile);
+			name_table [".gif"] = typeof (BaseImageFile);
+			name_table [".bmp"] = typeof (BaseImageFile);
+			name_table [".pcx"] = typeof (BaseImageFile);
+			name_table [".jpeg"] = typeof (BaseImageFile);
+			name_table [".jpg"] = typeof (BaseImageFile);
+			name_table [".png"] = typeof (BaseImageFile);
 			name_table [".cr2"] = typeof (FSpot.Imaging.Tiff.Cr2File);
 			name_table [".nef"] = typeof (FSpot.Imaging.Tiff.NefFile);
 			name_table [".pef"] = typeof (FSpot.Imaging.Tiff.NefFile);
@@ -161,13 +161,18 @@ namespace FSpot.Imaging {
 		ImageOrientation Orientation { get; }
     }
 
-    public abstract class BaseImageFile : IImageFile {
+    public class BaseImageFile : IImageFile {
+        ImageOrientation orientation = ImageOrientation.TopLeft;
 
 		protected SafeUri uri;
 
 		public BaseImageFile (SafeUri uri)
 		{
 			this.uri = uri;
+
+            using (var metadata_file = Metadata.Parse (uri)) {
+                orientation = metadata_file.ImageTag.Orientation;
+            }
 		}
 
 		~BaseImageFile ()
@@ -190,7 +195,7 @@ namespace FSpot.Imaging {
 		}
 
 		public ImageOrientation Orientation {
-			get { return GetOrientation (); }
+			get { return orientation; }
 		}
 
 		protected Gdk.Pixbuf TransformAndDispose (Gdk.Pixbuf orig)
@@ -229,11 +234,6 @@ namespace FSpot.Imaging {
 			}
 		}
 
-		public virtual ImageOrientation GetOrientation ()
-		{
-			return ImageOrientation.TopLeft;
-		}
-
 		// FIXME this need to have an intent just like the loading stuff.
 		public virtual Cms.Profile GetProfile ()
 		{
@@ -249,28 +249,5 @@ namespace FSpot.Imaging {
 		protected virtual void Close ()
 		{
 		}
-    }
-
-    public class TagLibFile : BaseImageFile {
-        private TagLib.Image.File metadata_file;
-
-        public TagLibFile (SafeUri uri) : base (uri)
-        {
-            metadata_file = Metadata.Parse (uri);
-        }
-
-        ~TagLibFile () {
-            metadata_file.Dispose ();
-        }
-
-        public override Cms.Profile GetProfile ()
-        {
-            return null;
-        }
-
-        public override ImageOrientation GetOrientation ()
-        {
-            return metadata_file.ImageTag.Orientation;
-        }
     }
 }

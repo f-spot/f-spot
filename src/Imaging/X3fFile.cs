@@ -101,11 +101,5 @@ namespace FSpot.Imaging.X3f {
 			MetadataStore.AddLiteral (sink, "tiff:ImageWidth", Info.Width.ToString ());
 			MetadataStore.AddLiteral (sink, "tiff:ImageLength", Info.Height.ToString ());
 		}
-
-		public override ImageOrientation GetOrientation ()
-		{
-			return Info.Orientation;
-		}
-
 	}
 }

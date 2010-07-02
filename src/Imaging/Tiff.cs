@@ -1855,15 +1855,6 @@ namespace FSpot.Imaging.Tiff {
 			Header.SelectDirectory (Header.Directory, sink);
 		}
 
-		public override ImageOrientation GetOrientation ()
-		{
-			ShortEntry e = (ShortEntry)(this.Header.Directory.Lookup (TagId.Orientation));
-			if (e != null) 
-				return (ImageOrientation)(e.ShortValue[0]);
-			else
-				return ImageOrientation.TopLeft;
-		}
-
 		public System.IO.Stream LookupJpegSubstream (ImageDirectory directory)
 		{
 			uint offset = directory.Lookup (TagId.JPEGInterchangeFormat).ValueAsLong [0];
