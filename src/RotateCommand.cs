@@ -60,8 +60,7 @@ namespace FSpot {
 		private static void RotateOrientation (string original_path, RotateDirection direction)
 		{
             try {
-                var res = new GIOTagLibFileAbstraction () { Uri = new SafeUri (original_path) };
-                using (var metadata = TagLib.File.Create (res) as TagLib.Image.File) {
+                using (var metadata = Metadata.Parse (new SafeUri (original_path))) {
                     var tag = metadata.ImageTag;
                     var orientation = direction == RotateDirection.Clockwise
                         ? FSpot.Utils.PixbufUtils.Rotate90 (tag.Orientation)

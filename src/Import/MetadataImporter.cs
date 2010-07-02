@@ -84,21 +84,7 @@ namespace FSpot.Import {
 
         public bool Import (Photo photo, IBrowsableItem importing_from)
         {
-            var res = new GIOTagLibFileAbstraction () {
-                Uri = importing_from.DefaultVersion.Uri
-            };
-
-            var sidecar_uri = importing_from.DefaultVersion.Uri.ReplaceExtension (".xmp");
-            var sidecar_res = new GIOTagLibFileAbstraction () {
-                Uri = sidecar_uri
-            };
-
-            using (var metadata = TagLib.File.Create (res) as TagLib.Image.File) {
-                var file = GLib.FileFactory.NewForUri (sidecar_uri);
-                if (file.Exists) {
-                    metadata.ParseXmpSidecar (sidecar_res);
-                }
-
+            using (var metadata = Metadata.Parse (importing_from.DefaultVersion.Uri)) {
                 // Copy Rating
                 var rating = metadata.ImageTag.Rating;
                 if (rating.HasValue) {

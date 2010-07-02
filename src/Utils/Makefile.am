@@ -11,6 +11,7 @@ SOURCES = \
     GIOTagLibFileAbstraction.cs \
 	GtkUtil.cs \
 	HashUtils.cs \
+	Metadata.cs \
 	PixbufUtils.cs \
 	RecursiveFileEnumerator.cs \
 	SafeUri.cs \

@@ -46,16 +46,13 @@ namespace FSpot.Jobs {
 
         void WriteMetadataToImage (Photo photo)
         {
-            string path = photo.DefaultVersion.Uri.LocalPath;
-
             Tag [] tags = photo.Tags;
             string [] names = new string [tags.Length];
 
             for (int i = 0; i < tags.Length; i++)
                 names [i] = tags [i].Name;
 
-            var res = new GIOTagLibFileAbstraction () { Uri = photo.DefaultVersion.Uri };
-            using (var metadata = TagLib.File.Create (res) as TagLib.Image.File) {
+            using (var metadata = Metadata.Parse (photo.DefaultVersion.Uri)) {
                 metadata.GetTag (TagLib.TagTypes.XMP, true);
 
                 var tag = metadata.ImageTag;

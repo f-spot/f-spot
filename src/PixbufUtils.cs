@@ -427,39 +427,6 @@ public static class PixbufUtils {
 		}
 	}
 
-	public static Gdk.Pixbuf GetThumbnail (ExifData data)
-	{
-		byte [] thumb_data = data.Data;
-		if (thumb_data.Length > 0) {
-			ImageOrientation orientation = GetOrientation (data);
-			
-			using (MemoryStream mem = new MemoryStream (thumb_data)) {
-				Gdk.Pixbuf thumb = new Gdk.Pixbuf (mem);
-				Gdk.Pixbuf rotated;
-
-				using (thumb)
-					rotated = FSpot.Utils.PixbufUtils.TransformOrientation (thumb, orientation);
-				
-				return rotated;
-			}			
-		}
-		return null;
-	}
-
-	public static ImageOrientation GetOrientation (ExifData data)
-	{
-		ImageOrientation orientation = ImageOrientation.TopLeft;
-		
-		FSpot.Imaging.Exif.ExifEntry e = data.GetContents (FSpot.Imaging.Exif.Ifd.Zero).Lookup (FSpot.Imaging.Exif.Tag.Orientation);
-
-		if (e != null) {
-			ushort [] value = e.GetDataUShort ();
-			orientation = (ImageOrientation) value [0];
-		}
-
-		return orientation;
-	}
-
 	public static ImageOrientation GetOrientation (SafeUri uri)
 	{
 		using (ImageFile img = ImageFile.Create (uri)) {
@@ -514,10 +481,8 @@ public static class PixbufUtils {
     {
         SaveToSuitableFormat (destination, pixbuf, jpeg_quality);
 
-        var res_from = new GIOTagLibFileAbstraction () { Uri = source };
-        var res_to = new GIOTagLibFileAbstraction () { Uri = destination };
-        using (var metadata_from = TagLib.File.Create (res_from) as TagLib.Image.File) {
-            using (var metadata_to = TagLib.File.Create (res_to) as TagLib.Image.File) {
+        using (var metadata_from = Metadata.Parse (source)) {
+            using (var metadata_to = Metadata.Parse (destination)) {
                 metadata_to.CopyFrom (metadata_from);
                 metadata_to.Save ();
             }

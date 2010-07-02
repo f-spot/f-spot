@@ -245,15 +245,11 @@ namespace FSpot.Imaging {
 	} 
 
     public class TagLibFile : ImageFile {
-        public TagLib.Image.File Metadata {
-            get { return metadata_file; }
-        }
-
         private TagLib.Image.File metadata_file;
 
         public TagLibFile (SafeUri uri) : base (uri)
         {
-            metadata_file = TagLib.File.Create (new GIOTagLibFileAbstraction () { Uri = uri }) as TagLib.Image.File;
+            metadata_file = Metadata.Parse (uri);
         }
 
         ~TagLibFile () {

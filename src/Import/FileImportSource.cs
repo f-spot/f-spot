@@ -156,8 +156,7 @@ namespace FSpot.Import
 			if (metadata_parsed)
 				return;
 
-			var res = new GIOTagLibFileAbstraction () { Uri = DefaultVersion.Uri };
-			using (var metadata = TagLib.File.Create (res) as TagLib.Image.File) {
+			using (var metadata = Metadata.Parse (DefaultVersion.Uri)) {
 				var date = metadata.ImageTag.DateTime;
 				time = date.HasValue ? date.Value : CreateDate;
 				description = metadata.ImageTag.Comment;
