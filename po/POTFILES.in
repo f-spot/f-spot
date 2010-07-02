@@ -51,7 +51,6 @@ extensions/Tools/MergeDb/PickFolderDialog.cs
 extensions/Tools/ScreensaverConfig/ScreensaverConfig.addin.xml
 [type: gettext/glade]extensions/Tools/ScreensaverConfig/ScreensaverConfigDialog.ui
 f-spot.schemas.in
-lib/libfspot/f-jpeg-utils.c
 src/Core/App.cs
 src/Core/Photo.cs
 src/Editors/AutoStretchEditor.cs
@@ -72,6 +71,7 @@ src/Imaging/Exif.cs
 src/Imaging/ImageFile.cs
 src/Imaging/IptcFile.cs
 src/Import/ImportController.cs
+src/Import/MetadataImporter.cs
 src/ItemAction.cs
 src/Loupe.cs
 src/MainWindow.cs
@@ -138,5 +138,4 @@ src/Widgets/OpenWithMenu.cs
 src/Widgets/RatingMenuItem.cs
 src/Widgets/Sidebar.cs
 src/Widgets/TagMenu.cs
-src/XmpTagsImporter.cs
 tools/f-spot-screensaver.desktop.in
