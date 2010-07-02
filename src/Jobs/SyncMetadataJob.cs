@@ -10,6 +10,7 @@
 using System;
 using Banshee.Kernel;
 using Hyena;
+using FSpot.Utils;
 
 namespace FSpot.Jobs {
     public class SyncMetadataJob : Job

@@ -15,7 +15,6 @@ using Gtk;
 using Gdk;
 
 using FSpot;
-using FSpot.Imaging.Png;
 using FSpot.UI.Dialog;
 
 using Hyena;
