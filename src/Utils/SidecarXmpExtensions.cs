@@ -34,10 +34,12 @@ namespace FSpot.Utils
                 return;
 
             var xmp = xmp_tag.Render ();
+
             using (var stream = resource.WriteStream) {
                 using (var writer = new StreamWriter (stream)) {
                     writer.Write (xmp);
                 }
+                resource.CloseStream (stream);
             }
         }
     }
