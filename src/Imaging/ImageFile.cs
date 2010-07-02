@@ -21,33 +21,11 @@ namespace FSpot.Imaging {
 	}
 
 	public class ImageFile : IDisposable {
-		protected SafeUri uri;
+
+#region Factory functionality
 
 		static Hashtable name_table;
 		internal static Hashtable NameTable { get { return name_table; } }
-		
-		public ImageFile (SafeUri uri)
-		{
-			this.uri = uri;
-		}
-
-		~ImageFile ()
-		{
-			Dispose ();
-		}
-		
-		protected Stream Open ()
-		{
-			Log.DebugFormat ("open uri = {0}", uri.ToString ());
-//			if (uri.IsFile)
-//				return new FileStream (uri.LocalPath, FileMode.Open);
-			return new GLib.GioStream (GLib.FileFactory.NewForUri (uri).Read (null));
-		}
-
-		public virtual Stream PixbufStream ()
-		{
-			return Open ();
-		}
 
 		static ImageFile ()
 		{
@@ -103,61 +81,6 @@ namespace FSpot.Imaging {
 				}
 		}
 
-		public SafeUri Uri {
-			get { return this.uri; }
-		}
-
-		public ImageOrientation Orientation {
-			get { return GetOrientation (); }
-		}
-
-		protected Gdk.Pixbuf TransformAndDispose (Gdk.Pixbuf orig)
-		{
-			if (orig == null)
-				return null;
-
-			Gdk.Pixbuf rotated = FSpot.Utils.PixbufUtils.TransformOrientation (orig, this.Orientation);
-
-			orig.Dispose ();
-			
-			return rotated;
-		}
-		
-		public virtual Gdk.Pixbuf Load ()
-		{
-			using (Stream stream = PixbufStream ()) {
-				Gdk.Pixbuf orig = new Gdk.Pixbuf (stream);
-				return TransformAndDispose (orig);
-			}
-		}
-		
-		public virtual Gdk.Pixbuf Load (int max_width, int max_height)
-		{
-			System.IO.Stream stream = PixbufStream ();
-			if (stream == null) {
-				Gdk.Pixbuf orig = this.Load ();
-				Gdk.Pixbuf scaled = PixbufUtils.ScaleToMaxSize (orig,  max_width, max_height, false);
-				orig.Dispose ();
-				return scaled;
-			}
-
-			using (stream) {
-				PixbufUtils.AspectLoader aspect = new PixbufUtils.AspectLoader (max_width, max_height);
-				return aspect.Load (stream, Orientation);
-			}	
-		}
-	
-		public virtual ImageOrientation GetOrientation ()
-		{
-			return ImageOrientation.TopLeft;
-		}
-		
-		// FIXME this need to have an intent just like the loading stuff.
-		public virtual Cms.Profile GetProfile ()
-		{
-			return null;
-		}
-		
 		public static bool HasLoader (SafeUri uri)
 		{
 			return GetLoaderType (uri) != null;
@@ -198,35 +121,6 @@ namespace FSpot.Imaging {
 
 			return img;
 		}
-		
-		// FIXME these are horrible hacks to get a temporary name
-		// with the right extension for ImageFile until we use the mime data
-		// properly.  It is here to make sure we can find the places that use
-		// this hack
-		public static string TempPath (string name)
-		{
-			return TempPath (name, System.IO.Path.GetExtension (name));
-		}
-		
-		public static string TempPath (string name, string extension)
-		{
-			string temp = System.IO.Path.GetTempFileName ();
-			string imgtemp = temp + "." + extension;
-
-			System.IO.File.Move (temp, imgtemp);
-
-			return imgtemp;
-		}
-
-		public void Dispose ()
-		{
-			Close ();
-			System.GC.SuppressFinalize (this);
-		}
-
-		protected virtual void Close ()
-		{
-		}
 
 		public static bool IsRaw (SafeUri uri)
 		{
@@ -259,6 +153,95 @@ namespace FSpot.Imaging {
 					return true;
 			return false;
 		}
+
+#endregion
+
+		protected SafeUri uri;
+
+		public ImageFile (SafeUri uri)
+		{
+			this.uri = uri;
+		}
+
+		~ImageFile ()
+		{
+			Dispose ();
+		}
+
+		protected Stream Open ()
+		{
+			Log.DebugFormat ("open uri = {0}", uri.ToString ());
+			return new GLib.GioStream (GLib.FileFactory.NewForUri (uri).Read (null));
+		}
+
+		public virtual Stream PixbufStream ()
+		{
+			return Open ();
+		}
+		public SafeUri Uri {
+			get { return this.uri; }
+		}
+
+		public ImageOrientation Orientation {
+			get { return GetOrientation (); }
+		}
+
+		protected Gdk.Pixbuf TransformAndDispose (Gdk.Pixbuf orig)
+		{
+			if (orig == null)
+				return null;
+
+			Gdk.Pixbuf rotated = FSpot.Utils.PixbufUtils.TransformOrientation (orig, this.Orientation);
+
+			orig.Dispose ();
+
+			return rotated;
+		}
+
+		public virtual Gdk.Pixbuf Load ()
+		{
+			using (Stream stream = PixbufStream ()) {
+				Gdk.Pixbuf orig = new Gdk.Pixbuf (stream);
+				return TransformAndDispose (orig);
+			}
+		}
+
+		public virtual Gdk.Pixbuf Load (int max_width, int max_height)
+		{
+			System.IO.Stream stream = PixbufStream ();
+			if (stream == null) {
+				Gdk.Pixbuf orig = this.Load ();
+				Gdk.Pixbuf scaled = PixbufUtils.ScaleToMaxSize (orig,  max_width, max_height, false);
+				orig.Dispose ();
+				return scaled;
+			}
+
+			using (stream) {
+				PixbufUtils.AspectLoader aspect = new PixbufUtils.AspectLoader (max_width, max_height);
+				return aspect.Load (stream, Orientation);
+			}
+		}
+
+		public virtual ImageOrientation GetOrientation ()
+		{
+			return ImageOrientation.TopLeft;
+		}
+
+		// FIXME this need to have an intent just like the loading stuff.
+		public virtual Cms.Profile GetProfile ()
+		{
+			return null;
+		}
+
+		public void Dispose ()
+		{
+			Close ();
+			System.GC.SuppressFinalize (this);
+		}
+
+		protected virtual void Close ()
+		{
+		}
 	} 
 
     public class TagLibFile : ImageFile {
@@ -284,19 +267,7 @@ namespace FSpot.Imaging {
 
         public override ImageOrientation GetOrientation ()
         {
-            var orientation = metadata_file.ImageTag.Orientation;
-            return orientation;
+            return metadata_file.ImageTag.Orientation;
         }
-
-        public void SetOrientation (ImageOrientation orientation)
-        {
-            metadata_file.ImageTag.Orientation = orientation;
-        }
-
-        public void SetDateTimeOriginal (DateTime time)
-        {
-            metadata_file.ImageTag.DateTime = time;
-        }
-
     }
 }
