@@ -53,7 +53,7 @@ namespace FSpot.Jobs {
                 names [i] = tags [i].Name;
 
             using (var metadata = Metadata.Parse (photo.DefaultVersion.Uri)) {
-                metadata.GetTag (TagLib.TagTypes.XMP, true);
+                metadata.EnsureAvailableTags ();
 
                 var tag = metadata.ImageTag;
                 tag.DateTime = photo.Time;
