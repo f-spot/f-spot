@@ -36,6 +36,7 @@ namespace FSpot.Utils
             var xmp = xmp_tag.Render ();
 
             using (var stream = resource.WriteStream) {
+                stream.SetLength (0);
                 using (var writer = new StreamWriter (stream)) {
                     writer.Write (xmp);
                 }
