@@ -93,7 +93,6 @@ SOURCES = \
 	Imaging/MrwFile.cs \
 	Imaging/OrderedWriter.cs \
 	Imaging/PixelBuffer.cs \
-	Imaging/PnmFile.cs \
 	Imaging/RafFile.cs \
 	Imaging/X3fFile.cs \
 	Imaging/XmpFile.cs \

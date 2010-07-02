@@ -1624,16 +1624,6 @@ namespace FSpot.Imaging.Tiff {
 				System.Array.Copy (data, i, raw_data, 0, size);
 			}
 		}
-
-		public void SetData (string value)
-		{
-			int len = System.Text.Encoding.UTF8.GetByteCount (value);
-			byte [] tmp = new byte [len + 1];
-			System.Text.Encoding.UTF8.GetBytes (value, 0, value.Length, tmp, 0);
-			tmp[len] = 0;
-			Log.DebugFormat ("SetData: value = {0} len = {1}", value, len);
-			SetData (tmp);
-		}
 	
 		public static System.DateTime DateTimeFromString (string dt)
 		{
@@ -1652,35 +1642,6 @@ namespace FSpot.Imaging.Tiff {
 			
 			return result;
 		}
-		
-		public void SetData (byte [] data)
-		{
-			raw_data = data;
-			count = (uint)raw_data.Length / (uint)GetTypeSize ();
-		}
-
-#if false		
-		public object  GetValue () {
-			switch (Type) {
-			case EntryType.Short:
-				return ShortValue;
-			case EntryType.Long:
-				return LongValue;
-			case  EntryType.Rational:
-				return RationalValue;
-			case EntryType.SRational:
-				return SRationalValue;
-			case EntryType.Ascii:
-				return StringValue.Split ('\0');
-				break;
-			default:
-				System.Console.WriteLine ("{1}({2}) [{0}]", this.Count, this.Id, this.Type);
-				break;
-
-				}
-			}
-		}
-#endif
 
 		public byte [] Value {
 			get {
@@ -1862,33 +1823,6 @@ namespace FSpot.Imaging.Tiff {
 			System.IO.Stream file = Open ();
 			file.Position = offset;
 			return file;
-		}
-
-		public Gdk.Pixbuf LoadJpegInterchangeFormat (ImageDirectory directory)
-		{
-			uint offset = directory.Lookup (TagId.JPEGInterchangeFormat).ValueAsLong [0];
-			uint length = directory.Lookup (TagId.JPEGInterchangeFormatLength).ValueAsLong [0];
-			   
-			using (System.IO.Stream file = Open ()) {
-				file.Position = offset;
-				
-				byte [] data = new byte [32768];
-				int read;
-
-				Gdk.PixbufLoader loader = new Gdk.PixbufLoader ();
-				
-				while (length > 0) {
-					read = file.Read (data, 0, (int)System.Math.Min ((int)data.Length, length));
-					if (read <= 0)
-						break;
-
-					loader.Write (data, (ulong)read);
-					length -= (uint) read;
-				}
-				Gdk.Pixbuf result = loader.Pixbuf;
-				loader.Close ();
-				return result; 
-			}
 		}
 	}
 

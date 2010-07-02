@@ -44,13 +44,13 @@ namespace FSpot.Imaging {
 			name_table [".kdc"] = typeof (FSpot.Imaging.Tiff.NefFile);
 			name_table [".arw"] = typeof (FSpot.Imaging.Tiff.NefFile);
 			name_table [".rw2"] = typeof (FSpot.Imaging.DCRawFile);
-			name_table [".tiff"] = typeof (FSpot.Imaging.Tiff.TiffFile);
+			name_table [".tiff"] = typeof (BaseImageFile);
 			name_table [".tif"] = typeof (FSpot.Imaging.Tiff.TiffFile);
 			name_table [".orf"] =  typeof (FSpot.Imaging.Tiff.NefFile);
 			name_table [".srf"] = typeof (FSpot.Imaging.Tiff.NefFile);
 			name_table [".dng"] = typeof (FSpot.Imaging.Tiff.DngFile);
 			name_table [".crw"] = typeof (FSpot.Imaging.Ciff.CiffFile);
-			name_table [".ppm"] = typeof (FSpot.Imaging.Pnm.PnmFile);
+			name_table [".ppm"] = typeof (BaseImageFile);
 			name_table [".mrw"] = typeof (FSpot.Imaging.Mrw.MrwFile);
 			name_table [".raf"] = typeof (FSpot.Imaging.Raf.RafFile);
 			name_table [".x3f"] = typeof (FSpot.Imaging.X3f.X3fFile);
@@ -109,14 +109,19 @@ namespace FSpot.Imaging {
 			return t;
 		}
 		
-		public static IImageFile Create (SafeUri uri)
-		{
-			var t = GetLoaderType (uri);
+        public static IImageFile Create (SafeUri uri)
+        {
+            var t = GetLoaderType (uri);
             if (t == null)
                 throw new Exception (String.Format ("Unsupported image: {0}", uri));
 
-			return (IImageFile) System.Activator.CreateInstance (t, new object[] { uri });
-		}
+            try {
+                return (IImageFile) System.Activator.CreateInstance (t, new object[] { uri });
+            } catch (Exception e) {
+                Hyena.Log.DebugException (e);
+                throw e;
+            }
+        }
 
 		public static bool IsRaw (SafeUri uri)
 		{
