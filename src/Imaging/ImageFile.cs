@@ -56,8 +56,8 @@ namespace FSpot.Imaging {
 			name_table [".gif"] = typeof (ImageFile);
 			name_table [".bmp"] = typeof (ImageFile);
 			name_table [".pcx"] = typeof (ImageFile);
-			name_table [".jpeg"] = typeof (JpegFile);
-			name_table [".jpg"] = typeof (JpegFile);
+			name_table [".jpeg"] = typeof (TagLibFile);
+			name_table [".jpg"] = typeof (TagLibFile);
 			name_table [".png"] = typeof (FSpot.Imaging.Png.PngFile);
 			name_table [".cr2"] = typeof (FSpot.Imaging.Tiff.Cr2File);
 			name_table [".nef"] = typeof (FSpot.Imaging.Tiff.NefFile);
@@ -228,7 +228,7 @@ namespace FSpot.Imaging {
 		{
 		}
 
-		public static bool IsRaw (string name)
+		public static bool IsRaw (SafeUri uri)
 		{
 			string [] raw_extensions = {
 				".arw",
@@ -243,19 +243,60 @@ namespace FSpot.Imaging {
 				".raf",
 				".rw2",
 			};
+			var extension = uri.GetExtension ().ToLower ();
 			foreach (string ext in raw_extensions)
-				if (ext == System.IO.Path.GetExtension (name).ToLower ())
+				if (ext == extension)
 					return true;
 			return false;
 		}
 
-		public static bool IsJpeg (string name)
+		public static bool IsJpeg (SafeUri uri)
 		{
 			string [] jpg_extensions = {".jpg", ".jpeg"};
+			var extension = uri.GetExtension ().ToLower ();
 			foreach (string ext in jpg_extensions)
-				if (ext == System.IO.Path.GetExtension (name).ToLower ())
+				if (ext == extension)
 					return true;
 			return false;
 		}
 	} 
+
+    public class TagLibFile : ImageFile {
+        public TagLib.Image.File Metadata {
+            get { return metadata_file; }
+        }
+
+        private TagLib.Image.File metadata_file;
+
+        public TagLibFile (SafeUri uri) : base (uri)
+        {
+            metadata_file = TagLib.File.Create (new GIOTagLibFileAbstraction () { Uri = uri }) as TagLib.Image.File;
+        }
+
+        ~TagLibFile () {
+            metadata_file.Dispose ();
+        }
+
+        public override Cms.Profile GetProfile ()
+        {
+            return null;
+        }
+
+        public override ImageOrientation GetOrientation ()
+        {
+            var orientation = metadata_file.ImageTag.Orientation;
+            return orientation;
+        }
+
+        public void SetOrientation (ImageOrientation orientation)
+        {
+            metadata_file.ImageTag.Orientation = orientation;
+        }
+
+        public void SetDateTimeOriginal (DateTime time)
+        {
+            metadata_file.ImageTag.DateTime = time;
+        }
+
+    }
 }

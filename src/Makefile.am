@@ -91,7 +91,6 @@ SOURCES = \
 	Imaging/InternalProcess.cs \
 	Imaging/IptcFile.cs \
 	Imaging/IOChannel.cs \
-	Imaging/JpegFile.cs \
 	Imaging/JpegUtils.cs \
 	Imaging/MrwFile.cs \
 	Imaging/OrderedWriter.cs \

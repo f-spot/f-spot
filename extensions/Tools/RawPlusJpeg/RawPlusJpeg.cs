@@ -48,12 +48,12 @@ namespace RawPlusJpegExtension
 			for (int i = 0; i < photos.Length; i++) {
 				Photo p = photos [i];
 
-				if (!ImageFile.IsRaw (p.Name) && !ImageFile.IsJpeg (p.Name))
+				if (!ImageFile.IsRaw (p.DefaultVersion.Uri) && !ImageFile.IsJpeg (p.DefaultVersion.Uri))
 					continue;
 
-				if (ImageFile.IsJpeg (p.Name))
+				if (ImageFile.IsJpeg (p.DefaultVersion.Uri))
 					jpeg = p;
-				if (ImageFile.IsRaw (p.Name))
+				if (ImageFile.IsRaw (p.DefaultVersion.Uri))
 					raw = p;
 
 				if (raw != null && jpeg != null && SamePlaceAndName (raw, jpeg))

@@ -93,7 +93,7 @@ namespace DevelopInUFRawExtension
 			LoadPreference (UFRAW_BATCH_ARGUMENTS_KEY);
 
 			PhotoVersion raw = p.GetVersion (Photo.OriginalVersionId) as PhotoVersion;
-			if (!ImageFile.IsRaw (raw.Uri.AbsolutePath)) {
+			if (!ImageFile.IsRaw (raw.Uri)) {
 				Log.Warning ("The original version of this image is not a (supported) RAW file");
 				return;
 			}

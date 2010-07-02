@@ -1981,7 +1981,7 @@ namespace FSpot.Imaging.Tiff {
 		}
 	}	
 	
-	public class NefFile : TiffFile, IThumbnailContainer {
+	public class NefFile : TiffFile {
 		public NefFile (SafeUri uri) : base (uri)
 		{
 		}
@@ -2021,13 +2021,6 @@ namespace FSpot.Imaging.Tiff {
 			} while (i < sub.Directory.Length);
 		}
 
-		public Gdk.Pixbuf GetEmbeddedThumbnail ()
-		{
-			using (System.IO.Stream stream = Open ()) {
-				return TransformAndDispose (new Gdk.Pixbuf (stream));
-			}
-		}
-
 		public override System.IO.Stream PixbufStream ()
 		{
 			try {
@@ -2041,16 +2034,9 @@ namespace FSpot.Imaging.Tiff {
 	}
 		
 
-	public class Cr2File : TiffFile, IThumbnailContainer {
+	public class Cr2File : TiffFile {
 		public Cr2File (SafeUri uri) : base (uri)
 		{
-		}
-
-		public Gdk.Pixbuf GetEmbeddedThumbnail ()
-		{
-			ImageDirectory directory;
-			directory = Header.Directory.NextDirectory;
-			return TransformAndDispose (LoadJpegInterchangeFormat (directory));
 		}
 
 		public override System.IO.Stream PixbufStream ()

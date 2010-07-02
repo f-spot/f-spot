@@ -327,15 +327,6 @@ namespace FSpot.Widgets
 						store.Select (this);
 					}
 				}
-	
-				if (img is Imaging.JpegFile) {
-					int real_width;
-					int real_height;
-	
-					JpegUtils.GetSize (img.Uri.LocalPath, out real_width, out real_height);
-					width = real_width.ToString ();
-					height = real_height.ToString ();
-				}
 			}
 	
 			public bool Add (SemWeb.Statement stmt)

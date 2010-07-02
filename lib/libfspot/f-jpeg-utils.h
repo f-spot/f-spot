@@ -31,11 +31,6 @@
 
 #include <gdk-pixbuf/gdk-pixbuf.h>
 
-void  f_get_jpeg_size  (const char *path,
-			int        *width_return,
-			int        *height_return);
-
-
 enum _FJpegTransform {
 	F_JPEG_TRANSFORM_ROTATE_90,
 	F_JPEG_TRANSFORM_ROTATE_180,

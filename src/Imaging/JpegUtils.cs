@@ -5,14 +5,6 @@ using Gdk;
 namespace FSpot.Imaging {
 public class JpegUtils {
 
-	[DllImport ("libfspot")]
-	static extern void f_get_jpeg_size (string path, out int width_return, out int height_return);
-
-	public static void GetSize (string path, out int width_return, out int height_return)
-	{
-		f_get_jpeg_size (path, out width_return, out height_return);
-	}
-
 	public enum TransformType {
 		Rotate90,
 		Rotate180,
