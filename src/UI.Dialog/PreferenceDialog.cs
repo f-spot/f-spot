@@ -28,6 +28,7 @@ namespace FSpot.UI.Dialog {
 
 		[GtkBeans.Builder.Object] RadioButton writemetadata_radio;
 		[GtkBeans.Builder.Object] RadioButton dontwrite_radio;
+		[GtkBeans.Builder.Object] CheckButton always_sidecar_check;
 
 		[GtkBeans.Builder.Object] ComboBox theme_combo;
 		[GtkBeans.Builder.Object] ComboBox screenprofile_combo;
@@ -49,6 +50,7 @@ namespace FSpot.UI.Dialog {
 
 			//Write Metadata
 			LoadPreference (Preferences.METADATA_EMBED_IN_IMAGE);
+			LoadPreference (Preferences.METADATA_ALWAYS_USE_SIDECAR);
 
 			//Screen profile
 			ListStore sprofiles = new ListStore (typeof (string), typeof (int));
@@ -108,7 +110,7 @@ namespace FSpot.UI.Dialog {
 			theme_combo.SetCellDataFunc (themecellrenderer, ThemeCellFunc);
 			LoadPreference (Preferences.GTK_RC);
 
-			Preferences.SettingChanged += OnPreferencesChanged;
+			ConnectEvents ();
 		}
 #endregion
 
@@ -129,11 +131,17 @@ namespace FSpot.UI.Dialog {
 			case Preferences.METADATA_EMBED_IN_IMAGE:
 				bool embed_active = Preferences.Get<bool> (key);
 				if (writemetadata_radio.Active != embed_active) {
-					if (embed_active)
+					if (embed_active) {
 						writemetadata_radio.Active = true;
-					else
+					} else {
 						dontwrite_radio.Active = true;
+					}
 				}
+				always_sidecar_check.Sensitive = embed_active;
+				break;
+			case Preferences.METADATA_ALWAYS_USE_SIDECAR:
+				bool always_use_sidecar = Preferences.Get<bool> (key);
+				always_sidecar_check.Active = always_use_sidecar;
 				break;
 			case Preferences.GTK_RC:
 				pref = Preferences.Get<string> (key);
@@ -189,6 +197,16 @@ namespace FSpot.UI.Dialog {
 #endregion
 
 #region event handlers
+		void ConnectEvents ()
+		{
+			Preferences.SettingChanged += OnPreferencesChanged;
+			screenprofile_combo.Changed += HandleScreenProfileComboChanged;
+			printprofile_combo.Changed += HandlePrintProfileComboChanged;
+			theme_combo.Changed += HandleThemeComboChanged;
+			writemetadata_radio.Toggled += HandleWritemetadataGroupChanged;
+			always_sidecar_check.Toggled += HandleAlwaysSidecareCheckToggled;
+		}
+
 		void HandlePhotosdirChanged (object sender, System.EventArgs args)
 		{
 			photosdir_chooser.CurrentFolderChanged -= HandlePhotosdirChanged;
@@ -200,6 +218,11 @@ namespace FSpot.UI.Dialog {
 		void HandleWritemetadataGroupChanged (object sender, System.EventArgs args)
 		{
 			Preferences.Set (Preferences.METADATA_EMBED_IN_IMAGE, writemetadata_radio.Active);
+		}
+
+		void HandleAlwaysSidecareCheckToggled (object sender, EventArgs args)
+		{
+			Preferences.Set (Preferences.METADATA_ALWAYS_USE_SIDECAR, always_sidecar_check.Active);
 		}
 
 		void HandleThemeComboChanged (object sender, EventArgs e)

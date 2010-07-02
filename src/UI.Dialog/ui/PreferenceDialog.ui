@@ -22,7 +22,7 @@
             <child>
               <object class="GtkTable" id="table1">
                 <property name="visible">True</property>
-                <property name="n_rows">13</property>
+                <property name="n_rows">14</property>
                 <property name="n_columns">2</property>
                 <property name="column_spacing">12</property>
                 <property name="row_spacing">6</property>
@@ -34,31 +34,14 @@
                   </object>
                 </child>
                 <child>
-                  <object class="GtkRadioButton" id="dontwrite_radio">
-                    <property name="label" translatable="yes">Separately from the image files</property>
-                    <property name="visible">True</property>
-                    <property name="can_focus">True</property>
-                    <property name="receives_default">False</property>
-                    <property name="active">True</property>
-                    <property name="draw_indicator">True</property>
-                    <property name="group">writemetadata_radio</property>
-                  </object>
-                  <packing>
-                    <property name="left_attach">1</property>
-                    <property name="right_attach">2</property>
-                    <property name="top_attach">4</property>
-                    <property name="bottom_attach">5</property>
-                  </packing>
-                </child>
-                <child>
                   <object class="GtkLabel" id="label10">
                     <property name="visible">True</property>
                     <property name="xalign">1</property>
                     <property name="label" translatable="yes">Color profile for display:</property>
                   </object>
                   <packing>
-                    <property name="top_attach">7</property>
-                    <property name="bottom_attach">8</property>
+                    <property name="top_attach">8</property>
+                    <property name="bottom_attach">9</property>
                   </packing>
                 </child>
                 <child>
@@ -68,44 +51,41 @@
                     <property name="label" translatable="yes">Color profile for printing:</property>
                   </object>
                   <packing>
-                    <property name="top_attach">9</property>
-                    <property name="bottom_attach">10</property>
+                    <property name="top_attach">10</property>
+                    <property name="bottom_attach">11</property>
                   </packing>
                 </child>
                 <child>
                   <object class="GtkComboBox" id="screenprofile_combo">
                     <property name="visible">True</property>
-                    <signal name="changed" handler="HandleScreenProfileComboChanged"/>
                   </object>
                   <packing>
                     <property name="left_attach">1</property>
                     <property name="right_attach">2</property>
-                    <property name="top_attach">7</property>
-                    <property name="bottom_attach">8</property>
+                    <property name="top_attach">8</property>
+                    <property name="bottom_attach">9</property>
                   </packing>
                 </child>
                 <child>
                   <object class="GtkComboBox" id="printprofile_combo">
                     <property name="visible">True</property>
-                    <signal name="changed" handler="HandlePrintProfileComboChanged"/>
                   </object>
                   <packing>
                     <property name="left_attach">1</property>
                     <property name="right_attach">2</property>
-                    <property name="top_attach">9</property>
-                    <property name="bottom_attach">10</property>
+                    <property name="top_attach">10</property>
+                    <property name="bottom_attach">11</property>
                   </packing>
                 </child>
                 <child>
                   <object class="GtkComboBox" id="theme_combo">
                     <property name="visible">True</property>
-                    <signal name="changed" handler="HandleThemeComboChanged"/>
                   </object>
                   <packing>
                     <property name="left_attach">1</property>
                     <property name="right_attach">2</property>
-                    <property name="top_attach">12</property>
-                    <property name="bottom_attach">13</property>
+                    <property name="top_attach">13</property>
+                    <property name="bottom_attach">14</property>
                   </packing>
                 </child>
                 <child>
@@ -115,8 +95,8 @@
                     <property name="label" translatable="yes">F-Spot appearance:</property>
                   </object>
                   <packing>
-                    <property name="top_attach">12</property>
-                    <property name="bottom_attach">13</property>
+                    <property name="top_attach">13</property>
+                    <property name="bottom_attach">14</property>
                   </packing>
                 </child>
                 <child>
@@ -136,7 +116,6 @@
                     <property name="can_focus">True</property>
                     <property name="receives_default">False</property>
                     <property name="draw_indicator">True</property>
-                    <signal name="toggled" handler="HandleWritemetadataGroupChanged"/>
                     <child>
                       <object class="GtkLabel" id="label7">
                         <property name="visible">True</property>
@@ -165,7 +144,26 @@
                   </packing>
                 </child>
                 <child>
-                  <placeholder/>
+                  <object class="GtkCheckButton" id="always_sidecar_check">
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <property name="receives_default">False</property>
+                    <property name="draw_indicator">True</property>
+                    <child>
+                      <object class="GtkLabel" id="label3">
+                        <property name="visible">True</property>
+                        <property name="label" translatable="yes">Never modify image files.
+&lt;small&gt;Write XMP files next to the images instead.&lt;/small&gt;</property>
+                        <property name="use_markup">True</property>
+                      </object>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="left_attach">1</property>
+                    <property name="right_attach">2</property>
+                    <property name="top_attach">5</property>
+                    <property name="bottom_attach">6</property>
+                  </packing>
                 </child>
                 <child>
                   <placeholder/>
@@ -208,6 +206,28 @@
                 </child>
                 <child>
                   <placeholder/>
+                </child>
+                <child>
+                  <placeholder/>
+                </child>
+                <child>
+                  <placeholder/>
+                </child>
+                <child>
+                  <object class="GtkRadioButton" id="dontwrite_radio">
+                    <property name="label" translatable="yes">Separately from the image files</property>
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <property name="receives_default">False</property>
+                    <property name="draw_indicator">True</property>
+                    <property name="group">writemetadata_radio</property>
+                  </object>
+                  <packing>
+                    <property name="left_attach">1</property>
+                    <property name="right_attach">2</property>
+                    <property name="top_attach">4</property>
+                    <property name="bottom_attach">5</property>
+                  </packing>
                 </child>
               </object>
             </child>
