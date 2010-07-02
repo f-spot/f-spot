@@ -54,6 +54,7 @@ SOURCES = \
 	TagLib/src/TagLib/Image/ImageBlockFile.cs \
 	TagLib/src/TagLib/Image/ImageTag.cs \
 	TagLib/src/TagLib/Image/ImageOrientation.cs \
+	TagLib/src/TagLib/Image/NoMetadata/File.cs \
 	TagLib/src/TagLib/Jpeg/Codec.cs \
 	TagLib/src/TagLib/Jpeg/File.cs \
 	TagLib/src/TagLib/Jpeg/JpegCommentTag.cs \

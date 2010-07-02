@@ -30,10 +30,10 @@ namespace FSpot.Imaging {
 		static ImageFile ()
 		{
 			name_table = new Hashtable ();
-			name_table [".svg"] = typeof (NoMetadataFile);
-			name_table [".gif"] = typeof (NoMetadataFile);
-			name_table [".bmp"] = typeof (NoMetadataFile);
-			name_table [".pcx"] = typeof (NoMetadataFile);
+			name_table [".svg"] = typeof (TagLibFile);
+			name_table [".gif"] = typeof (TagLibFile);
+			name_table [".bmp"] = typeof (TagLibFile);
+			name_table [".pcx"] = typeof (TagLibFile);
 			name_table [".jpeg"] = typeof (TagLibFile);
 			name_table [".jpg"] = typeof (TagLibFile);
 			name_table [".png"] = typeof (TagLibFile);
@@ -249,12 +249,6 @@ namespace FSpot.Imaging {
 		protected virtual void Close ()
 		{
 		}
-    }
-
-    public class NoMetadataFile : BaseImageFile {
-        public NoMetadataFile (SafeUri uri) : base (uri)
-        {
-        }
     }
 
     public class TagLibFile : BaseImageFile {
