@@ -47,7 +47,6 @@ namespace LiveWebGalleryExtension
 			FilterSet filters = new FilterSet ();
 			filters.Add (new JpegFilter ());
 			filters.Add (new ResizeFilter (1600));
-			filters.Add (new OrientationFilter ());
 
 			using (FilterRequest request = new FilterRequest (photo.DefaultVersion.Uri)) {
 				filters.Convert (request);

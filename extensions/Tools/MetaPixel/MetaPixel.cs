@@ -151,7 +151,6 @@ namespace MetaPixelExtension {
 
 				FilterSet filters = new FilterSet ();
 				filters.Add (new JpegFilter ());
-				filters.Add (new OrientationFilter ());
 				FilterRequest freq = new FilterRequest (p.DefaultVersion.Uri);
 				filters.Convert (freq);
 
@@ -200,7 +199,6 @@ namespace MetaPixelExtension {
 
 				FilterSet filters = new FilterSet ();
 				filters.Add (new JpegFilter ());
-				filters.Add (new OrientationFilter ());
 				FilterRequest freq = new FilterRequest (p.DefaultVersion.Uri);
 				filters.Convert (freq);
 

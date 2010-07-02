@@ -433,11 +433,8 @@ namespace FSpotSmugMugExport {
 			HandleSizeActive (null, null);
 			Connect ();
 
-			scale_check.Toggled += HandleScaleCheckToggled;
-
 			LoadPreference (SCALE_KEY);
 			LoadPreference (SIZE_KEY);
-			LoadPreference (ROTATE_KEY);
 			LoadPreference (BROWSER_KEY);
 		}
 
@@ -446,7 +443,6 @@ namespace FSpotSmugMugExport {
 		private bool scale;
 		private int size;
 		private bool browser;
-		private bool rotate;
 //		private bool meta;
 		private bool connect = false;
 
@@ -475,7 +471,6 @@ namespace FSpotSmugMugExport {
 
 		[Glade.Widget] Gtk.CheckButton browser_check;
 		[Glade.Widget] Gtk.CheckButton scale_check;
-		[Glade.Widget] Gtk.CheckButton rotate_check;
 
 		[Glade.Widget] Gtk.SpinButton size_spin;
 
@@ -491,7 +486,6 @@ namespace FSpotSmugMugExport {
 		public const string EXPORT_SERVICE = "smugmug/";
 		public const string SCALE_KEY = Preferences.APP_FSPOT_EXPORT + EXPORT_SERVICE + "scale";
 		public const string SIZE_KEY = Preferences.APP_FSPOT_EXPORT + EXPORT_SERVICE + "size";
-		public const string ROTATE_KEY = Preferences.APP_FSPOT_EXPORT + EXPORT_SERVICE + "rotate";
 		public const string BROWSER_KEY = Preferences.APP_FSPOT_EXPORT + EXPORT_SERVICE + "browser";
 
 		private void HandleResponse (object sender, Gtk.ResponseArgs args)
@@ -508,7 +502,6 @@ namespace FSpotSmugMugExport {
 				scale = false;
 
 			browser = browser_check.Active;
-			rotate = rotate_check.Active;
 //			meta = meta_check.Active;
 
 			if (account != null) {
@@ -527,7 +520,6 @@ namespace FSpotSmugMugExport {
 				// Save these settings for next time
 				Preferences.Set (SCALE_KEY, scale);
 				Preferences.Set (SIZE_KEY, size);
-				Preferences.Set (ROTATE_KEY, rotate);
 				Preferences.Set (BROWSER_KEY, browser);
 			}
 		}
@@ -551,9 +543,6 @@ namespace FSpotSmugMugExport {
 
 			if (scale)
 				filters.Add (new ResizeFilter ((uint)size));
-
-			if (rotate)
-				filters.Add (new OrientationFilter ());
 
 			while (photo_index < items.Length) {
 				try {
@@ -612,11 +601,6 @@ namespace FSpotSmugMugExport {
 			if (browser && album_uri != null) {
 				GtkBeans.Global.ShowUri (Dialog.Screen, album_uri.ToString ());
 			}
-		}
-
-		private void HandleScaleCheckToggled (object o, EventArgs e)
-		{
-			rotate_check.Sensitive = !scale_check.Active;
 		}
 
 		private void PopulateSmugMugOptionMenu (SmugMugAccountManager manager, SmugMugAccount changed_account)
@@ -776,7 +760,6 @@ namespace FSpotSmugMugExport {
 			case SCALE_KEY:
 				if (scale_check.Active != Preferences.Get<bool> (key)) {
 					scale_check.Active = Preferences.Get<bool> (key);
-					rotate_check.Sensitive = !Preferences.Get<bool> (key);
 				}
 				break;
 
@@ -787,11 +770,6 @@ namespace FSpotSmugMugExport {
 			case BROWSER_KEY:
 				if (browser_check.Active != Preferences.Get<bool> (key))
 					browser_check.Active = Preferences.Get<bool> (key);
-				break;
-
-			case ROTATE_KEY:
-				if (rotate_check.Active != Preferences.Get<bool> (key))
-					rotate_check.Active = Preferences.Get<bool> (key);
 				break;
 			}
 		}

@@ -60,7 +60,6 @@ SOURCES = \
 	Filters/FilterSet.cs \
 	Filters/IFilter.cs \
 	Filters/JpegFilter.cs \
-	Filters/OrientationFilter.cs \
 	Filters/ResizeFilter.cs \
 	Filters/SharpFilter.cs \
 	Filters/UniqueNameFilter.cs \

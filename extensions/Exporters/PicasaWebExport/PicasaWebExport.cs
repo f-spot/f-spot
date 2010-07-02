@@ -500,11 +500,8 @@ namespace FSpotGoogleExport {
 			HandleSizeActive (null, null);
 			Connect ();
 
-			scale_check.Toggled += HandleScaleCheckToggled;
-
 			LoadPreference (SCALE_KEY);
 			LoadPreference (SIZE_KEY);
-			LoadPreference (ROTATE_KEY);
 			LoadPreference (BROWSER_KEY);
 //			LoadPreference (Preferences.EXPORT_PICASAWEB_META);
 			LoadPreference (TAG_KEY);
@@ -513,7 +510,6 @@ namespace FSpotGoogleExport {
 		private bool scale;
 		private int size;
 		private bool browser;
-		private bool rotate;
 //		private bool meta;
 		private bool export_tag;
 		private bool connect = false;
@@ -538,7 +534,6 @@ namespace FSpotGoogleExport {
 		public const string EXPORT_SERVICE = "picasaweb/";
 		public const string SCALE_KEY = Preferences.APP_FSPOT_EXPORT + EXPORT_SERVICE + "scale";
 		public const string SIZE_KEY = Preferences.APP_FSPOT_EXPORT + EXPORT_SERVICE + "size";
-		public const string ROTATE_KEY = Preferences.APP_FSPOT_EXPORT + EXPORT_SERVICE + "rotate";
 		public const string BROWSER_KEY = Preferences.APP_FSPOT_EXPORT + EXPORT_SERVICE + "browser";
 		public const string TAG_KEY = Preferences.APP_FSPOT_EXPORT + EXPORT_SERVICE + "tag";
 
@@ -555,7 +550,6 @@ namespace FSpotGoogleExport {
 
 		[Glade.Widget] Gtk.CheckButton browser_check;
 		[Glade.Widget] Gtk.CheckButton scale_check;
-		[Glade.Widget] Gtk.CheckButton rotate_check;
 //		[Glade.Widget] Gtk.CheckButton meta_check;
 		[Glade.Widget] Gtk.CheckButton tag_check;
 
@@ -586,7 +580,6 @@ namespace FSpotGoogleExport {
 				scale = false;
 
 			browser = browser_check.Active;
-			rotate = rotate_check.Active;
 //			meta = meta_check.Active;
 			export_tag = tag_check.Active;
 
@@ -605,7 +598,6 @@ namespace FSpotGoogleExport {
 				// Save these settings for next time
 				Preferences.Set (SCALE_KEY, scale);
 				Preferences.Set (SIZE_KEY, size);
-				Preferences.Set (ROTATE_KEY, rotate);
 				Preferences.Set (BROWSER_KEY, browser);
 //				Preferences.Set (Preferences.EXPORT_GALLERY_META, meta);
 				Preferences.Set (TAG_KEY, export_tag);
@@ -647,9 +639,6 @@ namespace FSpotGoogleExport {
 
 			if (scale)
 				filters.Add (new ResizeFilter ((uint)size));
-
-			if (rotate)
-				filters.Add (new OrientationFilter ());
 
 			Array.Sort (items, new DateComparer ());
 
@@ -712,11 +701,6 @@ namespace FSpotGoogleExport {
 			if (browser) {
 				GtkBeans.Global.ShowUri (Dialog.Screen, album.Link);
 			}
-		}
-
-		private void HandleScaleCheckToggled (object o, EventArgs e)
-		{
-			rotate_check.Sensitive = !scale_check.Active;
 		}
 
 		private void PopulateGoogleOptionMenu (GoogleAccountManager manager, GoogleAccount changed_account)
@@ -926,7 +910,6 @@ namespace FSpotGoogleExport {
 			case SCALE_KEY:
 				if (scale_check.Active != Preferences.Get<bool> (key)) {
 					scale_check.Active = Preferences.Get<bool> (key);
-					rotate_check.Sensitive = ! Preferences.Get<bool> (key);
 				}
 				break;
 
@@ -938,16 +921,6 @@ namespace FSpotGoogleExport {
 				if (browser_check.Active != Preferences.Get<bool> (key))
 					browser_check.Active = Preferences.Get<bool> (key);
 				break;
-
-			case ROTATE_KEY:
-				if (rotate_check.Active != Preferences.Get<bool> (key))
-					rotate_check.Active = Preferences.Get<bool> (key);
-				break;
-
-//			case Preferences.EXPORT_GALLERY_META:
-//				if (meta_check.Active != (bool) val)
-//					meta_check.Active = (bool) val;
-//				break;
 
 			case TAG_KEY:
 				if (tag_check.Active != Preferences.Get<bool> (key))

@@ -50,7 +50,6 @@ namespace FSpotFolderExport {
 
 		//[Glade.Widget] Gtk.CheckButton meta_check;
 		[Glade.Widget] Gtk.CheckButton scale_check;
-		[Glade.Widget] Gtk.CheckButton rotate_check;
 		[Glade.Widget] Gtk.CheckButton export_tags_check;
 		[Glade.Widget] Gtk.CheckButton export_tag_icons_check;
 		[Glade.Widget] Gtk.CheckButton open_check;
@@ -67,7 +66,6 @@ namespace FSpotFolderExport {
 		public const string SCALE_KEY = Preferences.APP_FSPOT_EXPORT + EXPORT_SERVICE + "scale";
 		public const string SIZE_KEY = Preferences.APP_FSPOT_EXPORT + EXPORT_SERVICE + "size";
 		public const string OPEN_KEY = Preferences.APP_FSPOT_EXPORT + EXPORT_SERVICE + "browser";
-		public const string ROTATE_KEY = Preferences.APP_FSPOT_EXPORT + EXPORT_SERVICE + "rotate";
 		public const string EXPORT_TAGS_KEY = Preferences.APP_FSPOT_EXPORT + EXPORT_SERVICE + "export_tags";
 		public const string EXPORT_TAG_ICONS_KEY = Preferences.APP_FSPOT_EXPORT + EXPORT_SERVICE + "export_tag_icons";
 		public const string METHOD_KEY = Preferences.APP_FSPOT_EXPORT + EXPORT_SERVICE + "method";
@@ -82,7 +80,6 @@ namespace FSpotFolderExport {
 
 		bool open;
 		bool scale;
-		bool rotate;
 		bool exportTags;
 		bool exportTagIcons;
 		int size;
@@ -136,7 +133,6 @@ namespace FSpotFolderExport {
 			LoadPreference (SCALE_KEY);
 			LoadPreference (SIZE_KEY);
 			LoadPreference (OPEN_KEY);
-			LoadPreference (ROTATE_KEY);
 			LoadPreference (EXPORT_TAGS_KEY);
 			LoadPreference (EXPORT_TAG_ICONS_KEY);
 			LoadPreference (METHOD_KEY);
@@ -190,11 +186,6 @@ namespace FSpotFolderExport {
 					Log.Debug ("Exporting full size.");
 				}
 
-				if (rotate) {
-					Log.Debug ("Autorotate images.");
-					gallery.SetRotate();
-				}
-
 				if (exportTags)
 					gallery.SetExportTags ();
 
@@ -207,8 +198,6 @@ namespace FSpotFolderExport {
 				FilterSet filter_set = new FilterSet ();
 				if (scale)
 					filter_set.Add (new ResizeFilter ((uint) size));
-				else if (rotate)
-					filter_set.Add (new OrientationFilter ());
 				filter_set.Add (new ChmodFilter ());
 				filter_set.Add (new UniqueNameFilter (new SafeUri (gallery_path)));
 
@@ -268,7 +257,6 @@ namespace FSpotFolderExport {
 				Preferences.Set (SCALE_KEY, scale);
 				Preferences.Set (SIZE_KEY, size);
 				Preferences.Set (OPEN_KEY, open);
-				Preferences.Set (ROTATE_KEY, rotate);
 				Preferences.Set (EXPORT_TAGS_KEY, exportTags);
 				Preferences.Set (EXPORT_TAG_ICONS_KEY, exportTagIcons);
 				Preferences.Set (METHOD_KEY, static_radio.Active ? "static" : original_radio.Active ? "original" : "folder" );
@@ -310,7 +298,6 @@ namespace FSpotFolderExport {
 			dest = GLib.FileFactory.NewForUri (uri_chooser.Uri);
 			open = open_check.Active;
 			scale = scale_check.Active;
-			rotate = rotate_check.Active;
 			exportTags = export_tags_check.Active;
 			exportTagIcons = export_tag_icons_check.Active;
 
@@ -350,11 +337,6 @@ namespace FSpotFolderExport {
 					open_check.Active = Preferences.Get<bool> (key);
 				break;
 
-			case ROTATE_KEY:
-				if (rotate_check.Active != Preferences.Get<bool> (key))
-					rotate_check.Active = Preferences.Get<bool> (key);
-				break;
-
 			case EXPORT_TAGS_KEY:
 				if (export_tags_check.Active != Preferences.Get<bool> (key))
 					export_tags_check.Active = Preferences.Get<bool> (key);
@@ -390,7 +372,6 @@ namespace FSpotFolderExport {
 		protected string gallery_path;
 		protected bool scale;
 		protected int size;
-		protected bool rotate;
 		protected bool exportTags;
 		protected bool exportTagIcons;
 		protected string description;
@@ -584,10 +565,6 @@ namespace FSpotFolderExport {
 			this.size = size;
 			requests [0].Width = size;
 			requests [0].Height = size;
-		}
-
-		public void SetRotate () {
-			this.rotate = true;
 		}
 
 		public void SetExportTags () {

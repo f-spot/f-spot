@@ -648,7 +648,6 @@ namespace G2Export {
 			LoadPreference (SIZE_KEY);
 			LoadPreference (BROWSER_KEY);
 			LoadPreference (META_KEY);
-			LoadPreference (ROTATE_KEY);
 		}
 
 		public const string EXPORT_SERVICE = "gallery/";
@@ -656,11 +655,9 @@ namespace G2Export {
 		public const string SIZE_KEY = Preferences.APP_FSPOT_EXPORT + EXPORT_SERVICE + "size";
 		public const string BROWSER_KEY = Preferences.APP_FSPOT_EXPORT + EXPORT_SERVICE + "browser";
 		public const string META_KEY = Preferences.APP_FSPOT_EXPORT + EXPORT_SERVICE + "meta";
-		public const string ROTATE_KEY = Preferences.APP_FSPOT_EXPORT + EXPORT_SERVICE + "rotate";
 		public const string LIGHTTPD_WORKAROUND_KEY = Preferences.APP_FSPOT_EXPORT + EXPORT_SERVICE + "lighttpd_workaround";
 
 		private bool scale;
-		private bool rotate;
 		private int size;
 		private bool browser;
 		private bool meta;
@@ -687,7 +684,6 @@ namespace G2Export {
 		[Glade.Widget] Gtk.CheckButton browser_check;
 		[Glade.Widget] Gtk.CheckButton scale_check;
 		[Glade.Widget] Gtk.CheckButton meta_check;
-		[Glade.Widget] Gtk.CheckButton rotate_check;
 
 		[Glade.Widget] Gtk.SpinButton size_spin;
 
@@ -718,7 +714,6 @@ namespace G2Export {
 
 			browser = browser_check.Active;
 			meta = meta_check.Active;
-			rotate = rotate_check.Active;
 
 			if (account != null) {
 				//System.Console.WriteLine ("history = {0}", album_optionmenu.History);
@@ -738,7 +733,6 @@ namespace G2Export {
 				Preferences.Set (SIZE_KEY, size);
 				Preferences.Set (BROWSER_KEY, browser);
 				Preferences.Set (META_KEY, meta);
-				Preferences.Set (ROTATE_KEY, rotate);
 			}
 		}
 
@@ -766,9 +760,6 @@ namespace G2Export {
 					filters.Add (new WhiteListFilter (new string []{".jpg", ".jpeg", ".png", ".gif"}));
 				if (scale)
 					filters.Add (new ResizeFilter ((uint) size));
-				else if (rotate)
-					filters.Add (new OrientationFilter ());
-
 
 				while (photo_index < items.Length) {
 					IBrowsableItem item = items [photo_index];
@@ -992,11 +983,6 @@ namespace G2Export {
 			case META_KEY:
 				if (meta_check.Active != Preferences.Get<bool> (key))
 					meta_check.Active = Preferences.Get<bool> (key);
-				break;
-				
-			case ROTATE_KEY:
-				if (rotate_check.Active != Preferences.Get<bool> (key))
-					rotate_check.Active = Preferences.Get<bool> (key);
 				break;
 			}
 		}

@@ -113,7 +113,6 @@ namespace PictureTileExtension {
 
 			FilterSet filters = new FilterSet ();
 			filters.Add (new JpegFilter ());
-			filters.Add (new OrientationFilter ());
 			uint counter = 0;
 			ArrayList all_tags = new ArrayList ();
 			foreach (Photo p in App.Instance.Organizer.SelectedPhotos ()) {

@@ -35,16 +35,11 @@ namespace FSpotCDExport {
 
 		[GtkBeans.Builder.Object] ScrolledWindow thumb_scrolledwindow;
 		[GtkBeans.Builder.Object] CheckButton remove_check;
-		[GtkBeans.Builder.Object] CheckButton rotate_check;
 		[GtkBeans.Builder.Object] Label size_label;
 		[GtkBeans.Builder.Object] Frame previous_frame;
 
 		public bool Clean {
 			get { return remove_check.Active; }
-		}
-
-		public bool Rotate {
-			get { return rotate_check.Active; }
 		}
 
 		public CDExportDialog (IBrowsableCollection selection, System.Uri dest) : base (Assembly.GetExecutingAssembly (), "CDExport.ui", "cd_export_dialog")
@@ -134,7 +129,6 @@ namespace FSpotCDExport {
 
 		int photo_index;
 		bool clean;
-		bool rotate;
 
 		CDExportDialog dialog;
 		ThreadProgressDialog progress_dialog;
@@ -156,7 +150,6 @@ namespace FSpotCDExport {
                         }
 
 			clean = dialog.Clean;
-			rotate = dialog.Rotate;
 
 			command_thread = new System.Threading.Thread (new System.Threading.ThreadStart (Transfer));
 			command_thread.Name = Catalog.GetString ("Transferring Pictures");
@@ -208,9 +201,6 @@ namespace FSpotCDExport {
 
 				//FIXME need to implement the uniquename as a filter
 					using (FilterRequest request = new FilterRequest (photo.DefaultVersion.Uri)) {
-						if (rotate)
-							new OrientationFilter ().Convert (request);
-
 						GLib.File source = FileFactory.NewForUri (request.Current.ToString ());
 						GLib.File target = UniqueName (dest, photo.Name);
 						FileProgressCallback cb = Progress;

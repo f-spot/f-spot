@@ -32,7 +32,6 @@ namespace FSpot
 		[GtkBeans.Builder.Object] private Label 		NumberOfPictures, TotalOriginalSize, ApproxNewSize;
 		[GtkBeans.Builder.Object] private RadioButton 	tiny_size, small_size, medium_size,
 														large_size, x_large_size, original_size;
-		[GtkBeans.Builder.Object] private CheckButton 	rotate_check;
 #pragma warning restore 0649
 
 		long Orig_Photo_Size 	= 0;
@@ -79,8 +78,6 @@ namespace FSpot
 					default: break;
 				}
 
-			rotate_check.Active = Preferences.Get<bool> (Preferences.EXPORT_EMAIL_ROTATE);
-			rotate_check.Sensitive = original_size.Active && tiny_size.Sensitive;
 			
 			tray_scrolled.Add (new TrayView (selection));
 
@@ -195,9 +192,6 @@ namespace FSpot
 		public void on_size_toggled (object o, EventArgs args) 
 		{
 			UpdateEstimatedSize();
-			
-			// Only enable the rotate option if Original size is selected.
-			rotate_check.Sensitive = original_size.Active;
 		}
 
 
@@ -205,7 +199,6 @@ namespace FSpot
 		{
 			int size = 0;
 			bool UserCancelled = false;
-			bool rotate = true;
 
 			// Lets remove the mail "create mail" dialog
 			Destroy();
@@ -239,9 +232,6 @@ namespace FSpot
 				break;
 			}
 
-			rotate = rotate_check.Active;  // Should we automatically rotate original photos.
-			Preferences.Set (Preferences.EXPORT_EMAIL_ROTATE, rotate);
-			
 			// Create a tmp directory.
 			tmp_mail_dir = System.IO.Path.GetTempFileName ();	// Create a tmp file	
 			System.IO.File.Delete (tmp_mail_dir);			// Delete above tmp file
@@ -253,8 +243,6 @@ namespace FSpot
 
 			if (size != 0)
 				filters.Add (new ResizeFilter ((uint) size));
-			else if (rotate)
-				filters.Add (new OrientationFilter ());
 			filters.Add (new UniqueNameFilter (new SafeUri (tmp_mail_dir)));
 
 
