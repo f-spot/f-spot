@@ -47,8 +47,8 @@ namespace FSpot {
 
         private DateTime CreateDate {
             get {
-                var info = GLib.FileFactory.NewForUri (DefaultVersion.Uri).QueryInfo ("time::created", GLib.FileQueryInfoFlags.None, null);
-                return NativeConvert.ToDateTime ((long)info.GetAttributeULong ("time::created"));
+                var info = GLib.FileFactory.NewForUri (DefaultVersion.Uri).QueryInfo ("time::changed", GLib.FileQueryInfoFlags.None, null);
+                return NativeConvert.ToDateTime ((long)info.GetAttributeULong ("time::changed"));
             }
         }
 
