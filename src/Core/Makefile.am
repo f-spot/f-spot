@@ -19,6 +19,7 @@ SOURCES = \
 	IBrowsableItemVersion.cs \
 	IBrowsableItemVersionable.cs \
 	IBrowsableCollection.cs \
+	ILoadable.cs \
 	PhotoChanges.cs \
 	PhotosChanges.cs \
 	Roll.cs \
