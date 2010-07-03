@@ -140,60 +140,12 @@ namespace FSpot.Import
         }
     }
 
-    internal class FileImportInfo : IBrowsableItem {
-		bool metadata_parsed = false;
-
-        public FileImportInfo (SafeUri original)
+    internal class FileImportInfo : FileBrowsableItem {
+        public FileImportInfo (SafeUri original) : base (original)
         {
-            DefaultVersion = new ImportInfoVersion () {
-                BaseUri = original.GetBaseUri (),
-                Filename = original.GetFilename ()
-            };
         }
 
-		private void EnsureMetadataParsed ()
-		{
-			if (metadata_parsed)
-				return;
-
-			using (var metadata = Metadata.Parse (DefaultVersion.Uri)) {
-				var date = metadata.ImageTag.DateTime;
-				time = date.HasValue ? date.Value : CreateDate;
-				description = metadata.ImageTag.Comment;
-			}
-
-			metadata_parsed = true;
-		}
-
-        public IBrowsableItemVersion DefaultVersion { get; private set; }
         public SafeUri DestinationUri { get; set; }
-
-        private DateTime time;
-        public System.DateTime Time {
-            get {
-				EnsureMetadataParsed ();
-                return time;
-            }
-        }
-
-		private string description;
-		public string Description {
-			get {
-				EnsureMetadataParsed ();
-				return description;
-			}
-		}
-
-        private DateTime CreateDate {
-            get {
-                var info = GLib.FileFactory.NewForUri (DefaultVersion.Uri).QueryInfo ("time::changed", GLib.FileQueryInfoFlags.None, null);
-                return NativeConvert.ToDateTime ((long)info.GetAttributeULong ("time::changed"));
-            }
-        }
-
-        public Tag [] Tags { get { throw new NotImplementedException (); } }
-        public string Name { get { throw new NotImplementedException (); } }
-        public uint Rating { get { return 0; } }
 
         internal uint PhotoId { get; set; }
     }
