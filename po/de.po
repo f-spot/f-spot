@@ -14,8 +14,8 @@ msgstr ""
 "Project-Id-Version: f-spot\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=f-"
 "spot&component=General\n"
-"POT-Creation-Date: 2010-06-25 08:37+0000\n"
-"PO-Revision-Date: 2010-06-27 19:15+0100\n"
+"POT-Creation-Date: 2010-06-30 08:22+0000\n"
+"PO-Revision-Date: 2010-07-05 01:14+0100\n"
 "Last-Translator: Mario Blättermann <mariobl@gnome.org>\n"
 "Language-Team: German <gnome-de@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -72,7 +72,7 @@ msgstr "Übertragung des Bilds »{0}« auf CD"
 
 #. Note for translators: This indicates the current photo is photo {0} of {1} out of photos
 #: ../extensions/Exporters/CDExport/CDExport.cs:220
-#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:351
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:362
 #: ../extensions/Exporters/FolderExport/FolderExport.cs:220
 #: ../extensions/Exporters/GalleryExport/GalleryExport.cs:782
 #: ../src/MainWindow.cs:645 ../src/UI.Dialog/AdjustTimeDialog.cs:130
@@ -83,7 +83,7 @@ msgstr "{0} von {1}"
 
 #: ../extensions/Exporters/CDExport/CDExport.cs:233
 #: ../extensions/Exporters/FacebookExport/FacebookExport.cs:378
-#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:381
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:392
 #: ../extensions/Exporters/GalleryExport/GalleryExport.cs:807
 #: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:706
 #: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:607
@@ -216,7 +216,7 @@ msgstr ""
 "{0}"
 
 #: ../extensions/Exporters/FacebookExport/FacebookExport.cs:327
-#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:477
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:488
 #: ../extensions/Exporters/GalleryExport/GalleryExport.cs:731
 #: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:599
 #: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:522
@@ -236,7 +236,7 @@ msgid "Error Uploading To Facebook: {0}"
 msgstr "Fehler beim Hochladen zu Facebook: {0}"
 
 #: ../extensions/Exporters/FacebookExport/FacebookExport.cs:370
-#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:372
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:383
 #: ../extensions/Exporters/FolderExport/FolderExport.cs:226
 #: ../extensions/Exporters/GalleryExport/GalleryExport.cs:798
 #: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:695
@@ -246,7 +246,7 @@ msgid "Error"
 msgstr "Fehler"
 
 #: ../extensions/Exporters/FacebookExport/FacebookExport.cs:380
-#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:383
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:394
 #: ../extensions/Exporters/GalleryExport/GalleryExport.cs:809
 #: ../extensions/Exporters/PicasaWebExport/PicasaWebExport.cs:708
 #: ../extensions/Exporters/SmugMugExport/SmugMugExport.cs:609
@@ -453,31 +453,32 @@ msgstr "Als anderer Benutzer anmelden"
 msgid "Used {0} of your allowed {1} monthly quota"
 msgstr "{0} von Ihrer monatlichen Quota von {1} in Benutzung"
 
-#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:299
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:239
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:310
 msgid "Unable to log on"
 msgstr "Anmeldung fehlgeschlagen"
 
-#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:319
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:330
 #, csharp-format
 msgid "Waiting for response {0} of {1}"
 msgstr "Warte auf Antwort {0} von {1}"
 
-#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:346
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:357
 #: ../extensions/Exporters/GalleryExport/GalleryExport.cs:778
 #, csharp-format
 msgid "Uploading picture \"{0}\""
 msgstr "Hochladen des Bilds »{0}«"
 
-#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:369
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:380
 #, csharp-format
 msgid "Error Uploading To {0}: {1}"
 msgstr "Fehler beim Hochladen von {0}: {1}"
 
-#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:456
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:467
 msgid "Unable to log on."
 msgstr "Anmeldung ist fehlgeschlagen."
 
-#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:457
+#: ../extensions/Exporters/FlickrExport/FlickrExport.cs:468
 #, csharp-format
 msgid ""
 "F-Spot was unable to log on to {0}.  Make sure you have given the "
@@ -1864,35 +1865,35 @@ msgstr "_Sättigung:"
 msgid "_Tint:"
 msgstr "_Farbton:"
 
-#: ../src/FullScreenView.cs:59
+#: ../src/FullScreenView.cs:58
 msgid "Hide"
 msgstr "Verbergen"
 
-#: ../src/FullScreenView.cs:61
+#: ../src/FullScreenView.cs:60
 msgid "Hide toolbar"
 msgstr "Werkzeugleiste verbergen"
 
-#: ../src/FullScreenView.cs:67
+#: ../src/FullScreenView.cs:66
 msgid "Info"
 msgstr "Info"
 
-#: ../src/FullScreenView.cs:69
+#: ../src/FullScreenView.cs:68
 msgid "Image information"
 msgstr "Bildinformationen"
 
-#: ../src/FullScreenView.cs:74
+#: ../src/FullScreenView.cs:73
 msgid "Exit fullscreen"
 msgstr "Vollbild verlassen"
 
-#: ../src/FullScreenView.cs:82 ../src/MainWindow.cs:314 ../src/SingleView.cs:92
+#: ../src/FullScreenView.cs:81 ../src/MainWindow.cs:314 ../src/SingleView.cs:92
 msgid "Slideshow"
 msgstr "Diaschau"
 
-#: ../src/FullScreenView.cs:83
+#: ../src/FullScreenView.cs:82
 msgid "Start slideshow"
 msgstr "Diaschau starten"
 
-#: ../src/FullScreenView.cs:129
+#: ../src/FullScreenView.cs:128
 msgid "Slide transition:"
 msgstr "Diaübergänge:"
 
@@ -2561,8 +2562,8 @@ msgid "(No Edits)"
 msgstr "(Keine Bearbeitungen)"
 
 #: ../src/PhotoView.cs:339
-msgid "Comment:"
-msgstr "Kommentar:"
+msgid "Description:"
+msgstr "Beschreibung:"
 
 #: ../src/Preferences.cs:152
 msgid "Photos"
@@ -4040,6 +4041,9 @@ msgstr "Eine Diaschau aus F-Spot anzeigen"
 #: ../tools/f-spot-screensaver.desktop.in.h:2
 msgid "F-Spot photos"
 msgstr "F-Spot Fotos"
+
+#~ msgid "Comment:"
+#~ msgstr "Kommentar:"
 
 #~ msgid "Open _Folder..."
 #~ msgstr "_Ordner öffnen …"
