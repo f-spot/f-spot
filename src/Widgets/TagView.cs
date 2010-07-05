@@ -76,6 +76,9 @@ public class TagView : EventBox {
 	
 	public void DrawTags()
 	{
+		if (tags == null)
+			return;
+
 		SetSizeRequest ((thumbnail_size + TAG_ICON_VSPACING) * tags.Length,
 				thumbnail_size);
 
