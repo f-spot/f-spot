@@ -94,7 +94,6 @@ namespace FSpot.Imaging.Ciff {
 		public uint ImageWidth;  // Number of horizontal pixels
 		public uint ImageHeight; // Number of vertical pixels
 		public float PixelAspectRatio;
-		public int RotationAngle;  // degrees counter clockwise to rotate (orientation)
 		public uint ComponentBitDepth; // bits per component
 		public uint ColorBitDepth; // bits per component * channels
 		public uint ColorBW; //  byte wise:  0 gray - 1 color ; byte 2 use aspect ratio ; 3 and 4 reserved
@@ -105,27 +104,10 @@ namespace FSpot.Imaging.Ciff {
 			ImageHeight = BitConverter.ToUInt32 (data, 4, little);
 
 			PixelAspectRatio = BitConverter.ToSingle (data, 8, little);
-			RotationAngle = BitConverter.ToInt32 (data, 12, little);
 			ComponentBitDepth = BitConverter.ToUInt32 (data, 16, little);
 			ColorBitDepth = BitConverter.ToUInt32 (data, 20, little);
 			ColorBW = BitConverter.ToUInt32 (data, 24, little);
 			Log.DebugFormat ("0x{0}", ColorBW.ToString ("x"));
-		}
-
-		public ImageOrientation Orientation {
-			get {
-				int angle = RotationAngle % 360;
-				if (angle < 45)
-					return ImageOrientation.TopLeft;
-				else if (angle < 135)
-					return ImageOrientation.RightTop;
-				else if (angle < 225)
-					return ImageOrientation.BottomRight;
-				else if (angle < 315)
-					return ImageOrientation.LeftBottom;
-				else
-					return ImageOrientation.TopLeft;
-			}
 		}
 
 		public bool IsColor {
@@ -342,7 +324,6 @@ namespace FSpot.Imaging.Ciff {
 			data = props.ReadEntry (Tag.ImageSpec);
 			if (data != null) {
 				ImageSpec spec = new ImageSpec (data, little);
-				MetadataStore.AddLiteral (sink, "tiff:Orientation", ((int)spec.Orientation).ToString ());
 				MetadataStore.AddLiteral (sink, "tiff:ImageWidth", spec.ImageWidth.ToString ());
 				MetadataStore.AddLiteral (sink, "tiff:ImageLength", spec.ImageHeight.ToString ());
 				string comp = spec.ComponentBitDepth.ToString ();

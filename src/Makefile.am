@@ -90,11 +90,9 @@ SOURCES = \
 	Imaging/InternalProcess.cs \
 	Imaging/IptcFile.cs \
 	Imaging/IOChannel.cs \
-	Imaging/MrwFile.cs \
 	Imaging/OrderedWriter.cs \
 	Imaging/PixelBuffer.cs \
 	Imaging/RafFile.cs \
-	Imaging/X3fFile.cs \
 	Imaging/XmpFile.cs \
 	Imaging/Tiff.cs \
 	JobStore.cs \

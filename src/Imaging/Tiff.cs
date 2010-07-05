@@ -82,7 +82,6 @@ namespace FSpot.Imaging.Tiff {
 		Make 				= 0x010f,
 		Model 				= 0x0110,
 		StripOffsets 			= 0x0111,
-		Orientation 			= 0x0112,
 		SamplesPerPixel 		= 0x0115,
 		RowsPerStrip    		= 0x0116,
 		StripByteCounts 		= 0x0117,
@@ -1056,7 +1055,6 @@ namespace FSpot.Imaging.Tiff {
 				case TagId.BitsPerSample:
 					MetadataStore.Add (sink, "tiff:" + e.Id.ToString (), "rdf:Seq", e.ValueAsString);
 					break;
-				case TagId.Orientation:
 				case TagId.Compression:
 				case TagId.PhotometricInterpretation:					
 				case TagId.SamplesPerPixel:

@@ -51,9 +51,9 @@ namespace FSpot.Imaging {
 			name_table [".dng"] = typeof (FSpot.Imaging.Tiff.DngFile);
 			name_table [".crw"] = typeof (FSpot.Imaging.Ciff.CiffFile);
 			name_table [".ppm"] = typeof (BaseImageFile);
-			name_table [".mrw"] = typeof (FSpot.Imaging.Mrw.MrwFile);
+			name_table [".mrw"] = typeof (FSpot.Imaging.DCRawFile);
 			name_table [".raf"] = typeof (FSpot.Imaging.Raf.RafFile);
-			name_table [".x3f"] = typeof (FSpot.Imaging.X3f.X3fFile);
+			name_table [".x3f"] = typeof (FSpot.Imaging.DCRawFile);
 
 			// add mimetypes for fallback
 			name_table ["image/bmp"]     = name_table ["image/x-bmp"] = name_table [".bmp"];
