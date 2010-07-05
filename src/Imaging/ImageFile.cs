@@ -203,7 +203,7 @@ namespace FSpot.Imaging {
 			return rotated;
 		}
 
-		public virtual Gdk.Pixbuf Load ()
+		public Gdk.Pixbuf Load ()
 		{
 			using (Stream stream = PixbufStream ()) {
 				Gdk.Pixbuf orig = new Gdk.Pixbuf (stream);
