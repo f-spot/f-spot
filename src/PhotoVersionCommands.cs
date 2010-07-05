@@ -68,6 +68,7 @@ public class PhotoVersionCommands
 				break;
 			}
 
+			version_name_entry.Changed += HandleVersionNameEntryChanged;
 			version_name_entry.ActivatesDefault = true;
 
 			this.TransientFor = parent_window;
