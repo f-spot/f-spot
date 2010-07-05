@@ -75,7 +75,7 @@ namespace FSpot.Editors
 
 		private void HandleValueChanged (object sender, System.EventArgs args)
 		{
-			angle = scale.Value * Math.PI / 180;
+			angle = scale.Value * Math.PI / -180;
 			UpdatePreview ();
 		}
 	}
