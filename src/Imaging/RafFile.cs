@@ -29,7 +29,7 @@ namespace FSpot.Imaging.Raf {
 		public Exif.ExifData ExifData {
 			get {
 				if (exif_data == null)
-					exif_data = new Exif.ExifData(uri.LocalPath);
+					exif_data = new Exif.ExifData(Uri.LocalPath);
 				Log.Debug ("loading exif data");
 				return exif_data;
 			}
@@ -42,21 +42,7 @@ namespace FSpot.Imaging.Raf {
 			if (data != null)
 				return new System.IO.MemoryStream (data);
 			else
-				return DCRawFile.RawPixbufStream (uri);
-		}
- 
-		public override Gdk.Pixbuf Load ()
-		{
-			return new Gdk.Pixbuf (PixbufStream ());
-		}
-
-		public override Gdk.Pixbuf Load (int width, int height)
-		{
-			Gdk.Pixbuf full = this.Load ();
-			Gdk.Pixbuf rotated = FSpot.Utils.PixbufUtils.TransformOrientation (full, Orientation);
-			Gdk.Pixbuf scaled  = PixbufUtils.ScaleToMaxSize (rotated, width, height);
-			full.Dispose ();
-			return scaled;
+				return DCRawFile.RawPixbufStream (Uri);
 		}
 
 		public void Select (SemWeb.StatementSink sink)
@@ -65,7 +51,7 @@ namespace FSpot.Imaging.Raf {
 
 		private byte [] GetEmbeddedJpeg ()
 		{
-			using (System.IO.Stream stream = Open ()) {
+			using (System.IO.Stream stream = base.PixbufStream ()) {
 				stream.Position = 0x54;
 				byte [] data = new byte [24];
 				stream.Read (data, 0, data.Length);

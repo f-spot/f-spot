@@ -1801,7 +1801,7 @@ namespace FSpot.Imaging.Tiff {
 		public TiffFile (SafeUri uri) : base (uri)
 		{
 			try {
-				using (System.IO.Stream input = Open ()) {
+				using (System.IO.Stream input = PixbufStream ()) {
 					this.Header = new Header (input);
 				}
 			} catch (System.Exception e) {
@@ -1818,7 +1818,7 @@ namespace FSpot.Imaging.Tiff {
 		{
 			uint offset = directory.Lookup (TagId.JPEGInterchangeFormat).ValueAsLong [0];
 			
-			System.IO.Stream file = Open ();
+			System.IO.Stream file = PixbufStream ();
 			file.Position = offset;
 			return file;
 		}
@@ -1836,11 +1836,11 @@ namespace FSpot.Imaging.Tiff {
 				ImageDirectory directory = sub.Directory [sub.Directory.Length - 1];
 
 				uint offset = directory.Lookup (TagId.StripOffsets).ValueAsLong [0];
-				System.IO.Stream file = Open ();
+				System.IO.Stream file = base.PixbufStream ();
 				file.Position = offset;
 				return file;
 			} catch {
-				return DCRawFile.RawPixbufStream (uri);
+				return DCRawFile.RawPixbufStream (Uri);
 			}
 		}
 
@@ -1951,7 +1951,7 @@ namespace FSpot.Imaging.Tiff {
 				ImageDirectory jpeg_directory = sub.Directory [0];
 				return LookupJpegSubstream (jpeg_directory);
 			} catch (System.Exception) {
-				return DCRawFile.RawPixbufStream (uri);
+				return DCRawFile.RawPixbufStream (Uri);
 			}
 		}
 	}
@@ -1965,7 +1965,7 @@ namespace FSpot.Imaging.Tiff {
 		public override System.IO.Stream PixbufStream ()
 		{
 			uint offset = Header.Directory.Lookup (TagId.StripOffsets).ValueAsLong [0];
-			System.IO.Stream file = Open ();
+			System.IO.Stream file = base.PixbufStream ();
 			file.Position = offset;
 			return file;
 		}

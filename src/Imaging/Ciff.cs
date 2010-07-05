@@ -299,7 +299,7 @@ namespace FSpot.Imaging.Ciff {
 		public ImageDirectory Root {
 			get {
 				if (root == null) {
-					stream = Open ();
+					stream = PixbufStream ();
 					root = Load (stream);
 				}
 				
@@ -379,15 +379,7 @@ namespace FSpot.Imaging.Ciff {
 			if (data != null)
 				return new System.IO.MemoryStream (data);
 			else	
-				return DCRawFile.RawPixbufStream (uri);
-		}
-
-		public override Gdk.Pixbuf Load (int width, int height)
-		{
-			Gdk.Pixbuf full = this.Load ();
-			Gdk.Pixbuf scaled  = PixbufUtils.ScaleToMaxSize (full, width, height);
-			full.Dispose ();
-			return scaled;
+				return DCRawFile.RawPixbufStream (Uri);
 		}
 
 		private byte [] GetEmbeddedJpeg ()

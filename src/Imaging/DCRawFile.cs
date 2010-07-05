@@ -13,7 +13,7 @@ namespace FSpot.Imaging {
 
 		public override System.IO.Stream PixbufStream ()
 		{
-			return RawPixbufStream (uri);
+			return RawPixbufStream (Uri);
 		}
 
 		internal static System.IO.Stream RawPixbufStream (SafeUri location)

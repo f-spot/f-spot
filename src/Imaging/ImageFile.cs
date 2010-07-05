@@ -167,40 +167,28 @@ namespace FSpot.Imaging {
     }
 
     public class BaseImageFile : IImageFile {
-        ImageOrientation orientation = ImageOrientation.TopLeft;
+        public SafeUri Uri { get; private set; }
+        public ImageOrientation Orientation { get; private set; }
 
-		protected SafeUri uri;
-
-		public BaseImageFile (SafeUri uri)
-		{
-			this.uri = uri;
+        public BaseImageFile (SafeUri uri)
+        {
+            Uri = uri;
+            Orientation = ImageOrientation.TopLeft;
 
             using (var metadata_file = Metadata.Parse (uri)) {
-                orientation = metadata_file.ImageTag.Orientation;
+                Orientation = metadata_file.ImageTag.Orientation;
             }
-		}
+        }
 
 		~BaseImageFile ()
 		{
 			Dispose ();
 		}
 
-		protected Stream Open ()
-		{
-			Log.DebugFormat ("open uri = {0}", uri.ToString ());
-			return new GLib.GioStream (GLib.FileFactory.NewForUri (uri).Read (null));
-		}
-
 		public virtual Stream PixbufStream ()
 		{
-			return Open ();
-		}
-		public SafeUri Uri {
-			get { return this.uri; }
-		}
-
-		public ImageOrientation Orientation {
-			get { return orientation; }
+			Log.DebugFormat ("open uri = {0}", Uri.ToString ());
+			return new GLib.GioStream (GLib.FileFactory.NewForUri (Uri).Read (null));
 		}
 
 		protected Gdk.Pixbuf TransformAndDispose (Gdk.Pixbuf orig)
@@ -223,20 +211,12 @@ namespace FSpot.Imaging {
 			}
 		}
 
-		public virtual Gdk.Pixbuf Load (int max_width, int max_height)
+		public Gdk.Pixbuf Load (int max_width, int max_height)
 		{
-			System.IO.Stream stream = PixbufStream ();
-			if (stream == null) {
-				Gdk.Pixbuf orig = this.Load ();
-				Gdk.Pixbuf scaled = PixbufUtils.ScaleToMaxSize (orig,  max_width, max_height, false);
-				orig.Dispose ();
-				return scaled;
-			}
-
-			using (stream) {
-				PixbufUtils.AspectLoader aspect = new PixbufUtils.AspectLoader (max_width, max_height);
-				return aspect.Load (stream, Orientation);
-			}
+			Gdk.Pixbuf full = this.Load ();
+			Gdk.Pixbuf scaled  = PixbufUtils.ScaleToMaxSize (full, max_width, max_height);
+			full.Dispose ();
+			return scaled;
 		}
 
 		// FIXME this need to have an intent just like the loading stuff.
