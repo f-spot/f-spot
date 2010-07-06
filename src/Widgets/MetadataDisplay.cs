@@ -9,7 +9,6 @@
  */
 
 using System;
-using SemWeb;
 using System.IO;
 using System.Text;
 using System.Collections.Generic;
@@ -19,7 +18,6 @@ using Mono.Unix;
 
 using FSpot.Extensions;
 using FSpot.Imaging;
-using FSpot.Imaging.Exif;
 
 namespace FSpot.Widgets {
 	public class MetadataDisplayPage : SidebarPage {
@@ -42,10 +40,10 @@ namespace FSpot.Widgets {
 		
 		/* 	This VBox only contains exif-data,
 			so it is seperated from other information */
-		VBox exif_vbox;
+		VBox metadata_vbox;
 		
 		VBox main_vbox;
-		Label exif_message;
+		Label metadata_message;
 		State display;
 		
 		private MetadataDisplayPage page;
@@ -62,7 +60,7 @@ namespace FSpot.Widgets {
 		bool up_to_date = false;
 		
 		enum State {
-			exif,
+			metadata,
 			message
 		};
 		
@@ -71,14 +69,14 @@ namespace FSpot.Widgets {
 			main_vbox = new VBox ();
 			main_vbox.Spacing = 6;
 			
-			exif_message = new Label (String.Empty);
-			exif_message.UseMarkup = true;
-			exif_message.LineWrap = true;
-			exif_vbox = new VBox ();
-			exif_vbox.Spacing = 6;
+			metadata_message = new Label (String.Empty);
+			metadata_message.UseMarkup = true;
+			metadata_message.LineWrap = true;
+			metadata_vbox = new VBox ();
+			metadata_vbox.Spacing = 6;
 			
-			main_vbox.PackStart (exif_vbox, false, false, 0);
-			AddWithViewport (exif_message);
+			main_vbox.PackStart (metadata_vbox, false, false, 0);
+			AddWithViewport (metadata_message);
 			((Viewport) Child).ShadowType = ShadowType.None;
 			BorderWidth = 3;
 			
@@ -117,29 +115,13 @@ namespace FSpot.Widgets {
 			update_delay.Start ();
 		}
 		
-		private ExifData exif_info;
-
 		private IBrowsableItem photo;
 		public IBrowsableItem Photo {
-			get {
-				return photo;
-			}
+			get { return photo; }
 			set {
 				photo = value;
-
-				if (exif_info != null) {
-					exif_info.Dispose ();
-					exif_info = null;
-				}
-
-				if (photo != null) {
-					if (File.Exists (photo.DefaultVersion.Uri.LocalPath))
-						exif_info = new ExifData (photo.DefaultVersion.Uri.LocalPath);
-				} else {
-					exif_info = null;
-				}
 				
-				if (!((Page.Sidebar as Sidebar).IsActive (Page))) {
+				if (!Visible) {
 					up_to_date = false;
 				} else {
 					update_delay.Start ();
@@ -149,28 +131,32 @@ namespace FSpot.Widgets {
 		
 		private void HandleExposeEvent (object sender, ExposeEventArgs args)
 		{
-			if (!up_to_date)
-			{
+			if (!up_to_date) {
 				update_delay.Start ();
 			}
 		}
 		
 		internal void HandleSelectionChanged (IBrowsableCollection collection) {
-			if (collection != null && collection.Count == 1)
-				Photo = collection [0];
-			else
-				Photo = null;
+            // Don't show metadata when multiple photos are selected.
+			Photo = (collection != null && collection.Count == 1) ? collection [0] : null;
 		}
 		
 		internal void HandleSelectionItemsChanged (IBrowsableCollection collection, BrowsableEventArgs args) {
 			if (!args.Changes.MetadataChanged)
 				return;
 
-			if (!((Page.Sidebar as Sidebar).IsActive (Page)))
+			if (!Visible) {
 				up_to_date = false;
-			else
+            } else {
 				update_delay.Start ();
+            }
 		}
+
+        private bool Visible {
+            get {
+                return (Page.Sidebar as Sidebar).IsActive (Page);
+            }
+        }
 		
 		private ListStore AddExpander (string name, int pos)
 		{
@@ -195,8 +181,8 @@ namespace FSpot.Widgets {
 			expander.Add (tree_view);
 			expander.Expanded = true;
 			
-			exif_vbox.PackStart (expander, false, false, 6);
-			exif_vbox.ReorderChild (expander, pos);
+			metadata_vbox.PackStart (expander, false, false, 6);
+			metadata_vbox.ReorderChild (expander, pos);
 			
 			if (open_list.Contains (name))
 				expander.Expanded = true;
@@ -217,63 +203,22 @@ namespace FSpot.Widgets {
 				open_list.Remove (expander.Label);
 		}		
 		
-// FIXME: re-hook this in the UI
-//		static string GetExportLabel (ExportItem export)
-//		{
-//			switch (export.ExportType) {
-//			case ExportStore.FlickrExportType:
-//				string[] split_token = export.ExportToken.Split (':');
-//				return String.Format ("Flickr ({0})", split_token[1]);
-//			case ExportStore.OldFolderExportType:	//Obsolete, remove after db rev4
-//				return Catalog.GetString ("Folder");
-//			case ExportStore.FolderExportType:
-//				return Catalog.GetString ("Folder");
-//			case ExportStore.PicasaExportType:
-//				return Catalog.GetString ("Picasaweb");
-//			case ExportStore.SmugMugExportType:
-//				return Catalog.GetString ("SmugMug");
-//			case ExportStore.Gallery2ExportType:
-//				return Catalog.GetString ("Gallery2");
-//			default:
-//				return null;
-//			}
-//		}
-//		
-//		static string GetExportUrl (ExportItem export)
-//		{
-//			switch (export.ExportType) {
-//			case ExportStore.FlickrExportType:
-//				string[] split_token = export.ExportToken.Split (':');
-//				return String.Format ("http://www.{0}/photos/{1}/{2}/", split_token[2],
-//                                                      split_token[0], split_token[3]);
-//			case ExportStore.FolderExportType:
-//				Gnome.Vfs.Uri uri = new Gnome.Vfs.Uri (export.ExportToken);
-//				return (uri.HasParent) ? uri.Parent.ToString () : export.ExportToken;
-//			case ExportStore.Gallery2ExportType:
-//				string[] split_item = export.ExportToken.Split (':');
-//				return String.Format ("{0}:{1}?g2_itemId={2}",split_item[0], split_item[1], split_item[2]);
-//			case ExportStore.OldFolderExportType:	//This is obsolete and meant to be removed once db reach rev4
-//			case ExportStore.PicasaExportType:
-//			case ExportStore.SmugMugExportType:
-//				return export.ExportToken;
-//			default:
-//				return null;
-//			}
-//		}
-		
 		private bool Update ()
 		{
-			TreeIter iter;
-			ListStore model;
-			string name;
 			bool empty = true;
+			int index_of_expander = 0;
 			bool missing = false;
 			System.Exception error = null;
+
+			/*
+            // FIXME: The stuff below needs to be ported to Taglib#.
+            TreeIter iter;
+			ListStore model;
+			string name;
 			
 			up_to_date = true;
 			
 			int i = 0;
-			int index_of_expander = 0;
 			
 			// Write Exif-Data
 			if (exif_info != null) {
@@ -289,10 +234,10 @@ namespace FSpot.Widgets {
 										
 					name = ExifUtil.GetIfdNameExtended ((Ifd)i - 1);
 					
-					if (index_of_expander >= exif_vbox.Children.Length)
+					if (index_of_expander >= metadata_vbox.Children.Length)
 						model = AddExpander (name, index_of_expander);
 					else {
-						Expander expander = (Expander)exif_vbox.Children[index_of_expander];
+						Expander expander = (Expander)metadata_vbox.Children[index_of_expander];
 						if (expander.Label == name)
 							model = (ListStore)((TreeView)expander.Child).Model;
 						else {
@@ -406,15 +351,14 @@ namespace FSpot.Widgets {
 				while (model.IterIsValid(iter)) {
 					model.Remove (ref iter);
 				}
-			} 
+			}*/
 			
 			if (empty) {
 				string msg;
 				if (photo == null) {
 				     msg = Catalog.GetString ("No active photo");
 				} else if (missing) {
-					msg = String.Format (Catalog.GetString ("The photo \"{0}\" does not exist"),
-					                                        photo.DefaultVersion.Uri);
+					msg = String.Format (Catalog.GetString ("The photo \"{0}\" does not exist"), photo.DefaultVersion.Uri);
 				} else {
 				     msg = Catalog.GetString ("No metadata available");
 
@@ -423,25 +367,25 @@ namespace FSpot.Widgets {
 					}
 				}
 				
-				exif_message.Markup = "<span weight=\"bold\">" + msg + "</span>";
+				metadata_message.Markup = "<span weight=\"bold\">" + msg + "</span>";
 				
-				if (display == State.exif) {
+				if (display == State.metadata) {
 					// Child is a Viewport, (AddWithViewport in ctor)
 					((Viewport)Child).Remove (main_vbox);
-					((Viewport)Child).Add (exif_message);
+					((Viewport)Child).Add (metadata_message);
 					display = State.message;
-					exif_message.Show ();
+					metadata_message.Show ();
 				}
 			} else {
 				// remove Expanders, that are not used
-				while (index_of_expander < exif_vbox.Children.Length)
-					exif_vbox.Remove (exif_vbox.Children[index_of_expander]);
+				while (index_of_expander < metadata_vbox.Children.Length)
+					metadata_vbox.Remove (metadata_vbox.Children[index_of_expander]);
 				
 				if (display == State.message) {
 					// Child is a Viewport, (AddWithViewport in ctor)
-					((Viewport)Child).Remove (exif_message);
+					((Viewport)Child).Remove (metadata_message);
 					((Viewport)Child).Add (main_vbox);
-					display = State.exif;
+					display = State.metadata;
 					main_vbox.ShowAll ();
 				}
 			}
@@ -449,6 +393,7 @@ namespace FSpot.Widgets {
 			return false;		
 		}
 		
+        /*
 		private void WriteCollection (MemoryStore substore, StringBuilder collection)
 		{
 			string type = null;
@@ -480,6 +425,6 @@ namespace FSpot.Widgets {
 					}
 				}
 			}
-		}
+		}*/
 	}
 }
