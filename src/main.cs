@@ -134,6 +134,7 @@ namespace FSpot
 		{
 			args = FixArgs (args);
 
+			ApplicationContext.ApplicationName = "F-Spot";
 			ApplicationContext.TrySetProcessName (Defines.PACKAGE);
 
 			Paths.ApplicationName = "f-spot";
