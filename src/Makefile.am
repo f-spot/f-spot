@@ -196,7 +196,6 @@ RESOURCES = \
 	../icons/f-spot-not.png \
 	../icons/f-spot-128.png \
 	../icons/flower.png \
-	dces.rdf \
 	f-spot.glade \
 	ui/import.ui \
 	ui/mail_dialog.ui \
