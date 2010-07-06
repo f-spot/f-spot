@@ -83,11 +83,9 @@ SOURCES = \
 	InfoOverlay.cs \
 	ItemAction.cs \
 	Imaging/DCRawFile.cs \
-	Imaging/Bim.cs \
 	Imaging/Ciff.cs \
 	Imaging/ImageFile.cs \
 	Imaging/InternalProcess.cs \
-	Imaging/IptcFile.cs \
 	Imaging/IOChannel.cs \
 	Imaging/RafFile.cs \
 	Imaging/Tiff.cs \
