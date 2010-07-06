@@ -96,7 +96,6 @@ SOURCES = \
 	MainWindow.cs \
 	MemorySurface.cs \
 	MetaStore.cs \
-	MetadataStore.cs \
 	PhotoEventArgs.cs \
 	PhotoImageView.cs \
 	PhotoLoader.cs \

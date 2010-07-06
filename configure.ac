@@ -322,7 +322,6 @@ lib/gio-sharp/generator/Makefile
 lib/gtk-sharp-beans/Makefile
 lib/libfspot/Makefile
 lib/Makefile
-lib/semweb/Makefile
 lib/unique-sharp/Makefile
 lib/unique-sharp/generator/Makefile
 lib/unique-sharp/unique/Makefile

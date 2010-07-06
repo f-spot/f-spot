@@ -13,7 +13,6 @@ DIR_DOCS = $(top_builddir)/docs
 DIR_EXTENSIONS = $(top_builddir)/extensions
 DIR_ICONS = $(top_builddir)/icons
 DIR_LIBFSPOT = $(top_builddir)/lib/libfspot
-DIR_SEMWEB = $(top_builddir)/lib/semweb
 DIR_SRC = $(top_builddir)/src
 DIR_GIOSHARP = $(top_builddir)/lib/gio-sharp/gio
 DIR_GTKSHARPBEANS = $(top_builddir)/lib/gtk-sharp-beans
@@ -65,11 +64,6 @@ LINK_UNIQUE_DEPS = $(REF_UNIQUE) $(LINK_UNIQUE)
 REF_HYENA = $(LINK_SYSTEM) $(LINK_MONO_POSIX)
 LINK_HYENA = -r:$(DIR_BIN)/Hyena.dll
 LINK_HYENA_DEPS = $(REF_HYENA) $(LINK_HYENA)
-
-# Semweb
-REF_SEMWEB = $(LINK_SYSTEMDATA) $(LINK_HYENA_DEPS)
-LINK_SEMWEB = -r:$(DIR_BIN)/SemWeb.dll
-LINK_SEMWEB_DEPS = $(REF_SEMWEB) $(LINK_SEMWEB)
 
 # TagLib
 REF_TAGLIB =
@@ -129,7 +123,7 @@ LINK_FSPOT_WIDGETS_DEPS = $(REF_FSPOT_WIDGETS) $(LINK_FSPOT_WIDGETS) $(LINK_HENA
 # FSpot (executable)
 REF_FSPOT = $(LINK_FSPOT_WIDGETS_DEPS) $(LINK_FSPOT_PLATFORM_DEPS) $(LINK_FSPOT_QUERY_DEPS) \
             $(LINK_GLIB) $(LINK_MONO_ADDINS_DEPS) $(LINK_UNIQUE_DEPS) $(LINK_MONO_ADDINS_SETUP_DEPS) \
-            $(LINK_SEMWEB_DEPS) $(LINK_GLADE) $(LINK_MONODATA) $(LINK_MONO_DATA_SQLITECLIENT) \
+            $(LINK_GLADE) $(LINK_MONODATA) $(LINK_MONO_DATA_SQLITECLIENT) \
             $(LINK_MONO_ADDINS_GUI_DEPS) $(LINK_FSPOT_JOB_SCHEDULER_DEPS) $(LINK_ICSHARP_ZIP_LIB) \
             $(LINK_GNOME) $(LINK_HYENA_GUI_DEPS) $(LINK_TAGLIB)
 # FIXME: do not link executables

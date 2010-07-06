@@ -21,7 +21,7 @@ RUNNER = for asm in $${TEST_ASSEMBLIES}; do echo -e "\033[1mRunning tests on $${
 
 test:
 	@pushd $(DIR_BIN) &>/dev/null; \
-	export MONO_PATH=../lib/semweb:../lib/gio-sharp/gio:../lib/gtk-sharp-beans:../lib/unique-sharp/unique:../bin:$$MONO_PATH; \
+	export MONO_PATH=../lib/gio-sharp/gio:../lib/gtk-sharp-beans:../lib/unique-sharp/unique:../bin:$$MONO_PATH; \
 	export TEST_ASSEMBLIES="$(TEST_ASSEMBLIES)"; $(RUNNER); \
 	popd &>/dev/null;
 

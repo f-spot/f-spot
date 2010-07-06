@@ -8,7 +8,6 @@ SUBDIRS = \
 	Hyena/src/Hyena.Data.Sqlite     \
 	Hyena/src/Hyena.Gui     \
 	libfspot			\
-	semweb				\
 	TagLib 				\
 	unique-sharp
 
