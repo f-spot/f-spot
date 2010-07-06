@@ -14,12 +14,7 @@ namespace FSpot.Imaging.Raf {
 
 	// ALL the sample files I have begin with "FUJIFILMCCD-RAW "
 	
-	public class RafFile : BaseImageFile, SemWeb.StatementSource {
-
-                // false seems a safe default
-                public bool Distinct {
-                        get { return false; }
-                }
+	public class RafFile : BaseImageFile {
 
 		public RafFile (SafeUri uri) : base (uri)
 		{
@@ -33,10 +28,6 @@ namespace FSpot.Imaging.Raf {
 				return new System.IO.MemoryStream (data);
 			else
 				return DCRawFile.RawPixbufStream (Uri);
-		}
-
-		public void Select (SemWeb.StatementSink sink)
-		{
 		}
 
 		private byte [] GetEmbeddedJpeg ()
@@ -61,7 +52,6 @@ namespace FSpot.Imaging.Raf {
 				stream.Read (image, 0, image.Length);
 				return image;
 			}
-
 		}
 	}
 }
