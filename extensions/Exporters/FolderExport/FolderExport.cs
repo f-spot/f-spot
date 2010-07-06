@@ -37,7 +37,6 @@ using FSpot.Filters;
 using FSpot.Widgets;
 using FSpot.Utils;
 using FSpot.UI.Dialog;
-using FSpot.Imaging.Exif;
 
 namespace FSpotFolderExport {
 	public class FolderExport : FSpot.Extensions.IExporter {
@@ -468,37 +467,34 @@ namespace FSpotFolderExport {
 								      new SafeUri (path).ToString ());
 				}
 
-				using (ExifData data = new ExifData (photo_path)) {
-					for (int i = 1; i < requests.Length; i++) {
+				for (int i = 1; i < requests.Length; i++) {
 
-						req = requests [i];
-						if (scale && req.AvoidScale (size))
-							continue;
+					req = requests [i];
+					if (scale && req.AvoidScale (size))
+						continue;
 
-						FilterSet req_set = new FilterSet ();
-						req_set.Add (new ResizeFilter ((uint)Math.Max (req.Width, req.Height)));
+					FilterSet req_set = new FilterSet ();
+					req_set.Add (new ResizeFilter ((uint)Math.Max (req.Width, req.Height)));
 
-						bool sharpen;
-						try {
-							sharpen = Preferences.Get<bool> (FolderExport.SHARPEN_KEY);
-						} catch (NullReferenceException) {
-							sharpen = true;
-							Preferences.Set (FolderExport.SHARPEN_KEY, true);
-						}
+					bool sharpen;
+					try {
+						sharpen = Preferences.Get<bool> (FolderExport.SHARPEN_KEY);
+					} catch (NullReferenceException) {
+						sharpen = true;
+						Preferences.Set (FolderExport.SHARPEN_KEY, true);
+					}
 
-						if (sharpen) {
-							if (req.Name == "lq")
-								req_set.Add (new SharpFilter (0.1, 2, 4));
-							if (req.Name == "thumbs")
-								req_set.Add (new SharpFilter (0.1, 2, 5));
-						}
-						using (FilterRequest tmp_req = new FilterRequest (photo.DefaultVersion.Uri)) {
-							req_set.Convert (tmp_req);
-							MakeDir (SubdirPath (req.Name));
-							path = SubdirPath (req.Name, ImageName (image_num));
-							System.IO.File.Copy (tmp_req.Current.LocalPath, path, true);
-						}
-
+					if (sharpen) {
+						if (req.Name == "lq")
+							req_set.Add (new SharpFilter (0.1, 2, 4));
+						if (req.Name == "thumbs")
+							req_set.Add (new SharpFilter (0.1, 2, 5));
+					}
+					using (FilterRequest tmp_req = new FilterRequest (photo.DefaultVersion.Uri)) {
+						req_set.Convert (tmp_req);
+						MakeDir (SubdirPath (req.Name));
+						path = SubdirPath (req.Name, ImageName (image_num));
+						System.IO.File.Copy (tmp_req.Current.LocalPath, path, true);
 					}
 				}
 			}
