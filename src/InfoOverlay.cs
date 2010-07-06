@@ -19,7 +19,7 @@ namespace FSpot {
 			this.item = item;
 			item.Changed += HandleItemChanged;
 			HandleItemChanged (item, null);
-			VersionIdChanged += HandleVersionIdChanged;
+			VersionChanged += HandleVersionChanged;
 			ShowTags = true;
 			ShowRating = true;
 			Context = ViewContext.FullScreen;
@@ -27,16 +27,16 @@ namespace FSpot {
 		
 		private void HandleItemChanged (object sender, BrowsablePointerChangedEventArgs args)
 		{
-			Photo = item.Current as Photo;
+			Photo = item.Current;
 		}
 
-		private void HandleVersionIdChanged (InfoBox box, uint version_id)
+		private void HandleVersionChanged (InfoBox box, IBrowsableItemVersion version)
 		{
-			Photo p = item.Current as Photo;
+			IBrowsableItemVersionable versionable = item.Current as IBrowsableItemVersionable;
 			PhotoQuery q = item.Collection as PhotoQuery;
 
-			if (p !=  null && q != null) {
-				p.DefaultVersionId  = version_id;
+			if (versionable != null && q != null) {
+				versionable.SetDefaultVersion (version);
 				q.Commit (item.Index);
 			}
 		}
