@@ -928,11 +928,6 @@ namespace FSpot.Imaging.Tiff {
 					FSpot.Imaging.Bim.BimFile bim = new FSpot.Imaging.Bim.BimFile (bimstream);
 					bim.Select (sink);
 					break;
-				case TagId.XMP:
-					System.IO.Stream xmpstream = new System.IO.MemoryStream (e.RawData);
-					FSpot.Imaging.Xmp.XmpFile xmp = new FSpot.Imaging.Xmp.XmpFile (xmpstream);
-					xmp.Select (sink);
-					break;
 				case TagId.ImageDescription:
 					MetadataStore.AddLiteral (sink, "dc:description", "rdf:Alt", 
 								  new SemWeb.Literal (e.ValueAsString [0], "x-default", null));
@@ -1854,17 +1849,6 @@ namespace FSpot.Imaging.Tiff {
 			if (e == null) {
 				base.Select (sink);
 				return;
-			}
-
-			/*
-			 * Even though Ifd0 doesn't have the full resolution image
-			 * it would have the XMP data so we look for it
-			 */
-			e = Header.Directory.Lookup (TagId.XMP);
-			if (e != null) {
-				System.IO.Stream xmpstream = new System.IO.MemoryStream (e.RawData);
-				var xmp = new FSpot.Imaging.Xmp.XmpFile (xmpstream);
-				xmp.Select (sink);
 			}
 
 			/* 

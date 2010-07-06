@@ -93,7 +93,6 @@ SOURCES = \
 	Imaging/OrderedWriter.cs \
 	Imaging/PixelBuffer.cs \
 	Imaging/RafFile.cs \
-	Imaging/XmpFile.cs \
 	Imaging/Tiff.cs \
 	JobStore.cs \
 	Jobs/SyncMetadataJob.cs \

@@ -1,6 +1,5 @@
 using Hyena;
 
-using FSpot.Imaging.Xmp;
 using FSpot.Imaging.Iptc;
 
 namespace FSpot.Imaging.Bim {
@@ -140,11 +139,6 @@ namespace FSpot.Imaging.Bim {
 					System.IO.Stream iptcstream = new System.IO.MemoryStream (e.Data);
 					IptcFile iptc = new IptcFile (iptcstream);
 					iptc.Select (sink);
-					break;
-				case EntryType.XMP:
-					System.IO.Stream xmpstream = new System.IO.MemoryStream (e.Data);
-					XmpFile xmp = new XmpFile (xmpstream);
-					xmp.Select (sink);
 					break;
 				default:
 					break;
