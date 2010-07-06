@@ -13,7 +13,7 @@ public class ThumbnailCommand {
 		this.parent_window = parent_window;
 	}
 
-	public bool Execute (Photo [] photos)
+	public bool Execute (IBrowsableItem [] photos)
 	{
 		ProgressDialog progress_dialog = null;
         var loader = ThumbnailLoader.Default;
@@ -24,13 +24,13 @@ public class ThumbnailCommand {
 		}
 
 		int count = 0;
-		foreach (Photo p in photos) {
+		foreach (IBrowsableItem photo in photos) {
 			if (progress_dialog != null
-			    && progress_dialog.Update (String.Format (Mono.Unix.Catalog.GetString ("Updating picture \"{0}\""), p.Name)))
+			    && progress_dialog.Update (String.Format (Mono.Unix.Catalog.GetString ("Updating picture \"{0}\""), photo.Name)))
 				break;
 
-			foreach (uint version_id in p.VersionIds) {
-				loader.Request (p.VersionUri (version_id), ThumbnailSize.Large, 10);
+			foreach (IBrowsableItemVersion version in photo.Versions) {
+				loader.Request (version.Uri, ThumbnailSize.Large, 10);
 			}
 			
 			count++;
