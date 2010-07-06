@@ -18,7 +18,6 @@ fspotlib_LTLIBRARIES = libfspot.la
 libfspot_la_SOURCES =				\
 	f-image-surface.c			\
 	f-image-surface.h			\
-	f-pixbuf-save.c				\
 	f-pixbuf-unsharp.c			\
 	f-screen-utils.c
 
