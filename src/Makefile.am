@@ -89,8 +89,6 @@ SOURCES = \
 	Imaging/InternalProcess.cs \
 	Imaging/IptcFile.cs \
 	Imaging/IOChannel.cs \
-	Imaging/OrderedWriter.cs \
-	Imaging/PixelBuffer.cs \
 	Imaging/RafFile.cs \
 	Imaging/Tiff.cs \
 	JobStore.cs \
