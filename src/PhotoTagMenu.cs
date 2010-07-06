@@ -40,10 +40,10 @@ public class PhotoTagMenu : Menu {
 	
 	protected PhotoTagMenu (IntPtr raw) : base (raw) {}
 
-	public void Populate (Photo [] photos) {
+	public void Populate (IBrowsableItem [] photos) {
 		Hashtable hash = new Hashtable ();
 		if (photos != null) {
-			foreach (Photo p in photos) {
+			foreach (IBrowsableItem p in photos) {
 				foreach (Tag t in p.Tags) {
 					if (!hash.Contains (t.Id)) {
 						hash.Add (t.Id, t);
