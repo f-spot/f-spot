@@ -21,59 +21,6 @@ namespace FSpot {
 				new Description ("dc:title", Catalog.GetString ("Title")),
 				new Description ("dc:rights", Catalog.GetString ("Copyright")),
 				new Description ("dc:subject", Catalog.GetString ("Subject and Keywords")),
-				new Description ("tiff:Compression", Catalog.GetString ("Compression"), 
-						 typeof (FSpot.Imaging.Tiff.Compression)),
-						 /* Translators: Planar Configuration is the label for the tiff:PlanarConfiguration tag
-						    "when Planar Configuration=1, this implies that all components must have
-						    the same BitsPerSample value; when Planar Configuration=2, different
-						    components could have different bit depths." */
-				new Description ("tiff:PlanarConfiguration", Catalog.GetString ("Planar Configuration"), 
-						 typeof (FSpot.Imaging.Tiff.PlanarConfiguration)),
-				new Description ("tiff:Orientation", Catalog.GetString ("Orientation"), 
-						 typeof (TagLib.Image.ImageOrientation)),
-				new Description ("tiff:PhotometricInterpretation", Catalog.GetString ("Photometric Interpretation"), 
-						 typeof (FSpot.Imaging.Tiff.PhotometricInterpretation)),
-				new Description ("tiff:ResolutionUnit", Catalog.GetString ("Resolution Unit"),
-						 typeof (FSpot.Imaging.Tiff.ResolutionUnit)),
-				new Description ("exif:ExposureProgram", Catalog.GetString ("Exposure Program"), 
-						 typeof (FSpot.Imaging.Tiff.ExposureProgram)),
-				new Description ("exif:MeteringMode", Catalog.GetString ("Metering Mode"), 
-						 typeof (FSpot.Imaging.Tiff.MeteringMode)),
-				new Description ("exif:ExposureMode", Catalog.GetString ("Exposure Mode"), 
-						 typeof (FSpot.Imaging.Tiff.ExposureMode)),
-				new Description ("exif:CustomRendered", Catalog.GetString ("Custom Rendered"), 
-						 typeof (FSpot.Imaging.Tiff.CustomRendered)),
-				new Description ("exif:ComponentsConfiguration", Catalog.GetString ("Components Configuration"),
-						 typeof (FSpot.Imaging.Tiff.ComponentsConfiguration)),
-				new Description ("exif:LightSource", Catalog.GetString ("Light Source"),
-						 typeof (FSpot.Imaging.Tiff.LightSource)),
-				new Description ("exif:SensingMethod", Catalog.GetString ("Sensing Method"),
-						 typeof (FSpot.Imaging.Tiff.SensingMethod)),
-				new Description ("exif:ColorSpace", Catalog.GetString ("Color Space"),
-						 typeof (FSpot.Imaging.Tiff.ColorSpace)),
-				new Description ("exif:WhiteBalance", Catalog.GetString ("White Balance"),
-						 typeof (FSpot.Imaging.Tiff.WhiteBalance)),
-				new Description ("exif:FocalPlaneResolutionUnit", Catalog.GetString ("Focal Plane Resolution Unit"),
-						 typeof (FSpot.Imaging.Tiff.ResolutionUnit)),
-				new Description ("exif:FileSource", Catalog.GetString ("File Source Type"),
-						 typeof (FSpot.Imaging.Tiff.FileSource)),
-				new Description ("exif:SceneCaptureType", Catalog.GetString ("Scene Capture Type"),
-						 typeof (FSpot.Imaging.Tiff.SceneCaptureType)),
-						 /* Translators: Gain Control is the label for the exif:GainControl tag
-						    "This tag indicates the degree of overall image gain adjustment." */
-				new Description ("exif:GainControl", Catalog.GetString ("Gain Control"),
-						 typeof (FSpot.Imaging.Tiff.GainControl)),
-				new Description ("exif:Contrast", Catalog.GetString ("Contrast"),
-						 typeof (FSpot.Imaging.Tiff.Contrast)),
-				new Description ("exif:Saturation", Catalog.GetString ("Saturation"),
-						 typeof (FSpot.Imaging.Tiff.Saturation)),
-				new Description ("exif:Sharpness", Catalog.GetString ("Sharpness"),
-						 typeof (FSpot.Imaging.Tiff.Sharpness)),
-				new Description ("exif:SceneType", Catalog.GetString ("Scene Type"),
-						 typeof (FSpot.Imaging.Tiff.SceneType))
-
-
-
 			};
 			
 			table = new System.Collections.Hashtable ();

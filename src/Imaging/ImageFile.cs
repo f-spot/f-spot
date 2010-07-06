@@ -45,7 +45,7 @@ namespace FSpot.Imaging {
 			name_table [".arw"] = typeof (FSpot.Imaging.Tiff.NefFile);
 			name_table [".rw2"] = typeof (FSpot.Imaging.DCRawFile);
 			name_table [".tiff"] = typeof (BaseImageFile);
-			name_table [".tif"] = typeof (FSpot.Imaging.Tiff.TiffFile);
+			name_table [".tif"] = typeof (BaseImageFile);
 			name_table [".orf"] =  typeof (FSpot.Imaging.Tiff.NefFile);
 			name_table [".srf"] = typeof (FSpot.Imaging.Tiff.NefFile);
 			name_table [".dng"] = typeof (FSpot.Imaging.Tiff.DngFile);
@@ -178,7 +178,11 @@ namespace FSpot.Imaging {
 
             using (var metadata_file = Metadata.Parse (uri)) {
                 Orientation = metadata_file.ImageTag.Orientation;
+                ExtractMetadata (metadata_file);
             }
+        }
+
+        protected virtual void ExtractMetadata (TagLib.Image.File metadata) {
         }
 
 		~BaseImageFile ()

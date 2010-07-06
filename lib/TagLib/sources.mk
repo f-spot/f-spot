@@ -108,6 +108,7 @@ SOURCES = \
 	TagLib/src/TagLib/IFD/Entries/ShortIFDEntry.cs \
 	TagLib/src/TagLib/IFD/Entries/SLongArrayIFDEntry.cs \
 	TagLib/src/TagLib/IFD/Entries/SLongIFDEntry.cs \
+	TagLib/src/TagLib/IFD/Entries/SRationalArrayIFDEntry.cs \
 	TagLib/src/TagLib/IFD/Entries/SRationalIFDEntry.cs \
 	TagLib/src/TagLib/IFD/Entries/SShortArrayIFDEntry.cs \
 	TagLib/src/TagLib/IFD/Entries/SShortIFDEntry.cs \
@@ -143,6 +144,7 @@ SOURCES = \
 	TagLib/src/TagLib/IFD/Tags/NikonVibrationReductionEntryTag.cs \
 	TagLib/src/TagLib/IFD/Tags/NikonWorldTimeEntryTag.cs \
 	TagLib/src/TagLib/IFD/Tags/PanasonicMakerNoteEntryTag.cs \
+	TagLib/src/TagLib/IFD/Tags/SonyMakerNoteEntryTag.cs \
 	TagLib/src/TagLib/Mpeg4/AppleTag.cs \
 	TagLib/src/TagLib/Mpeg4/Box.cs \
 	TagLib/src/TagLib/Mpeg4/BoxFactory.cs \
@@ -182,7 +184,9 @@ SOURCES = \
 	TagLib/src/TagLib/Tiff/BaseTiffFile.cs \
 	TagLib/src/TagLib/Tiff/Codec.cs \
 	TagLib/src/TagLib/Tiff/File.cs \
+	TagLib/src/TagLib/Tiff/Arw/File.cs \
 	TagLib/src/TagLib/Tiff/Cr2/File.cs \
+	TagLib/src/TagLib/Tiff/Dng/File.cs \
 	TagLib/src/TagLib/Tiff/Nef/File.cs \
 	TagLib/src/TagLib/WavPack/File.cs \
 	TagLib/src/TagLib/WavPack/StreamHeader.cs \
