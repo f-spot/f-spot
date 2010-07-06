@@ -17,8 +17,6 @@ using Gtk;
 using System;
 using System.IO;
 using FSpot.Imaging;
-using FSpot.Imaging.Tiff;
-using SemWeb;
 using Mono.Unix;
 using FSpot.Utils;
 using GLib;
@@ -291,110 +289,56 @@ namespace FSpot.Widgets
 			rating_label.Visible = show_rating;
 			rating_view.Visible = show_rating;
 		}
-	
-		private class ImageInfo : StatementSink {
-			string width;
-			string height;
-			string aperture;
-			string fnumber;
-			string exposure;
-			string iso_speed;
-			string focal_length;
+
+        // FIXME: We should pull this info directly out of IBrowsableItem
+		private class ImageInfo {
+			int width;
+			int height;
+			double? fnumber;
+			double? exposure_time;
+			uint? iso_speed;
+			double? focal_length;
 			string camera_model;
-			bool add = true;
-			Resource iso_anon;
-	
-			MemoryStore store;
-			
+
 			public ImageInfo (IImageFile img)
 			{
-				// FIXME We use the memory store to hold the anonymous statements
-				// as they are added so that we can query for them later to 
-				// resolve anonymous nodes.
-				store = new MemoryStore ();
-	
-				if (img == null) 
+				if (img == null)
 					return;
-	
-				if (img is StatementSource) {
-					SemWeb.StatementSource source = (SemWeb.StatementSource)img;
-					source.Select (this);
-	
-					// If we couldn't find the ISO speed because of the ordering
-					// search the memory store for the values
-					if (iso_speed == null && iso_anon != null) {
-						add = false;
-						store.Select (this);
-					}
+
+				using (var metadata = Metadata.Parse (img.Uri)) {
+					width = metadata.Properties.PhotoWidth;
+					height = metadata.Properties.PhotoHeight;
+					fnumber = metadata.ImageTag.FNumber;
+					exposure_time = metadata.ImageTag.ExposureTime;
+					iso_speed = metadata.ImageTag.ISOSpeedRatings;
+					focal_length = metadata.ImageTag.FocalLength;
+					camera_model = metadata.ImageTag.Model;
 				}
 			}
-	
-			public bool Add (SemWeb.Statement stmt)
-			{
-				if (stmt.Predicate == MetadataStore.Namespaces.Resolve ("tiff:ImageWidth")) {
-					if (width == null)
-						width = ((SemWeb.Literal)stmt.Object).Value;
-					} else if (stmt.Predicate == MetadataStore.Namespaces.Resolve ("tiff:ImageLength")) {
-					if (height == null)
-						height = ((SemWeb.Literal)stmt.Object).Value;
-				} else if (stmt.Predicate == MetadataStore.Namespaces.Resolve ("exif:PixelXDimension"))
-					width = ((SemWeb.Literal)stmt.Object).Value;						      
-				else if (stmt.Predicate == MetadataStore.Namespaces.Resolve ("exif:PixelYDimension"))
-					height = ((SemWeb.Literal)stmt.Object).Value;
-				else if (stmt.Predicate == MetadataStore.Namespaces.Resolve ("exif:ExposureTime"))
-					exposure = ((SemWeb.Literal)stmt.Object).Value;
-				else if (stmt.Predicate == MetadataStore.Namespaces.Resolve ("exif:ApertureValue"))
-					aperture = ((SemWeb.Literal)stmt.Object).Value;
-				else if (stmt.Predicate == MetadataStore.Namespaces.Resolve ("exif:FNumber"))
-					fnumber = ((SemWeb.Literal)stmt.Object).Value;
-				else if (stmt.Predicate == MetadataStore.Namespaces.Resolve ("exif:ISOSpeedRatings"))
-					iso_anon = stmt.Object;
-				else if (stmt.Predicate == MetadataStore.Namespaces.Resolve ("exif:FocalLength"))
-					focal_length = ((SemWeb.Literal)stmt.Object).Value;
-				else if (stmt.Predicate == MetadataStore.Namespaces.Resolve ("tiff:Model"))
-					camera_model = ((SemWeb.Literal)stmt.Object).Value;
-				else if (stmt.Subject == iso_anon && stmt.Predicate == MetadataStore.Namespaces.Resolve ("rdf:li"))
-					iso_speed = ((SemWeb.Literal)stmt.Object).Value;
-				else if (add && stmt.Subject.Uri == null)
-					store.Add (stmt);
 
-				if (width == null || height == null || exposure == null || aperture == null 
-				    || iso_speed == null || focal_length == null || camera_model == null)
-					return true;
-				else
-					return false;
-			}
-	
 			public string ExposureInfo {
 				get {
 					string info = String.Empty;
-	
-					if  (fnumber != null && fnumber != String.Empty) {
+
+					if (fnumber.HasValue && fnumber.Value != 0.0) {
 						try {
-							var rat = new Rational (fnumber);
-							info += String.Format ("f/{0:.0} ", rat.Value);
+							info += String.Format ("f/{0:.0} ", fnumber.Value);
 						} catch (FormatException) {
 							return Catalog.GetString("(wrong format)");
 						}
-					} else if (aperture != null && aperture != String.Empty) {
-						try {
-							// Convert from APEX to fnumber
-							var rat = new Rational (aperture);
-							info += String.Format ("f/{0:.0} ", Math.Pow (2, rat.Value / 2));
-						} catch (FormatException) {
-							return Catalog.GetString ("(wrong format)");
-						}
 					}
-	
-					if (exposure != null && exposure != String.Empty)
-						info += exposure + " sec ";
-	
-					if (iso_speed != null && iso_speed != String.Empty)
-						info += Environment.NewLine + "ISO " + iso_speed;
-					
+
+					if (exposure_time.HasValue) {
+						info += String.Format ("{0} sec ", exposure_time.Value);
+					}
+
+					if (iso_speed.HasValue) {
+						info += String.Format ("{0}ISO {1}", Environment.NewLine, iso_speed.Value);
+					}
+
 					if (info == String.Empty)
 						return Catalog.GetString ("(None)");
-					
+
 					return info;
 				}
 			}
@@ -404,25 +348,13 @@ namespace FSpot.Widgets
 					if (focal_length == null)
 						return Catalog.GetString ("(Unknown)");
 
-					string fl = focal_length;
-
-					if (focal_length.Contains("/")) {
-						string[] strings = focal_length.Split('/');
-						try {
-							if (strings.Length == 2)
-								fl = (double.Parse (strings[0]) / double.Parse (strings[1])).ToString ();
-						} catch (FormatException) {
-							return Catalog.GetString ("(wrong format)");
-						}
-					}
-
-					return fl + " mm";
+					return String.Format ("{0} mm", focal_length.Value);
 				}
 			}
 
 			public string CameraModel {
 				get {
-					if (focal_length != null)
+					if (camera_model != String.Empty)
 						return camera_model;
 					else
 						return Catalog.GetString ("(Unknown)");
@@ -432,7 +364,7 @@ namespace FSpot.Widgets
 	
 			public string Dimensions {
 				get {
-					if (width != null && height != null)
+					if (width != 0 && height != 0)
 						return String.Format ("{0}x{1}", width, height);
 					else 
 						return Catalog.GetString ("(Unknown)");
@@ -471,10 +403,10 @@ namespace FSpot.Widgets
 			name_value_label.Visible = show_name;
 			
 			try {
-                using (var img = ImageFile.Create (photo.DefaultVersion.Uri))
-                {
-                    info = new ImageInfo (img);
-                }
+				using (var img = ImageFile.Create (photo.DefaultVersion.Uri))
+				{
+					info = new ImageInfo (img);
+				}
 			} catch (System.Exception e) {
 				Hyena.Log.Debug (e.StackTrace);
 				info = new ImageInfo (null);			

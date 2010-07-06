@@ -159,6 +159,7 @@ namespace FSpot.Imaging {
 	}
 
     public interface IImageFile : IDisposable {
+        SafeUri Uri { get; }
 		Gdk.Pixbuf Load ();
 		Cms.Profile GetProfile ();
 		Gdk.Pixbuf Load (int max_width, int max_height);
