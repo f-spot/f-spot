@@ -12,5 +12,4 @@
   <dllmap dll="GL" target="libGL.so.1"/>
   <dllmap dll="libXcomposite.dll" target="libXcomposite.so.1"/>
   <dllmap dll="liblcms-1.0.0.dll" target="liblcms.so.1"/>
-  <dllmap dll="libexif.dll" target="libexif.so.@EXIF_SOVERSION@"/>
 </configuration>

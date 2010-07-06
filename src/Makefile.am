@@ -85,7 +85,6 @@ SOURCES = \
 	Imaging/DCRawFile.cs \
 	Imaging/Bim.cs \
 	Imaging/Ciff.cs \
-	Imaging/Exif.cs \
 	Imaging/ImageFile.cs \
 	Imaging/InternalProcess.cs \
 	Imaging/IptcFile.cs \

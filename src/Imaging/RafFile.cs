@@ -25,16 +25,6 @@ namespace FSpot.Imaging.Raf {
 		{
 		}
 
-		private Exif.ExifData exif_data;
-		public Exif.ExifData ExifData {
-			get {
-				if (exif_data == null)
-					exif_data = new Exif.ExifData(Uri.LocalPath);
-				Log.Debug ("loading exif data");
-				return exif_data;
-			}
-		}
-
 		public override System.IO.Stream PixbufStream ()
 		{
 			byte [] data = GetEmbeddedJpeg ();

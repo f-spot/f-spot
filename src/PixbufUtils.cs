@@ -17,7 +17,6 @@ using System.IO;
 using FSpot;
 using FSpot.Utils;
 using FSpot.Imaging;
-using FSpot.Imaging.Exif;
 using Hyena;
 using TagLib.Image;
 
