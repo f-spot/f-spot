@@ -188,6 +188,9 @@ SOURCES = \
 	TagLib/src/TagLib/Tiff/Cr2/File.cs \
 	TagLib/src/TagLib/Tiff/Dng/File.cs \
 	TagLib/src/TagLib/Tiff/Nef/File.cs \
+	TagLib/src/TagLib/Tiff/Rw2/File.cs \
+	TagLib/src/TagLib/Tiff/Rw2/IFDReader.cs \
+	TagLib/src/TagLib/Tiff/Rw2/IFDTag.cs \
 	TagLib/src/TagLib/WavPack/File.cs \
 	TagLib/src/TagLib/WavPack/StreamHeader.cs \
 	TagLib/src/TagLib/Xmp/XmlNodeExtensions.cs \
