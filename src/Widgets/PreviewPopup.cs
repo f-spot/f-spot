@@ -26,7 +26,7 @@ namespace FSpot {
 				return show_histogram;
 			}
 			set {
-				if (value != show_histogram)	
+				if (value != show_histogram)
 					item = -1;
 				show_histogram = value;
 			}
@@ -112,10 +112,7 @@ namespace FSpot {
 				// A bizarre pixbuf = hack to try to deal with cinematic displays, etc.
 				int preview_size = ((this.Screen.Width + this.Screen.Height)/2)/3;
 				try {
-					if (item is Photo)
-						pixbuf = FSpot.PhotoLoader.LoadAtMaxSize ((Photo)item, preview_size, preview_size);
-					else
-						pixbuf = PixbufUtils.LoadAtMaxSize (orig_path, preview_size, preview_size);
+					pixbuf = FSpot.PhotoLoader.LoadAtMaxSize (item, preview_size, preview_size);
 				} catch (Exception) {
 					pixbuf = null;
 				}
