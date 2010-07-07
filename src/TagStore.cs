@@ -1,17 +1,18 @@
 using Gdk;
 using Gtk;
 using Mono.Unix;
-using Mono.Data.SqliteClient;
 using System.Collections.Generic;
 using System.Collections;
 using System.IO;
+using System.Data;
 using System;
-using Banshee.Database;
 using FSpot;
 using FSpot.Jobs;
 using FSpot.Query;
 using FSpot.Utils;
 using Hyena;
+
+using Hyena.Data.Sqlite;
 
 public class InvalidTagOperationException : InvalidOperationException {
 	public Tag tag;
@@ -125,7 +126,7 @@ public class TagStore : DbStore<Tag> {
 
 		// Pass 1, get all the tags.
 
-		SqliteDataReader reader = Database.Query ("SELECT id, name, is_category, sort_priority, icon FROM tags");
+		IDataReader reader = Database.Query ("SELECT id, name, is_category, sort_priority, icon FROM tags");
 
 		while (reader.Read ()) {
 			uint id = Convert.ToUInt32 (reader ["id"]);
@@ -188,7 +189,7 @@ public class TagStore : DbStore<Tag> {
 
 	private void CreateTable ()
 	{
-		Database.ExecuteNonQuery (
+		Database.Execute (
 			"CREATE TABLE tags (\n" +
 			"	id		INTEGER PRIMARY KEY NOT NULL, \n" +
 			"	name		TEXT UNIQUE, \n" +
@@ -233,7 +234,7 @@ public class TagStore : DbStore<Tag> {
 
 	// Constructor
 
-	public TagStore (QueuedSqliteDatabase database, bool is_new)
+	public TagStore (FSpotDatabaseConnection database, bool is_new)
 		: base (database, true)
 	{
 		// The label for the root category is used in new and edit tag dialogs
@@ -253,12 +254,12 @@ public class TagStore : DbStore<Tag> {
 		uint parent_category_id = parent_category.Id;
 		String default_tag_icon_value = autoicon ? null : String.Empty;
 
-		int id = Database.Execute (new DbCommand ("INSERT INTO tags (name, category_id, is_category, sort_priority, icon)"
-                          + "VALUES (:name, :category_id, :is_category, 0, :icon)",
-						  "name", name,
-						  "category_id", parent_category_id,
-						  "is_category", is_category ? 1 : 0,
-						  "icon", default_tag_icon_value));
+		int id = Database.Execute (new HyenaSqliteCommand ("INSERT INTO tags (name, category_id, is_category, sort_priority, icon)"
+                          + "VALUES (?, ?, ?, 0, ?)",
+						  name,
+						  parent_category_id,
+						  is_category ? 1 : 0,
+						  default_tag_icon_value));
 
 
 		return (uint) id;
@@ -316,7 +317,7 @@ public class TagStore : DbStore<Tag> {
 		
 		tag.Category = null;
 
-		Database.ExecuteNonQuery (new DbCommand ("DELETE FROM tags WHERE id = :id", "id", tag.Id));
+		Database.Execute (new HyenaSqliteCommand ("DELETE FROM tags WHERE id = ?", tag.Id));
 
 		EmitRemoved (tag);
 	}
@@ -349,20 +350,29 @@ public class TagStore : DbStore<Tag> {
 	public void Commit (Tag [] tags, bool update_xmp)
 	{
 
-		bool use_transactions = !Database.InTransaction && update_xmp;
+		// TODO.
+		bool use_transactions = update_xmp;//!Database.InTransaction && update_xmp;
 
-		if (use_transactions)
+		//if (use_transactions)
+		//	Database.BeginTransaction ();
+
+		// FIXME: this hack is used, because HyenaSqliteConnection does not support
+		// the InTransaction propery
+		try {
 			Database.BeginTransaction ();
+		} catch {
+			use_transactions = false;
+		}
 
 		foreach (Tag tag in tags) {
-			Database.ExecuteNonQuery (new DbCommand ("UPDATE tags SET name = :name, category_id = :category_id, "
-                	    + "is_category = :is_category, sort_priority = :sort_priority, icon = :icon WHERE id = :id",
-							  "name", tag.Name,
-							  "category_id", tag.Category.Id,
-							  "is_category", tag is Category ? 1 : 0,
-							  "sort_priority", tag.SortPriority,
-							  "icon", GetIconString (tag),
-							  "id", tag.Id));
+			Database.Execute (new HyenaSqliteCommand ("UPDATE tags SET name = ?, category_id = ?, "
+						+ "is_category = ?, sort_priority = ?, icon = ? WHERE id = ?",
+							  tag.Name,
+							  tag.Category.Id,
+							  tag is Category ? 1 : 0,
+							  tag.SortPriority,
+							  GetIconString (tag),
+							  tag.Id));
 			
 			if (update_xmp && Preferences.Get<bool> (Preferences.METADATA_EMBED_IN_IMAGE)) {
 				Photo [] photos = App.Instance.Database.Photos.Query (new Tag [] { tag });

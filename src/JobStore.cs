@@ -8,15 +8,16 @@
  *
  */
 
-using Mono.Data.SqliteClient;
 using System.Collections;
 using System.IO;
+using System.Data;
 using System;
-using Banshee.Database;
 using Banshee.Kernel;
 using FSpot.Jobs;
 using FSpot;
 using Hyena;
+
+using Hyena.Data.Sqlite;
 
 public abstract class Job : DbItem, IJob
 {
@@ -86,13 +87,13 @@ public abstract class Job : DbItem, IJob
 
 public class JobStore : DbStore<Job> {
 	
-	internal static void CreateTable (QueuedSqliteDatabase database)
+	internal static void CreateTable (FSpotDatabaseConnection database)
 	{
 		if (database.TableExists ("jobs")) {
 			return;
 		}
 
-		database.ExecuteNonQuery (
+		database.Execute (
 			"CREATE TABLE jobs (\n" +
 			"	id		INTEGER PRIMARY KEY NOT NULL, \n" +
 			"	job_type	TEXT NOT NULL, \n" +
@@ -102,7 +103,7 @@ public class JobStore : DbStore<Job> {
 			")");
 	}
 
-	private Job LoadItem (SqliteDataReader reader)
+	private Job LoadItem (IDataReader reader)
 	{
 		return (Job) Activator.CreateInstance (
 				Type.GetType (reader ["job_type"].ToString ()), 
@@ -115,7 +116,7 @@ public class JobStore : DbStore<Job> {
 	
 	private void LoadAllItems ()
 	{
-		SqliteDataReader reader = Database.Query ("SELECT id, job_type, job_options, run_at, job_priority FROM jobs");
+		IDataReader reader = Database.Query ("SELECT id, job_type, job_options, run_at, job_priority FROM jobs");
 
 		Scheduler.Suspend ();
 		while (reader.Read ()) {
@@ -143,12 +144,12 @@ public class JobStore : DbStore<Job> {
 	{
 		int id = 0;
 		if (persistent)
-			id = Database.Execute (new DbCommand ("INSERT INTO jobs (job_type, job_options, run_at, job_priority) VALUES (:job_type, :job_options, :run_at, :job_priority)",
-						"job_type", job_type.ToString (), 
-						"job_options", job_options, 
-						"run_at", DateTimeUtil.FromDateTime (run_at),
-						"job_priority", Convert.ToInt32 (job_priority)));
-		
+			id = Database.Execute (new HyenaSqliteCommand ("INSERT INTO jobs (job_type, job_options, run_at, job_priority) VALUES (?, ?, ?, ?)",
+						job_type.ToString (),
+						job_options,
+						DateTimeUtil.FromDateTime (run_at),
+						Convert.ToInt32 (job_priority)));
+
                 Job job = (Job) Activator.CreateInstance (job_type, (uint)id, job_options, run_at, job_priority, true);
 
 		AddToCache (job);
@@ -163,17 +164,18 @@ public class JobStore : DbStore<Job> {
 	public override void Commit (Job item)
 	{
 		if (item.Persistent)
-			Database.ExecuteNonQuery(new DbCommand("UPDATE jobs " 					+
-									"SET job_type = :job_type "		+
-									"SET job_options = :job_options "	+
-									"SET run_at = :run_at "			+
-									"SET job_priority = :job_priority "	+
-									"WHERE id = :item_id", 
-									"job_type", "Empty", //FIXME
-									"job_options", item.JobOptions,
-									"run_at", DateTimeUtil.FromDateTime (item.RunAt),
-									"job_priority", item.JobPriority));
-		
+			Database.Execute(new HyenaSqliteCommand("UPDATE jobs " 					+
+									"SET job_type = ? "		+
+									"SET job_options = ? "	+
+									"SET run_at = ? "			+
+									"SET job_priority = ? "	+
+									"WHERE id = ?",
+									"Empty", //FIXME
+									item.JobOptions,
+									DateTimeUtil.FromDateTime (item.RunAt),
+									item.JobPriority,
+									item.Id));
+
 		EmitChanged (item);
 	}
 	
@@ -188,7 +190,7 @@ public class JobStore : DbStore<Job> {
 		RemoveFromCache (item);
 
 		if ((item as Job).Persistent)
-			Database.ExecuteNonQuery (new DbCommand ("DELETE FROM jobs WHERE id = :item_id", "item_id", item.Id));
+			Database.Execute (new HyenaSqliteCommand ("DELETE FROM jobs WHERE id = ?", item.Id));
 
 		EmitRemoved (item);
 	}
@@ -198,7 +200,7 @@ public class JobStore : DbStore<Job> {
 		Remove (o as Job);
 	}
 
-	public JobStore (QueuedSqliteDatabase database, bool is_new) : base (database, true)
+	public JobStore (FSpotDatabaseConnection database, bool is_new) : base (database, true)
 	{
 		if (is_new || !Database.TableExists ("jobs")) {
 			CreateTable (database);

@@ -3,6 +3,7 @@ SUBDIRS = \
 	Utils \
 	Core \
 	Query \
+	FSpot.Database \
 	JobScheduler \
 	Bling \
 	Platform \
@@ -111,7 +112,6 @@ SOURCES = \
 	Preferences.cs  \
 	PrintOperation.cs \
 	ProgressItem.cs \
-	QueuedSqliteDatabase.cs \
 	RotateCommand.cs \
 	RollStore.cs \
 	SelectionDataExtensions.cs \

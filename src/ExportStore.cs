@@ -1,11 +1,12 @@
 using Gdk;
 using Gtk;
-using Mono.Data.SqliteClient;
 using System.Collections;
 using System.IO;
+using System.Data;
 using System;
-using Banshee.Database;
 using FSpot;
+using FSpot.Database;
+using Hyena.Data.Sqlite;
 
 public class ExportItem : DbItem {
 
@@ -53,7 +54,7 @@ public class ExportStore : DbStore<ExportItem> {
 
 	private void CreateTable ()
 	{
- 		Database.ExecuteNonQuery (
+		Database.Execute (
 			"CREATE TABLE exports (\n" +
 			"	id			INTEGER PRIMARY KEY NOT NULL, \n" +
 			"	image_id		INTEGER NOT NULL, \n" +
@@ -63,7 +64,7 @@ public class ExportStore : DbStore<ExportItem> {
 			")");
 	}
 
-	private ExportItem LoadItem (SqliteDataReader reader)
+	private ExportItem LoadItem (IDataReader reader)
 	{
 		return new ExportItem (Convert.ToUInt32 (reader["id"]), 
 				       Convert.ToUInt32 (reader["image_id"]),
@@ -74,10 +75,10 @@ public class ExportStore : DbStore<ExportItem> {
 	
 	private void LoadAllItems ()
 	{
-		SqliteDataReader reader = Database.Query("SELECT id, image_id, image_version_id, export_type, export_token FROM exports");
+		IDataReader reader = Database.Query("SELECT id, image_id, image_version_id, export_type, export_token FROM exports");
 
 		while (reader.Read ()) {
-                    AddToCache (LoadItem (reader));
+			AddToCache (LoadItem (reader));
 		}
 
 		reader.Close ();
@@ -85,8 +86,8 @@ public class ExportStore : DbStore<ExportItem> {
 
 	public ExportItem Create (uint image_id, uint image_version_id, string export_type, string export_token)
 	{
-		int id = Database.Execute(new DbCommand("INSERT INTO exports (image_id, image_version_id, export_type, export_token) VALUES (:image_id, :image_version_id, :export_type, :export_token)",
-		"image_id", image_id, "image_version_id", image_version_id, "export_type", export_type, "export_token", export_token));
+		int id = Database.Execute(new HyenaSqliteCommand("INSERT INTO exports (image_id, image_version_id, export_type, export_token) VALUES (?, ?, ?, ?)",
+		"image_id", image_id, image_version_id, export_type, export_token));
 		
 		ExportItem item = new ExportItem ((uint)id, image_id, image_version_id, export_type, export_token);
 
@@ -98,8 +99,8 @@ public class ExportStore : DbStore<ExportItem> {
 	
 	public override void Commit (ExportItem item)
 	{
-		Database.ExecuteNonQuery(new DbCommand("UPDATE exports SET image_id = :image_id, image_version_id = :image_version_id, export_type = :export_type SET export_token = :export_token WHERE id = :item_id", 
-                    "item_id", item.Id, "image_id", item.ImageId, "image_version_id", item.ImageVersionId, "export_type", item.ExportType, "export_token", item.ExportToken));
+		Database.Execute(new HyenaSqliteCommand("UPDATE exports SET image_id = ?, image_version_id = ?, export_type = ? SET export_token = ? WHERE id = ?",
+                    item.ImageId, item.ImageVersionId, item.ExportType, item.ExportToken, item.Id));
 		
 		EmitChanged (item);
 	}
@@ -113,8 +114,8 @@ public class ExportStore : DbStore<ExportItem> {
 	public ArrayList GetByImageId (uint image_id, uint image_version_id)
 	{
         
-		SqliteDataReader reader = Database.Query(new DbCommand("SELECT id, image_id, image_version_id, export_type, export_token FROM exports WHERE image_id = :image_id AND image_version_id = :image_version_id", 
-                    "image_id", image_id, "image_version_id", image_version_id));
+		IDataReader reader = Database.Query(new HyenaSqliteCommand("SELECT id, image_id, image_version_id, export_type, export_token FROM exports WHERE image_id = ? AND image_version_id = ?",
+                    image_id, image_version_id));
 		ArrayList list = new ArrayList ();
 		while (reader.Read ()) {
 			list.Add (LoadItem (reader));
@@ -128,14 +129,14 @@ public class ExportStore : DbStore<ExportItem> {
 	{
 		RemoveFromCache (item);
 
-		Database.ExecuteNonQuery(new DbCommand("DELETE FROM exports WHERE id = :item_id", "item_id", item.Id));
+		Database.Execute(new HyenaSqliteCommand("DELETE FROM exports WHERE id = ?", item.Id));
 
 		EmitRemoved (item);
 	}
 
 	// Constructor
 
-	public ExportStore (QueuedSqliteDatabase database, bool is_new)
+	public ExportStore (FSpotDatabaseConnection database, bool is_new)
 		: base (database, true)
 	{
 		if (is_new || !Database.TableExists ("exports"))

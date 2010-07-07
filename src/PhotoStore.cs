@@ -12,13 +12,13 @@
 using Gdk;
 using Gtk;
 
-using Mono.Data.SqliteClient;
 using Mono.Unix;
 
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using System.Data;
 using System;
 
 using FSpot;
@@ -28,13 +28,12 @@ using FSpot.Utils;
 using FSpot.Platform;
 
 using Hyena;
-using Banshee.Database;
-
+using Hyena.Data.Sqlite;
 
 public class PhotoStore : DbStore<Photo> {
 	public int TotalPhotos {
 		get {
-			SqliteDataReader reader = Database.Query("SELECT COUNT(*) AS photo_count FROM photos");
+			IDataReader reader = Database.Query("SELECT COUNT(*) AS photo_count FROM photos");
 			reader.Read ();
 			int total = Convert.ToInt32 (reader ["photo_count"]);
 			reader.Close ();
@@ -56,7 +55,7 @@ public class PhotoStore : DbStore<Photo> {
 
 	// Constructor
 
-	public PhotoStore (QueuedSqliteDatabase database, bool is_new)
+	public PhotoStore (FSpotDatabaseConnection database, bool is_new)
 		: base (database, false)
 	{
 		EnsureThumbnailDirectory ();
@@ -64,7 +63,7 @@ public class PhotoStore : DbStore<Photo> {
 		if (! is_new)
 			return;
 		
-		Database.ExecuteNonQuery ( 
+		Database.Execute (
 			"CREATE TABLE photos (\n" +
 			"	id			INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, \n" +
 			"	time			INTEGER NOT NULL, \n" +
@@ -76,14 +75,14 @@ public class PhotoStore : DbStore<Photo> {
 			"	rating			INTEGER NULL \n" +
 			")");
 
-		Database.ExecuteNonQuery (
+		Database.Execute (
 			"CREATE TABLE photo_tags (\n" +
 			"	photo_id	INTEGER, \n" +
 			"       tag_id		INTEGER, \n" +
 			"       UNIQUE (photo_id, tag_id)\n" +
 			")");
 
-		Database.ExecuteNonQuery (
+		Database.Execute (
 			"CREATE TABLE photo_versions (\n"+
 			"	photo_id	INTEGER, \n" +
 			"	version_id	INTEGER, \n" +
@@ -95,9 +94,9 @@ public class PhotoStore : DbStore<Photo> {
 			"	UNIQUE (photo_id, version_id)\n" +
 			")");
 
-		Database.ExecuteNonQuery ("CREATE INDEX idx_photo_versions_id ON photo_versions(photo_id)");
-		Database.ExecuteNonQuery ("CREATE INDEX idx_photo_versions_import_md5 ON photo_versions(import_md5)");
-		Database.ExecuteNonQuery ("CREATE INDEX idx_photos_roll_id ON photos(roll_id)");
+		Database.Execute ("CREATE INDEX idx_photo_versions_id ON photo_versions(photo_id)");
+		Database.Execute ("CREATE INDEX idx_photo_versions_import_md5 ON photo_versions(import_md5)");
+		Database.Execute ("CREATE INDEX idx_photos_roll_id ON photos(roll_id)");
 	}
 
 	public bool HasDuplicate (IBrowsableItem item) {
@@ -118,7 +117,7 @@ public class PhotoStore : DbStore<Photo> {
 			DateTime? time = null;
 
 			// Look for a filename match.
-			var reader = Database.Query (new DbCommand ("SELECT photos.id, photos.time, pv.filename FROM photos LEFT JOIN photo_versions AS pv ON pv.photo_id = photos.id WHERE pv.filename = :filename", "filename", name));
+			var reader = Database.Query (new HyenaSqliteCommand ("SELECT photos.id, photos.time, pv.filename FROM photos LEFT JOIN photo_versions AS pv ON pv.photo_id = photos.id WHERE pv.filename = ?", name));
 			while (reader.Read ()) {
 				Log.DebugFormat ("Found one possible duplicate for {0}", reader["filename"].ToString ());
 				if (!time.HasValue) {
@@ -149,16 +148,16 @@ public class PhotoStore : DbStore<Photo> {
 		string description = item.Description ?? String.Empty;
 
 		uint id = (uint) Database.Execute (
-			new DbCommand (
+			new HyenaSqliteCommand (
 				"INSERT INTO photos (time, base_uri, filename, description, roll_id, default_version_id, rating) "	+
-				"VALUES (:time, :base_uri, :filename, :description, :roll_id, :default_version_id, :rating)",
-				"time", unix_time,
-				"base_uri", item.DefaultVersion.BaseUri.ToString (),
-				"filename", item.DefaultVersion.Filename,
-				"description", description,
-				"roll_id", roll_id,
-				"default_version_id", Photo.OriginalVersionId,
-				"rating", "0"
+				"VALUES (?, ?, ?, ?, ?, ?, ?)",
+				unix_time,
+				item.DefaultVersion.BaseUri.ToString (),
+				item.DefaultVersion.Filename,
+				description,
+				roll_id,
+				Photo.OriginalVersionId,
+				"0"
 			)
 		);
 
@@ -173,26 +172,26 @@ public class PhotoStore : DbStore<Photo> {
 
 	private void InsertVersion (Photo photo, PhotoVersion version)
 	{
-		Database.ExecuteNonQuery (new DbCommand (
+		Database.Execute (new HyenaSqliteCommand (
 			"INSERT OR IGNORE INTO photo_versions (photo_id, version_id, name, base_uri, filename, protected, import_md5) " +
-			"VALUES (:photo_id, :version_id, :name, :base_uri, :filename, :is_protected, :import_md5)",
-			"photo_id", photo.Id,
-			"version_id", version.VersionId,
-			"name", version.Name,
-			"base_uri", version.BaseUri.ToString (),
-			"filename", version.Filename,
-			"is_protected", version.IsProtected,
-			"import_md5", (version.ImportMD5 != String.Empty ? version.ImportMD5 : null)));
+			"VALUES (?, ?, ?, ?, ?, ?, ?)",
+			photo.Id,
+			version.VersionId,
+			version.Name,
+			version.BaseUri.ToString (),
+			version.Filename,
+			version.IsProtected,
+			(version.ImportMD5 != String.Empty ? version.ImportMD5 : null)));
 	}
 
 
 	private void GetVersions (Photo photo)
 	{
-		SqliteDataReader reader = Database.Query(
-			new DbCommand("SELECT version_id, name, base_uri, filename, import_md5, protected " +
-				      "FROM photo_versions " + 
-				      "WHERE photo_id = :id", 
-				      "id", photo.Id
+		IDataReader reader = Database.Query(
+			new HyenaSqliteCommand("SELECT version_id, name, base_uri, filename, import_md5, protected " +
+				      "FROM photo_versions " +
+				      "WHERE photo_id = ?",
+				      photo.Id
 			)
 		);
 
@@ -211,7 +210,7 @@ public class PhotoStore : DbStore<Photo> {
 
 	private void GetTags (Photo photo)
 	{
-		SqliteDataReader reader = Database.Query(new DbCommand("SELECT tag_id FROM photo_tags WHERE photo_id = :id", "id", photo.Id));
+		IDataReader reader = Database.Query(new HyenaSqliteCommand("SELECT tag_id FROM photo_tags WHERE photo_id = ?", photo.Id));
 
 		while (reader.Read ()) {
 			uint tag_id = Convert.ToUInt32 (reader ["tag_id"]);
@@ -222,7 +221,7 @@ public class PhotoStore : DbStore<Photo> {
 	}		
 	
 	private void GetAllVersions  (string ids) {
-		SqliteDataReader reader = Database.Query ("SELECT photo_id, version_id, name, base_uri, filename, import_md5, protected FROM photo_versions WHERE photo_id IN " + ids);
+		IDataReader reader = Database.Query ("SELECT photo_id, version_id, name, base_uri, filename, import_md5, protected FROM photo_versions WHERE photo_id IN " + ids);
 		
 		while (reader.Read ()) {
 			uint id = Convert.ToUInt32 (reader ["photo_id"]);
@@ -260,7 +259,7 @@ public class PhotoStore : DbStore<Photo> {
 	}
 
 	private void GetAllTags (string ids) {
-		SqliteDataReader reader = Database.Query ("SELECT photo_id, tag_id FROM photo_tags WHERE photo_id IN " + ids);
+		IDataReader reader = Database.Query ("SELECT photo_id, tag_id FROM photo_tags WHERE photo_id IN " + ids);
 
 		while (reader.Read ()) {
 			uint id = Convert.ToUInt32 (reader ["photo_id"]);
@@ -291,10 +290,10 @@ public class PhotoStore : DbStore<Photo> {
 		if (photo != null)
 			return photo;
 
-		SqliteDataReader reader = Database.Query(
-			new DbCommand("SELECT time, description, roll_id, default_version_id, rating " +
+		IDataReader reader = Database.Query(
+			new HyenaSqliteCommand("SELECT time, description, roll_id, default_version_id, rating " +
 				      "FROM photos " +
-				      "WHERE id = :id", "id", id
+				      "WHERE id = ?", id
 				     )
 		);
 
@@ -324,14 +323,14 @@ public class PhotoStore : DbStore<Photo> {
 		var base_uri = uri.GetBaseUri ();
 		var filename = uri.GetFilename ();
 
-		SqliteDataReader reader =
-			Database.Query (new DbCommand ("SELECT id, time, description, roll_id, default_version_id, rating " +
+		IDataReader reader =
+			Database.Query (new HyenaSqliteCommand ("SELECT id, time, description, roll_id, default_version_id, rating " +
 			                               " FROM photos " +
 			                               " LEFT JOIN photo_versions AS pv ON photos.id = pv.photo_id" +
-			                               " WHERE (photos.base_uri = :base_uri AND photos.filename = :filename)" +
-			                               " OR (pv.base_uri = :base_uri AND pv.filename = :filename)",
-			                               "base_uri", base_uri.ToString (),
-			                               "filename", filename));
+			                               " WHERE (photos.base_uri = ? AND photos.filename = ?)" +
+			                               " OR (pv.base_uri = ? AND pv.filename = ?)",
+			                               base_uri.ToString (), filename,
+			                               base_uri.ToString (), filename));
 
 		if (reader.Read ()) {
 			photo = new Photo (Convert.ToUInt32 (reader ["id"]),
@@ -385,9 +384,9 @@ public class PhotoStore : DbStore<Photo> {
 		}
 
 		String id_list = String.Join ("','", ((string []) query_builder.ToArray (typeof (string))));
-		Database.ExecuteNonQuery (String.Format ("DELETE FROM photos WHERE id IN ('{0}')", id_list));
-		Database.ExecuteNonQuery (String.Format ("DELETE FROM photo_tags WHERE photo_id IN ('{0}')", id_list));
-		Database.ExecuteNonQuery (String.Format ("DELETE FROM photo_versions WHERE photo_id IN ('{0}')", id_list));
+		Database.Execute (String.Format ("DELETE FROM photos WHERE id IN ('{0}')", id_list));
+		Database.Execute (String.Format ("DELETE FROM photo_tags WHERE photo_id IN ('{0}')", id_list));
+		Database.Execute (String.Format ("DELETE FROM photo_versions WHERE photo_id IN ('{0}')", id_list));
 
 	}
 
@@ -405,10 +404,20 @@ public class PhotoStore : DbStore<Photo> {
 	{
 		uint timer = Log.DebugTimerStart ();
 		// Only use a transaction for multiple saves. Avoids recursive transactions.
-		bool use_transactions = !Database.InTransaction && items.Length > 1;
 
-		if (use_transactions)
+		// TODO.
+		bool use_transactions = true; //!Database.InTransaction && items.Length > 1;
+
+		//if (use_transactions)
+		//	Database.BeginTransaction ();
+
+		// FIXME: this hack is used, because HyenaSqliteConnection does not support
+		// the InTransaction propery
+		try {
 			Database.BeginTransaction ();
+		} catch {
+			use_transactions = false;
+		}
 
 		PhotosChanges changes = new PhotosChanges ();
 		foreach (DbItem item in items)
@@ -425,49 +434,50 @@ public class PhotoStore : DbStore<Photo> {
 		PhotoChanges changes = photo.Changes;
 		// Update photo.
 		if (changes.DescriptionChanged || changes.DefaultVersionIdChanged || changes.TimeChanged || changes.UriChanged || changes.RatingChanged || changes.MD5SumChanged )
-			Database.ExecuteNonQuery (
-				new DbCommand (
-					"UPDATE photos " + 
-					"SET description = :description, " + 
-					"    default_version_id = :default_version_id, " + 
-					"    time = :time, " + 
-					"    base_uri = :base_uri, " +
-					"    filename = :filename, " +       
-					"    rating = :rating " +
-					"WHERE id = :id ",
-					"description", photo.Description,
-					"default_version_id", photo.DefaultVersionId,
-					"time", DateTimeUtil.FromDateTime (photo.Time),
-					"base_uri", photo.VersionUri (Photo.OriginalVersionId).GetBaseUri ().ToString (),
-					"filename", photo.VersionUri (Photo.OriginalVersionId).GetFilename (),
-					"rating", String.Format ("{0}", photo.Rating),
-					"id", photo.Id
+
+			Database.Execute (
+				new HyenaSqliteCommand (
+					"UPDATE photos " +
+					"SET description = ?, " +
+					"    default_version_id = ?, " +
+					"    time = ?, " +
+					"    base_uri = ?, " +
+					"    filename = ?, " +
+					"    rating = ? " +
+					"WHERE id = ? ",
+					photo.Description,
+					photo.DefaultVersionId,
+					DateTimeUtil.FromDateTime (photo.Time),
+					photo.VersionUri (Photo.OriginalVersionId).GetBaseUri ().ToString (),
+					photo.VersionUri (Photo.OriginalVersionId).GetFilename (),
+					String.Format ("{0}", photo.Rating),
+					photo.Id
 				)
 			);
 
 		// Update tags.
 		if (changes.TagsRemoved != null)
 			foreach (Tag tag in changes.TagsRemoved)
-				Database.ExecuteNonQuery (new DbCommand (
-					"DELETE FROM photo_tags WHERE photo_id = :photo_id AND tag_id = :tag_id",
-					"photo_id", photo.Id,
-					"tag_id", tag.Id));
+				Database.Execute (new HyenaSqliteCommand (
+					"DELETE FROM photo_tags WHERE photo_id = ? AND tag_id = ?",
+					photo.Id,
+					tag.Id));
 
 		if (changes.TagsAdded != null)
 			foreach (Tag tag in changes.TagsAdded)
-				Database.ExecuteNonQuery (new DbCommand (
+				Database.Execute (new HyenaSqliteCommand (
 					"INSERT OR IGNORE INTO photo_tags (photo_id, tag_id) " +
-					"VALUES (:photo_id, :tag_id)",
-					"photo_id", photo.Id,
-					"tag_id", tag.Id));
+					"VALUES (?, ?)",
+					photo.Id,
+					tag.Id));
 
 		// Update versions.
 		if (changes.VersionsRemoved != null)
 			foreach (uint version_id in changes.VersionsRemoved)
-				Database.ExecuteNonQuery (new DbCommand (
-					"DELETE FROM photo_versions WHERE photo_id = :photo_id AND version_id = :version_id",
-					"photo_id", photo.Id,
-					"version_id", version_id));
+				Database.Execute (new HyenaSqliteCommand (
+					"DELETE FROM photo_versions WHERE photo_id = ? AND version_id = ?",
+					photo.Id,
+					version_id));
 
 		if (changes.VersionsAdded != null)
 			foreach (uint version_id in changes.VersionsAdded) {
@@ -477,17 +487,17 @@ public class PhotoStore : DbStore<Photo> {
 		if (changes.VersionsModified != null)
 			foreach (uint version_id in changes.VersionsModified) {
 				PhotoVersion version = photo.GetVersion (version_id) as PhotoVersion;
-				Database.ExecuteNonQuery (new DbCommand (
-					"UPDATE photo_versions SET name = :name, " +
-					"base_uri = :base_uri, filename = :filename, protected = :protected, import_md5 = :import_md5 " +
-					"WHERE photo_id = :photo_id AND version_id = :version_id",
-					"name", version.Name,
-					"base_uri", version.BaseUri.ToString (),
-					"filename", version.Filename,
-					"protected", version.IsProtected,
-					"photo_id", photo.Id,
-					"import_md5", (version.ImportMD5 != String.Empty ? version.ImportMD5 : null),
-					"version_id", version_id));
+				Database.Execute (new HyenaSqliteCommand (
+					"UPDATE photo_versions SET name = ?, " +
+					"base_uri = ?, filename = ?, protected = ?, import_md5 = ? " +
+					"WHERE photo_id = ? AND version_id = ?",
+					version.Name,
+					version.BaseUri.ToString (),
+					version.Filename,
+					version.IsProtected,
+					photo.Id,
+					(version.ImportMD5 != String.Empty ? version.ImportMD5 : null),
+					version_id));
 			}
 		photo.Changes = null;
 		return changes;
@@ -523,7 +533,7 @@ public class PhotoStore : DbStore<Photo> {
 			where_added = true;
 		}
 
-		SqliteDataReader reader = Database.Query (query_builder.ToString());
+		IDataReader reader = Database.Query (query_builder.ToString());
 		reader.Read ();
 		int count = Convert.ToInt32 (reader ["count"]);
 		reader.Close();
@@ -561,7 +571,7 @@ public class PhotoStore : DbStore<Photo> {
 	private int IndexOf (string query)
 	{
 		uint timer = Log.DebugTimerStart ();
-		SqliteDataReader reader = Database.Query (query);
+		IDataReader reader = Database.Query (query);
 		int index = - 1;
 		if (reader.Read ())
 			index = Convert.ToInt32 (reader ["row_id"]);
@@ -574,7 +584,7 @@ public class PhotoStore : DbStore<Photo> {
 	{
 		uint timer = Log.DebugTimerStart ();
 		List<int> list = new List<int> ();
-		SqliteDataReader reader = Database.Query (query);
+		IDataReader reader = Database.Query (query);
 		while (reader.Read ())
 			list.Add (Convert.ToInt32 (reader ["row_id"]) - 1);
 		reader.Close ();
@@ -588,7 +598,7 @@ public class PhotoStore : DbStore<Photo> {
 		Dictionary<int, int[]> val = new Dictionary<int, int[]> ();
 
 		//Sqlite is way more efficient querying to a temp then grouping than grouping at once
-		Database.ExecuteNonQuery ("DROP TABLE IF EXISTS population");
+		Database.Execute ("DROP TABLE IF EXISTS population");
 		StringBuilder query_builder = new StringBuilder ("CREATE TEMPORARY TABLE population AS SELECT strftime('%Y%m', datetime(time, 'unixepoch')) AS month FROM photos");
 		bool where_added = false;
 		foreach (IQueryCondition condition in conditions) {
@@ -600,12 +610,12 @@ public class PhotoStore : DbStore<Photo> {
 			query_builder.Append (condition.SqlClause ());
 			where_added = true;
 		}
-		Database.ExecuteNonQuery (query_builder.ToString ());
+		Database.Execute (query_builder.ToString ());
 
 		int minyear = Int32.MaxValue;
 		int maxyear = Int32.MinValue;
 
-		SqliteDataReader reader = Database.Query ("SELECT COUNT (*) as count, month from population GROUP BY month");
+		IDataReader reader = Database.Query ("SELECT COUNT (*) as count, month from population GROUP BY month");
 		while (reader.Read ()) {
 			string yyyymm = reader ["month"].ToString ();
 			int count = Convert.ToInt32 (reader ["count"]);
@@ -705,9 +715,10 @@ public class PhotoStore : DbStore<Photo> {
 		uint timer = Log.DebugTimerStart ();
 		Log.DebugFormat ("Query Started : {0}", query);
 		Database.BeginTransaction ();
-		Database.ExecuteNonQuery (String.Format ("DROP TABLE IF EXISTS {0}", temp_table));
-		//Database.ExecuteNonQuery (String.Format ("CREATE TEMPORARY TABLE {0} AS {1}", temp_table, query));
-		Database.Query (String.Format ("CREATE TEMPORARY TABLE {0} AS {1}", temp_table, query)).Close ();
+		Database.Execute (String.Format ("DROP TABLE IF EXISTS {0}", temp_table));
+		Database.Execute (String.Format ("CREATE TEMPORARY TABLE {0} AS {1}", temp_table, query));
+		// For Hyena.Data.Sqlite, we need to call Execute. Calling Query here does fail.
+		//Database.Query (String.Format ("CREATE TEMPORARY TABLE {0} AS {1}", temp_table, query)).Close ();
 		Database.CommitTransaction ();
 		Log.DebugTimerPrint (timer, "QueryToTemp took {0} : " + query);
 	}
@@ -724,13 +735,13 @@ public class PhotoStore : DbStore<Photo> {
 
 	public Photo [] Query (string query)
 	{
-		return Query (new DbCommand (query));
+		return Query (new HyenaSqliteCommand (query));
 	}
 
-	private Photo [] Query (DbCommand query)
+	private Photo [] Query (HyenaSqliteCommand query)
 	{
 		uint timer = Log.DebugTimerStart ();
-		SqliteDataReader reader = Database.Query(query);
+		IDataReader reader = Database.Query(query);
 
 		List<Photo> new_photos = new List<Photo> ();
 		List<Photo> query_result = new List<Photo> ();
@@ -758,7 +769,7 @@ public class PhotoStore : DbStore<Photo> {
 			photo_ids = photo_ids + Convert.ToString(photo.Id) + ",";
 			need_load |= !photo.Loaded;
 		}
-		
+
 		photo_ids = photo_ids + "-1)";
 	
 		if (need_load) {
@@ -773,7 +784,7 @@ public class PhotoStore : DbStore<Photo> {
 		foreach (Photo photo in new_photos)
 			photo.Changes = null;
 
- 		Log.DebugTimerPrint (timer, "Query took {0} : " + query.CommandText);
+		Log.DebugTimerPrint (timer, "Query took {0} : " + query.Text);
 		return query_result.ToArray ();
 	}
 
@@ -783,7 +794,7 @@ public class PhotoStore : DbStore<Photo> {
 
 		/* query by file */
 		if ( ! String.IsNullOrEmpty (filename)) {
-			return Query (new DbCommand (
+			return Query (new HyenaSqliteCommand (
 			"SELECT id, "			+
 				"time, "			+
 				"base_uri, "		+
@@ -793,14 +804,14 @@ public class PhotoStore : DbStore<Photo> {
 				"default_version_id, "	+
 				"rating "		+
 			"FROM photos " 				+
-			"WHERE base_uri LIKE :base_uri "		+
-			"AND filename LIKE :filename",
-			"base_uri", uri.GetBaseUri ().ToString (),
-			"filename", filename));
+			"WHERE base_uri LIKE ?"		+
+			"AND filename LIKE ?",
+			 uri.GetBaseUri ().ToString (),
+			filename));
 		}
 		
 		/* query by directory */
-		return Query (new DbCommand (
+		return Query (new HyenaSqliteCommand (
 			"SELECT id, "			+
 				"time, "			+
 				"base_uri, "		+
@@ -810,10 +821,10 @@ public class PhotoStore : DbStore<Photo> {
 				"default_version_id, "	+
 				"rating "		+
 			"FROM photos " 				+
-			"WHERE base_uri LIKE :base_uri "		+
-			"AND base_uri NOT LIKE :base_uri_",
-			"base_uri", uri.ToString () + "%",
-			"base_uri_", uri.ToString () + "/%/%"));
+			"WHERE base_uri LIKE ?"		+
+			"AND base_uri NOT LIKE ?",
+			uri.ToString () + "%",
+			uri.ToString () + "/%/%"));
 	}
 
 	[Obsolete ("drop this, use IQueryCondition correctly instead")]

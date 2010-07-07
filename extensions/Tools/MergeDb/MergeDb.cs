@@ -37,7 +37,7 @@ namespace MergeDbExtension
 		public void Run (object o, EventArgs e)
 		{
 			from_db = new Db ();
-			from_db.ExceptionThrown += HandleDbException;
+//			from_db.ExceptionThrown += HandleDbException;
 			to_db = App.Instance.Database;
 
 			//ShowDialog ();

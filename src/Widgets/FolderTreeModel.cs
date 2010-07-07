@@ -8,6 +8,7 @@
  */
 
 using System;
+using System.Data;
 using System.Collections.Generic;
 
 using Gtk;
@@ -16,10 +17,7 @@ using GLib;
 using FSpot;
 using Hyena;
 
-using Banshee.Database;
-
 using Mono.Unix;
-using Mono.Data.SqliteClient;
 
 namespace FSpot.Widgets
 {
@@ -104,7 +102,7 @@ namespace FSpot.Widgets
 			
 			int last_count = 0;
 			
-			SqliteDataReader reader = database.Database.Query (query_string);
+			IDataReader reader = database.Database.Query (query_string);
 			
 			while (reader.Read ()) {
 				var base_uri = new SafeUri (reader["base_uri"].ToString (), true);

@@ -9,22 +9,27 @@
  * This is free software. See COPYING for details.
  */
 
-using Mono.Data.SqliteClient;
 using System.Collections;
 using System.IO;
+using System.Data;
 using System;
-using Banshee.Database;
+
+using FSpot.Utils;
 using FSpot;
+
 using Hyena;
+
+using Hyena.Data.Sqlite;
+
 
 public class RollStore : DbStore<Roll>
 {
-	public RollStore (QueuedSqliteDatabase database, bool is_new) : base (database, false)
+	public RollStore (FSpotDatabaseConnection database, bool is_new) : base (database, false)
 	{
 		if (!is_new && Database.TableExists("rolls"))
 			return;
 
-		Database.ExecuteNonQuery (
+		Database.Execute (
 			"CREATE TABLE rolls (\n" +
 			"	id	INTEGER PRIMARY KEY NOT NULL, \n" +
 			"       time	INTEGER NOT NULL\n" +
@@ -34,7 +39,7 @@ public class RollStore : DbStore<Roll>
 	public Roll Create (DateTime time_in_utc)
 	{
 		long unix_time = DateTimeUtil.FromDateTime (time_in_utc);
-		uint id = (uint) Database.Execute (new DbCommand ("INSERT INTO rolls (time) VALUES (:time)", "time", unix_time));
+		uint id = (uint) Database.Execute (new HyenaSqliteCommand ("INSERT INTO rolls (time) VALUES (?)", unix_time));
 
 		Roll roll = new Roll (id, unix_time);
 		AddToCache (roll);
@@ -53,7 +58,7 @@ public class RollStore : DbStore<Roll>
 		if (roll != null)
 			return roll;
 
-		SqliteDataReader reader = Database.Query(new DbCommand ("SELECT time FROM rolls WHERE id = :id", "id", id));
+		IDataReader reader = Database.Query(new HyenaSqliteCommand ("SELECT time FROM rolls WHERE id = ?", id));
 
 		if (reader.Read ()) {
 			roll = new Roll (id, Convert.ToUInt32 (reader ["time"]));
@@ -66,7 +71,7 @@ public class RollStore : DbStore<Roll>
 	public override void Remove (Roll item)
 	{
 		RemoveFromCache (item);
-		Database.ExecuteNonQuery (new DbCommand ("DELETE FROM rolls WHERE id = :id", "id", item.Id));
+		Database.Execute (new HyenaSqliteCommand ("DELETE FROM rolls WHERE id = ?", item.Id));
 	}
 
 	public override void Commit (Roll item)
@@ -77,7 +82,7 @@ public class RollStore : DbStore<Roll>
 	public uint PhotosInRoll (Roll roll)
 	{
 		uint number_of_photos = 0;
-		using (SqliteDataReader reader = Database.Query (new DbCommand ("SELECT count(*) AS count FROM photos WHERE roll_id = :id", "id", roll.Id))) {
+		using (IDataReader reader = Database.Query (new HyenaSqliteCommand ("SELECT count(*) AS count FROM photos WHERE roll_id = ?", roll.Id))) {
 			if (reader.Read ())
 				number_of_photos = Convert.ToUInt32 (reader ["count"]);
                
@@ -99,7 +104,7 @@ public class RollStore : DbStore<Roll>
 		if (limit >= 0)
 			query += " LIMIT " + limit;
 
-		using (SqliteDataReader reader = Database.Query(query)) {
+		using (IDataReader reader = Database.Query(query)) {
 			while (reader.Read ()) {
 				uint id = Convert.ToUInt32 (reader["roll_id"]);
 

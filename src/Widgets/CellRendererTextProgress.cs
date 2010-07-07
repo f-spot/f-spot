@@ -17,8 +17,6 @@ using GLib;
 using FSpot;
 using FSpot.Utils;
 
-using Banshee.Database;
-
 using Mono.Unix;
 using Mono.Data.SqliteClient;
 

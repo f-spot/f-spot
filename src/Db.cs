@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System;
-using Banshee.Database;
 using System.Diagnostics;
 using FSpot;
 using Hyena;
@@ -106,8 +105,8 @@ public abstract class DbStore<T> where T : DbItem {
 	}
 
 
-	QueuedSqliteDatabase database;
-	protected QueuedSqliteDatabase Database {
+	FSpotDatabaseConnection database;
+	protected FSpotDatabaseConnection Database {
 		get {
 			return database;
 		}
@@ -116,7 +115,7 @@ public abstract class DbStore<T> where T : DbItem {
 
 	// Constructor.
 
-	public DbStore (QueuedSqliteDatabase database,
+	public DbStore (FSpotDatabaseConnection database,
 			bool cache_is_immortal)
 	{
 		this.database = database;
@@ -149,10 +148,6 @@ public class Db : IDisposable {
 	bool empty;
 	string path;
 
-	public delegate void ExceptionThrownHandler (Exception e);
-	public event ExceptionThrownHandler ExceptionThrown;
-
-
 	public TagStore Tags {
 		get { return tag_store; }
 	}
@@ -182,12 +177,12 @@ public class Db : IDisposable {
 	public bool Sync {
 		set {
 			string query = "PRAGMA synchronous = " + (value ? "ON" : "OFF");
-			Database.ExecuteNonQuery(query);
+			Database.Execute(query);
 		}
 	}
 
-	QueuedSqliteDatabase database;
-	public QueuedSqliteDatabase Database {
+	FSpotDatabaseConnection database;
+	public FSpotDatabaseConnection Database {
 		get { return database; }
 	}
 
@@ -220,11 +215,12 @@ public class Db : IDisposable {
 		if (new_db && ! create_if_missing)
 			throw new Exception (path + ": File not found");
 
-		database = new QueuedSqliteDatabase(path);
-		database.ExceptionThrown += HandleDbException;
+//		database = new QueuedSqliteDatabase(path);
+//		database.ExceptionThrown += HandleDbException;
 
-		if (database.GetFileVersion(path) == 2)
-			SqliteUpgrade ();
+//		if (database.GetFileVersion(path) == 2)
+//			SqliteUpgrade ();
+		database = new FSpotDatabaseConnection (path);
 
 		// Load or create the meta table
  		meta_store = new MetaStore (Database, new_db);
@@ -244,14 +240,6 @@ public class Db : IDisposable {
 
 		empty = new_db;
 		Log.DebugTimerPrint (timer, "Db Initialization took {0}");
-	}
-
-	void HandleDbException (Exception e)
-	{
-		if (ExceptionThrown != null)
-			ExceptionThrown (e);
-		else
-			throw e;
 	}
 
 	public bool Empty {
@@ -333,7 +321,7 @@ public class Db : IDisposable {
 			throw new DbException("Failed to upgrade the f-spot sqlite2 database to sqlite3!\n" + stdError);
 
 		//Re-open the db
-		database = new QueuedSqliteDatabase(path);
+		database = new FSpotDatabaseConnection (path);
 	}
 }
 

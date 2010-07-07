@@ -12,9 +12,9 @@ using FSpot;
 using FSpot.Extensions;
 using Mono.Unix;
 using System;
-using Mono.Data.SqliteClient;
-using Banshee.Database;
 using Hyena;
+
+using Hyena.Data.Sqlite;
 
 namespace RetroactiveRoll
 {
@@ -37,11 +37,11 @@ namespace RetroactiveRoll
 			RollStore rolls = App.Instance.Database.Rolls;
 			Roll roll = rolls.Create(import_time);
 			foreach (Photo p in photos) {
-				DbCommand cmd = new DbCommand ("UPDATE photos SET roll_id = :roll_id " +
+				HyenaSqliteCommand cmd = new HyenaSqliteCommand ("UPDATE photos SET roll_id = :roll_id " +
 							       "WHERE id = :id ",
 							       "roll_id", roll.Id,
 							       "id", p.Id);
-				App.Instance.Database.Database.ExecuteNonQuery (cmd);
+				App.Instance.Database.Database.Execute (cmd);
 				p.RollId = roll.Id;
 			}
 			Log.Debug ("RetroactiveRoll done: " + photos.Length + " photos in roll " + roll.Id);

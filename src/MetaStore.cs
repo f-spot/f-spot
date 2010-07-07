@@ -1,11 +1,13 @@
 using Gdk;
 using Gtk;
-using Mono.Data.SqliteClient;
 using System.Collections;
 using System.IO;
+using System.Data;
 using System;
-using Banshee.Database;
 using FSpot;
+using FSpot.Database;
+using Hyena.Data.Sqlite;
+
 
 public class MetaItem : DbItem {
 	private string name;
@@ -61,7 +63,7 @@ public class MetaStore : DbStore<MetaItem> {
 
 	private void CreateTable ()
 	{
-		Database.ExecuteNonQuery ( 
+		Database.Execute (
 			"CREATE TABLE meta (\n" +
 			"	id	INTEGER PRIMARY KEY NOT NULL, \n" +
 			"	name	TEXT UNIQUE NOT NULL, \n" +
@@ -76,14 +78,14 @@ public class MetaStore : DbStore<MetaItem> {
 		
 		// Get the hidden tag id, if it exists
 		try {
-			string id = (string)Database.QuerySingle("SELECT id FROM tags WHERE name = 'Hidden'");
+			string id = Database.Query<string> ("SELECT id FROM tags WHERE name = 'Hidden'");
 			Create (hidden, id);
 		} catch (Exception) {}
 	}
 	
 	private void LoadAllItems ()
 	{
-		SqliteDataReader reader = Database.Query("SELECT id, name, data FROM meta");
+		IDataReader reader = Database.Query("SELECT id, name, data FROM meta");
 
 		while (reader.Read ()) {
 			uint id = Convert.ToUInt32 (reader ["id"]);
@@ -110,8 +112,8 @@ public class MetaStore : DbStore<MetaItem> {
 	private MetaItem Create (string name, string data)
 	{
 
-		uint id = (uint)Database.Execute(new DbCommand("INSERT INTO meta (name, data) VALUES (:name, :data)",
-				"name", name, "data", (data == null) ? "NULL" : data ));
+		uint id = (uint)Database.Execute(new HyenaSqliteCommand("INSERT INTO meta (name, data) VALUES (?, ?)",
+				name, (data == null) ? "NULL" : data ));
 		
 		//FIXME This smells bad. This line used to be *before* the
 		//Command.executeNonQuery. It smells of a bug, but there might
@@ -128,7 +130,7 @@ public class MetaStore : DbStore<MetaItem> {
 	
 	public override void Commit (MetaItem item)
 	{
-		Database.ExecuteNonQuery(new DbCommand("UPDATE meta SET data = :data WHERE name = :name", "name", item.Name, "data", item.Value));
+		Database.Execute(new HyenaSqliteCommand("UPDATE meta SET data = ? WHERE name = ?", item.Value, item.Name));
 		
 		EmitChanged (item);
 	}
@@ -142,14 +144,14 @@ public class MetaStore : DbStore<MetaItem> {
 	{
 		RemoveFromCache (item);
 		
-		Database.ExecuteNonQuery (new DbCommand ("DELETE FROM meta WHERE id = :id", "id", item.Id));
+		Database.Execute (new HyenaSqliteCommand ("DELETE FROM meta WHERE id = ?", item.Id));
 
 		EmitRemoved (item);
 	}
 
 	// Constructor
 
-	public MetaStore (QueuedSqliteDatabase database, bool is_new)
+	public MetaStore (FSpotDatabaseConnection database, bool is_new)
 		: base (database, true)
 	{
 		if (is_new || !Database.TableExists ("meta")) {

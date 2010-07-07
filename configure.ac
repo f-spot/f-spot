@@ -363,6 +363,7 @@ src/Query/Makefile
 src/Core/Defines.cs
 src/Core/Makefile
 src/Core/FSpot.Core.dll.config
+src/FSpot.Database/Makefile
 src/Widgets/Makefile
 src/Widgets/FSpot.Widgets.dll.config
 src/Platform/Makefile

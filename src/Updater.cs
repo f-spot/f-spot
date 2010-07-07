@@ -1,19 +1,22 @@
-using Mono.Data.SqliteClient;
 using Mono.Unix;
 using Gtk;
 using System;
+using System.Data;
 using System.Collections;
-using Banshee.Database;
+
 using FSpot.Utils;
-using Hyena;
 using FSpot.UI.Dialog;
+
+using Hyena;
+using Hyena.Data.Sqlite;
+
 
 namespace FSpot.Database {
 	public static class Updater {
 		private static ProgressDialog dialog;
 		private static Hashtable updates = new Hashtable ();
 		private static Version db_version;
-		private static QueuedSqliteDatabase db;
+		private static FSpotDatabaseConnection db;
 
 		public static bool silent = false;
 
@@ -51,7 +54,7 @@ namespace FSpot.Database {
 					return;
 
 				// Finally, we know that the Other tag exists and has no children, so remove it
-				ExecuteNonQuery ("DELETE FROM tags WHERE name = 'Other'");
+				Execute ("DELETE FROM tags WHERE name = 'Other'");
 			});
 
 			// Update from version 1 to 2: Restore Other tags that were removed leaving dangling child tags
@@ -64,7 +67,7 @@ namespace FSpot.Database {
 
  				int id = ExecuteScalar ("INSERT INTO tags (name, category_id, is_category, icon) VALUES ('Other', 0, 1, 'stock_icon:f-spot-other.png')");
 
-				ExecuteNonQuery (String.Format (
+				Execute (String.Format (
 					"UPDATE tags SET category_id = {0} WHERE id IN "		+
 					"(SELECT id FROM tags WHERE category_id != 0 AND category_id "	+
 					"NOT IN (SELECT id FROM tags))",
@@ -75,7 +78,7 @@ namespace FSpot.Database {
 			
 			// Update from version 2 to 3: ensure that Hidden is the only tag left which is a real tag (not category)
 			AddUpdate (new Version ("3"), delegate () {
-				ExecuteNonQuery ("UPDATE tags SET is_category = 1 WHERE name != 'Hidden'");
+				Execute ("UPDATE tags SET is_category = 1 WHERE name != 'Hidden'");
 			});
 
 			//Version 3.1, clean old (and unused) items in Export
@@ -93,7 +96,7 @@ namespace FSpot.Database {
 			AddUpdate (new Version (5, 0), delegate () {
 				Log.Debug ("Will add a roll_id field to photos!");
 				string tmp_photos = MoveTableToTemp ("photos");
-				ExecuteNonQuery (
+				Execute (
 					"CREATE TABLE photos (                                     " +
 					"	id                 INTEGER PRIMARY KEY NOT NULL,   " +
 					"       time               INTEGER NOT NULL,	   	   " +
@@ -107,7 +110,7 @@ namespace FSpot.Database {
 
 				Log.Debug ("Will rename imports to rolls!");
 				string tmp_rolls = MoveTableToTemp ("imports");
-				ExecuteNonQuery (
+				Execute (
 					"CREATE TABLE rolls (                                     " +
 					"	id                 INTEGER PRIMARY KEY NOT NULL,   " +
 					"       time               INTEGER NOT NULL	   	   " +
@@ -115,7 +118,7 @@ namespace FSpot.Database {
 				ExecuteScalar (String.Format("INSERT INTO rolls SELECT id, time FROM {0}", tmp_rolls));
 
 				Log.Debug ("Cleaning weird descriptions, fixes bug #324425.");
-				ExecuteNonQuery ("UPDATE photos SET description = \"\" WHERE description LIKE \"Invalid size of entry%\"");
+				Execute ("UPDATE photos SET description = \"\" WHERE description LIKE \"Invalid size of entry%\"");
 			});				
 
 
@@ -128,7 +131,7 @@ namespace FSpot.Database {
 			//Update to version 7.0, keep photo uri instead of path
 			AddUpdate (new Version (7,0), delegate () {
 				string tmp_photos = MoveTableToTemp ("photos");
-				ExecuteNonQuery ( 
+				Execute (
 					"CREATE TABLE photos (" +
 					"	id                 INTEGER PRIMARY KEY NOT NULL," +
 					"       time               INTEGER NOT NULL," +
@@ -137,7 +140,7 @@ namespace FSpot.Database {
 					"       roll_id            INTEGER NOT NULL," +
 					"       default_version_id INTEGER NOT NULL" +
 					")");
-				ExecuteNonQuery (String.Format (
+				Execute (String.Format (
 					"INSERT INTO photos (id, time, uri, description, roll_id, default_version_id)	" +
 					"SELECT id, time, 'file://' || directory_path || '/' || name, 		" +
 					"description, roll_id, default_version_id FROM {0}", tmp_photos));
@@ -146,7 +149,7 @@ namespace FSpot.Database {
 			// Update to version 8.0, store full version uri
 			AddUpdate (new Version (8,0),delegate () {
 				string tmp_versions = MoveTableToTemp ("photo_versions");
-				ExecuteNonQuery (
+				Execute (
 					"CREATE TABLE photo_versions (          " +
 					"       photo_id        INTEGER,        " +
 					"       version_id      INTEGER,        " +
@@ -154,7 +157,7 @@ namespace FSpot.Database {
 					"       uri             STRING NOT NULL " +
 					")");
 
-				SqliteDataReader reader = ExecuteReader (String.Format (
+				IDataReader reader = ExecuteReader (String.Format (
 						"SELECT photo_id, version_id, name, uri " +
 						"FROM {0}, photos " +
 						"WHERE photo_id = id ", tmp_versions));
@@ -169,7 +172,7 @@ namespace FSpot.Database {
 						System.IO.Path.GetDirectoryName (photo_uri.AbsolutePath) + "/" +
 						name_without_extension + " (" + (reader [2]).ToString () + ")" + extension;
 
-					ExecuteNonQuery (new DbCommand (
+					Execute (new HyenaSqliteCommand (
 						"INSERT INTO photo_versions (photo_id, version_id, name, uri) " +
 						"VALUES (:photo_id, :version_id, :name, :uri)",
 						"photo_id", Convert.ToUInt32 (reader [0]),
@@ -183,7 +186,7 @@ namespace FSpot.Database {
 			// Update to version 9.0
 			AddUpdate (new Version (9,0),delegate () {
 				string tmp_versions = MoveTableToTemp ("photo_versions");
-				ExecuteNonQuery (
+				Execute (
 					"CREATE TABLE photo_versions (          " +
 					"       photo_id        INTEGER,        " +
 					"       version_id      INTEGER,        " +
@@ -191,7 +194,7 @@ namespace FSpot.Database {
 					"       uri             STRING NOT NULL," +
 					"	protected	BOOLEAN		" +
 					")");
-				ExecuteNonQuery (String.Format (
+				Execute (String.Format (
 					"INSERT INTO photo_versions (photo_id, version_id, name, uri, protected) " +
 					"SELECT photo_id, version_id, name, uri, 0 " +
 					"FROM {0} ", tmp_versions));
@@ -200,7 +203,7 @@ namespace FSpot.Database {
  			// Update to version 10.0, make id autoincrement
  			AddUpdate (new Version (10,0),delegate () {
  				string tmp_photos = MoveTableToTemp ("photos");
- 				ExecuteNonQuery (
+				Execute (
  					"CREATE TABLE photos (                                     " +
  					"	id                 INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, " +
  					"	time               INTEGER NOT NULL,	   	   " +
@@ -210,7 +213,7 @@ namespace FSpot.Database {
  					"	default_version_id INTEGER NOT NULL		   " +
  					")");
  
- 				ExecuteNonQuery (String.Format (
+				Execute (String.Format (
  					"INSERT INTO photos (id, time, uri, description, roll_id, default_version_id) " +
  					"SELECT id, time, uri, description, roll_id, default_version_id  " + 
  					"FROM  {0} ", tmp_photos));
@@ -523,7 +526,7 @@ namespace FSpot.Database {
 					"	UNIQUE (photo_id, version_id)\n" +
 					")");
 				
-				SqliteDataReader reader = ExecuteReader (String.Format (
+				IDataReader reader = ExecuteReader (String.Format (
 					"SELECT id, time, uri, description, roll_id, default_version_id, rating, md5_sum " +
 					"FROM {0} ", tmp_photos));
 		
@@ -535,7 +538,7 @@ namespace FSpot.Database {
 
 					string md5 = reader["md5_sum"] != null ? reader ["md5_sum"].ToString () : null;
 
-					Execute (new DbCommand (
+					Execute (new HyenaSqliteCommand (
 						"INSERT INTO photos (id, time, base_uri, filename, description, roll_id, default_version_id, rating, md5_sum) "	+
 						"VALUES (:id, :time, :base_uri, :filename, :description, :roll_id, :default_version_id, :rating, :md5_sum)",
 						"id", Convert.ToUInt32 (reader ["id"]),
@@ -563,7 +566,7 @@ namespace FSpot.Database {
 
 					string md5 = reader["md5_sum"] != null ? reader ["md5_sum"].ToString () : null;
 					
-					Execute (new DbCommand (				
+					Execute (new HyenaSqliteCommand (
 						"INSERT INTO photo_versions (photo_id, version_id, name, base_uri, filename, protected, md5_sum) " +
 						"VALUES (:photo_id, :version_id, :name, :base_uri, :filename, :is_protected, :md5_sum)",
 						"photo_id", Convert.ToUInt32 (reader ["photo_id"]),
@@ -595,16 +598,16 @@ namespace FSpot.Database {
 				var reader = ExecuteReader (no_original_query);
 
 				while (reader.Read ()) {
-					Execute (new DbCommand (
+					Execute (new HyenaSqliteCommand (
 						"INSERT INTO photo_versions (photo_id, version_id, name, base_uri, filename, protected, md5_sum) " +
-						"VALUES (:photo_id, :version_id, :name, :base_uri, :filename, :is_protected, :md5_sum)",
-						"photo_id", Convert.ToUInt32 (reader ["id"]),
-						"version_id", 1,
-						"name", "Original",
-						"base_uri", reader["base_uri"].ToString (),
-						"filename", reader["filename"].ToString (),
-						"is_protected", 1,
-						"md5_sum", ""));
+						"VALUES (?, ?, ?, ?, ?, ?, ?)",
+						Convert.ToUInt32 (reader ["id"]),
+						1,
+						"Original",
+						reader["base_uri"].ToString (),
+						reader["filename"].ToString (),
+						1,
+						""));
 				}
 			}, true);
 
@@ -642,17 +645,17 @@ namespace FSpot.Database {
 					"FROM {0} ", tmp_photos));
 
 				while (reader.Read ()) {
-					Execute (new DbCommand (
+					Execute (new HyenaSqliteCommand (
 						"INSERT INTO photos (id, time, base_uri, filename, description, roll_id, default_version_id, rating) "	+
-						"VALUES (:id, :time, :base_uri, :filename, :description, :roll_id, :default_version_id, :rating)",
-						"id", Convert.ToUInt32 (reader ["id"]),
-						"time", reader ["time"],
-						"base_uri", reader ["base_uri"].ToString (),
-						"filename", reader ["filename"].ToString (),
-						"description", reader["description"].ToString (),
-						"roll_id", Convert.ToUInt32 (reader ["roll_id"]),
-						"default_version_id", Convert.ToUInt32 (reader ["default_version_id"]),
-						"rating", Convert.ToUInt32 (reader ["rating"])));
+						"VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
+						Convert.ToUInt32 (reader ["id"]),
+						reader ["time"],
+						reader ["base_uri"].ToString (),
+						reader ["filename"].ToString (),
+						reader["description"].ToString (),
+						Convert.ToUInt32 (reader ["roll_id"]),
+						Convert.ToUInt32 (reader ["default_version_id"]),
+						Convert.ToUInt32 (reader ["rating"])));
 				}
 
 				reader.Close ();
@@ -662,16 +665,16 @@ namespace FSpot.Database {
 						"FROM {0} ", tmp_versions));
 
 				while (reader.Read ()) {
-					Execute (new DbCommand (
+					Execute (new HyenaSqliteCommand (
 						"INSERT INTO photo_versions (photo_id, version_id, name, base_uri, filename, protected, import_md5) " +
-						"VALUES (:photo_id, :version_id, :name, :base_uri, :filename, :is_protected, :import_md5)",
-						"photo_id", Convert.ToUInt32 (reader ["photo_id"]),
-						"version_id", Convert.ToUInt32 (reader ["version_id"]),
-						"name", reader["name"].ToString (),
-						"base_uri", reader["base_uri"].ToString (),
-						"filename", reader["filename"].ToString (),
-						"is_protected", Convert.ToBoolean (reader["protected"]),
-						"import_md5", ""));
+						"VALUES (?, ?, ?, ?, ?, ?, ?)",
+						Convert.ToUInt32 (reader ["photo_id"]),
+						Convert.ToUInt32 (reader ["version_id"]),
+						reader["name"].ToString (),
+						reader["base_uri"].ToString (),
+						reader["filename"].ToString (),
+						Convert.ToBoolean (reader["protected"]),
+						""));
 				}
 
 				Execute ("CREATE INDEX idx_photo_versions_import_md5 ON photo_versions(import_md5)");
@@ -691,7 +694,7 @@ namespace FSpot.Database {
 			return new Version (version_id);
 		}
 
-		public static void Run (QueuedSqliteDatabase database)
+		public static void Run (FSpotDatabaseConnection database)
 		{
 			db = database;
 			db_version = GetDatabaseVersion ();
@@ -787,19 +790,9 @@ namespace FSpot.Database {
 			return db.Execute (statement);
 		}
 
-		private static int Execute (DbCommand command)
+		private static int Execute (HyenaSqliteCommand command)
 		{
 			return db.Execute (command);
-		}
-
-		private static void ExecuteNonQuery (string statement)
-		{
-			db.ExecuteNonQuery(statement);
-		}
-
-		private static void ExecuteNonQuery (DbCommand command)
-		{
-			db.ExecuteNonQuery(command);
 		}
 		
 		private static int ExecuteScalar (string statement)
@@ -807,7 +800,7 @@ namespace FSpot.Database {
 			return db.Execute(statement);
 		}
 
-		private static SqliteDataReader ExecuteReader (string statement)
+		private static IDataReader ExecuteReader (string statement)
 		{
 			return db.Query (statement);
 		}
@@ -822,7 +815,7 @@ namespace FSpot.Database {
 			string result = null;
 
 			try {
-				result = (string)db.QuerySingle(statement);
+				result = db.Query<string> (statement);
 			} catch (Exception) {}
 
 			return result;
@@ -836,16 +829,16 @@ namespace FSpot.Database {
 			string sql = SelectSingleString (String.Format ("SELECT sql FROM sqlite_master WHERE tbl_name = '{0}' AND type = 'table' ORDER BY type DESC", table_name));
 			
 			// Drop temp table if already exists
-			ExecuteNonQuery ("DROP TABLE IF EXISTS " + temp_name);
+			Execute ("DROP TABLE IF EXISTS " + temp_name);
 
 			// Change the SQL to create the temp table
-			ExecuteNonQuery (sql.Replace ("CREATE TABLE " + table_name, "CREATE TEMPORARY TABLE " + temp_name));
+			Execute (sql.Replace ("CREATE TABLE " + table_name, "CREATE TEMPORARY TABLE " + temp_name));
 
 			// Copy the data
 			ExecuteScalar (String.Format ("INSERT INTO {0} SELECT * FROM {1}", temp_name, table_name));
 				
 			// Delete the original table
-			ExecuteNonQuery ("DROP TABLE " + table_name);
+			Execute ("DROP TABLE " + table_name);
 
 			return temp_name;
 		}
@@ -870,7 +863,7 @@ namespace FSpot.Database {
 				this.code = code;
 			}
 
-			public void Execute (QueuedSqliteDatabase db, Version db_version)
+			public void Execute (HyenaSqliteConnection db, Version db_version)
 			{
 				code ();
 				
@@ -880,7 +873,7 @@ namespace FSpot.Database {
 							Version.ToString ());
 
 				db_version = Version;
-				db.ExecuteNonQuery(new DbCommand("UPDATE meta SET data = :data WHERE name = :name", "name", meta_db_version_string, "data", db_version.ToString ()));
+				db.Execute(new HyenaSqliteCommand("UPDATE meta SET data = ? WHERE name = ?", meta_db_version_string, db_version.ToString ()));
 			}
 		}
 
