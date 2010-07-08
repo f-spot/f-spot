@@ -2,13 +2,14 @@ using Hyena;
 
 using System;
 using System.IO;
-using System.Collections;
+using System.Collections.Generic;
 
 using FSpot.Utils;
 using Mono.Unix;
 using Mono.Unix.Native;
 using Gdk;
 
+using GLib;
 using TagLib.Image;
 
 using GFileInfo = GLib.FileInfo;
@@ -24,91 +25,99 @@ namespace FSpot.Imaging {
 
 #region Factory functionality
 
-		static Hashtable name_table;
-		internal static Hashtable NameTable { get { return name_table; } }
+		static Dictionary<string, Type> name_table;
+		internal static Dictionary<string, Type> NameTable { get { return name_table; } }
 
-		static ImageFile ()
-		{
-			name_table = new Hashtable ();
-			name_table [".svg"] = typeof (BaseImageFile);
-			name_table [".gif"] = typeof (BaseImageFile);
-			name_table [".bmp"] = typeof (BaseImageFile);
-			name_table [".pcx"] = typeof (BaseImageFile);
-			name_table [".jpeg"] = typeof (BaseImageFile);
-			name_table [".jpg"] = typeof (BaseImageFile);
-			name_table [".png"] = typeof (BaseImageFile);
-			name_table [".cr2"] = typeof (FSpot.Imaging.Tiff.Cr2File);
-			name_table [".nef"] = typeof (FSpot.Imaging.Tiff.NefFile);
-			name_table [".pef"] = typeof (FSpot.Imaging.Tiff.NefFile);
-			name_table [".raw"] = typeof (FSpot.Imaging.Tiff.NefFile);
-			name_table [".kdc"] = typeof (FSpot.Imaging.Tiff.NefFile);
-			name_table [".arw"] = typeof (FSpot.Imaging.Tiff.NefFile);
-			name_table [".rw2"] = typeof (FSpot.Imaging.DCRawFile);
-			name_table [".tiff"] = typeof (BaseImageFile);
-			name_table [".tif"] = typeof (BaseImageFile);
-			name_table [".orf"] =  typeof (FSpot.Imaging.Tiff.NefFile);
-			name_table [".srf"] = typeof (FSpot.Imaging.Tiff.NefFile);
-			name_table [".dng"] = typeof (FSpot.Imaging.Tiff.DngFile);
-			name_table [".crw"] = typeof (FSpot.Imaging.Ciff.CiffFile);
-			name_table [".ppm"] = typeof (BaseImageFile);
-			name_table [".mrw"] = typeof (FSpot.Imaging.DCRawFile);
-			name_table [".raf"] = typeof (FSpot.Imaging.Raf.RafFile);
-			name_table [".x3f"] = typeof (FSpot.Imaging.DCRawFile);
+        static ImageFile ()
+        {
+            var base_type = typeof (BaseImageFile);
+            var raw_type = typeof (DCRawFile);
+            var nef_type = typeof (FSpot.Imaging.Tiff.NefFile);
 
-			// add mimetypes for fallback
-			name_table ["image/bmp"]     = name_table ["image/x-bmp"] = name_table [".bmp"];
-			name_table ["image/gif"]     = name_table [".gif"];
-			name_table ["image/pjpeg"]   = name_table ["image/jpeg"] = name_table ["image/jpg"] = name_table [".jpg"];
-			name_table ["image/x-png"]   = name_table ["image/png"]  = name_table [".png"];
-			name_table ["image/svg+xml"] = name_table [".svg"];
-			name_table ["image/tiff"]    = name_table [".tiff"];
-			name_table ["image/x-dcraw"] = name_table [".raw"];
-			name_table ["image/x-ciff"]  = name_table [".crw"];
-			name_table ["image/x-mrw"]   = name_table [".mrw"];
-			name_table ["image/x-x3f"]   = name_table [".x3f"];
-			name_table ["image/x-orf"]   = name_table [".orf"];
-			name_table ["image/x-nef"]   = name_table [".nef"];
-			name_table ["image/x-cr2"]   = name_table [".cr2"];
-			name_table ["image/x-raf"]   = name_table [".raf"];
+            name_table = new Dictionary<string, Type> ();
 
-			//as xcf pixbufloader is not part of gdk-pixbuf, check if it's there,
-			//and enable it if needed.
-			foreach (Gdk.PixbufFormat format in Gdk.Pixbuf.Formats)
-				if (format.Name == "xcf") {
-					if (format.IsDisabled)
-						format.SetDisabled (false);
-					name_table [".xcf"] = typeof (ImageFile);
-				}
-		}
+            // Plain image files
+            name_table ["image/gif"] = name_table [".gif"] = base_type;
+            name_table ["image/x-pcx"] = name_table [".pcx"] = base_type;
+            name_table ["image/x-portable-anymap"] = name_table [".pnm"] = base_type;
+            name_table ["image/x-portable-bitmap"] = name_table [".pbm"] = base_type;
+            name_table ["image/x-portable-graymap"] = name_table [".pgm"] = base_type;
+            name_table ["image/x-portable-pixmap"] = name_table [".ppm"] = base_type;
+            name_table ["image/x-bmp"] = name_table ["image/x-MS-bmp"] = name_table [".bmp"] = base_type;
+            name_table ["image/jpeg"] = name_table [".jfi"] = name_table [".jfif"] = name_table [".jif"] = name_table [".jpe"] = name_table [".jpeg"] = name_table [".jpg"] = base_type;
+            name_table ["image/png"] = name_table [".png"] = base_type;
+            name_table ["image/tiff"] = name_table [".tif"] = name_table [".tiff"] = base_type;
 
-		public static bool HasLoader (SafeUri uri)
-		{
-			return GetLoaderType (uri) != null;
-		}
+            // RAW files
+            name_table ["image/arw"] = name_table ["image/x-sony-arw"] = name_table [".arw"] = nef_type;
+            name_table ["image/cr2"] = name_table ["image/x-canon-cr"] = name_table [".cr2"] = typeof (FSpot.Imaging.Tiff.Cr2File);
+            name_table ["image/dng"] = name_table ["image/x-adobe-dng"] = name_table [".dng"] = typeof (FSpot.Imaging.Tiff.DngFile);
+            name_table ["image/nef"] = name_table ["image/x-nikon-nef"] = name_table [".nef"] = nef_type;
+            name_table ["image/rw2"] = name_table ["image/x-raw"] = name_table [".rw2"] = raw_type;
 
-		static Type GetLoaderType (SafeUri uri)
-		{
-			string extension = uri.GetExtension ().ToLower ();
-			if (extension == ".thm") {
-				// Ignore video thumbnails.
-				return null;
-			}
+            // Other types (FIXME: Currently unsupported by Taglib#, this list should shrink).
+            name_table ["image/svg+xml"] = name_table [".svg"] = base_type;
+            name_table [".pef"] = nef_type;
+            name_table [".raw"] = typeof (FSpot.Imaging.Tiff.NefFile);
+            name_table [".kdc"] = typeof (FSpot.Imaging.Tiff.NefFile);
+            name_table [".rw2"] = typeof (FSpot.Imaging.DCRawFile);
+            name_table [".orf"] =  typeof (FSpot.Imaging.Tiff.NefFile);
+            name_table [".srf"] = typeof (FSpot.Imaging.Tiff.NefFile);
+            name_table [".crw"] = typeof (FSpot.Imaging.Ciff.CiffFile);
+            name_table [".mrw"] = typeof (FSpot.Imaging.DCRawFile);
+            name_table [".raf"] = typeof (FSpot.Imaging.Raf.RafFile);
+            name_table [".x3f"] = typeof (FSpot.Imaging.DCRawFile);
+            name_table ["image/x-dcraw"] = name_table [".raw"];
+            name_table ["image/x-ciff"]  = name_table [".crw"];
+            name_table ["image/x-mrw"]   = name_table [".mrw"];
+            name_table ["image/x-x3f"]   = name_table [".x3f"];
+            name_table ["image/x-orf"]   = name_table [".orf"];
+            name_table ["image/x-raf"]   = name_table [".raf"];
 
-			Type t = (Type) name_table [extension];
+            // as xcf pixbufloader is not part of gdk-pixbuf, check if it's there,
+            // and enable it if needed.
+            foreach (Gdk.PixbufFormat format in Gdk.Pixbuf.Formats)
+                if (format.Name == "xcf") {
+                    if (format.IsDisabled)
+                        format.SetDisabled (false);
+                    name_table [".xcf"] = base_type;
+                }
+        }
 
-			if (t == null) {
-				// check if GIO can find the file, which is not the case
-				// with filenames with invalid encoding
-				GLib.File f = GLib.FileFactory.NewForUri (uri);
-				if (f.QueryExists (null)) {
-					GLib.FileInfo info = f.QueryInfo ("standard::type,standard::content-type", GLib.FileQueryInfoFlags.None, null);
-					t = (Type) name_table [info.ContentType];
-				}
-			}
+        public static bool HasLoader (SafeUri uri)
+        {
+            return GetLoaderType (uri) != null;
+        }
 
-			return t;
-		}
-		
+        static Type GetLoaderType (SafeUri uri)
+        {
+            // check if GIO can find the file, which is not the case
+            // with filenames with invalid encoding
+            var file = GLib.FileFactory.NewForUri (uri);
+            if (!file.Exists) {
+                return null;
+            }
+
+            var extension = uri.GetExtension ().ToLower ();
+            if (extension == ".thm") {
+                // Ignore video thumbnails.
+                return null;
+            }
+
+            // Detect mime-type
+            var info = file.QueryInfo ("standard::content-type", FileQueryInfoFlags.None, null);
+            var mime = info.ContentType;
+
+            Type t = null;
+
+            if (name_table.TryGetValue (mime, out t)) {
+                return t;
+            } else if (name_table.TryGetValue (extension, out t)) {
+                return t;
+            }
+            return null;
+        }
+
         public static IImageFile Create (SafeUri uri)
         {
             var t = GetLoaderType (uri);
@@ -160,11 +169,11 @@ namespace FSpot.Imaging {
 
     public interface IImageFile : IDisposable {
         SafeUri Uri { get; }
-		Gdk.Pixbuf Load ();
-		Cms.Profile GetProfile ();
-		Gdk.Pixbuf Load (int max_width, int max_height);
-		Stream PixbufStream ();
-		ImageOrientation Orientation { get; }
+        Gdk.Pixbuf Load ();
+        Cms.Profile GetProfile ();
+        Gdk.Pixbuf Load (int max_width, int max_height);
+        Stream PixbufStream ();
+        ImageOrientation Orientation { get; }
     }
 
     public class BaseImageFile : IImageFile {
@@ -192,7 +201,7 @@ namespace FSpot.Imaging {
 
 		public virtual Stream PixbufStream ()
 		{
-			Log.DebugFormat ("open uri = {0}", Uri.ToString ());
+			Hyena.Log.DebugFormat ("open uri = {0}", Uri.ToString ());
 			return new GLib.GioStream (GLib.FileFactory.NewForUri (Uri).Read (null));
 		}
 

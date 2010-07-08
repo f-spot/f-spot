@@ -188,6 +188,7 @@ SOURCES = \
 	Widgets/ViewContext.cs \
 	Widgets/Wipe.cs \
 	main.cs \
+	Tests/ImageFileTests.cs \
 	Tests/UpdaterTests.cs
 
 
