@@ -242,20 +242,7 @@ namespace FSpot
 				return 1;
 			}
 
-			// Initialize Mono.Addins
-			uint timer = Log.InformationTimerStart ("Initializing Mono.Addins");
-			AddinManager.Initialize (FSpot.Global.BaseDirectory);
-			AddinManager.Registry.Update (null);
-			SetupService setupService = new SetupService (AddinManager.Registry);
-			string maj_version = String.Join (".", Defines.VERSION.Split ('.'), 0, 3);
-			foreach (AddinRepository repo in setupService.Repositories.GetRepositories ())
-				if (repo.Url.StartsWith ("http://addins.f-spot.org/") && !repo.Url.StartsWith ("http://addins.f-spot.org/" + maj_version)) {
-					Log.InformationFormat ("Unregistering {0}", repo.Url);
-					setupService.Repositories.RemoveRepository (repo.Url);
-				}
-			setupService.Repositories.RegisterRepository (null, "http://addins.f-spot.org/" + maj_version, false);
-			Log.DebugTimerPrint (timer, "Mono.Addins Initialization took {0}");
-
+			InitializeAddins ();
 
 			// Gtk initialization
 			Gtk.Application.Init (Defines.PACKAGE, ref args);
@@ -284,6 +271,21 @@ namespace FSpot
 			CleanRoomStartup.Startup (Startup);
 
 			return 0;
+		}
+
+		static void InitializeAddins ()
+		{
+			uint timer = Log.InformationTimerStart ("Initializing Mono.Addins");
+			AddinManager.Initialize (FSpot.Global.BaseDirectory);
+			AddinManager.Registry.Update (null);
+			SetupService setupService = new SetupService (AddinManager.Registry);
+			foreach (AddinRepository repo in setupService.Repositories.GetRepositories ()) {
+				if (repo.Url.StartsWith ("http://addins.f-spot.org/")) {
+					Log.InformationFormat ("Unregistering {0}", repo.Url);
+					setupService.Repositories.RemoveRepository (repo.Url);
+				}
+			}
+			Log.DebugTimerPrint (timer, "Mono.Addins Initialization took {0}");
 		}
 
 		static void Startup ()
