@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: F-Spot\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=f-spot&component=General\n"
-"POT-Creation-Date: 2010-06-24 09:59+0000\n"
-"PO-Revision-Date: 2010-06-24 16:17+0300\n"
+"POT-Creation-Date: 2010-07-06 20:54+0000\n"
+"PO-Revision-Date: 2010-07-07 21:26+0300\n"
 "Last-Translator: Mattias Põldaru <mahfiaz gmail com>\n"
 "Language-Team: Estonian <gnome-et@linux.ee>\n"
 "MIME-Version: 1.0\n"
@@ -1235,35 +1235,20 @@ msgstr "_Eemalda kataloogist"
 msgid "<b>Co_rrections</b>"
 msgstr "<b>_Parandused</b>"
 
-msgid "<b>View all pictures imported</b>"
-msgstr "<b>Näita kõiki imporditud pilte</b>"
-
 msgid "<b>_White Balance</b>"
 msgstr "<b>_Valge tasakaal</b>"
 
 msgid "C_ontrast:"
 msgstr "_Kontrastsus:"
 
-msgid "Display only those photos that were imported in specified Rolls."
-msgstr "Kuvatakse ainult kindlatelt rullidelt imporditud fotod."
-
-msgid "Filter on selected rolls"
-msgstr "Filtreeri märgitud rullid"
-
 msgid "Manage your custom selection ratios"
 msgstr "Halda kohandatud külgede suhteid"
-
-msgid "Number of photos in selected rolls:"
-msgstr "Piltide arv valitud rullides:"
 
 msgid "Select a Tag..."
 msgstr "Vali _märksõna..."
 
 msgid "Selection Constraints"
 msgstr "Valiku määrang"
-
-msgid "Show all photos."
-msgstr "Näita kõiki fotosid."
 
 #. Note for translators: meant as Temperature
 msgid "Te_mp:"
@@ -1283,19 +1268,6 @@ msgstr "_Värviküllastus:"
 
 msgid "_Tint:"
 msgstr "_Toon:"
-
-msgid "and"
-msgstr "ja"
-
-#. at, or after a date, or between dates
-msgid ""
-"at\n"
-"after\n"
-"between"
-msgstr ""
-"täpselt\n"
-"pärast\n"
-"vahemikus"
 
 msgid "Hide"
 msgstr "Peida"
@@ -1791,8 +1763,8 @@ msgstr "Erandlik olukord \"{0}\"."
 msgid "(No Edits)"
 msgstr "(versioone pole)"
 
-msgid "Comment:"
-msgstr "Kommentaar:"
+msgid "Description:"
+msgstr "Kirjeldus:"
 
 msgid "Photos"
 msgstr "Fotod"
@@ -2243,6 +2215,33 @@ msgstr "Märksõna ikooni muutmine"
 
 msgid "No _image"
 msgstr "Ilma _pildita"
+
+msgid "<b>View all pictures imported</b>"
+msgstr "<b>Näita kõiki imporditud pilte</b>"
+
+msgid "Display only those photos that were imported in specified Rolls."
+msgstr "Kuvatakse ainult kindlatelt rullidelt imporditud fotod."
+
+msgid "Filter on selected rolls"
+msgstr "Filtreeri märgitud rullid"
+
+msgid "Number of photos in selected rolls:"
+msgstr "Piltide arv valitud rullides:"
+
+msgid "Show all photos."
+msgstr "Näita kõiki fotosid."
+
+msgid "after"
+msgstr "pärast"
+
+msgid "and"
+msgstr "ja"
+
+msgid "at"
+msgstr "täpselt"
+
+msgid "between"
+msgstr "vahemikus"
 
 msgid "Color profile for display:"
 msgstr "Kuvamise värviprofiil:"
@@ -2846,3 +2845,5 @@ msgstr "Näita slaidiesitlust F-Spotiga"
 msgid "F-Spot photos"
 msgstr "F-Spot fotoalbum"
 
+#~ msgid "Comment:"
+#~ msgstr "Kommentaar:"
