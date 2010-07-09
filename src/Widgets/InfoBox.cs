@@ -329,7 +329,11 @@ namespace FSpot.Widgets
 					}
 
 					if (exposure_time.HasValue) {
-						info += String.Format ("{0} sec ", exposure_time.Value);
+						if (Math.Abs (exposure_time.Value) >= 1.0) {
+							info += String.Format ("{0} sec ", exposure_time.Value);
+						} else {
+							info += String.Format ("1/{0} sec ", (int) (1 / exposure_time.Value));
+						}
 					}
 
 					if (iso_speed.HasValue) {
