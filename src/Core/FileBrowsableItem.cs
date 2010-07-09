@@ -11,7 +11,7 @@
 
 using System;
 using System.IO;
-using System.Collections;
+using System.Collections.Generic;
 using System.Xml;
 
 using Hyena;
@@ -67,6 +67,10 @@ namespace FSpot {
         }
 
         public IBrowsableItemVersion DefaultVersion { get; private set; }
+
+		public IEnumerable<IBrowsableItemVersion> Versions {
+			get { yield return DefaultVersion; }
+		}
 
         private string description;
         public string Description {
