@@ -11,6 +11,7 @@ using System;
 using Banshee.Kernel;
 using Hyena;
 using FSpot.Utils;
+using Mono.Unix;
 
 namespace FSpot.Jobs {
     public class SyncMetadataJob : Job
@@ -62,8 +63,12 @@ namespace FSpot.Jobs {
                 tag.Rating = photo.Rating;
                 tag.Software = FSpot.Defines.PACKAGE + " version " + FSpot.Defines.VERSION;
 
-                Hyena.Log.Information (photo.DefaultVersion.Uri);
-                if (Preferences.Get<bool> (Preferences.METADATA_ALWAYS_USE_SIDECAR) || !metadata.Writeable) {
+                var always_sidecar = Preferences.Get<bool> (Preferences.METADATA_ALWAYS_USE_SIDECAR);
+                if (always_sidecar || !metadata.Writeable || metadata.PossiblyCorrupt) {
+                    if (!always_sidecar && metadata.PossiblyCorrupt) {
+                        Log.WarningFormat (Catalog.GetString ("Metadata of file {0} may be corrupt, refusing to write to it, falling back to XMP sidecar."), photo.DefaultVersion.Uri);
+                    }
+
                     var sidecar_res = new GIOTagLibFileAbstraction () { Uri = photo.DefaultVersion.Uri.ReplaceExtension (".xmp") };
 
                     metadata.SaveXmpSidecar (sidecar_res);
