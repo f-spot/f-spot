@@ -312,10 +312,10 @@ lib/Makefile
 lib/unique-sharp/Makefile
 lib/unique-sharp/generator/Makefile
 lib/unique-sharp/unique/Makefile
-lib/Hyena/src/Hyena/Makefile
-lib/Hyena/src/Mono.Data.Sqlite/Makefile
-lib/Hyena/src/Hyena.Data.Sqlite/Makefile
-lib/Hyena/src/Hyena.Gui/Makefile
+lib/Hyena/Hyena/Makefile
+lib/Hyena/Mono.Data.Sqlite/Makefile
+lib/Hyena/Hyena.Data.Sqlite/Makefile
+lib/Hyena/Hyena.Gui/Makefile
 lib/TagLib/Makefile
 
 docs/Makefile
