@@ -357,7 +357,7 @@ namespace FSpot
 	
 			InfoBox = new InfoBox ();
 			ViewModeChanged += InfoBox.HandleMainWindowViewModeChanged;
-			InfoBox.VersionIdChanged += delegate (InfoBox box, uint version_id) { UpdateForVersionIdChange (version_id);};
+			InfoBox.VersionChanged += delegate (InfoBox box, IBrowsableItemVersion version) { UpdateForVersionChange (version);};
 			sidebar_vbox.PackEnd (InfoBox, false, false, 0);
 	
 			InfoBox.Context = ViewContext.Library;
@@ -2475,10 +2475,14 @@ namespace FSpot
 	
 		// Version Id updates.
 	
-		void UpdateForVersionIdChange (uint version_id)
+		void UpdateForVersionChange (IBrowsableItemVersion version)
 		{
-			CurrentPhoto.DefaultVersionId = version_id;
-			query.Commit (ActiveIndex ());
+			IBrowsableItemVersionable versionable = CurrentPhoto as IBrowsableItemVersionable;
+
+			if (versionable != null) {
+				versionable.SetDefaultVersion (version);
+				query.Commit (ActiveIndex ());
+			}
 		}
 	
 		// Queries.
@@ -2608,7 +2612,7 @@ namespace FSpot
 				}
 	
 				versions_submenu = new PhotoVersionMenu (CurrentPhoto);
-				versions_submenu.VersionIdChanged += delegate (PhotoVersionMenu menu) { UpdateForVersionIdChange (menu.VersionId);};
+				versions_submenu.VersionChanged += delegate (PhotoVersionMenu menu) { UpdateForVersionChange (menu.Version);};
 				version_menu_item.Submenu = versions_submenu;
 	
 				sharpen.Sensitive = (ViewMode == ModeType.IconView ? false : true);

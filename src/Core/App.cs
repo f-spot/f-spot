@@ -256,7 +256,7 @@ namespace FSpot
 			else if (Preferences.Get<int> (Preferences.SCREENSAVER_TAG) == 0)
 				photos = Database.Photos.Query (new Tag [] {});
 			else
-				photos = new Photo [0];
+				photos = new IBrowsableItem [0];
 
 			// Minimum delay 1 second; default is 4s
 			var delay = Math.Max (1.0, Preferences.Get<double> (Preferences.SCREENSAVER_DELAY));

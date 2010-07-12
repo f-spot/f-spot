@@ -1,73 +1,56 @@
+
 using Gtk;
+
 using System;
+using System.Collections.Generic;
+
 using FSpot;
+
+
 public class PhotoVersionMenu : Menu {
-	private uint version_id;
-	public uint VersionId {
-		get {
-			return version_id;
-		}
 
-		set {
-			version_id = value;
-		}
+	public IBrowsableItemVersion Version {
+		get; private set;
 	}
 
-	public delegate void VersionIdChangedHandler (PhotoVersionMenu menu);
-	public event VersionIdChangedHandler VersionIdChanged;
+	public delegate void VersionChangedHandler (PhotoVersionMenu menu);
+	public event VersionChangedHandler VersionChanged;
 
-	private struct MenuItemInfo {
-		public MenuItem Item;
-		public uint VersionId;
+	private Dictionary <MenuItem, IBrowsableItemVersion> version_mapping;
 
-		public MenuItemInfo (MenuItem menu_item, uint id)
-		{
-			Item = menu_item;
-			VersionId = id;
-		}
-	}
-
-	private MenuItemInfo [] item_infos;
-
-	// Lame way to emulate radio menu items since the the radio menu item API in GTK# is kinda busted.
 	private void HandleMenuItemActivated (object sender, EventArgs args)
 	{
-		foreach (MenuItemInfo info in item_infos) {
-			if (info.Item == sender && info.VersionId != VersionId) {
-				VersionId = info.VersionId;
-				if (VersionIdChanged != null)
-					VersionIdChanged (this);
-				break;
-			}
+		MenuItem item = sender as MenuItem;
+
+		if (item != null && version_mapping.ContainsKey (item)) {
+			Version = version_mapping [item];
+			VersionChanged (this);
 		}
 	}
 
-	public PhotoVersionMenu (Photo photo)
+	public PhotoVersionMenu (IBrowsableItem photo)
 	{
-		version_id = photo.DefaultVersionId;
+		Version = photo.DefaultVersion;
 
-		uint [] version_ids = photo.VersionIds;
-		item_infos = new MenuItemInfo [version_ids.Length];
+		version_mapping = new Dictionary<MenuItem, IBrowsableItemVersion> ();
 
-		int i = 0;
-		foreach (uint id in version_ids) {
-			MenuItem menu_item = new MenuItem (photo.GetVersion (id).Name);
+		foreach (IBrowsableItemVersion version in photo.Versions) {
+			MenuItem menu_item = new MenuItem (version.Name);
 			menu_item.Show ();
 			menu_item.Sensitive = true;
-			Gtk.Label child = ((Gtk.Label)menu_item.Child);
-			child.UseUnderline = false;
-			if (photo.DefaultVersionId == id) {
-				child.UseMarkup = true;
-				child.Markup = "<b>" + photo.GetVersion (id).Name + "</b>";
-			}
-			menu_item.Activated += new EventHandler (HandleMenuItemActivated);
+			Gtk.Label child = ((Gtk.Label) menu_item.Child);
 
-			item_infos [i ++] = new MenuItemInfo (menu_item, id);
+			if (version == photo.DefaultVersion) {
+				child.UseMarkup = true;
+				child.Markup = String.Format ("<b>{0}</b>", version.Name);
+			}
+
+			version_mapping.Add (menu_item, version);
 
 			Append (menu_item);
 		}
 
-		if (version_ids.Length == 1) {
+		if (version_mapping.Count == 1) {
 			MenuItem no_edits_menu_item = new MenuItem (Mono.Unix.Catalog.GetString ("(No Edits)"));
 			no_edits_menu_item.Show ();
 			no_edits_menu_item.Sensitive = false;

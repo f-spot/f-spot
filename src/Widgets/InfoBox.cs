@@ -32,8 +32,8 @@ namespace FSpot.Widgets
 	public class InfoBox : VBox {
 		Delay update_delay;
 	
-		private Photo [] photos = new Photo[0];
-		public Photo [] Photos {
+		private IBrowsableItem [] photos = new IBrowsableItem [0];
+		public IBrowsableItem [] Photos {
 			set {
 				photos = value;
 				update_delay.Start ();
@@ -43,10 +43,10 @@ namespace FSpot.Widgets
 			}
 		}
 
-		public Photo Photo {
+		public IBrowsableItem Photo {
 			set {
 				if (value != null) {
-					Photos = new Photo[] { value };
+					Photos = new IBrowsableItem [] { value };
 				}
 			}
 		}
@@ -76,8 +76,8 @@ namespace FSpot.Widgets
 			}
 		}
 
-		public delegate void VersionIdChangedHandler (InfoBox info_box, uint version_id);
-		public event VersionIdChangedHandler VersionIdChanged;
+		public delegate void VersionChangedHandler (InfoBox info_box, IBrowsableItemVersion version);
+		public event VersionChangedHandler VersionChanged;
 	
 		private Expander info_expander;
 		private Expander histogram_expander;
@@ -251,7 +251,7 @@ namespace FSpot.Widgets
 			size_value_label = AttachLabel (info_table, 3, name_value_label);
 			exposure_value_label = AttachLabel (info_table, 4, name_value_label);
 			
-			version_list = new ListStore (typeof (uint), typeof (string), typeof (bool));
+			version_list = new ListStore (typeof (IBrowsableItemVersion), typeof (string), typeof (bool));
 			version_combo = new ComboBox ();
 			CellRendererText version_name_cell = new CellRendererText ();
 			version_name_cell.Ellipsize = Pango.EllipsizeMode.End;
@@ -395,7 +395,7 @@ namespace FSpot.Widgets
 		{
 			ImageInfo info;
 
-			Photo photo = Photos[0];
+			IBrowsableItem photo = Photos [0];
 
 			histogram_expander.Visible = true;
 			UpdateHistogram ();
@@ -457,21 +457,21 @@ namespace FSpot.Widgets
 			version_list.Clear ();
 			version_combo.Changed -= OnVersionComboChanged;
 			
-			bool hasVersions = photo.VersionIds.Length > 1;
-			version_combo.Sensitive = hasVersions;
-			if (hasVersions) {
-				int i = 0;
-				foreach (uint version_id in photo.VersionIds) {
-					version_list.AppendValues (version_id, (photo.GetVersion (version_id) as PhotoVersion).Name, true);
-					if (version_id == photo.DefaultVersionId)
-						version_combo.Active = i;
-					i++;
-				}
-				version_combo.TooltipText = String.Format (Catalog.GetPluralString ("(One Edit)", "({0} Edits)", i - 1), i - 1);
-			} else {
-				version_list.AppendValues (photo.DefaultVersionId, photo.DefaultVersion.Name + " " + Catalog.GetString ("(No Edits)"), true);
-				version_combo.Active = 0;
+			int count = 0;
+			foreach (IBrowsableItemVersion version in photo.Versions) {
+				version_list.AppendValues (version, version.Name, true);
+				if (version == photo.DefaultVersion)
+					version_combo.Active = count;
+				count++;
+			}
+			
+			if (count <= 1) {
+				version_combo.Sensitive = false;
 				version_combo.TooltipText = Catalog.GetString ("(No Edits)");
+			} else {
+				version_combo.Sensitive = true;
+				version_combo.TooltipText =
+					String.Format (Catalog.GetPluralString ("(One Edit)", "({0} Edits)", count - 1), count - 1);
 			}
 			version_combo.Changed += OnVersionComboChanged;
 
@@ -518,7 +518,7 @@ namespace FSpot.Widgets
 			TreeIter iter;
 
 			if (combo.GetActiveIter (out iter))
-				VersionIdChanged (this, (uint)version_list.GetValue (iter, 0));
+				VersionChanged (this, (IBrowsableItemVersion)version_list.GetValue (iter, 0));
 		}
 
 		private void UpdateMultiple ()
@@ -542,8 +542,8 @@ namespace FSpot.Widgets
 			camera_value_label.Visible = false;
 
 			if (show_date) {
-				Photo first = Photos[Photos.Length-1];
-				Photo last = Photos[0];
+				IBrowsableItem first = Photos[Photos.Length-1];
+				IBrowsableItem last = Photos [0];
 				if (first.Time.Date == last.Time.Date) {
 					//Note for translators: {0} is a date, {1} and {2} are times.
 					date_value_label.Text = String.Format(Catalog.GetString("On {0} between \n{1} and {2}"), 
@@ -561,7 +561,7 @@ namespace FSpot.Widgets
 
 			if (show_file_size) {
 				long file_size = 0;
-				foreach (Photo photo in Photos) {
+				foreach (IBrowsableItem photo in Photos) {
 					
 					try {
 						GFile file = FileFactory.NewForUri (photo.DefaultVersion.Uri);
@@ -607,7 +607,7 @@ namespace FSpot.Widgets
 			if (Photos.Length == 0)
 				return false;
 
-			Photo photo = Photos[0];
+			IBrowsableItem photo = Photos [0];
 
 			Gdk.Pixbuf hint = histogram_hint;
 			histogram_hint = null;

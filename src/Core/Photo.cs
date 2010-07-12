@@ -214,6 +214,16 @@ namespace FSpot
 			}
 		}
 
+		public void SetDefaultVersion (IBrowsableItemVersion version)
+		{
+			PhotoVersion photo_version = version as PhotoVersion;
+			if (photo_version == null)
+				throw new ArgumentException ("Not a valid version for this photo");
+
+			DefaultVersionId = photo_version.VersionId;
+		}
+
+
 		//FIXME: won't work on non file uris
 		public uint SaveVersion (Gdk.Pixbuf buffer, bool create_version)
 		{

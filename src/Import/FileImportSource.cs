@@ -145,6 +145,7 @@ namespace FSpot.Import
         {
         }
 
+
         public SafeUri DestinationUri { get; set; }
 
         internal uint PhotoId { get; set; }
