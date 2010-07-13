@@ -47,6 +47,7 @@ namespace FSpot.Imaging {
             name_table ["image/jpeg"] = name_table [".jfi"] = name_table [".jfif"] = name_table [".jif"] = name_table [".jpe"] = name_table [".jpeg"] = name_table [".jpg"] = base_type;
             name_table ["image/png"] = name_table [".png"] = base_type;
             name_table ["image/tiff"] = name_table [".tif"] = name_table [".tiff"] = base_type;
+            name_table ["image/svg+xml"] = name_table [".svg"] = name_table [".svgz"] = base_type;
 
             // RAW files
             name_table ["image/arw"] = name_table ["image/x-sony-arw"] = name_table [".arw"] = nef_type;
@@ -56,7 +57,6 @@ namespace FSpot.Imaging {
             name_table ["image/rw2"] = name_table ["image/x-raw"] = name_table [".rw2"] = raw_type;
 
             // Other types (FIXME: Currently unsupported by Taglib#, this list should shrink).
-            name_table ["image/svg+xml"] = name_table [".svg"] = base_type;
             name_table [".pef"] = nef_type;
             name_table [".raw"] = typeof (FSpot.Imaging.Tiff.NefFile);
             name_table [".kdc"] = typeof (FSpot.Imaging.Tiff.NefFile);
