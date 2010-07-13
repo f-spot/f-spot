@@ -98,7 +98,7 @@ namespace FSpot.UI.Dialog
             duplicate_check.Active = Controller.DuplicateDetect;
             remove_check.Active = Controller.RemoveOriginals;
             remove_check.Sensitive = copy_check.Active;
-            remove_warning_button.Sensitive = copy_check.Active;
+            remove_warning_button.Sensitive = copy_check.Active && remove_check.Active;
         }
 
         void ScanSources ()
@@ -161,11 +161,14 @@ namespace FSpot.UI.Dialog
             copy_check.Toggled += (o, args) => {
                 Controller.CopyFiles = copy_check.Active;
                 remove_check.Sensitive = copy_check.Active;
-                remove_warning_button.Sensitive = copy_check.Active;
+                remove_warning_button.Sensitive = copy_check.Active && remove_check.Active;
             };
             recurse_check.Toggled += (o, args) => { Controller.RecurseSubdirectories = recurse_check.Active; };
             duplicate_check.Toggled += (o, args) => { Controller.DuplicateDetect = duplicate_check.Active; };
-            remove_check.Toggled += (o, args) => { Controller.RemoveOriginals = remove_check.Active; };
+            remove_check.Toggled += (o, args) => {
+                Controller.RemoveOriginals = remove_check.Active;
+                remove_warning_button.Sensitive = copy_check.Active && remove_check.Active;
+            };
             import_button.Clicked += (o, args) => StartImport ();
             cancel_button.Clicked += (o, args) => CancelImport ();
             remove_warning_button.Clicked += (o, args) => {
