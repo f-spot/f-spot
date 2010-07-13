@@ -272,8 +272,12 @@ namespace FSpot.Import
         {
             if (RemoveOriginals) {
                 foreach (var uri in original_files) {
-                    var file = GLib.FileFactory.NewForUri (uri);
-                    file.Delete (null);
+                    try {
+                        var file = GLib.FileFactory.NewForUri (uri);
+                        file.Delete (null);
+                    } catch (Exception) {
+                        Log.WarningFormat ("Failed to remove original file: {0}", uri);
+                    }
                 }
             }
 
