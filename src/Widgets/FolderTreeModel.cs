@@ -111,7 +111,11 @@ namespace FSpot.Widgets
 				
 				int count = Convert.ToInt32 (reader["count"]);
 				
-				string[] segments = base_uri.LocalPath.TrimEnd ('/').Split ('/');
+				// FIXME: this is a workaround hack to stop things from crashing - https://bugzilla.gnome.org/show_bug.cgi?id=622318
+				int index = base_uri.ToString ().IndexOf ("://");
+				var hack = base_uri.ToString ().Substring (index + 3);
+				hack = hack.IndexOf ('/') == 0 ? hack : "/" + hack;
+				string[] segments = hack.TrimEnd ('/').Split ('/');
 
 				/* First segment contains nothing (since we split by /), so we
 				 * can overwrite the first segment for our needs and put the
