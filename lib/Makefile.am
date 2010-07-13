@@ -3,10 +3,7 @@ SUBDIRS = \
 	GKeyFile 			\
 	gio-sharp			\
 	gtk-sharp-beans		\
-	Hyena/Hyena     \
-	Hyena/Mono.Data.Sqlite     \
-	Hyena/Hyena.Data.Sqlite     \
-	Hyena/Hyena.Gui     \
+	Hyena 				\
 	libfspot			\
 	TagLib 				\
 	unique-sharp
