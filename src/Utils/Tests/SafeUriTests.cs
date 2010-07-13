@@ -46,6 +46,14 @@ namespace FSpot.Utils.Tests
                 BaseUri = "file:///home/ruben/Projects/f-spot",
                 Filename = "README",
                 FilenameWithoutExtension = "README"
+            },
+            new SafeUriTest () {
+                Uri = "gphoto2://[usb:002,014]/",
+                AbsoluteUri = "gphoto2://[usb:002,014]/",
+                Extension = "",
+                BaseUri = "gphoto2://[usb:002,014]",
+                Filename = "",
+                FilenameWithoutExtension = ""
             }
         };
 
@@ -53,7 +61,7 @@ namespace FSpot.Utils.Tests
         public void TestFileUris ()
         {
             foreach (var test in tests) {
-                var suri = new SafeUri (test.Uri, test.IsURI);
+                var suri = new SafeUri (test.Uri);
                 Assert.AreEqual (suri.AbsoluteUri, test.AbsoluteUri, String.Format("AbsoluteUri for {0}", test.Uri));
                 Assert.AreEqual (suri.GetExtension (), test.Extension, String.Format("Extension for {0}", test.Uri));
                 Assert.AreEqual (suri.GetBaseUri ().ToString (), test.BaseUri, String.Format("BaseUri for {0}", test.Uri));

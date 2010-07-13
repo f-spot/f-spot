@@ -39,7 +39,7 @@ namespace Hyena
             No
         }
 
-        private static int MAX_SCHEME_LENGTH = 6;
+        private static int MAX_SCHEME_LENGTH = 8;
 
         private string uri;
         private string local_path;
