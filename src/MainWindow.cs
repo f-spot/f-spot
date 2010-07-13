@@ -2140,6 +2140,11 @@ namespace FSpot
 	
 		void HandleSelectAllCommand (object sender, EventArgs args)
 		{
+			if (Window.Focus is Editable) {
+				(Window.Focus as Editable).SelectRegion (0, -1); // select all in text box
+				return;
+			}
+
 			icon_view.SelectAllCells ();
 			UpdateStatusLabel ();
 		}
@@ -2277,6 +2282,11 @@ namespace FSpot
 		{
 			Clipboard primary = Clipboard.Get (Atom.Intern ("PRIMARY", false));
 			Clipboard clipboard = Clipboard.Get (Atom.Intern ("CLIPBOARD", false));
+
+			if (Window.Focus is Editable) {
+				(Window.Focus as Editable).CopyClipboard ();
+				return;
+			}
 
 			clipboard.SetWithData (new TargetEntry[] {
 						DragDropTargets.PlainTextEntry,
