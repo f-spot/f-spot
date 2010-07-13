@@ -314,6 +314,10 @@ lib/Makefile
 lib/unique-sharp/Makefile
 lib/unique-sharp/generator/Makefile
 lib/unique-sharp/unique/Makefile
+lib/Hyena/Makefile
+lib/Hyena/build/Makefile
+lib/Hyena/build/pkg-config/Makefile
+lib/Hyena/build/m4/Makefile
 lib/Hyena/Hyena/Makefile
 lib/Hyena/Mono.Data.Sqlite/Makefile
 lib/Hyena/Hyena.Data.Sqlite/Makefile
