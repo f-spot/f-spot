@@ -1130,6 +1130,7 @@ namespace FSpot
 			controller.CopyFiles = copy;
 			controller.DuplicateDetect = true;
 			controller.RecurseSubdirectories = true;
+			controller.RemoveOriginals = false;
 
 			var import_window = new ImportDialog (controller, Window);
 			import_window.Show ();
