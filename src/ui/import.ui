@@ -199,7 +199,53 @@
                   </packing>
                 </child>
                 <child>
-                  <placeholder/>
+                  <object class="GtkHBox" id="hbox2">
+                    <property name="visible">True</property>
+                    <property name="spacing">2</property>
+                    <child>
+                      <object class="GtkCheckButton" id="remove_check">
+                        <property name="label" translatable="yes">Remove original files after import</property>
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="receives_default">False</property>
+                        <property name="draw_indicator">True</property>
+                      </object>
+                      <packing>
+                        <property name="position">0</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkAlignment" id="alignment1">
+                        <property name="visible">True</property>
+                        <property name="xalign">1</property>
+                        <child>
+                          <object class="GtkButton" id="remove_warning_button">
+                            <property name="visible">True</property>
+                            <property name="can_focus">True</property>
+                            <property name="receives_default">True</property>
+                            <child>
+                              <object class="GtkImage" id="image1">
+                                <property name="visible">True</property>
+                                <property name="stock">gtk-dialog-warning</property>
+                                <property name="icon-size">1</property>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">False</property>
+                        <property name="position">1</property>
+                      </packing>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="left_attach">1</property>
+                    <property name="right_attach">2</property>
+                    <property name="top_attach">1</property>
+                    <property name="bottom_attach">2</property>
+                  </packing>
                 </child>
               </object>
               <packing>

@@ -28,6 +28,7 @@ namespace FSpot
 		public const string IMPORT_COPY_FILES = "/apps/f-spot/import/copy_files";
 		public const string IMPORT_INCLUDE_SUBFOLDERS = "/apps/f-spot/import/include_subfolders";
 		public const string IMPORT_CHECK_DUPLICATES = "/apps/f-spot/import/check_duplicates";
+		public const string IMPORT_REMOVE_ORIGINALS = "/apps/f-spot/import/remove_originals";
 		
 		public const string VIEWER_WIDTH = APP_FSPOT + "ui/viewer_width";
 		public const string VIEWER_HEIGHT = APP_FSPOT + "ui/viewer_height";
@@ -118,6 +119,7 @@ namespace FSpot
 			case METADATA_ALWAYS_USE_SIDECAR:
 			case MAIN_WINDOW_MAXIMIZED:
 			case GROUP_ADAPTOR_ORDER_ASC:
+			case IMPORT_REMOVE_ORIGINALS:
 				return false;
 
 			case GLASS_POSITION:

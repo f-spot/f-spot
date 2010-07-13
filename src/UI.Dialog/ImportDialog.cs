@@ -23,6 +23,8 @@ namespace FSpot.UI.Dialog
         [GtkBeans.Builder.Object] CheckButton copy_check;
         [GtkBeans.Builder.Object] CheckButton duplicate_check;
         [GtkBeans.Builder.Object] CheckButton recurse_check;
+        [GtkBeans.Builder.Object] CheckButton remove_check;
+        [GtkBeans.Builder.Object] Button remove_warning_button;
         [GtkBeans.Builder.Object] ComboBox sources_combo;
         [GtkBeans.Builder.Object] HBox tagentry_box;
         [GtkBeans.Builder.Object] HPaned import_hpaned;
@@ -94,6 +96,9 @@ namespace FSpot.UI.Dialog
             copy_check.Active = Controller.CopyFiles;
             recurse_check.Active = Controller.RecurseSubdirectories;
             duplicate_check.Active = Controller.DuplicateDetect;
+            remove_check.Active = Controller.RemoveOriginals;
+            remove_check.Sensitive = copy_check.Active;
+            remove_warning_button.Sensitive = copy_check.Active;
         }
 
         void ScanSources ()
@@ -153,11 +158,25 @@ namespace FSpot.UI.Dialog
         {
             Controller.StatusEvent += OnControllerStatusEvent;
             Controller.ProgressUpdated += OnControllerProgressUpdated;
-            copy_check.Toggled += (o, args) => { Controller.CopyFiles = copy_check.Active; };
+            copy_check.Toggled += (o, args) => {
+                Controller.CopyFiles = copy_check.Active;
+                remove_check.Sensitive = copy_check.Active;
+                remove_warning_button.Sensitive = copy_check.Active;
+            };
             recurse_check.Toggled += (o, args) => { Controller.RecurseSubdirectories = recurse_check.Active; };
             duplicate_check.Toggled += (o, args) => { Controller.DuplicateDetect = duplicate_check.Active; };
+            remove_check.Toggled += (o, args) => { Controller.RemoveOriginals = remove_check.Active; };
             import_button.Clicked += (o, args) => StartImport ();
             cancel_button.Clicked += (o, args) => CancelImport ();
+            remove_warning_button.Clicked += (o, args) => {
+                var dialog = new MessageDialog (this, DialogFlags.Modal, MessageType.Warning, ButtonsType.Ok, true,
+                        Catalog.GetString ("Checking this box will remove the imported photos from the camera after the import finished successfully.\n\nIt is generally recommended to backup your photos before removing them from the camera. <b>Use this option at your own risk!</b>"));
+                dialog.Title = Catalog.GetString ("Warning");
+                dialog.Response += (s, arg) => {
+                    dialog.Destroy ();
+                };
+                dialog.Run ();
+            };
             Response += (o, args) => {
                 if (args.ResponseId == ResponseType.DeleteEvent) {
                     CancelImport ();
