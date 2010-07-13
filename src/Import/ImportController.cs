@@ -303,13 +303,7 @@ namespace FSpot.Import
             }
 
             // Copy into photo folder.
-			if (!item.DefaultVersion.Uri.Equals (destination)) {
-				var file = GLib.FileFactory.NewForUri (item.DefaultVersion.Uri);
-				var new_file = GLib.FileFactory.NewForUri (destination);
-				file.Copy (new_file, GLib.FileCopyFlags.AllMetadata, null, null);
-                copied_files.Add (destination);
-                item.DefaultVersion.Uri = destination;
-            }
+            CopyIfNeeded (item, destination);
 
             // Import photo
             var photo = store.CreateFrom (item, roll.Id);
@@ -333,6 +327,28 @@ namespace FSpot.Import
             ThumbnailLoader.Default.Request (destination, ThumbnailSize.Large, 10);
 
             imported_photos.Add (photo.Id);
+        }
+
+        void CopyIfNeeded (IBrowsableItem item, SafeUri destination)
+        {
+            if (item.DefaultVersion.Uri.Equals (destination))
+                return;
+
+            // Copy image
+            var file = GLib.FileFactory.NewForUri (item.DefaultVersion.Uri);
+            var new_file = GLib.FileFactory.NewForUri (destination);
+            file.Copy (new_file, GLib.FileCopyFlags.AllMetadata, null, null);
+            copied_files.Add (destination);
+            item.DefaultVersion.Uri = destination;
+
+            // Copy XMP sidecar
+            var xmp_file = GLib.FileFactory.NewForUri (item.DefaultVersion.Uri.ReplaceExtension(".xmp"));
+            if (xmp_file.Exists) {
+                var xmp_destination = destination.ReplaceExtension (".xmp");
+                var new_xmp_file = GLib.FileFactory.NewForUri (xmp_destination);
+                xmp_file.Copy (new_xmp_file, GLib.FileCopyFlags.AllMetadata, null, null);
+                copied_files.Add (xmp_destination);
+            }
         }
 
         SafeUri FindImportDestination (IBrowsableItem item)
