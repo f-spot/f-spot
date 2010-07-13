@@ -135,6 +135,7 @@ SOURCES = \
 	TagLib/src/TagLib/IFD/Tags/GPSEntryTag.cs \
 	TagLib/src/TagLib/IFD/Tags/IFDEntryTag.cs \
 	TagLib/src/TagLib/IFD/Tags/IOPEntryTag.cs \
+	TagLib/src/TagLib/IFD/Tags/OlympusMakerNoteEntryTag.cs \
 	TagLib/src/TagLib/IFD/Tags/Nikon3MakerNoteEntryTag.cs \
 	TagLib/src/TagLib/IFD/Tags/NikonLensData3EntryTag.cs \
 	TagLib/src/TagLib/IFD/Tags/NikonIsoInfoEntryTag.cs \
@@ -214,3 +215,4 @@ SOURCES = \
 	TagLib/src/TagLib/ListBase.cs \
 	TagLib/src/TagLib/FileTypes.cs \
 	TagLib/src/TagLib/CorruptFileException.cs
+
