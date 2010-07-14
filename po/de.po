@@ -11,11 +11,11 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: f-spot\n"
+"Project-Id-Version: f-spot master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=f-"
 "spot&component=General\n"
-"POT-Creation-Date: 2010-07-08 16:49+0000\n"
-"PO-Revision-Date: 2010-07-09 23:40+0100\n"
+"POT-Creation-Date: 2010-07-13 15:01+0000\n"
+"PO-Revision-Date: 2010-07-14 22:15+0100\n"
 "Last-Translator: Mario Blättermann <mariobl@gnome.org>\n"
 "Language-Team: German <gnome-de@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -1645,23 +1645,23 @@ msgstr ""
 "F-Spot-Einstellungsdialog."
 
 #. Note for translators: Reparented is a picture becoming a version of another one
-#: ../src/Core/Photo.cs:349
+#: ../src/Core/Photo.cs:359
 msgid "Reparented"
 msgstr "Ausgangsfoto neu festgelegt"
 
-#: ../src/Core/Photo.cs:366
+#: ../src/Core/Photo.cs:376
 #, csharp-format
 msgid "Modified"
 msgid_plural "Modified ({0})"
 msgstr[0] "Bearbeitet"
 msgstr[1] "Bearbeitet ({0})"
 
-#: ../src/Core/Photo.cs:389
+#: ../src/Core/Photo.cs:399
 #, csharp-format
 msgid "Modified in {1}"
 msgstr "Bearbeitet in {1}"
 
-#: ../src/Core/Photo.cs:389
+#: ../src/Core/Photo.cs:399
 #, csharp-format
 msgid "Modified in {1} ({0})"
 msgstr "Bearbeitet in {1} ({0})"
@@ -1877,7 +1877,7 @@ msgstr "Mehr"
 msgid "_Clear Date Range"
 msgstr "Datumsspanne _zurücksetzen"
 
-#: ../src/Import/ImportController.cs:410 ../src/Import/ImportController.cs:412
+#: ../src/Import/ImportController.cs:446 ../src/Import/ImportController.cs:448
 #: ../src/Import/MetadataImporter.cs:50
 msgid "Imported Tags"
 msgstr "Importierte Markierungen"
@@ -1910,7 +1910,16 @@ msgstr "Vorheriges"
 msgid "Previous picture"
 msgstr "Vorheriges Bild"
 
-#: ../src/MainWindow.cs:274 ../src/UI.Dialog/ImportDialog.cs:171
+#: ../src/Jobs/SyncMetadataJob.cs:69
+#, csharp-format
+msgid ""
+"Metadata of file {0} may be corrupt, refusing to write to it, falling back to "
+"XMP sidecar."
+msgstr ""
+"Metadaten der Datei {0} könnten beschädigt sein, Schreiben wird abgelehnt, "
+"XMP-Sidecar wird ersatzweise verwendet."
+
+#: ../src/MainWindow.cs:274 ../src/UI.Dialog/ImportDialog.cs:190
 #: ../src/ui/import.ui.h:4
 msgid "Import"
 msgstr "Importieren"
@@ -2062,23 +2071,23 @@ msgstr ""
 msgid "_Remove from Catalog"
 msgstr "Aus dem Katalog ent_fernen"
 
-#: ../src/MainWindow.cs:2202
+#: ../src/MainWindow.cs:2207
 #, csharp-format
 msgid "Delete tag \"{0}\"?"
 msgstr "Die Markierung »{0}« löschen?"
 
-#: ../src/MainWindow.cs:2204
+#: ../src/MainWindow.cs:2209
 #, csharp-format
 msgid "Delete the {0} selected tags?"
 msgstr "Die {0} ausgewählten Markierungen löschen?"
 
-#: ../src/MainWindow.cs:2209
+#: ../src/MainWindow.cs:2214
 msgid "photo"
 msgid_plural "photos"
 msgstr[0] "Foto"
 msgstr[1] "Fotos"
 
-#: ../src/MainWindow.cs:2211
+#: ../src/MainWindow.cs:2216
 #, csharp-format
 msgid "If you delete this tag, the association with {0} {1} will be lost."
 msgid_plural ""
@@ -2090,18 +2099,18 @@ msgstr[1] ""
 "Wenn eine Markierung gelöscht wird, gehen alle Verknüpfungen zu {0} {1} "
 "verloren."
 
-#: ../src/MainWindow.cs:2216
+#: ../src/MainWindow.cs:2221
 msgid "_Delete tag"
 msgid_plural "_Delete tags"
 msgstr[0] "Markierung _löschen"
 msgstr[1] "Markierungen _löschen"
 
 #. A Category is not empty. Can not delete it.
-#: ../src/MainWindow.cs:2230
+#: ../src/MainWindow.cs:2235
 msgid "Tag is not empty"
 msgstr "Markierung ist nicht leer"
 
-#: ../src/MainWindow.cs:2231
+#: ../src/MainWindow.cs:2236
 #, csharp-format
 msgid ""
 "Can not delete tags that have tags within them.  Please delete tags under "
@@ -2110,39 +2119,39 @@ msgstr ""
 "Markierungen können nicht gelöscht werden, wenn sie weitere Markierungen "
 "beinhalten. Bitte löschen Sie zuerst die Markierungen unterhalb von »{0}«."
 
-#: ../src/MainWindow.cs:2662
+#: ../src/MainWindow.cs:2676
 msgid "Rotate selected photo left"
 msgid_plural "Rotate selected photos left"
 msgstr[0] "Ausgewähltes Foto nach links rotieren"
 msgstr[1] "Ausgewählte Fotos nach links rotieren"
 
-#: ../src/MainWindow.cs:2675
+#: ../src/MainWindow.cs:2689
 msgid "Rotate selected photo right"
 msgid_plural "Rotate selected photos right"
 msgstr[0] "Ausgewähltes Foto nach rechts drehen"
 msgstr[1] "Ausgewählte Fotos nach rechts drehen"
 
-#: ../src/MainWindow.cs:2686
+#: ../src/MainWindow.cs:2700
 #, csharp-format
 msgid "Find _Selected Tag"
 msgid_plural "Find _Selected Tags"
 msgstr[0] "Gewählte Markierung _finden"
 msgstr[1] "Gewählte Markierungen _finden"
 
-#: ../src/MainWindow.cs:2690
+#: ../src/MainWindow.cs:2704
 #, csharp-format
 msgid "Find Selected Tag _With"
 msgid_plural "Find Selected Tags _With"
 msgstr[0] "Ausgewählte Markierung suchen _mit"
 msgstr[1] "Ausgewählte Markierungen suchen _mit"
 
-#: ../src/MainWindow.cs:2731
+#: ../src/MainWindow.cs:2745
 msgid "Create New Version?"
 msgid_plural "Create New Versions?"
 msgstr[0] "Neue Version erstellen?"
 msgstr[1] "Neue Versionen erstellen?"
 
-#: ../src/MainWindow.cs:2733
+#: ../src/MainWindow.cs:2747
 #, csharp-format
 msgid ""
 "Before launching {1}, should F-Spot create a new version of the selected "
@@ -2157,7 +2166,7 @@ msgstr[1] ""
 "Soll F-Spot vor dem Ausführen von {1} eine Kopie der ausgewählten Fotos "
 "erstellen, um die Originale zu erhalten?"
 
-#: ../src/MainWindow.cs:2755
+#: ../src/MainWindow.cs:2769
 msgid "XCF version"
 msgstr "XCF-Version"
 
@@ -2247,8 +2256,7 @@ msgstr ""
 msgid "Received exception \"{0}\"."
 msgstr "Fehler empfangen: »{0}«"
 
-#: ../src/PhotoVersionMenu.cs:71 ../src/Widgets/InfoBox.cs:468
-#: ../src/Widgets/InfoBox.cs:470
+#: ../src/PhotoVersionMenu.cs:54 ../src/Widgets/InfoBox.cs:470
 msgid "(No Edits)"
 msgstr "(Keine Bearbeitungen)"
 
@@ -2256,7 +2264,7 @@ msgstr "(Keine Bearbeitungen)"
 msgid "Description:"
 msgstr "Beschreibung:"
 
-#: ../src/Preferences.cs:155
+#: ../src/Preferences.cs:157
 msgid "Photos"
 msgstr "Fotos"
 
@@ -2533,7 +2541,7 @@ msgid "Events"
 msgstr "Ereignisse"
 
 #. The label for the root category is used in new and edit tag dialogs
-#: ../src/TagStore.cs:240 ../src/Widgets/InfoBox.cs:340
+#: ../src/TagStore.cs:240 ../src/Widgets/InfoBox.cs:344
 msgid "(None)"
 msgstr "(Keine)"
 
@@ -2689,25 +2697,43 @@ msgstr "Eine unverarbeitete Ausnahme trat auf:"
 msgid "Choose Folder..."
 msgstr "Ordner wählen …"
 
-#: ../src/UI.Dialog/ImportDialog.cs:124
+#: ../src/UI.Dialog/ImportDialog.cs:129
 msgid "Choose Import source..."
 msgstr "Importquelle wählen …"
 
-#: ../src/UI.Dialog/ImportDialog.cs:136
+#: ../src/UI.Dialog/ImportDialog.cs:141
 msgid "(No Cameras Detected)"
 msgstr "(Keine Kameras erkannt)"
 
-#: ../src/UI.Dialog/ImportDialog.cs:264
+#: ../src/UI.Dialog/ImportDialog.cs:173
+msgid ""
+"Checking this box will remove the imported photos from the camera after the "
+"import finished successfully.\n"
+"\n"
+"It is generally recommended to backup your photos before removing them from "
+"the camera. <b>Use this option at your own risk!</b>"
+msgstr ""
+"Durch Aktivieren dieses Ankreuzfeldes werden die importierten Fotos in der "
+"Kamera gelöscht, sobald der Importvorgang erfolgreich abgeschlossen wurde.\n"
+"\n"
+"Es ist im Allgemeinen empfehlenswert, Ihre Fotos zu sichern, bevor Sie sie in "
+"der Kamera löschen. <b>Verwenden Sie diese Option auf eigenes Risiko!</b>"
+
+#: ../src/UI.Dialog/ImportDialog.cs:174
+msgid "Warning"
+msgstr "Warnung"
+
+#: ../src/UI.Dialog/ImportDialog.cs:283
 #, csharp-format
 msgid "Importing Photos: {0} of {1}..."
 msgstr "Fotos werden importiert: {0} von {1} …"
 
-#: ../src/UI.Dialog/ImportDialog.cs:288
+#: ../src/UI.Dialog/ImportDialog.cs:307
 msgid "Importing photos..."
 msgstr "Fotos werden importiert …"
 
 #. TODO: Using a GtkSpinner would be nicer here.
-#: ../src/UI.Dialog/ImportDialog.cs:295
+#: ../src/UI.Dialog/ImportDialog.cs:314
 msgid "Searching for photos... (You can already click Import to continue)"
 msgstr ""
 "Nach Fotos wird gesucht … (Sie können auf »Importieren« klicken, um "
@@ -2795,6 +2821,24 @@ msgstr "Unterschied:"
 msgid "min. Starting at {0}"
 msgstr "Min. Start bei {0}"
 
+#: ../src/UI.Dialog/ui/CreateTagDialog.ui.h:1
+msgid "C_reate"
+msgstr "_Erstellen"
+
+#: ../src/UI.Dialog/ui/CreateTagDialog.ui.h:2
+msgid "Create _icon for this tag when first used"
+msgstr "Symbol für diese Mark_ierung bei erster Benutzung erstellen"
+
+#: ../src/UI.Dialog/ui/CreateTagDialog.ui.h:3
+#: ../src/UI.Dialog/ui/EditTagDialog.ui.h:3
+msgid "P_arent Tag:"
+msgstr "Überge_ordnete Markierung:"
+
+#: ../src/UI.Dialog/ui/CreateTagDialog.ui.h:4
+#: ../src/UI.Dialog/ui/EditTagDialog.ui.h:5
+msgid "_Tag Name:"
+msgstr "Markierungs_name:"
+
 #: ../src/UI.Dialog/ui/DateRangeDialog.ui.h:1
 msgid "<b>End Date</b>"
 msgstr "<b>Enddatum</b>"
@@ -2827,19 +2871,9 @@ msgstr "Markierung bearbeiten"
 msgid "Edit icon"
 msgstr "Symbol bearbeiten"
 
-#: ../src/UI.Dialog/ui/EditTagDialog.ui.h:3
-#: ../src/UI.Dialog/ui/CreateTagDialog.ui.h:3
-msgid "P_arent Tag:"
-msgstr "Überge_ordnete Markierung:"
-
 #: ../src/UI.Dialog/ui/EditTagDialog.ui.h:4
 msgid "_Icon:"
 msgstr "_Symbol:"
-
-#: ../src/UI.Dialog/ui/EditTagDialog.ui.h:5
-#: ../src/UI.Dialog/ui/CreateTagDialog.ui.h:4
-msgid "_Tag Name:"
-msgstr "Markierungs_name:"
 
 #: ../src/UI.Dialog/ui/EditTagIconDialog.ui.h:1
 msgid "<b>From External Photo</b>"
@@ -2970,14 +3004,6 @@ msgstr "Bewertungsfilter setzen"
 msgid "Repair"
 msgstr "Reparieren"
 
-#: ../src/UI.Dialog/ui/CreateTagDialog.ui.h:1
-msgid "C_reate"
-msgstr "_Erstellen"
-
-#: ../src/UI.Dialog/ui/CreateTagDialog.ui.h:2
-msgid "Create _icon for this tag when first used"
-msgstr "Symbol für diese Mark_ierung bei erster Benutzung erstellen"
-
 #: ../src/ui/import.ui.h:1
 msgid "Attach Tags:"
 msgstr "Markierungen hinzufügen:"
@@ -2998,6 +3024,10 @@ msgstr "Importieren von:"
 #: ../src/ui/import.ui.h:7
 msgid "Include subfolders"
 msgstr "Unterordner einbeziehen"
+
+#: ../src/ui/import.ui.h:8
+msgid "Remove original files after import"
+msgstr "Originaldateien nach dem Importieren entfernen"
 
 #: ../src/ui/mail_dialog.ui.h:1
 msgid "1024 px"
@@ -3604,29 +3634,29 @@ msgstr "Bewertung"
 msgid "(wrong format)"
 msgstr "(falsches Format)"
 
-#: ../src/Widgets/InfoBox.cs:349 ../src/Widgets/InfoBox.cs:360
-#: ../src/Widgets/InfoBox.cs:370
+#: ../src/Widgets/InfoBox.cs:353 ../src/Widgets/InfoBox.cs:364
+#: ../src/Widgets/InfoBox.cs:374
 msgid "(Unknown)"
 msgstr "(Unbekannt)"
 
-#: ../src/Widgets/InfoBox.cs:466
+#: ../src/Widgets/InfoBox.cs:474
 #, csharp-format
 msgid "(One Edit)"
 msgid_plural "({0} Edits)"
 msgstr[0] "(Eine Bearbeitung)"
 msgstr[1] "({0} Bearbeitungen)"
 
-#: ../src/Widgets/InfoBox.cs:480
+#: ../src/Widgets/InfoBox.cs:484
 msgid "(File read error)"
 msgstr "(Fehler beim Lesen der Datei) "
 
-#: ../src/Widgets/InfoBox.cs:525
+#: ../src/Widgets/InfoBox.cs:529
 #, csharp-format
 msgid "{0} Photos"
 msgstr "{0} Fotos"
 
 #. Note for translators: {0} is a date, {1} and {2} are times.
-#: ../src/Widgets/InfoBox.cs:545
+#: ../src/Widgets/InfoBox.cs:549
 #, csharp-format
 msgid ""
 "On {0} between \n"
@@ -3635,7 +3665,7 @@ msgstr ""
 "Auf {0} zwischen \n"
 "{1} und {2}"
 
-#: ../src/Widgets/InfoBox.cs:550
+#: ../src/Widgets/InfoBox.cs:554
 #, csharp-format
 msgid ""
 "Between {0} \n"
@@ -3644,35 +3674,35 @@ msgstr ""
 "Zwischen {0} \n"
 "und {1}"
 
-#: ../src/Widgets/InfoBox.cs:577
+#: ../src/Widgets/InfoBox.cs:581
 msgid "(At least one File not found)"
 msgstr "(Mindestens eine Datei wurde nicht gefunden)"
 
-#: ../src/Widgets/InfoBox.cs:694
+#: ../src/Widgets/InfoBox.cs:698
 msgid "Show Photo Name"
 msgstr "Fotonamen anzeigen"
 
-#: ../src/Widgets/InfoBox.cs:703
+#: ../src/Widgets/InfoBox.cs:707
 msgid "Show Date"
 msgstr "Datum anzeigen"
 
-#: ../src/Widgets/InfoBox.cs:712
+#: ../src/Widgets/InfoBox.cs:716
 msgid "Show Size"
 msgstr "Größe anzeigen"
 
-#: ../src/Widgets/InfoBox.cs:721
+#: ../src/Widgets/InfoBox.cs:725
 msgid "Show Exposure"
 msgstr "Belichtung anzeigen"
 
-#: ../src/Widgets/InfoBox.cs:730
+#: ../src/Widgets/InfoBox.cs:734
 msgid "Show Focal Length"
 msgstr "Brennweite anzeigen"
 
-#: ../src/Widgets/InfoBox.cs:739
+#: ../src/Widgets/InfoBox.cs:743
 msgid "Show Camera"
 msgstr "Kamera anzeigen"
 
-#: ../src/Widgets/InfoBox.cs:748
+#: ../src/Widgets/InfoBox.cs:752
 msgid "Show File Size"
 msgstr "Dateigröße anzeigen"
 
