@@ -48,7 +48,7 @@ OUTPUT_FILES = \
 moduledir = $(INSTALL_DIR_RESOLVED)
 module_SCRIPTS = $(OUTPUT_FILES)
 
-all: $(ASSEMBLY_FILE) theme-icons
+all-local: theme-icons
 
 run: 
 	@pushd $(top_builddir); \
