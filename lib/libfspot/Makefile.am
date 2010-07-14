@@ -8,7 +8,6 @@ INCLUDES =							\
 	-DGDK_PIXBUF_DISABLE_SINGLE_INCLUDES			\
 	-DGTK_DISABLE_SINGLE_INCLUDES				\
 	$(F_CFLAGS)						\
-	$(EXIF_CFLAGS)						\
 	$(LCMS_CFLAGS)						\
 	$(WERROR)
 
@@ -25,5 +24,4 @@ libfspot_la_LIBADD = 					\
 	-lX11						\
 	$(F_LIBS)					\
 	$(LCMS_LIBS)					\
-	$(EXIF_LIBS)					\
 	$(GIO_LIBS)

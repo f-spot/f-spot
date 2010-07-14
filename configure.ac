@@ -37,8 +37,9 @@ AC_INIT([f-spot], fspot_version,
 
 AM_INIT_AUTOMAKE([1.9 dist-bzip2 tar-ustar dist-zip foreign])
 AM_MAINTAINER_MODE
-AM_CONFIG_HEADER(config.h)
-AC_SUBST([ACLOCAL_AMFLAGS], ["-I build/m4/f-spot -I build/m4/shamrock -I build/m4/shave \${ACLOCAL_FLAGS}"])
+AM_CONFIG_HEADER([config.h])
+AC_CONFIG_MACRO_DIR([build/m4])
+AC_SUBST([ACLOCAL_AMFLAGS], ["-I build/m4/shamrock -I build/m4/f-spot -I build/m4/shave \${ACLOCAL_FLAGS}"])
 
 IT_PROG_INTLTOOL([0.35.0])
 AC_PROG_LIBTOOL
@@ -79,26 +80,14 @@ SHAMROCK_CHECK_MONO_2_0_GAC_ASSEMBLIES([
     ICSharpCode.SharpZipLib
 ])
 
+FSPOT_CHECK_LIBFSPOT
 FSPOT_CHECK_GTK_SHARP
 FSPOT_CHECK_GNOME_KEYRING_SHARP
 FSPOT_CHECK_FLICKRNET
 SHAMROCK_CHECK_NUNIT
 
 
-
-AM_CONDITIONAL(HYENA_PKG_CONFIG, false)
-
-
-AC_CONFIG_SRCDIR(src/main.cs)
-
-AC_PROG_CC
-AC_PROG_CXX
-AC_ISC_POSIX
-AC_HEADER_STDC
-
-GNOME_COMPILE_WARNINGS
-AM_PATH_GLIB_2_0
-
+# ---------------------------------- <Old build stuff>
 dnl --- Check for mono and gmcs
 
 AC_PATH_PROG(MONO, mono)
@@ -285,9 +274,46 @@ AC_CONFIG_FILES([src/f-spot],[chmod +x src/f-spot])
 GNOME_ICON_THEME_PREFIX=`$PKG_CONFIG --variable=prefix gnome-icon-theme`
 AC_SUBST(GNOME_ICON_THEME_PREFIX)
 
+# ---------------------------------- </Old build stuff>
+
+AC_ARG_ENABLE(release,
+	AC_HELP_STRING([--enable-release],
+		[Use release configuration]),
+	enable_release=yes, enable_release=`(test ! -d .svn && test ! -d .git) && echo "yes" || echo "no"`)
+AM_CONDITIONAL(ENABLE_RELEASE, test "x$enable_release" = "xyes")
+ENABLE_RELEASE=$enable_release
+AC_SUBST(ENABLE_RELEASE)
+if test "x$enable_release" = "xyes"; then
+	GMCS_FLAGS="-define:RELEASE"
+# FIXME: Enable as soon as we rock sufficiently
+#else
+#	GMCS_FLAGS="-warnaserror"
+fi
+AC_SUBST(GMCS_FLAGS)
+
+AM_CONDITIONAL(HYENA_PKG_CONFIG, false)
+
+AC_ARG_WITH(vendor-build-id,
+	AC_HELP_STRING([--with-vendor-build-id=<vendor-build-id>],
+		[Set a vendor build ID, recommended for packagers]),
+	[vendor_build_id="$withval"], [
+		test -d .git \
+			&& vendor_build_id="git-checkout" \
+			|| vendor_build_id="source-tarball"
+	])
+BUILD_VENDOR_ID="$vendor_build_id"
+BUILD_HOST_OS="$host_os"
+BUILD_HOST_CPU="$host_cpu"
+BUILD_TIME=`date +"%F %T %Z"`
+AC_SUBST(BUILD_VENDOR_ID)
+AC_SUBST(BUILD_HOST_OS)
+AC_SUBST(BUILD_HOST_CPU)
+AC_SUBST(BUILD_TIME)
+
 SHAVE_INIT([build/m4/shave], [enable])
 
-AC_OUTPUT(
+dnl generated files
+AC_OUTPUT([
 Makefile
 
 build/Makefile
@@ -375,7 +401,7 @@ extensions/Tools/ScreensaverConfig/Makefile
 extensions/Transitions/Makefile
 extensions/Transitions/CoverTransition/Makefile
 tests/Makefile
-)
+])
 
 cat <<EOF
 
@@ -397,3 +423,12 @@ ${PACKAGE}-${VERSION}
 Run 'make' to build F-Spot.
 
 EOF
+
+if test -d ${expanded_libdir}/${PACKAGE}; then
+	if test x$br = xyes; then echo; fi
+	echo "  WARNING: An existing F-Spot install is in ${expanded_libdir}/${PACKAGE}"
+	echo "           Remove the existing install before installing this build."
+	echo "           Installing over an existing install will cause conflicts!"
+	echo 
+fi
+
