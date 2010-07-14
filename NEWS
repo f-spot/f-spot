@@ -1,3 +1,27 @@
+f-spot 0.7.1 - Jul 14 2010 - The Big Switch
+-------------------------------------------
+- Second release of the unstable 0.7 development series. Most notably
+  including a switch to Taglib#. Regressions in the amount of RAW
+  types supported, will be fixed before releasing 0.8.
+ - Switched to a new Taglib#-backed metadata layer. This is a huge change
+   which should bring us increased stability (in the long run) and a much
+   easier to maintain metadata layer than the one we previously had. Also
+   enables some funky new features like XMP sidecars. (Ruben Vermeersch,
+   Mike Gemünde)
+ - Add support for XMP sidecars (Ruben Vermeersch)
+ - Add "remove from camera after import"-option (Ruben Vermeersch)
+ - Start of a massive backend cleanup (Mike Gemünde)
+ - Upstreaming of a lot of Debian/Ubuntu patches (Iain Lane)
+ - Several dialogs converted from glade to GtkBuilder (Ademir Mendoza,
+   Nick Van Eeckhout, Peter Goetz, Trevor Buchanan)
+ - Code refactorings and cleanups, increased Hyena adoption (Evan Briones,
+   Paul Lange, Paul Wellner Bou)
+ - Small usability improvements (Alex Launi, Anton Keks, Iain Churcher,
+   Tomas Kovacik)
+ - More build retooling (Bertrand Lorentz, Christian Krause, Gabriel Burt)
+ - Many bugs fixed and improvements in stability: Over 85 bugs closed
+   (http://bit.ly/aKyQOd)
+
 f-spot 0.7.0 - Jun 16 2010 - Full Steam Ahead!
 ----------------------------------------------
 - First release of the unstable 0.7 development series. Massive changes.
