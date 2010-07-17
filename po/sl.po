@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: f-spot\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=f-spot&component=General\n"
-"POT-Creation-Date: 2010-07-09 21:44+0000\n"
+"POT-Creation-Date: 2010-07-14 20:17+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Andrej Žnidaršič <andrej.znidarsic@gmail.com>\n"
 "Language-Team: Slovenian GNOME Translation Team <gnome-si@googlegroups.com>\n"
@@ -1541,11 +1541,11 @@ msgstr ""
 "F-Spot možnosti."
 
 #. Note for translators: Reparented is a picture becoming a version of another one
-#: ../src/Core/Photo.cs:349
+#: ../src/Core/Photo.cs:359
 msgid "Reparented"
 msgstr "Različica slike "
 
-#: ../src/Core/Photo.cs:366
+#: ../src/Core/Photo.cs:376
 #, csharp-format
 msgid "Modified"
 msgid_plural "Modified ({0})"
@@ -1554,12 +1554,12 @@ msgstr[1] "Spremenjena ({0})"
 msgstr[2] "Spremenjeni ({0})"
 msgstr[3] "Spremenjene ({0})"
 
-#: ../src/Core/Photo.cs:389
+#: ../src/Core/Photo.cs:399
 #, csharp-format
 msgid "Modified in {1}"
 msgstr "Spremenjena v {1}"
 
-#: ../src/Core/Photo.cs:389
+#: ../src/Core/Photo.cs:399
 #, csharp-format
 msgid "Modified in {1} ({0})"
 msgstr "Spremenjena v {1} ({0})"
@@ -1785,8 +1785,8 @@ msgstr "Več"
 msgid "_Clear Date Range"
 msgstr "_Čiščenje datumskega območja"
 
-#: ../src/Import/ImportController.cs:410
-#: ../src/Import/ImportController.cs:412
+#: ../src/Import/ImportController.cs:450
+#: ../src/Import/ImportController.cs:452
 #: ../src/Import/MetadataImporter.cs:50
 msgid "Imported Tags"
 msgstr "Uvožene oznake"
@@ -1823,8 +1823,13 @@ msgstr "Predhodni"
 msgid "Previous picture"
 msgstr "Predhodna slika"
 
+#: ../src/Jobs/SyncMetadataJob.cs:69
+#, csharp-format
+msgid "Metadata of file {0} may be corrupt, refusing to write to it, falling back to XMP sidecar."
+msgstr "Metapodatki datoteke {0} so morda pokvarjeni, zato ne bodo zapisani. Uporabljena bo stranska vrstica XMP."
+
 #: ../src/MainWindow.cs:274
-#: ../src/UI.Dialog/ImportDialog.cs:171
+#: ../src/UI.Dialog/ImportDialog.cs:193
 #: ../src/ui/import.ui.h:4
 msgid "Import"
 msgstr "Uvozi"
@@ -1882,7 +1887,7 @@ msgid "Hide _Find Bar"
 msgstr "Skrij _iskalno vrstico"
 
 #. Translators, The singular case will never happen here.
-#: ../src/MainWindow.cs:1722
+#: ../src/MainWindow.cs:1723
 #, csharp-format
 msgid "Merge the selected tag"
 msgid_plural "Merge the {0} selected tags?"
@@ -1891,15 +1896,15 @@ msgstr[1] "Združitev {0} izbrane oznake?"
 msgstr[2] "Združitev {0} izbranih oznak?"
 msgstr[3] "Združitev {0} izbranih oznak?"
 
-#: ../src/MainWindow.cs:1749
+#: ../src/MainWindow.cs:1750
 msgid "This operation will merge the selected tags and any sub-tags into a single tag."
 msgstr "Z dejanjem bodo združene izbrane oznake in morebitne pod-oznake v eno samo oznako."
 
-#: ../src/MainWindow.cs:1751
+#: ../src/MainWindow.cs:1752
 msgid "_Merge Tags"
 msgstr "Z_druži oznake"
 
-#: ../src/MainWindow.cs:1956
+#: ../src/MainWindow.cs:1957
 #, csharp-format
 msgid "{0} Photo out of {1}"
 msgid_plural "{0} Photos out of {1}"
@@ -1908,7 +1913,7 @@ msgstr[1] "{0} fotografija od {1}"
 msgstr[2] "{0} fotografiji od {1}"
 msgstr[3] "{0} fotografije od {1}"
 
-#: ../src/MainWindow.cs:1958
+#: ../src/MainWindow.cs:1959
 #: ../src/SingleView.cs:470
 #, csharp-format
 msgid "{0} Photo"
@@ -1918,7 +1923,7 @@ msgstr[1] "{0} Fotografija"
 msgstr[2] "{0} Fotografiji"
 msgstr[3] "{0} Fotografije"
 
-#: ../src/MainWindow.cs:1961
+#: ../src/MainWindow.cs:1962
 #, csharp-format
 msgid " ({0} selected)"
 msgid_plural " ({0} selected)"
@@ -1927,25 +1932,25 @@ msgstr[1] " ({0} izbrana)"
 msgstr[2] " ({0} izbrani)"
 msgstr[3] " ({0} izbrane)"
 
-#: ../src/MainWindow.cs:2042
+#: ../src/MainWindow.cs:2043
 msgid "_Ok"
 msgstr "_V redu"
 
-#: ../src/MainWindow.cs:2043
+#: ../src/MainWindow.cs:2044
 msgid "Error Deleting Picture"
 msgstr "Napaka med brisanjem slike"
 
-#: ../src/MainWindow.cs:2048
+#: ../src/MainWindow.cs:2049
 #, csharp-format
 msgid "No permission to delete the file:{1}{0}"
 msgstr "Ni dovoljenj za izbris datoteke:{1}{0}"
 
-#: ../src/MainWindow.cs:2052
+#: ../src/MainWindow.cs:2053
 #, csharp-format
 msgid "An error of type {0} occurred while deleting the file:{2}{1}"
 msgstr "Med brisanjem datoteke {2} {1} je prišlo do napake vrste {0}"
 
-#: ../src/MainWindow.cs:2084
+#: ../src/MainWindow.cs:2085
 #, csharp-format
 msgid "Delete the selected photo permanently?"
 msgid_plural "Delete the {0} selected photos permanently?"
@@ -1954,7 +1959,7 @@ msgstr[1] "Ali naj bo trajno izbrisana {0} izbrana fotografija?"
 msgstr[2] "Ali naj bosta trajno izbrisani {0} izbrani fotografiji?"
 msgstr[3] "Ali naj bodo trajno izbrisane {0} izbrane fotografije?"
 
-#: ../src/MainWindow.cs:2088
+#: ../src/MainWindow.cs:2089
 msgid "This deletes all versions of the selected photo from your drive."
 msgid_plural "This deletes all versions of the selected photos from your drive."
 msgstr[0] "Izbris vseh različic izbranih fotografij z diska."
@@ -1962,7 +1967,7 @@ msgstr[1] "Izbris vseh različic izbrane fotografije z diska."
 msgstr[2] "Izbris vseh različic izbranih fotografij z diska."
 msgstr[3] "Izbris vseh različic izbranih fotografij z diska."
 
-#: ../src/MainWindow.cs:2091
+#: ../src/MainWindow.cs:2092
 msgid "_Delete photo"
 msgid_plural "_Delete photos"
 msgstr[0] "Izbri_ši fotografije"
@@ -1970,7 +1975,7 @@ msgstr[1] "Izbri_ši fotografijo"
 msgstr[2] "Izbri_ši fotografiji"
 msgstr[3] "Izbri_ši fotografije"
 
-#: ../src/MainWindow.cs:2127
+#: ../src/MainWindow.cs:2128
 #, csharp-format
 msgid "Remove the selected photo from F-Spot?"
 msgid_plural "Remove the {0} selected photos from F-Spot?"
@@ -1979,25 +1984,25 @@ msgstr[1] "Ali naj se odstrani {0} izbrano fotografijo iz F-Spot ?"
 msgstr[2] "Ali naj se odstranita {0} izbrani fotografij iz F-Spot ?"
 msgstr[3] "Ali naj se odstranijo {0} izbrane fotografije iz F-Spot ?"
 
-#: ../src/MainWindow.cs:2132
+#: ../src/MainWindow.cs:2133
 msgid "If you remove photos from the F-Spot catalog all tag information will be lost. The photos remain on your computer and can be imported into F-Spot again."
 msgstr "Ob odstranjevanju fotografij iz F-Spot kataloga bodo vsi podatki o oznakah izgubljeni. Fotografije bodo ostale na računalniku in jih lahko ponovno uvozite v F-Spot."
 
-#: ../src/MainWindow.cs:2133
+#: ../src/MainWindow.cs:2134
 msgid "_Remove from Catalog"
 msgstr "_Odstrani iz kataloga"
 
-#: ../src/MainWindow.cs:2202
+#: ../src/MainWindow.cs:2208
 #, csharp-format
 msgid "Delete tag \"{0}\"?"
 msgstr "Izbris oznake \"{0}\"?"
 
-#: ../src/MainWindow.cs:2204
+#: ../src/MainWindow.cs:2210
 #, csharp-format
 msgid "Delete the {0} selected tags?"
 msgstr "Izbris {0} izbrane oznake ?"
 
-#: ../src/MainWindow.cs:2209
+#: ../src/MainWindow.cs:2215
 msgid "photo"
 msgid_plural "photos"
 msgstr[0] "fotografije"
@@ -2005,7 +2010,7 @@ msgstr[1] "fotografija"
 msgstr[2] "fotografiji"
 msgstr[3] "fotografije"
 
-#: ../src/MainWindow.cs:2211
+#: ../src/MainWindow.cs:2217
 #, csharp-format
 msgid "If you delete this tag, the association with {0} {1} will be lost."
 msgid_plural "If you delete these tags, the association with {0} {1} will be lost."
@@ -2014,7 +2019,7 @@ msgstr[1] "Ob izbrisu oznake, bo povezljivost z {0} {1} izgubljena."
 msgstr[2] "Ob izbrisu oznak, bo povezljivost z {0} {1} izgubljena."
 msgstr[3] "Ob izbrisu oznak, bo povezljivost z {0} {1} izgubljena."
 
-#: ../src/MainWindow.cs:2216
+#: ../src/MainWindow.cs:2222
 msgid "_Delete tag"
 msgid_plural "_Delete tags"
 msgstr[0] "Iz_briši oznake"
@@ -2023,16 +2028,16 @@ msgstr[2] "Iz_briši oznaki"
 msgstr[3] "Iz_briši oznake"
 
 #. A Category is not empty. Can not delete it.
-#: ../src/MainWindow.cs:2230
+#: ../src/MainWindow.cs:2236
 msgid "Tag is not empty"
 msgstr "Oznaka ni prazna"
 
-#: ../src/MainWindow.cs:2231
+#: ../src/MainWindow.cs:2237
 #, csharp-format
 msgid "Can not delete tags that have tags within them.  Please delete tags under \"{0}\" first"
 msgstr "Ni mogoče izbrisati oznak, ki imajo oznake znotraj njih. Najprej izbrišite oznake pod \"{0}\""
 
-#: ../src/MainWindow.cs:2662
+#: ../src/MainWindow.cs:2677
 msgid "Rotate selected photo left"
 msgid_plural "Rotate selected photos left"
 msgstr[0] "Vrtenje izbranih fotografij levo"
@@ -2040,7 +2045,7 @@ msgstr[1] "Vrtenje izbrane fotografije levo"
 msgstr[2] "Vrtenje izbranih fotografij levo"
 msgstr[3] "Vrtenje izbranih fotografij levo"
 
-#: ../src/MainWindow.cs:2675
+#: ../src/MainWindow.cs:2690
 msgid "Rotate selected photo right"
 msgid_plural "Rotate selected photos right"
 msgstr[0] "Vrtenje izbranih fotografij desno"
@@ -2048,7 +2053,7 @@ msgstr[1] "Vrtenje izbrane fotografije desno"
 msgstr[2] "Vrtenje izbranih fotografij desno"
 msgstr[3] "Vrtenje izbranih fotografij desno"
 
-#: ../src/MainWindow.cs:2686
+#: ../src/MainWindow.cs:2701
 #, csharp-format
 msgid "Find _Selected Tag"
 msgid_plural "Find _Selected Tags"
@@ -2057,7 +2062,7 @@ msgstr[1] "Išči _izbrano oznako "
 msgstr[2] "Išči _izbrani oznaki"
 msgstr[3] "Išči _izbrane oznake"
 
-#: ../src/MainWindow.cs:2690
+#: ../src/MainWindow.cs:2705
 #, csharp-format
 msgid "Find Selected Tag _With"
 msgid_plural "Find Selected Tags _With"
@@ -2066,7 +2071,7 @@ msgstr[1] "Išči izbrano oznako _z"
 msgstr[2] "Išči izbrani oznaki _z"
 msgstr[3] "Išči izbrane oznake _z"
 
-#: ../src/MainWindow.cs:2731
+#: ../src/MainWindow.cs:2746
 msgid "Create New Version?"
 msgid_plural "Create New Versions?"
 msgstr[0] "Ustvari nove različice?"
@@ -2074,7 +2079,7 @@ msgstr[1] "Ustvari novo različico?"
 msgstr[2] "Ustvari novi različici?"
 msgstr[3] "Ustvari nove različice?"
 
-#: ../src/MainWindow.cs:2733
+#: ../src/MainWindow.cs:2748
 #, csharp-format
 msgid "Before launching {1}, should F-Spot create a new version of the selected photo to preserve the original?"
 msgid_plural "Before launching {1}, should F-Spot create new versions of the selected photos to preserve the originals?"
@@ -2083,7 +2088,7 @@ msgstr[1] "Ali naj pred zagonom {1} F-spot ustvari nove različice izbrane fotog
 msgstr[2] "Ali naj pred zagonom {1} F-spot ustvari nove različice izbranih fotografij, da ohrani originala?"
 msgstr[3] "Ali naj pred zagonom {1} F-spot ustvari nove različice izbranih fotografij, da ohrani originale?"
 
-#: ../src/MainWindow.cs:2755
+#: ../src/MainWindow.cs:2770
 msgid "XCF version"
 msgstr "Različica XCF"
 
@@ -2162,9 +2167,8 @@ msgstr "Fotografije se v knjižnici pojavijo kot ena fotografija. Različice je 
 msgid "Received exception \"{0}\"."
 msgstr "Prejeta je bila izjema \"{0}\"."
 
-#: ../src/PhotoVersionMenu.cs:71
-#: ../src/Widgets/InfoBox.cs:472
-#: ../src/Widgets/InfoBox.cs:474
+#: ../src/PhotoVersionMenu.cs:54
+#: ../src/Widgets/InfoBox.cs:470
 msgid "(No Edits)"
 msgstr "(Ni urejanj)"
 
@@ -2172,7 +2176,7 @@ msgstr "(Ni urejanj)"
 msgid "Description:"
 msgstr "Opis:"
 
-#: ../src/Preferences.cs:155
+#: ../src/Preferences.cs:157
 msgid "Photos"
 msgstr "Fotografije"
 
@@ -2492,19 +2496,19 @@ msgstr "Posodabljanje sličic"
 msgid "Updating picture \"{0}\""
 msgstr "Posodabljanje slike \"{0}\""
 
-#: ../src/UI.Dialog/AboutDialog.cs:95
+#: ../src/UI.Dialog/AboutDialog.cs:99
 msgid "Photo management for GNOME"
 msgstr "Upravljanje fotografij za GNOME"
 
-#: ../src/UI.Dialog/AboutDialog.cs:96
+#: ../src/UI.Dialog/AboutDialog.cs:100
 msgid "Copyright © 2003-2010 Novell Inc."
 msgstr "Avtorske pravice © 2003-2010 Novell Inc."
 
-#: ../src/UI.Dialog/AboutDialog.cs:120
+#: ../src/UI.Dialog/AboutDialog.cs:124
 msgid "translator-credits"
 msgstr "Andrej Žnidaršič <andrej.znidarsic@gmail.com>"
 
-#: ../src/UI.Dialog/AboutDialog.cs:125
+#: ../src/UI.Dialog/AboutDialog.cs:129
 msgid "F-Spot Website"
 msgstr "F-Spot spletišče"
 
@@ -2610,25 +2614,39 @@ msgstr "Nesprejeto izjemno dejanje:"
 msgid "Choose Folder..."
 msgstr "Izbor mape ...."
 
-#: ../src/UI.Dialog/ImportDialog.cs:124
+#: ../src/UI.Dialog/ImportDialog.cs:129
 msgid "Choose Import source..."
 msgstr "Izbor vira uvoza ..."
 
-#: ../src/UI.Dialog/ImportDialog.cs:136
+#: ../src/UI.Dialog/ImportDialog.cs:141
 msgid "(No Cameras Detected)"
 msgstr "(Ni zaznanih fotoaparatov)"
 
-#: ../src/UI.Dialog/ImportDialog.cs:264
+#: ../src/UI.Dialog/ImportDialog.cs:176
+msgid ""
+"Checking this box will remove the imported photos from the camera after the import finished successfully.\n"
+"\n"
+"It is generally recommended to backup your photos before removing them from the camera. <b>Use this option at your own risk!</b>"
+msgstr ""
+"Izbira tega polja bo po uspešnemu uvozu odstranila uvožene fotografije s fotoaparata.\n"
+"\n"
+"Priporočamo da pred odstranitvijo svojih fotografij z digitalnega fotoaparata napravite varnostno kopijo. <b>To možnost uporabljate na lastno odgovornost!</b>"
+
+#: ../src/UI.Dialog/ImportDialog.cs:177
+msgid "Warning"
+msgstr "Opozorilo"
+
+#: ../src/UI.Dialog/ImportDialog.cs:286
 #, csharp-format
 msgid "Importing Photos: {0} of {1}..."
 msgstr "Uvažanje fotografij: {0} od {1} ..."
 
-#: ../src/UI.Dialog/ImportDialog.cs:288
+#: ../src/UI.Dialog/ImportDialog.cs:310
 msgid "Importing photos..."
 msgstr "Uvažanje fotografij ..."
 
 #. TODO: Using a GtkSpinner would be nicer here.
-#: ../src/UI.Dialog/ImportDialog.cs:295
+#: ../src/UI.Dialog/ImportDialog.cs:317
 msgid "Searching for photos... (You can already click Import to continue)"
 msgstr "Iskanje fotografij ... (Za nadaljevanje lahko že kliknite Uvozi)"
 
@@ -2710,6 +2728,24 @@ msgstr "razlika:"
 msgid "min. Starting at {0}"
 msgstr "najmanjši začetek pri {0}"
 
+#: ../src/UI.Dialog/ui/CreateTagDialog.ui.h:1
+msgid "C_reate"
+msgstr "_CD ..."
+
+#: ../src/UI.Dialog/ui/CreateTagDialog.ui.h:2
+msgid "Create _icon for this tag when first used"
+msgstr "Ustvari _ikono za to oznako ob prvi uporabi"
+
+#: ../src/UI.Dialog/ui/CreateTagDialog.ui.h:3
+#: ../src/UI.Dialog/ui/EditTagDialog.ui.h:3
+msgid "P_arent Tag:"
+msgstr "N_adrejena oznaka:"
+
+#: ../src/UI.Dialog/ui/CreateTagDialog.ui.h:4
+#: ../src/UI.Dialog/ui/EditTagDialog.ui.h:5
+msgid "_Tag Name:"
+msgstr "Ime _oznake:"
+
 #: ../src/UI.Dialog/ui/DateRangeDialog.ui.h:1
 msgid "<b>End Date</b>"
 msgstr "<b>Končni datum</b>"
@@ -2742,19 +2778,9 @@ msgstr "Urejanje oznake"
 msgid "Edit icon"
 msgstr "Urejanje ikone"
 
-#: ../src/UI.Dialog/ui/EditTagDialog.ui.h:3
-#: ../src/UI.Dialog/ui/CreateTagDialog.ui.h:3
-msgid "P_arent Tag:"
-msgstr "N_adrejena oznaka:"
-
 #: ../src/UI.Dialog/ui/EditTagDialog.ui.h:4
 msgid "_Icon:"
 msgstr "_Ikona:"
-
-#: ../src/UI.Dialog/ui/EditTagDialog.ui.h:5
-#: ../src/UI.Dialog/ui/CreateTagDialog.ui.h:4
-msgid "_Tag Name:"
-msgstr "Ime _oznake:"
 
 #: ../src/UI.Dialog/ui/EditTagIconDialog.ui.h:1
 msgid "<b>From External Photo</b>"
@@ -2886,14 +2912,6 @@ msgstr "Nastavitev filtrov ocen"
 msgid "Repair"
 msgstr "Popravi"
 
-#: ../src/UI.Dialog/ui/CreateTagDialog.ui.h:1
-msgid "C_reate"
-msgstr "_CD ..."
-
-#: ../src/UI.Dialog/ui/CreateTagDialog.ui.h:2
-msgid "Create _icon for this tag when first used"
-msgstr "Ustvari _ikono za to oznako ob prvi uporabi"
-
 #: ../src/ui/import.ui.h:1
 msgid "Attach Tags:"
 msgstr "Pripenjanje oznak:"
@@ -2914,6 +2932,10 @@ msgstr "Uvozi iz:"
 #: ../src/ui/import.ui.h:7
 msgid "Include subfolders"
 msgstr "_Upoštevaj podmape"
+
+#: ../src/ui/import.ui.h:8
+msgid "Remove original files after import"
+msgstr "Izbriši izvorne datoteke po uvozu"
 
 #: ../src/ui/mail_dialog.ui.h:1
 msgid "1024 px"
@@ -3510,7 +3532,7 @@ msgstr "(napačen zapis)"
 msgid "(Unknown)"
 msgstr "(Neznano)"
 
-#: ../src/Widgets/InfoBox.cs:470
+#: ../src/Widgets/InfoBox.cs:474
 #, csharp-format
 msgid "(One Edit)"
 msgid_plural "({0} Edits)"
