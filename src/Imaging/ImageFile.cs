@@ -51,7 +51,7 @@ namespace FSpot.Imaging {
 
             // RAW files
             name_table ["image/arw"] = name_table ["image/x-sony-arw"] = name_table [".arw"] = nef_type;
-            name_table ["image/cr2"] = name_table ["image/x-canon-cr"] = name_table [".cr2"] = typeof (FSpot.Imaging.Tiff.Cr2File);
+            name_table ["image/cr2"] = name_table ["image/x-canon-cr2"] = name_table [".cr2"] = typeof (FSpot.Imaging.Tiff.Cr2File);
             name_table ["image/dng"] = name_table ["image/x-adobe-dng"] = name_table [".dng"] = typeof (FSpot.Imaging.Tiff.DngFile);
             name_table ["image/nef"] = name_table ["image/x-nikon-nef"] = name_table [".nef"] = nef_type;
             name_table ["image/rw2"] = name_table ["image/x-raw"] = name_table [".rw2"] = raw_type;
