@@ -4,7 +4,6 @@ using System;
 using Hyena;
 using FSpot;
 using FSpot.Database;
-using Banshee.Database;
 
 namespace FSpot.Tests
 {
@@ -56,7 +55,7 @@ namespace FSpot.Tests
             var file2 = GLib.FileFactory.NewForUri (uri2);
             file.Copy (file2, GLib.FileCopyFlags.Overwrite, null, null);
 
-            var db = new QueuedSqliteDatabase (uri2.AbsolutePath);
+            var db = new FSpotDatabaseConnection (uri2.AbsolutePath);
             ValidateRevision (db, revision);
 
             Updater.Run (db);
@@ -71,14 +70,14 @@ namespace FSpot.Tests
             file2.Delete ();
         }
 
-        private void ValidateRevision (QueuedSqliteDatabase db, string revision)
+        private void ValidateRevision (FSpotDatabaseConnection db, string revision)
         {
             var query = "SELECT data FROM meta WHERE name = 'F-Spot Database Version'";
-            var found = db.QuerySingle (query).ToString ();
+            var found = db.Query<string> (query).ToString ();
             Assert.AreEqual (revision, found);
         }
 
-        private void ValidateTableStructure (QueuedSqliteDatabase db)
+        private void ValidateTableStructure (FSpotDatabaseConnection db)
         {
             CheckTableExistance (db, "exports");
             CheckTableExistance (db, "jobs");
@@ -90,12 +89,12 @@ namespace FSpot.Tests
             CheckTableExistance (db, "tags");
         }
 
-        private void CheckTableExistance (QueuedSqliteDatabase db, string name)
+        private void CheckTableExistance (FSpotDatabaseConnection db, string name)
         {
             Assert.IsTrue (db.TableExists (name), String.Format ("Expected table {0} does not exist.", name));
         }
 
-        private void CheckPhotosTable (QueuedSqliteDatabase db)
+        private void CheckPhotosTable (FSpotDatabaseConnection db)
         {
             CheckPhoto (db, 1, 1249579156, "file:///tmp/database/", "sample.jpg", "Testing!", 1, 2, 5);
             CheckPhoto (db, 2, 1276191607, "file:///tmp/database/", "sample_canon_bibble5.jpg", "", 1, 1, 0);
@@ -120,7 +119,7 @@ namespace FSpot.Tests
             CheckCount (db, "photos", 20);
         }
 
-        private void CheckPhotoVersionsTable (QueuedSqliteDatabase db)
+        private void CheckPhotoVersionsTable (FSpotDatabaseConnection db)
         {
             CheckPhotoVersion (db, 1, 1, "Original", "file:///tmp/database/", "sample.jpg", "", 1);
             CheckPhotoVersion (db, 2, 1, "Original", "file:///tmp/database/", "sample_canon_bibble5.jpg", "", 1);
@@ -147,7 +146,7 @@ namespace FSpot.Tests
             CheckOriginalVersionCount (db);
         }
 
-        private void CheckTagsTable (QueuedSqliteDatabase db)
+        private void CheckTagsTable (FSpotDatabaseConnection db)
         {
             CheckTag (db, 1, "Favorites", 0, 1, -10, "stock_icon:emblem-favorite");
             CheckTag (db, 2, "Hidden", 0, 0, -9, "stock_icon:emblem-readonly");
@@ -183,7 +182,7 @@ namespace FSpot.Tests
             CheckCount (db, "tags", 31);
         }
 
-        private void CheckPhoto (QueuedSqliteDatabase db, uint id, uint time, string base_uri, string filename, string description, uint roll_id, uint default_version_id, uint rating)
+        private void CheckPhoto (FSpotDatabaseConnection db, uint id, uint time, string base_uri, string filename, string description, uint roll_id, uint default_version_id, uint rating)
         {
             var reader = db.Query ("SELECT id, time, base_uri, filename, description, roll_id, default_version_id, rating FROM photos WHERE id = " + id);
             var found = false;
@@ -201,7 +200,7 @@ namespace FSpot.Tests
             Assert.IsTrue (found, "photo "+id+" missing");
         }
 
-        private void CheckPhotoVersion (QueuedSqliteDatabase db, uint photo_id, uint version_id, string name, string base_uri, string filename, string import_md5, uint is_protected)
+        private void CheckPhotoVersion (FSpotDatabaseConnection db, uint photo_id, uint version_id, string name, string base_uri, string filename, string import_md5, uint is_protected)
         {
             var reader = db.Query ("SELECT photo_id, version_id, name, base_uri, filename, import_md5, protected FROM photo_versions WHERE photo_id = " + photo_id + " AND version_id = " + version_id);
             var found = false;
@@ -218,14 +217,14 @@ namespace FSpot.Tests
             Assert.IsTrue (found, "photo version "+photo_id+"/"+version_id+" missing");
         }
 
-        private void CheckOriginalVersionCount (QueuedSqliteDatabase db)
+        private void CheckOriginalVersionCount (FSpotDatabaseConnection db)
         {
             var photo_count = GetCount (db, "photos", "1");
             var orig_version_count = GetCount (db, "photo_versions", "version_id = 1");
             Assert.AreEqual (photo_count, orig_version_count, "Expecting an original version for each photo");
         }
 
-        private void CheckTag (QueuedSqliteDatabase db, uint id, string name, uint cat_id, int is_cat, int sort, string icon)
+        private void CheckTag (FSpotDatabaseConnection db, uint id, string name, uint cat_id, int is_cat, int sort, string icon)
         {
             var reader = db.Query ("SELECT id, name, category_id, is_category, sort_priority, icon FROM tags WHERE id = " + id);
             var found = false;
@@ -241,12 +240,12 @@ namespace FSpot.Tests
             Assert.IsTrue (found, "tag "+id+" missing");
         }
 
-        private int GetCount (QueuedSqliteDatabase db, string table, string where)
+        private int GetCount (FSpotDatabaseConnection db, string table, string where)
         {
-            return Int32.Parse (db.QuerySingle ("SELECT COUNT(*) FROM "+table+" WHERE "+where).ToString ());
+            return db.Query<int> ("SELECT COUNT(*) FROM "+table+" WHERE "+where);
         }
 
-        private void CheckCount (QueuedSqliteDatabase db, string table, int count)
+        private void CheckCount (FSpotDatabaseConnection db, string table, int count)
         {
             var counted = GetCount (db, table, "1");
             Assert.AreEqual (count, counted, "Count on "+table);

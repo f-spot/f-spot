@@ -2,7 +2,6 @@
 using NUnit.Framework;
 using System;
 using Hyena;
-using Banshee.Database;
 using FSpot.Imaging;
 
 namespace FSpot.Tests
