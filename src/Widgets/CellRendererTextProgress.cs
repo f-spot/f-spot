@@ -18,7 +18,6 @@ using FSpot;
 using FSpot.Utils;
 
 using Mono.Unix;
-using Mono.Data.SqliteClient;
 
 namespace FSpot.Widgets
 {	
