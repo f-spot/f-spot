@@ -34,9 +34,13 @@ namespace FSpot.Jobs {
         {
             //this will add some more reactivity to the system
             System.Threading.Thread.Sleep (500);
-            Log.Debug ("Syncing metadata to file...");
+
             try {
                 Photo photo = FSpot.App.Instance.Database.Photos.Get (Convert.ToUInt32 (JobOptions)) as Photo;
+                Log.Debug ("Syncing metadata to file ({0})...", photo.DefaultVersion.Uri);
+                if (photo == null)
+                    return false;
+
                 WriteMetadataToImage (photo);
                 return true;
             } catch (System.Exception e) {
