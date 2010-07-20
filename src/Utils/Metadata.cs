@@ -18,7 +18,14 @@ namespace FSpot.Utils
             var res = new GIOTagLibFileAbstraction () { Uri = uri };
             var sidecar_uri = uri.ReplaceExtension (".xmp");
             var sidecar_res = new GIOTagLibFileAbstraction () { Uri = sidecar_uri };
-            var file = TagLib.File.Create (res, mime, ReadStyle.Average) as TagLib.Image.File;
+
+            TagLib.Image.File file = null;
+            try {
+                file = TagLib.File.Create (res, mime, ReadStyle.Average) as TagLib.Image.File;
+            } catch (Exception e) {
+                Hyena.Log.Exception (String.Format ("Loading of Metadata failed for file: {0}", uri.ToString ()), e);
+                return null;
+            }
 
             // Load XMP sidecar
             var sidecar_file = GLib.FileFactory.NewForUri (sidecar_uri);

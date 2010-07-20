@@ -13,35 +13,58 @@ namespace FSpot.Utils
         ///    Parses the XMP file identified by resource and replaces the XMP
         ///    tag of file by the parsed data.
         /// </summary>
-        public static void ParseXmpSidecar (this TagLib.Image.File file, TagLib.File.IFileAbstraction resource)
+        public static bool ParseXmpSidecar (this TagLib.Image.File file, TagLib.File.IFileAbstraction resource)
         {
             string xmp;
-            using (var stream = resource.ReadStream) {
-                using (var reader = new StreamReader (stream)) {
-                    xmp = reader.ReadToEnd ();
+
+            try {
+                using (var stream = resource.ReadStream) {
+                    using (var reader = new StreamReader (stream)) {
+                        xmp = reader.ReadToEnd ();
+                    }
                 }
+            } catch (Exception e) {
+                Hyena.Log.Exception (String.Format ("Sidecar cannot be read for file {0}", file.Name), e);
+                return false;
             }
 
-            var tag = new XmpTag (xmp);
+            XmpTag tag = null;
+            try {
+                tag = new XmpTag (xmp);
+            } catch (Exception e) {
+                Hyena.Log.Exception (String.Format ("Metadata of Sidecar cannot be parsed for file {0}", file.Name), e);
+                return false;
+            }
+
             var xmp_tag = file.GetTag (TagLib.TagTypes.XMP, true) as XmpTag;
             xmp_tag.ReplaceFrom (tag);
+            return true;
         }
 
-        public static void SaveXmpSidecar (this TagLib.Image.File file, TagLib.File.IFileAbstraction resource)
+        public static bool SaveXmpSidecar (this TagLib.Image.File file, TagLib.File.IFileAbstraction resource)
         {
             var xmp_tag = file.GetTag (TagLib.TagTypes.XMP, false) as XmpTag;
-            if (xmp_tag == null)
-                return;
+            if (xmp_tag == null) {
+                // TODO: Delete File
+                return true;
+            }
 
             var xmp = xmp_tag.Render ();
 
-            using (var stream = resource.WriteStream) {
-                stream.SetLength (0);
-                using (var writer = new StreamWriter (stream)) {
-                    writer.Write (xmp);
+            try {
+                using (var stream = resource.WriteStream) {
+                    stream.SetLength (0);
+                    using (var writer = new StreamWriter (stream)) {
+                        writer.Write (xmp);
+                    }
+                    resource.CloseStream (stream);
                 }
-                resource.CloseStream (stream);
+            } catch (Exception e) {
+                Hyena.Log.Exception (String.Format ("Sidecar cannot be saved: {0}", resource.Name), e);
+                return false;
             }
+
+            return true;
         }
     }
 }

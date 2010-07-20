@@ -109,6 +109,11 @@ namespace FSpot.Imaging.Tiff {
 
 		protected override void ExtractMetadata (TagLib.Image.File metadata)
 		{
+            base.ExtractMetadata (metadata);
+
+            if (metadata == null)
+                return;
+
 			try {
 				var tag = metadata.GetTag (TagTypes.TiffIFD) as IFDTag;
 				var structure = tag.Structure;
@@ -119,7 +124,6 @@ namespace FSpot.Imaging.Tiff {
 			} catch (Exception e) {
 				Log.DebugException (e);
 			}
-			base.ExtractMetadata (metadata);
 		}
 
 		public override System.IO.Stream PixbufStream ()
@@ -132,7 +136,7 @@ namespace FSpot.Imaging.Tiff {
 				return DCRawFile.RawPixbufStream (Uri);
 			}
 		}
-	}	
+	}
 	
 	public class NefFile : BaseImageFile {
 		byte [] jpeg_data;
@@ -143,6 +147,11 @@ namespace FSpot.Imaging.Tiff {
 
 		protected override void ExtractMetadata (TagLib.Image.File metadata)
 		{
+            base.ExtractMetadata (metadata);
+
+            if (metadata == null)
+                return;
+
 			try {
 				var tag = metadata.GetTag (TagTypes.TiffIFD) as IFDTag;
 				var structure = tag.Structure;
@@ -153,7 +162,6 @@ namespace FSpot.Imaging.Tiff {
 				Log.DebugException (e);
 				jpeg_data = null;
 			}
-			base.ExtractMetadata (metadata);
 		}
 
 		public override System.IO.Stream PixbufStream ()
@@ -176,6 +184,11 @@ namespace FSpot.Imaging.Tiff {
 
 		protected override void ExtractMetadata (TagLib.Image.File metadata)
 		{
+            base.ExtractMetadata (metadata);
+
+            if (metadata == null)
+                return;
+
 			try {
 				var tag = metadata.GetTag (TagTypes.TiffIFD) as IFDTag;
 				var structure = tag.Structure;
@@ -184,7 +197,6 @@ namespace FSpot.Imaging.Tiff {
 			} catch (Exception e) {
 				Log.DebugException (e);
 			}
-			base.ExtractMetadata (metadata);
 		}
 
 		public override System.IO.Stream PixbufStream ()

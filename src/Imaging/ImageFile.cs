@@ -186,12 +186,14 @@ namespace FSpot.Imaging {
             Orientation = ImageOrientation.TopLeft;
 
             using (var metadata_file = Metadata.Parse (uri)) {
-                Orientation = metadata_file.ImageTag.Orientation;
                 ExtractMetadata (metadata_file);
             }
         }
 
         protected virtual void ExtractMetadata (TagLib.Image.File metadata) {
+            if (metadata != null) {
+                Orientation = metadata.ImageTag.Orientation;
+            }
         }
 
 		~BaseImageFile ()
