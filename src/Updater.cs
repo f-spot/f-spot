@@ -873,7 +873,7 @@ namespace FSpot.Database {
 							Version.ToString ());
 
 				db_version = Version;
-				db.Execute(new HyenaSqliteCommand("UPDATE meta SET data = ? WHERE name = ?", meta_db_version_string, db_version.ToString ()));
+				db.Execute(new HyenaSqliteCommand("UPDATE meta SET data = ? WHERE name = ?", db_version.ToString (), meta_db_version_string));
 			}
 		}
 
