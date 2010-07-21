@@ -177,8 +177,7 @@ namespace FSpot {
 				endyear_tmp = Math.Max (year, endyear_tmp);
 			}
 			
-			Gtk.Application.Invoke(delegate {
-				
+			ThreadAssist.ProxyToMain (() => {
 				years = years_tmp;
 				startyear = startyear_tmp;
 				endyear = endyear_tmp;

@@ -195,7 +195,7 @@ namespace FSpot {
 		
 		private void QueueLast (CacheEntry entry)
 		{
-			Gtk.Application.Invoke (delegate (object obj, System.EventArgs args) {
+			ThreadAssist.ProxyToMain (() => {
 				if (entry.Uri != null && OnPixbufLoaded != null)
 					OnPixbufLoaded (this, entry);
 			});

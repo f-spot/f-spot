@@ -242,7 +242,7 @@ namespace FSpot.Exporter.Facebook
 						bool perm_offline = account.HasPermission("offline_access");
 						bool perm_upload = photo_perm_check.Active = account.HasPermission("photo_upload");
 
-						Gtk.Application.Invoke (delegate {
+						ThreadAssist.ProxyToMain (() => {
 							offline_perm_check.Active = perm_offline;
 							photo_perm_check.Active = perm_upload;
 							LoginProgress (0.2, Catalog.GetString ("Session established, fetching user info..."));
@@ -250,7 +250,7 @@ namespace FSpot.Exporter.Facebook
 	
 						User me = account.Facebook.GetLoggedInUser ().GetUserInfo ();
 	
-						Gtk.Application.Invoke (delegate {
+						ThreadAssist.ProxyToMain (() => {
 							LoginProgress (0.4, Catalog.GetString ("Session established, fetching friend list..."));
 						});
 
@@ -260,7 +260,7 @@ namespace FSpot.Exporter.Facebook
 						for (int i = 0; i < friend_list.Length; i++)
 							uids [i] = friend_list [i].UId;
 	
-						Gtk.Application.Invoke (delegate {
+						ThreadAssist.ProxyToMain (() => {
 							LoginProgress (0.6, Catalog.GetString ("Session established, fetching friend details..."));
 						});
 
@@ -272,11 +272,11 @@ namespace FSpot.Exporter.Facebook
 								friends.Add (user.uid, user);
 						}
 
-						Gtk.Application.Invoke (delegate {
+						ThreadAssist.ProxyToMain (() => {
 							LoginProgress (0.8, Catalog.GetString ("Session established, fetching photo albums..."));
 						});
 						Album[] albums = account.Facebook.GetAlbums ();
-						Gtk.Application.Invoke (delegate {
+						ThreadAssist.ProxyToMain (() => {
 							album_info_vbox.Sensitive = true;
 							picture_info_vbox.Sensitive = true;
 							permissions_hbox.Sensitive = true;
@@ -290,7 +290,7 @@ namespace FSpot.Exporter.Facebook
 						});
 					} catch (Exception e) {
 						Log.DebugException (e);
-						Gtk.Application.Invoke (delegate {
+						ThreadAssist.ProxyToMain (() => {
 							HigMessageDialog error = new HigMessageDialog (this, Gtk.DialogFlags.DestroyWithParent | Gtk.DialogFlags.Modal,
 									Gtk.MessageType.Error, Gtk.ButtonsType.Ok, Catalog.GetString ("Facebook Connection Error"),
 									String.Format (Catalog.GetString ("There was an error when downloading your information from Facebook.\n\nFacebook said: {0}"), e.Message));
@@ -301,7 +301,7 @@ namespace FSpot.Exporter.Facebook
 						account.Deauthenticate ();
 						DoLogout ();
 					} finally {
-						Gtk.Application.Invoke (delegate {
+						ThreadAssist.ProxyToMain (() => {
 							log_buttons_hbox.Sensitive = true;
 							dialog_action_area.Sensitive = true;
 						});

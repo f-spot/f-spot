@@ -15,6 +15,7 @@ using FSpot.Extensions;
 using FSpot.Query;
 using Gtk;
 using Mono.Unix;
+using Hyena;
 
 namespace LiveWebGalleryExtension
 {
@@ -79,7 +80,7 @@ namespace LiveWebGalleryExtension
 		
 		void HandleStatsChanged (object sender, EventArgs e)
 		{
-			Gtk.Application.Invoke (delegate {
+			ThreadAssist.ProxyToMain (() => {
 				if (last_ip == null || !last_ip.Equals (stats.LastIP)) {
 					last_ip = stats.LastIP;
 					try {

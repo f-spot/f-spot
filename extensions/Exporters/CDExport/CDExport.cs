@@ -144,10 +144,10 @@ namespace FSpotCDExport {
 			dialog = new CDExportDialog (selection, dest);
 			//LoadHistory ();
 
-                        if (dialog.Run () != (int)ResponseType.Ok) {
-                                dialog.Destroy ();
-                                return;
-                        }
+			if (dialog.Run () != (int)ResponseType.Ok) {
+				dialog.Destroy ();
+				return;
+			}
 
 			clean = dialog.Clean;
 
@@ -240,12 +240,9 @@ namespace FSpotCDExport {
 				progress_dialog.ProgressText = Catalog.GetString ("Error Transferring");
 				return;
 			}
-			Gtk.Application.Invoke (this.Destroy);
-		}
-
-		private void Destroy (object sender, System.EventArgs args)
-		{
-			progress_dialog.Destroy ();
+			ThreadAssist.ProxyToMain (() => {
+				progress_dialog.Destroy ();
+			});
 		}
 
 		private void Progress (long current_num_bytes, long total_num_bytes)

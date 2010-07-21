@@ -158,7 +158,7 @@ namespace FSpotFolderExport {
 			// FIXME use mkstemp
 
 			try {
-				Gtk.Application.Invoke (delegate {Dialog.Hide ();});
+				ThreadAssist.ProxyToMain (Dialog.Hide);
 
 				GLib.File source = GLib.FileFactory.NewForPath (Path.Combine (gallery_path, gallery_name));
 				GLib.File target = GLib.FileFactory.NewForPath (Path.Combine (dest.Path, source.Basename));
@@ -249,7 +249,7 @@ namespace FSpotFolderExport {
 
 				if (open) {
 					Log.DebugFormat (String.Format ("Open URI \"{0}\"", target.Uri.ToString ()));
-					Gtk.Application.Invoke (delegate {GtkBeans.Global.ShowUri (Dialog.Screen, target.Uri.ToString () );});
+					ThreadAssist.ProxyToMain (() => { GtkBeans.Global.ShowUri (Dialog.Screen, target.Uri.ToString () ); });
 				}
 
 				// Save these settings for next time
@@ -270,7 +270,7 @@ namespace FSpotFolderExport {
 				if (!dest.IsNative)
 					System.IO.Directory.Delete (gallery_path, true);
 
-				Gtk.Application.Invoke (delegate { Dialog.Destroy(); });
+				ThreadAssist.ProxyToMain (() => { Dialog.Destroy(); });
 			}
 		}
 
@@ -443,7 +443,6 @@ namespace FSpotFolderExport {
 		public void ProcessImage (int image_num, FilterSet filter_set)
 		{
 			IBrowsableItem photo = collection [image_num];
-			string photo_path = photo.DefaultVersion.Uri.LocalPath;
 			string path;
 			ScaleRequest req;
 

@@ -133,7 +133,7 @@ namespace FSpot {
 					if (ImageFile.HasLoader (i))
 						items.Add (new FileBrowsableItem (i));
 				}
-				Gtk.Application.Invoke (items, System.EventArgs.Empty, delegate (object sender, EventArgs args) {
+				ThreadAssist.ProxyToMain (() => {
 					collection.Add (items.ToArray ());
 				});
 			}

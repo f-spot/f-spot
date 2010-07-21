@@ -243,13 +243,11 @@ namespace FSpotFlickrExport {
 				return;
 			}
 
-			Gtk.Application.Invoke (this, args, delegate (object sender, EventArgs sargs) {
-				AuthorizationEventArgs wargs = (AuthorizationEventArgs) sargs;
-
-				do_export_flickr.Sensitive = wargs.Auth != null;
-				if (wargs.Auth != null) {
-					token = wargs.Auth.Token;
-					auth = wargs.Auth;
+			ThreadAssist.ProxyToMain (() => {
+				do_export_flickr.Sensitive = args.Auth != null;
+				if (args.Auth != null) {
+					token = args.Auth.Token;
+					auth = args.Auth;
 					CurrentState = State.Authorized;
 					Preferences.Set (current_service.PreferencePath, token);
 				} else {
