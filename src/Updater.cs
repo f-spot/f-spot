@@ -174,11 +174,11 @@ namespace FSpot.Database {
 
 					Execute (new HyenaSqliteCommand (
 						"INSERT INTO photo_versions (photo_id, version_id, name, uri) " +
-						"VALUES (:photo_id, :version_id, :name, :uri)",
-						"photo_id", Convert.ToUInt32 (reader [0]),
-						"version_id", Convert.ToUInt32 (reader [1]),
-						"name", (reader [2]).ToString (),
-						"uri", uri));
+						"VALUES (?, ?, ?, ?)",
+						Convert.ToUInt32 (reader [0]),
+						Convert.ToUInt32 (reader [1]),
+						(reader [2]).ToString (),
+						uri));
 				}
 
 			}, true);
@@ -540,16 +540,16 @@ namespace FSpot.Database {
 
 					Execute (new HyenaSqliteCommand (
 						"INSERT INTO photos (id, time, base_uri, filename, description, roll_id, default_version_id, rating, md5_sum) "	+
-						"VALUES (:id, :time, :base_uri, :filename, :description, :roll_id, :default_version_id, :rating, :md5_sum)",
-						"id", Convert.ToUInt32 (reader ["id"]),
-						"time", reader ["time"],
-						"base_uri", base_uri.ToString (),
-						"filename", filename,
-						"description", reader["description"].ToString (),
-						"roll_id", Convert.ToUInt32 (reader ["roll_id"]),
-						"default_version_id", Convert.ToUInt32 (reader ["default_version_id"]),
-						"rating", Convert.ToUInt32 (reader ["rating"]),
-						"md5_sum", String.IsNullOrEmpty (md5) ? null : md5));
+						"VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)",
+						Convert.ToUInt32 (reader ["id"]),
+						reader ["time"],
+						base_uri.ToString (),
+						filename,
+						reader["description"].ToString (),
+						Convert.ToUInt32 (reader ["roll_id"]),
+						Convert.ToUInt32 (reader ["default_version_id"]),
+						Convert.ToUInt32 (reader ["rating"]),
+						String.IsNullOrEmpty (md5) ? null : md5));
 				}
 				
 				reader.Close ();
@@ -568,14 +568,14 @@ namespace FSpot.Database {
 					
 					Execute (new HyenaSqliteCommand (
 						"INSERT INTO photo_versions (photo_id, version_id, name, base_uri, filename, protected, md5_sum) " +
-						"VALUES (:photo_id, :version_id, :name, :base_uri, :filename, :is_protected, :md5_sum)",
-						"photo_id", Convert.ToUInt32 (reader ["photo_id"]),
-						"version_id", Convert.ToUInt32 (reader ["version_id"]),
-						"name", reader["name"].ToString (),
-						"base_uri", base_uri.ToString (),
-						"filename", filename,
-						"is_protected", Convert.ToBoolean (reader["protected"]),
-						"md5_sum", String.IsNullOrEmpty (md5) ? null : md5));
+						"VALUES (?, ?, ?, ?, ?, ?, ?)",
+						Convert.ToUInt32 (reader ["photo_id"]),
+						Convert.ToUInt32 (reader ["version_id"]),
+						reader["name"].ToString (),
+						base_uri.ToString (),
+						filename,
+						Convert.ToBoolean (reader["protected"]),
+						String.IsNullOrEmpty (md5) ? null : md5));
 				}
 				
 				Execute ("CREATE INDEX idx_photos_roll_id ON photos(roll_id)");

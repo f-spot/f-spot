@@ -87,7 +87,7 @@ public class ExportStore : DbStore<ExportItem> {
 	public ExportItem Create (uint image_id, uint image_version_id, string export_type, string export_token)
 	{
 		int id = Database.Execute(new HyenaSqliteCommand("INSERT INTO exports (image_id, image_version_id, export_type, export_token) VALUES (?, ?, ?, ?)",
-		"image_id", image_id, image_version_id, export_type, export_token));
+		image_id, image_version_id, export_type, export_token));
 		
 		ExportItem item = new ExportItem ((uint)id, image_id, image_version_id, export_type, export_token);
 

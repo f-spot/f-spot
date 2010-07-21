@@ -495,8 +495,8 @@ public class PhotoStore : DbStore<Photo> {
 					version.BaseUri.ToString (),
 					version.Filename,
 					version.IsProtected,
-					photo.Id,
 					(version.ImportMD5 != String.Empty ? version.ImportMD5 : null),
+					photo.Id,
 					version_id));
 			}
 		photo.Changes = null;
