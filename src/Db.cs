@@ -215,11 +215,6 @@ public class Db : IDisposable {
 		if (new_db && ! create_if_missing)
 			throw new Exception (path + ": File not found");
 
-//		database = new QueuedSqliteDatabase(path);
-//		database.ExceptionThrown += HandleDbException;
-
-//		if (database.GetFileVersion(path) == 2)
-//			SqliteUpgrade ();
 		database = new FSpotDatabaseConnection (path);
 
 		// Load or create the meta table
@@ -286,42 +281,6 @@ public class Db : IDisposable {
 	public void RollbackTransaction()
 	{
 		Database.RollbackTransaction ();
-	}
-
-	private void SqliteUpgrade ()
-	{
-		//Close the db
-		database.Dispose();
-
-		string upgrader_path = null;
-		string [] possible_paths = {
-			Path.Combine (Defines.BINDIR, "f-spot-sqlite-upgrade"),
-			"../tools/f-spot-sqlite-upgrade",
-			"/usr/local/bin/f-spot-sqlite-upgrade",
-			"/usr/bin/f-spot-sqlite-upgrade",
-		};
-
-		foreach (string p in possible_paths)
-			if (File.Exists (p)) {
-				upgrader_path = p;
-				break;
-			}
-
-		if (upgrader_path == null)
-			throw new DbException ("Failed to upgrade the f-spot sqlite2 database to sqlite3!\n" + "Unable to find the f-spot-sqlite-upgrade script on your system");
-
-		Log.DebugFormat ("Running {0}...", upgrader_path);
-		ProcessStartInfo updaterInfo = new ProcessStartInfo (upgrader_path);
-		updaterInfo.UseShellExecute = false;
-		updaterInfo.RedirectStandardError = true;
-		Process updater = Process.Start (updaterInfo);
-		string stdError = updater.StandardError.ReadToEnd ();
-		updater.WaitForExit ();
-		if (updater.ExitCode != 0)
-			throw new DbException("Failed to upgrade the f-spot sqlite2 database to sqlite3!\n" + stdError);
-
-		//Re-open the db
-		database = new FSpotDatabaseConnection (path);
 	}
 }
 
