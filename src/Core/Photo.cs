@@ -351,14 +351,14 @@ namespace FSpot
 			return CreateVersion (name, null, base_version_id, create, false);
 		}
 
-		public uint CreateVersion (string name, string extension, uint base_version_id, bool create)
+		private uint CreateVersion (string name, string extension, uint base_version_id, bool create)
 		{
 			return CreateVersion (name, extension, base_version_id, create, false);
 		}
 	
 		private uint CreateVersion (string name, string extension, uint base_version_id, bool create, bool is_protected)
 		{
-			extension = extension ?? System.IO.Path.GetExtension (VersionUri (base_version_id).AbsolutePath);
+			extension = extension ?? VersionUri (base_version_id).GetExtension ();
 			SafeUri new_base_uri = DefaultVersion.BaseUri;
 			string filename = GetFilenameForVersionName (name, extension);
 			SafeUri original_uri = VersionUri (base_version_id);
