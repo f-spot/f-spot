@@ -39,12 +39,8 @@ public class TagCommands {
 		[GtkBeans.Builder.Object] private Entry tag_name_entry;
 		[GtkBeans.Builder.Object] private Label prompt_label;
 		[GtkBeans.Builder.Object] private Label already_in_use_label;
-		[GtkBeans.Builder.Object] private Label photo_label;
-		[GtkBeans.Builder.Object] private ScrolledWindow photo_scrolled_window;
 		[GtkBeans.Builder.Object] private ComboBox category_option_menu;
 		[GtkBeans.Builder.Object] private CheckButton auto_icon_checkbutton;
-
-		Gtk.Widget parent_window;
 
 		private ArrayList categories;
 
@@ -200,11 +196,9 @@ public class TagCommands {
 			return new_tag;
 		}
 
-		public Create (TagStore tag_store, Gtk.Window parent_window) : base ("CreateTagDialog.ui", "create_tag_dialog")
+		public Create (TagStore tag_store) : base ("CreateTagDialog.ui", "create_tag_dialog")
 		{
 			this.tag_store = tag_store;
-			this.parent_window = parent_window;
 		}
 	}
-
 }

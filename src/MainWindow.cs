@@ -1654,7 +1654,7 @@ namespace FSpot
 	
 		public Tag CreateTag (object sender, EventArgs args)
 		{
-			TagCommands.Create command = new TagCommands.Create (Database.Tags, GetToplevel (sender));
+			TagCommands.Create command = new TagCommands.Create (Database.Tags);
 			return command.Execute (TagCommands.TagType.Category, tag_selection_widget.TagHighlight);
 		}
 	
