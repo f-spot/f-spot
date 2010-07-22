@@ -3,6 +3,7 @@ TARGET = library
 LINK = $(REF_FSPOT_CORE)
 
 SOURCES = \
+	BrowsableCollectionProxy.cs \
 	BrowsableEventArgs.cs \
 	BrowsablePointer.cs \
 	BrowsablePointerChangedEventArgs.cs \

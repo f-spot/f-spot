@@ -33,7 +33,7 @@ namespace FSpot.Import
             }
         }
 
-        public void StartPhotoScan (ImportController controller)
+        public void StartPhotoScan (ImportController controller, PhotoList photo_list)
         {
             if (PhotoScanner != null) {
                 run_photoscanner = false;
@@ -41,16 +41,16 @@ namespace FSpot.Import
             }
 
             run_photoscanner = true;
-            PhotoScanner = ThreadAssist.Spawn (() => ScanPhotos (controller));
+            PhotoScanner = ThreadAssist.Spawn (() => ScanPhotos (controller, photo_list));
         }
 
-        protected virtual void ScanPhotos (ImportController controller)
+        protected virtual void ScanPhotos (ImportController controller, PhotoList photo_list)
         {
-            ScanPhotoDirectory (controller, Root);
+            ScanPhotoDirectory (controller, Root, photo_list);
             ThreadAssist.ProxyToMain (() => controller.PhotoScanFinished ());
         }
 
-        protected void ScanPhotoDirectory (ImportController controller, SafeUri uri)
+        protected void ScanPhotoDirectory (ImportController controller, SafeUri uri, PhotoList photo_list)
         {
             var enumerator = new RecursiveFileEnumerator (uri) {
                 Recurse = controller.RecurseSubdirectories,
@@ -65,7 +65,7 @@ namespace FSpot.Import
 
                 if (infos.Count % 10 == 0 || infos.Count < 10) {
                     var to_add = infos; // prevents race condition
-                    ThreadAssist.ProxyToMain (() => controller.Photos.Add (to_add.ToArray ()));
+                    ThreadAssist.ProxyToMain (() => photo_list.Add (to_add.ToArray ()));
                     infos = new List<FileImportInfo> ();
                 }
 
@@ -75,7 +75,7 @@ namespace FSpot.Import
 
             if (infos.Count > 0) {
                 var to_add = infos; // prevents race condition
-                ThreadAssist.ProxyToMain (() => controller.Photos.Add (to_add.ToArray ()));
+                ThreadAssist.ProxyToMain (() => photo_list.Add (to_add.ToArray ()));
             }
         }
 
@@ -130,11 +130,11 @@ namespace FSpot.Import
             this.uris = uris;
         }
 
-        protected override void ScanPhotos (ImportController controller)
+        protected override void ScanPhotos (ImportController controller, PhotoList photo_list)
         {
             foreach (var uri in uris) {
                 Log.Debug ("Scanning "+uri);
-                ScanPhotoDirectory (controller, uri);
+                ScanPhotoDirectory (controller, uri, photo_list);
             }
             ThreadAssist.ProxyToMain (() => controller.PhotoScanFinished ());
         }

@@ -7,7 +7,7 @@ namespace FSpot.Import
         string Name { get; }
         string IconName { get; }
 
-        void StartPhotoScan (ImportController controller);
+        void StartPhotoScan (ImportController controller, PhotoList photo_list);
         void Deactivate ();
     }
 }

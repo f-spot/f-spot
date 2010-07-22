@@ -18,11 +18,11 @@ namespace FSpot.Import
 
     public class ImportController
     {
-        public PhotoList Photos { get; private set; }
+        public BrowsableCollectionProxy Photos { get; private set; }
 
         public ImportController ()
         {
-            Photos = new PhotoList ();
+            Photos = new BrowsableCollectionProxy ();
             LoadPreferences ();
         }
 
@@ -162,12 +162,13 @@ namespace FSpot.Import
 
         void RescanPhotos ()
         {
-            Photos.Clear ();
             if (ActiveSource == null)
                 return;
 
             photo_scan_running = true;
-            ActiveSource.StartPhotoScan (this);
+            PhotoList pl = new PhotoList ();
+            Photos.Collection = pl;
+            ActiveSource.StartPhotoScan (this, pl);
             FireEvent (ImportEvent.PhotoScanStarted);
         }
 
@@ -263,7 +264,6 @@ namespace FSpot.Import
             created_directories = null;
             Photo.ResetMD5Cache ();
             DeactivateSource (ActiveSource);
-            Photos.Clear ();
             System.GC.Collect ();
             App.Instance.Database.Sync = true;
         }
