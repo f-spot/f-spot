@@ -271,25 +271,36 @@ namespace FSpot
 			if (version_id == OriginalVersionId && !remove_original)
 				throw new Exception ("Cannot delete original version");
 	
-			SafeUri uri =  VersionUri (version_id);
+			SafeUri uri = VersionUri (version_id);
 	
 			if (!keep_file) {
 				GLib.File file = GLib.FileFactory.NewForUri (uri);
-				if (file.Exists) 
+				if (file.Exists) {
 					try {
 						file.Trash (null);
 					} catch (GLib.GException) {
 						Log.Debug ("Unable to Trash, trying to Delete");
 						file.Delete ();
-					}	
+					}
+				}
+
 				try {
 					XdgThumbnailSpec.RemoveThumbnail (uri);
 				} catch {
-					//ignore an error here we don't really care.
+					// ignore an error here we don't really care.
 				}
-			}
-			versions.Remove (version_id);
 
+				// do we really need to check if the parent is a directory?
+				// i.e. is file.Parent always a directory if the file instance is
+				// an actual file?
+				GLib.File directory = file.Parent;
+				GLib.FileType file_type = directory.QueryFileType (GLib.FileQueryInfoFlags.None, null);
+
+				if (directory.Exists && file_type == GLib.FileType.Directory)
+					DeleteEmptyDirectory (directory);
+			}
+
+			versions.Remove (version_id);
 			changes.RemoveVersion (version_id);
 
 			for (version_id = highest_version_id; version_id >= OriginalVersionId; version_id--) {
@@ -298,6 +309,41 @@ namespace FSpot
 					break;
 				}
 			}
+		}
+
+		private void DeleteEmptyDirectory (GLib.File directory)
+		{
+			// if the directory we're dealing with is not in the
+			// F-Spot photos directory, don't delete anything,
+			// even if it is empty
+			string photo_uri = SafeUri.UriToFilename (FSpot.Global.PhotoUri.ToString ());
+			bool path_matched = directory.Path.IndexOf (photo_uri) > -1;
+
+			if (directory.Path.Equals (photo_uri) || !path_matched)
+				return;
+
+			if (DirectoryIsEmpty (directory)) {
+				try {
+					Log.DebugFormat ("Removing empty directory: {0}", directory.Path);
+					directory.Delete ();
+				} catch (GLib.GException e) {
+					// silently log the exception, but don't re-throw it
+					// as to not annoy the user
+					Log.Exception (e);
+				}
+				// check to see if the parent is empty
+				DeleteEmptyDirectory (directory.Parent);
+			}
+		}
+
+		private bool DirectoryIsEmpty (GLib.File directory)
+		{
+			uint count = 0;
+			GLib.FileEnumerator list = directory.EnumerateChildren ("standard::name",
+				GLib.FileQueryInfoFlags.None, null);
+			foreach (var item in list)
+				count++;
+			return count == 0;
 		}
 
 		public uint CreateVersion (string name, uint base_version_id, bool create)
