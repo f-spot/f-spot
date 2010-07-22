@@ -14,6 +14,11 @@ namespace FSpot.Utils
             var info = gfile.QueryInfo ("standard::content-type", FileQueryInfoFlags.None, null);
             var mime = info.ContentType;
 
+            if (mime.StartsWith ("application/x-extension-")) {
+                // Works around broken metadata detection - https://bugzilla.gnome.org/show_bug.cgi?id=624781
+                mime = String.Format ("taglib/{0}", mime.Substring (24));
+            }
+
             // Parse file
             var res = new GIOTagLibFileAbstraction () { Uri = uri };
             var sidecar_uri = uri.ReplaceExtension (".xmp");
