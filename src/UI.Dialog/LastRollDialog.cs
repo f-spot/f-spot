@@ -18,7 +18,6 @@ namespace FSpot.UI.Dialog {
 	public class LastRolls : BuilderDialog {
 		FSpot.PhotoQuery query;
 		RollStore rollstore;
-		Gtk.Window parent_window;
 		
 		Roll [] rolls;
 
@@ -28,12 +27,13 @@ namespace FSpot.UI.Dialog {
 		[GtkBeans.Builder.Object] private Label    and_label; // and label between two comboboxes.
 		[GtkBeans.Builder.Object] private Label    photos_in_selected_rolls;
 		
-		public LastRolls (FSpot.PhotoQuery query, RollStore rollstore, Gtk.Window parent_window) : base ("LastImportRollFilterDialog.ui", "last_import_rolls_filter")
+		public LastRolls (FSpot.PhotoQuery query, RollStore rollstore, Window parent) : base ("LastImportRollFilterDialog.ui", "last_import_rolls_filter")
 		{
 			this.query = query;
 			this.rollstore = rollstore;
-			this.parent_window = parent_window;
 			rolls = rollstore.GetRolls (FSpot.Preferences.Get<int> (FSpot.Preferences.IMPORT_GUI_ROLL_HISTORY));
+
+            TransientFor = parent;
 
 			PopulateCombos ();
 			

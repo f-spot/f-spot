@@ -7,9 +7,6 @@ namespace FSpot.UI.Dialog {
 	public class TagSelectionDialog : GladeDialog 
 	{
 		[Widget] Gtk.ScrolledWindow tag_selection_scrolled;
-		[Widget] Gtk.VBox selection_vbox;
-		[Widget] Gtk.Button ok_button;
-		[Widget] Gtk.Button cancel_button;
 		
 		TagSelectionWidget tag_selection_widget;
 		

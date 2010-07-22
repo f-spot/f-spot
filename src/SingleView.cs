@@ -18,7 +18,6 @@ namespace FSpot {
 		[GtkBeans.Builder.Object]  Gtk.HBox toolbar_hbox;
 		[GtkBeans.Builder.Object]  Gtk.VBox info_vbox;
 		[GtkBeans.Builder.Object]  Gtk.ScrolledWindow image_scrolled;
-		[GtkBeans.Builder.Object]  Gtk.HPaned info_hpaned;
 
 		Gtk.ScrolledWindow directory_scrolled;
 

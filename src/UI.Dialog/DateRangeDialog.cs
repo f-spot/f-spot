@@ -19,9 +19,6 @@ using FSpot.Widgets;
 namespace FSpot.UI.Dialog
 {
 	public class DateRangeDialog : BuilderDialog {
-		Gtk.Window parent_window;
-
-		[GtkBeans.Builder.Object] Button ok_button;
 		[GtkBeans.Builder.Object] Frame startframe;
 		[GtkBeans.Builder.Object] Frame endframe;
 		[GtkBeans.Builder.Object] ComboBox period_combobox;
@@ -50,7 +47,6 @@ namespace FSpot.UI.Dialog
 
 		public DateRangeDialog (DateRange query_range, Gtk.Window parent_window) : base ("DateRangeDialog.ui", "date_range_dialog")
 		{
-			this.parent_window = parent_window;
 			TransientFor = parent_window;
 			DefaultResponse = ResponseType.Ok;
 
@@ -86,12 +82,7 @@ namespace FSpot.UI.Dialog
 			(cell as CellRendererText).Text = name;
 		}
 
-		private static string GetString(int index)
-		{
-			return GetString (ranges [index]);
-		}
-
-		private static string GetString(string rangename)
+		private string GetString(string rangename)
 		{
 			System.DateTime today = System.DateTime.Today;
 			switch (rangename) {

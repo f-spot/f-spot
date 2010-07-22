@@ -17,9 +17,6 @@ using FSpot.UI.Dialog;
 namespace FSpot.UI.Dialog
 {
 	public class RatingFilterDialog : BuilderDialog {
-		FSpot.PhotoQuery query;
-		Gtk.Window parent_window;
-
 		[GtkBeans.Builder.Object] Button ok_button;
 		[GtkBeans.Builder.Object] HBox minrating_hbox;
 		[GtkBeans.Builder.Object] HBox maxrating_hbox;
@@ -31,8 +28,6 @@ namespace FSpot.UI.Dialog
 
 		public RatingFilterDialog (FSpot.PhotoQuery query, Gtk.Window parent_window) : base ("RatingFilterDialog.ui", "rating_filter_dialog")
 		{
-			this.query = query;
-			this.parent_window = parent_window;
 			TransientFor = parent_window;
 			DefaultResponse = ResponseType.Ok;
 			ok_button.GrabFocus ();
