@@ -66,7 +66,7 @@ namespace FSpot {
 				string[] IcmColorProfilList = System.IO.Directory.GetFiles (path, "*.icm");
 				foreach (string ColorProfilePath in IcmColorProfilList) {
 					Cms.Profile profile = new Cms.Profile (ColorProfilePath);
-					if ((Cms.IccColorSpace)profile.ColorSpace == Cms.IccColorSpace.Rgb && !profs.ContainsKey (profile.ProductDescription))
+					if ((Cms.IccColorSpace)profile.ColorSpace == Cms.IccColorSpace.Rgb && profile.ProductDescription != null && !profs.ContainsKey (profile.ProductDescription))
 						profs.Add(profile.ProductDescription, profile);
 				}
 				string[] DirList = System.IO.Directory.GetDirectories (path);
