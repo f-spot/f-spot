@@ -310,9 +310,6 @@ namespace FSpot {
 			photo_view = new PhotoImageView (bp);
 	
 			filmstrip = new Filmstrip (bp);
-			Gdk.Pixbuf bg = new Gdk.Pixbuf (Gdk.Colorspace.Rgb, true, 8, 1, 77);
-			bg.Fill (0x00000000);
-			filmstrip.BackgroundTile = bg;
 			filmstrip.ThumbOffset = 1;
 			filmstrip.Spacing = 4;
 			filmstrip.ThumbSize = 75;
