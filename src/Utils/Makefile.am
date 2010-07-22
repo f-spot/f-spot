@@ -8,7 +8,7 @@ SOURCES = \
 	ConsoleCrayon.cs \
 	FileExtensions.cs \
 	GdkUtils.cs \
-    GIOTagLibFileAbstraction.cs \
+	GIOTagLibFileAbstraction.cs \
 	GtkUtil.cs \
 	HashUtils.cs \
 	Metadata.cs \
@@ -23,6 +23,7 @@ SOURCES = \
 	XdgThumbnailSpec.cs \
 	Tests/GIOTagLibFileAbstractionTests.cs \
 	Tests/ImageTestHelper.cs \
+	Tests/MetadataTest.cs \
 	Tests/SafeUriTests.cs \
 	Tests/SidecarXmpExtensionsTests.cs \
 	Tests/XdgThumbnailSpecTests.cs

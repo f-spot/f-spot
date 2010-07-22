@@ -26,7 +26,7 @@ namespace FSpot.Utils.Tests
             var res = new GIOTagLibFileAbstraction () { Uri = uri };
 
             var file = File.Create (res) as TagLib.Image.File;
-            Assert.IsTrue (file != null);
+            Assert.IsNotNull (file);
 
             XmpTag xmp = file.GetTag (TagTypes.XMP) as XmpTag;
             // Xmp.MicrosoftPhoto_1_.DateAcquired (XmpText/20) "2009-08-04T20:42:36Z"
@@ -50,14 +50,15 @@ namespace FSpot.Utils.Tests
             // Tests the file with a sidecar
             var uri = ImageTestHelper.CreateTempFile ("taglib-sample.jpg");
             var res = new GIOTagLibFileAbstraction () { Uri = uri };
-            var sidecar_uri = CopySidecarToTest (uri);
+            var sidecar_uri = ImageTestHelper.CopySidecarToTest (uri, "taglib-sample.xmp");
             var sidecar_res = new GIOTagLibFileAbstraction () { Uri = sidecar_uri };
 
             var file = File.Create (res) as TagLib.Image.File;
-            Assert.IsTrue (file != null);
+            Assert.IsNotNull (file);
 
             // Override by sidecar file
-            file.ParseXmpSidecar (sidecar_res);
+            bool success = file.ParseXmpSidecar (sidecar_res);
+            Assert.IsTrue (success);
 
             XmpTag xmp = file.GetTag (TagTypes.XMP) as XmpTag;
             // Xmp.MicrosoftPhoto_1_.DateAcquired (XmpText/20) "2009-08-04T20:42:36Z"
@@ -68,6 +69,38 @@ namespace FSpot.Utils.Tests
             }
 
             Assert.AreEqual (new string [] { "F-Spot", "metadata", "test" }, file.ImageTag.Keywords);
+
+            ImageTestHelper.DeleteTempFile (uri);
+            ImageTestHelper.DeleteTempFile (sidecar_uri);
+        }
+
+        [Test]
+        public void ValidateWithBrokenSidecar ()
+        {
+            // Tests the file with a sidecar
+            var uri = ImageTestHelper.CreateTempFile ("taglib-sample.jpg");
+            var res = new GIOTagLibFileAbstraction () { Uri = uri };
+            var sidecar_uri = ImageTestHelper.CopySidecarToTest (uri, "taglib-sample-broken.xmp");
+            var sidecar_res = new GIOTagLibFileAbstraction () { Uri = sidecar_uri };
+
+            var file = File.Create (res) as TagLib.Image.File;
+            Assert.IsNotNull (file);
+
+            // Override by sidecar file should fail
+            bool success = file.ParseXmpSidecar (sidecar_res);
+            Assert.IsFalse (success);
+
+            XmpTag xmp = file.GetTag (TagTypes.XMP) as XmpTag;
+            // Xmp.MicrosoftPhoto_1_.DateAcquired (XmpText/20) "2009-08-04T20:42:36Z"
+            {
+                var node = xmp.NodeTree;
+                node = node.GetChild (XmpTag.MS_PHOTO_NS, "DateAcquired");
+                Assert.AreEqual ("2009-08-04T20:42:36Z", node.Value);
+                Assert.AreEqual (XmpNodeType.Simple, node.Type);
+                Assert.AreEqual (0, node.Children.Count);
+            }
+
+            Assert.AreEqual (new string [] { "Kirche Sulzbach" }, file.ImageTag.Keywords);
 
             ImageTestHelper.DeleteTempFile (uri);
             ImageTestHelper.DeleteTempFile (sidecar_uri);
@@ -86,12 +119,13 @@ namespace FSpot.Utils.Tests
             Assert.IsFalse (sidecar_file.Exists);
 
             var file = File.Create (res) as TagLib.Image.File;
-            Assert.IsTrue (file != null);
+            Assert.IsNotNull (file);
 
             file.ImageTag.Keywords = new string [] { "Kirche Aarschot" };
 
             // Validate writing of the sidecar
-            file.SaveXmpSidecar (sidecar_res);
+            bool success = file.SaveXmpSidecar (sidecar_res);
+            Assert.IsTrue (success);
             Assert.IsTrue (sidecar_file.Exists);
 
             var target = "<x:xmpmeta xmlns:x=\"adobe:ns:meta/\"><rdf:RDF xm"
@@ -126,17 +160,6 @@ namespace FSpot.Utils.Tests
 
             ImageTestHelper.DeleteTempFile (uri);
             ImageTestHelper.DeleteTempFile (sidecar_uri);
-        }
-
-        SafeUri CopySidecarToTest (SafeUri uri)
-        {
-            var target = uri.ReplaceExtension (".xmp");
-
-            var orig_uri = new SafeUri (Environment.CurrentDirectory + "/../tests/data/taglib-sample.xmp");
-            var file = GLib.FileFactory.NewForUri (orig_uri);
-            var file2 = GLib.FileFactory.NewForUri (target);
-            file.Copy (file2, GLib.FileCopyFlags.Overwrite, null, null);
-            return target;
         }
     }
 }

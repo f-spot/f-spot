@@ -20,6 +20,17 @@ namespace FSpot.Utils.Tests
             return uri2;
         }
 
+        public static SafeUri CopySidecarToTest (SafeUri uri, string filename)
+        {
+            var target = uri.ReplaceExtension (".xmp");
+
+            var orig_uri = new SafeUri (Environment.CurrentDirectory + "/../tests/data/" + filename);
+            var file = GLib.FileFactory.NewForUri (orig_uri);
+            var file2 = GLib.FileFactory.NewForUri (target);
+            file.Copy (file2, GLib.FileCopyFlags.Overwrite, null, null);
+            return target;
+        }
+
         public static void DeleteTempFile (SafeUri uri)
         {
             var file = GLib.FileFactory.NewForUri (uri);
