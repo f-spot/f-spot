@@ -105,8 +105,14 @@ namespace FSpot.Imaging {
             }
 
             // Detect mime-type
-            var info = file.QueryInfo ("standard::content-type", FileQueryInfoFlags.None, null);
+            var info = file.QueryInfo ("standard::content-type,standard::size", FileQueryInfoFlags.None, null);
             var mime = info.ContentType;
+            var size = info.Size;
+
+            if (size == 0) {
+                // Empty file
+                return null;
+            }
 
             Type t = null;
 
