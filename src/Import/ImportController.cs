@@ -50,7 +50,13 @@ namespace FSpot.Import
 
         public bool RecurseSubdirectories {
             get { return recurse_subdirectories; }
-            set { recurse_subdirectories = value; SavePreferences (); RescanPhotos (); }
+            set {
+                if (recurse_subdirectories == value)
+                    return;
+                recurse_subdirectories = value;
+                SavePreferences ();
+                RescanPhotos ();
+            }
         }
 
         public bool DuplicateDetect {
