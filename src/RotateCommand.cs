@@ -70,6 +70,7 @@ namespace FSpot {
                     metadata.Save ();
                 }
             } catch (Exception e) {
+                Log.DebugException (e);
                 throw new RotateException (Catalog.GetString ("Unable to rotate this type of photo"), original_path);
             }
 		}
