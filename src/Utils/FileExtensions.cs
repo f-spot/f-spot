@@ -44,5 +44,23 @@ namespace FSpot.Utils
 			fe.Close (cancellable);
 			return result;
 		}
+
+		public static void DeleteRecursive (this GLib.File file)
+		{
+			// FIXME: no cancellation support
+
+			var type = file.QueryFileType (FileQueryInfoFlags.None, null);
+			if (type != FileType.Directory) {
+				file.Delete (null);
+				return;
+			}
+
+			var children = file.EnumerateChildren ("standard::name", GLib.FileQueryInfoFlags.None, null);
+			foreach (GLib.FileInfo child in children) {
+				var child_file = FileFactory.NewForPath (Path.Combine (file.Path, child.Name));
+				child_file.DeleteRecursive ();
+			}
+			file.Delete (null);
+		}
 	}
 }

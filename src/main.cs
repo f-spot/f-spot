@@ -277,8 +277,13 @@ namespace FSpot
 		static void InitializeAddins ()
 		{
 			uint timer = Log.InformationTimerStart ("Initializing Mono.Addins");
-			AddinManager.Initialize (FSpot.Global.BaseDirectory);
-			AddinManager.Registry.Update (null);
+			try {
+				UpdatePlugins ();
+			} catch (Exception e) {
+				Log.Debug ("Failed to initialize plugins, will remove addin-db and try again.");
+				Log.DebugException (e);
+				ResetPluginDb ();
+			}
 			SetupService setupService = new SetupService (AddinManager.Registry);
 			foreach (AddinRepository repo in setupService.Repositories.GetRepositories ()) {
 				if (repo.Url.StartsWith ("http://addins.f-spot.org/")) {
@@ -287,6 +292,28 @@ namespace FSpot
 				}
 			}
 			Log.DebugTimerPrint (timer, "Mono.Addins Initialization took {0}");
+		}
+
+		static void UpdatePlugins ()
+		{
+			AddinManager.Initialize (FSpot.Global.BaseDirectory);
+			AddinManager.Registry.Update (null);
+		}
+
+		static void ResetPluginDb ()
+		{
+			// Nuke addin-db
+			var directory = GLib.FileFactory.NewForUri (new SafeUri (FSpot.Global.BaseDirectory));
+			var list = directory.EnumerateChildren ("standard::name", GLib.FileQueryInfoFlags.None, null);
+			foreach (GLib.FileInfo info in list) {
+				if (info.Name.StartsWith ("addin-db-")) {
+					var file = GLib.FileFactory.NewForPath (Path.Combine (directory.Path, info.Name));
+					file.DeleteRecursive ();
+				}
+			}
+
+			// Try again
+			UpdatePlugins ();
 		}
 
 		static void Startup ()
