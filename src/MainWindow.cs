@@ -1114,7 +1114,8 @@ namespace FSpot
 	
 		public void ImportUriList (UriList list, bool copy) 
 		{
-			var controller = new ImportController ();
+			// Drag'n drop import.
+			var controller = new ImportController (false);
 			controller.StatusEvent += (evnt) => {
 				ThreadAssist.ProxyToMain (() => {
 					if (evnt == ImportEvent.ImportFinished) {
@@ -1150,7 +1151,7 @@ namespace FSpot
 
 		void StartImport (SafeUri uri)
 		{
-			var controller = new ImportController ();
+			var controller = new ImportController (true);
 			controller.StatusEvent += (evnt) => {
 				if (evnt == ImportEvent.ImportFinished) {
 					if (controller.PhotosImported > 0) {

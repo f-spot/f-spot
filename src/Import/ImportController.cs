@@ -20,8 +20,13 @@ namespace FSpot.Import
     {
         public BrowsableCollectionProxy Photos { get; private set; }
 
-        public ImportController ()
+        public ImportController (bool persist_preferences)
         {
+            // This flag determines whether or not the chosen options will be
+            // saved. You don't want to overwrite user preferences when running
+            // headless.
+            this.persist_preferences = persist_preferences;
+
             Photos = new BrowsableCollectionProxy ();
             LoadPreferences ();
         }
@@ -33,10 +38,11 @@ namespace FSpot.Import
 
 #region Import Preferences
 
-        private bool copy_files;
-        private bool remove_originals;
-        private bool recurse_subdirectories;
-        private bool duplicate_detect;
+        private bool persist_preferences = false;
+        private bool copy_files = true;
+        private bool remove_originals = false;
+        private bool recurse_subdirectories = true;
+        private bool duplicate_detect = true;
 
         public bool CopyFiles {
             get { return copy_files; }
@@ -66,6 +72,9 @@ namespace FSpot.Import
 
         void LoadPreferences ()
         {
+            if (!persist_preferences)
+                return;
+
             copy_files = Preferences.Get<bool> (Preferences.IMPORT_COPY_FILES);
             recurse_subdirectories = Preferences.Get<bool> (Preferences.IMPORT_INCLUDE_SUBFOLDERS);
             duplicate_detect = Preferences.Get<bool> (Preferences.IMPORT_CHECK_DUPLICATES);
@@ -74,6 +83,9 @@ namespace FSpot.Import
 
         void SavePreferences ()
         {
+            if (!persist_preferences)
+                return;
+
             Preferences.Set(Preferences.IMPORT_COPY_FILES, copy_files);
             Preferences.Set(Preferences.IMPORT_INCLUDE_SUBFOLDERS, recurse_subdirectories);
             Preferences.Set(Preferences.IMPORT_CHECK_DUPLICATES, duplicate_detect);
