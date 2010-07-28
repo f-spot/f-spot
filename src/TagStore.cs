@@ -358,10 +358,13 @@ public class TagStore : DbStore<Tag> {
 
 		// FIXME: this hack is used, because HyenaSqliteConnection does not support
 		// the InTransaction propery
-		try {
-			Database.BeginTransaction ();
-		} catch {
-			use_transactions = false;
+
+		if (use_transactions) {
+			try {
+				Database.BeginTransaction ();
+			} catch {
+				use_transactions = false;
+			}
 		}
 
 		foreach (Tag tag in tags) {
