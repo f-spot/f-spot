@@ -30,7 +30,9 @@
                     <child>
                       <object class="GtkLabel" id="import_label">
                         <property name="visible">True</property>
-                        <property name="label" translatable="yes" comments="Translators: this string means 'source of import'">Import from:</property>
+                        <property name="label" translatable="yes" comments="Translators: this string means 'source of import'">Import _from:</property>
+                        <property name="use_underline">True</property>
+                        <property name="mnemonic_widget">sources_combo</property>
                       </object>
                       <packing>
                         <property name="expand">False</property>
@@ -122,10 +124,11 @@
                 <property name="visible">True</property>
                 <property name="spacing">6</property>
                 <child>
-                  <object class="GtkLabel" id="label228">
+                  <object class="GtkLabel" id="attachtags_label">
                     <property name="visible">True</property>
                     <property name="xalign">0</property>
-                    <property name="label" translatable="yes">Attach Tags:</property>
+                    <property name="label" translatable="yes">_Attach tags:</property>
+                    <property name="use_underline">True</property>
                   </object>
                   <packing>
                     <property name="expand">False</property>
@@ -159,7 +162,7 @@
                 <property name="homogeneous">True</property>
                 <child>
                   <object class="GtkCheckButton" id="duplicate_check">
-                    <property name="label" translatable="yes">Detect duplicates</property>
+                    <property name="label" translatable="yes">_Detect duplicates</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">False</property>
@@ -170,7 +173,7 @@
                 </child>
                 <child>
                   <object class="GtkCheckButton" id="copy_check">
-                    <property name="label" translatable="yes">Copy files to the Photos folder</property>
+                    <property name="label" translatable="yes">C_opy files to the Photos folder</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">False</property>
@@ -185,7 +188,7 @@
                 </child>
                 <child>
                   <object class="GtkCheckButton" id="recurse_check">
-                    <property name="label" translatable="yes">Include subfolders</property>
+                    <property name="label" translatable="yes">I_nclude subfolders</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">False</property>
@@ -204,10 +207,11 @@
                     <property name="spacing">2</property>
                     <child>
                       <object class="GtkCheckButton" id="remove_check">
-                        <property name="label" translatable="yes">Remove original files after import</property>
+                        <property name="label" translatable="yes">_Remove original files after import</property>
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">False</property>
+                        <property name="use_underline">True</property>
                         <property name="draw_indicator">True</property>
                       </object>
                       <packing>
@@ -306,7 +310,7 @@
                         <child>
                           <object class="GtkLabel" id="label157">
                             <property name="visible">True</property>
-                            <property name="label" translatable="yes">Import</property>
+                            <property name="label" translatable="yes">_Import</property>
                             <property name="use_underline">True</property>
                           </object>
                           <packing>

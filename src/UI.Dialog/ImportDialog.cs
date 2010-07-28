@@ -31,6 +31,7 @@ namespace FSpot.UI.Dialog
         [GtkBeans.Builder.Object] ProgressBar progress_bar;
         [GtkBeans.Builder.Object] ScrolledWindow icon_scrolled;
         [GtkBeans.Builder.Object] ScrolledWindow photo_scrolled;
+        [GtkBeans.Builder.Object] Label attachtags_label;
 
         private PhotoImageView photo_view;
         private TagEntry tag_entry;
@@ -75,6 +76,7 @@ namespace FSpot.UI.Dialog
             tag_entry.UpdateFromTagNames (new string []{});
             tagentry_box.Add (tag_entry);
             tag_entry.Show ();
+            attachtags_label.MnemonicWidget = tag_entry;
         }
 
         void ResetPreview ()
