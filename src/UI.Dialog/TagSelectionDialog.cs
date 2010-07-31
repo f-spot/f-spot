@@ -4,13 +4,13 @@ using Gtk;
 using Glade;
 
 namespace FSpot.UI.Dialog {
-	public class TagSelectionDialog : GladeDialog 
+	public class TagSelectionDialog : BuilderDialog
 	{
-		[Widget] Gtk.ScrolledWindow tag_selection_scrolled;
+		[GtkBeans.Builder.Object] Gtk.ScrolledWindow tag_selection_scrolled;
 		
 		TagSelectionWidget tag_selection_widget;
 		
-		public TagSelectionDialog (TagStore tags) : base ("tag_selection_dialog")
+		public TagSelectionDialog (TagStore tags) : base ("tag_selection_dialog.ui", "tag_selection_dialog")
 		{
 			tag_selection_widget = new TagSelectionWidget (tags);
 			tag_selection_scrolled.Add (tag_selection_widget);
@@ -19,7 +19,7 @@ namespace FSpot.UI.Dialog {
 		
 		public Tag[] Run ()
 		{
-			int response = this.Dialog.Run ();
+			int response = base.Run ();
 			if ((ResponseType) response == ResponseType.Ok)
 				return tag_selection_widget.TagHighlight;
 			
@@ -28,7 +28,7 @@ namespace FSpot.UI.Dialog {
 		
 		public void Hide ()
 		{
-			this.Dialog.Hide ();
+			base.Hide ();
 		}
 	}
 }
