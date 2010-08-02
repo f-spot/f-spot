@@ -387,7 +387,7 @@ namespace FSpot.Import
             if (xmp_file.Exists) {
                 var xmp_destination = destination.ReplaceExtension (".xmp");
                 var new_xmp_file = GLib.FileFactory.NewForUri (xmp_destination);
-                xmp_file.Copy (new_xmp_file, GLib.FileCopyFlags.AllMetadata, null, null);
+                xmp_file.Copy (new_xmp_file, GLib.FileCopyFlags.AllMetadata | GLib.FileCopyFlags.Overwrite, null, null);
                 copied_files.Add (xmp_destination);
                 original_files.Add (xmp_original);
             }
