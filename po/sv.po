@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: f-spot\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-07-26 21:26+0200\n"
-"PO-Revision-Date: 2010-07-26 21:29+0100\n"
+"POT-Creation-Date: 2010-08-06 14:55+0200\n"
+"PO-Revision-Date: 2010-08-06 15:12+0100\n"
 "Last-Translator: Daniel Nylander <po@danielnylander.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
 "MIME-Version: 1.0\n"
@@ -101,7 +101,6 @@ msgid "copying..."
 msgstr "kopierar..."
 
 #: ../extensions/Exporters/CDExport/CDExport.ui.h:1
-#, fuzzy
 msgid "<b><i>There are some previously scheduled items to write</i></b>"
 msgstr "<b><i>Det finns några tidigare schemalagda objekt att skriva</i></b>"
 
@@ -570,18 +569,16 @@ msgstr "Överför..."
 
 #. No need to check result here as if result is not true, an Exception will be thrown before
 #: ../extensions/Exporters/FolderExport/FolderExport.cs:245
-#, fuzzy
 msgid "Export Complete."
-msgstr "Sändning färdig"
+msgstr "Exporten är färdig."
 
 #: ../extensions/Exporters/FolderExport/FolderExport.cs:247
 msgid "Exporting Photos Completed."
-msgstr ""
+msgstr "Exportering av foton är färdig."
 
 #: ../extensions/Exporters/FolderExport/FolderExport.cs:312
-#, fuzzy
 msgid "Exporting Photos"
-msgstr "Exportera till"
+msgstr "Exporterar foton"
 
 #. Note for translators: light as clear, opposite as dark
 #: ../extensions/Exporters/FolderExport/FolderExport.cs:716
@@ -1335,186 +1332,183 @@ msgstr "Konfiguration för skärmsläckare"
 
 #: ../f-spot.schemas.in.h:1
 msgid "Display of transparent parts."
-msgstr ""
+msgstr "Visning av genomskinliga delar."
 
 #: ../f-spot.schemas.in.h:2
 msgid "Enable this to allow interpolation on zoomed images."
-msgstr ""
+msgstr "Aktivera detta för att tillåta interpolation på zoomade bilder."
 
 #: ../f-spot.schemas.in.h:3
 msgid "Height of the import dialog."
-msgstr ""
+msgstr "Höjd för importdialogen."
 
 #: ../f-spot.schemas.in.h:4
 msgid "Height of the main window."
-msgstr ""
+msgstr "Höjd för huvudfönstret."
 
 #: ../f-spot.schemas.in.h:5
 msgid "Height of the photo viewer window."
-msgstr ""
+msgstr "Höjd för fotovisningsfönstret."
 
 #: ../f-spot.schemas.in.h:6
 msgid "If the 'transparency' option is set, the color specified in this option will be used as the transparent color when viewing images."
-msgstr ""
+msgstr "Om alternativet \"transparency\" är inställt kommer färgen som anges i detta alternativ att användas som den genomskinliga färgen när bilder visas."
 
 #: ../f-spot.schemas.in.h:7
-#, fuzzy
 msgid "Interpolate image on zoom."
-msgstr "_Interpolera bild vid zoomning"
+msgstr "Interpolera bild vid zoomning"
 
 #: ../f-spot.schemas.in.h:8
 msgid "Maximize the main window."
-msgstr ""
+msgstr "Maximerar huvudfönstret."
 
 #: ../f-spot.schemas.in.h:9
 msgid "Maximize the photo viewer window."
-msgstr ""
+msgstr "Maximerar fotovisningsfönstret."
 
 #: ../f-spot.schemas.in.h:10
 msgid "Path to custom gtkrc for theming F-Spot."
-msgstr ""
+msgstr "Sökväg till anpassad gtkrc för temaanpassad F-Spot."
 
 #: ../f-spot.schemas.in.h:11
 msgid "Show dates in the thumbnail view."
-msgstr ""
+msgstr "Visa datum i miniatyrbildsvisning."
 
 #: ../f-spot.schemas.in.h:12
 msgid "Show ratings in the thumbnail view."
-msgstr ""
+msgstr "Visa betyg i miniatyrbildsvisning."
 
 #: ../f-spot.schemas.in.h:13
 msgid "Show tags in the thumbnail view."
-msgstr ""
+msgstr "Visa taggar i miniatyrbildsvisning."
 
 #: ../f-spot.schemas.in.h:14
 msgid "Show the filename in the viewer window."
-msgstr ""
+msgstr "Visa filnamnet i visningsfönstret."
 
 #: ../f-spot.schemas.in.h:15
 msgid "Show the filmstrip in the main window."
-msgstr ""
+msgstr "Visa filmremsa i huvudfönstret."
 
 #: ../f-spot.schemas.in.h:16
 msgid "Show the sidebar in the main window."
-msgstr ""
+msgstr "Visa sidopanel i huvudfönstret."
 
 #: ../f-spot.schemas.in.h:17
 msgid "Show the timeline in the main window."
-msgstr ""
+msgstr "Visa tidslinjen i huvudfönstret."
 
 #: ../f-spot.schemas.in.h:18
 msgid "Show the toolbar in the main window."
-msgstr ""
+msgstr "Visa verktygsraden i huvudfönstret."
 
 #: ../f-spot.schemas.in.h:19
 msgid "Show the toolbar in the photo viewer window."
-msgstr ""
+msgstr "Visa verktygsraden i fotovisningsfönstret."
 
 #: ../f-spot.schemas.in.h:20
-#, fuzzy
 msgid "Size of the tag icons shown in the sidebar."
-msgstr "Storlek för miniatyrbilderna i mosaiken"
+msgstr "Storlek för taggikonerna som visas i sidopanelen."
 
 #: ../f-spot.schemas.in.h:21
 msgid "The X position to use for the main window."
-msgstr ""
+msgstr "X-positionen att använda för huvudfönstret."
 
 #: ../f-spot.schemas.in.h:22
 msgid "The X position to use for the photo viewer window."
-msgstr ""
+msgstr "X-positionen att använda för fotovisningsfönstret."
 
 #: ../f-spot.schemas.in.h:23
 msgid "The Y position to use for the main window."
-msgstr ""
+msgstr "Y-positionen att använda för huvudfönstret."
 
 #: ../f-spot.schemas.in.h:24
 msgid "The Y position to use for the photo viewer window."
-msgstr ""
+msgstr "Y-positionen att använda för fotovisningsfönstret."
 
 #: ../f-spot.schemas.in.h:25
 msgid "The color to use for transparent parts."
-msgstr ""
+msgstr "Färgen att använda för genomskinliga delar."
 
 #: ../f-spot.schemas.in.h:26
 msgid "The height dimension to use for the import dialog."
-msgstr ""
+msgstr "Höjddimensionen att använda för importdialogen."
 
 #: ../f-spot.schemas.in.h:27
 msgid "The height dimension to use for the main window."
-msgstr ""
+msgstr "Höjddimensionen att använda för huvudfönstret."
 
 #: ../f-spot.schemas.in.h:28
 msgid "The height dimension to use for the photo viewer window."
-msgstr ""
+msgstr "Höjddimensionen att använda för fotovisningsfönstret."
 
 #: ../f-spot.schemas.in.h:29
 msgid "The orientation of the filmstrip, if shown."
-msgstr ""
+msgstr "Orienteringen för filmremsan, om den visas."
 
 #: ../f-spot.schemas.in.h:30
 msgid "The orientation of the filmstrip."
-msgstr ""
+msgstr "Orientering för filmremsa."
 
 #: ../f-spot.schemas.in.h:31
 msgid "The size (width) of the sidebar in the main window."
-msgstr ""
+msgstr "Storlek (bredd) för sidopanelen i huvudfönstret."
 
 #: ../f-spot.schemas.in.h:32
 msgid "The size of the sidebar in the main window."
-msgstr ""
+msgstr "Storlek för sidopanelen i huvudfönstret."
 
 #: ../f-spot.schemas.in.h:33
 msgid "The width dimension to use for the import dialog."
-msgstr ""
+msgstr "Breddimensionen att använda för importdialogen."
 
 #: ../f-spot.schemas.in.h:34
 msgid "The width dimension to use for the main window."
-msgstr ""
+msgstr "Breddimensionen att använda för huvudfönstret."
 
 #: ../f-spot.schemas.in.h:35
 msgid "The width dimension to use for the photo viewer window."
-msgstr ""
+msgstr "Breddimensionen att använda för fotovisningsfönstret."
 
 #: ../f-spot.schemas.in.h:36
 msgid "Use the current photo's filename as the viewer window's title."
-msgstr ""
+msgstr "Använd filnamnet för det aktuella fotot som titel i visningsfönstret."
 
 #: ../f-spot.schemas.in.h:37
 msgid "Width of the import dialog."
-msgstr ""
+msgstr "Bredd för importdialogen."
 
 #: ../f-spot.schemas.in.h:38
 msgid "Width of the main window."
-msgstr ""
+msgstr "Bredd för huvudfönstret."
 
 #: ../f-spot.schemas.in.h:39
 msgid "Width of the photo viewer window."
-msgstr ""
+msgstr "Bredd för fotovisningsfönstret."
 
 #: ../f-spot.schemas.in.h:40
 msgid "Width of the preview image pane in the import dialog."
-msgstr ""
+msgstr "Bredd för förhandsvisningspanelen i importdialogen."
 
 #: ../f-spot.schemas.in.h:41
 msgid "X position of the main window."
-msgstr ""
+msgstr "X-position för huvudfönstret."
 
 #: ../f-spot.schemas.in.h:42
 msgid "X position of the photo viewer window."
-msgstr ""
+msgstr "X-position för fotovisningsfönstret."
 
 #: ../f-spot.schemas.in.h:43
 msgid "Y position of the main window."
-msgstr ""
+msgstr "Y-position för huvudfönstret."
 
 #: ../f-spot.schemas.in.h:44
 msgid "Y position of the photo viewer window."
-msgstr ""
+msgstr "Y-position för fotovisningsfönstret."
 
 #: ../f-spot.schemas.in.h:45
-#, fuzzy
 msgid "You can choose how to display transparent parts in images. This option has no effect on photos but setting this value to CHECK_PATTERN or CUSTOM_COLOR could be useful when viewing icons or other artwork with transparent parts."
-msgstr "<small><i>Du kan välja hur transparenta delar i bilder ska visas. Det här alternativet har ingen effekt på foton, men att ställa in det här som rutmönster eller anpassad färg kan vara användbar vid visning av ikoner eller andra bilder med transparenta delar.</i></small>"
+msgstr "<small><i>Du kan välja hur genomskinliga delar i bilder ska visas. Det här alternativet har ingen effekt på foton, men att ställa in det här som rutmönster eller anpassad färg kan vara användbar vid visning av ikoner eller andra bilder med genomskinliga delar.</i></small>"
 
 #: ../src/Core/App.cs:290
 #, csharp-format
@@ -1708,6 +1702,7 @@ msgid "Manage your custom selection ratios"
 msgstr "Hantera dina anpassade markeringsförhållanden"
 
 #: ../src/f-spot.glade.h:5
+#: ../src/ui/tag_selection_dialog.ui.h:1
 msgid "Select a Tag..."
 msgstr "Markera en tagg..."
 
@@ -1745,7 +1740,6 @@ msgid "Hide"
 msgstr "Dölj"
 
 #: ../src/FullScreenView.cs:60
-#, fuzzy
 msgid "Hide toolbar"
 msgstr "Dölj verktygsrad"
 
@@ -1831,11 +1825,11 @@ msgstr "Föregående bild"
 #: ../src/Jobs/SyncMetadataJob.cs:73
 #, csharp-format
 msgid "Metadata of file {0} may be corrupt, refusing to write to it, falling back to XMP sidecar."
-msgstr ""
+msgstr "Metadata för filen {0} kan vara skadad, vägrar att skriv till den, faller tillbaka på XMP sidecar."
 
 #: ../src/MainWindow.cs:274
-#: ../src/UI.Dialog/ImportDialog.cs:193
-#: ../src/ui/import.ui.h:4
+#: ../src/UI.Dialog/ImportDialog.cs:195
+#: ../src/ui/import.ui.h:3
 msgid "Import"
 msgstr "Importera"
 
@@ -2102,36 +2096,35 @@ msgstr "Verkligen ta bort version \"{0}\"?"
 
 #: ../src/PhotoVersionCommands.cs:127
 msgid "This removes the version and deletes the corresponding file from disk."
-msgstr ""
+msgstr "Detta tar bort versionen och tar även bort motsvarande fil från disken."
 
 #: ../src/PhotoVersionCommands.cs:172
 msgid "De_tach"
-msgstr ""
+msgstr "Ta _bort"
 
 #: ../src/PhotoVersionCommands.cs:173
-#, fuzzy, csharp-format
+#, csharp-format
 msgid "Really detach version \"{0}\" from \"{1}\"?"
-msgstr "Verkligen ta bort version \"{0}\"?"
+msgstr "Verkligen ta bort version \"{0}\" från \"{1}\"?"
 
 #: ../src/PhotoVersionCommands.cs:174
 msgid "This makes the version appear as a separate photo in the library. To undo, drag the new photo back to its parent."
-msgstr ""
+msgstr "Detta gör att versionen visas som ett separat foto i biblioteket. Dra det nya fotot tillbaka till sin förälder för att ångra."
 
 #: ../src/PhotoVersionCommands.cs:196
-#, fuzzy
 msgid "Re_parent"
-msgstr "Adopterad"
+msgstr "Ange förä_lder"
 
 #: ../src/PhotoVersionCommands.cs:197
-#, fuzzy, csharp-format
+#, csharp-format
 msgid "Really reparent \"{0}\" as version of \"{1}\"?"
 msgid_plural "Really reparent {2} photos as versions of \"{1}\"?"
-msgstr[0] "Verkligen ta bort version \"{0}\"?"
-msgstr[1] "Verkligen ta bort version \"{0}\"?"
+msgstr[0] "Verkligen ange förälder för \"{0}\" som version av \"{1}\"?"
+msgstr[1] "Verkligen ange förälder för {2} foton som versioner av \"{1}\"?"
 
 #: ../src/PhotoVersionCommands.cs:200
 msgid "This makes the photos appear as a single one in the library. The versions can be detached using the Photo menu."
-msgstr ""
+msgstr "Detta gör att fotona visas som en enda i biblioteket. Versionerna kan tas bort från Foto-menyn."
 
 #: ../src/PhotoVersionCommands.cs:240
 #, csharp-format
@@ -2577,36 +2570,39 @@ msgstr "Ett ohanterat undantag kastades: "
 msgid "Choose Folder..."
 msgstr "Välj mapp..."
 
-#: ../src/UI.Dialog/ImportDialog.cs:129
+#: ../src/UI.Dialog/ImportDialog.cs:131
 msgid "Choose Import source..."
 msgstr "Välj importkälla..."
 
-#: ../src/UI.Dialog/ImportDialog.cs:141
+#: ../src/UI.Dialog/ImportDialog.cs:143
 msgid "(No Cameras Detected)"
 msgstr "(Inga kameror identifierades)"
 
-#: ../src/UI.Dialog/ImportDialog.cs:176
+#: ../src/UI.Dialog/ImportDialog.cs:178
 msgid ""
 "Checking this box will remove the imported photos from the camera after the import finished successfully.\n"
 "\n"
 "It is generally recommended to backup your photos before removing them from the camera. <b>Use this option at your own risk!</b>"
 msgstr ""
+"Kryssa denna ruta kommer att ta bort de importerade fotona från kameran efter lyckad import.\n"
+"\n"
+"Det rekommenderas att säkerhetskopiera dina foton innan de tas bort från kameran. <b>Använd detta alternativ på egen risk!</b>"
 
-#: ../src/UI.Dialog/ImportDialog.cs:177
+#: ../src/UI.Dialog/ImportDialog.cs:179
 msgid "Warning"
 msgstr "Varning"
 
-#: ../src/UI.Dialog/ImportDialog.cs:286
+#: ../src/UI.Dialog/ImportDialog.cs:288
 #, csharp-format
 msgid "Importing Photos: {0} of {1}..."
 msgstr "Importerar foton: {0} av {1}..."
 
-#: ../src/UI.Dialog/ImportDialog.cs:310
+#: ../src/UI.Dialog/ImportDialog.cs:312
 msgid "Importing photos..."
 msgstr "Importerar foton..."
 
 #. TODO: Using a GtkSpinner would be nicer here.
-#: ../src/UI.Dialog/ImportDialog.cs:317
+#: ../src/UI.Dialog/ImportDialog.cs:319
 msgid "Searching for photos... (You can already click Import to continue)"
 msgstr "Söker efter foton... (Du kan klicka på Importera för att fortsätta)"
 
@@ -2838,6 +2834,8 @@ msgid ""
 "Never modify image files.\n"
 "<small>Write XMP files next to the images instead.</small>"
 msgstr ""
+"Ändra aldrig bildfiler.\n"
+"<small>Skriv XMP-filer bredvid bilderna istället.</small>"
 
 #: ../src/UI.Dialog/ui/PreferenceDialog.ui.h:9
 msgid "Select A Folder"
@@ -2872,29 +2870,33 @@ msgid "Repair"
 msgstr "Reparera"
 
 #: ../src/ui/import.ui.h:1
-msgid "Attach Tags:"
-msgstr "Fäst taggar:"
+msgid "C_opy files to the Photos folder"
+msgstr "K_opiera filer till fotomappen"
 
 #: ../src/ui/import.ui.h:2
-msgid "Copy files to the Photos folder"
-msgstr "Kopiera filer till fotomappen"
-
-#: ../src/ui/import.ui.h:3
-msgid "Detect duplicates"
-msgstr "Detektera dubletter"
+msgid "I_nclude subfolders"
+msgstr "I_nkludera underkataloger"
 
 #. Translators: this string means 'source of import'
+#: ../src/ui/import.ui.h:5
+msgid "Import _from:"
+msgstr "Importera _från:"
+
 #: ../src/ui/import.ui.h:6
-msgid "Import from:"
-msgstr "Importera från:"
+msgid "_Attach tags:"
+msgstr "_Fäst taggar:"
 
 #: ../src/ui/import.ui.h:7
-msgid "Include subfolders"
-msgstr "Inkludera underkataloger"
+msgid "_Detect duplicates"
+msgstr "_Upptäck dubbletter"
 
 #: ../src/ui/import.ui.h:8
-msgid "Remove original files after import"
-msgstr "Ta bort ursprungliga filer efter import"
+msgid "_Import"
+msgstr "_Importera"
+
+#: ../src/ui/import.ui.h:9
+msgid "_Remove original files after import"
+msgstr "_Ta bort ursprungliga filer efter import"
 
 #: ../src/ui/mail_dialog.ui.h:1
 msgid "1024 px"
@@ -3009,9 +3011,8 @@ msgid "Create _New Version..."
 msgstr "Skapa _ny version..."
 
 #: ../src/ui/main_window.ui.h:10
-#, fuzzy
 msgid "De_tach Version"
-msgstr "_Ta bort version"
+msgstr "Ta _bort version"
 
 #: ../src/ui/main_window.ui.h:11
 msgid "Fin_d"
@@ -3286,7 +3287,7 @@ msgstr "<b>Bildinterpolering</b>"
 
 #: ../src/ui/viewer_preferences.ui.h:2
 msgid "<b>Transparent Parts</b>"
-msgstr "<b>Transparenta delar</b>"
+msgstr "<b>Genomskinliga delar</b>"
 
 #: ../src/ui/viewer_preferences.ui.h:3
 msgid "<small><i>Enable this to allow interpolation on zoomed images. You shouldn't disable this for viewing photos, but disabling the interpolation could be usefull in icon design.</i></small>"
@@ -3294,7 +3295,7 @@ msgstr "<small><i>Aktivera detta för att tillåta interpolering på zoomade bil
 
 #: ../src/ui/viewer_preferences.ui.h:4
 msgid "<small><i>You can choose how to display transparent parts in images. This option has no effect on photos, but setting this as check pattern or custom color could be usefull when viewing icons or other artworks with transparent parts.</i></small>"
-msgstr "<small><i>Du kan välja hur transparenta delar i bilder ska visas. Det här alternativet har ingen effekt på foton, men att ställa in det här som rutmönster eller anpassad färg kan vara användbar vid visning av ikoner eller andra bilder med transparenta delar.</i></small>"
+msgstr "<small><i>Du kan välja hur genomskinliga delar i bilder ska visas. Det här alternativet har ingen effekt på foton, men att ställa in det här som rutmönster eller anpassad färg kan vara användbar vid visning av ikoner eller andra bilder med genomskinliga delar.</i></small>"
 
 #: ../src/ui/viewer_preferences.ui.h:5
 msgid "As _background"
@@ -3594,6 +3595,8 @@ msgstr "Visa ett bildspel från F-Spot"
 msgid "F-Spot photos"
 msgstr "Foton från F-Spot"
 
+#~ msgid "Attach Tags:"
+#~ msgstr "Fäst taggar:"
 #~ msgid "Autorotate"
 #~ msgstr "Rotera automatiskt"
 #~ msgid "Error: Error while transferring; Aborting"
@@ -3646,8 +3649,6 @@ msgstr "Foton från F-Spot"
 #~ msgstr " "
 #~ msgid "<b></b>"
 #~ msgstr "<b></b>"
-#~ msgid "Attach tag:"
-#~ msgstr "Fäst tagg:"
 #~ msgid "CD"
 #~ msgstr "Cd"
 #~ msgid "E-_Mail:"
