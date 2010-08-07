@@ -43,6 +43,8 @@ namespace FSpot {
 			get { return logic_widget; }
 		}
 
+		protected QueryWidget (IntPtr raw) : base (raw) {}
+
 		public QueryWidget (PhotoQuery query, Db db) : base(new HBox())
 		{
 			box = Child as HBox;

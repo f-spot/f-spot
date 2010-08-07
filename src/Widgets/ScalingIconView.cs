@@ -6,8 +6,13 @@
  *
  * This is free software. See COPYING for details
  */
+
+using System;
+
 namespace FSpot.Widgets {
 	public class ScalingIconView : IconView {
+		protected ScalingIconView (IntPtr raw) : base (raw) {}
+
 		public ScalingIconView () : base () { }
  		public ScalingIconView (IBrowsableCollection collection) : base (collection) { }
 		

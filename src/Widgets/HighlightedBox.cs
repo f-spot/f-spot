@@ -7,6 +7,7 @@
  * This is free software. See COPYING for details.
  */
 
+using System;
 using Gtk;
 
 namespace FSpot.Widgets
@@ -14,6 +15,8 @@ namespace FSpot.Widgets
 	public class HighlightedBox : EventBox
 	{
 		private bool changing_style = false;
+
+		protected HighlightedBox (IntPtr raw) : base (raw) {}
 
 		public HighlightedBox (Widget child) : base ()
 		{

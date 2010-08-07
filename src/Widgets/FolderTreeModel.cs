@@ -23,6 +23,8 @@ namespace FSpot.Widgets
 {
 	public class FolderTreeModel : TreeStore
 	{
+		protected FolderTreeModel (IntPtr raw) : base (raw) { }
+
 		Db database;
 		
 		const string query_string = 

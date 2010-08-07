@@ -25,6 +25,8 @@ namespace FSpot.Widgets
 	public class FolderTreeView : SaneTreeView
 	{	
 		FolderTreeModel folder_tree_model;
+
+		protected FolderTreeView (IntPtr raw) : base (raw) {}
 	
 		public FolderTreeView () : this (new FolderTreeModel ())
 		{
