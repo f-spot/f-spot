@@ -45,3 +45,8 @@ build/pkg-config/f-spot.pc
 data/desktop-files/*.desktop
 data/desktop-files/*.desktop.in
 docs/*/*.mo
+help/*/*.mo
+help/*/*.page
+!help/C/*.page
+help/*/*.xml
+!help/C/*.xml
