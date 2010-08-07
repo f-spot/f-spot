@@ -17,8 +17,6 @@ namespace FSpot.UI.Dialog
         private TreeView list_view;
         private Expander details_expander;
 
-        private ListStore simple_model;
-
         private AccelGroup accel_group;
         protected AccelGroup AccelGroup {
             get { return accel_group; }
