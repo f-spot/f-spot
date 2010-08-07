@@ -27,10 +27,16 @@ namespace FSpot.Utils
             TagLib.Image.File file = null;
             try {
                 file = TagLib.File.Create (res, mime, ReadStyle.Average) as TagLib.Image.File;
-            } catch (Exception e) {
-                Hyena.Log.DebugFormat ("Loading of Metadata failed for file: {0}", uri);
-                Hyena.Log.DebugException (e);
-                return null;
+            } catch (Exception) {
+                Hyena.Log.DebugFormat ("Loading of metadata failed for file: {0}, trying extension fallback", uri);
+                
+                try {
+                    file = TagLib.File.Create (res, ReadStyle.Average) as TagLib.Image.File;
+                } catch (Exception e) {
+                    Hyena.Log.DebugFormat ("Loading of metadata failed for file: {0}", uri);
+                    Hyena.Log.DebugException (e);
+                    return null;
+                }
             }
 
             // Load XMP sidecar
