@@ -1,6 +1,5 @@
 using System;
 using System.IO;
-using GLib;
 using Hyena;
 using TagLib.Image;
 using TagLib.Xmp;
@@ -24,7 +23,8 @@ namespace FSpot.Utils
                     }
                 }
             } catch (Exception e) {
-                Hyena.Log.Exception (String.Format ("Sidecar cannot be read for file {0}", file.Name), e);
+                Log.DebugFormat ("Sidecar cannot be read for file {0}", file.Name);
+                Log.DebugException (e);
                 return false;
             }
 
@@ -32,7 +32,8 @@ namespace FSpot.Utils
             try {
                 tag = new XmpTag (xmp);
             } catch (Exception e) {
-                Hyena.Log.Exception (String.Format ("Metadata of Sidecar cannot be parsed for file {0}", file.Name), e);
+                Log.DebugFormat ("Metadata of Sidecar cannot be parsed for file {0}", file.Name);
+                Log.DebugException (e);
                 return false;
             }
 
@@ -60,7 +61,8 @@ namespace FSpot.Utils
                     resource.CloseStream (stream);
                 }
             } catch (Exception e) {
-                Hyena.Log.Exception (String.Format ("Sidecar cannot be saved: {0}", resource.Name), e);
+                Log.DebugFormat ("Sidecar cannot be saved: {0}", resource.Name);
+                Log.DebugException (e);
                 return false;
             }
 

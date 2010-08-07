@@ -28,7 +28,8 @@ namespace FSpot.Utils
             try {
                 file = TagLib.File.Create (res, mime, ReadStyle.Average) as TagLib.Image.File;
             } catch (Exception e) {
-                Hyena.Log.Exception (String.Format ("Loading of Metadata failed for file: {0}", uri.ToString ()), e);
+                Hyena.Log.DebugFormat ("Loading of Metadata failed for file: {0}", uri);
+                Hyena.Log.DebugException (e);
                 return null;
             }
 
