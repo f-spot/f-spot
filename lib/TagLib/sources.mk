@@ -135,6 +135,7 @@ SOURCES = \
 	TagLib/src/TagLib/IFD/Tags/GPSEntryTag.cs \
 	TagLib/src/TagLib/IFD/Tags/IFDEntryTag.cs \
 	TagLib/src/TagLib/IFD/Tags/IOPEntryTag.cs \
+	TagLib/src/TagLib/IFD/Tags/PentaxMakerNoteEntryTag.cs \
 	TagLib/src/TagLib/IFD/Tags/OlympusMakerNoteEntryTag.cs \
 	TagLib/src/TagLib/IFD/Tags/Nikon3MakerNoteEntryTag.cs \
 	TagLib/src/TagLib/IFD/Tags/NikonLensData3EntryTag.cs \
@@ -189,6 +190,7 @@ SOURCES = \
 	TagLib/src/TagLib/Tiff/Cr2/File.cs \
 	TagLib/src/TagLib/Tiff/Dng/File.cs \
 	TagLib/src/TagLib/Tiff/Nef/File.cs \
+	TagLib/src/TagLib/Tiff/Pef/File.cs \
 	TagLib/src/TagLib/Tiff/Rw2/File.cs \
 	TagLib/src/TagLib/Tiff/Rw2/IFDReader.cs \
 	TagLib/src/TagLib/Tiff/Rw2/IFDTag.cs \
