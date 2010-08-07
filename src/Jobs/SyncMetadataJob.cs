@@ -37,9 +37,10 @@ namespace FSpot.Jobs {
 
             try {
                 Photo photo = FSpot.App.Instance.Database.Photos.Get (Convert.ToUInt32 (JobOptions)) as Photo;
-                Log.DebugFormat ("Syncing metadata to file ({0})...", photo.DefaultVersion.Uri);
                 if (photo == null)
                     return false;
+
+                Log.DebugFormat ("Syncing metadata to file ({0})...", photo.DefaultVersion.Uri);
 
                 WriteMetadataToImage (photo);
                 return true;
