@@ -28,6 +28,7 @@ namespace FSpot.Import
             this.persist_preferences = persist_preferences;
 
             Photos = new BrowsableCollectionProxy ();
+            FailedImports = new List<SafeUri> ();
             LoadPreferences ();
         }
 
@@ -150,6 +151,7 @@ namespace FSpot.Import
 
         public int PhotosImported { get; private set; }
         public Roll CreatedRoll { get; private set; }
+        public List<SafeUri> FailedImports { get; private set; }
 
 #endregion
 
@@ -261,7 +263,13 @@ namespace FSpot.Import
                     }
 
                     ThreadAssist.ProxyToMain (() => ReportProgress (i++, total));
-                    ImportPhoto (info, CreatedRoll);
+                    try {
+                        ImportPhoto (info, CreatedRoll);
+                    } catch (Exception e) {
+                        Log.DebugFormat ("Failed to import {0}", info.DefaultVersion.Uri);
+                        Log.DebugException (e);
+                        FailedImports.Add (info.DefaultVersion.Uri);
+                    }
                 }
 
                 PhotosImported = imported_photos.Count;
