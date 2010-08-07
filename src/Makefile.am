@@ -139,6 +139,7 @@ SOURCES = \
 	UI.Dialog/EditTagIconDialog.cs \
 	UI.Dialog/GladeDialog.cs \
 	UI.Dialog/ImportDialog.cs \
+	UI.Dialog/ImportFailureDialog.cs \
 	UI.Dialog/LastRollDialog.cs \
 	UI.Dialog/PreferenceDialog.cs \
 	UI.Dialog/ProgressDialog.cs \

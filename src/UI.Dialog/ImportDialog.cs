@@ -273,6 +273,7 @@ namespace FSpot.UI.Dialog
                     break;
 
                 case ImportEvent.ImportFinished:
+                    ShowFailuresIfNeeded (Controller.FailedImports);
                     Controller = null;
                     Destroy ();
                     break;
@@ -281,6 +282,14 @@ namespace FSpot.UI.Dialog
                     // TODO
                     break;
             }
+        }
+
+        void ShowFailuresIfNeeded (List<SafeUri> files)
+        {
+            if (Controller.FailedImports.Count == 0)
+                return;
+
+            new ImportFailureDialog (files).Show ();
         }
 
         void OnControllerProgressUpdated (int current, int total)
