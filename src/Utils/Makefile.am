@@ -14,7 +14,6 @@ SOURCES = \
 	Metadata.cs \
 	PixbufUtils.cs \
 	RecursiveFileEnumerator.cs \
-	SafeUri.cs \
 	SafeUriExtensions.cs \
 	SidecarXmpExtensions.cs \
 	Unix.cs \
