@@ -137,7 +137,6 @@ SOURCES = \
 	UI.Dialog/EditExceptionDialog.cs \
 	UI.Dialog/EditTagDialog.cs \
 	UI.Dialog/EditTagIconDialog.cs \
-	UI.Dialog/ExceptionDialog.cs \
 	UI.Dialog/GladeDialog.cs \
 	UI.Dialog/ImportDialog.cs \
 	UI.Dialog/LastRollDialog.cs \
