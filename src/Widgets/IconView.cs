@@ -976,10 +976,14 @@ namespace FSpot.Widgets
 			Gdk.Rectangle layout_bounds = Gdk.Rectangle.Zero;
 			if (DisplayDates) {
 				string date;
-				if (cell_width > 200) {
-					date = photo.Time.ToString ();
-				} else {
-					date = photo.Time.ToShortDateString ();
+				try { 
+					if (cell_width > 200) {
+						date = photo.Time.ToString ();
+					} else {
+						date = photo.Time.ToShortDateString ();
+					}
+				} catch (Exception) {
+					date = String.Empty;
 				}
 
 				Pango.Layout layout = (Pango.Layout)date_layouts [date];

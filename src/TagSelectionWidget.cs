@@ -176,6 +176,9 @@ namespace FSpot {
 			Model.GetValue (iter, IdColumn, ref value);
 			uint tag_id = (uint) value;
 			Tag tag = tag_store.Get (tag_id) as Tag;
+
+			if (tag == null)
+				return;
 	
 			SetBackground (renderer, tag);
 	
@@ -206,6 +209,8 @@ namespace FSpot {
 			uint tag_id = (uint) value;
 	
 			Tag tag = tag_store.Get (tag_id) as Tag;
+			if (tag == null)
+				return;
 	
 			SetBackground (renderer, tag);
 	
