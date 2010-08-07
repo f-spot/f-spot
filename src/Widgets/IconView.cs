@@ -1115,6 +1115,9 @@ namespace FSpot.Widgets
 			int i, cell_num;
 			//Preload (area, false);
 
+			if (collection == null)
+				return;
+
 			for (i = 0, cell_num = start_cell_num;
 			     i < num_rows && cell_num < collection.Count;
 			     i ++) {
