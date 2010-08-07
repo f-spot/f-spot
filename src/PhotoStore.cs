@@ -101,6 +101,17 @@ public class PhotoStore : DbStore<Photo> {
 
 	public bool HasDuplicate (IBrowsableItem item) {
 		var uri = item.DefaultVersion.Uri;
+
+		// Check if the exact given uri already exists.
+		var query = "SELECT COUNT(*) AS count FROM photo_versions WHERE base_uri = ? AND filename = ?";
+		var reader = Database.Query (new HyenaSqliteCommand (query, uri.GetBaseUri ().ToString (), uri.GetFilename ()));
+		reader.Read ();
+		int count = Convert.ToInt32 (reader ["count"]);
+		reader.Close();
+		if (count > 0)
+			return true;
+
+		// Check by MD5. Won't import if there are photos with the same ImportMD5.
 		string hash = item.DefaultVersion.ImportMD5;
 		var condition = new ConditionWrapper (String.Format ("import_md5 = \"{0}\"", hash));
 		var dupes_by_hash = Count ("photo_versions", condition);
@@ -117,7 +128,7 @@ public class PhotoStore : DbStore<Photo> {
 			DateTime? time = null;
 
 			// Look for a filename match.
-			var reader = Database.Query (new HyenaSqliteCommand ("SELECT photos.id, photos.time, pv.filename FROM photos LEFT JOIN photo_versions AS pv ON pv.photo_id = photos.id WHERE pv.filename = ?", name));
+			reader = Database.Query (new HyenaSqliteCommand ("SELECT photos.id, photos.time, pv.filename FROM photos LEFT JOIN photo_versions AS pv ON pv.photo_id = photos.id WHERE pv.filename = ?", name));
 			while (reader.Read ()) {
 				Log.DebugFormat ("Found one possible duplicate for {0}", reader["filename"].ToString ());
 				if (!time.HasValue) {
@@ -137,6 +148,7 @@ public class PhotoStore : DbStore<Photo> {
 			reader.Close ();
 		}
 
+		// No matches
 		return false;
 	}
 
