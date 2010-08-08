@@ -3,7 +3,6 @@ SUBDIRS = \
 	Core \
 	Query \
 	JobScheduler \
-	Bling \
 	Platform \
 	Widgets \
 	Clients

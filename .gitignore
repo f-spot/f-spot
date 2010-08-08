@@ -1,3 +1,5 @@
+*.exe
+*.config
 *~
 *#*#
 Makefile
@@ -5,14 +7,13 @@ Makefile.in
 /aclocal.m4
 /autom4te.cache
 /bin
-/build/dll-map-verifier.exe
-/config.guess
-/config.h
-/config.h.in
-/config.log
-/config.status
-/config.sub
-/configure
+configure
+config.guess
+config.h
+config.h.in
+config.log
+config.status
+config.sub
 /f-spot-import.desktop
 /f-spot-import.desktop.in
 /f-spot-view.desktop
@@ -50,3 +51,4 @@ help/*/*.page
 !help/C/*.page
 help/*/*.xml
 !help/C/*.xml
+/src/Clients/MainApp/f-spot

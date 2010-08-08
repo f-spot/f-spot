@@ -352,6 +352,7 @@ lib/TagLib/Makefile
 src/AssemblyInfo.cs
 
 src/Core/Makefile
+src/Core/FSpot.Bling/Makefile
 src/Core/FSpot.Cms/Makefile
 src/Core/FSpot.Cms/FSpot.Cms.dll.config
 src/Core/FSpot.Core/Makefile
@@ -367,7 +368,6 @@ icons/Makefile
 tools/Makefile
 po/Makefile.in
 src/Utils/Makefile
-src/Bling/Makefile
 src/JobScheduler/Makefile
 src/Query/Makefile
 src/Widgets/Makefile
