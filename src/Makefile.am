@@ -1,7 +1,5 @@
 SUBDIRS = \
-	Utils \
 	Core \
-	Query \
 	Platform \
 	Widgets \
 	Clients

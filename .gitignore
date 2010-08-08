@@ -1,5 +1,4 @@
 *.exe
-*.config
 *~
 *#*#
 Makefile
@@ -52,3 +51,4 @@ help/*/*.page
 help/*/*.xml
 !help/C/*.xml
 /src/Clients/MainApp/f-spot
+/src/Clients/MainApp/f-spot.exe.config

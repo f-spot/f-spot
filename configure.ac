@@ -359,6 +359,8 @@ src/Core/FSpot.Core/Makefile
 src/Core/FSpot.Core/FSpot.Core.dll.config
 src/Core/FSpot.Core/FSpot.Core/Defines.cs
 src/Core/FSpot.JobScheduler/Makefile
+src/Core/FSpot.Utils/Makefile
+src/Core/FSpot.Query/Makefile
 
 src/Clients/Makefile
 src/Clients/MainApp/Makefile
@@ -368,8 +370,6 @@ docs/Makefile
 icons/Makefile
 tools/Makefile
 po/Makefile.in
-src/Utils/Makefile
-src/Query/Makefile
 src/Widgets/Makefile
 src/Widgets/FSpot.Widgets.dll.config
 src/Platform/Makefile
