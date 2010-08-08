@@ -3,24 +3,18 @@ TARGET = exe
 LINK = $(REF_FSPOT)
 ASSEMBLY_BUILD_FLAGS = -unsafe
 
-SOURCES = \
+SOURCES =  \
 	DependentListStore.cs \
 	ExportStore.cs \
-	FSpot/Accelerometer.cs \
-	FSpot/App.cs \
-	FSpot/BitConverter.cs \
 	FSpot.ColorAdjustment/Adjustment.cs \
 	FSpot.ColorAdjustment/AutoStretch.cs \
 	FSpot.ColorAdjustment/Desaturate.cs \
 	FSpot.ColorAdjustment/FullColorAdjustment.cs \
 	FSpot.ColorAdjustment/SepiaTone.cs \
-	FSpot/ColorManagement.cs \
-	FSpot/ControlOverlay.cs \
 	FSpot.Database/Db.cs \
 	FSpot.Database/FSpotDatabaseConnection.cs \
 	FSpot.Database/Tests/UpdaterTests.cs \
 	FSpot.Database/Updater.cs \
-	FSpot/DragDropTargets.cs \
 	FSpot.Editors/AutoStretchEditor.cs \
 	FSpot.Editors/ColorEditor.cs \
 	FSpot.Editors/CropEditor.cs \
@@ -45,7 +39,6 @@ SOURCES = \
 	FSpot.Extensions/SidebarPageNode.cs \
 	FSpot.Extensions/TransitionNode.cs \
 	FSpot.Extensions/ViewModeCondition.cs \
-	FSpot/Fader.cs \
 	FSpot.Filters/ChmodFilter.cs \
 	FSpot.Filters/FilterRequest.cs \
 	FSpot.Filters/FilterSet.cs \
@@ -55,11 +48,6 @@ SOURCES = \
 	FSpot.Filters/SharpFilter.cs \
 	FSpot.Filters/UniqueNameFilter.cs \
 	FSpot.Filters/WhiteListFilter.cs \
-	FSpot/FolderQueryWidget.cs \
-	FSpot/FullScreenView.cs \
-	FSpot/GroupAdaptor.cs \
-	FSpot/GroupSelector.cs \
-	FSpot/Histogram.cs \
 	FSpot.Imaging/Ciff.cs \
 	FSpot.Imaging/DCRawFile.cs \
 	FSpot.Imaging/ImageFile.cs \
@@ -72,8 +60,6 @@ SOURCES = \
 	FSpot.Import/ImportController.cs \
 	FSpot.Import/ImportSource.cs \
 	FSpot.Import/MetadataImporter.cs \
-	FSpot/InfoOverlay.cs \
-	FSpot/ItemAction.cs \
 	FSpot.Jobs/CalculateHashJob.cs \
 	FSpot.Jobs/SyncMetadataJob.cs \
 	FSpot.Loaders/AreaPreparedEventArgs.cs \
@@ -81,34 +67,7 @@ SOURCES = \
 	FSpot.Loaders/GdkImageLoader.cs \
 	FSpot.Loaders/IImageLoader.cs \
 	FSpot.Loaders/ImageLoader.cs \
-	FSpot/main.cs \
-	FSpot/MainWindow.cs \
-	FSpot/MemorySurface.cs \
-	FSpot/Photo.cs \
-	FSpot/PhotoEventArgs.cs \
-	FSpot/PhotoList.cs \
-	FSpot/PhotoLoader.cs \
-	FSpot/PhotoPopup.cs \
-	FSpot/PhotoQuery.cs \
-	FSpot/PhotoVersion.cs \
-	FSpot/PhotoView.cs \
-	FSpot/PixbufCache.cs \
-	FSpot/Preferences.cs  \
-	FSpot/PrintOperation.cs \
-	FSpot/ProgressItem.cs \
 	FSpot.Query/HiddenTag.cs \
-	FSpot/QueryWidget.cs \
-	FSpot/RotateCommand.cs \
-	FSpot/SelectionDataExtensions.cs \
-	FSpot/SendEmail.cs \
-	FSpot/SingleView.cs \
-	FSpot/TagQueryWidget.cs \
-	FSpot/TagSelectionWidget.cs \
-	FSpot/Term.cs \
-	FSpot/ThumbnailCache.cs \
-	FSpot/ThumbnailGenerator.cs \
-	FSpot/TimeAdaptor.cs \
-	FSpot/TipWindow.cs \
 	FSpot.UI.Dialog/AboutDialog.cs \
 	FSpot.UI.Dialog/AdjustTimeDialog.cs \
 	FSpot.UI.Dialog/BuilderDialog.cs \
@@ -128,10 +87,8 @@ SOURCES = \
 	FSpot.UI.Dialog/SelectionRatioDialog.cs \
 	FSpot.UI.Dialog/TagSelectionDialog.cs \
 	FSpot.UI.Dialog/ThreadProgressDialog.cs \
-	FSpot/UriCollection.cs \
 	FSpot.Utils/Util.cs \
-	FSpot/Vector.cs \
-	FSpot.Widgets/CellRendererTextProgress.cs\
+	FSpot.Widgets/CellRendererTextProgress.cs \
 	FSpot.Widgets/CompositeUtils.cs \
 	FSpot.Widgets/Dissolve.cs \
 	FSpot.Widgets/EditorPage.cs \
@@ -149,7 +106,7 @@ SOURCES = \
 	FSpot.Widgets/MetadataDisplay.cs \
 	FSpot.Widgets/PanZoom.cs \
 	FSpot.Widgets/PhotoImageView.cs \
-	FSpot.Widgets/PreviewPopup.cs  \
+	FSpot.Widgets/PreviewPopup.cs \
 	FSpot.Widgets/Push.cs \
 	FSpot.Widgets/QueryView.cs \
 	FSpot.Widgets/RatingMenuItem.cs \
@@ -166,6 +123,49 @@ SOURCES = \
 	FSpot.Widgets/TrayView.cs \
 	FSpot.Widgets/ViewContext.cs \
 	FSpot.Widgets/Wipe.cs \
+	FSpot/Accelerometer.cs \
+	FSpot/App.cs \
+	FSpot/BitConverter.cs \
+	FSpot/ColorManagement.cs \
+	FSpot/ControlOverlay.cs \
+	FSpot/DragDropTargets.cs \
+	FSpot/Fader.cs \
+	FSpot/FolderQueryWidget.cs \
+	FSpot/FullScreenView.cs \
+	FSpot/GroupAdaptor.cs \
+	FSpot/GroupSelector.cs \
+	FSpot/Histogram.cs \
+	FSpot/InfoOverlay.cs \
+	FSpot/ItemAction.cs \
+	FSpot/main.cs \
+	FSpot/MainWindow.cs \
+	FSpot/MemorySurface.cs \
+	FSpot/Photo.cs \
+	FSpot/PhotoEventArgs.cs \
+	FSpot/PhotoList.cs \
+	FSpot/PhotoLoader.cs \
+	FSpot/PhotoPopup.cs \
+	FSpot/PhotoQuery.cs \
+	FSpot/PhotoVersion.cs \
+	FSpot/PhotoView.cs \
+	FSpot/PixbufCache.cs \
+	FSpot/Preferences.cs \
+	FSpot/PrintOperation.cs \
+	FSpot/ProgressItem.cs \
+	FSpot/QueryWidget.cs \
+	FSpot/RotateCommand.cs \
+	FSpot/SelectionDataExtensions.cs \
+	FSpot/SendEmail.cs \
+	FSpot/SingleView.cs \
+	FSpot/TagQueryWidget.cs \
+	FSpot/TagSelectionWidget.cs \
+	FSpot/Term.cs \
+	FSpot/ThumbnailCache.cs \
+	FSpot/ThumbnailGenerator.cs \
+	FSpot/TimeAdaptor.cs \
+	FSpot/TipWindow.cs \
+	FSpot/UriCollection.cs \
+	FSpot/Vector.cs \
 	FSpot/XScreenSaverSlide.cs \
 	ImageLoaderThread.cs \
 	JobStore.cs \

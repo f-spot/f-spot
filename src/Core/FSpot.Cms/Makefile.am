@@ -3,7 +3,7 @@ ASSEMBLY_BUILD_FLAGS = -unsafe
 TARGET = library
 LINK = $(REF_FSPOT_CMS)
 
-SOURCES = \
+SOURCES =  \
 	Cms/CctTable.cs \
 	Cms/CmsException.cs \
 	Cms/ColorCIELab.cs \

@@ -2,9 +2,10 @@ ASSEMBLY = FSpot.Widgets
 TARGET = library
 LINK = $(REF_FSPOT_WIDGETS)
 
-SOURCES = \
+SOURCES =  \
 	FSpot.Widgets/ApplicationActivatedEventArgs.cs \
 	FSpot.Widgets/BuilderWindow.cs \
+	FSpot.Widgets/CairoTransition.cs \
 	FSpot.Widgets/CheckPattern.cs \
 	FSpot.Widgets/ComplexMenuItem.cs \
 	FSpot.Widgets/Curve.cs \
@@ -19,11 +20,10 @@ SOURCES = \
 	FSpot.Widgets/MenuButton.cs \
 	FSpot.Widgets/OpenWithMenu.cs \
 	FSpot.Widgets/PointerMode.cs \
+	FSpot.Widgets/PushTransition.cs \
 	FSpot.Widgets/Rating.cs \
 	FSpot.Widgets/SaneTreeView.cs \
 	FSpot.Widgets/ScrolledView.cs \
-	FSpot.Widgets/PushTransition.cs \
-	FSpot.Widgets/CairoTransition.cs \
 	FSpot.Widgets/SlideShowTransition.cs
 
 RESOURCES =

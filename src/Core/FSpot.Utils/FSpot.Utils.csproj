@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="3.5" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{CE160879-1BF0-4711-A18F-FDA2772900FA}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>FSpot.Utils</RootNamespace>
+    <AssemblyName>FSpot.Utils</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <ReleaseVersion>0.7.2</ReleaseVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\..\bin</OutputPath>
+    <DefineConstants>DEBUG</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>none</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\..\bin</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <Compile Include="FSpot.Utils\Cache.cs" />
+    <Compile Include="FSpot.Utils\CairoUtils.cs" />
+    <Compile Include="FSpot.Utils\ConsoleCrayon.cs" />
+    <Compile Include="FSpot.Utils\FileExtensions.cs" />
+    <Compile Include="FSpot.Utils\GdkUtils.cs" />
+    <Compile Include="FSpot.Utils\GIOTagLibFileAbstraction.cs" />
+    <Compile Include="FSpot.Utils\GtkUtil.cs" />
+    <Compile Include="FSpot.Utils\HashUtils.cs" />
+    <Compile Include="FSpot.Utils\Metadata.cs" />
+    <Compile Include="FSpot.Utils\PixbufUtils.cs" />
+    <Compile Include="FSpot.Utils\RecursiveFileEnumerator.cs" />
+    <Compile Include="FSpot.Utils\SafeUriExtensions.cs" />
+    <Compile Include="FSpot.Utils\SidecarXmpExtensions.cs" />
+    <Compile Include="FSpot.Utils\Unix.cs" />
+    <Compile Include="FSpot.Utils\UriExtensions.cs" />
+    <Compile Include="FSpot.Utils\UriUtils.cs" />
+    <Compile Include="FSpot.Utils\XdgThumbnailSpec.cs" />
+    <Compile Include="FSpot.Utils\Tests\GIOTagLibFileAbstractionTests.cs" />
+    <Compile Include="FSpot.Utils\Tests\ImageTestHelper.cs" />
+    <Compile Include="FSpot.Utils\Tests\MetadataTest.cs" />
+    <Compile Include="FSpot.Utils\Tests\SafeUriTests.cs" />
+    <Compile Include="FSpot.Utils\Tests\SidecarXmpExtensionsTests.cs" />
+    <Compile Include="FSpot.Utils\Tests\XdgThumbnailSpecTests.cs" />
+  </ItemGroup>
+  <ProjectExtensions>
+    <MonoDevelop>
+      <Properties>
+        <MonoDevelop.Autotools.MakefileInfo IntegrationEnabled="true" RelativeMakefileName="Makefile.am" BuildTargetName="" CleanTargetName="" IsAutotoolsProject="true" RelativeConfigureInPath="../../..">
+          <BuildFilesVar Sync="true" Name="SOURCES" />
+          <DeployFilesVar />
+          <ResourcesVar Sync="true" Name="RESOURCES" />
+          <OthersVar />
+          <GacRefVar />
+          <AsmRefVar />
+          <ProjectRefVar />
+        </MonoDevelop.Autotools.MakefileInfo>
+      </Properties>
+    </MonoDevelop>
+  </ProjectExtensions>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\lib\Hyena\Hyena\Hyena.csproj">
+      <Project>{95374549-9553-4C1E-9D89-667755F90E12}</Project>
+      <Name>Hyena</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\lib\TagLib\TagLib.csproj">
+      <Project>{903D6440-A981-4B29-8825-7EB820684925}</Project>
+      <Name>TagLib</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="glib-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
+    <Reference Include="gio-sharp, Version=2.14.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\lib\gio-sharp\gio\gio-sharp.dll</HintPath>
+    </Reference>
+    <Reference Include="Mono.Cairo" />
+    <Reference Include="gdk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
+    <Reference Include="System.Core" />
+    <Reference Include="gtk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
+    <Reference Include="System" />
+    <Reference Include="Mono.Posix" />
+  </ItemGroup>
+</Project>

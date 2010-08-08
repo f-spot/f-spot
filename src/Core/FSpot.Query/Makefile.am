@@ -2,7 +2,7 @@ ASSEMBLY = FSpot.Query
 TARGET = library
 LINK = $(REF_FSPOT_QUERY)
 
-SOURCES = \
+SOURCES =  \
 	FSpot.Query/ConditionWrapper.cs \
 	FSpot.Query/DateRange.cs \
 	FSpot.Query/FolderSet.cs \
@@ -12,8 +12,8 @@ SOURCES = \
 	FSpot.Query/OrderByTime.cs \
 	FSpot.Query/RatingRange.cs \
 	FSpot.Query/RollSet.cs \
-	FSpot.Query/UntaggedCondition.cs \
-	FSpot.Query/Tests/LogicalTermTests.cs
+	FSpot.Query/Tests/LogicalTermTests.cs \
+	FSpot.Query/UntaggedCondition.cs
 
 RESOURCES =
 

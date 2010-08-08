@@ -1,6 +1,8 @@
 *.exe
 *~
 *#*#
+*.userprefs
+*.pidb
 Makefile
 Makefile.in
 /aclocal.m4
@@ -22,7 +24,6 @@ config.sub
 /f-spot.schemas
 /f-spot.spec
 /f-spot.pidb
-/f-spot.userprefs
 /f-spot.usertasks
 /gnome-doc-utils.make
 /install-sh

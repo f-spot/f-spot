@@ -1,0 +1,336 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="3.5" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{27EC05FB-0223-4B26-8157-E49AF81D0007}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>MainApp</RootNamespace>
+    <AssemblyName>f-spot</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <ReleaseVersion>0.7.2</ReleaseVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\..\bin</OutputPath>
+    <DefineConstants>DEBUG</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>none</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\..\bin</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <Compile Include="DependentListStore.cs" />
+    <Compile Include="ExportStore.cs" />
+    <Compile Include="FSpot\Accelerometer.cs" />
+    <Compile Include="FSpot\App.cs" />
+    <Compile Include="FSpot\BitConverter.cs" />
+    <Compile Include="FSpot.ColorAdjustment\Adjustment.cs" />
+    <Compile Include="FSpot.ColorAdjustment\AutoStretch.cs" />
+    <Compile Include="FSpot.ColorAdjustment\Desaturate.cs" />
+    <Compile Include="FSpot.ColorAdjustment\FullColorAdjustment.cs" />
+    <Compile Include="FSpot.ColorAdjustment\SepiaTone.cs" />
+    <Compile Include="FSpot\ColorManagement.cs" />
+    <Compile Include="FSpot\ControlOverlay.cs" />
+    <Compile Include="FSpot.Database\Db.cs" />
+    <Compile Include="FSpot.Database\FSpotDatabaseConnection.cs" />
+    <Compile Include="FSpot.Database\Tests\UpdaterTests.cs" />
+    <Compile Include="FSpot.Database\Updater.cs" />
+    <Compile Include="FSpot\DragDropTargets.cs" />
+    <Compile Include="FSpot.Editors\AutoStretchEditor.cs" />
+    <Compile Include="FSpot.Editors\ColorEditor.cs" />
+    <Compile Include="FSpot.Editors\CropEditor.cs" />
+    <Compile Include="FSpot.Editors\DesaturateEditor.cs" />
+    <Compile Include="FSpot.Editors\Editor.cs" />
+    <Compile Include="FSpot.Editors\RedEyeEditor.cs" />
+    <Compile Include="FSpot.Editors\SepiaEditor.cs" />
+    <Compile Include="FSpot.Editors\SoftFocusEditor.cs" />
+    <Compile Include="FSpot.Editors\TiltEditor.cs" />
+    <Compile Include="FSpot.Extensions\CommandMenuItemNode.cs" />
+    <Compile Include="FSpot.Extensions\ComplexMenuItemNode.cs" />
+    <Compile Include="FSpot.Extensions\ExportMenuItemNode.cs" />
+    <Compile Include="FSpot.Extensions\ICommand.cs" />
+    <Compile Include="FSpot.Extensions\IExporter.cs" />
+    <Compile Include="FSpot.Extensions\IMenuGenerator.cs" />
+    <Compile Include="FSpot.Extensions\IService.cs" />
+    <Compile Include="FSpot.Extensions\MenuNode.cs" />
+    <Compile Include="FSpot.Extensions\PhotoSelectionCondition.cs" />
+    <Compile Include="FSpot.Extensions\PopupCommands.cs" />
+    <Compile Include="FSpot.Extensions\ServiceNode.cs" />
+    <Compile Include="FSpot.Extensions\SidebarPage.cs" />
+    <Compile Include="FSpot.Extensions\SidebarPageNode.cs" />
+    <Compile Include="FSpot.Extensions\TransitionNode.cs" />
+    <Compile Include="FSpot.Extensions\ViewModeCondition.cs" />
+    <Compile Include="FSpot\Fader.cs" />
+    <Compile Include="FSpot.Filters\ChmodFilter.cs" />
+    <Compile Include="FSpot.Filters\FilterRequest.cs" />
+    <Compile Include="FSpot.Filters\FilterSet.cs" />
+    <Compile Include="FSpot.Filters\IFilter.cs" />
+    <Compile Include="FSpot.Filters\JpegFilter.cs" />
+    <Compile Include="FSpot.Filters\ResizeFilter.cs" />
+    <Compile Include="FSpot.Filters\SharpFilter.cs" />
+    <Compile Include="FSpot.Filters\UniqueNameFilter.cs" />
+    <Compile Include="FSpot.Filters\WhiteListFilter.cs" />
+    <Compile Include="FSpot\FolderQueryWidget.cs" />
+    <Compile Include="FSpot\FullScreenView.cs" />
+    <Compile Include="FSpot\GroupAdaptor.cs" />
+    <Compile Include="FSpot\GroupSelector.cs" />
+    <Compile Include="FSpot\Histogram.cs" />
+    <Compile Include="FSpot.Imaging\Ciff.cs" />
+    <Compile Include="FSpot.Imaging\DCRawFile.cs" />
+    <Compile Include="FSpot.Imaging\ImageFile.cs" />
+    <Compile Include="FSpot.Imaging\InternalProcess.cs" />
+    <Compile Include="FSpot.Imaging\IOChannel.cs" />
+    <Compile Include="FSpot.Imaging\RafFile.cs" />
+    <Compile Include="FSpot.Imaging\Tests\ImageFileTests.cs" />
+    <Compile Include="FSpot.Imaging\Tiff.cs" />
+    <Compile Include="FSpot.Import\FileImportSource.cs" />
+    <Compile Include="FSpot.Import\ImportController.cs" />
+    <Compile Include="FSpot.Import\ImportSource.cs" />
+    <Compile Include="FSpot.Import\MetadataImporter.cs" />
+    <Compile Include="FSpot\InfoOverlay.cs" />
+    <Compile Include="FSpot\ItemAction.cs" />
+    <Compile Include="FSpot.Jobs\CalculateHashJob.cs" />
+    <Compile Include="FSpot.Jobs\SyncMetadataJob.cs" />
+    <Compile Include="FSpot.Loaders\AreaPreparedEventArgs.cs" />
+    <Compile Include="FSpot.Loaders\AreaUpdatedEventArgs.cs" />
+    <Compile Include="FSpot.Loaders\GdkImageLoader.cs" />
+    <Compile Include="FSpot.Loaders\IImageLoader.cs" />
+    <Compile Include="FSpot.Loaders\ImageLoader.cs" />
+    <Compile Include="FSpot\main.cs" />
+    <Compile Include="FSpot\MainWindow.cs" />
+    <Compile Include="FSpot\MemorySurface.cs" />
+    <Compile Include="FSpot\Photo.cs" />
+    <Compile Include="FSpot\PhotoEventArgs.cs" />
+    <Compile Include="FSpot\PhotoList.cs" />
+    <Compile Include="FSpot\PhotoLoader.cs" />
+    <Compile Include="FSpot\PhotoPopup.cs" />
+    <Compile Include="FSpot\PhotoQuery.cs" />
+    <Compile Include="FSpot\PhotoVersion.cs" />
+    <Compile Include="FSpot\PhotoView.cs" />
+    <Compile Include="FSpot\PixbufCache.cs" />
+    <Compile Include="FSpot\Preferences.cs" />
+    <Compile Include="FSpot\PrintOperation.cs" />
+    <Compile Include="FSpot\ProgressItem.cs" />
+    <Compile Include="FSpot.Query\HiddenTag.cs" />
+    <Compile Include="FSpot\QueryWidget.cs" />
+    <Compile Include="FSpot\RotateCommand.cs" />
+    <Compile Include="FSpot\SelectionDataExtensions.cs" />
+    <Compile Include="FSpot\SendEmail.cs" />
+    <Compile Include="FSpot\SingleView.cs" />
+    <Compile Include="FSpot\TagQueryWidget.cs" />
+    <Compile Include="FSpot\TagSelectionWidget.cs" />
+    <Compile Include="FSpot\Term.cs" />
+    <Compile Include="FSpot\ThumbnailCache.cs" />
+    <Compile Include="FSpot\ThumbnailGenerator.cs" />
+    <Compile Include="FSpot\TimeAdaptor.cs" />
+    <Compile Include="FSpot\TipWindow.cs" />
+    <Compile Include="FSpot.UI.Dialog\AboutDialog.cs" />
+    <Compile Include="FSpot.UI.Dialog\AdjustTimeDialog.cs" />
+    <Compile Include="FSpot.UI.Dialog\BuilderDialog.cs" />
+    <Compile Include="FSpot.UI.Dialog\DateRangeDialog.cs" />
+    <Compile Include="FSpot.UI.Dialog\EditExceptionDialog.cs" />
+    <Compile Include="FSpot.UI.Dialog\EditTagDialog.cs" />
+    <Compile Include="FSpot.UI.Dialog\EditTagIconDialog.cs" />
+    <Compile Include="FSpot.UI.Dialog\GladeDialog.cs" />
+    <Compile Include="FSpot.UI.Dialog\ImportDialog.cs" />
+    <Compile Include="FSpot.UI.Dialog\ImportFailureDialog.cs" />
+    <Compile Include="FSpot.UI.Dialog\LastRollDialog.cs" />
+    <Compile Include="FSpot.UI.Dialog\PreferenceDialog.cs" />
+    <Compile Include="FSpot.UI.Dialog\ProgressDialog.cs" />
+    <Compile Include="FSpot.UI.Dialog\RatingFilterDialog.cs" />
+    <Compile Include="FSpot.UI.Dialog\RepairDbDialog.cs" />
+    <Compile Include="FSpot.UI.Dialog\RepairDialog.cs" />
+    <Compile Include="FSpot.UI.Dialog\SelectionRatioDialog.cs" />
+    <Compile Include="FSpot.UI.Dialog\TagSelectionDialog.cs" />
+    <Compile Include="FSpot.UI.Dialog\ThreadProgressDialog.cs" />
+    <Compile Include="FSpot\UriCollection.cs" />
+    <Compile Include="FSpot.Utils\Util.cs" />
+    <Compile Include="FSpot\Vector.cs" />
+    <Compile Include="FSpot.Widgets\CellRendererTextProgress.cs" />
+    <Compile Include="FSpot.Widgets\CompositeUtils.cs" />
+    <Compile Include="FSpot.Widgets\Dissolve.cs" />
+    <Compile Include="FSpot.Widgets\EditorPage.cs" />
+    <Compile Include="FSpot.Widgets\Filmstrip.cs" />
+    <Compile Include="FSpot.Widgets\FindBar.cs" />
+    <Compile Include="FSpot.Widgets\FolderTreeModel.cs" />
+    <Compile Include="FSpot.Widgets\FolderTreePage.cs" />
+    <Compile Include="FSpot.Widgets\FolderTreeView.cs" />
+    <Compile Include="FSpot.Widgets\IconView.cs" />
+    <Compile Include="FSpot.Widgets\IEffect.cs" />
+    <Compile Include="FSpot.Widgets\ImageInfo.cs" />
+    <Compile Include="FSpot.Widgets\InfoBox.cs" />
+    <Compile Include="FSpot.Widgets\ITransition.cs" />
+    <Compile Include="FSpot.Widgets\Loupe.cs" />
+    <Compile Include="FSpot.Widgets\MetadataDisplay.cs" />
+    <Compile Include="FSpot.Widgets\PanZoom.cs" />
+    <Compile Include="FSpot.Widgets\PhotoImageView.cs" />
+    <Compile Include="FSpot.Widgets\PreviewPopup.cs" />
+    <Compile Include="FSpot.Widgets\Push.cs" />
+    <Compile Include="FSpot.Widgets\QueryView.cs" />
+    <Compile Include="FSpot.Widgets\RatingMenuItem.cs" />
+    <Compile Include="FSpot.Widgets\Reveal.cs" />
+    <Compile Include="FSpot.Widgets\ScalingIconView.cs" />
+    <Compile Include="FSpot.Widgets\Sharpener.cs" />
+    <Compile Include="FSpot.Widgets\Sidebar.cs" />
+    <Compile Include="FSpot.Widgets\SlideShow.cs" />
+    <Compile Include="FSpot.Widgets\SoftFocus.cs" />
+    <Compile Include="FSpot.Widgets\TagEntry.cs" />
+    <Compile Include="FSpot.Widgets\TagMenu.cs" />
+    <Compile Include="FSpot.Widgets\TagView.cs" />
+    <Compile Include="FSpot.Widgets\Tests\FindBarTests.cs" />
+    <Compile Include="FSpot.Widgets\TrayView.cs" />
+    <Compile Include="FSpot.Widgets\ViewContext.cs" />
+    <Compile Include="FSpot.Widgets\Wipe.cs" />
+    <Compile Include="FSpot\XScreenSaverSlide.cs" />
+    <Compile Include="ImageLoaderThread.cs" />
+    <Compile Include="JobStore.cs" />
+    <Compile Include="MetaStore.cs" />
+    <Compile Include="PhotoStore.cs" />
+    <Compile Include="PhotoTagMenu.cs" />
+    <Compile Include="PhotoVersionCommands.cs" />
+    <Compile Include="PhotoVersionMenu.cs" />
+    <Compile Include="PixbufUtils.cs" />
+    <Compile Include="RollStore.cs" />
+    <Compile Include="TagCommands.cs" />
+    <Compile Include="TagPopup.cs" />
+    <Compile Include="TagStore.cs" />
+    <Compile Include="ThumbnailCommand.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\..\..\COPYING" />
+    <EmbeddedResource Include="..\..\..\icons\f-spot-not.png" />
+    <EmbeddedResource Include="..\..\..\icons\f-spot-128.png" />
+    <EmbeddedResource Include="..\..\..\icons\flower.png" />
+    <EmbeddedResource Include="f-spot.glade" />
+    <EmbeddedResource Include="ui\import.ui" />
+    <EmbeddedResource Include="ui\mail_dialog.ui" />
+    <EmbeddedResource Include="ui\main_window.ui" />
+    <EmbeddedResource Include="ui\single_view.ui" />
+    <EmbeddedResource Include="ui\version_name_dialog.ui" />
+    <EmbeddedResource Include="ui\viewer_preferences.ui" />
+    <EmbeddedResource Include="ui\tag_selection_dialog.ui" />
+    <EmbeddedResource Include="FSpot.UI.Dialog\ui\AdjustTimeDialog.ui" />
+    <EmbeddedResource Include="FSpot.UI.Dialog\ui\DateRangeDialog.ui" />
+    <EmbeddedResource Include="FSpot.UI.Dialog\ui\EditTagDialog.ui" />
+    <EmbeddedResource Include="FSpot.UI.Dialog\ui\EditTagIconDialog.ui" />
+    <EmbeddedResource Include="FSpot.UI.Dialog\ui\PreferenceDialog.ui" />
+    <EmbeddedResource Include="FSpot.UI.Dialog\ui\RatingFilterDialog.ui" />
+    <EmbeddedResource Include="FSpot.UI.Dialog\ui\CreateTagDialog.ui" />
+    <EmbeddedResource Include="FSpot.UI.Dialog\ui\LastImportRollFilterDialog.ui" />
+    <EmbeddedResource Include="FSpot.UI.Dialog\ui\RepairDialog.ui" />
+    <EmbeddedResource Include="FSpot.addin.xml" />
+  </ItemGroup>
+  <ProjectExtensions>
+    <MonoDevelop>
+      <Properties>
+        <MonoDevelop.Autotools.MakefileInfo IntegrationEnabled="true" RelativeMakefileName="Makefile.am" BuildTargetName="" CleanTargetName="" IsAutotoolsProject="true" RelativeConfigureInPath="../../..">
+          <BuildFilesVar Sync="true" Name="SOURCES" />
+          <DeployFilesVar />
+          <ResourcesVar Sync="true" Name="RESOURCES" />
+          <OthersVar />
+          <GacRefVar />
+          <AsmRefVar />
+          <ProjectRefVar />
+        </MonoDevelop.Autotools.MakefileInfo>
+      </Properties>
+    </MonoDevelop>
+  </ProjectExtensions>
+  <ItemGroup>
+    <Reference Include="gtk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
+    <Reference Include="gdk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
+    <Reference Include="System.Data" />
+    <Reference Include="Mono.Posix" />
+    <Reference Include="unique-sharp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=22c19d4a5344e615">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\lib\unique-sharp\unique\unique-sharp.dll</HintPath>
+    </Reference>
+    <Reference Include="Mono.Cairo" />
+    <Reference Include="Mono.Addins, Version=0.4.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756">
+      <Package>mono-addins</Package>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="System" />
+    <Reference Include="glade-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
+    <Reference Include="Mono.Addins.Setup, Version=0.4.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756">
+      <Package>mono-addins-setup</Package>
+    </Reference>
+    <Reference Include="gio-sharp, Version=2.14.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\lib\gio-sharp\gio\gio-sharp.dll</HintPath>
+    </Reference>
+    <Reference Include="gtk-sharp-beans, Version=2.14.0.0, Culture=neutral, PublicKeyToken=97a95fb57b03c03a">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\lib\gtk-sharp-beans\gtk-sharp-beans.dll</HintPath>
+    </Reference>
+    <Reference Include="gnome-sharp, Version=2.24.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
+    <Reference Include="Mono.Addins.Gui, Version=0.4.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756">
+      <Package>mono-addins-gui</Package>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Core\FSpot.Core\FSpot.Core.csproj">
+      <Project>{57EDC3BC-E777-4400-B4E7-32A5D8F15A76}</Project>
+      <Name>FSpot.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\lib\Hyena\Hyena\Hyena.csproj">
+      <Project>{95374549-9553-4C1E-9D89-667755F90E12}</Project>
+      <Name>Hyena</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\lib\Hyena\Hyena.Data.Sqlite\Hyena.Data.Sqlite.csproj">
+      <Project>{95374549-9553-4C1E-9D89-667755F90E13}</Project>
+      <Name>Hyena.Data.Sqlite</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\lib\TagLib\TagLib.csproj">
+      <Project>{903D6440-A981-4B29-8825-7EB820684925}</Project>
+      <Name>TagLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Core\FSpot.JobScheduler\FSpot.JobScheduler.csproj">
+      <Project>{46049AF4-97E0-4EE5-A5CB-A9D0C9026B25}</Project>
+      <Name>FSpot.JobScheduler</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Core\FSpot.Platform\FSpot.Platform.csproj">
+      <Project>{2D3B12F7-ABF3-4784-92FE-78A1C775E157}</Project>
+      <Name>FSpot.Platform</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\lib\Hyena\Hyena.Gui\Hyena.Gui.csproj">
+      <Project>{C856EFD8-E812-4E61-8B76-E3583D94C233}</Project>
+      <Name>Hyena.Gui</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Core\FSpot.Query\FSpot.Query.csproj">
+      <Project>{D4E4D07E-D323-4CAE-BE04-8EE8EDF7F07E}</Project>
+      <Name>FSpot.Query</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Core\FSpot.Widgets\FSpot.Widgets.csproj">
+      <Project>{05A7FEC4-974A-40EB-AFB8-14E523EEEFFB}</Project>
+      <Name>FSpot.Widgets</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Core\FSpot.Bling\FSpot.Bling.csproj">
+      <Project>{7281334F-0B1D-4383-9EA2-6740D56ADCDE}</Project>
+      <Name>FSpot.Bling</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Core\FSpot.Cms\FSpot.Cms.csproj">
+      <Project>{9D66BC1B-4390-4B8D-8468-19D5A862EC23}</Project>
+      <Name>FSpot.Cms</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Core\FSpot.Utils\FSpot.Utils.csproj">
+      <Project>{CE160879-1BF0-4711-A18F-FDA2772900FA}</Project>
+      <Name>FSpot.Utils</Name>
+    </ProjectReference>
+  </ItemGroup>
+</Project>

@@ -2,7 +2,7 @@ ASSEMBLY = FSpot.Bling
 TARGET = library
 LINK = $(REF_FSPOT_BLING)
 
-SOURCES = \
+SOURCES =  \
 	FSpot.Bling/Animation.cs \
 	FSpot.Bling/BackEase.cs \
 	FSpot.Bling/CubicEase.cs \

@@ -2,7 +2,7 @@ ASSEMBLY = FSpot.Platform
 TARGET = library
 LINK = $(REF_FSPOT_PLATFORM)
 
-SOURCES = \
+SOURCES =  \
 	FSpot.Platform/Desktop.cs \
 	FSpot.Platform/PreferenceBackend.cs \
 	FSpot.Platform/ScreenSaver.cs \
