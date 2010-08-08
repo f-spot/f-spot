@@ -22,7 +22,7 @@ DISTCLEANFILES = \
 UPDATE_DESKTOP = \
 	if [ -f $(DESTDIR)$(datadir)/applications/defaults.list ] ; then \
 		if which update-desktop-database>/dev/null 2>&1 ; then \
-			update-desktop-database; \
+			update-desktop-database $(DESTDIR)$(datadir)/applications; \
 		fi \
 	fi
 
