@@ -15,6 +15,7 @@ using Gtk;
 
 using FSpot;
 using FSpot.Core;
+using FSpot.Database;
 using FSpot.Extensions;
 using FSpot.Query;
 using FSpot.UI.Dialog;

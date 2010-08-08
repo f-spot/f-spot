@@ -268,7 +268,7 @@ AC_SUBST(CFLAGS)
 AC_SUBST(CPPFLAGS)
 AC_SUBST(LDFLAGS)
 
-AC_CONFIG_FILES([src/f-spot],[chmod +x src/f-spot])
+AC_CONFIG_FILES([src/Clients/MainApp/f-spot],[chmod +x src/Clients/MainApp/f-spot])
 
 GNOME_ICON_THEME_PREFIX=`$PKG_CONFIG --variable=prefix gnome-icon-theme`
 AC_SUBST(GNOME_ICON_THEME_PREFIX)
@@ -349,12 +349,18 @@ lib/Hyena/Hyena.Data.Sqlite/Makefile
 lib/Hyena/Hyena.Gui/Makefile
 lib/TagLib/Makefile
 
+src/AssemblyInfo.cs
+
 src/Core/Makefile
 src/Core/FSpot.Cms/Makefile
 src/Core/FSpot.Cms/FSpot.Cms.dll.config
 src/Core/FSpot.Core/Makefile
 src/Core/FSpot.Core/FSpot.Core.dll.config
 src/Core/FSpot.Core/FSpot.Core/Defines.cs
+
+src/Clients/Makefile
+src/Clients/MainApp/Makefile
+src/Clients/MainApp/f-spot.exe.config
 
 docs/Makefile
 icons/Makefile
@@ -364,12 +370,9 @@ src/Utils/Makefile
 src/Bling/Makefile
 src/JobScheduler/Makefile
 src/Query/Makefile
-src/FSpot.Database/Makefile
 src/Widgets/Makefile
 src/Widgets/FSpot.Widgets.dll.config
 src/Platform/Makefile
-src/AssemblyInfo.cs
-src/f-spot.exe.config
 src/Makefile
 extensions/Makefile
 extensions/Editors/Makefile

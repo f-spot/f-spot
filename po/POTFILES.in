@@ -51,90 +51,83 @@ extensions/Tools/MergeDb/PickFolderDialog.cs
 extensions/Tools/ScreensaverConfig/ScreensaverConfig.addin.xml
 [type: gettext/glade]extensions/Tools/ScreensaverConfig/ScreensaverConfigDialog.ui
 f-spot.schemas.in
-src/App.cs
-src/Editors/AutoStretchEditor.cs
-src/Editors/ColorEditor.cs
-src/Editors/CropEditor.cs
-src/Editors/DesaturateEditor.cs
-src/Editors/RedEyeEditor.cs
-src/Editors/SepiaEditor.cs
-src/Editors/SoftFocusEditor.cs
-src/Editors/TiltEditor.cs
-src/Filters/ResizeFilter.cs
-src/Filters/SharpFilter.cs
-src/FSpot.addin.xml
-src/f-spot.glade
-src/FullScreenView.cs
-src/GroupSelector.cs
-src/Imaging/ImageFile.cs
-src/Import/ImportController.cs
-src/Import/MetadataImporter.cs
-src/ItemAction.cs
-src/Jobs/SyncMetadataJob.cs
-src/Loupe.cs
-src/MainWindow.cs
-src/Photo.cs
-src/PhotoPopup.cs
-src/PhotoStore.cs
-src/PhotoTagMenu.cs
-src/PhotoVersionCommands.cs
-src/PhotoVersionMenu.cs
-src/PhotoView.cs
-src/Preferences.cs
-src/PrintOperation.cs
-src/QueryWidget.cs
-src/RotateCommand.cs
-src/SendEmail.cs
-src/Sharpener.cs
-src/SingleView.cs
-src/TagCommands.cs
-src/TagPopup.cs
-src/TagQueryWidget.cs
-src/TagSelectionWidget.cs
-src/TagStore.cs
-src/Term.cs
-src/ThumbnailCommand.cs
-src/UI.Dialog/AboutDialog.cs
-src/UI.Dialog/AdjustTimeDialog.cs
-src/UI.Dialog/DateRangeDialog.cs
-src/UI.Dialog/EditExceptionDialog.cs
-src/UI.Dialog/EditTagDialog.cs
-src/UI.Dialog/EditTagIconDialog.cs
-src/UI.Dialog/ImportDialog.cs
-src/UI.Dialog/ImportFailureDialog.cs
-src/UI.Dialog/PreferenceDialog.cs
-src/UI.Dialog/ProgressDialog.cs
-src/UI.Dialog/RepairDbDialog.cs
-src/UI.Dialog/SelectionRatioDialog.cs
-src/UI.Dialog/ThreadProgressDialog.cs
-[type: gettext/glade]src/UI.Dialog/ui/AdjustTimeDialog.ui
-[type: gettext/glade]src/UI.Dialog/ui/CreateTagDialog.ui
-[type: gettext/glade]src/UI.Dialog/ui/DateRangeDialog.ui
-[type: gettext/glade]src/UI.Dialog/ui/EditTagDialog.ui
-[type: gettext/glade]src/UI.Dialog/ui/EditTagIconDialog.ui
-[type: gettext/glade]src/UI.Dialog/ui/LastImportRollFilterDialog.ui
-[type: gettext/glade]src/UI.Dialog/ui/PreferenceDialog.ui
-[type: gettext/glade]src/UI.Dialog/ui/RatingFilterDialog.ui
-[type: gettext/glade]src/UI.Dialog/ui/RepairDialog.ui
-[type: gettext/glade]src/ui/import.ui
-[type: gettext/glade]src/ui/mail_dialog.ui
-[type: gettext/glade]src/ui/main_window.ui
-[type: gettext/glade]src/ui/single_view.ui
-[type: gettext/glade]src/ui/tag_selection_dialog.ui
-[type: gettext/glade]src/ui/viewer_preferences.ui
-src/Updater.cs
-src/Util.cs
-src/Utils/Unix.cs
+src/Clients/MainApp/FSpot.addin.xml
+src/Clients/MainApp/FSpot/App.cs
+src/Clients/MainApp/FSpot.Database/Updater.cs
+src/Clients/MainApp/FSpot.Editors/AutoStretchEditor.cs
+src/Clients/MainApp/FSpot.Editors/ColorEditor.cs
+src/Clients/MainApp/FSpot.Editors/CropEditor.cs
+src/Clients/MainApp/FSpot.Editors/DesaturateEditor.cs
+src/Clients/MainApp/FSpot.Editors/RedEyeEditor.cs
+src/Clients/MainApp/FSpot.Editors/SepiaEditor.cs
+src/Clients/MainApp/FSpot.Editors/SoftFocusEditor.cs
+src/Clients/MainApp/FSpot.Editors/TiltEditor.cs
+src/Clients/MainApp/FSpot/FullScreenView.cs
+src/Clients/MainApp/f-spot.glade
+src/Clients/MainApp/FSpot/GroupSelector.cs
+src/Clients/MainApp/FSpot.Import/ImportController.cs
+src/Clients/MainApp/FSpot.Import/MetadataImporter.cs
+src/Clients/MainApp/FSpot/ItemAction.cs
+src/Clients/MainApp/FSpot.Jobs/SyncMetadataJob.cs
+src/Clients/MainApp/FSpot/MainWindow.cs
+src/Clients/MainApp/FSpot/Photo.cs
+src/Clients/MainApp/FSpot/PhotoView.cs
+src/Clients/MainApp/FSpot/Preferences.cs
+src/Clients/MainApp/FSpot/PrintOperation.cs
+src/Clients/MainApp/FSpot/QueryWidget.cs
+src/Clients/MainApp/FSpot/RotateCommand.cs
+src/Clients/MainApp/FSpot/SendEmail.cs
+src/Clients/MainApp/FSpot/SingleView.cs
+src/Clients/MainApp/FSpot/TagQueryWidget.cs
+src/Clients/MainApp/FSpot/TagSelectionWidget.cs
+src/Clients/MainApp/FSpot/Term.cs
+src/Clients/MainApp/FSpot.UI.Dialog/AboutDialog.cs
+src/Clients/MainApp/FSpot.UI.Dialog/AdjustTimeDialog.cs
+src/Clients/MainApp/FSpot.UI.Dialog/DateRangeDialog.cs
+src/Clients/MainApp/FSpot.UI.Dialog/EditExceptionDialog.cs
+src/Clients/MainApp/FSpot.UI.Dialog/EditTagDialog.cs
+src/Clients/MainApp/FSpot.UI.Dialog/EditTagIconDialog.cs
+src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs
+src/Clients/MainApp/FSpot.UI.Dialog/ImportFailureDialog.cs
+src/Clients/MainApp/FSpot.UI.Dialog/PreferenceDialog.cs
+src/Clients/MainApp/FSpot.UI.Dialog/ProgressDialog.cs
+src/Clients/MainApp/FSpot.UI.Dialog/RepairDbDialog.cs
+src/Clients/MainApp/FSpot.UI.Dialog/SelectionRatioDialog.cs
+src/Clients/MainApp/FSpot.UI.Dialog/ThreadProgressDialog.cs
+src/Clients/MainApp/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui
+src/Clients/MainApp/FSpot.UI.Dialog/ui/CreateTagDialog.ui
+src/Clients/MainApp/FSpot.UI.Dialog/ui/DateRangeDialog.ui
+src/Clients/MainApp/FSpot.UI.Dialog/ui/EditTagDialog.ui
+src/Clients/MainApp/FSpot.UI.Dialog/ui/EditTagIconDialog.ui
+src/Clients/MainApp/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui
+src/Clients/MainApp/FSpot.UI.Dialog/ui/PreferenceDialog.ui
+src/Clients/MainApp/FSpot.UI.Dialog/ui/RatingFilterDialog.ui
+src/Clients/MainApp/FSpot.UI.Dialog/ui/RepairDialog.ui
+src/Clients/MainApp/FSpot.Widgets/EditorPage.cs
+src/Clients/MainApp/FSpot.Widgets/Filmstrip.cs
+src/Clients/MainApp/FSpot.Widgets/FindBar.cs
+src/Clients/MainApp/FSpot.Widgets/FolderTreePage.cs
+src/Clients/MainApp/FSpot.Widgets/FolderTreeView.cs
+src/Clients/MainApp/FSpot.Widgets/InfoBox.cs
+src/Clients/MainApp/FSpot.Widgets/MetadataDisplay.cs
+src/Clients/MainApp/FSpot.Widgets/RatingMenuItem.cs
+src/Clients/MainApp/FSpot.Widgets/Sharpener.cs
+src/Clients/MainApp/FSpot.Widgets/Sidebar.cs
+src/Clients/MainApp/FSpot.Widgets/TagMenu.cs
+src/Clients/MainApp/PhotoStore.cs
+src/Clients/MainApp/PhotoTagMenu.cs
+src/Clients/MainApp/PhotoVersionCommands.cs
+src/Clients/MainApp/PhotoVersionMenu.cs
+src/Clients/MainApp/TagCommands.cs
+src/Clients/MainApp/TagPopup.cs
+src/Clients/MainApp/TagStore.cs
+src/Clients/MainApp/ThumbnailCommand.cs
+src/Clients/MainApp/ui/import.ui
+src/Clients/MainApp/ui/mail_dialog.ui
+src/Clients/MainApp/ui/main_window.ui
+src/Clients/MainApp/ui/single_view.ui
+src/Clients/MainApp/ui/tag_selection_dialog.ui
+src/Clients/MainApp/ui/viewer_preferences.ui
 src/Widgets/CustomPrintWidget.cs
-src/Widgets/EditorPage.cs
-src/Widgets/Filmstrip.cs
-src/Widgets/FindBar.cs
-src/Widgets/FolderTreePage.cs
-src/Widgets/FolderTreeView.cs
-src/Widgets/InfoBox.cs
-src/Widgets/MetadataDisplay.cs
 src/Widgets/OpenWithMenu.cs
-src/Widgets/RatingMenuItem.cs
-src/Widgets/Sidebar.cs
-src/Widgets/TagMenu.cs
 tools/f-spot-screensaver.desktop.in

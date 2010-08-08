@@ -1,0 +1,99 @@
+#!/bin/bash
+
+prefix=@prefix@
+exec_prefix=@exec_prefix@
+libdir=@libdir@
+turtledir=@TURTLEDIR@
+
+EXE_TO_RUN="$libdir/f-spot/f-spot.exe"
+
+if test "x$DBUS_SESSION_BUS_ADDRESS" == "x"; then
+    echo "** No session dbus found. Starting one **"
+    DBUSLAUNCH="dbus-launch"
+else
+    DBUSLAUNCH=""
+fi
+
+if test "x$turtledir" != "x"; then
+    export MONO_PATH=$turtledir/lib:$turtledir/gui:$MONO_PATH
+fi
+
+[ -n "$FSPOT_DEBUG" ] && FSPOT_DEBUG="--debug"
+[ -n "$FSPOT_TRACE" ] && FSPOT_TRACE="--trace=$FSPOT_TRACE"
+[ -n "$FSPOT_PROFILE" ] && FSPOT_PROFILE="--profile=$FSPOT_PROFILE"
+run_mdb=false
+run_gdb=false
+run_valgrind=false
+run_strace=false
+basedir_set=false
+
+for arg in "$@"; do
+    case "x$arg" in
+	x--debug)
+	    FSPOT_DEBUG="$arg"
+	    ;;
+	x--mdb)
+	    run_mdb=true
+	    ;;
+	x--gdb)
+	    run_gdb=true
+	    ;;
+	x-b) basedir_set=true;;
+	x-basedir) basedir_set=true;;
+	x--basedir) basedir_set=true;;
+	x--valgrind)
+	    run_valgrind=true
+	    ;;
+	x--trace=*)
+	    FSPOT_TRACE="$arg"
+	    ;;
+	x--strace)
+	    run_strace=true
+	    ;;
+	x--profile=*)
+	    FSPOT_PROFILE="$arg"
+	    ;;
+	x--uninstalled)
+	    echo "*** Running uninstalled f-spot ***"
+	    EXE_TO_RUN="./f-spot.exe"
+	    export MONO_PATH=../lib/gio-sharp/gio:../lib/gtk-sharp-beans:../lib/unique-sharp/unique:../bin:$MONO_PATH
+	    ;;
+    esac
+done
+
+if [ "$basedir_set" != "true" ]; then
+    if [ ! -n "$XDG_CONFIG_HOME" ]; then
+        XDG_CONFIG_HOME="$HOME/.config"
+    fi
+    if [ -e "$HOME/.gnome2/f-spot" ] && [ -e "$XDG_CONFIG_HOME/f-spot" ]; then
+        echo "It looks like you have 2 settings directories for f-spot ($HOME/.gnome2/f-spot and $XDG_CONFIG_HOME/f-spot). Remove one or run f-spot with --basedir option"
+        zenity --error --text="It looks like you have 2 settings directories for f-spot ($HOME/.gnome2/f-spot and $XDG_CONFIG_HOME/f-spot). Remove one or run f-spot with --basedir option"
+	exit -1
+    elif [ -e "$HOME/.gnome2/f-spot" ]; then
+        mkdir -p $XDG_CONFIG_HOME/
+	echo "Moving $HOME/.gnome2/f-spot to $XDG_CONFIG_HOME/"
+        mv $HOME/.gnome2/f-spot $XDG_CONFIG_HOME/
+	rm -rf $XDG_CONFIG_HOME/addin*
+    fi
+fi
+
+if [ -n "$FSPOT_DEBUG" ]; then
+    echo "** Running f-spot in Debug Mode **"
+fi
+
+if [ -n "$FSPOT_DEBUG" -o -n "$FSPOT_TRACE" -o -n "$FSPOT_PROFILE" ]; then
+    MONO_OPTIONS="$FSPOT_DEBUG $FSPOT_TRACE $FSPOT_PROFILE"
+    echo "** Running Mono with $MONO_OPTIONS **"
+fi
+
+if $run_mdb; then
+	mdb $EXE_TO_RUN -args "$@"
+elif $run_gdb; then
+	gdb --eval-command="handle SIGXCPU SIG33 SIG35 SIGPWR nostop noprint" --eval-command=run --args mono $MONO_OPTIONS $EXE_TO_RUN "$@"
+elif $run_valgrind; then
+	valgrind --tool=memcheck --leak-check=full --show-reachable=yes --log-file=valgrind --smc-check=all --suppressions=/home/sde/Mono/mono/data/mono.supp mono $MONO_OPTIONS $EXE_TO_RUN "$@"
+elif $run_strace; then
+	strace -ttt -f -o /tmp/f-spot.strace mono $MONO_OPTIONS $EXE_TO_RUN "$@"
+else
+	exec -a @PACKAGE@ $DBUSLAUNCH mono $MONO_OPTIONS $EXE_TO_RUN "$@"
+fi
