@@ -14,8 +14,8 @@ msgstr ""
 "Project-Id-Version: f-spot master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=f-"
 "spot&component=General\n"
-"POT-Creation-Date: 2010-08-02 13:38+0000\n"
-"PO-Revision-Date: 2010-08-06 22:32+0100\n"
+"POT-Creation-Date: 2010-08-08 09:35+0000\n"
+"PO-Revision-Date: 2010-08-08 13:22+0100\n"
 "Last-Translator: Mario Blättermann <mariobl@gnome.org>\n"
 "Language-Team: German <gnome-de@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -1800,7 +1800,7 @@ msgstr "K_ontrast:"
 msgid "Manage your custom selection ratios"
 msgstr "Die selbstausgewählten Bildformate verwalten"
 
-#: ../src/f-spot.glade.h:5
+#: ../src/f-spot.glade.h:5 ../src/ui/tag_selection_dialog.ui.h:1
 msgid "Select a Tag..."
 msgstr "Eine Markierung auswählen …"
 
@@ -1877,7 +1877,7 @@ msgstr "Mehr"
 msgid "_Clear Date Range"
 msgstr "Datumsspanne _zurücksetzen"
 
-#: ../src/Import/ImportController.cs:468 ../src/Import/ImportController.cs:470
+#: ../src/Import/ImportController.cs:476 ../src/Import/ImportController.cs:478
 #: ../src/Import/MetadataImporter.cs:50
 msgid "Imported Tags"
 msgstr "Importierte Markierungen"
@@ -1910,7 +1910,7 @@ msgstr "Vorheriges"
 msgid "Previous picture"
 msgstr "Vorheriges Bild"
 
-#: ../src/Jobs/SyncMetadataJob.cs:73
+#: ../src/Jobs/SyncMetadataJob.cs:74
 #, csharp-format
 msgid ""
 "Metadata of file {0} may be corrupt, refusing to write to it, falling back to "
@@ -2170,7 +2170,7 @@ msgstr[1] ""
 msgid "XCF version"
 msgstr "XCF-Version"
 
-#: ../src/PhotoStore.cs:165 ../src/ui/mail_dialog.ui.h:17
+#: ../src/PhotoStore.cs:177 ../src/ui/mail_dialog.ui.h:17
 msgid "Original"
 msgstr "Original"
 
@@ -2273,32 +2273,32 @@ msgstr "Fotos"
 msgid "Image Settings"
 msgstr "Bildeinstellungen"
 
-#: ../src/QueryWidget.cs:55
+#: ../src/QueryWidget.cs:57
 msgid "Find: "
 msgstr "Suchen: "
 
-#: ../src/QueryWidget.cs:60
+#: ../src/QueryWidget.cs:62
 msgid "Untagged photos"
 msgstr "Unmarkierte Fotos"
 
-#: ../src/QueryWidget.cs:68
+#: ../src/QueryWidget.cs:70
 msgid "Rated photos"
 msgstr "Bewertete Fotos"
 
 #. Note for translators: 'Import roll' is no command, it means 'Roll that has been imported'
-#: ../src/QueryWidget.cs:77
+#: ../src/QueryWidget.cs:79
 msgid "Import roll"
 msgstr "Importe"
 
-#: ../src/QueryWidget.cs:100
+#: ../src/QueryWidget.cs:102
 msgid "Clear search"
 msgstr "Suche zurücksetzen"
 
-#: ../src/QueryWidget.cs:107
+#: ../src/QueryWidget.cs:109
 msgid "Refresh search"
 msgstr "Suche zurücksetzen"
 
-#: ../src/QueryWidget.cs:110
+#: ../src/QueryWidget.cs:112
 msgid "No matching photos found"
 msgstr "Keine passenden Fotos gefunden"
 
@@ -2434,7 +2434,7 @@ msgstr "Ordner wählen"
 msgid "Set as Background"
 msgstr "Als Hintergrundbild verwenden"
 
-#: ../src/TagCommands.cs:116 ../src/TagSelectionWidget.cs:492
+#: ../src/TagCommands.cs:116 ../src/TagSelectionWidget.cs:497
 #: ../src/UI.Dialog/EditTagDialog.cs:76
 msgid "This name is already in use"
 msgstr "Dieser Name existiert bereits"
@@ -2518,7 +2518,7 @@ msgstr "Nicht {0}"
 msgid "Drag tags here to search for them"
 msgstr "Markierungen hier einfügen, um nach ihnen zu suchen"
 
-#: ../src/TagSelectionWidget.cs:491
+#: ../src/TagSelectionWidget.cs:496
 msgid "Error renaming tag"
 msgstr "Fehler beim Umbenennen der Markierung"
 
@@ -2683,18 +2683,6 @@ msgstr "»{0}« kann nicht als Symbol für die Markierung geladen werden"
 msgid "Photo {0} of {1}"
 msgstr "Foto {0} von {1}"
 
-#: ../src/UI.Dialog/ExceptionDialog.cs:24
-msgid "F-Spot Encountered a Fatal Error"
-msgstr "Es trat ein schwerwiegender Fehler in F-Spot auf."
-
-#: ../src/UI.Dialog/ExceptionDialog.cs:60
-msgid "Error Details"
-msgstr "Fehlerdetails"
-
-#: ../src/UI.Dialog/ExceptionDialog.cs:104
-msgid "An unhandled exception was thrown: "
-msgstr "Eine unverarbeitete Ausnahme trat auf:"
-
 #: ../src/UI.Dialog/ImportDialog.cs:15
 msgid "Choose Folder..."
 msgstr "Ordner wählen …"
@@ -2725,21 +2713,41 @@ msgstr ""
 msgid "Warning"
 msgstr "Warnung"
 
-#: ../src/UI.Dialog/ImportDialog.cs:288
+#: ../src/UI.Dialog/ImportDialog.cs:297
 #, csharp-format
 msgid "Importing Photos: {0} of {1}..."
 msgstr "Fotos werden importiert: {0} von {1} …"
 
-#: ../src/UI.Dialog/ImportDialog.cs:312
+#: ../src/UI.Dialog/ImportDialog.cs:321
 msgid "Importing photos..."
 msgstr "Fotos werden importiert …"
 
 #. TODO: Using a GtkSpinner would be nicer here.
-#: ../src/UI.Dialog/ImportDialog.cs:319
+#: ../src/UI.Dialog/ImportDialog.cs:328
 msgid "Searching for photos... (You can already click Import to continue)"
 msgstr ""
 "Nach Fotos wird gesucht … (Sie können auf »Importieren« klicken, um "
 "fortzusetzen)"
+
+#: ../src/UI.Dialog/ImportFailureDialog.cs:36
+msgid "Import failures"
+msgstr "Importfehler"
+
+#: ../src/UI.Dialog/ImportFailureDialog.cs:37
+msgid "Some files failed to import"
+msgstr "Fehler beim Import einiger Dateien"
+
+#: ../src/UI.Dialog/ImportFailureDialog.cs:38
+msgid ""
+"Some files could not be imported, they might be corrupt or there might be "
+"something wrong with the storage on which they reside."
+msgstr ""
+"Einige Dateien konnten nicht importiert werden. Sie könnten beschädigt sein "
+"oder das Speichermedium könnte fehlerhaft sein, auf dem sie sich befinden."
+
+#: ../src/UI.Dialog/ImportFailureDialog.cs:101
+msgid "Details"
+msgstr "Details"
 
 #: ../src/UI.Dialog/PreferenceDialog.cs:57
 #: ../src/UI.Dialog/PreferenceDialog.cs:80
@@ -3596,7 +3604,7 @@ msgstr "Suchen:"
 msgid "Folders"
 msgstr "Ordner"
 
-#: ../src/Widgets/FolderTreeView.cs:127
+#: ../src/Widgets/FolderTreeView.cs:129
 msgid "Filesystem"
 msgstr "Dateisystem"
 
@@ -3748,6 +3756,15 @@ msgstr "Eine Diaschau aus F-Spot anzeigen"
 #: ../tools/f-spot-screensaver.desktop.in.h:2
 msgid "F-Spot photos"
 msgstr "F-Spot Fotos"
+
+#~ msgid "F-Spot Encountered a Fatal Error"
+#~ msgstr "Es trat ein schwerwiegender Fehler in F-Spot auf."
+
+#~ msgid "Error Details"
+#~ msgstr "Fehlerdetails"
+
+#~ msgid "An unhandled exception was thrown: "
+#~ msgstr "Eine unverarbeitete Ausnahme trat auf:"
 
 #~ msgid "Attach Tags:"
 #~ msgstr "Markierungen hinzufügen:"
@@ -4266,9 +4283,6 @@ msgstr "F-Spot Fotos"
 
 #~ msgid "Disable"
 #~ msgstr "Deaktivieren"
-
-#~ msgid "Details"
-#~ msgstr "Details"
 
 #~ msgid "Extension Repository Management"
 #~ msgstr "Verwaltung von Erweiterungs-Softwarequellen"
