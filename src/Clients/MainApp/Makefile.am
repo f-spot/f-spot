@@ -17,6 +17,7 @@ SOURCES = \
 	FSpot/ColorManagement.cs \
 	FSpot/ControlOverlay.cs \
 	FSpot.Database/Db.cs \
+	FSpot.Database/FSpotDatabaseConnection.cs \
 	FSpot.Database/Tests/UpdaterTests.cs \
 	FSpot.Database/Updater.cs \
 	FSpot/DragDropTargets.cs \
