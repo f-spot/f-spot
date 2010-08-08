@@ -158,23 +158,15 @@ if pkg-config --atleast-version=2.13.0 gtk-sharp-2.0 && pkg-config --max-version
 	AC_MSG_ERROR([There's a svn version of gtk-sharp 2.13.x installed. Uninstall it.])
 fi
 
-dnl - Choose PreferenceBackend (default to gconf)
-AC_ARG_ENABLE([gconf],[AC_HELP_STRING([--disable-gconf], [build without gconf preference backend])],,)
-
-AM_CONDITIONAL(NOGCONF, test "x$enable_gconf" = "xno")
-
-if test "x$enable_gconf" = "xno"; then
-  CSC_DEFINES="$CSC_DEFINES -d:NOGCONF"
-else
-  AC_PATH_PROG(GCONFTOOL, gconftool-2)
-  AM_GCONF_SOURCE_2
-  PKG_CHECK_MODULES(GCONF_SHARP, gconf-sharp-2.0 >= $GTKSHARP_REQUIRED)
-  if pkg-config --atleast-version=2.18 gconf-sharp-2.0; then
-    CSC_DEFINES="$CSC_DEFINES -d:GCONF_SHARP_2_18"
-  fi
-  if pkg-config --atleast-version=2.20.2 gconf-sharp-2.0; then
-    CSC_DEFINES="$CSC_DEFINES -d:GCONF_SHARP_2_20_2"
-  fi
+dnl --- GConf
+AC_PATH_PROG(GCONFTOOL, gconftool-2)
+AM_GCONF_SOURCE_2
+PKG_CHECK_MODULES(GCONF_SHARP, gconf-sharp-2.0 >= $GTKSHARP_REQUIRED)
+if pkg-config --atleast-version=2.18 gconf-sharp-2.0; then
+	CSC_DEFINES="$CSC_DEFINES -d:GCONF_SHARP_2_18"
+fi
+if pkg-config --atleast-version=2.20.2 gconf-sharp-2.0; then
+	CSC_DEFINES="$CSC_DEFINES -d:GCONF_SHARP_2_20_2"
 fi
 
 if pkg-config --atleast-version=2.16 gtk+-2.0; then
@@ -189,12 +181,6 @@ FSPOT_CHECK_MONO_ADDINS
 dnl -- dbus-sharp
 PKG_CHECK_MODULES(NDESK_DBUS, ndesk-dbus-1.0 >= $NDESK_DBUS_REQUIRED ndesk-dbus-glib-1.0 >= $NDESK_DBUS_GLIB_REQUIRED)
 AC_SUBST(NDESK_DBUS_LIBS)
-
-dnl --- GConf
-
-AC_PATH_PROG(GCONFTOOL, gconftool-2, no)
-AM_GCONF_SOURCE_2
-
 
 dnl --- libjpeg
 

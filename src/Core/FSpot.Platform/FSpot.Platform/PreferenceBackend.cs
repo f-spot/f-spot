@@ -6,7 +6,6 @@
  *
  * This is free software. See COPYING for details.
  */
-#if !NOGCONF
 
 using System;
 using System.Runtime.Serialization;
@@ -108,4 +107,3 @@ namespace FSpot.Platform
 		}
 	}
 }
-#endif
