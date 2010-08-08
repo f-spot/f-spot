@@ -1,6 +1,5 @@
 SUBDIRS = \
 	Core \
-	Platform \
 	Clients
 
 EXTRA_DIST = AssemblyInfo.cs.in

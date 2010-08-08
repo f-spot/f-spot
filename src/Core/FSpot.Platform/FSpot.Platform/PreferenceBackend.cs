@@ -32,7 +32,10 @@ namespace FSpot
 			this.val = val;
 		}
 	}
+}
 
+namespace FSpot.Platform
+{
 	[Serializable]
 	public class NoSuchKeyException : Exception
 	{
@@ -52,10 +55,7 @@ namespace FSpot
 		{
 		}
 	}
-}
 
-namespace FSpot.Platform
-{
 	public class PreferenceBackend
 	{
 		static object sync_handler = new object ();

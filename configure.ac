@@ -363,6 +363,7 @@ src/Core/FSpot.Utils/Makefile
 src/Core/FSpot.Query/Makefile
 src/Core/FSpot.Widgets/Makefile
 src/Core/FSpot.Widgets/FSpot.Widgets.dll.config
+src/Core/FSpot.Platform/Makefile
 
 src/Clients/Makefile
 src/Clients/MainApp/Makefile
@@ -372,7 +373,6 @@ docs/Makefile
 icons/Makefile
 tools/Makefile
 po/Makefile.in
-src/Platform/Makefile
 src/Makefile
 extensions/Makefile
 extensions/Editors/Makefile
