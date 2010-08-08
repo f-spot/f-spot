@@ -1,5 +1,5 @@
 /*
- * FSpot.BrowsablePointerChangedEventArgs.cs
+ * BrowsablePointerChangedEventArgs.cs
  *
  * Author(s):
  *	Larry Ewing <lewing@novell.com>
@@ -7,7 +7,7 @@
  * This is free software. See COPYING for details.
  */
 
-namespace FSpot
+namespace FSpot.Core
 {
 	public class BrowsablePointerChangedEventArgs : System.EventArgs
 	{

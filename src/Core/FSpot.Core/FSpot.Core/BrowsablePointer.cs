@@ -1,6 +1,6 @@
 /*
- * FSpot.BrowsablePointer.cs
- * 
+ * BrowsablePointer.cs
+ *
  * Author(s):
  *	Larry Ewing <lewing@novell.com>
  *
@@ -8,7 +8,7 @@
  */
 using System;
 
-namespace FSpot
+namespace FSpot.Core
 {
 
 	public class BrowsablePointer {
@@ -38,7 +38,7 @@ namespace FSpot
 			get {
 				if (!this.IsValid)
 					return null;
-				else 
+				else
 					return collection [index];
 			}
 		}
@@ -61,7 +61,7 @@ namespace FSpot
 		{
 			Index = collection.Count - 1;
 		}
-		
+
 		public void MoveNext ()
 		{
 			MoveNext (false);
@@ -74,10 +74,10 @@ namespace FSpot
 			val++;
 			if (!Valid (val))
 				val = wrap ? 0 : Index;
-			
+
 			Index = val;
 		}
-		
+
 		public void MovePrevious ()
 		{
 			MovePrevious (false);
@@ -99,7 +99,7 @@ namespace FSpot
 			set {
 				if (index != value) {
 					SetIndex (value);
-				}				
+				}
 			}
 		}
 
@@ -111,10 +111,10 @@ namespace FSpot
 		private void SetIndex (int value, IBrowsableItemChanges changes)
 		{
 			BrowsablePointerChangedEventArgs args = new BrowsablePointerChangedEventArgs (Current, index, changes);
-			
+
 			index = value;
 			item = Current;
-			
+
 			if (Changed != null)
 				Changed (this, args);
 		}
@@ -123,24 +123,24 @@ namespace FSpot
 							     BrowsableEventArgs event_args)
 		{
 			foreach (int item in event_args.Items)
-				if (item == Index) 
+				if (item == Index)
 					SetIndex (Index, event_args.Changes);
 		}
-		
+
 		protected void HandleCollectionChanged (IBrowsableCollection collection)
 		{
 			if (collection == null)
 				throw new ArgumentNullException ("collection");
 			int old_location = Index;
 			int next_location = collection.IndexOf (item);
-			
+
 			if (old_location == next_location) {
 				if (! Valid (next_location))
 					SetIndex (0, null);
 
 				return;
 			}
-			
+
 			if (Valid (next_location))
 				SetIndex (next_location);
 			else if (Valid (old_location))

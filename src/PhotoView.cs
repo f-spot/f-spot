@@ -18,6 +18,7 @@ using System.Collections.Generic;
 using System.Xml.Serialization;
 using Mono.Unix;
 
+using FSpot.Core;
 using FSpot.Widgets;
 using FSpot.Utils;
 using Hyena;
@@ -25,7 +26,7 @@ using FSpot.UI.Dialog;
 
 namespace FSpot {
 	public class PhotoView : EventBox {
-		FSpot.Delay commit_delay; 
+		Delay commit_delay;
 	
 		private PhotoImageView photo_view;
 		private ScrolledWindow photo_view_scrolled;
@@ -61,7 +62,7 @@ namespace FSpot {
 			get { return photo_view; }
 		}
 	
-		public FSpot.BrowsablePointer Item {
+		public BrowsablePointer Item {
 			get { return photo_view.Item; }
 		}
 	
@@ -287,7 +288,7 @@ namespace FSpot {
 		{
 			this.query = query;
 	
-			commit_delay = new FSpot.Delay (1000, new GLib.IdleHandler (CommitPendingChanges));
+			commit_delay = new Delay (1000, new GLib.IdleHandler (CommitPendingChanges));
 			this.Destroyed += HandleDestroy;
 	
 			Name = "ImageContainer";

@@ -12,6 +12,7 @@ using Mono.Unix;
 using Gtk;
 using Gdk;
 using Hyena;
+using FSpot.Core;
 
 namespace FSpot {
 	public abstract class Term {

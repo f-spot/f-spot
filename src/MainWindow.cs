@@ -22,6 +22,7 @@ using Hyena.Widgets;
 using Banshee.Kernel;
 
 using FSpot;
+using FSpot.Core;
 using FSpot.Extensions;
 using FSpot.Query;
 using FSpot.Widgets;
@@ -990,7 +991,7 @@ namespace FSpot
 			if (cell_num == -1 /*|| cell_num == lastTopLeftCell*/)
 				return;
 	
-			FSpot.IBrowsableItem photo = icon_view.Collection [cell_num];
+			IBrowsableItem photo = icon_view.Collection [cell_num];
 	#if false
 			group_selector.Adaptor.GlassSet -= HandleAdaptorGlassSet;
 			group_selector.Adaptor.SetGlass (group_selector.Adaptor.IndexFromPhoto (photo));
@@ -1457,7 +1458,7 @@ namespace FSpot
 	
 		void HandlePageSetupActivated (object o, EventArgs e)
 		{
-			FSpot.Global.PageSetup = Print.RunPageSetupDialog (this.Window, FSpot.Global.PageSetup, null);
+			FSpot.Core.Global.PageSetup = Print.RunPageSetupDialog (this.Window, FSpot.Core.Global.PageSetup, null);
 		}
 		
 		void HandlePrintCommand (object sender, EventArgs e)

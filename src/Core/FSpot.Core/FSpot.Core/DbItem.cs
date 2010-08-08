@@ -10,14 +10,14 @@
 
 using System;
 
-namespace FSpot
+namespace FSpot.Core
 {
 	public class DbItem {
 		uint id;
 		public uint Id {
 			get { return id; }
 		}
-	
+
 		protected DbItem (uint id) {
 			this.id = id;
 		}

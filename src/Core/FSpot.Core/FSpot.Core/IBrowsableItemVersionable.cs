@@ -1,6 +1,6 @@
 /*
  * IBrowsableItemVersion.cs
- * 
+ *
  * Author(s):
  *  Ruben Vermeersch <ruben@savanne.be>
  *  Mike Gemuende <mike@gemuende.de>
@@ -10,7 +10,7 @@
 
 using System.Collections.Generic;
 
-namespace FSpot
+namespace FSpot.Core
 {
 	/// <summary>
 	///    The interface adds functionality which is related to items where

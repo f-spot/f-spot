@@ -16,13 +16,14 @@ using System.Text;
 using System;
 using Hyena;
 
+using FSpot.Core;
 
 namespace FSpot.Utils
 {
 
 	public class UriList : List<SafeUri> {
-		public UriList (FSpot.IBrowsableItem [] photos) {
-			foreach (FSpot.IBrowsableItem p in photos) {
+		public UriList (IBrowsableItem [] photos) {
+			foreach (IBrowsableItem p in photos) {
 				SafeUri uri;
 				try {
 					uri = p.DefaultVersion.Uri;
@@ -106,7 +107,7 @@ namespace FSpot.Utils
 			AddUnknown (path);
 		}*/
 	
-		public void Add (FSpot.IBrowsableItem item)
+		public void Add (IBrowsableItem item)
 		{
 			Add (item.DefaultVersion.Uri);
 		}

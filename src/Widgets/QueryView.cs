@@ -4,12 +4,14 @@
 // Copyright (C) 2004 Novell, Inc.
 //
 
+using FSpot.Core;
+
 namespace FSpot.Widgets
 {
 	public class QueryView : IconView {
 		public QueryView (System.IntPtr raw) : base (raw) {}
 	
-		public QueryView (FSpot.IBrowsableCollection query) : base (query) {}
+		public QueryView (IBrowsableCollection query) : base (query) {}
 	
 		protected override bool OnPopupMenu ()
 		{

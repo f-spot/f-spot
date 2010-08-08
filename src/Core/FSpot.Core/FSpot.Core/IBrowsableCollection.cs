@@ -1,13 +1,13 @@
 /*
- * FSpot.IBrowsableCollection.cs
- * 
+ * IBrowsableCollection.cs
+ *
  * Author(s):
  *	Larry Ewing <lewing@novell.com>
  *
  * This is free software. See COPYING for details.
  */
 
-namespace FSpot
+namespace FSpot.Core
 {
 	public delegate void IBrowsableCollectionChangedHandler (IBrowsableCollection collection);
 	public delegate void IBrowsableCollectionItemsChangedHandler (IBrowsableCollection collection, BrowsableEventArgs args);
@@ -17,7 +17,7 @@ namespace FSpot
 		IBrowsableItem [] Items {
 			get;
 		}
-		
+
 		int IndexOf (IBrowsableItem item);
 
 		IBrowsableItem this [int index] {
@@ -41,4 +41,3 @@ namespace FSpot
 		void MarkChanged (int index, IBrowsableItemChanges changes);
 	}
 }
-

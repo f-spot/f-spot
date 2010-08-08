@@ -15,6 +15,7 @@ using Gtk;
 using Gdk;
 
 using FSpot;
+using FSpot.Core;
 using FSpot.Utils;
 
 namespace FSpot

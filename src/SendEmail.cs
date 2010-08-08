@@ -13,6 +13,7 @@ using Gtk;
 using GLib;
 using System;
 
+using FSpot.Core;
 using FSpot.Widgets;
 using FSpot.Filters;
 using FSpot.UI.Dialog;

@@ -1,6 +1,6 @@
 /*
  * FSpot.Tag
- * 
+ *
  * Author(s):
  *	Larry Ewing  <lewing@novell.com>
  *	Stephane Delcroix  <stephane@delcroix.org>
@@ -13,7 +13,7 @@ using Gdk;
 using FSpot.Utils;
 using Hyena;
 
-namespace FSpot
+namespace FSpot.Core
 {
 	public class Tag : DbItem, IComparable<Tag>, IDisposable {
 		string name;
@@ -21,26 +21,26 @@ namespace FSpot
 			get { return name; }
 			set {  name = value;}
 		}
-	
+
 		Category category;
 		public Category Category {
 			get { return category; }
 			set {
 				if (Category != null)
 					Category.RemoveChild (this);
-	
+
 				category = value;
 				if (category != null)
 					category.AddChild (this);
 			}
 		}
-	
+
 		int sort_priority;
 		public int SortPriority {
 			get { return sort_priority; }
 			set { sort_priority = value; }
 		}
-	
+
 		int popularity = 0;
 		public int Popularity {
 			get { return popularity; }
@@ -48,19 +48,19 @@ namespace FSpot
 		}
 
 		// Icon.  If theme_icon_name is not null, then we save the name of the icon instead
-		// of the actual icon data.	
+		// of the actual icon data.
 		string theme_icon_name;
 		public string ThemeIconName {
 			get { return theme_icon_name; }
 			set { theme_icon_name = value; }
 		}
-	
+
 		Pixbuf icon;
 		public Pixbuf Icon {
 			get {
 				if (icon == null && theme_icon_name != null) {
 					cached_icon_size = IconSize.Hidden;
-					icon = GtkUtil.TryLoadIcon (FSpot.Global.IconTheme, theme_icon_name, 48, (Gtk.IconLookupFlags)0);
+					icon = GtkUtil.TryLoadIcon (Global.IconTheme, theme_icon_name, 48, (Gtk.IconLookupFlags)0);
 				}
 				return icon;
 			}
@@ -79,23 +79,23 @@ namespace FSpot
 			get { return icon_was_cleared; }
 			set { icon_was_cleared = value; }
 		}
-	
+
 		public enum IconSize {
 			Hidden = 0,
 			Small = 16,
 			Medium = 24,
 			Large = 48
 		};
-	
+
 		static IconSize tag_icon_size = IconSize.Large;
 		public static IconSize TagIconSize {
 			get { return tag_icon_size; }
 			set { tag_icon_size = value; }
 		}
-	
+
 		Pixbuf cached_icon;
 		private IconSize cached_icon_size = IconSize.Hidden;
-	
+
 		// We can use a SizedIcon everywhere we were using an Icon
 		public Pixbuf SizedIcon {
 			get {
@@ -106,9 +106,9 @@ namespace FSpot
 				if (theme_icon_name != null) { //Theme icon
 					if (cached_icon != null)
 						cached_icon.Dispose ();
-					cached_icon = GtkUtil.TryLoadIcon (FSpot.Global.IconTheme, theme_icon_name, (int) tag_icon_size, (Gtk.IconLookupFlags)0);
-	
-					if (Math.Max (cached_icon.Width, cached_icon.Height) <= (int) tag_icon_size) 
+					cached_icon = GtkUtil.TryLoadIcon (Global.IconTheme, theme_icon_name, (int) tag_icon_size, (Gtk.IconLookupFlags)0);
+
+					if (Math.Max (cached_icon.Width, cached_icon.Height) <= (int) tag_icon_size)
 						return cached_icon;
 				}
 				if (Icon == null)
@@ -122,10 +122,10 @@ namespace FSpot
 					return cached_icon;
 				} else
 					return Icon;
-			}	
+			}
 		}
-	
-	
+
+
 		// You are not supposed to invoke these constructors outside of the TagStore class.
 		public Tag (Category category, uint id, string name)
 			: base (id)
@@ -133,8 +133,8 @@ namespace FSpot
 			Category = category;
 			Name = name;
 		}
-	
-	
+
+
 		// IComparer.
 		public int CompareTo (Tag tag)
 		{
@@ -150,7 +150,7 @@ namespace FSpot
 				return Category.CompareTo (tag.Category);
 			}
 		}
-		
+
 		public bool IsAncestorOf (Tag tag)
 		{
 			if (tag == null)
@@ -160,7 +160,7 @@ namespace FSpot
 				if (parent == this)
 					return true;
 			}
-	
+
 			return false;
 		}
 

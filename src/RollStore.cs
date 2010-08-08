@@ -14,6 +14,7 @@ using System.IO;
 using System.Data;
 using System;
 
+using FSpot.Core;
 using FSpot.Utils;
 using FSpot;
 

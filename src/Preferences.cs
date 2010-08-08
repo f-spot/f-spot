@@ -2,6 +2,7 @@ using System.Net;
 using System;
 using System.Collections.Generic;
 using Mono.Unix;
+using FSpot.Core;
 using FSpot.Platform;
 using Hyena;
 
@@ -154,7 +155,7 @@ namespace FSpot
 			case SCREENSAVER_DELAY:
 				return 4.0;
 			case STORAGE_PATH:
-				return System.IO.Path.Combine (FSpot.Global.HomeDirectory, Catalog.GetString("Photos"));
+				return System.IO.Path.Combine (Global.HomeDirectory, Catalog.GetString("Photos"));
 			case EXPORT_EMAIL_SIZE:
 				return 3;	// medium size 640px
 			case EXPORT_EMAIL_ROTATE:

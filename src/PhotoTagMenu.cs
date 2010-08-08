@@ -29,6 +29,7 @@ using System.Collections;
 using Gtk;
 
 using FSpot;
+using FSpot.Core;
 using Hyena;
 
 public class PhotoTagMenu : Menu {

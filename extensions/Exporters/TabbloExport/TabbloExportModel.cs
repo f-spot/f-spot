@@ -36,22 +36,23 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 
+using FSpot.Core;
 
 namespace FSpotTabbloExport {
 
 	class TabbloExportModel : Mono.Tabblo.IPreferences {
 
-		private FSpot.IBrowsableCollection photo_collection;
+		private IBrowsableCollection photo_collection;
 
 		private string username;
 		private string password;
 
 		private bool attach_tags = false;
-		private FSpot.Tag [] attached_tags;
+		private FSpot.Core.Tag [] attached_tags;
 		private bool remove_tags = false;
-		private FSpot.Tag [] removed_tags;
+		private FSpot.Core.Tag [] removed_tags;
 
-		private static readonly FSpot.Tag [] no_tags = new FSpot.Tag [0];
+		private static readonly FSpot.Core.Tag [] no_tags = new FSpot.Core.Tag [0];
 
 
 		// `FSpot.Preferences' constants.
@@ -76,7 +77,7 @@ namespace FSpotTabbloExport {
 
 		// The photos.
 
-		internal FSpot.IBrowsableCollection PhotoCollection {
+		internal IBrowsableCollection PhotoCollection {
 			get {
 				return photo_collection;
 			}
@@ -85,7 +86,7 @@ namespace FSpotTabbloExport {
 			}
 		}
 
-		internal FSpot.IBrowsableItem [] Photos {
+		internal IBrowsableItem [] Photos {
 			get {
 				return photo_collection.Items;
 			}
@@ -147,13 +148,13 @@ namespace FSpotTabbloExport {
 		}
 
 		internal event EventHandler AttachedTagsChanged;
-		internal FSpot.Tag [] AttachedTags {
+		internal FSpot.Core.Tag [] AttachedTags {
 			get {
 				return null != attached_tags
 						? attached_tags	: no_tags;
 			}
 			set {
-				FSpot.Tag [] old_value = attached_tags;
+				FSpot.Core.Tag [] old_value = attached_tags;
 				attached_tags = value;
 				OnMaybePropertyChanged (old_value, attached_tags,
 						AttachedTagsChanged);
@@ -174,13 +175,13 @@ namespace FSpotTabbloExport {
 		}
 
 		internal event EventHandler RemovedTagsChanged;
-		internal FSpot.Tag [] RemovedTags {
+		internal FSpot.Core.Tag [] RemovedTags {
 			get {
 				return null != removed_tags
 						? removed_tags : no_tags;
 			}
 			set {
-				FSpot.Tag [] old_value = removed_tags;
+				FSpot.Core.Tag [] old_value = removed_tags;
 				removed_tags = value;
 				OnMaybePropertyChanged (old_value, removed_tags,
 						RemovedTagsChanged);
@@ -353,16 +354,16 @@ namespace FSpotTabbloExport {
 		}
 		
 		
-		private static FSpot.Tag [] ToTags (int [] ids)
+		private static FSpot.Core.Tag [] ToTags (int [] ids)
 		{
 			if (null == ids) {
 				return null;
 			}
 
-			List <FSpot.Tag> tags =
-					new List <FSpot.Tag> (ids.Length);
+			List <FSpot.Core.Tag> tags =
+					new List <FSpot.Core.Tag> (ids.Length);
 			foreach (int id in ids) {
-				FSpot.Tag tag = FSpot.App.Instance.Database.Tags
+				FSpot.Core.Tag tag = FSpot.App.Instance.Database.Tags
 						.GetTagById (id);
 				if (null != tag) {
 					tags.Add (tag);
@@ -374,7 +375,7 @@ namespace FSpotTabbloExport {
 			return tags.ToArray ();
 		}
 
-		private static int [] ToIds (FSpot.Tag [] tags)
+		private static int [] ToIds (FSpot.Core.Tag [] tags)
 		{
 			if (null == tags) {
 				return null;

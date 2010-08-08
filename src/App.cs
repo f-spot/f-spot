@@ -21,6 +21,8 @@ using Mono.Unix;
 
 using Hyena;
 
+using FSpot.Core;
+
 namespace FSpot
 {
 	public class App : Unique.App
@@ -62,16 +64,16 @@ namespace FSpot
 			get {
 				lock (sync_handle) {
 					if (db == null) {
-						if (!File.Exists (FSpot.Global.BaseDirectory))
-							Directory.CreateDirectory (FSpot.Global.BaseDirectory);
+						if (!File.Exists (Global.BaseDirectory))
+							Directory.CreateDirectory (Global.BaseDirectory);
 
 						db = new Db ();
 
 						try {
-							db.Init (Path.Combine (FSpot.Global.BaseDirectory, "photos.db"), true);
+							db.Init (Path.Combine (Global.BaseDirectory, "photos.db"), true);
 						} catch (Exception e) {
 							new FSpot.UI.Dialog.RepairDbDialog (e, db.Repair (), null);
-							db.Init (Path.Combine (FSpot.Global.BaseDirectory, "photos.db"), true);
+							db.Init (Path.Combine (Global.BaseDirectory, "photos.db"), true);
 						}
 					}
 				}
@@ -150,7 +152,7 @@ namespace FSpot
 
 #region private ctor and stuffs
 		enum Command {
-			Invalid = 0, 
+			Invalid = 0,
 			Import,
 			View,
 			Organize,
@@ -293,8 +295,8 @@ namespace FSpot
 										     "F-Spot preference dialog."), tag.Name);
 				} else {
 					msg = Catalog.GetString ("Search returned no results");
-					long_msg = Catalog.GetString ("The tag F-Spot is looking for does not exist. Try\n" + 
-								      "selecting a different tag in the F-Spot preference\n" + 
+					long_msg = Catalog.GetString ("The tag F-Spot is looking for does not exist. Try\n" +
+								      "selecting a different tag in the F-Spot preference\n" +
 								      "dialog.");
 				}
 
@@ -333,7 +335,7 @@ namespace FSpot
 			} catch (System.Exception e) {
 				Log.Exception (e);
 				Log.Debug ("no real valid path to view from");
-			} 
+			}
 		}
 
 #endregion

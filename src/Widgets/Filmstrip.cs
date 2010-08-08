@@ -17,6 +17,7 @@ using System.Collections;
 using Gtk;
 using Gdk;
 
+using FSpot.Core;
 using FSpot.Utils;
 using FSpot.Platform;
 using FSpot.Bling;
@@ -188,14 +189,14 @@ namespace FSpot.Widgets
 			}
 		}
 
-		FSpot.BrowsablePointer selection;
+		BrowsablePointer selection;
 		DisposableCache<SafeUri, Pixbuf> thumb_cache;
 
-		public Filmstrip (FSpot.BrowsablePointer selection) : this (selection, true)
+		public Filmstrip (BrowsablePointer selection) : this (selection, true)
 		{
 		}
 
-		public Filmstrip (FSpot.BrowsablePointer selection, bool squared_thumbs) : base ()
+		public Filmstrip (BrowsablePointer selection, bool squared_thumbs) : base ()
 		{
 			CanFocus = true;
 			this.selection = selection;
@@ -523,7 +524,7 @@ namespace FSpot.Widgets
                 var pixbuf = XdgThumbnailSpec.LoadThumbnail (uri, ThumbnailSize.Large, null);
                 if (pixbuf == null) {
 					ThumbnailLoader.Default.Request (uri, ThumbnailSize.Large, 0);
-                    current = FSpot.Global.IconTheme.LoadIcon ("gtk-missing-image", ThumbSize, (Gtk.IconLookupFlags)0);
+                    current = FSpot.Core.Global.IconTheme.LoadIcon ("gtk-missing-image", ThumbSize, (Gtk.IconLookupFlags)0);
                 } else {
 					if (SquaredThumbs) {
                         current = PixbufUtils.IconFromPixbuf (pixbuf, ThumbSize);

@@ -8,6 +8,7 @@
  */
 
 using System;
+using FSpot.Core;
 
 namespace FSpot.Widgets {
 	public class ScalingIconView : IconView {

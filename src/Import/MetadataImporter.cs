@@ -1,6 +1,7 @@
 using System;
 using Mono.Unix;
 using System.Collections.Generic;
+using FSpot.Core;
 using FSpot.Utils;
 
 namespace FSpot.Import {

@@ -14,6 +14,7 @@ using System.Collections.Generic;
 using Gtk;
 
 using FSpot;
+using FSpot.Core;
 using FSpot.Extensions;
 using FSpot.Query;
 using FSpot.UI.Dialog;
@@ -110,7 +111,7 @@ namespace MergeDbExtension
 
 		public static void Merge (string path, Db to_db)
 		{
-			Log.WarningFormat ("Will merge db {0} into main f-spot db {1}", path, FSpot.Global.BaseDirectory + "/photos.db" );
+			Log.WarningFormat ("Will merge db {0} into main f-spot db {1}", path, FSpot.Core.Global.BaseDirectory + "/photos.db" );
 			Db from_db = new Db ();
 			from_db.Init (path, true);
 			//MergeDb mdb = new MergeDb (from_db, to_db);
@@ -289,7 +290,7 @@ namespace MergeDbExtension
             // Find a new unique location inside the photo folder
             string name = uri.GetFilename ();
 
-            var dest_uri = FSpot.Global.PhotoUri.Append (time.Year.ToString ())
+            var dest_uri = FSpot.Core.Global.PhotoUri.Append (time.Year.ToString ())
                                           .Append (String.Format ("{0:D2}", time.Month))
                                           .Append (String.Format ("{0:D2}", time.Day));
             EnsureDirectory (dest_uri);

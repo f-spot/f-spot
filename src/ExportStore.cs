@@ -5,6 +5,7 @@ using System.IO;
 using System.Data;
 using System;
 using FSpot;
+using FSpot.Core;
 using FSpot.Database;
 using Hyena.Data.Sqlite;
 

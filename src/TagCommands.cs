@@ -19,6 +19,7 @@ using System.Collections;
 
 using Mono.Unix;
 using FSpot;
+using FSpot.Core;
 using FSpot.Utils;
 using FSpot.UI.Dialog;
 using FSpot.Widgets;

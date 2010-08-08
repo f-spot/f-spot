@@ -10,7 +10,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace FSpot
+namespace FSpot.Core
 {
 	//Track the changes done to a Photo between Commit's
 	public class PhotoChanges : PhotosChanges

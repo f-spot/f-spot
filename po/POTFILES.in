@@ -51,8 +51,7 @@ extensions/Tools/MergeDb/PickFolderDialog.cs
 extensions/Tools/ScreensaverConfig/ScreensaverConfig.addin.xml
 [type: gettext/glade]extensions/Tools/ScreensaverConfig/ScreensaverConfigDialog.ui
 f-spot.schemas.in
-src/Core/App.cs
-src/Core/Photo.cs
+src/App.cs
 src/Editors/AutoStretchEditor.cs
 src/Editors/ColorEditor.cs
 src/Editors/CropEditor.cs
@@ -74,6 +73,7 @@ src/ItemAction.cs
 src/Jobs/SyncMetadataJob.cs
 src/Loupe.cs
 src/MainWindow.cs
+src/Photo.cs
 src/PhotoPopup.cs
 src/PhotoStore.cs
 src/PhotoTagMenu.cs

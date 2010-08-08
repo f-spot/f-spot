@@ -11,6 +11,7 @@
 using System;
 using System.Threading;
 using System.Collections.Generic;
+using FSpot.Core;
 using FSpot.Query;
 using Hyena;
 
@@ -101,7 +102,7 @@ namespace FSpot {
 			return new DateTime (year, month, DateTime.DaysInMonth (year, month)).AddDays (1.0).AddMilliseconds (-.1);
 		}
 		
-		public override int IndexFromPhoto (FSpot.IBrowsableItem photo) 
+		public override int IndexFromPhoto (IBrowsableItem photo)
 		{
 			if (order_ascending)
 			       return IndexFromDateAscending (photo.Time);
@@ -145,7 +146,7 @@ namespace FSpot {
 			return 12 * (endyear - year) + 12 - date.Month;
 		}
 
-		public override FSpot.IBrowsableItem PhotoFromIndex (int item)
+		public override IBrowsableItem PhotoFromIndex (int item)
 	       	{
 			DateTime start = DateFromIndex (item);
 			return query [query.LookupItem (start)];

@@ -5,6 +5,7 @@ using System.IO;
 using System;
 using System.Diagnostics;
 using FSpot;
+using FSpot.Core;
 using Hyena;
 
 // A Store maps to a SQL table.  We have separate stores (i.e. SQL tables) for tags, photos and imports.

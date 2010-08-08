@@ -13,6 +13,8 @@ using System;
 using System.IO;
 using FSpot.Widgets;
 
+using FSpot.Core;
+
 namespace FSpot. UI.Dialog
 {
 	public class RepairDialog : BuilderDialog

@@ -9,12 +9,14 @@
  * This is free software. See COPYING for details.
  */
 
+using FSpot.Core;
+
 namespace FSpot.Widgets
 {
 	public class TrayView : IconView {
 		public TrayView (System.IntPtr raw) : base (raw) {}
 	
-		public TrayView (FSpot.IBrowsableCollection query) : base (query) 
+		public TrayView (IBrowsableCollection query) : base (query)
 		{
 			DisplayDates = false;
 			DisplayTags = false;

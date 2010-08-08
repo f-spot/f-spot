@@ -1,6 +1,6 @@
 using Hyena;
 
-namespace FSpot
+namespace FSpot.Core
 {
 	/// <summary>
 	///    This is the contract that needs to be implemented before the image

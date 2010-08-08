@@ -1,6 +1,6 @@
 /*
  * FSpot.BrowsableEventArgs.cs
- * 
+ *
  * Author(s):
  *	Larry Ewing <lewing@novell.com>
  *
@@ -9,7 +9,7 @@
 
 using System;
 
-namespace FSpot
+namespace FSpot.Core
 {
 	public class BrowsableEventArgs : System.EventArgs {
 		private readonly int [] items;

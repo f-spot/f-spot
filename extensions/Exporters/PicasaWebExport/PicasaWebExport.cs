@@ -19,6 +19,7 @@ using Hyena;
 using Hyena.Widgets;
 
 using FSpot;
+using FSpot.Core;
 using FSpot.Filters;
 using FSpot.Widgets;
 using FSpot.Utils;

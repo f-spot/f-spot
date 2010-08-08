@@ -20,6 +20,7 @@ using FSpot.UI.Dialog;
 using Hyena;
 using Hyena.Widgets;
 using FSpot.Utils;
+using FSpot.Core;
 
 using Mono.Unix;
 

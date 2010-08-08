@@ -15,6 +15,7 @@ using System;
 using Banshee.Kernel;
 using FSpot.Jobs;
 using FSpot;
+using FSpot.Core;
 using Hyena;
 
 using Hyena.Data.Sqlite;

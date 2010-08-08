@@ -2,13 +2,13 @@
 // Defines.cs
 // Get the locale directory
 //
-// Authors: 
+// Authors:
 //	Martin Willemoes Hansen
 //
 // (C) 2004 Martin Willemoes Hansen
-// 
+//
 
-namespace FSpot {
+namespace FSpot.Core {
 	public struct Defines {
 		public const string LOCALE_DIR = "@prefix@/share/locale";
 		public const string VERSION = "@VERSION@";
@@ -16,5 +16,5 @@ namespace FSpot {
 		public const string PREFIX = "@prefix@";
 		public const string APP_DATA_DIR = "@prefix@/share/@PACKAGE@";
 		public const string BINDIR = PREFIX + "/bin";
-	}			
+	}
 }

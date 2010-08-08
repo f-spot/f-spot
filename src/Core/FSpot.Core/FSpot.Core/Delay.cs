@@ -2,7 +2,7 @@
  * Delay.cs
  *
  * Copyright 2007 Novell Inc.
- * 
+ *
  * Author
  *   Larry Ewing <lewing@novell.com>
  *
@@ -12,7 +12,7 @@
 
 using System;
 
-namespace FSpot
+namespace FSpot.Core
 {
 	public class Delay
 	{
@@ -24,7 +24,7 @@ namespace FSpot
 			this.interval = interval;
 		}
 
-		public Delay (GLib.IdleHandler op) 
+		public Delay (GLib.IdleHandler op)
 		{
 			this.op = op;
 		}
@@ -44,15 +44,15 @@ namespace FSpot
 				return runagain;
 			}
 		}
-		
+
 		public void Start () {
 			lock (syncHandle) {
 				if (this.IsPending)
 					return;
 
-				if (interval != 0) 
+				if (interval != 0)
 					source = GLib.Timeout.Add (interval, new GLib.TimeoutHandler (HandleOperation));
-				else 
+				else
 					source = GLib.Idle.Add (new GLib.IdleHandler (HandleOperation));
 			}
 		}
@@ -67,15 +67,15 @@ namespace FSpot
 		{
 			if (obj == null)
 				throw new ArgumentNullException ("obj");
-			obj.Destroyed += HandleDestroy; 
-		}	     
-		
+			obj.Destroyed += HandleDestroy;
+		}
+
 		private void HandleDestroy (object sender, System.EventArgs args)
 		{
 			this.Stop ();
 		}
-		
-		public void Stop () 
+
+		public void Stop ()
 		{
 			lock (syncHandle) {
 				if (this.IsPending) {

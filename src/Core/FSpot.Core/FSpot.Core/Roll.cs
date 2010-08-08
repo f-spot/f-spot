@@ -11,7 +11,7 @@
 using System;
 using Hyena;
 
-namespace FSpot
+namespace FSpot.Core
 {
 	public class Roll : DbItem
 	{
@@ -20,7 +20,7 @@ namespace FSpot
 		public DateTime Time {
 			get { return time; }
 		}
-	
+
 		public Roll (uint id, long unix_time) : base (id)
 		{
 			time = DateTimeUtil.ToDateTime (unix_time);

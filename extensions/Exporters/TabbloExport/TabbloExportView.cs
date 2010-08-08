@@ -31,6 +31,7 @@ using System;
 using System.Diagnostics;
 using System.Reflection;
 
+using FSpot.Core;
 
 namespace FSpotTabbloExport {
 
@@ -74,7 +75,7 @@ namespace FSpotTabbloExport {
 		private Gtk.Button export_button;
 
 
-		internal TabbloExportView (FSpot.IBrowsableCollection photos)
+		internal TabbloExportView (IBrowsableCollection photos)
 			: base (Assembly.GetExecutingAssembly (),
 					"TabbloExport.ui", DialogName)
 		{

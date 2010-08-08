@@ -11,6 +11,7 @@
 using System;
 using Cairo;
 using Gdk;
+using FSpot.Core;
 using FSpot.Widgets;
 using FSpot.Utils;
 
@@ -103,7 +104,7 @@ namespace FSpot {
 
 		private void UpdateImage ()
 		{
-			FSpot.IBrowsableItem item = view.Collection [Item];
+			IBrowsableItem item = view.Collection [Item];
 			
 			string orig_path = item.DefaultVersion.Uri.LocalPath;
 

@@ -21,6 +21,7 @@ using Gtk;
 using Mono.Unix;
 
 using FSpot;
+using FSpot.Core;
 using FSpot.Utils;
 using FSpot.Widgets;
 using FSpot.UI.Dialog;

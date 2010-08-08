@@ -1,7 +1,7 @@
 using System;
 using System.IO;
 
-namespace FSpot
+namespace FSpot.Core
 {
 	public static class IBrowsableItemExtensions {
 		public static int CompareDate (this IBrowsableItem photo1, IBrowsableItem photo2)

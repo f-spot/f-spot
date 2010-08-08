@@ -3,6 +3,7 @@ using Mono.Unix;
 using Gtk;
 using Gdk;
 using GLib;
+using FSpot.Core;
 using FSpot.Utils;
 
 namespace FSpot {

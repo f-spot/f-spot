@@ -7,6 +7,7 @@ using System.Collections.Specialized;
 using System.Web;
 using Mono.Unix;
 using FSpot;
+using FSpot.Core;
 using FSpot.UI.Dialog;
 using Hyena;
 using Hyena.Widgets;
@@ -85,12 +86,12 @@ namespace GalleryRemote {
 			gallery.MoveAlbum (this, name);
 		}
 
-		public void Add (FSpot.IBrowsableItem item)
+		public void Add (IBrowsableItem item)
 		{
 			Add (item, item.DefaultVersion.Uri.LocalPath);
 		}
 
-		public int Add (FSpot.IBrowsableItem item, string path)
+		public int Add (IBrowsableItem item, string path)
 		{
 			if (item == null)
 				Log.Warning ("NO PHOTO");

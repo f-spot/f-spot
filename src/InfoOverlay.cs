@@ -8,6 +8,7 @@
  *
  */
 using Gtk;
+using FSpot.Core;
 using FSpot.Widgets;
 
 namespace FSpot {

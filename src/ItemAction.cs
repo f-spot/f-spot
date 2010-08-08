@@ -11,6 +11,7 @@
  */
 using Gtk;
 using Mono.Unix;
+using FSpot.Core;
 using FSpot.Filters;
 using System;
 using FSpot.UI.Dialog;

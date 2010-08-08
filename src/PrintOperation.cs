@@ -12,6 +12,7 @@ using System;
 using System.Runtime.InteropServices;
 using Mono.Unix;
 
+using FSpot.Core;
 using FSpot.Widgets;
 using FSpot.Imaging;
 using Hyena;
@@ -32,7 +33,7 @@ namespace FSpot
 			this.selected_photos = selected_photos;
 			CustomTabLabel = Catalog.GetString ("Image Settings");
 			NPages = selected_photos.Length;
-			DefaultPageSetup = FSpot.Global.PageSetup;
+			DefaultPageSetup = Global.PageSetup;
 		}
 
 		protected override void OnBeginPrint (Gtk.PrintContext context)

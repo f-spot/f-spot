@@ -1,6 +1,6 @@
 /*
  * IBrowsableItemVersion.cs
- * 
+ *
  * Author(s):
  *  Ruben Vermeersch <ruben@savanne.be>
  *  Mike Gemuende <mike@gemuende.de>
@@ -11,7 +11,7 @@
 using Hyena;
 
 
-namespace FSpot
+namespace FSpot.Core
 {
 
 	public interface IBrowsableItemVersion : ILoadable
@@ -31,7 +31,7 @@ namespace FSpot
 		bool IsProtected { get; }
 
 		// TODO: add more metadata
-		
+
 #endregion
 
 
@@ -39,7 +39,7 @@ namespace FSpot
 
 		// TODO: BaseUri and Filename are just in the database scheme. Does it make sense to provide them
 		//       to the outside?
-		
+
 		/// <summary>
 		///   The base uri of the directory of this version. That is the whole uri without the
 		///   filename.

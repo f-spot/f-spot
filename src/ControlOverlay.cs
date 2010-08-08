@@ -14,6 +14,7 @@ using System;
 using Gtk;
 using FSpot.Widgets;
 using FSpot.Utils;
+using FSpot.Core;
 
 namespace FSpot {
 	public class ControlOverlay : Window {

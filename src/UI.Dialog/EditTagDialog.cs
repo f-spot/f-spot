@@ -15,6 +15,7 @@ using System;
 using System.Collections;
 using Mono.Unix;
 using Gtk;
+using FSpot.Core;
 
 namespace FSpot.UI.Dialog
 {

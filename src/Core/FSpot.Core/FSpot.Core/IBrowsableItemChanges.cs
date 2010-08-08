@@ -1,5 +1,5 @@
 /*
- * FSpot.IBrowsableItemChanges.cs
+ * IBrowsableItemChanges.cs
  *
  * Author(s):
  * 	Stephane Delcroix <stephane@delcroix.org>
@@ -7,7 +7,7 @@
  * This is free software. See COPYING for details
  */
 
-namespace FSpot
+namespace FSpot.Core
 {
 	public interface IBrowsableItemChanges
 	{
@@ -19,7 +19,7 @@ namespace FSpot
 	{
 		static FullInvalidate instance = new FullInvalidate ();
 		public static FullInvalidate Instance {
-			get { return instance; } 
+			get { return instance; }
 		}
 
 		public bool DataChanged {
@@ -34,7 +34,7 @@ namespace FSpot
 	{
 		static InvalidateData instance = new InvalidateData ();
 		public static InvalidateData Instance {
-			get { return instance; } 
+			get { return instance; }
 		}
 
 		public bool DataChanged { get { return true; } }

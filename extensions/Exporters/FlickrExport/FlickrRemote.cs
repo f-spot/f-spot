@@ -15,6 +15,7 @@ using System.Text;
 using System.Collections;
 using FlickrNet;
 using FSpot;
+using FSpot.Core;
 using FSpot.Utils;
 using FSpot.Filters;
 using Hyena;
@@ -151,8 +152,8 @@ public class FlickrRemote {
 
 				if (ExportTags && photo.Tags != null) {
 					StringBuilder taglist = new StringBuilder ();
-					FSpot.Tag [] t = photo.Tags;
-					FSpot.Tag tag_iter = null;
+					FSpot.Core.Tag [] t = photo.Tags;
+					FSpot.Core.Tag tag_iter = null;
 
 					for (int i = 0; i < t.Length; i++) {
 						if (i > 0)

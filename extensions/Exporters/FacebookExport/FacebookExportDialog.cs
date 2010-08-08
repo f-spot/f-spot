@@ -24,6 +24,7 @@ using GtkBeans;
 
 using Hyena;
 using Hyena.Widgets;
+using FSpot.Core;
 using FSpot.Utils;
 using FSpot.Platform;
 using FSpot.UI.Dialog;

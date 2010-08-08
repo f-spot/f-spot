@@ -10,6 +10,7 @@
 using System;
 using Banshee.Kernel;
 using Hyena;
+using FSpot.Core;
 using FSpot.Utils;
 using Mono.Unix;
 
@@ -66,7 +67,7 @@ namespace FSpot.Jobs {
                 tag.Comment = photo.Description ?? String.Empty;
                 tag.Keywords = names;
                 tag.Rating = photo.Rating;
-                tag.Software = FSpot.Defines.PACKAGE + " version " + FSpot.Defines.VERSION;
+                tag.Software = Defines.PACKAGE + " version " + Defines.VERSION;
 
                 var always_sidecar = Preferences.Get<bool> (Preferences.METADATA_ALWAYS_USE_SIDECAR);
                 if (always_sidecar || !metadata.Writeable || metadata.PossiblyCorrupt) {

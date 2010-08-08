@@ -12,6 +12,7 @@
 using System;
 using Mono.Unix;
 using FSpot;
+using FSpot.Core;
 using FSpot.Utils;
 
 public class TagPopup {

@@ -5,6 +5,7 @@ using System.IO;
 using System.Data;
 using System;
 using FSpot;
+using FSpot.Core;
 using FSpot.Database;
 using Hyena.Data.Sqlite;
 
@@ -73,7 +74,7 @@ public class MetaStore : DbStore<MetaItem> {
 
 	private void CreateDefaultItems (bool is_new)
 	{
-		Create (version, FSpot.Defines.VERSION);
+		Create (version, Defines.VERSION);
 		Create (db_version, (is_new) ? FSpot.Database.Updater.LatestVersion.ToString () : "0");
 		
 		// Get the hidden tag id, if it exists
@@ -103,8 +104,8 @@ public class MetaStore : DbStore<MetaItem> {
 
 		reader.Close ();
 
-		if (FSpotVersion.Value != FSpot.Defines.VERSION) {
-			FSpotVersion.Value = FSpot.Defines.VERSION;
+		if (FSpotVersion.Value != Defines.VERSION) {
+			FSpotVersion.Value = Defines.VERSION;
 			Commit (FSpotVersion);
 		}
 	}

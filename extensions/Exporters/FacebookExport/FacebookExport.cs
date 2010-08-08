@@ -28,6 +28,7 @@ using Gnome.Keyring;
 using GtkBeans;
 
 using FSpot;
+using FSpot.Core;
 using Hyena;
 using Hyena.Widgets;
 using FSpot.UI.Dialog;

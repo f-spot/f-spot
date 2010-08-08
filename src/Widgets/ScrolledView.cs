@@ -1,5 +1,6 @@
 using System;
 using Gtk;
+using FSpot.Core;
 
 namespace FSpot.Widgets {
 	public class ScrolledView : Fixed {

@@ -13,6 +13,7 @@ using System.Text;
 using System.Reflection;
 
 using FSpot;
+using FSpot.Core;
 using Mono.Unix;
 
 namespace LiveWebGalleryExtension	

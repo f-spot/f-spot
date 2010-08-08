@@ -9,6 +9,7 @@
 
 using Hyena;
 
+using FSpot.Core;
 using FSpot.Widgets;
 using FSpot.Imaging;
 

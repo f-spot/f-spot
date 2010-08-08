@@ -349,6 +349,11 @@ lib/Hyena/Hyena.Data.Sqlite/Makefile
 lib/Hyena/Hyena.Gui/Makefile
 lib/TagLib/Makefile
 
+src/Core/Makefile
+src/Core/FSpot.Core/Makefile
+src/Core/FSpot.Core/FSpot.Core.dll.config
+src/Core/FSpot.Core/FSpot.Core/Defines.cs
+
 docs/Makefile
 icons/Makefile
 tools/Makefile
@@ -359,9 +364,6 @@ src/Utils/Makefile
 src/Bling/Makefile
 src/JobScheduler/Makefile
 src/Query/Makefile
-src/Core/Defines.cs
-src/Core/Makefile
-src/Core/FSpot.Core.dll.config
 src/FSpot.Database/Makefile
 src/Widgets/Makefile
 src/Widgets/FSpot.Widgets.dll.config

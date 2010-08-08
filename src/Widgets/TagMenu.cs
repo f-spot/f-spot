@@ -6,6 +6,7 @@ using System;
 using FSpot;
 using FSpot.Utils;
 using Hyena;
+using FSpot.Core;
 
 public class TagMenu : Menu {
 	private TagStore tag_store;

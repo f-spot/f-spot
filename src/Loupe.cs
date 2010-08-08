@@ -15,6 +15,7 @@ using Gdk;
 using System;
 using System.Runtime.InteropServices;
 using Mono.Unix;
+using FSpot.Core;
 using FSpot.Utils;
 using Hyena;
 

@@ -9,6 +9,7 @@
  * This is free software. See COPYING for details.
  */
 
+using FSpot.Core;
 using FSpot.Extensions;
 using FSpot.Utils;
 using Gtk;

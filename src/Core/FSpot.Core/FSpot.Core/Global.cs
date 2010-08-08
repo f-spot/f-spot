@@ -7,12 +7,12 @@
 using System;
 using Hyena;
 
-namespace FSpot {
+namespace FSpot.Core {
 	public static class Global {
 		public static string HomeDirectory {
 			get { return System.IO.Path.Combine (System.Environment.GetEnvironmentVariable ("HOME"), System.String.Empty); }
 		}
-		
+
 		//$XDG_CONFIG_HOME/f-spot or $HOME/.config/f-spot
 		private static string xdg_config_home = Environment.GetFolderPath (Environment.SpecialFolder.ApplicationData);
 		private static string base_dir = System.IO.Path.Combine (xdg_config_home, "f-spot");
@@ -28,10 +28,10 @@ namespace FSpot {
 		}
 
 		public static string HelpDirectory {
-			get { 
+			get {
 				// path is relative
 				return "f-spot";
-			}	
+			}
 		}
 
 		private static Cms.Profile display_profile;

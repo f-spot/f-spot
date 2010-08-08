@@ -11,6 +11,7 @@
 //
 
 using System;
+using FSpot.Core;
 using FSpot.Editors;
 using FSpot.Utils;
 using FSpot.Loaders;

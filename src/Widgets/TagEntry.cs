@@ -11,6 +11,7 @@
 
 using System.Text;
 using System.Collections;
+using FSpot.Core;
 
 namespace FSpot.Widgets {
 

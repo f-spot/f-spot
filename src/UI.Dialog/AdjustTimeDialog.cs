@@ -15,6 +15,7 @@ using System;
 using Gtk;
 using System.Collections;
 using Mono.Unix;
+using FSpot.Core;
 using FSpot.Widgets;
 using Hyena;
 

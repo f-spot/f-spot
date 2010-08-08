@@ -21,6 +21,7 @@ using Mono.Unix;
 using Gtk;
 
 using FSpot;
+using FSpot.Core;
 using FSpot.Filters;
 using FSpot.Widgets;
 using Hyena;

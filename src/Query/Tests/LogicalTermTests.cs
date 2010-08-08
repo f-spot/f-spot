@@ -1,5 +1,6 @@
 #if ENABLE_TESTS
 using NUnit.Framework;
+using FSpot.Core;
 
 namespace FSpot.Query.Tests
 {

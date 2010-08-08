@@ -8,6 +8,8 @@
  * This is frees software. See COPYING for details.
  */
 
+using FSpot.Core;
+
 namespace FSpot.Query
 {
 	public class RollSet : IQueryCondition

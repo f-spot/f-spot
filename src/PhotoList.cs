@@ -9,6 +9,8 @@
 
 using System.Collections.Generic;
 
+using FSpot.Core;
+
 namespace FSpot {
 	public class PhotoList : IBrowsableCollection {
 		protected List<IBrowsableItem> list;

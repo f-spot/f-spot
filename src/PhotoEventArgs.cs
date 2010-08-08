@@ -8,6 +8,8 @@
  * This is free software. See COPYING for details.
  */
 
+using FSpot.Core;
+
 namespace FSpot
 {
 	public class PhotoEventArgs : DbItemEventArgs<Photo> {

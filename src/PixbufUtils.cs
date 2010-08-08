@@ -15,6 +15,7 @@ using System.Runtime.InteropServices;
 using System;
 using System.IO;
 using FSpot;
+using FSpot.Core;
 using FSpot.Utils;
 using FSpot.Imaging;
 using Hyena;
@@ -25,7 +26,7 @@ public static class PixbufUtils {
 	public static Pixbuf ErrorPixbuf {
 		get {
 			if (error_pixbuf == null)
-				error_pixbuf = GtkUtil.TryLoadIcon (FSpot.Global.IconTheme, "f-spot-question-mark", 256, (Gtk.IconLookupFlags)0);
+				error_pixbuf = GtkUtil.TryLoadIcon (FSpot.Core.Global.IconTheme, "f-spot-question-mark", 256, (Gtk.IconLookupFlags)0);
 			return error_pixbuf;
 		}
 	}
@@ -194,7 +195,7 @@ public static class PixbufUtils {
 
 	public static Pixbuf TagIconFromPixbuf (Pixbuf source)
 	{
-		return IconFromPixbuf (source, (int) FSpot.Tag.IconSize.Large);
+		return IconFromPixbuf (source, (int) Tag.IconSize.Large);
 	}
 
 	public static Pixbuf IconFromPixbuf (Pixbuf source, int size)

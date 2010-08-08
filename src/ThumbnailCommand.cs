@@ -1,6 +1,7 @@
 using System;
 using Gtk;
 using FSpot;
+using FSpot.Core;
 using FSpot.Utils;
 using FSpot.UI.Dialog;
 

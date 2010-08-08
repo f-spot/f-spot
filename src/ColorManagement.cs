@@ -14,6 +14,7 @@
 using System;
 using System.IO;
 using System.Collections.Generic;
+using FSpot.Core;
 
 namespace FSpot {
 	public static class ColorManagement {
@@ -74,7 +75,7 @@ namespace FSpot {
 						AddProfiles (dir, profs);
 			}
 		}
-		
+
 		public static void ApplyProfile (Gdk.Pixbuf pixbuf, Cms.Profile destination_profile)
 		{
 			ApplyProfile (pixbuf, Cms.Profile.CreateStandardRgb (), destination_profile);

@@ -9,7 +9,7 @@
 
 using System.Collections.Generic;
 
-namespace FSpot {
+namespace FSpot.Core {
     public class BrowsableCollectionProxy : IBrowsableCollection {
 
         private IBrowsableCollection collection;

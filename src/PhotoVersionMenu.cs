@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 
 using FSpot;
+using FSpot.Core;
 
 
 public class PhotoVersionMenu : Menu {

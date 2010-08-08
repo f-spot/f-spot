@@ -1,4 +1,5 @@
 using Hyena;
+using FSpot.Core;
 using FSpot.Utils;
 using System;
 using System.Collections.Generic;

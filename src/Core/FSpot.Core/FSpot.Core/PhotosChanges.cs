@@ -10,7 +10,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace FSpot
+namespace FSpot.Core
 {
 	//used to aggregate PhotoChanges and notifying the various ui pieces
 	public class PhotosChanges : IBrowsableItemChanges
@@ -109,14 +109,14 @@ namespace FSpot
 		}
 
 		public bool MD5SumChanged {
-			get { return (changes & Changes.MD5Sum) == Changes.MD5Sum ; } 
+			get { return (changes & Changes.MD5Sum) == Changes.MD5Sum ; }
 			set {
 				if (value)
-				 	changes |= Changes.MD5Sum;
+					changes |= Changes.MD5Sum;
 				else
-				 	changes &= ~Changes.MD5Sum; 
+					changes &= ~Changes.MD5Sum;
 			}
-		 
+
 		}
 
 		public static PhotosChanges operator | (PhotosChanges c1, PhotosChanges c2)

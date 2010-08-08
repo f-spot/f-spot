@@ -274,7 +274,7 @@ namespace FSpot.Widgets
 		public virtual Pixbuf IconRated {
 			get {
 				if (icon_rated == null)
-					icon_rated = GtkUtil.TryLoadIcon (FSpot.Global.IconTheme, "rating-rated", 16, (Gtk.IconLookupFlags)0);
+					icon_rated = GtkUtil.TryLoadIcon (FSpot.Core.Global.IconTheme, "rating-rated", 16, (Gtk.IconLookupFlags)0);
 				
 				return icon_rated;
 			}
@@ -285,7 +285,7 @@ namespace FSpot.Widgets
 		public virtual Pixbuf IconNotRated {
 			get {
 				if (icon_blank == null)
-					icon_blank = GtkUtil.TryLoadIcon (FSpot.Global.IconTheme, "rating-blank", 16, (Gtk.IconLookupFlags)0);
+					icon_blank = GtkUtil.TryLoadIcon (FSpot.Core.Global.IconTheme, "rating-blank", 16, (Gtk.IconLookupFlags)0);
 				
 				return icon_blank;
 			}
@@ -338,7 +338,7 @@ namespace FSpot.Widgets
 		public override Pixbuf IconRated {
 			get {
 				if (icon_rated_small == null)
-					icon_rated_small = GtkUtil.TryLoadIcon (FSpot.Global.IconTheme, "rating-rated", 16, (Gtk.IconLookupFlags)0);
+					icon_rated_small = GtkUtil.TryLoadIcon (FSpot.Core.Global.IconTheme, "rating-rated", 16, (Gtk.IconLookupFlags)0);
 				
 				return icon_rated_small;
 			}
@@ -347,7 +347,7 @@ namespace FSpot.Widgets
 		public override Pixbuf IconNotRated {
 			get {
 				if (icon_blank_small == null)
-					icon_blank_small = GtkUtil.TryLoadIcon (FSpot.Global.IconTheme, "rating-blank", 16, (Gtk.IconLookupFlags)0);
+					icon_blank_small = GtkUtil.TryLoadIcon (FSpot.Core.Global.IconTheme, "rating-blank", 16, (Gtk.IconLookupFlags)0);
 				
 				return icon_blank_small;
 			}

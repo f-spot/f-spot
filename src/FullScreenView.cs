@@ -10,6 +10,7 @@
 using System;
 using Gtk;
 using Gdk;
+using FSpot.Core;
 using FSpot.Widgets;
 using FSpot.Utils;
 using Hyena;

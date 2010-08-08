@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 
-namespace FSpot
+namespace FSpot.Core
 {
 	public static class IBrowsableItemComparer {
 		public class CompareDateName : IComparer<IBrowsableItem>

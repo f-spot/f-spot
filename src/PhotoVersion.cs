@@ -6,11 +6,12 @@
  *	Larry Ewing <lewing@gnome.org>
  *	Stephane Delcroix <stephane@delcroix.org>
  *	Thomas Van Machelen <thomas.vanmachelen@gmail.com>
- * 
+ *
  * This is free software. See COPYING for details.
  */
 
 using Hyena;
+using FSpot.Core;
 
 namespace FSpot
 {

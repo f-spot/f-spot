@@ -15,6 +15,7 @@ LINK = $(REF_FSPOT)
 ASSEMBLY_BUILD_FLAGS = -unsafe
 
 SOURCES = \
+	App.cs \
 	BitConverter.cs \
 	PhotoList.cs \
 	ColorAdjustment/Adjustment.cs \
@@ -22,11 +23,8 @@ SOURCES = \
 	ColorAdjustment/Desaturate.cs \
 	ColorAdjustment/FullColorAdjustment.cs \
 	ColorAdjustment/SepiaTone.cs \
+	ColorManagement.cs \
 	ControlOverlay.cs \
-	Core/App.cs \
-	Core/ColorManagement.cs \
-	Core/Photo.cs \
-	Core/PhotoVersion.cs \
 	Db.cs \
 	DependentListStore.cs \
 	DragDropTargets.cs \
@@ -97,6 +95,7 @@ SOURCES = \
 	MainWindow.cs \
 	MemorySurface.cs \
 	MetaStore.cs \
+	Photo.cs \
 	PhotoEventArgs.cs \
 	PhotoImageView.cs \
 	PhotoLoader.cs \
@@ -105,6 +104,7 @@ SOURCES = \
 	PhotoStore.cs \
 	PhotoTagMenu.cs \
 	PhotoVersionCommands.cs \
+	PhotoVersion.cs \
 	PhotoVersionMenu.cs \
 	PhotoView.cs \
 	PixbufUtils.cs \

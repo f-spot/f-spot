@@ -16,6 +16,7 @@ using Gtk;
 using Gdk;
 using Mono.Unix;
 
+using FSpot.Core;
 using FSpot.Query;
 using Hyena;
 

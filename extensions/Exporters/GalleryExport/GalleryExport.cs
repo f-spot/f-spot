@@ -8,6 +8,7 @@ using System.Web;
 using Mono.Unix;
 
 using FSpot;
+using FSpot.Core;
 using FSpot.Filters;
 using FSpot.Widgets;
 using FSpot.Utils;
@@ -172,7 +173,7 @@ namespace G2Export {
 		private GalleryAccountManager ()
 		{
 			// FIXME this xml file path should be be retrieved from a central location not hard coded there
-			this.xml_path = System.IO.Path.Combine (FSpot.Global.BaseDirectory, "Accounts.xml");
+			this.xml_path = System.IO.Path.Combine (FSpot.Core.Global.BaseDirectory, "Accounts.xml");
 
 			accounts = new ArrayList ();
 			ReadAccounts ();

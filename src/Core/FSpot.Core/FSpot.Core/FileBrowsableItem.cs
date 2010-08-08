@@ -19,7 +19,7 @@ using FSpot.Utils;
 
 using Mono.Unix.Native;
 
-namespace FSpot {
+namespace FSpot.Core {
     public class FileBrowsableItem : IBrowsableItem
     {
         bool metadata_parsed = false;

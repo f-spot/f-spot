@@ -9,6 +9,7 @@
 
 
 using FSpot;
+using FSpot.Core;
 using FSpot.Extensions;
 using Mono.Unix;
 using System;

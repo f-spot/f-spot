@@ -37,6 +37,7 @@ using System.Net;
 using System.Threading;
 
 using Hyena;
+using FSpot.Core;
 using FSpot.UI.Dialog;
 
 namespace FSpotTabbloExport {
@@ -64,7 +65,7 @@ namespace FSpotTabbloExport {
 		}
 
 
-		public void Run (FSpot.IBrowsableCollection photos)
+		public void Run (IBrowsableCollection photos)
 		{
 			if (null == photos || null == photos.Items) {
 				throw new ArgumentNullException ("photos");
@@ -207,7 +208,7 @@ namespace FSpotTabbloExport {
 		{
 			Debug.Assert (model != sender);
 
-			FSpot.Tag [] tags = SelectTags ();
+			FSpot.Core.Tag [] tags = SelectTags ();
 			if (null != tags) {
 				model.AttachedTags = tags;
 			}
@@ -218,7 +219,7 @@ namespace FSpotTabbloExport {
 		{
 			Debug.Assert (model != sender);
 
-			FSpot.Tag [] tags = SelectTags ();
+			FSpot.Core.Tag [] tags = SelectTags ();
 			if (null != tags) {
 				model.RemovedTags = tags;
 			}
@@ -250,12 +251,12 @@ namespace FSpotTabbloExport {
 		}
 
 
-		private FSpot.Tag [] SelectTags ()
+		private FSpot.Core.Tag [] SelectTags ()
 		{
 			TagStore tag_store = FSpot.App.Instance.Database.Tags;
 			TagSelectionDialog tagDialog =
 					new TagSelectionDialog (tag_store);
-			FSpot.Tag [] tags = tagDialog.Run ();
+			FSpot.Core.Tag [] tags = tagDialog.Run ();
 
 			tagDialog.Hide ();
 
@@ -363,7 +364,7 @@ namespace FSpotTabbloExport {
 		}
 
 		
-		private void OnPhotoUploaded (FSpot.IBrowsableItem item)
+		private void OnPhotoUploaded (IBrowsableItem item)
 		{
 			Debug.Assert (null != item);
 
@@ -392,7 +393,7 @@ namespace FSpotTabbloExport {
 		private Picture [] GetPicturesForUpload ()
 		{
 			Picture [] pictures = new Picture [model.Photos.Length];
-			FSpot.IBrowsableItem [] items = model.Photos;
+			IBrowsableItem [] items = model.Photos;
 
 			for (int i = 0; i < pictures.Length; ++i) {
 				string mime_type = GLib.FileFactory.NewForUri (items [i].DefaultVersion.Uri).

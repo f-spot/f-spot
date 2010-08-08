@@ -9,6 +9,7 @@
 
 using System;
 using FSpot;
+using FSpot.Core;
 using FSpot.Query;
 
 namespace MergeDbExtension

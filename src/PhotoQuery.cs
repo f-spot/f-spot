@@ -11,11 +11,12 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using FSpot.Core;
 using FSpot.Query;
 using Hyena;
 
 namespace FSpot {
-	public class PhotoQuery : FSpot.IBrowsableCollection {
+	public class PhotoQuery : IBrowsableCollection {
 		class PhotoCache
 		{
 			static int SIZE = 100;
@@ -100,8 +101,8 @@ namespace FSpot {
 		}
 
 		// IPhotoCollection Interface
-		public event FSpot.IBrowsableCollectionChangedHandler Changed;
-		public event FSpot.IBrowsableCollectionItemsChangedHandler ItemsChanged;
+		public event IBrowsableCollectionChangedHandler Changed;
+		public event IBrowsableCollectionItemsChangedHandler ItemsChanged;
 		
 		public IBrowsableItem this [int index] {
 			get { return cache.Get (index); }

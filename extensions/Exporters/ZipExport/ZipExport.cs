@@ -14,6 +14,7 @@
 
 using FSpot;
 using FSpot.UI.Dialog;
+using FSpot.Core;
 using FSpot.Extensions;
 using FSpot.Filters;
 using Hyena;
@@ -65,7 +66,7 @@ namespace ZipExport {
 			uri_chooser = new Gtk.FileChooserButton (Catalog.GetString ("Select export folder"),
 								 Gtk.FileChooserAction.SelectFolder);
 			uri_chooser.LocalOnly = true;
-			uri_chooser.SetFilename (System.IO.Path.Combine (FSpot.Global.HomeDirectory, "Desktop"));
+			uri_chooser.SetFilename (System.IO.Path.Combine (FSpot.Core.Global.HomeDirectory, "Desktop"));
 			dirchooser_hbox.PackStart (uri_chooser, false, false, 2);
 			filename.Text = "f-spot_export.zip";
 

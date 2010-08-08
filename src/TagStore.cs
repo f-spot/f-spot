@@ -7,6 +7,7 @@ using System.IO;
 using System.Data;
 using System;
 using FSpot;
+using FSpot.Core;
 using FSpot.Jobs;
 using FSpot.Query;
 using FSpot.Utils;

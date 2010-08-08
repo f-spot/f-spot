@@ -16,6 +16,7 @@
 using Gtk;
 using System;
 using System.IO;
+using FSpot.Core;
 using FSpot.Imaging;
 using Mono.Unix;
 using FSpot.Utils;

@@ -16,9 +16,11 @@ using System.Collections.Generic;
 
 using Gtk;
 
+using FSpot.Core;
+
 namespace FSpot.UI.Dialog {
 	public class ThreadProgressDialog : Gtk.Dialog {
-		FSpot.Delay delay;
+		Delay delay;
 
 		Gtk.ProgressBar progress_bar;
 		Gtk.Label message_label;

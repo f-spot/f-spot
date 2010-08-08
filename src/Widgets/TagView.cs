@@ -11,6 +11,7 @@
 using System;
 using Gtk;
 using Gdk;
+using FSpot.Core;
 
 namespace FSpot.Widgets {
 public class TagView : EventBox {

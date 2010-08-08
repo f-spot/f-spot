@@ -15,6 +15,7 @@ using System;
 using System.Reflection;
 using System.Collections;
 using System.IO;
+using FSpot.Core;
 using FSpot.Utils;
 using FSpot.Platform;
 
@@ -240,7 +241,7 @@ namespace FSpot.Widgets
 			//FSpot.Global.ModifyColors (this);
 		}
 
-		public IconView (FSpot.IBrowsableCollection collection) : this ()
+		public IconView (IBrowsableCollection collection) : this ()
 		{
 			this.collection = collection;
 			this.selection = new SelectionCollection (collection);
@@ -252,7 +253,7 @@ namespace FSpot.Widgets
 			selection.DetailedChanged += HandleSelectionChanged;
 		}
 
-		private void HandleSelectionChanged (FSpot.IBrowsableCollection collection, int [] ids)
+		private void HandleSelectionChanged (IBrowsableCollection collection, int [] ids)
 		{
 			if (ids == null)
 				QueueDraw ();
@@ -261,7 +262,7 @@ namespace FSpot.Widgets
 					InvalidateCell (id);
 		}
 
-		private void HandleChanged (FSpot.IBrowsableCollection sender)
+		private void HandleChanged (IBrowsableCollection sender)
 		{
 			// FIXME we should probably try to merge the selection forward
 			// but it needs some thought to be efficient.
@@ -269,7 +270,7 @@ namespace FSpot.Widgets
 			QueueResize ();
 		}
 
-		private void HandleItemsChanged (FSpot.IBrowsableCollection sender, BrowsableEventArgs args)
+		private void HandleItemsChanged (IBrowsableCollection sender, BrowsableEventArgs args)
 		{
 			foreach (int item in args.Items) {
 				if (args.Changes.DataChanged)
@@ -282,8 +283,8 @@ namespace FSpot.Widgets
 		// IPhotoSelection
 		//
 
-		protected FSpot.IBrowsableCollection collection;
-		public FSpot.IBrowsableCollection Collection {
+		protected IBrowsableCollection collection;
+		public IBrowsableCollection Collection {
 			get {
 				return collection;
 			}
@@ -634,7 +635,7 @@ namespace FSpot.Widgets
 		// Updating.
 		public void UpdateThumbnail (int thumbnail_num)
 		{
-			FSpot.IBrowsableItem photo = collection [thumbnail_num];
+			IBrowsableItem photo = collection [thumbnail_num];
 			cache.Remove (photo.DefaultVersion.Uri);
 			InvalidateCell (thumbnail_num);
 		}
@@ -848,7 +849,7 @@ namespace FSpot.Widgets
 			if (!bounds.Intersect (area, out area))
 				return;
 
-			FSpot.IBrowsableItem photo = collection [thumbnail_num];
+			IBrowsableItem photo = collection [thumbnail_num];
 
 			FSpot.PixbufCache.CacheEntry entry = cache.Lookup (photo.DefaultVersion.Uri);
 			if (entry == null)
@@ -1256,7 +1257,7 @@ namespace FSpot.Widgets
 
 			int i;
 
-			FSpot.IBrowsableItem photo;
+			IBrowsableItem photo;
 			FSpot.PixbufCache.CacheEntry entry;
 
 			// Preload the cache with images aroud the expose area

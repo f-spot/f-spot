@@ -12,6 +12,7 @@ using FSpot.Utils;
 using FSpot.UI.Dialog;
 using FSpot.Widgets;
 using FSpot.Platform;
+using FSpot.Core;
 
 namespace FSpot {
 	public class SingleView {
@@ -250,7 +251,7 @@ namespace FSpot {
 				collection.MarkChanged (image_view.Item.Index, FullInvalidate.Instance);
 		}		
 
-		private void HandleSelectionChanged (FSpot.IBrowsableCollection selection) 
+		private void HandleSelectionChanged (IBrowsableCollection selection)
 		{
 			
 			if (selection.Count > 0) {

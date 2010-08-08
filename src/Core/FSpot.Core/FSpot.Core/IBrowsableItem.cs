@@ -1,6 +1,6 @@
 /*
  * IBrowsableItem.cs
- * 
+ *
  * Author(s):
  *  Larry Ewing <lewing@novell.com>
  *  Mike Gemuende <mike@gemuende.de>
@@ -13,7 +13,7 @@ using System.Collections.Generic;
 using Hyena;
 
 
-namespace FSpot
+namespace FSpot.Core
 {
 
 	public interface IBrowsableItem

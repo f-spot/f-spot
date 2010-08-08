@@ -3,6 +3,8 @@ using Gdk;
 using Gtk;
 using Glade;
 
+using FSpot.Core;
+
 namespace FSpot.UI.Dialog {
 	public class TagSelectionDialog : BuilderDialog
 	{

@@ -14,6 +14,7 @@ using Mono.Unix;
 
 using Hyena;
 using FSpot;
+using FSpot.Core;
 using FSpot.Utils;
 using FSpot.Extensions;
 using FSpot.Imaging;
@@ -119,9 +120,9 @@ namespace DevelopInUFRawExtension
 					break;
 				case "ufraw-batch":
 					args += ufraw_batch_args;
-					if (GLib.FileFactory.NewForUri (Path.Combine (FSpot.Global.BaseDirectory, "batch.ufraw")).Exists) {
+					if (GLib.FileFactory.NewForUri (Path.Combine (Global.BaseDirectory, "batch.ufraw")).Exists) {
 						// We found an ID file, use that instead of the raw file
-						idfile = "--conf=" + GLib.Shell.Quote (Path.Combine (FSpot.Global.BaseDirectory, "batch.ufraw"));
+						idfile = "--conf=" + GLib.Shell.Quote (Path.Combine (Global.BaseDirectory, "batch.ufraw"));
 					}
 					break;
 			}
@@ -142,8 +143,8 @@ namespace DevelopInUFRawExtension
 
 			if (GLib.FileFactory.NewForUri (Path.ChangeExtension (developed.ToString (), ".ufraw")).Exists) {
 				// We save our own copy of the last ufraw settings, as ufraw can overwrite it's own last used settings outside f-spot
-				File.Delete (Path.Combine (FSpot.Global.BaseDirectory, "batch.ufraw"));
-				File.Copy (Path.ChangeExtension (developed.LocalPath, ".ufraw"), Path.Combine (FSpot.Global.BaseDirectory, "batch.ufraw"));
+				File.Delete (Path.Combine (Global.BaseDirectory, "batch.ufraw"));
+				File.Copy (Path.ChangeExtension (developed.LocalPath, ".ufraw"), Path.Combine (Global.BaseDirectory, "batch.ufraw"));
 
 				// Rename the ufraw file to match the original RAW filename, instead of the (Developed In UFRaw) filename
 				File.Delete (Path.ChangeExtension (raw.Uri.LocalPath, ".ufraw"));

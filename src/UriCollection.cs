@@ -20,6 +20,7 @@ using System.Xml;
 using Hyena;
 using GLib;
 
+using FSpot.Core;
 using FSpot.Imaging;
 
 namespace FSpot {

@@ -18,6 +18,7 @@ using System.Runtime.InteropServices;
 using Mono.Unix;
 
 using FSpot;
+using FSpot.Core;
 using FSpot.Filters;
 using FSpot.Widgets;
 using Hyena;
