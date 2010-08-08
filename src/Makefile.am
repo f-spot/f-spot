@@ -1,7 +1,6 @@
 SUBDIRS = \
 	Core \
 	Platform \
-	Widgets \
 	Clients
 
 EXTRA_DIST = AssemblyInfo.cs.in
