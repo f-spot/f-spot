@@ -1,4 +1,5 @@
 SUBDIRS = \
 		FSpot.Bling \
 		FSpot.Cms \
-		FSpot.Core
+		FSpot.Core \
+		FSpot.JobScheduler

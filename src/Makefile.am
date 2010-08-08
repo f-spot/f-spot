@@ -2,7 +2,6 @@ SUBDIRS = \
 	Utils \
 	Core \
 	Query \
-	JobScheduler \
 	Platform \
 	Widgets \
 	Clients
