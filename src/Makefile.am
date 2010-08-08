@@ -1,5 +1,4 @@
 SUBDIRS = \
-	Cms \
 	Utils \
 	Core \
 	Query \

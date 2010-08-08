@@ -350,6 +350,8 @@ lib/Hyena/Hyena.Gui/Makefile
 lib/TagLib/Makefile
 
 src/Core/Makefile
+src/Core/FSpot.Cms/Makefile
+src/Core/FSpot.Cms/FSpot.Cms.dll.config
 src/Core/FSpot.Core/Makefile
 src/Core/FSpot.Core/FSpot.Core.dll.config
 src/Core/FSpot.Core/FSpot.Core/Defines.cs
@@ -358,8 +360,6 @@ docs/Makefile
 icons/Makefile
 tools/Makefile
 po/Makefile.in
-src/Cms/FSpot.Cms.dll.config
-src/Cms/Makefile
 src/Utils/Makefile
 src/Bling/Makefile
 src/JobScheduler/Makefile
