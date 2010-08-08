@@ -4,9 +4,11 @@ LINK = $(REF_FSPOT)
 ASSEMBLY_BUILD_FLAGS = -unsafe
 
 SOURCES = \
+	DependentListStore.cs \
+	ExportStore.cs \
+	FSpot/Accelerometer.cs \
 	FSpot/App.cs \
 	FSpot/BitConverter.cs \
-	FSpot/PhotoList.cs \
 	FSpot.ColorAdjustment/Adjustment.cs \
 	FSpot.ColorAdjustment/AutoStretch.cs \
 	FSpot.ColorAdjustment/Desaturate.cs \
@@ -15,26 +17,26 @@ SOURCES = \
 	FSpot/ColorManagement.cs \
 	FSpot/ControlOverlay.cs \
 	FSpot.Database/Db.cs \
-	DependentListStore.cs \
+	FSpot.Database/Tests/UpdaterTests.cs \
+	FSpot.Database/Updater.cs \
 	FSpot/DragDropTargets.cs \
-	FSpot.Editors/Editor.cs \
 	FSpot.Editors/AutoStretchEditor.cs \
-	FSpot.Editors/CropEditor.cs \
 	FSpot.Editors/ColorEditor.cs \
+	FSpot.Editors/CropEditor.cs \
 	FSpot.Editors/DesaturateEditor.cs \
+	FSpot.Editors/Editor.cs \
 	FSpot.Editors/RedEyeEditor.cs \
 	FSpot.Editors/SepiaEditor.cs \
 	FSpot.Editors/SoftFocusEditor.cs \
 	FSpot.Editors/TiltEditor.cs \
-	ExportStore.cs \
+	FSpot.Extensions/CommandMenuItemNode.cs \
+	FSpot.Extensions/ComplexMenuItemNode.cs \
 	FSpot.Extensions/ExportMenuItemNode.cs \
-	FSpot.Extensions/IExporter.cs \
 	FSpot.Extensions/ICommand.cs \
+	FSpot.Extensions/IExporter.cs \
 	FSpot.Extensions/IMenuGenerator.cs \
 	FSpot.Extensions/IService.cs \
 	FSpot.Extensions/MenuNode.cs \
-	FSpot.Extensions/CommandMenuItemNode.cs \
-	FSpot.Extensions/ComplexMenuItemNode.cs \
 	FSpot.Extensions/PhotoSelectionCondition.cs \
 	FSpot.Extensions/PopupCommands.cs \
 	FSpot.Extensions/ServiceNode.cs \
@@ -56,67 +58,54 @@ SOURCES = \
 	FSpot/FullScreenView.cs \
 	FSpot/GroupAdaptor.cs \
 	FSpot/GroupSelector.cs \
-	FSpot/Accelerometer.cs \
 	FSpot/Histogram.cs \
-	FSpot.Loaders/AreaPreparedEventArgs.cs \
-	FSpot.Loaders/AreaUpdatedEventArgs.cs \
-	FSpot.Loaders/ImageLoader.cs \
-	FSpot.Loaders/IImageLoader.cs \
-	FSpot.Loaders/GdkImageLoader.cs \
-	ImageLoaderThread.cs \
-	FSpot.Import/ImportController.cs \
-	FSpot.Import/ImportSource.cs \
-	FSpot.Import/FileImportSource.cs \
-	FSpot.Import/MetadataImporter.cs \
-	FSpot/InfoOverlay.cs \
-	FSpot/ItemAction.cs \
-	FSpot.Imaging/DCRawFile.cs \
 	FSpot.Imaging/Ciff.cs \
+	FSpot.Imaging/DCRawFile.cs \
 	FSpot.Imaging/ImageFile.cs \
 	FSpot.Imaging/InternalProcess.cs \
 	FSpot.Imaging/IOChannel.cs \
 	FSpot.Imaging/RafFile.cs \
+	FSpot.Imaging/Tests/ImageFileTests.cs \
 	FSpot.Imaging/Tiff.cs \
-	JobStore.cs \
-	FSpot.Jobs/SyncMetadataJob.cs \
+	FSpot.Import/FileImportSource.cs \
+	FSpot.Import/ImportController.cs \
+	FSpot.Import/ImportSource.cs \
+	FSpot.Import/MetadataImporter.cs \
+	FSpot/InfoOverlay.cs \
+	FSpot/ItemAction.cs \
 	FSpot.Jobs/CalculateHashJob.cs \
-	FSpot.Widgets/Loupe.cs \
+	FSpot.Jobs/SyncMetadataJob.cs \
+	FSpot.Loaders/AreaPreparedEventArgs.cs \
+	FSpot.Loaders/AreaUpdatedEventArgs.cs \
+	FSpot.Loaders/GdkImageLoader.cs \
+	FSpot.Loaders/IImageLoader.cs \
+	FSpot.Loaders/ImageLoader.cs \
+	FSpot/main.cs \
 	FSpot/MainWindow.cs \
 	FSpot/MemorySurface.cs \
-	MetaStore.cs \
 	FSpot/Photo.cs \
 	FSpot/PhotoEventArgs.cs \
-	FSpot.Widgets/PhotoImageView.cs \
+	FSpot/PhotoList.cs \
 	FSpot/PhotoLoader.cs \
 	FSpot/PhotoPopup.cs \
 	FSpot/PhotoQuery.cs \
-	PhotoStore.cs \
-	PhotoTagMenu.cs \
-	PhotoVersionCommands.cs \
 	FSpot/PhotoVersion.cs \
-	PhotoVersionMenu.cs \
 	FSpot/PhotoView.cs \
-	PixbufUtils.cs \
 	FSpot/PixbufCache.cs \
 	FSpot/Preferences.cs  \
 	FSpot/PrintOperation.cs \
 	FSpot/ProgressItem.cs \
+	FSpot.Query/HiddenTag.cs \
+	FSpot/QueryWidget.cs \
 	FSpot/RotateCommand.cs \
-	RollStore.cs \
 	FSpot/SelectionDataExtensions.cs \
 	FSpot/SendEmail.cs \
-	FSpot/XScreenSaverSlide.cs \
 	FSpot/SingleView.cs \
-	FSpot.Widgets/Sharpener.cs \
-	FSpot.Widgets/SoftFocus.cs \
-	TagCommands.cs \
-	TagPopup.cs \
 	FSpot/TagQueryWidget.cs \
 	FSpot/TagSelectionWidget.cs \
-	TagStore.cs \
+	FSpot/Term.cs \
 	FSpot/ThumbnailCache.cs \
 	FSpot/ThumbnailGenerator.cs \
-	FSpot/Term.cs \
 	FSpot/TimeAdaptor.cs \
 	FSpot/TipWindow.cs \
 	FSpot.UI.Dialog/AboutDialog.cs \
@@ -138,37 +127,37 @@ SOURCES = \
 	FSpot.UI.Dialog/SelectionRatioDialog.cs \
 	FSpot.UI.Dialog/TagSelectionDialog.cs \
 	FSpot.UI.Dialog/ThreadProgressDialog.cs \
-	FSpot.Database/Updater.cs \
 	FSpot/UriCollection.cs \
 	FSpot.Utils/Util.cs \
 	FSpot/Vector.cs \
-	ThumbnailCommand.cs \
-	FSpot/QueryWidget.cs \
-	FSpot.Query/HiddenTag.cs \
-	FSpot.Widgets/SlideShow.cs \
+	FSpot.Widgets/CellRendererTextProgress.cs\
 	FSpot.Widgets/CompositeUtils.cs \
 	FSpot.Widgets/Dissolve.cs \
 	FSpot.Widgets/EditorPage.cs \
 	FSpot.Widgets/Filmstrip.cs \
 	FSpot.Widgets/FindBar.cs \
+	FSpot.Widgets/FolderTreeModel.cs \
 	FSpot.Widgets/FolderTreePage.cs \
 	FSpot.Widgets/FolderTreeView.cs \
-	FSpot.Widgets/FolderTreeModel.cs \
-	FSpot.Widgets/CellRendererTextProgress.cs\
-	FSpot.Widgets/IEffect.cs \
-	FSpot.Widgets/ITransition.cs \
 	FSpot.Widgets/IconView.cs \
+	FSpot.Widgets/IEffect.cs \
 	FSpot.Widgets/ImageInfo.cs \
 	FSpot.Widgets/InfoBox.cs \
+	FSpot.Widgets/ITransition.cs \
+	FSpot.Widgets/Loupe.cs \
 	FSpot.Widgets/MetadataDisplay.cs \
 	FSpot.Widgets/PanZoom.cs \
+	FSpot.Widgets/PhotoImageView.cs \
 	FSpot.Widgets/PreviewPopup.cs  \
 	FSpot.Widgets/Push.cs \
 	FSpot.Widgets/QueryView.cs \
 	FSpot.Widgets/RatingMenuItem.cs \
 	FSpot.Widgets/Reveal.cs \
 	FSpot.Widgets/ScalingIconView.cs \
+	FSpot.Widgets/Sharpener.cs \
 	FSpot.Widgets/Sidebar.cs \
+	FSpot.Widgets/SlideShow.cs \
+	FSpot.Widgets/SoftFocus.cs \
 	FSpot.Widgets/TagEntry.cs \
 	FSpot.Widgets/TagMenu.cs \
 	FSpot.Widgets/TagView.cs \
@@ -176,10 +165,20 @@ SOURCES = \
 	FSpot.Widgets/TrayView.cs \
 	FSpot.Widgets/ViewContext.cs \
 	FSpot.Widgets/Wipe.cs \
-	FSpot/main.cs \
-	FSpot.Imaging/Tests/ImageFileTests.cs \
-	FSpot.Database/Tests/UpdaterTests.cs
-
+	FSpot/XScreenSaverSlide.cs \
+	ImageLoaderThread.cs \
+	JobStore.cs \
+	MetaStore.cs \
+	PhotoStore.cs \
+	PhotoTagMenu.cs \
+	PhotoVersionCommands.cs \
+	PhotoVersionMenu.cs \
+	PixbufUtils.cs \
+	RollStore.cs \
+	TagCommands.cs \
+	TagPopup.cs \
+	TagStore.cs \
+	ThumbnailCommand.cs
 
 RESOURCES = \
 	$(top_srcdir)/COPYING \
