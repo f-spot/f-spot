@@ -1,4 +1,4 @@
-ASSEMBLY = FSpot.Exporters.ScreensaverConfig
+ASSEMBLY = FSpot.Tools.ScreensaverConfig
 TARGET = library
 LINK = $(REF_FSPOT_EXTENSION_SCREENSAVERCONFIG)
 INSTALL_DIR = $(EXTENSIONS_INSTALL_DIR)

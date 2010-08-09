@@ -1,4 +1,4 @@
-ASSEMBLY = FSpot.Exporters.RetroactiveRoll
+ASSEMBLY = FSpot.Tools.RetroactiveRoll
 TARGET = library
 LINK = $(REF_FSPOT_EXTENSION_RETROACTIVEROLL)
 INSTALL_DIR = $(EXTENSIONS_INSTALL_DIR)
