@@ -5,10 +5,10 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{61DAD6B1-E866-485B-819E-A9E86B793F5E}</ProjectGuid>
+    <ProjectGuid>{53DAC12F-0421-4F5E-A746-17A701D2BDDA}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>BWEditor</RootNamespace>
-    <AssemblyName>FSpot.Editors.BWEditor</AssemblyName>
+    <RootNamespace>FSpot.Addins.Editors</RootNamespace>
+    <AssemblyName>FSpot.Editors.FlipEditor</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <ReleaseVersion>0.7.2</ReleaseVersion>
   </PropertyGroup>
@@ -21,7 +21,6 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>none</DebugType>
@@ -30,15 +29,14 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
-    <Compile Include="BWEditor.cs" />
+    <Compile Include="FSpot.Addins.Editors\FlipEditor.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="BWEditor.addin.xml">
-      <LogicalName>BWEditor.addin.xml</LogicalName>
+    <EmbeddedResource Include="Resources\FlipEditor.addin.xml">
+      <LogicalName>FlipEditor.addin.xml</LogicalName>
     </EmbeddedResource>
   </ItemGroup>
   <ProjectExtensions>
@@ -57,17 +55,9 @@
     </MonoDevelop>
   </ProjectExtensions>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Core\FSpot.Core\FSpot.Core.csproj">
-      <Project>{57EDC3BC-E777-4400-B4E7-32A5D8F15A76}</Project>
-      <Name>FSpot.Core</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\..\Clients\MainApp\MainApp.csproj">
       <Project>{27EC05FB-0223-4B26-8157-E49AF81D0007}</Project>
       <Name>MainApp</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\..\lib\Hyena\Hyena\Hyena.csproj">
-      <Project>{95374549-9553-4C1E-9D89-667755F90E12}</Project>
-      <Name>Hyena</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\Core\FSpot.Cms\FSpot.Cms.csproj">
       <Project>{9D66BC1B-4390-4B8D-8468-19D5A862EC23}</Project>
@@ -75,10 +65,11 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="gtk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
-    <Reference Include="gdk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
     <Reference Include="Mono.Posix" />
-    <Reference Include="Mono.Simd" />
-    <Reference Include="System.Core" />
+    <Reference Include="gdk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="FSpot.Addins.Editors\" />
+    <Folder Include="Resources\" />
   </ItemGroup>
 </Project>

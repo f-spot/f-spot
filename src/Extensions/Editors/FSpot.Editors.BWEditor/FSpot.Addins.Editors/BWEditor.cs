@@ -18,7 +18,7 @@ using Mono.Unix;
 using Mono.Simd;
 using Hyena;
 
-namespace BWEditor {
+namespace FSpot.Addins.Editors {
 	class BWEditor : Editor {
 		public BWEditor () : base (Catalog.GetString ("Convert to B/W"), null) {
 			CanHandleMultiple = false;

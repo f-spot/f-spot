@@ -1,6 +1,6 @@
-SUBDIRS =		\
-	BlackoutEditor	\
-	BWEditor	\
-	FlipEditor	\
-	PixelateEditor	\
-	ResizeEditor
+SUBDIRS = \
+	FSpot.Editors.BlackoutEditor \
+	FSpot.Editors.BWEditor \
+	FSpot.Editors.FlipEditor \
+	FSpot.Editors.PixelateEditor \
+	FSpot.Editors.ResizeEditor

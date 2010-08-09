@@ -11,6 +11,6 @@
 		<Addin id="Core" version="0.7"/>
 	</Dependencies>
 	<Extension path = "/FSpot/Editors">
-		<Editor editor_type = "BWEditor.BWEditor"/>
+		<Editor editor_type = "FSpot.Addins.Editors.BWEditor"/>
 	</Extension>
 </Addin>

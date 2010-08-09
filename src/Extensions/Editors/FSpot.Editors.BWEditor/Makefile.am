@@ -4,8 +4,8 @@ TARGET = library
 LINK = $(REF_FSPOT_EXTENSION_BWEDITOR)
 INSTALL_DIR = $(EXTENSIONS_INSTALL_DIR)
 
-SOURCES = BWEditor.cs
+SOURCES = FSpot.Addins.Editors/BWEditor.cs
 
-RESOURCES = BWEditor.addin.xml
+RESOURCES = Resources/BWEditor.addin.xml
 
 include $(top_srcdir)/build/build.mk

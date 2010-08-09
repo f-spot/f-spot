@@ -7,7 +7,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{1F610540-D2ED-4F58-87CE-9092A43DBD4A}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>ResizeEditor</RootNamespace>
+    <RootNamespace>FSpot.Addins.Editors</RootNamespace>
     <AssemblyName>FSpot.Editors.ResizeEditor</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <ReleaseVersion>0.7.2</ReleaseVersion>
@@ -32,10 +32,10 @@
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
-    <Compile Include="ResizeEditor.cs" />
+    <Compile Include="FSpot.Addins.Editors\ResizeEditor.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="ResizeEditor.addin.xml">
+    <EmbeddedResource Include="Resources\ResizeEditor.addin.xml">
       <LogicalName>ResizeEditor.addin.xml</LogicalName>
     </EmbeddedResource>
   </ItemGroup>
@@ -68,5 +68,9 @@
       <Project>{9D66BC1B-4390-4B8D-8468-19D5A862EC23}</Project>
       <Name>FSpot.Cms</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="FSpot.Addins.Editors\" />
+    <Folder Include="Resources\" />
   </ItemGroup>
 </Project>
