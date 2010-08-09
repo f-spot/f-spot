@@ -1,13 +1,14 @@
 <Addin namespace="FSpot"
 	id="MetaPixelExtension"
-	version="0.7.0.0"
+	version="0.8"
+	compatVersion="0.8"
 	description="Create photomosaics using MetaPixel (http://www.complang.tuwien.ac.at/schani/metapixel/)"
 	author="Lorenzo Milesi"
 	name="MetaPixel"
 	url="http://f-spot.org/Extensions"
 	category="Tools">
 	<Dependencies>
-		<Addin id="Core" version="0.7"/>
+		<Addin id="Core" version="0.8"/>
 	</Dependencies>
 	<Extension path = "/FSpot/Menus/Tools">
 		<Command id = "MetaPixel" _label = "Create p_hotomosaic" command_type = "MetaPixelExtension.MetaPixel" />

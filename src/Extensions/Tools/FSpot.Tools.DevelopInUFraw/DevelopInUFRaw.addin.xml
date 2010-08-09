@@ -1,6 +1,7 @@
 <Addin namespace="FSpot"
 	id="DevelopInUFraw"
-	version="0.7.0.0"
+	version="0.8"
+	compatVersion="0.8"
 	name="DevelopInUFRaw"
 	description="Develop the image in UFRaw, saves the result as a new version\n\nNote: Require ufraw 0.13 or CVS version newer than 2007-09-06 !!!"
 	author="Stephane Delcroix"
@@ -8,7 +9,7 @@
 	category="Tools"
 	defaultEnabled="false">
 	<Dependencies>
-		<Addin id="Core" version="0.7"/>
+		<Addin id="Core" version="0.8"/>
 	</Dependencies>
 	<Extension path = "/FSpot/Menus/PhotoPopup">
 		<Command id = "DevelopInUFRaw" _label = "Develop in UFRaw" command_type = "DevelopInUFRawExtension.DevelopInUFRaw" insertbefore="OpenWith"/>

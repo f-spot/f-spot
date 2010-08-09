@@ -1,5 +1,6 @@
 <Addin namespace="FSpot"
-	version="0.7.0.0"
+	version="0.8"
+	compatVersion="0.8"
 	name="Tabblo Export"
 	description="This extension allows you to export your photos to Tabblo."
  	author="Wojciech Dzierżanowski"
@@ -7,7 +8,7 @@
 	category="Export">
 
 	<Dependencies>
-		<Addin id="Core" version="0.7"/>
+		<Addin id="Core" version="0.8"/>
 	</Dependencies>
 
 	<Extension path = "/FSpot/Menus/Exports">
