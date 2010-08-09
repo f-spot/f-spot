@@ -377,14 +377,14 @@ src/Extensions/Exporters/FSpot.Exporters.Tabblo/Makefile
 src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/Makefile
 src/Extensions/Exporters/FSpot.Exporters.Zip/Makefile
 src/Extensions/Tools/Makefile
-src/Extensions/Tools/RawPlusJpeg/Makefile
-src/Extensions/Tools/ChangePhotoPath/Makefile
-src/Extensions/Tools/HashJob/Makefile
-src/Extensions/Tools/DevelopInUFraw/Makefile
-src/Extensions/Tools/LiveWebGallery/Makefile
-src/Extensions/Tools/MergeDb/Makefile
-src/Extensions/Tools/RetroactiveRoll/Makefile
-src/Extensions/Tools/ScreensaverConfig/Makefile
+src/Extensions/Tools/FSpot.Tools.RawPlusJpeg/Makefile
+src/Extensions/Tools/FSpot.Tools.ChangePhotoPath/Makefile
+src/Extensions/Tools/FSpot.Tools.HashJob/Makefile
+src/Extensions/Tools/FSpot.Tools.DevelopInUFraw/Makefile
+src/Extensions/Tools/FSpot.Tools.LiveWebGallery/Makefile
+src/Extensions/Tools/FSpot.Tools.MergeDb/Makefile
+src/Extensions/Tools/FSpot.Tools.RetroactiveRoll/Makefile
+src/Extensions/Tools/FSpot.Tools.ScreensaverConfig/Makefile
 src/Extensions/Transitions/Makefile
 src/Extensions/Transitions/FSpot.Transitions.Cover/Makefile
 

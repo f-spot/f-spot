@@ -11,6 +11,6 @@
 		<Addin id="Core" version="0.7"/>
 	</Dependencies>
 	<Extension path = "/FSpot/Menus/Tools">
-		<Command id="FileList" _label = "Change path to photos" command_type = "ChangePhotoPath.Dump" />
+		<Command id="FileList" _label = "Change path to photos" command_type = "FSpot.Tools.ChangePhotoPath.Dump" />
 	</Extension>
 </Addin>

@@ -32,7 +32,7 @@ A bit of mixture between URI and path. Old and New base path are in String path.
 
 */
 
-namespace ChangePhotoPath
+namespace FSpot.Tools.ChangePhotoPath
 {
 
 	public enum ProcessResult {

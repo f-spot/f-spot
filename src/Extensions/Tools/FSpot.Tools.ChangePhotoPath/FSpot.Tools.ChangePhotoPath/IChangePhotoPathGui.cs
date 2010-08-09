@@ -7,7 +7,7 @@
 // Copyright (C) 2007
 //
 
-namespace ChangePhotoPath
+namespace FSpot.Tools.ChangePhotoPath
 {
 	public interface IChangePhotoPathGui
 	{

@@ -15,7 +15,7 @@ using Gtk;
 using Hyena;
 using Hyena.Widgets;
 
-namespace ChangePhotoPath
+namespace FSpot.Tools.ChangePhotoPath
 {
 
 	public class Dump : Gtk.Dialog, ICommand, IChangePhotoPathGui

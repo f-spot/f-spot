@@ -1,9 +1,9 @@
 SUBDIRS = 			\
-	ChangePhotoPath		\
-	DevelopInUFraw		\
-	HashJob			\
-	LiveWebGallery		\
-	MergeDb			\
-	RawPlusJpeg		\
-	RetroactiveRoll		\
-	ScreensaverConfig
+	FSpot.Tools.ChangePhotoPath		\
+	FSpot.Tools.DevelopInUFraw		\
+	FSpot.Tools.HashJob			\
+	FSpot.Tools.LiveWebGallery		\
+	FSpot.Tools.MergeDb			\
+	FSpot.Tools.RawPlusJpeg		\
+	FSpot.Tools.RetroactiveRoll		\
+	FSpot.Tools.ScreensaverConfig
