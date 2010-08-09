@@ -358,11 +358,11 @@ src/Clients/MainApp/f-spot.exe.config
 
 src/Extensions/Makefile
 src/Extensions/Editors/Makefile
-src/Extensions/Editors/BlackoutEditor/Makefile
-src/Extensions/Editors/BWEditor/Makefile
-src/Extensions/Editors/FlipEditor/Makefile
-src/Extensions/Editors/PixelateEditor/Makefile
-src/Extensions/Editors/ResizeEditor/Makefile
+src/Extensions/Editors/FSpot.Editors.BlackoutEditor/Makefile
+src/Extensions/Editors/FSpot.Editors.BWEditor/Makefile
+src/Extensions/Editors/FSpot.Editors.FlipEditor/Makefile
+src/Extensions/Editors/FSpot.Editors.PixelateEditor/Makefile
+src/Extensions/Editors/FSpot.Editors.ResizeEditor/Makefile
 src/Extensions/Exporters/Makefile
 src/Extensions/Exporters/CDExport/Makefile
 src/Extensions/Exporters/FlickrExport/Makefile
