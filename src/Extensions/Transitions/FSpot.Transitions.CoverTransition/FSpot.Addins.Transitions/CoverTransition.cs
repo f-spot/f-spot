@@ -19,7 +19,7 @@ using FSpot.Widgets;
 
 using Color = Cairo.Color;
 
-namespace CoverTransition
+namespace FSpot.Addins.Transitions
 {
 	public class CoverTransition : CairoTransition
 	{

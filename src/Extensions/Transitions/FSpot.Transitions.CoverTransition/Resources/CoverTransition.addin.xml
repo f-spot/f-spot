@@ -10,6 +10,6 @@
 		<Addin id="Core" version="0.7.0.0"/>
 	</Dependencies>
 	<Extension path = "/FSpot/SlideShow">
-		<Transition transition_type="CoverTransition.CoverTransition"/>
+		<Transition transition_type="FSpot.Addins.Transitions.CoverTransition"/>
 	</Extension>
 </Addin>

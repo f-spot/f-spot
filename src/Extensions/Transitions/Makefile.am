@@ -1,2 +1,2 @@
 SUBDIRS = 			\
-	CoverTransition
+	FSpot.Transitions.CoverTransition
