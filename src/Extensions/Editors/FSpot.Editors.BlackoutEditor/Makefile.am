@@ -3,8 +3,8 @@ TARGET = library
 LINK = $(REF_FSPOT_EXTENSION_BLACKOUTEDITOR)
 INSTALL_DIR = $(EXTENSIONS_INSTALL_DIR)
 
-SOURCES = BlackoutEditor.cs
+SOURCES = FSpot.Addins.Editors/BlackoutEditor.cs
 
-RESOURCES = BlackoutEditor.addin.xml
+RESOURCES = Resources/BlackoutEditor.addin.xml
 
 include $(top_srcdir)/build/build.mk

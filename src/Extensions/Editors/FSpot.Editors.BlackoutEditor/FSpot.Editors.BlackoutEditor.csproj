@@ -7,7 +7,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{7011154B-87B0-4C54-98DD-B5FF1E60B75F}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>BlackoutEditor</RootNamespace>
+    <RootNamespace>FSpot.Addins.Editors</RootNamespace>
     <AssemblyName>FSpot.Editors.BlackoutEditor</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <ReleaseVersion>0.7.2</ReleaseVersion>
@@ -32,10 +32,10 @@
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
-    <Compile Include="BlackoutEditor.cs" />
+    <Compile Include="FSpot.Addins.Editors\BlackoutEditor.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="BlackoutEditor.addin.xml">
+    <EmbeddedResource Include="Resources\BlackoutEditor.addin.xml">
       <LogicalName>BlackoutEditor.addin.xml</LogicalName>
     </EmbeddedResource>
   </ItemGroup>
@@ -68,5 +68,9 @@
     <Reference Include="gdk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
     <Reference Include="Mono.Posix" />
     <Reference Include="gtk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="FSpot.Addins.Editors\" />
+    <Folder Include="Resources\" />
   </ItemGroup>
 </Project>
