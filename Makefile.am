@@ -8,7 +8,6 @@ SUBDIRS = 		\
 	tools		\
 	po			\
 	src			\
-	extensions	\
 	tests
 
 schemadir = $(sysconfdir)/gconf/schemas
