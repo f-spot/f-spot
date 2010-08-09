@@ -28,7 +28,7 @@ using GLib;
 using Gtk;
 using GtkBeans;
 
-namespace FSpot.Exporters.CDExport {
+namespace FSpot.Exporters.CD {
 	public class CDExport : FSpot.Extensions.IExporter {
 		IBrowsableCollection selection;
 

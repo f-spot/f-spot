@@ -32,8 +32,8 @@
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
-    <Compile Include="FSpot.Exporters.CDExport\CDExport.cs" />
-    <Compile Include="FSpot.Exporters.CDExport\CDExportDialog.cs" />
+    <Compile Include="FSpot.Exporters.CD\CDExport.cs" />
+    <Compile Include="FSpot.Exporters.CD\CDExportDialog.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\CDExport.addin.xml">
@@ -88,7 +88,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="FSpot.Exporters.CDExport\" />
     <Folder Include="Resources\" />
+    <Folder Include="FSpot.Exporters.CD\" />
   </ItemGroup>
 </Project>

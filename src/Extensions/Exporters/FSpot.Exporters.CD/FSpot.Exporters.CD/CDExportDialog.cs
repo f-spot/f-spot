@@ -13,7 +13,7 @@ using GLib;
 using Gtk;
 using GtkBeans;
 
-namespace FSpot.Exporters.CDExport
+namespace FSpot.Exporters.CD
 {
 	class CDExportDialog : BuilderDialog {
 		Gtk.Window listwindow;

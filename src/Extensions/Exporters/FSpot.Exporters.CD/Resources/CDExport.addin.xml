@@ -12,6 +12,6 @@
 	</Dependencies>
 
 	<Extension path = "/FSpot/Menus/Exports">
-		<ExportMenuItem id="CD" _label = "_CD..." class = "FSpot.Exporters.CDExport.CDExport" />
+		<ExportMenuItem id="CD" _label = "_CD..." class = "FSpot.Exporters.CD.CDExport" />
 	</Extension>
 </Addin>

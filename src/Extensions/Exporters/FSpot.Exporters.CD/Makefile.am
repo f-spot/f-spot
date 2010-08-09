@@ -1,11 +1,11 @@
-ASSEMBLY = FSpot.Exporters.CDExport
+ASSEMBLY = FSpot.Exporters.CD
 TARGET = library
-LINK = $(REF_FSPOT_EXTENSION_CDEXPORT)
+LINK = $(REF_FSPOT_EXTENSION_CD)
 INSTALL_DIR = $(EXTENSIONS_INSTALL_DIR)
 
 SOURCES =  \
-	FSpot.Exporters.CDExport/CDExport.cs \
-	FSpot.Exporters.CDExport/CDExportDialog.cs
+	FSpot.Exporters.CD/CDExport.cs \
+	FSpot.Exporters.CD/CDExportDialog.cs
 
 RESOURCES =  \
 	Resources/CDExport.addin.xml \
