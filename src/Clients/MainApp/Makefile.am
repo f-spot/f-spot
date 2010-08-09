@@ -182,10 +182,10 @@ SOURCES =  \
 	ThumbnailCommand.cs
 
 RESOURCES =  \
-	$(top_srcdir)/COPYING \
-	$(top_srcdir)/icons/flower.png \
-	$(top_srcdir)/icons/f-spot-128.png \
-	$(top_srcdir)/icons/f-spot-not.png \
+	../../../COPYING \
+	../../../icons/flower.png \
+	../../../icons/f-spot-128.png \
+	../../../icons/f-spot-not.png \
 	FSpot.addin.xml \
 	f-spot.glade \
 	FSpot.UI.Dialog/ui/AdjustTimeDialog.ui \
