@@ -36,7 +36,6 @@ namespace FSpot.Exporters.Flickr {
 
 		[Glade.Widget] Gtk.Dialog	  dialog;
 		[Glade.Widget] Gtk.CheckButton    scale_check;
-		[Glade.Widget] Gtk.CheckButton    meta_check;
 		[Glade.Widget] Gtk.CheckButton    tag_check;
 		[Glade.Widget] Gtk.CheckButton    hierarchy_check;
 		[Glade.Widget] Gtk.CheckButton    ignore_top_level_check;
@@ -44,7 +43,6 @@ namespace FSpot.Exporters.Flickr {
 		[Glade.Widget] Gtk.SpinButton     size_spin;
 		[Glade.Widget] Gtk.ScrolledWindow thumb_scrolledwindow;
 		[Glade.Widget] Gtk.Button         auth_flickr;
-		[Glade.Widget] Gtk.Button         auth_done_flickr;
 		[Glade.Widget] Gtk.ProgressBar    used_bandwidth;
 		[Glade.Widget] Gtk.Button         do_export_flickr;
 		[Glade.Widget] Gtk.Label          auth_label;
@@ -63,7 +61,6 @@ namespace FSpot.Exporters.Flickr {
 		public const string SIZE_KEY = Preferences.APP_FSPOT_EXPORT + EXPORT_SERVICE + "size";
 		public const string BROWSER_KEY = Preferences.APP_FSPOT_EXPORT + EXPORT_SERVICE + "browser";
 		public const string TAGS_KEY = Preferences.APP_FSPOT_EXPORT + EXPORT_SERVICE + "tags";
-		public const string STRIP_META_KEY = Preferences.APP_FSPOT_EXPORT + EXPORT_SERVICE + "strip_meta";
 		public const string PUBLIC_KEY = Preferences.APP_FSPOT_EXPORT + EXPORT_SERVICE + "public";
 		public const string FAMILY_KEY = Preferences.APP_FSPOT_EXPORT + EXPORT_SERVICE + "family";
 		public const string FRIENDS_KEY = Preferences.APP_FSPOT_EXPORT + EXPORT_SERVICE + "friends";
@@ -72,7 +69,6 @@ namespace FSpot.Exporters.Flickr {
 
 		bool open;
 		bool scale;
-		bool copy_metadata;
 
 		bool is_public;
 		bool is_friend;
@@ -200,7 +196,6 @@ namespace FSpot.Exporters.Flickr {
 			LoadPreference (TAGS_KEY);
 			LoadPreference (TAG_HIERARCHY_KEY);
 			LoadPreference (IGNORE_TOP_LEVEL_KEY);
-			LoadPreference (STRIP_META_KEY);
 			LoadPreference (PUBLIC_KEY);
 			LoadPreference (FAMILY_KEY);
 			LoadPreference (FRIENDS_KEY);
@@ -476,7 +471,6 @@ namespace FSpot.Exporters.Flickr {
 			fr.ExportIgnoreTopLevel = ignore_top_level_check.Active;
 			open = open_check.Active;
 			scale = scale_check.Active;
-			copy_metadata = !meta_check.Active;
 			is_public = public_radio.Active;
 			is_family = family_check.Active;
 			is_friend = friend_check.Active;
@@ -495,7 +489,6 @@ namespace FSpot.Exporters.Flickr {
 			Preferences.Set (SIZE_KEY, size);
 			Preferences.Set (BROWSER_KEY, open);
 			Preferences.Set (TAGS_KEY, tag_check.Active);
-			Preferences.Set (STRIP_META_KEY, meta_check.Active);
 			Preferences.Set (PUBLIC_KEY, public_radio.Active);
 			Preferences.Set (FAMILY_KEY, family_check.Active);
 			Preferences.Set (FRIENDS_KEY, friend_check.Active);
@@ -535,12 +528,7 @@ namespace FSpot.Exporters.Flickr {
 				if (ignore_top_level_check.Active != Preferences.Get<bool> (key))
 					ignore_top_level_check.Active = Preferences.Get<bool> (key);
 				break;
-				
-			case STRIP_META_KEY:
-				if (meta_check.Active != Preferences.Get<bool> (key))
-					meta_check.Active = Preferences.Get<bool> (key);
-				break;
-				
+
 			case FlickrRemote.TOKEN_FLICKR:
 			case FlickrRemote.TOKEN_23HQ:
 			case FlickrRemote.TOKEN_ZOOOMR:
