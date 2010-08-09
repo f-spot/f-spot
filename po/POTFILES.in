@@ -7,6 +7,8 @@ data/desktop-files/f-spot.desktop.in.in
 data/desktop-files/f-spot-import.desktop.in.in
 data/desktop-files/f-spot-view.desktop.in.in
 f-spot.schemas.in
+lib/Mono.Google/Mono.Google/CaptchaException.cs
+lib/Mono.Tabblo/Mono.Tabblo/Connection.cs
 src/Clients/MainApp/FSpot.addin.xml
 src/Clients/MainApp/FSpot/App.cs
 src/Clients/MainApp/FSpot.Database/Updater.cs
@@ -27,6 +29,7 @@ src/Clients/MainApp/FSpot/ItemAction.cs
 src/Clients/MainApp/FSpot.Jobs/SyncMetadataJob.cs
 src/Clients/MainApp/FSpot/MainWindow.cs
 src/Clients/MainApp/FSpot/Photo.cs
+src/Clients/MainApp/FSpot/PhotoStore.cs
 src/Clients/MainApp/FSpot/PhotoView.cs
 src/Clients/MainApp/FSpot/Preferences.cs
 src/Clients/MainApp/FSpot/PrintOperation.cs
@@ -36,6 +39,7 @@ src/Clients/MainApp/FSpot/SendEmail.cs
 src/Clients/MainApp/FSpot/SingleView.cs
 src/Clients/MainApp/FSpot/TagQueryWidget.cs
 src/Clients/MainApp/FSpot/TagSelectionWidget.cs
+src/Clients/MainApp/FSpot/TagStore.cs
 src/Clients/MainApp/FSpot/Term.cs
 src/Clients/MainApp/FSpot.UI.Dialog/AboutDialog.cs
 src/Clients/MainApp/FSpot.UI.Dialog/AdjustTimeDialog.cs
@@ -70,13 +74,11 @@ src/Clients/MainApp/FSpot.Widgets/RatingMenuItem.cs
 src/Clients/MainApp/FSpot.Widgets/Sharpener.cs
 src/Clients/MainApp/FSpot.Widgets/Sidebar.cs
 src/Clients/MainApp/FSpot.Widgets/TagMenu.cs
-src/Clients/MainApp/PhotoStore.cs
 src/Clients/MainApp/PhotoTagMenu.cs
 src/Clients/MainApp/PhotoVersionCommands.cs
 src/Clients/MainApp/PhotoVersionMenu.cs
 src/Clients/MainApp/TagCommands.cs
 src/Clients/MainApp/TagPopup.cs
-src/Clients/MainApp/TagStore.cs
 src/Clients/MainApp/ThumbnailCommand.cs
 [type: gettext/glade]src/Clients/MainApp/ui/import.ui
 [type: gettext/glade]src/Clients/MainApp/ui/mail_dialog.ui
@@ -91,30 +93,28 @@ src/Extensions/Editors/FSpot.Editors.BWEditor/FSpot.Addins.Editors/BWEditor.cs
 src/Extensions/Editors/FSpot.Editors.FlipEditor/FSpot.Addins.Editors/FlipEditor.cs
 src/Extensions/Editors/FSpot.Editors.PixelateEditor/FSpot.Addins.Editors/PixelateEditor.cs
 src/Extensions/Editors/FSpot.Editors.ResizeEditor/FSpot.Addins.Editors/ResizeEditor.cs
-src/Extensions/Exporters/CDExport/CDExport.cs
-[type: gettext/glade]src/Extensions/Exporters/CDExport/CDExport.ui
-src/Extensions/Exporters/FacebookExport/FacebookExport.cs
-src/Extensions/Exporters/FacebookExport/FacebookExportDialog.cs
-[type: gettext/glade]src/Extensions/Exporters/FacebookExport/FacebookExport.ui
-src/Extensions/Exporters/FlickrExport/FlickrExport.cs
-[type: gettext/glade]src/Extensions/Exporters/FlickrExport/FlickrExport.glade
-src/Extensions/Exporters/FolderExport/FolderExport.cs
-[type: gettext/glade]src/Extensions/Exporters/FolderExport/FolderExport.glade
-src/Extensions/Exporters/GalleryExport/FormClient.cs
-src/Extensions/Exporters/GalleryExport/GalleryExport.cs
-[type: gettext/glade]src/Extensions/Exporters/GalleryExport/GalleryExport.glade
-src/Extensions/Exporters/GalleryExport/GalleryRemote.cs
-src/Extensions/Exporters/PicasaWebExport/google-sharp/CaptchaException.cs
-src/Extensions/Exporters/PicasaWebExport/PicasaWebExport.cs
-[type: gettext/glade]src/Extensions/Exporters/PicasaWebExport/PicasaWebExport.glade
-src/Extensions/Exporters/SmugMugExport/SmugMugExport.cs
-[type: gettext/glade]src/Extensions/Exporters/SmugMugExport/SmugMugExport.glade
-src/Extensions/Exporters/TabbloExport/Tabblo/Connection.cs
-src/Extensions/Exporters/TabbloExport/TabbloExport.cs
-[type: gettext/glade]src/Extensions/Exporters/TabbloExport/ui/TabbloExport.ui
-[type: gettext/glade]src/Extensions/Exporters/TabbloExport/ui/TrustError.ui
-src/Extensions/Exporters/ZipExport/ZipExport.cs
-[type: gettext/glade]src/Extensions/Exporters/ZipExport/ZipExport.glade
+src/Extensions/Exporters/FSpot.Exporters.CD/FSpot.Exporters.CD/CDExport.cs
+[type: gettext/glade]src/Extensions/Exporters/FSpot.Exporters.CD/Resources/CDExport.ui
+src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs
+src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExportDialog.cs
+[type: gettext/glade]src/Extensions/Exporters/FSpot.Exporters.Facebook/Resources/FacebookExport.ui
+src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs
+[type: gettext/glade]src/Extensions/Exporters/FSpot.Exporters.Flickr/Resources/FlickrExport.glade
+src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs
+[type: gettext/glade]src/Extensions/Exporters/FSpot.Exporters.Folder/Resources/FolderExport.glade
+src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/FormClient.cs
+src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryExport.cs
+src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryRemote.cs
+[type: gettext/glade]src/Extensions/Exporters/FSpot.Exporters.Gallery/Resources/GalleryExport.glade
+src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs
+[type: gettext/glade]src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/Resources/PicasaWebExport.glade
+src/Extensions/Exporters/FSpot.Exporters.SmugMug/FSpot.Exporters.SmugMug/SmugMugExport.cs
+[type: gettext/glade]src/Extensions/Exporters/FSpot.Exporters.SmugMug/Resources/SmugMugExport.glade
+src/Extensions/Exporters/FSpot.Exporters.Tabblo/FSpot.Exporters.Tabblo/TabbloExport.cs
+[type: gettext/glade]src/Extensions/Exporters/FSpot.Exporters.Tabblo/Resources/ui/TabbloExport.ui
+[type: gettext/glade]src/Extensions/Exporters/FSpot.Exporters.Tabblo/Resources/ui/TrustError.ui
+src/Extensions/Exporters/FSpot.Exporters.Zip/FSpot.Exporters.Zip/ZipExport.cs
+[type: gettext/glade]src/Extensions/Exporters/FSpot.Exporters.Zip/Resources/ZipExport.glade
 [type: gettext/glade]src/Extensions/Tools/ChangePhotoPath/ChangePhotoPath.glade
 src/Extensions/Tools/DevelopInUFraw/DevelopInUFRaw.cs
 src/Extensions/Tools/HashJob/HashJob.cs

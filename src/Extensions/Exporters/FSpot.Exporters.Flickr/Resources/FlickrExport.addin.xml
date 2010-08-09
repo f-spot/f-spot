@@ -1,0 +1,19 @@
+<Addin namespace="FSpot"
+	version="0.7.0.0"
+	name="Flickr Export"
+	description="This extension allows you to export your photos to Flickr and 23hq."
+	author="F-Spot team"
+	url="http://f-spot.org"
+	defaultEnabled="true"
+	category="Export">
+
+	<Dependencies>
+		<Addin id="Core" version="0.7"/>
+	</Dependencies>
+
+	<Extension path = "/FSpot/Menus/Exports">
+		<ExportMenuItem id="Flickr" _label = "_Flickr..." class = "FSpot.Exporters.Flickr.FlickrExport" />
+		<ExportMenuItem id="23hq" _label = "_23hq..." class = "FSpot.Exporters.Flickr.TwentyThreeHQExport" />
+		<ExportMenuItem id="zooomr" _label = "_Zooomr..." class = "FSpot.Exporters.Flickr.ZooomrExport" />
+	</Extension>
+</Addin>

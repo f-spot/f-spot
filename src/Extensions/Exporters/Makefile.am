@@ -1,10 +1,10 @@
 SUBDIRS = 			\
-	FSpot.Exporters.CD		\
-	FSpot.Exporters.FacebookExport		\
-	FSpot.Exporters.FlickrExport		\
-	FSpot.Exporters.FolderExport		\
-	FSpot.Exporters.GalleryExport		\
-	FSpot.Exporters.PicasaWebExport		\
-	FSpot.Exporters.SmugMugExport		\
-	FSpot.Exporters.TabbloExport		\
-	FSpot.Exporters.ZipExport
+	FSpot.Exporters.CD		  \
+	FSpot.Exporters.Facebook  \
+	FSpot.Exporters.Flickr    \
+	FSpot.Exporters.Folder    \
+	FSpot.Exporters.Gallery   \
+	FSpot.Exporters.PicasaWeb \
+	FSpot.Exporters.SmugMug   \
+	FSpot.Exporters.Tabblo    \
+	FSpot.Exporters.Zip

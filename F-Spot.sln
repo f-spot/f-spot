@@ -65,21 +65,21 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Exporters", "Exporters", "{
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FSpot.Exporters.CD", "src\Extensions\Exporters\FSpot.Exporters.CD\FSpot.Exporters.CD.csproj", "{3CBAA4AE-AC83-4043-BBB5-6EA7962EC983}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FSpot.Exporters.FacebookExport", "src\Extensions\Exporters\FSpot.Exporters.FacebookExport\FSpot.Exporters.FacebookExport.csproj", "{7004A4E6-12A5-46F1-BB1F-578FA9B63493}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FSpot.Exporters.Facebook", "src\Extensions\Exporters\FSpot.Exporters.Facebook\FSpot.Exporters.Facebook.csproj", "{7004A4E6-12A5-46F1-BB1F-578FA9B63493}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FSpot.Exporters.FlickrExport", "src\Extensions\Exporters\FSpot.Exporters.FlickrExport\FSpot.Exporters.FlickrExport.csproj", "{13D4FF63-5D83-42D7-AE4C-56BB512D5D89}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FSpot.Exporters.Flickr", "src\Extensions\Exporters\FSpot.Exporters.Flickr\FSpot.Exporters.Flickr.csproj", "{13D4FF63-5D83-42D7-AE4C-56BB512D5D89}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FSpot.Exporters.FolderExport", "src\Extensions\Exporters\FSpot.Exporters.FolderExport\FSpot.Exporters.FolderExport.csproj", "{7FBEAF56-65E5-4C07-B346-C6A0BC87B368}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FSpot.Exporters.Folder", "src\Extensions\Exporters\FSpot.Exporters.Folder\FSpot.Exporters.Folder.csproj", "{7FBEAF56-65E5-4C07-B346-C6A0BC87B368}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FSpot.Exporters.GalleryExport", "src\Extensions\Exporters\FSpot.Exporters.GalleryExport\FSpot.Exporters.GalleryExport.csproj", "{E55F73E0-576A-4FE2-9108-E76960820AA3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FSpot.Exporters.Gallery", "src\Extensions\Exporters\FSpot.Exporters.Gallery\FSpot.Exporters.Gallery.csproj", "{E55F73E0-576A-4FE2-9108-E76960820AA3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FSpot.Exporters.PicasaWebExport", "src\Extensions\Exporters\FSpot.Exporters.PicasaWebExport\FSpot.Exporters.PicasaWebExport.csproj", "{0735C3A2-17C1-4C8B-9653-3854AFD64D6D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FSpot.Exporters.PicasaWeb", "src\Extensions\Exporters\FSpot.Exporters.PicasaWeb\FSpot.Exporters.PicasaWeb.csproj", "{0735C3A2-17C1-4C8B-9653-3854AFD64D6D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FSpot.Exporters.SmugMugExport", "src\Extensions\Exporters\FSpot.Exporters.SmugMugExport\FSpot.Exporters.SmugMugExport.csproj", "{BE981FC8-9B41-4336-815C-ECC365AE05D4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FSpot.Exporters.SmugMug", "src\Extensions\Exporters\FSpot.Exporters.SmugMug\FSpot.Exporters.SmugMug.csproj", "{BE981FC8-9B41-4336-815C-ECC365AE05D4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FSpot.Exporters.ZipExport", "src\Extensions\Exporters\FSpot.Exporters.ZipExport\FSpot.Exporters.ZipExport.csproj", "{4C9355A7-1797-4708-A1F2-FBCDB782D04D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FSpot.Exporters.Zip", "src\Extensions\Exporters\FSpot.Exporters.Zip\FSpot.Exporters.Zip.csproj", "{4C9355A7-1797-4708-A1F2-FBCDB782D04D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FSpot.Exporters.TabbloExport", "src\Extensions\Exporters\FSpot.Exporters.TabbloExport\FSpot.Exporters.TabbloExport.csproj", "{414E9813-E0A8-4BD4-8694-485F528518F5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FSpot.Exporters.Tabblo", "src\Extensions\Exporters\FSpot.Exporters.Tabblo\FSpot.Exporters.Tabblo.csproj", "{414E9813-E0A8-4BD4-8694-485F528518F5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
