@@ -10,6 +10,7 @@
 using System;
 using FSpot;
 using FSpot.Editors;
+using FSpot.Imaging;
 using Gtk;
 using Gdk;
 using Mono.Unix;
@@ -33,7 +34,7 @@ namespace FSpot.Addins.Editors {
 		public override Widget ConfigurationWidget ()
 		{
 			int max;
-			using (ImageFile img = ImageFile.Create (State.Items[0].DefaultVersion.Uri))
+			using (var img = ImageFile.Create (State.Items[0].DefaultVersion.Uri))
 				using (Pixbuf p = img.Load ())
 					max = Math.Max (p.Width, p.Height);
 

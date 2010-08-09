@@ -5,7 +5,8 @@
 	description="Resize the image"
 	author="Stephane Delcroix"
 	url="http://f-spot.org/Extensions"
-	category="Editors">
+	category="Editors"
+	defaultEnabled="false">
 	<Dependencies>
 		<Addin id="Core" version="0.7"/>
 	</Dependencies>
