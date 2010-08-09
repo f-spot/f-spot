@@ -32,6 +32,7 @@ using FSpot.Platform;
 using Hyena;
 using Hyena.Data.Sqlite;
 
+namespace FSpot {
 public class PhotoStore : DbStore<Photo> {
 	public int TotalPhotos {
 		get {
@@ -922,4 +923,5 @@ public class PhotoStore : DbStore<Photo> {
 		query_builder.Append (" ORDER BY time");
 		return Query (query_builder.ToString ());
 	}
+}
 }

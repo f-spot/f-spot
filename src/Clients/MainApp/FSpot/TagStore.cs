@@ -16,6 +16,7 @@ using Hyena;
 
 using Hyena.Data.Sqlite;
 
+namespace FSpot {
 public class InvalidTagOperationException : InvalidOperationException {
 	public Tag tag;
 
@@ -392,4 +393,5 @@ public class TagStore : DbStore<Tag> {
 
 		EmitChanged (tags);
 	}
+}
 }

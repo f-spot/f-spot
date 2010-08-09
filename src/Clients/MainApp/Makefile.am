@@ -5,7 +5,6 @@ ASSEMBLY_BUILD_FLAGS = -unsafe
 
 SOURCES =  \
 	DependentListStore.cs \
-	ExportStore.cs \
 	FSpot.ColorAdjustment/Adjustment.cs \
 	FSpot.ColorAdjustment/AutoStretch.cs \
 	FSpot.ColorAdjustment/Desaturate.cs \
@@ -129,6 +128,7 @@ SOURCES =  \
 	FSpot/ColorManagement.cs \
 	FSpot/ControlOverlay.cs \
 	FSpot/DragDropTargets.cs \
+	FSpot/ExportStore.cs \
 	FSpot/Fader.cs \
 	FSpot/FolderQueryWidget.cs \
 	FSpot/FullScreenView.cs \
@@ -137,15 +137,18 @@ SOURCES =  \
 	FSpot/Histogram.cs \
 	FSpot/InfoOverlay.cs \
 	FSpot/ItemAction.cs \
+	FSpot/JobStore.cs \
 	FSpot/main.cs \
 	FSpot/MainWindow.cs \
 	FSpot/MemorySurface.cs \
+	FSpot/MetaStore.cs \
 	FSpot/Photo.cs \
 	FSpot/PhotoEventArgs.cs \
 	FSpot/PhotoList.cs \
 	FSpot/PhotoLoader.cs \
 	FSpot/PhotoPopup.cs \
 	FSpot/PhotoQuery.cs \
+	FSpot/PhotoStore.cs \
 	FSpot/PhotoVersion.cs \
 	FSpot/PhotoView.cs \
 	FSpot/PixbufCache.cs \
@@ -153,12 +156,14 @@ SOURCES =  \
 	FSpot/PrintOperation.cs \
 	FSpot/ProgressItem.cs \
 	FSpot/QueryWidget.cs \
+	FSpot/RollStore.cs \
 	FSpot/RotateCommand.cs \
 	FSpot/SelectionDataExtensions.cs \
 	FSpot/SendEmail.cs \
 	FSpot/SingleView.cs \
 	FSpot/TagQueryWidget.cs \
 	FSpot/TagSelectionWidget.cs \
+	FSpot/TagStore.cs \
 	FSpot/Term.cs \
 	FSpot/ThumbnailCache.cs \
 	FSpot/ThumbnailGenerator.cs \
@@ -168,17 +173,12 @@ SOURCES =  \
 	FSpot/Vector.cs \
 	FSpot/XScreenSaverSlide.cs \
 	ImageLoaderThread.cs \
-	JobStore.cs \
-	MetaStore.cs \
-	PhotoStore.cs \
 	PhotoTagMenu.cs \
 	PhotoVersionCommands.cs \
 	PhotoVersionMenu.cs \
 	PixbufUtils.cs \
-	RollStore.cs \
 	TagCommands.cs \
 	TagPopup.cs \
-	TagStore.cs \
 	ThumbnailCommand.cs
 
 RESOURCES =  \

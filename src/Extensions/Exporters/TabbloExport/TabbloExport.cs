@@ -37,6 +37,7 @@ using System.Net;
 using System.Threading;
 
 using Hyena;
+using FSpot;
 using FSpot.Core;
 using FSpot.UI.Dialog;
 

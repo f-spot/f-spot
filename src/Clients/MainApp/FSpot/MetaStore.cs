@@ -9,7 +9,7 @@ using FSpot.Core;
 using FSpot.Database;
 using Hyena.Data.Sqlite;
 
-
+namespace FSpot {
 public class MetaItem : DbItem {
 	private string name;
 	public string Name {
@@ -161,4 +161,5 @@ public class MetaStore : DbStore<MetaItem> {
 		} else
 			LoadAllItems ();
 	}
+}
 }

@@ -21,6 +21,7 @@ using Hyena;
 
 using Hyena.Data.Sqlite;
 
+namespace FSpot {
 public abstract class Job : DbItem, IJob
 {
 	public Job (uint id, string job_options, JobPriority job_priority, DateTime run_at, bool persistent) : base (id)
@@ -210,4 +211,5 @@ public class JobStore : DbStore<Job> {
 			LoadAllItems ();
                 }
 	}
+}
 }

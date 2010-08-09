@@ -23,7 +23,7 @@ using Hyena;
 
 using Hyena.Data.Sqlite;
 
-
+namespace FSpot {
 public class RollStore : DbStore<Roll>
 {
 	public RollStore (FSpotDatabaseConnection database, bool is_new) : base (database, false)
@@ -121,4 +121,5 @@ public class RollStore : DbStore<Roll>
 		}
 		return (Roll []) list.ToArray (typeof (Roll));
 	}
+}
 }

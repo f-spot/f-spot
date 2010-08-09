@@ -35,7 +35,6 @@
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Compile Include="DependentListStore.cs" />
-    <Compile Include="ExportStore.cs" />
     <Compile Include="FSpot\Accelerometer.cs" />
     <Compile Include="FSpot\App.cs" />
     <Compile Include="FSpot\BitConverter.cs" />
@@ -198,18 +197,19 @@
     <Compile Include="FSpot.Widgets\Wipe.cs" />
     <Compile Include="FSpot\XScreenSaverSlide.cs" />
     <Compile Include="ImageLoaderThread.cs" />
-    <Compile Include="JobStore.cs" />
-    <Compile Include="MetaStore.cs" />
-    <Compile Include="PhotoStore.cs" />
     <Compile Include="PhotoTagMenu.cs" />
     <Compile Include="PhotoVersionCommands.cs" />
     <Compile Include="PhotoVersionMenu.cs" />
     <Compile Include="PixbufUtils.cs" />
-    <Compile Include="RollStore.cs" />
     <Compile Include="TagCommands.cs" />
     <Compile Include="TagPopup.cs" />
-    <Compile Include="TagStore.cs" />
     <Compile Include="ThumbnailCommand.cs" />
+    <Compile Include="FSpot\ExportStore.cs" />
+    <Compile Include="FSpot\JobStore.cs" />
+    <Compile Include="FSpot\MetaStore.cs" />
+    <Compile Include="FSpot\PhotoStore.cs" />
+    <Compile Include="FSpot\RollStore.cs" />
+    <Compile Include="FSpot\TagStore.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="..\..\..\COPYING">

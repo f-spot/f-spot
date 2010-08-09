@@ -9,6 +9,7 @@ using FSpot.Core;
 using FSpot.Database;
 using Hyena.Data.Sqlite;
 
+namespace FSpot {
 public class ExportItem : DbItem {
 
     private uint image_id;
@@ -145,4 +146,5 @@ public class ExportStore : DbStore<ExportItem> {
 		else
 			LoadAllItems ();
 	}
+}
 }
