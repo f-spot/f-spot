@@ -195,9 +195,8 @@ Global
 		$1.ResourceNamePolicy = FileName
 		$0.TextStylePolicy = $2
 		$2.FileWidth = 120
-		$2.TabWidth = 4
 		$2.RemoveTrailingWhitespace = True
-		$2.inheritsSet = Mono
+		$2.inheritsSet = VisualStudio
 		$2.inheritsScope = text/plain
 		$2.scope = text/x-csharp
 		$0.CSharpFormattingPolicy = $3
