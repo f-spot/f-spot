@@ -8,7 +8,7 @@
     <ProjectGuid>{7203A6ED-DA2E-4D56-B1AF-4C296A1C39D5}</ProjectGuid>
     <OutputType>Library</OutputType>
     <RootNamespace>FSpot.Addins.Transitions</RootNamespace>
-    <AssemblyName>FSpot.Transitions.CoverTransition</AssemblyName>
+    <AssemblyName>FSpot.Transitions.Cover</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <ReleaseVersion>0.7.2</ReleaseVersion>
   </PropertyGroup>
@@ -32,7 +32,7 @@
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
-    <Compile Include="FSpot.Addins.Transitions\CoverTransition.cs" />
+    <Compile Include="FSpot.Addins.Transitions\Cover.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\CoverTransition.addin.xml">

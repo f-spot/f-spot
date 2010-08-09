@@ -21,9 +21,9 @@ using Color = Cairo.Color;
 
 namespace FSpot.Addins.Transitions
 {
-	public class CoverTransition : CairoTransition
+	public class Cover : CairoTransition
 	{
-		public CoverTransition () : base ("Cover")
+		public Cover () : base ("Cover")
 		{
 		}
 

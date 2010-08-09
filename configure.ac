@@ -386,7 +386,7 @@ src/Extensions/Tools/MergeDb/Makefile
 src/Extensions/Tools/RetroactiveRoll/Makefile
 src/Extensions/Tools/ScreensaverConfig/Makefile
 src/Extensions/Transitions/Makefile
-src/Extensions/Transitions/FSpot.Transitions.CoverTransition/Makefile
+src/Extensions/Transitions/FSpot.Transitions.Cover/Makefile
 
 docs/Makefile
 icons/Makefile
