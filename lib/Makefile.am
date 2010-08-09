@@ -6,7 +6,10 @@ SUBDIRS = \
 	Hyena 				\
 	libfspot			\
 	TagLib 				\
-	unique-sharp
+	unique-sharp 		\
+	Mono.Google 		\
+	Mono.Tabblo 		\
+	SmugMugNet
 
 
 ### The stuff below takes care of embedding libraries. Build system hacks! ###
