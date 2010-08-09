@@ -32,11 +32,6 @@ public static class PixbufUtils {
 	}
 	public static Pixbuf LoadingPixbuf = PixbufUtils.LoadFromAssembly ("f-spot-loading.png");
 
-	public static int GetSize (Pixbuf pixbuf)
-	{
-		return Math.Max (pixbuf.Width, pixbuf.Height);
-	}
-
 	public static double Fit (Pixbuf pixbuf,
 				  int dest_width, int dest_height,
 				  bool upscale_smaller,
@@ -164,33 +159,10 @@ public static class PixbufUtils {
 		return result;
 	}
 
-	static public void GetSize (string path, out int width, out int height)
-	{
-		using (Gdk.Pixbuf pixbuf = new Gdk.Pixbuf (path)) {
-			width = pixbuf.Width;
-			height = pixbuf.Height;
-		}
-	}
-
 	static public Pixbuf LoadAtMaxSize (string path, int max_width, int max_height)
 	{
 		PixbufUtils.AspectLoader loader = new AspectLoader (max_width, max_height);
 		return loader.LoadFromFile (path);
-	}
-
-	static public Pixbuf LoadFromStream (System.IO.Stream input)
-	{
-		Gdk.PixbufLoader loader = new Gdk.PixbufLoader ();
-		byte [] buffer = new byte [8192];
-		int n;
-
-		while ((n = input.Read (buffer, 0, 8192)) != 0)
-			loader.Write (buffer, (ulong) n);
-
-		loader.Close ();
-
-		return loader.Pixbuf;
-
 	}
 
 	public static Pixbuf TagIconFromPixbuf (Pixbuf source)
