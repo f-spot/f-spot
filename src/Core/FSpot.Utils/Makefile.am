@@ -22,7 +22,6 @@ SOURCES =  \
 	FSpot.Utils/Tests/SafeUriTests.cs \
 	FSpot.Utils/Tests/SidecarXmpExtensionsTests.cs \
 	FSpot.Utils/Tests/XdgThumbnailSpecTests.cs \
-	FSpot.Utils/Unix.cs \
 	FSpot.Utils/UriExtensions.cs \
 	FSpot.Utils/UriUtils.cs \
 	FSpot.Utils/XdgThumbnailSpec.cs
