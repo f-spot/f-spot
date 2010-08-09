@@ -85,4 +85,9 @@
       <HintPath>..\..\..\lib\gio-sharp\gio\gio-sharp.dll</HintPath>
     </Reference>
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="FSpot.Core.addins">
+      <LogicalName>FSpot.Core.addins</LogicalName>
+    </EmbeddedResource>
+  </ItemGroup>
 </Project>

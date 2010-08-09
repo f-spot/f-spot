@@ -26,7 +26,9 @@ SOURCES =  \
 	FSpot.Core/Roll.cs \
 	FSpot.Core/Tag.cs
 
-RESOURCES =
+RESOURCES = FSpot.Core.addins
+
+module_DATA = FSpot.Core.addins
 
 include $(top_srcdir)/build/build.mk
 
