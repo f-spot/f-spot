@@ -56,9 +56,10 @@ namespace FSpot.Imaging {
             name_table ["image/nef"] = name_table ["image/x-nikon-nef"] = name_table [".nef"] = nef_type;
             name_table ["image/rw2"] = name_table ["image/x-raw"] = name_table [".rw2"] = raw_type;
             name_table ["image/pef"] = name_table ["image/x-pentax-pef"] = name_table [".pef"] = nef_type;
+            name_table ["image/raw"] = name_table [".raw"] = nef_type;
 
             // Other types (FIXME: Currently unsupported by Taglib#, this list should shrink).
-            name_table [".raw"] = typeof (FSpot.Imaging.NefFile);
+
             name_table [".kdc"] = typeof (FSpot.Imaging.NefFile);
             name_table [".rw2"] = typeof (FSpot.Imaging.DCRawFile);
             name_table [".orf"] =  typeof (FSpot.Imaging.NefFile);
