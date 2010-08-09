@@ -212,28 +212,72 @@
     <Compile Include="ThumbnailCommand.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="..\..\..\COPYING" />
-    <EmbeddedResource Include="..\..\..\icons\f-spot-not.png" />
-    <EmbeddedResource Include="..\..\..\icons\f-spot-128.png" />
-    <EmbeddedResource Include="..\..\..\icons\flower.png" />
-    <EmbeddedResource Include="f-spot.glade" />
-    <EmbeddedResource Include="ui\import.ui" />
-    <EmbeddedResource Include="ui\mail_dialog.ui" />
-    <EmbeddedResource Include="ui\main_window.ui" />
-    <EmbeddedResource Include="ui\single_view.ui" />
-    <EmbeddedResource Include="ui\version_name_dialog.ui" />
-    <EmbeddedResource Include="ui\viewer_preferences.ui" />
-    <EmbeddedResource Include="ui\tag_selection_dialog.ui" />
-    <EmbeddedResource Include="FSpot.UI.Dialog\ui\AdjustTimeDialog.ui" />
-    <EmbeddedResource Include="FSpot.UI.Dialog\ui\DateRangeDialog.ui" />
-    <EmbeddedResource Include="FSpot.UI.Dialog\ui\EditTagDialog.ui" />
-    <EmbeddedResource Include="FSpot.UI.Dialog\ui\EditTagIconDialog.ui" />
-    <EmbeddedResource Include="FSpot.UI.Dialog\ui\PreferenceDialog.ui" />
-    <EmbeddedResource Include="FSpot.UI.Dialog\ui\RatingFilterDialog.ui" />
-    <EmbeddedResource Include="FSpot.UI.Dialog\ui\CreateTagDialog.ui" />
-    <EmbeddedResource Include="FSpot.UI.Dialog\ui\LastImportRollFilterDialog.ui" />
-    <EmbeddedResource Include="FSpot.UI.Dialog\ui\RepairDialog.ui" />
-    <EmbeddedResource Include="FSpot.addin.xml" />
+    <EmbeddedResource Include="..\..\..\COPYING">
+      <LogicalName>COPYING</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\icons\f-spot-not.png">
+      <LogicalName>f-spot-not.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\icons\f-spot-128.png">
+      <LogicalName>f-spot-128.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\..\icons\flower.png">
+      <LogicalName>flower.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="f-spot.glade">
+      <LogicalName>f-spot.glade</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ui\import.ui">
+      <LogicalName>import.ui</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ui\mail_dialog.ui">
+      <LogicalName>mail_dialog.ui</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ui\main_window.ui">
+      <LogicalName>main_window.ui</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ui\single_view.ui">
+      <LogicalName>single_view.ui</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ui\version_name_dialog.ui">
+      <LogicalName>version_name_dialog.ui</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ui\viewer_preferences.ui">
+      <LogicalName>viewer_preferences.ui</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ui\tag_selection_dialog.ui">
+      <LogicalName>tag_selection_dialog.ui</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FSpot.UI.Dialog\ui\AdjustTimeDialog.ui">
+      <LogicalName>AdjustTimeDialog.ui</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FSpot.UI.Dialog\ui\DateRangeDialog.ui">
+      <LogicalName>DateRangeDialog.ui</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FSpot.UI.Dialog\ui\EditTagDialog.ui">
+      <LogicalName>EditTagDialog.ui</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FSpot.UI.Dialog\ui\EditTagIconDialog.ui">
+      <LogicalName>EditTagIconDialog.ui</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FSpot.UI.Dialog\ui\PreferenceDialog.ui">
+      <LogicalName>PreferenceDialog.ui</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FSpot.UI.Dialog\ui\RatingFilterDialog.ui">
+      <LogicalName>RatingFilterDialog.ui</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FSpot.UI.Dialog\ui\CreateTagDialog.ui">
+      <LogicalName>CreateTagDialog.ui</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FSpot.UI.Dialog\ui\LastImportRollFilterDialog.ui">
+      <LogicalName>LastImportRollFilterDialog.ui</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FSpot.UI.Dialog\ui\RepairDialog.ui">
+      <LogicalName>RepairDialog.ui</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FSpot.addin.xml">
+      <LogicalName>FSpot.addin.xml</LogicalName>
+    </EmbeddedResource>
   </ItemGroup>
   <ProjectExtensions>
     <MonoDevelop>

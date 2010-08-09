@@ -142,7 +142,7 @@ Global
 		Policies = $0
 		$0.DotNetNamingPolicy = $1
 		$1.DirectoryNamespaceAssociation = Flat
-		$1.ResourceNamePolicy = FileFormatDefault
+		$1.ResourceNamePolicy = FileName
 		version = 0.7.2
 		outputpath = .
 	EndGlobalSection
