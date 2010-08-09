@@ -190,6 +190,7 @@ RESOURCES =  \
 	FSpot.UI.Dialog/ui/PreferenceDialog.ui \
 	FSpot.UI.Dialog/ui/RatingFilterDialog.ui \
 	FSpot.UI.Dialog/ui/RepairDialog.ui \
+	ui/color_editor_prefs_window.ui \
 	ui/import.ui \
 	ui/mail_dialog.ui \
 	ui/main_window.ui \

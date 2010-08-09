@@ -2,8 +2,9 @@
  * ColorEditor.cs
  *
  * Author(s)
- *	Larry Ewing <lewing@novell.com>
- * 	Ruben Vermeersch <ruben@savanne.be>
+ *  Larry Ewing <lewing@novell.com>
+ *  Ruben Vermeersch <ruben@savanne.be>
+ *  Paul Lange <palango@gmx.de>
  *
  * This is free software. See COPYING for details.
  */
@@ -15,25 +16,27 @@ using Gtk;
 using Mono.Unix;
 using System;
 
+using GtkBeans;
+
 namespace FSpot.Editors {
 	class ColorEditor : Editor {
-		private Glade.XML xml;
+		GtkBeans.Builder builder;
 
-		[Glade.Widget] private Gtk.HScale exposure_scale;
-		[Glade.Widget] private Gtk.HScale temp_scale;
-		[Glade.Widget] private Gtk.HScale temptint_scale;
-		[Glade.Widget] private Gtk.HScale brightness_scale;
-		[Glade.Widget] private Gtk.HScale contrast_scale;
-		[Glade.Widget] private Gtk.HScale hue_scale;
-		[Glade.Widget] private Gtk.HScale sat_scale;
+		[GtkBeans.Builder.Object] private Gtk.HScale exposure_scale;
+		[GtkBeans.Builder.Object] private Gtk.HScale temp_scale;
+		[GtkBeans.Builder.Object] private Gtk.HScale temptint_scale;
+		[GtkBeans.Builder.Object] private Gtk.HScale brightness_scale;
+		[GtkBeans.Builder.Object] private Gtk.HScale contrast_scale;
+		[GtkBeans.Builder.Object] private Gtk.HScale hue_scale;
+		[GtkBeans.Builder.Object] private Gtk.HScale sat_scale;
 
-		[Glade.Widget] private Gtk.SpinButton exposure_spinbutton;
-		[Glade.Widget] private Gtk.SpinButton temp_spinbutton;
-		[Glade.Widget] private Gtk.SpinButton temptint_spinbutton;
-		[Glade.Widget] private Gtk.SpinButton brightness_spinbutton;
-		[Glade.Widget] private Gtk.SpinButton contrast_spinbutton;
-		[Glade.Widget] private Gtk.SpinButton hue_spinbutton;
-		[Glade.Widget] private Gtk.SpinButton sat_spinbutton;
+		[GtkBeans.Builder.Object] private Gtk.SpinButton exposure_spinbutton;
+		[GtkBeans.Builder.Object] private Gtk.SpinButton temp_spinbutton;
+		[GtkBeans.Builder.Object] private Gtk.SpinButton temptint_spinbutton;
+		[GtkBeans.Builder.Object] private Gtk.SpinButton brightness_spinbutton;
+		[GtkBeans.Builder.Object] private Gtk.SpinButton contrast_spinbutton;
+		[GtkBeans.Builder.Object] private Gtk.SpinButton hue_spinbutton;
+		[GtkBeans.Builder.Object] private Gtk.SpinButton sat_spinbutton;
 
 		public ColorEditor () : base (Catalog.GetString ("Adjust Colors"), "adjust-colors") {
 			// FIXME: need tooltip Catalog.GetString ("Adjust the photo colors")
@@ -42,20 +45,13 @@ namespace FSpot.Editors {
 		}
 
 		public override Widget ConfigurationWidget () {
-			xml = new Glade.XML (null, "f-spot.glade", "color_editor_prefs", "f-spot");
-			xml.Autoconnect (this);
+			builder = new GtkBeans.Builder (null, "color_editor_prefs_window.ui", null);
+			builder.Autoconnect (this);
 			AttachInterface ();
-			return xml.GetWidget ("color_editor_prefs");;
+			return new VBox (builder.GetRawObject ("color_editor_prefs"));
 		}
 
 		private void AttachInterface () {
-			exposure_spinbutton.Adjustment = exposure_scale.Adjustment;
-			temp_spinbutton.Adjustment = temp_scale.Adjustment;
-			temptint_spinbutton.Adjustment = temptint_scale.Adjustment;
-			brightness_spinbutton.Adjustment = brightness_scale.Adjustment;
-			contrast_spinbutton.Adjustment = contrast_scale.Adjustment;
-			hue_spinbutton.Adjustment = hue_scale.Adjustment;
-			sat_spinbutton.Adjustment = sat_scale.Adjustment;
 
 			temp_spinbutton.Adjustment.ChangeValue ();
 			temptint_spinbutton.Adjustment.ChangeValue ();
@@ -63,8 +59,9 @@ namespace FSpot.Editors {
 			contrast_spinbutton.Adjustment.ChangeValue ();
 			hue_spinbutton.Adjustment.ChangeValue ();
 			sat_spinbutton.Adjustment.ChangeValue ();
-			hue_spinbutton.Adjustment.ChangeValue ();
-			sat_spinbutton.Adjustment.ChangeValue ();
+			exposure_spinbutton.Adjustment.ChangeValue ();
+
+			temp_scale.Value = 5000;
 
 			exposure_scale.ValueChanged += RangeChanged;
 			temp_scale.ValueChanged += RangeChanged;

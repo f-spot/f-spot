@@ -58,6 +58,7 @@ namespace FSpot.Widgets {
 		private List<Editor> editors;
 		private Editor current_editor;
 
+
 		// Used to make buttons insensitive when selecting multiple images.
 		private Dictionary<Editor, Button> editor_buttons;
 
@@ -247,7 +248,13 @@ namespace FSpot.Widgets {
 			// Optional config widget
 			Widget config = editor.ConfigurationWidget ();
 			if (config != null) {
-				vbox.PackStart (config, false, false, 0);
+				// This is necessary because GtkBuilder widgets need to be
+				// reparented.
+				if (config.Parent != null) {
+					config.Reparent (vbox);
+				} else {
+					vbox.PackStart (config, false, false, 0);
+				}
 			}
 
 			// Apply / Cancel buttons
