@@ -1,6 +1,6 @@
 SUBDIRS = \
-	FSpot.Editors.BlackoutEditor \
-	FSpot.Editors.BWEditor \
-	FSpot.Editors.FlipEditor \
-	FSpot.Editors.PixelateEditor \
-	FSpot.Editors.ResizeEditor
+	FSpot.Editors.Blackout \
+	FSpot.Editors.BW \
+	FSpot.Editors.Flip \
+	FSpot.Editors.Pixelate \
+	FSpot.Editors.Resize

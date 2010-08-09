@@ -45,15 +45,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Extensions", "Extensions", 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Editors", "Editors", "{416E19A2-9CD9-498F-BE75-20AB74535ACD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FSpot.Editors.BlackoutEditor", "src\Extensions\Editors\FSpot.Editors.BlackoutEditor\FSpot.Editors.BlackoutEditor.csproj", "{7011154B-87B0-4C54-98DD-B5FF1E60B75F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FSpot.Editors.Blackout", "src\Extensions\Editors\FSpot.Editors.Blackout\FSpot.Editors.Blackout.csproj", "{7011154B-87B0-4C54-98DD-B5FF1E60B75F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FSpot.Editors.BWEditor", "src\Extensions\Editors\FSpot.Editors.BWEditor\FSpot.Editors.BWEditor.csproj", "{61DAD6B1-E866-485B-819E-A9E86B793F5E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FSpot.Editors.BW", "src\Extensions\Editors\FSpot.Editors.BW\FSpot.Editors.BW.csproj", "{61DAD6B1-E866-485B-819E-A9E86B793F5E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FSpot.Editors.FlipEditor", "src\Extensions\Editors\FSpot.Editors.FlipEditor\FSpot.Editors.FlipEditor.csproj", "{53DAC12F-0421-4F5E-A746-17A701D2BDDA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FSpot.Editors.Flip", "src\Extensions\Editors\FSpot.Editors.Flip\FSpot.Editors.Flip.csproj", "{53DAC12F-0421-4F5E-A746-17A701D2BDDA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FSpot.Editors.PixelateEditor", "src\Extensions\Editors\FSpot.Editors.PixelateEditor\FSpot.Editors.PixelateEditor.csproj", "{8EB3933F-A089-43A3-B662-617DC71A2173}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FSpot.Editors.Pixelate", "src\Extensions\Editors\FSpot.Editors.Pixelate\FSpot.Editors.Pixelate.csproj", "{8EB3933F-A089-43A3-B662-617DC71A2173}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FSpot.Editors.ResizeEditor", "src\Extensions\Editors\FSpot.Editors.ResizeEditor\FSpot.Editors.ResizeEditor.csproj", "{1F610540-D2ED-4F58-87CE-9092A43DBD4A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FSpot.Editors.Resize", "src\Extensions\Editors\FSpot.Editors.Resize\FSpot.Editors.Resize.csproj", "{1F610540-D2ED-4F58-87CE-9092A43DBD4A}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Transitions", "Transitions", "{E9BCB7B9-3D8C-4C5C-B6FA-0BBAC6611106}"
 EndProject
