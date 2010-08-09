@@ -210,6 +210,8 @@
     <Compile Include="FSpot\PhotoStore.cs" />
     <Compile Include="FSpot\RollStore.cs" />
     <Compile Include="FSpot\TagStore.cs" />
+    <Compile Include="FSpot.Database\DbException.cs" />
+    <Compile Include="FSpot.Database\DbStore.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="..\..\..\COPYING">

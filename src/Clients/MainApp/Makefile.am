@@ -11,6 +11,8 @@ SOURCES =  \
 	FSpot.ColorAdjustment/FullColorAdjustment.cs \
 	FSpot.ColorAdjustment/SepiaTone.cs \
 	FSpot.Database/Db.cs \
+	FSpot.Database/DbException.cs \
+	FSpot.Database/DbStore.cs \
 	FSpot.Database/FSpotDatabaseConnection.cs \
 	FSpot.Database/Tests/UpdaterTests.cs \
 	FSpot.Database/Updater.cs \
