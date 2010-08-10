@@ -33,16 +33,14 @@ namespace FSpot.UI.Dialog {
 		[GtkBeans.Builder.Object] Label count_label;
 		[GtkBeans.Builder.Object] Gnome.DateEdit date_edit;
 		[GtkBeans.Builder.Object] Frame tray_frame;
-		[GtkBeans.Builder.Object] Gtk.Entry entry;
 		[GtkBeans.Builder.Object] Gtk.Entry offset_entry;
 		[GtkBeans.Builder.Object] Gtk.CheckButton difference_check;
-		[GtkBeans.Builder.Object] Gtk.CheckButton interval_check;
 		[GtkBeans.Builder.Object] Gtk.Frame action_frame;
 		[GtkBeans.Builder.Object] Gtk.Entry spacing_entry;
 		[GtkBeans.Builder.Object] Gtk.Label starting_label;
 
 		IBrowsableCollection collection;
-		BrowsablePointer Item;
+		BrowsablePointer item;
 		FSpot.Widgets.IconView tray;
 		PhotoImageView view;
 		Db db;
@@ -59,9 +57,9 @@ namespace FSpot.UI.Dialog {
 
 			view = new PhotoImageView (collection);
 			view_scrolled.Add (view);
-			Item = view.Item;
-			Item.Changed += HandleItemChanged;
-			Item.MoveFirst ();
+			item = view.Item;
+			item.Changed += HandleItemChanged;
+			item.MoveFirst ();
 
 			//forward_button.Clicked += HandleForwardClicked;
 			//back_button.Clicked += HandleBackClicked;
@@ -96,11 +94,11 @@ namespace FSpot.UI.Dialog {
 		TimeSpan Offset
 		{
 			get {
-				Log.DebugFormat ("{0} - {1} = {2}", date_edit.Time, Item.Current.Time, date_edit.Time - Item.Current.Time);
-				return EditTime - Item.Current.Time;
+				Log.DebugFormat ("{0} - {1} = {2}", date_edit.Time, item.Current.Time, date_edit.Time - item.Current.Time);
+				return EditTime - item.Current.Time;
 			}
 			set {
-				date_edit.Time = Item.Current.Time - gnome_dateedit_sucks + value;
+				date_edit.Time = item.Current.Time - gnome_dateedit_sucks + value;
 			}
 		}
 
@@ -121,28 +119,28 @@ namespace FSpot.UI.Dialog {
 			//back_button.Sensitive = (Item.Index > 0 && collection.Count > 0);
 			//forward_button.Sensitive = (Item.Index < collection.Count - 1);
 
-			if (Item.IsValid) {
-				IBrowsableItem item = Item.Current;
+			if (item.IsValid) {
+				IBrowsableItem curr_item = item.Current;
 
-				name_label.Text = System.Uri.UnescapeDataString(item.Name);
-				old_label.Text = (item.Time).ToString ();
+				name_label.Text = System.Uri.UnescapeDataString(curr_item.Name);
+				old_label.Text = (curr_item.Time).ToString ();
 
-				int i = collection.Count > 0 ? Item.Index + 1: 0;
+				int i = collection.Count > 0 ? item.Index + 1: 0;
 				// Note for translators: This indicates the current photo is photo {0} of {1} out of photos
 				count_label.Text = System.String.Format (Catalog.GetString ("{0} of {1}"), i, collection.Count);
 
-				DateTime actual = item.Time;
+				DateTime actual = curr_item.Time;
 				date_edit.Time = actual;
 				gnome_dateedit_sucks = date_edit.Time - actual;
 			}
 			HandleTimeChanged (this, System.EventArgs.Empty);
 
-			if (!tray.Selection.Contains (Item.Index)) {
+			if (!tray.Selection.Contains (item.Index)) {
 				tray.Selection.Clear ();
-				tray.Selection.Add (Item.Index);
+				tray.Selection.Add (item.Index);
 			}
 
-			photo_spin.Value = Item.Index + 1;
+			photo_spin.Value = item.Index + 1;
 		}
 
 		private void ShiftByDifference ()
@@ -173,7 +171,7 @@ namespace FSpot.UI.Dialog {
 			}
 
 			TimeSpan accum = new TimeSpan (0);
-			for (int j = Item.Index; j > 0; j--) {
+			for (int j = item.Index; j > 0; j--) {
 				date -= span;
 			}
 
@@ -187,12 +185,12 @@ namespace FSpot.UI.Dialog {
 
 		void HandleSpinChanged (object sender, EventArgs args)
 		{
-			Item.Index = photo_spin.ValueAsInt - 1;
+			item.Index = photo_spin.ValueAsInt - 1;
 		}
 
 		void HandleOkClicked (object sender, EventArgs args)
 		{
-			if (! Item.IsValid)
+			if (! item.IsValid)
 				throw new ApplicationException ("invalid item selected");
 
 			Sensitive = false;
