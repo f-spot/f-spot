@@ -85,7 +85,6 @@ namespace FSpot {
 			g.Source = new SolidPattern (new Cairo.Color (0, 0, 0, 0));
 			g.Paint ();
 			g.Operator = Operator.Over;
-#if true
 			g.Source = new SolidPattern (new Cairo.Color (0, 0, 0, .7));
 			g.MoveTo (round, 0);
 			//g.LineTo (Allocation.Width - round, 0);
@@ -97,7 +96,6 @@ namespace FSpot {
 			g.Arc (round, round, round, Math.PI, Math.PI * 1.5);
 			g.ClosePath ();
 			g.Fill ();
-#endif
 			((IDisposable)g).Dispose ();
 			return base.OnExposeEvent (args);
 		}
@@ -162,16 +160,8 @@ namespace FSpot {
 			x = Math.Min (x, this.Screen.Width - requisition.Width);
 
 			// find the window's y location offset above or below depending on space
-#if USE_OFFSET_PREVIEW
-			int margin = (int) (bounds.Height * .6);
-			if (y - requisition.Height - margin < 0)
-				y += margin;
-			else
-				y = y - requisition.Height - margin;
-#else
 			y = Math.Max (0, y - requisition.Height / 2);
 			y = Math.Min (y, this.Screen.Height - requisition.Height);
-#endif
 
 			this.Move (x, y);
 		}
