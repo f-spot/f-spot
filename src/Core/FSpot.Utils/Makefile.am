@@ -23,6 +23,7 @@ SOURCES =  \
 	FSpot.Utils/Tests/SidecarXmpExtensionsTests.cs \
 	FSpot.Utils/Tests/XdgThumbnailSpecTests.cs \
 	FSpot.Utils/UriExtensions.cs \
+	FSpot.Utils/UriList.cs \
 	FSpot.Utils/UriUtils.cs \
 	FSpot.Utils/XdgThumbnailSpec.cs
 

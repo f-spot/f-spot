@@ -8,6 +8,7 @@
 
 using System;
 using System.Text;
+using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -993,11 +994,6 @@ namespace FSpot
 				return;
 
 			IBrowsableItem photo = icon_view.Collection [cell_num];
-	#if false
-			group_selector.Adaptor.GlassSet -= HandleAdaptorGlassSet;
-			group_selector.Adaptor.SetGlass (group_selector.Adaptor.IndexFromPhoto (photo));
-			group_selector.Adaptor.GlassSet = HandleAdaptorGlassSet;
-	#else
 			/*
 			 * FIXME this is a lame hack to get around a delegate chain.  This should
 			 * actually operate directly on the adaptor not on the selector but I don't have
@@ -1006,7 +1002,6 @@ namespace FSpot
 			if (!group_selector.GlassUpdating) {
 				group_selector.SetPosition (group_selector.Adaptor.IndexFromPhoto (photo));
 			}
-	#endif
 		}
 
 		void HandleIconViewScroll (object sender, EventArgs args)
@@ -1088,7 +1083,8 @@ namespace FSpot
 		void HandleIconViewDragDataGet (object sender, DragDataGetArgs args)
 		{
 			if (args.Info == DragDropTargets.UriListEntry.Info) {
-				args.SelectionData.SetUriListData (new UriList (SelectedPhotos ()), args.Context.Targets[0]);
+                var uris = from p in SelectedPhotos () select p.DefaultVersion.Uri;
+				args.SelectionData.SetUriListData (new UriList (uris), args.Context.Targets[0]);
 				return;
 			}
 

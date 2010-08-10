@@ -88,7 +88,6 @@ SOURCES =  \
 	FSpot.UI.Dialog/SelectionRatioDialog.cs \
 	FSpot.UI.Dialog/TagSelectionDialog.cs \
 	FSpot.UI.Dialog/ThreadProgressDialog.cs \
-	FSpot.Utils/UriList.cs \
 	FSpot.Widgets/CellRendererTextProgress.cs \
 	FSpot.Widgets/CompositeUtils.cs \
 	FSpot.Widgets/Dissolve.cs \

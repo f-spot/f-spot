@@ -22,7 +22,6 @@ using FSpot;
 using FSpot.Core;
 using FSpot.Filters;
 using FSpot.Widgets;
-using FSpot.Utils;
 using FSpot.Imaging;
 using FSpot.UI.Dialog;
 

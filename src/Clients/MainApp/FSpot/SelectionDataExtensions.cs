@@ -111,9 +111,7 @@ namespace FSpot
 
 		public static UriList GetUriListData (this SelectionData selection_data)
 		{
-			string [] uris = GetStringData (selection_data).Split ('\n');
-
-			return new UriList (uris);
+			return new UriList (GetStringData (selection_data));
 		}
 	}
 }

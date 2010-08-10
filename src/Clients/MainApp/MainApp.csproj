@@ -211,7 +211,6 @@
     <Compile Include="FSpot\TagStore.cs" />
     <Compile Include="FSpot.Database\DbException.cs" />
     <Compile Include="FSpot.Database\DbStore.cs" />
-    <Compile Include="FSpot.Utils\UriList.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="..\..\..\COPYING">
@@ -379,5 +378,8 @@
       <Project>{CE160879-1BF0-4711-A18F-FDA2772900FA}</Project>
       <Name>FSpot.Utils</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="FSpot.Utils\" />
   </ItemGroup>
 </Project>
