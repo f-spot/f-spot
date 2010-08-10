@@ -5,5 +5,5 @@ SUBDIRS = \
 		FSpot.Core \
 		FSpot.JobScheduler \
 		FSpot.Query \
-		FSpot.Widgets \
+		FSpot.Gui \
 		FSpot.Platform

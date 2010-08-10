@@ -1,6 +1,6 @@
-ASSEMBLY = FSpot.Widgets
+ASSEMBLY = FSpot.Gui
 TARGET = library
-LINK = $(REF_FSPOT_WIDGETS)
+LINK = $(REF_FSPOT_GUI)
 
 SOURCES =  \
 	FSpot.Widgets/ApplicationActivatedEventArgs.cs \
@@ -30,5 +30,5 @@ RESOURCES =
 
 include $(top_srcdir)/build/build.mk
 
-EXTRA_DIST += FSpot.Widgets.dll.config
-module_SCRIPTS += FSpot.Widgets.dll.config
+EXTRA_DIST += FSpot.Gui.dll.config
+module_SCRIPTS += FSpot.Gui.dll.config

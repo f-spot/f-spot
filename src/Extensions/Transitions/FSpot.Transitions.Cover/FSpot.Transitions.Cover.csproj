@@ -67,9 +67,9 @@
       <Project>{CE160879-1BF0-4711-A18F-FDA2772900FA}</Project>
       <Name>FSpot.Utils</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Core\FSpot.Widgets\FSpot.Widgets.csproj">
+    <ProjectReference Include="..\..\..\Core\FSpot.Widgets\FSpot.Gui.csproj">
       <Project>{05A7FEC4-974A-40EB-AFB8-14E523EEEFFB}</Project>
-      <Name>FSpot.Widgets</Name>
+      <Name>FSpot.Gui</Name>
     </ProjectReference>
   </ItemGroup>
 </Project>
