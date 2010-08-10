@@ -17,6 +17,7 @@ using FSpot.Core;
 using FSpot.Bling;
 using FSpot.Extensions;
 using FSpot.Imaging;
+using FSpot.Transitions;
 
 namespace FSpot.Widgets
 {

@@ -18,7 +18,7 @@ using FSpot.Utils;
 
 using Color = Cairo.Color;
 
-namespace FSpot.Widgets
+namespace FSpot.Transitions
 {
 	public abstract class CairoTransition : SlideShowTransition
 	{

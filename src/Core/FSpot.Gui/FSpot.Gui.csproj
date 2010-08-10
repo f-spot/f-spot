@@ -41,7 +41,6 @@
     <Compile Include="FSpot.Widgets\CustomPrintWidget.cs" />
     <Compile Include="FSpot.Widgets\DateEdit.cs" />
     <Compile Include="FSpot.Widgets\DateEditFlags.cs" />
-    <Compile Include="FSpot.Widgets\DissolveTransition.cs" />
     <Compile Include="FSpot.Widgets\HighlightedBox.cs" />
     <Compile Include="FSpot.Widgets\ImageView.cs" />
     <Compile Include="FSpot.Widgets\Layout.cs" />
@@ -51,9 +50,10 @@
     <Compile Include="FSpot.Widgets\Rating.cs" />
     <Compile Include="FSpot.Widgets\SaneTreeView.cs" />
     <Compile Include="FSpot.Widgets\ScrolledView.cs" />
-    <Compile Include="FSpot.Widgets\PushTransition.cs" />
-    <Compile Include="FSpot.Widgets\CairoTransition.cs" />
-    <Compile Include="FSpot.Widgets\SlideShowTransition.cs" />
+    <Compile Include="FSpot.Transitions\CairoTransition.cs" />
+    <Compile Include="FSpot.Transitions\DissolveTransition.cs" />
+    <Compile Include="FSpot.Transitions\PushTransition.cs" />
+    <Compile Include="FSpot.Transitions\SlideShowTransition.cs" />
   </ItemGroup>
   <ProjectExtensions>
     <MonoDevelop>
@@ -103,5 +103,9 @@
       <Project>{95374549-9553-4C1E-9D89-667755F90E12}</Project>
       <Name>Hyena</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="FSpot.Transitions\" />
+    <Folder Include="FSpot.Widgets\" />
   </ItemGroup>
 </Project>

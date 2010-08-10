@@ -15,7 +15,7 @@ using Cairo;
 using Gdk;
 
 using FSpot.Utils;
-using FSpot.Widgets;
+using FSpot.Transitions;
 
 using Color = Cairo.Color;
 

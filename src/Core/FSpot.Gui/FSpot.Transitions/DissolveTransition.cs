@@ -19,7 +19,7 @@ using FSpot.Widgets;
 
 using Color = Cairo.Color;
 
-namespace FSpot.Widgets
+namespace FSpot.Transitions
 {
 	public class DissolveTransition : CairoTransition
 	{

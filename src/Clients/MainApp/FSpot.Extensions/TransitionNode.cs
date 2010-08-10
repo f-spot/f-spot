@@ -13,7 +13,7 @@
 using System;
 using Mono.Addins;
 using Gdk;
-using FSpot.Widgets;
+using FSpot.Transitions;
 
 namespace FSpot.Extensions
 {
