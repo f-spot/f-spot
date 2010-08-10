@@ -56,7 +56,7 @@ namespace FSpot.Imaging {
             name_table ["image/nef"] = name_table ["image/x-nikon-nef"] = name_table [".nef"] = nef_type;
             name_table ["image/rw2"] = name_table ["image/x-raw"] = name_table [".rw2"] = raw_type;
             name_table ["image/pef"] = name_table ["image/x-pentax-pef"] = name_table [".pef"] = nef_type;
-            name_table ["image/raw"] = name_table [".raw"] = nef_type;
+            name_table ["image/raw"] = name_table ["image/x-panasonic-raw"] = name_table [".raw"] = nef_type;
 
             // Other types (FIXME: Currently unsupported by Taglib#, this list should shrink).
 
@@ -68,7 +68,6 @@ namespace FSpot.Imaging {
             name_table [".mrw"] = typeof (FSpot.Imaging.DCRawFile);
             name_table [".raf"] = typeof (FSpot.Imaging.RafFile);
             name_table [".x3f"] = typeof (FSpot.Imaging.DCRawFile);
-            name_table ["image/x-dcraw"] = name_table [".raw"];
             name_table ["image/x-ciff"]  = name_table [".crw"];
             name_table ["image/x-mrw"]   = name_table [".mrw"];
             name_table ["image/x-x3f"]   = name_table [".x3f"];
@@ -77,12 +76,13 @@ namespace FSpot.Imaging {
 
             // as xcf pixbufloader is not part of gdk-pixbuf, check if it's there,
             // and enable it if needed.
-            foreach (Gdk.PixbufFormat format in Gdk.Pixbuf.Formats)
+            foreach (Gdk.PixbufFormat format in Gdk.Pixbuf.Formats) {
                 if (format.Name == "xcf") {
                     if (format.IsDisabled)
                         format.SetDisabled (false);
                     name_table [".xcf"] = base_type;
                 }
+            }
         }
 
         public static bool HasLoader (SafeUri uri)

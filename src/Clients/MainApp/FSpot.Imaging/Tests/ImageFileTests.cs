@@ -38,6 +38,25 @@ namespace FSpot.Imaging.Tests
 
             Assert.IsFalse (missing, "No missing loaders for Taglib# parseable files.");
         }
+
+        [Test]
+        public void CheckTaglibSupport ()
+        {
+            bool missing = false;
+
+            foreach (var key in ImageFile.NameTable.Keys) {
+                string type = key;
+                if (type.StartsWith ("."))
+                    type = String.Format ("taglib/{0}", type.Substring (1));
+
+                if (!TagLib.FileTypes.AvailableTypes.ContainsKey (type)) {
+                    Log.InformationFormat ("Missing type support in Taglib# for {0}", type);
+                    missing = true;
+                }
+            }
+
+            Assert.IsFalse (missing, "No missing type support in Taglib#.");
+        }
     }
 }
 #endif
