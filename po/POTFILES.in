@@ -116,13 +116,13 @@ src/Extensions/Exporters/FSpot.Exporters.Tabblo/FSpot.Exporters.Tabblo/TabbloExp
 src/Extensions/Exporters/FSpot.Exporters.Zip/FSpot.Exporters.Zip/ZipExport.cs
 [type: gettext/glade]src/Extensions/Exporters/FSpot.Exporters.Zip/Resources/ZipExport.glade
 [type: gettext/glade]src/Extensions/Tools/FSpot.Tools.ChangePhotoPath/Resources/ChangePhotoPath.glade
-src/Extensions/Tools/FSpot.Tools.DevelopInUFraw/DevelopInUFRaw.cs
-src/Extensions/Tools/FSpot.Tools.HashJob/HashJob.cs
-src/Extensions/Tools/FSpot.Tools.LiveWebGallery/GalleryRequestHandler.cs
-src/Extensions/Tools/FSpot.Tools.LiveWebGallery/LiveWebGalleryDialog.cs
-[type: gettext/glade]src/Extensions/Tools/FSpot.Tools.LiveWebGallery/ui/LiveWebGallery.ui
-src/Extensions/Tools/FSpot.Tools.MergeDb/MergeDb.cs
-[type: gettext/glade]src/Extensions/Tools/FSpot.Tools.MergeDb/MergeDb.glade
-src/Extensions/Tools/FSpot.Tools.MergeDb/PickFolderDialog.cs
-[type: gettext/glade]src/Extensions/Tools/FSpot.Tools.ScreensaverConfig/ScreensaverConfigDialog.ui
+src/Extensions/Tools/FSpot.Tools.DevelopInUFraw/FSpot.Tools.DevelopInUFraw/DevelopInUFRawBatch.cs
+src/Extensions/Tools/FSpot.Tools.HashJob/FSpot.Tools.HashJob/HashJob.cs
+src/Extensions/Tools/FSpot.Tools.LiveWebGallery/FSpot.Tools.LiveWebGallery/GalleryRequestHandler.cs
+src/Extensions/Tools/FSpot.Tools.LiveWebGallery/FSpot.Tools.LiveWebGallery/LiveWebGalleryDialog.cs
+[type: gettext/glade]src/Extensions/Tools/FSpot.Tools.LiveWebGallery/Resources/ui/LiveWebGallery.ui
+src/Extensions/Tools/FSpot.Tools.MergeDb/FSpot.Tools.MergeDb/MergeDb.cs
+[type: gettext/glade]src/Extensions/Tools/FSpot.Tools.MergeDb/Resources/MergeDb.glade
+src/Extensions/Tools/FSpot.Tools.MergeDb/FSpot.Tools.MergeDb/PickFolderDialog.cs
+[type: gettext/glade]src/Extensions/Tools/FSpot.Tools.ScreensaverConfig/Resources/ScreensaverConfigDialog.ui
 tools/f-spot-screensaver.desktop.in

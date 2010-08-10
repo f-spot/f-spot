@@ -1,17 +1,17 @@
 <Addin namespace="FSpot"
-	id="RawPlusJpeg"
-	name="RawPlusJpeg"
+	id="ScreensaverConfig"
+	name="Screensaver Configuration"
 	version="0.8"
 	compatVersion="0.8"
-	description="Merge RAW+Jpeg as multiple versions of the same photo"
+	description="Screensaver options"
 	author="Stephane Delcroix"
 	url="http://f-spot.org/Extensions"
 	category="Tools"
-	defaultEnabled="false">
+	defaultEnabled="true">
 	<Dependencies>
 		<Addin id="Core" version="0.8"/>
 	</Dependencies>
 	<Extension path = "/FSpot/Menus/Tools">
-		<Command id = "MergeRawJpeg" _label = "Merge Raw" command_type = "RawPlusJpegExtension.RawPlusJpeg" />
+		<Command id = "ScreensaverConfig" _label = "Configure Screensaver" command_type = "FSpot.Tools.ScreensaverConfig.ScreensaverConfig" />
 	</Extension>
 </Addin>

@@ -3,10 +3,10 @@ TARGET = library
 LINK = $(REF_FSPOT_EXTENSION_SCREENSAVERCONFIG)
 INSTALL_DIR = $(EXTENSIONS_INSTALL_DIR)
 
-SOURCES = ScreensaverConfig.cs
+SOURCES = FSpot.Tools.ScreensaverConfig/ScreensaverConfig.cs
 
-RESOURCES = \
-	ScreensaverConfig.addin.xml \
-	ScreensaverConfigDialog.ui
+RESOURCES =  \
+	Resources/ScreensaverConfig.addin.xml \
+	Resources/ScreensaverConfigDialog.ui
 
 include $(top_srcdir)/build/build.mk

@@ -1,17 +1,6 @@
-/*
- * DevelopInUFraw.cs
- *
- * Author(s)
- * 	Stephane Delcroix  <stephane@delcroix.org>
- *
- * This is free software. See COPYING for details
- */
-
 using System;
 using System.IO;
-
 using Mono.Unix;
-
 using Hyena;
 using FSpot;
 using FSpot.Core;
@@ -20,51 +9,9 @@ using FSpot.Extensions;
 using FSpot.Imaging;
 using FSpot.UI.Dialog;
 
-namespace DevelopInUFRawExtension
+namespace FSpot.Tools.DevelopInUFraw
 {
-	// GUI Version
-	public class DevelopInUFRaw : AbstractDevelopInUFRaw {
-		public DevelopInUFRaw() : base("ufraw")
-		{
-		}
-
-		public override void Run (object o, EventArgs e)
-		{
-			Log.Information ("Executing DevelopInUFRaw extension");
-
-			foreach (Photo p in App.Instance.Organizer.SelectedPhotos ()) {
-				DevelopPhoto (p);
-			}
-		}
-	}
-
-	// Batch Version
-	public class DevelopInUFRawBatch : AbstractDevelopInUFRaw {
-		public DevelopInUFRawBatch() : base("ufraw-batch")
-		{
-		}
-
-		public override void Run (object o, EventArgs e)
-		{
-			ProgressDialog pdialog = new ProgressDialog(Catalog.GetString ("Developing photos"),
-														ProgressDialog.CancelButtonType.Cancel,
-														App.Instance.Organizer.SelectedPhotos ().Length,
-														App.Instance.Organizer.Window);
-			Log.Information ("Executing DevelopInUFRaw extension in batch mode");
-
-			foreach (Photo p in App.Instance.Organizer.SelectedPhotos ()) {
-				bool cancelled = pdialog.Update(String.Format(Catalog.GetString ("Developing {0}"), p.Name));
-				if (cancelled) {
-					break;
-				}
-
-				DevelopPhoto (p);
-			}
-			pdialog.Destroy();
-		}
-	}
-
-	// Abstract version, contains shared functionality
+    // Abstract version, contains shared functionality
 	public abstract class AbstractDevelopInUFRaw : ICommand
 	{
 		// The executable used for developing RAWs

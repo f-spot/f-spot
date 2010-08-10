@@ -18,7 +18,7 @@ using Gtk;
 using Mono.Unix;
 using Hyena;
 
-namespace LiveWebGalleryExtension
+namespace FSpot.Tools.LiveWebGallery
 {
 	internal class LiveWebGalleryDialog : FSpot.UI.Dialog.BuilderDialog
 	{

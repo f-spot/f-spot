@@ -23,7 +23,7 @@ using Mono.Unix;
 using Hyena;
 using Hyena.Widgets;
 
-namespace MergeDbExtension
+namespace FSpot.Tools.MergeDb
 {
 	public class MergeDb : ICommand
 	{
@@ -39,7 +39,6 @@ namespace MergeDbExtension
 		public void Run (object o, EventArgs e)
 		{
 			from_db = new Db ();
-//			from_db.ExceptionThrown += HandleDbException;
 			to_db = App.Instance.Database;
 
 			//ShowDialog ();
@@ -48,12 +47,6 @@ namespace MergeDbExtension
 			mdd.Dialog.Response += HandleResponse;
 			mdd.ShowAll ();
 		}
-
-		void HandleDbException (Exception e)
-		{
-			Log.Exception (e);
-		}
-
 
 		internal Db FromDb {
 			get { return from_db; }

@@ -12,7 +12,7 @@ using FSpot;
 using FSpot.Core;
 using FSpot.Query;
 
-namespace MergeDbExtension
+namespace FSpot.Tools.MergeDb
 {
 	internal class MergeDbDialog
 	{

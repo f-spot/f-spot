@@ -22,7 +22,7 @@ using FSpot.Query;
 using FSpot.UI.Dialog;
 using Mono.Unix;
 
-namespace LiveWebGalleryExtension
+namespace FSpot.Tools.LiveWebGallery
 {
 	public class LiveWebGallery : ICommand
 	{

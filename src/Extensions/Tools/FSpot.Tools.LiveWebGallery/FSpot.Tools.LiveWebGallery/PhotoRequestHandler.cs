@@ -16,7 +16,7 @@ using FSpot.Filters;
 using FSpot.Utils;
 using Hyena;
 
-namespace LiveWebGalleryExtension
+namespace FSpot.Tools.LiveWebGallery
 {	
 	public class PhotoRequestHandler : RequestHandler
 	{	

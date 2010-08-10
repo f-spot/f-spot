@@ -19,7 +19,7 @@ using FSpot;
 using FSpot.Extensions;
 using FSpot.Jobs;
 
-namespace HashJobExtension {
+namespace FSpot.Tools.HashJob {
 
 	public class HashJob : ICommand {
 		public void Run (object o, EventArgs e) {

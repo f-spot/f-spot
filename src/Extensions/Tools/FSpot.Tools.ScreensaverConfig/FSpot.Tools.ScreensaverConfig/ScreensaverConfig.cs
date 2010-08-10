@@ -20,7 +20,7 @@ using FSpot.UI.Dialog;
 using FSpot.Extensions;
 using FSpot.Widgets;
 
-namespace ScreensaverConfig
+namespace FSpot.Tools.ScreensaverConfig
 {
 	public class ScreensaverConfig : ICommand
 	{

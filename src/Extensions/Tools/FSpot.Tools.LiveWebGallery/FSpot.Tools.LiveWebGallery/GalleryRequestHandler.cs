@@ -16,7 +16,7 @@ using FSpot;
 using FSpot.Core;
 using Mono.Unix;
 
-namespace LiveWebGalleryExtension	
+namespace FSpot.Tools.LiveWebGallery	
 {	
 	public abstract class PhotoAwareRequestHandler : RequestHandler
 	{

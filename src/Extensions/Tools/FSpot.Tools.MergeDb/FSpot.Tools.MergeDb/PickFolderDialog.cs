@@ -13,7 +13,7 @@ using FSpot.Query;
 using Mono.Unix;
 using Hyena;
 
-namespace MergeDbExtension
+namespace FSpot.Tools.MergeDb
 {
 	internal class PickFolderDialog
 	{

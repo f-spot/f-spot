@@ -11,13 +11,12 @@
 using FSpot;
 using FSpot.Core;
 using FSpot.Extensions;
-using Mono.Unix;
 using System;
 using Hyena;
 
 using Hyena.Data.Sqlite;
 
-namespace RetroactiveRoll
+namespace FSpot.Tools.RetroactiveRoll
 {
 	public class RetroactiveRoll: ICommand
 	{

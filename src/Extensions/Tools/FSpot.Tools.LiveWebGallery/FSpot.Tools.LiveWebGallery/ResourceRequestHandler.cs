@@ -14,7 +14,7 @@ using System.Reflection;
 
 using FSpot;
 
-namespace LiveWebGalleryExtension
+namespace FSpot.Tools.LiveWebGallery
 {	
 	public class ResourceRequestHandler : RequestHandler
 	{	

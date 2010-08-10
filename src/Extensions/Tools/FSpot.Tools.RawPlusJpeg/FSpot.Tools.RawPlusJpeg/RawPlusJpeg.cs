@@ -21,7 +21,7 @@ using FSpot.Imaging;
 using Hyena;
 using Hyena.Widgets;
 
-namespace RawPlusJpegExtension
+namespace FSpot.Tools.RawPlusJpeg
 {
 	public class RawPlusJpeg : ICommand
 	{

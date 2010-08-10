@@ -1,17 +1,16 @@
 <Addin namespace="FSpot"
-	id="MergeDb"
-	name="MergeDb"
+	id="HashJob"
 	version="0.8"
 	compatVersion="0.8"
-	description="Merge another db back to the main one"
+	description="Process your photo collection for duplicate detection"
 	author="Stephane Delcroix"
 	url="http://f-spot.org/Extensions"
-	category="Tools"
-	defaultEnabled="false">
+	name="Check for Duplicates"
+	category="Tools">
 	<Dependencies>
 		<Addin id="Core" version="0.8"/>
 	</Dependencies>
 	<Extension path = "/FSpot/Menus/Tools">
-		<Command id = "MergeDb" _label = "Merge Db" command_type = "MergeDbExtension.MergeDb" />
+		<Command id = "HashDupes" _label = "Check for Duplicates..." command_type = "FSpot.Tools.HashJob.HashJob" />
 	</Extension>
 </Addin>

@@ -20,7 +20,7 @@ using FSpot;
 using FSpot.Extensions;
 using Hyena;
 
-namespace LiveWebGalleryExtension
+namespace FSpot.Tools.LiveWebGallery
 {		
 	public class SimpleWebServer : IService
 	{
