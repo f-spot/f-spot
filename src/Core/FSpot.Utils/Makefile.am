@@ -25,6 +25,7 @@ SOURCES =  \
 	FSpot.Utils/UriExtensions.cs \
 	FSpot.Utils/UriList.cs \
 	FSpot.Utils/UriUtils.cs \
+	FSpot.Utils/Vector.cs \
 	FSpot.Utils/XdgThumbnailSpec.cs
 
 RESOURCES =

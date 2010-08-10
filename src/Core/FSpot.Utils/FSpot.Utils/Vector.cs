@@ -1,6 +1,6 @@
 using System;
 
-namespace FSpot {
+namespace FSpot.Utils {
 	public class Vector {
 		double X;
 		double Y;

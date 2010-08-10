@@ -171,7 +171,6 @@ SOURCES =  \
 	FSpot/TimeAdaptor.cs \
 	FSpot/TipWindow.cs \
 	FSpot/UriCollection.cs \
-	FSpot/Vector.cs \
 	FSpot/XScreenSaverSlide.cs \
 	ImageLoaderThread.cs \
 	PhotoTagMenu.cs \

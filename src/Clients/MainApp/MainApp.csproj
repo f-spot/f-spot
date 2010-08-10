@@ -158,7 +158,6 @@
     <Compile Include="FSpot.UI.Dialog\TagSelectionDialog.cs" />
     <Compile Include="FSpot.UI.Dialog\ThreadProgressDialog.cs" />
     <Compile Include="FSpot\UriCollection.cs" />
-    <Compile Include="FSpot\Vector.cs" />
     <Compile Include="FSpot.Widgets\CellRendererTextProgress.cs" />
     <Compile Include="FSpot.Widgets\CompositeUtils.cs" />
     <Compile Include="FSpot.Widgets\Dissolve.cs" />
@@ -380,6 +379,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="FSpot.Utils\" />
+    <Folder Include="FSpot\" />
   </ItemGroup>
 </Project>
