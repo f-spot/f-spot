@@ -6,7 +6,7 @@
 
 	<Runtime>
 		<Import assembly="f-spot.exe" />
-		<Import assembly="FSpot.Widgets.dll" />
+		<Import assembly="FSpot.Gui.dll" />
 	</Runtime>
 
 	<ExtensionPoint path = "/FSpot/Editors">
