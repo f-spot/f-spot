@@ -20,7 +20,6 @@ using FSpot.Core;
 
 namespace FSpot.Utils
 {
-
 	public class UriList : List<SafeUri> {
 		public UriList (IBrowsableItem [] photos) {
 			foreach (IBrowsableItem p in photos) {
@@ -39,8 +38,6 @@ namespace FSpot.Utils
 		}
 
 		private void LoadFromStrings (string [] items) {
-			//string [] items = System.Text.RegularExpressions.Regex.Split ("\n", data);
-
 			foreach (String i in items) {
 				if (!i.StartsWith ("#")) {
 					SafeUri uri;
@@ -54,20 +51,7 @@ namespace FSpot.Utils
 					try {
 						uri = new SafeUri (s);
 					} catch {
-#if true //Workaround to bgo 362016 in gnome-screenshot. Remove this hack when gnome 2.6.18 is widely distributed.
-						if (System.Text.RegularExpressions.Regex.IsMatch (s, "^file:/[^/]")) {
-							try {
-								s = "file:///" + s.Substring(6);
-								uri = new SafeUri (s);
-								Log.DebugFormat ("Converted uri from file:/ to >>{0}<<", s);
-							} catch {
-								continue;
-							}
-						} else
-							continue;
-#else
 						continue;
-#endif
 					}
 					Add (uri);
 				}
@@ -76,14 +60,7 @@ namespace FSpot.Utils
 
 		public void AddUnknown (string unknown)
 		{
-			SafeUri uri;
-
-			if (File.Exists (unknown) || Directory.Exists (unknown))
-				uri = new SafeUri (unknown);
-			else
-				uri = new SafeUri (unknown);
-
-			Add (uri);
+			Add (new SafeUri (unknown));
 		}
 
 		public UriList (string data)
@@ -95,17 +72,6 @@ namespace FSpot.Utils
 		{
 			LoadFromStrings (uris);
 		}
-
-		/*public UriList (Gtk.SelectionData selection)
-		{
-			// FIXME this should check the atom etc.
-			LoadFromString (System.Text.Encoding.UTF8.GetString (selection.Data));
-		}*/
-
-		/*public void Add (string path)
-		{
-			AddUnknown (path);
-		}*/
 
 		public void Add (IBrowsableItem item)
 		{
@@ -123,22 +89,6 @@ namespace FSpot.Utils
 			}
 
 			return list.ToString ();
-		}
-
-		public string [] ToLocalPaths () {
-			int count = 0;
-			foreach (SafeUri uri in this) {
-				if (uri.IsFile)
-					count++;
-			}
-
-			String [] paths = new String [count];
-			count = 0;
-			foreach (SafeUri uri in this) {
-				if (uri.IsFile)
-					paths[count++] = uri.LocalPath;
-			}
-			return paths;
 		}
 	}
 }

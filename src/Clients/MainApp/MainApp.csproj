@@ -158,7 +158,6 @@
     <Compile Include="FSpot.UI.Dialog\TagSelectionDialog.cs" />
     <Compile Include="FSpot.UI.Dialog\ThreadProgressDialog.cs" />
     <Compile Include="FSpot\UriCollection.cs" />
-    <Compile Include="FSpot.Utils\Util.cs" />
     <Compile Include="FSpot\Vector.cs" />
     <Compile Include="FSpot.Widgets\CellRendererTextProgress.cs" />
     <Compile Include="FSpot.Widgets\CompositeUtils.cs" />
@@ -212,6 +211,7 @@
     <Compile Include="FSpot\TagStore.cs" />
     <Compile Include="FSpot.Database\DbException.cs" />
     <Compile Include="FSpot.Database\DbStore.cs" />
+    <Compile Include="FSpot.Utils\UriList.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="..\..\..\COPYING">
