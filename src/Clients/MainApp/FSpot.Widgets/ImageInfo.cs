@@ -54,20 +54,11 @@ namespace FSpot.Widgets {
 
 		public ImageInfo (ImageInfo info, Gdk.Rectangle allocation)
 		{
-			#if false
-			Surface = new ImageSurface (Format.RGB24,
-						    allocation.Width,
-						    allocation.Height);
-			Context ctx = new Context (Surface);
-			#else
-			Log.DebugFormat ("source status = {0}", info.Surface.Status);
 			Surface = info.Surface.CreateSimilar (Content.Color,
 							      allocation.Width,
 							      allocation.Height);
 
-			Log.DebugFormat ("status = {1} pointer = {0}", Surface.Handle.ToString (), Surface.Status);
 			Context ctx = new Context (Surface);
-			#endif
 			Bounds = allocation;
 
 			ctx.Matrix = info.Fill (allocation);

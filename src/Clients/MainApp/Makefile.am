@@ -90,7 +90,6 @@ SOURCES =  \
 	FSpot.UI.Dialog/ThreadProgressDialog.cs \
 	FSpot.Widgets/CellRendererTextProgress.cs \
 	FSpot.Widgets/CompositeUtils.cs \
-	FSpot.Widgets/Dissolve.cs \
 	FSpot.Widgets/EditorPage.cs \
 	FSpot.Widgets/Filmstrip.cs \
 	FSpot.Widgets/FindBar.cs \
@@ -98,19 +97,14 @@ SOURCES =  \
 	FSpot.Widgets/FolderTreePage.cs \
 	FSpot.Widgets/FolderTreeView.cs \
 	FSpot.Widgets/IconView.cs \
-	FSpot.Widgets/IEffect.cs \
 	FSpot.Widgets/ImageInfo.cs \
 	FSpot.Widgets/InfoBox.cs \
-	FSpot.Widgets/ITransition.cs \
 	FSpot.Widgets/Loupe.cs \
 	FSpot.Widgets/MetadataDisplay.cs \
-	FSpot.Widgets/PanZoom.cs \
 	FSpot.Widgets/PhotoImageView.cs \
 	FSpot.Widgets/PreviewPopup.cs \
-	FSpot.Widgets/Push.cs \
 	FSpot.Widgets/QueryView.cs \
 	FSpot.Widgets/RatingMenuItem.cs \
-	FSpot.Widgets/Reveal.cs \
 	FSpot.Widgets/ScalingIconView.cs \
 	FSpot.Widgets/Sharpener.cs \
 	FSpot.Widgets/Sidebar.cs \
@@ -122,7 +116,6 @@ SOURCES =  \
 	FSpot.Widgets/Tests/FindBarTests.cs \
 	FSpot.Widgets/TrayView.cs \
 	FSpot.Widgets/ViewContext.cs \
-	FSpot.Widgets/Wipe.cs \
 	FSpot/Accelerometer.cs \
 	FSpot/App.cs \
 	FSpot/BitConverter.cs \

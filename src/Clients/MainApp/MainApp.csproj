@@ -160,7 +160,6 @@
     <Compile Include="FSpot\UriCollection.cs" />
     <Compile Include="FSpot.Widgets\CellRendererTextProgress.cs" />
     <Compile Include="FSpot.Widgets\CompositeUtils.cs" />
-    <Compile Include="FSpot.Widgets\Dissolve.cs" />
     <Compile Include="FSpot.Widgets\EditorPage.cs" />
     <Compile Include="FSpot.Widgets\Filmstrip.cs" />
     <Compile Include="FSpot.Widgets\FindBar.cs" />
@@ -168,19 +167,14 @@
     <Compile Include="FSpot.Widgets\FolderTreePage.cs" />
     <Compile Include="FSpot.Widgets\FolderTreeView.cs" />
     <Compile Include="FSpot.Widgets\IconView.cs" />
-    <Compile Include="FSpot.Widgets\IEffect.cs" />
     <Compile Include="FSpot.Widgets\ImageInfo.cs" />
     <Compile Include="FSpot.Widgets\InfoBox.cs" />
-    <Compile Include="FSpot.Widgets\ITransition.cs" />
     <Compile Include="FSpot.Widgets\Loupe.cs" />
     <Compile Include="FSpot.Widgets\MetadataDisplay.cs" />
-    <Compile Include="FSpot.Widgets\PanZoom.cs" />
     <Compile Include="FSpot.Widgets\PhotoImageView.cs" />
     <Compile Include="FSpot.Widgets\PreviewPopup.cs" />
-    <Compile Include="FSpot.Widgets\Push.cs" />
     <Compile Include="FSpot.Widgets\QueryView.cs" />
     <Compile Include="FSpot.Widgets\RatingMenuItem.cs" />
-    <Compile Include="FSpot.Widgets\Reveal.cs" />
     <Compile Include="FSpot.Widgets\ScalingIconView.cs" />
     <Compile Include="FSpot.Widgets\Sharpener.cs" />
     <Compile Include="FSpot.Widgets\Sidebar.cs" />
@@ -192,7 +186,6 @@
     <Compile Include="FSpot.Widgets\Tests\FindBarTests.cs" />
     <Compile Include="FSpot.Widgets\TrayView.cs" />
     <Compile Include="FSpot.Widgets\ViewContext.cs" />
-    <Compile Include="FSpot.Widgets\Wipe.cs" />
     <Compile Include="FSpot\XScreenSaverSlide.cs" />
     <Compile Include="ImageLoaderThread.cs" />
     <Compile Include="PhotoTagMenu.cs" />
@@ -380,5 +373,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="FSpot\" />
+    <Folder Include="FSpot.Transitions\" />
+    <Folder Include="FSpot.Widgets\" />
   </ItemGroup>
 </Project>
