@@ -186,7 +186,7 @@ namespace FSpot {
 		private Gdk.Cursor empty_cursor;
 		private bool HideCursor ()
 		{
-			if (view.Panning) {
+			if (view.InPanMotion) {
 				return false;
 			}
 

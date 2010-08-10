@@ -17,6 +17,8 @@ using Gdk;
 using FSpot.Utils;
 using TagLib.Image;
 
+using Hyena;
+
 namespace FSpot.Widgets
 {
 	public class ImageView : Container
@@ -93,15 +95,8 @@ namespace FSpot.Widgets
 			set { pointer_mode = value; } 
 		}
 
-		Adjustment hadjustment;
-		public Adjustment Hadjustment {
-			get { return hadjustment; }
-		}
-
-		Adjustment vadjustment;
-		public Adjustment Vadjustment {
-			get { return vadjustment; }
-		}
+		public Adjustment Hadjustment { get; private set; }
+		public Adjustment Vadjustment { get; private set; }
 
 		bool can_select = false;
 		public bool CanSelect {
@@ -167,11 +162,14 @@ namespace FSpot.Widgets
 			} 
 		}
 
-		double zoom = 1.0;
-		public double Zoom {
-			get { return zoom; }
-			set { DoZoom (value, false, 0, 0); }
-		}
+        double zoom = 1.0;
+        public double Zoom {
+            get { return zoom; }
+            set {
+                // Zoom around the center of the image.
+                DoZoom (value, Allocation.Width / 2, Allocation.Height / 2);
+            }
+        }
 
 		public void ZoomIn ()
 		{
@@ -180,42 +178,35 @@ namespace FSpot.Widgets
 
 		public void ZoomOut ()
 		{
-			Zoom *= 1.0/ZOOM_FACTOR;
+			Zoom *= 1.0 / ZOOM_FACTOR;
 		}
 
 		public void ZoomAboutPoint (double zoom_increment, int x, int y)
 		{
-			DoZoom (zoom * zoom_increment, true, x, y);
-		}	
-
-		bool fit;
-		public bool Fit {
-			get { return fit; } 
+			DoZoom (zoom * zoom_increment, x, y);
 		}
 
-		public void ZoomFit (bool upscale)
-		{
-			Gtk.ScrolledWindow scrolled = Parent as Gtk.ScrolledWindow;
-			if (scrolled != null)
-				scrolled.SetPolicy (Gtk.PolicyType.Never, Gtk.PolicyType.Never);
-			
-			min_zoom = ComputeMinZoom (upscale);
-			
-			this.upscale = upscale;
+        public bool Fit { get; private set; }
 
-			fit = true;
-			DoZoom (MIN_ZOOM, false, 0, 0);
+        public void ZoomFit (bool upscale)
+        {
+            Gtk.ScrolledWindow scrolled = Parent as Gtk.ScrolledWindow;
+            if (scrolled != null)
+                scrolled.SetPolicy (Gtk.PolicyType.Never, Gtk.PolicyType.Never);
 
-			if (scrolled != null)
-				GLib.Idle.Add (delegate {scrolled.SetPolicy (Gtk.PolicyType.Automatic, Gtk.PolicyType.Automatic); return false;});
-		}
+            min_zoom = ComputeMinZoom (upscale);
 
-		bool panning = false;
-		public bool Panning {
-			get {
-				return panning;
-			}
-		}
+            this.upscale = upscale;
+
+            Fit = true;
+            DoZoom (MIN_ZOOM, Allocation.Width / 2, Allocation.Height / 2);
+
+            if (scrolled != null) {
+                ThreadAssist.ProxyToMain (() => {
+                        scrolled.SetPolicy (Gtk.PolicyType.Automatic, Gtk.PolicyType.Automatic);
+                        });
+            }
+        }
 
 		public Point WindowCoordsToImage (Point win)
 		{
@@ -261,6 +252,7 @@ namespace FSpot.Widgets
 
 #region protectedAPI
 		protected static double ZOOM_FACTOR = 1.1;
+
 		protected double max_zoom = 10.0;
 		protected double MAX_ZOOM {
 			get { return max_zoom; }
@@ -398,7 +390,7 @@ namespace FSpot.Widgets
 		{
 			min_zoom = ComputeMinZoom (upscale);
 
-			if (fit || zoom < MIN_ZOOM)
+			if (Fit || zoom < MIN_ZOOM)
 				zoom = MIN_ZOOM;
 			// Since this affects the zoom_scale we should alert it
 			EventHandler eh = ZoomChanged;
@@ -423,7 +415,7 @@ namespace FSpot.Widgets
 
 			base.OnSizeAllocated (allocation);
 
-			if (fit)
+			if (Fit)
 				ZoomFit (upscale);
 		}
 
@@ -461,17 +453,19 @@ namespace FSpot.Widgets
 				hadjustment = new Gtk.Adjustment (0, 0, 0, 0, 0, 0);
 			if (vadjustment == null)
 				vadjustment = new Gtk.Adjustment (0, 0, 0, 0, 0, 0);
+
 			bool need_change = false;
-			if (this.hadjustment != hadjustment) {
-				this.hadjustment = hadjustment;
-				this.hadjustment.Upper = scaled_width;
-				this.hadjustment.ValueChanged += HandleAdjustmentsValueChanged;
+
+			if (Hadjustment != hadjustment) {
+				Hadjustment = hadjustment;
+				Hadjustment.Upper = scaled_width;
+				Hadjustment.ValueChanged += HandleAdjustmentsValueChanged;
 				need_change = true;
 			}
-			if (this.vadjustment != vadjustment) {
-				this.vadjustment = vadjustment;
-				this.vadjustment.Upper = scaled_height;
-				this.vadjustment.ValueChanged += HandleAdjustmentsValueChanged;
+			if (Vadjustment != vadjustment) {
+				Vadjustment = vadjustment;
+				Vadjustment.Upper = scaled_height;
+				Vadjustment.ValueChanged += HandleAdjustmentsValueChanged;
 				need_change = true;
 			}
 
@@ -593,12 +587,12 @@ namespace FSpot.Widgets
 			case Gdk.Key.KP_1:
 			case Gdk.Key.Key_1:
 				GdkWindow.GetPointer (out x, out y, out type);
-				DoZoom (1.0, true, x, y);
+				DoZoom (1.0, x, y);
 				break;
 			case Gdk.Key.Key_2:
 			case Gdk.Key.KP_2:
 				GdkWindow.GetPointer (out x, out y, out type);
-				DoZoom (2.0, true, x, y);
+				DoZoom (2.0, x, y);
 				break;
 			default:
 				handled = false;
@@ -609,54 +603,60 @@ namespace FSpot.Widgets
 		}
 #endregion
 
-#region private painting, zooming and misc 
-		int XOffset { get; set;}
-		int YOffset { get; set;}
-		void DoZoom (double zoom, bool use_anchor, int x, int y)
-		{
-			fit = zoom == MIN_ZOOM;
+#region private painting, zooming and misc
 
-			if (zoom == this.zoom)
-				return;
-			
-			if (System.Math.Abs (this.zoom - zoom) < System.Double.Epsilon)
-				return;
+        int XOffset { get; set;}
+        int YOffset { get; set;}
 
-			if (zoom > MAX_ZOOM)
-				zoom = MAX_ZOOM;
-			else if (zoom < MIN_ZOOM)
-				zoom = MIN_ZOOM;
+        /// <summary>
+        ///     Zoom to the given factor.
+        /// </summary>
+        /// <param name='zoom'>
+        ///     A zoom factor, expressed as a double.
+        /// </param>
+        /// <param name='x'>
+        ///     The point of the viewport around which to zoom.
+        /// </param>
+        /// <param name='y'>
+        ///     The point of the viewport around which to zoom.
+        /// </param>
+        void DoZoom (double zoom, int x, int y)
+        {
+            Fit = zoom == MIN_ZOOM;
 
-			this.zoom = zoom;
-			
-			if (!use_anchor) {
-				x = (int)Allocation.Width / 2;
-				y = (int)Allocation.Height / 2;
-			}
+            if (zoom == this.zoom || System.Math.Abs (this.zoom - zoom) < System.Double.Epsilon) {
+                // Don't recalculate if the zoom factor stays the same.
+                return;
+            }
 
-			int x_offset = scaled_width < Allocation.Width ? (int)(Allocation.Width - scaled_width) / 2 : -XOffset;
-			int y_offset = scaled_height < Allocation.Height ? (int)(Allocation.Height - scaled_height) / 2 : -YOffset;
-			double x_anchor = (double)(x - x_offset) / (double)scaled_width;
-			double y_anchor = (double)(y - y_offset) / (double)scaled_height;
-			ComputeScaledSize ();
+            // Clamp the zoom factor within the [ MIN_ZOOM , MAX_ZOOM ] interval.
+            zoom = Math.Max (Math.Min (zoom, MAX_ZOOM), MIN_ZOOM);
 
-			AdjustmentsChanged -= ScrollToAdjustments;
-			if (scaled_width < Allocation.Width)
-				Hadjustment.Value = XOffset = 0;
-			else
-				Hadjustment.Value = XOffset = Clamp ((int)(x_anchor * scaled_width - x), 0, (int)(Hadjustment.Upper - Hadjustment.PageSize));
-			if (scaled_height < Allocation.Height)
-				Vadjustment.Value = YOffset = 0;
-			else
-				Vadjustment.Value = YOffset = Clamp ((int)(y_anchor * scaled_height - y), 0, (int)(Vadjustment.Upper - Vadjustment.PageSize));
-			AdjustmentsChanged += ScrollToAdjustments;
+            this.zoom = zoom;
 
-			EventHandler eh = ZoomChanged;
-			if (eh != null)
-				eh (this, EventArgs.Empty);
+            int x_offset = scaled_width < Allocation.Width ? (int)(Allocation.Width - scaled_width) / 2 : -XOffset;
+            int y_offset = scaled_height < Allocation.Height ? (int)(Allocation.Height - scaled_height) / 2 : -YOffset;
+            double x_anchor = (double)(x - x_offset) / (double)scaled_width;
+            double y_anchor = (double)(y - y_offset) / (double)scaled_height;
+            ComputeScaledSize ();
 
-			QueueDraw ();
-		}
+            AdjustmentsChanged -= ScrollToAdjustments;
+            if (scaled_width < Allocation.Width)
+                Hadjustment.Value = XOffset = 0;
+            else
+                Hadjustment.Value = XOffset = Clamp ((int)(x_anchor * scaled_width - x), 0, (int)(Hadjustment.Upper - Hadjustment.PageSize));
+            if (scaled_height < Allocation.Height)
+                Vadjustment.Value = YOffset = 0;
+            else
+                Vadjustment.Value = YOffset = Clamp ((int)(y_anchor * scaled_height - y), 0, (int)(Vadjustment.Upper - Vadjustment.PageSize));
+            AdjustmentsChanged += ScrollToAdjustments;
+
+            EventHandler eh = ZoomChanged;
+            if (eh != null)
+                eh (this, EventArgs.Empty);
+
+            QueueDraw ();
+        }
 
 		void PaintBackground (Rectangle backgound, Rectangle area)
 		{
@@ -1113,63 +1113,65 @@ namespace FSpot.Widgets
 #endregion
 
 #region panning
-		Point pan_anchor = new Point (0, 0);
 
-		bool OnPanButtonPressEvent (EventButton evnt)
-		{
-			if (2 != evnt.Button) {
-				return false;
-			}
+        /// <summary>
+        ///     Whether or not the user is currently performing a pan motion (dragging with the middle mouse button).
+        /// </summary>
+        public bool InPanMotion { get; private set; }
 
-			System.Diagnostics.Debug.Assert (!panning);
-			panning = true;
+        Point pan_anchor = new Point (0, 0);
 
-			pan_anchor.X = (int) evnt.X;
-			pan_anchor.Y = (int) evnt.Y;
+        bool OnPanButtonPressEvent (EventButton evnt)
+        {
+            if (evnt.Button != 2) {
+                // Restrict to middle mouse button.
+                return false;
+            }
 
-			PanSetPointer ();
+            System.Diagnostics.Debug.Assert (!InPanMotion);
+            InPanMotion = true;
 
-			return true;
-		}
+            // Track starting point of panning movement.
+            pan_anchor.X = (int) evnt.X;
+            pan_anchor.Y = (int) evnt.Y;
 
-		bool OnPanMotionNotifyEvent (EventMotion evnt)
-		{
-			if (!panning) {
-				return false;
-			}
+            // Set to crosshair pointer
+            GdkWindow.Cursor = new Cursor (CursorType.Fleur);
+            return true;
+        }
 
-			int pan_x = pan_anchor.X - (int) evnt.X;
-			int pan_y = pan_anchor.Y - (int) evnt.Y;
-			ScrollBy (pan_x, pan_y);
+        bool OnPanMotionNotifyEvent (EventMotion evnt)
+        {
+            if (!InPanMotion) {
+                return false;
+            }
 
-			pan_anchor.X = (int) evnt.X;
-			pan_anchor.Y = (int) evnt.Y;
+            // Calculate the direction of the panning, scroll accordingly.
+            int pan_x = pan_anchor.X - (int) evnt.X;
+            int pan_y = pan_anchor.Y - (int) evnt.Y;
+            ScrollBy (pan_x, pan_y);
 
-			PanSetPointer ();
+            // Reset starting point.
+            pan_anchor.X = (int) evnt.X;
+            pan_anchor.Y = (int) evnt.Y;
+            return true;
+        }
 
-			return true;
-		}
+        bool OnPanButtonReleaseEvent (EventButton evnt)
+        {
+            if (evnt.Button != 2) {
+                // Restrict to middle mouse button.
+                return false;
+            }
 
-		bool OnPanButtonReleaseEvent (EventButton evnt)
-		{
-			if (2 != evnt.Button) {
-				return false;
-			}
+            System.Diagnostics.Debug.Assert (InPanMotion);
+            InPanMotion = false;
 
-			System.Diagnostics.Debug.Assert (panning);
-			panning = false;
+            // Reset cursor
+            GdkWindow.Cursor = null;
+            return true;
+        }
 
-			PanSetPointer ();
-
-			return true;
-		}
-
-		void PanSetPointer ()
-		{
-			GdkWindow.Cursor = panning
-					? new Cursor (CursorType.Fleur)
-					: null;
-		}
 #endregion
-	}
+    }
 }
