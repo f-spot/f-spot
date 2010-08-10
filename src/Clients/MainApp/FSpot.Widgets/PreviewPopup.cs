@@ -37,7 +37,7 @@ namespace FSpot {
 		private DisposableCache<string, Pixbuf> preview_cache = new DisposableCache<string, Pixbuf> (50);
 
 		private int item = -1;
-		public int Item {
+		public new int Item {
 			get {
 				return item;
 			}

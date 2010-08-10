@@ -464,16 +464,7 @@ namespace FSpot {
 
 			if (bar.Intersect (area, out area)) {
 				if (item < min_limit.Position || item > max_limit.Position) {
-#if false
-					bar.Height += 1;
-
-					//GdkWindow.DrawRectangle (Style.ForegroundGC (StateType.Normal), false, box);
-					Style.PaintShadow (this.Style, GdkWindow, State, ShadowType.In, area,
-							   this, null, bar.X, bar.Y,
-							   bar.Width, bar.Height);
-#else
 					GdkWindow.DrawRectangle (Style.BackgroundGC (StateType.Active), true, area);
-#endif
 				} else {
 					GdkWindow.DrawRectangle (Style.BaseGC (StateType.Selected), true, area);
 				}
@@ -768,10 +759,6 @@ namespace FSpot {
 
 			public override void UpdateDrag (double x, double y)
 			{
-				Rectangle box = Bounds ();
-				double middle = box.X + (box.Width / 2.0);
-				int current_position;
-
 				base.UpdateDrag (x, y);
 				MaintainPosition();
 			}
@@ -908,32 +895,11 @@ namespace FSpot {
 								  bounds.Y + bounds.Height - handle_height,
 								  bounds.Width,
 								  handle_height);
-#if false
-
-				Gdk.Point [] top_points = { new Gdk.Point (top.X, top.Y),
-							    new Gdk.Point (top.X, top.Y + top.Height),
-							    new Gdk.Point ((int)(top.X + top.Width/2), (int)(top.Y + top.Height * 1.5)),
-							    new Gdk.Point (top.X + top.Width, top.Y + top.Height),
-							    new Gdk.Point (top.X + top.Width, top.Y),
-							    new Gdk.Point (top.X, top.Y) };
-				Style.PaintPolygon (selector.Style, selector.GdkWindow, State, ShadowType.In, area,
-						    selector, "IconView:Selector", top_points, true);
-
-				Gdk.Point [] bottom_points = { new Gdk.Point (bottom.X, bottom.Y + bottom.Height),
-							       new Gdk.Point (bottom.X, bottom.Y),
-							       new Gdk.Point ((int)(bottom.X + bottom.Width/2), (int)(bottom.Y - bottom.Height/2)),
-							       new Gdk.Point (bottom.X + bottom.Width, bottom.Y),
-							       new Gdk.Point (bottom.X + bottom.Width, bottom.Y + bottom.Height),
-							       new Gdk.Point (bottom.X, bottom.Y + bottom.Height) };
-				Style.PaintPolygon (selector.Style, selector.GdkWindow, State, ShadowType.In, area,
-						    selector, "IconView:Selector", bottom_points, true);
-#else
 				Style.PaintBox (selector.Style, selector.GdkWindow, State, ShadowType.Out, area,
 						selector, null, top.X, top.Y, top.Width, top.Height);
 
 				Style.PaintBox (selector.Style, selector.GdkWindow, State, ShadowType.Out, area,
 						selector, null, bottom.X, bottom.Y, bottom.Width, bottom.Height);
-#endif
 			}
 
 			public Limit (GroupSelector selector, LimitType type) : base (selector)
@@ -1180,72 +1146,5 @@ namespace FSpot {
 		}
 
 		public GroupSelector (IntPtr raw) : base (raw) {}
-
-#if TEST_MAIN
-		private void HandleKeyPressEvent (object sender, KeyPressEventArgs args)
-		{
-			switch (args.Event.Key) {
-			case Gdk.Key.Left:
-				if (glass.Position > 0)
-					this.glass.Position--;
-				else
-					glass.Position = box_counts.Length - 1;
-
-				break;
-			case Gdk.Key.Right:
-				if (glass.Position < box_counts.Length - 1)
-					glass.Position++;
-				else
-					glass.Position = 0;
-
-				break;
-			case Gdk.Key.Down:
-				if (Mode > 0)
-					Mode--;
-				else
-					Mode = 2;
-
-				break;
-			case Gdk.Key.Up:
-				if (mode < 2)
-					Mode++;
-				else
-					Mode = 0;
-				break;
-			case Gdk.Key.Home:
-				Offset += 10;
-				break;
-			case Gdk.Key.End:
-				Offset -= 10;
-				break;
-			}
-		}
-
-		public static int Main (string [] args) {
-
-			Application.Init ();
-			Gtk.Window win = new Gtk.Window ("testing");
-
-			VBox vbox = new VBox (false, 10);
-			GroupSelector gs = new GroupSelector ();
-			gs.Counts = new int [] {20, 100, 123, 10, 5, 2, 3, 50, 8, 10, 22, 0, 55, 129, 120, 30, 14, 200, 21, 55};
-			gs.Mode = RangeType.Fixed;
-			vbox.PackStart (gs);
-
-			gs = new GroupSelector ();
-			gs.Counts = new int [] {20, 100, 123, 10, 5, 2, 3, 50, 8, 10, 22, 0, 55, 129, 120, 30, 14, 200, 21, 55};
-			gs.Mode = RangeType.Fixed;
-			vbox.PackStart (gs);
-
-			win.Add (vbox);
-			win.ShowAll ();
-			win.AddEvents ((int) EventMask.KeyPressMask);
-			win.KeyPressEvent += gs.HandleKeyPressEvent;
-
-			Application.Run ();
-			return 0;
-		}
-#endif
 	}
-
 }
