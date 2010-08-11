@@ -15,6 +15,7 @@ f-spot 0.7.2 - Aug 11 2010 - Retooled
  - Loads of improvements to Taglib#, in terms of handling broken files, extra
    format support (Pentax, Panasonic, Leica), stability and correctness (Ruben
    Vermeersch)
+ - Reporting of import errors.
  - Speedups to repeated imports of the same directory.
  - Piles of cleanups and general stability improvements.
  - Over 50 bugs closed (http://bit.ly/cqpC3y)
