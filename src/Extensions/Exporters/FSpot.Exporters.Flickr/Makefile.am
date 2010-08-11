@@ -8,7 +8,7 @@ SOURCES =  \
 	FSpot.Exporters.Flickr/FlickrRemote.cs
 
 RESOURCES =  \
-	Resources/FlickrExport.addin.xml \
-	Resources/FlickrExport.glade
+	Resources/flickr_export.ui \
+	Resources/FlickrExport.addin.xml
 
 include $(top_srcdir)/build/build.mk

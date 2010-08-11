@@ -39,8 +39,8 @@
     <EmbeddedResource Include="Resources\FlickrExport.addin.xml">
       <LogicalName>FlickrExport.addin.xml</LogicalName>
     </EmbeddedResource>
-    <EmbeddedResource Include="Resources\FlickrExport.glade">
-      <LogicalName>FlickrExport.glade</LogicalName>
+    <EmbeddedResource Include="Resources\flickr_export.ui">
+      <LogicalName>flickr_export.ui</LogicalName>
     </EmbeddedResource>
   </ItemGroup>
   <ProjectExtensions>
@@ -60,7 +60,6 @@
   </ProjectExtensions>
   <ItemGroup>
     <Reference Include="FlickrNet, Version=2.2.0.0, Culture=neutral, PublicKeyToken=2491df59efa5d132">
-      <Package>flickrnet</Package>
     </Reference>
     <Reference Include="Mono.Posix" />
     <Reference Include="glade-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />

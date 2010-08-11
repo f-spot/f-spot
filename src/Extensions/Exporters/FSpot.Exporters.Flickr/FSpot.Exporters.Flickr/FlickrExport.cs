@@ -14,6 +14,8 @@ using FSpot.UI.Dialog;
 using Hyena;
 using Hyena.Widgets;
 
+using GtkBeans;
+
 namespace FSpot.Exporters.Flickr {
 	public class TwentyThreeHQExport : FlickrExport
 	{
@@ -34,23 +36,23 @@ namespace FSpot.Exporters.Flickr {
 	public class FlickrExport : FSpot.Extensions.IExporter {
 		IBrowsableCollection selection;
 
-		[Glade.Widget] Gtk.Dialog	  dialog;
-		[Glade.Widget] Gtk.CheckButton    scale_check;
-		[Glade.Widget] Gtk.CheckButton    tag_check;
-		[Glade.Widget] Gtk.CheckButton    hierarchy_check;
-		[Glade.Widget] Gtk.CheckButton    ignore_top_level_check;
-		[Glade.Widget] Gtk.CheckButton    open_check;
-		[Glade.Widget] Gtk.SpinButton     size_spin;
-		[Glade.Widget] Gtk.ScrolledWindow thumb_scrolledwindow;
-		[Glade.Widget] Gtk.Button         auth_flickr;
-		[Glade.Widget] Gtk.ProgressBar    used_bandwidth;
-		[Glade.Widget] Gtk.Button         do_export_flickr;
-		[Glade.Widget] Gtk.Label          auth_label;
-		[Glade.Widget] Gtk.RadioButton    public_radio;
-		[Glade.Widget] Gtk.CheckButton    family_check;
-		[Glade.Widget] Gtk.CheckButton    friend_check;
+		[GtkBeans.Builder.Object] Gtk.Dialog         dialog;
+		[GtkBeans.Builder.Object] Gtk.CheckButton    scale_check;
+		[GtkBeans.Builder.Object] Gtk.CheckButton    tag_check;
+		[GtkBeans.Builder.Object] Gtk.CheckButton    hierarchy_check;
+		[GtkBeans.Builder.Object] Gtk.CheckButton    ignore_top_level_check;
+		[GtkBeans.Builder.Object] Gtk.CheckButton    open_check;
+		[GtkBeans.Builder.Object] Gtk.SpinButton     size_spin;
+		[GtkBeans.Builder.Object] Gtk.ScrolledWindow thumb_scrolledwindow;
+		[GtkBeans.Builder.Object] Gtk.Button         auth_flickr;
+		[GtkBeans.Builder.Object] Gtk.ProgressBar    used_bandwidth;
+		[GtkBeans.Builder.Object] Gtk.Button         do_export_flickr;
+		[GtkBeans.Builder.Object] Gtk.Label          auth_label;
+		[GtkBeans.Builder.Object] Gtk.RadioButton    public_radio;
+		[GtkBeans.Builder.Object] Gtk.CheckButton    family_check;
+		[GtkBeans.Builder.Object] Gtk.CheckButton    friend_check;
 
-		private Glade.XML xml;
+		private GtkBeans.Builder builder;
 		private string dialog_name = "flickr_export_dialog";
 		System.Threading.Thread command_thread;
 		ThreadProgressDialog progress_dialog;
@@ -168,8 +170,8 @@ namespace FSpot.Exporters.Flickr {
 			view.DisplayTags = display_tags;
 			view.DisplayDates = false;
 
-			xml = new Glade.XML (null, "FlickrExport.glade", dialog_name, "f-spot");
-			xml.Autoconnect (this);
+			builder = new GtkBeans.Builder (null, "flickr_export.ui", null);
+			builder.Autoconnect (this);
 
 			Dialog.Modal = false;
 			Dialog.TransientFor = null;
@@ -563,7 +565,7 @@ namespace FSpot.Exporters.Flickr {
 		private Gtk.Dialog Dialog {
 			get {
 				if (dialog == null)
-					dialog = (Gtk.Dialog) xml.GetWidget (dialog_name);
+					dialog = new Gtk.Dialog (builder.GetRawObject (dialog_name));
 
 				return dialog;
 			}
