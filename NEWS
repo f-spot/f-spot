@@ -1,3 +1,24 @@
+f-spot 0.7.2 - Aug 11 2010 - Retooled
+-------------------------------------
+- Third release of the unstable 0.7 development series. Features a fully
+  restructured source tree with full Monodevelop build support. Solves some of
+  the regressions introduced in 0.7.1.
+ - Reorganized source tree for clarity, builds with Monodevelop.
+ - Switched from QueuedSqliteDatabase to HyenaSqliteConnection (Mike Gemünde)
+ - Build tweaks (Christian Krause)
+ - More GtkBuilder transition (Eric Faehnrich)
+ - Reliability improvements (lots of them) for metadata handling (Mike Gemünde,
+   Ruben Vermeersch)
+ - Prune empty directories when deleting photos, import usability enhancements
+   (Mike Wallick)
+ - Big race-condition fix in import (Paul Wellner Bou)
+ - Loads of improvements to Taglib#, in terms of handling broken files, extra
+   format support (Pentax, Panasonic, Leica), stability and correctness (Ruben
+   Vermeersch)
+ - Speedups to repeated imports of the same directory.
+ - Piles of cleanups and general stability improvements.
+ - Over 50 bugs closed (http://bit.ly/cqpC3y)
+
 f-spot 0.7.1 - Jul 14 2010 - The Big Switch
 -------------------------------------------
 - Second release of the unstable 0.7 development series. Most notably
