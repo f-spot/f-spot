@@ -203,7 +203,7 @@ namespace FSpot.Widgets
             if (scrolled != null) {
                 ThreadAssist.ProxyToMain (() => {
                         scrolled.SetPolicy (Gtk.PolicyType.Automatic, Gtk.PolicyType.Automatic);
-                        });
+                });
             }
         }
 
