@@ -21,7 +21,7 @@ using Hyena;
 
 namespace FSpot.Widgets
 {
-	public class ImageView : Container
+	public partial class ImageView : Container
 	{
 #region public API
 		protected ImageView (IntPtr raw) : base (raw) { }
@@ -29,7 +29,6 @@ namespace FSpot.Widgets
 		public ImageView (Adjustment hadjustment, Adjustment vadjustment, bool can_select) : base ()
 		{
 			OnSetScrollAdjustments (hadjustment, vadjustment);
-			children = new List<LayoutChild> ();
 			AdjustmentsChanged += ScrollToAdjustments;
 			WidgetFlags &= ~WidgetFlags.NoWindow;
 			SetFlag (WidgetFlags.CanFocus);
@@ -225,32 +224,12 @@ namespace FSpot.Widgets
 					   (int) Math.Floor (win.Y * (double)(((int)PixbufOrientation <= 4 ? Pixbuf.Height : Pixbuf.Width) - 1) / (double)(scaled_height - 1) + .5));
 		}
 
-		List<LayoutChild> children;
-		public void Put (Gtk.Widget widget, int x, int y)
-		{
-			children.Add (new LayoutChild (widget, x, y));
-			if (IsRealized)
-				widget.ParentWindow = GdkWindow;
-			widget.Parent = this;
-		}
-
-		public void Move (Gtk.Widget widget, int x, int y)
-		{
-			LayoutChild child = GetChild (widget);
-			if (child == null)
-				return;
-
-			child.X = x;
-			child.Y = y;
-			if (Visible && widget.Visible)
-				QueueResize ();
-		}
-
 		public event EventHandler ZoomChanged;
 		public event EventHandler SelectionChanged;
 #endregion
 
-#region protectedAPI
+#region protected API
+
 		protected static double ZOOM_FACTOR = 1.1;
 
 		protected double max_zoom = 10.0;
@@ -305,119 +284,84 @@ namespace FSpot.Widgets
 		}
 #endregion
 
-#region container
-		protected override void OnAdded (Gtk.Widget widget)
-		{
-			Put (widget, 0, 0);
-		}
-
-		protected override void OnRemoved (Gtk.Widget widget)
-		{
-			LayoutChild child = null;
-			foreach (var c in children) {
-				if (child.Widget == widget) {
-					child = c;
-					break;
-				}
-			}
-
-			if (child != null) {
-				widget.Unparent ();
-				children.Remove (child);
-			}
-		}
-
-		protected override void ForAll (bool include_internals, Gtk.Callback callback)
-		{
-			foreach (var child in children) 
-				callback (child.Widget);
-		}
-#endregion
-
 #region GtkWidgetry
-		protected override void OnRealized ()
-		{
-			SetFlag (Gtk.WidgetFlags.Realized);
-			GdkWindow = new Gdk.Window (ParentWindow,
-						    new Gdk.WindowAttr { WindowType = Gdk.WindowType.Child,
-									 X = Allocation.X,
-									 Y = Allocation.Y,
-									 Width = Allocation.Width,
-									 Height = Allocation.Height,
-									 Wclass = Gdk.WindowClass.InputOutput,
-									 Visual = ParentWindow.Visual,
-									 Colormap = ParentWindow.Colormap,
-									 Mask = this.Events
-									      | EventMask.ExposureMask
-									      | EventMask.ButtonPressMask
-									      | EventMask.ButtonReleaseMask
-									      | EventMask.PointerMotionMask
-									      | EventMask.PointerMotionHintMask
-									      | EventMask.ScrollMask
-									      | EventMask.KeyPressMask },
-						     Gdk.WindowAttributesType.X | Gdk.WindowAttributesType.Y |
-						     Gdk.WindowAttributesType.Visual | Gdk.WindowAttributesType.Colormap);
 
-			GdkWindow.SetBackPixmap (null, false);
-			GdkWindow.UserData = Handle;
+        protected override void OnRealized ()
+        {
+            SetFlag (Gtk.WidgetFlags.Realized);
+            GdkWindow = new Gdk.Window (ParentWindow,
+                    new Gdk.WindowAttr { 
+                        WindowType = Gdk.WindowType.Child,
+                        X = Allocation.X,
+                        Y = Allocation.Y,
+                        Width = Allocation.Width,
+                        Height = Allocation.Height,
+                        Wclass = Gdk.WindowClass.InputOutput,
+                        Visual = ParentWindow.Visual,
+                        Colormap = ParentWindow.Colormap,
+                        Mask = this.Events
+                            | EventMask.ExposureMask
+                            | EventMask.ButtonPressMask
+                            | EventMask.ButtonReleaseMask
+                            | EventMask.PointerMotionMask
+                            | EventMask.PointerMotionHintMask
+                            | EventMask.ScrollMask
+                            | EventMask.KeyPressMask 
+                    },
+                    Gdk.WindowAttributesType.X | Gdk.WindowAttributesType.Y |
+                    Gdk.WindowAttributesType.Visual | Gdk.WindowAttributesType.Colormap);
 
-			Style.Attach (GdkWindow);
-			Style.SetBackground (GdkWindow, Gtk.StateType.Normal);
+            GdkWindow.SetBackPixmap (null, false);
+            GdkWindow.UserData = Handle;
 
-			foreach (var child in children)
-				child.Widget.ParentWindow = GdkWindow;
-		}
+            Style.Attach (GdkWindow);
+            Style.SetBackground (GdkWindow, Gtk.StateType.Normal);
 
-		protected override void OnMapped ()
-		{
-			SetFlag (Gtk.WidgetFlags.Mapped);
+            OnRealizedChildren ();
+        }
 
-			foreach (var child in children)
-				if (child.Widget.Visible && !child.Widget.IsMapped)
-					child.Widget.Map ();
-			GdkWindow.Show ();
-		}
+        protected override void OnMapped ()
+        {
+            SetFlag (Gtk.WidgetFlags.Mapped);
+            OnMappedChildren ();
+            GdkWindow.Show ();
+        }
 
-		protected override void OnSizeRequested (ref Gtk.Requisition requisition)
-		{
-			requisition.Width = requisition.Height = 0;
+        protected override void OnSizeRequested (ref Gtk.Requisition requisition)
+        {
+            requisition.Width = requisition.Height = 0;
+            OnSizeRequestedChildren ();
+        }
 
-			foreach (var child in children)
-				child.Widget.SizeRequest ();
-		}
+        protected override void OnSizeAllocated (Gdk.Rectangle allocation)
+        {
+            min_zoom = ComputeMinZoom (upscale);
 
-		protected override void OnSizeAllocated (Gdk.Rectangle allocation)
-		{
-			min_zoom = ComputeMinZoom (upscale);
+            if (Fit || zoom < MIN_ZOOM)
+                zoom = MIN_ZOOM;
+            // Since this affects the zoom_scale we should alert it
+            EventHandler eh = ZoomChanged;
+            if (eh != null)
+                eh (this, System.EventArgs.Empty);
 
-			if (Fit || zoom < MIN_ZOOM)
-				zoom = MIN_ZOOM;
-			// Since this affects the zoom_scale we should alert it
-			EventHandler eh = ZoomChanged;
-			if (eh != null)
-				eh (this, System.EventArgs.Empty);
+            ComputeScaledSize ();
 
-			ComputeScaledSize ();
+            OnSizeAllocatedChildren ();
 
-			foreach (var child in children) {
-				Gtk.Requisition req = child.Widget.ChildRequisition;
-				child.Widget.SizeAllocate (new Gdk.Rectangle (child.X, child.Y, req.Width, req.Height));
-			}
+            if (IsRealized) {
+                GdkWindow.MoveResize (allocation.X, allocation.Y, allocation.Width, allocation.Height);
+            }
 
-			if (IsRealized) {
-				GdkWindow.MoveResize (allocation.X, allocation.Y, allocation.Width, allocation.Height);
-			}
+            if (XOffset > Hadjustment.Upper - Hadjustment.PageSize)
+                ScrollTo ((int)(Hadjustment.Upper - Hadjustment.PageSize), YOffset, false);
+            if (YOffset > Vadjustment.Upper - Vadjustment.PageSize)
+                ScrollTo (XOffset, (int)(Vadjustment.Upper - Vadjustment.PageSize), false);
 
-			if (XOffset > Hadjustment.Upper - Hadjustment.PageSize)
-				ScrollTo ((int)(Hadjustment.Upper - Hadjustment.PageSize), YOffset, false);
-			if (YOffset > Vadjustment.Upper - Vadjustment.PageSize)
-				ScrollTo (XOffset, (int)(Vadjustment.Upper - Vadjustment.PageSize), false);
+            base.OnSizeAllocated (allocation);
 
-			base.OnSizeAllocated (allocation);
-
-			if (Fit)
-				ZoomFit (upscale);
-		}
+            if (Fit)
+                ZoomFit (upscale);
+        }
 
 		protected override bool OnExposeEvent (Gdk.EventExpose evnt)
 		{
@@ -837,32 +781,6 @@ namespace FSpot.Widgets
 		}
 #endregion
 
-#region children
-		class LayoutChild {
-			Gtk.Widget widget;
-			public Gtk.Widget Widget {
-				get { return widget; }
-			}
-
-			public int X {get; set; }
-			public int Y {get; set; }
-
-			public LayoutChild (Gtk.Widget widget, int x, int y)
-			{
-				this.widget = widget;
-				X = x;
-				Y = y;
-			}
-		}
-
-		LayoutChild GetChild (Gtk.Widget widget)
-		{
-			foreach (var child in children)
-				if (child.Widget == widget)
-					return child;
-			return null;
-		}
-#endregion
 
 #region selection
 		bool OnSelectionExposeEvent (EventExpose evnt)
@@ -908,6 +826,7 @@ namespace FSpot.Widgets
 		bool fixed_width = false;
 		bool is_moving_selection = false;
 		Point selection_anchor = Point.Zero;
+
 		bool OnSelectionButtonPressEvent (EventButton evnt)
 		{
 			if (evnt.Button != 1)
@@ -927,6 +846,7 @@ namespace FSpot.Widgets
 					Selection = Rectangle.Zero;
 					selection_anchor = img;
 					break;
+
 				case DragMode.Extend:
 					Rectangle win_sel = ImageCoordsToWindow (Selection);
 					is_dragging_selection = true;
@@ -958,8 +878,8 @@ namespace FSpot.Widgets
 						fixed_width = fixed_height = false;
 						is_dragging_selection = false;
 					}
-						
 					break;
+
 				case DragMode.Move:
 					is_moving_selection = true;
 					selection_anchor = img;
@@ -1021,10 +941,7 @@ namespace FSpot.Widgets
 					break;
 				}
 			}
-
-			
 		}
-
 
 		const int SELECTION_THRESHOLD = 5;
 		bool OnSelectionMotionNotifyEvent (EventMotion evnt)
@@ -1112,66 +1029,5 @@ namespace FSpot.Widgets
 		}
 #endregion
 
-#region panning
-
-        /// <summary>
-        ///     Whether or not the user is currently performing a pan motion (dragging with the middle mouse button).
-        /// </summary>
-        public bool InPanMotion { get; private set; }
-
-        Point pan_anchor = new Point (0, 0);
-
-        bool OnPanButtonPressEvent (EventButton evnt)
-        {
-            if (evnt.Button != 2) {
-                // Restrict to middle mouse button.
-                return false;
-            }
-
-            System.Diagnostics.Debug.Assert (!InPanMotion);
-            InPanMotion = true;
-
-            // Track starting point of panning movement.
-            pan_anchor.X = (int) evnt.X;
-            pan_anchor.Y = (int) evnt.Y;
-
-            // Set to crosshair pointer
-            GdkWindow.Cursor = new Cursor (CursorType.Fleur);
-            return true;
-        }
-
-        bool OnPanMotionNotifyEvent (EventMotion evnt)
-        {
-            if (!InPanMotion) {
-                return false;
-            }
-
-            // Calculate the direction of the panning, scroll accordingly.
-            int pan_x = pan_anchor.X - (int) evnt.X;
-            int pan_y = pan_anchor.Y - (int) evnt.Y;
-            ScrollBy (pan_x, pan_y);
-
-            // Reset starting point.
-            pan_anchor.X = (int) evnt.X;
-            pan_anchor.Y = (int) evnt.Y;
-            return true;
-        }
-
-        bool OnPanButtonReleaseEvent (EventButton evnt)
-        {
-            if (evnt.Button != 2) {
-                // Restrict to middle mouse button.
-                return false;
-            }
-
-            System.Diagnostics.Debug.Assert (InPanMotion);
-            InPanMotion = false;
-
-            // Reset cursor
-            GdkWindow.Cursor = null;
-            return true;
-        }
-
-#endregion
     }
 }

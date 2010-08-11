@@ -54,6 +54,8 @@
     <Compile Include="FSpot.Transitions\DissolveTransition.cs" />
     <Compile Include="FSpot.Transitions\PushTransition.cs" />
     <Compile Include="FSpot.Transitions\SlideShowTransition.cs" />
+    <Compile Include="FSpot.Widgets\ImageView_Panning.cs" />
+    <Compile Include="FSpot.Widgets\ImageView_Container.cs" />
   </ItemGroup>
   <ProjectExtensions>
     <MonoDevelop>

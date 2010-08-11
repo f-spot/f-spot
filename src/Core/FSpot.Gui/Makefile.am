@@ -18,6 +18,8 @@ SOURCES =  \
 	FSpot.Widgets/DateEditFlags.cs \
 	FSpot.Widgets/HighlightedBox.cs \
 	FSpot.Widgets/ImageView.cs \
+	FSpot.Widgets/ImageView_Container.cs \
+	FSpot.Widgets/ImageView_Panning.cs \
 	FSpot.Widgets/Layout.cs \
 	FSpot.Widgets/MenuButton.cs \
 	FSpot.Widgets/OpenWithMenu.cs \
