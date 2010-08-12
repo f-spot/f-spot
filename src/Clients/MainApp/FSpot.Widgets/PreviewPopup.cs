@@ -14,6 +14,7 @@ using Gdk;
 using FSpot.Core;
 using FSpot.Widgets;
 using FSpot.Utils;
+using FSpot.Gui;
 
 namespace FSpot {
 	public class PreviewPopup : Gtk.Window {

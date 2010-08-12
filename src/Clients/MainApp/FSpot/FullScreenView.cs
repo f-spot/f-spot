@@ -12,6 +12,7 @@ using Gtk;
 using Gdk;
 using FSpot.Core;
 using FSpot.Widgets;
+using FSpot.Gui;
 using FSpot.Utils;
 using Hyena;
 using Mono.Unix;
@@ -86,7 +87,7 @@ namespace FSpot {
 				slide_show.Activated += SlideShowAction;
 				actions.Add (slide_show);
 
-				new Fader (this, 1.0, 600);
+				new WindowOpacityFader (this, 1.0, 600);
 				notebook = new Notebook ();
 				notebook.ShowBorder = false;
 				notebook.ShowTabs = false;

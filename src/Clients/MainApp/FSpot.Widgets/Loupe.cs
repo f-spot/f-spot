@@ -17,6 +17,7 @@ using System.Runtime.InteropServices;
 using Mono.Unix;
 using FSpot.Core;
 using FSpot.Utils;
+using FSpot.Gui;
 using Hyena;
 
 namespace FSpot.Widgets {

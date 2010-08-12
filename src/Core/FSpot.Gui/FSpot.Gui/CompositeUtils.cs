@@ -5,7 +5,8 @@ using Gtk;
 using FSpot.Utils;
 using Hyena;
 
-namespace FSpot.Widgets {
+namespace FSpot.Gui {
+
 	public class CompositeUtils {
 		[DllImport("libgdk-2.0-0.dll")]
 	        static extern bool gdk_screen_is_composited (IntPtr screen);

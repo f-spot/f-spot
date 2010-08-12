@@ -88,7 +88,6 @@ SOURCES =  \
 	FSpot.UI.Dialog/TagSelectionDialog.cs \
 	FSpot.UI.Dialog/ThreadProgressDialog.cs \
 	FSpot.Widgets/CellRendererTextProgress.cs \
-	FSpot.Widgets/CompositeUtils.cs \
 	FSpot.Widgets/EditorPage.cs \
 	FSpot.Widgets/Filmstrip.cs \
 	FSpot.Widgets/FindBar.cs \
@@ -122,7 +121,6 @@ SOURCES =  \
 	FSpot/ControlOverlay.cs \
 	FSpot/DragDropTargets.cs \
 	FSpot/ExportStore.cs \
-	FSpot/Fader.cs \
 	FSpot/FolderQueryWidget.cs \
 	FSpot/FullScreenView.cs \
 	FSpot/GroupAdaptor.cs \

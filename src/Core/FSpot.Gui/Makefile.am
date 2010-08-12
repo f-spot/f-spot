@@ -3,6 +3,8 @@ TARGET = library
 LINK = $(REF_FSPOT_GUI)
 
 SOURCES =  \
+	FSpot.Gui/CompositeUtils.cs \
+	FSpot.Gui/WindowOpacityFader.cs \
 	FSpot.Transitions/CairoTransition.cs \
 	FSpot.Transitions/DissolveTransition.cs \
 	FSpot.Transitions/PushTransition.cs \
