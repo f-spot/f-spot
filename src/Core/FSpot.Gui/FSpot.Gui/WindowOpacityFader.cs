@@ -18,7 +18,6 @@ namespace FSpot.Gui
 {
     public class WindowOpacityFader
     {
-        bool composited;
         Gtk.Window win;
         DoubleAnimation fadin;
 
@@ -35,7 +34,7 @@ namespace FSpot.Gui
         [GLib.ConnectBefore]
         public void HandleMapped (object sender, EventArgs args)
         {
-            composited = CompositeUtils.SupportsHint (win.Screen, "_NET_WM_WINDOW_OPACITY");
+            bool composited = CompositeUtils.SupportsHint (win.Screen, "_NET_WM_WINDOW_OPACITY");
             if (!composited) {
                 return;
             }
