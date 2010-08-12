@@ -43,24 +43,23 @@ namespace FSpot.Exporters.Folder {
 	public class FolderExport : FSpot.Extensions.IExporter {
 		IBrowsableCollection selection;
 
-		[Glade.Widget] Gtk.Dialog dialog;
-		[Glade.Widget] Gtk.ScrolledWindow thumb_scrolledwindow;
-		[Glade.Widget] Gtk.Entry name_entry;
-		[Glade.Widget] Gtk.Entry description_entry;
+		[GtkBeans.Builder.Object] Gtk.Dialog dialog;
+		[GtkBeans.Builder.Object] Gtk.ScrolledWindow thumb_scrolledwindow;
+		[GtkBeans.Builder.Object] Gtk.Entry name_entry;
+		[GtkBeans.Builder.Object] Gtk.Entry description_entry;
 
-		//[Glade.Widget] Gtk.CheckButton meta_check;
-		[Glade.Widget] Gtk.CheckButton scale_check;
-		[Glade.Widget] Gtk.CheckButton export_tags_check;
-		[Glade.Widget] Gtk.CheckButton export_tag_icons_check;
-		[Glade.Widget] Gtk.CheckButton open_check;
+		[GtkBeans.Builder.Object] Gtk.CheckButton scale_check;
+		[GtkBeans.Builder.Object] Gtk.CheckButton export_tags_check;
+		[GtkBeans.Builder.Object] Gtk.CheckButton export_tag_icons_check;
+		[GtkBeans.Builder.Object] Gtk.CheckButton open_check;
 
-		[Glade.Widget] Gtk.RadioButton static_radio;
-		[Glade.Widget] Gtk.RadioButton original_radio;
-		[Glade.Widget] Gtk.RadioButton plain_radio;
+		[GtkBeans.Builder.Object] Gtk.RadioButton static_radio;
+		[GtkBeans.Builder.Object] Gtk.RadioButton original_radio;
+		[GtkBeans.Builder.Object] Gtk.RadioButton plain_radio;
 
-		[Glade.Widget] Gtk.SpinButton size_spin;
+		[GtkBeans.Builder.Object] Gtk.SpinButton size_spin;
 
-		[Glade.Widget] Gtk.HBox chooser_hbox;
+		[GtkBeans.Builder.Object] Gtk.HBox chooser_hbox;
 
 		public const string EXPORT_SERVICE = "folder/";
 		public const string SCALE_KEY = Preferences.APP_FSPOT_EXPORT + EXPORT_SERVICE + "scale";
@@ -73,7 +72,7 @@ namespace FSpot.Exporters.Folder {
 		public const string SHARPEN_KEY = Preferences.APP_FSPOT_EXPORT + EXPORT_SERVICE + "sharpen";
 		public const string INCLUDE_TARBALLS_KEY = Preferences.APP_FSPOT_EXPORT + EXPORT_SERVICE + "include_tarballs";
 
-		private Glade.XML xml;
+		private GtkBeans.Builder builder;
 		private string dialog_name = "folder_export_dialog";
 		GLib.File dest;
 		Gtk.FileChooserButton uri_chooser;
@@ -92,8 +91,8 @@ namespace FSpot.Exporters.Folder {
 		ThreadProgressDialog progress_dialog;
 		System.Threading.Thread command_thread;
 
-		public FolderExport ()
-		{}
+		public FolderExport () {}
+
 		public void Run (IBrowsableCollection selection)
 		{
 			this.selection = selection;
@@ -102,8 +101,8 @@ namespace FSpot.Exporters.Folder {
 			view.DisplayDates = false;
 			view.DisplayTags = false;
 
-			xml = new Glade.XML (null, "FolderExport.glade", dialog_name, "f-spot");
-			xml.Autoconnect (this);
+			builder = new GtkBeans.Builder (null, "folder_export.ui", null);
+			builder.Autoconnect (this);
 			Dialog.Modal = false;
 			Dialog.TransientFor = null;
 
@@ -358,7 +357,7 @@ namespace FSpot.Exporters.Folder {
 		private Gtk.Dialog Dialog {
 			get {
 				if (dialog == null)
-					dialog = (Gtk.Dialog) xml.GetWidget (dialog_name);
+					dialog = new Gtk.Dialog (builder.GetRawObject (dialog_name));
 
 				return dialog;
 			}

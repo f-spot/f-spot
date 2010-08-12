@@ -6,8 +6,8 @@ INSTALL_DIR = $(EXTENSIONS_INSTALL_DIR)
 SOURCES = FSpot.Exporters.Folder/FolderExport.cs
 
 RESOURCES =  \
+	Resources/folder_export.ui \
 	Resources/FolderExport.addin.xml \
-	Resources/FolderExport.glade \
 	Resources/f-spot.js \
 	Resources/f-spot-simple.css \
 	Resources/f-spot-simple-white.css

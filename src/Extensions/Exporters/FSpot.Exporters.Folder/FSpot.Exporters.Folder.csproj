@@ -38,9 +38,6 @@
     <EmbeddedResource Include="Resources\f-spot.js">
       <LogicalName>f-spot.js</LogicalName>
     </EmbeddedResource>
-    <EmbeddedResource Include="Resources\FolderExport.glade">
-      <LogicalName>FolderExport.glade</LogicalName>
-    </EmbeddedResource>
     <EmbeddedResource Include="Resources\f-spot-simple.css">
       <LogicalName>f-spot-simple.css</LogicalName>
     </EmbeddedResource>
@@ -49,6 +46,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\FolderExport.addin.xml">
       <LogicalName>FolderExport.addin.xml</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\folder_export.ui">
+      <LogicalName>folder_export.ui</LogicalName>
     </EmbeddedResource>
   </ItemGroup>
   <ProjectExtensions>
