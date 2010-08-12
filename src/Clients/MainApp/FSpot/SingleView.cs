@@ -26,9 +26,6 @@ namespace FSpot {
 		[GtkBeans.Builder.Object]  Gtk.CheckMenuItem toolbar_item;
 		[GtkBeans.Builder.Object]  Gtk.CheckMenuItem filenames_item;
 
-		[GtkBeans.Builder.Object]  Gtk.MenuItem zoom_in;
-		[GtkBeans.Builder.Object]  Gtk.MenuItem zoom_out;
-
 		[GtkBeans.Builder.Object]  Gtk.MenuItem export;
 
 		[GtkBeans.Builder.Object]  Gtk.Scale zoom_scale;
