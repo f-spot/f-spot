@@ -159,7 +159,6 @@ SOURCES =  \
 	FSpot/ThumbnailCache.cs \
 	FSpot/ThumbnailGenerator.cs \
 	FSpot/TimeAdaptor.cs \
-	FSpot/TipWindow.cs \
 	FSpot/UriCollection.cs \
 	FSpot/XScreenSaverSlide.cs \
 	ImageLoaderThread.cs \

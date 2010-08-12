@@ -28,7 +28,8 @@ SOURCES =  \
 	FSpot.Widgets/PointerMode.cs \
 	FSpot.Widgets/Rating.cs \
 	FSpot.Widgets/SaneTreeView.cs \
-	FSpot.Widgets/ScrolledView.cs
+	FSpot.Widgets/ScrolledView.cs \
+	FSpot.Widgets/ToolTipWindow.cs
 
 RESOURCES =
 

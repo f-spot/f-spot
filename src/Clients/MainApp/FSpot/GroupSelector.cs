@@ -5,6 +5,7 @@ using Gdk;
 using GLib;
 using FSpot.Core;
 using FSpot.Utils;
+using FSpot.Widgets;
 
 namespace FSpot {
 	public class GroupSelector : Fixed {
@@ -703,7 +704,7 @@ namespace FSpot {
 
 			public Glass (GroupSelector selector) : base (selector)
 			{
-				popup_window = new TipWindow ();
+				popup_window = new ToolTipWindow ();
 				popup_label = new Gtk.Label (String.Empty);
 				popup_label.Show ();
 				popup_window.Add (popup_label);
