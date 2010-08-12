@@ -21,7 +21,6 @@ src/Clients/MainApp/FSpot.Editors/SepiaEditor.cs
 src/Clients/MainApp/FSpot.Editors/SoftFocusEditor.cs
 src/Clients/MainApp/FSpot.Editors/TiltEditor.cs
 src/Clients/MainApp/FSpot/FullScreenView.cs
-[type: gettext/glade]src/Clients/MainApp/f-spot.glade
 src/Clients/MainApp/FSpot/GroupSelector.cs
 src/Clients/MainApp/FSpot.Import/ImportController.cs
 src/Clients/MainApp/FSpot.Import/MetadataImporter.cs
@@ -63,6 +62,7 @@ src/Clients/MainApp/FSpot.UI.Dialog/ThreadProgressDialog.cs
 [type: gettext/glade]src/Clients/MainApp/FSpot.UI.Dialog/ui/PreferenceDialog.ui
 [type: gettext/glade]src/Clients/MainApp/FSpot.UI.Dialog/ui/RatingFilterDialog.ui
 [type: gettext/glade]src/Clients/MainApp/FSpot.UI.Dialog/ui/RepairDialog.ui
+[type: gettext/glade]src/Clients/MainApp/FSpot.UI.Dialog/ui/SelectionRatioDialog.ui
 src/Clients/MainApp/FSpot.Widgets/EditorPage.cs
 src/Clients/MainApp/FSpot.Widgets/Filmstrip.cs
 src/Clients/MainApp/FSpot.Widgets/FindBar.cs

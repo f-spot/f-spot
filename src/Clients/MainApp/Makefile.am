@@ -76,7 +76,6 @@ SOURCES =  \
 	FSpot.UI.Dialog/EditExceptionDialog.cs \
 	FSpot.UI.Dialog/EditTagDialog.cs \
 	FSpot.UI.Dialog/EditTagIconDialog.cs \
-	FSpot.UI.Dialog/GladeDialog.cs \
 	FSpot.UI.Dialog/ImportDialog.cs \
 	FSpot.UI.Dialog/ImportFailureDialog.cs \
 	FSpot.UI.Dialog/LastRollDialog.cs \
@@ -180,7 +179,6 @@ RESOURCES =  \
 	../../../icons/f-spot-128.png \
 	../../../icons/f-spot-not.png \
 	FSpot.addin.xml \
-	f-spot.glade \
 	FSpot.UI.Dialog/ui/AdjustTimeDialog.ui \
 	FSpot.UI.Dialog/ui/CreateTagDialog.ui \
 	FSpot.UI.Dialog/ui/DateRangeDialog.ui \
@@ -190,6 +188,7 @@ RESOURCES =  \
 	FSpot.UI.Dialog/ui/PreferenceDialog.ui \
 	FSpot.UI.Dialog/ui/RatingFilterDialog.ui \
 	FSpot.UI.Dialog/ui/RepairDialog.ui \
+	FSpot.UI.Dialog/ui/SelectionRatioDialog.ui \
 	ui/color_editor_prefs_window.ui \
 	ui/import.ui \
 	ui/mail_dialog.ui \

@@ -145,7 +145,6 @@
     <Compile Include="FSpot.UI.Dialog\EditExceptionDialog.cs" />
     <Compile Include="FSpot.UI.Dialog\EditTagDialog.cs" />
     <Compile Include="FSpot.UI.Dialog\EditTagIconDialog.cs" />
-    <Compile Include="FSpot.UI.Dialog\GladeDialog.cs" />
     <Compile Include="FSpot.UI.Dialog\ImportDialog.cs" />
     <Compile Include="FSpot.UI.Dialog\ImportFailureDialog.cs" />
     <Compile Include="FSpot.UI.Dialog\LastRollDialog.cs" />
@@ -217,9 +216,6 @@
     <EmbeddedResource Include="..\..\..\icons\flower.png">
       <LogicalName>flower.png</LogicalName>
     </EmbeddedResource>
-    <EmbeddedResource Include="f-spot.glade">
-      <LogicalName>f-spot.glade</LogicalName>
-    </EmbeddedResource>
     <EmbeddedResource Include="ui\import.ui">
       <LogicalName>import.ui</LogicalName>
     </EmbeddedResource>
@@ -273,6 +269,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ui\color_editor_prefs_window.ui">
       <LogicalName>color_editor_prefs_window.ui</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FSpot.UI.Dialog\ui\SelectionRatioDialog.ui">
+      <LogicalName>SelectionRatioDialog.ui</LogicalName>
     </EmbeddedResource>
   </ItemGroup>
   <ProjectExtensions>

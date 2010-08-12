@@ -137,7 +137,7 @@ namespace FSpot.Editors {
 					break;
 				case ConstraintType.AddCustom:
 					SelectionRatioDialog dialog = new SelectionRatioDialog ();
-					dialog.Dialog.Run ();
+					dialog.Run ();
 					break;
 				case ConstraintType.SameAsPhoto:
 					try {

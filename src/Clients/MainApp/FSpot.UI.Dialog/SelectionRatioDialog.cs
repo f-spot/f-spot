@@ -18,7 +18,7 @@ using Mono.Unix;
 using Hyena;
 
 namespace FSpot.UI.Dialog {
-	public class SelectionRatioDialog : GladeDialog
+	public class SelectionRatioDialog : BuilderDialog
 	{
 		[Serializable]
 		public struct SelectionConstraint {
@@ -40,17 +40,17 @@ namespace FSpot.UI.Dialog {
 			}
 		}
 
-		[Glade.Widget] Button close_button;
-		[Glade.Widget] Button add_button;
-		[Glade.Widget] Button delete_button;
-		[Glade.Widget] Button up_button;
-		[Glade.Widget] Button down_button;
-		[Glade.Widget] TreeView content_treeview;
+		[GtkBeans.Builder.Object] Button close_button;
+		[GtkBeans.Builder.Object] Button add_button;
+		[GtkBeans.Builder.Object] Button delete_button;
+		[GtkBeans.Builder.Object] Button up_button;
+		[GtkBeans.Builder.Object] Button down_button;
+		[GtkBeans.Builder.Object] TreeView content_treeview;
 		private ListStore constraints_store;
 
-		public SelectionRatioDialog () : base ("customratio_dialog")
+		public SelectionRatioDialog () : base ("SelectionRatioDialog.ui", "customratio_dialog")
 		{
-			close_button.Clicked += delegate (object o, EventArgs e) {SavePrefs (); this.Dialog.Destroy (); };
+			close_button.Clicked += delegate (object o, EventArgs e) {SavePrefs (); this.Destroy (); };
 			add_button.Clicked += delegate (object o, EventArgs e) {constraints_store.AppendValues ("New Selection", 1.0);};
 			delete_button.Clicked += DeleteSelectedRows;
 			up_button.Clicked += MoveUp;
