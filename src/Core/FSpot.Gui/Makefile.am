@@ -11,6 +11,7 @@ SOURCES =  \
 	FSpot.Transitions/SlideShowTransition.cs \
 	FSpot.Widgets/ApplicationActivatedEventArgs.cs \
 	FSpot.Widgets/BuilderWindow.cs \
+	FSpot.Widgets/CellGridView.cs \
 	FSpot.Widgets/CheckPattern.cs \
 	FSpot.Widgets/Curve.cs \
 	FSpot.Widgets/CurveType.cs \

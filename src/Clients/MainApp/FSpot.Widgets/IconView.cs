@@ -34,73 +34,133 @@ namespace FSpot.Widgets
         }
     }
 
-	public class IconView : Gtk.Layout {
+    public delegate void StartDragHandler (object o, StartDragArgs args);
+
+
+	public class IconView : CellGridView
+    {
 
 		// Public properties.
 		FSpot.PixbufCache cache;
 
-		/* preserve the scroll postion when possible */
-		private bool scroll;
-		private double scroll_value;
+#region Public Events
 
-		/* suppress it sometimes */
-		bool suppress_scroll = false;
+        // Public events.
+        public event EventHandler<BrowsableEventArgs> DoubleClicked;
+        public event EventHandler ZoomChanged;
+        public event StartDragHandler StartDrag;
 
-		// Zooming factor.
-		protected const double ZOOM_FACTOR = 1.2;
+#endregion
 
-		/* Width of the thumbnails. */
-		protected int thumbnail_width = 128;
-		protected const int MAX_THUMBNAIL_WIDTH = 256;
-		protected const int MIN_THUMBNAIL_WIDTH = 64;
-		public int ThumbnailWidth {
-			get {
-				return thumbnail_width;
-			}
-			set {
-				value = Math.Min(value, MAX_THUMBNAIL_WIDTH);
-				value = Math.Max(value, MIN_THUMBNAIL_WIDTH);
+#region Zooming and Thumbnail Size
 
-				if (thumbnail_width != value) {
-					thumbnail_width = value;
-					QueueResize ();
+        // fixed constants
+        protected const double ZOOM_FACTOR = 1.2;
+        protected const int MAX_THUMBNAIL_WIDTH = 256;
+        protected const int MIN_THUMBNAIL_WIDTH = 64;
 
-					if (ZoomChanged != null)
-						ZoomChanged (this, System.EventArgs.Empty);
-				}
-			}
-		}
+        // current with of the thumbnails. (height is calculated)
+        private int thumbnail_width = 128;
 
-		public double Zoom {
-			get {
-				return ((double)(ThumbnailWidth - MIN_THUMBNAIL_WIDTH) / (double)(MAX_THUMBNAIL_WIDTH - MIN_THUMBNAIL_WIDTH));
-			}
-			set {
-				ThumbnailWidth = (int) ((value) * (MAX_THUMBNAIL_WIDTH - MIN_THUMBNAIL_WIDTH)) + MIN_THUMBNAIL_WIDTH;
-			}
-		}
+        // current ratio of thumbnail width and height
+        private double thumbnail_ratio = 4.0 / 3.0;
 
-		protected double thumbnail_ratio = 4.0 / 3.0;
-		public double ThumbnailRatio {
-			get {
-				return thumbnail_ratio;
-			}
-			set {
-				thumbnail_ratio = value;
-				QueueResize ();
-			}
-		}
+        public int ThumbnailWidth {
+            get { return thumbnail_width; }
+            set {
+                value = Math.Min(value, MAX_THUMBNAIL_WIDTH);
+                value = Math.Max(value, MIN_THUMBNAIL_WIDTH);
 
-		public int ThumbnailHeight {
-			get {
-				return (int) Math.Round ((double) thumbnail_width / ThumbnailRatio);
-			}
-		}
+                if (thumbnail_width != value) {
+                    thumbnail_width = value;
+                    QueueResize ();
+
+                    if (ZoomChanged != null)
+                        ZoomChanged (this, System.EventArgs.Empty);
+                }
+            }
+        }
+
+        public double Zoom {
+            get {
+                return ((double)(ThumbnailWidth - MIN_THUMBNAIL_WIDTH) / (double)(MAX_THUMBNAIL_WIDTH - MIN_THUMBNAIL_WIDTH));
+            }
+            set {
+                ThumbnailWidth = (int) ((value) * (MAX_THUMBNAIL_WIDTH - MIN_THUMBNAIL_WIDTH)) + MIN_THUMBNAIL_WIDTH;
+            }
+        }
+
+        public double ThumbnailRatio {
+            get { return thumbnail_ratio; }
+            set {
+                thumbnail_ratio = value;
+                QueueResize ();
+            }
+        }
+
+        public int ThumbnailHeight {
+            get { return (int) Math.Round ((double) thumbnail_width / ThumbnailRatio); }
+        }
+
+
+        public void ZoomIn ()
+        {
+            ThumbnailWidth = (int) (ThumbnailWidth * ZOOM_FACTOR);
+        }
+
+        public void ZoomOut ()
+        {
+            ThumbnailWidth = (int) (ThumbnailWidth / ZOOM_FACTOR);
+        }
+
+#endregion
+
+#region Implement base class layout properties
+
+        protected override int CellCount {
+            get {
+                if (collection == null)
+                    return 0;
+
+                return collection.Count;
+            }
+        }
+
+        protected override int MinCellHeight {
+            get {
+                int cell_height = ThumbnailHeight + 2 * cell_border_width;
+
+                cell_details = 0;
+
+                if (DisplayTags || DisplayDates || DisplayFilenames)
+                    cell_details += tag_icon_vspacing;
+    
+                if (DisplayTags)
+                    cell_details += tag_icon_size;
+
+                if (DisplayDates && Style != null) {
+                    cell_details += Style.FontDescription.MeasureTextHeight (PangoContext);
+                }
+    
+                if (DisplayFilenames && Style != null) {
+                    cell_details += Style.FontDescription.MeasureTextHeight (PangoContext);
+                }
+
+                cell_height += cell_details;
+
+                return cell_height;
+            }
+        }
+
+        protected override int MinCellWidth {
+            get { return ThumbnailWidth + 2 * cell_border_width; }
+        }
+
+#endregion
+
 
 		public FSpot.PixbufCache Cache {
-			get {
-				return cache;
-			}
+			get { return cache; }
 		}
 
 		private bool display_tags = true;
@@ -118,7 +178,7 @@ namespace FSpot.Widgets
 		private bool display_dates = true;
 		public bool DisplayDates {
 			get {
-				if (cell_width > 100)
+				if (MinCellWidth > 100)
 					return display_dates;
 				else
 					return false;
@@ -144,7 +204,7 @@ namespace FSpot.Widgets
 		private bool display_ratings = true;
 		public bool DisplayRatings {
 			get {
-				if (cell_width > 100)
+				if (MinCellWidth > 100)
 					return display_ratings;
 				else
 					return false;
@@ -178,17 +238,7 @@ namespace FSpot.Widgets
 		protected int tag_icon_vspacing = 3;
 
 		// Various other layout values.
-		protected int cells_per_row;
-		protected int cell_width;
-		protected int cell_height;
 		protected int cell_details;
-		protected int displayed_rows; //for pgUp pgDn support
-
-		// The first pixel line that is currently on the screen (i.e. in the current
-		// scroll region).  Used to compute the area that went offscreen in the "changed"
-		// signal handler for the vertical GtkAdjustment.
-		private int y_offset;
-		private int x_offset;
 
 		// Focus Handling
 		private int real_focus_cell;
@@ -207,21 +257,13 @@ namespace FSpot.Widgets
 			}
 		}
 
-		// Public events.
-		public event EventHandler<BrowsableEventArgs> DoubleClicked;
-		public event EventHandler ZoomChanged;
-		public delegate void StartDragHandler (object o, StartDragArgs args);
-		public event StartDragHandler StartDrag;
-
 		// Public API.
 		public IconView (IntPtr raw) : base (raw) {}
 
-		protected IconView () : base (null, null)
+		protected IconView () : base ()
 		{
 			cache = new FSpot.PixbufCache ();
 			cache.OnPixbufLoaded += HandlePixbufLoaded;
-
-			ScrollAdjustmentsSet += new ScrollAdjustmentsSetHandler (HandleScrollAdjustmentsSet);
 
 			ButtonPressEvent += new ButtonPressEventHandler (HandleButtonPressEvent);
 			ButtonReleaseEvent += new ButtonReleaseEventHandler (HandleButtonReleaseEvent);
@@ -240,8 +282,6 @@ namespace FSpot.Widgets
 				| (int) EventMask.ButtonReleaseMask);
 
 			CanFocus = true;
-
-			//FSpot.Global.ModifyColors (this);
 		}
 
 		public IconView (IBrowsableCollection collection) : this ()
@@ -269,7 +309,7 @@ namespace FSpot.Widgets
 		{
 			// FIXME we should probably try to merge the selection forward
 			// but it needs some thought to be efficient.
-			suppress_scroll = true;
+			//suppress_scroll = true;
 			QueueResize ();
 		}
 
@@ -643,72 +683,6 @@ namespace FSpot.Widgets
 			InvalidateCell (thumbnail_num);
 		}
 
-		// Cell Geometry
-		public int CellAtPosition (int x, int y)
-		{
-			return CellAtPosition (x, y, true, false);
-		}
-
-		public int CellAtPosition (int x, int y, bool crop_visible, bool include_border)
-		{
-			if (collection == null)
-				return -1;
-
-			if (crop_visible
-			    && ((y < (int)Vadjustment.Value || y > (int)Vadjustment.Value + Allocation.Height)
-				|| (x < (int)Hadjustment.Value || x > (int)Hadjustment.Value + Allocation.Width)))
-				return -1;
-
-			if (x < BORDER_SIZE || x >= BORDER_SIZE + cells_per_row * cell_width)
-				return -1;
-			if (y < BORDER_SIZE || y >= BORDER_SIZE + (collection.Count / cells_per_row + 1) * cell_height)
-				return -1;
-
-			int column = (int) ((x - BORDER_SIZE) / cell_width);
-			int row = (int) ((y - BORDER_SIZE) / cell_height);
-			int cell_num = column + row * cells_per_row;
-			if (cell_num >= collection.Count)
-				return -1;
-
-			// check if the click is in the gap between unselected cells
-			if (!include_border) {
-				Gdk.Rectangle displayed = CellBounds (cell_num);
-				displayed.Inflate (-cell_border_padding, -cell_border_padding-cell_details);
-				displayed.Offset (-cell_border_padding, -cell_border_padding);
-				if (displayed.Contains (x, y))
-					return cell_num;
-				else if (selection.Contains (cell_num))
-					return cell_num;
-				else
-					return -1;
-			} else
-				return cell_num;
-		}
-
-		public int TopLeftVisibleCell ()
-		{
-			//return CellAtPosition(BORDER_SIZE, (int)Vadjustment.Value + BORDER_SIZE + 8);
-			return CellAtPosition(BORDER_SIZE, (int) (Vadjustment.Value + Allocation.Height * (Vadjustment.Value / Vadjustment.Upper)) + BORDER_SIZE + 8);
-		}
-
-		public void GetCellCenter (int cell_num, out int x, out int y)
-		{
-			if (cell_num == -1) {
-				x = -1;
-				y = -1;
-			}
-
-			x = BORDER_SIZE + (cell_num % cells_per_row) * cell_width + cell_width / 2;
-			y = BORDER_SIZE + (cell_num / cells_per_row) * cell_height + cell_height / 2;
-		}
-
-		public void GetCellSize (int cell_num, out int w, out int h)
-		{
-			// Trivial for now.
-			w = cell_width;
-			h = cell_height;
-		}
-
 
 		// Private utility methods.
 		public void SelectAllCells ()
@@ -717,7 +691,7 @@ namespace FSpot.Widgets
 		}
 
 		// Layout and drawing.
-		protected virtual void UpdateLayout ()
+/*		protected virtual void UpdateLayout ()
 		{
 			UpdateLayout (Allocation);
 		}
@@ -807,7 +781,7 @@ namespace FSpot.Widgets
 				BinWindow.ThawUpdates ();
 				BinWindow.ProcessUpdates (true);
 			}
-		}
+		}*/
 
 		int ThrobExpansion (int cell, bool selected)
 		{
@@ -833,10 +807,8 @@ namespace FSpot.Widgets
 
 		System.Collections.Hashtable date_layouts = new Hashtable ();
 		// FIXME Cache the GCs?
-		private void DrawCell (int thumbnail_num, Gdk.Rectangle area)
+		protected override void DrawCell (int thumbnail_num, Gdk.Rectangle bounds, Gdk.Rectangle area)
 		{
-			Gdk.Rectangle bounds = CellBounds (thumbnail_num);
-
 			if (!bounds.Intersect (area, out area))
 				return;
 
@@ -971,7 +943,7 @@ namespace FSpot.Widgets
 			if (DisplayDates) {
 				string date;
 				try {
-					if (cell_width > 200) {
+					if (MinCellWidth > 200) {
 						date = photo.Time.ToString ();
 					} else {
 						date = photo.Time.ToShortDateString ();
@@ -1085,205 +1057,14 @@ namespace FSpot.Widgets
 
 		}
 
-		private void DrawAllCells (Gdk.Rectangle area)
-		{
-			if (cell_width == 0 || cell_height == 0)
-				return;
+        protected override void PreloadCell (int cell_num)
+        {
+            var photo = collection [cell_num];
+            var entry = cache.Lookup (photo.DefaultVersion.Uri);
 
-			int start_cell_column = Math.Max ((area.X - BORDER_SIZE) / cell_width, 0);
-			int start_cell_row = Math.Max ((area.Y - BORDER_SIZE) / cell_height, 0);
-			int start_cell_num = start_cell_column + start_cell_row * cells_per_row;
-
-			int start_cell_x, cell_y;
-			GetCellPosition (start_cell_num, out start_cell_x, out cell_y);
-
-			int end_cell_column = Math.Max ((area.X + area.Width - BORDER_SIZE) / cell_width, 0);
-			int end_cell_row = Math.Max ((area.Y + area.Height - BORDER_SIZE) / cell_height, 0);
-
-			int num_rows = end_cell_row - start_cell_row + 1;
-			int num_cols = Math.Min (end_cell_column - start_cell_column + 1,
-					cells_per_row - start_cell_column);
-
-			int i, cell_num;
-			//Preload (area, false);
-
-			if (collection == null)
-				return;
-
-			for (i = 0, cell_num = start_cell_num;
-			     i < num_rows && cell_num < collection.Count;
-			     i ++) {
-				int cell_x = start_cell_x;
-
-				//Log.Debug ("Drawing row {0}", start_cell_row + i);
-				for (int j = 0; j < num_cols && cell_num + j < collection.Count; j ++) {
-					DrawCell (cell_num + j, area);
-					cell_x += cell_width;
-				}
-
-				cell_y += cell_height;
-				cell_num += cells_per_row;
-			}
-
-			// draw dragging selection
-			if (isRectSelection) {
-				Gdk.Rectangle inter;
-				if (area.Intersect (rect_select, out inter)) {
-					Cairo.Context cairo_g = CairoHelper.Create (BinWindow);
-					Gdk.Color col = Style.Background(StateType.Selected);
-					cairo_g.Color = new Cairo.Color (col.Red/65535.0, col.Green/65535.0, col.Blue/65535.0, 0.5);
-					cairo_g.Rectangle (inter.X, inter.Y, inter.Width, inter.Height);
-					cairo_g.Fill ();
-
-					((IDisposable) cairo_g.Target).Dispose ();
-					((IDisposable) cairo_g).Dispose ();
-				}
-			}
-
-		}
-
-		private void GetCellPosition (int cell_num, out int x, out int y)
-		{
-			if (cells_per_row == 0) {
-				x = 0;
-				y = 0;
-				return;
-			}
-
-			int row = cell_num / cells_per_row;
-			int col = cell_num % cells_per_row;
-
-			x = col * cell_width + BORDER_SIZE;
-			y = row * cell_height + BORDER_SIZE;
-		}
-
-
-		// Scrolling.  We do this in an idle loop so we can catch up if the user scrolls quickly.
-
-		private void Scroll ()
-		{
-			int ystep = (int)(Vadjustment.Value - y_offset);
-			int xstep = (int)(Hadjustment.Value - x_offset);
-
-			if (xstep > 0)
-				xstep = Math.Max (xstep, Allocation.Width);
-			else
-				xstep = Math.Min (xstep, -Allocation.Width);
-
-			if (ystep > 0)
-				ystep = Math.Max (ystep, Allocation.Height);
-			else
-				ystep = Math.Min (ystep, -Allocation.Height);
-
-			Gdk.Rectangle area;
-
-			Gdk.Region offscreen = new Gdk.Region ();
-			/*
-			Log.Debug ("step ({0}, {1}) allocation ({2},{3},{4},{5})",
-					xstep, ystep, Hadjustment.Value, Vadjustment.Value,
-					Allocation.Width, Allocation.Height);
-			*/
-			/*
-			area = new Gdk.Rectangle (Math.Max ((int) (Hadjustment.Value + 4 * xstep), 0),
-					Math.Max ((int) (Vadjustment.Value + 4 * ystep), 0),
-					Allocation.Width,
-					Allocation.Height);
-			offscreen.UnionWithRect (area);
-			area = new Gdk.Rectangle (Math.Max ((int) (Hadjustment.Value + 3 * xstep), 0),
-					Math.Max ((int) (Vadjustment.Value + 3 * ystep), 0),
-					Allocation.Width,
-					Allocation.Height);
-			offscreen.UnionWithRect (area);
-			*/
-			area = new Gdk.Rectangle (Math.Max ((int) (Hadjustment.Value + 2 * xstep), 0),
-					Math.Max ((int) (Vadjustment.Value + 2 * ystep), 0),
-					Allocation.Width,
-					Allocation.Height);
-			offscreen.UnionWithRect (area);
-			area = new Gdk.Rectangle (Math.Max ((int) (Hadjustment.Value + xstep), 0),
-					Math.Max ((int) (Vadjustment.Value + ystep), 0),
-					Allocation.Width,
-					Allocation.Height);
-			offscreen.UnionWithRect (area);
-			area = new Gdk.Rectangle ((int) Hadjustment.Value,
-					(int) Vadjustment.Value,
-					Allocation.Width,
-					Allocation.Height);
-
-			// always load the onscreen area last to make sure it
-			// is first in the loading
-			Gdk.Region onscreen = Gdk.Region.Rectangle (area);
-			offscreen.Subtract (onscreen);
-
-			PreloadRegion (offscreen, ystep);
-			Preload (area, false);
-
-			y_offset = (int) Vadjustment.Value;
-			x_offset = (int) Hadjustment.Value;
-		}
-
-		private void PreloadRegion (Gdk.Region region, int step)
-		{
-			Gdk.Rectangle [] rects = region.GetRectangles ();
-
-			if (step < 0)
-				System.Array.Reverse (rects);
-
-			foreach (Gdk.Rectangle preload in rects) {
-				Preload (preload, false);
-			}
-		}
-
-		private void Preload (Gdk.Rectangle area, bool back)
-		{
-			if (cells_per_row ==0)
-				return;
-
-			int start_cell_column = Math.Max ((area.X - BORDER_SIZE) / cell_width, 0);
-			int start_cell_row = Math.Max ((area.Y - BORDER_SIZE) / cell_height, 0);
-			int start_cell_num = start_cell_column + start_cell_row * cells_per_row;
-
-			int end_cell_column = Math.Max ((area.X + area.Width - BORDER_SIZE) / cell_width, 0);
-			int end_cell_row = Math.Max ((area.Y + area.Height - BORDER_SIZE) / cell_height, 0);
-
-			int i;
-
-			IPhoto photo;
-			FSpot.PixbufCache.CacheEntry entry;
-
-			// Preload the cache with images aroud the expose area
-			// FIXME the preload need to be tuned to the Cache size but this is a resonable start
-
-			int cols = end_cell_column - start_cell_column + 1;
-			int rows = end_cell_row - start_cell_row + 1;
-			int len = rows * cols;
-			int scell = start_cell_num;
-			int ecell = scell + len;
-			if (scell > collection.Count - len) {
-				ecell = collection.Count;
-				scell = System.Math.Max (0, scell - len);
-			} else
-				ecell = scell + len;
-
-			int mid = (ecell - scell) / 2;
-			for (i = 0; i < mid; i++)
-				{
-				int cell = back ? ecell - i - 1 : scell + mid + i;
-
-				photo = collection [cell];
-
-				entry = cache.Lookup (photo.DefaultVersion.Uri);
-				if (entry == null)
-					cache.Request (photo.DefaultVersion.Uri, cell, ThumbnailWidth, ThumbnailHeight);
-
-				cell = back ? scell + i : scell + mid - i - 1;
-				photo = collection [cell];
-
-				entry = cache.Lookup (photo.DefaultVersion.Uri);
-				if (entry == null)
-					cache.Request (photo.DefaultVersion.Uri, cell, ThumbnailWidth, ThumbnailHeight);
-			}
-		}
+            if (entry == null)
+                cache.Request (photo.DefaultVersion.Uri, cell_num, ThumbnailWidth, ThumbnailHeight);
+        }
 
 		//
 		// The throb interface
@@ -1321,51 +1102,9 @@ namespace FSpot.Widgets
 			}
 		}
 
-		public void ScrollTo (int cell_num)
-		{
-			ScrollTo (cell_num, true);
-		}
 
-		public void ScrollTo (int cell_num, bool center)
-		{
-			if (!IsRealized)
-				return;
-
-			Adjustment adjustment = Vadjustment;
-			int x;
-			int y;
-
-			GetCellPosition (cell_num, out x, out y);
-
-			if (y + cell_height > adjustment.Upper)
-				UpdateLayout ();
-
-			if (center)
-				adjustment.Value = y + cell_height / 2 - adjustment.PageSize / 2;
-			else
-				adjustment.Value = y;
-
-			adjustment.ChangeValue ();
-
-		}
-
-		public void ZoomIn ()
-		{
-			ThumbnailWidth = (int) (ThumbnailWidth * ZOOM_FACTOR);
-		}
-
-		public void ZoomOut ()
-		{
-			ThumbnailWidth = (int) (ThumbnailWidth / ZOOM_FACTOR);
-		}
 
 		// Event handlers.
-
-		[GLib.ConnectBefore]
-		private void HandleAdjustmentValueChanged (object sender, EventArgs args)
-		{
-			Scroll ();
-		}
 
 		private void HandlePixbufLoaded (FSpot.PixbufCache cache, FSpot.PixbufCache.CacheEntry entry)
 		{
@@ -1403,35 +1142,6 @@ namespace FSpot.Widgets
 			InvalidateCell (order);
 		}
 
-		public Gdk.Rectangle CellBounds (int cell)
-		{
-			Rectangle bounds;
-			GetCellPosition (cell, out bounds.X, out bounds.Y);
-			bounds.Width = cell_width;
-			bounds.Height = cell_height;
-			return bounds;
-		}
-
-		public void InvalidateCell (int order)
-		{
-			Rectangle cell_area = CellBounds (order);
-			// FIXME where are we computing the bounds incorrectly
-			cell_area.Width -= 1;
-			cell_area.Height -= 1;
-			Gdk.Rectangle visible = new Gdk.Rectangle ((int)Hadjustment.Value,
-					(int)Vadjustment.Value,
-					Allocation.Width,
-					Allocation.Height);
-
-			if (BinWindow != null && cell_area.Intersect (visible, out cell_area))
-				BinWindow.InvalidateRect (cell_area, false);
-		}
-
-		private void HandleScrollAdjustmentsSet (object sender, ScrollAdjustmentsSetArgs args)
-		{
-			if (args.Vadjustment != null)
-				args.Vadjustment.ValueChanged += new EventHandler (HandleAdjustmentValueChanged);
-		}
 
 		private void HandleScrollEvent(object sender, ScrollEventArgs args)
 		{
@@ -1474,22 +1184,14 @@ namespace FSpot.Widgets
 			SetColors ();
 		}
 
-		protected override void OnSizeAllocated (Gdk.Rectangle allocation)
+/*		protected override void OnSizeAllocated (Gdk.Rectangle allocation)
 		{
 			scroll_value = (Vadjustment.Value)/ (Vadjustment.Upper);
 			scroll = !suppress_scroll;
 			suppress_scroll = false;
 			UpdateLayout (allocation);
 			base.OnSizeAllocated (allocation);
-		}
-
-		protected override bool OnExposeEvent (Gdk.EventExpose args)
-		{
-			foreach (Rectangle area in args.Region.GetRectangles ()) {
-				DrawAllCells (area);
-			}
-			return base.OnExposeEvent (args);
-		}
+		}*/
 
 
 		private bool isRectSelection = false;
@@ -1510,7 +1212,7 @@ namespace FSpot.Widgets
 		// and current x/y (get pointer)
 		private void SelectMotion ()
 		{
-			int x2, y2;
+/*			int x2, y2;
 			Gdk.ModifierType mod;
 			Display.GetPointer (out x2, out y2, out mod);
 			GetPointer (out x2, out y2);
@@ -1581,7 +1283,7 @@ namespace FSpot.Widgets
 				rect_select = new Rectangle (start_x, start_y, end_x - start_x, end_y - start_y);
 				BinWindow.InvalidateRect (rect_select, true); // new selection
 				BinWindow.ProcessUpdates (true);
-			}
+			}*/
 		}
 
 		// if scroll is required, a timeout is fired
@@ -1640,7 +1342,7 @@ namespace FSpot.Widgets
 						// handle selection
 						SelectMotion ();
 					} else  {
-						int cell_num = CellAtPosition (start_press_x, start_press_y, false, false);
+						int cell_num = CellAtPosition (start_press_x, start_press_y, false);
 						if (selection.Contains (cell_num)) {
 							// on a selected cell : do drag&drop
 							isDragDrop = true;
@@ -1676,7 +1378,7 @@ namespace FSpot.Widgets
 
 		private void HandleButtonPressEvent (object obj, ButtonPressEventArgs args)
 		{
-			int cell_num = CellAtPosition ((int) args.Event.X, (int) args.Event.Y, false, false);
+			int cell_num = CellAtPosition ((int) args.Event.X, (int) args.Event.Y);
 
 			args.RetVal = true;
 
@@ -1733,7 +1435,7 @@ namespace FSpot.Widgets
 				}
 				rect_select = new Rectangle();
 			} else if (!isDragDrop) {
-				int cell_num = CellAtPosition ((int) args.Event.X, (int) args.Event.Y, false, true);
+				int cell_num = CellAtPosition ((int) args.Event.X, (int) args.Event.Y, false);
 				if (cell_num != -1) {
 					if ((args.Event.State & ModifierType.ControlMask) != 0) {
 						selection.ToggleCell (cell_num);
@@ -1761,13 +1463,13 @@ namespace FSpot.Widgets
 			case Gdk.Key.Down:
 			case Gdk.Key.J:
 			case Gdk.Key.j:
-				FocusCell += cells_per_row;
+				FocusCell += VisibleColums;
 				break;
 			case Gdk.Key.Left:
 			case Gdk.Key.H:
 			case Gdk.Key.h:
 				if (control && shift)
-					FocusCell -= FocusCell % cells_per_row;
+					FocusCell -= FocusCell % VisibleColums;
 				else
 					FocusCell--;
 				break;
@@ -1775,20 +1477,20 @@ namespace FSpot.Widgets
 			case Gdk.Key.L:
 			case Gdk.Key.l:
 				if (control && shift)
-					FocusCell += cells_per_row - (FocusCell % cells_per_row) - 1;
+					FocusCell += VisibleColums - (FocusCell % VisibleColums) - 1;
 				else
 					FocusCell++;
 				break;
 			case Gdk.Key.Up:
 			case Gdk.Key.K:
 			case Gdk.Key.k:
-				FocusCell -= cells_per_row;
+				FocusCell -= VisibleColums;
 				break;
 			case Gdk.Key.Page_Up:
-				FocusCell -= cells_per_row * displayed_rows;
+				FocusCell -= VisibleColums * VisibleRows;
 				break;
 			case Gdk.Key.Page_Down:
-				FocusCell += cells_per_row * displayed_rows;
+				FocusCell += VisibleColums * VisibleRows;
 				break;
 			case Gdk.Key.Home:
 				FocusCell = 0;

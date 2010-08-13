@@ -17,7 +17,7 @@ namespace FSpot.Widgets {
 		public ScalingIconView () : base () { }
 		public ScalingIconView (IBrowsableCollection collection) : base (collection) { }
 
-		protected override void UpdateLayout ()
+		/*protected override void UpdateLayout ()
 		{
 			int num_thumbnails = collection != null ? collection.Count : 0;
 			cells_per_row = System.Math.Max (num_thumbnails, 1);
@@ -46,6 +46,6 @@ namespace FSpot.Widgets {
 
 			Hadjustment.StepIncrement = cell_width;
 			Hadjustment.Change ();
-		}
+		}*/
 	}
 }

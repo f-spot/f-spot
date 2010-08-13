@@ -113,7 +113,6 @@
     <Compile Include="FSpot\MainWindow.cs" />
     <Compile Include="FSpot\Photo.cs" />
     <Compile Include="FSpot\PhotoEventArgs.cs" />
-    <Compile Include="FSpot\PhotoList.cs" />
     <Compile Include="FSpot\PhotoLoader.cs" />
     <Compile Include="FSpot\PhotoPopup.cs" />
     <Compile Include="FSpot\PhotoQuery.cs" />
@@ -198,6 +197,7 @@
     <Compile Include="FSpot\TagStore.cs" />
     <Compile Include="FSpot.Database\DbException.cs" />
     <Compile Include="FSpot.Database\DbStore.cs" />
+    <Compile Include="FSpot\PhotoList.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="..\..\..\COPYING">
@@ -286,8 +286,12 @@
     </MonoDevelop>
   </ProjectExtensions>
   <ItemGroup>
-    <Reference Include="gtk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
-    <Reference Include="gdk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
+    <Reference Include="gtk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
+      <Package>gtk-sharp-2.0</Package>
+    </Reference>
+    <Reference Include="gdk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
+      <Package>gtk-sharp-2.0</Package>
+    </Reference>
     <Reference Include="System.Data" />
     <Reference Include="Mono.Posix" />
     <Reference Include="unique-sharp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=22c19d4a5344e615">
@@ -312,7 +316,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\lib\gtk-sharp-beans\gtk-sharp-beans.dll</HintPath>
     </Reference>
-    <Reference Include="gnome-sharp, Version=2.24.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
+    <Reference Include="gnome-sharp, Version=2.24.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
+      <Package>gnome-sharp-2.0</Package>
+    </Reference>
     <Reference Include="Mono.Addins.Gui, Version=0.4.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756">
       <Package>mono-addins-gui</Package>
     </Reference>

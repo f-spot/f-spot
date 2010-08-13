@@ -25,7 +25,7 @@ namespace FSpot.Widgets
 			tag_icon_size = 0;
 		}
 
-		protected override void UpdateLayout ()
+/*		protected override void UpdateLayout ()
 		{
 			//DisplayDates = false;
 			//DisplayTags = false;
@@ -51,6 +51,6 @@ namespace FSpot.Widgets
 			}
 
 			//base.UpdateLayout ();
-		}
+		}*/
 	}
 }
