@@ -14,7 +14,7 @@ public class ThumbnailCommand {
 		this.parent_window = parent_window;
 	}
 
-	public bool Execute (IBrowsableItem [] photos)
+	public bool Execute (IPhoto [] photos)
 	{
 		ProgressDialog progress_dialog = null;
         var loader = ThumbnailLoader.Default;
@@ -25,7 +25,7 @@ public class ThumbnailCommand {
 		}
 
 		int count = 0;
-		foreach (IBrowsableItem photo in photos) {
+		foreach (IPhoto photo in photos) {
 			if (progress_dialog != null
 			    && progress_dialog.Update (String.Format (Mono.Unix.Catalog.GetString ("Updating picture \"{0}\""), photo.Name)))
 				break;

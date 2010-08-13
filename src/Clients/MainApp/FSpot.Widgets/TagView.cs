@@ -16,7 +16,7 @@ using FSpot.Core;
 namespace FSpot.Widgets {
 public class TagView : EventBox {
 	private int thumbnail_size = 20;
-	private IBrowsableItem photo;
+	private IPhoto photo;
 	private Tag [] tags;
 	private static int TAG_ICON_VSPACING = 5;
 
@@ -37,7 +37,7 @@ public class TagView : EventBox {
 		VisibleWindow = false;
 	}
 
-	public IBrowsableItem Current {
+	public IPhoto Current {
 		set {
 			photo = value;
 

@@ -86,7 +86,7 @@ namespace FSpot.Exporters.Tabblo {
 			}
 		}
 
-		internal IBrowsableItem [] Photos {
+		internal IPhoto [] Photos {
 			get {
 				return photo_collection.Items;
 			}

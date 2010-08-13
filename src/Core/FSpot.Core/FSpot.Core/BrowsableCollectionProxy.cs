@@ -40,21 +40,21 @@ namespace FSpot.Core {
             get { return collection != null ? collection.Count : 0; }
         }
 
-        public int IndexOf (IBrowsableItem item)
+        public int IndexOf (IPhoto item)
         {
             if (collection == null)
                 return -1;
             return collection.IndexOf (item);
         }
 
-        public bool Contains (IBrowsableItem item)
+        public bool Contains (IPhoto item)
         {
             if (collection == null)
                 return false;
             return collection.Contains (item);
         }
 
-        public IBrowsableItem this [int index] {
+        public IPhoto this [int index] {
             get {
                 if (collection == null)
                     throw new System.IndexOutOfRangeException ();
@@ -68,7 +68,7 @@ namespace FSpot.Core {
                 collection.MarkChanged (num, changes);
         }
 
-        public IBrowsableItem [] Items {
+        public IPhoto [] Items {
             get {
                 return collection.Items;
             }

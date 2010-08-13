@@ -96,7 +96,7 @@ namespace FSpot {
 			}
 		}
 
-		public bool Contains (IBrowsableItem item) {
+		public bool Contains (IPhoto item) {
 			return IndexOf (item) >= 0;
 		}
 
@@ -104,7 +104,7 @@ namespace FSpot {
 		public event IBrowsableCollectionChangedHandler Changed;
 		public event IBrowsableCollectionItemsChangedHandler ItemsChanged;
 
-		public IBrowsableItem this [int index] {
+		public IPhoto this [int index] {
 			get { return cache.Get (index); }
 		}
 
@@ -114,7 +114,7 @@ namespace FSpot {
 		}
 
 		[Obsolete ("DO NOT USE Items on PhotoQuery")]
-		public IBrowsableItem [] Items {
+		public IPhoto [] Items {
 			get { throw new NotImplementedException (); }
 		}
 
@@ -283,7 +283,7 @@ namespace FSpot {
 			Log.DebugTimerPrint (timer, "Reloading the query took {0}");
 		}
 
-		public int IndexOf (IBrowsableItem photo)
+		public int IndexOf (IPhoto photo)
 		{
 			if (photo == null || !(photo is Photo))
 				return -1;

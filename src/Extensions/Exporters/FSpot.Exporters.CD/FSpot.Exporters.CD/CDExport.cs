@@ -104,7 +104,7 @@ namespace FSpot.Exporters.CD {
 				if (clean)
 					Clean (dest);
 
-				foreach (IBrowsableItem photo in selection.Items) {
+				foreach (IPhoto photo in selection.Items) {
 
 				//FIXME need to implement the uniquename as a filter
 					using (FilterRequest request = new FilterRequest (photo.DefaultVersion.Uri)) {

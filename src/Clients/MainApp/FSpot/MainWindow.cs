@@ -735,7 +735,7 @@ namespace FSpot
 				}
 			}
 
-			public int IndexOf (IBrowsableItem item)
+			public int IndexOf (IPhoto item)
 			{
 				switch (win.ViewMode) {
 				case ModeType.PhotoView:
@@ -746,7 +746,7 @@ namespace FSpot
 				return -1;
 			}
 
-			public bool Contains (IBrowsableItem item)
+			public bool Contains (IPhoto item)
 			{
 				switch (win.ViewMode) {
 				case ModeType.PhotoView:
@@ -768,7 +768,7 @@ namespace FSpot
 				throw new System.NotImplementedException ("I didn't think you'd find me");
 			}
 
-			public IBrowsableItem this [int index] {
+			public IPhoto this [int index] {
 				get {
 					switch (win.ViewMode) {
 					case ModeType.PhotoView:
@@ -782,18 +782,18 @@ namespace FSpot
 				}
 			}
 
-			public IBrowsableItem [] Items {
+			public IPhoto [] Items {
 				get {
 					switch (win.ViewMode) {
 					case ModeType.PhotoView:
 						if (win.photo_view.Item.IsValid)
-							return new IBrowsableItem [] {win.photo_view.Item.Current};
+							return new IPhoto [] {win.photo_view.Item.Current};
 
 						break;
 					case ModeType.IconView:
 						return win.icon_view.Selection.Items;
 					}
-					return new IBrowsableItem [0];
+					return new IPhoto [0];
 				}
 			}
 
@@ -993,7 +993,7 @@ namespace FSpot
 			if (cell_num == -1 /*|| cell_num == lastTopLeftCell*/)
 				return;
 
-			IBrowsableItem photo = icon_view.Collection [cell_num];
+			IPhoto photo = icon_view.Collection [cell_num];
 			/*
 			 * FIXME this is a lame hack to get around a delegate chain.  This should
 			 * actually operate directly on the adaptor not on the selector but I don't have
@@ -2447,7 +2447,7 @@ namespace FSpot
 					// If the database has changed since this pref was saved, this could cause
 					// an exception to be thrown.
 					try {
-						IBrowsableItem photo = group_selector.Adaptor.PhotoFromIndex (Preferences.Get<int> (key));
+						IPhoto photo = group_selector.Adaptor.PhotoFromIndex (Preferences.Get<int> (key));
 
 						if (photo != null)
 							JumpTo (query.IndexOf (photo));

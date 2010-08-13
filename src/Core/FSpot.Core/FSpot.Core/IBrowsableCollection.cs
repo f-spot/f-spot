@@ -14,13 +14,13 @@ namespace FSpot.Core
 
 	public interface IBrowsableCollection {
 		// FIXME this should really be ToArray ()
-		IBrowsableItem [] Items {
+		IPhoto [] Items {
 			get;
 		}
 
-		int IndexOf (IBrowsableItem item);
+		int IndexOf (IPhoto item);
 
-		IBrowsableItem this [int index] {
+		IPhoto this [int index] {
 			get;
 		}
 
@@ -28,7 +28,7 @@ namespace FSpot.Core
 			get;
 		}
 
-		bool Contains (IBrowsableItem item);
+		bool Contains (IPhoto item);
 
 		// FIXME the Changed event needs to pass along information
 		// about the items that actually changed if possible.  For things like

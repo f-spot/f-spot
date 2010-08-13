@@ -25,7 +25,7 @@ using FSpot.Imaging;
 
 namespace FSpot {
 	public class UriCollection : PhotoList {
-		public UriCollection () : base (new IBrowsableItem [0])
+		public UriCollection () : base (new IPhoto [0])
 		{
 		}
 
@@ -142,7 +142,7 @@ namespace FSpot {
 
 		protected void LoadItems (System.IO.FileInfo [] files)
 		{
-			List<IBrowsableItem> items = new List<IBrowsableItem> ();
+			List<IPhoto> items = new List<IPhoto> ();
 			foreach (var f in files) {
 				if (ImageFile.HasLoader (new SafeUri (f.FullName))) {
 					Hyena.Log.Debug (f.FullName);

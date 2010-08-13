@@ -33,8 +33,8 @@ namespace FSpot.Widgets
 	public class InfoBox : VBox {
 		Delay update_delay;
 
-		private IBrowsableItem [] photos = new IBrowsableItem [0];
-		public IBrowsableItem [] Photos {
+		private IPhoto [] photos = new IPhoto [0];
+		public IPhoto [] Photos {
 			set {
 				photos = value;
 				update_delay.Start ();
@@ -44,10 +44,10 @@ namespace FSpot.Widgets
 			}
 		}
 
-		public IBrowsableItem Photo {
+		public IPhoto Photo {
 			set {
 				if (value != null) {
-					Photos = new IBrowsableItem [] { value };
+					Photos = new IPhoto [] { value };
 				}
 			}
 		}
@@ -396,7 +396,7 @@ namespace FSpot.Widgets
 		{
 			ImageInfo info;
 
-			IBrowsableItem photo = Photos [0];
+			IPhoto photo = Photos [0];
 
 			histogram_expander.Visible = true;
 			UpdateHistogram ();
@@ -543,8 +543,8 @@ namespace FSpot.Widgets
 			camera_value_label.Visible = false;
 
 			if (show_date) {
-				IBrowsableItem first = Photos[Photos.Length-1];
-				IBrowsableItem last = Photos [0];
+				IPhoto first = Photos[Photos.Length-1];
+				IPhoto last = Photos [0];
 				if (first.Time.Date == last.Time.Date) {
 					//Note for translators: {0} is a date, {1} and {2} are times.
 					date_value_label.Text = String.Format(Catalog.GetString("On {0} between \n{1} and {2}"),
@@ -562,7 +562,7 @@ namespace FSpot.Widgets
 
 			if (show_file_size) {
 				long file_size = 0;
-				foreach (IBrowsableItem photo in Photos) {
+				foreach (IPhoto photo in Photos) {
 
 					try {
 						GFile file = FileFactory.NewForUri (photo.DefaultVersion.Uri);
@@ -608,7 +608,7 @@ namespace FSpot.Widgets
 			if (Photos.Length == 0)
 				return false;
 
-			IBrowsableItem photo = Photos [0];
+			IPhoto photo = Photos [0];
 
 			Gdk.Pixbuf hint = histogram_hint;
 			histogram_hint = null;

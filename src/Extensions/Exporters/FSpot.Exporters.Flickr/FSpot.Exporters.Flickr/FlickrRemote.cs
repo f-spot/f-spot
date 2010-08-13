@@ -135,7 +135,7 @@ public class FlickrRemote {
 		return auth;
 	}
 
-	public string Upload (IBrowsableItem photo, IFilter filter, bool is_public, bool is_family, bool is_friend)
+	public string Upload (IPhoto photo, IFilter filter, bool is_public, bool is_family, bool is_friend)
 	{
 		if (token == null) {
 			throw new Exception ("Must Login First");

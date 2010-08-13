@@ -38,7 +38,7 @@ namespace FSpot.Exporters.Zip {
 		[Glade.Widget] Gtk.SpinButton scale_size;
 		[Glade.Widget] Gtk.Button create_button;
 
-		IBrowsableItem [] photos;
+		IPhoto [] photos;
 		Gtk.FileChooserButton uri_chooser;
 
 		public void Run (IBrowsableCollection p) {

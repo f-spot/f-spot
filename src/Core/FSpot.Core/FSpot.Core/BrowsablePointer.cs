@@ -13,7 +13,7 @@ namespace FSpot.Core
 
 	public class BrowsablePointer {
 		IBrowsableCollection collection;
-		IBrowsableItem item;
+		IPhoto item;
 		int index;
 		public event EventHandler<BrowsablePointerChangedEventArgs> Changed;
 
@@ -34,7 +34,7 @@ namespace FSpot.Core
 			get { return collection; }
 		}
 
-		public IBrowsableItem Current {
+		public IPhoto Current {
 			get {
 				if (!this.IsValid)
 					return null;

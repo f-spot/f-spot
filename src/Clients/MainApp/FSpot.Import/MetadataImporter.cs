@@ -83,7 +83,7 @@ namespace FSpot.Import {
             photo.AddTag (tag);
         }
 
-        public bool Import (Photo photo, IBrowsableItem importing_from)
+        public bool Import (Photo photo, IPhoto importing_from)
         {
             using (var metadata = Metadata.Parse (importing_from.DefaultVersion.Uri)) {
                 // Copy Rating

@@ -86,12 +86,12 @@ namespace FSpot.Exporters.Gallery {
 			gallery.MoveAlbum (this, name);
 		}
 
-		public void Add (IBrowsableItem item)
+		public void Add (IPhoto item)
 		{
 			Add (item, item.DefaultVersion.Uri.LocalPath);
 		}
 
-		public int Add (IBrowsableItem item, string path)
+		public int Add (IPhoto item, string path)
 		{
 			if (item == null)
 				Log.Warning ("NO PHOTO");

@@ -253,13 +253,13 @@ namespace FSpot
 			else
 				tag = Database.Tags.GetTagById (Preferences.Get<int> (Preferences.SCREENSAVER_TAG));
 
-			IBrowsableItem[] photos;
+			IPhoto[] photos;
 			if (tag != null)
 				photos = Database.Photos.Query (new Tag[] {tag});
 			else if (Preferences.Get<int> (Preferences.SCREENSAVER_TAG) == 0)
 				photos = Database.Photos.Query (new Tag [] {});
 			else
-				photos = new IBrowsableItem [0];
+				photos = new IPhoto [0];
 
 			// Minimum delay 1 second; default is 4s
 			var delay = Math.Max (1.0, Preferences.Get<double> (Preferences.SCREENSAVER_DELAY));

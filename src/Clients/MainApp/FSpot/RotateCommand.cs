@@ -47,11 +47,11 @@ namespace FSpot {
 	}
 
 	public class RotateOperation {
-		IBrowsableItem item;
+		IPhoto item;
 		RotateDirection direction;
 		bool done;
 
-		public RotateOperation (IBrowsableItem item, RotateDirection direction)
+		public RotateOperation (IPhoto item, RotateDirection direction)
 		{
 			this.item = item;
 			this.direction = direction;
@@ -102,7 +102,7 @@ namespace FSpot {
 
 	public class RotateMultiple {
 		RotateDirection direction;
-		IBrowsableItem [] items;
+		IPhoto [] items;
 		int index;
 		RotateOperation op;
 
@@ -110,11 +110,11 @@ namespace FSpot {
 			get { return index; }
 		}
 
-		public IBrowsableItem [] Items {
+		public IPhoto [] Items {
 			get { return items; }
 		}
 
-		public RotateMultiple (IBrowsableItem [] items, RotateDirection direction)
+		public RotateMultiple (IPhoto [] items, RotateDirection direction)
 		{
 			this.direction = direction;
 			this.items = items;
@@ -149,7 +149,7 @@ public class RotateCommand {
 		this.parent_window = parent_window;
 	}
 
-	public bool Execute (RotateDirection direction, IBrowsableItem [] items)
+	public bool Execute (RotateDirection direction, IPhoto [] items)
 	{
 		ProgressDialog progress_dialog = null;
 

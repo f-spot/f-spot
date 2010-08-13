@@ -116,8 +116,8 @@ namespace FSpot.Widgets {
 			update_delay.Start ();
 		}
 
-		private IBrowsableItem photo;
-		public IBrowsableItem Photo {
+		private IPhoto photo;
+		public IPhoto Photo {
 			get { return photo; }
 			set {
 				photo = value;

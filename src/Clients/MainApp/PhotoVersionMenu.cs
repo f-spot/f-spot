@@ -29,7 +29,7 @@ public class PhotoVersionMenu : Menu {
 		}
 	}
 
-	public PhotoVersionMenu (IBrowsableItem photo)
+	public PhotoVersionMenu (IPhoto photo)
 	{
 		Version = photo.DefaultVersion;
 

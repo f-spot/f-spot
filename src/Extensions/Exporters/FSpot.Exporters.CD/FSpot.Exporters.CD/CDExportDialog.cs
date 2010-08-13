@@ -38,7 +38,7 @@ namespace FSpot.Exporters.CD
 			string path;
 			System.IO.FileInfo file_info;
 
-			foreach (IBrowsableItem item in selection.Items) {
+			foreach (IPhoto item in selection.Items) {
 				path = item.DefaultVersion.Uri.LocalPath;
 				if (System.IO.File.Exists (path)) {
 					file_info = new System.IO.FileInfo (path);

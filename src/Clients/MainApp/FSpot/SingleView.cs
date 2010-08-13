@@ -158,7 +158,7 @@ namespace FSpot {
 					BrowsablePointer pointer = sender as BrowsablePointer;
 					if (pointer == null)
 						return;
-					IBrowsableItem [] item = {pointer.Current};
+					IPhoto [] item = {pointer.Current};
 					sidebar.HandleSelectionChanged (new PhotoList (item));
 			};
 
@@ -237,14 +237,14 @@ namespace FSpot {
 		void HandleRotate90Command (object sender, System.EventArgs args)
 		{
 			RotateCommand command = new RotateCommand (this.Window);
-			if (command.Execute (RotateDirection.Clockwise, new IBrowsableItem [] { image_view.Item.Current }))
+			if (command.Execute (RotateDirection.Clockwise, new IPhoto [] { image_view.Item.Current }))
 				collection.MarkChanged (image_view.Item.Index, FullInvalidate.Instance);
 		}
 
 		void HandleRotate270Command (object sender, System.EventArgs args)
 		{
 			RotateCommand command = new RotateCommand (this.Window);
-			if (command.Execute (RotateDirection.Counterclockwise, new IBrowsableItem [] { image_view.Item.Current }))
+			if (command.Execute (RotateDirection.Counterclockwise, new IPhoto [] { image_view.Item.Current }))
 				collection.MarkChanged (image_view.Item.Index, FullInvalidate.Instance);
 		}
 
@@ -275,7 +275,7 @@ namespace FSpot {
 
 		void HandleSetAsBackgroundCommand (object sender, EventArgs args)
 		{
-			IBrowsableItem current = image_view.Item.Current;
+			IPhoto current = image_view.Item.Current;
 
 			if (current == null)
 				return;
@@ -459,7 +459,7 @@ namespace FSpot {
 
 		private void UpdateStatusLabel ()
 		{
-			IBrowsableItem item = image_view.Item.Current;
+			IPhoto item = image_view.Item.Current;
 			System.Text.StringBuilder sb = new System.Text.StringBuilder();
 			if (filenames_item.Active && item != null)
 				sb.Append (System.IO.Path.GetFileName (item.DefaultVersion.Uri.LocalPath) + "  -  ");

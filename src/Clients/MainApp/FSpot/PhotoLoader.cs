@@ -16,11 +16,11 @@ namespace FSpot {
 
 		static public Gdk.Pixbuf Load (IBrowsableCollection collection, int index)
 		{
-			IBrowsableItem item = collection [index];
+			IPhoto item = collection [index];
 			return Load (item);
 		}
 
-		static public Gdk.Pixbuf Load (IBrowsableItem item)
+		static public Gdk.Pixbuf Load (IPhoto item)
 		{
 			using (var img = ImageFile.Create (item.DefaultVersion.Uri)) {
 				Gdk.Pixbuf pixbuf = img.Load ();
@@ -28,7 +28,7 @@ namespace FSpot {
 			}
 		}
 
-		static public Gdk.Pixbuf LoadAtMaxSize (IBrowsableItem item, int width, int height)
+		static public Gdk.Pixbuf LoadAtMaxSize (IPhoto item, int width, int height)
 		{
 			using (var img = ImageFile.Create (item.DefaultVersion.Uri)) {
 				Gdk.Pixbuf pixbuf = img.Load (width, height);

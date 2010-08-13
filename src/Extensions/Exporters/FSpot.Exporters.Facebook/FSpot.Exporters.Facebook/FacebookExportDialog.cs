@@ -70,8 +70,8 @@ namespace FSpot.Exporters.Facebook
 			public int Compare (object left,
 			                    object right)
 			{
-				return DateTime.Compare ((left as IBrowsableItem).Time,
-					(right as IBrowsableItem).Time);
+				return DateTime.Compare ((left as IPhoto).Time,
+					(right as IPhoto).Time);
 			}
 		}
 
@@ -132,8 +132,8 @@ namespace FSpot.Exporters.Facebook
 
 		List<Mono.Facebook.Tag>[] tags;
 		int current_item;
-		IBrowsableItem[] items;
-		public IBrowsableItem[] Items {
+		IPhoto[] items;
+		public IPhoto[] Items {
 			get {return items; }
 		}
 
@@ -188,7 +188,7 @@ namespace FSpot.Exporters.Facebook
 
 			tag_treeview.Model = new TagStore (account.Facebook, tags [current_item], friends);
 
-			IBrowsableItem item = items [current_item];
+			IPhoto item = items [current_item];
 
 			if (tag_image_eventbox.Children.Length > 0) {
 				tag_image_eventbox.Remove (tag_image);

@@ -120,7 +120,7 @@ namespace FSpot.UI.Dialog {
 			//forward_button.Sensitive = (Item.Index < collection.Count - 1);
 
 			if (item.IsValid) {
-				IBrowsableItem curr_item = item.Current;
+				IPhoto curr_item = item.Current;
 
 				name_label.Text = System.Uri.UnescapeDataString(curr_item.Name);
 				old_label.Text = (curr_item.Time).ToString ();

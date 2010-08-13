@@ -20,7 +20,7 @@ using FSpot.Utils;
 using Mono.Unix.Native;
 
 namespace FSpot.Core {
-    public class FileBrowsableItem : IBrowsableItem
+    public class FileBrowsableItem : IPhoto
     {
         bool metadata_parsed = false;
 

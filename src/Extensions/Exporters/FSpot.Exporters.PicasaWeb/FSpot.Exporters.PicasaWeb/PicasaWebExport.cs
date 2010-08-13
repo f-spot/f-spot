@@ -517,7 +517,7 @@ namespace FSpot.Exporters.PicasaWeb {
 		private long approx_size = 0;
 		private long sent_bytes = 0;
 
-		IBrowsableItem [] items;
+		IPhoto [] items;
 		int photo_index;
 		ThreadProgressDialog progress_dialog;
 
@@ -622,7 +622,7 @@ namespace FSpot.Exporters.PicasaWeb {
 		{
 			public int Compare (object left, object right)
 			{
-				return DateTime.Compare ((left as IBrowsableItem).Time, (right as IBrowsableItem).Time);
+				return DateTime.Compare ((left as IPhoto).Time, (right as IPhoto).Time);
 			}
 		}
 
@@ -644,7 +644,7 @@ namespace FSpot.Exporters.PicasaWeb {
 
 			while (photo_index < items.Length) {
 				try {
-					IBrowsableItem item = items[photo_index];
+					IPhoto item = items[photo_index];
 
 					FileInfo file_info;
 					Log.Debug ("Picasa uploading " + photo_index);

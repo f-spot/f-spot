@@ -43,7 +43,7 @@ namespace FSpot.Widgets {
 		}
 
 		ArrayList selected_photos_tagnames;
-		public void UpdateFromSelection (IBrowsableItem [] sel)
+		public void UpdateFromSelection (IPhoto [] sel)
 		{
 			Hashtable taghash = new Hashtable ();
 

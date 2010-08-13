@@ -442,7 +442,7 @@ namespace FSpot.Exporters.Folder {
 
 		public void ProcessImage (int image_num, FilterSet filter_set)
 		{
-			IBrowsableItem photo = collection [image_num];
+			IPhoto photo = collection [image_num];
 			string path;
 			ScaleRequest req;
 
@@ -739,7 +739,7 @@ namespace FSpot.Exporters.Folder {
 
 			base.GenerateLayout ();
 
-			IBrowsableItem [] photos = collection.Items;
+			IPhoto [] photos = collection.Items;
 
 			int i;
 			for (i = 0; i < photos.Length; i++)
@@ -751,7 +751,7 @@ namespace FSpot.Exporters.Folder {
 			if (exportTags) {
 				// identify tags present in these photos
 				i = 0;
-				foreach (IBrowsableItem photo in photos) {
+				foreach (IPhoto photo in photos) {
 					foreach (var tag in photo.Tags) {
 						if (!tagSets.ContainsKey (tag.Name)) {
 							tagSets.Add (tag.Name, new ArrayList ());

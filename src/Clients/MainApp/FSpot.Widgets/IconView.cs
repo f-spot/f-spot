@@ -305,8 +305,8 @@ namespace FSpot.Widgets
 			Hashtable selected_cells;
 			BitArray bit_array;
 			int [] selection;
-			IBrowsableItem [] items;
-			IBrowsableItem [] old;
+			IPhoto [] items;
+			IPhoto [] old;
 
 			public SelectionCollection (IBrowsableCollection collection)
 			{
@@ -319,7 +319,7 @@ namespace FSpot.Widgets
 
 			private void HandleParentChanged (IBrowsableCollection collection)
 			{
-				IBrowsableItem [] local = old;
+				IPhoto [] local = old;
 				selected_cells.Clear ();
 				bit_array = new BitArray (parent.Count);
 				ClearCached ();
@@ -394,20 +394,20 @@ namespace FSpot.Widgets
 				}
 			}
 
-			public IBrowsableItem this [int index] {
+			public IPhoto this [int index] {
 				get {
 					int [] ids = this.Ids;
 					return parent [ids[index]];
 				}
 			}
 
-			public IBrowsableItem [] Items {
+			public IPhoto [] Items {
 				get {
 					if (items != null)
 						return items;
 
 					int [] ids = this.Ids;
-					items = new IBrowsableItem [ids.Length];
+					items = new IPhoto [ids.Length];
 					for (int i = 0; i < items.Length; i++) {
 						items [i] = parent [ids[i]];
 					}
@@ -428,7 +428,7 @@ namespace FSpot.Widgets
 				SignalChange (ids);
 			}
 
-			public void Add (IBrowsableItem item)
+			public void Add (IPhoto item)
 			{
 				if (this.Contains (item))
 					return;
@@ -443,7 +443,7 @@ namespace FSpot.Widgets
 				}
 			}
 
-			public bool Contains (IBrowsableItem item)
+			public bool Contains (IPhoto item)
 			{
 				return selected_cells.ContainsKey (item);
 			}
@@ -469,7 +469,7 @@ namespace FSpot.Widgets
 				if (this.Contains (num))
 					return;
 
-				IBrowsableItem item = parent [num];
+				IPhoto item = parent [num];
 				selected_cells [item] = num;
 				bit_array.Set (num, true);
 
@@ -498,13 +498,13 @@ namespace FSpot.Widgets
 
 			public void Remove (int cell, bool notify)
 			{
-				IBrowsableItem item = parent [cell];
+				IPhoto item = parent [cell];
 				if (item != null)
 					this.Remove (item, notify);
 
 			}
 
-			public void Remove (IBrowsableItem item)
+			public void Remove (IPhoto item)
 			{
 				Remove (item, true);
 			}
@@ -514,7 +514,7 @@ namespace FSpot.Widgets
 				Remove (cell, true);
 			}
 
-			private void Remove (IBrowsableItem item, bool notify)
+			private void Remove (IPhoto item, bool notify)
 			{
 				if (item == null)
 					return;
@@ -552,7 +552,7 @@ namespace FSpot.Widgets
 				return System.Array.IndexOf (this.Ids, parent_index);
 			}
 
-			public int IndexOf (IBrowsableItem item)
+			public int IndexOf (IPhoto item)
 			{
 				if (!this.Contains (item))
 					return -1;
@@ -635,7 +635,7 @@ namespace FSpot.Widgets
 		// Updating.
 		public void UpdateThumbnail (int thumbnail_num)
 		{
-			IBrowsableItem photo = collection [thumbnail_num];
+			IPhoto photo = collection [thumbnail_num];
 			cache.Remove (photo.DefaultVersion.Uri);
 			InvalidateCell (thumbnail_num);
 		}
@@ -849,7 +849,7 @@ namespace FSpot.Widgets
 			if (!bounds.Intersect (area, out area))
 				return;
 
-			IBrowsableItem photo = collection [thumbnail_num];
+			IPhoto photo = collection [thumbnail_num];
 
 			FSpot.PixbufCache.CacheEntry entry = cache.Lookup (photo.DefaultVersion.Uri);
 			if (entry == null)
@@ -1257,7 +1257,7 @@ namespace FSpot.Widgets
 
 			int i;
 
-			IBrowsableItem photo;
+			IPhoto photo;
 			FSpot.PixbufCache.CacheEntry entry;
 
 			// Preload the cache with images aroud the expose area

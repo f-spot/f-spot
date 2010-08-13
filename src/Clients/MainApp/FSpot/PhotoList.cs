@@ -13,17 +13,17 @@ using FSpot.Core;
 
 namespace FSpot {
 	public class PhotoList : IBrowsableCollection {
-		protected List<IBrowsableItem> list;
-		IBrowsableItem [] cache;
+		protected List<IPhoto> list;
+		IPhoto [] cache;
 
-		public PhotoList (IBrowsableItem [] photos)
+		public PhotoList (IPhoto [] photos)
 		{
-			list = new List<IBrowsableItem> (photos);
+			list = new List<IPhoto> (photos);
 		}
 
 		public PhotoList ()
 		{
-			list = new List<IBrowsableItem> ();
+			list = new List<IPhoto> ();
 		}
 
 		public int Count {
@@ -40,35 +40,35 @@ namespace FSpot {
 			set { list.Capacity = value; }
 		}
 
-		public void AddAll (List<IBrowsableItem> photos)
+		public void AddAll (List<IPhoto> photos)
 		{
 			list = photos;
 			Reload ();
 		}
 
-		public void Add (IBrowsableItem photo)
+		public void Add (IPhoto photo)
 		{
 			list.Add (photo);
 			Reload ();
 		}
 
-		public void Add (IBrowsableItem [] items)
+		public void Add (IPhoto [] items)
 		{
 			list.AddRange (items);
 			Reload ();
 		}
 
-		public int IndexOf (IBrowsableItem item)
+		public int IndexOf (IPhoto item)
 		{
 			return list.IndexOf (item);
 		}
 
-		public bool Contains (IBrowsableItem item)
+		public bool Contains (IPhoto item)
 		{
 			return list.Contains (item);
 		}
 
-		public IBrowsableItem this [int index] {
+		public IPhoto this [int index] {
 			get { return list [index]; }
 			set {
 				list [index] = value;
@@ -76,7 +76,7 @@ namespace FSpot {
 			}
 		}
 
-		public void Sort (IComparer<IBrowsableItem> compare)
+		public void Sort (IComparer<IPhoto> compare)
 		{
 			list.Sort (compare);
 			Reload ();
@@ -100,7 +100,7 @@ namespace FSpot {
 				ItemsChanged (this, args);
 		}
 
-		public IBrowsableItem [] Items {
+		public IPhoto [] Items {
 			get {
 				if (cache == null)
 					cache = list.ToArray ();

@@ -102,7 +102,7 @@ public class PhotoStore : DbStore<Photo> {
 		Database.Execute ("CREATE INDEX idx_photos_roll_id ON photos(roll_id)");
 	}
 
-	public bool HasDuplicate (IBrowsableItem item) {
+	public bool HasDuplicate (IPhoto item) {
 		var uri = item.DefaultVersion.Uri;
 
 		// Check if the exact given uri already exists.
@@ -155,7 +155,7 @@ public class PhotoStore : DbStore<Photo> {
 		return false;
 	}
 
-	public Photo CreateFrom (IBrowsableItem item, uint roll_id)
+	public Photo CreateFrom (IPhoto item, uint roll_id)
 	{
 		Photo photo;
 

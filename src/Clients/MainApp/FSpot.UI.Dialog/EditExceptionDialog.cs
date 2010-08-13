@@ -18,13 +18,13 @@ namespace FSpot.UI.Dialog
 {
 	public class EditException : Exception
 	{
-		IBrowsableItem item;
+		IPhoto item;
 
-		public IBrowsableItem Item {
+		public IPhoto Item {
 			get { return item; }
 		}
 
-		public EditException (IBrowsableItem item, Exception e) : base (
+		public EditException (IPhoto item, Exception e) : base (
                         String.Format (Catalog.GetString ("Received exception \"{0}\". Unable to save photo {1}"),
 				       e.Message, item.Name), e)
 		{
@@ -45,7 +45,7 @@ namespace FSpot.UI.Dialog
 				Log.Exception (e);
 		}
 
-		public EditExceptionDialog (Gtk.Window parent, Exception e, IBrowsableItem item) : this (parent, new EditException (item, e))
+		public EditExceptionDialog (Gtk.Window parent, Exception e, IPhoto item) : this (parent, new EditException (item, e))
 		{
 		}
 

@@ -105,7 +105,7 @@ namespace FSpot.Tools.ChangePhotoPath
 		{
 			string res_path = null;
 
-			foreach ( IBrowsableItem photo in photo_store.Query ( "SELECT * FROM photos " ) ) {
+			foreach ( IPhoto photo in photo_store.Query ( "SELECT * FROM photos " ) ) {
 				string tmp_path = (photo as Photo).DefaultVersion.Uri.AbsolutePath;
 				res_path = IsThisPhotoOnOrigBasePath (tmp_path);
 				if (res_path != null)
@@ -161,7 +161,7 @@ namespace FSpot.Tools.ChangePhotoPath
 		{
 			int count = 0;
 
-			foreach ( IBrowsableItem ibrows in photo_store.Query ( "SELECT * FROM photos " ) ) {
+			foreach ( IPhoto ibrows in photo_store.Query ( "SELECT * FROM photos " ) ) {
 				count++;
 				if (gui_controller.UpdateProgressBar ("Scanning through database", "Checking photo", total_photos))
 				    return false;

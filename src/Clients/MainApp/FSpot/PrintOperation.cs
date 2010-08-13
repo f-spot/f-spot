@@ -21,14 +21,14 @@ namespace FSpot
 {
 	public class PrintOperation : Gtk.PrintOperation
 	{
-		IBrowsableItem [] selected_photos;
+		IPhoto [] selected_photos;
 		int photos_per_page = 1;
 		CustomPrintWidget.FitMode fit = CustomPrintWidget.FitMode.Scaled;
 		bool repeat, white_borders, crop_marks;
 		string print_label_format;
 		string comment;
 
-		public PrintOperation (IBrowsableItem [] selected_photos) : base ()
+		public PrintOperation (IPhoto [] selected_photos) : base ()
 		{
 			this.selected_photos = selected_photos;
 			CustomTabLabel = Catalog.GetString ("Image Settings");

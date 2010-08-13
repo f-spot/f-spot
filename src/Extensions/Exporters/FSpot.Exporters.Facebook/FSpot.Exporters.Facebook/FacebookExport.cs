@@ -336,7 +336,7 @@ namespace FSpot.Exporters.Facebook
 
 		void Upload ()
 		{
-			IBrowsableItem [] items = dialog.Items;
+			IPhoto [] items = dialog.Items;
 			string [] captions = dialog.Captions;
 			dialog.StoreCaption ();
 
@@ -348,7 +348,7 @@ namespace FSpot.Exporters.Facebook
 
 			for (int i = 0; i < items.Length; i++) {
 				try {
-					IBrowsableItem item = items [i];
+					IPhoto item = items [i];
 
 					FileInfo file_info;
 					Log.DebugFormat ("uploading {0}", i);

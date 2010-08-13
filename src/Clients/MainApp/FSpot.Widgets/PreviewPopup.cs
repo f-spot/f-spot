@@ -103,7 +103,7 @@ namespace FSpot {
 
 		private void UpdateImage ()
 		{
-			IBrowsableItem item = view.Collection [Item];
+			IPhoto item = view.Collection [Item];
 
 			string orig_path = item.DefaultVersion.Uri.LocalPath;
 

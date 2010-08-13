@@ -16,7 +16,7 @@ namespace FSpot.Core
 	///    The interface adds functionality which is related to items where
 	///    versions can be added or removed.
 	/// </summary>
-	public interface IBrowsableItemVersionable : IBrowsableItem{
+	public interface IBrowsableItemVersionable : IPhoto{
 
 		/// <summary>
 		///    Sets the default version of a the item.

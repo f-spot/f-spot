@@ -26,7 +26,7 @@ using FSpot.Imaging;
 
 namespace FSpot
 {
-	public class Photo : DbItem, IComparable, IBrowsableItem, IBrowsableItemVersionable {
+	public class Photo : DbItem, IComparable, IPhoto, IBrowsableItemVersionable {
 
 		PhotoChanges changes = new PhotoChanges ();
 		public PhotoChanges Changes {
@@ -587,7 +587,7 @@ namespace FSpot
 			if (result == 0)
 				return 0;
 			else
-				return (this as IBrowsableItem).Compare (photo);
+				return (this as IPhoto).Compare (photo);
 		}
 
 #endregion

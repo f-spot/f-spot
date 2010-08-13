@@ -5,9 +5,9 @@ using System.Collections.Generic;
 namespace FSpot.Core
 {
 	public static class IBrowsableItemComparer {
-		public class CompareDateName : IComparer<IBrowsableItem>
+		public class CompareDateName : IComparer<IPhoto>
 		{
-			public int Compare (IBrowsableItem p1, IBrowsableItem p2)
+			public int Compare (IPhoto p1, IPhoto p2)
 			{
 				int result = p1.CompareDate (p2);
 
@@ -28,9 +28,9 @@ namespace FSpot.Core
 			}
 		}
 
-		public class CompareDirectory : IComparer<IBrowsableItem>
+		public class CompareDirectory : IComparer<IPhoto>
 		{
-			public int Compare (IBrowsableItem p1, IBrowsableItem p2)
+			public int Compare (IPhoto p1, IPhoto p2)
 			{
 				int result = p1.CompareDefaultVersionUri (p2);
 

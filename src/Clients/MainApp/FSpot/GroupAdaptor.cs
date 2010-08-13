@@ -35,8 +35,8 @@ namespace FSpot {
 		protected abstract void Reload ();
 
 		public abstract void SetGlass (int item);
-		public abstract int IndexFromPhoto (IBrowsableItem photo);
-		public abstract IBrowsableItem PhotoFromIndex (int item);
+		public abstract int IndexFromPhoto (IPhoto photo);
+		public abstract IPhoto PhotoFromIndex (int item);
 
 		public delegate void GlassSetHandler (GroupAdaptor adaptor, int index);
 		public virtual event GlassSetHandler GlassSet;

@@ -333,7 +333,7 @@ namespace FSpot.Exporters.Flickr {
 		{
 			public int Compare (object left, object right)
 			{
-				return DateTime.Compare ((left as IBrowsableItem).Time, (right as IBrowsableItem).Time);
+				return DateTime.Compare ((left as IPhoto).Time, (right as IPhoto).Time);
 			}
 		}
 
@@ -343,12 +343,12 @@ namespace FSpot.Exporters.Flickr {
 			fr.Connection.OnUploadProgress += HandleFlickrProgress;
 
 			System.Collections.ArrayList ids = new System.Collections.ArrayList ();
-			IBrowsableItem [] photos = selection.Items;
+			IPhoto [] photos = selection.Items;
 			Array.Sort (photos, new DateComparer ());
 
 			for (int index = 0; index < photos.Length; index++) {
 				try {
-					IBrowsableItem photo = photos [index];
+					IPhoto photo = photos [index];
 					progress_dialog.Message = System.String.Format (
                                                 Catalog.GetString ("Uploading picture \"{0}\""), photo.Name);
 

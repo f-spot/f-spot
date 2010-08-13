@@ -619,7 +619,7 @@ namespace FSpot.Exporters.Gallery {
 			export_dialog = (Gtk.Dialog) xml.GetWidget ("gallery_export_dialog");
 
 			this.items = selection.Items;
-			Array.Sort<IBrowsableItem> (this.items, new IBrowsableItemComparer.CompareDateName());
+			Array.Sort<IPhoto> (this.items, new IBrowsableItemComparer.CompareDateName());
 			album_button.Sensitive = false;
 			IconView view = new IconView (selection);
 			view.DisplayDates = false;
@@ -663,7 +663,7 @@ namespace FSpot.Exporters.Gallery {
 		private bool meta;
 		private bool connect = false;
 
-		IBrowsableItem[] items;
+		IPhoto[] items;
 		int photo_index;
 		ThreadProgressDialog progress_dialog;
 
@@ -762,7 +762,7 @@ namespace FSpot.Exporters.Gallery {
 					filters.Add (new ResizeFilter ((uint) size));
 
 				while (photo_index < items.Length) {
-					IBrowsableItem item = items [photo_index];
+					IPhoto item = items [photo_index];
 
 					Log.DebugFormat ("uploading {0}", photo_index);
 

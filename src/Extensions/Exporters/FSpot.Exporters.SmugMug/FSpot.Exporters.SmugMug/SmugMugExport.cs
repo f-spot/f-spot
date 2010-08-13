@@ -450,7 +450,7 @@ namespace FSpot.Exporters.SmugMug {
 		private long approx_size = 0;
 		private long sent_bytes = 0;
 
-		IBrowsableItem [] items;
+		IPhoto [] items;
 		int photo_index;
 		ThreadProgressDialog progress_dialog;
 
@@ -547,7 +547,7 @@ namespace FSpot.Exporters.SmugMug {
 
 			while (photo_index < items.Length) {
 				try {
-					IBrowsableItem item = items[photo_index];
+					IPhoto item = items[photo_index];
 
 					FileInfo file_info;
 					Log.Debug ("uploading " + photo_index);

@@ -341,7 +341,7 @@ namespace FSpot.Import
             rolls.Remove (CreatedRoll);
         }
 
-        void ImportPhoto (IBrowsableItem item, Roll roll)
+        void ImportPhoto (IPhoto item, Roll roll)
         {
             var destination = FindImportDestination (item);
 
@@ -377,7 +377,7 @@ namespace FSpot.Import
             imported_photos.Add (photo.Id);
         }
 
-        void CopyIfNeeded (IBrowsableItem item, SafeUri destination)
+        void CopyIfNeeded (IPhoto item, SafeUri destination)
         {
             if (item.DefaultVersion.Uri.Equals (destination))
                 return;
@@ -402,7 +402,7 @@ namespace FSpot.Import
             }
         }
 
-        SafeUri FindImportDestination (IBrowsableItem item)
+        SafeUri FindImportDestination (IPhoto item)
         {
             var uri = item.DefaultVersion.Uri;
 

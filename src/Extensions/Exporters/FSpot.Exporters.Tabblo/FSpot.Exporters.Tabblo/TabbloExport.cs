@@ -365,7 +365,7 @@ namespace FSpot.Exporters.Tabblo {
 		}
 
 		
-		private void OnPhotoUploaded (IBrowsableItem item)
+		private void OnPhotoUploaded (IPhoto item)
 		{
 			Debug.Assert (null != item);
 
@@ -394,7 +394,7 @@ namespace FSpot.Exporters.Tabblo {
 		private Picture [] GetPicturesForUpload ()
 		{
 			Picture [] pictures = new Picture [model.Photos.Length];
-			IBrowsableItem [] items = model.Photos;
+			IPhoto [] items = model.Photos;
 
 			for (int i = 0; i < pictures.Length; ++i) {
 				string mime_type = GLib.FileFactory.NewForUri (items [i].DefaultVersion.Uri).
