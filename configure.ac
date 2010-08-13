@@ -350,6 +350,7 @@ src/Core/FSpot.Core/FSpot.Core.dll.config
 src/Core/FSpot.Core/FSpot.Core/Defines.cs
 src/Core/FSpot.JobScheduler/Makefile
 src/Core/FSpot.Utils/Makefile
+src/Core/FSpot.Utils/FSpot.Utils.dll.config
 src/Core/FSpot.Query/Makefile
 src/Core/FSpot.Gui/Makefile
 src/Core/FSpot.Gui/FSpot.Gui.dll.config

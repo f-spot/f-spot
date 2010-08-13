@@ -131,7 +131,6 @@ SOURCES =  \
 	FSpot/JobStore.cs \
 	FSpot/main.cs \
 	FSpot/MainWindow.cs \
-	FSpot/MemorySurface.cs \
 	FSpot/MetaStore.cs \
 	FSpot/Photo.cs \
 	FSpot/PhotoEventArgs.cs \
