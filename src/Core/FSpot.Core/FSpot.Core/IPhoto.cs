@@ -55,13 +55,13 @@ namespace FSpot.Core
         ///    The default version of this item. Every item must have at least one version and this must not be
         ///    <see langref="null"/>
         /// </summary>
-        IBrowsableItemVersion DefaultVersion { get; }
+        IPhotoVersion DefaultVersion { get; }
 
         /// <summary>
         ///    All versions of this item. Since every item must have at least the default version, this enumeration
         ///    must not be empty.
         /// </summary>
-        IEnumerable<IBrowsableItemVersion> Versions { get; }
+        IEnumerable<IPhotoVersion> Versions { get; }
         
         #endregion
         

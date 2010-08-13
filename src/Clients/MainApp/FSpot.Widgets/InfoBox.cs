@@ -77,7 +77,7 @@ namespace FSpot.Widgets
 			}
 		}
 
-		public delegate void VersionChangedHandler (InfoBox info_box, IBrowsableItemVersion version);
+		public delegate void VersionChangedHandler (InfoBox info_box, IPhotoVersion version);
 		public event VersionChangedHandler VersionChanged;
 
 		private Expander info_expander;
@@ -252,7 +252,7 @@ namespace FSpot.Widgets
 			size_value_label = AttachLabel (info_table, 3, name_value_label);
 			exposure_value_label = AttachLabel (info_table, 4, name_value_label);
 
-			version_list = new ListStore (typeof (IBrowsableItemVersion), typeof (string), typeof (bool));
+			version_list = new ListStore (typeof (IPhotoVersion), typeof (string), typeof (bool));
 			version_combo = new ComboBox ();
 			CellRendererText version_name_cell = new CellRendererText ();
 			version_name_cell.Ellipsize = Pango.EllipsizeMode.End;
@@ -459,7 +459,7 @@ namespace FSpot.Widgets
 			version_combo.Changed -= OnVersionComboChanged;
 
 			int count = 0;
-			foreach (IBrowsableItemVersion version in photo.Versions) {
+			foreach (IPhotoVersion version in photo.Versions) {
 				version_list.AppendValues (version, version.Name, true);
 				if (version == photo.DefaultVersion)
 					version_combo.Active = count;
@@ -519,7 +519,7 @@ namespace FSpot.Widgets
 			TreeIter iter;
 
 			if (combo.GetActiveIter (out iter))
-				VersionChanged (this, (IBrowsableItemVersion)version_list.GetValue (iter, 0));
+				VersionChanged (this, (IPhotoVersion)version_list.GetValue (iter, 0));
 		}
 
 		private void UpdateMultiple ()

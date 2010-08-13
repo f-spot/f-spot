@@ -30,7 +30,7 @@ public class ThumbnailCommand {
 			    && progress_dialog.Update (String.Format (Mono.Unix.Catalog.GetString ("Updating picture \"{0}\""), photo.Name)))
 				break;
 
-			foreach (IBrowsableItemVersion version in photo.Versions) {
+			foreach (IPhotoVersion version in photo.Versions) {
 				loader.Request (version.Uri, ThumbnailSize.Large, 10);
 			}
 

@@ -14,12 +14,12 @@ SOURCES =  \
 	FSpot.Core/Global.cs \
 	FSpot.Core/IBrowsableCollection.cs \
 	FSpot.Core/IBrowsableItemChanges.cs \
-	FSpot.Core/IBrowsableItemComparer.cs \
-	FSpot.Core/IBrowsableItemVersion.cs \
-	FSpot.Core/IBrowsableItemVersionable.cs \
 	FSpot.Core/ILoadable.cs \
 	FSpot.Core/IPhoto.cs \
+	FSpot.Core/IPhotoComparer.cs \
 	FSpot.Core/IPhotoExtensions.cs \
+	FSpot.Core/IPhotoVersion.cs \
+	FSpot.Core/IPhotoVersionable.cs \
 	FSpot.Core/PhotoChanges.cs \
 	FSpot.Core/PhotosChanges.cs \
 	FSpot.Core/Roll.cs \

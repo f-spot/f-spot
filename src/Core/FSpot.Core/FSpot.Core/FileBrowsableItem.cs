@@ -66,9 +66,9 @@ namespace FSpot.Core {
             }
         }
 
-        public IBrowsableItemVersion DefaultVersion { get; private set; }
+        public IPhotoVersion DefaultVersion { get; private set; }
 
-		public IEnumerable<IBrowsableItemVersion> Versions {
+		public IEnumerable<IPhotoVersion> Versions {
 			get { yield return DefaultVersion; }
 		}
 
@@ -92,7 +92,7 @@ namespace FSpot.Core {
             }
         }
 
-        private class FileBrowsableItemVersion : IBrowsableItemVersion {
+        private class FileBrowsableItemVersion : IPhotoVersion {
             public string Name { get { return String.Empty; } }
             public bool IsProtected { get { return true; } }
 

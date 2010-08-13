@@ -31,9 +31,9 @@ namespace FSpot {
 			Photo = item.Current;
 		}
 
-		private void HandleVersionChanged (InfoBox box, IBrowsableItemVersion version)
+		private void HandleVersionChanged (InfoBox box, IPhotoVersion version)
 		{
-			IBrowsableItemVersionable versionable = item.Current as IBrowsableItemVersionable;
+			IPhotoVersionable versionable = item.Current as IPhotoVersionable;
 			PhotoQuery q = item.Collection as PhotoQuery;
 
 			if (versionable != null && q != null) {

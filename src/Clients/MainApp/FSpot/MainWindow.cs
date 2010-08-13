@@ -360,7 +360,7 @@ namespace FSpot
 
 			InfoBox = new InfoBox ();
 			ViewModeChanged += InfoBox.HandleMainWindowViewModeChanged;
-			InfoBox.VersionChanged += delegate (InfoBox box, IBrowsableItemVersion version) { UpdateForVersionChange (version);};
+			InfoBox.VersionChanged += delegate (InfoBox box, IPhotoVersion version) { UpdateForVersionChange (version);};
 			sidebar_vbox.PackEnd (InfoBox, false, false, 0);
 
 			InfoBox.Context = ViewContext.Library;
@@ -1783,7 +1783,7 @@ namespace FSpot
 		void HandleAdjustTime (object sender, EventArgs args)
 		{
 			PhotoList list = new PhotoList (Selection.Items);
-			list.Sort (new IBrowsableItemComparer.CompareDateName ());
+			list.Sort (new IPhotoComparer.CompareDateName ());
 			(new AdjustTimeDialog (Database, list)).Run ();
 		}
 
@@ -2485,9 +2485,9 @@ namespace FSpot
 
 		// Version Id updates.
 
-		void UpdateForVersionChange (IBrowsableItemVersion version)
+		void UpdateForVersionChange (IPhotoVersion version)
 		{
-			IBrowsableItemVersionable versionable = CurrentPhoto as IBrowsableItemVersionable;
+			IPhotoVersionable versionable = CurrentPhoto as IPhotoVersionable;
 
 			if (versionable != null) {
 				versionable.SetDefaultVersion (version);

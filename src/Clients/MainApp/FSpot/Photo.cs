@@ -26,7 +26,7 @@ using FSpot.Imaging;
 
 namespace FSpot
 {
-	public class Photo : DbItem, IComparable, IPhoto, IBrowsableItemVersionable {
+	public class Photo : DbItem, IComparable, IPhoto, IPhotoVersionable {
 
 		PhotoChanges changes = new PhotoChanges ();
 		public PhotoChanges Changes {
@@ -114,7 +114,7 @@ namespace FSpot
 		private uint highest_version_id;
 
 		private Dictionary<uint, PhotoVersion> versions = new Dictionary<uint, PhotoVersion> ();
-		public IEnumerable<IBrowsableItemVersion> Versions {
+		public IEnumerable<IPhotoVersion> Versions {
 			get {
 				foreach (var version in versions.Values)
 					yield return version;
@@ -207,7 +207,7 @@ namespace FSpot
 			return null;
 		}
 
-		public IBrowsableItemVersion DefaultVersion {
+		public IPhotoVersion DefaultVersion {
 			get {
 				if (!versions.ContainsKey (DefaultVersionId))
 					throw new Exception ("Something is horribly wrong, this should never happen: no default version!");
@@ -215,7 +215,7 @@ namespace FSpot
 			}
 		}
 
-		public void SetDefaultVersion (IBrowsableItemVersion version)
+		public void SetDefaultVersion (IPhotoVersion version)
 		{
 			PhotoVersion photo_version = version as PhotoVersion;
 			if (photo_version == null)

@@ -269,7 +269,7 @@ namespace FSpot
 			window.ModifyBg (Gtk.StateType.Normal, new Gdk.Color (0, 0, 0));
 
 			if (photos.Length > 0) {
-				Array.Sort (photos, new IBrowsableItemComparer.RandomSort ());
+				Array.Sort (photos, new IPhotoComparer.RandomSort ());
 				slideshow = new FSpot.Widgets.SlideShow (new BrowsablePointer (new PhotoList (photos), 0), (uint)(delay * 1000), true);
 				slideshow.Transition = new FSpot.Transitions.DissolveTransition ();
 				window.Add (slideshow);

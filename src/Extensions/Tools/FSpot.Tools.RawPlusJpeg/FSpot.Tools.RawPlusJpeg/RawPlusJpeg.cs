@@ -39,7 +39,7 @@ namespace FSpot.Tools.RawPlusJpeg
 				return;
 
 			Photo [] photos = App.Instance.Database.Photos.Query ((Tag [])null, null, null, null);
-			Array.Sort (photos, new IBrowsableItemComparer.CompareDirectory ());
+			Array.Sort (photos, new IPhotoComparer.CompareDirectory ());
 
 			Photo raw = null;
 			Photo jpeg = null;

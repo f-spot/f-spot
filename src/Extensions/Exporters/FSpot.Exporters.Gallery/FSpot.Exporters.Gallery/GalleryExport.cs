@@ -619,7 +619,7 @@ namespace FSpot.Exporters.Gallery {
 			export_dialog = (Gtk.Dialog) xml.GetWidget ("gallery_export_dialog");
 
 			this.items = selection.Items;
-			Array.Sort<IPhoto> (this.items, new IBrowsableItemComparer.CompareDateName());
+			Array.Sort<IPhoto> (this.items, new IPhotoComparer.CompareDateName());
 			album_button.Sensitive = false;
 			IconView view = new IconView (selection);
 			view.DisplayDates = false;

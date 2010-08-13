@@ -15,7 +15,7 @@ using FSpot.Core;
 
 namespace FSpot
 {
-    public class PhotoVersion : IBrowsableItemVersion
+    public class PhotoVersion : IPhotoVersion
     {
         public string Name { get; set; }
         public IPhoto Photo { get; private set; }
