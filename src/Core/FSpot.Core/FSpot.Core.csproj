@@ -34,7 +34,6 @@
     <Compile Include="FSpot.Core\FileBrowsableItem.cs" />
     <Compile Include="FSpot.Core\IBrowsableItemChanges.cs" />
     <Compile Include="FSpot.Core\IBrowsableItemComparer.cs" />
-    <Compile Include="FSpot.Core\IBrowsableItemExtensions.cs" />
     <Compile Include="FSpot.Core\IBrowsableItemVersion.cs" />
     <Compile Include="FSpot.Core\IBrowsableItemVersionable.cs" />
     <Compile Include="FSpot.Core\IBrowsableCollection.cs" />
@@ -44,6 +43,7 @@
     <Compile Include="FSpot.Core\Roll.cs" />
     <Compile Include="FSpot.Core\Defines.cs" />
     <Compile Include="FSpot.Core\IPhoto.cs" />
+    <Compile Include="FSpot.Core\IPhotoExtensions.cs" />
   </ItemGroup>
   <ProjectExtensions>
     <MonoDevelop>
