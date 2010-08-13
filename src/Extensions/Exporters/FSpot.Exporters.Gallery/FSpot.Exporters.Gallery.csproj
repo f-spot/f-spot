@@ -35,6 +35,10 @@
     <Compile Include="FSpot.Exporters.Gallery\FormClient.cs" />
     <Compile Include="FSpot.Exporters.Gallery\GalleryExport.cs" />
     <Compile Include="FSpot.Exporters.Gallery\GalleryRemote.cs" />
+    <Compile Include="FSpot.Exporters.Gallery\GalleryAccount.cs" />
+    <Compile Include="FSpot.Exporters.Gallery\GalleryAccountManager.cs" />
+    <Compile Include="FSpot.Exporters.Gallery\AccountDialog.cs" />
+    <Compile Include="FSpot.Exporters.Gallery\GalleryAddAlbum.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\GalleryExport.addin.xml">
