@@ -64,15 +64,15 @@ namespace FSpot
 			}
 		}
 
-		private bool loaded = false;
-		public bool Loaded {
-			get { return loaded; }
+		private bool all_versions_loaded = false;
+		internal bool AllVersionsLoaded {
+			get { return all_versions_loaded; }
 			set {
 				if (value) {
 					if (DefaultVersionId != OriginalVersionId && !versions.ContainsKey (DefaultVersionId))
 						DefaultVersionId = OriginalVersionId;
 				}
-				loaded = value;
+				all_versions_loaded = value;
 			}
 		}
 

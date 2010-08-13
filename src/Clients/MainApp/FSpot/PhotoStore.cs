@@ -178,7 +178,7 @@ public class PhotoStore : DbStore<Photo> {
 
 		photo = new Photo (id, unix_time);
 		photo.AddVersionUnsafely (Photo.OriginalVersionId, item.DefaultVersion.BaseUri, item.DefaultVersion.Filename, item.DefaultVersion.ImportMD5, Catalog.GetString ("Original"), true);
-		photo.Loaded = true;
+		photo.AllVersionsLoaded = true;
 
 		InsertVersion (photo, photo.DefaultVersion as PhotoVersion);
 		EmitAdded (photo);
@@ -247,7 +247,7 @@ public class PhotoStore : DbStore<Photo> {
 				continue;
 			}
 
-			if (photo.Loaded) {
+			if (photo.AllVersionsLoaded) {
 				//Console.WriteLine ("Photo {0} already Loaded", photo);
 				continue;
 			}
@@ -285,7 +285,7 @@ public class PhotoStore : DbStore<Photo> {
 				continue;
 			}
 
-			if (photo.Loaded) {
+			if (photo.AllVersionsLoaded) {
 				//Console.WriteLine ("Photo {0} already Loaded", photo.Id);
 				continue;
 			}
@@ -782,7 +782,7 @@ public class PhotoStore : DbStore<Photo> {
 		foreach (Photo photo in new_photos) {
 			AddToCache (photo);
 			photo_ids = photo_ids + Convert.ToString(photo.Id) + ",";
-			need_load |= !photo.Loaded;
+			need_load |= !photo.AllVersionsLoaded;
 		}
 
 		photo_ids = photo_ids + "-1)";
@@ -791,7 +791,7 @@ public class PhotoStore : DbStore<Photo> {
 			GetAllTags (photo_ids);
 			GetAllVersions (photo_ids);
 			foreach (Photo photo in new_photos)
-				photo.Loaded = true;
+				photo.AllVersionsLoaded = true;
 		} else {
 			//Console.WriteLine ("Skipped Loading Data");
 		}
