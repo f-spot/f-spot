@@ -2,4 +2,7 @@
   <dllmap dll="libgobject-2.0-0.dll" target="libgobject-2.0.so.0"/>
   <dllmap dll="libfspot" target="@expanded_libdir@/f-spot/libfspot.so.0"/>
   <dllmap dll="libfspotjpeg" target="@expanded_libdir@/f-spot/libfspotjpg.so.0"/>
+  <dllmap dll="libgdk-2.0-0.dll" target="libgdk-x11-2.0.so.0"/>
+  <dllmap dll="libgtk-win32-2.0-0.dll" target="libgtk-x11-2.0.so.0"/>
+  <dllmap dll="libXcomposite.dll" target="libXcomposite.so.1"/>
 </configuration>
