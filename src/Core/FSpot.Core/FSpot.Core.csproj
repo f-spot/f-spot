@@ -30,7 +30,6 @@
     <Compile Include="FSpot.Core\DbItem.cs" />
     <Compile Include="FSpot.Core\Tag.cs" />
     <Compile Include="FSpot.Core\Global.cs" />
-    <Compile Include="FSpot.Core\FileBrowsableItem.cs" />
     <Compile Include="FSpot.Core\IBrowsableItemChanges.cs" />
     <Compile Include="FSpot.Core\IBrowsableCollection.cs" />
     <Compile Include="FSpot.Core\ILoadable.cs" />
@@ -43,6 +42,7 @@
     <Compile Include="FSpot.Core\IPhotoComparer.cs" />
     <Compile Include="FSpot.Core\IPhotoVersion.cs" />
     <Compile Include="FSpot.Core\IPhotoVersionable.cs" />
+    <Compile Include="FSpot.Core\FilePhoto.cs" />
   </ItemGroup>
   <ProjectExtensions>
     <MonoDevelop>

@@ -1,5 +1,5 @@
 /*
- * FileBrowsableItem.cs
+ * FilePhoto.cs
  *
  * Author(s):
  *	Larry Ewing  (lewing@novell.com)
@@ -19,29 +19,28 @@ using FSpot.Utils;
 
 using Mono.Unix.Native;
 
-namespace FSpot.Core {
-    public class FileBrowsableItem : IPhoto
+namespace FSpot.Core
+{
+    public class FilePhoto : IPhoto
     {
         bool metadata_parsed = false;
 
-        public FileBrowsableItem (SafeUri uri)
+        public FilePhoto (SafeUri uri)
         {
-            DefaultVersion = new FileBrowsableItemVersion () {
-                Uri = uri
-            };
+            DefaultVersion = new FilePhotoVersion { Uri = uri };
         }
 
         private void EnsureMetadataParsed ()
         {
             if (metadata_parsed)
                 return;
-
+            
             using (var metadata = Metadata.Parse (DefaultVersion.Uri)) {
                 var date = metadata.ImageTag.DateTime;
                 time = date.HasValue ? date.Value : CreateDate;
                 description = metadata.ImageTag.Comment;
             }
-
+            
             metadata_parsed = true;
         }
 
@@ -52,10 +51,8 @@ namespace FSpot.Core {
             }
         }
 
-        public Tag [] Tags {
-            get {
-                return null;
-            }
+        public Tag[] Tags {
+            get { return null; }
         }
 
         private DateTime time;
@@ -68,9 +65,11 @@ namespace FSpot.Core {
 
         public IPhotoVersion DefaultVersion { get; private set; }
 
-		public IEnumerable<IPhotoVersion> Versions {
-			get { yield return DefaultVersion; }
-		}
+        public IEnumerable<IPhotoVersion> Versions {
+            get {
+                yield return DefaultVersion;
+            }
+        }
 
         private string description;
         public string Description {
@@ -81,23 +80,29 @@ namespace FSpot.Core {
         }
 
         public string Name {
-            get {
-                return DefaultVersion.Uri.GetFilename ();
-            }
+            get { return DefaultVersion.Uri.GetFilename (); }
         }
 
         public uint Rating {
-            get {
-                return 0; //FIXME ndMaxxer: correct?
-            }
+                //FIXME ndMaxxer: correct?
+            get { return 0; }
         }
 
-        private class FileBrowsableItemVersion : IPhotoVersion {
-            public string Name { get { return String.Empty; } }
-            public bool IsProtected { get { return true; } }
+        private class FilePhotoVersion : IPhotoVersion
+        {
+            public string Name {
+                get { return String.Empty; }
+            }
+            public bool IsProtected {
+                get { return true; }
+            }
 
-            public SafeUri BaseUri { get { return Uri.GetBaseUri (); } }
-            public string Filename { get { return Uri.GetFilename (); } }
+            public SafeUri BaseUri {
+                get { return Uri.GetBaseUri (); }
+            }
+            public string Filename {
+                get { return Uri.GetFilename (); }
+            }
             public SafeUri Uri { get; set; }
 
             private string import_md5 = String.Empty;

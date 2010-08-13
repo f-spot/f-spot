@@ -141,7 +141,7 @@ namespace FSpot.Import
         }
     }
 
-    internal class FileImportInfo : FileBrowsableItem {
+    internal class FileImportInfo : FilePhoto {
         public FileImportInfo (SafeUri original) : base (original)
         {
         }

@@ -43,7 +43,7 @@ namespace FSpot {
 		{
 			if (ImageFile.HasLoader (uri)) {
 				//Console.WriteLine ("using image loader {0}", uri.ToString ());
-				Add (new FileBrowsableItem (uri));
+				Add (new FilePhoto (uri));
 			} else {
 				GLib.FileInfo info = FileFactory.NewForUri (uri).QueryInfo ("standard::type,standard::content-type", FileQueryInfoFlags.None, null);
 
@@ -79,12 +79,12 @@ namespace FSpot {
 				ns.AddNamespace ("pheed", "http://www.pheed.com/pheed/");
 				ns.AddNamespace ("apple", "http://www.apple.com/ilife/wallpapers");
 
-				ArrayList items = new ArrayList ();
+				List<FilePhoto> items = new List<FilePhoto> ();
 				XmlNodeList list = doc.SelectNodes ("/rss/channel/item/media:content", ns);
 				foreach (XmlNode item in list) {
 					SafeUri image_uri = new SafeUri (item.Attributes ["url"].Value);
 					Hyena.Log.DebugFormat ("flickr uri = {0}", image_uri.ToString ());
-					items.Add (new FileBrowsableItem (image_uri));
+					items.Add (new FilePhoto (image_uri));
 				}
 
 				if (list.Count < 1) {
@@ -92,7 +92,7 @@ namespace FSpot {
 					foreach (XmlNode item in list) {
 						SafeUri image_uri = new SafeUri (item.InnerText.Trim ());
 						Hyena.Log.DebugFormat ("pheed uri = {0}", uri);
-						items.Add (new FileBrowsableItem (image_uri));
+						items.Add (new FilePhoto (image_uri));
 					}
 				}
 
@@ -101,10 +101,10 @@ namespace FSpot {
 					foreach (XmlNode item in list) {
 						SafeUri image_uri = new SafeUri (item.InnerText.Trim ());
 						Hyena.Log.DebugFormat ("apple uri = {0}", uri);
-						items.Add (new FileBrowsableItem (image_uri));
+						items.Add (new FilePhoto (image_uri));
 					}
 				}
-				collection.Add (items.ToArray (typeof (FileBrowsableItem)) as FileBrowsableItem []);
+				collection.Add (items.ToArray ());
 			}
 		}
 
@@ -127,12 +127,12 @@ namespace FSpot {
 
 			void InfoLoaded (GLib.Object o, GLib.AsyncResult res)
 			{
-				List<FileBrowsableItem> items = new List<FileBrowsableItem> ();
+				List<FilePhoto> items = new List<FilePhoto> ();
 				foreach (GLib.FileInfo info in file.EnumerateChildrenFinish (res)) {
 					SafeUri i = new SafeUri (file.GetChild (info.Name).Uri);
 					Hyena.Log.DebugFormat ("testing uri = {0}", i);
 					if (ImageFile.HasLoader (i))
-						items.Add (new FileBrowsableItem (i));
+						items.Add (new FilePhoto (i));
 				}
 				ThreadAssist.ProxyToMain (() => {
 					collection.Add (items.ToArray ());
@@ -146,7 +146,7 @@ namespace FSpot {
 			foreach (var f in files) {
 				if (ImageFile.HasLoader (new SafeUri (f.FullName))) {
 					Hyena.Log.Debug (f.FullName);
-					items.Add (new FileBrowsableItem (new SafeUri (f.FullName)));
+					items.Add (new FilePhoto (new SafeUri (f.FullName)));
 				}
 			}
 
