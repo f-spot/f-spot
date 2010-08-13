@@ -22,8 +22,8 @@ namespace FSpot {
 
 		private Gtk.Button left;
 		private Gtk.Button right;
-		private Delay left_delay;
-		private Delay right_delay;
+		private DelayedOperation left_delay;
+		private DelayedOperation right_delay;
 
 		private Gdk.Window event_window;
 
@@ -533,7 +533,7 @@ namespace FSpot {
 
 		public abstract class Manipulator {
 			protected GroupSelector selector;
-			protected Delay timer;
+			protected DelayedOperation timer;
 			public bool Dragging;
 			public bool UpdateGlass;
 			public bool GlassUpdating;
@@ -542,7 +542,7 @@ namespace FSpot {
 			public Manipulator (GroupSelector selector)
 			{
 				this.selector = selector;
-				timer = new Delay (50, new GLib.IdleHandler (DragTimeout));
+				timer = new DelayedOperation (50, new GLib.IdleHandler (DragTimeout));
 			}
 
 			protected int drag_offset;
@@ -1124,7 +1124,7 @@ namespace FSpot {
 			//left.Clicked += HandleScrollLeft;
 			left.Pressed += HandleLeftPressed;
 			left.ButtonReleaseEvent += HandleScrollReleaseEvent;
-			left_delay = new Delay (50, new GLib.IdleHandler (HandleScrollLeft));
+			left_delay = new DelayedOperation (50, new GLib.IdleHandler (HandleScrollLeft));
 
 			right = new Gtk.Button ();
 			//right.Add (new Gtk.Image (Gtk.Stock.GoForward, Gtk.IconSize.Button));
@@ -1132,7 +1132,7 @@ namespace FSpot {
 			right.Relief = Gtk.ReliefStyle.None;
 			right.Pressed += HandleRightPressed;
 			right.ButtonReleaseEvent += HandleScrollReleaseEvent;
-			right_delay = new Delay (50, new GLib.IdleHandler (HandleScrollRight));
+			right_delay = new DelayedOperation (50, new GLib.IdleHandler (HandleScrollRight));
 			//right.Clicked += HandleScrollRight;
 
 			this.Put (left, 0, 0);

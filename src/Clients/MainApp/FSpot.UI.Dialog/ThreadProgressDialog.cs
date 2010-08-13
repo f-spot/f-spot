@@ -16,11 +16,11 @@ using System.Collections.Generic;
 
 using Gtk;
 
-using FSpot.Core;
+using FSpot.Utils;
 
 namespace FSpot.UI.Dialog {
 	public class ThreadProgressDialog : Gtk.Dialog {
-		Delay delay;
+		DelayedOperation delay;
 
 		Gtk.ProgressBar progress_bar;
 		Gtk.Label message_label;
@@ -65,7 +65,7 @@ namespace FSpot.UI.Dialog {
 			button_label = Gtk.Stock.Cancel;
 			button = (Gtk.Button) AddButton (button_label, (int)Gtk.ResponseType.Cancel);
 
-			delay = new Delay (new GLib.IdleHandler (HandleUpdate));
+			delay = new DelayedOperation (new GLib.IdleHandler (HandleUpdate));
 
 			Response += HandleResponse;
 			Destroyed += HandleDestroy;

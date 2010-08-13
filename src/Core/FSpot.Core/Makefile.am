@@ -10,7 +10,6 @@ SOURCES =  \
 	FSpot.Core/Category.cs \
 	FSpot.Core/DbItem.cs \
 	FSpot.Core/Defines.cs \
-	FSpot.Core/Delay.cs \
 	FSpot.Core/FileBrowsableItem.cs \
 	FSpot.Core/Global.cs \
 	FSpot.Core/IBrowsableCollection.cs \

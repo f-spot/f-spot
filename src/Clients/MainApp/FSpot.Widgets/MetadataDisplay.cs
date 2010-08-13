@@ -17,6 +17,7 @@ using Gtk;
 using Mono.Unix;
 
 using FSpot.Core;
+using FSpot.Utils;
 using FSpot.Extensions;
 using FSpot.Imaging;
 
@@ -37,7 +38,7 @@ namespace FSpot.Widgets {
 	}
 
 	public class MetadataDisplayWidget : ScrolledWindow {
-		Delay update_delay;
+		DelayedOperation update_delay;
 
 		/* 	This VBox only contains exif-data,
 			so it is seperated from other information */
@@ -112,7 +113,7 @@ namespace FSpot.Widgets {
 			main_vbox.PackStart (expander, false, false, 6);
 			expander.ShowAll ();
 
-			update_delay = new Delay (Update);
+			update_delay = new DelayedOperation (Update);
 			update_delay.Start ();
 		}
 

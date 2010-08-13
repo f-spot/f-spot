@@ -303,7 +303,7 @@ namespace FSpot.Widgets {
 
 		bool dragging = false;
 		bool rotate = false;
-		Delay drag;
+		DelayedOperation drag;
 		Gdk.Point pos;
 		double start_angle = 0;
 		Gdk.Point root_pos;
@@ -485,7 +485,7 @@ namespace FSpot.Widgets {
 			MotionNotifyEvent += HandleMotionNotifyEvent;
 			KeyPressEvent += HandleKeyPressEvent;
 
-			drag = new Delay (20, new GLib.IdleHandler (DragUpdate));
+			drag = new DelayedOperation (20, new GLib.IdleHandler (DragUpdate));
 
 			// Update the cursor appropriate to indicate dragability/dragging
 			bool inside = false, pressed = false;

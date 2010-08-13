@@ -1,12 +1,12 @@
 using System;
 using Gtk;
-using FSpot.Core;
+using FSpot.Utils;
 
 namespace FSpot.Widgets {
 	public class ScrolledView : Fixed {
 		private EventBox ebox;
 		private ScrolledWindow scroll;
-		private Delay hide;
+		private DelayedOperation hide;
 
 		public ScrolledView (IntPtr raw) : base (raw) {}
 
@@ -20,7 +20,7 @@ namespace FSpot.Widgets {
 			this.Put (ebox, 0, 0);
 			ebox.ShowAll ();
 			
-			hide = new Delay (2000, new GLib.IdleHandler (HideControls));
+			hide = new DelayedOperation (2000, new GLib.IdleHandler (HideControls));
 			this.Destroyed += HandleDestroyed;
 		}
 

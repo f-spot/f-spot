@@ -110,7 +110,7 @@ namespace FSpot.UI.Dialog
 
 			image_view.Show ();
 
-			Delay fill_delay = new Delay (FillIconView);
+			DelayedOperation fill_delay = new DelayedOperation (FillIconView);
 			fill_delay.Start ();
 		}
 

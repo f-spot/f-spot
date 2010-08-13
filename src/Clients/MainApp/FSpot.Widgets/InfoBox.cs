@@ -31,7 +31,7 @@ using Hyena;
 namespace FSpot.Widgets
 {
 	public class InfoBox : VBox {
-		Delay update_delay;
+		DelayedOperation update_delay;
 
 		private IPhoto [] photos = new IPhoto [0];
 		public IPhoto [] Photos {
@@ -86,7 +86,7 @@ namespace FSpot.Widgets
 		private Gtk.Image histogram_image;
 		private Histogram histogram;
 
-		private Delay histogram_delay;
+		private DelayedOperation histogram_delay;
 
 		// Context switching (toggles visibility).
 		public event EventHandler ContextChanged;
@@ -798,10 +798,10 @@ namespace FSpot.Widgets
 
 			SetupWidgets ();
 
-			update_delay = new Delay (Update);
+			update_delay = new DelayedOperation (Update);
 			update_delay.Start ();
 
-			histogram_delay = new Delay (DelayedUpdateHistogram);
+			histogram_delay = new DelayedOperation (DelayedUpdateHistogram);
 
 			BorderWidth = 2;
 			Hide ();

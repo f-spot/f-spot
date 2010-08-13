@@ -24,9 +24,9 @@ namespace FSpot {
 		bool composited;
 		VisibilityType visibility;
 		int round = 12;
-		Delay hide;
-		Delay fade;
-		Delay dismiss;
+		DelayedOperation hide;
+		DelayedOperation fade;
+		DelayedOperation dismiss;
 		bool auto_hide = true;
 		double x_align = 0.5;
 		double y_align = 1.0;
@@ -100,9 +100,9 @@ namespace FSpot {
 			host_toplevel.SizeAllocated += HandleHostSizeAllocated;
 
 			AddEvents ((int) (Gdk.EventMask.PointerMotionMask));
-			hide = new Delay (2000, HideControls);
-			fade = new Delay (40, FadeToTarget);
-			dismiss = new Delay (2000, delegate { /* do nothing */ return false; });
+			hide = new DelayedOperation (2000, HideControls);
+			fade = new DelayedOperation (40, FadeToTarget);
+			dismiss = new DelayedOperation (2000, delegate { /* do nothing */ return false; });
 		}
 
 		protected override void OnDestroyed ()

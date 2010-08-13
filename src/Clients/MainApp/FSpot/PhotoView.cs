@@ -26,7 +26,7 @@ using FSpot.UI.Dialog;
 
 namespace FSpot {
 	public class PhotoView : EventBox {
-		Delay commit_delay;
+		DelayedOperation commit_delay;
 
 		private PhotoImageView photo_view;
 		private ScrolledWindow photo_view_scrolled;
@@ -288,7 +288,7 @@ namespace FSpot {
 		{
 			this.query = query;
 
-			commit_delay = new Delay (1000, new GLib.IdleHandler (CommitPendingChanges));
+			commit_delay = new DelayedOperation (1000, new GLib.IdleHandler (CommitPendingChanges));
 			this.Destroyed += HandleDestroy;
 
 			Name = "ImageContainer";

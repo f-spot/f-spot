@@ -27,7 +27,7 @@ namespace FSpot {
 		private SlideShow display;
 		private ToolButton play_pause_button;
 		private ToggleToolButton info_button;
-		private Delay hide_cursor_delay;
+		private DelayedOperation hide_cursor_delay;
 
 		ActionGroup actions;
 		const string ExitFullScreen = "ExitFullScreen";
@@ -171,7 +171,7 @@ namespace FSpot {
 				view.Item.Changed += HandleItemChanged;
 				view.GrabFocus ();
 
-				hide_cursor_delay = new Delay (3000, new GLib.IdleHandler (HideCursor));
+				hide_cursor_delay = new DelayedOperation (3000, new GLib.IdleHandler (HideCursor));
 				hide_cursor_delay.Start ();
 
 				controls = new ControlOverlay (this);

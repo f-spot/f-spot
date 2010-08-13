@@ -18,6 +18,7 @@ using FSpot.Bling;
 using FSpot.Extensions;
 using FSpot.Imaging;
 using FSpot.Transitions;
+using FSpot.Utils;
 
 namespace FSpot.Widgets
 {
@@ -46,7 +47,7 @@ namespace FSpot.Widgets
 				transitions.Add (transition.Transition);
 			}
 
-			flip = new Delay (interval_ms, delegate {item.MoveNext (true); return true;});
+			flip = new DelayedOperation (interval_ms, delegate {item.MoveNext (true); return true;});
 			animation = new DoubleAnimation (0, 1, new TimeSpan (0, 0, 2), HandleProgressChanged, GLib.Priority.Default);
 
 			if (init) {
@@ -71,7 +72,7 @@ namespace FSpot.Widgets
 		}
 
 		DoubleAnimation animation;
-		Delay flip;
+		DelayedOperation flip;
 		public void Start ()
 		{
 			running = true;
