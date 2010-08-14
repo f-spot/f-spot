@@ -15,6 +15,9 @@ using System;
 using System.Reflection;
 using System.Collections;
 using System.IO;
+
+using Hyena.Gui;
+
 using FSpot.Core;
 using FSpot.Utils;
 using FSpot.Platform;
@@ -714,15 +717,6 @@ namespace FSpot.Widgets
 		}
 
 		// Layout and drawing.
-
-		// FIXME I can't find a c# wrapper for the C PANGO_PIXELS () macro
-		// So this Function is for that.
-		protected static int PangoPixels (int val)
-		{
-			return val >= 0 ? (val + 1024 / 2) / 1024 :
-				(val - 1024 / 2) / 1024;
-		}
-
 		protected virtual void UpdateLayout ()
 		{
 			UpdateLayout (Allocation);
@@ -744,17 +738,14 @@ namespace FSpot.Widgets
 			if (DisplayTags)
 				cell_details += tag_icon_size;
 
-			if (DisplayDates && this.Style != null) {
-				Pango.FontMetrics metrics = this.PangoContext.GetMetrics (this.Style.FontDescription,
-						Pango.Language.FromString ("en_US"));
-				cell_details += PangoPixels (metrics.Ascent + metrics.Descent);
-			}
+            if (DisplayDates && Style != null) {
+                cell_details += Style.FontDescription.MeasureTextHeight (PangoContext);
+            }
 
-			if (DisplayFilenames && this.Style != null) {
-				Pango.FontMetrics metrics = this.PangoContext.GetMetrics (this.Style.FontDescription,
-						Pango.Language.FromString ("en_US"));
-				cell_details += PangoPixels (metrics.Ascent + metrics.Descent);
-			}
+            if (DisplayFilenames && Style != null) {
+                cell_details += Style.FontDescription.MeasureTextHeight (PangoContext);
+            }
+
 			cell_height += cell_details;
 
 			displayed_rows = (int)Math.Max (available_height / cell_height, 1);
@@ -1006,9 +997,7 @@ namespace FSpot.Widgets
 					layout_bounds.Y -= tag_icon_size;
 
 				if (DisplayFilenames) {
-					Pango.FontMetrics metrics = this.PangoContext.GetMetrics (this.Style.FontDescription,
-							Pango.Language.FromString ("en_US"));
-					layout_bounds.Y -= PangoPixels (metrics.Ascent + metrics.Descent);
+					layout_bounds.Y -= Style.FontDescription.MeasureTextHeight (PangoContext);
 				}
 
 				if (layout_bounds.Intersect (area, out region)) {
