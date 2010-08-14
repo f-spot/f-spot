@@ -40,13 +40,15 @@ namespace FSpot.UI.Dialog {
 			TransientFor = parent;
 
 			//Photos Folder
-			if (FSpot.Core.Global.PhotoUri == new SafeUri (Preferences.Get<string> (Preferences.STORAGE_PATH))) {
-				photosdir_chooser.SetCurrentFolderUri (FSpot.Core.Global.PhotoUri);
+			photosdir_chooser.SetCurrentFolderUri (FSpot.Core.Global.PhotoUri);
+
+			SafeUri storage_path = new SafeUri (Preferences.Get<string> (Preferences.STORAGE_PATH));
+
+			//If the user has set a photo directory on the commandline then don't let it be changed in Preferences
+			if (storage_path.Equals(FSpot.Core.Global.PhotoUri))
 				photosdir_chooser.CurrentFolderChanged += HandlePhotosdirChanged;
-			} else {
-				photosdir_chooser.SetCurrentFolderUri (FSpot.Core.Global.PhotoUri);
+			else
 				photosdir_chooser.Sensitive = false;
-			}
 
 			//Write Metadata
 			LoadPreference (Preferences.METADATA_EMBED_IN_IMAGE);
