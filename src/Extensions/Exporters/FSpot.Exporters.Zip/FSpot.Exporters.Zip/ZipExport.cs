@@ -31,12 +31,12 @@ using ICSharpCode.SharpZipLib.GZip;
 namespace FSpot.Exporters.Zip {
 	public class Zip : IExporter {
 
-		[Glade.Widget] Gtk.Dialog zipdiag;
-		[Glade.Widget] Gtk.HBox dirchooser_hbox;
-		[Glade.Widget] Gtk.CheckButton scale_check;
-		[Glade.Widget] Gtk.Entry filename;
-		[Glade.Widget] Gtk.SpinButton scale_size;
-		[Glade.Widget] Gtk.Button create_button;
+		[GtkBeans.Builder.Object] Gtk.Dialog zipdiag;
+		[GtkBeans.Builder.Object] Gtk.HBox dirchooser_hbox;
+		[GtkBeans.Builder.Object] Gtk.CheckButton scale_check;
+		[GtkBeans.Builder.Object] Gtk.Entry filename;
+		[GtkBeans.Builder.Object] Gtk.SpinButton scale_size;
+		[GtkBeans.Builder.Object] Gtk.Button create_button;
 
 		IPhoto [] photos;
 		Gtk.FileChooserButton uri_chooser;
@@ -58,8 +58,8 @@ namespace FSpot.Exporters.Zip {
 		}
 
 		public void ShowDialog () {
-			Glade.XML xml = new Glade.XML (null, "ZipExport.glade", "zipdiag", "f-spot");
-			xml.Autoconnect (this);
+			var builder = new GtkBeans.Builder (null, "zip_export.ui", null);
+			builder.Autoconnect (this);
 			zipdiag.Modal = false;
 			zipdiag.TransientFor = null;
 

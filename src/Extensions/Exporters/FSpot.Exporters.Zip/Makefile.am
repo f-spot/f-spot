@@ -6,7 +6,7 @@ INSTALL_DIR = $(EXTENSIONS_INSTALL_DIR)
 SOURCES = FSpot.Exporters.Zip/ZipExport.cs
 
 RESOURCES =  \
-	Resources/ZipExport.addin.xml \
-	Resources/ZipExport.glade
+	Resources/zip_export.ui \
+	Resources/ZipExport.addin.xml
 
 include $(top_srcdir)/build/build.mk

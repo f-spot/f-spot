@@ -38,8 +38,8 @@
     <EmbeddedResource Include="Resources\ZipExport.addin.xml">
       <LogicalName>ZipExport.addin.xml</LogicalName>
     </EmbeddedResource>
-    <EmbeddedResource Include="Resources\ZipExport.glade">
-      <LogicalName>ZipExport.glade</LogicalName>
+    <EmbeddedResource Include="Resources\zip_export.ui">
+      <LogicalName>zip_export.ui</LogicalName>
     </EmbeddedResource>
   </ItemGroup>
   <ProjectExtensions>
@@ -81,6 +81,14 @@
     <Reference Include="ICSharpCode.SharpZipLib" />
     <Reference Include="glade-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
     <Reference Include="System" />
+    <Reference Include="gtk-sharp-beans, Version=2.14.0.0, Culture=neutral, PublicKeyToken=97a95fb57b03c03a">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\lib\gtk-sharp-beans\gtk-sharp-beans.dll</HintPath>
+    </Reference>
+    <Reference Include="gio-sharp, Version=2.14.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\lib\gio-sharp\gio\gio-sharp.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
