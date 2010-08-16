@@ -9,6 +9,7 @@
 using System;
 using System.Text;
 using System.Linq;
+using System.IO;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -2288,30 +2289,39 @@ namespace FSpot
 				return;
 			}
 
-			clipboard.SetWithData (new TargetEntry[] {
-						DragDropTargets.PlainTextEntry,
-						DragDropTargets.UriListEntry,
-						DragDropTargets.CopyFilesEntry,},
-					delegate (Clipboard clip, SelectionData data, uint info) {
-						var paths = new List<string> ();
-						var uris = new List<string> ();
-						foreach (Photo p in SelectedPhotos ()) {
-							paths.Add (System.IO.Path.GetFullPath (p.DefaultVersion.Uri.LocalPath));
-							uris.Add (p.DefaultVersion.Uri.ToString ());
-						}
-						data.Text = String.Join (" ", paths.ToArray ());
-						data.SetUris (String.Join (" ", uris.ToArray ()));
-						data.Set (Atom.Intern ("x-special/gnome-copied-files", true), 8, System.Text.Encoding.UTF8.GetBytes ("copy\n" + String.Join ("\n", uris.ToArray ())));
+            var target_entries = new TargetEntry[] {
+                DragDropTargets.PlainTextEntry,
+                DragDropTargets.UriListEntry,
+                DragDropTargets.CopyFilesEntry};
 
-					},
-					delegate {});
+            // use eager evaluation, because we want to copy the photos which are currently selected ...
+            var uris = new UriList (from p in SelectedPhotos () select p.DefaultVersion.Uri);
+            var paths = String.Join (" ",
+                                     (from p in SelectedPhotos ()
+                                      select p.DefaultVersion.Uri.LocalPath).ToArray ()
+                                     );
 
-			var pt = new List<string> ();
-			foreach (Photo p in SelectedPhotos ()) {
-				pt.Add (System.IO.Path.GetFullPath (p.DefaultVersion.Uri.LocalPath));
-			}
+            clipboard.SetWithData (target_entries, delegate (Clipboard clip, SelectionData data, uint info) {
 
-			primary.Text = String.Join (" ", pt.ToArray ());
+                if (info == DragDropTargets.PlainTextEntry.Info) {
+                    data.Text = paths;
+                    return;
+                }
+
+                if (info == DragDropTargets.UriListEntry.Info) {
+                     data.SetUriListData (uris);
+                    return;
+                }
+
+                if (info == DragDropTargets.CopyFilesEntry.Info) {
+                    data.SetCopyFiles (uris);
+                    return;
+                }
+
+                Log.DebugFormat ("Unknown Selection Data Target (info: {0})", info);
+            }, delegate {});
+
+			primary.Text = paths;
 		}
 
 		void HandleSetAsBackgroundCommand (object sender, EventArgs args)
