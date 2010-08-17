@@ -20,17 +20,15 @@ using SmugMugNet;
 namespace FSpot.Exporters.SmugMug
 {
 	public class SmugMugAddAlbum {
-		//[Glade.Widget] Gtk.OptionMenu album_optionmenu;
+		[GtkBeans.Builder.Object] Gtk.Dialog dialog;
+		[GtkBeans.Builder.Object] Gtk.Entry title_entry;
+		[GtkBeans.Builder.Object] Gtk.CheckButton public_check;
+		[GtkBeans.Builder.Object] Gtk.ComboBox category_combo;
 
-		[Glade.Widget] Gtk.Dialog dialog;
-		[Glade.Widget] Gtk.Entry title_entry;
-		[Glade.Widget] Gtk.CheckButton public_check;
-		[Glade.Widget] Gtk.ComboBox category_combo;
-
-		[Glade.Widget] Gtk.Button add_button;
+		[GtkBeans.Builder.Object] Gtk.Button add_button;
 
 		private string dialog_name = "smugmug_add_album_dialog";
-		private Glade.XML xml;
+		private GtkBeans.Builder builder;
 		private SmugMugExport export;
 		private SmugMugApi smugmug;
 		private string title;
@@ -38,8 +36,8 @@ namespace FSpot.Exporters.SmugMug
 
 		public SmugMugAddAlbum (SmugMugExport export, SmugMugApi smugmug)
 		{
-			xml = new Glade.XML (null, "SmugMugExport.glade", dialog_name, "f-spot");
-			xml.Autoconnect (this);
+			builder = new GtkBeans.Builder (null, "smugmug_add_album_dialog.ui", null);
+			builder.Autoconnect (this);
 
 			this.export = export;
 			this.smugmug = smugmug;
@@ -108,7 +106,7 @@ namespace FSpot.Exporters.SmugMug
 		private Gtk.Dialog Dialog {
 			get {
 				if (dialog == null)
-					dialog = (Gtk.Dialog) xml.GetWidget (dialog_name);
+					dialog = new Gtk.Dialog (builder.GetRawObject (dialog_name));
 
 				return dialog;
 			}

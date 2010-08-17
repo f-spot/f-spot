@@ -35,8 +35,19 @@ namespace FSpot.Exporters.SmugMug {
 		public SmugMugExport () {}
 		public void Run (IBrowsableCollection selection)
 		{
-			xml = new Glade.XML (null, "SmugMugExport.glade", dialog_name, "f-spot");
-			xml.Autoconnect (this);
+			builder = new GtkBeans.Builder (null, "smugmug_export_dialog.ui", null);
+			builder.Autoconnect (this);
+
+            gallery_optionmenu = new Gtk.OptionMenu ();
+            album_optionmenu = new Gtk.OptionMenu ();
+
+            (edit_button.Parent as Gtk.HBox).PackStart (gallery_optionmenu);
+            (album_button.Parent as Gtk.HBox).PackStart (album_optionmenu);
+            (edit_button.Parent as Gtk.HBox).ReorderChild (gallery_optionmenu, 1);
+            (album_button.Parent as Gtk.HBox).ReorderChild (album_optionmenu, 1);
+
+            gallery_optionmenu.Show ();
+            album_optionmenu.Show ();
 
 			this.items = selection.Items;
 			album_button.Sensitive = false;
@@ -59,7 +70,6 @@ namespace FSpot.Exporters.SmugMug {
 			if (edit_button != null)
 				edit_button.Clicked += HandleEditGallery;
 
-			rh = new Gtk.ResponseHandler (HandleResponse);
 			Dialog.Response += HandleResponse;
 			connect = true;
 			HandleSizeActive (null, null);
@@ -69,8 +79,6 @@ namespace FSpot.Exporters.SmugMug {
 			LoadPreference (SIZE_KEY);
 			LoadPreference (BROWSER_KEY);
 		}
-
-		Gtk.ResponseHandler rh;
 
 		private bool scale;
 		private int size;
@@ -89,28 +97,24 @@ namespace FSpot.Exporters.SmugMug {
 		private Album album;
 
 		private string dialog_name = "smugmug_export_dialog";
-		private Glade.XML xml;
-
-		// Dialogs
-		private SmugMugAccountDialog gallery_add;
-		private SmugMugAddAlbum album_add;
+		private GtkBeans.Builder builder;
 
 		// Widgets
-		[Glade.Widget] Gtk.Dialog dialog;
-		[Glade.Widget] Gtk.OptionMenu gallery_optionmenu;
-		[Glade.Widget] Gtk.OptionMenu album_optionmenu;
+		[GtkBeans.Builder.Object] Gtk.Dialog dialog;
+		Gtk.OptionMenu gallery_optionmenu;
+		Gtk.OptionMenu album_optionmenu;
 
-		[Glade.Widget] Gtk.CheckButton browser_check;
-		[Glade.Widget] Gtk.CheckButton scale_check;
+		[GtkBeans.Builder.Object] Gtk.CheckButton browser_check;
+		[GtkBeans.Builder.Object] Gtk.CheckButton scale_check;
 
-		[Glade.Widget] Gtk.SpinButton size_spin;
+		[GtkBeans.Builder.Object] Gtk.SpinButton size_spin;
 
-		[Glade.Widget] Gtk.Button album_button;
-		[Glade.Widget] Gtk.Button edit_button;
+		[GtkBeans.Builder.Object] Gtk.Button album_button;
+		[GtkBeans.Builder.Object] Gtk.Button edit_button;
 
-		[Glade.Widget] Gtk.Button export_button;
+		[GtkBeans.Builder.Object] Gtk.Button export_button;
 
-		[Glade.Widget] Gtk.ScrolledWindow thumb_scrolledwindow;
+		[GtkBeans.Builder.Object] Gtk.ScrolledWindow thumb_scrolledwindow;
 
 		System.Threading.Thread command_thread;
 
@@ -366,12 +370,12 @@ namespace FSpot.Exporters.SmugMug {
 
 		public void HandleAddGallery (object sender, System.EventArgs args)
 		{
-			gallery_add = new SmugMugAccountDialog (this.Dialog);
+			new SmugMugAccountDialog (this.Dialog);
 		}
 
 		public void HandleEditGallery (object sender, System.EventArgs args)
 		{
-			gallery_add = new SmugMugAccountDialog (this.Dialog, account);
+			new SmugMugAccountDialog (this.Dialog, account);
 		}
 
 		public void HandleAddAlbum (object sender, System.EventArgs args)
@@ -379,7 +383,7 @@ namespace FSpot.Exporters.SmugMug {
 			if (account == null)
 				throw new Exception (Catalog.GetString ("No account selected"));
 
-			album_add = new SmugMugAddAlbum (this, account.SmugMug);
+			new SmugMugAddAlbum (this, account.SmugMug);
 		}
 
 		void LoadPreference (string key)
@@ -410,7 +414,7 @@ namespace FSpot.Exporters.SmugMug {
 		private Gtk.Dialog Dialog {
 			get {
 				if (dialog == null)
-					dialog = (Gtk.Dialog) xml.GetWidget (dialog_name);
+					dialog = new Gtk.Dialog (builder.GetRawObject (dialog_name));
 
 				return dialog;
 			}

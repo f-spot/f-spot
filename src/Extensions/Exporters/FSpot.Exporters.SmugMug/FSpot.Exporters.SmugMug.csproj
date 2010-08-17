@@ -42,8 +42,14 @@
     <EmbeddedResource Include="Resources\SmugMugExport.addin.xml">
       <LogicalName>SmugMugExport.addin.xml</LogicalName>
     </EmbeddedResource>
-    <EmbeddedResource Include="Resources\SmugMugExport.glade">
-      <LogicalName>SmugMugExport.glade</LogicalName>
+    <EmbeddedResource Include="Resources\smugmug_add_album_dialog.ui">
+      <LogicalName>smugmug_add_album_dialog.ui</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\smugmug_add_dialog.ui">
+      <LogicalName>smugmug_add_dialog.ui</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\smugmug_export_dialog.ui">
+      <LogicalName>smugmug_export_dialog.ui</LogicalName>
     </EmbeddedResource>
   </ItemGroup>
   <ProjectExtensions>

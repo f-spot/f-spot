@@ -27,8 +27,8 @@ namespace FSpot.Exporters.SmugMug
 
 		public SmugMugAccountDialog (Gtk.Window parent, SmugMugAccount account)
 		{
-			xml = new Glade.XML (null, "SmugMugExport.glade", dialog_name, "f-spot");
-			xml.Autoconnect (this);
+			builder = new GtkBeans.Builder (null, "smugmug_add_dialog.ui", null);
+			builder.Autoconnect (this);
 
 			Dialog.Modal = false;
 			Dialog.TransientFor = parent;
@@ -90,7 +90,7 @@ namespace FSpot.Exporters.SmugMug
 		private Gtk.Dialog Dialog {
 			get {
 				if (dialog == null)
-					dialog = (Gtk.Dialog) xml.GetWidget (dialog_name);
+					dialog = new Gtk.Dialog (builder.GetRawObject (dialog_name));
 
 				return dialog;
 			}
@@ -100,14 +100,14 @@ namespace FSpot.Exporters.SmugMug
 		private string password;
 		private string username;
 		private string dialog_name = "smugmug_add_dialog";
-		private Glade.XML xml;
+		private GtkBeans.Builder builder;
 
 		// widgets
-		[Glade.Widget] Gtk.Dialog dialog;
-		[Glade.Widget] Gtk.Entry password_entry;
-		[Glade.Widget] Gtk.Entry username_entry;
+		[GtkBeans.Builder.Object] Gtk.Dialog dialog;
+		[GtkBeans.Builder.Object] Gtk.Entry password_entry;
+		[GtkBeans.Builder.Object] Gtk.Entry username_entry;
 
-		[Glade.Widget] Gtk.Button add_button;
-		[Glade.Widget] Gtk.Button remove_button;
+		[GtkBeans.Builder.Object] Gtk.Button add_button;
+		[GtkBeans.Builder.Object] Gtk.Button remove_button;
 	}
 }

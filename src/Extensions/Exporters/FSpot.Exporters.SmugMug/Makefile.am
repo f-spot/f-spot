@@ -11,7 +11,9 @@ SOURCES =  \
 	FSpot.Exporters.SmugMug/SmugMugExport.cs
 
 RESOURCES =  \
-	Resources/SmugMugExport.addin.xml \
-	Resources/SmugMugExport.glade
+	Resources/smugmug_add_album_dialog.ui \
+	Resources/smugmug_add_dialog.ui \
+	Resources/smugmug_export_dialog.ui \
+	Resources/SmugMugExport.addin.xml
 
 include $(top_srcdir)/build/build.mk
