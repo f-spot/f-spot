@@ -33,6 +33,10 @@
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Compile Include="FSpot.Exporters.SmugMug\SmugMugExport.cs" />
+    <Compile Include="FSpot.Exporters.SmugMug\SmugMugAccount.cs" />
+    <Compile Include="FSpot.Exporters.SmugMug\SmugMugAccountManager.cs" />
+    <Compile Include="FSpot.Exporters.SmugMug\SmugMugAccountDialog.cs" />
+    <Compile Include="FSpot.Exporters.SmugMug\SmugMugAddAlbum.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\SmugMugExport.addin.xml">
@@ -77,7 +81,6 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Gnome.Keyring, Version=1.0.0.0, Culture=neutral, PublicKeyToken=1a73e1bde00c9b66">
-      <Package>gnome-keyring-sharp-1.0</Package>
     </Reference>
     <Reference Include="System" />
     <Reference Include="Mono.Posix" />

@@ -3,7 +3,12 @@ TARGET = library
 LINK = $(REF_FSPOT_EXTENSION_SMUGMUGEXPORT)
 INSTALL_DIR = $(EXTENSIONS_INSTALL_DIR)
 
-SOURCES = FSpot.Exporters.SmugMug/SmugMugExport.cs
+SOURCES =  \
+	FSpot.Exporters.SmugMug/SmugMugAccount.cs \
+	FSpot.Exporters.SmugMug/SmugMugAccountDialog.cs \
+	FSpot.Exporters.SmugMug/SmugMugAccountManager.cs \
+	FSpot.Exporters.SmugMug/SmugMugAddAlbum.cs \
+	FSpot.Exporters.SmugMug/SmugMugExport.cs
 
 RESOURCES =  \
 	Resources/SmugMugExport.addin.xml \
