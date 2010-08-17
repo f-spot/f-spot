@@ -33,6 +33,10 @@
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Compile Include="FSpot.Exporters.PicasaWeb\PicasaWebExport.cs" />
+    <Compile Include="FSpot.Exporters.PicasaWeb\GoogleAddAlbum.cs" />
+    <Compile Include="FSpot.Exporters.PicasaWeb\GoogleAccountDialog.cs" />
+    <Compile Include="FSpot.Exporters.PicasaWeb\GoogleAccountManager.cs" />
+    <Compile Include="FSpot.Exporters.PicasaWeb\GoogleAccount.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\PicasaWebExport.addin.xml">
@@ -65,7 +69,6 @@
     <Reference Include="System" />
     <Reference Include="Mono.Posix" />
     <Reference Include="Gnome.Keyring, Version=1.0.0.0, Culture=neutral, PublicKeyToken=1a73e1bde00c9b66">
-      <Package>gnome-keyring-sharp-1.0</Package>
     </Reference>
     <Reference Include="gtk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
     <Reference Include="glade-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />

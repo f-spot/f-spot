@@ -3,7 +3,12 @@ TARGET = library
 LINK = $(REF_FSPOT_EXTENSION_PICASAWEBEXPORT)
 INSTALL_DIR = $(EXTENSIONS_INSTALL_DIR)
 
-SOURCES = FSpot.Exporters.PicasaWeb/PicasaWebExport.cs
+SOURCES =  \
+	FSpot.Exporters.PicasaWeb/GoogleAccount.cs \
+	FSpot.Exporters.PicasaWeb/GoogleAccountDialog.cs \
+	FSpot.Exporters.PicasaWeb/GoogleAccountManager.cs \
+	FSpot.Exporters.PicasaWeb/GoogleAddAlbum.cs \
+	FSpot.Exporters.PicasaWeb/PicasaWebExport.cs
 
 RESOURCES =  \
 	Resources/PicasaWebExport.addin.xml \
