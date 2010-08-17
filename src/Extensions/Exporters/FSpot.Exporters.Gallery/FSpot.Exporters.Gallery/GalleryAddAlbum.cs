@@ -20,15 +20,14 @@ namespace FSpot.Exporters.Gallery
 {
 	public class GalleryAddAlbum
 	{
-		[Glade.Widget] Gtk.Dialog add_album_dialog;
-		[Glade.Widget] Gtk.OptionMenu album_optionmenu;
+		[GtkBeans.Builder.Object] Gtk.Dialog add_album_dialog;
+		Gtk.OptionMenu album_optionmenu;
 
-		[Glade.Widget] Gtk.Entry name_entry;
-		[Glade.Widget] Gtk.Entry description_entry;
-		[Glade.Widget] Gtk.Entry title_entry;
+		[GtkBeans.Builder.Object] Gtk.Entry name_entry;
+		[GtkBeans.Builder.Object] Gtk.Entry description_entry;
+		[GtkBeans.Builder.Object] Gtk.Entry title_entry;
 
-		[Glade.Widget] Gtk.Button add_button;
-		[Glade.Widget] Gtk.Button cancel_button;
+		[GtkBeans.Builder.Object] Gtk.Button add_button;
 
 		private GalleryExport export;
 		private Gallery gallery;
@@ -39,10 +38,14 @@ namespace FSpot.Exporters.Gallery
 
 		public GalleryAddAlbum (GalleryExport export, Gallery gallery)
 		{
-			Glade.XML xml = new Glade.XML (null, "GalleryExport.glade", "gallery_add_album_dialog", "f-spot");
-			xml.Autoconnect (this);
-			add_album_dialog = (Gtk.Dialog) xml.GetWidget ("gallery_add_album_dialog");
+			var builder = new GtkBeans.Builder (null, "gallery_add_album_dialog.ui", null);
+			builder.Autoconnect (this);
+			add_album_dialog = new Gtk.Dialog (builder.GetRawObject ("gallery_add_album_dialog"));
 			add_album_dialog.Modal = true;
+
+			album_optionmenu = new Gtk.OptionMenu ();
+			(name_entry.Parent as Gtk.Table).Attach (album_optionmenu, 1, 2, 1, 2);
+
 			this.export = export;
 			this.gallery = gallery;
 			PopulateAlbums ();

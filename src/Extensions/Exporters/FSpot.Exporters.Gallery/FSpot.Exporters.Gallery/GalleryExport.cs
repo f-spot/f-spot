@@ -25,9 +25,15 @@ namespace FSpot.Exporters.Gallery
 
 		public void Run (IBrowsableCollection selection)
 		{
-			Glade.XML xml = new Glade.XML (null, "GalleryExport.glade", "gallery_export_dialog", "f-spot");
-			xml.Autoconnect (this);
-			export_dialog = (Gtk.Dialog) xml.GetWidget ("gallery_export_dialog");
+			var builder = new GtkBeans.Builder (null, "gallery_export_dialog.ui", null);
+			builder.Autoconnect (this);
+			export_dialog = new Gtk.Dialog (builder.GetRawObject ("gallery_export_dialog"));
+
+			album_optionmenu = new Gtk.OptionMenu ();
+			(album_button.Parent as Gtk.HBox).PackStart (album_optionmenu);
+
+			gallery_optionmenu = new Gtk.OptionMenu ();
+			(edit_button.Parent as Gtk.HBox).PackStart (gallery_optionmenu);
 
 			this.items = selection.Items;
 			Array.Sort<IPhoto> (this.items, new IPhotoComparer.CompareDateName());
@@ -82,30 +88,23 @@ namespace FSpot.Exporters.Gallery
 		private GalleryAccount account;
 		private Album album;
 
-		private string xml_path;
-
 		// Widgets
-		[Glade.Widget] Gtk.Dialog export_dialog;
-		[Glade.Widget] Gtk.OptionMenu gallery_optionmenu;
-		[Glade.Widget] Gtk.OptionMenu album_optionmenu;
+		[GtkBeans.Builder.Object] Gtk.Dialog export_dialog;
+		Gtk.OptionMenu gallery_optionmenu;
+		Gtk.OptionMenu album_optionmenu;
 
-		[Glade.Widget] Gtk.Entry width_entry;
-		[Glade.Widget] Gtk.Entry height_entry;
+		[GtkBeans.Builder.Object] Gtk.CheckButton browser_check;
+		[GtkBeans.Builder.Object] Gtk.CheckButton scale_check;
+		[GtkBeans.Builder.Object] Gtk.CheckButton meta_check;
 
-		[Glade.Widget] Gtk.CheckButton browser_check;
-		[Glade.Widget] Gtk.CheckButton scale_check;
-		[Glade.Widget] Gtk.CheckButton meta_check;
+		[GtkBeans.Builder.Object] Gtk.SpinButton size_spin;
 
-		[Glade.Widget] Gtk.SpinButton size_spin;
+		[GtkBeans.Builder.Object] Gtk.Button album_button;
+		[GtkBeans.Builder.Object] Gtk.Button edit_button;
 
-		[Glade.Widget] Gtk.Button album_button;
-		[Glade.Widget] Gtk.Button add_button;
-		[Glade.Widget] Gtk.Button edit_button;
+		[GtkBeans.Builder.Object] Gtk.Button export_button;
 
-		[Glade.Widget] Gtk.Button export_button;
-		[Glade.Widget] Gtk.Button cancel_button;
-
-		[Glade.Widget] Gtk.ScrolledWindow thumb_scrolledwindow;
+		[GtkBeans.Builder.Object] Gtk.ScrolledWindow thumb_scrolledwindow;
 
 		System.Threading.Thread command_thread;
 

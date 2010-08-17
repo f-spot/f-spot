@@ -13,7 +13,9 @@ SOURCES =  \
 	FSpot.Exporters.Gallery/GalleryRemote.cs
 
 RESOURCES =  \
-	Resources/GalleryExport.addin.xml \
-	Resources/GalleryExport.glade
+	Resources/gallery_add_album_dialog.ui \
+	Resources/gallery_add_dialog.ui \
+	Resources/gallery_export_dialog.ui \
+	Resources/GalleryExport.addin.xml
 
 include $(top_srcdir)/build/build.mk

@@ -26,9 +26,9 @@ namespace FSpot.Exporters.Gallery
 
 		public AccountDialog (Gtk.Window parent, GalleryAccount account, bool show_error)
 		{
-			Glade.XML xml = new Glade.XML (null, "GalleryExport.glade", "gallery_add_dialog", "f-spot");
-			xml.Autoconnect (this);
-			add_dialog = (Gtk.Dialog) xml.GetWidget ("gallery_add_dialog");
+			var builder = new GtkBeans.Builder (null, "gallery_add_dialog.ui", null);
+			builder.Autoconnect (this);
+			add_dialog = new Gtk.Dialog (builder.GetRawObject ("gallery_add_dialog"));
 			add_dialog.Modal = false;
 			add_dialog.TransientFor = parent;
 			add_dialog.DefaultResponse = Gtk.ResponseType.Ok;
@@ -182,17 +182,16 @@ namespace FSpot.Exporters.Gallery
 		private string username;
 
 		// widgets
-		[Glade.Widget] Gtk.Dialog add_dialog;
+		[GtkBeans.Builder.Object] Gtk.Dialog add_dialog;
 
-		[Glade.Widget] Gtk.Entry url_entry;
-		[Glade.Widget] Gtk.Entry password_entry;
-		[Glade.Widget] Gtk.Entry gallery_entry;
-		[Glade.Widget] Gtk.Entry username_entry;
+		[GtkBeans.Builder.Object] Gtk.Entry url_entry;
+		[GtkBeans.Builder.Object] Gtk.Entry password_entry;
+		[GtkBeans.Builder.Object] Gtk.Entry gallery_entry;
+		[GtkBeans.Builder.Object] Gtk.Entry username_entry;
 
-		[Glade.Widget] Gtk.Button add_button;
-		[Glade.Widget] Gtk.Button remove_button;
-		[Glade.Widget] Gtk.Button cancel_button;
+		[GtkBeans.Builder.Object] Gtk.Button add_button;
+		[GtkBeans.Builder.Object] Gtk.Button remove_button;
 
-		[Glade.Widget] Gtk.HBox status_area;
+		[GtkBeans.Builder.Object] Gtk.HBox status_area;
 	}
 }

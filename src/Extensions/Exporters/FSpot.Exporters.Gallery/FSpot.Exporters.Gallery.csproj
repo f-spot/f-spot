@@ -44,8 +44,14 @@
     <EmbeddedResource Include="Resources\GalleryExport.addin.xml">
       <LogicalName>GalleryExport.addin.xml</LogicalName>
     </EmbeddedResource>
-    <EmbeddedResource Include="Resources\GalleryExport.glade">
-      <LogicalName>GalleryExport.glade</LogicalName>
+    <EmbeddedResource Include="Resources\gallery_add_album_dialog.ui">
+      <LogicalName>gallery_add_album_dialog.ui</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\gallery_add_dialog.ui">
+      <LogicalName>gallery_add_dialog.ui</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\gallery_export_dialog.ui">
+      <LogicalName>gallery_export_dialog.ui</LogicalName>
     </EmbeddedResource>
   </ItemGroup>
   <ProjectExtensions>
