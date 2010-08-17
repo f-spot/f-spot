@@ -1,5 +1,7 @@
 using System;
+using System.Linq;
 using System.Collections;
+using System.Collections.Generic;
 
 using FSpot.Core;
 
@@ -8,15 +10,14 @@ namespace FSpot.Widgets
     public class SelectionCollection : IBrowsableCollection
     {
         IBrowsableCollection parent;
-        Hashtable selected_cells;
+        Dictionary<IPhoto, int> selected_cells;
         BitArray bit_array;
-        int [] selection;
         IPhoto [] items;
         IPhoto [] old;
 
         public SelectionCollection (IBrowsableCollection collection)
         {
-            this.selected_cells = new Hashtable ();
+            this.selected_cells = new Dictionary<IPhoto, int> ();
             this.parent = collection;
             this.bit_array = new BitArray (this.parent.Count);
             this.parent.Changed += HandleParentChanged;
@@ -52,9 +53,7 @@ namespace FSpot.Widgets
 
         public void MarkChanged (int item, IBrowsableItemChanges changes)
         {
-            // Forward the change event up to our parent
-            // we'll fire the event when the parent calls us back
-            parent.MarkChanged ((int) selected_cells [item], changes);
+            throw new NotImplementedException ();
         }
 
         private void HandleParentItemsChanged (IBrowsableCollection collection, BrowsableEventArgs args)
@@ -86,17 +85,8 @@ namespace FSpot.Widgets
 
         public int [] Ids {
             get {
-                if (selection != null)
-                    return selection;
-
-                selection = new int [selected_cells.Count];
-
-                int i = 0;
-                foreach (int cell in selected_cells.Values)
-                    selection [i ++] = cell;
-
-                Array.Sort (selection);
-                return selection;
+                // TODO: use IEnumerable<>
+                return (from i in selected_cells.Values orderby i select i).ToArray ();
             }
         }
 
@@ -291,27 +281,6 @@ namespace FSpot.Widgets
             SignalChange (changed_cell);
         }
 
-        public void SelectRect (int start_row, int end_row, int start_line, int end_line, int cells_per_row)
-        {
-            for (int row = start_row; row < end_row; row++)
-                for (int line = start_line; line < end_line; line++) {
-                    int index = line*cells_per_row + row;
-                    if (index < parent.Count)
-                        Add (index, false);
-                }
-        }
-
-        public void ToggleRect (int start_row, int end_row, int start_line, int end_line, int cells_per_row)
-        {
-            for  (int row = start_row; row < end_row; row++)
-                for (int line = start_line; line < end_line; line++) {
-                    int index = line*cells_per_row + row;
-                    if (index < parent.Count)
-                        ToggleCell (index, false);
-                }
-        }
-
-
         public event IBrowsableCollectionChangedHandler Changed;
         public event IBrowsableCollectionItemsChangedHandler ItemsChanged;
 
@@ -320,7 +289,6 @@ namespace FSpot.Widgets
 
         private void ClearCached ()
         {
-            selection = null;
             items = null;
         }
 
