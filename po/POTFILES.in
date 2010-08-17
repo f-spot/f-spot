@@ -103,7 +103,10 @@ src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExp
 [type: gettext/glade]src/Extensions/Exporters/FSpot.Exporters.Flickr/Resources/flickr_export.ui
 src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs
 [type: gettext/glade]src/Extensions/Exporters/FSpot.Exporters.Folder/Resources/folder_export.ui
+src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/AccountDialog.cs
 src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/FormClient.cs
+src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryAccount.cs
+src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryAddAlbum.cs
 src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryExport.cs
 src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryRemote.cs
 [type: gettext/glade]src/Extensions/Exporters/FSpot.Exporters.Gallery/Resources/GalleryExport.glade
@@ -123,7 +126,7 @@ src/Extensions/Tools/FSpot.Tools.LiveWebGallery/FSpot.Tools.LiveWebGallery/Galle
 src/Extensions/Tools/FSpot.Tools.LiveWebGallery/FSpot.Tools.LiveWebGallery/LiveWebGalleryDialog.cs
 [type: gettext/glade]src/Extensions/Tools/FSpot.Tools.LiveWebGallery/Resources/ui/LiveWebGallery.ui
 src/Extensions/Tools/FSpot.Tools.MergeDb/FSpot.Tools.MergeDb/MergeDb.cs
-[type: gettext/glade]src/Extensions/Tools/FSpot.Tools.MergeDb/Resources/MergeDb.glade
 src/Extensions/Tools/FSpot.Tools.MergeDb/FSpot.Tools.MergeDb/PickFolderDialog.cs
+[type: gettext/glade]src/Extensions/Tools/FSpot.Tools.MergeDb/Resources/MergeDb.glade
 [type: gettext/glade]src/Extensions/Tools/FSpot.Tools.ScreensaverConfig/Resources/ScreensaverConfigDialog.ui
 tools/f-spot-screensaver.desktop.in
