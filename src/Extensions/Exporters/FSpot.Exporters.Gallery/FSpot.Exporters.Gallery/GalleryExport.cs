@@ -31,9 +31,13 @@ namespace FSpot.Exporters.Gallery
 
 			album_optionmenu = new Gtk.OptionMenu ();
 			(album_button.Parent as Gtk.HBox).PackStart (album_optionmenu);
+			(album_button.Parent as Gtk.HBox).ReorderChild (album_optionmenu, 1);
+			album_optionmenu.Show ();
 
 			gallery_optionmenu = new Gtk.OptionMenu ();
 			(edit_button.Parent as Gtk.HBox).PackStart (gallery_optionmenu);
+			(edit_button.Parent as Gtk.HBox).ReorderChild (gallery_optionmenu, 1);
+			gallery_optionmenu.Show ();
 
 			this.items = selection.Items;
 			Array.Sort<IPhoto> (this.items, new IPhotoComparer.CompareDateName());

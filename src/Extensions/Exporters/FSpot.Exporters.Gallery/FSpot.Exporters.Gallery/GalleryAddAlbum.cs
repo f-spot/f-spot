@@ -45,6 +45,7 @@ namespace FSpot.Exporters.Gallery
 
 			album_optionmenu = new Gtk.OptionMenu ();
 			(name_entry.Parent as Gtk.Table).Attach (album_optionmenu, 1, 2, 1, 2);
+			album_optionmenu.Show ();
 
 			this.export = export;
 			this.gallery = gallery;
