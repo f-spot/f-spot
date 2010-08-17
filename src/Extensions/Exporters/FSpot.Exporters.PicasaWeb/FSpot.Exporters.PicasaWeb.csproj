@@ -42,8 +42,14 @@
     <EmbeddedResource Include="Resources\PicasaWebExport.addin.xml">
       <LogicalName>PicasaWebExport.addin.xml</LogicalName>
     </EmbeddedResource>
-    <EmbeddedResource Include="Resources\PicasaWebExport.glade">
-      <LogicalName>PicasaWebExport.glade</LogicalName>
+    <EmbeddedResource Include="Resources\google_add_album_dialog.ui">
+      <LogicalName>google_add_album_dialog.ui</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\google_add_dialog.ui">
+      <LogicalName>google_add_dialog.ui</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\google_export_dialog.ui">
+      <LogicalName>google_export_dialog.ui</LogicalName>
     </EmbeddedResource>
   </ItemGroup>
   <ProjectExtensions>

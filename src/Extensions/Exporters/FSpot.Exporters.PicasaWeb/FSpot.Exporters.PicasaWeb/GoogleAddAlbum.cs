@@ -21,17 +21,15 @@ using Mono.Google.Picasa;
 namespace FSpot.Exporters.PicasaWeb
 {
 	public class GoogleAddAlbum {
-		[Glade.Widget] Gtk.Dialog dialog;
-		[Glade.Widget] Gtk.OptionMenu album_optionmenu;
+		[GtkBeans.Builder.Object] Gtk.Dialog dialog;
 
-		[Glade.Widget] Gtk.Entry title_entry;
-		[Glade.Widget] Gtk.Entry description_entry;
-		[Glade.Widget] Gtk.CheckButton public_check;
+		[GtkBeans.Builder.Object] Gtk.Entry title_entry;
+		[GtkBeans.Builder.Object] Gtk.Entry description_entry;
+		[GtkBeans.Builder.Object] Gtk.CheckButton public_check;
 
-		[Glade.Widget] Gtk.Button add_button;
-		[Glade.Widget] Gtk.Button cancel_button;
+		[GtkBeans.Builder.Object] Gtk.Button add_button;
 
-		private Glade.XML xml;
+		private GtkBeans.Builder builder;
 		private string dialog_name = "google_add_album_dialog";
 
 		private GoogleExport export;
@@ -42,8 +40,8 @@ namespace FSpot.Exporters.PicasaWeb
 
 		public GoogleAddAlbum (GoogleExport export, Mono.Google.Picasa.PicasaWeb picasa)
 		{
-			xml = new Glade.XML (null, "PicasaWebExport.glade", dialog_name, "f-spot");
-			xml.Autoconnect (this);
+			builder = new GtkBeans.Builder (null, "google_add_album_dialog.glade", null);
+			builder.Autoconnect (this);
 
 			this.export = export;
 			this.picasa = picasa;
@@ -95,7 +93,7 @@ namespace FSpot.Exporters.PicasaWeb
 		private Gtk.Dialog Dialog {
 			get {
 				if (dialog == null)
-					dialog = (Gtk.Dialog) xml.GetWidget (dialog_name);
+					dialog = new Gtk.Dialog (builder.GetRawObject (dialog_name));
 
 				return dialog;
 			}

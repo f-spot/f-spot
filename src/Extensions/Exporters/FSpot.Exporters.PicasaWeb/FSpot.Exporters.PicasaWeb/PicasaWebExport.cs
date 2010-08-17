@@ -36,8 +36,19 @@ namespace FSpot.Exporters.PicasaWeb {
 
 		public void Run (IBrowsableCollection selection)
 		{
-			xml = new Glade.XML (null, "PicasaWebExport.glade", dialog_name, "f-spot");
-			xml.Autoconnect (this);
+			builder = new GtkBeans.Builder (null, "google_export_dialog.ui", null);
+			builder.Autoconnect (this);
+
+            gallery_optionmenu = new Gtk.OptionMenu ();
+            album_optionmenu = new Gtk.OptionMenu ();
+
+            (edit_button.Parent as Gtk.HBox).PackStart (gallery_optionmenu);
+            (album_button.Parent as Gtk.HBox).PackStart (album_optionmenu);
+            (edit_button.Parent as Gtk.HBox).ReorderChild (gallery_optionmenu, 1);
+            (album_button.Parent as Gtk.HBox).ReorderChild (album_optionmenu, 1);
+
+            gallery_optionmenu.Show ();
+            album_optionmenu.Show ();
 
 			this.items = selection.Items;
 			album_button.Sensitive = false;
@@ -51,7 +62,6 @@ namespace FSpot.Exporters.PicasaWeb {
 			thumb_scrolledwindow.Add (view);
 			view.Show ();
 			Dialog.Show ();
-
 
 			GoogleAccountManager manager = GoogleAccountManager.GetInstance ();
 			manager.AccountListChanged += PopulateGoogleOptionMenu;
@@ -69,14 +79,12 @@ namespace FSpot.Exporters.PicasaWeb {
 			LoadPreference (SCALE_KEY);
 			LoadPreference (SIZE_KEY);
 			LoadPreference (BROWSER_KEY);
-//			LoadPreference (Preferences.EXPORT_PICASAWEB_META);
 			LoadPreference (TAG_KEY);
 		}
 
 		private bool scale;
 		private int size;
 		private bool browser;
-//		private bool meta;
 		private bool export_tag;
 		private bool connect = false;
 
@@ -92,9 +100,7 @@ namespace FSpot.Exporters.PicasaWeb {
 		private PicasaAlbum album;
 		private PicasaAlbumCollection albums = null;
 
-		private string xml_path;
-
-		private Glade.XML xml;
+		private GtkBeans.Builder builder;
 		private string dialog_name = "google_export_dialog";
 
 		public const string EXPORT_SERVICE = "picasaweb/";
@@ -104,31 +110,25 @@ namespace FSpot.Exporters.PicasaWeb {
 		public const string TAG_KEY = Preferences.APP_FSPOT_EXPORT + EXPORT_SERVICE + "tag";
 
 		// widgets
-		[Glade.Widget] Gtk.Dialog dialog;
-		[Glade.Widget] Gtk.OptionMenu gallery_optionmenu;
-		[Glade.Widget] Gtk.OptionMenu album_optionmenu;
+		[GtkBeans.Builder.Object] Gtk.Dialog dialog;
+		Gtk.OptionMenu gallery_optionmenu;
+		Gtk.OptionMenu album_optionmenu;
 
-		[Glade.Widget] Gtk.Entry width_entry;
-		[Glade.Widget] Gtk.Entry height_entry;
+		[GtkBeans.Builder.Object] Gtk.Label status_label;
+		[GtkBeans.Builder.Object] Gtk.Label album_status_label;
 
-		[Glade.Widget] Gtk.Label status_label;
-		[Glade.Widget] Gtk.Label album_status_label;
+		[GtkBeans.Builder.Object] Gtk.CheckButton browser_check;
+		[GtkBeans.Builder.Object] Gtk.CheckButton scale_check;
+		[GtkBeans.Builder.Object] Gtk.CheckButton tag_check;
 
-		[Glade.Widget] Gtk.CheckButton browser_check;
-		[Glade.Widget] Gtk.CheckButton scale_check;
-//		[Glade.Widget] Gtk.CheckButton meta_check;
-		[Glade.Widget] Gtk.CheckButton tag_check;
+		[GtkBeans.Builder.Object] Gtk.SpinButton size_spin;
 
-		[Glade.Widget] Gtk.SpinButton size_spin;
+		[GtkBeans.Builder.Object] Gtk.Button album_button;
+		[GtkBeans.Builder.Object] Gtk.Button edit_button;
 
-		[Glade.Widget] Gtk.Button album_button;
-		[Glade.Widget] Gtk.Button add_button;
-		[Glade.Widget] Gtk.Button edit_button;
+		[GtkBeans.Builder.Object] Gtk.Button export_button;
 
-		[Glade.Widget] Gtk.Button export_button;
-		[Glade.Widget] Gtk.Button cancel_button;
-
-		[Glade.Widget] Gtk.ScrolledWindow thumb_scrolledwindow;
+		[GtkBeans.Builder.Object] Gtk.ScrolledWindow thumb_scrolledwindow;
 
 		System.Threading.Thread command_thread;
 
@@ -146,7 +146,6 @@ namespace FSpot.Exporters.PicasaWeb {
 				scale = false;
 
 			browser = browser_check.Active;
-//			meta = meta_check.Active;
 			export_tag = tag_check.Active;
 
 			if (account != null) {
@@ -498,7 +497,7 @@ namespace FSpot.Exporters.PicasaWeb {
 		private Gtk.Dialog Dialog {
 			get {
 				if (dialog == null)
-					dialog = (Gtk.Dialog) xml.GetWidget (dialog_name);
+					dialog = new Gtk.Dialog (builder.GetRawObject (dialog_name));
 
 				return dialog;
 			}

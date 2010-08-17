@@ -28,8 +28,8 @@ namespace FSpot.Exporters.PicasaWeb
 
 		public GoogleAccountDialog (Gtk.Window parent, GoogleAccount account, bool show_error, CaptchaException captcha_exception)
 		{
-			xml = new Glade.XML (null, "PicasaWebExport.glade", dialog_name, "f-spot");
-			xml.Autoconnect (this);
+			builder = new GtkBeans.Builder (null, "google_add_dialog.ui", null);
+			builder.Autoconnect (this);
 			Dialog.Modal = false;
 			Dialog.TransientFor = parent;
 			Dialog.DefaultResponse = Gtk.ResponseType.Ok;
@@ -108,7 +108,7 @@ namespace FSpot.Exporters.PicasaWeb
 		private Gtk.Dialog Dialog {
 			get {
 				if (dialog == null)
-					dialog = (Gtk.Dialog) xml.GetWidget (dialog_name);
+					dialog = new Gtk.Dialog (builder.GetRawObject ("google_add_dialog"));
 
 				return dialog;
 			}
@@ -119,24 +119,22 @@ namespace FSpot.Exporters.PicasaWeb
 		private string username;
 		private string token;
 
-		private Glade.XML xml;
-		private string dialog_name = "google_add_dialog";
+        GtkBeans.Builder builder;
 
 		// widgets
-		[Glade.Widget] Gtk.Dialog dialog;
-		[Glade.Widget] Gtk.Entry password_entry;
-		[Glade.Widget] Gtk.Entry username_entry;
-		[Glade.Widget] Gtk.Entry captcha_entry;
+		[GtkBeans.Builder.Object] Gtk.Dialog dialog;
+		[GtkBeans.Builder.Object] Gtk.Entry password_entry;
+		[GtkBeans.Builder.Object] Gtk.Entry username_entry;
+		[GtkBeans.Builder.Object] Gtk.Entry captcha_entry;
 
-		[Glade.Widget] Gtk.Button add_button;
-		[Glade.Widget] Gtk.Button remove_button;
-		[Glade.Widget] Gtk.Button cancel_button;
+		[GtkBeans.Builder.Object] Gtk.Button add_button;
+		[GtkBeans.Builder.Object] Gtk.Button remove_button;
 
-		[Glade.Widget] Gtk.HBox status_area;
-		[Glade.Widget] Gtk.HBox locked_area;
+		[GtkBeans.Builder.Object] Gtk.HBox status_area;
+		[GtkBeans.Builder.Object] Gtk.HBox locked_area;
 
-		[Glade.Widget] Gtk.Image captcha_image;
-		[Glade.Widget] Gtk.Label captcha_label;
+		[GtkBeans.Builder.Object] Gtk.Image captcha_image;
+		[GtkBeans.Builder.Object] Gtk.Label captcha_label;
 
 	}
 }
