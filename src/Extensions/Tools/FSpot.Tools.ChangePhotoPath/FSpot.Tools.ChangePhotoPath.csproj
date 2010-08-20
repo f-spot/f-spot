@@ -40,8 +40,8 @@
     <EmbeddedResource Include="Resources\ChangePhotoPath.addin.xml">
       <LogicalName>ChangePhotoPath.addin.xml</LogicalName>
     </EmbeddedResource>
-    <EmbeddedResource Include="Resources\ChangePhotoPath.glade">
-      <LogicalName>ChangePhotoPath.glade</LogicalName>
+    <EmbeddedResource Include="Resources\ChangePhotoPath.ui">
+      <LogicalName>ChangePhotoPath.ui</LogicalName>
     </EmbeddedResource>
   </ItemGroup>
   <ProjectExtensions>
@@ -64,6 +64,10 @@
     <Reference Include="glade-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="gtk-sharp-beans, Version=2.14.0.0, Culture=neutral, PublicKeyToken=97a95fb57b03c03a">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\lib\gtk-sharp-beans\gtk-sharp-beans.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\..\lib\Hyena\Hyena.Gui\Hyena.Gui.csproj">

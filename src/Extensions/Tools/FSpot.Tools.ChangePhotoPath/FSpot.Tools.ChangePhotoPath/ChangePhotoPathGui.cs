@@ -21,16 +21,15 @@ namespace FSpot.Tools.ChangePhotoPath
 	public class Dump : Gtk.Dialog, ICommand, IChangePhotoPathGui
 	{
 		private string dialog_name = "ChangePhotoPath";
-		private Glade.XML xml;
+		private GtkBeans.Builder builder;
 		private Gtk.Dialog dialog;
 		private ChangePathController contr;
 
 		private ProgressDialog progress_dialog;
 		private int progress_dialog_total = 0;
 
-		[Glade.Widget] Gtk.Entry old_common_uri;
-		[Glade.Widget] Gtk.Label new_common_uri;
-//		[Glade.Widget] Gtk.ProgressBar progress_bar;
+		[GtkBeans.Builder.Object] Gtk.Entry old_common_uri;
+		[GtkBeans.Builder.Object] Gtk.Label new_common_uri;
 
 		private bool LaunchController()
 		{
@@ -70,14 +69,14 @@ namespace FSpot.Tools.ChangePhotoPath
 
 		private void CreateDialog()
 		{
-			xml = new Glade.XML (null, "ChangePhotoPath.glade", dialog_name, "f-spot");
-			xml.Autoconnect (this);
+			builder = new GtkBeans.Builder (null, "ChangePhotoPath.ui", null);
+			builder.Autoconnect (this);
 		}
 
 		private Gtk.Dialog Dialog {
 			get {
 				if (dialog == null)
-					dialog = (Gtk.Dialog) xml.GetWidget (dialog_name);
+					dialog = new Gtk.Dialog (builder.GetRawObject (dialog_name));
 				return dialog;
 			}
 		}

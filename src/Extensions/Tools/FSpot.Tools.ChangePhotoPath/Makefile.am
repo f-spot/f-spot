@@ -10,6 +10,6 @@ SOURCES =  \
 
 RESOURCES =  \
 	Resources/ChangePhotoPath.addin.xml \
-	Resources/ChangePhotoPath.glade
+	Resources/ChangePhotoPath.ui
 
 include $(top_srcdir)/build/build.mk
