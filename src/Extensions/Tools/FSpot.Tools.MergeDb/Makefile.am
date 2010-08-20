@@ -10,6 +10,7 @@ SOURCES =  \
 
 RESOURCES =  \
 	Resources/MergeDb.addin.xml \
-	Resources/MergeDb.glade
+	Resources/mergedb_dialog.ui \
+	Resources/pickfolder_dialog.ui
 
 include $(top_srcdir)/build/build.mk

@@ -16,15 +16,15 @@ namespace FSpot.Tools.MergeDb
 {
 	internal class MergeDbDialog
 	{
-		[Glade.Widget] Gtk.Dialog mergedb_dialog;
-		[Glade.Widget] Gtk.Button apply_button;
-		[Glade.Widget] Gtk.FileChooserButton db_filechooser;
-		[Glade.Widget] Gtk.RadioButton newrolls_radio;
-		[Glade.Widget] Gtk.RadioButton allrolls_radio;
-		[Glade.Widget] Gtk.RadioButton singleroll_radio;
-		[Glade.Widget] Gtk.ComboBox rolls_combo;
-		[Glade.Widget] Gtk.RadioButton copy_radio;
-		[Glade.Widget] Gtk.RadioButton keep_radio;
+		[GtkBeans.Builder.Object] Gtk.Dialog mergedb_dialog;
+		[GtkBeans.Builder.Object] Gtk.Button apply_button;
+		[GtkBeans.Builder.Object] Gtk.FileChooserButton db_filechooser;
+		[GtkBeans.Builder.Object] Gtk.RadioButton newrolls_radio;
+		[GtkBeans.Builder.Object] Gtk.RadioButton allrolls_radio;
+		[GtkBeans.Builder.Object] Gtk.RadioButton singleroll_radio;
+		[GtkBeans.Builder.Object] Gtk.ComboBox rolls_combo;
+		[GtkBeans.Builder.Object] Gtk.RadioButton copy_radio;
+		[GtkBeans.Builder.Object] Gtk.RadioButton keep_radio;
 
 		MergeDb parent;
 
@@ -33,8 +33,8 @@ namespace FSpot.Tools.MergeDb
 		public MergeDbDialog (MergeDb parent) {
 			this.parent = parent;
 
-			Glade.XML xml = new Glade.XML (null, "MergeDb.glade", "mergedb_dialog", "f-spot");
-			xml.Autoconnect (this);
+			var builder = new GtkBeans.Builder (null, "mergedb_dialog.ui", null);
+			builder.Autoconnect (this);
 			mergedb_dialog.Modal = false;
 			mergedb_dialog.TransientFor = null;
 

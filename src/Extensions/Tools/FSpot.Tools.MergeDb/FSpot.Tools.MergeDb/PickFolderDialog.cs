@@ -17,14 +17,15 @@ namespace FSpot.Tools.MergeDb
 {
 	internal class PickFolderDialog
 	{
-		[Glade.Widget] Gtk.Dialog pickfolder_dialog;
-		[Glade.Widget] Gtk.FileChooserWidget pickfolder_chooser;
-		[Glade.Widget] Gtk.Label pickfolder_label;
+		[GtkBeans.Builder.Object] Gtk.Dialog pickfolder_dialog;
+		[GtkBeans.Builder.Object] Gtk.FileChooserWidget pickfolder_chooser;
+		[GtkBeans.Builder.Object] Gtk.Label pickfolder_label;
 
 		public PickFolderDialog (Gtk.Dialog parent, string folder)
 		{
-			Glade.XML xml = new Glade.XML (null, "MergeDb.glade", "pickfolder_dialog", "f-spot");
-			xml.Autoconnect (this);
+			var builder = new GtkBeans.Builder (null, "pickfolder_dialog.ui", null);
+			builder.Autoconnect (this);
+
 			Log.Debug ("new pickfolder");
 			pickfolder_dialog.Modal = false;
 			pickfolder_dialog.TransientFor = parent;
