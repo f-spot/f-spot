@@ -1,8 +1,6 @@
 using System;
 using Gdk;
 using Gtk;
-using Glade;
-
 using FSpot.Core;
 
 namespace FSpot.UI.Dialog {
