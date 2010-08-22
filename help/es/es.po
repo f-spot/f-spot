@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: f-spot.help.master\n"
-"POT-Creation-Date: 2010-08-02 14:25+0000\n"
-"PO-Revision-Date: 2010-08-03 07:32+0200\n"
+"POT-Creation-Date: 2010-08-03 05:56+0000\n"
+"PO-Revision-Date: 2010-08-22 12:39+0200\n"
 "Last-Translator: Jorge González <jorgegonz@svn.gnome.org>\n"
 "Language-Team: Español <gnome-es-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -19,11 +19,11 @@ msgstr ""
 
 #: C/zooomr.page:8(desc)
 msgid "Upload photos to Zooomr"
-msgstr ""
+msgstr "Subir fotos a Zoomr"
 
 #: C/zooomr.page:11(title)
 msgid "Zooomr"
-msgstr ""
+msgstr "Zooomr"
 
 #: C/zooomr.page:15(p)
 msgid ""
@@ -34,7 +34,7 @@ msgstr ""
 
 #: C/versioning.page:8(desc)
 msgid "Track different versions of your photos"
-msgstr ""
+msgstr "Seguir diferentes versiones de sus fotos"
 
 #: C/versioning.page:11(title)
 msgid "Versioning"
@@ -920,7 +920,7 @@ msgstr ""
 
 #: C/date-search.page:8(desc)
 msgid "Search photos by date"
-msgstr ""
+msgstr "Buscar fotos por fecha"
 
 #: C/date-search.page:11(title)
 msgid "Search by Date"
@@ -1080,23 +1080,23 @@ msgstr ""
 
 #: C/adjust-color.page:45(title)
 msgid "Temp"
-msgstr ""
+msgstr "Temperatura"
 
 #: C/adjust-color.page:46(p)
 msgid "This adjust changes the color temperature, measured in degrees Kelvin."
-msgstr ""
+msgstr "Esto ajusta el color de la temperatura, medido en grados Kelvin."
 
 #: C/adjust-color.page:50(title)
 msgid "Tint"
-msgstr ""
+msgstr "Matiz"
 
 #: C/adjust-color.page:51(p)
 msgid "This adjustment allows you to tinge the photo with a color."
-msgstr ""
+msgstr "Este ajuste le permite teñir la foto con un color."
 
 #: C/23hq.page:8(desc)
 msgid "Upload photos to 23hq"
-msgstr ""
+msgstr "Subir fotos a 23hq"
 
 #: C/23hq.page:11(title)
 msgid "23hq"
@@ -1108,8 +1108,11 @@ msgid ""
 "access. Also, the 23hq <link xref=\"extensions\">extension</link> must be "
 "installed and enabled."
 msgstr ""
+"Para subir fotos a 23hq necesitará una cuenta de 23hq, así como acceso a "
+"internet. También debe tener instalada y activada la <link xref=\"extensions"
+"\">extensión</link> 23hq."
 
 #. Put one translator per line, in the form of NAME <EMAIL>, YEAR1, YEAR2
 #: C/index.page:0(None)
 msgid "translator-credits"
-msgstr "Jorge González <jorgegonz@svn.gnome.org>, 2010."
+msgstr "Jorge González <jorgegonz@svn.gnome.org>, 2010"
