@@ -25,7 +25,8 @@ SOURCES =  \
 	FSpot.Widgets/MenuButton.cs \
 	FSpot.Widgets/OpenWithMenu.cs \
 	FSpot.Widgets/PointerMode.cs \
-	FSpot.Widgets/Rating.cs \
+	FSpot.Widgets/RatingEntry.cs \
+	FSpot.Widgets/RatingRenderer.cs \
 	FSpot.Widgets/SaneTreeView.cs \
 	FSpot.Widgets/ScrolledView.cs \
 	FSpot.Widgets/ToolTipWindow.cs

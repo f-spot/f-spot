@@ -91,7 +91,7 @@ namespace FSpot.Extensions
 	{
 		public void Run (object o, EventArgs e)
 		{
-			App.Instance.Organizer.HandleRatingMenuSelected ((o as Widgets.Rating).Value);
+			App.Instance.Organizer.HandleRatingMenuSelected ((o as FSpot.Widgets.RatingMenuItem).Value);
 		}
 	}
 }

@@ -35,7 +35,6 @@
     <Compile Include="FSpot.Widgets\ApplicationActivatedEventArgs.cs" />
     <Compile Include="FSpot.Widgets\BuilderWindow.cs" />
     <Compile Include="FSpot.Widgets\CheckPattern.cs" />
-    <Compile Include="FSpot.Widgets\ComplexMenuItem.cs" />
     <Compile Include="FSpot.Widgets\Curve.cs" />
     <Compile Include="FSpot.Widgets\CurveType.cs" />
     <Compile Include="FSpot.Widgets\CustomPrintWidget.cs" />
@@ -47,7 +46,6 @@
     <Compile Include="FSpot.Widgets\MenuButton.cs" />
     <Compile Include="FSpot.Widgets\OpenWithMenu.cs" />
     <Compile Include="FSpot.Widgets\PointerMode.cs" />
-    <Compile Include="FSpot.Widgets\Rating.cs" />
     <Compile Include="FSpot.Widgets\SaneTreeView.cs" />
     <Compile Include="FSpot.Widgets\ScrolledView.cs" />
     <Compile Include="FSpot.Transitions\CairoTransition.cs" />
@@ -59,6 +57,8 @@
     <Compile Include="FSpot.Gui\WindowOpacityFader.cs" />
     <Compile Include="FSpot.Gui\CompositeUtils.cs" />
     <Compile Include="FSpot.Widgets\ToolTipWindow.cs" />
+    <Compile Include="FSpot.Widgets\RatingEntry.cs" />
+    <Compile Include="FSpot.Widgets\RatingRenderer.cs" />
   </ItemGroup>
   <ProjectExtensions>
     <MonoDevelop>
@@ -115,6 +115,10 @@
     <ProjectReference Include="..\FSpot.Cms\FSpot.Cms.csproj">
       <Project>{9D66BC1B-4390-4B8D-8468-19D5A862EC23}</Project>
       <Name>FSpot.Cms</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\lib\Hyena\Hyena.Gui\Hyena.Gui.csproj">
+      <Project>{C856EFD8-E812-4E61-8B76-E3583D94C233}</Project>
+      <Name>Hyena.Gui</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

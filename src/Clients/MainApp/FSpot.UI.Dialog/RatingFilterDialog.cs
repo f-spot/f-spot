@@ -23,10 +23,11 @@ namespace FSpot.UI.Dialog
 
 		private int minrating_value = 4;
 		private int maxrating_value = 5;
-		private Rating minrating;
-		private Rating maxrating;
+		private RatingEntry minrating;
+		private RatingEntry maxrating;
 
-		public RatingFilterDialog (FSpot.PhotoQuery query, Gtk.Window parent_window) : base ("RatingFilterDialog.ui", "rating_filter_dialog")
+		public RatingFilterDialog (FSpot.PhotoQuery query, Gtk.Window parent_window)
+            : base ("RatingFilterDialog.ui", "rating_filter_dialog")
 		{
 			TransientFor = parent_window;
 			DefaultResponse = ResponseType.Ok;
@@ -36,10 +37,16 @@ namespace FSpot.UI.Dialog
 				minrating_value = (int) query.RatingRange.MinRating;
 				maxrating_value = (int) query.RatingRange.MaxRating;
 			}
-			minrating = new Rating (minrating_value);
-			maxrating = new Rating (maxrating_value);
+			minrating = new RatingEntry (minrating_value);
+			maxrating = new RatingEntry (maxrating_value);
 			minrating_hbox.PackStart (minrating, false, false, 0);
 			maxrating_hbox.PackStart (maxrating, false, false, 0);
+
+            minrating.Show ();
+            maxrating.Show ();
+
+            minrating.Changed += HandleMinratingChanged;
+            maxrating.Changed += HandleMaxratingChanged;
 
 			ResponseType response = (ResponseType) Run ();
 
@@ -49,5 +56,23 @@ namespace FSpot.UI.Dialog
 
 			Destroy ();
 		}
+
+        void HandleMinratingChanged (object sender, System.EventArgs e)
+        {
+            if (minrating.Value > maxrating.Value) {
+                maxrating.Changed -= HandleMaxratingChanged;
+                maxrating.Value = minrating.Value;
+                maxrating.Changed += HandleMaxratingChanged;
+            }
+        }
+
+        void HandleMaxratingChanged (object sender, System.EventArgs e)
+        {
+            if (maxrating.Value < minrating.Value) {
+                minrating.Changed -= HandleMinratingChanged;
+                minrating.Value = maxrating.Value;
+                minrating.Changed += HandleMinratingChanged;
+            }
+        }
 	}
 }

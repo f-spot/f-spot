@@ -968,11 +968,13 @@ namespace FSpot.Widgets
 				thumbnail.Dispose ();
 			}
 			if (DisplayRatings && photo.Rating > 0 && region.X == draw.X && region.X != 0) {
-				FSpot.Widgets.RatingSmall rating;
-				rating = new FSpot.Widgets.RatingSmall ((int) photo.Rating, false);
-				rating.DisplayPixbuf.RenderToDrawable (BinWindow, Style.WhiteGC,
-						0, 0, region.X, region.Y, -1, -1, RgbDither.None, 0, 0);
-
+                var rating = new RatingRenderer () {
+                    Value = (int) photo.Rating
+                };
+                using (var rating_pixbuf = rating.RenderPixbuf ()) {
+                    rating_pixbuf.RenderToDrawable (BinWindow, Style.WhiteGC,
+                                                    0, 0, region.X, region.Y, -1, -1, RgbDither.None, 0, 0);
+                }
 			}
 			Gdk.Rectangle layout_bounds = Gdk.Rectangle.Zero;
 			if (DisplayDates) {

@@ -3,8 +3,10 @@
 //
 // Author:
 //   Aaron Bockover <abockover@novell.com>
+//   Mike Gemuende <mike@gemuende.de>
 //
 // Copyright (C) 2007 Novell, Inc.
+// Copyright (C) 2010 Mike Gemuende
 //
 // Permission is hereby granted, free of charge, to any person obtaining
 // a copy of this software and associated documentation files (the
@@ -27,134 +29,31 @@
 //
 
 using System;
-using Gtk;
-using Mono.Unix;
 
-using Hyena;
-using Hyena.Widgets;
 
 namespace FSpot.Widgets
 {
-	public class RatingMenuItem : ComplexMenuItem
-	{
-		private Rating entry;
-		private bool pressing;
-		private bool can_activate = true;
+    public class RatingMenuItem : Hyena.Widgets.RatingMenuItem
+    {
+        private RatingEntry entry;
 
-		protected RatingMenuItem (IntPtr raw) : base (raw)
-		{
-		}
+        public RatingMenuItem () : base (new FSpot.Widgets.RatingEntry ())
+        {
+            entry = this.RatingEntry as FSpot.Widgets.RatingEntry;
+        }
 
-		public RatingMenuItem () : this (null)
-		{
-		}
+        public RatingMenuItem (object parent) : this ()
+        {
+            if (parent is FullScreenView) {
+                entry.Value = (int)(parent as FullScreenView).View.Item.Current.Rating;
 
-		public RatingMenuItem (object parent) : base ()
-		{
-			HBox box = new HBox ();
-			box.Spacing = 5;
+            } else if (App.Instance.Organizer.Selection.Count == 1) {
+                entry.Value = (int)App.Instance.Organizer.Selection[0].Rating;
+            }
+        }
 
-			Label label = new Label ();
-			label.Markup = String.Format ("<i>{0}</i>",
-					GLib.Markup.EscapeText (Catalog.GetString ("Rating:")));
-			box.PackStart (label, false, false, 0);
-
-			if (parent is FullScreenView) {
-				Log.Debug ("PARENT IS FSVIEW");
-				FullScreenView fsview = parent as FullScreenView;
-				entry = new Rating ((int)fsview.View.Item.Current.Rating, true);
-			} else if (App.Instance.Organizer.Selection.Count == 1)
-				entry = new Rating ((int)App.Instance.Organizer.Selection[0].Rating, true);
-			else
-				entry = new Rating (-1, true);
-			entry.Changed += OnEntryChanged;
-			box.PackStart (entry, false, false, 0);
-
-			box.ShowAll ();
-			Add (box);
-		}
-
-		protected override void OnRealized ()
-		{
-			entry.ModifyBg (Gtk.StateType.Prelight, entry.Style.BaseColors [(int)Gtk.StateType.Selected]);
-			base.OnRealized();
-
-		}
-
-		private int TransformX (double inx)
-		{
-			int x = (int)inx - entry.Allocation.X;
-
-			if (x < 0) {
-				x = 0;
-			} else if (x > entry.Allocation.Width) {
-				x = entry.Allocation.Width;
-			}
-
-			return x;
-		}
-
-		protected override bool OnButtonPressEvent (Gdk.EventButton evnt)
-		{
-			pressing = true;
-			entry.SetValueFromPosition (TransformX (evnt.X));
-			return true;
-		}
-
-		protected override bool OnButtonReleaseEvent (Gdk.EventButton evnt)
-		{
-			pressing = false;
-			return true;
-		}
-
-		protected override bool OnMotionNotifyEvent (Gdk.EventMotion evnt)
-		{
-			if (!pressing) {
-				return false;
-			}
-
-			entry.SetValueFromPosition (TransformX (evnt.X));
-			return true;
-		}
-
-		protected override bool OnLeaveNotifyEvent (Gdk.EventCrossing evnt)
-		{
-			pressing = false;
-			return true;
-		}
-
-		protected override bool OnScrollEvent (Gdk.EventScroll evnt)
-		{
-			return entry.HandleScroll (evnt);
-		}
-
-		protected override bool OnKeyPressEvent (Gdk.EventKey evnt)
-		{
-			return entry.HandleKeyPress (evnt);
-		}
-
-		private void OnEntryChanged (object o, EventArgs args)
-		{
-			if (can_activate) {
-				Activate ();
-				OnSelected ();
-			}
-		}
-
-		public void Reset (int value)
-		{
-			can_activate = false;
-			Value = value;
-			can_activate = true;
-		}
-
-		public int Value {
-			get { return entry.Value; }
-			set { entry.Value = value; }
-		}
-
-		public Rating RatingEntry {
-			get { return entry; }
-		}
-	}
+        protected RatingMenuItem (IntPtr raw) : base (raw)
+        {
+        }
+    }
 }

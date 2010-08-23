@@ -130,7 +130,7 @@ namespace FSpot.Widgets
 		private Label file_size_value_label;
 
 		private Label rating_label;
-		private RatingSmall rating_view;
+		private RatingEntry rating_view;
 
 		private TagView tag_view;
 		private string default_exposure_string;
@@ -145,7 +145,7 @@ namespace FSpot.Widgets
 
 		private void HandleRatingChanged (object o, EventArgs e)
 		{
-			App.Instance.Organizer.HandleRatingMenuSelected ((o as Widgets.Rating).Value);
+			App.Instance.Organizer.HandleRatingMenuSelected ((o as Widgets.RatingEntry).Value);
 		}
 
 		private Label CreateRightAlignedLabel (string text)
@@ -271,7 +271,7 @@ namespace FSpot.Widgets
 			Gtk.Alignment rating_align = new Gtk.Alignment( 0, 0, 0, 0);
 			info_table.Attach (rating_align, 1, 2, 8, 9, AttachOptions.Fill, AttachOptions.Fill, TABLE_XPADDING, TABLE_YPADDING);
 
-			rating_view = new RatingSmall ();
+			rating_view = new RatingEntry () { HasFrame = false };
 			rating_view.Visible = false;
 			rating_view.Changed += HandleRatingChanged;
 			rating_align.Add (rating_view);
