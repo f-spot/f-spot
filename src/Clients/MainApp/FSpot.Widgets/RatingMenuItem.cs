@@ -29,7 +29,9 @@
 using System;
 using Gtk;
 using Mono.Unix;
+
 using Hyena;
+using Hyena.Widgets;
 
 namespace FSpot.Widgets
 {
@@ -135,7 +137,7 @@ namespace FSpot.Widgets
 		{
 			if (can_activate) {
 				Activate ();
-				OnChanged (o, args);
+				OnSelected ();
 			}
 		}
 

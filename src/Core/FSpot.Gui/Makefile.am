@@ -12,7 +12,6 @@ SOURCES =  \
 	FSpot.Widgets/ApplicationActivatedEventArgs.cs \
 	FSpot.Widgets/BuilderWindow.cs \
 	FSpot.Widgets/CheckPattern.cs \
-	FSpot.Widgets/ComplexMenuItem.cs \
 	FSpot.Widgets/Curve.cs \
 	FSpot.Widgets/CurveType.cs \
 	FSpot.Widgets/CustomPrintWidget.cs \

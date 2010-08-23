@@ -12,6 +12,8 @@ using Mono.Addins;
 using FSpot.Widgets;
 using System;
 
+using Hyena.Widgets;
+
 namespace FSpot.Extensions
 {
 	[ExtensionNode ("ComplexMenuItem")]
@@ -30,16 +32,16 @@ namespace FSpot.Extensions
 			ComplexMenuItem item = System.Activator.CreateInstance (Type.GetType (widget_type), parent) as ComplexMenuItem;
 			cmd = (ICommand) Addin.CreateInstance (command_type);
 
-			if (item != null)
-				item.Changed += OnChanged;
-			return item;
-		}
+            if (item != null)
+                item.Activated += OnActivated;
+            return item;
+        }
 
-		private void OnChanged (object o, EventArgs e)
-		{
-			if (cmd != null)
-				cmd.Run (o, e);
-		}
+        private void OnActivated (object o, EventArgs e)
+        {
+            if (cmd != null)
+                cmd.Run (o, e);
+        }
 	}
 
 }
