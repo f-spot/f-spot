@@ -91,7 +91,6 @@
   <ItemGroup>
     <Reference Include="ICSharpCode.SharpZipLib" />
     <Reference Include="Mono.Posix" />
-    <Reference Include="glade-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
     <Reference Include="gtk-sharp-beans, Version=2.14.0.0, Culture=neutral, PublicKeyToken=97a95fb57b03c03a">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\lib\gtk-sharp-beans\gtk-sharp-beans.dll</HintPath>
@@ -103,6 +102,8 @@
     <Reference Include="System" />
     <Reference Include="System.Web" />
     <Reference Include="System.Core" />
+    <Reference Include="gtk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
+    <Reference Include="gdk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
