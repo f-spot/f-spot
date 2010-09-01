@@ -28,7 +28,6 @@ LINK_SYSTEM_WEB = -r:System.Web
 LINK_MONO_POSIX = -r:Mono.Posix
 LINK_MONO_CAIRO = -r:Mono.Cairo
 LINK_MONO_SIMD = -r:Mono.Simd
-LINK_MONODATA = -r:Mono.Data
 LINK_ICSHARP_ZIP_LIB = -r:ICSharpCode.SharpZipLib
 
 LINK_KEYRING = $(KEYRINGSHARP_LIBS)

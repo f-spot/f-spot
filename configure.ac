@@ -69,7 +69,6 @@ SHAMROCK_FIND_MONO_RUNTIME
 SHAMROCK_CHECK_MONO_2_0_GAC_ASSEMBLIES([
     Mono.Posix
     Mono.Simd
-    Mono.Data
     System
     System.Runtime.Remoting
     System.Web
