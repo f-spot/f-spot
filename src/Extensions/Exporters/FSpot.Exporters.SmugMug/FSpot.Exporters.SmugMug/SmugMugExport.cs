@@ -51,7 +51,7 @@ namespace FSpot.Exporters.SmugMug {
 
 			this.items = selection.Items;
 			album_button.Sensitive = false;
-			FSpot.Widgets.IconView view = new FSpot.Widgets.IconView (selection);
+			var view = new TrayView (selection);
 			view.DisplayDates = false;
 			view.DisplayTags = false;
 

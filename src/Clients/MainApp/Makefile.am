@@ -88,13 +88,13 @@ SOURCES =  \
 	FSpot.UI.Dialog/TagSelectionDialog.cs \
 	FSpot.UI.Dialog/ThreadProgressDialog.cs \
 	FSpot.Widgets/CellRendererTextProgress.cs \
+	FSpot.Widgets/CollectionCellGridView.cs \
 	FSpot.Widgets/EditorPage.cs \
 	FSpot.Widgets/Filmstrip.cs \
 	FSpot.Widgets/FindBar.cs \
 	FSpot.Widgets/FolderTreeModel.cs \
 	FSpot.Widgets/FolderTreePage.cs \
 	FSpot.Widgets/FolderTreeView.cs \
-	FSpot.Widgets/IconView.cs \
 	FSpot.Widgets/ImageInfo.cs \
 	FSpot.Widgets/InfoBox.cs \
 	FSpot.Widgets/Loupe.cs \
@@ -104,6 +104,7 @@ SOURCES =  \
 	FSpot.Widgets/QueryView.cs \
 	FSpot.Widgets/RatingMenuItem.cs \
 	FSpot.Widgets/ScalingIconView.cs \
+	FSpot.Widgets/SelectionCollectionGridView.cs \
 	FSpot.Widgets/Sharpener.cs \
 	FSpot.Widgets/Sidebar.cs \
 	FSpot.Widgets/SlideShow.cs \
@@ -112,6 +113,13 @@ SOURCES =  \
 	FSpot.Widgets/TagMenu.cs \
 	FSpot.Widgets/TagView.cs \
 	FSpot.Widgets/Tests/FindBarTests.cs \
+	FSpot.Widgets/ThumbnailCaptionRenderer.cs \
+	FSpot.Widgets/ThumbnailDateCaptionRenderer.cs \
+	FSpot.Widgets/ThumbnailDecorationRenderer.cs \
+	FSpot.Widgets/ThumbnailFilenameCaptionRenderer.cs \
+	FSpot.Widgets/ThumbnailRatingDecorationRenderer.cs \
+	FSpot.Widgets/ThumbnailTagsCaptionRenderer.cs \
+	FSpot.Widgets/ThumbnailTextCaptionRenderer.cs \
 	FSpot.Widgets/TrayView.cs \
 	FSpot.Widgets/ViewContext.cs \
 	FSpot/Accelerometer.cs \

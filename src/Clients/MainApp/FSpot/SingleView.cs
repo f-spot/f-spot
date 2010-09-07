@@ -48,7 +48,7 @@ namespace FSpot {
 		}
 
 		PhotoImageView image_view;
-		FSpot.Widgets.IconView directory_view;
+		SelectionCollectionGridView directory_view;
 		private SafeUri uri;
 
 		UriCollection collection;
@@ -98,7 +98,7 @@ namespace FSpot {
 				FSpot.DragDropTargets.PlainTextEntry
 			};
 
-			directory_view = new FSpot.Widgets.IconView (collection);
+			directory_view = new SelectionCollectionGridView (collection);
 			directory_view.Selection.Changed += HandleSelectionChanged;
 			directory_view.DragDataReceived += HandleDragDataReceived;
 			Gtk.Drag.DestSet (directory_view, DestDefaults.All, dest_table,
@@ -252,7 +252,7 @@ namespace FSpot {
 		{
 
 			if (selection.Count > 0) {
-				image_view.Item.Index = ((FSpot.Widgets.IconView.SelectionCollection)selection).Ids[0];
+				image_view.Item.Index = ((FSpot.Widgets.SelectionCollection)selection).Ids[0];
 
 				zoom_scale.Value = image_view.NormalizedZoom;
 			}

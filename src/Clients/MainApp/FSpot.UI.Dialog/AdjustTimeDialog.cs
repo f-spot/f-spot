@@ -41,7 +41,7 @@ namespace FSpot.UI.Dialog {
 
 		IBrowsableCollection collection;
 		BrowsablePointer item;
-		FSpot.Widgets.IconView tray;
+		TrayView tray;
 		PhotoImageView view;
 		Db db;
 		TimeSpan gnome_dateedit_sucks;
@@ -254,7 +254,7 @@ namespace FSpot.UI.Dialog {
 		void HandleSelectionChanged (IBrowsableCollection sender)
 		{
 			if (sender.Count > 0) {
-				view.Item.Index = ((FSpot.Widgets.IconView.SelectionCollection)sender).Ids[0];
+				view.Item.Index = ((FSpot.Widgets.SelectionCollection)sender).Ids[0];
 
 			}
 		}

@@ -26,6 +26,7 @@ using Hyena;
 using Hyena.Widgets;
 using FSpot.Core;
 using FSpot.Utils;
+using FSpot.Widgets;
 using FSpot.Platform;
 using FSpot.UI.Dialog;
 
@@ -62,7 +63,7 @@ namespace FSpot.Exporters.Facebook
 		int tag_image_height;
 		int tag_image_width;
 
-		FSpot.Widgets.IconView thumbnail_iconview;
+		SelectionCollectionGridView tray_view;
 		Dictionary<long, User> friends;
 
 		private class DateComparer : IComparer
@@ -85,14 +86,16 @@ namespace FSpot.Exporters.Facebook
 			captions = new string [selection.Items.Length];
 			tags = new List<Mono.Facebook.Tag> [selection.Items.Length];
 
-			thumbnail_iconview = new FSpot.Widgets.IconView (selection);
-			thumbnail_iconview.DisplayDates = false;
-			thumbnail_iconview.DisplayTags = false;
-			thumbnail_iconview.DisplayRatings = false;
-			thumbnail_iconview.ButtonPressEvent += HandleThumbnailIconViewButtonPressEvent;
-			thumbnail_iconview.KeyPressEvent += delegate (object sender, KeyPressEventArgs e) {(sender as FSpot.Widgets.IconView).Selection.Clear(); };
-			thumbnails_scrolled_window.Add (thumbnail_iconview);
-			thumbnail_iconview.Show ();
+			tray_view = new SelectionCollectionGridView (selection) {
+                MaxColumns = 1,
+                DisplayDates = false,
+                DisplayTags = false,
+                DisplayRatings = false
+            };
+			tray_view.ButtonPressEvent += HandleThumbnailIconViewButtonPressEvent;
+			tray_view.KeyPressEvent += delegate (object sender, KeyPressEventArgs e) {(sender as SelectionCollectionGridView).Selection.Clear(); };
+			thumbnails_scrolled_window.Add (tray_view);
+			tray_view.Show ();
 
 			login_button.Clicked += HandleLoginClicked;
 			logout_button.Clicked += HandleLogoutClicked;

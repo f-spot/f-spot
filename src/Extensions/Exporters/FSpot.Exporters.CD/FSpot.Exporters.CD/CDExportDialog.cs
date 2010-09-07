@@ -29,7 +29,7 @@ namespace FSpot.Exporters.CD
 			get { return remove_check.Active; }
 		}
 
-		public CDExportDialog (IBrowsableCollection selection, System.Uri dest) : base (Assembly.GetExecutingAssembly (), "CDExport.ui", "cd_export_dialog")
+		public CDExportDialog (IBrowsableCollection collection, System.Uri dest) : base (Assembly.GetExecutingAssembly (), "CDExport.ui", "cd_export_dialog")
 		{
 			this.dest = dest;
 
@@ -38,7 +38,7 @@ namespace FSpot.Exporters.CD
 			string path;
 			System.IO.FileInfo file_info;
 
-			foreach (IPhoto item in selection.Items) {
+			foreach (IPhoto item in collection.Items) {
 				path = item.DefaultVersion.Uri.LocalPath;
 				if (System.IO.File.Exists (path)) {
 					file_info = new System.IO.FileInfo (path);
@@ -46,7 +46,7 @@ namespace FSpot.Exporters.CD
 				}
 			}
 
-			FSpot.Widgets.IconView view = new FSpot.Widgets.IconView (selection);
+			var view = new TrayView (collection);
 			view.DisplayDates = false;
 			view.DisplayTags = false;
 			view.DisplayRatings = false;

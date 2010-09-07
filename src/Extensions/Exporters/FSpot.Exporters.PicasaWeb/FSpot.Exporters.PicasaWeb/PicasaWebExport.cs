@@ -52,7 +52,7 @@ namespace FSpot.Exporters.PicasaWeb {
 
 			this.items = selection.Items;
 			album_button.Sensitive = false;
-			IconView view = new IconView (selection);
+			var view = new TrayView (selection);
 			view.DisplayDates = false;
 			view.DisplayTags = false;
 

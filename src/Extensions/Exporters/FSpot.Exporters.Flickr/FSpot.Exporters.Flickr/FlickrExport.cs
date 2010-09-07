@@ -166,7 +166,7 @@ namespace FSpot.Exporters.Flickr {
 			this.selection = selection;
 			this.current_service = FlickrRemote.Service.FromSupported (service);
 
-			IconView view = new IconView (selection);
+			var view = new TrayView (selection);
 			view.DisplayTags = display_tags;
 			view.DisplayDates = false;
 

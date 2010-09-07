@@ -32,6 +32,7 @@ using System.Diagnostics;
 using System.Reflection;
 
 using FSpot.Core;
+using FSpot.Widgets;
 
 namespace FSpot.Exporters.Tabblo {
 
@@ -80,8 +81,7 @@ namespace FSpot.Exporters.Tabblo {
 					"TabbloExport.ui", DialogName)
 		{
 			// Thumbnails
-			FSpot.Widgets.IconView icon_view =
-					new FSpot.Widgets.IconView (photos);
+			var icon_view = new TrayView (photos);
 			icon_view.DisplayDates = false;
 			icon_view.DisplayTags = false;
 

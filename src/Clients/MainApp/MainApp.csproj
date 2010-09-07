@@ -160,7 +160,6 @@
     <Compile Include="FSpot.Widgets\FolderTreeModel.cs" />
     <Compile Include="FSpot.Widgets\FolderTreePage.cs" />
     <Compile Include="FSpot.Widgets\FolderTreeView.cs" />
-    <Compile Include="FSpot.Widgets\IconView.cs" />
     <Compile Include="FSpot.Widgets\ImageInfo.cs" />
     <Compile Include="FSpot.Widgets\InfoBox.cs" />
     <Compile Include="FSpot.Widgets\Loupe.cs" />
@@ -198,6 +197,15 @@
     <Compile Include="FSpot.Database\DbException.cs" />
     <Compile Include="FSpot.Database\DbStore.cs" />
     <Compile Include="FSpot\PhotoList.cs" />
+    <Compile Include="FSpot.Widgets\ThumbnailCaptionRenderer.cs" />
+    <Compile Include="FSpot.Widgets\ThumbnailDateCaptionRenderer.cs" />
+    <Compile Include="FSpot.Widgets\ThumbnailDecorationRenderer.cs" />
+    <Compile Include="FSpot.Widgets\ThumbnailFilenameCaptionRenderer.cs" />
+    <Compile Include="FSpot.Widgets\ThumbnailRatingDecorationRenderer.cs" />
+    <Compile Include="FSpot.Widgets\ThumbnailTagsCaptionRenderer.cs" />
+    <Compile Include="FSpot.Widgets\ThumbnailTextCaptionRenderer.cs" />
+    <Compile Include="FSpot.Widgets\SelectionCollectionGridView.cs" />
+    <Compile Include="FSpot.Widgets\CollectionCellGridView.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="..\..\..\COPYING">

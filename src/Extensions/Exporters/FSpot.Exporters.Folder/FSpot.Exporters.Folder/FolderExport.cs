@@ -97,7 +97,7 @@ namespace FSpot.Exporters.Folder {
 		{
 			this.selection = selection;
 
-			IconView view = (IconView) new IconView (selection);
+			var view = new TrayView (selection);
 			view.DisplayDates = false;
 			view.DisplayTags = false;
 

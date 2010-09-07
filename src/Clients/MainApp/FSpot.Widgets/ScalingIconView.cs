@@ -11,10 +11,10 @@ using System;
 using FSpot.Core;
 
 namespace FSpot.Widgets {
-	public class ScalingIconView : IconView {
+	public class ScalingIconView : SelectionCollectionGridView {
 		protected ScalingIconView (IntPtr raw) : base (raw) {}
 
-		public ScalingIconView () : base () { }
+		//public ScalingIconView () : base () { }
 		public ScalingIconView (IBrowsableCollection collection) : base (collection) { }
 
 		/*protected override void UpdateLayout ()

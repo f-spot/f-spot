@@ -42,7 +42,7 @@ namespace FSpot.Exporters.Gallery
 			this.items = selection.Items;
 			Array.Sort<IPhoto> (this.items, new IPhotoComparer.CompareDateName());
 			album_button.Sensitive = false;
-			IconView view = new IconView (selection);
+			var view = new TrayView (selection);
 			view.DisplayDates = false;
 			view.DisplayTags = false;
 

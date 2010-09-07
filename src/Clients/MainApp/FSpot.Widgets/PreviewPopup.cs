@@ -18,7 +18,7 @@ using FSpot.Gui;
 
 namespace FSpot {
 	public class PreviewPopup : Gtk.Window {
-		private IconView view;
+		private CollectionGridView view;
 		private Gtk.Image image;
 		private Gtk.Label label;
 
@@ -252,7 +252,7 @@ namespace FSpot {
 			return false;
 		}
 
-		public PreviewPopup (IconView view) : base (Gtk.WindowType.Toplevel)
+		public PreviewPopup (SelectionCollectionGridView view) : base (Gtk.WindowType.Toplevel)
 		{
 			Gtk.VBox vbox = new Gtk.VBox ();
 			this.Add (vbox);
