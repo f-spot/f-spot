@@ -206,6 +206,7 @@
     <Compile Include="FSpot.Widgets\ThumbnailTextCaptionRenderer.cs" />
     <Compile Include="FSpot.Widgets\SelectionCollectionGridView.cs" />
     <Compile Include="FSpot.Widgets\CollectionCellGridView.cs" />
+    <Compile Include="FSpot.Widgets\BrowseablePointerGridView.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="..\..\..\COPYING">
