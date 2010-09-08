@@ -11,6 +11,8 @@
 using Mono.Addins;
 using System;
 
+using FSpot.Core;
+
 namespace FSpot.Extensions
 {
 	public delegate PhotoList SelectedImages ();

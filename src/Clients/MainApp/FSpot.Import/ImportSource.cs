@@ -1,6 +1,9 @@
 using Hyena;
 using System;
 
+using FSpot.Core;
+
+
 namespace FSpot.Import
 {
     public interface ImportSource {

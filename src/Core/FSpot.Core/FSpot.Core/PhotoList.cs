@@ -9,9 +9,8 @@
 
 using System.Collections.Generic;
 
-using FSpot.Core;
+namespace FSpot.Core {
 
-namespace FSpot {
 	public class PhotoList : IBrowsableCollection {
 		protected List<IPhoto> list;
 		IPhoto [] cache;

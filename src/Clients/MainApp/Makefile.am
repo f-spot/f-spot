@@ -143,7 +143,6 @@ SOURCES =  \
 	FSpot/MetaStore.cs \
 	FSpot/Photo.cs \
 	FSpot/PhotoEventArgs.cs \
-	FSpot/PhotoList.cs \
 	FSpot/PhotoLoader.cs \
 	FSpot/PhotoPopup.cs \
 	FSpot/PhotoQuery.cs \

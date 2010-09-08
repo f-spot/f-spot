@@ -21,6 +21,7 @@ SOURCES =  \
 	FSpot.Core/IPhotoVersion.cs \
 	FSpot.Core/IPhotoVersionable.cs \
 	FSpot.Core/PhotoChanges.cs \
+	FSpot.Core/PhotoList.cs \
 	FSpot.Core/PhotosChanges.cs \
 	FSpot.Core/Roll.cs \
 	FSpot.Core/Tag.cs
