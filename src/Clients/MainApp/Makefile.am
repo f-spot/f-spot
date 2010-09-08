@@ -104,7 +104,6 @@ SOURCES =  \
 	FSpot.Widgets/PreviewPopup.cs \
 	FSpot.Widgets/QueryView.cs \
 	FSpot.Widgets/RatingMenuItem.cs \
-	FSpot.Widgets/ScalingIconView.cs \
 	FSpot.Widgets/SelectionCollectionGridView.cs \
 	FSpot.Widgets/Sharpener.cs \
 	FSpot.Widgets/Sidebar.cs \
