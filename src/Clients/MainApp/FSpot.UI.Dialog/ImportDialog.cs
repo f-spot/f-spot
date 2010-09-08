@@ -60,13 +60,10 @@ namespace FSpot.UI.Dialog
             GtkUtil.ModifyColors (photo_scrolled);
             GtkUtil.ModifyColors (photo_view);
 
-            var tray = new ScalingIconView (Controller.Photos);
-            tray.Selection.Changed += (c) => {
-                if (tray.Selection.Count > 0)
-                    photo_view.Item.Index = tray.Selection.Ids[0];
+            var tray = new BrowseablePointerGridView (photo_view.Item) {
+                DisplayTags = false
             };
             icon_scrolled.Add (tray);
-            tray.DisplayTags = false;
             tray.Show ();
 
             progress_bar.Hide ();
