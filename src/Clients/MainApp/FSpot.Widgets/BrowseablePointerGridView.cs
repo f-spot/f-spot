@@ -88,7 +88,7 @@ namespace FSpot.Widgets
             case Gdk.Key.Down:
             case Gdk.Key.J:
             case Gdk.Key.j:
-                Pointer.Index += VisibleColums;
+                Pointer.Index = Math.Min (Pointer.Collection.Count - 1, Pointer.Index + VisibleColums);
                 break;
 
             case Gdk.Key.Left:
@@ -104,7 +104,8 @@ namespace FSpot.Widgets
             case Gdk.Key.L:
             case Gdk.Key.l:
                 if (control && shift)
-                    Pointer.Index += VisibleColums - (Pointer.Index % VisibleColums) - 1;
+                    Pointer.Index = Math.Min (Pointer.Collection.Count - 1,
+                                              Pointer.Index + VisibleColums - (Pointer.Index % VisibleColums) - 1);
                 else
                     Pointer.MoveNext ();
                 break;
@@ -112,15 +113,15 @@ namespace FSpot.Widgets
             case Gdk.Key.Up:
             case Gdk.Key.K:
             case Gdk.Key.k:
-                Pointer.Index -= VisibleColums;
+                Pointer.Index = Math.Max (0, Pointer.Index - VisibleColums);
                 break;
 
             case Gdk.Key.Page_Up:
-                Pointer.Index -= VisibleColums * VisibleRows;
+                Pointer.Index = Math.Max (0, Pointer.Index - VisibleColums);
                 break;
 
             case Gdk.Key.Page_Down:
-                Pointer.Index += VisibleColums * VisibleRows;
+                Pointer.Index = Math.Min (Pointer.Collection.Count - 1, Pointer.Index + VisibleColums * VisibleRows);
                 break;
 
             case Gdk.Key.Home:
