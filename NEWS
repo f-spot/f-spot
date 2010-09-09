@@ -1,3 +1,15 @@
+f-spot 0.7.3 - Sep  9 2010 - Release Candidate
+----------------------------------------------
+- Release candidate for the 0.8.0 release.
+ - Completely replaced Glade usage by GtkBuilder (Paul Lange)
+ - Cleanups and refactorings all accross (Ruben Vermeersch)
+ - Correctly decide when to make the library location sensitive (Iain Lane)
+ - Fixes in Taglib#.
+ - IconView has been split up and made much more modular (Mike Gemünde)
+ - More Hyenafication (Mike Gemünde)
+ - Copy to Clipboard fixed (Mike Gemünde)
+ - Another 20 bugs closed (http://bit.ly/a9FWVh)
+
 f-spot 0.7.2 - Aug 11 2010 - Retooled
 -------------------------------------
 - Third release of the unstable 0.7 development series. Features a fully
