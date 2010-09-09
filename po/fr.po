@@ -17,7 +17,7 @@ msgstr ""
 "Project-Id-Version: f-spot HEAD\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=f-"
 "spot&component=General\n"
-"POT-Creation-Date: 2010-09-08 16:28+0000\n"
+"POT-Creation-Date: 2010-09-08 21:24+0000\n"
 "PO-Revision-Date: 2010-06-09 18:12+0200\n"
 "Last-Translator: Bruno Brouard <annoa.b@gmail.com>\n"
 "Language-Team: GNOME French Team <gnomefr@traduc.org>\n"
@@ -70,7 +70,7 @@ msgstr ""
 
 #: ../f-spot.schemas.in.h:3
 msgid "Height of the import dialog."
-msgstr "Hauteur de la boîte de dialogue d'import."
+msgstr "Hauteur de la boîte de dialogue d'importation."
 
 #: ../f-spot.schemas.in.h:4
 msgid "Height of the main window."
@@ -167,7 +167,7 @@ msgstr "La couleur à utiliser pour les parties transparentes."
 
 #: ../f-spot.schemas.in.h:26
 msgid "The height dimension to use for the import dialog."
-msgstr "La hauteur à utiliser pour la boîte de dialogue d'import."
+msgstr "La hauteur à utiliser pour la boîte de dialogue d'importation."
 
 #: ../f-spot.schemas.in.h:27
 msgid "The height dimension to use for the main window."
@@ -195,7 +195,7 @@ msgstr "La taille de la barre latérale de la fenêtre principale."
 
 #: ../f-spot.schemas.in.h:33
 msgid "The width dimension to use for the import dialog."
-msgstr "La largeur à utiliser pour la boîte de dialogue d'import."
+msgstr "La largeur à utiliser pour la boîte de dialogue d'importation."
 
 #: ../f-spot.schemas.in.h:34
 msgid "The width dimension to use for the main window."
@@ -213,7 +213,7 @@ msgstr ""
 
 #: ../f-spot.schemas.in.h:37
 msgid "Width of the import dialog."
-msgstr "Largeur de la boîte de dialogue d'import."
+msgstr "Largeur de la boîte de dialogue d'importation."
 
 #: ../f-spot.schemas.in.h:38
 msgid "Width of the main window."
@@ -226,8 +226,7 @@ msgstr "Largeur de la fenêtre de l'afficheur photo."
 #: ../f-spot.schemas.in.h:40
 msgid "Width of the preview image pane in the import dialog."
 msgstr ""
-"Largeur du panneau d'aperçu de l'image dans la boîte de dialogue "
-"d'import."
+"Largeur du panneau d'aperçu de l'image dans la boîte de dialogue d'importation."
 
 #: ../f-spot.schemas.in.h:41
 msgid "X position of the main window."
@@ -1228,7 +1227,7 @@ msgstr "Choisir un dossier..."
 
 #: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:129
 msgid "Choose Import source..."
-msgstr "Choisir la source d'import..."
+msgstr "Choisir la source d'importation..."
 
 #: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:141
 msgid "(No Cameras Detected)"
@@ -1243,7 +1242,7 @@ msgid ""
 "the camera. <b>Use this option at your own risk!</b>"
 msgstr ""
 "En cochant cette case, les photos importées seront supprimées de l'appareil "
-"photo après le succès de l'import.\n"
+"photo après le succès de l'importation.\n"
 "\n"
 "Il est en général recommandé de faire une sauvegarde de vos photos avant de "
 "les supprimer de l'appareil. <b>Utilisez cette option à vos risques et "
@@ -1256,11 +1255,11 @@ msgstr "Avertissement"
 #: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:295
 #, csharp-format
 msgid "Importing Photos: {0} of {1}..."
-msgstr "Import de photos : {0} sur {1}..."
+msgstr "Importation de photos : {0} sur {1}..."
 
 #: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:319
 msgid "Importing photos..."
-msgstr "Import de photos..."
+msgstr "Importation de photos..."
 
 #. TODO: Using a GtkSpinner would be nicer here.
 #: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:326
@@ -1270,7 +1269,7 @@ msgstr ""
 
 #: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportFailureDialog.cs:36
 msgid "Import failures"
-msgstr "Échecs de l'import"
+msgstr "Échecs de l'importation"
 
 #: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportFailureDialog.cs:37
 msgid "Some files failed to import"
@@ -1558,7 +1557,7 @@ msgstr "Enregistrer les étiquettes et descriptions des photos :"
 
 #: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:12
 msgid "When importing photos, copy them to:"
-msgstr "Au cours de l'import des photos, les copier vers :"
+msgstr "Au cours de l'importation des photos, les copier vers :"
 
 #: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/RatingFilterDialog.ui.h:1
 msgid "<b>Max Rating</b>"
@@ -2002,7 +2001,7 @@ msgstr "_Importer"
 
 #: ../src/Clients/MainApp/ui/import.ui.h:9
 msgid "_Remove original files after import"
-msgstr "Supp_rimer les fichiers d'origine après l'import"
+msgstr "Supp_rimer les fichiers d'origine après l'importation"
 
 #: ../src/Clients/MainApp/ui/mail_dialog.ui.h:1
 msgid "1024 px"
@@ -2324,7 +2323,7 @@ msgstr "Ordre inve_rsé"
 
 #: ../src/Clients/MainApp/ui/main_window.ui.h:64
 msgid "_Select Import Rolls..."
-msgstr "_Sélectionner des séries d'import..."
+msgstr "_Sélectionner des séries d'importation..."
 
 #: ../src/Clients/MainApp/ui/main_window.ui.h:65
 msgid "_Set Date Range..."
@@ -3753,8 +3752,7 @@ msgstr ""
 "« Nouvelles séries uniquement » est une option pratique qui évite d'importer "
 "à nouveau des photos que vous auriez pu importer au cours d'une opération "
 "précédente.\n"
-"« Une série d'import unique » vous permet de choisir la série à "
-"fusionner.\n"
+"« Une série d'importation unique » vous permet de choisir la série à fusionner.\n"
 "« Tout » importe tout, en créant des doublons si vous aviez déjà importé à "
 "partir de cette base de données.</i></small>"
 
@@ -3770,7 +3768,7 @@ msgstr ""
 
 #: ../src/Extensions/Tools/FSpot.Tools.MergeDb/Resources/mergedb_dialog.ui.h:7
 msgid "A Single Import Roll"
-msgstr "Une série d'import unique"
+msgstr "Une série d'importation unique"
 
 #: ../src/Extensions/Tools/FSpot.Tools.MergeDb/Resources/mergedb_dialog.ui.h:8
 msgid "Copy images to photos folder"
