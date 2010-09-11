@@ -195,17 +195,12 @@ namespace FSpot.Widgets
                 if (evnt.Button == 3) {
                     ContextMenu (evnt, cell_num);
                     return true;
-                } else
+                } else {
                     return false;
-
-                break;
-
-            default:
-                return false;
-                break;
+                }
             }
 
-            return true;
+            return false;
         }
 
         protected override bool OnButtonReleaseEvent (EventButton evnt)
