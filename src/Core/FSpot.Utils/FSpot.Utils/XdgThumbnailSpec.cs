@@ -83,7 +83,9 @@ namespace FSpot.Utils
             var info = file.QueryInfo ("time::modified", GLib.FileQueryInfoFlags.None, null);
             var mtime = info.GetAttributeULong ("time::modified").ToString ();
 
-            thumb_pixbuf.Save (thumb_uri.LocalPath, "png", uri, mtime);
+            thumb_pixbuf.Savev (thumb_uri.LocalPath, "png",
+                                new string [] {ThumbUriOpt, ThumbMTimeOpt, null},
+                                new string [] {uri, mtime});
 
             return thumb_pixbuf;
         }
@@ -137,40 +139,6 @@ namespace FSpot.Utils
 
             return true;
         }
-#endregion
-
-
-#region Gdk hackery
-        
-        // This hack below is needed because there is no wrapped version of
-        // Save which allows specifying the variable arguments (it's not
-        // possible with p/invoke). It embeds the thumb uri and mtime in the
-        // saved file.
-
-        [DllImport("libgdk_pixbuf-2.0-0.dll")]
-        static extern bool gdk_pixbuf_save(IntPtr raw, IntPtr filename, IntPtr type, out IntPtr error,
-                IntPtr optlabel1, IntPtr optvalue1, IntPtr optlabel2, IntPtr optvalue2, IntPtr dummy);
-        
-        static bool Save (this Pixbuf pixbuf, string filename, string type, string uri_opt, string mtime_opt)
-        {
-            IntPtr error = IntPtr.Zero;
-            IntPtr nfilename = GLib.Marshaller.StringToPtrGStrdup (filename);
-            IntPtr ntype = GLib.Marshaller.StringToPtrGStrdup (type);
-            IntPtr optlabel1 = GLib.Marshaller.StringToPtrGStrdup (ThumbUriOpt);
-            IntPtr optvalue1 = GLib.Marshaller.StringToPtrGStrdup (uri_opt);
-            IntPtr optlabel2 = GLib.Marshaller.StringToPtrGStrdup (ThumbMTimeOpt);
-            IntPtr optvalue2 = GLib.Marshaller.StringToPtrGStrdup (mtime_opt);
-            bool ret = gdk_pixbuf_save(pixbuf.Handle, nfilename, ntype, out error, optlabel1, optvalue1, optlabel2, optvalue2, IntPtr.Zero);
-            GLib.Marshaller.Free (nfilename);
-            GLib.Marshaller.Free (ntype);
-            GLib.Marshaller.Free (optlabel1);
-            GLib.Marshaller.Free (optvalue1);
-            GLib.Marshaller.Free (optlabel2);
-            GLib.Marshaller.Free (optvalue2);
-            if (error != IntPtr.Zero) throw new GLib.GException (error);
-            return ret;
-        }
-
 #endregion
 
     }
