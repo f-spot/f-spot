@@ -36,9 +36,11 @@ namespace FSpot.Core
                 return;
             
             using (var metadata = Metadata.Parse (DefaultVersion.Uri)) {
-                var date = metadata.ImageTag.DateTime;
-                time = date.HasValue ? date.Value : CreateDate;
-                description = metadata.ImageTag.Comment;
+                if (metadata != null) {
+                    var date = metadata.ImageTag.DateTime;
+                    time = date.HasValue ? date.Value : CreateDate;
+                    description = metadata.ImageTag.Comment;
+                }
             }
             
             metadata_parsed = true;

@@ -86,6 +86,9 @@ namespace FSpot.Import {
         public bool Import (Photo photo, IPhoto importing_from)
         {
             using (var metadata = Metadata.Parse (importing_from.DefaultVersion.Uri)) {
+                if (metadata == null)
+                    return true;
+
                 // Copy Rating
                 var rating = metadata.ImageTag.Rating;
                 if (rating.HasValue) {
