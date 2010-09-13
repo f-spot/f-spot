@@ -121,7 +121,8 @@ namespace FSpot.Widgets
             int [] ids = Ids;
             selected_cells.Clear ();
             bit_array.SetAll (false);
-            SignalChange (ids);
+            if (update)
+                SignalChange (ids);
         }
 
         public void Add (IPhoto item)
