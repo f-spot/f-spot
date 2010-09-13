@@ -61,14 +61,18 @@ namespace FSpot {
 		private static void RotateOrientation (string original_path, RotateDirection direction)
 		{
             try {
-                using (var metadata = Metadata.Parse (new SafeUri (original_path))) {
+                var uri = new SafeUri (original_path);
+                using (var metadata = Metadata.Parse (uri)) {
+                    metadata.EnsureAvailableTags ();
                     var tag = metadata.ImageTag;
                     var orientation = direction == RotateDirection.Clockwise
                         ? FSpot.Utils.PixbufUtils.Rotate90 (tag.Orientation)
                         : FSpot.Utils.PixbufUtils.Rotate270 (tag.Orientation);
 
                     tag.Orientation = orientation;
-                    metadata.Save ();
+                    var always_sidecar = Preferences.Get<bool> (Preferences.METADATA_ALWAYS_USE_SIDECAR);
+                    metadata.SaveSafely (uri, always_sidecar);
+                    XdgThumbnailSpec.RemoveThumbnail (uri);
                 }
             } catch (Exception e) {
                 Log.DebugException (e);

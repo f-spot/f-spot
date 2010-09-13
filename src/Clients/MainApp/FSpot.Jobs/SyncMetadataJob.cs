@@ -70,17 +70,7 @@ namespace FSpot.Jobs {
                 tag.Software = Defines.PACKAGE + " version " + Defines.VERSION;
 
                 var always_sidecar = Preferences.Get<bool> (Preferences.METADATA_ALWAYS_USE_SIDECAR);
-                if (always_sidecar || !metadata.Writeable || metadata.PossiblyCorrupt) {
-                    if (!always_sidecar && metadata.PossiblyCorrupt) {
-                        Log.WarningFormat (Catalog.GetString ("Metadata of file {0} may be corrupt, refusing to write to it, falling back to XMP sidecar."), photo.DefaultVersion.Uri);
-                    }
-
-                    var sidecar_res = new GIOTagLibFileAbstraction () { Uri = photo.DefaultVersion.Uri.ReplaceExtension (".xmp") };
-
-                    metadata.SaveXmpSidecar (sidecar_res);
-                } else {
-                    metadata.Save ();
-                }
+                metadata.SaveSafely (photo.DefaultVersion.Uri, always_sidecar);
             }
         }
     }

@@ -21,7 +21,7 @@ namespace FSpot.Utils
 
             // Parse file
             var res = new GIOTagLibFileAbstraction () { Uri = uri };
-            var sidecar_uri = uri.ReplaceExtension (".xmp");
+            var sidecar_uri = GetSidecarUri (uri);
             var sidecar_res = new GIOTagLibFileAbstraction () { Uri = sidecar_uri };
 
             TagLib.Image.File file = null;
@@ -46,6 +46,27 @@ namespace FSpot.Utils
             }
 
             return file;
+        }
+
+        public static void SaveSafely (this TagLib.Image.File metadata, SafeUri photo_uri, bool always_sidecar)
+        {
+            if (always_sidecar || !metadata.Writeable || metadata.PossiblyCorrupt) {
+                if (!always_sidecar && metadata.PossiblyCorrupt) {
+                    Hyena.Log.WarningFormat ("Metadata of file {0} may be corrupt, refusing to write to it, falling back to XMP sidecar.", photo_uri);
+                }
+
+                var sidecar_res = new GIOTagLibFileAbstraction () { Uri = GetSidecarUri (photo_uri) };
+
+                metadata.SaveXmpSidecar (sidecar_res);
+            } else {
+                metadata.Save ();
+            }
+        }
+
+        public static SafeUri GetSidecarUri (SafeUri photo_uri)
+        {
+            // TODO: We might consider alternate namings here
+            return photo_uri.ReplaceExtension (".xmp");
         }
     }
 }
