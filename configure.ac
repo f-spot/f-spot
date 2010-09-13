@@ -379,7 +379,6 @@ src/Extensions/Exporters/FSpot.Exporters.Zip/Makefile
 src/Extensions/Tools/Makefile
 src/Extensions/Tools/FSpot.Tools.RawPlusJpeg/Makefile
 src/Extensions/Tools/FSpot.Tools.ChangePhotoPath/Makefile
-src/Extensions/Tools/FSpot.Tools.HashJob/Makefile
 src/Extensions/Tools/FSpot.Tools.DevelopInUFraw/Makefile
 src/Extensions/Tools/FSpot.Tools.LiveWebGallery/Makefile
 src/Extensions/Tools/FSpot.Tools.MergeDb/Makefile
