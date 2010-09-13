@@ -219,11 +219,12 @@ namespace FSpot
 			}
 		}
 
-		void HandleImport (string path)
-		{
-			Organizer.Window.Present ();
-			Organizer.ImportFile (path == null ? null : new SafeUri(path));
-		}
+        void HandleImport (string path)
+        {
+            Hyena.Log.DebugFormat ("Importing from {0}", path);
+            Organizer.Window.Present ();
+            Organizer.ImportFile (path == null ? null : new SafeUri(path));
+        }
 
 		void HandleOrganize ()
 		{
