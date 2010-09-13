@@ -92,6 +92,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="Mono.Cairo" />
+    <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FSpot.Utils\FSpot.Utils.csproj">
