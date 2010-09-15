@@ -223,7 +223,7 @@ namespace FSpot
         {
             // Some users get wonky URIs here, trying to work around below.
             // https://bugzilla.gnome.org/show_bug.cgi?id=629248
-            if (path.StartsWith ("gphoto2:usb:")) {
+            if (path != null && path.StartsWith ("gphoto2:usb:")) {
                 path = String.Format ("gphoto2://[{0}]", path.Substring (8));
             }
 
