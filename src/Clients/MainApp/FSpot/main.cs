@@ -282,7 +282,6 @@ namespace FSpot
 				UpdatePlugins ();
 			} catch (Exception e) {
 				Log.Debug ("Failed to initialize plugins, will remove addin-db and try again.");
-				Log.DebugException (e);
 				ResetPluginDb ();
 			}
 			SetupService setupService = new SetupService (AddinManager.Registry);
