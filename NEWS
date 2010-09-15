@@ -1,3 +1,15 @@
+f-spot 0.8.0 - Sep 15 2010 - Stabilized
+---------------------------------------
+- First long-term stable release of the 0.8.x series.
+ - Contains everything from the 0.7.x series as well as some critical extra
+   fixes that were added during the past week.
+ - Some regressions in terms of support for obscure RAW formats, but lots of
+   improvements overall, definitely in terms of stability.
+ - Nearly 300 bugs closed since 0.6.2 (http://bit.ly/bqXLLt)
+ - This series will continue to be maintained and released, but only with
+   improvements and fixes. New development will happen on the master branch
+   and result in 0.9.x releases.
+
 f-spot 0.7.3 - Sep  9 2010 - Release Candidate
 ----------------------------------------------
 - Release candidate for the 0.8.0 release.
