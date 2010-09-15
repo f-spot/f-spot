@@ -24,7 +24,7 @@ else
 
 	bus=`hal-get-property --udi="$udi" --key=usb.bus_number`
 	dev=`hal-get-property --udi="$udi" --key=usb.linux.device_number`
-	uri=`printf gphoto2:[usb:%.3d,%.3d] $bus $dev`
+	uri=`printf gphoto2://[usb:%.3d,%.3d] $bus $dev`
 
 	f-spot --import "$uri"
 fi
