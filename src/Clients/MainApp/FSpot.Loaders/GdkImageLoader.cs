@@ -132,7 +132,7 @@ namespace FSpot.Loaders {
 		public new bool Close ()
 		{
 			lock (sync_handle) {
-				return base.Close (true);
+				return base.Close ();
 			}
 		}
 #endregion
