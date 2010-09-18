@@ -5,7 +5,6 @@ LINK = $(REF_FSPOT_UTILS)
 SOURCES =  \
 	FSpot.Utils/Cache.cs \
 	FSpot.Utils/CairoUtils.cs \
-	FSpot.Utils/ConsoleCrayon.cs \
 	FSpot.Utils/DelayedOperation.cs \
 	FSpot.Utils/FileExtensions.cs \
 	FSpot.Utils/GdkUtils.cs \
