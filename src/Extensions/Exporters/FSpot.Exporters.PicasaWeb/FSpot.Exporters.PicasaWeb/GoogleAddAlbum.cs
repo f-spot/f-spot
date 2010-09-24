@@ -40,7 +40,7 @@ namespace FSpot.Exporters.PicasaWeb
 
 		public GoogleAddAlbum (GoogleExport export, Mono.Google.Picasa.PicasaWeb picasa)
 		{
-			builder = new GtkBeans.Builder (null, "google_add_album_dialog.glade", null);
+			builder = new GtkBeans.Builder (null, "google_add_album_dialog.ui", null);
 			builder.Autoconnect (this);
 
 			this.export = export;
