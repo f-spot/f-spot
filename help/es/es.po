@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: f-spot.help.master\n"
 "POT-Creation-Date: 2010-08-22 10:40+0000\n"
-"PO-Revision-Date: 2010-10-13 14:46+0200\n"
+"PO-Revision-Date: 2010-10-13 15:45+0200\n"
 "Last-Translator: Jorge González <jorgegonz@svn.gnome.org>\n"
 "Language-Team: Español <gnome-es-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -314,21 +314,23 @@ msgstr ""
 
 #: C/tag-creation.page:54(p)
 msgid "Select the photos to which you wish to attach the new tag."
-msgstr ""
+msgstr "Seleccione las fotos en las que quiere añadir la etiqueta nueva."
 
 #: C/tag-creation.page:57(p)
 msgid ""
 "Right-click on the photos, and select <guiseq><gui>Attach Tag</"
 "gui><gui>Create New Tag...</gui></guiseq>."
 msgstr ""
+"Pulse con el botón derecho sobre las fotos y seleccione "
+"<guiseq><gui>Adjuntar etiqueta</gui><gui>Crear etiqueta nueva...</gui>."
 
 #: C/tag-attach.page:6(desc)
 msgid "Attaching tags to photos"
-msgstr ""
+msgstr "Adjuntar etiquetas a las fotos"
 
 #: C/tag-attach.page:9(title)
 msgid "Attaching"
-msgstr ""
+msgstr "Adjuntar"
 
 #: C/tag-attach.page:12(p)
 msgid ""
@@ -336,21 +338,28 @@ msgid ""
 "make it easier to search through your photos. As with creating tags, there "
 "is more than one method of attaching tags to photos."
 msgstr ""
+"Al adjuntar las etiquetas que ha <link xref=\"tag-creation\">creado</link> "
+"hará más fácil la búsqueda entre sus fotos. Al igual que para crear "
+"etiquetas, existe más de un método para adjuntar etiquetas a las fotos."
 
 #: C/tag-attach.page:18(p) C/tag-attach.page:32(p)
 msgid "Select photos to which to attach a tag."
-msgstr ""
+msgstr "Seleccione las fotos sobre las que adjuntar la etiqueta."
 
 #: C/tag-attach.page:21(p)
 msgid ""
 "In the tag pane, select a tag to attach to the photos you have selected."
 msgstr ""
+"En el panel de etiquetas seleccione una etiqueta para adjuntar a las fotos "
+"que ha seleccionado."
 
 #: C/tag-attach.page:25(p)
 msgid ""
 "Click <guiseq><gui>Tags</gui><gui>Attach Tag to Selection</gui></guiseq>. "
 "Alternatively, press Ctrl+T."
 msgstr ""
+"Pulse <guiseq><gui>Etiquetas</gui><gui>Adjuntar etiqueta a la selección</"
+"gui></guiseq>. Alternativamente, pulse Ctrl+T."
 
 #: C/tag-attach.page:38(p)
 msgid "Select <gui>Attach Tag</gui> and select the tag you wish to attach."
@@ -402,20 +411,26 @@ msgid ""
 "rating you wish to give; to give a rating of one star, for example, click "
 "the first dot."
 msgstr ""
+"En la esquina inferior derecha verá cinco puntos, correspondientes con la "
+"puntuación que quiere otorgarle; para darle una puntuación de una estrella, "
+"por ejemplo, pulse el primer punto."
 
 #: C/ratings.page:28(p)
 msgid "Select the photo(s) you wish to rate."
-msgstr ""
+msgstr "Seleccione las fotos que quiere puntuar."
 
 #: C/ratings.page:31(p)
 msgid ""
 "Right-click the photo(s) you wish to rate, and select a rating at the bottom "
 "of the right-click menu by clicking the corresponding dot."
 msgstr ""
+"Pulse con el botón derecho del ratón sobre las fotos que quiere puntuar y "
+"seleccione una puntuación en la parte inferior del menú contextual del botón "
+"derecho del ratón, seleccionando el punto correspondiente."
 
 #: C/rate-search.page:8(desc)
 msgid "Search photos by star rating"
-msgstr ""
+msgstr "Buscar fotos por puntuación"
 
 #: C/rate-search.page:11(title)
 msgid "Search by Rating"
@@ -489,22 +504,28 @@ msgid ""
 "Add a gallery by clicking <gui>Add</gui> and supplying a username and "
 "password."
 msgstr ""
+"Añada una galería pulsando <gui>Añadir</gui> y proporcionando un nombre de "
+"usuario y contraseña."
 
 #: C/picasa.page:32(p)
 msgid ""
 "Select a gallery to export to, or click <gui>Add</gui> to create a new "
 "gallery."
 msgstr ""
+"Seleccione una galería a la que exportar, o pulse <gui>Añadir</gui> para "
+"crear una galería nueva."
 
 #: C/picasa.page:36(p) C/folder.page:39(p)
 msgid "Click <gui>Export</gui>."
-msgstr ""
+msgstr "Pulse <gui>Exportar</gui>."
 
 #: C/picasa.page:19(steps)
 msgid ""
 "<placeholder-1/><placeholder-2/><placeholder-3/>j <placeholder-4/"
 "><placeholder-5/>"
 msgstr ""
+"<placeholder-1/><placeholder-2/><placeholder-3/>j <placeholder-4/"
+"><placeholder-5/>"
 
 #: C/introduction.page:6(desc)
 msgid "A brief introduction to F-Spot"
@@ -520,6 +541,10 @@ msgid ""
 "allowing you to tag, rate, and date photos, edit photo metadata, and even "
 "includes a simple in-program photo editor."
 msgstr ""
+"<app>F-Spot</app> es un gestor de fotos lleno de características para el "
+"Escritorio GNOME, permitiéndole etiquetar, puntuar y fechar fotos, editar "
+"los metadatos de las fotos e incluso incluye un pequeño editor simple de "
+"fotos."
 
 #: C/introduction.page:15(p)
 msgid ""
@@ -610,7 +635,7 @@ msgstr "Importando fotos"
 
 #: C/import-photos.page:12(p)
 msgid "Chances are, the first thing you will want to do is import photos."
-msgstr ""
+msgstr "Seguramente lo primero que quiera hacer es importar fotos."
 
 #: C/import-photos.page:15(p)
 msgid "To import photos:"
@@ -726,13 +751,15 @@ msgstr ""
 
 #: C/folder.page:18(p)
 msgid "To export selected photos to a folder:"
-msgstr ""
+msgstr "Exportar a una carpeta las fotos seleccionadas:"
 
 #: C/folder.page:21(p)
 msgid ""
 "Select <guiseq><gui>Photo</gui><gui>Export To</gui><gui>Folder...</gui></"
 "guiseq>."
 msgstr ""
+"Seleccione <guiseq><gui>Foto</gui><gui>Exportar a</gui><gui>Carpeta...</"
+"gui></guiseq>."
 
 #: C/folder.page:25(p)
 msgid "Select a folder."
