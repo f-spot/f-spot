@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: f-spot.help.master\n"
 "POT-Creation-Date: 2010-08-22 10:40+0000\n"
-"PO-Revision-Date: 2010-10-13 13:51+0200\n"
+"PO-Revision-Date: 2010-10-13 14:34+0200\n"
 "Last-Translator: Jorge González <jorgegonz@svn.gnome.org>\n"
 "Language-Team: Español <gnome-es-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -394,7 +394,7 @@ msgstr ""
 
 #: C/ratings.page:17(p)
 msgid "By double-clicking, select the photo you wish to rate."
-msgstr ""
+msgstr "Al pulsar dos veces seleccionará la foto que quiere puntuar."
 
 #: C/ratings.page:20(p)
 msgid ""
@@ -451,10 +451,12 @@ msgid ""
 "Select <guiseq><gui>Find</gui><gui>By Rating</gui><gui>Set Rating Filter</"
 "gui></guiseq>."
 msgstr ""
+"Seleccione <guiseq><gui>Buscar</gui><gui>Por puntuación</gui><gui>Establecer "
+"el filtro de puntuación</gui></guiseq>."
 
 #: C/picasa.page:8(desc)
 msgid "Upload photos to Google's PicasaWeb"
-msgstr ""
+msgstr "Subir fotos a PicasaWeb de Google"
 
 #: C/picasa.page:11(title)
 msgid "Picasa"
@@ -479,6 +481,8 @@ msgid ""
 "Click <guiseq><gui>Photo</gui><gui>Export To</gui><gui>PicasaWeb...</gui></"
 "guiseq>."
 msgstr ""
+"Pulse <guiseq><gui>Foto</gui><gui>Exportar a</gui><gui>PicasaWeb...</gui></"
+"guiseq>."
 
 #: C/picasa.page:28(p)
 msgid ""
@@ -504,7 +508,7 @@ msgstr ""
 
 #: C/introduction.page:6(desc)
 msgid "A brief introduction to F-Spot"
-msgstr ""
+msgstr "Una pequeña introducción a F-Spot"
 
 #: C/introduction.page:9(title)
 msgid "Introduction"
@@ -522,6 +526,9 @@ msgid ""
 "For help getting started using <app>F-Spot</app>, check out the <link xref="
 "\"index#basic-functions\">basic functions</link> of the help file."
 msgstr ""
+"Para obtener ayuda acerca de cómo comenzar a usar <app>F-Spot</app>, "
+"consulte el archivo de ayuda <link xref=\"index#basic-functions\">funciones "
+"básicas</link>."
 
 #: C/index.page:7(title) C/index.page:8(title) C/index.page:11(title)
 msgid "F-Spot photo manager"
@@ -549,11 +556,11 @@ msgstr "Opciones avanzadas"
 
 #: C/import-roll-search.page:8(desc)
 msgid "Searching by date of import"
-msgstr ""
+msgstr "Buscar por fecha de importación"
 
 #: C/import-roll-search.page:11(title)
 msgid "Search by Import Roll"
-msgstr ""
+msgstr "Buscar por carrete importado"
 
 #: C/import-roll-search.page:15(p)
 msgid ""
@@ -563,7 +570,7 @@ msgstr ""
 
 #: C/import-roll-search.page:18(p)
 msgid "To search by latest import roll:"
-msgstr ""
+msgstr "Buscar por el último carrete importado:"
 
 #: C/import-roll-search.page:21(p)
 msgid ""
@@ -595,7 +602,7 @@ msgstr ""
 
 #: C/import-photos.page:6(desc)
 msgid "Import photos to be managed"
-msgstr ""
+msgstr "Importar fotos para ser gestionadas"
 
 #: C/import-photos.page:9(title)
 msgid "Importing Photos"
