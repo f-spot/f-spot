@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: f-spot.help.master\n"
 "POT-Creation-Date: 2010-08-22 10:40+0000\n"
-"PO-Revision-Date: 2010-10-13 13:13+0200\n"
+"PO-Revision-Date: 2010-10-13 13:51+0200\n"
 "Last-Translator: Jorge González <jorgegonz@svn.gnome.org>\n"
 "Language-Team: Español <gnome-es-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -207,6 +207,8 @@ msgstr ""
 msgid ""
 "Click <guiseq><gui>Tags</gui><gui>Remove Tag From Selection</gui></guiseq>."
 msgstr ""
+"Pulse <guiseq><gui>Etiquetas</gui><gui>Quitar etiqueta de la selección</"
+"gui></guiseq>."
 
 #: C/tag-remove.page:34(p) C/tag-attach.page:35(p)
 msgid "Right click the photos."
@@ -215,6 +217,8 @@ msgstr "Pulse con el botón derecho las fotos."
 #: C/tag-remove.page:37(p)
 msgid "Select <gui>Remove Tag</gui> and select the tag you wish to remove."
 msgstr ""
+"Seleccione <gui>Quitar etiqueta</gui> y seleccione la etiqueta que quiere "
+"quitar."
 
 #: C/tag-delete.page:6(desc)
 msgid "Deleting tags from the system"
@@ -229,6 +233,8 @@ msgid ""
 "Deleting tags removes them entirely from your system, but leaves behind any "
 "photos to which that tag is attached."
 msgstr ""
+"Eliminar etiquetas las quita completamente del sistema, pero deja las fotos "
+"que tenían esa etiqueta."
 
 #: C/tag-delete.page:14(p)
 msgid "To delete a tag:"
@@ -237,6 +243,7 @@ msgstr "Para eliminar una etiqueta:"
 #: C/tag-delete.page:17(p)
 msgid "Select the tag you wish to delete from within the tag pane."
 msgstr ""
+"Seleccione la etiqueta que quiere eliminar desde el panel de etiquetas."
 
 #: C/tag-delete.page:20(p)
 msgid ""
@@ -244,6 +251,9 @@ msgid ""
 "Alternatively, right click the tag within the pane, and click <gui>Delete "
 "Tag</gui>."
 msgstr ""
+"Pulse <guiseq><gui>Etiquetas</gui><gui>Eliminar la etiqueta seleccionada</"
+"gui></guiseq>. Alternativamente, pulse con el botón derecho del ratón sobre "
+"el panel de etiquetas y pulse <gui>Eliminar etiqueta</gui>."
 
 #: C/tag-creation.page:6(desc)
 msgid "Creating tags to be attached to photos"
@@ -258,10 +268,14 @@ msgid ""
 "In order to use tags, you need to first create a set of tags which you wish "
 "to use. There are three main methods to create tags."
 msgstr ""
+"Para poder usar las etiquetas, primero necesita crear un conjunto de ellas "
+"que quiera usar. Existen principalmente tres métodos para crear etiquetas."
 
 #: C/tag-creation.page:17(p)
 msgid "Select <guiseq><gui>Tags</gui><gui>Create New Tag...</gui></guiseq>."
 msgstr ""
+"Seleccione <guiseq><gui>Etiquetas</gui><gui>Crear etiqueta nueva...</gui></"
+"guiseq>."
 
 #: C/tag-creation.page:21(p) C/tag-creation.page:39(p)
 #: C/tag-creation.page:61(p)
@@ -270,6 +284,9 @@ msgid ""
 "events. If you wish to create a new tag without a parent, select <gui>(None)"
 "</gui>."
 msgstr ""
+"Seleccione una etiqueta padre para que la nueva etiqueta aparezca bajo ella, "
+"tales como gente o eventos. Si quiere crear una etiqueta nueva sin padre, "
+"seleccione <gui>(Ninguno)</gui>."
 
 #: C/tag-creation.page:26(p) C/tag-creation.page:44(p)
 #: C/tag-creation.page:66(p)
@@ -284,12 +301,16 @@ msgstr "Pulse <gui>Crear</gui>"
 #: C/tag-creation.page:35(p)
 msgid "In the tags page, right click, and select <gui>Create New Tag...</gui>"
 msgstr ""
+"En el panel de etiquetas, pulse con el botón derecho del ratón y seleccione "
+"<gui>Crear etiqueta nueva...</gui>"
 
 #: C/tag-creation.page:50(p)
 msgid ""
 "Method three has the advantage of also <link xref=\"tag-attach\"> attaching</"
 "link> the new tag to the photos selected. To do this:"
 msgstr ""
+"El método tres tiene la ventana de que puede <link xref=\"tag-attach"
+"\">adjuntar</link> la etiqueta nueva a las fotos seleccionadas. Para hacerlo:"
 
 #: C/tag-creation.page:54(p)
 msgid "Select the photos to which you wish to attach the new tag."
@@ -334,6 +355,8 @@ msgstr ""
 #: C/tag-attach.page:38(p)
 msgid "Select <gui>Attach Tag</gui> and select the tag you wish to attach."
 msgstr ""
+"Seleccione <gui>Adjuntar etiqueta</gui> y seleccione la etiqueta que quiere "
+"adjuntar."
 
 #: C/smugmug.page:8(desc)
 msgid "Upload photos to SmugMug"
@@ -349,10 +372,13 @@ msgid ""
 "internet access. Also, the SmugMug <link xref=\"extensions\">extension</"
 "link> must be installed and enabled."
 msgstr ""
+"Para subir fotos a SmugMug necesitará una cuenta SmugMug, así como acceso a "
+"internet. También debe tener instalada y activada la <link xref=\"extensions"
+"\">extensión</link> SmugMug."
 
 #: C/ratings.page:6(desc)
 msgid "Rate your photos from one to five stars"
-msgstr ""
+msgstr "Puntúe sus fotos de una a cinco estrellas"
 
 #: C/ratings.page:9(title)
 msgid "Rating your photos"
@@ -363,6 +389,8 @@ msgid ""
 "<app>F-Spot</app> allows you to rate your photos from one to five stars. "
 "There are two ways to rate photos."
 msgstr ""
+"<app>F-Spot</app> le permite puntuar sus fotos desde una a cinco estrellas. "
+"Existen dos formas de puntuar fotos."
 
 #: C/ratings.page:17(p)
 msgid "By double-clicking, select the photo you wish to rate."
@@ -402,19 +430,21 @@ msgid ""
 "Select <guiseq><gui>Find</gui><gui>By Rating</gui><gui>Set Rating Filter...</"
 "gui></guiseq>."
 msgstr ""
+"Seleccione <guiseq><gui>Buscar</gui><gui>Por puntuación</gui><gui>Establecer "
+"el filtro de puntuación...</gui></guiseq>."
 
 #: C/rate-search.page:22(p)
 msgid "Select the rating range which you wish to view."
-msgstr ""
+msgstr "Seleccione el rango de puntuación que quiere ver."
 
 #: C/rate-search.page:25(p) C/extensions.page:39(p) C/extensions.page:82(p)
 #: C/date-search.page:27(p)
 msgid "Click <gui>Ok</gui>."
-msgstr ""
+msgstr "Pulse <gui>Aceptar</gui>."
 
 #: C/rate-search.page:28(p)
 msgid "To stop searching by rating:"
-msgstr ""
+msgstr "Dejar de buscar por puntuación:"
 
 #: C/rate-search.page:31(p)
 msgid ""
@@ -436,10 +466,13 @@ msgid ""
 "internet access. Also, the PicasaWeb <link xref=\"extensions\">extension</"
 "link> must be installed and enabled."
 msgstr ""
+"Para subir fotos a Picasa necesitará una cuenta de Picasa, así como acceso a "
+"internet. También debe tener instalada y activada la <link xref=\"extensions"
+"\">extensión</link> PicasaWeb."
 
 #: C/picasa.page:21(p)
 msgid "Select the photos you wish to upload."
-msgstr ""
+msgstr "Seleccione las fotos que quiere subir."
 
 #: C/picasa.page:24(p)
 msgid ""
