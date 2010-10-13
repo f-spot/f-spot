@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: f-spot.help.master\n"
 "POT-Creation-Date: 2010-08-22 10:40+0000\n"
-"PO-Revision-Date: 2010-10-13 11:20+0200\n"
+"PO-Revision-Date: 2010-10-13 12:47+0200\n"
 "Last-Translator: Jorge González <jorgegonz@svn.gnome.org>\n"
 "Language-Team: Español <gnome-es-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -31,6 +31,9 @@ msgid ""
 "internet access. Also, the Zooomr <link xref=\"extensions\">extension</link> "
 "must be installed and enabled."
 msgstr ""
+"Para subir fotos a Zooomr necesitará una cuenta deZooomr, así como acceso a "
+"internet. También debe tener instalada y activada la <link xref=\"extensions"
+"\">extensión</link> Zooomr."
 
 #: C/versioning.page:8(desc)
 msgid "Track different versions of your photos"
@@ -46,24 +49,30 @@ msgid ""
 "is especially useful when editing photos, as you can quickly see the "
 "difference between the edited version and the original."
 msgstr ""
+"<app>F-Spot</app> le permite tener varias versiones de sus fotos. Esto es "
+"especialmente útil al editar fotos, ya que puede ver rápidamente la "
+"diferencia entre la versión editada y la original."
 
 #: C/versioning.page:17(p)
 msgid "To switch between versions while editing:"
-msgstr ""
+msgstr "Cambiar entre versiones al editar:"
 
 #: C/versioning.page:20(p)
 msgid "Double-click the photo you wish to edit."
-msgstr ""
+msgstr "Pulse dos veces en la foto que quiera editar."
 
 #: C/versioning.page:23(p)
 msgid ""
 "In the sidebar, you will see a drop-down box labeled <gui>Version:</gui>. To "
 "select a version to view, select it in the drop-down box."
 msgstr ""
+"En la barra lateral verá una caja desplegable etiquetada como <gui>Versión:</"
+"gui>. Para seleccionar una versión para verla, selecciónela en la caja "
+"desplegable."
 
 #: C/upload-to-web.page:8(desc)
 msgid "Upload photos to various web services"
-msgstr ""
+msgstr "Subir fotos a varios servicios web"
 
 #: C/upload-to-web.page:11(title)
 msgid "Upload to Web"
@@ -74,10 +83,12 @@ msgid ""
 "<app>F-Spot</app> allows you to upload photos to popular web services, "
 "including Google's PicasaWeb and Flickr."
 msgstr ""
+"<app>F-Spot</app> le permite subir fotos a los servicios web más populares, "
+"incluyendo PicasaWeb de Google y Flickr."
 
 #: C/tags.page:6(desc)
 msgid "A brief introduction to the tagging capabilities of F-Spot"
-msgstr ""
+msgstr "Una pequeña introducción a las capacidades de etiquetado de F-Spot"
 
 #: C/tags.page:9(title)
 msgid "Tags"
@@ -105,11 +116,11 @@ msgstr "Buscar por etiqueta"
 
 #: C/tag-search.page:15(p)
 msgid "There are several methods to search by tags."
-msgstr ""
+msgstr "Existen diversos métodos para buscar por etiquetas."
 
 #: C/tag-search.page:16(p)
 msgid "Method One: Double-click the tags you wish to search for."
-msgstr ""
+msgstr "Método uno: pulse dos veces en las etiquetas que quiera buscar."
 
 #: C/tag-search.page:17(p) C/tag-remove.page:28(p) C/tag-creation.page:32(p)
 #: C/tag-attach.page:29(p) C/ratings.page:25(p)
@@ -785,11 +796,11 @@ msgstr ""
 
 #: C/facebook.page:39(p)
 msgid "When finished, click <gui>Add</gui>."
-msgstr ""
+msgstr "Cuando haya terminado pulse <gui>Añadir</gui>."
 
 #: C/extensions.page:8(desc)
 msgid "Working with <app>F-Spot</app> extensions"
-msgstr ""
+msgstr "Trabajar con las extensiones de <app>F-Spot</app>"
 
 #: C/extensions.page:11(title)
 msgid "Extensions"
@@ -800,37 +811,41 @@ msgid ""
 "<app>F-Spot</app> allows for the use of extensions to provide additional "
 "functionality."
 msgstr ""
+"<app>F-Spot</app> permite usar extensiones para proporcionar funcionalidades "
+"adicionales."
 
 #: C/extensions.page:18(p)
 msgid ""
 "To open the extension manager, select <guiseq><gui>Edit</gui><gui>Manage "
 "Extensions</gui></guiseq>."
 msgstr ""
+"Para abrir el gestor de extensiones seleccione <guiseq><gui>Editar</"
+"gui><gui>Gestionar extensiones</gui></guiseq>."
 
 #: C/extensions.page:21(p)
 msgid "To install extensions:"
-msgstr ""
+msgstr "Instalar extensiones:"
 
 #: C/extensions.page:24(p) C/extensions.page:46(p) C/extensions.page:58(p)
 #: C/extensions.page:70(p)
 msgid "Open the extension manager."
-msgstr ""
+msgstr "Abrir el gestor de extensiones."
 
 #: C/extensions.page:27(p)
 msgid "Click <gui>Install Add-ins</gui>."
-msgstr ""
+msgstr "Pulse <gui>Instalar complementos</gui>."
 
 #: C/extensions.page:30(p)
 msgid "Select an add-on to install from the list."
-msgstr ""
+msgstr "Seleccione un complemento de la lista para instalar."
 
 #: C/extensions.page:33(p) C/extensions.page:79(p)
 msgid "Click <gui>Forward</gui>."
-msgstr ""
+msgstr "Pulse </gui>Siguiente<gui>."
 
 #: C/extensions.page:36(p)
 msgid "Verify all information, and click <gui>Forward</gui> again."
-msgstr ""
+msgstr "Compruebe toda la información y pulse <gui>Siguiente</gui> de nuevo."
 
 #: C/extensions.page:43(p)
 msgid "To enable plugins that are already installed:"
