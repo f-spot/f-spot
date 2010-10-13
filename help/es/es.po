@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: f-spot.help.master\n"
 "POT-Creation-Date: 2010-08-22 10:40+0000\n"
-"PO-Revision-Date: 2010-10-13 14:34+0200\n"
+"PO-Revision-Date: 2010-10-13 14:46+0200\n"
 "Last-Translator: Jorge González <jorgegonz@svn.gnome.org>\n"
 "Language-Team: Español <gnome-es-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -825,32 +825,42 @@ msgid ""
 "internet access. Also, the Facebook <link xref=\"extensions\">extension</"
 "link> must be installed and enabled."
 msgstr ""
+"Para subir fotos a Facebook necesitará una cuenta Facebook, así como acceso "
+"a internet. También debe tener instalada y activada la <link xref="
+"\"extensions\">extensión</link> Facebook."
 
 #: C/facebook.page:20(p)
 msgid "To post selected photos to Facebook:"
-msgstr ""
+msgstr "Para publicar las fotos seleccionadas en Facebook:"
 
 #: C/facebook.page:23(p)
 msgid ""
 "Select <guiseq><gui>Photo</gui><gui>Export To</gui><gui>Facebook</gui></"
 "guiseq>."
 msgstr ""
+"Seleccione <guiseq><gui>Foto</gui><gui>Exportar a</gui><gui>Facebook</gui></"
+"guiseq>."
 
 #: C/facebook.page:27(p)
 msgid ""
 "Click <gui>Login</gui>. A browser window will be brought up. Log in to "
 "Facebook and click \"Allow\" to allow F-Spot access to your Facebook profile."
 msgstr ""
+"Pulse <gui>Iniciar sesión</gui>. Se mostrará una ventana de un navegador. "
+"Inicie sesión en Facebook y pulse «Permitir» para permitir a F-Spot acceder "
+"a su perfil de Facebook."
 
 #: C/facebook.page:32(p)
 msgid ""
 "Select whether to create a new album or add to an existing album. If you are "
 "creating a new album, fill in the relevant information."
 msgstr ""
+"Seleccione si quiere crear un álbum nuevo o añadir fotos a un álbum "
+"existente. Si está creando un álbum nuevo, rellene la información relevante."
 
 #: C/facebook.page:36(p)
 msgid "Edit captions for each photo, if so desired."
-msgstr ""
+msgstr "Edite los títulos para cada foto, si así lo desea."
 
 #: C/facebook.page:39(p)
 msgid "When finished, click <gui>Add</gui>."
@@ -969,7 +979,7 @@ msgstr ""
 
 #: C/enhancements.page:22(p)
 msgid "Click <gui>Red-Eye Removal</gui> in the Edit panel."
-msgstr ""
+msgstr "Pulse <gui>Reducción de ojos rojos</gui> en el panel de edición."
 
 #: C/enhancements.page:25(p)
 msgid ""
@@ -979,15 +989,15 @@ msgstr ""
 
 #: C/enhancements.page:30(p)
 msgid "Click <gui>Fix!</gui>."
-msgstr ""
+msgstr "Pulse <gui>Arreglar</gui>."
 
 #: C/enhancements.page:33(p)
 msgid "To automatically enhance the colors of the photo:"
-msgstr ""
+msgstr "Mejorar automáticamente los colores de la foto:"
 
 #: C/enhancements.page:36(p)
 msgid "By double-clicking, select the photo which you wish to enhance."
-msgstr ""
+msgstr "Pulse dos veces con el ratón, seleccione la foto que quiere mejorar."
 
 #: C/enhancements.page:39(p)
 msgid "Click <gui>Auto Color</gui>."
@@ -1010,6 +1020,8 @@ msgid ""
 "Select <guiseq><gui>Find</gui><gui>By Date</gui><gui>Set Date Range...</"
 "gui></guiseq>."
 msgstr ""
+"Pulse <guiseq><gui>Buscar</gui><gui>Por fecha</gui><gui>Establecer rango de "
+"fechas</gui></guiseq>."
 
 #: C/date-search.page:22(p)
 msgid ""
@@ -1033,6 +1045,8 @@ msgid ""
 "In the timeline, click the bar corresponding to the time period you wish to "
 "look at."
 msgstr ""
+"En la línea de tiempo pulse la barra correspondiente con el periodo de "
+"tiempo que quiere observar."
 
 #: C/date-search.page:42(p)
 msgid "To stop searching by date:"
@@ -1043,10 +1057,12 @@ msgid ""
 "Select <guiseq><gui>Find</gui><gui>By Date</gui><gui>Clear Date Range</gui></"
 "guiseq>."
 msgstr ""
+"Seleccione <guiseq><gui>Buscar</gui><gui>Por fecha</gui><gui>Limpiar el "
+"rango de fechas</gui></guiseq>."
 
 #: C/colors.page:6(desc)
 msgid "Edit the colors of your photos"
-msgstr ""
+msgstr "Editar los colores de sus fotos"
 
 #: C/colors.page:9(title)
 msgid "Color Editing"
@@ -1054,7 +1070,7 @@ msgstr "Edición de color"
 
 #: C/colors.page:12(p)
 msgid "<app>F-Spot</app> supports several modes of color manipulation."
-msgstr ""
+msgstr "<app>F-Spot</app> soporta diversos modos de manipulación de color."
 
 #: C/colors.page:15(title)
 msgid "Desaturate"
@@ -1065,6 +1081,8 @@ msgid ""
 "This mode eliminates all saturation, turning a color image into a black and "
 "white image."
 msgstr ""
+"Este modo elimina toda la saturación, convirtiendo una imagen de color en "
+"una imagen en blanco y negro."
 
 #: C/colors.page:20(title)
 msgid "Sepia Tone"
@@ -1072,7 +1090,7 @@ msgstr "Tono sepia"
 
 #: C/colors.page:21(p)
 msgid "This mode simulates a photo being created with sepia toner."
-msgstr ""
+msgstr "Este modo simula una foto creada con un tóner sepia."
 
 #: C/colors.page:24(title)
 msgid "Auto Color"
@@ -1081,10 +1099,11 @@ msgstr "Color automático"
 #: C/colors.page:25(p)
 msgid "This mode automatically adjusts the colors to a set profile."
 msgstr ""
+"Este modo ajusta automáticamente los colores para establecer sobre un perfil."
 
 #: C/cd.page:8(desc)
 msgid "Burn photos to a CD"
-msgstr ""
+msgstr "Grabar fotos en un CD"
 
 #: C/cd.page:11(title)
 msgid "CD Export"
@@ -1092,7 +1111,7 @@ msgstr "Exportar a CD"
 
 #: C/adjust-color.page:6(desc)
 msgid "Adjusting the colors of a photo"
-msgstr ""
+msgstr "Ajustar los colores de una foto"
 
 #: C/adjust-color.page:9(title)
 msgid "Adjust Color"
