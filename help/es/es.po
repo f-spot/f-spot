@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: f-spot.help.master\n"
 "POT-Creation-Date: 2010-08-22 10:40+0000\n"
-"PO-Revision-Date: 2010-10-13 12:47+0200\n"
+"PO-Revision-Date: 2010-10-13 13:13+0200\n"
 "Last-Translator: Jorge González <jorgegonz@svn.gnome.org>\n"
 "Language-Team: Español <gnome-es-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -101,6 +101,10 @@ msgid ""
 "can tag people, events, places, favorite things, or even make your own "
 "groups of tags."
 msgstr ""
+"Al igual que otros gestores de fotos, <app>F-Spot</app> le permite etiquetar "
+"sus fotos, permitiendo una búsqueda rápida y fácil basada en el contenido de "
+"sus fotos. Puede etiquetar personas, acontecimientos, lugares, cosas "
+"favoritas o incluso hacer sus propios grupos de etiquetas."
 
 #: C/tags.page:17(title)
 msgid "Working with Tags"
@@ -132,30 +136,40 @@ msgid ""
 "Enable the Find bar by clicking <guiseq><gui>Find</gui><gui>Show Find bar</"
 "gui></guiseq>."
 msgstr ""
+"Activar la barra de búsqueda pulsando <guiseq><gui>Buscar</gui><gui>Mostrar "
+"barra de búsqueda</gui></guiseq>."
 
 #: C/tag-search.page:24(p)
 msgid "Drag the tags you wish to search for into the newly-enabled Find bar."
 msgstr ""
+"Arrastre las etiquetas que quiera buscar en la recién activada barra de "
+"búsqueda."
 
 #: C/tag-search.page:27(p)
 msgid ""
 "To remove a tag from your search, right-click the tag in the Find bar and "
 "click <gui>Remove From Search</gui>."
 msgstr ""
+"Para quitar una etiqueta de su búsqueda, pulse con el botón derecho del "
+"ratón sobre la etiqueta en la barra de búsqueda y pulse <gui>Quitar de la "
+"búsqueda</gui>."
 
 #: C/tag-search.page:30(p)
 msgid "To exclude a tag from your search:"
-msgstr ""
+msgstr "Excluir una etiqueta de su búsqueda:"
 
 #: C/tag-search.page:33(p)
 msgid ""
 "In the tag pane, double-click the tag you wish to exclude. This will add it "
 "to the Find bar."
 msgstr ""
+"En el panel de etiquetas, pulse dos veces sobre la etiqueta que quiera "
+"excluir. Esto lo añadirá a la barra de búsqueda."
 
 #: C/tag-search.page:37(p)
 msgid "In the Find bar, double-click the tag you wish to exclude."
 msgstr ""
+"En la barra de búsqueda, pulse dos veces en la etiqueta que quiera excluir."
 
 #: C/tag-remove.page:6(desc)
 msgid "Removing tags from photos"
@@ -170,6 +184,8 @@ msgid ""
 "As with attaching tags, there are two main methods of removing tags from "
 "photos."
 msgstr ""
+"Al igual que al añadir etiquetas, existen principalmente dos métodos para "
+"quitar etiquetas de las fotos."
 
 #: C/tag-remove.page:14(p) C/tag-creation.page:14(p) C/tag-attach.page:15(p)
 #: C/ratings.page:14(p)
@@ -178,12 +194,14 @@ msgstr "Método uno:"
 
 #: C/tag-remove.page:17(p) C/tag-remove.page:31(p)
 msgid "Select photos from which to remove a tag."
-msgstr ""
+msgstr "Seleccione las fotos de las que quiera quitar la etiqueta."
 
 #: C/tag-remove.page:20(p)
 msgid ""
 "In the tag pane, select a tag to remove from the photos you have selected."
 msgstr ""
+"En el panel de etiquetas, seleccione una etiqueta para quitar de las fotos "
+"que ha seleccionado."
 
 #: C/tag-remove.page:24(p)
 msgid ""
