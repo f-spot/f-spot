@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: f-spot.help.master\n"
 "POT-Creation-Date: 2010-08-22 10:40+0000\n"
-"PO-Revision-Date: 2010-10-14 14:29+0200\n"
+"PO-Revision-Date: 2010-10-14 16:16+0200\n"
 "Last-Translator: Jorge González <jorgegonz@svn.gnome.org>\n"
 "Language-Team: Español <gnome-es-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -739,7 +739,7 @@ msgstr "Recortar una foto seleccionada:"
 
 #: C/general-editing.page:44(p)
 msgid "Click the <gui>Crop</gui> button in the Edit pane."
-msgstr ""
+msgstr "Pulse el botón <gui>Recortar</gui> en el panel de edición."
 
 #: C/general-editing.page:47(p)
 msgid ""
@@ -747,20 +747,26 @@ msgid ""
 "to which the new photo must fit. Examples of contraining aspect ratios "
 "include 4x3, 4x6, and 5x7."
 msgstr ""
+"Seleccione la tasa de proporción, esto es, la proporción entre la altura y "
+"la anchura en la que la nueva foto debe ajustarse. Los ejemplos de "
+"proporciones incluyen 4x3, 4x6 y 5x7."
 
 #: C/general-editing.page:52(p)
 msgid ""
 "Click and drag to select the desired area to keep. This box can be dragged "
 "around after being sized."
 msgstr ""
+"Pulse y arrastre para seleccionar el área deseado para mantener. Esta caja "
+"se puede arrastrar alrededor después de marcar el tamaño."
 
 #: C/general-editing.page:56(p)
 msgid "When you have selected your area to crop to, click <gui>Crop</gui>."
 msgstr ""
+"Cuando haya seleccionado el área para recortar pulse <gui>Recortar</gui>."
 
 #: C/folder.page:8(desc)
 msgid "Send photos to a folder"
-msgstr ""
+msgstr "Enviar las fotos a una carpeta"
 
 #: C/folder.page:11(title)
 msgid "Folder Export"
@@ -772,6 +778,9 @@ msgid ""
 "however, you will need to have the folder export <link xref=\"extensions"
 "\">extension</link> installed and enabled."
 msgstr ""
+"<app>F-Spot</app> le permite exportar a una carpeta. Para ello, no obstante, "
+"necesitará tener la <link xref=\"extensions\">extensión</link> para exportar "
+"carpetas instalada y activada."
 
 #: C/folder.page:18(p)
 msgid "To export selected photos to a folder:"
@@ -801,6 +810,12 @@ msgid ""
 "to the selected folder. <gui>Create gallery using \"Original\"</gui> will "
 "create a folder with contents suitable for using with Original Photo Gallery."
 msgstr ""
+"Seleccione un método de exportación. <gui>Crear una galería web autónoma</"
+"gui> creará una carpeta con el contenido ajustado para que se suba a un "
+"servidor web para presentar las imágenes en una galería. <gui>Sólo guardar "
+"los archivos</gui> sólo moverá las fotos a la carpeta. <gui>Crear una "
+"galería usando «Original»</gui> creará una carpeta con contenidos apropiados "
+"para usarlos con la Galería fotográfica Original."
 
 #: C/flickr.page:8(desc)
 msgid "Upload photos to Flickr"
@@ -852,6 +867,10 @@ msgid ""
 "Alternatively, select <guiseq><gui>Edit</gui><gui>Remove From Catalog</gui></"
 "guiseq> or press the Delete key on your keyboard."
 msgstr ""
+"Pulse con el botón derecho del ratón en las fotos, seleccione <gui>Quitar "
+"del catálogo</gui>. Alternativamente, seleccione <guiseq><gui>Editar</"
+"gui><gui>Quitar del catálogo</gui></guiseq> o pulse la tecla Suprimir en su "
+"teclado."
 
 #: C/file-management.page:29(p)
 msgid "To delete photos from your computer:"
@@ -867,6 +886,10 @@ msgid ""
 "select <guiseq><gui>Edit</gui><gui>Delete From Drive</gui></guiseq> or press "
 "Shift+Delete on your keyboard."
 msgstr ""
+"Pulse con el botón derecho del ratón en las fotos, seleccione <gui>Eliminar "
+"de la unidad</gui>. Alternativamente, seleccione <guiseq><gui>Editar</"
+"gui><gui>Eliminar de la unidad</gui></guiseq> o pulse las teclas Mayús"
+"+Suprimir en su teclado."
 
 #: C/facebook.page:8(desc)
 msgid "Upload photos to Facebook"
@@ -1033,6 +1056,8 @@ msgid ""
 "By double-clicking, select the photo on which you wish to use the red-eye "
 "removal tool."
 msgstr ""
+"Pulsando dos veces con el ratón, seleccione la foto sobre la que quiera usar "
+"la herramienta de reducción de ojos rojos."
 
 #: C/enhancements.page:22(p)
 msgid "Click <gui>Red-Eye Removal</gui> in the Edit panel."
@@ -1043,6 +1068,9 @@ msgid ""
 "Select the area from which you wish to remove red-eye. Note: If the contains "
 "many red areas, you may wish to select each eye individually."
 msgstr ""
+"Seleccione el área en el que quiere reducir los ojos rojos. Nota: si "
+"contiene muchas áreas rojas puede querer seleccionar cada ojo "
+"individualmente."
 
 #: C/enhancements.page:30(p)
 msgid "Click <gui>Fix!</gui>."
@@ -1085,10 +1113,13 @@ msgid ""
 "Select a time period to from which to view photos. This can by done by "
 "selecting a set period, such as a week, or by specifying dates."
 msgstr ""
+"Seleccione un periodo de tiempo en el que ver fotos. Se puede hacer "
+"estableciendo un periodo, tal como una semana, o especificando fechas."
 
 #: C/date-search.page:30(p)
 msgid "Alternatively, you can use the timeline. To use the timeline:"
 msgstr ""
+"Alternativamente puede usar la línea de tiempo. Para usar la línea de tiempo:"
 
 #: C/date-search.page:33(p)
 msgid ""
@@ -1096,6 +1127,9 @@ msgid ""
 "gui><gui>Components</gui></guiseq> and making sure that <gui>Timeline</gui> "
 "is checked."
 msgstr ""
+"Asegúrese de que la línea de tiempo está activada seleccionando "
+"<guiseq><gui>Ver</gui><gui>Componentes</gui></guiseq> y seleccionando la "
+"casilla <gui>Línea de tiempo</gui>."
 
 #: C/date-search.page:38(p)
 msgid ""
@@ -1179,6 +1213,8 @@ msgid ""
 "As far as the editing tools in F-Spot, adjusting the color is easily the "
 "most powerful. The color editor allows you to adjust:"
 msgstr ""
+"De las herramientas de edición de F-Spot, la de ajuste de color es la más "
+"fácil y potente. El editor de color le permite ajustar:"
 
 #: C/adjust-color.page:16(title)
 msgid "Exposure"
@@ -1187,6 +1223,7 @@ msgstr "Exposición"
 #: C/adjust-color.page:17(p)
 msgid "This adjustment simulates lengthening or shortening the exposure time."
 msgstr ""
+"Este ajuste estimula la prolongación o acortamiento del tiempo de exposición."
 
 #: C/adjust-color.page:21(title)
 msgid "Saturation"
@@ -1198,6 +1235,10 @@ msgid ""
 "sliding it to the left decrease color, making it black and white, while "
 "sliding it to the right will increase the vibrancy of colors."
 msgstr ""
+"Este ajuste simula el ajuste de la cantidad de color en la imagen, ej. "
+"deslizarlo a la izquierda disminuye el color, cambiando la imagen a blanco y "
+"negro; mientras que deslizarlo a la derecha aumentará la vitalidad de los "
+"colores."
 
 #: C/adjust-color.page:28(title)
 msgid "Brightness"
@@ -1209,6 +1250,9 @@ msgid ""
 "will make colors appear \"washed out\", while decreasing it too much will "
 "make the image too dark and lacking in contrast."
 msgstr ""
+"Este ajuste aumenta el brillo de los colores. Aumentándolo demasiado hará "
+"que los colores aparezcan como «lavados», mientras que reduciéndolo "
+"demasiado hará que la imagen sea demasiado oscura y le falte contraste."
 
 #: C/adjust-color.page:34(title)
 msgid "Hue"
@@ -1216,7 +1260,7 @@ msgstr "Tono"
 
 #: C/adjust-color.page:35(p)
 msgid "This adjustment causes colors to \"rotate\" along the color wheel."
-msgstr ""
+msgstr "Este ajuste hace que los colores «roten» en la rueda de color."
 
 #: C/adjust-color.page:38(title)
 msgid "Contrast"
@@ -1228,6 +1272,9 @@ msgid ""
 "between dark and light pixels. Sliding to the left decreases contrast, while "
 "sliding to the right will increase contrast."
 msgstr ""
+"Este ajuste cambia la tasa de contraste, esto es, la tasa de diferencia "
+"entre los píxeles oscuros y luminosos. Deslizarlo a la izquierda reduce el "
+"contraste, mientras que deslizarlo a la derecha aumenta el contraste."
 
 #: C/adjust-color.page:45(title)
 msgid "Temp"
