@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: f-spot.help.master\n"
 "POT-Creation-Date: 2010-08-22 10:40+0000\n"
-"PO-Revision-Date: 2010-10-13 15:48+0200\n"
+"PO-Revision-Date: 2010-10-14 14:12+0200\n"
 "Last-Translator: Jorge González <jorgegonz@svn.gnome.org>\n"
 "Language-Team: Español <gnome-es-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -592,6 +592,9 @@ msgid ""
 "Import rolls are \"batches\" of imported photos. Regardless of the date the "
 "photo was taken, the import roll timestamp is decided when you import photos."
 msgstr ""
+"Importar carretes son «lotes» de fotos importadas. Independientemente de la "
+"fecha en la que se tomó la foto, la fecha de importación del lote se marca "
+"al importar las fotos."
 
 #: C/import-roll-search.page:18(p)
 msgid "To search by latest import roll:"
@@ -602,28 +605,37 @@ msgid ""
 "Select <guiseq><gui>Find</gui><gui>By Import Roll</gui><gui>Last Import "
 "Roll</gui></guiseq>."
 msgstr ""
+"Seleccione <guiseq><gui>Buscar</gui><gui>Por carrete importado</"
+"gui><gui>Último carrete importado</gui></guiseq>."
 
 #: C/import-roll-search.page:25(p)
 msgid "To select a previous import roll:"
-msgstr ""
+msgstr "Seleccionar un carrete importado anteriormente:"
 
 #: C/import-roll-search.page:28(p)
 msgid ""
 "Select <guiseq><gui>Find</gui><gui>By Import Roll</gui><gui>Select Import "
 "Rolls</gui></guiseq>."
 msgstr ""
+"Seleccione <guiseq><gui>Buscar</gui><gui>Por carrete importado</"
+"gui><gui>Seleccionar carretes importados…</gui></guiseq>."
 
 #: C/import-roll-search.page:32(p)
 msgid ""
 "Select an import roll to search, or select a range by choosing <gui>Between</"
 "gui> and select the dates you wish to include."
 msgstr ""
+"Seleccione un carrete importado para buscarlo o seleccione un rango "
+"escogiendo <gui>Entre</gui> y seleccionando las fechas que quiere incluir."
 
 #: C/import-roll-search.page:36(p)
 msgid ""
 "To stop searching by import rolls, select <guiseq><gui>Find</gui><gui>By "
 "Import Roll</gui><gui>Clear Roll Filter</gui></guiseq>."
 msgstr ""
+"Para dejar de buscar por carretes importados seleccione <guiseq><gui>Buscar</"
+"gui><gui>Por carrete importado</gui><gui>Limpiar el filtro de carrete</gui></"
+"guiseq>."
 
 #: C/import-photos.page:6(desc)
 msgid "Import photos to be managed"
@@ -646,10 +658,13 @@ msgid ""
 "Select <guiseq><gui>Photo</gui><gui>Import...</gui></guiseq>. Alternatively, "
 "click the <gui>Import</gui> button."
 msgstr ""
+"Seleccione <guiseq><gui>Foto</gui><gui>Importar...</gui></guiseq>. "
+"Alternativamente, pulse el botón <gui>Importar</gui>."
 
 #: C/import-photos.page:24(p)
 msgid "Select a source from which to import, such as a device or a folder."
 msgstr ""
+"Seleccione un origen del que importar, tal como un dispositivo o una carpeta."
 
 #: C/import-photos.page:27(p)
 msgid ""
@@ -665,7 +680,7 @@ msgstr ""
 
 #: C/general-editing.page:6(desc)
 msgid "Make simple edits to your photos"
-msgstr ""
+msgstr "Realice ediciones simples de sus fotos"
 
 #: C/general-editing.page:9(title)
 msgid "General Editing"
@@ -676,6 +691,8 @@ msgid ""
 "<app>F-Spot</app> allows you to make simple general edits, including "
 "straightening, cropping, and rotating your photos."
 msgstr ""
+"<app>F-Spot</app> le permite realizar ediciones generales simples, "
+"incluyendo enderezar, recortar y rotar sus fotos."
 
 #: C/general-editing.page:15(p)
 msgid "There are three ways to rotate a selected photo:"
