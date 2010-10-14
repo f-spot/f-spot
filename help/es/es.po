@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: f-spot.help.master\n"
 "POT-Creation-Date: 2010-08-22 10:40+0000\n"
-"PO-Revision-Date: 2010-10-14 14:12+0200\n"
+"PO-Revision-Date: 2010-10-14 14:29+0200\n"
 "Last-Translator: Jorge González <jorgegonz@svn.gnome.org>\n"
 "Language-Team: Español <gnome-es-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -673,10 +673,15 @@ msgid ""
 "xref=\"tags\">tags</link> to all photos, or you can leave that task for "
 "later."
 msgstr ""
+"Puede llevar un tiempo que F-Spot indexe los archivos. Cuando haya terminado "
+"de indexarlos, se le presentarán sus fotos. en ese momento puede adjuntar "
+"<link xref=\"tags\">etiquetas</link> a todas sus fotos, o puede dejar la "
+"tarea para más tarde."
 
 #: C/import-photos.page:33(p)
 msgid "When you are ready to finish importing photos, click <gui>Import</gui>."
 msgstr ""
+"Cuando esté listo para terminar de importar fotos pulse <gui>Importar</gui>."
 
 #: C/general-editing.page:6(desc)
 msgid "Make simple edits to your photos"
@@ -696,35 +701,37 @@ msgstr ""
 
 #: C/general-editing.page:15(p)
 msgid "There are three ways to rotate a selected photo:"
-msgstr ""
+msgstr "Existen tres formas de rotar una foto seleccionada:"
 
 #: C/general-editing.page:18(p)
 msgid "Click the appropriate rotate button, to the right of the import button."
 msgstr ""
+"Pulse el botón de rotación apropiado, a la izquierda del botón de "
+"importación."
 
 #: C/general-editing.page:22(p)
 msgid "Select the appropriate option from within the <gui>Edit</gui> menu."
-msgstr ""
+msgstr "Seleccione la opción apropiada en el menú <gui>Editar</gui>."
 
 #: C/general-editing.page:26(p)
 msgid "Use the bracket keys to rotate the photo."
-msgstr ""
+msgstr "Use las teclas de paréntesis para rotar la foto."
 
 #: C/general-editing.page:29(p)
 msgid "To straighten a selected photo:"
-msgstr ""
+msgstr "Enderezar una foto seleccionada:"
 
 #: C/general-editing.page:32(p)
 msgid "From within the editing pane, select <app>Straighten</app>."
-msgstr ""
+msgstr "Desde el panel de edición seleccione <app>Enderezar</app>."
 
 #: C/general-editing.page:35(p)
 msgid "Select a rotation, ranging from -45 to 45 degrees."
-msgstr ""
+msgstr "Seleccione una rotación, desde -45º a 45º."
 
 #: C/general-editing.page:38(p)
 msgid "Click <gui>Straighten</gui>."
-msgstr ""
+msgstr "Pulse <gui>Enderezar</gui>."
 
 #: C/general-editing.page:41(p)
 msgid "To crop a selected photo:"
