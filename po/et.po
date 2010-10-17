@@ -11,10 +11,11 @@ msgstr ""
 "Project-Id-Version: F-Spot\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=f-"
 "spot&component=General\n"
-"POT-Creation-Date: 2010-09-09 09:00+0000\n"
-"PO-Revision-Date: 2010-09-09 18:00+0300\n"
+"POT-Creation-Date: 2010-09-27 14:24+0000\n"
+"PO-Revision-Date: 2010-10-05 16:43+0300\n"
 "Last-Translator: Mattias Põldaru <mahfiaz gmail com>\n"
 "Language-Team: Estonian <gnome-et@linux.ee>\n"
+"Language: et\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -188,10 +189,10 @@ msgstr ""
 "osadega piltide vaatamisel."
 
 msgid "url"
-msgstr ""
+msgstr "url"
 
 msgid "token"
-msgstr ""
+msgstr "märgis"
 
 msgid "captcha_url"
 msgstr "captcha_url"
@@ -387,14 +388,6 @@ msgstr "Eelmine"
 msgid "Previous picture"
 msgstr "Eelmine pilt"
 
-#, csharp-format
-msgid ""
-"Metadata of file {0} may be corrupt, refusing to write to it, falling back "
-"to XMP sidecar."
-msgstr ""
-"Faili {0} metaandmed võivad olla rikutud, sellesse faili kirjutamisest "
-"keeldutakse, selle asemel kasutatakse varuvariandina XMP sidecar faili."
-
 msgid "Import"
 msgstr "Importimine"
 
@@ -564,8 +557,8 @@ msgid ""
 "Can not delete tags that have tags within them.  Please delete tags under "
 "\"{0}\" first"
 msgstr ""
-"Pole võimalik kustutada märksõnu, millel on alammärksõnad. Kustuta enne \"{0}"
-"\" alammärksõnad."
+"Pole võimalik kustutada märksõnu, millel on alammärksõnad. Kustuta enne "
+"\"{0}\" alammärksõnad."
 
 msgid "Rotate selected photo left"
 msgid_plural "Rotate selected photos left"
@@ -2605,34 +2598,12 @@ msgstr "Määra baaskataloogiks (URI)"
 msgid "Old base path (URI) was"
 msgstr "Vana baaskataloog (URI) oli"
 
-#, fuzzy
 msgid "Developing photos"
 msgstr "Fotode ilmutamine"
 
-#, fuzzy, csharp-format
+#, csharp-format
 msgid "Developing {0}"
 msgstr "{0} ilmutamine"
-
-msgid ""
-"In order to detect duplicates on pictures you imported before 0.5.0, F-Spot "
-"needs to analyze your image collection. This is not done by default as it's "
-"time consuming. You can Start or Pause this update process using this dialog."
-msgstr ""
-"Et tuvastada duplikaate enne 0.5.0 versiooni imporditud piltidest, peab F-"
-"Spot analüüsima sinu pildikollektsiooni. Vaikimisi seda ei tehta, kuna "
-"selleks kulub aega. Siit dialoogist saab uuendamisprotsessi käivitada ja "
-"pausida."
-
-#, csharp-format
-msgid ""
-"You currently have {0} photos needing md5 calculation, and {1} pending jobs"
-msgstr "Praegu ootavad {0} fotot md5 kalkulatsiooni, ootel on {1} tööd"
-
-msgid "Processing images..."
-msgstr "Piltide töötlemine..."
-
-msgid "Stopped"
-msgstr "Peatatud"
 
 msgid "F-Spot Gallery"
 msgstr "F-Spoti galerii"
