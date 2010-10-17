@@ -1,30 +1,3 @@
-#!/bin/bash -x
+#!/bin/bash
 
-udi="$1"
-#xmessage $udi
-
-if [ "$udi" != "${udi#gphoto2:}" ]; then
-	# gphoto2, as passed by gvfs/nautilus
-	gvfs-mount -u "$udi" || true
-	f-spot --import "$udi"
-	exit
-fi
-mnt=${udi#file://}
-if [ "$udi" != "$mnt" ]; then
-	# mount point, as passed by gvfs/nautilus.
-	f-spot --import "$udi"
-	exit
-fi
-mount_point=`hal-get-property --udi="$udi" --key=volume.mount_point` || true
-if [ -n "$mount_point" ]; then
-	# USB Mass Storage camera: need to pass f-spot a mount point
-	f-spot --import "$mount_point"
-else
-	# Some other camera try GPhoto2
-
-	bus=`hal-get-property --udi="$udi" --key=usb.bus_number`
-	dev=`hal-get-property --udi="$udi" --key=usb.linux.device_number`
-	uri=`printf gphoto2://[usb:%.3d,%.3d] $bus $dev`
-
-	f-spot --import "$uri"
-fi
+f-spot --import "$1"
