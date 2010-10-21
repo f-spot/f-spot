@@ -115,7 +115,7 @@ namespace FSpot.Exporters.Gallery {
 		private long MultipartLength (string name, string value)
 		{
 			long length = MultipartHeader (name, value).Length;
-			length += value.Length + 2;
+			length += Encoding.Default.GetBytes (value).Length + 2;
 			return length;
 		}
 	
