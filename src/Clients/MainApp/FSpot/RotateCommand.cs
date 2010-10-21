@@ -78,31 +78,29 @@ namespace FSpot {
                 Log.DebugException (e);
                 throw new RotateException (Catalog.GetString ("Unable to rotate this type of photo"), original_path);
             }
-		}
+        }
 
-		private void Rotate (string original_path, RotateDirection dir)
-		{
-			RotateOrientation (original_path, dir);
-		}
+        private void Rotate (string original_path, RotateDirection dir)
+        {
+            RotateOrientation (original_path, dir);
+        }
 
-		public bool Step () {
-			string original_path;
+        public bool Step ()
+        {
+            if (done)
+                return false;
 
-			if (done)
-				return false;
+            GLib.FileInfo info = GLib.FileFactory.NewForUri (item.DefaultVersion.Uri).QueryInfo ("access::can-write", GLib.FileQueryInfoFlags.None, null);
+            if (!info.GetAttributeBoolean("access::can-write")) {
+                throw new RotateException (Catalog.GetString ("Unable to rotate readonly file"), item.DefaultVersion.Uri, true);
+            }
 
-			original_path = item.DefaultVersion.Uri.LocalPath;
-			done = true;
+            Rotate (item.DefaultVersion.Uri, direction);
 
-			if ((File.GetAttributes(original_path) & FileAttributes.ReadOnly) == FileAttributes.ReadOnly) {
-				throw new RotateException (Catalog.GetString ("Unable to rotate readonly file"), original_path, true);
-			}
-
-			Rotate (original_path, direction);
-
-			return !done;
-		}
-	}
+            done = true;
+            return !done;
+        }
+    }
 
 	public class RotateMultiple {
 		RotateDirection direction;
