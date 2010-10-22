@@ -57,6 +57,9 @@ namespace FSpot.Widgets
         {
             string date_text = null;
 
+            if (photo is IInvalidPhotoCheck && (photo as IInvalidPhotoCheck).IsInvalid)
+                return;
+
             if (cell_area.Width > 200) {
                 date_text = photo.Time.ToString ();
             } else {
