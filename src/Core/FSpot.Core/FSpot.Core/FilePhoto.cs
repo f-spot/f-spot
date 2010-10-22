@@ -39,13 +39,27 @@ using Mono.Unix.Native;
 
 namespace FSpot.Core
 {
-    public class FilePhoto : IPhoto
+    public class FilePhoto : IPhoto, IInvalidPhotoCheck
     {
         bool metadata_parsed = false;
 
         public FilePhoto (SafeUri uri)
         {
             DefaultVersion = new FilePhotoVersion { Uri = uri };
+        }
+
+        public bool IsInvalid {
+            get {
+                if (metadata_parsed)
+                    return false;
+
+                try {
+                    EnsureMetadataParsed ();
+                    return false;
+                } catch (Exception) {
+                    return true;
+                }
+            }
         }
 
         private void EnsureMetadataParsed ()
@@ -58,6 +72,8 @@ namespace FSpot.Core
                     var date = metadata.ImageTag.DateTime;
                     time = date.HasValue ? date.Value : CreateDate;
                     description = metadata.ImageTag.Comment;
+                } else {
+                    throw new Exception ("Corrupt File!");
                 }
             }
             

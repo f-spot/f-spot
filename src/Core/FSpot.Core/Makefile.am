@@ -14,6 +14,7 @@ SOURCES =  \
 	FSpot.Core/Global.cs \
 	FSpot.Core/IBrowsableCollection.cs \
 	FSpot.Core/IBrowsableItemChanges.cs \
+	FSpot.Core/IInvalidPhotoCheck.cs \
 	FSpot.Core/ILoadable.cs \
 	FSpot.Core/IPhoto.cs \
 	FSpot.Core/IPhotoComparer.cs \
