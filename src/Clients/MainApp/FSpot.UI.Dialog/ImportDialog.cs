@@ -115,8 +115,14 @@ namespace FSpot.UI.Dialog
             sources_combo.SetAttributes (render2, "text", 1, "sensitive", 3);
 
             GLib.Idle.Add (() => {
-                PopulateSourceCombo (null);
-                QueueDraw ();
+                try {
+                    PopulateSourceCombo (null);
+                    QueueDraw ();
+                } catch (Exception e) {
+                    // Swallow the exception if the import was cancelled / dialog was closed.
+                    if (Controller != null)
+                        throw e;
+                }
                 return false;
             });
         }
@@ -177,6 +183,7 @@ namespace FSpot.UI.Dialog
                 dialog.Title = Catalog.GetString ("Warning");
                 dialog.Response += (s, arg) => {
                     dialog.Destroy ();
+                    Controller = null;
                 };
                 dialog.Run ();
             };
