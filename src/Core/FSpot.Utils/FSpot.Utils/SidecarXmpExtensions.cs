@@ -30,7 +30,7 @@ namespace FSpot.Utils
 
             XmpTag tag = null;
             try {
-                tag = new XmpTag (xmp);
+                tag = new XmpTag (xmp, file);
             } catch (Exception e) {
                 Log.DebugFormat ("Metadata of Sidecar cannot be parsed for file {0}", file.Name);
                 Log.DebugException (e);
