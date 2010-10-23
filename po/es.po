@@ -14,8 +14,8 @@ msgstr ""
 "Project-Id-Version: f-spot.master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=f-"
 "spot&component=General\n"
-"POT-Creation-Date: 2010-10-21 11:55+0000\n"
-"PO-Revision-Date: 2010-10-22 14:56+0200\n"
+"POT-Creation-Date: 2010-10-22 12:58+0000\n"
+"PO-Revision-Date: 2010-10-23 14:24+0200\n"
 "Last-Translator: Jorge González <jorgegonz@svn.gnome.org>\n"
 "Language-Team: Español <gnome-es-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -27,25 +27,22 @@ msgstr ""
 #. ../src/Clients/MainApp/FSpot.addin.xml
 #. ../src/Extensions/Editors/FSpot.Editors.Blackout/Resources/BlackoutEditor.addin.xml
 #: ../data/addin-xml-strings.cs:10
-#, fuzzy
 #| msgid "Blackout"
 msgid "BlackoutEditor"
-msgstr "Ennegrecer"
+msgstr "Editor de ennegrecimientos"
 
 #: ../data/addin-xml-strings.cs:11
 msgid "Blacks out an area of the image."
-msgstr ""
+msgstr "Ennegrece un área de la imagen."
 
 #: ../data/addin-xml-strings.cs:12 ../data/addin-xml-strings.cs:17
 #: ../data/addin-xml-strings.cs:22 ../data/addin-xml-strings.cs:27
 #: ../data/addin-xml-strings.cs:32
-#| msgid "Edit"
 msgid "Editors"
 msgstr "Editores"
 
 #. ../src/Extensions/Editors/FSpot.Editors.BW/Resources/BWEditor.addin.xml
 #: ../data/addin-xml-strings.cs:15
-#| msgid "Edit"
 msgid "BWEditor"
 msgstr "Editor de blanco y negro"
 
@@ -56,15 +53,14 @@ msgstr "Convertir a blanco y negro con control Requiere Mono 2.2."
 #. ../src/Extensions/Editors/FSpot.Editors.Flip/Resources/FlipEditor.addin.xml
 #: ../data/addin-xml-strings.cs:20
 msgid "FlipEditor"
-msgstr ""
+msgstr "Editor de giros"
 
 #: ../data/addin-xml-strings.cs:21
 msgid "Flips the image horizontally."
-msgstr ""
+msgstr "Gira la imagen horizontalmente"
 
 #. ../src/Extensions/Editors/FSpot.Editors.Pixelate/Resources/PixelateEditor.addin.xml
 #: ../data/addin-xml-strings.cs:25
-#| msgid "Pixelate"
 msgid "PixelateEditor"
 msgstr "Editor de pixelación"
 
@@ -74,18 +70,15 @@ msgstr "Pixela un área de la imagen."
 
 #. ../src/Extensions/Editors/FSpot.Editors.Resize/Resources/ResizeEditor.addin.xml
 #: ../data/addin-xml-strings.cs:30
-#| msgid "Resize"
 msgid "ResizeEditor"
 msgstr "Editor de redimensión"
 
 #: ../data/addin-xml-strings.cs:31
-#| msgid "_Resize to: "
 msgid "Resize the image"
 msgstr "Redimensioa la imagen"
 
 #. ../src/Extensions/Exporters/FSpot.Exporters.CD/Resources/CDExport.addin.xml
 #: ../data/addin-xml-strings.cs:35
-#| msgid "Export"
 msgid "CD Export"
 msgstr "Exportar a CD"
 
@@ -108,18 +101,15 @@ msgstr "Exportar"
 
 #. ../src/Extensions/Exporters/FSpot.Exporters.Facebook/Resources/FacebookExport.addin.xml
 #: ../data/addin-xml-strings.cs:40
-#| msgid "F_acebook..."
 msgid "FacebookExport"
 msgstr "Exportar a Facebook"
 
 #: ../data/addin-xml-strings.cs:41
-#| msgid "Export to Facebook"
 msgid "Export pictures to facebook"
 msgstr "Exporta imágenes a Facebook"
 
 #. ../src/Extensions/Exporters/FSpot.Exporters.Flickr/Resources/FlickrExport.addin.xml
 #: ../data/addin-xml-strings.cs:45
-#| msgid "Folder Export"
 msgid "Flickr Export"
 msgstr "Exportar a Flickr"
 
@@ -143,7 +133,6 @@ msgstr ""
 
 #. ../src/Extensions/Exporters/FSpot.Exporters.Gallery/Resources/GalleryExport.addin.xml
 #: ../data/addin-xml-strings.cs:55
-#| msgid "Folder Export"
 msgid "Gallery Export"
 msgstr "Exportar a Gallery"
 
@@ -157,7 +146,6 @@ msgstr ""
 
 #. ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/Resources/PicasaWebExport.addin.xml
 #: ../data/addin-xml-strings.cs:60
-#| msgid "<b>PicasaWeb Export</b>"
 msgid "PicasaWeb Export"
 msgstr "Exportar a PicasaWeb"
 
@@ -167,7 +155,6 @@ msgstr "Esta extensión le permite grabar sus fotos a PicasaWeb."
 
 #. ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/Resources/SmugMugExport.addin.xml
 #: ../data/addin-xml-strings.cs:65
-#| msgid "<b>SmugMug Export</b>"
 msgid "SmugMug Export"
 msgstr "Exportar a SmugMug"
 
@@ -177,7 +164,6 @@ msgstr "Esta extensión le permite grabar sus fotos a SmugMug."
 
 #. ../src/Extensions/Exporters/FSpot.Exporters.Tabblo/Resources/TabbloExport.addin.xml
 #: ../data/addin-xml-strings.cs:70
-#| msgid "Export"
 msgid "Tabblo Export"
 msgstr "Exportar a Tabblo"
 
@@ -187,12 +173,10 @@ msgstr "Esta extensión le permite grabar sus fotos a Tabblo."
 
 #. ../src/Extensions/Exporters/FSpot.Exporters.Zip/Resources/ZipExport.addin.xml
 #: ../data/addin-xml-strings.cs:75
-#| msgid "Export"
 msgid "Zip export"
 msgstr "Exportar a zip"
 
 #: ../data/addin-xml-strings.cs:76
-#| msgid "Select export folder"
 msgid "Simple export to Zip file"
 msgstr "Exportación simple a un archivo zip."
 
@@ -244,19 +228,16 @@ msgstr ""
 
 #. ../src/Extensions/Tools/FSpot.Tools.MergeDb/Resources/MergeDb.addin.xml
 #: ../data/addin-xml-strings.cs:95
-#| msgid "Merge Db"
 msgid "MergeDb"
 msgstr "MergeDb"
 
 #: ../data/addin-xml-strings.cs:96
-#, fuzzy
 #| msgid "Merge another F-Spot collection"
 msgid "Merge another db back to the main one"
-msgstr "Mezclar otra colección de F-Spot"
+msgstr "Mezclar otra base de datos en la principal"
 
 #. ../src/Extensions/Tools/FSpot.Tools.MetaPixel/MetaPixel.addin.xml
 #: ../data/addin-xml-strings.cs:100
-#| msgid "Details"
 msgid "MetaPixel"
 msgstr "MetaPixel"
 
@@ -265,10 +246,11 @@ msgid ""
 "Create photomosaics using MetaPixel (http://www.complang.tuwien.ac.at/schani/"
 "metapixel/)"
 msgstr ""
+"Crear fotomosaicos usando MetaPixel (http://www.complang.tuwien.ac.at/schani/"
+"metapixel/)"
 
 #. ../src/Extensions/Tools/FSpot.Tools.PictureTile/PictureTile.addin.xml
 #: ../data/addin-xml-strings.cs:105
-#| msgid "PictureTile not available"
 msgid "PictureTile"
 msgstr "PictureTile"
 
@@ -277,24 +259,26 @@ msgid ""
 "Create photo wall using PictureTile by Jamie Zawinski (http://www.jwz.org/"
 "picturetile/)"
 msgstr ""
+"Crear un mural usando PictureTile de Jamie Zawinski (http://www.jwz.org/"
+"picturetile/)"
 
 #. ../src/Extensions/Tools/FSpot.Tools.RawPlusJpeg/Resources/RawPlusJpeg.addin.xml
 #: ../data/addin-xml-strings.cs:110
 msgid "RawPlusJpeg"
-msgstr ""
+msgstr "RAW+Jpeg"
 
 #: ../data/addin-xml-strings.cs:111
 msgid "Merge RAW+Jpeg as multiple versions of the same photo"
-msgstr ""
+msgstr "Mezclar RAW+Jpeg como versiones múltiples de la misma foto"
 
 #. ../src/Extensions/Tools/FSpot.Tools.RetroactiveRoll/Resources/RetroactiveRoll.addin.xml
 #: ../data/addin-xml-strings.cs:115
 msgid "RetroactiveRoll"
-msgstr ""
+msgstr "Carrete retroactivo"
 
 #: ../data/addin-xml-strings.cs:116
 msgid "Retroactively assign old photos to import rolls"
-msgstr ""
+msgstr "Asignar fotos antiguas a carretes de importación retroactivamente"
 
 #. ../src/Extensions/Tools/FSpot.Tools.ScreensaverConfig/Resources/ScreensaverConfig.addin.xml
 #: ../data/addin-xml-strings.cs:120
@@ -303,25 +287,23 @@ msgid "Screensaver Configuration"
 msgstr "Configuración del salvapantallas"
 
 #: ../data/addin-xml-strings.cs:121
-#, fuzzy
 #| msgid "Screensaver Configuration"
 msgid "Screensaver options"
-msgstr "Configuración del salvapantallas"
+msgstr "Opciones del salvapantallas"
 
 #. ../src/Extensions/Tools/FSpot.Tools.SyncCatalog/SyncCatalog.addin.xml
 #: ../data/addin-xml-strings.cs:125
-#, fuzzy
 #| msgid "Metadata"
 msgid "SyncMetaData"
-msgstr "Metadatos"
+msgstr "Sincronizar Metadatos"
 
 #: ../data/addin-xml-strings.cs:126
 msgid "Sync MetaData information of all catalog with Photos"
 msgstr ""
+"Sincronizar la información de los Metadatos de todo el catálogo con las fotos"
 
 #. ../src/Extensions/Transitions/FSpot.Transitions.Cover/Resources/CoverTransition.addin.xml
 #: ../data/addin-xml-strings.cs:130
-#| msgid "Slide transition:"
 msgid "Cover Transition"
 msgstr "Transición de diapositivas"
 
@@ -330,7 +312,6 @@ msgid "A Slideshow transition that covers images"
 msgstr "Una transición de diapositivas que cubre las imágenes"
 
 #: ../data/addin-xml-strings.cs:132
-#| msgid "Slide transition:"
 msgid "Transitions"
 msgstr "Transiciones"
 
