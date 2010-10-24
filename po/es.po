@@ -14,8 +14,8 @@ msgstr ""
 "Project-Id-Version: f-spot.master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=f-"
 "spot&component=General\n"
-"POT-Creation-Date: 2010-10-22 12:58+0000\n"
-"PO-Revision-Date: 2010-10-23 14:24+0200\n"
+"POT-Creation-Date: 2010-10-23 12:26+0000\n"
+"PO-Revision-Date: 2010-10-24 12:53+0200\n"
 "Last-Translator: Jorge González <jorgegonz@svn.gnome.org>\n"
 "Language-Team: Español <gnome-es-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -27,7 +27,6 @@ msgstr ""
 #. ../src/Clients/MainApp/FSpot.addin.xml
 #. ../src/Extensions/Editors/FSpot.Editors.Blackout/Resources/BlackoutEditor.addin.xml
 #: ../data/addin-xml-strings.cs:10
-#| msgid "Blackout"
 msgid "BlackoutEditor"
 msgstr "Editor de ennegrecimientos"
 
@@ -194,6 +193,12 @@ msgid ""
 "changes for up to a few hours after f-spot reports finished. It will only "
 "change the path to photos which are located under the Photo directory."
 msgstr ""
+"INESTABLE: asegúrese de que tiene un respado de su photos.db antes de probar "
+"esta extensión. Esta extensión le permite cambiar la ruta base de sus fotos. "
+"Es muy útil si mueve sus fotos de ~/Fotos a /MisFotos por ejemplo. Asegúrese "
+"de que SqLite continua procesando los cambios algunas horas después de que F-"
+"Spot informe de que ha finalizado. Sólo cambiará la ruta de las fotos "
+"ubicadas en el directorio de fotos."
 
 #: ../data/addin-xml-strings.cs:82 ../data/addin-xml-strings.cs:87
 #: ../data/addin-xml-strings.cs:92 ../data/addin-xml-strings.cs:97
@@ -207,17 +212,19 @@ msgstr "Herramientas"
 #. ../src/Extensions/Tools/FSpot.Tools.DevelopInUFraw/Resources/DevelopInUFRaw.addin.xml
 #: ../data/addin-xml-strings.cs:85
 msgid "DevelopInUFRaw"
-msgstr ""
+msgstr "Desarrollar en UFRaw"
 
 #: ../data/addin-xml-strings.cs:86
 msgid ""
 "Develop the image in UFRaw, saves the result as a new version\\n\\nNote: "
 "Require ufraw 0.13 or CVS version newer than 2007-09-06 !!!"
 msgstr ""
+"Desarrollar la foto con UFRaw, guarda el resultado como una versión nueva.\\n"
+"\\nNota: requiere ufraw 0.13 o una versión de CVS posterior al 06 de "
+"septiembre de 2007."
 
 #. ../src/Extensions/Tools/FSpot.Tools.LiveWebGallery/Resources/LiveWebGallery.addin.xml
 #: ../data/addin-xml-strings.cs:90
-#, fuzzy
 #| msgid "Live Web Gallery"
 msgid "LiveWebGallery"
 msgstr "Galería web en línea"
@@ -225,6 +232,7 @@ msgstr "Galería web en línea"
 #: ../data/addin-xml-strings.cs:91
 msgid "Share photos with other people on the same network via Web Browser"
 msgstr ""
+"Compartir fotos con otra gente en la misma red a través del navegador web."
 
 #. ../src/Extensions/Tools/FSpot.Tools.MergeDb/Resources/MergeDb.addin.xml
 #: ../data/addin-xml-strings.cs:95
@@ -232,9 +240,8 @@ msgid "MergeDb"
 msgstr "MergeDb"
 
 #: ../data/addin-xml-strings.cs:96
-#| msgid "Merge another F-Spot collection"
 msgid "Merge another db back to the main one"
-msgstr "Mezclar otra base de datos en la principal"
+msgstr "Mezclar otra base de datos en la principal."
 
 #. ../src/Extensions/Tools/FSpot.Tools.MetaPixel/MetaPixel.addin.xml
 #: ../data/addin-xml-strings.cs:100
@@ -247,7 +254,7 @@ msgid ""
 "metapixel/)"
 msgstr ""
 "Crear fotomosaicos usando MetaPixel (http://www.complang.tuwien.ac.at/schani/"
-"metapixel/)"
+"metapixel/)."
 
 #. ../src/Extensions/Tools/FSpot.Tools.PictureTile/PictureTile.addin.xml
 #: ../data/addin-xml-strings.cs:105
@@ -260,7 +267,7 @@ msgid ""
 "picturetile/)"
 msgstr ""
 "Crear un mural usando PictureTile de Jamie Zawinski (http://www.jwz.org/"
-"picturetile/)"
+"picturetile/)."
 
 #. ../src/Extensions/Tools/FSpot.Tools.RawPlusJpeg/Resources/RawPlusJpeg.addin.xml
 #: ../data/addin-xml-strings.cs:110
@@ -269,7 +276,7 @@ msgstr "RAW+Jpeg"
 
 #: ../data/addin-xml-strings.cs:111
 msgid "Merge RAW+Jpeg as multiple versions of the same photo"
-msgstr "Mezclar RAW+Jpeg como versiones múltiples de la misma foto"
+msgstr "Mezclar RAW+Jpeg como versiones múltiples de la misma foto."
 
 #. ../src/Extensions/Tools/FSpot.Tools.RetroactiveRoll/Resources/RetroactiveRoll.addin.xml
 #: ../data/addin-xml-strings.cs:115
@@ -278,7 +285,7 @@ msgstr "Carrete retroactivo"
 
 #: ../data/addin-xml-strings.cs:116
 msgid "Retroactively assign old photos to import rolls"
-msgstr "Asignar fotos antiguas a carretes de importación retroactivamente"
+msgstr "Asignar fotos antiguas a carretes de importación retroactivamente."
 
 #. ../src/Extensions/Tools/FSpot.Tools.ScreensaverConfig/Resources/ScreensaverConfig.addin.xml
 #: ../data/addin-xml-strings.cs:120
@@ -287,13 +294,11 @@ msgid "Screensaver Configuration"
 msgstr "Configuración del salvapantallas"
 
 #: ../data/addin-xml-strings.cs:121
-#| msgid "Screensaver Configuration"
 msgid "Screensaver options"
 msgstr "Opciones del salvapantallas"
 
 #. ../src/Extensions/Tools/FSpot.Tools.SyncCatalog/SyncCatalog.addin.xml
 #: ../data/addin-xml-strings.cs:125
-#| msgid "Metadata"
 msgid "SyncMetaData"
 msgstr "Sincronizar Metadatos"
 
@@ -775,8 +780,8 @@ msgstr "Más"
 msgid "_Clear Date Range"
 msgstr "_Limpiar el rango de fechas"
 
-#: ../src/Clients/MainApp/FSpot.Import/ImportController.cs:506
-#: ../src/Clients/MainApp/FSpot.Import/ImportController.cs:508
+#: ../src/Clients/MainApp/FSpot.Import/ImportController.cs:510
+#: ../src/Clients/MainApp/FSpot.Import/ImportController.cs:512
 #: ../src/Clients/MainApp/FSpot.Import/MetadataImporter.cs:80
 msgid "Imported Tags"
 msgstr "Etiquetas importadas"
@@ -819,7 +824,7 @@ msgid "Previous picture"
 msgstr "Anterior fotografía"
 
 #: ../src/Clients/MainApp/FSpot/MainWindow.cs:301
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:222
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:229
 #: ../src/Clients/MainApp/ui/import.ui.h:3
 msgid "Import"
 msgstr "Importar"
@@ -1478,15 +1483,15 @@ msgstr "Fotografía {0} de {1}"
 msgid "Choose Folder..."
 msgstr "Elegir carpeta…"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:158
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:164
 msgid "Choose Import source..."
 msgstr "Elegir el origen de la importación…"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:170
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:176
 msgid "(No Cameras Detected)"
 msgstr "(No se detectó ninguna cámara)"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:205
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:211
 msgid ""
 "Checking this box will remove the imported photos from the camera after the "
 "import finished successfully.\n"
@@ -1499,21 +1504,21 @@ msgstr ""
 "Generalmente se recomienda respaldar sus fotos antes de eliminarlas de la "
 "cámara. <b>Use esta opción bajo su propio riesgo.</b>"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:206
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:212
 msgid "Warning"
 msgstr "Advertencia"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:324
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:331
 #, csharp-format
 msgid "Importing Photos: {0} of {1}..."
 msgstr "Importando fotos: {0} de {1}…"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:348
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:355
 msgid "Importing photos..."
 msgstr "Importando fotos…"
 
 #. TODO: Using a GtkSpinner would be nicer here.
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:355
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:362
 msgid "Searching for photos... (You can already click Import to continue)"
 msgstr "Buscando fotos… (puede pulsar el botón Importar para continuar)"
 
