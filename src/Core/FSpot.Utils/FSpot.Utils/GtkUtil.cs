@@ -56,10 +56,11 @@ namespace FSpot.Utils
 		public static Gtk.MenuItem MakeCheckMenuItem (Gtk.Menu menu, string label, EventHandler e, bool enabled, bool active, bool as_radio)
 		{
 			Gtk.CheckMenuItem i = new Gtk.CheckMenuItem (label);
-			i.Activated += e;
 			i.Sensitive = enabled;
 			i.DrawAsRadio = as_radio;
 			i.Active = active;
+
+            i.Activated += e;
 	
 			menu.Append(i);
 			i.Show ();
