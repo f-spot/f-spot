@@ -61,6 +61,7 @@ check_autotool_version $LIBTOOLIZE 1.4.3
 check_autotool_version intltoolize 0.35.0
 check_autotool_version pkg-config 0.14.0
 
+run git submodule sync
 run git submodule update --init
 if [ $(pkg-config --modversion gnome-doc-utils 2> /dev/null) ]; then
     run gnome-doc-prepare --automake --force
