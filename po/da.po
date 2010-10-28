@@ -1,5 +1,5 @@
 # Danish translation of f-spot
-# Copyright (C) 2008 Larry Ewing
+# Copyright (C) 2010 Larry Ewing & nedenstående oversættere.
 # This file is distributed under the same license as the f-spot package.
 # Martin Willemoes Hansen <mwh@sysrq.dk>, 2004, 05.
 # Peter Bach <bach.peter@gmail.com>, 2007-08.
@@ -9,6 +9,7 @@
 #
 # Husk at tilføje dig i credit-listen (besked id "translator-credits")
 #
+# catalog -> samling
 # detach -> frigør
 # filmstrip -> filmklip
 # transparent -> gennemsigtig
@@ -17,14 +18,319 @@ msgid ""
 msgstr ""
 "Project-Id-Version: f-spot\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-09-14 19:19+0200\n"
-"PO-Revision-Date: 2010-09-12 23:13+0200\n"
+"POT-Creation-Date: 2010-10-29 00:19+0200\n"
+"PO-Revision-Date: 2010-10-26 23:13+0200\n"
 "Last-Translator: Joe Hansen <joedalton2@yahoo.dk>\n"
 "Language-Team: Danish <dansk@dansk-gruppen.dk>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. ../src/Clients/MainApp/FSpot.addin.xml
+#. ../src/Extensions/Editors/FSpot.Editors.Blackout/Resources/BlackoutEditor.addin.xml
+#: ../data/addin-xml-strings.cs:10
+msgid "BlackoutEditor"
+msgstr "Gør sort-redigeringsprogram"
+
+#: ../data/addin-xml-strings.cs:11
+msgid "Blacks out an area of the image."
+msgstr "Gør et område af billedet sort."
+
+#: ../data/addin-xml-strings.cs:12 ../data/addin-xml-strings.cs:17
+#: ../data/addin-xml-strings.cs:22 ../data/addin-xml-strings.cs:27
+#: ../data/addin-xml-strings.cs:32
+msgid "Editors"
+msgstr "Redigeringsprogrammer"
+
+#. ../src/Extensions/Editors/FSpot.Editors.BW/Resources/BWEditor.addin.xml
+#: ../data/addin-xml-strings.cs:15
+msgid "BWEditor"
+msgstr "S/H-redigeringsprogram"
+
+#: ../data/addin-xml-strings.cs:16
+msgid "Convert to B/W with control. Require Mono 2.2."
+msgstr "Konverter til S/H med kontrol. Kræver Mono 2.2."
+
+#. ../src/Extensions/Editors/FSpot.Editors.Flip/Resources/FlipEditor.addin.xml
+#: ../data/addin-xml-strings.cs:20
+msgid "FlipEditor"
+msgstr "Redigeringsprogram til vendinger"
+
+#: ../data/addin-xml-strings.cs:21
+msgid "Flips the image horizontally."
+msgstr "Vender billedet vandret."
+
+#. ../src/Extensions/Editors/FSpot.Editors.Pixelate/Resources/PixelateEditor.addin.xml
+#: ../data/addin-xml-strings.cs:25
+msgid "PixelateEditor"
+msgstr "Redigeringsprogram til billedpunkter"
+
+#: ../data/addin-xml-strings.cs:26
+msgid "Pixelates an area of the image."
+msgstr "Ændr billedpunkter på et område af billedet."
+
+#. ../src/Extensions/Editors/FSpot.Editors.Resize/Resources/ResizeEditor.addin.xml
+#: ../data/addin-xml-strings.cs:30
+msgid "ResizeEditor"
+msgstr "Redigeringsprogram til skalering"
+
+#: ../data/addin-xml-strings.cs:31
+msgid "Resize the image"
+msgstr "Skaler billedet"
+
+#. ../src/Extensions/Exporters/FSpot.Exporters.CD/Resources/CDExport.addin.xml
+#: ../data/addin-xml-strings.cs:35
+msgid "CD Export"
+msgstr "Cd-eksport"
+
+#: ../data/addin-xml-strings.cs:36
+msgid "This extension allows you to burn your photos to CD."
+msgstr ""
+"Denne udvidelse gør det muligt for dig at brænde dine billeder til en cd."
+
+#: ../data/addin-xml-strings.cs:37 ../data/addin-xml-strings.cs:42
+#: ../data/addin-xml-strings.cs:47 ../data/addin-xml-strings.cs:52
+#: ../data/addin-xml-strings.cs:57 ../data/addin-xml-strings.cs:62
+#: ../data/addin-xml-strings.cs:67 ../data/addin-xml-strings.cs:72
+#: ../data/addin-xml-strings.cs:77
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/Resources/flickr_export.ui.h:6
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/Resources/gallery_export_dialog.ui.h:5
+#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/Resources/google_export_dialog.ui.h:5
+#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/Resources/smugmug_export_dialog.ui.h:5
+#: ../src/Extensions/Exporters/FSpot.Exporters.Tabblo/Resources/ui/TabbloExport.ui.h:5
+msgid "Export"
+msgstr "Eksportér"
+
+#. ../src/Extensions/Exporters/FSpot.Exporters.Facebook/Resources/FacebookExport.addin.xml
+#: ../data/addin-xml-strings.cs:40
+msgid "FacebookExport"
+msgstr "Eksport til Facebook"
+
+# lille f må være en fejl her i engelsk streng
+#: ../data/addin-xml-strings.cs:41
+msgid "Export pictures to facebook"
+msgstr "Eksporter billeder til Facebook"
+
+#. ../src/Extensions/Exporters/FSpot.Exporters.Flickr/Resources/FlickrExport.addin.xml
+#: ../data/addin-xml-strings.cs:45
+msgid "Flickr Export"
+msgstr "Eksport til Flickr"
+
+#: ../data/addin-xml-strings.cs:46
+msgid "This extension allows you to export your photos to Flickr and 23hq."
+msgstr ""
+"Denne udvidelse gør det muligt for dig at eksportere dine billeder til "
+"Flickr og 23hq."
+
+#. ../src/Extensions/Exporters/FSpot.Exporters.Folder/Resources/FolderExport.addin.xml
+#: ../data/addin-xml-strings.cs:50
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/Resources/folder_export.ui.h:10
+msgid "Folder Export"
+msgstr "Eksport af mappe"
+
+#: ../data/addin-xml-strings.cs:51
+msgid ""
+"This extension allows you to export your photos to HTML galleries, Original "
+"galleries or just to a folder."
+msgstr ""
+"Denne udvidelse gør det muligt for dig at eksportere dine billeder til HTML-"
+"gallerier, oprindelige gallerier eller bare en mappe."
+
+#. ../src/Extensions/Exporters/FSpot.Exporters.Gallery/Resources/GalleryExport.addin.xml
+#: ../data/addin-xml-strings.cs:55
+msgid "Gallery Export"
+msgstr "Eksport af galleri"
+
+# måske udelade Http://
+#: ../data/addin-xml-strings.cs:56
+msgid ""
+"This extension allows you to export your photos to PHP Gallery (http://"
+"gallery.menalto.com)."
+msgstr ""
+"Denne udvidelse gør det muligt for dig at eksportere dine billeder til PHP "
+"Gallery (http://gallery.menalto.com)."
+
+#. ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/Resources/PicasaWebExport.addin.xml
+#: ../data/addin-xml-strings.cs:60
+msgid "PicasaWeb Export"
+msgstr "Eksport til PicasaWeb"
+
+#: ../data/addin-xml-strings.cs:61
+msgid "This extension allows you to export your photos to PicasaWeb."
+msgstr ""
+"Denne udvidelse gør det muligt for dig at eksportere dine billeder til "
+"PicasaWeb."
+
+#. ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/Resources/SmugMugExport.addin.xml
+#: ../data/addin-xml-strings.cs:65
+msgid "SmugMug Export"
+msgstr "Eksport til SmugMug"
+
+#: ../data/addin-xml-strings.cs:66
+msgid "This extension allows you to export your photos to SmugMug."
+msgstr ""
+"Denne udvidelse gør det muligt for dig at eksportere dine billeder til "
+"SmugMug."
+
+#. ../src/Extensions/Exporters/FSpot.Exporters.Tabblo/Resources/TabbloExport.addin.xml
+#: ../data/addin-xml-strings.cs:70
+msgid "Tabblo Export"
+msgstr "Eksport til Tabblo"
+
+#: ../data/addin-xml-strings.cs:71
+msgid "This extension allows you to export your photos to Tabblo."
+msgstr ""
+"Denne udvidelse gør det muligt for dig at eksportere dine billeder til "
+"Tabblo."
+
+#. ../src/Extensions/Exporters/FSpot.Exporters.Zip/Resources/ZipExport.addin.xml
+#: ../data/addin-xml-strings.cs:75
+msgid "Zip export"
+msgstr "Eksport til zip"
+
+#: ../data/addin-xml-strings.cs:76
+msgid "Simple export to Zip file"
+msgstr "Enkel eksport til en zip-fil"
+
+#. ../src/Extensions/Tools/FSpot.Tools.ChangePhotoPath/Resources/ChangePhotoPath.addin.xml
+#: ../data/addin-xml-strings.cs:80
+msgid "ChangePath"
+msgstr "ChangePath"
+
+#: ../data/addin-xml-strings.cs:81
+msgid ""
+"UNSTABLE - Please ensure you have a backup of your photos.db before you test "
+"this extension. This extension will allow you to change the base path to the "
+"your photos. It is very handy if you move your photos from ~/Photos to /"
+"OurPhotos for instance. Just ensure you let SqLite continue to process the "
+"changes for up to a few hours after f-spot reports finished. It will only "
+"change the path to photos which are located under the Photo directory."
+msgstr ""
+"Ustabil - Kontroller venligst at du har en sikkerhedskopi af photos.db, før "
+"du tester denne udvidelse. Denne udvidelse vil gøre det muligt for dig at "
+"ændre grundstien for dine billeder. Den er smart, hvis du for eksempel "
+"flytter dine billeder fra ~/Billeder til /Voresbilleder. Sikr dig at du "
+"lader SqLite fortsætte med at behandle ændringerne op til et par timer "
+"efter, at f-spot siger programmet er færdig. Den vil kun ændre stien for "
+"billeder, som er placeret under billedmappen."
+
+#: ../data/addin-xml-strings.cs:82 ../data/addin-xml-strings.cs:87
+#: ../data/addin-xml-strings.cs:92 ../data/addin-xml-strings.cs:97
+#: ../data/addin-xml-strings.cs:102 ../data/addin-xml-strings.cs:107
+#: ../data/addin-xml-strings.cs:112 ../data/addin-xml-strings.cs:117
+#: ../data/addin-xml-strings.cs:122 ../data/addin-xml-strings.cs:127
+#: ../src/Clients/MainApp/FSpot.addin.xml.h:7
+msgid "Tools"
+msgstr "Værktøjer"
+
+#. ../src/Extensions/Tools/FSpot.Tools.DevelopInUFraw/Resources/DevelopInUFRaw.addin.xml
+#: ../data/addin-xml-strings.cs:85
+msgid "DevelopInUFRaw"
+msgstr "DevelopInUFRaw"
+
+#: ../data/addin-xml-strings.cs:86
+msgid ""
+"Develop the image in UFRaw, saves the result as a new version\\n\\nNote: "
+"Require ufraw 0.13 or CVS version newer than 2007-09-06 !!!"
+msgstr ""
+"Behandl billedet i UFRaw, gem resultatet som en ny version\\n\\nBemærk: "
+"Kræver ufraw 0.13 eller CVS-version nyere end 2007-09-06!"
+
+#. ../src/Extensions/Tools/FSpot.Tools.LiveWebGallery/Resources/LiveWebGallery.addin.xml
+#: ../data/addin-xml-strings.cs:90
+msgid "LiveWebGallery"
+msgstr "Live internetgalleri"
+
+#: ../data/addin-xml-strings.cs:91
+msgid "Share photos with other people on the same network via Web Browser"
+msgstr "Del billeder med andre på det samme netværk via internetbrowseren"
+
+#. ../src/Extensions/Tools/FSpot.Tools.MergeDb/Resources/MergeDb.addin.xml
+#: ../data/addin-xml-strings.cs:95
+msgid "MergeDb"
+msgstr "FletDb"
+
+#: ../data/addin-xml-strings.cs:96
+msgid "Merge another db back to the main one"
+msgstr "Sammenføj en anden db til hoveddatabasen"
+
+#. ../src/Extensions/Tools/FSpot.Tools.MetaPixel/MetaPixel.addin.xml
+#: ../data/addin-xml-strings.cs:100
+msgid "MetaPixel"
+msgstr "MetaPixel"
+
+#: ../data/addin-xml-strings.cs:101
+msgid ""
+"Create photomosaics using MetaPixel (http://www.complang.tuwien.ac.at/schani/"
+"metapixel/)"
+msgstr ""
+"Opret billedmosaikker med brug af MetaPixel (http://www.complang.tuwien.ac."
+"at/schani/metapixel/)"
+
+#. ../src/Extensions/Tools/FSpot.Tools.PictureTile/PictureTile.addin.xml
+#: ../data/addin-xml-strings.cs:105
+msgid "PictureTile"
+msgstr "PictureTile"
+
+#: ../data/addin-xml-strings.cs:106
+msgid ""
+"Create photo wall using PictureTile by Jamie Zawinski (http://www.jwz.org/"
+"picturetile/)"
+msgstr ""
+"Opret billedvæg med brug af PictureTile af Jamie Zawinski (http://www.jwz."
+"org/picturetile/)"
+
+#. ../src/Extensions/Tools/FSpot.Tools.RawPlusJpeg/Resources/RawPlusJpeg.addin.xml
+#: ../data/addin-xml-strings.cs:110
+msgid "RawPlusJpeg"
+msgstr "RawPlusJpeg"
+
+#: ../data/addin-xml-strings.cs:111
+msgid "Merge RAW+Jpeg as multiple versions of the same photo"
+msgstr "Sammenføj RAW+Jpeg som flere versioner af det samme billede"
+
+#. ../src/Extensions/Tools/FSpot.Tools.RetroactiveRoll/Resources/RetroactiveRoll.addin.xml
+#: ../data/addin-xml-strings.cs:115
+msgid "RetroactiveRoll"
+msgstr "RetroactiveRoll"
+
+# "Tildel gamle billeder til importruller retroaktivt"
+#: ../data/addin-xml-strings.cs:116
+msgid "Retroactively assign old photos to import rolls"
+msgstr "Retroaktivt tildel gamle billeder til importruller"
+
+#. ../src/Extensions/Tools/FSpot.Tools.ScreensaverConfig/Resources/ScreensaverConfig.addin.xml
+#: ../data/addin-xml-strings.cs:120
+#: ../src/Extensions/Tools/FSpot.Tools.ScreensaverConfig/Resources/ScreensaverConfigDialog.ui.h:6
+msgid "Screensaver Configuration"
+msgstr "Konfiguration af pauseskærm"
+
+#: ../data/addin-xml-strings.cs:121
+msgid "Screensaver options"
+msgstr "Indstillinger for pauseskærm"
+
+#. ../src/Extensions/Tools/FSpot.Tools.SyncCatalog/SyncCatalog.addin.xml
+#: ../data/addin-xml-strings.cs:125
+msgid "SyncMetaData"
+msgstr "Synkroniser metadata"
+
+#: ../data/addin-xml-strings.cs:126
+msgid "Sync MetaData information of all catalog with Photos"
+msgstr "Synkroniser metadatainformation på alle samlinger med billeder"
+
+#. ../src/Extensions/Transitions/FSpot.Transitions.Cover/Resources/CoverTransition.addin.xml
+#: ../data/addin-xml-strings.cs:130
+msgid "Cover Transition"
+msgstr "Dækningsovergang"
+
+#: ../data/addin-xml-strings.cs:131
+msgid "A Slideshow transition that covers images"
+msgstr "En overgang for diasshow som dækker billeder"
+
+#: ../data/addin-xml-strings.cs:132
+msgid "Transitions"
+msgstr "Overgange"
 
 #: ../data/desktop-files/f-spot.desktop.in.in.h:1
 #: ../data/desktop-files/f-spot-import.desktop.in.in.h:1
@@ -292,20 +598,16 @@ msgid "Rem_ove Tag"
 msgstr "F_jern mærke"
 
 #: ../src/Clients/MainApp/FSpot.addin.xml.h:5
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:425
+#: ../src/Clients/MainApp/FSpot/SingleView.cs:458
 #: ../src/Clients/MainApp/ui/main_window.ui.h:16
 msgid "Rotate _Left"
 msgstr "Rotér til _venstre"
 
 #: ../src/Clients/MainApp/FSpot.addin.xml.h:6
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:426
+#: ../src/Clients/MainApp/FSpot/SingleView.cs:459
 #: ../src/Clients/MainApp/ui/main_window.ui.h:17
 msgid "Rotate _Right"
 msgstr "Rotér til _højre"
-
-#: ../src/Clients/MainApp/FSpot.addin.xml.h:7
-msgid "Tools"
-msgstr "Værktøjer"
 
 #: ../src/Clients/MainApp/FSpot.addin.xml.h:8
 #: ../src/Clients/MainApp/ui/main_window.ui.h:41
@@ -315,14 +617,14 @@ msgstr "Slet fra _disk"
 #: ../src/Clients/MainApp/FSpot.addin.xml.h:9
 #: ../src/Clients/MainApp/ui/main_window.ui.h:60
 msgid "_Remove From Catalog"
-msgstr "_Fjern fra katalog"
+msgstr "_Fjern fra samling"
 
-#: ../src/Clients/MainApp/FSpot/App.cs:294
+#: ../src/Clients/MainApp/FSpot/App.cs:320
 #, csharp-format
 msgid "No photos matching {0} found"
 msgstr "Ingen fotos svarende til {0} fundet"
 
-#: ../src/Clients/MainApp/FSpot/App.cs:295
+#: ../src/Clients/MainApp/FSpot/App.cs:321
 #, csharp-format
 msgid ""
 "The tag \"{0}\" is not applied to any photos. Try adding\n"
@@ -333,11 +635,11 @@ msgstr ""
 "tilføje mærket til nogle fotos eller vælg et andet mærke\n"
 "i F-Spot-indstillingsvinduet."
 
-#: ../src/Clients/MainApp/FSpot/App.cs:299
+#: ../src/Clients/MainApp/FSpot/App.cs:325
 msgid "Search returned no results"
 msgstr "Søgning fandt ingen resultater"
 
-#: ../src/Clients/MainApp/FSpot/App.cs:300
+#: ../src/Clients/MainApp/FSpot/App.cs:326
 msgid ""
 "The tag F-Spot is looking for does not exist. Try\n"
 "selecting a different tag in the F-Spot preference\n"
@@ -347,11 +649,11 @@ msgstr ""
 "vælge et andet mærke i F-Spot-indstillings-\n"
 "vinduet."
 
-#: ../src/Clients/MainApp/FSpot.Database/Updater.cs:727
+#: ../src/Clients/MainApp/FSpot.Database/Updater.cs:762
 msgid "Updating F-Spot Database"
 msgstr "Opdaterer F-Spot-database"
 
-#: ../src/Clients/MainApp/FSpot.Database/Updater.cs:728
+#: ../src/Clients/MainApp/FSpot.Database/Updater.cs:763
 msgid ""
 "Please wait while your F-Spot gallery's database is updated. This may take "
 "some time."
@@ -359,267 +661,267 @@ msgstr ""
 "Vent venligst mens din F-Spot-galleridatabase opdateres. Dette kan tage et "
 "stykke tid."
 
-#: ../src/Clients/MainApp/FSpot.Editors/AutoStretchEditor.cs:17
+#: ../src/Clients/MainApp/FSpot.Editors/AutoStretchEditor.cs:37
 msgid "Auto Color"
 msgstr "Autofarve"
 
-#: ../src/Clients/MainApp/FSpot.Editors/ColorEditor.cs:41
+#: ../src/Clients/MainApp/FSpot.Editors/ColorEditor.cs:61
 msgid "Adjust Colors"
 msgstr "Justér farver"
 
-#: ../src/Clients/MainApp/FSpot.Editors/ColorEditor.cs:44
+#: ../src/Clients/MainApp/FSpot.Editors/ColorEditor.cs:64
 msgid "Adjust"
 msgstr "Tilpas"
 
-#: ../src/Clients/MainApp/FSpot.Editors/CropEditor.cs:36
+#: ../src/Clients/MainApp/FSpot.Editors/CropEditor.cs:56
 msgid "4 x 3 (Book)"
 msgstr "4 x 3 (Bog)"
 
-#: ../src/Clients/MainApp/FSpot.Editors/CropEditor.cs:37
+#: ../src/Clients/MainApp/FSpot.Editors/CropEditor.cs:57
 msgid "4 x 6 (Postcard)"
 msgstr "4 x 6 (Postkort)"
 
-#: ../src/Clients/MainApp/FSpot.Editors/CropEditor.cs:38
+#: ../src/Clients/MainApp/FSpot.Editors/CropEditor.cs:58
 msgid "5 x 7 (L, 2L)"
 msgstr "5 x 7 (L, 2L)"
 
-#: ../src/Clients/MainApp/FSpot.Editors/CropEditor.cs:39
+#: ../src/Clients/MainApp/FSpot.Editors/CropEditor.cs:59
 msgid "8 x 10"
 msgstr "8 x 10"
 
-#: ../src/Clients/MainApp/FSpot.Editors/CropEditor.cs:40
+#: ../src/Clients/MainApp/FSpot.Editors/CropEditor.cs:60
 msgid "Square"
 msgstr "Kvadrat"
 
-#: ../src/Clients/MainApp/FSpot.Editors/CropEditor.cs:43
+#: ../src/Clients/MainApp/FSpot.Editors/CropEditor.cs:63
 msgid "Crop"
 msgstr "Beskær"
 
-#: ../src/Clients/MainApp/FSpot.Editors/CropEditor.cs:74
+#: ../src/Clients/MainApp/FSpot.Editors/CropEditor.cs:94
 msgid "Select the area that needs cropping."
 msgstr "Vælg det område der skal tilskæres."
 
-#: ../src/Clients/MainApp/FSpot.Editors/CropEditor.cs:99
+#: ../src/Clients/MainApp/FSpot.Editors/CropEditor.cs:119
 msgid "No Constraint"
 msgstr "Ingen begrænsning"
 
-#: ../src/Clients/MainApp/FSpot.Editors/CropEditor.cs:100
+#: ../src/Clients/MainApp/FSpot.Editors/CropEditor.cs:120
 msgid "Same as photo"
 msgstr "Samme som foto"
 
-#: ../src/Clients/MainApp/FSpot.Editors/CropEditor.cs:105
+#: ../src/Clients/MainApp/FSpot.Editors/CropEditor.cs:125
 msgid "Custom Ratios..."
 msgstr "Tilpassede forhold..."
 
-#: ../src/Clients/MainApp/FSpot.Editors/DesaturateEditor.cs:17
+#: ../src/Clients/MainApp/FSpot.Editors/DesaturateEditor.cs:37
 msgid "Desaturate"
 msgstr "Afmætning"
 
-#: ../src/Clients/MainApp/FSpot.Editors/RedEyeEditor.cs:19
+#: ../src/Clients/MainApp/FSpot.Editors/RedEyeEditor.cs:41
 msgid "Red-eye Reduction"
 msgstr "Reduktion af røde øjne"
 
-#: ../src/Clients/MainApp/FSpot.Editors/RedEyeEditor.cs:21
+#: ../src/Clients/MainApp/FSpot.Editors/RedEyeEditor.cs:43
 msgid "Fix!"
 msgstr "Reparér!"
 
-#: ../src/Clients/MainApp/FSpot.Editors/RedEyeEditor.cs:25
+#: ../src/Clients/MainApp/FSpot.Editors/RedEyeEditor.cs:47
 msgid "Select the eyes you wish to fix."
 msgstr "Vælg øjnene du ønsker at reparere."
 
-#: ../src/Clients/MainApp/FSpot.Editors/SepiaEditor.cs:17
+#: ../src/Clients/MainApp/FSpot.Editors/SepiaEditor.cs:37
 msgid "Sepia Tone"
 msgstr "Sepia-farvetone"
 
-#: ../src/Clients/MainApp/FSpot.Editors/SoftFocusEditor.cs:32
+#: ../src/Clients/MainApp/FSpot.Editors/SoftFocusEditor.cs:51
 msgid "Soft Focus"
 msgstr "Blødt fokus"
 
-#: ../src/Clients/MainApp/FSpot.Editors/TiltEditor.cs:30
+#: ../src/Clients/MainApp/FSpot.Editors/TiltEditor.cs:49
 msgid "Straighten"
 msgstr "Ret op"
 
-#: ../src/Clients/MainApp/FSpot/FullScreenView.cs:60
+#: ../src/Clients/MainApp/FSpot/FullScreenView.cs:82
 msgid "Hide"
 msgstr "Skjul"
 
-#: ../src/Clients/MainApp/FSpot/FullScreenView.cs:62
+#: ../src/Clients/MainApp/FSpot/FullScreenView.cs:84
 msgid "Hide toolbar"
 msgstr "Skjul værktøjslinje"
 
-#: ../src/Clients/MainApp/FSpot/FullScreenView.cs:68
+#: ../src/Clients/MainApp/FSpot/FullScreenView.cs:90
 msgid "Info"
 msgstr "Information"
 
-#: ../src/Clients/MainApp/FSpot/FullScreenView.cs:70
+#: ../src/Clients/MainApp/FSpot/FullScreenView.cs:92
 msgid "Image information"
 msgstr "Information om billede"
 
-#: ../src/Clients/MainApp/FSpot/FullScreenView.cs:75
+#: ../src/Clients/MainApp/FSpot/FullScreenView.cs:97
 msgid "Exit fullscreen"
 msgstr "Forlad fuldskærm"
 
-#: ../src/Clients/MainApp/FSpot/FullScreenView.cs:83
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:318
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:89
+#: ../src/Clients/MainApp/FSpot/FullScreenView.cs:105
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:341
+#: ../src/Clients/MainApp/FSpot/SingleView.cs:122
 msgid "Slideshow"
 msgstr "Diasshow"
 
-#: ../src/Clients/MainApp/FSpot/FullScreenView.cs:84
+#: ../src/Clients/MainApp/FSpot/FullScreenView.cs:106
 msgid "Start slideshow"
 msgstr "Start diasshow"
 
-#: ../src/Clients/MainApp/FSpot/FullScreenView.cs:130
+#: ../src/Clients/MainApp/FSpot/FullScreenView.cs:152
 msgid "Slide transition:"
 msgstr "Diasovergang:"
 
-#: ../src/Clients/MainApp/FSpot/GroupSelector.cs:59
-#: ../src/Clients/MainApp/FSpot/GroupSelector.cs:60
+#: ../src/Clients/MainApp/FSpot/GroupSelector.cs:90
+#: ../src/Clients/MainApp/FSpot/GroupSelector.cs:91
 msgid "More dates"
 msgstr "Flere datoer"
 
 # evt. mere?
-#: ../src/Clients/MainApp/FSpot/GroupSelector.cs:62
-#: ../src/Clients/MainApp/FSpot/GroupSelector.cs:63
+#: ../src/Clients/MainApp/FSpot/GroupSelector.cs:93
+#: ../src/Clients/MainApp/FSpot/GroupSelector.cs:94
 msgid "More"
 msgstr "Flere"
 
-#: ../src/Clients/MainApp/FSpot/GroupSelector.cs:523
+#: ../src/Clients/MainApp/FSpot/GroupSelector.cs:554
 #: ../src/Clients/MainApp/ui/main_window.ui.h:34
 msgid "_Clear Date Range"
 msgstr "_Ryd datointerval"
 
-#: ../src/Clients/MainApp/FSpot.Import/ImportController.cs:477
-#: ../src/Clients/MainApp/FSpot.Import/ImportController.cs:479
-#: ../src/Clients/MainApp/FSpot.Import/MetadataImporter.cs:51
+#: ../src/Clients/MainApp/FSpot.Import/ImportController.cs:510
+#: ../src/Clients/MainApp/FSpot.Import/ImportController.cs:512
+#: ../src/Clients/MainApp/FSpot.Import/MetadataImporter.cs:80
 msgid "Imported Tags"
 msgstr "Importerede mærker"
 
-#: ../src/Clients/MainApp/FSpot/ItemAction.cs:80
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:285
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:72
+#: ../src/Clients/MainApp/FSpot/ItemAction.cs:102
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:308
+#: ../src/Clients/MainApp/FSpot/SingleView.cs:105
 msgid "Rotate Left"
 msgstr "Rotér til venstre"
 
-#: ../src/Clients/MainApp/FSpot/ItemAction.cs:81
+#: ../src/Clients/MainApp/FSpot/ItemAction.cs:103
 msgid "Rotate picture left"
 msgstr "Rotér billede til venstre"
 
-#: ../src/Clients/MainApp/FSpot/ItemAction.cs:92
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:289
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:77
+#: ../src/Clients/MainApp/FSpot/ItemAction.cs:114
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:312
+#: ../src/Clients/MainApp/FSpot/SingleView.cs:110
 msgid "Rotate Right"
 msgstr "Rotér til højre"
 
-#: ../src/Clients/MainApp/FSpot/ItemAction.cs:93
+#: ../src/Clients/MainApp/FSpot/ItemAction.cs:115
 msgid "Rotate picture right"
 msgstr "Rotér billede til højre"
 
-#: ../src/Clients/MainApp/FSpot/ItemAction.cs:103
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:905
+#: ../src/Clients/MainApp/FSpot/ItemAction.cs:125
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:936
 msgid "Next"
 msgstr "Næste"
 
-#: ../src/Clients/MainApp/FSpot/ItemAction.cs:104
+#: ../src/Clients/MainApp/FSpot/ItemAction.cs:126
 msgid "Next picture"
 msgstr "Næste billede"
 
-#: ../src/Clients/MainApp/FSpot/ItemAction.cs:124
+#: ../src/Clients/MainApp/FSpot/ItemAction.cs:146
 msgid "Previous"
 msgstr "Forrige"
 
-#: ../src/Clients/MainApp/FSpot/ItemAction.cs:125
+#: ../src/Clients/MainApp/FSpot/ItemAction.cs:147
 msgid "Previous picture"
 msgstr "Forrige billede"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:278
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:193
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:301
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:229
 #: ../src/Clients/MainApp/ui/import.ui.h:3
 msgid "Import"
 msgstr "Importér"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:280
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:303
 msgid "Import new images"
 msgstr "Importér nye billeder"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:296
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:319
 #: ../src/Clients/MainApp/ui/main_window.ui.h:3
 msgid "Browse"
 msgstr "Gennemse"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:300
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:323
 msgid "Browse many photos simultaneously"
 msgstr "Gennemse mange fotos samtidigt"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:304
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:327
 msgid "Edit Image"
 msgstr "Redigér billede"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:308
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:331
 msgid "View and edit a photo"
 msgstr "Vis og redigér et foto"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:313
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:84
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:336
+#: ../src/Clients/MainApp/FSpot/SingleView.cs:117
 msgid "Fullscreen"
 msgstr "Fuldskærm"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:315
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:86
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:338
+#: ../src/Clients/MainApp/FSpot/SingleView.cs:119
 msgid "View photos fullscreen"
 msgstr "Vis fotos på hele skærmen"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:320
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:91
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:343
+#: ../src/Clients/MainApp/FSpot/SingleView.cs:124
 msgid "View photos in a slideshow"
 msgstr "Vis fotos i et diasshow"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:335
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:358
 msgid "Previous photo"
 msgstr "Forrige foto"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:340
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:363
 msgid "Next photo"
 msgstr "Næste foto"
 
 #. Don't care otherwise, Tags sounds reasonable
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:353
-#: ../src/Clients/MainApp/FSpot.Widgets/Sidebar.cs:57
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:902
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:1074
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:1114
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:376
+#: ../src/Clients/MainApp/FSpot.Widgets/Sidebar.cs:75
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:933
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:1105
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:1145
 msgid "Tags"
 msgstr "Mærker"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:417
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:440
 msgid "Show _Find Bar"
 msgstr "Vis _søgepanel"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:420
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:443
 msgid "Hide _Find Bar"
 msgstr "Skjul _søgepanel"
 
 #. Note for translators: This indicates the current photo is photo {0} of {1} out of photos
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:649
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/AdjustTimeDialog.cs:134
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ProgressDialog.cs:90
-#: ../src/Extensions/Exporters/FSpot.Exporters.CD/FSpot.Exporters.CD/CDExport.cs:117
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:358
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:209
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryExport.cs:187
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:672
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/AdjustTimeDialog.cs:154
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/ProgressDialog.cs:111
+#: ../src/Extensions/Exporters/FSpot.Exporters.CD/FSpot.Exporters.CD/CDExport.cs:134
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:389
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:240
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryExport.cs:220
 #, csharp-format
 msgid "{0} of {1}"
 msgstr "{0} af {1}"
 
 #. Translators, The singular case will never happen here.
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:1723
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:1746
 #, csharp-format
 msgid "Merge the selected tag"
 msgid_plural "Merge the {0} selected tags?"
 msgstr[0] "Sammenføj det markerede mærke"
 msgstr[1] "Sammenføj de {0} markerede mærker?"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:1750
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:1773
 msgid ""
 "This operation will merge the selected tags and any sub-tags into a single "
 "tag."
@@ -627,78 +929,78 @@ msgstr ""
 "Denne handling vil sammenføje de valgte mærker og alle undermærker til et "
 "enkelt mærke."
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:1752
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:1775
 msgid "_Merge Tags"
 msgstr "Sammenføj _mærker"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:1957
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:1980
 #, csharp-format
 msgid "{0} Photo out of {1}"
 msgid_plural "{0} Photos out of {1}"
 msgstr[0] "{0} foto ud af {1}"
 msgstr[1] "{0} fotos ud af {1}"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:1959
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:467
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:1982
+#: ../src/Clients/MainApp/FSpot/SingleView.cs:500
 #, csharp-format
 msgid "{0} Photo"
 msgid_plural "{0} Photos"
 msgstr[0] "{0} foto"
 msgstr[1] "{0} fotos"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:1962
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:1985
 #, csharp-format
 msgid " ({0} selected)"
 msgid_plural " ({0} selected)"
 msgstr[0] " ({0} valgt)"
 msgstr[1] " ({0} valgte)"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2043
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2066
 msgid "_Ok"
 msgstr "_O.k."
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2044
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2067
 msgid "Error Deleting Picture"
 msgstr "Fejl ved sletning af billede"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2049
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2072
 #, csharp-format
 msgid "No permission to delete the file:{1}{0}"
 msgstr "Ingen rettigheder til at slette filen:{1}{0}"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2053
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2076
 #, csharp-format
 msgid "An error of type {0} occurred while deleting the file:{2}{1}"
 msgstr "En fejl af typen {0} opstod ved sletning af filen:{2}{1}"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2085
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2108
 #, csharp-format
 msgid "Delete the selected photo permanently?"
 msgid_plural "Delete the {0} selected photos permanently?"
 msgstr[0] "Slet det markerede foto permanent?"
 msgstr[1] "Slet de {0} markerede fotos permanent?"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2089
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2112
 msgid "This deletes all versions of the selected photo from your drive."
 msgid_plural ""
 "This deletes all versions of the selected photos from your drive."
 msgstr[0] "Dette sletter alle versioner af det markerede foto fra din disk."
 msgstr[1] "Dette sletter alle versioner af de markerede fotos fra din disk."
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2092
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2115
 msgid "_Delete photo"
 msgid_plural "_Delete photos"
 msgstr[0] "_Slet foto"
 msgstr[1] "_Slet fotos"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2128
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2151
 #, csharp-format
 msgid "Remove the selected photo from F-Spot?"
 msgid_plural "Remove the {0} selected photos from F-Spot?"
 msgstr[0] "Fjern det markerede foto fra F-Spot?"
 msgstr[1] "Fjern de {0} markerede fotos fra F-Spot?"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2133
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2156
 msgid ""
 "If you remove photos from the F-Spot catalog all tag information will be "
 "lost. The photos remain on your computer and can be imported into F-Spot "
@@ -707,27 +1009,27 @@ msgstr ""
 "Hvis du fjerner fotos fra F-Spot-samlingen, vil alle mærkeinformationer gå "
 "tabt. Fotoene vil blive på din maskine og kan importeres i F-Spot igen."
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2134
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2157
 msgid "_Remove from Catalog"
 msgstr "_Fjern fra samling"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2208
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2231
 #, csharp-format
 msgid "Delete tag \"{0}\"?"
 msgstr "Slet mærke \"{0}\"?"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2210
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2233
 #, csharp-format
 msgid "Delete the {0} selected tags?"
 msgstr "Slet de {0} markerede mærker?"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2215
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2238
 msgid "photo"
 msgid_plural "photos"
 msgstr[0] "foto"
 msgstr[1] "fotos"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2217
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2240
 #, csharp-format
 msgid "If you delete this tag, the association with {0} {1} will be lost."
 msgid_plural ""
@@ -736,18 +1038,18 @@ msgstr[0] "Hvis du sletter dette mærke, vil tilknytningen til {0} {1} gå tabt.
 msgstr[1] ""
 "Hvis du sletter disse mærker, vil tilknytningen til {0} {1} gå tabt."
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2222
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2245
 msgid "_Delete tag"
 msgid_plural "_Delete tags"
 msgstr[0] "_Slet mærke"
 msgstr[1] "_Slet mærker"
 
 #. A Category is not empty. Can not delete it.
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2236
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2259
 msgid "Tag is not empty"
 msgstr "Mærke er ikke tomt"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2237
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2260
 #, csharp-format
 msgid ""
 "Can not delete tags that have tags within them.  Please delete tags under "
@@ -756,39 +1058,39 @@ msgstr ""
 "Kan ikke slette mærker, som har mærker indeni. Vær venlig at slette mærker "
 "under \"{0}\" først"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2686
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2709
 msgid "Rotate selected photo left"
 msgid_plural "Rotate selected photos left"
 msgstr[0] "Rotér det valgte foto til venstre"
 msgstr[1] "Rotér de valgte fotos til venstre"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2699
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2722
 msgid "Rotate selected photo right"
 msgid_plural "Rotate selected photos right"
 msgstr[0] "Rotér det valgte foto til højre"
 msgstr[1] "Rotér de valgte fotos til højre"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2710
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2733
 #, csharp-format
 msgid "Find _Selected Tag"
 msgid_plural "Find _Selected Tags"
 msgstr[0] "Find _valgt mærke"
 msgstr[1] "Find _valgte mærker"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2714
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2737
 #, csharp-format
 msgid "Find Selected Tag _With"
 msgid_plural "Find Selected Tags _With"
 msgstr[0] "Find valgt mærke _med"
 msgstr[1] "Find valgte mærker _med"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2755
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2778
 msgid "Create New Version?"
 msgid_plural "Create New Versions?"
 msgstr[0] "Opret ny version?"
 msgstr[1] "Opret nye versioner?"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2757
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2780
 #, csharp-format
 msgid ""
 "Before launching {1}, should F-Spot create a new version of the selected "
@@ -803,111 +1105,111 @@ msgstr[1] ""
 "Før opstart af {1}, skal F-Spot da oprette nye versioner af de valgte fotos "
 "for at bevare originalerne?"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2779
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2802
 msgid "XCF version"
 msgstr "XCF-version"
 
 #. Note for translators: Reparented is a picture becoming a version of another one
-#: ../src/Clients/MainApp/FSpot/Photo.cs:406
+#: ../src/Clients/MainApp/FSpot/Photo.cs:426
 msgid "Reparented"
 msgstr "Genknyt"
 
-#: ../src/Clients/MainApp/FSpot/Photo.cs:423
+#: ../src/Clients/MainApp/FSpot/Photo.cs:443
 #, csharp-format
 msgid "Modified"
 msgid_plural "Modified ({0})"
 msgstr[0] "Ændret"
 msgstr[1] "({0}) ændret"
 
-#: ../src/Clients/MainApp/FSpot/Photo.cs:446
+#: ../src/Clients/MainApp/FSpot/Photo.cs:466
 #, csharp-format
 msgid "Modified in {1}"
 msgstr "Ændret i {1}"
 
-#: ../src/Clients/MainApp/FSpot/Photo.cs:446
+#: ../src/Clients/MainApp/FSpot/Photo.cs:466
 #, csharp-format
 msgid "Modified in {1} ({0})"
 msgstr "Ændret i {1} ({0})"
 
-#: ../src/Clients/MainApp/FSpot/PhotoStore.cs:180
+#: ../src/Clients/MainApp/FSpot/PhotoStore.cs:204
 #: ../src/Clients/MainApp/ui/mail_dialog.ui.h:17
 msgid "Original"
 msgstr "Original"
 
-#: ../src/Clients/MainApp/FSpot/PhotoView.cs:337
+#: ../src/Clients/MainApp/FSpot/PhotoView.cs:359
 msgid "Description:"
 msgstr "Beskrivelse:"
 
-#: ../src/Clients/MainApp/FSpot/Preferences.cs:158
+#: ../src/Clients/MainApp/FSpot/Preferences.cs:191
 msgid "Photos"
 msgstr "Fotos"
 
-#: ../src/Clients/MainApp/FSpot/PrintOperation.cs:34
+#: ../src/Clients/MainApp/FSpot/PrintOperation.cs:54
 msgid "Image Settings"
 msgstr "Billedopsætning"
 
-#: ../src/Clients/MainApp/FSpot/QueryWidget.cs:59
+#: ../src/Clients/MainApp/FSpot/QueryWidget.cs:84
 msgid "Find: "
 msgstr "Find: "
 
-#: ../src/Clients/MainApp/FSpot/QueryWidget.cs:64
+#: ../src/Clients/MainApp/FSpot/QueryWidget.cs:89
 msgid "Untagged photos"
 msgstr "Umærkede fotos"
 
-#: ../src/Clients/MainApp/FSpot/QueryWidget.cs:72
+#: ../src/Clients/MainApp/FSpot/QueryWidget.cs:97
 msgid "Rated photos"
 msgstr "Vurderede fotos"
 
 #. Note for translators: 'Import roll' is no command, it means 'Roll that has been imported'
-#: ../src/Clients/MainApp/FSpot/QueryWidget.cs:81
+#: ../src/Clients/MainApp/FSpot/QueryWidget.cs:106
 msgid "Import roll"
 msgstr "Importrulle"
 
-#: ../src/Clients/MainApp/FSpot/QueryWidget.cs:104
+#: ../src/Clients/MainApp/FSpot/QueryWidget.cs:129
 msgid "Clear search"
 msgstr "Nulstil søgning"
 
-#: ../src/Clients/MainApp/FSpot/QueryWidget.cs:111
+#: ../src/Clients/MainApp/FSpot/QueryWidget.cs:136
 msgid "Refresh search"
 msgstr "Genopfrisk søgning"
 
-#: ../src/Clients/MainApp/FSpot/QueryWidget.cs:114
+#: ../src/Clients/MainApp/FSpot/QueryWidget.cs:139
 msgid "No matching photos found"
 msgstr "Ingen matchende fotos fundet"
 
-#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:79
+#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:102
 msgid "Unable to rotate this type of photo"
 msgstr "Kan ikke rotere foto af denne type"
 
-#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:98
+#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:118
 msgid "Unable to rotate readonly file"
 msgstr "Kan ikke rotere skrivebeskyttet fil"
 
-#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:161
+#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:182
 msgid "Rotating photos"
 msgstr "Roterer fotos"
 
-#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:172
+#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:193
 #, csharp-format
 msgid "Rotating photo \"{0}\""
 msgstr "Roterer foto \"{0}\""
 
-#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:185
+#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:206
 msgid "Directory not found"
 msgstr "Mappe blev ikke fundet"
 
-#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:187
+#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:208
 msgid "File not found"
 msgstr "Fil ikke fundet"
 
-#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:205
+#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:226
 #, csharp-format
 msgid "Unable to rotate photo"
 msgid_plural "Unable to rotate {0} photos"
 msgstr[0] "Kan ikke rotere foto"
 msgstr[1] "Kan ikke rotere {0} fotos"
 
-#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:207
+#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:228
 #, csharp-format
 msgid ""
 "The photo could not be rotated because it is on a read only file system or "
@@ -924,164 +1226,164 @@ msgstr[1] ""
 "filsystem eller et medie såsom en cd-rom. Kontrollér venligst dine "
 "skriverettigheder og prøv igen."
 
-#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:234
+#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:255
 #, csharp-format
 msgid "Received error \"{0}\" while attempting to rotate {1}"
 msgstr "Modtog fejl \"{0} ved forsøg på at rotere {1}"
 
-#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:239
+#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:260
 msgid "Error while rotating photo."
 msgstr "Fejl ved rotering af foto."
 
-#: ../src/Clients/MainApp/FSpot/SendEmail.cs:212
+#: ../src/Clients/MainApp/FSpot/SendEmail.cs:236
 msgid "Preparing email"
 msgstr "Forbereder e-post"
 
-#: ../src/Clients/MainApp/FSpot/SendEmail.cs:256
+#: ../src/Clients/MainApp/FSpot/SendEmail.cs:280
 #, csharp-format
 msgid "Exporting picture \"{0}\""
 msgstr "Eksporterer billede \"{0}\""
 
-#: ../src/Clients/MainApp/FSpot/SendEmail.cs:275
+#: ../src/Clients/MainApp/FSpot/SendEmail.cs:299
 msgid "Error processing image"
 msgstr "Fejl ved billedbehandling"
 
-#: ../src/Clients/MainApp/FSpot/SendEmail.cs:276
+#: ../src/Clients/MainApp/FSpot/SendEmail.cs:300
 #, csharp-format
 msgid "An error occured while processing \"{0}\": {1}"
 msgstr "Der opstod en fejl ved behandling af \"{0}\": {1}"
 
 #. Send the mail :)
-#: ../src/Clients/MainApp/FSpot/SendEmail.cs:289
+#: ../src/Clients/MainApp/FSpot/SendEmail.cs:313
 msgid "My Photos"
 msgstr "Mine fotoer"
 
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:74
+#: ../src/Clients/MainApp/FSpot/SingleView.cs:107
 msgid "Rotate photo left"
 msgstr "Rotér foto til venstre"
 
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:79
+#: ../src/Clients/MainApp/FSpot/SingleView.cs:112
 msgid "Rotate photo right"
 msgstr "Rotér foto til højre"
 
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:116
+#: ../src/Clients/MainApp/FSpot/SingleView.cs:149
 msgid "Folder"
 msgstr "Mappe"
 
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:341
+#: ../src/Clients/MainApp/FSpot/SingleView.cs:374
 msgid "Open"
 msgstr "Åben"
 
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:344
+#: ../src/Clients/MainApp/FSpot/SingleView.cs:377
 msgid "Select Folder"
 msgstr "Vælg mappe"
 
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:428
+#: ../src/Clients/MainApp/FSpot/SingleView.cs:461
 msgid "Set as Background"
 msgstr "Benyt som baggrund"
 
-#: ../src/Clients/MainApp/FSpot/TagQueryWidget.cs:35
+#: ../src/Clients/MainApp/FSpot/TagQueryWidget.cs:66
 #, csharp-format
 msgid "Include Photos Tagged \"{0}\""
 msgstr "Inkludér fotos mærket \"{0}\""
 
-#: ../src/Clients/MainApp/FSpot/TagQueryWidget.cs:40
+#: ../src/Clients/MainApp/FSpot/TagQueryWidget.cs:71
 #, csharp-format
 msgid "Exclude Photos Tagged \"{0}\""
 msgstr "Udeluk fotos mærket \"{0}\""
 
-#: ../src/Clients/MainApp/FSpot/TagQueryWidget.cs:45
+#: ../src/Clients/MainApp/FSpot/TagQueryWidget.cs:76
 msgid "Remove From Search"
 msgstr "Fjern fra søgning"
 
-#: ../src/Clients/MainApp/FSpot/TagQueryWidget.cs:89
+#: ../src/Clients/MainApp/FSpot/TagQueryWidget.cs:120
 #, csharp-format
 msgid "Find _With"
 msgid_plural "Find _With"
 msgstr[0] "Find _med"
 msgstr[1] "Find _med"
 
-#: ../src/Clients/MainApp/FSpot/TagQueryWidget.cs:115
+#: ../src/Clients/MainApp/FSpot/TagQueryWidget.cs:146
 msgid "All"
 msgstr "Alle"
 
-#: ../src/Clients/MainApp/FSpot/TagQueryWidget.cs:150
-#: ../src/Clients/MainApp/FSpot/Term.cs:587
+#: ../src/Clients/MainApp/FSpot/TagQueryWidget.cs:181
+#: ../src/Clients/MainApp/FSpot/Term.cs:612
 #, csharp-format
 msgid "Not {0}"
 msgstr "Ikke {0}"
 
-#: ../src/Clients/MainApp/FSpot/TagQueryWidget.cs:274
+#: ../src/Clients/MainApp/FSpot/TagQueryWidget.cs:305
 msgid "Drag tags here to search for them"
 msgstr "Træk mærker hertil for at søge efter dem"
 
-#: ../src/Clients/MainApp/FSpot/TagSelectionWidget.cs:498
+#: ../src/Clients/MainApp/FSpot/TagSelectionWidget.cs:520
 msgid "Error renaming tag"
 msgstr "Fejl ved omdøbning af mærke"
 
-#: ../src/Clients/MainApp/FSpot/TagSelectionWidget.cs:499
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditTagDialog.cs:78
-#: ../src/Clients/MainApp/TagCommands.cs:117
+#: ../src/Clients/MainApp/FSpot/TagSelectionWidget.cs:521
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditTagDialog.cs:94
+#: ../src/Clients/MainApp/TagCommands.cs:137
 msgid "This name is already in use"
 msgstr "Dette navn er allerede i brug"
 
-#: ../src/Clients/MainApp/FSpot/TagStore.cs:208
+#: ../src/Clients/MainApp/FSpot/TagStore.cs:241
 msgid "Favorites"
 msgstr "Favoritter"
 
-#: ../src/Clients/MainApp/FSpot/TagStore.cs:213
+#: ../src/Clients/MainApp/FSpot/TagStore.cs:246
 msgid "Hidden"
 msgstr "Skjulte"
 
-#: ../src/Clients/MainApp/FSpot/TagStore.cs:221
+#: ../src/Clients/MainApp/FSpot/TagStore.cs:254
 msgid "People"
 msgstr "Mennesker"
 
-#: ../src/Clients/MainApp/FSpot/TagStore.cs:226
+#: ../src/Clients/MainApp/FSpot/TagStore.cs:259
 msgid "Places"
 msgstr "Steder"
 
-#: ../src/Clients/MainApp/FSpot/TagStore.cs:231
+#: ../src/Clients/MainApp/FSpot/TagStore.cs:264
 msgid "Events"
 msgstr "Begivenheder"
 
 #. The label for the root category is used in new and edit tag dialogs
-#: ../src/Clients/MainApp/FSpot/TagStore.cs:244
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:345
+#: ../src/Clients/MainApp/FSpot/TagStore.cs:277
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:361
 msgid "(None)"
 msgstr "(Ingen)"
 
-#: ../src/Clients/MainApp/FSpot/Term.cs:299
+#: ../src/Clients/MainApp/FSpot/Term.cs:324
 msgid " and "
 msgstr " og "
 
 #. operators.Add (Catalog.GetString (" && "));
-#: ../src/Clients/MainApp/FSpot/Term.cs:301
+#: ../src/Clients/MainApp/FSpot/Term.cs:326
 msgid ", "
 msgstr ", "
 
-#: ../src/Clients/MainApp/FSpot/Term.cs:357
+#: ../src/Clients/MainApp/FSpot/Term.cs:382
 msgid " or "
 msgstr " eller "
 
 #. OPS The operators we support, case insensitive
 #. private static string op_str = "(?'Ops' or | and |, | \\s+ )";
-#: ../src/Clients/MainApp/FSpot/Term.cs:381
+#: ../src/Clients/MainApp/FSpot/Term.cs:406
 #: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/DateRangeDialog.ui.h:7
-#: ../src/Clients/MainApp/FSpot.Widgets/FindBar.cs:179
-#: ../src/Clients/MainApp/FSpot.Widgets/FindBar.cs:534
+#: ../src/Clients/MainApp/FSpot.Widgets/FindBar.cs:202
+#: ../src/Clients/MainApp/FSpot.Widgets/FindBar.cs:557
 msgid "or"
 msgstr "eller"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/AboutDialog.cs:104
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/AboutDialog.cs:122
 msgid "Photo management for GNOME"
 msgstr "Fotohåndtering til GNOME"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/AboutDialog.cs:105
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/AboutDialog.cs:123
 msgid "Copyright © 2003-2010 Novell Inc."
 msgstr "Copyright © 2003-2010 Novell Inc."
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/AboutDialog.cs:129
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/AboutDialog.cs:147
 msgid "translator-credits"
 msgstr ""
 "Joe Hansen, 2010\n"
@@ -1093,77 +1395,77 @@ msgstr ""
 "Dansk-gruppen <dansk@dansk-gruppen.dk>\n"
 "Mere info: http://www.dansk-gruppen.dk"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/AboutDialog.cs:134
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/AboutDialog.cs:152
 msgid "F-Spot Website"
 msgstr "F-Spot hjemmeside"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/AdjustTimeDialog.cs:117
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/AdjustTimeDialog.cs:137
 #: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:10
 #, csharp-format
 msgid "Shift all photos by {0}"
 msgstr "Skift alle fotos med {0}"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/DateRangeDialog.cs:90
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/DateRangeDialog.cs:109
 msgid "Today"
 msgstr "I dag"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/DateRangeDialog.cs:92
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/DateRangeDialog.cs:111
 msgid "Yesterday"
 msgstr "I går"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/DateRangeDialog.cs:94
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/DateRangeDialog.cs:113
 msgid "Last 7 days"
 msgstr "Sidste 7 dage"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/DateRangeDialog.cs:96
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/DateRangeDialog.cs:115
 msgid "Last 30 days"
 msgstr "Sidste 30 dage"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/DateRangeDialog.cs:98
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/DateRangeDialog.cs:117
 msgid "Last 90 days"
 msgstr "Sidste 90 dage"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/DateRangeDialog.cs:100
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/DateRangeDialog.cs:119
 msgid "Last 360 days"
 msgstr "Sidste 360 dage"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/DateRangeDialog.cs:102
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/DateRangeDialog.cs:121
 msgid "Current Week (Mon-Sun)"
 msgstr "Indeværende uge (man-søn)"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/DateRangeDialog.cs:104
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/DateRangeDialog.cs:123
 msgid "Previous Week (Mon-Sun)"
 msgstr "Forrige uge (man-søn)"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/DateRangeDialog.cs:120
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/DateRangeDialog.cs:139
 #: ../src/Extensions/Tools/FSpot.Tools.ScreensaverConfig/Resources/ScreensaverConfigDialog.ui.h:1
 msgid "All Images"
 msgstr "Alle billeder"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/DateRangeDialog.cs:122
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/DateRangeDialog.cs:141
 msgid "Customized Range"
 msgstr "Tilpasset område"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditExceptionDialog.cs:28
-#: ../src/Clients/MainApp/FSpot.Widgets/Sharpener.cs:74
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditExceptionDialog.cs:50
+#: ../src/Clients/MainApp/FSpot.Widgets/Sharpener.cs:95
 #, csharp-format
 msgid "Received exception \"{0}\". Unable to save photo {1}"
 msgstr "Undtagelsen \"{0}\" blev modtaget. Kunne ikke gemme foto {1}"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditExceptionDialog.cs:41
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditExceptionDialog.cs:63
 msgid "Error editing photo"
 msgstr "Fejl ved fotoredigering"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditTagIconDialog.cs:46
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditTagIconDialog.cs:64
 #, csharp-format
 msgid "Edit Icon for Tag {0}"
 msgstr "Redigér ikon for mærke {0}"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditTagIconDialog.cs:68
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditTagIconDialog.cs:86
 msgid "Select Photo from file"
 msgstr "Vælg foto fra fil"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditTagIconDialog.cs:90
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditTagIconDialog.cs:108
 #, csharp-format
 msgid ""
 "\n"
@@ -1180,33 +1482,33 @@ msgstr ""
 " dette mærke. Mærk et foto som \"{0}\" og vend tilbage hertil for at\n"
 " bruge det som et ikon."
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditTagIconDialog.cs:168
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditTagIconDialog.cs:186
 msgid "Unable to load image"
 msgstr "Kunne ikke indlæse billede"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditTagIconDialog.cs:169
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditTagIconDialog.cs:187
 #, csharp-format
 msgid "Unable to load \"{0}\" as icon for the tag"
 msgstr "Kan ikke indlæse \"{0}\" som ikon for mærket"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditTagIconDialog.cs:207
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditTagIconDialog.cs:225
 #, csharp-format
 msgid "Photo {0} of {1}"
 msgstr "Foto {0} af {1}"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:16
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:45
 msgid "Choose Folder..."
 msgstr "Vælg _mappe..."
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:129
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:164
 msgid "Choose Import source..."
 msgstr "Vælg importkilde..."
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:141
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:176
 msgid "(No Cameras Detected)"
 msgstr "(Ingen kameraer fundet)"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:176
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:211
 msgid ""
 "Checking this box will remove the imported photos from the camera after the "
 "import finished successfully.\n"
@@ -1220,33 +1522,33 @@ msgstr ""
 "Det anbefales generelt at lave en sikkerhedskopi af dine fotoer, før du "
 "fjerner dem fra kameraet. <b>Brug denne indstilling på egen risiko!</b>"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:177
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:212
 msgid "Warning"
 msgstr "Advarsel"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:295
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:331
 #, csharp-format
 msgid "Importing Photos: {0} of {1}..."
 msgstr "Importerer fotoer: {0} af {1}..."
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:319
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:355
 msgid "Importing photos..."
 msgstr "Importerer fotoer..."
 
 #. TODO: Using a GtkSpinner would be nicer here.
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:326
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:362
 msgid "Searching for photos... (You can already click Import to continue)"
 msgstr "Søger efter fotoer... (du kan allerede klikke import for at fortsætte)"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportFailureDialog.cs:36
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportFailureDialog.cs:65
 msgid "Import failures"
 msgstr "Importfejl"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportFailureDialog.cs:37
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportFailureDialog.cs:66
 msgid "Some files failed to import"
 msgstr "Nogle filer kunne ikke importeres"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportFailureDialog.cs:38
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportFailureDialog.cs:67
 msgid ""
 "Some files could not be imported, they might be corrupt or there might be "
 "something wrong with the storage on which they reside."
@@ -1254,28 +1556,28 @@ msgstr ""
 "Nogle filer kunne ikke importeres, de er måske ødelagte, eller der er måske "
 "noget galt med det lagermedie, de er på."
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportFailureDialog.cs:101
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportFailureDialog.cs:130
 msgid "Details"
 msgstr "Detaljer"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/PreferenceDialog.cs:59
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/PreferenceDialog.cs:82
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/PreferenceDialog.cs:77
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/PreferenceDialog.cs:100
 msgid "None"
 msgstr "Ingen"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/PreferenceDialog.cs:61
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/PreferenceDialog.cs:79
 msgid "System profile"
 msgstr "Systemprofil"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/PreferenceDialog.cs:99
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/PreferenceDialog.cs:117
 msgid "Standard theme"
 msgstr "Standardtema"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/RepairDbDialog.cs:22
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/RepairDbDialog.cs:44
 msgid "Error loading database."
 msgstr "Fejl ved indlæsning af database."
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/RepairDbDialog.cs:23
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/RepairDbDialog.cs:45
 #, csharp-format
 msgid ""
 "F-Spot encountered an error while loading the photo database. The old "
@@ -1284,19 +1586,19 @@ msgstr ""
 "F-Spot stødte på en fejl ved indlæsning af fotodatabase. Den gamle database "
 "er blevet flyttet til {0} og en ny database er blevet oprettet."
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/SelectionRatioDialog.cs:61
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/SelectionRatioDialog.cs:81
 msgid "Label"
 msgstr "Mærkat"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/SelectionRatioDialog.cs:65
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/SelectionRatioDialog.cs:85
 msgid "Ratio"
 msgstr "Forhold"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ThreadProgressDialog.cs:57
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/ThreadProgressDialog.cs:78
 msgid "Retry"
 msgstr "Prøv igen"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ThreadProgressDialog.cs:59
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/ThreadProgressDialog.cs:80
 #: ../src/Extensions/Tools/FSpot.Tools.MergeDb/Resources/pickfolder_dialog.ui.h:1
 msgid "Skip"
 msgstr "Spring over"
@@ -1463,8 +1765,8 @@ msgid "after"
 msgstr "efter"
 
 #: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:7
-#: ../src/Clients/MainApp/FSpot.Widgets/FindBar.cs:179
-#: ../src/Clients/MainApp/FSpot.Widgets/FindBar.cs:535
+#: ../src/Clients/MainApp/FSpot.Widgets/FindBar.cs:202
+#: ../src/Clients/MainApp/FSpot.Widgets/FindBar.cs:558
 msgid "and"
 msgstr "og"
 
@@ -1548,17 +1850,17 @@ msgstr "Håndtér dine tilpassede markeringsforhold"
 msgid "Selection Constraints"
 msgstr "Begrænsninger for udvalg"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/EditorPage.cs:33
-#: ../src/Clients/MainApp/FSpot.Widgets/Sidebar.cs:55
+#: ../src/Clients/MainApp/FSpot.Widgets/EditorPage.cs:55
+#: ../src/Clients/MainApp/FSpot.Widgets/Sidebar.cs:73
 msgid "Edit"
 msgstr "Redigér"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/EditorPage.cs:201
-#: ../src/Extensions/Exporters/FSpot.Exporters.Zip/FSpot.Exporters.Zip/ZipExport.cs:49
+#: ../src/Clients/MainApp/FSpot.Widgets/EditorPage.cs:223
+#: ../src/Extensions/Exporters/FSpot.Exporters.Zip/FSpot.Exporters.Zip/ZipExport.cs:66
 msgid "No selection available"
 msgstr "Intet valgt område tilgængeligt"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/EditorPage.cs:202
+#: ../src/Clients/MainApp/FSpot.Widgets/EditorPage.cs:224
 msgid ""
 "This tool requires an active selection. Please select a region of the photo "
 "and try the operation again"
@@ -1566,13 +1868,13 @@ msgstr ""
 "Dette værktøj kræver en aktiv markering. Vælg et område af fotoet og forsøg "
 "handlingen igen"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/EditorPage.cs:220
+#: ../src/Clients/MainApp/FSpot.Widgets/EditorPage.cs:242
 msgid "Error saving adjusted photo"
 msgid_plural "Error saving adjusted photos"
 msgstr[0] "Fejl ved gemning af tilpasset foto"
 msgstr[1] "Fejl ved gemning af tilpassede fotos"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/EditorPage.cs:222
+#: ../src/Clients/MainApp/FSpot.Widgets/EditorPage.cs:244
 #, csharp-format
 msgid ""
 "Received exception \"{0}\". Note that you have to develop RAW files into "
@@ -1581,105 +1883,105 @@ msgstr ""
 "Undtagelse \"{0}\" modtaget. Bemærk at du skal fremkalde RAW-filer til JPEG, "
 "før du kan redigere dem."
 
-#: ../src/Clients/MainApp/FSpot.Widgets/Filmstrip.cs:471
+#: ../src/Clients/MainApp/FSpot.Widgets/Filmstrip.cs:495
 msgid "_Horizontal"
 msgstr "_Vandret"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/Filmstrip.cs:475
+#: ../src/Clients/MainApp/FSpot.Widgets/Filmstrip.cs:499
 msgid "_Vertical"
 msgstr "_Lodret"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/FindBar.cs:60
+#: ../src/Clients/MainApp/FSpot.Widgets/FindBar.cs:83
 msgid "Find:"
 msgstr "Find:"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/FolderTreePage.cs:22
+#: ../src/Clients/MainApp/FSpot.Widgets/FolderTreePage.cs:44
 msgid "Folders"
 msgstr "Mapper"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/FolderTreeView.cs:129
+#: ../src/Clients/MainApp/FSpot.Widgets/FolderTreeView.cs:150
 msgid "Filesystem"
 msgstr "Filsystem"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:183
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:199
 msgid "Histogram"
 msgstr "Histogram"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:202
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:218
 msgid "Image Information"
 msgstr "Information om billede"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:213
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:229
 #: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/Resources/FacebookExport.ui.h:10
 msgid "Name"
 msgstr "Navn"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:216
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:232
 msgid "Version"
 msgstr "Version"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:219
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:235
 msgid "Date"
 msgstr "Dato"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:222
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:238
 #: ../src/Extensions/Exporters/FSpot.Exporters.CD/Resources/CDExport.ui.h:4
 msgid "Size"
 msgstr "Størrelse"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:225
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:241
 msgid "Exposure"
 msgstr "Eksponering"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:229
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:245
 msgid "Focal Length"
 msgstr "Brændvidde"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:232
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:248
 msgid "Camera"
 msgstr "Kamera"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:235
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:251
 msgid "File Size"
 msgstr "Filstørrelse"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:238
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:254
 msgid "Rating"
 msgstr "Vurdering"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:328
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:344
 msgid "(wrong format)"
 msgstr "(forkert format)"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:354
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:365
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:375
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:370
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:381
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:391
 msgid "(Unknown)"
 msgstr "(Ukendt)"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:471
-#: ../src/Clients/MainApp/PhotoVersionMenu.cs:55
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:487
+#: ../src/Clients/MainApp/PhotoVersionMenu.cs:86
 msgid "(No Edits)"
 msgstr "(Ingen redigeringer)"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:475
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:491
 #, csharp-format
 msgid "(One Edit)"
 msgid_plural "({0} Edits)"
 msgstr[0] "(Én redigering)"
 msgstr[1] "({0} redigeringer)"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:485
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:501
 msgid "(File read error)"
 msgstr "(Fejl ved læsning af fil)"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:530
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:546
 #, csharp-format
 msgid "{0} Photos"
 msgstr "{0} fotos"
 
 #. Note for translators: {0} is a date, {1} and {2} are times.
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:550
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:566
 #, csharp-format
 msgid ""
 "On {0} between \n"
@@ -1688,7 +1990,7 @@ msgstr ""
 "{0} mellem \n"
 "{1} og {2}"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:555
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:571
 #, csharp-format
 msgid ""
 "Between {0} \n"
@@ -1697,129 +1999,129 @@ msgstr ""
 "Mellem {0} \n"
 "og {1}"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:582
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:598
 msgid "(At least one File not found)"
 msgstr "(Mindst én fil ikke fundet)"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:699
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:715
 msgid "Show Photo Name"
 msgstr "Vis fotonavn"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:708
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:724
 msgid "Show Date"
 msgstr "Vis dato"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:717
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:733
 msgid "Show Size"
 msgstr "Vis størrelse"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:726
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:742
 msgid "Show Exposure"
 msgstr "Vis eksponering"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:735
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:751
 msgid "Show Focal Length"
 msgstr "Vis brændvidde"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:744
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:760
 msgid "Show Camera"
 msgstr "Vis kamera"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:753
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:769
 msgid "Show File Size"
 msgstr "Vis filstørrelse"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/MetadataDisplay.cs:27
+#: ../src/Clients/MainApp/FSpot.Widgets/MetadataDisplay.cs:46
 msgid "Metadata"
 msgstr "Metadata"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/MetadataDisplay.cs:108
+#: ../src/Clients/MainApp/FSpot.Widgets/MetadataDisplay.cs:127
 msgid "Extended Metadata"
 msgstr "Udvidet metadata"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/MetadataDisplay.cs:361
+#: ../src/Clients/MainApp/FSpot.Widgets/MetadataDisplay.cs:380
 msgid "No active photo"
 msgstr "Intet aktivt foto"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/MetadataDisplay.cs:363
+#: ../src/Clients/MainApp/FSpot.Widgets/MetadataDisplay.cs:382
 #, csharp-format
 msgid "The photo \"{0}\" does not exist"
 msgstr "Fotoet \"{0}\" findes ikke"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/MetadataDisplay.cs:365
+#: ../src/Clients/MainApp/FSpot.Widgets/MetadataDisplay.cs:384
 msgid "No metadata available"
 msgstr "Ingen metadata tilgængelige"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/Sharpener.cs:73
+#: ../src/Clients/MainApp/FSpot.Widgets/Sharpener.cs:94
 msgid "Error saving sharpened photo"
 msgstr "Fejl ved gemning af skærpet foto"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/Sharpener.cs:103
+#: ../src/Clients/MainApp/FSpot.Widgets/Sharpener.cs:124
 msgid "Sharpen"
 msgstr "Skærp"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/Sharpener.cs:113
+#: ../src/Clients/MainApp/FSpot.Widgets/Sharpener.cs:134
 msgid "Amount:"
 msgstr "Mængde:"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/Sharpener.cs:114
+#: ../src/Clients/MainApp/FSpot.Widgets/Sharpener.cs:135
 msgid "Radius:"
 msgstr "Radius:"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/Sharpener.cs:115
+#: ../src/Clients/MainApp/FSpot.Widgets/Sharpener.cs:136
 msgid "Threshold:"
 msgstr "Grænseværdi:"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/TagMenu.cs:99
-#: ../src/Clients/MainApp/TagPopup.cs:37
+#: ../src/Clients/MainApp/FSpot.Widgets/TagMenu.cs:132
+#: ../src/Clients/MainApp/TagPopup.cs:61
 msgid "Create New Tag..."
 msgstr "Opret nyt mærke..."
 
 #. Fixme this should really set parent menu
 #. items insensitve
-#: ../src/Clients/MainApp/PhotoTagMenu.cs:63
+#: ../src/Clients/MainApp/PhotoTagMenu.cs:92
 msgid "(No Tags)"
 msgstr "(Ingen mærker)"
 
-#: ../src/Clients/MainApp/PhotoVersionCommands.cs:58
+#: ../src/Clients/MainApp/PhotoVersionCommands.cs:91
 msgid "Create New Version"
 msgstr "Opret ny version"
 
-#: ../src/Clients/MainApp/PhotoVersionCommands.cs:59
+#: ../src/Clients/MainApp/PhotoVersionCommands.cs:92
 msgid "Name:"
 msgstr "Navn:"
 
-#: ../src/Clients/MainApp/PhotoVersionCommands.cs:63
+#: ../src/Clients/MainApp/PhotoVersionCommands.cs:96
 msgid "Rename Version"
 msgstr "Omdøb version"
 
-#: ../src/Clients/MainApp/PhotoVersionCommands.cs:64
+#: ../src/Clients/MainApp/PhotoVersionCommands.cs:97
 msgid "New name:"
 msgstr "Nyt navn:"
 
-#: ../src/Clients/MainApp/PhotoVersionCommands.cs:124
+#: ../src/Clients/MainApp/PhotoVersionCommands.cs:157
 msgid "Delete"
 msgstr "Slet"
 
-#: ../src/Clients/MainApp/PhotoVersionCommands.cs:125
+#: ../src/Clients/MainApp/PhotoVersionCommands.cs:158
 #, csharp-format
 msgid "Really delete version \"{0}\"?"
 msgstr "Er du sikker på, at du vil slette version \"{0}\"?"
 
-#: ../src/Clients/MainApp/PhotoVersionCommands.cs:126
+#: ../src/Clients/MainApp/PhotoVersionCommands.cs:159
 msgid "This removes the version and deletes the corresponding file from disk."
 msgstr "Dette fjerner versionen og sletter den tilsvarende fil fra disken."
 
-#: ../src/Clients/MainApp/PhotoVersionCommands.cs:171
+#: ../src/Clients/MainApp/PhotoVersionCommands.cs:204
 msgid "De_tach"
 msgstr "_Frigør"
 
-#: ../src/Clients/MainApp/PhotoVersionCommands.cs:172
+#: ../src/Clients/MainApp/PhotoVersionCommands.cs:205
 #, csharp-format
 msgid "Really detach version \"{0}\" from \"{1}\"?"
 msgstr "Er du sikker på, at du vil frigøre version \"{0}\" fra \"{1}\"?"
 
-#: ../src/Clients/MainApp/PhotoVersionCommands.cs:173
+#: ../src/Clients/MainApp/PhotoVersionCommands.cs:206
 msgid ""
 "This makes the version appear as a separate photo in the library. To undo, "
 "drag the new photo back to its parent."
@@ -1827,11 +2129,11 @@ msgstr ""
 "Dette gør at versionen fremstår som et separat foto i biblioteket. For at "
 "fortryde trækkes det nye foto tilbage til sin forælder."
 
-#: ../src/Clients/MainApp/PhotoVersionCommands.cs:195
+#: ../src/Clients/MainApp/PhotoVersionCommands.cs:228
 msgid "Re_parent"
 msgstr "_Genknyt"
 
-#: ../src/Clients/MainApp/PhotoVersionCommands.cs:196
+#: ../src/Clients/MainApp/PhotoVersionCommands.cs:229
 #, csharp-format
 msgid "Really reparent \"{0}\" as version of \"{1}\"?"
 msgid_plural "Really reparent {2} photos as versions of \"{1}\"?"
@@ -1840,7 +2142,7 @@ msgstr[0] ""
 msgstr[1] ""
 "Er du sikker på, at du vil genknytte {2} fotoer som version af \"{1}\"?"
 
-#: ../src/Clients/MainApp/PhotoVersionCommands.cs:199
+#: ../src/Clients/MainApp/PhotoVersionCommands.cs:232
 msgid ""
 "This makes the photos appear as a single one in the library. The versions "
 "can be detached using the Photo menu."
@@ -1848,57 +2150,57 @@ msgstr ""
 "Dette får fotoene til at fremstå som ét foto i biblioteket. Versionerne kan "
 "frigøres med brug af fotomenuen."
 
-#: ../src/Clients/MainApp/PhotoVersionCommands.cs:239
+#: ../src/Clients/MainApp/PhotoVersionCommands.cs:272
 #, csharp-format
 msgid "Received exception \"{0}\"."
 msgstr "Modtaget undtagelse \"{0}\"."
 
-#: ../src/Clients/MainApp/TagCommands.cs:167
+#: ../src/Clients/MainApp/TagCommands.cs:187
 msgid "Create New Tag"
 msgstr "Opret nyt mærke"
 
-#: ../src/Clients/MainApp/TagCommands.cs:168
+#: ../src/Clients/MainApp/TagCommands.cs:188
 msgid "Name of New Tag:"
 msgstr "Nye mærkes navn:"
 
-#: ../src/Clients/MainApp/TagPopup.cs:27
+#: ../src/Clients/MainApp/TagPopup.cs:51
 #, csharp-format
 msgid "Find"
 msgid_plural "Find"
 msgstr[0] "Find"
 msgstr[1] "Find"
 
-#: ../src/Clients/MainApp/TagPopup.cs:43
+#: ../src/Clients/MainApp/TagPopup.cs:67
 msgid "Edit Tag..."
 msgstr "Redigér mærke..."
 
-#: ../src/Clients/MainApp/TagPopup.cs:47
+#: ../src/Clients/MainApp/TagPopup.cs:71
 msgid "Delete Tag"
 msgid_plural "Delete Tags"
 msgstr[0] "Slet mærke"
 msgstr[1] "Slet mærker"
 
-#: ../src/Clients/MainApp/TagPopup.cs:53
+#: ../src/Clients/MainApp/TagPopup.cs:77
 msgid "Attach Tag to Selection"
 msgid_plural "Attach Tags to Selection"
 msgstr[0] "Vedhæft mærke til markering"
 msgstr[1] "Vedhæft mærker til markering"
 
-#: ../src/Clients/MainApp/TagPopup.cs:57
+#: ../src/Clients/MainApp/TagPopup.cs:81
 msgid "Remove Tag From Selection"
 msgid_plural "Remove Tags From Selection"
 msgstr[0] "Fjern mærke fra markering"
 msgstr[1] "Fjern mærker fra markering"
 
-#: ../src/Clients/MainApp/TagPopup.cs:63
+#: ../src/Clients/MainApp/TagPopup.cs:87
 msgid "Merge Tags"
 msgstr "Sammenføj mærker"
 
-#: ../src/Clients/MainApp/ThumbnailCommand.cs:22
+#: ../src/Clients/MainApp/ThumbnailCommand.cs:53
 msgid "Updating Thumbnails"
 msgstr "Opdaterer miniaturer"
 
-#: ../src/Clients/MainApp/ThumbnailCommand.cs:30
+#: ../src/Clients/MainApp/ThumbnailCommand.cs:61
 #, csharp-format
 msgid "Updating picture \"{0}\""
 msgstr "Opdaterer billede \"{0}\""
@@ -2128,8 +2430,8 @@ msgid "T_ags"
 msgstr "_Mærker"
 
 #: ../src/Clients/MainApp/ui/main_window.ui.h:24
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:1085
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:1086
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:1116
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:1117
 msgid "Tags: "
 msgstr "Mærker: "
 
@@ -2429,154 +2731,154 @@ msgstr "Indstillinger"
 msgid "_Interpolate image on zoom"
 msgstr "_Interpolér billede ved zoom"
 
-#: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:119
+#: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:141
 msgid "Page Setup"
 msgstr "Sideopsætning"
 
-#: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:123
-#: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:127
-#: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:133
+#: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:145
+#: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:149
+#: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:155
 #, csharp-format
 msgid "Paper Size: {0} x {1} mm"
 msgstr "Papirstørrelse: {0} x {1} mm"
 
-#: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:130
+#: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:152
 msgid "Set Page Size and Orientation"
 msgstr "Angiv sidestørrelse og orientering"
 
-#: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:141
+#: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:163
 msgid "Photos per page"
 msgstr "Fotos pr. side"
 
-#: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:151
+#: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:173
 msgid "Repeat"
 msgstr "Gentag"
 
-#: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:152
+#: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:174
 msgid "Print cut marks"
 msgstr "Udskriv udklipningsmærker"
 
-#: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:158
+#: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:180
 msgid "Photos layout"
 msgstr "Layout af fotos"
 
-#: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:160
+#: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:182
 msgid "Full Page (no margin)"
 msgstr "Hel side (ingen margin)"
 
 #. Note for translators: "Zoom" is a Fit Mode
-#: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:163
+#: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:185
 msgid "Zoom"
 msgstr "Zoom"
 
-#: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:164
+#: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:186
 msgid "Fill"
 msgstr "Udfyld"
 
-#: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:165
+#: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:187
 msgid "Scaled"
 msgstr "Skaleret"
 
-#: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:170
+#: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:192
 msgid "White borders"
 msgstr "Hvide kanter"
 
-#: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:176
+#: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:198
 msgid "Custom Text"
 msgstr "Tilpasset tekst"
 
-#: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:180
+#: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:202
 msgid "Photos infos"
 msgstr "Fotoinformationer"
 
-#: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:182
+#: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:204
 msgid "Print file name"
 msgstr "Udskriv filnavn"
 
-#: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:183
+#: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:205
 msgid "Print photo date"
 msgstr "Udskriv fotodato"
 
-#: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:184
+#: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:206
 msgid "Print photo time"
 msgstr "Udskriv fototidspunkt"
 
-#: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:185
+#: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:207
 msgid "Print photo tags"
 msgstr "Udskriv fotomærker"
 
-#: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:186
+#: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:208
 msgid "Print photo comment"
 msgstr "Udskriv fotokommentar"
 
-#: ../src/Core/FSpot.Gui/FSpot.Widgets/OpenWithMenu.cs:72
+#: ../src/Core/FSpot.Gui/FSpot.Widgets/OpenWithMenu.cs:88
 msgid "No applications available"
 msgstr "Ingen programmer tilgængelige"
 
-#: ../src/Extensions/Editors/FSpot.Editors.Blackout/FSpot.Addins.Editors/BlackoutEditor.cs:18
+#: ../src/Extensions/Editors/FSpot.Editors.Blackout/FSpot.Addins.Editors/BlackoutEditor.cs:38
 msgid "Blackout"
 msgstr "Gå i sort"
 
-#: ../src/Extensions/Editors/FSpot.Editors.Blackout/FSpot.Addins.Editors/BlackoutEditor.cs:26
+#: ../src/Extensions/Editors/FSpot.Editors.Blackout/FSpot.Addins.Editors/BlackoutEditor.cs:46
 msgid "Select the area that you want blacked out."
 msgstr "Vælg det område der skal gå i sort."
 
-#: ../src/Extensions/Editors/FSpot.Editors.BW/FSpot.Addins.Editors/BWEditor.cs:23
+#: ../src/Extensions/Editors/FSpot.Editors.BW/FSpot.Addins.Editors/BWEditor.cs:41
 msgid "Convert to B/W"
 msgstr "Konverter til S/H"
 
-#: ../src/Extensions/Editors/FSpot.Editors.BW/FSpot.Addins.Editors/BWEditor.cs:26
+#: ../src/Extensions/Editors/FSpot.Editors.BW/FSpot.Addins.Editors/BWEditor.cs:44
 msgid "Apply"
 msgstr "Anvend"
 
-#: ../src/Extensions/Editors/FSpot.Editors.Flip/FSpot.Addins.Editors/FlipEditor.cs:17
+#: ../src/Extensions/Editors/FSpot.Editors.Flip/FSpot.Addins.Editors/FlipEditor.cs:37
 msgid "Flip"
 msgstr "Vend"
 
-#: ../src/Extensions/Editors/FSpot.Editors.Pixelate/FSpot.Addins.Editors/PixelateEditor.cs:18
+#: ../src/Extensions/Editors/FSpot.Editors.Pixelate/FSpot.Addins.Editors/PixelateEditor.cs:40
 msgid "Pixelate"
 msgstr "Pixelér"
 
-#: ../src/Extensions/Editors/FSpot.Editors.Pixelate/FSpot.Addins.Editors/PixelateEditor.cs:26
+#: ../src/Extensions/Editors/FSpot.Editors.Pixelate/FSpot.Addins.Editors/PixelateEditor.cs:48
 msgid "Select the area that you want pixelated."
 msgstr "Vælg det område der skal pixeleres."
 
-#: ../src/Extensions/Editors/FSpot.Editors.Resize/FSpot.Addins.Editors/ResizeEditor.cs:22
+#: ../src/Extensions/Editors/FSpot.Editors.Resize/FSpot.Addins.Editors/ResizeEditor.cs:42
 msgid "Resize"
 msgstr "Forstør/formindsk"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.CD/FSpot.Exporters.CD/CDExport.cs:62
+#: ../src/Extensions/Exporters/FSpot.Exporters.CD/FSpot.Exporters.CD/CDExport.cs:79
 msgid "Transferring Pictures"
 msgstr "Overfører billeder"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.CD/FSpot.Exporters.CD/CDExport.cs:115
+#: ../src/Extensions/Exporters/FSpot.Exporters.CD/FSpot.Exporters.CD/CDExport.cs:132
 #, csharp-format
 msgid "Transferring picture \"{0}\" To CD"
 msgstr "Overfører billede \"{0}\" til cd"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.CD/FSpot.Exporters.CD/CDExport.cs:130
-#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:379
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:388
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryExport.cs:212
-#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:261
-#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/FSpot.Exporters.SmugMug/SmugMugExport.cs:229
+#: ../src/Extensions/Exporters/FSpot.Exporters.CD/FSpot.Exporters.CD/CDExport.cs:147
+#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:395
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:419
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryExport.cs:245
+#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:290
+#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/FSpot.Exporters.SmugMug/SmugMugExport.cs:258
 msgid "Done Sending Photos"
 msgstr "Færdig med afsendelse af fotos"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.CD/FSpot.Exporters.CD/CDExport.cs:132
+#: ../src/Extensions/Exporters/FSpot.Exporters.CD/FSpot.Exporters.CD/CDExport.cs:149
 msgid "Transfer Complete"
 msgstr "Overførsel fuldført"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.CD/FSpot.Exporters.CD/CDExport.cs:139
+#: ../src/Extensions/Exporters/FSpot.Exporters.CD/FSpot.Exporters.CD/CDExport.cs:156
 msgid "Error While Transferring"
 msgstr "Fejl under overførsel"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.CD/FSpot.Exporters.CD/CDExport.cs:147
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:266
+#: ../src/Extensions/Exporters/FSpot.Exporters.CD/FSpot.Exporters.CD/CDExport.cs:164
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:297
 msgid "Error Transferring"
 msgstr "Fejl ved overførsel"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.CD/FSpot.Exporters.CD/CDExport.cs:157
+#: ../src/Extensions/Exporters/FSpot.Exporters.CD/FSpot.Exporters.CD/CDExport.cs:174
 msgid "copying..."
 msgstr "kopierer..."
 
@@ -2605,11 +2907,11 @@ msgstr "_Gennemse tidligere planlagte filer"
 msgid "_Write only these photos to CD"
 msgstr "_Skriv kun disse fotos til cd"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:101
+#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:117
 msgid "Waiting for authorization"
 msgstr "Venter på godkendelse"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:102
+#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:118
 msgid ""
 "F-Spot will now launch your browser so that you can enable the permission "
 "you just selected.\n"
@@ -2623,11 +2925,11 @@ msgstr ""
 "Klik \"Ok\" nedenfor så snart Facebook siger, at du kan vende tilbage til "
 "dette program."
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:283
+#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:299
 msgid "Too many images to export"
 msgstr "For mange billeder til eksport"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:284
+#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:300
 #, csharp-format
 msgid ""
 "Facebook only permits {0} photographs per album.  Please refine your "
@@ -2635,19 +2937,19 @@ msgid ""
 msgstr ""
 "Facebook tillader kun {0} fotos pr. album. Begræns dit udvalg og forsøg igen."
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:299
+#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:315
 msgid "Album must have a name"
 msgstr "Album skal have et navn"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:300
+#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:316
 msgid "Please name your album or choose an existing album."
 msgstr "Giv dit album et navn eller vælg et eksisterende album."
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:314
+#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:330
 msgid "Creating a new album failed"
 msgstr "Oprettelse af nyt album mislykkedes"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:315
+#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:331
 #, csharp-format
 msgid ""
 "An error occurred creating a new album.\n"
@@ -2658,53 +2960,53 @@ msgstr ""
 "\n"
 "{0}"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:328
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:483
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryExport.cs:140
-#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:158
-#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/FSpot.Exporters.SmugMug/SmugMugExport.cs:148
+#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:344
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:514
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryExport.cs:173
+#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:187
+#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/FSpot.Exporters.SmugMug/SmugMugExport.cs:177
 msgid "Uploading Pictures"
 msgstr "Overfører billeder"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:356
-#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:217
-#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/FSpot.Exporters.SmugMug/SmugMugExport.cs:187
+#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:372
+#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:246
+#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/FSpot.Exporters.SmugMug/SmugMugExport.cs:216
 #, csharp-format
 msgid "Uploading picture \"{0}\" ({1} of {2})"
 msgstr "Overfører billede \"{0}\" ({1} af {2})"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:370
+#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:386
 #, csharp-format
 msgid "Error Uploading To Facebook: {0}"
 msgstr "Fejl ved overførsel til Facebook: {0}"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:371
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:379
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:215
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryExport.cs:203
-#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:250
-#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/FSpot.Exporters.SmugMug/SmugMugExport.cs:218
+#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:387
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:410
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:246
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryExport.cs:236
+#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:279
+#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/FSpot.Exporters.SmugMug/SmugMugExport.cs:247
 #: ../src/Extensions/Exporters/FSpot.Exporters.Tabblo/FSpot.Exporters.Tabblo/TabbloExport.cs:321
 msgid "Error"
 msgstr "Fejl"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:381
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:390
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryExport.cs:214
-#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:263
-#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/FSpot.Exporters.SmugMug/SmugMugExport.cs:231
+#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:397
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:421
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryExport.cs:247
+#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:292
+#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/FSpot.Exporters.SmugMug/SmugMugExport.cs:260
 msgid "Upload Complete"
 msgstr "Overførsel fuldført"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:384
+#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:400
 msgid "Visit F-Spot group on Facebook"
 msgstr "Besøg F-Spot-gruppen på Facebook"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExportDialog.cs:217
+#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExportDialog.cs:231
 msgid "Waiting for authentication"
 msgstr "Venter på godkendelse"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExportDialog.cs:218
+#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExportDialog.cs:232
 msgid ""
 "F-Spot will now launch your browser so that you can log into Facebook.\n"
 "\n"
@@ -2718,15 +3020,15 @@ msgstr ""
 "dette program. Hvis det er muligt, vil F-Spot gemme din session i gnome-"
 "keyring og genbruge den i fremtidige Facebook-eksporteringer."
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExportDialog.cs:223
+#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExportDialog.cs:237
 msgid "Authenticating..."
 msgstr "Godkender..."
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExportDialog.cs:233
+#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExportDialog.cs:247
 msgid "Error logging into Facebook"
 msgstr "Fejl ved indlogning i Facebook"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExportDialog.cs:234
+#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExportDialog.cs:248
 msgid ""
 "There was a problem logging into Facebook.  Check your credentials and try "
 "again."
@@ -2734,37 +3036,37 @@ msgstr ""
 "Der opstod et problem med at logge ind i Facebook. Tjek dine "
 "legitimationsoplysninger og forsøg igen."
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExportDialog.cs:243
+#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExportDialog.cs:257
 msgid "Authorizing Session"
 msgstr "Autoriserer session"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExportDialog.cs:252
+#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExportDialog.cs:266
 msgid "Session established, fetching user info..."
 msgstr "Session oprettet. Henter brugerinformation..."
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExportDialog.cs:258
+#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExportDialog.cs:272
 msgid "Session established, fetching friend list..."
 msgstr "Session oprettet. Henter venneliste..."
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExportDialog.cs:268
+#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExportDialog.cs:282
 msgid "Session established, fetching friend details..."
 msgstr "Session oprettet. Henter detaljer om venner..."
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExportDialog.cs:280
+#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExportDialog.cs:294
 msgid "Session established, fetching photo albums..."
 msgstr "Session oprettet. Henter fotoalbum..."
 
 #. Note for translators: {0} and {1} are respectively firstname and surname of the user
-#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExportDialog.cs:290
+#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExportDialog.cs:304
 #, csharp-format
 msgid "{0} {1} is logged into Facebook"
 msgstr "{0} {1} er logget ind i Facebook"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExportDialog.cs:299
+#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExportDialog.cs:313
 msgid "Facebook Connection Error"
 msgstr "Fejl under forbindelse til Facebook"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExportDialog.cs:300
+#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExportDialog.cs:314
 #, csharp-format
 msgid ""
 "There was an error when downloading your information from Facebook.\n"
@@ -2775,7 +3077,7 @@ msgstr ""
 "\n"
 "Facebook meldte: {0}"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExportDialog.cs:329
+#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExportDialog.cs:343
 msgid "You are not logged in."
 msgstr "Du er ikke logget ind."
 
@@ -2835,12 +3137,12 @@ msgstr "Brug et eksisterende album"
 msgid "Who is this?"
 msgstr "Hvem er det?"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:106
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:137
 #: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/Resources/flickr_export.ui.h:5
 msgid "Authorize"
 msgstr "Autorisér"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:112
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:143
 #, csharp-format
 msgid ""
 "Return to this window after you have finished the authorization process on "
@@ -2850,60 +3152,60 @@ msgstr ""
 "autorisationsprocessen på {0} og klik \"Udfør autorisation\"-knappen "
 "nedenunder"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:113
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:144
 msgid "Complete Authorization"
 msgstr "Afslut autorisation"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:118
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:149
 #, csharp-format
 msgid "Logging into {0}"
 msgstr "Logger på {0}"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:119
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:150
 msgid "Checking credentials..."
 msgstr "Tjekker legitimationsoplysninger..."
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:126
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:157
 #, csharp-format
 msgid "Welcome {0} you are connected to {1}"
 msgstr "Velkommen {0} du er forbundet til {1}"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:129
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:160
 #, csharp-format
 msgid "Sign in as a different user"
 msgstr "Log ind som en anden bruger"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:134
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:165
 #, csharp-format
 msgid "Used {0} of your allowed {1} monthly quota"
 msgstr "Brugt {0} af din tilladte månedlige kvote på {1}"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:237
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:306
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:268
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:337
 msgid "Unable to log on"
 msgstr "Kan ikke logge ind"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:326
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:357
 #, csharp-format
 msgid "Waiting for response {0} of {1}"
 msgstr "Venter på svar {0} af {1}"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:353
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryExport.cs:183
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:384
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryExport.cs:216
 #, csharp-format
 msgid "Uploading picture \"{0}\""
 msgstr "Overfører billede \"{0}\""
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:376
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:407
 #, csharp-format
 msgid "Error Uploading To {0}: {1}"
 msgstr "Fejl ved overførsel til {0}: {1}"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:463
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:494
 msgid "Unable to log on."
 msgstr "Kunne ikke logge ind."
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:464
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:495
 #, csharp-format
 msgid ""
 "F-Spot was unable to log on to {0}.  Make sure you have given the "
@@ -2927,14 +3229,6 @@ msgstr "<b>Stil</b>"
 #: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/Resources/flickr_export.ui.h:4
 msgid "<b>Viewing permissions</b>"
 msgstr "<b>Visningsrettigheder</b>"
-
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/Resources/flickr_export.ui.h:6
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/Resources/gallery_export_dialog.ui.h:5
-#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/Resources/google_export_dialog.ui.h:5
-#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/Resources/smugmug_export_dialog.ui.h:5
-#: ../src/Extensions/Exporters/FSpot.Exporters.Tabblo/Resources/ui/TabbloExport.ui.h:5
-msgid "Export"
-msgstr "Eksportér"
 
 #: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/Resources/flickr_export.ui.h:7
 msgid "Export tag _hierarchy"
@@ -2995,79 +3289,79 @@ msgstr "_Vis fotos i browser når overførslen er færdig"
 msgid "pixels"
 msgstr "billedpunkter"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:117
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:148
 msgid "Select Export Folder"
 msgstr "Vælg eksportmappe"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:169
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:200
 msgid "Building Gallery"
 msgstr "Opbygger galleri"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:206
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:237
 #, csharp-format
 msgid "Exporting \"{0}\"..."
 msgstr "Eksporterer \"{0}\"..."
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:213
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:244
 #, csharp-format
 msgid "Error Copying \"{0}\" to Gallery:{2}{1}"
 msgstr "Fejl ved kopiering af \"{0}\" til galleri:{2}{1}"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:239
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:270
 #, csharp-format
 msgid "Transferring to \"{0}\""
 msgstr "Overfører til \"{0}\""
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:240
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:271
 msgid "Transferring..."
 msgstr "Overfører..."
 
 #. No need to check result here as if result is not true, an Exception will be thrown before
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:245
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:276
 msgid "Export Complete."
 msgstr "Eksport fuldført."
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:247
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:278
 msgid "Exporting Photos Completed."
 msgstr "Eksport af fotoer fuldført."
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:312
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:343
 msgid "Exporting Photos"
 msgstr "Eksporterer fotoer"
 
 #. Note for translators: light as clear, opposite as dark
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:716
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:747
 msgid "Light"
 msgstr "Lys"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:717
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:748
 msgid "Dark"
 msgstr "Mørk"
 
 #. Abbreviation of previous
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:897
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:928
 msgid "Prev"
 msgstr "Forrige"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:899
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:1140
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:930
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:1171
 msgid "Index"
 msgstr "Indeks"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:1009
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:1040
 msgid "Gallery generated by"
 msgstr "Galleri skabt af"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:1049
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:1080
 msgid "Show Styles"
 msgstr "Vis stile"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:1050
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:1081
 msgid "Hide Styles"
 msgstr "Skjul stile"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:1217
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:1350
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:1248
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:1381
 msgid "Page:"
 msgstr "Side:"
 
@@ -3099,10 +3393,6 @@ msgstr "Eksportér _mærker"
 msgid "Export tag _icons"
 msgstr "Eksportér mærke_ikoner"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/Resources/folder_export.ui.h:10
-msgid "Folder Export"
-msgstr "Eksport af mappe"
-
 #: ../src/Extensions/Exporters/FSpot.Exporters.Folder/Resources/folder_export.ui.h:11
 msgid "G_allery Name:"
 msgstr "G_allerinavn:"
@@ -3119,32 +3409,32 @@ msgstr "_Mappe:"
 msgid "_Save the files only"
 msgstr "_Gem kun filerne"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/AccountDialog.cs:103
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/AccountDialog.cs:132
 msgid "Invalid URL"
 msgstr "Ugyldig URL"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/AccountDialog.cs:104
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/AccountDialog.cs:133
 msgid "The gallery URL entry does not appear to be a valid URL"
 msgstr "Galleri-URL ser ikke ud til at være gyldig"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/AccountDialog.cs:114
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/AccountDialog.cs:141
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/AccountDialog.cs:152
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/AccountDialog.cs:143
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/AccountDialog.cs:170
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/AccountDialog.cs:181
 msgid "Error while connecting to Gallery"
 msgstr "Fejl ved tilslutning til galleri"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/AccountDialog.cs:115
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/AccountDialog.cs:142
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/AccountDialog.cs:153
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/AccountDialog.cs:144
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/AccountDialog.cs:171
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/AccountDialog.cs:182
 #, csharp-format
 msgid "The following error was encountered while attempting to log in: {0}"
 msgstr "Følgende fejl opstod ved forsøg på at logge ind: {0}"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/AccountDialog.cs:129
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/AccountDialog.cs:158
 msgid "A Gallery with this name already exists"
 msgstr "Der findes allerede et galleri med dette navn"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/AccountDialog.cs:130
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/AccountDialog.cs:159
 #, csharp-format
 msgid ""
 "There is already a Gallery with the same name in your registered Galleries. "
@@ -3153,11 +3443,11 @@ msgstr ""
 "Der findes allerede et galleri med det samme navn i dine registrerede "
 "gallerier. Vælg et unikt navn."
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/FormClient.cs:295
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/FormClient.cs:326
 msgid "Unhandled exception"
-msgstr "Uhåndterbar undtagelse"
+msgstr "Uhåndteret undtagelse"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryAccount.cs:53
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryAccount.cs:82
 msgid ""
 "Cannot connect to a Gallery for which the version is unknown.\n"
 "Please check that you have Remote plugin 1.0.8 or later"
@@ -3165,15 +3455,15 @@ msgstr ""
 "Kan ikke tilslutte til et galleri, for hvilket versionen er ukendt.\n"
 "Tjek at du har Remote-udvidelsesmodul 1.0.8 eller senere"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryAddAlbum.cs:66
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryAddAlbum.cs:95
 msgid "(TopLevel)"
 msgstr "(TopNiveau)"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryAddAlbum.cs:128
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryAddAlbum.cs:157
 msgid "Invalid Gallery name"
 msgstr "Ugyldigt Gallerinavn"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryAddAlbum.cs:129
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryAddAlbum.cs:158
 msgid ""
 "The gallery name contains invalid characters.\n"
 "Only letters, numbers, - and _ are allowed"
@@ -3181,49 +3471,49 @@ msgstr ""
 "Gallerinavnet indeholder ugyldige tegn.\n"
 "Kun bogstaver, tal, - og _ er tilladt"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryExport.cs:202
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryExport.cs:235
 #, csharp-format
 msgid "Error uploading picture \"{0}\" to Gallery: {1}"
 msgstr "Fejl ved overførsel af billede \"{0}\" til galleri: {1}"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryExport.cs:230
-#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:279
-#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/FSpot.Exporters.SmugMug/SmugMugExport.cs:247
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryExport.cs:263
+#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:308
+#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/FSpot.Exporters.SmugMug/SmugMugExport.cs:276
 msgid "(No Gallery)"
 msgstr "(Intet galleri)"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryExport.cs:322
-#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:401
-#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/FSpot.Exporters.SmugMug/SmugMugExport.cs:342
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryExport.cs:355
+#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:430
+#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/FSpot.Exporters.SmugMug/SmugMugExport.cs:371
 msgid "(Not Connected)"
 msgstr "(Ikke tilsluttet)"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryExport.cs:323
-#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:402
-#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/FSpot.Exporters.SmugMug/SmugMugExport.cs:343
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryExport.cs:356
+#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:431
+#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/FSpot.Exporters.SmugMug/SmugMugExport.cs:372
 msgid "(No Albums)"
 msgstr "(Ingen album)"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryExport.cs:375
-#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:467
-#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/FSpot.Exporters.SmugMug/SmugMugExport.cs:384
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryExport.cs:408
+#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:496
+#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/FSpot.Exporters.SmugMug/SmugMugExport.cs:413
 msgid "No account selected"
 msgstr "Ingen konto valgt"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryRemote.cs:364
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryRemote.cs:395
 msgid "Error reading server response"
 msgstr "Fejl ved læsning af serversvar"
 
 #. failed to find the response
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryRemote.cs:376
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryRemote.cs:407
 msgid "Server returned response without Gallery content"
 msgstr "Server returnerede svar uden galleriindhold"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryRemote.cs:713
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryRemote.cs:744
 msgid "Error while creating new album"
 msgstr "Fejl ved oprettelse af nyt album"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryRemote.cs:714
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryRemote.cs:745
 #, csharp-format
 msgid ""
 "The following error was encountered while attempting to perform the "
@@ -3315,38 +3605,38 @@ msgstr "_Eksportér til album:"
 msgid "_Gallery:"
 msgstr "_Galleri:"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/GoogleAddAlbum.cs:82
+#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/GoogleAddAlbum.cs:111
 msgid "Error while creating Album"
 msgstr "Fejl ved oprettelse af album"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/GoogleAddAlbum.cs:83
+#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/GoogleAddAlbum.cs:112
 #, csharp-format
 msgid ""
 "The following error was encountered while attempting to create an album: {0}"
 msgstr "Følgende fejl opstod under forsøg på at oprette et album: {0}"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:180
+#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:209
 #, csharp-format
 msgid "{0} Sent"
 msgstr "{0} Sendt"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:182
+#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:211
 #, csharp-format
 msgid "{0} of approx. {1}"
 msgstr "{0} af ca. {1}"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:248
-#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/FSpot.Exporters.SmugMug/SmugMugExport.cs:216
+#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:277
+#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/FSpot.Exporters.SmugMug/SmugMugExport.cs:245
 #, csharp-format
 msgid "Error Uploading To Gallery: {0}"
 msgstr "Fejl ved overførsel til galleri: {0}"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:330
+#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:359
 #, csharp-format
 msgid "Available space: {0}, {1}% used out of {2}"
 msgstr "Tilgængelig plads: {0}, {1}% brugt ud af {2}"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:443
+#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:472
 #, csharp-format
 msgid ""
 "The selected album has a limit of {0} pictures,\n"
@@ -3464,7 +3754,7 @@ msgstr "Tillidsfejl"
 msgid "Trust the site's certificate this once"
 msgstr "Stole på sidens certifikat denne gang"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Zip/FSpot.Exporters.Zip/ZipExport.cs:50
+#: ../src/Extensions/Exporters/FSpot.Exporters.Zip/FSpot.Exporters.Zip/ZipExport.cs:67
 msgid ""
 "This tool requires an active selection. Please select one or more pictures "
 "and try again"
@@ -3472,15 +3762,15 @@ msgstr ""
 "Dette værktøj kræver en aktiv markering. Vælg et eller flere billeder og "
 "prøv igen"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Zip/FSpot.Exporters.Zip/ZipExport.cs:66
+#: ../src/Extensions/Exporters/FSpot.Exporters.Zip/FSpot.Exporters.Zip/ZipExport.cs:83
 msgid "Select export folder"
 msgstr "Vælg eksportmappe"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Zip/FSpot.Exporters.Zip/ZipExport.cs:104
+#: ../src/Extensions/Exporters/FSpot.Exporters.Zip/FSpot.Exporters.Zip/ZipExport.cs:121
 msgid "Exporting files"
 msgstr "Eksporterer filer"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Zip/FSpot.Exporters.Zip/ZipExport.cs:110
+#: ../src/Extensions/Exporters/FSpot.Exporters.Zip/FSpot.Exporters.Zip/ZipExport.cs:127
 #, csharp-format
 msgid "Preparing photo \"{0}\""
 msgstr "Klargør foto \"{0}\""
@@ -3517,53 +3807,53 @@ msgstr "Ændr basesti (URI) til"
 msgid "Old base path (URI) was"
 msgstr "Gammel basesti (URI) var"
 
-#: ../src/Extensions/Tools/FSpot.Tools.DevelopInUFraw/FSpot.Tools.DevelopInUFraw/DevelopInUFRawBatch.cs:22
+#: ../src/Extensions/Tools/FSpot.Tools.DevelopInUFraw/FSpot.Tools.DevelopInUFraw/DevelopInUFRawBatch.cs:51
 msgid "Developing photos"
 msgstr "Udvikler fotoer"
 
-#: ../src/Extensions/Tools/FSpot.Tools.DevelopInUFraw/FSpot.Tools.DevelopInUFraw/DevelopInUFRawBatch.cs:29
+#: ../src/Extensions/Tools/FSpot.Tools.DevelopInUFraw/FSpot.Tools.DevelopInUFraw/DevelopInUFRawBatch.cs:58
 #, csharp-format
 msgid "Developing {0}"
 msgstr "Udvikler {0}"
 
-#: ../src/Extensions/Tools/FSpot.Tools.LiveWebGallery/FSpot.Tools.LiveWebGallery/GalleryRequestHandler.cs:108
+#: ../src/Extensions/Tools/FSpot.Tools.LiveWebGallery/FSpot.Tools.LiveWebGallery/GalleryRequestHandler.cs:128
 msgid "F-Spot Gallery"
 msgstr "F-Spot-galleri"
 
-#: ../src/Extensions/Tools/FSpot.Tools.LiveWebGallery/FSpot.Tools.LiveWebGallery/GalleryRequestHandler.cs:109
+#: ../src/Extensions/Tools/FSpot.Tools.LiveWebGallery/FSpot.Tools.LiveWebGallery/GalleryRequestHandler.cs:129
 msgid "The web gallery seems to be offline now"
 msgstr "Webgalleriet ser ud til at være offline lige nu"
 
-#: ../src/Extensions/Tools/FSpot.Tools.LiveWebGallery/FSpot.Tools.LiveWebGallery/GalleryRequestHandler.cs:110
+#: ../src/Extensions/Tools/FSpot.Tools.LiveWebGallery/FSpot.Tools.LiveWebGallery/GalleryRequestHandler.cs:130
 msgid "Show All"
 msgstr "Vis alle"
 
-#: ../src/Extensions/Tools/FSpot.Tools.LiveWebGallery/FSpot.Tools.LiveWebGallery/GalleryRequestHandler.cs:120
+#: ../src/Extensions/Tools/FSpot.Tools.LiveWebGallery/FSpot.Tools.LiveWebGallery/GalleryRequestHandler.cs:140
 #, csharp-format
 msgid "{0} photo"
 msgid_plural "{0} photos"
 msgstr[0] "{0} foto"
 msgstr[1] "{0} fotos"
 
-#: ../src/Extensions/Tools/FSpot.Tools.LiveWebGallery/FSpot.Tools.LiveWebGallery/GalleryRequestHandler.cs:162
+#: ../src/Extensions/Tools/FSpot.Tools.LiveWebGallery/FSpot.Tools.LiveWebGallery/GalleryRequestHandler.cs:182
 #: ../src/Extensions/Tools/FSpot.Tools.LiveWebGallery/Resources/ui/LiveWebGallery.ui.h:8
 msgid "Current View"
 msgstr "Aktuel visning"
 
-#: ../src/Extensions/Tools/FSpot.Tools.LiveWebGallery/FSpot.Tools.LiveWebGallery/GalleryRequestHandler.cs:165
+#: ../src/Extensions/Tools/FSpot.Tools.LiveWebGallery/FSpot.Tools.LiveWebGallery/GalleryRequestHandler.cs:185
 msgid "Selected"
 msgstr "Markeret"
 
-#: ../src/Extensions/Tools/FSpot.Tools.LiveWebGallery/FSpot.Tools.LiveWebGallery/LiveWebGalleryDialog.cs:91
+#: ../src/Extensions/Tools/FSpot.Tools.LiveWebGallery/FSpot.Tools.LiveWebGallery/LiveWebGalleryDialog.cs:111
 msgid "none"
 msgstr "ingen"
 
-#: ../src/Extensions/Tools/FSpot.Tools.LiveWebGallery/FSpot.Tools.LiveWebGallery/LiveWebGalleryDialog.cs:94
+#: ../src/Extensions/Tools/FSpot.Tools.LiveWebGallery/FSpot.Tools.LiveWebGallery/LiveWebGalleryDialog.cs:114
 #, csharp-format
 msgid " Gallery: {0},  Photos: {1},  Last client: {3}"
 msgstr " Galleri: {0},  Fotos: {1},  Seneste klient: {3}"
 
-#: ../src/Extensions/Tools/FSpot.Tools.LiveWebGallery/FSpot.Tools.LiveWebGallery/LiveWebGalleryDialog.cs:158
+#: ../src/Extensions/Tools/FSpot.Tools.LiveWebGallery/FSpot.Tools.LiveWebGallery/LiveWebGalleryDialog.cs:178
 msgid "Gallery is inactive"
 msgstr "Galleri er inaktivt"
 
@@ -3630,11 +3920,11 @@ msgstr "Del:"
 msgid "Views:"
 msgstr "Visninger:"
 
-#: ../src/Extensions/Tools/FSpot.Tools.MergeDb/FSpot.Tools.MergeDb/MergeDb.cs:69
+#: ../src/Extensions/Tools/FSpot.Tools.MergeDb/FSpot.Tools.MergeDb/MergeDb.cs:91
 msgid "Error opening the selected file"
 msgstr "Fejl ved åbning af den valgte fil"
 
-#: ../src/Extensions/Tools/FSpot.Tools.MergeDb/FSpot.Tools.MergeDb/MergeDb.cs:70
+#: ../src/Extensions/Tools/FSpot.Tools.MergeDb/FSpot.Tools.MergeDb/MergeDb.cs:92
 #, csharp-format
 msgid ""
 "The file you selected is not a valid or supported database.\n"
@@ -3645,7 +3935,7 @@ msgstr ""
 "\n"
 "Undtagelse \"{0}\" modtaget."
 
-#: ../src/Extensions/Tools/FSpot.Tools.MergeDb/FSpot.Tools.MergeDb/PickFolderDialog.cs:35
+#: ../src/Extensions/Tools/FSpot.Tools.MergeDb/FSpot.Tools.MergeDb/PickFolderDialog.cs:57
 #, csharp-format
 msgid ""
 "<big>The database refers to files contained in the <b>{0}</b> folder.\n"
@@ -3736,10 +4026,6 @@ msgstr "Billeder mærket med:"
 #: ../src/Extensions/Tools/FSpot.Tools.ScreensaverConfig/Resources/ScreensaverConfigDialog.ui.h:5
 msgid "Make F-Spot my screensaver"
 msgstr "Gør F-Spot til min pauseskærm"
-
-#: ../src/Extensions/Tools/FSpot.Tools.ScreensaverConfig/Resources/ScreensaverConfigDialog.ui.h:6
-msgid "Screensaver Configuration"
-msgstr "Konfiguration af pauseskærm"
 
 #: ../tools/f-spot-screensaver.desktop.in.h:1
 msgid "Display a slideshow from F-Spot"
