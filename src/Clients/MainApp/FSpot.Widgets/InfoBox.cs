@@ -497,14 +497,17 @@ namespace FSpot.Widgets
                 Hide ();
             } else if (Photos.Length == 1) {
                 var photo = Photos[0];
-                
+
+                histogram_expander.Visible = true;
+                UpdateHistogram();
+
                 using (var metadata = Metadata.Parse (photo.DefaultVersion.Uri)) {
                     foreach (var entry in entries) {
                         bool is_single = (entry.SetSingle != null);
                         
                         if (is_single)
                             entry.SetSingle (entry.InfoWidget, photo, metadata);
-                        
+
                         SetEntryWidgetVisibility (entry, is_single);
                     }
                 }
@@ -562,7 +565,7 @@ namespace FSpot.Widgets
         {
             if (Photos.Length == 0)
                 return false;
-            
+
             IPhoto photo = Photos[0];
             
             Gdk.Pixbuf hint = histogram_hint;
