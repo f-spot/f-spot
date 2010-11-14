@@ -117,7 +117,7 @@ public class MetaStore : DbStore<MetaItem> {
 
 	private void LoadAllItems ()
 	{
-		IDataReader reader = Database.Query("SELECT id, name, data FROM meta");
+		Hyena.Data.Sqlite.IDataReader reader = Database.Query("SELECT id, name, data FROM meta");
 
 		while (reader.Read ()) {
 			uint id = Convert.ToUInt32 (reader ["id"]);
@@ -133,7 +133,7 @@ public class MetaStore : DbStore<MetaItem> {
 			AddToCache (item);
 		}
 
-		reader.Close ();
+		reader.Dispose ();
 
 		if (FSpotVersion.Value != Defines.VERSION) {
 			FSpotVersion.Value = Defines.VERSION;
