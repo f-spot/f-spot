@@ -30,7 +30,6 @@
 //
 
 using System;
-using System.Data;
 using System.Collections.Generic;
 
 using Gtk;
@@ -40,6 +39,7 @@ using FSpot;
 using FSpot.Database;
 using FSpot.Core;
 using Hyena;
+using Hyena.Data.Sqlite;
 
 using Mono.Unix;
 
@@ -128,7 +128,7 @@ namespace FSpot.Widgets
 
 			int last_count = 0;
 
-			Hyena.Data.Sqlite.IDataReader reader = database.Database.Query (query_string);
+			IDataReader reader = database.Database.Query (query_string);
 
 			while (reader.Read ()) {
 				var base_uri = new SafeUri (reader["base_uri"].ToString (), true);

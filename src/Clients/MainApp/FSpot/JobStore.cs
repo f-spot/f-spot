@@ -31,7 +31,6 @@
 
 using System.Collections;
 using System.IO;
-using System.Data;
 using System;
 using Banshee.Kernel;
 using FSpot.Jobs;
@@ -39,7 +38,6 @@ using FSpot.Database;
 using FSpot;
 using FSpot.Core;
 using Hyena;
-
 using Hyena.Data.Sqlite;
 
 namespace FSpot {
@@ -127,7 +125,7 @@ public class JobStore : DbStore<Job> {
 			")");
 	}
 
-	private Job LoadItem (Hyena.Data.Sqlite.IDataReader reader)
+	private Job LoadItem (IDataReader reader)
 	{
 		return (Job) Activator.CreateInstance (
 				Type.GetType (reader ["job_type"].ToString ()),
@@ -140,7 +138,7 @@ public class JobStore : DbStore<Job> {
 
 	private void LoadAllItems ()
 	{
-		Hyena.Data.Sqlite.IDataReader reader = Database.Query ("SELECT id, job_type, job_options, run_at, job_priority FROM jobs");
+		IDataReader reader = Database.Query ("SELECT id, job_type, job_options, run_at, job_priority FROM jobs");
 
 		Scheduler.Suspend ();
 		while (reader.Read ()) {

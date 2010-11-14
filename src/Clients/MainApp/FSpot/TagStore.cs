@@ -37,7 +37,6 @@ using Mono.Unix;
 using System.Collections.Generic;
 using System.Collections;
 using System.IO;
-using System.Data;
 using System;
 using FSpot;
 using FSpot.Core;
@@ -46,7 +45,6 @@ using FSpot.Jobs;
 using FSpot.Query;
 using FSpot.Utils;
 using Hyena;
-
 using Hyena.Data.Sqlite;
 
 namespace FSpot {
@@ -162,7 +160,7 @@ public class TagStore : DbStore<Tag> {
 
 		// Pass 1, get all the tags.
 
-		Hyena.Data.Sqlite.IDataReader reader = Database.Query ("SELECT id, name, is_category, sort_priority, icon FROM tags");
+		IDataReader reader = Database.Query ("SELECT id, name, is_category, sort_priority, icon FROM tags");
 
 		while (reader.Read ()) {
 			uint id = Convert.ToUInt32 (reader ["id"]);

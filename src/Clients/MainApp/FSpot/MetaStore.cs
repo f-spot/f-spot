@@ -33,7 +33,6 @@ using Gdk;
 using Gtk;
 using System.Collections;
 using System.IO;
-using System.Data;
 using System;
 using FSpot;
 using FSpot.Core;
@@ -117,7 +116,7 @@ public class MetaStore : DbStore<MetaItem> {
 
 	private void LoadAllItems ()
 	{
-		Hyena.Data.Sqlite.IDataReader reader = Database.Query("SELECT id, name, data FROM meta");
+		IDataReader reader = Database.Query("SELECT id, name, data FROM meta");
 
 		while (reader.Read ()) {
 			uint id = Convert.ToUInt32 (reader ["id"]);
