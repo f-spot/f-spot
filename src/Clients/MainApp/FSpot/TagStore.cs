@@ -129,7 +129,7 @@ public class TagStore : DbStore<Tag> {
 
 		// Pass 1, get all the tags.
 
-		IDataReader reader = Database.Query ("SELECT id, name, is_category, sort_priority, icon FROM tags");
+		Hyena.Data.Sqlite.IDataReader reader = Database.Query ("SELECT id, name, is_category, sort_priority, icon FROM tags");
 
 		while (reader.Read ()) {
 			uint id = Convert.ToUInt32 (reader ["id"]);
@@ -153,7 +153,7 @@ public class TagStore : DbStore<Tag> {
 			AddToCache (tag);
 		}
 
-		reader.Close ();
+		reader.Dispose ();
 
 		// Pass 2, set the parents.
 		reader = Database.Query ("SELECT id, category_id FROM tags");
@@ -174,7 +174,7 @@ public class TagStore : DbStore<Tag> {
 			}
 
 		}
-		reader.Close ();
+		reader.Dispose ();
 
 		//Pass 3, set popularity
 		reader = Database.Query ("SELECT tag_id, COUNT (*) AS popularity FROM photo_tags GROUP BY tag_id");
@@ -183,7 +183,7 @@ public class TagStore : DbStore<Tag> {
 			if (t != null)
 				t.Popularity = Convert.ToInt32 (reader ["popularity"]);
 		}
-		reader.Close ();
+		reader.Dispose ();
 
 		if (FSpot.App.Instance.Database.Meta.HiddenTagId.Value != null)
 			hidden = LookupInCache ((uint) FSpot.App.Instance.Database.Meta.HiddenTagId.ValueAsInt) as Tag;

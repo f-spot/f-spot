@@ -66,7 +66,7 @@ public class ExportStore : DbStore<ExportItem> {
 			")");
 	}
 
-	private ExportItem LoadItem (IDataReader reader)
+	private ExportItem LoadItem (Hyena.Data.Sqlite.IDataReader reader)
 	{
 		return new ExportItem (Convert.ToUInt32 (reader["id"]),
 				       Convert.ToUInt32 (reader["image_id"]),
@@ -77,13 +77,13 @@ public class ExportStore : DbStore<ExportItem> {
 
 	private void LoadAllItems ()
 	{
-		IDataReader reader = Database.Query("SELECT id, image_id, image_version_id, export_type, export_token FROM exports");
+		Hyena.Data.Sqlite.IDataReader reader = Database.Query("SELECT id, image_id, image_version_id, export_type, export_token FROM exports");
 
 		while (reader.Read ()) {
 			AddToCache (LoadItem (reader));
 		}
 
-		reader.Close ();
+		reader.Dispose ();
 	}
 
 	public ExportItem Create (uint image_id, uint image_version_id, string export_type, string export_token)
@@ -116,13 +116,13 @@ public class ExportStore : DbStore<ExportItem> {
 	public ArrayList GetByImageId (uint image_id, uint image_version_id)
 	{
 
-		IDataReader reader = Database.Query(new HyenaSqliteCommand("SELECT id, image_id, image_version_id, export_type, export_token FROM exports WHERE image_id = ? AND image_version_id = ?",
+		Hyena.Data.Sqlite.IDataReader reader = Database.Query(new HyenaSqliteCommand("SELECT id, image_id, image_version_id, export_type, export_token FROM exports WHERE image_id = ? AND image_version_id = ?",
                     image_id, image_version_id));
 		ArrayList list = new ArrayList ();
 		while (reader.Read ()) {
 			list.Add (LoadItem (reader));
 		}
-		reader.Close ();
+		reader.Dispose ();
 
 		return list;
 	}

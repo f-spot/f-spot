@@ -157,7 +157,7 @@ namespace FSpot.Database {
 					"       uri             STRING NOT NULL " +
 					")");
 
-				IDataReader reader = ExecuteReader (String.Format (
+				Hyena.Data.Sqlite.IDataReader reader = ExecuteReader (String.Format (
 						"SELECT photo_id, version_id, name, uri " +
 						"FROM {0}, photos " +
 						"WHERE photo_id = id ", tmp_versions));
@@ -526,7 +526,7 @@ namespace FSpot.Database {
 					"	UNIQUE (photo_id, version_id)\n" +
 					")");
 
-				IDataReader reader = ExecuteReader (String.Format (
+				Hyena.Data.Sqlite.IDataReader reader = ExecuteReader (String.Format (
 					"SELECT id, time, uri, description, roll_id, default_version_id, rating, md5_sum " +
 					"FROM {0} ", tmp_photos));
 
@@ -552,7 +552,7 @@ namespace FSpot.Database {
 						String.IsNullOrEmpty (md5) ? null : md5));
 				}
 
-				reader.Close ();
+                reader.Dispose();
 
 				reader = ExecuteReader (String.Format (
 						"SELECT photo_id, version_id, name, uri, md5_sum, protected " +
@@ -658,7 +658,7 @@ namespace FSpot.Database {
 						Convert.ToUInt32 (reader ["rating"])));
 				}
 
-				reader.Close ();
+				reader.Dispose();
 
 				reader = ExecuteReader (String.Format (
 						"SELECT photo_id, version_id, name, base_uri, filename, protected " +
@@ -800,7 +800,7 @@ namespace FSpot.Database {
 			return db.Execute(statement);
 		}
 
-		private static IDataReader ExecuteReader (string statement)
+		private static Hyena.Data.Sqlite.IDataReader ExecuteReader (string statement)
 		{
 			return db.Query (statement);
 		}

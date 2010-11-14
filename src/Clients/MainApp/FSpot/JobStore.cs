@@ -106,7 +106,7 @@ public class JobStore : DbStore<Job> {
 			")");
 	}
 
-	private Job LoadItem (IDataReader reader)
+	private Job LoadItem (Hyena.Data.Sqlite.IDataReader reader)
 	{
 		return (Job) Activator.CreateInstance (
 				Type.GetType (reader ["job_type"].ToString ()),
@@ -119,7 +119,7 @@ public class JobStore : DbStore<Job> {
 
 	private void LoadAllItems ()
 	{
-		IDataReader reader = Database.Query ("SELECT id, job_type, job_options, run_at, job_priority FROM jobs");
+		Hyena.Data.Sqlite.IDataReader reader = Database.Query ("SELECT id, job_type, job_options, run_at, job_priority FROM jobs");
 
 		Scheduler.Suspend ();
 		while (reader.Read ()) {
@@ -130,7 +130,7 @@ public class JobStore : DbStore<Job> {
 			job.Status = JobStatus.Scheduled;
 		}
 
-		reader.Close ();
+		reader.Dispose ();
 	}
 
 	public Job Create (Type job_type, string job_options)

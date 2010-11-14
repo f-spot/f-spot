@@ -36,10 +36,10 @@ namespace FSpot {
 public class PhotoStore : DbStore<Photo> {
 	public int TotalPhotos {
 		get {
-			IDataReader reader = Database.Query("SELECT COUNT(*) AS photo_count FROM photos");
+			Hyena.Data.Sqlite.IDataReader reader = Database.Query("SELECT COUNT(*) AS photo_count FROM photos");
 			reader.Read ();
 			int total = Convert.ToInt32 (reader ["photo_count"]);
-			reader.Close ();
+			reader.Dispose ();
 			return total;
 		}
 	}
@@ -110,7 +110,7 @@ public class PhotoStore : DbStore<Photo> {
 		var reader = Database.Query (new HyenaSqliteCommand (query, uri.GetBaseUri ().ToString (), uri.GetFilename ()));
 		reader.Read ();
 		int count = Convert.ToInt32 (reader ["count"]);
-		reader.Close();
+		reader.Dispose();
 		if (count > 0)
 			return true;
 
@@ -148,7 +148,7 @@ public class PhotoStore : DbStore<Photo> {
 					return true;
 				}
 			}
-			reader.Close ();
+			reader.Dispose ();
 		}
 
 		// No matches
@@ -202,7 +202,7 @@ public class PhotoStore : DbStore<Photo> {
 
 	private void GetVersions (Photo photo)
 	{
-		IDataReader reader = Database.Query(
+		Hyena.Data.Sqlite.IDataReader reader = Database.Query(
 			new HyenaSqliteCommand("SELECT version_id, name, base_uri, filename, import_md5, protected " +
 				      "FROM photo_versions " +
 				      "WHERE photo_id = ?",
@@ -220,23 +220,23 @@ public class PhotoStore : DbStore<Photo> {
 
 			photo.AddVersionUnsafely (version_id, base_uri, filename, import_md5, name, is_protected);
 		}
-		reader.Close();
+		reader.Dispose();
 	}
 
 	private void GetTags (Photo photo)
 	{
-		IDataReader reader = Database.Query(new HyenaSqliteCommand("SELECT tag_id FROM photo_tags WHERE photo_id = ?", photo.Id));
+		Hyena.Data.Sqlite.IDataReader reader = Database.Query(new HyenaSqliteCommand("SELECT tag_id FROM photo_tags WHERE photo_id = ?", photo.Id));
 
 		while (reader.Read ()) {
 			uint tag_id = Convert.ToUInt32 (reader ["tag_id"]);
 			Tag tag = App.Instance.Database.Tags.Get (tag_id) as Tag;
 			photo.AddTagUnsafely (tag);
 		}
-		reader.Close();
+		reader.Dispose();
 	}
 
 	private void GetAllVersions  (string ids) {
-		IDataReader reader = Database.Query ("SELECT photo_id, version_id, name, base_uri, filename, import_md5, protected FROM photo_versions WHERE photo_id IN " + ids);
+		Hyena.Data.Sqlite.IDataReader reader = Database.Query ("SELECT photo_id, version_id, name, base_uri, filename, import_md5, protected FROM photo_versions WHERE photo_id IN " + ids);
 
 		while (reader.Read ()) {
 			uint id = Convert.ToUInt32 (reader ["photo_id"]);
@@ -270,11 +270,11 @@ public class PhotoStore : DbStore<Photo> {
 			System.Console.WriteLine ("directory_path = {0}", directory_path);
 			*/
 		}
-		reader.Close();
+		reader.Dispose();
 	}
 
 	private void GetAllTags (string ids) {
-		IDataReader reader = Database.Query ("SELECT photo_id, tag_id FROM photo_tags WHERE photo_id IN " + ids);
+		Hyena.Data.Sqlite.IDataReader reader = Database.Query ("SELECT photo_id, tag_id FROM photo_tags WHERE photo_id IN " + ids);
 
 		while (reader.Read ()) {
 			uint id = Convert.ToUInt32 (reader ["photo_id"]);
@@ -296,7 +296,7 @@ public class PhotoStore : DbStore<Photo> {
 				photo.AddTagUnsafely (tag);
 			}
 		}
-		reader.Close();
+		reader.Dispose();
 	}
 
 	public override Photo Get (uint id)
@@ -305,7 +305,7 @@ public class PhotoStore : DbStore<Photo> {
 		if (photo != null)
 			return photo;
 
-		IDataReader reader = Database.Query(
+		Hyena.Data.Sqlite.IDataReader reader = Database.Query(
 			new HyenaSqliteCommand("SELECT time, description, roll_id, default_version_id, rating " +
 				      "FROM photos " +
 				      "WHERE id = ?", id
@@ -320,7 +320,7 @@ public class PhotoStore : DbStore<Photo> {
 			photo.Rating = Convert.ToUInt32 (reader ["rating"]);
 			AddToCache (photo);
 		}
-		reader.Close();
+		reader.Dispose();
 
 		if (photo == null)
 			return null;
@@ -338,7 +338,7 @@ public class PhotoStore : DbStore<Photo> {
 		var base_uri = uri.GetBaseUri ();
 		var filename = uri.GetFilename ();
 
-		IDataReader reader =
+		Hyena.Data.Sqlite.IDataReader reader =
 			Database.Query (new HyenaSqliteCommand ("SELECT id, time, description, roll_id, default_version_id, rating " +
 			                               " FROM photos " +
 			                               " LEFT JOIN photo_versions AS pv ON photos.id = pv.photo_id" +
@@ -357,7 +357,7 @@ public class PhotoStore : DbStore<Photo> {
 			photo.Rating = Convert.ToUInt32 (reader ["rating"]);
 		}
 
-		reader.Close();
+		reader.Dispose();
 
 		if (photo == null)
 			return null;
@@ -548,10 +548,10 @@ public class PhotoStore : DbStore<Photo> {
 			where_added = true;
 		}
 
-		IDataReader reader = Database.Query (query_builder.ToString());
+		Hyena.Data.Sqlite.IDataReader reader = Database.Query (query_builder.ToString());
 		reader.Read ();
 		int count = Convert.ToInt32 (reader ["count"]);
-		reader.Close();
+		reader.Dispose();
 		return count;
 	}
 
@@ -586,11 +586,11 @@ public class PhotoStore : DbStore<Photo> {
 	private int IndexOf (string query)
 	{
 		uint timer = Log.DebugTimerStart ();
-		IDataReader reader = Database.Query (query);
+		Hyena.Data.Sqlite.IDataReader reader = Database.Query (query);
 		int index = - 1;
 		if (reader.Read ())
 			index = Convert.ToInt32 (reader ["row_id"]);
-		reader.Close();
+		reader.Dispose();
 		Log.DebugTimerPrint (timer, "IndexOf took {0} : " + query);
 		return index - 1; //ROWID starts counting at 1
 	}
@@ -599,10 +599,10 @@ public class PhotoStore : DbStore<Photo> {
 	{
 		uint timer = Log.DebugTimerStart ();
 		List<int> list = new List<int> ();
-		IDataReader reader = Database.Query (query);
+		Hyena.Data.Sqlite.IDataReader reader = Database.Query (query);
 		while (reader.Read ())
 			list.Add (Convert.ToInt32 (reader ["row_id"]) - 1);
-		reader.Close ();
+		reader.Dispose ();
 		Log.DebugTimerPrint (timer, "IndicesOf took {0} : " + query);
 		return list.ToArray ();
 	}
@@ -630,7 +630,7 @@ public class PhotoStore : DbStore<Photo> {
 		int minyear = Int32.MaxValue;
 		int maxyear = Int32.MinValue;
 
-		IDataReader reader = Database.Query ("SELECT COUNT (*) as count, month from population GROUP BY month");
+		Hyena.Data.Sqlite.IDataReader reader = Database.Query ("SELECT COUNT (*) as count, month from population GROUP BY month");
 		while (reader.Read ()) {
 			string yyyymm = reader ["month"].ToString ();
 			int count = Convert.ToInt32 (reader ["count"]);
@@ -642,7 +642,7 @@ public class PhotoStore : DbStore<Photo> {
 				val.Add (year, new int[12]);
 			val[year][month-1] = count;
 		}
-		reader.Close ();
+		reader.Dispose ();
 
 		//Fill the blank
 		for (int i = minyear; i <= maxyear; i++)
@@ -756,7 +756,7 @@ public class PhotoStore : DbStore<Photo> {
 	private Photo [] Query (HyenaSqliteCommand query)
 	{
 		uint timer = Log.DebugTimerStart ();
-		IDataReader reader = Database.Query(query);
+		Hyena.Data.Sqlite.IDataReader reader = Database.Query(query);
 
 		List<Photo> new_photos = new List<Photo> ();
 		List<Photo> query_result = new List<Photo> ();
@@ -775,7 +775,7 @@ public class PhotoStore : DbStore<Photo> {
 
 			query_result.Add (photo);
 		}
-		reader.Close();
+		reader.Dispose();
 
 		bool need_load = false;
 		string photo_ids = "(";
