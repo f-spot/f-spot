@@ -326,7 +326,6 @@ lib/Hyena/Hyena.Data.Sqlite/Makefile
 lib/Hyena/Hyena.Gui/Makefile
 lib/Hyena/Hyena/Makefile
 lib/Hyena/Makefile
-lib/Hyena/Mono.Data.Sqlite/Makefile
 lib/libfspot/Makefile
 lib/Makefile
 lib/Mono.Google/Makefile
