@@ -1,4 +1,4 @@
-# translation of eu_to_be_translate.po to Basque
+# translation of eu.po to Basque
 # translation of f-spot to Basque
 # Copyright (C) 2004 Mikel Olasagasti
 # This file is distributed under the same license as the f-spot package.
@@ -9,17 +9,17 @@
 # Iñaki Larrañaga Murgoitio <dooteo@zundan.com>, 2007.
 msgid ""
 msgstr ""
-"Project-Id-Version: eu_to_be_translate\n"
+"Project-Id-Version: eu\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-10-25 16:28+0200\n"
-"PO-Revision-Date: 2010-10-25 19:26+0200\n"
+"POT-Creation-Date: 2010-11-19 15:56+0100\n"
+"PO-Revision-Date: 2010-11-19 15:58+0100\n"
 "Last-Translator: Iñaki Larrañaga Murgoitio <dooteo@euskalgnu.org>\n"
 "Language-Team: Basque <itzulpena@euskalgnu.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.11.4\n"
-"Plural-Forms:  nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "\n"
 
 #. ../src/Clients/MainApp/FSpot.addin.xml
@@ -150,8 +150,7 @@ msgstr "Esportatu PicasaWeb-era"
 
 #: ../data/addin-xml-strings.cs:61
 msgid "This extension allows you to export your photos to PicasaWeb."
-msgstr ""
-"Gehigarri honekin zure argazkiak PicasaWeb webgunera esporta ditzakezu."
+msgstr "Gehigarri honekin zure argazkiak PicasaWeb webgunera esporta ditzakezu."
 
 #. ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/Resources/SmugMugExport.addin.xml
 #: ../data/addin-xml-strings.cs:65
@@ -641,11 +640,11 @@ msgstr ""
 "F-Spot aplikazioaren hobespenen elkarrizketa-koadroan \n"
 "bestelako etiketa hautatzen."
 
-#: ../src/Clients/MainApp/FSpot.Database/Updater.cs:762
+#: ../src/Clients/MainApp/FSpot.Database/Updater.cs:761
 msgid "Updating F-Spot Database"
 msgstr "F-Spot datu-basea eguneratzen"
 
-#: ../src/Clients/MainApp/FSpot.Database/Updater.cs:763
+#: ../src/Clients/MainApp/FSpot.Database/Updater.cs:762
 msgid ""
 "Please wait while your F-Spot gallery's database is updated. This may take "
 "some time."
@@ -973,13 +972,11 @@ msgstr[1] "Ezabatu hautatutako {0} argazki betirako?"
 
 #: ../src/Clients/MainApp/FSpot/MainWindow.cs:2112
 msgid "This deletes all versions of the selected photo from your drive."
-msgid_plural ""
-"This deletes all versions of the selected photos from your drive."
+msgid_plural "This deletes all versions of the selected photos from your drive."
 msgstr[0] ""
 "Honek hautatutako argazkiaren bertsio guztiak zure euskarritik ezabatuko "
 "ditu."
-msgstr[1] ""
-"Honek hautatutako argazkien bertsio guztiak zure euskarritik ezabatuko ditu."
+msgstr[1] "Honek hautatutako argazkien bertsio guztiak zure euskarritik ezabatuko ditu."
 
 #: ../src/Clients/MainApp/FSpot/MainWindow.cs:2115
 msgid "_Delete photo"
@@ -1027,8 +1024,7 @@ msgstr[1] "argazkiak"
 #: ../src/Clients/MainApp/FSpot/MainWindow.cs:2240
 #, csharp-format
 msgid "If you delete this tag, the association with {0} {1} will be lost."
-msgid_plural ""
-"If you delete these tags, the association with {0} {1} will be lost."
+msgid_plural "If you delete these tags, the association with {0} {1} will be lost."
 msgstr[0] "Etiketa hau ezabatuz gero, {0} {1} esleipena ere galduko da."
 msgstr[1] "Etiketa hauek ezabatuz gero, {0} {1} esleipena ere galduko da."
 
@@ -1125,7 +1121,7 @@ msgstr "{1}-(e)n aldatuta"
 msgid "Modified in {1} ({0})"
 msgstr "{1}-(e)n aldatuta ({0})"
 
-#: ../src/Clients/MainApp/FSpot/PhotoStore.cs:204
+#: ../src/Clients/MainApp/FSpot/PhotoStore.cs:203
 #: ../src/Clients/MainApp/ui/mail_dialog.ui.h:17
 msgid "Original"
 msgstr "Jatorrizkoa"
@@ -1321,29 +1317,29 @@ msgstr "Errorea etiketaren izena aldatzean"
 msgid "This name is already in use"
 msgstr "Izen hau lehendik ere erabilita dago"
 
-#: ../src/Clients/MainApp/FSpot/TagStore.cs:241
+#: ../src/Clients/MainApp/FSpot/TagStore.cs:239
 msgid "Favorites"
 msgstr "Gogokoak"
 
-#: ../src/Clients/MainApp/FSpot/TagStore.cs:246
+#: ../src/Clients/MainApp/FSpot/TagStore.cs:244
 msgid "Hidden"
 msgstr "Ezkutuan"
 
-#: ../src/Clients/MainApp/FSpot/TagStore.cs:254
+#: ../src/Clients/MainApp/FSpot/TagStore.cs:252
 msgid "People"
 msgstr "Pertsonak"
 
-#: ../src/Clients/MainApp/FSpot/TagStore.cs:259
+#: ../src/Clients/MainApp/FSpot/TagStore.cs:257
 msgid "Places"
 msgstr "Lekuak"
 
-#: ../src/Clients/MainApp/FSpot/TagStore.cs:264
+#: ../src/Clients/MainApp/FSpot/TagStore.cs:262
 msgid "Events"
 msgstr "Gertaerak"
 
 #. The label for the root category is used in new and edit tag dialogs
-#: ../src/Clients/MainApp/FSpot/TagStore.cs:277
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:361
+#: ../src/Clients/MainApp/FSpot/TagStore.cs:275
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:438
 msgid "(None)"
 msgstr "(bat ere ez)"
 
@@ -1526,8 +1522,7 @@ msgstr "Argazkiak inportatzen..."
 #. TODO: Using a GtkSpinner would be nicer here.
 #: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:362
 msgid "Searching for photos... (You can already click Import to continue)"
-msgstr ""
-"Bilatu argazkiak... (jadanik klik egin dezakezu 'Inportatu'n jarratzeko)"
+msgstr "Bilatu argazkiak... (jadanik klik egin dezakezu 'Inportatu'n jarratzeko)"
 
 #: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportFailureDialog.cs:65
 msgid "Import failures"
@@ -1892,85 +1887,50 @@ msgstr "Karpetak"
 msgid "Filesystem"
 msgstr "Fitxategi-sistema"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:199
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:302
 msgid "Histogram"
 msgstr "Histograma"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:218
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:321
 msgid "Image Information"
 msgstr "Irudiaren informazioa"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:229
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:329
+#, csharp-format
+msgid "{0} Photos"
+msgstr "{0} argazki"
+
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:331
 #: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/Resources/FacebookExport.ui.h:10
 msgid "Name"
 msgstr "Izena"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:232
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:343
 msgid "Version"
 msgstr "Bertsioa"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:235
-msgid "Date"
-msgstr "Data"
-
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:238
-#: ../src/Extensions/Exporters/FSpot.Exporters.CD/Resources/CDExport.ui.h:4
-msgid "Size"
-msgstr "Tamaina"
-
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:241
-msgid "Exposure"
-msgstr "Esposizioa"
-
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:245
-msgid "Focal Length"
-msgstr "Foku-luzera"
-
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:248
-msgid "Camera"
-msgstr "Kamera"
-
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:251
-msgid "File Size"
-msgstr "Fitxategi-tamaina"
-
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:254
-msgid "Rating"
-msgstr "Puntuazioa"
-
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:344
-msgid "(wrong format)"
-msgstr "(okerreko formatua)"
-
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:370
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:381
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:391
-msgid "(Unknown)"
-msgstr "(Ezezaguna)"
-
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:487
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:358
 #: ../src/Clients/MainApp/PhotoVersionMenu.cs:86
 msgid "(No Edits)"
 msgstr "(aldaketarik gabe)"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:491
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:362
 #, csharp-format
 msgid "(One Edit)"
 msgid_plural "({0} Edits)"
 msgstr[0] "(edizio bat)"
 msgstr[1] "({0} edizio)"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:501
-msgid "(File read error)"
-msgstr "(errorea fitxategia irakurtzean)"
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:368
+msgid "Date"
+msgstr "Data"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:546
-#, csharp-format
-msgid "{0} Photos"
-msgstr "{0} argazki"
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:368
+msgid "Show Date"
+msgstr "Erakutsi data"
 
 #. Note for translators: {0} is a date, {1} and {2} are times.
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:566
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:379
 #, csharp-format
 msgid ""
 "On {0} between \n"
@@ -1979,7 +1939,7 @@ msgstr ""
 "{0}:\n"
 "{1} eta {2} bitartean"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:571
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:384
 #, csharp-format
 msgid ""
 "Between {0} \n"
@@ -1988,37 +1948,85 @@ msgstr ""
 "{0} eta\n"
 "{1} bitartean"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:598
-msgid "(At least one File not found)"
-msgstr "(gutxienez fitxategi bat ez da aurkitu)"
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:390
+#: ../src/Extensions/Exporters/FSpot.Exporters.CD/Resources/CDExport.ui.h:4
+msgid "Size"
+msgstr "Tamaina"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:715
-msgid "Show Photo Name"
-msgstr "Erakutsi argazkiaren izena"
-
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:724
-msgid "Show Date"
-msgstr "Erakutsi data"
-
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:733
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:390
 msgid "Show Size"
 msgstr "Erakutsi tamaina"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:742
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:398
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:448
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:454
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:458
+msgid "(Unknown)"
+msgstr "(Ezezaguna)"
+
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:401
+msgid "Exposure"
+msgstr "Esposizioa"
+
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:401
 msgid "Show Exposure"
 msgstr "Erakutsi esposizioa"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:751
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:431
+msgid "flash fired"
+msgstr "flash-a piztuta"
+
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:433
+msgid "flash didn't fire"
+msgstr "flash-a ez da piztu"
+
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:443
+msgid "Focal Length"
+msgstr "Foku-luzera"
+
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:443
 msgid "Show Focal Length"
 msgstr "Erakutsi foku-luzera"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:760
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:453
+msgid "Camera"
+msgstr "Kamera"
+
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:453
 msgid "Show Camera"
 msgstr "Erakutsi kamera"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:769
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:457
+msgid "Creator"
+msgstr "Sortzailea"
+
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:457
+msgid "Show Creator"
+msgstr "Erakutsi sortzailea"
+
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:461
+msgid "File Size"
+msgstr "Fitxategi-tamaina"
+
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:461
 msgid "Show File Size"
 msgstr "Erakutsi fitxategi-tamaina"
+
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:469
+msgid "(File read error)"
+msgstr "(errorea fitxategia irakurtzean)"
+
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:477
+msgid "Rating"
+msgstr "Puntuazioa"
+
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:477
+msgid "Show Rating"
+msgstr "Erakutsi puntuazioa"
+
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:481
+msgid "Show Tags"
+msgstr "Erakutsi etiketak"
 
 #: ../src/Clients/MainApp/FSpot.Widgets/MetadataDisplay.cs:46
 msgid "Metadata"
@@ -2099,8 +2107,7 @@ msgstr "\"{0}\" bertsioa ezabatzea nahi duzu?"
 
 #: ../src/Clients/MainApp/PhotoVersionCommands.cs:159
 msgid "This removes the version and deletes the corresponding file from disk."
-msgstr ""
-"Honek bertsioa kentzen du, eta dagokion fitxategia ezabatzen du diskotik."
+msgstr "Honek bertsioa kentzen du, eta dagokion fitxategia ezabatzen du diskotik."
 
 #: ../src/Clients/MainApp/PhotoVersionCommands.cs:204
 msgid "De_tach"
@@ -2870,8 +2877,7 @@ msgstr "kopiatzen..."
 
 #: ../src/Extensions/Exporters/FSpot.Exporters.CD/Resources/CDExport.ui.h:1
 msgid "<b><i>There are some previously scheduled items to write</i></b>"
-msgstr ""
-"<b><i>Aurrez planifikatuta dauden elementu batzuk grabatzeko daude</i></b>"
+msgstr "<b><i>Aurrez planifikatuta dauden elementu batzuk grabatzeko daude</i></b>"
 
 #: ../src/Extensions/Exporters/FSpot.Exporters.CD/Resources/CDExport.ui.h:2
 msgid "<b>Photos to Burn</b>"
@@ -3532,8 +3538,7 @@ msgstr "_Titulua:"
 #: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/Resources/gallery_add_dialog.ui.h:1
 #: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/Resources/google_add_dialog.ui.h:1
 msgid "<span weight='bold' size='larger'>Error Connecting to Gallery</span>\n"
-msgstr ""
-"<span weight='bold' size='larger'>Errorrea galeriarekin konektatzean</span>\n"
+msgstr "<span weight='bold' size='larger'>Errorrea galeriarekin konektatzean</span>\n"
 
 #: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/Resources/gallery_add_dialog.ui.h:3
 #: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/Resources/google_add_dialog.ui.h:5
@@ -3599,8 +3604,7 @@ msgstr "Errorea albuma sortzean"
 
 #: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/GoogleAddAlbum.cs:112
 #, csharp-format
-msgid ""
-"The following error was encountered while attempting to create an album: {0}"
+msgid "The following error was encountered while attempting to create an album: {0}"
 msgstr "Honako errorea gertatu da albuma sortzean: {0}"
 
 #: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:209
@@ -3644,8 +3648,7 @@ msgid "_Album Title:"
 msgstr "_Albumaren titulua:"
 
 #: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/Resources/google_add_dialog.ui.h:3
-msgid ""
-"<span weight='bold' size='larger'>Your Google Account is locked</span>\n"
+msgid "<span weight='bold' size='larger'>Your Google Account is locked</span>\n"
 msgstr ""
 "<span weight='bold' size='larger'>Google-eko zure kontua blokeatuta dago</"
 "span>\n"
@@ -3938,8 +3941,7 @@ msgstr ""
 msgid ""
 "<small><i>Choose the location of the database you want to import from</i></"
 "small>"
-msgstr ""
-"<small><i>Aukeratu datu-basearen kokalekua handik inportatzeko</i></small>"
+msgstr "<small><i>Aukeratu datu-basearen kokalekua handik inportatzeko</i></small>"
 
 #: ../src/Extensions/Tools/FSpot.Tools.MergeDb/Resources/mergedb_dialog.ui.h:2
 msgid ""
@@ -4023,502 +4025,3 @@ msgstr "Bistaratu dispositiba-aurkezpena F-Spot aplikaziotik"
 msgid "F-Spot photos"
 msgstr "F-Spot argazkiak"
 
-#~ msgid "_CD..."
-#~ msgstr "_CDa..."
-
-#~ msgid "Autorotate"
-#~ msgstr "Biratu automatikoki"
-
-#~ msgid "_23hq..."
-#~ msgstr "_23hq..."
-
-#~ msgid "_Flickr..."
-#~ msgstr "_Flickr..."
-
-#~ msgid "_Zooomr..."
-#~ msgstr "_Zooomr..."
-
-#~ msgid "Strip _metadata"
-#~ msgstr "Moztu _metadatuak"
-
-#~ msgid "F_older..."
-#~ msgstr "_Karpeta..."
-
-#~ msgid "Error: Error while transferring; Aborting"
-#~ msgstr "Errorea: errorea transferitzean. Abortatzen"
-
-#~ msgid "Error: File Already Exists; Aborting"
-#~ msgstr "Errorea: fitxategia badago lehendik ere. Abortatzen"
-
-#~ msgid "\n"
-#~ msgstr "\n"
-
-#~ msgid "Web _Gallery..."
-#~ msgstr "Web _galeria..."
-
-#~ msgid "_PicasaWeb..."
-#~ msgstr "_PicasaWeb..."
-
-#~ msgid "_Autorotate"
-#~ msgstr "_Biratu automatikoki"
-
-#~ msgid "_SmugMug..."
-#~ msgstr "_SmugMug..."
-
-#~ msgid "_Tabblo..."
-#~ msgstr "_Tabblo..."
-
-#~ msgid "<b>{0}</b>."
-#~ msgstr "<b>{0}</b>."
-
-#~ msgid "Compressed fil_e..."
-#~ msgstr "Konprimitutako _fitxategia..."
-
-#~ msgid ""
-#~ "In order to detect duplicates on pictures you imported before 0.5.0, F-"
-#~ "Spot needs to analyze your image collection. This is not done by default "
-#~ "as it's time consuming. You can Start or Pause this update process using "
-#~ "this dialog."
-#~ msgstr ""
-#~ "0.5.0 bertsioaren aurretik inportatutako argazkiak bikoiztuta dauden edo "
-#~ "ez detektatzeko, F-Spot-ek argazkien bilduma analizatu behar du. Hau ez "
-#~ "da lehenetsi gisa egiten, denbora ugari kontsumitzen duelako. Eguneratze-"
-#~ "prozesu hau Hasi edo Pausarazi dezakezu elkarrizketa-koadro hau erabiliz."
-
-#~ msgid ""
-#~ "You currently have {0} photos needing md5 calculation, and {1} pending "
-#~ "jobs"
-#~ msgstr ""
-#~ "MD5 kalkuluak behar dituzten {0} argazki dituzu, eta {1} lan falta dira"
-
-#~ msgid "Processing images..."
-#~ msgstr "Irudiak prozesatzen..."
-
-#~ msgid "Stopped"
-#~ msgstr "Geldituta"
-
-#~ msgid "Check for Duplicates..."
-#~ msgstr "Bilatu _bikoiztuak..."
-
-#~ msgid "Configure Screensaver"
-#~ msgstr "Konfiguratu pantaila-babeslea"
-
-#~ msgid "Unknown transform type %d"
-#~ msgstr "%d transformazio mota ezezaguna"
-
-#~ msgid "Operation failed"
-#~ msgstr "Eragiketak huts egin du"
-
-#~ msgid "Preview"
-#~ msgstr "Aurrebista"
-
-#~ msgid "File"
-#~ msgstr "Fitxategia"
-
-#~ msgid "Select Tag"
-#~ msgstr "Hautatu etiketa"
-
-#~ msgid "Downloading Previews"
-#~ msgstr "Aurrebistak deskargatzen"
-
-#~ msgid "Downloading Preview of {0}"
-#~ msgstr "Aurrebistak deskargatzen: {0}"
-
-#~ msgid "Copying file {0} of {1}"
-#~ msgstr "Argazkia kopiatzen: {0} / {1}"
-
-#~ msgid "Error transferring file"
-#~ msgstr "Errorea fitxategia transferitzean"
-
-#~ msgid "Download Complete"
-#~ msgstr "Deskarga osatu da"
-
-#~ msgid "Done Copying Files"
-#~ msgstr "Fitxategiak kopiatzea amaituta"
-
-#~ msgid "Transferring \"{0}\" from camera"
-#~ msgstr "Kameratik \"{0}\" transferitzen"
-
-#~ msgid "Port"
-#~ msgstr "Ataka"
-
-#~ msgid "Reparented ({0})"
-#~ msgstr "Guraso berriarekin jarrita ({0})"
-
-#~ msgid "Import error"
-#~ msgstr "Errorea inportatzean"
-
-#~ msgid "Error importing {0}{2}{2}{1}"
-#~ msgstr "Errorea {0} {2} {2} {1} inportatzean"
-
-#~ msgid "No way to save files of type \"{0}\""
-#~ msgstr "Ezin da \"{0}\" motako fitxategirik gorde"
-
-#~ msgid " "
-#~ msgstr " "
-
-#~ msgid "<b></b>"
-#~ msgstr "<b></b>"
-
-#~ msgid "Attach Tags:"
-#~ msgstr "Erantsi etiketak:"
-
-#~ msgid "CD"
-#~ msgstr "CDa"
-
-#~ msgid "E-_Mail:"
-#~ msgstr "_Helb.Elek:"
-
-#~ msgid "E_xport titles and comments"
-#~ msgstr "Esportatu tituluak eta iruzkinak"
-
-#~ msgid "G_allery:"
-#~ msgstr "G_aleria:"
-
-#~ msgid "Gallery"
-#~ msgstr "Galeria"
-
-#~ msgid "Pause"
-#~ msgstr "Pausarazi"
-
-#~ msgid "Select Photos to Copy From Camera..."
-#~ msgstr "Hautatu argazkiak kameratik kopiatzeko..."
-
-#~ msgid "Select the camera from which you want to transfer files"
-#~ msgstr "Hautatu kamera, bertatik fitxategiak transferitzeko."
-
-#~ msgid "Selected Camera: "
-#~ msgstr "Hautatutako kamera: "
-
-#~ msgid ""
-#~ "Specify if an original size picture should be rotated or not. Smaller "
-#~ "sizes are automatically rotated."
-#~ msgstr ""
-#~ "Zehaztu jatorrizko tamainen argazkiak biratuko diren edo ez. Tamaina "
-#~ "txikiagoak automatikoki biratuko dira."
-
-#~ msgid "Strip image _metadata"
-#~ msgstr "Kendu irudiaren _metadatuak"
-
-#~ msgid "_Flickr"
-#~ msgstr "_Flickr"
-
-#~ msgid "_Gallery"
-#~ msgstr "_Galeria"
-
-#~ msgid "_New Window"
-#~ msgstr "_Leiho berria"
-
-#~ msgid "_Open album in browser when done uploading"
-#~ msgstr "_Ireki albuma arakatzailean, igo ondoren"
-
-#~ msgid "_Open destination when done exporting"
-#~ msgstr "_Ireki helburua, esportatu ondoren."
-
-#~ msgid "_Scale photos to no larger than: "
-#~ msgstr "_Eskalatu argazkiak, hau baino handiagoak ez direnak: "
-
-#~ msgid "_Strip metadata"
-#~ msgstr "_Kendu metadatuak"
-
-#~ msgid "_URI:"
-#~ msgstr "_URIa:"
-
-#~ msgid "_Virtual Filesystem"
-#~ msgstr "Fitxategi-sistema _birtuala"
-
-#~ msgid "x"
-#~ msgstr "x"
-
-#~ msgid "Thumbnail Directory"
-#~ msgstr "Koadro txikien direktorioa"
-
-#~ msgid "Exif Directory"
-#~ msgstr "Exif datuen direktorioa"
-
-#~ msgid "GPS Directory"
-#~ msgstr "GPS direktorioa"
-
-#~ msgid "InterOperability Directory"
-#~ msgstr "InterOperability direktorioa"
-
-#~ msgid "Unknown Directory"
-#~ msgstr "Direktorio ezezaguna"
-
-#~ msgid "Writing to this file format is not supported"
-#~ msgstr "Ez dago onartuta fitxategi-formatu honetan idaztea"
-
-#~ msgid "IPTC Information Interchange Model (IIM) Version number"
-#~ msgstr "IPTC Informazio Trukakor Modeloaren (IMM) bertsio-zenbakia"
-
-#~ msgid "OSI Destination routing information"
-#~ msgstr "OSI helburura bideratzeko informazioa"
-
-#~ msgid "IPTC file format"
-#~ msgstr "IPTC fitxategi-formatua"
-
-#~ msgid "Identifies the provider and product"
-#~ msgstr "Hornitzailea eta produktua identifikatzen ditu"
-
-#~ msgid "A unique number identifying the envelope"
-#~ msgstr "Gutun-azala identifikatzen duen zenbaki bakarra"
-
-#~ msgid "A unique number"
-#~ msgstr "Zenbaki bakarra"
-
-#~ msgid ""
-#~ "The envelope handling priority between 1 (most urgent) and 9 (least "
-#~ "urgent)"
-#~ msgstr ""
-#~ "Gutun-azala kudeatzeko lehentasunaren barrutia: 1 (altua) - 9 (baxua)"
-
-#~ msgid "The year, month and day (CCYYMMDD) the service sent the material"
-#~ msgstr ""
-#~ "Zerbitzuak materiala bidali zuen urtea, hilabetea eta eguna (CCUUHHEE)"
-
-#~ msgid "The hour, minute and second (HHMMSS) the service sent the material"
-#~ msgstr ""
-#~ "Zerbitzuak materiala bidali zuen ordua, minutua eta segundoa (OOMMSS)"
-
-#~ msgid "The character set designation"
-#~ msgstr "Karaktere-multzoa izendatzea"
-
-#~ msgid "External globally unique object identifier"
-#~ msgstr "Objektuaren kanpoko identifikatzaile global bakarra"
-
-#~ msgid "Abstract Relationship Method (ARM) identifier"
-#~ msgstr "Erlazio Abstraktuko Metodoaren (ARM) identifikatzailea"
-
-#~ msgid "Abstract Relationship Method (ARM) version number."
-#~ msgstr "Erlazio Abstraktuko Metodoaren (ARM) bertsio-zenbakia"
-
-#~ msgid "Number identifying the IIM version this application record uses"
-#~ msgstr ""
-#~ "Aplikazioaren erregistroak darabilen IIM bertsioa identifikatzen duen "
-#~ "zenbakia"
-
-#~ msgid "Object type reference"
-#~ msgstr "Objektu motaren erreferentzia"
-
-#~ msgid "Object attribute reference"
-#~ msgstr "Objektuaren atributuaren erreferentzia"
-
-#~ msgid "Object name"
-#~ msgstr "Objektuaren izena"
-
-#~ msgid "Status of the objectdata according to the provider"
-#~ msgstr "Objektu-datuen egoera hornitzailearen arabera"
-
-#~ msgid "Location within a city or area where the object originates"
-#~ msgstr "Edukiak hartu ziren herri edo area bateko kokalekua"
-
-#~ msgid "Name of the city the content is focussing on"
-#~ msgstr "Herriaren izena (argazkia atera zen lekua)"
-
-#~ msgid "Copyright information for"
-#~ msgstr "Honako datuen copyright-a:"
-
-#~ msgid "Full name of the country of the focus of the content"
-#~ msgstr "Herrialdearen izen osoa (argazkia atera zena)"
-
-#~ msgid ""
-#~ "Two or three letter ISO3166 code of the country of the focus of the "
-#~ "content"
-#~ msgstr "Herrialdearen bi edo hiru hizki ISO3166 kodean"
-
-#~ msgid "Creator of the content"
-#~ msgstr "Edukiaren egilea"
-
-#~ msgid "Provider of the object"
-#~ msgstr "Edukiaren hornitzailea"
-
-#~ msgid "The title of the author or creator"
-#~ msgstr "Egilearen edo sortzailearen titulua"
-
-#~ msgid ""
-#~ "The person involved in writing, editing or correcting the object data or "
-#~ "caption/abstract"
-#~ msgstr ""
-#~ "Objektu-datuak edo epigrafea idatzi, editatu edota zuzendu duen pertsona"
-
-#~ msgid "Headline of the content"
-#~ msgstr "Edukiaren goiburukoa"
-
-#~ msgid ""
-#~ "Instructions from the creator to the receiver not covered by other fields"
-#~ msgstr ""
-#~ "Sortzailearen oharrak beste eremuetan zehazten ez den hartzaileentzak"
-
-#~ msgid "Intellectual genre of the object"
-#~ msgstr "Objektuaren genero intelektuala"
-
-#~ msgid "Unknown IIM DataSet"
-#~ msgstr "IIM datu-multzo ezezaguna"
-
-#~ msgid "Loading {0} of {1}"
-#~ msgstr "Kargatzen: {0} / {1}"
-
-#~ msgid "Done Loading"
-#~ msgstr "Kargatzea burutu da"
-
-#~ msgid "Directory does not exist."
-#~ msgstr "Direktorioa ez da existitzen."
-
-#~ msgid ""
-#~ "The directory you selected \"{0}\" does not exist.  Please choose a "
-#~ "different directory"
-#~ msgstr ""
-#~ "Hautatutako \"{0} direktorioa ez da existitzen. Aukeratu beste direktorio "
-#~ "bat"
-
-#~ msgid "No cameras detected."
-#~ msgstr "Ez da kamerarik detektatu."
-
-#~ msgid ""
-#~ "F-Spot was unable to find any cameras attached to this system.  Double "
-#~ "check that the camera is connected and has power"
-#~ msgstr ""
-#~ "F-Spot ez da gai izan sistemara konektatutako kamera aurkitzeko. "
-#~ "Egiaztatu kamera konektatuta eta piztuta dagoela"
-
-#~ msgid "Error connecting to camera"
-#~ msgstr "Errorea kamerarekin konektatzean"
-
-#~ msgid "Received error \"{0}\" while connecting to camera"
-#~ msgstr "\"{0}\" errorea jaso da kamerarekin konektatzean"
-
-#~ msgid "Creator"
-#~ msgstr "Sortzailea"
-
-#~ msgid "Title"
-#~ msgstr "Titulua"
-
-#~ msgid "Copyright"
-#~ msgstr "Copyright-a"
-
-#~ msgid "Subject and Keywords"
-#~ msgstr "Gaia eta gakoak"
-
-#~ msgid "Compression"
-#~ msgstr "Konpresioa"
-
-#~ msgid "Planar Configuration"
-#~ msgstr "Planar konfigurazioa"
-
-#~ msgid "Orientation"
-#~ msgstr "Orientazioa"
-
-#~ msgid "Photometric Interpretation"
-#~ msgstr "Argi-neurketaren interpretazioa"
-
-#~ msgid "Resolution Unit"
-#~ msgstr "Bereizmenaren unitatea"
-
-#~ msgid "Exposure Program"
-#~ msgstr "Esposizio programa"
-
-#~ msgid "Metering Mode"
-#~ msgstr "Neurtze modua"
-
-#~ msgid "Exposure Mode"
-#~ msgstr "Esposizio modua"
-
-#~ msgid "Custom Rendered"
-#~ msgstr "Errendatze pertsonalizatua"
-
-#~ msgid "Components Configuration"
-#~ msgstr "Osagaien konfigurazioa"
-
-#~ msgid "Light Source"
-#~ msgstr "Argiaren iturburua"
-
-#~ msgid "Sensing Method"
-#~ msgstr "Sentikortasun-metodoa"
-
-#~ msgid "Color Space"
-#~ msgstr "Kolore-espazioa"
-
-#~ msgid "White Balance"
-#~ msgstr "Zuri-balantzea"
-
-#~ msgid "Focal Plane Resolution Unit"
-#~ msgstr "Fokuaren planoko bereizmen-unitatea"
-
-#~ msgid "File Source Type"
-#~ msgstr "Fitxategi-iturburu mota"
-
-#~ msgid "Scene Capture Type"
-#~ msgstr "Eszenaren kaptura mota"
-
-#~ msgid "Gain Control"
-#~ msgstr "Irabazi-kontrola"
-
-#~ msgid "Contrast"
-#~ msgstr "Kontrastea"
-
-#~ msgid "Saturation"
-#~ msgstr "Saturazioa"
-
-#~ msgid "Sharpness"
-#~ msgstr "Zorroztasuna"
-
-#~ msgid "Scene Type"
-#~ msgstr "Eszena mota"
-
-#~ msgid "Could not create a new version"
-#~ msgstr "Ezin izan da bertsio berria sortu"
-
-#~ msgid "Received exception \"{0}\". Unable to create version \"{1}\""
-#~ msgstr "\"{0}\" salbuespena jaso da. Ezin izan da \"{1}\" bertsioa sortu"
-
-#~ msgid "Really Delete?"
-#~ msgstr "Ezabatzea nahi duzu?"
-
-#~ msgid "Cancel"
-#~ msgstr "Utzi"
-
-#~ msgid "Could not delete a version"
-#~ msgstr "Ezin izan da bertsioa ezabatu"
-
-#~ msgid "Received exception \"{0}\". Unable to delete version \"{1}\""
-#~ msgstr "\"{0}\" salbuespena jaso da. Ezin izan da {1} bertsioa ezabatu"
-
-#~ msgid "Could not rename a version"
-#~ msgstr "Ezin izan da bertsioa izenez aldatu"
-
-#~ msgid "Received exception \"{0}\". Unable to rename version to \"{1}\""
-#~ msgstr ""
-#~ "\"{0}\" salbuespena jaso da. Ezin izan da {1} bertsioa izenez aldatu"
-
-#~ msgid "Comment:"
-#~ msgstr "Iruzkina:"
-
-#~ msgid "F-Spot Encountered a Fatal Error"
-#~ msgstr "F-Spot aplikazioak errore larria aurkitu du"
-
-#~ msgid "An unhandled exception was thrown: "
-#~ msgstr "Kudeatu gabeko salbuespena gertatu da: "
-
-#~ msgid "<small></small>"
-#~ msgstr "<small></small>"
-
-#~ msgid "Photo 0 of 0"
-#~ msgstr "0 / 0 argazkia"
-
-#~ msgid "Unable to create temporary file"
-#~ msgstr "Ezin da aldi baterako fitxategia sortu"
-
-#~ msgid "No Extended Metadata Available"
-#~ msgstr "Ez dago hedatutako metadaturik eskuragarri"
-
-#~ msgid "Rating:"
-#~ msgstr "Puntuazioa:"
-
-#~ msgid "Country"
-#~ msgstr "Estatua"
-
-#~ msgid "City"
-#~ msgstr "Herria"
-
-#~ msgid "State"
-#~ msgstr "Herrialdea"
