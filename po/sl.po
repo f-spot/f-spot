@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: f-spot\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=f-spot&component=General\n"
-"POT-Creation-Date: 2010-10-21 11:55+0000\n"
+"POT-Creation-Date: 2010-11-16 21:14+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Andrej Žnidaršič <andrej.znidarsic@gmail.com>\n"
 "Language-Team: Slovenian GNOME Translation Team <gnome-si@googlegroups.com>\n"
@@ -600,11 +600,11 @@ msgstr ""
 "z izborom druge oznake v pogovornem oknu \n"
 "možnosti F-Spot."
 
-#: ../src/Clients/MainApp/FSpot.Database/Updater.cs:762
+#: ../src/Clients/MainApp/FSpot.Database/Updater.cs:761
 msgid "Updating F-Spot Database"
 msgstr "Posodabljanje podatkovne zbirke F-Spot"
 
-#: ../src/Clients/MainApp/FSpot.Database/Updater.cs:763
+#: ../src/Clients/MainApp/FSpot.Database/Updater.cs:762
 msgid "Please wait while your F-Spot gallery's database is updated. This may take some time."
 msgstr "Počakati je treba, da se podatkovna zbirka galerije F-Spot do konca posodobi. Postopek lahko traja nekaj časa."
 
@@ -737,8 +737,8 @@ msgstr "Več"
 msgid "_Clear Date Range"
 msgstr "_Čiščenje datumskega območja"
 
-#: ../src/Clients/MainApp/FSpot.Import/ImportController.cs:506
-#: ../src/Clients/MainApp/FSpot.Import/ImportController.cs:508
+#: ../src/Clients/MainApp/FSpot.Import/ImportController.cs:510
+#: ../src/Clients/MainApp/FSpot.Import/ImportController.cs:512
 #: ../src/Clients/MainApp/FSpot.Import/MetadataImporter.cs:80
 msgid "Imported Tags"
 msgstr "Uvožene oznake"
@@ -781,7 +781,7 @@ msgid "Previous picture"
 msgstr "Predhodna slika"
 
 #: ../src/Clients/MainApp/FSpot/MainWindow.cs:301
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:222
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:229
 #: ../src/Clients/MainApp/ui/import.ui.h:3
 msgid "Import"
 msgstr "Uvozi"
@@ -1089,7 +1089,7 @@ msgstr "Spremenjena v {1}"
 msgid "Modified in {1} ({0})"
 msgstr "Spremenjena v {1} ({0})"
 
-#: ../src/Clients/MainApp/FSpot/PhotoStore.cs:204
+#: ../src/Clients/MainApp/FSpot/PhotoStore.cs:203
 #: ../src/Clients/MainApp/ui/mail_dialog.ui.h:17
 msgid "Original"
 msgstr "Izvorno"
@@ -1281,29 +1281,29 @@ msgstr "Napaka med preimenovanjem oznake"
 msgid "This name is already in use"
 msgstr "Ime je že v uporabi"
 
-#: ../src/Clients/MainApp/FSpot/TagStore.cs:241
+#: ../src/Clients/MainApp/FSpot/TagStore.cs:239
 msgid "Favorites"
 msgstr "Priljubljeno"
 
-#: ../src/Clients/MainApp/FSpot/TagStore.cs:246
+#: ../src/Clients/MainApp/FSpot/TagStore.cs:244
 msgid "Hidden"
 msgstr "Skrito"
 
-#: ../src/Clients/MainApp/FSpot/TagStore.cs:254
+#: ../src/Clients/MainApp/FSpot/TagStore.cs:252
 msgid "People"
 msgstr "Ljudje"
 
-#: ../src/Clients/MainApp/FSpot/TagStore.cs:259
+#: ../src/Clients/MainApp/FSpot/TagStore.cs:257
 msgid "Places"
 msgstr "Mesta"
 
-#: ../src/Clients/MainApp/FSpot/TagStore.cs:264
+#: ../src/Clients/MainApp/FSpot/TagStore.cs:262
 msgid "Events"
 msgstr "Dogodki"
 
 #. The label for the root category is used in new and edit tag dialogs
-#: ../src/Clients/MainApp/FSpot/TagStore.cs:277
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:361
+#: ../src/Clients/MainApp/FSpot/TagStore.cs:275
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:438
 msgid "(None)"
 msgstr "(Brez)"
 
@@ -1446,15 +1446,15 @@ msgstr "Fotografija {0} od {1}"
 msgid "Choose Folder..."
 msgstr "Izbor mape ...."
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:158
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:164
 msgid "Choose Import source..."
 msgstr "Izbor vira uvoza ..."
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:170
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:176
 msgid "(No Cameras Detected)"
 msgstr "(Ni zaznanih fotoaparatov)"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:205
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:211
 msgid ""
 "Checking this box will remove the imported photos from the camera after the import finished successfully.\n"
 "\n"
@@ -1464,21 +1464,21 @@ msgstr ""
 "\n"
 "Priporočamo da pred odstranitvijo svojih fotografij z digitalnega fotoaparata napravite varnostno kopijo. <b>To možnost uporabljate na lastno odgovornost!</b>"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:206
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:212
 msgid "Warning"
 msgstr "Opozorilo"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:324
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:331
 #, csharp-format
 msgid "Importing Photos: {0} of {1}..."
 msgstr "Uvažanje fotografij: {0} od {1} ..."
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:348
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:355
 msgid "Importing photos..."
 msgstr "Uvažanje fotografij ..."
 
 #. TODO: Using a GtkSpinner would be nicer here.
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:355
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:362
 msgid "Searching for photos... (You can already click Import to continue)"
 msgstr "Iskanje fotografij ... (za nadaljevanje lahko že kliknite Uvozi)"
 
@@ -1831,68 +1831,34 @@ msgstr "Mape"
 msgid "Filesystem"
 msgstr "Datotečni sistem"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:199
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:302
 msgid "Histogram"
 msgstr "Histogram"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:218
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:321
 msgid "Image Information"
 msgstr "Podrobnosti o sliki"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:229
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:329
+#, csharp-format
+msgid "{0} Photos"
+msgstr "{0} fotografij"
+
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:331
 #: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/Resources/FacebookExport.ui.h:10
 msgid "Name"
 msgstr "Ime"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:232
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:343
 msgid "Version"
 msgstr "Različica"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:235
-msgid "Date"
-msgstr "Datum"
-
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:238
-#: ../src/Extensions/Exporters/FSpot.Exporters.CD/Resources/CDExport.ui.h:4
-msgid "Size"
-msgstr "Velikost"
-
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:241
-msgid "Exposure"
-msgstr "Osvetljenost"
-
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:245
-msgid "Focal Length"
-msgstr "Goriščna razdalja"
-
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:248
-msgid "Camera"
-msgstr "Fotoaparat"
-
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:251
-msgid "File Size"
-msgstr "Velikost datoteke"
-
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:254
-msgid "Rating"
-msgstr "Ocena"
-
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:344
-msgid "(wrong format)"
-msgstr "(napačen zapis)"
-
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:370
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:381
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:391
-msgid "(Unknown)"
-msgstr "(neznano)"
-
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:487
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:358
 #: ../src/Clients/MainApp/PhotoVersionMenu.cs:86
 msgid "(No Edits)"
 msgstr "(Ni urejanj)"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:491
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:362
 #, csharp-format
 msgid "(One Edit)"
 msgid_plural "({0} Edits)"
@@ -1901,17 +1867,16 @@ msgstr[1] "({0} urejanje)"
 msgstr[2] "({0} urejanji)"
 msgstr[3] "({0} urejanja)"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:501
-msgid "(File read error)"
-msgstr "(Napaka med branjem datoteke)"
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:368
+msgid "Date"
+msgstr "Datum"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:546
-#, csharp-format
-msgid "{0} Photos"
-msgstr "{0} fotografij"
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:368
+msgid "Show Date"
+msgstr "Pokaži datum"
 
 #. Note for translators: {0} is a date, {1} and {2} are times.
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:566
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:379
 #, csharp-format
 msgid ""
 "On {0} between \n"
@@ -1920,7 +1885,7 @@ msgstr ""
 "Na {0} med \n"
 "{1} in {2}"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:571
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:384
 #, csharp-format
 msgid ""
 "Between {0} \n"
@@ -1929,37 +1894,85 @@ msgstr ""
 "Med {0} \n"
 "in {1}"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:598
-msgid "(At least one File not found)"
-msgstr "(vsaj ene datoteke ni mogoče najti)"
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:390
+#: ../src/Extensions/Exporters/FSpot.Exporters.CD/Resources/CDExport.ui.h:4
+msgid "Size"
+msgstr "Velikost"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:715
-msgid "Show Photo Name"
-msgstr "Pokaži ime fotografije"
-
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:724
-msgid "Show Date"
-msgstr "Pokaži datum"
-
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:733
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:390
 msgid "Show Size"
 msgstr "Pokaži velikost"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:742
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:398
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:448
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:454
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:458
+msgid "(Unknown)"
+msgstr "(neznano)"
+
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:401
+msgid "Exposure"
+msgstr "Osvetljenost"
+
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:401
 msgid "Show Exposure"
 msgstr "Pokaži osvetlitev"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:751
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:431
+msgid "flash fired"
+msgstr "bliskavica se je sprožila"
+
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:433
+msgid "flash didn't fire"
+msgstr "bliskavica se ni sprožila"
+
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:443
+msgid "Focal Length"
+msgstr "Goriščna razdalja"
+
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:443
 msgid "Show Focal Length"
 msgstr "Pokaži goriščno razdaljo"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:760
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:453
+msgid "Camera"
+msgstr "Fotoaparat"
+
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:453
 msgid "Show Camera"
 msgstr "Pokaži fotoaparat"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:769
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:457
+msgid "Creator"
+msgstr "Ustvarjalec"
+
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:457
+msgid "Show Creator"
+msgstr "Pokaži ustvarjalca"
+
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:461
+msgid "File Size"
+msgstr "Velikost datoteke"
+
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:461
 msgid "Show File Size"
 msgstr "Pokaži velikost datotek"
+
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:469
+msgid "(File read error)"
+msgstr "(Napaka med branjem datoteke)"
+
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:477
+msgid "Rating"
+msgstr "Ocena"
+
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:477
+msgid "Show Rating"
+msgstr "Pokaži oceno"
+
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:481
+msgid "Show Tags"
+msgstr "Prikaži oznake"
 
 #: ../src/Clients/MainApp/FSpot.Widgets/MetadataDisplay.cs:46
 msgid "Metadata"
@@ -3882,6 +3895,12 @@ msgstr "Prikaže F-Spotovo diapredstavitev"
 msgid "F-Spot photos"
 msgstr "F-Spot fotografije"
 
+#~ msgid "(wrong format)"
+#~ msgstr "(napačen zapis)"
+#~ msgid "(At least one File not found)"
+#~ msgstr "(vsaj ene datoteke ni mogoče najti)"
+#~ msgid "Show Photo Name"
+#~ msgstr "Pokaži ime fotografije"
 #~ msgid ""
 #~ "Metadata of file {0} may be corrupt, refusing to write to it, falling "
 #~ "back to XMP sidecar."
@@ -4039,8 +4058,6 @@ msgstr "F-Spot fotografije"
 #~ msgstr "Intelektualna zvrst predmeta"
 #~ msgid "Unknown IIM DataSet"
 #~ msgstr "Neznan IIM niz podatkov"
-#~ msgid "Creator"
-#~ msgstr "Ustvarjalec"
 #~ msgid "Title"
 #~ msgstr "Naslov"
 #~ msgid "Copyright"
@@ -4251,7 +4268,7 @@ msgstr "F-Spot fotografije"
 #~ msgid "Install from:"
 #~ msgstr "Nameščanje iz: "
 #~ msgid "_Repositories..."
-#~ msgstr "Sk_ladišča ..."
+#~ msgstr "Od_ložišča ..."
 #~ msgid "Show all packages"
 #~ msgstr "Pokaži vse pakete"
 #~ msgid "Show new versions only"
@@ -4285,17 +4302,17 @@ msgstr "F-Spot fotografije"
 #~ msgid "Disable"
 #~ msgstr "Onemogoči"
 #~ msgid "Extension Repository Management"
-#~ msgstr "Upravljanje skladišča razširitev"
+#~ msgstr "Upravljanje odložišča razširitev"
 #~ msgid "Add New Repository"
-#~ msgstr "Dodajanje novega skladišča"
+#~ msgstr "Dodajanje novega odložišča"
 #~ msgid "Select the location of the repository you want to register:"
-#~ msgstr "Izbor mesta skladišča za registracijo:"
+#~ msgstr "Izbor mesta odložišča za registracijo:"
 #~ msgid "Register an on-line repository"
-#~ msgstr "Registracija spletnega skladišča"
+#~ msgstr "Registracija spletnega odložišča"
 #~ msgid "Url:"
 #~ msgstr "URL:"
 #~ msgid "Register a local repository"
-#~ msgstr "Registracija krajevnega skladišča."
+#~ msgstr "Registracija krajevnega odložišča."
 #~ msgid "Path:"
 #~ msgstr "Pot:"
 #~ msgid "Browse..."
@@ -4309,7 +4326,7 @@ msgstr "F-Spot fotografije"
 #~ msgid "Extension Dependencies:"
 #~ msgstr "Odvisnosti razširitve:"
 #~ msgid "All registered repositories"
-#~ msgstr "Vsa registrirana skladišča"
+#~ msgstr "Vsa registrirana odložišča"
 #~ msgid "Are you sure you want to cancel the installation?"
 #~ msgstr "Ali ste prepričani, da želite preklicati namestitev?"
 #~ msgid "The following packages will be uninstalled:"
@@ -4344,7 +4361,7 @@ msgstr "F-Spot fotografije"
 #~ msgid "The uninstallation has completed with warnings."
 #~ msgstr "Odstranjevanje namestitve je bilo zaključeno z opozorili."
 #~ msgid "Repository"
-#~ msgstr "Skladišče"
+#~ msgstr "Odložišče"
 #~ msgid "Installation cancelled"
 #~ msgstr "Namestitev je bila preklicana"
 #~ msgid "Some of the required extensions were not found"
