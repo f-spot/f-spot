@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: f-spot master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-09-14 02:04+0200\n"
-"PO-Revision-Date: 2010-09-14 02:03+0200\n"
+"POT-Creation-Date: 2010-11-22 02:04+0100\n"
+"PO-Revision-Date: 2010-11-22 02:00+0100\n"
 "Last-Translator: Gabor Kelemen <kelemeng at gnome dot hu>\n"
 "Language-Team: Hungarian <gnome at fsf dot hu>\n"
 "MIME-Version: 1.0\n"
@@ -17,6 +17,300 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms:  nplurals=2; plural=(n != 1);\n"
 "X-Generator: KBabel 1.11.4\n"
+
+#. ../src/Clients/MainApp/FSpot.addin.xml
+#. ../src/Extensions/Editors/FSpot.Editors.Blackout/Resources/BlackoutEditor.addin.xml
+#: ../data/addin-xml-strings.cs:10
+msgid "BlackoutEditor"
+msgstr "Kitakarás"
+
+#: ../data/addin-xml-strings.cs:11
+msgid "Blacks out an area of the image."
+msgstr "Kitakarja a kép egy részét."
+
+#: ../data/addin-xml-strings.cs:12 ../data/addin-xml-strings.cs:17
+#: ../data/addin-xml-strings.cs:22 ../data/addin-xml-strings.cs:27
+#: ../data/addin-xml-strings.cs:32
+msgid "Editors"
+msgstr "Szerkesztők"
+
+#. ../src/Extensions/Editors/FSpot.Editors.BW/Resources/BWEditor.addin.xml
+#: ../data/addin-xml-strings.cs:15
+msgid "BWEditor"
+msgstr "Fekete-fehér"
+
+#: ../data/addin-xml-strings.cs:16
+msgid "Convert to B/W with control. Require Mono 2.2."
+msgstr "Fekete-fehérré konvertálás vezérléssel. A Mono 2.2-t igényli."
+
+#. ../src/Extensions/Editors/FSpot.Editors.Flip/Resources/FlipEditor.addin.xml
+#: ../data/addin-xml-strings.cs:20
+msgid "FlipEditor"
+msgstr "Tükrözés"
+
+#: ../data/addin-xml-strings.cs:21
+msgid "Flips the image horizontally."
+msgstr "A képet vízszintesen tükrözi"
+
+#. ../src/Extensions/Editors/FSpot.Editors.Pixelate/Resources/PixelateEditor.addin.xml
+#: ../data/addin-xml-strings.cs:25
+msgid "PixelateEditor"
+msgstr "Pixelesítés"
+
+#: ../data/addin-xml-strings.cs:26
+msgid "Pixelates an area of the image."
+msgstr "A kép egy részét pixelesíti."
+
+#. ../src/Extensions/Editors/FSpot.Editors.Resize/Resources/ResizeEditor.addin.xml
+#: ../data/addin-xml-strings.cs:30
+msgid "ResizeEditor"
+msgstr "Átméretezés"
+
+#: ../data/addin-xml-strings.cs:31
+msgid "Resize the image"
+msgstr "A kép átméretezése"
+
+#. ../src/Extensions/Exporters/FSpot.Exporters.CD/Resources/CDExport.addin.xml
+#: ../data/addin-xml-strings.cs:35
+msgid "CD Export"
+msgstr "Exportálás CD-re"
+
+#: ../data/addin-xml-strings.cs:36
+msgid "This extension allows you to burn your photos to CD."
+msgstr "Fényképek CD-re írása."
+
+#: ../data/addin-xml-strings.cs:37 ../data/addin-xml-strings.cs:42
+#: ../data/addin-xml-strings.cs:47 ../data/addin-xml-strings.cs:52
+#: ../data/addin-xml-strings.cs:57 ../data/addin-xml-strings.cs:62
+#: ../data/addin-xml-strings.cs:67 ../data/addin-xml-strings.cs:72
+#: ../data/addin-xml-strings.cs:77
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/Resources/flickr_export.ui.h:6
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/Resources/gallery_export_dialog.ui.h:5
+#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/Resources/google_export_dialog.ui.h:5
+#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/Resources/smugmug_export_dialog.ui.h:5
+#: ../src/Extensions/Exporters/FSpot.Exporters.Tabblo/Resources/ui/TabbloExport.ui.h:5
+msgid "Export"
+msgstr "Exportálás"
+
+#. ../src/Extensions/Exporters/FSpot.Exporters.Facebook/Resources/FacebookExport.addin.xml
+#: ../data/addin-xml-strings.cs:40
+msgid "FacebookExport"
+msgstr "Facebook exportálás"
+
+#: ../data/addin-xml-strings.cs:41
+msgid "Export pictures to facebook"
+msgstr "Képek exportálása a Facebookra"
+
+#. ../src/Extensions/Exporters/FSpot.Exporters.Flickr/Resources/FlickrExport.addin.xml
+#: ../data/addin-xml-strings.cs:45
+msgid "Flickr Export"
+msgstr "Flickr exportálás"
+
+#: ../data/addin-xml-strings.cs:46
+msgid "This extension allows you to export your photos to Flickr and 23hq."
+msgstr "Képek exportálása a Flickr-re és 23hq-ra."
+
+#. ../src/Extensions/Exporters/FSpot.Exporters.Folder/Resources/FolderExport.addin.xml
+#: ../data/addin-xml-strings.cs:50
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/Resources/folder_export.ui.h:10
+msgid "Folder Export"
+msgstr "Exportálás mappába"
+
+#: ../data/addin-xml-strings.cs:51
+msgid ""
+"This extension allows you to export your photos to HTML galleries, Original "
+"galleries or just to a folder."
+msgstr ""
+"Képek exportálása HTML galériákba, eredeti galériákba vagy egy mappába."
+
+#. ../src/Extensions/Exporters/FSpot.Exporters.Gallery/Resources/GalleryExport.addin.xml
+#: ../data/addin-xml-strings.cs:55
+msgid "Gallery Export"
+msgstr "Exportálás galériába"
+
+#: ../data/addin-xml-strings.cs:56
+msgid ""
+"This extension allows you to export your photos to PHP Gallery (http://"
+"gallery.menalto.com)."
+msgstr "Képek exportálása PHP Gallery-be (http://gallery.menalto.com)"
+
+#. ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/Resources/PicasaWebExport.addin.xml
+#: ../data/addin-xml-strings.cs:60
+msgid "PicasaWeb Export"
+msgstr "PicasaWeb exportálás"
+
+#: ../data/addin-xml-strings.cs:61
+msgid "This extension allows you to export your photos to PicasaWeb."
+msgstr "Képek exportálása a PicasaWebre."
+
+#. ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/Resources/SmugMugExport.addin.xml
+#: ../data/addin-xml-strings.cs:65
+msgid "SmugMug Export"
+msgstr "SmugMug exportálás"
+
+#: ../data/addin-xml-strings.cs:66
+msgid "This extension allows you to export your photos to SmugMug."
+msgstr "Képek exportálása a SmugMugra."
+
+#. ../src/Extensions/Exporters/FSpot.Exporters.Tabblo/Resources/TabbloExport.addin.xml
+#: ../data/addin-xml-strings.cs:70
+msgid "Tabblo Export"
+msgstr "Tabbloi exportálás"
+
+#: ../data/addin-xml-strings.cs:71
+msgid "This extension allows you to export your photos to Tabblo."
+msgstr "Képek exportálása a Tabblo-ra."
+
+#. ../src/Extensions/Exporters/FSpot.Exporters.Zip/Resources/ZipExport.addin.xml
+#: ../data/addin-xml-strings.cs:75
+msgid "Zip export"
+msgstr "Zip exportálás"
+
+#: ../data/addin-xml-strings.cs:76
+msgid "Simple export to Zip file"
+msgstr "Egyszerű exportálás zip fájlba"
+
+#. ../src/Extensions/Tools/FSpot.Tools.ChangePhotoPath/Resources/ChangePhotoPath.addin.xml
+#: ../data/addin-xml-strings.cs:80
+msgid "ChangePath"
+msgstr "ChangePath"
+
+#: ../data/addin-xml-strings.cs:81
+msgid ""
+"UNSTABLE - Please ensure you have a backup of your photos.db before you test "
+"this extension. This extension will allow you to change the base path to the "
+"your photos. It is very handy if you move your photos from ~/Photos to /"
+"OurPhotos for instance. Just ensure you let SqLite continue to process the "
+"changes for up to a few hours after f-spot reports finished. It will only "
+"change the path to photos which are located under the Photo directory."
+msgstr ""
+"INSTABIL – Ezen kiterjesztés tesztelése előtt győződjön meg róla, hogy "
+"rendelkezik biztonsági mentéssel a photos.db fájlról. Ez a kiterjesztés "
+"lehetővé teszi a fényképek elérési útjának módosítását. Ez akkor hasznos, ha "
+"például a képeket a ~/Fényképek könyvtárból a ~/Sajátképeink könyvtárba "
+"helyezi át. Egyszerűen csak hagyja, hogy a Sqlite folytassa a változások "
+"feldolgozását pár óráig az F-Spot jelentések befejezése után. Ez csak a "
+"Fényképek könyvtár alatti képek útvonalát módosítja."
+
+#: ../data/addin-xml-strings.cs:82 ../data/addin-xml-strings.cs:87
+#: ../data/addin-xml-strings.cs:92 ../data/addin-xml-strings.cs:97
+#: ../data/addin-xml-strings.cs:102 ../data/addin-xml-strings.cs:107
+#: ../data/addin-xml-strings.cs:112 ../data/addin-xml-strings.cs:117
+#: ../data/addin-xml-strings.cs:122 ../data/addin-xml-strings.cs:127
+#: ../src/Clients/MainApp/FSpot.addin.xml.h:7
+msgid "Tools"
+msgstr "Eszközök"
+
+#. ../src/Extensions/Tools/FSpot.Tools.DevelopInUFraw/Resources/DevelopInUFRaw.addin.xml
+#: ../data/addin-xml-strings.cs:85
+msgid "DevelopInUFRaw"
+msgstr "Előhívás UFRaw-ban"
+
+#: ../data/addin-xml-strings.cs:86
+msgid ""
+"Develop the image in UFRaw, saves the result as a new version\\n\\nNote: "
+"Require ufraw 0.13 or CVS version newer than 2007-09-06 !!!"
+msgstr ""
+"A kép előhívása az UFRaw-ban, az eredményeket új változatként menti.\\n"
+"\\nMegjegyzés: az ufraw 0.13 vagy 2007-09-06 utáni verzióját igényli!"
+
+#. ../src/Extensions/Tools/FSpot.Tools.LiveWebGallery/Resources/LiveWebGallery.addin.xml
+#: ../data/addin-xml-strings.cs:90
+msgid "LiveWebGallery"
+msgstr "Élő webes galéria"
+
+#: ../data/addin-xml-strings.cs:91
+msgid "Share photos with other people on the same network via Web Browser"
+msgstr ""
+"Képek megosztása ugyanazon hálózaton lévő személyekkel a webböngészőn "
+"keresztül"
+
+#. ../src/Extensions/Tools/FSpot.Tools.MergeDb/Resources/MergeDb.addin.xml
+#: ../data/addin-xml-strings.cs:95
+msgid "MergeDb"
+msgstr "Gyűjteményegyesítés"
+
+#: ../data/addin-xml-strings.cs:96
+msgid "Merge another db back to the main one"
+msgstr "Másik F-Spot gyűjtemény összefésülése az elsődlegessel"
+
+#. ../src/Extensions/Tools/FSpot.Tools.MetaPixel/MetaPixel.addin.xml
+#: ../data/addin-xml-strings.cs:100
+msgid "MetaPixel"
+msgstr "MetaPixel"
+
+#: ../data/addin-xml-strings.cs:101
+msgid ""
+"Create photomosaics using MetaPixel (http://www.complang.tuwien.ac.at/schani/"
+"metapixel/)"
+msgstr ""
+"Fotómozaik készítése a Metapixel (http://www.complang.tuwien.ac.at/schani/"
+"metapixel/) használatával."
+
+#. ../src/Extensions/Tools/FSpot.Tools.PictureTile/PictureTile.addin.xml
+#: ../data/addin-xml-strings.cs:105
+msgid "PictureTile"
+msgstr "PictureTile"
+
+#: ../data/addin-xml-strings.cs:106
+msgid ""
+"Create photo wall using PictureTile by Jamie Zawinski (http://www.jwz.org/"
+"picturetile/)"
+msgstr ""
+"Képfal készítése Jamie Zawinski PictureTile (http://www.jwz.org/"
+"picturetile/) programjával"
+
+#. ../src/Extensions/Tools/FSpot.Tools.RawPlusJpeg/Resources/RawPlusJpeg.addin.xml
+#: ../data/addin-xml-strings.cs:110
+msgid "RawPlusJpeg"
+msgstr "RawPlusJpeg"
+
+#: ../data/addin-xml-strings.cs:111
+msgid "Merge RAW+Jpeg as multiple versions of the same photo"
+msgstr "RAW+Jpeg egyesítése ugyanazon kép több változataként"
+
+#. ../src/Extensions/Tools/FSpot.Tools.RetroactiveRoll/Resources/RetroactiveRoll.addin.xml
+#: ../data/addin-xml-strings.cs:115
+msgid "RetroactiveRoll"
+msgstr "Visszamenőleges körök"
+
+#: ../data/addin-xml-strings.cs:116
+msgid "Retroactively assign old photos to import rolls"
+msgstr "Régi képek importálási körökhöz rendelése visszamenőlegesen"
+
+#. ../src/Extensions/Tools/FSpot.Tools.ScreensaverConfig/Resources/ScreensaverConfig.addin.xml
+#: ../data/addin-xml-strings.cs:120
+#: ../src/Extensions/Tools/FSpot.Tools.ScreensaverConfig/Resources/ScreensaverConfigDialog.ui.h:6
+msgid "Screensaver Configuration"
+msgstr "Képernyővédő beállítása"
+
+#: ../data/addin-xml-strings.cs:121
+msgid "Screensaver options"
+msgstr "Képernyővédő beállításai"
+
+#. ../src/Extensions/Tools/FSpot.Tools.SyncCatalog/SyncCatalog.addin.xml
+#: ../data/addin-xml-strings.cs:125
+msgid "SyncMetaData"
+msgstr "Metaadatok szinkronizálása"
+
+#: ../data/addin-xml-strings.cs:126
+msgid "Sync MetaData information of all catalog with Photos"
+msgstr ""
+"Az összes fényképeket tartalmazó gyűjtemény metaadat-információinak "
+"szinkronizálása"
+
+#. ../src/Extensions/Transitions/FSpot.Transitions.Cover/Resources/CoverTransition.addin.xml
+#: ../data/addin-xml-strings.cs:130
+msgid "Cover Transition"
+msgstr "Fedőátmenet"
+
+#: ../data/addin-xml-strings.cs:131
+msgid "A Slideshow transition that covers images"
+msgstr "Képeket lefedő diavetítés-átmenet"
+
+#: ../data/addin-xml-strings.cs:132
+msgid "Transitions"
+msgstr "Átmenetek"
 
 #: ../data/desktop-files/f-spot.desktop.in.in.h:1
 #: ../data/desktop-files/f-spot-import.desktop.in.in.h:1
@@ -285,20 +579,16 @@ msgid "Rem_ove Tag"
 msgstr "Cí_mke törlése"
 
 #: ../src/Clients/MainApp/FSpot.addin.xml.h:5
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:425
+#: ../src/Clients/MainApp/FSpot/SingleView.cs:458
 #: ../src/Clients/MainApp/ui/main_window.ui.h:16
 msgid "Rotate _Left"
 msgstr "Forgatás b_alra"
 
 #: ../src/Clients/MainApp/FSpot.addin.xml.h:6
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:426
+#: ../src/Clients/MainApp/FSpot/SingleView.cs:459
 #: ../src/Clients/MainApp/ui/main_window.ui.h:17
 msgid "Rotate _Right"
 msgstr "Forgatás j_obbra"
-
-#: ../src/Clients/MainApp/FSpot.addin.xml.h:7
-msgid "Tools"
-msgstr "Eszközök"
 
 #: ../src/Clients/MainApp/FSpot.addin.xml.h:8
 #: ../src/Clients/MainApp/ui/main_window.ui.h:41
@@ -310,12 +600,12 @@ msgstr "_Törlés a lemezről"
 msgid "_Remove From Catalog"
 msgstr "Eltávolítás a _katalógusból"
 
-#: ../src/Clients/MainApp/FSpot/App.cs:293
+#: ../src/Clients/MainApp/FSpot/App.cs:320
 #, csharp-format
 msgid "No photos matching {0} found"
 msgstr "Nem találhatóak a következőre illeszkedő fényképek: {0}"
 
-#: ../src/Clients/MainApp/FSpot/App.cs:294
+#: ../src/Clients/MainApp/FSpot/App.cs:321
 #, csharp-format
 msgid ""
 "The tag \"{0}\" is not applied to any photos. Try adding\n"
@@ -326,11 +616,11 @@ msgstr ""
 "hozzáadni a címkét néhány fényképhez, vagy válasszon másik címkét az\n"
 "F-Spot beállításablakában."
 
-#: ../src/Clients/MainApp/FSpot/App.cs:298
+#: ../src/Clients/MainApp/FSpot/App.cs:325
 msgid "Search returned no results"
 msgstr "A keresés nem adott vissza eredményeket"
 
-#: ../src/Clients/MainApp/FSpot/App.cs:299
+#: ../src/Clients/MainApp/FSpot/App.cs:326
 msgid ""
 "The tag F-Spot is looking for does not exist. Try\n"
 "selecting a different tag in the F-Spot preference\n"
@@ -339,11 +629,11 @@ msgstr ""
 "Az F-Spot által keresett címke nem létezik. Próbáljon\n"
 "másik címkét választani az F-Spot beállításablakában."
 
-#: ../src/Clients/MainApp/FSpot.Database/Updater.cs:727
+#: ../src/Clients/MainApp/FSpot.Database/Updater.cs:761
 msgid "Updating F-Spot Database"
 msgstr "Az F-Spot adatbázisának frissítése"
 
-#: ../src/Clients/MainApp/FSpot.Database/Updater.cs:728
+#: ../src/Clients/MainApp/FSpot.Database/Updater.cs:762
 msgid ""
 "Please wait while your F-Spot gallery's database is updated. This may take "
 "some time."
@@ -351,275 +641,266 @@ msgstr ""
 "Várjon, amíg az F-Spot galéria-adatbázisa frissítésre kerül. Ez eltarthat "
 "egy ideig."
 
-#: ../src/Clients/MainApp/FSpot.Editors/AutoStretchEditor.cs:17
+#: ../src/Clients/MainApp/FSpot.Editors/AutoStretchEditor.cs:37
 msgid "Auto Color"
 msgstr "Automatikus szín"
 
-#: ../src/Clients/MainApp/FSpot.Editors/ColorEditor.cs:41
+#: ../src/Clients/MainApp/FSpot.Editors/ColorEditor.cs:61
 msgid "Adjust Colors"
 msgstr "Színek módosítása"
 
-#: ../src/Clients/MainApp/FSpot.Editors/ColorEditor.cs:44
+#: ../src/Clients/MainApp/FSpot.Editors/ColorEditor.cs:64
 msgid "Adjust"
 msgstr "Módosítás"
 
-#: ../src/Clients/MainApp/FSpot.Editors/CropEditor.cs:36
+#: ../src/Clients/MainApp/FSpot.Editors/CropEditor.cs:56
 msgid "4 x 3 (Book)"
 msgstr "4 x 3 (könyv)"
 
-#: ../src/Clients/MainApp/FSpot.Editors/CropEditor.cs:37
+#: ../src/Clients/MainApp/FSpot.Editors/CropEditor.cs:57
 msgid "4 x 6 (Postcard)"
 msgstr "4 × 6 (képeslap)"
 
-#: ../src/Clients/MainApp/FSpot.Editors/CropEditor.cs:38
+#: ../src/Clients/MainApp/FSpot.Editors/CropEditor.cs:58
 msgid "5 x 7 (L, 2L)"
 msgstr "5 x 7 (L, 2L)"
 
-#: ../src/Clients/MainApp/FSpot.Editors/CropEditor.cs:39
+#: ../src/Clients/MainApp/FSpot.Editors/CropEditor.cs:59
 msgid "8 x 10"
 msgstr "8 × 10"
 
-#: ../src/Clients/MainApp/FSpot.Editors/CropEditor.cs:40
+#: ../src/Clients/MainApp/FSpot.Editors/CropEditor.cs:60
 msgid "Square"
 msgstr "Négyzet"
 
-#: ../src/Clients/MainApp/FSpot.Editors/CropEditor.cs:43
+#: ../src/Clients/MainApp/FSpot.Editors/CropEditor.cs:63
 msgid "Crop"
 msgstr "Levágás"
 
-#: ../src/Clients/MainApp/FSpot.Editors/CropEditor.cs:74
+#: ../src/Clients/MainApp/FSpot.Editors/CropEditor.cs:94
 msgid "Select the area that needs cropping."
 msgstr "Válasszon egy területet a levágáshoz."
 
-#: ../src/Clients/MainApp/FSpot.Editors/CropEditor.cs:99
+#: ../src/Clients/MainApp/FSpot.Editors/CropEditor.cs:119
 msgid "No Constraint"
 msgstr "Nincs megszorítás"
 
-#: ../src/Clients/MainApp/FSpot.Editors/CropEditor.cs:100
+#: ../src/Clients/MainApp/FSpot.Editors/CropEditor.cs:120
 msgid "Same as photo"
 msgstr "Ugyanaz, mint a fénykép"
 
-#: ../src/Clients/MainApp/FSpot.Editors/CropEditor.cs:105
+#: ../src/Clients/MainApp/FSpot.Editors/CropEditor.cs:125
 msgid "Custom Ratios..."
 msgstr "Egyéni arányok…"
 
-#: ../src/Clients/MainApp/FSpot.Editors/DesaturateEditor.cs:17
+#: ../src/Clients/MainApp/FSpot.Editors/DesaturateEditor.cs:37
 msgid "Desaturate"
 msgstr "Telítetlenítés"
 
-#: ../src/Clients/MainApp/FSpot.Editors/RedEyeEditor.cs:19
+#: ../src/Clients/MainApp/FSpot.Editors/RedEyeEditor.cs:41
 msgid "Red-eye Reduction"
 msgstr "Vörösszem-csökkentés"
 
-#: ../src/Clients/MainApp/FSpot.Editors/RedEyeEditor.cs:21
+#: ../src/Clients/MainApp/FSpot.Editors/RedEyeEditor.cs:43
 msgid "Fix!"
 msgstr "Javítás!"
 
-#: ../src/Clients/MainApp/FSpot.Editors/RedEyeEditor.cs:25
+#: ../src/Clients/MainApp/FSpot.Editors/RedEyeEditor.cs:47
 msgid "Select the eyes you wish to fix."
 msgstr "Válassza ki a javítandó szemeket."
 
-#: ../src/Clients/MainApp/FSpot.Editors/SepiaEditor.cs:17
+#: ../src/Clients/MainApp/FSpot.Editors/SepiaEditor.cs:37
 msgid "Sepia Tone"
 msgstr "Tintaárnyalat"
 
-#: ../src/Clients/MainApp/FSpot.Editors/SoftFocusEditor.cs:32
+#: ../src/Clients/MainApp/FSpot.Editors/SoftFocusEditor.cs:51
 msgid "Soft Focus"
 msgstr "Lágy fókusz"
 
-#: ../src/Clients/MainApp/FSpot.Editors/TiltEditor.cs:30
+#: ../src/Clients/MainApp/FSpot.Editors/TiltEditor.cs:49
 msgid "Straighten"
 msgstr "Kiegyenesítés"
 
-#: ../src/Clients/MainApp/FSpot/FullScreenView.cs:60
+#: ../src/Clients/MainApp/FSpot/FullScreenView.cs:82
 msgid "Hide"
 msgstr "Elrejtés"
 
-#: ../src/Clients/MainApp/FSpot/FullScreenView.cs:62
+#: ../src/Clients/MainApp/FSpot/FullScreenView.cs:84
 msgid "Hide toolbar"
 msgstr "Eszköztár elrejtése"
 
-#: ../src/Clients/MainApp/FSpot/FullScreenView.cs:68
+#: ../src/Clients/MainApp/FSpot/FullScreenView.cs:90
 msgid "Info"
 msgstr "Információk"
 
-#: ../src/Clients/MainApp/FSpot/FullScreenView.cs:70
+#: ../src/Clients/MainApp/FSpot/FullScreenView.cs:92
 msgid "Image information"
 msgstr "Képinformációk"
 
-#: ../src/Clients/MainApp/FSpot/FullScreenView.cs:75
+#: ../src/Clients/MainApp/FSpot/FullScreenView.cs:97
 msgid "Exit fullscreen"
 msgstr "Kilépés a teljes képernyőből"
 
-#: ../src/Clients/MainApp/FSpot/FullScreenView.cs:83
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:318
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:89
+#: ../src/Clients/MainApp/FSpot/FullScreenView.cs:105
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:341
+#: ../src/Clients/MainApp/FSpot/SingleView.cs:122
 msgid "Slideshow"
 msgstr "Diavetítés"
 
-#: ../src/Clients/MainApp/FSpot/FullScreenView.cs:84
+#: ../src/Clients/MainApp/FSpot/FullScreenView.cs:106
 msgid "Start slideshow"
 msgstr "Diavetítés indítása"
 
-#: ../src/Clients/MainApp/FSpot/FullScreenView.cs:130
+#: ../src/Clients/MainApp/FSpot/FullScreenView.cs:152
 msgid "Slide transition:"
 msgstr "Diaátmenet:"
 
-#: ../src/Clients/MainApp/FSpot/GroupSelector.cs:59
-#: ../src/Clients/MainApp/FSpot/GroupSelector.cs:60
+#: ../src/Clients/MainApp/FSpot/GroupSelector.cs:90
+#: ../src/Clients/MainApp/FSpot/GroupSelector.cs:91
 msgid "More dates"
 msgstr "További dátumok"
 
-#: ../src/Clients/MainApp/FSpot/GroupSelector.cs:62
-#: ../src/Clients/MainApp/FSpot/GroupSelector.cs:63
+#: ../src/Clients/MainApp/FSpot/GroupSelector.cs:93
+#: ../src/Clients/MainApp/FSpot/GroupSelector.cs:94
 msgid "More"
 msgstr "További"
 
-#: ../src/Clients/MainApp/FSpot/GroupSelector.cs:523
+#: ../src/Clients/MainApp/FSpot/GroupSelector.cs:554
 #: ../src/Clients/MainApp/ui/main_window.ui.h:34
 msgid "_Clear Date Range"
 msgstr "Dátumtartomány _törlése"
 
-#: ../src/Clients/MainApp/FSpot.Import/ImportController.cs:477
-#: ../src/Clients/MainApp/FSpot.Import/ImportController.cs:479
-#: ../src/Clients/MainApp/FSpot.Import/MetadataImporter.cs:51
+#: ../src/Clients/MainApp/FSpot.Import/ImportController.cs:510
+#: ../src/Clients/MainApp/FSpot.Import/ImportController.cs:512
+#: ../src/Clients/MainApp/FSpot.Import/MetadataImporter.cs:80
 msgid "Imported Tags"
 msgstr "Importált címkék"
 
-#: ../src/Clients/MainApp/FSpot/ItemAction.cs:80
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:285
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:72
+#: ../src/Clients/MainApp/FSpot/ItemAction.cs:102
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:308
+#: ../src/Clients/MainApp/FSpot/SingleView.cs:105
 msgid "Rotate Left"
 msgstr "Forgatás balra"
 
-#: ../src/Clients/MainApp/FSpot/ItemAction.cs:81
+#: ../src/Clients/MainApp/FSpot/ItemAction.cs:103
 msgid "Rotate picture left"
 msgstr "Kép forgatása balra"
 
-#: ../src/Clients/MainApp/FSpot/ItemAction.cs:92
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:289
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:77
+#: ../src/Clients/MainApp/FSpot/ItemAction.cs:114
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:312
+#: ../src/Clients/MainApp/FSpot/SingleView.cs:110
 msgid "Rotate Right"
 msgstr "Forgatás jobbra"
 
-#: ../src/Clients/MainApp/FSpot/ItemAction.cs:93
+#: ../src/Clients/MainApp/FSpot/ItemAction.cs:115
 msgid "Rotate picture right"
 msgstr "Kép forgatása jobbra"
 
-#: ../src/Clients/MainApp/FSpot/ItemAction.cs:103
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:905
+#: ../src/Clients/MainApp/FSpot/ItemAction.cs:125
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:936
 msgid "Next"
 msgstr "Következő"
 
-#: ../src/Clients/MainApp/FSpot/ItemAction.cs:104
+#: ../src/Clients/MainApp/FSpot/ItemAction.cs:126
 msgid "Next picture"
 msgstr "Következő kép"
 
-#: ../src/Clients/MainApp/FSpot/ItemAction.cs:124
+#: ../src/Clients/MainApp/FSpot/ItemAction.cs:146
 msgid "Previous"
 msgstr "Előző"
 
-#: ../src/Clients/MainApp/FSpot/ItemAction.cs:125
+#: ../src/Clients/MainApp/FSpot/ItemAction.cs:147
 msgid "Previous picture"
 msgstr "Előző kép"
 
-#: ../src/Clients/MainApp/FSpot.Jobs/SyncMetadataJob.cs:75
-#, csharp-format
-msgid ""
-"Metadata of file {0} may be corrupt, refusing to write to it, falling back "
-"to XMP sidecar."
-msgstr ""
-"A fájl ({0}) metaadatai sérültek lehetnek, az írása megtagadva, visszatérés "
-"az XMP megoldáshoz."
-
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:278
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:193
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:301
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:229
 #: ../src/Clients/MainApp/ui/import.ui.h:3
 msgid "Import"
 msgstr "Importálás"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:280
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:303
 msgid "Import new images"
 msgstr "Új képek importálása"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:296
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:319
 #: ../src/Clients/MainApp/ui/main_window.ui.h:3
 msgid "Browse"
 msgstr "Tallózás"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:300
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:323
 msgid "Browse many photos simultaneously"
 msgstr "Több fénykép párhuzamos böngészése"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:304
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:327
 msgid "Edit Image"
 msgstr "Kép szerkesztése"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:308
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:331
 msgid "View and edit a photo"
 msgstr "Fénykép megjelenítése és szerkesztése"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:313
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:84
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:336
+#: ../src/Clients/MainApp/FSpot/SingleView.cs:117
 msgid "Fullscreen"
 msgstr "Teljes képernyő"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:315
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:86
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:338
+#: ../src/Clients/MainApp/FSpot/SingleView.cs:119
 msgid "View photos fullscreen"
 msgstr "Képek megjelenítése teljes képernyőn"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:320
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:91
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:343
+#: ../src/Clients/MainApp/FSpot/SingleView.cs:124
 msgid "View photos in a slideshow"
 msgstr "Fényképek megjelenítése diavetítésként"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:335
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:358
 msgid "Previous photo"
 msgstr "Előző fénykép"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:340
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:363
 msgid "Next photo"
 msgstr "Következő fénykép"
 
 #. Don't care otherwise, Tags sounds reasonable
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:353
-#: ../src/Clients/MainApp/FSpot.Widgets/Sidebar.cs:57
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:902
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:1074
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:1114
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:376
+#: ../src/Clients/MainApp/FSpot.Widgets/Sidebar.cs:75
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:933
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:1105
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:1145
 msgid "Tags"
 msgstr "Címkék"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:417
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:440
 msgid "Show _Find Bar"
 msgstr "Keresősáv _megjelenítése"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:420
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:443
 msgid "Hide _Find Bar"
 msgstr "K_eresősáv elrejtése"
 
 #. Note for translators: This indicates the current photo is photo {0} of {1} out of photos
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:649
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/AdjustTimeDialog.cs:134
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ProgressDialog.cs:90
-#: ../src/Extensions/Exporters/FSpot.Exporters.CD/FSpot.Exporters.CD/CDExport.cs:117
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:358
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:209
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryExport.cs:187
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:672
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/AdjustTimeDialog.cs:154
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/ProgressDialog.cs:111
+#: ../src/Extensions/Exporters/FSpot.Exporters.CD/FSpot.Exporters.CD/CDExport.cs:134
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:389
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:240
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryExport.cs:220
 #, csharp-format
 msgid "{0} of {1}"
 msgstr "{0}/{1}"
 
 #. Translators, The singular case will never happen here.
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:1723
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:1746
 #, csharp-format
 msgid "Merge the selected tag"
 msgid_plural "Merge the {0} selected tags?"
 msgstr[0] "Összefésüli a kijelölt címkét?"
 msgstr[1] "Összefésüli a kijelölt {0} címkét?"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:1750
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:1773
 msgid ""
 "This operation will merge the selected tags and any sub-tags into a single "
 "tag."
@@ -627,78 +908,78 @@ msgstr ""
 "Ez a művelet egy kivételével az összes kiválasztott címkét és alcímkét "
 "egyetlen címkébe fésüli össze."
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:1752
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:1775
 msgid "_Merge Tags"
 msgstr "_Címkék összefésülése"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:1957
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:1980
 #, csharp-format
 msgid "{0} Photo out of {1}"
 msgid_plural "{0} Photos out of {1}"
 msgstr[0] "{0}/{1} fénykép"
 msgstr[1] "{0}/{1} fénykép"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:1959
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:467
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:1982
+#: ../src/Clients/MainApp/FSpot/SingleView.cs:500
 #, csharp-format
 msgid "{0} Photo"
 msgid_plural "{0} Photos"
 msgstr[0] "{0} fénykép"
 msgstr[1] "{0} fénykép"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:1962
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:1985
 #, csharp-format
 msgid " ({0} selected)"
 msgid_plural " ({0} selected)"
 msgstr[0] " ({0} kiválasztva)"
 msgstr[1] " ({0} kiválasztva)"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2043
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2066
 msgid "_Ok"
 msgstr "_OK"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2044
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2067
 msgid "Error Deleting Picture"
 msgstr "Hiba a kép törlése közben"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2049
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2072
 #, csharp-format
 msgid "No permission to delete the file:{1}{0}"
 msgstr "Nincs jogosultsága a következő fájl törléséhez: {1}{0}"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2053
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2076
 #, csharp-format
 msgid "An error of type {0} occurred while deleting the file:{2}{1}"
 msgstr "{0} típusú hiba történt a következő fájl törlése közben: {2}{1}"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2085
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2108
 #, csharp-format
 msgid "Delete the selected photo permanently?"
 msgid_plural "Delete the {0} selected photos permanently?"
 msgstr[0] "Véglegesen törli a kijelölt fényképet?"
 msgstr[1] "Véglegesen törli a kijelölt {0} fényképet?"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2089
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2112
 msgid "This deletes all versions of the selected photo from your drive."
 msgid_plural ""
 "This deletes all versions of the selected photos from your drive."
 msgstr[0] "Ez a kijelölt fénykép összes verzióját törli a merevlemezéről."
 msgstr[1] "Ez a kijelölt fényképek összes verzióját törli a merevlemezéről."
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2092
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2115
 msgid "_Delete photo"
 msgid_plural "_Delete photos"
 msgstr[0] "_Fénykép törlése"
 msgstr[1] "_Fénykép törlése"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2128
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2151
 #, csharp-format
 msgid "Remove the selected photo from F-Spot?"
 msgid_plural "Remove the {0} selected photos from F-Spot?"
 msgstr[0] "Eltávolítja a kijelölt fényképet az F-Spotból?"
 msgstr[1] "Eltávolítja a kijelölt {0} fényképet az F-Spotból?"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2133
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2156
 msgid ""
 "If you remove photos from the F-Spot catalog all tag information will be "
 "lost. The photos remain on your computer and can be imported into F-Spot "
@@ -708,29 +989,29 @@ msgstr ""
 "elvész. A fényképek megmaradnak a számítógépén és később újra importálhatóak "
 "lesznek az F-Spotba."
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2134
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2157
 msgid "_Remove from Catalog"
 msgstr "_Eltávolítás a katalógusból"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2208
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2231
 #, csharp-format
 msgid "Delete tag \"{0}\"?"
 msgstr "Törli a(z) „{0}” címkét?"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2210
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2233
 #, csharp-format
 msgid "Delete the {0} selected tags?"
 msgstr "Törli a(z) {0} kijelölt címkét?"
 
 # fixme: string surgery alert!
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2215
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2238
 msgid "photo"
 msgid_plural "photos"
 msgstr[0] "fényképpel"
 msgstr[1] "fényképpel"
 
 # fixme: string surgery alert!
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2217
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2240
 #, csharp-format
 msgid "If you delete this tag, the association with {0} {1} will be lost."
 msgid_plural ""
@@ -738,18 +1019,18 @@ msgid_plural ""
 msgstr[0] "Ha törli a címkét, akkor annak kapcsolata elvész {0} {1}."
 msgstr[1] "Ha törli a címkét, akkor annak kapcsolata elvész {0} {1}."
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2222
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2245
 msgid "_Delete tag"
 msgid_plural "_Delete tags"
 msgstr[0] "_Címke törlése"
 msgstr[1] "_Címkék törlése"
 
 #. A Category is not empty. Can not delete it.
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2236
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2259
 msgid "Tag is not empty"
 msgstr "A címke nem üres"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2237
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2260
 #, csharp-format
 msgid ""
 "Can not delete tags that have tags within them.  Please delete tags under "
@@ -758,39 +1039,39 @@ msgstr ""
 "Nem lehet címkéket tartalmazó címkéket törölni. Először törölje a(z) „{0}” "
 "alatti címkéket"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2686
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2709
 msgid "Rotate selected photo left"
 msgid_plural "Rotate selected photos left"
 msgstr[0] "A kijelölt fénykép forgatása balra"
 msgstr[1] "A kijelölt fényképek forgatása balra"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2699
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2722
 msgid "Rotate selected photo right"
 msgid_plural "Rotate selected photos right"
 msgstr[0] "A kijelölt fénykép forgatása jobbra"
 msgstr[1] "A kijelölt fénykép forgatása jobbra"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2710
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2733
 #, csharp-format
 msgid "Find _Selected Tag"
 msgid_plural "Find _Selected Tags"
 msgstr[0] "Kijelölt _címke keresése"
 msgstr[1] "Kijelölt _címkék keresése"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2714
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2737
 #, csharp-format
 msgid "Find Selected Tag _With"
 msgid_plural "Find Selected Tags _With"
 msgstr[0] "Kijelölt címke _keresése ezzel"
 msgstr[1] "Kijelölt címkék _keresése ezzel"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2755
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2778
 msgid "Create New Version?"
 msgid_plural "Create New Versions?"
 msgstr[0] "Létrehoz egy új verziót?"
 msgstr[1] "Létrehoz új verziókat?"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2757
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2780
 #, csharp-format
 msgid ""
 "Before launching {1}, should F-Spot create a new version of the selected "
@@ -805,112 +1086,112 @@ msgstr[1] ""
 "A(z) {1} indítása előtt a F-Spot létrehozzon-e új változatokat a kijelölt "
 "fényképekből az eredetik megőrzése érdekében?"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2779
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2802
 msgid "XCF version"
 msgstr "XCF verzió"
 
 # fixme techblabla
 #. Note for translators: Reparented is a picture becoming a version of another one
-#: ../src/Clients/MainApp/FSpot/Photo.cs:406
+#: ../src/Clients/MainApp/FSpot/Photo.cs:426
 msgid "Reparented"
 msgstr "Örökbe adva"
 
-#: ../src/Clients/MainApp/FSpot/Photo.cs:423
+#: ../src/Clients/MainApp/FSpot/Photo.cs:443
 #, csharp-format
 msgid "Modified"
 msgid_plural "Modified ({0})"
 msgstr[0] "Módosított"
 msgstr[1] "Módosított ({0})"
 
-#: ../src/Clients/MainApp/FSpot/Photo.cs:446
+#: ../src/Clients/MainApp/FSpot/Photo.cs:466
 #, csharp-format
 msgid "Modified in {1}"
 msgstr "Módosítva ekkor: {1}"
 
-#: ../src/Clients/MainApp/FSpot/Photo.cs:446
+#: ../src/Clients/MainApp/FSpot/Photo.cs:466
 #, csharp-format
 msgid "Modified in {1} ({0})"
 msgstr "Módosítva ekkor: {1} ({0})"
 
-#: ../src/Clients/MainApp/FSpot/PhotoStore.cs:180
+#: ../src/Clients/MainApp/FSpot/PhotoStore.cs:203
 #: ../src/Clients/MainApp/ui/mail_dialog.ui.h:17
 msgid "Original"
 msgstr "Eredeti"
 
-#: ../src/Clients/MainApp/FSpot/PhotoView.cs:337
+#: ../src/Clients/MainApp/FSpot/PhotoView.cs:359
 msgid "Description:"
 msgstr "Leírás:"
 
-#: ../src/Clients/MainApp/FSpot/Preferences.cs:158
+#: ../src/Clients/MainApp/FSpot/Preferences.cs:191
 msgid "Photos"
 msgstr "Fényképek"
 
-#: ../src/Clients/MainApp/FSpot/PrintOperation.cs:34
+#: ../src/Clients/MainApp/FSpot/PrintOperation.cs:54
 msgid "Image Settings"
 msgstr "Képbeállítások"
 
-#: ../src/Clients/MainApp/FSpot/QueryWidget.cs:59
+#: ../src/Clients/MainApp/FSpot/QueryWidget.cs:84
 msgid "Find: "
 msgstr "Keresés: "
 
-#: ../src/Clients/MainApp/FSpot/QueryWidget.cs:64
+#: ../src/Clients/MainApp/FSpot/QueryWidget.cs:89
 msgid "Untagged photos"
 msgstr "Címkézetlen fényképek"
 
-#: ../src/Clients/MainApp/FSpot/QueryWidget.cs:72
+#: ../src/Clients/MainApp/FSpot/QueryWidget.cs:97
 msgid "Rated photos"
 msgstr "Értékelt fényképek"
 
 #. Note for translators: 'Import roll' is no command, it means 'Roll that has been imported'
-#: ../src/Clients/MainApp/FSpot/QueryWidget.cs:81
+#: ../src/Clients/MainApp/FSpot/QueryWidget.cs:106
 msgid "Import roll"
 msgstr "Importálási kör"
 
-#: ../src/Clients/MainApp/FSpot/QueryWidget.cs:104
+#: ../src/Clients/MainApp/FSpot/QueryWidget.cs:129
 msgid "Clear search"
 msgstr "Keresés törlése"
 
-#: ../src/Clients/MainApp/FSpot/QueryWidget.cs:111
+#: ../src/Clients/MainApp/FSpot/QueryWidget.cs:136
 msgid "Refresh search"
 msgstr "Keresés frissítése"
 
-#: ../src/Clients/MainApp/FSpot/QueryWidget.cs:114
+#: ../src/Clients/MainApp/FSpot/QueryWidget.cs:139
 msgid "No matching photos found"
 msgstr "Nem találhatók illeszkedő fényképek"
 
-#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:75
+#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:102
 msgid "Unable to rotate this type of photo"
 msgstr "Nem lehet forgatni ezt a fényképtípust"
 
-#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:94
+#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:118
 msgid "Unable to rotate readonly file"
 msgstr "Nem lehet forgatni az írásvédett fájlt"
 
-#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:157
+#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:182
 msgid "Rotating photos"
 msgstr "Fényképek forgatása"
 
-#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:168
+#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:193
 #, csharp-format
 msgid "Rotating photo \"{0}\""
 msgstr "„{0}” fénykép forgatása"
 
-#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:181
+#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:206
 msgid "Directory not found"
 msgstr "A könyvtár nem található"
 
-#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:183
+#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:208
 msgid "File not found"
 msgstr "A fájl nem található"
 
-#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:201
+#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:226
 #, csharp-format
 msgid "Unable to rotate photo"
 msgid_plural "Unable to rotate {0} photos"
 msgstr[0] "Nem lehet forgatni a fényképet"
 msgstr[1] "Nem lehet forgatni {0} fényképet"
 
-#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:203
+#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:228
 #, csharp-format
 msgid ""
 "The photo could not be rotated because it is on a read only file system or "
@@ -927,240 +1208,240 @@ msgstr[1] ""
 "adathordozón, például CD-ROM-on vannak. Ellenőrizze a jogosultságokat és "
 "próbálja újra."
 
-#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:230
+#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:255
 #, csharp-format
 msgid "Received error \"{0}\" while attempting to rotate {1}"
 msgstr "„{0}” hiba következett be {1} forgatására tett kísérlet közben"
 
-#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:235
+#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:260
 msgid "Error while rotating photo."
 msgstr "Hiba a fénykép forgatása közben."
 
-#: ../src/Clients/MainApp/FSpot/SendEmail.cs:212
+#: ../src/Clients/MainApp/FSpot/SendEmail.cs:236
 msgid "Preparing email"
 msgstr "E-mail előkészítése"
 
-#: ../src/Clients/MainApp/FSpot/SendEmail.cs:256
+#: ../src/Clients/MainApp/FSpot/SendEmail.cs:280
 #, csharp-format
 msgid "Exporting picture \"{0}\""
 msgstr "„{0}” kép exportálása"
 
-#: ../src/Clients/MainApp/FSpot/SendEmail.cs:275
+#: ../src/Clients/MainApp/FSpot/SendEmail.cs:299
 msgid "Error processing image"
 msgstr "Hiba a kép feldolgozásakor"
 
-#: ../src/Clients/MainApp/FSpot/SendEmail.cs:276
+#: ../src/Clients/MainApp/FSpot/SendEmail.cs:300
 #, csharp-format
 msgid "An error occured while processing \"{0}\": {1}"
 msgstr "Hiba történt a(z) „{0}” feldolgozásakor: {1}"
 
 #. Send the mail :)
-#: ../src/Clients/MainApp/FSpot/SendEmail.cs:289
+#: ../src/Clients/MainApp/FSpot/SendEmail.cs:313
 msgid "My Photos"
 msgstr "Fényképeim"
 
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:74
+#: ../src/Clients/MainApp/FSpot/SingleView.cs:107
 msgid "Rotate photo left"
 msgstr "Fénykép forgatása balra"
 
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:79
+#: ../src/Clients/MainApp/FSpot/SingleView.cs:112
 msgid "Rotate photo right"
 msgstr "Fénykép forgatása jobbra"
 
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:116
+#: ../src/Clients/MainApp/FSpot/SingleView.cs:149
 msgid "Folder"
 msgstr "Mappa"
 
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:341
+#: ../src/Clients/MainApp/FSpot/SingleView.cs:374
 msgid "Open"
 msgstr "Megnyitás"
 
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:344
+#: ../src/Clients/MainApp/FSpot/SingleView.cs:377
 msgid "Select Folder"
 msgstr "Mappa kiválasztása"
 
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:428
+#: ../src/Clients/MainApp/FSpot/SingleView.cs:461
 msgid "Set as Background"
 msgstr "Beállítás háttérként"
 
-#: ../src/Clients/MainApp/FSpot/TagQueryWidget.cs:35
+#: ../src/Clients/MainApp/FSpot/TagQueryWidget.cs:66
 #, csharp-format
 msgid "Include Photos Tagged \"{0}\""
 msgstr "„{0}” címkéjű fényképek felvétele"
 
-#: ../src/Clients/MainApp/FSpot/TagQueryWidget.cs:40
+#: ../src/Clients/MainApp/FSpot/TagQueryWidget.cs:71
 #, csharp-format
 msgid "Exclude Photos Tagged \"{0}\""
 msgstr "„{0}” címkéjű fényképek kihagyása"
 
-#: ../src/Clients/MainApp/FSpot/TagQueryWidget.cs:45
+#: ../src/Clients/MainApp/FSpot/TagQueryWidget.cs:76
 msgid "Remove From Search"
 msgstr "Eltávolítás a keresésből"
 
-#: ../src/Clients/MainApp/FSpot/TagQueryWidget.cs:89
+#: ../src/Clients/MainApp/FSpot/TagQueryWidget.cs:120
 #, csharp-format
 msgid "Find _With"
 msgid_plural "Find _With"
 msgstr[0] "Keresés _ezzel"
 msgstr[1] "Keresés _ezzel"
 
-#: ../src/Clients/MainApp/FSpot/TagQueryWidget.cs:115
+#: ../src/Clients/MainApp/FSpot/TagQueryWidget.cs:146
 msgid "All"
 msgstr "Összes"
 
-#: ../src/Clients/MainApp/FSpot/TagQueryWidget.cs:150
-#: ../src/Clients/MainApp/FSpot/Term.cs:587
+#: ../src/Clients/MainApp/FSpot/TagQueryWidget.cs:181
+#: ../src/Clients/MainApp/FSpot/Term.cs:612
 #, csharp-format
 msgid "Not {0}"
 msgstr "Nem {0}"
 
-#: ../src/Clients/MainApp/FSpot/TagQueryWidget.cs:274
+#: ../src/Clients/MainApp/FSpot/TagQueryWidget.cs:305
 msgid "Drag tags here to search for them"
 msgstr "Húzza ide a keresendő címkéket"
 
-#: ../src/Clients/MainApp/FSpot/TagSelectionWidget.cs:498
+#: ../src/Clients/MainApp/FSpot/TagSelectionWidget.cs:520
 msgid "Error renaming tag"
 msgstr "Hiba a címke átnevezése közben"
 
-#: ../src/Clients/MainApp/FSpot/TagSelectionWidget.cs:499
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditTagDialog.cs:78
-#: ../src/Clients/MainApp/TagCommands.cs:117
+#: ../src/Clients/MainApp/FSpot/TagSelectionWidget.cs:521
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditTagDialog.cs:94
+#: ../src/Clients/MainApp/TagCommands.cs:137
 msgid "This name is already in use"
 msgstr "Ez a név már használatban van"
 
-#: ../src/Clients/MainApp/FSpot/TagStore.cs:208
+#: ../src/Clients/MainApp/FSpot/TagStore.cs:239
 msgid "Favorites"
 msgstr "Kedvencek"
 
-#: ../src/Clients/MainApp/FSpot/TagStore.cs:213
+#: ../src/Clients/MainApp/FSpot/TagStore.cs:244
 msgid "Hidden"
 msgstr "Rejtett"
 
-#: ../src/Clients/MainApp/FSpot/TagStore.cs:221
+#: ../src/Clients/MainApp/FSpot/TagStore.cs:252
 msgid "People"
 msgstr "Emberek"
 
-#: ../src/Clients/MainApp/FSpot/TagStore.cs:226
+#: ../src/Clients/MainApp/FSpot/TagStore.cs:257
 msgid "Places"
 msgstr "Helyek"
 
-#: ../src/Clients/MainApp/FSpot/TagStore.cs:231
+#: ../src/Clients/MainApp/FSpot/TagStore.cs:262
 msgid "Events"
 msgstr "Események"
 
 #. The label for the root category is used in new and edit tag dialogs
-#: ../src/Clients/MainApp/FSpot/TagStore.cs:244
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:345
+#: ../src/Clients/MainApp/FSpot/TagStore.cs:275
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:438
 msgid "(None)"
 msgstr "(Nincs)"
 
-#: ../src/Clients/MainApp/FSpot/Term.cs:299
+#: ../src/Clients/MainApp/FSpot/Term.cs:324
 msgid " and "
 msgstr " és "
 
 #. operators.Add (Catalog.GetString (" && "));
-#: ../src/Clients/MainApp/FSpot/Term.cs:301
+#: ../src/Clients/MainApp/FSpot/Term.cs:326
 msgid ", "
 msgstr ", "
 
-#: ../src/Clients/MainApp/FSpot/Term.cs:357
+#: ../src/Clients/MainApp/FSpot/Term.cs:382
 msgid " or "
 msgstr " vagy "
 
 #. OPS The operators we support, case insensitive
 #. private static string op_str = "(?'Ops' or | and |, | \\s+ )";
-#: ../src/Clients/MainApp/FSpot/Term.cs:381
+#: ../src/Clients/MainApp/FSpot/Term.cs:406
 #: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/DateRangeDialog.ui.h:7
-#: ../src/Clients/MainApp/FSpot.Widgets/FindBar.cs:179
-#: ../src/Clients/MainApp/FSpot.Widgets/FindBar.cs:534
+#: ../src/Clients/MainApp/FSpot.Widgets/FindBar.cs:202
+#: ../src/Clients/MainApp/FSpot.Widgets/FindBar.cs:557
 msgid "or"
 msgstr "vagy"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/AboutDialog.cs:104
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/AboutDialog.cs:122
 msgid "Photo management for GNOME"
 msgstr "Fényképkezelő a GNOME-hoz"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/AboutDialog.cs:105
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/AboutDialog.cs:123
 msgid "Copyright © 2003-2010 Novell Inc."
 msgstr "Copyright © 2003-2010 Novell Inc."
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/AboutDialog.cs:129
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/AboutDialog.cs:147
 msgid "translator-credits"
 msgstr ""
 "Kelemen Gábor <kelemeng at gnome dot hu>\n"
 "Kéménczy Kálmán <kkemenczy at novell dot com>"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/AboutDialog.cs:134
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/AboutDialog.cs:152
 msgid "F-Spot Website"
 msgstr "F-Spot honlap"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/AdjustTimeDialog.cs:117
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/AdjustTimeDialog.cs:137
 #: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:10
 #, csharp-format
 msgid "Shift all photos by {0}"
 msgstr "Minden fénykép eltolása ennyivel: {0}"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/DateRangeDialog.cs:90
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/DateRangeDialog.cs:109
 msgid "Today"
 msgstr "Ma"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/DateRangeDialog.cs:92
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/DateRangeDialog.cs:111
 msgid "Yesterday"
 msgstr "Tegnap"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/DateRangeDialog.cs:94
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/DateRangeDialog.cs:113
 msgid "Last 7 days"
 msgstr "Elmúlt 7 nap"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/DateRangeDialog.cs:96
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/DateRangeDialog.cs:115
 msgid "Last 30 days"
 msgstr "Elmúlt 30 nap"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/DateRangeDialog.cs:98
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/DateRangeDialog.cs:117
 msgid "Last 90 days"
 msgstr "Elmúlt 90 nap"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/DateRangeDialog.cs:100
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/DateRangeDialog.cs:119
 msgid "Last 360 days"
 msgstr "Elmúlt 360 nap"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/DateRangeDialog.cs:102
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/DateRangeDialog.cs:121
 msgid "Current Week (Mon-Sun)"
 msgstr "Jelenlegi hét (hé-va)"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/DateRangeDialog.cs:104
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/DateRangeDialog.cs:123
 msgid "Previous Week (Mon-Sun)"
 msgstr "Előző hét (hé-va)"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/DateRangeDialog.cs:120
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/DateRangeDialog.cs:139
 #: ../src/Extensions/Tools/FSpot.Tools.ScreensaverConfig/Resources/ScreensaverConfigDialog.ui.h:1
 msgid "All Images"
 msgstr "Minden kép"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/DateRangeDialog.cs:122
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/DateRangeDialog.cs:141
 msgid "Customized Range"
 msgstr "Egyéni tartomány"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditExceptionDialog.cs:28
-#: ../src/Clients/MainApp/FSpot.Widgets/Sharpener.cs:74
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditExceptionDialog.cs:50
+#: ../src/Clients/MainApp/FSpot.Widgets/Sharpener.cs:95
 #, csharp-format
 msgid "Received exception \"{0}\". Unable to save photo {1}"
 msgstr "„{0}” kivétel következett be. A(z) {1} kép nem menthető"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditExceptionDialog.cs:41
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditExceptionDialog.cs:63
 msgid "Error editing photo"
 msgstr "Hiba a fénykép szerkesztése közben"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditTagIconDialog.cs:46
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditTagIconDialog.cs:64
 #, csharp-format
 msgid "Edit Icon for Tag {0}"
 msgstr "{0} címke ikonjának szerkesztése"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditTagIconDialog.cs:68
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditTagIconDialog.cs:86
 msgid "Select Photo from file"
 msgstr "Válassza ki fájlból a fényképet"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditTagIconDialog.cs:90
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditTagIconDialog.cs:108
 #, csharp-format
 msgid ""
 "\n"
@@ -1177,33 +1458,33 @@ msgstr ""
 " Címkézzen meg egy fényképet a(z) „{0}” címkével, ezután már\n"
 " felhasználhatja azt ikonként."
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditTagIconDialog.cs:168
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditTagIconDialog.cs:186
 msgid "Unable to load image"
 msgstr "A kép nem tölthető be"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditTagIconDialog.cs:169
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditTagIconDialog.cs:187
 #, csharp-format
 msgid "Unable to load \"{0}\" as icon for the tag"
 msgstr "„{0}” nem tölthető be a címke ikonjaként"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditTagIconDialog.cs:207
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditTagIconDialog.cs:225
 #, csharp-format
 msgid "Photo {0} of {1}"
 msgstr "{0}/{1} fénykép"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:16
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:45
 msgid "Choose Folder..."
 msgstr "Válasszon mappát…"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:129
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:164
 msgid "Choose Import source..."
 msgstr "Válasszon importálási forrást…"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:141
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:176
 msgid "(No Cameras Detected)"
 msgstr "(Nem találhatók fényképezőgépek)"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:176
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:211
 msgid ""
 "Checking this box will remove the imported photos from the camera after the "
 "import finished successfully.\n"
@@ -1218,34 +1499,34 @@ msgstr ""
 "törli azokat a fényképezőgépről. <b>Ezt a beállítást csak saját "
 "felelősségére használja!</b>"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:177
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:212
 msgid "Warning"
 msgstr "Figyelmeztetés"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:295
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:331
 #, csharp-format
 msgid "Importing Photos: {0} of {1}..."
 msgstr "Fényképek importálása: {1}/{0}…"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:319
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:355
 msgid "Importing photos..."
 msgstr "Fényképek exportálása…"
 
 #. TODO: Using a GtkSpinner would be nicer here.
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:326
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:362
 msgid "Searching for photos... (You can already click Import to continue)"
 msgstr ""
 "Fényképek keresése… (a folytatáshoz máris megnyomhatja az Importálás gombot)"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportFailureDialog.cs:36
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportFailureDialog.cs:65
 msgid "Import failures"
 msgstr "Importálási hibák"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportFailureDialog.cs:37
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportFailureDialog.cs:66
 msgid "Some files failed to import"
 msgstr "Egyes fájlok importálása meghiúsult"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportFailureDialog.cs:38
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportFailureDialog.cs:67
 msgid ""
 "Some files could not be imported, they might be corrupt or there might be "
 "something wrong with the storage on which they reside."
@@ -1253,28 +1534,28 @@ msgstr ""
 "Egyes fájlok nem importálhatók, lehet hogy sérültek, vagy a tárolásukra "
 "használt tároló hibásodott meg."
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportFailureDialog.cs:101
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportFailureDialog.cs:130
 msgid "Details"
 msgstr "Részletek"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/PreferenceDialog.cs:59
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/PreferenceDialog.cs:82
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/PreferenceDialog.cs:77
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/PreferenceDialog.cs:100
 msgid "None"
 msgstr "Nincs"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/PreferenceDialog.cs:61
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/PreferenceDialog.cs:79
 msgid "System profile"
 msgstr "Rendszerprofil"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/PreferenceDialog.cs:99
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/PreferenceDialog.cs:117
 msgid "Standard theme"
 msgstr "Szabványos téma"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/RepairDbDialog.cs:22
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/RepairDbDialog.cs:44
 msgid "Error loading database."
 msgstr "Hiba az adatbázis betöltése közben."
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/RepairDbDialog.cs:23
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/RepairDbDialog.cs:45
 #, csharp-format
 msgid ""
 "F-Spot encountered an error while loading the photo database. The old "
@@ -1284,19 +1565,19 @@ msgstr ""
 "adatbázis áthelyezésre került ide: {0} és egy új adatbázis került "
 "létrehozásra."
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/SelectionRatioDialog.cs:61
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/SelectionRatioDialog.cs:81
 msgid "Label"
 msgstr "Címke"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/SelectionRatioDialog.cs:65
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/SelectionRatioDialog.cs:85
 msgid "Ratio"
 msgstr "Arány"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ThreadProgressDialog.cs:57
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/ThreadProgressDialog.cs:78
 msgid "Retry"
 msgstr "Újra"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ThreadProgressDialog.cs:59
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/ThreadProgressDialog.cs:80
 #: ../src/Extensions/Tools/FSpot.Tools.MergeDb/Resources/pickfolder_dialog.ui.h:1
 msgid "Skip"
 msgstr "Kihagyás"
@@ -1464,8 +1745,8 @@ msgid "after"
 msgstr "ez után"
 
 #: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:7
-#: ../src/Clients/MainApp/FSpot.Widgets/FindBar.cs:179
-#: ../src/Clients/MainApp/FSpot.Widgets/FindBar.cs:535
+#: ../src/Clients/MainApp/FSpot.Widgets/FindBar.cs:202
+#: ../src/Clients/MainApp/FSpot.Widgets/FindBar.cs:558
 msgid "and"
 msgstr "és"
 
@@ -1549,17 +1830,17 @@ msgstr "Egyéni kiválasztási arányok kezelése"
 msgid "Selection Constraints"
 msgstr "Kiválasztási megszorítások"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/EditorPage.cs:33
-#: ../src/Clients/MainApp/FSpot.Widgets/Sidebar.cs:55
+#: ../src/Clients/MainApp/FSpot.Widgets/EditorPage.cs:55
+#: ../src/Clients/MainApp/FSpot.Widgets/Sidebar.cs:73
 msgid "Edit"
 msgstr "Szerkesztés"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/EditorPage.cs:201
-#: ../src/Extensions/Exporters/FSpot.Exporters.Zip/FSpot.Exporters.Zip/ZipExport.cs:49
+#: ../src/Clients/MainApp/FSpot.Widgets/EditorPage.cs:223
+#: ../src/Extensions/Exporters/FSpot.Exporters.Zip/FSpot.Exporters.Zip/ZipExport.cs:66
 msgid "No selection available"
 msgstr "Nem áll rendelkezésre kijelölés"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/EditorPage.cs:202
+#: ../src/Clients/MainApp/FSpot.Widgets/EditorPage.cs:224
 msgid ""
 "This tool requires an active selection. Please select a region of the photo "
 "and try the operation again"
@@ -1567,13 +1848,13 @@ msgstr ""
 "Ez az eszköz aktív kijelölést igényel. Jelölje ki a fénykép egy területét és "
 "próbálja újra a műveletet."
 
-#: ../src/Clients/MainApp/FSpot.Widgets/EditorPage.cs:220
+#: ../src/Clients/MainApp/FSpot.Widgets/EditorPage.cs:242
 msgid "Error saving adjusted photo"
 msgid_plural "Error saving adjusted photos"
 msgstr[0] "Hiba a módosított fénykép mentése közben"
 msgstr[1] "Hiba a módosított fényképek mentése közben"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/EditorPage.cs:222
+#: ../src/Clients/MainApp/FSpot.Widgets/EditorPage.cs:244
 #, csharp-format
 msgid ""
 "Received exception \"{0}\". Note that you have to develop RAW files into "
@@ -1582,105 +1863,70 @@ msgstr ""
 "„{0}” kivétel történt. Ne feledje, hogy a RAW fájlokat előbb JPEG "
 "formátumúvá kell alakítania a szerkesztéshez."
 
-#: ../src/Clients/MainApp/FSpot.Widgets/Filmstrip.cs:471
+#: ../src/Clients/MainApp/FSpot.Widgets/Filmstrip.cs:495
 msgid "_Horizontal"
 msgstr "Ví_zszintes"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/Filmstrip.cs:475
+#: ../src/Clients/MainApp/FSpot.Widgets/Filmstrip.cs:499
 msgid "_Vertical"
 msgstr "_Függőleges"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/FindBar.cs:60
+#: ../src/Clients/MainApp/FSpot.Widgets/FindBar.cs:83
 msgid "Find:"
 msgstr "Keresés:"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/FolderTreePage.cs:22
+#: ../src/Clients/MainApp/FSpot.Widgets/FolderTreePage.cs:44
 msgid "Folders"
 msgstr "Mappák"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/FolderTreeView.cs:129
+#: ../src/Clients/MainApp/FSpot.Widgets/FolderTreeView.cs:150
 msgid "Filesystem"
 msgstr "Fájlrendszer"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:183
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:302
 msgid "Histogram"
 msgstr "Hisztogram"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:202
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:321
 msgid "Image Information"
 msgstr "Képinformációk"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:213
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:329
+#, csharp-format
+msgid "{0} Photos"
+msgstr "{0} fénykép"
+
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:331
 #: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/Resources/FacebookExport.ui.h:10
 msgid "Name"
 msgstr "Név"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:216
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:343
 msgid "Version"
 msgstr "Verzió"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:219
-msgid "Date"
-msgstr "Dátum"
-
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:222
-#: ../src/Extensions/Exporters/FSpot.Exporters.CD/Resources/CDExport.ui.h:4
-msgid "Size"
-msgstr "Méret"
-
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:225
-msgid "Exposure"
-msgstr "Expozíció"
-
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:229
-msgid "Focal Length"
-msgstr "Fokális hossz"
-
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:232
-msgid "Camera"
-msgstr "Fényképezőgép"
-
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:235
-msgid "File Size"
-msgstr "Fájlméret"
-
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:238
-msgid "Rating"
-msgstr "Értékelés"
-
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:328
-msgid "(wrong format)"
-msgstr "(hibás formátum)"
-
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:354
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:365
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:375
-msgid "(Unknown)"
-msgstr "(Ismeretlen)"
-
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:471
-#: ../src/Clients/MainApp/PhotoVersionMenu.cs:55
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:358
+#: ../src/Clients/MainApp/PhotoVersionMenu.cs:86
 msgid "(No Edits)"
 msgstr "(nincs módosítás)"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:475
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:362
 #, csharp-format
 msgid "(One Edit)"
 msgid_plural "({0} Edits)"
 msgstr[0] "(egy módosítás)"
 msgstr[1] "({0} módosítás)"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:485
-msgid "(File read error)"
-msgstr "(Fájlolvasási hiba)"
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:368
+msgid "Date"
+msgstr "Dátum"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:530
-#, csharp-format
-msgid "{0} Photos"
-msgstr "{0} fénykép"
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:368
+msgid "Show Date"
+msgstr "Dátum megjelenítése"
 
 #. Note for translators: {0} is a date, {1} and {2} are times.
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:550
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:379
 #, csharp-format
 msgid ""
 "On {0} between \n"
@@ -1689,7 +1935,7 @@ msgstr ""
 "{0} napon,\n"
 "{1} és {2} között"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:555
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:384
 #, csharp-format
 msgid ""
 "Between {0} \n"
@@ -1698,129 +1944,177 @@ msgstr ""
 "{0} és {1}\n"
 "között"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:582
-msgid "(At least one File not found)"
-msgstr "(Legalább egy fájl nem található)"
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:390
+#: ../src/Extensions/Exporters/FSpot.Exporters.CD/Resources/CDExport.ui.h:4
+msgid "Size"
+msgstr "Méret"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:699
-msgid "Show Photo Name"
-msgstr "Fotónév megjelenítése"
-
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:708
-msgid "Show Date"
-msgstr "Dátum megjelenítése"
-
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:717
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:390
 msgid "Show Size"
 msgstr "Méret megjelenítése"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:726
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:398
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:448
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:454
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:458
+msgid "(Unknown)"
+msgstr "(Ismeretlen)"
+
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:401
+msgid "Exposure"
+msgstr "Expozíció"
+
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:401
 msgid "Show Exposure"
 msgstr "Expozíció megjelenítése"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:735
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:431
+msgid "flash fired"
+msgstr "Vakuvillanás"
+
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:433
+msgid "flash didn't fire"
+msgstr "Nem volt vakuvillanás"
+
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:443
+msgid "Focal Length"
+msgstr "Fokális hossz"
+
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:443
 msgid "Show Focal Length"
 msgstr "Fokális hossz megjelenítése"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:744
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:453
+msgid "Camera"
+msgstr "Fényképezőgép"
+
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:453
 msgid "Show Camera"
 msgstr "Fényképezőgép megjelenítése"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:753
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:457
+msgid "Creator"
+msgstr "Létrehozó"
+
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:457
+msgid "Show Creator"
+msgstr "Létrehozó megjelenítése"
+
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:461
+msgid "File Size"
+msgstr "Fájlméret"
+
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:461
 msgid "Show File Size"
 msgstr "Fájlméret megjelenítése"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/MetadataDisplay.cs:27
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:469
+msgid "(File read error)"
+msgstr "(Fájlolvasási hiba)"
+
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:477
+msgid "Rating"
+msgstr "Értékelés"
+
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:477
+msgid "Show Rating"
+msgstr "Értékelés megjelenítése"
+
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:481
+msgid "Show Tags"
+msgstr "Címkék megjelenítése"
+
+#: ../src/Clients/MainApp/FSpot.Widgets/MetadataDisplay.cs:46
 msgid "Metadata"
 msgstr "Metaadatok"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/MetadataDisplay.cs:108
+#: ../src/Clients/MainApp/FSpot.Widgets/MetadataDisplay.cs:127
 msgid "Extended Metadata"
 msgstr "Kiterjesztett metaadatok"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/MetadataDisplay.cs:361
+#: ../src/Clients/MainApp/FSpot.Widgets/MetadataDisplay.cs:380
 msgid "No active photo"
 msgstr "Nincs aktív fénykép"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/MetadataDisplay.cs:363
+#: ../src/Clients/MainApp/FSpot.Widgets/MetadataDisplay.cs:382
 #, csharp-format
 msgid "The photo \"{0}\" does not exist"
 msgstr "A(z) „{0}” fénykép nem létezik"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/MetadataDisplay.cs:365
+#: ../src/Clients/MainApp/FSpot.Widgets/MetadataDisplay.cs:384
 msgid "No metadata available"
 msgstr "Nem érhetőek el metaadatok"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/Sharpener.cs:73
+#: ../src/Clients/MainApp/FSpot.Widgets/Sharpener.cs:94
 msgid "Error saving sharpened photo"
 msgstr "Hiba az élesített fénykép mentése közben"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/Sharpener.cs:103
+#: ../src/Clients/MainApp/FSpot.Widgets/Sharpener.cs:124
 msgid "Sharpen"
 msgstr "Élesítés"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/Sharpener.cs:113
+#: ../src/Clients/MainApp/FSpot.Widgets/Sharpener.cs:134
 msgid "Amount:"
 msgstr "Mennyiség:"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/Sharpener.cs:114
+#: ../src/Clients/MainApp/FSpot.Widgets/Sharpener.cs:135
 msgid "Radius:"
 msgstr "Sugár:"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/Sharpener.cs:115
+#: ../src/Clients/MainApp/FSpot.Widgets/Sharpener.cs:136
 msgid "Threshold:"
 msgstr "Küszöb:"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/TagMenu.cs:99
-#: ../src/Clients/MainApp/TagPopup.cs:37
+#: ../src/Clients/MainApp/FSpot.Widgets/TagMenu.cs:132
+#: ../src/Clients/MainApp/TagPopup.cs:61
 msgid "Create New Tag..."
 msgstr "Új címke létrehozása…"
 
 #. Fixme this should really set parent menu
 #. items insensitve
-#: ../src/Clients/MainApp/PhotoTagMenu.cs:63
+#: ../src/Clients/MainApp/PhotoTagMenu.cs:92
 msgid "(No Tags)"
 msgstr "(nincsenek címkék)"
 
-#: ../src/Clients/MainApp/PhotoVersionCommands.cs:58
+#: ../src/Clients/MainApp/PhotoVersionCommands.cs:91
 msgid "Create New Version"
 msgstr "Új verzió létrehozása"
 
-#: ../src/Clients/MainApp/PhotoVersionCommands.cs:59
+#: ../src/Clients/MainApp/PhotoVersionCommands.cs:92
 msgid "Name:"
 msgstr "Név:"
 
-#: ../src/Clients/MainApp/PhotoVersionCommands.cs:63
+#: ../src/Clients/MainApp/PhotoVersionCommands.cs:96
 msgid "Rename Version"
 msgstr "Verzió átnevezése"
 
-#: ../src/Clients/MainApp/PhotoVersionCommands.cs:64
+#: ../src/Clients/MainApp/PhotoVersionCommands.cs:97
 msgid "New name:"
 msgstr "Új név:"
 
-#: ../src/Clients/MainApp/PhotoVersionCommands.cs:124
+#: ../src/Clients/MainApp/PhotoVersionCommands.cs:157
 msgid "Delete"
 msgstr "Törlés"
 
-#: ../src/Clients/MainApp/PhotoVersionCommands.cs:125
+#: ../src/Clients/MainApp/PhotoVersionCommands.cs:158
 #, csharp-format
 msgid "Really delete version \"{0}\"?"
 msgstr "Valóban törli „{0}” verziót?"
 
-#: ../src/Clients/MainApp/PhotoVersionCommands.cs:126
+#: ../src/Clients/MainApp/PhotoVersionCommands.cs:159
 msgid "This removes the version and deletes the corresponding file from disk."
 msgstr "Ez eltávolítja a verziót, és törli a megfelelő fájlt a lemezről."
 
-#: ../src/Clients/MainApp/PhotoVersionCommands.cs:171
+#: ../src/Clients/MainApp/PhotoVersionCommands.cs:204
 msgid "De_tach"
 msgstr "_Leválasztás"
 
-#: ../src/Clients/MainApp/PhotoVersionCommands.cs:172
+#: ../src/Clients/MainApp/PhotoVersionCommands.cs:205
 #, csharp-format
 msgid "Really detach version \"{0}\" from \"{1}\"?"
 msgstr "Valóban leválasztja a(z) „{0}” verziót a következőről: „{1}”?"
 
-#: ../src/Clients/MainApp/PhotoVersionCommands.cs:173
+#: ../src/Clients/MainApp/PhotoVersionCommands.cs:206
 msgid ""
 "This makes the version appear as a separate photo in the library. To undo, "
 "drag the new photo back to its parent."
@@ -1829,18 +2123,18 @@ msgstr ""
 "visszavonáshoz húzza vissza az új képet a szülőjére."
 
 # fixme techblabla
-#: ../src/Clients/MainApp/PhotoVersionCommands.cs:195
+#: ../src/Clients/MainApp/PhotoVersionCommands.cs:228
 msgid "Re_parent"
 msgstr "Örökbe a_dás"
 
-#: ../src/Clients/MainApp/PhotoVersionCommands.cs:196
+#: ../src/Clients/MainApp/PhotoVersionCommands.cs:229
 #, csharp-format
 msgid "Really reparent \"{0}\" as version of \"{1}\"?"
 msgid_plural "Really reparent {2} photos as versions of \"{1}\"?"
 msgstr[0] "Valóban örökbe adja a következőt: „{0}” „{1}” verziójaként?"
 msgstr[1] "Valóban örökbe ad {2} fényképet „{1}” verziójaként?"
 
-#: ../src/Clients/MainApp/PhotoVersionCommands.cs:199
+#: ../src/Clients/MainApp/PhotoVersionCommands.cs:232
 msgid ""
 "This makes the photos appear as a single one in the library. The versions "
 "can be detached using the Photo menu."
@@ -1848,57 +2142,57 @@ msgstr ""
 "Ennek hatására a fotók egyetlen képként jelennek meg a gyűjteményben. A "
 "verziók a Fénykép menü segítségével választhatók le."
 
-#: ../src/Clients/MainApp/PhotoVersionCommands.cs:239
+#: ../src/Clients/MainApp/PhotoVersionCommands.cs:272
 #, csharp-format
 msgid "Received exception \"{0}\"."
 msgstr "„{0}” kivétel érkezett."
 
-#: ../src/Clients/MainApp/TagCommands.cs:167
+#: ../src/Clients/MainApp/TagCommands.cs:187
 msgid "Create New Tag"
 msgstr "Új címke létrehozása"
 
-#: ../src/Clients/MainApp/TagCommands.cs:168
+#: ../src/Clients/MainApp/TagCommands.cs:188
 msgid "Name of New Tag:"
 msgstr "Az új címke neve:"
 
-#: ../src/Clients/MainApp/TagPopup.cs:27
+#: ../src/Clients/MainApp/TagPopup.cs:51
 #, csharp-format
 msgid "Find"
 msgid_plural "Find"
 msgstr[0] "Keresés"
 msgstr[1] "Keresés"
 
-#: ../src/Clients/MainApp/TagPopup.cs:43
+#: ../src/Clients/MainApp/TagPopup.cs:67
 msgid "Edit Tag..."
 msgstr "Címke szerkesztése…"
 
-#: ../src/Clients/MainApp/TagPopup.cs:47
+#: ../src/Clients/MainApp/TagPopup.cs:71
 msgid "Delete Tag"
 msgid_plural "Delete Tags"
 msgstr[0] "Címke törlése"
 msgstr[1] "Címkék törlése"
 
-#: ../src/Clients/MainApp/TagPopup.cs:53
+#: ../src/Clients/MainApp/TagPopup.cs:77
 msgid "Attach Tag to Selection"
 msgid_plural "Attach Tags to Selection"
 msgstr[0] "Címke csatolása a kijelöléshez"
 msgstr[1] "Címke csatolása a kijelöléshez"
 
-#: ../src/Clients/MainApp/TagPopup.cs:57
+#: ../src/Clients/MainApp/TagPopup.cs:81
 msgid "Remove Tag From Selection"
 msgid_plural "Remove Tags From Selection"
 msgstr[0] "Címke eltávolítása a kijelölésről"
 msgstr[1] "Címkék eltávolítása a kijelölésről"
 
-#: ../src/Clients/MainApp/TagPopup.cs:63
+#: ../src/Clients/MainApp/TagPopup.cs:87
 msgid "Merge Tags"
 msgstr "Címkék összefésülése"
 
-#: ../src/Clients/MainApp/ThumbnailCommand.cs:22
+#: ../src/Clients/MainApp/ThumbnailCommand.cs:53
 msgid "Updating Thumbnails"
 msgstr "Bélyegképek frissítése"
 
-#: ../src/Clients/MainApp/ThumbnailCommand.cs:30
+#: ../src/Clients/MainApp/ThumbnailCommand.cs:61
 #, csharp-format
 msgid "Updating picture \"{0}\""
 msgstr "„{0}” kép frissítése"
@@ -2128,8 +2422,8 @@ msgid "T_ags"
 msgstr "_Címkék"
 
 #: ../src/Clients/MainApp/ui/main_window.ui.h:24
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:1085
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:1086
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:1116
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:1117
 msgid "Tags: "
 msgstr "Címkék: "
 
@@ -2182,7 +2476,6 @@ msgid "_Clear Roll Filter"
 msgstr "_Körszűrő törlése"
 
 #: ../src/Clients/MainApp/ui/main_window.ui.h:37
-#: ../src/Extensions/Tools/FSpot.Tools.HashJob/FSpot.Tools.HashJob/HashJob.cs:76
 msgid "_Close"
 msgstr "_Bezárás"
 
@@ -2429,154 +2722,154 @@ msgstr "Beállítások"
 msgid "_Interpolate image on zoom"
 msgstr "Ké_p interpolációja nagyításkor"
 
-#: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:119
+#: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:141
 msgid "Page Setup"
 msgstr "Oldalbeállítás"
 
-#: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:123
-#: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:127
-#: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:133
+#: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:145
+#: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:149
+#: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:155
 #, csharp-format
 msgid "Paper Size: {0} x {1} mm"
 msgstr "Papírméret: {0} x {1} mm"
 
-#: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:130
+#: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:152
 msgid "Set Page Size and Orientation"
 msgstr "Oldalméret és -tájolás beállítása"
 
-#: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:141
+#: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:163
 msgid "Photos per page"
 msgstr "Fénykép oldalanként"
 
-#: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:151
+#: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:173
 msgid "Repeat"
 msgstr "Ismétlés"
 
-#: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:152
+#: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:174
 msgid "Print cut marks"
 msgstr "Levágási jelek nyomtatása"
 
-#: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:158
+#: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:180
 msgid "Photos layout"
 msgstr "Fényképek elrendezése"
 
-#: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:160
+#: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:182
 msgid "Full Page (no margin)"
 msgstr "Teljes oldal (nincs margó)"
 
 #. Note for translators: "Zoom" is a Fit Mode
-#: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:163
+#: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:185
 msgid "Zoom"
 msgstr "Nagyítás"
 
-#: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:164
+#: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:186
 msgid "Fill"
 msgstr "Kitöltés"
 
-#: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:165
+#: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:187
 msgid "Scaled"
 msgstr "Kifeszített"
 
-#: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:170
+#: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:192
 msgid "White borders"
 msgstr "Fehér szegélyek"
 
-#: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:176
+#: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:198
 msgid "Custom Text"
 msgstr "Egyéni szöveg"
 
-#: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:180
+#: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:202
 msgid "Photos infos"
 msgstr "Fénykép-információk"
 
-#: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:182
+#: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:204
 msgid "Print file name"
 msgstr "Fájlnév nyomtatása"
 
-#: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:183
+#: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:205
 msgid "Print photo date"
 msgstr "Fénykép dátumának nyomtatása"
 
-#: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:184
+#: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:206
 msgid "Print photo time"
 msgstr "Fénykép idejének nyomtatása"
 
-#: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:185
+#: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:207
 msgid "Print photo tags"
 msgstr "Fénykép címkéinek nyomtatása"
 
-#: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:186
+#: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:208
 msgid "Print photo comment"
 msgstr "Fénykép megjegyzésének nyomtatása"
 
-#: ../src/Core/FSpot.Gui/FSpot.Widgets/OpenWithMenu.cs:72
+#: ../src/Core/FSpot.Gui/FSpot.Widgets/OpenWithMenu.cs:88
 msgid "No applications available"
 msgstr "Nem állnak rendelkezésre alkalmazások"
 
-#: ../src/Extensions/Editors/FSpot.Editors.Blackout/FSpot.Addins.Editors/BlackoutEditor.cs:18
+#: ../src/Extensions/Editors/FSpot.Editors.Blackout/FSpot.Addins.Editors/BlackoutEditor.cs:38
 msgid "Blackout"
 msgstr "Kitakarás"
 
-#: ../src/Extensions/Editors/FSpot.Editors.Blackout/FSpot.Addins.Editors/BlackoutEditor.cs:26
+#: ../src/Extensions/Editors/FSpot.Editors.Blackout/FSpot.Addins.Editors/BlackoutEditor.cs:46
 msgid "Select the area that you want blacked out."
 msgstr "Válassza ki a kitakarandó területet."
 
-#: ../src/Extensions/Editors/FSpot.Editors.BW/FSpot.Addins.Editors/BWEditor.cs:23
+#: ../src/Extensions/Editors/FSpot.Editors.BW/FSpot.Addins.Editors/BWEditor.cs:41
 msgid "Convert to B/W"
 msgstr "Fekete-fehérré konvertálás"
 
-#: ../src/Extensions/Editors/FSpot.Editors.BW/FSpot.Addins.Editors/BWEditor.cs:26
+#: ../src/Extensions/Editors/FSpot.Editors.BW/FSpot.Addins.Editors/BWEditor.cs:44
 msgid "Apply"
 msgstr "Alkalmaz"
 
-#: ../src/Extensions/Editors/FSpot.Editors.Flip/FSpot.Addins.Editors/FlipEditor.cs:17
+#: ../src/Extensions/Editors/FSpot.Editors.Flip/FSpot.Addins.Editors/FlipEditor.cs:37
 msgid "Flip"
 msgstr "Tükrözés"
 
-#: ../src/Extensions/Editors/FSpot.Editors.Pixelate/FSpot.Addins.Editors/PixelateEditor.cs:18
+#: ../src/Extensions/Editors/FSpot.Editors.Pixelate/FSpot.Addins.Editors/PixelateEditor.cs:40
 msgid "Pixelate"
 msgstr "Pixelesítés"
 
-#: ../src/Extensions/Editors/FSpot.Editors.Pixelate/FSpot.Addins.Editors/PixelateEditor.cs:26
+#: ../src/Extensions/Editors/FSpot.Editors.Pixelate/FSpot.Addins.Editors/PixelateEditor.cs:48
 msgid "Select the area that you want pixelated."
 msgstr "Válassza ki a területet a pixelesítéshez."
 
-#: ../src/Extensions/Editors/FSpot.Editors.Resize/FSpot.Addins.Editors/ResizeEditor.cs:22
+#: ../src/Extensions/Editors/FSpot.Editors.Resize/FSpot.Addins.Editors/ResizeEditor.cs:42
 msgid "Resize"
 msgstr "Átméretezés"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.CD/FSpot.Exporters.CD/CDExport.cs:62
+#: ../src/Extensions/Exporters/FSpot.Exporters.CD/FSpot.Exporters.CD/CDExport.cs:79
 msgid "Transferring Pictures"
 msgstr "Képek átvitele"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.CD/FSpot.Exporters.CD/CDExport.cs:115
+#: ../src/Extensions/Exporters/FSpot.Exporters.CD/FSpot.Exporters.CD/CDExport.cs:132
 #, csharp-format
 msgid "Transferring picture \"{0}\" To CD"
 msgstr "„{0}” kép átvitele CD-re"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.CD/FSpot.Exporters.CD/CDExport.cs:130
-#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:379
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:388
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryExport.cs:212
-#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:261
-#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/FSpot.Exporters.SmugMug/SmugMugExport.cs:229
+#: ../src/Extensions/Exporters/FSpot.Exporters.CD/FSpot.Exporters.CD/CDExport.cs:147
+#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:395
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:419
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryExport.cs:245
+#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:290
+#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/FSpot.Exporters.SmugMug/SmugMugExport.cs:258
 msgid "Done Sending Photos"
 msgstr "Fényképek küldése kész"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.CD/FSpot.Exporters.CD/CDExport.cs:132
+#: ../src/Extensions/Exporters/FSpot.Exporters.CD/FSpot.Exporters.CD/CDExport.cs:149
 msgid "Transfer Complete"
 msgstr "Feltöltés befejezve"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.CD/FSpot.Exporters.CD/CDExport.cs:139
+#: ../src/Extensions/Exporters/FSpot.Exporters.CD/FSpot.Exporters.CD/CDExport.cs:156
 msgid "Error While Transferring"
 msgstr "Átviteli hiba"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.CD/FSpot.Exporters.CD/CDExport.cs:147
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:266
+#: ../src/Extensions/Exporters/FSpot.Exporters.CD/FSpot.Exporters.CD/CDExport.cs:164
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:297
 msgid "Error Transferring"
 msgstr "Átviteli hiba"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.CD/FSpot.Exporters.CD/CDExport.cs:157
+#: ../src/Extensions/Exporters/FSpot.Exporters.CD/FSpot.Exporters.CD/CDExport.cs:174
 msgid "copying..."
 msgstr "másolás…"
 
@@ -2604,11 +2897,11 @@ msgstr "K_orábban ütemezett fájlok tallózása"
 msgid "_Write only these photos to CD"
 msgstr "_Csak ezen fényképek CD-re írása"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:101
+#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:117
 msgid "Waiting for authorization"
 msgstr "Várakozás az engedélyezésre"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:102
+#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:118
 msgid ""
 "F-Spot will now launch your browser so that you can enable the permission "
 "you just selected.\n"
@@ -2622,11 +2915,11 @@ msgstr ""
 "Miután a Facebook visszairányította ehhez az alkalmazáshoz, kattintson az "
 "„OK” gombra."
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:283
+#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:299
 msgid "Too many images to export"
 msgstr "Túl sok exportálandó kép"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:284
+#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:300
 #, csharp-format
 msgid ""
 "Facebook only permits {0} photographs per album.  Please refine your "
@@ -2635,19 +2928,19 @@ msgstr ""
 "A Facebook albumonként csak {0} fényképet engedélyez. Finomítsa a "
 "kiválasztást, és próbálja újra."
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:299
+#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:315
 msgid "Album must have a name"
 msgstr "Az albumnak nevet kell adni"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:300
+#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:316
 msgid "Please name your album or choose an existing album."
 msgstr "Nevezze el az albumát vagy válasszon meglévő albumot."
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:314
+#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:330
 msgid "Creating a new album failed"
 msgstr "Az új album létrehozása meghiúsult"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:315
+#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:331
 #, csharp-format
 msgid ""
 "An error occurred creating a new album.\n"
@@ -2658,53 +2951,53 @@ msgstr ""
 "\n"
 "{0}"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:328
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:483
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryExport.cs:140
-#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:158
-#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/FSpot.Exporters.SmugMug/SmugMugExport.cs:148
+#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:344
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:514
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryExport.cs:173
+#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:187
+#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/FSpot.Exporters.SmugMug/SmugMugExport.cs:177
 msgid "Uploading Pictures"
 msgstr "Képek feltöltése"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:356
-#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:217
-#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/FSpot.Exporters.SmugMug/SmugMugExport.cs:187
+#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:372
+#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:246
+#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/FSpot.Exporters.SmugMug/SmugMugExport.cs:216
 #, csharp-format
 msgid "Uploading picture \"{0}\" ({1} of {2})"
 msgstr "„{0}” kép feltöltése ({1}. / {2})"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:370
+#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:386
 #, csharp-format
 msgid "Error Uploading To Facebook: {0}"
 msgstr "Hiba a Facebookba való feltöltés közben: {0}"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:371
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:379
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:215
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryExport.cs:203
-#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:250
-#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/FSpot.Exporters.SmugMug/SmugMugExport.cs:218
+#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:387
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:410
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:246
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryExport.cs:236
+#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:279
+#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/FSpot.Exporters.SmugMug/SmugMugExport.cs:247
 #: ../src/Extensions/Exporters/FSpot.Exporters.Tabblo/FSpot.Exporters.Tabblo/TabbloExport.cs:321
 msgid "Error"
 msgstr "Hiba"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:381
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:390
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryExport.cs:214
-#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:263
-#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/FSpot.Exporters.SmugMug/SmugMugExport.cs:231
+#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:397
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:421
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryExport.cs:247
+#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:292
+#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/FSpot.Exporters.SmugMug/SmugMugExport.cs:260
 msgid "Upload Complete"
 msgstr "Feltöltés befejezve"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:384
+#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:400
 msgid "Visit F-Spot group on Facebook"
 msgstr "Keresse fel az F-Spot csoportot a Facebookon"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExportDialog.cs:217
+#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExportDialog.cs:231
 msgid "Waiting for authentication"
 msgstr "Várakozás hitelesítésre"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExportDialog.cs:218
+#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExportDialog.cs:232
 msgid ""
 "F-Spot will now launch your browser so that you can log into Facebook.\n"
 "\n"
@@ -2718,15 +3011,15 @@ msgstr ""
 "„OK” gombra. Az F-Spot lehetőség szerint elmenti a munkamenetét a Gnome "
 "kulcstartóra és későbbi Facebook exportálásokkor újra felhasználja."
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExportDialog.cs:223
+#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExportDialog.cs:237
 msgid "Authenticating..."
 msgstr "Hitelesítés…"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExportDialog.cs:233
+#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExportDialog.cs:247
 msgid "Error logging into Facebook"
 msgstr "Hiba a Facebookba való belépés közben"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExportDialog.cs:234
+#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExportDialog.cs:248
 msgid ""
 "There was a problem logging into Facebook.  Check your credentials and try "
 "again."
@@ -2734,37 +3027,37 @@ msgstr ""
 "Hiba történt a Facebookba való bejelentkezés közben. Ellenőrizze a "
 "hitelesítési adatait és próbálja újra."
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExportDialog.cs:243
+#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExportDialog.cs:257
 msgid "Authorizing Session"
 msgstr "Munkamenet felhatalmazása"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExportDialog.cs:252
+#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExportDialog.cs:266
 msgid "Session established, fetching user info..."
 msgstr "Munkamenet létrehozva, felhasználói információk lekérése…"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExportDialog.cs:258
+#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExportDialog.cs:272
 msgid "Session established, fetching friend list..."
 msgstr "Munkamenet létrejött, barátok listájának letöltése…"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExportDialog.cs:268
+#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExportDialog.cs:282
 msgid "Session established, fetching friend details..."
 msgstr "Munkamenet létrejött, barátok részleteinek letöltése…"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExportDialog.cs:280
+#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExportDialog.cs:294
 msgid "Session established, fetching photo albums..."
 msgstr "Munkamenet létrejött, fényképalbumok letöltése…"
 
 #. Note for translators: {0} and {1} are respectively firstname and surname of the user
-#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExportDialog.cs:290
+#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExportDialog.cs:304
 #, csharp-format
 msgid "{0} {1} is logged into Facebook"
 msgstr "{0} {1} bejelentkezett a Facebookba"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExportDialog.cs:299
+#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExportDialog.cs:313
 msgid "Facebook Connection Error"
 msgstr "Facebook kapcsolódási hiba"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExportDialog.cs:300
+#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExportDialog.cs:314
 #, csharp-format
 msgid ""
 "There was an error when downloading your information from Facebook.\n"
@@ -2775,7 +3068,7 @@ msgstr ""
 "\n"
 "A Facebook válasza: {0}"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExportDialog.cs:329
+#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExportDialog.cs:343
 msgid "You are not logged in."
 msgstr "Nincs bejelentkezve."
 
@@ -2835,12 +3128,12 @@ msgstr "Meglévő album használata"
 msgid "Who is this?"
 msgstr "Ki ez?"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:106
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:137
 #: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/Resources/flickr_export.ui.h:5
 msgid "Authorize"
 msgstr "Felhatalmazás"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:112
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:143
 #, csharp-format
 msgid ""
 "Return to this window after you have finished the authorization process on "
@@ -2850,60 +3143,60 @@ msgstr ""
 "történő befejezése után és kattintson az alábbi „Felhatalmazás befejezése” "
 "gombra"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:113
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:144
 msgid "Complete Authorization"
 msgstr "Felhatalmazás befejezése"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:118
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:149
 #, csharp-format
 msgid "Logging into {0}"
 msgstr "Bejelentkezés a következőre: {0}"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:119
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:150
 msgid "Checking credentials..."
 msgstr "Hitelesítési adatok ellenőrzése…"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:126
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:157
 #, csharp-format
 msgid "Welcome {0} you are connected to {1}"
 msgstr "Üdvözlöm {0}, sikeresen csatlakozott a következőre: {1}"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:129
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:160
 #, csharp-format
 msgid "Sign in as a different user"
 msgstr "Jelentkezzen be egy másik felhasználóként"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:134
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:165
 #, csharp-format
 msgid "Used {0} of your allowed {1} monthly quota"
 msgstr "A havi engedélyezett {1} kvótából felhasználva: {0}"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:237
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:306
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:268
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:337
 msgid "Unable to log on"
 msgstr "Nem lehet bejelentkezni"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:326
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:357
 #, csharp-format
 msgid "Waiting for response {0} of {1}"
 msgstr "{0}/{1} válaszra várakozás"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:353
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryExport.cs:183
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:384
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryExport.cs:216
 #, csharp-format
 msgid "Uploading picture \"{0}\""
 msgstr "„{0}” kép feltöltése"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:376
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:407
 #, csharp-format
 msgid "Error Uploading To {0}: {1}"
 msgstr "Hiba a(z) {0} helyre feltöltés közben: {1}"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:463
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:494
 msgid "Unable to log on."
 msgstr "Nem lehet bejelentkezni."
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:464
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:495
 #, csharp-format
 msgid ""
 "F-Spot was unable to log on to {0}.  Make sure you have given the "
@@ -2927,14 +3220,6 @@ msgstr "<b>Stílus</b>"
 #: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/Resources/flickr_export.ui.h:4
 msgid "<b>Viewing permissions</b>"
 msgstr "<b>Jogosultságok megtekintése</b>"
-
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/Resources/flickr_export.ui.h:6
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/Resources/gallery_export_dialog.ui.h:5
-#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/Resources/google_export_dialog.ui.h:5
-#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/Resources/smugmug_export_dialog.ui.h:5
-#: ../src/Extensions/Exporters/FSpot.Exporters.Tabblo/Resources/ui/TabbloExport.ui.h:5
-msgid "Export"
-msgstr "Exportálás"
 
 #: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/Resources/flickr_export.ui.h:7
 msgid "Export tag _hierarchy"
@@ -2995,79 +3280,79 @@ msgstr "Fényképek _megtekintése böngészőben a feltöltés befejezésekor"
 msgid "pixels"
 msgstr "képpontra"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:117
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:148
 msgid "Select Export Folder"
 msgstr "Válassza ki az exportálási mappát"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:169
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:200
 msgid "Building Gallery"
 msgstr "Galéria felépítése"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:206
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:237
 #, csharp-format
 msgid "Exporting \"{0}\"..."
 msgstr "„{0}” exportálása…"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:213
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:244
 #, csharp-format
 msgid "Error Copying \"{0}\" to Gallery:{2}{1}"
 msgstr "Hiba a(z) „{0}” galériába másolásakor: {2}{1}"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:239
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:270
 #, csharp-format
 msgid "Transferring to \"{0}\""
 msgstr "Átvitel a következőre: „{0}”"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:240
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:271
 msgid "Transferring..."
 msgstr "Átvitel…"
 
 #. No need to check result here as if result is not true, an Exception will be thrown before
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:245
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:276
 msgid "Export Complete."
 msgstr "Exportálás kész."
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:247
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:278
 msgid "Exporting Photos Completed."
 msgstr "Fényképek exportálása kész."
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:312
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:343
 msgid "Exporting Photos"
 msgstr "Fényképek exportálása"
 
 #. Note for translators: light as clear, opposite as dark
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:716
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:747
 msgid "Light"
 msgstr "Világos"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:717
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:748
 msgid "Dark"
 msgstr "Sötét"
 
 #. Abbreviation of previous
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:897
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:928
 msgid "Prev"
 msgstr "Előző"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:899
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:1140
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:930
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:1171
 msgid "Index"
 msgstr "Index"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:1009
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:1040
 msgid "Gallery generated by"
 msgstr "A galériát létrehozta:"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:1049
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:1080
 msgid "Show Styles"
 msgstr "Stílusok megjelenítése"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:1050
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:1081
 msgid "Hide Styles"
 msgstr "Stílusok elrejtése"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:1217
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:1350
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:1248
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:1381
 msgid "Page:"
 msgstr "Oldal:"
 
@@ -3099,10 +3384,6 @@ msgstr "Címkék ex_portálása"
 msgid "Export tag _icons"
 msgstr "Címkei_konok exportálása"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/Resources/folder_export.ui.h:10
-msgid "Folder Export"
-msgstr "Exportálás mappába"
-
 #: ../src/Extensions/Exporters/FSpot.Exporters.Folder/Resources/folder_export.ui.h:11
 msgid "G_allery Name:"
 msgstr "G_aléria neve:"
@@ -3119,32 +3400,32 @@ msgstr "_Mappa:"
 msgid "_Save the files only"
 msgstr "_Csak a fájlok mentése"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/AccountDialog.cs:103
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/AccountDialog.cs:132
 msgid "Invalid URL"
 msgstr "Érvénytelen URL"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/AccountDialog.cs:104
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/AccountDialog.cs:133
 msgid "The gallery URL entry does not appear to be a valid URL"
 msgstr "A galéria URL címe nem tűnik érvényesnek"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/AccountDialog.cs:114
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/AccountDialog.cs:141
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/AccountDialog.cs:152
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/AccountDialog.cs:143
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/AccountDialog.cs:170
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/AccountDialog.cs:181
 msgid "Error while connecting to Gallery"
 msgstr "Hiba a galériához való kapcsolódás közben"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/AccountDialog.cs:115
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/AccountDialog.cs:142
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/AccountDialog.cs:153
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/AccountDialog.cs:144
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/AccountDialog.cs:171
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/AccountDialog.cs:182
 #, csharp-format
 msgid "The following error was encountered while attempting to log in: {0}"
 msgstr "A következő hiba történt a bejelentkezési kísérlet közben: {0}"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/AccountDialog.cs:129
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/AccountDialog.cs:158
 msgid "A Gallery with this name already exists"
 msgstr "Már létezik ilyen nevű galéria"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/AccountDialog.cs:130
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/AccountDialog.cs:159
 #, csharp-format
 msgid ""
 "There is already a Gallery with the same name in your registered Galleries. "
@@ -3153,11 +3434,11 @@ msgstr ""
 "Már létezik ilyen nevű galéria a regisztrált galériái között. Válasszon "
 "egyedi nevet."
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/FormClient.cs:295
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/FormClient.cs:326
 msgid "Unhandled exception"
 msgstr "Kezeletlen kivétel történt"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryAccount.cs:53
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryAccount.cs:82
 msgid ""
 "Cannot connect to a Gallery for which the version is unknown.\n"
 "Please check that you have Remote plugin 1.0.8 or later"
@@ -3165,15 +3446,15 @@ msgstr ""
 "Nem lehet csatlakozni az ismeretlen verziószámú galériához.\n"
 "Ellenőrizze, hogy a távoli bővítmény 1.0.8 vagy újabb verzióját használja."
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryAddAlbum.cs:66
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryAddAlbum.cs:95
 msgid "(TopLevel)"
 msgstr "(Felsőszintű)"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryAddAlbum.cs:128
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryAddAlbum.cs:157
 msgid "Invalid Gallery name"
 msgstr "Érvénytelen galérianév"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryAddAlbum.cs:129
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryAddAlbum.cs:158
 msgid ""
 "The gallery name contains invalid characters.\n"
 "Only letters, numbers, - and _ are allowed"
@@ -3181,49 +3462,49 @@ msgstr ""
 "A galérianév érvénytelen karaktereket tartalmaz.\n"
 "Csak betűk, számok, - és _ engedélyezett"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryExport.cs:202
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryExport.cs:235
 #, csharp-format
 msgid "Error uploading picture \"{0}\" to Gallery: {1}"
 msgstr "Hiba a kép („{0}”) ezen galériába való feltöltésekor: {1}"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryExport.cs:230
-#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:279
-#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/FSpot.Exporters.SmugMug/SmugMugExport.cs:247
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryExport.cs:263
+#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:308
+#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/FSpot.Exporters.SmugMug/SmugMugExport.cs:276
 msgid "(No Gallery)"
 msgstr "(Nincs galéria)"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryExport.cs:322
-#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:401
-#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/FSpot.Exporters.SmugMug/SmugMugExport.cs:342
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryExport.cs:355
+#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:430
+#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/FSpot.Exporters.SmugMug/SmugMugExport.cs:371
 msgid "(Not Connected)"
 msgstr "(Nincs kapcsolat)"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryExport.cs:323
-#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:402
-#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/FSpot.Exporters.SmugMug/SmugMugExport.cs:343
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryExport.cs:356
+#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:431
+#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/FSpot.Exporters.SmugMug/SmugMugExport.cs:372
 msgid "(No Albums)"
 msgstr "(Nincsenek albumok)"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryExport.cs:375
-#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:467
-#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/FSpot.Exporters.SmugMug/SmugMugExport.cs:384
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryExport.cs:408
+#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:496
+#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/FSpot.Exporters.SmugMug/SmugMugExport.cs:413
 msgid "No account selected"
 msgstr "Nincs fiók kijelölve"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryRemote.cs:364
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryRemote.cs:395
 msgid "Error reading server response"
 msgstr "Hiba a kiszolgáló válaszának olvasásakor"
 
 #. failed to find the response
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryRemote.cs:376
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryRemote.cs:407
 msgid "Server returned response without Gallery content"
 msgstr "A kiszolgáló galériatartalom nélküli választ adott vissza"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryRemote.cs:713
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryRemote.cs:744
 msgid "Error while creating new album"
 msgstr "Hiba az új album létrehozásakor"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryRemote.cs:714
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryRemote.cs:745
 #, csharp-format
 msgid ""
 "The following error was encountered while attempting to perform the "
@@ -3316,38 +3597,38 @@ msgstr "E_xportálás ebbe az albumba:"
 msgid "_Gallery:"
 msgstr "_Galéria:"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/GoogleAddAlbum.cs:82
+#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/GoogleAddAlbum.cs:111
 msgid "Error while creating Album"
 msgstr "Hiba az album létrehozásakor"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/GoogleAddAlbum.cs:83
+#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/GoogleAddAlbum.cs:112
 #, csharp-format
 msgid ""
 "The following error was encountered while attempting to create an album: {0}"
 msgstr "A következő hiba történt az album létrehozásakor: {0}"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:180
+#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:209
 #, csharp-format
 msgid "{0} Sent"
 msgstr "{0} elküldve"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:182
+#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:211
 #, csharp-format
 msgid "{0} of approx. {1}"
 msgstr "{0}, összesen kb.: {1}"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:248
-#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/FSpot.Exporters.SmugMug/SmugMugExport.cs:216
+#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:277
+#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/FSpot.Exporters.SmugMug/SmugMugExport.cs:245
 #, csharp-format
 msgid "Error Uploading To Gallery: {0}"
 msgstr "Hiba a galériába való feltöltés közben: {0}"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:330
+#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:359
 #, csharp-format
 msgid "Available space: {0}, {1}% used out of {2}"
 msgstr "Elérhető hely: {0}, összesen {2}: {1}% használatban"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:443
+#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:472
 #, csharp-format
 msgid ""
 "The selected album has a limit of {0} pictures,\n"
@@ -3467,7 +3748,7 @@ msgstr "Megbízhatósági hiba"
 msgid "Trust the site's certificate this once"
 msgstr "Ez alkalommal megbízom az oldal tanúsítványában"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Zip/FSpot.Exporters.Zip/ZipExport.cs:50
+#: ../src/Extensions/Exporters/FSpot.Exporters.Zip/FSpot.Exporters.Zip/ZipExport.cs:67
 msgid ""
 "This tool requires an active selection. Please select one or more pictures "
 "and try again"
@@ -3475,15 +3756,15 @@ msgstr ""
 "Ez az eszköz aktív kijelölést igényel. Jelöljön ki legalább egy fényképet és "
 "próbálja újra a műveletet."
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Zip/FSpot.Exporters.Zip/ZipExport.cs:66
+#: ../src/Extensions/Exporters/FSpot.Exporters.Zip/FSpot.Exporters.Zip/ZipExport.cs:83
 msgid "Select export folder"
 msgstr "Válassza ki az exportálási mappát"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Zip/FSpot.Exporters.Zip/ZipExport.cs:104
+#: ../src/Extensions/Exporters/FSpot.Exporters.Zip/FSpot.Exporters.Zip/ZipExport.cs:121
 msgid "Exporting files"
 msgstr "Fájlok exportálása"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Zip/FSpot.Exporters.Zip/ZipExport.cs:110
+#: ../src/Extensions/Exporters/FSpot.Exporters.Zip/FSpot.Exporters.Zip/ZipExport.cs:127
 #, csharp-format
 msgid "Preparing photo \"{0}\""
 msgstr "„{0}” fénykép előkészítése"
@@ -3520,78 +3801,53 @@ msgstr "Az alap útvonal (URI) módosítása erre:"
 msgid "Old base path (URI) was"
 msgstr "A régi alap útvonal (URI):"
 
-#: ../src/Extensions/Tools/FSpot.Tools.DevelopInUFraw/FSpot.Tools.DevelopInUFraw/DevelopInUFRawBatch.cs:22
+#: ../src/Extensions/Tools/FSpot.Tools.DevelopInUFraw/FSpot.Tools.DevelopInUFraw/DevelopInUFRawBatch.cs:51
 msgid "Developing photos"
 msgstr "Fényképek előhívása"
 
-#: ../src/Extensions/Tools/FSpot.Tools.DevelopInUFraw/FSpot.Tools.DevelopInUFraw/DevelopInUFRawBatch.cs:29
+#: ../src/Extensions/Tools/FSpot.Tools.DevelopInUFraw/FSpot.Tools.DevelopInUFraw/DevelopInUFRawBatch.cs:58
 #, csharp-format
 msgid "Developing {0}"
 msgstr "{0} előhívása"
 
-#: ../src/Extensions/Tools/FSpot.Tools.HashJob/FSpot.Tools.HashJob/HashJob.cs:54
-msgid ""
-"In order to detect duplicates on pictures you imported before 0.5.0, F-Spot "
-"needs to analyze your image collection. This is not done by default as it's "
-"time consuming. You can Start or Pause this update process using this dialog."
-msgstr ""
-"A 0.5.0 változat előtt importált képek másodpéldányainak észleléséhez az F-"
-"Spotnak elemeznie kell a képgyűjteményt. Ez időigényessége miatt "
-"alapértelmezésben nem kerül végrehajtásra. Ebben az ablakban elindíthatja "
-"vagy leállíthatja ezt a frissítési folyamatot."
-
-#: ../src/Extensions/Tools/FSpot.Tools.HashJob/FSpot.Tools.HashJob/HashJob.cs:60
-#, csharp-format
-msgid ""
-"You currently have {0} photos needing md5 calculation, and {1} pending jobs"
-msgstr "Jelenleg {0} fénykép vár MD5 számításra és {1} feladat van függőben"
-
-#: ../src/Extensions/Tools/FSpot.Tools.HashJob/FSpot.Tools.HashJob/HashJob.cs:103
-msgid "Processing images..."
-msgstr "Képek feldolgozása…"
-
-#: ../src/Extensions/Tools/FSpot.Tools.HashJob/FSpot.Tools.HashJob/HashJob.cs:109
-msgid "Stopped"
-msgstr "Leállítva"
-
-#: ../src/Extensions/Tools/FSpot.Tools.LiveWebGallery/FSpot.Tools.LiveWebGallery/GalleryRequestHandler.cs:108
+#: ../src/Extensions/Tools/FSpot.Tools.LiveWebGallery/FSpot.Tools.LiveWebGallery/GalleryRequestHandler.cs:128
 msgid "F-Spot Gallery"
 msgstr "F-Spot galéria"
 
-#: ../src/Extensions/Tools/FSpot.Tools.LiveWebGallery/FSpot.Tools.LiveWebGallery/GalleryRequestHandler.cs:109
+#: ../src/Extensions/Tools/FSpot.Tools.LiveWebGallery/FSpot.Tools.LiveWebGallery/GalleryRequestHandler.cs:129
 msgid "The web gallery seems to be offline now"
 msgstr "A webes galéria elérhetetlennek tűnik"
 
-#: ../src/Extensions/Tools/FSpot.Tools.LiveWebGallery/FSpot.Tools.LiveWebGallery/GalleryRequestHandler.cs:110
+#: ../src/Extensions/Tools/FSpot.Tools.LiveWebGallery/FSpot.Tools.LiveWebGallery/GalleryRequestHandler.cs:130
 msgid "Show All"
 msgstr "Összes megjelenítése"
 
-#: ../src/Extensions/Tools/FSpot.Tools.LiveWebGallery/FSpot.Tools.LiveWebGallery/GalleryRequestHandler.cs:120
+#: ../src/Extensions/Tools/FSpot.Tools.LiveWebGallery/FSpot.Tools.LiveWebGallery/GalleryRequestHandler.cs:140
 #, csharp-format
 msgid "{0} photo"
 msgid_plural "{0} photos"
 msgstr[0] "{0} fénykép"
 msgstr[1] "{0} fénykép"
 
-#: ../src/Extensions/Tools/FSpot.Tools.LiveWebGallery/FSpot.Tools.LiveWebGallery/GalleryRequestHandler.cs:162
+#: ../src/Extensions/Tools/FSpot.Tools.LiveWebGallery/FSpot.Tools.LiveWebGallery/GalleryRequestHandler.cs:182
 #: ../src/Extensions/Tools/FSpot.Tools.LiveWebGallery/Resources/ui/LiveWebGallery.ui.h:8
 msgid "Current View"
 msgstr "Jelenlegi nézet"
 
-#: ../src/Extensions/Tools/FSpot.Tools.LiveWebGallery/FSpot.Tools.LiveWebGallery/GalleryRequestHandler.cs:165
+#: ../src/Extensions/Tools/FSpot.Tools.LiveWebGallery/FSpot.Tools.LiveWebGallery/GalleryRequestHandler.cs:185
 msgid "Selected"
 msgstr "Kiválasztva"
 
-#: ../src/Extensions/Tools/FSpot.Tools.LiveWebGallery/FSpot.Tools.LiveWebGallery/LiveWebGalleryDialog.cs:91
+#: ../src/Extensions/Tools/FSpot.Tools.LiveWebGallery/FSpot.Tools.LiveWebGallery/LiveWebGalleryDialog.cs:111
 msgid "none"
 msgstr "nincs"
 
-#: ../src/Extensions/Tools/FSpot.Tools.LiveWebGallery/FSpot.Tools.LiveWebGallery/LiveWebGalleryDialog.cs:94
+#: ../src/Extensions/Tools/FSpot.Tools.LiveWebGallery/FSpot.Tools.LiveWebGallery/LiveWebGalleryDialog.cs:114
 #, csharp-format
 msgid " Gallery: {0},  Photos: {1},  Last client: {3}"
 msgstr " Galéria: {0},  fényképek: {1},  utolsó kliens: {3}"
 
-#: ../src/Extensions/Tools/FSpot.Tools.LiveWebGallery/FSpot.Tools.LiveWebGallery/LiveWebGalleryDialog.cs:158
+#: ../src/Extensions/Tools/FSpot.Tools.LiveWebGallery/FSpot.Tools.LiveWebGallery/LiveWebGalleryDialog.cs:178
 msgid "Gallery is inactive"
 msgstr "A galéria inaktív"
 
@@ -3657,11 +3913,11 @@ msgstr "Megosztás:"
 msgid "Views:"
 msgstr "Nézetek:"
 
-#: ../src/Extensions/Tools/FSpot.Tools.MergeDb/FSpot.Tools.MergeDb/MergeDb.cs:69
+#: ../src/Extensions/Tools/FSpot.Tools.MergeDb/FSpot.Tools.MergeDb/MergeDb.cs:91
 msgid "Error opening the selected file"
 msgstr "Hiba a kijelölt fájl megnyitásakor"
 
-#: ../src/Extensions/Tools/FSpot.Tools.MergeDb/FSpot.Tools.MergeDb/MergeDb.cs:70
+#: ../src/Extensions/Tools/FSpot.Tools.MergeDb/FSpot.Tools.MergeDb/MergeDb.cs:92
 #, csharp-format
 msgid ""
 "The file you selected is not a valid or supported database.\n"
@@ -3672,7 +3928,7 @@ msgstr ""
 "\n"
 "A kivétel: „{0}”."
 
-#: ../src/Extensions/Tools/FSpot.Tools.MergeDb/FSpot.Tools.MergeDb/PickFolderDialog.cs:35
+#: ../src/Extensions/Tools/FSpot.Tools.MergeDb/FSpot.Tools.MergeDb/PickFolderDialog.cs:57
 #, csharp-format
 msgid ""
 "<big>The database refers to files contained in the <b>{0}</b> folder.\n"
@@ -3764,10 +4020,6 @@ msgstr "Képek ezen címkével:"
 #: ../src/Extensions/Tools/FSpot.Tools.ScreensaverConfig/Resources/ScreensaverConfigDialog.ui.h:5
 msgid "Make F-Spot my screensaver"
 msgstr "Az F-Spot legyen a képernyővédő"
-
-#: ../src/Extensions/Tools/FSpot.Tools.ScreensaverConfig/Resources/ScreensaverConfigDialog.ui.h:6
-msgid "Screensaver Configuration"
-msgstr "Képernyővédő beállítása"
 
 #: ../tools/f-spot-screensaver.desktop.in.h:1
 msgid "Display a slideshow from F-Spot"
