@@ -99,7 +99,14 @@ namespace FSpot {
 			int year = endyear - item/12;
 			int month = 12 - (item % 12);
 
-			return new DateTime (year, month, DateTime.DaysInMonth (year, month)).AddDays (1.0).AddMilliseconds (-.1);
+            year = Math.Max(1, year);
+            year = Math.Min(year, 9999);
+            month = Math.Max(1, month);
+            month = Math.Min(month, 12);
+
+            int daysInMonth = DateTime.DaysInMonth(year, month);
+
+			return new DateTime (year, month, daysInMonth).AddDays (1.0).AddMilliseconds (-.1);
 		}
 
 		public override int IndexFromPhoto (IPhoto photo)
