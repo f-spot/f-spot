@@ -62,12 +62,12 @@ namespace FSpot.Exporters.Gallery
 			builder.Autoconnect (this);
 			export_dialog = new Gtk.Dialog (builder.GetRawObject ("gallery_export_dialog"));
 
-			album_optionmenu = new Gtk.OptionMenu ();
+			album_optionmenu = new Gtk.ComboBox ();
 			(album_button.Parent as Gtk.HBox).PackStart (album_optionmenu);
 			(album_button.Parent as Gtk.HBox).ReorderChild (album_optionmenu, 1);
 			album_optionmenu.Show ();
 
-			gallery_optionmenu = new Gtk.OptionMenu ();
+			gallery_optionmenu = new Gtk.ComboBox ();
 			(edit_button.Parent as Gtk.HBox).PackStart (gallery_optionmenu);
 			(edit_button.Parent as Gtk.HBox).ReorderChild (gallery_optionmenu, 1);
 			gallery_optionmenu.Show ();
@@ -127,8 +127,8 @@ namespace FSpot.Exporters.Gallery
 
 		// Widgets
 		[GtkBeans.Builder.Object] Gtk.Dialog export_dialog;
-		Gtk.OptionMenu gallery_optionmenu;
-		Gtk.OptionMenu album_optionmenu;
+		Gtk.ComboBox gallery_optionmenu;
+		Gtk.ComboBox album_optionmenu;
 
 		[GtkBeans.Builder.Object] Gtk.CheckButton browser_check;
 		[GtkBeans.Builder.Object] Gtk.CheckButton scale_check;
@@ -164,7 +164,7 @@ namespace FSpot.Exporters.Gallery
 
 			if (account != null) {
 				//System.Console.WriteLine ("history = {0}", album_optionmenu.History);
-				album = (Album) account.Gallery.Albums [Math.Max (0, album_optionmenu.History)];
+				album = (Album) account.Gallery.Albums [Math.Max (0, album_optionmenu.Active)];
 				photo_index = 0;
 
 				export_dialog.Destroy ();
@@ -254,14 +254,13 @@ namespace FSpot.Exporters.Gallery
 
 		private void PopulateGalleryOptionMenu (GalleryAccountManager manager, GalleryAccount changed_account)
 		{
-			Gtk.Menu menu = new Gtk.Menu ();
 			this.account = changed_account;
 			int pos = -1;
 
 			accounts = manager.GetAccounts ();
 			if (accounts == null || accounts.Count == 0) {
-				Gtk.MenuItem item = new Gtk.MenuItem (Catalog.GetString ("(No Gallery)"));
-				menu.Append (item);
+                gallery_optionmenu.AppendText(Catalog.GetString("(No Gallery)"));
+
 				gallery_optionmenu.Sensitive = false;
 				edit_button.Sensitive = false;
 			} else {
@@ -270,17 +269,14 @@ namespace FSpot.Exporters.Gallery
 					if (account == changed_account)
 						pos = i;
 
-					Gtk.MenuItem item = new Gtk.MenuItem (account.Name);
-					menu.Append (item);
+                    gallery_optionmenu.AppendText(account.Name);
 					i++;
 				}
 				gallery_optionmenu.Sensitive = true;
 				edit_button.Sensitive = true;
 			}
 
-			menu.ShowAll ();
-			gallery_optionmenu.Menu = menu;
-			gallery_optionmenu.SetHistory ((uint)pos);
+            gallery_optionmenu.Active = pos;
 		}
 
 		private void Connect ()
@@ -293,7 +289,7 @@ namespace FSpot.Exporters.Gallery
 			try {
 				if (accounts.Count != 0 && connect) {
 					if (selected == null)
-						account = (GalleryAccount) accounts [gallery_optionmenu.History];
+						account = (GalleryAccount) accounts [gallery_optionmenu.Active];
 					else
 						account = selected;
 
@@ -321,14 +317,14 @@ namespace FSpot.Exporters.Gallery
 		}
 
 		public void HandleAlbumAdded (string title) {
-			GalleryAccount account = (GalleryAccount) accounts [gallery_optionmenu.History];
+			GalleryAccount account = (GalleryAccount) accounts [gallery_optionmenu.Active];
 			PopulateAlbumOptionMenu (account.Gallery);
 
 			// make the newly created album selected
 			ArrayList albums = account.Gallery.Albums;
 			for (int i=0; i < albums.Count; i++) {
 				if (((Album)albums[i]).Title == title) {
-					album_optionmenu.SetHistory((uint)i);
+                    album_optionmenu.Active = i;
 				}
 			}
 		}
@@ -347,16 +343,13 @@ namespace FSpot.Exporters.Gallery
 				}
 			}
 
-			Gtk.Menu menu = new Gtk.Menu ();
-
 			bool disconnected = gallery == null || !account.Connected || albums == null;
 
 			if (disconnected || albums.Count == 0) {
 				string msg = disconnected ? Catalog.GetString ("(Not Connected)")
 					: Catalog.GetString ("(No Albums)");
 
-				Gtk.MenuItem item = new Gtk.MenuItem (msg);
-				menu.Append (item);
+                album_optionmenu.AppendText(msg);
 
 				export_button.Sensitive = false;
 				album_optionmenu.Sensitive = false;
@@ -373,23 +366,15 @@ namespace FSpot.Exporters.Gallery
 					}
 					label_builder.Append (album.Title);
 
-					Gtk.MenuItem item = new Gtk.MenuItem (label_builder.ToString ());
-					((Gtk.Label)item.Child).UseUnderline = false;
-					menu.Append (item);
+                    album_optionmenu.AppendText(label_builder.ToString());
 
-				        AlbumPermission add_permission = album.Perms & AlbumPermission.Add;
-
-					if (add_permission == 0)
-						item.Sensitive = false;
+				    AlbumPermission add_permission = album.Perms & AlbumPermission.Add;
 				}
 
 				export_button.Sensitive = items.Length > 0;
 				album_optionmenu.Sensitive = true;
 				album_button.Sensitive = true;
 			}
-
-			menu.ShowAll ();
-			album_optionmenu.Menu = menu;
 		}
 
 		public void HandleAddGallery (object sender, System.EventArgs args)

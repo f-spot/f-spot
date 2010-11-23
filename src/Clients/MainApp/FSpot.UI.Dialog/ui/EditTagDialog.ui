@@ -66,7 +66,7 @@
               </packing>
             </child>
             <child>
-              <object class="GtkOptionMenu" id="category_option_menu">
+              <object class="GtkComboBox" id="category_option_menu">
                 <property name="width_request">150</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
