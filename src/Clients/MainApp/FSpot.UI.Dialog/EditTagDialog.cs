@@ -28,8 +28,7 @@ namespace FSpot.UI.Dialog
 		[GtkBeans.Builder.Object] Entry tag_name_entry;
 		[GtkBeans.Builder.Object] Label already_in_use_label;
 		[GtkBeans.Builder.Object] Gtk.Image icon_image;
-		[GtkBeans.Builder.Object] OptionMenu category_option_menu;
-
+		[GtkBeans.Builder.Object] Gtk.ComboBox category_option_menu;
 
 		public EditTagDialog (Db db, Tag t, Gtk.Window parent_window) : base ("EditTagDialog.ui", "edit_tag_dialog")
 		{
@@ -60,7 +59,7 @@ namespace FSpot.UI.Dialog
 		}
 
 		public Category TagCategory {
-			get { return categories [category_option_menu.History] as Category;}
+			get { return categories [category_option_menu.Active] as Category;}
 		}
 
 		ArrayList categories;
@@ -140,7 +139,18 @@ namespace FSpot.UI.Dialog
 			categories.Add (root);
 			PopulateCategories (categories, root);
 
-			Menu menu = new Menu ();
+            category_option_menu.Clear();
+
+            CellRendererPixbuf cell2 = new CellRendererPixbuf();
+            category_option_menu.PackStart(cell2, false);
+            category_option_menu.AddAttribute(cell2, "pixbuf", 0);
+
+            CellRendererText cell = new CellRendererText();
+            category_option_menu.PackStart(cell, true);
+            category_option_menu.AddAttribute(cell, "text", 1);
+
+            ListStore store = new ListStore(new[] {typeof (Gdk.Pixbuf), typeof(string)});
+            category_option_menu.Model = store;
 
 			foreach (Category category in categories) {
 				if (t.Category == category)
@@ -148,14 +158,21 @@ namespace FSpot.UI.Dialog
 
 				i++;
 
-				menu.Append (TagMenu.TagMenuItem.IndentedItem (category));
+                string categoryName = category.Name;
+                Gdk.Pixbuf categoryImage = category.Icon;
+
+                store.AppendValues( new object[] {
+                    categoryImage,
+                    categoryName
+                });
 			}
 
 			category_option_menu.Sensitive = true;
 
-			menu.ShowAll ();
-			category_option_menu.Menu = menu;
-			category_option_menu.SetHistory ((uint)history);
+            category_option_menu.Active = history;
+
+ 			//category_option_menu.SetHistory ((uint)history);
+            //category_option_menu.Active = (uint)history;
 		}
 	}
 }

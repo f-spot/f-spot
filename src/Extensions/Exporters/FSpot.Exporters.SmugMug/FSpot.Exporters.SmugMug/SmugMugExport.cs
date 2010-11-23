@@ -38,8 +38,8 @@ namespace FSpot.Exporters.SmugMug {
 			builder = new GtkBeans.Builder (null, "smugmug_export_dialog.ui", null);
 			builder.Autoconnect (this);
 
-            gallery_optionmenu = new Gtk.OptionMenu ();
-            album_optionmenu = new Gtk.OptionMenu ();
+            gallery_optionmenu = Gtk.ComboBox.NewText();
+            album_optionmenu = Gtk.ComboBox.NewText();
 
             (edit_button.Parent as Gtk.HBox).PackStart (gallery_optionmenu);
             (album_button.Parent as Gtk.HBox).PackStart (album_optionmenu);
@@ -101,8 +101,8 @@ namespace FSpot.Exporters.SmugMug {
 
 		// Widgets
 		[GtkBeans.Builder.Object] Gtk.Dialog dialog;
-		Gtk.OptionMenu gallery_optionmenu;
-		Gtk.OptionMenu album_optionmenu;
+		Gtk.ComboBox gallery_optionmenu;
+		Gtk.ComboBox album_optionmenu;
 
 		[GtkBeans.Builder.Object] Gtk.CheckButton browser_check;
 		[GtkBeans.Builder.Object] Gtk.CheckButton scale_check;
@@ -139,7 +139,7 @@ namespace FSpot.Exporters.SmugMug {
 			browser = browser_check.Active;
 
 			if (account != null) {
-				album = (Album) account.SmugMug.GetAlbums() [Math.Max (0, album_optionmenu.History)];
+				album = (Album) account.SmugMug.GetAlbums() [Math.Max (0, album_optionmenu.Active)];
 				photo_index = 0;
 
 				Dialog.Destroy ();
@@ -238,14 +238,13 @@ namespace FSpot.Exporters.SmugMug {
 
 		private void PopulateSmugMugOptionMenu (SmugMugAccountManager manager, SmugMugAccount changed_account)
 		{
-			Gtk.Menu menu = new Gtk.Menu ();
 			this.account = changed_account;
-			int pos = -1;
+			int pos = 0;
 
 			accounts = manager.GetAccounts ();
 			if (accounts == null || accounts.Count == 0) {
-				Gtk.MenuItem item = new Gtk.MenuItem (Mono.Unix.Catalog.GetString ("(No Gallery)"));
-				menu.Append (item);
+                gallery_optionmenu.AppendText (Mono.Unix.Catalog.GetString ("(No Gallery)"));
+
 				gallery_optionmenu.Sensitive = false;
 				edit_button.Sensitive = false;
 			} else {
@@ -254,17 +253,15 @@ namespace FSpot.Exporters.SmugMug {
 					if (account == changed_account)
 						pos = i;
 
-					Gtk.MenuItem item = new Gtk.MenuItem (account.Username);
-					menu.Append (item);
+                    gallery_optionmenu.AppendText(account.Username);
+
 					i++;
 				}
 				gallery_optionmenu.Sensitive = true;
 				edit_button.Sensitive = true;
 			}
 
-			menu.ShowAll ();
-			gallery_optionmenu.Menu = menu;
-			gallery_optionmenu.SetHistory ((uint)pos);
+            gallery_optionmenu.Active = pos;
 		}
 
 		private void Connect ()
@@ -282,7 +279,7 @@ namespace FSpot.Exporters.SmugMug {
 			try {
 				if (accounts.Count != 0 && connect) {
 					if (selected == null)
-						account = (SmugMugAccount) accounts [gallery_optionmenu.History];
+						account = (SmugMugAccount) accounts [gallery_optionmenu.Active];
 					else
 						account = selected;
 
@@ -310,14 +307,14 @@ namespace FSpot.Exporters.SmugMug {
 		}
 
 		public void HandleAlbumAdded (string title) {
-			SmugMugAccount account = (SmugMugAccount) accounts [gallery_optionmenu.History];
+			SmugMugAccount account = (SmugMugAccount) accounts [gallery_optionmenu.Active];
 			PopulateAlbumOptionMenu (account.SmugMug);
 
 			// make the newly created album selected
 			Album[] albums = account.SmugMug.GetAlbums();
 			for (int i=0; i < albums.Length; i++) {
 				if (((Album)albums[i]).Title == title) {
-					album_optionmenu.SetHistory((uint)i);
+                    album_optionmenu.Active = 1;
 				}
 			}
 		}
@@ -334,16 +331,13 @@ namespace FSpot.Exporters.SmugMug {
 				}
 			}
 
-			Gtk.Menu menu = new Gtk.Menu ();
-
 			bool disconnected = smugmug == null || !account.Connected || albums == null;
 
 			if (disconnected || albums.Length == 0) {
 				string msg = disconnected ? Mono.Unix.Catalog.GetString ("(Not Connected)")
 					: Mono.Unix.Catalog.GetString ("(No Albums)");
 
-				Gtk.MenuItem item = new Gtk.MenuItem (msg);
-				menu.Append (item);
+                album_optionmenu.AppendText(msg);
 
 				export_button.Sensitive = false;
 				album_optionmenu.Sensitive = false;
@@ -354,9 +348,7 @@ namespace FSpot.Exporters.SmugMug {
 
 					label_builder.Append (album.Title);
 
-					Gtk.MenuItem item = new Gtk.MenuItem (label_builder.ToString ());
-					((Gtk.Label)item.Child).UseUnderline = false;
-					menu.Append (item);
+                    album_optionmenu.AppendText (label_builder.ToString());
 				}
 
 				export_button.Sensitive = items.Length > 0;
@@ -364,8 +356,7 @@ namespace FSpot.Exporters.SmugMug {
 				album_button.Sensitive = true;
 			}
 
-			menu.ShowAll ();
-			album_optionmenu.Menu = menu;
+			album_optionmenu.Active = 0;
 		}
 
 		public void HandleAddGallery (object sender, System.EventArgs args)

@@ -39,8 +39,8 @@ namespace FSpot.Exporters.PicasaWeb {
 			builder = new GtkBeans.Builder (null, "google_export_dialog.ui", null);
 			builder.Autoconnect (this);
 
-            gallery_optionmenu = new Gtk.OptionMenu ();
-            album_optionmenu = new Gtk.OptionMenu ();
+            gallery_optionmenu = Gtk.ComboBox.NewText();
+            album_optionmenu = Gtk.ComboBox.NewText();
 
             (edit_button.Parent as Gtk.HBox).PackStart (gallery_optionmenu);
             (album_button.Parent as Gtk.HBox).PackStart (album_optionmenu);
@@ -111,8 +111,8 @@ namespace FSpot.Exporters.PicasaWeb {
 
 		// widgets
 		[GtkBeans.Builder.Object] Gtk.Dialog dialog;
-		Gtk.OptionMenu gallery_optionmenu;
-		Gtk.OptionMenu album_optionmenu;
+		Gtk.ComboBox gallery_optionmenu;
+		Gtk.ComboBox album_optionmenu;
 
 		[GtkBeans.Builder.Object] Gtk.Label status_label;
 		[GtkBeans.Builder.Object] Gtk.Label album_status_label;
@@ -149,7 +149,7 @@ namespace FSpot.Exporters.PicasaWeb {
 			export_tag = tag_check.Active;
 
 			if (account != null) {
-				album = (PicasaAlbum) account.Picasa.GetAlbums() [Math.Max (0, album_optionmenu.History)];
+				album = (PicasaAlbum) account.Picasa.GetAlbums() [Math.Max (0, album_optionmenu.Active)];
 				photo_index = 0;
 
 				Dialog.Destroy ();
@@ -270,33 +270,40 @@ namespace FSpot.Exporters.PicasaWeb {
 
 		private void PopulateGoogleOptionMenu (GoogleAccountManager manager, GoogleAccount changed_account)
 		{
-			Gtk.Menu menu = new Gtk.Menu ();
 			this.account = changed_account;
 			int pos = -1;
 
 			accounts = manager.GetAccounts ();
 			if (accounts == null || accounts.Count == 0) {
-				Gtk.MenuItem item = new Gtk.MenuItem (Catalog.GetString ("(No Gallery)"));
-				menu.Append (item);
+
+                if (accounts==null)
+                    Log.Debug("accounts == null");
+                else
+                    Log.Debug("accounts != null");
+
+                Log.DebugFormat("accounts.Count = {0}", accounts.Count);
+
+                gallery_optionmenu.AppendText (Catalog.GetString ("(No Gallery)"));
 				gallery_optionmenu.Sensitive = false;
 				edit_button.Sensitive = false;
+
+                pos = 0;
 			} else {
 				int i = 0;
+                pos = 0;
 				foreach (GoogleAccount account in accounts) {
 					if (account == changed_account)
 						pos = i;
 
-					Gtk.MenuItem item = new Gtk.MenuItem (account.Username);
-					menu.Append (item);
+                    gallery_optionmenu.AppendText (account.Username);
 					i++;
 				}
 				gallery_optionmenu.Sensitive = true;
 				edit_button.Sensitive = true;
 			}
 
-			menu.ShowAll ();
-			gallery_optionmenu.Menu = menu;
-			gallery_optionmenu.SetHistory ((uint)pos);
+            Log.DebugFormat("Setting gallery_optionmenu.Active = {0}", pos);
+            gallery_optionmenu.Active = pos;
 		}
 
 		private void Connect ()
@@ -314,7 +321,7 @@ namespace FSpot.Exporters.PicasaWeb {
 			try {
 				if (accounts.Count != 0 && connect) {
 					if (selected == null)
-						account = (GoogleAccount) accounts [gallery_optionmenu.History];
+						account = (GoogleAccount) accounts [gallery_optionmenu.Active];
 					else
 						account = selected;
 
@@ -369,14 +376,14 @@ namespace FSpot.Exporters.PicasaWeb {
 		}
 
 		public void HandleAlbumAdded (string title) {
-			GoogleAccount account = (GoogleAccount) accounts [gallery_optionmenu.History];
+			GoogleAccount account = (GoogleAccount) accounts [gallery_optionmenu.Active];
 			PopulateAlbumOptionMenu (account.Picasa);
 
 			// make the newly created album selected
 //			PicasaAlbumCollection albums = account.Picasa.GetAlbums();
 			for (int i=0; i < albums.Count; i++) {
 				if (((PicasaAlbum)albums[i]).Title == title) {
-					album_optionmenu.SetHistory((uint)i);
+					album_optionmenu.Active = i;
 				}
 			}
 		}
@@ -393,16 +400,13 @@ namespace FSpot.Exporters.PicasaWeb {
 				}
 			}
 
-			Gtk.Menu menu = new Gtk.Menu ();
-
 			bool disconnected = picasa == null || !account.Connected || albums == null;
 
 			if (disconnected || albums.Count == 0) {
 				string msg = disconnected ? Catalog.GetString ("(Not Connected)")
 					: Catalog.GetString ("(No Albums)");
 
-				Gtk.MenuItem item = new Gtk.MenuItem (msg);
-				menu.Append (item);
+                album_optionmenu.AppendText(msg);
 
 				export_button.Sensitive = false;
 				album_optionmenu.Sensitive = false;
@@ -417,18 +421,13 @@ namespace FSpot.Exporters.PicasaWeb {
 					label_builder.Append (album.Title);
 					label_builder.Append (" (" + album.PicturesCount + ")");
 
-					Gtk.MenuItem item = new Gtk.MenuItem (label_builder.ToString ());
-					((Gtk.Label)item.Child).UseUnderline = false;
-					menu.Append (item);
+                    album_optionmenu.AppendText(label_builder.ToString());
 				}
 
 				export_button.Sensitive = items.Length > 0;
 				album_optionmenu.Sensitive = true;
 				album_button.Sensitive = true;
 			}
-
-			menu.ShowAll ();
-			album_optionmenu.Menu = menu;
 		}
 
 		public void HandleAlbumOptionMenuChanged (object sender, System.EventArgs args)
@@ -436,7 +435,7 @@ namespace FSpot.Exporters.PicasaWeb {
 			if (albums == null || albums.Count == 0)
 				return;
 
-			PicasaAlbum a = albums [album_optionmenu.History];
+			PicasaAlbum a = albums [album_optionmenu.Active];
 			export_button.Sensitive = a.PicturesRemaining >= items.Length;
 			if (album_status_label.Visible = !export_button.Sensitive) {
 				StringBuilder sb = new StringBuilder("<small>");

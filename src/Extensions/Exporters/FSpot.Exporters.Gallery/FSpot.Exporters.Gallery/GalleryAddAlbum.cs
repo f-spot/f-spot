@@ -21,7 +21,7 @@ namespace FSpot.Exporters.Gallery
 	public class GalleryAddAlbum
 	{
 		[GtkBeans.Builder.Object] Gtk.Dialog add_album_dialog;
-		Gtk.OptionMenu album_optionmenu;
+		Gtk.ComboBox album_optionmenu;
 
 		[GtkBeans.Builder.Object] Gtk.Entry name_entry;
 		[GtkBeans.Builder.Object] Gtk.Entry description_entry;
@@ -43,7 +43,7 @@ namespace FSpot.Exporters.Gallery
 			add_album_dialog = new Gtk.Dialog (builder.GetRawObject ("gallery_add_album_dialog"));
 			add_album_dialog.Modal = true;
 
-			album_optionmenu = new Gtk.OptionMenu ();
+			album_optionmenu = new Gtk.ComboBox ();
 			(name_entry.Parent as Gtk.Table).Attach (album_optionmenu, 1, 2, 1, 2);
 			album_optionmenu.Show ();
 
@@ -75,34 +75,28 @@ namespace FSpot.Exporters.Gallery
 				}
 				label_builder.Append (album.Title);
 
-				Gtk.MenuItem item = new Gtk.MenuItem (label_builder.ToString ());
-				((Gtk.Label)item.Child).UseUnderline = false;
-				menu.Append (item);
+                album_optionmenu.AppendText(label_builder.ToString());
 
 				AlbumPermission create_sub = album.Perms & AlbumPermission.CreateSubAlbum;
-
-				if (create_sub == 0)
-					item.Sensitive = false;
 			}
 
 			album_optionmenu.Sensitive = true;
 			menu.ShowAll ();
-			album_optionmenu.Menu = menu;
 		}
 
 		private void HandleChanged (object sender, EventArgs args)
 		{
 			if (gallery.Version == GalleryVersion.Version1) {
-				if (gallery.Albums.Count == 0 || album_optionmenu.History <= 0) {
+				if (gallery.Albums.Count == 0 || album_optionmenu.Active <= 0) {
 					parent = String.Empty;
 				} else {
-					parent = ((Album) gallery.Albums [album_optionmenu.History-1]).Name;
+					parent = ((Album) gallery.Albums [album_optionmenu.Active-1]).Name;
 				}
 			} else {
-				if (gallery.Albums.Count == 0 || album_optionmenu.History < 0) {
+				if (gallery.Albums.Count == 0 || album_optionmenu.Active < 0) {
 					parent = String.Empty;
 				} else {
-					parent = ((Album) gallery.Albums [album_optionmenu.History]).Name;
+					parent = ((Album) gallery.Albums [album_optionmenu.Active]).Name;
 				}
 			}
 			name = name_entry.Text;
