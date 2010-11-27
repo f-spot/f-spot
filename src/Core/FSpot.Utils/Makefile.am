@@ -17,6 +17,7 @@ SOURCES =  \
 	FSpot.Utils/RecursiveFileEnumerator.cs \
 	FSpot.Utils/SafeUriExtensions.cs \
 	FSpot.Utils/SidecarXmpExtensions.cs \
+	FSpot.Utils/TargetListExtensionMethods.cs \
 	FSpot.Utils/Tests/GIOTagLibFileAbstractionTests.cs \
 	FSpot.Utils/Tests/ImageTestHelper.cs \
 	FSpot.Utils/Tests/MetadataTest.cs \

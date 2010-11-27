@@ -132,7 +132,7 @@ namespace FSpot.UI.Dialog
 			fill_delay.Start ();
 		}
 
-		public BrowsablePointer Item {
+		public new BrowsablePointer Item {
 			get { return image_view.Item; }
 		}
 

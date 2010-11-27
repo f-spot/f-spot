@@ -173,7 +173,7 @@ namespace FSpot.Widgets {
             }
 		}
 
-        private bool Visible {
+        private new bool Visible {
             get {
                 return (Page.Sidebar as Sidebar).IsActive (Page);
             }

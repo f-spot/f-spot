@@ -126,15 +126,14 @@ namespace FSpot {
 
 			collection = new UriCollection (uris);
 
-			TargetEntry [] dest_table = {
-				FSpot.DragDropTargets.UriListEntry,
-				FSpot.DragDropTargets.PlainTextEntry
-			};
+            TargetList targetList = new TargetList();
+            targetList.AddTextTargets((uint)DragDropTargets.TargetType.PlainText);
+            targetList.AddUriTargets((uint)DragDropTargets.TargetType.UriList);
 
 			directory_view = new SelectionCollectionGridView (collection);
 			directory_view.Selection.Changed += HandleSelectionChanged;
 			directory_view.DragDataReceived += HandleDragDataReceived;
-			Gtk.Drag.DestSet (directory_view, DestDefaults.All, dest_table,
+			Gtk.Drag.DestSet (directory_view, DestDefaults.All, (TargetEntry[])targetList,
 					DragAction.Copy | DragAction.Move);
 			directory_view.DisplayTags = false;
 			directory_view.DisplayDates = false;
@@ -164,7 +163,7 @@ namespace FSpot {
 			image_view.Item.Changed += HandleItemChanged;
 			image_view.ButtonPressEvent += HandleImageViewButtonPressEvent;
 			image_view.DragDataReceived += HandleDragDataReceived;
-			Gtk.Drag.DestSet (image_view, DestDefaults.All, dest_table,
+			Gtk.Drag.DestSet (image_view, DestDefaults.All, (TargetEntry[])targetList,
 					DragAction.Copy | DragAction.Move);
 			image_scrolled.Add (image_view);
 
@@ -472,8 +471,8 @@ namespace FSpot {
 
 		void HandleDragDataReceived (object sender, DragDataReceivedArgs args)
 		{
-			if (args.Info == FSpot.DragDropTargets.UriListEntry.Info
-			    || args.Info == FSpot.DragDropTargets.PlainTextEntry.Info) {
+			if (args.Info == (uint)FSpot.DragDropTargets.TargetType.UriList
+			    || args.Info == (uint)FSpot.DragDropTargets.TargetType.PlainText) {
 
 				/*
 				 * If the drop is coming from inside f-spot then we don't want to import
@@ -648,7 +647,7 @@ namespace FSpot {
 			}
 
 			static PreferenceDialog prefs;
-			public static void Show ()
+			public static new void Show ()
 			{
 				if (prefs == null)
 					prefs = new PreferenceDialog ();

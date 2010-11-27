@@ -49,6 +49,15 @@ namespace FSpot.Widgets
 
 		protected FolderTreeView (IntPtr raw) : base (raw) {}
 
+        private static TargetList folderTreeSourceTargetList = new TargetList();
+
+        static FolderTreeView()
+        {
+            folderTreeSourceTargetList.AddTextTargets((uint)DragDropTargets.TargetType.PlainText);
+            folderTreeSourceTargetList.AddUriTargets((uint)DragDropTargets.TargetType.UriList);
+            folderTreeSourceTargetList.AddTargetEntry(DragDropTargets.UriQueryEntry);
+        }
+
 		public FolderTreeView () : this (new FolderTreeModel ())
 		{
 		}
@@ -72,7 +81,7 @@ namespace FSpot.Widgets
 			AppendColumn (column);
 
 			Gtk.Drag.SourceSet (this, Gdk.ModifierType.Button1Mask | Gdk.ModifierType.Button3Mask,
-				    folder_tree_source_target_table, Gdk.DragAction.Copy | Gdk.DragAction.Move);
+				    (TargetEntry[])folderTreeSourceTargetList, Gdk.DragAction.Copy | Gdk.DragAction.Move);
 		}
 
 		public UriList SelectedUris {
@@ -155,19 +164,11 @@ namespace FSpot.Widgets
 			}
 		}
 
-		private static TargetEntry [] folder_tree_source_target_table =
-			new TargetEntry [] {
-				DragDropTargets.UriQueryEntry,
-				DragDropTargets.UriListEntry,
-				DragDropTargets.PlainTextEntry
-		};
-
-
 		protected override void OnDragDataGet (Gdk.DragContext context, Gtk.SelectionData selection_data, uint info, uint time_)
 		{
 			if (info == DragDropTargets.UriQueryEntry.Info
-			    || info == DragDropTargets.UriListEntry.Info
-			    || info == DragDropTargets.PlainTextEntry.Info) {
+			    || info == (uint)DragDropTargets.TargetType.UriList
+			    || info == (uint)DragDropTargets.TargetType.PlainText) {
 
 				selection_data.SetUriListData (SelectedUris, context.Targets[0]);
 				return;

@@ -315,7 +315,7 @@ namespace FSpot
 			uint timer = Log.InformationTimerStart ("Initializing Mono.Addins");
 			try {
 				UpdatePlugins ();
-			} catch (Exception e) {
+			} catch (Exception) {
 				Log.Debug ("Failed to initialize plugins, will remove addin-db and try again.");
 				ResetPluginDb ();
 			}

@@ -199,21 +199,6 @@ namespace FSpot
 			set { Tag.TagIconSize = (Tag.IconSize) value; }
 		}
 
-		private static TargetEntry [] icon_source_target_table =
-			new TargetEntry [] {
-				DragDropTargets.PhotoListEntry,
-				DragDropTargets.TagQueryEntry,
-				DragDropTargets.UriListEntry,
-				DragDropTargets.RootWindowEntry
-		};
-
-		private static TargetEntry [] icon_dest_target_table =
-			new TargetEntry [] {
-				DragDropTargets.PhotoListEntry,
-				DragDropTargets.TagListEntry,
-				DragDropTargets.UriListEntry
-		};
-
 		private static TargetEntry [] tag_target_table =
 			new TargetEntry [] {
 				DragDropTargets.TagListEntry
@@ -225,6 +210,21 @@ namespace FSpot
 		public ModeType ViewMode { get; private set; }
 		public MainSelection Selection { get; private set; }
 		public InfoBox InfoBox { get; private set; }
+
+        private static TargetList iconSourceTargetList = new TargetList();
+        private static TargetList iconDestTargetList = new TargetList();
+
+        static MainWindow()
+        {
+            iconSourceTargetList.AddTargetEntry(DragDropTargets.PhotoListEntry);
+            iconSourceTargetList.AddTargetEntry(DragDropTargets.TagQueryEntry);
+            iconSourceTargetList.AddUriTargets((uint)DragDropTargets.TargetType.UriList);
+            iconSourceTargetList.AddTargetEntry(DragDropTargets.RootWindowEntry);
+
+            iconDestTargetList.AddTargetEntry(DragDropTargets.PhotoListEntry);
+            iconDestTargetList.AddTargetEntry(DragDropTargets.TagListEntry);
+            iconDestTargetList.AddUriTargets((uint)DragDropTargets.TargetType.UriList);
+        }
 
 		//
 		// Constructor
@@ -474,7 +474,7 @@ namespace FSpot
 			pmenu.TagSelected += HandleRemoveTagMenuSelected;
 			(uimanager.GetWidget("/ui/menubar1/edit2/remove_tag") as MenuItem).Submenu = pmenu;
 
-			Gtk.Drag.DestSet (icon_view, DestDefaults.All, icon_dest_target_table,
+			Gtk.Drag.DestSet (icon_view, DestDefaults.All, (TargetEntry[])iconDestTargetList,
 					  DragAction.Copy | DragAction.Move);
 
 			icon_view.DragDataReceived += HandleIconViewDragDataReceived;
@@ -549,7 +549,6 @@ namespace FSpot
 			UpdateToolbar ();
 
 			(uimanager.GetWidget("/ui/menubar1/file1/close1") as MenuItem).Hide ();
-
 
 			Banshee.Kernel.Scheduler.Resume ();
 		}
@@ -1048,7 +1047,7 @@ namespace FSpot
 
 		public void HandleIconViewStartDrag (object sender, StartDragArgs args)
 		{
-			Gtk.Drag.Begin (icon_view, new TargetList (icon_source_target_table),
+			Gtk.Drag.Begin (icon_view, iconSourceTargetList,
 					DragAction.Copy | DragAction.Move, (int) args.Button, args.Event);
 		}
 
@@ -1106,7 +1105,7 @@ namespace FSpot
 
 		void HandleIconViewDragDataGet (object sender, DragDataGetArgs args)
 		{
-			if (args.Info == DragDropTargets.UriListEntry.Info) {
+			if (args.Info == (uint)DragDropTargets.TargetType.UriList) {
                 var uris = from p in SelectedPhotos () select p.DefaultVersion.Uri;
 				args.SelectionData.SetUriListData (new UriList (uris), args.Context.Targets[0]);
 				return;
@@ -1209,7 +1208,7 @@ namespace FSpot
 				return;
 			}
 
-			if (args.Info == DragDropTargets.UriListEntry.Info) {
+			if (args.Info == (uint)DragDropTargets.TargetType.UriList) {
 
 				/*
 				 * If the drop is coming from inside f-spot then we don't want to import
@@ -2312,10 +2311,13 @@ namespace FSpot
 				return;
 			}
 
-            var target_entries = new TargetEntry[] {
-                DragDropTargets.PlainTextEntry,
-                DragDropTargets.UriListEntry,
-                DragDropTargets.CopyFilesEntry};
+            TargetList targetList = new TargetList();
+            targetList.AddTextTargets((uint)DragDropTargets.TargetType.PlainText);
+            targetList.AddUriTargets((uint)DragDropTargets.TargetType.UriList);
+            targetList.Add(
+                           DragDropTargets.CopyFilesEntry.Target,
+                           (uint)DragDropTargets.CopyFilesEntry.Flags,
+                           (uint)DragDropTargets.CopyFilesEntry.Info);
 
             // use eager evaluation, because we want to copy the photos which are currently selected ...
             var uris = new UriList (from p in SelectedPhotos () select p.DefaultVersion.Uri);
@@ -2324,14 +2326,14 @@ namespace FSpot
                                       select p.DefaultVersion.Uri.LocalPath).ToArray ()
                                      );
 
-            clipboard.SetWithData (target_entries, delegate (Clipboard clip, SelectionData data, uint info) {
+            clipboard.SetWithData ((TargetEntry[])targetList, delegate (Clipboard clip, SelectionData data, uint info) {
 
-                if (info == DragDropTargets.PlainTextEntry.Info) {
+                if (info == (uint)DragDropTargets.TargetType.PlainText) {
                     data.Text = paths;
                     return;
                 }
 
-                if (info == DragDropTargets.UriListEntry.Info) {
+                if (info == (uint)DragDropTargets.TargetType.UriList) {
                      data.SetUriListData (uris);
                     return;
                 }

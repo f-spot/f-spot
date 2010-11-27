@@ -50,7 +50,7 @@ namespace FSpot.UI.Dialog {
 			tag_selection_widget.Show ();
 		}
 
-		public Tag[] Run ()
+		public new Tag[] Run ()
 		{
 			int response = base.Run ();
 			if ((ResponseType) response == ResponseType.Ok)
@@ -59,7 +59,7 @@ namespace FSpot.UI.Dialog {
 			return null;
 		}
 
-		public void Hide ()
+		public new void Hide ()
 		{
 			base.Hide ();
 		}

@@ -57,6 +57,7 @@
     <Compile Include="FSpot.Utils\Vector.cs" />
     <Compile Include="FSpot.Utils\MemorySurface.cs" />
     <Compile Include="FSpot.Utils\DelayedOperation.cs" />
+    <Compile Include="FSpot.Utils\TargetListExtensionMethods.cs" />
   </ItemGroup>
   <ProjectExtensions>
     <MonoDevelop>
@@ -84,17 +85,25 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="glib-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
+    <Reference Include="glib-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
+      <Package>glib-sharp-2.0</Package>
+    </Reference>
     <Reference Include="gio-sharp, Version=2.14.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\lib\gio-sharp\gio\gio-sharp.dll</HintPath>
     </Reference>
     <Reference Include="Mono.Cairo" />
-    <Reference Include="gdk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
+    <Reference Include="gdk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
+      <Package>gtk-sharp-2.0</Package>
+    </Reference>
     <Reference Include="System.Core" />
-    <Reference Include="gtk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
+    <Reference Include="gtk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
+      <Package>gtk-sharp-2.0</Package>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="Mono.Posix" />
-    <Reference Include="nunit.framework, Version=2.4.8.0, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77" />
+    <Reference Include="nunit.framework, Version=2.4.8.0, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77">
+      <Package>mono-nunit</Package>
+    </Reference>
   </ItemGroup>
 </Project>

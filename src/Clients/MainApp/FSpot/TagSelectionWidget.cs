@@ -535,18 +535,17 @@ namespace FSpot {
 			return;
 		}
 
-		private static TargetEntry [] tag_source_target_table =
-			new TargetEntry [] {
-				DragDropTargets.TagListEntry
-			};
+        private static TargetList tagSourceTargetList = new TargetList();
+        private static TargetList tagDestTargetList = new TargetList();
 
-		private static TargetEntry [] tag_dest_target_table =
-			new TargetEntry [] {
-				DragDropTargets.PhotoListEntry,
-				DragDropTargets.UriListEntry,
-				DragDropTargets.TagListEntry
-			};
+        static TagSelectionWidget()
+        {
+            tagSourceTargetList.AddTargetEntry(DragDropTargets.TagListEntry);
 
+            tagDestTargetList.AddTargetEntry(DragDropTargets.PhotoListEntry);
+            tagDestTargetList.AddUriTargets((uint)DragDropTargets.TargetType.UriList);
+            tagDestTargetList.AddTargetEntry(DragDropTargets.TagListEntry);
+        }
 
 		CellRendererPixbuf pix_render;
 		TreeViewColumn complete_column;
@@ -604,7 +603,7 @@ namespace FSpot {
 
 			Gtk.Drag.SourceSet (this,
 			           Gdk.ModifierType.Button1Mask | Gdk.ModifierType.Button3Mask,
-			           tag_source_target_table,
+			           (TargetEntry[])tagSourceTargetList,
 			           DragAction.Copy | DragAction.Move);
 
 			DragDataReceived += HandleDragDataReceived;
@@ -612,7 +611,7 @@ namespace FSpot {
 
 			Gtk.Drag.DestSet (this,
 			                  DestDefaults.All,
-			                  tag_dest_target_table,
+			                  (TargetEntry[])tagDestTargetList,
 			                  DragAction.Copy | DragAction.Move);
 		}
 
@@ -726,7 +725,7 @@ namespace FSpot {
 				return;
 			}
 
-			if (args.Info == DragDropTargets.UriListEntry.Info) {
+			if (args.Info == (uint)DragDropTargets.TargetType.UriList) {
 				UriList list = args.SelectionData.GetUriListData ();
 
 				database.BeginTransaction ();
