@@ -7,6 +7,7 @@
 # Sergio Rubio <sergio.rubio@hispalinux.es>, 2004.
 # Francisco Javier F. Serrador <serrador@cvs.gnome.org>, 2004, 2005, 2006.
 # Antonio Ognio <gnrfan@gnrfan.orf>, 2004.
+# Daniel Mustieles <daniel.mustieles@gmail.com>, 2010.
 # Jorge González <jorgegonz@svn.gnome.org>, 2004, 2005, 2006, 2007, 2008, 2009, 2010.
 #
 msgid ""
@@ -14,8 +15,8 @@ msgstr ""
 "Project-Id-Version: f-spot.master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=f-"
 "spot&component=General\n"
-"POT-Creation-Date: 2010-10-24 10:54+0000\n"
-"PO-Revision-Date: 2010-10-26 20:38+0200\n"
+"POT-Creation-Date: 2010-11-29 09:51+0000\n"
+"PO-Revision-Date: 2010-12-02 18:44+0100\n"
 "Last-Translator: Jorge González <jorgegonz@svn.gnome.org>\n"
 "Language-Team: Español <gnome-es-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -587,13 +588,13 @@ msgid "Rem_ove Tag"
 msgstr "Q_uitar etiqueta"
 
 #: ../src/Clients/MainApp/FSpot.addin.xml.h:5
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:458
+#: ../src/Clients/MainApp/FSpot/SingleView.cs:457
 #: ../src/Clients/MainApp/ui/main_window.ui.h:16
 msgid "Rotate _Left"
 msgstr "Rotar a la _izquierda"
 
 #: ../src/Clients/MainApp/FSpot.addin.xml.h:6
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:459
+#: ../src/Clients/MainApp/FSpot/SingleView.cs:458
 #: ../src/Clients/MainApp/ui/main_window.ui.h:17
 msgid "Rotate _Right"
 msgstr "Rotar a la _derecha"
@@ -638,11 +639,11 @@ msgstr ""
 "seleccionar una etiqueta diferente en el diálogo de\n"
 "preferencias de F-Spot."
 
-#: ../src/Clients/MainApp/FSpot.Database/Updater.cs:762
+#: ../src/Clients/MainApp/FSpot.Database/Updater.cs:761
 msgid "Updating F-Spot Database"
 msgstr "Actualizando base de datos F-Spot"
 
-#: ../src/Clients/MainApp/FSpot.Database/Updater.cs:763
+#: ../src/Clients/MainApp/FSpot.Database/Updater.cs:762
 msgid ""
 "Please wait while your F-Spot gallery's database is updated. This may take "
 "some time."
@@ -890,7 +891,7 @@ msgid "Hide _Find Bar"
 msgstr "Ocultar barra de _búsqueda"
 
 #. Note for translators: This indicates the current photo is photo {0} of {1} out of photos
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:672
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:671
 #: ../src/Clients/MainApp/FSpot.UI.Dialog/AdjustTimeDialog.cs:154
 #: ../src/Clients/MainApp/FSpot.UI.Dialog/ProgressDialog.cs:111
 #: ../src/Extensions/Exporters/FSpot.Exporters.CD/FSpot.Exporters.CD/CDExport.cs:134
@@ -902,14 +903,14 @@ msgid "{0} of {1}"
 msgstr "{0} de {1}"
 
 #. Translators, The singular case will never happen here.
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:1746
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:1745
 #, csharp-format
 msgid "Merge the selected tag"
 msgid_plural "Merge the {0} selected tags?"
 msgstr[0] "Combinar la etiqueta seleccionada"
 msgstr[1] "¿Combinar las {0} etiquetas seleccionadas?"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:1773
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:1772
 msgid ""
 "This operation will merge the selected tags and any sub-tags into a single "
 "tag."
@@ -917,58 +918,58 @@ msgstr ""
 "Esta operación combinará las etiquetas seleccionadas y cualquier subetiqueta "
 "en una sola etiqueta."
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:1775
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:1774
 msgid "_Merge Tags"
 msgstr "_Combinar etiquetas"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:1980
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:1979
 #, csharp-format
 msgid "{0} Photo out of {1}"
 msgid_plural "{0} Photos out of {1}"
 msgstr[0] "Fotografía {0} de {1}"
 msgstr[1] "Fotografía {0} de {1}"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:1982
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:500
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:1981
+#: ../src/Clients/MainApp/FSpot/SingleView.cs:499
 #, csharp-format
 msgid "{0} Photo"
 msgid_plural "{0} Photos"
 msgstr[0] "{0} foto"
 msgstr[1] "{0} fotos"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:1985
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:1984
 #, csharp-format
 msgid " ({0} selected)"
 msgid_plural " ({0} selected)"
 msgstr[0] " ({0} seleccionada)"
 msgstr[1] " ({0} seleccionadas)"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2066
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2065
 msgid "_Ok"
 msgstr "_Aceptar"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2067
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2066
 msgid "Error Deleting Picture"
 msgstr "Error al eliminar la fotografía"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2072
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2071
 #, csharp-format
 msgid "No permission to delete the file:{1}{0}"
 msgstr "No tiene permisos para eliminar el archivo: {1}{0}"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2076
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2075
 #, csharp-format
 msgid "An error of type {0} occurred while deleting the file:{2}{1}"
 msgstr "Ocurrió un error del tipo {0} al eliminar el archivo: {2}{1}"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2108
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2107
 #, csharp-format
 msgid "Delete the selected photo permanently?"
 msgid_plural "Delete the {0} selected photos permanently?"
 msgstr[0] "¿Eliminar permanentemente la fotografía seleccionada?"
 msgstr[1] "¿Eliminar permanentemente las {0} fotografías seleccionadas?"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2112
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2111
 msgid "This deletes all versions of the selected photo from your drive."
 msgid_plural ""
 "This deletes all versions of the selected photos from your drive."
@@ -979,20 +980,20 @@ msgstr[1] ""
 "Esto eliminará de su unidad todas las versiones de las fotografías "
 "seleccionadas."
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2115
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2114
 msgid "_Delete photo"
 msgid_plural "_Delete photos"
 msgstr[0] "_Eliminar la fotografía"
 msgstr[1] "_Eliminar las fotografías"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2151
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2150
 #, csharp-format
 msgid "Remove the selected photo from F-Spot?"
 msgid_plural "Remove the {0} selected photos from F-Spot?"
 msgstr[0] "¿Quitar la fotografía seleccionada de F-Spot?"
 msgstr[1] "¿Quitar las {0} fotografías seleccionadas de F-Spot?"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2156
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2155
 msgid ""
 "If you remove photos from the F-Spot catalog all tag information will be "
 "lost. The photos remain on your computer and can be imported into F-Spot "
@@ -1002,27 +1003,27 @@ msgstr ""
 "etiquetas se perderá. Las fotos seguirán en su equipo y podrá volverlas a "
 "importar de nuevo en F-Spot."
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2157
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2156
 msgid "_Remove from Catalog"
 msgstr "_Quitar del catálogo"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2231
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2230
 #, csharp-format
 msgid "Delete tag \"{0}\"?"
 msgstr "¿Eliminar etiqueta {0}?"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2233
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2232
 #, csharp-format
 msgid "Delete the {0} selected tags?"
 msgstr "¿Eliminar las {0} etiquetas seleccionadas?"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2238
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2237
 msgid "photo"
 msgid_plural "photos"
 msgstr[0] "foto"
 msgstr[1] "fotos"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2240
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2239
 #, csharp-format
 msgid "If you delete this tag, the association with {0} {1} will be lost."
 msgid_plural ""
@@ -1030,18 +1031,18 @@ msgid_plural ""
 msgstr[0] "Si borra esta etiqueta se perderá la asociación {0} {1}."
 msgstr[1] "Si borra estas etiquetas se perderá la asociación {0} {1}."
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2245
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2244
 msgid "_Delete tag"
 msgid_plural "_Delete tags"
 msgstr[0] "_Eliminar etiqueta"
 msgstr[1] "_Eliminar etiquetas"
 
 #. A Category is not empty. Can not delete it.
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2259
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2258
 msgid "Tag is not empty"
 msgstr "La etiqueta no está vacía"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2260
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2259
 #, csharp-format
 msgid ""
 "Can not delete tags that have tags within them.  Please delete tags under "
@@ -1050,39 +1051,39 @@ msgstr ""
 "No se pueden eliminar etiquetas que tengan etiquetas dentro de ellas. Borre "
 "antes las etiquetas de «{0}»"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2709
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2711
 msgid "Rotate selected photo left"
 msgid_plural "Rotate selected photos left"
 msgstr[0] "Rotar la fotografía seleccionada a la izquierda"
 msgstr[1] "Rotar las fotografías seleccionadas a la izquierda"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2722
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2724
 msgid "Rotate selected photo right"
 msgid_plural "Rotate selected photos right"
 msgstr[0] "Rotar la fotografía seleccionada a la derecha"
 msgstr[1] "Rotar las fotografías seleccionadas a la derecha"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2733
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2735
 #, csharp-format
 msgid "Find _Selected Tag"
 msgid_plural "Find _Selected Tags"
 msgstr[0] "Encontrar la etiqueta _seleccionada"
 msgstr[1] "Encontrar las etiquetas _seleccionadas"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2737
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2739
 #, csharp-format
 msgid "Find Selected Tag _With"
 msgid_plural "Find Selected Tags _With"
 msgstr[0] "Encontrar la etiqueta seleccionada c_on"
 msgstr[1] "Encontrar las etiquetas seleccionadas c_on"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2778
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2780
 msgid "Create New Version?"
 msgid_plural "Create New Versions?"
 msgstr[0] "¿Crear una nueva versión?"
 msgstr[1] "¿Crear nuevas versiones?"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2780
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2782
 #, csharp-format
 msgid ""
 "Before launching {1}, should F-Spot create a new version of the selected "
@@ -1097,7 +1098,7 @@ msgstr[1] ""
 "Antes de lanzar {1}, ¿debe F-Spot crear versiones nuevas de las fotos "
 "seleccionadas para preservar los originales?"
 
-#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2802
+#: ../src/Clients/MainApp/FSpot/MainWindow.cs:2804
 msgid "XCF version"
 msgstr "Versión XCF"
 
@@ -1123,7 +1124,7 @@ msgstr "Modificada en {1}"
 msgid "Modified in {1} ({0})"
 msgstr "Modificada en {1} ({0})"
 
-#: ../src/Clients/MainApp/FSpot/PhotoStore.cs:204
+#: ../src/Clients/MainApp/FSpot/PhotoStore.cs:203
 #: ../src/Clients/MainApp/ui/mail_dialog.ui.h:17
 msgid "Original"
 msgstr "Original"
@@ -1256,19 +1257,19 @@ msgstr "Rotar la fotografía a la izquierda"
 msgid "Rotate photo right"
 msgstr "Rotar la fotografía a la derecha"
 
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:149
+#: ../src/Clients/MainApp/FSpot/SingleView.cs:148
 msgid "Folder"
 msgstr "Carpeta"
 
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:374
+#: ../src/Clients/MainApp/FSpot/SingleView.cs:373
 msgid "Open"
 msgstr "Abrir"
 
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:377
+#: ../src/Clients/MainApp/FSpot/SingleView.cs:376
 msgid "Select Folder"
 msgstr "Seleccionar la carpeta"
 
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:461
+#: ../src/Clients/MainApp/FSpot/SingleView.cs:460
 msgid "Set as Background"
 msgstr "Establecer como fondo"
 
@@ -1312,34 +1313,34 @@ msgid "Error renaming tag"
 msgstr "Error al renombrar la etiqueta"
 
 #: ../src/Clients/MainApp/FSpot/TagSelectionWidget.cs:521
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditTagDialog.cs:94
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditTagDialog.cs:93
 #: ../src/Clients/MainApp/TagCommands.cs:137
 msgid "This name is already in use"
 msgstr "Este nombre ya está siendo usado"
 
-#: ../src/Clients/MainApp/FSpot/TagStore.cs:241
+#: ../src/Clients/MainApp/FSpot/TagStore.cs:239
 msgid "Favorites"
 msgstr "Favoritos"
 
-#: ../src/Clients/MainApp/FSpot/TagStore.cs:246
+#: ../src/Clients/MainApp/FSpot/TagStore.cs:244
 msgid "Hidden"
 msgstr "Oculto"
 
-#: ../src/Clients/MainApp/FSpot/TagStore.cs:254
+#: ../src/Clients/MainApp/FSpot/TagStore.cs:252
 msgid "People"
 msgstr "Gente"
 
-#: ../src/Clients/MainApp/FSpot/TagStore.cs:259
+#: ../src/Clients/MainApp/FSpot/TagStore.cs:257
 msgid "Places"
 msgstr "Lugares"
 
-#: ../src/Clients/MainApp/FSpot/TagStore.cs:264
+#: ../src/Clients/MainApp/FSpot/TagStore.cs:262
 msgid "Events"
 msgstr "Acontecimientos"
 
 #. The label for the root category is used in new and edit tag dialogs
-#: ../src/Clients/MainApp/FSpot/TagStore.cs:277
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:361
+#: ../src/Clients/MainApp/FSpot/TagStore.cs:275
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:438
 msgid "(None)"
 msgstr "(Ninguno)"
 
@@ -1375,7 +1376,9 @@ msgstr "Copyright © 2003-2010 Novell Inc."
 
 #: ../src/Clients/MainApp/FSpot.UI.Dialog/AboutDialog.cs:147
 msgid "translator-credits"
-msgstr "Jorge González <jorgegonz@svn.gnome.org>, 2004-2010"
+msgstr ""
+"Daniel Mustieles <daniel.mustieles@gmail.com>, 2010\n"
+"Jorge González <jorgegonz@svn.gnome.org>, 2004-2010"
 
 #: ../src/Clients/MainApp/FSpot.UI.Dialog/AboutDialog.cs:152
 msgid "F-Spot Website"
@@ -1881,89 +1884,54 @@ msgstr "Buscar:"
 msgid "Folders"
 msgstr "Carpetas"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/FolderTreeView.cs:150
+#: ../src/Clients/MainApp/FSpot.Widgets/FolderTreeView.cs:159
 msgid "Filesystem"
 msgstr "Sistema de archivos"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:199
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:302
 msgid "Histogram"
 msgstr "Histograma"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:218
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:321
 msgid "Image Information"
 msgstr "Información de la imagen"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:229
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:329
+#, csharp-format
+msgid "{0} Photos"
+msgstr "{0} Fotos"
+
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:331
 #: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/Resources/FacebookExport.ui.h:10
 msgid "Name"
 msgstr "Nombre"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:232
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:343
 msgid "Version"
 msgstr "Versión"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:235
-msgid "Date"
-msgstr "Fecha"
-
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:238
-#: ../src/Extensions/Exporters/FSpot.Exporters.CD/Resources/CDExport.ui.h:4
-msgid "Size"
-msgstr "Tamaño"
-
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:241
-msgid "Exposure"
-msgstr "Exposición"
-
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:245
-msgid "Focal Length"
-msgstr "Longitud focal"
-
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:248
-msgid "Camera"
-msgstr "Cámara"
-
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:251
-msgid "File Size"
-msgstr "Tamaño del archivo"
-
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:254
-msgid "Rating"
-msgstr "Puntuación"
-
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:344
-msgid "(wrong format)"
-msgstr "(formato incorrecto)"
-
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:370
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:381
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:391
-msgid "(Unknown)"
-msgstr "(Desconocido)"
-
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:487
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:358
 #: ../src/Clients/MainApp/PhotoVersionMenu.cs:86
 msgid "(No Edits)"
 msgstr "(No hay modificaciones)"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:491
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:362
 #, csharp-format
 msgid "(One Edit)"
 msgid_plural "({0} Edits)"
 msgstr[0] "(Una edición)"
 msgstr[1] "({0} ediciones)"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:501
-msgid "(File read error)"
-msgstr "(Error al leer el archivo)"
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:368
+msgid "Date"
+msgstr "Fecha"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:546
-#, csharp-format
-msgid "{0} Photos"
-msgstr "{0} Fotos"
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:368
+msgid "Show Date"
+msgstr "Mostrar la fecha"
 
 #. Note for translators: {0} is a date, {1} and {2} are times.
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:566
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:379
 #, csharp-format
 msgid ""
 "On {0} between \n"
@@ -1972,7 +1940,7 @@ msgstr ""
 "En {0} entre\n"
 "{1} y {2}"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:571
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:384
 #, csharp-format
 msgid ""
 "Between {0} \n"
@@ -1981,37 +1949,85 @@ msgstr ""
 "Entre {0} \n"
 "y {1}"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:598
-msgid "(At least one File not found)"
-msgstr "(Al menos no se encontró un archivo)"
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:390
+#: ../src/Extensions/Exporters/FSpot.Exporters.CD/Resources/CDExport.ui.h:4
+msgid "Size"
+msgstr "Tamaño"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:715
-msgid "Show Photo Name"
-msgstr "Mostrar el nombre de la foto"
-
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:724
-msgid "Show Date"
-msgstr "Mostrar la fecha"
-
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:733
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:390
 msgid "Show Size"
 msgstr "Mostrar el tamaño"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:742
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:398
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:448
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:454
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:458
+msgid "(Unknown)"
+msgstr "(Desconocido)"
+
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:401
+msgid "Exposure"
+msgstr "Exposición"
+
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:401
 msgid "Show Exposure"
 msgstr "Mostrar la exposición"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:751
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:431
+msgid "flash fired"
+msgstr "flash disparado"
+
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:433
+msgid "flash didn't fire"
+msgstr "el flash no se disparó"
+
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:443
+msgid "Focal Length"
+msgstr "Longitud focal"
+
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:443
 msgid "Show Focal Length"
 msgstr "Mostrar la longitud focal"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:760
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:453
+msgid "Camera"
+msgstr "Cámara"
+
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:453
 msgid "Show Camera"
 msgstr "Mostrar la cámara"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:769
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:457
+msgid "Creator"
+msgstr "Creador"
+
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:457
+msgid "Show Creator"
+msgstr "Mostrar creador"
+
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:461
+msgid "File Size"
+msgstr "Tamaño del archivo"
+
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:461
 msgid "Show File Size"
 msgstr "Mostrar el tamaño del archivo"
+
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:469
+msgid "(File read error)"
+msgstr "(Error al leer el archivo)"
+
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:477
+msgid "Rating"
+msgstr "Puntuación"
+
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:477
+msgid "Show Rating"
+msgstr "Mostrar puntuación"
+
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:481
+msgid "Show Tags"
+msgstr "Mostrar etiquetas"
 
 #: ../src/Clients/MainApp/FSpot.Widgets/MetadataDisplay.cs:46
 msgid "Metadata"
@@ -3440,11 +3456,11 @@ msgstr ""
 msgid "(TopLevel)"
 msgstr "(Nivel superior)"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryAddAlbum.cs:157
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryAddAlbum.cs:151
 msgid "Invalid Gallery name"
 msgstr "Nombre de galería no válido"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryAddAlbum.cs:158
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryAddAlbum.cs:152
 msgid ""
 "The gallery name contains invalid characters.\n"
 "Only letters, numbers, - and _ are allowed"
@@ -3457,27 +3473,27 @@ msgstr ""
 msgid "Error uploading picture \"{0}\" to Gallery: {1}"
 msgstr "Error al subir la imagen «{0}» a Gallery: {1}"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryExport.cs:263
-#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:308
-#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/FSpot.Exporters.SmugMug/SmugMugExport.cs:276
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryExport.cs:262
+#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:315
+#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/FSpot.Exporters.SmugMug/SmugMugExport.cs:275
 msgid "(No Gallery)"
 msgstr "(No hay ninguna galería)"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryExport.cs:355
-#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:430
-#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/FSpot.Exporters.SmugMug/SmugMugExport.cs:371
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryExport.cs:349
+#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:435
+#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/FSpot.Exporters.SmugMug/SmugMugExport.cs:366
 msgid "(Not Connected)"
 msgstr "(Desconectado)"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryExport.cs:356
-#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:431
-#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/FSpot.Exporters.SmugMug/SmugMugExport.cs:372
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryExport.cs:350
+#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:436
+#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/FSpot.Exporters.SmugMug/SmugMugExport.cs:367
 msgid "(No Albums)"
 msgstr "(No hay álbumes)"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryExport.cs:408
-#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:496
-#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/FSpot.Exporters.SmugMug/SmugMugExport.cs:413
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryExport.cs:393
+#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:495
+#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/FSpot.Exporters.SmugMug/SmugMugExport.cs:404
 msgid "No account selected"
 msgstr "No se seleccionó ninguna cuenta"
 
@@ -3612,12 +3628,12 @@ msgstr "{0} de aproximadamente {1}"
 msgid "Error Uploading To Gallery: {0}"
 msgstr "Error al subir a la galería: {0}"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:359
+#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:366
 #, csharp-format
 msgid "Available space: {0}, {1}% used out of {2}"
 msgstr "Espacio disponible: {0}, {1} usado de {2}"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:472
+#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:471
 #, csharp-format
 msgid ""
 "The selected album has a limit of {0} pictures,\n"
@@ -4016,6 +4032,15 @@ msgstr "Mostrar una exhibición de fotos desde F-Spot"
 msgid "F-Spot photos"
 msgstr "Fotos de F-Spot"
 
+#~ msgid "(wrong format)"
+#~ msgstr "(formato incorrecto)"
+
+#~ msgid "(At least one File not found)"
+#~ msgstr "(Al menos no se encontró un archivo)"
+
+#~ msgid "Show Photo Name"
+#~ msgstr "Mostrar el nombre de la foto"
+
 #~ msgid ""
 #~ "Metadata of file {0} may be corrupt, refusing to write to it, falling "
 #~ "back to XMP sidecar."
@@ -4253,9 +4278,6 @@ msgstr "Fotos de F-Spot"
 
 #~ msgid "Unknown IIM DataSet"
 #~ msgstr "Conjunto de datos IIM desconocido"
-
-#~ msgid "Creator"
-#~ msgstr "Creador"
 
 #~ msgid "Title"
 #~ msgstr "Título"
