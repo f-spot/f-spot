@@ -14,8 +14,8 @@ msgstr ""
 "Project-Id-Version: f-spot master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=f-"
 "spot&component=General\n"
-"POT-Creation-Date: 2010-10-22 16:08+0000\n"
-"PO-Revision-Date: 2010-10-22 21:09+0100\n"
+"POT-Creation-Date: 2010-11-14 11:37+0000\n"
+"PO-Revision-Date: 2010-12-13 20:25+0100\n"
 "Last-Translator: Mario Blättermann <mariobl@gnome.org>\n"
 "Language-Team: German <gnome-de@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -174,8 +174,7 @@ msgstr "Nach Tabblo exportieren"
 
 #: ../data/addin-xml-strings.cs:71
 msgid "This extension allows you to export your photos to Tabblo."
-msgstr ""
-"Diese Erweiterung ermöglicht es, Ihre Fotos nach Tabblo zu exportieren."
+msgstr "Diese Erweiterung ermöglicht es, Ihre Fotos nach Tabblo zu exportieren."
 
 #. ../src/Extensions/Exporters/FSpot.Exporters.Zip/Resources/ZipExport.addin.xml
 #: ../data/addin-xml-strings.cs:75
@@ -205,8 +204,8 @@ msgstr ""
 "ermöglicht es, den Basispfad Ihrer Fotos zu ändern. Es ist sehr praktisch z."
 "B. Ihre Fotos von ~/Photos nach /OurPhotos zu verschieben. Stellen Sie "
 "lediglich sicher, dass SqLite die Änderungen für einige Stunden umsetzen "
-"kann, nachdem f-spot den Abschluß gemeldet hat. Es wird nur der Pfad zu "
-"Ihren Fotos im Foto-Ordner geändert."
+"kann, nachdem f-spot den Abschluß gemeldet hat. Es wird nur der Pfad zu Ihren "
+"Fotos im Foto-Ordner geändert."
 
 #: ../data/addin-xml-strings.cs:82 ../data/addin-xml-strings.cs:87
 #: ../data/addin-xml-strings.cs:92 ../data/addin-xml-strings.cs:97
@@ -260,8 +259,8 @@ msgid ""
 "Create photomosaics using MetaPixel (http://www.complang.tuwien.ac.at/schani/"
 "metapixel/)"
 msgstr ""
-"Foto-Mosaike mit MetaPixel erstellen (http://www.complang.tuwien.ac.at/"
-"schani/metapixel/)"
+"Foto-Mosaike mit MetaPixel erstellen (http://www.complang.tuwien.ac.at/schani/"
+"metapixel/)"
 
 #. ../src/Extensions/Tools/FSpot.Tools.PictureTile/PictureTile.addin.xml
 #: ../data/addin-xml-strings.cs:105
@@ -278,7 +277,6 @@ msgstr ""
 
 #. ../src/Extensions/Tools/FSpot.Tools.RawPlusJpeg/Resources/RawPlusJpeg.addin.xml
 #: ../data/addin-xml-strings.cs:110
-#, fuzzy
 msgid "RawPlusJpeg"
 msgstr "RawPlusJpeg"
 
@@ -288,13 +286,12 @@ msgstr "RAW+Jpeg als mehrfache Versionen des selben Fotos vereinen"
 
 #. ../src/Extensions/Tools/FSpot.Tools.RetroactiveRoll/Resources/RetroactiveRoll.addin.xml
 #: ../data/addin-xml-strings.cs:115
-#, fuzzy
 msgid "RetroactiveRoll"
 msgstr "RetroactiveRoll"
 
 #: ../data/addin-xml-strings.cs:116
 msgid "Retroactively assign old photos to import rolls"
-msgstr ""
+msgstr "Alte Fotos rückwirkend Importen zuordnen"
 
 #. ../src/Extensions/Tools/FSpot.Tools.ScreensaverConfig/Resources/ScreensaverConfig.addin.xml
 #: ../data/addin-xml-strings.cs:120
@@ -317,15 +314,12 @@ msgstr "Meta-Daten aller Kataloge mit Fotos abgleichen"
 
 #. ../src/Extensions/Transitions/FSpot.Transitions.Cover/Resources/CoverTransition.addin.xml
 #: ../data/addin-xml-strings.cs:130
-#, fuzzy
-#| msgid "Slide transition:"
 msgid "Cover Transition"
-msgstr "Übergänge"
+msgstr "Übergänge überdecken"
 
 #: ../data/addin-xml-strings.cs:131
-#, fuzzy
 msgid "A Slideshow transition that covers images"
-msgstr "Eine Übergangsfunktion für Diaschauen, welche Bilder überdeckt."
+msgstr "Eine Übergangsfunktion für Diaschauen, welche Bilder überdeckt"
 
 #: ../data/addin-xml-strings.cs:132
 msgid "Transitions"
@@ -512,8 +506,7 @@ msgstr ""
 #: ../f-spot.schemas.in.h:36
 msgid "Use the current photo's filename as the viewer window's title."
 msgstr ""
-"Den Dateinamen des aktuellen Fotos als Fenstertitel des Betrachters "
-"verwenden."
+"Den Dateinamen des aktuellen Fotos als Fenstertitel des Betrachters verwenden."
 
 #: ../f-spot.schemas.in.h:37
 msgid "Width of the import dialog."
@@ -549,13 +542,13 @@ msgstr "Y-Position des Fensters des Bildbetrachters."
 
 #: ../f-spot.schemas.in.h:45
 msgid ""
-"You can choose how to display transparent parts in images. This option has "
-"no effect on photos but setting this value to CHECK_PATTERN or CUSTOM_COLOR "
+"You can choose how to display transparent parts in images. This option has no "
+"effect on photos but setting this value to CHECK_PATTERN or CUSTOM_COLOR "
 "could be useful when viewing icons or other artwork with transparent parts."
 msgstr ""
-"Sie können wählen, wie transparente Bereiche eines Bildes dargestellt "
-"werden. Diese Einstellung hat keinen Effekt auf Fotos, aber eine Einstellung "
-"auf ein Schachbrettmuster (CHECK_PATTERN) oder eine frei wählbare Farbe "
+"Sie können wählen, wie transparente Bereiche eines Bildes dargestellt werden. "
+"Diese Einstellung hat keinen Effekt auf Fotos, aber eine Einstellung auf ein "
+"Schachbrettmuster (CHECK_PATTERN) oder eine frei wählbare Farbe "
 "(CUSTOM_COLOR) kann bei der Betrachtung von Symbolen und anderen Bildern mit "
 "transparenten Bereichen nützlich sein."
 
@@ -636,8 +629,8 @@ msgid ""
 "F-Spot preference dialog."
 msgstr ""
 "Die Markierung »{0}« wird bei keinem Foto genutzt. Versuchen\n"
-"Sie, die Markierung zu einigen Fotos hinzuzufügen oder wählen Sie eine "
-"andere Markierung im F-Spot-Einstellungsdialog."
+"Sie, die Markierung zu einigen Fotos hinzuzufügen oder wählen Sie eine andere "
+"Markierung im F-Spot-Einstellungsdialog."
 
 #: ../src/Clients/MainApp/FSpot/App.cs:325
 msgid "Search returned no results"
@@ -985,8 +978,7 @@ msgstr[1] "Die {0} ausgewählten Fotos dauerhaft löschen?"
 
 #: ../src/Clients/MainApp/FSpot/MainWindow.cs:2112
 msgid "This deletes all versions of the selected photo from your drive."
-msgid_plural ""
-"This deletes all versions of the selected photos from your drive."
+msgid_plural "This deletes all versions of the selected photos from your drive."
 msgstr[0] "Dies löscht alle Versionen des gewählten Fotos vom Laufwerk."
 msgstr[1] "Dies löscht alle Versionen der gewählten Fotos vom Laufwerk."
 
@@ -1225,9 +1217,9 @@ msgid_plural ""
 "{0} photos could not be rotated because they are on a read only file system "
 "or media such as a CDROM.  Please check the permissions and try again."
 msgstr[0] ""
-"Das Foto konnte nicht gedreht werden, da es sich auf einem "
-"schreibgeschützten Dateisystem oder Medium (z.B. CD-ROM) befindet. Bitte "
-"versuchen Sie es nach Überprüfung der Zugriffsrechte erneut."
+"Das Foto konnte nicht gedreht werden, da es sich auf einem schreibgeschützten "
+"Dateisystem oder Medium (z.B. CD-ROM) befindet. Bitte versuchen Sie es nach "
+"Überprüfung der Zugriffsrechte erneut."
 msgstr[1] ""
 "{0} Fotos konnten nicht gedreht werden, da sie sich auf einem "
 "schreibgeschützten Dateisystem oder Medium (z.B. CD-ROM) befinden. Bitte "
@@ -1356,7 +1348,7 @@ msgstr "Ereignisse"
 
 #. The label for the root category is used in new and edit tag dialogs
 #: ../src/Clients/MainApp/FSpot/TagStore.cs:277
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:361
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:438
 msgid "(None)"
 msgstr "(Keine)"
 
@@ -1525,8 +1517,8 @@ msgstr ""
 "Durch Aktivieren dieses Ankreuzfeldes werden die importierten Fotos in der "
 "Kamera gelöscht, sobald der Importvorgang erfolgreich abgeschlossen wurde.\n"
 "\n"
-"Es ist im Allgemeinen empfehlenswert, Ihre Fotos zu sichern, bevor Sie sie "
-"in der Kamera löschen. <b>Verwenden Sie diese Option auf eigenes Risiko!</b>"
+"Es ist im Allgemeinen empfehlenswert, Ihre Fotos zu sichern, bevor Sie sie in "
+"der Kamera löschen. <b>Verwenden Sie diese Option auf eigenes Risiko!</b>"
 
 #: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:212
 msgid "Warning"
@@ -1885,8 +1877,8 @@ msgstr[1] "Fehler beim Speichern der abgeglichenen Fotos"
 #: ../src/Clients/MainApp/FSpot.Widgets/EditorPage.cs:244
 #, csharp-format
 msgid ""
-"Received exception \"{0}\". Note that you have to develop RAW files into "
-"JPEG before you can edit them."
+"Received exception \"{0}\". Note that you have to develop RAW files into JPEG "
+"before you can edit them."
 msgstr ""
 "Die Ausnahme »{0}« wurde empfangen. Beachten Sie, dass RAW-Dateien vor der "
 "Bearbeitung erst in JPEG-Dateien umgewandelt werden müssen."
@@ -1911,85 +1903,50 @@ msgstr "Ordner"
 msgid "Filesystem"
 msgstr "Dateisystem"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:199
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:302
 msgid "Histogram"
 msgstr "Histogramm"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:218
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:321
 msgid "Image Information"
 msgstr "Bildinformationen"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:229
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:329
+#, csharp-format
+msgid "{0} Photos"
+msgstr "{0} Fotos"
+
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:331
 #: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/Resources/FacebookExport.ui.h:10
 msgid "Name"
 msgstr "Name"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:232
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:343
 msgid "Version"
 msgstr "Version"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:235
-msgid "Date"
-msgstr "Datum"
-
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:238
-#: ../src/Extensions/Exporters/FSpot.Exporters.CD/Resources/CDExport.ui.h:4
-msgid "Size"
-msgstr "Größe"
-
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:241
-msgid "Exposure"
-msgstr "Belichtung"
-
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:245
-msgid "Focal Length"
-msgstr "Brennweite"
-
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:248
-msgid "Camera"
-msgstr "Kamera"
-
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:251
-msgid "File Size"
-msgstr "Dateigröße"
-
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:254
-msgid "Rating"
-msgstr "Bewertung"
-
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:344
-msgid "(wrong format)"
-msgstr "(falsches Format)"
-
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:370
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:381
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:391
-msgid "(Unknown)"
-msgstr "(Unbekannt)"
-
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:487
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:358
 #: ../src/Clients/MainApp/PhotoVersionMenu.cs:86
 msgid "(No Edits)"
 msgstr "(Keine Bearbeitungen)"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:491
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:362
 #, csharp-format
 msgid "(One Edit)"
 msgid_plural "({0} Edits)"
 msgstr[0] "(Eine Bearbeitung)"
 msgstr[1] "({0} Bearbeitungen)"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:501
-msgid "(File read error)"
-msgstr "(Fehler beim Lesen der Datei) "
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:368
+msgid "Date"
+msgstr "Datum"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:546
-#, csharp-format
-msgid "{0} Photos"
-msgstr "{0} Fotos"
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:368
+msgid "Show Date"
+msgstr "Datum anzeigen"
 
 #. Note for translators: {0} is a date, {1} and {2} are times.
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:566
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:379
 #, csharp-format
 msgid ""
 "On {0} between \n"
@@ -1998,7 +1955,7 @@ msgstr ""
 "Auf {0} zwischen \n"
 "{1} und {2}"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:571
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:384
 #, csharp-format
 msgid ""
 "Between {0} \n"
@@ -2007,37 +1964,85 @@ msgstr ""
 "Zwischen {0} \n"
 "und {1}"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:598
-msgid "(At least one File not found)"
-msgstr "(Mindestens eine Datei wurde nicht gefunden)"
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:390
+#: ../src/Extensions/Exporters/FSpot.Exporters.CD/Resources/CDExport.ui.h:4
+msgid "Size"
+msgstr "Größe"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:715
-msgid "Show Photo Name"
-msgstr "Fotonamen anzeigen"
-
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:724
-msgid "Show Date"
-msgstr "Datum anzeigen"
-
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:733
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:390
 msgid "Show Size"
 msgstr "Größe anzeigen"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:742
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:398
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:448
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:454
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:458
+msgid "(Unknown)"
+msgstr "(Unbekannt)"
+
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:401
+msgid "Exposure"
+msgstr "Belichtung"
+
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:401
 msgid "Show Exposure"
 msgstr "Belichtung anzeigen"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:751
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:431
+msgid "flash fired"
+msgstr "Blitz ausgelöst"
+
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:433
+msgid "flash didn't fire"
+msgstr "Blitz nicht ausgelöst"
+
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:443
+msgid "Focal Length"
+msgstr "Brennweite"
+
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:443
 msgid "Show Focal Length"
 msgstr "Brennweite anzeigen"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:760
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:453
+msgid "Camera"
+msgstr "Kamera"
+
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:453
 msgid "Show Camera"
 msgstr "Kamera anzeigen"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:769
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:457
+msgid "Creator"
+msgstr "Ersteller"
+
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:457
+msgid "Show Creator"
+msgstr "Ersteller anzeigen"
+
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:461
+msgid "File Size"
+msgstr "Dateigröße"
+
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:461
 msgid "Show File Size"
 msgstr "Dateigröße anzeigen"
+
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:469
+msgid "(File read error)"
+msgstr "(Fehler beim Lesen der Datei) "
+
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:477
+msgid "Rating"
+msgstr "Bewertung"
+
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:477
+msgid "Show Rating"
+msgstr "Bewertung anzeigen"
+
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:481
+msgid "Show Tags"
+msgstr "Markierungen anzeigen"
 
 #: ../src/Clients/MainApp/FSpot.Widgets/MetadataDisplay.cs:46
 msgid "Metadata"
@@ -2119,8 +2124,8 @@ msgstr "Soll die Version »{0}« wirklich gelöscht werden?"
 #: ../src/Clients/MainApp/PhotoVersionCommands.cs:159
 msgid "This removes the version and deletes the corresponding file from disk."
 msgstr ""
-"Dadurch wird die Version gelöscht und die entsprechende Datei vom "
-"Datenträger gelöscht."
+"Dadurch wird die Version gelöscht und die entsprechende Datei vom Datenträger "
+"gelöscht."
 
 #: ../src/Clients/MainApp/PhotoVersionCommands.cs:204
 msgid "De_tach"
@@ -2149,15 +2154,16 @@ msgstr "Abtrennung auf_heben"
 msgid "Really reparent \"{0}\" as version of \"{1}\"?"
 msgid_plural "Really reparent {2} photos as versions of \"{1}\"?"
 msgstr[0] ""
-"Soll die Abtrennung von »{0}« als Version von »{1}« wirklich aufgehoben werden?"
+"Soll die Abtrennung von »{0}« als Version von »{1}« wirklich aufgehoben "
+"werden?"
 msgstr[1] ""
 "Soll die Abtrennung von {2} Fotos als Versionen von »{1}« wirklich aufgehoben "
 "werden?"
 
 #: ../src/Clients/MainApp/PhotoVersionCommands.cs:232
 msgid ""
-"This makes the photos appear as a single one in the library. The versions "
-"can be detached using the Photo menu."
+"This makes the photos appear as a single one in the library. The versions can "
+"be detached using the Photo menu."
 msgstr ""
 "Dadurch erscheinen die Fotos als einzelnes Bild in der Bibliothek. Im »Foto«-"
 "Menü können Sie die Versionen voneinander trennen."
@@ -2927,11 +2933,11 @@ msgstr "Es wird auf Legitimation gewartet"
 
 #: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:118
 msgid ""
-"F-Spot will now launch your browser so that you can enable the permission "
-"you just selected.\n"
+"F-Spot will now launch your browser so that you can enable the permission you "
+"just selected.\n"
 "\n"
-"Once you are directed by Facebook to return to this application, click \"Ok"
-"\" below."
+"Once you are directed by Facebook to return to this application, click \"Ok\" "
+"below."
 msgstr ""
 "F-Spot startet nun Ihren Browser, so dass Sie die gerade gewählten "
 "Zugriffsrechte aktualisieren können.\n"
@@ -3026,12 +3032,12 @@ msgstr "Es wird auf Legitimation gewartet"
 msgid ""
 "F-Spot will now launch your browser so that you can log into Facebook.\n"
 "\n"
-"Once you are directed by Facebook to return to this application, click \"Ok"
-"\" below.  F-Spot will cache your session in gnome-keyring, if possible, and "
-"re-use it on future Facebook exports."
+"Once you are directed by Facebook to return to this application, click \"Ok\" "
+"below.  F-Spot will cache your session in gnome-keyring, if possible, and re-"
+"use it on future Facebook exports."
 msgstr ""
-"F-Spot wird nun Ihren Browser starten, so dass Sie sich bei Facebook "
-"anmelden können.\n"
+"F-Spot wird nun Ihren Browser starten, so dass Sie sich bei Facebook anmelden "
+"können.\n"
 "\n"
 "Sobald Sie von Facebook dazu geführt werden, zu dieser Anwendung "
 "zurückzukehren, klicken Sie auf »OK«."
@@ -3253,8 +3259,8 @@ msgstr "Markierungs-_Rangordnung exportieren"
 #: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/Resources/flickr_export.ui.h:8
 msgid ""
 "F-Spot needs your authorization in order to upload photos to your {0} "
-"account. Press the \"Authorize\" button to open a web browser and give F-"
-"Spot the authorization. "
+"account. Press the \"Authorize\" button to open a web browser and give F-Spot "
+"the authorization. "
 msgstr ""
 "F-Spot benötigt Ihre Legitimierung, um Fotos zu Ihrem {0}-Benutzerkonto "
 "hochzuladen. Bitte klicken Sie auf den »Legitimieren«-Knopf, um einen Browser "
@@ -3533,8 +3539,8 @@ msgstr "Fehler beim Erstellen eines neuen Albums"
 #: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryRemote.cs:745
 #, csharp-format
 msgid ""
-"The following error was encountered while attempting to perform the "
-"requested operation:\n"
+"The following error was encountered while attempting to perform the requested "
+"operation:\n"
 "{0} ({1})"
 msgstr ""
 "Der folgende Fehler trat beim Versuch auf, die gewünschte Aktion "
@@ -3676,8 +3682,7 @@ msgid "_Album Title:"
 msgstr "Titel des _Albums:"
 
 #: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/Resources/google_add_dialog.ui.h:3
-msgid ""
-"<span weight='bold' size='larger'>Your Google Account is locked</span>\n"
+msgid "<span weight='bold' size='larger'>Your Google Account is locked</span>\n"
 msgstr ""
 "<span weight='bold' size='larger'>Ihr Google-Konto ist gesperrt</span>\n"
 
@@ -4056,12 +4061,21 @@ msgstr "Eine Diaschau aus F-Spot anzeigen"
 msgid "F-Spot photos"
 msgstr "F-Spot Fotos"
 
+#~ msgid "(wrong format)"
+#~ msgstr "(falsches Format)"
+
+#~ msgid "(At least one File not found)"
+#~ msgstr "(Mindestens eine Datei wurde nicht gefunden)"
+
+#~ msgid "Show Photo Name"
+#~ msgstr "Fotonamen anzeigen"
+
 #~ msgid ""
-#~ "Metadata of file {0} may be corrupt, refusing to write to it, falling "
-#~ "back to XMP sidecar."
+#~ "Metadata of file {0} may be corrupt, refusing to write to it, falling back "
+#~ "to XMP sidecar."
 #~ msgstr ""
-#~ "Metadaten der Datei {0} könnten beschädigt sein, Schreiben wird "
-#~ "abgelehnt, XMP-Sidecar wird ersatzweise verwendet."
+#~ "Metadaten der Datei {0} könnten beschädigt sein, Schreiben wird abgelehnt, "
+#~ "XMP-Sidecar wird ersatzweise verwendet."
 
 #~ msgid ""
 #~ "In order to detect duplicates on pictures you imported before 0.5.0, F-"
@@ -4076,8 +4090,7 @@ msgstr "F-Spot Fotos"
 #~ "unterbrechen."
 
 #~ msgid ""
-#~ "You currently have {0} photos needing md5 calculation, and {1} pending "
-#~ "jobs"
+#~ "You currently have {0} photos needing md5 calculation, and {1} pending jobs"
 #~ msgstr ""
 #~ "Derzeit benötigen {0} Fotos eine md5-Berechnung, und {1} Aufträge stehen "
 #~ "aus"
@@ -4196,8 +4209,7 @@ msgstr "F-Spot Fotos"
 #~ msgstr "Eine eindeutige Nummer"
 
 #~ msgid ""
-#~ "The envelope handling priority between 1 (most urgent) and 9 (least "
-#~ "urgent)"
+#~ "The envelope handling priority between 1 (most urgent) and 9 (least urgent)"
 #~ msgstr ""
 #~ "Die für den Umschlag geltende Dringlichkeitsstufe zwischen 1 (hoch) und 9 "
 #~ "(niedrig)"
@@ -4251,8 +4263,7 @@ msgstr "F-Spot Fotos"
 #~ msgstr "Der volle Name des Landes, auf das sich der Inhalt bezieht"
 
 #~ msgid ""
-#~ "Two or three letter ISO3166 code of the country of the focus of the "
-#~ "content"
+#~ "Two or three letter ISO3166 code of the country of the focus of the content"
 #~ msgstr ""
 #~ "Zwei- oder dreibuchstabige ISO3166-Kennung des Landes, auf das sich der "
 #~ "Inhalt bezieht"
@@ -4287,9 +4298,6 @@ msgstr "F-Spot Fotos"
 
 #~ msgid "Unknown IIM DataSet"
 #~ msgstr "Unbekannter IIM-Datensatz"
-
-#~ msgid "Creator"
-#~ msgstr "Ersteller"
 
 #~ msgid "Title"
 #~ msgstr "Titel"
@@ -4370,8 +4378,8 @@ msgstr "F-Spot Fotos"
 #~ "Specify if an original size picture should be rotated or not. Smaller "
 #~ "sizes are automatically rotated."
 #~ msgstr ""
-#~ "Geben Sie an, ob ein Bild in Originalgröße gedreht werden soll oder "
-#~ "nicht. Kleinere Größen werden automatisch gedreht."
+#~ "Geben Sie an, ob ein Bild in Originalgröße gedreht werden soll oder nicht. "
+#~ "Kleinere Größen werden automatisch gedreht."
 
 #~ msgid "Unable to create temporary file"
 #~ msgstr "Temporäre Datei konnte nicht erstellt werden"
@@ -4538,8 +4546,7 @@ msgstr "F-Spot Fotos"
 #~ "check that the camera is connected and has power"
 #~ msgstr ""
 #~ "F-Spot konnte keine an diesem System angeschlossene Kamera finden. "
-#~ "Vergewissern Sie sich, dass die Kamera angeschlossen und eingeschaltet "
-#~ "ist."
+#~ "Vergewissern Sie sich, dass die Kamera angeschlossen und eingeschaltet ist."
 
 #~ msgid "Error connecting to camera"
 #~ msgstr "Fehler beim Verbinden zur Kamera"
@@ -4871,8 +4878,7 @@ msgstr "F-Spot Fotos"
 #~ "<small><i>Enable this option to store tags and descriptions inside \n"
 #~ "supported image formats.</i></small>"
 #~ msgstr ""
-#~ "<small><i>Aktivieren Sie diese Option, um Markierungen und "
-#~ "Beschreibungen\n"
+#~ "<small><i>Aktivieren Sie diese Option, um Markierungen und Beschreibungen\n"
 #~ "im Bild selbst zu speichern, sofern das Bildformat dies unterstützt.</i></"
 #~ "small>"
 
@@ -4958,8 +4964,8 @@ msgstr "F-Spot Fotos"
 #~ msgstr "Metapixel nicht verfügbar"
 
 #~ msgid ""
-#~ "The metapixel executable was not found in path. Please check that you "
-#~ "have it installed and that you have permissions to execute it"
+#~ "The metapixel executable was not found in path. Please check that you have "
+#~ "it installed and that you have permissions to execute it"
 #~ msgstr ""
 #~ "Die ausführbare Metapixel-Datei wurde nicht im Suchpfad gefunden. Bitte "
 #~ "stellen Sie sicher, dass diese installiert ist und Sie über die nötigen "
@@ -4994,8 +5000,8 @@ msgstr "F-Spot Fotos"
 #~ msgstr "Foto_wand erzeugen"
 
 #~ msgid ""
-#~ "The picturetile.pl executable was not found in path. Please check that "
-#~ "you have it installed and that you have permissions to execute it"
+#~ "The picturetile.pl executable was not found in path. Please check that you "
+#~ "have it installed and that you have permissions to execute it"
 #~ msgstr ""
 #~ "Die ausführbare Datei »picturetile.pl« wurde nicht im Suchpfad gefunden. "
 #~ "Bitte stellen Sie sicher, dass diese installiert ist und Sie über die "
@@ -5227,11 +5233,10 @@ msgstr "F-Spot Fotos"
 
 #, fuzzy
 #~ msgid ""
-#~ "<small><i>Enable this option if you want to allow other programs to "
-#~ "import or delete photos and tags over DBus.</i></small>"
+#~ "<small><i>Enable this option if you want to allow other programs to import "
+#~ "or delete photos and tags over DBus.</i></small>"
 #~ msgstr ""
-#~ "<small><i>Aktivieren Sie diese Option, um Markierungen und "
-#~ "Beschreibungen\n"
+#~ "<small><i>Aktivieren Sie diese Option, um Markierungen und Beschreibungen\n"
 #~ "im Bild selbst zu speichern, sofern das Bildformat dies unterstützt.</i></"
 #~ "small>"
 
@@ -5301,8 +5306,8 @@ msgstr "F-Spot Fotos"
 #~ "permissions are correct and try again"
 #~ msgstr ""
 #~ "Der Fehler »{0}« ist während der Erstellung des Verzeichnisses »{1}« "
-#~ "aufgetreten. Überprüfen Sie den Pfad und die Zugriffsrechte. Versuchen "
-#~ "Sie es danach noch einmal."
+#~ "aufgetreten. Überprüfen Sie den Pfad und die Zugriffsrechte. Versuchen Sie "
+#~ "es danach noch einmal."
 
 #~ msgid "Select Destination"
 #~ msgstr "Zielverzeichnis wählen"
