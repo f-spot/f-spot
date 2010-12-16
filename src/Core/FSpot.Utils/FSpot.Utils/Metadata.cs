@@ -39,9 +39,15 @@ namespace FSpot.Utils
         public static TagLib.Image.File Parse (SafeUri uri)
         {
             // Detect mime-type
-            var gfile = FileFactory.NewForUri (uri);
-            var info = gfile.QueryInfo ("standard::content-type", FileQueryInfoFlags.None, null);
-            var mime = info.ContentType;
+            string mime;
+            try {
+                var gfile = FileFactory.NewForUri (uri);
+                var info = gfile.QueryInfo ("standard::content-type", FileQueryInfoFlags.None, null);
+                mime = info.ContentType;
+            } catch (Exception e) {
+                Hyena.Log.DebugException (e);
+                return null;
+            }
 
             if (mime.StartsWith ("application/x-extension-")) {
                 // Works around broken metadata detection - https://bugzilla.gnome.org/show_bug.cgi?id=624781

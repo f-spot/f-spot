@@ -119,7 +119,10 @@ namespace FSpot.Widgets
                                     Func<IPhoto[], string> multiple_string)
         {
             Action<Widget, IPhoto, TagLib.Image.File> set_single = (widget, photo, metadata) => {
-                (widget as Label).Text = single_string (photo, metadata);
+                if (metadata != null)
+                    (widget as Label).Text = single_string (photo, metadata);
+                else
+                    (widget as Label).Text = Catalog.GetString ("(Unknown)");
             };
             
             Action<Widget, IPhoto[]> set_multiple = (widget, photos) => {
