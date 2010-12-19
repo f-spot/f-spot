@@ -147,7 +147,7 @@ namespace FSpot.Imaging.Ciff {
 		ImageDirectory Root {
 			get {
 				if (root == null) {
-					stream = PixbufStream ();
+					stream = base.PixbufStream ();
 					root = Load (stream);
 				}
 
