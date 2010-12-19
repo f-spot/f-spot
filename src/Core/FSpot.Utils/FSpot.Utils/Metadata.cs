@@ -63,10 +63,26 @@ namespace FSpot.Utils
             }
         }
 
+        private delegate SafeUri GenerateSideCarName (SafeUri photo_uri);
+        private static GenerateSideCarName[] SidecarNameGenerators = {
+            (p) => new SafeUri (p.AbsoluteUri + ".xmp"),
+            (p) => p.ReplaceExtension (".xmp"),
+        };
+
         public static SafeUri GetSidecarUri (SafeUri photo_uri)
         {
-            // TODO: We might consider alternate namings here
-            return photo_uri.ReplaceExtension (".xmp");
+            // First probe for existing sidecar files, use the one that's found.
+            foreach (var generator in SidecarNameGenerators) {
+                var name = generator (photo_uri);
+                var file = GLib.FileFactory.NewForUri (name);
+                if (file.Exists) {
+                    return name;
+                }
+            }
+            
+
+            // Fall back to the default strategy.
+            return SidecarNameGenerators[0] (photo_uri);
         }
     }
 }
