@@ -1,3 +1,24 @@
+f-spot 0.8.1 - Dec 19 2010 - Winter Fixes!
+------------------------------------------
+- Bug fix release for the 0.8.x series.
+ - Critical bug fixes and translation updates. Upgrading highly recommended.
+ - Infobox crasher fixed (Paul Wellner Bou)
+ - CRW crasher (Christian Krause)
+ - XMP sidecar file naming now uses file.jpg.xmp, falls back to old file.xmp
+   if present (Ruben Vermeersch)
+ - French Mallard Documentation (Bruno Brouard)
+ - Slovenian Mallard Documentation (Matej Urbančič)
+ - Tons of translations
+ - Loads of obsolete code fixed (Tim Howard)
+ - DateTime.DaysInMonth crasher fix (Tim Howard)
+ - Mono.Data.Sqlite removed (Tim Howard)
+ - Switch to official Taglib# repository.
+ - Lots of Taglib# fixes.
+ - Rotation crasher (Nuno Ferreira)
+ - Gallery export crasher for Unicode characters (Martin Slota)
+ - A fix for the very annoying Int32.MaxValue bug.
+ - Around 20 bugs closed (http://bit.ly/hCAwkd)
+
 f-spot 0.8.0 - Sep 15 2010 - Stabilized
 ---------------------------------------
 - First long-term stable release of the 0.8.x series.
