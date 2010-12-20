@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: F-Spot\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=f-"
 "spot&component=General\n"
-"POT-Creation-Date: 2010-09-27 14:24+0000\n"
+"POT-Creation-Date: 2010-12-16 13:40+0000\n"
 "PO-Revision-Date: 2010-10-05 16:43+0300\n"
 "Last-Translator: Mattias Põldaru <mahfiaz gmail com>\n"
 "Language-Team: Estonian <gnome-et@linux.ee>\n"
@@ -20,6 +20,232 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. ../src/Clients/MainApp/FSpot.addin.xml
+#. ../src/Extensions/Editors/FSpot.Editors.Blackout/Resources/BlackoutEditor.addin.xml
+#, fuzzy
+msgid "BlackoutEditor"
+msgstr "Mustaks"
+
+msgid "Blacks out an area of the image."
+msgstr ""
+
+#, fuzzy
+msgid "Editors"
+msgstr "Redigeerimine"
+
+#. ../src/Extensions/Editors/FSpot.Editors.BW/Resources/BWEditor.addin.xml
+#, fuzzy
+msgid "BWEditor"
+msgstr "Redigeerimine"
+
+msgid "Convert to B/W with control. Require Mono 2.2."
+msgstr ""
+
+#. ../src/Extensions/Editors/FSpot.Editors.Flip/Resources/FlipEditor.addin.xml
+msgid "FlipEditor"
+msgstr ""
+
+msgid "Flips the image horizontally."
+msgstr ""
+
+#. ../src/Extensions/Editors/FSpot.Editors.Pixelate/Resources/PixelateEditor.addin.xml
+#, fuzzy
+msgid "PixelateEditor"
+msgstr "Ruuduliseks"
+
+msgid "Pixelates an area of the image."
+msgstr ""
+
+#. ../src/Extensions/Editors/FSpot.Editors.Resize/Resources/ResizeEditor.addin.xml
+#, fuzzy
+msgid "ResizeEditor"
+msgstr "Suuruse muutmine"
+
+#, fuzzy
+msgid "Resize the image"
+msgstr "_Pildi pikim külg:"
+
+#. ../src/Extensions/Exporters/FSpot.Exporters.CD/Resources/CDExport.addin.xml
+#, fuzzy
+msgid "CD Export"
+msgstr "Eksportimine"
+
+msgid "This extension allows you to burn your photos to CD."
+msgstr ""
+
+msgid "Export"
+msgstr "Eksportimine"
+
+#. ../src/Extensions/Exporters/FSpot.Exporters.Facebook/Resources/FacebookExport.addin.xml
+#, fuzzy
+msgid "FacebookExport"
+msgstr "Eksportimine"
+
+#, fuzzy
+msgid "Export pictures to facebook"
+msgstr "Ekspordi Facebooki"
+
+#. ../src/Extensions/Exporters/FSpot.Exporters.Flickr/Resources/FlickrExport.addin.xml
+#, fuzzy
+msgid "Flickr Export"
+msgstr "Eksportimine kataloogi"
+
+msgid "This extension allows you to export your photos to Flickr and 23hq."
+msgstr ""
+
+#. ../src/Extensions/Exporters/FSpot.Exporters.Folder/Resources/FolderExport.addin.xml
+msgid "Folder Export"
+msgstr "Eksportimine kataloogi"
+
+msgid ""
+"This extension allows you to export your photos to HTML galleries, Original "
+"galleries or just to a folder."
+msgstr ""
+
+#. ../src/Extensions/Exporters/FSpot.Exporters.Gallery/Resources/GalleryExport.addin.xml
+#, fuzzy
+msgid "Gallery Export"
+msgstr "Eksportimine kataloogi"
+
+msgid ""
+"This extension allows you to export your photos to PHP Gallery (http://"
+"gallery.menalto.com)."
+msgstr ""
+
+#. ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/Resources/PicasaWebExport.addin.xml
+#, fuzzy
+msgid "PicasaWeb Export"
+msgstr "<b>PicasaWeb eksport</b>"
+
+msgid "This extension allows you to export your photos to PicasaWeb."
+msgstr ""
+
+#. ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/Resources/SmugMugExport.addin.xml
+#, fuzzy
+msgid "SmugMug Export"
+msgstr "<b>SmugMug eksport</b>"
+
+msgid "This extension allows you to export your photos to SmugMug."
+msgstr ""
+
+#. ../src/Extensions/Exporters/FSpot.Exporters.Tabblo/Resources/TabbloExport.addin.xml
+#, fuzzy
+msgid "Tabblo Export"
+msgstr "Eksportimine"
+
+msgid "This extension allows you to export your photos to Tabblo."
+msgstr ""
+
+#. ../src/Extensions/Exporters/FSpot.Exporters.Zip/Resources/ZipExport.addin.xml
+#, fuzzy
+msgid "Zip export"
+msgstr "Eksportimine"
+
+#, fuzzy
+msgid "Simple export to Zip file"
+msgstr "Vali eksportimise kaust"
+
+#. ../src/Extensions/Tools/FSpot.Tools.ChangePhotoPath/Resources/ChangePhotoPath.addin.xml
+msgid "ChangePath"
+msgstr ""
+
+msgid ""
+"UNSTABLE - Please ensure you have a backup of your photos.db before you test "
+"this extension. This extension will allow you to change the base path to the "
+"your photos. It is very handy if you move your photos from ~/Photos to /"
+"OurPhotos for instance. Just ensure you let SqLite continue to process the "
+"changes for up to a few hours after f-spot reports finished. It will only "
+"change the path to photos which are located under the Photo directory."
+msgstr ""
+
+msgid "Tools"
+msgstr "Tööriistad"
+
+#. ../src/Extensions/Tools/FSpot.Tools.DevelopInUFraw/Resources/DevelopInUFRaw.addin.xml
+msgid "DevelopInUFRaw"
+msgstr ""
+
+msgid ""
+"Develop the image in UFRaw, saves the result as a new version\\n\\nNote: "
+"Require ufraw 0.13 or CVS version newer than 2007-09-06 !!!"
+msgstr ""
+
+#. ../src/Extensions/Tools/FSpot.Tools.LiveWebGallery/Resources/LiveWebGallery.addin.xml
+#, fuzzy
+msgid "LiveWebGallery"
+msgstr "F-Spoti otsegalerii võrgus"
+
+msgid "Share photos with other people on the same network via Web Browser"
+msgstr ""
+
+#. ../src/Extensions/Tools/FSpot.Tools.MergeDb/Resources/MergeDb.addin.xml
+msgid "MergeDb"
+msgstr ""
+
+#, fuzzy
+msgid "Merge another db back to the main one"
+msgstr "Liida juurde teine F-spoti kollektsioon"
+
+#. ../src/Extensions/Tools/FSpot.Tools.MetaPixel/MetaPixel.addin.xml
+msgid "MetaPixel"
+msgstr ""
+
+msgid ""
+"Create photomosaics using MetaPixel (http://www.complang.tuwien.ac.at/schani/"
+"metapixel/)"
+msgstr ""
+
+#. ../src/Extensions/Tools/FSpot.Tools.PictureTile/PictureTile.addin.xml
+msgid "PictureTile"
+msgstr ""
+
+msgid ""
+"Create photo wall using PictureTile by Jamie Zawinski (http://www.jwz.org/"
+"picturetile/)"
+msgstr ""
+
+#. ../src/Extensions/Tools/FSpot.Tools.RawPlusJpeg/Resources/RawPlusJpeg.addin.xml
+msgid "RawPlusJpeg"
+msgstr ""
+
+msgid "Merge RAW+Jpeg as multiple versions of the same photo"
+msgstr ""
+
+#. ../src/Extensions/Tools/FSpot.Tools.RetroactiveRoll/Resources/RetroactiveRoll.addin.xml
+msgid "RetroactiveRoll"
+msgstr ""
+
+msgid "Retroactively assign old photos to import rolls"
+msgstr ""
+
+#. ../src/Extensions/Tools/FSpot.Tools.ScreensaverConfig/Resources/ScreensaverConfig.addin.xml
+msgid "Screensaver Configuration"
+msgstr "Ekraanisäästja seadistus"
+
+#, fuzzy
+msgid "Screensaver options"
+msgstr "Ekraanisäästja seadistus"
+
+#. ../src/Extensions/Tools/FSpot.Tools.SyncCatalog/SyncCatalog.addin.xml
+#, fuzzy
+msgid "SyncMetaData"
+msgstr "Metaandmed"
+
+msgid "Sync MetaData information of all catalog with Photos"
+msgstr ""
+
+#. ../src/Extensions/Transitions/FSpot.Transitions.Cover/Resources/CoverTransition.addin.xml
+#, fuzzy
+msgid "Cover Transition"
+msgstr "Slaidide vahetus:"
+
+msgid "A Slideshow transition that covers images"
+msgstr ""
+
+#, fuzzy
+msgid "Transitions"
+msgstr "Slaidide vahetus:"
 
 msgid "F-Spot"
 msgstr "F-Spot"
@@ -224,9 +450,6 @@ msgstr "Pööra _vasakule"
 
 msgid "Rotate _Right"
 msgstr "Pööra _paremale"
-
-msgid "Tools"
-msgstr "Tööriistad"
 
 msgid "_Delete From Drive"
 msgstr "_Kustuta kettalt"
@@ -1204,38 +1427,15 @@ msgstr "Histogramm"
 msgid "Image Information"
 msgstr "Pildi andmed"
 
+#, csharp-format
+msgid "{0} Photos"
+msgstr "{0} fotot"
+
 msgid "Name"
 msgstr "Nimi"
 
 msgid "Version"
 msgstr "Versioon"
-
-msgid "Date"
-msgstr "Kuupäev"
-
-msgid "Size"
-msgstr "Suurus"
-
-msgid "Exposure"
-msgstr "Säriaeg"
-
-msgid "Focal Length"
-msgstr "Fookuskaugus"
-
-msgid "Camera"
-msgstr "Kaamera"
-
-msgid "File Size"
-msgstr "Faili suurus"
-
-msgid "Rating"
-msgstr "Hinnang"
-
-msgid "(wrong format)"
-msgstr "(vale vorming)"
-
-msgid "(Unknown)"
-msgstr "(Teadmata)"
 
 msgid "(No Edits)"
 msgstr "(versioone pole)"
@@ -1246,12 +1446,11 @@ msgid_plural "({0} Edits)"
 msgstr[0] "(üks muutmine)"
 msgstr[1] "({0} muutmist)"
 
-msgid "(File read error)"
-msgstr "(Viga faili lugemisel)"
+msgid "Date"
+msgstr "Kuupäev"
 
-#, csharp-format
-msgid "{0} Photos"
-msgstr "{0} fotot"
+msgid "Show Date"
+msgstr "Näita kuupäeva"
 
 #. Note for translators: {0} is a date, {1} and {2} are times.
 #, csharp-format
@@ -1270,29 +1469,66 @@ msgstr ""
 "{0} ja\n"
 "{1} vahel"
 
-msgid "(At least one File not found)"
-msgstr "(Vähemalt ühte faili ei leitud)"
-
-msgid "Show Photo Name"
-msgstr "Näita foto nime"
-
-msgid "Show Date"
-msgstr "Näita kuupäeva"
+msgid "Size"
+msgstr "Suurus"
 
 msgid "Show Size"
 msgstr "Näita suurust"
 
+msgid "(Unknown)"
+msgstr "(Teadmata)"
+
+msgid "Exposure"
+msgstr "Säriaeg"
+
 msgid "Show Exposure"
 msgstr "Näita säriaega"
+
+msgid "flash fired"
+msgstr ""
+
+msgid "flash didn't fire"
+msgstr ""
+
+msgid "Focal Length"
+msgstr "Fookuskaugus"
 
 msgid "Show Focal Length"
 msgstr "Näita fookuskaugust"
 
+msgid "Camera"
+msgstr "Kaamera"
+
 msgid "Show Camera"
 msgstr "Näita kaamerat"
 
+#, fuzzy
+msgid "Creator"
+msgstr "_Loo"
+
+#, fuzzy
+msgid "Show Creator"
+msgstr "Näita kaamerat"
+
+msgid "File Size"
+msgstr "Faili suurus"
+
 msgid "Show File Size"
 msgstr "Näita failisuurust"
+
+msgid "(File read error)"
+msgstr "(Viga faili lugemisel)"
+
+msgid "Rating"
+msgstr "Hinnang"
+
+#, fuzzy
+msgid "Show Rating"
+msgstr "Hinnang"
+
+#, fuzzy
+msgid "Show Tags"
+msgstr "Näita kuupäeva"
 
 msgid "Metadata"
 msgstr "Metaandmed"
@@ -2176,9 +2412,6 @@ msgstr "<b>Stiil</b>"
 msgid "<b>Viewing permissions</b>"
 msgstr "<b>Vaatamise õigused</b>"
 
-msgid "Export"
-msgstr "Eksportimine"
-
 msgid "Export tag _hierarchy"
 msgstr "_Märksõnade hierarhia eksporditakse"
 
@@ -2294,9 +2527,6 @@ msgstr "_Märksõnad eksporditakse"
 
 msgid "Export tag _icons"
 msgstr "Märksõnade _ikoonid eksporditakse"
-
-msgid "Folder Export"
-msgstr "Eksportimine kataloogi"
 
 msgid "G_allery Name:"
 msgstr "Galerii _nimi:"
@@ -2772,11 +3002,17 @@ msgstr "Pildid märksõnadega:"
 msgid "Make F-Spot my screensaver"
 msgstr "Tee F-Spotist minu ekraanisäästja"
 
-msgid "Screensaver Configuration"
-msgstr "Ekraanisäästja seadistus"
-
 msgid "Display a slideshow from F-Spot"
 msgstr "Näita slaidiesitlust F-Spotiga"
 
 msgid "F-Spot photos"
 msgstr "F-Spot fotoalbum"
+
+#~ msgid "(wrong format)"
+#~ msgstr "(vale vorming)"
+
+#~ msgid "(At least one File not found)"
+#~ msgstr "(Vähemalt ühte faili ei leitud)"
+
+#~ msgid "Show Photo Name"
+#~ msgstr "Näita foto nime"
