@@ -46,47 +46,6 @@
 
 /* Public functions.  */
 
-int
-f_pixbuf_get_image_size (GdkPixbuf *pixbuf)
-{
-	int width, height;
-
-	width = gdk_pixbuf_get_width (pixbuf);
-	height = gdk_pixbuf_get_height (pixbuf);
-
-	return MAX (width, height);
-}
-
-int
-f_pixbuf_get_scaled_width (GdkPixbuf *pixbuf,
-			   int size)
-{
-	int orig_width, orig_height;
-
-	orig_width = gdk_pixbuf_get_width (pixbuf);
-	orig_height = gdk_pixbuf_get_height (pixbuf);
-
-	if (orig_width > orig_height)
-		return size;
-	else
-		return size * ((double) orig_width / orig_height);
-}
-
-int
-f_pixbuf_get_scaled_height (GdkPixbuf *pixbuf,
-			    int size)
-{
-	int orig_width, orig_height;
-
-	orig_width = gdk_pixbuf_get_width (pixbuf);
-	orig_height = gdk_pixbuf_get_height (pixbuf);
-
-	if (orig_width > orig_height)
-		return size * ((double) orig_height / orig_width);
-	else
-		return size;
-}
-
 cairo_surface_t *
 f_pixbuf_to_cairo_surface (GdkPixbuf *pixbuf)
 {

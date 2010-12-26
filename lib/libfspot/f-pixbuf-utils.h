@@ -26,16 +26,4 @@
 
 #include <gdk-pixbuf/gdk-pixbuf.h>
 
-
-/* Return the largest between height and width of the specified PIXBUF.  */
-int f_pixbuf_get_image_size (GdkPixbuf *pixbuf);
-
-/* Return the normalized width for the specified PIXBUF at the specified
-   thumbnail SIZE.  */
-int f_pixbuf_get_scaled_width (GdkPixbuf *pixbuf, int size);
-
-/* Return the normalized height for the specified PIXBUF at the specified
-   thumbnail SIZE.  */
-int f_pixbuf_get_scaled_height (GdkPixbuf *pixbuf, int size);
-
 #endif
