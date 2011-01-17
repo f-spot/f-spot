@@ -1,0 +1,1303 @@
+# Hungarian translation of f-spot_help
+# Copyright (C) 2011. Free Software Foundation, Inc.
+# This file is distributed under the same license as the f-spot package.
+#
+# Gabor Kelemen <kelemeng at gnome dot hu>, 2011.
+msgid ""
+msgstr ""
+"Project-Id-Version: f-spot_help master\n"
+"POT-Creation-Date: 2011-01-13 12:53+0000\n"
+"PO-Revision-Date: 2011-01-17 22:45+0100\n"
+"Last-Translator: Gabor Kelemen <kelemeng at gnome dot hu>\n"
+"Language-Team: Hungarian <gnome at fsf dot hu>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.11.4\n"
+"Plural-Forms:  nplurals=2; plural=(n != 1);\n"
+
+#: C/zooomr.page:8(desc)
+msgid "Upload photos to Zooomr"
+msgstr "Fényképek feltöltése a Zooomrre"
+
+#: C/zooomr.page:11(title)
+msgid "Zooomr"
+msgstr "Zooomr"
+
+#: C/zooomr.page:15(p)
+msgid ""
+"To upload photos to Zooomr you will need a Zooomr account, as well as "
+"internet access. Also, the Zooomr <link xref=\"extensions\">extension</link> "
+"must be installed and enabled."
+msgstr ""
+"A fényképek a Zooomrre való feltöltéséhez egy Zooomr fiók és "
+"internetkapcsolat szükséges. Ezen kívül a Zooomr <link xref=\"extensions"
+"\">kiterjesztést</link> is telepíteni és engedélyezni kell."
+
+#: C/versioning.page:8(desc)
+msgid "Track different versions of your photos"
+msgstr "Fényképek különböző változatainak követése"
+
+#: C/versioning.page:11(title)
+msgid "Versioning"
+msgstr "Verziókövetés"
+
+#: C/versioning.page:14(p)
+msgid ""
+"<app>F-Spot</app> allows you to keep multiple versions of your photos. This "
+"is especially useful when editing photos, as you can quickly see the "
+"difference between the edited version and the original."
+msgstr ""
+"Az <app>F-Spot</app> lehetővé teszi a fényképek több változatának tárolását. "
+"Ez különösen fényképek szerkesztésekor hasznos, mivel gyorsan megjelenítheti "
+"a szerkesztett változat és az eredeti közti különbségeket."
+
+#: C/versioning.page:17(p)
+msgid "To switch between versions while editing:"
+msgstr "A verziók közti szerkesztés közbeni váltáshoz:"
+
+#: C/versioning.page:20(p)
+msgid "Double-click the photo you wish to edit."
+msgstr "Kattintson duplán a szerkeszteni kívánt fényképre."
+
+#: C/versioning.page:23(p)
+msgid ""
+"In the sidebar, you will see a drop-down box labeled <gui>Version:</gui>. To "
+"select a version to view, select it in the drop-down box."
+msgstr ""
+"Az oldalsávban látható a <gui>Verzió:</gui> legördülő lista. A "
+"megjelenítendő verzió kiválasztásához válassza ki azt a legördülő listában."
+
+#: C/upload-to-web.page:8(desc)
+msgid "Upload photos to various web services"
+msgstr "Fényképek feltöltése webes szolgáltatásokra"
+
+#: C/upload-to-web.page:11(title)
+msgid "Upload to Web"
+msgstr "Feltöltés webre"
+
+#: C/upload-to-web.page:14(p)
+msgid ""
+"<app>F-Spot</app> allows you to upload photos to popular web services, "
+"including Google's PicasaWeb and Flickr."
+msgstr ""
+"Az <app>F-Spot</app> segítségével feltöltheti fotóit népszerű webes "
+"szolgáltatásokra, beleértve a PicasaWeb és a Flickr oldalakat."
+
+#: C/tags.page:6(desc)
+msgid "A brief introduction to the tagging capabilities of F-Spot"
+msgstr "Az F-Spot címkézési képességeinek rövid bemutatása"
+
+#: C/tags.page:9(title)
+msgid "Tags"
+msgstr "Címkék"
+
+#: C/tags.page:12(p)
+msgid ""
+"Like certain other photo managers, <app>F-Spot</app> lets you tag your "
+"photos, allowing for quick, easy content-based searching of your photos. You "
+"can tag people, events, places, favorite things, or even make your own "
+"groups of tags."
+msgstr ""
+"Más fényképkezelőkhöz hasonlóan az <app>F-Spot</app> is lehetővé teszi "
+"fényképei címkézését, így egyszerűen és gyorsan kereshet tartalom alapján a "
+"fényképei között. Megcímkézhet személyeket, eseményeket, helyeket, kedvenc "
+"dolgokat vagy akár saját címkecsoportokat is létrehozhat."
+
+#: C/tags.page:17(title)
+msgid "Working with Tags"
+msgstr "Címkék kezelése"
+
+#: C/tag-search.page:8(desc)
+msgid "Search photos using tags"
+msgstr "Fényképek keresése címkékkel"
+
+#: C/tag-search.page:11(title)
+msgid "Search by Tag"
+msgstr "Keresés címkékkel"
+
+#: C/tag-search.page:15(p)
+msgid "There are several methods to search by tags."
+msgstr "Több módon is kereshet címkék szerint."
+
+#: C/tag-search.page:16(p)
+msgid "Method One: Double-click the tags you wish to search for."
+msgstr "Első módszer: kattintson duplán a kereséshez használni kívánt címkékre."
+
+#: C/tag-search.page:17(p) C/tag-remove.page:28(p) C/tag-creation.page:32(p)
+#: C/tag-attach.page:29(p) C/ratings.page:25(p)
+msgid "Method Two:"
+msgstr "Második módszer:"
+
+#: C/tag-search.page:20(p)
+msgid ""
+"Enable the Find bar by clicking <guiseq><gui>Find</gui><gui>Show Find bar</"
+"gui></guiseq>."
+msgstr ""
+"Jelenítse meg a Keresősávot a <guiseq><gui>Keresés</gui><gui>Keresősáv "
+"megjelenítése</gui></guiseq> menüpont kiválasztásával."
+
+#: C/tag-search.page:24(p)
+msgid "Drag the tags you wish to search for into the newly-enabled Find bar."
+msgstr "Húzza a keresni kívánt címkéket az imént bekapcsolt Keresés sávra."
+
+#: C/tag-search.page:27(p)
+msgid ""
+"To remove a tag from your search, right-click the tag in the Find bar and "
+"click <gui>Remove From Search</gui>."
+msgstr ""
+"Címke keresésből való eltávolításához kattintson a jobb egérgombbal a "
+"címkére a Keresés sávon, és válassza az <gui>Eltávolítás a keresésből</gui> "
+"lehetőséget."
+
+#: C/tag-search.page:30(p)
+msgid "To exclude a tag from your search:"
+msgstr "Címke kizárásához a keresésből:"
+
+#: C/tag-search.page:33(p)
+msgid ""
+"In the tag pane, double-click the tag you wish to exclude. This will add it "
+"to the Find bar."
+msgstr ""
+"A Címke ablaktáblán kattintson duplán a kizárni kívánt címkére. Ez hozzáadja "
+"azt a keresősávhoz."
+
+#: C/tag-search.page:37(p)
+msgid "In the Find bar, double-click the tag you wish to exclude."
+msgstr "A keresősávon kattintson duplán a kizárni kívánt címkére."
+
+#: C/tag-remove.page:6(desc)
+msgid "Removing tags from photos"
+msgstr "Fényképek címkéinek eltávolítása"
+
+#: C/tag-remove.page:9(title)
+msgid "Removing"
+msgstr "Eltávolítás"
+
+#: C/tag-remove.page:12(p)
+msgid ""
+"As with attaching tags, there are two main methods of removing tags from "
+"photos."
+msgstr ""
+"A címkék csatolásához hasonlóan két fő módszer van fényképek címkéinek "
+"eltávolítására."
+
+#: C/tag-remove.page:14(p) C/tag-creation.page:14(p) C/tag-attach.page:15(p)
+#: C/ratings.page:14(p)
+msgid "Method One:"
+msgstr "Első módszer:"
+
+#: C/tag-remove.page:17(p) C/tag-remove.page:31(p)
+msgid "Select photos from which to remove a tag."
+msgstr "Válassza ki a fényképeket, amelyekről el szeretne távolítani egy címkét."
+
+#: C/tag-remove.page:20(p)
+msgid "In the tag pane, select a tag to remove from the photos you have selected."
+msgstr ""
+"A Címke ablaktáblában válassza ki a kiválasztott fényképekről eltávolítandó "
+"címkét."
+
+#: C/tag-remove.page:24(p)
+msgid "Click <guiseq><gui>Tags</gui><gui>Remove Tag From Selection</gui></guiseq>."
+msgstr ""
+"Válassza a <guiseq><gui>Címkék</gui><gui>Címke eltávolítása a kijelölésből</"
+"gui></guiseq> menüpontot."
+
+#: C/tag-remove.page:34(p) C/tag-attach.page:35(p)
+msgid "Right click the photos."
+msgstr "Kattintson a jobb egérgombbal a fényképekre."
+
+#: C/tag-remove.page:37(p)
+msgid "Select <gui>Remove Tag</gui> and select the tag you wish to remove."
+msgstr ""
+"Válassza a <gui>Címke eltávolítása</gui> menüpontot, majd válassza ki az "
+"eltávolítandó címkét."
+
+#: C/tag-delete.page:6(desc)
+msgid "Deleting tags from the system"
+msgstr "Címkék törlése a rendszerből"
+
+#: C/tag-delete.page:9(title)
+msgid "Deleting"
+msgstr "Törlés"
+
+#: C/tag-delete.page:12(p)
+msgid ""
+"Deleting tags removes them entirely from your system, but leaves behind any "
+"photos to which that tag is attached."
+msgstr ""
+"A címkék törlése teljesen eltávolítja azokat a rendszeréről, de hátrahagyja "
+"azokat a fotókat, amelyekhez az adott címke csatolva van."
+
+#: C/tag-delete.page:14(p)
+msgid "To delete a tag:"
+msgstr "Címke törléséhez:"
+
+#: C/tag-delete.page:17(p)
+msgid "Select the tag you wish to delete from within the tag pane."
+msgstr "Válassza ki a törölni kívánt címkét a Címke ablaktábláról."
+
+#: C/tag-delete.page:20(p)
+#| msgid ""
+#| "Click <guiseq><gui>Tags</gui><gui>Delete Select Tag</gui></guiseq>. "
+#| "Alternatively, right click the tag within the pane, and click <gui>Delete "
+#| "Tag</gui>."
+msgid ""
+"Click <guiseq><gui>Tags</gui><gui>Delete Selected Tag</gui></guiseq>. "
+"Alternatively, right click the tag within the pane, and click <gui>Delete "
+"Tag</gui>."
+msgstr ""
+"Válassza a <guiseq><gui>Címkék</gui><gui>Kijelölt címke törlése</gui></"
+"guiseq> menüpontot. Ennek alternatívájaként kattintson a jobb egérgombbal az "
+"ablaktáblán, és válassza a <gui>Címke törlése</gui> menüpontot."
+
+#: C/tag-creation.page:6(desc)
+msgid "Creating tags to be attached to photos"
+msgstr "Fényképekhez csatolandó címkék létrehozása"
+
+#: C/tag-creation.page:9(title)
+msgid "Creating"
+msgstr "Létrehozás"
+
+#: C/tag-creation.page:12(p)
+msgid ""
+"In order to use tags, you need to first create a set of tags which you wish "
+"to use. There are three main methods to create tags."
+msgstr ""
+"Címkék használatához először létre kell hoznia a használni kívánt címkék "
+"halmazát. Címkéket három módon hozhat létre."
+
+#: C/tag-creation.page:17(p)
+msgid "Select <guiseq><gui>Tags</gui><gui>Create New Tag...</gui></guiseq>."
+msgstr ""
+"Válassza a <guiseq><gui>Címkék</gui><gui>Új címke létrehozása</gui></guiseq> "
+"menüpontot."
+
+#: C/tag-creation.page:21(p) C/tag-creation.page:39(p)
+#: C/tag-creation.page:61(p)
+msgid ""
+"Select a parent tag for the new tag to appear under, such as people or "
+"events. If you wish to create a new tag without a parent, select <gui>(None)"
+"</gui>."
+msgstr ""
+"Válassza ki az új címke szülőcímkéjét, amely alatt meg fog jelenni, mint az "
+"Emberek vagy Események. Ha szülő nélküli címkét szeretne létrehozni, akkor "
+"válassza a <gui>(Nincs)</gui> lehetőséget."
+
+#: C/tag-creation.page:26(p) C/tag-creation.page:44(p)
+#: C/tag-creation.page:66(p)
+msgid "Name the tag."
+msgstr "Nevezze el a címkét."
+
+#: C/tag-creation.page:29(p) C/tag-creation.page:47(p)
+#: C/tag-creation.page:69(p)
+msgid "Click <gui>Create</gui>"
+msgstr "Nyomja meg a <gui>Létrehozás</gui> gombot."
+
+#: C/tag-creation.page:35(p)
+msgid "In the tags page, right click, and select <gui>Create New Tag...</gui>"
+msgstr ""
+"A Címkék ablaktáblán kattintson a jobb egérgombbal, és válassza az <gui>Új "
+"címke létrehozása</gui> menüpontot."
+
+#: C/tag-creation.page:50(p)
+msgid ""
+"Method three has the advantage of also <link xref=\"tag-attach\"> attaching</"
+"link> the new tag to the photos selected. To do this:"
+msgstr ""
+"A harmadik módszer előnye, hogy az új címkét a kijelölt fényképekhez <link "
+"xref=\"tag-attach\">csatolja</link>. Ehhez:"
+
+#: C/tag-creation.page:54(p)
+msgid "Select the photos to which you wish to attach the new tag."
+msgstr "Válassza ki azokat a fényképeket, amelyekhez az új címkét csatolni kívánja."
+
+#: C/tag-creation.page:57(p)
+msgid ""
+"Right-click on the photos, and select <guiseq><gui>Attach Tag</"
+"gui><gui>Create New Tag...</gui></guiseq>."
+msgstr ""
+"Kattintson a jobb egérgombbal a fényképeken, és válassza a "
+"<guiseq><gui>Címke csatolása</gui><gui>Új címke létrehozása</gui></guiseq> "
+"menüpontot."
+
+#: C/tag-attach.page:6(desc)
+msgid "Attaching tags to photos"
+msgstr "Címkék fényképekhez csatolása"
+
+#: C/tag-attach.page:9(title)
+msgid "Attaching"
+msgstr "Csatolás"
+
+#: C/tag-attach.page:12(p)
+msgid ""
+"By attaching tags you have <link xref=\"tag-creation\">created</link> you "
+"make it easier to search through your photos. As with creating tags, there "
+"is more than one method of attaching tags to photos."
+msgstr ""
+"A <link xref=\"tag-creation\">létrehozott</link> címkék csatolásával "
+"egyszerűbbé teheti a fényképek keresését. A címkék létrehozásához hasonlóan "
+"a címkék fényképekhez csatolására is több módszer van."
+
+#: C/tag-attach.page:18(p) C/tag-attach.page:32(p)
+msgid "Select photos to which to attach a tag."
+msgstr "Válassza ki a fényképeket, amelyekhez a címkét csatolni szeretné."
+
+#: C/tag-attach.page:21(p)
+msgid "In the tag pane, select a tag to attach to the photos you have selected."
+msgstr "A Címkék ablaktáblán válassza ki a kijelölt fényképekhez csatolandó címkét."
+
+#: C/tag-attach.page:25(p)
+msgid ""
+"Click <guiseq><gui>Tags</gui><gui>Attach Tag to Selection</gui></guiseq>. "
+"Alternatively, press Ctrl+T."
+msgstr ""
+"Válassza a <guiseq><gui>Címkék</gui><gui>Címke csatolása a kijelöléshez</"
+"gui></guiseq> menüpontot, vagy nyomja meg a Ctrl+T billentyűkombinációt."
+
+#: C/tag-attach.page:38(p)
+msgid "Select <gui>Attach Tag</gui> and select the tag you wish to attach."
+msgstr ""
+"Válassza a <gui>Címke csatolása</gui> menüpontot, majd válassza ki a "
+"csatolni kívánt címkét."
+
+#: C/smugmug.page:8(desc)
+msgid "Upload photos to SmugMug"
+msgstr "Fényképek feltöltése a SmugMugra"
+
+#: C/smugmug.page:11(title)
+msgid "SmugMug"
+msgstr "SmugMug"
+
+#: C/smugmug.page:15(p)
+msgid ""
+"To upload photos to SmugMug you will need a SmugMug account, as well as "
+"internet access. Also, the SmugMug <link xref=\"extensions\">extension</"
+"link> must be installed and enabled."
+msgstr ""
+"A fényképek SmugMugra való feltöltéséhez egy SmugMug fiók és "
+"internetkapcsolat szükséges. Ezen kívül a SmugMug <link xref=\"extensions"
+"\">kiterjesztést</link> is telepíteni és engedélyezni kell."
+
+#: C/ratings.page:6(desc)
+msgid "Rate your photos from one to five stars"
+msgstr "Értékelje fényképeit 1-5 csillaggal"
+
+#: C/ratings.page:9(title)
+msgid "Rating your photos"
+msgstr "Fényképek értékelése"
+
+#: C/ratings.page:12(p)
+msgid ""
+"<app>F-Spot</app> allows you to rate your photos from one to five stars. "
+"There are two ways to rate photos."
+msgstr ""
+"Az <app>F-Spot</app> segítségével fényképeit egy és öt csillag között "
+"értékelheti. Fényképeit két módon értékelheti."
+
+#: C/ratings.page:17(p)
+msgid "By double-clicking, select the photo you wish to rate."
+msgstr "Dupla kattintással válassza ki az értékelni kívánt fényképet."
+
+#: C/ratings.page:20(p)
+msgid ""
+"In the lower-right corner, you will see five dots, corresponding to the "
+"rating you wish to give; to give a rating of one star, for example, click "
+"the first dot."
+msgstr ""
+"A jobb alsó sarokban öt pont jelenik meg, ezek megfelelnek az adni kívánt "
+"értékelésnek, egy csillag adásához például kattintson az első pontra."
+
+#: C/ratings.page:28(p)
+msgid "Select the photo(s) you wish to rate."
+msgstr "Válassza ki az értékelni kívánt fényképeket."
+
+#: C/ratings.page:31(p)
+msgid ""
+"Right-click the photo(s) you wish to rate, and select a rating at the bottom "
+"of the right-click menu by clicking the corresponding dot."
+msgstr ""
+"Kattintson a jobb egérgombbal az értékelni kívánt fényképekre, és a helyi "
+"menü alján megjelenő megfelelő pontra kattintva válassza ki az értékelést."
+
+#: C/rate-search.page:8(desc)
+msgid "Search photos by star rating"
+msgstr "Fényképek keresése csillagok alapján"
+
+#: C/rate-search.page:11(title)
+msgid "Search by Rating"
+msgstr "Keresés értékelés alapján"
+
+#: C/rate-search.page:15(p)
+msgid "To search by rating:"
+msgstr "Értékelés szerinti kereséshez:"
+
+#: C/rate-search.page:18(p)
+msgid ""
+"Select <guiseq><gui>Find</gui><gui>By Rating</gui><gui>Set Rating Filter...</"
+"gui></guiseq>."
+msgstr ""
+"Válassza a <guiseq><gui>Keresés</gui><gui>Értékelés szerint</"
+"gui><gui>Értékelési szűrő beállítása</gui></guiseq> menüpontot."
+
+#: C/rate-search.page:22(p)
+msgid "Select the rating range which you wish to view."
+msgstr "Válassza ki a megjeleníteni kívánt értéktartományt."
+
+#: C/rate-search.page:25(p) C/extensions.page:39(p) C/extensions.page:82(p)
+#: C/date-search.page:27(p)
+msgid "Click <gui>Ok</gui>."
+msgstr "Nyomja meg az <gui>OK</gui> gombot."
+
+#: C/rate-search.page:28(p)
+msgid "To stop searching by rating:"
+msgstr "Az értékelés szerinti keresés leállításához:"
+
+#: C/rate-search.page:31(p)
+msgid ""
+"Select <guiseq><gui>Find</gui><gui>By Rating</gui><gui>Set Rating Filter</"
+"gui></guiseq>."
+msgstr ""
+"Válassza a <guiseq><gui>Keresés</gui><gui>Értékelés szerint</"
+"gui><gui>Értékelési szűrő törlése</gui></guiseq> menüpontot."
+
+#: C/picasa.page:8(desc)
+msgid "Upload photos to Google's PicasaWeb"
+msgstr "Fényképek feltöltése a PicasaWebre"
+
+#: C/picasa.page:11(title)
+msgid "Picasa"
+msgstr "Picasa"
+
+#: C/picasa.page:15(p)
+msgid ""
+"To upload photos to Picasa you will need a Picasa account, as well as "
+"internet access. Also, the PicasaWeb <link xref=\"extensions\">extension</"
+"link> must be installed and enabled."
+msgstr ""
+"A fényképek PicasaWebre való feltöltéséhez PicasaWeb fiókra és "
+"internetelérésre van szükség. Ezen kívül a PicasaWeb <link xref=\"extensions"
+"\">kiterjesztést</link> is telepíteni és engedélyezni kell."
+
+#: C/picasa.page:21(p)
+msgid "Select the photos you wish to upload."
+msgstr "Válassza ki a feltölteni kívánt fényképeket."
+
+#: C/picasa.page:24(p)
+msgid ""
+"Click <guiseq><gui>Photo</gui><gui>Export To</gui><gui>PicasaWeb...</gui></"
+"guiseq>."
+msgstr ""
+"Válassza a <guiseq><gui>Fénykép</gui><gui>Exportálás</gui><gui>PicasaWeb</"
+"gui></guiseq> menüpontot."
+
+#: C/picasa.page:28(p)
+msgid ""
+"Add a gallery by clicking <gui>Add</gui> and supplying a username and "
+"password."
+msgstr ""
+"Vegyen fel egy galériát a <gui>Hozzáadás</gui> gomb megnyomásával, majd a "
+"felhasználónév és jelszó megadásával."
+
+#: C/picasa.page:32(p)
+msgid ""
+"Select a gallery to export to, or click <gui>Add</gui> to create a new "
+"gallery."
+msgstr ""
+"Válasszon egy albumot, amelybe exportálni kíván, vagy a <gui>Hozzáadás</gui> "
+"gomb megnyomásával hozzon létre egy újat."
+
+#: C/picasa.page:36(p) C/folder.page:39(p)
+msgid "Click <gui>Export</gui>."
+msgstr "Nyomja meg az <gui>Exportálás</gui> gombot."
+
+#: C/picasa.page:19(steps)
+msgid ""
+"<placeholder-1/><placeholder-2/><placeholder-3/>j <placeholder-4/"
+"><placeholder-5/>"
+msgstr ""
+"<placeholder-1/><placeholder-2/><placeholder-3/>j <placeholder-4/"
+"><placeholder-5/>"
+
+#: C/introduction.page:6(desc)
+msgid "A brief introduction to F-Spot"
+msgstr "Az F-Spot rövid bemutatása"
+
+#: C/introduction.page:9(title)
+msgid "Introduction"
+msgstr "Ismertetés"
+
+#: C/introduction.page:12(p)
+msgid ""
+"<app>F-Spot</app> is a full-featured photo manager for the GNOME Desktop, "
+"allowing you to tag, rate, and date photos, edit photo metadata, and even "
+"includes a simple in-program photo editor."
+msgstr ""
+"Az <app>F-Spot</app> egy teljes felszereltségű fotókezelő a GNOME asztali "
+"környezethez, amellyel címkézheti, értékelheti és dátumozhatja fényképeit, "
+"szerkesztheti a fényképek metaadatait és még egy egyszerű beépített "
+"fotószerkesztőt is tartalmaz."
+
+#: C/introduction.page:15(p)
+msgid ""
+"For help getting started using <app>F-Spot</app>, check out the <link xref="
+"\"index#basic-functions\">basic functions</link> of the help file."
+msgstr ""
+"Az <app>F-Spot</app> használatának megkezdésével kapcsolatos segítségért "
+"nézze meg a súgó <link xref=\"index#basic-functions\">alapvető funkciók</"
+"link> szakaszát."
+
+#: C/index.page:7(title) C/index.page:8(title) C/index.page:11(title)
+msgid "F-Spot photo manager"
+msgstr "F-Spot fotókezelő"
+
+#: C/index.page:16(title)
+msgid "Basic Functions"
+msgstr "Alapvető funkciók"
+
+#: C/index.page:20(title)
+msgid "Searching"
+msgstr "Keresés"
+
+#: C/index.page:24(title)
+msgid "Photo Editing"
+msgstr "Fotószerkesztés"
+
+#: C/index.page:28(title)
+msgid "Sharing"
+msgstr "Megosztás"
+
+#: C/index.page:32(title)
+msgid "Advanced Options"
+msgstr "Speciális lehetőségek"
+
+#: C/import-roll-search.page:8(desc)
+msgid "Searching by date of import"
+msgstr "Keresés importálási dátum szerint"
+
+#: C/import-roll-search.page:11(title)
+msgid "Search by Import Roll"
+msgstr "Keresés importálási kör szerint"
+
+#: C/import-roll-search.page:15(p)
+msgid ""
+"Import rolls are \"batches\" of imported photos. Regardless of the date the "
+"photo was taken, the import roll timestamp is decided when you import photos."
+msgstr ""
+"Az importálási körök importált fényképek „kötegei”. Az importálási kör "
+"időbélyege fényképek készítési dátumától függetlenül a fényképek importálási "
+"dátuma lesz."
+
+#: C/import-roll-search.page:18(p)
+msgid "To search by latest import roll:"
+msgstr "A legutóbbi importálási kör szerinti kereséshez:"
+
+#: C/import-roll-search.page:21(p)
+msgid ""
+"Select <guiseq><gui>Find</gui><gui>By Import Roll</gui><gui>Last Import "
+"Roll</gui></guiseq>."
+msgstr ""
+"Válassza a <guiseq><gui>Keresés</gui><gui>Importálási kör szerint</"
+"gui><gui>Utolsó importálási kör</gui></guiseq> menüpontot."
+
+#: C/import-roll-search.page:25(p)
+msgid "To select a previous import roll:"
+msgstr "Korábbi importálási kör kiválasztásához:"
+
+#: C/import-roll-search.page:28(p)
+msgid ""
+"Select <guiseq><gui>Find</gui><gui>By Import Roll</gui><gui>Select Import "
+"Rolls</gui></guiseq>."
+msgstr ""
+"Válassza a <guiseq><gui>Keresés</gui><gui>Importálási kör szerint</"
+"gui><gui>Importálási körök kiválasztása</gui></guiseq> menüpontot."
+
+#: C/import-roll-search.page:32(p)
+msgid ""
+"Select an import roll to search, or select a range by choosing <gui>Between</"
+"gui> and select the dates you wish to include."
+msgstr ""
+"Válasszon egy importálási kört, vagy egy tartományt az <gui>ezek közt</gui> "
+"listaelem kiválasztásával, és a kívánt dátumok kiválasztásával."
+
+#: C/import-roll-search.page:36(p)
+msgid ""
+"To stop searching by import rolls, select <guiseq><gui>Find</gui><gui>By "
+"Import Roll</gui><gui>Clear Roll Filter</gui></guiseq>."
+msgstr ""
+"Az importálási körök szerinti keresés befejezéséhez válassza a "
+"<guiseq><gui>Keresés</gui><gui>Importálási kör szerint</gui><gui>Körszűrő "
+"törlése</gui></guiseq> menüpontot."
+
+#: C/import-photos.page:6(desc)
+msgid "Import photos to be managed"
+msgstr "Kezelendő fényképek importálása"
+
+#: C/import-photos.page:9(title)
+msgid "Importing Photos"
+msgstr "Fényképek importálása"
+
+#: C/import-photos.page:12(p)
+msgid "Chances are, the first thing you will want to do is import photos."
+msgstr "Valószínűleg legelső lépésként fényképeket szeretne importálni."
+
+#: C/import-photos.page:15(p)
+msgid "To import photos:"
+msgstr "Fényképek importálásához:"
+
+#: C/import-photos.page:20(p)
+msgid ""
+"Select <guiseq><gui>Photo</gui><gui>Import...</gui></guiseq>. Alternatively, "
+"click the <gui>Import</gui> button."
+msgstr ""
+"Válassza a <guiseq><gui>Fénykép</gui><gui>Importálás</gui></guiseq> "
+"menüpontot. Ennek alternatívájaként Nyomja meg az <gui>Importálás</gui> "
+"gombot."
+
+#: C/import-photos.page:24(p)
+msgid "Select a source from which to import, such as a device or a folder."
+msgstr "Válassza ki a forrást, amelyből importálni fog, például eszközt vagy mappát."
+
+#: C/import-photos.page:27(p)
+msgid ""
+"It may take a while for F-Spot to index the files. When it is done indexing, "
+"your photos will be presented to you. At this time, you can attach <link "
+"xref=\"tags\">tags</link> to all photos, or you can leave that task for "
+"later."
+msgstr ""
+"Eltarthat egy ideig, amíg az F-Spot indexeli a fájlokat. Az indexelés "
+"befejeztével fényképei megjelennek. Ekkor <link xref=\"tags\">címkéket</"
+"link> csatolhat a fényképekhez, vagy későbbre hagyhatja ezt a feladatot."
+
+#: C/import-photos.page:33(p)
+msgid "When you are ready to finish importing photos, click <gui>Import</gui>."
+msgstr ""
+"Ha készen áll a fényképek importálásának befejezésére, akkor nyomja meg az "
+"<gui>Importálás</gui> gombot."
+
+#: C/general-editing.page:6(desc)
+msgid "Make simple edits to your photos"
+msgstr "Fényképek egyszerű szerkesztése"
+
+#: C/general-editing.page:9(title)
+msgid "General Editing"
+msgstr "Általános szerkesztés"
+
+#: C/general-editing.page:13(p)
+msgid ""
+"<app>F-Spot</app> allows you to make simple general edits, including "
+"straightening, cropping, and rotating your photos."
+msgstr ""
+"Az <app>F-Spot</app> segítségével egyszerű általános szerkesztéseket "
+"végezhet, beleértve a fényképek kiegyenesítését, levágását, és forgatását."
+
+#: C/general-editing.page:15(p)
+msgid "There are three ways to rotate a selected photo:"
+msgstr "Egy fényképet három módon is elforgathat:"
+
+#: C/general-editing.page:18(p)
+msgid "Click the appropriate rotate button, to the right of the import button."
+msgstr "Nyomja meg a megfelelő forgatás gombot az Importálás gomb mellett."
+
+#: C/general-editing.page:22(p)
+msgid "Select the appropriate option from within the <gui>Edit</gui> menu."
+msgstr "Válassza ki a <gui>Szerkesztés</gui> menü megfelelő pontját."
+
+#: C/general-editing.page:26(p)
+msgid "Use the bracket keys to rotate the photo."
+msgstr "Használja a szögletes zárójel billentyűket a fénykép forgatásához."
+
+#: C/general-editing.page:29(p)
+msgid "To straighten a selected photo:"
+msgstr "Kijelölt fénykép kiegyenesítéséhez:"
+
+#: C/general-editing.page:32(p)
+msgid "From within the editing pane, select <app>Straighten</app>."
+msgstr "A Szerkesztés ablaktáblán nyomja meg a <app>Kiegyenesítés</app> gombot."
+
+#: C/general-editing.page:35(p)
+msgid "Select a rotation, ranging from -45 to 45 degrees."
+msgstr "Válasszon egy forgatást -45 és 45 fok között."
+
+#: C/general-editing.page:38(p)
+msgid "Click <gui>Straighten</gui>."
+msgstr "Nyomja meg a <gui>Kiegyenesítés</gui> gombot."
+
+#: C/general-editing.page:41(p)
+msgid "To crop a selected photo:"
+msgstr "Kijelölt fénykép levágásához:"
+
+#: C/general-editing.page:44(p)
+msgid "Click the <gui>Crop</gui> button in the Edit pane."
+msgstr "Nyomja meg a Szerkesztés ablaktábla <gui>Levágás</gui> gombját."
+
+#: C/general-editing.page:47(p)
+msgid ""
+"Select a contraining aspect ratio, that is, a proportion of height to width "
+"to which the new photo must fit. Examples of contraining aspect ratios "
+"include 4x3, 4x6, and 5x7."
+msgstr ""
+"Válasszon egy korlátozó méretarányt, azaz a magasság és szélesség azon "
+"arányát, amelybe az új fényképnek el kell férnie. A korlátozó méretarányok "
+"például a 4x3, 4x6 és 5x7."
+
+#: C/general-editing.page:52(p)
+msgid ""
+"Click and drag to select the desired area to keep. This box can be dragged "
+"around after being sized."
+msgstr ""
+"Kattintással és húzással jelölje ki a megtartani kívánt területet. Ez a "
+"doboz a méretezés után húzással áthelyezhető."
+
+#: C/general-editing.page:56(p)
+msgid "When you have selected your area to crop to, click <gui>Crop</gui>."
+msgstr ""
+"Ha kiválasztotta a levágandó területet, akkor nyomja meg a <gui>Levágás</"
+"gui> gombot."
+
+#: C/folder.page:8(desc)
+msgid "Send photos to a folder"
+msgstr "Fényképek mappába küldése"
+
+#: C/folder.page:11(title)
+msgid "Folder Export"
+msgstr "Exportálás mappába"
+
+#: C/folder.page:15(p)
+msgid ""
+"<app>F-Spot</app> allows you to export to a folder. In order to do so, "
+"however, you will need to have the folder export <link xref=\"extensions"
+"\">extension</link> installed and enabled."
+msgstr ""
+"Az <app>F-Spot</app> segítségével fényképeit mappába exportálhatja. Ehhez "
+"azonban telepítve és engedélyezve kell lennie a mappaexportálás <link xref="
+"\"extensions\">kiterjesztésnek</link>."
+
+#: C/folder.page:18(p)
+msgid "To export selected photos to a folder:"
+msgstr "Kijelölt fényképek mappába exportálásához:"
+
+#: C/folder.page:21(p)
+msgid ""
+"Select <guiseq><gui>Photo</gui><gui>Export To</gui><gui>Folder...</gui></"
+"guiseq>."
+msgstr ""
+"Válassza a <guiseq><gui>Fénykép</gui><gui>Exportálás</gui><gui>Mappa</gui></"
+"guiseq> menüpontot."
+
+#: C/folder.page:25(p)
+msgid "Select a folder."
+msgstr "Válasszon egy mappát."
+
+#: C/folder.page:28(p)
+msgid "Name the gallery and give it a description."
+msgstr "Nevezze el a galériát, és adja meg a leírását."
+
+#: C/folder.page:31(p)
+msgid ""
+"Select an export method. <gui>Create Standalone Web Gallery</gui> will "
+"create a folder with contents fit to be uploaded to a web server to present "
+"pictures in a gallery. <gui>Save the files only</gui> will only move photos "
+"to the selected folder. <gui>Create gallery using \"Original\"</gui> will "
+"create a folder with contents suitable for using with Original Photo Gallery."
+msgstr ""
+"Válasszon egy exportálási módszert. Az <gui>Önálló webes galéria "
+"létrehozása</gui> olyan mappát hoz létre, amelynek tartalma feltölthető egy "
+"webkiszolgálóra, és a képeket galériában jeleníti meg. A <gui>Csak a fájlok "
+"mentése</gui> csak a kijelölt mappába másolja a fényképeket. A <gui>Galéria "
+"létrehozása az „Original” használatával</gui> lehetőséget választva az "
+"Original fénykép-galériával használható tartalmú mappa jön létre."
+
+#: C/flickr.page:8(desc)
+msgid "Upload photos to Flickr"
+msgstr "Fényképek feltöltése a Flickrre"
+
+#: C/flickr.page:11(title)
+msgid "Flickr"
+msgstr "Flickr"
+
+#: C/flickr.page:15(p)
+msgid ""
+"To upload photos to Flickr you will need a Flickr account, as well as "
+"internet access. Also, the Flickr <link xref=\"extensions\">extension</link> "
+"must be installed and enabled."
+msgstr ""
+"A fényképek Flickrre való feltöltéséhez egy Flickr fiók és internetkapcsolat "
+"szükséges. Ezen kívül a Flickr <link xref=\"extensions\">kiterjesztést</"
+"link> is telepíteni és engedélyezni kell."
+
+#: C/file-management.page:8(desc)
+msgid "Manage files already imported"
+msgstr "Már importált fájlok kezelése"
+
+#: C/file-management.page:11(title)
+msgid "File Management"
+msgstr "Fájlkezelés"
+
+#: C/file-management.page:15(p)
+msgid ""
+"<app>F-Spot</app> allows for some control over the contents of your catalog, "
+"that is, removing files from your catalog as well as deleting files from "
+"your catalog."
+msgstr ""
+"Az <app>F-Spot</app> lehetővé tesz bizonyos felügyeletet a gyűjtemény "
+"tartalma felett, azaz fájlok eltávolítását a gyűjteményből, valamint fájlok "
+"törlését a lemezről."
+
+#: C/file-management.page:18(p)
+msgid "To remove files from your catalog:"
+msgstr "Fájlok eltávolításához a gyűjteményből:"
+
+#: C/file-management.page:21(p)
+msgid "Select the photos you wish to remove from the catalog."
+msgstr "Válassza ki a gyűjteményből eltávolítandó fényképeket."
+
+#: C/file-management.page:24(p)
+msgid ""
+"Right-click the photos, select <gui>Remove From Catalog</gui>. "
+"Alternatively, select <guiseq><gui>Edit</gui><gui>Remove From Catalog</gui></"
+"guiseq> or press the Delete key on your keyboard."
+msgstr ""
+"Kattintson a jobb egérgombbal a fényképekre, válassza az <gui>Eltávolítás a "
+"katalógusból</gui> menüpontot. Ennek alternatívájaként választhatja a "
+"<guiseq><gui>Szerkesztés</gui><gui>Eltávolítás a katalógusból</gui></guiseq> "
+"menüpontot is, vagy megnyomhatja a Delete billentyűt."
+
+#: C/file-management.page:29(p)
+msgid "To delete photos from your computer:"
+msgstr "Fényképek törléséhez a számítógépről:"
+
+#: C/file-management.page:32(p)
+msgid "Select the photos you wish to delete."
+msgstr "Válassza ki a törölni kívánt fényképeket."
+
+#: C/file-management.page:35(p)
+msgid ""
+"Right-click the photos, select <gui>Delete From Drive</gui>. Alternatively, "
+"select <guiseq><gui>Edit</gui><gui>Delete From Drive</gui></guiseq> or press "
+"Shift+Delete on your keyboard."
+msgstr ""
+"Kattintson a jobb egérgombbal a fényképekre, és válassza a <gui>Törlés a "
+"lemezről</gui> menüpontot. Ennek alternatívájaként választhatja a "
+"<guiseq><gui>Szerkesztés</gui><gui>Törlés a lemezről</gui></guiseq> "
+"menüpontot is, vagy megnyomhatja a Shift+Delete kombinációt."
+
+#: C/facebook.page:8(desc)
+msgid "Upload photos to Facebook"
+msgstr "Fényképek feltöltése a Facebookra"
+
+#: C/facebook.page:11(title)
+msgid "Facebook"
+msgstr "Facebook"
+
+#: C/facebook.page:15(p)
+msgid ""
+"To upload photos to Facebook you will need a Facebook account, as well as "
+"internet access. Also, the Facebook <link xref=\"extensions\">extension</"
+"link> must be installed and enabled."
+msgstr ""
+"A fényképek Facebookra való feltöltéséhez egy Facebook fiók és "
+"internetkapcsolat szükséges. Ezen kívül a Facebook <link xref=\"extensions"
+"\">kiterjesztést</link> is telepíteni és engedélyezni kell."
+
+#: C/facebook.page:20(p)
+msgid "To post selected photos to Facebook:"
+msgstr "Kijelölt fényképek Facebookra való feltöltéséhez:"
+
+#: C/facebook.page:23(p)
+msgid ""
+"Select <guiseq><gui>Photo</gui><gui>Export To</gui><gui>Facebook</gui></"
+"guiseq>."
+msgstr ""
+"Válassza a <guiseq><gui>Fénykép</gui><gui>Exportálás</gui><gui>Facebook</"
+"gui></guiseq> menüpontot."
+
+#: C/facebook.page:27(p)
+msgid ""
+"Click <gui>Login</gui>. A browser window will be brought up. Log in to "
+"Facebook and click \"Allow\" to allow F-Spot access to your Facebook profile."
+msgstr ""
+"Nyomja meg a <gui>Bejelentkezés</gui> gombot. Megjelenik egy böngészőablak. "
+"Jelentkezzen be a Facebookra, és nyomja meg az „Engedélyezés” gombot a "
+"Facebook profiljához való hozzáférés engedélyezéséhez az F-Spot számára."
+
+#: C/facebook.page:32(p)
+msgid ""
+"Select whether to create a new album or add to an existing album. If you are "
+"creating a new album, fill in the relevant information."
+msgstr ""
+"Válassza ki, hogy új albumot szeretne-e létrehozni, vagy meglévőt bővít-e. "
+"Ha új albumot hoz létre, akkor töltse ki a vonatkozó adatokat."
+
+#: C/facebook.page:36(p)
+msgid "Edit captions for each photo, if so desired."
+msgstr "Szerkessze az egyes fényképek feliratait, ha kívánja."
+
+#: C/facebook.page:39(p)
+msgid "When finished, click <gui>Add</gui>."
+msgstr "Ha befejezte, akkor nyomja meg a <gui>Hozzáadás</gui> gombot."
+
+#: C/extensions.page:8(desc)
+msgid "Working with <app>F-Spot</app> extensions"
+msgstr "<app>F-Spot</app> kiterjesztések kezelése"
+
+#: C/extensions.page:11(title)
+msgid "Extensions"
+msgstr "Kiterjesztések"
+
+#: C/extensions.page:15(p)
+msgid ""
+"<app>F-Spot</app> allows for the use of extensions to provide additional "
+"functionality."
+msgstr ""
+"Az <app>F-Spot</app> kiterjesztéseinek használatával további funkciók "
+"érhetők el."
+
+#: C/extensions.page:18(p)
+msgid ""
+"To open the extension manager, select <guiseq><gui>Edit</gui><gui>Manage "
+"Extensions</gui></guiseq>."
+msgstr ""
+"A kiterjesztéskezelő megnyitásához válassza a <guiseq><gui>Szerkesztés</"
+"gui><gui>Kiterjesztések kezelése</gui></guiseq> menüpontot."
+
+#: C/extensions.page:21(p)
+msgid "To install extensions:"
+msgstr "Kiterjesztések telepítéséhez:"
+
+#: C/extensions.page:24(p) C/extensions.page:46(p) C/extensions.page:58(p)
+#: C/extensions.page:70(p)
+msgid "Open the extension manager."
+msgstr "Nyissa meg a kiterjesztéskezelőt."
+
+#: C/extensions.page:27(p)
+msgid "Click <gui>Install Add-ins</gui>."
+msgstr "Nyomja meg a <gui>Kiterjesztések telepítése</gui> gombot."
+
+#: C/extensions.page:30(p)
+msgid "Select an add-on to install from the list."
+msgstr "Válasszon egy telepítendő kiterjesztést a listából."
+
+#: C/extensions.page:33(p) C/extensions.page:79(p)
+msgid "Click <gui>Forward</gui>."
+msgstr "Nyomja meg a <gui>Tovább</gui> gombot."
+
+#: C/extensions.page:36(p)
+msgid "Verify all information, and click <gui>Forward</gui> again."
+msgstr "Ellenőrizze az információkat, és nyomja meg újra a <gui>Tovább</gui> gombot."
+
+#: C/extensions.page:43(p)
+msgid "To enable plugins that are already installed:"
+msgstr "Már telepített kiterjesztések bekapcsolásához:"
+
+#: C/extensions.page:49(p)
+msgid "Select the extension you wish to enable."
+msgstr "Válassza ki a bekapcsolni kívánt kiterjesztést."
+
+#: C/extensions.page:52(p)
+msgid "Click <gui>Enable</gui>."
+msgstr "Nyomja meg az <gui>Engedélyezés</gui> gombot."
+
+#: C/extensions.page:55(p)
+msgid "To disable plugins that are installed:"
+msgstr "Telepített bővítmények kikapcsolásához:"
+
+#: C/extensions.page:61(p)
+msgid "Select the extension you wish to disable."
+msgstr "Válassza ki a kikapcsolni kívánt kiterjesztést."
+
+#: C/extensions.page:64(p)
+msgid "Click <gui>Disable</gui>."
+msgstr "Nyomja meg a <gui>Letiltás</gui> gombot."
+
+#: C/extensions.page:67(p)
+msgid "To uninstall plugins:"
+msgstr "Bővítmények eltávolításához:"
+
+#: C/extensions.page:73(p)
+msgid "Select the extension you wish to uninstall."
+msgstr "Válassza ki az eltávolítani kívánt kiterjesztést."
+
+#: C/extensions.page:76(p)
+msgid "Click <gui>Uninstall</gui>."
+msgstr "Nyomja meg az <gui>Eltávolítás</gui> gombot."
+
+#: C/enhancements.page:6(desc)
+msgid "Simple enhancements for your photos"
+msgstr "Fényképek egyszerű javításai"
+
+#: C/enhancements.page:9(title)
+msgid "Enhancements"
+msgstr "Javítások"
+
+#: C/enhancements.page:13(p)
+msgid ""
+"Currently, there are two main enhancements that <app>F-Spot</app> supports: "
+"red-eye removal and the automatic enhancement of color."
+msgstr ""
+"Jelenleg az <app>F-Spot</app> két fő javítást támogat: a vörösszem-"
+"eltávolítást és a színek automatikus javítását."
+
+#: C/enhancements.page:15(p)
+msgid "To remove red-eye:"
+msgstr "Vörös szem eltávolításához:"
+
+#: C/enhancements.page:18(p)
+msgid ""
+"By double-clicking, select the photo on which you wish to use the red-eye "
+"removal tool."
+msgstr ""
+"Dupla kattintással jelölje ki azt a fényképet, amelyen a vörösszem-"
+"eltávolító eszközt használni szeretné."
+
+#: C/enhancements.page:22(p)
+msgid "Click <gui>Red-Eye Removal</gui> in the Edit panel."
+msgstr "Nyomja meg a Szerkesztés ablaktábla <gui>Vörösszem-csökkentés</gui> gombját."
+
+#: C/enhancements.page:25(p)
+msgid ""
+"Select the area from which you wish to remove red-eye. Note: If the contains "
+"many red areas, you may wish to select each eye individually."
+msgstr ""
+"Válassza ki azt a területet, amelyről el kívánja távolítani a vörös "
+"szemeket. Megjegyzés: ha a fénykép sok vörös területet tartalmaz, akkor "
+"hasznos lehet a szemeket egyenként kijelölni."
+
+#: C/enhancements.page:30(p)
+msgid "Click <gui>Fix!</gui>."
+msgstr "Nyomja meg a <gui>Javítás!</gui> gombra."
+
+#: C/enhancements.page:33(p)
+msgid "To automatically enhance the colors of the photo:"
+msgstr "A fénykép színeinek automatikus javításához:"
+
+#: C/enhancements.page:36(p)
+msgid "By double-clicking, select the photo which you wish to enhance."
+msgstr "Dupla kattintással jelölje ki a javítandó fényképet."
+
+#: C/enhancements.page:39(p)
+msgid "Click <gui>Auto Color</gui>."
+msgstr "Nyomja meg az <gui>Automatikus színezés</gui> gombot."
+
+#: C/date-search.page:8(desc)
+msgid "Search photos by date"
+msgstr "Fényképek keresése dátum szerint"
+
+#: C/date-search.page:11(title)
+msgid "Search by Date"
+msgstr "Keresés dátum szerint"
+
+#: C/date-search.page:15(p)
+msgid "To search by date:"
+msgstr "Dátum szerinti kereséshez:"
+
+#: C/date-search.page:18(p)
+msgid ""
+"Select <guiseq><gui>Find</gui><gui>By Date</gui><gui>Set Date Range...</"
+"gui></guiseq>."
+msgstr ""
+"Válassza a <guiseq><gui>Keresés</gui><gui>Dátum szerint</"
+"gui><gui>Dátumtartomány beállítása</gui></guiseq> menüpontot."
+
+#: C/date-search.page:22(p)
+msgid ""
+"Select a time period to from which to view photos. This can by done by "
+"selecting a set period, such as a week, or by specifying dates."
+msgstr ""
+"Válassza ki az időszakot, amely fényképeit meg szeretné jeleníteni. Ez egy "
+"rögzített időszak, például egy hét kiválasztásával, vagy dátumok megadásával "
+"érhető el."
+
+#: C/date-search.page:30(p)
+msgid "Alternatively, you can use the timeline. To use the timeline:"
+msgstr "Ennek alternatívájaként az idővonalat is használhatja:"
+
+#: C/date-search.page:33(p)
+msgid ""
+"Make sure the timeline is enabled by selecting <guiseq><gui>View</"
+"gui><gui>Components</gui></guiseq> and making sure that <gui>Timeline</gui> "
+"is checked."
+msgstr ""
+"Győződjön meg róla, hogy az idővonal be van kapcsolva: a <guiseq><gui>Nézet</"
+"gui><gui>Összetevők</gui></guiseq> menü <gui>Idővonal</gui> pontjának "
+"kijelölve kell lennie."
+
+#: C/date-search.page:38(p)
+msgid ""
+"In the timeline, click the bar corresponding to the time period you wish to "
+"look at."
+msgstr "Az idővonalon kattintson a megtekinteni kívánt időszaknak megfelelő sávra."
+
+#: C/date-search.page:42(p)
+msgid "To stop searching by date:"
+msgstr "A dátum szerinti keresés befejezéséhez:"
+
+#: C/date-search.page:45(p)
+msgid ""
+"Select <guiseq><gui>Find</gui><gui>By Date</gui><gui>Clear Date Range</gui></"
+"guiseq>."
+msgstr ""
+"Válassza a <guiseq><gui>Keresés</gui><gui>Dátum szerint</"
+"gui><gui>Dátumtartomány törlése</gui></guiseq> menüpontot."
+
+#: C/colors.page:6(desc)
+msgid "Edit the colors of your photos"
+msgstr "Fényképek színeinek szerkesztése"
+
+#: C/colors.page:9(title)
+msgid "Color Editing"
+msgstr "Színszerkesztés"
+
+#: C/colors.page:12(p)
+msgid "<app>F-Spot</app> supports several modes of color manipulation."
+msgstr "Az <app>F-Spot</app> számos színmanipulációs módot támogat."
+
+#: C/colors.page:15(title)
+msgid "Desaturate"
+msgstr "Telítetlenítés"
+
+#: C/colors.page:16(p)
+msgid ""
+"This mode eliminates all saturation, turning a color image into a black and "
+"white image."
+msgstr ""
+"Ez a mód teljesen megszünteti a telítettséget, a színes képet így fekete-"
+"fehérré változtatja."
+
+#: C/colors.page:20(title)
+msgid "Sepia Tone"
+msgstr "Szépia árnyalat"
+
+#: C/colors.page:21(p)
+msgid "This mode simulates a photo being created with sepia toner."
+msgstr "Ez a mód szépiatonerrel készült fényképet szimulál."
+
+#: C/colors.page:24(title)
+msgid "Auto Color"
+msgstr "Automatikus színezés"
+
+#: C/colors.page:25(p)
+msgid "This mode automatically adjusts the colors to a set profile."
+msgstr "Ez a mód a színeket automatikusan egy megadott profilhoz igazítja."
+
+#: C/cd.page:8(desc)
+msgid "Burn photos to a CD"
+msgstr "Fényképek CD-re írása"
+
+#: C/cd.page:11(title)
+msgid "CD Export"
+msgstr "Exportálás CD-re"
+
+#: C/adjust-color.page:6(desc)
+msgid "Adjusting the colors of a photo"
+msgstr "Fénykép színeinek módosítása"
+
+#: C/adjust-color.page:9(title)
+msgid "Adjust Color"
+msgstr "Szín módosítása"
+
+#: C/adjust-color.page:12(p)
+msgid ""
+"As far as the editing tools in F-Spot, adjusting the color is easily the "
+"most powerful. The color editor allows you to adjust:"
+msgstr ""
+"Az F-Spot szerkesztőeszközeihez képest a színek módosítása talán a "
+"leghatékonyabb. A színszerkesztő segítségével módosítható:"
+
+#: C/adjust-color.page:16(title)
+msgid "Exposure"
+msgstr "Expozíció"
+
+#: C/adjust-color.page:17(p)
+msgid "This adjustment simulates lengthening or shortening the exposure time."
+msgstr "Ez a módosítás az expozíciós idő nyújtását vagy rövidítését szimulálja."
+
+#: C/adjust-color.page:21(title)
+msgid "Saturation"
+msgstr "Telítettség"
+
+#: C/adjust-color.page:22(p)
+msgid ""
+"This adjustment simulates adjusting the amount of color in the image, i.e. "
+"sliding it to the left decrease color, making it black and white, while "
+"sliding it to the right will increase the vibrancy of colors."
+msgstr ""
+"Ez a módosítás a képen lévő színek mennyiségének módosítását szimulálja, "
+"azaz balra csúsztatva kevesebb szín marad, fekete-fehérré téve a képet. "
+"Jobbra csúsztatva nő a színek élénksége."
+
+#: C/adjust-color.page:28(title)
+msgid "Brightness"
+msgstr "Fényerő"
+
+#: C/adjust-color.page:29(p)
+msgid ""
+"This adjustment increase the brightness of colors. Increasing this too much "
+"will make colors appear \"washed out\", while decreasing it too much will "
+"make the image too dark and lacking in contrast."
+msgstr ""
+"Ez a módosítás növeli a színek fényerejét. Túl nagyra növelése a színeket "
+"„kimosottá”, túl kicsire csökkentése a képet túl sötétté és "
+"kontraszthiányossá teszi."
+
+#: C/adjust-color.page:34(title)
+msgid "Hue"
+msgstr "Árnyalat"
+
+#: C/adjust-color.page:35(p)
+msgid "This adjustment causes colors to \"rotate\" along the color wheel."
+msgstr "Ezen módosítás hatására a színek „elfordulnak” a színkerék mentén."
+
+#: C/adjust-color.page:38(title)
+msgid "Contrast"
+msgstr "Kontraszt"
+
+#: C/adjust-color.page:39(p)
+msgid ""
+"This adjustment adjusts the contrast ratio, that is, the ratio of difference "
+"between dark and light pixels. Sliding to the left decreases contrast, while "
+"sliding to the right will increase contrast."
+msgstr ""
+"Ez a módosítás a kontrasztarányt változtatja, azaz a sötét és világos "
+"képpontok közti különbség arányát. Balra csúsztatva csökken a kontraszt, míg "
+"jobbra csúsztatva nő."
+
+#: C/adjust-color.page:45(title)
+msgid "Temp"
+msgstr "Hőm."
+
+#: C/adjust-color.page:46(p)
+msgid "This adjust changes the color temperature, measured in degrees Kelvin."
+msgstr "Ez a csúszka a Kelvinben mért színhőmérséklet módosítására szolgál."
+
+#: C/adjust-color.page:50(title)
+msgid "Tint"
+msgstr "Színezés"
+
+#: C/adjust-color.page:51(p)
+msgid "This adjustment allows you to tinge the photo with a color."
+msgstr "Ez a csúszka lehetővé teszi a fénykép színezését egy adott színnel."
+
+#: C/23hq.page:8(desc)
+msgid "Upload photos to 23hq"
+msgstr "Fényképek feltöltése a 23hqra"
+
+#: C/23hq.page:11(title)
+msgid "23hq"
+msgstr "23hq"
+
+#: C/23hq.page:15(p)
+msgid ""
+"To upload photos to 23hq you will need a 23hq account, as well as internet "
+"access. Also, the 23hq <link xref=\"extensions\">extension</link> must be "
+"installed and enabled."
+msgstr ""
+"A fényképek 23hq-ra való feltöltéséhez egy 23hq fiók és internetkapcsolat "
+"szükséges. Ezen kívül a 23hq <link xref=\"extensions\">kiterjesztést</link> "
+"is telepíteni és engedélyezni kell."
+
+#. Put one translator per line, in the form of NAME <EMAIL>, YEAR1, YEAR2
+#: C/index.page:0(None)
+msgid "translator-credits"
+msgstr "Kelemen Gábor <kelemeng at gnome dot hu>"
+
