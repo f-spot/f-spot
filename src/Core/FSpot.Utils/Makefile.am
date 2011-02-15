@@ -11,7 +11,6 @@ SOURCES =  \
 	FSpot.Utils/GIOTagLibFileAbstraction.cs \
 	FSpot.Utils/GtkUtil.cs \
 	FSpot.Utils/HashUtils.cs \
-	FSpot.Utils/MemorySurface.cs \
 	FSpot.Utils/Metadata.cs \
 	FSpot.Utils/PixbufUtils.cs \
 	FSpot.Utils/RecursiveFileEnumerator.cs \

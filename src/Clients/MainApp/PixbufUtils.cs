@@ -42,6 +42,8 @@ using FSpot.Utils;
 using FSpot.Imaging;
 using Hyena;
 using TagLib.Image;
+using Cairo;
+using FSpot.UI.Dialog;
 
 public static class PixbufUtils {
 	static Pixbuf error_pixbuf = null;
@@ -256,33 +258,351 @@ public static class PixbufUtils {
 		return flattened;
 	}
 
-	[DllImport ("libfspot")]
-	static extern IntPtr f_pixbuf_unsharp_mask (IntPtr src, double radius, double amount, double threshold);
+    unsafe public static byte[] Pixbuf_GetRow(byte* pixels, int row, int rowstride, int width, int channels, byte[] dest)
+    {
+        byte* ptr = ((byte*)pixels) + (row*rowstride);
 
-	public static Pixbuf UnsharpMask (Pixbuf src, double radius, double amount, double threshold)
+        Marshal.Copy(((IntPtr)ptr), dest, 0, width*channels);
+
+        return dest;
+    }
+
+    unsafe public static void Pixbuf_SetRow(byte* pixels, byte[] dest, int row, int rowstride, int width, int channels)
+    {
+        byte* destPtr = pixels + row * rowstride;
+
+        for (int i=0; i < width*channels; i++)
+        {
+            destPtr[i] = dest[i];
+        }
+    }
+
+    unsafe public static Pixbuf UnsharpMask (Pixbuf src,
+                                             double radius,
+                                             double amount,
+                                             double threshold,
+                                             ThreadProgressDialog progressDialog)
+    {
+        // Make sure the pixbuf has an alpha channel before we try to blur it
+        src = src.AddAlpha(false, 0, 0, 0);
+
+        Pixbuf result = Blur(src, (int)radius, progressDialog);
+
+        int sourceRowstride = src.Rowstride;
+        int sourceHeight = src.Height;
+        int sourceChannels = src.NChannels;
+        int sourceWidth = src.Width;
+
+        int resultRowstride = result.Rowstride;
+        int resultHeight = result.Height;
+        int resultWidth = result.Width;
+        int resultChannels = result.NChannels;
+
+        byte[] srcRow = new byte[sourceRowstride];
+        byte[] destRow = new byte[resultRowstride];
+
+        byte* sourcePixels = (byte*)src.Pixels;
+        byte* resultPixels = (byte*)result.Pixels;
+
+        for (int row=0; row < sourceHeight; row++)
+        {
+            Pixbuf_GetRow(sourcePixels, row, sourceRowstride, sourceWidth, sourceChannels, srcRow);
+            Pixbuf_GetRow(resultPixels, row, resultRowstride, resultWidth, resultChannels, destRow);
+
+            int diff;
+            for (int i=0; i < sourceWidth*sourceChannels; i++)
+            {
+                diff = srcRow[i] - destRow[i];
+                if (Math.Abs(2*diff) < threshold)
+                    diff = 0;
+
+                int val = (int)(srcRow[i] + amount * diff);
+
+                if (val > 255)
+                    val = 255;
+                else if (val < 0)
+                    val = 0;
+
+                destRow[i] = (byte)val;
+            }
+
+            Pixbuf_SetRow(resultPixels, destRow, row, resultRowstride, resultWidth, resultChannels);
+
+            // This is the other half of the progress so start and halfway
+            if (progressDialog != null)
+            {
+                progressDialog.Fraction = ((double)row / ((double) sourceHeight - 1) ) * 0.25 + 0.75;
+            }
+        }
+
+        return result;
+   }
+
+    public static Pixbuf Blur (Pixbuf src, int radius, ThreadProgressDialog dialog)
 	{
-		IntPtr raw_ret = f_pixbuf_unsharp_mask (src.Handle, radius, amount, threshold);
-		Gdk.Pixbuf ret = (Gdk.Pixbuf) GLib.Object.GetObject(raw_ret, true);
-		return ret;
+        ImageSurface sourceSurface = Hyena.Gui.PixbufImageSurface.Create(src);
+        ImageSurface destinationSurface = new ImageSurface(Format.Rgb24, src.Width, src.Height);
+
+        // If we do it as a bunch of single lines (rectangles of one pixel) then we can give the progress
+        // here instead of going deeper to provide the feedback
+        for (int i=0; i < src.Height; i++)
+        {
+            RenderBlurEffect(sourceSurface, destinationSurface, new[] { new Gdk.Rectangle(0, i, src.Width, 1) }, radius);
+
+            if (dialog != null)
+            {
+                // This only half of the entire process
+                double fraction = ((double)i / (double)(src.Height-1)) *0.75;
+                dialog.Fraction = fraction;
+            }
+        }
+
+        return destinationSurface.ToPixbuf();
 	}
 
-	[DllImport ("libfspot")]
-	static extern IntPtr f_pixbuf_blur (IntPtr src, double radius);
+    unsafe public static Gdk.Pixbuf ToPixbuf (this Cairo.ImageSurface surfSource)
+    {
+        Cairo.ImageSurface surf = surfSource.Clone ();
+        surf.Flush ();
+        
+        ColorBgra* dstPtr = (ColorBgra*)surf.DataPtr;
+        int len = surf.Data.Length / 4;
+        
+        for (int i = 0; i < len; i++) {
+            if (dstPtr->A != 0)
+                *dstPtr = (ColorBgra.FromBgra (dstPtr->R, dstPtr->G, dstPtr->B, dstPtr->A));
+            dstPtr++;
+        }
+        
+        Gdk.Pixbuf pb = new Gdk.Pixbuf (surf.Data, true, 8, surf.Width, surf.Height, surf.Stride);
+        (surf as IDisposable).Dispose ();
+        return pb;
+    }
 
-	public static Pixbuf Blur (Pixbuf src, double radius)
-	{
-		IntPtr raw_ret = f_pixbuf_blur (src.Handle, radius);
-		Gdk.Pixbuf ret = (Gdk.Pixbuf) GLib.Object.GetObject(raw_ret, true);
-		return ret;
-	}
+    public static ImageSurface Clone (this ImageSurface surf)
+    {
+        ImageSurface newsurf = new ImageSurface (surf.Format, surf.Width, surf.Height);
+
+        using (Context g = new Context (newsurf)) {
+            g.SetSource (surf);
+            g.Paint ();
+        }
+        
+        return newsurf;
+    }
+
+    public static int[] CreateGaussianBlurRow (int amount)
+    {
+        int size = 1 + (amount * 2);
+        int[] weights = new int[size];
+
+        for (int i = 0; i <= amount; ++i) {
+            // 1 + aa - aa + 2ai - ii
+            weights[i] = 16 * (i + 1);
+            weights[weights.Length - i - 1] = weights[i];
+        }
+
+        return weights;
+    }
+
+    unsafe public static void RenderBlurEffect (ImageSurface src, ImageSurface dest, Gdk.Rectangle[] rois, int radius)
+    {
+        int r = radius;
+        int[] w = CreateGaussianBlurRow (r);
+        int wlen = w.Length;
+
+        int localStoreSize = wlen * 6 * sizeof (long);
+        byte* localStore = stackalloc byte[localStoreSize];
+        byte* p = localStore;
+
+        long* waSums = (long*)p;
+        p += wlen * sizeof (long);
+
+        long* wcSums = (long*)p;
+        p += wlen * sizeof (long);
+
+        long* aSums = (long*)p;
+        p += wlen * sizeof (long);
+
+        long* bSums = (long*)p;
+        p += wlen * sizeof (long);
+
+        long* gSums = (long*)p;
+        p += wlen * sizeof (long);
+
+        long* rSums = (long*)p;
+        p += wlen * sizeof (long);
+
+        ulong arraysLength = (ulong)(sizeof (long) * wlen);
+
+        // Cache these for a massive performance boost
+        int src_width = src.Width;
+        int src_height = src.Height;
+        ColorBgra* src_data_ptr = (ColorBgra*)src.DataPtr;
+
+        foreach (Gdk.Rectangle rect in rois) {
+            if (rect.Height >= 1 && rect.Width >= 1) {
+                for (int y = rect.Top; y < rect.Bottom; ++y) {
+                    //Memory.SetToZero (localStore, (ulong)localStoreSize);
+
+                    long waSum = 0;
+                    long wcSum = 0;
+                    long aSum = 0;
+                    long bSum = 0;
+                    long gSum = 0;
+                    long rSum = 0;
+
+                    ColorBgra* dstPtr = dest.GetPointAddressUnchecked (rect.Left, y);
+
+                    for (int wx = 0; wx < wlen; ++wx) {
+                        int srcX = rect.Left + wx - r;
+                        waSums[wx] = 0;
+                        wcSums[wx] = 0;
+                        aSums[wx] = 0;
+                        bSums[wx] = 0;
+                        gSums[wx] = 0;
+                        rSums[wx] = 0;
+
+                        if (srcX >= 0 && srcX < src_width) {
+                            for (int wy = 0; wy < wlen; ++wy) {
+                                int srcY = y + wy - r;
+
+                                if (srcY >= 0 && srcY < src_height) {
+                                    ColorBgra c = src.GetPointUnchecked (src_data_ptr, src_width, srcX, srcY);
+                                    int wp = w[wy];
+
+                                    waSums[wx] += wp;
+                                    wp *= c.A + (c.A >> 7);
+                                    wcSums[wx] += wp;
+                                    wp >>= 8;
+
+                                    aSums[wx] += wp * c.A;
+                                    bSums[wx] += wp * c.B;
+                                    gSums[wx] += wp * c.G;
+                                    rSums[wx] += wp * c.R;
+                                }
+                            }
+
+                            int wwx = w[wx];
+                            waSum += wwx * waSums[wx];
+                            wcSum += wwx * wcSums[wx];
+                            aSum += wwx * aSums[wx];
+                            bSum += wwx * bSums[wx];
+                            gSum += wwx * gSums[wx];
+                            rSum += wwx * rSums[wx];
+                        }
+                    }
+
+                    wcSum >>= 8;
+
+                    if (waSum == 0 || wcSum == 0) {
+                        dstPtr->Bgra = 0;
+                    } else {
+                        int alpha = (int)(aSum / waSum);
+                        int blue = (int)(bSum / wcSum);
+                        int green = (int)(gSum / wcSum);
+                        int red = (int)(rSum / wcSum);
+
+                        dstPtr->Bgra = ColorBgra.BgraToUInt32 (blue, green, red, alpha);
+                    }
+
+                    ++dstPtr;
+
+                    for (int x = rect.Left + 1; x < rect.Right; ++x) {
+                        for (int i = 0; i < wlen - 1; ++i) {
+                            waSums[i] = waSums[i + 1];
+                            wcSums[i] = wcSums[i + 1];
+                            aSums[i] = aSums[i + 1];
+                            bSums[i] = bSums[i + 1];
+                            gSums[i] = gSums[i + 1];
+                            rSums[i] = rSums[i + 1];
+                        }
+
+                        waSum = 0;
+                        wcSum = 0;
+                        aSum = 0;
+                        bSum = 0;
+                        gSum = 0;
+                        rSum = 0;
+
+                        int wx;
+                        for (wx = 0; wx < wlen - 1; ++wx) {
+                            long wwx = (long)w[wx];
+                            waSum += wwx * waSums[wx];
+                            wcSum += wwx * wcSums[wx];
+                            aSum += wwx * aSums[wx];
+                            bSum += wwx * bSums[wx];
+                            gSum += wwx * gSums[wx];
+                            rSum += wwx * rSums[wx];
+                        }
+
+                        wx = wlen - 1;
+
+                        waSums[wx] = 0;
+                        wcSums[wx] = 0;
+                        aSums[wx] = 0;
+                        bSums[wx] = 0;
+                        gSums[wx] = 0;
+                        rSums[wx] = 0;
+
+                        int srcX = x + wx - r;
+
+                        if (srcX >= 0 && srcX < src_width) {
+                            for (int wy = 0; wy < wlen; ++wy) {
+                                int srcY = y + wy - r;
+
+                                if (srcY >= 0 && srcY < src_height) {
+                                    ColorBgra c = src.GetPointUnchecked (src_data_ptr, src_width, srcX, srcY);
+                                    int wp = w[wy];
+
+                                    waSums[wx] += wp;
+                                    wp *= c.A + (c.A >> 7);
+                                    wcSums[wx] += wp;
+                                    wp >>= 8;
+
+                                    aSums[wx] += wp * (long)c.A;
+                                    bSums[wx] += wp * (long)c.B;
+                                    gSums[wx] += wp * (long)c.G;
+                                    rSums[wx] += wp * (long)c.R;
+                                }
+                            }
+
+                            int wr = w[wx];
+                            waSum += (long)wr * waSums[wx];
+                            wcSum += (long)wr * wcSums[wx];
+                            aSum += (long)wr * aSums[wx];
+                            bSum += (long)wr * bSums[wx];
+                            gSum += (long)wr * gSums[wx];
+                            rSum += (long)wr * rSums[wx];
+                        }
+
+                        wcSum >>= 8;
+
+                        if (waSum == 0 || wcSum == 0) {
+                            dstPtr->Bgra = 0;
+                        } else {
+                            int alpha = (int)(aSum / waSum);
+                            int blue = (int)(bSum / wcSum);
+                            int green = (int)(gSum / wcSum);
+                            int red = (int)(rSum / wcSum);
+
+                            dstPtr->Bgra = ColorBgra.BgraToUInt32 (blue, green, red, alpha);
+                        }
+
+                        ++dstPtr;
+                    }
+                }
+            }
+        }
+    }
 
 	public unsafe static Gdk.Pixbuf RemoveRedeye (Gdk.Pixbuf src, Gdk.Rectangle area)
 	{
 		return RemoveRedeye (src, area, -15);
 	}
 
-	public unsafe static Gdk.Pixbuf RemoveRedeye (Gdk.Pixbuf src, Gdk.Rectangle area, int threshold)
-	//threshold, factors and comparisons borrowed from the gimp plugin 'redeye.c' by Robert Merkel
+    //threshold, factors and comparisons borrowed from the gimp plugin 'redeye.c' by Robert Merkel
+    public unsafe static Gdk.Pixbuf RemoveRedeye (Gdk.Pixbuf src, Gdk.Rectangle area, int threshold)
 	{
 		Gdk.Pixbuf copy = src.Copy ();
 		Gdk.Pixbuf selection = new Gdk.Pixbuf (copy, area.X, area.Y, area.Width, area.Height);

@@ -15,11 +15,6 @@ fspotlibdir = $(libdir)/f-spot
 fspotlib_LTLIBRARIES = libfspot.la
 
 libfspot_la_SOURCES =				\
-	f-image-surface.c			\
-	f-image-surface.h			\
-	f-pixbuf-unsharp.c			\
-	f-pixbuf-utils.c			\
-	f-pixbuf-utils.h			\
 	f-screen-utils.c
 
 libfspot_la_LIBADD = 					\

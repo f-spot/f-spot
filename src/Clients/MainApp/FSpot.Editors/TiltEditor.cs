@@ -73,7 +73,7 @@ namespace FSpot.Editors
 		private Pixbuf ProcessImpl (Pixbuf input, Cms.Profile input_profile, bool fast) {
 			Pixbuf result;
 			using (ImageInfo info = new ImageInfo (input)) {
-				using (MemorySurface surface = new MemorySurface (Format.Argb32,
+				using (ImageSurface surface = new ImageSurface (Format.Argb32,
 									   input.Width,
 									   input.Height)) {
 					using (Context ctx = new Context (surface)) {
@@ -84,8 +84,8 @@ namespace FSpot.Editors
 							ctx.Source = p;
 							ctx.Paint ();
 						}
-						result = MemorySurface.CreatePixbuf (surface);
-						surface.Flush ();
+						result = surface.ToPixbuf();
+                        surface.Flush ();
 					}
 				}
 			}

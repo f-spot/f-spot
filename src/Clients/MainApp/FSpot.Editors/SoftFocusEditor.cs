@@ -79,7 +79,7 @@ namespace FSpot.Editors
 				using (Widgets.SoftFocus soft = new Widgets.SoftFocus (info)) {
 					soft.Radius = radius;
 
-					using (MemorySurface surface = new MemorySurface (Format.Argb32,
+					using (ImageSurface surface = new ImageSurface (Format.Argb32,
 										   input.Width,
 										   input.Height)) {
 
@@ -87,7 +87,7 @@ namespace FSpot.Editors
 							soft.Apply (ctx, info.Bounds);
 						}
 
-						result = MemorySurface.CreatePixbuf (surface);
+                        result = surface.ToPixbuf();
 						surface.Flush ();
 					}
 				}

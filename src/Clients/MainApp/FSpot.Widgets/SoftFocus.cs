@@ -94,26 +94,25 @@ namespace FSpot.Widgets {
 								(int) Math.Ceiling (source.Bounds.Width * scale),
 								(int) Math.Ceiling (source.Bounds.Height * scale));
 
-			MemorySurface image = new MemorySurface (Format.Argb32,
+			ImageSurface image = new ImageSurface (Format.Argb32,
 								 small.Width,
 								 small.Height);
 
 			Context ctx = new Context (image);
-			//Pattern solid = new SolidPattern (0, 0, 0, 0);
-			//ctx.Source = solid;
-			//ctx.Paint ();
-			//solid.Destroy ();
+
 			ctx.Matrix = source.Fit (small);
 			ctx.Operator = Operator.Source;
 			Pattern p = new SurfacePattern (source.Surface);
 			ctx.Source = p;
-			//Log.Debug (small);
+
 			ctx.Paint ();
 			p.Destroy ();
 			((IDisposable)ctx).Dispose ();
-			Gdk.Pixbuf normal = MemorySurface.CreatePixbuf (image);
-			Gdk.Pixbuf blur = PixbufUtils.Blur (normal, 3);
-			ImageInfo overlay = new ImageInfo (blur);
+			Gdk.Pixbuf normal = image.ToPixbuf();
+
+            Gdk.Pixbuf blur = PixbufUtils.Blur (normal, 3, null);
+
+            ImageInfo overlay = new ImageInfo (blur);
 			blur.Dispose ();
 			normal.Dispose ();
 			image.Destroy ();

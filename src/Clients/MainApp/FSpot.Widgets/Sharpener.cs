@@ -46,6 +46,9 @@ namespace FSpot.Widgets {
 		Gtk.SpinButton radius_spin = new Gtk.SpinButton (5.0, 50.0, .01);
 		Gtk.SpinButton threshold_spin = new Gtk.SpinButton (0.0, 50.0, .01);
 		Gtk.Dialog dialog;
+        ThreadProgressDialog progressDialog;
+
+        private bool okClicked;
 
 		public Sharpener (PhotoImageView view) : base (view)
 		{
@@ -53,17 +56,21 @@ namespace FSpot.Widgets {
 
 		protected override void UpdateSample ()
 		{
-			base.UpdateSample ();
-
-			if (overlay != null)
-				overlay.Dispose ();
-
-			overlay = null;
-			if (source != null)
-				overlay = PixbufUtils.UnsharpMask (source,
-								   radius_spin.Value,
-								   amount_spin.Value,
-								   threshold_spin.Value);
+            if (!okClicked)
+            {
+    			base.UpdateSample ();
+    
+    			if (overlay != null)
+    				overlay.Dispose ();
+    
+    			overlay = null;
+    			if (source != null)
+    				overlay = PixbufUtils.UnsharpMask (source,
+    								   radius_spin.Value,
+    								   amount_spin.Value,
+    								   threshold_spin.Value,
+                                       null);
+            }
 		}
 
 		private void HandleSettingsChanged (object sender, EventArgs args)
@@ -71,40 +78,61 @@ namespace FSpot.Widgets {
 			UpdateSample ();
 		}
 
+        public void doSharpening()
+        {
+            progressDialog.Fraction = 0.0;
+            progressDialog.Message = "Photo is being sharpened";
+
+            okClicked = true;
+            Photo photo = view.Item.Current as Photo;
+
+            if (photo == null)
+                return;
+
+            try {
+                Gdk.Pixbuf orig = view.Pixbuf;
+                Gdk.Pixbuf final = PixbufUtils.UnsharpMask (orig,
+                                        radius_spin.Value,
+                                        amount_spin.Value,
+                                        threshold_spin.Value,
+                                        progressDialog);
+
+                bool create_version = photo.DefaultVersion.IsProtected;
+
+                photo.SaveVersion (final, create_version);
+                photo.Changes.DataChanged = true;
+                App.Instance.Database.Photos.Commit (photo);
+            } catch (System.Exception e) {
+                string msg = Catalog.GetString ("Error saving sharpened photo");
+                string desc = String.Format (Catalog.GetString ("Received exception \"{0}\". Unable to save photo {1}"),
+                                 e.Message, photo.Name);
+
+                HigMessageDialog md = new HigMessageDialog (this, DialogFlags.DestroyWithParent,
+                                        Gtk.MessageType.Error,
+                                        ButtonsType.Ok,
+                                        msg,
+                                        desc);
+                md.Run ();
+                md.Destroy ();
+            }
+
+            progressDialog.Fraction = 1.0;
+            progressDialog.Message = "Sharpening complete!";
+            progressDialog.ButtonLabel = Gtk.Stock.Ok;
+
+            Destroy ();
+        }
+
 		private void HandleOkClicked (object sender, EventArgs args)
 		{
-			Photo photo = view.Item.Current as Photo;
+            this.Hide();
+            dialog.Hide();
 
-			if (photo == null)
-				return;
+            System.Threading.Thread command_thread = new System.Threading.Thread (new System.Threading.ThreadStart (doSharpening));
+            command_thread.Name = "Sharpening";
 
-			try {
-				Gdk.Pixbuf orig = view.Pixbuf;
-				Gdk.Pixbuf final = PixbufUtils.UnsharpMask (orig,
-									    radius_spin.Value,
-									    amount_spin.Value,
-									    threshold_spin.Value);
-
-				bool create_version = photo.DefaultVersion.IsProtected;
-
-				photo.SaveVersion (final, create_version);
-				photo.Changes.DataChanged = true;
-				App.Instance.Database.Photos.Commit (photo);
-			} catch (System.Exception e) {
-				string msg = Catalog.GetString ("Error saving sharpened photo");
-				string desc = String.Format (Catalog.GetString ("Received exception \"{0}\". Unable to save photo {1}"),
-							     e.Message, photo.Name);
-
-				HigMessageDialog md = new HigMessageDialog (this, DialogFlags.DestroyWithParent,
-									    Gtk.MessageType.Error,
-									    ButtonsType.Ok,
-									    msg,
-									    desc);
-				md.Run ();
-				md.Destroy ();
-			}
-
-			Destroy ();
+            progressDialog = new ThreadProgressDialog (command_thread, 1);
+            progressDialog.Start ();
 		}
 
 		public void HandleCancelClicked (object sender, EventArgs args)

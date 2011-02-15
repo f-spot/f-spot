@@ -167,7 +167,7 @@ namespace FSpot {
 		private void HandleButtonPressEvent (object sender, ButtonPressEventArgs args)
 		{
 			if (args.Event.Type == EventType.TwoButtonPress && args.Event.Button == 1 && DoubleClicked != null)
-				DoubleClicked (this, null);
+				    DoubleClicked (this, null);
 			if (args.Event.Type == EventType.ButtonPress
 			    && args.Event.Button == 3) {
 				PhotoPopup popup = new PhotoPopup ();

@@ -4,6 +4,8 @@ LINK = $(REF_FSPOT)
 ASSEMBLY_BUILD_FLAGS = -unsafe
 
 SOURCES =  \
+	CairoExtensions.cs \
+	ColorBgra.cs \
 	DependentListStore.cs \
 	FSpot.ColorAdjustment/Adjustment.cs \
 	FSpot.ColorAdjustment/AutoStretch.cs \
