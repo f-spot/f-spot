@@ -37,8 +37,7 @@ using Gtk;
 
 using FSpot.Widgets;
 
-
-
+using Pinta.Core;
 
 namespace FSpot.Editors
 {

@@ -38,6 +38,8 @@ using Cairo;
 
 using FSpot.Widgets;
 
+using Pinta.Core;
+
 namespace FSpot.Editors
 {
 	// TODO: there were keybindings (left/right) to adjust tilt, maybe they should be added back.

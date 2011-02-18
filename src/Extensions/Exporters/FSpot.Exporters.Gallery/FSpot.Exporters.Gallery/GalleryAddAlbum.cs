@@ -105,8 +105,6 @@ namespace FSpot.Exporters.Gallery
 				label_builder.Append (album.Title);
 
                 album_optionmenu.AppendText(label_builder.ToString());
-
-				AlbumPermission create_sub = album.Perms & AlbumPermission.CreateSubAlbum;
 			}
 
 			album_optionmenu.Sensitive = true;

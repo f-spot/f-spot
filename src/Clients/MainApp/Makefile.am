@@ -4,8 +4,6 @@ LINK = $(REF_FSPOT)
 ASSEMBLY_BUILD_FLAGS = -unsafe
 
 SOURCES =  \
-	CairoExtensions.cs \
-	ColorBgra.cs \
 	DependentListStore.cs \
 	FSpot.ColorAdjustment/Adjustment.cs \
 	FSpot.ColorAdjustment/AutoStretch.cs \
@@ -173,6 +171,9 @@ SOURCES =  \
 	PhotoTagMenu.cs \
 	PhotoVersionCommands.cs \
 	PhotoVersionMenu.cs \
+	Pinta/CairoExtensions.cs \
+	Pinta/ColorBgra.cs \
+	Pinta/GaussianBlurEffect.cs \
 	PixbufUtils.cs \
 	TagCommands.cs \
 	TagPopup.cs \

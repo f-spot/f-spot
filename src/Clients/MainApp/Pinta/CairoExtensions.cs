@@ -37,7 +37,7 @@ using System;
 using Cairo;
 using System.Collections.Generic;
 
-namespace FSpot
+namespace Pinta.Core
 {
 	public static class CairoExtensions
 	{

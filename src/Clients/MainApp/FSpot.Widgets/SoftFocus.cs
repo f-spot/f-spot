@@ -33,6 +33,8 @@ using Cairo;
 using System;
 using System.Runtime.InteropServices;
 
+using Pinta.Core;
+
 namespace FSpot.Widgets {
 
 	public class SoftFocus : IDisposable {

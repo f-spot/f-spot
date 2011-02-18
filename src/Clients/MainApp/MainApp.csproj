@@ -205,8 +205,9 @@
     <Compile Include="FSpot.Widgets\SelectionCollectionGridView.cs" />
     <Compile Include="FSpot.Widgets\CollectionCellGridView.cs" />
     <Compile Include="FSpot.Widgets\BrowseablePointerGridView.cs" />
-    <Compile Include="ColorBgra.cs" />
-    <Compile Include="CairoExtensions.cs" />
+    <Compile Include="Pinta\ColorBgra.cs" />
+    <Compile Include="Pinta\CairoExtensions.cs" />
+    <Compile Include="Pinta\GaussianBlurEffect.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="..\..\..\COPYING">
@@ -307,7 +308,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\lib\unique-sharp\unique\unique-sharp.dll</HintPath>
     </Reference>
-    <Reference Include="Mono.Cairo" />
     <Reference Include="Mono.Addins, Version=0.4.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756">
       <Package>mono-addins</Package>
     </Reference>
@@ -335,6 +335,7 @@
       <Package>mono-nunit</Package>
     </Reference>
     <Reference Include="Mono.Simd" />
+    <Reference Include="Mono.Cairo, Version=2.0.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Core\FSpot.Core\FSpot.Core.csproj">
@@ -389,5 +390,6 @@
   <ItemGroup>
     <Folder Include="FSpot\" />
     <Folder Include="FSpot.Widgets\" />
+    <Folder Include="Pinta\" />
   </ItemGroup>
 </Project>

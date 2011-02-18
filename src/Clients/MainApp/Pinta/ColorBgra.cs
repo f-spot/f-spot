@@ -11,7 +11,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using System.Runtime.InteropServices;
 
-namespace FSpot
+namespace Pinta.Core
 {
     /// <summary>
     /// This is our pixel format that we will work with. It is always 32-bits / 4-bytes and is
