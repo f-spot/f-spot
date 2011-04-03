@@ -3,13 +3,14 @@
 # Copyright (C) 2010 f-spot's COPYRIGHT HOLDER
 # This file is distributed under the same license as the f-spot package.
 # Jorge González <jorgegonz@svn.gnome.org>, 2010.
+# Daniel Mustieles <daniel.mustieles@gmail.com>, 2011.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: f-spot.help.master\n"
-"POT-Creation-Date: 2010-10-21 11:49+0000\n"
-"PO-Revision-Date: 2010-10-23 14:18+0200\n"
-"Last-Translator: Jorge González <jorgegonz@svn.gnome.org>\n"
+"POT-Creation-Date: 2010-10-23 12:26+0000\n"
+"PO-Revision-Date: 2011-04-03 14:10+0200\n"
+"Last-Translator: Daniel Mustieles <daniel.mustieles@gmail.com>\n"
 "Language-Team: Español <gnome-es-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -246,10 +247,6 @@ msgstr ""
 "Seleccione la etiqueta que quiere eliminar desde el panel de etiquetas."
 
 #: C/tag-delete.page:20(p)
-#| msgid ""
-#| "Click <guiseq><gui>Tags</gui><gui>Delete Select Tag</gui></guiseq>. "
-#| "Alternatively, right click the tag within the pane, and click <gui>Delete "
-#| "Tag</gui>."
 msgid ""
 "Click <guiseq><gui>Tags</gui><gui>Delete Selected Tag</gui></guiseq>. "
 "Alternatively, right click the tag within the pane, and click <gui>Delete "
@@ -326,7 +323,8 @@ msgid ""
 "gui><gui>Create New Tag...</gui></guiseq>."
 msgstr ""
 "Pulse con el botón derecho sobre las fotos y seleccione "
-"<guiseq><gui>Adjuntar etiqueta</gui><gui>Crear etiqueta nueva...</gui>."
+"<guiseq><gui>Adjuntar etiqueta</gui><gui>Crear etiqueta nueva...</gui></"
+"guiseq>."
 
 #: C/tag-attach.page:6(desc)
 msgid "Attaching tags to photos"
@@ -993,7 +991,7 @@ msgstr "Seleccione un complemento de la lista para instalar."
 
 #: C/extensions.page:33(p) C/extensions.page:79(p)
 msgid "Click <gui>Forward</gui>."
-msgstr "Pulse </gui>Siguiente<gui>."
+msgstr "Pulse <gui>Siguiente<gui>."
 
 #: C/extensions.page:36(p)
 msgid "Verify all information, and click <gui>Forward</gui> again."
