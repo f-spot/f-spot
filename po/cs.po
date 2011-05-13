@@ -29,7 +29,6 @@ msgstr ""
 "Language: cs\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Poedit-Language: Czech\n"
-"X-Poedit-Country: CZECH REPUBLIC\n"
 "X-Poedit-SourceCharset: utf-8\n"
 
 #. ../src/Clients/MainApp/FSpot.addin.xml
@@ -308,11 +307,11 @@ msgstr "Sloučit RAW a Jpeg jako více verzí téže fotografie"
 #. ../src/Extensions/Tools/FSpot.Tools.RetroactiveRoll/Resources/RetroactiveRoll.addin.xml
 #: ../data/addin-xml-strings.cs:115
 msgid "RetroactiveRoll"
-msgstr "Zpětný pás"
+msgstr "Zpětný film"
 
 #: ../data/addin-xml-strings.cs:116
 msgid "Retroactively assign old photos to import rolls"
-msgstr "Zpětně přiřadit staré fotografie k filmovým pásům importu"
+msgstr "Zpětně přiřadit staré fotografie do importovaných filmů"
 
 #. ../src/Extensions/Tools/FSpot.Tools.ScreensaverConfig/Resources/ScreensaverConfig.addin.xml
 #: ../data/addin-xml-strings.cs:120
@@ -613,7 +612,7 @@ msgstr "Otevřít _v"
 #: ../src/Clients/MainApp/FSpot.addin.xml.h:4
 #: ../src/Clients/MainApp/ui/main_window.ui.h:15
 msgid "Rem_ove Tag"
-msgstr "_Odstranit štítek"
+msgstr "S_mazat štítek"
 
 #: ../src/Clients/MainApp/FSpot.addin.xml.h:5
 #: ../src/Clients/MainApp/FSpot/SingleView.cs:458
@@ -684,7 +683,7 @@ msgstr "Automatické barvy"
 
 #: ../src/Clients/MainApp/FSpot.Editors/ColorEditor.cs:61
 msgid "Adjust Colors"
-msgstr "Úprava barev"
+msgstr "Upravit barvy"
 
 #: ../src/Clients/MainApp/FSpot.Editors/ColorEditor.cs:64
 msgid "Adjust"
@@ -712,7 +711,7 @@ msgstr "Čtverec"
 
 #: ../src/Clients/MainApp/FSpot.Editors/CropEditor.cs:63
 msgid "Crop"
-msgstr "Ořez"
+msgstr "Ořezat"
 
 #: ../src/Clients/MainApp/FSpot.Editors/CropEditor.cs:94
 msgid "Select the area that needs cropping."
@@ -732,15 +731,15 @@ msgstr "Vlastní poměry…"
 
 #: ../src/Clients/MainApp/FSpot.Editors/DesaturateEditor.cs:37
 msgid "Desaturate"
-msgstr "Odbarvení"
+msgstr "Odbarvit"
 
 #: ../src/Clients/MainApp/FSpot.Editors/RedEyeEditor.cs:41
 msgid "Red-eye Reduction"
-msgstr "Redukce červených očí"
+msgstr "Odstranit červené oči"
 
 #: ../src/Clients/MainApp/FSpot.Editors/RedEyeEditor.cs:43
 msgid "Fix!"
-msgstr "Opravit!"
+msgstr "Opravit"
 
 #: ../src/Clients/MainApp/FSpot.Editors/RedEyeEditor.cs:47
 msgid "Select the eyes you wish to fix."
@@ -752,11 +751,11 @@ msgstr "Sépiový odstín"
 
 #: ../src/Clients/MainApp/FSpot.Editors/SoftFocusEditor.cs:51
 msgid "Soft Focus"
-msgstr "Změkčení okrajů"
+msgstr "Změkčit okraje"
 
 #: ../src/Clients/MainApp/FSpot.Editors/TiltEditor.cs:49
 msgid "Straighten"
-msgstr "Narovnání"
+msgstr "Narovnat"
 
 #: ../src/Clients/MainApp/FSpot/FullScreenView.cs:82
 msgid "Hide"
@@ -1792,7 +1791,7 @@ msgstr "Zobrazit pouze fotografie ze zadaných filmů."
 
 #: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:3
 msgid "Filter on selected rolls"
-msgstr "Použít filtr hledání na vyfotografované filmy"
+msgstr "Použít filtr hledání na vyfocené filmy"
 
 #: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:4
 msgid "Number of photos in selected rolls:"
@@ -2544,11 +2543,11 @@ msgstr "_Připojit štítek k výběru"
 
 #: ../src/Clients/MainApp/ui/main_window.ui.h:35
 msgid "_Clear Rating Filter"
-msgstr "Vyčistit _filtr hodnocení"
+msgstr "Vymazat _filtr hodnocení"
 
 #: ../src/Clients/MainApp/ui/main_window.ui.h:36
 msgid "_Clear Roll Filter"
-msgstr "Vyčistit _filtr filmů"
+msgstr "Vymazat _filtr filmů"
 
 #: ../src/Clients/MainApp/ui/main_window.ui.h:37
 msgid "_Close"
@@ -2568,7 +2567,7 @@ msgstr "_Data"
 
 #: ../src/Clients/MainApp/ui/main_window.ui.h:42
 msgid "_Delete Selected Tag"
-msgstr "O_dstranit zvolený štítek"
+msgstr "_Smazat vybraný štítek"
 
 #: ../src/Clients/MainApp/ui/main_window.ui.h:43
 msgid "_Delete Version"
@@ -2607,7 +2606,7 @@ msgstr "_Skryté"
 
 #: ../src/Clients/MainApp/ui/main_window.ui.h:51
 msgid "_Import..."
-msgstr "_Importovat"
+msgstr "_Importovat…"
 
 #: ../src/Clients/MainApp/ui/main_window.ui.h:52
 msgid "_Invert Selection"
@@ -2656,7 +2655,7 @@ msgstr "_Otočit třídění"
 
 #: ../src/Clients/MainApp/ui/main_window.ui.h:64
 msgid "_Select Import Rolls..."
-msgstr "Vybrat _importovaný film"
+msgstr "Vybrat _importovaný film…"
 
 #: ../src/Clients/MainApp/ui/main_window.ui.h:65
 msgid "_Set Date Range..."
@@ -3084,7 +3083,7 @@ msgstr ""
 "\n"
 "Poté, co vás Facebook nasměruje k návratu do tého aplikace, klikněte na "
 "tlačítko „OK“ níže. F-Spot uloží vaši relaci do klíčenky GNOME a pokud to "
-"bude možné, použije ji při příštích exportů na Facebook."
+"bude možné, použije ji při příštích exportech na Facebook."
 
 #: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExportDialog.cs:237
 msgid "Authenticating..."
