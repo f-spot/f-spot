@@ -1,0 +1,1299 @@
+# Czech translation for f-spot.
+# Copyright (C) 2011 f-spot's COPYRIGHT HOLDER
+# This file is distributed under the same license as the f-spot package.
+#
+# Marek Černocký <marek@manet.cz>, 2011.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: f-spot master\n"
+"POT-Creation-Date: 2011-05-13 05:48+0000\n"
+"PO-Revision-Date: 2011-05-13 11:57+0200\n"
+"Last-Translator: Marek Černocký <marek@manet.cz>\n"
+"Language-Team: Czech <gnome-cs-list@gnome.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: cs\n"
+"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+
+#: C/zooomr.page:8(desc)
+msgid "Upload photos to Zooomr"
+msgstr "Nahrajte fotografie na Zooomr"
+
+#: C/zooomr.page:11(title)
+msgid "Zooomr"
+msgstr "Zooomr"
+
+#: C/zooomr.page:15(p)
+msgid ""
+"To upload photos to Zooomr you will need a Zooomr account, as well as "
+"internet access. Also, the Zooomr <link xref=\"extensions\">extension</link> "
+"must be installed and enabled."
+msgstr ""
+"Pokud chcete fotografie nahrát do služby Zooomr, budete potřebovat účet "
+"Zooomr a také připojení k internetu. Rovněž musí být nainstalováno a zapnuto "
+"<link xref=\"extensions\">rozšíření</link> Zooomr."
+
+#: C/versioning.page:8(desc)
+msgid "Track different versions of your photos"
+msgstr "Sledujte různé verze svých fotografií"
+
+#: C/versioning.page:11(title)
+msgid "Versioning"
+msgstr "Verzování"
+
+#: C/versioning.page:14(p)
+msgid ""
+"<app>F-Spot</app> allows you to keep multiple versions of your photos. This "
+"is especially useful when editing photos, as you can quickly see the "
+"difference between the edited version and the original."
+msgstr ""
+"Aplikace <app>F-Spot</app> umožňuje uchovávat více verzí vašich fotografií. "
+"To je užitečné hlavně při úpravách fotografií, protože můžete rychle vidět "
+"rozdíly mezi upravenou verzí a originálem."
+
+#: C/versioning.page:17(p)
+msgid "To switch between versions while editing:"
+msgstr "Když se chcete přepnout během úprav mezi verzemi:"
+
+#: C/versioning.page:20(p)
+msgid "Double-click the photo you wish to edit."
+msgstr "Dvojitě klikněte na fotografii, kterou si přejete upravit."
+
+#: C/versioning.page:23(p)
+msgid ""
+"In the sidebar, you will see a drop-down box labeled <gui>Version:</gui>. To "
+"select a version to view, select it in the drop-down box."
+msgstr ""
+"V postranní liště uvidíte rozbalovací seznam pojmenovaný <gui>Verze:</gui>. "
+"Výběrem v seznamu volíte, která verze má být zobrazena."
+
+#: C/upload-to-web.page:8(desc)
+msgid "Upload photos to various web services"
+msgstr "Nahrávejte fotografie do různých webových služeb"
+
+#: C/upload-to-web.page:11(title)
+msgid "Upload to Web"
+msgstr "Nahrávání na web"
+
+#: C/upload-to-web.page:14(p)
+msgid ""
+"<app>F-Spot</app> allows you to upload photos to popular web services, "
+"including Google's PicasaWeb and Flickr."
+msgstr ""
+"Aplikace <app>F-Spot</app> umožňuje nahrávat fotografie do populárních "
+"webových služeb, včetně PicasaWeb od společnosti Google a Flickr."
+
+#: C/tags.page:6(desc)
+msgid "A brief introduction to the tagging capabilities of F-Spot"
+msgstr "Stručný úvod do označování štítky v aplikaci F-Spot"
+
+#: C/tags.page:9(title)
+msgid "Tags"
+msgstr "Štítky"
+
+#: C/tags.page:12(p)
+msgid ""
+"Like certain other photo managers, <app>F-Spot</app> lets you tag your "
+"photos, allowing for quick, easy content-based searching of your photos. You "
+"can tag people, events, places, favorite things, or even make your own "
+"groups of tags."
+msgstr ""
+"Podobně jako řada jiných aplikací pro správu fotografií, i <app>F-Spot</app> "
+"umožňuje označovat vaše fotografie štítky kvůli rychlému a snadnému hledání "
+"fotografií založenému na obsahu."
+
+#: C/tags.page:17(title)
+msgid "Working with Tags"
+msgstr "Práce se štítky"
+
+#: C/tag-search.page:8(desc)
+msgid "Search photos using tags"
+msgstr "Hledejte fotografie pomocí štítků"
+
+#: C/tag-search.page:11(title)
+msgid "Search by Tag"
+msgstr "Hledání podle štítku"
+
+#: C/tag-search.page:15(p)
+msgid "There are several methods to search by tags."
+msgstr "Existuje několik způsobů, jak hledat podle štítků."
+
+#: C/tag-search.page:16(p)
+msgid "Method One: Double-click the tags you wish to search for."
+msgstr "Postup jedna: Dvojitě klikněte na štítek, pro který chcete hledat."
+
+#: C/tag-search.page:17(p) C/tag-remove.page:28(p) C/tag-creation.page:32(p)
+#: C/tag-attach.page:29(p) C/ratings.page:25(p)
+msgid "Method Two:"
+msgstr "Postup dva:"
+
+#: C/tag-search.page:20(p)
+msgid ""
+"Enable the Find bar by clicking <guiseq><gui>Find</gui><gui>Show Find bar</"
+"gui></guiseq>."
+msgstr ""
+"Zapněte vyhledávací lištu kliknutím na <guiseq><gui>Hledat</"
+"gui><gui>Zobrazit lištu hledání</gui></guiseq>."
+
+#: C/tag-search.page:24(p)
+msgid "Drag the tags you wish to search for into the newly-enabled Find bar."
+msgstr ""
+"Štítky, které si přejete vyhledat, přetáhněte do právě zapnuté lišty hledání."
+
+#: C/tag-search.page:27(p)
+msgid ""
+"To remove a tag from your search, right-click the tag in the Find bar and "
+"click <gui>Remove From Search</gui>."
+msgstr ""
+"Když chcete naopak některý štítek z hledání vyřadit, klikněte na něj pravým "
+"tlačítkem a pak klikněte na <gui>Vyřadit fotografie označené „štítkem“</gui>."
+
+#: C/tag-search.page:30(p)
+msgid "To exclude a tag from your search:"
+msgstr "Abyste z hledání vyjmuli fotografie označené štítkem:"
+
+#: C/tag-search.page:33(p)
+msgid ""
+"In the tag pane, double-click the tag you wish to exclude. This will add it "
+"to the Find bar."
+msgstr ""
+"V panelu štítků dvojitě klikněte na štítek, který chcete z hledání vyjmout. "
+"Tím se přidá do lišty hledání."
+
+#: C/tag-search.page:37(p)
+msgid "In the Find bar, double-click the tag you wish to exclude."
+msgstr ""
+"Na liště hledání na štítek dvojitě klikněte a tím se fotografie označené "
+"tímto štítkem vyjmou."
+
+#: C/tag-remove.page:6(desc)
+msgid "Removing tags from photos"
+msgstr "Odebírání štítků z fotografií"
+
+#: C/tag-remove.page:9(title)
+msgid "Removing"
+msgstr "Odebírání"
+
+#: C/tag-remove.page:12(p)
+msgid ""
+"As with attaching tags, there are two main methods of removing tags from "
+"photos."
+msgstr ""
+"Stejně jako u připojování, i u odebírání štítků z fotografií můžete použít "
+"dva způsoby."
+
+#: C/tag-remove.page:14(p) C/tag-creation.page:14(p) C/tag-attach.page:15(p)
+#: C/ratings.page:14(p)
+msgid "Method One:"
+msgstr "Postup jedna:"
+
+#: C/tag-remove.page:17(p) C/tag-remove.page:31(p)
+msgid "Select photos from which to remove a tag."
+msgstr "Vyberte fotografie, ze kterých se má štítek odebrat."
+
+#: C/tag-remove.page:20(p)
+msgid ""
+"In the tag pane, select a tag to remove from the photos you have selected."
+msgstr ""
+"V panelu štítků vyberte štítek, který se má z vybraných fotografií odebrat."
+
+#: C/tag-remove.page:24(p)
+msgid ""
+"Click <guiseq><gui>Tags</gui><gui>Remove Tag From Selection</gui></guiseq>."
+msgstr ""
+"Klikněte na <guiseq><gui>Štítky</gui><gui>Odstranit štítek z výběru</gui></"
+"guiseq>."
+
+#: C/tag-remove.page:34(p) C/tag-attach.page:35(p)
+msgid "Right click the photos."
+msgstr "Klikněte pravým tlačítkem na fotografie."
+
+#: C/tag-remove.page:37(p)
+msgid "Select <gui>Remove Tag</gui> and select the tag you wish to remove."
+msgstr ""
+"Zvolte <gui>Odstranit štítek</gui> a vyberte, který štítek si přejete "
+"odstranit."
+
+#: C/tag-delete.page:6(desc)
+msgid "Deleting tags from the system"
+msgstr "Mazání štítků ze systému"
+
+#: C/tag-delete.page:9(title)
+msgid "Deleting"
+msgstr "Mazání"
+
+#: C/tag-delete.page:12(p)
+msgid ""
+"Deleting tags removes them entirely from your system, but leaves behind any "
+"photos to which that tag is attached."
+msgstr ""
+"Smazáním se štítky úplně odstraní z vašeho systému, ale zůstanou v těch "
+"fotografiích, ke kterým byly připojeny."
+
+#: C/tag-delete.page:14(p)
+msgid "To delete a tag:"
+msgstr "Pro smazání štítku:"
+
+#: C/tag-delete.page:17(p)
+msgid "Select the tag you wish to delete from within the tag pane."
+msgstr "Vyberte na panelu štítků štítek, který si přejete smazat."
+
+#: C/tag-delete.page:20(p)
+msgid ""
+"Click <guiseq><gui>Tags</gui><gui>Delete Selected Tag</gui></guiseq>. "
+"Alternatively, right click the tag within the pane, and click <gui>Delete "
+"Tag</gui>."
+msgstr ""
+"Klikněte na <guiseq><gui>Štítky</gui><gui>Smazat vybraný štítek</gui></"
+"guiseq>. Případně můžete kliknout pravým tlačítkem v panelu a pak kliknout "
+"na <gui>Smazat štítek</gui>."
+
+#: C/tag-creation.page:6(desc)
+msgid "Creating tags to be attached to photos"
+msgstr "Vytváření štítků pro připojení k fotografiím"
+
+#: C/tag-creation.page:9(title)
+msgid "Creating"
+msgstr "Vytváření"
+
+#: C/tag-creation.page:12(p)
+msgid ""
+"In order to use tags, you need to first create a set of tags which you wish "
+"to use. There are three main methods to create tags."
+msgstr ""
+"Abyste mohli štítky používat, musíte si nejprve vytvořit sadu štítků, které "
+"si přejete používat. K dispozici jsou tři hlavní postupy, jak štítky "
+"vytvořit."
+
+#: C/tag-creation.page:17(p)
+msgid "Select <guiseq><gui>Tags</gui><gui>Create New Tag...</gui></guiseq>."
+msgstr ""
+"Vyberte <guiseq><gui>Štítky</gui><gui>Vytvořit nový štítek…</gui></guiseq>."
+
+#: C/tag-creation.page:21(p) C/tag-creation.page:39(p)
+#: C/tag-creation.page:61(p)
+msgid ""
+"Select a parent tag for the new tag to appear under, such as people or "
+"events. If you wish to create a new tag without a parent, select <gui>(None)"
+"</gui>."
+msgstr ""
+"Vyberte rodičovský štítek, pod kterým chcete, aby se nový štítek objevoval, "
+"např. lidé nebo události. Pokud chcete vytvořit nový štítek bez rodiče, "
+"vyberte <gui>(Není)</gui>."
+
+#: C/tag-creation.page:26(p) C/tag-creation.page:44(p)
+#: C/tag-creation.page:66(p)
+msgid "Name the tag."
+msgstr "Pojmenujte štítek."
+
+#: C/tag-creation.page:29(p) C/tag-creation.page:47(p)
+#: C/tag-creation.page:69(p)
+msgid "Click <gui>Create</gui>"
+msgstr "Klikněte na <gui>Vytvořit</gui>."
+
+#: C/tag-creation.page:35(p)
+msgid "In the tags page, right click, and select <gui>Create New Tag...</gui>"
+msgstr ""
+"Na stránce se štítky klikněte pravým tlačítkem a vyberte <gui>Vytvořit nový "
+"štítek…</gui>"
+
+#: C/tag-creation.page:50(p)
+msgid ""
+"Method three has the advantage of also <link xref=\"tag-attach\"> attaching</"
+"link> the new tag to the photos selected. To do this:"
+msgstr ""
+"Při postupu tři se nový štítek rovnou <link xref=\"tag-attach\">připojí</"
+"link> k vybrané fotografii. Učiníte to takto:"
+
+#: C/tag-creation.page:54(p)
+msgid "Select the photos to which you wish to attach the new tag."
+msgstr "Vyberte fotografii, ke které si nový štítek přejete připojit."
+
+#: C/tag-creation.page:57(p)
+msgid ""
+"Right-click on the photos, and select <guiseq><gui>Attach Tag</"
+"gui><gui>Create New Tag...</gui></guiseq>."
+msgstr ""
+"Klikněte pravým tlačítkem na fotografii a vyberte <guiseq><gui>Připojit "
+"štítek</gui><gui>Vytvořit nový štítek…</gui></guiseq>"
+
+#: C/tag-attach.page:6(desc)
+msgid "Attaching tags to photos"
+msgstr "Připojování štítků k fotografiím"
+
+#: C/tag-attach.page:9(title)
+msgid "Attaching"
+msgstr "Připojování"
+
+#: C/tag-attach.page:12(p)
+msgid ""
+"By attaching tags you have <link xref=\"tag-creation\">created</link> you "
+"make it easier to search through your photos. As with creating tags, there "
+"is more than one method of attaching tags to photos."
+msgstr ""
+"Připojením štítků, které jste <link xref=\"tag-creation\">vytvořili</link>, "
+"si usnadníte vyhledávání ve svých fotografiích. Stejně jako v případě "
+"vytváření štítků, i při připojování k fotografiím můžete postupovat více "
+"způsoby."
+
+#: C/tag-attach.page:18(p) C/tag-attach.page:32(p)
+msgid "Select photos to which to attach a tag."
+msgstr "Vyberte fotografie, ke kterým se má štítek připojit."
+
+#: C/tag-attach.page:21(p)
+msgid ""
+"In the tag pane, select a tag to attach to the photos you have selected."
+msgstr ""
+"Na panelu štítků vyberte štítek, který chcete připojit k fotografii, kterou "
+"jste vybrali."
+
+#: C/tag-attach.page:25(p)
+msgid ""
+"Click <guiseq><gui>Tags</gui><gui>Attach Tag to Selection</gui></guiseq>. "
+"Alternatively, press Ctrl+T."
+msgstr ""
+"Klikněte na <guiseq><gui>Štítky</gui><gui>Připojit štítek k výběru</gui></"
+"guiseq>. Případně můžete zmáčknout Ctrl+T."
+
+#: C/tag-attach.page:38(p)
+msgid "Select <gui>Attach Tag</gui> and select the tag you wish to attach."
+msgstr ""
+"Vyberte <gui>Připojit štítek</gui> a vyberte štítek, který chcete připojit."
+
+#: C/smugmug.page:8(desc)
+msgid "Upload photos to SmugMug"
+msgstr "Nahrajte fotografie na SmugMug"
+
+#: C/smugmug.page:11(title)
+msgid "SmugMug"
+msgstr "SmugMug"
+
+#: C/smugmug.page:15(p)
+msgid ""
+"To upload photos to SmugMug you will need a SmugMug account, as well as "
+"internet access. Also, the SmugMug <link xref=\"extensions\">extension</"
+"link> must be installed and enabled."
+msgstr ""
+"Pokud chcete fotografie nahrát do služby SmugMug, budete potřebovat účet "
+"SmugMug a také připojení k internetu. Rovněž musí být nainstalováno a "
+"zapnuto <link xref=\"extensions\">rozšíření</link> SmugMug."
+
+#: C/ratings.page:6(desc)
+msgid "Rate your photos from one to five stars"
+msgstr "Ohodnoťte své fotografie jednou až pěti hvězdičkami"
+
+#: C/ratings.page:9(title)
+msgid "Rating your photos"
+msgstr "Hodnocení vašich fotografií"
+
+#: C/ratings.page:12(p)
+msgid ""
+"<app>F-Spot</app> allows you to rate your photos from one to five stars. "
+"There are two ways to rate photos."
+msgstr ""
+"V aplikaci <app>F-Spot</app> můžete své fotografie hodnotit hvězdičkami od "
+"jedné do pěti. Jsou k dispozici dva postupy, jak hodnotit."
+
+#: C/ratings.page:17(p)
+msgid "By double-clicking, select the photo you wish to rate."
+msgstr "Dvojitým kliknutím označte fotografii, kterou si přejete ohodnotit."
+
+#: C/ratings.page:20(p)
+msgid ""
+"In the lower-right corner, you will see five dots, corresponding to the "
+"rating you wish to give; to give a rating of one star, for example, click "
+"the first dot."
+msgstr ""
+"V pravém dolním rohu uvidíte pět hvězdiček vztahujících se k hodnocení, "
+"které chcete přidělit. Pokud chcete přidělit například jednu bod, klikněte "
+"na první hvězdičku."
+
+#: C/ratings.page:28(p)
+msgid "Select the photo(s) you wish to rate."
+msgstr "Vyberte fotografii či fotografie, které si přejete ohodnotit."
+
+#: C/ratings.page:31(p)
+msgid ""
+"Right-click the photo(s) you wish to rate, and select a rating at the bottom "
+"of the right-click menu by clicking the corresponding dot."
+msgstr ""
+"Klikněte na fotografii či fotografie pravým tlačítkem a vyberte hodnocení v "
+"dolní části nabídky pomocí odpovídajících hvězdiček."
+
+#: C/rate-search.page:8(desc)
+msgid "Search photos by star rating"
+msgstr "Hledejte fotografie podle hodnocení hvězdičkami"
+
+#: C/rate-search.page:11(title)
+msgid "Search by Rating"
+msgstr "Hledání podle hodnocení"
+
+#: C/rate-search.page:15(p)
+msgid "To search by rating:"
+msgstr "Když chcete hledat podle hodnocení:"
+
+#: C/rate-search.page:18(p)
+msgid ""
+"Select <guiseq><gui>Find</gui><gui>By Rating</gui><gui>Set Rating Filter...</"
+"gui></guiseq>."
+msgstr ""
+"Vyberte <guiseq><gui>Hledat</gui><gui>Podle hodnocení</gui><gui>Nastavit "
+"filtr hodnocení…</gui></guiseq>"
+
+#: C/rate-search.page:22(p)
+msgid "Select the rating range which you wish to view."
+msgstr "Vyberte rozsah hodnocení, pro které si přejete zobrazení."
+
+#: C/rate-search.page:25(p) C/extensions.page:39(p) C/extensions.page:82(p)
+#: C/date-search.page:27(p)
+msgid "Click <gui>Ok</gui>."
+msgstr "Klikněte na <gui>OK</gui>."
+
+#: C/rate-search.page:28(p)
+msgid "To stop searching by rating:"
+msgstr "Když chcete zastavit vyhledávání podle hodnocení:"
+
+#: C/rate-search.page:31(p)
+msgid ""
+"Select <guiseq><gui>Find</gui><gui>By Rating</gui><gui>Clear Rating Filter</"
+"gui></guiseq>."
+msgstr ""
+"Vyberte <guiseq><gui>Hledat</gui><gui>Podle hodnocení</gui><gui>Vymazat "
+"filtr hodnocení</gui></guiseq>."
+
+#: C/picasa.page:8(desc)
+msgid "Upload photos to Google's PicasaWeb"
+msgstr "Nahrajte fotografie na PicasaWeb od společnosti Google"
+
+#: C/picasa.page:11(title)
+msgid "Picasa"
+msgstr "Picasa"
+
+#: C/picasa.page:15(p)
+msgid ""
+"To upload photos to Picasa you will need a Picasa account, as well as "
+"internet access. Also, the PicasaWeb <link xref=\"extensions\">extension</"
+"link> must be installed and enabled."
+msgstr ""
+"Pokud chcete fotografie nahrát do služby Picasa, budete potřebovat účet "
+"Picasa a také připojení k internetu. Rovněž musí být nainstalováno a zapnuto "
+"<link xref=\"extensions\">rozšíření</link> Picasa."
+
+#: C/picasa.page:21(p)
+msgid "Select the photos you wish to upload."
+msgstr "Vyberte fotografie, které si přejete nahrát."
+
+#: C/picasa.page:24(p)
+msgid ""
+"Click <guiseq><gui>Photo</gui><gui>Export To</gui><gui>PicasaWeb...</gui></"
+"guiseq>."
+msgstr ""
+"Klikněte na <guiseq><gui>Fotografie</gui><gui>Exportovat do</"
+"gui><gui>PicasaWeb…</gui></guiseq>"
+
+#: C/picasa.page:28(p)
+msgid ""
+"Add a gallery by clicking <gui>Add</gui> and supplying a username and "
+"password."
+msgstr ""
+"Přidejte galerii kliknutím na <gui>Přidat</gui> a poskytnutím uživatelského "
+"jména a hesla."
+
+#: C/picasa.page:32(p)
+msgid ""
+"Select a gallery to export to, or click <gui>Add</gui> to create a new "
+"gallery."
+msgstr ""
+"Vyberte galerii, do které se má exportovat a kliknutím na <gui>Přidat</gui> "
+"novou galerii vytvoříte."
+
+#: C/picasa.page:36(p) C/folder.page:39(p)
+msgid "Click <gui>Export</gui>."
+msgstr "Klikněte na <gui>Exportovat</gui>."
+
+#: C/picasa.page:19(steps)
+msgid ""
+"<placeholder-1/><placeholder-2/><placeholder-3/>j <placeholder-4/"
+"><placeholder-5/>"
+msgstr ""
+"<placeholder-1/><placeholder-2/><placeholder-3/><placeholder-4/><placeholder-"
+"5/>"
+
+#: C/introduction.page:6(desc)
+msgid "A brief introduction to F-Spot"
+msgstr "Stručný úvod do aplikace F-Spot"
+
+#: C/introduction.page:9(title)
+msgid "Introduction"
+msgstr "Úvod"
+
+#: C/introduction.page:12(p)
+msgid ""
+"<app>F-Spot</app> is a full-featured photo manager for the GNOME Desktop, "
+"allowing you to tag, rate, and date photos, edit photo metadata, and even "
+"includes a simple in-program photo editor."
+msgstr ""
+"<app>F-Spot</app> je plně vybavený správce fotografií pro pracovní prostředí "
+"GNOME. Umožňuje značení štítky, hodnocení, datování, úpravy metadat a rovněž "
+"obsahuje jednoduchý vestavěný editor fotografií."
+
+#: C/introduction.page:15(p)
+msgid ""
+"For help getting started using <app>F-Spot</app>, check out the <link xref="
+"\"index#basic-functions\">basic functions</link> of the help file."
+msgstr ""
+"Nápovědu k začátkům používání aplikace <app>F-Spot</app> podává kapitola "
+"nápovědy <link xref=\"index#basic-functions\">základní funkce</link>."
+
+#: C/index.page:7(title) C/index.page:8(title) C/index.page:11(title)
+msgid "F-Spot photo manager"
+msgstr "Správce fotografií F-Spot"
+
+#: C/index.page:16(title)
+msgid "Basic Functions"
+msgstr "Základní funkce"
+
+#: C/index.page:20(title)
+msgid "Searching"
+msgstr "Hledání"
+
+#: C/index.page:24(title)
+msgid "Photo Editing"
+msgstr "Úprava fotografií"
+
+#: C/index.page:28(title)
+msgid "Sharing"
+msgstr "Sdílení"
+
+#: C/index.page:32(title)
+msgid "Advanced Options"
+msgstr "Pokročilé volby"
+
+#: C/import-roll-search.page:8(desc)
+msgid "Searching by date of import"
+msgstr "Hledejte podle data importu."
+
+#: C/import-roll-search.page:11(title)
+msgid "Search by Import Roll"
+msgstr "Hledání podle importu filmů"
+
+#: C/import-roll-search.page:15(p)
+msgid ""
+"Import rolls are \"batches\" of imported photos. Regardless of the date the "
+"photo was taken, the import roll timestamp is decided when you import photos."
+msgstr ""
+"Importované filmy jsou „dávky“ importovaných fotografií (analogie s filmem v "
+"klasickém fotoaparátu). Časové razítko u importovaného filmu je určeno v "
+"okamžiku importu, bez ohledu na to, kdy byly fotografie pořízeny."
+
+#: C/import-roll-search.page:18(p)
+msgid "To search by latest import roll:"
+msgstr "Pro hledání podle posledního importu filmu:"
+
+#: C/import-roll-search.page:21(p)
+msgid ""
+"Select <guiseq><gui>Find</gui><gui>By Import Roll</gui><gui>Last Import "
+"Roll</gui></guiseq>."
+msgstr ""
+"Vyberte <guiseq><gui>Hledat</gui><gui>Podle importovaného filmu</"
+"gui><gui>Poslední importovaný film</gui></guiseq>."
+
+#: C/import-roll-search.page:25(p)
+msgid "To select a previous import roll:"
+msgstr "Pro výběr předchozího importu filmu:"
+
+#: C/import-roll-search.page:28(p)
+msgid ""
+"Select <guiseq><gui>Find</gui><gui>By Import Roll</gui><gui>Select Import "
+"Rolls</gui></guiseq>."
+msgstr ""
+"Vyberte <guiseq><gui>Hledat</gui><gui>Podle importovaného filmu</"
+"gui><gui>Vybrat importovaný film</gui></guiseq>."
+
+#: C/import-roll-search.page:32(p)
+msgid ""
+"Select an import roll to search, or select a range by choosing <gui>Between</"
+"gui> and select the dates you wish to include."
+msgstr ""
+"Vyberte importovaný film, který se má hledat, nebo vyberte rozsah volbou "
+"<gui>mezi</gui> a vyberte data, která chcete zahrnout."
+
+#: C/import-roll-search.page:36(p)
+msgid ""
+"To stop searching by import rolls, select <guiseq><gui>Find</gui><gui>By "
+"Import Roll</gui><gui>Clear Roll Filter</gui></guiseq>."
+msgstr ""
+"Hledání podle importovaných filmů zastavíte výběrem <guiseq><gui>Hledat</"
+"gui><gui>Podle importovaného filmu</gui><gui>Vymazat filtr filmů</gui></"
+"guiseq>."
+
+#: C/import-photos.page:6(desc)
+msgid "Import photos to be managed"
+msgstr "Naimportujte fotografie, které chcete spravovat"
+
+#: C/import-photos.page:9(title)
+msgid "Importing Photos"
+msgstr "Importování fotografií"
+
+#: C/import-photos.page:12(p)
+msgid "Chances are, the first thing you will want to do is import photos."
+msgstr ""
+"Pravděpodobně první věcí, kterou budete chtít udělat, je naimportovat "
+"fotografie."
+
+#: C/import-photos.page:15(p)
+msgid "To import photos:"
+msgstr "Když chcete importovat fotografie:"
+
+#: C/import-photos.page:20(p)
+msgid ""
+"Select <guiseq><gui>Photo</gui><gui>Import...</gui></guiseq>. Alternatively, "
+"click the <gui>Import</gui> button."
+msgstr ""
+"Vyberte <guiseq><gui>Fotografie</gui><gui>Importovat…</gui></guiseq>. "
+"Případně můžete kliknout na tlačítko <gui>Import</gui>."
+
+#: C/import-photos.page:24(p)
+msgid "Select a source from which to import, such as a device or a folder."
+msgstr ""
+"Vyberte zdroj, ze kterého chcete importovat, například zařízení nebo složku."
+
+#: C/import-photos.page:27(p)
+msgid ""
+"It may take a while for F-Spot to index the files. When it is done indexing, "
+"your photos will be presented to you. At this time, you can attach <link "
+"xref=\"tags\">tags</link> to all photos, or you can leave that task for "
+"later."
+msgstr ""
+"Aplikaci F-Spot může chvíli trvat, než si soubory zaindexuje. Až indexování "
+"dokončí, fotografie se vám zobrazí. Nyní můžete ke všem fotografiím připojit "
+"<link xref=\"tags\">štítky</link> nebo to nechat na později."
+
+#: C/import-photos.page:33(p)
+msgid "When you are ready to finish importing photos, click <gui>Import</gui>."
+msgstr ""
+"Až jste připraveni import fotografií dokončit, klikněte na <gui>Import</gui>."
+
+#: C/general-editing.page:6(desc)
+msgid "Make simple edits to your photos"
+msgstr "Provádějte jednoduché úpravy svých fotografií"
+
+#: C/general-editing.page:9(title)
+msgid "General Editing"
+msgstr "Obecné úpravy"
+
+#: C/general-editing.page:13(p)
+msgid ""
+"<app>F-Spot</app> allows you to make simple general edits, including "
+"straightening, cropping, and rotating your photos."
+msgstr ""
+"V aplikaci <app>F-Spot</app> můžete provádět jednoduché obecné úpravy, "
+"včetně narovnání, ořezání a otáčení svých fotografií."
+
+#: C/general-editing.page:15(p)
+msgid "There are three ways to rotate a selected photo:"
+msgstr "Existují tři způsoby, jak otočit vybranou fotografii:"
+
+#: C/general-editing.page:18(p)
+msgid "Click the appropriate rotate button, to the right of the import button."
+msgstr "Klikněte na příslušné tlačítko otáčení, napravo od tlačítka importu."
+
+#: C/general-editing.page:22(p)
+msgid "Select the appropriate option from within the <gui>Edit</gui> menu."
+msgstr "Vyberte příslušnou volbu z nabídky <gui>Upravit</gui>."
+
+#: C/general-editing.page:26(p)
+msgid "Use the bracket keys to rotate the photo."
+msgstr "Použijte k otáčení fotografií klávesy s hranatými závorkami „[“ a „]“."
+
+#: C/general-editing.page:29(p)
+msgid "To straighten a selected photo:"
+msgstr "Pro narovnání vybrané fotografie:"
+
+#: C/general-editing.page:32(p)
+msgid "From within the editing pane, select <app>Straighten</app>."
+msgstr "V editačním panelu vyberte <app>Narovnat</app>."
+
+#: C/general-editing.page:35(p)
+msgid "Select a rotation, ranging from -45 to 45 degrees."
+msgstr "Vyberte otočení v rozsahu -45 až 45 stupňů."
+
+#: C/general-editing.page:38(p)
+msgid "Click <gui>Straighten</gui>."
+msgstr "Klikněte na <gui>Narovnat</gui>."
+
+#: C/general-editing.page:41(p)
+msgid "To crop a selected photo:"
+msgstr "Pro oříznutí fotografie:"
+
+#: C/general-editing.page:44(p)
+msgid "Click the <gui>Crop</gui> button in the Edit pane."
+msgstr "Klikněte na tlačítko <gui>Ořezat</gui> na editačním panelu."
+
+#: C/general-editing.page:47(p)
+msgid ""
+"Select a contraining aspect ratio, that is, a proportion of height to width "
+"to which the new photo must fit. Examples of contraining aspect ratios "
+"include 4x3, 4x6, and 5x7."
+msgstr ""
+"Vyberte omezení poměru stran, tedy poměru mezi výškou a šířkou, který musí "
+"nová fotografie dodržet. Na výběr je například 4×3, 4×6 nebo 5×7."
+
+#: C/general-editing.page:52(p)
+msgid ""
+"Click and drag to select the desired area to keep. This box can be dragged "
+"around after being sized."
+msgstr ""
+"Kliknutím a tažením vyberte požadovanou oblast, která se má zachovat. Po "
+"nastavení velikosti můžete orámování oblasti přesouvat."
+
+#: C/general-editing.page:56(p)
+msgid "When you have selected your area to crop to, click <gui>Crop</gui>."
+msgstr ""
+"Až máte oblast, kterou chcete ořezat, vybranou, klikněte na <gui>Ořezat</"
+"gui>."
+
+#: C/folder.page:8(desc)
+msgid "Send photos to a folder"
+msgstr "Pošlete fotografie do složky"
+
+#: C/folder.page:11(title)
+msgid "Folder Export"
+msgstr "Exportování do složky"
+
+#: C/folder.page:15(p)
+msgid ""
+"<app>F-Spot</app> allows you to export to a folder. In order to do so, "
+"however, you will need to have the folder export <link xref=\"extensions"
+"\">extension</link> installed and enabled."
+msgstr ""
+"Aplikace <app>F-Spot</app> vám umožňuje exportovat do složky. Musíte k tomu "
+"ale mít nainstalované a zapnuté <link xref=\"extensions\">rozšíření</link> "
+"pro export složky."
+
+#: C/folder.page:18(p)
+msgid "To export selected photos to a folder:"
+msgstr "Pokud chcete vybrané fotografie exportovat do složky:"
+
+#: C/folder.page:21(p)
+msgid ""
+"Select <guiseq><gui>Photo</gui><gui>Export To</gui><gui>Folder...</gui></"
+"guiseq>."
+msgstr ""
+"Vyberte <guiseq><gui>Fotografie</gui><gui>Exportovat do</gui><gui>Složky…</"
+"gui></guiseq>"
+
+#: C/folder.page:25(p)
+msgid "Select a folder."
+msgstr "Vyberte složku."
+
+#: C/folder.page:28(p)
+msgid "Name the gallery and give it a description."
+msgstr "Pojmenujte galerii a přidejte jí popis."
+
+#: C/folder.page:31(p)
+msgid ""
+"Select an export method. <gui>Create Standalone Web Gallery</gui> will "
+"create a folder with contents fit to be uploaded to a web server to present "
+"pictures in a gallery. <gui>Save the files only</gui> will only move photos "
+"to the selected folder. <gui>Create gallery using \"Original\"</gui> will "
+"create a folder with contents suitable for using with Original Photo Gallery."
+msgstr ""
+"Vyberte způsob exportu. <gui>Vytvořit samostatnou webovou galerii</gui> "
+"vytvoří složku, jejíž obsah bude přizpůsobený k nahrání na webový server v "
+"podobě obrázkové galerie. <gui>Pouze uložit soubory</gui> soubory akorát "
+"přesune do vybrané složky. <gui>Vytvořit galerii použitím „Originálu“</gui> "
+"vytvoří složku s obsahem vhodným pro použití s Original Photo Gallery."
+
+#: C/flickr.page:8(desc)
+msgid "Upload photos to Flickr"
+msgstr "Nahrajte fotografie na Flickr"
+
+#: C/flickr.page:11(title)
+msgid "Flickr"
+msgstr "Flickr"
+
+#: C/flickr.page:15(p)
+msgid ""
+"To upload photos to Flickr you will need a Flickr account, as well as "
+"internet access. Also, the Flickr <link xref=\"extensions\">extension</link> "
+"must be installed and enabled."
+msgstr ""
+"Pokud chcete fotografie nahrát do služby Flickr, budete potřebovat účet "
+"Flickr a také připojení k internetu. Rovněž musí být nainstalováno a zapnuto "
+"<link xref=\"extensions\">rozšíření</link> Flickr."
+
+#: C/file-management.page:8(desc)
+msgid "Manage files already imported"
+msgstr "Spravujte soubory, které jste již naimportovali."
+
+#: C/file-management.page:11(title)
+msgid "File Management"
+msgstr "Správa souborů"
+
+#: C/file-management.page:15(p)
+msgid ""
+"<app>F-Spot</app> allows for some control over the contents of your catalog, "
+"that is, removing files from your catalog as well as deleting files from "
+"your catalog."
+msgstr ""
+"V aplikaci <app>F-Spot</app> můžete provádět některé akce týkající se obsahu "
+"vašeho katalogu, konkrétně odebírat soubory ze svého katalogu a mazat "
+"soubory ze svého disku."
+
+#: C/file-management.page:18(p)
+msgid "To remove files from your catalog:"
+msgstr "Pro odebrání souborů z svého katalogu:"
+
+#: C/file-management.page:21(p)
+msgid "Select the photos you wish to remove from the catalog."
+msgstr "Vyberte fotografie, které si přejete odstranit z katalogu."
+
+#: C/file-management.page:24(p)
+msgid ""
+"Right-click the photos, select <gui>Remove From Catalog</gui>. "
+"Alternatively, select <guiseq><gui>Edit</gui><gui>Remove From Catalog</gui></"
+"guiseq> or press the Delete key on your keyboard."
+msgstr ""
+"Klikněte pravým tlačítkem, vyberte <gui>Odstranit z katalogu</gui>. Případně "
+"můžete vybrat <guiseq><gui>Upravit</gui><gui>Odstranit z katalogu</gui></"
+"guiseq> nebo zmáčknout klávesu Delete na klávesnici."
+
+#: C/file-management.page:29(p)
+msgid "To delete photos from your computer:"
+msgstr "Pro smazání fotografií ze svého počítače:"
+
+#: C/file-management.page:32(p)
+msgid "Select the photos you wish to delete."
+msgstr "Vyberte fotografie, které si přejete vymazat."
+
+#: C/file-management.page:35(p)
+msgid ""
+"Right-click the photos, select <gui>Delete From Drive</gui>. Alternatively, "
+"select <guiseq><gui>Edit</gui><gui>Delete From Drive</gui></guiseq> or press "
+"Shift+Delete on your keyboard."
+msgstr ""
+"Klikněte pravým tlačítkem, vyberte <gui>Vymazat z disku</gui>. Případně "
+"můžete vybrat <guiseq><gui>Upravit</gui><gui>Vymazat z disku</gui></guiseq> "
+"nebo zmáčknout klávesu Shift+Delete na klávesnici."
+
+#: C/facebook.page:8(desc)
+msgid "Upload photos to Facebook"
+msgstr "Nahrajte fotografie na Facebook"
+
+#: C/facebook.page:11(title)
+msgid "Facebook"
+msgstr "Facebook"
+
+#: C/facebook.page:15(p)
+msgid ""
+"To upload photos to Facebook you will need a Facebook account, as well as "
+"internet access. Also, the Facebook <link xref=\"extensions\">extension</"
+"link> must be installed and enabled."
+msgstr ""
+"Pokud chcete fotografie nahrát do služby Facebook, budete potřebovat účet "
+"Facebook a také připojení k internetu. Rovněž musí být nainstalováno a "
+"zapnuto <link xref=\"extensions\">rozšíření</link> Facebook."
+
+#: C/facebook.page:20(p)
+msgid "To post selected photos to Facebook:"
+msgstr "Pro odeslání vybraných fotografií na Facebook:"
+
+#: C/facebook.page:23(p)
+msgid ""
+"Select <guiseq><gui>Photo</gui><gui>Export To</gui><gui>Facebook</gui></"
+"guiseq>."
+msgstr ""
+"Vyberte <guiseq><gui>Fotografie</gui><gui>Exportovat do</gui><gui>Facebook</"
+"gui></guiseq>."
+
+#: C/facebook.page:27(p)
+msgid ""
+"Click <gui>Login</gui>. A browser window will be brought up. Log in to "
+"Facebook and click \"Allow\" to allow F-Spot access to your Facebook profile."
+msgstr ""
+"Klikněte na <gui>Přihlásit</gui> a objeví se okno prohlížeče. Přihlaste se "
+"do služby Facebook a po návratu do aplikace F-Spot klikněte na OK, čímž "
+"potvrdíte přístup do svého profilu."
+
+#: C/facebook.page:32(p)
+msgid ""
+"Select whether to create a new album or add to an existing album. If you are "
+"creating a new album, fill in the relevant information."
+msgstr ""
+"Zvolte, zda chcete vytvořit nové album nebo přidávat do některého "
+"stávajícího alba. Pokud budete vytvářet nové album, vyplňte příslušné údaje."
+
+#: C/facebook.page:36(p)
+msgid "Edit captions for each photo, if so desired."
+msgstr "Upravte název u každé fotografie, u které je to potřeba."
+
+#: C/facebook.page:39(p)
+msgid "When finished, click <gui>Add</gui>."
+msgstr "Až skončíte, klikněte na <gui>Přidat</gui>."
+
+#: C/extensions.page:8(desc)
+msgid "Working with <app>F-Spot</app> extensions"
+msgstr "Práce s rozšířeními <app>F-Spot</app>"
+
+#: C/extensions.page:11(title)
+msgid "Extensions"
+msgstr "Rozšíření"
+
+#: C/extensions.page:15(p)
+msgid ""
+"<app>F-Spot</app> allows for the use of extensions to provide additional "
+"functionality."
+msgstr ""
+"Aplikace <app>F-Spot</app> umí používat rozšíření, která přidávají další "
+"funkcionalitu."
+
+#: C/extensions.page:18(p)
+msgid ""
+"To open the extension manager, select <guiseq><gui>Edit</gui><gui>Manage "
+"Extensions</gui></guiseq>."
+msgstr ""
+"Správce rozšíření otevřete výběrem <guiseq><gui>Upravit</gui><gui>Spravovat "
+"rozšíření</gui></guiseq>."
+
+#: C/extensions.page:21(p)
+msgid "To install extensions:"
+msgstr "Pro instalaci rozšíření:"
+
+#: C/extensions.page:24(p) C/extensions.page:46(p) C/extensions.page:58(p)
+#: C/extensions.page:70(p)
+msgid "Open the extension manager."
+msgstr "Otevřete správce rozšíření."
+
+#: C/extensions.page:27(p)
+msgid "Click <gui>Install Add-ins</gui>."
+msgstr "Klikněte na <gui>Instalovat doplňky</gui>."
+
+#: C/extensions.page:30(p)
+msgid "Select an add-on to install from the list."
+msgstr "Vyberte ze seznamu doplněk, který chcete nainstalovat."
+
+#: C/extensions.page:33(p) C/extensions.page:79(p)
+msgid "Click <gui>Forward</gui>."
+msgstr "Klikněte na <gui>Vpřed</gui>."
+
+#: C/extensions.page:36(p)
+msgid "Verify all information, and click <gui>Forward</gui> again."
+msgstr "Zkontrolujte si všechny informace a klikněte opět na <gui>Vpřed</gui>."
+
+#: C/extensions.page:43(p)
+msgid "To enable plugins that are already installed:"
+msgstr "Pro zapnutí již nainstalovaných zásuvných modulů:"
+
+#: C/extensions.page:49(p)
+msgid "Select the extension you wish to enable."
+msgstr "Vyberte rozšíření, které si přejete zapnout."
+
+#: C/extensions.page:52(p)
+msgid "Click <gui>Enable</gui>."
+msgstr "Klikněte na <gui>Zapnout</gui>."
+
+#: C/extensions.page:55(p)
+msgid "To disable plugins that are installed:"
+msgstr "Pro vypnutí již nainstalovaných zásuvných modulů:"
+
+#: C/extensions.page:61(p)
+msgid "Select the extension you wish to disable."
+msgstr "Vyberte rozšíření, které si přejete vypnout."
+
+#: C/extensions.page:64(p)
+msgid "Click <gui>Disable</gui>."
+msgstr "Klikněte na <gui>Vypnout</gui>."
+
+#: C/extensions.page:67(p)
+msgid "To uninstall plugins:"
+msgstr "Pro odinstalování zásuvných modulů:"
+
+#: C/extensions.page:73(p)
+msgid "Select the extension you wish to uninstall."
+msgstr "Vyberte rozšíření, které si přejete odinstalovat."
+
+#: C/extensions.page:76(p)
+msgid "Click <gui>Uninstall</gui>."
+msgstr "Klikněte na <gui>Odinstalovat</gui>."
+
+#: C/enhancements.page:6(desc)
+msgid "Simple enhancements for your photos"
+msgstr "Jednoduše vylepšujte své fotografie"
+
+#: C/enhancements.page:9(title)
+msgid "Enhancements"
+msgstr "Vylepšování"
+
+#: C/enhancements.page:13(p)
+msgid ""
+"Currently, there are two main enhancements that <app>F-Spot</app> supports: "
+"red-eye removal and the automatic enhancement of color."
+msgstr ""
+"V současnosti jsou v aplikaci <app>F-Spot</app> k dispozici dva nástroje na "
+"vylepšování: odstranění červených očí a automatické vylepšení barev."
+
+#: C/enhancements.page:15(p)
+msgid "To remove red-eye:"
+msgstr "Pro odstranění červených očí:"
+
+#: C/enhancements.page:18(p)
+msgid ""
+"By double-clicking, select the photo on which you wish to use the red-eye "
+"removal tool."
+msgstr ""
+"Dvojitým kliknutím označte fotografii, u které si přejete použít nástroj na "
+"odstranění červených očí."
+
+#: C/enhancements.page:22(p)
+msgid "Click <gui>Red-Eye Removal</gui> in the Edit panel."
+msgstr "V editačním panelu klikněte na <gui>Odstranit červené oči</gui>."
+
+#: C/enhancements.page:25(p)
+msgid ""
+"Select the area from which you wish to remove red-eye. Note: If the contains "
+"many red areas, you may wish to select each eye individually."
+msgstr ""
+"Vyberte oblast, ve které chcete odstranit červené oči. Poznámka: Pokud "
+"fotografie obsahuje příliš mnoho červených očí, možná je budete chtít "
+"označovat postupně."
+
+#: C/enhancements.page:30(p)
+msgid "Click <gui>Fix!</gui>."
+msgstr "Klikněte na <gui>Opravit</gui>."
+
+#: C/enhancements.page:33(p)
+msgid "To automatically enhance the colors of the photo:"
+msgstr "Pro automatické vylepšení barev fotografie:"
+
+#: C/enhancements.page:36(p)
+msgid "By double-clicking, select the photo which you wish to enhance."
+msgstr "Dvojitým kliknutím vyberte fotografii, kterou chcete vylepšit."
+
+#: C/enhancements.page:39(p)
+msgid "Click <gui>Auto Color</gui>."
+msgstr "Klikněte na <gui>Automatické barvy</gui>."
+
+#: C/date-search.page:8(desc)
+msgid "Search photos by date"
+msgstr "Hledejte fotografie podle data"
+
+#: C/date-search.page:11(title)
+msgid "Search by Date"
+msgstr "Hledání podle data"
+
+#: C/date-search.page:15(p)
+msgid "To search by date:"
+msgstr "Když chcete hledat podle data:"
+
+#: C/date-search.page:18(p)
+msgid ""
+"Select <guiseq><gui>Find</gui><gui>By Date</gui><gui>Set Date Range...</"
+"gui></guiseq>."
+msgstr ""
+"Vyberte <guiseq><gui>Hledat</gui><gui>Podle data</gui><gui>Nastavit rozsah "
+"data…</gui></guiseq>"
+
+#: C/date-search.page:22(p)
+msgid ""
+"Select a time period to from which to view photos. This can by done by "
+"selecting a set period, such as a week, or by specifying dates."
+msgstr ""
+"Vyberte časové období, ze kterého chcete fotografie zobrazit. To lze udělat "
+"buď vybráním přednastaveného období nebo zadáním dat."
+
+#: C/date-search.page:30(p)
+msgid "Alternatively, you can use the timeline. To use the timeline:"
+msgstr "Případně můžete použít časovou osu. Pokud tak chcete učinit:"
+
+#: C/date-search.page:33(p)
+msgid ""
+"Make sure the timeline is enabled by selecting <guiseq><gui>View</"
+"gui><gui>Components</gui></guiseq> and making sure that <gui>Timeline</gui> "
+"is checked."
+msgstr ""
+"Ujistěte se, že je časová osa zapnutá vybráním <guiseq><gui>Zobrazit</"
+"gui><gui>Komponenty</gui></guiseq> a kontrolou zaškrtnutí <gui>Časová osa</"
+"gui>."
+
+#: C/date-search.page:38(p)
+msgid ""
+"In the timeline, click the bar corresponding to the time period you wish to "
+"look at."
+msgstr ""
+"Na časové ose klikněte do pruhu odpovídajícímu časovému období, na které se "
+"chcete dívat."
+
+#: C/date-search.page:42(p)
+msgid "To stop searching by date:"
+msgstr "Když chcete zastavit vyhledávání podle data:"
+
+#: C/date-search.page:45(p)
+msgid ""
+"Select <guiseq><gui>Find</gui><gui>By Date</gui><gui>Clear Date Range</gui></"
+"guiseq>."
+msgstr ""
+"Vyberte <guiseq><gui>Hledat</gui><gui>Podle data</gui><gui>Vymazat rozsah "
+"data</gui></guiseq>."
+
+#: C/colors.page:6(desc)
+msgid "Edit the colors of your photos"
+msgstr "Upravujte barvy svých fotografií"
+
+#: C/colors.page:9(title)
+msgid "Color Editing"
+msgstr "Úpravy barev"
+
+#: C/colors.page:12(p)
+msgid "<app>F-Spot</app> supports several modes of color manipulation."
+msgstr "Aplikace <app>F-Spot</app> podporuje několik režimů úprav barev."
+
+#: C/colors.page:15(title)
+msgid "Desaturate"
+msgstr "Odbarvit"
+
+#: C/colors.page:16(p)
+msgid ""
+"This mode eliminates all saturation, turning a color image into a black and "
+"white image."
+msgstr "Tento režim vyruší všechny barvy a obrázek změní na černobílý."
+
+#: C/colors.page:20(title)
+msgid "Sepia Tone"
+msgstr "Sépiový odstín"
+
+#: C/colors.page:21(p)
+msgid "This mode simulates a photo being created with sepia toner."
+msgstr "Tento režim simuluje fotografie vytvořené v sépiové barvě."
+
+#: C/colors.page:24(title)
+msgid "Auto Color"
+msgstr "Automatické barvy"
+
+#: C/colors.page:25(p)
+msgid "This mode automatically adjusts the colors to a set profile."
+msgstr "Tento režim barvy automaticky přizpůsobí nastavenému profilu."
+
+#: C/cd.page:8(desc)
+msgid "Burn photos to a CD"
+msgstr "Vypalte fotografie na CD"
+
+#: C/cd.page:11(title)
+msgid "CD Export"
+msgstr "Exportování na CD"
+
+#: C/adjust-color.page:6(desc)
+msgid "Adjusting the colors of a photo"
+msgstr "Upravování barev fotografie."
+
+#: C/adjust-color.page:9(title)
+msgid "Adjust Color"
+msgstr "Úprava barev"
+
+#: C/adjust-color.page:12(p)
+msgid ""
+"As far as the editing tools in F-Spot, adjusting the color is easily the "
+"most powerful. The color editor allows you to adjust:"
+msgstr ""
+"Co se týká nástroje pro úpravy v aplikaci F-Spot, úprava barev je jednoduše "
+"nejmocnější. Editor barev umožňuje upravit:"
+
+#: C/adjust-color.page:16(title)
+msgid "Exposure"
+msgstr "Expozice"
+
+#: C/adjust-color.page:17(p)
+msgid "This adjustment simulates lengthening or shortening the exposure time."
+msgstr "Tyto úpravy simulují prodlužování nebo zkracování expozičního času."
+
+#: C/adjust-color.page:21(title)
+msgid "Saturation"
+msgstr "Sytost"
+
+#: C/adjust-color.page:22(p)
+msgid ""
+"This adjustment simulates adjusting the amount of color in the image, i.e. "
+"sliding it to the left decrease color, making it black and white, while "
+"sliding it to the right will increase the vibrancy of colors."
+msgstr ""
+"Tyto úpravy simulují přizpůsobení množství barvy v obrázku, t.j. tažením "
+"doleva barvy ubíráte a přecházíte do černobílého obrázku, zatímco tažením "
+"doprava zvětšujete živost barev."
+
+#: C/adjust-color.page:28(title)
+msgid "Brightness"
+msgstr "Jas"
+
+#: C/adjust-color.page:29(p)
+msgid ""
+"This adjustment increase the brightness of colors. Increasing this too much "
+"will make colors appear \"washed out\", while decreasing it too much will "
+"make the image too dark and lacking in contrast."
+msgstr ""
+"Tyto úpravy zvyšují jas barev. Přílišné vytáhnutí jasu způsobí „přepálení“ "
+"barev, zatímco přílišné snížení bude mít za následek příliš tmavý obraz a "
+"ztrátu kontrastu."
+
+#: C/adjust-color.page:34(title)
+msgid "Hue"
+msgstr "Odstín"
+
+#: C/adjust-color.page:35(p)
+msgid "This adjustment causes colors to \"rotate\" along the color wheel."
+msgstr "Tyto úpravy způsobují „posun“ barev po barevném kruhu."
+
+#: C/adjust-color.page:38(title)
+msgid "Contrast"
+msgstr "Kontrast"
+
+#: C/adjust-color.page:39(p)
+msgid ""
+"This adjustment adjusts the contrast ratio, that is, the ratio of difference "
+"between dark and light pixels. Sliding to the left decreases contrast, while "
+"sliding to the right will increase contrast."
+msgstr ""
+"Tyto úpravy přizpůsobují poměr kontrastu, což je poměr rozdílu mezi tmavými "
+"a světlými pixely. Tažením vlevo kontrast snižujete, tažením vpravo ho "
+"zvyšujete."
+
+#: C/adjust-color.page:45(title)
+msgid "Temp"
+msgstr "Teplota"
+
+#: C/adjust-color.page:46(p)
+msgid "This adjust changes the color temperature, measured in degrees Kelvin."
+msgstr "Tyto úpravy mění barevnou teplotu, měřeno v Kelvinech."
+
+#: C/adjust-color.page:50(title)
+msgid "Tint"
+msgstr "Tón"
+
+#: C/adjust-color.page:51(p)
+msgid "This adjustment allows you to tinge the photo with a color."
+msgstr "Úpravy vám umožňují měnit měnit barevný tón fotografie."
+
+#: C/23hq.page:8(desc)
+msgid "Upload photos to 23hq"
+msgstr "Nahrajte fotografie na 23hq"
+
+#: C/23hq.page:11(title)
+msgid "23hq"
+msgstr "23hq"
+
+#: C/23hq.page:15(p)
+msgid ""
+"To upload photos to 23hq you will need a 23hq account, as well as internet "
+"access. Also, the 23hq <link xref=\"extensions\">extension</link> must be "
+"installed and enabled."
+msgstr ""
+"Pokud chcete fotografie nahrát do služby 23hq, budete potřebovat účet 23hq a "
+"také připojení k internetu. Rovněž musí být nainstalováno a zapnuto <link "
+"xref=\"extensions\">rozšíření</link> 23hq."
+
+#. Put one translator per line, in the form of NAME <EMAIL>, YEAR1, YEAR2
+#: C/index.page:0(None)
+msgid "translator-credits"
+msgstr "Marek Černocký <marek@manet.cz>"
+
