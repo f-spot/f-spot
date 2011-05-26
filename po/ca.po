@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: F-Spot\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-20 10:45+0100\n"
+"POT-Creation-Date: 2011-05-21 17:12+0200\n"
 "PO-Revision-Date: 2011-03-01 13:34+0200\n"
 "Last-Translator: Jordi Mas <jmas@softcatala.org>\n"
 "Language-Team: Catalan <tradgnome@softcatala.net>\n"
@@ -83,7 +83,8 @@ msgstr "Exporta a un CD"
 
 #: ../data/addin-xml-strings.cs:36
 msgid "This extension allows you to burn your photos to CD."
-msgstr "Aquest complement us permet enregistrar les vostres fotografies a un CD."
+msgstr ""
+"Aquest complement us permet enregistrar les vostres fotografies a un CD."
 
 #: ../data/addin-xml-strings.cs:37 ../data/addin-xml-strings.cs:42
 #: ../data/addin-xml-strings.cs:47 ../data/addin-xml-strings.cs:52
@@ -114,7 +115,8 @@ msgstr "Exportació al Flickr"
 
 #: ../data/addin-xml-strings.cs:46
 msgid "This extension allows you to export your photos to Flickr and 23hq."
-msgstr "Aquest complement us permet exportar les vostres fotografies a Flickr i 23hq."
+msgstr ""
+"Aquest complement us permet exportar les vostres fotografies a Flickr i 23hq."
 
 #. ../src/Extensions/Exporters/FSpot.Exporters.Folder/Resources/FolderExport.addin.xml
 #: ../data/addin-xml-strings.cs:50
@@ -127,7 +129,8 @@ msgid ""
 "This extension allows you to export your photos to HTML galleries, Original "
 "galleries or just to a folder."
 msgstr ""
-"Aquest complement us permet exportar les vostres fotografies a galeries HTML, galeries Original o a una carpeta."
+"Aquest complement us permet exportar les vostres fotografies a galeries "
+"HTML, galeries Original o a una carpeta."
 
 #. ../src/Extensions/Exporters/FSpot.Exporters.Gallery/Resources/GalleryExport.addin.xml
 #: ../data/addin-xml-strings.cs:55
@@ -139,6 +142,8 @@ msgid ""
 "This extension allows you to export your photos to PHP Gallery (http://"
 "gallery.menalto.com)."
 msgstr ""
+"Aquest complement us permet exportar les fotogràfies a PHP Gallery (http://"
+"gallery.menalto.com)."
 
 #. ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/Resources/PicasaWebExport.addin.xml
 #: ../data/addin-xml-strings.cs:60
@@ -147,7 +152,8 @@ msgstr "Exportació a PicasaWeb"
 
 #: ../data/addin-xml-strings.cs:61
 msgid "This extension allows you to export your photos to PicasaWeb."
-msgstr "Aquest complement us permet exportar les vostres fotografies al PicasaWeb."
+msgstr ""
+"Aquest complement us permet exportar les vostres fotografies al PicasaWeb."
 
 #. ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/Resources/SmugMugExport.addin.xml
 #: ../data/addin-xml-strings.cs:65
@@ -157,6 +163,7 @@ msgstr "Exportació a SmugMug"
 #: ../data/addin-xml-strings.cs:66
 msgid "This extension allows you to export your photos to SmugMug."
 msgstr ""
+"Aquest complement us permet exportar les vostres fotografies al SmugMug."
 
 #. ../src/Extensions/Exporters/FSpot.Exporters.Tabblo/Resources/TabbloExport.addin.xml
 #: ../data/addin-xml-strings.cs:70
@@ -165,24 +172,22 @@ msgstr "Exportació a Tabblo"
 
 #: ../data/addin-xml-strings.cs:71
 msgid "This extension allows you to export your photos to Tabblo."
-msgstr "Aquest complement us permet exportar les vostres fotografies al Tabblo."
+msgstr ""
+"Aquest complement us permet exportar les vostres fotografies al Tabblo."
 
 #. ../src/Extensions/Exporters/FSpot.Exporters.Zip/Resources/ZipExport.addin.xml
 #: ../data/addin-xml-strings.cs:75
-#, fuzzy
 msgid "Zip export"
-msgstr "Exporta"
+msgstr "Exportació Zip"
 
-#
 #: ../data/addin-xml-strings.cs:76
-#, fuzzy
 msgid "Simple export to Zip file"
-msgstr "Seleccioneu la carpeta d'exportació"
+msgstr "Exportació simple a un fitxer Zip"
 
 #. ../src/Extensions/Tools/FSpot.Tools.ChangePhotoPath/Resources/ChangePhotoPath.addin.xml
 #: ../data/addin-xml-strings.cs:80
 msgid "ChangePath"
-msgstr ""
+msgstr "CanviaCamí"
 
 #: ../data/addin-xml-strings.cs:81
 msgid ""
@@ -193,6 +198,13 @@ msgid ""
 "changes for up to a few hours after f-spot reports finished. It will only "
 "change the path to photos which are located under the Photo directory."
 msgstr ""
+"INESTABLE. Assegureu-vos de que disposeu d'una còpia de seguretat de photos."
+"db abans de provar aquest complement. Aquest complement us permet canviar el "
+"camí base de les fotografies. És molt pràctic si per exemple moveu les "
+"fotografies des de ~/Fotografies to /NostresFotografies. Assegureu-vos que "
+"el SqLite continua processant els canvis unes hores després que l'F-Spot "
+"informi que ha finalitzat. Només canviarà el camí de les fotografies què es "
+"troben sota el directori Fotografies."
 
 #
 #: ../data/addin-xml-strings.cs:82 ../data/addin-xml-strings.cs:87
@@ -207,23 +219,26 @@ msgstr "Eines"
 #. ../src/Extensions/Tools/FSpot.Tools.DevelopInUFraw/Resources/DevelopInUFRaw.addin.xml
 #: ../data/addin-xml-strings.cs:85
 msgid "DevelopInUFRaw"
-msgstr ""
+msgstr "DevelopInUFRaw"
 
 #: ../data/addin-xml-strings.cs:86
 msgid ""
 "Develop the image in UFRaw, saves the result as a new version\\n\\nNote: "
 "Require ufraw 0.13 or CVS version newer than 2007-09-06 !!!"
 msgstr ""
+"Desenvolupa la imatge en UFRaw, desa el resultat com una versió nova\\n"
+"\\nNota: Requereix ufraw 0.13 o una versió CVS més nova del 2007-09.06."
 
 #. ../src/Extensions/Tools/FSpot.Tools.LiveWebGallery/Resources/LiveWebGallery.addin.xml
 #: ../data/addin-xml-strings.cs:90
-#, fuzzy
 msgid "LiveWebGallery"
-msgstr "Live Web Gallery"
+msgstr "LiveWebGallery"
 
 #: ../data/addin-xml-strings.cs:91
 msgid "Share photos with other people on the same network via Web Browser"
 msgstr ""
+"Compartiu fotografies amb altres persones a la mateixa xarxa amb un "
+"navegador web"
 
 #. ../src/Extensions/Tools/FSpot.Tools.MergeDb/Resources/MergeDb.addin.xml
 #: ../data/addin-xml-strings.cs:95
@@ -231,53 +246,52 @@ msgid "MergeDb"
 msgstr "Fusiona les bases de dades"
 
 #: ../data/addin-xml-strings.cs:96
-#, fuzzy
 msgid "Merge another db back to the main one"
-msgstr "Fusiona amb una altra col·lecció de l'F-Spot"
+msgstr "Fusiona una altra base de dades amb la principal"
 
 #. ../src/Extensions/Tools/FSpot.Tools.MetaPixel/MetaPixel.addin.xml
 #: ../data/addin-xml-strings.cs:100
 msgid "MetaPixel"
-msgstr ""
+msgstr "MetaPixel"
 
 #: ../data/addin-xml-strings.cs:101
 msgid ""
 "Create photomosaics using MetaPixel (http://www.complang.tuwien.ac.at/schani/"
 "metapixel/)"
 msgstr ""
+"Crea mosaics fotogràfics usant el MetaPixel (http://www.complang.tuwien.ac."
+"at/schani/metapixel/)"
 
 #. ../src/Extensions/Tools/FSpot.Tools.PictureTile/PictureTile.addin.xml
 #: ../data/addin-xml-strings.cs:105
-#, fuzzy
 msgid "PictureTile"
-msgstr "PictureTile per a l'F-Spot"
+msgstr "PictureTile"
 
 #: ../data/addin-xml-strings.cs:106
-#, fuzzy
 msgid ""
 "Create photo wall using PictureTile by Jamie Zawinski (http://www.jwz.org/"
 "picturetile/)"
 msgstr ""
-"Per a més informació visiteu el lloc web del PictureTile\n"
-"http://www.jwz.org/picturetile/"
+"Crea un mur fotogràfic usant el PictureTile d'en Jamie Zawinski (http://www."
+"jwz.org/picturetile/)"
 
 #. ../src/Extensions/Tools/FSpot.Tools.RawPlusJpeg/Resources/RawPlusJpeg.addin.xml
 #: ../data/addin-xml-strings.cs:110
 msgid "RawPlusJpeg"
-msgstr ""
+msgstr "RawPlusJpeg"
 
 #: ../data/addin-xml-strings.cs:111
 msgid "Merge RAW+Jpeg as multiple versions of the same photo"
-msgstr ""
+msgstr "Fusiona RAW amb Jpeg com a múltiples versions de la mateixa fotografia"
 
 #. ../src/Extensions/Tools/FSpot.Tools.RetroactiveRoll/Resources/RetroactiveRoll.addin.xml
 #: ../data/addin-xml-strings.cs:115
 msgid "RetroactiveRoll"
-msgstr ""
+msgstr "RetroactiveRoll"
 
 #: ../data/addin-xml-strings.cs:116
 msgid "Retroactively assign old photos to import rolls"
-msgstr ""
+msgstr "Assigna retroactivament les fotografies antigues a rodets d'importació"
 
 #. ../src/Extensions/Tools/FSpot.Tools.ScreensaverConfig/Resources/ScreensaverConfig.addin.xml
 #: ../data/addin-xml-strings.cs:120
@@ -286,38 +300,31 @@ msgid "Screensaver Configuration"
 msgstr "Configuració de l'estalvi de pantalla"
 
 #: ../data/addin-xml-strings.cs:121
-#, fuzzy
 msgid "Screensaver options"
-msgstr "Configuració de l'estalvi de pantalla"
+msgstr "Opcions de l'estalvi de pantalla"
 
 #. ../src/Extensions/Tools/FSpot.Tools.SyncCatalog/SyncCatalog.addin.xml
 #: ../data/addin-xml-strings.cs:125
-#, fuzzy
 msgid "SyncMetaData"
-msgstr "Metadades"
+msgstr "SyncMetaData"
 
 #: ../data/addin-xml-strings.cs:126
 msgid "Sync MetaData information of all catalog with Photos"
 msgstr ""
+"Sincronitza la informació de les metadades de tot el catàleg amb fotografies"
 
-#
-#
 #. ../src/Extensions/Transitions/FSpot.Transitions.Cover/Resources/CoverTransition.addin.xml
 #: ../data/addin-xml-strings.cs:130
-#, fuzzy
 msgid "Cover Transition"
-msgstr "Transició de diapositives:"
+msgstr "Transició de cobertura"
 
 #: ../data/addin-xml-strings.cs:131
 msgid "A Slideshow transition that covers images"
-msgstr ""
+msgstr "Una transició de projecció de diapositives que cobreix les imatges"
 
-#
-#
 #: ../data/addin-xml-strings.cs:132
-#, fuzzy
 msgid "Transitions"
-msgstr "Transició de diapositives:"
+msgstr "Transicions"
 
 #: ../data/desktop-files/f-spot.desktop.in.in.h:1
 #: ../data/desktop-files/f-spot-import.desktop.in.in.h:1
@@ -401,7 +408,7 @@ msgstr "Mostra les dates a la visualització de les miniatures."
 
 #: ../f-spot.schemas.in.h:12
 msgid "Show ratings in the thumbnail view."
-msgstr "Mostra les puntuacions a la visualització de les miniatures."
+msgstr "Mostra les valoracions a la visualització de les miniatures."
 
 #: ../f-spot.schemas.in.h:13
 msgid "Show tags in the thumbnail view."
@@ -1406,7 +1413,7 @@ msgstr "Esdeveniments"
 #: ../src/Clients/MainApp/FSpot/TagStore.cs:275
 #: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:441
 msgid "(None)"
-msgstr "(Cap)"
+msgstr "(cap)"
 
 #: ../src/Clients/MainApp/FSpot/Term.cs:324
 msgid " and "
@@ -1893,21 +1900,18 @@ msgstr "Emmagatzema les etiquetes i descripcions de les fotografies:"
 msgid "When importing photos, copy them to:"
 msgstr "Quan importis fotografies, copia-les a:"
 
-#
 #: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/RatingFilterDialog.ui.h:1
 msgid "<b>Max Rating</b>"
-msgstr "<b>Puntuació màxima</b>"
+msgstr "<b>Valoració màxima</b>"
 
-#
 #: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/RatingFilterDialog.ui.h:2
 msgid "<b>Min Rating</b>"
-msgstr "<b>Puntuació mínima</b>"
+msgstr "<b>Valoració mínima</b>"
 
 #: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/RatingFilterDialog.ui.h:3
 msgid "Set Rating Filter"
-msgstr "Estableix un filtre de puntuacions"
+msgstr "Estableix un filtre de valoracions"
 
-#
 #: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/RepairDialog.ui.h:1
 msgid "Repair"
 msgstr "Repara"
@@ -2069,11 +2073,11 @@ msgstr "Mostra l'exposició"
 
 #: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:434
 msgid "flash fired"
-msgstr ""
+msgstr "flaix disparat"
 
 #: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:436
 msgid "flash didn't fire"
-msgstr ""
+msgstr "flaix no disparat"
 
 #: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:446
 msgid "Focal Length"
@@ -2112,22 +2116,13 @@ msgstr "Mostra la mida del fitxer"
 msgid "(File read error)"
 msgstr "(error de lectura del fitxer)"
 
-#
-#
-# TODO: Valoració?
-#
 #: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:480
 msgid "Rating"
-msgstr "Puntuació"
+msgstr "Valoració"
 
-#
-#
-# TODO: Valoració?
-#
 #: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:480
-#, fuzzy
 msgid "Show Rating"
-msgstr "Puntuació"
+msgstr "Mostra la valoració"
 
 #: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:484
 msgid "Show Tags"
@@ -2480,7 +2475,7 @@ msgstr "Per rodet _importat"
 
 #: ../src/Clients/MainApp/ui/main_window.ui.h:6
 msgid "By _Rating"
-msgstr "Per _puntuació"
+msgstr "Per _valoració"
 
 #: ../src/Clients/MainApp/ui/main_window.ui.h:7
 msgid "Copy"
@@ -2593,14 +2588,10 @@ msgstr "Adjunta l'etiquet_a"
 msgid "_Attach Tag to Selection"
 msgstr "_Adjunta l'etiqueta a la selecció"
 
-#
-#
 #: ../src/Clients/MainApp/ui/main_window.ui.h:35
 msgid "_Clear Rating Filter"
-msgstr "N_eteja el filtre de puntuacions"
+msgstr "N_eteja el filtre de valoracions"
 
-#
-#
 #: ../src/Clients/MainApp/ui/main_window.ui.h:36
 msgid "_Clear Roll Filter"
 msgstr "_Neteja el filtre de rodets"
@@ -2699,11 +2690,9 @@ msgstr "_Fotografia"
 msgid "_Quit"
 msgstr "_Surt"
 
-#
-#
 #: ../src/Clients/MainApp/ui/main_window.ui.h:59
 msgid "_Ratings"
-msgstr "_Puntuacions"
+msgstr "_Valoracions"
 
 #: ../src/Clients/MainApp/ui/main_window.ui.h:61
 msgid "_Remove Tag From Selection"
@@ -2731,7 +2720,7 @@ msgstr "Estableix _un interval de dates..."
 #
 #: ../src/Clients/MainApp/ui/main_window.ui.h:66
 msgid "_Set Rating filter..."
-msgstr "Estableix _un filtre de puntuacions..."
+msgstr "Estableix _un filtre de valoracions..."
 
 #: ../src/Clients/MainApp/ui/main_window.ui.h:67
 msgid "_Sharpen..."
@@ -4238,1565 +4227,7 @@ msgstr "Fes de l'F-Spot el meu estalvi de pantalla"
 msgid "Display a slideshow from F-Spot"
 msgstr "Mostra una projecció de diapositives des de l'F-Spot"
 
-#
 #: ../tools/f-spot-screensaver.desktop.in.h:2
 msgid "F-Spot photos"
 msgstr "Fotografies de l'F-Spot"
 
-#~ msgid ""
-#~ "Metadata of file {0} may be corrupt, refusing to write to it, falling "
-#~ "back to XMP sidecar."
-#~ msgstr ""
-#~ "Pot ser que les metadades del fitxer {0} estiguin malmeses i impedeixin "
-#~ "que es pugui escriure al fitxer, per la qual cosa tornen al fitxer "
-#~ "sidecar XMP."
-
-#~ msgid "(wrong format)"
-#~ msgstr "(format erroni)"
-
-#~ msgid "(At least one File not found)"
-#~ msgstr "(falta almenys un fitxer)"
-
-#~ msgid "Show Photo Name"
-#~ msgstr "Mostra el nom de la fotografia"
-
-#~ msgid ""
-#~ "In order to detect duplicates on pictures you imported before 0.5.0, F-"
-#~ "Spot needs to analyze your image collection. This is not done by default "
-#~ "as it's time consuming. You can Start or Pause this update process using "
-#~ "this dialog."
-#~ msgstr ""
-#~ "Per tal de detectar les imatges duplicades que hàgiu importat abans de la "
-#~ "versió 0.5.0, l'F-Spot ha d'analitzar la col·lecció d'imatges. Això no es "
-#~ "fa per defecte perquè requereix força temps. Podeu iniciar aquest procés "
-#~ "d'actualització o fer-hi una pausa des d'aquest quadre de diàleg."
-
-#~ msgid ""
-#~ "You currently have {0} photos needing md5 calculation, and {1} pending "
-#~ "jobs"
-#~ msgstr ""
-#~ "Actualment hi ha {0} fotografies que requereixen el càlcul md5 i {1} "
-#~ "tasques pendents"
-
-#
-#~ msgid "Processing images..."
-#~ msgstr "S'estan processant les imatges..."
-
-#~ msgid "Stopped"
-#~ msgstr "Aturat"
-
-#
-#
-# TODO: Valoració?
-#~ msgid "Rating:"
-#~ msgstr "Puntuació:"
-
-#
-#~ msgid "_CD..."
-#~ msgstr "_CD..."
-
-#
-#~ msgid "Autorotate"
-#~ msgstr "Rotació automàtica"
-
-#
-#~ msgid "_23hq..."
-#~ msgstr "_23hq..."
-
-#
-#
-#~ msgid "_Flickr..."
-#~ msgstr "_Flickr..."
-
-#~ msgid "_Zooomr..."
-#~ msgstr "_Zooomr..."
-
-#~ msgid "Strip _metadata"
-#~ msgstr "Extreure les _metadades"
-
-#
-#
-#~ msgid "F_older..."
-#~ msgstr "C_arpeta..."
-
-#~ msgid "Error: Error while transferring; Aborting"
-#~ msgstr ""
-#~ "Error: s'ha produït un error durant la transferència; s'interromprà "
-#~ "l'operació."
-
-#~ msgid "Error: File Already Exists; Aborting"
-#~ msgstr "Error: el fitxer ja existeix; s'interromprà l'operació."
-
-#~ msgid "\n"
-#~ msgstr "\n"
-
-#
-#
-#
-#~ msgid "Web _Gallery..."
-#~ msgstr "Web Gallery..."
-
-#
-#
-#~ msgid "_PicasaWeb..."
-#~ msgstr "_Picasaweb..."
-
-#
-#
-#~ msgid "_Autorotate"
-#~ msgstr "_Rotació automàtica"
-
-#
-#
-#~ msgid "_SmugMug..."
-#~ msgstr "_SmugMug..."
-
-#~ msgid "_Tabblo..."
-#~ msgstr "_Tabblo..."
-
-#
-#~ msgid "<b>{0}</b>."
-#~ msgstr "<b>{0}</b>."
-
-#
-#
-#~ msgid "Compressed fil_e..."
-#~ msgstr "Fitxer comprimi_t..."
-
-# N.T.: Afegeixo aquí "detectar" perquè sinó és força difícil d'entendre el significat
-#~ msgid "Check for Duplicates..."
-#~ msgstr "Comprova els duplicats..."
-
-#~ msgid "Configure Screensaver"
-#~ msgstr "Configura l'estalvi de pantalla"
-
-#~ msgid "Unknown transform type %d"
-#~ msgstr "El tipus de transformació %d és desconegut"
-
-#~ msgid "Operation failed"
-#~ msgstr "L'operació ha fallat"
-
-#~ msgid "Preview"
-#~ msgstr "Previsualització"
-
-#~ msgid "File"
-#~ msgstr "Fitxer"
-
-#~ msgid "Select Tag"
-#~ msgstr "Selecciona l'etiqueta"
-
-#~ msgid "Downloading Previews"
-#~ msgstr "S'estan baixant les previsualitzacions"
-
-#~ msgid "Downloading Preview of {0}"
-#~ msgstr "S'està baixant la previsualització de {0}"
-
-#~ msgid "Copying file {0} of {1}"
-#~ msgstr "S'està copiant el fitxer {0} de {1}"
-
-#~ msgid "Error transferring file"
-#~ msgstr "S'ha produït un error en transferir el fitxer"
-
-#~ msgid "Download Complete"
-#~ msgstr "S'ha acabat la baixada"
-
-#~ msgid "Done Copying Files"
-#~ msgstr "S'han copiat els fitxers"
-
-#~ msgid "Transferring \"{0}\" from camera"
-#~ msgstr "S'està transferint la fotografia «{0}» des de la càmera"
-
-#~ msgid "Port"
-#~ msgstr "Port"
-
-#
-#~ msgid "Reparented ({0})"
-#~ msgstr "S'ha canviat el pare ({0})"
-
-#
-#~ msgid "Import error"
-#~ msgstr "Error d'importació"
-
-# , csharp-format
-#~ msgid "Error importing {0}{2}{2}{1}"
-#~ msgstr "S'ha produït un error en importar {0}{2}{2}{1}"
-
-#~ msgid "No way to save files of type \"{0}\""
-#~ msgstr "No hi ha cap manera de desar els fitxers de tipus «{0}»"
-
-#~ msgid " "
-#~ msgstr " "
-
-#~ msgid "<b></b>"
-#~ msgstr "<b></b>"
-
-#
-#~ msgid "Attach Tags:"
-#~ msgstr "Adjunta les etiquetes:"
-
-#~ msgid "CD"
-#~ msgstr "CD"
-
-#~ msgid "E-_Mail:"
-#~ msgstr "Adre_ça electrònica:"
-
-#~ msgid "E_xport titles and comments"
-#~ msgstr "E_xporta els títols i els comentaris"
-
-#~ msgid "G_allery:"
-#~ msgstr "G_aleria:"
-
-#~ msgid "Gallery"
-#~ msgstr "Galeria"
-
-#~ msgid "Pause"
-#~ msgstr "Pausa"
-
-#~ msgid "Select Photos to Copy From Camera..."
-#~ msgstr "Seleccioneu els fitxers que s'han de copiar de la càmera..."
-
-#~ msgid "Select the camera from which you want to transfer files"
-#~ msgstr "Seleccioneu la càmera des d'on vulgueu transferir els fitxers"
-
-#~ msgid "Selected Camera: "
-#~ msgstr "Càmera seleccionada: "
-
-#~ msgid ""
-#~ "Specify if an original size picture should be rotated or not. Smaller "
-#~ "sizes are automatically rotated."
-#~ msgstr ""
-#~ "Indiqueu si les fotografies de mida original s'han de girar o no. Les de "
-#~ "mida més petita es giren automàticament."
-
-#~ msgid "Strip image _metadata"
-#~ msgstr "Suprimeix les _metadades de la imatge"
-
-#~ msgid "_Flickr"
-#~ msgstr "_Flickr"
-
-#~ msgid "_Gallery"
-#~ msgstr "_Galeria"
-
-#~ msgid "_New Window"
-#~ msgstr "Finestra _nova"
-
-#~ msgid "_Open album in browser when done uploading"
-#~ msgstr "O_bre l'àlbum en el navegador quan finalitzi la pujada"
-
-#~ msgid "_Open destination when done exporting"
-#~ msgstr "O_bre la destinació quan finalitzi l'exportació"
-
-#~ msgid "_Scale photos to no larger than: "
-#~ msgstr "_Escala les fotografies a no més de: "
-
-#~ msgid "_Strip metadata"
-#~ msgstr "E_xtreu les metadades"
-
-#~ msgid "_URI:"
-#~ msgstr "_URI:"
-
-#~ msgid "_Virtual Filesystem"
-#~ msgstr "Sistema de fitxers _virtual"
-
-#~ msgid "x"
-#~ msgstr "x"
-
-#~ msgid "Thumbnail Directory"
-#~ msgstr "Directori de miniatures"
-
-#~ msgid "Exif Directory"
-#~ msgstr "Directori d'Exif"
-
-#~ msgid "GPS Directory"
-#~ msgstr "Directori de GPS"
-
-#~ msgid "InterOperability Directory"
-#~ msgstr "Directori d'interoperabilitat"
-
-#~ msgid "Unknown Directory"
-#~ msgstr "El directori és desconegut"
-
-#~ msgid "Writing to this file format is not supported"
-#~ msgstr ""
-#~ "No es pot escriure en aquest format de fitxer per manca de compatibilitat"
-
-#~ msgid "IPTC Information Interchange Model (IIM) Version number"
-#~ msgstr "Versió del model d'intercanvi d'informació (MII) de l'IPTC"
-
-#~ msgid "OSI Destination routing information"
-#~ msgstr "Informació d'encaminament OSI"
-
-#~ msgid "IPTC file format"
-#~ msgstr "Format de fitxer IPTC"
-
-#~ msgid "Identifies the provider and product"
-#~ msgstr "Identifica el proveïdor i el producte"
-
-#~ msgid "A unique number identifying the envelope"
-#~ msgstr "Un nombre únic que identifica el sobre"
-
-#~ msgid "A unique number"
-#~ msgstr "Un nombre únic"
-
-#~ msgid ""
-#~ "The envelope handling priority between 1 (most urgent) and 9 (least "
-#~ "urgent)"
-#~ msgstr ""
-#~ "La prioritat de tractament del sobre, entre 1 (urgència màxima) i 9 "
-#~ "(urgència mínima)"
-
-#
-#~ msgid "The year, month and day (CCYYMMDD) the service sent the material"
-#~ msgstr ""
-#~ "L'any, el mes i el dia (CCAAMMDD) en què el servei va enviar el material"
-
-#~ msgid "The hour, minute and second (HHMMSS) the service sent the material"
-#~ msgstr ""
-#~ "L'hora, els minuts i els segons (HHMMSS) en què el servei va enviar el "
-#~ "material"
-
-#~ msgid "The character set designation"
-#~ msgstr "Designació del joc de caràcters"
-
-#~ msgid "External globally unique object identifier"
-#~ msgstr "Identificador global únic extern de l'objecte"
-
-#~ msgid "Abstract Relationship Method (ARM) identifier"
-#~ msgstr "Identificador del mètode de relació abstracte (ARM)"
-
-#~ msgid "Abstract Relationship Method (ARM) version number."
-#~ msgstr "Versió del mètode de relació abstracte (ARM)"
-
-#~ msgid "Number identifying the IIM version this application record uses"
-#~ msgstr "Identificador de la versió d'MII que fa servir aquesta aplicació"
-
-#~ msgid "Object type reference"
-#~ msgstr "Referència del tipus d'objecte"
-
-#~ msgid "Object attribute reference"
-#~ msgstr "Referència de l'atribut d'objecte"
-
-#~ msgid "Object name"
-#~ msgstr "Nom de l'objecte"
-
-#~ msgid "Status of the objectdata according to the provider"
-#~ msgstr "Estat de les dades de l'objecte segons el proveïdor"
-
-#~ msgid "Location within a city or area where the object originates"
-#~ msgstr "Ubicació dins d'una ciutat o àrea d'on prové l'objecte"
-
-#~ msgid "Name of the city the content is focussing on"
-#~ msgstr "Nom de la ciutat on s'ha fet la fotografia"
-
-#~ msgid "Copyright information for"
-#~ msgstr "Informació de copyright per"
-
-#~ msgid "Full name of the country of the focus of the content"
-#~ msgstr "Nom complet del país on s'ha fet la fotografia"
-
-#~ msgid ""
-#~ "Two or three letter ISO3166 code of the country of the focus of the "
-#~ "content"
-#~ msgstr ""
-#~ "Les dues o tres lletres del codi ISO 3166 corresponents al país on s'ha "
-#~ "fet la fotografia"
-
-#
-#~ msgid "Creator of the content"
-#~ msgstr "Creador del contingut"
-
-#
-#
-#~ msgid "Provider of the object"
-#~ msgstr "Proveïdor de l'objecte"
-
-#~ msgid "The title of the author or creator"
-#~ msgstr "El títol de l'autor o del creador"
-
-#~ msgid ""
-#~ "The person involved in writing, editing or correcting the object data or "
-#~ "caption/abstract"
-#~ msgstr ""
-#~ "La persona implicada en l'escriptura, l'edició o la correcció de les "
-#~ "dades de l'objecte, de la llegenda o del resum"
-
-#~ msgid "Headline of the content"
-#~ msgstr "Titular del contingut"
-
-#~ msgid ""
-#~ "Instructions from the creator to the receiver not covered by other fields"
-#~ msgstr ""
-#~ "Instruccions complementàries del creador per al destinatari que no "
-#~ "apareixen en cap altre camp"
-
-#~ msgid "Intellectual genre of the object"
-#~ msgstr "Categoria intel·lectual de l'objecte"
-
-#~ msgid "Unknown IIM DataSet"
-#~ msgstr "El joc de dades IIM és desconegut"
-
-#~ msgid "Loading {0} of {1}"
-#~ msgstr "S'està carregant {0} de {1}"
-
-#~ msgid "Done Loading"
-#~ msgstr "S'ha carregat"
-
-#~ msgid "Directory does not exist."
-#~ msgstr "El directori no existeix."
-
-#~ msgid ""
-#~ "The directory you selected \"{0}\" does not exist.  Please choose a "
-#~ "different directory"
-#~ msgstr "El directori seleccionat «{0}» no existeix. Escolliu-ne un altre"
-
-#~ msgid "No cameras detected."
-#~ msgstr "No s'ha detectat cap càmera."
-
-#
-#~ msgid ""
-#~ "F-Spot was unable to find any cameras attached to this system.  Double "
-#~ "check that the camera is connected and has power"
-#~ msgstr ""
-#~ "L'F-Spot no ha pogut trobar cap càmera connectada a aquest sistema. "
-#~ "Comproveu que la càmera estigui connectada i engegada"
-
-#~ msgid "Error connecting to camera"
-#~ msgstr "S'ha produït un error en connectar amb la càmera"
-
-#~ msgid "Received error \"{0}\" while connecting to camera"
-#~ msgstr "S'ha rebut l'error «{0}» mentre es connectava amb la càmera"
-
-#~ msgid "Title"
-#~ msgstr "Títol"
-
-#~ msgid "Copyright"
-#~ msgstr "Copyright"
-
-#~ msgid "Subject and Keywords"
-#~ msgstr "Assumpte i paraules clau"
-
-#~ msgid "Compression"
-#~ msgstr "Compressió"
-
-#~ msgid "Planar Configuration"
-#~ msgstr "Configuració planar"
-
-#~ msgid "Orientation"
-#~ msgstr "Orientació"
-
-#~ msgid "Photometric Interpretation"
-#~ msgstr "Interpretació fotomètrica"
-
-#~ msgid "Resolution Unit"
-#~ msgstr "Unitat de resolució"
-
-#~ msgid "Exposure Program"
-#~ msgstr "Programa d'exposició"
-
-#~ msgid "Metering Mode"
-#~ msgstr "Mode de mesura"
-
-#~ msgid "Exposure Mode"
-#~ msgstr "Mode d'exposició"
-
-#~ msgid "Custom Rendered"
-#~ msgstr "Tractament personalitzat"
-
-#~ msgid "Components Configuration"
-#~ msgstr "Configuració dels components"
-
-#~ msgid "Light Source"
-#~ msgstr "Font de la llum"
-
-#~ msgid "Sensing Method"
-#~ msgstr "Mètode de detecció"
-
-#~ msgid "Color Space"
-#~ msgstr "Espai de colors"
-
-#~ msgid "White Balance"
-#~ msgstr "Balanç de blancs"
-
-#~ msgid "Focal Plane Resolution Unit"
-#~ msgstr "Unitat de resolució del pla focal"
-
-#~ msgid "File Source Type"
-#~ msgstr "Tipus de font del fitxer"
-
-#~ msgid "Scene Capture Type"
-#~ msgstr "Tipus de captura d'escena"
-
-#~ msgid "Gain Control"
-#~ msgstr "Control de guany"
-
-#~ msgid "Contrast"
-#~ msgstr "Contrast"
-
-#~ msgid "Saturation"
-#~ msgstr "Saturació"
-
-#~ msgid "Sharpness"
-#~ msgstr "Nitidesa"
-
-#~ msgid "Scene Type"
-#~ msgstr "Tipus d'escena"
-
-#~ msgid "Could not create a new version"
-#~ msgstr "No s'ha pogut crear una versió nova"
-
-#~ msgid "Received exception \"{0}\". Unable to create version \"{1}\""
-#~ msgstr "S'ha rebut l'excepció «{0}». No s'ha pogut crear la versió «{1}»"
-
-#~ msgid "Really Delete?"
-#~ msgstr "Esteu segur que la voleu suprimir?"
-
-#~ msgid "Cancel"
-#~ msgstr "Cancel·la"
-
-#~ msgid "Could not delete a version"
-#~ msgstr "No s'ha pogut suprimir la versió"
-
-#~ msgid "Received exception \"{0}\". Unable to delete version \"{1}\""
-#~ msgstr "S'ha rebut l'excepció «{0}». No s'ha pogut suprimir la versió «{1}»"
-
-#~ msgid "Could not rename a version"
-#~ msgstr "No s'ha pogut canviar el nom de la versió"
-
-#~ msgid "Received exception \"{0}\". Unable to rename version to \"{1}\""
-#~ msgstr ""
-#~ "S'ha rebut l'excepció «{0}». No s'ha pogut canviar el nom de la vesió a "
-#~ "«{1}»"
-
-#~ msgid "Comment:"
-#~ msgstr "Comentari:"
-
-#~ msgid "F-Spot Encountered a Fatal Error"
-#~ msgstr "L'F-Spot ha trobat un error fatal"
-
-#~ msgid "Error Details"
-#~ msgstr "Detalls de l'error"
-
-#~ msgid "An unhandled exception was thrown: "
-#~ msgstr "S'ha produït una excepció no gestionada: "
-
-#~ msgid "<small></small>"
-#~ msgstr "<small></small>"
-
-#~ msgid "Photo 0 of 0"
-#~ msgstr "Fotografia 0 de 0"
-
-#~ msgid "Unable to create temporary file"
-#~ msgstr "No s'ha pogut crear el fitxer temporal"
-
-#
-#~ msgid "No Extended Metadata Available"
-#~ msgstr "No hi ha metadades ampliades disponibles"
-
-#
-#~ msgid "Country"
-#~ msgstr "País"
-
-#~ msgid "City"
-#~ msgstr "Ciutat"
-
-#
-#~ msgid "State"
-#~ msgstr "Estat"
-
-#
-#
-#~ msgid "Package"
-#~ msgstr "Paquet"
-
-#
-#~ msgid "Extension Installation"
-#~ msgstr "Instal·lació de complements"
-
-#
-#~ msgid "<b>Select the extensions to install and click on Next</b>"
-#~ msgstr ""
-#~ "<b>Seleccioneu els complements a instal·lar i feu clic a Següent</b>"
-
-#~ msgid "Install from:"
-#~ msgstr "Instal·la des de:"
-
-#~ msgid "_Repositories..."
-#~ msgstr "D_ipòsits..."
-
-#
-#
-#~ msgid "Show all packages"
-#~ msgstr "Mostra tots els paquets"
-
-#~ msgid "Show new versions only"
-#~ msgstr "Mostra només les versions noves"
-
-#~ msgid "Show updates only"
-#~ msgstr "Mostra només les actualitzacions"
-
-#
-#~ msgid "_Unselect All"
-#~ msgstr "Dessele_cciona-ho tot"
-
-#~ msgid "label124"
-#~ msgstr "label124"
-
-#~ msgid "Overall Progress:"
-#~ msgstr "Progrés global:"
-
-#
-#
-#~ msgid "Downloading extensions..."
-#~ msgstr "S'estan baixant els complements..."
-
-#
-#~ msgid "Extension Manager"
-#~ msgstr "Gestor de complements"
-
-#~ msgid "Additional extensions are required to perform this operation."
-#~ msgstr ""
-#~ "Calen alguns complements addicionals per a realitzar aquesta operació."
-
-#
-#
-#~ msgid "The following extensions will be installed:"
-#~ msgstr "S'instal·laran els complements següents:"
-
-#
-#~ msgid "<big><b>Extension Manager</b></big>"
-#~ msgstr "<big><b>Gestor de complements</b></big>"
-
-#
-#~ msgid "The following extensions are currently installed:"
-#~ msgstr "Els complements següents estan instal·lats:"
-
-#
-#~ msgid "_Install Extensions..."
-#~ msgstr "_Instal·la complements..."
-
-#
-#~ msgid "_Uninstall..."
-#~ msgstr "_Desinsta·la..."
-
-#~ msgid "Enable"
-#~ msgstr "Habilita"
-
-#
-#~ msgid "Disable"
-#~ msgstr "Inhabilita"
-
-#
-#~ msgid "Extension Repository Management"
-#~ msgstr "Gestió dels dipòsits de complements"
-
-#~ msgid "Add New Repository"
-#~ msgstr "Afegeix un dipòsit nou"
-
-#
-#~ msgid "Select the location of the repository you want to register:"
-#~ msgstr "Seleccioneu la ubicació del dipòsit que voleu registrar:"
-
-#~ msgid "Register an on-line repository"
-#~ msgstr "Registra un dipòsit en línia"
-
-#~ msgid "Url:"
-#~ msgstr "Url:"
-
-#~ msgid "Register a local repository"
-#~ msgstr "Registra un dipòsit local"
-
-#
-#~ msgid "Path:"
-#~ msgstr "Camí:"
-
-#
-#~ msgid "Browse..."
-#~ msgstr "Navega..."
-
-#~ msgid "Version:"
-#~ msgstr "Versió:"
-
-#
-#~ msgid "Author:"
-#~ msgstr "Autor:"
-
-#
-#~ msgid "Copyright:"
-#~ msgstr "Copyright:"
-
-#
-#~ msgid "Extension Dependencies:"
-#~ msgstr "Dependències del complement:"
-
-#~ msgid "All registered repositories"
-#~ msgstr "Tots els dipòsits registrats"
-
-#~ msgid "Are you sure you want to cancel the installation?"
-#~ msgstr "Esteu segur que voleu cancel·lar la instal·lació?"
-
-#~ msgid "The following packages will be uninstalled:"
-#~ msgstr "Es desintal·laran els paquets següents:"
-
-#
-#~ msgid ""
-#~ "There are other extensions that depend on the previous ones which will "
-#~ "also be uninstalled:"
-#~ msgstr ""
-#~ "També es desinstal·laran altres complements que depenen dels anteriors:"
-
-#
-#~ msgid ""
-#~ "The selected extensions can't be installed because there are dependency "
-#~ "conflicts."
-#~ msgstr ""
-#~ "Els complements seleccionats no poden instal·lar-se perquè hi ha "
-#~ "conflictes amb les dependències."
-
-#~ msgid "The following packages will be installed:"
-#~ msgstr "S'instal·laran els paquets següents:"
-
-#~ msgid " (in user directory)"
-#~ msgstr " (al directori de l'usuari)"
-
-#~ msgid "The following packages need to be uninstalled:"
-#~ msgstr "S'han de desinstal·lar els paquets següents:"
-
-#~ msgid "The following dependencies could not be resolved:"
-#~ msgstr "No s'han pogut resoldre les dependències següents:"
-
-#~ msgid "The installation has been successfully completed."
-#~ msgstr "La instal·lació s'ha completat satisfactòriament."
-
-#
-#~ msgid "The installation failed!"
-#~ msgstr "La instal·lació ha fallat"
-
-#
-#~ msgid "The installation has completed with warnings."
-#~ msgstr "La instal·lació s'ha completat amb avisos."
-
-#~ msgid "The uninstallation has been successfully completed."
-#~ msgstr "La desinstal·lació s'ha completat satisfactòriament."
-
-#
-#~ msgid "The uninstallation failed!"
-#~ msgstr "La desinstal·lació ha fallat"
-
-#
-#~ msgid "The uninstallation has completed with warnings."
-#~ msgstr "La desinstal·lació s'ha completat amb avisos."
-
-#
-#
-#~ msgid "Repository"
-#~ msgstr "Dipòsit"
-
-#
-#
-#~ msgid "Installation cancelled"
-#~ msgstr "S'ha cancel·lat la instal·lació"
-
-#
-#~ msgid "Some of the required extensions were not found"
-#~ msgstr "No s'han trobat alguns dels complements necessaris"
-
-#
-#
-#~ msgid "Installation failed"
-#~ msgstr "La instal·lació ha fallat"
-
-#
-#~ msgid "Extension"
-#~ msgstr "Complement"
-
-#~ msgid "Other"
-#~ msgstr "Altres"
-
-#
-#~ msgid "Url"
-#~ msgstr "Url"
-
-#~ msgid "Exception occurred: {0}"
-#~ msgstr "S'ha produït l'excepció: «{0}»"
-
-#
-#~ msgid "Disabled extensions can't be loaded."
-#~ msgstr "No es poden carregar els complements inhabilitats."
-
-#~ msgid "Loading {0} extension"
-#~ msgstr "S'està carregant el complement {0}"
-
-#~ msgid "The required extension '{0}' is disabled."
-#~ msgstr "El complement necessari «{0}» està inhabilitat."
-
-#~ msgid "The required extension '{0}' is not installed."
-#~ msgstr "El complement necessari «{0}» no està instal·lat."
-
-#~ msgid "(provided by {0})"
-#~ msgstr "(proporcionat per {0})"
-
-#
-#~ msgid "my photos"
-#~ msgstr "les meves fotografies"
-
-#
-#~ msgid "Edit Selected Tag..."
-#~ msgstr "Edita l'etiqueta seleccionada..."
-
-#~ msgid "Copy Locat_ion"
-#~ msgstr "Copia la _ubicació"
-
-#~ msgid "_Edit Selected Tag..."
-#~ msgstr "_Edita l'etiqueta seleccionada..."
-
-#~ msgid "Dissolve"
-#~ msgstr "Dissol"
-
-#~ msgid "Cover"
-#~ msgstr "Cobreix"
-
-#
-#~ msgid "Reveal"
-#~ msgstr "Descobreix"
-
-#~ msgid "Wipe"
-#~ msgstr "Esborra"
-
-#~ msgid "Split"
-#~ msgstr "Descomposa"
-
-#
-# N.T.: Nom d'efecte de transició entre imatges
-#~ msgid "Push"
-#~ msgstr "Empenta"
-
-#~ msgid "interpolation type"
-#~ msgstr "tipus d'interpolació"
-
-#~ msgid "the type of interpolation to use"
-#~ msgstr "el tipus d'interpolació a utilitzar"
-
-#~ msgid "check type"
-#~ msgstr "tipus de verificació"
-
-#~ msgid "the type of chequering to use"
-#~ msgstr "el tipus de graella a utilitzar"
-
-#~ msgid "the size of chequers to use"
-#~ msgstr "la mida de les caselles de la graella a utilitzar"
-
-#~ msgid "dither"
-#~ msgstr "trama"
-
-#~ msgid "dither type"
-#~ msgstr "tipus de trama"
-
-#~ msgid "More directories"
-#~ msgstr "Més directoris"
-
-#
-#~ msgid "Arrange by _Month"
-#~ msgstr "Ordena-ho _per mes"
-
-#
-#~ msgid "Arrange by _Folder"
-#~ msgstr "Orde_na-ho per carpeta"
-
-#~ msgid "Tag Name:"
-#~ msgstr "Nom de l'etiqueta:"
-
-#~ msgid ""
-#~ "The \"F-Spot Manual\" could not be found.  Please verify that your "
-#~ "installation has been completed successfully."
-#~ msgstr ""
-#~ "No s'ha pogut trobar el «manual de l'F-Spot». Comproveu que la "
-#~ "instal·lació s'ha realitzat correctament."
-
-#~ msgid "Picasaweb"
-#~ msgstr "Picasaweb"
-
-#~ msgid "SmugMug"
-#~ msgstr "SmugMug"
-
-#
-#~ msgid "Gallery2"
-#~ msgstr "Gallery2"
-
-#
-#~ msgid "1 of 1"
-#~ msgstr "1 d'1"
-
-#
-#~ msgid "_Folder"
-#~ msgstr "_Carpeta"
-
-#~ msgid "_Month"
-#~ msgstr "_Mes"
-
-#~ msgid "img_000.jpg"
-#~ msgstr "img_000.jpg"
-
-# N.T.: No he trobat l'opció "Save my login information" al Facebook. La traducció és literal.
-#~ msgid ""
-#~ "F-Spot will now launch your browser so that you can log into Facebook.  "
-#~ "Turn on the \"Save my login information\" checkbox on Facebook and F-Spot "
-#~ "will log into Facebook automatically from now on."
-#~ msgstr ""
-#~ "L'F-Spot iniciarà ara el navegador perquè pugueu entrar al Facebook. "
-#~ "Activeu el quadre de verificació «Deseu la meva informació d'entrada» al "
-#~ "Facebook i l'F-Spot entrarà a partir d'ara de forma automàtica."
-
-#~ msgid "This is who I am"
-#~ msgstr "Aquest és qui jo sóc"
-
-#
-#~ msgid "Available space:"
-#~ msgstr "Espai disponible:"
-
-#
-#~ msgid "(File not found)"
-#~ msgstr "(no s'ha trobat el fitxer)"
-
-#~ msgid "<b>Photograph Layout</b>"
-#~ msgstr "<b>Disposició de la fotografia</b>"
-
-#~ msgid "<b>Printer Details</b>"
-#~ msgstr "<b>Detalls de la impressora</b>"
-
-#~ msgid "Co_nfigure"
-#~ msgstr "Co_nfigura"
-
-#~ msgid "Crop photo to _fit"
-#~ msgstr "Escapça la _fotografia per a encabir-la"
-
-#~ msgid ""
-#~ "Full Page\n"
-#~ "Standard - 4x6"
-#~ msgstr ""
-#~ "Pàgina completa\n"
-#~ "Estàndard - 4x6"
-
-#~ msgid ""
-#~ "Hairline\n"
-#~ "0.25\"\n"
-#~ "0.5\"\n"
-#~ "1\"\n"
-#~ msgstr ""
-#~ "Línia fina\n"
-#~ "0,25\"\n"
-#~ "0,5\"\n"
-#~ "1\"\n"
-
-#~ msgid "N_umber of Copies:"
-#~ msgstr "N_ombre de còpies:"
-
-#~ msgid ""
-#~ "None\n"
-#~ "Title\n"
-#~ "Filename\n"
-#~ "Date\n"
-#~ "Photo Details"
-#~ msgstr ""
-#~ "Cap\n"
-#~ "Títol\n"
-#~ "Nom del fitxer\n"
-#~ "Data\n"
-#~ "Detalls de la fotografia"
-
-#~ msgid "P_hoto Source:"
-#~ msgstr "Fo_nt de la fotografia:"
-
-#~ msgid "Page 1 of 3"
-#~ msgstr "Pàgina 1 de 3"
-
-#~ msgid "Photo _Size:"
-#~ msgstr "Mida de la _fotografia:"
-
-#~ msgid "Print crop _marks"
-#~ msgstr "Imprimeix les _marques d'escapçada"
-
-#
-#~ msgid "Print..."
-#~ msgstr "Imprimeix..."
-
-#~ msgid ""
-#~ "Selection\n"
-#~ "Gallery\n"
-#~ "Viewport"
-#~ msgstr ""
-#~ "Selecció\n"
-#~ "Galeria\n"
-#~ "Àrea de visualització"
-
-#~ msgid "Will print using: US Letter size on Generic Postscript"
-#~ msgstr ""
-#~ "S'utilitzarà per a la impressió: mida US Letter en Postscript genèric"
-
-#~ msgid "_Border:"
-#~ msgstr "Co_ntorn:"
-
-#~ msgid "<b>Color Management</b>"
-#~ msgstr "<b>Gestió del color</b>"
-
-#~ msgid "<b>Metadata</b>"
-#~ msgstr "<b>Metadades</b>"
-
-#~ msgid "<b>Screensaver</b>"
-#~ msgstr "<b>Estalvi de pantalla</b>"
-
-#
-# N.T.: Títol a les prefèrencies
-#~ msgid "<b>Theming</b>"
-#~ msgstr "<b>Aparença</b>"
-
-#~ msgid ""
-#~ "<small><i>Choose the folder where F-Spot should store newly imported "
-#~ "photos</i></small>"
-#~ msgstr ""
-#~ "<small><i>Escolliu el directori on l'F-Spot desarà les fotografies noves "
-#~ "importades</i></small>"
-
-#~ msgid ""
-#~ "<small><i>Enable this option to store tags and descriptions inside \n"
-#~ "supported image formats.</i></small>"
-#~ msgstr ""
-#~ "<small><i>Habiliteu aquesta opció per a desar les etiquetes i les "
-#~ "descripcions \n"
-#~ "juntament amb els formats d'imatge que ho implementen.</i></small>"
-
-#~ msgid ""
-#~ "<small><i>While acting as a screensaver, F-Spot can display all of your "
-#~ "images, or a small subset based on tags.</i></small>"
-#~ msgstr ""
-#~ "<small><i>Quan funciona com a estalvi de pantalla, l'F-Spot pot mostrar "
-#~ "totes les imatges, o un grup petit definit amb etiquetes.</i></small>"
-
-#
-#~ msgid ""
-#~ "<small><i>You'll have to restart f-spot to load the new theme.</i></small>"
-#~ msgstr ""
-#~ "<small><i>Heu de reiniciar l'F-Spot per carregar l'aparença nova.</i></"
-#~ "small>"
-
-#
-#~ msgid "Custom Theme"
-#~ msgstr "Aparença personalitzada"
-
-#
-#~ msgid "From List:"
-#~ msgstr "De de llista:"
-
-#
-#~ msgid "From gtkrc File:"
-#~ msgstr "Del fitxer gtkrc: "
-
-#
-#
-#~ msgid "Select A gtkrc File"
-#~ msgstr "Seleccioneu un fitxer gtkrc"
-
-#~ msgid "Try to use the system display profile"
-#~ msgstr "Prova d'usar el perfil de la pantalla del sistema"
-
-#~ msgid "Write _metadata to file"
-#~ msgstr "Escriu les _metadades al fitxer"
-
-#
-#~ msgid "_Print output:"
-#~ msgstr "_Sortida de la impressió:"
-
-#~ msgid "No image loaded."
-#~ msgstr "No s'ha carregat cap imatge."
-
-#~ msgid "Can't save non local files."
-#~ msgstr "No es poden desar fitxers que no siguin locals."
-
-#~ msgid "Unsupported image type for saving."
-#~ msgstr "Aquest format d'imatge no està implementat per a desar."
-
-#~ msgid "Metadata Browser"
-#~ msgstr "Navegador de metadades"
-
-#
-#~ msgid "Exported Locations"
-#~ msgstr "Ubicacions exportades"
-
-#~ msgid ""
-#~ "From Screen\n"
-#~ "Standard RGB"
-#~ msgstr ""
-#~ "De la pantalla\n"
-#~ "RGB estàndard"
-
-#~ msgid ""
-#~ "Standard RGB\n"
-#~ "Image Profile\n"
-#~ "Custom\n"
-#~ msgstr ""
-#~ "RGB estàndard\n"
-#~ "Perfil d'imatge\n"
-#~ "Personalitzat\n"
-
-#
-#~ msgid "Automatically adjust the colors"
-#~ msgstr "Ajusta el color automàticament"
-
-#~ msgid "Apply straightening"
-#~ msgstr "Aplica l'adreçament"
-
-#~ msgid "Apply straightening to image"
-#~ msgstr "Aplica l'adreçament a la imatge"
-
-#~ msgid "Adjust the angle of the image to straighten the horizon"
-#~ msgstr "Ajusta l'angle de la imatge per a adreçar-ne l'horitzó"
-
-#~ msgid "Create a soft focus visual effect"
-#~ msgstr "Crea un efecte visual de focus suau"
-
-#~ msgid "Exif"
-#~ msgstr "Exif"
-
-#~ msgid "Crop photo to selected area"
-#~ msgstr "Escapça la fotografia a l'àrea seleccionada"
-
-#~ msgid "Remove redeye from selected area"
-#~ msgstr "Treu els ulls vermells de la zona seleccionada"
-
-#~ msgid "Select an area to remove redeye"
-#~ msgstr "Seleccioneu l'àrea d'on vulgueu treure els ulls vermells"
-
-#~ msgid "Constrain the aspect ratio of the selection"
-#~ msgstr "Imposa el format de la selecció"
-
-#~ msgid "Reduce Red-Eye"
-#~ msgstr "Reducció d'ulls vermells"
-
-#~ msgid "Adjust the photo colors"
-#~ msgstr "Ajusta el color de la fotografia"
-
-#~ msgid "Convert the photo to black and white"
-#~ msgstr "Compon la fotografia en blanc i negre"
-
-#~ msgid "Convert the photo to sepia tones"
-#~ msgstr "Compon la fotografia en tons sèpia"
-
-#~ msgid "<b>Color Temperature</b>"
-#~ msgstr "<b>Temperatura del color</b>"
-
-#~ msgid "<b>Exposure</b>"
-#~ msgstr "<b>Exposició</b>"
-
-#~ msgid "<b>Histo_gram</b>"
-#~ msgstr "<b>Histo_grama</b>"
-
-#
-#~ msgid "<b>Interoperability</b>"
-#~ msgstr "<b>Interoperabilitat</b>"
-
-#~ msgid "<small> </small>"
-#~ msgstr "<small> </small>"
-
-#
-#~ msgid ""
-#~ "<small><i>Enable this option if you want to allow other programs to "
-#~ "import or delete photos and tags over DBus.</i></small>"
-#~ msgstr ""
-#~ "<small><i>Habiliteu aquesta opció si voleu permetre que altres programes "
-#~ "importin o suprimeixin fotografies i etiquetes a través del DBus.</i></"
-#~ "small>"
-
-#~ msgid "<small>C_ontrast:</small>"
-#~ msgstr "<small>C_ontrast:</small>"
-
-#~ msgid "<small>Te_mp:</small>"
-#~ msgstr "<small>Te_mperatura:</small>"
-
-#~ msgid "<small>_Brightness:</small>"
-#~ msgstr "<small>_Lluminositat:</small>"
-
-#~ msgid "<small>_Exposure:</small>"
-#~ msgstr "<small>_Exposició:</small>"
-
-#~ msgid "<small>_Hue:</small>"
-#~ msgstr "<small>_Matís:</small>"
-
-#~ msgid "<small>_Saturation:</small>"
-#~ msgstr "<small>_Saturació:</small>"
-
-#~ msgid "<small>_Tint:</small>"
-#~ msgstr "<small>_Tint:</small>"
-
-#~ msgid "Ad_just Color..."
-#~ msgstr "Ajusta el _color..."
-
-#~ msgid "Adjust Color"
-#~ msgstr "Ajusta el color"
-
-#~ msgid "Allow other programs to manipulate F-Spot"
-#~ msgstr "Permet que altres programes manipulin l'F-Spot"
-
-#~ msgid "Reset"
-#~ msgstr "Reinicialitza"
-
-#~ msgid "So_urce Temp"
-#~ msgstr "Fo_nt temporal"
-
-#
-#
-#~ msgid "name"
-#~ msgstr "nom"
-
-#
-#~ msgid "date"
-#~ msgstr "data"
-
-#~ msgid "Print"
-#~ msgstr "Imprimeix"
-
-#~ msgid "_Metadata Browser"
-#~ msgstr "Navegador de _metadades"
-
-#~ msgid " out of {0}"
-#~ msgstr " de {0}"
-
-#
-#~ msgid "Create p_hotomosaic"
-#~ msgstr "Cr_ea una fotografia mosaic"
-
-#
-#~ msgid "Metapixel not available"
-#~ msgstr "Metapixel no està disponible"
-
-#~ msgid ""
-#~ "The metapixel executable was not found in path. Please check that you "
-#~ "have it installed and that you have permissions to execute it"
-#~ msgstr ""
-#~ "No s'ha trobat el camí l'executable picturetile.pl. Comproveu-ho que "
-#~ "l'heu instal·lat i que disposeu de permisos per a executar-lo."
-
-#
-#~ msgid "The tags selected provided no pictures. Please select different tags"
-#~ msgstr ""
-#~ "Les etiquetes seleccionades no tenen cap fotografia. Escolliu-ne unes "
-#~ "altres de diferents"
-
-#
-#~ msgid "Creating miniatures"
-#~ msgstr "S'estan creant les miniatures"
-
-#
-#~ msgid "Creating photomosaics"
-#~ msgstr "S'estan creant les fotografies mosaic"
-
-#~ msgid "Processing \"{0}\""
-#~ msgstr "S'està processant «{0}»"
-
-#~ msgid "PhotoMosaics generated!"
-#~ msgstr "S'han generat les fotografies mosaic"
-
-#
-# csharp-format
-#~ msgid "PhotoMosaic"
-#~ msgid_plural "PhotoMosaic ({0})"
-#~ msgstr[0] "Fotografia mosaic"
-#~ msgstr[1] "Fotografies mosaic ({0})"
-
-#~ msgid "<b>Generate miniatures from</b>"
-#~ msgstr "<b>Genera les miniatures des de</b>"
-
-#~ msgid ""
-#~ "Generate the miniatures from a selection of tags. No tags mean ALL "
-#~ "pictures"
-#~ msgstr ""
-#~ "Genera les miniatures des d'una selecció d'etiquetes. Cap etiqueta "
-#~ "equival a totes les fotografies"
-
-#~ msgid "MetaPixel photomosaics"
-#~ msgstr "Fotografies mosaic Metapixel"
-
-#~ msgid "Miniatures _size"
-#~ msgstr "_Mida de les miniatures"
-
-#~ msgid "Miniatures can be generated from the current main view"
-#~ msgstr "Es poden generar les miniatures des de la vista principal actual"
-
-#
-#
-#~ msgid "_Current query"
-#~ msgstr "_Consulta actual"
-
-#
-#~ msgid "Create photo_wall"
-#~ msgstr "C_rea una paret de fotografies"
-
-#
-#~ msgid "PictureTile not available"
-#~ msgstr "PictureTile no està disponible"
-
-#~ msgid ""
-#~ "The picturetile.pl executable was not found in path. Please check that "
-#~ "you have it installed and that you have permissions to execute it"
-#~ msgstr ""
-#~ "No s'ha trobat al camí l'executable picturetile.pl. Comproveu-ho que "
-#~ "l'heu instal·lat i que disposeu de permisos per a executar-lo."
-
-#
-#
-#
-#~ msgid "Preparing selected pictures"
-#~ msgstr "S'estan preparant les fotografies seleccionades"
-
-#~ msgid ""
-#~ "Your photo wall have been generated and imported in F-Spot. Select the "
-#~ "last roll to see it"
-#~ msgstr ""
-#~ "La paret de fotografies ha estat generada i importada a l'F-Spot. "
-#~ "Seleccioneu l'últim rodet per veure-la."
-
-#
-#~ msgid "Error importing photowall"
-#~ msgstr "S'ha produït un error en importar la paret de fotografies"
-
-#
-#~ msgid ""
-#~ "An error occurred while importing the newly generated photowall to F-Spot"
-#~ msgstr ""
-#~ "S'ha produït un error en importar la nova paret de fotografies generada a "
-#~ "l'F-Spot"
-
-#~ msgid "%"
-#~ msgstr "%"
-
-#~ msgid "Background _color"
-#~ msgstr "_Color del fons"
-
-#~ msgid "Can be negative. It will overlap images"
-#~ msgstr "Pot ser negatiu. Se sobreposarà a les imatges."
-
-#~ msgid ""
-#~ "Check this if your images are all of the same size and you will have a "
-#~ "more regular grid"
-#~ msgstr ""
-#~ "Comproveu que totes les imatges són de la mateixa mida i així tindreu una "
-#~ "graella més uniforme."
-
-#~ msgid "Choose how many destination images you want to generate"
-#~ msgstr "Trieu quantes imatges de destinació voleu generar"
-
-#
-#~ msgid "Destination picture max _size"
-#~ msgstr "Mida mà_xima de la imatge de destinació"
-
-#~ msgid "Jpeg _quality"
-#~ msgstr "_Qualitat JPEG"
-
-#
-#~ msgid "Output type"
-#~ msgstr "_Tipus de sortida:"
-
-#
-#~ msgid "Photo wall generator"
-#~ msgstr "Generador de parets de fotografies"
-
-#~ msgid "Spa_cing between images"
-#~ msgstr "_Espai entre imatges"
-
-#~ msgid "This operation is going to TAKE VERY LONG TIME!"
-#~ msgstr "Aquesta operació requereix força temps"
-
-#~ msgid "_Jpeg"
-#~ msgstr "_Jpeg"
-
-#
-#
-#~ msgid "_Pages"
-#~ msgstr "_Pàgines"
-
-#
-#~ msgid "_Scale images"
-#~ msgstr "_Canvi d'escala de les imatges"
-
-#~ msgid "_Tiff"
-#~ msgstr "_Tiff"
-
-#~ msgid "_Uniform images"
-#~ msgstr "_Imatges uniformes"
-
-#
-#~ msgid "_File"
-#~ msgstr "_Fitxer"
-
-#
-#~ msgid "gtk-cancel"
-#~ msgstr "gtk-cancel"
-
-# FIXME: «unsharp» no es refereix al verb aquí?
-#~ msgid "Unsharp Mask"
-#~ msgstr "Màscara no nítida"
-
-#~ msgid "By Extension"
-#~ msgstr "Per extensió"
-
-#~ msgid "BMP"
-#~ msgstr "BMP"
-
-#~ msgid "GIF"
-#~ msgstr "GIF"
-
-#~ msgid "ICO"
-#~ msgstr "ICO"
-
-#~ msgid "JPEG"
-#~ msgstr "JPEG"
-
-#~ msgid "PNG"
-#~ msgstr "PNG"
-
-#~ msgid "PNM"
-#~ msgstr "PNM"
-
-#~ msgid "RAS"
-#~ msgstr "RAS"
-
-#~ msgid "SVG"
-#~ msgstr "SVG"
-
-#~ msgid "TGA"
-#~ msgstr "TGA"
-
-#~ msgid "TIFF"
-#~ msgstr "TIFF"
-
-#~ msgid "XBM"
-#~ msgstr "XBM"
-
-#~ msgid "XPM"
-#~ msgstr "XPM"
-
-#~ msgid "Unsupported file format."
-#~ msgstr "El format del fitxer no està implementat."
-
-#~ msgid "Determine File Type:"
-#~ msgstr "Determina el tipus de fitxer:"
-
-#~ msgid "Load Image"
-#~ msgstr "Carrega la imatge"
-
-#~ msgid "Save Image"
-#~ msgstr "Desa la imatge"
-
-#, fuzzy
-#~ msgid "_Unrated Photos"
-#~ msgstr "_Fotografies sense etiqueta"
-
-#~ msgid "There was an error invoking the external handler"
-#~ msgstr "S'ha produït un error en cridar el gestor extern"
-
-#~ msgid "Received error:{1}\"{0}\"{1}"
-#~ msgstr "S'ha rebut l'error:{1}\"{0}\"{1}"
-
-#
-#~ msgid "Help not found"
-#~ msgstr "No s'ha trobat l'ajuda"
-
-#~ msgid "Beneath _Photos"
-#~ msgstr "_Fotografies per sota"
-
-#
-#~ msgid "Clea_r Date Range"
-#~ msgstr "_Neteja el període de dates"
-
-#~ msgid "Attach Tag"
-#~ msgstr "Adjunta l'etiqueta"
-
-#
-#~ msgid "Delete From Drive"
-#~ msgstr "Suprimeix del d_isc"
-
-#~ msgid "Remove From Catalog"
-#~ msgstr "Suprimeix del catàleg"
-
-#~ msgid "Remove Tag"
-#~ msgstr "Suprimeix l'etiqueta"
-
-#~ msgid "Add-in"
-#~ msgstr "Complement"
-
-#
-#
-#~ msgid "Add-in Manager"
-#~ msgstr "Gestor de complements"
-
-#
-#~ msgid "F-Spot Add-in Manager"
-#~ msgstr "Gestor de complements de l'F-Spot"
-
-#~ msgid "Size:"
-#~ msgstr "Mida:"
-
-#~ msgid "Include"
-#~ msgstr "Inclou"
-
-#~ msgid "Exclude"
-#~ msgstr "Exclou"
-
-#~ msgid "Remove"
-#~ msgstr "Suprimeix"
-
-#~ msgid "Display T_ags"
-#~ msgstr "Mostra les _etiquetes"
-
-#~ msgid "Display Too_lbar"
-#~ msgstr "Mostra la _barra d'eines"
-
-#~ msgid "Display _Dates"
-#~ msgstr "Mostra les _dates"
-
-#~ msgid "dialog1"
-#~ msgstr "diàleg1"
-
-#
-#
-#~ msgid "Export to 23hq..."
-#~ msgstr "Exporta-ho a 23hq..."
-
-#
-#~ msgid "Export to CD..."
-#~ msgstr "Exporta-ho a un CD..."
-
-#
-#
-#~ msgid "Export to PicasaWeb..."
-#~ msgstr "Exporta-ho al Picasaweb..."
-
-#
-#
-#
-#, fuzzy
-#~ msgid "Export to SmugMug..."
-#~ msgstr "Exporta-ho a l'SmugMug..."
-
-#~ msgid "Calendar"
-#~ msgstr "Calendari"
-
-#~ msgid "Edit Photo"
-#~ msgstr "Edita la fotografia"
-
-#~ msgid "Question"
-#~ msgstr "Pregunta"
-
-#~ msgid "Near"
-#~ msgstr "Prop"
-
-#~ msgid "Far"
-#~ msgstr "Lluny"
-
-#~ msgid "Restore View"
-#~ msgstr "Restaura la visualització"
-
-#~ msgid ""
-#~ "<small><i>Select the tag you like F-Spot to display images from while "
-#~ "acting as the screensaver</i></small>"
-#~ msgstr ""
-#~ "<small><i>Seleccioneu l'etiqueta de les imatges que vulgueu que l'F-Spot "
-#~ "mostri com a estalvi de pantalla</i></small>"
