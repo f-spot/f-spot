@@ -1,0 +1,1320 @@
+# translation of f-spot.help.master.po to Basque
+# Iñaki Larrañaga Murgoitio <dooteo@euskalgnu.org>, 2011.
+# Basque translation for f-spot.
+# Copyright (C) 2010 f-spot's COPYRIGHT HOLDER
+# This file is distributed under the same license as the f-spot package.
+msgid ""
+msgstr ""
+"Project-Id-Version: f-spot.help.master\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-09-15 09:16+0000\n"
+"PO-Revision-Date: 2011-04-14 16:59+0200\n"
+"Last-Translator: Iñaki Larrañaga Murgoitio <dooteo@euskalgnu.org>\n"
+"Language-Team: Basque <itzulpena@euskalgnu.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.11.4\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n\n"
+"\n"
+
+#: C/zooomr.page:8(desc)
+msgid "Upload photos to Zooomr"
+msgstr "Kargatu argazkiak Zooomr-era"
+
+#: C/zooomr.page:11(title)
+msgid "Zooomr"
+msgstr "Zooomr"
+
+#: C/zooomr.page:15(p)
+msgid ""
+"To upload photos to Zooomr you will need a Zooomr account, as well as "
+"internet access. Also, the Zooomr <link xref=\"extensions\">extension</link> "
+"must be installed and enabled."
+msgstr ""
+"Zooomr-era argazkiak kargatu ahal izateko, Zooomr kontu bat eta "
+"Interneterako sarbidea eduki behar dituzu. Gainera, Zooomr <link "
+"xref=\"extensions\">hedapena</link> instalatuta eta gaituta egon behar du."
+
+#: C/versioning.page:8(desc)
+msgid "Track different versions of your photos"
+msgstr "Egin zure argazkien bertsioen jarraipena"
+
+#: C/versioning.page:11(title)
+msgid "Versioning"
+msgstr "Bertsioak"
+
+#: C/versioning.page:14(p)
+msgid ""
+"<app>F-Spot</app> allows you to keep multiple versions of your photos. This "
+"is especially useful when editing photos, as you can quickly see the "
+"difference between the edited version and the original."
+msgstr ""
+"<app>F-Spot</app> aplikazioak zure argazkien bertsioak gordetzeko aukera "
+"ematen dizu. Oso erabilgarria da argazkiak editatzeko, bizkor ikus "
+"baitezakezu editatutako bertsioaren eta jatorrizkoaren arteko aldea."
+
+#: C/versioning.page:17(p)
+msgid "To switch between versions while editing:"
+msgstr "Bertsioen artean aldatzeko editatzen ari zaren bitartean:"
+
+#: C/versioning.page:20(p)
+msgid "Double-click the photo you wish to edit."
+msgstr "Egin klik bikoitza editatu nahi duzun argazkian."
+
+#: C/versioning.page:23(p)
+msgid ""
+"In the sidebar, you will see a drop-down box labeled <gui>Version:</gui>. To "
+"select a version to view, select it in the drop-down box."
+msgstr ""
+"Albo-barran, <gui>Bertsioa:</gui> etiketa duen goitibeherako koadro bat "
+"ikusiko duzu. Bertsio bat ikusteko hautatzeko, hauta ezazu goitibeherako "
+"koadroan."
+
+#: C/upload-to-web.page:8(desc)
+msgid "Upload photos to various web services"
+msgstr "Kargatu argazkiak web-zerbitzu batzuetara"
+
+#: C/upload-to-web.page:11(title)
+msgid "Upload to Web"
+msgstr "Kargatu webera"
+
+#: C/upload-to-web.page:14(p)
+msgid ""
+"<app>F-Spot</app> allows you to upload photos to popular web services, "
+"including Google's PicasaWeb and Flickr."
+msgstr ""
+"<app>F-Spot</app> aplikazioak aukera ematen dizu argazkiak web-zerbitzu "
+"ezagunenetara kargatzeko, Google-ren PicasaWeb-era eta Flickr-era, besteak "
+"beste."
+
+#: C/tags.page:6(desc)
+msgid "A brief introduction to the tagging capabilities of F-Spot"
+msgstr "F-Spot aplikazioaren etiketatze-ahalmenen sarrera laburra"
+
+#: C/tags.page:9(title)
+msgid "Tags"
+msgstr "Etiketak"
+
+#: C/tags.page:12(p)
+msgid ""
+"Like certain other photo managers, <app>F-Spot</app> lets you tag your "
+"photos, allowing for quick, easy content-based searching of your photos. You "
+"can tag people, events, places, favorite things, or even make your own "
+"groups of tags."
+msgstr ""
+"Beste hainbat argazki-kudeatzailek bezala, <app>F-Spot</app> aplikazioak "
+"aukera ematen dizu zure argazkiak etiketatzeko eta bizkor eta edukian "
+"oinarrituta bilatzeko. Jendea, gertaerak, lekuak, gauza gogokoak... etiketa "
+"ditzakezu, edota zeure etiketa taldeak sortu."
+
+#: C/tags.page:17(title)
+msgid "Working with Tags"
+msgstr "Etiketekin lan egitea"
+
+#: C/tag-search.page:8(desc)
+msgid "Search photos using tags"
+msgstr "Bilatu argazkiak etiketak erabiliz"
+
+#: C/tag-search.page:11(title)
+msgid "Search by Tag"
+msgstr "Bilatu etiketen bidez"
+
+#: C/tag-search.page:15(p)
+msgid "There are several methods to search by tags."
+msgstr "Hainbat metodo daude etiketen bidez bilatzeko."
+
+#: C/tag-search.page:16(p)
+msgid "Method One: Double-click the tags you wish to search for."
+msgstr "Lehenengo metodoa: Egin klik bikoitza bilatu nahi dituzun etiketetan."
+
+#: C/tag-search.page:17(p)
+#: C/tag-remove.page:28(p)
+#: C/tag-creation.page:32(p)
+#: C/tag-attach.page:29(p)
+#: C/ratings.page:25(p)
+msgid "Method Two:"
+msgstr "Bigarren metodoa:"
+
+#: C/tag-search.page:20(p)
+msgid ""
+"Enable the Find bar by clicking <guiseq><gui>Find</gui><gui>Show Find "
+"bar</gui></guiseq>."
+msgstr ""
+"Gaitu BIlaketa-barra: egin klik <guiseq><gui>Bilatu</gui><gui>Erakutsi "
+"Bilaketa-barra</gui></guiseq>."
+
+#: C/tag-search.page:24(p)
+msgid "Drag the tags you wish to search for into the newly-enabled Find bar."
+msgstr "Arrastatu bilatu nahi dituzun etiketak gaitu berri duzun Bilaketa-barrara."
+
+#: C/tag-search.page:27(p)
+msgid ""
+"To remove a tag from your search, right-click the tag in the Find bar and "
+"click <gui>Remove From Search</gui>."
+msgstr ""
+"Etiketa bat bilaketatik kentzeko, egin klik eskuin-botoiarekin etiketan "
+"Bilaketa-barran, eta egin klik <gui>Kendu bilaketatik</gui>."
+
+#: C/tag-search.page:30(p)
+msgid "To exclude a tag from your search:"
+msgstr "Etiketa bat bilaketatik kanpo uzteko:"
+
+#: C/tag-search.page:33(p)
+msgid ""
+"In the tag pane, double-click the tag you wish to exclude. This will add it "
+"to the Find bar."
+msgstr ""
+"Etiketa-panelean, egin klik bikoitza kanpoan utzi nahi duzun etiketan. "
+"Bilaketa-barran gehituko da."
+
+#: C/tag-search.page:37(p)
+msgid "In the Find bar, double-click the tag you wish to exclude."
+msgstr "Bilaketa-barran, egin klik bikoitza kanpoan utzi nahi duzun etiketan."
+
+#: C/tag-remove.page:6(desc)
+msgid "Removing tags from photos"
+msgstr "Etiketak argazkietatik kentzea"
+
+#: C/tag-remove.page:9(title)
+msgid "Removing"
+msgstr "Kentzea"
+
+#: C/tag-remove.page:12(p)
+msgid ""
+"As with attaching tags, there are two main methods of removing tags from "
+"photos."
+msgstr "Gehitzeko bezala, bi metodo daude etiketak argazkietatik kentzeko."
+
+#: C/tag-remove.page:14(p)
+#: C/tag-creation.page:14(p)
+#: C/tag-attach.page:15(p)
+#: C/ratings.page:14(p)
+msgid "Method One:"
+msgstr "Lehenengo metodoa:"
+
+#: C/tag-remove.page:17(p)
+#: C/tag-remove.page:31(p)
+msgid "Select photos from which to remove a tag."
+msgstr "Hautatu etiketa kendu nahi diezun argazkiak."
+
+#: C/tag-remove.page:20(p)
+msgid "In the tag pane, select a tag to remove from the photos you have selected."
+msgstr ""
+"Etiketa-panelean, aukeratu zuk hautatutako argazkietatik kendu beharreko "
+"etiketa."
+
+#: C/tag-remove.page:24(p)
+msgid "Click <guiseq><gui>Tags</gui><gui>Remove Tag From Selection</gui></guiseq>."
+msgstr ""
+"Aukeratu <guiseq><gui>Etiketak</gui><gui>Kendu etiketa "
+"hautapenetik</gui></guiseq>."
+
+#: C/tag-remove.page:34(p)
+#: C/tag-attach.page:35(p)
+msgid "Right click the photos."
+msgstr "Egin klik argazkietan eskuin-botoiarekin."
+
+#: C/tag-remove.page:37(p)
+msgid "Select <gui>Remove Tag</gui> and select the tag you wish to remove."
+msgstr "Hautatu <gui>Kendu etiketa</gui>, eta hautatu kendu nahi duzun etiketa."
+
+#: C/tag-delete.page:6(desc)
+msgid "Deleting tags from the system"
+msgstr "Etiketak sistematik ezabatzea"
+
+#: C/tag-delete.page:9(title)
+msgid "Deleting"
+msgstr "Ezabatzea"
+
+#: C/tag-delete.page:12(p)
+msgid ""
+"Deleting tags removes them entirely from your system, but leaves behind any "
+"photos to which that tag is attached."
+msgstr ""
+"Etiketak ezabatuz gero, erabat kentzen dira zure sistematik, baina etiketa "
+"gehitutako argazkiak gorde egingo dira."
+
+#: C/tag-delete.page:14(p)
+msgid "To delete a tag:"
+msgstr "Etiketa bat ezabatzeko:"
+
+#: C/tag-delete.page:17(p)
+msgid "Select the tag you wish to delete from within the tag pane."
+msgstr "Hautatu ezabatu nahi duzun etiketa etiketa-panelean."
+
+#: C/tag-delete.page:20(p)
+msgid ""
+"Click <guiseq><gui>Tags</gui><gui>Delete Select Tag</gui></guiseq>. "
+"Alternatively, right click the tag within the pane, and click <gui>Delete "
+"Tag</gui>."
+msgstr ""
+"Aukeratu <guiseq><gui>Etiketak</gui><gui>Kendu hautatutako "
+"etiketa</gui></guiseq>. Bestela, egin klik eskuin-botoiarekin panelean, eta "
+"aukeratu <gui>Ezabatu etiketa</gui>."
+
+#: C/tag-creation.page:6(desc)
+msgid "Creating tags to be attached to photos"
+msgstr "Argazkietan gehitzeko etiketak sortzea"
+
+#: C/tag-creation.page:9(title)
+msgid "Creating"
+msgstr "Sortzea"
+
+#: C/tag-creation.page:12(p)
+msgid ""
+"In order to use tags, you need to first create a set of tags which you wish "
+"to use. There are three main methods to create tags."
+msgstr ""
+"Etiketak erabili ahal izateko, erabili nahi dituzun etiketen multzo bat "
+"sortu behar duzu lehenik. Hiru metodo nagusi daude etiketak sortzeko."
+
+#: C/tag-creation.page:17(p)
+msgid "Select <guiseq><gui>Tags</gui><gui>Create New Tag...</gui></guiseq>."
+msgstr ""
+"Hautatu <guiseq><gui>Etiketak</gui><gui>Sortu etiketa "
+"berria...</gui></guiseq>."
+
+#: C/tag-creation.page:21(p)
+#: C/tag-creation.page:39(p)
+#: C/tag-creation.page:61(p)
+msgid ""
+"Select a parent tag for the new tag to appear under, such as people or "
+"events. If you wish to create a new tag without a parent, select "
+"<gui>(None)</gui>."
+msgstr ""
+"Hautatu etiketa berria barruan edukiko duen etiketa gurasoa, jendea edo "
+"gertaterak, esate baterako. Etiketa berriak gurasorik izatea nahi ez baduzu, "
+"hautatu <gui>(Bat ere ez)</gui>."
+
+#: C/tag-creation.page:26(p)
+#: C/tag-creation.page:44(p)
+#: C/tag-creation.page:66(p)
+msgid "Name the tag."
+msgstr "Eman izena etiketari."
+
+#: C/tag-creation.page:29(p)
+#: C/tag-creation.page:47(p)
+#: C/tag-creation.page:69(p)
+msgid "Click <gui>Create</gui>"
+msgstr "Aukeratu <gui>Sortu</gui>"
+
+#: C/tag-creation.page:35(p)
+msgid "In the tags page, right click, and select <gui>Create New Tag...</gui>"
+msgstr ""
+"Etiketen orrian, egin klik eskuin-botoiarekin, eta hautatu <gui>Sortu "
+"etiketa berria...</gui>"
+
+#: C/tag-creation.page:50(p)
+msgid ""
+"Method three has the advantage of also <link xref=\"tag-attach\"> "
+"attaching</link> the new tag to the photos selected. To do this:"
+msgstr ""
+"Hirugarren metodoaren abantaila da etiketa berria <link xref=\"tag-attach\"> "
+"gehitzen</link> duela hautatutako argazkietan. Horretarako:"
+
+#: C/tag-creation.page:54(p)
+msgid "Select the photos to which you wish to attach the new tag."
+msgstr "Hautatu etiketa berria gehitu nahi duzun argazkiak."
+
+#: C/tag-creation.page:57(p)
+msgid ""
+"Right-click on the photos, and select <guiseq><gui>Attach "
+"Tag</gui><gui>Create New Tag...</gui></guiseq>."
+msgstr ""
+"Egin klik eskuin-botoiarekin argazkietan, eta hautatu <guiseq><gui>Gehitu "
+"etiketa</gui><gui>Sortu etiketa berria...</gui></guiseq>."
+
+#: C/tag-attach.page:6(desc)
+msgid "Attaching tags to photos"
+msgstr "Etiketak argazkietan gehitzea"
+
+#: C/tag-attach.page:9(title)
+msgid "Attaching"
+msgstr "Gehitzea"
+
+#: C/tag-attach.page:12(p)
+msgid ""
+"By attaching tags you have <link xref=\"tag-creation\">created</link> you make "
+"it easier to search through your photos. As with creating tags, there is "
+"more than one method of attaching tags to photos."
+msgstr ""
+"Zuk <link xref=\"tag-creation\">sortutako</link> etiketak gehituz gero, "
+"errazagoa izango zaizu argazkietan bilatzea. Etiketak sortzeko bezala, "
+"metodo bat baino gehiago dago etiketak argazkietan gehitzeko."
+
+#: C/tag-attach.page:18(p)
+#: C/tag-attach.page:32(p)
+msgid "Select photos to which to attach a tag."
+msgstr "Hautatu etiketa gehitu nahi diezun argazkiak."
+
+#: C/tag-attach.page:21(p)
+msgid "In the tag pane, select a tag to attach to the photos you have selected."
+msgstr ""
+"Etiketa-panelean, aukeratu zuk hautatutako argazkietan gehitu beharreko "
+"etiketa."
+
+#: C/tag-attach.page:25(p)
+msgid ""
+"Click <guiseq><gui>Tags</gui><gui>Attach Tag to Selection</gui></guiseq>. "
+"Alternatively, press Ctrl+T."
+msgstr ""
+"Aukeratu <guiseq><gui>Etiketak</gui><gui>Gehitu etiketa "
+"hautapenean</gui></guiseq>. Bestela, sakatu Ktrl+T."
+
+#: C/tag-attach.page:38(p)
+msgid "Select <gui>Attach Tag</gui> and select the tag you wish to attach."
+msgstr "Hautatu <gui>Gehitu etiketa</gui>, eta hautatu gehitu nahi duzun etiketa."
+
+#: C/smugmug.page:8(desc)
+msgid "Upload photos to SmugMug"
+msgstr "Kargatu argazkiak SmugMug-era"
+
+#: C/smugmug.page:11(title)
+msgid "SmugMug"
+msgstr "SmugMug"
+
+#: C/smugmug.page:15(p)
+msgid ""
+"To upload photos to SmugMug you will need a SmugMug account, as well as "
+"internet access. Also, the SmugMug <link xref=\"extensions\">extension</link> "
+"must be installed and enabled."
+msgstr ""
+"SmugMug-era argazkiak kargatu ahal izateko, SmugMug kontu bat eta "
+"Interneterako sarbidea eduki behar dituzu. Gainera, SmugMug <link "
+"xref=\"extensions\">hedapenak</link> instalatuta eta gaituta egon behar du."
+
+#: C/ratings.page:6(desc)
+msgid "Rate your photos from one to five stars"
+msgstr "Eman zure argazkien balorazioa bat eta bost izar bitartean."
+
+#: C/ratings.page:9(title)
+msgid "Rating your photos"
+msgstr "Zure argazkien balorazioa egitea"
+
+#: C/ratings.page:12(p)
+msgid ""
+"<app>F-Spot</app> allows you to rate your photos from one to five stars. "
+"There are two ways to rate photos."
+msgstr ""
+"<app>F-Spot</app> aplikazioak aukera ematen dizu zure argazkien balorazioa "
+"egiteko, bat eta bost izar bitartean. Bi modu daude argazkien balorazioa "
+"egiteko."
+
+#: C/ratings.page:17(p)
+msgid "By double-clicking, select the photo you wish to rate."
+msgstr "Klik bikoitza eginez, hautatu balorazioa egin nahi diozun argazkia."
+
+#: C/ratings.page:20(p)
+msgid ""
+"In the lower-right corner, you will see five dots, corresponding to the "
+"rating you wish to give; to give a rating of one star, for example, click "
+"the first dot."
+msgstr ""
+"Behe-eskuinaldeko izkinan, bost puntu ikusiko dituzu, eman nahi duzun "
+"balorazioaren arabera; izar bateko balorazioa emateko, esate baterako, egin "
+"klik lehenengo puntuan."
+
+#: C/ratings.page:28(p)
+msgid "Select the photo(s) you wish to rate."
+msgstr "Hautatu balorazioa eman nahi diezun argazkiak."
+
+#: C/ratings.page:31(p)
+msgid ""
+"Right-click the photo(s) you wish to rate, and select a rating at the bottom "
+"of the right-click menu by clicking the corresponding dot."
+msgstr ""
+"Egin klik eskuin-botoiarekin balorazioa eman nahi diezun argazkietan, eta "
+"hautatu balorazio bat laster-menuaren behealdean, dagokion puntuan klik "
+"eginez."
+
+#: C/rate-search.page:8(desc)
+msgid "Search photos by star rating"
+msgstr "Bilatu argazkiak balorazioaren arabera"
+
+#: C/rate-search.page:11(title)
+msgid "Search by Rating"
+msgstr "Bilatu balorazioaren arabera"
+
+#: C/rate-search.page:15(p)
+msgid "To search by rating:"
+msgstr "Balorazioaren arabera bilatzeko:"
+
+#: C/rate-search.page:18(p)
+msgid ""
+"Select <guiseq><gui>Find</gui><gui>By Rating</gui><gui>Set Rating "
+"Filter...</gui></guiseq>."
+msgstr ""
+"Hautatu <guiseq><gui>Bilatu</gui><gui>Balorazioaren "
+"arabera</gui><gui>Ezarri balorazio-iragazkia...</gui></guiseq>."
+
+#: C/rate-search.page:22(p)
+msgid "Select the rating range which you wish to view."
+msgstr "Hautatu ikusi nahi duzun balorazio-barrutia."
+
+#: C/rate-search.page:25(p)
+#: C/extensions.page:39(p)
+#: C/extensions.page:82(p)
+#: C/date-search.page:27(p)
+msgid "Click <gui>Ok</gui>."
+msgstr "Aukeratu <gui>Ados</gui>."
+
+#: C/rate-search.page:28(p)
+msgid "To stop searching by rating:"
+msgstr "Balorazioaren arabera bilatzeari uzteko:"
+
+#: C/rate-search.page:31(p)
+msgid ""
+"Select <guiseq><gui>Find</gui><gui>By Rating</gui><gui>Set Rating "
+"Filter</gui></guiseq>."
+msgstr ""
+"Hautatu <guiseq><gui>Bilatu</gui><gui>Balorazioaren "
+"arabera</gui><gui>Ezarri balorazio-iragazkia</gui></guiseq>."
+
+#: C/picasa.page:8(desc)
+msgid "Upload photos to Google's PicasaWeb"
+msgstr "Kargatu argazkiak Google-ren PicasaWeb-era"
+
+#: C/picasa.page:11(title)
+msgid "Picasa"
+msgstr "Picasa"
+
+#: C/picasa.page:15(p)
+msgid ""
+"To upload photos to Picasa you will need a Picasa account, as well as "
+"internet access. Also, the PicasaWeb <link "
+"xref=\"extensions\">extension</link> must be installed and enabled."
+msgstr ""
+"Picasa-ra argazkiak kargatu ahal izateko, Picasa kontu bat eta Interneterako "
+"sarbidea eduki behar dituzu. Gainera, PicasaWeb <link "
+"xref=\"extensions\">hedapenak</link> instalatuta eta gaituta egon behar du."
+
+#: C/picasa.page:21(p)
+msgid "Select the photos you wish to upload."
+msgstr "Hautatu kargatu nahi dituzun argazkiak."
+
+#: C/picasa.page:24(p)
+msgid ""
+"Click <guiseq><gui>Photo</gui><gui>Export "
+"To</gui><gui>PicasaWeb...</gui></guiseq>."
+msgstr ""
+"Aukeratu <guiseq><gui>Argazkia</gui><gui>Esportatu "
+"hona</gui><gui>PicasaWeb...</gui></guiseq>."
+
+#: C/picasa.page:28(p)
+msgid ""
+"Add a gallery by clicking <gui>Add</gui> and supplying a username and "
+"password."
+msgstr ""
+"Galeria bat gehitzeko, egin klik <gui>Gehitu</gui> botoian, eta eman "
+"erabiltzaile-izen eta pasahitz bat."
+
+#: C/picasa.page:32(p)
+msgid ""
+"Select a gallery to export to, or click <gui>Add</gui> to create a new "
+"gallery."
+msgstr ""
+"Hautatu galeria bat esportatzeko, edo egin klik <gui>Gehitu</gui> botoian, "
+"galeria bat sortzeko."
+
+#: C/picasa.page:36(p)
+#: C/folder.page:39(p)
+msgid "Click <gui>Export</gui>."
+msgstr "Egin klik <gui>Esportatu</gui> botoian."
+
+#: C/picasa.page:19(steps)
+msgid ""
+"<placeholder-1/><placeholder-2/><placeholder-3/>j "
+"<placeholder-4/><placeholder-5/>"
+msgstr ""
+"<placeholder-1/><placeholder-2/><placeholder-3/>j "
+"<placeholder-4/><placeholder-5/>"
+
+#: C/introduction.page:6(desc)
+msgid "A brief introduction to F-Spot"
+msgstr "F-Spot aplikazioaren sarrera laburra"
+
+#: C/introduction.page:9(title)
+msgid "Introduction"
+msgstr "Sarrera"
+
+#: C/introduction.page:12(p)
+msgid ""
+"<app>F-Spot</app> is a full-featured photo manager for the GNOME Desktop, "
+"allowing you to tag, rate, and date photos, edit photo metadata, and even "
+"includes a simple in-program photo editor."
+msgstr ""
+"<app>F-Spot</app> eginbide askoko GNOMEren mahaigainerako argazki-"
+"kudeatzailea da, eta aukera ematen dizu argazkiei etiketak, balorazioak eta "
+"datak eransteko, argazkien metadatuak editatzeko, eta, horrez guztiaz gain, "
+"programa barruko argazki-editorea dakar."
+
+#: C/introduction.page:15(p)
+msgid ""
+"For help getting started using <app>F-Spot</app>, check out the <link "
+"xref=\"index#basic-functions\">basic functions</link> of the help file."
+msgstr ""
+"<app>F-Spot</app> erabiltzen hasteko laguntza lortzeko, begiratu laguntza-"
+"fitxategiaren <link xref=\"index#basic-functions\">oinarrizko "
+"funtzioak</link>."
+
+#: C/index.page:7(title)
+#: C/index.page:8(title)
+#: C/index.page:11(title)
+msgid "F-Spot photo manager"
+msgstr "F-Spot argazki-kudeatzailea"
+
+#: C/index.page:16(title)
+msgid "Basic Functions"
+msgstr "Oinarrizko funtzioak"
+
+#: C/index.page:20(title)
+msgid "Searching"
+msgstr "Bilaketa"
+
+#: C/index.page:24(title)
+msgid "Photo Editing"
+msgstr "Argazki-edizioa"
+
+#: C/index.page:28(title)
+msgid "Sharing"
+msgstr "Partekatzea"
+
+#: C/index.page:32(title)
+msgid "Advanced Options"
+msgstr "Aukera aurreratuak"
+
+#: C/import-roll-search.page:8(desc)
+msgid "Searching by date of import"
+msgstr "Inportatze-dataren arabera bilatzea"
+
+#: C/import-roll-search.page:11(title)
+msgid "Search by Import Roll"
+msgstr "Bilatu inportatze-karretea"
+
+#: C/import-roll-search.page:15(p)
+msgid ""
+"Import rolls are \"batches\" of imported photos. Regardless of the date the "
+"photo was taken, the import roll timestamp is decided when you import "
+"photos."
+msgstr ""
+"Inportatze-karreteak inportatutako argazkien \"sortak\" dira. Argazkia hartu "
+"zen data kontuan hartu gabe, inportatze-karretearen zigilua zuk argazkiak "
+"inportatzean erabakitzen da."
+
+#: C/import-roll-search.page:18(p)
+msgid "To search by latest import roll:"
+msgstr "Azken inportatze-karretearen arabera bilatzeko:"
+
+#: C/import-roll-search.page:21(p)
+msgid ""
+"Select <guiseq><gui>Find</gui><gui>By Import Roll</gui><gui>Last Import "
+"Roll</gui></guiseq>."
+msgstr ""
+"Hautatu <guiseq><gui>Bilatu</gui><gui>Karretearen "
+"arabera</gui><gui>Inportatutako azken karretea</gui></guiseq>."
+
+#: C/import-roll-search.page:25(p)
+msgid "To select a previous import roll:"
+msgstr "Inportatze-karretea hautatzeko:"
+
+#: C/import-roll-search.page:28(p)
+msgid ""
+"Select <guiseq><gui>Find</gui><gui>By Import Roll</gui><gui>Select Import "
+"Rolls</gui></guiseq>."
+msgstr ""
+"Hautatu <guiseq><gui>Bilatu</gui><gui>Inportatze-karretearen "
+"arabera</gui><gui>Hautatu inportatze-karreteak</gui></guiseq>."
+
+#: C/import-roll-search.page:32(p)
+msgid ""
+"Select an import roll to search, or select a range by choosing "
+"<gui>Between</gui> and select the dates you wish to include."
+msgstr ""
+"Hautatu bilatu beharreko inportatze-karretea, edo hautatu bitarte bat <gui"
+">Data-bitartea</gui> koadroan, eta hautatu sartzea nahi duzun datak."
+
+#: C/import-roll-search.page:36(p)
+msgid ""
+"To stop searching by import rolls, select <guiseq><gui>Find</gui><gui>By "
+"Import Roll</gui><gui>Clear Roll Filter</gui></guiseq>."
+msgstr ""
+"Inportatze-karreteen arabera bilatzeko, hautatu "
+"<guiseq><gui>Bilatu</gui><gui>Inportatze-karretearen "
+"arabera</gui><gui>Garbitu karreteen iragazkia</gui></guiseq>."
+
+#: C/import-photos.page:6(desc)
+msgid "Import photos to be managed"
+msgstr "Inportatu kudeatu beharreko argazkiak"
+
+#: C/import-photos.page:9(title)
+msgid "Importing Photos"
+msgstr "Argazkiak inportatzea"
+
+#: C/import-photos.page:12(p)
+msgid "Chances are, the first thing you will want to do is import photos."
+msgstr "Lehenengo eta behin, argazkiak inportatu beharko dituzu."
+
+#: C/import-photos.page:15(p)
+msgid "To import photos:"
+msgstr "Argazkiak inportatzeko:"
+
+#: C/import-photos.page:20(p)
+msgid ""
+"Select <guiseq><gui>Photo</gui><gui>Import...</gui></guiseq>. Alternatively, "
+"click the <gui>Import</gui> button."
+msgstr ""
+"Aukeratu <guiseq><gui>Argazkia</gui><gui>Inportatu...</gui></guiseq>. "
+"Bestela, egin klik <gui>Inportatu</gui> botoian."
+
+#: C/import-photos.page:24(p)
+msgid "Select a source from which to import, such as a device or a folder."
+msgstr ""
+"Hautatu iturburu bat bertatik inportatzeko, gailu nahiz karpeta bat, esate "
+"baterako."
+
+#: C/import-photos.page:27(p)
+msgid ""
+"It may take a while for F-Spot to index the files. When it is done indexing, "
+"your photos will be presented to you. At this time, you can attach <link "
+"xref=\"tags\">tags</link> to all photos, or you can leave that task for later."
+msgstr ""
+"Denbora beharko da F-Spot-ek fitxategiak indexa ditzan. Behin indexatuta, "
+"argazkiak ikusiko dituzu. Hemendik aurrera, <link "
+"xref=\"tags\">etiketak</link> gehi ditzakezu argazki guztietan, edo geroko utz "
+"dezakezu lan hori."
+
+#: C/import-photos.page:33(p)
+msgid "When you are ready to finish importing photos, click <gui>Import</gui>."
+msgstr ""
+"Argazkiak inportatzen amaitzeko prest zaudenean, egin klik "
+"<gui>Inportatu</gui> botoian."
+
+#: C/general-editing.page:6(desc)
+msgid "Make simple edits to your photos"
+msgstr "Egin edizio-lan sinpleak zure argazkietan"
+
+#: C/general-editing.page:9(title)
+msgid "General Editing"
+msgstr "Edizio orokorra"
+
+#: C/general-editing.page:13(p)
+msgid ""
+"<app>F-Spot</app> allows you to make simple general edits, including "
+"straightening, cropping, and rotating your photos."
+msgstr ""
+"<app>F-Spot</app>-ek editatze-lan sinple eta orokorrak egiteko aukera ematen "
+"du: argazkiak zuzen jartzen, ebakitzen eta biratzen."
+
+#: C/general-editing.page:15(p)
+msgid "There are three ways to rotate a selected photo:"
+msgstr "Bi motu daude hautatutako argazkia biratzeko:"
+
+#: C/general-editing.page:18(p)
+msgid "Click the appropriate rotate button, to the right of the import button."
+msgstr "Egin klik biratzeko botoian, inportatze-botoiaren eskuinaldean."
+
+#: C/general-editing.page:22(p)
+msgid "Select the appropriate option from within the <gui>Edit</gui> menu."
+msgstr "Hautatu dagokion aukera <gui>Editatu</gui> menuan."
+
+#: C/general-editing.page:26(p)
+msgid "Use the bracket keys to rotate the photo."
+msgstr "Erabili parentesi-teklak argazkia biratzeko."
+
+#: C/general-editing.page:29(p)
+msgid "To straighten a selected photo:"
+msgstr "Hautatutako argazki bat zuzen jartzeko:"
+
+#: C/general-editing.page:32(p)
+msgid "From within the editing pane, select <app>Straighten</app>."
+msgstr "Edizio-panelean, hautatu <app>Zuzen jarri</app>."
+
+#: C/general-editing.page:35(p)
+msgid "Select a rotation, ranging from -45 to 45 degrees."
+msgstr "Hautatu biratze bat,  -45 eta 45 gradu bitartean."
+
+#: C/general-editing.page:38(p)
+msgid "Click <gui>Straighten</gui>."
+msgstr "Aukeratu <gui>Zuzen jarri</gui>."
+
+#: C/general-editing.page:41(p)
+msgid "To crop a selected photo:"
+msgstr "Hautatutako argazki bat ebakitzeko:"
+
+#: C/general-editing.page:44(p)
+msgid "Click the <gui>Crop</gui> button in the Edit pane."
+msgstr "Egin klik Editatu paneleko <gui>Ebaki</gui> botoian."
+
+#: C/general-editing.page:47(p)
+msgid ""
+"Select a contraining aspect ratio, that is, a proportion of height to width "
+"to which the new photo must fit. Examples of contraining aspect ratios "
+"include 4x3, 4x6, and 5x7."
+msgstr ""
+"Hautatu ebakinaren aspektu-erlazioa, hau da, argazki berriaren altueraren "
+"eta zabaleraren arteko proportzioa. Esate baterako: 4x3, 4x6, 5x7..."
+
+#: C/general-editing.page:52(p)
+msgid ""
+"Click and drag to select the desired area to keep. This box can be dragged "
+"around after being sized."
+msgstr ""
+"Egin klik eta arrastatu gorde nahi duzun area hautatzeko. Koadroa arrasta "
+"daiteke tamaina doitutakoan."
+
+#: C/general-editing.page:56(p)
+msgid "When you have selected your area to crop to, click <gui>Crop</gui>."
+msgstr "Ebaki beharreko area hautatutakoan, egin klik <gui>Ebaki</gui> botoian."
+
+#: C/folder.page:8(desc)
+msgid "Send photos to a folder"
+msgstr "Bidali argazkiak karpeta batera"
+
+#: C/folder.page:11(title)
+msgid "Folder Export"
+msgstr "Karpeta batera esportatzea"
+
+#: C/folder.page:15(p)
+msgid ""
+"<app>F-Spot</app> allows you to export to a folder. In order to do so, "
+"however, you will need to have the folder export <link "
+"xref=\"extensions\">extension</link> installed and enabled."
+msgstr ""
+"<app>F-Spot</app>-ek aukera ematen dizu karpeta batera esportatzeko. Hori "
+"egiteko, halere, karpeta-esportaziorako <link "
+"xref=\"extensions\">hedapena</link> eduki behar duzu instalatuta eta gaituta."
+
+#: C/folder.page:18(p)
+msgid "To export selected photos to a folder:"
+msgstr "Hautatutako argazkiak karpeta batera esportatzeko:"
+
+#: C/folder.page:21(p)
+msgid ""
+"Select <guiseq><gui>Photo</gui><gui>Export "
+"To</gui><gui>Folder...</gui></guiseq>."
+msgstr ""
+"Aukeratu <guiseq><gui>Argazkia</gui><gui>Esportatu "
+"hona</gui><gui>Karpeta...</gui></guiseq>."
+
+#: C/folder.page:25(p)
+msgid "Select a folder."
+msgstr "Hautatu karpeta."
+
+#: C/folder.page:28(p)
+msgid "Name the gallery and give it a description."
+msgstr "Eman izen eta azalpen bat galeriari."
+
+#: C/folder.page:31(p)
+msgid ""
+"Select an export method. <gui>Create Standalone Web Gallery</gui> will "
+"create a folder with contents fit to be uploaded to a web server to present "
+"pictures in a gallery. <gui>Save the files only</gui> will only move photos "
+"to the selected folder. <gui>Create gallery using \"Original\"</gui> will "
+"create a folder with contents suitable for using with Original Photo "
+"Gallery."
+msgstr ""
+"Hautatu esportatzeko metodo bat. <gui>Sortu web-galeria autonomoa</gui> "
+"hautatuz gero, karpeta bat sortuko da, web-zerbitzari batera kargatzeko "
+"egokitutako edukiarekin, argazkiak galeria batean aurkezteko. <gui>Gorde "
+"fitxategiak bakarrik</gui> aukerak hautatutako karpetara eramango ditu "
+"argazkiak. <gui>Sortu galeria \"jatorrizkoa\" erabiliz</gui> hautatuz gero, "
+"Jatorrizko argazki-galeriarekin erabiltzeko moduko edukiarekin."
+
+#: C/flickr.page:8(desc)
+msgid "Upload photos to Flickr"
+msgstr "Kargatu argazkiak Flickr-era"
+
+#: C/flickr.page:11(title)
+msgid "Flickr"
+msgstr "Flickr"
+
+#: C/flickr.page:15(p)
+msgid ""
+"To upload photos to Flickr you will need a Flickr account, as well as "
+"internet access. Also, the Flickr <link xref=\"extensions\">extension</link> "
+"must be installed and enabled."
+msgstr ""
+"Flickr-era argazkiak kargatu ahal izateko, Flickr kontu bat eta "
+"Interneterako sarbidea eduki behar dituzu. Gainera, Flickr <link "
+"xref=\"extensions\">hedapenak</link> instalatuta eta gaituta egon behar du."
+
+#: C/file-management.page:8(desc)
+msgid "Manage files already imported"
+msgstr "Kudeatu lehendik inportatutako fitxategiak"
+
+#: C/file-management.page:11(title)
+msgid "File Management"
+msgstr "Fitxategi-kudeaketa"
+
+#: C/file-management.page:15(p)
+msgid ""
+"<app>F-Spot</app> allows for some control over the contents of your catalog, "
+"that is, removing files from your catalog as well as deleting files from "
+"your catalog."
+msgstr ""
+"<app>F-Spot</app> aplikazioak aukera ematen du zure katalogoko edukia "
+"kontrolatzeko, hau da, fitxategiak katalogotik kentzea, edo ezabatzea."
+
+#: C/file-management.page:18(p)
+msgid "To remove files from your catalog:"
+msgstr "Fitxategiak katalogotik kentzeko:"
+
+#: C/file-management.page:21(p)
+msgid "Select the photos you wish to remove from the catalog."
+msgstr "Hautatu katalogotik kendu nahi dituzun argazkiak."
+
+#: C/file-management.page:24(p)
+msgid ""
+"Right-click the photos, select <gui>Remove From Catalog</gui>. "
+"Alternatively, select <guiseq><gui>Edit</gui><gui>Remove From "
+"Catalog</gui></guiseq> or press the Delete key on your keyboard."
+msgstr ""
+"Egin klik eskuin-botoiarekin, eta hautatu <gui>Kendu katalogotik</gui>. "
+"Bestela, hautatu <guiseq><gui>Edit</gui><gui>Kendu "
+"katalogotik</gui></guiseq>, edo sakatu teklatuko Ezab tekla."
+
+#: C/file-management.page:29(p)
+msgid "To delete photos from your computer:"
+msgstr "Argazkiak ordenagailutik ezabatzeko:"
+
+#: C/file-management.page:32(p)
+msgid "Select the photos you wish to delete."
+msgstr "Hautatu ezabatu nahi dituzun argazkiak."
+
+#: C/file-management.page:35(p)
+msgid ""
+"Right-click the photos, select <gui>Delete From Drive</gui>. Alternatively, "
+"select <guiseq><gui>Edit</gui><gui>Delete From Drive</gui></guiseq> or press "
+"Shift+Delete on your keyboard."
+msgstr ""
+"Egin klik eskuin-botoiarekin argazkietan, eta hautatu <gui>Ezabatu "
+"unitatetik</gui>. Bestela, hautatu <guiseq><gui>Editatu</gui><gui>Ezabatu "
+"unitatetik</gui></guiseq>, edo sakatu Maius+Ezab tekla."
+
+#: C/facebook.page:8(desc)
+msgid "Upload photos to Facebook"
+msgstr "Kargatu argazkiak Facebook-era"
+
+#: C/facebook.page:11(title)
+msgid "Facebook"
+msgstr "Facebook"
+
+#: C/facebook.page:15(p)
+msgid ""
+"To upload photos to Facebook you will need a Facebook account, as well as "
+"internet access. Also, the Facebook <link xref=\"extensions\">extension</link> "
+"must be installed and enabled."
+msgstr ""
+"Facebook-era argazkiak kargatu ahal izateko, Facebook kontu bat eta "
+"Interneterako sarbidea eduki behar dituzu. Gainera, Facebook <link "
+"xref=\"extensions\">hedapenak</link> instalatuta eta gaituta egon behar du."
+
+#: C/facebook.page:20(p)
+msgid "To post selected photos to Facebook:"
+msgstr "Hautatutako argazkiak Facebook-era kargatzeko:"
+
+#: C/facebook.page:23(p)
+msgid ""
+"Select <guiseq><gui>Photo</gui><gui>Export "
+"To</gui><gui>Facebook</gui></guiseq>."
+msgstr ""
+"Aukeratu <guiseq><gui>Argazkia</gui><gui>Esportatu "
+"hona</gui><gui>Facebook</gui></guiseq>."
+
+#: C/facebook.page:27(p)
+msgid ""
+"Click <gui>Login</gui>. A browser window will be brought up. Log in to "
+"Facebook and click \"Allow\" to allow F-Spot access to your Facebook profile."
+msgstr ""
+"Aukeratu <gui>Hasi saioa</gui>. Arakatzaile-leiho bat azalduko da. Hasi "
+"saioa Facebook-en eta egin klik \"Onartu\" F-Spot aplikazioari sarbidea "
+"emateko zure Facebook profilera."
+
+#: C/facebook.page:32(p)
+msgid ""
+"Select whether to create a new album or add to an existing album. If you are "
+"creating a new album, fill in the relevant information."
+msgstr ""
+"Hautatu album berri bat sortzea edo argazkiak lehendik dagoen album batean "
+"gehitzea. Album berri bat sortu nahi baduzu, eman nahi duzun informazioa."
+
+#: C/facebook.page:36(p)
+msgid "Edit captions for each photo, if so desired."
+msgstr "Editatu argazki bakoitzaren epigrafea, nahi izanez gero."
+
+#: C/facebook.page:39(p)
+msgid "When finished, click <gui>Add</gui>."
+msgstr "Amaitutakoan, egin klik <gui>Gehitu</gui> botoian."
+
+#: C/extensions.page:8(desc)
+msgid "Working with <app>F-Spot</app> extensions"
+msgstr "<app>F-Spot</app> hedapenekin lan egitea"
+
+#: C/extensions.page:11(title)
+msgid "Extensions"
+msgstr "Hedapenak"
+
+#: C/extensions.page:15(p)
+msgid ""
+"<app>F-Spot</app> allows for the use of extensions to provide additional "
+"functionality."
+msgstr ""
+"<app>F-Spot</app> aplikazioak aukera ematen dizu hedapenak erabiltzeko "
+"funtzionaltasun gehigarria hornitzeko."
+
+#: C/extensions.page:18(p)
+msgid ""
+"To open the extension manager, select <guiseq><gui>Edit</gui><gui>Manage "
+"Extensions</gui></guiseq>."
+msgstr ""
+"Hedapen-kudeatzailea irekitzeko, hautatu "
+"<guiseq><gui>Editatu</gui><gui>Kudeatu hedapenak</gui></guiseq>."
+
+#: C/extensions.page:21(p)
+msgid "To install extensions:"
+msgstr "Hedapenak instalatzeko:"
+
+#: C/extensions.page:24(p)
+#: C/extensions.page:46(p)
+#: C/extensions.page:58(p)
+#: C/extensions.page:70(p)
+msgid "Open the extension manager."
+msgstr "Ireki hedapen-kudeatzailea."
+
+#: C/extensions.page:27(p)
+msgid "Click <gui>Install Add-ins</gui>."
+msgstr "Aukeratu <gui>Instalatu osagarriak</gui>."
+
+#: C/extensions.page:30(p)
+msgid "Select an add-on to install from the list."
+msgstr "Hautatu instalatu beharreko osagarria zerrendan."
+
+#: C/extensions.page:33(p)
+#: C/extensions.page:79(p)
+msgid "Click <gui>Forward</gui>."
+msgstr "Egin klik <gui>Hurrengoa</gui> botoian."
+
+#: C/extensions.page:36(p)
+msgid "Verify all information, and click <gui>Forward</gui> again."
+msgstr "Egiaztatu datu guztiak, eta egin klik <gui>Hurrengoa</gui> botoian berriro."
+
+#: C/extensions.page:43(p)
+msgid "To enable plugins that are already installed:"
+msgstr "Lehendik instalatuta dauden pluginak gaitzeko:"
+
+#: C/extensions.page:49(p)
+msgid "Select the extension you wish to enable."
+msgstr "Hautatu gaitu nahi duzun hedapena."
+
+#: C/extensions.page:52(p)
+msgid "Click <gui>Enable</gui>."
+msgstr "Egin klik <gui>Gaitu</gui> botoian."
+
+#: C/extensions.page:55(p)
+msgid "To disable plugins that are installed:"
+msgstr "Instalatuta dauden pluginak desgaitzeko:"
+
+#: C/extensions.page:61(p)
+msgid "Select the extension you wish to disable."
+msgstr "Hautatu desgaitu nahi duzun hedapena."
+
+#: C/extensions.page:64(p)
+msgid "Click <gui>Disable</gui>."
+msgstr "Aukeratu <gui>Desgaitu</gui>."
+
+#: C/extensions.page:67(p)
+msgid "To uninstall plugins:"
+msgstr "Pluginak desinstalatzeko:"
+
+#: C/extensions.page:73(p)
+msgid "Select the extension you wish to uninstall."
+msgstr "Hautatu desinstalatu nahi duzun hedapena."
+
+#: C/extensions.page:76(p)
+msgid "Click <gui>Uninstall</gui>."
+msgstr "Egin klik <gui>Desinstalatu</gui> botoian."
+
+#: C/enhancements.page:6(desc)
+msgid "Simple enhancements for your photos"
+msgstr "Argazkien hobekuntza sinpleak"
+
+#: C/enhancements.page:9(title)
+msgid "Enhancements"
+msgstr "Hobekuntzak"
+
+#: C/enhancements.page:13(p)
+msgid ""
+"Currently, there are two main enhancements that <app>F-Spot</app> supports: "
+"red-eye removal and the automatic enhancement of color."
+msgstr ""
+"Gaur egun, bi hobekuntza nagusi onartzen ditu <app>F-Spot</app> aplikazioak: "
+"begi gorriak kentzea eta kolorearen hobekuntza automatikoa."
+
+#: C/enhancements.page:15(p)
+msgid "To remove red-eye:"
+msgstr "Begi gorriak kentzeko:"
+
+#: C/enhancements.page:18(p)
+msgid ""
+"By double-clicking, select the photo on which you wish to use the red-eye "
+"removal tool."
+msgstr ""
+"Egin klik bikoitza, eta hautatu begi gorriak kentzeko tresna erabili nahi "
+"duzun argazkia."
+
+#: C/enhancements.page:22(p)
+msgid "Click <gui>Red-Eye Removal</gui> in the Edit panel."
+msgstr "Egin klik <gui>Kendu begi gorriak</gui>botoian, 'Editatu' panelean."
+
+#: C/enhancements.page:25(p)
+msgid ""
+"Select the area from which you wish to remove red-eye. Note: If the contains "
+"many red areas, you may wish to select each eye individually."
+msgstr ""
+"Hautatu begi gorriak kendu nahi dituzun area. Oharra: Area gorri asko "
+"badaude, begiak banan bana hautatu beharko dituzu."
+
+#: C/enhancements.page:30(p)
+msgid "Click <gui>Fix!</gui>."
+msgstr "Egin klik <gui>Konpondu!</gui> botoian."
+
+#: C/enhancements.page:33(p)
+msgid "To automatically enhance the colors of the photo:"
+msgstr "Argazkiaren koloreak automatikoki hobetzeko:"
+
+#: C/enhancements.page:36(p)
+msgid "By double-clicking, select the photo which you wish to enhance."
+msgstr "Klik bikoitzarekin, hautatu hobekuntza egin nahi diozun argazkia."
+
+#: C/enhancements.page:39(p)
+msgid "Click <gui>Auto Color</gui>."
+msgstr "Egin klik <gui>Kolore automatikoa</gui> botoian."
+
+#: C/date-search.page:8(desc)
+msgid "Search photos by date"
+msgstr "Bilatu argazkiak dataren arabera"
+
+#: C/date-search.page:11(title)
+msgid "Search by Date"
+msgstr "Bilatu dataren arabera"
+
+#: C/date-search.page:15(p)
+msgid "To search by date:"
+msgstr "Dataren arabera bilatzeko:"
+
+#: C/date-search.page:18(p)
+msgid ""
+"Select <guiseq><gui>Find</gui><gui>By Date</gui><gui>Set Date "
+"Range...</gui></guiseq>."
+msgstr ""
+"Hautatu <guiseq><gui>Bilatu</gui><gui>Dataren arabera</gui><gui>Ezarri "
+"data-bitartea...</gui></guiseq>."
+
+#: C/date-search.page:22(p)
+msgid ""
+"Select a time period to from which to view photos. This can by done by "
+"selecting a set period, such as a week, or by specifying dates."
+msgstr ""
+"Hautatu ikusi nahi dituzun argazkien data-bitartea. Hautatu ezarritako epe "
+"bat, astebete adibidez, edo zehaztu datak."
+
+#: C/date-search.page:30(p)
+msgid "Alternatively, you can use the timeline. To use the timeline:"
+msgstr "Bestela, erabili denbora-lerroa. Denbora-lerroa erabiltzeko:"
+
+#: C/date-search.page:33(p)
+msgid ""
+"Make sure the timeline is enabled by selecting "
+"<guiseq><gui>View</gui><gui>Components</gui></guiseq> and making sure that "
+"<gui>Timeline</gui> is checked."
+msgstr ""
+"Denbora-lerroa gaituta dagoela ziurtatzeko, hautatu "
+"<guiseq><gui>View</gui><gui>Osagarriak</gui></guiseq>, eta ziurtatu <gui"
+">Denbora-lerroa</gui> hautatuta dagoela."
+
+#: C/date-search.page:38(p)
+msgid ""
+"In the timeline, click the bar corresponding to the time period you wish to "
+"look at."
+msgstr "Denbora-lerroan, egin klik ikusi nahi duzun denbora-epeari dagokion barra."
+
+#: C/date-search.page:42(p)
+msgid "To stop searching by date:"
+msgstr "Dataren arabera bilatzeari uzteko:"
+
+#: C/date-search.page:45(p)
+msgid ""
+"Select <guiseq><gui>Find</gui><gui>By Date</gui><gui>Clear Date "
+"Range</gui></guiseq>."
+msgstr ""
+"Hautatu <guiseq><gui>Bilatu</gui><gui>Dataren arabera</gui><gui>Garbitu "
+"data-bitartea</gui></guiseq>."
+
+#: C/colors.page:6(desc)
+msgid "Edit the colors of your photos"
+msgstr "Editatu zure argazkietako koloreak"
+
+#: C/colors.page:9(title)
+msgid "Color Editing"
+msgstr "Kolore-edizioa"
+
+#: C/colors.page:12(p)
+msgid "<app>F-Spot</app> supports several modes of color manipulation."
+msgstr ""
+"<app>F-Spot</app> aplikazioak hainbat modu eskaintzen ditu kolorea "
+"manipulatzeko."
+
+#: C/colors.page:15(title)
+msgid "Desaturate"
+msgstr "Desasetu"
+
+#: C/colors.page:16(p)
+msgid ""
+"This mode eliminates all saturation, turning a color image into a black and "
+"white image."
+msgstr ""
+"Modu onek saturazio osoa kentzen du, eta koloretako argazki bat zuri-"
+"beltzezko bihurtzen du."
+
+#: C/colors.page:20(title)
+msgid "Sepia Tone"
+msgstr "Sepia efektua"
+
+#: C/colors.page:21(p)
+msgid "This mode simulates a photo being created with sepia toner."
+msgstr "Sepia tonerrarekin sortutako argazki bat simulatzen du."
+
+#: C/colors.page:24(title)
+msgid "Auto Color"
+msgstr "Kolore automatikoa"
+
+#: C/colors.page:25(p)
+msgid "This mode automatically adjusts the colors to a set profile."
+msgstr "Modu honek ezarritako profil batekin doitzen ditu koloreak."
+
+#: C/cd.page:8(desc)
+msgid "Burn photos to a CD"
+msgstr "Grabatu argazkiak CD batean"
+
+#: C/cd.page:11(title)
+msgid "CD Export"
+msgstr "CDa esportatzea"
+
+#: C/adjust-color.page:6(desc)
+msgid "Adjusting the colors of a photo"
+msgstr "Argazki bateko koloreak doitzea"
+
+#: C/adjust-color.page:9(title)
+msgid "Adjust Color"
+msgstr "Doitu kolorea"
+
+#: C/adjust-color.page:12(p)
+msgid ""
+"As far as the editing tools in F-Spot, adjusting the color is easily the "
+"most powerful. The color editor allows you to adjust:"
+msgstr ""
+"F-Spot aplikazioaren edizio-tresnen artean, kolorea doitzeko da ahaltsuena. "
+"Kolore-editoreak aukera ematen dizu ondokoak doitzeko:"
+
+#: C/adjust-color.page:16(title)
+msgid "Exposure"
+msgstr "Esposizioa"
+
+#: C/adjust-color.page:17(p)
+msgid "This adjustment simulates lengthening or shortening the exposure time."
+msgstr "Doikuntza honek esposizio-denborarren luzatzea edo laburtzea simulatzen du."
+
+#: C/adjust-color.page:21(title)
+msgid "Saturation"
+msgstr "Saturazioa"
+
+#: C/adjust-color.page:22(p)
+msgid ""
+"This adjustment simulates adjusting the amount of color in the image, i.e. "
+"sliding it to the left decrease color, making it black and white, while "
+"sliding it to the right will increase the vibrancy of colors."
+msgstr ""
+"Doikuntza honek argazkiko kolore kopurua doitzen du: ezkerrera eramanez "
+"gero, kolorea jaitsiko da, zuri-beltzezko bihurtuz, eta eskuinera eramanez "
+"gero, berriz, koloreen bizitasuna handituko da."
+
+#: C/adjust-color.page:28(title)
+msgid "Brightness"
+msgstr "Distira"
+
+#: C/adjust-color.page:29(p)
+msgid ""
+"This adjustment increase the brightness of colors. Increasing this too much "
+"will make colors appear \"washed out\", while decreasing it too much will make "
+"the image too dark and lacking in contrast."
+msgstr ""
+"Doikuntza honek distira handituko du. Gehiegi igoz gero, koloreak "
+"bizitasunik gabe azalduko dira; gehiegi jaitsiz gero, berriz, irudia "
+"ilunegia izango da, eta kontrastea faltako du."
+
+#: C/adjust-color.page:34(title)
+msgid "Hue"
+msgstr "Tonua"
+
+#: C/adjust-color.page:35(p)
+msgid "This adjustment causes colors to \"rotate\" along the color wheel."
+msgstr "Doikuntza honekin, koloreek birak emango dituzte kolore-gurpilean zehar."
+
+#: C/adjust-color.page:38(title)
+msgid "Contrast"
+msgstr "Kontrastea"
+
+#: C/adjust-color.page:39(p)
+msgid ""
+"This adjustment adjusts the contrast ratio, that is, the ratio of difference "
+"between dark and light pixels. Sliding to the left decreases contrast, "
+"while sliding to the right will increase contrast."
+msgstr ""
+"Doikuntza honek kontraste-erlazioa doitzen du, hau da, pixel ilunen eta "
+"argien arteko diferentzia-erlazioa. Ezkerrera graduatuz gero, kontrastea "
+"jaitsiko da, eta eskuinera graduatuz gero, kontrastea igoko da."
+
+#: C/adjust-color.page:45(title)
+msgid "Temp"
+msgstr "Tenperatura"
+
+#: C/adjust-color.page:46(p)
+msgid "This adjust changes the color temperature, measured in degrees Kelvin."
+msgstr ""
+"Doikuntza honek kolorearen tenperatura aldatzen du, Kelvin gradutan "
+"neurtuta."
+
+#: C/adjust-color.page:50(title)
+msgid "Tint"
+msgstr "Ñabardura"
+
+#: C/adjust-color.page:51(p)
+msgid "This adjustment allows you to tinge the photo with a color."
+msgstr ""
+"Doikuntza honek aukera ematen dizu argazkiari kolore baten ñabardura "
+"emateko."
+
+#: C/23hq.page:8(desc)
+msgid "Upload photos to 23hq"
+msgstr "Kargatu argazkiak 23hq-era"
+
+#: C/23hq.page:11(title)
+msgid "23hq"
+msgstr "23hq"
+
+#: C/23hq.page:15(p)
+msgid ""
+"To upload photos to 23hq you will need a 23hq account, as well as internet "
+"access. Also, the 23hq <link xref=\"extensions\">extension</link> must be "
+"installed and enabled."
+msgstr ""
+"23hq-era argazkiak kargatu ahal izateko, 23hq kontu bat eta Interneterako "
+"sarbidea eduki behar dituzu. Gainera, 23hq <link "
+"xref=\"extensions\">hedapenak</link> instalatuta eta gaituta egon behar du."
+
+#. Put one translator per line, in the form of NAME <EMAIL>, YEAR1, YEAR2
+#: C/index.page:0(None)
+msgid "translator-credits"
+msgstr "Hizkuntza Politikarako Sailburuordetza <hizkpol@ej-gv.es>, 2011."
+
