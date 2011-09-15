@@ -7,17 +7,17 @@
 # Sergio Rubio <sergio.rubio@hispalinux.es>, 2004.
 # Francisco Javier F. Serrador <serrador@cvs.gnome.org>, 2004, 2005, 2006.
 # Antonio Ognio <gnrfan@gnrfan.orf>, 2004.
-# Daniel Mustieles <daniel.mustieles@gmail.com>, 2010.
 # Jorge González <jorgegonz@svn.gnome.org>, 2004, 2005, 2006, 2007, 2008, 2009, 2010.
+# Daniel Mustieles <daniel.mustieles@gmail.com>, 2010, 2011.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: f-spot.master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=f-"
 "spot&component=General\n"
-"POT-Creation-Date: 2010-11-29 09:51+0000\n"
-"PO-Revision-Date: 2010-12-02 18:44+0100\n"
-"Last-Translator: Jorge González <jorgegonz@svn.gnome.org>\n"
+"POT-Creation-Date: 2010-12-02 17:45+0000\n"
+"PO-Revision-Date: 2011-09-15 12:03+0200\n"
+"Last-Translator: Daniel Mustieles <daniel.mustieles@gmail.com>\n"
 "Language-Team: Español <gnome-es-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -194,12 +194,12 @@ msgid ""
 "changes for up to a few hours after f-spot reports finished. It will only "
 "change the path to photos which are located under the Photo directory."
 msgstr ""
-"INESTABLE: asegúrese de que tiene un respado de su photos.db antes de probar "
-"esta extensión. Esta extensión le permite cambiar la ruta base de sus fotos. "
-"Es muy útil si mueve sus fotos de ~/Fotos a /MisFotos por ejemplo. Asegúrese "
-"de que SqLite continua procesando los cambios algunas horas después de que F-"
-"Spot informe de que ha finalizado. Sólo cambiará la ruta de las fotos "
-"ubicadas en el directorio de fotos."
+"INESTABLE: asegúrese de que tiene un respaldo de su photos.db antes de "
+"probar esta extensión. Esta extensión le permite cambiar la ruta base de sus "
+"fotos. Es muy útil si mueve sus fotos de ~/Fotos a /MisFotos por ejemplo. "
+"Asegúrese de que SqLite continua procesando los cambios algunas horas "
+"después de que F-Spot informe de que ha finalizado. Sólo cambiará la ruta de "
+"las fotos ubicadas en la carpeta de fotos."
 
 #: ../data/addin-xml-strings.cs:82 ../data/addin-xml-strings.cs:87
 #: ../data/addin-xml-strings.cs:92 ../data/addin-xml-strings.cs:97
@@ -1189,7 +1189,7 @@ msgstr "Rotando la foto «{0}»"
 
 #: ../src/Clients/MainApp/FSpot/RotateCommand.cs:206
 msgid "Directory not found"
-msgstr "No se encontró el directorio"
+msgstr "No se encontró la carpeta"
 
 #: ../src/Clients/MainApp/FSpot/RotateCommand.cs:208
 msgid "File not found"
@@ -1865,8 +1865,8 @@ msgid ""
 "Received exception \"{0}\". Note that you have to develop RAW files into "
 "JPEG before you can edit them."
 msgstr ""
-"Se recibió la excepción «{0}». Note que ha de transformar los archivos RAW "
-"en JPEG antes de poder editarlos."
+"Se recibió la excepción «{0}». Note que ha de transformar los archivos RAW en "
+"JPEG antes de poder editarlos."
 
 #: ../src/Clients/MainApp/FSpot.Widgets/Filmstrip.cs:495
 msgid "_Horizontal"
