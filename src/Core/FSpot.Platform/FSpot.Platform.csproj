@@ -9,7 +9,6 @@
     <OutputType>Library</OutputType>
     <RootNamespace>FSpot.Platform</RootNamespace>
     <AssemblyName>FSpot.Platform</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <ReleaseVersion>0.7.2</ReleaseVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -54,9 +53,9 @@
   </ProjectExtensions>
   <ItemGroup>
     <Reference Include="gconf-sharp, Version=2.24.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
-    <Reference Include="NDesk.DBus, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f6716e4f9b2ed099" />
-    <Reference Include="NDesk.DBus.GLib, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f6716e4f9b2ed099" />
     <Reference Include="System" />
+    <Reference Include="dbus-sharp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=5675b0c3093115b5" />
+    <Reference Include="dbus-sharp-glib, Version=1.0.0.0, Culture=neutral, PublicKeyToken=5675b0c3093115b5" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\lib\Hyena\Hyena\Hyena.csproj">

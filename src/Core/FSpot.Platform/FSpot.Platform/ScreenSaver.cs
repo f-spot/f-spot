@@ -30,7 +30,7 @@
 using System;
 using System.Runtime.InteropServices;
 
-using NDesk.DBus;
+using DBus;
 
 using Hyena;
 
