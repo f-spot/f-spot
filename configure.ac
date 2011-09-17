@@ -178,6 +178,9 @@ FSPOT_CHECK_MONO_ADDINS
 dnl -- dbus-sharp
 FSPOT_CHECK_DBUS_SHARP
 
+dnl -- taglib-sharp
+FSPOT_CHECK_TAGLIB_SHARP
+
 dnl --- libjpeg
 
 AC_CHECK_LIB(jpeg, jpeg_start_decompress, [],
@@ -328,7 +331,6 @@ lib/Makefile
 lib/Mono.Google/Makefile
 lib/Mono.Tabblo/Makefile
 lib/SmugMugNet/Makefile
-lib/TagLib/Makefile
 lib/unique-sharp/generator/Makefile
 lib/unique-sharp/Makefile
 lib/unique-sharp/unique/Makefile

@@ -17,7 +17,6 @@ DIR_SRC = $(top_builddir)/src
 DIR_GIOSHARP = $(top_builddir)/lib/gio-sharp/gio
 DIR_GTKSHARPBEANS = $(top_builddir)/lib/gtk-sharp-beans
 DIR_UNIQUESHARP = $(top_builddir)/lib/unique-sharp/unique
-DIR_TAGLIB = $(top_builddir)/lib/TagLib
 DIR_BIN = $(top_builddir)/bin
 
 
@@ -64,7 +63,7 @@ LINK_HYENA_DEPS = $(REF_HYENA) $(LINK_HYENA)
 
 # TagLib
 REF_TAGLIB =
-LINK_TAGLIB = -r:$(DIR_BIN)/TagLib.dll
+LINK_TAGLIB = $(TAGLIB_SHARP_LIBS)
 LINK_TAGLIB_DEPS = $(REF_TAGLIB) $(LINK_TAGLIB)
 
 # Hyena.Data.Sqlite
