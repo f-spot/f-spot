@@ -13,16 +13,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: f-spot.master\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=f-"
-"spot&keywords=I18N+L10N&component=General\n"
-"POT-Creation-Date: 2011-09-07 21:04+0000\n"
-"PO-Revision-Date: 2011-09-18 18:46+0200\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-09-25 13:03+0200\n"
+"PO-Revision-Date: 2011-09-25 13:04+0200\n"
 "Last-Translator: Fran Dieguez <frandieguez@gnome.org>\n"
 "Language-Team: Galician <gnome-l10n-gl@gnome.org>\n"
+"Language: gl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: gl\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
 "X-Generator: KBabel 1.11.4\n"
 
@@ -1128,10 +1127,8 @@ msgid "Original"
 msgstr "Orixinal"
 
 #: ../src/Clients/MainApp/FSpot/PhotoView.cs:359
-#, fuzzy
-#| msgid "D_escription:"
 msgid "Description:"
-msgstr "D_escrición:"
+msgstr "Descrición:"
 
 #: ../src/Clients/MainApp/FSpot/Preferences.cs:191
 msgid "Photos"
@@ -1511,10 +1508,8 @@ msgstr ""
 "da cámara. <b>Use esta opción baixo a súa responsabilidade!</b>"
 
 #: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:212
-#, fuzzy
-#| msgid "Rating"
 msgid "Warning"
-msgstr "Puntuación"
+msgstr "Advertencia"
 
 #: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:331
 #, csharp-format
@@ -2009,10 +2004,8 @@ msgid "Creator"
 msgstr "Creador"
 
 #: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:460
-#, fuzzy
-#| msgid "Creator"
 msgid "Show Creator"
-msgstr "Creador"
+msgstr "Mostrar creador"
 
 #: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:464
 msgid "File Size"
@@ -2031,16 +2024,12 @@ msgid "Rating"
 msgstr "Puntuación"
 
 #: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:480
-#, fuzzy
-#| msgid "Rating"
 msgid "Show Rating"
-msgstr "Puntuación"
+msgstr "Mostrar puntuación"
 
 #: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:484
-#, fuzzy
-#| msgid "(No Tags)"
 msgid "Show Tags"
-msgstr "(Sen etiquetas)"
+msgstr "Mostrar etiquetas"
 
 #: ../src/Clients/MainApp/FSpot.Widgets/MetadataDisplay.cs:46
 msgid "Metadata"
@@ -2253,35 +2242,25 @@ msgid "_Tint:"
 msgstr "_Ton:"
 
 #: ../src/Clients/MainApp/ui/import.ui.h:1
-#, fuzzy
-#| msgid "Copy files to the Photos folder"
 msgid "C_opy files to the Photos folder"
-msgstr "Copiar ficheiros no cartafol de fotos"
+msgstr "C_opiar ficheiros no cartafol de fotos"
 
 #: ../src/Clients/MainApp/ui/import.ui.h:2
-#, fuzzy
-#| msgid "Include subfolders"
 msgid "I_nclude subfolders"
-msgstr "Incluír subcartafoles"
+msgstr "I_ncluír subcartafoles"
 
 #. Translators: this string means 'source of import'
 #: ../src/Clients/MainApp/ui/import.ui.h:5
-#, fuzzy
-#| msgid "Import from:"
 msgid "Import _from:"
-msgstr "Importar desde:"
+msgstr "Importar _desde:"
 
 #: ../src/Clients/MainApp/ui/import.ui.h:6
-#, fuzzy
-#| msgid "Attach tag:"
 msgid "_Attach tags:"
-msgstr "Anexar etiqueta:"
+msgstr "_Anexar etiqueta:"
 
 #: ../src/Clients/MainApp/ui/import.ui.h:7
-#, fuzzy
-#| msgid "Detect duplicates"
 msgid "_Detect duplicates"
-msgstr "Detectar duplicacións"
+msgstr "_Detectar duplicados"
 
 #: ../src/Clients/MainApp/ui/import.ui.h:8
 msgid "_Import"
@@ -2837,13 +2816,11 @@ msgstr "Non hai aplicativos dispoñíbeis"
 
 #: ../src/Extensions/Editors/FSpot.Editors.Blackout/FSpot.Addins.Editors/BlackoutEditor.cs:38
 msgid "Blackout"
-msgstr ""
+msgstr "Ennegrecer"
 
 #: ../src/Extensions/Editors/FSpot.Editors.Blackout/FSpot.Addins.Editors/BlackoutEditor.cs:46
-#, fuzzy
-#| msgid "Select the area that needs cropping."
 msgid "Select the area that you want blacked out."
-msgstr "Seleccionar a área que se vai recortar."
+msgstr "Seleccionar a área que quere ennegrecer."
 
 #: ../src/Extensions/Editors/FSpot.Editors.BW/FSpot.Addins.Editors/BWEditor.cs:41
 msgid "Convert to B/W"
