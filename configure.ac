@@ -1,7 +1,7 @@
 dnl Granularly define the version components
 dnl Remember to also update the Display Version
 m4_define([fspot_version_major], [0])
-m4_define([fspot_version_minor], [8])
+m4_define([fspot_version_minor], [9])
 m4_define([fspot_version_micro], [0])
 
 dnl set to 0 when doing an official release
@@ -23,7 +23,7 @@ m4_define([fspot_version],
 
 dnl this can sometimes differ manually
 m4_define([fspot_display_version],
-	["0.8.0"])
+	["0.9.0"])
 
 m4_define([fspot_api_version],
 	[fspot_version_major.fspot_version_minor])
@@ -79,10 +79,16 @@ SHAMROCK_CHECK_MONO_2_0_GAC_ASSEMBLIES([
 ])
 
 FSPOT_CHECK_LIBFSPOT
+dnl --- Checks for gtk-sharp and glib-sharp
 FSPOT_CHECK_GTK_SHARP
 FSPOT_CHECK_GNOME_KEYRING_SHARP
 FSPOT_CHECK_FLICKRNET
 SHAMROCK_CHECK_NUNIT
+FSPOT_CHECK_MONO_ADDINS
+FSPOT_CHECK_DBUS_SHARP
+FSPOT_CHECK_TAGLIB_SHARP
+FSPOT_CHECK_GNOME_SHARP
+
 
 
 # ---------------------------------- <Old build stuff>
@@ -131,14 +137,12 @@ LIBGNOME_REQUIRED=2.2
 LIBGNOMEUI_REQUIRED=2.2
 GIO_REQUIRED=2.22.0
 GTKSHARPBEANS_REQUIRED=2.13.92
-GTKSHARP_REQUIRED=2.12.2
 GTK_REQUIRED=2.14
 MONO_CAIRO_REQUIRED=1.2.5
 CAIRO_REQUIRED=1.4.0
 LCMS_REQUIRED=1.12
-MONOADDINS_REQUIRED=0.3
 
-PKG_CHECK_MODULES(F, libgnome-2.0 >= $LIBGNOME_REQUIRED libgnomeui-2.0 >= $LIBGNOMEUI_REQUIRED gtk+-2.0 >= $GTK_REQUIRED mono-cairo >= $MONO_CAIRO_REQUIRED cairo >= $CAIRO_REQUIRED mono-addins >= $MONOADDINS_REQUIRED mono-addins-gui >= $MONOADDINS_REQUIRED mono-addins-setup >= $MONOADDINS_REQUIRED)
+PKG_CHECK_MODULES(F, libgnome-2.0 >= $LIBGNOME_REQUIRED libgnomeui-2.0 >= $LIBGNOMEUI_REQUIRED gtk+-2.0 >= $GTK_REQUIRED mono-cairo >= $MONO_CAIRO_REQUIRED cairo >= $CAIRO_REQUIRED)
 AC_SUBST(F_CFLAGS)
 AC_SUBST(F_LIBS)
 
@@ -152,7 +156,7 @@ PKG_CHECK_MODULES(GNOME_SHARP, gnome-sharp-2.0 >= 2.8)
 PKG_CHECK_MODULES(GLIBSHARP, glib-sharp-2.0 >= 2.12)
 
 if pkg-config --atleast-version=2.13.0 gtk-sharp-2.0 && pkg-config --max-version=2.14 gtk-sharp-2.0; then
-	AC_MSG_ERROR([There's a svn version of gtk-sharp 2.13.x installed. Uninstall it.])
+	AC_MSG_ERROR([There is a svn version of gtk-sharp 2.13.x installed. Uninstall it.])
 fi
 
 dnl --- GConf
@@ -171,15 +175,6 @@ if pkg-config --atleast-version=2.16 gtk+-2.0; then
 fi
 
 AC_SUBST(CSC_DEFINES)
-
-dnl Mono.Addins libraries
-FSPOT_CHECK_MONO_ADDINS
-
-dnl -- dbus-sharp
-FSPOT_CHECK_DBUS_SHARP
-
-dnl -- taglib-sharp
-FSPOT_CHECK_TAGLIB_SHARP
 
 dnl --- libjpeg
 
