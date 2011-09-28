@@ -393,7 +393,10 @@ Global
 		$6.MessageStyle = $7
 		$7.LineAlign = 0
 		$6.inheritsSet = Mono
-		version = 0.7.2
+		$0.StandardHeader = $8
+		$8.Text = @ ${FileName}\n Author:\n      ${AuthorName} <${AuthorEmail}>\n Copyright (c) ${Year} ${CopyrightHolder}
+		$8.IncludeInNewFiles = True
+		version = 0.9.0
 		outputpath = .
 	EndGlobalSection
 EndGlobal

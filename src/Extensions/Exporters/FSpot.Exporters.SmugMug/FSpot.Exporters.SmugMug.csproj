@@ -9,8 +9,7 @@
     <OutputType>Library</OutputType>
     <RootNamespace>FSpot.Exporters.SmugMug</RootNamespace>
     <AssemblyName>FSpot.Exporters.SmugMugExport</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
-    <ReleaseVersion>0.7.2</ReleaseVersion>
+    <ReleaseVersion>0.9.0</ReleaseVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -91,8 +90,7 @@
     <Reference Include="System" />
     <Reference Include="Mono.Posix" />
     <Reference Include="gtk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
-    <Reference Include="gtk-sharp-beans, Version=2.14.0.0, Culture=neutral, PublicKeyToken=97a95fb57b03c03a">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="gtk-sharp-beans">
       <HintPath>..\..\..\..\lib\gtk-sharp-beans\gtk-sharp-beans.dll</HintPath>
     </Reference>
   </ItemGroup>

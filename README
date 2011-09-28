@@ -26,3 +26,23 @@ To compile, just go through the normal autogen/configure stuff and
 then make install.
 
 To launch F-Spot, run $(prefix)/bin/f-spot.
+
+
+With MonoDevelop:
+  If you want to use MonoDevelop to build and run F-Spot here are notes about that process.
+
+	There are a few steps you have to run before you can open MonoDevelop:
+		1.  sh autogen.sh
+		2.  cd build; make
+		3.  cd ../lib; make
+		4.  cd libfspot
+		5.  sudo make install (this will install the libfspot.so files)
+
+	This will build a couple tools in ./build that are needed to build the projects
+	in ./lib.  Unfortunately, the f-spot.exe.config file points to whatever prefix
+	you gave during 'sh autogen.sh'.  You could copy the files from 
+	./lib/libfspot/.libs to ./bin and edit f-spot.exe.config, but it'll get
+	overwritten with each build.
+
+	Once these two directories are built you can now open monodevelop and build
+	and run f-spot from there.
