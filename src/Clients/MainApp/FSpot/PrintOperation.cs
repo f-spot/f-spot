@@ -271,6 +271,7 @@ namespace FSpot
 			cr.Restore ();
 		}
 
+		//FIXME: f_pixbuf_from_cairo_surface is missing from libfspot
 		[DllImport("libfspot")]
 		static extern IntPtr f_pixbuf_from_cairo_surface (IntPtr handle);
 
