@@ -194,9 +194,7 @@ namespace FSpot.Imaging {
 
 		public static bool IsJpeg (SafeUri uri)
 		{
-            // What about the other jpeg extensions?  Is there a
-            // reason they aren't listed as well?
-			string [] jpg_extensions = {".jpg", ".jpeg"};
+            string [] jpg_extensions = {".jpg", ".jpeg", ".jpe", ".jfi", ".jfif", ".jif"};
 			var extension = uri.GetExtension ().ToLower ();
 			foreach (string ext in jpg_extensions)
 				if (ext == extension)
