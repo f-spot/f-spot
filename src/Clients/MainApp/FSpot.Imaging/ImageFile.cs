@@ -63,7 +63,11 @@ namespace FSpot.Imaging {
         {
             var base_type = typeof (BaseImageFile);
             var raw_type = typeof (DCRawFile);
-            var nef_type = typeof (FSpot.Imaging.NefFile);
+            var nef_type = typeof (NefFile);
+            var cr2_type = typeof (Cr2File);
+            var dng_type = typeof (DngFile);
+            var ciff_type = typeof (Ciff.CiffFile);
+            var raf_type = typeof (RafFile);
 
             name_table = new Dictionary<string, Type> ();
 
@@ -82,8 +86,8 @@ namespace FSpot.Imaging {
 
             // RAW files
             name_table ["image/arw"] = name_table ["image/x-sony-arw"] = name_table [".arw"] = nef_type;
-            name_table ["image/cr2"] = name_table ["image/x-canon-cr2"] = name_table [".cr2"] = typeof (FSpot.Imaging.Cr2File);
-            name_table ["image/dng"] = name_table ["image/x-adobe-dng"] = name_table [".dng"] = typeof (FSpot.Imaging.DngFile);
+            name_table ["image/cr2"] = name_table ["image/x-canon-cr2"] = name_table [".cr2"] = cr2_type;
+            name_table ["image/dng"] = name_table ["image/x-adobe-dng"] = name_table [".dng"] = dng_type;
             name_table ["image/nef"] = name_table ["image/x-nikon-nef"] = name_table [".nef"] = nef_type;
             name_table ["image/rw2"] = name_table ["image/x-raw"] = name_table [".rw2"] = raw_type;
             name_table ["image/pef"] = name_table ["image/x-pentax-pef"] = name_table [".pef"] = nef_type;
@@ -91,19 +95,15 @@ namespace FSpot.Imaging {
 
             // Other types (FIXME: Currently unsupported by Taglib#, this list should shrink).
 
-            name_table [".kdc"] = typeof (FSpot.Imaging.NefFile);
-            name_table [".rw2"] = typeof (FSpot.Imaging.DCRawFile);
-            name_table [".orf"] =  typeof (FSpot.Imaging.NefFile);
-            name_table [".srf"] = typeof (FSpot.Imaging.NefFile);
-            name_table [".crw"] = typeof (FSpot.Imaging.Ciff.CiffFile);
-            name_table [".mrw"] = typeof (FSpot.Imaging.DCRawFile);
-            name_table [".raf"] = typeof (FSpot.Imaging.RafFile);
-            name_table [".x3f"] = typeof (FSpot.Imaging.DCRawFile);
-            name_table ["image/x-ciff"]  = name_table [".crw"];
-            name_table ["image/x-mrw"]   = name_table [".mrw"];
-            name_table ["image/x-x3f"]   = name_table [".x3f"];
-            name_table ["image/x-orf"]   = name_table [".orf"];
-            name_table ["image/x-raf"]   = name_table [".raf"];
+            name_table ["image/x-ciff"] = name_table [".crw"] = ciff_type;
+            name_table ["image/x-mrw"]  = name_table [".mrw"] = raw_type;
+            name_table ["image/x-x3f"]  = name_table [".x3f"] = raw_type;
+            name_table ["image/x-orf"]  = name_table [".orf"] = nef_type;
+            name_table ["image/x-raf"]  = name_table [".raf"] = raf_type;
+            name_table [".kdc"] = nef_type;
+            name_table [".rw2"] = raw_type;
+            name_table [".srf"] = nef_type;
+
 
             // as xcf pixbufloader is not part of gdk-pixbuf, check if it's there,
             // and enable it if needed.
@@ -194,6 +194,8 @@ namespace FSpot.Imaging {
 
 		public static bool IsJpeg (SafeUri uri)
 		{
+            // What about the other jpeg extensions?  Is there a
+            // reason they aren't listed as well?
 			string [] jpg_extensions = {".jpg", ".jpeg"};
 			var extension = uri.GetExtension ().ToLower ();
 			foreach (string ext in jpg_extensions)
