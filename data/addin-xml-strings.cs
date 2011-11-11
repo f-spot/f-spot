@@ -5,6 +5,11 @@ internal static class AddinXmlStringCatalog
     private static void Strings ()
     {
         // ../src/Clients/MainApp/FSpot.addin.xml
+        Catalog.GetString (@"Copy Photo");
+        Catalog.GetString (@"Rotate _Left");
+        Catalog.GetString (@"Rotate _Right");
+        Catalog.GetString (@"_Remove From Catalog");
+        Catalog.GetString (@"_Delete From Drive");
 
         // ../src/Extensions/Editors/FSpot.Editors.Blackout/Resources/BlackoutEditor.addin.xml
         Catalog.GetString (@"BlackoutEditor");
@@ -80,51 +85,61 @@ internal static class AddinXmlStringCatalog
         Catalog.GetString (@"ChangePath");
         Catalog.GetString (@"UNSTABLE - Please ensure you have a backup of your photos.db before you test this extension. This extension will allow you to change the base path to the your photos. It is very handy if you move your photos from ~/Photos to /OurPhotos for instance. Just ensure you let SqLite continue to process the changes for up to a few hours after f-spot reports finished. It will only change the path to photos which are located under the Photo directory.");
         Catalog.GetString (@"Tools");
+        Catalog.GetString (@"Change path to photos");
 
         // ../src/Extensions/Tools/FSpot.Tools.DevelopInUFraw/Resources/DevelopInUFRaw.addin.xml
         Catalog.GetString (@"DevelopInUFRaw");
         Catalog.GetString (@"Develop the image in UFRaw, saves the result as a new version\n\nNote: Require ufraw 0.13 or CVS version newer than 2007-09-06 !!!");
         Catalog.GetString (@"Tools");
+        Catalog.GetString (@"Develop in UFRaw");
 
         // ../src/Extensions/Tools/FSpot.Tools.LiveWebGallery/Resources/LiveWebGallery.addin.xml
         Catalog.GetString (@"LiveWebGallery");
         Catalog.GetString (@"Share photos with other people on the same network via Web Browser");
         Catalog.GetString (@"Tools");
+        Catalog.GetString (@"Live Web Gallery");
 
         // ../src/Extensions/Tools/FSpot.Tools.MergeDb/Resources/MergeDb.addin.xml
         Catalog.GetString (@"MergeDb");
         Catalog.GetString (@"Merge another db back to the main one");
         Catalog.GetString (@"Tools");
+        Catalog.GetString (@"Merge Db");
 
         // ../src/Extensions/Tools/FSpot.Tools.MetaPixel/MetaPixel.addin.xml
         Catalog.GetString (@"MetaPixel");
         Catalog.GetString (@"Create photomosaics using MetaPixel (http://www.complang.tuwien.ac.at/schani/metapixel/)");
         Catalog.GetString (@"Tools");
+        Catalog.GetString (@"Create p_hotomosaic");
 
         // ../src/Extensions/Tools/FSpot.Tools.PictureTile/PictureTile.addin.xml
         Catalog.GetString (@"PictureTile");
         Catalog.GetString (@"Create photo wall using PictureTile by Jamie Zawinski (http://www.jwz.org/picturetile/)");
         Catalog.GetString (@"Tools");
+        Catalog.GetString (@"Create photo_wall");
 
         // ../src/Extensions/Tools/FSpot.Tools.RawPlusJpeg/Resources/RawPlusJpeg.addin.xml
         Catalog.GetString (@"RawPlusJpeg");
         Catalog.GetString (@"Merge RAW+Jpeg as multiple versions of the same photo");
         Catalog.GetString (@"Tools");
+        Catalog.GetString (@"Merge Raw");
 
         // ../src/Extensions/Tools/FSpot.Tools.RetroactiveRoll/Resources/RetroactiveRoll.addin.xml
         Catalog.GetString (@"RetroactiveRoll");
         Catalog.GetString (@"Retroactively assign old photos to import rolls");
         Catalog.GetString (@"Tools");
+        Catalog.GetString (@"Reassign to new import roll");
 
         // ../src/Extensions/Tools/FSpot.Tools.ScreensaverConfig/Resources/ScreensaverConfig.addin.xml
         Catalog.GetString (@"Screensaver Configuration");
         Catalog.GetString (@"Screensaver options");
         Catalog.GetString (@"Tools");
+        Catalog.GetString (@"Configure Screensaver");
 
         // ../src/Extensions/Tools/FSpot.Tools.SyncCatalog/SyncCatalog.addin.xml
         Catalog.GetString (@"SyncMetaData");
         Catalog.GetString (@"Sync MetaData information of all catalog with Photos");
         Catalog.GetString (@"Tools");
+        Catalog.GetString (@"Sync Catalog with Photos");
 
         // ../src/Extensions/Transitions/FSpot.Transitions.Cover/Resources/CoverTransition.addin.xml
         Catalog.GetString (@"Cover Transition");

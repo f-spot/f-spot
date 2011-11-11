@@ -9,7 +9,8 @@ public static class AddinXmlStringExtract
         var queries = new [] {
             "/Addin/@name",
             "/Addin/@description",
-            "/Addin/@category"
+            "/Addin/@category",
+            "/Addin/Extension/Command/@_label"
         };
 
         Console.WriteLine (@"// Generated - Do Not Edit!
