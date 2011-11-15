@@ -28,6 +28,7 @@
 //
 
 using System;
+using Mono.Unix;
 
 using Cairo;
 using Gdk;
@@ -41,7 +42,7 @@ namespace FSpot.Addins.Transitions
 {
 	public class Cover : CairoTransition
 	{
-		public Cover () : base ("Cover")
+		public Cover () : base (Catalog.GetString ("Cover"))
 		{
 		}
 
