@@ -379,6 +379,8 @@ src/Extensions/Tools/FSpot.Tools.RetroactiveRoll/Makefile
 src/Extensions/Tools/FSpot.Tools.ScreensaverConfig/Makefile
 src/Extensions/Transitions/Makefile
 src/Extensions/Transitions/FSpot.Transitions.Cover/Makefile
+src/Extensions/Transitions/FSpot.Transitions.Dissolve/Makefile
+src/Extensions/Transitions/FSpot.Transitions.Push/Makefile
 
 docs/Makefile
 icons/Makefile

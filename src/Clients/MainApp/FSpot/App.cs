@@ -298,7 +298,6 @@ namespace FSpot
 			if (photos.Length > 0) {
 				Array.Sort (photos, new IPhotoComparer.RandomSort ());
 				slideshow = new FSpot.Widgets.SlideShow (new BrowsablePointer (new PhotoList (photos), 0), (uint)(delay * 1000), true);
-				slideshow.Transition = new FSpot.Transitions.DissolveTransition ();
 				window.Add (slideshow);
 			} else {
 				Gtk.HBox outer = new Gtk.HBox ();

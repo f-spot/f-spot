@@ -6,8 +6,6 @@ SOURCES =  \
 	FSpot.Gui/CompositeUtils.cs \
 	FSpot.Gui/WindowOpacityFader.cs \
 	FSpot.Transitions/CairoTransition.cs \
-	FSpot.Transitions/DissolveTransition.cs \
-	FSpot.Transitions/PushTransition.cs \
 	FSpot.Transitions/SlideShowTransition.cs \
 	FSpot.Widgets/ApplicationActivatedEventArgs.cs \
 	FSpot.Widgets/BuilderWindow.cs \

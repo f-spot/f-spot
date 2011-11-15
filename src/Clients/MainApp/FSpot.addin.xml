@@ -76,9 +76,4 @@
 		<Editor editor_type = "FSpot.Editors.AutoStretchEditor"/>
 		<Editor editor_type = "FSpot.Editors.ColorEditor"/>
 	</Extension>
-
-	<Extension path = "/FSpot/SlideShow">
-		<Transition transition_type = "FSpot.Transitions.DissolveTransition"/>
-		<Transition transition_type = "FSpot.Transitions.PushTransition"/>
-	</Extension>
 </Addin>

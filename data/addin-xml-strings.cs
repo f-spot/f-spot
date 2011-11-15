@@ -146,5 +146,15 @@ internal static class AddinXmlStringCatalog
         Catalog.GetString (@"A Slideshow transition that covers images");
         Catalog.GetString (@"Transitions");
 
+        // ../src/Extensions/Transitions/FSpot.Transitions.Dissolve/Resources/DissolveTransition.addin.xml
+        Catalog.GetString (@"Dissolve Transition");
+        Catalog.GetString (@"A Slideshow transition that dissolves images");
+        Catalog.GetString (@"Transitions");
+
+        // ../src/Extensions/Transitions/FSpot.Transitions.Push/Resources/PushTransition.addin.xml
+        Catalog.GetString (@"Push Transition");
+        Catalog.GetString (@"A Slideshow transition that pushes images");
+        Catalog.GetString (@"Transitions");
+
     }
 }
