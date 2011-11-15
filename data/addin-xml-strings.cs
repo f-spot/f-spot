@@ -40,46 +40,57 @@ internal static class AddinXmlStringCatalog
         Catalog.GetString (@"CD Export");
         Catalog.GetString (@"This extension allows you to burn your photos to CD.");
         Catalog.GetString (@"Export");
+        Catalog.GetString (@"_CD...");
 
         // ../src/Extensions/Exporters/FSpot.Exporters.Facebook/Resources/FacebookExport.addin.xml
         Catalog.GetString (@"FacebookExport");
         Catalog.GetString (@"Export pictures to facebook");
         Catalog.GetString (@"Export");
+        Catalog.GetString (@"F_acebook...");
 
         // ../src/Extensions/Exporters/FSpot.Exporters.Flickr/Resources/FlickrExport.addin.xml
         Catalog.GetString (@"Flickr Export");
         Catalog.GetString (@"This extension allows you to export your photos to Flickr and 23hq.");
         Catalog.GetString (@"Export");
+        Catalog.GetString (@"_Flickr...");
+        Catalog.GetString (@"_23hq...");
+        Catalog.GetString (@"_Zooomr...");
 
         // ../src/Extensions/Exporters/FSpot.Exporters.Folder/Resources/FolderExport.addin.xml
         Catalog.GetString (@"Folder Export");
         Catalog.GetString (@"This extension allows you to export your photos to HTML galleries, Original galleries or just to a folder.");
         Catalog.GetString (@"Export");
+        Catalog.GetString (@"F_older...");
 
         // ../src/Extensions/Exporters/FSpot.Exporters.Gallery/Resources/GalleryExport.addin.xml
         Catalog.GetString (@"Gallery Export");
         Catalog.GetString (@"This extension allows you to export your photos to PHP Gallery (http://gallery.menalto.com).");
         Catalog.GetString (@"Export");
+        Catalog.GetString (@"Web _Gallery...");
 
         // ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/Resources/PicasaWebExport.addin.xml
         Catalog.GetString (@"PicasaWeb Export");
         Catalog.GetString (@"This extension allows you to export your photos to PicasaWeb.");
         Catalog.GetString (@"Export");
+        Catalog.GetString (@"_PicasaWeb...");
 
         // ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/Resources/SmugMugExport.addin.xml
         Catalog.GetString (@"SmugMug Export");
         Catalog.GetString (@"This extension allows you to export your photos to SmugMug.");
         Catalog.GetString (@"Export");
+        Catalog.GetString (@"_SmugMug...");
 
         // ../src/Extensions/Exporters/FSpot.Exporters.Tabblo/Resources/TabbloExport.addin.xml
         Catalog.GetString (@"Tabblo Export");
         Catalog.GetString (@"This extension allows you to export your photos to Tabblo.");
         Catalog.GetString (@"Export");
+        Catalog.GetString (@"_Tabblo...");
 
         // ../src/Extensions/Exporters/FSpot.Exporters.Zip/Resources/ZipExport.addin.xml
         Catalog.GetString (@"Zip export");
         Catalog.GetString (@"Simple export to Zip file");
         Catalog.GetString (@"Export");
+        Catalog.GetString (@"Compressed fil_e...");
 
         // ../src/Extensions/Tools/FSpot.Tools.ChangePhotoPath/Resources/ChangePhotoPath.addin.xml
         Catalog.GetString (@"ChangePath");

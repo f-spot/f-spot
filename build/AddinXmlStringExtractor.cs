@@ -10,7 +10,8 @@ public static class AddinXmlStringExtract
             "/Addin/@name",
             "/Addin/@description",
             "/Addin/@category",
-            "/Addin/Extension/Command/@_label"
+            "/Addin/Extension/Command/@_label",
+            "/Addin/Extension/ExportMenuItem/@_label"
         };
 
         Console.WriteLine (@"// Generated - Do Not Edit!
