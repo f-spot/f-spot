@@ -55,15 +55,14 @@ namespace FSpot
 #pragma warning disable 0649
 		[GtkBeans.Builder.Object] private Gtk.ScrolledWindow   tray_scrolled;
 		[GtkBeans.Builder.Object] private Label 		NumberOfPictures, TotalOriginalSize, ApproxNewSize;
-		[GtkBeans.Builder.Object] private RadioButton 	tiny_size, small_size, medium_size,
-														large_size, x_large_size, original_size;
+		[GtkBeans.Builder.Object] private RadioButton 	tiny_size, small_size, medium_size, large_size, x_large_size, original_size;
 #pragma warning restore 0649
 
 		long Orig_Photo_Size 	= 0;
 		double scale_percentage = 0.3;
 
 		// The different sizes we can shrink to foto to. See RadioButton above for labels.
-		static int[] sizes 		= { 0, 320, 	480, 	640, 	800, 	1024 };
+		static int[] sizes 	= { 0, 320, 	480, 	640, 	800, 	1024 };
 
 		// Estimated size relative to original after shrinking down the photo.
 		double[] avg_scale_ref 	= { 0, 0.0186,	0.0348,	0.0532,	0.0826,	0.1234 };
@@ -199,26 +198,24 @@ namespace FSpot
 
 		private void UpdateEstimatedSize()
 		{
-				int new_size_index;
-				long new_approx_total_size;
-				string approxresult;
+			int new_size_index;
+			long new_approx_total_size;
+			string approxresult;
 
-				new_size_index = GetScaleIndex();
-				if (new_size_index == 0)
-					new_approx_total_size = Orig_Photo_Size;
-				else
-					new_approx_total_size = System.Convert.ToInt64(Orig_Photo_Size * avg_scale [new_size_index]);
+			new_size_index = GetScaleIndex();
+			if (new_size_index == 0)
+				new_approx_total_size = Orig_Photo_Size;
+			else
+				new_approx_total_size = System.Convert.ToInt64(Orig_Photo_Size * avg_scale [new_size_index]);
 
-				approxresult = GLib.Format.SizeForDisplay (new_approx_total_size);
-				ApproxNewSize.Text 	= approxresult;
-
+			approxresult = GLib.Format.SizeForDisplay (new_approx_total_size);
+			ApproxNewSize.Text 	= approxresult;
 		}
 
 		public void on_size_toggled (object o, EventArgs args)
 		{
 			UpdateEstimatedSize();
 		}
-
 
 		private void HandleResponse (object sender, Gtk.ResponseArgs args)
 		{

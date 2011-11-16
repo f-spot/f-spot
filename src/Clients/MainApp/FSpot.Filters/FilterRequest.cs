@@ -41,14 +41,13 @@ namespace FSpot.Filters {
 
 	public class FilterRequest : IDisposable
 	{
-		SafeUri source;
 		SafeUri current;
 
 		ArrayList temp_uris;
 
 		public FilterRequest (SafeUri source)
 		{
-			this.source = source;
+			Source = source;
 			this.current = source;
 			temp_uris = new ArrayList ();
 		}
@@ -58,14 +57,12 @@ namespace FSpot.Filters {
 			Close ();
 		}
 
-		public SafeUri Source {
-			get { return source; }
-		}
+		public SafeUri Source { get; private set; }
 
 		public SafeUri Current {
 			get { return current; }
 			set {
-				if (!value.Equals (source) && !temp_uris.Contains (value))
+				if (!value.Equals (Source) && !temp_uris.Contains (value))
 					temp_uris.Add (value);
 				current = value;
 			}

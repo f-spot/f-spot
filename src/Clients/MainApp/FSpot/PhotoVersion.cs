@@ -38,6 +38,7 @@ namespace FSpot
         public IPhoto Photo { get; private set; }
         public SafeUri BaseUri { get; set; }
         public string Filename { get; set; }
+
         public SafeUri Uri {
             get { return BaseUri.Append (Filename); }
             set {
@@ -45,6 +46,7 @@ namespace FSpot
                 Filename = value.GetFilename ();
             }
         }
+
         public string ImportMD5 { get; set; }
         public uint VersionId { get; private set; }
         public bool IsProtected { get; private set; }

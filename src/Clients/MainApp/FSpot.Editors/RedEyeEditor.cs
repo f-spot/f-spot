@@ -39,6 +39,7 @@ using System;
 namespace FSpot.Editors {
 	class RedEyeEditor : Editor {
 		public RedEyeEditor () : base (Catalog.GetString ("Red-eye Reduction"), "red-eye-remove") {
+			// FIXME: ??? need tooltip Catalog.GetString ("Remove red-eye form the photo")
 			NeedsSelection = true;
 			ApplyLabel = Catalog.GetString ("Fix!");
 		}

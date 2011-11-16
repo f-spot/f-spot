@@ -35,4 +35,3 @@ namespace FSpot.Bling
 		EaseInOut,
 	}
 }
-

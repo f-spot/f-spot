@@ -73,28 +73,16 @@ namespace FSpot.Widgets
 		}
 
 		class LayoutChild {
-			Gtk.Widget widget;
-			public Gtk.Widget Widget {
-				get { return widget; }
-			}
+			public Gtk.Widget Widget { get; private set; }
 
-			int x;
-			public int X {
-				get { return x; } 
-				set { x = value; }
-			}
-
-			int y;
-			public int Y {
-				get { return y; }
-				set { y = value; }
-			}
+			public int X { get; set; }
+			public int Y { get; set; }
 
 			public LayoutChild (Gtk.Widget widget, int x, int y)
 			{
-				this.widget = widget;
-				this.x = x;
-				this.y = y;
+				Widget = widget;
+				X = x;
+				Y = y;
 			}
 		}
 

@@ -34,13 +34,10 @@ using System;
 namespace FSpot.Core
 {
 	public class DbItem {
-		uint id;
-		public uint Id {
-			get { return id; }
-		}
+		public uint Id { get; private set; }
 
 		protected DbItem (uint id) {
-			this.id = id;
+			Id = id;
 		}
 	}
 

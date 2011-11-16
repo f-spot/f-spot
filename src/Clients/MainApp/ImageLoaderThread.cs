@@ -30,7 +30,6 @@
 // OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
-
 using Gdk;
 using Gtk;
 using System.Collections;
@@ -43,11 +42,13 @@ using Hyena;
 using FSpot.Utils;
 using FSpot.Imaging;
 
-public class ImageLoaderThread {
+public class ImageLoaderThread
+{
 
 	// Types.
 
-	public class RequestItem {
+	public class RequestItem
+	{
 		/* The uri to the image.  */
 		public SafeUri Uri { get; set; }
 
@@ -55,38 +56,46 @@ public class ImageLoaderThread {
 		public int Order { get; set; }
 
 		/* The pixbuf obtained from the operation.  */
-        private Pixbuf result;
+		private Pixbuf result;
+
 		public Pixbuf Result {
-            get {
-				if (result == null) return null;
+			get {
+				if (result == null) {
+					return null;
+				}
 				return result.ShallowCopy ();
 			}
-            set { result = value; }
-        }
+			set { result = value; }
+		}
 
 		/* the maximium size both must be greater than zero if either is */
 		public int Width { get; set; }
+
 		public int Height { get; set; }
 
-		public RequestItem (SafeUri uri, int order, int width, int height) {
+		public RequestItem (SafeUri uri, int order, int width, int height)
+		{
 			this.Uri = uri;
 			this.Order = order;
 			this.Width = width;
 			this.Height = height;
-			if ((width <= 0 && height > 0) || (height <= 0 && width > 0))
+			if ((width <= 0 && height > 0) || (height <= 0 && width > 0)) {
 				throw new System.Exception ("Invalid arguments");
+			}
 		}
 
-        ~RequestItem () {
-            if (result != null)
-                result.Dispose ();
-            result = null;
-        }
+		~RequestItem ()
+		{
+			if (result != null) {
+				result.Dispose ();
+			}
+			result = null;
+		}
 	}
 
 
 	// Private members.
-    static List<ImageLoaderThread> instances = new List<ImageLoaderThread> ();
+	static List<ImageLoaderThread> instances = new List<ImageLoaderThread> ();
 
 	/* The thread used to handle the requests.  */
 	private Thread worker_thread;
@@ -115,12 +124,12 @@ public class ImageLoaderThread {
 	/* Whether a notification is pending on `pending_notify'
 	   already or not.  */
 	private bool pending_notify_notified;
-
 	volatile bool should_cancel = false;
 
 	// Public API.
 
-	public delegate void PixbufLoadedHandler (ImageLoaderThread loader, RequestItem result);
+	public delegate void PixbufLoadedHandler (ImageLoaderThread loader,RequestItem result);
+
 	public event PixbufLoadedHandler OnPixbufLoaded;
 
 	public ImageLoaderThread ()
@@ -132,20 +141,22 @@ public class ImageLoaderThread {
 
 		pending_notify = new ThreadNotify (new Gtk.ReadyEvent (HandleProcessedRequests));
 
-        instances.Add (this);
+		instances.Add (this);
 	}
 
-    void StartWorker ()
-    {
-        if (worker_thread != null)
-            return;
+	void StartWorker ()
+	{
+		if (worker_thread != null) {
+			return;
+		}
 
 		should_cancel = false;
 		worker_thread = new Thread (new ThreadStart (WorkerThread));
 		worker_thread.Start ();
-    }
+	}
 
 	int block_count;
+
 	public void PushBlock ()
 	{
 		System.Threading.Interlocked.Increment (ref block_count);
@@ -172,11 +183,12 @@ public class ImageLoaderThread {
 		worker_thread = null;
 	}
 
-    public static void CleanAll ()
-    {
-        foreach (var thread in instances)
-            thread.Cleanup ();
-    }
+	public static void CleanAll ()
+	{
+		foreach (var thread in instances) {
+			thread.Cleanup ();
+		}
+	}
 
 	public void Request (SafeUri uri, int order)
 	{
@@ -186,8 +198,9 @@ public class ImageLoaderThread {
 	public virtual void Request (SafeUri uri, int order, int width, int height)
 	{
 		lock (queue) {
-			if (InsertRequest (uri, order, width, height))
+			if (InsertRequest (uri, order, width, height)) {
 				Monitor.Pulse (queue);
+			}
 		}
 	}
 
@@ -215,13 +228,14 @@ public class ImageLoaderThread {
 					orig_image = img.Load ();
 				}
 			}
-		} catch (GLib.GException e){
+		} catch (GLib.GException e) {
 			Log.Exception (e);
 			return;
 		}
 
-		if (orig_image == null)
+		if (orig_image == null) {
 			return;
+		}
 
 		request.Result = orig_image;
 	}
@@ -231,20 +245,22 @@ public class ImageLoaderThread {
 
 	private bool InsertRequest (SafeUri uri, int order, int width, int height)
 	{
-        StartWorker ();
+		StartWorker ();
 
 		/* Check if this is the same as the request currently being processed.  */
-		lock(processed_requests) {
-			if (current_request != null && current_request.Uri == uri)
+		lock (processed_requests) {
+			if (current_request != null && current_request.Uri == uri) {
 				return false;
+			}
 		}
 		/* Check if a request for this path has already been queued.  */
 		RequestItem existing_request;
 		if (requests_by_uri.TryGetValue (uri, out existing_request)) {
 			/* FIXME: At least for now, this shouldn't happen.  */
-			if (existing_request.Order != order)
+			if (existing_request.Order != order) {
 				Log.WarningFormat ("BUG: Filing another request of order {0} (previously {1}) for `{2}'",
 						   order, existing_request.Order, uri);
+			}
 
 			queue.Remove (existing_request);
 			queue.Add (existing_request);
@@ -265,7 +281,7 @@ public class ImageLoaderThread {
 	/* The worker thread's main function.  */
 	private void WorkerThread ()
 	{
-        Log.Debug (this.ToString (), "Worker starting");
+		Log.Debug (this.ToString (), "Worker starting");
 		try {
 			while (!should_cancel) {
 				lock (processed_requests) {
@@ -283,11 +299,13 @@ public class ImageLoaderThread {
 
 				lock (queue) {
 
-					while ((queue.Count == 0 || block_count > 0) && !should_cancel)
+					while ((queue.Count == 0 || block_count > 0) && !should_cancel) {
 						Monitor.Wait (queue);
+					}
 
-					if (should_cancel)
+					if (should_cancel) {
 						return;
+					}
 
 					int pos = queue.Count - 1;
 
@@ -306,8 +324,9 @@ public class ImageLoaderThread {
 	protected virtual void EmitLoaded (Queue results)
 	{
 		if (OnPixbufLoaded != null) {
-			foreach (RequestItem r in results)
+			foreach (RequestItem r in results) {
 				OnPixbufLoaded (this, r);
+			}
 		}
 	}
 
@@ -319,7 +338,7 @@ public class ImageLoaderThread {
 		lock (processed_requests) {
 			/* Copy the queued items out of the shared queue so we hold the lock for
 			   as little time as possible.  */
-			results = processed_requests.Clone() as Queue;
+			results = processed_requests.Clone () as Queue;
 			processed_requests.Clear ();
 
 			pending_notify_notified = false;

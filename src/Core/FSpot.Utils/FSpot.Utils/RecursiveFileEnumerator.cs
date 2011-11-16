@@ -47,9 +47,9 @@ namespace FSpot.Utils
         public RecursiveFileEnumerator (string root)
         {
             this.root = root;
-            this.Recurse = true;
-            this.CatchErrors = false;
-            this.IgnoreSymlinks = false;
+            Recurse = true;
+            CatchErrors = false;
+            IgnoreSymlinks = false;
         }
 
         IEnumerable<File> ScanForFiles (File root)

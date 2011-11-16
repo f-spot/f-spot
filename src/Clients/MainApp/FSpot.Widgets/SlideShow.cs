@@ -77,7 +77,7 @@ namespace FSpot.Widgets
 
 		SlideShowTransition transition;
 		public SlideShowTransition Transition {
-			get { return transition; }
+            get { return transition; }
 			set {
 				if (value == transition)
 					return;

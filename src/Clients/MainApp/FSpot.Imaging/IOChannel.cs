@@ -66,15 +66,12 @@ namespace FSpot.Imaging {
 
 	public class DataReadEventArgs : EventArgs {
 		public bool Continue;
-		IOCondition condition;
 
-		public IOCondition Condition {
-			get { return condition; }
-		}
+		public IOCondition Condition { get; private set; }
 
 		public DataReadEventArgs (IOCondition condition)
 		{
-			this.condition = condition;
+			Condition = condition;
 			Continue = true;
 		}
 	}
@@ -264,7 +261,7 @@ namespace FSpot.Imaging {
 
 		public override long Seek (long position, SeekOrigin origin)
 		{
-            throw new NotSupportedException ();
+      		      throw new NotSupportedException ();
 		}
 
 		[DllImport("libglib-2.0-0.dll")]

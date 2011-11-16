@@ -121,14 +121,11 @@ namespace FSpot.Widgets {
 
 		private class AppMenuItem : ImageMenuItem
 		{
-			AppInfo app;
-			public AppInfo App {
-				get { return app; }
-			}
+			public AppInfo App { get; private set; }
 
 			public AppMenuItem (AppInfo app, bool show_icon) : base (app.Name)
 			{
-				this.app = app;
+				App = app;
 
 				if (!show_icon)
 					return;

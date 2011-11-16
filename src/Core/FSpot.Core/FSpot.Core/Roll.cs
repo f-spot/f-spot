@@ -39,14 +39,11 @@ namespace FSpot.Core
 	public class Roll : DbItem
 	{
 		// The time is always in UTC.
-		private DateTime time;
-		public DateTime Time {
-			get { return time; }
-		}
+		public DateTime Time { get; private set; }
 
 		public Roll (uint id, long unix_time) : base (id)
 		{
-			time = DateTimeUtil.ToDateTime (unix_time);
+			Time = DateTimeUtil.ToDateTime (unix_time);
 		}
 	}
 }

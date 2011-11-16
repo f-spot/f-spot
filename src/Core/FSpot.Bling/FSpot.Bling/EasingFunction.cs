@@ -33,20 +33,18 @@ namespace FSpot.Bling
 {
 	public abstract class EasingFunction
 	{
-		EasingMode easingMode;
-
 		public EasingFunction () : this (EasingMode.EaseIn)
 		{
 		}
 
 		public EasingFunction (EasingMode easingMode)
 		{
-			this.easingMode = easingMode;
+			EasingMode = easingMode;
 		}
 
 		public double Ease (double normalizedTime)
 		{
-			switch (easingMode) {
+			switch (EasingMode) {
 			case EasingMode.EaseIn:
 				return EaseInCore (normalizedTime);
 			case EasingMode.EaseOut:
@@ -59,10 +57,7 @@ namespace FSpot.Bling
 			throw new InvalidOperationException ("Unknown value for EasingMode");
 		}
 
-		public EasingMode EasingMode {
-			get { return easingMode; }
-			set { easingMode = value; }
-		}
+		public EasingMode EasingMode { get; set; }
 
 		protected abstract double EaseInCore (double normalizedTime);
 	}

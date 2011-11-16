@@ -42,31 +42,23 @@ namespace FSpot.Import {
 
         private class TagInfo {
             // This class contains the Root tag name, and its Icon name (if any)
-            string tag_name;
-            string icon_name;
-
-            public string TagName {
-                get { return tag_name; }
-            }
-
-            public string IconName {
-                get { return icon_name; }
-            }
+            public string TagName { get; private set; }
+            public string IconName { get; private set; }
 
             public bool HasIcon {
-                get { return icon_name != null; }
+                get { return IconName != null; }
             }
 
             public TagInfo (string t_name, string i_name)
             {
-                tag_name = t_name;
-                icon_name = i_name;
+                TagName = t_name;
+                IconName = i_name;
             }
 
             public TagInfo (string t_name)
             {
-                tag_name = t_name;
-                icon_name = null;
+                TagName = t_name;
+                IconName = null;
             }
         } // TagInfo
 

@@ -26,7 +26,6 @@
 // OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
-
 using System;
 
 using Hyena;
@@ -34,18 +33,17 @@ using Hyena.Data.Sqlite;
 
 namespace FSpot.Database
 {
-    public class FSpotDatabaseConnection : HyenaSqliteConnection
-    {
-        public FSpotDatabaseConnection (string dbpath) : base(dbpath)
-        {
-            //Execute ("PRAGMA synchronous = OFF");
-            //Execute ("PRAGMA temp_store = MEMORY");
-            //Execute ("PRAGMA count_changes = OFF");
+	public class FSpotDatabaseConnection : HyenaSqliteConnection
+	{
+		public FSpotDatabaseConnection (string dbpath) : base(dbpath)
+		{
+			//Execute ("PRAGMA synchronous = OFF");
+			//Execute ("PRAGMA temp_store = MEMORY");
+			//Execute ("PRAGMA count_changes = OFF");
 
-            if (ApplicationContext.CommandLine.Contains("debug-sql"))
-            {
-                Hyena.Data.Sqlite.HyenaSqliteCommand.LogAll = true;
-            }
-        }
-    }
+			if (ApplicationContext.CommandLine.Contains ("debug-sql")) {
+				Hyena.Data.Sqlite.HyenaSqliteCommand.LogAll = true;
+			}
+		}
+	}
 }

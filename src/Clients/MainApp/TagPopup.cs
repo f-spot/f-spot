@@ -32,14 +32,14 @@
 // OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
-
 using System;
 using Mono.Unix;
 using FSpot;
 using FSpot.Core;
 using FSpot.Utils;
 
-public class TagPopup {
+public class TagPopup
+{
 	public void Activate (Gdk.EventButton eb, Tag tag, Tag [] tags)
 	{
 		int photo_count = App.Instance.Organizer.SelectedPhotos ().Length;
@@ -54,18 +54,19 @@ public class TagPopup {
                 true
         );
 
-        FSpot.TermMenuItem.Create (tags, popup_menu);
+		FSpot.TermMenuItem.Create (tags, popup_menu);
 
 		GtkUtil.MakeMenuSeparator (popup_menu);
 
 		GtkUtil.MakeMenuItem (popup_menu, Catalog.GetString ("Create New Tag..."), "tag-new",
 				      App.Instance.Organizer.HandleCreateNewCategoryCommand, true);
 
-        GtkUtil.MakeMenuSeparator (popup_menu);
+		GtkUtil.MakeMenuSeparator (popup_menu);
 
 		GtkUtil.MakeMenuItem (popup_menu,
 			Catalog.GetString ("Edit Tag..."), "gtk-edit",
-			delegate { App.Instance.Organizer.HandleEditSelectedTagWithTag (tag); }, tag != null && tags_count == 1);
+			delegate {
+			App.Instance.Organizer.HandleEditSelectedTagWithTag (tag); }, tag != null && tags_count == 1);
 
 		GtkUtil.MakeMenuItem (popup_menu,
 			Catalog.GetPluralString ("Delete Tag", "Delete Tags", tags_count), "gtk-delete",
@@ -89,10 +90,11 @@ public class TagPopup {
 
 		}
 
-		if (eb != null)
+		if (eb != null) {
 			popup_menu.Popup (null, null, null, eb.Button, eb.Time);
-		else
+		} else {
 			popup_menu.Popup (null, null, null, 0, Gtk.Global.CurrentEventTime);
+		}
 
 	}
 }

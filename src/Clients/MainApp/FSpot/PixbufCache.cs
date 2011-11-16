@@ -62,7 +62,7 @@ namespace FSpot {
 
 		public void HandleThumbnailLoaded (ImageLoaderThread loader, ImageLoaderThread.RequestItem result)
 		{
-            Reload (result.Uri);
+                        Reload (result.Uri);
 		}
 
 		public void Request (SafeUri uri, object closure, int width, int height)
@@ -279,42 +279,25 @@ namespace FSpot {
 
 		public class CacheEntry : System.IDisposable {
 			private Gdk.Pixbuf pixbuf;
-			private SafeUri uri;
-			private int width;
-			private int height;
 			private object data;
-			private bool reload;
 			private PixbufCache cache;
 
 			public CacheEntry (PixbufCache cache, SafeUri uri, object closure, int width, int height)
 			{
-				this.uri = uri;
-				this.width = width;
-				this.height = height;
+				Uri = uri;
+				Width = width;
+				Height = height;
+                                // Should this be this.data or Data?
 				this.data = closure;
-				this.Reload = true;
+				Reload = true;
 				this.cache = cache;
 				cache.total_size += this.Size;
 			}
 
-			public bool Reload {
-				get { return reload; }
-				set { reload = value; }
-			}
-
-			public SafeUri Uri {
-				get { return uri; }
-			}
-
-			public int Width {
-				get { return width; }
-				set { width = value; }
-			}
-
-			public int Height {
-				get { return height; }
-				set { height = value; }
-			}
+			public bool Reload { get; set; }
+			public SafeUri Uri { get; private set; }
+			public int Width { get; set; }
+			public int Height { get; set; }
 
 			public object Data {
 				get {
@@ -330,7 +313,7 @@ namespace FSpot {
 			}
 
 			public bool IsDisposed {
-				get { return uri == null; }
+				get { return Uri == null; }
 			}
 
 			public void SetPixbufExtended (Gdk.Pixbuf value, bool ignore_undead)
@@ -348,11 +331,11 @@ namespace FSpot {
 					cache.total_size -= this.Size;
 					this.pixbuf = value;
 					if (pixbuf != null) {
-						this.width = pixbuf.Width;
-						this.height = pixbuf.Height;
+						Width = pixbuf.Width;
+						Height = pixbuf.Height;
 					}
 					cache.total_size += this.Size;
-					this.Reload = false;
+					Reload = false;
 
 					if (old != null)
 						old.Dispose ();
@@ -398,14 +381,14 @@ namespace FSpot {
 					}
 					this.pixbuf = null;
 					this.cache = null;
-					this.uri = null;
+					Uri = null;
 				}
 				System.GC.SuppressFinalize (this);
 			}
 
 			public int Size {
 				get {
-					return width * height * 3;
+					return Width * Height * 3;
 				}
 			}
 		}

@@ -34,10 +34,7 @@ using FSpot.Core;
 namespace FSpot
 {
 	public class PhotoEventArgs : DbItemEventArgs<Photo> {
-		PhotosChanges changes;
-		public PhotosChanges Changes {
-			get { return changes; }
-		}
+		public PhotosChanges Changes { get; private set; }
 
 		public PhotoEventArgs (Photo photo, PhotosChanges changes) : this (new Photo[] {photo}, changes)
 		{
@@ -45,7 +42,7 @@ namespace FSpot
 
 		public PhotoEventArgs (Photo[] photos, PhotosChanges changes) : base (photos)
 		{
-			this.changes = changes;
+			Changes = changes;
 		}
 	}
 }

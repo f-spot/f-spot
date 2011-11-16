@@ -48,11 +48,7 @@ namespace FSpot.Core {
 			set { base_dir = value; }
 		}
 
-		private static SafeUri photo_uri;
-		public static SafeUri PhotoUri {
-			get { return photo_uri; }
-			set { photo_uri = value; }
-		}
+		public static SafeUri PhotoUri { get; set; }
 
 		public static string HelpDirectory {
 			get {
@@ -61,17 +57,9 @@ namespace FSpot.Core {
 			}
 		}
 
-		private static Cms.Profile display_profile;
-		public static Cms.Profile DisplayProfile {
-			set { display_profile = value; }
-			get { return display_profile; }
-		}
+		public static Cms.Profile DisplayProfile { get; set; }
 
-		private static Cms.Profile destination_profile;
-		public static Cms.Profile DestinationProfile {
-			set { destination_profile = value; }
-			get { return destination_profile; }
-		}
+		public static Cms.Profile DestinationProfile { get; set; }
 
 		private static Gtk.IconTheme icon_theme;
 		public static Gtk.IconTheme IconTheme {
@@ -94,10 +82,6 @@ namespace FSpot.Core {
 			set { default_rc_files = value; }
 		}
 
-		private static Gtk.PageSetup page_setup;
-		public static Gtk.PageSetup PageSetup {
-			get { return page_setup; }
-			set { page_setup = value; }
-		}
+		public static Gtk.PageSetup PageSetup { get; set; }
 	}
 }

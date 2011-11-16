@@ -53,13 +53,7 @@ namespace FSpot {
 			TiltCounterclockwise,
 		}
 
-		private static Orient current_orientation;
-
-		public static Orient CurrentOrientation {
-			get {
-				return current_orientation;
-			}
-		}
+		public static Orient CurrentOrientation { get; set; }
 
 		public Accelerometer ()
 		{
@@ -70,10 +64,10 @@ namespace FSpot {
 			if (timer == 0 && available)
 				SetupAccelerometer ();
 
-			if (current_orientation == Orient.TiltCounterclockwise)
+			if (CurrentOrientation == Orient.TiltCounterclockwise)
 				return FSpot.Utils.PixbufUtils.Rotate90 (po);
 
-			if (current_orientation == Orient.TiltClockwise)
+			if (CurrentOrientation == Orient.TiltClockwise)
 				return FSpot.Utils.PixbufUtils.Rotate270 (po);
 
 			return po;
@@ -103,8 +97,8 @@ namespace FSpot {
 		{
 			Orient new_orient = GetScreenOrientation ();
 
-			if (new_orient != current_orientation) {
-				current_orientation = new_orient;
+			if (new_orient != CurrentOrientation) {
+				CurrentOrientation = new_orient;
 
 				EventHandler eh = OrientationChanged;
 				if (eh != null)

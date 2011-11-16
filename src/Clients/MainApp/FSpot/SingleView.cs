@@ -126,9 +126,9 @@ namespace FSpot {
 
 			collection = new UriCollection (uris);
 
-            TargetList targetList = new TargetList();
-            targetList.AddTextTargets((uint)DragDropTargets.TargetType.PlainText);
-            targetList.AddUriTargets((uint)DragDropTargets.TargetType.UriList);
+			TargetList targetList = new TargetList();
+			targetList.AddTextTargets((uint)DragDropTargets.TargetType.PlainText);
+			targetList.AddUriTargets((uint)DragDropTargets.TargetType.UriList);
 
 			directory_view = new SelectionCollectionGridView (collection);
 			directory_view.Selection.Changed += HandleSelectionChanged;

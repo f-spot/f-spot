@@ -444,26 +444,13 @@ namespace FSpot {
 		}
 
 		public Literal (Term parent, Tag tag, Literal after) : base (parent, after) {
-			this.tag = tag;
+			Tag = tag;
 		}
 
 		/** Properties **/
 
-		public static ArrayList FocusedLiterals
-		{
-			get {
-				return focusedLiterals;
-			}
-			set {
-				focusedLiterals = value;
-			}
-		}
-
-		public Tag Tag {
-			get {
-				return tag;
-			}
-		}
+		public static ArrayList FocusedLiterals { get; set; }
+		public Tag Tag { get; private set; }
 
 		public override bool IsNegated {
 			get {

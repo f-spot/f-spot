@@ -69,9 +69,9 @@ namespace FSpot {
 		// Selection management.
 
 		public Tag TagAtPosition (double x, double y)
-	    {
-	        return TagAtPosition((int) x, (int) y);
-	    }
+		{
+			return TagAtPosition((int) x, (int) y);
+		}
 
 		public Tag TagAtPosition (int x, int y)
 		{
@@ -105,7 +105,6 @@ namespace FSpot {
 		}
 
 		// Loading up the store.
-
 		private void LoadCategory (Category category, TreeIter parent_iter)
 		{
 			IList<Tag> tags = category.Children;

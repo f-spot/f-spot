@@ -35,5 +35,3 @@ namespace FSpot.Widgets
 		Free,
 	}
 }
-
-

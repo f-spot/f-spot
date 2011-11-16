@@ -37,11 +37,7 @@ using Hyena;
 namespace FSpot.Core
 {
 	public class Tag : DbItem, IComparable<Tag>, IDisposable {
-		string name;
-		public string Name {
-			get { return name; }
-			set {  name = value;}
-		}
+		public string Name { get; set; }
 
 		Category category;
 		public Category Category {
@@ -56,11 +52,7 @@ namespace FSpot.Core
 			}
 		}
 
-		int sort_priority;
-		public int SortPriority {
-			get { return sort_priority; }
-			set { sort_priority = value; }
-		}
+		public int SortPriority { get; set; }
 
 		int popularity = 0;
 		public int Popularity {
@@ -70,23 +62,19 @@ namespace FSpot.Core
 
 		// Icon.  If theme_icon_name is not null, then we save the name of the icon instead
 		// of the actual icon data.
-		string theme_icon_name;
-		public string ThemeIconName {
-			get { return theme_icon_name; }
-			set { theme_icon_name = value; }
-		}
+		public string ThemeIconName { get; set; }
 
 		Pixbuf icon;
 		public Pixbuf Icon {
 			get {
-				if (icon == null && theme_icon_name != null) {
+				if (icon == null && ThemeIconName != null) {
 					cached_icon_size = IconSize.Hidden;
-					icon = GtkUtil.TryLoadIcon (Global.IconTheme, theme_icon_name, 48, (Gtk.IconLookupFlags)0);
+					icon = GtkUtil.TryLoadIcon (Global.IconTheme, ThemeIconName, 48, (Gtk.IconLookupFlags)0);
 				}
 				return icon;
 			}
 			set {
-				theme_icon_name = null;
+				ThemeIconName = null;
 				if (icon != null)
 					icon.Dispose ();
 				icon = value;
@@ -124,10 +112,10 @@ namespace FSpot.Core
 					return null;
 				if (tag_icon_size == cached_icon_size)
 					return cached_icon;
-				if (theme_icon_name != null) { //Theme icon
+				if (ThemeIconName != null) { //Theme icon
 					if (cached_icon != null)
 						cached_icon.Dispose ();
-					cached_icon = GtkUtil.TryLoadIcon (Global.IconTheme, theme_icon_name, (int) tag_icon_size, (Gtk.IconLookupFlags)0);
+					cached_icon = GtkUtil.TryLoadIcon (Global.IconTheme, ThemeIconName, (int) tag_icon_size, (Gtk.IconLookupFlags)0);
 
 					if (Math.Max (cached_icon.Width, cached_icon.Height) <= (int) tag_icon_size)
 						return cached_icon;

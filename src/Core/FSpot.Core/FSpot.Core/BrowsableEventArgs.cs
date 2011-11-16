@@ -39,10 +39,7 @@ namespace FSpot.Core
 			get { return items; }
 		}
 
-		IBrowsableItemChanges changes;
-		public IBrowsableItemChanges Changes {
-			get { return changes; }
-		}
+		public IBrowsableItemChanges Changes { get; private set; }
 
 		public BrowsableEventArgs (int item, IBrowsableItemChanges changes) : this (new int[] {item}, changes)
 		{
@@ -51,7 +48,7 @@ namespace FSpot.Core
 		public BrowsableEventArgs (int[] items, IBrowsableItemChanges changes)
 		{
 			this.items = items;
-			this.changes = changes;
+			Changes = changes;
 		}
 	}
 }

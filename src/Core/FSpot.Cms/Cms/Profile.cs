@@ -43,10 +43,7 @@ namespace Cms {
 			SetErrorAction (ErrorAction.Show);
 		}
 
-		private HandleRef handle;
-		public HandleRef Handle {
-			get { return handle; }
-		}
+		public HandleRef Handle { get; private set; }
 
 		private Profile () : this (NativeMethods.CmsCreateProfilePlaceholder ())
 		{
@@ -173,7 +170,7 @@ namespace Cms {
 
 		public Profile (IccColorSpace color_space, GammaTable [] gamma)
 		{
-			handle = new HandleRef (this, NativeMethods.CmsCreateLinearizationDeviceLink (color_space, CopyHandles (gamma)));
+			Handle = new HandleRef (this, NativeMethods.CmsCreateLinearizationDeviceLink (color_space, CopyHandles (gamma)));
 		}
 
 		private static HandleRef [] CopyHandles (GammaTable [] gamma)
@@ -190,14 +187,14 @@ namespace Cms {
 
 		public Profile (ColorCIExyY whitepoint, ColorCIExyYTriple primaries, GammaTable [] gamma)
 		{
-			handle = new HandleRef (this, NativeMethods.CmsCreateRGBProfile (out whitepoint, out primaries, CopyHandles (gamma)));
+			Handle = new HandleRef (this, NativeMethods.CmsCreateRGBProfile (out whitepoint, out primaries, CopyHandles (gamma)));
 		}
 
-		public Profile (string path) 
+		public Profile (string path)
 		{
-			handle = new HandleRef (this, NativeMethods.CmsOpenProfileFromFile (path, "r"));
+			Handle = new HandleRef (this, NativeMethods.CmsOpenProfileFromFile (path, "r"));
 
-			if (handle.Handle == IntPtr.Zero)
+			if (Handle.Handle == IntPtr.Zero)
 				throw new CmsException ("Error opening ICC profile in file " + path);
 		}
 
@@ -205,10 +202,10 @@ namespace Cms {
 		{
 			unsafe {
 				uint length = 0;
-				if (NativeMethods.CmsSaveProfileToMem (this.Handle, null, ref length)) {
+				if (NativeMethods.CmsSaveProfileToMem (Handle, null, ref length)) {
 					byte [] data = new byte [length];
 					fixed (byte * data_p = &data [0]) {
-						if (NativeMethods.CmsSaveProfileToMem (this.Handle, data_p, ref length)) {
+						if (NativeMethods.CmsSaveProfileToMem (Handle, data_p, ref length)) {
 							return data;
 						}
 					}
@@ -245,14 +242,14 @@ namespace Cms {
 			
 			if (profileh == IntPtr.Zero)
 				throw new CmsException ("Invalid Profile Data");
-			else 
-				this.handle = new HandleRef (this, profileh);
+			else
+				Handle = new HandleRef (this, profileh);
 		}
 
 		public ColorCIEXYZ MediaWhitePoint {
 			get {
 				ColorCIEXYZ wp;
-				if (!NativeMethods.CmsTakeMediaWhitePoint (out wp, handle))
+				if (!NativeMethods.CmsTakeMediaWhitePoint (out wp, Handle))
 					throw new CmsException ("unable to retrieve white point from profile");
 				return wp;
 			}
@@ -261,7 +258,7 @@ namespace Cms {
 		public ColorCIEXYZ MediaBlackPoint {
 			get {
 				ColorCIEXYZ black;
-				if (!NativeMethods.CmsTakeMediaBlackPoint (out black, handle))
+				if (!NativeMethods.CmsTakeMediaBlackPoint (out black, Handle))
 					throw new CmsException ("unable to retrieve white point from profile");
 				
 				return black;
@@ -271,7 +268,7 @@ namespace Cms {
 		public ColorCIEXYZTriple Colorants {
 			get {
 				ColorCIEXYZTriple colors;
-				if (!NativeMethods.CmsTakeColorants (out colors, handle))
+				if (!NativeMethods.CmsTakeColorants (out colors, Handle))
 					throw new CmsException ("Unable to retrieve profile colorants");
 				
 				return colors;
@@ -279,17 +276,17 @@ namespace Cms {
 		}
 		
 		public IccColorSpace ColorSpace {
-			get { return (IccColorSpace) NativeMethods.CmsGetColorSpace (this.handle); }
+			get { return (IccColorSpace) NativeMethods.CmsGetColorSpace (Handle); }
 		}
 
 		public IccProfileClass DeviceClass {
-			get { return (IccProfileClass) NativeMethods.CmsGetDeviceClass (this.handle); }
+			get { return (IccProfileClass) NativeMethods.CmsGetDeviceClass (Handle); }
 		}
 		
 		public string Model {
 			get {
 				lock (srgb) {
-					return Marshal.PtrToStringAnsi (NativeMethods.CmsTakeModel (handle));
+					return Marshal.PtrToStringAnsi (NativeMethods.CmsTakeModel (Handle));
 				}
 			}
 		}
@@ -297,7 +294,7 @@ namespace Cms {
 		public string ProductName {
 			get {
 				lock (srgb) {
-					return Marshal.PtrToStringAnsi (NativeMethods.CmsTakeProductName (handle));
+					return Marshal.PtrToStringAnsi (NativeMethods.CmsTakeProductName (Handle));
 				}
 			}
 		}
@@ -305,7 +302,7 @@ namespace Cms {
 		public string ProductDescription {
 			get {
 				lock (srgb) {
-					return Marshal.PtrToStringAnsi (NativeMethods.CmsTakeProductDesc (handle));
+					return Marshal.PtrToStringAnsi (NativeMethods.CmsTakeProductDesc (Handle));
 				}
 			}
 		}
@@ -328,7 +325,7 @@ namespace Cms {
 
 		protected Profile (IntPtr handle)
 		{
-			this.handle = new HandleRef (this, handle);
+			Handle = new HandleRef (this, handle);
 		}
 
 		public void Dispose () 
@@ -340,7 +337,7 @@ namespace Cms {
 
 		protected virtual void Cleanup ()
 		{
-			if (NativeMethods.CmsCloseProfile (this.Handle) == 0)
+			if (NativeMethods.CmsCloseProfile (Handle) == 0)
 				throw new CmsException ("Error closing Handle");
 
 		}

@@ -44,36 +44,17 @@ using Hyena.Data.Sqlite;
 namespace FSpot {
 public class ExportItem : DbItem {
 
-    private uint image_id;
-    public uint ImageId {
-        get { return image_id; }
-        set { image_id = value; }
-    }
-
-    private uint image_version_id;
-    public uint ImageVersionId {
-        get { return image_version_id; }
-        set { image_version_id = value; }
-    }
-
-    private string export_type;
-    public string ExportType {
-        get { return export_type; }
-        set { export_type = value; }
-    }
-
-    private string export_token;
-    public string ExportToken {
-        get { return export_token; }
-        set { export_token = value; }
-    }
+    public uint ImageId { get; set; }
+    public uint ImageVersionId { get; set; }
+    public string ExportType { get; set; }
+    public string ExportToken { get; set; }
 
     public ExportItem (uint id, uint image_id, uint image_version_id, string export_type, string export_token) : base (id)
     {
-        this.image_id = image_id;
-        this.image_version_id = image_version_id;
-        this.export_type = export_type;
-        this.export_token = export_token;
+        ImageId = image_id;
+        ImageVersionId = image_version_id;
+        ExportType = export_type;
+        ExportToken = export_token;
     }
 }
 

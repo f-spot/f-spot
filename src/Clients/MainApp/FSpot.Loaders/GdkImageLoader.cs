@@ -28,7 +28,6 @@
 // OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
-
 using System;
 using System.Threading;
 using Gdk;
@@ -38,7 +37,8 @@ using FSpot.Imaging;
 using Hyena;
 using TagLib.Image;
 
-namespace FSpot.Loaders {
+namespace FSpot.Loaders
+{
 	public class GdkImageLoader : Gdk.PixbufLoader, IImageLoader
 	{
 #region public api
@@ -46,11 +46,12 @@ namespace FSpot.Loaders {
 		{
 		}
 
-        ~GdkImageLoader ()
-        {
-            if (!is_disposed)
-                Dispose ();
-        }
+		~GdkImageLoader ()
+		{
+			if (!is_disposed) {
+				Dispose ();
+			}
+		}
 
 		public void Load (SafeUri uri)
 		{
@@ -61,11 +62,13 @@ namespace FSpot.Loaders {
 			if ((thumb = XdgThumbnailSpec.LoadThumbnail (uri, ThumbnailSize.Large, null)) != null) {
 				pixbuf_orientation = ImageOrientation.TopLeft;
 				EventHandler<AreaPreparedEventArgs> prep = AreaPrepared;
-				if (prep != null)
+				if (prep != null) {
 					prep (this, new AreaPreparedEventArgs (true));
+				}
 				EventHandler<AreaUpdatedEventArgs> upd = AreaUpdated;
-				if (upd != null)
+				if (upd != null) {
 					upd (this, new AreaUpdatedEventArgs (new Rectangle (0, 0, thumb.Width, thumb.Height)));
+				}
 			}
 
 			using (var image_file = ImageFile.Create (uri)) {
@@ -77,7 +80,8 @@ namespace FSpot.Loaders {
 			// The ThreadPool.QueueUserWorkItem hack is there cause, as the bytes to read are present in the stream,
 			// the Read is CompletedAsynchronously, blocking the mainloop
 			image_stream.BeginRead (buffer, 0, count, delegate (IAsyncResult r) {
-				ThreadPool.QueueUserWorkItem (delegate {HandleReadDone (r);});
+				ThreadPool.QueueUserWorkItem (delegate {
+					HandleReadDone (r);});
 			}, null);
 		}
 
@@ -85,42 +89,47 @@ namespace FSpot.Loaders {
 		new public event EventHandler<AreaUpdatedEventArgs> AreaUpdated;
 		public event EventHandler Completed;
 
-
 		Pixbuf thumb;
+
 		new public Pixbuf Pixbuf {
 			get {
-				if (thumb != null)
+				if (thumb != null) {
 					return thumb;
+				}
 				return base.Pixbuf;
 			}
 		}
 
 		bool loading = false;
+
 		public bool Loading {
 			get { return loading; }
 		}
 
 		bool notify_prepared = false;
 		bool prepared = false;
+
 		public bool Prepared {
 			get { return prepared; }
 		}
 
 		ImageOrientation pixbuf_orientation = ImageOrientation.TopLeft;
+
 		public ImageOrientation PixbufOrientation {
 			get { return pixbuf_orientation; }
 		}
 
 		bool is_disposed = false;
+
 		public override void Dispose ()
 		{
 			is_disposed = true;
-			if (image_stream != null)
+			if (image_stream != null) {
 				try {
 					image_stream.Close ();
-				} catch (GLib.GException)
-				{
+				} catch (GLib.GException) {
 				}
+			}
 			Close ();
 			if (thumb != null) {
 				thumb.Dispose ();
@@ -164,8 +173,9 @@ namespace FSpot.Loaders {
 				return;
 
 			EventHandler eh = Completed;
-			if (eh != null)
+			if (eh != null) {
 				eh (this, EventArgs.Empty);
+			}
 			Close ();
 		}
 #endregion
@@ -173,7 +183,7 @@ namespace FSpot.Loaders {
 #region private stuffs
 		System.IO.Stream image_stream;
 		const int count = 1 << 16;
-		byte [] buffer = new byte [count];
+		byte[] buffer = new byte [count];
 		bool notify_completed = false;
 		Rectangle damage;
 		object sync_handle = new object ();
@@ -192,8 +202,9 @@ namespace FSpot.Loaders {
 					notify_completed = true;
 				} else {
 					try {
-						if (!is_disposed && Write (buffer, (ulong)byte_read))
+						if (!is_disposed && Write (buffer, (ulong)byte_read)) {
 							image_stream.BeginRead (buffer, 0, count, HandleReadDone, null);
+						}
 					} catch (System.ObjectDisposedException) {
 					} catch (GLib.GException) {
 					}
@@ -210,15 +221,17 @@ namespace FSpot.Loaders {
 					}
 
 					EventHandler<AreaPreparedEventArgs> eh = AreaPrepared;
-					if (eh != null)
+					if (eh != null) {
 						eh (this, new AreaPreparedEventArgs (false));
+					}
 				}
 
 				//Send the AreaUpdated events
 				if (damage != Rectangle.Zero) {
 					EventHandler<AreaUpdatedEventArgs> eh = AreaUpdated;
-					if (eh != null)
+					if (eh != null) {
 						eh (this, new AreaUpdatedEventArgs (damage));
+					}
 					damage = Rectangle.Zero;
 				}
 

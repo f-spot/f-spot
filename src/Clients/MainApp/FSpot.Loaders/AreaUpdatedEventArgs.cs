@@ -33,14 +33,11 @@ using Gdk;
 namespace FSpot.Loaders {
 	public class AreaUpdatedEventArgs : EventArgs
 	{
-		Gdk.Rectangle area;
-		public Gdk.Rectangle Area {
-			get { return area; }
-		}
+		public Gdk.Rectangle Area { get; private set; }
 
 		public AreaUpdatedEventArgs (Gdk.Rectangle area) : base ()
 		{
-			this.area = area;
+			Area = area;
 		}
 	}
 }

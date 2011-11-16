@@ -50,8 +50,7 @@ namespace FSpot {
 	public class PhotoView : EventBox {
 		DelayedOperation commit_delay;
 
-		private PhotoImageView photo_view;
-		private ScrolledWindow photo_view_scrolled;
+                private ScrolledWindow photo_view_scrolled;
 		private EventBox background;
 
 		private Filmstrip filmstrip;
@@ -80,33 +79,28 @@ namespace FSpot {
 			get { return filmstrip.Orientation; }
 		}
 
-		public PhotoImageView View {
-			get { return photo_view; }
-		}
+                // was photo_view
+		public PhotoImageView View { get; private set; }
 
 		public new BrowsablePointer Item {
-			get { return photo_view.Item; }
+                        get { return View.Item; }
 		}
 
-		private IBrowsableCollection query;
-		public IBrowsableCollection Query {
-			get { return query; }
-			set { query = value; }
-		}
+		public IBrowsableCollection Query { get; set; }
 
 		public double Zoom {
-			get { return photo_view.Zoom; }
-			set { photo_view.Zoom = value; }
+			get { return View.Zoom; }
+			set { View.Zoom = value; }
 		}
 
 		public double NormalizedZoom {
-			get { return photo_view.NormalizedZoom; }
-			set { photo_view.NormalizedZoom = value; }
+			get { return View.NormalizedZoom; }
+			set { View.NormalizedZoom = value; }
 		}
 
 		public void Reload ()
 		{
-			photo_view.Reload ();
+			View.Reload ();
 		}
 
 		private void UpdateDescriptionEntry ()
@@ -155,12 +149,12 @@ namespace FSpot {
 
 		public void ZoomIn ()
 		{
-			photo_view.ZoomIn ();
+			View.ZoomIn ();
 		}
 
 		public void ZoomOut ()
 		{
-			photo_view.ZoomOut ();
+			View.ZoomOut ();
 		}
 
 		// Event handlers.
@@ -187,7 +181,7 @@ namespace FSpot {
 		{
 			if (commit_delay.IsPending) {
 				commit_delay.Stop ();
-				((PhotoQuery)query).Commit (changed_photo);
+				((PhotoQuery)Query).Commit (changed_photo);
 			}
 			return true;
 		}
@@ -233,7 +227,7 @@ namespace FSpot {
 
 		void HandlePhotoChanged (object sender, EventArgs e)
 		{
-			if (query is PhotoQuery) {
+			if (Query is PhotoQuery) {
 				CommitPendingChanges ();
 			}
 
@@ -308,7 +302,7 @@ namespace FSpot {
 		public PhotoView (IBrowsableCollection query)
 			: base ()
 		{
-			this.query = query;
+			Query = query;
 
 			commit_delay = new DelayedOperation (1000, new GLib.IdleHandler (CommitPendingChanges));
 			this.Destroyed += HandleDestroy;
@@ -330,7 +324,7 @@ namespace FSpot {
 			frame.Add (inner_hbox);
 
 			BrowsablePointer bp = new BrowsablePointer (query, -1);
-			photo_view = new PhotoImageView (bp);
+			View = new PhotoImageView (bp);
 
 			filmstrip = new Filmstrip (bp);
 			filmstrip.ThumbOffset = 1;
@@ -338,15 +332,15 @@ namespace FSpot {
 			filmstrip.ThumbSize = 75;
 			PlaceFilmstrip ((Orientation) Preferences.Get <int> (Preferences.FILMSTRIP_ORIENTATION), true);
 
-			photo_view.PhotoChanged += HandlePhotoChanged;
+			View.PhotoChanged += HandlePhotoChanged;
 
 			photo_view_scrolled = new ScrolledWindow (null, null);
 
 			photo_view_scrolled.SetPolicy (PolicyType.Automatic, PolicyType.Automatic);
 			photo_view_scrolled.ShadowType = ShadowType.None;
-			photo_view_scrolled.Add (photo_view);
+			photo_view_scrolled.Add (View);
 			photo_view_scrolled.Child.ButtonPressEvent += HandleButtonPressEvent;
-			photo_view.AddEvents ((int) EventMask.KeyPressMask);
+			View.AddEvents ((int) EventMask.KeyPressMask);
 			inner_vbox.PackStart (photo_view_scrolled, true, true, 0);
 			inner_hbox.PackStart (inner_vbox, true, true, 0);
 
@@ -408,7 +402,7 @@ namespace FSpot {
 		{
 			GtkUtil.ModifyColors (filmstrip);
 			GtkUtil.ModifyColors (tag_view);
-			GtkUtil.ModifyColors (photo_view);
+			GtkUtil.ModifyColors (View);
 			GtkUtil.ModifyColors (background);
 			GtkUtil.ModifyColors (photo_view_scrolled);
 			GtkUtil.ModifyColors (rating);
@@ -416,7 +410,7 @@ namespace FSpot {
 			Gdk.Color dark = Style.Dark (Gtk.StateType.Normal);
 			filmstrip.ModifyBg (Gtk.StateType.Normal, dark);
 			tag_view.ModifyBg (Gtk.StateType.Normal, dark);
-			photo_view.ModifyBg (Gtk.StateType.Normal, dark);
+			View.ModifyBg (Gtk.StateType.Normal, dark);
 			background.ModifyBg (Gtk.StateType.Normal, dark);
 			photo_view_scrolled.ModifyBg (Gtk.StateType.Normal, dark);
 			rating.ModifyBg (Gtk.StateType.Normal, dark);

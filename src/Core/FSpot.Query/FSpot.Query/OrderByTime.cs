@@ -35,20 +35,17 @@ namespace FSpot.Query {
 		public static OrderByTime OrderByTimeAsc = new OrderByTime (true);
 		public static OrderByTime OrderByTimeDesc = new OrderByTime (false);
 
-		bool asc;
-		public bool Asc {
-			get { return asc; }
-		}
+		public bool Asc { get; private set; }
 
 		public OrderByTime (bool asc)
 		{
-			this.asc = asc;
+			Asc = asc;
 		}
 
 		public string SqlClause ()
 		{
 			// filenames must always appear in alphabetical order if times are the same
-			return String.Format (" time {0}, filename ASC ", asc ? "ASC" : "DESC");
+			return String.Format (" time {0}, filename ASC ", Asc ? "ASC" : "DESC");
 		}
 	}
 }

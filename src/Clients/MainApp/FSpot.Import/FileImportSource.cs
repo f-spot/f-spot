@@ -26,7 +26,6 @@
 // OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
-
 using Hyena;
 using System;
 using System.Threading;
@@ -39,145 +38,150 @@ using Mono.Unix.Native;
 
 namespace FSpot.Import
 {
-    internal class FileImportSource : ImportSource {
-        public string Name { get; set; }
-        public string IconName { get; set; }
-        public SafeUri Root { get; set; }
+	internal class FileImportSource : ImportSource
+	{
+		public string Name { get; set; }
 
-        public Thread PhotoScanner;
-        bool run_photoscanner = false;
+		public string IconName { get; set; }
 
-        public FileImportSource (SafeUri root, string name, string icon_name)
-        {
-            Root = root;
-            Name = name;
+		public SafeUri Root { get; set; }
 
-            if (root != null) {
-                if (IsIPodPhoto) {
-                    IconName = "multimedia-player";
-                } else if (IsCamera) {
-                    IconName = "media-flash";
-                } else {
-                    IconName = icon_name;
-                }
-            }
-        }
+		public Thread PhotoScanner;
+		bool run_photoscanner = false;
 
-        public void StartPhotoScan (ImportController controller, PhotoList photo_list)
-        {
-            if (PhotoScanner != null) {
-                run_photoscanner = false;
-                PhotoScanner.Join ();
-            }
+		public FileImportSource (SafeUri root, string name, string icon_name)
+		{
+			Root = root;
+			Name = name;
 
-            run_photoscanner = true;
-            PhotoScanner = ThreadAssist.Spawn (() => ScanPhotos (controller, photo_list));
-        }
+			if (root != null) {
+				if (IsIPodPhoto) {
+					IconName = "multimedia-player";
+				} else if (IsCamera) {
+					IconName = "media-flash";
+				} else {
+					IconName = icon_name;
+				}
+			}
+		}
 
-        protected virtual void ScanPhotos (ImportController controller, PhotoList photo_list)
-        {
-            ScanPhotoDirectory (controller, Root, photo_list);
-            ThreadAssist.ProxyToMain (() => controller.PhotoScanFinished ());
-        }
+		public void StartPhotoScan (ImportController controller, PhotoList photo_list)
+		{
+			if (PhotoScanner != null) {
+				run_photoscanner = false;
+				PhotoScanner.Join ();
+			}
 
-        protected void ScanPhotoDirectory (ImportController controller, SafeUri uri, PhotoList photo_list)
-        {
-            var enumerator = new RecursiveFileEnumerator (uri) {
-                Recurse = controller.RecurseSubdirectories,
-                CatchErrors = true,
-                IgnoreSymlinks = true
-            };
-            var infos = new List<FileImportInfo> ();
-            foreach (var file in enumerator) {
-                if (ImageFile.HasLoader (new SafeUri (file.Uri, true))) {
-                    infos.Add (new FileImportInfo (new SafeUri(file.Uri, true)));
-                }
+			run_photoscanner = true;
+			PhotoScanner = ThreadAssist.Spawn (() => ScanPhotos (controller, photo_list));
+		}
 
-                if (infos.Count % 10 == 0 || infos.Count < 10) {
-                    var to_add = infos; // prevents race condition
-                    ThreadAssist.ProxyToMain (() => photo_list.Add (to_add.ToArray ()));
-                    infos = new List<FileImportInfo> ();
-                }
+		protected virtual void ScanPhotos (ImportController controller, PhotoList photo_list)
+		{
+			ScanPhotoDirectory (controller, Root, photo_list);
+			ThreadAssist.ProxyToMain (() => controller.PhotoScanFinished ());
+		}
 
-                if (!run_photoscanner)
-                    return;
-            }
+		protected void ScanPhotoDirectory (ImportController controller, SafeUri uri, PhotoList photo_list)
+		{
+			var enumerator = new RecursiveFileEnumerator (uri) {
+						Recurse = controller.RecurseSubdirectories,
+						CatchErrors = true,
+						IgnoreSymlinks = true
+			};
+			var infos = new List<FileImportInfo> ();
+			foreach (var file in enumerator) {
+				if (ImageFile.HasLoader (new SafeUri (file.Uri, true))) {
+					infos.Add (new FileImportInfo (new SafeUri (file.Uri, true)));
+				}
 
-            if (infos.Count > 0) {
-                var to_add = infos; // prevents race condition
-                ThreadAssist.ProxyToMain (() => photo_list.Add (to_add.ToArray ()));
-            }
-        }
+				if (infos.Count % 10 == 0 || infos.Count < 10) {
+					var to_add = infos; // prevents race condition
+					ThreadAssist.ProxyToMain (() => photo_list.Add (to_add.ToArray ()));
+					infos = new List<FileImportInfo> ();
+				}
 
-        public void Deactivate ()
-        {
-            if (PhotoScanner != null) {
-                run_photoscanner = false;
-                PhotoScanner.Join ();
+				if (!run_photoscanner)
+					return;
+			}
 
-                // Make sure all photos are added. This is needed to prevent
-                // a race condition where a source is deactivated, yet photos
-                // are still added to the collection because they are
-                // queued on the mainloop.
-                while (Application.EventsPending ())
-                    Application.RunIteration (false);
+			if (infos.Count > 0) {
+				var to_add = infos; // prevents race condition
+				ThreadAssist.ProxyToMain (() => photo_list.Add (to_add.ToArray ()));
+			}
+		}
 
-                PhotoScanner = null;
-            }
-        }
+		public void Deactivate ()
+		{
+			if (PhotoScanner != null) {
+				run_photoscanner = false;
+				PhotoScanner.Join ();
 
-        private bool IsCamera {
-            get {
-                try {
-                    var file = GLib.FileFactory.NewForUri (Root.Append ("DCIM"));
-                    return file.Exists;
-                } catch {
-                    return false;
-                }
-            }
-        }
+				// Make sure all photos are added. This is needed to prevent
+				// a race condition where a source is deactivated, yet photos
+				// are still added to the collection because they are
+				// queued on the mainloop.
+				while (Application.EventsPending ()) {
+					Application.RunIteration (false);
+				}
 
-        private bool IsIPodPhoto {
-            get {
-                try {
-                    var file = GLib.FileFactory.NewForUri (Root.Append ("Photos"));
-                    var file2 = GLib.FileFactory.NewForUri (Root.Append ("iPod_Control"));
-                    return file.Exists && file2.Exists;
-                } catch {
-                    return false;
-                }
-            }
-        }
-    }
+				PhotoScanner = null;
+			}
+		}
 
-    // Multi root version for drag and drop import.
-    internal class MultiFileImportSource : FileImportSource {
-        private IEnumerable<SafeUri> uris;
+		private bool IsCamera {
+			get {
+				try {
+					var file = GLib.FileFactory.NewForUri (Root.Append ("DCIM"));
+					return file.Exists;
+				} catch {
+					return false;
+				}
+			}
+		}
 
-        public MultiFileImportSource (IEnumerable<SafeUri> uris)
-            : base (null, String.Empty, String.Empty)
-        {
-            this.uris = uris;
-        }
+		private bool IsIPodPhoto {
+			get {
+				try {
+					var file = GLib.FileFactory.NewForUri (Root.Append ("Photos"));
+					var file2 = GLib.FileFactory.NewForUri (Root.Append ("iPod_Control"));
+					return file.Exists && file2.Exists;
+				} catch {
+					return false;
+				}
+			}
+		}
+	}
 
-        protected override void ScanPhotos (ImportController controller, PhotoList photo_list)
-        {
-            foreach (var uri in uris) {
-                Log.Debug ("Scanning "+uri);
-                ScanPhotoDirectory (controller, uri, photo_list);
-            }
-            ThreadAssist.ProxyToMain (() => controller.PhotoScanFinished ());
-        }
-    }
+	// Multi root version for drag and drop import.
+	internal class MultiFileImportSource : FileImportSource
+	{
+		private IEnumerable<SafeUri> uris;
 
-    internal class FileImportInfo : FilePhoto {
-        public FileImportInfo (SafeUri original) : base (original)
-        {
-        }
+		public MultiFileImportSource (IEnumerable<SafeUri> uris)
+			: base (null, String.Empty, String.Empty)
+		{
+			this.uris = uris;
+		}
 
+		protected override void ScanPhotos (ImportController controller, PhotoList photo_list)
+		{
+			foreach (var uri in uris) {
+				Log.Debug ("Scanning " + uri);
+				ScanPhotoDirectory (controller, uri, photo_list);
+			}
+			ThreadAssist.ProxyToMain (() => controller.PhotoScanFinished ());
+		}
+	}
 
-        public SafeUri DestinationUri { get; set; }
+	internal class FileImportInfo : FilePhoto
+	{
+		public FileImportInfo (SafeUri original) : base (original)
+		{
+		}
 
-        internal uint PhotoId { get; set; }
-    }
+		public SafeUri DestinationUri { get; set; }
+
+		internal uint PhotoId { get; set; }
+	}
 }

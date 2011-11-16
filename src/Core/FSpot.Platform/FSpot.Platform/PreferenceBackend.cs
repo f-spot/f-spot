@@ -35,20 +35,13 @@ namespace FSpot
 {
 	public class NotifyEventArgs : System.EventArgs
 	{
-		string key;
-		public string Key {
-			get { return key; }
-		}
-
-		object val;
-		public object Value {
-			get { return val; }
-		}
+		public string Key { get; private set; }
+		public object Value { get; private set; }
 
 		public NotifyEventArgs (string key, object val)
 		{
-			this.key = key;
-			this.val = val;
+			Key = key;
+			Value = val;
 		}
 	}
 }

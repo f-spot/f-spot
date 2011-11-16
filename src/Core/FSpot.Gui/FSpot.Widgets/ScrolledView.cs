@@ -33,21 +33,21 @@ using FSpot.Utils;
 
 namespace FSpot.Widgets {
 	public class ScrolledView : Fixed {
-		private EventBox ebox;
-		private ScrolledWindow scroll;
 		private DelayedOperation hide;
+		public EventBox ControlBox { get; private set; }
+		public ScrolledWindow ScrolledWindow { get; private set; }
 
 		public ScrolledView (IntPtr raw) : base (raw) {}
 
 		public ScrolledView () : base () {
-			scroll = new ScrolledWindow  (null, null);
-			this.Put (scroll, 0, 0);
-			scroll.Show ();
+			ScrolledWindow = new ScrolledWindow  (null, null);
+			this.Put (ScrolledWindow, 0, 0);
+			ScrolledWindow.Show ();
 			
 			//ebox = new BlendBox ();
-			ebox = new EventBox ();
-			this.Put (ebox, 0, 0);
-			ebox.ShowAll ();
+			ControlBox = new EventBox ();
+			this.Put (ControlBox, 0, 0);
+			ControlBox.ShowAll ();
 			
 			hide = new DelayedOperation (2000, new GLib.IdleHandler (HideControls));
 			this.Destroyed += HandleDestroyed;
@@ -64,15 +64,15 @@ namespace FSpot.Widgets {
 			Gdk.ModifierType type;
 
 			if (!force && IsRealized) {
-				ebox.GdkWindow.GetPointer (out x, out y, out type);
-				if (x < ebox.Allocation.Width && y < ebox.Allocation.Height) {
+				ControlBox.GdkWindow.GetPointer (out x, out y, out type);
+				if (x < ControlBox.Allocation.Width && y < ControlBox.Allocation.Height) {
 					hide.Start ();
 					return true;
 				}
 			}
 
 			hide.Stop ();
-			ebox.Hide ();
+			ControlBox.Hide ();
 			return false;
 		}
 		
@@ -80,7 +80,7 @@ namespace FSpot.Widgets {
 		{
 			hide.Stop ();
 			hide.Start ();
-			ebox.Show ();
+			ControlBox.Show ();
 		}
 
 		private void HandleDestroyed (object sender, System.EventArgs args)
@@ -88,20 +88,9 @@ namespace FSpot.Widgets {
 			hide.Stop ();
 		}
 
-		public EventBox ControlBox {
-			get {
-				return ebox;
-			}
-		}
-		public ScrolledWindow ScrolledWindow {
-			get {
-				return scroll;
-			}
-		}
-
 		protected override void OnSizeAllocated (Gdk.Rectangle allocation)
 		{
-			scroll.SetSizeRequest (allocation.Width, allocation.Height);
+			ScrolledWindow.SetSizeRequest (allocation.Width, allocation.Height);
 			base.OnSizeAllocated (allocation);
 		}
 	}

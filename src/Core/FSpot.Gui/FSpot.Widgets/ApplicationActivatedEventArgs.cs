@@ -34,14 +34,11 @@ namespace FSpot.Widgets
 {
 	public class ApplicationActivatedEventArgs : EventArgs
 	{
-		AppInfo app;
-		public AppInfo AppInfo {
-			get { return app; }
-		}
+		public AppInfo AppInfo { get; private set; }
 
 		public ApplicationActivatedEventArgs (AppInfo app) : base ()
 		{
-			this.app = app;
+			AppInfo = app;
 		}
 	}
 }

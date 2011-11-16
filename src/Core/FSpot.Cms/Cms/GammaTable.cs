@@ -36,12 +36,7 @@ using System.Runtime.Serialization;
 
 namespace Cms {
 	public class GammaTable : IDisposable {
-		private HandleRef handle;
-		public HandleRef Handle {
-			get {
-				return handle;
-			}
-		}
+		public HandleRef Handle { get; private set; }
 		
 //		internal struct GammaTableStruct {
 //			public int Count;
@@ -50,7 +45,7 @@ namespace Cms {
 
 		public GammaTable (int count, double gamma)
 		{
-			handle = new HandleRef (this, NativeMethods.CmsBuildGamma (count, gamma));
+			Handle = new HandleRef (this, NativeMethods.CmsBuildGamma (count, gamma));
 		}
 
 		/*
@@ -86,7 +81,7 @@ namespace Cms {
 		// FIXME type should be an enum
 		public GammaTable (int entry_count, int type, double [] values)
 		{
-			handle = new HandleRef (this, NativeMethods.CmsBuildParametricGamma (entry_count, type, values));
+			Handle = new HandleRef (this, NativeMethods.CmsBuildParametricGamma (entry_count, type, values));
 		}
 		
 
@@ -96,24 +91,24 @@ namespace Cms {
 
 		public int Count {
 			get {
-				return NativeMethods.FCmsGammaTableGetCount (handle);
+				return NativeMethods.FCmsGammaTableGetCount (Handle);
 			}
 		}
 
 		public IntPtr Values {
 			get {
-				return NativeMethods.FCmsGammaTableGetValues (handle);
+				return NativeMethods.FCmsGammaTableGetValues (Handle);
 			}
 		}
 
 		public ushort this [int index] {
 			get {
 				unsafe {
-					if (handle.Handle == (IntPtr)0)
+					if (Handle.Handle == (IntPtr)0)
 						throw new CmsException ();
 					
 					if (index < 0 || index >= Count)
-						throw new ArgumentOutOfRangeException (String.Format ("index {0} outside of count {1} for {2}", index, Count, handle.Handle));
+						throw new ArgumentOutOfRangeException (String.Format ("index {0} outside of count {1} for {2}", index, Count, Handle.Handle));
 
 					ushort *data = (ushort *)Values;
 					return data [index];
@@ -121,11 +116,11 @@ namespace Cms {
 			}
 			set {
 				unsafe {
-					if (handle.Handle == (IntPtr)0)
+					if (Handle.Handle == (IntPtr)0)
 						throw new CmsException ();
 					
 					if (index < 0 || index >= Count)
-						throw new ArgumentOutOfRangeException (String.Format ("index {0} outside of count {1} for handle {2}", index, Count, handle.Handle));
+						throw new ArgumentOutOfRangeException (String.Format ("index {0} outside of count {1} for handle {2}", index, Count, Handle.Handle));
 
 
 					ushort *data = (ushort *)Values;
@@ -140,7 +135,7 @@ namespace Cms {
 			if (values == null)
 				throw new ArgumentNullException ("values");
 
-			handle = new HandleRef (this, NativeMethods.FCmsGammaTableNew (values, start_offset, length));
+			Handle = new HandleRef (this, NativeMethods.FCmsGammaTableNew (values, start_offset, length));
 			//System.Console.WriteLine ("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXhandle = {0}", handle.Handle);
 #else
 			handle = new HandleRef (this, cmsAllocGamma (length));
@@ -152,7 +147,7 @@ namespace Cms {
 
 		protected virtual void Cleanup ()
 		{
-			NativeMethods.CmsFreeGamma (handle);
+			NativeMethods.CmsFreeGamma (Handle);
 		}
 		
 		public void Dispose ()

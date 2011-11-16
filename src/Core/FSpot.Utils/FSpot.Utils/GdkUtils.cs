@@ -73,7 +73,8 @@ namespace FSpot.Utils {
 	
 			[DllImport("libgdk-2.0-0.dll")]
 			public static extern IntPtr gdk_x11_visual_get_xvisual (IntPtr d);
-	
+
+			// FIXME: get rid of this? (Make this cross platform)
 			[DllImport("X11")]
 			public static extern uint XVisualIDFromVisual(IntPtr visual);
 	

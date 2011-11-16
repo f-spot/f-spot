@@ -33,33 +33,27 @@ using Hyena;
 namespace FSpot.Query {
 	public class DateRange : IQueryCondition
 	{
-		private DateTime start;		
-		public DateTime Start {
-			get { return start; }
-		}
+		public DateTime Start { get; private set; }
 
-		private DateTime end;
-		public DateTime End {
-			get { return end; }
-		}
+		public DateTime End { get; private set; }
 
 		public DateRange (DateTime start, DateTime end)
 		{
-			this.start = start;
-			this.end = end;
+			Start = start;
+			End = end;
 		}
 
 		public DateRange (int year, int month)
 		{
-			start = new DateTime (year, month, 1);
-			end = new DateTime (month < 12 ? year : year + 1, month < 12 ? month + 1 : 1, 1);
+			Start = new DateTime (year, month, 1);
+			End = new DateTime (month < 12 ? year : year + 1, month < 12 ? month + 1 : 1, 1);
 		}
 
 		public string SqlClause ()
 		{
 			return String.Format (" photos.time >= {0} AND photos.time <= {1} ", 
-					DateTimeUtil.FromDateTime (start),
-					DateTimeUtil.FromDateTime (end));
+					DateTimeUtil.FromDateTime (Start),
+					DateTimeUtil.FromDateTime (End));
 		}
 	}
 }

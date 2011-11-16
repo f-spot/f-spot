@@ -49,17 +49,14 @@ using Mono.Unix;
 
 namespace FSpot {
 	public class RotateException : ApplicationException {
-		public string path;
-		public bool ReadOnly = false;
 
-		public string Path {
-			get { return path; }
-		}
+                public bool ReadOnly = false;
+		public string Path { get; private set; }
 
 		public RotateException (string msg, string path) : this (msg, path, false) {}
 
 		public RotateException (string msg, string path, bool ro) : base (msg) {
-			this.path = path;
+			Path = path;
 			this.ReadOnly = ro;
 		}
 	}
@@ -81,87 +78,81 @@ namespace FSpot {
 			done = false;
 		}
 
-		private static void RotateOrientation (string original_path, RotateDirection direction)
-		{
-            try {
-                var uri = new SafeUri (original_path);
-                using (var metadata = Metadata.Parse (uri)) {
-                    metadata.EnsureAvailableTags ();
-                    var tag = metadata.ImageTag;
-                    var orientation = direction == RotateDirection.Clockwise
-                        ? FSpot.Utils.PixbufUtils.Rotate90 (tag.Orientation)
-                        : FSpot.Utils.PixbufUtils.Rotate270 (tag.Orientation);
-
-                    tag.Orientation = orientation;
-                    var always_sidecar = Preferences.Get<bool> (Preferences.METADATA_ALWAYS_USE_SIDECAR);
-                    metadata.SaveSafely (uri, always_sidecar);
-                    XdgThumbnailSpec.RemoveThumbnail (uri);
+	        private static void RotateOrientation (string original_path, RotateDirection direction)
+	        {
+                    try {
+                        var uri = new SafeUri (original_path);
+                        using (var metadata = Metadata.Parse (uri)) {
+                            metadata.EnsureAvailableTags ();
+                            var tag = metadata.ImageTag;
+                            var orientation = direction == RotateDirection.Clockwise
+                                ? FSpot.Utils.PixbufUtils.Rotate90 (tag.Orientation)
+                                : FSpot.Utils.PixbufUtils.Rotate270 (tag.Orientation);
+        
+                            tag.Orientation = orientation;
+                            var always_sidecar = Preferences.Get<bool> (Preferences.METADATA_ALWAYS_USE_SIDECAR);
+                            metadata.SaveSafely (uri, always_sidecar);
+                            XdgThumbnailSpec.RemoveThumbnail (uri);
+                        }
+                    } catch (Exception e) {
+                        Log.DebugException (e);
+                        throw new RotateException (Catalog.GetString ("Unable to rotate this type of photo"), original_path);
+                    }
                 }
-            } catch (Exception e) {
-                Log.DebugException (e);
-                throw new RotateException (Catalog.GetString ("Unable to rotate this type of photo"), original_path);
-            }
+
+                private void Rotate (string original_path, RotateDirection dir)
+                {
+                    RotateOrientation (original_path, dir);
+                }
+        
+                public bool Step ()
+                {
+                    if (done)
+                        return false;
+        
+                    GLib.FileInfo info = GLib.FileFactory.NewForUri (item.DefaultVersion.Uri).QueryInfo ("access::can-write", GLib.FileQueryInfoFlags.None, null);
+                    if (!info.GetAttributeBoolean("access::can-write")) {
+                        throw new RotateException (Catalog.GetString ("Unable to rotate readonly file"), item.DefaultVersion.Uri, true);
+                    }
+        
+                    Rotate (item.DefaultVersion.Uri, direction);
+
+                    done = true;
+                    return !done;
+                }
         }
-
-        private void Rotate (string original_path, RotateDirection dir)
-        {
-            RotateOrientation (original_path, dir);
-        }
-
-        public bool Step ()
-        {
-            if (done)
-                return false;
-
-            GLib.FileInfo info = GLib.FileFactory.NewForUri (item.DefaultVersion.Uri).QueryInfo ("access::can-write", GLib.FileQueryInfoFlags.None, null);
-            if (!info.GetAttributeBoolean("access::can-write")) {
-                throw new RotateException (Catalog.GetString ("Unable to rotate readonly file"), item.DefaultVersion.Uri, true);
-            }
-
-            Rotate (item.DefaultVersion.Uri, direction);
-
-            done = true;
-            return !done;
-        }
-    }
 
 	public class RotateMultiple {
 		RotateDirection direction;
-		IPhoto [] items;
-		int index;
 		RotateOperation op;
 
-		public int Index {
-			get { return index; }
-		}
+		public int Index { get; private set; }
 
-		public IPhoto [] Items {
-			get { return items; }
-		}
+		public IPhoto [] Items { get; private set; }
 
 		public RotateMultiple (IPhoto [] items, RotateDirection direction)
 		{
 			this.direction = direction;
-			this.items = items;
-			index = 0;
+			Items = items;
+			Index = 0;
 		}
 
 		public bool Step ()
 		{
-			if (index >= items.Length)
+			if (Index >= Items.Length)
 				return false;
 
 			if (op == null)
-				op = new RotateOperation (items [index], direction);
+				op = new RotateOperation (Items [Index], direction);
 
 			if (op.Step ())
 				return true;
 			else {
-				index++;
+				Index++;
 				op = null;
 			}
 
-			return (index < items.Length);
+			return (Index < Items.Length);
 		}
 	}
 }

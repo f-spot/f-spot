@@ -34,7 +34,6 @@ namespace FSpot.Widgets
 	public class MenuButton : Button
 	{
 		Label label;
-		Image image;
 		Arrow arrow;
 		Menu popup_menu;
 
@@ -43,9 +42,7 @@ namespace FSpot.Widgets
 			set { label.Text = value; }
 		}
 
-		public new Image Image {
-			get { return image; }
-		}
+		public new Image Image { get; private set; }
 
 		public ArrowType ArrowType {
 			get { return arrow.ArrowType; }
@@ -73,9 +70,9 @@ namespace FSpot.Widgets
 		{
 			HBox hbox = new HBox ();
 			
-			this.image = new Image ();
-			hbox.PackStart (this.image, false, false, 1);
-			image.Show ();
+			Image = new Image ();
+			hbox.PackStart (Image, false, false, 1);
+			Image.Show ();
 
 			this.label = new Label (label);
 			this.label.Xalign = 0;

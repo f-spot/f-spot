@@ -36,12 +36,7 @@ using System.Runtime.Serialization;
 
 namespace Cms {
 	public class Transform : IDisposable {
-		private HandleRef handle;
-		public HandleRef Handle {
-			get {
-				return handle;
-			}
-		}
+		public HandleRef Handle { get; private set; }
 
 		public Transform (Profile [] profiles,
 				  Format input_format,
@@ -51,14 +46,14 @@ namespace Cms {
 			if (profiles == null)
 				throw new ArgumentNullException ("profiles");
 
-			HandleRef [] handles = new HandleRef [profiles.Length];
+			HandleRef [] Handles = new HandleRef [profiles.Length];
 			for (int i = 0; i < profiles.Length; i++) {
-				handles [i] = profiles [i].Handle;
+				Handles [i] = profiles [i].Handle;
 			}
 			
-			this.handle = new HandleRef (this, NativeMethods.CmsCreateMultiprofileTransform (handles, handles.Length, 
+			Handle = new HandleRef (this, NativeMethods.CmsCreateMultiprofileTransform (Handles, Handles.Length,
 											   input_format,
-											   output_format, 
+											   output_format,
 											   (int)intent, flags));
 		}
 		
@@ -71,7 +66,7 @@ namespace Cms {
 			if (output == null)
 				throw new ArgumentNullException ("output");
 
-			this.handle = new HandleRef (this, NativeMethods.CmsCreateTransform (input.Handle, input_format,
+			Handle = new HandleRef (this, NativeMethods.CmsCreateTransform (input.Handle, input_format,
 									       output.Handle, output_format,
 									       (int)intent, flags));
 		}
@@ -90,10 +85,10 @@ namespace Cms {
 		
 		protected virtual void Cleanup ()
 		{
-			NativeMethods.CmsDeleteTransform (this.handle);
+			NativeMethods.CmsDeleteTransform (Handle);
 		}
 		
-		~Transform () 
+		~Transform ()
 		{
 			Cleanup ();
 		}	       

@@ -124,12 +124,12 @@ namespace FSpot {
 			int year = endyear - item/12;
 			int month = 12 - (item % 12);
 
-            year = Math.Max(1, year);
-            year = Math.Min(year, 9999);
-            month = Math.Max(1, month);
-            month = Math.Min(month, 12);
-
-            int daysInMonth = DateTime.DaysInMonth(year, month);
+			year = Math.Max(1, year);
+			year = Math.Min(year, 9999);
+			month = Math.Max(1, month);
+			month = Math.Min(month, 12);
+		
+			int daysInMonth = DateTime.DaysInMonth(year, month);
 
 			return new DateTime (year, month, daysInMonth).AddDays (1.0).AddMilliseconds (-.1);
 		}

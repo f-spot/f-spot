@@ -43,21 +43,18 @@ namespace FSpot.Bling
 			Paused,
 		}
 
-		TimeSpan duration;
 		TimeSpan pausedafter;
 
 		DateTimeOffset starttime;
-		T from;
-		T to;
 		Action<T> action;
 		AnimationState state;
 		GLib.Priority priority = GLib.Priority.DefaultIdle;
 
 		public Animation ()
 		{
-			from = default (T);
-			to = default (T);
-			duration = TimeSpan.Zero;
+			From = default (T);
+			To = default (T);
+			Duration = TimeSpan.Zero;
 			action = null;
 			state = AnimationState.NotRunning;
 		}
@@ -68,9 +65,9 @@ namespace FSpot.Bling
 
 		public Animation (T from, T to, TimeSpan duration, Action<T> action, GLib.Priority priority)
 		{
-			this.from = from;
-			this.to = to;
-			this.duration = duration;
+			From = from;
+			To = to;
+			Duration = duration;
 			this.action = action;
 			this.priority = priority;
 			state = AnimationState.NotRunning;
@@ -113,7 +110,7 @@ namespace FSpot.Bling
 				return;
 			else
 				GLib.Idle.Remove (Handler);
-			action (to);
+			action (To);
 			EventHandler h = Completed;
 			if (h != null)
 				Completed (this, EventArgs.Empty);
@@ -140,11 +137,11 @@ namespace FSpot.Bling
 
 		bool Handler ()
 		{
-			double percentage = (double)(DateTimeOffset.Now - starttime).Ticks / (double)duration.Ticks;
+			double percentage = (double)(DateTimeOffset.Now - starttime).Ticks / (double)Duration.Ticks;
 			EventHandler<ProgressChangedEventArgs> p = ProgressChanged;
 			if (p != null)
 				p (this, new ProgressChangedEventArgs ((int)(100 * percentage), null));
-			action (Interpolate (from, to, Ease (Math.Min (percentage, 1.0))));
+			action (Interpolate (From, To, Ease (Math.Min (percentage, 1.0))));
 			if (percentage >= 1.0) {
 				EventHandler h = Completed;
 				if (h != null)
@@ -171,19 +168,10 @@ namespace FSpot.Bling
 			get { return state == AnimationState.Paused; }
 		}
 
-		public TimeSpan Duration {
-			get { return duration; }
-			set { duration = value; }
-		}
+		public TimeSpan Duration { get; set; }
 
-		public T From {
-			get { return from; }
-			set { from = value; }
-		}
+		public T From { get; set; }
 
-		public T To {
-			get { return to; }
-			set { to = value; }
-		}
+		public T To { get; set; }
 	}
 }

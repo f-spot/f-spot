@@ -67,7 +67,6 @@ namespace FSpot
 
         public static SafeUri ReplaceExtension (this SafeUri uri, string extension)
         {
-
             return uri.GetBaseUri ().Append (uri.GetFilenameWithoutExtension () + extension);
         }
     }

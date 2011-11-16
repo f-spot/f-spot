@@ -41,14 +41,11 @@ namespace FSpot.Query
 
 	public class TagTerm : LogicalTerm, IDisposable
 	{
-		Tag tag;
-		public Tag Tag {
-			get { return tag; }
-		}
+		public Tag Tag { get; private set; }
 
 		public TagTerm (Tag tag)
 		{
-			this.tag = tag;
+			Tag = tag;
 		}
 
 		public override string SqlClause ()
@@ -76,35 +73,29 @@ namespace FSpot.Query
 
 		public void Dispose ()
 		{
-			if (tag != null)
-				tag.Dispose ();
+			if (Tag != null)
+				Tag.Dispose ();
 			System.GC.SuppressFinalize (this);
 		}
 
 		~TagTerm ()
 		{
 			Log.DebugFormat ("Finalizer called on {0}. Should be Disposed", GetType ());
-			if (tag != null)
-				tag.Dispose ();
+			if (Tag != null)
+				Tag.Dispose ();
 		}
 	}
 
 	public class TextTerm : LogicalTerm
 	{
-		string text;
-		public string Text {
-			get { return text; }
-		}
+		public string Text { get; private set; }
 
-		string field;
-		public string Field {
-			get { return field;  }
-		}
+		public string Field { get; private set; }
 
 		public TextTerm (string text, string field)
 		{
-			this.text = text;
-			this.field = field;
+			Text = text;
+			Field = field;
 		}
 
 		public static OrTerm SearchMultiple (string text, params string[] fields)
@@ -117,25 +108,22 @@ namespace FSpot.Query
 
 		public override string SqlClause ()
 		{
-			return String.Format (" {0} LIKE %{1}% ", field, text);
+			return String.Format (" {0} LIKE %{1}% ", Field, Text);
 		}
 	}
 
 	public class NotTerm : LogicalTerm
 	{
-		LogicalTerm term;
-		public LogicalTerm Term {
-			get { return term; }
-		}
+		public LogicalTerm Term { get; private set; }
 
 		public NotTerm (LogicalTerm term)
 		{
-			this.term = term;
+			Term = term;
 		}
 
 		public override string SqlClause ()
 		{
-			return String.Format (" NOT ({0}) ", term.SqlClause ());
+			return String.Format (" NOT ({0}) ", Term.SqlClause ());
 		}
 	}
 
