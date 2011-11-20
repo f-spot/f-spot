@@ -122,7 +122,7 @@ namespace FSpot.Widgets {
 		private void AppendComma ()
 		{
 			if (Text.Length != 0 && !Text.Trim ().EndsWith (","))
-				AppendText (", ");
+				InsertText (", ");
 		}
 
 		public string [] GetTypedTagNames ()
