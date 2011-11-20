@@ -80,10 +80,9 @@ namespace FSpot.Database
 			bool new_db = !File.Exists (path);
 			this.path = path;
             
-			if (new_db && !create_if_missing) {
+			if (new_db && !create_if_missing)
 				throw new Exception (path + ": File not found");
-			}
-            
+
 			Database = new FSpotDatabaseConnection (path);
             
 			// Load or create the meta table
@@ -116,15 +115,14 @@ namespace FSpot.Database
 
 		protected virtual void Dispose (bool is_disposing)
 		{
-			if (already_disposed) {
+			if (already_disposed)
 				return;
-			}
-			if (is_disposing) {
-				//Free managed resources
+
+	    		//Free managed resources
+			if (is_disposing)
 				Database.Dispose ();
-			}
-			//Free unmanaged resources
-            
+
+	    		//Free unmanaged resources
 			already_disposed = true;
 		}
 
