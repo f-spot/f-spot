@@ -31,6 +31,7 @@
 
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Text;
 using Mono.Unix;
 using Gtk;
@@ -374,7 +375,7 @@ namespace FSpot
 			}
 		}
 
-		private void HandleLiteralsMoved (ArrayList literals, Term parent, Literal after)
+		private void HandleLiteralsMoved (List<Literal> literals, Term parent, Literal after)
 		{
 			preventUpdate = true;
 			foreach (Literal term in literals) {
@@ -386,7 +387,7 @@ namespace FSpot
 				term.RemoveSelf ();
 
 				// Add it to where it was dropped
-				ArrayList groups = InsertTerm (new Tag[] {tag}, parent, after);
+				List<Literal> groups = InsertTerm (new Tag[] {tag}, parent, after);
 
 				if (term.IsNegated)
 					foreach (Literal group in groups)
@@ -637,7 +638,7 @@ namespace FSpot
 			UpdateQuery ();
 		}
 
-		public ArrayList InsertTerm (Tag [] tags, Term parent, Literal after)
+		public List<Literal> InsertTerm (Tag [] tags, Term parent, Literal after)
 		{
 			int position;
 			if (after != null)
@@ -645,7 +646,7 @@ namespace FSpot
 			else
 				position = Children.Length - 1;
 
-			ArrayList added = new ArrayList ();
+			List<Literal> added = new List<Literal>();
 
 			foreach (Tag tag in tags) {
 				//Console.WriteLine ("Adding tag {0}", tag.Name);

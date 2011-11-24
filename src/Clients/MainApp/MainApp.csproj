@@ -207,6 +207,7 @@
     <Compile Include="Pinta\ColorBgra.cs" />
     <Compile Include="Pinta\CairoExtensions.cs" />
     <Compile Include="Pinta\GaussianBlurEffect.cs" />
+    <Compile Include="FSpot\Literal.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="..\..\..\COPYING">

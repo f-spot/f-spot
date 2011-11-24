@@ -137,6 +137,7 @@ SOURCES =  \
 	FSpot/InfoOverlay.cs \
 	FSpot/ItemAction.cs \
 	FSpot/JobStore.cs \
+	FSpot/Literal.cs \
 	FSpot/main.cs \
 	FSpot/MainWindow.cs \
 	FSpot/MetaStore.cs \
