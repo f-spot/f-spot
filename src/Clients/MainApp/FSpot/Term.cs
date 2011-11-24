@@ -56,13 +56,12 @@ namespace FSpot
 			this.parent = parent;
 			SubTerms = new List<Term> ();
 
-			if (parent != null) {
+			if (parent != null)
 				if (after == null) {
 					parent.Add (this);
 				} else {
 					parent.SubTerms.Insert (parent.SubTerms.IndexOf (after) + 1, this);
 				}
-			}
 		}
 
 		#region Properties
@@ -82,11 +81,10 @@ namespace FSpot
 		/// </value>
 		public Term Last {
 			get {
-				if (SubTerms.Count > 0) {
+				if (SubTerms.Count > 0)
 					return SubTerms [SubTerms.Count - 1];
-				} else {
+else
 					return null;
-				}
 			}
 		}
 
@@ -99,14 +97,12 @@ namespace FSpot
 		public Term Parent {
 			get { return parent; }
 			set {
-				if (parent == value) {
+				if (parent == value)
 					return;
-				}
 
 				// If our parent was already set, remove ourself from it
-				if (parent != null) {
+				if (parent != null)
 					parent.Remove (this);
-				}
 
 				// Add ourself to our new parent
 				parent = value;
@@ -117,9 +113,8 @@ namespace FSpot
 		public virtual bool IsNegated {
 			get { return is_negated; }
 			set {
-				if (is_negated != value) {
+				if (is_negated != value)
 					Invert (false);
-				}
 
 				is_negated = value;
 			}
@@ -137,9 +132,8 @@ namespace FSpot
 			SubTerms.Remove (term);
 
 			// Remove ourselves if we're now empty
-			if (SubTerms.Count == 0 && Parent != null) {
+			if (SubTerms.Count == 0 && Parent != null)
 				Parent.Remove (this);
-			}
 		}
 
 		public void CopyAndInvertSubTermsFrom (Term term, bool recurse)
@@ -148,11 +142,10 @@ namespace FSpot
 			List<Term> termsToMove = new List<Term> (term.SubTerms);
 
 			foreach (Term subterm in termsToMove) {
-				if (recurse) {
+				if (recurse)
 					subterm.Invert (true).Parent = this;
-				} else {
+else
 					subterm.Parent = this;
-				}
 			}
 		}
 
@@ -165,15 +158,14 @@ namespace FSpot
 		{
 			List<Term> results = new List<Term> ();
 
-			if (tag != null && tag == t) {
+			if (tag != null && tag == t)
 				results.Add (this);
-			}
 
-			if (recursive) {
+			if (recursive)
 				foreach (Term term in SubTerms) {
 					results.AddRange (term.FindByTag (t, true));
 				}
-			} else {
+else
 				foreach (Term term in SubTerms) {
 					foreach (Term literal in SubTerms) {
 						if (literal.tag != null && literal.tag == t) {
@@ -185,7 +177,6 @@ namespace FSpot
 						results.Add (term);
 					}
 				}
-			}
 
 			return results;
 		}
@@ -196,16 +187,14 @@ namespace FSpot
 
 			bool meme = false;
 			foreach (Term term in SubTerms) {
-				if (term is Literal) {
+				if (term is Literal)
 					meme = true;
-				}
 
 				results.AddRange (term.LiteralParents ());
 			}
 
-			if (meme) {
+			if (meme)
 				results.Add (this);
-			}
 
 			return results;
 		}
@@ -214,27 +203,24 @@ namespace FSpot
 		{
 			List<Term> parents = LiteralParents ();
 
-			if (parents.Count == 0) {
+			if (parents.Count == 0)
 				return false;
-			}
 
 			foreach (Term term in parents) {
 				bool termHasTag = false;
 				bool onlyTerm = true;
 
 				foreach (Term literal in term.SubTerms) {
-					if (literal.tag != null) {
+					if (literal.tag != null)
 						if (literal.tag == t) {
 							termHasTag = true;
 						} else {
 							onlyTerm = false;
 						}
-					}
 				}
 
-				if (termHasTag && onlyTerm) {
+				if (termHasTag && onlyTerm)
 					return true;
-				}
 			}
 
 			return false;
@@ -254,16 +240,15 @@ namespace FSpot
 			grouped_with = 100;
 			int min_grouped_with = 100;
 
-			if (parents.Count == 0) {
+			if (parents.Count == 0)
 				return false;
-			}
 
 			foreach (Term term in parents) {
 				bool termHasTag = false;
 
 				// Don't count it as required if it's the only subterm..though it is..
 				// it is more clearly identified as Included at that point.
-				if (term.Count > 1) {
+				if (term.Count > 1)
 					foreach (Term literal in term.SubTerms) {
 						if (literal.tag != null) {
 							if (literal.tag == t) {
@@ -274,15 +259,12 @@ namespace FSpot
 							}
 						}
 					}
-				}
 
-				if (grouped_with < min_grouped_with) {
+				if (grouped_with < min_grouped_with)
 					min_grouped_with = grouped_with;
-				}
 
-				if (!termHasTag) {
+				if (!termHasTag)
 					return false;
-				}
 			}
 
 			grouped_with = min_grouped_with;
@@ -306,9 +288,8 @@ namespace FSpot
 				Term term = SubTerms [i] as Term;
 				condition.Append (term.SqlCondition ());
 
-				if (i != SubTerms.Count - 1) {
+				if (i != SubTerms.Count - 1)
 					condition.Append (SQLOperator ());
-				}
 			}
 
 			condition.Append (")");
@@ -334,13 +315,12 @@ namespace FSpot
 			//op = op.Trim ();
 			op = op.ToLower ();
 
-			if (AndTerm.Operators.Contains (op)) {
+			if (AndTerm.Operators.Contains (op))
 				//Console.WriteLine ("AND!");
 				return new AndTerm (parent, after);
-			} else if (OrTerm.Operators.Contains (op)) {
+else if (OrTerm.Operators.Contains (op))
 				//Console.WriteLine ("OR!");
 				return new OrTerm (parent, after);
-			}
 
 			Log.DebugFormat ("Do not have Term for operator {0}", op);
 			return null;
@@ -368,9 +348,8 @@ namespace FSpot
 		{
 			OrTerm newme = new OrTerm (Parent, null);
 			newme.CopyAndInvertSubTermsFrom (this, recurse);
-			if (Parent != null) {
+			if (Parent != null)
 				Parent.Remove (this);
-			}
 			return newme;
 		}
 
@@ -389,13 +368,12 @@ namespace FSpot
 			condition.Append (base.SqlCondition ());
 
 			Tag hidden = App.Instance.Database.Tags.Hidden;
-			if (hidden != null) {
+			if (hidden != null)
 				if (FindByTag (hidden, true).Count == 0) {
 					condition.Append (String.Format (
 								" AND id NOT IN (SELECT photo_id FROM photo_tags WHERE tag_id = {0})", hidden.Id
 								));
 				}
-			}
 
 			condition.Append (")");
 
@@ -425,9 +403,8 @@ namespace FSpot
 
 		public static OrTerm FromTags (Tag [] from_tags)
 		{
-			if (from_tags == null || from_tags.Length == 0) {
+			if (from_tags == null || from_tags.Length == 0)
 				return null;
-			}
 
 			OrTerm or = new OrTerm (null, null);
 			foreach (Tag t in from_tags) {
@@ -443,9 +420,8 @@ namespace FSpot
 		{
 			AndTerm newme = new AndTerm (Parent, null);
 			newme.CopyAndInvertSubTermsFrom (this, recurse);
-			if (Parent != null) {
+			if (Parent != null)
 				Parent.Remove (this);
-			}
 			return newme;
 		}
 

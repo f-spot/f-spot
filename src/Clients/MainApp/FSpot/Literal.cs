@@ -33,7 +33,6 @@
 // This has to do with Finding photos based on tags
 // http://mail.gnome.org/archives/f-spot-list/2005-November/msg00053.html
 // http://bugzilla-attachments.gnome.org/attachment.cgi?id=54566
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -48,7 +47,9 @@ namespace FSpot
 {
 	public abstract class AbstractLiteral : Term
 	{
-		public AbstractLiteral(Term parent, Literal after) : base (parent, after) { }
+		public AbstractLiteral (Term parent, Literal after) : base (parent, after)
+		{
+		}
 
 		public override Term Invert (bool recurse)
 		{
@@ -60,9 +61,12 @@ namespace FSpot
 	// TODO rename to TagLiteral?
 	public class Literal : AbstractLiteral
 	{
-		public Literal (Tag tag) : this (null, tag, null) {	}
+		public Literal (Tag tag) : this (null, tag, null)
+		{
+		}
 
-		public Literal (Term parent, Tag tag, Literal after) : base (parent, after) {
+		public Literal (Term parent, Tag tag, Literal after) : base (parent, after)
+		{
 			Tag = tag;
 		}
 
@@ -96,8 +100,7 @@ namespace FSpot
 			}
 		}
 
-		private Pixbuf NegatedIcon
-		{
+		private Pixbuf NegatedIcon {
 			get {
 				if (negated_icon != null)
 					return negated_icon;
@@ -136,7 +139,7 @@ namespace FSpot
 
 				container.CanFocus = true;
 
-				container.KeyPressEvent  += KeyHandler;
+				container.KeyPressEvent += KeyHandler;
 				container.ButtonPressEvent += HandleButtonPress;
 				container.ButtonReleaseEvent += HandleButtonRelease;
 				container.EnterNotifyEvent += HandleMouseIn;
@@ -158,18 +161,17 @@ namespace FSpot
 				container.DragLeave += HandleDragLeave;
 
 				Gtk.Drag.DestSet (container, DestDefaults.All, tag_dest_target_table,
-						DragAction.Copy | DragAction.Move );
+						DragAction.Copy | DragAction.Move);
 
 				container.TooltipText = Tag.Name;
 
 				label.Show ();
 				image.Show ();
 
-				if (Tag.Icon == null) {
+				if (Tag.Icon == null)
 					handle_box.Add (label);
-				} else {
+else
 					handle_box.Add (image);
-				}
 
 				handle_box.Show ();
 
@@ -184,8 +186,7 @@ namespace FSpot
 			}
 		}
 
-		private Pixbuf NormalIcon
-		{
+		private Pixbuf NormalIcon {
 			get {
 				if (normal_icon != null)
 					return normal_icon;
@@ -193,8 +194,9 @@ namespace FSpot
 				Pixbuf scaled = null;
 				scaled = Tag.Icon;
 
-				for (Category category = Tag.Category; category != null && scaled == null; category = category.Category)
+				for (Category category = Tag.Category; category != null && scaled == null; category = category.Category) {
 					scaled = category.Icon;
+				}
 
 				if (scaled == null)
 					return null;
@@ -241,7 +243,7 @@ namespace FSpot
 			}
 
 
-			if (isHoveredOver && image.Pixbuf != null ) {
+			if (isHoveredOver && image.Pixbuf != null) {
 				// Brighten the image slightly
 				Pixbuf brightened = image.Pixbuf.Copy ();
 				image.Pixbuf.SaturateAndPixelate (brightened, 1.85f, false);
@@ -271,8 +273,9 @@ namespace FSpot
 				List<Tag> tags = new List<Tag> ();
 				(Tag as Category).AddDescendentsTo (tags);
 
-				for (int i = 0; i < tags.Count; i++)
+				for (int i = 0; i < tags.Count; i++) {
 					ids.Append (", " + (tags [i] as Tag).Id.ToString ());
+				}
 			}
 
 			return String.Format (
@@ -285,8 +288,7 @@ namespace FSpot
 			return new Label ("ERR");
 		}
 
-		private static Pixbuf NegatedOverlay
-		{
+		private static Pixbuf NegatedOverlay {
 			get {
 				if (negated_overlay == null) {
 					System.Reflection.Assembly assembly = System.Reflection.Assembly.GetCallingAssembly ();
@@ -301,8 +303,9 @@ namespace FSpot
 		public static void RemoveFocusedLiterals ()
 		{
 			if (focusedLiterals != null)
-				foreach (Literal literal in focusedLiterals)
+				foreach (Literal literal in focusedLiterals) {
 					literal.RemoveSelf ();
+				}
 		}
 		#endregion
 
@@ -312,10 +315,10 @@ namespace FSpot
 			args.RetVal = false;
 
 			switch (args.Event.Key) {
-				case Gdk.Key.Delete:
-					RemoveFocusedLiterals ();
-					args.RetVal = true;
-					return;
+			case Gdk.Key.Delete:
+				RemoveFocusedLiterals ();
+				args.RetVal = true;
+				return;
 			}
 		}
 
@@ -324,33 +327,31 @@ namespace FSpot
 			args.RetVal = true;
 
 			switch (args.Event.Type) {
-				case EventType.TwoButtonPress:
-					if (args.Event.Button == 1)
-						IsNegated = !IsNegated;
-					else
-						args.RetVal = false;
-					return;
-
-				case EventType.ButtonPress:
-					Widget.GrabFocus ();
-
-					if (args.Event.Button == 1) {
-						// TODO allow multiple selection of literals so they can be deleted, modified all at once
-						//if ((args.Event.State & ModifierType.ControlMask) != 0) {
-						//}
-
-					}
-					else if (args.Event.Button == 3)
-					{
-						LiteralPopup popup = new LiteralPopup ();
-						popup.Activate (args.Event, this);
-					}
-
-					return;
-
-				default:
+			case EventType.TwoButtonPress:
+				if (args.Event.Button == 1)
+					IsNegated = !IsNegated;
+				else
 					args.RetVal = false;
-					return;
+				return;
+
+			case EventType.ButtonPress:
+				Widget.GrabFocus ();
+
+				if (args.Event.Button == 1) {
+					// TODO allow multiple selection of literals so they can be deleted, modified all at once
+					//if ((args.Event.State & ModifierType.ControlMask) != 0) {
+					//}
+
+				} else if (args.Event.Button == 3) {
+					LiteralPopup popup = new LiteralPopup ();
+					popup.Activate (args.Event, this);
+				}
+
+				return;
+
+			default:
+				args.RetVal = false;
+				return;
 			}
 		}
 
@@ -359,18 +360,18 @@ namespace FSpot
 			args.RetVal = true;
 
 			switch (args.Event.Type) {
-				case EventType.TwoButtonPress:
-					args.RetVal = false;
-					return;
+			case EventType.TwoButtonPress:
+				args.RetVal = false;
+				return;
 
-				case EventType.ButtonPress:
-					if (args.Event.Button == 1) {
-					}
-					return;
+			case EventType.ButtonPress:
+				if (args.Event.Button == 1) {
+				}
+				return;
 
-				default:
-					args.RetVal = false;
-					return;
+			default:
+				args.RetVal = false;
+				return;
 			}
 		}
 
@@ -396,7 +397,7 @@ namespace FSpot
 				Byte [] data = Encoding.UTF8.GetBytes (String.Empty);
 				Atom [] targets = args.Context.Targets;
 
-				args.SelectionData.Set (targets[0], 8, data, data.Length);
+				args.SelectionData.Set (targets [0], 8, data, data.Length);
 
 				return;
 			}
@@ -404,8 +405,9 @@ namespace FSpot
 			// Drop cancelled
 			args.RetVal = false;
 
-			foreach (Widget w in hiddenWidgets)
+			foreach (Widget w in hiddenWidgets) {
 				w.Visible = true;
+			}
 
 			focusedLiterals = null;
 		}
@@ -449,9 +451,9 @@ namespace FSpot
 
 			if (args.Info == DragDropTargets.TagQueryEntry.Info) {
 
-				if (! focusedLiterals.Contains(this))
-					if (LiteralsMoved != null)
-						LiteralsMoved (focusedLiterals, Parent, this);
+				if (! focusedLiterals.Contains (this))
+				if (LiteralsMoved != null)
+					LiteralsMoved (focusedLiterals, Parent, this);
 
 				// Unmark the literals as focused so they don't get nixed
 				focusedLiterals = null;
@@ -460,6 +462,7 @@ namespace FSpot
 
 		private bool preview = false;
 		private Gtk.Widget preview_widget;
+
 		private void HandleDragMotion (object o, DragMotionArgs args)
 		{
 			if (!preview) {
@@ -507,18 +510,14 @@ namespace FSpot
 		}
 
 		private const int ICON_SIZE = 24;
-
-		private const int overlay_size = (int) (.40 * ICON_SIZE);
-
-		private static TargetEntry [] tag_target_table =
+		private const int overlay_size = (int)(.40 * ICON_SIZE);
+		private static TargetEntry[] tag_target_table =
 			new TargetEntry [] { DragDropTargets.TagQueryEntry };
-
-		private static TargetEntry [] tag_dest_target_table =
+		private static TargetEntry[] tag_dest_target_table =
 			new TargetEntry [] {
 				DragDropTargets.TagListEntry,
 				DragDropTargets.TagQueryEntry
 			};
-
 		private static List<Literal> focusedLiterals = new List<Literal> ();
 		private static List<Widget> hiddenWidgets = new List<Widget> ();
 		private Gtk.Container container;
@@ -526,7 +525,6 @@ namespace FSpot
 		private Gtk.Box box;
 		private Gtk.Image image;
 		private Gtk.Label label;
-
 		private Pixbuf normal_icon;
 		//private EventBox widget;
 		private Widget widget;
@@ -535,32 +533,41 @@ namespace FSpot
 		private bool isHoveredOver = false;
 
 		public delegate void NegatedToggleHandler (Literal group);
+
 		public event NegatedToggleHandler NegatedToggled;
 
 		public delegate void RemovingHandler (Literal group);
+
 		public event RemovingHandler Removing;
 
 		public delegate void RemovedHandler (Literal group);
+
 		public event RemovedHandler Removed;
 
-		public delegate void TagsAddedHandler (Tag[] tags, Term parent, Literal after);
+		public delegate void TagsAddedHandler (Tag[] tags,Term parent,Literal after);
+
 		public event TagsAddedHandler TagsAdded;
 
-		public delegate void AttachTagHandler (Tag tag, Term parent, Literal after);
+		public delegate void AttachTagHandler (Tag tag,Term parent,Literal after);
+
 		public event AttachTagHandler AttachTag;
 
-		public delegate void TagRequiredHandler (Tag [] tags);
+		public delegate void TagRequiredHandler (Tag[] tags);
+
 		public event TagRequiredHandler RequireTag;
 
-		public delegate void TagUnRequiredHandler (Tag [] tags);
+		public delegate void TagUnRequiredHandler (Tag[] tags);
+
 		public event TagUnRequiredHandler UnRequireTag;
 
-		public delegate void LiteralsMovedHandler (List<Literal> literals, Term parent, Literal after);
+		public delegate void LiteralsMovedHandler (List<Literal> literals,Term parent,Literal after);
+
 		public event LiteralsMovedHandler LiteralsMoved;
 		#endregion
 	}
 
-	public class TextLiteral : AbstractLiteral {
+	public class TextLiteral : AbstractLiteral
+	{
 		private string text;
 
 		public TextLiteral (Term parent, string text) : base (parent, null)
@@ -572,13 +579,13 @@ namespace FSpot
 		{
 			return String.Format (
 					"id {0}IN (SELECT id FROM photos WHERE base_uri LIKE '%{1}%' OR filename LIKE '%{1}%' OR description LIKE '%{1}%')",
-					(IsNegated ? "NOT " : ""), EscapeQuotes(text)
+					(IsNegated ? "NOT " : ""), EscapeQuotes (text)
 					);
 		}
 
 		protected static string EscapeQuotes (string v)
 		{
-			return v == null ? String.Empty : v.Replace("'", "''");
+			return v == null ? String.Empty : v.Replace ("'", "''");
 		}
 	}
 }
