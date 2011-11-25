@@ -38,9 +38,11 @@ using Hyena;
 using FSpot.Utils;
 using FSpot.Platform;
 
-namespace FSpot {
-	public class PixbufCache {
-		Hashtable items;
+namespace FSpot
+{
+	public class PixbufCache
+	{
+		Dictionary<SafeUri,CacheEntry> items;
 		List<CacheEntry> items_mru;
 		int total_size;
 		int max_size = 256 * 256 * 4 * 30;
@@ -52,7 +54,7 @@ namespace FSpot {
 
 		public PixbufCache ()
 		{
-			items = new Hashtable ();
+			items = new Dictionary<SafeUri, CacheEntry> ();
 			items_mru = new List<CacheEntry> ();
 
 			worker = new Thread (new ThreadStart (WorkerTask));
@@ -69,7 +71,7 @@ namespace FSpot {
 		public void Request (SafeUri uri, object closure, int width, int height)
 		{
 			lock (items) {
-				CacheEntry entry = items[uri] as CacheEntry;
+				CacheEntry entry = items[uri];
 
 				if (entry == null) {
 					entry = new CacheEntry (this, uri, closure, width, height);
@@ -86,7 +88,7 @@ namespace FSpot {
 //		public void Update (SafeUri uri, Gdk.Pixbuf pixbuf)
 //		{
 //			lock (items) {
-//				CacheEntry entry = (CacheEntry) items [uri];
+//				CacheEntry entry = items [uri];
 //				if (entry != null) {
 //					entry.SetPixbufExtended (pixbuf, true);
 //				}
@@ -118,7 +120,7 @@ namespace FSpot {
 			CacheEntry entry;
 
 			lock (items) {
-				entry = (CacheEntry) items [uri];
+				entry = items [uri];
 				if (entry != null) {
 					lock (entry) {
 						entry.Reload = true;
@@ -139,7 +141,7 @@ namespace FSpot {
 				return null;
 			}
 			while (i-- > 0) {
-				entry = (CacheEntry) items_mru [i];
+				entry = items_mru [i];
 				lock (entry) {
 					if (entry.Reload) {
 						entry.Reload = false;
@@ -165,7 +167,7 @@ namespace FSpot {
 		{
 			int num = 0;
 			while ((items_mru.Count - num) > 10 && total_size > max_size) {
-				CacheEntry entry = (CacheEntry) items_mru [num++];
+				CacheEntry entry = items_mru [num++];
 				items.Remove (entry.Uri);
 				entry.Dispose ();
 			}
@@ -231,7 +233,7 @@ namespace FSpot {
 			CacheEntry tmp1 = entry;
 			CacheEntry tmp2;
 			while (i-- > 0) {
-				tmp2 = (CacheEntry) items_mru [i];
+				tmp2 = items_mru [i];
 				items_mru [i] = tmp1;
 				tmp1 = tmp2;
 				if (tmp2 == entry)
@@ -247,7 +249,7 @@ namespace FSpot {
 
 		private CacheEntry ULookup (SafeUri uri)
 		{
-			CacheEntry entry = (CacheEntry) items [uri];
+			CacheEntry entry = items [uri];
 			if (entry != null) {
 				MoveForward (entry);
 			}
@@ -263,7 +265,7 @@ namespace FSpot {
 
 		private void URemove (SafeUri uri)
 		{
-			CacheEntry entry = (CacheEntry) items [uri];
+			CacheEntry entry = items [uri];
 			if (entry != null) {
 				items.Remove (uri);
 				items_mru.Remove (entry);

@@ -749,10 +749,9 @@ namespace FSpot.Exporters.Folder {
 		static string light = Catalog.GetString("Light");
 		static string dark = Catalog.GetString("Dark");
 
-		// FIXME: Need to clean up the ArrayList and Hashtable at the same time.
-		ArrayList allTagNames = new ArrayList ();
-		Hashtable allTags = new Hashtable ();
-		Hashtable tagSets = new Hashtable ();
+		List<string> allTagNames = new List<string> ();
+		Dictionary<string,Tag> allTags = new Dictionary<string, Tag> ();
+		Dictionary<string, List<int>> tagSets = new Dictionary<string, List<int>> ();
 
 		public HtmlGallery (IBrowsableCollection selection, string path, string name) : base (selection, path, name)
 		{
@@ -788,14 +787,14 @@ namespace FSpot.Exporters.Folder {
 				foreach (IPhoto photo in photos) {
 					foreach (var tag in photo.Tags) {
 						if (!tagSets.ContainsKey (tag.Name)) {
-							tagSets.Add (tag.Name, new ArrayList ());
+							tagSets.Add (tag.Name, new List<int> ());
 							allTags.Add (tag.Name, tag);
 						}
-						((ArrayList) tagSets [tag.Name]).Add (i);
+						tagSets [tag.Name].Add (i);
 					}
 					i++;
 				}
-				allTagNames = new ArrayList (tagSets.Keys);
+				allTagNames = new List<string> (tagSets.Keys);
 				allTagNames.Sort ();
 
 				// create tag pages
@@ -858,7 +857,7 @@ namespace FSpot.Exporters.Folder {
 
 		public int TagPageCount (string tag)
 		{
-			return (int) System.Math.Ceiling (((ArrayList) tagSets [tag]).Count / (double)perpage);
+			return (int) System.Math.Ceiling (tagSets [tag].Count / (double)perpage);
 		}
 
 		public string PhotoThumbPath (int item)
@@ -1088,7 +1087,7 @@ namespace FSpot.Exporters.Folder {
 
 		public void WriteTagsLinks (System.Web.UI.HtmlTextWriter writer, Tag[] tags)
 		{
-			ArrayList tagsList = new ArrayList (tags.Length);
+			List<Tag> tagsList = new List<Tag> (tags.Length);
 			foreach (var tag in tags) {
 				tagsList.Add (tag);
 			}
@@ -1270,7 +1269,7 @@ namespace FSpot.Exporters.Folder {
 			writer.RenderBeginTag ("div");
 
 			int start = page_num * perpage;
-			ArrayList tagSet = (ArrayList) tagSets [tag];
+			List<int> tagSet = tagSets [tag];
 			int end = Math.Min (start + perpage, tagSet.Count);
 			for (i = start; i < end; i++) {
 				writer.AddAttribute ("href", PhotoIndexPath ((int) tagSet [i]));

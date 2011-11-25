@@ -5,6 +5,7 @@
 //   Ruben Vermeersch <ruben@savanne.be>
 //   Lorenzo Milesi <maxxer@yetopen.it>
 //   Stephane Delcroix <stephane@delcroix.org>
+//   Stephen Shaw <sshaw@decriptor.com>
 //
 // Copyright (C) 2008-2010 Novell, Inc.
 // Copyright (C) 2008, 2010 Ruben Vermeersch
@@ -37,6 +38,7 @@
 
 using System;
 using System.Collections;
+using System.Collections.Generic;
 
 using Gtk;
 using Gdk;
@@ -304,7 +306,7 @@ namespace FSpot.Widgets
 			}
 		}
 
-		Hashtable start_indexes;
+		Dictionary<int,int> start_indexes;
 		int filmstrip_start_pos;
 		int filmstrip_end_pos;
 		protected override bool OnExposeEvent (EventExpose evnt)
@@ -335,7 +337,7 @@ namespace FSpot.Widgets
 					BackgroundPixbuf.Width, BackgroundPixbuf.Height, Gdk.RgbDither.None, 0, 0);
 
 			//drawing the icons...
-			start_indexes = new Hashtable ();
+			start_indexes = new Dictionary<int, int> ();
 
 			Pixbuf icon_pixbuf = null;
 			if (Orientation == Orientation.Horizontal)
@@ -523,7 +525,7 @@ namespace FSpot.Widgets
 			foreach (int key in start_indexes.Keys)
 				if (key <= (Orientation == Orientation.Horizontal ? evnt.X : evnt.Y) && key > pos)
 					pos = key;
-			ActiveItem = (int)start_indexes [pos];
+			ActiveItem = start_indexes [pos];
 			return true;
 		}
 

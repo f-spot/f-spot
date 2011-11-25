@@ -70,13 +70,13 @@ namespace FSpot.Widgets
 		List<string> selected_photos_tagnames;
 		public void UpdateFromSelection (IPhoto [] sel)
 		{
-			Hashtable taghash = new Hashtable ();
+			Dictionary<Tag,int> taghash = new Dictionary<Tag,int> ();
 
 			for (int i = 0; i < sel.Length; i++) {
 				foreach (Tag tag in sel [i].Tags) {
 					int count = 1;
 
-					if (taghash.Contains (tag))
+					if (taghash.ContainsKey (tag))
 						count = ((int) taghash [tag]) + 1;
 
 					if (count <= i)

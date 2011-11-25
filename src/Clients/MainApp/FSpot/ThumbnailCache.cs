@@ -5,6 +5,7 @@
 //   Ettore Perazzoli <ettore@src.gnome.org>
 //   Larry Ewing <lewing@novell.com>
 //   Stephane Delcroix <sdelcroix@novell.com>
+//   Stephen Shaw <sshaw@decriptor.com>
 //
 // Copyright (C) 2003-2008 Novell, Inc.
 // Copyright (C) 2003 Ettore Perazzoli
@@ -43,8 +44,7 @@ namespace FSpot
 {
 	public class ThumbnailCache : IDisposable {
 	
-		// Types.
-	
+		#region Types
 		private class Thumbnail {
 			// Uri of the image source
 			public SafeUri uri;
@@ -52,13 +52,13 @@ namespace FSpot
 			// The uncompressed thumbnail.
 			public Pixbuf pixbuf;
 		}
-	
+		#endregion
 	
 		#region Private members and constants
 		private const int DEFAULT_CACHE_SIZE = 2;
 		private int max_count;
 		private List<Thumbnail> pixbuf_mru;
-		private Hashtable pixbuf_hash;
+		private Dictionary<SafeUri,Thumbnail> pixbuf_hash;
 		static private ThumbnailCache defaultcache = new ThumbnailCache (DEFAULT_CACHE_SIZE);
 		#endregion
 	
@@ -67,7 +67,7 @@ namespace FSpot
 		{
 			this.max_count = max_count;
 			pixbuf_mru = new List<Thumbnail> (max_count);
-			pixbuf_hash = new Hashtable();
+			pixbuf_hash = new Dictionary<SafeUri, Thumbnail> ();
 		}
 	
 		static public ThumbnailCache Default {
@@ -96,7 +96,7 @@ namespace FSpot
 			if (! pixbuf_hash.ContainsKey (uri))
 				return null;
 	
-			Thumbnail item = pixbuf_hash [uri] as Thumbnail;
+			Thumbnail item = pixbuf_hash [uri];
 	
 			pixbuf_mru.Remove (item);
 			pixbuf_mru.Insert (0, item);
@@ -111,7 +111,7 @@ namespace FSpot
 			if (! pixbuf_hash.ContainsKey (uri))
 				return;
 	
-			Thumbnail item = pixbuf_hash [uri] as Thumbnail;
+			Thumbnail item = pixbuf_hash [uri];
 	
 			pixbuf_hash.Remove (uri);
 			pixbuf_mru.Remove (item);

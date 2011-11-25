@@ -4,6 +4,7 @@
 // Author:
 //   Stephane Delcroix <stephane@delcroix.org>
 //   Jim Ramsay <i.am@jimramsay.com>
+//   Stephen Shaw <sshaw@decriptor.com>
 //
 // Copyright (C) 2007-2009 Novell, Inc.
 // Copyright (C) 2007-2009 Stephane Delcroix
@@ -30,27 +31,20 @@
 //
 
 using System;
-using System.Net;
 using System.IO;
-using System.Text;
 using System.Threading;
 using System.Collections;
 using System.Collections.Generic;
-using System.Collections.Specialized;
-using System.Web;
 using Mono.Unix;
 using Gtk;
 using Gnome.Keyring;
-using GtkBeans;
 
-using FSpot;
 using FSpot.Core;
 using Hyena;
 using Hyena.Widgets;
 using FSpot.UI.Dialog;
 using FSpot.Extensions;
 using FSpot.Filters;
-using FSpot.Platform;
 
 using Mono.Facebook;
 
@@ -149,6 +143,7 @@ namespace FSpot.Exporters.Facebook
 			}
 
 			Hashtable attribs = new Hashtable();
+			//Dictionary<string,string> attribs = new  Dictionary<string, string> ();
 			attribs["name"] = keyring_item_name;
 			attribs["uid"] = info.uid.ToString ();
 			attribs["session_key"] = info.session_key;
@@ -167,6 +162,7 @@ namespace FSpot.Exporters.Facebook
 			SessionInfo info = null;
 
 			Hashtable request_attributes = new Hashtable ();
+			//Dictionary<string, string> request_attributes = new Dictionary<string, string> ();
 			request_attributes["name"] = keyring_item_name;
 			try {
 				foreach (ItemData result in Ring.Find (ItemType.GenericSecret, request_attributes)) {
@@ -202,6 +198,7 @@ namespace FSpot.Exporters.Facebook
 			}
 
 			Hashtable request_attributes = new Hashtable ();
+			//Dictionary<string,string> request_attributes = new Dictionary<string, string> ();
 			request_attributes["name"] = keyring_item_name;
 			try {
 				foreach (ItemData result in Ring.Find (ItemType.GenericSecret, request_attributes)) {

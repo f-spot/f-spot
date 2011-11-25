@@ -307,8 +307,6 @@ else
 			return String.Empty;
 		}
 
-		protected static Hashtable op_term_lookup = new Hashtable ();
-
 		public static Term TermFromOperator (string op, Term parent, Literal after)
 		{
 			//Console.WriteLine ("finding type for operator {0}", op);
