@@ -414,13 +414,13 @@ namespace FSpot {
          {
                  EmitRemoved (items);
         
-                 ArrayList query_builder = new ArrayList (items.Length);
+                 List<string> query_builder = new List<string> (items.Length);
                  for (int i = 0; i < items.Length; i++) {
                          query_builder.Add (String.Format ("{0}", items[i].Id));
                          RemoveFromCache (items[i]);
                  }
         
-                 String id_list = String.Join ("','", ((string []) query_builder.ToArray (typeof (string))));
+                 String id_list = String.Join ("','", query_builder.ToArray ());
                  Database.Execute (String.Format ("DELETE FROM photos WHERE id IN ('{0}')", id_list));
                  Database.Execute (String.Format ("DELETE FROM photo_tags WHERE photo_id IN ('{0}')", id_list));
                  Database.Execute (String.Format ("DELETE FROM photo_versions WHERE photo_id IN ('{0}')", id_list));
@@ -899,7 +899,7 @@ namespace FSpot {
                  //                  GROUP BY photos.id
         
                  StringBuilder query_builder = new StringBuilder ();
-                 ArrayList where_clauses = new ArrayList ();
+                 List<string> where_clauses = new List<string> ();
                  query_builder.Append ("SELECT id, "                     +
                                               "time, "                   +
                                               "base_uri, "                       +
@@ -940,7 +940,7 @@ namespace FSpot {
         
                  if (where_clauses.Count > 0) {
                          query_builder.Append (" WHERE ");
-                         query_builder.Append (String.Join (" AND ", ((String []) where_clauses.ToArray (typeof(String)))));
+                         query_builder.Append (String.Join (" AND ", where_clauses.ToArray ()));
                  }
                  query_builder.Append (" ORDER BY time");
                  return Query (query_builder.ToString ());

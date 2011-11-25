@@ -3,6 +3,7 @@
 //
 // Author:
 //   Paul Lange <palango@gmx.de>
+//   Stephen Shaw <sshaw@decriptor.com>
 //
 // Copyright (C) 2010 Novell, Inc.
 // Copyright (C) 2010 Paul Lange
@@ -28,24 +29,10 @@
 //
 
 using System;
-using System.Net;
-using System.IO;
-using System.Text;
 using System.Collections;
-using System.Collections.Specialized;
-using System.Web;
-using Mono.Unix;
+using System.Collections.Generic;
 using Hyena;
-using Hyena.Widgets;
-using FSpot;
-using FSpot.Core;
-using FSpot.Filters;
-using FSpot.Widgets;
-using FSpot.Imaging;
-using FSpot.UI.Dialog;
 using Gnome.Keyring;
-using Mono.Google;
-using Mono.Google.Picasa;
 
 namespace FSpot.Exporters.PicasaWeb
 {
@@ -53,7 +40,7 @@ namespace FSpot.Exporters.PicasaWeb
 	{
 		private static GoogleAccountManager instance;
 		private const string keyring_item_name = "Google Account";
-		ArrayList accounts;
+		List<GoogleAccount> accounts;
 
 		public delegate void AccountListChangedHandler (GoogleAccountManager manager, GoogleAccount changed_account);
 		public event AccountListChangedHandler AccountListChanged;
@@ -69,7 +56,7 @@ namespace FSpot.Exporters.PicasaWeb
 
 		private GoogleAccountManager ()
 		{
-			accounts = new ArrayList ();
+			accounts = new List<GoogleAccount> ();
 			ReadAccounts ();
 		}
 
@@ -87,7 +74,7 @@ namespace FSpot.Exporters.PicasaWeb
 				AccountListChanged (this, changed_account);
 		}
 
-		public ArrayList GetAccounts ()
+		public List<GoogleAccount> GetAccounts ()
 		{
 			return accounts;
 		}

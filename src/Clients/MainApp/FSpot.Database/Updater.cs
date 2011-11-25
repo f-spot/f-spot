@@ -6,6 +6,7 @@
 //   Ruben Vermeersch <ruben@savanne.be>
 //   Gabriel Burt <gabriel.burt@gmail.com>
 //   Stephane Delcroix <stephane@delcroix.org>
+//   Stephen Shaw <sshaw@decriptor.com>
 //
 // Copyright (C) 2006-2010 Novell, Inc.
 // Copyright (C) 2009-2010 Mike Gemünde
@@ -37,6 +38,7 @@ using Mono.Unix;
 using Gtk;
 using System;
 using System.Collections;
+using System.Collections.Generic;
 
 using FSpot.Utils;
 using FSpot.UI.Dialog;
@@ -49,7 +51,7 @@ namespace FSpot.Database
 	public static class Updater
 	{
 		private static ProgressDialog dialog;
-		private static Hashtable updates = new Hashtable ();
+		private static Dictionary<Version, Update> updates = new Dictionary<Version, Update> ();
 		private static Version db_version;
 		private static FSpotDatabaseConnection db;
 		public static bool silent = false;
@@ -59,9 +61,13 @@ namespace FSpot.Database
 				if (updates == null || updates.Count == 0)
 					return new Version (0, 0);
 
-				ArrayList keys = new ArrayList (updates.Keys);
+				List<Version> keys = new List<Version> ();
+				foreach (Version k in updates.Keys) {
+					keys.Add(k);
+				}
 				keys.Sort ();
-				return keys [keys.Count - 1] as Version;
+
+				return keys [keys.Count - 1];
 			}
 		}
 
@@ -772,7 +778,10 @@ namespace FSpot.Database
 
 			db.BeginTransaction ();
 			try {
-				ArrayList keys = new ArrayList (updates.Keys);
+				List<Version> keys = new List<Version> ();
+				foreach (Version k in updates.Keys) {
+					keys.Add(k);
+				}
 				keys.Sort ();
 				foreach (Version version in keys) {
 					if (version <= db_version)
@@ -913,6 +922,7 @@ namespace FSpot.Database
 			}
 		}
 
+		// TODO: Look into System.Version
 		public class Version : IComparable
 		{
 			int maj = 0;

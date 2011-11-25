@@ -3,6 +3,7 @@
 //
 // Author:
 //   Paul Lange <palango@gmx.de>
+//   Stephen Shaw <sshaw@decriptor.com>
 //
 // Copyright (C) 2010 Novell, Inc.
 // Copyright (C) 2010 Paul Lange
@@ -33,8 +34,10 @@ using System.IO;
 using System.Text;
 using System.Threading;
 using System.Collections;
+using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Web;
+
 using Mono.Unix;
 using Gtk;
 using FSpot;
@@ -52,7 +55,7 @@ namespace FSpot.Exporters.SmugMug
 	{
 		private static SmugMugAccountManager instance;
 		private const string keyring_item_name = "SmugMug Account";
-		ArrayList accounts;
+		List<SmugMugAccount> accounts;
 
 		public delegate void AccountListChangedHandler (SmugMugAccountManager manager, SmugMugAccount changed_account);
 		public event AccountListChangedHandler AccountListChanged;
@@ -68,7 +71,7 @@ namespace FSpot.Exporters.SmugMug
 
 		private SmugMugAccountManager ()
 		{
-			accounts = new ArrayList ();
+			accounts = new List<SmugMugAccount> ();
 			ReadAccounts ();
 		}
 
@@ -86,7 +89,7 @@ namespace FSpot.Exporters.SmugMug
 				AccountListChanged (this, changed_account);
 		}
 
-		public ArrayList GetAccounts ()
+		public List<SmugMugAccount> GetAccounts ()
 		{
 			return accounts;
 		}

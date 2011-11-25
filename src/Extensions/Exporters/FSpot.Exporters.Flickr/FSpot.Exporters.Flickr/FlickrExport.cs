@@ -4,6 +4,7 @@
 // Author:
 //   Lorenzo Milesi <maxxer@yetopen.it>
 //   Stephane Delcroix <stephane@delcroix.org>
+//   Stephen Shaw <sshaw@decriptor.com>
 //
 // Copyright (C) 2008-2009 Novell, Inc.
 // Copyright (C) 2008-2009 Lorenzo Milesi
@@ -32,6 +33,7 @@
 using FlickrNet;
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.IO;
 using System.Threading;
 using Mono.Unix;
@@ -373,7 +375,7 @@ namespace FSpot.Exporters.Flickr {
 			progress_item.Changed += HandleProgressChanged;
 			fr.Connection.OnUploadProgress += HandleFlickrProgress;
 
-			System.Collections.ArrayList ids = new System.Collections.ArrayList ();
+			List<string> ids = new List<string> ();
 			IPhoto [] photos = selection.Items;
 			Array.Sort (photos, new DateComparer ());
 

@@ -2,7 +2,8 @@
 // PictureTile.cs
 //
 // Author:
-//   Stephane Delcroix <sdelcroix*novell.com>
+//   Stephane Delcroix <sdelcroix@novell.com>
+//   Stephen Shaw <sshaw@decriptor.com>
 //
 // Copyright (C) 2008 Novell, Inc.
 // Copyright (C) 2008 Stephane Delcroix
@@ -31,6 +32,7 @@ using System;
 using System.IO;
 using System.Collections;
 using System.Globalization;
+using System.Collections.Generic;
 using Gtk;
 
 using FSpot;
@@ -130,7 +132,7 @@ namespace PictureTileExtension {
 			FilterSet filters = new FilterSet ();
 			filters.Add (new JpegFilter ());
 			uint counter = 0;
-			ArrayList all_tags = new ArrayList ();
+			List<Tag> all_tags = new List<Tag> ();
 			foreach (Photo p in App.Instance.Organizer.SelectedPhotos ()) {
 				if (progress_dialog.Update (String.Format (Catalog.GetString ("Processing \"{0}\""), p.Name))) {
 					progress_dialog.Destroy ();
@@ -158,7 +160,7 @@ namespace PictureTileExtension {
 			if (progress_dialog != null)
 				progress_dialog.Destroy ();
 
-			photo_tags = (Tag []) all_tags.ToArray (typeof (Tag));
+			photo_tags = all_tags.ToArray ();
 
 			string uniform = "";
 			if (uniform_images.Active)

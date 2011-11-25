@@ -3,6 +3,7 @@
 //
 // Author:
 //   Paul Lange <palango@gmx.de>
+//   Stephen Shaw <sshaw@decriptor.com>
 //
 // Copyright (C) 2010 Novell, Inc.
 // Copyright (C) 2010 Paul Lange
@@ -33,6 +34,7 @@ using System.Net;
 using System.IO;
 using System.Text;
 using System.Collections;
+using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Web;
 using Mono.Unix;
@@ -51,7 +53,7 @@ namespace FSpot.Exporters.Gallery
 	{
 		private static GalleryAccountManager instance;
 		string xml_path;
-		ArrayList accounts;
+		List<GalleryAccount> accounts;
 
 		public delegate void AccountListChangedHandler (GalleryAccountManager manager, GalleryAccount changed_account);
 		public event AccountListChangedHandler AccountListChanged;
@@ -70,7 +72,7 @@ namespace FSpot.Exporters.Gallery
 			// FIXME this xml file path should be be retrieved from a central location not hard coded there
 			this.xml_path = System.IO.Path.Combine (FSpot.Core.Global.BaseDirectory, "Accounts.xml");
 
-			accounts = new ArrayList ();
+			accounts = new List<GalleryAccount> ();
 			ReadAccounts ();
 		}
 
@@ -88,7 +90,7 @@ namespace FSpot.Exporters.Gallery
 				AccountListChanged (this, changed_account);
 		}
 
-		public ArrayList GetAccounts ()
+		public List<GalleryAccount> GetAccounts ()
 		{
 			return accounts;
 		}

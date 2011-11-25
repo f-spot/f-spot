@@ -4,6 +4,7 @@
 // Author:
 //   Ruben Vermeersch <ruben@savanne.be>
 //   Stephane Delcroix <sdelcroix@src.gnome.org>
+//   Stephen Shaw <sshaw@decriptor.com>
 //
 // Copyright (C) 2007-2010 Novell, Inc.
 // Copyright (C) 2010 Ruben Vermeersch
@@ -28,25 +29,26 @@
 // OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
-
 using System;
+using System.Collections.Generic;
+
 using Gtk;
 using FSpot.Core;
 using FSpot.Query;
 using FSpot.UI.Dialog;
 
-namespace FSpot.UI.Dialog {
-	public class LastRolls : BuilderDialog {
+namespace FSpot.UI.Dialog
+{
+	public class LastRolls : BuilderDialog
+	{
 		FSpot.PhotoQuery query;
 		RollStore rollstore;
-
-		Roll [] rolls;
-
+		Roll[] rolls;
 		[GtkBeans.Builder.Object] private ComboBox combo_filter; // at, after, or between
 		[GtkBeans.Builder.Object] private ComboBox combo_roll_1;
 		[GtkBeans.Builder.Object] private ComboBox combo_roll_2;
-		[GtkBeans.Builder.Object] private Label    and_label; // and label between two comboboxes.
-		[GtkBeans.Builder.Object] private Label    photos_in_selected_rolls;
+		[GtkBeans.Builder.Object] private Label and_label; // and label between two comboboxes.
+		[GtkBeans.Builder.Object] private Label photos_in_selected_rolls;
 
 		public LastRolls (FSpot.PhotoQuery query, RollStore rollstore, Window parent) : base ("LastImportRollFilterDialog.ui", "last_import_rolls_filter")
 		{
@@ -54,7 +56,7 @@ namespace FSpot.UI.Dialog {
 			this.rollstore = rollstore;
 			rolls = rollstore.GetRolls (FSpot.Preferences.Get<int> (FSpot.Preferences.IMPORT_GUI_ROLL_HISTORY));
 
-            TransientFor = parent;
+			TransientFor = parent;
 
 			PopulateCombos ();
 
@@ -73,7 +75,7 @@ namespace FSpot.UI.Dialog {
 			if (args.ResponseId == ResponseType.Ok) {
 				Roll [] selected_rolls = SelectedRolls ();
 
-				if (selected_rolls != null && selected_rolls.Length > 0 )
+				if (selected_rolls != null && selected_rolls.Length > 0)
 					query.RollSet = new RollSet (selected_rolls);
 			}
 			Destroy ();
@@ -92,26 +94,26 @@ namespace FSpot.UI.Dialog {
 			UpdateNumberOfPhotos ();
 		}
 
-		private void UpdateNumberOfPhotos()
+		private void UpdateNumberOfPhotos ()
 		{
 			Roll [] selected_rolls = SelectedRolls ();
 			uint sum = 0;
 			if (selected_rolls != null)
-				foreach (Roll roll in selected_rolls)
+				foreach (Roll roll in selected_rolls) {
 					sum = sum + rollstore.PhotosInRoll (roll);
-			photos_in_selected_rolls.Text = sum.ToString();
+				}
+			photos_in_selected_rolls.Text = sum.ToString ();
 		}
 
 		private void PopulateCombos ()
 		{
-			for (uint k = 0; k < rolls.Length; k++)
-			{
+			for (uint k = 0; k < rolls.Length; k++) {
 				uint numphotos = rollstore.PhotosInRoll (rolls [k]);
 				// Roll time is in UTC always
 				DateTime date = rolls [k].Time.ToLocalTime ();
 
 				string header = String.Format ("{0} ({1})",
-					date.ToString("%dd %MMM, %HH:%mm"),
+					date.ToString ("%dd %MMM, %HH:%mm"),
 					numphotos);
 
 				combo_roll_1.AppendText (header);
@@ -124,28 +126,30 @@ namespace FSpot.UI.Dialog {
 			if ((combo_roll_1.Active < 0) || ((combo_filter.Active == 2) && (combo_roll_2.Active < 0)))
 				return null;
 
-			System.Collections.ArrayList result = new System.Collections.ArrayList ();
+			List<Roll> result = new List<Roll> ();
 
 			switch (combo_filter.Active) {
 			case 0 : // at - Return the roll the user selected
 				result.Add (rolls [combo_roll_1.Active]);
 				break;
 			case 1 : // after - Return all rolls from latest to the one the user selected
-				for (uint k = 0; k <= combo_roll_1.Active; k++)
+				for (uint k = 0; k <= combo_roll_1.Active; k++) {
 					result.Add (rolls [k]);
+				}
 				break;
 			case 2 : // between - Return all rolls between the two import rolls the user selected
-				uint k1 = (uint) combo_roll_1.Active;
-				uint k2 = (uint) combo_roll_2.Active;
+				uint k1 = (uint)combo_roll_1.Active;
+				uint k2 = (uint)combo_roll_2.Active;
 				if (k1 > k2) {
-					k1 = (uint) combo_roll_2.Active;
-					k2 = (uint) combo_roll_1.Active;
+					k1 = (uint)combo_roll_2.Active;
+					k2 = (uint)combo_roll_1.Active;
 				}
-				for (uint k = k1; k <= k2; k++)
-					result.Add (rolls[k]);
+				for (uint k = k1; k <= k2; k++) {
+					result.Add (rolls [k]);
+				}
 				break;
 			}
-			return (Roll []) result.ToArray (typeof(Roll));
+			return result.ToArray ();
 		}
 	}
 }

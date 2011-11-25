@@ -416,24 +416,27 @@ namespace FSpot {
 			}
 		}
 
-		// Returns a flattened array of TreeIter's from the Model
+		/// <summary>
+		/// Returns a flattened array of TreeIter's from the Model
+		/// </summary>
+		/// <returns>
+		/// TreeIter []
+		/// </returns>
 		TreeIter [] ModelIters ()
 		{
 			TreeIter root;
 			if (Model.GetIterFirst (out root))
 			{
-				return ModelIters (root, true).ToArray (typeof (TreeIter)) as TreeIter [];
+				return ModelIters (root, true).ToArray ();
 			}
-
 			return null;
 		}
 
-		// Returns ArrayList containing the root TreeIter and all TreeIters at root's level and
+		// Returns a List containing the root TreeIter and all TreeIters at root's level and
 		// descended from it
-		ArrayList ModelIters (TreeIter root, bool first)
+		List<TreeIter> ModelIters (TreeIter root, bool first)
 		{
-			ArrayList model_iters = new ArrayList (Model.IterNChildren ());
-
+			List<TreeIter> model_iters = new List<TreeIter> (Model.IterNChildren ());
 			model_iters.Add (root);
 
 			// Append any children
@@ -453,7 +456,7 @@ namespace FSpot {
 
 		public void SaveExpandDefaults ()
 		{
-			ArrayList expanded_tags = new ArrayList ();
+			List<int> expanded_tags = new List<int> ();
 
 			TreeIter [] iters = ModelIters ();
 			if (iters == null)
@@ -469,13 +472,12 @@ namespace FSpot {
 			}
 
 	#if GCONF_SHARP_2_18
-			FSpot.Preferences.Set (	FSpot.Preferences.EXPANDED_TAGS, (int []) expanded_tags.ToArray (typeof (int)));
+			FSpot.Preferences.Set (	FSpot.Preferences.EXPANDED_TAGS, expanded_tags.ToArray ());
 	#else
 			if (expanded_tags.Count == 0)
 				expanded_tags.Add (-1);
 
-			FSpot.Preferences.Set (	FSpot.Preferences.EXPANDED_TAGS,
-							(int []) expanded_tags.ToArray (typeof (int)));
+			FSpot.Preferences.Set (	FSpot.Preferences.EXPANDED_TAGS, expanded_tags.ToArray ());
 	#endif
 		}
 

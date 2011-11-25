@@ -33,9 +33,11 @@
 
 using Gtk;
 using Gdk;
+
 using System;
 using System.Text;
 using System.Collections;
+using System.Collections.Generic;
 
 using Mono.Unix;
 using FSpot;
@@ -63,9 +65,9 @@ public class TagCommands {
 		[GtkBeans.Builder.Object] private ComboBox category_option_menu;
 		[GtkBeans.Builder.Object] private CheckButton auto_icon_checkbutton;
 
-		private ArrayList categories;
+		private List<Tag> categories;
 
-		private void PopulateCategories (ArrayList categories, Category parent)
+		private void PopulateCategories (List<Tag> categories, Category parent)
 		{
 			foreach (Tag tag in parent.Children) {
 				if (tag is Category) {
@@ -87,7 +89,7 @@ public class TagCommands {
 
 		private void PopulateCategoryOptionMenu ()
 		{
-			categories = new ArrayList ();
+			categories = new List<Tag> ();
 			categories.Add (tag_store.RootCategory);
 			PopulateCategories (categories, tag_store.RootCategory);
 

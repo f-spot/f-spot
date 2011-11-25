@@ -4,6 +4,7 @@
 // Author:
 //   Larry Ewing <lewing@novell.com>
 //   Ruben Vermeersch <ruben@savanne.be>
+//   Stephen Shaw <sshaw@decriptor.com>
 //
 // Copyright (C) 2006-2010 Novell, Inc.
 // Copyright (C) 2006 Larry Ewing
@@ -39,25 +40,25 @@
  * I don't like per file copyright notices.
  */
 
-using System.Collections;
+using System.Collections.Generic;
 
 namespace FSpot.Filters {
 	public class FilterSet : IFilter {
-		public ArrayList list;
+		public List<IFilter> ifilters;
 
 		public FilterSet () {
-			list = new ArrayList ();
+			ifilters = new List<IFilter> ();
 		}
 
 		public void Add (IFilter filter)
 		{
-			list.Add (filter);
+			ifilters.Add (filter);
 		}
 
 		public bool Convert (FilterRequest req)
 		{
 			bool changed = false;
-			foreach (IFilter filter in list) {
+			foreach (IFilter filter in ifilters) {
 				changed |= filter.Convert (req);
 			}
 			return changed;

@@ -149,11 +149,11 @@ namespace FSpot
 
 				int sensitive_items = 0;
 				foreach (Term term in LogicWidget.Root.SubTerms) {
-					ArrayList term_parts = new ArrayList ();
+					List<string> term_parts = new List<string> ();
 
 					bool contains_tag = AppendTerm (term_parts, term, single_tag);
 
-					string name = "_" + String.Join (", ", (string []) term_parts.ToArray (typeof(string)));
+					string name = "_" + String.Join (", ", term_parts.ToArray ());
 
 					Gtk.MenuItem item = GtkUtil.MakeMenuItem (m, name, new EventHandler (App.Instance.Organizer.HandleAddTagToTerm));
 					item.Sensitive = !contains_tag;
@@ -169,7 +169,7 @@ namespace FSpot
 			}
 		}
 
-		private static bool AppendTerm (ArrayList parts, Term term, Tag single_tag)
+		private static bool AppendTerm (List<string> parts, Term term, Tag single_tag)
 		{
 			bool tag_matches = false;
 			if (term != null) {
@@ -421,9 +421,9 @@ namespace FSpot
 			Remove (term.Widget);
 		}
 
-		public ArrayList HangersOn (Literal term)
+		public List<Gtk.Widget> HangersOn (Literal term)
 		{
-			ArrayList w = new ArrayList ();
+			List<Gtk.Widget> w = new List<Gtk.Widget> ();
 
 			// Find separators that only exist because of this term
 			if (term.Parent != null) {
@@ -524,7 +524,8 @@ namespace FSpot
 		public void Include (Tag [] tags)
 		{
 			// Filter out any tags that are already included
-			ArrayList new_tags = new ArrayList(tags.Length);
+			// FIXME: Does this really need to be set to a length?
+			List<Tag> new_tags = new List<Tag> (tags.Length);
 			foreach (Tag tag in tags) {
 				if (! rootTerm.TagIncluded (tag))
 					new_tags.Add (tag);
@@ -534,14 +535,14 @@ namespace FSpot
 			if (new_tags.Count == 0)
 				return;
 
-			tags = (Tag []) new_tags.ToArray (typeof (Tag));
+			tags = new_tags.ToArray ();
 
 			InsertTerm (tags, rootTerm, null);
 		}
 
 		public void UnInclude (Tag [] tags)
 		{
-			ArrayList new_tags = new ArrayList(tags.Length);
+			List<Tag> new_tags = new List<Tag> (tags.Length);
 			foreach (Tag tag in tags) {
 				if (rootTerm.TagIncluded (tag))
 					new_tags.Add (tag);
@@ -550,7 +551,7 @@ namespace FSpot
 			if (new_tags.Count == 0)
 				return;
 
-			tags = (Tag []) new_tags.ToArray (typeof (Tag));
+			tags = new_tags.ToArray ();
 
 			bool needsUpdate = false;
 			preventUpdate = true;
@@ -578,7 +579,7 @@ namespace FSpot
 			// OR terms and ANDing the result with this term (eg factored out)
 
 			// Trim out tags that are already required
-			ArrayList new_tags = new ArrayList(tags.Length);
+			List<Tag> new_tags = new List<Tag> (tags.Length);
 			foreach (Tag tag in tags) {
 				if (! rootTerm.TagRequired (tag))
 					new_tags.Add (tag);
@@ -587,7 +588,7 @@ namespace FSpot
 			if (new_tags.Count == 0)
 				return;
 
-			tags = (Tag []) new_tags.ToArray (typeof (Tag));
+			tags = new_tags.ToArray ();
 
 			bool added = false;
 			preventUpdate = true;
@@ -612,7 +613,7 @@ namespace FSpot
 		public void UnRequire (Tag [] tags)
 		{
 			// Trim out tags that are not required
-			ArrayList new_tags = new ArrayList(tags.Length);
+			List<Tag> new_tags = new List<Tag> (tags.Length);
 			foreach (Tag tag in tags) {
 				if (rootTerm.TagRequired (tag))
 					new_tags.Add (tag);
@@ -621,7 +622,7 @@ namespace FSpot
 			if (new_tags.Count == 0)
 				return;
 
-			tags = (Tag []) new_tags.ToArray (typeof (Tag));
+			tags = new_tags.ToArray ();
 
 			preventUpdate = true;
 			foreach (Term parent in rootTerm.LiteralParents ()) {

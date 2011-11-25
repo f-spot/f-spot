@@ -3,6 +3,7 @@
 //
 // Author:
 //   Stephane Delcroix <stephane@delcroix.org>
+//   Stephen Shaw <sshaw@decriptor.com>
 //
 // Copyright (C) 2006-2007 Novell, Inc.
 // Copyright (C) 2006-2007 Stephane Delcroix
@@ -27,14 +28,16 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
+using System.Collections.Generic;
+
 namespace FSpot.Filters {
 	public class WhiteListFilter : IFilter
 	{
-		System.Collections.ArrayList valid_extensions;
+		List<string> valid_extensions;
 
 		public WhiteListFilter (string [] valid_extensions)
 		{
-			this.valid_extensions = new System.Collections.ArrayList ();
+			this.valid_extensions = new List<string> ();
 			foreach (string extension in valid_extensions)
 				this.valid_extensions.Add (extension.ToLower ());
 		}
@@ -44,7 +47,9 @@ namespace FSpot.Filters {
 			if ( valid_extensions.Contains (System.IO.Path.GetExtension(req.Current.LocalPath).ToLower ()) )
 				return false;
 
-			if ( !valid_extensions.Contains (".jpg") && !valid_extensions.Contains (".jpeg"))
+			// FIXME:  Should we add the other jpeg extensions?
+			if ( !valid_extensions.Contains (".jpg") &&
+			    !valid_extensions.Contains (".jpeg"))
 				throw new System.NotImplementedException ("can only save jpeg :(");
 
 			return (new JpegFilter ()).Convert (req);

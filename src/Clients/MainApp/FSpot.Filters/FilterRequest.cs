@@ -33,6 +33,7 @@
 
 using System;
 using System.Collections;
+using System.Collections.Generic;
 
 using Hyena;
 using FSpot.Utils;
@@ -43,13 +44,13 @@ namespace FSpot.Filters {
 	{
 		SafeUri current;
 
-		ArrayList temp_uris;
+		List<SafeUri> temp_uris;
 
 		public FilterRequest (SafeUri source)
 		{
 			Source = source;
 			this.current = source;
-			temp_uris = new ArrayList ();
+			temp_uris = new List<SafeUri> ();
 		}
 
 		~FilterRequest ()

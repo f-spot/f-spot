@@ -3,6 +3,7 @@
 //
 // Author:
 //   Stephane Delcroix <stephane@delcroix.org>
+//   Stephen Shaw <sshaw@decriptor.com>
 //
 // Copyright (C) 2006-2009 Novell, Inc.
 // Copyright (C) 2006-2009 Stephane Delcroix
@@ -39,13 +40,10 @@
  */
 
 using System;
-using System.Net;
 using System.IO;
 using System.Text;
 using System.Threading;
-using System.Collections;
-using System.Collections.Specialized;
-using System.Web;
+using System.Collections.Generic;
 using Mono.Unix;
 using Gtk;
 
@@ -56,7 +54,6 @@ using FSpot.Widgets;
 using Hyena;
 using FSpot.UI.Dialog;
 
-using Gnome.Keyring;
 using SmugMugNet;
 
 namespace FSpot.Exporters.SmugMug {
@@ -121,7 +118,7 @@ namespace FSpot.Exporters.SmugMug {
 		int photo_index;
 		ThreadProgressDialog progress_dialog;
 
-		ArrayList accounts;
+		List<SmugMugAccount> accounts;
 		private SmugMugAccount account;
 		private Album album;
 

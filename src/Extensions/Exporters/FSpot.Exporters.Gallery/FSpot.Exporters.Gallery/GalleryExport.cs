@@ -30,12 +30,12 @@
 // OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
-
 using System;
 using System.Net;
 using System.IO;
 using System.Text;
 using System.Collections;
+using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Web;
 using Mono.Unix;
@@ -53,8 +53,11 @@ using Hyena.Widgets;
 
 namespace FSpot.Exporters.Gallery
 {
-	public class GalleryExport : IExporter {
-		public GalleryExport () { }
+	public class GalleryExport : IExporter
+	{
+		public GalleryExport ()
+		{
+		}
 
 		public void Run (IBrowsableCollection selection)
 		{
@@ -73,7 +76,7 @@ namespace FSpot.Exporters.Gallery
 			gallery_optionmenu.Show ();
 
 			this.items = selection.Items;
-			Array.Sort<IPhoto> (this.items, new IPhotoComparer.CompareDateName());
+			Array.Sort<IPhoto> (this.items, new IPhotoComparer.CompareDateName ());
 			album_button.Sensitive = false;
 			var view = new TrayView (selection);
 			view.DisplayDates = false;
@@ -110,18 +113,15 @@ namespace FSpot.Exporters.Gallery
 		public const string BROWSER_KEY = Preferences.APP_FSPOT_EXPORT + EXPORT_SERVICE + "browser";
 		public const string META_KEY = Preferences.APP_FSPOT_EXPORT + EXPORT_SERVICE + "meta";
 		public const string LIGHTTPD_WORKAROUND_KEY = Preferences.APP_FSPOT_EXPORT + EXPORT_SERVICE + "lighttpd_workaround";
-
 		private bool scale;
 		private int size;
 		private bool browser;
 		private bool meta;
 		private bool connect = false;
-
 		IPhoto[] items;
 		int photo_index;
 		ThreadProgressDialog progress_dialog;
-
-		ArrayList accounts;
+		List<GalleryAccount> accounts;
 		private GalleryAccount account;
 		private Album album;
 
@@ -133,18 +133,13 @@ namespace FSpot.Exporters.Gallery
 		[GtkBeans.Builder.Object] Gtk.CheckButton browser_check;
 		[GtkBeans.Builder.Object] Gtk.CheckButton scale_check;
 		[GtkBeans.Builder.Object] Gtk.CheckButton meta_check;
-
 		[GtkBeans.Builder.Object] Gtk.SpinButton size_spin;
-
 		[GtkBeans.Builder.Object] Gtk.Button album_button;
 		[GtkBeans.Builder.Object] Gtk.Button edit_button;
-
 		[GtkBeans.Builder.Object] Gtk.Button export_button;
-
 		[GtkBeans.Builder.Object] Gtk.ScrolledWindow thumb_scrolledwindow;
 
 		System.Threading.Thread command_thread;
-
 
 		private void HandleResponse (object sender, Gtk.ResponseArgs args)
 		{
@@ -164,7 +159,7 @@ namespace FSpot.Exporters.Gallery
 
 			if (account != null) {
 				//System.Console.WriteLine ("history = {0}", album_optionmenu.History);
-				album = (Album) account.Gallery.Albums [Math.Max (0, album_optionmenu.Active)];
+				album = account.Gallery.Albums [Math.Max (0, album_optionmenu.Active)];
 				photo_index = 0;
 
 				export_dialog.Destroy ();
@@ -186,7 +181,7 @@ namespace FSpot.Exporters.Gallery
 		private void HandleProgressChanged (ProgressItem item)
 		{
 			//System.Console.WriteLine ("Changed value = {0}", item.Value);
-			progress_dialog.Fraction = (photo_index - 1.0 + item.Value) / (double) items.Length;
+			progress_dialog.Fraction = (photo_index - 1.0 + item.Value) / (double)items.Length;
 		}
 
 		public void HandleSizeActive (object sender, EventArgs args)
@@ -194,52 +189,49 @@ namespace FSpot.Exporters.Gallery
 			size_spin.Sensitive = scale_check.Active;
 		}
 
-
 		private void Upload ()
 		{
-				account.Gallery.Progress = new ProgressItem ();
-				account.Gallery.Progress.Changed += HandleProgressChanged;
+			account.Gallery.Progress = new ProgressItem ();
+			account.Gallery.Progress.Changed += HandleProgressChanged;
 
-				Log.Debug ("Starting upload");
+			Log.Debug ("Starting upload");
 
-				FilterSet filters = new FilterSet ();
-				if (account.Version == GalleryVersion.Version1)
-					filters.Add (new WhiteListFilter (new string []{".jpg", ".jpeg", ".png", ".gif"}));
-				if (scale)
-					filters.Add (new ResizeFilter ((uint) size));
+			FilterSet filters = new FilterSet ();
+			if (account.Version == GalleryVersion.Version1)
+				filters.Add (new WhiteListFilter (new string []{".jpg", ".jpeg", ".png", ".gif"}));
+			if (scale)
+				filters.Add (new ResizeFilter ((uint)size));
 
-				while (photo_index < items.Length) {
-					IPhoto item = items [photo_index];
+			while (photo_index < items.Length) {
+				IPhoto item = items [photo_index];
 
-					Log.DebugFormat ("uploading {0}", photo_index);
+				Log.DebugFormat ("uploading {0}", photo_index);
 
-					progress_dialog.Message = System.String.Format (Catalog.GetString ("Uploading picture \"{0}\""), item.Name);
-					progress_dialog.Fraction = photo_index / (double) items.Length;
-					photo_index++;
+				progress_dialog.Message = System.String.Format (Catalog.GetString ("Uploading picture \"{0}\""), item.Name);
+				progress_dialog.Fraction = photo_index / (double)items.Length;
+				photo_index++;
 
-					progress_dialog.ProgressText = System.String.Format (Catalog.GetString ("{0} of {1}"), photo_index, items.Length);
+				progress_dialog.ProgressText = System.String.Format (Catalog.GetString ("{0} of {1}"), photo_index, items.Length);
 
 
-					FilterRequest req = new FilterRequest (item.DefaultVersion.Uri);
+				FilterRequest req = new FilterRequest (item.DefaultVersion.Uri);
 
-					filters.Convert (req);
-					try {
-						int id = album.Add (item, req.Current.LocalPath);
+				filters.Convert (req);
+				try {
+					int id = album.Add (item, req.Current.LocalPath);
 
-						if (item != null && item is Photo && App.Instance.Database != null && id != 0) {
+					if (item != null && item is Photo && App.Instance.Database != null && id != 0)
 							App.Instance.Database.Exports.Create ((item as Photo).Id, (item as Photo).DefaultVersionId,
 										      ExportStore.Gallery2ExportType,
 										      String.Format("{0}:{1}",album.Gallery.Uri.ToString (), id.ToString ()));
-						}
-					} catch (System.Exception e) {
-						progress_dialog.Message = String.Format (Catalog.GetString ("Error uploading picture \"{0}\" to Gallery: {1}"), item.Name, e.Message);
-						progress_dialog.ProgressText = Catalog.GetString ("Error");
-						Log.Exception (e);
+				} catch (System.Exception e) {
+					progress_dialog.Message = String.Format (Catalog.GetString ("Error uploading picture \"{0}\" to Gallery: {1}"), item.Name, e.Message);
+					progress_dialog.ProgressText = Catalog.GetString ("Error");
+					Log.Exception (e);
 
-						if (progress_dialog.PerformRetrySkip ()) {
+					if (progress_dialog.PerformRetrySkip ())
 							photo_index--;
-						}
-					}
+				}
 			}
 
 			progress_dialog.Message = Catalog.GetString ("Done Sending Photos");
@@ -247,9 +239,8 @@ namespace FSpot.Exporters.Gallery
 			progress_dialog.ProgressText = Catalog.GetString ("Upload Complete");
 			progress_dialog.ButtonLabel = Gtk.Stock.Ok;
 
-			if (browser) {
+			if (browser)
 				GtkBeans.Global.ShowUri (export_dialog.Screen, album.GetUrl());
-			}
 		}
 
 		private void PopulateGalleryOptionMenu (GalleryAccountManager manager, GalleryAccount changed_account)
@@ -259,7 +250,7 @@ namespace FSpot.Exporters.Gallery
 
 			accounts = manager.GetAccounts ();
 			if (accounts == null || accounts.Count == 0) {
-                gallery_optionmenu.AppendText(Catalog.GetString("(No Gallery)"));
+				gallery_optionmenu.AppendText (Catalog.GetString ("(No Gallery)"));
 
 				gallery_optionmenu.Sensitive = false;
 				edit_button.Sensitive = false;
@@ -269,14 +260,14 @@ namespace FSpot.Exporters.Gallery
 					if (account == changed_account)
 						pos = i;
 
-                    gallery_optionmenu.AppendText(account.Name);
+					gallery_optionmenu.AppendText (account.Name);
 					i++;
 				}
 				gallery_optionmenu.Sensitive = true;
 				edit_button.Sensitive = true;
 			}
 
-            gallery_optionmenu.Active = pos;
+			gallery_optionmenu.Active = pos;
 		}
 
 		private void Connect ()
@@ -289,7 +280,7 @@ namespace FSpot.Exporters.Gallery
 			try {
 				if (accounts.Count != 0 && connect) {
 					if (selected == null)
-						account = (GalleryAccount) accounts [gallery_optionmenu.Active];
+						account = (GalleryAccount)accounts [gallery_optionmenu.Active];
 					else
 						account = selected;
 
@@ -316,23 +307,23 @@ namespace FSpot.Exporters.Gallery
 			Connect ();
 		}
 
-		public void HandleAlbumAdded (string title) {
-			GalleryAccount account = (GalleryAccount) accounts [gallery_optionmenu.Active];
+		public void HandleAlbumAdded (string title)
+		{
+			GalleryAccount account = (GalleryAccount)accounts [gallery_optionmenu.Active];
 			PopulateAlbumOptionMenu (account.Gallery);
 
 			// make the newly created album selected
-			ArrayList albums = account.Gallery.Albums;
+			List<Album> albums = account.Gallery.Albums;
 			for (int i=0; i < albums.Count; i++) {
-				if (((Album)albums[i]).Title == title) {
-                    album_optionmenu.Active = i;
-				}
+				if (((Album)albums [i]).Title == title)
+					album_optionmenu.Active = i;
 			}
 		}
 
 		private void PopulateAlbumOptionMenu (Gallery gallery)
 		{
-			System.Collections.ArrayList albums = null;
-			if (gallery != null) {
+			List<Album> albums = null;
+			if (gallery != null)
 				//gallery.FetchAlbumsPrune ();
 				try {
 					gallery.FetchAlbums ();
@@ -341,7 +332,6 @@ namespace FSpot.Exporters.Gallery
 					gallery.PopupException (e, export_dialog);
 					return;
 				}
-			}
 
 			bool disconnected = gallery == null || !account.Connected || albums == null;
 
@@ -349,7 +339,7 @@ namespace FSpot.Exporters.Gallery
 				string msg = disconnected ? Catalog.GetString ("(Not Connected)")
 					: Catalog.GetString ("(No Albums)");
 
-                album_optionmenu.AppendText(msg);
+				album_optionmenu.AppendText (msg);
 
 				export_button.Sensitive = false;
 				album_optionmenu.Sensitive = false;
@@ -366,7 +356,7 @@ namespace FSpot.Exporters.Gallery
 					}
 					label_builder.Append (album.Title);
 
-                    album_optionmenu.AppendText(label_builder.ToString());
+					album_optionmenu.AppendText (label_builder.ToString ());
 				}
 
 				export_button.Sensitive = items.Length > 0;
@@ -402,7 +392,7 @@ namespace FSpot.Exporters.Gallery
 				break;
 
 			case SIZE_KEY:
-				size_spin.Value = (double) Preferences.Get<int> (key);
+				size_spin.Value = (double)Preferences.Get<int> (key);
 				break;
 
 			case BROWSER_KEY:

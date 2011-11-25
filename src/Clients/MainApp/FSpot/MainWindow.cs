@@ -2829,7 +2829,7 @@ namespace FSpot
 
 			bool create_new_versions = (response == Gtk.ResponseType.Yes);
 
-			ArrayList errors = new ArrayList ();
+			List<EditException> errors = new List<EditException> ();
 			GLib.List uri_list = new GLib.List (typeof (string));
 			foreach (Photo photo in selected) {
 				try {
@@ -2846,7 +2846,7 @@ namespace FSpot
 
 			// FIXME need to clean up the error dialog here.
 			if (errors.Count > 0) {
-				Dialog md = new EditExceptionDialog (GetToplevel (sender), errors.ToArray (typeof (EditException)) as EditException []);
+				Dialog md = new EditExceptionDialog (GetToplevel (sender), errors.ToArray ());
 				md.Run ();
 				md.Destroy ();
 			}

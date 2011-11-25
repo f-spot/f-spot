@@ -4,6 +4,7 @@
 // Author:
 //   Lorenzo Milesi <maxxer@yetopen.it>
 //   Stephane Delcroix <stephane@delcroix.org>
+//   Stephen Shaw <sshaw@decriptor.com>
 //
 // Copyright (C) 2008-2009 Novell, Inc.
 // Copyright (C) 2008-2009 Lorenzo Milesi
@@ -44,6 +45,8 @@ using System;
 using System.IO;
 using System.Text;
 using System.Collections;
+using System.Collections.Generic;
+
 using FlickrNet;
 using FSpot;
 using FSpot.Core;
@@ -107,9 +110,9 @@ public class FlickrRemote {
 		return licenses.LicenseCollection;
 	}
 
-	public ArrayList Search (string[] tags, int licenseId)
+	public List<string> Search (string[] tags, int licenseId)
 	{
-		ArrayList photos_url = new ArrayList ();
+		List<string> photos_url = new List<string> ();
 		// Photos photos = flickr.PhotosSearchText (tags, licenseId);
 		Photos photos = flickr.PhotosSearch (tags);
 
@@ -122,9 +125,9 @@ public class FlickrRemote {
 		return photos_url;
 	}
 
-	public ArrayList Search (string tags, int licenseId)
+	public List<string> Search (string tags, int licenseId)
 	{
-		ArrayList photos_url = new ArrayList ();
+		List<string> photos_url = new List<string> ();
 		Photos photos = flickr.PhotosSearchText (tags, licenseId);
 
 		if (photos != null) {

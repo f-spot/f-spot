@@ -4,6 +4,7 @@
 // Author:
 //   Lorenzo Milesi <maxxer@yetopen.it>
 //   Stephane Delcroix <stephane@delcroix.org>
+//   Stephen Shaw <sshaw@decriptor.com>
 //
 // Copyright (C) 2008-2009 Novell, Inc.
 // Copyright (C) 2008 Lorenzo Milesi
@@ -54,6 +55,7 @@ using System;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Collections;
+using System.Collections.Generic;
 
 using Hyena;
 
@@ -116,7 +118,7 @@ namespace FSpot.Exporters.Folder {
 
 		string description;
 		string gallery_name = "Gallery";
-		// FIXME this needs to be a real temp directory
+		// FIXME: this needs to be a real temp directory
 		string gallery_path = Path.Combine (Path.GetTempPath (), "f-spot-original-" + System.DateTime.Now.Ticks.ToString ());
 
 		ThreadProgressDialog progress_dialog;
@@ -186,7 +188,7 @@ namespace FSpot.Exporters.Folder {
 
 		public void Upload ()
 		{
-			// FIXME use mkstemp
+			// FIXME: use mkstemp
 
 			try {
 				ThreadAssist.ProxyToMain (Dialog.Hide);
@@ -747,6 +749,7 @@ namespace FSpot.Exporters.Folder {
 		static string light = Catalog.GetString("Light");
 		static string dark = Catalog.GetString("Dark");
 
+		// FIXME: Need to clean up the ArrayList and Hashtable at the same time.
 		ArrayList allTagNames = new ArrayList ();
 		Hashtable allTags = new Hashtable ();
 		Hashtable tagSets = new Hashtable ();

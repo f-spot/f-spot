@@ -43,6 +43,7 @@ using FSpot.Query;
 using System;
 using System.IO;
 using System.Collections;
+using System.Collections.Generic;
 using System.Collections.Specialized;
 using Hyena;
 
@@ -71,7 +72,8 @@ namespace FSpot.Tools.ChangePhotoPath
 	public class ChangePathController
 	{
 		PhotoStore photo_store = FSpot.App.Instance.Database.Photos;
-		ArrayList photo_id_array, version_id_array;
+		List<uint> photo_id_array;
+		List<uint> version_id_array;
 		StringCollection old_path_array, new_path_array;
 		int total_photos;
 		string orig_base_path;
@@ -145,8 +147,8 @@ namespace FSpot.Tools.ChangePhotoPath
 
 		private void InitializeArrays()
 		{
-			photo_id_array = new ArrayList();
-			version_id_array = new ArrayList();
+			photo_id_array = new List<uint> ();
+			version_id_array = new List<uint> ();
 			old_path_array = new StringCollection();
 			new_path_array = new StringCollection();
 		}
@@ -199,7 +201,7 @@ namespace FSpot.Tools.ChangePhotoPath
 			return true;
 		}
 
-		public bool StillOnSamePhotoId (int old_index, int current_index, ArrayList array)
+		public bool StillOnSamePhotoId (int old_index, int current_index, List<uint> array)
 		{
 			try {
 				return (array[old_index] == array[current_index]);
@@ -211,7 +213,7 @@ namespace FSpot.Tools.ChangePhotoPath
 		public void UpdateThisUri (int index, string path, ref Photo photo)
 		{
 			if (photo == null)
-				photo = photo_store.Get ( (uint) photo_id_array[index]) as Photo;
+				photo = photo_store.Get (photo_id_array[index]);
 			PhotoVersion version = photo.GetVersion ( (uint) version_id_array[index]) as PhotoVersion;
 			version.BaseUri = new SafeUri ( path ).GetBaseUri ();
 			version.Filename = new SafeUri ( path ).GetFilename ();
@@ -219,7 +221,7 @@ namespace FSpot.Tools.ChangePhotoPath
 			photo.Changes.ChangeVersion ( (uint) version_id_array[index] );
 		}
 
-/// FIXME Refactor, try to use one common method....
+		// FIXME: Refactor, try to use one common method....
 		public void RevertAllUris (int last_index)
 		{
 			gui_controller.remove_progress_dialog();

@@ -391,7 +391,7 @@ Global
 		$2.inheritsScope = text/plain
 		$2.scope = text/x-csharp
 		$0.CSharpFormattingPolicy = $3
-		$3.IfElseBraceForcement = AddBraces
+		$3.IfElseBraceForcement = RemoveBraces
 		$3.ForBraceForcement = AddBraces
 		$3.ForEachBraceForcement = AddBraces
 		$3.WhileBraceForcement = AddBraces

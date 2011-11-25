@@ -34,6 +34,7 @@ using System.Net;
 using System.IO;
 using System.Text;
 using System.Collections;
+using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Web;
 using Hyena;
@@ -52,8 +53,8 @@ namespace FSpot.Exporters.Gallery {
 		}
 	
 		private StreamWriter stream_writer;
-		private ArrayList Items;
-	
+		private List<FormItem> Items;
+
 		private string boundary;
 		private string start_boundary;
 		private string end_boundary;
@@ -78,12 +79,12 @@ namespace FSpot.Exporters.Gallery {
 		public FormClient (CookieContainer cookies) 
 		{
 			this.Cookies = cookies;
-			this.Items = new ArrayList ();
+			this.Items = new List<FormItem> ();
 		}
 		
 		public FormClient ()
 		{
-			this.Items = new ArrayList ();
+			this.Items = new List<FormItem> ();
 			this.Cookies = new CookieContainer ();
 		}
 		
@@ -275,7 +276,7 @@ namespace FSpot.Exporters.Gallery {
 	
 				long length = 0;
 				for (int i = 0; i < Items.Count; i++) {
-					FormItem item = (FormItem)Items[i];
+					FormItem item = Items[i];
 					
 					length += MultipartLength (item);
 				}
@@ -294,7 +295,7 @@ namespace FSpot.Exporters.Gallery {
 			
 			first_item = true;
 			for (int i = 0; i < Items.Count; i++) {
-				FormItem item = (FormItem)Items[i];
+				FormItem item = Items[i];
 				
 				Write (item);
 			}

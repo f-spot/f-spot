@@ -44,12 +44,15 @@ using FSpot.Imaging;
 
 public class ImageLoaderThread
 {
-
 	// Types.
-
 	public class RequestItem
 	{
-		/* The uri to the image.  */
+		/// <summary>
+		/// Gets or Sets image uri
+		/// </summary>
+		/// <value>
+		/// Image Uri
+		/// </value>
 		public SafeUri Uri { get; set; }
 
 		/* Order value; requests with a lower value get performed first.  */
@@ -94,7 +97,7 @@ public class ImageLoaderThread
 	}
 
 
-	// Private members.
+	#region Private members.
 	static List<ImageLoaderThread> instances = new List<ImageLoaderThread> ();
 
 	/* The thread used to handle the requests.  */
@@ -102,7 +105,7 @@ public class ImageLoaderThread
 
 	/* The request queue; it's shared between the threads so it
 	   needs to be locked prior to access.  */
-	private ArrayList queue;
+	private List<RequestItem> queue;
 
 	/* A dict of all the requests; note that the current request
 	   isn't in the dict.  */
@@ -125,16 +128,16 @@ public class ImageLoaderThread
 	   already or not.  */
 	private bool pending_notify_notified;
 	volatile bool should_cancel = false;
+	#endregion
 
-	// Public API.
-
+	#region Public API
 	public delegate void PixbufLoadedHandler (ImageLoaderThread loader,RequestItem result);
 
 	public event PixbufLoadedHandler OnPixbufLoaded;
 
 	public ImageLoaderThread ()
 	{
-		queue = new ArrayList ();
+		queue = new List<RequestItem> ();
 		requests_by_uri = new Dictionary<SafeUri, RequestItem> ();
 //		requests_by_path = Hashtable.Synchronized (new Hashtable ());
 		processed_requests = new Queue ();
@@ -214,9 +217,9 @@ public class ImageLoaderThread
 			}
 		}
 	}
+	#endregion
 
-	// Private utility methods.
-
+	#region Private utility methods.
 	protected virtual void ProcessRequest (RequestItem request)
 	{
 		Pixbuf orig_image;
@@ -242,7 +245,6 @@ public class ImageLoaderThread
 
 	/* Insert the request in the queue, return TRUE if the queue actually grew.
 	   NOTE: Lock the queue before calling.  */
-
 	private bool InsertRequest (SafeUri uri, int order, int width, int height)
 	{
 		StartWorker ();
@@ -346,4 +348,5 @@ public class ImageLoaderThread
 
 		EmitLoaded (results);
 	}
+	#endregion
 }

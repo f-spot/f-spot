@@ -4,6 +4,7 @@
 // Author:
 //   Ruben Vermeersch <ruben@savanne.be>
 //   Larry Ewing <lewing@src.gnome.org>
+//   Stephen Shaw <sshaw@decriptor.com>
 //
 // Copyright (C) 2005-2010 Novell, Inc.
 // Copyright (C) 2010 Ruben Vermeersch
@@ -30,6 +31,7 @@
 //
 
 using System;
+using System.Collections.Generic;
 using FSpot.Utils;
 using Hyena;
 using TagLib.Image;
@@ -68,7 +70,7 @@ namespace FSpot.Imaging.Ciff {
 	}
 
 	class ImageDirectory {
-		System.Collections.ArrayList entry_list;
+		List<Entry> entry_list;
 		uint Count;
 		bool little;
 		uint start;
@@ -81,7 +83,7 @@ namespace FSpot.Imaging.Ciff {
 			this.little = little;
 			this.stream = stream;
 
-			entry_list = new System.Collections.ArrayList ();
+			entry_list = new List<Entry> ();
 
 			stream.Position = end - 4;
 			byte [] buf = new byte [10];

@@ -4,6 +4,7 @@
 // Author:
 //   Ruben Vermeersch <ruben@savanne.be>
 //   Stephane Delcroix <sdelcroix@src.gnome.org>
+//   Stephen Shaw <sshaw@decriptor.com>
 //
 // Copyright (C) 2008-2010 Novell, Inc.
 // Copyright (C) 2010 Ruben Vermeersch
@@ -28,7 +29,6 @@
 // OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
-
 using Hyena;
 
 using System;
@@ -46,8 +46,10 @@ using FSpot.Imaging;
 
 namespace FSpot
 {
-	public class Photo : DbItem, IComparable, IPhoto, IPhotoVersionable {
+	public class Photo : DbItem, IComparable, IPhoto, IPhotoVersionable
+	{
 
+		#region Properties
 		PhotoChanges changes = new PhotoChanges ();
 		public PhotoChanges Changes {
 			get{ return changes; }
@@ -74,13 +76,10 @@ namespace FSpot
 			get { return Uri.UnescapeDataString (System.IO.Path.GetFileName (VersionUri (OriginalVersionId).AbsolutePath)); }
 		}
 
-		private ArrayList tags;
+		private List<Tag> tags;
 		public Tag [] Tags {
 			get {
-				if (tags == null)
-					return new Tag [0];
-
-				return (Tag []) tags.ToArray (typeof (Tag));
+				return tags.ToArray ();
 			}
 		}
 
@@ -88,10 +87,9 @@ namespace FSpot
 		internal bool AllVersionsLoaded {
 			get { return all_versions_loaded; }
 			set {
-				if (value) {
+				if (value)
 					if (DefaultVersionId != OriginalVersionId && !versions.ContainsKey (DefaultVersionId))
 						DefaultVersionId = OriginalVersionId;
-				}
 				all_versions_loaded = value;
 			}
 		}
@@ -128,16 +126,18 @@ namespace FSpot
 				changes.RatingChanged = true;
 			}
 		}
+		#endregion
 
-		// Version management
+		#region Properties Version Management
 		public const int OriginalVersionId = 1;
 		private uint highest_version_id;
-
 		private Dictionary<uint, PhotoVersion> versions = new Dictionary<uint, PhotoVersion> ();
+
 		public IEnumerable<IPhotoVersion> Versions {
 			get {
-				foreach (var version in versions.Values)
+				foreach (var version in versions.Values) {
 					yield return version;
+				}
 			}
 		}
 
@@ -153,15 +153,8 @@ namespace FSpot
 			}
 		}
 
-		public PhotoVersion GetVersion (uint version_id)
-		{
-			if (versions == null)
-				return null;
-
-			return versions [version_id];
-		}
-
 		private uint default_version_id = OriginalVersionId;
+
 		public uint DefaultVersionId {
 			get { return default_version_id; }
 			set {
@@ -170,6 +163,16 @@ namespace FSpot
 				default_version_id = value;
 				changes.DefaultVersionIdChanged = true;
 			}
+		}
+		#endregion
+
+		#region Photo Version Management
+		public PhotoVersion GetVersion (uint version_id)
+		{
+			if (versions == null)
+				return null;
+
+			return versions [version_id];
 		}
 
 		// This doesn't check if a version of that name already exists,
@@ -212,7 +215,7 @@ namespace FSpot
 
 		public bool VersionNameExists (string version_name)
 		{
-            return Versions.Where ((v) => v.Name == version_name).Any ();
+			return Versions.Where ((v) => v.Name == version_name).Any ();
 		}
 
 		public SafeUri VersionUri (uint version_id)
@@ -362,8 +365,9 @@ namespace FSpot
 			uint count = 0;
 			GLib.FileEnumerator list = directory.EnumerateChildren ("standard::name",
 				GLib.FileQueryInfoFlags.None, null);
-			foreach (var item in list)
+			foreach (var item in list) {
 				count++;
+			}
 			return count == 0;
 		}
 
@@ -394,7 +398,7 @@ namespace FSpot
 				if (destination.Exists)
 					throw new Exception (String.Format ("An object at this uri {0} already exists", new_uri));
 
-		//FIXME. or better, fix the copy api !
+				//FIXME. or better, fix the copy api !
 				GLib.File source = GLib.FileFactory.NewForUri (original_uri);
 				source.Copy (destination, GLib.FileCopyFlags.None, null, null);
 			}
@@ -419,13 +423,14 @@ namespace FSpot
 			string parent_filename = Path.GetFileNameWithoutExtension (Name);
 			string name = null;
 			if (filename.StartsWith (parent_filename))
-				name = filename.Substring (parent_filename.Length).Replace ("(", "").Replace (")", "").Replace ("_", " "). Trim();
+				name = filename.Substring (parent_filename.Length).Replace ("(", "").Replace (")", "").Replace ("_", " "). Trim ();
 
 			if (String.IsNullOrEmpty (name)) {
 				// Note for translators: Reparented is a picture becoming a version of another one
 				string rep = name = Catalog.GetString ("Reparented");
-				for (int num = 1; VersionNameExists (name); num++)
+				for (int num = 1; VersionNameExists (name); num++) {
 					name = String.Format (rep + " ({0})", num);
+				}
 			}
 			highest_version_id ++;
 			versions [highest_version_id] = new PhotoVersion (this, highest_version_id, version.BaseUri, version.Filename, version.ImportMD5, name, is_protected);
@@ -445,7 +450,7 @@ namespace FSpot
 									 num);
 				name = String.Format (name, num);
 				//SafeUri uri = GetUriForVersionName (name, System.IO.Path.GetExtension (VersionUri(base_version_id).GetFilename()));
-				string filename = GetFilenameForVersionName (name, System.IO.Path.GetExtension (versions[base_version_id].Filename));
+				string filename = GetFilenameForVersionName (name, System.IO.Path.GetExtension (versions [base_version_id].Filename));
 				SafeUri uri = DefaultVersion.BaseUri.Append (filename);
 				GLib.File file = GLib.FileFactory.NewForUri (uri);
 
@@ -466,7 +471,7 @@ namespace FSpot
 						(num == 1) ? Catalog.GetString ("Modified in {1}") : Catalog.GetString ("Modified in {1} ({0})"),
 						num, name);
 
-				string filename = GetFilenameForVersionName (name, System.IO.Path.GetExtension (versions[base_version_id].Filename));
+				string filename = GetFilenameForVersionName (name, System.IO.Path.GetExtension (versions [base_version_id].Filename));
 				SafeUri uri = DefaultVersion.BaseUri.Append (filename);
 				GLib.File file = GLib.FileFactory.NewForUri (uri);
 
@@ -491,11 +496,11 @@ namespace FSpot
 
 			//TODO: rename file too ???
 
-	//		if (System.IO.File.Exists (new_path))
-	//			throw new Exception ("File with this name already exists");
-	//
-	//		File.Move (old_path, new_path);
-	//		PhotoStore.MoveThumbnail (old_path, new_path);
+			//		if (System.IO.File.Exists (new_path))
+			//			throw new Exception ("File with this name already exists");
+			//
+			//		File.Move (old_path, new_path);
+			//		PhotoStore.MoveThumbnail (old_path, new_path);
 		}
 
 		public void CopyAttributesFrom (Photo that)
@@ -505,15 +510,12 @@ namespace FSpot
 			Rating = that.Rating;
 			AddTag (that.Tags);
 		}
+		#endregion
 
-		// Tag management.
-
+		#region Tag management
 		// This doesn't check if the tag is already there, use with caution.
 		public void AddTagUnsafely (Tag tag)
 		{
-			if (tags == null)
-				tags = new ArrayList ();
-
 			tags.Add (tag);
 			changes.AddTag (tag);
 		}
@@ -521,7 +523,7 @@ namespace FSpot
 		// This on the other hand does, but is O(n) with n being the number of existing tags.
 		public void AddTag (Tag tag)
 		{
-			if (!HasTag (tag))
+			if (!tags.Contains (tag))
 				AddTagUnsafely (tag);
 		}
 
@@ -530,14 +532,20 @@ namespace FSpot
 			/*
 			 * FIXME need a better naming convention here, perhaps just
 			 * plain Add.
+			 *
+			 * tags.AddRange (taglist);
+			 *     but, AddTag calls AddTagUnsafely which
+			 *     adds and calls changes.AddTag on each tag?
+			 *     Need to investigate that.
 			 */
-			foreach (Tag tag in taglist)
+			foreach (Tag tag in taglist) {
 				AddTag (tag);
+			}
 		}
 
 		public void RemoveTag (Tag tag)
 		{
-			if (!HasTag (tag))
+			if (!tags.Contains (tag))
 				return;
 
 			tags.Remove (tag);
@@ -546,8 +554,9 @@ namespace FSpot
 
 		public void RemoveTag (Tag []taglist)
 		{
-			foreach (Tag tag in taglist)
+			foreach (Tag tag in taglist) {
 				RemoveTag (tag);
+			}
 		}
 
 		public void RemoveCategory (IList<Tag> taglist)
@@ -562,42 +571,42 @@ namespace FSpot
 			}
 		}
 
+		// FIXME: This should be removed (I think)
 		public bool HasTag (Tag tag)
 		{
-			if (tags == null)
-				return false;
-
 			return tags.Contains (tag);
 		}
 
 		private static IDictionary<SafeUri, string> md5_cache = new Dictionary<SafeUri, string> ();
 
-		public static void ResetMD5Cache () {
+		public static void ResetMD5Cache ()
+		{
 			if (md5_cache != null)
 				md5_cache.Clear ();
 		}
+		#endregion
 
-		// Constructor
+		#region Constructor
 		public Photo (uint id, long unix_time)
 			: base (id)
 		{
 			time = DateTimeUtil.ToDateTime (unix_time);
+			tags = new List<Tag> ();
 
 			description = String.Empty;
 			rating = 0;
 		}
+		#endregion
 
-#region IComparable implementation
-
-		// IComparable
-		public int CompareTo (object obj) {
-			if (this.GetType () == obj.GetType ()) {
+		#region IComparable implementation
+		public int CompareTo (object obj)
+		{
+			if (this.GetType () == obj.GetType ())
 				return this.Compare((Photo)obj);
-			} else if (obj is DateTime) {
+			else if (obj is DateTime)
 				return this.time.CompareTo ((DateTime)obj);
-			} else {
+			else
 				throw new Exception ("Object must be of type Photo");
-			}
 		}
 
 		public int CompareTo (Photo photo)
@@ -609,7 +618,6 @@ namespace FSpot
 			else
 				return (this as IPhoto).Compare (photo);
 		}
-
-#endregion
+		#endregion
 	}
 }

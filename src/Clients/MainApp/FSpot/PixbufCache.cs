@@ -31,6 +31,7 @@
 
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Threading;
 using Hyena;
 
@@ -40,7 +41,7 @@ using FSpot.Platform;
 namespace FSpot {
 	public class PixbufCache {
 		Hashtable items;
-		ArrayList items_mru;
+		List<CacheEntry> items_mru;
 		int total_size;
 		int max_size = 256 * 256 * 4 * 30;
 
@@ -52,7 +53,7 @@ namespace FSpot {
 		public PixbufCache ()
 		{
 			items = new Hashtable ();
-			items_mru = new ArrayList ();
+			items_mru = new List<CacheEntry> ();
 
 			worker = new Thread (new ThreadStart (WorkerTask));
 			worker.Start ();

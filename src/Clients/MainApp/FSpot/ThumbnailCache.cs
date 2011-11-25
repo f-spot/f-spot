@@ -33,6 +33,7 @@
 
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using Gdk;
 
 using Hyena;
@@ -53,23 +54,20 @@ namespace FSpot
 		}
 	
 	
-		// Private members and constants
-
+		#region Private members and constants
 		private const int DEFAULT_CACHE_SIZE = 2;
-	
 		private int max_count;
-		private ArrayList pixbuf_mru;
-		private Hashtable pixbuf_hash = new Hashtable ();
-	
+		private List<Thumbnail> pixbuf_mru;
+		private Hashtable pixbuf_hash;
 		static private ThumbnailCache defaultcache = new ThumbnailCache (DEFAULT_CACHE_SIZE);
+		#endregion
 	
-	
-		// Public API
-	
+		#region Public API
 		public ThumbnailCache (int max_count)
 		{
 			this.max_count = max_count;
-			pixbuf_mru = new ArrayList (max_count);
+			pixbuf_mru = new List<Thumbnail> (max_count);
+			pixbuf_hash = new Hashtable();
 		}
 	
 		static public ThumbnailCache Default {
@@ -120,6 +118,7 @@ namespace FSpot
 	
 			item.pixbuf.Dispose ();
 		}
+		#endregion
 	
 		public void Dispose ()
 		{
@@ -143,8 +142,7 @@ namespace FSpot
 			pixbuf_mru.Clear ();
 		}
 	
-		// Private utility methods.
-	
+		#region Private utility methods.
 		private void MaybeExpunge ()
 		{
 			while (pixbuf_mru.Count > max_count) {
@@ -156,5 +154,6 @@ namespace FSpot
 				thumbnail.pixbuf.Dispose ();
 			}
 		}
+		#endregion
 	}
 }

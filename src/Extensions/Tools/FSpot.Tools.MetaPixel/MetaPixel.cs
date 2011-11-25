@@ -2,7 +2,8 @@
 // MetaPixel.cs
 //
 // Author:
-//   Stephane Delcroix <sdelcroix*novell.com>
+//   Stephane Delcroix <sdelcroix@novell.com>
+//   Stephen Shaw <sshaw@decriptor.com>
 //
 // Copyright (C) 2008 Novell, Inc.
 // Copyright (C) 2008 Stephane Delcroix
@@ -30,6 +31,7 @@
 using System;
 using System.IO;
 using System.Collections;
+using System.Collections.Generic;
 using Gtk;
 
 using FSpot;
@@ -117,13 +119,13 @@ namespace MetaPixelExtension {
 
 			if (tags_radio.Active) {
 				//Build tag array
-				ArrayList taglist = new ArrayList ();
+				List<Tag> taglist = new List<Tag> ();
 				foreach (string tag_name in miniatures_tags.GetTypedTagNames ()) {
 					Tag t = db.Tags.GetTagByName (tag_name);
 					if (t != null)
 						taglist.Add(t);
 				}
-				mini_query.Terms = FSpot.OrTerm.FromTags ((Tag []) taglist.ToArray (typeof (Tag)));
+				mini_query.Terms = FSpot.OrTerm.FromTags (taglist.ToArray ());
 				photos = mini_query.Photos;
 			} else {
 				photos = App.Instance.Organizer.Query.Photos;

@@ -4,6 +4,7 @@
 // Author:
 //   Larry Ewing <lewing@novell.com>
 //   Stephane Delcroix <sdelcroix*novell.com>
+//   Stephen Shaw <sshaw@decriptor.com>
 //
 // Copyright (C) 2004-2008 Novell, Inc.
 // Copyright (C) 2004-2007 Larry Ewing
@@ -34,12 +35,11 @@ using System.Net;
 using System.IO;
 using System.Text;
 using System.Collections;
-using System.Collections.Specialized;
-using System.Web;
+using System.Collections.Generic;
+
 using Mono.Unix;
 using FSpot;
 using FSpot.Core;
-using FSpot.UI.Dialog;
 using Hyena;
 using Hyena.Widgets;
 
@@ -48,7 +48,8 @@ using Hyena.Widgets;
  * http://codex.gallery2.org/index.php/Gallery_Remote:Protocol
  */
 
-namespace FSpot.Exporters.Gallery {
+namespace FSpot.Exporters.Gallery
+{
 	public enum AlbumPermission : byte
 	{
 		None = 0,
@@ -59,43 +60,41 @@ namespace FSpot.Exporters.Gallery {
 		CreateSubAlbum = 16
 	}
 
-	public class Album : IComparable {
+	public class Album : IComparable
+	{
 		public int RefNum;
-		public string Name = null;
-		public string Title = null;
-		public string Summary = null;
+		public string Name = String.Empty;
+		public string Title = String.Empty;
+		public string Summary = String.Empty;
 		public int ParentRefNum;
 		public int ResizeSize;
 		public int ThumbSize;
-		public ArrayList Images = null;
-		public string BaseURL;
-
+		public List<Image> Images;
+		public string BaseURL = String.Empty;
 		Gallery gallery;
-
 		public AlbumPermission Perms = AlbumPermission.None;
 
 		public Album Parent {
 			get {
 				if (ParentRefNum != 0)
-					return gallery.LookupAlbum (ParentRefNum);
+					return Gallery.LookupAlbum (ParentRefNum);
 				else
 					return null;
 			}
 		}
 
-		protected ArrayList parents = null;
-		public ArrayList Parents {
+		protected List<int> parents = null;
+		public List<int> Parents {
 			get {
 				if (parents != null)
 					return parents;
 
 				if (Parent == null) {
-				       parents = new ArrayList ();
+				       parents = new List<int> ();
 				} else {
-					parents = Parent.Parents.Clone () as ArrayList;
+					parents = Parent.Parents;
 					parents.Add (Parent.RefNum);
 				}
-
 				return parents;
 			}
 		}
@@ -109,7 +108,7 @@ namespace FSpot.Exporters.Gallery {
 			Name = name;
 			this.gallery = gallery;
 			this.RefNum = ref_num;
-			Images = new ArrayList ();
+			Images = new List<Image> ();
 		}
 
 		public void Rename (string name)
@@ -187,12 +186,12 @@ namespace FSpot.Exporters.Gallery {
 				//children of the same parent
 				retVal = this.RefNum.CompareTo (other.RefNum);
 			}
-
 			return retVal;
 		}
 	}
 
-	public class Image {
+	public class Image
+	{
 		public string Name;
 		public int RawWidth;
 		public int RawHeight;
@@ -203,13 +202,10 @@ namespace FSpot.Exporters.Gallery {
 		public int ThumbWidth;
 		public int ThumbHeight;
 		public int RawFilesize;
-
 		public string Caption;
 		public string Description;
 		public int Clicks;
-
 		public Album Owner;
-
 		public string Url;
 
 		public Image (Album album, string name) {
@@ -237,46 +233,38 @@ namespace FSpot.Exporters.Gallery {
 		UnknownResponse = 1000
 	}
 
+	#region Exceptions
 	public class GalleryException : System.Exception {
-		string response_text;
+		public string ResponseText { get; private set; }
 
-		public string ResponseText {
-			get { return response_text; }
-		}
-
-		public GalleryException (string text) : base (text)
-		{
-		}
+		public GalleryException (string text) : base (text) { }
 
 		public GalleryException (string text, string full_response) : base (text)
 		{
-			response_text = full_response;
+			ResponseText = full_response;
 		}
 	}
 
 	public class GalleryCommandException : GalleryException {
-		ResultCode status;
+		public ResultCode Status { get; private set; }
 
 		public GalleryCommandException (string status_text, ResultCode result) : base (status_text) {
-			status = result;
+			Status = result;
 		}
 
-		public ResultCode Status {
-			get {
-				return status;
-			}
-		}
+
 	}
+	#endregion
 
 	public abstract class Gallery
 	{
+		#region Properties
 		protected Uri uri;
 		public Uri Uri{
 			get {
 				return uri;
 			}
 		}
-
 
 		protected string name;
 		public string Name {
@@ -299,41 +287,40 @@ namespace FSpot.Exporters.Gallery {
 		}
 
 		protected GalleryVersion version;
-
 		public GalleryVersion Version {
 			get {
 				return version;
 			}
 		}
 
-		protected ArrayList albums;
-		public ArrayList Albums{
+		protected List<Album> albums;
+		public List<Album> Albums{
 			get {
 				return albums;
 			}
 		}
+		#endregion
 
 		public bool expect_continue = true;
-
 		protected CookieContainer cookies = null;
 		public FSpot.ProgressItem Progress = null;
 
 		public abstract void Login (string username, string passwd);
-		public abstract ArrayList FetchAlbums ();
-		public abstract ArrayList FetchAlbumsPrune ();
+		public abstract List<Album> FetchAlbums ();
+		public abstract List<Album> FetchAlbumsPrune ();
 		public abstract bool MoveAlbum (Album album, string end_name);
 		public abstract int AddItem (Album album, string path, string filename, string caption, string description, bool autorotate);
 		//public abstract Album AlbumProperties (string album);
 		public abstract bool NewAlbum (string parent_name, string name, string title, string description);
-		public abstract ArrayList FetchAlbumImages (Album album, bool include_ablums);
+		public abstract List<Image> FetchAlbumImages (Album album, bool include_ablums);
 
 		public abstract string GetAlbumUrl (Album album);
 
 		public Gallery (string name)
 		{
-			this.name = name;
+			Name = name;
 			cookies = new CookieContainer ();
-			albums = new ArrayList ();
+			albums = new List<Album> ();
 		}
 
 		public static GalleryVersion DetectGalleryVersion (string url)
@@ -349,7 +336,6 @@ namespace FSpot.Exporters.Gallery {
 				version = GalleryVersion.Version2;
 			} else {
 				//check what script is available on the server
-
 				FormClient client = new FormClient ();
 
 				try {
@@ -387,6 +373,7 @@ namespace FSpot.Exporters.Gallery {
 			//return cookies.GetCookies(Uri).Count > 0;
 			return retVal;
 		}
+
 		//Reads until it finds the start of the response
 		protected StreamReader findResponse (HttpWebResponse response)
 		{
@@ -406,9 +393,7 @@ namespace FSpot.Exporters.Gallery {
 				// failed to find the response
 				throw new GalleryException (Catalog.GetString ("Server returned response without Gallery content"), full_response);
 			}
-
 			return reader;
-
 		}
 
 		protected string [] GetNextLine (StreamReader reader)
@@ -428,19 +413,14 @@ namespace FSpot.Exporters.Gallery {
 					return null;
 				}
 			}
-
 			return array;
 		}
 
 		private bool LineIgnored (string[] line)
 		{
-			if (line[0].StartsWith ("debug")) {
+			if (line[0].StartsWith ("debug") || line[0].StartsWith ("can_create_root"))
 				return true;
-			} else if (line[0].StartsWith ("can_create_root")) {
-				return true;
-			} else {
-				return false;
-			}
+			return false;
 		}
 
 		protected bool ParseLogin (HttpWebResponse response)
@@ -450,7 +430,6 @@ namespace FSpot.Exporters.Gallery {
 			ResultCode status = ResultCode.UnknownResponse;
 			string status_text = "Error: Unable to parse server response";
 			try {
-
 				reader = findResponse (response);
 				while ((data = GetNextLine (reader)) != null) {
 					if (data[0] == "status") {
@@ -466,29 +445,28 @@ namespace FSpot.Exporters.Gallery {
 						Log.DebugFormat ("Unparsed Line in ParseLogin(): {0}={1}", data[0], data[1]);
 					}
 				}
+
 				//Console.WriteLine ("Found: {0} cookies", response.Cookies.Count);
 				if (status != ResultCode.Success) {
 					Log.Debug (status_text);
 					throw new GalleryCommandException (status_text, status);
 				}
-
 				return true;
 			} finally {
 				if (reader != null)
 					reader.Close ();
-
 				response.Close ();
 			}
 		}
 
-		public ArrayList ParseFetchAlbums (HttpWebResponse response)
+		public List<Album> ParseFetchAlbums (HttpWebResponse response)
 		{
 			//Console.WriteLine ("in ParseFetchAlbums()");
 			string [] data;
 			StreamReader reader = null;
 			ResultCode status = ResultCode.UnknownResponse;
 			string status_text = "Error: Unable to parse server response";
-			albums = new ArrayList ();
+			albums = new List<Album> ();
 			try {
 
 				Album current_album = null;
@@ -510,7 +488,7 @@ namespace FSpot.Exporters.Gallery {
 							ref_num = int.Parse (data[1]);
 						}
 						current_album = new Album (this, data[1], ref_num);
-						albums.Add (current_album);
+						Albums.Add (current_album);
 						//Console.WriteLine ("current_album: " + data[1]);
 					} else if (data[0].StartsWith ("album.title")) {
 						//this is the display name
@@ -563,11 +541,10 @@ namespace FSpot.Exporters.Gallery {
 				}
 
 				//Console.WriteLine (After parse albums.Count + " albums parsed");
-				return albums;
+				return Albums;
 			} finally {
 				if (reader != null)
 					reader.Close ();
-
 				response.Close ();
 			}
 		}
@@ -580,7 +557,6 @@ namespace FSpot.Exporters.Gallery {
 			string status_text = "Error: Unable to parse server response";
 			int item_id = 0;
 			try {
-
 				reader = findResponse (response);
 				while ((data = GetNextLine (reader)) != null) {
 					if (data[0] == "status") {
@@ -606,7 +582,6 @@ namespace FSpot.Exporters.Gallery {
 			} finally {
 				if (reader != null)
 					reader.Close ();
-
 				response.Close ();
 			}
 		}
@@ -665,7 +640,6 @@ namespace FSpot.Exporters.Gallery {
 			ResultCode status = ResultCode.UnknownResponse;
 			string status_text = "Error: Unable to parse server response";
 			try {
-
 				reader = findResponse (response);
 				while ((data = GetNextLine (reader)) != null) {
 					if (data[0] == "status") {
@@ -689,7 +663,6 @@ namespace FSpot.Exporters.Gallery {
 			} finally {
 				if (reader != null)
 					reader.Close ();
-
 				response.Close ();
 			}
 		}
@@ -698,7 +671,7 @@ namespace FSpot.Exporters.Gallery {
 		{
 			Album match = null;
 
-			foreach (Album album in albums) {
+			foreach (Album album in Albums) {
 				if (album.Name == name) {
 					match = album;
 					break;
@@ -709,10 +682,10 @@ namespace FSpot.Exporters.Gallery {
 
 		public Album LookupAlbum (int ref_num)
 		{
-			// FIXME this is really not the best way to do this
+			// FIXME: this is really not the best way to do this
 			Album match = null;
 
-			foreach (Album album in albums) {
+			foreach (Album album in Albums) {
 				if (album.RefNum == ref_num) {
 					match = album;
 					break;
@@ -746,7 +719,6 @@ namespace FSpot.Exporters.Gallery {
 			md.Run ();
 			md.Destroy ();
 		}
-
 	}
 
 	public class Gallery1 : Gallery
@@ -755,7 +727,7 @@ namespace FSpot.Exporters.Gallery {
 		public Gallery1 (string url) : this (url, url) {}
 		public Gallery1 (string name, string url) : base (name)
 		{
-			this.uri = new Uri (FixUrl (url, script_name));
+			uri = new Uri (FixUrl (url, script_name));
 			version = GalleryVersion.Version1;
 		}
 
@@ -769,10 +741,10 @@ namespace FSpot.Exporters.Gallery {
 			client.Add ("uname", username);
 			client.Add ("password", passwd);
 
-			ParseLogin (client.Submit (uri));
+			ParseLogin (client.Submit (Uri));
 		}
 
-		public override ArrayList FetchAlbums ()
+		public override List<Album> FetchAlbums ()
 		{
 			FormClient client = new FormClient (cookies);
 
@@ -847,7 +819,7 @@ namespace FSpot.Exporters.Gallery {
 			return ParseNewAlbum (client.Submit (uri));
 		}
 
-		public override ArrayList FetchAlbumImages (Album album, bool include_ablums)
+		public override List<Image> FetchAlbumImages (Album album, bool include_ablums)
 		{
 			FormClient client = new FormClient (cookies);
 			client.Add ("cmd", "fetch-album-images");
@@ -859,18 +831,18 @@ namespace FSpot.Exporters.Gallery {
 			return album.Images;
 		}
 
-		public override ArrayList FetchAlbumsPrune ()
+		public override List<Album> FetchAlbumsPrune ()
 		{
 			FormClient client = new FormClient (cookies);
 			client.Add ("cmd", "fetch-albums-prune");
 			client.Add ("protocol_version", "2.3");
 			client.Add ("check_writable", "no");
-			ArrayList a = ParseFetchAlbums (client.Submit (uri));
+			List<Album> a = ParseFetchAlbums (client.Submit (uri));
 			a.Sort();
 			return a;
 		}
 
-		public ArrayList ParseFetchAlbumImages (HttpWebResponse response, Album album)
+		public List<Image> ParseFetchAlbumImages (HttpWebResponse response, Album album)
 		{
 			string [] data;
 			StreamReader reader = null;
@@ -994,7 +966,7 @@ namespace FSpot.Exporters.Gallery {
 			ParseLogin (client.Submit (uri));
 		}
 
-		public override ArrayList FetchAlbums ()
+		public override List<Album> FetchAlbums ()
 		{
 			//FetchAlbums doesn't exist for G2, we have to use FetchAlbumsPrune()
 			return FetchAlbumsPrune ();
@@ -1068,7 +1040,7 @@ namespace FSpot.Exporters.Gallery {
 			return ParseNewAlbum (client.Submit (uri));
 		}
 
-		public override ArrayList FetchAlbumImages (Album album, bool include_ablums)
+		public override List<Image> FetchAlbumImages (Album album, bool include_ablums)
 		{
 			FormClient client = new FormClient (cookies);
 			client.Add ("g2_form[cmd]", "fetch-album-images");
@@ -1081,7 +1053,7 @@ namespace FSpot.Exporters.Gallery {
 			return album.Images;
 		}
 
-		public override ArrayList FetchAlbumsPrune ()
+		public override List<Album> FetchAlbumsPrune ()
 		{
 			FormClient client = new FormClient (cookies);
 			client.Add ("g2_form[cmd]", "fetch-albums-prune");
@@ -1089,7 +1061,7 @@ namespace FSpot.Exporters.Gallery {
 			client.Add ("g2_form[check_writable]", "no");
 			AddG2Specific (client);
 
-			ArrayList a = ParseFetchAlbums (client.Submit (uri));
+			List<Album> a = ParseFetchAlbums (client.Submit (uri));
 			a.Sort();
 			return a;
 		}
@@ -1101,7 +1073,7 @@ namespace FSpot.Exporters.Gallery {
 			client.Add("g2_controller", "remote.GalleryRemote");
 		}
 
-		public ArrayList ParseFetchAlbumImages (HttpWebResponse response, Album album)
+		public List<Image> ParseFetchAlbumImages (HttpWebResponse response, Album album)
 		{
 			string [] data;
 			StreamReader reader = null;

@@ -5,6 +5,7 @@
 //   Stephane Delcroix <stephane@delcroix.org>
 //   Joachim Breitner <mail@joachim-breitner.de>
 //   Ruben Vermeersch <ruben@savanne.be>
+//   Stephen Shaw <sshaw@decriptor.com>
 //
 // Copyright (C) 2006-2010 Novell, Inc.
 // Copyright (C) 2006-2008 Stephane Delcroix
@@ -33,9 +34,11 @@
 
 using System.Text;
 using System.Collections;
+using System.Collections.Generic;
 using FSpot.Core;
 
-namespace FSpot.Widgets {
+namespace FSpot.Widgets
+{
 
 	public delegate void TagsAttachedHandler (object sender, string [] tags);
 	public delegate void TagsRemovedHandler (object sender, Tag [] tags);
@@ -64,7 +67,7 @@ namespace FSpot.Widgets {
 				this.FocusOutEvent += HandleFocusOutEvent;
 		}
 
-		ArrayList selected_photos_tagnames;
+		List<string> selected_photos_tagnames;
 		public void UpdateFromSelection (IPhoto [] sel)
 		{
 			Hashtable taghash = new Hashtable ();
@@ -86,7 +89,7 @@ namespace FSpot.Widgets {
 					break;
 			}
 
-			selected_photos_tagnames = new ArrayList ();
+			selected_photos_tagnames = new List<string> ();
 			foreach (Tag tag in taghash.Keys)
 				if ((int) (taghash [tag]) == sel.Length)
 					selected_photos_tagnames.Add (tag.Name);
@@ -96,7 +99,7 @@ namespace FSpot.Widgets {
 
 		public void UpdateFromTagNames (string [] tagnames)
 		{
-			selected_photos_tagnames = new ArrayList ();
+			selected_photos_tagnames = new List<string> ();
 			foreach (string tagname in tagnames)
 				selected_photos_tagnames.Add (tagname);
 
@@ -129,15 +132,14 @@ namespace FSpot.Widgets {
 		{
 			string [] tagnames = Text.Split (new char [] {','});
 
-			ArrayList list = new ArrayList ();
+			List<string> list = new List<string> ();
 			for (int i = 0; i < tagnames.Length; i ++) {
 				string s = tagnames [i].Trim ();
 
 				if (s.Length > 0)
 					list.Add (s);
 			}
-
-			return (string []) (list.ToArray (typeof (string)));
+			return list.ToArray ();
 		}
 
 		int tag_completion_index = -1;
@@ -263,7 +265,7 @@ namespace FSpot.Widgets {
 				return;
 
 			// Add any new tags to the selected photos
-			ArrayList new_tags = new ArrayList ();
+			List<string> new_tags = new List<string> ();
 			for (int i = 0; i < tagnames.Length; i ++) {
 				if (tagnames [i].Length == 0)
 					continue;
@@ -281,10 +283,10 @@ namespace FSpot.Widgets {
 
 			//Send event
 			if (new_tags.Count != 0 && TagsAttached != null)
-				TagsAttached (this, (string []) new_tags.ToArray (typeof (string)));
+				TagsAttached (this, new_tags.ToArray ());
 
 			// Remove any removed tags from the selected photos
-			ArrayList remove_tags = new ArrayList ();
+			List<Tag> remove_tags = new List<Tag> ();
 			foreach (string tagname in selected_photos_tagnames) {
 				if (! IsTagInList (tagnames, tagname)) {
 					Tag tag = tag_store.GetTagByName (tagname);
@@ -294,7 +296,7 @@ namespace FSpot.Widgets {
 
 			//Send event
 			if (remove_tags.Count != 0 && TagsRemoved != null)
-				TagsRemoved (this, (Tag []) remove_tags.ToArray (typeof (Tag)));
+				TagsRemoved (this, remove_tags.ToArray ());
 		}
 
 		private static bool IsTagInList (string [] tags, string tag)
