@@ -4,9 +4,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: f-spot\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=f-spot&keywords=I18N+L10N&component=General\n"
-"POT-Creation-Date: 2011-11-25 03:22+0000\n"
+"POT-Creation-Date: 2011-11-25 17:02+0000\n"
 "PO-Revision-Date: \n"
-"Last-Translator: Matej Urbančič <mateju@svn.gnome.org>\n"
+"Last-Translator: Andrej Žnidaršič <andrej.znidarsic@gmail.com>\n"
 "Language-Team: Slovenian GNOME Translation Team <gnome-si@googlegroups.com>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
@@ -366,9 +366,8 @@ msgid "Retroactively assign old photos to import rolls"
 msgstr "Retroaktivno dodeli stare fotografije uvoznim zvitkom"
 
 #: ../data/addin-xml-strings.cs:141
-#, fuzzy
 msgid "Reassign to new import roll"
-msgstr "Uvozi novo različico vira v CVS"
+msgstr "Ponovno dodeli novemu uvoznemu zvitku"
 
 #. ../src/Extensions/Tools/FSpot.Tools.ScreensaverConfig/Resources/ScreensaverConfig.addin.xml
 #: ../data/addin-xml-strings.cs:144
@@ -394,9 +393,8 @@ msgid "Sync MetaData information of all catalog with Photos"
 msgstr "Uskladi podrobnosti metapodatkov za vse kataloge s fotografijami "
 
 #: ../data/addin-xml-strings.cs:153
-#, fuzzy
 msgid "Sync Catalog with Photos"
-msgstr "Uskladi podrobnosti metapodatkov za vse kataloge s fotografijami "
+msgstr "Uskladi katalog s fotografijami"
 
 #. ../src/Extensions/Transitions/FSpot.Transitions.Cover/Resources/CoverTransition.addin.xml
 #: ../data/addin-xml-strings.cs:156
@@ -415,25 +413,21 @@ msgstr "Prehodi"
 
 #. ../src/Extensions/Transitions/FSpot.Transitions.Dissolve/Resources/DissolveTransition.addin.xml
 #: ../data/addin-xml-strings.cs:161
-#, fuzzy
 msgid "Dissolve Transition"
-msgstr "Začni prehod"
+msgstr "Prehod raztapljanje"
 
 #: ../data/addin-xml-strings.cs:162
-#, fuzzy
 msgid "A Slideshow transition that dissolves images"
-msgstr "Prehod diaprestavitve, ki pokrije slike"
+msgstr "Prehod predstavitve, ki raztopi slike"
 
 #. ../src/Extensions/Transitions/FSpot.Transitions.Push/Resources/PushTransition.addin.xml
 #: ../data/addin-xml-strings.cs:166
-#, fuzzy
 msgid "Push Transition"
-msgstr "Začni prehod"
+msgstr "Prehod potisk"
 
 #: ../data/addin-xml-strings.cs:167
-#, fuzzy
 msgid "A Slideshow transition that pushes images"
-msgstr "Prehod diaprestavitve, ki pokrije slike"
+msgstr "Prehod prestavitve, ki slike potisne"
 
 #: ../data/desktop-files/f-spot.desktop.in.in.h:1
 #: ../data/desktop-files/f-spot-import.desktop.in.in.h:1
