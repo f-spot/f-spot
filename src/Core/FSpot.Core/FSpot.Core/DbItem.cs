@@ -4,6 +4,7 @@
 // Author:
 //   Stephane Delcroix <sdelcroix@src.gnome.org>
 //   Ruben Vermeersch <ruben@savanne.be>
+//   Stephen Shaw <sshaw@decriptor.com>
 //
 // Copyright (C) 2008-2010 Novell, Inc.
 // Copyright (C) 2008 Stephane Delcroix
@@ -33,7 +34,8 @@ using System;
 
 namespace FSpot.Core
 {
-	public class DbItem {
+	public class DbItem
+	{
 		public uint Id { get; private set; }
 
 		protected DbItem (uint id) {
@@ -41,21 +43,18 @@ namespace FSpot.Core
 		}
 	}
 
-	public class DbItemEventArgs<T> : EventArgs where T : DbItem {
-		private T [] items;
-
-		public T [] Items {
-			get { return items; }
-		}
+	public class DbItemEventArgs<T> : EventArgs where T : DbItem
+	{
+		public T [] Items { get; private set; }
 
 		public DbItemEventArgs (T [] items) : base ()
 		{
-			this.items = items;
+			Items = items;
 		}
 
 		public DbItemEventArgs (T item) : base ()
 		{
-			this.items = new T [] { item };
+			Items = new T [] { item };
 		}
 	}
 }
