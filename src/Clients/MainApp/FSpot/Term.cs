@@ -316,7 +316,7 @@ else
 			if (AndTerm.Operators.Contains (op))
 				//Console.WriteLine ("AND!");
 				return new AndTerm (parent, after);
-else if (OrTerm.Operators.Contains (op))
+			else if (OrTerm.Operators.Contains (op))
 				//Console.WriteLine ("OR!");
 				return new OrTerm (parent, after);
 

@@ -42,12 +42,13 @@ using Hyena.Widgets;
 
 namespace FSpot.UI.Dialog
 {
-	public class EditTagIconDialog : BuilderDialog {
+	public class EditTagIconDialog : BuilderDialog
+	{
 		FSpot.PhotoQuery query;
 		PhotoImageView image_view;
 		Gtk.IconView icon_view;
 		ListStore icon_store;
-		string icon_name = null;
+		string icon_name = String.Empty;
 		Gtk.FileChooserButton external_photo_chooser;
 
 		[GtkBeans.Builder.Object] Gtk.Image preview_image;
