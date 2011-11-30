@@ -51,6 +51,7 @@ SOURCES =  \
 	FSpot.Filters/WhiteListFilter.cs \
 	FSpot.Imaging/Ciff.cs \
 	FSpot.Imaging/DCRawFile.cs \
+	FSpot.Imaging/IImageFile.cs \
 	FSpot.Imaging/ImageFile.cs \
 	FSpot.Imaging/InternalProcess.cs \
 	FSpot.Imaging/IOChannel.cs \

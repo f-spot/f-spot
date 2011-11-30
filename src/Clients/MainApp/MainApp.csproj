@@ -208,6 +208,7 @@
     <Compile Include="Pinta\CairoExtensions.cs" />
     <Compile Include="Pinta\GaussianBlurEffect.cs" />
     <Compile Include="FSpot\Literal.cs" />
+    <Compile Include="FSpot.Imaging\IImageFile.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="..\..\..\COPYING">
