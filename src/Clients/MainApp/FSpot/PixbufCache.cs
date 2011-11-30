@@ -71,7 +71,9 @@ namespace FSpot
 		public void Request (SafeUri uri, object closure, int width, int height)
 		{
 			lock (items) {
-				CacheEntry entry = items[uri];
+				CacheEntry entry = null;
+				if (items.ContainsKey(uri))
+					entry = items[uri];
 
 				if (entry == null) {
 					entry = new CacheEntry (this, uri, closure, width, height);
@@ -117,11 +119,11 @@ namespace FSpot
 
 		public void Reload (SafeUri uri)
 		{
-			CacheEntry entry;
+			CacheEntry entry = null;
 
 			lock (items) {
-				entry = items [uri];
-				if (entry != null) {
+				if (items.ContainsKey(uri)){
+					entry = items [uri];
 					lock (entry) {
 						entry.Reload = true;
 					}
@@ -249,11 +251,12 @@ namespace FSpot
 
 		private CacheEntry ULookup (SafeUri uri)
 		{
-			CacheEntry entry = items [uri];
-			if (entry != null) {
+			CacheEntry entry = null;
+			if(items.ContainsKey(uri)) {
+				entry = items [uri];
 				MoveForward (entry);
 			}
-			return (CacheEntry) entry;
+			return entry;
 		}
 
 		public CacheEntry Lookup (SafeUri uri)
@@ -265,8 +268,9 @@ namespace FSpot
 
 		private void URemove (SafeUri uri)
 		{
-			CacheEntry entry = items [uri];
-			if (entry != null) {
+			CacheEntry entry = null;
+			if (items.ContainsKey (uri)) {
+				entry = items[uri];
 				items.Remove (uri);
 				items_mru.Remove (entry);
 				entry.Dispose ();
