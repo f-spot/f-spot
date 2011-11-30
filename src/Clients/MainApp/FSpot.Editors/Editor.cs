@@ -43,7 +43,7 @@ using System;
 
 namespace FSpot.Editors {
 
-	// Move EditorNode to FSpot.Extionsions
+	// TODO: Move EditorNode to FSpot.Extionsions?
 	[ExtensionNode ("Editor")]
 	public class EditorNode : ExtensionNode {
 		[NodeAttribute (Required=true)]
