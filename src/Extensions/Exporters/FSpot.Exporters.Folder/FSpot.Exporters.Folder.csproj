@@ -32,6 +32,9 @@
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Compile Include="FSpot.Exporters.Folder\FolderExport.cs" />
+    <Compile Include="FSpot.Exporters.Folder\FolderGallery.cs" />
+    <Compile Include="FSpot.Exporters.Folder\OriginalGallery.cs" />
+    <Compile Include="FSpot.Exporters.Folder\HtmlGallery.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\f-spot.js">

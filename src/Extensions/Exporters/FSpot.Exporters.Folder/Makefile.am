@@ -3,7 +3,11 @@ TARGET = library
 LINK = $(REF_FSPOT_EXTENSION_FOLDEREXPORT)
 INSTALL_DIR = $(EXTENSIONS_INSTALL_DIR)
 
-SOURCES = FSpot.Exporters.Folder/FolderExport.cs
+SOURCES =  \
+	FSpot.Exporters.Folder/FolderExport.cs \
+	FSpot.Exporters.Folder/FolderGallery.cs \
+	FSpot.Exporters.Folder/HtmlGallery.cs \
+	FSpot.Exporters.Folder/OriginalGallery.cs
 
 RESOURCES =  \
 	Resources/folder_export.ui \
