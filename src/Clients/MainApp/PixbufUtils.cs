@@ -30,7 +30,6 @@
 // OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
-
 using Gdk;
 using System.Collections;
 using System.Runtime.InteropServices;
@@ -48,8 +47,10 @@ using FSpot.UI.Dialog;
 using Pinta.Core;
 using Pinta.Effects;
 
-public static class PixbufUtils {
+public static class PixbufUtils
+{
 	static Pixbuf error_pixbuf = null;
+
 	public static Pixbuf ErrorPixbuf {
 		get {
 			if (error_pixbuf == null)
@@ -57,6 +58,7 @@ public static class PixbufUtils {
 			return error_pixbuf;
 		}
 	}
+
 	public static Pixbuf LoadingPixbuf = PixbufUtils.LoadFromAssembly ("f-spot-loading.png");
 
 	public static double Fit (Pixbuf pixbuf,
@@ -87,8 +89,8 @@ public static class PixbufUtils {
 		if (scale > 1.0 && !upscale_smaller)
 			scale = 1.0;
 
-		fit_width = (int) Math.Round (scale * orig_width);
-		fit_height = (int) Math.Round (scale * orig_height);
+		fit_width = (int)Math.Round (scale * orig_width);
+		fit_height = (int)Math.Round (scale * orig_height);
 
 		return scale;
 	}
@@ -97,7 +99,8 @@ public static class PixbufUtils {
 	// FIXME: These should be in GTK#.  When my patch is committed, these LoadFrom* methods will
 	// go away.
 
-	public class AspectLoader {
+	public class AspectLoader
+	{
 		Gdk.PixbufLoader loader = new Gdk.PixbufLoader ();
 		int max_width;
 		int max_height;
@@ -138,16 +141,16 @@ public static class PixbufUtils {
 		{
 			int count;
 			byte [] data = new byte [8192];
-			while (((count = stream.Read (data, 0, data.Length)) > 0) && loader.Write (data, (ulong)count))
+			while (((count = stream.Read (data, 0, data.Length)) > 0) && loader.Write (data, (ulong)count)) {
 				;
+			}
 
 			loader.Close ();
 			Pixbuf orig = loader.Pixbuf;
 			Gdk.Pixbuf rotated = FSpot.Utils.PixbufUtils.TransformOrientation (orig, orientation);
 
-			if (orig != rotated) {
+			if (orig != rotated)
 				orig.Dispose ();
-			}
 			loader.Dispose ();
 			return rotated;
 		}
@@ -155,7 +158,7 @@ public static class PixbufUtils {
 		public Pixbuf LoadFromFile (string path)
 		{
 			try {
-				orientation = GetOrientation (path);
+				orientation = GetOrientation (new SafeUri (path));
 				using (FileStream fs = System.IO.File.OpenRead (path)) {
 					return Load (fs, orientation);
 				}
@@ -194,7 +197,7 @@ public static class PixbufUtils {
 
 	public static Pixbuf TagIconFromPixbuf (Pixbuf source)
 	{
-		return IconFromPixbuf (source, (int) Tag.IconSize.Large);
+		return IconFromPixbuf (source, (int)Tag.IconSize.Large);
 	}
 
 	public static Pixbuf IconFromPixbuf (Pixbuf source, int size)
@@ -203,9 +206,9 @@ public static class PixbufUtils {
 		Pixbuf icon = null;
 
 		if (source.Width > source.Height)
-			source = tmp = new Pixbuf (source, (source.Width - source.Height) /2, 0, source.Height, source.Height);
+			source = tmp = new Pixbuf (source, (source.Width - source.Height) / 2, 0, source.Height, source.Height);
 		else if (source.Width < source.Height)
-			source = tmp = new Pixbuf (source, 0, (source.Height - source.Width) /2, source.Width, source.Width);
+			source = tmp = new Pixbuf (source, 0, (source.Height - source.Width) / 2, source.Width, source.Width);
 
 		if (source.Width == source.Height)
 			icon = source.ScaleSimple (size, size, InterpType.Bilinear);
@@ -261,130 +264,123 @@ public static class PixbufUtils {
 		return flattened;
 	}
 
-    unsafe public static byte[] Pixbuf_GetRow(byte* pixels, int row, int rowstride, int width, int channels, byte[] dest)
-    {
-        byte* ptr = ((byte*)pixels) + (row*rowstride);
+	unsafe public static byte[] Pixbuf_GetRow (byte* pixels, int row, int rowstride, int width, int channels, byte[] dest)
+	{
+		byte* ptr = ((byte*)pixels) + (row * rowstride);
 
-        Marshal.Copy(((IntPtr)ptr), dest, 0, width*channels);
+		Marshal.Copy (((IntPtr)ptr), dest, 0, width * channels);
 
-        return dest;
-    }
+		return dest;
+	}
 
-    unsafe public static void Pixbuf_SetRow(byte* pixels, byte[] dest, int row, int rowstride, int width, int channels)
-    {
-        byte* destPtr = pixels + row * rowstride;
+	unsafe public static void Pixbuf_SetRow (byte* pixels, byte[] dest, int row, int rowstride, int width, int channels)
+	{
+		byte* destPtr = pixels + row * rowstride;
 
-        for (int i=0; i < width*channels; i++)
-        {
-            destPtr[i] = dest[i];
-        }
-    }
+		for (int i=0; i < width*channels; i++) {
+			destPtr [i] = dest [i];
+		}
+	}
 
-    unsafe public static Pixbuf UnsharpMask (Pixbuf src,
+	unsafe public static Pixbuf UnsharpMask (Pixbuf src,
                                              double radius,
                                              double amount,
                                              double threshold,
                                              ThreadProgressDialog progressDialog)
-    {
-        // Make sure the pixbuf has an alpha channel before we try to blur it
-        src = src.AddAlpha(false, 0, 0, 0);
-
-        Pixbuf result = Blur(src, (int)radius, progressDialog);
-
-        int sourceRowstride = src.Rowstride;
-        int sourceHeight = src.Height;
-        int sourceChannels = src.NChannels;
-        int sourceWidth = src.Width;
-
-        int resultRowstride = result.Rowstride;
-        int resultWidth = result.Width;
-        int resultChannels = result.NChannels;
-
-        byte[] srcRow = new byte[sourceRowstride];
-        byte[] destRow = new byte[resultRowstride];
-
-        byte* sourcePixels = (byte*)src.Pixels;
-        byte* resultPixels = (byte*)result.Pixels;
-
-        for (int row=0; row < sourceHeight; row++)
-        {
-            Pixbuf_GetRow(sourcePixels, row, sourceRowstride, sourceWidth, sourceChannels, srcRow);
-            Pixbuf_GetRow(resultPixels, row, resultRowstride, resultWidth, resultChannels, destRow);
-
-            int diff;
-            for (int i=0; i < sourceWidth*sourceChannels; i++)
-            {
-                diff = srcRow[i] - destRow[i];
-                if (Math.Abs(2*diff) < threshold)
-                    diff = 0;
-
-                int val = (int)(srcRow[i] + amount * diff);
-
-                if (val > 255)
-                    val = 255;
-                else if (val < 0)
-                    val = 0;
-
-                destRow[i] = (byte)val;
-            }
-
-            Pixbuf_SetRow(resultPixels, destRow, row, resultRowstride, resultWidth, resultChannels);
-
-            // This is the other half of the progress so start and halfway
-            if (progressDialog != null)
-            {
-                progressDialog.Fraction = ((double)row / ((double) sourceHeight - 1) ) * 0.25 + 0.75;
-            }
-        }
-
-        return result;
-   }
-
-    public static Pixbuf Blur (Pixbuf src, int radius, ThreadProgressDialog dialog)
 	{
-        ImageSurface sourceSurface = Hyena.Gui.PixbufImageSurface.Create(src);
-        ImageSurface destinationSurface = new ImageSurface(Format.Rgb24, src.Width, src.Height);
+		// Make sure the pixbuf has an alpha channel before we try to blur it
+		src = src.AddAlpha (false, 0, 0, 0);
 
-        // If we do it as a bunch of single lines (rectangles of one pixel) then we can give the progress
-        // here instead of going deeper to provide the feedback
-        for (int i=0; i < src.Height; i++)
-        {
-            GaussianBlurEffect.RenderBlurEffect(sourceSurface, destinationSurface, new[] { new Gdk.Rectangle(0, i, src.Width, 1) }, radius);
+		Pixbuf result = Blur (src, (int)radius, progressDialog);
 
-            if (dialog != null)
-            {
-                // This only half of the entire process
-                double fraction = ((double)i / (double)(src.Height-1)) *0.75;
-                dialog.Fraction = fraction;
-            }
-        }
+		int sourceRowstride = src.Rowstride;
+		int sourceHeight = src.Height;
+		int sourceChannels = src.NChannels;
+		int sourceWidth = src.Width;
 
-        return destinationSurface.ToPixbuf();
+		int resultRowstride = result.Rowstride;
+		int resultWidth = result.Width;
+		int resultChannels = result.NChannels;
+
+		byte[] srcRow = new byte[sourceRowstride];
+		byte[] destRow = new byte[resultRowstride];
+
+		byte* sourcePixels = (byte*)src.Pixels;
+		byte* resultPixels = (byte*)result.Pixels;
+
+		for (int row=0; row < sourceHeight; row++) {
+			Pixbuf_GetRow (sourcePixels, row, sourceRowstride, sourceWidth, sourceChannels, srcRow);
+			Pixbuf_GetRow (resultPixels, row, resultRowstride, resultWidth, resultChannels, destRow);
+
+			int diff;
+			for (int i=0; i < sourceWidth*sourceChannels; i++) {
+				diff = srcRow [i] - destRow [i];
+				if (Math.Abs (2 * diff) < threshold)
+					diff = 0;
+
+				int val = (int)(srcRow [i] + amount * diff);
+
+				if (val > 255)
+					val = 255;
+				else if (val < 0)
+					val = 0;
+
+				destRow [i] = (byte)val;
+			}
+
+			Pixbuf_SetRow (resultPixels, destRow, row, resultRowstride, resultWidth, resultChannels);
+
+			// This is the other half of the progress so start and halfway
+			if (progressDialog != null)
+                progressDialog.Fraction = ((double)row / ((double) sourceHeight - 1) ) * 0.25 + 0.75;
+		}
+
+		return result;
 	}
 
-    public static ImageSurface Clone (this ImageSurface surf)
-    {
-        ImageSurface newsurf = new ImageSurface (surf.Format, surf.Width, surf.Height);
+	public static Pixbuf Blur (Pixbuf src, int radius, ThreadProgressDialog dialog)
+	{
+		ImageSurface sourceSurface = Hyena.Gui.PixbufImageSurface.Create (src);
+		ImageSurface destinationSurface = new ImageSurface (Format.Rgb24, src.Width, src.Height);
 
-        using (Context g = new Context (newsurf)) {
-            g.SetSource (surf);
-            g.Paint ();
-        }
+		// If we do it as a bunch of single lines (rectangles of one pixel) then we can give the progress
+		// here instead of going deeper to provide the feedback
+		for (int i=0; i < src.Height; i++) {
+			GaussianBlurEffect.RenderBlurEffect (sourceSurface, destinationSurface, new[] { new Gdk.Rectangle (0, i, src.Width, 1) }, radius);
+
+			if (dialog != null) {
+				// This only half of the entire process
+				double fraction = ((double)i / (double)(src.Height - 1)) * 0.75;
+				dialog.Fraction = fraction;
+			}
+		}
+
+		return destinationSurface.ToPixbuf ();
+	}
+
+	public static ImageSurface Clone (this ImageSurface surf)
+	{
+		ImageSurface newsurf = new ImageSurface (surf.Format, surf.Width, surf.Height);
+
+		using (Context g = new Context (newsurf)) {
+			g.SetSource (surf);
+			g.Paint ();
+		}
         
-        return newsurf;
-    }
+		return newsurf;
+	}
 
 	public unsafe static Gdk.Pixbuf RemoveRedeye (Gdk.Pixbuf src, Gdk.Rectangle area)
 	{
 		return RemoveRedeye (src, area, -15);
 	}
 
-    //threshold, factors and comparisons borrowed from the gimp plugin 'redeye.c' by Robert Merkel
-    public unsafe static Gdk.Pixbuf RemoveRedeye (Gdk.Pixbuf src, Gdk.Rectangle area, int threshold)
+	//threshold, factors and comparisons borrowed from the gimp plugin 'redeye.c' by Robert Merkel
+	public unsafe static Gdk.Pixbuf RemoveRedeye (Gdk.Pixbuf src, Gdk.Rectangle area, int threshold)
 	{
 		Gdk.Pixbuf copy = src.Copy ();
 		Gdk.Pixbuf selection = new Gdk.Pixbuf (copy, area.X, area.Y, area.Width, area.Height);
-		byte *spix = (byte *)selection.Pixels;
+		byte * spix = (byte *)selection.Pixels;
 		int h = selection.Height;
 		int w = selection.Width;
 		int channels = src.NChannels;
@@ -394,15 +390,15 @@ public static class PixbufUtils {
 		double BLUE_FACTOR = 0.1933333;
 
 		for (int j = 0; j < h; j++) {
-			byte *s = spix;
+			byte * s = spix;
 			for (int i = 0; i < w; i++) {
-				int adjusted_red = (int)(s[0] * RED_FACTOR);
-				int adjusted_green = (int)(s[1] * GREEN_FACTOR);
-				int adjusted_blue = (int)(s[2] * BLUE_FACTOR);
+				int adjusted_red = (int)(s [0] * RED_FACTOR);
+				int adjusted_green = (int)(s [1] * GREEN_FACTOR);
+				int adjusted_blue = (int)(s [2] * BLUE_FACTOR);
 
 				if (adjusted_red >= adjusted_green - threshold
 				    && adjusted_red >= adjusted_blue - threshold)
-					s[0] = (byte)(((double)(adjusted_green + adjusted_blue)) / (2.0 * RED_FACTOR));
+					s [0] = (byte)(((double)(adjusted_green + adjusted_blue)) / (2.0 * RED_FACTOR));
 				s += channels;
 			}
 			spix += selection.Rowstride;
@@ -453,16 +449,15 @@ public static class PixbufUtils {
 		bchsw.Dispose ();
 	}
 
-
 	public static unsafe void ColorAdjust (Gdk.Pixbuf src, Gdk.Pixbuf dest, Cms.Transform trans)
 	{
 		int width = src.Width;
-		byte * srcpix  = (byte *) src.Pixels;
-		byte * destpix = (byte *) dest.Pixels;
+		byte * srcpix = (byte *)src.Pixels;
+		byte * destpix = (byte *)dest.Pixels;
 
 		for (int row = 0; row < src.Height; row++) {
-			trans.Apply ((IntPtr) (srcpix + row * src.Rowstride),
-				     (IntPtr) (destpix + row * dest.Rowstride),
+			trans.Apply ((IntPtr)(srcpix + row * src.Rowstride),
+				     (IntPtr)(destpix + row * dest.Rowstride),
 				     (uint)width);
 		}
 
@@ -472,17 +467,16 @@ public static class PixbufUtils {
 	{
 		int chan = pixbuf.NChannels;
 
-		byte *pix = (byte *)pixbuf.Pixels;
+		byte * pix = (byte *)pixbuf.Pixels;
 		int h = pixbuf.Height;
 		int w = pixbuf.Width;
 		int stride = pixbuf.Rowstride;
 
 		for (int j = 0; j < h; j++) {
-			byte *p = pix;
+			byte * p = pix;
 			for (int i = 0; i < w; i++) {
-				if (Math.Abs (p[0] - p[1]) > max_difference || Math.Abs (p[0] - p [2]) > max_difference) {
+				if (Math.Abs (p [0] - p [1]) > max_difference || Math.Abs (p [0] - p [2]) > max_difference)
 					goto Found;
-				}
 				p += chan;
 			}
 			pix += stride;
@@ -490,8 +484,8 @@ public static class PixbufUtils {
 
 		return true;
 
-	Found:
-		return false;
+		Found:
+			return false;
 	}
 
 	public static unsafe void ReplaceColor (Gdk.Pixbuf src, Gdk.Pixbuf dest)
@@ -499,17 +493,17 @@ public static class PixbufUtils {
 		if (src.HasAlpha || !dest.HasAlpha || (src.Width != dest.Width) || (src.Height != dest.Height))
 			throw new ApplicationException ("invalid pixbufs");
 
-		byte *dpix = (byte *)dest.Pixels;
-		byte *spix = (byte *)src.Pixels;
+		byte * dpix = (byte *)dest.Pixels;
+		byte * spix = (byte *)src.Pixels;
 		int h = src.Height;
 		int w = src.Width;
 		for (int j = 0; j < h; j++) {
-			byte *d = dpix;
-			byte *s = spix;
+			byte * d = dpix;
+			byte * s = spix;
 			for (int i = 0; i < w; i++) {
-				d[0] = s[0];
-				d[1] = s[1];
-				d[2] = s[2];
+				d [0] = s [0];
+				d [1] = s [1];
+				d [2] = s [2];
 				d += 4;
 				s += 3;
 			}
@@ -525,103 +519,97 @@ public static class PixbufUtils {
 		}
 	}
 
-	[Obsolete ("Use GetOrientation (SafeUri) instead")]
-	public static ImageOrientation GetOrientation (string path)
-	{
-        return GetOrientation (new SafeUri (path));
-	}
-
 	[DllImport("libgnomeui-2-0.dll")]
-	static extern IntPtr gnome_thumbnail_scale_down_pixbuf(IntPtr pixbuf, int dest_width, int dest_height);
+	static extern IntPtr gnome_thumbnail_scale_down_pixbuf (IntPtr pixbuf, int dest_width, int dest_height);
 
 	public static Gdk.Pixbuf ScaleDown (Gdk.Pixbuf src, int width, int height)
 	{
-		IntPtr raw_ret = gnome_thumbnail_scale_down_pixbuf(src.Handle, width, height);
+		IntPtr raw_ret = gnome_thumbnail_scale_down_pixbuf (src.Handle, width, height);
 		Gdk.Pixbuf ret;
 		if (raw_ret == IntPtr.Zero)
 			ret = null;
 		else
-			ret = (Gdk.Pixbuf) GLib.Object.GetObject(raw_ret, true);
+			ret = (Gdk.Pixbuf)GLib.Object.GetObject (raw_ret, true);
 		return ret;
 	}
 
-    public static void CreateDerivedVersion (SafeUri source, SafeUri destination)
-    {
-        CreateDerivedVersion (source, destination, 95);
-    }
+	public static void CreateDerivedVersion (SafeUri source, SafeUri destination)
+	{
+		CreateDerivedVersion (source, destination, 95);
+	}
 
-    public static void CreateDerivedVersion (SafeUri source, SafeUri destination, uint jpeg_quality)
-    {
-        if (source.GetExtension () == destination.GetExtension ()) {
-            // Simple copy will do!
-            var file_from = GLib.FileFactory.NewForUri (source);
-            var file_to = GLib.FileFactory.NewForUri (destination);
-            file_from.Copy (file_to, GLib.FileCopyFlags.AllMetadata | GLib.FileCopyFlags.Overwrite, null, null);
-            return;
-        }
+	public static void CreateDerivedVersion (SafeUri source, SafeUri destination, uint jpeg_quality)
+	{
+		if (source.GetExtension () == destination.GetExtension ()) {
+			// Simple copy will do!
+			var file_from = GLib.FileFactory.NewForUri (source);
+			var file_to = GLib.FileFactory.NewForUri (destination);
+			file_from.Copy (file_to, GLib.FileCopyFlags.AllMetadata | GLib.FileCopyFlags.Overwrite, null, null);
+			return;
+		}
 
-        // Else make a derived copy with metadata copied
-        using (var img = ImageFile.Create (source)) {
-            using (var pixbuf = img.Load ()) {
-                CreateDerivedVersion (source, destination, jpeg_quality, pixbuf);
-            }
-        }
-    }
+		// Else make a derived copy with metadata copied
+		using (var img = ImageFile.Create (source)) {
+			using (var pixbuf = img.Load ()) {
+				CreateDerivedVersion (source, destination, jpeg_quality, pixbuf);
+			}
+		}
+	}
 
-    public static void CreateDerivedVersion (SafeUri source, SafeUri destination, uint jpeg_quality, Pixbuf pixbuf)
-    {
-        SaveToSuitableFormat (destination, pixbuf, jpeg_quality);
+	public static void CreateDerivedVersion (SafeUri source, SafeUri destination, uint jpeg_quality, Pixbuf pixbuf)
+	{
+		SaveToSuitableFormat (destination, pixbuf, jpeg_quality);
 
-        using (var metadata_from = Metadata.Parse (source)) {
-            using (var metadata_to = Metadata.Parse (destination)) {
-                metadata_to.CopyFrom (metadata_from);
+		using (var metadata_from = Metadata.Parse (source)) {
+			using (var metadata_to = Metadata.Parse (destination)) {
+				metadata_to.CopyFrom (metadata_from);
 
-                // Reset orientation to make sure images appear upright.
-                metadata_to.ImageTag.Orientation = ImageOrientation.TopLeft;
-                metadata_to.Save ();
-            }
-        }
-    }
+				// Reset orientation to make sure images appear upright.
+				metadata_to.ImageTag.Orientation = ImageOrientation.TopLeft;
+				metadata_to.Save ();
+			}
+		}
+	}
 
-    private static void SaveToSuitableFormat (SafeUri destination, Pixbuf pixbuf, uint jpeg_quality)
-    {
-        // FIXME: this needs to work on streams rather than filenames. Do that when we switch to
-        // newer GDK.
-        var extension = destination.GetExtension ().ToLower ();
-        if (extension == ".png") {
-            pixbuf.Save (destination.LocalPath, "png");
-        } else if (extension == ".jpg" || extension == ".jpeg") {
-            pixbuf.Save (destination.LocalPath, "jpeg", jpeg_quality);
-        } else {
-            throw new NotImplementedException ("Saving this file format is not supported");
-        }
-    }
+	private static void SaveToSuitableFormat (SafeUri destination, Pixbuf pixbuf, uint jpeg_quality)
+	{
+		// FIXME: this needs to work on streams rather than filenames. Do that when we switch to
+		// newer GDK.
+		var extension = destination.GetExtension ().ToLower ();
+		if (extension == ".png")
+			pixbuf.Save (destination.LocalPath, "png");
+		else if (extension == ".jpg" || extension == ".jpeg")
+			pixbuf.Save (destination.LocalPath, "jpeg", jpeg_quality);
+		else
+			throw new NotImplementedException ("Saving this file format is not supported");
+	}
 
 #region Gdk hackery
 
-    // This hack below is needed because there is no wrapped version of
-    // Save which allows specifying the variable arguments (it's not
-    // possible with p/invoke).
+	// This hack below is needed because there is no wrapped version of
+	// Save which allows specifying the variable arguments (it's not
+	// possible with p/invoke).
 
-    [DllImport("libgdk_pixbuf-2.0-0.dll")]
-    static extern bool gdk_pixbuf_save(IntPtr raw, IntPtr filename, IntPtr type, out IntPtr error,
+	[DllImport("libgdk_pixbuf-2.0-0.dll")]
+	static extern bool gdk_pixbuf_save (IntPtr raw, IntPtr filename, IntPtr type, out IntPtr error,
             IntPtr optlabel1, IntPtr optvalue1, IntPtr dummy);
 
-    private static bool Save (this Pixbuf pixbuf, string filename, string type, uint jpeg_quality)
-    {
-        IntPtr error = IntPtr.Zero;
-        IntPtr nfilename = GLib.Marshaller.StringToPtrGStrdup (filename);
-        IntPtr ntype = GLib.Marshaller.StringToPtrGStrdup (type);
-        IntPtr optlabel1 = GLib.Marshaller.StringToPtrGStrdup ("quality");
-        IntPtr optvalue1 = GLib.Marshaller.StringToPtrGStrdup (jpeg_quality.ToString ());
-        bool ret = gdk_pixbuf_save(pixbuf.Handle, nfilename, ntype, out error, optlabel1, optvalue1, IntPtr.Zero);
-        GLib.Marshaller.Free (nfilename);
-        GLib.Marshaller.Free (ntype);
-        GLib.Marshaller.Free (optlabel1);
-        GLib.Marshaller.Free (optvalue1);
-        if (error != IntPtr.Zero) throw new GLib.GException (error);
-        return ret;
-    }
+	private static bool Save (this Pixbuf pixbuf, string filename, string type, uint jpeg_quality)
+	{
+		IntPtr error = IntPtr.Zero;
+		IntPtr nfilename = GLib.Marshaller.StringToPtrGStrdup (filename);
+		IntPtr ntype = GLib.Marshaller.StringToPtrGStrdup (type);
+		IntPtr optlabel1 = GLib.Marshaller.StringToPtrGStrdup ("quality");
+		IntPtr optvalue1 = GLib.Marshaller.StringToPtrGStrdup (jpeg_quality.ToString ());
+		bool ret = gdk_pixbuf_save (pixbuf.Handle, nfilename, ntype, out error, optlabel1, optvalue1, IntPtr.Zero);
+		GLib.Marshaller.Free (nfilename);
+		GLib.Marshaller.Free (ntype);
+		GLib.Marshaller.Free (optlabel1);
+		GLib.Marshaller.Free (optvalue1);
+		if (error != IntPtr.Zero)
+			throw new GLib.GException (error);
+		return ret;
+	}
 
 #endregion
 }
