@@ -38,7 +38,7 @@ using Mono.Unix.Native;
 
 namespace FSpot.Import
 {
-	internal class FileImportSource : ImportSource
+	internal class FileImportSource : IImportSource
 	{
 		public string Name { get; set; }
 

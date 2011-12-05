@@ -59,8 +59,8 @@ SOURCES =  \
 	FSpot.Imaging/Tests/ImageFileTests.cs \
 	FSpot.Imaging/Tiff.cs \
 	FSpot.Import/FileImportSource.cs \
+	FSpot.Import/IImportSource.cs \
 	FSpot.Import/ImportController.cs \
-	FSpot.Import/ImportSource.cs \
 	FSpot.Import/MetadataImporter.cs \
 	FSpot.Jobs/CalculateHashJob.cs \
 	FSpot.Jobs/SyncMetadataJob.cs \

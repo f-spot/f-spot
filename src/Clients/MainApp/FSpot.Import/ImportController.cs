@@ -127,8 +127,8 @@ namespace FSpot.Import
 
 #region Source Scanning
 
-        private List<ImportSource> sources;
-        public List<ImportSource> Sources {
+        private List<IImportSource> sources;
+        public List<IImportSource> Sources {
             get {
                 if (sources == null)
                     sources = ScanSources ();
@@ -136,10 +136,10 @@ namespace FSpot.Import
             }
         }
 
-        List<ImportSource> ScanSources ()
+        List<IImportSource> ScanSources ()
         {
             var monitor = GLib.VolumeMonitor.Default;
-            var sources = new List<ImportSource> ();
+            var sources = new List<IImportSource> ();
             foreach (var mount in monitor.Mounts) {
                 var root = new SafeUri (mount.Root.Uri, true);
 
@@ -187,8 +187,8 @@ namespace FSpot.Import
 
 #region Source Switching
 
-        private ImportSource active_source;
-        public ImportSource ActiveSource {
+        private IImportSource active_source;
+        public IImportSource ActiveSource {
             set {
                 if (value == active_source)
                     return;
@@ -203,7 +203,7 @@ namespace FSpot.Import
             }
         }
 
-        void DeactivateSource (ImportSource source)
+        void DeactivateSource (IImportSource source)
         {
             if (source == null)
                 return;

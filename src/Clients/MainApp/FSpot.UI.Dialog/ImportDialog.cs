@@ -46,7 +46,7 @@ namespace FSpot.UI.Dialog
         private ImportController Controller { get; set; }
         private TreeStore Sources { get; set; }
 
-        private static Dictionary<string, ImportSource> history_sources = new Dictionary<string, ImportSource> ();
+        private static Dictionary<string, IImportSource> history_sources = new Dictionary<string, IImportSource> ();
 
         [GtkBeans.Builder.Object] Button cancel_button;
         [GtkBeans.Builder.Object] Button import_button;
@@ -133,7 +133,7 @@ namespace FSpot.UI.Dialog
         void ScanSources ()
         {
             // Populates the source combo box
-            Sources = new TreeStore (typeof(ImportSource), typeof(string), typeof(string), typeof(bool));
+            Sources = new TreeStore (typeof(IImportSource), typeof(string), typeof(string), typeof(bool));
             sources_combo.Model = Sources;
             sources_combo.RowSeparatorFunc = (m, i) => (m.GetValue (i, 1) as string) == String.Empty;
             var render = new CellRendererPixbuf ();
@@ -156,7 +156,7 @@ namespace FSpot.UI.Dialog
             });
         }
 
-        void PopulateSourceCombo (ImportSource source_to_activate)
+        void PopulateSourceCombo (IImportSource source_to_activate)
         {
             int activate_index = 0;
             sources_combo.Changed -= OnSourceComboChanged;
@@ -245,7 +245,7 @@ namespace FSpot.UI.Dialog
 
         public void SwitchToFolderSource (SafeUri uri)
         {
-            ImportSource source = null;
+            IImportSource source = null;
             if (!history_sources.TryGetValue (uri, out source)) {
                 var name = uri.GetFilename ();
                 source = new FileImportSource (uri, name, "folder");
@@ -269,7 +269,7 @@ namespace FSpot.UI.Dialog
 
             TreeIter iter;
             sources_combo.GetActiveIter (out iter);
-            var source = Sources.GetValue (iter, 0) as ImportSource;
+            var source = Sources.GetValue (iter, 0) as IImportSource;
             if (source == null) {
                 var label = (string) Sources.GetValue (iter, 1);
                 if (label == select_folder_label) {
