@@ -3,6 +3,7 @@
 //
 // Author:
 //   Stephane Delcroix <sdelcroix@src.gnome.org>
+//   Stephen Shaw <sshaw@decriptor.com>
 //
 // Copyright (C) 2007-2009 Novell, Inc.
 // Copyright (C) 2007-2009 Stephane Delcroix
@@ -36,27 +37,31 @@ using Hyena;
 
 namespace FSpot.Platform
 {
-	[Interface ("org.gnome.ScreenSaver")]
+	[Interface ("org.gnome.SessionManager")]
 	public interface IScreenSaver
 	{
-		uint Inhibit (string appname, string reason);
+		uint Inhibit (string appname, uint toplevel_xid, string reason, uint flags);
 		void UnInhibit (uint cookie);
-		void Lock ();
 	}
 
 	public static class ScreenSaver
 	{
+		const string DBUS_INTERFACE = "org.gnome.SessionManager";
+		const string DBUS_PATH = "/org/gnome/SessionManager";
 		private static IScreenSaver screensaver;
 		private static IScreenSaver GnomeScreenSaver {
 			get {
 				if (screensaver == null)
-					screensaver = Bus.Session.GetObject<IScreenSaver> ("org.gnome.ScreenSaver", new ObjectPath ("/org/gnome/ScreenSaver"));
+					screensaver = Bus.Session.GetObject<IScreenSaver> (DBUS_INTERFACE, new ObjectPath (DBUS_PATH));
 				return screensaver;
 			}
 		}
 
 		private static bool inhibited = false;
 		private static uint cookie = 0;
+		private static uint toplevel_xid = 0;
+		// 8: Inhibit the session being marked as idle
+		private static uint flags = 8;
 
 		public static uint Inhibit (string reason ) {
 			if (inhibited)
@@ -64,7 +69,7 @@ namespace FSpot.Platform
 
 			Log.InformationFormat ("Inhibit screensaver for {0}", reason);
 			try {
-				cookie = GnomeScreenSaver.Inhibit ("f-spot", reason);
+				cookie = GnomeScreenSaver.Inhibit ("f-spot", toplevel_xid, reason, flags);
 				inhibited = true;
 			} catch (Exception ex) {
 				Log.Exception ("Error Inhibiting the screensaver", ex);
