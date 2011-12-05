@@ -37,7 +37,7 @@ using FSpot.Core;
 
 namespace FSpot.Import
 {
-    public interface ImportSource {
+    public interface IImportSource {
         string Name { get; }
         string IconName { get; }
 
