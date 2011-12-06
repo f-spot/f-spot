@@ -392,9 +392,13 @@ namespace FSpot.Widgets
 
             AddLabelEntry ("size", Catalog.GetString ("Size"), Catalog.GetString ("Show Size"),
                            (photo, metadata) => {
-                                int width = metadata.Properties.PhotoWidth;
-                                int height = metadata.Properties.PhotoHeight;
-                
+				int width = 0;
+				int height = 0;
+				if (null != metadata.Properties) {
+   	                             width = metadata.Properties.PhotoWidth;
+   	                             height = metadata.Properties.PhotoHeight;
+				}
+
                                 if (width != 0 && height != 0)
                                     return String.Format ("{0}x{1}", width, height);
                                 else
@@ -669,8 +673,7 @@ namespace FSpot.Widgets
 
         }
 
-        // Constructor.
-
+		#region Constructor
         public InfoBox () : base(false, 0)
         {
             ContextSwitchStrategy = new MRUInfoBoxContextSwitchStrategy ();
@@ -686,6 +689,7 @@ namespace FSpot.Widgets
             BorderWidth = 2;
             Hide ();
         }
+		#endregion
     }
 
     // Decides whether infobox / histogram should be shown for each context. Implemented
