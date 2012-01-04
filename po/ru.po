@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: f-spot master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=f-spot&keywords=I18N+L10N&component=General\n"
-"POT-Creation-Date: 2011-03-18 17:14+0000\n"
-"PO-Revision-Date: 2011-06-04 11:17+0300\n"
+"POT-Creation-Date: 2011-12-03 14:20+0000\n"
+"PO-Revision-Date: 2012-01-05 00:34+0300\n"
 "Last-Translator: Yuri Myasoedov <omerta13@yandex.ru>\n"
 "Language-Team: Russian <gnome-cyr@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -24,84 +24,108 @@ msgstr ""
 "X-Generator: KBabel 1.11.4\n"
 
 #. ../src/Clients/MainApp/FSpot.addin.xml
-#. ../src/Extensions/Editors/FSpot.Editors.Blackout/Resources/BlackoutEditor.addin.xml
+#: ../data/addin-xml-strings.cs:8
+#: ../src/Clients/MainApp/FSpot.addin.xml.h:1
+msgid "Copy Photo"
+msgstr "Копировать фотографию"
+
+#: ../data/addin-xml-strings.cs:9
+#: ../src/Clients/MainApp/FSpot.addin.xml.h:5
+#: ../src/Clients/MainApp/FSpot/SingleView.cs:457
+#: ../src/Clients/MainApp/ui/main_window.ui.h:16
+msgid "Rotate _Left"
+msgstr "Повернуть в_лево"
+
 #: ../data/addin-xml-strings.cs:10
-#| msgid "Blackout"
+#: ../src/Clients/MainApp/FSpot.addin.xml.h:6
+#: ../src/Clients/MainApp/FSpot/SingleView.cs:458
+#: ../src/Clients/MainApp/ui/main_window.ui.h:17
+msgid "Rotate _Right"
+msgstr "Повернуть в_право"
+
+#: ../data/addin-xml-strings.cs:11
+#: ../src/Clients/MainApp/FSpot.addin.xml.h:9
+#: ../src/Clients/MainApp/ui/main_window.ui.h:60
+msgid "_Remove From Catalog"
+msgstr "Убрать из _каталога"
+
+#: ../data/addin-xml-strings.cs:12
+#: ../src/Clients/MainApp/FSpot.addin.xml.h:8
+#: ../src/Clients/MainApp/ui/main_window.ui.h:41
+msgid "_Delete From Drive"
+msgstr "Уд_алить с диска"
+
+#. ../src/Extensions/Editors/FSpot.Editors.Blackout/Resources/BlackoutEditor.addin.xml
+#: ../data/addin-xml-strings.cs:15
 msgid "BlackoutEditor"
 msgstr "BlackoutEditor"
 
-#: ../data/addin-xml-strings.cs:11
+#: ../data/addin-xml-strings.cs:16
 msgid "Blacks out an area of the image."
 msgstr "Затемняет область изображения."
 
-#: ../data/addin-xml-strings.cs:12
 #: ../data/addin-xml-strings.cs:17
 #: ../data/addin-xml-strings.cs:22
 #: ../data/addin-xml-strings.cs:27
 #: ../data/addin-xml-strings.cs:32
-#| msgid "Edit"
+#: ../data/addin-xml-strings.cs:37
 msgid "Editors"
 msgstr "Редакторы"
 
 #. ../src/Extensions/Editors/FSpot.Editors.BW/Resources/BWEditor.addin.xml
-#: ../data/addin-xml-strings.cs:15
-#| msgid "Edit"
+#: ../data/addin-xml-strings.cs:20
 msgid "BWEditor"
 msgstr "BWEditor"
 
-#: ../data/addin-xml-strings.cs:16
+#: ../data/addin-xml-strings.cs:21
 msgid "Convert to B/W with control. Require Mono 2.2."
 msgstr "Ч/Б-преобразование. Требуется Mono версии 2.2."
 
 #. ../src/Extensions/Editors/FSpot.Editors.Flip/Resources/FlipEditor.addin.xml
-#: ../data/addin-xml-strings.cs:20
+#: ../data/addin-xml-strings.cs:25
 msgid "FlipEditor"
 msgstr "FlipEditor"
 
-#: ../data/addin-xml-strings.cs:21
+#: ../data/addin-xml-strings.cs:26
 msgid "Flips the image horizontally."
 msgstr "Отражает изображение по горизонтали."
 
 #. ../src/Extensions/Editors/FSpot.Editors.Pixelate/Resources/PixelateEditor.addin.xml
-#: ../data/addin-xml-strings.cs:25
-#| msgid "Pixelate"
+#: ../data/addin-xml-strings.cs:30
 msgid "PixelateEditor"
 msgstr "PixelateEditor"
 
-#: ../data/addin-xml-strings.cs:26
+#: ../data/addin-xml-strings.cs:31
 msgid "Pixelates an area of the image."
 msgstr "Пикселизирует область изображения."
 
 #. ../src/Extensions/Editors/FSpot.Editors.Resize/Resources/ResizeEditor.addin.xml
-#: ../data/addin-xml-strings.cs:30
-#| msgid "Resize"
+#: ../data/addin-xml-strings.cs:35
 msgid "ResizeEditor"
 msgstr "ResizeEditor"
 
-#: ../data/addin-xml-strings.cs:31
-#| msgid "_Resize to: "
+#: ../data/addin-xml-strings.cs:36
 msgid "Resize the image"
 msgstr "Изменить размер изображения"
 
 #. ../src/Extensions/Exporters/FSpot.Exporters.CD/Resources/CDExport.addin.xml
-#: ../data/addin-xml-strings.cs:35
-#| msgid "Export"
+#: ../data/addin-xml-strings.cs:40
 msgid "CD Export"
 msgstr "Экспорт CD"
 
-#: ../data/addin-xml-strings.cs:36
+#: ../data/addin-xml-strings.cs:41
 msgid "This extension allows you to burn your photos to CD."
 msgstr "Это расширение позволяет записывать фотоснимки на диски."
 
-#: ../data/addin-xml-strings.cs:37
 #: ../data/addin-xml-strings.cs:42
-#: ../data/addin-xml-strings.cs:47
-#: ../data/addin-xml-strings.cs:52
-#: ../data/addin-xml-strings.cs:57
+#: ../data/addin-xml-strings.cs:48
+#: ../data/addin-xml-strings.cs:54
 #: ../data/addin-xml-strings.cs:62
-#: ../data/addin-xml-strings.cs:67
-#: ../data/addin-xml-strings.cs:72
-#: ../data/addin-xml-strings.cs:77
+#: ../data/addin-xml-strings.cs:68
+#: ../data/addin-xml-strings.cs:74
+#: ../data/addin-xml-strings.cs:80
+#: ../data/addin-xml-strings.cs:86
+#: ../data/addin-xml-strings.cs:92
 #: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/Resources/flickr_export.ui.h:6
 #: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/Resources/gallery_export_dialog.ui.h:5
 #: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/Resources/google_export_dialog.ui.h:5
@@ -110,117 +134,162 @@ msgstr "Это расширение позволяет записывать фо
 msgid "Export"
 msgstr "Экспорт"
 
+#: ../data/addin-xml-strings.cs:43
+msgid "_CD..."
+msgstr "_CD…"
+
 #. ../src/Extensions/Exporters/FSpot.Exporters.Facebook/Resources/FacebookExport.addin.xml
-#: ../data/addin-xml-strings.cs:40
-#| msgid "Export"
+#: ../data/addin-xml-strings.cs:46
 msgid "FacebookExport"
 msgstr "FacebookExport"
 
-#: ../data/addin-xml-strings.cs:41
-#| msgid "Export to Facebook"
+#: ../data/addin-xml-strings.cs:47
 msgid "Export pictures to facebook"
 msgstr "Экспорт изображений на Facebook"
 
+#: ../data/addin-xml-strings.cs:49
+#| msgid "FacebookExport"
+msgid "F_acebook..."
+msgstr "F_acebook…"
+
 #. ../src/Extensions/Exporters/FSpot.Exporters.Flickr/Resources/FlickrExport.addin.xml
-#: ../data/addin-xml-strings.cs:45
-#| msgid "Folder Export"
+#: ../data/addin-xml-strings.cs:52
 msgid "Flickr Export"
 msgstr "Экспорт на Flickr"
 
-#: ../data/addin-xml-strings.cs:46
+#: ../data/addin-xml-strings.cs:53
 msgid "This extension allows you to export your photos to Flickr and 23hq."
 msgstr "Это расширение позволяет экспортировать фотоснимки на Flickr и 23hq."
 
+#: ../data/addin-xml-strings.cs:55
+msgid "_Flickr..."
+msgstr "_Flickr…"
+
+#: ../data/addin-xml-strings.cs:56
+msgid "_23hq..."
+msgstr "_23hq…"
+
+#: ../data/addin-xml-strings.cs:57
+#| msgid "_Import..."
+msgid "_Zooomr..."
+msgstr "_Zooomr…"
+
 #. ../src/Extensions/Exporters/FSpot.Exporters.Folder/Resources/FolderExport.addin.xml
-#: ../data/addin-xml-strings.cs:50
+#: ../data/addin-xml-strings.cs:60
 #: ../src/Extensions/Exporters/FSpot.Exporters.Folder/Resources/folder_export.ui.h:10
 msgid "Folder Export"
 msgstr "Экспорт в папку"
 
-#: ../data/addin-xml-strings.cs:51
+#: ../data/addin-xml-strings.cs:61
 msgid "This extension allows you to export your photos to HTML galleries, Original galleries or just to a folder."
 msgstr "Это расширение позволяет экспортировать фотоснимки в HTML-галереи, галереи Original или просто в папку."
 
+#: ../data/addin-xml-strings.cs:63
+#| msgid "Folder"
+msgid "F_older..."
+msgstr "_Папка…"
+
 #. ../src/Extensions/Exporters/FSpot.Exporters.Gallery/Resources/GalleryExport.addin.xml
-#: ../data/addin-xml-strings.cs:55
-#| msgid "Folder Export"
+#: ../data/addin-xml-strings.cs:66
 msgid "Gallery Export"
 msgstr "Экспорт на Gallery"
 
-#: ../data/addin-xml-strings.cs:56
+#: ../data/addin-xml-strings.cs:67
 msgid "This extension allows you to export your photos to PHP Gallery (http://gallery.menalto.com)."
 msgstr "Это расширение позволяет экспортировать фотоснимки в PHP-галереи (http://gallery.menalto.com)."
 
+#: ../data/addin-xml-strings.cs:69
+#| msgid "LiveWebGallery"
+msgid "Web _Gallery..."
+msgstr "Веб-_галерея…"
+
 #. ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/Resources/PicasaWebExport.addin.xml
-#: ../data/addin-xml-strings.cs:60
-#| msgid "<b>PicasaWeb Export</b>"
+#: ../data/addin-xml-strings.cs:72
 msgid "PicasaWeb Export"
 msgstr "Экспорт на PicasaWeb"
 
-#: ../data/addin-xml-strings.cs:61
+#: ../data/addin-xml-strings.cs:73
 msgid "This extension allows you to export your photos to PicasaWeb."
 msgstr "Это расширение позволяет экспортировать фотоснимки в PicasaWeb."
 
+#: ../data/addin-xml-strings.cs:75
+#| msgid "PicasaWeb Export"
+msgid "_PicasaWeb..."
+msgstr "_PicasaWeb…"
+
 #. ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/Resources/SmugMugExport.addin.xml
-#: ../data/addin-xml-strings.cs:65
-#| msgid "<b>SmugMug Export</b>"
+#: ../data/addin-xml-strings.cs:78
 msgid "SmugMug Export"
 msgstr "Экспорт на SmugMug"
 
-#: ../data/addin-xml-strings.cs:66
+#: ../data/addin-xml-strings.cs:79
 msgid "This extension allows you to export your photos to SmugMug."
 msgstr "Это расширение позволяет экспортировать фотоснимки в SmugMug."
 
+#: ../data/addin-xml-strings.cs:81
+msgid "_SmugMug..."
+msgstr "_SmugMug…"
+
 #. ../src/Extensions/Exporters/FSpot.Exporters.Tabblo/Resources/TabbloExport.addin.xml
-#: ../data/addin-xml-strings.cs:70
-#| msgid "Export"
+#: ../data/addin-xml-strings.cs:84
 msgid "Tabblo Export"
 msgstr "Экспорт на Tabblo"
 
-#: ../data/addin-xml-strings.cs:71
+#: ../data/addin-xml-strings.cs:85
 msgid "This extension allows you to export your photos to Tabblo."
 msgstr "Это расширение позволяет экспортировать фотоснимки в Tabblo."
 
+#: ../data/addin-xml-strings.cs:87
+msgid "_Tabblo..."
+msgstr "_Tabblo…"
+
 #. ../src/Extensions/Exporters/FSpot.Exporters.Zip/Resources/ZipExport.addin.xml
-#: ../data/addin-xml-strings.cs:75
-#| msgid "Export"
+#: ../data/addin-xml-strings.cs:90
 msgid "Zip export"
 msgstr "Экспорт в Zip"
 
-#: ../data/addin-xml-strings.cs:76
-#| msgid "Select export folder"
+#: ../data/addin-xml-strings.cs:91
 msgid "Simple export to Zip file"
 msgstr "Простое экспортирование в файлы Zip"
 
+#: ../data/addin-xml-strings.cs:93
+msgid "Compressed fil_e..."
+msgstr "С_жатый файл…"
+
 #. ../src/Extensions/Tools/FSpot.Tools.ChangePhotoPath/Resources/ChangePhotoPath.addin.xml
-#: ../data/addin-xml-strings.cs:80
+#: ../data/addin-xml-strings.cs:96
 msgid "ChangePath"
 msgstr "ChangePath"
 
-#: ../data/addin-xml-strings.cs:81
+#: ../data/addin-xml-strings.cs:97
 msgid "UNSTABLE - Please ensure you have a backup of your photos.db before you test this extension. This extension will allow you to change the base path to the your photos. It is very handy if you move your photos from ~/Photos to /OurPhotos for instance. Just ensure you let SqLite continue to process the changes for up to a few hours after f-spot reports finished. It will only change the path to photos which are located under the Photo directory."
 msgstr "НЕСТАБИЛЬНО. Перед тестированием этого расширения проверьте, что вы сделали резервную копию БД ваших снимков. Это расширение позволит вам изменить путь к базе ваших фотоснимков. Это очень полезно, если вы переносите фотоснимки из одного каталога в другой. Удостоверьтесь, что вы позволили SqLite продолжить обработку изменений в течение нескольких часов после того, как f-spot сообщил о завершении. В результате, будет изменён путь только к тем фотоснимкам, которые хранились в каталоге для фотографий."
 
-#: ../data/addin-xml-strings.cs:82
-#: ../data/addin-xml-strings.cs:87
-#: ../data/addin-xml-strings.cs:92
-#: ../data/addin-xml-strings.cs:97
-#: ../data/addin-xml-strings.cs:102
-#: ../data/addin-xml-strings.cs:107
-#: ../data/addin-xml-strings.cs:112
-#: ../data/addin-xml-strings.cs:117
+#: ../data/addin-xml-strings.cs:98
+#: ../data/addin-xml-strings.cs:104
+#: ../data/addin-xml-strings.cs:110
+#: ../data/addin-xml-strings.cs:116
 #: ../data/addin-xml-strings.cs:122
-#: ../data/addin-xml-strings.cs:127
+#: ../data/addin-xml-strings.cs:128
+#: ../data/addin-xml-strings.cs:134
+#: ../data/addin-xml-strings.cs:140
+#: ../data/addin-xml-strings.cs:146
+#: ../data/addin-xml-strings.cs:152
 #: ../src/Clients/MainApp/FSpot.addin.xml.h:7
 msgid "Tools"
 msgstr "Инструменты"
 
+#: ../data/addin-xml-strings.cs:99
+#| msgid "Change base path (URI) to"
+msgid "Change path to photos"
+msgstr "Изменить путь к снимкам"
+
 #. ../src/Extensions/Tools/FSpot.Tools.DevelopInUFraw/Resources/DevelopInUFRaw.addin.xml
-#: ../data/addin-xml-strings.cs:85
+#: ../data/addin-xml-strings.cs:102
 msgid "DevelopInUFRaw"
 msgstr "DevelopInUFRaw"
 
-#: ../data/addin-xml-strings.cs:86
+#: ../data/addin-xml-strings.cs:103
 msgid ""
 "Develop the image in UFRaw, saves the result as a new version\\n"
 "\\n"
@@ -230,98 +299,159 @@ msgstr ""
 "\\n"
 "Примечание: требуется ufraw 0.13 или CVS-версия новее, чем от 06.09.2007 !!!"
 
+#: ../data/addin-xml-strings.cs:105
+#| msgid "DevelopInUFRaw"
+msgid "Develop in UFRaw"
+msgstr "Разработка в UFRaw"
+
 #. ../src/Extensions/Tools/FSpot.Tools.LiveWebGallery/Resources/LiveWebGallery.addin.xml
-#: ../data/addin-xml-strings.cs:90
-#| msgid "F-Spot Live Web Gallery"
+#: ../data/addin-xml-strings.cs:108
 msgid "LiveWebGallery"
 msgstr "LiveWebGallery"
 
-#: ../data/addin-xml-strings.cs:91
+#: ../data/addin-xml-strings.cs:109
 msgid "Share photos with other people on the same network via Web Browser"
 msgstr "Доступ к снимкам для других людей посредствам той же сети через Веб-браузер"
 
+#: ../data/addin-xml-strings.cs:111
+#| msgid "LiveWebGallery"
+msgid "Live Web Gallery"
+msgstr "Живая веб-галерея"
+
 #. ../src/Extensions/Tools/FSpot.Tools.MergeDb/Resources/MergeDb.addin.xml
-#: ../data/addin-xml-strings.cs:95
+#: ../data/addin-xml-strings.cs:114
 msgid "MergeDb"
 msgstr "MergeDb"
 
-#: ../data/addin-xml-strings.cs:96
-#| msgid "Merge another F-Spot collection"
+#: ../data/addin-xml-strings.cs:115
 msgid "Merge another db back to the main one"
 msgstr "Объединить другую БД с основной"
 
+#: ../data/addin-xml-strings.cs:117
+#| msgid "MergeDb"
+msgid "Merge Db"
+msgstr "Объединить БД"
+
 #. ../src/Extensions/Tools/FSpot.Tools.MetaPixel/MetaPixel.addin.xml
-#: ../data/addin-xml-strings.cs:100
-#| msgid "Details"
+#: ../data/addin-xml-strings.cs:120
 msgid "MetaPixel"
 msgstr "MetaPixel"
 
-#: ../data/addin-xml-strings.cs:101
+#: ../data/addin-xml-strings.cs:121
 msgid "Create photomosaics using MetaPixel (http://www.complang.tuwien.ac.at/schani/metapixel/)"
 msgstr "Создание фотомозаик с помощью MetaPixel (http://www.complang.tuwien.ac.at/schani/metapixel/)"
 
+#: ../data/addin-xml-strings.cs:123
+#| msgid "Rated photos"
+msgid "Create p_hotomosaic"
+msgstr "Создание фото_мозаику"
+
 #. ../src/Extensions/Tools/FSpot.Tools.PictureTile/PictureTile.addin.xml
-#: ../data/addin-xml-strings.cs:105
+#: ../data/addin-xml-strings.cs:126
 msgid "PictureTile"
 msgstr "PictureTile"
 
-#: ../data/addin-xml-strings.cs:106
+#: ../data/addin-xml-strings.cs:127
 msgid "Create photo wall using PictureTile by Jamie Zawinski (http://www.jwz.org/picturetile/)"
 msgstr "Создание коллажа снимков с помощью PictureTile, созданной Джэми Завински (http://www.jwz.org/picturetile/)"
 
+#: ../data/addin-xml-strings.cs:129
+#| msgid "Create Mail"
+msgid "Create photo_wall"
+msgstr "Создать _коллаж"
+
 #. ../src/Extensions/Tools/FSpot.Tools.RawPlusJpeg/Resources/RawPlusJpeg.addin.xml
-#: ../data/addin-xml-strings.cs:110
+#: ../data/addin-xml-strings.cs:132
 msgid "RawPlusJpeg"
 msgstr "RawPlusJpeg"
 
-#: ../data/addin-xml-strings.cs:111
+#: ../data/addin-xml-strings.cs:133
 msgid "Merge RAW+Jpeg as multiple versions of the same photo"
 msgstr "Объединение RAW+Jpeg как нескольких версий одного и того же снимка"
 
+#: ../data/addin-xml-strings.cs:135
+#| msgid "Merge Tags"
+msgid "Merge Raw"
+msgstr "Объединить Raw"
+
 #. ../src/Extensions/Tools/FSpot.Tools.RetroactiveRoll/Resources/RetroactiveRoll.addin.xml
-#: ../data/addin-xml-strings.cs:115
+#: ../data/addin-xml-strings.cs:138
 msgid "RetroactiveRoll"
 msgstr "RetroactiveRoll"
 
-#: ../data/addin-xml-strings.cs:116
+#: ../data/addin-xml-strings.cs:139
 msgid "Retroactively assign old photos to import rolls"
 msgstr "Ретроактивно назначить старые снимки в сеансы импорта"
 
+#: ../data/addin-xml-strings.cs:141
+#| msgid "Retroactively assign old photos to import rolls"
+msgid "Reassign to new import roll"
+msgstr "Переназначить на новый сеанс импорта"
+
 #. ../src/Extensions/Tools/FSpot.Tools.ScreensaverConfig/Resources/ScreensaverConfig.addin.xml
-#: ../data/addin-xml-strings.cs:120
+#: ../data/addin-xml-strings.cs:144
 #: ../src/Extensions/Tools/FSpot.Tools.ScreensaverConfig/Resources/ScreensaverConfigDialog.ui.h:6
 msgid "Screensaver Configuration"
 msgstr "Параметры хранителя экрана"
 
-#: ../data/addin-xml-strings.cs:121
-#| msgid "Screensaver Configuration"
+#: ../data/addin-xml-strings.cs:145
 msgid "Screensaver options"
 msgstr "Параметры хранителя экрана"
 
+#: ../data/addin-xml-strings.cs:147
+msgid "Configure Screensaver"
+msgstr "Настроить хранитель экрана"
+
 #. ../src/Extensions/Tools/FSpot.Tools.SyncCatalog/SyncCatalog.addin.xml
-#: ../data/addin-xml-strings.cs:125
-#| msgid "Metadata"
+#: ../data/addin-xml-strings.cs:150
 msgid "SyncMetaData"
 msgstr "SyncMetaData"
 
-#: ../data/addin-xml-strings.cs:126
+#: ../data/addin-xml-strings.cs:151
 msgid "Sync MetaData information of all catalog with Photos"
 msgstr "Синхронизация метаданных всех каталогов со снимками"
 
+#: ../data/addin-xml-strings.cs:153
+#| msgid "Sync MetaData information of all catalog with Photos"
+msgid "Sync Catalog with Photos"
+msgstr "Синхронизировать каталог с фотографиями"
+
 #. ../src/Extensions/Transitions/FSpot.Transitions.Cover/Resources/CoverTransition.addin.xml
-#: ../data/addin-xml-strings.cs:130
-#| msgid "Slide transition:"
+#: ../data/addin-xml-strings.cs:156
 msgid "Cover Transition"
-msgstr "Cover Transition"
+msgstr "Эффект накрытия"
 
-#: ../data/addin-xml-strings.cs:131
+#: ../data/addin-xml-strings.cs:157
 msgid "A Slideshow transition that covers images"
-msgstr "Переход слайд-шоу, покрывающего изображения"
+msgstr "Слайдшоу с эффектом накрытия изображений"
 
-#: ../data/addin-xml-strings.cs:132
-#| msgid "Slide transition:"
+#: ../data/addin-xml-strings.cs:158
+#: ../data/addin-xml-strings.cs:163
+#: ../data/addin-xml-strings.cs:168
 msgid "Transitions"
 msgstr "Переходы"
+
+#. ../src/Extensions/Transitions/FSpot.Transitions.Dissolve/Resources/DissolveTransition.addin.xml
+#: ../data/addin-xml-strings.cs:161
+#| msgid "Cover Transition"
+msgid "Dissolve Transition"
+msgstr "Эффект таяния"
+
+#: ../data/addin-xml-strings.cs:162
+#| msgid "A Slideshow transition that covers images"
+msgid "A Slideshow transition that dissolves images"
+msgstr "Слайдшоу с эффектом таяния изображений"
+
+#. ../src/Extensions/Transitions/FSpot.Transitions.Push/Resources/PushTransition.addin.xml
+#: ../data/addin-xml-strings.cs:166
+#| msgid "Transitions"
+msgid "Push Transition"
+msgstr "Эффект вытеснения"
+
+#: ../data/addin-xml-strings.cs:167
+#| msgid "A Slideshow transition that covers images"
+msgid "A Slideshow transition that pushes images"
+msgstr "Слайдшоу с эффектом вытеснения изображений"
 
 #: ../data/desktop-files/f-spot.desktop.in.in.h:1
 #: ../data/desktop-files/f-spot-import.desktop.in.in.h:1
@@ -561,10 +691,6 @@ msgstr "Осуществляется вход на Tabblo"
 msgid "Obtaining URL for upload"
 msgstr "Получение URL для загрузки"
 
-#: ../src/Clients/MainApp/FSpot.addin.xml.h:1
-msgid "Copy Photo"
-msgstr "Скопировать фотографию"
-
 #: ../src/Clients/MainApp/FSpot.addin.xml.h:2
 msgid "Export to"
 msgstr "Экспортировать в"
@@ -578,34 +704,12 @@ msgstr "Открыть _в"
 msgid "Rem_ove Tag"
 msgstr "У_брать метку"
 
-#: ../src/Clients/MainApp/FSpot.addin.xml.h:5
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:457
-#: ../src/Clients/MainApp/ui/main_window.ui.h:16
-msgid "Rotate _Left"
-msgstr "Повернуть в_лево"
-
-#: ../src/Clients/MainApp/FSpot.addin.xml.h:6
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:458
-#: ../src/Clients/MainApp/ui/main_window.ui.h:17
-msgid "Rotate _Right"
-msgstr "Повернуть в_право"
-
-#: ../src/Clients/MainApp/FSpot.addin.xml.h:8
-#: ../src/Clients/MainApp/ui/main_window.ui.h:41
-msgid "_Delete From Drive"
-msgstr "Уд_алить с диска"
-
-#: ../src/Clients/MainApp/FSpot.addin.xml.h:9
-#: ../src/Clients/MainApp/ui/main_window.ui.h:60
-msgid "_Remove From Catalog"
-msgstr "Убрать из _каталога"
-
-#: ../src/Clients/MainApp/FSpot/App.cs:320
+#: ../src/Clients/MainApp/FSpot/App.cs:319
 #, csharp-format
 msgid "No photos matching {0} found"
 msgstr "Фотографии с меткой {0} не найдены"
 
-#: ../src/Clients/MainApp/FSpot/App.cs:321
+#: ../src/Clients/MainApp/FSpot/App.cs:320
 #, csharp-format
 msgid ""
 "The tag \"{0}\" is not applied to any photos. Try adding\n"
@@ -616,11 +720,11 @@ msgstr ""
 "применить её к каким-нибудь фотографиям или выбрать другую метку\n"
 "в диалоге настройки F-Spot."
 
-#: ../src/Clients/MainApp/FSpot/App.cs:325
+#: ../src/Clients/MainApp/FSpot/App.cs:324
 msgid "Search returned no results"
 msgstr "Ничего не найдено"
 
-#: ../src/Clients/MainApp/FSpot/App.cs:326
+#: ../src/Clients/MainApp/FSpot/App.cs:325
 msgid ""
 "The tag F-Spot is looking for does not exist. Try\n"
 "selecting a different tag in the F-Spot preference\n"
@@ -630,11 +734,11 @@ msgstr ""
 "Попробуйте выбрать другую метку в диалоге\n"
 "настройки F-Spot."
 
-#: ../src/Clients/MainApp/FSpot.Database/Updater.cs:761
+#: ../src/Clients/MainApp/FSpot.Database/Updater.cs:768
 msgid "Updating F-Spot Database"
 msgstr "Обновляется база данных F-Spot"
 
-#: ../src/Clients/MainApp/FSpot.Database/Updater.cs:762
+#: ../src/Clients/MainApp/FSpot.Database/Updater.cs:769
 msgid "Please wait while your F-Spot gallery's database is updated. This may take some time."
 msgstr "Подождите, пока обновится база данных галереи F-Spot. Это может занять некоторое время."
 
@@ -672,11 +776,11 @@ msgstr "Квадрат"
 
 #: ../src/Clients/MainApp/FSpot.Editors/CropEditor.cs:63
 msgid "Crop"
-msgstr "Обрезать"
+msgstr "Кадрировать"
 
 #: ../src/Clients/MainApp/FSpot.Editors/CropEditor.cs:94
 msgid "Select the area that needs cropping."
-msgstr "Выберите область для обрезания."
+msgstr "Выберите область кадрирования."
 
 #: ../src/Clients/MainApp/FSpot.Editors/CropEditor.cs:119
 msgid "No Constraint"
@@ -688,7 +792,7 @@ msgstr "Как у фотографии"
 
 #: ../src/Clients/MainApp/FSpot.Editors/CropEditor.cs:125
 msgid "Custom Ratios..."
-msgstr "Другие соотношения..."
+msgstr "Другое соотношение..."
 
 #: ../src/Clients/MainApp/FSpot.Editors/DesaturateEditor.cs:37
 msgid "Desaturate"
@@ -698,11 +802,11 @@ msgstr "Обесцветить"
 msgid "Red-eye Reduction"
 msgstr "Коррекция красных глаз"
 
-#: ../src/Clients/MainApp/FSpot.Editors/RedEyeEditor.cs:43
+#: ../src/Clients/MainApp/FSpot.Editors/RedEyeEditor.cs:44
 msgid "Fix!"
 msgstr "Исправить!"
 
-#: ../src/Clients/MainApp/FSpot.Editors/RedEyeEditor.cs:47
+#: ../src/Clients/MainApp/FSpot.Editors/RedEyeEditor.cs:48
 msgid "Select the eyes you wish to fix."
 msgstr "Выделите глаза с красными зрачками."
 
@@ -769,7 +873,7 @@ msgstr "О_чистить диапазон дат"
 
 #: ../src/Clients/MainApp/FSpot.Import/ImportController.cs:510
 #: ../src/Clients/MainApp/FSpot.Import/ImportController.cs:512
-#: ../src/Clients/MainApp/FSpot.Import/MetadataImporter.cs:80
+#: ../src/Clients/MainApp/FSpot.Import/MetadataImporter.cs:72
 msgid "Imported Tags"
 msgstr "Импортированные метки"
 
@@ -794,7 +898,7 @@ msgid "Rotate picture right"
 msgstr "Повернуть фото вправо"
 
 #: ../src/Clients/MainApp/FSpot/ItemAction.cs:125
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:936
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/HtmlGallery.cs:263
 msgid "Next"
 msgstr "След."
 
@@ -809,6 +913,12 @@ msgstr "Предыдущее"
 #: ../src/Clients/MainApp/FSpot/ItemAction.cs:147
 msgid "Previous picture"
 msgstr "Предыдущее фото"
+
+#: ../src/Clients/MainApp/FSpot/Literal.cs:225
+#: ../src/Clients/MainApp/FSpot/TagQueryWidget.cs:182
+#, csharp-format
+msgid "Not {0}"
+msgstr "Не {0}"
 
 #: ../src/Clients/MainApp/FSpot/MainWindow.cs:301
 #: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:229
@@ -863,9 +973,9 @@ msgstr "Следующее фото"
 #. Don't care otherwise, Tags sounds reasonable
 #: ../src/Clients/MainApp/FSpot/MainWindow.cs:376
 #: ../src/Clients/MainApp/FSpot.Widgets/Sidebar.cs:75
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:933
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:1105
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:1145
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/HtmlGallery.cs:260
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/HtmlGallery.cs:432
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/HtmlGallery.cs:472
 msgid "Tags"
 msgstr "Метки"
 
@@ -882,9 +992,9 @@ msgstr "_Скрыть панель поиска"
 #: ../src/Clients/MainApp/FSpot.UI.Dialog/AdjustTimeDialog.cs:154
 #: ../src/Clients/MainApp/FSpot.UI.Dialog/ProgressDialog.cs:111
 #: ../src/Extensions/Exporters/FSpot.Exporters.CD/FSpot.Exporters.CD/CDExport.cs:134
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:389
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:240
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryExport.cs:220
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:391
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:244
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryExport.cs:214
 #, csharp-format
 msgid "{0} of {1}"
 msgstr "{0} из {1}"
@@ -1079,11 +1189,11 @@ msgid "XCF version"
 msgstr "Версия XCF"
 
 #. Note for translators: Reparented is a picture becoming a version of another one
-#: ../src/Clients/MainApp/FSpot/Photo.cs:426
+#: ../src/Clients/MainApp/FSpot/Photo.cs:430
 msgid "Reparented"
 msgstr "Изменена версионность"
 
-#: ../src/Clients/MainApp/FSpot/Photo.cs:443
+#: ../src/Clients/MainApp/FSpot/Photo.cs:448
 #, csharp-format
 msgid "Modified"
 msgid_plural "Modified ({0})"
@@ -1091,23 +1201,23 @@ msgstr[0] "Изменён ({0})"
 msgstr[1] "Изменено ({0})"
 msgstr[2] "Изменены ({0})"
 
-#: ../src/Clients/MainApp/FSpot/Photo.cs:466
+#: ../src/Clients/MainApp/FSpot/Photo.cs:471
 #, csharp-format
 msgid "Modified in {1}"
 msgstr "Изменено в {1}"
 
-#: ../src/Clients/MainApp/FSpot/Photo.cs:466
+#: ../src/Clients/MainApp/FSpot/Photo.cs:471
 #, csharp-format
 msgid "Modified in {1} ({0})"
 msgstr "Изменено в {1} ({0})"
 
-#: ../src/Clients/MainApp/FSpot/PhotoStore.cs:203
+#: ../src/Clients/MainApp/FSpot/PhotoStore.cs:202
 #: ../src/Clients/MainApp/ui/mail_dialog.ui.h:17
 msgid "Original"
 msgstr "Исходная"
 
 # fuzzy
-#: ../src/Clients/MainApp/FSpot/PhotoView.cs:359
+#: ../src/Clients/MainApp/FSpot/PhotoView.cs:353
 msgid "Description:"
 msgstr "Описание:"
 
@@ -1148,32 +1258,32 @@ msgstr "Обновить результаты поиска"
 msgid "No matching photos found"
 msgstr "Фотографий, совпадающих с условиями поиска, не найдено"
 
-#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:102
+#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:99
 msgid "Unable to rotate this type of photo"
 msgstr "Невозможно повернуть фотографию в этом формате"
 
-#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:118
+#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:115
 msgid "Unable to rotate readonly file"
 msgstr "Невозможно повернуть фотографию с правами только на чтение"
 
-#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:182
+#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:173
 msgid "Rotating photos"
 msgstr "Выполняется поворот фотографий"
 
-#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:193
+#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:184
 #, csharp-format
 msgid "Rotating photo \"{0}\""
 msgstr "Выполняется поворот фотографии «{0}»"
 
-#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:206
+#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:197
 msgid "Directory not found"
 msgstr "Каталог не найден"
 
-#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:208
+#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:199
 msgid "File not found"
 msgstr "Файл не найден"
 
-#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:226
+#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:217
 #, csharp-format
 msgid "Unable to rotate photo"
 msgid_plural "Unable to rotate {0} photos"
@@ -1181,7 +1291,7 @@ msgstr[0] "Не удалось повернуть {0} фотографию"
 msgstr[1] "Не удалось повернуть {0} фотографии"
 msgstr[2] "Не удалось повернуть {0} фотографий"
 
-#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:228
+#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:219
 #, csharp-format
 msgid "The photo could not be rotated because it is on a read only file system or media such as a CDROM.  Please check the permissions and try again."
 msgid_plural "{0} photos could not be rotated because they are on a read only file system or media such as a CDROM.  Please check the permissions and try again."
@@ -1189,35 +1299,35 @@ msgstr[0] "{0} фотографию не удалось повернуть, по
 msgstr[1] "{0} фотографии не удалось повернуть, потому что они находятся в каталоге, куда нет права на запись, либо на носителе, с которого можно только читать — например, на компакт-диске. Проверьте права на файлы и попробуйте ещё раз."
 msgstr[2] "{0} фотографий не удалось повернуть, потому что они находятся в каталоге, куда нет права на запись, либо на носителе, с которого можно только читать — например, на компакт-диске. Проверьте права на файлы и попробуйте ещё раз."
 
-#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:255
+#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:246
 #, csharp-format
 msgid "Received error \"{0}\" while attempting to rotate {1}"
 msgstr "Получена ошибка «{0}» при попытке повернуть {1}"
 
-#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:260
+#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:251
 msgid "Error while rotating photo."
 msgstr "Ошибка при повороте фотографии"
 
-#: ../src/Clients/MainApp/FSpot/SendEmail.cs:236
+#: ../src/Clients/MainApp/FSpot/SendEmail.cs:233
 msgid "Preparing email"
 msgstr "Подготавливается письмо"
 
-#: ../src/Clients/MainApp/FSpot/SendEmail.cs:280
+#: ../src/Clients/MainApp/FSpot/SendEmail.cs:277
 #, csharp-format
 msgid "Exporting picture \"{0}\""
 msgstr "Экспортируется изображение «{0}»"
 
-#: ../src/Clients/MainApp/FSpot/SendEmail.cs:299
+#: ../src/Clients/MainApp/FSpot/SendEmail.cs:296
 msgid "Error processing image"
 msgstr "Ошибка при обработке изображения"
 
-#: ../src/Clients/MainApp/FSpot/SendEmail.cs:300
+#: ../src/Clients/MainApp/FSpot/SendEmail.cs:297
 #, csharp-format
 msgid "An error occured while processing \"{0}\": {1}"
 msgstr "Произошла ошибка при обработке «{0}»: {1}"
 
 #. Send the mail :)
-#: ../src/Clients/MainApp/FSpot/SendEmail.cs:313
+#: ../src/Clients/MainApp/FSpot/SendEmail.cs:310
 msgid "My Photos"
 msgstr "Мои фотографии"
 
@@ -1245,21 +1355,21 @@ msgstr "Выберите папку"
 msgid "Set as Background"
 msgstr "Установить в качестве фона"
 
-#: ../src/Clients/MainApp/FSpot/TagQueryWidget.cs:66
+#: ../src/Clients/MainApp/FSpot/TagQueryWidget.cs:67
 #, csharp-format
 msgid "Include Photos Tagged \"{0}\""
 msgstr "Включая фотографии с меткой «{0}»"
 
-#: ../src/Clients/MainApp/FSpot/TagQueryWidget.cs:71
+#: ../src/Clients/MainApp/FSpot/TagQueryWidget.cs:72
 #, csharp-format
 msgid "Exclude Photos Tagged \"{0}\""
 msgstr "Исключая фотографии с меткой «{0}»"
 
-#: ../src/Clients/MainApp/FSpot/TagQueryWidget.cs:76
+#: ../src/Clients/MainApp/FSpot/TagQueryWidget.cs:77
 msgid "Remove From Search"
 msgstr "Удалить из поиска"
 
-#: ../src/Clients/MainApp/FSpot/TagQueryWidget.cs:120
+#: ../src/Clients/MainApp/FSpot/TagQueryWidget.cs:121
 #, csharp-format
 msgid "Find _With"
 msgid_plural "Find _With"
@@ -1267,87 +1377,81 @@ msgstr[0] "Искать _с"
 msgstr[1] "Искать _с"
 msgstr[2] "Искать _с"
 
-#: ../src/Clients/MainApp/FSpot/TagQueryWidget.cs:146
+#: ../src/Clients/MainApp/FSpot/TagQueryWidget.cs:147
 msgid "All"
 msgstr "Всеми"
 
-#: ../src/Clients/MainApp/FSpot/TagQueryWidget.cs:181
-#: ../src/Clients/MainApp/FSpot/Term.cs:612
-#, csharp-format
-msgid "Not {0}"
-msgstr "Не {0}"
-
-#: ../src/Clients/MainApp/FSpot/TagQueryWidget.cs:305
+#: ../src/Clients/MainApp/FSpot/TagQueryWidget.cs:306
 msgid "Drag tags here to search for them"
 msgstr "Перетащите сюда метки для поиска по ним"
 
-#: ../src/Clients/MainApp/FSpot/TagSelectionWidget.cs:520
+#: ../src/Clients/MainApp/FSpot/TagSelectionWidget.cs:521
 msgid "Error renaming tag"
 msgstr "Ошибка при переименовании фотографии"
 
-#: ../src/Clients/MainApp/FSpot/TagSelectionWidget.cs:521
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditTagDialog.cs:93
-#: ../src/Clients/MainApp/TagCommands.cs:137
+#: ../src/Clients/MainApp/FSpot/TagSelectionWidget.cs:522
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditTagDialog.cs:99
+#: ../src/Clients/MainApp/TagCommands.cs:139
 msgid "This name is already in use"
 msgstr "Это имя уже используется"
 
-#: ../src/Clients/MainApp/FSpot/TagStore.cs:239
+#: ../src/Clients/MainApp/FSpot/TagStore.cs:222
 msgid "Favorites"
 msgstr "Любимое"
 
-#: ../src/Clients/MainApp/FSpot/TagStore.cs:244
+#: ../src/Clients/MainApp/FSpot/TagStore.cs:227
 msgid "Hidden"
 msgstr "Скрытое"
 
-#: ../src/Clients/MainApp/FSpot/TagStore.cs:252
+#: ../src/Clients/MainApp/FSpot/TagStore.cs:235
 msgid "People"
 msgstr "Люди"
 
-#: ../src/Clients/MainApp/FSpot/TagStore.cs:257
+#: ../src/Clients/MainApp/FSpot/TagStore.cs:240
 msgid "Places"
 msgstr "Места"
 
-#: ../src/Clients/MainApp/FSpot/TagStore.cs:262
+#: ../src/Clients/MainApp/FSpot/TagStore.cs:245
 msgid "Events"
 msgstr "События"
 
 #. The label for the root category is used in new and edit tag dialogs
-#: ../src/Clients/MainApp/FSpot/TagStore.cs:275
+#: ../src/Clients/MainApp/FSpot/TagStore.cs:257
 #: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:441
 msgid "(None)"
 msgstr "(Нет)"
 
-#: ../src/Clients/MainApp/FSpot/Term.cs:324
+#: ../src/Clients/MainApp/FSpot/Term.cs:336
 msgid " and "
 msgstr " и "
 
-#. operators.Add (Catalog.GetString (" && "));
-#: ../src/Clients/MainApp/FSpot/Term.cs:326
+#. Operators.Add (Catalog.GetString (" && "));
+#: ../src/Clients/MainApp/FSpot/Term.cs:338
 msgid ", "
 msgstr ", "
 
-#: ../src/Clients/MainApp/FSpot/Term.cs:382
+#: ../src/Clients/MainApp/FSpot/Term.cs:394
 msgid " or "
 msgstr " или "
 
 #. OPS The operators we support, case insensitive
 #. private static string op_str = "(?'Ops' or | and |, | \\s+ )";
-#: ../src/Clients/MainApp/FSpot/Term.cs:406
+#: ../src/Clients/MainApp/FSpot/Term.cs:415
 #: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/DateRangeDialog.ui.h:7
 #: ../src/Clients/MainApp/FSpot.Widgets/FindBar.cs:202
 #: ../src/Clients/MainApp/FSpot.Widgets/FindBar.cs:557
 msgid "or"
 msgstr "или"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/AboutDialog.cs:122
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/AboutDialog.cs:123
 msgid "Photo management for GNOME"
 msgstr "Управление фотографиями в GNOME"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/AboutDialog.cs:123
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/AboutDialog.cs:124
 msgid "Copyright © 2003-2010 Novell Inc."
 msgstr "Авторские права © 2003-2010 Novell Inc."
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/AboutDialog.cs:147
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/AboutDialog.cs:148
 msgid "translator-credits"
 msgstr ""
 "Alexandre Prokoudine (alexandre.prokoudine@gmail.com)\n"
@@ -1355,7 +1459,7 @@ msgstr ""
 "Yuri Kozlov <yuray@komyakino.ru>, 2010.\n"
 "Victor Vislobokov <corochoone@gmail.com>, 2010."
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/AboutDialog.cs:152
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/AboutDialog.cs:153
 msgid "F-Spot Website"
 msgstr "Веб-сайт F-Spot"
 
@@ -1416,16 +1520,16 @@ msgstr "Произошло исключение «{0}». Не удалось с�
 msgid "Error editing photo"
 msgstr "Ошибка при редактировании фотографии"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditTagIconDialog.cs:64
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditTagIconDialog.cs:65
 #, csharp-format
 msgid "Edit Icon for Tag {0}"
 msgstr "Изменить значок метки {0}"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditTagIconDialog.cs:86
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditTagIconDialog.cs:87
 msgid "Select Photo from file"
 msgstr "Выберите файл с фотографией"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditTagIconDialog.cs:108
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditTagIconDialog.cs:109
 #, csharp-format
 msgid ""
 "\n"
@@ -1442,31 +1546,31 @@ msgstr ""
 "хотя бы одну фотографию. Примените метку '{0}' к той или иной фотографии\n"
 "и снова откройте этот диалог."
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditTagIconDialog.cs:186
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditTagIconDialog.cs:187
 msgid "Unable to load image"
 msgstr "Не удалось загрузить изображение"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditTagIconDialog.cs:187
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditTagIconDialog.cs:188
 #, csharp-format
 msgid "Unable to load \"{0}\" as icon for the tag"
 msgstr "Не удалось загрузить «{0}» как значок этой метки"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditTagIconDialog.cs:225
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditTagIconDialog.cs:226
 #, csharp-format
 msgid "Photo {0} of {1}"
 msgstr "Фотография {0} из {1}"
 
 #: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:45
 msgid "Choose Folder..."
-msgstr "Выбрать _папку..."
+msgstr "Выбрать папку..."
 
 #: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:164
 msgid "Choose Import source..."
-msgstr "Выбрать источник импорта..."
+msgstr "Выбрать источник импортирования…"
 
 #: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:176
 msgid "(No Cameras Detected)"
-msgstr "(камера не обнаружена)"
+msgstr "(Камера не найдена)"
 
 #: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:211
 msgid ""
@@ -1486,16 +1590,16 @@ msgstr "Предупреждение"
 #: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:331
 #, csharp-format
 msgid "Importing Photos: {0} of {1}..."
-msgstr "Импортируются фотографии: {0} из {1}..."
+msgstr "Импортирование фотографий: {0} из {1}..."
 
 #: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:355
 msgid "Importing photos..."
-msgstr "Импортируются фотографии..."
+msgstr "Импортирование фотографий…"
 
 #. TODO: Using a GtkSpinner would be nicer here.
 #: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:362
 msgid "Searching for photos... (You can already click Import to continue)"
-msgstr "Идёт поиск фотографий... (Вы уже можете нажать Импортировать для продолжения)"
+msgstr "Поиск фотографий… (для продолжения нажмите «Импортировать»)"
 
 #: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportFailureDialog.cs:65
 msgid "Import failures"
@@ -1741,7 +1845,7 @@ msgstr "Параметры F-Spot"
 
 #: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:4
 msgid "F-Spot appearance:"
-msgstr "Стиль оформления F-Spot:"
+msgstr "Внешний вид F-Spot:"
 
 #: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:5
 msgid ""
@@ -1802,7 +1906,7 @@ msgstr "Ограничения выбора"
 #: ../src/Clients/MainApp/FSpot.Widgets/EditorPage.cs:55
 #: ../src/Clients/MainApp/FSpot.Widgets/Sidebar.cs:73
 msgid "Edit"
-msgstr "Правка"
+msgstr "Редактирование"
 
 #: ../src/Clients/MainApp/FSpot.Widgets/EditorPage.cs:223
 #: ../src/Extensions/Exporters/FSpot.Exporters.Zip/FSpot.Exporters.Zip/ZipExport.cs:66
@@ -1825,11 +1929,11 @@ msgstr[2] "Ошибка при сохранении изменённых фот�
 msgid "Received exception \"{0}\". Note that you have to develop RAW files into JPEG before you can edit them."
 msgstr "Получено прерывание «{0}». Заметьте, что перед редактированием файлы RAW следует преобразовать в JPEG."
 
-#: ../src/Clients/MainApp/FSpot.Widgets/Filmstrip.cs:495
+#: ../src/Clients/MainApp/FSpot.Widgets/Filmstrip.cs:497
 msgid "_Horizontal"
 msgstr "_Горизонтальная лента"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/Filmstrip.cs:499
+#: ../src/Clients/MainApp/FSpot.Widgets/Filmstrip.cs:501
 msgid "_Vertical"
 msgstr "_Вертикальная лента"
 
@@ -1957,12 +2061,10 @@ msgid "Show Camera"
 msgstr "Показывать модель камеры"
 
 #: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:460
-#| msgid "C_reate"
 msgid "Creator"
 msgstr "Автор"
 
 #: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:460
-#| msgid "Show Camera"
 msgid "Show Creator"
 msgstr "Показывать автора"
 
@@ -1983,12 +2085,10 @@ msgid "Rating"
 msgstr "Оценка"
 
 #: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:480
-#| msgid "Rating"
 msgid "Show Rating"
 msgstr "Показывать оценку"
 
 #: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:484
-#| msgid "Show Date"
 msgid "Show Tags"
 msgstr "Показывать метки"
 
@@ -2036,11 +2136,11 @@ msgstr "Порог:"
 #: ../src/Clients/MainApp/FSpot.Widgets/TagMenu.cs:132
 #: ../src/Clients/MainApp/TagPopup.cs:61
 msgid "Create New Tag..."
-msgstr "Создать новую метку..."
+msgstr "Создать новую метку…"
 
 #. Fixme this should really set parent menu
 #. items insensitve
-#: ../src/Clients/MainApp/PhotoTagMenu.cs:92
+#: ../src/Clients/MainApp/PhotoTagMenu.cs:68
 msgid "(No Tags)"
 msgstr "(без меток)"
 
@@ -2092,8 +2192,6 @@ msgstr "Изменить родителя"
 
 #: ../src/Clients/MainApp/PhotoVersionCommands.cs:229
 #, csharp-format
-#| msgid "Really reparent \"{0}\" as version of \"{1}\"?"
-#| msgid_plural "Really reparent {2} photos as versions of \"{1}\"?"
 msgid "Really reparent \"{0}\" as version of \"{1}\"?"
 msgid_plural "Really reparent {2} photos as versions of \"{1}\"?"
 msgstr[0] "Действительно изменить родителя у «{2}» как версию «{1}»?"
@@ -2109,11 +2207,11 @@ msgstr "Даттые фотографии появятся в библиотек
 msgid "Received exception \"{0}\"."
 msgstr "Произошло исключение «{0}»."
 
-#: ../src/Clients/MainApp/TagCommands.cs:187
+#: ../src/Clients/MainApp/TagCommands.cs:189
 msgid "Create New Tag"
 msgstr "Создать новую метку"
 
-#: ../src/Clients/MainApp/TagCommands.cs:188
+#: ../src/Clients/MainApp/TagCommands.cs:190
 msgid "Name of New Tag:"
 msgstr "Название новой метки:"
 
@@ -2127,41 +2225,41 @@ msgstr[2] "Искать"
 
 #: ../src/Clients/MainApp/TagPopup.cs:67
 msgid "Edit Tag..."
-msgstr "Изменить метку..."
+msgstr "Изменить метку…"
 
-#: ../src/Clients/MainApp/TagPopup.cs:71
+#: ../src/Clients/MainApp/TagPopup.cs:72
 msgid "Delete Tag"
 msgid_plural "Delete Tags"
 msgstr[0] "Удалить метку"
 msgstr[1] "Удалить метки"
 msgstr[2] "Удалить метки"
 
-#: ../src/Clients/MainApp/TagPopup.cs:77
+#: ../src/Clients/MainApp/TagPopup.cs:78
 msgid "Attach Tag to Selection"
 msgid_plural "Attach Tags to Selection"
-msgstr[0] "Назначить метку выбранному"
-msgstr[1] "Назначить метки выбранному"
-msgstr[2] "Назначить метки выбранному"
+msgstr[0] "Назначить метку выделению"
+msgstr[1] "Назначить метки выделению"
+msgstr[2] "Назначить метки выделению"
 
-#: ../src/Clients/MainApp/TagPopup.cs:81
+#: ../src/Clients/MainApp/TagPopup.cs:82
 msgid "Remove Tag From Selection"
 msgid_plural "Remove Tags From Selection"
-msgstr[0] "Убрать метку из выбранного"
-msgstr[1] "Убрать метки из выбранного"
-msgstr[2] "Убрать метки из выбранного"
+msgstr[0] "Убрать метку из выделения"
+msgstr[1] "Убрать метки из выделения"
+msgstr[2] "Убрать метки из выделения"
 
-#: ../src/Clients/MainApp/TagPopup.cs:87
+#: ../src/Clients/MainApp/TagPopup.cs:88
 msgid "Merge Tags"
 msgstr "Объединить метки"
 
-#: ../src/Clients/MainApp/ThumbnailCommand.cs:53
+#: ../src/Clients/MainApp/ThumbnailCommand.cs:54
 msgid "Updating Thumbnails"
-msgstr "Обновляются миниатюры"
+msgstr "Обновление миниатюр"
 
-#: ../src/Clients/MainApp/ThumbnailCommand.cs:61
+#: ../src/Clients/MainApp/ThumbnailCommand.cs:62
 #, csharp-format
 msgid "Updating picture \"{0}\""
-msgstr "Обновляется фотография «{0}»"
+msgstr "Обновление изображения «{0}»"
 
 #: ../src/Clients/MainApp/ui/color_editor_prefs_window.ui.h:1
 msgid "<b>Co_rrections</b>"
@@ -2202,28 +2300,28 @@ msgstr "Отт_енок:"
 
 #: ../src/Clients/MainApp/ui/import.ui.h:1
 msgid "C_opy files to the Photos folder"
-msgstr "Копировать файлы в папку фотографий"
+msgstr "_Копировать файлы в папку с фотографиями"
 
 #: ../src/Clients/MainApp/ui/import.ui.h:2
 msgid "I_nclude subfolders"
-msgstr "Включая вложенные папки"
+msgstr "Обрабатывать _вложенные папки"
 
 #. Translators: this string means 'source of import'
 #: ../src/Clients/MainApp/ui/import.ui.h:5
 msgid "Import _from:"
-msgstr "Импортировать из:"
+msgstr "Импортировать _из:"
 
 #: ../src/Clients/MainApp/ui/import.ui.h:6
 msgid "_Attach tags:"
-msgstr "Назначить метку:"
+msgstr "Назначить _метку:"
 
 #: ../src/Clients/MainApp/ui/import.ui.h:7
 msgid "_Detect duplicates"
-msgstr "Распознавать _дубликаты"
+msgstr "Определять _дубликаты"
 
 #: ../src/Clients/MainApp/ui/import.ui.h:8
 msgid "_Import"
-msgstr "Импортировать"
+msgstr "_Импортировать"
 
 #: ../src/Clients/MainApp/ui/import.ui.h:9
 msgid "_Remove original files after import"
@@ -2335,11 +2433,11 @@ msgstr "Копировать"
 
 #: ../src/Clients/MainApp/ui/main_window.ui.h:8
 msgid "Create New _Tag..."
-msgstr "Создать _новую метку..."
+msgstr "Создать новую _метку…"
 
 #: ../src/Clients/MainApp/ui/main_window.ui.h:9
 msgid "Create _New Version..."
-msgstr "_Создать новую версию..."
+msgstr "Создать новую _версию…"
 
 #: ../src/Clients/MainApp/ui/main_window.ui.h:10
 msgid "De_tach Version"
@@ -2355,7 +2453,7 @@ msgstr "Настроить рас_ширения"
 
 #: ../src/Clients/MainApp/ui/main_window.ui.h:13
 msgid "Page Set_up..."
-msgstr "П_араметры страницы..."
+msgstr "П_араметры страницы…"
 
 #: ../src/Clients/MainApp/ui/main_window.ui.h:14
 msgid "Re_fresh Thumbnail"
@@ -2371,12 +2469,12 @@ msgstr "_Снять выделение"
 
 #: ../src/Clients/MainApp/ui/main_window.ui.h:20
 msgid "Send by _Mail..."
-msgstr "Отправить по_чтой..."
+msgstr "Отправить по_чтой…"
 
 #: ../src/Clients/MainApp/ui/main_window.ui.h:21
 #: ../src/Clients/MainApp/ui/single_view.ui.h:3
 msgid "Set as _Background"
-msgstr "Установить в качестве _Фона"
+msgstr "Установить в качестве _фона"
 
 #: ../src/Clients/MainApp/ui/main_window.ui.h:22
 msgid "Side_bar"
@@ -2387,8 +2485,8 @@ msgid "T_ags"
 msgstr "_Метки"
 
 #: ../src/Clients/MainApp/ui/main_window.ui.h:24
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:1116
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:1117
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/HtmlGallery.cs:443
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/HtmlGallery.cs:444
 msgid "Tags: "
 msgstr "Метки: "
 
@@ -2471,7 +2569,7 @@ msgstr "_Правка"
 
 #: ../src/Clients/MainApp/ui/main_window.ui.h:45
 msgid "_Edit Tag..."
-msgstr "_Изменить метку..."
+msgstr "_Изменить метку…"
 
 #: ../src/Clients/MainApp/ui/main_window.ui.h:46
 msgid "_Export to"
@@ -2493,11 +2591,11 @@ msgstr "_Справка"
 
 #: ../src/Clients/MainApp/ui/main_window.ui.h:50
 msgid "_Hidden"
-msgstr "_Скрыты"
+msgstr "_Скрытые"
 
 #: ../src/Clients/MainApp/ui/main_window.ui.h:51
 msgid "_Import..."
-msgstr "_Импортировать..."
+msgstr "_Импортировать…"
 
 #: ../src/Clients/MainApp/ui/main_window.ui.h:52
 msgid "_Invert Selection"
@@ -2546,19 +2644,19 @@ msgstr "В _обратном порядке"
 
 #: ../src/Clients/MainApp/ui/main_window.ui.h:64
 msgid "_Select Import Rolls..."
-msgstr "_Выбрать сеансы импорта..."
+msgstr "_Выбрать сеансы импорта…"
 
 #: ../src/Clients/MainApp/ui/main_window.ui.h:65
 msgid "_Set Date Range..."
-msgstr "_Установить диапазон дат..."
+msgstr "_Установить диапазон дат…"
 
 #: ../src/Clients/MainApp/ui/main_window.ui.h:66
 msgid "_Set Rating filter..."
-msgstr "_Включить фильтр оценок..."
+msgstr "_Включить фильтр оценок…"
 
 #: ../src/Clients/MainApp/ui/main_window.ui.h:67
 msgid "_Sharpen..."
-msgstr "_Увеличить резкость..."
+msgstr "_Увеличить резкость…"
 
 #: ../src/Clients/MainApp/ui/main_window.ui.h:68
 #: ../src/Clients/MainApp/ui/single_view.ui.h:16
@@ -2587,7 +2685,7 @@ msgstr "Инструм_енты"
 
 #: ../src/Clients/MainApp/ui/main_window.ui.h:74
 msgid "_Untagged Photos"
-msgstr "С_нимки без меток"
+msgstr "Фотографии _без меток"
 
 #: ../src/Clients/MainApp/ui/main_window.ui.h:75
 msgid "_Version"
@@ -2608,11 +2706,11 @@ msgstr "Просмотр в F-Spot"
 
 #: ../src/Clients/MainApp/ui/single_view.ui.h:4
 msgid "Show or hide the side pane"
-msgstr "Показать или спрятать боковую панель"
+msgstr "Показать или скрыть боковую панель"
 
 #: ../src/Clients/MainApp/ui/single_view.ui.h:5
 msgid "Show or hide the toolbar"
-msgstr "Показать или спрятать панель инструментов"
+msgstr "Показать или скрыть панель инструментов"
 
 #: ../src/Clients/MainApp/ui/single_view.ui.h:6
 msgid "Side _pane"
@@ -2635,7 +2733,7 @@ msgstr "_Панель инструментов"
 
 #: ../src/Clients/MainApp/ui/tag_selection_dialog.ui.h:1
 msgid "Select a Tag..."
-msgstr "Выберите метку..."
+msgstr "Выберите метку…"
 
 #: ../src/Clients/MainApp/ui/viewer_preferences.ui.h:1
 msgid "<b>Image Interpolation</b>"
@@ -2671,7 +2769,7 @@ msgstr "Параметры"
 
 #: ../src/Clients/MainApp/ui/viewer_preferences.ui.h:9
 msgid "_Interpolate image on zoom"
-msgstr "_Выполнять интерполяцию при масштабировании"
+msgstr "_Интерполировать при масштабировании"
 
 #: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:141
 msgid "Page Setup"
@@ -2686,11 +2784,11 @@ msgstr "Размер страницы: {0} x {1} мм"
 
 #: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:152
 msgid "Set Page Size and Orientation"
-msgstr "Формат и ориентация страницы..."
+msgstr "Размер и положение страницы"
 
 #: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:163
 msgid "Photos per page"
-msgstr "Фотографий на странице"
+msgstr "Фотографий на страницу"
 
 #: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:173
 msgid "Repeat"
@@ -2702,24 +2800,24 @@ msgstr "Метки под обрез"
 
 #: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:180
 msgid "Photos layout"
-msgstr "Макет страницы"
+msgstr "Расположение фотографий"
 
 #: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:182
 msgid "Full Page (no margin)"
-msgstr "Во всю страницу без полей"
+msgstr "На всю страницу (без полей)"
 
 #. Note for translators: "Zoom" is a Fit Mode
 #: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:185
 msgid "Zoom"
-msgstr "Приблизить"
+msgstr "Приближение"
 
 #: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:186
 msgid "Fill"
-msgstr "Заполнить"
+msgstr "Заполнение"
 
 #: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:187
 msgid "Scaled"
-msgstr "Отмасштабировать"
+msgstr "Масштабирование"
 
 #: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:192
 msgid "White borders"
@@ -2727,7 +2825,7 @@ msgstr "С белыми полями"
 
 #: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:198
 msgid "Custom Text"
-msgstr "Собственный текст"
+msgstr "Другой текст"
 
 #: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:202
 msgid "Photos infos"
@@ -2735,23 +2833,23 @@ msgstr "Данные о фотографиях"
 
 #: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:204
 msgid "Print file name"
-msgstr "Напечатать имя файла"
+msgstr "Вывести имя файла"
 
 #: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:205
 msgid "Print photo date"
-msgstr "Напечатать дату съёмки"
+msgstr "Вывести дату съёмки"
 
 #: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:206
 msgid "Print photo time"
-msgstr "Напечатать время съёмки"
+msgstr "Вывести время съёмки"
 
 #: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:207
 msgid "Print photo tags"
-msgstr "Напечатать метки фотографии"
+msgstr "Вывести метки фотографии"
 
 #: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:208
 msgid "Print photo comment"
-msgstr "Напечатать комментарий к фотографии"
+msgstr "Вывести комментарий к фотографии"
 
 #: ../src/Core/FSpot.Gui/FSpot.Widgets/OpenWithMenu.cs:88
 msgid "No applications available"
@@ -2799,11 +2897,11 @@ msgid "Transferring picture \"{0}\" To CD"
 msgstr "Фото «{0}» копируется на CD"
 
 #: ../src/Extensions/Exporters/FSpot.Exporters.CD/FSpot.Exporters.CD/CDExport.cs:147
-#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:395
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:419
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryExport.cs:245
-#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:290
-#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/FSpot.Exporters.SmugMug/SmugMugExport.cs:258
+#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:392
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:421
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryExport.cs:237
+#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:288
+#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/FSpot.Exporters.SmugMug/SmugMugExport.cs:255
 msgid "Done Sending Photos"
 msgstr "Отправка фотографий завершена"
 
@@ -2816,13 +2914,13 @@ msgid "Error While Transferring"
 msgstr "Ошибка во время передачи"
 
 #: ../src/Extensions/Exporters/FSpot.Exporters.CD/FSpot.Exporters.CD/CDExport.cs:164
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:297
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:301
 msgid "Error Transferring"
 msgstr "Ошибка при передаче"
 
 #: ../src/Extensions/Exporters/FSpot.Exporters.CD/FSpot.Exporters.CD/CDExport.cs:174
 msgid "copying..."
-msgstr "копируется..."
+msgstr "копирование…"
 
 #: ../src/Extensions/Exporters/FSpot.Exporters.CD/Resources/CDExport.ui.h:1
 msgid "<b><i>There are some previously scheduled items to write</i></b>"
@@ -2848,11 +2946,11 @@ msgstr "_Просмотреть ранее отложенные файлы"
 msgid "_Write only these photos to CD"
 msgstr "_Записать на CD только эти фотографии"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:117
+#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:111
 msgid "Waiting for authorization"
 msgstr "Ожидание авторизации"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:118
+#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:112
 msgid ""
 "F-Spot will now launch your browser so that you can enable the permission you just selected.\n"
 "\n"
@@ -2862,28 +2960,28 @@ msgstr ""
 "\n"
 "После того, как Facebook предложит вернуться в это приложение, нажмите \"Ok\" ниже."
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:299
+#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:296
 msgid "Too many images to export"
 msgstr "Слишком много экспортируемых изображений"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:300
+#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:297
 #, csharp-format
 msgid "Facebook only permits {0} photographs per album.  Please refine your selection and try again."
 msgstr "Facebook позволяет хранить в каждом альбоме не более {0} фото. Уменьшите количество, выбранных фотографий и попробуйте ещё раз."
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:315
+#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:312
 msgid "Album must have a name"
 msgstr "У альбома должно быть название"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:316
+#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:313
 msgid "Please name your album or choose an existing album."
 msgstr "Дайте альбому название или выберите существующий альбом."
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:330
+#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:327
 msgid "Creating a new album failed"
 msgstr "Не удалось создать новый альбом"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:331
+#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:328
 #, csharp-format
 msgid ""
 "An error occurred creating a new album.\n"
@@ -2894,45 +2992,45 @@ msgstr ""
 "\n"
 "{0}"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:344
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:514
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryExport.cs:173
-#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:187
-#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/FSpot.Exporters.SmugMug/SmugMugExport.cs:177
+#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:341
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:516
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryExport.cs:168
+#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:184
+#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/FSpot.Exporters.SmugMug/SmugMugExport.cs:174
 msgid "Uploading Pictures"
 msgstr "Закачиваю изображения"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:372
-#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:246
-#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/FSpot.Exporters.SmugMug/SmugMugExport.cs:216
+#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:369
+#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:243
+#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/FSpot.Exporters.SmugMug/SmugMugExport.cs:213
 #, csharp-format
 msgid "Uploading picture \"{0}\" ({1} of {2})"
 msgstr "Закачиваю картинку «{0}» ({1} из {2})"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:386
+#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:383
 #, csharp-format
 msgid "Error Uploading To Facebook: {0}"
 msgstr "Ошибка при закачке на Facebook: {0}"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:387
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:410
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:246
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryExport.cs:236
-#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:279
-#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/FSpot.Exporters.SmugMug/SmugMugExport.cs:247
+#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:384
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:412
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:250
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryExport.cs:229
+#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:277
+#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/FSpot.Exporters.SmugMug/SmugMugExport.cs:244
 #: ../src/Extensions/Exporters/FSpot.Exporters.Tabblo/FSpot.Exporters.Tabblo/TabbloExport.cs:321
 msgid "Error"
 msgstr "Ошибка"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:397
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:421
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryExport.cs:247
-#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:292
-#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/FSpot.Exporters.SmugMug/SmugMugExport.cs:260
+#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:394
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:423
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryExport.cs:239
+#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:290
+#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/FSpot.Exporters.SmugMug/SmugMugExport.cs:257
 msgid "Upload Complete"
 msgstr "Заказчка завершена"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:400
+#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:397
 msgid "Visit F-Spot group on Facebook"
 msgstr "Посетите группу F-Spot на Facebook"
 
@@ -2952,7 +3050,7 @@ msgstr ""
 
 #: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExportDialog.cs:237
 msgid "Authenticating..."
-msgstr "Аутентификация..."
+msgstr "Проверка подлинности…"
 
 #: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExportDialog.cs:247
 msgid "Error logging into Facebook"
@@ -2968,19 +3066,19 @@ msgstr "Сессия авторизации"
 
 #: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExportDialog.cs:266
 msgid "Session established, fetching user info..."
-msgstr "Сессия установлена, получение данных о пользователе..."
+msgstr "Сеанс установлен, получение данных о пользователе…"
 
 #: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExportDialog.cs:272
 msgid "Session established, fetching friend list..."
-msgstr "Сессия установлена, загружается список друзей..."
+msgstr "Сеанс установлен, получение списка друзей…"
 
 #: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExportDialog.cs:282
 msgid "Session established, fetching friend details..."
-msgstr "Сессия установлена, получение данных о друзьях..."
+msgstr "Сеанс установлен, получение данных о друзьях…"
 
 #: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExportDialog.cs:294
 msgid "Session established, fetching photo albums..."
-msgstr "Сессия установлена, получение фотоальбомов..."
+msgstr "Сеанс установлен, получение фотоальбомов…"
 
 #. Note for translators: {0} and {1} are respectively firstname and surname of the user
 #: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExportDialog.cs:304
@@ -3063,70 +3161,70 @@ msgstr "Использовать существующий альбом"
 msgid "Who is this?"
 msgstr "Кто это?"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:137
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:139
 #: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/Resources/flickr_export.ui.h:5
 msgid "Authorize"
 msgstr "Авторизоваться"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:143
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:145
 #, csharp-format
 msgid "Return to this window after you have finished the authorization process on {0} and click the \"Complete Authorization\" button below"
 msgstr "Вернитесь к этому окну по окончании процесса авторизации в {0} и нажмите кнопку «Завершить авторизацию» ниже"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:144
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:146
 msgid "Complete Authorization"
 msgstr "Завершить авторизацию"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:149
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:151
 #, csharp-format
 msgid "Logging into {0}"
 msgstr "Выполняю вход в «{0}»"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:150
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:152
 msgid "Checking credentials..."
-msgstr "Выполняется проверка прав на доступ..."
+msgstr "Проверка прав доступа…"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:157
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:159
 #, csharp-format
 msgid "Welcome {0} you are connected to {1}"
 msgstr "Добро пожаловать, {0}, вы подключены к {1}"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:160
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:162
 #, csharp-format
 msgid "Sign in as a different user"
 msgstr "Войти под другим именем"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:165
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:167
 #, csharp-format
 msgid "Used {0} of your allowed {1} monthly quota"
 msgstr "Использовано {0} вашей месячной квоты в {1}"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:268
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:337
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:270
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:339
 msgid "Unable to log on"
 msgstr "Не удалось осуществить вход"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:357
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:359
 #, csharp-format
 msgid "Waiting for response {0} of {1}"
 msgstr "Ожидается ответ {0} из {1}"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:384
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryExport.cs:216
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:386
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryExport.cs:210
 #, csharp-format
 msgid "Uploading picture \"{0}\""
 msgstr "Закачивается снимок «{0}»"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:407
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:409
 #, csharp-format
 msgid "Error Uploading To {0}: {1}"
 msgstr "Ошибка при закачке на {0}: {1}"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:494
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:496
 msgid "Unable to log on."
 msgstr "Не удалось осуществить вход."
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:495
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:497
 #, csharp-format
 msgid "F-Spot was unable to log on to {0}.  Make sure you have given the authentication using {0} web browser interface."
 msgstr "Программе F-Spot не удалось осуществить вход в {0}. Убедитесь, что вы прошли аутентификацию через интерфейс браузера {0}."
@@ -3200,79 +3298,79 @@ msgstr "Открыть фотографии в браузере по завер�
 msgid "pixels"
 msgstr "точек"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:148
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:152
 msgid "Select Export Folder"
 msgstr "Выберите папку для экспорта"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:200
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:204
 msgid "Building Gallery"
 msgstr "Создается галерея"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:237
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:241
 #, csharp-format
 msgid "Exporting \"{0}\"..."
-msgstr "Экспортируется «{0}»..."
+msgstr "Экспортирование «{0}»…"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:244
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:248
 #, csharp-format
 msgid "Error Copying \"{0}\" to Gallery:{2}{1}"
 msgstr "Ошибка копирования «{0}» в галерею:{2}{1}"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:270
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:274
 #, csharp-format
 msgid "Transferring to \"{0}\""
 msgstr "Передаю в «{0}»"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:271
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:275
 msgid "Transferring..."
-msgstr "Передаю..."
+msgstr "Передача…"
 
 #. No need to check result here as if result is not true, an Exception will be thrown before
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:276
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:280
 msgid "Export Complete."
 msgstr "Экспорт завершен."
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:278
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:282
 msgid "Exporting Photos Completed."
 msgstr "Экспортирование фотографий завершено."
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:343
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:346
 msgid "Exporting Photos"
 msgstr "Экспортируются фотографии"
 
 #. Note for translators: light as clear, opposite as dark
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:747
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/HtmlGallery.cs:74
 msgid "Light"
 msgstr "Светлая"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:748
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/HtmlGallery.cs:75
 msgid "Dark"
 msgstr "Темная"
 
 #. Abbreviation of previous
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:928
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/HtmlGallery.cs:255
 msgid "Prev"
 msgstr "Назад"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:930
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:1171
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/HtmlGallery.cs:257
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/HtmlGallery.cs:498
 msgid "Index"
 msgstr "Индекс"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:1040
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/HtmlGallery.cs:367
 msgid "Gallery generated by"
 msgstr "Галерея создана при помощи"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:1080
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/HtmlGallery.cs:407
 msgid "Show Styles"
 msgstr "Показать стили"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:1081
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/HtmlGallery.cs:408
 msgid "Hide Styles"
 msgstr "Скрыть стили"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:1248
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:1381
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/HtmlGallery.cs:575
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/HtmlGallery.cs:708
 msgid "Page:"
 msgstr "Страница:"
 
@@ -3350,7 +3448,7 @@ msgstr "Галерея с таким названием уже существу�
 msgid "There is already a Gallery with the same name in your registered Galleries. Please choose a unique name."
 msgstr "Галерея с таким названием уже есть среди зарегистрированных. Выберите другое уникальное название."
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/FormClient.cs:326
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/FormClient.cs:327
 msgid "Unhandled exception"
 msgstr "Необработанное исключение: "
 
@@ -3378,49 +3476,49 @@ msgstr ""
 "Название галереи содержит недопустимые символы.\n"
 "Используйте только буквы, цифры, минус и подчёркивание."
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryExport.cs:235
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryExport.cs:228
 #, csharp-format
 msgid "Error uploading picture \"{0}\" to Gallery: {1}"
 msgstr "Ошибка при закачке фото «{0}» в Gallery: {1}"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryExport.cs:262
-#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:315
-#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/FSpot.Exporters.SmugMug/SmugMugExport.cs:275
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryExport.cs:253
+#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:312
+#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/FSpot.Exporters.SmugMug/SmugMugExport.cs:272
 msgid "(No Gallery)"
 msgstr "(нет галереи)"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryExport.cs:349
-#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:435
-#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/FSpot.Exporters.SmugMug/SmugMugExport.cs:366
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryExport.cs:339
+#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:431
+#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/FSpot.Exporters.SmugMug/SmugMugExport.cs:363
 msgid "(Not Connected)"
 msgstr "(нет соединения)"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryExport.cs:350
-#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:436
-#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/FSpot.Exporters.SmugMug/SmugMugExport.cs:367
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryExport.cs:340
+#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:432
+#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/FSpot.Exporters.SmugMug/SmugMugExport.cs:364
 msgid "(No Albums)"
 msgstr "(нет альбомов)"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryExport.cs:391
-#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:495
-#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/FSpot.Exporters.SmugMug/SmugMugExport.cs:404
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryExport.cs:381
+#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:490
+#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/FSpot.Exporters.SmugMug/SmugMugExport.cs:401
 msgid "No account selected"
 msgstr "Учётная запись не выбрана"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryRemote.cs:395
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryRemote.cs:382
 msgid "Error reading server response"
 msgstr "Ошибка при чтении ответа сервера"
 
 #. failed to find the response
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryRemote.cs:407
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryRemote.cs:394
 msgid "Server returned response without Gallery content"
 msgstr "Сервер вернул ответ без содержимого галереи."
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryRemote.cs:744
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryRemote.cs:717
 msgid "Error while creating new album"
 msgstr "Ошибка при создании нового альбома"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryRemote.cs:745
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryRemote.cs:718
 #, csharp-format
 msgid ""
 "The following error was encountered while attempting to perform the requested operation:\n"
@@ -3519,28 +3617,28 @@ msgstr "Ошибка при создании альбома"
 msgid "The following error was encountered while attempting to create an album: {0}"
 msgstr "При попытке создать альбом произошла следующая ошибка: {0}"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:209
+#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:206
 #, csharp-format
 msgid "{0} Sent"
 msgstr "{0} передано"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:211
+#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:208
 #, csharp-format
 msgid "{0} of approx. {1}"
 msgstr "{0} из примерно {1}"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:277
-#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/FSpot.Exporters.SmugMug/SmugMugExport.cs:245
+#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:275
+#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/FSpot.Exporters.SmugMug/SmugMugExport.cs:242
 #, csharp-format
 msgid "Error Uploading To Gallery: {0}"
 msgstr "Ошибка закачки фотографий в галерею: {0}"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:366
+#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:363
 #, csharp-format
 msgid "Available space: {0}, {1}% used out of {2}"
 msgstr "Доступный объём: {0}, использовано {1}% из {2}"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:471
+#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:467
 #, csharp-format
 msgid ""
 "The selected album has a limit of {0} pictures,\n"
@@ -3595,11 +3693,11 @@ msgstr "Отправка фотографий завершена"
 
 #: ../src/Extensions/Exporters/FSpot.Exporters.Tabblo/FSpot.Exporters.Tabblo/TabbloExport.cs:312
 msgid "Upload complete"
-msgstr "Закачка на сервер завершена"
+msgstr "Загрузка завершена"
 
 #: ../src/Extensions/Exporters/FSpot.Exporters.Tabblo/FSpot.Exporters.Tabblo/TabbloExport.cs:318
 msgid "Error uploading to Tabblo: "
-msgstr "Ошибка при закачке фотографий на Tabblo:"
+msgstr "Ошибка при загрузке на Tabblo:"
 
 #: ../src/Extensions/Exporters/FSpot.Exporters.Tabblo/Resources/ui/TabbloExport.ui.h:1
 msgid "<b>F-Spot tags</b>"
@@ -3619,7 +3717,7 @@ msgstr "_Убрать из экспортируемых фотографий:"
 
 #: ../src/Extensions/Exporters/FSpot.Exporters.Tabblo/Resources/ui/TabbloExport.ui.h:7
 msgid "Select..."
-msgstr "Выбор..."
+msgstr "Выбрать…"
 
 #: ../src/Extensions/Exporters/FSpot.Exporters.Tabblo/Resources/ui/TabbloExport.ui.h:8
 msgid "_Attach to exported photos:"
@@ -3631,11 +3729,11 @@ msgstr "При попытке доступа возникла ошибка до�
 
 #: ../src/Extensions/Exporters/FSpot.Exporters.Tabblo/Resources/ui/TrustError.ui.h:2
 msgid "Abort this session"
-msgstr "Прервать эту сессию"
+msgstr "Прервать этот сеанс"
 
 #: ../src/Extensions/Exporters/FSpot.Exporters.Tabblo/Resources/ui/TrustError.ui.h:3
 msgid "Always trust this site's certificate"
-msgstr "Всегда верить сертификату этого сайта"
+msgstr "Всегда доверять сертификату этого сайта"
 
 #: ../src/Extensions/Exporters/FSpot.Exporters.Tabblo/Resources/ui/TrustError.ui.h:4
 msgid "Do you wish to:"
@@ -3659,12 +3757,12 @@ msgstr "Выберите папку для экспорта"
 
 #: ../src/Extensions/Exporters/FSpot.Exporters.Zip/FSpot.Exporters.Zip/ZipExport.cs:121
 msgid "Exporting files"
-msgstr "Выполняется экспорт файлов"
+msgstr "Экспортирование файлов"
 
 #: ../src/Extensions/Exporters/FSpot.Exporters.Zip/FSpot.Exporters.Zip/ZipExport.cs:127
 #, csharp-format
 msgid "Preparing photo \"{0}\""
-msgstr "Подготавливается фото «{0}»"
+msgstr "Подготовка фотографии «{0}»"
 
 #: ../src/Extensions/Exporters/FSpot.Exporters.Zip/Resources/zip_export.ui.h:1
 msgid "_Create"
@@ -3896,15 +3994,27 @@ msgstr "Показывать:"
 
 #: ../src/Extensions/Tools/FSpot.Tools.ScreensaverConfig/Resources/ScreensaverConfigDialog.ui.h:4
 msgid "Images tagged with:"
-msgstr "Cнимки с меткой:"
+msgstr "Изображения с меткой:"
 
 #: ../src/Extensions/Tools/FSpot.Tools.ScreensaverConfig/Resources/ScreensaverConfigDialog.ui.h:5
 msgid "Make F-Spot my screensaver"
 msgstr "Сделать F-Spot моим хранителем экрана"
 
+#: ../src/Extensions/Transitions/FSpot.Transitions.Cover/FSpot.Addins.Transitions/Cover.cs:45
+msgid "Cover"
+msgstr "Обложка"
+
+#: ../src/Extensions/Transitions/FSpot.Transitions.Dissolve/FSpot.Addins.Transitions/Dissolve.cs:45
+msgid "Dissolve"
+msgstr "Таяние"
+
+#: ../src/Extensions/Transitions/FSpot.Transitions.Push/FSpot.Addins.Transitions/Push.cs:45
+msgid "Push"
+msgstr "Вытеснение"
+
 #: ../tools/f-spot-screensaver.desktop.in.h:1
 msgid "Display a slideshow from F-Spot"
-msgstr "Показ слайдшоу при помощи F-Spot"
+msgstr "Показ слайд-шоу при помощи F-Spot"
 
 #: ../tools/f-spot-screensaver.desktop.in.h:2
 msgid "F-Spot photos"
