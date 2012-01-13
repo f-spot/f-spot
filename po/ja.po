@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: F-Spot master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=f-"
 "spot&keywords=I18N+L10N&component=General\n"
-"POT-Creation-Date: 2011-11-20 09:39+0000\n"
-"PO-Revision-Date: 2011-11-22 12:32+0900\n"
+"POT-Creation-Date: 2012-01-01 07:34+0000\n"
+"PO-Revision-Date: 2012-01-01 19:55+0900\n"
 "Last-Translator: Jiro Matsuzawa <jmatsuzawa@src.gnome.org>\n"
 "Language-Team: Japanese <gnome-translation@gnome.gr.jp>\n"
 "MIME-Version: 1.0\n"
@@ -161,7 +161,7 @@ msgstr "Facebook(_A)..."
 #, fuzzy
 #| msgid "Folder Export"
 msgid "Flickr Export"
-msgstr "フォルダへのエクスポート"
+msgstr "フォルダーへのエクスポート"
 
 #: ../data/addin-xml-strings.cs:53
 msgid "This extension allows you to export your photos to Flickr and 23hq."
@@ -183,7 +183,7 @@ msgstr "Zooomr(_Z)..."
 #: ../data/addin-xml-strings.cs:60
 #: ../src/Extensions/Exporters/FSpot.Exporters.Folder/Resources/folder_export.ui.h:10
 msgid "Folder Export"
-msgstr "フォルダへのエクスポート"
+msgstr "フォルダーへのエクスポート"
 
 #: ../data/addin-xml-strings.cs:61
 msgid ""
@@ -193,14 +193,14 @@ msgstr ""
 
 #: ../data/addin-xml-strings.cs:63
 msgid "F_older..."
-msgstr "フォルダ(_O)..."
+msgstr "フォルダー(_O)..."
 
 #. ../src/Extensions/Exporters/FSpot.Exporters.Gallery/Resources/GalleryExport.addin.xml
 #: ../data/addin-xml-strings.cs:66
 #, fuzzy
 #| msgid "Folder Export"
 msgid "Gallery Export"
-msgstr "フォルダへのエクスポート"
+msgstr "フォルダーへのエクスポート"
 
 #: ../data/addin-xml-strings.cs:67
 msgid ""
@@ -268,7 +268,7 @@ msgstr "エクスポート"
 #, fuzzy
 #| msgid "Select export folder"
 msgid "Simple export to Zip file"
-msgstr "エクスポート先のフォルダを選択"
+msgstr "エクスポート先のフォルダーを選択"
 
 #: ../data/addin-xml-strings.cs:93
 msgid "Compressed fil_e..."
@@ -497,7 +497,7 @@ msgstr "F-Spot"
 #: ../data/desktop-files/f-spot.desktop.in.in.h:2
 #: ../data/desktop-files/f-spot-import.desktop.in.in.h:2
 msgid "F-Spot Photo Manager"
-msgstr "F-Spot 写真マネージャ"
+msgstr "F-Spot 写真マネージャー"
 
 #: ../data/desktop-files/f-spot.desktop.in.in.h:3
 msgid "Organize, enjoy, and share your photos"
@@ -506,7 +506,7 @@ msgstr "写真を整理し、楽しみ、共有します"
 #: ../data/desktop-files/f-spot.desktop.in.in.h:4
 #: ../data/desktop-files/f-spot-import.desktop.in.in.h:4
 msgid "Photo Manager"
-msgstr "写真マネージャ"
+msgstr "写真マネージャー"
 
 #: ../data/desktop-files/f-spot-import.desktop.in.in.h:3
 msgid "Import into F-Spot"
@@ -514,11 +514,11 @@ msgstr "F-Spot にインポート"
 
 #: ../data/desktop-files/f-spot-view.desktop.in.in.h:2
 msgid "F-Spot Photo Viewer"
-msgstr "F-Spot 写真ビューア"
+msgstr "F-Spot 写真ビューアー"
 
 #: ../data/desktop-files/f-spot-view.desktop.in.in.h:3
 msgid "Photo Viewer"
-msgstr "写真ビューア"
+msgstr "写真ビューアー"
 
 #: ../f-spot.schemas.in.h:1
 msgid "Display of transparent parts."
@@ -610,7 +610,7 @@ msgstr "メインウインドウの X 座標"
 
 #: ../f-spot.schemas.in.h:22
 msgid "The X position to use for the photo viewer window."
-msgstr "写真ビューアウインドウの X 座標"
+msgstr "写真ビューアーウインドウの X 座標"
 
 #: ../f-spot.schemas.in.h:23
 msgid "The Y position to use for the main window."
@@ -634,7 +634,7 @@ msgstr "メインウィンドウの高さ"
 
 #: ../f-spot.schemas.in.h:28
 msgid "The height dimension to use for the photo viewer window."
-msgstr "写真ビューアウインドウの高さ"
+msgstr "写真ビューアーウインドウの高さ"
 
 #: ../f-spot.schemas.in.h:29
 msgid "The orientation of the filmstrip, if shown."
@@ -662,11 +662,11 @@ msgstr "メインウインドウの幅"
 
 #: ../f-spot.schemas.in.h:35
 msgid "The width dimension to use for the photo viewer window."
-msgstr "写真ビューアウインドウの幅"
+msgstr "写真ビューアーウインドウの幅"
 
 #: ../f-spot.schemas.in.h:36
 msgid "Use the current photo's filename as the viewer window's title."
-msgstr "ビューアウインドウのタイトルとして現在の写真のファイル名を用いる。"
+msgstr "ビューアーウインドウのタイトルとして現在の写真のファイル名を用いる。"
 
 #: ../f-spot.schemas.in.h:37
 msgid "Width of the import dialog."
@@ -678,7 +678,7 @@ msgstr "メインウインドウの幅"
 
 #: ../f-spot.schemas.in.h:39
 msgid "Width of the photo viewer window."
-msgstr "写真ビューアウインドウの幅"
+msgstr "写真ビューアーウインドウの幅"
 
 #: ../f-spot.schemas.in.h:40
 msgid "Width of the preview image pane in the import dialog."
@@ -690,7 +690,7 @@ msgstr "メインウインドウの X 座標"
 
 #: ../f-spot.schemas.in.h:42
 msgid "X position of the photo viewer window."
-msgstr "写真ビューアウインドウの X 座標"
+msgstr "写真ビューアーウインドウの X 座標"
 
 #: ../f-spot.schemas.in.h:43
 msgid "Y position of the main window."
@@ -698,7 +698,7 @@ msgstr "メインウインドウの Y 座標"
 
 #: ../f-spot.schemas.in.h:44
 msgid "Y position of the photo viewer window."
-msgstr "写真ビューアウインドウの Y 座標"
+msgstr "写真ビューアーウインドウの Y 座標"
 
 #: ../f-spot.schemas.in.h:45
 msgid ""
@@ -777,11 +777,11 @@ msgstr ""
 "F-Spot が検索に用いているこのタグは存在しません。\n"
 "F-Spot の設定ダイアログで別のタグを選択してください。"
 
-#: ../src/Clients/MainApp/FSpot.Database/Updater.cs:762
+#: ../src/Clients/MainApp/FSpot.Database/Updater.cs:768
 msgid "Updating F-Spot Database"
 msgstr "F-Spot データベースを更新中"
 
-#: ../src/Clients/MainApp/FSpot.Database/Updater.cs:763
+#: ../src/Clients/MainApp/FSpot.Database/Updater.cs:769
 msgid ""
 "Please wait while your F-Spot gallery's database is updated. This may take "
 "some time."
@@ -945,7 +945,7 @@ msgid "Rotate picture right"
 msgstr "写真を右へ回転"
 
 #: ../src/Clients/MainApp/FSpot/ItemAction.cs:125
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:936
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/HtmlGallery.cs:263
 msgid "Next"
 msgstr "次へ"
 
@@ -960,6 +960,12 @@ msgstr "前へ"
 #: ../src/Clients/MainApp/FSpot/ItemAction.cs:147
 msgid "Previous picture"
 msgstr "前の写真"
+
+#: ../src/Clients/MainApp/FSpot/Literal.cs:225
+#: ../src/Clients/MainApp/FSpot/TagQueryWidget.cs:182
+#, csharp-format
+msgid "Not {0}"
+msgstr "{0} ではない"
 
 #: ../src/Clients/MainApp/FSpot/MainWindow.cs:301
 #: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:229
@@ -1014,9 +1020,9 @@ msgstr "次の写真"
 #. Don't care otherwise, Tags sounds reasonable
 #: ../src/Clients/MainApp/FSpot/MainWindow.cs:376
 #: ../src/Clients/MainApp/FSpot.Widgets/Sidebar.cs:75
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:933
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:1105
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:1145
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/HtmlGallery.cs:260
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/HtmlGallery.cs:432
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/HtmlGallery.cs:472
 msgid "Tags"
 msgstr "タグ"
 
@@ -1033,9 +1039,9 @@ msgstr "検索バーの非表示(_F)"
 #: ../src/Clients/MainApp/FSpot.UI.Dialog/AdjustTimeDialog.cs:154
 #: ../src/Clients/MainApp/FSpot.UI.Dialog/ProgressDialog.cs:111
 #: ../src/Extensions/Exporters/FSpot.Exporters.CD/FSpot.Exporters.CD/CDExport.cs:134
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:389
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:240
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryExport.cs:220
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:391
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:244
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryExport.cs:214
 #, csharp-format
 msgid "{0} of {1}"
 msgstr "{0} / {1}"
@@ -1125,7 +1131,7 @@ msgid ""
 "again."
 msgstr ""
 "カタログから写真を削除すると、すべてのタグ情報が失われます。お使いのコン"
-"ピュータ上に残っている写真を再度 F-Spot にインポートすることは可能です。"
+"ピューター上に残っている写真を再度 F-Spot にインポートすることは可能です。"
 
 #: ../src/Clients/MainApp/FSpot/MainWindow.cs:2156
 msgid "_Remove from Catalog"
@@ -1216,22 +1222,22 @@ msgid "XCF version"
 msgstr "XCF バージョン"
 
 #. Note for translators: Reparented is a picture becoming a version of another one
-#: ../src/Clients/MainApp/FSpot/Photo.cs:426
+#: ../src/Clients/MainApp/FSpot/Photo.cs:430
 msgid "Reparented"
 msgstr "再関連付け版"
 
-#: ../src/Clients/MainApp/FSpot/Photo.cs:443
+#: ../src/Clients/MainApp/FSpot/Photo.cs:448
 #, csharp-format
 msgid "Modified"
 msgid_plural "Modified ({0})"
 msgstr[0] "修正版 ({0})"
 
-#: ../src/Clients/MainApp/FSpot/Photo.cs:466
+#: ../src/Clients/MainApp/FSpot/Photo.cs:471
 #, csharp-format
 msgid "Modified in {1}"
 msgstr "{1} での修正版"
 
-#: ../src/Clients/MainApp/FSpot/Photo.cs:466
+#: ../src/Clients/MainApp/FSpot/Photo.cs:471
 #, csharp-format
 msgid "Modified in {1} ({0})"
 msgstr "{1} での修正版 ({0})"
@@ -1301,7 +1307,7 @@ msgstr "写真 \"{0}\" の回転中"
 
 #: ../src/Clients/MainApp/FSpot/RotateCommand.cs:197
 msgid "Directory not found"
-msgstr "フォルダが見つかりません"
+msgstr "フォルダーが見つかりません"
 
 #: ../src/Clients/MainApp/FSpot/RotateCommand.cs:199
 msgid "File not found"
@@ -1368,7 +1374,7 @@ msgstr "写真を右へ回転"
 
 #: ../src/Clients/MainApp/FSpot/SingleView.cs:148
 msgid "Folder"
-msgstr "フォルダ"
+msgstr "フォルダー"
 
 #: ../src/Clients/MainApp/FSpot/SingleView.cs:373
 msgid "Open"
@@ -1376,53 +1382,47 @@ msgstr "開く"
 
 #: ../src/Clients/MainApp/FSpot/SingleView.cs:376
 msgid "Select Folder"
-msgstr "フォルダの選択"
+msgstr "フォルダーの選択"
 
 #: ../src/Clients/MainApp/FSpot/SingleView.cs:460
 msgid "Set as Background"
 msgstr "背景に設定"
 
-#: ../src/Clients/MainApp/FSpot/TagQueryWidget.cs:66
+#: ../src/Clients/MainApp/FSpot/TagQueryWidget.cs:67
 #, csharp-format
 msgid "Include Photos Tagged \"{0}\""
 msgstr "タグ \"{0}\" の写真を含める"
 
-#: ../src/Clients/MainApp/FSpot/TagQueryWidget.cs:71
+#: ../src/Clients/MainApp/FSpot/TagQueryWidget.cs:72
 #, csharp-format
 msgid "Exclude Photos Tagged \"{0}\""
 msgstr "タグ \"{0}\" の写真を除く"
 
-#: ../src/Clients/MainApp/FSpot/TagQueryWidget.cs:76
+#: ../src/Clients/MainApp/FSpot/TagQueryWidget.cs:77
 msgid "Remove From Search"
 msgstr "検索から除く"
 
-#: ../src/Clients/MainApp/FSpot/TagQueryWidget.cs:120
+#: ../src/Clients/MainApp/FSpot/TagQueryWidget.cs:121
 #, csharp-format
 msgid "Find _With"
 msgid_plural "Find _With"
 msgstr[0] "さらに検索(_W)"
 
-#: ../src/Clients/MainApp/FSpot/TagQueryWidget.cs:146
+#: ../src/Clients/MainApp/FSpot/TagQueryWidget.cs:147
 msgid "All"
 msgstr "すべて"
 
-#: ../src/Clients/MainApp/FSpot/TagQueryWidget.cs:181
-#: ../src/Clients/MainApp/FSpot/Term.cs:599
-#, csharp-format
-msgid "Not {0}"
-msgstr "{0} ではない"
-
-#: ../src/Clients/MainApp/FSpot/TagQueryWidget.cs:305
+#: ../src/Clients/MainApp/FSpot/TagQueryWidget.cs:306
 msgid "Drag tags here to search for them"
 msgstr "検索するタグをこちらにドラッグしてください"
 
-#: ../src/Clients/MainApp/FSpot/TagSelectionWidget.cs:519
+#: ../src/Clients/MainApp/FSpot/TagSelectionWidget.cs:521
 msgid "Error renaming tag"
 msgstr "タグの改名の際にエラー"
 
-#: ../src/Clients/MainApp/FSpot/TagSelectionWidget.cs:520
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditTagDialog.cs:93
-#: ../src/Clients/MainApp/TagCommands.cs:137
+#: ../src/Clients/MainApp/FSpot/TagSelectionWidget.cs:522
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditTagDialog.cs:99
+#: ../src/Clients/MainApp/TagCommands.cs:139
 msgid "This name is already in use"
 msgstr "この名前は既に使われています"
 
@@ -1448,26 +1448,26 @@ msgstr "イベント"
 
 #. The label for the root category is used in new and edit tag dialogs
 #: ../src/Clients/MainApp/FSpot/TagStore.cs:257
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:441
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:445
 msgid "(None)"
 msgstr "(なし)"
 
-#: ../src/Clients/MainApp/FSpot/Term.cs:324
+#: ../src/Clients/MainApp/FSpot/Term.cs:336
 msgid " and "
 msgstr " および "
 
-#. operators.Add (Catalog.GetString (" && "));
-#: ../src/Clients/MainApp/FSpot/Term.cs:326
+#. Operators.Add (Catalog.GetString (" && "));
+#: ../src/Clients/MainApp/FSpot/Term.cs:338
 msgid ", "
 msgstr "、"
 
-#: ../src/Clients/MainApp/FSpot/Term.cs:382
+#: ../src/Clients/MainApp/FSpot/Term.cs:394
 msgid " or "
 msgstr " または "
 
 #. OPS The operators we support, case insensitive
 #. private static string op_str = "(?'Ops' or | and |, | \\s+ )";
-#: ../src/Clients/MainApp/FSpot/Term.cs:406
+#: ../src/Clients/MainApp/FSpot/Term.cs:415
 #: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/DateRangeDialog.ui.h:7
 #: ../src/Clients/MainApp/FSpot.Widgets/FindBar.cs:202
 #: ../src/Clients/MainApp/FSpot.Widgets/FindBar.cs:557
@@ -1562,16 +1562,16 @@ msgstr "例外 \"{0}\" が発生しました。写真 {1} を保存できませ�
 msgid "Error editing photo"
 msgstr "写真の編集エラー"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditTagIconDialog.cs:64
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditTagIconDialog.cs:65
 #, csharp-format
 msgid "Edit Icon for Tag {0}"
 msgstr "タグ {0} のアイコンの編集"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditTagIconDialog.cs:86
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditTagIconDialog.cs:87
 msgid "Select Photo from file"
 msgstr "ファイルから写真を選択"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditTagIconDialog.cs:108
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditTagIconDialog.cs:109
 #, csharp-format
 msgid ""
 "\n"
@@ -1588,23 +1588,23 @@ msgstr ""
 " 写真にタグ '{0}' を付与してからここに戻り、アイコンとして\n"
 " 利用してください。"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditTagIconDialog.cs:186
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditTagIconDialog.cs:187
 msgid "Unable to load image"
 msgstr "画像を読み込めません"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditTagIconDialog.cs:187
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditTagIconDialog.cs:188
 #, csharp-format
 msgid "Unable to load \"{0}\" as icon for the tag"
 msgstr "タグ・アイコンとして \"{0}\" を読み込めません"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditTagIconDialog.cs:225
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditTagIconDialog.cs:226
 #, csharp-format
 msgid "Photo {0} of {1}"
 msgstr "写真 ({0} / {1})"
 
 #: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:45
 msgid "Choose Folder..."
-msgstr "フォルダの選択..."
+msgstr "フォルダーの選択..."
 
 #: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:164
 msgid "Choose Import source..."
@@ -1858,7 +1858,7 @@ msgstr "特定のインポートロールの写真のみを表示"
 
 #: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:3
 msgid "Filter on selected rolls"
-msgstr "ロールの選択フィルタ"
+msgstr "ロールの選択フィルター"
 
 #: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:4
 msgid "Number of photos in selected rolls:"
@@ -1888,7 +1888,7 @@ msgstr "この間"
 
 #: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:1
 msgid "Color profile for display:"
-msgstr "モニタ用カラープロファイル:"
+msgstr "モニター用カラープロファイル:"
 
 #: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:2
 msgid "Color profile for printing:"
@@ -1920,7 +1920,7 @@ msgstr ""
 
 #: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:9
 msgid "Select A Folder"
-msgstr "フォルダの選択"
+msgstr "フォルダーの選択"
 
 #: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:10
 msgid "Separately from the image files"
@@ -1944,7 +1944,7 @@ msgstr "<b>最小の評価</b>"
 
 #: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/RatingFilterDialog.ui.h:3
 msgid "Set Rating Filter"
-msgstr "評価フィルタの設定"
+msgstr "評価フィルターの設定"
 
 #: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/RepairDialog.ui.h:1
 msgid "Repair"
@@ -1990,11 +1990,11 @@ msgstr ""
 "例外 \"{0}\" が発生しました。編集前に RAW ファイルを JPEG ファイルに現像しな"
 "ければならないことに注意してください。"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/Filmstrip.cs:495
+#: ../src/Clients/MainApp/FSpot.Widgets/Filmstrip.cs:497
 msgid "_Horizontal"
 msgstr "水平(_H)"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/Filmstrip.cs:499
+#: ../src/Clients/MainApp/FSpot.Widgets/Filmstrip.cs:501
 msgid "_Vertical"
 msgstr "垂直(_V)"
 
@@ -2004,17 +2004,17 @@ msgstr "検索:"
 
 #: ../src/Clients/MainApp/FSpot.Widgets/FolderTreePage.cs:44
 msgid "Folders"
-msgstr "フォルダ"
+msgstr "フォルダー"
 
 #: ../src/Clients/MainApp/FSpot.Widgets/FolderTreeView.cs:159
 msgid "Filesystem"
 msgstr "ファイルシステム"
 
 #: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:125
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:401
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:451
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:457
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:405
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:455
 #: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:461
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:465
 msgid "(Unknown)"
 msgstr "(不明)"
 
@@ -2087,71 +2087,71 @@ msgstr "サイズ"
 msgid "Show Size"
 msgstr "サイズの表示"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:404
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:408
 msgid "Exposure"
 msgstr "露出"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:404
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:408
 msgid "Show Exposure"
 msgstr "露出の表示"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:434
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:438
 msgid "flash fired"
 msgstr ""
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:436
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:440
 msgid "flash didn't fire"
 msgstr ""
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:446
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:450
 msgid "Focal Length"
 msgstr "焦点距離"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:446
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:450
 msgid "Show Focal Length"
 msgstr "焦点距離の表示"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:456
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:460
 msgid "Camera"
 msgstr "カメラ"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:456
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:460
 msgid "Show Camera"
 msgstr "カメラ機種名の表示"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:460
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:464
 msgid "Creator"
 msgstr "作成者"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:460
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:464
 #, fuzzy
 #| msgid "Creator"
 msgid "Show Creator"
 msgstr "作成者"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:464
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:468
 msgid "File Size"
 msgstr "ファイルサイズ"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:464
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:468
 msgid "Show File Size"
 msgstr "ファイルサイズの表示"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:472
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:476
 msgid "(File read error)"
 msgstr "(ファイルの読み込みエラー)"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:480
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:484
 msgid "Rating"
 msgstr "評価"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:480
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:484
 #, fuzzy
 #| msgid "Rating"
 msgid "Show Rating"
 msgstr "評価"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:484
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:488
 #, fuzzy
 #| msgid "Show Date"
 msgid "Show Tags"
@@ -2205,7 +2205,7 @@ msgstr "新しいタグの作成..."
 
 #. Fixme this should really set parent menu
 #. items insensitve
-#: ../src/Clients/MainApp/PhotoTagMenu.cs:92
+#: ../src/Clients/MainApp/PhotoTagMenu.cs:68
 msgid "(No Tags)"
 msgstr "(タグなし)"
 
@@ -2280,11 +2280,11 @@ msgstr ""
 msgid "Received exception \"{0}\"."
 msgstr "例外 \"{0}\" が発生しました。"
 
-#: ../src/Clients/MainApp/TagCommands.cs:187
+#: ../src/Clients/MainApp/TagCommands.cs:189
 msgid "Create New Tag"
 msgstr "新しいタグの作成"
 
-#: ../src/Clients/MainApp/TagCommands.cs:188
+#: ../src/Clients/MainApp/TagCommands.cs:190
 msgid "Name of New Tag:"
 msgstr "新しいタグの名前:"
 
@@ -2365,11 +2365,11 @@ msgstr "色合い(_T):"
 
 #: ../src/Clients/MainApp/ui/import.ui.h:1
 msgid "C_opy files to the Photos folder"
-msgstr "写真フォルダにファイルをコピー(_O)"
+msgstr "写真フォルダーにファイルをコピー(_O)"
 
 #: ../src/Clients/MainApp/ui/import.ui.h:2
 msgid "I_nclude subfolders"
-msgstr "サブフォルダも含める(_N)"
+msgstr "サブフォルダーも含める(_N)"
 
 #. Translators: this string means 'source of import'
 #: ../src/Clients/MainApp/ui/import.ui.h:5
@@ -2550,8 +2550,8 @@ msgid "T_ags"
 msgstr "タグ(_A)"
 
 #: ../src/Clients/MainApp/ui/main_window.ui.h:24
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:1116
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:1117
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/HtmlGallery.cs:443
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/HtmlGallery.cs:444
 msgid "Tags: "
 msgstr "タグ: "
 
@@ -2597,11 +2597,11 @@ msgstr "選択したものへタグの付与(_A)"
 
 #: ../src/Clients/MainApp/ui/main_window.ui.h:35
 msgid "_Clear Rating Filter"
-msgstr "評価フィルタの解除(_C)"
+msgstr "評価フィルターの解除(_C)"
 
 #: ../src/Clients/MainApp/ui/main_window.ui.h:36
 msgid "_Clear Roll Filter"
-msgstr "ロール・フィルタの解除(_C)"
+msgstr "ロール・フィルターの解除(_C)"
 
 #: ../src/Clients/MainApp/ui/main_window.ui.h:37
 msgid "_Close"
@@ -2717,7 +2717,7 @@ msgstr "表示期間の設定(_S)..."
 
 #: ../src/Clients/MainApp/ui/main_window.ui.h:66
 msgid "_Set Rating filter..."
-msgstr "評価フィルタの設定(_S)..."
+msgstr "評価フィルターの設定(_S)..."
 
 #: ../src/Clients/MainApp/ui/main_window.ui.h:67
 msgid "_Sharpen..."
@@ -2975,11 +2975,11 @@ msgid "Transferring picture \"{0}\" To CD"
 msgstr "写真 \"{0}\" を CD へ転送中"
 
 #: ../src/Extensions/Exporters/FSpot.Exporters.CD/FSpot.Exporters.CD/CDExport.cs:147
-#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:395
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:419
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryExport.cs:245
-#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:290
-#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/FSpot.Exporters.SmugMug/SmugMugExport.cs:258
+#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:392
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:421
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryExport.cs:237
+#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:288
+#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/FSpot.Exporters.SmugMug/SmugMugExport.cs:255
 msgid "Done Sending Photos"
 msgstr "写真の送信が完了しました"
 
@@ -2992,7 +2992,7 @@ msgid "Error While Transferring"
 msgstr "転送する際にエラー"
 
 #: ../src/Extensions/Exporters/FSpot.Exporters.CD/FSpot.Exporters.CD/CDExport.cs:164
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:297
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:301
 msgid "Error Transferring"
 msgstr "転送中にエラー"
 
@@ -3024,11 +3024,11 @@ msgstr "他に書き込み予約されているファイルを参照(_B)"
 msgid "_Write only these photos to CD"
 msgstr "これらの写真のみ CD へ書き込む(_W)"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:117
+#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:111
 msgid "Waiting for authorization"
 msgstr "認証を待っています"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:118
+#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:112
 msgid ""
 "F-Spot will now launch your browser so that you can enable the permission "
 "you just selected.\n"
@@ -3036,16 +3036,16 @@ msgid ""
 "Once you are directed by Facebook to return to this application, click \"Ok"
 "\" below."
 msgstr ""
-"F-Spot がブラウザを起動しますので、そこでアクセス許可を選んでください。\n"
+"F-Spot がブラウザーを起動しますので、そこでアクセス許可を選んでください。\n"
 "\n"
 "Facebook でアプリケーションに戻るよう指示されたら、以下の \"OK\" ボタンをク"
 "リックしてください。"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:299
+#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:296
 msgid "Too many images to export"
 msgstr "エクスポートする画像が多すぎます"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:300
+#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:297
 #, csharp-format
 msgid ""
 "Facebook only permits {0} photographs per album.  Please refine your "
@@ -3054,19 +3054,19 @@ msgstr ""
 "Facebook では 1 つのアルバムに収められる写真は {0} 枚です。写真を選び直して、"
 "再度試してください。"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:315
+#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:312
 msgid "Album must have a name"
 msgstr "アルバムには名前が必要です"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:316
+#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:313
 msgid "Please name your album or choose an existing album."
 msgstr "アルバムに名前を付けるか、既存のアルバムを選択してください。"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:330
+#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:327
 msgid "Creating a new album failed"
 msgstr "新しいアルバムの作成に失敗"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:331
+#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:328
 #, csharp-format
 msgid ""
 "An error occurred creating a new album.\n"
@@ -3077,45 +3077,45 @@ msgstr ""
 "\n"
 "{0}"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:344
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:514
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryExport.cs:173
-#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:187
-#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/FSpot.Exporters.SmugMug/SmugMugExport.cs:177
+#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:341
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:516
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryExport.cs:168
+#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:184
+#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/FSpot.Exporters.SmugMug/SmugMugExport.cs:174
 msgid "Uploading Pictures"
 msgstr "写真のアップロード中"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:372
-#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:246
-#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/FSpot.Exporters.SmugMug/SmugMugExport.cs:216
+#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:369
+#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:243
+#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/FSpot.Exporters.SmugMug/SmugMugExport.cs:213
 #, csharp-format
 msgid "Uploading picture \"{0}\" ({1} of {2})"
 msgstr "写真 \"{0}\" のアップロード中 ({1} / {2})"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:386
+#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:383
 #, csharp-format
 msgid "Error Uploading To Facebook: {0}"
 msgstr "Facebook へアップロード中にエラー: {0}"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:387
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:410
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:246
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryExport.cs:236
-#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:279
-#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/FSpot.Exporters.SmugMug/SmugMugExport.cs:247
+#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:384
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:412
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:250
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryExport.cs:229
+#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:277
+#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/FSpot.Exporters.SmugMug/SmugMugExport.cs:244
 #: ../src/Extensions/Exporters/FSpot.Exporters.Tabblo/FSpot.Exporters.Tabblo/TabbloExport.cs:321
 msgid "Error"
 msgstr "エラー"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:397
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:421
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryExport.cs:247
-#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:292
-#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/FSpot.Exporters.SmugMug/SmugMugExport.cs:260
+#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:394
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:423
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryExport.cs:239
+#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:290
+#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/FSpot.Exporters.SmugMug/SmugMugExport.cs:257
 msgid "Upload Complete"
 msgstr "アップロードの完了"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:400
+#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:397
 msgid "Visit F-Spot group on Facebook"
 msgstr "Facebook の F-Spot グループを訪問する"
 
@@ -3131,7 +3131,7 @@ msgid ""
 "\" below.  F-Spot will cache your session in gnome-keyring, if possible, and "
 "re-use it on future Facebook exports."
 msgstr ""
-"F-Spot は Facebook にログインするためにブラウザを起動します。\n"
+"F-Spot は Facebook にログインするためにブラウザーを起動します。\n"
 "\n"
 "Facebook にアプリケーションに戻るよう指示されたら、以下の \"OK\" ボタンをク"
 "リックしてください。F-Spot は可能ならばあなたのセッションを Gnome-Keyring に"
@@ -3159,7 +3159,7 @@ msgstr "セッションを認証中"
 
 #: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExportDialog.cs:266
 msgid "Session established, fetching user info..."
-msgstr "セッションを確立、ユーザ情報を取り寄せ中..."
+msgstr "セッションを確立、ユーザー情報を取り寄せ中..."
 
 #: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExportDialog.cs:272
 msgid "Session established, fetching friend list..."
@@ -3190,7 +3190,8 @@ msgid ""
 "\n"
 "Facebook said: {0}"
 msgstr ""
-"Facebook からあなたのユーザ情報をダウンロードする際にエラーが発生しました。\n"
+"Facebook からあなたのユーザー情報をダウンロードする際にエラーが発生しまし"
+"た。\n"
 "\n"
 "Facebook 情報: {0}"
 
@@ -3254,12 +3255,12 @@ msgstr "既存のアルバムを利用"
 msgid "Who is this?"
 msgstr "これは誰ですか?"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:137
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:139
 #: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/Resources/flickr_export.ui.h:5
 msgid "Authorize"
 msgstr "認証"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:143
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:145
 #, csharp-format
 msgid ""
 "Return to this window after you have finished the authorization process on "
@@ -3268,67 +3269,67 @@ msgstr ""
 "{0} での認証を完了したらこのウィンドウに戻り、この下にある \"認証を完了する"
 "\" ボタンをクリックしてください。"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:144
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:146
 msgid "Complete Authorization"
 msgstr "認証を完了する"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:149
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:151
 #, csharp-format
 msgid "Logging into {0}"
 msgstr "{0} にログイン中"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:150
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:152
 msgid "Checking credentials..."
 msgstr "認証中..."
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:157
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:159
 #, csharp-format
 msgid "Welcome {0} you are connected to {1}"
 msgstr "{1} にアカウント {0} でログインしています"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:160
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:162
 #, csharp-format
 msgid "Sign in as a different user"
 msgstr "別のアカウントでログインする"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:165
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:167
 #, csharp-format
 msgid "Used {0} of your allowed {1} monthly quota"
 msgstr "1 ヶ月で利用できる容量 {1} 中 {0} を使用中"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:268
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:337
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:270
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:339
 msgid "Unable to log on"
 msgstr "ログオンできません"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:357
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:359
 #, csharp-format
 msgid "Waiting for response {0} of {1}"
 msgstr "応答を待っています ({0} / {1})"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:384
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryExport.cs:216
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:386
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryExport.cs:210
 #, csharp-format
 msgid "Uploading picture \"{0}\""
 msgstr "写真 \"{0}\" のアップロード中"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:407
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:409
 #, csharp-format
 msgid "Error Uploading To {0}: {1}"
 msgstr "{0} へのアップロード中にエラー: {1}"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:494
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:496
 msgid "Unable to log on."
 msgstr "ログオンできません。"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:495
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:497
 #, csharp-format
 msgid ""
 "F-Spot was unable to log on to {0}.  Make sure you have given the "
 "authentication using {0} web browser interface."
 msgstr ""
-"F-Spotは {0} にログオンできませんでした。ウェブブラウザから {0} への認証がで"
-"きているかどうか確認してください。"
+"F-Spotは {0} にログオンできませんでした。ウェブブラウザーから {0} への認証が"
+"できているかどうか確認してください。"
 
 #: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/Resources/flickr_export.ui.h:1
 msgid "<b>Account</b>"
@@ -3357,8 +3358,8 @@ msgid ""
 "Spot the authorization. "
 msgstr ""
 "F-Spot があなたの {0} アカウントに写真をアップロードするには、あなたの認証が"
-"必要です。\"認証\" ボタンをクリックしてウェブブラウザを開き、そちらで F-Spot "
-"を認証してください。"
+"必要です。\"認証\" ボタンをクリックしてウェブブラウザーを開き、そちらで F-"
+"Spot を認証してください。"
 
 #: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/Resources/flickr_export.ui.h:9
 msgid "Ignore _top level tags"
@@ -3395,7 +3396,7 @@ msgstr "サイズ変更(_R): "
 
 #: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/Resources/flickr_export.ui.h:17
 msgid "_View photos in browser when done uploading"
-msgstr "アップロードが完了したらブラウザで写真を表示する(_V)"
+msgstr "アップロードが完了したらブラウザーで写真を表示する(_V)"
 
 #: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/Resources/flickr_export.ui.h:18
 #: ../src/Extensions/Exporters/FSpot.Exporters.Folder/Resources/folder_export.ui.h:17
@@ -3405,79 +3406,79 @@ msgstr "アップロードが完了したらブラウザで写真を表示する
 msgid "pixels"
 msgstr "ピクセル"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:148
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:152
 msgid "Select Export Folder"
-msgstr "エクスポートするフォルダの選択"
+msgstr "エクスポートするフォルダーの選択"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:200
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:204
 msgid "Building Gallery"
 msgstr "ギャラリーの作成"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:237
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:241
 #, csharp-format
 msgid "Exporting \"{0}\"..."
 msgstr "\"{0}\" をエクスポート中..."
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:244
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:248
 #, csharp-format
 msgid "Error Copying \"{0}\" to Gallery:{2}{1}"
 msgstr "ギャラリーへ \"{0}\" をコピー中にエラー: {2}{1}"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:270
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:274
 #, csharp-format
 msgid "Transferring to \"{0}\""
 msgstr "\"{0}\" へ転送中"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:271
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:275
 msgid "Transferring..."
 msgstr "転送中..."
 
 #. No need to check result here as if result is not true, an Exception will be thrown before
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:276
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:280
 msgid "Export Complete."
 msgstr "エクスポートの完了"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:278
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:282
 msgid "Exporting Photos Completed."
 msgstr "写真のエクスポートが完了しました。"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:343
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:346
 msgid "Exporting Photos"
 msgstr "写真のエクスポート"
 
 #. Note for translators: light as clear, opposite as dark
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:747
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/HtmlGallery.cs:74
 msgid "Light"
 msgstr "明るく"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:748
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/HtmlGallery.cs:75
 msgid "Dark"
 msgstr "暗く"
 
 #. Abbreviation of previous
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:928
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/HtmlGallery.cs:255
 msgid "Prev"
 msgstr "前へ"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:930
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:1171
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/HtmlGallery.cs:257
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/HtmlGallery.cs:498
 msgid "Index"
 msgstr "インデックス"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:1040
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/HtmlGallery.cs:367
 msgid "Gallery generated by"
 msgstr "ギャラリーの作成者: "
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:1080
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/HtmlGallery.cs:407
 msgid "Show Styles"
 msgstr "スタイルを表示"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:1081
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/HtmlGallery.cs:408
 msgid "Hide Styles"
 msgstr "スタイルを非表示"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:1248
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:1381
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/HtmlGallery.cs:575
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/HtmlGallery.cs:708
 msgid "Page:"
 msgstr "ページ数:"
 
@@ -3519,7 +3520,7 @@ msgstr "エクスポートが完了したら転送先を開く(_D)"
 
 #: ../src/Extensions/Exporters/FSpot.Exporters.Folder/Resources/folder_export.ui.h:14
 msgid "_Folder:"
-msgstr "フォルダ(_F):"
+msgstr "フォルダー(_F):"
 
 #: ../src/Extensions/Exporters/FSpot.Exporters.Folder/Resources/folder_export.ui.h:16
 msgid "_Save the files only"
@@ -3559,7 +3560,7 @@ msgstr ""
 "入力されたギャラリー名と同名のギャラリーが既に存在します。他の名前を選択して"
 "ください。"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/FormClient.cs:326
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/FormClient.cs:327
 msgid "Unhandled exception"
 msgstr "予期されていない例外"
 
@@ -3587,49 +3588,49 @@ msgstr ""
 "ギャラリー名に不正な文字が含まれています。\n"
 "英数字と \"-\"、\"_\" 以外の文字は使えません。"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryExport.cs:235
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryExport.cs:228
 #, csharp-format
 msgid "Error uploading picture \"{0}\" to Gallery: {1}"
 msgstr "ギャラリー {1} へ写真 \"{0}\" をアップロード中にエラー"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryExport.cs:262
-#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:315
-#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/FSpot.Exporters.SmugMug/SmugMugExport.cs:275
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryExport.cs:253
+#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:312
+#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/FSpot.Exporters.SmugMug/SmugMugExport.cs:272
 msgid "(No Gallery)"
 msgstr "(ギャラリーなし)"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryExport.cs:349
-#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:435
-#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/FSpot.Exporters.SmugMug/SmugMugExport.cs:366
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryExport.cs:339
+#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:431
+#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/FSpot.Exporters.SmugMug/SmugMugExport.cs:363
 msgid "(Not Connected)"
 msgstr "(未接続)"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryExport.cs:350
-#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:436
-#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/FSpot.Exporters.SmugMug/SmugMugExport.cs:367
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryExport.cs:340
+#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:432
+#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/FSpot.Exporters.SmugMug/SmugMugExport.cs:364
 msgid "(No Albums)"
 msgstr "(アルバムなし)"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryExport.cs:391
-#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:495
-#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/FSpot.Exporters.SmugMug/SmugMugExport.cs:404
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryExport.cs:381
+#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:490
+#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/FSpot.Exporters.SmugMug/SmugMugExport.cs:401
 msgid "No account selected"
 msgstr "アカウントが選択されていません"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryRemote.cs:395
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryRemote.cs:382
 msgid "Error reading server response"
-msgstr "サーバからの応答中にエラー"
+msgstr "サーバーからの応答中にエラー"
 
 #. failed to find the response
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryRemote.cs:407
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryRemote.cs:394
 msgid "Server returned response without Gallery content"
-msgstr "サーバからの応答にはギャラリーのコンテンツが含まれていません"
+msgstr "サーバーからの応答にはギャラリーのコンテンツが含まれていません"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryRemote.cs:744
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryRemote.cs:717
 msgid "Error while creating new album"
 msgstr "新しいアルバムの作成中にエラー"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryRemote.cs:745
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryRemote.cs:718
 #, csharp-format
 msgid ""
 "The following error was encountered while attempting to perform the "
@@ -3688,7 +3689,7 @@ msgstr "パスワード(_P):"
 #: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/Resources/smugmug_add_dialog.ui.h:2
 #: ../src/Extensions/Exporters/FSpot.Exporters.Tabblo/Resources/ui/TabbloExport.ui.h:11
 msgid "_Username:"
-msgstr "ユーザ名(_U):"
+msgstr "ユーザー名(_U):"
 
 #: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/Resources/gallery_export_dialog.ui.h:1
 #: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/Resources/google_export_dialog.ui.h:1
@@ -3708,7 +3709,7 @@ msgstr "タイトルとコメントのエクスポート(_T)"
 #: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/Resources/google_export_dialog.ui.h:6
 #: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/Resources/smugmug_export_dialog.ui.h:6
 msgid "Open _album in browser when done uploading"
-msgstr "アップロードが完了したらブラウザでアルバムを開く(_A)"
+msgstr "アップロードが完了したらブラウザーでアルバムを開く(_A)"
 
 #: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/Resources/gallery_export_dialog.ui.h:9
 #: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/Resources/google_export_dialog.ui.h:9
@@ -3731,28 +3732,28 @@ msgid ""
 "The following error was encountered while attempting to create an album: {0}"
 msgstr "アルバムの作成中に以下のエラーが発生しました: {0}"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:209
+#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:206
 #, csharp-format
 msgid "{0} Sent"
 msgstr "{0} 枚送信"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:211
+#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:208
 #, csharp-format
 msgid "{0} of approx. {1}"
 msgstr "{0} / 約 {1}"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:277
-#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/FSpot.Exporters.SmugMug/SmugMugExport.cs:245
+#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:275
+#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/FSpot.Exporters.SmugMug/SmugMugExport.cs:242
 #, csharp-format
 msgid "Error Uploading To Gallery: {0}"
 msgstr "ギャラリーへのアップロード中にエラー: {0}"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:366
+#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:363
 #, csharp-format
 msgid "Available space: {0}, {1}% used out of {2}"
 msgstr "利用可能領域: {0} ({2} 中 {1}% 利用済み)"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:471
+#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:467
 #, csharp-format
 msgid ""
 "The selected album has a limit of {0} pictures,\n"
@@ -3882,7 +3883,7 @@ msgstr ""
 
 #: ../src/Extensions/Exporters/FSpot.Exporters.Zip/FSpot.Exporters.Zip/ZipExport.cs:83
 msgid "Select export folder"
-msgstr "エクスポート先のフォルダを選択"
+msgstr "エクスポート先のフォルダーを選択"
 
 #: ../src/Extensions/Exporters/FSpot.Exporters.Zip/FSpot.Exporters.Zip/ZipExport.cs:121
 msgid "Exporting files"
@@ -3989,7 +3990,7 @@ msgid ""
 "<small><i>When the gallery is active, above is the URL you need to open \n"
 "on another computer to access the shared photos.</i></small>"
 msgstr ""
-"<small><i>このギャラリーが有効化されたとき、他のコンピュータから\n"
+"<small><i>このギャラリーが有効化されたとき、他のコンピューターから\n"
 "共有写真にアクセスする際に上記の URL から開いてください。</i></small>"
 
 #: ../src/Extensions/Tools/FSpot.Tools.LiveWebGallery/Resources/ui/LiveWebGallery.ui.h:5
@@ -4058,8 +4059,8 @@ msgid ""
 "<big>The database refers to files contained in the <b>{0}</b> folder.\n"
 " Please select that folder so I can do the mapping.</big>"
 msgstr ""
-"<big>データベースは <b>{0}</b> フォルダにあるファイルを参照しています。\n"
-" このフォルダを選択するとマッピングを行います。</big>"
+"<big>データベースは <b>{0}</b> フォルダーにあるファイルを参照しています。\n"
+" このフォルダーを選択するとマッピングを行います。</big>"
 
 #: ../src/Extensions/Tools/FSpot.Tools.MergeDb/Resources/mergedb_dialog.ui.h:1
 msgid ""
@@ -4101,7 +4102,7 @@ msgstr "特定のインポートロール"
 
 #: ../src/Extensions/Tools/FSpot.Tools.MergeDb/Resources/mergedb_dialog.ui.h:8
 msgid "Copy images to photos folder"
-msgstr "写真フォルダに画像をコピー"
+msgstr "写真フォルダーに画像をコピー"
 
 #: ../src/Extensions/Tools/FSpot.Tools.MergeDb/Resources/mergedb_dialog.ui.h:9
 msgid "Database Location:"
