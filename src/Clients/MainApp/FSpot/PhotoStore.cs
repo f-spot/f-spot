@@ -648,10 +648,12 @@ namespace FSpot {
                          where_added = true;
                  }
                  Database.Execute (query_builder.ToString ());
-        
+
                  int minyear = Int32.MaxValue;
                  int maxyear = Int32.MinValue;
-        
+
+		// FIXME: There appears to be a race condition here where it tries to query the population
+		// table before Database.Execute (query_builder.ToString ()); creates it.
                  IDataReader reader = Database.Query ("SELECT COUNT (*) as count, month from population GROUP BY month");
                  while (reader.Read ()) {
                          string yyyymm = reader ["month"].ToString ();
