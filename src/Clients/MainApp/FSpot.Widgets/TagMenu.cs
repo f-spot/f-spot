@@ -98,11 +98,6 @@ public class TagMenu : Menu {
 
 	protected TagMenu (IntPtr raw) : base (raw) {}
 
-	public void Populate ()
-	{
-		Populate (false);
-	}
-
 	public int GetPosition (Tag t)
 	{
 		// FIXME right now this only works on flat menus
@@ -120,7 +115,7 @@ public class TagMenu : Menu {
 		return -1;
 	}
 
-	public void Populate (bool flat)
+	public void Populate (bool flat = false)
 	{
 		if (flat)
 			PopulateFlat (tag_store.RootCategory, this);
