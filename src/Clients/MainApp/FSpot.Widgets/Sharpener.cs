@@ -28,7 +28,6 @@
 // OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
-
 using Cairo;
 
 using Gtk;
@@ -40,15 +39,16 @@ using FSpot.Widgets;
 using FSpot.UI.Dialog;
 using Hyena.Widgets;
 
-namespace FSpot.Widgets {
-	public class Sharpener : Loupe {
+namespace FSpot.Widgets
+{
+	public class Sharpener : Loupe
+	{
 		Gtk.SpinButton amount_spin = new Gtk.SpinButton (0.5, 100.0, .01);
 		Gtk.SpinButton radius_spin = new Gtk.SpinButton (5.0, 50.0, .01);
 		Gtk.SpinButton threshold_spin = new Gtk.SpinButton (0.0, 50.0, .01);
 		Gtk.Dialog dialog;
-        ThreadProgressDialog progressDialog;
-
-        private bool okClicked;
+		ThreadProgressDialog progressDialog;
+		private bool okClicked;
 
 		public Sharpener (PhotoImageView view) : base (view)
 		{
@@ -56,21 +56,20 @@ namespace FSpot.Widgets {
 
 		protected override void UpdateSample ()
 		{
-            if (!okClicked)
-            {
-    			base.UpdateSample ();
+			if (!okClicked) {
+				base.UpdateSample ();
     
-    			if (overlay != null)
-    				overlay.Dispose ();
+				if (overlay != null)
+					overlay.Dispose ();
     
-    			overlay = null;
-    			if (source != null)
-    				overlay = PixbufUtils.UnsharpMask (source,
+				overlay = null;
+				if (source != null)
+					overlay = PixbufUtils.UnsharpMask (source,
     								   radius_spin.Value,
     								   amount_spin.Value,
     								   threshold_spin.Value,
                                        null);
-            }
+			}
 		}
 
 		private void HandleSettingsChanged (object sender, EventArgs args)
@@ -78,61 +77,63 @@ namespace FSpot.Widgets {
 			UpdateSample ();
 		}
 
-        public void doSharpening()
-        {
-            progressDialog.Fraction = 0.0;
-            progressDialog.Message = "Photo is being sharpened";
+		public void doSharpening ()
+		{
+			progressDialog.Fraction = 0.0;
+			// FIXME: This should probably be translated
+			progressDialog.Message = "Photo is being sharpened";
 
-            okClicked = true;
-            Photo photo = view.Item.Current as Photo;
+			okClicked = true;
+			Photo photo = view.Item.Current as Photo;
 
-            if (photo == null)
-                return;
+			if (photo == null)
+				return;
 
-            try {
-                Gdk.Pixbuf orig = view.Pixbuf;
-                Gdk.Pixbuf final = PixbufUtils.UnsharpMask (orig,
+			try {
+				Gdk.Pixbuf orig = view.Pixbuf;
+				Gdk.Pixbuf final = PixbufUtils.UnsharpMask (orig,
                                         radius_spin.Value,
                                         amount_spin.Value,
                                         threshold_spin.Value,
                                         progressDialog);
 
-                bool create_version = photo.DefaultVersion.IsProtected;
+				bool create_version = photo.DefaultVersion.IsProtected;
 
-                photo.SaveVersion (final, create_version);
-                photo.Changes.DataChanged = true;
-                App.Instance.Database.Photos.Commit (photo);
-            } catch (System.Exception e) {
-                string msg = Catalog.GetString ("Error saving sharpened photo");
-                string desc = String.Format (Catalog.GetString ("Received exception \"{0}\". Unable to save photo {1}"),
+				photo.SaveVersion (final, create_version);
+				photo.Changes.DataChanged = true;
+				App.Instance.Database.Photos.Commit (photo);
+			} catch (System.Exception e) {
+				string msg = Catalog.GetString ("Error saving sharpened photo");
+				string desc = String.Format (Catalog.GetString ("Received exception \"{0}\". Unable to save photo {1}"),
                                  e.Message, photo.Name);
 
-                HigMessageDialog md = new HigMessageDialog (this, DialogFlags.DestroyWithParent,
+				HigMessageDialog md = new HigMessageDialog (this, DialogFlags.DestroyWithParent,
                                         Gtk.MessageType.Error,
                                         ButtonsType.Ok,
                                         msg,
                                         desc);
-                md.Run ();
-                md.Destroy ();
-            }
+				md.Run ();
+				md.Destroy ();
+			}
 
-            progressDialog.Fraction = 1.0;
-            progressDialog.Message = "Sharpening complete!";
-            progressDialog.ButtonLabel = Gtk.Stock.Ok;
+			progressDialog.Fraction = 1.0;
+			// FIXME: This should probably be translated
+			progressDialog.Message = "Sharpening complete!";
+			progressDialog.ButtonLabel = Gtk.Stock.Ok;
 
-            Destroy ();
-        }
+			Destroy ();
+		}
 
 		private void HandleOkClicked (object sender, EventArgs args)
 		{
-            this.Hide();
-            dialog.Hide();
+			this.Hide ();
+			dialog.Hide ();
 
-            System.Threading.Thread command_thread = new System.Threading.Thread (new System.Threading.ThreadStart (doSharpening));
-            command_thread.Name = "Sharpening";
+			System.Threading.Thread command_thread = new System.Threading.Thread (new System.Threading.ThreadStart (doSharpening));
+			command_thread.Name = "Sharpening";
 
-            progressDialog = new ThreadProgressDialog (command_thread, 1);
-            progressDialog.Start ();
+			progressDialog = new ThreadProgressDialog (command_thread, 1);
+			progressDialog.Start ();
 		}
 
 		public void HandleCancelClicked (object sender, EventArgs args)
@@ -150,7 +151,7 @@ namespace FSpot.Widgets {
 			base.BuildUI ();
 
 			string title = Catalog.GetString ("Sharpen");
-			dialog = new Gtk.Dialog (title, (Gtk.Window) this,
+			dialog = new Gtk.Dialog (title, (Gtk.Window)this,
 						 DialogFlags.DestroyWithParent, new object [0]);
 			dialog.BorderWidth = 12;
 			dialog.VBox.Spacing = 6;
@@ -186,11 +187,18 @@ namespace FSpot.Widgets {
 			ok_button.Clicked += HandleOkClicked;
 			dialog.AddActionWidget (ok_button, Gtk.ResponseType.Cancel);
 
+			dialog.DeleteEvent += HandleCancelClicked;
+
 			Destroyed += HandleLoupeDestroyed;
 
 			table.ShowAll ();
 			dialog.VBox.PackStart (table);
 			dialog.ShowAll ();
+		}
+
+		void HandleDeleteEvent (object o, DeleteEventArgs args)
+		{
+
 		}
 	}
 }
