@@ -520,7 +520,8 @@ namespace FSpot.Widgets {
 			};
 			ButtonPressEvent += delegate {
 				pressed = true;
-				GdkWindow.Cursor = closed_hand_cursor;
+				if (null != GdkWindow)
+					GdkWindow.Cursor = closed_hand_cursor;
 			};
 			ButtonReleaseEvent += delegate {
 				pressed = false;
