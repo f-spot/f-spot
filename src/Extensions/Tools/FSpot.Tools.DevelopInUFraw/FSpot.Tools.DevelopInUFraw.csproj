@@ -80,7 +80,6 @@
   <ItemGroup>
     <Reference Include="Mono.Posix" />
     <Reference Include="System" />
-    <Reference Include="System.Core" />
     <Reference Include="gio-sharp">
       <HintPath>..\..\..\..\lib\gio-sharp\gio\gio-sharp.dll</HintPath>
     </Reference>
