@@ -34,7 +34,8 @@ using System.Collections.Generic;
 
 namespace FSpot.Core
 {
-	public class Category : Tag {
+	public class Category : Tag
+	{
 		List<Tag> children;
 		bool children_need_sort;
 		public IList<Tag> Children {

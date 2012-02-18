@@ -38,6 +38,12 @@ namespace FSpot.Core
 {
 	public class Tag : DbItem, IComparable<Tag>, IDisposable {
 		public string Name { get; set; }
+		public int Popularity { get; set; }
+		public int SortPriority { get; set; }
+		// Icon.  If ThemeIconName is not null, then we save the name of the icon instead
+		// of the actual icon data.
+		public string ThemeIconName { get; set; }
+		public bool IconWasCleared { get; set; }
 
 		Category category;
 		public Category Category {
@@ -51,18 +57,6 @@ namespace FSpot.Core
 					category.AddChild (this);
 			}
 		}
-
-		public int SortPriority { get; set; }
-
-		int popularity = 0;
-		public int Popularity {
-			get { return popularity; }
-			set { popularity = value; }
-		}
-
-		// Icon.  If theme_icon_name is not null, then we save the name of the icon instead
-		// of the actual icon data.
-		public string ThemeIconName { get; set; }
 
 		Pixbuf icon;
 		public Pixbuf Icon {
@@ -81,12 +75,6 @@ namespace FSpot.Core
 				cached_icon_size = IconSize.Hidden;
 				IconWasCleared = value == null;
 			}
-		}
-
-		bool icon_was_cleared = false;
-		public bool IconWasCleared {
-			get { return icon_was_cleared; }
-			set { icon_was_cleared = value; }
 		}
 
 		public enum IconSize {
@@ -135,16 +123,19 @@ namespace FSpot.Core
 		}
 
 
+		// FIXME: Why does this ctor take one of its derived classes as a parameter?
 		// You are not supposed to invoke these constructors outside of the TagStore class.
 		public Tag (Category category, uint id, string name)
 			: base (id)
 		{
 			Category = category;
 			Name = name;
+			Popularity = 0;
+			IconWasCleared = false;
 		}
 
 
-		// IComparer.
+		// IComparer
 		public int CompareTo (Tag tag)
 		{
 			if (tag == null)
