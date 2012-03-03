@@ -33,6 +33,8 @@
   <ItemGroup>
     <Compile Include="FSpot.Exporters.CD\CDExport.cs" />
     <Compile Include="FSpot.Exporters.CD\CDExportDialog.cs" />
+    <Compile Include="FSpot.Exporters.CD\IDiscBurner.cs" />
+    <Compile Include="FSpot.Exporters.CD\Brasero.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\CDExport.addin.xml">

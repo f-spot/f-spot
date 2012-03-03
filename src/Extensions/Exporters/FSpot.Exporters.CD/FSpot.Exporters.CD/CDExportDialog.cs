@@ -3,9 +3,11 @@
 //
 // Author:
 //   Ruben Vermeersch <ruben@savanne.be>
+//   Stephen Shaw <sshaw@decriptor.com>
 //
 // Copyright (C) 2010 Novell, Inc.
 // Copyright (C) 2010 Ruben Vermeersch
+// Copyright (c) 2012 SUSE LINUX Products GmbH, Nuernberg, Germany.
 //
 // Permission is hereby granted, free of charge, to any person obtaining
 // a copy of this software and associated documentation files (the
@@ -48,17 +50,21 @@ namespace FSpot.Exporters.CD
 		Gtk.Window listwindow;
 		System.Uri dest;
 
-        [GtkBeans.Builder.Object] Button browse_button;
+      		[GtkBeans.Builder.Object] Button browse_button;
 		[GtkBeans.Builder.Object] ScrolledWindow thumb_scrolledwindow;
 		[GtkBeans.Builder.Object] CheckButton remove_check;
 		[GtkBeans.Builder.Object] Label size_label;
+
+		// This is a frame for any photos that are still in the queue
+		// to be burned to disc.  As of now(March 3, 2012), that's burn:///
 		[GtkBeans.Builder.Object] Frame previous_frame;
 
-		public bool Clean {
+		public bool RemovePreviousPhotos {
 			get { return remove_check.Active; }
 		}
 
-		public CDExportDialog (IBrowsableCollection collection, System.Uri dest) : base (Assembly.GetExecutingAssembly (), "CDExport.ui", "cd_export_dialog")
+		public CDExportDialog (IBrowsableCollection collection, System.Uri dest) :
+			base (Assembly.GetExecutingAssembly (), "CDExport.ui", "cd_export_dialog")
 		{
 			this.dest = dest;
 
@@ -88,17 +94,18 @@ namespace FSpot.Exporters.CD
 			thumb_scrolledwindow.Add (view);
 			this.ShowAll ();
 
-			previous_frame.Visible = IsEmpty (dest);
+			previous_frame.Visible = !IsDestEmpty (dest);
 
-            browse_button.Clicked += HandleBrowseExisting;
-
+			browse_button.Clicked += HandleBrowseExisting;
 		}
 
-		bool IsEmpty (System.Uri path)
+		bool IsDestEmpty (System.Uri path)
 		{
-			foreach (GLib.FileEnumerator f in FileFactory.NewForUri (path).EnumerateChildren ("*", FileQueryInfoFlags.None, null))
-				return true;
-			return false;
+			GLib.File f = FileFactory.NewForUri (path);
+			foreach (GLib.FileInfo info in f.EnumerateChildren ("*", FileQueryInfoFlags.None, null)) {
+				return false;
+			}
+			return true;
 		}
 
 		void HandleBrowseExisting (object sender, System.EventArgs args)

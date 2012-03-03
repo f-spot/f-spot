@@ -97,11 +97,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FSpot.Exporters.Zip", "src\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FSpot.Exporters.Tabblo", "src\Extensions\Exporters\FSpot.Exporters.Tabblo\FSpot.Exporters.Tabblo.csproj", "{414E9813-E0A8-4BD4-8694-485F528518F5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FSpotExporters.UnitTests", "src\Extensions\Exporters\FSpotExporters.UnitTests\FSpotExporters.UnitTests.csproj", "{F38C0ADF-29A3-453B-B272-61CC5BF3BB1E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Submodule|Any CPU = Submodule|Any CPU
 		Release|Any CPU = Release|Any CPU
+		Default|Any CPU = Default|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{05A7FEC4-974A-40EB-AFB8-14E523EEEFFB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -328,6 +331,14 @@ Global
 		{ECF8996A-DE63-4225-927F-84641E0EB794}.Release|Any CPU.Build.0 = Release|Any CPU
 		{ECF8996A-DE63-4225-927F-84641E0EB794}.Submodule|Any CPU.ActiveCfg = Debug|Any CPU
 		{ECF8996A-DE63-4225-927F-84641E0EB794}.Submodule|Any CPU.Build.0 = Debug|Any CPU
+		{F38C0ADF-29A3-453B-B272-61CC5BF3BB1E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F38C0ADF-29A3-453B-B272-61CC5BF3BB1E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F38C0ADF-29A3-453B-B272-61CC5BF3BB1E}.Default|Any CPU.ActiveCfg = Debug|Any CPU
+		{F38C0ADF-29A3-453B-B272-61CC5BF3BB1E}.Default|Any CPU.Build.0 = Debug|Any CPU
+		{F38C0ADF-29A3-453B-B272-61CC5BF3BB1E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F38C0ADF-29A3-453B-B272-61CC5BF3BB1E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F38C0ADF-29A3-453B-B272-61CC5BF3BB1E}.Submodule|Any CPU.ActiveCfg = Debug|Any CPU
+		{F38C0ADF-29A3-453B-B272-61CC5BF3BB1E}.Submodule|Any CPU.Build.0 = Debug|Any CPU
 		{FBA30EB0-05EB-446D-827D-D41EBF4B81E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{FBA30EB0-05EB-446D-827D-D41EBF4B81E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FBA30EB0-05EB-446D-827D-D41EBF4B81E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -386,6 +397,7 @@ Global
 		{BE981FC8-9B41-4336-815C-ECC365AE05D4} = {C9302C4A-B571-4F8E-8FFA-7B4C7DF8B3E3}
 		{4C9355A7-1797-4708-A1F2-FBCDB782D04D} = {C9302C4A-B571-4F8E-8FFA-7B4C7DF8B3E3}
 		{414E9813-E0A8-4BD4-8694-485F528518F5} = {C9302C4A-B571-4F8E-8FFA-7B4C7DF8B3E3}
+		{F38C0ADF-29A3-453B-B272-61CC5BF3BB1E} = {C9302C4A-B571-4F8E-8FFA-7B4C7DF8B3E3}
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = src\Clients\MainApp\MainApp.csproj
@@ -421,7 +433,7 @@ Global
 		$7.LineAlign = 0
 		$6.inheritsSet = Mono
 		$0.StandardHeader = $8
-		$8.Text = @ ${FileName}\n Author:\n      ${AuthorName} <${AuthorEmail}>\n Copyright (c) ${Year} ${CopyrightHolder}
+		$8.Text = @ ${FileName}\n\n Author:\n      ${AuthorName} <${AuthorEmail}>\n\n Copyright (c) ${Year} SUSE LINUX Products GmbH, Nuernberg, Germany.\n\n Permission is hereby granted, free of charge, to any person obtaining\n a copy of this software and associated documentation files (the\n "Software"), to deal in the Software without restriction, including\n without limitation the rights to use, copy, modify, merge, publish,\n distribute, sublicense, and/or sell copies of the Software, and to\n permit persons to whom the Software is furnished to do so, subject to\n the following conditions:\n\n The above copyright notice and this permission notice shall be\n included in all copies or substantial portions of the Software.\n\n THE SOFTWARE IS PROVIDED AS IS, WITHOUT WARRANTY OF ANY KIND,\n EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF\n MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND\n NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE\n LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION\n OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION\n WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n \n
 		$8.IncludeInNewFiles = True
 		version = 0.9.0
 		outputpath = .

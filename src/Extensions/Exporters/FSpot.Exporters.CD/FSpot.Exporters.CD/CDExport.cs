@@ -3,9 +3,11 @@
 //
 // Author:
 //   Ruben Vermeersch <ruben@savanne.be>
+//   Stephen Shaw <sshaw@decriptor.com>
 //
 // Copyright (C) 2010 Novell, Inc.
 // Copyright (C) 2010 Ruben Vermeersch
+// Copyright (c) 2012 SUSE LINUX Products GmbH, Nuernberg, Germany.
 //
 // Permission is hereby granted, free of charge, to any person obtaining
 // a copy of this software and associated documentation files (the
@@ -48,6 +50,7 @@ using GtkBeans;
 namespace FSpot.Exporters.CD {
 	public class CDExport : FSpot.Extensions.IExporter {
 		IBrowsableCollection selection;
+		IDiscBurner burner;
 
 		System.Uri dest = new System.Uri ("burn:///");
 
@@ -60,20 +63,20 @@ namespace FSpot.Exporters.CD {
 
 		public CDExport ()
 		{
+			burner = new Brasero();
 		}
 
 		public void Run (IBrowsableCollection selection)
 		{
 			this.selection = selection;
 			dialog = new CDExportDialog (selection, dest);
-			//LoadHistory ();
 
 			if (dialog.Run () != (int)ResponseType.Ok) {
 				dialog.Destroy ();
 				return;
 			}
 
-			clean = dialog.Clean;
+			clean = dialog.RemovePreviousPhotos;
 
 			command_thread = new System.Threading.Thread (new System.Threading.ThreadStart (Transfer));
 			command_thread.Name = Catalog.GetString ("Transferring Pictures");
@@ -84,10 +87,7 @@ namespace FSpot.Exporters.CD {
 			dialog.Destroy ();
 		}
 
-		[DllImport ("libc")]
-		extern static int system (string program);
-
-//		//FIXME: rewrite this as a Filter
+		//FIXME: rewrite this as a Filter
 	        public static GLib.File UniqueName (System.Uri path, string shortname)
 	        {
 	                int i = 1;
@@ -114,7 +114,8 @@ namespace FSpot.Exporters.CD {
 			}
 		}
 
-		public void Transfer () {
+		public void Transfer ()
+		{
 			try {
 				bool result = true;
 
@@ -123,14 +124,14 @@ namespace FSpot.Exporters.CD {
 
 				foreach (IPhoto photo in selection.Items) {
 
-				//FIXME need to implement the uniquename as a filter
+					//FIXME need to implement the uniquename as a filter
 					using (FilterRequest request = new FilterRequest (photo.DefaultVersion.Uri)) {
 						GLib.File source = FileFactory.NewForUri (request.Current.ToString ());
 						GLib.File target = UniqueName (dest, photo.Name);
 						FileProgressCallback cb = Progress;
 
 						progress_dialog.Message = System.String.Format (Catalog.GetString ("Transferring picture \"{0}\" To CD"), photo.Name);
-						progress_dialog.Fraction = photo_index / (double) selection.Count;
+						progress_dialog.Fraction = photo_index / (double)selection.Count;
 						progress_dialog.ProgressText = System.String.Format (Catalog.GetString ("{0} of {1}"),
 											     photo_index, selection.Count);
 
@@ -149,14 +150,13 @@ namespace FSpot.Exporters.CD {
 					progress_dialog.ProgressText = Catalog.GetString ("Transfer Complete");
 					progress_dialog.ButtonLabel = Gtk.Stock.Ok;
 					progress_dialog.Hide ();
-					system ("brasero -n");
-				} else {
+					burner.Run ();
+				} else
 					throw new System.Exception (System.String.Format ("{0}{3}{1}{3}{2}",
 											  progress_dialog.Message,
 											  Catalog.GetString ("Error While Transferring"),
 											  result.ToString (),
 											  System.Environment.NewLine));
-				}
 
 			} catch (System.Exception e) {
 				Hyena.Log.DebugException (e);

@@ -39,6 +39,7 @@ config.sub
 /depcomp
 /mkinstalldirs
 /stamp-h1
+/doxygen
 build/m4/shave/shave
 build/m4/shave/shave-libtool
 build/m4/*.m4
@@ -65,3 +66,4 @@ help/*/*.xml
 /src/Core/test-results/
 /test-results/
 /src/Clients/MainApp.UnitTest/test-results/
+/src/Extensions/Exporters/FSpotExporters.UnitTests/bin/
