@@ -27,24 +27,12 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-
 using System;
-using System.Net;
-using System.IO;
-using System.Text;
-using System.Collections;
-using System.Collections.Specialized;
-using System.Web;
+
 using Mono.Unix;
-using FSpot;
-using FSpot.Core;
-using FSpot.Filters;
-using FSpot.Widgets;
-using FSpot.Utils;
-using FSpot.UI.Dialog;
-using FSpot.Extensions;
-using Hyena;
+
 using Hyena.Widgets;
+
 namespace FSpot.Exporters.Gallery
 {
 	public class GalleryAddAlbum
@@ -102,9 +90,9 @@ namespace FSpot.Exporters.Gallery
 				for (int i=0; i < album.Parents.Count; i++) {
 					label_builder.Append ("  ");
 				}
-				label_builder.Append (album.Title);
 
-                album_optionmenu.AppendText(label_builder.ToString());
+				label_builder.Append (album.Title);
+				album_optionmenu.AppendText(label_builder.ToString());
 			}
 
 			album_optionmenu.Sensitive = true;
@@ -113,19 +101,17 @@ namespace FSpot.Exporters.Gallery
 
 		private void HandleChanged (object sender, EventArgs args)
 		{
-			if (gallery.Version == GalleryVersion.Version1) {
-				if (gallery.Albums.Count == 0 || album_optionmenu.Active <= 0) {
+			if (gallery.Version == GalleryVersion.Version1)
+				if (gallery.Albums.Count == 0 || album_optionmenu.Active <= 0)
 					parent = String.Empty;
-				} else {
+				else
 					parent = ((Album) gallery.Albums [album_optionmenu.Active-1]).Name;
-				}
-			} else {
-				if (gallery.Albums.Count == 0 || album_optionmenu.Active < 0) {
+			else
+				if (gallery.Albums.Count == 0 || album_optionmenu.Active < 0)
 					parent = String.Empty;
-				} else {
+				else
 					parent = ((Album) gallery.Albums [album_optionmenu.Active]).Name;
-				}
-			}
+
 			name = name_entry.Text;
 			description = description_entry.Text;
 			title = title_entry.Text;

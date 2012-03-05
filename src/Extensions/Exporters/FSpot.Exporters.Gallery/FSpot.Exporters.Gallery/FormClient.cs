@@ -4,10 +4,12 @@
 // Author:
 //   Larry Ewing <lewing@novell.com>
 //   Stephane Delcroix <sdelcroix@src.gnome.org>
+//   Stephen Shaw <sshaw@decriptor.com>
 //
 // Copyright (C) 2004-2008 Novell, Inc.
 // Copyright (C) 2004, 2006 Larry Ewing
 // Copyright (C) 2008 Stephane Delcroix
+//  Copyright (c) 2012 SUSE LINUX Products GmbH, Nuernberg, Germany.
 //
 // Permission is hereby granted, free of charge, to any person obtaining
 // a copy of this software and associated documentation files (the
@@ -30,18 +32,20 @@
 //
 
 using System;
-using System.Net;
-using System.IO;
-using System.Text;
-using System.Collections;
 using System.Collections.Generic;
-using System.Collections.Specialized;
+using System.IO;
+using System.Net;
+using System.Text;
 using System.Web;
-using Hyena;
-using FSpot.Core;
 
-namespace FSpot.Exporters.Gallery {
-	public class FormClient {
+using FSpot.Core;
+using Mono.Unix;
+
+
+namespace FSpot.Exporters.Gallery
+{
+	public class FormClient
+	{
 		private struct FormItem {
 			public string Name;
 			public object Value;
@@ -223,23 +227,13 @@ namespace FSpot.Exporters.Gallery {
 			Items.Clear ();
 			multipart = false;
 		}
-	
-		public HttpWebResponse Submit (string url)
+
+		public HttpWebResponse Submit (string url, FSpot.ProgressItem progress_item = null)
 		{
-			return Submit (url, null);
-		}
-	
-		public HttpWebResponse Submit (string url, FSpot.ProgressItem item)
-		{
-			return Submit (new Uri (url), item);
+			return Submit (new Uri (url), progress_item);
 		}
 		
-		public HttpWebResponse Submit (Uri uri)
-		{
-			return Submit (uri, null);
-		}
-	
-		public HttpWebResponse Submit (Uri uri, FSpot.ProgressItem progress_item) 
+		public HttpWebResponse Submit (Uri uri, FSpot.ProgressItem progress_item = null)
 		{
 			this.Progress = progress_item;
 			Request = (HttpWebRequest) WebRequest.Create (uri);
@@ -324,7 +318,7 @@ namespace FSpot.Exporters.Gallery {
 					return Submit (uri, progress_item);
 				}
 				
-				throw new WebException (Mono.Unix.Catalog.GetString ("Unhandled exception"), e);
+				throw new WebException (Catalog.GetString ("Unhandled exception"), e);
 			}
 	
 			return response;

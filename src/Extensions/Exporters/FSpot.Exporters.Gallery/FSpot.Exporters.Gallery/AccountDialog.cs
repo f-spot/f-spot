@@ -29,22 +29,13 @@
 
 
 using System;
-using System.Net;
-using System.IO;
-using System.Text;
-using System.Collections;
-using System.Collections.Specialized;
-using System.Web;
+
 using Mono.Unix;
-using FSpot;
-using FSpot.Core;
-using FSpot.Filters;
-using FSpot.Widgets;
-using FSpot.Utils;
-using FSpot.UI.Dialog;
-using FSpot.Extensions;
+
 using Hyena;
 using Hyena.Widgets;
+
+
 namespace FSpot.Exporters.Gallery
 {
 	public class AccountDialog {

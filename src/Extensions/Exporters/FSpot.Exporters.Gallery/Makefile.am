@@ -6,9 +6,13 @@ INSTALL_DIR = $(EXTENSIONS_INSTALL_DIR)
 SOURCES =  \
 	FSpot.Exporters.Gallery/AccountDialog.cs \
 	FSpot.Exporters.Gallery/FormClient.cs \
+	FSpot.Exporters.Gallery/Gallery.cs \
+	FSpot.Exporters.Gallery/Gallery1.cs \
+	FSpot.Exporters.Gallery/Gallery2.cs \
 	FSpot.Exporters.Gallery/GalleryAccount.cs \
 	FSpot.Exporters.Gallery/GalleryAccountManager.cs \
 	FSpot.Exporters.Gallery/GalleryAddAlbum.cs \
+	FSpot.Exporters.Gallery/GalleryExceptions.cs \
 	FSpot.Exporters.Gallery/GalleryExport.cs \
 	FSpot.Exporters.Gallery/GalleryRemote.cs
 

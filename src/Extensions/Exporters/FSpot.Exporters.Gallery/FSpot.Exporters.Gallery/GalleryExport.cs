@@ -30,21 +30,15 @@
 // OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
+
 using System;
-using System.Net;
-using System.IO;
-using System.Text;
-using System.Collections;
 using System.Collections.Generic;
-using System.Collections.Specialized;
-using System.Web;
+
 using Mono.Unix;
 
-using FSpot;
 using FSpot.Core;
 using FSpot.Filters;
 using FSpot.Widgets;
-using FSpot.Utils;
 using FSpot.UI.Dialog;
 using FSpot.Extensions;
 
@@ -270,17 +264,12 @@ namespace FSpot.Exporters.Gallery
 			gallery_optionmenu.Active = pos;
 		}
 
-		private void Connect ()
-		{
-			Connect (null);
-		}
-
-		private void Connect (GalleryAccount selected)
+		private void Connect (GalleryAccount selected = null)
 		{
 			try {
 				if (accounts.Count != 0 && connect) {
 					if (selected == null)
-						account = (GalleryAccount)accounts [gallery_optionmenu.Active];
+						account = accounts [gallery_optionmenu.Active];
 					else
 						account = selected;
 
@@ -309,7 +298,7 @@ namespace FSpot.Exporters.Gallery
 
 		public void HandleAlbumAdded (string title)
 		{
-			GalleryAccount account = (GalleryAccount)accounts [gallery_optionmenu.Active];
+			GalleryAccount account = accounts [gallery_optionmenu.Active];
 			PopulateAlbumOptionMenu (account.Gallery);
 
 			// make the newly created album selected

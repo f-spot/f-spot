@@ -38,6 +38,10 @@
     <Compile Include="FSpot.Exporters.Gallery\GalleryAccountManager.cs" />
     <Compile Include="FSpot.Exporters.Gallery\AccountDialog.cs" />
     <Compile Include="FSpot.Exporters.Gallery\GalleryAddAlbum.cs" />
+    <Compile Include="FSpot.Exporters.Gallery\GalleryExceptions.cs" />
+    <Compile Include="FSpot.Exporters.Gallery\Gallery.cs" />
+    <Compile Include="FSpot.Exporters.Gallery\Gallery1.cs" />
+    <Compile Include="FSpot.Exporters.Gallery\Gallery2.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\GalleryExport.addin.xml">

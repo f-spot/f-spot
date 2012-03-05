@@ -42,6 +42,7 @@
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Folder Include="FSpot.Exporters.CD\" />
+    <Folder Include="FSpot.Exporters.Gallery\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FSpot.Exporters.CD\FSpot.Exporters.CD.csproj">

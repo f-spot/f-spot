@@ -28,25 +28,11 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-
-using System;
-using System.Net;
-using System.IO;
-using System.Text;
-using System.Collections;
 using System.Collections.Generic;
-using System.Collections.Specialized;
-using System.Web;
-using Mono.Unix;
-using FSpot;
-using FSpot.Core;
-using FSpot.Filters;
-using FSpot.Widgets;
-using FSpot.Utils;
-using FSpot.UI.Dialog;
-using FSpot.Extensions;
+using System.IO;
+
 using Hyena;
-using Hyena.Widgets;
+
 namespace FSpot.Exporters.Gallery
 {
 	public class GalleryAccountManager
@@ -63,7 +49,6 @@ namespace FSpot.Exporters.Gallery
 			if (instance == null) {
 				instance = new GalleryAccountManager ();
 			}
-
 			return instance;
 		}
 
@@ -76,12 +61,7 @@ namespace FSpot.Exporters.Gallery
 			ReadAccounts ();
 		}
 
-		public void MarkChanged ()
-		{
-			MarkChanged (true, null);
-		}
-
-		public void MarkChanged (bool write, GalleryAccount changed_account)
+		public void MarkChanged (bool write = true, GalleryAccount changed_account = null)
 		{
 			if (write)
 				WriteAccounts ();
@@ -95,12 +75,7 @@ namespace FSpot.Exporters.Gallery
 			return accounts;
 		}
 
-		public void AddAccount (GalleryAccount account)
-		{
-			AddAccount (account, true);
-		}
-
-		public void AddAccount (GalleryAccount account, bool write)
+		public void AddAccount (GalleryAccount account, bool write = true)
 		{
 			accounts.Add (account);
 			MarkChanged (write, account);
