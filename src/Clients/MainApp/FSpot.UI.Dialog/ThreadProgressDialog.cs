@@ -56,6 +56,7 @@ namespace FSpot.UI.Dialog {
 
 		Thread thread;
 
+		// FIXME: The total parameter makes sense, but doesn't seem to ever be used?
 		public ThreadProgressDialog (Thread thread, int total) {
 			/*
 			if (parent_window)
