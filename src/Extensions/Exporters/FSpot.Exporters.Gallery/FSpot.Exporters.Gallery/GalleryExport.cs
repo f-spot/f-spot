@@ -269,7 +269,10 @@ namespace FSpot.Exporters.Gallery
 			try {
 				if (accounts.Count != 0 && connect) {
 					if (selected == null)
-						account = accounts [gallery_optionmenu.Active];
+					    if (gallery_optionmenu.Active != -1)
+						    account = accounts [gallery_optionmenu.Active];
+						else
+						    account = accounts [0];
 					else
 						account = selected;
 
