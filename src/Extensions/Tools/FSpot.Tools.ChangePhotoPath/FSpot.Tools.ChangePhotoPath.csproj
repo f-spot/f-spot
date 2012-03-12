@@ -10,6 +10,7 @@
     <RootNamespace>FSpot.Tools.ChangePhotoPath</RootNamespace>
     <AssemblyName>FSpot.Tools.ChangePhotoPath</AssemblyName>
     <ReleaseVersion>0.9.0</ReleaseVersion>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
