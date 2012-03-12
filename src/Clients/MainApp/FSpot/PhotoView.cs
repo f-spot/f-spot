@@ -82,7 +82,7 @@ namespace FSpot {
                 // was photo_view
 		public PhotoImageView View { get; private set; }
 
-		public new BrowsablePointer Item {
+		public BrowsablePointer Item {
                         get { return View.Item; }
 		}
 
