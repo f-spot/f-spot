@@ -52,7 +52,6 @@ namespace FSpot {
 			set {
 				if (order_ascending != value) {
 					order_ascending = value;
-					Reload();
 				}
 			}
 		}
