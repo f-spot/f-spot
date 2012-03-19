@@ -169,12 +169,7 @@ public static class PixbufUtils
 		}
 	}
 
-	public static Pixbuf ScaleToMaxSize (Pixbuf pixbuf, int width, int height)
-	{
-		return ScaleToMaxSize (pixbuf, width, height, true);
-	}
-
-	public static Pixbuf ScaleToMaxSize (Pixbuf pixbuf, int width, int height, bool upscale)
+	public static Pixbuf ScaleToMaxSize (Pixbuf pixbuf, int width, int height, bool upscale = true)
 	{
 		int scale_width = 0;
 		int scale_height = 0;
@@ -332,7 +327,7 @@ public static class PixbufUtils
 
 			// This is the other half of the progress so start and halfway
 			if (progressDialog != null)
-                progressDialog.Fraction = ((double)row / ((double) sourceHeight - 1) ) * 0.25 + 0.75;
+				progressDialog.Fraction = ((double)row / ((double) sourceHeight - 1) ) * 0.25 + 0.75;
 		}
 
 		return result;
@@ -519,12 +514,12 @@ public static class PixbufUtils
 		}
 	}
 
-	[DllImport("libgnomeui-2-0.dll")]
-	static extern IntPtr gnome_thumbnail_scale_down_pixbuf (IntPtr pixbuf, int dest_width, int dest_height);
+	[DllImport("libgnome-desktop-2-17.dll")]
+	static extern IntPtr gnome_desktop_thumbnail_scale_down_pixbuf (IntPtr pixbuf, int dest_width, int dest_height);
 
 	public static Gdk.Pixbuf ScaleDown (Gdk.Pixbuf src, int width, int height)
 	{
-		IntPtr raw_ret = gnome_thumbnail_scale_down_pixbuf (src.Handle, width, height);
+		IntPtr raw_ret = gnome_desktop_thumbnail_scale_down_pixbuf (src.Handle, width, height);
 		Gdk.Pixbuf ret;
 		if (raw_ret == IntPtr.Zero)
 			ret = null;
