@@ -471,16 +471,13 @@ public static class PixbufUtils
 			byte * p = pix;
 			for (int i = 0; i < w; i++) {
 				if (Math.Abs (p [0] - p [1]) > max_difference || Math.Abs (p [0] - p [2]) > max_difference)
-					goto Found;
+					return false;
 				p += chan;
 			}
 			pix += stride;
 		}
 
 		return true;
-
-		Found:
-			return false;
 	}
 
 	public static unsafe void ReplaceColor (Gdk.Pixbuf src, Gdk.Pixbuf dest)
