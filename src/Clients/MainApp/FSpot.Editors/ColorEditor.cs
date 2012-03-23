@@ -29,14 +29,15 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using FSpot;
-using FSpot.ColorAdjustment;
-using Gdk;
-using Gtk;
-using Mono.Unix;
 using System;
 
+using FSpot.ColorAdjustment;
+
+using Gdk;
+using Gtk;
 using GtkBeans;
+
+using Mono.Unix;
 
 namespace FSpot.Editors {
 	class ColorEditor : Editor {

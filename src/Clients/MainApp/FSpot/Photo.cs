@@ -34,14 +34,12 @@ using Hyena;
 using System;
 using System.IO;
 using System.Linq;
-using System.Collections;
 using System.Collections.Generic;
 
 using Mono.Unix;
 
 using FSpot.Core;
 using FSpot.Utils;
-using FSpot.Platform;
 using FSpot.Imaging;
 
 namespace FSpot

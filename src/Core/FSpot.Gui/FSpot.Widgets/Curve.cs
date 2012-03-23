@@ -29,8 +29,9 @@
 
 using System;
 using System.Collections.Generic;
-using Gtk;
+
 using Gdk;
+using Gtk;
 
 namespace FSpot.Widgets
 {

@@ -34,11 +34,10 @@
 using System;
 using System.IO;
 
-using Gtk;
-using Gdk;
-
 using FSpot;
 using FSpot.UI.Dialog;
+
+using Gtk;
 
 using Hyena;
 using Hyena.Widgets;

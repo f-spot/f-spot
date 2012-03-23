@@ -27,12 +27,15 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using Hyena;
-using FSpot.Core;
-using FSpot.Utils;
 using System;
 using System.Collections.Generic;
 using System.Threading;
+
+using FSpot.Core;
+using FSpot.Utils;
+
+using Hyena;
+
 using Mono.Unix;
 
 namespace FSpot.Import

@@ -28,21 +28,21 @@
 //
 
 using System;
-using System.Reflection;
 using System.Collections;
 using System.Collections.Generic;
+using System.Reflection;
 using System.Threading;
+
+using FSpot.Core;
+using FSpot.UI.Dialog;
+using FSpot.Utils;
+using FSpot.Widgets;
 
 using Gtk;
 using GtkBeans;
 
 using Hyena;
 using Hyena.Widgets;
-using FSpot.Core;
-using FSpot.Utils;
-using FSpot.Widgets;
-using FSpot.Platform;
-using FSpot.UI.Dialog;
 
 using Mono.Facebook;
 using Mono.Unix;

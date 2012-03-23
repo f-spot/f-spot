@@ -30,20 +30,20 @@
 //
 
 using System;
-using System.IO;
 using System.Collections.Generic;
+using System.IO;
 
-using Gtk;
-
-using FSpot;
 using FSpot.Core;
 using FSpot.Database;
 using FSpot.Extensions;
 using FSpot.Query;
-using FSpot.UI.Dialog;
-using Mono.Unix;
+
+using Gtk;
+
 using Hyena;
 using Hyena.Widgets;
+
+using Mono.Unix;
 
 namespace FSpot.Tools.MergeDb
 {
@@ -92,10 +92,10 @@ namespace FSpot.Tools.MergeDb
 				string desc = String.Format (Catalog.GetString ("The file you selected is not a valid or supported database.\n\nReceived exception \"{0}\"."), ex.Message);
 
 				HigMessageDialog md = new HigMessageDialog (mdd.Dialog, DialogFlags.DestroyWithParent,
-									    Gtk.MessageType.Error,
-									    ButtonsType.Ok,
-									    msg,
-									    desc);
+										Gtk.MessageType.Error,
+										ButtonsType.Ok,
+										msg,
+										desc);
 				md.Run ();
 				md.Destroy ();
 
@@ -301,45 +301,45 @@ namespace FSpot.Tools.MergeDb
 			to_store.Commit (newp);
 		}
 
-        SafeUri FindImportDestination (SafeUri uri, DateTime time)
-        {
-            // Find a new unique location inside the photo folder
-            string name = uri.GetFilename ();
+		SafeUri FindImportDestination (SafeUri uri, DateTime time)
+		{
+			// Find a new unique location inside the photo folder
+			string name = uri.GetFilename ();
 
-            var dest_uri = FSpot.Core.Global.PhotoUri.Append (time.Year.ToString ())
-                                          .Append (String.Format ("{0:D2}", time.Month))
-                                          .Append (String.Format ("{0:D2}", time.Day));
-            EnsureDirectory (dest_uri);
+			var dest_uri = FSpot.Core.Global.PhotoUri.Append (time.Year.ToString ())
+										  .Append (String.Format ("{0:D2}", time.Month))
+										  .Append (String.Format ("{0:D2}", time.Day));
+			EnsureDirectory (dest_uri);
 
-            // If the destination we'd like to use is the file itself return that
-            if (dest_uri.Append (name) == uri)
-                return uri;
+			// If the destination we'd like to use is the file itself return that
+			if (dest_uri.Append (name) == uri)
+				return uri;
 
-            // Find an unused name
-            int i = 1;
-            var dest = dest_uri.Append (name);
-            var file = GLib.FileFactory.NewForUri (dest);
-            while (file.Exists) {
-                var filename = uri.GetFilenameWithoutExtension ();
-                var extension = uri.GetExtension ();
-                dest = dest_uri.Append (String.Format ("{0}-{1}{2}", filename, i++, extension));
-                file = GLib.FileFactory.NewForUri (dest);
-            }
+			// Find an unused name
+			int i = 1;
+			var dest = dest_uri.Append (name);
+			var file = GLib.FileFactory.NewForUri (dest);
+			while (file.Exists) {
+				var filename = uri.GetFilenameWithoutExtension ();
+				var extension = uri.GetExtension ();
+				dest = dest_uri.Append (String.Format ("{0}-{1}{2}", filename, i++, extension));
+				file = GLib.FileFactory.NewForUri (dest);
+			}
 
-            return dest;
-        }
+			return dest;
+		}
 
-        void EnsureDirectory (SafeUri uri)
-        {
-            var parts = uri.AbsolutePath.Split('/');
-            SafeUri current = new SafeUri (uri.Scheme + ":///", true);
-            for (int i = 0; i < parts.Length; i++) {
-                current = current.Append (parts [i]);
-                var file = GLib.FileFactory.NewForUri (current);
-                if (!file.Exists) {
-                    file.MakeDirectory (null);
-                }
-            }
-        }
+		void EnsureDirectory (SafeUri uri)
+		{
+			var parts = uri.AbsolutePath.Split('/');
+			SafeUri current = new SafeUri (uri.Scheme + ":///", true);
+			for (int i = 0; i < parts.Length; i++) {
+				current = current.Append (parts [i]);
+				var file = GLib.FileFactory.NewForUri (current);
+				if (!file.Exists) {
+					file.MakeDirectory (null);
+				}
+			}
+		}
 	}
 }

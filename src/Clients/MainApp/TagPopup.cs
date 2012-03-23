@@ -32,11 +32,14 @@
 // OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
+
 using System;
-using Mono.Unix;
+
 using FSpot;
 using FSpot.Core;
 using FSpot.Utils;
+
+using Mono.Unix;
 
 public class TagPopup
 {
@@ -48,18 +51,18 @@ public class TagPopup
 		Gtk.Menu popup_menu = new Gtk.Menu ();
 
 		GtkUtil.MakeMenuItem (popup_menu,
-                String.Format (Catalog.GetPluralString ("Find", "Find", tags.Length), tags.Length),
-                "gtk-add",
-                new EventHandler (App.Instance.Organizer.HandleIncludeTag),
-                true
-        );
+				String.Format (Catalog.GetPluralString ("Find", "Find", tags.Length), tags.Length),
+				"gtk-add",
+				new EventHandler (App.Instance.Organizer.HandleIncludeTag),
+				true
+		);
 
 		FSpot.TermMenuItem.Create (tags, popup_menu);
 
 		GtkUtil.MakeMenuSeparator (popup_menu);
 
 		GtkUtil.MakeMenuItem (popup_menu, Catalog.GetString ("Create New Tag..."), "tag-new",
-				      App.Instance.Organizer.HandleCreateNewCategoryCommand, true);
+					  App.Instance.Organizer.HandleCreateNewCategoryCommand, true);
 
 		GtkUtil.MakeMenuSeparator (popup_menu);
 
@@ -75,18 +78,18 @@ public class TagPopup
 		GtkUtil.MakeMenuSeparator (popup_menu);
 
 		GtkUtil.MakeMenuItem (popup_menu,
-				      Catalog.GetPluralString ("Attach Tag to Selection", "Attach Tags to Selection", tags_count), "gtk-add",
-				      new EventHandler (App.Instance.Organizer.HandleAttachTagCommand), tag != null && photo_count > 0);
+					  Catalog.GetPluralString ("Attach Tag to Selection", "Attach Tags to Selection", tags_count), "gtk-add",
+					  new EventHandler (App.Instance.Organizer.HandleAttachTagCommand), tag != null && photo_count > 0);
 
 		GtkUtil.MakeMenuItem (popup_menu,
-				      Catalog.GetPluralString ("Remove Tag From Selection", "Remove Tags From Selection", tags_count), "gtk-remove",
-				      new EventHandler (App.Instance.Organizer.HandleRemoveTagCommand), tag != null && photo_count > 0);
+					  Catalog.GetPluralString ("Remove Tag From Selection", "Remove Tags From Selection", tags_count), "gtk-remove",
+					  new EventHandler (App.Instance.Organizer.HandleRemoveTagCommand), tag != null && photo_count > 0);
 
 		if (tags_count > 1 && tag != null) {
 			GtkUtil.MakeMenuSeparator (popup_menu);
 
 			GtkUtil.MakeMenuItem (popup_menu, Catalog.GetString ("Merge Tags"),
-					      new EventHandler (App.Instance.Organizer.HandleMergeTagsCommand), true);
+						  new EventHandler (App.Instance.Organizer.HandleMergeTagsCommand), true);
 
 		}
 

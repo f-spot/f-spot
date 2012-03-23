@@ -28,8 +28,8 @@
 //
 
 using System;
+
 using Cairo;
-using System.Runtime.InteropServices;
 
 namespace FSpot.Utils {
 	public class CairoUtils {

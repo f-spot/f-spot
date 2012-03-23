@@ -29,11 +29,11 @@
 
 using System;
 
-using Gtk;
-using Gdk;
-
 using FSpot.Core;
 using FSpot.Utils;
+
+using Gdk;
+using Gtk;
 
 
 namespace FSpot.Widgets

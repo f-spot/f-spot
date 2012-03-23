@@ -29,12 +29,10 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using FSpot;
-using FSpot.Utils;
 using Gdk;
 using Gtk;
+
 using Mono.Unix;
-using System;
 
 namespace FSpot.Editors {
 	class RedEyeEditor : Editor {

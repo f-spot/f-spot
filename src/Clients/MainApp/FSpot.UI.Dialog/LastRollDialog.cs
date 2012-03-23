@@ -32,10 +32,10 @@
 using System;
 using System.Collections.Generic;
 
-using Gtk;
 using FSpot.Core;
 using FSpot.Query;
-using FSpot.UI.Dialog;
+
+using Gtk;
 
 namespace FSpot.UI.Dialog
 {

@@ -27,14 +27,7 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using System;
-
-using Cairo;
 using Gdk;
-
-using FSpot.Utils;
-
-using Color = Cairo.Color;
 
 namespace FSpot.Transitions
 {

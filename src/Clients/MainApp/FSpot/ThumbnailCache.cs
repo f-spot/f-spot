@@ -33,12 +33,13 @@
 //
 
 using System;
-using System.Collections;
 using System.Collections.Generic;
+
+using FSpot.Utils;
+
 using Gdk;
 
 using Hyena;
-using FSpot.Utils;
 
 namespace FSpot
 {

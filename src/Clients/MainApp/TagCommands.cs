@@ -31,21 +31,19 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using Gtk;
-using Gdk;
-
 using System;
-using System.Text;
-using System.Collections;
 using System.Collections.Generic;
 
-using Mono.Unix;
 using FSpot;
 using FSpot.Core;
-using FSpot.Utils;
 using FSpot.UI.Dialog;
-using FSpot.Widgets;
+
+using Gdk;
+using Gtk;
+
 using Hyena;
+
+using Mono.Unix;
 
 public class TagCommands {
 

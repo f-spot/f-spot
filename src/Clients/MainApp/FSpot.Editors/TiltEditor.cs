@@ -30,13 +30,15 @@
 //
 
 using System;
-using Mono.Unix;
 
-using Gdk;
-using Gtk;
 using Cairo;
 
 using FSpot.Widgets;
+
+using Gdk;
+using Gtk;
+
+using Mono.Unix;
 
 using Pinta.Core;
 

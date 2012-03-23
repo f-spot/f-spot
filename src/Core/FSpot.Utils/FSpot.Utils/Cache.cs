@@ -29,8 +29,8 @@
 
 using System;
 using System.Collections.Generic;
-using Hyena;
 
+using Hyena;
 
 namespace FSpot.Utils
 {

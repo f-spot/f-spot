@@ -29,14 +29,10 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using Gtk;
-using Gdk;
 using System;
-using GLib;
-using System.Runtime.InteropServices;
-using FSpot;
-using FSpot.Utils;
-using Hyena;
+
+using Gdk;
+using Gtk;
 
 namespace FSpot {
 	public class XScreenSaverSlide : Gtk.Window {

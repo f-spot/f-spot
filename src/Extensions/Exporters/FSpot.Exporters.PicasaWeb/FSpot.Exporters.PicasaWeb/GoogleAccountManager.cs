@@ -29,10 +29,13 @@
 //
 
 using System;
+// FIXME: Why do we still have System.Collections
 using System.Collections;
 using System.Collections.Generic;
-using Hyena;
+
 using Gnome.Keyring;
+
+using Hyena;
 
 namespace FSpot.Exporters.PicasaWeb
 {

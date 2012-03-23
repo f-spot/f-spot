@@ -37,21 +37,21 @@
  * Copyright (C) 2006 Stephane Delcroix
  */
 using System;
-using System.IO;
-using System.Text;
 using System.Collections;
 using System.Collections.Generic;
-using Mono.Unix;
-using Hyena;
+using System.IO;
+using System.Text;
 
-using FSpot;
 using FSpot.Core;
 using FSpot.Filters;
-using FSpot.Widgets;
 using FSpot.UI.Dialog;
+using FSpot.Widgets;
+
+using Hyena;
 
 using Mono.Google;
 using Mono.Google.Picasa;
+using Mono.Unix;
 
 namespace FSpot.Exporters.PicasaWeb
 {

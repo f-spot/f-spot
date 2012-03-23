@@ -31,21 +31,23 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using Gtk;
-using Gdk;
 using System;
 using System.Collections.Generic;
 
-using Mono.Addins;
-using Mono.Unix;
+using FSpot.Core;
+using FSpot.Extensions;
+using FSpot.Platform;
+using FSpot.UI.Dialog;
+using FSpot.Utils;
+using FSpot.Widgets;
+
+using Gdk;
+using Gtk;
 
 using Hyena;
-using FSpot.Extensions;
-using FSpot.Utils;
-using FSpot.UI.Dialog;
-using FSpot.Widgets;
-using FSpot.Platform;
-using FSpot.Core;
+
+using Mono.Addins;
+using Mono.Unix;
 
 namespace FSpot {
 	public class SingleView {

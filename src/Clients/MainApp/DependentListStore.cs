@@ -28,8 +28,6 @@
 //
 
 using Gtk;
-using Gdk;
-using System;
 
 public class DependentListStore : ListStore {
         private TreeModel parent = null;

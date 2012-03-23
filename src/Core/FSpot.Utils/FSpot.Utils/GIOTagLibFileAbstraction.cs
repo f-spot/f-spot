@@ -29,7 +29,9 @@
 
 using System;
 using System.IO;
+
 using GLib;
+
 using Hyena;
 
 namespace FSpot.Utils

@@ -30,22 +30,27 @@
 // OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
-using Gdk;
-using System.Collections;
-using System.Runtime.InteropServices;
+
 using System;
 using System.IO;
+using System.Runtime.InteropServices;
+
+using Cairo;
+
 using FSpot;
 using FSpot.Core;
-using FSpot.Utils;
 using FSpot.Imaging;
-using Hyena;
-using TagLib.Image;
-using Cairo;
 using FSpot.UI.Dialog;
+using FSpot.Utils;
+
+using Gdk;
+
+using Hyena;
 
 using Pinta.Core;
 using Pinta.Effects;
+
+using TagLib.Image;
 
 public static class PixbufUtils
 {
@@ -67,9 +72,9 @@ public static class PixbufUtils
 				  out int fit_width, out int fit_height)
 	{
 		return Fit (pixbuf.Width, pixbuf.Height,
-			    dest_width, dest_height,
-			    upscale_smaller,
-			    out fit_width, out fit_height);
+				dest_width, dest_height,
+				upscale_smaller,
+				out fit_width, out fit_height);
 	}
 
 	public static double Fit (int orig_width, int orig_height,
@@ -251,10 +256,10 @@ public static class PixbufUtils
 
 		Pixbuf flattened = new Pixbuf (Colorspace.Rgb, false, 8, pixbuf.Width, pixbuf.Height);
 		pixbuf.CompositeColor (flattened, 0, 0,
-				       pixbuf.Width, pixbuf.Height,
-				       0, 0, 1, 1,
-				       InterpType.Bilinear,
-				       255, 0, 0, 2000, 0xffffff, 0xffffff);
+					   pixbuf.Width, pixbuf.Height,
+					   0, 0, 1, 1,
+					   InterpType.Bilinear,
+					   255, 0, 0, 2000, 0xffffff, 0xffffff);
 
 		return flattened;
 	}
@@ -278,10 +283,10 @@ public static class PixbufUtils
 	}
 
 	unsafe public static Pixbuf UnsharpMask (Pixbuf src,
-                                             double radius,
-                                             double amount,
-                                             double threshold,
-                                             ThreadProgressDialog progressDialog)
+											 double radius,
+											 double amount,
+											 double threshold,
+											 ThreadProgressDialog progressDialog)
 	{
 		// Make sure the pixbuf has an alpha channel before we try to blur it
 		src = src.AddAlpha (false, 0, 0, 0);
@@ -361,7 +366,7 @@ public static class PixbufUtils
 			g.SetSource (surf);
 			g.Paint ();
 		}
-        
+		
 		return newsurf;
 	}
 
@@ -392,7 +397,7 @@ public static class PixbufUtils
 				int adjusted_blue = (int)(s [2] * BLUE_FACTOR);
 
 				if (adjusted_red >= adjusted_green - threshold
-				    && adjusted_red >= adjusted_blue - threshold)
+					&& adjusted_red >= adjusted_blue - threshold)
 					s [0] = (byte)(((double)(adjusted_green + adjusted_blue)) / (2.0 * RED_FACTOR));
 				s += channels;
 			}
@@ -416,9 +421,9 @@ public static class PixbufUtils
 	}
 
 	public static unsafe void ColorAdjust (Pixbuf src, Pixbuf dest,
-					       double brightness, double contrast,
-					       double hue, double saturation,
-					       int src_color, int dest_color)
+						   double brightness, double contrast,
+						   double hue, double saturation,
+						   int src_color, int dest_color)
 	{
 		if (src.Width != dest.Width || src.Height != dest.Height)
 			throw new Exception ("Invalid Dimensions");
@@ -452,8 +457,8 @@ public static class PixbufUtils
 
 		for (int row = 0; row < src.Height; row++) {
 			trans.Apply ((IntPtr)(srcpix + row * src.Rowstride),
-				     (IntPtr)(destpix + row * dest.Rowstride),
-				     (uint)width);
+					 (IntPtr)(destpix + row * dest.Rowstride),
+					 (uint)width);
 		}
 
 	}
@@ -584,7 +589,7 @@ public static class PixbufUtils
 
 	[DllImport("libgdk_pixbuf-2.0-0.dll")]
 	static extern bool gdk_pixbuf_save (IntPtr raw, IntPtr filename, IntPtr type, out IntPtr error,
-            IntPtr optlabel1, IntPtr optvalue1, IntPtr dummy);
+			IntPtr optlabel1, IntPtr optvalue1, IntPtr dummy);
 
 	private static bool Save (this Pixbuf pixbuf, string filename, string type, uint jpeg_quality)
 	{

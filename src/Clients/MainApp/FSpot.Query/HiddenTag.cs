@@ -31,9 +31,7 @@
 
 using System;
 
-using FSpot;
 using FSpot.Core;
-
 
 namespace FSpot.Query
 {

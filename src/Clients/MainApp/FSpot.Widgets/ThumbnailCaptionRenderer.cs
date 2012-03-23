@@ -27,13 +27,10 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using System;
-
-using Gtk;
-using Gdk;
-
 using FSpot.Core;
 
+using Gdk;
+using Gtk;
 
 namespace FSpot.Widgets
 {

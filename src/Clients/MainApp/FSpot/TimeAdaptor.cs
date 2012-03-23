@@ -34,10 +34,12 @@
 //
 
 using System;
-using System.Threading;
 using System.Collections.Generic;
+using System.Threading;
+
 using FSpot.Core;
 using FSpot.Query;
+
 using Hyena;
 
 namespace FSpot {

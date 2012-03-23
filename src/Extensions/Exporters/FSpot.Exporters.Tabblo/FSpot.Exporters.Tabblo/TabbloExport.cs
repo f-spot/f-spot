@@ -27,19 +27,18 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using Mono.Tabblo;
-using Mono.Unix;
-
 using System;
-using System.Collections;
 using System.Diagnostics;
 using System.Net;
 using System.Threading;
 
-using Hyena;
-using FSpot;
 using FSpot.Core;
 using FSpot.UI.Dialog;
+
+using Hyena;
+
+using Mono.Tabblo;
+using Mono.Unix;
 
 namespace FSpot.Exporters.Tabblo {
 

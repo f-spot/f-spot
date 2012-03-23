@@ -27,15 +27,18 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using Cairo;
 using System;
 using System.Runtime.InteropServices;
-using Mono.Unix;
+
+using Cairo;
 
 using FSpot.Core;
-using FSpot.Widgets;
 using FSpot.Imaging;
+using FSpot.Widgets;
+
 using Hyena;
+
+using Mono.Unix;
 
 namespace FSpot
 {

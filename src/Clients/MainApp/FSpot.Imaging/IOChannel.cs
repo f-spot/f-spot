@@ -30,8 +30,8 @@
 using System;
 using System.IO;
 using System.Runtime.InteropServices;
+
 using GLib;
-using Hyena;
 
 namespace FSpot.Imaging {
 

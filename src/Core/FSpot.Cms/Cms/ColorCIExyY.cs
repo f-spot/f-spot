@@ -29,10 +29,8 @@
 
 using System;
 using System.IO;
-using System.Collections;
-using System.Runtime.InteropServices;
 using System.Reflection;
-using System.Runtime.Serialization;
+using System.Runtime.InteropServices;
 
 namespace Cms {
 	public struct ColorCIExyY {

@@ -30,12 +30,15 @@
 //
 
 using System;
+
 using Cairo;
-using Gdk;
+
 using FSpot.Core;
-using FSpot.Widgets;
-using FSpot.Utils;
 using FSpot.Gui;
+using FSpot.Utils;
+using FSpot.Widgets;
+
+using Gdk;
 
 namespace FSpot {
 	public class PreviewPopup : Gtk.Window {

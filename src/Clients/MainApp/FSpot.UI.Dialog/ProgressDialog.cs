@@ -29,9 +29,9 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using GLib;
-using Gtk;
 using System;
+
+using Gtk;
 
 using Mono.Unix;
 

@@ -29,9 +29,9 @@
 
 using System;
 
-using Mono.Unix;
-
 using Hyena.Widgets;
+
+using Mono.Unix;
 
 namespace FSpot.Exporters.Gallery
 {

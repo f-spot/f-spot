@@ -30,7 +30,9 @@
 //
 
 using System;
+
 using Banshee.Kernel;
+
 using Hyena;
 
 namespace FSpot.Jobs {

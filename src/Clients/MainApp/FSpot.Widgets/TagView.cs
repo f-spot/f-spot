@@ -32,9 +32,11 @@
 //
 
 using System;
-using Gtk;
-using Gdk;
+
 using FSpot.Core;
+
+using Gdk;
+using Gtk;
 
 namespace FSpot.Widgets {
 public class TagView : EventBox {
@@ -136,12 +138,12 @@ public class TagView : EventBox {
 					FSpot.ColorManagement.ApplyProfile (scaled_icon, screen_profile);
 
 			scaled_icon.RenderToDrawable (GdkWindow, Style.WhiteGC,
-						      0, 0, tag_x, tag_y, thumbnail_size, thumbnail_size,
-						      RgbDither.None, tag_x, tag_y);
+							  0, 0, tag_x, tag_y, thumbnail_size, thumbnail_size,
+							  RgbDither.None, tag_x, tag_y);
 			tag_x += thumbnail_size + TAG_ICON_VSPACING;
 		}
 
-        this.TooltipText =  String.Join (", ", names);
+		this.TooltipText =  String.Join (", ", names);
 	}
 }
 }

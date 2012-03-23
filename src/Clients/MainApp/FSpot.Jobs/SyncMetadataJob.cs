@@ -30,11 +30,13 @@
 //
 
 using System;
+
 using Banshee.Kernel;
-using Hyena;
+
 using FSpot.Core;
 using FSpot.Utils;
-using Mono.Unix;
+
+using Hyena;
 
 namespace FSpot.Jobs {
     public class SyncMetadataJob : Job

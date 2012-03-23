@@ -29,22 +29,22 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using FSpot;
-using FSpot.Extensions;
+using System;
+using System.Collections.Generic;
+
+using FSpot.Core;
 using FSpot.Editors;
+using FSpot.Extensions;
 using FSpot.UI.Dialog;
 using FSpot.Utils;
-using FSpot.Core;
 
 using Gtk;
 
-using Mono.Addins;
-using Mono.Unix;
-
-using System;
-using System.Collections.Generic;
 using Hyena;
 using Hyena.Widgets;
+
+using Mono.Addins;
+using Mono.Unix;
 
 namespace FSpot.Widgets {
 	public class EditorPage : SidebarPage {

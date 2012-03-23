@@ -29,8 +29,10 @@
 
 using System;
 using System.IO;
-using Mono.Unix;
+
 using Hyena;
+
+using Mono.Unix;
 
 namespace FSpot.UI.Dialog
 {

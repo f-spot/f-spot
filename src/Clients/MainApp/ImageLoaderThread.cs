@@ -30,17 +30,18 @@
 // OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
-using Gdk;
-using Gtk;
+
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
-using System;
+
+using FSpot.Imaging;
+using FSpot.Utils;
+
+using Gdk;
+using Gtk;
 
 using Hyena;
-
-using FSpot.Utils;
-using FSpot.Imaging;
 
 public class ImageLoaderThread
 {

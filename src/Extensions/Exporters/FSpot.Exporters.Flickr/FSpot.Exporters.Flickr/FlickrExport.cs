@@ -30,24 +30,23 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using FlickrNet;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading;
-using Mono.Unix;
 
-using FSpot;
 using FSpot.Core;
 using FSpot.Filters;
-using FSpot.Widgets;
-using FSpot.Utils;
 using FSpot.UI.Dialog;
+using FSpot.Widgets;
+
+using GtkBeans;
+
 using Hyena;
 using Hyena.Widgets;
 
-using GtkBeans;
+using Mono.Unix;
 
 namespace FSpot.Exporters.Flickr {
 	public class TwentyThreeHQExport : FlickrExport
@@ -264,10 +263,10 @@ namespace FSpot.Exporters.Flickr {
 			} catch (Exception e) {
 				HigMessageDialog md =
 					new HigMessageDialog (Dialog,
-							      Gtk.DialogFlags.Modal |
-							      Gtk.DialogFlags.DestroyWithParent,
-							      Gtk.MessageType.Error, Gtk.ButtonsType.Ok,
-							      Catalog.GetString ("Unable to log on"), e.Message);
+								  Gtk.DialogFlags.Modal |
+								  Gtk.DialogFlags.DestroyWithParent,
+								  Gtk.MessageType.Error, Gtk.ButtonsType.Ok,
+								  Catalog.GetString ("Unable to log on"), e.Message);
 
 				md.Run ();
 				md.Destroy ();
@@ -333,10 +332,10 @@ namespace FSpot.Exporters.Flickr {
 				} else {
 					HigMessageDialog md =
 						new HigMessageDialog (Dialog,
-								      Gtk.DialogFlags.Modal |
-								      Gtk.DialogFlags.DestroyWithParent,
-								      Gtk.MessageType.Error, Gtk.ButtonsType.Ok,
-								      Catalog.GetString ("Unable to log on"), e.Message);
+									  Gtk.DialogFlags.Modal |
+									  Gtk.DialogFlags.DestroyWithParent,
+									  Gtk.MessageType.Error, Gtk.ButtonsType.Ok,
+									  Catalog.GetString ("Unable to log on"), e.Message);
 
 					md.Run ();
 					md.Destroy ();
@@ -357,7 +356,7 @@ namespace FSpot.Exporters.Flickr {
 			if (args.UploadComplete) {
 				progress_dialog.Fraction = photo_index / (double) selection.Count;
 				progress_dialog.ProgressText = String.Format (Catalog.GetString ("Waiting for response {0} of {1}"),
-									      photo_index, selection.Count);
+										  photo_index, selection.Count);
 			}
 			progress_dialog.Fraction = (photo_index - 1.0 + (args.Bytes / (double) info.Length)) / (double) selection.Count;
 		}
@@ -383,7 +382,7 @@ namespace FSpot.Exporters.Flickr {
 				try {
 					IPhoto photo = photos [index];
 					progress_dialog.Message = System.String.Format (
-                                                Catalog.GetString ("Uploading picture \"{0}\""), photo.Name);
+												Catalog.GetString ("Uploading picture \"{0}\""), photo.Name);
 
 					progress_dialog.Fraction = photo_index / (double)selection.Count;
 					photo_index++;
@@ -401,9 +400,9 @@ namespace FSpot.Exporters.Flickr {
 
 					if (App.Instance.Database != null && photo is FSpot.Photo)
 						App.Instance.Database.Exports.Create ((photo as FSpot.Photo).Id,
-									      (photo as FSpot.Photo).DefaultVersionId,
-									      ExportStore.FlickrExportType,
-									      auth.User.UserId + ":" + auth.User.Username + ":" + current_service.Name + ":" + id);
+										  (photo as FSpot.Photo).DefaultVersionId,
+										  ExportStore.FlickrExportType,
+										  auth.User.UserId + ":" + auth.User.Username + ":" + current_service.Name + ":" + id);
 
 				} catch (System.Exception e) {
 					progress_dialog.Message = String.Format (Catalog.GetString ("Error Uploading To {0}: {1}"),
@@ -490,12 +489,12 @@ namespace FSpot.Exporters.Flickr {
 				do_export_flickr.Sensitive = false;
 				HigMessageDialog md =
 					new HigMessageDialog (Dialog,
-							      Gtk.DialogFlags.Modal |
-							      Gtk.DialogFlags.DestroyWithParent,
-							      Gtk.MessageType.Error, Gtk.ButtonsType.Ok,
-							      Catalog.GetString ("Unable to log on."),
-							      string.Format (Catalog.GetString ("F-Spot was unable to log on to {0}.  Make sure you have given the authentication using {0} web browser interface."),
-									     current_service.Name));
+								  Gtk.DialogFlags.Modal |
+								  Gtk.DialogFlags.DestroyWithParent,
+								  Gtk.MessageType.Error, Gtk.ButtonsType.Ok,
+								  Catalog.GetString ("Unable to log on."),
+								  string.Format (Catalog.GetString ("F-Spot was unable to log on to {0}.  Make sure you have given the authentication using {0} web browser interface."),
+										 current_service.Name));
 				md.Run ();
 				md.Destroy ();
 				return;

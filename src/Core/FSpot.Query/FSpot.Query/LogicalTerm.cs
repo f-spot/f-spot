@@ -29,8 +29,10 @@
 
 using System;
 using System.Collections.Generic;
-using Hyena;
+
 using FSpot.Core;
+
+using Hyena;
 
 namespace FSpot.Query
 {

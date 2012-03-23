@@ -31,10 +31,9 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using System;
-using Gdk;
-using Gtk;
 using FSpot.Core;
+
+using Gtk;
 
 namespace FSpot.UI.Dialog {
 	public class TagSelectionDialog : BuilderDialog

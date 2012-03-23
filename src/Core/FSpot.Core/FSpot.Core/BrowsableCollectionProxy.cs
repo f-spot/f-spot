@@ -27,8 +27,6 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using System.Collections.Generic;
-
 namespace FSpot.Core {
     public class BrowsableCollectionProxy : IBrowsableCollection {
 

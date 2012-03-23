@@ -30,18 +30,11 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using Hyena;
-
 using System;
-using System.IO;
 using System.Collections.Generic;
 
-using FSpot.Utils;
-using Mono.Unix;
-using Mono.Unix.Native;
-using Gdk;
+using Hyena;
 
-using GLib;
 using TagLib.Image;
 
 using GFileInfo = GLib.FileInfo;

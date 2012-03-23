@@ -29,11 +29,11 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using Mono.Addins;
-using FSpot.Widgets;
 using System;
 
 using Hyena.Widgets;
+
+using Mono.Addins;
 
 namespace FSpot.Extensions
 {

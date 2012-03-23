@@ -28,7 +28,6 @@
 //
 
 using System;
-using Gdk;
 
 namespace FSpot.Loaders {
 	public class AreaPreparedEventArgs : EventArgs

@@ -31,15 +31,9 @@
 // OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-using Gdk;
-using Gtk;
-
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.IO;
 
-using FSpot;
 using FSpot.Core;
 using FSpot.Database;
 using Hyena.Data.Sqlite;

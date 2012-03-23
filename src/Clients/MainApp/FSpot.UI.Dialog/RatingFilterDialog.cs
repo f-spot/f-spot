@@ -31,11 +31,10 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using Gtk;
-using FSpot;
 using FSpot.Query;
 using FSpot.Widgets;
-using FSpot.UI.Dialog;
+
+using Gtk;
 
 namespace FSpot.UI.Dialog
 {

@@ -28,24 +28,13 @@
 //
 
 using System;
-using System.Net;
-using System.IO;
-using System.Text;
-using System.Collections;
-using System.Collections.Specialized;
-using System.Web;
-using Mono.Unix;
-using Hyena;
-using Hyena.Widgets;
-using FSpot;
-using FSpot.Core;
-using FSpot.Filters;
-using FSpot.Widgets;
-using FSpot.Imaging;
-using FSpot.UI.Dialog;
+
 using Gnome.Keyring;
-using Mono.Google;
+
+using Hyena.Widgets;
+
 using Mono.Google.Picasa;
+using Mono.Unix;
 
 namespace FSpot.Exporters.PicasaWeb
 {

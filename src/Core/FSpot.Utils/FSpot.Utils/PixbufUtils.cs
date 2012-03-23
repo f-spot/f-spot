@@ -30,8 +30,7 @@
 //
 
 using Gdk;
-using System;
-using System.Runtime.InteropServices;
+
 using TagLib.Image;
 
 namespace FSpot.Utils

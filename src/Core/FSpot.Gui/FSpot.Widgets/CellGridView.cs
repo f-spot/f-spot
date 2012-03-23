@@ -33,9 +33,6 @@ using System.Collections.Generic;
 using Gtk;
 using Gdk;
 
-using Hyena;
-
-
 namespace FSpot.Widgets
 {
     /// <summary>

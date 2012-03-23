@@ -55,11 +55,10 @@
 using System;
 using System.IO;
 
-using Hyena;
-
-using FSpot;
 using FSpot.Core;
 using FSpot.Filters;
+
+using Hyena;
 
 namespace FSpot.Exporters.Folder
 {

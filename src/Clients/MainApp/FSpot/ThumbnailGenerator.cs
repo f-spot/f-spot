@@ -31,13 +31,9 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using System;
-using Hyena;
 using FSpot.Utils;
-using FSpot.Platform;
 
-using Mono.Unix.Native;
-using GFileInfo = GLib.FileInfo;
+using Hyena;
 
 namespace FSpot {
     public class ThumbnailLoader : ImageLoaderThread {

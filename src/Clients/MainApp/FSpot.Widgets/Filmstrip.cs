@@ -37,16 +37,15 @@
 //	* Handle orientation changes (low) (require gtk# changes, so I can trigger an OrientationChanged event)
 
 using System;
-using System.Collections;
 using System.Collections.Generic;
 
-using Gtk;
-using Gdk;
-
+using FSpot.Bling;
 using FSpot.Core;
 using FSpot.Utils;
-using FSpot.Platform;
-using FSpot.Bling;
+
+using Gdk;
+using Gtk;
+
 using Hyena;
 
 namespace FSpot.Widgets

@@ -31,22 +31,23 @@
 //
 
 using System;
-using System.IO;
-using System.Threading;
 using System.Collections;
 using System.Collections.Generic;
-using Mono.Unix;
-using Gtk;
-using Gnome.Keyring;
+using System.IO;
 
 using FSpot.Core;
-using Hyena;
-using Hyena.Widgets;
-using FSpot.UI.Dialog;
 using FSpot.Extensions;
 using FSpot.Filters;
+using FSpot.UI.Dialog;
+
+using Gnome.Keyring;
+using Gtk;
+
+using Hyena;
+using Hyena.Widgets;
 
 using Mono.Facebook;
+using Mono.Unix;
 
 namespace FSpot.Exporters.Facebook
 {

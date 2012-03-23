@@ -27,14 +27,11 @@
 // OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
+
 using System;
-using System.Xml;
 using System.Collections.Generic;
-using System.Text;
-using System.IO;
-using System.Net;
 using System.Linq;
-using Mono.Facebook.Schemas;
+using System.Xml;
 
 namespace Mono.Facebook
 {

@@ -30,16 +30,12 @@
 //
 
 using System;
-using System.IO;
 using System.Reflection;
-using System.Runtime.InteropServices;
-using Mono.Unix;
-using FSpot;
+
 using FSpot.Core;
-using FSpot.Filters;
-using FSpot.Widgets;
-using Hyena;
 using FSpot.UI.Dialog;
+using FSpot.Widgets;
+
 using GLib;
 using Gtk;
 using GtkBeans;

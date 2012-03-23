@@ -38,7 +38,6 @@ using System.Net;
 using System.Text;
 using System.Web;
 
-using FSpot.Core;
 using Mono.Unix;
 
 

@@ -29,14 +29,11 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using Gdk;
-using Gtk;
-using System.Collections;
-using System.IO;
 using System;
-using FSpot;
+
 using FSpot.Core;
 using FSpot.Database;
+
 using Hyena.Data.Sqlite;
 
 namespace FSpot {

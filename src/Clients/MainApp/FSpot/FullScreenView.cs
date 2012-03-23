@@ -30,13 +30,16 @@
 //
 
 using System;
+
 using Gtk;
-using Gdk;
+
 using FSpot.Core;
 using FSpot.Widgets;
 using FSpot.Gui;
 using FSpot.Utils;
+
 using Hyena;
+
 using Mono.Unix;
 
 namespace FSpot {

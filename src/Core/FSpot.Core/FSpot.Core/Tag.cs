@@ -30,8 +30,11 @@
 //
 
 using System;
-using Gdk;
+
 using FSpot.Utils;
+
+using Gdk;
+
 using Hyena;
 
 namespace FSpot.Core

@@ -1,5 +1,4 @@
-using System;
-
+// FIXME: Missing license file?
 using Gtk;
 
 namespace FSpot.Utils

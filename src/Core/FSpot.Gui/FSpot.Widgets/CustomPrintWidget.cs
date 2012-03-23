@@ -30,9 +30,10 @@
 //
 
 using System;
-using Mono.Unix;
+
 using Gtk;
-using FSpot.Utils;
+
+using Mono.Unix;
 
 namespace FSpot.Widgets
 {

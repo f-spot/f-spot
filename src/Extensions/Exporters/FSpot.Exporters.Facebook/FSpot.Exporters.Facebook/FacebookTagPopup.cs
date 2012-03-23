@@ -27,9 +27,11 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using System.Reflection;
 using System.Collections.Generic;
+using System.Reflection;
+
 using FSpot.Widgets;
+
 using Mono.Facebook;
 
 namespace FSpot.Exporters.Facebook

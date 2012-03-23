@@ -31,15 +31,19 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
+using System;
+
 using Gtk;
+// FIXME: Not sure we need this conditional since gtkbeans is used in several other places
 #if GTK_2_16
 using GtkBeans;
 #endif
-using System;
+
 using FSpot;
-using FSpot.Utils;
-using Hyena;
 using FSpot.Core;
+using FSpot.Utils;
+
+using Hyena;
 
 public class TagMenu : Menu {
 	private TagStore tag_store;
@@ -75,8 +79,8 @@ public class TagMenu : Menu {
 			System.Text.StringBuilder label_builder = new System.Text.StringBuilder ();
 
 			for (Category parent = t.Category;
-			     parent != null && parent.Category != null;
-			     parent = parent.Category)
+				 parent != null && parent.Category != null;
+				 parent = parent.Category)
 				label_builder.Append ("  ");
 
 			label_builder.Append (t.Name);
@@ -129,7 +133,7 @@ public class TagMenu : Menu {
 		}
 	}
 
-        public void PopulateFlat (Category cat, Gtk.Menu parent)
+		public void PopulateFlat (Category cat, Gtk.Menu parent)
 	{
 		foreach (Tag t in cat.Children) {
 			TagMenuItem item = TagMenuItem.IndentedItem (t);

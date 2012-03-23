@@ -29,14 +29,14 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using System.Collections;
-using System.IO;
 using System;
+
 using Banshee.Kernel;
-using FSpot.Jobs;
-using FSpot.Database;
-using FSpot;
+
 using FSpot.Core;
+using FSpot.Database;
+using FSpot.Jobs;
+
 using Hyena;
 using Hyena.Data.Sqlite;
 

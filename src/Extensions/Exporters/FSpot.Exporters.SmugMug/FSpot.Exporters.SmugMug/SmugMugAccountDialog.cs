@@ -28,23 +28,8 @@
 //
 
 using System;
-using System.Net;
-using System.IO;
-using System.Text;
-using System.Threading;
-using System.Collections;
-using System.Collections.Specialized;
-using System.Web;
-using Mono.Unix;
-using Gtk;
-using FSpot;
-using FSpot.Core;
-using FSpot.Filters;
-using FSpot.Widgets;
-using Hyena;
-using FSpot.UI.Dialog;
+
 using Gnome.Keyring;
-using SmugMugNet;
 
 namespace FSpot.Exporters.SmugMug
 {

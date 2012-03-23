@@ -30,9 +30,8 @@
 //
 
 using System;
-using FSpot;
+
 using FSpot.Core;
-using FSpot.Query;
 
 namespace FSpot.Tools.MergeDb
 {

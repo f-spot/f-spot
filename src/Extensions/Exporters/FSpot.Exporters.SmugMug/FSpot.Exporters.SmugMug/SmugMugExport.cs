@@ -40,19 +40,17 @@
  */
 
 using System;
-using System.IO;
-using System.Text;
-using System.Threading;
 using System.Collections.Generic;
-using Mono.Unix;
-using Gtk;
+using System.IO;
 
-using FSpot;
 using FSpot.Core;
 using FSpot.Filters;
-using FSpot.Widgets;
-using Hyena;
 using FSpot.UI.Dialog;
+using FSpot.Widgets;
+
+using Hyena;
+
+using Mono.Unix;
 
 using SmugMugNet;
 
@@ -64,16 +62,16 @@ namespace FSpot.Exporters.SmugMug {
 			builder = new GtkBeans.Builder (null, "smugmug_export_dialog.ui", null);
 			builder.Autoconnect (this);
 
-            gallery_optionmenu = Gtk.ComboBox.NewText();
-            album_optionmenu = Gtk.ComboBox.NewText();
+			gallery_optionmenu = Gtk.ComboBox.NewText();
+			album_optionmenu = Gtk.ComboBox.NewText();
 
-            (edit_button.Parent as Gtk.HBox).PackStart (gallery_optionmenu);
-            (album_button.Parent as Gtk.HBox).PackStart (album_optionmenu);
-            (edit_button.Parent as Gtk.HBox).ReorderChild (gallery_optionmenu, 1);
-            (album_button.Parent as Gtk.HBox).ReorderChild (album_optionmenu, 1);
+			(edit_button.Parent as Gtk.HBox).PackStart (gallery_optionmenu);
+			(album_button.Parent as Gtk.HBox).PackStart (album_optionmenu);
+			(edit_button.Parent as Gtk.HBox).ReorderChild (gallery_optionmenu, 1);
+			(album_button.Parent as Gtk.HBox).ReorderChild (album_optionmenu, 1);
 
-            gallery_optionmenu.Show ();
-            album_optionmenu.Show ();
+			gallery_optionmenu.Show ();
+			album_optionmenu.Show ();
 
 			this.items = selection.Items;
 			album_button.Sensitive = false;
@@ -230,9 +228,9 @@ namespace FSpot.Exporters.SmugMug {
 					int image_id = account.SmugMug.Upload (request.Current.LocalPath, album.AlbumID);
 					if (App.Instance.Database != null && item is Photo && image_id >= 0)
 						App.Instance.Database.Exports.Create ((item as Photo).Id,
-									      (item as Photo).DefaultVersionId,
-									      ExportStore.SmugMugExportType,
-									      account.SmugMug.GetAlbumUrl (image_id).ToString ());
+										  (item as Photo).DefaultVersionId,
+										  ExportStore.SmugMugExportType,
+										  account.SmugMug.GetAlbumUrl (image_id).ToString ());
 
 					sent_bytes += file_info.Length;
 
@@ -269,7 +267,7 @@ namespace FSpot.Exporters.SmugMug {
 
 			accounts = manager.GetAccounts ();
 			if (accounts == null || accounts.Count == 0) {
-                gallery_optionmenu.AppendText (Mono.Unix.Catalog.GetString ("(No Gallery)"));
+				gallery_optionmenu.AppendText (Mono.Unix.Catalog.GetString ("(No Gallery)"));
 
 				gallery_optionmenu.Sensitive = false;
 				edit_button.Sensitive = false;
@@ -279,7 +277,7 @@ namespace FSpot.Exporters.SmugMug {
 					if (account == changed_account)
 						pos = i;
 
-                    gallery_optionmenu.AppendText(account.Username);
+					gallery_optionmenu.AppendText(account.Username);
 
 					i++;
 				}
@@ -287,7 +285,7 @@ namespace FSpot.Exporters.SmugMug {
 				edit_button.Sensitive = true;
 			}
 
-            gallery_optionmenu.Active = pos;
+			gallery_optionmenu.Active = pos;
 		}
 
 		private void Connect ()
@@ -340,7 +338,7 @@ namespace FSpot.Exporters.SmugMug {
 			Album[] albums = account.SmugMug.GetAlbums();
 			for (int i=0; i < albums.Length; i++) {
 				if (((Album)albums[i]).Title == title) {
-                    album_optionmenu.Active = 1;
+					album_optionmenu.Active = 1;
 				}
 			}
 		}
@@ -363,7 +361,7 @@ namespace FSpot.Exporters.SmugMug {
 				string msg = disconnected ? Mono.Unix.Catalog.GetString ("(Not Connected)")
 					: Mono.Unix.Catalog.GetString ("(No Albums)");
 
-                album_optionmenu.AppendText(msg);
+				album_optionmenu.AppendText(msg);
 
 				export_button.Sensitive = false;
 				album_optionmenu.Sensitive = false;
@@ -374,7 +372,7 @@ namespace FSpot.Exporters.SmugMug {
 
 					label_builder.Append (album.Title);
 
-                    album_optionmenu.AppendText (label_builder.ToString());
+					album_optionmenu.AppendText (label_builder.ToString());
 				}
 
 				export_button.Sensitive = items.Length > 0;

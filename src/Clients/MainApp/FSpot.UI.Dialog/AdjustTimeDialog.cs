@@ -32,13 +32,16 @@
 //
 
 using System;
-using Gtk;
-using System.Collections;
-using Mono.Unix;
+
 using FSpot.Core;
 using FSpot.Database;
 using FSpot.Widgets;
+
+using Gtk;
+
 using Hyena;
+
+using Mono.Unix;
 
 namespace FSpot.UI.Dialog {
 	public class AdjustTimeDialog : BuilderDialog

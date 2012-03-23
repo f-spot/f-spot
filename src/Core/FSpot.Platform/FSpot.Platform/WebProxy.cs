@@ -28,6 +28,7 @@
 //
 
 using System;
+
 using Hyena;
 
 namespace FSpot.Platform

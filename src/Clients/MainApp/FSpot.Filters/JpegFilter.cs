@@ -29,10 +29,6 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using System;
-using FSpot.Utils;
-using FSpot.Imaging;
-
 namespace FSpot.Filters {
     public class JpegFilter : IFilter {
         private uint quality = 95;

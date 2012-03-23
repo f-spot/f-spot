@@ -28,8 +28,10 @@
 //
 
 using System;
-using Mono.Unix;
+
 using Gtk;
+
+using Mono.Unix;
 
 namespace FSpot.Widgets
 {

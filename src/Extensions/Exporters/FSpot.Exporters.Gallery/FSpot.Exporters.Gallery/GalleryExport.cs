@@ -34,16 +34,15 @@
 using System;
 using System.Collections.Generic;
 
-using Mono.Unix;
-
 using FSpot.Core;
-using FSpot.Filters;
-using FSpot.Widgets;
-using FSpot.UI.Dialog;
 using FSpot.Extensions;
+using FSpot.Filters;
+using FSpot.UI.Dialog;
+using FSpot.Widgets;
 
 using Hyena;
-using Hyena.Widgets;
+
+using Mono.Unix;
 
 namespace FSpot.Exporters.Gallery
 {

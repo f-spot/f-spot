@@ -1,3 +1,4 @@
+using System;
 //
 // RollStore.cs
 //
@@ -31,15 +32,10 @@
 // OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
-using System.Collections;
 using System.Collections.Generic;
-using System.IO;
-using System;
 
 using FSpot.Core;
 using FSpot.Database;
-using FSpot.Utils;
-using FSpot;
 
 using Hyena;
 using Hyena.Data.Sqlite;

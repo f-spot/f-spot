@@ -30,13 +30,14 @@
 using System;
 using System.Net;
 using System.Reflection;
-using FSpot;
+
 using FSpot.Core;
-using FSpot.Extensions;
-using FSpot.Query;
+
 using Gtk;
-using Mono.Unix;
+
 using Hyena;
+
+using Mono.Unix;
 
 namespace FSpot.Tools.LiveWebGallery
 {

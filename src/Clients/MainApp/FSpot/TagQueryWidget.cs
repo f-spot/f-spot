@@ -30,16 +30,16 @@
 //
 
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Text;
-using Mono.Unix;
-using Gtk;
-using Gdk;
 
 using FSpot.Core;
-using FSpot.Utils;
 using FSpot.Query;
+using FSpot.Utils;
+
+using Gdk;
+using Gtk;
+
+using Mono.Unix;
 
 namespace FSpot
 {

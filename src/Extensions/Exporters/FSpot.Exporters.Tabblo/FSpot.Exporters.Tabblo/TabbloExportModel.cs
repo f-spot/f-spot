@@ -27,16 +27,15 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using Hyena;
-
-using Mono.Tabblo;
-
 using System;
+// FIXME: Why do we still have System.Collections?
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 
 using FSpot.Core;
+
+using Hyena;
 
 namespace FSpot.Exporters.Tabblo {
 

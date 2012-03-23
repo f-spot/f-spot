@@ -29,11 +29,11 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using FSpot.Utils;
-using FSpot.Imaging;
 using System;
 using System.Collections.Generic;
-using Gdk;
+
+using FSpot.Imaging;
+
 using Hyena;
 
 namespace FSpot.Loaders {

@@ -33,8 +33,6 @@ using System;
 using System.Collections.Generic;
 
 using Gtk;
-using Gdk;
-using GLib;
 using GtkBeans;
 
 using Mono.Unix;

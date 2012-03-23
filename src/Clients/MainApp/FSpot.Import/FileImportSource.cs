@@ -26,15 +26,18 @@
 // OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
-using Hyena;
+
 using System;
-using System.Threading;
 using System.Collections.Generic;
+using System.Threading;
+
 using FSpot.Core;
-using FSpot.Utils;
 using FSpot.Imaging;
+using FSpot.Utils;
+
 using Gtk;
-using Mono.Unix.Native;
+
+using Hyena;
 
 namespace FSpot.Import
 {

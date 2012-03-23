@@ -29,13 +29,14 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using System;
-using Mono.Unix;
 using Cairo;
+
+using FSpot.Widgets;
+
 using Gdk;
 using Gtk;
 
-using FSpot.Widgets;
+using Mono.Unix;
 
 using Pinta.Core;
 

@@ -28,8 +28,10 @@
 //
 
 using System;
-using Gtk;
+
 using FSpot.Utils;
+
+using Gtk;
 
 namespace FSpot.Widgets {
 	public class ScrolledView : Fixed {

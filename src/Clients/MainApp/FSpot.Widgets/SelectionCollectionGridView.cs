@@ -30,10 +30,10 @@
 using System;
 using System.Collections.Generic;
 
+using FSpot.Core;
+
 using Gdk;
 using Gtk;
-
-using FSpot.Core;
 
 
 namespace FSpot.Widgets

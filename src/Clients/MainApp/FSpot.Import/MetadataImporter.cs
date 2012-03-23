@@ -28,10 +28,12 @@
 //
 
 using System;
-using Mono.Unix;
 using System.Collections.Generic;
+
 using FSpot.Core;
 using FSpot.Utils;
+
+using Mono.Unix;
 
 namespace FSpot.Import {
     internal class MetadataImporter {

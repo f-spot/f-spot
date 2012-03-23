@@ -42,16 +42,12 @@
  *
  */
 using System;
-using System.IO;
-using System.Text;
-using System.Collections;
 using System.Collections.Generic;
+using System.Text;
 
-using FlickrNet;
-using FSpot;
 using FSpot.Core;
-using FSpot.Utils;
 using FSpot.Filters;
+
 using Hyena;
 
 namespace FSpot.Exporters.Flickr {

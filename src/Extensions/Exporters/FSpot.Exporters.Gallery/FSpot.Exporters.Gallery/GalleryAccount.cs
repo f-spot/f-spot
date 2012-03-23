@@ -27,9 +27,9 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using Mono.Unix;
-
 using Hyena;
+
+using Mono.Unix;
 
 namespace FSpot.Exporters.Gallery
 {

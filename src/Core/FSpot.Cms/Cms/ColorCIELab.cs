@@ -28,11 +28,6 @@
 //
 
 using System;
-using System.IO;
-using System.Collections;
-using System.Runtime.InteropServices;
-using System.Reflection;
-using System.Runtime.Serialization;
 
 namespace Cms {
 	public struct ColorCIELab {

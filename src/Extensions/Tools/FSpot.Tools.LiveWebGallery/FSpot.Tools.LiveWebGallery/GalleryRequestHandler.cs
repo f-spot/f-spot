@@ -29,11 +29,11 @@
 
 using System;
 using System.IO;
-using System.Text;
 using System.Reflection;
+using System.Text;
 
-using FSpot;
 using FSpot.Core;
+
 using Mono.Unix;
 
 namespace FSpot.Tools.LiveWebGallery	

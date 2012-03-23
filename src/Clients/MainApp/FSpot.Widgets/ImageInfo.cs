@@ -30,11 +30,15 @@
 //
 
 using System;
+
 using Cairo;
+
+using FSpot.Imaging;
+using FSpot.Utils;
+
 using Gdk;
 using Gtk;
-using FSpot.Utils;
-using FSpot.Imaging;
+
 using Hyena;
 
 namespace FSpot.Widgets {

@@ -29,12 +29,12 @@
 //
 
 using System;
-using System.Collections;
 using System.Collections.Generic;
+
+using FSpot.Core;
+
 using Gtk;
 
-using FSpot;
-using FSpot.Core;
 using Hyena;
 
 public class PhotoTagMenu : Menu {

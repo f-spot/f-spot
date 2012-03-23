@@ -31,18 +31,18 @@
 
 using System;
 using System.IO;
-using Mono.Unix;
-using Hyena;
-using FSpot;
+
 using FSpot.Core;
-using FSpot.Utils;
 using FSpot.Extensions;
 using FSpot.Imaging;
-using FSpot.UI.Dialog;
+
+using Hyena;
+
+using Mono.Unix;
 
 namespace FSpot.Tools.DevelopInUFraw
 {
-    // Abstract version, contains shared functionality
+	// Abstract version, contains shared functionality
 	public abstract class AbstractDevelopInUFRaw : ICommand
 	{
 		// The executable used for developing RAWs
@@ -152,7 +152,7 @@ namespace FSpot.Tools.DevelopInUFraw
 		{
 			string name_without_ext = System.IO.Path.GetFileNameWithoutExtension (p.Name);
 			return new System.Uri (System.IO.Path.Combine (DirectoryPath (p),  name_without_ext
-					       + " (" + version_name + ")" + ".jpg"));
+						   + " (" + version_name + ")" + ".jpg"));
 		}
 
 		private static string DirectoryPath (Photo p)

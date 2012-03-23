@@ -29,10 +29,11 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using FSpot;
 using FSpot.Editors;
+
 using Gdk;
 using Gtk;
+
 using Mono.Unix;
 
 namespace FSpot.Addins.Editors {

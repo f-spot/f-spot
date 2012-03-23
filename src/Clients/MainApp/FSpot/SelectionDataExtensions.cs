@@ -32,15 +32,14 @@
 //
 
 using System;
-using System.Text;
 using System.Linq;
+using System.Text;
 
-using Gtk;
-using Gdk;
-
-using FSpot;
 using FSpot.Core;
 using FSpot.Utils;
+
+using Gdk;
+using Gtk;
 
 namespace FSpot
 {

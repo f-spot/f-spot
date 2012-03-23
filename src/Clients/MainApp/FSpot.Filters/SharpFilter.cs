@@ -29,14 +29,9 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using System;
-using System.IO;
-using Gdk;
-
-using Mono.Unix;
-
-using FSpot.Utils;
 using FSpot.Imaging;
+
+using Gdk;
 
 namespace FSpot.Filters {
     public class SharpFilter : IFilter

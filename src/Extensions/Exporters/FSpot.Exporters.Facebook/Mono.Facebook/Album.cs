@@ -26,20 +26,19 @@
 // OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
+
 using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Xml.Serialization;
 using System.Text;
-using System.Net;
+using System.Xml.Serialization;
+
 using Mono.Facebook.Schemas;
 
 namespace Mono.Facebook
 {
-    [System.Xml.Serialization.XmlRootAttribute("photos_createAlbum_response", Namespace="http://api.facebook.com/1.0/")]
+	[System.Xml.Serialization.XmlRootAttribute("photos_createAlbum_response", Namespace="http://api.facebook.com/1.0/")]
 	public class Album : album, SessionWrapper
 	{
-        [XmlIgnore]
+		[XmlIgnore]
 		public FacebookSession Session { get; set; }
 
 		public Photo[] GetPhotos ()

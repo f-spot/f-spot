@@ -30,8 +30,6 @@
 //
 
 using System;
-using GLib;
-using FSpot.Widgets;
 
 namespace FSpot.Extensions
 {

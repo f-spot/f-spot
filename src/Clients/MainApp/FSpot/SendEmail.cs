@@ -33,17 +33,18 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using Gtk;
-using GLib;
 using System;
 
 using FSpot.Core;
-using FSpot.Widgets;
 using FSpot.Filters;
 using FSpot.UI.Dialog;
+using FSpot.Widgets;
+
+using Gtk;
 
 using Hyena;
 using Hyena.Widgets;
+
 using Mono.Unix;
 
 namespace FSpot

@@ -29,21 +29,25 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using FSpot;
-using FSpot.UI.Dialog;
+using System;
+using System.IO;
+
 using FSpot.Core;
 using FSpot.Extensions;
 using FSpot.Filters;
+using FSpot.UI.Dialog;
+
+using Gtk;
+
 using Hyena;
 using Hyena.Widgets;
-using System;
-using System.IO;
-using System.Collections;
-using Mono.Unix;
-using Gtk;
+
+// FIXME: Is this in a newer version of mono?
 using ICSharpCode.SharpZipLib.Checksums;
-using ICSharpCode.SharpZipLib.Zip;
 using ICSharpCode.SharpZipLib.GZip;
+using ICSharpCode.SharpZipLib.Zip;
+
+using Mono.Unix;
 
 namespace FSpot.Exporters.Zip {
 	public class Zip : IExporter {

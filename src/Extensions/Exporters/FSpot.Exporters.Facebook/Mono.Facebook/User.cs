@@ -29,6 +29,7 @@
 //
 using System;
 using System.Xml.Serialization;
+
 using Mono.Facebook.Schemas;
 
 namespace Mono.Facebook

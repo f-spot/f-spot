@@ -33,27 +33,19 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using Gdk;
-using Gtk;
-
-using Mono.Unix;
-
-using System.Collections;
-using System.Collections.Generic;
-using System.IO;
-using System.Text;
 using System;
+using System.Collections.Generic;
+using System.Text;
 
-using FSpot;
 using FSpot.Core;
 using FSpot.Database;
 using FSpot.Jobs;
 using FSpot.Query;
-using FSpot.Utils;
-using FSpot.Platform;
 
 using Hyena;
 using Hyena.Data.Sqlite;
+
+using Mono.Unix;
 
 namespace FSpot {
         public class PhotoStore : DbStore<Photo> {

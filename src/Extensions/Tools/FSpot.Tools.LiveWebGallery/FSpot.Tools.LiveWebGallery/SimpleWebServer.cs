@@ -28,16 +28,15 @@
 //
 
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using System.Net.Sockets;
-using System.Collections;
-using System.Collections.Generic;
 using System.Text;
 using System.Threading;
 
-using FSpot;
 using FSpot.Extensions;
+
 using Hyena;
 
 namespace FSpot.Tools.LiveWebGallery

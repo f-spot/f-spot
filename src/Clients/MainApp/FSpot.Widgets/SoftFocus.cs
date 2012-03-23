@@ -29,9 +29,9 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using Cairo;
 using System;
-using System.Runtime.InteropServices;
+
+using Cairo;
 
 using Pinta.Core;
 
@@ -112,9 +112,9 @@ namespace FSpot.Widgets {
 			((IDisposable)ctx).Dispose ();
 			Gdk.Pixbuf normal = image.ToPixbuf();
 
-            Gdk.Pixbuf blur = PixbufUtils.Blur (normal, 3, null);
+			Gdk.Pixbuf blur = PixbufUtils.Blur (normal, 3, null);
 
-            ImageInfo overlay = new ImageInfo (blur);
+			ImageInfo overlay = new ImageInfo (blur);
 			blur.Dispose ();
 			normal.Dispose ();
 			image.Destroy ();
@@ -129,7 +129,7 @@ namespace FSpot.Widgets {
 			RadialGradient circle;
 
 			circle = new RadialGradient (center.X * scale, center.Y * scale, radius * max * .7,
-						     center.X * scale, center.Y * scale, radius * max + max * .2);
+							 center.X * scale, center.Y * scale, radius * max + max * .2);
 
 			circle.AddColorStop (0, new Cairo.Color (0.0, 0.0, 0.0, 0.0));
 			circle.AddColorStop (1.0, new Cairo.Color (1.0, 1.0, 1.0, 1.0));

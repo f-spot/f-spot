@@ -29,17 +29,13 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using System;
-using System.IO;
-using System.Collections;
 using System.Collections.Generic;
 using System.Xml;
 
-using Hyena;
-using GLib;
-
 using FSpot.Core;
 using FSpot.Imaging;
+
+using Hyena;
 
 namespace FSpot {
 	public class UriCollection : PhotoList {

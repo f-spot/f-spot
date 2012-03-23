@@ -28,17 +28,15 @@
 //
 
 using System;
-using System.IO;
-using System.Text;
 using System.Collections.Generic;
+
+using FSpot.Core;
+using FSpot.Extensions;
+using FSpot.Utils;
+
 using Gtk;
 
 using Mono.Unix;
-
-using FSpot.Core;
-using FSpot.Utils;
-using FSpot.Extensions;
-using FSpot.Imaging;
 
 namespace FSpot.Widgets {
 	public class MetadataDisplayPage : SidebarPage {
@@ -158,7 +156,7 @@ namespace FSpot.Widgets {
 		}
 
 		internal void HandleSelectionChanged (IBrowsableCollection collection) {
-            // Don't show metadata when multiple photos are selected.
+			// Don't show metadata when multiple photos are selected.
 			Photo = (collection != null && collection.Count == 1) ? collection [0] : null;
 		}
 
@@ -168,16 +166,16 @@ namespace FSpot.Widgets {
 
 			if (!Visible) {
 				up_to_date = false;
-            } else {
+			} else {
 				update_delay.Start ();
-            }
+			}
 		}
 
-        private new bool Visible {
-            get {
-                return (Page.Sidebar as Sidebar).IsActive (Page);
-            }
-        }
+		private new bool Visible {
+			get {
+				return (Page.Sidebar as Sidebar).IsActive (Page);
+			}
+		}
 
 		private ListStore AddExpander (string name, int pos)
 		{
@@ -232,8 +230,8 @@ namespace FSpot.Widgets {
 			System.Exception error = null;
 
 			/*
-            // FIXME: The stuff below needs to be ported to Taglib#.
-            TreeIter iter;
+			// FIXME: The stuff below needs to be ported to Taglib#.
+			TreeIter iter;
 			ListStore model;
 			string name;
 
@@ -377,11 +375,11 @@ namespace FSpot.Widgets {
 			if (empty) {
 				string msg;
 				if (photo == null) {
-				     msg = Catalog.GetString ("No active photo");
+					 msg = Catalog.GetString ("No active photo");
 				} else if (missing) {
 					msg = String.Format (Catalog.GetString ("The photo \"{0}\" does not exist"), photo.DefaultVersion.Uri);
 				} else {
-				     msg = Catalog.GetString ("No metadata available");
+					 msg = Catalog.GetString ("No metadata available");
 
 					if (error != null) {
 						msg = String.Format ("<i>{0}</i>", error);
@@ -414,7 +412,7 @@ namespace FSpot.Widgets {
 			return false;
 		}
 
-        /*
+		/*
 		private void WriteCollection (MemoryStore substore, StringBuilder collection)
 		{
 			string type = null;

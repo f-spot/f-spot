@@ -30,11 +30,15 @@
 //
 
 using System;
-using Mono.Unix;
+
+using FSpot.Core;
+
 using Gtk;
+
 using Hyena;
 using Hyena.Widgets;
-using FSpot.Core;
+
+using Mono.Unix;
 
 namespace FSpot.UI.Dialog
 {

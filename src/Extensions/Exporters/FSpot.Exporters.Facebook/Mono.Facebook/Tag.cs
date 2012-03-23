@@ -27,18 +27,19 @@
 //
 
 using System.Xml.Serialization;
+
 using Mono.Facebook.Schemas;
 
 namespace Mono.Facebook
 {
 	public class Tag : photo_tag, SessionWrapper
 	{
-        [XmlIgnore]
+		[XmlIgnore]
 		public FacebookSession Session { get; set; }
-        
-        [XmlIgnore]
-        public long Subject { get { return subject; } }
-        
+		
+		[XmlIgnore]
+		public long Subject { get { return subject; } }
+		
 		public Photo GetPhoto ()
 		{
 			PhotosResponse rsp = Session.Util.GetResponse<PhotosResponse> ("facebook.photos.get", FacebookParam.Create ("pids", pid),

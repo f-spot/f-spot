@@ -30,13 +30,12 @@
 using System;
 using System.Reflection;
 
-using Gtk;
-
-using FSpot;
 using FSpot.Core;
-using FSpot.UI.Dialog;
 using FSpot.Extensions;
+using FSpot.UI.Dialog;
 using FSpot.Widgets;
+
+using Gtk;
 
 namespace FSpot.Tools.ScreensaverConfig
 {
