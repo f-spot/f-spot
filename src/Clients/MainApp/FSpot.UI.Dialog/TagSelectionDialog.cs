@@ -52,10 +52,7 @@ namespace FSpot.UI.Dialog {
 		public new Tag[] Run ()
 		{
 			int response = base.Run ();
-			if ((ResponseType) response == ResponseType.Ok)
-				return tag_selection_widget.TagHighlight;
-
-			return null;
+			return (ResponseType) response == ResponseType.Ok ? tag_selection_widget.TagHighlight : null;
 		}
 
 		public new void Hide ()

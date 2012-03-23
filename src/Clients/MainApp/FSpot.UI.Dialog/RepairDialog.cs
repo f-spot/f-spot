@@ -38,6 +38,7 @@ using Gtk;
 
 namespace FSpot. UI.Dialog
 {
+	// FIXME: This is never used
 	public class RepairDialog : BuilderDialog
 	{
 		[GtkBeans.Builder.Object] ScrolledWindow view_scrolled;
@@ -54,7 +55,7 @@ namespace FSpot. UI.Dialog
 			TrayView view = new TrayView (missing);
 			view_scrolled.Add (view);
 
-			this.ShowAll ();
+			ShowAll ();
 		}
 
 		public void FindMissing ()

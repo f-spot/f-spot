@@ -49,7 +49,7 @@ using Mono.Unix;
 namespace FSpot {
 	public class RotateException : ApplicationException {
 
-                public bool ReadOnly = false;
+				public bool ReadOnly = false;
 		public string Path { get; private set; }
 
 		public RotateException (string msg, string path) : this (msg, path, false) {}
@@ -77,49 +77,49 @@ namespace FSpot {
 			done = false;
 		}
 
-	        private static void RotateOrientation (string original_path, RotateDirection direction)
-	        {
-                    try {
-                        var uri = new SafeUri (original_path);
-                        using (var metadata = Metadata.Parse (uri)) {
-                            metadata.EnsureAvailableTags ();
-                            var tag = metadata.ImageTag;
-                            var orientation = direction == RotateDirection.Clockwise
-                                ? FSpot.Utils.PixbufUtils.Rotate90 (tag.Orientation)
-                                : FSpot.Utils.PixbufUtils.Rotate270 (tag.Orientation);
-        
-                            tag.Orientation = orientation;
-                            var always_sidecar = Preferences.Get<bool> (Preferences.METADATA_ALWAYS_USE_SIDECAR);
-                            metadata.SaveSafely (uri, always_sidecar);
-                            XdgThumbnailSpec.RemoveThumbnail (uri);
-                        }
-                    } catch (Exception e) {
-                        Log.DebugException (e);
-                        throw new RotateException (Catalog.GetString ("Unable to rotate this type of photo"), original_path);
-                    }
-                }
+			private static void RotateOrientation (string original_path, RotateDirection direction)
+			{
+					try {
+						var uri = new SafeUri (original_path);
+						using (var metadata = Metadata.Parse (uri)) {
+							metadata.EnsureAvailableTags ();
+							var tag = metadata.ImageTag;
+							var orientation = direction == RotateDirection.Clockwise
+								? FSpot.Utils.PixbufUtils.Rotate90 (tag.Orientation)
+								: FSpot.Utils.PixbufUtils.Rotate270 (tag.Orientation);
+		
+							tag.Orientation = orientation;
+							var always_sidecar = Preferences.Get<bool> (Preferences.METADATA_ALWAYS_USE_SIDECAR);
+							metadata.SaveSafely (uri, always_sidecar);
+							XdgThumbnailSpec.RemoveThumbnail (uri);
+						}
+					} catch (Exception e) {
+						Log.DebugException (e);
+						throw new RotateException (Catalog.GetString ("Unable to rotate this type of photo"), original_path);
+					}
+				}
 
-                private void Rotate (string original_path, RotateDirection dir)
-                {
-                    RotateOrientation (original_path, dir);
-                }
-        
-                public bool Step ()
-                {
-                    if (done)
-                        return false;
-        
-                    GLib.FileInfo info = GLib.FileFactory.NewForUri (item.DefaultVersion.Uri).QueryInfo ("access::can-write", GLib.FileQueryInfoFlags.None, null);
-                    if (!info.GetAttributeBoolean("access::can-write")) {
-                        throw new RotateException (Catalog.GetString ("Unable to rotate readonly file"), item.DefaultVersion.Uri, true);
-                    }
-        
-                    Rotate (item.DefaultVersion.Uri, direction);
+				private void Rotate (string original_path, RotateDirection dir)
+				{
+					RotateOrientation (original_path, dir);
+				}
+		
+				public bool Step ()
+				{
+					if (done)
+						return false;
+		
+					GLib.FileInfo info = GLib.FileFactory.NewForUri (item.DefaultVersion.Uri).QueryInfo ("access::can-write", GLib.FileQueryInfoFlags.None, null);
+					if (!info.GetAttributeBoolean("access::can-write")) {
+						throw new RotateException (Catalog.GetString ("Unable to rotate readonly file"), item.DefaultVersion.Uri, true);
+					}
+		
+					Rotate (item.DefaultVersion.Uri, direction);
 
-                    done = true;
-                    return !done;
-                }
-        }
+					done = true;
+					return !done;
+				}
+		}
 
 	public class RotateMultiple {
 		RotateDirection direction;
@@ -146,10 +146,9 @@ namespace FSpot {
 
 			if (op.Step ())
 				return true;
-			else {
-				Index++;
-				op = null;
-			}
+			
+			Index++;
+			op = null;
 
 			return (Index < Items.Length);
 		}
@@ -170,10 +169,10 @@ public class RotateCommand {
 
 		if (items.Length > 1)
 			progress_dialog = new ProgressDialog (Catalog.GetString ("Rotating photos"),
-							      ProgressDialog.CancelButtonType.Stop,
-							      items.Length, parent_window);
+								  ProgressDialog.CancelButtonType.Stop,
+								  items.Length, parent_window);
 
-	        RotateMultiple op = new RotateMultiple (items, direction);
+			RotateMultiple op = new RotateMultiple (items, direction);
 		int readonly_count = 0;
 		bool done = false;
 		int index = 0;
@@ -224,11 +223,11 @@ public class RotateCommand {
 		desc = String.Format (desc, readonly_count);
 
 		HigMessageDialog md = new HigMessageDialog (parent_window,
-							    DialogFlags.DestroyWithParent,
-							    MessageType.Error,
-							    ButtonsType.Close,
-							    notice,
-							    desc);
+								DialogFlags.DestroyWithParent,
+								MessageType.Error,
+								ButtonsType.Close,
+								notice,
+								desc);
 		md.Run();
 		md.Destroy();
 	}
@@ -246,9 +245,9 @@ public class RotateCommand {
 						msg, System.IO.Path.GetFileName (path));
 
 		HigMessageDialog md = new HigMessageDialog (parent_window, DialogFlags.DestroyWithParent,
-							    MessageType.Warning, ButtonsType.Ok,
-							    Catalog.GetString ("Error while rotating photo."),
-							    longmsg);
+								MessageType.Warning, ButtonsType.Ok,
+								Catalog.GetString ("Error while rotating photo."),
+								longmsg);
 		md.Run ();
 		md.Destroy ();
 	}

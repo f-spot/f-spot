@@ -34,6 +34,7 @@ using System;
 using Cairo;
 
 using Pinta.Core;
+using Point = Gdk.Point;
 
 namespace FSpot.Widgets {
 
@@ -42,23 +43,19 @@ namespace FSpot.Widgets {
 		ImageInfo info;
 		double radius;
 		double amount;
-		Gdk.Point center;
 		ImageInfo blur;
 		Pattern mask;
 
 		public SoftFocus (ImageInfo info)
 		{
 			this.info = info;
-			center.X = info.Bounds.Width / 2;
-			center.Y = info.Bounds.Height / 2;
+			Center.X = info.Bounds.Width / 2;
+			Center.Y = info.Bounds.Height / 2;
 			Amount = 3;
 			Radius = .5;
 		}
 
-		public Gdk.Point Center {
-			get { return center; }
-			set { center = value; }
-		}
+		public Point Center { get; set; }
 
 		public double Amount {
 			get { return amount; }
@@ -128,8 +125,8 @@ namespace FSpot.Widgets {
 
 			RadialGradient circle;
 
-			circle = new RadialGradient (center.X * scale, center.Y * scale, radius * max * .7,
-							 center.X * scale, center.Y * scale, radius * max + max * .2);
+			circle = new RadialGradient (Center.X * scale, Center.Y * scale, radius * max * .7,
+							 Center.X * scale, Center.Y * scale, radius * max + max * .2);
 
 			circle.AddColorStop (0, new Cairo.Color (0.0, 0.0, 0.0, 0.0));
 			circle.AddColorStop (1.0, new Cairo.Color (1.0, 1.0, 1.0, 1.0));

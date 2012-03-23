@@ -33,6 +33,7 @@ using Mono.Addins;
 
 namespace FSpot.Extensions
 {
+	// FIXME: This is never instantiated
 	public class TransitionNode : ExtensionNode
 	{
 		[NodeAttribute ("transition_type", true)]
@@ -40,11 +41,7 @@ namespace FSpot.Extensions
 
 		SlideShowTransition transition = null;
 		public SlideShowTransition Transition {
-			get {
-				if (transition == null)
-					transition = Addin.CreateInstance (class_name) as SlideShowTransition;
-				return transition;
-			}
+			get { return transition ?? (transition = Addin.CreateInstance(class_name) as SlideShowTransition); }
 		}
 	}
 }

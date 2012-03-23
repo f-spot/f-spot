@@ -31,27 +31,24 @@
 
 namespace FSpot.Filters {
     public class JpegFilter : IFilter {
-        private uint quality = 95;
-        public uint Quality {
-            get { return quality; }
-            set { quality = value; }
-        }
+    	public uint Quality { get; set; }
 
-        public JpegFilter (uint quality)
+    	public JpegFilter (uint quality)
         {
-            this.quality = quality;
+            Quality = quality;
         }
 
         public JpegFilter()
         {
+        	Quality = 95;
         }
 
-        public bool Convert (FilterRequest req)
+    	public bool Convert (FilterRequest req)
         {
             var source = req.Current;
             req.Current = req.TempUri ("jpg");
 
-            PixbufUtils.CreateDerivedVersion (source, req.Current, quality);
+            PixbufUtils.CreateDerivedVersion (source, req.Current, Quality);
 
             return true;
         }

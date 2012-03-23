@@ -44,17 +44,13 @@ namespace FSpot.UI.Dialog
 {
 	public class EditException : Exception
 	{
-		IPhoto item;
-
-		public IPhoto Item {
-			get { return item; }
-		}
+		public IPhoto Item { get; private set; }
 
 		public EditException (IPhoto item, Exception e) : base (
-                        String.Format (Catalog.GetString ("Received exception \"{0}\". Unable to save photo {1}"),
-				       e.Message, item.Name), e)
+						String.Format (Catalog.GetString ("Received exception \"{0}\". Unable to save photo {1}"),
+					   e.Message, item.Name), e)
 		{
-			this.item = item;
+			this.Item = item;
 		}
 	}
 
@@ -63,9 +59,9 @@ namespace FSpot.UI.Dialog
 		private const int MaxErrors = 10;
 
 		public EditExceptionDialog (Gtk.Window parent, Exception [] errors) : base (parent, DialogFlags.DestroyWithParent,
-											    Gtk.MessageType.Error, ButtonsType.Ok,
-											    Catalog.GetString ("Error editing photo"),
-											    GenerateMessage (errors))
+												Gtk.MessageType.Error, ButtonsType.Ok,
+												Catalog.GetString ("Error editing photo"),
+												GenerateMessage (errors))
 		{
 			foreach (Exception e in errors)
 				Log.Exception (e);

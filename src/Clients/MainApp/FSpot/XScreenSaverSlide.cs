@@ -74,7 +74,7 @@ namespace FSpot {
 					SizeAllocate (new Gdk.Rectangle (geom.X, geom.Y, geom.Width, geom.Height));
 					Resize (geom.Width, geom.Height);
 					return;
-				} catch (System.Exception e) {
+				} catch (Exception e) {
 					Hyena.Log.Exception (e);
 				}
 			} else {

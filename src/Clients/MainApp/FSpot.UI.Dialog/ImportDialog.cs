@@ -265,11 +265,10 @@ namespace FSpot.UI.Dialog
             if (sources_combo.Active == current_index) {
                 Log.Debug ("Skipping double fire!");
                 return;
-            } else {
-                current_index = sources_combo.Active;
             }
+        	current_index = sources_combo.Active;
 
-            TreeIter iter;
+        	TreeIter iter;
             sources_combo.GetActiveIter (out iter);
             var source = Sources.GetValue (iter, 0) as IImportSource;
             if (source == null) {
@@ -277,10 +276,9 @@ namespace FSpot.UI.Dialog
                 if (label == select_folder_label) {
                     ShowFolderSelector ();
                     return;
-                } else {
-                    sources_combo.Active = 0;
-                    return;
                 }
+            	sources_combo.Active = 0;
+            	return;
             }
             Controller.ActiveSource = source;
         }

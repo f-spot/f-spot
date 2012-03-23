@@ -86,10 +86,10 @@ namespace FSpot
 		private ExportItem LoadItem (IDataReader reader)
 		{
 			return new ExportItem (Convert.ToUInt32 (reader ["id"]),
-				       Convert.ToUInt32 (reader ["image_id"]),
-				       Convert.ToUInt32 (reader ["image_version_id"]),
-				       reader ["export_type"].ToString (),
-				       reader ["export_token"].ToString ());
+					   Convert.ToUInt32 (reader ["image_id"]),
+					   Convert.ToUInt32 (reader ["image_version_id"]),
+					   reader ["export_type"].ToString (),
+					   reader ["export_token"].ToString ());
 		}
 
 		private void LoadAllItems ()
@@ -119,7 +119,7 @@ namespace FSpot
 		public override void Commit (ExportItem item)
 		{
 			Database.Execute (new HyenaSqliteCommand ("UPDATE exports SET image_id = ?, image_version_id = ?, export_type = ? SET export_token = ? WHERE id = ?",
-                    item.ImageId, item.ImageVersionId, item.ExportType, item.ExportToken, item.Id));
+					item.ImageId, item.ImageVersionId, item.ExportType, item.ExportToken, item.Id));
 
 			EmitChanged (item);
 		}
@@ -134,7 +134,7 @@ namespace FSpot
 		{
 
 			IDataReader reader = Database.Query (new HyenaSqliteCommand ("SELECT id, image_id, image_version_id, export_type, export_token FROM exports WHERE image_id = ? AND image_version_id = ?",
-                    image_id, image_version_id));
+					image_id, image_version_id));
 
 			List<ExportItem> export_items = new List<ExportItem> ();
 			while (reader.Read ()) {

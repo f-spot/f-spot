@@ -100,7 +100,6 @@ namespace FSpot
 					case 3 :  medium_size.Active = true; break;
 					case 4 :  large_size.Active = true; break;
 					case 5 :  x_large_size.Active = true; break;
-					default: break;
 				}
 
 

@@ -29,9 +29,6 @@
 
 namespace FSpot {
 	public class ProgressItem {
-		public ProgressItem () {
-		}
-
 		public delegate void ChangedHandler (ProgressItem item);
 		public event ChangedHandler Changed;
 

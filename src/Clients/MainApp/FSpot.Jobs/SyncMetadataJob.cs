@@ -61,7 +61,7 @@ namespace FSpot.Jobs {
             System.Threading.Thread.Sleep (500);
 
             try {
-                Photo photo = FSpot.App.Instance.Database.Photos.Get (Convert.ToUInt32 (JobOptions)) as Photo;
+                Photo photo = FSpot.App.Instance.Database.Photos.Get (Convert.ToUInt32 (JobOptions));
                 if (photo == null)
                     return false;
 

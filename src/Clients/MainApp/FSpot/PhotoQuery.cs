@@ -85,7 +85,6 @@ namespace FSpot {
 		}
 
 		PhotoCache cache;
-		private PhotoStore store;
 		private Term terms;
 
 		static int query_count = 0;
@@ -102,8 +101,8 @@ namespace FSpot {
 		// Constructor
 		public PhotoQuery (PhotoStore store, params IQueryCondition [] conditions)
 		{
-			this.store = store;
-			this.store.ItemsChanged += MarkChanged;
+			this.Store = store;
+			this.Store.ItemsChanged += MarkChanged;
 			cache = new PhotoCache (store, temp_table);
 			reverse_lookup = new Dictionary<uint, int> ();
 			SetCondition (OrderByTime.OrderByTimeDesc);
@@ -117,7 +116,7 @@ namespace FSpot {
 		public int Count {
 			get {
 				if (count < 0)
-					count = store.Count (temp_table);
+					count = Store.Count (temp_table);
 				return count;
 			}
 		}
@@ -136,7 +135,7 @@ namespace FSpot {
 
 		[Obsolete ("DO NOT USE THIS, IT'S TOO SLOW")]
 		public Photo [] Photos {
-			get { return store.QueryFromTemp (temp_table); }
+			get { return Store.QueryFromTemp (temp_table); }
 		}
 
 		[Obsolete ("DO NOT USE Items on PhotoQuery")]
@@ -144,18 +143,12 @@ namespace FSpot {
 			get { throw new NotImplementedException (); }
 		}
 
-		public PhotoStore Store {
-			get { return store; }
-		}
+		public PhotoStore Store { get; private set; }
 
 		//Query Conditions
 		private Dictionary<Type, IQueryCondition> conditions;
 		private Dictionary<Type, IQueryCondition> Conditions {
-			get {
-				if (conditions == null)
-					conditions = new Dictionary<Type, IQueryCondition> ();
-				return conditions;
-			}
+			get { return conditions ?? (conditions = new Dictionary<Type, IQueryCondition>()); }
 		}
 
 		internal bool SetCondition (IQueryCondition condition)
@@ -297,10 +290,10 @@ namespace FSpot {
 				i++;
 			}
 
-			store.QueryToTemp (temp_table, condition_array);
+			Store.QueryToTemp (temp_table, condition_array);
 
 			count = -1;
-			cache = new PhotoCache (store, temp_table);
+			cache = new PhotoCache (Store, temp_table);
 			reverse_lookup = new Dictionary<uint,int> ();
 
 			if (Changed != null)
@@ -313,10 +306,10 @@ namespace FSpot {
 		{
 			if (photo == null || !(photo is Photo))
 				return -1;
-			return store.IndexOf (temp_table, photo as Photo);
+			return Store.IndexOf (temp_table, photo as Photo);
 		}
 
-		private int [] IndicesOf (DbItem [] dbitems)
+		private int [] IndicesOf (IEnumerable<DbItem> dbitems)
 		{
 			uint timer = Log.DebugTimerStart ();
 			List<int> indices = new List<int> ();
@@ -330,7 +323,7 @@ namespace FSpot {
 			}
 
 			if (items_to_search.Count > 0)
-				indices.AddRange (store.IndicesOf (temp_table, items_to_search.ToArray ()));
+				indices.AddRange (Store.IndicesOf (temp_table, items_to_search.ToArray ()));
 			Log.DebugTimerPrint (timer, "IndicesOf took {0}");
 			return indices.ToArray ();
 		}
@@ -356,7 +349,7 @@ namespace FSpot {
 					//the item we're looking for is not in the cache
 					//a binary search could take up to ln2 (N/cache.SIZE) request
 					//lets reduce that number to 1
-					return store.IndexOf (temp_table, date, asc);
+					return Store.IndexOf (temp_table, date, asc);
 
 				int comp = this [mid].Time.CompareTo (date);
 				if (!asc && comp < 0 || asc && comp > 0)
@@ -385,7 +378,7 @@ namespace FSpot {
 				to_commit.Add (this [index] as Photo);
 				reverse_lookup [(this [index] as Photo).Id] = index;
 			}
-			store.Commit (to_commit.ToArray ());
+			Store.Commit (to_commit.ToArray ());
 		}
 
 		private void MarkChanged (object sender, DbItemEventArgs<Photo> args)

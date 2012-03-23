@@ -119,7 +119,7 @@ namespace FSpot.Imaging.Ciff {
 
 		public byte [] ReadEntry (int pos)
 		{
-			Entry e = (Entry) entry_list [pos];
+			Entry e = entry_list [pos];
 
 			stream.Position = this.start + e.Offset;
 
@@ -186,8 +186,7 @@ namespace FSpot.Imaging.Ciff {
 
 			if (data != null)
 				return new System.IO.MemoryStream (data);
-			else
-				return DCRawFile.RawPixbufStream (Uri);
+			return DCRawFile.RawPixbufStream (Uri);
 		}
 
 		private byte [] GetEmbeddedJpeg ()
@@ -197,10 +196,11 @@ namespace FSpot.Imaging.Ciff {
 
 		protected override void Close ()
 		{
-			if (stream != null) {
-				stream.Close ();
-				stream = null;
-			}
+			if (stream == null)
+				return;
+
+			stream.Close ();
+			stream = null;
 		}
 	}
 }

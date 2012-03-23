@@ -43,6 +43,7 @@ using Hyena;
 using Mono.Unix;
 
 namespace FSpot.Editors {
+	// FIXME: This is never used
 	class CropEditor : Editor {
 		private TreeStore constraints_store;
 		private ComboBox constraints_combo;

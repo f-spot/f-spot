@@ -47,7 +47,7 @@ namespace FSpot.Filters {
 		public FilterRequest (SafeUri source)
 		{
 			Source = source;
-			this.current = source;
+			current = source;
 			temp_uris = new List<SafeUri> ();
 		}
 

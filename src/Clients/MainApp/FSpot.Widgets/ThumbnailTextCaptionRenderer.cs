@@ -41,13 +41,6 @@ namespace FSpot.Widgets
     /// </summary>
     public abstract class ThumbnailTextCaptionRenderer : ThumbnailCaptionRenderer
     {
-#region Constructor
-
-        public ThumbnailTextCaptionRenderer ()
-        {
-        }
-
-#endregion
 
 #region Drawing Methods
 

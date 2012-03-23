@@ -216,7 +216,7 @@ namespace FSpot {
 
 		void HandleExportActivated (object o, EventArgs e)
 		{
-			FSpot.Extensions.ExportMenuItemNode.SelectedImages = delegate () {return new PhotoList (directory_view.Selection.Items); };
+			FSpot.Extensions.ExportMenuItemNode.SelectedImages = () => new PhotoList(directory_view.Selection.Items);
 		}
 
 		public void HandleCollectionChanged (IBrowsableCollection collection)
@@ -486,8 +486,6 @@ namespace FSpot {
 				collection.LoadItems (list.ToArray());
 
 				Gtk.Drag.Finish (args.Context, true, false, args.Time);
-
-				return;
 			}
 		}
 

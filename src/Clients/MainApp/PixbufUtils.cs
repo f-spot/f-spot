@@ -78,9 +78,9 @@ public static class PixbufUtils
 	}
 
 	public static double Fit (int orig_width, int orig_height,
-				  int dest_width, int dest_height,
-				  bool upscale_smaller,
-				  out int fit_width, out int fit_height)
+							  int dest_width, int dest_height,
+							  bool upscale_smaller,
+							  out int fit_width, out int fit_height)
 	{
 		if (orig_width == 0 || orig_height == 0) {
 			fit_width = 0;
@@ -370,13 +370,8 @@ public static class PixbufUtils
 		return newsurf;
 	}
 
-	public unsafe static Gdk.Pixbuf RemoveRedeye (Gdk.Pixbuf src, Gdk.Rectangle area)
-	{
-		return RemoveRedeye (src, area, -15);
-	}
-
 	//threshold, factors and comparisons borrowed from the gimp plugin 'redeye.c' by Robert Merkel
-	public unsafe static Gdk.Pixbuf RemoveRedeye (Gdk.Pixbuf src, Gdk.Rectangle area, int threshold)
+	public unsafe static Gdk.Pixbuf RemoveRedeye (Gdk.Pixbuf src, Gdk.Rectangle area, int threshold = -15)
 	{
 		Gdk.Pixbuf copy = src.Copy ();
 		Gdk.Pixbuf selection = new Gdk.Pixbuf (copy, area.X, area.Y, area.Width, area.Height);
@@ -530,12 +525,7 @@ public static class PixbufUtils
 		return ret;
 	}
 
-	public static void CreateDerivedVersion (SafeUri source, SafeUri destination)
-	{
-		CreateDerivedVersion (source, destination, 95);
-	}
-
-	public static void CreateDerivedVersion (SafeUri source, SafeUri destination, uint jpeg_quality)
+	public static void CreateDerivedVersion (SafeUri source, SafeUri destination, uint jpeg_quality = 95)
 	{
 		if (source.GetExtension () == destination.GetExtension ()) {
 			// Simple copy will do!

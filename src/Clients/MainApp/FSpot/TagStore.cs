@@ -71,10 +71,9 @@ namespace FSpot {
 		{
 			if (t1.IsAncestorOf (t2))
 				return 1;
-			else if (t2.IsAncestorOf (t1))
+			if (t2.IsAncestorOf (t1))
 				return -1;
-			else
-				return 0;
+			return 0;
 		}
 	}
 	
@@ -127,7 +126,7 @@ namespace FSpot {
 			if (l.Count == 0)
 				return null;
 	
-			l.Sort (delegate (Tag t1, Tag t2) {return t2.Popularity.CompareTo (t1.Popularity); });
+			l.Sort ((t1, t2) => t2.Popularity.CompareTo(t1.Popularity));
 	
 			return l.ToArray ();
 		}
@@ -174,7 +173,7 @@ namespace FSpot {
 				uint id = Convert.ToUInt32 (reader ["id"]);
 				uint category_id = Convert.ToUInt32 (reader ["category_id"]);
 	
-				Tag tag = Get (id) as Tag;
+				Tag tag = Get (id);
 				if (tag == null)
 					throw new Exception (String.Format ("Cannot find tag {0}", id));
 				if (category_id == 0)
@@ -191,14 +190,14 @@ namespace FSpot {
 			//Pass 3, set popularity
 			reader = Database.Query ("SELECT tag_id, COUNT (*) AS popularity FROM photo_tags GROUP BY tag_id");
 			while (reader.Read ()) {
-				Tag t = Get (Convert.ToUInt32 (reader ["tag_id"])) as Tag;
+				Tag t = Get (Convert.ToUInt32 (reader ["tag_id"]));
 				if (t != null)
 					t.Popularity = Convert.ToInt32 (reader ["popularity"]);
 			}
 			reader.Dispose ();
 	
 			if (FSpot.App.Instance.Database.Meta.HiddenTagId.Value != null)
-				Hidden = LookupInCache ((uint) FSpot.App.Instance.Database.Meta.HiddenTagId.ValueAsInt) as Tag;
+				Hidden = LookupInCache ((uint) FSpot.App.Instance.Database.Meta.HiddenTagId.ValueAsInt);
 		}
 	
 	
@@ -313,12 +312,9 @@ namespace FSpot {
 	
 		public override Tag Get (uint id)
 		{
-			if (id == 0)
-				return RootCategory;
-			else
-				return LookupInCache (id);
+			return id == 0 ? RootCategory : LookupInCache (id);
 		}
-	
+
 		public override void Remove (Tag tag)
 		{
 			Category category = tag as Category;

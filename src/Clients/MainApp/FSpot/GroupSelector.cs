@@ -296,14 +296,16 @@ namespace FSpot {
 		{
 			x -= BoxX (0);
 			position = (int) (x / BoxWidth);
+			bool result = true;
+
 			if (position < 0) {
 				position = 0;
-				return false;
+				result = false;
 			} else if (position >= box_counts.Length) {
 				position = box_counts.Length -1;
-				return false;
+				result = false;
 			}
-			return true;
+			return result;
 		}
 
 		private bool BoxHit (double x, double y, out int position)
@@ -591,10 +593,7 @@ namespace FSpot {
 					}
 				}
 				get {
-					if (Dragging)
-						return drag_offset;
-					else
-						return 0;
+					return Dragging ? drag_offset : 0;
 				}
 			}
 
@@ -620,10 +619,7 @@ namespace FSpot {
 
 			protected bool PositionValid (int position)
 			{
-				if (position < 0 || position > selector.box_counts.Length - 1)
-					return false;
-
-				return true;
+				return position >= 0 && position <= selector.box_counts.Length - 1;
 			}
 
 			public virtual void UpdateDrag (double x, double y)
@@ -698,7 +694,7 @@ namespace FSpot {
 					return;
 
 				Rectangle then = Bounds ();
-				this.position = position;
+				this.Position = position;
 				Rectangle now = Bounds ();
 
 				if (selector.Visible) {
@@ -711,12 +707,7 @@ namespace FSpot {
 					PositionChanged ();
 			}
 
-			private int position;
-			public int Position {
-				get {
-					return position;
-				}
-			}
+			public int Position { get; private set; }
 
 			public abstract void Draw (Rectangle area);
 
@@ -1119,6 +1110,7 @@ namespace FSpot {
 			if (event_window != null)
 				event_window.MoveResize (action.X, action.Y, action.Width, action.Height);
 
+			// FIXME: What?!?!?!
 			this.Offset = this.Offset;
 
 			UpdateButtons ();
@@ -1178,7 +1170,5 @@ namespace FSpot {
 			Mode = RangeType.Min;
 			UpdateButtons ();
 		}
-
-		public GroupSelector (IntPtr raw) : base (raw) {}
 	}
 }

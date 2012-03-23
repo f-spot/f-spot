@@ -35,6 +35,7 @@ using Gtk;
 using Mono.Unix;
 
 namespace FSpot.Editors {
+	// FIXME: This is never used
 	class RedEyeEditor : Editor {
 		public RedEyeEditor () : base (Catalog.GetString ("Red-eye Reduction"), "red-eye-remove") {
 			// FIXME: ??? need tooltip Catalog.GetString ("Remove red-eye form the photo")

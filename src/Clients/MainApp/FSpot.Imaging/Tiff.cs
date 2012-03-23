@@ -199,8 +199,7 @@ namespace FSpot.Imaging
 		{
 			if (jpeg_data != null)
 				return new MemoryStream (jpeg_data);
-			else
-				return DCRawFile.RawPixbufStream (Uri);
+			return DCRawFile.RawPixbufStream (Uri);
 		}
 	}
 

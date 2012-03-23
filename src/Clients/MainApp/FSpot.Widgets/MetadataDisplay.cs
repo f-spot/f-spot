@@ -65,11 +65,7 @@ namespace FSpot.Widgets {
 		Label metadata_message;
 		State display;
 
-		private MetadataDisplayPage page;
-		public MetadataDisplayPage Page {
-			set { page = value; }
-			get { return page; }
-		}
+		public MetadataDisplayPage Page { get; set; }
 
 		// stores list of the expanded expanders
 		List<string> open_list;
@@ -78,7 +74,7 @@ namespace FSpot.Widgets {
 
 		bool up_to_date = false;
 
-		enum State {
+		new enum State {
 			metadata,
 			message
 		};
@@ -215,7 +211,7 @@ namespace FSpot.Widgets {
 
 		public void HandleExpanderActivated (object sender, EventArgs e)
 		{
-			Expander expander = (Expander) sender;
+			Expander expander = sender as Expander;
 			if (expander.Expanded)
 				open_list.Add (expander.Label);
 			else
@@ -372,6 +368,7 @@ namespace FSpot.Widgets {
 				}
 			}*/
 
+			// FIXME: Some of this will not work because of the variables declared about (unreachable code)
 			if (empty) {
 				string msg;
 				if (photo == null) {

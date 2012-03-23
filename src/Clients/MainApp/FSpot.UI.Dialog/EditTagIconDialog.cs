@@ -93,7 +93,7 @@ namespace FSpot.UI.Dialog
 
 			external_photo_chooser.Filter = new FileFilter();
 			external_photo_chooser.Filter.AddPixbufFormats();
-                        external_photo_chooser.LocalOnly = false;
+						external_photo_chooser.LocalOnly = false;
 			external_photo_chooser_hbox.PackStart (external_photo_chooser);
 			external_photo_chooser.Show ();
 			external_photo_chooser.SelectionChanged += HandleExternalFileSelectionChanged;
@@ -192,11 +192,11 @@ namespace FSpot.UI.Dialog
 				string message = String.Format (Catalog.GetString ("Unable to load \"{0}\" as icon for the tag"),
 									external_photo_chooser.Uri.ToString ());
 				HigMessageDialog md = new HigMessageDialog (this,
-									    DialogFlags.DestroyWithParent,
-									    MessageType.Error,
-									    ButtonsType.Close,
-									    caption,
-									    message);
+										DialogFlags.DestroyWithParent,
+										MessageType.Error,
+										ButtonsType.Close,
+										caption,
+										message);
 				md.Run();
 				md.Destroy();
 			}

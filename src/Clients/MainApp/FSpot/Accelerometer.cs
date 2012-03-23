@@ -37,6 +37,7 @@ using System;
 using System.IO;
 
 using Hyena;
+
 using TagLib.Image;
 
 namespace FSpot {
@@ -146,8 +147,6 @@ namespace FSpot {
 
 					x -= base_x;
 					y -= base_y;
-
-					return;
 				}
 			} catch (IOException) {
 				x = 0;

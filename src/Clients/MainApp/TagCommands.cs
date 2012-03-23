@@ -141,17 +141,18 @@ public class TagCommands {
 			}
 		}
 
+		// FIXME:  This is never used?  Should this be connected to something?
 		private void HandleTagNameEntryChanged (object sender, EventArgs args)
 		{
 			Update ();
 		}
 
 		private Category Category {
-			get {
+			get
+			{
 				if (categories.Count == 0)
 					return tag_store.RootCategory;
-				else
-					return categories [category_option_menu.Active] as Category;
+				return categories [category_option_menu.Active] as Category;
 			}
 			set {
 				if ((value != null) && (categories.Count > 0)) {
@@ -204,7 +205,7 @@ public class TagCommands {
 					Category parent_category = Category;
 
 					if (type == TagType.Category)
-						new_tag = tag_store.CreateCategory (parent_category, tag_name_entry.Text, autoicon) as Tag;
+						new_tag = tag_store.CreateCategory (parent_category, tag_name_entry.Text, autoicon);
 					else
 						new_tag = tag_store.CreateTag (parent_category, tag_name_entry.Text, autoicon);
 				} catch (Exception ex) {
@@ -213,7 +214,7 @@ public class TagCommands {
 				}
 			}
 
-			this.Destroy ();
+			Destroy ();
 			return new_tag;
 		}
 

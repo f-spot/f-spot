@@ -68,7 +68,7 @@ namespace FSpot.Import {
 
         public MetadataImporter ()
         {
-            this.tag_store = App.Instance.Database.Tags;
+            tag_store = App.Instance.Database.Tags;
             tags_created = new Stack<Tag> ();
 
             li_root_tag = new TagInfo (Catalog.GetString ("Imported Tags"), LastImportIcon);
@@ -96,7 +96,7 @@ namespace FSpot.Import {
 
         private void AddTagToPhoto (Photo photo, string new_tag_name)
         {
-            if (new_tag_name == null || new_tag_name.Length == 0)
+            if (string.IsNullOrEmpty(new_tag_name))
                 return;
 
             Tag parent = EnsureTag (li_root_tag, tag_store.RootCategory);

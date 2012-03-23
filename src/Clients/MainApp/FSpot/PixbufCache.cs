@@ -63,7 +63,7 @@ namespace FSpot
 
 		public void HandleThumbnailLoaded (ImageLoaderThread loader, ImageLoaderThread.RequestItem result)
 		{
-                        Reload (result.Uri);
+						Reload (result.Uri);
 		}
 
 		public void Request (SafeUri uri, object closure, int width, int height)
@@ -214,7 +214,6 @@ namespace FSpot
 			} catch (GLib.GException){
 				if (loaded != null)
 					loaded.Dispose ();
-				return;
 			}
 		}
 
@@ -292,7 +291,7 @@ namespace FSpot
 				Uri = uri;
 				Width = width;
 				Height = height;
-                                // Should this be this.data or Data?
+								// Should this be this.data or Data?
 				this.data = closure;
 				Reload = true;
 				this.cache = cache;

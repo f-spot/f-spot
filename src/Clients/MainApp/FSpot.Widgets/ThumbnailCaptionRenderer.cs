@@ -41,14 +41,6 @@ namespace FSpot.Widgets
     public abstract class ThumbnailCaptionRenderer
     {
 
-#region Constructor
-
-        public ThumbnailCaptionRenderer ()
-        {
-        }
-
-#endregion
-
 #region Drawing Methods
 
         public abstract int GetHeight (Widget widget, int width);

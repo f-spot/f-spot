@@ -45,9 +45,6 @@ namespace FSpot.Loaders
 	public class GdkImageLoader : Gdk.PixbufLoader, IImageLoader
 	{
 #region public api
-		public GdkImageLoader () : base ()
-		{
-		}
 
 		~GdkImageLoader ()
 		{
@@ -79,7 +76,7 @@ namespace FSpot.Loaders
 				pixbuf_orientation = image_file.Orientation;
 			}
 
-			loading = true;
+			Loading = true;
 			// The ThreadPool.QueueUserWorkItem hack is there cause, as the bytes to read are present in the stream,
 			// the Read is CompletedAsynchronously, blocking the mainloop
 			image_stream.BeginRead (buffer, 0, count, delegate (IAsyncResult r) {
@@ -95,26 +92,14 @@ namespace FSpot.Loaders
 		Pixbuf thumb;
 
 		new public Pixbuf Pixbuf {
-			get {
-				if (thumb != null) {
-					return thumb;
-				}
-				return base.Pixbuf;
-			}
+			get { return thumb != null ? thumb : base.Pixbuf; }
 		}
 
-		bool loading = false;
-
-		public bool Loading {
-			get { return loading; }
-		}
+		public bool Loading { get; private set; }
 
 		bool notify_prepared = false;
-		bool prepared = false;
 
-		public bool Prepared {
-			get { return prepared; }
-		}
+		public bool Prepared { get; private set; }
 
 		ImageOrientation pixbuf_orientation = ImageOrientation.TopLeft;
 
@@ -155,7 +140,7 @@ namespace FSpot.Loaders
 			if (is_disposed)
 				return;
 
-			prepared = notify_prepared = true;
+			Prepared = notify_prepared = true;
 			damage = Rectangle.Zero;
 			base.OnAreaPrepared ();
 		}
@@ -191,6 +176,12 @@ namespace FSpot.Loaders
 		Rectangle damage;
 		object sync_handle = new object ();
 
+		public GdkImageLoader()
+		{
+			Prepared = false;
+			Loading = false;
+		}
+
 		void HandleReadDone (IAsyncResult ar)
 		{
 			if (is_disposed)
@@ -201,7 +192,7 @@ namespace FSpot.Loaders
 				if (byte_read == 0) {
 					image_stream.Close ();
 					Close ();
-					loading = false;
+					Loading = false;
 					notify_completed = true;
 				} else {
 					try {

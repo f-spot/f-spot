@@ -46,7 +46,7 @@ namespace FSpot
 		PhotoQuery query;
 		FolderSet folder_set;
 
-		public FolderQueryWidget (PhotoQuery query) : base ()
+		public FolderQueryWidget (PhotoQuery query)
 		{
 			folder_set = new FolderSet ();
 			this.query = query;

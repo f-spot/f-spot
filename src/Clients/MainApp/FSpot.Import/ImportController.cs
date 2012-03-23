@@ -131,12 +131,8 @@ namespace FSpot.Import
 #region Source Scanning
 
         private List<IImportSource> sources;
-        public List<IImportSource> Sources {
-            get {
-                if (sources == null)
-                    sources = ScanSources ();
-                return sources;
-            }
+        public IEnumerable<IImportSource> Sources {
+            get { return sources ?? (sources = ScanSources()); }
         }
 
         List<IImportSource> ScanSources ()
@@ -476,12 +472,13 @@ namespace FSpot.Import
         {
             var parts = uri.AbsolutePath.Split('/');
             SafeUri current = new SafeUri (uri.Scheme + ":///", true);
-            for (int i = 0; i < parts.Length; i++) {
-                current = current.Append (parts [i]);
-                var file = GLib.FileFactory.NewForUri (current);
-                if (!file.Exists) {
-                    file.MakeDirectory (null);
-                }
+            foreach (string t in parts)
+            {
+            	current = current.Append (t);
+            	var file = GLib.FileFactory.NewForUri (current);
+            	if (!file.Exists) {
+            		file.MakeDirectory (null);
+            	}
             }
         }
 
@@ -489,8 +486,8 @@ namespace FSpot.Import
 
 #region Tagging
 
-        List<Tag> attach_tags = new List<Tag> ();
-        TagStore tag_store = App.Instance.Database.Tags;
+    	readonly List<Tag> attach_tags = new List<Tag> ();
+    	readonly TagStore tag_store = App.Instance.Database.Tags;
 
         // Set the tags that will be added on import.
         public void AttachTags (IEnumerable<string> tags)
@@ -500,7 +497,7 @@ namespace FSpot.Import
             foreach (var tagname in tags) {
                 var tag = tag_store.GetTagByName (tagname);
                 if (tag == null) {
-                    tag = tag_store.CreateCategory (import_category, tagname, false) as Tag;
+                    tag = tag_store.CreateCategory (import_category, tagname, false);
                     tag_store.Commit (tag);
                 }
                 attach_tags.Add (tag);

@@ -50,7 +50,7 @@ using Hyena;
 
 namespace FSpot.Widgets
 {
-	public class Filmstrip : EventBox, IDisposable
+	public class Filmstrip : EventBox
 	{
 
 //		public event OrientationChangedHandler OrientationChanged;
@@ -111,11 +111,7 @@ namespace FSpot.Widgets
 			}
 		}
 
-		bool squared_thumbs = false;
-		public bool SquaredThumbs {
-			get { return squared_thumbs; }
-			set { squared_thumbs = value; }
-		}
+		public bool SquaredThumbs { get; set; }
 
 		Pixbuf background_tile;
 		public Pixbuf BackgroundTile {
@@ -217,18 +213,14 @@ namespace FSpot.Widgets
 		BrowsablePointer selection;
 		DisposableCache<SafeUri, Pixbuf> thumb_cache;
 
-		public Filmstrip (BrowsablePointer selection) : this (selection, true)
-		{
-		}
-
-		public Filmstrip (BrowsablePointer selection, bool squared_thumbs) : base ()
+		public Filmstrip (BrowsablePointer selection, bool squared_thumbs = true)
 		{
 			CanFocus = true;
 			this.selection = selection;
 			this.selection.Changed += HandlePointerChanged;
 			this.selection.Collection.Changed += HandleCollectionChanged;
 			this.selection.Collection.ItemsChanged += HandleCollectionItemsChanged;
-			this.squared_thumbs = squared_thumbs;
+			this.SquaredThumbs = squared_thumbs;
 			thumb_cache = new DisposableCache<SafeUri, Pixbuf> (30);
 			ThumbnailLoader.Default.OnPixbufLoaded += HandlePixbufLoaded;
 
@@ -528,12 +520,7 @@ namespace FSpot.Widgets
 			return true;
 		}
 
-		protected Pixbuf GetPixbuf (int i)
-		{
-			return GetPixbuf (i, false);
-		}
-
-		protected virtual Pixbuf GetPixbuf (int i, bool highlighted)
+		protected virtual Pixbuf GetPixbuf (int i, bool highlighted = false)
 		{
 			Pixbuf current = null;
 			SafeUri uri = (selection.Collection [i]).DefaultVersion.Uri;
@@ -546,19 +533,19 @@ namespace FSpot.Widgets
 			}
 
 			if (current == null) {
-                var pixbuf = XdgThumbnailSpec.LoadThumbnail (uri, ThumbnailSize.Large, null);
-                if (pixbuf == null) {
+				var pixbuf = XdgThumbnailSpec.LoadThumbnail (uri, ThumbnailSize.Large, null);
+				if (pixbuf == null) {
 					ThumbnailLoader.Default.Request (uri, ThumbnailSize.Large, 0);
-                    current = FSpot.Core.Global.IconTheme.LoadIcon ("gtk-missing-image", ThumbSize, (Gtk.IconLookupFlags)0);
-                } else {
+					current = FSpot.Core.Global.IconTheme.LoadIcon ("gtk-missing-image", ThumbSize, (Gtk.IconLookupFlags)0);
+				} else {
 					if (SquaredThumbs) {
-                        current = PixbufUtils.IconFromPixbuf (pixbuf, ThumbSize);
-                    } else {
-                        current = pixbuf.ScaleSimple (ThumbSize, ThumbSize, InterpType.Nearest);
-                    }
-                    pixbuf.Dispose ();
+						current = PixbufUtils.IconFromPixbuf (pixbuf, ThumbSize);
+					} else {
+						current = pixbuf.ScaleSimple (ThumbSize, ThumbSize, InterpType.Nearest);
+					}
+					pixbuf.Dispose ();
 					thumb_cache.Add (uri, current);
-                }
+				}
 			}
 
 			//FIXME: we might end up leaking a pixbuf here

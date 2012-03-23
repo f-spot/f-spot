@@ -32,7 +32,7 @@
 
 using System;
 using System.Collections.Generic;
-
+using System.Linq;
 using Hyena;
 
 using TagLib.Image;
@@ -121,13 +121,13 @@ namespace FSpot.Imaging
 			// with filenames with invalid encoding
 			var file = GLib.FileFactory.NewForUri (uri);
 			if (!file.Exists)
-             		   return null;
+					   return null;
 
 			string extension = uri.GetExtension ().ToLower ();
 
 			// Ignore video thumbnails
 			if (extension == ".thm")
-		                return null;
+						return null;
 
 			// Detect mime-type
 			var info = file.QueryInfo ("standard::content-type,standard::size", FileQueryInfoFlags.None, null);
@@ -136,13 +136,14 @@ namespace FSpot.Imaging
 
 			// Empty file
 			if (size == 0)
-		                return null;
+						return null;
 
 			Type t = null;
 
 			if (NameTable.TryGetValue (mime, out t))
 				return t;
-			else if (NameTable.TryGetValue (extension, out t))
+
+			if (NameTable.TryGetValue (extension, out t))
 				return t;
 
 			return null;
@@ -177,23 +178,24 @@ namespace FSpot.Imaging
 				".raf",
 				".rw2",
 			};
+
 			var extension = uri.GetExtension ().ToLower ();
-			foreach (string ext in raw_extensions) {
-				if (ext == extension)
-					return true;
-			}
-			return false;
+			return raw_extensions.Any(ext => ext == extension);
 		}
 
 		public static bool IsJpeg (SafeUri uri)
 		{
-			string [] jpg_extensions = {".jpg", ".jpeg", ".jpe", ".jfi", ".jfif", ".jif"};
+			string [] jpg_extensions = {
+			    ".jpg",
+				".jpeg",
+				".jpe",
+				".jfi",
+				".jfif",
+				".jif"
+			    };
+
 			var extension = uri.GetExtension ().ToLower ();
-			foreach (string ext in jpg_extensions) {
-				if (ext == extension)
-					return true;
-			}
-			return false;
+			return jpg_extensions.Any(ext => ext == extension);
 		}
 		#endregion
 	}

@@ -71,8 +71,6 @@ namespace FSpot {
     				if (Finished != null)
     					Finished (this, new EventArgs ());
     				break;
-    			default:
-    				break;
     			}
     		}
     	}
@@ -80,12 +78,9 @@ namespace FSpot {
     	public void Run ()
     	{
     		Status = JobStatus.Running;
-    		if (Execute ())
-    			Status = JobStatus.Finished;
-    		else
-    			Status = JobStatus.Failed;
+    		Status = Execute () ? JobStatus.Finished : JobStatus.Failed;
     	}
-    
+
     	protected abstract bool Execute ();
     }
 
@@ -193,7 +188,7 @@ namespace FSpot {
     	{
     		RemoveFromCache (item);
     
-    		if ((item as Job).Persistent)
+    		if (item.Persistent)
     			Database.Execute (new HyenaSqliteCommand ("DELETE FROM jobs WHERE id = ?", item.Id));
     
     		EmitRemoved (item);

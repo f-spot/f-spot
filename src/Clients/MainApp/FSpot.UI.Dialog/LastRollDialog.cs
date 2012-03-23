@@ -31,7 +31,7 @@
 //
 using System;
 using System.Collections.Generic;
-
+using System.Linq;
 using FSpot.Core;
 using FSpot.Query;
 
@@ -99,9 +99,7 @@ namespace FSpot.UI.Dialog
 			Roll [] selected_rolls = SelectedRolls ();
 			uint sum = 0;
 			if (selected_rolls != null)
-				foreach (Roll roll in selected_rolls) {
-					sum = sum + rollstore.PhotosInRoll (roll);
-				}
+				sum = selected_rolls.Aggregate(sum, (current, roll) => current + rollstore.PhotosInRoll(roll));
 			photos_in_selected_rolls.Text = sum.ToString ();
 		}
 

@@ -83,11 +83,9 @@ namespace FSpot
 		/// last Literal in term, else null
 		/// </value>
 		public Term Last {
-			get {
-				if (SubTerms.Count > 0)
-					return SubTerms [SubTerms.Count - 1];
-else
-					return null;
+			get
+			{
+				return SubTerms.Count > 0 ? SubTerms [SubTerms.Count - 1] : null;
 			}
 		}
 
@@ -152,12 +150,7 @@ else
 			}
 		}
 
-		public List<Term> FindByTag (Tag t)
-		{
-			return FindByTag (t, true);
-		}
-
-		public List<Term> FindByTag (Tag t, bool recursive)
+		public List<Term> FindByTag (Tag t, bool recursive = true)
 		{
 			List<Term> results = new List<Term> ();
 
@@ -288,7 +281,7 @@ else
 			StringBuilder condition = new StringBuilder ("(");
 
 			for (int i = 0; i < SubTerms.Count; i++) {
-				Term term = SubTerms [i] as Term;
+				Term term = SubTerms [i];
 				condition.Append (term.SqlCondition ());
 
 				if (i != SubTerms.Count - 1)
@@ -310,6 +303,7 @@ else
 			return String.Empty;
 		}
 
+		// FIXME: The base class shouldn't know about its derived classes?
 		public static Term TermFromOperator (string op, Term parent, Literal after)
 		{
 			//Console.WriteLine ("finding type for operator {0}", op);
@@ -319,7 +313,8 @@ else
 			if (AndTerm.Operators.Contains (op))
 				//Console.WriteLine ("AND!");
 				return new AndTerm (parent, after);
-			else if (OrTerm.Operators.Contains (op))
+			
+			if (OrTerm.Operators.Contains (op))
 				//Console.WriteLine ("OR!");
 				return new OrTerm (parent, after);
 

@@ -44,10 +44,7 @@ namespace FSpot.Widgets
     {
 
 #region Public Properties
-
-        public BrowsablePointer Pointer {
-            get; private set;
-        }
+        public BrowsablePointer Pointer { get; private set; }
 
 #endregion
 

@@ -57,8 +57,7 @@ namespace FSpot.Imaging {
 
 			if (data != null)
 				return new System.IO.MemoryStream (data);
-			else
-				return DCRawFile.RawPixbufStream (Uri);
+			return DCRawFile.RawPixbufStream (Uri);
 		}
 
 		private byte [] GetEmbeddedJpeg ()

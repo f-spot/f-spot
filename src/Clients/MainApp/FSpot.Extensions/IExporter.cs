@@ -31,8 +31,6 @@
 
 using FSpot.Core;
 
-using Mono.Addins;
-
 namespace FSpot.Extensions
 {
 	public interface IExporter

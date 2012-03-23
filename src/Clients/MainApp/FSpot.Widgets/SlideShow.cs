@@ -55,7 +55,7 @@ namespace FSpot.Widgets
 		{
 		}
 
-		public SlideShow (BrowsablePointer item, uint interval_ms, bool init) : base ()
+		public SlideShow (BrowsablePointer item, uint interval_ms, bool init)
 		{
 			this.item = item;
 			DoubleBuffered = false;

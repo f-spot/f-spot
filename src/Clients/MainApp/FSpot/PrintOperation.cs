@@ -209,7 +209,7 @@ namespace FSpot
 
 		private static void DrawComment (Gtk.PrintContext context, double x, double y, double h, string comment, bool rotated)
 		{
-			if (comment == null || comment == String.Empty)
+			if (string.IsNullOrEmpty(comment))
 				return;
 
 			Context cr = context.CairoContext;

@@ -47,14 +47,6 @@ namespace FSpot.Widgets
 
 #endregion
 
-#region Constructor
-
-        public ThumbnailRatingDecorationRenderer ()
-        {
-        }
-
-#endregion
-
 #region Drawing Methods
 
         public override void Render (Drawable window,

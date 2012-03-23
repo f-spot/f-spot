@@ -37,6 +37,7 @@ using Mono.Unix;
 
 namespace FSpot.Widgets
 {
+	// FIXME: This is never used
 	public class FolderTreePage : SidebarPage
 	{
 		readonly FolderTreeView folder_tree_widget;

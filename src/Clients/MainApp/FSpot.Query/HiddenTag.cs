@@ -42,21 +42,11 @@ namespace FSpot.Query
 		private static HiddenTag hide_hidden_tag;
 
 		public static HiddenTag ShowHiddenTag {
-			get {
-				if (show_hidden_tag == null)
-					show_hidden_tag = new HiddenTag (true);
-
-				return show_hidden_tag;
-			}
+			get { return show_hidden_tag ?? (show_hidden_tag = new HiddenTag(true)); }
 		}
 
 		public static HiddenTag HideHiddenTag {
-			get {
-				if (hide_hidden_tag == null)
-					hide_hidden_tag = new HiddenTag (false);
-
-				return hide_hidden_tag;
-			}
+			get { return hide_hidden_tag ?? (hide_hidden_tag = new HiddenTag(false)); }
 		}
 
 
@@ -74,8 +64,7 @@ namespace FSpot.Query
 			if ( ! show_hidden && hidden != null)
 				return String.Format (" photos.id NOT IN (SELECT photo_id FROM photo_tags WHERE tag_id = {0}) ",
 				                      hidden.Id);
-			else
-				return null;
+			return null;
 		}
 	}
 }

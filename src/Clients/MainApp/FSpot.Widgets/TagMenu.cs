@@ -133,7 +133,7 @@ public class TagMenu : Menu {
 		}
 	}
 
-		public void PopulateFlat (Category cat, Gtk.Menu parent)
+	public void PopulateFlat (Category cat, Gtk.Menu parent)
 	{
 		foreach (Tag t in cat.Children) {
 			TagMenuItem item = TagMenuItem.IndentedItem (t);

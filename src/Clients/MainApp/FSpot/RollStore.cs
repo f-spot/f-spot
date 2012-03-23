@@ -113,12 +113,7 @@ namespace FSpot
 			return number_of_photos;
 		}
 
-		public Roll [] GetRolls ()
-		{
-			return GetRolls (-1);
-		}
-
-		public Roll [] GetRolls (int limit)
+		public Roll [] GetRolls (int limit = -1)
 		{
 			List<Roll> rolls = new List<Roll> ();
 
@@ -130,7 +125,7 @@ namespace FSpot
 				while (reader.Read ()) {
 					uint id = Convert.ToUInt32 (reader ["roll_id"]);
 
-					Roll roll = LookupInCache (id) as Roll;
+					Roll roll = LookupInCache (id);
 					if (roll == null) {
 						roll = new Roll (id, Convert.ToUInt32 (reader ["roll_time"]));
 						AddToCache (roll);

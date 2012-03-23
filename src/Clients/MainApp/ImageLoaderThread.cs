@@ -63,11 +63,9 @@ public class ImageLoaderThread
 		private Pixbuf result;
 
 		public Pixbuf Result {
-			get {
-				if (result == null) {
-					return null;
-				}
-				return result.ShallowCopy ();
+			get
+			{
+				return result == null ? null : result.ShallowCopy ();
 			}
 			set { result = value; }
 		}
@@ -99,7 +97,7 @@ public class ImageLoaderThread
 
 
 	#region Private members.
-	static List<ImageLoaderThread> instances = new List<ImageLoaderThread> ();
+	static readonly List<ImageLoaderThread> instances = new List<ImageLoaderThread> ();
 
 	/* The thread used to handle the requests.  */
 	private Thread worker_thread;
@@ -194,12 +192,7 @@ public class ImageLoaderThread
 		}
 	}
 
-	public void Request (SafeUri uri, int order)
-	{
-		Request (uri, order, 0, 0);
-	}
-
-	public virtual void Request (SafeUri uri, int order, int width, int height)
+	public virtual void Request (SafeUri uri, int order, int width = 0, int height = 0)
 	{
 		lock (queue) {
 			if (InsertRequest (uri, order, width, height)) {
@@ -312,7 +305,7 @@ public class ImageLoaderThread
 
 					int pos = queue.Count - 1;
 
-					current_request = queue [pos] as RequestItem;
+					current_request = queue [pos];
 					queue.RemoveAt (pos);
 					requests_by_uri.Remove (current_request.Uri);
 				}

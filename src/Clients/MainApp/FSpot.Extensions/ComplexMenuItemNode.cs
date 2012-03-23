@@ -53,16 +53,16 @@ namespace FSpot.Extensions
 			ComplexMenuItem item = System.Activator.CreateInstance (Type.GetType (widget_type), parent) as ComplexMenuItem;
 			cmd = (ICommand) Addin.CreateInstance (command_type);
 
-            if (item != null)
-                item.Activated += OnActivated;
-            return item;
-        }
+			if (item != null)
+				item.Activated += OnActivated;
+			return item;
+		}
 
-        private void OnActivated (object o, EventArgs e)
-        {
-            if (cmd != null)
-                cmd.Run (o, e);
-        }
+		private void OnActivated (object o, EventArgs e)
+		{
+			if (cmd != null)
+				cmd.Run (o, e);
+		}
 	}
 
 }

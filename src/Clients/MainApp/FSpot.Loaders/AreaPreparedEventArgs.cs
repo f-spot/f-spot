@@ -34,7 +34,7 @@ namespace FSpot.Loaders {
 	{
 		public bool ReducedResolution { get; private set; }
 
-		public AreaPreparedEventArgs (bool reduced_resolution) : base ()
+		public AreaPreparedEventArgs (bool reduced_resolution)
 		{
 			ReducedResolution = reduced_resolution;
 		}

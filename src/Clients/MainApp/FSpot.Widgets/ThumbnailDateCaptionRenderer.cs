@@ -47,15 +47,7 @@ namespace FSpot.Widgets
 
 #region Private Fields
 
-        private Dictionary <string, Pango.Layout> cache = new Dictionary <string, Pango.Layout> ();
-
-#endregion
-
-#region Constructor
-
-        public ThumbnailDateCaptionRenderer ()
-        {
-        }
+        private readonly Dictionary <string, Pango.Layout> cache = new Dictionary <string, Pango.Layout> ();
 
 #endregion
 

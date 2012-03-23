@@ -47,14 +47,9 @@ namespace FSpot.Imaging {
 	internal class InternalProcess {
 		int stdin;
 		int stdout;
-		IOChannel input;
 		IOChannel output;
 
-		public IOChannel StandardInput {
-			get {
-				return input;
-			}
-		}
+		public IOChannel StandardInput { get; private set; }
 
 		public IOChannel StandardOutput {
 			get {
@@ -93,7 +88,7 @@ namespace FSpot.Imaging {
 			if (error != IntPtr.Zero)
 				throw new GException (error);
 
-			input = new IOChannel (stdin);
+			StandardInput = new IOChannel (stdin);
 			output = new IOChannel (stdout);
 			//errorput = new IOChannel (stderr);
 		}

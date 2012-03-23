@@ -53,22 +53,11 @@ namespace FSpot.UI.Dialog {
 
 		private int total_count;
 
-		private ProgressBar progress_bar;
-		public ProgressBar Bar {
-			get { return progress_bar; }
-		}
+		public ProgressBar Bar { get; private set; }
 
-		private Label message_label;
-		public Label Message {
-			get { return message_label; }
-		}
+		public Label Message { get; private set; }
 
-		private Gtk.Button button;
-		public Gtk.Button Button {
-			get {
-				return button;
-			}
-		}
+		public Button Button { get; private set; }
 
 		public ProgressDialog (string title, CancelButtonType cancel_button_type, int total_count, Gtk.Window parent_window)
 		{
@@ -82,18 +71,18 @@ namespace FSpot.UI.Dialog {
 			BorderWidth = 6;
 			SetDefaultSize (300, -1);
 
-			message_label = new Label (String.Empty);
-			VBox.PackStart (message_label, true, true, 12);
+			Message = new Label (String.Empty);
+			VBox.PackStart (Message, true, true, 12);
 
-			progress_bar = new ProgressBar ();
-			VBox.PackStart (progress_bar, true, true, 6);
+			Bar = new ProgressBar ();
+			VBox.PackStart (Bar, true, true, 6);
 
 			switch (cancel_button_type) {
 			case CancelButtonType.Cancel:
-				button = (Gtk.Button)AddButton (Gtk.Stock.Cancel, (int) ResponseType.Cancel);
+				Button = (Gtk.Button)AddButton (Gtk.Stock.Cancel, (int) ResponseType.Cancel);
 				break;
 			case CancelButtonType.Stop:
-				button = (Gtk.Button)AddButton (Gtk.Stock.Stop, (int) ResponseType.Cancel);
+				Button = (Gtk.Button)AddButton (Gtk.Stock.Stop, (int) ResponseType.Cancel);
 				break;
 			}
 
@@ -107,9 +96,9 @@ namespace FSpot.UI.Dialog {
 		{
 			current_count ++;
 
-			message_label.Text = message;
-			progress_bar.Text = String.Format (Catalog.GetString ("{0} of {1}"), current_count, total_count);
-			progress_bar.Fraction = (double) current_count / total_count;
+			Message.Text = message;
+			Bar.Text = String.Format (Catalog.GetString ("{0} of {1}"), current_count, total_count);
+			Bar.Fraction = (double) current_count / total_count;
 
 			ShowAll ();
 

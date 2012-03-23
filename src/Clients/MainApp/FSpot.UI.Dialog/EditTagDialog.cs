@@ -119,7 +119,7 @@ namespace FSpot.UI.Dialog
 			return false;
 		}
 
-		void PopulateCategories (List<Tag> categories, Category parent)
+		void PopulateCategories (ICollection<Tag> categories, Category parent)
 		{
 			foreach (Tag tag in parent.Children) {
 				if (tag is Category && tag != this.tag && !this.tag.IsAncestorOf (tag)) {

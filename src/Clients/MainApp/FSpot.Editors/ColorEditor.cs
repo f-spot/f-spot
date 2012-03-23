@@ -40,6 +40,7 @@ using GtkBeans;
 using Mono.Unix;
 
 namespace FSpot.Editors {
+	// FIXME: This class is never used
 	class ColorEditor : Editor {
 		GtkBeans.Builder builder;
 

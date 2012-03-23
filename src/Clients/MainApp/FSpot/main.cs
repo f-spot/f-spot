@@ -299,7 +299,10 @@ namespace FSpot
 					GtkUtil.TryLoadIcon (FSpot.Core.Global.IconTheme, "f-spot", 32, (Gtk.IconLookupFlags)0),
 					GtkUtil.TryLoadIcon (FSpot.Core.Global.IconTheme, "f-spot", 48, (Gtk.IconLookupFlags)0)
 				};
-			} catch {}
+			} catch (Exception ex)
+			{
+				Log.DebugException(ex);
+			}
 
 			CleanRoomStartup.Startup (Startup);
 

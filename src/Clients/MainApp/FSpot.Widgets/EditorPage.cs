@@ -61,7 +61,7 @@ namespace FSpot.Widgets {
 		}
 
 		protected override void AddedToSidebar () {
-			(Sidebar as Sidebar).SelectionChanged += delegate (IBrowsableCollection collection) { EditorPageWidget.ShowTools (); };
+			(Sidebar as Sidebar).SelectionChanged += collection => EditorPageWidget.ShowTools();
 			(Sidebar as Sidebar).ContextChanged += HandleContextChanged;
 		}
 
@@ -141,7 +141,7 @@ namespace FSpot.Widgets {
 			Button button = new Button (editor.Label);
 			if (editor.IconName != null)
 				button.Image = new Image (GtkUtil.TryLoadIcon (FSpot.Core.Global.IconTheme, editor.IconName, 22, (Gtk.IconLookupFlags)0));
-			button.Clicked += delegate (object o, EventArgs e) { ChooseEditor (editor); };
+			button.Clicked += (o, e) => ChooseEditor(editor);
 			button.Show ();
 			buttons.Add (button);
 			editor_buttons.Add (editor, button);

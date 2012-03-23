@@ -49,7 +49,7 @@ namespace FSpot.UI.Dialog
 		private RatingEntry maxrating;
 
 		public RatingFilterDialog (FSpot.PhotoQuery query, Gtk.Window parent_window)
-            : base ("RatingFilterDialog.ui", "rating_filter_dialog")
+			: base ("RatingFilterDialog.ui", "rating_filter_dialog")
 		{
 			TransientFor = parent_window;
 			DefaultResponse = ResponseType.Ok;
@@ -64,11 +64,11 @@ namespace FSpot.UI.Dialog
 			minrating_hbox.PackStart (minrating, false, false, 0);
 			maxrating_hbox.PackStart (maxrating, false, false, 0);
 
-            minrating.Show ();
-            maxrating.Show ();
+			minrating.Show ();
+			maxrating.Show ();
 
-            minrating.Changed += HandleMinratingChanged;
-            maxrating.Changed += HandleMaxratingChanged;
+			minrating.Changed += HandleMinratingChanged;
+			maxrating.Changed += HandleMaxratingChanged;
 
 			ResponseType response = (ResponseType) Run ();
 
@@ -79,22 +79,22 @@ namespace FSpot.UI.Dialog
 			Destroy ();
 		}
 
-        void HandleMinratingChanged (object sender, System.EventArgs e)
-        {
-            if (minrating.Value > maxrating.Value) {
-                maxrating.Changed -= HandleMaxratingChanged;
-                maxrating.Value = minrating.Value;
-                maxrating.Changed += HandleMaxratingChanged;
-            }
-        }
+		void HandleMinratingChanged (object sender, System.EventArgs e)
+		{
+			if (minrating.Value > maxrating.Value) {
+				maxrating.Changed -= HandleMaxratingChanged;
+				maxrating.Value = minrating.Value;
+				maxrating.Changed += HandleMaxratingChanged;
+			}
+		}
 
-        void HandleMaxratingChanged (object sender, System.EventArgs e)
-        {
-            if (maxrating.Value < minrating.Value) {
-                minrating.Changed -= HandleMinratingChanged;
-                minrating.Value = maxrating.Value;
-                minrating.Changed += HandleMinratingChanged;
-            }
-        }
+		void HandleMaxratingChanged (object sender, System.EventArgs e)
+		{
+			if (maxrating.Value < minrating.Value) {
+				minrating.Changed -= HandleMinratingChanged;
+				minrating.Value = maxrating.Value;
+				minrating.Changed += HandleMinratingChanged;
+			}
+		}
 	}
 }

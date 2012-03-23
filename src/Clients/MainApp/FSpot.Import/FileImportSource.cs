@@ -57,14 +57,15 @@ namespace FSpot.Import
 			Root = root;
 			Name = name;
 
-			if (root != null) {
-				if (IsIPodPhoto) {
-					IconName = "multimedia-player";
-				} else if (IsCamera) {
-					IconName = "media-flash";
-				} else {
-					IconName = icon_name;
-				}
+			if (root == null)
+				return;
+
+			if (IsIPodPhoto) {
+				IconName = "multimedia-player";
+			} else if (IsCamera) {
+				IconName = "media-flash";
+			} else {
+				IconName = icon_name;
 			}
 		}
 

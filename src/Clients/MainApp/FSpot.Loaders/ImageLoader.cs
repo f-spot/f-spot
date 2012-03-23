@@ -38,7 +38,7 @@ using Hyena;
 
 namespace FSpot.Loaders {
 	public static class ImageLoader {
-		static Dictionary<string, System.Type> name_table;
+		static readonly Dictionary<string, System.Type> name_table;
 
 		static ImageLoader ()
 		{
@@ -71,7 +71,7 @@ namespace FSpot.Loaders {
 					throw new Exception ("Loader requested for unknown file type: "+extension);
 			}
 
-			loader = (IImageLoader) System.Activator.CreateInstance (t);
+			loader = System.Activator.CreateInstance (t) as IImageLoader;
 
 			return loader;
 		}
