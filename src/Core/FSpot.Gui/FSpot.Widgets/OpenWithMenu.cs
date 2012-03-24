@@ -53,11 +53,7 @@ namespace FSpot.Widgets {
 			}
 		}
 
-		bool show_icons = true;
-		public bool ShowIcons {
-			get { return show_icons; }
-			set { show_icons = value; }
-		}
+		public bool ShowIcons { get; set; }
 
 		public OpenWithMenu (TypeFetcher type_fetcher) : this (type_fetcher, null)
 		{
@@ -65,6 +61,7 @@ namespace FSpot.Widgets {
 
 		public OpenWithMenu (TypeFetcher type_fetcher, params string [] ignore_apps)
 		{
+			ShowIcons = true;
 			this.type_fetcher = type_fetcher;
 			this.ignore_apps = new List<string> (ignore_apps);
 		}
@@ -73,11 +70,11 @@ namespace FSpot.Widgets {
 		public void Populate (object sender, EventArgs args)
 		{
 			Widget [] dead_pool = Children;
-			for (int i = 0; i < dead_pool.Length; i++)
-				dead_pool [i].Destroy ();
+			foreach (Widget t in dead_pool)
+				t.Destroy ();
 
 			foreach (AppInfo app in ApplicationsFor (type_fetcher ())) {
-				AppMenuItem i = new AppMenuItem (app, show_icons);
+				AppMenuItem i = new AppMenuItem (app, ShowIcons);
 				i.Activated += HandleItemActivated;
 				Append (i);
 			}

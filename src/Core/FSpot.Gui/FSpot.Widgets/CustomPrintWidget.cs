@@ -47,7 +47,6 @@ namespace FSpot.Widgets
 			Fill,
 		}
 
-		Gtk.Image preview_image;
 		CheckButton fullpage;
 
 		RadioButton ppp1, ppp2, ppp4, ppp9, ppp20, ppp30;
@@ -94,31 +93,30 @@ namespace FSpot.Widgets
 		}
 
 		public FitMode Fitmode {
-			get {
+			get
+			{
 				if (zoom.Active)	return FitMode.Zoom;
-				else if (fill.Active)	return FitMode.Fill;
-				else if (scaled.Active)	return FitMode.Scaled;
-				else
-					throw new Exception ("Something is wrong on this GUI");
+				if (fill.Active)	return FitMode.Fill;
+				if (scaled.Active)	return FitMode.Scaled;
+
+				throw new Exception ("Something is wrong on this GUI");
 			}
 		}
 
 		public int PhotosPerPage {
 			get {
 				if (ppp1.Active)	return 1;
-				else if (ppp2.Active)	return 2;
-				else if (ppp4.Active)	return 4;
-				else if (ppp9.Active)	return 9;
-				else if (ppp20.Active)	return 20;
-				else if (ppp30.Active)	return 30;
-				else
-					throw new Exception ("Something is wrong on this GUI");
+				if (ppp2.Active)	return 2;
+				if (ppp4.Active)	return 4;
+				if (ppp9.Active)	return 9;
+				if (ppp20.Active)	return 20;
+				if (ppp30.Active)	return 30;
+				
+				throw new Exception ("Something is wrong on this GUI");
 			}
 		}
 
-		public Gtk.Image PreviewImage {
-			get { return preview_image; }
-		}
+		public Image PreviewImage { get; private set; }
 
 		public bool Repeat {
 			get { return repeat.Active; }
@@ -136,8 +134,8 @@ namespace FSpot.Widgets
 		{
 			this.print_operation = print_operation;
 
-			preview_image = new Gtk.Image ();
-			Attach (preview_image, 0, 2, 0, 1);
+			PreviewImage = new Gtk.Image ();
+			Attach (PreviewImage, 0, 2, 0, 1);
 
 			Frame page_frame = new Frame (Catalog.GetString ("Page Setup"));
 			VBox page_box = new VBox ();

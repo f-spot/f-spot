@@ -28,9 +28,11 @@
 //
 
 namespace FSpot.Bling
-{	public abstract class QuinticEase : EasingFunction
+{
+	// FIXME: This is never used
+	public abstract class QuinticEase : EasingFunction
 	{
-		public QuinticEase () : base ()
+		public QuinticEase ()
 		{
 		}
 		

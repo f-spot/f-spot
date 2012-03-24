@@ -45,10 +45,16 @@ namespace FSpot.Widgets
 	public partial class ImageView : Container
 	{
 #region public API
-		protected ImageView (IntPtr raw) : base (raw) { }
-
-		public ImageView (Adjustment hadjustment, Adjustment vadjustment, bool can_select) : base ()
+		protected ImageView (IntPtr raw) : base (raw)
 		{
+			MIN_ZOOM = 0.1;
+			MAX_ZOOM = 10.0;
+		}
+
+		public ImageView (Adjustment hadjustment, Adjustment vadjustment, bool can_select)
+		{
+			MIN_ZOOM = 0.1;
+			MAX_ZOOM = 10.0;
 			OnSetScrollAdjustments (hadjustment, vadjustment);
 			AdjustmentsChanged += ScrollToAdjustments;
 			WidgetFlags &= ~WidgetFlags.NoWindow;
@@ -73,7 +79,7 @@ namespace FSpot.Widgets
 					return;
 
 				pixbuf = value;
-				min_zoom = ComputeMinZoom (upscale);
+				MIN_ZOOM = ComputeMinZoom (upscale);
 
 				ComputeScaledSize ();
 				AdjustmentsChanged -= ScrollToAdjustments;
@@ -91,7 +97,7 @@ namespace FSpot.Widgets
 				if (value == pixbuf_orientation)
 					return;
 				pixbuf_orientation = value;
-				min_zoom = ComputeMinZoom (upscale);
+				MIN_ZOOM = ComputeMinZoom (upscale);
 				ComputeScaledSize ();
 				QueueDraw ();
 			}
@@ -214,7 +220,7 @@ namespace FSpot.Widgets
 			if (scrolled != null)
 				scrolled.SetPolicy (Gtk.PolicyType.Never, Gtk.PolicyType.Never);
 
-			min_zoom = ComputeMinZoom (upscale);
+			MIN_ZOOM = ComputeMinZoom (upscale);
 
 			this.upscale = upscale;
 
@@ -222,9 +228,7 @@ namespace FSpot.Widgets
 			DoZoom (MIN_ZOOM, Allocation.Width / 2, Allocation.Height / 2);
 
 			if (scrolled != null) {
-				ThreadAssist.ProxyToMain (() => {
-						scrolled.SetPolicy (Gtk.PolicyType.Automatic, Gtk.PolicyType.Automatic);
-				});
+				ThreadAssist.ProxyToMain (() => scrolled.SetPolicy (Gtk.PolicyType.Automatic, Gtk.PolicyType.Automatic));
 			}
 		}
 
@@ -253,15 +257,9 @@ namespace FSpot.Widgets
 
 		protected static double ZOOM_FACTOR = 1.1;
 
-		protected double max_zoom = 10.0;
-		protected double MAX_ZOOM {
-			get { return max_zoom; }
-		}
+		protected double MAX_ZOOM { get; set; }
 
-		protected double min_zoom = 0.1;
-		protected double MIN_ZOOM {
-			get { return min_zoom; }
-		}
+		protected double MIN_ZOOM { get; set; }
 
 		bool upscale;
 		protected void ZoomFit ()
@@ -356,7 +354,7 @@ namespace FSpot.Widgets
 
 		protected override void OnSizeAllocated (Gdk.Rectangle allocation)
 		{
-			min_zoom = ComputeMinZoom (upscale);
+			MIN_ZOOM = ComputeMinZoom (upscale);
 
 			if (Fit || zoom < MIN_ZOOM)
 				zoom = MIN_ZOOM;

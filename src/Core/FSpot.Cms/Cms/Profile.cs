@@ -87,8 +87,7 @@ namespace Cms {
 		{
 			if (transfer == null)
 				return new Profile (NativeMethods.CmsCreateGrayProfile (ref whitePoint, new GammaTable (4096, 2.2).Handle));
-			else
-				return new Profile (NativeMethods.CmsCreateGrayProfile (ref whitePoint, transfer.Handle));
+			return new Profile (NativeMethods.CmsCreateGrayProfile (ref whitePoint, transfer.Handle));
 		}
 
 		public static Profile GetScreenProfile (Gdk.Screen screen)
@@ -98,10 +97,7 @@ namespace Cms {
 
 			IntPtr profile = NativeMethods.FScreenGetProfile (screen.Handle);
 			
-			if (profile == IntPtr.Zero)
-				return null;
-			
-			return new Profile (profile);
+			return profile == IntPtr.Zero ? null : new Profile (profile);
 		}
 
 
@@ -238,8 +234,8 @@ namespace Cms {
 			
 			if (profileh == IntPtr.Zero)
 				throw new CmsException ("Invalid Profile Data");
-			else
-				Handle = new HandleRef (this, profileh);
+			
+			Handle = new HandleRef (this, profileh);
 		}
 
 		public ColorCIEXYZ MediaWhitePoint {

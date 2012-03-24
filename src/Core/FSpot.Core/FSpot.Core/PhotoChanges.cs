@@ -48,9 +48,8 @@ namespace FSpot.Core
 			get {
 				if (tags_added == null)
 					return null;
-				if (tags_added.Count == 0)
-					return null;
-				return tags_added.ToArray ();
+				
+				return tags_added.Count == 0 ? null : tags_added.ToArray ();
 			}
 			set {
 				foreach (Tag t in value)
@@ -73,9 +72,8 @@ namespace FSpot.Core
 			get {
 				if (tags_removed == null)
 					return null;
-				if (tags_removed.Count == 0)
-					return null;
-				return tags_removed.ToArray ();
+
+				return tags_removed.Count == 0 ? null : tags_removed.ToArray ();
 			}
 			set {
 				foreach (Tag t in value)
@@ -98,9 +96,8 @@ namespace FSpot.Core
 			get {
 				if (versions_added == null)
 					return null;
-				if (versions_added.Count == 0)
-					return null;
-				return versions_added.ToArray ();
+
+				return versions_added.Count == 0 ? null : versions_added.ToArray ();
 			}
 			set {
 				foreach (uint u in value)
@@ -120,9 +117,8 @@ namespace FSpot.Core
 			get {
 				if (versions_removed == null)
 					return null;
-				if (versions_removed.Count == 0)
-					return null;
-				return versions_removed.ToArray ();
+
+				return versions_removed.Count == 0 ? null : versions_removed.ToArray ();
 			}
 			set {
 				foreach (uint u in value)
@@ -141,15 +137,13 @@ namespace FSpot.Core
 			versions_removed.Add (v);
 		}
 
-
 		List<uint> versions_modified = null;
 		public uint [] VersionsModified {
 			get {
 				if (versions_modified == null)
 					return null;
-				if (versions_modified.Count == 0)
-					return null;
-				return versions_modified.ToArray ();
+
+				return versions_modified.Count == 0 ? null : versions_modified.ToArray ();
 			}
 			set {
 				foreach (uint u in value)
@@ -161,15 +155,14 @@ namespace FSpot.Core
 		{
 			if (versions_modified == null)
 				versions_modified = new List<uint> ();
+
 			if (versions_added != null && versions_added.Contains (v))
 				return;
+
 			if (versions_removed != null && versions_removed.Contains (v))
 				return;
-			versions_modified.Add (v);
-		}
 
-		public PhotoChanges ()
-		{
+			versions_modified.Add (v);
 		}
 	}
 }

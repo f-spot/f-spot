@@ -47,12 +47,12 @@ namespace FSpot.Core
 	{
 		public T [] Items { get; private set; }
 
-		public DbItemEventArgs (T [] items) : base ()
+		public DbItemEventArgs (T [] items)
 		{
 			Items = items;
 		}
 
-		public DbItemEventArgs (T item) : base ()
+		public DbItemEventArgs (T item)
 		{
 			Items = new T [] { item };
 		}

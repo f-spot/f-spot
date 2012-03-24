@@ -50,7 +50,7 @@ namespace FSpot.Platform
 	[Serializable]
 	public class NoSuchKeyException : Exception
 	{
-		public NoSuchKeyException () : base ()
+		public NoSuchKeyException ()
 		{
 		}
 
@@ -80,10 +80,6 @@ namespace FSpot.Platform
 					return client;
 				}
 			}
-		}
-
-		public PreferenceBackend ()
-		{
 		}
 
 		public object Get (string key)

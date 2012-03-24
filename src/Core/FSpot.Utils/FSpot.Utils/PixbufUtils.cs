@@ -29,6 +29,8 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
+// FIXME: What's the difference between having this one and the other in Clients?
+
 using Gdk;
 
 using TagLib.Image;
@@ -37,26 +39,26 @@ namespace FSpot.Utils
 {
 	public static class PixbufUtils
 	{
-        static public ImageOrientation Rotate270 (ImageOrientation orientation)
-        {
-            if (orientation == ImageOrientation.None) {
-                orientation = ImageOrientation.TopLeft;
-            }
+		static public ImageOrientation Rotate270 (ImageOrientation orientation)
+		{
+			if (orientation == ImageOrientation.None) {
+				orientation = ImageOrientation.TopLeft;
+			}
 
-            ImageOrientation [] rot = new ImageOrientation [] {
-                ImageOrientation.LeftBottom,
-                    ImageOrientation.LeftTop,
-                    ImageOrientation.RightTop,
-                    ImageOrientation.RightBottom,
-                    ImageOrientation.BottomLeft,
-                    ImageOrientation.TopLeft,
-                    ImageOrientation.TopRight,
-                    ImageOrientation.BottomRight
-            };
+			ImageOrientation [] rot = new ImageOrientation [] {
+				ImageOrientation.LeftBottom,
+					ImageOrientation.LeftTop,
+					ImageOrientation.RightTop,
+					ImageOrientation.RightBottom,
+					ImageOrientation.BottomLeft,
+					ImageOrientation.TopLeft,
+					ImageOrientation.TopRight,
+					ImageOrientation.BottomRight
+			};
 
-            orientation = rot [((int)orientation) -1];
-            return orientation;
-        }
+			orientation = rot [((int)orientation) -1];
+			return orientation;
+		}
 	
 		static public ImageOrientation Rotate90 (ImageOrientation orientation)
 		{
@@ -109,8 +111,6 @@ namespace FSpot.Utils
 				area.Y = total_width - args.X - args.Width;
 				area.Width = args.Height;
 				area.Height = args.Width;
-				break;
-			default:
 				break;
 			}
 			

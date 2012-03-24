@@ -35,10 +35,11 @@ using Gtk;
 
 namespace FSpot.Widgets
 {
+	// FIXME: This class is never used
 	public class Curve : DrawingArea
 	{
 #region public API
-		public Curve () : base ()
+		public Curve ()
 		{
 			Events |= EventMask.ExposureMask
 				| EventMask.PointerMotionMask

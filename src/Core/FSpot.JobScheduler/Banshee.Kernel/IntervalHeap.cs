@@ -62,7 +62,7 @@ using System.Collections.Generic;
 
 namespace Banshee.Kernel
 {
-	public class IntervalHeap<T> : ICollection<T>, ICollection, IEnumerable<T>, IEnumerable
+	public class IntervalHeap<T> : ICollection<T>, ICollection
 	{
 		private const int MIN_CAPACITY = 16;
 	

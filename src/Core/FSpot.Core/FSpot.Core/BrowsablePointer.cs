@@ -46,7 +46,7 @@ namespace FSpot.Core
 				throw new ArgumentNullException ("collection");
 
 			this.collection = collection;
-			this.Index = index;
+			Index = index;
 			item = Current;
 
 			collection.Changed += HandleCollectionChanged;
@@ -58,11 +58,9 @@ namespace FSpot.Core
 		}
 
 		public IPhoto Current {
-			get {
-				if (!this.IsValid)
-					return null;
-				else
-					return collection [index];
+			get
+			{
+				return !IsValid ? null : collection [index];
 			}
 		}
 
@@ -72,7 +70,7 @@ namespace FSpot.Core
 		}
 
 		public bool IsValid {
-			get { return Valid (this.Index); }
+			get { return Valid (Index); }
 		}
 
 		public void MoveFirst ()
@@ -85,12 +83,7 @@ namespace FSpot.Core
 			Index = collection.Count - 1;
 		}
 
-		public void MoveNext ()
-		{
-			MoveNext (false);
-		}
-
-		public void MoveNext (bool wrap)
+		public void MoveNext (bool wrap = false)
 		{
 			int val = Index;
 
@@ -101,12 +94,7 @@ namespace FSpot.Core
 			Index = val;
 		}
 
-		public void MovePrevious ()
-		{
-			MovePrevious (false);
-		}
-
-		public void MovePrevious (bool wrap)
+		public void MovePrevious (bool wrap = false)
 		{
 			int val = Index;
 
@@ -126,12 +114,7 @@ namespace FSpot.Core
 			}
 		}
 
-		private void SetIndex (int value)
-		{
-			SetIndex (value, null);
-		}
-
-		private void SetIndex (int value, IBrowsableItemChanges changes)
+		private void SetIndex (int value, IBrowsableItemChanges changes = null)
 		{
 			BrowsablePointerChangedEventArgs args = new BrowsablePointerChangedEventArgs (Current, index, changes);
 
@@ -154,12 +137,13 @@ namespace FSpot.Core
 		{
 			if (collection == null)
 				throw new ArgumentNullException ("collection");
+
 			int old_location = Index;
 			int next_location = collection.IndexOf (item);
 
 			if (old_location == next_location) {
 				if (! Valid (next_location))
-					SetIndex (0, null);
+					SetIndex (0);
 
 				return;
 			}

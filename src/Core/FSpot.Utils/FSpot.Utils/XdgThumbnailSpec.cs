@@ -163,11 +163,7 @@ namespace FSpot.Utils
 
             var info = file.QueryInfo ("time::modified", GLib.FileQueryInfoFlags.None, null);
 
-            if (pixbuf.GetOption (ThumbMTimeOpt) != info.GetAttributeULong ("time::modified").ToString ()) {
-                return false;
-            }
-
-            return true;
+            return pixbuf.GetOption (ThumbMTimeOpt) == info.GetAttributeULong ("time::modified").ToString ();
         }
 #endregion
 

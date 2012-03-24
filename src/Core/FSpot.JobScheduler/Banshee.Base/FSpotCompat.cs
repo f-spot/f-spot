@@ -30,10 +30,12 @@
 namespace Banshee.Base
 {
 	public static class Globals
-	{	
-		static bool debugging = false;
-		public static bool Debugging {
-			get { return debugging; }
+	{
+		static Globals()
+		{
+			Debugging = false;
 		}
+
+		public static bool Debugging { get; private set; }
 	}
 }

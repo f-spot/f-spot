@@ -67,15 +67,14 @@ namespace FSpot.Core {
 
         public bool Contains (IPhoto item)
         {
-            if (collection == null)
-                return false;
-            return collection.Contains (item);
+        	return collection != null && collection.Contains (item);
         }
 
-        public IPhoto this [int index] {
+    	public IPhoto this [int index] {
             get {
                 if (collection == null)
                     throw new System.IndexOutOfRangeException ();
+
                 return collection [index];
             }
         }

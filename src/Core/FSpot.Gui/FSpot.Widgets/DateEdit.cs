@@ -45,11 +45,7 @@ namespace FSpot.Widgets
 		{
 		}
 
-		public DateEdit (DateTimeOffset dateTimeOffset) : this (dateTimeOffset, DateEditFlags.None)
-		{
-		}
-
-		public DateEdit (DateTimeOffset dateTimeOffset, DateEditFlags dateEditFlags) : base ()
+		public DateEdit (DateTimeOffset dateTimeOffset, DateEditFlags dateEditFlags = DateEditFlags.None)
 		{
 			this.dateEditFlags = dateEditFlags;
 			this.dateTimeOffset = dateTimeOffset;

@@ -29,27 +29,28 @@
 
 using System;
 using System.Collections.Generic;
-
+using Gdk;
 using Hyena;
 
 namespace FSpot.Widgets
 {
+	// FIXME: This class is never used
 	public class Layout : Gtk.Container
 	{
 		public Layout () : this (null, null)
 		{
 		}
 
-		public Layout (Gtk.Adjustment hadjustment, Gtk.Adjustment vadjustment) : base ()
+		public Layout (Gtk.Adjustment hadjustment, Gtk.Adjustment vadjustment)
 		{
+			Height = 100;
+			Width = 100;
+			BinWindow = null;
 			OnSetScrollAdjustments (hadjustment, vadjustment);
 			children = new List<LayoutChild> ();
 		}
 
-		Gdk.Window bin_window = null;
-		public Gdk.Window BinWindow {
-			get { return bin_window; }
-		}
+		public Window BinWindow { get; private set; }
 
 		Gtk.Adjustment hadjustment;
 		public Gtk.Adjustment Hadjustment {
@@ -63,15 +64,9 @@ namespace FSpot.Widgets
 			set { OnSetScrollAdjustments (Hadjustment, vadjustment); }
 		}
 
-		uint width = 100;
-		public uint Width {
-			get { return width; }
-		}
+		public uint Width { get; private set; }
 
-		uint height = 100;
-		public uint Height {
-			get { return height; }
-		}
+		public uint Height { get; private set; }
 
 		class LayoutChild {
 			public Gtk.Widget Widget { get; private set; }
@@ -92,7 +87,7 @@ namespace FSpot.Widgets
 		{
 			children.Add (new LayoutChild (widget, x, y));
 			if (IsRealized)
-				widget.ParentWindow = bin_window;
+				widget.ParentWindow = BinWindow;
 			widget.Parent = this;
 		}
 
@@ -110,11 +105,11 @@ namespace FSpot.Widgets
 
 		public void SetSize (uint width, uint height)
 		{
-			Hadjustment.Upper = this.width = width;
-			Vadjustment.Upper = this.height = height;
+			Hadjustment.Upper = Width = width;
+			Vadjustment.Upper = Height = height;
 			
 			if (IsRealized) {
-				bin_window.Resize ((int)Math.Max (width, Allocation.Width), (int)Math.Max (height, Allocation.Height));
+				BinWindow.Resize ((int)Math.Max (width, Allocation.Width), (int)Math.Max (height, Allocation.Height));
 			}
 		}
 
@@ -151,29 +146,29 @@ namespace FSpot.Widgets
 							     WindowType = Gdk.WindowType.Child, 
 							     X = (int)-Hadjustment.Value,
 							     Y = (int)-Vadjustment.Value,
-							     Width = (int)Math.Max (width, Allocation.Width),
-							     Height = (int)Math.Max (height, Allocation.Height),
+							     Width = (int)Math.Max (Width, Allocation.Width),
+							     Height = (int)Math.Max (Height, Allocation.Height),
 							     Wclass = Gdk.WindowClass.InputOutput,
 							     Visual = this.Visual,
 							     Colormap = this.Colormap,
 							     Mask = Gdk.EventMask.ExposureMask | Gdk.EventMask.ScrollMask | this.Events };
-			bin_window = new Gdk.Window (GdkWindow, attributes, 
+			BinWindow = new Gdk.Window (GdkWindow, attributes, 
 						     Gdk.WindowAttributesType.X | Gdk.WindowAttributesType.Y | Gdk.WindowAttributesType.Visual | Gdk.WindowAttributesType.Colormap);
-			bin_window.UserData = Handle;
+			BinWindow.UserData = Handle;
 
 			Style.Attach (GdkWindow);
-			Style.SetBackground (bin_window, Gtk.StateType.Normal);
+			Style.SetBackground (BinWindow, Gtk.StateType.Normal);
 
 			foreach (var child in children) {
-				child.Widget.ParentWindow = bin_window;
+				child.Widget.ParentWindow = BinWindow;
 			}
 
 		}
 
 		protected override void OnUnrealized ()
 		{
-			bin_window.Destroy ();
-			bin_window = null;
+			BinWindow.Destroy ();
+			BinWindow = null;
 
 			base.OnUnrealized ();
 		}
@@ -182,7 +177,7 @@ namespace FSpot.Widgets
 		{
 			base.OnStyleSet (old_style);
 			if (IsRealized)
-				Style.SetBackground (bin_window, Gtk.StateType.Normal);
+				Style.SetBackground (BinWindow, Gtk.StateType.Normal);
 		}
 
 		protected override void OnMapped ()
@@ -193,7 +188,7 @@ namespace FSpot.Widgets
 				if (child.Widget.Visible && !child.Widget.IsMapped)
 					child.Widget.Map ();
 			}
-			bin_window.Show ();
+			BinWindow.Show ();
 			GdkWindow.Show ();
 		}
 
@@ -215,24 +210,24 @@ namespace FSpot.Widgets
 
 			if (IsRealized) {
 				GdkWindow.MoveResize (allocation.X, allocation.Y, allocation.Width, allocation.Height);
-				bin_window.Resize ((int)Math.Max (width, allocation.Width), (int)Math.Max (height, allocation.Height));
+				BinWindow.Resize ((int)Math.Max (Width, allocation.Width), (int)Math.Max (Height, allocation.Height));
 			}
 
 			Hadjustment.PageSize = allocation.Width;
 			Hadjustment.PageIncrement = Width * .9;
 			Hadjustment.Lower = 0;
-			Hadjustment.Upper = Math.Max (width, allocation.Width);
+			Hadjustment.Upper = Math.Max (Width, allocation.Width);
 
 			Vadjustment.PageSize = allocation.Height;
 			Vadjustment.PageIncrement = Height * .9;
 			Vadjustment.Lower = 0;
-			Vadjustment.Upper = Math.Max (height, allocation.Height);
+			Vadjustment.Upper = Math.Max (Height, allocation.Height);
 			base.OnSizeAllocated (allocation);
 		}
 
 		protected override bool OnExposeEvent (Gdk.EventExpose evnt)
 		{
-			if (evnt.Window != bin_window)
+			if (evnt.Window != BinWindow)
 				return false;
 
 			return base.OnExposeEvent (evnt);
@@ -266,7 +261,7 @@ namespace FSpot.Widgets
 		void HandleAdjustmentsValueChanged (object sender, EventArgs e)
 		{
 			if (IsRealized)
-				bin_window.Move (-(int)Hadjustment.Value, -(int)Vadjustment.Value);
+				BinWindow.Move (-(int)Hadjustment.Value, -(int)Vadjustment.Value);
 		}
 #endregion widgetry
 

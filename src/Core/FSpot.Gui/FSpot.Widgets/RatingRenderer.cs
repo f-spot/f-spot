@@ -37,9 +37,9 @@ namespace FSpot.Widgets
 {
     public class RatingRenderer : Hyena.Gui.RatingRenderer
     {
-        private static int REQUESTED_ICON_SIZE = 16;
+    	private const int REQUESTED_ICON_SIZE = 16;
 
-#region Shared Pixbufs
+    	#region Shared Pixbufs
 
         // cache the unscaled pixbufs for all instances
         private static Pixbuf icon_rated;
@@ -179,11 +179,7 @@ namespace FSpot.Widgets
 
 #region Constructors / Destructor
 
-        public RatingRenderer ()
-        {
-        }
-
-        ~RatingRenderer ()
+    	~RatingRenderer ()
         {
             ResetCachedPixbufs ();
         }
@@ -192,12 +188,7 @@ namespace FSpot.Widgets
 
 #region Drawing Code
 
-        public Pixbuf RenderPixbuf ()
-        {
-            return RenderPixbuf (false);
-        }
-
-        public Pixbuf RenderPixbuf (bool showEmptyStars)
+    	public Pixbuf RenderPixbuf (bool showEmptyStars = false)
         {
             return RenderPixbuf (showEmptyStars, false, MinRating - 1, 0.0, 0.0, 1.0);
         }

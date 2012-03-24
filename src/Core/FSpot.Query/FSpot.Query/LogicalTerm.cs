@@ -29,7 +29,7 @@
 
 using System;
 using System.Collections.Generic;
-
+using System.Linq;
 using FSpot.Core;
 
 using Hyena;
@@ -58,8 +58,7 @@ namespace FSpot.Query
 		internal static string SqlClause (params TagTerm [] tags)
 		{
 			List<string> list = new List<string> (tags.Length);
-			foreach (TagTerm tag in tags)
-				list.Add (tag.Tag.Id.ToString ());
+			list.AddRange(tags.Select(tag => tag.Tag.Id.ToString()));
 			return SqlClause (list.ToArray ());
 		}
 
@@ -69,8 +68,8 @@ namespace FSpot.Query
 				return null;
 			if (tagids.Length == 1)
 				return String.Format (" (photos.id IN (SELECT photo_id FROM photo_tags WHERE tag_id = {0})) ", tagids[0]);
-			else
-				return String.Format (" (photos.id IN (SELECT photo_id FROM photo_tags WHERE tag_id IN ({0}))) ", String.Join (", ", tagids));
+
+			return String.Format (" (photos.id IN (SELECT photo_id FROM photo_tags WHERE tag_id IN ({0}))) ", String.Join (", ", tagids));
 		}
 
 		public void Dispose ()
@@ -88,6 +87,7 @@ namespace FSpot.Query
 		}
 	}
 
+	// FIXME: This is never used
 	public class TextTerm : LogicalTerm
 	{
 		public string Text { get; private set; }
@@ -103,8 +103,7 @@ namespace FSpot.Query
 		public static OrTerm SearchMultiple (string text, params string[] fields)
 		{
 			List<TextTerm> terms = new List<TextTerm> (fields.Length);
-			foreach (string field in fields)
-				terms.Add (new TextTerm (text, field));
+			terms.AddRange(fields.Select(field => new TextTerm(text, field)));
 			return new OrTerm (terms.ToArray ());
 		}
 
@@ -114,6 +113,7 @@ namespace FSpot.Query
 		}
 	}
 
+	// FIXME: This is never used
 	public class NotTerm : LogicalTerm
 	{
 		public LogicalTerm Term { get; private set; }
@@ -139,8 +139,7 @@ namespace FSpot.Query
 		protected string [] ToStringArray ()
 		{
 			List<string> ls = new List<string> (terms.Count);
-			foreach (LogicalTerm term in terms)
-				ls.Add (term.SqlClause ());
+			ls.AddRange(terms.Select(term => term.SqlClause()));
 			return ls.ToArray ();
 		}
 
@@ -148,10 +147,9 @@ namespace FSpot.Query
 		{
 			if (items.Length == 1)
 				return items [0];
-			else
-				return " (" + String.Join (String.Format (" {0} ", op), items) + ") ";
+
+			return " (" + String.Join (String.Format (" {0} ", op), items) + ") ";
 		}
-		
 	}
 
 	public class OrTerm : NAryOperator
@@ -186,6 +184,7 @@ namespace FSpot.Query
 		}
 	}
 
+	// FIXME: This is never used
 	public class AndTerm : NAryOperator
 	{
 		public AndTerm (params LogicalTerm[] terms)

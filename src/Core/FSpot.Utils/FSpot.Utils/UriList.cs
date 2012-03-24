@@ -29,6 +29,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 using Hyena;
@@ -83,11 +84,9 @@ namespace FSpot.Utils
         {
             StringBuilder list = new StringBuilder ();
             
-            foreach (SafeUri uri in this) {
-                if (uri == null)
-                    break;
-                
-                list.Append (uri.ToString () + Environment.NewLine);
+            foreach (SafeUri uri in this.TakeWhile(uri => uri != null))
+            {
+            	list.Append (uri + Environment.NewLine);
             }
             
             return list.ToString ();

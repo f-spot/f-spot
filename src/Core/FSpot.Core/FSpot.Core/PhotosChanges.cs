@@ -107,16 +107,11 @@ namespace FSpot.Core
 					changes &= ~ Changes.Description;
 			}
 		}
-		bool tags_changed = false;
-		public virtual bool TagsChanged {
-			get { return tags_changed; }
-			private set { tags_changed = value; }
-		}
-		bool versions_changed = false;
-		public virtual bool VersionsChanged {
-			get { return versions_changed; }
-			private set { versions_changed = value; }
-		}
+
+		public virtual bool TagsChanged { get; private set; }
+
+		public virtual bool VersionsChanged { get; private set; }
+
 		public bool RollIdChanged {
 			get { return (changes & Changes.RollId) == Changes.RollId; }
 			set {
@@ -154,6 +149,8 @@ namespace FSpot.Core
 
 		public PhotosChanges ()
 		{
+			TagsChanged = false;
+			VersionsChanged = false;
 		}
 	}
 }

@@ -30,10 +30,7 @@
 namespace FSpot.Bling
 {	public class CubicEase : EasingFunction
 	{
-		public CubicEase () : base ()
-		{
-		}
-
+	
 		public CubicEase (EasingMode easingMode) : base (easingMode)
 		{
 		}

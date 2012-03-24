@@ -39,7 +39,7 @@ namespace FSpot.Widgets
 
 		protected HighlightedBox (IntPtr raw) : base (raw) {}
 
-		public HighlightedBox (Widget child) : base ()
+		public HighlightedBox (Widget child)
 		{
 			Child = child;
 			AppPaintable = true;

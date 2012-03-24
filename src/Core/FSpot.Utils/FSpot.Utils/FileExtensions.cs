@@ -35,6 +35,7 @@ using GLib;
 
 namespace FSpot.Utils
 {
+	// FIXME: This class is never used
 	public static class FileExtensions
 	{
 		public static bool CopyRecursive (this GLib.File source, GLib.File target, GLib.FileCopyFlags flags, GLib.Cancellable cancellable, GLib.FileProgressCallback callback)

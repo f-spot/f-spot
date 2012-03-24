@@ -41,7 +41,8 @@ namespace FSpot.Widgets {
 
 		public ScrolledView (IntPtr raw) : base (raw) {}
 
-		public ScrolledView () : base () {
+		public ScrolledView ()
+		{
 			ScrolledWindow = new ScrolledWindow  (null, null);
 			this.Put (ScrolledWindow, 0, 0);
 			ScrolledWindow.Show ();
