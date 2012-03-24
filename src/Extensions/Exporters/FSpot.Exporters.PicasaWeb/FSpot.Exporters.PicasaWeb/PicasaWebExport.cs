@@ -57,10 +57,6 @@ namespace FSpot.Exporters.PicasaWeb
 {
 	public class GoogleExport : FSpot.Extensions.IExporter
 	{
-		public GoogleExport ()
-		{
-		}
-
 		public void Run (IBrowsableCollection selection)
 		{
 			builder = new GtkBeans.Builder (null, "google_export_dialog.ui", null);
@@ -332,12 +328,7 @@ namespace FSpot.Exporters.PicasaWeb
 			gallery_optionmenu.Active = pos;
 		}
 
-		private void Connect ()
-		{
-			Connect (null);
-		}
-
-		private void Connect (GoogleAccount selected)
+		private void Connect (GoogleAccount selected = null)
 		{
 			Connect (selected, null, null);
 		}
@@ -396,6 +387,7 @@ namespace FSpot.Exporters.PicasaWeb
 			}
 		}
 
+		// FIXME: This is never used
 		private void HandleAccountSelected (object sender, System.EventArgs args)
 		{
 			Connect ();
@@ -409,7 +401,7 @@ namespace FSpot.Exporters.PicasaWeb
 			// make the newly created album selected
 //			PicasaAlbumCollection albums = account.Picasa.GetAlbums();
 			for (int i=0; i < albums.Count; i++) {
-				if (((PicasaAlbum)albums [i]).Title == title)
+				if (albums [i].Title == title)
 					album_optionmenu.Active = i;
 			}
 		}
@@ -517,12 +509,7 @@ namespace FSpot.Exporters.PicasaWeb
 		}
 
 		private Gtk.Dialog Dialog {
-			get {
-				if (dialog == null)
-					dialog = new Gtk.Dialog (builder.GetRawObject (dialog_name));
-
-				return dialog;
-			}
+			get { return dialog ?? (dialog = new Gtk.Dialog(builder.GetRawObject(dialog_name))); }
 		}
 	}
 }

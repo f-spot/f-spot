@@ -41,10 +41,7 @@ namespace FSpot.Exporters.PicasaWeb
 
 		private string username;
 		private string password;
-		private string token;
-		private string unlock_captcha;
 		private GoogleConnection connection;
-		private Mono.Google.Picasa.PicasaWeb picasa;
 
 		public GoogleAccount (string username, string password)
 		{
@@ -56,8 +53,8 @@ namespace FSpot.Exporters.PicasaWeb
 		{
 			this.username = username;
 			this.password = password;
-			this.token = token;
-			this.unlock_captcha = unlock_captcha;
+			Token = token;
+			UnlockCaptcha = unlock_captcha;
 		}
 
 		public Mono.Google.Picasa.PicasaWeb Connect ()
@@ -65,16 +62,16 @@ namespace FSpot.Exporters.PicasaWeb
 			Log.Debug ("GoogleAccount.Connect()");
 			GoogleConnection conn = new GoogleConnection (GoogleService.Picasa);
 			ServicePointManager.CertificatePolicy = new NoCheckCertificatePolicy ();
-			if (unlock_captcha == null || token == null)
+			if (UnlockCaptcha == null || Token == null)
 				conn.Authenticate(username, password);
 			else {
-				conn.Authenticate(username, password, token, unlock_captcha);
-				token = null;
-				unlock_captcha = null;
+				conn.Authenticate(username, password, Token, UnlockCaptcha);
+				Token = null;
+				UnlockCaptcha = null;
 			}
 			connection = conn;
 			var picasa = new Mono.Google.Picasa.PicasaWeb(conn);
-			this.picasa = picasa;
+			Picasa = picasa;
 			return picasa;
 		}
 
@@ -113,28 +110,10 @@ namespace FSpot.Exporters.PicasaWeb
 			}
 		}
 
-		public string Token {
-			get {
-				return token;
-			}
-			set {
-				token = value;
-			}
-		}
+		public string Token { get; set; }
 
-		public string UnlockCaptcha {
-			get {
-				return unlock_captcha;
-			}
-			set {
-				unlock_captcha = value;
-			}
-		}
+		public string UnlockCaptcha { get; set; }
 
-		public Mono.Google.Picasa.PicasaWeb Picasa {
-			get {
-				return picasa;
-			}
-		}
+		public Mono.Google.Picasa.PicasaWeb Picasa { get; private set; }
 	}
 }

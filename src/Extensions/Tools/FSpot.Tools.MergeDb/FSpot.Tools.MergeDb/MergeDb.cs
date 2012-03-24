@@ -333,8 +333,9 @@ namespace FSpot.Tools.MergeDb
 		{
 			var parts = uri.AbsolutePath.Split('/');
 			SafeUri current = new SafeUri (uri.Scheme + ":///", true);
-			for (int i = 0; i < parts.Length; i++) {
-				current = current.Append (parts [i]);
+			foreach (string part in parts)
+			{
+				current = current.Append (part);
 				var file = GLib.FileFactory.NewForUri (current);
 				if (!file.Exists) {
 					file.MakeDirectory (null);

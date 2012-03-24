@@ -29,6 +29,7 @@
 
 using System;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using System.Text;
 
@@ -42,10 +43,7 @@ namespace FSpot.Tools.LiveWebGallery
 	{
 		protected string TagsToString (Photo photo) 
 		{
-			string tags = "";
-			foreach (Tag tag in photo.Tags) {
-				tags += ", " + tag.Name;
-			}
+			string tags = photo.Tags.Aggregate("", (current, tag) => current + (", " + tag.Name));
 			return tags.Length > 1 ? tags.Substring (2) : tags;
 		}
 
@@ -82,49 +80,30 @@ namespace FSpot.Tools.LiveWebGallery
 	}
 	
 	public class GalleryRequestHandler : TemplateRequestHandler, ILiveWebGalleryOptions
-	{			
-		private QueryType query_type = QueryType.ByTag;
-		public QueryType QueryType {
-			get { return query_type; }
-			set { query_type = value; }
-		}
-		
-		private Tag query_tag;
-		public Tag QueryTag {
-			get { return query_tag; }
-			set { query_tag = value; }
-		}
+	{
+		public QueryType QueryType { get; set; }
 
-		private bool limit_max_photos = true;
-		public bool LimitMaxPhotos {
-			get { return limit_max_photos; }
-			set { limit_max_photos = value; }
-		}
+		public Tag QueryTag { get; set; }
 
-		private int max_photos = 1000;
-		public int MaxPhotos {
-			get { return max_photos; }
-			set { max_photos = value; }
-		}
-		
-		private bool tagging_allowed = false;
-		public bool TaggingAllowed {
-			get { return tagging_allowed; }
-			set { tagging_allowed = value; }
-		}
+		public bool LimitMaxPhotos { get; set; }
 
-		private Tag editable_tag;
-		public Tag EditableTag {
-			get { return editable_tag; }
-			set { editable_tag = value; }
-		}
+		public int MaxPhotos { get; set; }
+
+		public bool TaggingAllowed { get; set; }
+
+		public Tag EditableTag { get; set; }
 
 		private LiveWebGalleryStats stats;
 					
 		public GalleryRequestHandler (LiveWebGalleryStats stats) 
 			: base ("gallery.html") 
 		{
+			TaggingAllowed = false;
+			MaxPhotos = 1000;
+			LimitMaxPhotos = true;
+			QueryType = QueryType.ByTag;
 			this.stats = stats;
+
 			template = template.Replace ("TITLE", Catalog.GetString("F-Spot Gallery"));
 			template = template.Replace ("OFFLINE_MESSAGE", Catalog.GetString("The web gallery seems to be offline now"));
 			template = template.Replace ("SHOW_ALL", Catalog.GetString("Show All"));
@@ -136,10 +115,10 @@ namespace FSpot.Tools.LiveWebGallery
 			
 			StringBuilder s = new StringBuilder (4096);
 			s.Append (template);
-			int num_photos = limit_max_photos ? Math.Min (photos.Length, max_photos) : photos.Length;
+			int num_photos = LimitMaxPhotos ? Math.Min (photos.Length, MaxPhotos) : photos.Length;
 			s.Replace ("NUM_PHOTOS", String.Format(Catalog.GetPluralString("{0} photo", "{0} photos", num_photos), num_photos));
 			s.Replace ("QUERY_TYPE", QueryTypeToString ());
-			s.Replace ("EDITABLE_TAG_NAME", tagging_allowed ? Escape (editable_tag.Name) : "");
+			s.Replace ("EDITABLE_TAG_NAME", TaggingAllowed ? Escape (EditableTag.Name) : "");
 			
 			string photo_template = GetSubTemplate (s, "BEGIN_PHOTO", "END_PHOTO");
 			StringBuilder photos_s = new StringBuilder (4096);
@@ -148,7 +127,7 @@ namespace FSpot.Tools.LiveWebGallery
 			foreach (Photo photo in photos) {
 				photos_s.Append (PreparePhoto (photo_template, photo));
 				
-				if (++num_photos >= max_photos && limit_max_photos)
+				if (++num_photos >= MaxPhotos && LimitMaxPhotos)
 					break;
 			}
 			s.Replace ("END_PHOTO", photos_s.ToString ());
@@ -162,9 +141,9 @@ namespace FSpot.Tools.LiveWebGallery
 		
 		private Photo[] GetChosenPhotos () 
 		{
-			switch (query_type) {
+			switch (QueryType) {
 			case QueryType.ByTag:
-				return App.Instance.Database.Photos.Query (new Tag[] {query_tag});
+				return App.Instance.Database.Photos.Query (new Tag[] {QueryTag});
 			case QueryType.CurrentView:
 				return App.Instance.Organizer.Query.Photos;
 			case QueryType.Selected:
@@ -175,9 +154,9 @@ namespace FSpot.Tools.LiveWebGallery
 		
 		private string QueryTypeToString ()
 		{
-			switch (query_type) {
+			switch (QueryType) {
 			case QueryType.ByTag:
-				return query_tag.Name;
+				return QueryTag.Name;
 			case QueryType.CurrentView:
 				return Catalog.GetString ("Current View");
 			case QueryType.Selected:

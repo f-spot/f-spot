@@ -35,25 +35,22 @@ namespace Mono.Facebook
 {
 	public class FacebookParam : IComparable
 	{
-		private string name;
 		private object value;
 
-		public string Name {
-			get{ return name; }
-		}
+		public string Name { get; private set; }
 
 		public string Value {
-			get {
+			get
+			{
 				if (value is Array)
 					return ConvertArrayToString (value as Array);
-				else
-					return value.ToString ();
+				return value.ToString ();
 			}
 		}
 
 		protected FacebookParam (string name, object value)
 		{
-			this.name = name;
+			Name = name;
 			this.value = value;
 		}
 
@@ -72,7 +69,7 @@ namespace Mono.Facebook
 			if (!(obj is FacebookParam))
 				return -1;
 
-			return this.name.CompareTo ((obj as FacebookParam).name);
+			return Name.CompareTo ((obj as FacebookParam).Name);
 		}
 
 		private static string ConvertArrayToString (Array a)

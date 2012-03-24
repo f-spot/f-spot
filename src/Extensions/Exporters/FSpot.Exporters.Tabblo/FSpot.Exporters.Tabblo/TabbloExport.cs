@@ -373,12 +373,8 @@ namespace FSpot.Exporters.Tabblo {
 			}
 
 			PhotoStore photo_store = FSpot.App.Instance.Database.Photos;
-			FSpot.Photo photo = photo_store.GetByUri (
-					item.DefaultVersion.Uri);
+			FSpot.Photo photo = photo_store.GetByUri (item.DefaultVersion.Uri);
 			Debug.Assert (null != photo);
-			if (null == photo) {
-				return;
-			}
 
 			if (model.AttachTags) {
 				photo.AddTag (model.AttachedTags);

@@ -40,9 +40,6 @@ using Hyena;
 namespace FSpot.Exporters.Tabblo {
 
 	class TabbloExportModel : Mono.Tabblo.IPreferences {
-
-		private IBrowsableCollection photo_collection;
-
 		private string username;
 		private string password;
 
@@ -76,18 +73,11 @@ namespace FSpot.Exporters.Tabblo {
 
 		// The photos.
 
-		internal IBrowsableCollection PhotoCollection {
-			get {
-				return photo_collection;
-			}
-			set {
-				photo_collection = value;
-			}
-		}
+		internal IBrowsableCollection PhotoCollection { get; set; }
 
 		internal IPhoto [] Photos {
 			get {
-				return photo_collection.Items;
+				return PhotoCollection.Items;
 			}
 		}
 
@@ -97,8 +87,7 @@ namespace FSpot.Exporters.Tabblo {
 		internal event EventHandler UsernameChanged;
 		public string Username {
 			get {
-				return null != username
-						? username : string.Empty;
+				return null != username ? username : string.Empty;
 			}
 			internal set {
 				string old_value = username;
@@ -111,8 +100,7 @@ namespace FSpot.Exporters.Tabblo {
 		internal event EventHandler PasswordChanged;
 		public string Password {
 			get {
-				return null != password
-						? password : string.Empty;
+				return null != password ? password : string.Empty;
 			}
 			internal set {
 				string old_value = password;
@@ -149,8 +137,7 @@ namespace FSpot.Exporters.Tabblo {
 		internal event EventHandler AttachedTagsChanged;
 		internal FSpot.Core.Tag [] AttachedTags {
 			get {
-				return null != attached_tags
-						? attached_tags	: no_tags;
+				return null != attached_tags ? attached_tags	: no_tags;
 			}
 			set {
 				FSpot.Core.Tag [] old_value = attached_tags;
@@ -176,8 +163,7 @@ namespace FSpot.Exporters.Tabblo {
 		internal event EventHandler RemovedTagsChanged;
 		internal FSpot.Core.Tag [] RemovedTags {
 			get {
-				return null != removed_tags
-						? removed_tags : no_tags;
+				return null != removed_tags ? removed_tags : no_tags;
 			}
 			set {
 				FSpot.Core.Tag [] old_value = removed_tags;
@@ -219,6 +205,7 @@ namespace FSpot.Exporters.Tabblo {
 				string keyring = Gnome.Keyring
 						.Ring.GetDefaultKeyring ();
 				
+				// FIXME: Change this out for a Dictionary
 				Hashtable attrs = new Hashtable ();
 				attrs [KeyringItemNameAttr] = KeyringItemName;
 				attrs [KeyringItemAppAttr] = KeyringItemApp;
@@ -259,7 +246,8 @@ namespace FSpot.Exporters.Tabblo {
 			string new_username = string.Empty;
 			string new_password = string.Empty;
 
-			Hashtable attrs = new Hashtable ();
+			// FIXME: Change this out for a Dictionary
+			Hashtable attrs = new Hashtable();
 			attrs [KeyringItemNameAttr] = KeyringItemName;
 			attrs [KeyringItemAppAttr] = KeyringItemApp;
 			
@@ -353,14 +341,14 @@ namespace FSpot.Exporters.Tabblo {
 		}
 		
 		
-		private static FSpot.Core.Tag [] ToTags (int [] ids)
+		private static FSpot.Core.Tag [] ToTags (ICollection<int> ids)
 		{
 			if (null == ids) {
 				return null;
 			}
 
 			List <FSpot.Core.Tag> tags =
-					new List <FSpot.Core.Tag> (ids.Length);
+					new List <FSpot.Core.Tag> (ids.Count);
 			foreach (int id in ids) {
 				FSpot.Core.Tag tag = FSpot.App.Instance.Database.Tags
 						.GetTagById (id);

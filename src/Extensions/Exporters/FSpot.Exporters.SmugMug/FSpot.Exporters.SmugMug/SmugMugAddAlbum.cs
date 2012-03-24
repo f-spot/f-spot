@@ -76,10 +76,7 @@ namespace FSpot.Exporters.SmugMug
 		{
 			title = title_entry.Text;
 
-			if (title == String.Empty)
-				add_button.Sensitive = false;
-			else
-				add_button.Sensitive = true;
+			add_button.Sensitive = title != String.Empty;
 		}
 
 		[GLib.ConnectBefore]
@@ -121,12 +118,7 @@ namespace FSpot.Exporters.SmugMug
 		}
 
 		private Gtk.Dialog Dialog {
-			get {
-				if (dialog == null)
-					dialog = new Gtk.Dialog (builder.GetRawObject (dialog_name));
-
-				return dialog;
-			}
+			get { return dialog ?? (dialog = new Gtk.Dialog(builder.GetRawObject(dialog_name))); }
 		}
 	}
 }

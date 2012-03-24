@@ -102,7 +102,7 @@ namespace FSpot.Tools.ChangePhotoPath
 
 		private string EnsureEndsWithOneDirectorySeparator (string tmp_str)
 		{
-			if ( (tmp_str == null) || (tmp_str.Length == 0) )
+			if ( string.IsNullOrEmpty(tmp_str) )
 				return String.Format ("{0}", Path.DirectorySeparatorChar);
 			while (tmp_str.EndsWith(String.Format ("{0}", Path.DirectorySeparatorChar)))
 				tmp_str = tmp_str.Remove (tmp_str.Length-1, 1);
@@ -176,7 +176,7 @@ namespace FSpot.Tools.ChangePhotoPath
 		{
 				foreach (uint version_id in photo.VersionIds) {
 
-					PhotoVersion version = photo.GetVersion (version_id) as PhotoVersion;
+					PhotoVersion version = photo.GetVersion (version_id);
 					if ( ChangeThisVersionUri (version, old_base, new_base) )
 						AddVersionToArrays (	photo.Id,
 									version_id,
@@ -213,11 +213,12 @@ namespace FSpot.Tools.ChangePhotoPath
 		{
 			if (photo == null)
 				photo = photo_store.Get (photo_id_array[index]);
-			PhotoVersion version = photo.GetVersion ( (uint) version_id_array[index]) as PhotoVersion;
+
+			PhotoVersion version = photo.GetVersion ( version_id_array[index]);
 			version.BaseUri = new SafeUri ( path ).GetBaseUri ();
 			version.Filename = new SafeUri ( path ).GetFilename ();
 			photo.Changes.UriChanged = true;
-			photo.Changes.ChangeVersion ( (uint) version_id_array[index] );
+			photo.Changes.ChangeVersion ( version_id_array[index] );
 		}
 
 		// FIXME: Refactor, try to use one common method....
@@ -282,8 +283,10 @@ namespace FSpot.Tools.ChangePhotoPath
 			int last_index = 0;
 			ProcessResult tmp_res;
 			tmp_res = ChangeAllUris(ref last_index);
-			if (!(tmp_res == ProcessResult.Ok))
+
+			if (tmp_res != ProcessResult.Ok)
 				RevertAllUris(last_index);
+
 			return tmp_res;
 		}
 

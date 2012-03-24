@@ -138,10 +138,10 @@ namespace Mono.Facebook
 			param_list.Add (FacebookParam.Create ("call_id", DateTime.Now.Ticks));
 			param_list.Add (FacebookParam.Create ("name", name));
 
-			if (description != null && description != string.Empty)
+			if (!string.IsNullOrEmpty(description))
 				param_list.Add (FacebookParam.Create ("description", description));
 
-			if (location != null && location != string.Empty)
+			if (!string.IsNullOrEmpty(location))
 				param_list.Add (FacebookParam.Create ("location", location));
 
 			// create the albums

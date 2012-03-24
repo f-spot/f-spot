@@ -46,7 +46,7 @@ namespace FSpot.Exporters.CD
 		Gtk.Window listwindow;
 		System.Uri dest;
 
-      		[GtkBeans.Builder.Object] Button browse_button;
+		[GtkBeans.Builder.Object] Button browse_button;
 		[GtkBeans.Builder.Object] ScrolledWindow thumb_scrolledwindow;
 		[GtkBeans.Builder.Object] CheckButton remove_check;
 		[GtkBeans.Builder.Object] Label size_label;

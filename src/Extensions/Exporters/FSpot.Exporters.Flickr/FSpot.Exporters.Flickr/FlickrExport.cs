@@ -287,22 +287,8 @@ namespace FSpot.Exporters.Flickr {
 		}
 
 		private class AuthorizationEventArgs : System.EventArgs {
-			Exception e;
-			Auth auth;
-
-			public Exception Exception {
-				get { return e; }
-				set { e = value; }
-			}
-
-			public Auth Auth {
-				get { return auth; }
-				set { auth = value; }
-			}
-
-			public AuthorizationEventArgs ()
-			{
-			}
+			public Exception Exception { get; set; }
+			public Auth Auth { get; set; }
 		}
 
 		public void HandleSizeActive (object sender, System.EventArgs args)

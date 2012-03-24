@@ -53,10 +53,11 @@ namespace FSpot.Exporters.Facebook
 {
 	internal class FacebookAccount
 	{
-		static string keyring_item_name = "Facebook Account";
+		private const string keyring_item_name = "Facebook Account";
 
-		static string api_key = "c23d1683e87313fa046954ea253a240e";
+		private const string api_key = "c23d1683e87313fa046954ea253a240e";
 
+		// FIXME:
 		/* INSECURE! According to:
 		 *
 		 * http://wiki.developers.facebook.com/index.php/Desktop_App_Auth_Process
@@ -64,24 +65,22 @@ namespace FSpot.Exporters.Facebook
 		 * We should *NOT* put our secret code here, but do an external
 		 * authorization using our own PHP page somewhere.
 		 */
-		static string secret = "743e9a2e6a1c35ce961321bceea7b514";
-
-		FacebookSession facebookSession;
-		bool connected = false;
+		private const string secret = "743e9a2e6a1c35ce961321bceea7b514";
 
 		public FacebookAccount ()
 		{
+			Authenticated = false;
 			SessionInfo info = ReadSessionInfo ();
 			if (info != null) {
-				facebookSession = new FacebookSession (api_key, info);
+				Facebook = new FacebookSession (api_key, info);
 				try {
 					/* This basically functions like a ping to ensure the
 					 * session is still valid:
 					 */
-					facebookSession.HasAppPermission("offline_access");
-					connected = true;
+					Facebook.HasAppPermission("offline_access");
+					Authenticated = true;
 				} catch (FacebookException) {
-					connected = false;
+					Authenticated = false;
 				}
 			}
 		}
@@ -90,22 +89,22 @@ namespace FSpot.Exporters.Facebook
 		{
 			FacebookSession session = new FacebookSession (api_key, secret);
 			Uri uri = session.CreateToken();
-			facebookSession = session;
-			connected = false;
+			Facebook = session;
+			Authenticated = false;
 			return uri;
 		}
 
 		public bool RevokePermission (string permission)
 		{
-			return facebookSession.RevokeAppPermission(permission);
+			return Facebook.RevokeAppPermission(permission);
 		}
 
 		public bool GrantPermission (string permission, Window parent)
 		{
-			if (facebookSession.HasAppPermission(permission))
+			if (Facebook.HasAppPermission(permission))
 				return true;
 
-			Uri uri = facebookSession.GetGrantUri (permission);
+			Uri uri = Facebook.GetGrantUri (permission);
 			GtkBeans.Global.ShowUri (parent.Screen, uri.ToString ());
 
 			HigMessageDialog mbox = new HigMessageDialog (parent, Gtk.DialogFlags.DestroyWithParent | Gtk.DialogFlags.Modal,
@@ -115,23 +114,17 @@ namespace FSpot.Exporters.Facebook
 			mbox.Run ();
 			mbox.Destroy ();
 
-			return facebookSession.HasAppPermission(permission);
+			return Facebook.HasAppPermission(permission);
 		}
 
 		public bool HasPermission(string permission)
 		{
-			return facebookSession.HasAppPermission(permission);
+			return Facebook.HasAppPermission(permission);
 		}
 
-		public FacebookSession Facebook
-		{
-			get { return facebookSession; }
-		}
+		public FacebookSession Facebook { get; private set; }
 
-		public bool Authenticated
-		{
-			get { return connected; }
-		}
+		public bool Authenticated { get; private set; }
 
 		bool SaveSessionInfo (SessionInfo info)
 		{
@@ -162,6 +155,7 @@ namespace FSpot.Exporters.Facebook
 		{
 			SessionInfo info = null;
 
+			// FIXME: Should probably convert this to a Dictionary
 			Hashtable request_attributes = new Hashtable ();
 			//Dictionary<string, string> request_attributes = new Dictionary<string, string> ();
 			request_attributes["name"] = keyring_item_name;
@@ -215,28 +209,28 @@ namespace FSpot.Exporters.Facebook
 
 		public bool Authenticate ()
 		{
-			if (connected)
+			if (Authenticated)
 				return true;
 			try {
-				SessionInfo info = facebookSession.GetSession();
-				connected = true;
+				SessionInfo info = Facebook.GetSession();
+				Authenticated = true;
 				if (SaveSessionInfo (info))
 					Log.Information ("Saved session information to keyring");
 				else
 					Log.Warning ("Could not save session information to keyring");
 			} catch (KeyringException e) {
-				connected = false;
+				Authenticated = false;
 				Log.DebugException (e);
 			} catch (FacebookException fe) {
-				connected = false;
+				Authenticated = false;
 				Log.DebugException (fe);
 			}
-			return connected;
+			return Authenticated;
 		}
 
 		public void Deauthenticate ()
 		{
-			connected = false;
+			Authenticated = false;
 			ForgetSessionInfo ();
 		}
 	}
@@ -281,10 +275,6 @@ namespace FSpot.Exporters.Facebook
 		ThreadProgressDialog progress_dialog;
 		System.Threading.Thread command_thread;
 		Album album = null;
-
-		public FacebookExport ()
-		{
-		}
 
 		public void Run (IBrowsableCollection selection)
 		{

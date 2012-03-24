@@ -71,7 +71,7 @@ namespace FSpot.Tools.DevelopInUFraw
 			LoadPreference (UFRAW_ARGUMENTS_KEY);
 			LoadPreference (UFRAW_BATCH_ARGUMENTS_KEY);
 
-			PhotoVersion raw = p.GetVersion (Photo.OriginalVersionId) as PhotoVersion;
+			PhotoVersion raw = p.GetVersion (Photo.OriginalVersionId);
 			if (!ImageFile.IsRaw (raw.Uri)) {
 				Log.Warning ("The original version of this image is not a (supported) RAW file");
 				return;
@@ -143,9 +143,8 @@ namespace FSpot.Tools.DevelopInUFraw
 		{
 			string name = Catalog.GetPluralString ("Developed in UFRaw", "Developed in UFRaw ({0})", i);
 			name = String.Format (name, i);
-			if (p.VersionNameExists (name))
-				return GetVersionName (p, i + 1);
-			return name;
+
+			return p.VersionNameExists (name) ? GetVersionName (p, i + 1) : name;
 		}
 
 		private System.Uri GetUriForVersionName (Photo p, string version_name)

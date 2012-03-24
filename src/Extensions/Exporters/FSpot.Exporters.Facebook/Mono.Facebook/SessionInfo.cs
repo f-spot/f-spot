@@ -34,7 +34,7 @@ namespace Mono.Facebook
 	[System.Xml.Serialization.XmlRootAttribute("auth_getSession_response", Namespace="http://api.facebook.com/1.0/", IsNullable=false)]
 	public class SessionInfo : session_info
 	{
-		[XmlIgnore]
+			[XmlIgnore]
 			public bool IsInfinite
 			{
 				get { return expires == 0; }

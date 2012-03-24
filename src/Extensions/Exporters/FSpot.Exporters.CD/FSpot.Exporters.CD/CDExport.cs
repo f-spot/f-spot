@@ -158,9 +158,7 @@ namespace FSpot.Exporters.CD {
 				progress_dialog.ProgressText = Catalog.GetString ("Error Transferring");
 				return;
 			}
-			ThreadAssist.ProxyToMain (() => {
-				progress_dialog.Destroy ();
-			});
+			ThreadAssist.ProxyToMain (() => progress_dialog.Destroy ());
 		}
 
 		private void Progress (long current_num_bytes, long total_num_bytes)

@@ -31,22 +31,15 @@ using System;
 
 public class FacebookException : Exception
 {
-	private int error_code;
-	private string error_message;
+	public int ErrorCode { get; private set; }
 
-	public int ErrorCode {
-		get { return error_code; }
-	}
-
-	public string ErrorMessage {
-		get { return error_message; }
-	}
+	public string ErrorMessage { get; private set; }
 
 	public FacebookException (int error_code, string error_message)
 		: base (CreateMessage (error_code, error_message))
 	{
-		this.error_code = error_code;
-		this.error_message = error_message;
+		ErrorCode = error_code;
+		ErrorMessage = error_message;
 	}
 
 	private static string CreateMessage (int error_code, string error_message)

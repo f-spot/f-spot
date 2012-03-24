@@ -82,12 +82,7 @@ namespace FSpot.Exporters.SmugMug
 			return accounts;
 		}
 
-		public void AddAccount (SmugMugAccount account)
-		{
-			AddAccount (account, true);
-		}
-
-		public void AddAccount (SmugMugAccount account, bool write)
+		public void AddAccount (SmugMugAccount account, bool write = true)
 		{
 			accounts.Add (account);
 			MarkChanged (write, account);

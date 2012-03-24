@@ -43,7 +43,7 @@ namespace FSpot.Exporters.PicasaWeb
 	{
 		private static GoogleAccountManager instance;
 		private const string keyring_item_name = "Google Account";
-		List<GoogleAccount> accounts;
+		readonly List<GoogleAccount> accounts;
 
 		public delegate void AccountListChangedHandler (GoogleAccountManager manager, GoogleAccount changed_account);
 		public event AccountListChangedHandler AccountListChanged;
@@ -63,12 +63,7 @@ namespace FSpot.Exporters.PicasaWeb
 			ReadAccounts ();
 		}
 
-		public void MarkChanged ()
-		{
-			MarkChanged (true, null);
-		}
-
-		public void MarkChanged (bool write, GoogleAccount changed_account)
+		public void MarkChanged (bool write = true, GoogleAccount changed_account = null)
 		{
 			if (write)
 				WriteAccounts ();
@@ -82,12 +77,7 @@ namespace FSpot.Exporters.PicasaWeb
 			return accounts;
 		}
 
-		public void AddAccount (GoogleAccount account)
-		{
-			AddAccount (account, true);
-		}
-
-		public void AddAccount (GoogleAccount account, bool write)
+		public void AddAccount (GoogleAccount account, bool write = true)
 		{
 			accounts.Add (account);
 			MarkChanged (write, account);

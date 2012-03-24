@@ -61,12 +61,9 @@ namespace FSpot.Exporters.Gallery
 		private string boundary;
 		private string start_boundary;
 		private string end_boundary;
-	
-		private bool multipart = false;
-		public bool Multipart {
-			set { multipart = value; }
-		}
-	
+
+		public bool Multipart { private get; set; }
+
 		private bool first_item;
 	
 		public bool Buffer = false;
@@ -81,14 +78,16 @@ namespace FSpot.Exporters.Gallery
 	
 		public FormClient (CookieContainer cookies) 
 		{
-			this.Cookies = cookies;
-			this.Items = new List<FormItem> ();
+			Multipart = false;
+			Cookies = cookies;
+			Items = new List<FormItem> ();
 		}
 		
 		public FormClient ()
 		{
-			this.Items = new List<FormItem> ();
-			this.Cookies = new CookieContainer ();
+			Multipart = false;
+			Items = new List<FormItem> ();
+			Cookies = new CookieContainer ();
 		}
 		
 		private void GenerateBoundary () 
@@ -106,7 +105,7 @@ namespace FSpot.Exporters.Gallery
 		
 		public void Add (string name, FileInfo fileinfo)
 		{
-			multipart = true;
+			Multipart = true;
 			Items.Add (new FormItem (name, fileinfo));
 		}
 	
@@ -115,7 +114,7 @@ namespace FSpot.Exporters.Gallery
 			// types we allow in .Add
 	
 			if (item.Value == null) {
-				Write (item.Name, (string)String.Empty);
+				Write (item.Name, String.Empty);
 			} else if (item.Value is FileInfo) {
 				Write (item.Name, (FileInfo)item.Value);
 			} else if (item.Value is string) {
@@ -125,21 +124,24 @@ namespace FSpot.Exporters.Gallery
 			}
 		}
 	
-		private long MultipartLength (FormItem item) {
+		private long MultipartLength (FormItem item)
+		{
 			// The types we check here need to match the
 			// types we allow in .Add
 	
 			if (item.Value == null) {
 				return MultipartLength (item.Name, (string)String.Empty);
-			} else if (item.Value is FileInfo) {
-				return MultipartLength (item.Name, (FileInfo)item.Value);
-			} else if (item.Value is string) {
-				return MultipartLength (item.Name, (string)item.Value);
-			} else {
-				throw new Exception ("Unknown value type");
 			}
+			if (item.Value is FileInfo) {
+				return MultipartLength (item.Name, (FileInfo)item.Value);
+			}
+			if (item.Value is string) {
+				return MultipartLength (item.Name, (string)item.Value);
+			}
+
+			throw new Exception ("Unknown value type");
 		}
-	
+
 		private string MultipartHeader (string name, string value)
 		{
 			return string.Format ("{0}\r\n" + 
@@ -158,7 +160,7 @@ namespace FSpot.Exporters.Gallery
 		{
 			string cmd;
 			
-			if (multipart) {
+			if (Multipart) {
 				cmd = String.Format ("{0}"
 						     + "{1}\r\n",
 						     MultipartHeader (name, value), value);
@@ -195,7 +197,7 @@ namespace FSpot.Exporters.Gallery
 	
 	       	private void Write (string name, FileInfo file)
 		{
-			if (multipart) {
+			if (Multipart) {
 				stream_writer.Write (MultipartHeader (name, file));
 				stream_writer.Flush ();
 				Stream stream = stream_writer.BaseStream;
@@ -224,7 +226,7 @@ namespace FSpot.Exporters.Gallery
 		public void Clear () 
 		{
 			Items.Clear ();
-			multipart = false;
+			Multipart = false;
 		}
 
 		public HttpWebResponse Submit (string url, FSpot.ProgressItem progress_item = null)
@@ -262,7 +264,7 @@ namespace FSpot.Exporters.Gallery
 			Request.Headers["Accept-Charset"] = "utf-8;";
 			Request.UserAgent = String.Format("F-Spot {0} (http://www.f-spot.org)", Defines.VERSION);
 	
-			if (multipart) {
+			if (Multipart) {
 				GenerateBoundary ();
 				Request.ContentType = "multipart/form-data; boundary=" + boundary;
 				Request.Timeout = Request.Timeout * 3;
@@ -293,7 +295,7 @@ namespace FSpot.Exporters.Gallery
 				Write (item);
 			}
 			
-			if (multipart)
+			if (Multipart)
 				stream_writer.Write (end_boundary + "\r\n");
 			
 			stream_writer.Flush ();

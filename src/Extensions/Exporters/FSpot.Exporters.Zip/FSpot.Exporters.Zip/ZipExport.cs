@@ -127,8 +127,9 @@ namespace FSpot.Exporters.Zip {
 							      photos.Length, zipdiag);
 
 			//Pack up
-			for (int i = 0; i < photos.Length; i ++) {
-				if (progress_dialog.Update (String.Format (Catalog.GetString ("Preparing photo \"{0}\""), photos[i].Name))) {
+			foreach (IPhoto photo in photos)
+			{
+				if (progress_dialog.Update (String.Format (Catalog.GetString ("Preparing photo \"{0}\""), photo.Name))) {
 					progress_dialog.Destroy ();
 					return;
 				}
@@ -138,17 +139,17 @@ namespace FSpot.Exporters.Zip {
 					FilterSet filters = new FilterSet ();
 					filters.Add (new JpegFilter ());
 					filters.Add (new ResizeFilter ((uint) scale_size.ValueAsInt));
-					FilterRequest freq = new FilterRequest (photos [i].DefaultVersion.Uri);
+					FilterRequest freq = new FilterRequest (photo.DefaultVersion.Uri);
 					filters.Convert (freq);
 					f = freq.Current.LocalPath;
 				} else {
-					f = photos [i].DefaultVersion.Uri.LocalPath;
+					f = photo.DefaultVersion.Uri.LocalPath;
 				}
 				FileStream fs = File.OpenRead (f);
 
 				byte [] buffer = new byte [fs.Length];
 				fs.Read (buffer, 0, buffer.Length);
-				ZipEntry entry = new ZipEntry (System.IO.Path.GetFileName (photos [i].DefaultVersion.Uri.LocalPath));
+				ZipEntry entry = new ZipEntry (System.IO.Path.GetFileName (photo.DefaultVersion.Uri.LocalPath));
 
 				entry.DateTime = DateTime.Now;
 

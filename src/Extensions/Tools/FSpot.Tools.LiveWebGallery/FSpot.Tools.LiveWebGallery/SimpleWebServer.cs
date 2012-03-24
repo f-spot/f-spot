@@ -45,7 +45,7 @@ namespace FSpot.Tools.LiveWebGallery
 	{
 		private Thread server_thread;
 		private TcpListener listener;
-		private Dictionary<string, RequestHandler> handlers = new Dictionary<string, RequestHandler> ();
+		private readonly Dictionary<string, RequestHandler> handlers = new Dictionary<string, RequestHandler> ();
 		
 		private IWebStats stats;
 		public IWebStats Stats {

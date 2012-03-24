@@ -301,7 +301,7 @@ namespace FSpot.Exporters.Folder
 				if (!dest.IsNative)
 					System.IO.Directory.Delete (gallery_path, true);
 
-				ThreadAssist.ProxyToMain (() => { Dialog.Destroy(); });
+				ThreadAssist.ProxyToMain (() => Dialog.Destroy());
 			}
 		}
 

@@ -163,7 +163,7 @@ namespace FSpot.Exporters.SmugMug {
 			browser = browser_check.Active;
 
 			if (account != null) {
-				album = (Album) account.SmugMug.GetAlbums() [Math.Max (0, album_optionmenu.Active)];
+				album = account.SmugMug.GetAlbums() [Math.Max (0, album_optionmenu.Active)];
 				photo_index = 0;
 
 				Dialog.Destroy ();
@@ -288,12 +288,7 @@ namespace FSpot.Exporters.SmugMug {
 			gallery_optionmenu.Active = pos;
 		}
 
-		private void Connect ()
-		{
-			Connect (null);
-		}
-
-		private void Connect (SmugMugAccount selected)
+		private void Connect (SmugMugAccount selected = null)
 		{
 			Connect (selected, null);
 		}
@@ -427,12 +422,7 @@ namespace FSpot.Exporters.SmugMug {
 		}
 
 		private Gtk.Dialog Dialog {
-			get {
-				if (dialog == null)
-					dialog = new Gtk.Dialog (builder.GetRawObject (dialog_name));
-
-				return dialog;
-			}
+			get { return dialog ?? (dialog = new Gtk.Dialog(builder.GetRawObject(dialog_name))); }
 		}
 	}
 }

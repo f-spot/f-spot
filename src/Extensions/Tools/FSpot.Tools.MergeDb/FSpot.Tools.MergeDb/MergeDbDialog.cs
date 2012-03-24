@@ -95,10 +95,8 @@ namespace FSpot.Tools.MergeDb
 			get {
 				if (allrolls_radio.Active)
 					return null;
-				if (newrolls_radio.Active)
-					return rolls;
-				else
-					return new Roll [] {rolls [rolls_combo.Active]};
+
+				return newrolls_radio.Active ? rolls : new Roll [] {rolls [rolls_combo.Active]};
 			}
 		}
 

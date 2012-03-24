@@ -63,7 +63,7 @@ namespace FSpot.Exporters.SmugMug
 			if (remove_button != null)
 				remove_button.Visible = account != null;
 
-			this.Dialog.Show ();
+			Dialog.Show ();
 
 			password_entry.Changed += HandleChanged;
 			username_entry.Changed += HandleChanged;
@@ -102,12 +102,7 @@ namespace FSpot.Exporters.SmugMug
 		}
 
 		private Gtk.Dialog Dialog {
-			get {
-				if (dialog == null)
-					dialog = new Gtk.Dialog (builder.GetRawObject (dialog_name));
-
-				return dialog;
-			}
+			get { return dialog ?? (dialog = new Gtk.Dialog(builder.GetRawObject(dialog_name))); }
 		}
 
 		private SmugMugAccount account;

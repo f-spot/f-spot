@@ -187,8 +187,6 @@ namespace FSpot.Tools.ChangePhotoPath
 			remove_progress_dialog();
 			if (destroy_dialog)
 				Dialog.Destroy();
-
-			return;
 		}
 
 		public void DisplayDefaultPaths (string oldpath, string newpath)
@@ -199,10 +197,11 @@ namespace FSpot.Tools.ChangePhotoPath
 
 		public void remove_progress_dialog ()
 		{
-			if (progress_dialog != null) {
-				progress_dialog.Destroy();
-				progress_dialog = null;
-			}
+			if (progress_dialog == null)
+				return;
+
+			progress_dialog.Destroy();
+			progress_dialog = null;
 		}
 
 		public void check_if_remove_progress_dialog (int total)

@@ -44,12 +44,9 @@ namespace Mono.Facebook
 		private const string BOUNDARY = "SoMeTeXtWeWiLlNeVeRsEe";
 		private const string LINE = "\r\n";
 
-		private static Dictionary<int, XmlSerializer> serializer_dict = new Dictionary<int, XmlSerializer>();
+		private static readonly Dictionary<int, XmlSerializer> serializer_dict = new Dictionary<int, XmlSerializer>();
 
-		private FacebookParam VersionParam = FacebookParam.Create ("v", "1.0");
-		private string api_key;
-		private string secret;
-		private bool use_json;
+		private readonly FacebookParam VersionParam = FacebookParam.Create ("v", "1.0");
 
 		private static XmlSerializer ErrorSerializer {
 			get {
@@ -59,26 +56,15 @@ namespace Mono.Facebook
 
 		public Util (string api_key, string secret)
 		{
-			this.api_key = api_key;
-			this.secret = secret;
+			ApiKey = api_key;
+			SharedSecret = secret;
 		}
 
-		public bool UseJson
-		{
-			get { return use_json; }
-			set { use_json = value; }
-		}
+		public bool UseJson { get; set; }
 
-		internal string SharedSecret
-		{
-			get { return secret; }
-			set { secret = value; }
-		}
+		internal string SharedSecret { get; set; }
 
-		internal string ApiKey
-		{
-			get { return api_key; }
-		}
+		internal string ApiKey { get; private set; }
 
 		public T GetResponse<T>(string method_name, params FacebookParam[] parameters)
 		{
@@ -252,7 +238,7 @@ namespace Mono.Facebook
 		{
 			List<FacebookParam> list = new List<FacebookParam> (parameters);
 			list.Add (FacebookParam.Create ("method", method_name));
-			list.Add (FacebookParam.Create ("api_key", api_key));
+			list.Add (FacebookParam.Create ("api_key", ApiKey));
 			list.Add (VersionParam);
 			list.Sort ();
 
@@ -261,7 +247,7 @@ namespace Mono.Facebook
 			foreach (FacebookParam param in list)
 				values.Append (param.ToString ());
 
-			values.Append (secret);
+			values.Append (SharedSecret);
 
 			byte[] md5_result = MD5.Create ().ComputeHash (Encoding.ASCII.GetBytes (values.ToString ()));
 

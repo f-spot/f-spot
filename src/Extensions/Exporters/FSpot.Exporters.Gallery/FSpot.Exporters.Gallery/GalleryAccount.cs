@@ -37,15 +37,12 @@ namespace FSpot.Exporters.Gallery
 		public GalleryAccount (string name, string url, string username, string password) : this (name, url, username, password, GalleryVersion.VersionUnknown) {}
 		public GalleryAccount (string name, string url, string username, string password, GalleryVersion version)
 		{
-			this.Name = name;
+			Name = name;
 			this.username = username;
 			this.password = password;
-			this.Url = url;
+			Url = url;
 
-			if (version != GalleryVersion.VersionUnknown)
-				this.Version = version;
-			else
-				this.Version = Gallery.DetectGalleryVersion(Url);
+			Version = version != GalleryVersion.VersionUnknown ? version : Gallery.DetectGalleryVersion(Url);
 		}
 
 		public const string EXPORT_SERVICE = "gallery/";
