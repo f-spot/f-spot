@@ -3,13 +3,13 @@
 # Copyright (C) 2010 f-spot's COPYRIGHT HOLDER
 # This file is distributed under the same license as the f-spot package.
 # Jorge González <jorgegonz@svn.gnome.org>, 2010.
-# Daniel Mustieles <daniel.mustieles@gmail.com>, 2011.
+# Daniel Mustieles <daniel.mustieles@gmail.com>, 2011, 2012.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: f-spot.help.master\n"
-"POT-Creation-Date: 2011-05-12 14:25+0000\n"
-"PO-Revision-Date: 2011-05-17 10:02+0200\n"
+"POT-Creation-Date: 2012-03-25 18:41+0000\n"
+"PO-Revision-Date: 2012-03-30 11:49+0200\n"
 "Last-Translator: Daniel Mustieles <daniel.mustieles@gmail.com>\n"
 "Language-Team: Español <gnome-es-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -464,9 +464,6 @@ msgid "To stop searching by rating:"
 msgstr "Dejar de buscar por puntuación:"
 
 #: C/rate-search.page:31(p)
-#| msgid ""
-#| "Select <guiseq><gui>Find</gui><gui>By Rating</gui><gui>Set Rating Filter</"
-#| "gui></guiseq>."
 msgid ""
 "Select <guiseq><gui>Find</gui><gui>By Rating</gui><gui>Clear Rating Filter</"
 "gui></guiseq>."
@@ -747,9 +744,13 @@ msgid "Click the <gui>Crop</gui> button in the Edit pane."
 msgstr "Pulse el botón <gui>Recortar</gui> en el panel de edición."
 
 #: C/general-editing.page:47(p)
+#| msgid ""
+#| "Select a contraining aspect ratio, that is, a proportion of height to "
+#| "width to which the new photo must fit. Examples of contraining aspect "
+#| "ratios include 4x3, 4x6, and 5x7."
 msgid ""
-"Select a contraining aspect ratio, that is, a proportion of height to width "
-"to which the new photo must fit. Examples of contraining aspect ratios "
+"Select a constraining aspect ratio, that is, a proportion of height to width "
+"to which the new photo must fit. Examples of constraining aspect ratios "
 "include 4x3, 4x6, and 5x7."
 msgstr ""
 "Seleccione la tasa de proporción, esto es, la proporción entre la altura y "
@@ -1069,13 +1070,15 @@ msgid "Click <gui>Red-Eye Removal</gui> in the Edit panel."
 msgstr "Pulse <gui>Reducción de ojos rojos</gui> en el panel de edición."
 
 #: C/enhancements.page:25(p)
+#| msgid ""
+#| "Select the area from which you wish to remove red-eye. Note: If the "
+#| "contains many red areas, you may wish to select each eye individually."
 msgid ""
-"Select the area from which you wish to remove red-eye. Note: If the contains "
-"many red areas, you may wish to select each eye individually."
+"Select the area from which you wish to remove red-eye. Note: If the area "
+"contains many red areas, you may wish to select each eye individually."
 msgstr ""
-"Seleccione el área en el que quiere reducir los ojos rojos. Nota: si "
-"contiene muchas áreas rojas puede querer seleccionar cada ojo "
-"individualmente."
+"Seleccione el área de la que quiere quitar los ojos rojos. Nota: si contiene "
+"muchas áreas rojas puede querer seleccionar cada ojo individualmente."
 
 #: C/enhancements.page:30(p)
 msgid "Click <gui>Fix!</gui>."
