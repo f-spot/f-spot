@@ -3,7 +3,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: f-spot documentation\n"
-"POT-Creation-Date: 2010-10-30 15:15+0000\n"
+"POT-Creation-Date: 2012-04-06 09:35+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Andrej Žnidaršič <andrej.znidarsic@gmail.com>\n"
 "Language-Team: Slovenian GNOME Translation Team <gnome-si@googlegroups.com>\n"
@@ -344,8 +344,8 @@ msgid "To stop searching by rating:"
 msgstr "Za zaustavitev iskanja po ocenah:"
 
 #: C/rate-search.page:31(p)
-msgid "Select <guiseq><gui>Find</gui><gui>By Rating</gui><gui>Set Rating Filter</gui></guiseq>."
-msgstr "Izberite <guiseq><gui>Najdi</gui><gui>Po oceni</gui><gui>Nastavi filter ocen</gui></guiseq>."
+msgid "Select <guiseq><gui>Find</gui><gui>By Rating</gui><gui>Clear Rating Filter</gui></guiseq>."
+msgstr "Izberite <guiseq><gui>Najdi</gui><gui>Po oceni</gui><gui>Počisti filter ocen</gui></guiseq>."
 
 #: C/picasa.page:8(desc)
 msgid "Upload photos to Google's PicasaWeb"
@@ -547,7 +547,7 @@ msgid "Click the <gui>Crop</gui> button in the Edit pane."
 msgstr "Kliknite gumb <gui>Obreži</gui> v pladnju Uredi."
 
 #: C/general-editing.page:47(p)
-msgid "Select a contraining aspect ratio, that is, a proportion of height to width to which the new photo must fit. Examples of contraining aspect ratios include 4x3, 4x6, and 5x7."
+msgid "Select a constraining aspect ratio, that is, a proportion of height to width to which the new photo must fit. Examples of constraining aspect ratios include 4x3, 4x6, and 5x7."
 msgstr "Izberite razmerje velikosti to je razmerje med širino in dolžino kateremu se mora prilegati nova fotografija. Primeri razmerij velikosti so 4x3, 4x6 in 5x7."
 
 #: C/general-editing.page:52(p)
@@ -779,8 +779,8 @@ msgid "Click <gui>Red-Eye Removal</gui> in the Edit panel."
 msgstr "V pladnju Uredi kliknite <gui>Odstranitev rdečih oči</gui>."
 
 #: C/enhancements.page:25(p)
-msgid "Select the area from which you wish to remove red-eye. Note: If the contains many red areas, you may wish to select each eye individually."
-msgstr "Izberite področje iz katerega želite odstraniti rdeče oko. V primeru da ima slika več rdečih oči, priporočamo izbiro posameznih rdečih oči."
+msgid "Select the area from which you wish to remove red-eye. Note: If the area contains many red areas, you may wish to select each eye individually."
+msgstr "Izberite področje iz katerega želite odstraniti rdeče oko. Opomba: v primeru da ima slika več rdečih oči, priporočamo izbiro posameznih rdečih oči."
 
 #: C/enhancements.page:30(p)
 msgid "Click <gui>Fix!</gui>."
@@ -970,92 +970,127 @@ msgstr "Andrej Žnidaršič <andrej.znidarsic@gmail.com>"
 #~ msgid ""
 #~ "@@image: 'figures/f-spot-crop.png'; md5=63e18c96702aea4701024837a13ae2d9"
 #~ msgstr "a"
+
 #~ msgid ""
 #~ "@@image: 'figures/f-spot-straighten.png'; "
 #~ "md5=ceeff0cac633d06599fa5760cc4bc568"
 #~ msgstr "a"
+
 #~ msgid ""
 #~ "@@image: 'figures/f-spot-adjust-colors.png'; "
 #~ "md5=6a5d9eaaaaf238ccbf70552bc073898c"
 #~ msgstr "a"
+
 #~ msgid ""
 #~ "@@image: 'figures/f-spot-autocolor.png'; "
 #~ "md5=240c4a86c95c9507755fe790bef0e24a"
 #~ msgstr "a"
+
 #~ msgid ""
 #~ "@@image: 'figures/f-spot-desaturate.png'; "
 #~ "md5=fa54dfd08171658d720be71b6d367139"
 #~ msgstr "a"
+
 #~ msgid ""
 #~ "@@image: 'figures/f-spot-sepia.png'; md5=154d6e34903664dbd776f2bef405ce91"
 #~ msgstr "a"
+
 #~ msgid ""
 #~ "@@image: 'figures/f-spot-red-eye.png'; "
 #~ "md5=743d0a2ccc9b2fa8fa314855c225cd31"
 #~ msgstr "a"
+
 #~ msgid ""
 #~ "@@image: 'figures/f-spot-soft-focus.png'; "
 #~ "md5=14d1437ce49c83f3ebbcf70b7047ffbe"
 #~ msgstr "a"
+
 #~ msgid ""
 #~ "@@image: 'figures/f-spot-fullscreen.png'; "
 #~ "md5=86040e20ebf1015f6489a56e9589f063"
 #~ msgstr "a"
+
 #~ msgid ""
 #~ "@@image: 'figures/f-spot-slideshow.png'; "
 #~ "md5=84a69bc3bb7a1b8d04c967d3a66e6f23"
 #~ msgstr "a"
+
 #~ msgid "The F-Spot Manual"
 #~ msgstr "F-Spot priročnik"
+
 #~ msgid "This is the user manual for F-Spot, a GNOME personal photo manager."
 #~ msgstr ""
 #~ "To je uporabniški priročnik za F-Spot, GNOME upravljalnik fotografij"
+
 #~ msgid "2007-2009"
 #~ msgstr "2007-2009"
+
 #~ msgid "Aaron Bockover, Gabriel Burt, Miguel de Icaza, Bengt Thuree"
 #~ msgstr "Aaron Bockover, Gabriel Burt, Miguel de Icaza, Bengt Thuree"
+
 #~ msgid "GNOME Documentation Project"
 #~ msgstr "GNOME projekt dokumentacije"
+
 #~ msgid "Miguel"
 #~ msgstr "Miguel"
+
 #~ msgid "de Icaza"
 #~ msgstr "de Icaza"
+
 #~ msgid "Aaron"
 #~ msgstr "Aaron"
+
 #~ msgid "Bockover"
 #~ msgstr "Bockover"
+
 #~ msgid "Bengt"
 #~ msgstr "Bengt"
+
 #~ msgid "Thuree"
 #~ msgstr "Thuree"
+
 #~ msgid "Gabriel"
 #~ msgstr "Gabriel"
+
 #~ msgid "Burt"
 #~ msgstr "Burt"
+
 #~ msgid "Alexandre"
 #~ msgstr "Alexandre"
+
 #~ msgid "Prokoudine"
 #~ msgstr "Prokoudine"
+
 #~ msgid "Stephane"
 #~ msgstr "Stephane"
+
 #~ msgid "Delcroix"
 #~ msgstr "Delcroix"
+
 #~ msgid "0.5"
 #~ msgstr "0,5"
+
 #~ msgid "2008-09-25"
 #~ msgstr "2008-09-25"
+
 #~ msgid "0.4"
 #~ msgstr "0,4"
+
 #~ msgid "2008-09-12"
 #~ msgstr "2008-09-12"
+
 #~ msgid "0.3"
 #~ msgstr "0,3"
+
 #~ msgid "2007-07-26"
 #~ msgstr "26-07-2007"
+
 #~ msgid "Organizing your photos"
 #~ msgstr "Organizacija vaših fotografij"
+
 #~ msgid "Import"
 #~ msgstr "Uvažanje"
+
 #~ msgid ""
 #~ "You can import photos from your hard drive or your camera. When you "
 #~ "import your photos into F-Spot from your camera, it will always make a "
@@ -1072,6 +1107,7 @@ msgstr "Andrej Žnidaršič <andrej.znidarsic@gmail.com>"
 #~ "želite kopirati s trdega diska, odkljukajte možnost <guilabel>Kopiranje "
 #~ "datotek v mapo fotografij</guilabel> v pogovornem oknu uvoza ali pa med "
 #~ "vlečenjem fotografij v F-Spot držite tipko <keycap>Dvigalka</keycap>."
+
 #~ msgid ""
 #~ "By default, F-Spot copies your photos to the <filename class=\"directory"
 #~ "\">~/Photos</filename> folder. You can change the folder F-Spot uses in "
@@ -1086,6 +1122,7 @@ msgstr "Andrej Žnidaršič <andrej.znidarsic@gmail.com>"
 #~ "pogovornem oknu <guilabel>Možnosti</guilabel> "
 #~ "(<menuchoice><guimenu>Uredi</guimenu><guimenuitem>Možnosti</guimenuitem></"
 #~ "menuchoice>)."
+
 #~ msgid ""
 #~ "If there is a tiny chance that some of your photos are already imported "
 #~ "from the chosen source, you can use <guilabel>Detect duplicates</"
@@ -1097,6 +1134,7 @@ msgstr "Andrej Žnidaršič <andrej.znidarsic@gmail.com>"
 #~ "lahko uporabite možnost <guilabel>Zaznavanje dvojnikov</guilabel>. F-Spot "
 #~ "bo poskusil ugotoviti ali natanko ta slika že obstaja v podatkovni "
 #~ "zbirki. V tem primeru kopija slike ne bo uvožena."
+
 #~ msgid ""
 #~ "If all the photos you are importing at one time are from a particular "
 #~ "event, or have some other characteristic in common, you can create a tag "
@@ -1110,6 +1148,7 @@ msgstr "Andrej Žnidaršič <andrej.znidarsic@gmail.com>"
 #~ "kasneje lahko najdete. Za to sledite navodilom z  <xref linkend=\"tag\"/> "
 #~ "za ustvarjanje nove oznake, nato med uvažanjem označite gumb "
 #~ "<guilabel>Pripni oznako</guilabel> in izberite ustvarjeno oznako."
+
 #~ msgid ""
 #~ "F-Spot uses a database stored at <filename>~/.config/f-spot/photos.db</"
 #~ "filename>. Note, to access it, use the sqlite3 command. You can also "
@@ -1120,6 +1159,7 @@ msgstr "Andrej Žnidaršič <andrej.znidarsic@gmail.com>"
 #~ "photos.db</filename>. Za dostop do nje uporabite ukaz sqlite3. Pot do "
 #~ "podatkovne zbirke lahko ročno navedete z zagonom F-Spot z možnostjo "
 #~ "<option>-b</option>."
+
 #~ msgid ""
 #~ "After an import, F-Spot will display the pictures of the latest import "
 #~ "roll only. Read <xref linkend=\"enjoying-search\"/> to learn how to deal "
@@ -1128,6 +1168,7 @@ msgstr "Andrej Žnidaršič <andrej.znidarsic@gmail.com>"
 #~ "Po uvozu bo F-Spot prikazal le slike zadnjega uvoznega zvitka. Preberite "
 #~ "<xref linkend=\"enjoying-search\"/> za podrobnosti o upravljanju z "
 #~ "uvoznimi zvitki."
+
 #~ msgid ""
 #~ "You can also import directly from Mozilla <ulink url=\"http://www.mozilla."
 #~ "com/en-US/firefox/\">Firefox</ulink> and <ulink url=\"http://www.mozilla."
@@ -1145,8 +1186,10 @@ msgstr "Andrej Žnidaršič <andrej.znidarsic@gmail.com>"
 #~ "addon/7011\">Thunderbird</ulink> razširitve F-Spot uvoznik, ki jo je "
 #~ "napisal<ulink url=\"http://personalpages.tds.net/~cdovel/\">Pizzach</"
 #~ "ulink>."
+
 #~ msgid "Edit"
 #~ msgstr "Urejanje"
+
 #~ msgid ""
 #~ "If you double click or press enter on an image, you enter Edit mode, "
 #~ "where you can remove red-eye, crop, and adjust brightness and colors."
@@ -1154,6 +1197,7 @@ msgstr "Andrej Žnidaršič <andrej.znidarsic@gmail.com>"
 #~ "V primeru da dvojno kliknite ali pritisnete vnosno tipko, vstopite v "
 #~ "način urejanje, kjer lahko odstranite rdeče oči, obrežete ter prilagodite "
 #~ "svetlost in barve."
+
 #~ msgid ""
 #~ "When you edit your photos, a new copy (called a version) is created, so "
 #~ "your original is never altered. After your first edit to a photo, "
@@ -1169,8 +1213,10 @@ msgstr "Andrej Žnidaršič <andrej.znidarsic@gmail.com>"
 #~ "ali barvami lahko to storite preko možnosti  "
 #~ "<menuchoice><guimenu>Fotografija</guimenu><guimenuitem>Ustvari novo "
 #~ "različico</guimenuitem></menuchoice>."
+
 #~ msgid "Crop"
 #~ msgstr "Obreži"
+
 #~ msgid ""
 #~ "Cropping an image is a great way to improve the quality of a photograph "
 #~ "by change how it is framed. You crop a photo by selecting the part of the "
@@ -1187,8 +1233,10 @@ msgstr "Andrej Žnidaršič <andrej.znidarsic@gmail.com>"
 #~ "primerne velikosti s spustnega menija omejitev omejite izbiro, ki vam jo "
 #~ "bo dovolil narisati F-Spot. Za podrobnosti o izbiri na fotografiji si "
 #~ "oglejte <xref linkend=\"edit-remove-red-eye\"/> spodaj."
+
 #~ msgid "Crop tool"
 #~ msgstr "Orodje obreži"
+
 #~ msgid ""
 #~ "Once you have made your crop selection, you must click the crop button "
 #~ "beneath the image to finalize the crop. If you are working with the "
@@ -1197,6 +1245,7 @@ msgstr "Andrej Žnidaršič <andrej.znidarsic@gmail.com>"
 #~ "Ko ste naredili izbor obreza, morate za končanje obrezovanja klikniti "
 #~ "gumb pod sliko. V primeru da delate z izvorno fotografijo, obrezovanje "
 #~ "ustvari novo različico vaše fotografije."
+
 #~ msgid ""
 #~ "Straighten effect is a tool to level a photo, quite helpful for "
 #~ "landscapes taken without a tripod, when (imaginary) line of horizon is "
@@ -1208,8 +1257,10 @@ msgstr "Andrej Žnidaršič <andrej.znidarsic@gmail.com>"
 #~ "sliko pokrajine posnete brez stativa, ko (navidezna) črta horizonta ni na "
 #~ "0°. To orodje zavrti sliko za določen kot in samodejno čarobno obreže "
 #~ "nastalo sliko, tako da vedno vidite idealen pravokotnik."
+
 #~ msgid "Straighten tool"
 #~ msgstr "Orodje poravnave"
+
 #~ msgid ""
 #~ "To adjust the brightness, contrast, and colors of a photo, first click "
 #~ "the <guibutton>Adjust the photo colors</guibutton> icon to open the "
@@ -1220,6 +1271,7 @@ msgstr "Andrej Žnidaršič <andrej.znidarsic@gmail.com>"
 #~ "ikono <guibutton>Prilagodi barve fotografije</guibutton> za odpiranje "
 #~ "pogovornega okna prilagajanja. Spremenite nekaj nastavitev in jih "
 #~ "shranite z <guibutton>V redu</guibutton>."
+
 #~ msgid ""
 #~ "This effect automatically adjusts color levels to make a pretty balanced "
 #~ "picture color-wise. It serves best for pictures taken with automatical "
@@ -1228,12 +1280,14 @@ msgstr "Andrej Žnidaršič <andrej.znidarsic@gmail.com>"
 #~ "Ta učinek samodejno prilagodi barvne ravni za ustvarjanje barvno "
 #~ "uravnotežene slike. Najboljše deluje za slike posnete s samodejnim "
 #~ "ravnotežjem bele barve, ko fotoaparat ni uspel dobro opraviti dela. "
+
 #~ msgid ""
 #~ "To make a colorful photo a black and white one, open a photo of choice "
 #~ "and press <guibutton>Desaturate</guibutton> button."
 #~ msgstr ""
 #~ "Za pretvorbo barve fotografije v črno belo odprite izbrano fotografijo iz "
 #~ "pritisnite gumb <guibutton>Zmanjšaj nasičenje</guibutton>."
+
 #~ msgid ""
 #~ "To make a colorful photo look like an old-style picture in sepia tones, "
 #~ "open a photo of choice and press <guibutton>Sepia</guibutton> button."
@@ -1241,6 +1295,7 @@ msgstr "Andrej Žnidaršič <andrej.znidarsic@gmail.com>"
 #~ "Za pretvorbo barvne fotografije v staro sliko sepia tonov odprite izbrano "
 #~ "fotografijo in pritisnite gumb <guibutton>Sepia učinek staranja</"
 #~ "guibutton>."
+
 #~ msgid ""
 #~ "To remove redeye from a photo, you need to select a zone containing the "
 #~ "eyes. You may want to zoom in on the image to accurately select the eyes "
@@ -1255,6 +1310,7 @@ msgstr "Andrej Žnidaršič <andrej.znidarsic@gmail.com>"
 #~ "več oseb na enkrat. V primeru da to ne deluje, ali izbrano področje "
 #~ "vsebuje druge živo rdeče dele (ustnice, ...) boste najbrž morali "
 #~ "popraviti eno oko na enkrat."
+
 #~ msgid ""
 #~ "To make your selection, click one corner of the rectangle that will be "
 #~ "your selection, and drag your mouse to the diagonal corner and release "
@@ -1265,14 +1321,17 @@ msgstr "Andrej Žnidaršič <andrej.znidarsic@gmail.com>"
 #~ "miško v diagonalni kot in jo spustite. Izboru lahko spremenite velikost z "
 #~ "vlečenjem njegovih robom ali pa ga lahko premaknete s klikom v sredino "
 #~ "izbora in ga povlečete kamor ga želite."
+
 #~ msgid ""
 #~ "Once you have selected a zone, you can remove the red from it by clicking "
 #~ "the red-eye button beneath the photo."
 #~ msgstr ""
 #~ "Ko ste izbrali področje, lahko rdeče oko odstranite s klikom na gumb "
 #~ "rdeče-oko pod fotografijo."
+
 #~ msgid "Red-Eye tool"
 #~ msgstr "Orodje rdečih oči"
+
 #~ msgid ""
 #~ "You can change the threshold for redeyes detection by changing the gconf "
 #~ "key <filename class=\"directory\">/apps/f-spot/edit/redeye_threshold</"
@@ -1281,8 +1340,10 @@ msgstr "Andrej Žnidaršič <andrej.znidarsic@gmail.com>"
 #~ "Prag za zaznavanje rdečih oči lahko spremenite s spremembo gconf ključa "
 #~ "¸<filename class=\"directory\">/apps/f-spot/edit/redeye_threshold</"
 #~ "filename>."
+
 #~ msgid "Soft Focus"
 #~ msgstr "Mehko žarišče"
+
 #~ msgid ""
 #~ "In photography sharpening one region of a picture, while blurring all the "
 #~ "rest, is a way to make an emphasis and grab attention. It is achieved by "
@@ -1295,14 +1356,17 @@ msgstr "Andrej Žnidaršič <andrej.znidarsic@gmail.com>"
 #~ "doseči z uporabo leče ki dovoli snemanje s kratko razdaljo pred in za "
 #~ "predmetom, ki je videti v gorišču. Učinek mehkega gorišča je način za "
 #~ "posnemanje takšne leče."
+
 #~ msgid "Soft Focus tool"
 #~ msgstr "Orodje mehkega žarišča"
+
 #~ msgid ""
 #~ "Click to choose central point of the area you want to be in focus and "
 #~ "adjust amount of blurring, then click <guibutton>OK</guibutton>."
 #~ msgstr ""
 #~ "Kliknite za izbor središča področja, ki naj bo v gorišču in prilagodite "
 #~ "količino megljenja in nato kliknite <guibutton>V redu</guibutton>."
+
 #~ msgid ""
 #~ "Out-of-focus photographs and most digitized images often need a sharpness "
 #~ "correction. The Unsharp Mask effect sharpens edges of the elements "
@@ -1316,9 +1380,11 @@ msgstr "Andrej Žnidaršič <andrej.znidarsic@gmail.com>"
 #~ "fotografije izberite <menuchoice><guimenu>Uredi</"
 #~ "guimenu><guimenuitem>Izostri...</guimenuitem></menuchoice> in navedite "
 #~ "naslednje vrednosti:"
+
 #~ msgid ""
 #~ "<parameter class=\"option\">Amount</parameter> — strength of sharpening."
 #~ msgstr "<parameter class=\"option\">Količina</parameter> — moč izostritve."
+
 #~ msgid ""
 #~ "<parameter class=\"option\">Radius</parameter> — how many pixels on "
 #~ "either side of an edge will be affected by sharpening. High resolution "
@@ -1327,6 +1393,7 @@ msgstr "Andrej Žnidaršič <andrej.znidarsic@gmail.com>"
 #~ "<parameter class=\"option\">Polmer</parameter> — na koliko točk na vsaki "
 #~ "strani roba bo vplivala izostritev. Slike z visoko ločljivostjo omogočijo "
 #~ "večje polmere."
+
 #~ msgid ""
 #~ "<parameter class=\"option\">Threshold</parameter> — the minimum "
 #~ "difference in pixel values that indicates an edge where sharpen must be "
@@ -1337,16 +1404,20 @@ msgstr "Andrej Žnidaršič <andrej.znidarsic@gmail.com>"
 #~ "vrednostih točk ki določiti rob, kjer mora biti uveljavljena izostritev. "
 #~ "To pomaga pri izogibanju ustvarjanja napak v obrazu, nebu ali vodni "
 #~ "površini."
+
 #~ msgid "Describe"
 #~ msgstr "Opisovanje"
+
 #~ msgid ""
 #~ "You can also enter a description of the image by clicking on the text "
 #~ "entry box below the image and typing."
 #~ msgstr ""
 #~ "Vpis slike lahko vnesete s klikom na polje besedilnega vnosa pod sliko in "
 #~ "tipkanjem."
+
 #~ msgid "Adjust Time"
 #~ msgstr "Prilagodi čas"
+
 #~ msgid ""
 #~ "In both 'browse' or 'edit' modes, you can adjust the time of one or "
 #~ "multiple pictures (<menuchoice><guimenu>Edit</guimenu><guimenuitem>Adjust "
@@ -1360,8 +1431,10 @@ msgstr "Andrej Žnidaršič <andrej.znidarsic@gmail.com>"
 #~ "pomaga premakniti celoten uvozni zvitek, na primer če je čas na vašem "
 #~ "fotoaparatu slabo nastavljen in ste ali če ste ga pozabili spremeniti z/"
 #~ "na poletni čas. "
+
 #~ msgid "Tag"
 #~ msgstr "Oznaka"
+
 #~ msgid ""
 #~ "F-Spot enables you to organize and enjoy your photos by associating them "
 #~ "with various user-customizable tags. A tag is a merely a label. F-Spot "
@@ -1375,20 +1448,26 @@ msgstr "Andrej Žnidaršič <andrej.znidarsic@gmail.com>"
 #~ "začetek vsebuje privzete oznake, lahko jih spremenite in dodate nove. Na "
 #~ "primer, če želite ustvariti oznako za določen dogodek, lahko ustvarite "
 #~ "oznako imenovano po dogodku pod oznako dogodki."
+
 #~ msgid "drag and drop the photo(s) onto the tag"
 #~ msgstr "povlecite in spustite fotografij-o/e na oznako"
+
 #~ msgid "drag and drop the tag onto the photo(s)"
 #~ msgstr "povlecite in spustite oznako na fotografij-o/e"
+
 #~ msgid "via the photo's right-click menu"
 #~ msgstr "preko menija desnega klika fotografija"
+
 #~ msgid "via the Tags and Edit menus"
 #~ msgstr "preko menijev Oznake in Uredi"
+
 #~ msgid ""
 #~ "by typing them in. Press <keycap>t</keycap> to pop up the tag entry bar. "
 #~ "Here you can enter the tags, separated by commas."
 #~ msgstr ""
 #~ "s tipkanjem oznak. Pritisnite <keycap>t</keycap> za pojav vnosne vrstice "
 #~ "oznak. Sem lahko vnesete oznake, ločene z vejicami."
+
 #~ msgid ""
 #~ "You can also use auto-completion in this entry bar: After entering the "
 #~ "beginning of a tag name, press <keycap>Tab</keycap> to see the first "
@@ -1409,6 +1488,7 @@ msgstr "Andrej Žnidaršič <andrej.znidarsic@gmail.com>"
 #~ "oznake pritisnite <keycap>,</keycap>. S pritiskom <keycap>Vnosna tipka</"
 #~ "keycap> zapustite vnosno vrstico oznak in s tem morda potrdite trenutno "
 #~ "dokončanje. Za preklic samodejnega dokončevanja tipkajte naprej. "
+
 #~ msgid ""
 #~ "The first photo you associate with a tag will be used for that tag's "
 #~ "icon. You can always edit a tag's name, parent tag, and icon by right "
@@ -1417,6 +1497,7 @@ msgstr "Andrej Žnidaršič <andrej.znidarsic@gmail.com>"
 #~ "Prva fotografija, ki jo povežete z oznako, bo uporabljena za ikono "
 #~ "oznake. Z desnim klikom na oznako in izbiro  <guilabel>Uredi oznako</"
 #~ "guilabel> lahko uredite ime oznake, nadrejeno oznako in ikono oznake."
+
 #~ msgid ""
 #~ "You can change a tag's parent by dragging and dropping it where you like. "
 #~ "Also, you can edit the name of a tag by selecting it and pressing "
@@ -1431,6 +1512,7 @@ msgstr "Andrej Žnidaršič <andrej.znidarsic@gmail.com>"
 #~ "žarišču, (na primer ste ravnokar kliknili na oznako) lahko začnete "
 #~ "tipkati ime oznake, vse razširjene oznake na seznamu bodo preiskane in "
 #~ "skočili boste na zadetke."
+
 #~ msgid ""
 #~ "You can also change size of tag icons in the sidebar or even make tag "
 #~ "icons invisible by selecting preferred option from "
@@ -1441,6 +1523,7 @@ msgstr "Andrej Žnidaršič <andrej.znidarsic@gmail.com>"
 #~ "napravite nevidne z izbiro prednostne možnosti v meniju "
 #~ "<menuchoice><guimenu>Pogled</guimenu><guimenuitem>Ikone oznak</"
 #~ "guimenuitem></menuchoice>."
+
 #~ msgid ""
 #~ "F-Spot can write tags as metadata fields into JPEG files. Tags for "
 #~ "various RAW files, PNG, TIFF, and others are written to F-Spot's "
@@ -1451,10 +1534,13 @@ msgstr "Andrej Žnidaršič <andrej.znidarsic@gmail.com>"
 #~ "za različne RAW, PNG, TIFF in druge datoteke so zapisane v podatkovno "
 #~ "zbirko F-Spot. Te datoteke boste morali ob ponovnem uvozu zbirke ponovno "
 #~ "označiti."
+
 #~ msgid "Enjoying your photos"
 #~ msgstr "Uživanje v vaših fotografijah"
+
 #~ msgid "Browse"
 #~ msgstr "Brskanje"
+
 #~ msgid ""
 #~ "You can use the slider widget to browse your photos by month or by "
 #~ "directory. To change this setting, go to <menuchoice><guimenu>View</"
@@ -1464,11 +1550,13 @@ msgstr "Andrej Žnidaršič <andrej.znidarsic@gmail.com>"
 #~ "drsni gradnik. Za spremembo te nastavitve pojdite na "
 #~ "<menuchoice><guimenu>Pogled</guimenu><guimenuitem>Urejeno po</"
 #~ "guimenuitem></menuchoice>."
+
 #~ msgid ""
 #~ "F-Spot uses search filters to help you better define search criteria."
 #~ msgstr ""
 #~ "F-Spot uporablja iskalne filtre za pomoč pri boljšem določanju iskalnih "
 #~ "kriterijev."
+
 #~ msgid ""
 #~ "You can start a search by double clicking or activating a tag from the "
 #~ "tag list. Alternatively, you can show the find bar with "
@@ -1481,6 +1569,7 @@ msgstr "Andrej Žnidaršič <andrej.znidarsic@gmail.com>"
 #~ "<menuchoice><guimenu>Najdi</guimenu><guimenuitem>Pokaži iskalno vrstico</"
 #~ "guimenuitem></menuchoice>. Ko je iskalna vrstica prikazana, lahko oznake "
 #~ "povlečete iz pogleda oznak v iskalno vrstico."
+
 #~ msgid ""
 #~ "To find photos that are tagged with both of two tags, activate the first "
 #~ "in the tag view or drag it onto the find bar, then drag the second tag "
@@ -1495,12 +1584,14 @@ msgstr "Andrej Žnidaršič <andrej.znidarsic@gmail.com>"
 #~ "oznako v pogledu oznak ali uporabite meni <guimenu>Najdi</guimenu> in "
 #~ "izberite <guimenuitem>Najdi z...</guimenuitem> in izberite prvo oznako "
 #~ "(ali skupino oznak)."
+
 #~ msgid ""
 #~ "You can drag a tag icon around on the find bar to change from finding it "
 #~ "and another tag to finding it or another tag."
 #~ msgstr ""
 #~ "Ikono oznake lahko povlečete na iskalno vrstico za spremembo iz iskanja "
 #~ "te oznake in druge oznake v iskanje te oznake ali druge oznake. "
+
 #~ msgid ""
 #~ "You can search for photos that do not have a particular tag by double-"
 #~ "clicking on a tag in the find bar. Alternatively, you can right-click a "
@@ -1509,6 +1600,7 @@ msgstr "Andrej Žnidaršič <andrej.znidarsic@gmail.com>"
 #~ "Fotografije brez določene oznake lahko iščete z dvojnim klikom na oznako "
 #~ "v iskalni vrstici. Dodatna možnost je desni klik na oznako v iskalni "
 #~ "vrstici in izbira <guimenuitem>Izključi</guimenuitem>."
+
 #~ msgid ""
 #~ "By default, photos tagged <emphasis>Hidden</emphasis> will not be shown. "
 #~ "You must explicitly include the <emphasis>Hidden</emphasis> tag in your "
@@ -1517,6 +1609,7 @@ msgstr "Andrej Žnidaršič <andrej.znidarsic@gmail.com>"
 #~ "Privzeto so fotografije označene <emphasis>Skrito</emphasis> skrite. Za "
 #~ "iskanje takšnih fotografij morate eksplicitno vključiti oznako "
 #~ "<emphasis>Skrito</emphasis>."
+
 #~ msgid ""
 #~ "F-Spot remembers what pictures were imported every now and then. Use "
 #~ "<menuchoice><guimenu>Find</guimenu><guisubmenu>Import Roll</"
@@ -1533,30 +1626,35 @@ msgstr "Andrej Žnidaršič <andrej.znidarsic@gmail.com>"
 #~ "<menuchoice><guimenu>Najdi</guimenu><guisubmenu>Po uvoznem zvitku</"
 #~ "guisubmenu><guimenuitem>Izberi uvozne zvitke ...</guimenuitem></"
 #~ "menuchoice> za fino izbiro uvoženih fotografij:"
+
 #~ msgid ""
 #~ "<parameter class=\"option\">At</parameter> — to select photos from a "
 #~ "particular importing session"
 #~ msgstr ""
 #~ "<parameter class=\"option\">Ob</parameter> — za izbor fotografij iz "
 #~ "določene seje uvažanja"
+
 #~ msgid ""
 #~ "<parameter class=\"option\">After</parameter> — to select all photos "
 #~ "imported begining with a particular importing session"
 #~ msgstr ""
 #~ "<parameter class=\"option\">Za</parameter> — za izbor vseh uvoženih "
 #~ "fotografij z začetkom pri določeni seji uvažanja"
+
 #~ msgid ""
 #~ "<parameter class=\"option\">Between</parameter> — to select all photos "
 #~ "imported between two particular importing sessions"
 #~ msgstr ""
 #~ "<parameter class=\"option\">Med</parameter> — za izbor vseh fotografij "
 #~ "uvoženih med dvema določenima sejama uvažanja"
+
 #~ msgid ""
 #~ "Every time you change settings of the filter, the amount of selected "
 #~ "photos will appear in the bottom part of the dialog."
 #~ msgstr ""
 #~ "Vsakič ko spremenite nastavitve filtra, se količina izbranih fotografij "
 #~ "pojavi na spodnjem delu pogovornega okna."
+
 #~ msgid ""
 #~ "When you apply Import Roll filter, in the Find bar you will see "
 #~ "<guilabel>Find: Import Roll</guilabel>. Now you can add some other filter "
@@ -1565,6 +1663,7 @@ msgstr "Andrej Žnidaršič <andrej.znidarsic@gmail.com>"
 #~ "Ko boste uveljavili filter uvoznih zvitkov boste videli <guilabel>Najdi: "
 #~ "Uvozni zvitek</guilabel>. Sedaj lahko dodate druge filtre za fino "
 #~ "nastavljanje vašega izbora."
+
 #~ msgid ""
 #~ "If you don't need the Import Roll filter anymore, choose "
 #~ "<menuchoice><guimenu>Find</guimenu><guisubmenu>Import Roll</"
@@ -1579,6 +1678,7 @@ msgstr "Andrej Žnidaršič <andrej.znidarsic@gmail.com>"
 #~ "guisubmenu><guimenuitem>Počisti filter uvoznih zvitkov</guimenuitem></"
 #~ "menuchoice>.  Za zavračanje vseh trenutnih možnosti iskanja lahko "
 #~ "kliknete tudi na gumb zapri (<guibutton>X</guibutton>) v iskalni vrstici."
+
 #~ msgid ""
 #~ "The number of displayed rolls in the dialog is defined by the gconf key "
 #~ "<filename class=\"directory\">/apps/f-spot/import/gui_roll_history</"
@@ -1587,6 +1687,7 @@ msgstr "Andrej Žnidaršič <andrej.znidarsic@gmail.com>"
 #~ "Število prikazanih zvitkov v pogovornem oknu je določeno z gconf ključem "
 #~ "<filename class=\"directory\">/apps/f-spot/import/gui_roll_history</"
 #~ "filename>. Privzeta vrednost je 10."
+
 #~ msgid "Type-to-find"
 #~ msgstr "Tipkajte-za-iskanje"
 
@@ -1840,22 +1941,29 @@ msgstr "Andrej Žnidaršič <andrej.znidarsic@gmail.com>"
 #~ "Profil delovnega prostora. To je profil, ki opiše barvni prostor, v "
 #~ "katerem so vsa opravila narejena znotraj programa. Običajno so za to "
 #~ "uporabljeni zelo široki XXX profili kot AdobeRGB1998 ali ProPhotoRGB."
+
 #~ msgid "Display profile. It's a profile for a monitor."
 #~ msgstr "Profil zaslona. To je profil za zaslon."
+
 #~ msgid "Output profile. This is usually a profile for you printer."
 #~ msgstr "Izhodni profil. To je običajno profil za tiskalnik."
+
 #~ msgid ""
 #~ "Currently F-Spot allows setting only display and output profiles. All "
 #~ "color operations are done in sRGB color space."
 #~ msgstr ""
 #~ "Trenutno F-Spot dovoli le nastavljanje profilov zaslona in izhoda. Vsa "
 #~ "barvna opravila so narejena v barvnem prostoru sRGB."
+
 #~ msgid "How to get my screen/printer color profile"
 #~ msgstr "Kako dobiti barvni profil zaslona/tiskalnika"
+
 #~ msgid "There are few ways to get a color profile."
 #~ msgstr "Obstaja več načinov za pridobivanje barvnega profila."
+
 #~ msgid "From CD or Internet"
 #~ msgstr "Iz CD-ja ali medmrežja"
+
 #~ msgid ""
 #~ "Many hardware manufacturers put color profiles into CD in the bundle. If "
 #~ "you have one (from monitor or printer), you can use it. Or you can "
@@ -1868,8 +1976,10 @@ msgstr "Andrej Žnidaršič <andrej.znidarsic@gmail.com>"
 #~ "ga prejmete z medmrežja (običajno z odseka podpore na spletišču "
 #~ "proizvajalca). Barvne profile zagotavljajo tudi nekateri proizvajalci "
 #~ "fotoaparatov (Nikon, Canon)."
+
 #~ msgid "Calibrating and profiling"
 #~ msgstr "Umerjanje in profiliranje"
+
 #~ msgid ""
 #~ "Best results can be achieved by calibrating and profiling devices with a "
 #~ "measurement device. It is not so difficult, but it means that you need a "
@@ -1878,6 +1988,7 @@ msgstr "Andrej Žnidaršič <andrej.znidarsic@gmail.com>"
 #~ "Najboljše rezultate je mogoče doseči z umerjanjem in profiliranjem naprav "
 #~ "z meritveno napravo. To ni težko, vendar pa je za izvajanje vseh meritev "
 #~ "in ustvarjanje profila ICC potreben spektrofotometer."
+
 #~ msgid ""
 #~ "If you are on Windows or Mac OS X, you can use manufacturer's software "
 #~ "coming with a spectrophotometer. On Linux you will have to use either "
@@ -1896,8 +2007,10 @@ msgstr "Andrej Žnidaršič <andrej.znidarsic@gmail.com>"
 #~ "Please refer to documentation of third party hardware and software "
 #~ "vendors for details."
 #~ msgstr "Za podrobnosti si oglede dokumentacijo za "
+
 #~ msgid "Embedding"
 #~ msgstr "Vključevanje"
+
 #~ msgid ""
 #~ "Image formats themselves (such as TIFF, JPEG, PNG...) may contain "
 #~ "embedded color profiles. If color management is enabled, F-Spot looks for "
@@ -1906,14 +2019,17 @@ msgstr "Andrej Žnidaršič <andrej.znidarsic@gmail.com>"
 #~ "Nekatere vrste slik (kot so TIFF, JPEG, PNG ...) lahko vsebujejo "
 #~ "vključene barvne profile. V primeru da je upravljanje barv omogočeno, F-"
 #~ "Spot poišče vključene profile in jih upošteva."
+
 #~ msgid "How to use color management in F-Spot"
 #~ msgstr "Kako uporabiti upravljanje barv v F-Spot"
+
 #~ msgid ""
 #~ "Color management in F-Spot can use only RGB profiles at this time (and "
 #~ "you can't see other profiles in the F-Spot)."
 #~ msgstr ""
 #~ "Upravljanje barv v F-Spot lahko trenutno uporabi le profile RGB (drugih "
 #~ "profilov v F-Spot ni mogoče videti)."
+
 #~ msgid ""
 #~ "Copy your color profiles into the <filename class=\"directory\">/usr/"
 #~ "share/color/icc</filename> or <filename class=\"directory\">/usr/local/"
@@ -1922,18 +2038,21 @@ msgstr "Andrej Žnidaršič <andrej.znidarsic@gmail.com>"
 #~ "Kopirajte svoje barvne profile v mapo <filename class=\"directory\">/usr/"
 #~ "share/color/icc</filename> ali <filename class=\"directory\">/usr/local/"
 #~ "share/color/icc</filename>."
+
 #~ msgid ""
 #~ "Enable the color management with the <menuchoice><guimenu>Edit</"
 #~ "guimenu><guimenuitem>Preferences</guimenuitem></menuchoice> menu."
 #~ msgstr ""
 #~ "Upravljanje barv omogočite z menijem <menuchoice><guimenu>Uredi</"
 #~ "guimenu><guimenuitem>Možnosti</guimenuitem></menuchoice>."
+
 #~ msgid ""
 #~ "Select <guilabel>Display</guilabel> and <guilabel>Output</guilabel> "
 #~ "profiles."
 #~ msgstr ""
 #~ "Izberite profila <guilabel>Prikaz</guilabel> in <guilabel>Izhod</"
 #~ "guilabel>."
+
 #~ msgid ""
 #~ "You can use <ulink url=\"http://burtonini.com/blog/computers/xicc\">xicc</"
 #~ "ulink> to load ICC profile to display and use the loaded profile from F-"
@@ -1944,8 +2063,10 @@ msgstr "Andrej Žnidaršič <andrej.znidarsic@gmail.com>"
 #~ "Spot lahko uporabite <ulink url=\"http://burtonini.com/blog/computers/xicc"
 #~ "\">xicc</ulink>. Samo označite potrditveno polje <guilabel>Poskus uporabe "
 #~ "sistemskega profila prikaza</guilabel>."
+
 #~ msgid "Extend functionality"
 #~ msgstr "Razširitev zmožnosti"
+
 #~ msgid ""
 #~ "F-Spot extensions are means to add new functionality to the application. "
 #~ "F-Spot supports two types of extension: exporters (which allow exporting "
@@ -1958,6 +2079,7 @@ msgstr "Andrej Žnidaršič <andrej.znidarsic@gmail.com>"
 #~ "ali podatkovne shrambe) in orodja (omogočajo nove načine popravljanja "
 #~ "barv, podvajanje fotografij, itn.). Razširitve so distribuirane v obliki "
 #~ "paketov razširitev."
+
 #~ msgid ""
 #~ "In the best traditions of not reinventing the wheel extensions can use "
 #~ "other extensions, which means that one extension cannot work, if another "
@@ -1966,19 +2088,24 @@ msgstr "Andrej Žnidaršič <andrej.znidarsic@gmail.com>"
 #~ "Z namenom zmanjšanja podvajanja dela lahko razširitve uporabijo druge "
 #~ "razširitve, kar pomeni da lahko razširitev ne deluje, če ni nameščena "
 #~ "druga razširitev. Ta koncept odvisnosti pomeni da"
+
 #~ msgid ""
 #~ "you cannot install an extension, if the extension it depends on, is not "
 #~ "present in the system"
 #~ msgstr ""
 #~ "ne morete namestiti razširitve, če je odvisna od druge razširitve, ki je "
 #~ "ni na sistemu"
+
 #~ msgid "you cannot remove an extension on which some other extension depends"
 #~ msgstr ""
 #~ "ne morete odstraniti razširitve od katere je odvisna druga razširitev"
+
 #~ msgid "Managing extensions"
 #~ msgstr "Upravljanje razširitev"
+
 #~ msgid "Managing extension repositories"
 #~ msgstr "Upravljanje s skladišči razširitev"
+
 #~ msgid ""
 #~ "Simply put, repositories are extension storages. They can be either "
 #~ "network or local. To add a new repository click Repositories button, "
@@ -1992,6 +2119,7 @@ msgstr "Andrej Žnidaršič <andrej.znidarsic@gmail.com>"
 #~ "vrsto skladišča za dodajanje in vnesite URL ali pot. V primeru da "
 #~ "navedeni URL ali pot ne vsebuje datoteke opisa (kazala) za razširitve, "
 #~ "vas bo o tem obvestilo opozorilno sporočilo."
+
 #~ msgid ""
 #~ "To remove a repository click <guibutton>Repositories</guibutton> button "
 #~ "again, choose the repository you are about to delete and click "
@@ -2000,32 +2128,38 @@ msgstr "Andrej Žnidaršič <andrej.znidarsic@gmail.com>"
 #~ "Za odstranitev skladišča ponovno kliknite gumb <guibutton>Skladišča</"
 #~ "guibutton>, izberite skladišče za izbris in kliknite gumb "
 #~ "<guibutton>Izbriši</guibutton>."
+
 #~ msgid "Installing and updating extensions"
 #~ msgstr "Nameščanje in posodabljanje razširitev"
+
 #~ msgid ""
 #~ "To install an extension click <guibutton>Install extensions...</"
 #~ "guibutton> button. In the newly presented dialog"
 #~ msgstr ""
 #~ "Za namestitev razširitve kliknite gumb <guibutton>Namesti razširitve ...</"
 #~ "guibutton> . V novo predstavljenem pogovornem oknu"
+
 #~ msgid ""
 #~ "Choose repository to install from all known repositories or just one of "
 #~ "available repositories."
 #~ msgstr ""
 #~ "Izberite skladišče za namestitev iz vseh znanih skladišč ali "
 #~ "razpoložljivih skladišč."
+
 #~ msgid ""
 #~ "Choose, what extension packages you want to see: All, Only new, Only "
 #~ "updates."
 #~ msgstr ""
 #~ "Izberite katere pakete razširitev želite videti: Vse, le nove, le "
 #~ "posodobitve."
+
 #~ msgid ""
 #~ "Click the <guibutton>Update</guibutton> button to update list of "
 #~ "available extension packages by given criteria."
 #~ msgstr ""
 #~ "Kliknite gumb <guibutton>Posodobi</guibutton> za posodobitev seznama "
 #~ "razpoložljivih paketov razširitev glede na dane kriterije."
+
 #~ msgid ""
 #~ "Choose extensions you want to install/update, click "
 #~ "<guibutton>Information</guibutton> to see summary on selected package, if "
@@ -2034,12 +2168,15 @@ msgstr "Andrej Žnidaršič <andrej.znidarsic@gmail.com>"
 #~ "Izberite razširitve, ki jih želite namestiti/posodobiti, ter kliknite "
 #~ "<guibutton>Podrobnosti</guibutton> za ogled povzetka izbranega paketa, če "
 #~ "želite."
+
 #~ msgid "Click <guibutton>Forward</guibutton> to proceed with installation."
 #~ msgstr ""
 #~ "Kliknite gumb <guibutton>Naprej</guibutton> za nadaljevanje z "
 #~ "namestitvijo."
+
 #~ msgid "Enabling and disabling extensions"
 #~ msgstr "Omogočanje in onemogočanje razširitev "
+
 #~ msgid ""
 #~ "You might want to temporarily enable or disable a particular extension "
 #~ "package, for example, if the extension is not stable enough to handle a "
@@ -2048,6 +2185,7 @@ msgstr "Andrej Žnidaršič <andrej.znidarsic@gmail.com>"
 #~ "Morda želite začasno omogočiti ali onemogočiti določen paket razširitve, "
 #~ "na primer če razširitev ni dovolj stabilna za upravljanje z veliko "
 #~ "količino fotografij ali če so meniji preveč natrpani z razširitvami."
+
 #~ msgid ""
 #~ "In the <guilabel>Manage Extensions</guilabel> dialog select the extension "
 #~ "package and click <guibutton>Enable</guibutton> or <guibutton>Disable</"
@@ -2056,6 +2194,7 @@ msgstr "Andrej Žnidaršič <andrej.znidarsic@gmail.com>"
 #~ "V pogovornem oknu <guilabel>Upravljanje razširitev</guilabel> izberite "
 #~ "paket razširitev in kliknite gumb <guibutton>Omogoči</guibutton> ali "
 #~ "<guibutton>Onemogoči</guibutton>. "
+
 #~ msgid ""
 #~ "If you don't need an extension you can remove it from the system "
 #~ "completely. In the <guilabel>Manage Extensions</guilabel> dialog select "
@@ -2066,20 +2205,26 @@ msgstr "Andrej Žnidaršič <andrej.znidarsic@gmail.com>"
 #~ "sistema. V pogovornem oknu <guilabel>Upravljanje razširitev</guilabel> "
 #~ "izberite paket razširitev, ki ga želite izbrisati in kliknite "
 #~ "<guibutton>Izbriši</guibutton>."
+
 #~ msgid "Reading summary of extensions"
 #~ msgstr "Branje povzetka razširitev"
+
 #~ msgid ""
 #~ "Every extension package contains metadata that provides the following "
 #~ "information about the extension:"
 #~ msgstr ""
 #~ "Vsak paket razširitve vsebuje metapodatke, ki zagotavljajo naslednje "
 #~ "podrobnosti o razširitvi:"
+
 #~ msgid "Description, which usually covers puprose of the extension"
 #~ msgstr "Opis, ki običajno opiše namen razširitve"
+
 #~ msgid "Author"
 #~ msgstr "Avtor"
+
 #~ msgid "Dependencies"
 #~ msgstr "Odvisnosti"
+
 #~ msgid ""
 #~ "In the <guilabel>Manage Extensions</guilabel> dialog select the extension "
 #~ "package you want to read summary of and click <guibutton>Information</"
@@ -2088,179 +2233,255 @@ msgstr "Andrej Žnidaršič <andrej.znidarsic@gmail.com>"
 #~ "V pogovornem oknu <guilabel>Upravljanje razširitev</guilabel> izberite "
 #~ "paket razširitve katerega opis želite prebrati in kliknite "
 #~ "<guibutton>Podrobnosti</guibutton>."
+
 #~ msgid "Developing extensions"
 #~ msgstr "Razvijanje razširitev"
+
 #~ msgid ""
 #~ "<ulink url=\"http://f-spot.org/Extend_F-Spot\">Extend F-Spot</ulink> "
 #~ "document gives instructions on developing your own extensions for F-Spot."
 #~ msgstr ""
 #~ "Dokument <ulink url=\"http://f-spot.org/Extend_F-Spot\">razširite F-Spot</"
 #~ "ulink> vsebuje navodila za razvijanje vaših lastnih razširitev za F-Spot."
+
 #~ msgid "Shortcuts"
 #~ msgstr "Bližnjice"
+
 #~ msgid "Global Shortcuts"
 #~ msgstr "Splošne bližnjice"
+
 #~ msgid "Key"
 #~ msgstr "Tipka"
+
 #~ msgid "Action"
 #~ msgstr "Dejanje"
+
 #~ msgid "["
 #~ msgstr "["
+
 #~ msgid "]"
 #~ msgstr "]"
+
 #~ msgid "Rotate the selected photos to the right"
 #~ msgstr "Vrtenje izbranih fotografij desno"
+
 #~ msgid "Del"
 #~ msgstr "Del"
+
 #~ msgid "Shift"
 #~ msgstr "Dvigalka"
+
 #~ msgid ""
 #~ "Delete selected photos permanently from the drive. If possible, they will "
 #~ "moved to trash."
 #~ msgstr ""
 #~ "Trajno izbriše izbrane fotografije s pogona. V primeru, da je to mogoče, "
 #~ "bodo premaknjene v smeti."
+
 #~ msgid "t"
 #~ msgstr "t"
+
 #~ msgid "View or edit tags for selected photos"
 #~ msgstr "Ogled ali urejanje oznak za izbrane fotografije"
+
 #~ msgid "F11"
 #~ msgstr "F11"
+
 #~ msgid "Full screen view"
 #~ msgstr "Celozaslonski pogled"
+
 #~ msgid "Ctrl"
 #~ msgstr "Ctrl"
+
 #~ msgid "I"
 #~ msgstr "I"
+
 #~ msgid "Displays information about the photo"
 #~ msgstr "Prikaz podrobnosti o fotografiji"
+
 #~ msgid "Equals"
 #~ msgstr "Je enako"
+
 #~ msgid "Zoom-in"
 #~ msgstr "Približanje"
+
 #~ msgid "Minus"
 #~ msgstr "Minus"
+
 #~ msgid "Zoom-out"
 #~ msgstr "Oddaljevanje"
+
 #~ msgid "N"
 #~ msgstr "N"
+
 #~ msgid "Alt"
 #~ msgstr "Alt"
+
 #~ msgid "0-5"
 #~ msgstr "0-5"
+
 #~ msgid "Alt plus a number from 0 to 5 rate the selected picture(s)"
 #~ msgstr "Alt in število od 0 do 5 za oceno izbran-e/ih slik(e)"
+
 #~ msgid "Browse Mode Shortcuts"
 #~ msgstr "Bližnjice načina brskanja"
+
 #~ msgid "A"
 #~ msgstr "A"
+
 #~ msgid "Unselect all"
 #~ msgstr "Preklic izbora"
+
 #~ msgid "H"
 #~ msgstr "H"
+
 #~ msgid "J"
 #~ msgstr "J"
+
 #~ msgid "K"
 #~ msgstr "K"
+
 #~ msgid "L"
 #~ msgstr "L"
+
 #~ msgid "Move focus"
 #~ msgstr "Premakne žarišče"
+
 #~ msgid "<placeholder-1/>-Arrow key"
 #~ msgstr "<placeholder-1/>-Tipka puščice"
+
 #~ msgid "Move the focus without changing the selection"
 #~ msgstr "Premakne žarišče brez spremembe izbora"
+
 #~ msgid "Spacebar"
 #~ msgstr "Preslednica"
+
 #~ msgid "Select or unselect the focused photo"
 #~ msgstr "Izbere ali prekliče izbor fotografije v žarišču"
+
 #~ msgid "Arrow key"
 #~ msgstr "Tipka puščice"
+
 #~ msgid "Change the photo selection"
 #~ msgstr "Sprememba izbire fotografije"
+
 #~ msgid "Left arrow or Right arrow"
 #~ msgstr "Leva puščica ali desna puščica"
+
 #~ msgid ""
 #~ "Add/Remove all photos in the row, in the direction pressed, to the "
 #~ "selection"
 #~ msgstr "Doda/odstrani vse fotografije v vrstici v izbrani smeri do izbora"
+
 #~ msgid "V"
 #~ msgstr "V"
+
 #~ msgid "Pops up a larger preview of the picture pointed by the mouse"
 #~ msgstr "Pojavi večji predogled slike pokazane z miško"
+
 #~ msgid ""
 #~ "Pops up a larger preview and a color histogram of the picture pointed by "
 #~ "the mouse"
 #~ msgstr "Pojavi večji predogled in barvni histogram slike pokazane z miško"
+
 #~ msgid "Tag Shortcuts"
 #~ msgstr "Bližnjice oznak"
+
 #~ msgid "F2"
 #~ msgstr "F2"
+
 #~ msgid "T"
 #~ msgstr "T"
+
 #~ msgid "n/a"
 #~ msgstr "n/a"
+
 #~ msgid "Drag and drop tags to move them"
 #~ msgstr "Za premikanje oznak jih povlecite in spustite"
+
 #~ msgid ""
 #~ "Type a tag's name to jump to it (only works if tag is shown/expanded)"
 #~ msgstr ""
 #~ "Vtipkajte ime oznake za skok nanjo (deluje le, če je oznaka prikazana/"
 #~ "razširjena)"
+
 #~ msgid "Edit Mode Shortcuts"
 #~ msgstr "Bližnjice načina urejanja"
+
 #~ msgid "Page Up"
 #~ msgstr "Stran navzgor"
+
 #~ msgid "Backspace"
 #~ msgstr "Povratna tipka"
+
 #~ msgid "B"
 #~ msgstr "B"
+
 #~ msgid "<placeholder-1/>, <placeholder-2/>, <placeholder-3/>"
 #~ msgstr "<placeholder-1/>, <placeholder-2/>, <placeholder-3/>"
+
 #~ msgid "Go to Previous Photo"
 #~ msgstr "Pojdi na predhodno fotografijo"
+
 #~ msgid "Page Down"
 #~ msgstr "Stran navzdol"
+
 #~ msgid "Go to Next Photo"
 #~ msgstr "Pojdi na naslednjo fotografijo"
+
 #~ msgid "Go to Previous/Next photo or move around a zoomed photo"
 #~ msgstr ""
 #~ "Gre na predhodno/naslednjo fotografijo ali premakne naokoli povečano "
 #~ "fotografijo"
+
 #~ msgid "R"
 #~ msgstr "R"
+
 #~ msgid "f"
 #~ msgstr "f"
+
 #~ msgid "0"
 #~ msgstr "0"
+
 #~ msgid "Fit the image to the screen"
 #~ msgstr "Prilagajanje slike zaslonu"
+
 #~ msgid "1"
 #~ msgstr "1"
+
 #~ msgid "Zoom Factor to 1.0 (1 screen pixel per image pixel)"
 #~ msgstr "Faktor povečave 1.0 (1 točka zaslona na točko slike)"
+
 #~ msgid "2"
 #~ msgstr "2"
+
 #~ msgid "Zoom Factor to 2.0 (4 screen pixels per image pixel)"
 #~ msgstr "Faktor povečave na 2.0 (4 točke zaslona na točko slike)"
+
 #~ msgid "Escape"
 #~ msgstr "Ubežna tipka"
+
 #~ msgid "Returns to Browser mode"
 #~ msgstr "Vrne v način brskalnika"
+
 #~ msgid "v"
 #~ msgstr "v"
+
 #~ msgid ""
 #~ "Examine photo with magnifying glass (Loupe). Doubleclick on the Loupe, or "
 #~ "type <placeholder-1/> again to close it."
 #~ msgstr ""
 #~ "Preučevanje fotografije s povečevalnim steklom. Za zaprtje povečevalnega "
 #~ "stekla kliknite nanj ali vtipkajte <placeholder-1/>."
+
 #~ msgid "<placeholder-1/>-Mousewheel"
 #~ msgstr "<placeholder-1/>-Miškino kolesce"
+
 #~ msgid "Faster filmstrip scrolling"
 #~ msgstr "Hitrejše drsenje filmskega traku"
+
 #~ msgid "i"
 #~ msgstr "i"
+
 #~ msgid "Toggle infobox visibility ''(only when in full screen)''"
 #~ msgstr "Preklop vidnosti polja podrobnosti \"(le v celozaslonskem načinu)\""
-
