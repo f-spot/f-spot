@@ -27,11 +27,9 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using System.Collections.Generic;
-
 using Cms;
-
 using Gdk;
+using System.Collections.Generic;
 
 namespace FSpot.ColorAdjustment {
 	public class SepiaTone : Adjustment {

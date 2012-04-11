@@ -27,17 +27,17 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
+using System;
 using Mono.Addins;
 
 namespace FSpot.Extensions
 {
-	// FIXME: This is never instantiated
 	public class SidebarPageNode : ExtensionNode {
 		[NodeAttribute (Required=true)]
 		protected string sidebar_page_type;
 
 		public SidebarPage GetPage () {
-			return Addin.CreateInstance (sidebar_page_type) as SidebarPage;
+			return (SidebarPage) Addin.CreateInstance (sidebar_page_type);
 		}
 	}
 }

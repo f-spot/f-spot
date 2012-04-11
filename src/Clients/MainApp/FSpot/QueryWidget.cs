@@ -36,15 +36,16 @@
 using System;
 using System.Collections.Generic;
 
-using FSpot.Core;
-using FSpot.Database;
-using FSpot.Widgets;
+using Mono.Unix;
 
 using Gtk;
 
+using FSpot.Core;
+using FSpot.Database;
+using FSpot.Utils;
+using FSpot.Query;
+using FSpot.Widgets;
 using Hyena;
-
-using Mono.Unix;
 
 
 namespace FSpot {

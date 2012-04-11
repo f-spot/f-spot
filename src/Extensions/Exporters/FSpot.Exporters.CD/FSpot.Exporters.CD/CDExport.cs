@@ -29,17 +29,23 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
+using System;
+using System.IO;
+using System.Reflection;
+using System.Runtime.InteropServices;
+
+using Mono.Unix;
+
+using FSpot;
 using FSpot.Core;
 using FSpot.Filters;
+using FSpot.Widgets;
+using Hyena;
 using FSpot.UI.Dialog;
 
 using GLib;
 using Gtk;
 using GtkBeans;
-
-using Hyena;
-
-using Mono.Unix;
 
 namespace FSpot.Exporters.CD {
 	public class CDExport : FSpot.Extensions.IExporter {
@@ -158,7 +164,9 @@ namespace FSpot.Exporters.CD {
 				progress_dialog.ProgressText = Catalog.GetString ("Error Transferring");
 				return;
 			}
-			ThreadAssist.ProxyToMain (() => progress_dialog.Destroy ());
+			ThreadAssist.ProxyToMain (() => {
+				progress_dialog.Destroy ();
+			});
 		}
 
 		private void Progress (long current_num_bytes, long total_num_bytes)

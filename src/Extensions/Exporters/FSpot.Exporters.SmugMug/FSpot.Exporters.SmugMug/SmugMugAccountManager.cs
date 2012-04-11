@@ -29,13 +29,25 @@
 //
 
 using System;
-// FIXME: Why do we still have System.Collections?
+using System.Net;
+using System.IO;
+using System.Text;
+using System.Threading;
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.Specialized;
+using System.Web;
 
-using Gnome.Keyring;
-
+using Mono.Unix;
+using Gtk;
+using FSpot;
+using FSpot.Core;
+using FSpot.Filters;
+using FSpot.Widgets;
 using Hyena;
+using FSpot.UI.Dialog;
+using Gnome.Keyring;
+using SmugMugNet;
 
 namespace FSpot.Exporters.SmugMug
 {
@@ -82,7 +94,12 @@ namespace FSpot.Exporters.SmugMug
 			return accounts;
 		}
 
-		public void AddAccount (SmugMugAccount account, bool write = true)
+		public void AddAccount (SmugMugAccount account)
+		{
+			AddAccount (account, true);
+		}
+
+		public void AddAccount (SmugMugAccount account, bool write)
 		{
 			accounts.Add (account);
 			MarkChanged (write, account);

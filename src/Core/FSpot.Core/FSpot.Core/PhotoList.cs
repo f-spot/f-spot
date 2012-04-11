@@ -115,8 +115,13 @@ namespace FSpot.Core
         }
 
         public IPhoto[] Items {
-            get { return cache ?? (cache = list.ToArray()); }
-        	set {
+            get {
+                if (cache == null)
+                    cache = list.ToArray ();
+                
+                return cache;
+            }
+            set {
                 list.Clear ();
                 Add (value);
             }

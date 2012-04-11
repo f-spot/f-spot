@@ -47,7 +47,6 @@ namespace FSpot.Extensions
 	// This class contains a very nasty hack using a static initialization method
 	// to keep track of the current view mode. This is (unfortunately) needed
 	// because there is no way to get hold of a reference to the current window.
-	// FIXME: This class is never instantiated
 	public class ViewModeCondition : ConditionType
 	{
 		private delegate void ViewModeChangedHandler ();
@@ -66,19 +65,17 @@ namespace FSpot.Extensions
 
 		public ViewModeCondition ()
 		{
-			ViewModeChanged += () => NotifyChanged();
+			ViewModeChanged += delegate { NotifyChanged (); };
 		}
 
 		public override bool Evaluate (NodeElement conditionNode)
 		{
 			string val = conditionNode.GetAttribute ("mode");
 			if (val.Length > 0) {
-				foreach (string mode in val.Split(','))
-				{
+				foreach (string mode in val.Split(',')) {
 					if (mode == "single" && Mode == ViewMode.Single) {
 						return true;
-					}
-					if (mode == "library" && Mode == ViewMode.Library) {
+					} else if (mode == "library" && Mode == ViewMode.Library) {
 						return true;
 					}
 				}

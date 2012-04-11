@@ -27,15 +27,24 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
+using System;
 using System.IO;
 
 using FSpot.Core;
+
 
 namespace FSpot.Widgets
 {
 
     public class ThumbnailFilenameCaptionRenderer : ThumbnailTextCaptionRenderer
     {
+#region Constructor
+
+        public ThumbnailFilenameCaptionRenderer ()
+        {
+        }
+
+#endregion
 
 #region Drawing Methods
 

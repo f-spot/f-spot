@@ -28,13 +28,14 @@
 //
 
 using System;
+using Gdk;
 
 namespace FSpot.Loaders {
 	public class AreaPreparedEventArgs : EventArgs
 	{
 		public bool ReducedResolution { get; private set; }
 
-		public AreaPreparedEventArgs (bool reduced_resolution)
+		public AreaPreparedEventArgs (bool reduced_resolution) : base ()
 		{
 			ReducedResolution = reduced_resolution;
 		}

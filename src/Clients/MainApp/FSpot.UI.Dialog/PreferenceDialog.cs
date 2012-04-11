@@ -31,13 +31,13 @@
 
 using System;
 using System.IO;
+using System.Collections.Generic;
 using System.Linq;
-
 using Gtk;
-
+using Mono.Unix;
 using Hyena;
 
-using Mono.Unix;
+using FSpot.Widgets;
 
 namespace FSpot.UI.Dialog {
 	public class PreferenceDialog : BuilderDialog

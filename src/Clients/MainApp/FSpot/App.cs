@@ -239,18 +239,18 @@ namespace FSpot
 			}
 		}
 
-		void HandleImport (string path)
-		{
-			// Some users get wonky URIs here, trying to work around below.
-			// https://bugzilla.gnome.org/show_bug.cgi?id=629248
-			if (path != null && path.StartsWith ("gphoto2:usb:")) {
-				path = String.Format ("gphoto2://[{0}]", path.Substring (8));
-			}
+        void HandleImport (string path)
+        {
+            // Some users get wonky URIs here, trying to work around below.
+            // https://bugzilla.gnome.org/show_bug.cgi?id=629248
+            if (path != null && path.StartsWith ("gphoto2:usb:")) {
+                path = String.Format ("gphoto2://[{0}]", path.Substring (8));
+            }
 
-			Hyena.Log.DebugFormat ("Importing from {0}", path);
-			Organizer.Window.Present ();
-			Organizer.ImportFile (path == null ? null : new SafeUri(path));
-		}
+            Hyena.Log.DebugFormat ("Importing from {0}", path);
+            Organizer.Window.Present ();
+            Organizer.ImportFile (path == null ? null : new SafeUri(path));
+        }
 
 		void HandleOrganize ()
 		{
@@ -318,13 +318,13 @@ namespace FSpot
 				if (tag != null) {
 					msg = String.Format (Catalog.GetString ("No photos matching {0} found"), tag.Name);
 					long_msg = String.Format (Catalog.GetString ("The tag \"{0}\" is not applied to any photos. Try adding\n" +
-											 "the tag to some photos or selecting a different tag in the\n" +
-											 "F-Spot preference dialog."), tag.Name);
+										     "the tag to some photos or selecting a different tag in the\n" +
+										     "F-Spot preference dialog."), tag.Name);
 				} else {
 					msg = Catalog.GetString ("Search returned no results");
 					long_msg = Catalog.GetString ("The tag F-Spot is looking for does not exist. Try\n" +
-									  "selecting a different tag in the F-Spot preference\n" +
-									  "dialog.");
+								      "selecting a different tag in the F-Spot preference\n" +
+								      "dialog.");
 				}
 
 				Gtk.Label label = new Gtk.Label (msg);

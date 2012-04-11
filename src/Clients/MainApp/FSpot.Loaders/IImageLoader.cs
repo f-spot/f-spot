@@ -27,12 +27,10 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
+using FSpot.Utils;
 using System;
-
 using Gdk;
-
 using Hyena;
-
 using TagLib.Image;
 
 namespace FSpot.Loaders {

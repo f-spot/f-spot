@@ -30,11 +30,8 @@
 //
 
 using System;
-
-using FSpot.Utils;
-
 using Gdk;
-
+using FSpot.Utils;
 using Hyena;
 
 namespace FSpot.Core
@@ -144,14 +141,14 @@ namespace FSpot.Core
 			if (tag == null)
 				throw new ArgumentNullException ("tag");
 
-			if (Category == tag.Category)
-			{
+			if (Category == tag.Category) {
 				if (SortPriority == tag.SortPriority)
 					return Name.CompareTo (tag.Name);
-				return SortPriority - tag.SortPriority;
+				else
+					return SortPriority - tag.SortPriority;
+			} else {
+				return Category.CompareTo (tag.Category);
 			}
-
-			return Category.CompareTo (tag.Category);
 		}
 
 		public bool IsAncestorOf (Tag tag)

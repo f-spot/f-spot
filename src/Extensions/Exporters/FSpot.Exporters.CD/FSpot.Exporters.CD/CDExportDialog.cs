@@ -30,12 +30,16 @@
 //
 
 using System;
+using System.IO;
 using System.Reflection;
-
+using System.Runtime.InteropServices;
+using Mono.Unix;
+using FSpot;
 using FSpot.Core;
-using FSpot.UI.Dialog;
+using FSpot.Filters;
 using FSpot.Widgets;
-
+using Hyena;
+using FSpot.UI.Dialog;
 using GLib;
 using Gtk;
 using GtkBeans;
@@ -46,7 +50,7 @@ namespace FSpot.Exporters.CD
 		Gtk.Window listwindow;
 		System.Uri dest;
 
-		[GtkBeans.Builder.Object] Button browse_button;
+      		[GtkBeans.Builder.Object] Button browse_button;
 		[GtkBeans.Builder.Object] ScrolledWindow thumb_scrolledwindow;
 		[GtkBeans.Builder.Object] CheckButton remove_check;
 		[GtkBeans.Builder.Object] Label size_label;

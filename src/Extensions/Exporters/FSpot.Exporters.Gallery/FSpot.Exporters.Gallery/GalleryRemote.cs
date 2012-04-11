@@ -31,12 +31,17 @@
 //
 
 using System;
-using System.Collections.Generic;
+using System.Net;
 using System.IO;
+using System.Text;
+using System.Collections;
+using System.Collections.Generic;
 
+using Mono.Unix;
+using FSpot;
 using FSpot.Core;
-
 using Hyena;
+using Hyena.Widgets;
 
 /* These classes are based off the documentation at
  *
@@ -131,12 +136,11 @@ namespace FSpot.Exporters.Gallery
 			return Gallery.GetAlbumUrl(this);
 		}
 
-		// FIXME: I switched this to Album obj since its now a List and not an ArrayList
-		public int CompareTo (Album obj)
+		public int CompareTo (Object obj)
 		{
-			Album other = obj;
+			Album other = obj as Album;
 
-			int numThis = Parents.Count;
+			int numThis = this.Parents.Count;
 			int numOther = other.Parents.Count;
 			int thisVal = -1, otherVal = -1;
 
@@ -144,8 +148,8 @@ namespace FSpot.Exporters.Gallery
 			int maxIters = Math.Min (numThis, numOther);
 			int i = 0;
 			while (i < maxIters) {
-				thisVal = Parents[i];
-				otherVal = other.Parents[i];
+				thisVal = (int)this.Parents[i];
+				otherVal = (int)other.Parents[i];
 				if (thisVal != otherVal) {
 					break;
 				}
@@ -159,7 +163,7 @@ namespace FSpot.Exporters.Gallery
 
 			} else if (i < numThis) {
 				//other shorter
-				thisVal = Parents[i];
+				thisVal = (int)this.Parents[i];
 				retVal = thisVal.CompareTo (other.RefNum);
 
 				//if equal, we want to make the shorter one come first
@@ -168,8 +172,8 @@ namespace FSpot.Exporters.Gallery
 
 			} else if (i < numOther) {
 				//this shorter
-				otherVal = other.Parents[i];
-				retVal = RefNum.CompareTo (otherVal);
+				otherVal = (int)other.Parents[i];
+				retVal = this.RefNum.CompareTo (otherVal);
 
 				//if equal, we want to make the shorter one come first
 				if (retVal == 0)
@@ -177,7 +181,7 @@ namespace FSpot.Exporters.Gallery
 
 			} else {
 				//children of the same parent
-				retVal = RefNum.CompareTo (other.RefNum);
+				retVal = this.RefNum.CompareTo (other.RefNum);
 			}
 			return retVal;
 		}

@@ -29,12 +29,11 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using System;
-
 using Cairo;
+using System;
+using System.Runtime.InteropServices;
 
 using Pinta.Core;
-using Point = Gdk.Point;
 
 namespace FSpot.Widgets {
 
@@ -43,19 +42,23 @@ namespace FSpot.Widgets {
 		ImageInfo info;
 		double radius;
 		double amount;
+		Gdk.Point center;
 		ImageInfo blur;
 		Pattern mask;
 
 		public SoftFocus (ImageInfo info)
 		{
 			this.info = info;
-			Center.X = info.Bounds.Width / 2;
-			Center.Y = info.Bounds.Height / 2;
+			center.X = info.Bounds.Width / 2;
+			center.Y = info.Bounds.Height / 2;
 			Amount = 3;
 			Radius = .5;
 		}
 
-		public Point Center { get; set; }
+		public Gdk.Point Center {
+			get { return center; }
+			set { center = value; }
+		}
 
 		public double Amount {
 			get { return amount; }
@@ -109,9 +112,9 @@ namespace FSpot.Widgets {
 			((IDisposable)ctx).Dispose ();
 			Gdk.Pixbuf normal = image.ToPixbuf();
 
-			Gdk.Pixbuf blur = PixbufUtils.Blur (normal, 3, null);
+            Gdk.Pixbuf blur = PixbufUtils.Blur (normal, 3, null);
 
-			ImageInfo overlay = new ImageInfo (blur);
+            ImageInfo overlay = new ImageInfo (blur);
 			blur.Dispose ();
 			normal.Dispose ();
 			image.Destroy ();
@@ -125,8 +128,8 @@ namespace FSpot.Widgets {
 
 			RadialGradient circle;
 
-			circle = new RadialGradient (Center.X * scale, Center.Y * scale, radius * max * .7,
-							 Center.X * scale, Center.Y * scale, radius * max + max * .2);
+			circle = new RadialGradient (center.X * scale, center.Y * scale, radius * max * .7,
+						     center.X * scale, center.Y * scale, radius * max + max * .2);
 
 			circle.AddColorStop (0, new Cairo.Color (0.0, 0.0, 0.0, 0.0));
 			circle.AddColorStop (1.0, new Cairo.Color (1.0, 1.0, 1.0, 1.0));

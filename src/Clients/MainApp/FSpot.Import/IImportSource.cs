@@ -29,7 +29,11 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
+using Hyena;
+using System;
+
 using FSpot.Core;
+
 
 namespace FSpot.Import
 {

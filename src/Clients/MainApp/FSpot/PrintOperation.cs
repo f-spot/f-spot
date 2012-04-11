@@ -27,18 +27,15 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
+using Cairo;
 using System;
 using System.Runtime.InteropServices;
-
-using Cairo;
+using Mono.Unix;
 
 using FSpot.Core;
-using FSpot.Imaging;
 using FSpot.Widgets;
-
+using FSpot.Imaging;
 using Hyena;
-
-using Mono.Unix;
 
 namespace FSpot
 {
@@ -209,7 +206,7 @@ namespace FSpot
 
 		private static void DrawComment (Gtk.PrintContext context, double x, double y, double h, string comment, bool rotated)
 		{
-			if (string.IsNullOrEmpty(comment))
+			if (comment == null || comment == String.Empty)
 				return;
 
 			Context cr = context.CairoContext;

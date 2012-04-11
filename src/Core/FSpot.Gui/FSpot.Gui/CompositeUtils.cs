@@ -29,12 +29,9 @@
 
 using System;
 using System.Runtime.InteropServices;
-
-using FSpot.Utils;
-
 using Gdk;
 using Gtk;
-
+using FSpot.Utils;
 using Hyena;
 
 namespace FSpot.Gui {

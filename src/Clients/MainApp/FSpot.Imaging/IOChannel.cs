@@ -30,8 +30,8 @@
 using System;
 using System.IO;
 using System.Runtime.InteropServices;
-
 using GLib;
+using Hyena;
 
 namespace FSpot.Imaging {
 
@@ -210,7 +210,7 @@ namespace FSpot.Imaging {
 			if (error != IntPtr.Zero)
 				throw new GException (error);
 
-			return read;
+			return (int)read;
 		}
 
 		[DllImport("libglib-2.0-0.dll")]
@@ -261,7 +261,7 @@ namespace FSpot.Imaging {
 
 		public override long Seek (long position, SeekOrigin origin)
 		{
-				  throw new NotSupportedException ();
+      		      throw new NotSupportedException ();
 		}
 
 		[DllImport("libglib-2.0-0.dll")]

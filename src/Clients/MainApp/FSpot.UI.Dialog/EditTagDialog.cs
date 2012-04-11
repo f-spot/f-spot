@@ -27,14 +27,12 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 using System;
+using System.Collections;
 using System.Collections.Generic;
-
+using Mono.Unix;
+using Gtk;
 using FSpot.Core;
 using FSpot.Database;
-
-using Gtk;
-
-using Mono.Unix;
 
 namespace FSpot.UI.Dialog
 {
@@ -119,7 +117,7 @@ namespace FSpot.UI.Dialog
 			return false;
 		}
 
-		void PopulateCategories (ICollection<Tag> categories, Category parent)
+		void PopulateCategories (List<Tag> categories, Category parent)
 		{
 			foreach (Tag tag in parent.Children) {
 				if (tag is Category && tag != this.tag && !this.tag.IsAncestorOf (tag)) {

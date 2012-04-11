@@ -27,12 +27,11 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using System;
-
-using FSpot.UI.Dialog;
-
 using Mono.Tabblo;
 using Mono.Unix;
+using System;
+using FSpot.UI.Dialog;
+using FSpot.Utils;
 
 namespace FSpot.Exporters.Tabblo {
 

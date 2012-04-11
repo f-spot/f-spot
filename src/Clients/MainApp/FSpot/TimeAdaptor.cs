@@ -34,12 +34,10 @@
 //
 
 using System;
-using System.Collections.Generic;
 using System.Threading;
-
+using System.Collections.Generic;
 using FSpot.Core;
 using FSpot.Query;
-
 using Hyena;
 
 namespace FSpot {
@@ -61,7 +59,10 @@ namespace FSpot {
 
 			DateTime end = DateFromIndex(max);
 
-			end = order_ascending ? end.AddMonths (1) : end.AddMonths(-1);
+			if (order_ascending)
+				end = end.AddMonths (1);
+			else
+				end = end.AddMonths(-1);
 
 			SetLimits (start, end);
 		}
@@ -87,16 +88,16 @@ namespace FSpot {
 
 			if ((start.Month == 12 && !order_ascending) || (start.Month == 1 && order_ascending))
 				return start.Year.ToString ();
-			
-			return null;
+			else
+				return null;
 		}
 
 		public override int Value (int item)
 		{
 			if (order_ascending)
 				return years [startyear + item/12][item % 12];
-			
-			return years [endyear - item/12][11 - item % 12];
+			else
+				return years [endyear - item/12][11 - item % 12];
 		}
 
 		public DateTime DateFromIndex (int item)
@@ -104,7 +105,10 @@ namespace FSpot {
 			item = Math.Max (item, 0);
 			item = Math.Min (years.Count * 12 - 1, item);
 
-			return order_ascending ? DateFromIndexAscending (item) : DateFromIndexDescending (item);
+			if (order_ascending)
+				return DateFromIndexAscending (item);
+
+			return DateFromIndexDescending (item);
 		}
 
 		private DateTime DateFromIndexAscending (int item)
@@ -178,6 +182,7 @@ namespace FSpot {
 		{
 			DateTime start = DateFromIndex (item);
 			return query [query.LookupItem (start)];
+
 		}
 
 		public override event ChangedHandler Changed;

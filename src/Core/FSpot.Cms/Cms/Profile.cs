@@ -28,7 +28,11 @@
 //
 
 using System;
+using System.IO;
+using System.Collections;
 using System.Runtime.InteropServices;
+using System.Reflection;
+using System.Runtime.Serialization;
 
 namespace Cms {
 	public class Profile : IDisposable {
@@ -87,7 +91,8 @@ namespace Cms {
 		{
 			if (transfer == null)
 				return new Profile (NativeMethods.CmsCreateGrayProfile (ref whitePoint, new GammaTable (4096, 2.2).Handle));
-			return new Profile (NativeMethods.CmsCreateGrayProfile (ref whitePoint, transfer.Handle));
+			else
+				return new Profile (NativeMethods.CmsCreateGrayProfile (ref whitePoint, transfer.Handle));
 		}
 
 		public static Profile GetScreenProfile (Gdk.Screen screen)
@@ -97,7 +102,10 @@ namespace Cms {
 
 			IntPtr profile = NativeMethods.FScreenGetProfile (screen.Handle);
 			
-			return profile == IntPtr.Zero ? null : new Profile (profile);
+			if (profile == IntPtr.Zero)
+				return null;
+			
+			return new Profile (profile);
 		}
 
 
@@ -234,8 +242,8 @@ namespace Cms {
 			
 			if (profileh == IntPtr.Zero)
 				throw new CmsException ("Invalid Profile Data");
-			
-			Handle = new HandleRef (this, profileh);
+			else
+				Handle = new HandleRef (this, profileh);
 		}
 
 		public ColorCIEXYZ MediaWhitePoint {

@@ -30,22 +30,20 @@
 //
 
 using System;
-
 using Gtk;
-
+using Gdk;
 using FSpot.Core;
 using FSpot.Widgets;
 using FSpot.Gui;
 using FSpot.Utils;
-
 using Hyena;
-
 using Mono.Unix;
 
 namespace FSpot {
 	[Binding(Gdk.Key.Escape, "Quit")]
 	public class FullScreenView : Gtk.Window {
 		private ScrolledView scroll;
+		private PhotoImageView view;
 		private Notebook notebook;
 		private ControlOverlay controls;
 		private SlideShow display;
@@ -119,15 +117,15 @@ namespace FSpot {
 
 				scroll = new ScrolledView ();
 				scroll.ScrolledWindow.SetPolicy (PolicyType.Never, PolicyType.Never);
-				View = new PhotoImageView (collection);
+				view = new PhotoImageView (collection);
 				// FIXME this should be handled by the new style setting code
-				View.ModifyBg (Gtk.StateType.Normal, this.Style.Black);
+				view.ModifyBg (Gtk.StateType.Normal, this.Style.Black);
 				this.Add (notebook);
-				View.Show ();
-				View.MotionNotifyEvent += HandleViewMotion;
-				View.PointerMode = PointerMode.Scroll;
+				view.Show ();
+				view.MotionNotifyEvent += HandleViewMotion;
+				view.PointerMode = PointerMode.Scroll;
 
-				scroll.ScrolledWindow.Add (View);
+				scroll.ScrolledWindow.Add (view);
 
 				Toolbar tbar = new Toolbar ();
 				tbar.ToolbarStyle = Gtk.ToolbarStyle.BothHoriz;
@@ -139,14 +137,14 @@ namespace FSpot {
 				t_item.IsImportant = true;
 				tbar.Insert (t_item, -1);
 
-				Gtk.Action action = new PreviousPictureAction (View.Item);
+				Gtk.Action action = new PreviousPictureAction (view.Item);
 				actions.Add (action);
 				tbar.Insert (action.CreateToolItem () as ToolItem, -1);
 
 				play_pause_button = (actions [SlideShow]).CreateToolItem () as ToolButton;
 				tbar.Insert (play_pause_button, -1);
 
-				action = new NextPictureAction (View.Item);
+				action = new NextPictureAction (view.Item);
 				actions.Add (action);
 				tbar.Insert (action.CreateToolItem () as ToolItem, -1);
 
@@ -154,7 +152,7 @@ namespace FSpot {
 				t_item.Child = new Label (Catalog.GetString ("Slide transition:"));
 				tbar.Insert (t_item, -1);
 
-				display = new SlideShow (View.Item);
+				display = new SlideShow (view.Item);
 				display.AddEvents ((int) (Gdk.EventMask.PointerMotionMask));
 				display.ModifyBg (Gtk.StateType.Normal, this.Style.Black);
 				display.MotionNotifyEvent += HandleViewMotion;
@@ -169,11 +167,11 @@ namespace FSpot {
 				t_item.Child = combo;
 				tbar.Insert (t_item, -1);
 
-				action = new RotateLeftAction (View.Item);
+				action = new RotateLeftAction (view.Item);
 				actions.Add (action);
 				tbar.Insert (action.CreateToolItem () as ToolItem, -1);
 
-				action = new RotateRightAction (View.Item);
+				action = new RotateRightAction (view.Item);
 				actions.Add (action);
 				tbar.Insert (action.CreateToolItem () as ToolItem, -1);
 
@@ -192,8 +190,8 @@ namespace FSpot {
 				this.Fullscreen ();
 				this.ButtonPressEvent += HandleButtonPressEvent;
 
-				View.Item.Changed += HandleItemChanged;
-				View.GrabFocus ();
+				view.Item.Changed += HandleItemChanged;
+				view.GrabFocus ();
 
 				hide_cursor_delay = new DelayedOperation (3000, new GLib.IdleHandler (HideCursor));
 				hide_cursor_delay.Start ();
@@ -211,7 +209,7 @@ namespace FSpot {
 		private Gdk.Cursor empty_cursor;
 		private bool HideCursor ()
 		{
-			if (View.InPanMotion) {
+			if (view.InPanMotion) {
 				return false;
 			}
 
@@ -219,13 +217,13 @@ namespace FSpot {
 				empty_cursor = GdkUtils.CreateEmptyCursor (GdkWindow.Display);
 
 			this.GdkWindow.Cursor = empty_cursor;
-			View.GdkWindow.Cursor = empty_cursor;
+			view.GdkWindow.Cursor = empty_cursor;
 			return false;
 		}
 
 		private void ShowCursor ()
 		{
-			View.PointerMode = PointerMode.Scroll;
+			view.PointerMode = PointerMode.Scroll;
 			this.GdkWindow.Cursor = null;
 		}
 
@@ -286,7 +284,7 @@ namespace FSpot {
 				active = (sender as ToggleAction).Active;
 
 			if (info == null) {
-				info = new InfoOverlay (this, View.Item);
+				info = new InfoOverlay (this, view.Item);
 			}
 
 			info.Visibility = active ?
@@ -310,7 +308,11 @@ namespace FSpot {
 			}
 		}
 
-		public PhotoImageView View { get; private set; }
+		public PhotoImageView View {
+			get {
+				return view;
+			}
+		}
 
 		private void HandleButtonPressEvent (object sender, Gtk.ButtonPressEventArgs args)
 		{
@@ -363,10 +365,10 @@ namespace FSpot {
 				InfoAction (info_button, null);
 				return true;
 			case Gdk.Key.bracketleft:
-				new RotateLeftAction (View.Item).Activate ();
+				new RotateLeftAction (view.Item).Activate ();
 				return true;
 			case Gdk.Key.bracketright:
-				new RotateRightAction (View.Item).Activate ();
+				new RotateRightAction (view.Item).Activate ();
 				return true;
 			}
 

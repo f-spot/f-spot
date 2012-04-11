@@ -26,7 +26,6 @@
 // OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
-
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -44,9 +43,12 @@ namespace Mono.Facebook
 		private const string BOUNDARY = "SoMeTeXtWeWiLlNeVeRsEe";
 		private const string LINE = "\r\n";
 
-		private static readonly Dictionary<int, XmlSerializer> serializer_dict = new Dictionary<int, XmlSerializer>();
+		private static Dictionary<int, XmlSerializer> serializer_dict = new Dictionary<int, XmlSerializer>();
 
-		private readonly FacebookParam VersionParam = FacebookParam.Create ("v", "1.0");
+		private FacebookParam VersionParam = FacebookParam.Create ("v", "1.0");
+		private string api_key;
+		private string secret;
+		private bool use_json;
 
 		private static XmlSerializer ErrorSerializer {
 			get {
@@ -56,15 +58,26 @@ namespace Mono.Facebook
 
 		public Util (string api_key, string secret)
 		{
-			ApiKey = api_key;
-			SharedSecret = secret;
+			this.api_key = api_key;
+			this.secret = secret;
 		}
 
-		public bool UseJson { get; set; }
+		public bool UseJson
+		{
+			get { return use_json; }
+			set { use_json = value; }
+		}
 
-		internal string SharedSecret { get; set; }
+		internal string SharedSecret
+		{
+			get { return secret; }
+			set { secret = value; }
+		}
 
-		internal string ApiKey { get; private set; }
+		internal string ApiKey
+		{
+			get { return api_key; }
+		}
 
 		public T GetResponse<T>(string method_name, params FacebookParam[] parameters)
 		{
@@ -238,7 +251,7 @@ namespace Mono.Facebook
 		{
 			List<FacebookParam> list = new List<FacebookParam> (parameters);
 			list.Add (FacebookParam.Create ("method", method_name));
-			list.Add (FacebookParam.Create ("api_key", ApiKey));
+			list.Add (FacebookParam.Create ("api_key", api_key));
 			list.Add (VersionParam);
 			list.Sort ();
 
@@ -247,7 +260,7 @@ namespace Mono.Facebook
 			foreach (FacebookParam param in list)
 				values.Append (param.ToString ());
 
-			values.Append (SharedSecret);
+			values.Append (secret);
 
 			byte[] md5_result = MD5.Create ().ComputeHash (Encoding.ASCII.GetBytes (values.ToString ()));
 

@@ -32,12 +32,12 @@
 //
 
 using System;
-using System.Collections.Generic;
 using System.Threading;
-
-using FSpot.Utils;
+using System.Collections.Generic;
 
 using Gtk;
+
+using FSpot.Utils;
 
 namespace FSpot.UI.Dialog {
 	public class ThreadProgressDialog : Gtk.Dialog {

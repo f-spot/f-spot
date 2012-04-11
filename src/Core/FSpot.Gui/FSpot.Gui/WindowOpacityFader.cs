@@ -28,7 +28,7 @@
 //
 
 using System;
-
+using Gtk;
 using FSpot.Bling;
 
 namespace FSpot.Gui
@@ -43,7 +43,9 @@ namespace FSpot.Gui
             this.win = win;
             win.Mapped += HandleMapped;
             win.Unmapped += HandleUnmapped;
-            fadin = new DoubleAnimation (0.0, target, TimeSpan.FromMilliseconds (msec), opacity => CompositeUtils.SetWinOpacity (win, opacity));
+            fadin = new DoubleAnimation (0.0, target, TimeSpan.FromMilliseconds (msec), opacity => {
+                CompositeUtils.SetWinOpacity (win, opacity);
+            });
         }
 
         [GLib.ConnectBefore]

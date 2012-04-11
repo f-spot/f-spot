@@ -30,31 +30,26 @@
 //
 
 using System;
+using System.Collections.Generic;
+using System.Runtime.InteropServices;
+
+using Gtk;
+using Gdk;
 
 using FSpot.Utils;
-
-using Gdk;
-using Gtk;
+using TagLib.Image;
 
 using Hyena;
-
-using TagLib.Image;
 
 namespace FSpot.Widgets
 {
 	public partial class ImageView : Container
 	{
 #region public API
-		protected ImageView (IntPtr raw) : base (raw)
-		{
-			MIN_ZOOM = 0.1;
-			MAX_ZOOM = 10.0;
-		}
+		protected ImageView (IntPtr raw) : base (raw) { }
 
-		public ImageView (Adjustment hadjustment, Adjustment vadjustment, bool can_select)
+		public ImageView (Adjustment hadjustment, Adjustment vadjustment, bool can_select) : base ()
 		{
-			MIN_ZOOM = 0.1;
-			MAX_ZOOM = 10.0;
 			OnSetScrollAdjustments (hadjustment, vadjustment);
 			AdjustmentsChanged += ScrollToAdjustments;
 			WidgetFlags &= ~WidgetFlags.NoWindow;
@@ -79,7 +74,7 @@ namespace FSpot.Widgets
 					return;
 
 				pixbuf = value;
-				MIN_ZOOM = ComputeMinZoom (upscale);
+				min_zoom = ComputeMinZoom (upscale);
 
 				ComputeScaledSize ();
 				AdjustmentsChanged -= ScrollToAdjustments;
@@ -97,7 +92,7 @@ namespace FSpot.Widgets
 				if (value == pixbuf_orientation)
 					return;
 				pixbuf_orientation = value;
-				MIN_ZOOM = ComputeMinZoom (upscale);
+				min_zoom = ComputeMinZoom (upscale);
 				ComputeScaledSize ();
 				QueueDraw ();
 			}
@@ -188,14 +183,14 @@ namespace FSpot.Widgets
 			} 
 		}
 
-		double zoom = 1.0;
-		public double Zoom {
-			get { return zoom; }
-			set {
-				// Zoom around the center of the image.
-				DoZoom (value, Allocation.Width / 2, Allocation.Height / 2);
-			}
-		}
+        double zoom = 1.0;
+        public double Zoom {
+            get { return zoom; }
+            set {
+                // Zoom around the center of the image.
+                DoZoom (value, Allocation.Width / 2, Allocation.Height / 2);
+            }
+        }
 
 		public void ZoomIn ()
 		{
@@ -212,25 +207,27 @@ namespace FSpot.Widgets
 			DoZoom (zoom * zoom_increment, x, y);
 		}
 
-		public bool Fit { get; private set; }
+        public bool Fit { get; private set; }
 
-		public void ZoomFit (bool upscale)
-		{
-			Gtk.ScrolledWindow scrolled = Parent as Gtk.ScrolledWindow;
-			if (scrolled != null)
-				scrolled.SetPolicy (Gtk.PolicyType.Never, Gtk.PolicyType.Never);
+        public void ZoomFit (bool upscale)
+        {
+            Gtk.ScrolledWindow scrolled = Parent as Gtk.ScrolledWindow;
+            if (scrolled != null)
+                scrolled.SetPolicy (Gtk.PolicyType.Never, Gtk.PolicyType.Never);
 
-			MIN_ZOOM = ComputeMinZoom (upscale);
+            min_zoom = ComputeMinZoom (upscale);
 
-			this.upscale = upscale;
+            this.upscale = upscale;
 
-			Fit = true;
-			DoZoom (MIN_ZOOM, Allocation.Width / 2, Allocation.Height / 2);
+            Fit = true;
+            DoZoom (MIN_ZOOM, Allocation.Width / 2, Allocation.Height / 2);
 
-			if (scrolled != null) {
-				ThreadAssist.ProxyToMain (() => scrolled.SetPolicy (Gtk.PolicyType.Automatic, Gtk.PolicyType.Automatic));
-			}
-		}
+            if (scrolled != null) {
+                ThreadAssist.ProxyToMain (() => {
+                        scrolled.SetPolicy (Gtk.PolicyType.Automatic, Gtk.PolicyType.Automatic);
+                });
+            }
+        }
 
 		public Point WindowCoordsToImage (Point win)
 		{
@@ -257,9 +254,15 @@ namespace FSpot.Widgets
 
 		protected static double ZOOM_FACTOR = 1.1;
 
-		protected double MAX_ZOOM { get; set; }
+		protected double max_zoom = 10.0;
+		protected double MAX_ZOOM {
+			get { return max_zoom; }
+		}
 
-		protected double MIN_ZOOM { get; set; }
+		protected double min_zoom = 0.1;
+		protected double MIN_ZOOM {
+			get { return min_zoom; }
+		}
 
 		bool upscale;
 		protected void ZoomFit ()
@@ -305,82 +308,82 @@ namespace FSpot.Widgets
 
 #region GtkWidgetry
 
-		protected override void OnRealized ()
-		{
-			SetFlag (Gtk.WidgetFlags.Realized);
-			GdkWindow = new Gdk.Window (ParentWindow,
-					new Gdk.WindowAttr { 
-						WindowType = Gdk.WindowType.Child,
-						X = Allocation.X,
-						Y = Allocation.Y,
-						Width = Allocation.Width,
-						Height = Allocation.Height,
-						Wclass = Gdk.WindowClass.InputOutput,
-						Visual = ParentWindow.Visual,
-						Colormap = ParentWindow.Colormap,
-						Mask = this.Events
-							| EventMask.ExposureMask
-							| EventMask.ButtonPressMask
-							| EventMask.ButtonReleaseMask
-							| EventMask.PointerMotionMask
-							| EventMask.PointerMotionHintMask
-							| EventMask.ScrollMask
-							| EventMask.KeyPressMask 
-					},
-					Gdk.WindowAttributesType.X | Gdk.WindowAttributesType.Y |
-					Gdk.WindowAttributesType.Visual | Gdk.WindowAttributesType.Colormap);
+        protected override void OnRealized ()
+        {
+            SetFlag (Gtk.WidgetFlags.Realized);
+            GdkWindow = new Gdk.Window (ParentWindow,
+                    new Gdk.WindowAttr { 
+                        WindowType = Gdk.WindowType.Child,
+                        X = Allocation.X,
+                        Y = Allocation.Y,
+                        Width = Allocation.Width,
+                        Height = Allocation.Height,
+                        Wclass = Gdk.WindowClass.InputOutput,
+                        Visual = ParentWindow.Visual,
+                        Colormap = ParentWindow.Colormap,
+                        Mask = this.Events
+                            | EventMask.ExposureMask
+                            | EventMask.ButtonPressMask
+                            | EventMask.ButtonReleaseMask
+                            | EventMask.PointerMotionMask
+                            | EventMask.PointerMotionHintMask
+                            | EventMask.ScrollMask
+                            | EventMask.KeyPressMask 
+                    },
+                    Gdk.WindowAttributesType.X | Gdk.WindowAttributesType.Y |
+                    Gdk.WindowAttributesType.Visual | Gdk.WindowAttributesType.Colormap);
 
-			GdkWindow.SetBackPixmap (null, false);
-			GdkWindow.UserData = Handle;
+            GdkWindow.SetBackPixmap (null, false);
+            GdkWindow.UserData = Handle;
 
-			Style.Attach (GdkWindow);
-			Style.SetBackground (GdkWindow, Gtk.StateType.Normal);
+            Style.Attach (GdkWindow);
+            Style.SetBackground (GdkWindow, Gtk.StateType.Normal);
 
-			OnRealizedChildren ();
-		}
+            OnRealizedChildren ();
+        }
 
-		protected override void OnMapped ()
-		{
-			SetFlag (Gtk.WidgetFlags.Mapped);
-			OnMappedChildren ();
-			GdkWindow.Show ();
-		}
+        protected override void OnMapped ()
+        {
+            SetFlag (Gtk.WidgetFlags.Mapped);
+            OnMappedChildren ();
+            GdkWindow.Show ();
+        }
 
-		protected override void OnSizeRequested (ref Gtk.Requisition requisition)
-		{
-			requisition.Width = requisition.Height = 0;
-			OnSizeRequestedChildren ();
-		}
+        protected override void OnSizeRequested (ref Gtk.Requisition requisition)
+        {
+            requisition.Width = requisition.Height = 0;
+            OnSizeRequestedChildren ();
+        }
 
-		protected override void OnSizeAllocated (Gdk.Rectangle allocation)
-		{
-			MIN_ZOOM = ComputeMinZoom (upscale);
+        protected override void OnSizeAllocated (Gdk.Rectangle allocation)
+        {
+            min_zoom = ComputeMinZoom (upscale);
 
-			if (Fit || zoom < MIN_ZOOM)
-				zoom = MIN_ZOOM;
-			// Since this affects the zoom_scale we should alert it
-			EventHandler eh = ZoomChanged;
-			if (eh != null)
-				eh (this, System.EventArgs.Empty);
+            if (Fit || zoom < MIN_ZOOM)
+                zoom = MIN_ZOOM;
+            // Since this affects the zoom_scale we should alert it
+            EventHandler eh = ZoomChanged;
+            if (eh != null)
+                eh (this, System.EventArgs.Empty);
 
-			ComputeScaledSize ();
+            ComputeScaledSize ();
 
-			OnSizeAllocatedChildren ();
+            OnSizeAllocatedChildren ();
 
-			if (IsRealized) {
-				GdkWindow.MoveResize (allocation.X, allocation.Y, allocation.Width, allocation.Height);
-			}
+            if (IsRealized) {
+                GdkWindow.MoveResize (allocation.X, allocation.Y, allocation.Width, allocation.Height);
+            }
 
-			if (XOffset > Hadjustment.Upper - Hadjustment.PageSize)
-				ScrollTo ((int)(Hadjustment.Upper - Hadjustment.PageSize), YOffset, false);
-			if (YOffset > Vadjustment.Upper - Vadjustment.PageSize)
-				ScrollTo (XOffset, (int)(Vadjustment.Upper - Vadjustment.PageSize), false);
+            if (XOffset > Hadjustment.Upper - Hadjustment.PageSize)
+                ScrollTo ((int)(Hadjustment.Upper - Hadjustment.PageSize), YOffset, false);
+            if (YOffset > Vadjustment.Upper - Vadjustment.PageSize)
+                ScrollTo (XOffset, (int)(Vadjustment.Upper - Vadjustment.PageSize), false);
 
-			base.OnSizeAllocated (allocation);
+            base.OnSizeAllocated (allocation);
 
-			if (Fit)
-				ZoomFit (upscale);
-		}
+            if (Fit)
+                ZoomFit (upscale);
+        }
 
 		protected override bool OnExposeEvent (Gdk.EventExpose evnt)
 		{
@@ -390,7 +393,7 @@ namespace FSpot.Widgets
 			foreach (Rectangle area in evnt.Region.GetRectangles ())
 			{
 				var p_area = new Rectangle (Math.Max (0, area.X), Math.Max (0, area.Y),
-							  Math.Min (Allocation.Width, area.Width), Math.Min (Allocation.Height, area.Height));
+						      Math.Min (Allocation.Width, area.Width), Math.Min (Allocation.Height, area.Height));
 				if (p_area == Rectangle.Zero)
 					continue;
 
@@ -568,58 +571,58 @@ namespace FSpot.Widgets
 
 #region private painting, zooming and misc
 
-		int XOffset { get; set;}
-		int YOffset { get; set;}
+        int XOffset { get; set;}
+        int YOffset { get; set;}
 
-		/// <summary>
-		///     Zoom to the given factor.
-		/// </summary>
-		/// <param name='zoom'>
-		///     A zoom factor, expressed as a double.
-		/// </param>
-		/// <param name='x'>
-		///     The point of the viewport around which to zoom.
-		/// </param>
-		/// <param name='y'>
-		///     The point of the viewport around which to zoom.
-		/// </param>
-		void DoZoom (double zoom, int x, int y)
-		{
-			Fit = zoom == MIN_ZOOM;
+        /// <summary>
+        ///     Zoom to the given factor.
+        /// </summary>
+        /// <param name='zoom'>
+        ///     A zoom factor, expressed as a double.
+        /// </param>
+        /// <param name='x'>
+        ///     The point of the viewport around which to zoom.
+        /// </param>
+        /// <param name='y'>
+        ///     The point of the viewport around which to zoom.
+        /// </param>
+        void DoZoom (double zoom, int x, int y)
+        {
+            Fit = zoom == MIN_ZOOM;
 
-			if (zoom == this.zoom || System.Math.Abs (this.zoom - zoom) < System.Double.Epsilon) {
-				// Don't recalculate if the zoom factor stays the same.
-				return;
-			}
+            if (zoom == this.zoom || System.Math.Abs (this.zoom - zoom) < System.Double.Epsilon) {
+                // Don't recalculate if the zoom factor stays the same.
+                return;
+            }
 
-			// Clamp the zoom factor within the [ MIN_ZOOM , MAX_ZOOM ] interval.
-			zoom = Math.Max (Math.Min (zoom, MAX_ZOOM), MIN_ZOOM);
+            // Clamp the zoom factor within the [ MIN_ZOOM , MAX_ZOOM ] interval.
+            zoom = Math.Max (Math.Min (zoom, MAX_ZOOM), MIN_ZOOM);
 
-			this.zoom = zoom;
+            this.zoom = zoom;
 
-			int x_offset = scaled_width < Allocation.Width ? (int)(Allocation.Width - scaled_width) / 2 : -XOffset;
-			int y_offset = scaled_height < Allocation.Height ? (int)(Allocation.Height - scaled_height) / 2 : -YOffset;
-			double x_anchor = (double)(x - x_offset) / (double)scaled_width;
-			double y_anchor = (double)(y - y_offset) / (double)scaled_height;
-			ComputeScaledSize ();
+            int x_offset = scaled_width < Allocation.Width ? (int)(Allocation.Width - scaled_width) / 2 : -XOffset;
+            int y_offset = scaled_height < Allocation.Height ? (int)(Allocation.Height - scaled_height) / 2 : -YOffset;
+            double x_anchor = (double)(x - x_offset) / (double)scaled_width;
+            double y_anchor = (double)(y - y_offset) / (double)scaled_height;
+            ComputeScaledSize ();
 
-			AdjustmentsChanged -= ScrollToAdjustments;
-			if (scaled_width < Allocation.Width)
-				Hadjustment.Value = XOffset = 0;
-			else
-				Hadjustment.Value = XOffset = Clamp ((int)(x_anchor * scaled_width - x), 0, (int)(Hadjustment.Upper - Hadjustment.PageSize));
-			if (scaled_height < Allocation.Height)
-				Vadjustment.Value = YOffset = 0;
-			else
-				Vadjustment.Value = YOffset = Clamp ((int)(y_anchor * scaled_height - y), 0, (int)(Vadjustment.Upper - Vadjustment.PageSize));
-			AdjustmentsChanged += ScrollToAdjustments;
+            AdjustmentsChanged -= ScrollToAdjustments;
+            if (scaled_width < Allocation.Width)
+                Hadjustment.Value = XOffset = 0;
+            else
+                Hadjustment.Value = XOffset = Clamp ((int)(x_anchor * scaled_width - x), 0, (int)(Hadjustment.Upper - Hadjustment.PageSize));
+            if (scaled_height < Allocation.Height)
+                Vadjustment.Value = YOffset = 0;
+            else
+                Vadjustment.Value = YOffset = Clamp ((int)(y_anchor * scaled_height - y), 0, (int)(Vadjustment.Upper - Vadjustment.PageSize));
+            AdjustmentsChanged += ScrollToAdjustments;
 
-			EventHandler eh = ZoomChanged;
-			if (eh != null)
-				eh (this, EventArgs.Empty);
+            EventHandler eh = ZoomChanged;
+            if (eh != null)
+                eh (this, EventArgs.Empty);
 
-			QueueDraw ();
-		}
+            QueueDraw ();
+        }
 
 		void PaintBackground (Rectangle backgound, Rectangle area)
 		{
@@ -650,16 +653,16 @@ namespace FSpot.Widgets
 
 			//Short circuit for 1:1 zoom
 			if (zoom == 1.0 &&
-				!Pixbuf.HasAlpha &&
-				Pixbuf.BitsPerSample == 8 &&
-				pixbuf_orientation == ImageOrientation.TopLeft) {
+			    !Pixbuf.HasAlpha &&
+			    Pixbuf.BitsPerSample == 8 &&
+			    pixbuf_orientation == ImageOrientation.TopLeft) {
 				GdkWindow.DrawPixbuf (Style.BlackGC,
-							  Pixbuf,
-							  area.X - x_offset, area.Y - y_offset,
-							  area.X, area.Y,
-							  area.Width, area.Height,
-							  RgbDither.Max,
-							  area.X - x_offset, area.Y - y_offset);
+						      Pixbuf,
+						      area.X - x_offset, area.Y - y_offset,
+						      area.X, area.Y,
+						      area.Width, area.Height,
+						      RgbDither.Max,
+						      area.X - x_offset, area.Y - y_offset);
 				return;
 			}
 
@@ -675,25 +678,25 @@ namespace FSpot.Widgets
 					temp_pixbuf.Fill (0x00000000);
 
 				Pixbuf.CompositeColor (temp_pixbuf,
-							   0, 0,
-							   pixbuf_area.Width, pixbuf_area.Height,
-							   -pixbuf_area.X, -pixbuf_area.Y,
-							   zoom, zoom,
-							   zoom == 1.0 ? InterpType.Nearest : interpolation, 255,
-							   pixbuf_area.X, pixbuf_area.Y,
-							   CheckPattern.CheckSize, CheckPattern.Color1, CheckPattern.Color2);
+						       0, 0,
+						       pixbuf_area.Width, pixbuf_area.Height,
+						       -pixbuf_area.X, -pixbuf_area.Y,
+						       zoom, zoom,
+						       zoom == 1.0 ? InterpType.Nearest : interpolation, 255,
+						       pixbuf_area.X, pixbuf_area.Y,
+						       CheckPattern.CheckSize, CheckPattern.Color1, CheckPattern.Color2);
 
 
 				ApplyColorTransform (temp_pixbuf);
 
 				using (var dest_pixbuf = PixbufUtils.TransformOrientation (temp_pixbuf, pixbuf_orientation)) {
 					GdkWindow.DrawPixbuf (Style.BlackGC,
-								  dest_pixbuf,
-								  0, 0,
-								  area.X, area.Y,
-								  area.Width, area.Height,
-								  RgbDither.Max,
-								  area.X - x_offset, area.Y - y_offset);
+							      dest_pixbuf,
+							      0, 0,
+							      area.X, area.Y,
+							      area.Width, area.Height,
+							      RgbDither.Max,
+							      area.X - x_offset, area.Y - y_offset);
 				}
 			}
 		}
@@ -870,7 +873,7 @@ namespace FSpot.Widgets
 					Rectangle win_sel = ImageCoordsToWindow (Selection);
 					is_dragging_selection = true;
 					if (Math.Abs (win_sel.X - evnt.X) < SELECTION_SNAP_DISTANCE &&
-						Math.Abs (win_sel.Y - evnt.Y) < SELECTION_SNAP_DISTANCE) {	 			//TopLeft
+					    Math.Abs (win_sel.Y - evnt.Y) < SELECTION_SNAP_DISTANCE) {	 			//TopLeft
 						selection_anchor = new Point (Selection.X + Selection.Width, Selection.Y + Selection.Height);
 					} else if (Math.Abs (win_sel.X + win_sel.Width - evnt.X) < SELECTION_SNAP_DISTANCE &&
 						   Math.Abs (win_sel.Y - evnt.Y) < SELECTION_SNAP_DISTANCE) { 			//TopRight
@@ -937,7 +940,7 @@ namespace FSpot.Widgets
 				case DragMode.Extend:
 					Rectangle win_sel = ImageCoordsToWindow (Selection);
 					if (Math.Abs (win_sel.X - x) < SELECTION_SNAP_DISTANCE &&
-						Math.Abs (win_sel.Y - y) < SELECTION_SNAP_DISTANCE) {	 			//TopLeft
+					    Math.Abs (win_sel.Y - y) < SELECTION_SNAP_DISTANCE) {	 			//TopLeft
 						GdkWindow.Cursor = new Cursor (CursorType.TopLeftCorner);
 					} else if (Math.Abs (win_sel.X + win_sel.Width - x) < SELECTION_SNAP_DISTANCE &&
 						   Math.Abs (win_sel.Y - y) < SELECTION_SNAP_DISTANCE) { 			//TopRight
@@ -980,8 +983,8 @@ namespace FSpot.Widgets
 			if (is_dragging_selection) {
 				Point win_anchor = ImageCoordsToWindow (selection_anchor);
 				if (Selection == Rectangle.Zero &&
-					Math.Abs (evnt.X - win_anchor.X) < SELECTION_THRESHOLD &&
-					Math.Abs (evnt.Y - win_anchor.Y) < SELECTION_THRESHOLD) {
+				    Math.Abs (evnt.X - win_anchor.X) < SELECTION_THRESHOLD &&
+				    Math.Abs (evnt.Y - win_anchor.Y) < SELECTION_THRESHOLD) {
 					SelectionSetPointer (x, y);
 					return true;
 				}
@@ -995,9 +998,9 @@ namespace FSpot.Widgets
 
 				else
 					Selection = ConstrainSelection (new Rectangle (Math.Min (selection_anchor.X, img.X),
-											   Math.Min (selection_anchor.Y, img.Y),
-											   Math.Abs (selection_anchor.X - img.X),
-											   Math.Abs (selection_anchor.Y - img.Y)),
+										       Math.Min (selection_anchor.Y, img.Y),
+										       Math.Abs (selection_anchor.X - img.X),
+										       Math.Abs (selection_anchor.Y - img.Y)),
 									fixed_width, fixed_height);
 
 				SelectionSetPointer (x, y);
@@ -1021,7 +1024,7 @@ namespace FSpot.Widgets
 		{
 			double constrain = selection_xy_ratio;
 			if ((double)sel.Width > (double)sel.Height && selection_xy_ratio < 1 ||
-				(double)sel.Width < (double)sel.Height && selection_xy_ratio > 1)
+			    (double)sel.Width < (double)sel.Height && selection_xy_ratio > 1)
 				constrain = 1.0 / constrain;
 
 
@@ -1043,10 +1046,10 @@ namespace FSpot.Widgets
 			}
 
 			return new Rectangle (sel.X + width < Pixbuf.Width ? sel.X : Pixbuf.Width - width,
-						  sel.Y + height < Pixbuf.Height ? sel.Y : Pixbuf.Height - height,
-						  width, height);
+					      sel.Y + height < Pixbuf.Height ? sel.Y : Pixbuf.Height - height,
+					      width, height);
 		}
 #endregion
 
-	}
+    }
 }

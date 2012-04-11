@@ -31,9 +31,10 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using FSpot.Core;
-
+using System;
+using Gdk;
 using Gtk;
+using FSpot.Core;
 
 namespace FSpot.UI.Dialog {
 	public class TagSelectionDialog : BuilderDialog
@@ -52,7 +53,10 @@ namespace FSpot.UI.Dialog {
 		public new Tag[] Run ()
 		{
 			int response = base.Run ();
-			return (ResponseType) response == ResponseType.Ok ? tag_selection_widget.TagHighlight : null;
+			if ((ResponseType) response == ResponseType.Ok)
+				return tag_selection_widget.TagHighlight;
+
+			return null;
 		}
 
 		public new void Hide ()

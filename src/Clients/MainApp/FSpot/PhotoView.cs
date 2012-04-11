@@ -31,22 +31,26 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
+using Gdk;
+using GLib;
+using Gtk;
 using System;
+using System.IO;
+using System.Collections.Generic;
+using System.Xml.Serialization;
+using Mono.Unix;
 
 using FSpot.Core;
-using FSpot.Utils;
 using FSpot.Widgets;
-
-using Gdk;
-using Gtk;
-
-using Mono.Unix;
+using FSpot.Utils;
+using Hyena;
+using FSpot.UI.Dialog;
 
 namespace FSpot {
 	public class PhotoView : EventBox {
 		DelayedOperation commit_delay;
 
-				private ScrolledWindow photo_view_scrolled;
+                private ScrolledWindow photo_view_scrolled;
 		private EventBox background;
 
 		private Filmstrip filmstrip;
@@ -75,11 +79,11 @@ namespace FSpot {
 			get { return filmstrip.Orientation; }
 		}
 
-				// was photo_view
+                // was photo_view
 		public PhotoImageView View { get; private set; }
 
 		public BrowsablePointer Item {
-						get { return View.Item; }
+                        get { return View.Item; }
 		}
 
 		public IBrowsableCollection Query { get; set; }
@@ -157,13 +161,12 @@ namespace FSpot {
 		private void HandleButtonPressEvent (object sender, ButtonPressEventArgs args)
 		{
 			if (args.Event.Type == EventType.TwoButtonPress && args.Event.Button == 1 && DoubleClicked != null)
-					DoubleClicked (this, null);
-
-			if (args.Event.Type != EventType.ButtonPress || args.Event.Button != 3)
-				return;
-
-			PhotoPopup popup = new PhotoPopup ();
-			popup.Activate (this.Toplevel, args.Event);
+				    DoubleClicked (this, null);
+			if (args.Event.Type == EventType.ButtonPress
+			    && args.Event.Button == 3) {
+				PhotoPopup popup = new PhotoPopup ();
+				popup.Activate (this.Toplevel, args.Event);
+			}
 		}
 
 		protected override bool OnPopupMenu ()
@@ -255,7 +258,12 @@ namespace FSpot {
 			}
 		}
 
-		public void PlaceFilmstrip (Orientation pos, bool force = false)
+		public void PlaceFilmstrip (Orientation pos)
+		{
+			PlaceFilmstrip (pos, false);
+		}
+
+		public void PlaceFilmstrip (Orientation pos, bool force)
 		{
 			if (!force && filmstrip.Orientation == pos)
 				return;
@@ -292,6 +300,7 @@ namespace FSpot {
 		}
 
 		public PhotoView (IBrowsableCollection query)
+			: base ()
 		{
 			Query = query;
 
@@ -302,7 +311,7 @@ namespace FSpot {
 			Box vbox = new VBox (false, 6);
 			Add (vbox);
 
-				background = new EventBox ();
+		        background = new EventBox ();
 			Frame frame = new Frame ();
 			background.Add (frame);
 
@@ -347,10 +356,10 @@ namespace FSpot {
 			lower_hbox.PackStart (description_entry, true, true, 0);
 			description_entry.Changed += HandleDescriptionChanged;
 
-			rating = new RatingEntry () {
-				HasFrame = false,
-				AlwaysShowEmptyStars = true
-			};
+            rating = new RatingEntry () {
+                HasFrame = false,
+                AlwaysShowEmptyStars = true
+            };
 			lower_hbox.PackStart (rating, false, false, 0);
 			rating.Changed += HandleRatingChanged;
 
@@ -360,7 +369,7 @@ namespace FSpot {
 
 			vbox.ShowAll ();
 
-			Realized += (o, e) => SetColors();
+			Realized += delegate (object o, EventArgs e) {SetColors ();};
 			Preferences.SettingChanged += OnPreferencesChanged;
 		}
 

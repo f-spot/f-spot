@@ -27,16 +27,14 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using System;
-using System.Collections.Generic;
-
 using FSpot.Core;
 using FSpot.Extensions;
-
+using FSpot.Utils;
 using Gtk;
-
 using Mono.Addins;
 using Mono.Unix;
+using System;
+using System.Collections.Generic;
 
 namespace FSpot.Widgets
 {
@@ -60,7 +58,9 @@ namespace FSpot.Widgets
 		}
 
 		public string PageForContext (ViewContext context) {
-			string name = Preferences.Get<string> (PrefKeyForContext (context)) ?? DefaultForContext (context);
+			string name = Preferences.Get<string> (PrefKeyForContext (context));
+			if (name == null)
+				name = DefaultForContext (context);
 			return name;
 		}
 
@@ -93,7 +93,11 @@ namespace FSpot.Widgets
 		public event IBrowsableCollectionItemsChangedHandler SelectionItemsChanged;
 
 		// The photos selected.
-		public IBrowsableCollection Selection { get; private set; }
+		private IBrowsableCollection selection;
+		public IBrowsableCollection Selection {
+			get { return selection; }
+			private set { selection = value; }
+		}
 
 		public event EventHandler ContextChanged;
 
@@ -109,7 +113,7 @@ namespace FSpot.Widgets
 
 		private readonly ISidebarContextSwitchStrategy ContextSwitchStrategy;
 
-		public Sidebar ()
+		public Sidebar () : base ()
 		{
 			ContextSwitchStrategy = new MRUSidebarContextSwitchStrategy ();
 			ContextChanged += HandleContextChanged;
@@ -167,7 +171,7 @@ namespace FSpot.Widgets
 			AppendPage (new SidebarPage (widget, label, icon_name));
 		}
 
-		public void AppendPage (SidebarPage page)
+        public void AppendPage (SidebarPage page)
 		{
 			page.Sidebar = this;
 			page.CanSelectChanged += HandleCanSelectChanged;

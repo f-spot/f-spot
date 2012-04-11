@@ -32,13 +32,13 @@
 //
 
 using System;
-
 using FSpot.Core;
+using FSpot.Editors;
+using FSpot.Utils;
 using FSpot.Loaders;
 
-using Gdk;
-
 using Hyena;
+using Gdk;
 
 using TagLib.Image;
 
@@ -46,32 +46,32 @@ namespace FSpot.Widgets {
 	public class PhotoImageView : ImageView {
 #region public API
 
-		protected PhotoImageView (IntPtr raw) : base (raw)
-		{
-			ShowProgress = true;
-		}
+		protected PhotoImageView (IntPtr raw) : base (raw) { }
 
 		public PhotoImageView (IBrowsableCollection query) : this (new BrowsablePointer (query, -1))
 		{
 		}
 
-		public PhotoImageView (BrowsablePointer item)
+		public PhotoImageView (BrowsablePointer item) : base ()
 		{
-			ShowProgress = true;
 			Accelerometer.OrientationChanged += HandleOrientationChanged;
 			Preferences.SettingChanged += OnPreferencesChanged;
 
-			this.Item = item;
+			this.item = item;
 			item.Changed += HandlePhotoItemChanged;
 		}
 
-		public BrowsablePointer Item { get; protected set; }
-
-		public IBrowsableCollection Query {
-			get { return Item.Collection; }
+		public BrowsablePointer Item {
+			get { return item; }
 		}
 
-		public Loupe Loupe { get; protected set; }
+		public IBrowsableCollection Query {
+			get { return item.Collection; }
+		}
+
+		public Loupe Loupe {
+			get { return loupe; }
+		}
 
 		public Gdk.Pixbuf CompletePixbuf ()
 		{
@@ -256,7 +256,7 @@ namespace FSpot.Widgets {
 				// than try to load the image one last time.
 				try {
 					Log.Warning ("Falling back to file loader");
-					Pixbuf = PhotoLoader.Load (Item.Collection, Item.Index);
+					Pixbuf = PhotoLoader.Load (item.Collection, item.Index);
 				} catch (Exception e) {
 					LoadErrorImage (e);
 				}
@@ -272,13 +272,15 @@ namespace FSpot.Widgets {
 			else
 				ZoomFit ();
 
-			ShowProgress = true;
+			progressive_display = true;
 
 			if (prev != this.Pixbuf && prev != null)
 				prev.Dispose ();
 		}
 #endregion
 
+		protected BrowsablePointer item;
+		protected Loupe loupe;
 		protected Loupe sharpener;
 
 		void HandleOrientationChanged (object sender, EventArgs e)
@@ -286,7 +288,10 @@ namespace FSpot.Widgets {
 			Reload ();
 		}
 
-		private bool ShowProgress { get; set; }
+		bool progressive_display = true;
+		bool ShowProgress {
+			get { return progressive_display; }
+		}
 
 		void LoadErrorImage (System.Exception e)
 		{
@@ -310,7 +315,7 @@ namespace FSpot.Widgets {
 			if (args != null &&
 			    args.PreviousItem != null &&
 			    Item.IsValid &&
-			    (args.PreviousIndex != Item.Index) &&
+			    (args.PreviousIndex != item.Index) &&
 			    (this.Item.Current.DefaultVersion.Uri == args.PreviousItem.DefaultVersion.Uri))
 				return;
 
@@ -327,7 +332,7 @@ namespace FSpot.Widgets {
 			    args.PreviousItem != null &&
 			    Item.IsValid &&
 			    Item.Current.DefaultVersion.Uri == args.PreviousItem.DefaultVersion.Uri)
-				ShowProgress = false;
+				progressive_display = false;
 
 			try {
 				if (Item.IsValid)
@@ -349,8 +354,8 @@ namespace FSpot.Widgets {
 
 		private void HandleLoupeDestroy (object sender, EventArgs args)
 		{
-			if (sender == Loupe)
-				Loupe = null;
+			if (sender == loupe)
+				loupe = null;
 
 			if (sender == sharpener)
 				sharpener = null;
@@ -360,12 +365,12 @@ namespace FSpot.Widgets {
 
 		public void ShowHideLoupe ()
 		{
-			if (Loupe == null) {
-				Loupe = new Loupe (this);
-				Loupe.Destroyed += HandleLoupeDestroy;
-				Loupe.Show ();
+			if (loupe == null) {
+				loupe = new Loupe (this);
+				loupe.Destroyed += HandleLoupeDestroy;
+				loupe.Show ();
 			} else {
-				Loupe.Destroy ();
+				loupe.Destroy ();
 			}
 
 		}

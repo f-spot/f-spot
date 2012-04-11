@@ -53,25 +53,25 @@ namespace FSpot.Utils
 			if (e != null)
 				i.Activated += e;
 	
-					i.Sensitive = enabled;
+	                i.Sensitive = enabled;
 			
 			menu.Append (i);
 			i.Show ();
 	
-			return i;
+	        return i;
 		}
 		
 		public static Gtk.MenuItem MakeMenuItem (Gtk.Menu menu, string label, string image_name, EventHandler e, bool enabled)
 		{
 			Gtk.ImageMenuItem i = new Gtk.ImageMenuItem (label);
 			i.Activated += e;
-					i.Sensitive = enabled;
+	                i.Sensitive = enabled;
 			i.Image = Gtk.Image.NewFromIconName (image_name, Gtk.IconSize.Menu);
 			
 			menu.Append (i);
 			i.Show ();
 	
-				return i;
+		        return i;
 		}
 	
 		public static Gtk.MenuItem MakeCheckMenuItem (Gtk.Menu menu, string label, EventHandler e, bool enabled, bool active, bool as_radio)
@@ -81,12 +81,12 @@ namespace FSpot.Utils
 			i.DrawAsRadio = as_radio;
 			i.Active = active;
 
-			i.Activated += e;
+            i.Activated += e;
 	
 			menu.Append(i);
 			i.Show ();
 	
-			return i;
+	        return i;
 		}
 	
 		public static void MakeMenuSeparator (Gtk.Menu menu)

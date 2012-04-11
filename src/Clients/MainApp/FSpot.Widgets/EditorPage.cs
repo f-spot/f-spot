@@ -29,22 +29,22 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using System;
-using System.Collections.Generic;
-
-using FSpot.Core;
-using FSpot.Editors;
+using FSpot;
 using FSpot.Extensions;
+using FSpot.Editors;
 using FSpot.UI.Dialog;
 using FSpot.Utils;
+using FSpot.Core;
 
 using Gtk;
 
-using Hyena;
-using Hyena.Widgets;
-
 using Mono.Addins;
 using Mono.Unix;
+
+using System;
+using System.Collections.Generic;
+using Hyena;
+using Hyena.Widgets;
 
 namespace FSpot.Widgets {
 	public class EditorPage : SidebarPage {
@@ -61,7 +61,7 @@ namespace FSpot.Widgets {
 		}
 
 		protected override void AddedToSidebar () {
-			(Sidebar as Sidebar).SelectionChanged += collection => EditorPageWidget.ShowTools();
+			(Sidebar as Sidebar).SelectionChanged += delegate (IBrowsableCollection collection) { EditorPageWidget.ShowTools (); };
 			(Sidebar as Sidebar).ContextChanged += HandleContextChanged;
 		}
 
@@ -141,7 +141,7 @@ namespace FSpot.Widgets {
 			Button button = new Button (editor.Label);
 			if (editor.IconName != null)
 				button.Image = new Image (GtkUtil.TryLoadIcon (FSpot.Core.Global.IconTheme, editor.IconName, 22, (Gtk.IconLookupFlags)0));
-			button.Clicked += (o, e) => ChooseEditor(editor);
+			button.Clicked += delegate (object o, EventArgs e) { ChooseEditor (editor); };
 			button.Show ();
 			buttons.Add (button);
 			editor_buttons.Add (editor, button);

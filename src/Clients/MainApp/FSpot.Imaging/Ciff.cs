@@ -30,10 +30,10 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
+using System;
 using System.Collections.Generic;
-
+using FSpot.Utils;
 using Hyena;
-
 using TagLib.Image;
 
 namespace FSpot.Imaging.Ciff {
@@ -119,7 +119,7 @@ namespace FSpot.Imaging.Ciff {
 
 		public byte [] ReadEntry (int pos)
 		{
-			Entry e = entry_list [pos];
+			Entry e = (Entry) entry_list [pos];
 
 			stream.Position = this.start + e.Offset;
 
@@ -186,7 +186,8 @@ namespace FSpot.Imaging.Ciff {
 
 			if (data != null)
 				return new System.IO.MemoryStream (data);
-			return DCRawFile.RawPixbufStream (Uri);
+			else
+				return DCRawFile.RawPixbufStream (Uri);
 		}
 
 		private byte [] GetEmbeddedJpeg ()
@@ -196,11 +197,10 @@ namespace FSpot.Imaging.Ciff {
 
 		protected override void Close ()
 		{
-			if (stream == null)
-				return;
-
-			stream.Close ();
-			stream = null;
+			if (stream != null) {
+				stream.Close ();
+				stream = null;
+			}
 		}
 	}
 }

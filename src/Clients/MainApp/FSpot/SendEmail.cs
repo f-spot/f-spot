@@ -33,18 +33,17 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
+using Gtk;
+using GLib;
 using System;
 
 using FSpot.Core;
+using FSpot.Widgets;
 using FSpot.Filters;
 using FSpot.UI.Dialog;
-using FSpot.Widgets;
-
-using Gtk;
 
 using Hyena;
 using Hyena.Widgets;
-
 using Mono.Unix;
 
 namespace FSpot
@@ -100,6 +99,7 @@ namespace FSpot
 					case 3 :  medium_size.Active = true; break;
 					case 4 :  large_size.Active = true; break;
 					case 5 :  x_large_size.Active = true; break;
+					default: break;
 				}
 
 

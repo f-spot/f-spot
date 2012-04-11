@@ -29,8 +29,8 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
+using FSpot.Utils;
 using Hyena;
-
 using TagLib.Image;
 
 namespace FSpot.Imaging {
@@ -57,7 +57,8 @@ namespace FSpot.Imaging {
 
 			if (data != null)
 				return new System.IO.MemoryStream (data);
-			return DCRawFile.RawPixbufStream (Uri);
+			else
+				return DCRawFile.RawPixbufStream (Uri);
 		}
 
 		private byte [] GetEmbeddedJpeg ()

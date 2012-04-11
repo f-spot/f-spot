@@ -38,7 +38,6 @@
  */
 
 using System;
-
 using Gdk;
 using Gtk;
 

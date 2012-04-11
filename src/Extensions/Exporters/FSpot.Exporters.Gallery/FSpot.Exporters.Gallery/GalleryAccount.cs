@@ -27,9 +27,9 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using Hyena;
-
 using Mono.Unix;
+
+using Hyena;
 
 namespace FSpot.Exporters.Gallery
 {
@@ -37,12 +37,15 @@ namespace FSpot.Exporters.Gallery
 		public GalleryAccount (string name, string url, string username, string password) : this (name, url, username, password, GalleryVersion.VersionUnknown) {}
 		public GalleryAccount (string name, string url, string username, string password, GalleryVersion version)
 		{
-			Name = name;
+			this.Name = name;
 			this.username = username;
 			this.password = password;
-			Url = url;
+			this.Url = url;
 
-			Version = version != GalleryVersion.VersionUnknown ? version : Gallery.DetectGalleryVersion(Url);
+			if (version != GalleryVersion.VersionUnknown)
+				this.Version = version;
+			else
+				this.Version = Gallery.DetectGalleryVersion(Url);
 		}
 
 		public const string EXPORT_SERVICE = "gallery/";

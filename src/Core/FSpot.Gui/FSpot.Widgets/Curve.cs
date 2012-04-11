@@ -29,17 +29,15 @@
 
 using System;
 using System.Collections.Generic;
-
-using Gdk;
 using Gtk;
+using Gdk;
 
 namespace FSpot.Widgets
 {
-	// FIXME: This class is never used
 	public class Curve : DrawingArea
 	{
 #region public API
-		public Curve ()
+		public Curve () : base ()
 		{
 			Events |= EventMask.ExposureMask
 				| EventMask.PointerMotionMask

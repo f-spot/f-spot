@@ -53,12 +53,13 @@
 //located on a GIO location.
 
 using System;
-using System.Collections.Generic;
 using System.IO;
-
-using FSpot.Core;
+using System.Collections;
+using System.Collections.Generic;
 
 using Mono.Unix;
+
+using FSpot.Core;
 
 namespace FSpot.Exporters.Folder
 {

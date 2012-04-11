@@ -52,14 +52,19 @@ namespace FSpot
 		{
 		}
 
-		public PhotoPopup (Widget parent)
+		public PhotoPopup (Widget parent) : base ()
 		{
 			foreach (MenuNode node in AddinManager.GetExtensionNodes ("/FSpot/Menus/PhotoPopup"))
 				Append (node.GetMenuItem (parent));
 			ShowAll ();
 		}
 
-		public void Activate (Widget toplevel, Gdk.EventButton eb = null)
+		public void Activate (Widget toplevel)
+		{
+			Activate (toplevel, null);
+		}
+
+		public void Activate (Widget toplevel, Gdk.EventButton eb)
 		{
 			if (eb != null)
 				Popup (null, null, null, eb.Button, eb.Time);

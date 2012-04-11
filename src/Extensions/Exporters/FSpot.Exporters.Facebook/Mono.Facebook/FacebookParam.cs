@@ -27,7 +27,6 @@
 // OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
-
 using System;
 using System.Text;
 
@@ -35,22 +34,25 @@ namespace Mono.Facebook
 {
 	public class FacebookParam : IComparable
 	{
+		private string name;
 		private object value;
 
-		public string Name { get; private set; }
+		public string Name {
+			get{ return name; }
+		}
 
 		public string Value {
-			get
-			{
+			get {
 				if (value is Array)
 					return ConvertArrayToString (value as Array);
-				return value.ToString ();
+				else
+					return value.ToString ();
 			}
 		}
 
 		protected FacebookParam (string name, object value)
 		{
-			Name = name;
+			this.name = name;
 			this.value = value;
 		}
 
@@ -69,7 +71,7 @@ namespace Mono.Facebook
 			if (!(obj is FacebookParam))
 				return -1;
 
-			return Name.CompareTo ((obj as FacebookParam).Name);
+			return this.name.CompareTo ((obj as FacebookParam).name);
 		}
 
 		private static string ConvertArrayToString (Array a)

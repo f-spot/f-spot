@@ -55,6 +55,8 @@
  *  DEALINGS IN THE SOFTWARE.
  */
  
+using System;
+
 namespace Banshee.Kernel
 {
     public interface IInstanceCriticalJob : IJob

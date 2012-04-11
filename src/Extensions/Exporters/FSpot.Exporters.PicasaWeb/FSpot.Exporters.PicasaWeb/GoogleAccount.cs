@@ -27,13 +27,25 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
+using System;
 using System.Net;
-
-using Gnome.Keyring;
-
+using System.IO;
+using System.Text;
+using System.Collections;
+using System.Collections.Specialized;
+using System.Web;
+using Mono.Unix;
 using Hyena;
-
+using Hyena.Widgets;
+using FSpot;
+using FSpot.Core;
+using FSpot.Filters;
+using FSpot.Widgets;
+using FSpot.Imaging;
+using FSpot.UI.Dialog;
+using Gnome.Keyring;
 using Mono.Google;
+using Mono.Google.Picasa;
 
 namespace FSpot.Exporters.PicasaWeb
 {
@@ -41,7 +53,10 @@ namespace FSpot.Exporters.PicasaWeb
 
 		private string username;
 		private string password;
+		private string token;
+		private string unlock_captcha;
 		private GoogleConnection connection;
+		private Mono.Google.Picasa.PicasaWeb picasa;
 
 		public GoogleAccount (string username, string password)
 		{
@@ -53,8 +68,8 @@ namespace FSpot.Exporters.PicasaWeb
 		{
 			this.username = username;
 			this.password = password;
-			Token = token;
-			UnlockCaptcha = unlock_captcha;
+			this.token = token;
+			this.unlock_captcha = unlock_captcha;
 		}
 
 		public Mono.Google.Picasa.PicasaWeb Connect ()
@@ -62,16 +77,16 @@ namespace FSpot.Exporters.PicasaWeb
 			Log.Debug ("GoogleAccount.Connect()");
 			GoogleConnection conn = new GoogleConnection (GoogleService.Picasa);
 			ServicePointManager.CertificatePolicy = new NoCheckCertificatePolicy ();
-			if (UnlockCaptcha == null || Token == null)
+			if (unlock_captcha == null || token == null)
 				conn.Authenticate(username, password);
 			else {
-				conn.Authenticate(username, password, Token, UnlockCaptcha);
-				Token = null;
-				UnlockCaptcha = null;
+				conn.Authenticate(username, password, token, unlock_captcha);
+				token = null;
+				unlock_captcha = null;
 			}
 			connection = conn;
 			var picasa = new Mono.Google.Picasa.PicasaWeb(conn);
-			Picasa = picasa;
+			this.picasa = picasa;
 			return picasa;
 		}
 
@@ -110,10 +125,28 @@ namespace FSpot.Exporters.PicasaWeb
 			}
 		}
 
-		public string Token { get; set; }
+		public string Token {
+			get {
+				return token;
+			}
+			set {
+				token = value;
+			}
+		}
 
-		public string UnlockCaptcha { get; set; }
+		public string UnlockCaptcha {
+			get {
+				return unlock_captcha;
+			}
+			set {
+				unlock_captcha = value;
+			}
+		}
 
-		public Mono.Google.Picasa.PicasaWeb Picasa { get; private set; }
+		public Mono.Google.Picasa.PicasaWeb Picasa {
+			get {
+				return picasa;
+			}
+		}
 	}
 }

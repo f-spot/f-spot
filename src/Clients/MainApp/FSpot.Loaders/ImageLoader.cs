@@ -29,16 +29,16 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
+using FSpot.Utils;
+using FSpot.Imaging;
 using System;
 using System.Collections.Generic;
-
-using FSpot.Imaging;
-
+using Gdk;
 using Hyena;
 
 namespace FSpot.Loaders {
 	public static class ImageLoader {
-		static readonly Dictionary<string, System.Type> name_table;
+		static Dictionary<string, System.Type> name_table;
 
 		static ImageLoader ()
 		{
@@ -71,7 +71,7 @@ namespace FSpot.Loaders {
 					throw new Exception ("Loader requested for unknown file type: "+extension);
 			}
 
-			loader = System.Activator.CreateInstance (t) as IImageLoader;
+			loader = (IImageLoader) System.Activator.CreateInstance (t);
 
 			return loader;
 		}

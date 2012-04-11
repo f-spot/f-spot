@@ -27,12 +27,12 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
+using System;
+
 namespace FSpot.Bling
-{
-	// FIXME: This is never used
-	public abstract class QuinticEase : EasingFunction
+{	public abstract class QuinticEase : EasingFunction
 	{
-		public QuinticEase ()
+		public QuinticEase () : base ()
 		{
 		}
 		

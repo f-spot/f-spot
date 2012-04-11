@@ -37,13 +37,13 @@ using Gdk;
 using Gtk;
 
 using Mono.Addins;
+using Mono.Unix;
 
 using System;
 
 namespace FSpot.Editors {
 
 	// TODO: Move EditorNode to FSpot.Extionsions?
-	// FIXME: EditorNode is never instantiated
 	[ExtensionNode ("Editor")]
 	public class EditorNode : ExtensionNode {
 		[NodeAttribute (Required=true)]
@@ -195,7 +195,11 @@ namespace FSpot.Editors {
 			return Process (input, input_profile);
 		}
 
-		public bool HasSettings { get; protected set; }
+		private bool has_settings;
+		public bool HasSettings {
+			get { return has_settings; }
+			protected set { has_settings = value; }
+		}
 
 		private Pixbuf original;
 		private Pixbuf preview;
@@ -265,8 +269,9 @@ namespace FSpot.Editors {
 		}
 
 		private void Reset () {
-			if (preview != null) 
+			if (preview != null) {
 				preview.Dispose ();
+			}
 
 			preview = null;
 			original = null;

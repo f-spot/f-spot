@@ -29,18 +29,16 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using System;
-
+using FSpot;
 using FSpot.ColorAdjustment;
-
 using Gdk;
 using Gtk;
+using Mono.Unix;
+using System;
+
 using GtkBeans;
 
-using Mono.Unix;
-
 namespace FSpot.Editors {
-	// FIXME: This class is never used
 	class ColorEditor : Editor {
 		GtkBeans.Builder builder;
 

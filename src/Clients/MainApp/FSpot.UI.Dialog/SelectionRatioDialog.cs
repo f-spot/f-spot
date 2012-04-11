@@ -28,15 +28,14 @@
 //
 
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Xml.Serialization;
+using System.Collections.Generic;
 
 using Gtk;
 
-using Hyena;
-
 using Mono.Unix;
+using Hyena;
 
 namespace FSpot.UI.Dialog {
 	public class SelectionRatioDialog : BuilderDialog

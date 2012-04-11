@@ -33,17 +33,15 @@
 //
 
 using System;
+using System.Collections;
 using System.Collections.Generic;
-
-using FSpot.Utils;
-
 using Gdk;
 
 using Hyena;
+using FSpot.Utils;
 
 namespace FSpot
 {
-	// FIXME: This class is never called
 	public class ThumbnailCache : IDisposable {
 	
 		#region Types
@@ -61,7 +59,7 @@ namespace FSpot
 		private int max_count;
 		private List<Thumbnail> pixbuf_mru;
 		private Dictionary<SafeUri,Thumbnail> pixbuf_hash;
-
+		static private ThumbnailCache defaultcache = new ThumbnailCache (DEFAULT_CACHE_SIZE);
 		#endregion
 	
 		#region Public API
@@ -71,14 +69,13 @@ namespace FSpot
 			pixbuf_mru = new List<Thumbnail> (max_count);
 			pixbuf_hash = new Dictionary<SafeUri, Thumbnail> ();
 		}
-
-		static ThumbnailCache()
-		{
-			Default = new ThumbnailCache (DEFAULT_CACHE_SIZE);
+	
+		static public ThumbnailCache Default {
+			get {
+				return defaultcache;
+			}
 		}
-
-		public static ThumbnailCache Default { get; private set; }
-
+	
 		public void AddThumbnail (SafeUri uri, Pixbuf pixbuf)
 		{
 			Thumbnail thumbnail = new Thumbnail ();
@@ -104,7 +101,9 @@ namespace FSpot
 			pixbuf_mru.Remove (item);
 			pixbuf_mru.Insert (0, item);
 	
-		        return item.pixbuf == null ? null : item.pixbuf.ShallowCopy ();
+		        if (item.pixbuf == null)
+		            return null;
+		        return item.pixbuf.ShallowCopy ();
 		}
 	
 		public void RemoveThumbnailForUri (SafeUri uri)
@@ -123,8 +122,8 @@ namespace FSpot
 	
 		public void Dispose ()
 		{
-			foreach (Thumbnail item in pixbuf_mru) {
-				Thumbnail thumb = item;
+			foreach (object item in pixbuf_mru) {
+				Thumbnail thumb = item as Thumbnail;
 				pixbuf_hash.Remove (thumb.uri);
 				thumb.pixbuf.Dispose ();
 			}
@@ -135,8 +134,8 @@ namespace FSpot
 		~ThumbnailCache ()
 		{
 			Log.DebugFormat ("Finalizer called on {0}. Should be Disposed", GetType ());
-			foreach (Thumbnail item in pixbuf_mru) {
-				Thumbnail thumb = item;
+			foreach (object item in pixbuf_mru) {
+				Thumbnail thumb = item as Thumbnail;
 				pixbuf_hash.Remove (thumb.uri);
 				thumb.pixbuf.Dispose ();
 			}
@@ -147,7 +146,7 @@ namespace FSpot
 		private void MaybeExpunge ()
 		{
 			while (pixbuf_mru.Count > max_count) {
-				Thumbnail thumbnail = pixbuf_mru [pixbuf_mru.Count - 1];
+				Thumbnail thumbnail = pixbuf_mru [pixbuf_mru.Count - 1] as Thumbnail;
 	
 				pixbuf_hash.Remove (thumbnail.uri);
 				pixbuf_mru.RemoveAt (pixbuf_mru.Count - 1);

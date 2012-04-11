@@ -27,23 +27,19 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
+using FSpot;
+using FSpot.UI.Dialog;
+using FSpot.Utils;
+using Hyena;
+using Gdk;
+using Gtk;
+using Mono.Unix;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Xml.Serialization;
 
-using FSpot.UI.Dialog;
-using FSpot.Utils;
-
-using Gdk;
-using Gtk;
-
-using Hyena;
-
-using Mono.Unix;
-
 namespace FSpot.Editors {
-	// FIXME: This is never used
 	class CropEditor : Editor {
 		private TreeStore constraints_store;
 		private ComboBox constraints_combo;

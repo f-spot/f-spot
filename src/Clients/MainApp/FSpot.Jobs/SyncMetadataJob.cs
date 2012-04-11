@@ -30,13 +30,11 @@
 //
 
 using System;
-
 using Banshee.Kernel;
-
+using Hyena;
 using FSpot.Core;
 using FSpot.Utils;
-
-using Hyena;
+using Mono.Unix;
 
 namespace FSpot.Jobs {
     public class SyncMetadataJob : Job
@@ -61,7 +59,7 @@ namespace FSpot.Jobs {
             System.Threading.Thread.Sleep (500);
 
             try {
-                Photo photo = FSpot.App.Instance.Database.Photos.Get (Convert.ToUInt32 (JobOptions));
+                Photo photo = FSpot.App.Instance.Database.Photos.Get (Convert.ToUInt32 (JobOptions)) as Photo;
                 if (photo == null)
                     return false;
 

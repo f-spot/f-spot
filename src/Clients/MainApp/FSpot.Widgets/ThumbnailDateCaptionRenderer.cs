@@ -27,14 +27,16 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
+using System;
 using System.Collections.Generic;
+
+using Gtk;
+using Gdk;
+
+using Hyena.Gui;
 
 using FSpot.Core;
 
-using Gdk;
-using Gtk;
-
-using Hyena.Gui;
 
 namespace FSpot.Widgets
 {
@@ -47,7 +49,15 @@ namespace FSpot.Widgets
 
 #region Private Fields
 
-        private readonly Dictionary <string, Pango.Layout> cache = new Dictionary <string, Pango.Layout> ();
+        private Dictionary <string, Pango.Layout> cache = new Dictionary <string, Pango.Layout> ();
+
+#endregion
+
+#region Constructor
+
+        public ThumbnailDateCaptionRenderer ()
+        {
+        }
 
 #endregion
 

@@ -31,7 +31,9 @@
 
 using System;
 
+using FSpot;
 using FSpot.Core;
+
 
 namespace FSpot.Query
 {
@@ -42,11 +44,21 @@ namespace FSpot.Query
 		private static HiddenTag hide_hidden_tag;
 
 		public static HiddenTag ShowHiddenTag {
-			get { return show_hidden_tag ?? (show_hidden_tag = new HiddenTag(true)); }
+			get {
+				if (show_hidden_tag == null)
+					show_hidden_tag = new HiddenTag (true);
+
+				return show_hidden_tag;
+			}
 		}
 
 		public static HiddenTag HideHiddenTag {
-			get { return hide_hidden_tag ?? (hide_hidden_tag = new HiddenTag(false)); }
+			get {
+				if (hide_hidden_tag == null)
+					hide_hidden_tag = new HiddenTag (false);
+
+				return hide_hidden_tag;
+			}
 		}
 
 
@@ -64,7 +76,8 @@ namespace FSpot.Query
 			if ( ! show_hidden && hidden != null)
 				return String.Format (" photos.id NOT IN (SELECT photo_id FROM photo_tags WHERE tag_id = {0}) ",
 				                      hidden.Id);
-			return null;
+			else
+				return null;
 		}
 	}
 }

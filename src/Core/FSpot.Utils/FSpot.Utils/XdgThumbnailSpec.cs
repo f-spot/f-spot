@@ -27,10 +27,9 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using System;
-
 using Gdk;
-
+using System;
+using System.Runtime.InteropServices;
 using Hyena;
 
 namespace FSpot.Utils
@@ -163,7 +162,11 @@ namespace FSpot.Utils
 
             var info = file.QueryInfo ("time::modified", GLib.FileQueryInfoFlags.None, null);
 
-            return pixbuf.GetOption (ThumbMTimeOpt) == info.GetAttributeULong ("time::modified").ToString ();
+            if (pixbuf.GetOption (ThumbMTimeOpt) != info.GetAttributeULong ("time::modified").ToString ()) {
+                return false;
+            }
+
+            return true;
         }
 #endregion
 

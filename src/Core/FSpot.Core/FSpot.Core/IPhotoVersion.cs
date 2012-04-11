@@ -29,6 +29,7 @@
 
 using Hyena;
 
+
 namespace FSpot.Core
 {
 

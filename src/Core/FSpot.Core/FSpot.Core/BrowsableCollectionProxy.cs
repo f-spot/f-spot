@@ -27,6 +27,8 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
+using System.Collections.Generic;
+
 namespace FSpot.Core {
     public class BrowsableCollectionProxy : IBrowsableCollection {
 
@@ -67,14 +69,15 @@ namespace FSpot.Core {
 
         public bool Contains (IPhoto item)
         {
-        	return collection != null && collection.Contains (item);
+            if (collection == null)
+                return false;
+            return collection.Contains (item);
         }
 
-    	public IPhoto this [int index] {
+        public IPhoto this [int index] {
             get {
                 if (collection == null)
                     throw new System.IndexOutOfRangeException ();
-
                 return collection [index];
             }
         }

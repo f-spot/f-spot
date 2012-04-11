@@ -28,15 +28,16 @@
 //
 
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using System.Net.Sockets;
+using System.Collections;
+using System.Collections.Generic;
 using System.Text;
 using System.Threading;
 
+using FSpot;
 using FSpot.Extensions;
-
 using Hyena;
 
 namespace FSpot.Tools.LiveWebGallery
@@ -45,7 +46,7 @@ namespace FSpot.Tools.LiveWebGallery
 	{
 		private Thread server_thread;
 		private TcpListener listener;
-		private readonly Dictionary<string, RequestHandler> handlers = new Dictionary<string, RequestHandler> ();
+		private Dictionary<string, RequestHandler> handlers = new Dictionary<string, RequestHandler> ();
 		
 		private IWebStats stats;
 		public IWebStats Stats {

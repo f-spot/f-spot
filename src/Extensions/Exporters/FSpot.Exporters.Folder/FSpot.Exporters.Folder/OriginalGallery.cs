@@ -55,13 +55,12 @@
 using System;
 using System.IO;
 
-using FSpot.Core;
-
 using Hyena;
 
-// FIXME: Isn't there some zip library stuff in a newer version of mono?
 using ICSharpCode.SharpZipLib.Checksums;
 using ICSharpCode.SharpZipLib.Zip;
+
+using FSpot.Core;
 
 namespace FSpot.Exporters.Folder
 {

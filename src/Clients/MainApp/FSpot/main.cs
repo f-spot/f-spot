@@ -33,21 +33,25 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
+using Gtk;
 using System;
-using System.Collections.Generic;
-using System.IO;
 using System.Reflection;
-
-using FSpot.Imaging;
+using System.IO;
+using System.Runtime.InteropServices;
+using System.Text;
+using System.Collections;
+using System.Collections.Generic;
+using Mono.Unix;
+using Mono.Addins;
+using Mono.Addins.Setup;
+using FSpot.Core;
 using FSpot.Utils;
-
+using FSpot.UI.Dialog;
+using FSpot.Extensions;
+using FSpot.Imaging;
 using Hyena;
 using Hyena.CommandLine;
 using Hyena.Gui;
-
-using Mono.Addins;
-using Mono.Addins.Setup;
-using Mono.Unix;
 
 namespace FSpot
 {
@@ -299,10 +303,7 @@ namespace FSpot
 					GtkUtil.TryLoadIcon (FSpot.Core.Global.IconTheme, "f-spot", 32, (Gtk.IconLookupFlags)0),
 					GtkUtil.TryLoadIcon (FSpot.Core.Global.IconTheme, "f-spot", 48, (Gtk.IconLookupFlags)0)
 				};
-			} catch (Exception ex)
-			{
-				Log.DebugException(ex);
-			}
+			} catch {}
 
 			CleanRoomStartup.Startup (Startup);
 

@@ -26,20 +26,26 @@
 // OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
-
 using System;
 
 public class FacebookException : Exception
 {
-	public int ErrorCode { get; private set; }
+	private int error_code;
+	private string error_message;
 
-	public string ErrorMessage { get; private set; }
+	public int ErrorCode {
+		get { return error_code; }
+	}
+
+	public string ErrorMessage {
+		get { return error_message; }
+	}
 
 	public FacebookException (int error_code, string error_message)
 		: base (CreateMessage (error_code, error_message))
 	{
-		ErrorCode = error_code;
-		ErrorMessage = error_message;
+		this.error_code = error_code;
+		this.error_message = error_message;
 	}
 
 	private static string CreateMessage (int error_code, string error_message)

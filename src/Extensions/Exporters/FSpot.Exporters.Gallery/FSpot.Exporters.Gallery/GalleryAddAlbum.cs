@@ -29,9 +29,9 @@
 
 using System;
 
-using Hyena.Widgets;
-
 using Mono.Unix;
+
+using Hyena.Widgets;
 
 namespace FSpot.Exporters.Gallery
 {
@@ -105,12 +105,12 @@ namespace FSpot.Exporters.Gallery
 				if (gallery.Albums.Count == 0 || album_optionmenu.Active <= 0)
 					parent = String.Empty;
 				else
-					parent = gallery.Albums [album_optionmenu.Active-1].Name;
+					parent = ((Album) gallery.Albums [album_optionmenu.Active-1]).Name;
 			else
 				if (gallery.Albums.Count == 0 || album_optionmenu.Active < 0)
 					parent = String.Empty;
 				else
-					parent = gallery.Albums [album_optionmenu.Active].Name;
+					parent = ((Album) gallery.Albums [album_optionmenu.Active]).Name;
 
 			name = name_entry.Text;
 			description = description_entry.Text;

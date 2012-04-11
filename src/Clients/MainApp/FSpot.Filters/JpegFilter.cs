@@ -29,26 +29,33 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
+using System;
+using FSpot.Utils;
+using FSpot.Imaging;
+
 namespace FSpot.Filters {
     public class JpegFilter : IFilter {
-    	public uint Quality { get; set; }
+        private uint quality = 95;
+        public uint Quality {
+            get { return quality; }
+            set { quality = value; }
+        }
 
-    	public JpegFilter (uint quality)
+        public JpegFilter (uint quality)
         {
-            Quality = quality;
+            this.quality = quality;
         }
 
         public JpegFilter()
         {
-        	Quality = 95;
         }
 
-    	public bool Convert (FilterRequest req)
+        public bool Convert (FilterRequest req)
         {
             var source = req.Current;
             req.Current = req.TempUri ("jpg");
 
-            PixbufUtils.CreateDerivedVersion (source, req.Current, Quality);
+            PixbufUtils.CreateDerivedVersion (source, req.Current, quality);
 
             return true;
         }

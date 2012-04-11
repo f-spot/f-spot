@@ -31,7 +31,6 @@
 
 using System;
 using System.ComponentModel;
-
 using GLibBeans;
 
 namespace FSpot.Bling

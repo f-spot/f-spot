@@ -27,22 +27,26 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using System.Collections.Generic;
 using System.Reflection;
-
+using System.Collections.Generic;
 using FSpot.Widgets;
-
 using Mono.Facebook;
 
 namespace FSpot.Exporters.Facebook
 {	
 	internal class FacebookTagPopup : BuilderWindow
 	{
+		Dictionary<long, User> _friends;
+
 		public FacebookTagPopup (Dictionary<long, User> friends) : base (Assembly.GetExecutingAssembly (), "FacebookExport.ui", "facebook_tag_popup")
 		{
 			Friends = friends;
 		}
 
-		public Dictionary<long, User> Friends { get; set; }
+		public Dictionary<long, User> Friends
+		{
+			get { return _friends; }
+			set { _friends = value; }
+		}
 	}
 }

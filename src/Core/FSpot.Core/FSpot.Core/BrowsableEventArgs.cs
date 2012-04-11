@@ -29,6 +29,8 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
+using System;
+
 namespace FSpot.Core
 {
 	public class BrowsableEventArgs : System.EventArgs {

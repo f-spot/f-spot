@@ -35,10 +35,13 @@
 // Copyright (C) 2004 Novell, Inc.
 //
 
-using FSpot.Core;
+using System;
 
 using Gdk;
 using Gtk;
+
+using FSpot.Core;
+
 
 namespace FSpot.Widgets
 {

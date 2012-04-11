@@ -36,7 +36,7 @@ namespace FSpot.Widgets
 	{
 		public AppInfo AppInfo { get; private set; }
 
-		public ApplicationActivatedEventArgs (AppInfo app)
+		public ApplicationActivatedEventArgs (AppInfo app) : base ()
 		{
 			AppInfo = app;
 		}

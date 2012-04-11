@@ -28,12 +28,19 @@
 //
 
 using System;
+using System.IO;
 using System.Net;
-
-using FSpot.Core;
-using FSpot.Extensions;
+using System.Collections.Generic;
 
 using Gtk;
+
+using FSpot;
+using FSpot.Core;
+using FSpot.Extensions;
+using FSpot.Utils;
+using FSpot.Query;
+using FSpot.UI.Dialog;
+using Mono.Unix;
 
 namespace FSpot.Tools.LiveWebGallery
 {

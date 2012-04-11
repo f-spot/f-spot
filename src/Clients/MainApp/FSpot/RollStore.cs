@@ -1,4 +1,3 @@
-using System;
 //
 // RollStore.cs
 //
@@ -32,10 +31,15 @@ using System;
 // OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
+using System.Collections;
 using System.Collections.Generic;
+using System.IO;
+using System;
 
 using FSpot.Core;
 using FSpot.Database;
+using FSpot.Utils;
+using FSpot;
 
 using Hyena;
 using Hyena.Data.Sqlite;
@@ -113,7 +117,12 @@ namespace FSpot
 			return number_of_photos;
 		}
 
-		public Roll [] GetRolls (int limit = -1)
+		public Roll [] GetRolls ()
+		{
+			return GetRolls (-1);
+		}
+
+		public Roll [] GetRolls (int limit)
 		{
 			List<Roll> rolls = new List<Roll> ();
 
@@ -125,7 +134,7 @@ namespace FSpot
 				while (reader.Read ()) {
 					uint id = Convert.ToUInt32 (reader ["roll_id"]);
 
-					Roll roll = LookupInCache (id);
+					Roll roll = LookupInCache (id) as Roll;
 					if (roll == null) {
 						roll = new Roll (id, Convert.ToUInt32 (reader ["roll_time"]));
 						AddToCache (roll);

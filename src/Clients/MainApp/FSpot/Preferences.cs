@@ -31,15 +31,13 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
+using System.Net;
 using System;
 using System.Collections.Generic;
-
+using Mono.Unix;
 using FSpot.Core;
 using FSpot.Platform;
-
 using Hyena;
-
-using Mono.Unix;
 
 namespace FSpot
 {

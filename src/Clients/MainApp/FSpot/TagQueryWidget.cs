@@ -30,16 +30,16 @@
 //
 
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Text;
+using Mono.Unix;
+using Gtk;
+using Gdk;
 
 using FSpot.Core;
-using FSpot.Query;
 using FSpot.Utils;
-
-using Gdk;
-using Gtk;
-
-using Mono.Unix;
+using FSpot.Query;
 
 namespace FSpot
 {
@@ -64,20 +64,20 @@ namespace FSpot
 
 			if (literal.IsNegated) {
 				GtkUtil.MakeMenuItem (popup_menu,
-							  String.Format (Catalog.GetString ("Include Photos Tagged \"{0}\""), literal.Tag.Name),
-							  new EventHandler (literal.HandleToggleNegatedCommand),
-							  true);
+						      String.Format (Catalog.GetString ("Include Photos Tagged \"{0}\""), literal.Tag.Name),
+						      new EventHandler (literal.HandleToggleNegatedCommand),
+						      true);
 			} else {
 				GtkUtil.MakeMenuItem (popup_menu,
-							  String.Format (Catalog.GetString ("Exclude Photos Tagged \"{0}\""), literal.Tag.Name),
-							  new EventHandler (literal.HandleToggleNegatedCommand),
-							  true);
+						      String.Format (Catalog.GetString ("Exclude Photos Tagged \"{0}\""), literal.Tag.Name),
+						      new EventHandler (literal.HandleToggleNegatedCommand),
+						      true);
 			}
 
 			GtkUtil.MakeMenuItem (popup_menu, Catalog.GetString ("Remove From Search"),
-						  "gtk-remove",
-						  new EventHandler (literal.HandleRemoveCommand),
-						  true);
+					      "gtk-remove",
+					      new EventHandler (literal.HandleRemoveCommand),
+					      true);
 
 			if (is_popup) {
 				if (eb != null)
@@ -88,7 +88,6 @@ namespace FSpot
 		}
 	}
 
-	// FIXME: This class is never used
 	public class LiteralMenu : Menu
 	{
 		private LiteralPopup popup;
@@ -141,33 +140,33 @@ namespace FSpot
 			if (LogicWidget.Root == null || LogicWidget.Root.SubTerms.Count == 0) {
 				//Console.WriteLine ("root is null or has no terms");
 				return null;
+			} else {
+				//Console.WriteLine ("root is not null and has terms");
+				Gtk.Menu m = new Gtk.Menu ();
+
+				Gtk.MenuItem all_item = GtkUtil.MakeMenuItem (m, Catalog.GetString ("All"), new EventHandler (App.Instance.Organizer.HandleRequireTag));
+				GtkUtil.MakeMenuSeparator (m);
+
+				int sensitive_items = 0;
+				foreach (Term term in LogicWidget.Root.SubTerms) {
+					List<string> term_parts = new List<string> ();
+
+					bool contains_tag = AppendTerm (term_parts, term, single_tag);
+
+					string name = "_" + String.Join (", ", term_parts.ToArray ());
+
+					Gtk.MenuItem item = GtkUtil.MakeMenuItem (m, name, new EventHandler (App.Instance.Organizer.HandleAddTagToTerm));
+					item.Sensitive = !contains_tag;
+
+					if (!contains_tag)
+						sensitive_items++;
+				}
+
+				if (sensitive_items == 0)
+					all_item.Sensitive = false;
+
+				return m;
 			}
-
-			//Console.WriteLine ("root is not null and has terms");
-			Gtk.Menu m = new Gtk.Menu ();
-
-			Gtk.MenuItem all_item = GtkUtil.MakeMenuItem (m, Catalog.GetString ("All"), new EventHandler (App.Instance.Organizer.HandleRequireTag));
-			GtkUtil.MakeMenuSeparator (m);
-
-			int sensitive_items = 0;
-			foreach (Term term in LogicWidget.Root.SubTerms) {
-				List<string> term_parts = new List<string> ();
-
-				bool contains_tag = AppendTerm (term_parts, term, single_tag);
-
-				string name = "_" + String.Join (", ", term_parts.ToArray ());
-
-				Gtk.MenuItem item = GtkUtil.MakeMenuItem (m, name, new EventHandler (App.Instance.Organizer.HandleAddTagToTerm));
-				item.Sensitive = !contains_tag;
-
-				if (!contains_tag)
-					sensitive_items++;
-			}
-
-			if (sensitive_items == 0)
-				all_item.Sensitive = false;
-
-			return m;
 		}
 
 		private static bool AppendTerm (List<string> parts, Term term, Tag single_tag)
@@ -208,14 +207,18 @@ namespace FSpot
 	}
 
 	public class GrabHandle : DrawingArea {
-		public GrabHandle (int w, int h)
+		public GrabHandle (int w, int h) : base ()
 		{
 			Size (w, h);
 			Orientation = Gtk.Orientation.Horizontal;
 			Show ();
 		}
 
-		public Orientation Orientation { get; set; }
+		private Gtk.Orientation orientation;
+		public Gtk.Orientation Orientation {
+			get { return orientation; }
+			set { orientation = value; }
+		}
 
 		protected override bool OnExposeEvent (Gdk.EventExpose evnt)
 		{
@@ -226,7 +229,7 @@ namespace FSpot
 			}
 
 			Gtk.Style.PaintHandle(Style, GdkWindow, State, ShadowType.In,
-						  evnt.Area, this, "entry", 0, 0, Allocation.Width, Allocation.Height, Orientation);
+					      evnt.Area, this, "entry", 0, 0, Allocation.Width, Allocation.Height, Orientation);
 
 			//(Style, GdkWindow, StateType.Normal, ShadowType.In,
 			//evnt.Area, this, "entry", 0, y_mid - y_offset, Allocation.Width,
@@ -270,7 +273,7 @@ namespace FSpot
 				DragDropTargets.TagQueryEntry
 			};
 
-		public LogicWidget (PhotoQuery query, TagStore tag_store)
+		public LogicWidget (PhotoQuery query, TagStore tag_store) : base ()
 		{
 			//SetFlag (WidgetFlags.NoWindow);
 			this.query = query;
@@ -342,16 +345,16 @@ namespace FSpot
 		private void HandleTagChanged (object sender, DbItemEventArgs<Tag> args)
 		{
 			foreach (Tag t in args.Items)
-				foreach (Literal term in rootTerm.FindByTag (t))
-					term.Update ();
+                foreach (Literal term in rootTerm.FindByTag (t))
+                    term.Update ();
 		}
 
 		// If the user deletes a tag that is in use in the query, remove it from the query too.
 		private void HandleTagDeleted (object sender, DbItemEventArgs<Tag> args)
 		{
 			foreach (Tag t in args.Items)
-				foreach (Literal term in rootTerm.FindByTag (t))
-					term.RemoveSelf ();
+                foreach (Literal term in rootTerm.FindByTag (t))
+                    term.RemoveSelf ();
 		}
 
 		private void HandleDragMotion (object o, DragMotionArgs args)
@@ -412,13 +415,13 @@ namespace FSpot
 		private void HandleRemoving (Literal term)
 		{
 			foreach (Widget w in HangersOn (term))
-				Remove (w);
+			Remove (w);
 
 			// Remove the term's widget
 			Remove (term.Widget);
 		}
 
-		public IEnumerable<Widget> HangersOn (Literal term)
+		public List<Gtk.Widget> HangersOn (Literal term)
 		{
 			List<Gtk.Widget> w = new List<Gtk.Widget> ();
 
@@ -468,6 +471,8 @@ namespace FSpot
 
 				// Prevent them from being removed again
 				Literal.FocusedLiterals = null;
+
+				return;
 			}
 		}
 

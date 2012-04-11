@@ -28,13 +28,11 @@
 //
 
 using System;
-
+using FSpot;
 using FSpot.Editors;
 using FSpot.Imaging;
-
-using Gdk;
 using Gtk;
-
+using Gdk;
 using Mono.Unix;
 
 namespace FSpot.Addins.Editors {

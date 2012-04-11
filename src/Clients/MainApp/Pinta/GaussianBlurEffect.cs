@@ -7,9 +7,10 @@
 // Ported to Pinta by: Jonathan Pobst <monkey@jpobst.com>                      //
 /////////////////////////////////////////////////////////////////////////////////
 
+using System;
 using Cairo;
-
 using Pinta.Core;
+using Mono.Unix;
 
 namespace Pinta.Effects
 {

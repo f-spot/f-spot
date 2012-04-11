@@ -31,12 +31,15 @@
 
 using System;
 using System.Text;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
 using Gtk;
 using Hyena;
 
+using FSpot;
+using FSpot.Utils;
 using FSpot.Query;
 
 namespace FSpot
@@ -46,7 +49,7 @@ namespace FSpot
 		PhotoQuery query;
 		FolderSet folder_set;
 
-		public FolderQueryWidget (PhotoQuery query)
+		public FolderQueryWidget (PhotoQuery query) : base ()
 		{
 			folder_set = new FolderSet ();
 			this.query = query;

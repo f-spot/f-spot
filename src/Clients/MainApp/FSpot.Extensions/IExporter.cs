@@ -29,6 +29,9 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
+using Mono.Addins;
+using System;
+
 using FSpot.Core;
 
 namespace FSpot.Extensions

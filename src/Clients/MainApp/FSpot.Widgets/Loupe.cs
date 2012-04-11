@@ -27,17 +27,16 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using System;
-
 using Cairo;
 
-using FSpot.Core;
-using FSpot.Gui;
-using FSpot.Utils;
-
-using Gdk;
 using Gtk;
-
+using Gdk;
+using System;
+using System.Runtime.InteropServices;
+using Mono.Unix;
+using FSpot.Core;
+using FSpot.Utils;
+using FSpot.Gui;
 using Hyena;
 
 namespace FSpot.Widgets {
@@ -233,7 +232,7 @@ namespace FSpot.Widgets {
 		}
 
 		Gdk.Point Center;
-		Requisition Bounds;
+	        Requisition Bounds;
 
 		public void Layout ()
 		{
@@ -300,15 +299,14 @@ namespace FSpot.Widgets {
 			g.Arc (0, 0, radius, 0, 2 * Math.PI);
 			g.Fill ();
 
-			if (overlay == null)
-				return;
-
-			CairoHelper.SetSourcePixbuf (g, overlay, -overlay.Width / 2, -overlay.Height / 2);
-			g.Arc (0, 0, radius, angle, angle + Math.PI);
-			g.ClosePath ();
-			g.FillPreserve ();
-			g.Source = new SolidPattern (new Cairo.Color (1.0, 1.0, 1.0, 1.0));
-			g.Stroke ();
+			if (overlay != null) {
+				CairoHelper.SetSourcePixbuf (g, overlay, -overlay.Width / 2, -overlay.Height / 2);
+				g.Arc (0, 0, radius, angle, angle + Math.PI);
+				g.ClosePath ();
+				g.FillPreserve ();
+				g.Source = new SolidPattern (new Cairo.Color (1.0, 1.0, 1.0, 1.0));
+				g.Stroke ();
+			}
 		}
 
 		protected override bool OnExposeEvent (Gdk.EventExpose args)
@@ -351,28 +349,28 @@ namespace FSpot.Widgets {
 
 			if (!rotate) {
 				return MoveWindow ();
+			} else {
+				Gdk.Point initial = start_root;
+				Gdk.Point hot = start_hot;
+				Gdk.Point win = Gdk.Point.Zero;
+
+				hot.X += win.X;
+				hot.Y += win.Y;
+
+				initial.X -= hot.X;
+				initial.Y -= hot.Y;
+				Gdk.Point now = root_pos;
+				now.X -= hot.X;
+				now.Y -= hot.Y;
+
+				Vector v1 = new Vector (initial);
+				Vector v2 = new Vector (now);
+
+				double angle = Vector.AngleBetween (v1, v2);
+
+				Angle = start_angle + angle;
+				return false;
 			}
-
-			Gdk.Point initial = start_root;
-			Gdk.Point hot = start_hot;
-			Gdk.Point win = Gdk.Point.Zero;
-
-			hot.X += win.X;
-			hot.Y += win.Y;
-
-			initial.X -= hot.X;
-			initial.Y -= hot.Y;
-			Gdk.Point now = root_pos;
-			now.X -= hot.X;
-			now.Y -= hot.Y;
-
-			Vector v1 = new Vector (initial);
-			Vector v2 = new Vector (now);
-
-			double angle = Vector.AngleBetween (v1, v2);
-
-			Angle = start_angle + angle;
-			return false;
 		}
 
 		private bool MoveWindow ()
@@ -450,7 +448,10 @@ namespace FSpot.Widgets {
 				App.Instance.Organizer.HideLoupe ();
 				args.RetVal = true;
 				break;
+			default:
+				break;
 			}
+			return;
 		}
 
 		protected override void OnDestroyed ()

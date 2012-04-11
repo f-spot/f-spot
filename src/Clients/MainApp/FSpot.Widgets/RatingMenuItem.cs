@@ -30,6 +30,7 @@
 
 using System;
 
+
 namespace FSpot.Widgets
 {
     public class RatingMenuItem : Hyena.Widgets.RatingMenuItem

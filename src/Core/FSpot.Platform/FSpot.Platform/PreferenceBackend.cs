@@ -30,6 +30,7 @@
 using System;
 using System.Runtime.Serialization;
 
+
 namespace FSpot
 {
 	public class NotifyEventArgs : System.EventArgs
@@ -50,7 +51,7 @@ namespace FSpot.Platform
 	[Serializable]
 	public class NoSuchKeyException : Exception
 	{
-		public NoSuchKeyException ()
+		public NoSuchKeyException () : base ()
 		{
 		}
 
@@ -80,6 +81,10 @@ namespace FSpot.Platform
 					return client;
 				}
 			}
+		}
+
+		public PreferenceBackend ()
+		{
 		}
 
 		public object Get (string key)

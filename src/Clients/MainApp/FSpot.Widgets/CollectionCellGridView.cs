@@ -29,11 +29,11 @@
 
 using System;
 
+using Gtk;
+using Gdk;
+
 using FSpot.Core;
 using FSpot.Utils;
-
-using Gdk;
-using Gtk;
 
 
 namespace FSpot.Widgets
@@ -47,17 +47,23 @@ namespace FSpot.Widgets
 
 #region Private Fields
 
-        private readonly ThumbnailDecorationRenderer rating_renderer = new ThumbnailRatingDecorationRenderer ();
+        private ThumbnailDecorationRenderer rating_renderer = new ThumbnailRatingDecorationRenderer ();
 
-        private readonly ThumbnailCaptionRenderer tag_renderer = new ThumbnailTagsCaptionRenderer ();
-        private readonly ThumbnailCaptionRenderer date_renderer = new ThumbnailDateCaptionRenderer ();
-        private readonly ThumbnailCaptionRenderer filename_renderer = new ThumbnailFilenameCaptionRenderer ();
+        private ThumbnailCaptionRenderer tag_renderer = new ThumbnailTagsCaptionRenderer ();
+        private ThumbnailCaptionRenderer date_renderer = new ThumbnailDateCaptionRenderer ();
+        private ThumbnailCaptionRenderer filename_renderer = new ThumbnailFilenameCaptionRenderer ();
 
 #endregion
 
 #region Public Properties
-        public IBrowsableCollection Collection { get; private set; }
-        public FSpot.PixbufCache Cache { get; private set; }
+
+        public IBrowsableCollection Collection {
+            get; private set;
+        }
+
+        public FSpot.PixbufCache Cache {
+            get; private set;
+        }
 
 #endregion
 
@@ -67,11 +73,13 @@ namespace FSpot.Widgets
         {
         }
 
-        public CollectionGridView (IBrowsableCollection collection)
+        public CollectionGridView (IBrowsableCollection collection) : base ()
         {
             Collection = collection;
 
-            Collection.Changed += (obj) => QueueResize ();
+            Collection.Changed += (obj) => {
+                QueueResize ();
+            };
 
             Collection.ItemsChanged += (obj, args) => {
                 foreach (int item in args.Items) {
@@ -188,9 +196,11 @@ namespace FSpot.Widgets
         }
 
         protected override int CellCount {
-            get
-            {
-            	return Collection == null ? 0 : Collection.Count;
+            get {
+                if (Collection == null)
+                    return 0;
+
+                return Collection.Count;
             }
         }
 
@@ -212,12 +222,14 @@ namespace FSpot.Widgets
 
         private bool display_dates = true;
         public bool DisplayDates {
-            get
-            {
-            	return MinCellWidth > 100 && display_dates;
+            get {
+                if (MinCellWidth > 100)
+                    return display_dates;
+                else
+                    return false;
             }
 
-        	set {
+            set {
                 display_dates = value;
                 QueueResize ();
             }
@@ -237,10 +249,13 @@ namespace FSpot.Widgets
         private bool display_ratings = true;
         public bool DisplayRatings {
             get {
-            	return MinCellWidth > 100 && display_ratings;
+                if (MinCellWidth > 100)
+                    return display_ratings;
+                else
+                    return false;
             }
 
-        	set {
+            set {
                 display_ratings  = value;
                 QueueResize ();
             }
@@ -506,11 +521,11 @@ namespace FSpot.Widgets
             InvalidateCell (throb_cell);
             if (throb_state++ < throb_state_max) {
                 return true;
+            } else {
+                throb_cell = -1;
+                throb_timer_id = 0;
+                return false;
             }
-
-        	throb_cell = -1;
-        	throb_timer_id = 0;
-        	return false;
         }
 
         private int ThrobExpansion (int cell, bool selected)

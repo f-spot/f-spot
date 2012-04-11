@@ -31,18 +31,18 @@
 
 using System;
 using System.IO;
-
+using Mono.Unix;
+using Hyena;
+using FSpot;
 using FSpot.Core;
+using FSpot.Utils;
 using FSpot.Extensions;
 using FSpot.Imaging;
-
-using Hyena;
-
-using Mono.Unix;
+using FSpot.UI.Dialog;
 
 namespace FSpot.Tools.DevelopInUFraw
 {
-	// Abstract version, contains shared functionality
+    // Abstract version, contains shared functionality
 	public abstract class AbstractDevelopInUFRaw : ICommand
 	{
 		// The executable used for developing RAWs
@@ -71,7 +71,7 @@ namespace FSpot.Tools.DevelopInUFraw
 			LoadPreference (UFRAW_ARGUMENTS_KEY);
 			LoadPreference (UFRAW_BATCH_ARGUMENTS_KEY);
 
-			PhotoVersion raw = p.GetVersion (Photo.OriginalVersionId);
+			PhotoVersion raw = p.GetVersion (Photo.OriginalVersionId) as PhotoVersion;
 			if (!ImageFile.IsRaw (raw.Uri)) {
 				Log.Warning ("The original version of this image is not a (supported) RAW file");
 				return;
@@ -143,15 +143,16 @@ namespace FSpot.Tools.DevelopInUFraw
 		{
 			string name = Catalog.GetPluralString ("Developed in UFRaw", "Developed in UFRaw ({0})", i);
 			name = String.Format (name, i);
-
-			return p.VersionNameExists (name) ? GetVersionName (p, i + 1) : name;
+			if (p.VersionNameExists (name))
+				return GetVersionName (p, i + 1);
+			return name;
 		}
 
 		private System.Uri GetUriForVersionName (Photo p, string version_name)
 		{
 			string name_without_ext = System.IO.Path.GetFileNameWithoutExtension (p.Name);
 			return new System.Uri (System.IO.Path.Combine (DirectoryPath (p),  name_without_ext
-						   + " (" + version_name + ")" + ".jpg"));
+					       + " (" + version_name + ")" + ".jpg"));
 		}
 
 		private static string DirectoryPath (Photo p)

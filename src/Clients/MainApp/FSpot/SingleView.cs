@@ -31,23 +31,21 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
+using Gtk;
+using Gdk;
 using System;
 using System.Collections.Generic;
 
-using FSpot.Core;
-using FSpot.Extensions;
-using FSpot.Platform;
-using FSpot.UI.Dialog;
-using FSpot.Utils;
-using FSpot.Widgets;
-
-using Gdk;
-using Gtk;
-
-using Hyena;
-
 using Mono.Addins;
 using Mono.Unix;
+
+using Hyena;
+using FSpot.Extensions;
+using FSpot.Utils;
+using FSpot.UI.Dialog;
+using FSpot.Widgets;
+using FSpot.Platform;
+using FSpot.Core;
 
 namespace FSpot {
 	public class SingleView {
@@ -216,7 +214,7 @@ namespace FSpot {
 
 		void HandleExportActivated (object o, EventArgs e)
 		{
-			FSpot.Extensions.ExportMenuItemNode.SelectedImages = () => new PhotoList(directory_view.Selection.Items);
+			FSpot.Extensions.ExportMenuItemNode.SelectedImages = delegate () {return new PhotoList (directory_view.Selection.Items); };
 		}
 
 		public void HandleCollectionChanged (IBrowsableCollection collection)
@@ -486,6 +484,8 @@ namespace FSpot {
 				collection.LoadItems (list.ToArray());
 
 				Gtk.Drag.Finish (args.Context, true, false, args.Time);
+
+				return;
 			}
 		}
 

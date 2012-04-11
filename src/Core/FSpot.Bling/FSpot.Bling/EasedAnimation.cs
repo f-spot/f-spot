@@ -37,7 +37,7 @@ namespace FSpot.Bling
 		{
 		}
 
-		public EasedAnimation (EasingFunction easingFunction)
+		public EasedAnimation (EasingFunction easingFunction) : base ()
 		{
 			EasingFunction = easingFunction;
 		}

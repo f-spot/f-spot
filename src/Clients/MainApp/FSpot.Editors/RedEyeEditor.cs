@@ -29,13 +29,14 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
+using FSpot;
+using FSpot.Utils;
 using Gdk;
 using Gtk;
-
 using Mono.Unix;
+using System;
 
 namespace FSpot.Editors {
-	// FIXME: This is never used
 	class RedEyeEditor : Editor {
 		public RedEyeEditor () : base (Catalog.GetString ("Red-eye Reduction"), "red-eye-remove") {
 			// FIXME: ??? need tooltip Catalog.GetString ("Remove red-eye form the photo")

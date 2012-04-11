@@ -27,13 +27,13 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using FSpot.Transitions;
-
+using System;
 using Mono.Addins;
+using Gdk;
+using FSpot.Transitions;
 
 namespace FSpot.Extensions
 {
-	// FIXME: This is never instantiated
 	public class TransitionNode : ExtensionNode
 	{
 		[NodeAttribute ("transition_type", true)]
@@ -41,7 +41,11 @@ namespace FSpot.Extensions
 
 		SlideShowTransition transition = null;
 		public SlideShowTransition Transition {
-			get { return transition ?? (transition = Addin.CreateInstance(class_name) as SlideShowTransition); }
+			get {
+				if (transition == null)
+					transition = Addin.CreateInstance (class_name) as SlideShowTransition;
+				return transition;
+			}
 		}
 	}
 }

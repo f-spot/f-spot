@@ -34,12 +34,14 @@ using Hyena;
 using System;
 using System.IO;
 using System.Linq;
+using System.Collections;
 using System.Collections.Generic;
 
 using Mono.Unix;
 
 using FSpot.Core;
 using FSpot.Utils;
+using FSpot.Platform;
 using FSpot.Imaging;
 
 namespace FSpot
@@ -213,7 +215,7 @@ namespace FSpot
 
 		public bool VersionNameExists (string version_name)
 		{
-			return Versions.Any(v => v.Name == version_name);
+			return Versions.Where ((v) => v.Name == version_name).Any ();
 		}
 
 		public SafeUri VersionUri (uint version_id)
@@ -222,7 +224,10 @@ namespace FSpot
 				return null;
 
 			PhotoVersion v = versions [version_id];
-			return v != null ? v.Uri : null;
+			if (v != null)
+				return v.Uri;
+
+			return null;
 		}
 
 		public IPhotoVersion DefaultVersion {
@@ -261,7 +266,7 @@ namespace FSpot
 					var versionUri = VersionUri (version);
 
 					PixbufUtils.CreateDerivedVersion (DefaultVersion.Uri, versionUri, 95, buffer);
-					GetVersion (version).ImportMD5 = HashUtils.GenerateMD5 (VersionUri (version));
+					(GetVersion (version) as PhotoVersion).ImportMD5 = HashUtils.GenerateMD5 (VersionUri (version));
 					DefaultVersionId = version;
 				} catch (System.Exception e) {
 					Log.Exception (e);
@@ -275,12 +280,17 @@ namespace FSpot
 			return version;
 		}
 
+		public void DeleteVersion (uint version_id)
+		{
+			DeleteVersion (version_id, false, false);
+		}
+
 		public void DeleteVersion (uint version_id, bool remove_original)
 		{
 			DeleteVersion (version_id, remove_original, false);
 		}
 
-		public void DeleteVersion (uint version_id, bool remove_original = false, bool keep_file = false)
+		public void DeleteVersion (uint version_id, bool remove_original, bool keep_file)
 		{
 			if (version_id == OriginalVersionId && !remove_original)
 				throw new Exception ("Cannot delete original version");
@@ -355,8 +365,6 @@ namespace FSpot
 			uint count = 0;
 			GLib.FileEnumerator list = directory.EnumerateChildren ("standard::name",
 				GLib.FileQueryInfoFlags.None, null);
-
-			// FIXME: There has to be a better way to do this?
 			foreach (var item in list) {
 				count++;
 			}
@@ -365,10 +373,15 @@ namespace FSpot
 
 		public uint CreateVersion (string name, uint base_version_id, bool create)
 		{
-			return CreateVersion (name, null, base_version_id, create);
+			return CreateVersion (name, null, base_version_id, create, false);
 		}
 
-		private uint CreateVersion (string name, string extension, uint base_version_id, bool create, bool is_protected = false)
+		private uint CreateVersion (string name, string extension, uint base_version_id, bool create)
+		{
+			return CreateVersion (name, extension, base_version_id, create, false);
+		}
+
+		private uint CreateVersion (string name, string extension, uint base_version_id, bool create, bool is_protected)
 		{
 			extension = extension ?? VersionUri (base_version_id).GetExtension ();
 			SafeUri new_base_uri = DefaultVersion.BaseUri;
@@ -478,7 +491,7 @@ namespace FSpot
 				throw new Exception ("This name already exists");
 
 
-			GetVersion (version_id).Name = new_name;
+			(GetVersion (version_id) as PhotoVersion).Name = new_name;
 			changes.ChangeVersion (version_id);
 
 			//TODO: rename file too ???
@@ -539,14 +552,14 @@ namespace FSpot
 			changes.RemoveTag (tag);
 		}
 
-		public void RemoveTag (IEnumerable<Tag> taglist)
+		public void RemoveTag (Tag []taglist)
 		{
 			foreach (Tag tag in taglist) {
 				RemoveTag (tag);
 			}
 		}
 
-		public void RemoveCategory (IEnumerable<Tag> taglist)
+		public void RemoveCategory (IList<Tag> taglist)
 		{
 			foreach (Tag tag in taglist) {
 				Category cat = tag as Category;
@@ -590,20 +603,21 @@ namespace FSpot
 		{
 			if (this.GetType () == obj.GetType ())
 				return this.Compare((Photo)obj);
-
-			if (obj is DateTime)
+			else if (obj is DateTime)
 				return this.time.CompareTo ((DateTime)obj);
-
-			throw new Exception ("Object must be of type Photo");
+			else
+				throw new Exception ("Object must be of type Photo");
 		}
 
 		public int CompareTo (Photo photo)
 		{
 			int result = Id.CompareTo (photo.Id);
 
-			return result == 0 ? 0 : this.Compare (photo);
+			if (result == 0)
+				return 0;
+			else
+				return (this as IPhoto).Compare (photo);
 		}
-
 		#endregion
 	}
 }

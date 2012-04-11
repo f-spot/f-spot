@@ -32,10 +32,9 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-
+using System.Collections;
+using System.Collections.Generic;
 using FSpot.Core;
 
 namespace FSpot.Widgets
@@ -51,12 +50,16 @@ namespace FSpot.Widgets
 
 		TagStore tag_store;
 
+		public TagEntry (TagStore tag_store) : this (tag_store, true)
+		{
+		}
+
 		protected TagEntry (System.IntPtr raw)
 		{
 			Raw = raw;
 		}
 
-		public TagEntry (TagStore tag_store, bool update_on_focus_out = true)
+		public TagEntry (TagStore tag_store, bool update_on_focus_out) : base ()
 		{
 			this.tag_store = tag_store;
 			this.KeyPressEvent += HandleKeyPressEvent;
@@ -94,7 +97,7 @@ namespace FSpot.Widgets
 			Update ();
 		}
 
-		public void UpdateFromTagNames (IEnumerable<string> tagnames)
+		public void UpdateFromTagNames (string [] tagnames)
 		{
 			selected_photos_tagnames = new List<string> ();
 			foreach (string tagname in tagnames)
@@ -129,7 +132,14 @@ namespace FSpot.Widgets
 		{
 			string [] tagnames = Text.Split (new char [] {','});
 
-			return tagnames.Select(t => t.Trim()).Where(s => s.Length > 0).ToArray();
+			List<string> list = new List<string> ();
+			for (int i = 0; i < tagnames.Length; i ++) {
+				string s = tagnames [i].Trim ();
+
+				if (s.Length > 0)
+					list.Add (s);
+			}
+			return list.ToArray ();
 		}
 
 		int tag_completion_index = -1;
@@ -206,7 +216,7 @@ namespace FSpot.Widgets
 					return;
 
 				tag_completion_typed_so_far = Text.Substring (last_comma + 1).TrimStart (new char [] {' '});
-				if (string.IsNullOrEmpty(tag_completion_typed_so_far))
+				if (tag_completion_typed_so_far == null || tag_completion_typed_so_far.Length == 0)
 					return;
 
 				tag_completions = tag_store.GetTagsByNameStart (tag_completion_typed_so_far);
@@ -289,9 +299,12 @@ namespace FSpot.Widgets
 				TagsRemoved (this, remove_tags.ToArray ());
 		}
 
-		private static bool IsTagInList (IEnumerable<string> tags, string tag)
+		private static bool IsTagInList (string [] tags, string tag)
 		{
-			return tags.Any(t => t == tag);
+			foreach (string t in tags)
+				if (t == tag)
+					return true;
+			return false;
 		}
 
 		private void HandleFocusOutEvent (object o, Gtk.FocusOutEventArgs args)

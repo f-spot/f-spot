@@ -27,15 +27,12 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
+using Hyena;
+using FSpot.Core;
+using FSpot.Utils;
 using System;
 using System.Collections.Generic;
 using System.Threading;
-
-using FSpot.Core;
-using FSpot.Utils;
-
-using Hyena;
-
 using Mono.Unix;
 
 namespace FSpot.Import
@@ -131,8 +128,12 @@ namespace FSpot.Import
 #region Source Scanning
 
         private List<IImportSource> sources;
-        public IEnumerable<IImportSource> Sources {
-            get { return sources ?? (sources = ScanSources()); }
+        public List<IImportSource> Sources {
+            get {
+                if (sources == null)
+                    sources = ScanSources ();
+                return sources;
+            }
         }
 
         List<IImportSource> ScanSources ()
@@ -472,13 +473,12 @@ namespace FSpot.Import
         {
             var parts = uri.AbsolutePath.Split('/');
             SafeUri current = new SafeUri (uri.Scheme + ":///", true);
-            foreach (string t in parts)
-            {
-            	current = current.Append (t);
-            	var file = GLib.FileFactory.NewForUri (current);
-            	if (!file.Exists) {
-            		file.MakeDirectory (null);
-            	}
+            for (int i = 0; i < parts.Length; i++) {
+                current = current.Append (parts [i]);
+                var file = GLib.FileFactory.NewForUri (current);
+                if (!file.Exists) {
+                    file.MakeDirectory (null);
+                }
             }
         }
 
@@ -486,8 +486,8 @@ namespace FSpot.Import
 
 #region Tagging
 
-    	readonly List<Tag> attach_tags = new List<Tag> ();
-    	readonly TagStore tag_store = App.Instance.Database.Tags;
+        List<Tag> attach_tags = new List<Tag> ();
+        TagStore tag_store = App.Instance.Database.Tags;
 
         // Set the tags that will be added on import.
         public void AttachTags (IEnumerable<string> tags)
@@ -497,7 +497,7 @@ namespace FSpot.Import
             foreach (var tagname in tags) {
                 var tag = tag_store.GetTagByName (tagname);
                 if (tag == null) {
-                    tag = tag_store.CreateCategory (import_category, tagname, false);
+                    tag = tag_store.CreateCategory (import_category, tagname, false) as Tag;
                     tag_store.Commit (tag);
                 }
                 attach_tags.Add (tag);

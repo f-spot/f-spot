@@ -27,10 +27,10 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
+using Cms;
+using Gdk;
 using System;
 using System.Collections.Generic;
-
-using Gdk;
 
 namespace FSpot.ColorAdjustment {
 	public class FullColorAdjustment : Adjustment {

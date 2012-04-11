@@ -29,15 +29,13 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using FSpot.Extensions;
-
+using System;
 using Gtk;
-
 using Mono.Unix;
+using FSpot.Extensions;
 
 namespace FSpot.Widgets
 {
-	// FIXME: This is never used
 	public class FolderTreePage : SidebarPage
 	{
 		readonly FolderTreeView folder_tree_widget;

@@ -32,16 +32,13 @@
 //
 
 using System;
-
+using Gtk;
+using System.Collections;
+using Mono.Unix;
 using FSpot.Core;
 using FSpot.Database;
 using FSpot.Widgets;
-
-using Gtk;
-
 using Hyena;
-
-using Mono.Unix;
 
 namespace FSpot.UI.Dialog {
 	public class AdjustTimeDialog : BuilderDialog
@@ -80,13 +77,13 @@ namespace FSpot.UI.Dialog {
 			item.Changed += HandleItemChanged;
 			item.MoveFirst ();
 
-			tray = new BrowseablePointerGridView (view.Item) {
-				MaxColumns = 1,
-				DisplayRatings = false,
-				DisplayTags = false,
-				DisplayDates = true
-			};
-			tray_scrolled.Add (tray);
+            tray = new BrowseablePointerGridView (view.Item) {
+                MaxColumns = 1,
+                DisplayRatings = false,
+                DisplayTags = false,
+                DisplayDates = true
+            };
+            tray_scrolled.Add (tray);
 
 			//forward_button.Clicked += HandleForwardClicked;
 			//back_button.Clicked += HandleBackClicked;
@@ -138,7 +135,7 @@ namespace FSpot.UI.Dialog {
 
 			starting_label.Text = "min.";
 			difference_check.Label = String.Format (Catalog.GetString ("Shift all photos by {0}"),
-								  Offset);
+							      Offset);
 		}
 
 		void HandleItemChanged (object sender, BrowsablePointerChangedEventArgs args)
@@ -184,7 +181,7 @@ namespace FSpot.UI.Dialog {
 		private void SpaceByInterval ()
 		{
 			DateTime date = EditTime;
-			long ticks = (long) (double.Parse (spacing_entry.Text) * TimeSpan.TicksPerMinute);
+		        long ticks = (long) (double.Parse (spacing_entry.Text) * TimeSpan.TicksPerMinute);
 			TimeSpan span = new TimeSpan (ticks);
 			Photo [] photos = new Photo [collection.Count];
 
@@ -197,9 +194,8 @@ namespace FSpot.UI.Dialog {
 				date -= span;
 			}
 
-			foreach (Photo t in photos)
-			{
-				t.Time = date + accum;
+			for (int i = 0; i < photos.Length; i++) {
+				photos [i].Time = date + accum;
 				accum += span;
 			}
 
@@ -222,6 +218,7 @@ namespace FSpot.UI.Dialog {
 				ShiftByDifference ();
 			else
 				SpaceByInterval ();
+
 
 			Destroy ();
 		}

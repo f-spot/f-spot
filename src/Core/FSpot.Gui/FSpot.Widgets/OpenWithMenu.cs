@@ -33,6 +33,8 @@ using System;
 using System.Collections.Generic;
 
 using Gtk;
+using Gdk;
+using GLib;
 using GtkBeans;
 
 using Mono.Unix;
@@ -53,7 +55,11 @@ namespace FSpot.Widgets {
 			}
 		}
 
-		public bool ShowIcons { get; set; }
+		bool show_icons = true;
+		public bool ShowIcons {
+			get { return show_icons; }
+			set { show_icons = value; }
+		}
 
 		public OpenWithMenu (TypeFetcher type_fetcher) : this (type_fetcher, null)
 		{
@@ -61,7 +67,6 @@ namespace FSpot.Widgets {
 
 		public OpenWithMenu (TypeFetcher type_fetcher, params string [] ignore_apps)
 		{
-			ShowIcons = true;
 			this.type_fetcher = type_fetcher;
 			this.ignore_apps = new List<string> (ignore_apps);
 		}
@@ -70,11 +75,11 @@ namespace FSpot.Widgets {
 		public void Populate (object sender, EventArgs args)
 		{
 			Widget [] dead_pool = Children;
-			foreach (Widget t in dead_pool)
-				t.Destroy ();
+			for (int i = 0; i < dead_pool.Length; i++)
+				dead_pool [i].Destroy ();
 
 			foreach (AppInfo app in ApplicationsFor (type_fetcher ())) {
-				AppMenuItem i = new AppMenuItem (app, ShowIcons);
+				AppMenuItem i = new AppMenuItem (app, show_icons);
 				i.Activated += HandleItemActivated;
 				Append (i);
 			}

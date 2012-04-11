@@ -28,16 +28,16 @@
 // OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
-
-using System;
-
-using FSpot.UI.Dialog;
+using Cairo;
 
 using Gtk;
-
-using Hyena.Widgets;
-
+using Gdk;
+using System;
+using System.Runtime.InteropServices;
 using Mono.Unix;
+using FSpot.Widgets;
+using FSpot.UI.Dialog;
+using Hyena.Widgets;
 
 namespace FSpot.Widgets
 {
@@ -58,17 +58,17 @@ namespace FSpot.Widgets
 		{
 			if (!okClicked) {
 				base.UpdateSample ();
-	
+    
 				if (overlay != null)
 					overlay.Dispose ();
-	
+    
 				overlay = null;
 				if (source != null)
 					overlay = PixbufUtils.UnsharpMask (source,
-									   radius_spin.Value,
-									   amount_spin.Value,
-									   threshold_spin.Value,
-									   null);
+    								   radius_spin.Value,
+    								   amount_spin.Value,
+    								   threshold_spin.Value,
+                                       null);
 			}
 		}
 
@@ -92,10 +92,10 @@ namespace FSpot.Widgets
 			try {
 				Gdk.Pixbuf orig = view.Pixbuf;
 				Gdk.Pixbuf final = PixbufUtils.UnsharpMask (orig,
-										radius_spin.Value,
-										amount_spin.Value,
-										threshold_spin.Value,
-										progressDialog);
+                                        radius_spin.Value,
+                                        amount_spin.Value,
+                                        threshold_spin.Value,
+                                        progressDialog);
 
 				bool create_version = photo.DefaultVersion.IsProtected;
 
@@ -105,13 +105,13 @@ namespace FSpot.Widgets
 			} catch (System.Exception e) {
 				string msg = Catalog.GetString ("Error saving sharpened photo");
 				string desc = String.Format (Catalog.GetString ("Received exception \"{0}\". Unable to save photo {1}"),
-								 e.Message, photo.Name);
+                                 e.Message, photo.Name);
 
 				HigMessageDialog md = new HigMessageDialog (this, DialogFlags.DestroyWithParent,
-										Gtk.MessageType.Error,
-										ButtonsType.Ok,
-										msg,
-										desc);
+                                        Gtk.MessageType.Error,
+                                        ButtonsType.Ok,
+                                        msg,
+                                        desc);
 				md.Run ();
 				md.Destroy ();
 			}

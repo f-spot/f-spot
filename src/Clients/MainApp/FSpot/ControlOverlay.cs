@@ -29,13 +29,13 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using System;
-
 using Cairo;
 
+using System;
 using Gtk;
-
+using FSpot.Widgets;
 using FSpot.Utils;
+using FSpot.Core;
 using FSpot.Gui;
 
 namespace FSpot {

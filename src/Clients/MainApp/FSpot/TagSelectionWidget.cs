@@ -29,20 +29,26 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.IO;
+using System;
 
+using GLib;
+
+using Gdk;
+
+using Gtk;
+
+using Mono.Unix;
+
+using FSpot;
 using FSpot.Core;
 using FSpot.Database;
 using FSpot.Utils;
 using FSpot.Widgets;
-
-using Gdk;
-using Gtk;
-
+using FSpot.UI.Dialog;
 using Hyena.Widgets;
-
-using Mono.Unix;
 
 
 
@@ -95,7 +101,7 @@ namespace FSpot {
 			Model.GetValue (iter, IdColumn, ref val);
 			uint tag_id = (uint) val;
 
-			return tag_store.Get (tag_id);
+			return tag_store.Get (tag_id) as Tag;
 		}
 
 		// Loading up the store.
@@ -225,7 +231,7 @@ namespace FSpot {
 			Model.GetValue (iter, IdColumn, ref value);
 			uint tag_id = (uint) value;
 
-			Tag tag = tag_store.Get (tag_id);
+			Tag tag = tag_store.Get (tag_id) as Tag;
 			if (tag == null)
 				return;
 
@@ -265,7 +271,10 @@ namespace FSpot {
 			Model.GetValue (parent, IdColumn, ref value);
 			iter = parent;
 
-			return tag.Id == (uint) value;
+			if (tag.Id == (uint) value)
+				return true;
+
+			return false;
 		}
 
 		// Copy a branch of the tree to a new parent
@@ -278,7 +287,7 @@ namespace FSpot {
 			bool valid;
 
 			store.GetValue (src, IdColumn, ref value);
-			Tag tag = tag_store.Get ((uint)value);
+			Tag tag = (Tag) tag_store.Get ((uint)value);
 			if (is_parent) {
 				// we need to figure out where to insert it in the correct order
 				copy = InsertInOrder(dest, is_root, tag);
@@ -356,8 +365,8 @@ namespace FSpot {
 					TreeIterForTag (tag.Category, out iter);
 
 				InsertInOrder (iter,
-						   tag.Category.Name == tag_store.RootCategory.Name,
-						   tag);
+					       tag.Category.Name == tag_store.RootCategory.Name,
+					       tag);
 			}
 		}
 
@@ -497,7 +506,7 @@ namespace FSpot {
 			GLib.Value value = new GLib.Value ();
 			Model.GetValue (iter, IdColumn, ref value);
 			uint tag_id = (uint) value;
-			Tag tag = tag_store.Get (tag_id);
+			Tag tag = tag_store.Get (tag_id) as Tag;
 
 			// Ignore if it hasn't changed
 			if (tag.Name == args.NewText)
@@ -505,7 +514,7 @@ namespace FSpot {
 
 			// Check that the tag doesn't already exist
 			if (String.Compare (args.NewText, tag.Name, true) != 0 &&
-				tag_store.GetTagByName (args.NewText) != null) {
+			    tag_store.GetTagByName (args.NewText) != null) {
 				HigMessageDialog md = new HigMessageDialog (App.Instance.Organizer.Window,
 					DialogFlags.DestroyWithParent,
 					MessageType.Warning, ButtonsType.Ok,
@@ -524,19 +533,20 @@ namespace FSpot {
 			text_render.Edited -= HandleTagNameEdited;
 
 			args.RetVal = true;
+			return;
 		}
 
-		private static TargetList tagSourceTargetList = new TargetList();
-		private static TargetList tagDestTargetList = new TargetList();
+        private static TargetList tagSourceTargetList = new TargetList();
+        private static TargetList tagDestTargetList = new TargetList();
 
-		static TagSelectionWidget()
-		{
-			tagSourceTargetList.AddTargetEntry(DragDropTargets.TagListEntry);
+        static TagSelectionWidget()
+        {
+            tagSourceTargetList.AddTargetEntry(DragDropTargets.TagListEntry);
 
-			tagDestTargetList.AddTargetEntry(DragDropTargets.PhotoListEntry);
-			tagDestTargetList.AddUriTargets((uint)DragDropTargets.TargetType.UriList);
-			tagDestTargetList.AddTargetEntry(DragDropTargets.TagListEntry);
-		}
+            tagDestTargetList.AddTargetEntry(DragDropTargets.PhotoListEntry);
+            tagDestTargetList.AddUriTargets((uint)DragDropTargets.TargetType.UriList);
+            tagDestTargetList.AddTargetEntry(DragDropTargets.TagListEntry);
+        }
 
 		CellRendererPixbuf pix_render;
 		TreeViewColumn complete_column;
@@ -593,17 +603,17 @@ namespace FSpot {
 			DragBegin += HandleDragBegin;
 
 			Gtk.Drag.SourceSet (this,
-					   Gdk.ModifierType.Button1Mask | Gdk.ModifierType.Button3Mask,
-					   (TargetEntry[])tagSourceTargetList,
-					   DragAction.Copy | DragAction.Move);
+			           Gdk.ModifierType.Button1Mask | Gdk.ModifierType.Button3Mask,
+			           (TargetEntry[])tagSourceTargetList,
+			           DragAction.Copy | DragAction.Move);
 
 			DragDataReceived += HandleDragDataReceived;
 			DragMotion += HandleDragMotion;
 
 			Gtk.Drag.DestSet (this,
-							  DestDefaults.All,
-							  (TargetEntry[])tagDestTargetList,
-							  DragAction.Copy | DragAction.Move);
+			                  DestDefaults.All,
+			                  (TargetEntry[])tagDestTargetList,
+			                  DragAction.Copy | DragAction.Move);
 		}
 
 		void HandleDragBegin (object sender, DragBeginArgs args)
@@ -643,6 +653,7 @@ namespace FSpot {
 		{
 			if (args.Info == DragDropTargets.TagListEntry.Info) {
 				args.SelectionData.SetTagsData (TagHighlight, args.Context.Targets[0]);
+				return;
 			}
 		}
 
@@ -654,41 +665,41 @@ namespace FSpot {
 		public void HandleDragMotion (object o, DragMotionArgs args)
 		{
 			TreePath path;
-			TreeViewDropPosition position = TreeViewDropPosition.IntoOrAfter;
+	        TreeViewDropPosition position = TreeViewDropPosition.IntoOrAfter;
 			GetPathAtPos (args.X, args.Y, out path);
 
-			if (path == null)
-				return;
+	        if (path == null)
+	            return;
 
-			// Tags can be dropped before, after, or into another tag
-			if (args.Context.Targets[0].Name == "application/x-fspot-tags") {
-				Gdk.Rectangle rect = GetCellArea(path, Columns[0]);
-				double vpos = Math.Abs(rect.Y - args.Y) / (double)rect.Height;
-				if (vpos < 0.2) {
-					position = TreeViewDropPosition.Before;
-				} else if (vpos > 0.8) {
-					position = TreeViewDropPosition.After;
-				}
-			}
+	        // Tags can be dropped before, after, or into another tag
+	        if (args.Context.Targets[0].Name == "application/x-fspot-tags") {
+	            Gdk.Rectangle rect = GetCellArea(path, Columns[0]);
+	            double vpos = Math.Abs(rect.Y - args.Y) / (double)rect.Height;
+	            if (vpos < 0.2) {
+	                position = TreeViewDropPosition.Before;
+	            } else if (vpos > 0.8) {
+	                position = TreeViewDropPosition.After;
+	            }
+	        }
 
 			SetDragDestRow (path, position);
 
 			// Scroll if within 20 pixels of the top or bottom of the tag list
 			if (args.Y < 20)
 				Vadjustment.Value -= 30;
-			else if (((o as Gtk.Widget).Allocation.Height - args.Y) < 20)
+	        else if (((o as Gtk.Widget).Allocation.Height - args.Y) < 20)
 				Vadjustment.Value += 30;
 		}
 
 		public void HandleDragDataReceived (object o, DragDataReceivedArgs args)
 		{
-			TreePath path;
-			TreeViewDropPosition position;
+	        TreePath path;
+	        TreeViewDropPosition position;
 
-			if ( ! GetDestRowAtPos ((int)args.X, (int)args.Y, out path, out position))
-				return;
+	        if ( ! GetDestRowAtPos ((int)args.X, (int)args.Y, out path, out position))
+	            return;
 
-			Tag tag = path == null ? null : TagByPath (path);
+	        Tag tag = path == null ? null : TagByPath (path);
 			if (tag == null)
 				return;
 
@@ -741,34 +752,35 @@ namespace FSpot {
 
 			if (args.Info == DragDropTargets.TagListEntry.Info) {
 				Category parent;
-				if (position == TreeViewDropPosition.Before || position == TreeViewDropPosition.After) {
-					parent = tag.Category;
-				} else {
-					parent = tag as Category;
-				}
+	            if (position == TreeViewDropPosition.Before || position == TreeViewDropPosition.After) {
+	                parent = tag.Category;
+	            } else {
+	                parent = tag as Category;
+	            }
 
 				if (parent == null || TagHighlight.Length < 1) {
-					args.RetVal = false;
+	                args.RetVal = false;
 					return;
-				}
+	            }
 
-				int moved_count = 0;
-				Tag [] highlighted_tags = TagHighlight;
+	            int moved_count = 0;
+	            Tag [] highlighted_tags = TagHighlight;
 				foreach (Tag child in TagHighlight) {
-					// FIXME with this reparenting via dnd, you cannot move a tag to root.
-					if (child != parent && child.Category != parent && !child.IsAncestorOf(parent)) {
-						child.Category = parent;
+	                // FIXME with this reparenting via dnd, you cannot move a tag to root.
+	                if (child != parent && child.Category != parent && !child.IsAncestorOf(parent)) {
+	                    child.Category = parent as Category;
 
-						// Saving changes will automatically cause the TreeView to be updated
-						database.Tags.Commit (child);
-						moved_count++;
-					}
-				}
+	                    // Saving changes will automatically cause the TreeView to be updated
+	                    database.Tags.Commit (child);
+	                    moved_count++;
+	                }
+	            }
 
-				// Reselect the same tags
-				TagHighlight = highlighted_tags;
+	            // Reselect the same tags
+	            TagHighlight = highlighted_tags;
 
-				args.RetVal = moved_count > 0;
+	            args.RetVal = moved_count > 0;
+				return;
 			}
 		}
 

@@ -35,7 +35,7 @@ namespace FSpot.Filters {
 	{
 		List<string> valid_extensions;
 
-		public WhiteListFilter (IEnumerable<string> valid_extensions)
+		public WhiteListFilter (string [] valid_extensions)
 		{
 			this.valid_extensions = new List<string> ();
 			foreach (string extension in valid_extensions)

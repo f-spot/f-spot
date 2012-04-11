@@ -30,12 +30,15 @@
 //
 
 using System;
-using FSpot.Utils;
+using System.Collections.Generic;
 
 using Gtk;
+using GLib;
+
+using FSpot;
+using FSpot.Utils;
 
 using Hyena;
-
 using Mono.Unix;
 
 namespace FSpot.Widgets
@@ -46,14 +49,14 @@ namespace FSpot.Widgets
 
 		protected FolderTreeView (IntPtr raw) : base (raw) {}
 
-		private static readonly TargetList folderTreeSourceTargetList = new TargetList();
+        private static TargetList folderTreeSourceTargetList = new TargetList();
 
-		static FolderTreeView()
-		{
-			folderTreeSourceTargetList.AddTextTargets((uint)DragDropTargets.TargetType.PlainText);
-			folderTreeSourceTargetList.AddUriTargets((uint)DragDropTargets.TargetType.UriList);
-			folderTreeSourceTargetList.AddTargetEntry(DragDropTargets.UriQueryEntry);
-		}
+        static FolderTreeView()
+        {
+            folderTreeSourceTargetList.AddTextTargets((uint)DragDropTargets.TargetType.PlainText);
+            folderTreeSourceTargetList.AddUriTargets((uint)DragDropTargets.TargetType.UriList);
+            folderTreeSourceTargetList.AddTargetEntry(DragDropTargets.UriQueryEntry);
+        }
 
 		public FolderTreeView () : this (new FolderTreeModel ())
 		{
@@ -78,7 +81,7 @@ namespace FSpot.Widgets
 			AppendColumn (column);
 
 			Gtk.Drag.SourceSet (this, Gdk.ModifierType.Button1Mask | Gdk.ModifierType.Button3Mask,
-					(TargetEntry[])folderTreeSourceTargetList, Gdk.DragAction.Copy | Gdk.DragAction.Move);
+				    (TargetEntry[])folderTreeSourceTargetList, Gdk.DragAction.Copy | Gdk.DragAction.Move);
 		}
 
 		public UriList SelectedUris {
@@ -164,10 +167,11 @@ namespace FSpot.Widgets
 		protected override void OnDragDataGet (Gdk.DragContext context, Gtk.SelectionData selection_data, uint info, uint time_)
 		{
 			if (info == DragDropTargets.UriQueryEntry.Info
-				|| info == (uint)DragDropTargets.TargetType.UriList
-				|| info == (uint)DragDropTargets.TargetType.PlainText) {
+			    || info == (uint)DragDropTargets.TargetType.UriList
+			    || info == (uint)DragDropTargets.TargetType.PlainText) {
 
 				selection_data.SetUriListData (SelectedUris, context.Targets[0]);
+				return;
 			}
 		}
 

@@ -27,9 +27,8 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using System;
-
 using Mono.Addins;
+using System;
 
 namespace FSpot.Extensions
 {
@@ -42,7 +41,7 @@ namespace FSpot.Extensions
 
 		protected override void OnActivated (object o, EventArgs e)
 		{
-			ICommand cmd = Addin.CreateInstance (command_type) as ICommand;
+			ICommand cmd = (ICommand) Addin.CreateInstance (command_type);
 			cmd.Run (o, e);
 		}
 	}

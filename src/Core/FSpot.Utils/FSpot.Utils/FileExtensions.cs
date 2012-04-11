@@ -29,13 +29,14 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
+using System;
 using System.IO;
-
+using Mono.Unix;
 using GLib;
+using Hyena;
 
 namespace FSpot.Utils
 {
-	// FIXME: This class is never used
 	public static class FileExtensions
 	{
 		public static bool CopyRecursive (this GLib.File source, GLib.File target, GLib.FileCopyFlags flags, GLib.Cancellable cancellable, GLib.FileProgressCallback callback)

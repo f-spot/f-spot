@@ -27,21 +27,20 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
+using FSpot;
 using FSpot.Editors;
-
 using Gdk;
-
 using Mono.Unix;
 
 namespace FSpot.Addins.Editors {
-	class FlipEditor : Editor {
-		public FlipEditor () : base (Catalog.GetString ("Flip"), "object-flip-horizontal") {
+    class FlipEditor : Editor {
+        public FlipEditor () : base (Catalog.GetString ("Flip"), "object-flip-horizontal") {
 			CanHandleMultiple = true;
-		}
+        }
 
-		protected override Pixbuf Process (Pixbuf input, Cms.Profile input_profile) {
+        protected override Pixbuf Process (Pixbuf input, Cms.Profile input_profile) {
 			Pixbuf output = (Pixbuf) input.Clone ();
 			return output.Flip (true);
-		}
-	}
+        }
+    }
 }

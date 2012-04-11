@@ -30,6 +30,7 @@
 //
 
 using FSpot.Core;
+using FSpot.Utils;
 
 namespace FSpot {
 	public interface ILimitable {

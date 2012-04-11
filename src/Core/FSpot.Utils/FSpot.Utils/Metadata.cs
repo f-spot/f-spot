@@ -27,13 +27,10 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using System;
-
-using GLib;
-
 using Hyena;
-
 using TagLib;
+using System;
+using GLib;
 
 namespace FSpot.Utils
 {

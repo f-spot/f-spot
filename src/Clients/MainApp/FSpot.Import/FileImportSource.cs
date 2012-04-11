@@ -26,18 +26,15 @@
 // OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
-
-using System;
-using System.Collections.Generic;
-using System.Threading;
-
-using FSpot.Core;
-using FSpot.Imaging;
-using FSpot.Utils;
-
-using Gtk;
-
 using Hyena;
+using System;
+using System.Threading;
+using System.Collections.Generic;
+using FSpot.Core;
+using FSpot.Utils;
+using FSpot.Imaging;
+using Gtk;
+using Mono.Unix.Native;
 
 namespace FSpot.Import
 {
@@ -57,15 +54,14 @@ namespace FSpot.Import
 			Root = root;
 			Name = name;
 
-			if (root == null)
-				return;
-
-			if (IsIPodPhoto) {
-				IconName = "multimedia-player";
-			} else if (IsCamera) {
-				IconName = "media-flash";
-			} else {
-				IconName = icon_name;
+			if (root != null) {
+				if (IsIPodPhoto) {
+					IconName = "multimedia-player";
+				} else if (IsCamera) {
+					IconName = "media-flash";
+				} else {
+					IconName = icon_name;
+				}
 			}
 		}
 

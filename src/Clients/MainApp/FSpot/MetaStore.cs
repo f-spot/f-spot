@@ -29,12 +29,14 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
+using Gdk;
+using Gtk;
+using System.Collections;
+using System.IO;
 using System;
-
+using FSpot;
 using FSpot.Core;
 using FSpot.Database;
-
-using Hyena;
 using Hyena.Data.Sqlite;
 
 namespace FSpot {
@@ -101,10 +103,7 @@ namespace FSpot {
     		try {
     			string id = Database.Query<string> ("SELECT id FROM tags WHERE name = 'Hidden'");
     			Create (hidden, id);
-    		} catch (Exception ex)
-    		{
-    			Log.DebugException(ex);
-    		}
+    		} catch (Exception) {}
     	}
     
     	private void LoadAllItems ()

@@ -30,13 +30,11 @@
 //
 
 using System;
-
 using Mono.Unix;
-
 using Gtk;
 using Gdk;
 using GLib;
-
+using FSpot.Core;
 using FSpot.Utils;
 using FSpot.Widgets;
 
@@ -296,16 +294,14 @@ namespace FSpot {
 		{
 			x -= BoxX (0);
 			position = (int) (x / BoxWidth);
-			bool result = true;
-
 			if (position < 0) {
 				position = 0;
-				result = false;
+				return false;
 			} else if (position >= box_counts.Length) {
 				position = box_counts.Length -1;
-				result = false;
+				return false;
 			}
-			return result;
+			return true;
 		}
 
 		private bool BoxHit (double x, double y, out int position)
@@ -593,7 +589,10 @@ namespace FSpot {
 					}
 				}
 				get {
-					return Dragging ? drag_offset : 0;
+					if (Dragging)
+						return drag_offset;
+					else
+						return 0;
 				}
 			}
 
@@ -619,7 +618,10 @@ namespace FSpot {
 
 			protected bool PositionValid (int position)
 			{
-				return position >= 0 && position <= selector.box_counts.Length - 1;
+				if (position < 0 || position > selector.box_counts.Length - 1)
+					return false;
+
+				return true;
 			}
 
 			public virtual void UpdateDrag (double x, double y)
@@ -694,7 +696,7 @@ namespace FSpot {
 					return;
 
 				Rectangle then = Bounds ();
-				this.Position = position;
+				this.position = position;
 				Rectangle now = Bounds ();
 
 				if (selector.Visible) {
@@ -707,7 +709,12 @@ namespace FSpot {
 					PositionChanged ();
 			}
 
-			public int Position { get; private set; }
+			private int position;
+			public int Position {
+				get {
+					return position;
+				}
+			}
 
 			public abstract void Draw (Rectangle area);
 
@@ -1110,7 +1117,6 @@ namespace FSpot {
 			if (event_window != null)
 				event_window.MoveResize (action.X, action.Y, action.Width, action.Height);
 
-			// FIXME: What?!?!?!
 			this.Offset = this.Offset;
 
 			UpdateButtons ();
@@ -1170,5 +1176,7 @@ namespace FSpot {
 			Mode = RangeType.Min;
 			UpdateButtons ();
 		}
+
+		public GroupSelector (IntPtr raw) : base (raw) {}
 	}
 }

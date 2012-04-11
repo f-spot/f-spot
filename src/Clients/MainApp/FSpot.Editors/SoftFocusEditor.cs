@@ -29,21 +29,19 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
+using System;
+using Mono.Unix;
 using Cairo;
-
-using FSpot.Widgets;
-
 using Gdk;
 using Gtk;
 
-using Mono.Unix;
+using FSpot.Widgets;
 
 using Pinta.Core;
 
 namespace FSpot.Editors
 {
 	// TODO: This had a keybinding e. Maybe we should add it back, but did people even knew it?
-	// FIXME: This class is never used
 	class SoftFocusEditor : Editor
 	{
 		double radius;
@@ -88,7 +86,7 @@ namespace FSpot.Editors
 							soft.Apply (ctx, info.Bounds);
 						}
 
-						result = surface.ToPixbuf();
+                        result = surface.ToPixbuf();
 						surface.Flush ();
 					}
 				}

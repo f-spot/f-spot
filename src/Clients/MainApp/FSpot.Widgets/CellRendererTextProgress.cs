@@ -30,8 +30,15 @@
 //
 
 using System;
+using System.Collections.Generic;
 
 using Gtk;
+using GLib;
+
+using FSpot;
+using FSpot.Utils;
+
+using Mono.Unix;
 
 namespace FSpot.Widgets
 {

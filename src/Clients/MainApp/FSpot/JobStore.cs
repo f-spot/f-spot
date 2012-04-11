@@ -29,14 +29,14 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
+using System.Collections;
+using System.IO;
 using System;
-
 using Banshee.Kernel;
-
-using FSpot.Core;
-using FSpot.Database;
 using FSpot.Jobs;
-
+using FSpot.Database;
+using FSpot;
+using FSpot.Core;
 using Hyena;
 using Hyena.Data.Sqlite;
 
@@ -71,6 +71,8 @@ namespace FSpot {
     				if (Finished != null)
     					Finished (this, new EventArgs ());
     				break;
+    			default:
+    				break;
     			}
     		}
     	}
@@ -78,9 +80,12 @@ namespace FSpot {
     	public void Run ()
     	{
     		Status = JobStatus.Running;
-    		Status = Execute () ? JobStatus.Finished : JobStatus.Failed;
+    		if (Execute ())
+    			Status = JobStatus.Finished;
+    		else
+    			Status = JobStatus.Failed;
     	}
-
+    
     	protected abstract bool Execute ();
     }
 
@@ -188,7 +193,7 @@ namespace FSpot {
     	{
     		RemoveFromCache (item);
     
-    		if (item.Persistent)
+    		if ((item as Job).Persistent)
     			Database.Execute (new HyenaSqliteCommand ("DELETE FROM jobs WHERE id = ?", item.Id));
     
     		EmitRemoved (item);

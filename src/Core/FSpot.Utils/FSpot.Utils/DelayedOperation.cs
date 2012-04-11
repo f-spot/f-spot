@@ -65,7 +65,7 @@ namespace FSpot.Utils
         public void Start ()
         {
             lock (syncHandle) {
-                if (IsPending)
+                if (this.IsPending)
                     return;
                 
                 if (interval != 0)
@@ -88,13 +88,13 @@ namespace FSpot.Utils
 
         private void HandleDestroy (object sender, System.EventArgs args)
         {
-            Stop ();
+            this.Stop ();
         }
 
         public void Stop ()
         {
             lock (syncHandle) {
-                if (IsPending) {
+                if (this.IsPending) {
                     GLib.Source.Remove (source);
                     source = 0;
                 }

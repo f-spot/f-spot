@@ -37,26 +37,30 @@
  * Copyright (C) 2006 Stephane Delcroix
  */
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using System.Collections;
+using System.Collections.Generic;
+using Mono.Unix;
+using Hyena;
 
+using FSpot;
 using FSpot.Core;
 using FSpot.Filters;
-using FSpot.UI.Dialog;
 using FSpot.Widgets;
-
-using Hyena;
+using FSpot.UI.Dialog;
 
 using Mono.Google;
 using Mono.Google.Picasa;
-using Mono.Unix;
 
 namespace FSpot.Exporters.PicasaWeb
 {
 	public class GoogleExport : FSpot.Extensions.IExporter
 	{
+		public GoogleExport ()
+		{
+		}
+
 		public void Run (IBrowsableCollection selection)
 		{
 			builder = new GtkBeans.Builder (null, "google_export_dialog.ui", null);
@@ -328,7 +332,12 @@ namespace FSpot.Exporters.PicasaWeb
 			gallery_optionmenu.Active = pos;
 		}
 
-		private void Connect (GoogleAccount selected = null)
+		private void Connect ()
+		{
+			Connect (null);
+		}
+
+		private void Connect (GoogleAccount selected)
 		{
 			Connect (selected, null, null);
 		}
@@ -387,7 +396,6 @@ namespace FSpot.Exporters.PicasaWeb
 			}
 		}
 
-		// FIXME: This is never used
 		private void HandleAccountSelected (object sender, System.EventArgs args)
 		{
 			Connect ();
@@ -401,7 +409,7 @@ namespace FSpot.Exporters.PicasaWeb
 			// make the newly created album selected
 //			PicasaAlbumCollection albums = account.Picasa.GetAlbums();
 			for (int i=0; i < albums.Count; i++) {
-				if (albums [i].Title == title)
+				if (((PicasaAlbum)albums [i]).Title == title)
 					album_optionmenu.Active = i;
 			}
 		}
@@ -509,7 +517,12 @@ namespace FSpot.Exporters.PicasaWeb
 		}
 
 		private Gtk.Dialog Dialog {
-			get { return dialog ?? (dialog = new Gtk.Dialog(builder.GetRawObject(dialog_name))); }
+			get {
+				if (dialog == null)
+					dialog = new Gtk.Dialog (builder.GetRawObject (dialog_name));
+
+				return dialog;
+			}
 		}
 	}
 }

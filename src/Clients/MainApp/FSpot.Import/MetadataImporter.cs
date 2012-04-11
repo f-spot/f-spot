@@ -28,12 +28,10 @@
 //
 
 using System;
+using Mono.Unix;
 using System.Collections.Generic;
-
 using FSpot.Core;
 using FSpot.Utils;
-
-using Mono.Unix;
 
 namespace FSpot.Import {
     internal class MetadataImporter {
@@ -68,7 +66,7 @@ namespace FSpot.Import {
 
         public MetadataImporter ()
         {
-            tag_store = App.Instance.Database.Tags;
+            this.tag_store = App.Instance.Database.Tags;
             tags_created = new Stack<Tag> ();
 
             li_root_tag = new TagInfo (Catalog.GetString ("Imported Tags"), LastImportIcon);
@@ -96,7 +94,7 @@ namespace FSpot.Import {
 
         private void AddTagToPhoto (Photo photo, string new_tag_name)
         {
-            if (string.IsNullOrEmpty(new_tag_name))
+            if (new_tag_name == null || new_tag_name.Length == 0)
                 return;
 
             Tag parent = EnsureTag (li_root_tag, tag_store.RootCategory);

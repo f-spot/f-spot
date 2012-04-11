@@ -32,7 +32,7 @@ using System.Runtime.Serialization;
 
 namespace Cms {
 	[Serializable]
-	public class CmsException : Exception {
+	public class CmsException : System.Exception {
 		public CmsException (string message) : base (message)
 		{
 		}
@@ -45,7 +45,7 @@ namespace Cms {
 		{
 		}
 
-		public CmsException ()
+		public CmsException () : base ()
 		{
 		}
 	}

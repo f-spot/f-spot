@@ -35,6 +35,7 @@ namespace FSpot.Widgets
 	{
 		Label label;
 		Arrow arrow;
+		Menu popup_menu;
 
 		public new string Label {
 			get { return label.Text; }
@@ -48,17 +49,24 @@ namespace FSpot.Widgets
 			set { arrow.ArrowType = value; }
 		}
 
-		public Menu Menu { get; set; }
+		public Menu Menu {
+			get { return popup_menu; }
+			set { popup_menu = value; }
+		}
 
 		public MenuButton () : this (null)
 		{
 		}
 
-		public MenuButton (string label, Menu menu = null) : this (label, menu, ArrowType.Down)
+		public MenuButton (string label) : this (label, null)
 		{
 		}
 
-		public MenuButton (string label, Menu menu, ArrowType arrow_type)
+		public MenuButton (string label, Menu menu) : this (label, menu, ArrowType.Down)
+		{
+		}
+
+		public MenuButton (string label, Menu menu, ArrowType arrow_type) : base ()
 		{
 			HBox hbox = new HBox ();
 			
@@ -83,10 +91,10 @@ namespace FSpot.Widgets
 
 		protected override void OnPressed ()
 		{
-			if (Menu == null)
+			if (popup_menu == null)
 				return;
 			
-			Menu.Popup (null, null, Position, 0, Gtk.Global.CurrentEventTime);
+			popup_menu.Popup (null, null, Position, 0, Gtk.Global.CurrentEventTime);
 		}
 
 		void Position (Menu menu, out int x, out int y, out bool push_in)

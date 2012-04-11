@@ -31,9 +31,15 @@
 // OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-using System;
-using System.Collections.Generic;
+using Gdk;
+using Gtk;
 
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.IO;
+
+using FSpot;
 using FSpot.Core;
 using FSpot.Database;
 using Hyena.Data.Sqlite;
@@ -86,10 +92,10 @@ namespace FSpot
 		private ExportItem LoadItem (IDataReader reader)
 		{
 			return new ExportItem (Convert.ToUInt32 (reader ["id"]),
-					   Convert.ToUInt32 (reader ["image_id"]),
-					   Convert.ToUInt32 (reader ["image_version_id"]),
-					   reader ["export_type"].ToString (),
-					   reader ["export_token"].ToString ());
+				       Convert.ToUInt32 (reader ["image_id"]),
+				       Convert.ToUInt32 (reader ["image_version_id"]),
+				       reader ["export_type"].ToString (),
+				       reader ["export_token"].ToString ());
 		}
 
 		private void LoadAllItems ()
@@ -119,7 +125,7 @@ namespace FSpot
 		public override void Commit (ExportItem item)
 		{
 			Database.Execute (new HyenaSqliteCommand ("UPDATE exports SET image_id = ?, image_version_id = ?, export_type = ? SET export_token = ? WHERE id = ?",
-					item.ImageId, item.ImageVersionId, item.ExportType, item.ExportToken, item.Id));
+                    item.ImageId, item.ImageVersionId, item.ExportType, item.ExportToken, item.Id));
 
 			EmitChanged (item);
 		}
@@ -134,7 +140,7 @@ namespace FSpot
 		{
 
 			IDataReader reader = Database.Query (new HyenaSqliteCommand ("SELECT id, image_id, image_version_id, export_type, export_token FROM exports WHERE image_id = ? AND image_version_id = ?",
-					image_id, image_version_id));
+                    image_id, image_version_id));
 
 			List<ExportItem> export_items = new List<ExportItem> ();
 			while (reader.Read ()) {

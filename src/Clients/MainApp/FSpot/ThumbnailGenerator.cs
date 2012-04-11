@@ -31,14 +31,18 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using FSpot.Utils;
-
+using System;
 using Hyena;
+using FSpot.Utils;
+using FSpot.Platform;
+
+using Mono.Unix.Native;
+using GFileInfo = GLib.FileInfo;
 
 namespace FSpot {
     public class ThumbnailLoader : ImageLoaderThread {
 
-        static public readonly ThumbnailLoader Default = new ThumbnailLoader ();
+        static public ThumbnailLoader Default = new ThumbnailLoader ();
 
         public void Request (SafeUri uri, ThumbnailSize size, int order)
         {

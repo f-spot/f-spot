@@ -38,7 +38,6 @@ namespace FSpot.Extensions
 	// should be added to the Condition tag.
 	//   - single: One photo is selected
 	//   - multiple: Multiple photos are selected
-	// FIXME: This is never used
 	public class PhotoSelectionCondition : ConditionType
 	{
 		public PhotoSelectionCondition()
@@ -51,12 +50,10 @@ namespace FSpot.Extensions
 			int count = App.Instance.Organizer.Selection.Count;
 			string val = conditionNode.GetAttribute ("selection");
 			if (val.Length > 0) {
-				foreach (string selection in val.Split(','))
-				{
+				foreach (string selection in val.Split(',')) {
 					if (selection == "multiple" && count > 1) {
 						return true;
-					}
-					if (selection == "single" && count == 1) {
+					} else if (selection == "single" && count == 1) {
 						return true;
 					}
 				}

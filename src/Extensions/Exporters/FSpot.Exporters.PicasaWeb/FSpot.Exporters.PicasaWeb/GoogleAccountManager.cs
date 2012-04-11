@@ -29,13 +29,10 @@
 //
 
 using System;
-// FIXME: Why do we still have System.Collections
 using System.Collections;
 using System.Collections.Generic;
-
-using Gnome.Keyring;
-
 using Hyena;
+using Gnome.Keyring;
 
 namespace FSpot.Exporters.PicasaWeb
 {
@@ -43,7 +40,7 @@ namespace FSpot.Exporters.PicasaWeb
 	{
 		private static GoogleAccountManager instance;
 		private const string keyring_item_name = "Google Account";
-		readonly List<GoogleAccount> accounts;
+		List<GoogleAccount> accounts;
 
 		public delegate void AccountListChangedHandler (GoogleAccountManager manager, GoogleAccount changed_account);
 		public event AccountListChangedHandler AccountListChanged;
@@ -63,7 +60,12 @@ namespace FSpot.Exporters.PicasaWeb
 			ReadAccounts ();
 		}
 
-		public void MarkChanged (bool write = true, GoogleAccount changed_account = null)
+		public void MarkChanged ()
+		{
+			MarkChanged (true, null);
+		}
+
+		public void MarkChanged (bool write, GoogleAccount changed_account)
 		{
 			if (write)
 				WriteAccounts ();
@@ -77,7 +79,12 @@ namespace FSpot.Exporters.PicasaWeb
 			return accounts;
 		}
 
-		public void AddAccount (GoogleAccount account, bool write = true)
+		public void AddAccount (GoogleAccount account)
+		{
+			AddAccount (account, true);
+		}
+
+		public void AddAccount (GoogleAccount account, bool write)
 		{
 			accounts.Add (account);
 			MarkChanged (write, account);

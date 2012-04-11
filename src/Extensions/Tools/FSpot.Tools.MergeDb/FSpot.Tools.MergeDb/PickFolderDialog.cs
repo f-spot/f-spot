@@ -30,10 +30,10 @@
 //
 
 using System;
-
-using Hyena;
-
+using FSpot;
+using FSpot.Query;
 using Mono.Unix;
+using Hyena;
 
 namespace FSpot.Tools.MergeDb
 {
@@ -61,7 +61,10 @@ namespace FSpot.Tools.MergeDb
 		public string Run ()
 		{
 			pickfolder_dialog.ShowAll ();
-			return pickfolder_dialog.Run () == -6 ? pickfolder_chooser.Filename : null;
+			if (pickfolder_dialog.Run () == -6)
+				return pickfolder_chooser.Filename;
+			else
+				return null;
 		}
 
 		public Gtk.Dialog Dialog {

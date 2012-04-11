@@ -55,10 +55,11 @@
 using System;
 using System.IO;
 
+using Hyena;
+
+using FSpot;
 using FSpot.Core;
 using FSpot.Filters;
-
-using Hyena;
 
 namespace FSpot.Exporters.Folder
 {
@@ -75,16 +76,16 @@ namespace FSpot.Exporters.Folder
 
 			public ScaleRequest (string name, int width, int height, bool skip, bool exif = false)
 			{
-				Name = name ?? String.Empty;
-				Width = width;
-				Height = height;
-				Skip = skip;
-				CopyExif = exif;
+				this.Name = name != null ? name : String.Empty;
+				this.Width = width;
+				this.Height = height;
+				this.Skip = skip;
+				this.CopyExif = exif;
 			}
 
 			public bool AvoidScale (int size)
 			{
-				return (size < Width && size < Height && Skip);
+				return (size < this.Width && size < this.Height && this.Skip);
 			}
 		}
 
@@ -111,7 +112,7 @@ namespace FSpot.Exporters.Folder
 			Collection = selection;
 			GalleryName = gallery_name;
 			GalleryPath = Path.Combine (path, GalleryName);
-			requests = new ScaleRequest [] { ScaleRequest.Default };
+			this.requests = new ScaleRequest [] { ScaleRequest.Default };
 		}
 		#endregion
 

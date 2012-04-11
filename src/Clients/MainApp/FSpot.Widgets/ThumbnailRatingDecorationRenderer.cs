@@ -27,10 +27,13 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
+using System;
+
+using Gtk;
+using Gdk;
+
 using FSpot.Core;
 
-using Gdk;
-using Gtk;
 
 namespace FSpot.Widgets
 {
@@ -44,6 +47,14 @@ namespace FSpot.Widgets
 #region Private Fields
 
         RatingRenderer rating_renderer = new RatingRenderer ();
+
+#endregion
+
+#region Constructor
+
+        public ThumbnailRatingDecorationRenderer ()
+        {
+        }
 
 #endregion
 

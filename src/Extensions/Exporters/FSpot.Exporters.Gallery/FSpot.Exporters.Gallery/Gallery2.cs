@@ -261,7 +261,7 @@ namespace FSpot.Exporters.Gallery
 
 		public override string GetAlbumUrl (Album album)
 		{
-			return Uri + "?g2_view=core.ShowItem&g2_itemId=" + album.Name;
+			return Uri.ToString () + "?g2_view=core.ShowItem&g2_itemId=" + album.Name;
 		}
 	}
 }

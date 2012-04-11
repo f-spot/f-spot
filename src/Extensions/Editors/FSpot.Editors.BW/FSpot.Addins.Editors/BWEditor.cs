@@ -28,16 +28,13 @@
 //
 
 using System;
-
+using FSpot;
 using FSpot.Editors;
-
-using Gdk;
 using Gtk;
-
-using Hyena;
-
-using Mono.Simd;
+using Gdk;
 using Mono.Unix;
+using Mono.Simd;
+using Hyena;
 
 namespace FSpot.Addins.Editors {
 	class BWEditor : Editor {

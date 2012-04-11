@@ -28,7 +28,6 @@
 //
 
 using System;
-
 using Gtk;
 
 namespace FSpot.Widgets
@@ -39,7 +38,7 @@ namespace FSpot.Widgets
 
 		protected HighlightedBox (IntPtr raw) : base (raw) {}
 
-		public HighlightedBox (Widget child)
+		public HighlightedBox (Widget child) : base ()
 		{
 			Child = child;
 			AppPaintable = true;

@@ -30,9 +30,7 @@
 //
 
 using System;
-
 using Banshee.Kernel;
-
 using Hyena;
 
 namespace FSpot.Jobs {
@@ -62,7 +60,7 @@ namespace FSpot.Jobs {
 			Log.DebugFormat ("Calculating Hash {0}...", photo_id);
 
 			try {
-				Photo photo = FSpot.App.Instance.Database.Photos.Get (Convert.ToUInt32 (photo_id));
+				Photo photo = FSpot.App.Instance.Database.Photos.Get (Convert.ToUInt32 (photo_id)) as Photo;
 				FSpot.App.Instance.Database.Photos.CalculateMD5Sum (photo);
 				return true;
 			} catch (System.Exception e) {

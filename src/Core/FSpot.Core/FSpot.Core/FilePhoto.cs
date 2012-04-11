@@ -28,11 +28,12 @@
 //
 
 using System;
+using System.IO;
 using System.Collections.Generic;
-
-using FSpot.Utils;
+using System.Xml;
 
 using Hyena;
+using FSpot.Utils;
 
 using Mono.Unix.Native;
 

@@ -28,7 +28,6 @@
 //
 
 using System;
-// FIXME: Why do we still have System.Collections here
 using System.Collections;
 using System.Collections.Generic;
 

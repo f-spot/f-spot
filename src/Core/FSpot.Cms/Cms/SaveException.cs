@@ -44,5 +44,9 @@ namespace Cms {
 		public SaveException (string message, Exception innerException) : base (message, innerException)
 		{
 		}
+
+		public SaveException () : base ()
+		{
+		}
 	}
 }

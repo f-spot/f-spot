@@ -53,20 +53,24 @@
 //located on a GIO location.
 using System;
 using System.IO;
-
-using FSpot.Core;
-using FSpot.Filters;
-using FSpot.Widgets;
-using FSpot.UI.Dialog;
+using System.Runtime.InteropServices;
+using System.Collections;
+using System.Collections.Generic;
 
 using Hyena;
 
 using Mono.Unix;
 
-// FIXME: In a newer version of mono?
 using ICSharpCode.SharpZipLib.Checksums;
 using ICSharpCode.SharpZipLib.Zip;
 using ICSharpCode.SharpZipLib.GZip;
+
+using FSpot;
+using FSpot.Core;
+using FSpot.Filters;
+using FSpot.Widgets;
+using FSpot.Utils;
+using FSpot.UI.Dialog;
 
 namespace FSpot.Exporters.Folder
 {
@@ -301,7 +305,7 @@ namespace FSpot.Exporters.Folder
 				if (!dest.IsNative)
 					System.IO.Directory.Delete (gallery_path, true);
 
-				ThreadAssist.ProxyToMain (() => Dialog.Destroy());
+				ThreadAssist.ProxyToMain (() => { Dialog.Destroy(); });
 			}
 		}
 

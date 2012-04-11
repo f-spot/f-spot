@@ -30,18 +30,17 @@
 // OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
-
+using Gdk;
+using Gtk;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
-
-using FSpot.Imaging;
-using FSpot.Utils;
-
-using Gdk;
-using Gtk;
+using System;
 
 using Hyena;
+
+using FSpot.Utils;
+using FSpot.Imaging;
 
 public class ImageLoaderThread
 {
@@ -63,9 +62,11 @@ public class ImageLoaderThread
 		private Pixbuf result;
 
 		public Pixbuf Result {
-			get
-			{
-				return result == null ? null : result.ShallowCopy ();
+			get {
+				if (result == null) {
+					return null;
+				}
+				return result.ShallowCopy ();
 			}
 			set { result = value; }
 		}
@@ -97,7 +98,7 @@ public class ImageLoaderThread
 
 
 	#region Private members.
-	static readonly List<ImageLoaderThread> instances = new List<ImageLoaderThread> ();
+	static List<ImageLoaderThread> instances = new List<ImageLoaderThread> ();
 
 	/* The thread used to handle the requests.  */
 	private Thread worker_thread;
@@ -192,7 +193,12 @@ public class ImageLoaderThread
 		}
 	}
 
-	public virtual void Request (SafeUri uri, int order, int width = 0, int height = 0)
+	public void Request (SafeUri uri, int order)
+	{
+		Request (uri, order, 0, 0);
+	}
+
+	public virtual void Request (SafeUri uri, int order, int width, int height)
 	{
 		lock (queue) {
 			if (InsertRequest (uri, order, width, height)) {
@@ -305,7 +311,7 @@ public class ImageLoaderThread
 
 					int pos = queue.Count - 1;
 
-					current_request = queue [pos];
+					current_request = queue [pos] as RequestItem;
 					queue.RemoveAt (pos);
 					requests_by_uri.Remove (current_request.Uri);
 				}

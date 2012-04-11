@@ -28,10 +28,8 @@
 //
 
 using System;
-
-using FSpot.Utils;
-
 using Gtk;
+using FSpot.Utils;
 
 namespace FSpot.Widgets {
 	public class ScrolledView : Fixed {
@@ -41,8 +39,7 @@ namespace FSpot.Widgets {
 
 		public ScrolledView (IntPtr raw) : base (raw) {}
 
-		public ScrolledView ()
-		{
+		public ScrolledView () : base () {
 			ScrolledWindow = new ScrolledWindow  (null, null);
 			this.Put (ScrolledWindow, 0, 0);
 			ScrolledWindow.Show ();

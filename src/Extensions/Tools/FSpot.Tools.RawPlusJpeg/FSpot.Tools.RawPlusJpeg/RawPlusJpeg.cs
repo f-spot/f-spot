@@ -30,11 +30,13 @@
 using System;
 using System.Collections.Generic;
 
+using Gtk;
+
+using FSpot;
 using FSpot.Core;
+using FSpot.UI.Dialog;
 using FSpot.Extensions;
 using FSpot.Imaging;
-
-using Gtk;
 
 using Hyena;
 using Hyena.Widgets;

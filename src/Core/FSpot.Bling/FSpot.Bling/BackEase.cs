@@ -30,7 +30,6 @@
 using System;
 
 namespace FSpot.Bling
-	// FIXME: This is never used
 {	public abstract class BackEase : EasingFunction
 	{
 		double amplitude;
@@ -39,7 +38,7 @@ namespace FSpot.Bling
 		{
 		}
 
-		public BackEase (double amplitude)
+		public BackEase (double amplitude) : base ()
 		{
 			if (amplitude < 0)
 				throw new ArgumentOutOfRangeException ("amplitude");

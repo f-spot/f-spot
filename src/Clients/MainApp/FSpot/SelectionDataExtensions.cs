@@ -32,14 +32,15 @@
 //
 
 using System;
-using System.Linq;
 using System.Text;
+using System.Linq;
 
+using Gtk;
+using Gdk;
+
+using FSpot;
 using FSpot.Core;
 using FSpot.Utils;
-
-using Gdk;
-using Gtk;
 
 namespace FSpot
 {
@@ -132,22 +133,22 @@ namespace FSpot
 			selection_data.Set (target, 8, data, data.Length);
 		}
 
-				public static void SetUriListData (this SelectionData selection_data, UriList uri_list)
-				{
-					selection_data.SetUriListData (uri_list, Atom.Intern ("text/uri-list", true));
-				}
-		
+                public static void SetUriListData (this SelectionData selection_data, UriList uri_list)
+                {
+                    selection_data.SetUriListData (uri_list, Atom.Intern ("text/uri-list", true));
+                }
+        
 		public static UriList GetUriListData (this SelectionData selection_data)
 		{
 			return new UriList (GetStringData (selection_data));
 		}
 
-				public static void SetCopyFiles (this SelectionData selection_data, UriList uri_list)
-				{
-					var uris = (from p in uri_list select p.ToString ()).ToArray ();
-					var data = Encoding.UTF8.GetBytes ("copy\n" + String.Join ("\n", uris));
-		
-					selection_data.Set (Atom.Intern ("x-special/gnome-copied-files", true), 8, data, data.Length);
-				}
+                public static void SetCopyFiles (this SelectionData selection_data, UriList uri_list)
+                {
+                    var uris = (from p in uri_list select p.ToString ()).ToArray ();
+                    var data = Encoding.UTF8.GetBytes ("copy\n" + String.Join ("\n", uris));
+        
+                    selection_data.Set (Atom.Intern ("x-special/gnome-copied-files", true), 8, data, data.Length);
+                }
 	}
 }

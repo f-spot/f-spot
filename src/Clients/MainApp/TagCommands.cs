@@ -31,19 +31,21 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
+using Gtk;
+using Gdk;
+
 using System;
+using System.Text;
+using System.Collections;
 using System.Collections.Generic;
 
+using Mono.Unix;
 using FSpot;
 using FSpot.Core;
+using FSpot.Utils;
 using FSpot.UI.Dialog;
-
-using Gdk;
-using Gtk;
-
+using FSpot.Widgets;
 using Hyena;
-
-using Mono.Unix;
 
 public class TagCommands {
 
@@ -141,18 +143,17 @@ public class TagCommands {
 			}
 		}
 
-		// FIXME:  This is never used?  Should this be connected to something?
 		private void HandleTagNameEntryChanged (object sender, EventArgs args)
 		{
 			Update ();
 		}
 
 		private Category Category {
-			get
-			{
+			get {
 				if (categories.Count == 0)
 					return tag_store.RootCategory;
-				return categories [category_option_menu.Active] as Category;
+				else
+					return categories [category_option_menu.Active] as Category;
 			}
 			set {
 				if ((value != null) && (categories.Count > 0)) {
@@ -205,7 +206,7 @@ public class TagCommands {
 					Category parent_category = Category;
 
 					if (type == TagType.Category)
-						new_tag = tag_store.CreateCategory (parent_category, tag_name_entry.Text, autoicon);
+						new_tag = tag_store.CreateCategory (parent_category, tag_name_entry.Text, autoicon) as Tag;
 					else
 						new_tag = tag_store.CreateTag (parent_category, tag_name_entry.Text, autoicon);
 				} catch (Exception ex) {
@@ -214,7 +215,7 @@ public class TagCommands {
 				}
 			}
 
-			Destroy ();
+			this.Destroy ();
 			return new_tag;
 		}
 

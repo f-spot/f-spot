@@ -27,10 +27,13 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
+using System;
+
+using Gtk;
+using Gdk;
+
 using FSpot.Core;
 
-using Gdk;
-using Gtk;
 
 namespace FSpot.Widgets
 {
@@ -40,6 +43,14 @@ namespace FSpot.Widgets
     /// </summary>
     public abstract class ThumbnailCaptionRenderer
     {
+
+#region Constructor
+
+        public ThumbnailCaptionRenderer ()
+        {
+        }
+
+#endregion
 
 #region Drawing Methods
 

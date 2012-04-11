@@ -29,14 +29,11 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
+using Gtk;
 using System;
-
+using Mono.Unix;
 using FSpot.Query;
 using FSpot.Widgets;
-
-using Gtk;
-
-using Mono.Unix;
 
 namespace FSpot.UI.Dialog
 {
@@ -127,11 +124,13 @@ namespace FSpot.UI.Dialog
 			case "thismonth":
 				if (today.Year == (today.AddMonths(-1)).Year) // Same year for current and previous month. Present only MONTH
 					return today.ToString("MMMM");
-				return today.ToString("MMMM, yyyy");
+				else // Different year for current and previous month. Present both MONTH, and YEAR
+					return today.ToString("MMMM, yyyy");
 			case "previousmonth":
 				if (today.Year == (today.AddMonths(-1)).Year) // Same year for current and previous month. Present only MONTH
 					return (today.AddMonths(-1)).ToString("MMMM");
-				return (today.AddMonths(-1)).ToString("MMMM, yyyy");
+				else // Different year for current and previous month. Present both MONTH, and YEAR
+					return (today.AddMonths(-1)).ToString("MMMM, yyyy");
 			case "thisyear":
 				return today.ToString("yyyy");
 			case "previousyear":
@@ -224,7 +223,10 @@ namespace FSpot.UI.Dialog
 				clear = true;
 				break;
 			}
-			return clear ? null : new DateRange (startdate, enddate.Add (new System.TimeSpan(23,59,59)));
+			if (!clear)
+				return new DateRange (startdate, enddate.Add (new System.TimeSpan(23,59,59)));
+			else
+				return null;
 		}
 
 		void HandleDateEditChanged (object o, EventArgs args)
@@ -255,9 +257,9 @@ namespace FSpot.UI.Dialog
 			}
 
 			start_dateedit.DateChanged += HandleDateEditChanged;
-			((Gtk.Entry) start_dateedit.Children [0]).Changed += HandleDateEditChanged;
+			((Gtk.Entry) start_dateedit.Children [0] as Gtk.Entry).Changed += HandleDateEditChanged;
 			end_dateedit.DateChanged += HandleDateEditChanged;
-			((Gtk.Entry) end_dateedit.Children [0]).Changed += HandleDateEditChanged;
+			((Gtk.Entry) end_dateedit.Children [0] as Gtk.Entry).Changed += HandleDateEditChanged;
 		}
 	}
 }

@@ -28,13 +28,14 @@
 //
 
 using System;
+using Gdk;
 
 namespace FSpot.Loaders {
 	public class AreaUpdatedEventArgs : EventArgs
 	{
 		public Gdk.Rectangle Area { get; private set; }
 
-		public AreaUpdatedEventArgs (Gdk.Rectangle area)
+		public AreaUpdatedEventArgs (Gdk.Rectangle area) : base ()
 		{
 			Area = area;
 		}

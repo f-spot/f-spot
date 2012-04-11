@@ -30,8 +30,9 @@
 //
 
 using System;
-
+using FSpot;
 using FSpot.Core;
+using FSpot.Query;
 
 namespace FSpot.Tools.MergeDb
 {
@@ -95,8 +96,10 @@ namespace FSpot.Tools.MergeDb
 			get {
 				if (allrolls_radio.Active)
 					return null;
-
-				return newrolls_radio.Active ? rolls : new Roll [] {rolls [rolls_combo.Active]};
+				if (newrolls_radio.Active)
+					return rolls;
+				else
+					return new Roll [] {rolls [rolls_combo.Active]};
 			}
 		}
 

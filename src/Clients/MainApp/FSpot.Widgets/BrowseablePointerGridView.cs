@@ -29,9 +29,10 @@
 
 using System;
 
-using FSpot.Core;
-
 using Gdk;
+using Gtk;
+
+using FSpot.Core;
 
 
 namespace FSpot.Widgets
@@ -44,7 +45,10 @@ namespace FSpot.Widgets
     {
 
 #region Public Properties
-        public BrowsablePointer Pointer { get; private set; }
+
+        public BrowsablePointer Pointer {
+            get; private set;
+        }
 
 #endregion
 

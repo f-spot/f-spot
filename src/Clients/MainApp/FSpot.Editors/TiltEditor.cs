@@ -30,22 +30,19 @@
 //
 
 using System;
-
-using Cairo;
-
-using FSpot.Widgets;
+using Mono.Unix;
 
 using Gdk;
 using Gtk;
+using Cairo;
 
-using Mono.Unix;
+using FSpot.Widgets;
 
 using Pinta.Core;
 
 namespace FSpot.Editors
 {
 	// TODO: there were keybindings (left/right) to adjust tilt, maybe they should be added back.
-	// FIXME: This is never used
 	class TiltEditor : Editor
 	{
 		double angle;
@@ -54,7 +51,7 @@ namespace FSpot.Editors
 		public TiltEditor () : base (Catalog.GetString ("Straighten"), "align-horizon") {
 			// FIXME: need tooltip Catalog.GetString ("Adjust the angle of the image to straighten the horizon")
 			HasSettings = true;
-		}
+        }
 
 		public override Widget ConfigurationWidget ()
 		{
@@ -90,7 +87,7 @@ namespace FSpot.Editors
 							ctx.Paint ();
 						}
 						result = surface.ToPixbuf();
-						surface.Flush ();
+                        surface.Flush ();
 					}
 				}
 			}

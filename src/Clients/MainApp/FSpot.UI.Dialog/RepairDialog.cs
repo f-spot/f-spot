@@ -29,16 +29,15 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
+using Gtk;
+using System;
 using System.IO;
-
-using FSpot.Core;
 using FSpot.Widgets;
 
-using Gtk;
+using FSpot.Core;
 
 namespace FSpot. UI.Dialog
 {
-	// FIXME: This is never used
 	public class RepairDialog : BuilderDialog
 	{
 		[GtkBeans.Builder.Object] ScrolledWindow view_scrolled;
@@ -55,7 +54,7 @@ namespace FSpot. UI.Dialog
 			TrayView view = new TrayView (missing);
 			view_scrolled.Add (view);
 
-			ShowAll ();
+			this.ShowAll ();
 		}
 
 		public void FindMissing ()

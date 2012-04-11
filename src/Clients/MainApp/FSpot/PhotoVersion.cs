@@ -27,9 +27,8 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using FSpot.Core;
-
 using Hyena;
+using FSpot.Core;
 
 namespace FSpot
 {

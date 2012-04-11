@@ -27,11 +27,10 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
+using Mono.Addins;
 using System;
 
 using FSpot.Core;
-
-using Mono.Addins;
 
 namespace FSpot.Extensions
 {
@@ -48,7 +47,7 @@ namespace FSpot.Extensions
 
 		protected override void OnActivated (object o, EventArgs e)
 		{
-			IExporter exporter = Addin.CreateInstance (class_name) as IExporter;
+			IExporter exporter = (IExporter) Addin.CreateInstance (class_name);
 			exporter.Run (SelectedImages ());
 		}
 	}

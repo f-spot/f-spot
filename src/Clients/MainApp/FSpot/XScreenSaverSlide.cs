@@ -29,10 +29,14 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using System;
-
-using Gdk;
 using Gtk;
+using Gdk;
+using System;
+using GLib;
+using System.Runtime.InteropServices;
+using FSpot;
+using FSpot.Utils;
+using Hyena;
 
 namespace FSpot {
 	public class XScreenSaverSlide : Gtk.Window {
@@ -74,7 +78,7 @@ namespace FSpot {
 					SizeAllocate (new Gdk.Rectangle (geom.X, geom.Y, geom.Width, geom.Height));
 					Resize (geom.Width, geom.Height);
 					return;
-				} catch (Exception e) {
+				} catch (System.Exception e) {
 					Hyena.Log.Exception (e);
 				}
 			} else {

@@ -28,10 +28,22 @@
 //
 
 using System;
-
-using Gnome.Keyring;
+using System.Net;
+using System.IO;
+using System.Text;
+using System.Threading;
+using System.Collections;
+using System.Collections.Specialized;
+using System.Web;
+using Mono.Unix;
 using Gtk;
-
+using FSpot;
+using FSpot.Core;
+using FSpot.Filters;
+using FSpot.Widgets;
+using Hyena;
+using FSpot.UI.Dialog;
+using Gnome.Keyring;
 using SmugMugNet;
 
 namespace FSpot.Exporters.SmugMug
@@ -76,7 +88,10 @@ namespace FSpot.Exporters.SmugMug
 		{
 			title = title_entry.Text;
 
-			add_button.Sensitive = title != String.Empty;
+			if (title == String.Empty)
+				add_button.Sensitive = false;
+			else
+				add_button.Sensitive = true;
 		}
 
 		[GLib.ConnectBefore]
@@ -118,7 +133,12 @@ namespace FSpot.Exporters.SmugMug
 		}
 
 		private Gtk.Dialog Dialog {
-			get { return dialog ?? (dialog = new Gtk.Dialog(builder.GetRawObject(dialog_name))); }
+			get {
+				if (dialog == null)
+					dialog = new Gtk.Dialog (builder.GetRawObject (dialog_name));
+
+				return dialog;
+			}
 		}
 	}
 }

@@ -27,6 +27,8 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
+using System;
+
 namespace FSpot.Widgets
 {
     public class RatingEntry : Hyena.Widgets.RatingEntry

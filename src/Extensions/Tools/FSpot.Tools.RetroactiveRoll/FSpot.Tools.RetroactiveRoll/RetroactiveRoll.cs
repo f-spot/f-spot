@@ -29,12 +29,12 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using System;
-
+using FSpot;
 using FSpot.Core;
 using FSpot.Extensions;
-
+using System;
 using Hyena;
+
 using Hyena.Data.Sqlite;
 
 namespace FSpot.Tools.RetroactiveRoll

@@ -30,10 +30,11 @@
 //
 
 using System;
+using GLib;
+using FSpot.Widgets;
 
 namespace FSpot.Extensions
 {
-	// FIXME: Nothing in here is called
 	public class Copy : ICommand
 	{
 		public void Run (object o, EventArgs e)

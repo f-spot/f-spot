@@ -42,13 +42,16 @@
  *
  */
 using System;
-using System.Collections.Generic;
-using System.Linq;
+using System.IO;
 using System.Text;
+using System.Collections;
+using System.Collections.Generic;
 
+using FlickrNet;
+using FSpot;
 using FSpot.Core;
+using FSpot.Utils;
 using FSpot.Filters;
-
 using Hyena;
 
 namespace FSpot.Exporters.Flickr {
@@ -70,7 +73,7 @@ public class FlickrRemote {
 
 	public FlickrRemote (string token, Service service)
 	{
-		if (string.IsNullOrEmpty(token)) {
+		if (token == null || token.Length == 0) {
 			this.flickr = new FlickrNet.Flickr (service.ApiKey, service.Secret);
 			this.token = null;
 		} else {
@@ -261,9 +264,9 @@ public class FlickrRemote {
 
 		public static Service FromSupported (SupportedService id)
 		{
-			foreach (Service s in Supported.Where(s => s.Id == id))
-			{
-				return s;
+			foreach (Service s in Supported) {
+				if (s.Id == id)
+					return s;
 			}
 
 			throw new System.ArgumentException ("Unknown service type");

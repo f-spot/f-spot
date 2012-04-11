@@ -32,23 +32,24 @@
 //
 
 using System;
+using System.Collections;
 using System.Text;
 using System.Text.RegularExpressions;
+using Gtk;
+using Gdk;
+using Mono.Unix;
 
 using FSpot.Core;
 using FSpot.Query;
-
-using Gtk;
-
 using Hyena;
-
-using Mono.Unix;
 
 namespace FSpot.Widgets {
 	public class FindBar : HighlightedBox {
+		private Entry entry;
 		private string last_entry_text = String.Empty;
 		private int open_parens = 0, close_parens = 0;
 		private PhotoQuery query;
+		private Term root_term = null;
 		private HBox box;
 
 		/*
@@ -56,20 +57,23 @@ namespace FSpot.Widgets {
 		 */
 		public bool Completing {
 			get {
-				return (Entry.Completion as LogicEntryCompletion).Completing;
+				return (entry.Completion as LogicEntryCompletion).Completing;
 			}
 		}
 
-		public Entry Entry { get; private set; }
+		public Gtk.Entry Entry {
+			get { return entry; }
+		}
 
-		public Term RootTerm { get; private set; }
+		public Term RootTerm  {
+			get { return root_term; }
+		}
 
 		/*
 		 * Constructor
 		 */
 		public FindBar (PhotoQuery query, TreeModel model) : base(new HBox())
 		{
-			RootTerm = null;
 			this.query = query;
 			box = Child as HBox;
 
@@ -78,14 +82,14 @@ namespace FSpot.Widgets {
 
 			box.PackStart (new Label (Catalog.GetString ("Find:")), false, false, 0);
 
-			Entry = new Entry ();
-			Entry.Completion = new LogicEntryCompletion (Entry, model);
+			entry = new Entry ();
+			entry.Completion = new LogicEntryCompletion (entry, model);
 
-			Entry.TextInserted  += HandleEntryTextInserted;
-			Entry.TextDeleted   += HandleEntryTextDeleted;
-			Entry.KeyPressEvent += HandleEntryKeyPress;
+			entry.TextInserted  += HandleEntryTextInserted;
+			entry.TextDeleted   += HandleEntryTextDeleted;
+			entry.KeyPressEvent += HandleEntryKeyPress;
 
-			box.PackStart (Entry, true, true, 0);
+			box.PackStart (entry, true, true, 0);
 
 			Button clear_button = new Gtk.Button ();
 			clear_button.Add (new Gtk.Image ("gtk-close", Gtk.IconSize.Button));
@@ -109,25 +113,25 @@ namespace FSpot.Widgets {
 
 			//int start = args.Position - args.Length;
 
-			foreach (char c in args.Text)
-			{
+			for (int i = 0; i < args.Text.Length; i++) {
+				char c = args.Text [i];
 				if (c == '(')
 					open_parens++;
 				else if (c == ')')
 					close_parens++;
 			}
 
-			int pos = Entry.Position + 1;
+			int pos = entry.Position + 1;
 			int close_parens_needed = open_parens - close_parens;
 			for (int i = 0; i < close_parens_needed; i++) {
-				Entry.TextInserted -= HandleEntryTextInserted;
-				Entry.InsertText (")", ref pos);
+				entry.TextInserted -= HandleEntryTextInserted;
+				entry.InsertText (")", ref pos);
 				close_parens++;
-				Entry.TextInserted += HandleEntryTextInserted;
+				entry.TextInserted += HandleEntryTextInserted;
 				pos++;
 			}
 			//Log.DebugFormat ("done w/ insert, {0}, ( = {1}  ) = {2}", args.Text, open_parens, close_parens);
-			last_entry_text = Entry.Text;
+			last_entry_text = entry.Text;
 
 			QueueUpdate ();
 		}
@@ -138,15 +142,14 @@ namespace FSpot.Widgets {
 			//Log.DebugFormat ("start {0} end {1} len {2} last {3}", args.StartPos, args.EndPos, length, last_entry_text);
 			string txt = length < 0 ? last_entry_text : last_entry_text.Substring (args.StartPos, length);
 
-			foreach (char t in txt)
-			{
-				if (t == '(')
+			for (int i = 0; i < txt.Length; i++) {
+				if (txt [i] == '(')
 					open_parens--;
-				else if (t == ')')
+				else if (txt [i] == ')')
 					close_parens--;
 			}
 
-			last_entry_text = Entry.Text;
+			last_entry_text = entry.Text;
 
 			QueueUpdate ();
 		}
@@ -163,17 +166,17 @@ namespace FSpot.Widgets {
 
 			case (Gdk.Key.Tab):
 				// If we are at the end of the entry box, let the normal Tab handler do its job
-				if (Entry.Position == Entry.Text.Length) {
+				if (entry.Position == entry.Text.Length) {
 					args.RetVal = false;
 					return;
 				}
 
 				// Go until the current character is an open paren
-				while (Entry.Position < Entry.Text.Length && Entry.Text [Entry.Position] != '(')
-					Entry.Position++;
+				while (entry.Position < entry.Text.Length && entry.Text [entry.Position] != '(')
+					entry.Position++;
 
 				// Put the cursor right after the open paren
-				Entry.Position++;
+				entry.Position++;
 
 				args.RetVal = true;
 				break;
@@ -190,7 +193,7 @@ namespace FSpot.Widgets {
 
 		private void Clear ()
 		{
-			Entry.Text = String.Empty;
+			entry.Text = String.Empty;
 			Hide ();
 		}
 
@@ -230,7 +233,7 @@ namespace FSpot.Widgets {
 
 		private bool ConstructQuery (Term parent, int depth, string txt, bool negated)
 		{
-			if (string.IsNullOrEmpty(txt))
+			if (txt == null || txt.Length == 0)
 				return true;
 
 			string indent = String.Format ("{0," + depth*2 + "}", " ");
@@ -301,62 +304,62 @@ namespace FSpot.Widgets {
 				}
 
 				if (RootTerm == null)
-					RootTerm = parent;
+					root_term = parent;
+
+				return true;
+			} else {
+				Term us = null;
+				if (op != null && op != String.Empty) {
+					us = Term.TermFromOperator (op, parent, null);
+					if (RootTerm == null)
+						root_term = us;
+				}
+
+				foreach (Capture capture in match.Groups ["Term"].Captures) {
+					string subterm = capture.Value.Trim ();
+
+					if (subterm == null || subterm.Length == 0)
+						continue;
+
+					// Strip leading/trailing parens
+					if (subterm [0] == '(' && subterm [subterm.Length - 1] == ')') {
+						subterm = subterm.Remove (subterm.Length - 1, 1);
+						subterm = subterm.Remove (0, 1);
+					}
+
+					//Log.DebugFormat (indent + "Breaking subterm apart: {0}", subterm);
+
+					if (!ConstructQuery (us, depth + 1, subterm, negated))
+						return false;
+				}
+
+				foreach (Capture capture in match.Groups ["NotTerm"].Captures) {
+					string subterm = capture.Value.Trim ();
+
+					if (subterm == null || subterm.Length == 0)
+						continue;
+
+					// Strip leading/trailing parens
+					if (subterm [0] == '(' && subterm [subterm.Length - 1] == ')') {
+						subterm = subterm.Remove (subterm.Length - 1, 1);
+						subterm = subterm.Remove (0, 1);
+					}
+
+					//Log.DebugFormat (indent + "Breaking not subterm apart: {0}", subterm);
+
+					if (!ConstructQuery (us, depth + 1, subterm, true))
+						return false;
+				}
+
+				if (negated && us != null) {
+					if (us == RootTerm)
+						root_term = us.Invert(false);
+					else
+						us.Invert(false);
+				}
 
 				return true;
 			}
-
-			Term us = null;
-			if (op != null && op != String.Empty) {
-				us = Term.TermFromOperator (op, parent, null);
-				if (RootTerm == null)
-					RootTerm = us;
-			}
-
-			foreach (Capture capture in match.Groups ["Term"].Captures) {
-				string subterm = capture.Value.Trim ();
-
-				if (subterm == null || subterm.Length == 0)
-					continue;
-
-				// Strip leading/trailing parens
-				if (subterm [0] == '(' && subterm [subterm.Length - 1] == ')') {
-					subterm = subterm.Remove (subterm.Length - 1, 1);
-					subterm = subterm.Remove (0, 1);
-				}
-
-				//Log.DebugFormat (indent + "Breaking subterm apart: {0}", subterm);
-
-				if (!ConstructQuery (us, depth + 1, subterm, negated))
-					return false;
-			}
-
-			foreach (Capture capture in match.Groups ["NotTerm"].Captures) {
-				string subterm = capture.Value.Trim ();
-
-				if (subterm == null || subterm.Length == 0)
-					continue;
-
-				// Strip leading/trailing parens
-				if (subterm [0] == '(' && subterm [subterm.Length - 1] == ')') {
-					subterm = subterm.Remove (subterm.Length - 1, 1);
-					subterm = subterm.Remove (0, 1);
-				}
-
-				//Log.DebugFormat (indent + "Breaking not subterm apart: {0}", subterm);
-
-				if (!ConstructQuery (us, depth + 1, subterm, true))
-					return false;
-			}
-
-			if (negated && us != null) {
-				if (us == RootTerm)
-					RootTerm = us.Invert(false);
-				else
-					us.Invert(false);
-			}
-
-			return true;
 		}
 
 		private bool updating = false;
@@ -400,9 +403,9 @@ namespace FSpot.Widgets {
 		private void Update ()
 		{
 			// Clear the last root term
-			RootTerm = null;
+			root_term = null;
 
-			if (ParensValid () && ConstructQuery (null, 0, Entry.Text)) {
+			if (ParensValid () && ConstructQuery (null, 0, entry.Text)) {
 				if (RootTerm != null) {
 					//Log.DebugFormat("rootTerm = {0}", RootTerm);
 					if (!(RootTerm is AndTerm)) {
@@ -410,7 +413,7 @@ namespace FSpot.Widgets {
 						// ensure we handle the Hidden tag properly
 						AndTerm root_parent = new AndTerm(null, null);
 						RootTerm.Parent = root_parent;
-						RootTerm = root_parent;
+						root_term = root_parent;
 					}
 
 					//Log.DebugFormat("rootTerm = {0}", RootTerm);
@@ -419,7 +422,7 @@ namespace FSpot.Widgets {
 						// ensure we handle the Hidden tag properly
 						AndTerm root_parent = new AndTerm(null, null);
 						RootTerm.Parent = root_parent;
-						RootTerm = root_parent;
+						root_term = root_parent;
 					}
 					//Log.DebugFormat ("condition = {0}", RootTerm.SqlCondition ());
 					query.TagTerm = new ConditionWrapper (RootTerm.SqlCondition ());
@@ -432,9 +435,9 @@ namespace FSpot.Widgets {
 
 		private bool ParensValid ()
 		{
-			for (int i = 0; i < Entry.Text.Length; i++) {
-				if (Entry.Text [i] == '(' || Entry.Text [i] == ')') {
-					int pair_pos = ParenPairPosition (Entry.Text, i);
+			for (int i = 0; i < entry.Text.Length; i++) {
+				if (entry.Text [i] == '(' || entry.Text [i] == ')') {
+					int pair_pos = ParenPairPosition (entry.Text, i);
 
 					if (pair_pos == -1)
 						return false;
@@ -468,11 +471,11 @@ namespace FSpot.Widgets {
 
 				if (txt [pos] == one)
 					sames++;
-				else if (txt [pos] == two)
-				{
+				else if (txt [pos] == two) {
 					if (sames == 0)
 						return pos;
-					sames--;
+					else
+						sames--;
 				}
 			}
 
@@ -490,11 +493,13 @@ namespace FSpot.Widgets {
 	public class LogicEntryCompletion : EntryCompletion {
 		private Entry entry;
 
-		public bool Completing { get; private set; }
+		private bool completing = false;
+		public bool Completing {
+			get { return completing; }
+		}
 
 		public LogicEntryCompletion (Entry entry, TreeModel tree_model)
 		{
-			Completing = false;
 			this.entry = entry;
 
 			Model = new DependentListStore(tree_model);
@@ -521,10 +526,10 @@ namespace FSpot.Widgets {
 			int pos = entry.Position;
 			string updated_text = completion_logic.ReplaceKey (entry.Text, name, ref pos);
 
-			Completing = true;
+			completing = true;
 			entry.Text = updated_text;
 			entry.Position = pos;
-			Completing = false;
+			completing = false;
 
 			args.RetVal = true;
 			//Log.Debug ("done w/ match selected");
@@ -562,7 +567,7 @@ namespace FSpot.Widgets {
 			if (key != last_key) {
 				last_key = key;
 
-				if (string.IsNullOrEmpty(key) || pos < 0 || pos > key.Length - 1)
+				if (key == null || key.Length == 0 || pos < 0 || pos > key.Length - 1)
 					transformed_key = String.Empty;
 				else if (key [pos] == '(' || key [pos] == ')' || key [pos] == ',')
 					transformed_key = String.Empty;

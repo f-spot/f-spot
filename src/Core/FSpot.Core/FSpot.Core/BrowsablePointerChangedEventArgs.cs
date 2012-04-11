@@ -37,7 +37,7 @@ namespace FSpot.Core
 		public int PreviousIndex { get; private set; }
 		public IBrowsableItemChanges Changes { get; private set; }
 
-		public BrowsablePointerChangedEventArgs (IPhoto previous_item, int previous_index, IBrowsableItemChanges changes)
+		public BrowsablePointerChangedEventArgs (IPhoto previous_item, int previous_index, IBrowsableItemChanges changes) : base ()
 		{
 			PreviousItem = previous_item;
 			PreviousIndex = previous_index;

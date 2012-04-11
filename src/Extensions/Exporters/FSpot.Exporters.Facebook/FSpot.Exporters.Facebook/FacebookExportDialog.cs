@@ -28,21 +28,21 @@
 //
 
 using System;
+using System.Reflection;
 using System.Collections;
 using System.Collections.Generic;
-using System.Reflection;
 using System.Threading;
-
-using FSpot.Core;
-using FSpot.UI.Dialog;
-using FSpot.Utils;
-using FSpot.Widgets;
 
 using Gtk;
 using GtkBeans;
 
 using Hyena;
 using Hyena.Widgets;
+using FSpot.Core;
+using FSpot.Utils;
+using FSpot.Widgets;
+using FSpot.Platform;
+using FSpot.UI.Dialog;
 
 using Mono.Facebook;
 using Mono.Unix;
@@ -83,7 +83,7 @@ namespace FSpot.Exporters.Facebook
 		private class DateComparer : IComparer
 		{
 			public int Compare (object left,
-								object right)
+			                    object right)
 			{
 				return DateTime.Compare ((left as IPhoto).Time,
 					(right as IPhoto).Time);
@@ -93,19 +93,19 @@ namespace FSpot.Exporters.Facebook
 		public FacebookExportDialog (IBrowsableCollection selection) : base (Assembly.GetExecutingAssembly (), "FacebookExport.ui", "facebook_export_dialog")
 		{
 			// Sort selection by date ascending
-			Items = selection.Items;
-			Array.Sort (Items, new DateComparer ());
+			items = selection.Items;
+			Array.Sort (items, new DateComparer ());
 			current_item = -1;
 
-			Captions = new string [selection.Items.Length];
+			captions = new string [selection.Items.Length];
 			tags = new List<Mono.Facebook.Tag> [selection.Items.Length];
 
 			tray_view = new SelectionCollectionGridView (selection) {
-				MaxColumns = 1,
-				DisplayDates = false,
-				DisplayTags = false,
-				DisplayRatings = false
-			};
+                MaxColumns = 1,
+                DisplayDates = false,
+                DisplayTags = false,
+                DisplayRatings = false
+            };
 			tray_view.ButtonPressEvent += HandleThumbnailIconViewButtonPressEvent;
 			tray_view.KeyPressEvent += delegate (object sender, KeyPressEventArgs e) {(sender as SelectionCollectionGridView).Selection.Clear(); };
 			thumbnails_scrolled_window.Add (tray_view);
@@ -132,18 +132,27 @@ namespace FSpot.Exporters.Facebook
 
 			DoLogout ();
 
-			Account = new FacebookAccount();
-			if (Account.Authenticated)
+			account = new FacebookAccount();
+			if (account.Authenticated)
 				DoLogin ();
 		}
 
-		public FacebookAccount Account { get; private set; }
+		FacebookAccount account;
+		public FacebookAccount Account {
+			get { return account; }
+		}
 
-		public string[] Captions { get; private set; }
+		string[] captions;
+		public string [] Captions {
+			get {return captions; } 
+		}
 
 		List<Mono.Facebook.Tag>[] tags;
 		int current_item;
-		public IPhoto[] Items { get; private set; }
+		IPhoto[] items;
+		public IPhoto[] Items {
+			get {return items; }
+		}
 
 		public bool CreateAlbum {
 			get { return create_album_radiobutton.Active; }
@@ -172,7 +181,7 @@ namespace FSpot.Exporters.Facebook
 				return;
 			
 			// Store the caption
-			Captions [current_item] = caption_textview.Buffer.Text;
+			captions [current_item] = caption_textview.Buffer.Text;
 		}
 
 		void HandleThumbnailIconViewButtonPressEvent (object sender, Gtk.ButtonPressEventArgs args)
@@ -183,20 +192,20 @@ namespace FSpot.Exporters.Facebook
 			int old_item = current_item;
 			current_item = tray_view.CellAtPosition ((int) args.Event.X, (int) args.Event.Y);
 
-			if (current_item < 0 || current_item >=  Items.Length) {
+			if (current_item < 0 || current_item >=  items.Length) {
 				current_item = old_item;
 				return;
 			}
 
-			string caption = Captions [current_item];
+			string caption = captions [current_item];
 			if (caption == null)
-				Captions [current_item] = caption = "";
+				captions [current_item] = caption = "";
 			caption_textview.Buffer.Text = caption;
 			caption_textview.Sensitive = true;
 
-			tag_treeview.Model = new TagStore (Account.Facebook, tags [current_item], friends);
+			tag_treeview.Model = new TagStore (account.Facebook, tags [current_item], friends);
 
-			IPhoto item = Items [current_item];
+			IPhoto item = items [current_item];
 
 			if (tag_image_eventbox.Children.Length > 0) {
 				tag_image_eventbox.Remove (tag_image);
@@ -214,8 +223,8 @@ namespace FSpot.Exporters.Facebook
 
 		public void HandleLoginClicked (object sender, EventArgs args)
 		{
-			if (!Account.Authenticated) {
-				Uri uri = Account.GetLoginUri ();
+			if (!account.Authenticated) {
+				Uri uri = account.GetLoginUri ();
 				GtkBeans.Global.ShowUri (Screen, uri.ToString ());
 
 				HigMessageDialog mbox = new HigMessageDialog (this, Gtk.DialogFlags.DestroyWithParent | Gtk.DialogFlags.Modal,
@@ -226,14 +235,14 @@ namespace FSpot.Exporters.Facebook
 				mbox.Destroy ();
 
 				LoginProgress (0.0, Catalog.GetString ("Authenticating..."));
-				Account.Authenticate ();
+				account.Authenticate ();
 			}
 			DoLogin ();
 		}
 
 		void DoLogin ()
 		{
-			if (!Account.Authenticated) {
+			if (!account.Authenticated) {
 				HigMessageDialog error = new HigMessageDialog (this, Gtk.DialogFlags.DestroyWithParent | Gtk.DialogFlags.Modal,
 						Gtk.MessageType.Error, Gtk.ButtonsType.Ok, Catalog.GetString ("Error logging into Facebook"),
 						Catalog.GetString ("There was a problem logging into Facebook.  Check your credentials and try again."));
@@ -248,8 +257,8 @@ namespace FSpot.Exporters.Facebook
 				LoginProgress (0.0, Catalog.GetString ("Authorizing Session"));
 				ThreadPool.QueueUserWorkItem (delegate {	
 					try {
-						bool perm_offline = Account.HasPermission("offline_access");
-						bool perm_upload = photo_perm_check.Active = Account.HasPermission("photo_upload");
+						bool perm_offline = account.HasPermission("offline_access");
+						bool perm_upload = photo_perm_check.Active = account.HasPermission("photo_upload");
 
 						ThreadAssist.ProxyToMain (() => {
 							offline_perm_check.Active = perm_offline;
@@ -257,13 +266,13 @@ namespace FSpot.Exporters.Facebook
 							LoginProgress (0.2, Catalog.GetString ("Session established, fetching user info..."));
 						});
 	
-						User me = Account.Facebook.GetLoggedInUser ().GetUserInfo ();
+						User me = account.Facebook.GetLoggedInUser ().GetUserInfo ();
 	
 						ThreadAssist.ProxyToMain (() => {
 							LoginProgress (0.4, Catalog.GetString ("Session established, fetching friend list..."));
 						});
 
-						Friend[] friend_list = Account.Facebook.GetFriends ();
+						Friend[] friend_list = account.Facebook.GetFriends ();
 						long[] uids = new long [friend_list.Length];
 	
 						for (int i = 0; i < friend_list.Length; i++)
@@ -274,7 +283,7 @@ namespace FSpot.Exporters.Facebook
 						});
 
 						if (uids.Length > 0) {
-							User[] infos = Account.Facebook.GetUserInfo (uids, new string[] { "first_name", "last_name" });
+							User[] infos = account.Facebook.GetUserInfo (uids, new string[] { "first_name", "last_name" });
 							friends = new Dictionary<long, User> ();
 
 							foreach (User user in infos)
@@ -284,7 +293,7 @@ namespace FSpot.Exporters.Facebook
 						ThreadAssist.ProxyToMain (() => {
 							LoginProgress (0.8, Catalog.GetString ("Session established, fetching photo albums..."));
 						});
-						Album[] albums = Account.Facebook.GetAlbums ();
+						Album[] albums = account.Facebook.GetAlbums ();
 						ThreadAssist.ProxyToMain (() => {
 							album_info_vbox.Sensitive = true;
 							picture_info_vbox.Sensitive = true;
@@ -307,7 +316,7 @@ namespace FSpot.Exporters.Facebook
 							error.Destroy ();
 						});
 	
-						Account.Deauthenticate ();
+						account.Deauthenticate ();
 						DoLogout ();
 					} finally {
 						ThreadAssist.ProxyToMain (() => {
@@ -321,7 +330,7 @@ namespace FSpot.Exporters.Facebook
 
 		void HandleLogoutClicked (object sender, EventArgs args)
 		{
-			Account.Deauthenticate ();
+			account.Deauthenticate ();
 			DoLogout ();
 		}
 
@@ -357,21 +366,21 @@ namespace FSpot.Exporters.Facebook
 			}
 			CheckButton origin = (CheckButton)sender;
 			bool desired = origin.Active;
-			bool actual = Account.HasPermission (permission);
+			bool actual = account.HasPermission (permission);
 			if (desired != actual) {
 				if (desired) {
 					Log.DebugFormat ("Granting {0}", permission);
-					Account.GrantPermission (permission, this);
+					account.GrantPermission (permission, this);
 				} else {
 					Log.DebugFormat ("Revoking {0}", permission);
-					Account.RevokePermission (permission);
+					account.RevokePermission (permission);
 				}
 				/* Double-check that things work... */
-				actual = Account.HasPermission (permission);
+				actual = account.HasPermission (permission);
 				if (actual != desired) {
 					Log.Warning("Failed to alter permissions");
 				}
-				origin.Active = Account.HasPermission (permission);
+				origin.Active = account.HasPermission (permission);
 			}
 		}
 
@@ -435,16 +444,21 @@ namespace FSpot.Exporters.Facebook
 
 	internal class AlbumStore : ListStore
 	{
+		private Album[] _albums;
+
 		public AlbumStore (Album[] albums) : base (typeof (string))
 		{
-			Albums = albums;
+			_albums = albums;
 
 			foreach (Album album in Albums) {
 				AppendValues (album.name);
 			}
 		}
 
-		public Album[] Albums { get; private set; }
+		public Album[] Albums
+		{
+			get { return _albums; }
+		}
 	}
 
 }

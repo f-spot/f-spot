@@ -27,17 +27,22 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using System;
-
+using FSpot.Extensions;
+using FSpot.Utils;
 using Gtk;
-
 using Mono.Addins;
+using Mono.Unix;
+using System;
+using System.Collections.Generic;
 
 namespace FSpot.Extensions
 {
 	public class SidebarPage {
 		// The widget shown on the sidebar page.
-		public Widget SidebarWidget { get; private set; }
+		private readonly Widget widget;
+		public Widget SidebarWidget {
+			get { return widget; }
+		}
 
 		// Whether this page can be selected
 		private bool can_select;
@@ -53,10 +58,16 @@ namespace FSpot.Extensions
 		public event EventHandler CanSelectChanged;
 
 		// The label of the sidebar page.
-		public string Label { get; private set; }
+		private readonly string label;
+		public string Label {
+			get { return label; }
+		}
 
 		// The icon name, used for the selector
-		public string IconName { get; private set; }
+		private readonly string icon_name;
+		public string IconName {
+			get { return icon_name; }
+		}
 
 		// The sidebar onto which this page is attached
 		private Gtk.Widget sidebar;
@@ -77,9 +88,9 @@ namespace FSpot.Extensions
 //		}
 
 		public SidebarPage (Widget widget, string label, string icon_name) {
-			SidebarWidget = widget;
-			Label = label;
-			IconName = icon_name;
+			this.widget = widget;
+			this.label = label;
+			this.icon_name = icon_name;
 		}
 	}
 }

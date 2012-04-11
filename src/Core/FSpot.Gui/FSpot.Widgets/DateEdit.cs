@@ -28,10 +28,8 @@
 //
 
 using System;
-
-using Gtk;
-
 using Mono.Unix;
+using Gtk;
 
 namespace FSpot.Widgets
 {
@@ -45,7 +43,11 @@ namespace FSpot.Widgets
 		{
 		}
 
-		public DateEdit (DateTimeOffset dateTimeOffset, DateEditFlags dateEditFlags = DateEditFlags.None)
+		public DateEdit (DateTimeOffset dateTimeOffset) : this (dateTimeOffset, DateEditFlags.None)
+		{
+		}
+
+		public DateEdit (DateTimeOffset dateTimeOffset, DateEditFlags dateEditFlags) : base ()
 		{
 			this.dateEditFlags = dateEditFlags;
 			this.dateTimeOffset = dateTimeOffset;

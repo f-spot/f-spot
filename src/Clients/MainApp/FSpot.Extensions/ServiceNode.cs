@@ -28,12 +28,10 @@
 //
 
 using System;
-
 using Mono.Addins;
 
 namespace FSpot.Extensions
 {
-	// FIXME: This is never instantiated
 	public class ServiceNode : ExtensionNode
 	{
 		[NodeAttribute ("class", true)]

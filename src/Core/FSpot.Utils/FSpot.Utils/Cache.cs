@@ -29,8 +29,8 @@
 
 using System;
 using System.Collections.Generic;
-
 using Hyena;
+
 
 namespace FSpot.Utils
 {
@@ -116,6 +116,10 @@ namespace FSpot.Utils
 
 	public class DisposableCache<TKey, TValue> : Cache<TKey, TValue>, IDisposable
 	{
+		public DisposableCache () : base ()
+		{
+		}
+
 		public DisposableCache (int max_count) : base (max_count)
 		{
 		}
@@ -158,6 +162,7 @@ namespace FSpot.Utils
 				hash.Remove (key);
 			}
 		}
+
 
 		public void Dispose ()
 		{

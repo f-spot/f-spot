@@ -27,8 +27,13 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
+using System;
+
 namespace FSpot {
 	public class ProgressItem {
+		public ProgressItem () {
+		}
+
 		public delegate void ChangedHandler (ProgressItem item);
 		public event ChangedHandler Changed;
 

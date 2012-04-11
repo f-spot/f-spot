@@ -29,25 +29,21 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using System;
-using System.IO;
-
+using FSpot;
+using FSpot.UI.Dialog;
 using FSpot.Core;
 using FSpot.Extensions;
 using FSpot.Filters;
-using FSpot.UI.Dialog;
-
-using Gtk;
-
 using Hyena;
 using Hyena.Widgets;
-
-// FIXME: Is this in a newer version of mono?
-using ICSharpCode.SharpZipLib.Checksums;
-using ICSharpCode.SharpZipLib.GZip;
-using ICSharpCode.SharpZipLib.Zip;
-
+using System;
+using System.IO;
+using System.Collections;
 using Mono.Unix;
+using Gtk;
+using ICSharpCode.SharpZipLib.Checksums;
+using ICSharpCode.SharpZipLib.Zip;
+using ICSharpCode.SharpZipLib.GZip;
 
 namespace FSpot.Exporters.Zip {
 	public class Zip : IExporter {
@@ -127,9 +123,8 @@ namespace FSpot.Exporters.Zip {
 							      photos.Length, zipdiag);
 
 			//Pack up
-			foreach (IPhoto photo in photos)
-			{
-				if (progress_dialog.Update (String.Format (Catalog.GetString ("Preparing photo \"{0}\""), photo.Name))) {
+			for (int i = 0; i < photos.Length; i ++) {
+				if (progress_dialog.Update (String.Format (Catalog.GetString ("Preparing photo \"{0}\""), photos[i].Name))) {
 					progress_dialog.Destroy ();
 					return;
 				}
@@ -139,17 +134,17 @@ namespace FSpot.Exporters.Zip {
 					FilterSet filters = new FilterSet ();
 					filters.Add (new JpegFilter ());
 					filters.Add (new ResizeFilter ((uint) scale_size.ValueAsInt));
-					FilterRequest freq = new FilterRequest (photo.DefaultVersion.Uri);
+					FilterRequest freq = new FilterRequest (photos [i].DefaultVersion.Uri);
 					filters.Convert (freq);
 					f = freq.Current.LocalPath;
 				} else {
-					f = photo.DefaultVersion.Uri.LocalPath;
+					f = photos [i].DefaultVersion.Uri.LocalPath;
 				}
 				FileStream fs = File.OpenRead (f);
 
 				byte [] buffer = new byte [fs.Length];
 				fs.Read (buffer, 0, buffer.Length);
-				ZipEntry entry = new ZipEntry (System.IO.Path.GetFileName (photo.DefaultVersion.Uri.LocalPath));
+				ZipEntry entry = new ZipEntry (System.IO.Path.GetFileName (photos [i].DefaultVersion.Uri.LocalPath));
 
 				entry.DateTime = DateTime.Now;
 

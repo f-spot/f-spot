@@ -27,11 +27,14 @@
 // OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
-
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Xml;
+using System.Collections.Generic;
+using System.Text;
+using System.IO;
+using System.Net;
+using System.Linq;
+using Mono.Facebook.Schemas;
 
 namespace Mono.Facebook
 {
@@ -138,10 +141,10 @@ namespace Mono.Facebook
 			param_list.Add (FacebookParam.Create ("call_id", DateTime.Now.Ticks));
 			param_list.Add (FacebookParam.Create ("name", name));
 
-			if (!string.IsNullOrEmpty(description))
+			if (description != null && description != string.Empty)
 				param_list.Add (FacebookParam.Create ("description", description));
 
-			if (!string.IsNullOrEmpty(location))
+			if (location != null && location != string.Empty)
 				param_list.Add (FacebookParam.Create ("location", location));
 
 			// create the albums

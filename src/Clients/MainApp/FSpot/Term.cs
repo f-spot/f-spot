@@ -33,18 +33,15 @@
 // This has to do with Finding photos based on tags
 // http://mail.gnome.org/archives/f-spot-list/2005-November/msg00053.html
 // http://bugzilla-attachments.gnome.org/attachment.cgi?id=54566
-
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Text;
-
-using FSpot.Core;
-
-using Gtk;
-
-using Hyena;
-
 using Mono.Unix;
+using Gtk;
+using Gdk;
+using Hyena;
+using FSpot.Core;
 
 namespace FSpot
 {
@@ -83,9 +80,11 @@ namespace FSpot
 		/// last Literal in term, else null
 		/// </value>
 		public Term Last {
-			get
-			{
-				return SubTerms.Count > 0 ? SubTerms [SubTerms.Count - 1] : null;
+			get {
+				if (SubTerms.Count > 0)
+					return SubTerms [SubTerms.Count - 1];
+else
+					return null;
 			}
 		}
 
@@ -150,7 +149,12 @@ else
 			}
 		}
 
-		public List<Term> FindByTag (Tag t, bool recursive = true)
+		public List<Term> FindByTag (Tag t)
+		{
+			return FindByTag (t, true);
+		}
+
+		public List<Term> FindByTag (Tag t, bool recursive)
 		{
 			List<Term> results = new List<Term> ();
 
@@ -281,7 +285,7 @@ else
 			StringBuilder condition = new StringBuilder ("(");
 
 			for (int i = 0; i < SubTerms.Count; i++) {
-				Term term = SubTerms [i];
+				Term term = SubTerms [i] as Term;
 				condition.Append (term.SqlCondition ());
 
 				if (i != SubTerms.Count - 1)
@@ -303,7 +307,6 @@ else
 			return String.Empty;
 		}
 
-		// FIXME: The base class shouldn't know about its derived classes?
 		public static Term TermFromOperator (string op, Term parent, Literal after)
 		{
 			//Console.WriteLine ("finding type for operator {0}", op);
@@ -313,8 +316,7 @@ else
 			if (AndTerm.Operators.Contains (op))
 				//Console.WriteLine ("AND!");
 				return new AndTerm (parent, after);
-			
-			if (OrTerm.Operators.Contains (op))
+			else if (OrTerm.Operators.Contains (op))
 				//Console.WriteLine ("OR!");
 				return new OrTerm (parent, after);
 

@@ -30,17 +30,15 @@
 using System;
 using System.Collections.Generic;
 
-using FSpot.Bling;
+using Gtk;
+using Gdk;
+using Mono.Addins;
 using FSpot.Core;
+using FSpot.Bling;
 using FSpot.Extensions;
 using FSpot.Imaging;
 using FSpot.Transitions;
 using FSpot.Utils;
-
-using Gdk;
-using Gtk;
-
-using Mono.Addins;
 
 namespace FSpot.Widgets
 {
@@ -55,7 +53,7 @@ namespace FSpot.Widgets
 		{
 		}
 
-		public SlideShow (BrowsablePointer item, uint interval_ms, bool init)
+		public SlideShow (BrowsablePointer item, uint interval_ms, bool init) : base ()
 		{
 			this.item = item;
 			DoubleBuffered = false;
@@ -79,7 +77,7 @@ namespace FSpot.Widgets
 
 		SlideShowTransition transition;
 		public SlideShowTransition Transition {
-			get { return transition; }
+            get { return transition; }
 			set {
 				if (value == transition)
 					return;

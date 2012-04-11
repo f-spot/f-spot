@@ -28,6 +28,7 @@
 //
 
 using Gdk;
+using Gtk;
 
 namespace FSpot.Widgets
 {
