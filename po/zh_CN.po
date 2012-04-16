@@ -5,18 +5,20 @@
 # Funda Wang <fundawang@linux.net.cn>, 2004, 2006.
 # Yao Hui <gsling_@126.com>, 2005.
 # Aron Xu <aronmalache@163.com>, 2008.
-# 甘露(Gan Lu) <rhythm.gan@gmail.com>, 2008
-# Maonx <lovemaonx@gmail.com>, 2010
-# silverzhao <silverzhao1990@gmail.com>, 2011
+# 甘露(Gan Lu) <rhythm.gan@gmail.com>, 2008.
+# Maonx <lovemaonx@gmail.com>, 2010.
+# silverzhao <silverzhao1990@gmail.com>, 2011.
+# Richard Ma <richard.ma.19850509@gmail.com>, 2012.
+# Wylmer Wang <wantinghard@gmail.com>, 2012.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: f-spot master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=f-"
-"spot&component=General\n"
-"POT-Creation-Date: 2011-01-01 23:20+0000\n"
-"PO-Revision-Date: 2011-01-13 20:48+0800\n"
-"Last-Translator: silverzhao <silverzhao1990@gmail.com>\n"
+"spot&keywords=I18N+L10N&component=General\n"
+"POT-Creation-Date: 2012-04-11 07:04+0000\n"
+"PO-Revision-Date: 2012-03-30 23:36+0800\n"
+"Last-Translator: Wylmer Wang <wantinghard@gmail.com>\n"
 "Language-Team: Chinese (simplified) <i18n-zh@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -24,162 +26,232 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #. ../src/Clients/MainApp/FSpot.addin.xml
+#: ../data/addin-xml-strings.cs:8 ../src/Clients/MainApp/FSpot.addin.xml.h:3
+msgid "Copy Photo"
+msgstr "复制照片"
+
+#: ../data/addin-xml-strings.cs:9 ../src/Clients/MainApp/FSpot.addin.xml.h:4
+#: ../src/Clients/MainApp/FSpot/SingleView.cs:457
+#: ../src/Clients/MainApp/ui/main_window.ui.h:18
+msgid "Rotate _Left"
+msgstr "逆时针旋转(_L)"
+
+#: ../data/addin-xml-strings.cs:10 ../src/Clients/MainApp/FSpot.addin.xml.h:5
+#: ../src/Clients/MainApp/FSpot/SingleView.cs:458
+#: ../src/Clients/MainApp/ui/main_window.ui.h:19
+msgid "Rotate _Right"
+msgstr "顺时针旋转(_R)"
+
+#: ../data/addin-xml-strings.cs:11 ../src/Clients/MainApp/FSpot.addin.xml.h:7
+#: ../src/Clients/MainApp/ui/main_window.ui.h:24
+msgid "_Remove From Catalog"
+msgstr "从编目删除(_R)"
+
+#: ../data/addin-xml-strings.cs:12 ../src/Clients/MainApp/FSpot.addin.xml.h:8
+#: ../src/Clients/MainApp/ui/main_window.ui.h:23
+msgid "_Delete From Drive"
+msgstr "从驱动器中删除(_D)"
+
 #. ../src/Extensions/Editors/FSpot.Editors.Blackout/Resources/BlackoutEditor.addin.xml
-#: ../data/addin-xml-strings.cs:10
+#: ../data/addin-xml-strings.cs:15
 msgid "BlackoutEditor"
 msgstr "涂黑编辑器"
 
-#: ../data/addin-xml-strings.cs:11
+#: ../data/addin-xml-strings.cs:16
 msgid "Blacks out an area of the image."
 msgstr "将图像的部分区域涂黑。"
 
-#: ../data/addin-xml-strings.cs:12 ../data/addin-xml-strings.cs:17
-#: ../data/addin-xml-strings.cs:22 ../data/addin-xml-strings.cs:27
-#: ../data/addin-xml-strings.cs:32
+#: ../data/addin-xml-strings.cs:17 ../data/addin-xml-strings.cs:22
+#: ../data/addin-xml-strings.cs:27 ../data/addin-xml-strings.cs:32
+#: ../data/addin-xml-strings.cs:37
 msgid "Editors"
 msgstr "编辑器"
 
 #. ../src/Extensions/Editors/FSpot.Editors.BW/Resources/BWEditor.addin.xml
-#: ../data/addin-xml-strings.cs:15
+#: ../data/addin-xml-strings.cs:20
 msgid "BWEditor"
 msgstr "BW 编辑器"
 
-#: ../data/addin-xml-strings.cs:16
+#: ../data/addin-xml-strings.cs:21
 msgid "Convert to B/W with control. Require Mono 2.2."
 msgstr ""
 
 #. ../src/Extensions/Editors/FSpot.Editors.Flip/Resources/FlipEditor.addin.xml
-#: ../data/addin-xml-strings.cs:20
+#: ../data/addin-xml-strings.cs:25
 msgid "FlipEditor"
 msgstr "反转编辑器"
 
-#: ../data/addin-xml-strings.cs:21
+#: ../data/addin-xml-strings.cs:26
 msgid "Flips the image horizontally."
 msgstr "水平翻转图像"
 
 #. ../src/Extensions/Editors/FSpot.Editors.Pixelate/Resources/PixelateEditor.addin.xml
-#: ../data/addin-xml-strings.cs:25
+#: ../data/addin-xml-strings.cs:30
 msgid "PixelateEditor"
 msgstr "像素化编辑器"
 
-#: ../data/addin-xml-strings.cs:26
+#: ../data/addin-xml-strings.cs:31
 msgid "Pixelates an area of the image."
 msgstr "将图像的部分区域像素化。"
 
 #. ../src/Extensions/Editors/FSpot.Editors.Resize/Resources/ResizeEditor.addin.xml
-#: ../data/addin-xml-strings.cs:30
+#: ../data/addin-xml-strings.cs:35
 msgid "ResizeEditor"
 msgstr "调整大小编辑器"
 
-#: ../data/addin-xml-strings.cs:31
+#: ../data/addin-xml-strings.cs:36
 msgid "Resize the image"
 msgstr "调整图像大小"
 
 #. ../src/Extensions/Exporters/FSpot.Exporters.CD/Resources/CDExport.addin.xml
-#: ../data/addin-xml-strings.cs:35
+#: ../data/addin-xml-strings.cs:40
 msgid "CD Export"
-msgstr "导出至 CD"
+msgstr "导出光盘"
 
-#: ../data/addin-xml-strings.cs:36
+#: ../data/addin-xml-strings.cs:41
 msgid "This extension allows you to burn your photos to CD."
-msgstr "这个扩展可以让您将照片烧录到光盘上。"
+msgstr "这个扩展可以让您将照片刻录到光盘上。"
 
-#: ../data/addin-xml-strings.cs:37 ../data/addin-xml-strings.cs:42
-#: ../data/addin-xml-strings.cs:47 ../data/addin-xml-strings.cs:52
-#: ../data/addin-xml-strings.cs:57 ../data/addin-xml-strings.cs:62
-#: ../data/addin-xml-strings.cs:67 ../data/addin-xml-strings.cs:72
-#: ../data/addin-xml-strings.cs:77
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/Resources/flickr_export.ui.h:6
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/Resources/gallery_export_dialog.ui.h:5
-#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/Resources/google_export_dialog.ui.h:5
-#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/Resources/smugmug_export_dialog.ui.h:5
-#: ../src/Extensions/Exporters/FSpot.Exporters.Tabblo/Resources/ui/TabbloExport.ui.h:5
+#: ../data/addin-xml-strings.cs:42 ../data/addin-xml-strings.cs:48
+#: ../data/addin-xml-strings.cs:54 ../data/addin-xml-strings.cs:62
+#: ../data/addin-xml-strings.cs:68 ../data/addin-xml-strings.cs:74
+#: ../data/addin-xml-strings.cs:80 ../data/addin-xml-strings.cs:86
+#: ../data/addin-xml-strings.cs:92
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/Resources/flickr_export.ui.h:1
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/Resources/gallery_export_dialog.ui.h:1
+#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/Resources/google_export_dialog.ui.h:1
+#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/Resources/smugmug_export_dialog.ui.h:1
+#: ../src/Extensions/Exporters/FSpot.Exporters.Tabblo/Resources/ui/TabbloExport.ui.h:1
 msgid "Export"
 msgstr "导出"
 
+#: ../data/addin-xml-strings.cs:43
+msgid "_CD..."
+msgstr "_CD..."
+
 #. ../src/Extensions/Exporters/FSpot.Exporters.Facebook/Resources/FacebookExport.addin.xml
-#: ../data/addin-xml-strings.cs:40
+#: ../data/addin-xml-strings.cs:46
 msgid "FacebookExport"
 msgstr "导出至 Facebook"
 
-#: ../data/addin-xml-strings.cs:41
+#: ../data/addin-xml-strings.cs:47
 msgid "Export pictures to facebook"
 msgstr "将图片导出至 Facebook"
 
+#: ../data/addin-xml-strings.cs:49
+msgid "F_acebook..."
+msgstr "F_acebook..."
+
 #. ../src/Extensions/Exporters/FSpot.Exporters.Flickr/Resources/FlickrExport.addin.xml
-#: ../data/addin-xml-strings.cs:45
+#: ../data/addin-xml-strings.cs:52
 msgid "Flickr Export"
 msgstr "导出至 Flickr Export"
 
-#: ../data/addin-xml-strings.cs:46
+#: ../data/addin-xml-strings.cs:53
 msgid "This extension allows you to export your photos to Flickr and 23hq."
 msgstr "这个扩展可以让您将照片导出至 Flickr 和 23hq。"
 
+#: ../data/addin-xml-strings.cs:55
+msgid "_Flickr..."
+msgstr "_Flickr..."
+
+#: ../data/addin-xml-strings.cs:56
+msgid "_23hq..."
+msgstr "_23hq..."
+
+#: ../data/addin-xml-strings.cs:57
+msgid "_Zooomr..."
+msgstr "_Zooomr..."
+
 #. ../src/Extensions/Exporters/FSpot.Exporters.Folder/Resources/FolderExport.addin.xml
-#: ../data/addin-xml-strings.cs:50
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/Resources/folder_export.ui.h:10
+#: ../data/addin-xml-strings.cs:60
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/Resources/folder_export.ui.h:1
 msgid "Folder Export"
 msgstr "导出至文件夹"
 
-#: ../data/addin-xml-strings.cs:51
+#: ../data/addin-xml-strings.cs:61
 msgid ""
 "This extension allows you to export your photos to HTML galleries, Original "
 "galleries or just to a folder."
 msgstr "这个扩展可以让您将照片导出至 HTML 图库，原始图库或者到文件夹里。"
 
+#: ../data/addin-xml-strings.cs:63
+msgid "F_older..."
+msgstr "文件夹(_O)..."
+
 #. ../src/Extensions/Exporters/FSpot.Exporters.Gallery/Resources/GalleryExport.addin.xml
-#: ../data/addin-xml-strings.cs:55
+#: ../data/addin-xml-strings.cs:66
 msgid "Gallery Export"
 msgstr "导出至 Gallery"
 
-#: ../data/addin-xml-strings.cs:56
+#: ../data/addin-xml-strings.cs:67
 msgid ""
 "This extension allows you to export your photos to PHP Gallery (http://"
 "gallery.menalto.com)."
 msgstr "这个扩展可以让您将照片导出至 PHP 图库(http://gallery.menalto.com)。"
 
+#: ../data/addin-xml-strings.cs:69
+msgid "Web _Gallery..."
+msgstr "网络图库(_G)..."
+
 #. ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/Resources/PicasaWebExport.addin.xml
-#: ../data/addin-xml-strings.cs:60
+#: ../data/addin-xml-strings.cs:72
 msgid "PicasaWeb Export"
 msgstr "导出至 PicasaWeb"
 
-#: ../data/addin-xml-strings.cs:61
+#: ../data/addin-xml-strings.cs:73
 msgid "This extension allows you to export your photos to PicasaWeb."
 msgstr "这个扩展可以让您将照片导出至 PicasaWeb。"
 
+#: ../data/addin-xml-strings.cs:75
+msgid "_PicasaWeb..."
+msgstr "_PicasaWeb..."
+
 #. ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/Resources/SmugMugExport.addin.xml
-#: ../data/addin-xml-strings.cs:65
+#: ../data/addin-xml-strings.cs:78
 msgid "SmugMug Export"
 msgstr "导出至 SmugMug"
 
-#: ../data/addin-xml-strings.cs:66
+#: ../data/addin-xml-strings.cs:79
 msgid "This extension allows you to export your photos to SmugMug."
 msgstr "这个扩展可以让您将照片导出至 SmugMug。"
 
+#: ../data/addin-xml-strings.cs:81
+msgid "_SmugMug..."
+msgstr "_SmugMug..."
+
 #. ../src/Extensions/Exporters/FSpot.Exporters.Tabblo/Resources/TabbloExport.addin.xml
-#: ../data/addin-xml-strings.cs:70
+#: ../data/addin-xml-strings.cs:84
 msgid "Tabblo Export"
 msgstr "导出至 Tabblo"
 
-#: ../data/addin-xml-strings.cs:71
+#: ../data/addin-xml-strings.cs:85
 msgid "This extension allows you to export your photos to Tabblo."
 msgstr "这个扩展可以让您将照片导出至 Tabblo。"
 
+#: ../data/addin-xml-strings.cs:87
+msgid "_Tabblo..."
+msgstr "_Tabblo..."
+
 #. ../src/Extensions/Exporters/FSpot.Exporters.Zip/Resources/ZipExport.addin.xml
-#: ../data/addin-xml-strings.cs:75
+#: ../data/addin-xml-strings.cs:90
 msgid "Zip export"
 msgstr "导出至 Zip 文件"
 
-#: ../data/addin-xml-strings.cs:76
+#: ../data/addin-xml-strings.cs:91
 msgid "Simple export to Zip file"
 msgstr "导出至 Zip 压缩文件"
 
+#: ../data/addin-xml-strings.cs:93
+msgid "Compressed fil_e..."
+msgstr "压缩文件(_E)..."
+
 #. ../src/Extensions/Tools/FSpot.Tools.ChangePhotoPath/Resources/ChangePhotoPath.addin.xml
-#: ../data/addin-xml-strings.cs:80
+#: ../data/addin-xml-strings.cs:96
 msgid "ChangePath"
 msgstr "改变路径"
 
-#: ../data/addin-xml-strings.cs:81
+#: ../data/addin-xml-strings.cs:97
 msgid ""
 "UNSTABLE - Please ensure you have a backup of your photos.db before you test "
 "this extension. This extension will allow you to change the base path to the "
@@ -193,117 +265,184 @@ msgstr ""
 "会很有用。在 f-spot 报告完成后，只需确保让 SqLite 继续运行一段时间以完成所作"
 "的改变。它智慧改变在“照片”目录中的那些照片的路径。"
 
-#: ../data/addin-xml-strings.cs:82 ../data/addin-xml-strings.cs:87
-#: ../data/addin-xml-strings.cs:92 ../data/addin-xml-strings.cs:97
-#: ../data/addin-xml-strings.cs:102 ../data/addin-xml-strings.cs:107
-#: ../data/addin-xml-strings.cs:112 ../data/addin-xml-strings.cs:117
-#: ../data/addin-xml-strings.cs:122 ../data/addin-xml-strings.cs:127
-#: ../src/Clients/MainApp/FSpot.addin.xml.h:7
+#: ../data/addin-xml-strings.cs:98 ../data/addin-xml-strings.cs:104
+#: ../data/addin-xml-strings.cs:110 ../data/addin-xml-strings.cs:116
+#: ../data/addin-xml-strings.cs:122 ../data/addin-xml-strings.cs:128
+#: ../data/addin-xml-strings.cs:134 ../data/addin-xml-strings.cs:140
+#: ../data/addin-xml-strings.cs:146 ../data/addin-xml-strings.cs:152
+#: ../src/Clients/MainApp/FSpot.addin.xml.h:2
 msgid "Tools"
 msgstr "工具"
 
+#: ../data/addin-xml-strings.cs:99
+msgid "Change path to photos"
+msgstr "更改照片路径"
+
 #. ../src/Extensions/Tools/FSpot.Tools.DevelopInUFraw/Resources/DevelopInUFRaw.addin.xml
-#: ../data/addin-xml-strings.cs:85
+#: ../data/addin-xml-strings.cs:102
 msgid "DevelopInUFRaw"
 msgstr "在 UFRaw 中编辑"
 
-#: ../data/addin-xml-strings.cs:86
+#: ../data/addin-xml-strings.cs:103
 msgid ""
 "Develop the image in UFRaw, saves the result as a new version\\n\\nNote: "
 "Require ufraw 0.13 or CVS version newer than 2007-09-06 !!!"
 msgstr ""
-"在 UFRaw 中编辑图像，把结果文件保存为新版。\n\n注意：需要 ufraw 0.13 或"
-"是 2007-09-06 以后的 CVS 版本。"
+"在 UFRaw 中编辑图像，把结果文件保存为新版。\n"
+"\n"
+"注意：需要 ufraw 0.13 或是 2007-09-06 以后的 CVS 版本。"
+
+#: ../data/addin-xml-strings.cs:105
+msgid "Develop in UFRaw"
+msgstr "在 UFRaw 中编辑"
 
 #. ../src/Extensions/Tools/FSpot.Tools.LiveWebGallery/Resources/LiveWebGallery.addin.xml
-#: ../data/addin-xml-strings.cs:90
+#: ../data/addin-xml-strings.cs:108
 msgid "LiveWebGallery"
 msgstr "在线网络图库"
 
-#: ../data/addin-xml-strings.cs:91
+#: ../data/addin-xml-strings.cs:109
 msgid "Share photos with other people on the same network via Web Browser"
 msgstr "通过网页浏览器和处在统一网络的其他人分享照片"
 
+#: ../data/addin-xml-strings.cs:111
+msgid "Live Web Gallery"
+msgstr "在线网络图库"
+
 #. ../src/Extensions/Tools/FSpot.Tools.MergeDb/Resources/MergeDb.addin.xml
-#: ../data/addin-xml-strings.cs:95
+#: ../data/addin-xml-strings.cs:114
 msgid "MergeDb"
 msgstr "合并数据库"
 
-#: ../data/addin-xml-strings.cs:96
+#: ../data/addin-xml-strings.cs:115
 msgid "Merge another db back to the main one"
 msgstr "将另外的数据库合并至主数据库"
 
+#: ../data/addin-xml-strings.cs:117
+msgid "Merge Db"
+msgstr "合并数据库"
+
 #. ../src/Extensions/Tools/FSpot.Tools.MetaPixel/MetaPixel.addin.xml
-#: ../data/addin-xml-strings.cs:100
+#: ../data/addin-xml-strings.cs:120
 msgid "MetaPixel"
 msgstr "元像素"
 
-#: ../data/addin-xml-strings.cs:101
+#: ../data/addin-xml-strings.cs:121
+#, fuzzy
 msgid ""
 "Create photomosaics using MetaPixel (http://www.complang.tuwien.ac.at/schani/"
 "metapixel/)"
 msgstr ""
+"使用 MetaPixel 创建相片马赛克(http://www.complang.tuwien.ac.at/schani/"
+"metapixel/)"
+
+#: ../data/addin-xml-strings.cs:123
+#, fuzzy
+msgid "Create p_hotomosaic"
+msgstr "创建照片马赛克(_H)"
 
 #. ../src/Extensions/Tools/FSpot.Tools.PictureTile/PictureTile.addin.xml
-#: ../data/addin-xml-strings.cs:105
+#: ../data/addin-xml-strings.cs:126
 msgid "PictureTile"
-msgstr ""
+msgstr "PictureTile"
 
-#: ../data/addin-xml-strings.cs:106
+#: ../data/addin-xml-strings.cs:127
 msgid ""
 "Create photo wall using PictureTile by Jamie Zawinski (http://www.jwz.org/"
 "picturetile/)"
 msgstr ""
+"使用 Jamie Zawinski 制作的 PictureTile 创建照片墙(http://www.jwz.org/"
+"picturetile/)"
+
+#: ../data/addin-xml-strings.cs:129
+msgid "Create photo_wall"
+msgstr "创建照片墙(_W)"
 
 #. ../src/Extensions/Tools/FSpot.Tools.RawPlusJpeg/Resources/RawPlusJpeg.addin.xml
-#: ../data/addin-xml-strings.cs:110
+#: ../data/addin-xml-strings.cs:132
 msgid "RawPlusJpeg"
-msgstr ""
+msgstr "RawPlusJpeg"
 
-#: ../data/addin-xml-strings.cs:111
+#: ../data/addin-xml-strings.cs:133
 msgid "Merge RAW+Jpeg as multiple versions of the same photo"
 msgstr ""
 
+#: ../data/addin-xml-strings.cs:135
+#, fuzzy
+msgid "Merge Raw"
+msgstr "合并 Raw"
+
 #. ../src/Extensions/Tools/FSpot.Tools.RetroactiveRoll/Resources/RetroactiveRoll.addin.xml
-#: ../data/addin-xml-strings.cs:115
+#: ../data/addin-xml-strings.cs:138
 msgid "RetroactiveRoll"
 msgstr ""
 
-#: ../data/addin-xml-strings.cs:116
+#: ../data/addin-xml-strings.cs:139
 msgid "Retroactively assign old photos to import rolls"
 msgstr ""
 
+#: ../data/addin-xml-strings.cs:141
+msgid "Reassign to new import roll"
+msgstr ""
+
 #. ../src/Extensions/Tools/FSpot.Tools.ScreensaverConfig/Resources/ScreensaverConfig.addin.xml
-#: ../data/addin-xml-strings.cs:120
-#: ../src/Extensions/Tools/FSpot.Tools.ScreensaverConfig/Resources/ScreensaverConfigDialog.ui.h:6
+#: ../data/addin-xml-strings.cs:144
+#: ../src/Extensions/Tools/FSpot.Tools.ScreensaverConfig/Resources/ScreensaverConfigDialog.ui.h:1
 msgid "Screensaver Configuration"
 msgstr "屏幕保护配置"
 
-#: ../data/addin-xml-strings.cs:121
+#: ../data/addin-xml-strings.cs:145
 msgid "Screensaver options"
 msgstr "屏幕保护选项"
 
+#: ../data/addin-xml-strings.cs:147
+msgid "Configure Screensaver"
+msgstr "配置屏幕保护程序"
+
 #. ../src/Extensions/Tools/FSpot.Tools.SyncCatalog/SyncCatalog.addin.xml
-#: ../data/addin-xml-strings.cs:125
+#: ../data/addin-xml-strings.cs:150
 msgid "SyncMetaData"
 msgstr "同步元数据"
 
-#: ../data/addin-xml-strings.cs:126
+#: ../data/addin-xml-strings.cs:151
 msgid "Sync MetaData information of all catalog with Photos"
 msgstr ""
 
-#. ../src/Extensions/Transitions/FSpot.Transitions.Cover/Resources/CoverTransition.addin.xml
-#: ../data/addin-xml-strings.cs:130
-msgid "Cover Transition"
-msgstr "封面转换"
-
-#: ../data/addin-xml-strings.cs:131
-msgid "A Slideshow transition that covers images"
+#: ../data/addin-xml-strings.cs:153
+msgid "Sync Catalog with Photos"
 msgstr ""
 
-#: ../data/addin-xml-strings.cs:132
+#. ../src/Extensions/Transitions/FSpot.Transitions.Cover/Resources/CoverTransition.addin.xml
+#: ../data/addin-xml-strings.cs:156
+msgid "Cover Transition"
+msgstr "覆盖过渡"
+
+#: ../data/addin-xml-strings.cs:157
+msgid "A Slideshow transition that covers images"
+msgstr "覆盖图片的幻灯片过渡效果"
+
+#: ../data/addin-xml-strings.cs:158 ../data/addin-xml-strings.cs:163
+#: ../data/addin-xml-strings.cs:168
 msgid "Transitions"
-msgstr "转换"
+msgstr "过渡"
+
+#. ../src/Extensions/Transitions/FSpot.Transitions.Dissolve/Resources/DissolveTransition.addin.xml
+#: ../data/addin-xml-strings.cs:161
+msgid "Dissolve Transition"
+msgstr "溶解过渡"
+
+#: ../data/addin-xml-strings.cs:162
+msgid "A Slideshow transition that dissolves images"
+msgstr "溶解图片的幻灯片过渡效果"
+
+#. ../src/Extensions/Transitions/FSpot.Transitions.Push/Resources/PushTransition.addin.xml
+#: ../data/addin-xml-strings.cs:166
+msgid "Push Transition"
+msgstr "推动过渡"
+
+#: ../data/addin-xml-strings.cs:167
+msgid "A Slideshow transition that pushes images"
+msgstr "推动图片的幻灯片过渡效果"
 
 #: ../data/desktop-files/f-spot.desktop.in.in.h:1
 #: ../data/desktop-files/f-spot-import.desktop.in.in.h:1
@@ -313,209 +452,202 @@ msgstr "F-Spot"
 
 #: ../data/desktop-files/f-spot.desktop.in.in.h:2
 #: ../data/desktop-files/f-spot-import.desktop.in.in.h:2
-msgid "F-Spot Photo Manager"
-msgstr "F-Spot 照片管理器"
-
-#: ../data/desktop-files/f-spot.desktop.in.in.h:3
-msgid "Organize, enjoy, and share your photos"
-msgstr "组织、欣赏及共享您的照片"
-
-#: ../data/desktop-files/f-spot.desktop.in.in.h:4
-#: ../data/desktop-files/f-spot-import.desktop.in.in.h:4
 msgid "Photo Manager"
 msgstr "照片管理器"
 
+#: ../data/desktop-files/f-spot.desktop.in.in.h:3
 #: ../data/desktop-files/f-spot-import.desktop.in.in.h:3
+msgid "F-Spot Photo Manager"
+msgstr "F-Spot 照片管理器"
+
+#: ../data/desktop-files/f-spot.desktop.in.in.h:4
+msgid "Organize, enjoy, and share your photos"
+msgstr "组织、欣赏及共享您的照片"
+
+#: ../data/desktop-files/f-spot-import.desktop.in.in.h:4
 msgid "Import into F-Spot"
 msgstr "导入到 F-Spot"
 
 #: ../data/desktop-files/f-spot-view.desktop.in.in.h:2
-msgid "F-Spot Photo Viewer"
-msgstr "F-Spot 照片查看器"
-
-#: ../data/desktop-files/f-spot-view.desktop.in.in.h:3
 msgid "Photo Viewer"
 msgstr "照片查看器"
 
+#: ../data/desktop-files/f-spot-view.desktop.in.in.h:3
+msgid "F-Spot Photo Viewer"
+msgstr "F-Spot 照片查看器"
+
 #: ../f-spot.schemas.in.h:1
-msgid "Display of transparent parts."
-msgstr "显示透明部分。"
+msgid "Path to custom gtkrc for theming F-Spot."
+msgstr "定制 F-Spot 主题的自定义 gtkrc 文件的路径。"
 
 #: ../f-spot.schemas.in.h:2
-msgid "Enable this to allow interpolation on zoomed images."
-msgstr "启用缩放图片时允许插值。"
-
-#: ../f-spot.schemas.in.h:3
-msgid "Height of the import dialog."
-msgstr "导入对话框的高度。"
-
-#: ../f-spot.schemas.in.h:4
-msgid "Height of the main window."
-msgstr "主窗口的高度。"
-
-#: ../f-spot.schemas.in.h:5
-msgid "Height of the photo viewer window."
-msgstr "照片查看窗口的高度。"
-
-#: ../f-spot.schemas.in.h:6
-msgid ""
-"If the 'transparency' option is set, the color specified in this option will "
-"be used as the transparent color when viewing images."
-msgstr "如果设置了”透明“选项，查看图片时在这个选项指定的颜色将显示为透明色。"
-
-#: ../f-spot.schemas.in.h:7
-msgid "Interpolate image on zoom."
-msgstr ""
-
-#: ../f-spot.schemas.in.h:8
 msgid "Maximize the main window."
 msgstr "最大化主窗口。"
 
+#: ../f-spot.schemas.in.h:3
+msgid "Width of the main window."
+msgstr "主窗口宽度。"
+
+#: ../f-spot.schemas.in.h:4
+msgid "The width dimension to use for the main window."
+msgstr "主窗口宽度"
+
+#: ../f-spot.schemas.in.h:5
+msgid "Height of the main window."
+msgstr "主窗口的高度。"
+
+#: ../f-spot.schemas.in.h:6
+msgid "The height dimension to use for the main window."
+msgstr "主窗口高度。"
+
+#: ../f-spot.schemas.in.h:7
+msgid "X position of the main window."
+msgstr "主窗口的 X 坐标。"
+
+#: ../f-spot.schemas.in.h:8
+msgid "The X position to use for the main window."
+msgstr "用于主窗口的 X 坐标。"
+
 #: ../f-spot.schemas.in.h:9
-msgid "Maximize the photo viewer window."
-msgstr "最大化照片查看窗口。"
+msgid "Y position of the main window."
+msgstr "主窗口的 Y 坐标。"
 
 #: ../f-spot.schemas.in.h:10
-msgid "Path to custom gtkrc for theming F-Spot."
-msgstr ""
+msgid "The Y position to use for the main window."
+msgstr "用于主窗口的 Y 坐标。"
 
 #: ../f-spot.schemas.in.h:11
 msgid "Show dates in the thumbnail view."
 msgstr "查看缩略图时显示日期。"
 
 #: ../f-spot.schemas.in.h:12
-msgid "Show ratings in the thumbnail view."
-msgstr "查看缩略图时显示等级。"
-
-#: ../f-spot.schemas.in.h:13
 msgid "Show tags in the thumbnail view."
 msgstr "查看缩略图时显示标签。"
 
-#: ../f-spot.schemas.in.h:14
-msgid "Show the filename in the viewer window."
-msgstr "在查看窗口显示文件名。"
+#: ../f-spot.schemas.in.h:13
+msgid "Size of the tag icons shown in the sidebar."
+msgstr "在侧边栏显示标签图标的大小。"
 
+#: ../f-spot.schemas.in.h:14
+msgid "Show ratings in the thumbnail view."
+msgstr "查看缩略图时显示等级。"
+
+# 与 slideshow 不一样
 #: ../f-spot.schemas.in.h:15
 msgid "Show the filmstrip in the main window."
 msgstr "在主窗口显示幻灯片。"
 
 #: ../f-spot.schemas.in.h:16
-msgid "Show the sidebar in the main window."
-msgstr "在主窗口显示侧边栏。"
+#, fuzzy
+msgid "The orientation of the filmstrip."
+msgstr "幻灯片方向。"
 
 #: ../f-spot.schemas.in.h:17
+#, fuzzy
+msgid "The orientation of the filmstrip, if shown."
+msgstr "放映时，幻灯片方向。"
+
+#: ../f-spot.schemas.in.h:18
 msgid "Show the timeline in the main window."
 msgstr "在主窗口显示时间轴。"
 
-#: ../f-spot.schemas.in.h:18
+#: ../f-spot.schemas.in.h:19
 msgid "Show the toolbar in the main window."
 msgstr "在主窗口显示工具栏。"
 
-#: ../f-spot.schemas.in.h:19
-msgid "Show the toolbar in the photo viewer window."
-msgstr "在照片查看窗口显示工具栏。"
-
 #: ../f-spot.schemas.in.h:20
-msgid "Size of the tag icons shown in the sidebar."
-msgstr "在侧边栏显示标签图标的大小。"
+msgid "Show the sidebar in the main window."
+msgstr "在主窗口显示侧边栏。"
 
 #: ../f-spot.schemas.in.h:21
-msgid "The X position to use for the main window."
-msgstr "用于主窗口的 X 坐标。"
+msgid "The size of the sidebar in the main window."
+msgstr "主窗口侧边栏大小。"
 
 #: ../f-spot.schemas.in.h:22
-msgid "The X position to use for the photo viewer window."
-msgstr "用于照片查看窗口的 X 坐标。"
+msgid "The size (width) of the sidebar in the main window."
+msgstr "主窗口侧边栏大小（宽度）。"
 
 #: ../f-spot.schemas.in.h:23
-msgid "The Y position to use for the main window."
-msgstr "用于主窗口的 Y 坐标。"
+msgid "Width of the import dialog."
+msgstr "导入对话框宽度。"
 
 #: ../f-spot.schemas.in.h:24
-msgid "The Y position to use for the photo viewer window."
-msgstr "用于照片查看窗口的 Y 坐标。"
+msgid "The width dimension to use for the import dialog."
+msgstr "”导入”对话框宽度"
 
 #: ../f-spot.schemas.in.h:25
-msgid "The color to use for transparent parts."
-msgstr "用于透明部分的颜色。"
+msgid "Height of the import dialog."
+msgstr "导入对话框的高度。"
 
 #: ../f-spot.schemas.in.h:26
 msgid "The height dimension to use for the import dialog."
 msgstr "”导入”对话框高度"
 
 #: ../f-spot.schemas.in.h:27
-msgid "The height dimension to use for the main window."
-msgstr "主窗口高度"
-
-#: ../f-spot.schemas.in.h:28
-msgid "The height dimension to use for the photo viewer window."
-msgstr "照片浏览窗口高度"
-
-#: ../f-spot.schemas.in.h:29
-msgid "The orientation of the filmstrip, if shown."
-msgstr "放映时，幻灯片方向。"
-
-#: ../f-spot.schemas.in.h:30
-msgid "The orientation of the filmstrip."
-msgstr "幻灯片方向。"
-
-#: ../f-spot.schemas.in.h:31
-msgid "The size (width) of the sidebar in the main window."
-msgstr "主窗口侧边栏大小（宽度）。"
-
-#: ../f-spot.schemas.in.h:32
-msgid "The size of the sidebar in the main window."
-msgstr "主窗口侧边栏大小。"
-
-#: ../f-spot.schemas.in.h:33
-msgid "The width dimension to use for the import dialog."
-msgstr "”导入”对话框宽度"
-
-#: ../f-spot.schemas.in.h:34
-msgid "The width dimension to use for the main window."
-msgstr "主窗口宽度"
-
-#: ../f-spot.schemas.in.h:35
-msgid "The width dimension to use for the photo viewer window."
-msgstr "照片浏览窗口高度"
-
-#: ../f-spot.schemas.in.h:36
-msgid "Use the current photo's filename as the viewer window's title."
-msgstr "用当前照片的文件名作为查看窗口的标题。"
-
-#: ../f-spot.schemas.in.h:37
-msgid "Width of the import dialog."
-msgstr "导入对话框宽度。"
-
-#: ../f-spot.schemas.in.h:38
-msgid "Width of the main window."
-msgstr "主窗口宽度。"
-
-#: ../f-spot.schemas.in.h:39
-msgid "Width of the photo viewer window."
-msgstr "照片查看窗口宽度。"
-
-#: ../f-spot.schemas.in.h:40
 msgid "Width of the preview image pane in the import dialog."
 msgstr "在导入对话框中预览图片的宽度。"
 
-#: ../f-spot.schemas.in.h:41
-msgid "X position of the main window."
-msgstr "主窗口的 X 坐标。"
+#: ../f-spot.schemas.in.h:28
+msgid "Maximize the photo viewer window."
+msgstr "最大化照片查看窗口。"
 
-#: ../f-spot.schemas.in.h:42
+#: ../f-spot.schemas.in.h:29
+msgid "Width of the photo viewer window."
+msgstr "照片查看窗口宽度。"
+
+#: ../f-spot.schemas.in.h:30
+msgid "The width dimension to use for the photo viewer window."
+msgstr "照片浏览窗口高度"
+
+#: ../f-spot.schemas.in.h:31
+msgid "Height of the photo viewer window."
+msgstr "照片查看窗口的高度。"
+
+#: ../f-spot.schemas.in.h:32
+msgid "The height dimension to use for the photo viewer window."
+msgstr "照片浏览窗口高度"
+
+#: ../f-spot.schemas.in.h:33
 msgid "X position of the photo viewer window."
 msgstr "照片查看窗口的 X 坐标。"
 
-#: ../f-spot.schemas.in.h:43
-msgid "Y position of the main window."
-msgstr "主窗口的 Y 坐标。"
+#: ../f-spot.schemas.in.h:34
+msgid "The X position to use for the photo viewer window."
+msgstr "用于照片查看窗口的 X 坐标。"
 
-#: ../f-spot.schemas.in.h:44
+#: ../f-spot.schemas.in.h:35
 msgid "Y position of the photo viewer window."
 msgstr "照片查看窗口的 Y 坐标。"
 
-#: ../f-spot.schemas.in.h:45
+#: ../f-spot.schemas.in.h:36
+msgid "The Y position to use for the photo viewer window."
+msgstr "用于照片查看窗口的 Y 坐标。"
+
+#: ../f-spot.schemas.in.h:37
+msgid "Show the toolbar in the photo viewer window."
+msgstr "在照片查看窗口显示工具栏。"
+
+#: ../f-spot.schemas.in.h:38
+msgid "Show the filename in the viewer window."
+msgstr "在查看窗口显示文件名。"
+
+#: ../f-spot.schemas.in.h:39
+msgid "Use the current photo's filename as the viewer window's title."
+msgstr "用当前照片的文件名作为查看窗口的标题。"
+
+#: ../f-spot.schemas.in.h:40
+msgid "Interpolate image on zoom."
+msgstr "缩放时进行插值。"
+
+#: ../f-spot.schemas.in.h:41
+msgid "Enable this to allow interpolation on zoomed images."
+msgstr "启用后，允许在缩放图片时进行插值。"
+
+#: ../f-spot.schemas.in.h:42
+msgid "Display of transparent parts."
+msgstr "显示透明部分。"
+
+#: ../f-spot.schemas.in.h:43
 msgid ""
 "You can choose how to display transparent parts in images. This option has "
 "no effect on photos but setting this value to CHECK_PATTERN or CUSTOM_COLOR "
@@ -525,23 +657,32 @@ msgstr ""
 "查看图标或有透明部分的图片时，将这个值设定为检查模板或者自定义颜色可能有用。"
 "</i></small>"
 
+#: ../f-spot.schemas.in.h:44
+msgid "The color to use for transparent parts."
+msgstr "用于透明部分的颜色。"
+
+#: ../f-spot.schemas.in.h:45
+msgid ""
+"If the 'transparency' option is set, the color specified in this option will "
+"be used as the transparent color when viewing images."
+msgstr "如果设置了”透明“选项，查看图片时在这个选项指定的颜色将显示为透明色。"
+
 #: ../lib/Mono.Google/Mono.Google/CaptchaException.cs:58
 msgid "url"
 msgstr "Url"
 
 #: ../lib/Mono.Google/Mono.Google/CaptchaException.cs:59
 msgid "token"
-msgstr ""
+msgstr "令牌"
 
 #: ../lib/Mono.Google/Mono.Google/CaptchaException.cs:60
-#| msgid "_Captcha:"
 msgid "captcha_url"
 msgstr "验证码地址(_U)："
 
 #: ../lib/Mono.Tabblo/Mono.Tabblo/Connection.cs:132
 #, csharp-format
 msgid "Uploading photo \"{0}\""
-msgstr "正在上传照片 \"{0}\""
+msgstr "正在上传照片“{0}”"
 
 #: ../lib/Mono.Tabblo/Mono.Tabblo/Connection.cs:206
 msgid "Logging into Tabblo"
@@ -552,64 +693,38 @@ msgid "Obtaining URL for upload"
 msgstr "正在获取上传的 URL 地址"
 
 #: ../src/Clients/MainApp/FSpot.addin.xml.h:1
-msgid "Copy Photo"
-msgstr "复制照片"
-
-#: ../src/Clients/MainApp/FSpot.addin.xml.h:2
 msgid "Export to"
 msgstr "导出至"
 
-#: ../src/Clients/MainApp/FSpot.addin.xml.h:3
+#: ../src/Clients/MainApp/FSpot.addin.xml.h:6
 msgid "Open _With"
 msgstr "打开方式(_W)"
 
-#: ../src/Clients/MainApp/FSpot.addin.xml.h:4
-#: ../src/Clients/MainApp/ui/main_window.ui.h:15
+#: ../src/Clients/MainApp/FSpot.addin.xml.h:9
+#: ../src/Clients/MainApp/ui/main_window.ui.h:27
 msgid "Rem_ove Tag"
 msgstr "删除标签(_O)"
 
-#: ../src/Clients/MainApp/FSpot.addin.xml.h:5
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:457
-#: ../src/Clients/MainApp/ui/main_window.ui.h:16
-msgid "Rotate _Left"
-msgstr "逆时针旋转(_L)"
-
-#: ../src/Clients/MainApp/FSpot.addin.xml.h:6
-#: ../src/Clients/MainApp/FSpot/SingleView.cs:458
-#: ../src/Clients/MainApp/ui/main_window.ui.h:17
-msgid "Rotate _Right"
-msgstr "顺时针旋转(_R)"
-
-#: ../src/Clients/MainApp/FSpot.addin.xml.h:8
-#: ../src/Clients/MainApp/ui/main_window.ui.h:41
-msgid "_Delete From Drive"
-msgstr "从驱动器中删除(_D)"
-
-#: ../src/Clients/MainApp/FSpot.addin.xml.h:9
-#: ../src/Clients/MainApp/ui/main_window.ui.h:60
-msgid "_Remove From Catalog"
-msgstr "从编目删除(_R)"
-
-#: ../src/Clients/MainApp/FSpot/App.cs:320
+#: ../src/Clients/MainApp/FSpot/App.cs:319
 #, csharp-format
 msgid "No photos matching {0} found"
 msgstr "未找到与 {0} 匹配的照片"
 
-#: ../src/Clients/MainApp/FSpot/App.cs:321
+#: ../src/Clients/MainApp/FSpot/App.cs:320
 #, csharp-format
 msgid ""
 "The tag \"{0}\" is not applied to any photos. Try adding\n"
 "the tag to some photos or selecting a different tag in the\n"
 "F-Spot preference dialog."
 msgstr ""
-"标签 {0} 未应用于任何照片。请试着将此标签添加到一些照片上，或者在 F-Spot 首选"
+"标签“{0}”未应用于任何照片。请试着将此标签添加到一些照片上，或者在 F-Spot 首选"
 "项对话框中选择不同的标签。"
 
-#: ../src/Clients/MainApp/FSpot/App.cs:325
+#: ../src/Clients/MainApp/FSpot/App.cs:324
 msgid "Search returned no results"
 msgstr "搜索没有返回结果"
 
-#: ../src/Clients/MainApp/FSpot/App.cs:326
+#: ../src/Clients/MainApp/FSpot/App.cs:325
 msgid ""
 "The tag F-Spot is looking for does not exist. Try\n"
 "selecting a different tag in the F-Spot preference\n"
@@ -617,11 +732,11 @@ msgid ""
 msgstr ""
 "F-Spot 正在查找的标签不存在。请试着在 F-Spot 首选项对话框中选择不同的标签。"
 
-#: ../src/Clients/MainApp/FSpot.Database/Updater.cs:761
+#: ../src/Clients/MainApp/FSpot.Database/Updater.cs:768
 msgid "Updating F-Spot Database"
 msgstr "更新 F-Spot 数据库"
 
-#: ../src/Clients/MainApp/FSpot.Database/Updater.cs:762
+#: ../src/Clients/MainApp/FSpot.Database/Updater.cs:769
 msgid ""
 "Please wait while your F-Spot gallery's database is updated. This may take "
 "some time."
@@ -687,11 +802,11 @@ msgstr "降低饱和度"
 msgid "Red-eye Reduction"
 msgstr "降低红眼"
 
-#: ../src/Clients/MainApp/FSpot.Editors/RedEyeEditor.cs:43
+#: ../src/Clients/MainApp/FSpot.Editors/RedEyeEditor.cs:44
 msgid "Fix!"
 msgstr "修补！"
 
-#: ../src/Clients/MainApp/FSpot.Editors/RedEyeEditor.cs:47
+#: ../src/Clients/MainApp/FSpot.Editors/RedEyeEditor.cs:48
 msgid "Select the eyes you wish to fix."
 msgstr "选择您希望修补的眼睛。"
 
@@ -699,11 +814,11 @@ msgstr "选择您希望修补的眼睛。"
 msgid "Sepia Tone"
 msgstr "作旧"
 
-#: ../src/Clients/MainApp/FSpot.Editors/SoftFocusEditor.cs:51
+#: ../src/Clients/MainApp/FSpot.Editors/SoftFocusEditor.cs:50
 msgid "Soft Focus"
 msgstr "软对焦"
 
-#: ../src/Clients/MainApp/FSpot.Editors/TiltEditor.cs:49
+#: ../src/Clients/MainApp/FSpot.Editors/TiltEditor.cs:51
 msgid "Straighten"
 msgstr "平直"
 
@@ -752,13 +867,13 @@ msgid "More"
 msgstr "更多"
 
 #: ../src/Clients/MainApp/FSpot/GroupSelector.cs:554
-#: ../src/Clients/MainApp/ui/main_window.ui.h:34
+#: ../src/Clients/MainApp/ui/main_window.ui.h:57
 msgid "_Clear Date Range"
 msgstr "清除日期范围(_C)"
 
 #: ../src/Clients/MainApp/FSpot.Import/ImportController.cs:510
 #: ../src/Clients/MainApp/FSpot.Import/ImportController.cs:512
-#: ../src/Clients/MainApp/FSpot.Import/MetadataImporter.cs:80
+#: ../src/Clients/MainApp/FSpot.Import/MetadataImporter.cs:72
 msgid "Imported Tags"
 msgstr "导入标签"
 
@@ -783,7 +898,7 @@ msgid "Rotate picture right"
 msgstr "向右旋转图片"
 
 #: ../src/Clients/MainApp/FSpot/ItemAction.cs:125
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:936
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/HtmlGallery.cs:263
 msgid "Next"
 msgstr "下一张"
 
@@ -799,9 +914,15 @@ msgstr "后退"
 msgid "Previous picture"
 msgstr "上一张图片"
 
+#: ../src/Clients/MainApp/FSpot/Literal.cs:225
+#: ../src/Clients/MainApp/FSpot/TagQueryWidget.cs:182
+#, csharp-format
+msgid "Not {0}"
+msgstr "不是 {0}"
+
 #: ../src/Clients/MainApp/FSpot/MainWindow.cs:301
 #: ../src/Clients/MainApp/FSpot.UI.Dialog/ImportDialog.cs:229
-#: ../src/Clients/MainApp/ui/import.ui.h:3
+#: ../src/Clients/MainApp/ui/import.ui.h:1
 msgid "Import"
 msgstr "导入"
 
@@ -810,7 +931,7 @@ msgid "Import new images"
 msgstr "导入新图像"
 
 #: ../src/Clients/MainApp/FSpot/MainWindow.cs:319
-#: ../src/Clients/MainApp/ui/main_window.ui.h:3
+#: ../src/Clients/MainApp/ui/main_window.ui.h:72
 msgid "Browse"
 msgstr "浏览"
 
@@ -852,9 +973,9 @@ msgstr "下张照片"
 #. Don't care otherwise, Tags sounds reasonable
 #: ../src/Clients/MainApp/FSpot/MainWindow.cs:376
 #: ../src/Clients/MainApp/FSpot.Widgets/Sidebar.cs:75
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:933
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:1105
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:1145
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/HtmlGallery.cs:260
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/HtmlGallery.cs:432
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/HtmlGallery.cs:472
 msgid "Tags"
 msgstr "标签"
 
@@ -870,10 +991,10 @@ msgstr "隐藏查找栏(_F)"
 #: ../src/Clients/MainApp/FSpot/MainWindow.cs:671
 #: ../src/Clients/MainApp/FSpot.UI.Dialog/AdjustTimeDialog.cs:154
 #: ../src/Clients/MainApp/FSpot.UI.Dialog/ProgressDialog.cs:111
-#: ../src/Extensions/Exporters/FSpot.Exporters.CD/FSpot.Exporters.CD/CDExport.cs:134
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:389
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:240
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryExport.cs:220
+#: ../src/Extensions/Exporters/FSpot.Exporters.CD/FSpot.Exporters.CD/CDExport.cs:135
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:391
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:244
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryExport.cs:208
 #, csharp-format
 msgid "{0} of {1}"
 msgstr "{0}/{1}"
@@ -1050,32 +1171,32 @@ msgid "XCF version"
 msgstr "XCF 版本"
 
 #. Note for translators: Reparented is a picture becoming a version of another one
-#: ../src/Clients/MainApp/FSpot/Photo.cs:426
+#: ../src/Clients/MainApp/FSpot/Photo.cs:430
 msgid "Reparented"
 msgstr ""
 
-#: ../src/Clients/MainApp/FSpot/Photo.cs:443
+#: ../src/Clients/MainApp/FSpot/Photo.cs:448
 #, csharp-format
 msgid "Modified"
 msgid_plural "Modified ({0})"
 msgstr[0] "已修改({0})"
 
-#: ../src/Clients/MainApp/FSpot/Photo.cs:466
+#: ../src/Clients/MainApp/FSpot/Photo.cs:471
 #, csharp-format
 msgid "Modified in {1}"
 msgstr "已在 {1} 修改"
 
-#: ../src/Clients/MainApp/FSpot/Photo.cs:466
+#: ../src/Clients/MainApp/FSpot/Photo.cs:471
 #, csharp-format
 msgid "Modified in {1} ({0})"
 msgstr "已在 {1} 修改 ({0})"
 
-#: ../src/Clients/MainApp/FSpot/PhotoStore.cs:203
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:17
+#: ../src/Clients/MainApp/FSpot/PhotoStore.cs:202
+#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:13
 msgid "Original"
 msgstr "原始"
 
-#: ../src/Clients/MainApp/FSpot/PhotoView.cs:359
+#: ../src/Clients/MainApp/FSpot/PhotoView.cs:353
 msgid "Description:"
 msgstr "描述："
 
@@ -1116,38 +1237,38 @@ msgstr "刷新搜索"
 msgid "No matching photos found"
 msgstr "未找到匹配的照片"
 
-#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:102
+#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:99
 msgid "Unable to rotate this type of photo"
 msgstr "无法旋转此类照片"
 
-#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:118
+#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:115
 msgid "Unable to rotate readonly file"
 msgstr "无法旋转只读文件"
 
-#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:182
+#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:173
 msgid "Rotating photos"
 msgstr "旋转照片"
 
-#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:193
+#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:184
 #, csharp-format
 msgid "Rotating photo \"{0}\""
 msgstr "旋转照片“{0}”"
 
-#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:206
+#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:197
 msgid "Directory not found"
 msgstr "目录未找到"
 
-#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:208
+#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:199
 msgid "File not found"
 msgstr "文件未找到"
 
-#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:226
+#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:217
 #, csharp-format
 msgid "Unable to rotate photo"
 msgid_plural "Unable to rotate {0} photos"
 msgstr[0] "无法旋转{0}张照片"
 
-#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:228
+#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:219
 #, csharp-format
 msgid ""
 "The photo could not be rotated because it is on a read only file system or "
@@ -1159,35 +1280,35 @@ msgstr[0] ""
 "无法旋转( {0} 张)照片，因为其位于只读文件系统或类似只读光盘的介质上。请检查权"
 "限后再试一次。"
 
-#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:255
+#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:246
 #, csharp-format
 msgid "Received error \"{0}\" while attempting to rotate {1}"
 msgstr "试图旋转 {1} 时收到错误“{0}”"
 
-#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:260
+#: ../src/Clients/MainApp/FSpot/RotateCommand.cs:251
 msgid "Error while rotating photo."
 msgstr "旋转照片时出现错误。"
 
-#: ../src/Clients/MainApp/FSpot/SendEmail.cs:236
+#: ../src/Clients/MainApp/FSpot/SendEmail.cs:233
 msgid "Preparing email"
 msgstr "正在准备电子邮件"
 
-#: ../src/Clients/MainApp/FSpot/SendEmail.cs:280
+#: ../src/Clients/MainApp/FSpot/SendEmail.cs:277
 #, csharp-format
 msgid "Exporting picture \"{0}\""
-msgstr "导出图片 \"{0}\""
+msgstr "导出图片“{0}”"
 
-#: ../src/Clients/MainApp/FSpot/SendEmail.cs:299
+#: ../src/Clients/MainApp/FSpot/SendEmail.cs:296
 msgid "Error processing image"
 msgstr "处理图像时出错"
 
-#: ../src/Clients/MainApp/FSpot/SendEmail.cs:300
+#: ../src/Clients/MainApp/FSpot/SendEmail.cs:297
 #, csharp-format
 msgid "An error occured while processing \"{0}\": {1}"
-msgstr "处理文件 \"{0}\" 时发生错误：{1}"
+msgstr "处理文件“{0}”时发生错误：{1}"
 
 #. Send the mail :)
-#: ../src/Clients/MainApp/FSpot/SendEmail.cs:313
+#: ../src/Clients/MainApp/FSpot/SendEmail.cs:310
 msgid "My Photos"
 msgstr "我的照片"
 
@@ -1215,116 +1336,119 @@ msgstr "选择文件夹"
 msgid "Set as Background"
 msgstr "设置为背景"
 
-#: ../src/Clients/MainApp/FSpot/TagQueryWidget.cs:66
+#: ../src/Clients/MainApp/FSpot/TagQueryWidget.cs:67
 #, csharp-format
 msgid "Include Photos Tagged \"{0}\""
-msgstr "包括标签为 \"{0}\" 的照片"
+msgstr "包括标签为“{0}”的照片"
 
-#: ../src/Clients/MainApp/FSpot/TagQueryWidget.cs:71
+#: ../src/Clients/MainApp/FSpot/TagQueryWidget.cs:72
 #, csharp-format
 msgid "Exclude Photos Tagged \"{0}\""
-msgstr "不包括标签为 \"{0}\" 的照片"
+msgstr "不包括标签为“{0}”的照片"
 
-#: ../src/Clients/MainApp/FSpot/TagQueryWidget.cs:76
+#: ../src/Clients/MainApp/FSpot/TagQueryWidget.cs:77
 msgid "Remove From Search"
 msgstr "从搜索中删除"
 
-#: ../src/Clients/MainApp/FSpot/TagQueryWidget.cs:120
+#: ../src/Clients/MainApp/FSpot/TagQueryWidget.cs:121
 #, csharp-format
 msgid "Find _With"
 msgid_plural "Find _With"
 msgstr[0] "查找方式(_W)"
 
-#: ../src/Clients/MainApp/FSpot/TagQueryWidget.cs:146
+#: ../src/Clients/MainApp/FSpot/TagQueryWidget.cs:147
 msgid "All"
 msgstr "全部"
 
-#: ../src/Clients/MainApp/FSpot/TagQueryWidget.cs:181
-#: ../src/Clients/MainApp/FSpot/Term.cs:612
-#, csharp-format
-msgid "Not {0}"
-msgstr "不是 {0}"
-
-#: ../src/Clients/MainApp/FSpot/TagQueryWidget.cs:305
+#: ../src/Clients/MainApp/FSpot/TagQueryWidget.cs:306
 msgid "Drag tags here to search for them"
 msgstr "拖拉标签到这里以进行搜索"
 
-#: ../src/Clients/MainApp/FSpot/TagSelectionWidget.cs:520
+#: ../src/Clients/MainApp/FSpot/TagSelectionWidget.cs:521
 msgid "Error renaming tag"
 msgstr "重命名标签出错"
 
-#: ../src/Clients/MainApp/FSpot/TagSelectionWidget.cs:521
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditTagDialog.cs:93
-#: ../src/Clients/MainApp/TagCommands.cs:137
+#: ../src/Clients/MainApp/FSpot/TagSelectionWidget.cs:522
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditTagDialog.cs:99
+#: ../src/Clients/MainApp/TagCommands.cs:139
 msgid "This name is already in use"
 msgstr "此名称已使用"
 
-#: ../src/Clients/MainApp/FSpot/TagStore.cs:239
+#: ../src/Clients/MainApp/FSpot/TagStore.cs:222
 msgid "Favorites"
 msgstr "收藏"
 
-#: ../src/Clients/MainApp/FSpot/TagStore.cs:244
+#: ../src/Clients/MainApp/FSpot/TagStore.cs:227
 msgid "Hidden"
 msgstr "隐藏"
 
-#: ../src/Clients/MainApp/FSpot/TagStore.cs:252
+#: ../src/Clients/MainApp/FSpot/TagStore.cs:235
 msgid "People"
-msgstr "人像"
+msgstr "人物"
 
-#: ../src/Clients/MainApp/FSpot/TagStore.cs:257
+#: ../src/Clients/MainApp/FSpot/TagStore.cs:240
 msgid "Places"
 msgstr "地点"
 
-#: ../src/Clients/MainApp/FSpot/TagStore.cs:262
+#: ../src/Clients/MainApp/FSpot/TagStore.cs:245
 msgid "Events"
 msgstr "事件"
 
 #. The label for the root category is used in new and edit tag dialogs
-#: ../src/Clients/MainApp/FSpot/TagStore.cs:275
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:441
+#: ../src/Clients/MainApp/FSpot/TagStore.cs:257
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:445
 msgid "(None)"
 msgstr "(无)"
 
-#: ../src/Clients/MainApp/FSpot/Term.cs:324
+#: ../src/Clients/MainApp/FSpot/Term.cs:336
 msgid " and "
 msgstr "和"
 
-#. operators.Add (Catalog.GetString (" && "));
-#: ../src/Clients/MainApp/FSpot/Term.cs:326
+#. Operators.Add (Catalog.GetString (" && "));
+#: ../src/Clients/MainApp/FSpot/Term.cs:338
 msgid ", "
 msgstr " , "
 
-#: ../src/Clients/MainApp/FSpot/Term.cs:382
+#: ../src/Clients/MainApp/FSpot/Term.cs:394
 msgid " or "
 msgstr " 或"
 
 #. OPS The operators we support, case insensitive
 #. private static string op_str = "(?'Ops' or | and |, | \\s+ )";
-#: ../src/Clients/MainApp/FSpot/Term.cs:406
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/DateRangeDialog.ui.h:7
+#: ../src/Clients/MainApp/FSpot/Term.cs:415
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/DateRangeDialog.ui.h:3
 #: ../src/Clients/MainApp/FSpot.Widgets/FindBar.cs:202
 #: ../src/Clients/MainApp/FSpot.Widgets/FindBar.cs:557
 msgid "or"
 msgstr "或"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/AboutDialog.cs:122
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/AboutDialog.cs:123
 msgid "Photo management for GNOME"
 msgstr "GNOME 照片管理器"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/AboutDialog.cs:123
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/AboutDialog.cs:124
 msgid "Copyright © 2003-2010 Novell Inc."
 msgstr "版权所有 (C) 2003-2006 Novell Inc."
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/AboutDialog.cs:147
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/AboutDialog.cs:148
 msgid "translator-credits"
-msgstr "开源软件国际化之简体中文组 http://i18n.linux.net.cn"
+msgstr ""
+"开源软件国际化之简体中文组 http://i18n.linux.net.cnFunda Wang "
+"<fundawang@linux.net.cn>\n"
+"Yao Hui <gsling_@126.com>\n"
+"Aron Xu <aronmalache@163.com>\n"
+"甘露(Gan Lu) <rhythm.gan@gmail.com>\n"
+"Maonx <lovemaonx@gmail.com>\n"
+"silverzhao <silverzhao1990@gmail.com>\n"
+"Richard Ma <richard.ma.19850509@gmail.com>\n"
+"Wylmer Wang <wantinghard@gmail.com>"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/AboutDialog.cs:152
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/AboutDialog.cs:153
 msgid "F-Spot Website"
 msgstr "F-Spot 网站"
 
 #: ../src/Clients/MainApp/FSpot.UI.Dialog/AdjustTimeDialog.cs:137
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:10
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:8
 #, csharp-format
 msgid "Shift all photos by {0}"
 msgstr "所有照片平移 {0}"
@@ -1362,7 +1486,7 @@ msgid "Previous Week (Mon-Sun)"
 msgstr "上周(周一到周日)"
 
 #: ../src/Clients/MainApp/FSpot.UI.Dialog/DateRangeDialog.cs:139
-#: ../src/Extensions/Tools/FSpot.Tools.ScreensaverConfig/Resources/ScreensaverConfigDialog.ui.h:1
+#: ../src/Extensions/Tools/FSpot.Tools.ScreensaverConfig/Resources/ScreensaverConfigDialog.ui.h:3
 msgid "All Images"
 msgstr "所有图片"
 
@@ -1371,7 +1495,7 @@ msgid "Customized Range"
 msgstr "自定范围"
 
 #: ../src/Clients/MainApp/FSpot.UI.Dialog/EditExceptionDialog.cs:50
-#: ../src/Clients/MainApp/FSpot.Widgets/Sharpener.cs:95
+#: ../src/Clients/MainApp/FSpot.Widgets/Sharpener.cs:107
 #, csharp-format
 msgid "Received exception \"{0}\". Unable to save photo {1}"
 msgstr "收到异常“{0}”。无法保存照片 {1}"
@@ -1380,16 +1504,16 @@ msgstr "收到异常“{0}”。无法保存照片 {1}"
 msgid "Error editing photo"
 msgstr "编辑照片出错"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditTagIconDialog.cs:64
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditTagIconDialog.cs:65
 #, csharp-format
 msgid "Edit Icon for Tag {0}"
 msgstr "编辑标签 {0} 的图标"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditTagIconDialog.cs:86
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditTagIconDialog.cs:87
 msgid "Select Photo from file"
 msgstr "从文件中选择照片"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditTagIconDialog.cs:108
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditTagIconDialog.cs:109
 #, csharp-format
 msgid ""
 "\n"
@@ -1405,16 +1529,16 @@ msgstr ""
 "但是您必须首先有至少一张照片与该标签相关联。\n"
 "请标签某张照片作为 '{0}' ，然后回到这里用它作为一个图标。"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditTagIconDialog.cs:186
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditTagIconDialog.cs:187
 msgid "Unable to load image"
 msgstr "无法载入图像"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditTagIconDialog.cs:187
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditTagIconDialog.cs:188
 #, csharp-format
 msgid "Unable to load \"{0}\" as icon for the tag"
-msgstr "无法载入 \"{0}\" 作为标志的图标"
+msgstr "无法载入“{0}”作为标志的图标"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditTagIconDialog.cs:225
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/EditTagIconDialog.cs:226
 #, csharp-format
 msgid "Photo {0} of {1}"
 msgstr "第{0}张照片，共{1}张"
@@ -1513,163 +1637,165 @@ msgstr "标签"
 msgid "Ratio"
 msgstr "比率"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ThreadProgressDialog.cs:78
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/ThreadProgressDialog.cs:79
 msgid "Retry"
 msgstr "重试"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ThreadProgressDialog.cs:80
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/ThreadProgressDialog.cs:81
 #: ../src/Extensions/Tools/FSpot.Tools.MergeDb/Resources/pickfolder_dialog.ui.h:1
 msgid "Skip"
 msgstr "跳过"
 
 #: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:1
+msgid "Adjust Time"
+msgstr "调整时间"
+
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:2
+msgid "Adjusted date: "
+msgstr "调整日期："
+
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:3
+msgid "Current date:"
+msgstr "当前日期："
+
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:4
 msgid "0000:00:00 00:00:00"
 msgstr "0000:00:00 00:00:00"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:2
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:5
+msgid "difference:"
+msgstr "差异："
+
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:6
 msgid "00:00:00"
 msgstr "00:00:00"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:3
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:7
+msgid "<b>Reference Photo</b>"
+msgstr "<b>参考照片</b>"
+
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:9
+msgid "Space all photos by"
+msgstr "平移所有照片根据"
+
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:10
 msgid "5"
 msgstr "5"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:4
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:11
+msgid "min. Starting at {0}"
+msgstr "最小开始于 {0}"
+
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:12
 msgid "<b>Action</b>"
 msgstr "<b>动作</b>"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:5
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:6
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:13
+#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:2
 #: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/Resources/flickr_export.ui.h:2
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/Resources/folder_export.ui.h:3
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/Resources/gallery_export_dialog.ui.h:3
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/Resources/folder_export.ui.h:2
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/Resources/gallery_export_dialog.ui.h:2
 #: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/Resources/google_export_dialog.ui.h:2
 #: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/Resources/smugmug_export_dialog.ui.h:2
 #: ../src/Extensions/Exporters/FSpot.Exporters.Tabblo/Resources/ui/TabbloExport.ui.h:2
 msgid "<b>Photos</b>"
 msgstr "<b>照片</b>"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:6
-msgid "<b>Reference Photo</b>"
-msgstr "<b>参考照片</b>"
-
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:7
-msgid "Adjust Time"
-msgstr "调整时间"
-
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:8
-msgid "Adjusted date: "
-msgstr "调整日期："
-
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:9
-msgid "Current date:"
-msgstr "当前日期："
-
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:11
-msgid "Space all photos by"
-msgstr "平移所有照片根据"
-
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:12
-msgid "difference:"
-msgstr "差异："
-
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/AdjustTimeDialog.ui.h:13
-msgid "min. Starting at {0}"
-msgstr "最小开始于 {0}"
-
 #: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/CreateTagDialog.ui.h:1
-msgid "C_reate"
-msgstr "创建(_R)"
-
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/CreateTagDialog.ui.h:2
-msgid "Create _icon for this tag when first used"
-msgstr "第一次使用时为这个标签创建图标(_I)"
-
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/CreateTagDialog.ui.h:3
 #: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/EditTagDialog.ui.h:3
 msgid "P_arent Tag:"
-msgstr "上层标签(_a)："
+msgstr "上层标签(_A)："
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/CreateTagDialog.ui.h:4
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/EditTagDialog.ui.h:5
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/CreateTagDialog.ui.h:2
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/EditTagDialog.ui.h:2
 msgid "_Tag Name:"
 msgstr "标签名称(_T)："
 
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/CreateTagDialog.ui.h:3
+msgid "Create _icon for this tag when first used"
+msgstr "第一次使用时为这个标签创建图标(_I)"
+
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/CreateTagDialog.ui.h:4
+msgid "C_reate"
+msgstr "创建(_R)"
+
 #: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/DateRangeDialog.ui.h:1
-msgid "<b>End Date</b>"
-msgstr "<b>结束日期</b>"
+msgid "Set date range"
+msgstr "设定日期范围"
 
 #: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/DateRangeDialog.ui.h:2
 msgid "<b>Select period</b>"
 msgstr "<b>选择周期</b>"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/DateRangeDialog.ui.h:3
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/DateRangeDialog.ui.h:4
 msgid "<b>Start Date</b>"
 msgstr "<b>开始日期</b>"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/DateRangeDialog.ui.h:4
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/DateRangeDialog.ui.h:5
+msgid "<b>End Date</b>"
+msgstr "<b>结束日期</b>"
+
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/DateRangeDialog.ui.h:6
 msgid "Cancel, do not change the current timeline. "
 msgstr "取消，不改变当前时间线。"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/DateRangeDialog.ui.h:5
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/DateRangeDialog.ui.h:7
 msgid "Only photos taken within these dates will be displayed."
 msgstr "仅显示在这些日期内拍摄的照片"
-
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/DateRangeDialog.ui.h:6
-msgid "Set date range"
-msgstr "设定日期范围"
 
 #: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/EditTagDialog.ui.h:1
 msgid "Edit Tag"
 msgstr "编辑标签"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/EditTagDialog.ui.h:2
-msgid "Edit icon"
-msgstr "编辑图标"
-
 #: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/EditTagDialog.ui.h:4
 msgid "_Icon:"
 msgstr "图标(_I)："
 
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/EditTagDialog.ui.h:5
+msgid "Edit icon"
+msgstr "编辑图标"
+
 #: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/EditTagIconDialog.ui.h:1
-msgid "<b>From External Photo</b>"
-msgstr "<b>从外部照片</b>"
-
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/EditTagIconDialog.ui.h:2
-msgid "<b>From Photo</b>"
-msgstr "<b>从照片</b>"
-
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/EditTagIconDialog.ui.h:3
-msgid "<b>Predefined icons</b>"
-msgstr "<b>预定义图标</b>"
-
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/EditTagIconDialog.ui.h:4
-msgid "<b>Preview</b>"
-msgstr "<b>预览</b>"
-
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/EditTagIconDialog.ui.h:5
-msgid "Design icon from"
-msgstr ""
-
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/EditTagIconDialog.ui.h:6
 msgid "Edit Tag Icon"
 msgstr "编辑标签图标"
 
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/EditTagIconDialog.ui.h:2
+msgid "<b>Preview</b>"
+msgstr "<b>预览</b>"
+
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/EditTagIconDialog.ui.h:3
+msgid "Design icon from"
+msgstr "设计图标的素材来源"
+
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/EditTagIconDialog.ui.h:4
+msgid "<b>From External Photo</b>"
+msgstr "<b>从外部照片</b>"
+
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/EditTagIconDialog.ui.h:5
+msgid "<b>Predefined icons</b>"
+msgstr "<b>预定义图标</b>"
+
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/EditTagIconDialog.ui.h:6
+msgid "<b>From Photo</b>"
+msgstr "<b>从照片</b>"
+
 #: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/EditTagIconDialog.ui.h:7
 msgid "No _image"
-msgstr "无图像(_i)"
+msgstr "无图像(_I)"
 
 #: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:1
+msgid "Filter on selected rolls"
+msgstr "在选定清单中过滤"
+
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:2
 msgid "<b>View all pictures imported</b>"
 msgstr "<b>查看所有已导入的图片</b>"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:2
-msgid "Display only those photos that were imported in specified Rolls."
-msgstr "仅显示在指定清单中导入的照片"
-
 #: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:3
-msgid "Filter on selected rolls"
-msgstr "在选定清单中过滤"
+#: ../src/Clients/MainApp/FSpot.Widgets/FindBar.cs:202
+#: ../src/Clients/MainApp/FSpot.Widgets/FindBar.cs:558
+msgid "and"
+msgstr "和"
 
 #: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:4
 msgid "Number of photos in selected rolls:"
@@ -1680,91 +1806,88 @@ msgid "Show all photos."
 msgstr "显示所有照片。"
 
 #: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:6
-msgid "after"
-msgstr "之后"
+msgid "Display only those photos that were imported in specified Rolls."
+msgstr "仅显示在指定清单中导入的照片"
 
 #: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:7
-#: ../src/Clients/MainApp/FSpot.Widgets/FindBar.cs:202
-#: ../src/Clients/MainApp/FSpot.Widgets/FindBar.cs:558
-msgid "and"
-msgstr "和"
-
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:8
 msgid "at"
 msgstr "在"
 
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:8
+msgid "after"
+msgstr "之后"
+
 #: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/LastImportRollFilterDialog.ui.h:9
 msgid "between"
-msgstr ""
-"之间"
+msgstr "之间"
 
 #: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:1
-msgid "Color profile for display:"
-msgstr "用来显示的颜色配置："
-
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:2
-msgid "Color profile for printing:"
-msgstr "用来打印的颜色配置："
-
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:3
 msgid "F-Spot Preferences"
 msgstr "首选项"
 
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:2
+msgid "When importing photos, copy them to:"
+msgstr "复制正在导入的照片到："
+
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:3
+msgid "Color profile for display:"
+msgstr "用来显示的颜色配置："
+
 #: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:4
+msgid "Color profile for printing:"
+msgstr "用来打印的颜色配置："
+
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:5
 msgid "F-Spot appearance:"
 msgstr "F-Spot 外观："
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:5
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:6
+msgid "Select A Folder"
+msgstr "选择一个文件夹"
+
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:7
 msgid ""
 "Inside the image files when possible\n"
 "<small>Makes them accessible to other image-editing programs.</small>"
 msgstr ""
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:7
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:9
+msgid "Store tags and descriptions for photos:"
+msgstr "储存照片的标签和描述："
+
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:10
 msgid ""
 "Never modify image files.\n"
 "<small>Write XMP files next to the images instead.</small>"
 msgstr ""
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:9
-msgid "Select A Folder"
-msgstr "选择一个文件夹"
-
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:10
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:12
 msgid "Separately from the image files"
 msgstr "从图像文件分享"
 
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:11
-msgid "Store tags and descriptions for photos:"
-msgstr "储存照片的标签和描述："
-
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/PreferenceDialog.ui.h:12
-msgid "When importing photos, copy them to:"
-msgstr "复制正在导入的照片到："
-
 #: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/RatingFilterDialog.ui.h:1
-msgid "<b>Max Rating</b>"
-msgstr "<b>最高评分</b>"
+msgid "Set Rating Filter"
+msgstr "设定评分过滤"
 
 #: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/RatingFilterDialog.ui.h:2
 msgid "<b>Min Rating</b>"
 msgstr "<b>最低评分</b>"
 
 #: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/RatingFilterDialog.ui.h:3
-msgid "Set Rating Filter"
-msgstr "设定评分过滤"
+msgid "<b>Max Rating</b>"
+msgstr "<b>最高评分</b>"
 
 #: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/RepairDialog.ui.h:1
 msgid "Repair"
 msgstr "修改"
 
 #: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/SelectionRatioDialog.ui.h:1
-msgid "Manage your custom selection ratios"
-msgstr "管理您的自定选定比率"
-
-#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/SelectionRatioDialog.ui.h:2
 msgid "Selection Constraints"
 msgstr "选定对比度"
+
+#: ../src/Clients/MainApp/FSpot.UI.Dialog/ui/SelectionRatioDialog.ui.h:2
+msgid "Manage your custom selection ratios"
+msgstr "管理您的自定选定比率"
 
 #: ../src/Clients/MainApp/FSpot.Widgets/EditorPage.cs:55
 #: ../src/Clients/MainApp/FSpot.Widgets/Sidebar.cs:73
@@ -1792,14 +1915,13 @@ msgstr[0] "保存调整后照片出错"
 msgid ""
 "Received exception \"{0}\". Note that you have to develop RAW files into "
 "JPEG before you can edit them."
-msgstr ""
-"收到例外 \"{0}\"。注意在您能够编辑前，您必须将 RAW 文件转为 JPEG 格式。"
+msgstr "收到异常“{0}”。注意，您必须将 RAW 文件转为 JPEG 格式才能编辑。"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/Filmstrip.cs:495
+#: ../src/Clients/MainApp/FSpot.Widgets/Filmstrip.cs:497
 msgid "_Horizontal"
 msgstr "水平(_H)"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/Filmstrip.cs:499
+#: ../src/Clients/MainApp/FSpot.Widgets/Filmstrip.cs:501
 msgid "_Vertical"
 msgstr "竖直(_V)"
 
@@ -1816,10 +1938,10 @@ msgid "Filesystem"
 msgstr "文件系统"
 
 #: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:125
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:401
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:451
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:457
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:405
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:455
 #: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:461
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:465
 msgid "(Unknown)"
 msgstr "(未知)"
 
@@ -1837,7 +1959,7 @@ msgid "{0} Photos"
 msgstr "{0} 张照片"
 
 #: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:334
-#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/Resources/FacebookExport.ui.h:10
+#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/Resources/FacebookExport.ui.h:9
 msgid "Name"
 msgstr "名称"
 
@@ -1851,11 +1973,10 @@ msgid "(No Edits)"
 msgstr "(无编辑)"
 
 #: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:365
-#, fuzzy, csharp-format
-#| msgid "(No Edits)"
+#, csharp-format
 msgid "(One Edit)"
 msgid_plural "({0} Edits)"
-msgstr[0] "(无编辑)"
+msgstr[0] "({0} 项编辑)"
 
 #: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:371
 msgid "Date"
@@ -1885,7 +2006,7 @@ msgstr ""
 "和 {1} 之间"
 
 #: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:393
-#: ../src/Extensions/Exporters/FSpot.Exporters.CD/Resources/CDExport.ui.h:4
+#: ../src/Extensions/Exporters/FSpot.Exporters.CD/Resources/CDExport.ui.h:6
 msgid "Size"
 msgstr "大小"
 
@@ -1893,67 +2014,67 @@ msgstr "大小"
 msgid "Show Size"
 msgstr "显示大小"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:404
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:408
 msgid "Exposure"
 msgstr "曝光"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:404
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:408
 msgid "Show Exposure"
 msgstr "显示曝光"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:434
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:438
 msgid "flash fired"
-msgstr ""
+msgstr "使用了闪光灯"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:436
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:440
 msgid "flash didn't fire"
-msgstr ""
+msgstr "未使用闪光灯"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:446
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:450
 msgid "Focal Length"
 msgstr "焦距"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:446
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:450
 msgid "Show Focal Length"
 msgstr "显示焦距"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:456
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:460
 msgid "Camera"
 msgstr "相机"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:456
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:460
 msgid "Show Camera"
 msgstr "显示相机"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:460
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:464
 msgid "Creator"
 msgstr "创建器"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:460
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:464
 msgid "Show Creator"
 msgstr "显示创建器"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:464
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:468
 msgid "File Size"
 msgstr "文件大小"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:464
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:468
 msgid "Show File Size"
 msgstr "显示文件大小"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:472
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:476
 msgid "(File read error)"
 msgstr "(文件读取错误)"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:480
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:484
 msgid "Rating"
 msgstr "评分"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:480
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:484
 msgid "Show Rating"
 msgstr "显示评分"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:484
+#: ../src/Clients/MainApp/FSpot.Widgets/InfoBox.cs:488
 msgid "Show Tags"
 msgstr "显示标签"
 
@@ -1978,34 +2099,34 @@ msgstr "照片“{0}”不存在"
 msgid "No metadata available"
 msgstr "无可用的元信息"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/Sharpener.cs:94
+#: ../src/Clients/MainApp/FSpot.Widgets/Sharpener.cs:106
 msgid "Error saving sharpened photo"
 msgstr "保存锐化后图像错误"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/Sharpener.cs:124
+#: ../src/Clients/MainApp/FSpot.Widgets/Sharpener.cs:153
 msgid "Sharpen"
 msgstr "锐化"
 
-#: ../src/Clients/MainApp/FSpot.Widgets/Sharpener.cs:134
+#: ../src/Clients/MainApp/FSpot.Widgets/Sharpener.cs:163
 msgid "Amount:"
 msgstr "数量："
 
-#: ../src/Clients/MainApp/FSpot.Widgets/Sharpener.cs:135
+#: ../src/Clients/MainApp/FSpot.Widgets/Sharpener.cs:164
 msgid "Radius:"
 msgstr "半径："
 
-#: ../src/Clients/MainApp/FSpot.Widgets/Sharpener.cs:136
+#: ../src/Clients/MainApp/FSpot.Widgets/Sharpener.cs:165
 msgid "Threshold:"
 msgstr "阀值："
 
-#: ../src/Clients/MainApp/FSpot.Widgets/TagMenu.cs:132
+#: ../src/Clients/MainApp/FSpot.Widgets/TagMenu.cs:127
 #: ../src/Clients/MainApp/TagPopup.cs:61
 msgid "Create New Tag..."
 msgstr "创建新标签..."
 
 #. Fixme this should really set parent menu
 #. items insensitve
-#: ../src/Clients/MainApp/PhotoTagMenu.cs:92
+#: ../src/Clients/MainApp/PhotoTagMenu.cs:68
 msgid "(No Tags)"
 msgstr "(无标签)"
 
@@ -2045,23 +2166,23 @@ msgstr "分离(_T)"
 #: ../src/Clients/MainApp/PhotoVersionCommands.cs:205
 #, csharp-format
 msgid "Really detach version \"{0}\" from \"{1}\"?"
-msgstr "真的要从版本 {1} 中分离版本 {0} 吗？"
+msgstr "真的要从版本“{1}”中分离版本“{0}”吗？"
 
 #: ../src/Clients/MainApp/PhotoVersionCommands.cs:206
 msgid ""
 "This makes the version appear as a separate photo in the library. To undo, "
 "drag the new photo back to its parent."
 msgstr ""
+"这会使得不同版本的照片在库中独立显示。可以将新照片拖回原照片上来撤消这一操"
+"作。"
 
 #: ../src/Clients/MainApp/PhotoVersionCommands.cs:228
 #, fuzzy
-#| msgid "Repeat"
 msgid "Re_parent"
 msgstr "重复"
 
 #: ../src/Clients/MainApp/PhotoVersionCommands.cs:229
 #, fuzzy, csharp-format
-#| msgid "Really delete version \"{0}\"?"
 msgid "Really reparent \"{0}\" as version of \"{1}\"?"
 msgid_plural "Really reparent {2} photos as versions of \"{1}\"?"
 msgstr[0] "真的要删除版本“{0}”吗？"
@@ -2070,18 +2191,18 @@ msgstr[0] "真的要删除版本“{0}”吗？"
 msgid ""
 "This makes the photos appear as a single one in the library. The versions "
 "can be detached using the Photo menu."
-msgstr ""
+msgstr "这会让照片在库中显示为一张。通过“照片”菜单，可以将这些版本分离。"
 
 #: ../src/Clients/MainApp/PhotoVersionCommands.cs:272
 #, csharp-format
 msgid "Received exception \"{0}\"."
 msgstr "收到异常“{0}”。"
 
-#: ../src/Clients/MainApp/TagCommands.cs:187
+#: ../src/Clients/MainApp/TagCommands.cs:189
 msgid "Create New Tag"
 msgstr "创建新标签"
 
-#: ../src/Clients/MainApp/TagCommands.cs:188
+#: ../src/Clients/MainApp/TagCommands.cs:190
 msgid "Name of New Tag:"
 msgstr "新建标签的名称："
 
@@ -2095,515 +2216,515 @@ msgstr[0] "查找"
 msgid "Edit Tag..."
 msgstr "编辑标签..."
 
-#: ../src/Clients/MainApp/TagPopup.cs:71
+#: ../src/Clients/MainApp/TagPopup.cs:72
 msgid "Delete Tag"
 msgid_plural "Delete Tags"
 msgstr[0] "删除标签"
 
-#: ../src/Clients/MainApp/TagPopup.cs:77
+#: ../src/Clients/MainApp/TagPopup.cs:78
 msgid "Attach Tag to Selection"
 msgid_plural "Attach Tags to Selection"
 msgstr[0] "给选中对象附加标签"
 
-#: ../src/Clients/MainApp/TagPopup.cs:81
+#: ../src/Clients/MainApp/TagPopup.cs:82
 msgid "Remove Tag From Selection"
 msgid_plural "Remove Tags From Selection"
 msgstr[0] "删除选中对象的标签"
 
-#: ../src/Clients/MainApp/TagPopup.cs:87
+#: ../src/Clients/MainApp/TagPopup.cs:88
 msgid "Merge Tags"
 msgstr "合并标签"
 
-#: ../src/Clients/MainApp/ThumbnailCommand.cs:53
+#: ../src/Clients/MainApp/ThumbnailCommand.cs:54
 msgid "Updating Thumbnails"
 msgstr "更新缩略图"
 
-#: ../src/Clients/MainApp/ThumbnailCommand.cs:61
+#: ../src/Clients/MainApp/ThumbnailCommand.cs:62
 #, csharp-format
 msgid "Updating picture \"{0}\""
 msgstr "正在更新图片“{0}”"
 
 #: ../src/Clients/MainApp/ui/color_editor_prefs_window.ui.h:1
-msgid "<b>Co_rrections</b>"
-msgstr "<b>校正(_R)</b>"
-
-#: ../src/Clients/MainApp/ui/color_editor_prefs_window.ui.h:2
-msgid "<b>_White Balance</b>"
-msgstr "<b>白平衡(_W)</b>"
-
-#: ../src/Clients/MainApp/ui/color_editor_prefs_window.ui.h:3
 msgid "C_ontrast:"
 msgstr "对比度(_O)："
 
-#. Note for translators: meant as Temperature
-#: ../src/Clients/MainApp/ui/color_editor_prefs_window.ui.h:5
-msgid "Te_mp:"
-msgstr "温度(_m)："
-
-#: ../src/Clients/MainApp/ui/color_editor_prefs_window.ui.h:6
-msgid "_Brightness:"
-msgstr "亮度(_B)："
-
-#: ../src/Clients/MainApp/ui/color_editor_prefs_window.ui.h:7
-msgid "_Exposure:"
-msgstr "曝光度(_E)："
-
-#: ../src/Clients/MainApp/ui/color_editor_prefs_window.ui.h:8
+#: ../src/Clients/MainApp/ui/color_editor_prefs_window.ui.h:2
 msgid "_Hue:"
 msgstr "色调(_H)"
 
-#: ../src/Clients/MainApp/ui/color_editor_prefs_window.ui.h:9
+#: ../src/Clients/MainApp/ui/color_editor_prefs_window.ui.h:3
+msgid "_Brightness:"
+msgstr "亮度(_B)："
+
+#: ../src/Clients/MainApp/ui/color_editor_prefs_window.ui.h:4
 msgid "_Saturation:"
 msgstr "饱和度(_S)"
 
-#: ../src/Clients/MainApp/ui/color_editor_prefs_window.ui.h:10
+#: ../src/Clients/MainApp/ui/color_editor_prefs_window.ui.h:5
+msgid "_Exposure:"
+msgstr "曝光度(_E)："
+
+#: ../src/Clients/MainApp/ui/color_editor_prefs_window.ui.h:6
+msgid "<b>Co_rrections</b>"
+msgstr "<b>校正(_R)</b>"
+
+#: ../src/Clients/MainApp/ui/color_editor_prefs_window.ui.h:7
 msgid "_Tint:"
 msgstr "染色(_T)"
 
-#: ../src/Clients/MainApp/ui/import.ui.h:1
-msgid "C_opy files to the Photos folder"
-msgstr "将文件复制到照片文件夹(_O)"
+#. Note for translators: meant as Temperature
+#: ../src/Clients/MainApp/ui/color_editor_prefs_window.ui.h:9
+msgid "Te_mp:"
+msgstr "温度(_M)："
 
-#: ../src/Clients/MainApp/ui/import.ui.h:2
-msgid "I_nclude subfolders"
-msgstr "包含子目录(_N)"
+#: ../src/Clients/MainApp/ui/color_editor_prefs_window.ui.h:10
+msgid "<b>_White Balance</b>"
+msgstr "<b>白平衡(_W)</b>"
 
 #. Translators: this string means 'source of import'
-#: ../src/Clients/MainApp/ui/import.ui.h:5
+#: ../src/Clients/MainApp/ui/import.ui.h:3
 msgid "Import _from:"
 msgstr "导入..."
 
-#: ../src/Clients/MainApp/ui/import.ui.h:6
+#: ../src/Clients/MainApp/ui/import.ui.h:4
 msgid "_Attach tags:"
 msgstr "附加标签(_A)："
 
-#: ../src/Clients/MainApp/ui/import.ui.h:7
+#: ../src/Clients/MainApp/ui/import.ui.h:5
 msgid "_Detect duplicates"
 msgstr "探测重复的图片(_D)"
 
+#: ../src/Clients/MainApp/ui/import.ui.h:6
+msgid "C_opy files to the Photos folder"
+msgstr "将文件复制到照片文件夹(_O)"
+
+#: ../src/Clients/MainApp/ui/import.ui.h:7
+msgid "I_nclude subfolders"
+msgstr "包含子目录(_N)"
+
 #: ../src/Clients/MainApp/ui/import.ui.h:8
+msgid "_Remove original files after import"
+msgstr "导入完成后删除原文件(_R)"
+
+#: ../src/Clients/MainApp/ui/import.ui.h:9
 msgid "_Import"
 msgstr "导入(_I)"
 
-#: ../src/Clients/MainApp/ui/import.ui.h:9
-msgid "_Remove original files after import"
-msgstr ""
-
 #: ../src/Clients/MainApp/ui/mail_dialog.ui.h:1
-msgid "1024 px"
-msgstr "1024 像素"
-
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:2
-msgid "320 px"
-msgstr "320 像素"
-
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:3
-msgid "480 px"
-msgstr "480 像素"
-
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:4
-msgid "640 px"
-msgstr "640 像素"
-
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:5
-msgid "800 px"
-msgstr "800 像素"
-
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:7
-msgid "<b>Size</b>"
-msgstr "<b>大小</b>"
-
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:8
-msgid "<b>Summary</b>"
-msgstr "<b>简要</b>"
-
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:9
 msgid "Create Mail"
 msgstr "创建邮件"
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:10
-msgid "Create a mail with the selected photos (possibly resized) attached"
-msgstr "使用选定的照片(可能调整过大小)作为附件创建一封邮件"
+#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:3
+msgid "Tiny"
+msgstr "微小的"
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:11
-msgid "Do not send a mail"
-msgstr "不发送邮件"
+#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:4
+msgid "320 px"
+msgstr "320 像素"
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:12
-msgid "Estimated new size"
-msgstr "估计新大小"
+#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:5
+msgid "Small"
+msgstr "小的"
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:13
-msgid "Extra large"
-msgstr "非常大"
+#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:6
+msgid "480 px"
+msgstr "480 像素"
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:14
+#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:7
+msgid "Medium"
+msgstr "媒介"
+
+#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:8
+msgid "640 px"
+msgstr "640 像素"
+
+#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:9
 msgid "Large"
 msgstr "大的"
 
+#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:10
+msgid "800 px"
+msgstr "800 像素"
+
+#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:11
+msgid "Extra large"
+msgstr "非常大"
+
+#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:12
+msgid "1024 px"
+msgstr "1024 像素"
+
+#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:14
+msgid "Original size (possible very large file size)"
+msgstr "原始大小(可能非常大的文件大小)"
+
 #: ../src/Clients/MainApp/ui/mail_dialog.ui.h:15
-msgid "Medium"
-msgstr "媒介"
+msgid "<b>Size</b>"
+msgstr "<b>大小</b>"
 
 #: ../src/Clients/MainApp/ui/mail_dialog.ui.h:16
 msgid "Number of pictures"
 msgstr "图片数"
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:18
-msgid "Original size (possible very large file size)"
-msgstr "原始大小(可能非常大的文件大小)"
-
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:19
-msgid "Small"
-msgstr "小的"
-
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:20
-msgid "Tiny"
-msgstr "微小的"
-
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:21
+#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:17
 msgid "Total original size"
 msgstr "全部原始大小"
 
-#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:22
+#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:18
+msgid "Estimated new size"
+msgstr "估计新大小"
+
+#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:19
+msgid "<b>Summary</b>"
+msgstr "<b>简要</b>"
+
+#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:20
+msgid "Do not send a mail"
+msgstr "不发送邮件"
+
+#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:21
 msgid "_Create Mail"
 msgstr "创建邮件(_C)"
 
+#: ../src/Clients/MainApp/ui/mail_dialog.ui.h:22
+msgid "Create a mail with the selected photos (possibly resized) attached"
+msgstr "使用选定的照片(可能调整过大小)作为附件创建一封邮件"
+
 #: ../src/Clients/MainApp/ui/main_window.ui.h:1
-msgid "Adjust _Time..."
-msgstr "调整时间(_T)..."
-
-#: ../src/Clients/MainApp/ui/main_window.ui.h:2
-msgid "Arrange _by"
-msgstr "排列方式(_B)"
-
-#: ../src/Clients/MainApp/ui/main_window.ui.h:4
-msgid "By _Date"
-msgstr "根据日期(_D)"
-
-#: ../src/Clients/MainApp/ui/main_window.ui.h:5
-msgid "By _Import Roll"
-msgstr "根据导入清单(_I)"
-
-#: ../src/Clients/MainApp/ui/main_window.ui.h:6
-msgid "By _Rating"
-msgstr "根据评分(_R)"
-
-#: ../src/Clients/MainApp/ui/main_window.ui.h:7
-msgid "Copy"
-msgstr "复制"
-
-#: ../src/Clients/MainApp/ui/main_window.ui.h:8
-msgid "Create New _Tag..."
-msgstr "创建新标签(_T)..."
-
-#: ../src/Clients/MainApp/ui/main_window.ui.h:9
-msgid "Create _New Version..."
-msgstr "创建新版本(_N)..."
-
-#: ../src/Clients/MainApp/ui/main_window.ui.h:10
-msgid "De_tach Version"
-msgstr "分离版本(_T)"
-
-#: ../src/Clients/MainApp/ui/main_window.ui.h:11
-msgid "Fin_d"
-msgstr "查找(_D)"
-
-#: ../src/Clients/MainApp/ui/main_window.ui.h:12
-msgid "Manage _Extensions"
-msgstr "管理扩展(_E)"
-
-#: ../src/Clients/MainApp/ui/main_window.ui.h:13
-msgid "Page Set_up..."
-msgstr "页面设置(_u)..."
-
-#: ../src/Clients/MainApp/ui/main_window.ui.h:14
-msgid "Re_fresh Thumbnail"
-msgstr "刷新缩略图(_f)"
-
-#: ../src/Clients/MainApp/ui/main_window.ui.h:18
-msgid "Select _All"
-msgstr "全部选中(_A)"
-
-#: ../src/Clients/MainApp/ui/main_window.ui.h:19
-msgid "Select _None"
-msgstr "均不选择(_N)"
-
-#: ../src/Clients/MainApp/ui/main_window.ui.h:20
-msgid "Send by _Mail..."
-msgstr "通过邮件发送(_M)..."
-
-#: ../src/Clients/MainApp/ui/main_window.ui.h:21
-#: ../src/Clients/MainApp/ui/single_view.ui.h:3
-msgid "Set as _Background"
-msgstr "设置为背景(_B)"
-
-#: ../src/Clients/MainApp/ui/main_window.ui.h:22
-msgid "Side_bar"
-msgstr "侧边栏"
-
-#: ../src/Clients/MainApp/ui/main_window.ui.h:23
-msgid "T_ags"
-msgstr "标签(_a)"
-
-#: ../src/Clients/MainApp/ui/main_window.ui.h:24
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:1116
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:1117
-msgid "Tags: "
-msgstr "标签："
-
-#: ../src/Clients/MainApp/ui/main_window.ui.h:25
-msgid "Thumbnail _elements"
-msgstr "缩略图元素(_e)"
-
-#: ../src/Clients/MainApp/ui/main_window.ui.h:26
-msgid "Too_lbar"
-msgstr "工具栏(_l)"
-
-#: ../src/Clients/MainApp/ui/main_window.ui.h:27
-msgid "View"
-msgstr "查看"
-
-#: ../src/Clients/MainApp/ui/main_window.ui.h:28
-#: ../src/Clients/MainApp/ui/single_view.ui.h:7
-msgid "Zoom _in"
-msgstr "放大(_i)"
-
-#: ../src/Clients/MainApp/ui/main_window.ui.h:29
-#: ../src/Clients/MainApp/ui/single_view.ui.h:8
-msgid "Zoom _out"
-msgstr "缩小(_o)"
-
-#: ../src/Clients/MainApp/ui/main_window.ui.h:30
-#: ../src/Clients/MainApp/ui/single_view.ui.h:9
-msgid "Zoom in"
-msgstr "放大"
-
-#: ../src/Clients/MainApp/ui/main_window.ui.h:31
-#: ../src/Clients/MainApp/ui/single_view.ui.h:10
-msgid "Zoom out"
-msgstr "缩小"
-
-#: ../src/Clients/MainApp/ui/main_window.ui.h:32
-msgid "_Attach Tag"
-msgstr "附加标签(_A)"
-
-#: ../src/Clients/MainApp/ui/main_window.ui.h:33
-msgid "_Attach Tag to Selection"
-msgstr "给选中对象附加标签(_A)"
-
-#: ../src/Clients/MainApp/ui/main_window.ui.h:35
-msgid "_Clear Rating Filter"
-msgstr "清除评分过滤(_C)"
-
-#: ../src/Clients/MainApp/ui/main_window.ui.h:36
-msgid "_Clear Roll Filter"
-msgstr "清除滚动过滤器 (_C)"
-
-#: ../src/Clients/MainApp/ui/main_window.ui.h:37
-msgid "_Close"
-msgstr "关闭(_C)"
-
-#: ../src/Clients/MainApp/ui/main_window.ui.h:38
-msgid "_Components"
-msgstr "构成(_C)"
-
-#: ../src/Clients/MainApp/ui/main_window.ui.h:39
-msgid "_Contents"
-msgstr "内容(_C)"
-
-#: ../src/Clients/MainApp/ui/main_window.ui.h:40
-msgid "_Dates"
-msgstr "日期(_D)"
-
-#: ../src/Clients/MainApp/ui/main_window.ui.h:42
-msgid "_Delete Selected Tag"
-msgstr "删除选中的标签(_D)"
-
-#: ../src/Clients/MainApp/ui/main_window.ui.h:43
-msgid "_Delete Version"
-msgstr "删除版本(_D)"
-
-#: ../src/Clients/MainApp/ui/main_window.ui.h:44
-#: ../src/Clients/MainApp/ui/single_view.ui.h:11
-msgid "_Edit"
-msgstr "编辑(_E)"
-
-#: ../src/Clients/MainApp/ui/main_window.ui.h:45
-msgid "_Edit Tag..."
-msgstr "编辑标签(_E)"
-
-#: ../src/Clients/MainApp/ui/main_window.ui.h:46
-msgid "_Export to"
-msgstr "导出至(_E)"
-
-#: ../src/Clients/MainApp/ui/main_window.ui.h:47
-msgid "_Filmstrip"
-msgstr "胶片效果(_F)"
-
-#: ../src/Clients/MainApp/ui/main_window.ui.h:48
-#: ../src/Clients/MainApp/ui/single_view.ui.h:13
-msgid "_Fullscreen"
-msgstr "全屏(_F)"
-
-#: ../src/Clients/MainApp/ui/main_window.ui.h:49
-#: ../src/Clients/MainApp/ui/single_view.ui.h:14
-msgid "_Help"
-msgstr "帮助(_H)"
-
-#: ../src/Clients/MainApp/ui/main_window.ui.h:50
-msgid "_Hidden"
-msgstr "隐藏(_H)"
-
-#: ../src/Clients/MainApp/ui/main_window.ui.h:51
-msgid "_Import..."
-msgstr "导入(_I)..."
-
-#: ../src/Clients/MainApp/ui/main_window.ui.h:52
-msgid "_Invert Selection"
-msgstr "反转选区(_I)"
-
-#: ../src/Clients/MainApp/ui/main_window.ui.h:53
-msgid "_Large"
-msgstr "大的(_L)"
-
-#: ../src/Clients/MainApp/ui/main_window.ui.h:54
-msgid "_Last Import Roll"
-msgstr "上次导入清单(_L)"
-
-#: ../src/Clients/MainApp/ui/main_window.ui.h:55
-msgid "_Loupe"
-msgstr "放大镜效果(_L)"
-
-#: ../src/Clients/MainApp/ui/main_window.ui.h:56
-msgid "_Medium"
-msgstr "中等(_M)"
-
-#: ../src/Clients/MainApp/ui/main_window.ui.h:57
-#: ../src/Clients/MainApp/ui/single_view.ui.h:15
+#: ../src/Clients/MainApp/ui/single_view.ui.h:2
 msgid "_Photo"
 msgstr "照片(_P)"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:58
-msgid "_Quit"
-msgstr "退出(_Q)"
+#: ../src/Clients/MainApp/ui/main_window.ui.h:2
+msgid "_Import..."
+msgstr "导入(_I)..."
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:59
-msgid "_Ratings"
-msgstr "评分(_R)"
-
-#: ../src/Clients/MainApp/ui/main_window.ui.h:61
-msgid "_Remove Tag From Selection"
-msgstr "删除选中对象的标签(_R)"
-
-#: ../src/Clients/MainApp/ui/main_window.ui.h:62
-msgid "_Rename Version"
-msgstr "重命名版本(_R)"
-
-#: ../src/Clients/MainApp/ui/main_window.ui.h:63
-msgid "_Reverse Order"
-msgstr "逆序(_R)"
-
-#: ../src/Clients/MainApp/ui/main_window.ui.h:64
-msgid "_Select Import Rolls..."
-msgstr "选择导入清单(_S)..."
-
-#: ../src/Clients/MainApp/ui/main_window.ui.h:65
-msgid "_Set Date Range..."
-msgstr "设定日期范围(_S)..."
-
-#: ../src/Clients/MainApp/ui/main_window.ui.h:66
-msgid "_Set Rating filter..."
-msgstr "设定评分过滤(_S)..."
-
-#: ../src/Clients/MainApp/ui/main_window.ui.h:67
-msgid "_Sharpen..."
-msgstr "锐化(_S)..."
-
-#: ../src/Clients/MainApp/ui/main_window.ui.h:68
-#: ../src/Clients/MainApp/ui/single_view.ui.h:16
-msgid "_Slideshow"
-msgstr "幻灯片(_S)"
-
-#: ../src/Clients/MainApp/ui/main_window.ui.h:69
-msgid "_Small"
-msgstr "小的(_S)"
-
-#: ../src/Clients/MainApp/ui/main_window.ui.h:70
-msgid "_Tag Icons"
-msgstr "标签图标(_T)"
-
-#: ../src/Clients/MainApp/ui/main_window.ui.h:71
-msgid "_Tags"
-msgstr "标签(_T)"
-
-#: ../src/Clients/MainApp/ui/main_window.ui.h:72
-msgid "_Timeline"
-msgstr "时间线(_T)"
-
-#: ../src/Clients/MainApp/ui/main_window.ui.h:73
-msgid "_Tools"
-msgstr "工具(_T)"
-
-#: ../src/Clients/MainApp/ui/main_window.ui.h:74
-msgid "_Untagged Photos"
-msgstr "无标签的照片(_U)"
-
-#: ../src/Clients/MainApp/ui/main_window.ui.h:75
+#: ../src/Clients/MainApp/ui/main_window.ui.h:3
 msgid "_Version"
 msgstr "版本(_V)"
 
-#: ../src/Clients/MainApp/ui/main_window.ui.h:76
-#: ../src/Clients/MainApp/ui/single_view.ui.h:18
+#: ../src/Clients/MainApp/ui/main_window.ui.h:4
+msgid "Create _New Version..."
+msgstr "创建新版本(_N)..."
+
+#: ../src/Clients/MainApp/ui/main_window.ui.h:5
+msgid "_Delete Version"
+msgstr "删除版本(_D)"
+
+#: ../src/Clients/MainApp/ui/main_window.ui.h:6
+msgid "_Rename Version"
+msgstr "重命名版本(_R)"
+
+#: ../src/Clients/MainApp/ui/main_window.ui.h:7
+msgid "De_tach Version"
+msgstr "分离版本(_T)"
+
+#: ../src/Clients/MainApp/ui/main_window.ui.h:8
+msgid "_Export to"
+msgstr "导出至(_E)"
+
+#: ../src/Clients/MainApp/ui/main_window.ui.h:9
+msgid "Page Set_up..."
+msgstr "页面设置(_U)..."
+
+#: ../src/Clients/MainApp/ui/main_window.ui.h:10
+msgid "Send by _Mail..."
+msgstr "通过邮件发送(_M)..."
+
+#: ../src/Clients/MainApp/ui/main_window.ui.h:11
+msgid "_Close"
+msgstr "关闭(_C)"
+
+#: ../src/Clients/MainApp/ui/main_window.ui.h:12
+msgid "_Quit"
+msgstr "退出(_Q)"
+
+#: ../src/Clients/MainApp/ui/main_window.ui.h:13
+#: ../src/Clients/MainApp/ui/single_view.ui.h:4
+msgid "_Edit"
+msgstr "编辑(_E)"
+
+#: ../src/Clients/MainApp/ui/main_window.ui.h:14
+msgid "Copy"
+msgstr "复制"
+
+#: ../src/Clients/MainApp/ui/main_window.ui.h:15
+msgid "Select _All"
+msgstr "全部选中(_A)"
+
+#: ../src/Clients/MainApp/ui/main_window.ui.h:16
+msgid "Select _None"
+msgstr "均不选择(_N)"
+
+#: ../src/Clients/MainApp/ui/main_window.ui.h:17
+msgid "_Invert Selection"
+msgstr "反转选区(_I)"
+
+#: ../src/Clients/MainApp/ui/main_window.ui.h:20
+msgid "_Sharpen..."
+msgstr "锐化(_S)..."
+
+#: ../src/Clients/MainApp/ui/main_window.ui.h:21
+msgid "Adjust _Time..."
+msgstr "调整时间(_T)..."
+
+#: ../src/Clients/MainApp/ui/main_window.ui.h:22
+msgid "Re_fresh Thumbnail"
+msgstr "刷新缩略图(_F)"
+
+#: ../src/Clients/MainApp/ui/main_window.ui.h:25
+#: ../src/Clients/MainApp/ui/single_view.ui.h:5
+msgid "Set as _Background"
+msgstr "设置为背景(_B)"
+
+#: ../src/Clients/MainApp/ui/main_window.ui.h:26
+msgid "_Attach Tag"
+msgstr "附加标签(_A)"
+
+#: ../src/Clients/MainApp/ui/main_window.ui.h:28
+msgid "Manage _Extensions"
+msgstr "管理扩展(_E)"
+
+#: ../src/Clients/MainApp/ui/main_window.ui.h:29
+#: ../src/Clients/MainApp/ui/single_view.ui.h:6
 msgid "_View"
 msgstr "查看(_V)"
 
-#: ../src/Clients/MainApp/ui/single_view.ui.h:1
-msgid "Display File _Names"
-msgstr "显示文件名(_N)"
+#: ../src/Clients/MainApp/ui/main_window.ui.h:30
+#: ../src/Clients/MainApp/ui/single_view.ui.h:7
+msgid "_Slideshow"
+msgstr "幻灯片(_S)"
 
-#: ../src/Clients/MainApp/ui/single_view.ui.h:2
+#: ../src/Clients/MainApp/ui/main_window.ui.h:31
+#: ../src/Clients/MainApp/ui/single_view.ui.h:8
+msgid "_Fullscreen"
+msgstr "全屏(_F)"
+
+#: ../src/Clients/MainApp/ui/main_window.ui.h:32
+msgid "Thumbnail _elements"
+msgstr "缩略图元素(_e)"
+
+#: ../src/Clients/MainApp/ui/main_window.ui.h:33
+msgid "_Dates"
+msgstr "日期(_D)"
+
+#: ../src/Clients/MainApp/ui/main_window.ui.h:34
+msgid "T_ags"
+msgstr "标签(_A)"
+
+#: ../src/Clients/MainApp/ui/main_window.ui.h:35
+msgid "_Ratings"
+msgstr "评分(_R)"
+
+#: ../src/Clients/MainApp/ui/main_window.ui.h:36
+msgid "_Components"
+msgstr "构成(_C)"
+
+#: ../src/Clients/MainApp/ui/main_window.ui.h:37
+msgid "Side_bar"
+msgstr "侧边栏(_B)"
+
+#: ../src/Clients/MainApp/ui/main_window.ui.h:38
+msgid "_Timeline"
+msgstr "时间线(_T)"
+
+#: ../src/Clients/MainApp/ui/main_window.ui.h:39
+msgid "_Filmstrip"
+msgstr "胶片效果(_F)"
+
+#: ../src/Clients/MainApp/ui/main_window.ui.h:40
+msgid "Too_lbar"
+msgstr "工具栏(_L)"
+
+#: ../src/Clients/MainApp/ui/main_window.ui.h:41
+#: ../src/Clients/MainApp/ui/single_view.ui.h:14
+msgid "Zoom _in"
+msgstr "放大(_I)"
+
+#: ../src/Clients/MainApp/ui/main_window.ui.h:42
+#: ../src/Clients/MainApp/ui/single_view.ui.h:15
+msgid "Zoom _out"
+msgstr "缩小(_O)"
+
+#: ../src/Clients/MainApp/ui/main_window.ui.h:43
+msgid "_Loupe"
+msgstr "放大镜效果(_L)"
+
+#: ../src/Clients/MainApp/ui/main_window.ui.h:44
+msgid "_Tag Icons"
+msgstr "标签图标(_T)"
+
+#: ../src/Clients/MainApp/ui/main_window.ui.h:45
+msgid "_Hidden"
+msgstr "隐藏(_H)"
+
+#: ../src/Clients/MainApp/ui/main_window.ui.h:46
+msgid "_Small"
+msgstr "小的(_S)"
+
+#: ../src/Clients/MainApp/ui/main_window.ui.h:47
+msgid "_Medium"
+msgstr "中等(_M)"
+
+#: ../src/Clients/MainApp/ui/main_window.ui.h:48
+msgid "_Large"
+msgstr "大的(_L)"
+
+#: ../src/Clients/MainApp/ui/main_window.ui.h:49
+msgid "Arrange _by"
+msgstr "排列方式(_B)"
+
+#: ../src/Clients/MainApp/ui/main_window.ui.h:50
+msgid "_Reverse Order"
+msgstr "逆序(_R)"
+
+#: ../src/Clients/MainApp/ui/main_window.ui.h:51
+msgid "Fin_d"
+msgstr "查找(_D)"
+
+#: ../src/Clients/MainApp/ui/main_window.ui.h:52
+msgid "By _Rating"
+msgstr "根据评分(_R)"
+
+#: ../src/Clients/MainApp/ui/main_window.ui.h:53
+msgid "_Set Rating filter..."
+msgstr "设定评分过滤(_S)..."
+
+#: ../src/Clients/MainApp/ui/main_window.ui.h:54
+msgid "_Clear Rating Filter"
+msgstr "清除评分过滤(_C)"
+
+#: ../src/Clients/MainApp/ui/main_window.ui.h:55
+msgid "By _Date"
+msgstr "根据日期(_D)"
+
+#: ../src/Clients/MainApp/ui/main_window.ui.h:56
+msgid "_Set Date Range..."
+msgstr "设定日期范围(_S)..."
+
+#: ../src/Clients/MainApp/ui/main_window.ui.h:58
+msgid "By _Import Roll"
+msgstr "根据导入清单(_I)"
+
+#: ../src/Clients/MainApp/ui/main_window.ui.h:59
+msgid "_Last Import Roll"
+msgstr "上次导入清单(_L)"
+
+#: ../src/Clients/MainApp/ui/main_window.ui.h:60
+msgid "_Select Import Rolls..."
+msgstr "选择导入清单(_S)..."
+
+#: ../src/Clients/MainApp/ui/main_window.ui.h:61
+msgid "_Clear Roll Filter"
+msgstr "清除滚动过滤器 (_C)"
+
+#: ../src/Clients/MainApp/ui/main_window.ui.h:62
+msgid "_Untagged Photos"
+msgstr "无标签的照片(_U)"
+
+#: ../src/Clients/MainApp/ui/main_window.ui.h:63
+msgid "_Tags"
+msgstr "标签(_T)"
+
+#: ../src/Clients/MainApp/ui/main_window.ui.h:64
+msgid "Create New _Tag..."
+msgstr "创建新标签(_T)..."
+
+#: ../src/Clients/MainApp/ui/main_window.ui.h:65
+msgid "_Edit Tag..."
+msgstr "编辑标签(_E)"
+
+#: ../src/Clients/MainApp/ui/main_window.ui.h:66
+msgid "_Delete Selected Tag"
+msgstr "删除选中的标签(_D)"
+
+#: ../src/Clients/MainApp/ui/main_window.ui.h:67
+msgid "_Attach Tag to Selection"
+msgstr "给选中对象附加标签(_A)"
+
+#: ../src/Clients/MainApp/ui/main_window.ui.h:68
+msgid "_Remove Tag From Selection"
+msgstr "删除选中对象的标签(_R)"
+
+#: ../src/Clients/MainApp/ui/main_window.ui.h:69
+msgid "_Tools"
+msgstr "工具(_T)"
+
+#: ../src/Clients/MainApp/ui/main_window.ui.h:70
+#: ../src/Clients/MainApp/ui/single_view.ui.h:16
+msgid "_Help"
+msgstr "帮助(_H)"
+
+#: ../src/Clients/MainApp/ui/main_window.ui.h:71
+msgid "_Contents"
+msgstr "内容(_C)"
+
+#: ../src/Clients/MainApp/ui/main_window.ui.h:73
+msgid "View"
+msgstr "查看"
+
+#: ../src/Clients/MainApp/ui/main_window.ui.h:74
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/HtmlGallery.cs:443
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/HtmlGallery.cs:444
+msgid "Tags: "
+msgstr "标签："
+
+#: ../src/Clients/MainApp/ui/main_window.ui.h:75
+#: ../src/Clients/MainApp/ui/single_view.ui.h:17
+msgid "Zoom out"
+msgstr "缩小"
+
+#: ../src/Clients/MainApp/ui/main_window.ui.h:76
+#: ../src/Clients/MainApp/ui/single_view.ui.h:18
+msgid "Zoom in"
+msgstr "放大"
+
+#: ../src/Clients/MainApp/ui/single_view.ui.h:1
 msgid "F-Spot View"
 msgstr "F-Spot 查看"
 
-#: ../src/Clients/MainApp/ui/single_view.ui.h:4
-msgid "Show or hide the side pane"
-msgstr "显示或隐藏侧边栏"
-
-#: ../src/Clients/MainApp/ui/single_view.ui.h:5
-msgid "Show or hide the toolbar"
-msgstr "显示或隐藏工具栏"
-
-#: ../src/Clients/MainApp/ui/single_view.ui.h:6
-msgid "Side _pane"
-msgstr "侧边窗格(_p)"
-
-#: ../src/Clients/MainApp/ui/single_view.ui.h:12
-#: ../src/Extensions/Exporters/FSpot.Exporters.CD/Resources/CDExport.ui.h:7
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/Resources/flickr_export.ui.h:14
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/Resources/folder_export.ui.h:13
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/Resources/gallery_export_dialog.ui.h:8
-#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/Resources/google_export_dialog.ui.h:7
-#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/Resources/smugmug_export_dialog.ui.h:8
-#: ../src/Extensions/Exporters/FSpot.Exporters.Tabblo/Resources/ui/TabbloExport.ui.h:9
+#: ../src/Clients/MainApp/ui/single_view.ui.h:3
+#: ../src/Extensions/Exporters/FSpot.Exporters.CD/Resources/CDExport.ui.h:8
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/Resources/flickr_export.ui.h:18
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/Resources/folder_export.ui.h:17
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/Resources/gallery_export_dialog.ui.h:12
+#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/Resources/google_export_dialog.ui.h:12
+#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/Resources/smugmug_export_dialog.ui.h:11
+#: ../src/Extensions/Exporters/FSpot.Exporters.Tabblo/Resources/ui/TabbloExport.ui.h:11
 msgid "_Export"
 msgstr "导出(_E)"
 
-#: ../src/Clients/MainApp/ui/single_view.ui.h:17
+#: ../src/Clients/MainApp/ui/single_view.ui.h:9
+msgid "Show or hide the toolbar"
+msgstr "显示或隐藏工具栏"
+
+#: ../src/Clients/MainApp/ui/single_view.ui.h:10
 msgid "_Toolbar"
 msgstr "工具栏(_T)"
+
+#: ../src/Clients/MainApp/ui/single_view.ui.h:11
+msgid "Show or hide the side pane"
+msgstr "显示或隐藏侧边栏"
+
+#: ../src/Clients/MainApp/ui/single_view.ui.h:12
+msgid "Side _pane"
+msgstr "侧边窗格(_p)"
+
+#: ../src/Clients/MainApp/ui/single_view.ui.h:13
+msgid "Display File _Names"
+msgstr "显示文件名(_N)"
 
 #: ../src/Clients/MainApp/ui/tag_selection_dialog.ui.h:1
 msgid "Select a Tag..."
 msgstr "选择一个标签..."
 
 #: ../src/Clients/MainApp/ui/viewer_preferences.ui.h:1
-msgid "<b>Image Interpolation</b>"
-msgstr "<b>图像插值</b>"
+msgid "Preferences"
+msgstr "首选项"
 
 #: ../src/Clients/MainApp/ui/viewer_preferences.ui.h:2
-msgid "<b>Transparent Parts</b>"
-msgstr "<b>透明部分</b>"
+msgid "_Interpolate image on zoom"
+msgstr "缩放时进行图像插值(_I)"
 
 #: ../src/Clients/MainApp/ui/viewer_preferences.ui.h:3
 msgid ""
@@ -2615,6 +2736,22 @@ msgstr ""
 "设计时禁用插值可能有用</i></small>"
 
 #: ../src/Clients/MainApp/ui/viewer_preferences.ui.h:4
+msgid "<b>Image Interpolation</b>"
+msgstr "<b>图像插值</b>"
+
+#: ../src/Clients/MainApp/ui/viewer_preferences.ui.h:5
+msgid "As _background"
+msgstr "作为背景(_B)"
+
+#: ../src/Clients/MainApp/ui/viewer_preferences.ui.h:6
+msgid "As check _pattern"
+msgstr "作为检查模板(_P)"
+
+#: ../src/Clients/MainApp/ui/viewer_preferences.ui.h:7
+msgid "As _custom color: "
+msgstr "作为自定义颜色(_C)："
+
+#: ../src/Clients/MainApp/ui/viewer_preferences.ui.h:8
 msgid ""
 "<small><i>You can choose how to display transparent parts in images. This "
 "option has no effect on photos, but setting this as check pattern or custom "
@@ -2625,25 +2762,9 @@ msgstr ""
 "图标或有透明部分的图片时，设定这个作为检查模板或自定义颜色可能有用。</i></"
 "small>"
 
-#: ../src/Clients/MainApp/ui/viewer_preferences.ui.h:5
-msgid "As _background"
-msgstr "作为背景(_b)"
-
-#: ../src/Clients/MainApp/ui/viewer_preferences.ui.h:6
-msgid "As _custom color: "
-msgstr "作为自定义颜色(_c)"
-
-#: ../src/Clients/MainApp/ui/viewer_preferences.ui.h:7
-msgid "As check _pattern"
-msgstr "作为检查模板(_p)"
-
-#: ../src/Clients/MainApp/ui/viewer_preferences.ui.h:8
-msgid "Preferences"
-msgstr "首选项"
-
 #: ../src/Clients/MainApp/ui/viewer_preferences.ui.h:9
-msgid "_Interpolate image on zoom"
-msgstr ""
+msgid "<b>Transparent Parts</b>"
+msgstr "<b>透明部分</b>"
 
 #: ../src/Core/FSpot.Gui/FSpot.Widgets/CustomPrintWidget.cs:141
 msgid "Page Setup"
@@ -2761,34 +2882,34 @@ msgstr "选择要像素化的区域。"
 msgid "Resize"
 msgstr "调整大小"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.CD/FSpot.Exporters.CD/CDExport.cs:79
+#: ../src/Extensions/Exporters/FSpot.Exporters.CD/FSpot.Exporters.CD/CDExport.cs:82
 msgid "Transferring Pictures"
 msgstr "传送图片"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.CD/FSpot.Exporters.CD/CDExport.cs:132
+#: ../src/Extensions/Exporters/FSpot.Exporters.CD/FSpot.Exporters.CD/CDExport.cs:133
 #, csharp-format
 msgid "Transferring picture \"{0}\" To CD"
-msgstr "传送图片 {0} 到光盘"
+msgstr "正在将图片“{0}”传送到光盘"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.CD/FSpot.Exporters.CD/CDExport.cs:147
-#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:395
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:419
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryExport.cs:245
-#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:290
-#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/FSpot.Exporters.SmugMug/SmugMugExport.cs:258
+#: ../src/Extensions/Exporters/FSpot.Exporters.CD/FSpot.Exporters.CD/CDExport.cs:148
+#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:392
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:421
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryExport.cs:231
+#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:288
+#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/FSpot.Exporters.SmugMug/SmugMugExport.cs:255
 msgid "Done Sending Photos"
 msgstr "发送照片完成"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.CD/FSpot.Exporters.CD/CDExport.cs:149
+#: ../src/Extensions/Exporters/FSpot.Exporters.CD/FSpot.Exporters.CD/CDExport.cs:150
 msgid "Transfer Complete"
 msgstr "传输完毕"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.CD/FSpot.Exporters.CD/CDExport.cs:156
+#: ../src/Extensions/Exporters/FSpot.Exporters.CD/FSpot.Exporters.CD/CDExport.cs:157
 msgid "Error While Transferring"
 msgstr "传送时出错"
 
 #: ../src/Extensions/Exporters/FSpot.Exporters.CD/FSpot.Exporters.CD/CDExport.cs:164
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:297
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:301
 msgid "Error Transferring"
 msgstr "传送出错"
 
@@ -2797,34 +2918,34 @@ msgid "copying..."
 msgstr "正在复制..."
 
 #: ../src/Extensions/Exporters/FSpot.Exporters.CD/Resources/CDExport.ui.h:1
-msgid "<b><i>There are some previously scheduled items to write</i></b>"
-msgstr "<b><i>有一些预定的项目要写入</i></b>"
-
-#: ../src/Extensions/Exporters/FSpot.Exporters.CD/Resources/CDExport.ui.h:2
-msgid "<b>Photos to Burn</b>"
-msgstr "<b>要刻录照片</b>"
-
-#: ../src/Extensions/Exporters/FSpot.Exporters.CD/Resources/CDExport.ui.h:3
 msgid "Create CD"
 msgstr "创建光盘"
+
+#: ../src/Extensions/Exporters/FSpot.Exporters.CD/Resources/CDExport.ui.h:2
+msgid "_Write only these photos to CD"
+msgstr "仅写入这些照片到光盘(_W)"
+
+#: ../src/Extensions/Exporters/FSpot.Exporters.CD/Resources/CDExport.ui.h:3
+msgid "_Browse Previously Scheduled Files"
+msgstr "浏览之前预定的文件(_B)"
+
+#: ../src/Extensions/Exporters/FSpot.Exporters.CD/Resources/CDExport.ui.h:4
+msgid "<b><i>There are some previously scheduled items to write</i></b>"
+msgstr "<b><i>有一些预定的项目要写入</i></b>"
 
 #: ../src/Extensions/Exporters/FSpot.Exporters.CD/Resources/CDExport.ui.h:5
 msgid "Size of the exported selection:"
 msgstr "要导出的选定的大小："
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.CD/Resources/CDExport.ui.h:6
-msgid "_Browse Previously Scheduled Files"
-msgstr "浏览之前预定的文件(_B)"
+#: ../src/Extensions/Exporters/FSpot.Exporters.CD/Resources/CDExport.ui.h:7
+msgid "<b>Photos to Burn</b>"
+msgstr "<b>要刻录照片</b>"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.CD/Resources/CDExport.ui.h:8
-msgid "_Write only these photos to CD"
-msgstr "仅写入这些照片到光盘(_W)"
-
-#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:117
+#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:111
 msgid "Waiting for authorization"
 msgstr "正在等待验证"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:118
+#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:112
 msgid ""
 "F-Spot will now launch your browser so that you can enable the permission "
 "you just selected.\n"
@@ -2836,30 +2957,30 @@ msgstr ""
 "\n"
 "当您由 Facebook 回到此处时，点击下面的“确定”。"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:299
+#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:296
 msgid "Too many images to export"
 msgstr "太多图像要导出了"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:300
+#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:297
 #, csharp-format
 msgid ""
 "Facebook only permits {0} photographs per album.  Please refine your "
 "selection and try again."
 msgstr "Facebook 仅允许每个相册{0}张照片，请重新选择后再试。"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:315
+#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:312
 msgid "Album must have a name"
 msgstr "相册必须有个名字"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:316
+#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:313
 msgid "Please name your album or choose an existing album."
 msgstr "请为您的相册取个名字或选择一个现存的相册。"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:330
+#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:327
 msgid "Creating a new album failed"
 msgstr "创建新相册失败"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:331
+#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:328
 #, csharp-format
 msgid ""
 "An error occurred creating a new album.\n"
@@ -2870,45 +2991,45 @@ msgstr ""
 "\n"
 "{0}"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:344
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:514
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryExport.cs:173
-#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:187
-#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/FSpot.Exporters.SmugMug/SmugMugExport.cs:177
+#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:341
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:516
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryExport.cs:162
+#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:184
+#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/FSpot.Exporters.SmugMug/SmugMugExport.cs:174
 msgid "Uploading Pictures"
 msgstr "正在上传图片"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:372
-#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:246
-#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/FSpot.Exporters.SmugMug/SmugMugExport.cs:216
+#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:369
+#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:243
+#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/FSpot.Exporters.SmugMug/SmugMugExport.cs:213
 #, csharp-format
 msgid "Uploading picture \"{0}\" ({1} of {2})"
-msgstr "上传图片 \"{0}\" (第 {1} 张，共 {2} 张)"
+msgstr "上传图片“{0}”(第 {1} 张，共 {2} 张)"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:386
+#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:383
 #, csharp-format
 msgid "Error Uploading To Facebook: {0}"
 msgstr "上传到 Facebook 时出错：{0}"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:387
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:410
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:246
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryExport.cs:236
-#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:279
-#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/FSpot.Exporters.SmugMug/SmugMugExport.cs:247
+#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:384
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:412
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:250
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryExport.cs:223
+#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:277
+#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/FSpot.Exporters.SmugMug/SmugMugExport.cs:244
 #: ../src/Extensions/Exporters/FSpot.Exporters.Tabblo/FSpot.Exporters.Tabblo/TabbloExport.cs:321
 msgid "Error"
 msgstr "错误"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:397
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:421
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryExport.cs:247
-#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:292
-#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/FSpot.Exporters.SmugMug/SmugMugExport.cs:260
+#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:394
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:423
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryExport.cs:233
+#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:290
+#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/FSpot.Exporters.SmugMug/SmugMugExport.cs:257
 msgid "Upload Complete"
 msgstr "上传完毕"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:400
+#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/FSpot.Exporters.Facebook/FacebookExport.cs:397
 msgid "Visit F-Spot group on Facebook"
 msgstr "浏览 Facebook 上的 F-Spot 小组"
 
@@ -2989,67 +3110,67 @@ msgid "You are not logged in."
 msgstr "您还未登录。"
 
 #: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/Resources/FacebookExport.ui.h:1
-msgid "Auto-confirm Photos"
-msgstr "自动确定照片"
-
-#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/Resources/FacebookExport.ui.h:2
-msgid "Caption"
-msgstr "标题"
-
-#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/Resources/FacebookExport.ui.h:3
-msgid "Create a new album"
-msgstr "创建一个新相册"
-
-#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/Resources/FacebookExport.ui.h:4
-msgid "Description"
-msgstr "描述"
-
-#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/Resources/FacebookExport.ui.h:5
 msgid "Export to Facebook"
 msgstr "导出至 Facebook"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/Resources/FacebookExport.ui.h:6
-msgid "In this photo"
-msgstr "在本照片中"
-
-#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/Resources/FacebookExport.ui.h:7
-msgid "Location"
-msgstr "位置"
-
-#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/Resources/FacebookExport.ui.h:8
-msgid "Login"
-msgstr "登录"
-
-#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/Resources/FacebookExport.ui.h:9
-msgid "Logout"
-msgstr "注销"
-
-#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/Resources/FacebookExport.ui.h:11
+#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/Resources/FacebookExport.ui.h:2
 msgid "Not logged in"
 msgstr "未登录"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/Resources/FacebookExport.ui.h:12
+#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/Resources/FacebookExport.ui.h:3
+msgid "Login"
+msgstr "登录"
+
+#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/Resources/FacebookExport.ui.h:4
+msgid "Logout"
+msgstr "注销"
+
+#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/Resources/FacebookExport.ui.h:5
 msgid "Permissions:"
 msgstr "权限："
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/Resources/FacebookExport.ui.h:13
+#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/Resources/FacebookExport.ui.h:6
 msgid "Stay Connected"
 msgstr "保持连接状态"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/Resources/FacebookExport.ui.h:14
+#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/Resources/FacebookExport.ui.h:7
+msgid "Auto-confirm Photos"
+msgstr "自动确定照片"
+
+#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/Resources/FacebookExport.ui.h:8
 msgid "Use an existing album"
 msgstr "使用现存的相册"
+
+#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/Resources/FacebookExport.ui.h:10
+msgid "Location"
+msgstr "位置"
+
+#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/Resources/FacebookExport.ui.h:11
+msgid "Description"
+msgstr "描述"
+
+#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/Resources/FacebookExport.ui.h:12
+msgid "Create a new album"
+msgstr "创建一个新相册"
+
+#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/Resources/FacebookExport.ui.h:13
+msgid "Caption"
+msgstr "标题"
+
+#: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/Resources/FacebookExport.ui.h:14
+msgid "In this photo"
+msgstr "在本照片中"
 
 #: ../src/Extensions/Exporters/FSpot.Exporters.Facebook/Resources/FacebookExport.ui.h:15
 msgid "Who is this?"
 msgstr "这是谁？"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:137
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/Resources/flickr_export.ui.h:5
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:139
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/Resources/flickr_export.ui.h:4
 msgid "Authorize"
 msgstr "授权"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:143
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:145
 #, csharp-format
 msgid ""
 "Return to this window after you have finished the authorization process on "
@@ -3057,60 +3178,60 @@ msgid ""
 msgstr ""
 "当您完成了在 {0} 中的授权步骤后，回到这个窗口并点击下面的“完成授权”按钮"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:144
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:146
 msgid "Complete Authorization"
 msgstr "完成验证"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:149
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:151
 #, csharp-format
 msgid "Logging into {0}"
 msgstr "正在登录到 {0}"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:150
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:152
 msgid "Checking credentials..."
 msgstr "正在检查凭证..."
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:157
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:159
 #, csharp-format
 msgid "Welcome {0} you are connected to {1}"
 msgstr "欢迎 {0} ，您已经连接到 {1}"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:160
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:162
 #, csharp-format
 msgid "Sign in as a different user"
 msgstr "作为另外的用户登录"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:165
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:167
 #, csharp-format
 msgid "Used {0} of your allowed {1} monthly quota"
 msgstr "已使用 {0} ，每月共允许 {1} 配额"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:268
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:337
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:270
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:339
 msgid "Unable to log on"
 msgstr "无法登录"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:357
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:359
 #, csharp-format
 msgid "Waiting for response {0} of {1}"
 msgstr "正在等待响应 {0}，共 {1}"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:384
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryExport.cs:216
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:386
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryExport.cs:204
 #, csharp-format
 msgid "Uploading picture \"{0}\""
-msgstr "正在上传图片 \"{0}\""
+msgstr "正在上传图片“{0}”"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:407
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:409
 #, csharp-format
 msgid "Error Uploading To {0}: {1}"
 msgstr "上传到 {0} 时出错：{1}"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:494
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:496
 msgid "Unable to log on."
 msgstr "无法登录。"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:495
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/FSpot.Exporters.Flickr/FlickrExport.cs:497
 #, csharp-format
 msgid ""
 "F-Spot was unable to log on to {0}.  Make sure you have given the "
@@ -3118,253 +3239,254 @@ msgid ""
 msgstr ""
 "F-Spot 无法登录到 {0}。请确认您已经通过 {0} 的网络浏览器界面获得了授权。"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/Resources/flickr_export.ui.h:1
-msgid "<b>Account</b>"
-msgstr "<b>账户</b>"
-
 #: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/Resources/flickr_export.ui.h:3
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/Resources/folder_export.ui.h:4
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/Resources/gallery_export_dialog.ui.h:4
-#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/Resources/google_export_dialog.ui.h:4
-#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/Resources/smugmug_export_dialog.ui.h:4
-msgid "<b>Style</b>"
-msgstr "<b>样式</b>"
-
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/Resources/flickr_export.ui.h:4
-msgid "<b>Viewing permissions</b>"
-msgstr "<b>查看权限</b>"
-
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/Resources/flickr_export.ui.h:7
-msgid "Export tag _hierarchy"
-msgstr "导出标签层次(_h)"
-
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/Resources/flickr_export.ui.h:8
 msgid ""
 "F-Spot needs your authorization in order to upload photos to your {0} "
 "account. Press the \"Authorize\" button to open a web browser and give F-"
 "Spot the authorization. "
 msgstr ""
-"F-Spot 需要您的授权以能够上传照片到您的 {0} 账户。按下 \"授权\" 按钮以打开网"
-"络浏览器并给与 F-Spot 授权。"
+"F-Spot 需要您的授权以能够上传照片到您的 {0} 账户。按下“授权”按钮以打开网络浏"
+"览器并给与 F-Spot 授权。"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/Resources/flickr_export.ui.h:9
-msgid "Ignore _top level tags"
-msgstr "忽略顶层的标签(_t)"
-
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/Resources/flickr_export.ui.h:10
-msgid "Private"
-msgstr "私人的"
-
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/Resources/flickr_export.ui.h:11
-msgid "Public"
-msgstr "公开的"
-
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/Resources/flickr_export.ui.h:12
-msgid "Visible to Family"
-msgstr "家人可见"
-
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/Resources/flickr_export.ui.h:13
-msgid "Visible to Friends"
-msgstr "朋友可见"
-
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/Resources/flickr_export.ui.h:15
-#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/Resources/google_export_dialog.ui.h:8
-msgid "_Export tags"
-msgstr "导出标签(_E)"
-
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/Resources/flickr_export.ui.h:16
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/Resources/folder_export.ui.h:15
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/Resources/gallery_export_dialog.ui.h:11
-#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/Resources/google_export_dialog.ui.h:11
-#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/Resources/smugmug_export_dialog.ui.h:10
-msgid "_Resize to: "
-msgstr "调整大小到(_R)："
-
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/Resources/flickr_export.ui.h:17
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/Resources/flickr_export.ui.h:5
 msgid "_View photos in browser when done uploading"
 msgstr "完成上载后在浏览器中查看(_V)"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/Resources/flickr_export.ui.h:18
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/Resources/folder_export.ui.h:17
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/Resources/gallery_export_dialog.ui.h:12
-#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/Resources/google_export_dialog.ui.h:12
-#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/Resources/smugmug_export_dialog.ui.h:11
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/Resources/flickr_export.ui.h:6
+msgid "<b>Account</b>"
+msgstr "<b>账户</b>"
+
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/Resources/flickr_export.ui.h:7
+msgid "Private"
+msgstr "私人的"
+
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/Resources/flickr_export.ui.h:8
+msgid "Visible to Friends"
+msgstr "朋友可见"
+
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/Resources/flickr_export.ui.h:9
+msgid "Visible to Family"
+msgstr "家人可见"
+
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/Resources/flickr_export.ui.h:10
+msgid "Public"
+msgstr "公开的"
+
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/Resources/flickr_export.ui.h:11
+msgid "<b>Viewing permissions</b>"
+msgstr "<b>查看权限</b>"
+
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/Resources/flickr_export.ui.h:12
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/Resources/folder_export.ui.h:12
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/Resources/gallery_export_dialog.ui.h:8
+#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/Resources/google_export_dialog.ui.h:8
+#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/Resources/smugmug_export_dialog.ui.h:8
+msgid "_Resize to: "
+msgstr "调整大小到(_R)："
+
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/Resources/flickr_export.ui.h:13
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/Resources/folder_export.ui.h:13
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/Resources/gallery_export_dialog.ui.h:9
+#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/Resources/google_export_dialog.ui.h:9
+#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/Resources/smugmug_export_dialog.ui.h:9
 msgid "pixels"
 msgstr "像素"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:148
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/Resources/flickr_export.ui.h:14
+#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/Resources/google_export_dialog.ui.h:10
+msgid "_Export tags"
+msgstr "导出标签(_E)"
+
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/Resources/flickr_export.ui.h:15
+msgid "Export tag _hierarchy"
+msgstr "导出标签层次(_H)"
+
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/Resources/flickr_export.ui.h:16
+msgid "Ignore _top level tags"
+msgstr "忽略顶层的标签(_T)"
+
+#: ../src/Extensions/Exporters/FSpot.Exporters.Flickr/Resources/flickr_export.ui.h:17
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/Resources/folder_export.ui.h:16
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/Resources/gallery_export_dialog.ui.h:11
+#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/Resources/google_export_dialog.ui.h:11
+#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/Resources/smugmug_export_dialog.ui.h:10
+msgid "<b>Style</b>"
+msgstr "<b>样式</b>"
+
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:152
 msgid "Select Export Folder"
 msgstr "选择导出文件夹"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:200
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:204
 msgid "Building Gallery"
 msgstr "正在建立图库"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:237
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:241
 #, csharp-format
 msgid "Exporting \"{0}\"..."
-msgstr "正在导出”{0}“..."
+msgstr "正在导出“{0}”..."
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:244
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:248
 #, csharp-format
 msgid "Error Copying \"{0}\" to Gallery:{2}{1}"
-msgstr "复制图片 \"{0}\" 到图库出错：{2}{1}"
+msgstr "复制图片“{0}”到图库出错：{2}{1}"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:270
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:274
 #, csharp-format
 msgid "Transferring to \"{0}\""
 msgstr "正在传送到“{0}”"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:271
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:275
 msgid "Transferring..."
 msgstr "正在传送..."
 
 #. No need to check result here as if result is not true, an Exception will be thrown before
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:276
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:280
 msgid "Export Complete."
 msgstr "导出完成"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:278
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:282
 msgid "Exporting Photos Completed."
 msgstr "导出照片完成。"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:343
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:346
 msgid "Exporting Photos"
 msgstr "正在导出照片"
 
 #. Note for translators: light as clear, opposite as dark
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:747
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/HtmlGallery.cs:74
 msgid "Light"
 msgstr "亮"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:748
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/HtmlGallery.cs:75
 msgid "Dark"
 msgstr "黑"
 
 #. Abbreviation of previous
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:928
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/HtmlGallery.cs:255
 msgid "Prev"
 msgstr "预览"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:930
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:1171
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/HtmlGallery.cs:257
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/HtmlGallery.cs:498
 msgid "Index"
 msgstr "索引"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:1040
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/HtmlGallery.cs:367
 msgid "Gallery generated by"
 msgstr "图库生成由"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:1080
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/HtmlGallery.cs:407
 msgid "Show Styles"
 msgstr "显示风格"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:1081
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/HtmlGallery.cs:408
 msgid "Hide Styles"
 msgstr "隐藏风格"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:1248
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/FolderExport.cs:1381
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/HtmlGallery.cs:575
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/FSpot.Exporters.Folder/HtmlGallery.cs:708
 msgid "Page:"
 msgstr "页面："
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/Resources/folder_export.ui.h:1
-msgid "<b>Destination</b>"
-msgstr "<b>目的</b>"
-
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/Resources/folder_export.ui.h:2
-msgid "<b>Export Method</b>"
-msgstr "<b>导出方式</b>"
-
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/Resources/folder_export.ui.h:5
-msgid "Create _gallery using \"Original\""
-msgstr "使用 \"Original\" 创建画库(_g)"
-
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/Resources/folder_export.ui.h:6
-msgid "Create standalone _web gallery"
-msgstr "创建独立的网络画库(_w)"
-
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/Resources/folder_export.ui.h:7
-msgid "D_escription:"
-msgstr "描述(_e)："
-
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/Resources/folder_export.ui.h:8
-msgid "Export _tags"
-msgstr "导出标签(_t)"
-
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/Resources/folder_export.ui.h:9
-msgid "Export tag _icons"
-msgstr "导出标签图标(_i)"
-
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/Resources/folder_export.ui.h:11
-msgid "G_allery Name:"
-msgstr "图库名(_a)："
-
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/Resources/folder_export.ui.h:12
-msgid "Open _destination when done exporting"
-msgstr "导出完毕时打开目的地(_d)"
-
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/Resources/folder_export.ui.h:14
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/Resources/folder_export.ui.h:3
 msgid "_Folder:"
 msgstr "文件夹(_F)："
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/Resources/folder_export.ui.h:16
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/Resources/folder_export.ui.h:4
+msgid "G_allery Name:"
+msgstr "图库名(_A)："
+
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/Resources/folder_export.ui.h:5
+msgid "D_escription:"
+msgstr "描述(_E)："
+
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/Resources/folder_export.ui.h:6
+msgid "Open _destination when done exporting"
+msgstr "导出完毕时打开目的地(_D)"
+
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/Resources/folder_export.ui.h:7
+msgid "<b>Destination</b>"
+msgstr "<b>目的</b>"
+
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/Resources/folder_export.ui.h:8
+msgid "Create standalone _web gallery"
+msgstr "创建独立的网络图库(_W)"
+
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/Resources/folder_export.ui.h:9
 msgid "_Save the files only"
 msgstr "仅保存文件(_S)"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/AccountDialog.cs:132
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/Resources/folder_export.ui.h:10
+#, fuzzy
+msgid "Create _gallery using \"Original\""
+msgstr "使用“Original”创建图库(_G)"
+
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/Resources/folder_export.ui.h:11
+msgid "<b>Export Method</b>"
+msgstr "<b>导出方式</b>"
+
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/Resources/folder_export.ui.h:14
+msgid "Export _tags"
+msgstr "导出标签(_T)"
+
+#: ../src/Extensions/Exporters/FSpot.Exporters.Folder/Resources/folder_export.ui.h:15
+msgid "Export tag _icons"
+msgstr "导出标签图标(_I)"
+
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/AccountDialog.cs:123
 msgid "Invalid URL"
 msgstr "无效的 URL"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/AccountDialog.cs:133
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/AccountDialog.cs:124
 msgid "The gallery URL entry does not appear to be a valid URL"
-msgstr "该画库的 URL 地址不像是有效的 URL 地址。"
+msgstr "该图库的 URL 地址不像是有效的 URL 地址。"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/AccountDialog.cs:143
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/AccountDialog.cs:170
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/AccountDialog.cs:181
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/AccountDialog.cs:134
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/AccountDialog.cs:161
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/AccountDialog.cs:172
 msgid "Error while connecting to Gallery"
-msgstr "连接到画库时出错"
+msgstr "连接到图库时出错"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/AccountDialog.cs:144
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/AccountDialog.cs:171
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/AccountDialog.cs:182
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/AccountDialog.cs:135
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/AccountDialog.cs:162
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/AccountDialog.cs:173
 #, csharp-format
 msgid "The following error was encountered while attempting to log in: {0}"
 msgstr "尝试登录时遇到下列错误：{0}"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/AccountDialog.cs:158
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/AccountDialog.cs:149
 msgid "A Gallery with this name already exists"
-msgstr "已存在同名画库"
+msgstr "已存在同名图库"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/AccountDialog.cs:159
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/AccountDialog.cs:150
 #, csharp-format
 msgid ""
 "There is already a Gallery with the same name in your registered Galleries. "
 "Please choose a unique name."
-msgstr "在您登记的画库中已存在同名画库。请选择某个唯一的名称。"
+msgstr "在您登记的图库中已存在同名图库。请选择某个唯一的名称。"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/FormClient.cs:326
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/FormClient.cs:321
 msgid "Unhandled exception"
 msgstr "无法处理的异常"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryAccount.cs:82
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryAccount.cs:67
 msgid ""
 "Cannot connect to a Gallery for which the version is unknown.\n"
 "Please check that you have Remote plugin 1.0.8 or later"
 msgstr ""
-"无法连接到未知版本的某个画库。\n"
+"无法连接到未知版本的某个图库。\n"
 "请检查您装有 Remote 插件 1.0.8 或更高版本"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryAddAlbum.cs:95
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryAddAlbum.cs:83
 msgid "(TopLevel)"
 msgstr "(最顶层)"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryAddAlbum.cs:151
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryAddAlbum.cs:135
 msgid "Invalid Gallery name"
 msgstr "无效的图库名"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryAddAlbum.cs:152
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryAddAlbum.cs:136
 msgid ""
 "The gallery name contains invalid characters.\n"
 "Only letters, numbers, - and _ are allowed"
@@ -3372,49 +3494,20 @@ msgstr ""
 "图库名字包含无效的字符。\n"
 "仅允许字母，数字，- 和 _ 。"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryExport.cs:235
-#, csharp-format
-msgid "Error uploading picture \"{0}\" to Gallery: {1}"
-msgstr "上传图片 \"{0}\" 到画库时出错：{1}"
-
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryExport.cs:262
-#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:315
-#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/FSpot.Exporters.SmugMug/SmugMugExport.cs:275
-msgid "(No Gallery)"
-msgstr "(无图库)"
-
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryExport.cs:349
-#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:435
-#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/FSpot.Exporters.SmugMug/SmugMugExport.cs:366
-msgid "(Not Connected)"
-msgstr "(没有连接)"
-
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryExport.cs:350
-#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:436
-#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/FSpot.Exporters.SmugMug/SmugMugExport.cs:367
-msgid "(No Albums)"
-msgstr "(无相册)"
-
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryExport.cs:393
-#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:495
-#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/FSpot.Exporters.SmugMug/SmugMugExport.cs:404
-msgid "No account selected"
-msgstr "没有账户选定"
-
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryRemote.cs:395
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/Gallery.cs:139
 msgid "Error reading server response"
 msgstr "读取服务器响应时出错"
 
 #. failed to find the response
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryRemote.cs:407
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/Gallery.cs:151
 msgid "Server returned response without Gallery content"
-msgstr "服务器返回响应但没有画库内容"
+msgstr "服务器返回响应但没有图库内容"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryRemote.cs:744
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/Gallery.cs:464
 msgid "Error while creating new album"
 msgstr "创建新相册时出现错误"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryRemote.cs:745
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/Gallery.cs:465
 #, csharp-format
 msgid ""
 "The following error was encountered while attempting to perform the "
@@ -3424,86 +3517,115 @@ msgstr ""
 "当尝试执行要求的操作时遇到下列错误：\n"
 "{0} ({1})"
 
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryExport.cs:222
+#, csharp-format
+msgid "Error uploading picture \"{0}\" to Gallery: {1}"
+msgstr "上传图片“{0}”到图库时出错：{1}"
+
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryExport.cs:247
+#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:312
+#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/FSpot.Exporters.SmugMug/SmugMugExport.cs:272
+msgid "(No Gallery)"
+msgstr "(无图库)"
+
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryExport.cs:331
+#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:431
+#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/FSpot.Exporters.SmugMug/SmugMugExport.cs:363
+msgid "(Not Connected)"
+msgstr "(没有连接)"
+
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryExport.cs:332
+#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:432
+#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/FSpot.Exporters.SmugMug/SmugMugExport.cs:364
+msgid "(No Albums)"
+msgstr "(无相册)"
+
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/GalleryExport.cs:373
+#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:490
+#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/FSpot.Exporters.SmugMug/SmugMugExport.cs:401
+msgid "No account selected"
+msgstr "没有账户选定"
+
 #: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/Resources/gallery_add_album_dialog.ui.h:1
-msgid "_Album Name:"
-msgstr "相册名(_A)："
-
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/Resources/gallery_add_album_dialog.ui.h:2
-#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/Resources/google_add_album_dialog.ui.h:3
-#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/Resources/smugmug_add_album_dialog.ui.h:3
-msgid "_Description:"
-msgstr "描述(_D)："
-
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/Resources/gallery_add_album_dialog.ui.h:3
 msgid "_Parent Album:"
 msgstr "上层相册(_P)："
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/Resources/gallery_add_album_dialog.ui.h:4
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/Resources/gallery_add_album_dialog.ui.h:2
 msgid "_Title:"
 msgstr "标题(_T)："
+
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/Resources/gallery_add_album_dialog.ui.h:3
+#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/Resources/google_add_album_dialog.ui.h:1
+#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/Resources/smugmug_add_album_dialog.ui.h:1
+msgid "_Description:"
+msgstr "描述(_D)："
+
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/Resources/gallery_add_album_dialog.ui.h:4
+msgid "_Album Name:"
+msgstr "相册名(_A)："
 
 #: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/Resources/gallery_add_dialog.ui.h:1
 #: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/Resources/google_add_dialog.ui.h:1
 msgid "<span weight='bold' size='larger'>Error Connecting to Gallery</span>\n"
-msgstr "<span weight='bold' size='larger'>连接到画库时出错</span>\n"
+msgstr "<span weight='bold' size='larger'>连接到图库时出错</span>\n"
 
 #: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/Resources/gallery_add_dialog.ui.h:3
-#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/Resources/google_add_dialog.ui.h:5
+#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/Resources/google_add_dialog.ui.h:3
 msgid "Please verify that the settings for this gallery are correct."
-msgstr "请确认该画库的设定是正确的。"
+msgstr "请确认该图库的设定是正确的。"
 
 #: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/Resources/gallery_add_dialog.ui.h:4
-msgid "U_RL:"
-msgstr "URL(_R):"
-
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/Resources/gallery_add_dialog.ui.h:5
 msgid "_Gallery Name:"
 msgstr "图库名(_G)："
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/Resources/gallery_add_dialog.ui.h:6
-#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/Resources/google_add_dialog.ui.h:10
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/Resources/gallery_add_dialog.ui.h:5
+#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/Resources/google_add_dialog.ui.h:9
 #: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/Resources/smugmug_add_dialog.ui.h:1
-#: ../src/Extensions/Exporters/FSpot.Exporters.Tabblo/Resources/ui/TabbloExport.ui.h:10
+#: ../src/Extensions/Exporters/FSpot.Exporters.Tabblo/Resources/ui/TabbloExport.ui.h:3
 msgid "_Password:"
 msgstr "密码(_P)："
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/Resources/gallery_add_dialog.ui.h:7
-#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/Resources/google_add_dialog.ui.h:11
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/Resources/gallery_add_dialog.ui.h:6
+#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/Resources/google_add_dialog.ui.h:10
 #: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/Resources/smugmug_add_dialog.ui.h:2
-#: ../src/Extensions/Exporters/FSpot.Exporters.Tabblo/Resources/ui/TabbloExport.ui.h:11
+#: ../src/Extensions/Exporters/FSpot.Exporters.Tabblo/Resources/ui/TabbloExport.ui.h:4
 msgid "_Username:"
 msgstr "用户名(_U)："
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/Resources/gallery_export_dialog.ui.h:1
-#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/Resources/google_export_dialog.ui.h:1
-#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/Resources/smugmug_export_dialog.ui.h:1
-msgid "<b>Album</b>"
-msgstr "<b>相册</b>"
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/Resources/gallery_add_dialog.ui.h:7
+msgid "U_RL:"
+msgstr "URL(_R):"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/Resources/gallery_export_dialog.ui.h:2
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/Resources/gallery_export_dialog.ui.h:3
+#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/Resources/google_export_dialog.ui.h:3
+msgid "_Gallery:"
+msgstr "图库(_G)："
+
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/Resources/gallery_export_dialog.ui.h:4
 msgid "<b>Gallery</b>"
 msgstr "<b>图库</b>"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/Resources/gallery_export_dialog.ui.h:6
-msgid "Export _titles and comments"
-msgstr "导出标题和注释(_t)"
-
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/Resources/gallery_export_dialog.ui.h:7
-#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/Resources/google_export_dialog.ui.h:6
-#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/Resources/smugmug_export_dialog.ui.h:6
-msgid "Open _album in browser when done uploading"
-msgstr "上传完毕时在浏览器中打开相册(_a)"
-
-#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/Resources/gallery_export_dialog.ui.h:9
-#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/Resources/google_export_dialog.ui.h:9
-#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/Resources/smugmug_export_dialog.ui.h:9
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/Resources/gallery_export_dialog.ui.h:5
+#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/Resources/google_export_dialog.ui.h:5
+#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/Resources/smugmug_export_dialog.ui.h:5
 msgid "_Export to Album:"
 msgstr "导出至相册(_E)："
 
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/Resources/gallery_export_dialog.ui.h:6
+#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/Resources/google_export_dialog.ui.h:6
+#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/Resources/smugmug_export_dialog.ui.h:6
+msgid "Open _album in browser when done uploading"
+msgstr "上传完毕时在浏览器中打开相册(_A)"
+
+#: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/Resources/gallery_export_dialog.ui.h:7
+#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/Resources/google_export_dialog.ui.h:7
+#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/Resources/smugmug_export_dialog.ui.h:7
+msgid "<b>Album</b>"
+msgstr "<b>相册</b>"
+
 #: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/Resources/gallery_export_dialog.ui.h:10
-#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/Resources/google_export_dialog.ui.h:10
-msgid "_Gallery:"
-msgstr "图库(_G)："
+msgid "Export _titles and comments"
+msgstr "导出标题和注释(_T)"
 
 #: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/GoogleAddAlbum.cs:111
 msgid "Error while creating Album"
@@ -3515,50 +3637,47 @@ msgid ""
 "The following error was encountered while attempting to create an album: {0}"
 msgstr "当尝试创建相册时遇到下列错误：{0}"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:209
+#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:206
 #, csharp-format
 msgid "{0} Sent"
 msgstr "{0} 已发送"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:211
+#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:208
 #, csharp-format
 msgid "{0} of approx. {1}"
 msgstr "第 {0}，总共约 {1}"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:277
-#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/FSpot.Exporters.SmugMug/SmugMugExport.cs:245
+#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:275
+#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/FSpot.Exporters.SmugMug/SmugMugExport.cs:242
 #, csharp-format
 msgid "Error Uploading To Gallery: {0}"
 msgstr "上传到图库时出错：{0}"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:366
+#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:363
 #, csharp-format
 msgid "Available space: {0}, {1}% used out of {2}"
 msgstr "可用空间：{0}，已使用 {2} 的 {1}%"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:471
-#, fuzzy, csharp-format
-#| msgid ""
-#| "<small>The selected album has a limit of {0} pictures,\n"
-#| "which would be passed with the current selection of {1} images</small>"
+#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/FSpot.Exporters.PicasaWeb/PicasaWebExport.cs:467
+#, csharp-format
 msgid ""
 "The selected album has a limit of {0} pictures,\n"
 "which would be passed with the current selection of {1} images"
 msgstr ""
-"<small>选定的相册限于 {0} 张图片。\n"
-"当前选定的图像将超过 {1} 张图像</small>"
-
-#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/Resources/google_add_album_dialog.ui.h:1
-#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/Resources/smugmug_add_album_dialog.ui.h:1
-msgid "Public Album"
-msgstr "公开相册"
+"<small>选定的相册有 {0} 张图片的限制。\n"
+"当前选定的 {1} 张图像会超出这一限制</small>"
 
 #: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/Resources/google_add_album_dialog.ui.h:2
 #: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/Resources/smugmug_add_album_dialog.ui.h:2
 msgid "_Album Title:"
 msgstr "相册标题(_A)："
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/Resources/google_add_dialog.ui.h:3
+#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/Resources/google_add_album_dialog.ui.h:3
+#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/Resources/smugmug_add_album_dialog.ui.h:3
+msgid "Public Album"
+msgstr "公开相册"
+
+#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/Resources/google_add_dialog.ui.h:4
 msgid ""
 "<span weight='bold' size='larger'>Your Google Account is locked</span>\n"
 msgstr ""
@@ -3573,21 +3692,21 @@ msgstr ""
 "请确认图库的设置是正确的。\n"
 " 输入在图片”Captcha“域中显示的字符。<i>字母不区分大小写</i>"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/Resources/google_add_dialog.ui.h:9
+#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/Resources/google_add_dialog.ui.h:11
 msgid "_Captcha:"
 msgstr "个人头像(_C)："
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/Resources/google_export_dialog.ui.h:3
+#: ../src/Extensions/Exporters/FSpot.Exporters.PicasaWeb/Resources/google_export_dialog.ui.h:4
 msgid "<b>PicasaWeb Export</b>"
 msgstr "<b>PicasaWeb 导出</b>"
 
 #: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/Resources/smugmug_export_dialog.ui.h:3
-msgid "<b>SmugMug Export</b>"
-msgstr "<b>SmugMug 导出</b>"
-
-#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/Resources/smugmug_export_dialog.ui.h:7
 msgid "_Account:"
 msgstr "账户(_A)："
+
+#: ../src/Extensions/Exporters/FSpot.Exporters.SmugMug/Resources/smugmug_export_dialog.ui.h:4
+msgid "<b>SmugMug Export</b>"
+msgstr "<b>SmugMug 导出</b>"
 
 #: ../src/Extensions/Exporters/FSpot.Exporters.Tabblo/FSpot.Exporters.Tabblo/TabbloExport.cs:310
 msgid "Done sending photos"
@@ -3601,15 +3720,11 @@ msgstr "上传完毕"
 msgid "Error uploading to Tabblo: "
 msgstr "上传到 Tabblo 时出错："
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Tabblo/Resources/ui/TabbloExport.ui.h:1
-msgid "<b>F-Spot tags</b>"
-msgstr "<b>F-Spot 标签</b>"
-
-#: ../src/Extensions/Exporters/FSpot.Exporters.Tabblo/Resources/ui/TabbloExport.ui.h:3
+#: ../src/Extensions/Exporters/FSpot.Exporters.Tabblo/Resources/ui/TabbloExport.ui.h:5
 msgid "<b>Tabblo account</b>"
 msgstr "<b>Tabblo 账户</b>"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Tabblo/Resources/ui/TabbloExport.ui.h:4
+#: ../src/Extensions/Exporters/FSpot.Exporters.Tabblo/Resources/ui/TabbloExport.ui.h:6
 msgid ""
 "<small><i>F-Spot tags can help you track the export status of photos. "
 "Example: Use one tag for the photos that you plan to export, and another one "
@@ -3620,41 +3735,45 @@ msgstr ""
 "照片应用一个标签，同时为已经导出的照片应用另一个标签。这里您可以让 F-Spot 根"
 "据需要自动替换这些标签。</i></small>"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Tabblo/Resources/ui/TabbloExport.ui.h:6
-msgid "Rem_ove from exported photos:"
-msgstr "从导出照片中删除(_O):"
-
 #: ../src/Extensions/Exporters/FSpot.Exporters.Tabblo/Resources/ui/TabbloExport.ui.h:7
 msgid "Select..."
 msgstr "选择..."
 
 #: ../src/Extensions/Exporters/FSpot.Exporters.Tabblo/Resources/ui/TabbloExport.ui.h:8
+msgid "Rem_ove from exported photos:"
+msgstr "从导出照片中删除(_O):"
+
+#: ../src/Extensions/Exporters/FSpot.Exporters.Tabblo/Resources/ui/TabbloExport.ui.h:9
 msgid "_Attach to exported photos:"
 msgstr "附加到输出的照片(_A)"
 
+#: ../src/Extensions/Exporters/FSpot.Exporters.Tabblo/Resources/ui/TabbloExport.ui.h:10
+msgid "<b>F-Spot tags</b>"
+msgstr "<b>F-Spot 标签</b>"
+
 #: ../src/Extensions/Exporters/FSpot.Exporters.Tabblo/Resources/ui/TrustError.ui.h:1
-msgid "A trust error occured while attempting to access"
-msgstr "当尝试访问时发生一个信任错误"
-
-#: ../src/Extensions/Exporters/FSpot.Exporters.Tabblo/Resources/ui/TrustError.ui.h:2
-msgid "Abort this session"
-msgstr "放弃本次进程"
-
-#: ../src/Extensions/Exporters/FSpot.Exporters.Tabblo/Resources/ui/TrustError.ui.h:3
-msgid "Always trust this site's certificate"
-msgstr "永远信任该网站的证书"
-
-#: ../src/Extensions/Exporters/FSpot.Exporters.Tabblo/Resources/ui/TrustError.ui.h:4
-msgid "Do you wish to:"
-msgstr "您希望到："
-
-#: ../src/Extensions/Exporters/FSpot.Exporters.Tabblo/Resources/ui/TrustError.ui.h:5
 msgid "Trust Error"
 msgstr "信任错误"
 
-#: ../src/Extensions/Exporters/FSpot.Exporters.Tabblo/Resources/ui/TrustError.ui.h:6
+#: ../src/Extensions/Exporters/FSpot.Exporters.Tabblo/Resources/ui/TrustError.ui.h:2
+msgid "A trust error occured while attempting to access"
+msgstr "当尝试访问时发生一个信任错误"
+
+#: ../src/Extensions/Exporters/FSpot.Exporters.Tabblo/Resources/ui/TrustError.ui.h:3
+msgid "Do you wish to:"
+msgstr "您希望到："
+
+#: ../src/Extensions/Exporters/FSpot.Exporters.Tabblo/Resources/ui/TrustError.ui.h:4
+msgid "Abort this session"
+msgstr "放弃本次进程"
+
+#: ../src/Extensions/Exporters/FSpot.Exporters.Tabblo/Resources/ui/TrustError.ui.h:5
 msgid "Trust the site's certificate this once"
 msgstr "本次信任该网站的证书"
+
+#: ../src/Extensions/Exporters/FSpot.Exporters.Tabblo/Resources/ui/TrustError.ui.h:6
+msgid "Always trust this site's certificate"
+msgstr "永远信任该网站的证书"
 
 #: ../src/Extensions/Exporters/FSpot.Exporters.Zip/FSpot.Exporters.Zip/ZipExport.cs:67
 msgid ""
@@ -3673,39 +3792,39 @@ msgstr "正在导出文件"
 #: ../src/Extensions/Exporters/FSpot.Exporters.Zip/FSpot.Exporters.Zip/ZipExport.cs:127
 #, csharp-format
 msgid "Preparing photo \"{0}\""
-msgstr "正在准备照片 \"{0}\""
+msgstr "正在准备照片“{0}”"
 
 #: ../src/Extensions/Exporters/FSpot.Exporters.Zip/Resources/zip_export.ui.h:1
-msgid "_Create"
-msgstr "创建(_C)"
+msgid "_Location:"
+msgstr "位置(_L):"
 
 #: ../src/Extensions/Exporters/FSpot.Exporters.Zip/Resources/zip_export.ui.h:2
 msgid "_File name:"
 msgstr "文件名(_F)："
 
 #: ../src/Extensions/Exporters/FSpot.Exporters.Zip/Resources/zip_export.ui.h:3
-msgid "_Location:"
-msgstr "位置(_L):"
-
-#: ../src/Extensions/Exporters/FSpot.Exporters.Zip/Resources/zip_export.ui.h:4
 msgid "_Scale:"
 msgstr "缩放(_S)："
 
-#: ../src/Extensions/Tools/FSpot.Tools.ChangePhotoPath/Resources/ChangePhotoPath.ui.h:1
-msgid "<b>Specify the toplevel Photos directories</b>"
-msgstr "<b>制定顶层照片目录</b>"
+#: ../src/Extensions/Exporters/FSpot.Exporters.Zip/Resources/zip_export.ui.h:4
+msgid "_Create"
+msgstr "创建(_C)"
 
-#: ../src/Extensions/Tools/FSpot.Tools.ChangePhotoPath/Resources/ChangePhotoPath.ui.h:2
+#: ../src/Extensions/Tools/FSpot.Tools.ChangePhotoPath/Resources/ChangePhotoPath.ui.h:1
 msgid "Change Photos directory"
 msgstr "改变照片目录"
+
+#: ../src/Extensions/Tools/FSpot.Tools.ChangePhotoPath/Resources/ChangePhotoPath.ui.h:2
+msgid "Old base path (URI) was"
+msgstr "之前的基本路径(URI)为"
 
 #: ../src/Extensions/Tools/FSpot.Tools.ChangePhotoPath/Resources/ChangePhotoPath.ui.h:3
 msgid "Change base path (URI) to"
 msgstr "将基本路径(URI)改变为"
 
 #: ../src/Extensions/Tools/FSpot.Tools.ChangePhotoPath/Resources/ChangePhotoPath.ui.h:4
-msgid "Old base path (URI) was"
-msgstr "之前的基本路径(URI)为"
+msgid "<b>Specify the toplevel Photos directories</b>"
+msgstr "<b>制定顶层照片目录</b>"
 
 #: ../src/Extensions/Tools/FSpot.Tools.DevelopInUFraw/FSpot.Tools.DevelopInUFraw/DevelopInUFRawBatch.cs:51
 msgid "Developing photos"
@@ -3735,7 +3854,7 @@ msgid_plural "{0} photos"
 msgstr[0] "{0} 照片"
 
 #: ../src/Extensions/Tools/FSpot.Tools.LiveWebGallery/FSpot.Tools.LiveWebGallery/GalleryRequestHandler.cs:182
-#: ../src/Extensions/Tools/FSpot.Tools.LiveWebGallery/Resources/ui/LiveWebGallery.ui.h:8
+#: ../src/Extensions/Tools/FSpot.Tools.LiveWebGallery/Resources/ui/LiveWebGallery.ui.h:4
 msgid "Current View"
 msgstr "当前视图："
 
@@ -3757,60 +3876,61 @@ msgid "Gallery is inactive"
 msgstr "图库未激活"
 
 #: ../src/Extensions/Tools/FSpot.Tools.LiveWebGallery/Resources/ui/LiveWebGallery.ui.h:1
+msgid "F-Spot Live Web Gallery"
+msgstr "F-Spot 在线网络图库"
+
+#: ../src/Extensions/Tools/FSpot.Tools.LiveWebGallery/Resources/ui/LiveWebGallery.ui.h:2
+msgid "Selected Photos"
+msgstr "被选中的照片"
+
+#: ../src/Extensions/Tools/FSpot.Tools.LiveWebGallery/Resources/ui/LiveWebGallery.ui.h:3
+msgid "Photos with a Tag"
+msgstr "有标签的照片"
+
+#: ../src/Extensions/Tools/FSpot.Tools.LiveWebGallery/Resources/ui/LiveWebGallery.ui.h:5
+msgid "Share:"
+msgstr "分享："
+
+#: ../src/Extensions/Tools/FSpot.Tools.LiveWebGallery/Resources/ui/LiveWebGallery.ui.h:6
+#, fuzzy
+msgid ""
+"<small><i>When the gallery is active, above is the URL you need to open \n"
+"on another computer to access the shared photos.</i></small>"
+msgstr "<small><i>当照片库启用的时候，</i></small>"
+
+#: ../src/Extensions/Tools/FSpot.Tools.LiveWebGallery/Resources/ui/LiveWebGallery.ui.h:8
+msgid "Gallery URL:"
+msgstr "图库 URL 地址："
+
+#: ../src/Extensions/Tools/FSpot.Tools.LiveWebGallery/Resources/ui/LiveWebGallery.ui.h:9
+msgid "Activates and deactivates the web gallery"
+msgstr "激活和撤消网络图库"
+
+#: ../src/Extensions/Tools/FSpot.Tools.LiveWebGallery/Resources/ui/LiveWebGallery.ui.h:10
+msgid "Allow viewers to add tags"
+msgstr "允许查看者增加标签"
+
+#: ../src/Extensions/Tools/FSpot.Tools.LiveWebGallery/Resources/ui/LiveWebGallery.ui.h:11
+msgid "Options:"
+msgstr "选项："
+
+#: ../src/Extensions/Tools/FSpot.Tools.LiveWebGallery/Resources/ui/LiveWebGallery.ui.h:12
+msgid "Limit number of shared photos to"
+msgstr "限制共享的照片数目为"
+
+#: ../src/Extensions/Tools/FSpot.Tools.LiveWebGallery/Resources/ui/LiveWebGallery.ui.h:13
 msgid ""
 "<small><i>The gallery stays active until you either deactivate it or close\n"
 "F-Spot. Make sure local viewers access it bypassing HTTP proxy.</i></small>"
 msgstr ""
 
-#: ../src/Extensions/Tools/FSpot.Tools.LiveWebGallery/Resources/ui/LiveWebGallery.ui.h:3
-msgid ""
-"<small><i>When the gallery is active, above is the URL you need to open \n"
-"on another computer to access the shared photos.</i></small>"
-msgstr ""
-
-#: ../src/Extensions/Tools/FSpot.Tools.LiveWebGallery/Resources/ui/LiveWebGallery.ui.h:5
-msgid "Activates and deactivates the web gallery"
-msgstr "激活和撤消网络图库"
-
-#: ../src/Extensions/Tools/FSpot.Tools.LiveWebGallery/Resources/ui/LiveWebGallery.ui.h:6
-msgid "Allow viewers to add tags"
-msgstr "允许查看者增加标签"
-
-#: ../src/Extensions/Tools/FSpot.Tools.LiveWebGallery/Resources/ui/LiveWebGallery.ui.h:7
-msgid "Copy URL to clipboard"
-msgstr "复制网址到剪贴板"
-
-#: ../src/Extensions/Tools/FSpot.Tools.LiveWebGallery/Resources/ui/LiveWebGallery.ui.h:9
-msgid "F-Spot Live Web Gallery"
-msgstr "F-Spot 在线网络图库"
-
-#: ../src/Extensions/Tools/FSpot.Tools.LiveWebGallery/Resources/ui/LiveWebGallery.ui.h:10
-msgid "Gallery URL:"
-msgstr "图库 URL 地址："
-
-#: ../src/Extensions/Tools/FSpot.Tools.LiveWebGallery/Resources/ui/LiveWebGallery.ui.h:11
-msgid "Limit number of shared photos to"
-msgstr "限制共享的照片数目为"
-
-#: ../src/Extensions/Tools/FSpot.Tools.LiveWebGallery/Resources/ui/LiveWebGallery.ui.h:12
-msgid "Options:"
-msgstr "选项："
-
-#: ../src/Extensions/Tools/FSpot.Tools.LiveWebGallery/Resources/ui/LiveWebGallery.ui.h:13
-msgid "Photos with a Tag"
-msgstr "有标签的照片"
-
-#: ../src/Extensions/Tools/FSpot.Tools.LiveWebGallery/Resources/ui/LiveWebGallery.ui.h:14
-msgid "Selected Photos"
-msgstr "被选中的照片"
-
 #: ../src/Extensions/Tools/FSpot.Tools.LiveWebGallery/Resources/ui/LiveWebGallery.ui.h:15
-msgid "Share:"
-msgstr "分享："
-
-#: ../src/Extensions/Tools/FSpot.Tools.LiveWebGallery/Resources/ui/LiveWebGallery.ui.h:16
 msgid "Views:"
 msgstr "查看"
+
+#: ../src/Extensions/Tools/FSpot.Tools.LiveWebGallery/Resources/ui/LiveWebGallery.ui.h:16
+msgid "Copy URL to clipboard"
+msgstr "复制网址到剪贴板"
 
 #: ../src/Extensions/Tools/FSpot.Tools.MergeDb/FSpot.Tools.MergeDb/MergeDb.cs:91
 msgid "Error opening the selected file"
@@ -3824,7 +3944,7 @@ msgid ""
 "Received exception \"{0}\"."
 msgstr ""
 "您选定的文件是无效或不支持的数据库。n\n"
-"收到例外 \"{0}\"。"
+"收到异常“{0}”。"
 
 #: ../src/Extensions/Tools/FSpot.Tools.MergeDb/FSpot.Tools.MergeDb/PickFolderDialog.cs:57
 #, csharp-format
@@ -3834,12 +3954,25 @@ msgid ""
 msgstr ""
 
 #: ../src/Extensions/Tools/FSpot.Tools.MergeDb/Resources/mergedb_dialog.ui.h:1
-msgid ""
-"<small><i>Choose the location of the database you want to import from</i></"
-"small>"
-msgstr "<small><i>选择您想导入的数据库位置</i></small>"
+msgid "Merge another F-Spot collection"
+msgstr "合并另外的 f-spot 收藏"
 
 #: ../src/Extensions/Tools/FSpot.Tools.MergeDb/Resources/mergedb_dialog.ui.h:2
+msgid ""
+"<small><i>Copy the images locally or keep them where they are. If you chose "
+"the later, be sure that this location will stay accessible from f-spot.</i></"
+"small>"
+msgstr ""
+
+#: ../src/Extensions/Tools/FSpot.Tools.MergeDb/Resources/mergedb_dialog.ui.h:3
+msgid "Keep the images at their original location"
+msgstr "将图像保持在原位置"
+
+#: ../src/Extensions/Tools/FSpot.Tools.MergeDb/Resources/mergedb_dialog.ui.h:4
+msgid "Copy images to photos folder"
+msgstr "复制图像到照片文件夹"
+
+#: ../src/Extensions/Tools/FSpot.Tools.MergeDb/Resources/mergedb_dialog.ui.h:5
 msgid ""
 "<small><i>Choose what to import from the selected db.\n"
 "\"New Rolls Only\" is the smart option that will avoid re-importing photos "
@@ -3849,50 +3982,33 @@ msgid ""
 "imported from that database.</i></small>"
 msgstr ""
 
-#: ../src/Extensions/Tools/FSpot.Tools.MergeDb/Resources/mergedb_dialog.ui.h:6
-msgid ""
-"<small><i>Copy the images locally or keep them where they are. If you chose "
-"the later, be sure that this location will stay accessible from f-spot.</i></"
-"small>"
-msgstr ""
-
-#: ../src/Extensions/Tools/FSpot.Tools.MergeDb/Resources/mergedb_dialog.ui.h:7
-msgid "A Single Import Roll"
-msgstr "单一导入清单"
-
-#: ../src/Extensions/Tools/FSpot.Tools.MergeDb/Resources/mergedb_dialog.ui.h:8
-msgid "Copy images to photos folder"
-msgstr "复制图像到照片文件夹"
-
 #: ../src/Extensions/Tools/FSpot.Tools.MergeDb/Resources/mergedb_dialog.ui.h:9
-msgid "Database Location:"
-msgstr "数据库位置："
-
-#: ../src/Extensions/Tools/FSpot.Tools.MergeDb/Resources/mergedb_dialog.ui.h:10
 msgid "Everything"
 msgstr "所有东西"
 
+#: ../src/Extensions/Tools/FSpot.Tools.MergeDb/Resources/mergedb_dialog.ui.h:10
+msgid "A Single Import Roll"
+msgstr "单一导入清单"
+
 #: ../src/Extensions/Tools/FSpot.Tools.MergeDb/Resources/mergedb_dialog.ui.h:11
-msgid "Import:"
-msgstr "导入："
-
-#: ../src/Extensions/Tools/FSpot.Tools.MergeDb/Resources/mergedb_dialog.ui.h:12
-msgid "Keep the images at their original location"
-msgstr "将图像保持在原位置"
-
-#: ../src/Extensions/Tools/FSpot.Tools.MergeDb/Resources/mergedb_dialog.ui.h:13
-msgid "Merge another F-Spot collection"
-msgstr "合并另外的 f-spot 收藏"
-
-#: ../src/Extensions/Tools/FSpot.Tools.MergeDb/Resources/mergedb_dialog.ui.h:14
 msgid "New Rolls Only"
 msgstr "仅新清单"
 
-#: ../src/Extensions/Tools/FSpot.Tools.ScreensaverConfig/Resources/ScreensaverConfigDialog.ui.h:2
-msgid "Delay:"
-msgstr "延迟："
+#: ../src/Extensions/Tools/FSpot.Tools.MergeDb/Resources/mergedb_dialog.ui.h:12
+msgid "Import:"
+msgstr "导入："
 
-#: ../src/Extensions/Tools/FSpot.Tools.ScreensaverConfig/Resources/ScreensaverConfigDialog.ui.h:3
+#: ../src/Extensions/Tools/FSpot.Tools.MergeDb/Resources/mergedb_dialog.ui.h:13
+msgid ""
+"<small><i>Choose the location of the database you want to import from</i></"
+"small>"
+msgstr "<small><i>选择您想导入的数据库位置</i></small>"
+
+#: ../src/Extensions/Tools/FSpot.Tools.MergeDb/Resources/mergedb_dialog.ui.h:14
+msgid "Database Location:"
+msgstr "数据库位置："
+
+#: ../src/Extensions/Tools/FSpot.Tools.ScreensaverConfig/Resources/ScreensaverConfigDialog.ui.h:2
 msgid "Display:"
 msgstr "显示："
 
@@ -3901,16 +4017,32 @@ msgid "Images tagged with:"
 msgstr "添加图片标签："
 
 #: ../src/Extensions/Tools/FSpot.Tools.ScreensaverConfig/Resources/ScreensaverConfigDialog.ui.h:5
+msgid "Delay:"
+msgstr "延迟："
+
+#: ../src/Extensions/Tools/FSpot.Tools.ScreensaverConfig/Resources/ScreensaverConfigDialog.ui.h:6
 msgid "Make F-Spot my screensaver"
 msgstr "将 F-Spot 设为屏幕保护程序"
 
-#: ../tools/f-spot-screensaver.desktop.in.h:1
-msgid "Display a slideshow from F-Spot"
-msgstr "由 F-Spot 显示幻灯片"
+#: ../src/Extensions/Transitions/FSpot.Transitions.Cover/FSpot.Addins.Transitions/Cover.cs:45
+msgid "Cover"
+msgstr "覆盖"
 
-#: ../tools/f-spot-screensaver.desktop.in.h:2
+#: ../src/Extensions/Transitions/FSpot.Transitions.Dissolve/FSpot.Addins.Transitions/Dissolve.cs:45
+msgid "Dissolve"
+msgstr "溶解"
+
+#: ../src/Extensions/Transitions/FSpot.Transitions.Push/FSpot.Addins.Transitions/Push.cs:45
+msgid "Push"
+msgstr "推动"
+
+#: ../tools/f-spot-screensaver.desktop.in.h:1
 msgid "F-Spot photos"
 msgstr "F-Spot 照片"
+
+#: ../tools/f-spot-screensaver.desktop.in.h:2
+msgid "Display a slideshow from F-Spot"
+msgstr "由 F-Spot 显示幻灯片"
 
 #~ msgid "(wrong format)"
 #~ msgstr "(错误的格式)"
@@ -3921,35 +4053,5 @@ msgstr "F-Spot 照片"
 #~ msgid "Show Photo Name"
 #~ msgstr "显示照片名"
 
-#~ msgid "_CD..."
-#~ msgstr "CD(_C)..."
-
-#~ msgid "_23hq..."
-#~ msgstr "23hq(_2)..."
-
-#~ msgid "_Flickr..."
-#~ msgstr "Flickr(_F)..."
-
-#~ msgid "_Zooomr..."
-#~ msgstr "Zooomr(_Z)..."
-
 #~ msgid "Strip _metadata"
 #~ msgstr "去除元数据(_m)"
-
-#~ msgid "F_older..."
-#~ msgstr "文件夹(_o)..."
-
-#~ msgid "Web _Gallery..."
-#~ msgstr "网络图库(_G)..."
-
-#~ msgid "_PicasaWeb..."
-#~ msgstr "_PicasaWeb..."
-
-#~ msgid "_SmugMug..."
-#~ msgstr "SmugMug(_S)..."
-
-#~ msgid "_Tabblo..."
-#~ msgstr "Tabblo(_T)..."
-
-#~ msgid "Compressed fil_e..."
-#~ msgstr "压缩文件(_e)..."
