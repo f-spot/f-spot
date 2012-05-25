@@ -533,6 +533,7 @@ msgid "Show ratings in the thumbnail view."
 msgstr "查看缩略图时显示等级。"
 
 # 与 slideshow 不一样
+#, fuzzy
 #: ../f-spot.schemas.in.h:15
 msgid "Show the filmstrip in the main window."
 msgstr "在主窗口显示幻灯片。"
@@ -1433,8 +1434,7 @@ msgstr "版权所有 (C) 2003-2006 Novell Inc."
 #: ../src/Clients/MainApp/FSpot.UI.Dialog/AboutDialog.cs:148
 msgid "translator-credits"
 msgstr ""
-"开源软件国际化之简体中文组 http://i18n.linux.net.cnFunda Wang "
-"<fundawang@linux.net.cn>\n"
+"Funda Wang <fundawang@linux.net.cn>\n"
 "Yao Hui <gsling_@126.com>\n"
 "Aron Xu <aronmalache@163.com>\n"
 "甘露(Gan Lu) <rhythm.gan@gmail.com>\n"
@@ -3440,7 +3440,7 @@ msgstr "无效的 URL"
 
 #: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/AccountDialog.cs:124
 msgid "The gallery URL entry does not appear to be a valid URL"
-msgstr "该图库的 URL 地址不像是有效的 URL 地址。"
+msgstr "该图库的 URL 地址似乎不是有效的 URL。"
 
 #: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/AccountDialog.cs:134
 #: ../src/Extensions/Exporters/FSpot.Exporters.Gallery/FSpot.Exporters.Gallery/AccountDialog.cs:161
