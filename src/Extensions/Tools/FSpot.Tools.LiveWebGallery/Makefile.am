@@ -1,15 +1,4 @@
-ASSEMBLY = FSpot.Tools.LiveWebGallery
-TARGET = library
-LINK = $(REF_FSPOT_EXTENSION_LIVEWEBGALLERY)
-INSTALL_DIR = $(EXTENSIONS_INSTALL_DIR)
-
-SOURCES =  \
-	FSpot.Tools.LiveWebGallery/GalleryRequestHandler.cs \
-	FSpot.Tools.LiveWebGallery/LiveWebGallery.cs \
-	FSpot.Tools.LiveWebGallery/LiveWebGalleryDialog.cs \
-	FSpot.Tools.LiveWebGallery/PhotoRequestHandler.cs \
-	FSpot.Tools.LiveWebGallery/ResourceRequestHandler.cs \
-	FSpot.Tools.LiveWebGallery/SimpleWebServer.cs
+LINK =
 
 RESOURCES =  \
 	Resources/LiveWebGallery.addin.xml \
@@ -20,3 +9,5 @@ RESOURCES =  \
 	Resources/ui/LiveWebGallery.ui
 
 include $(top_srcdir)/build/build.mk
+
+include $(top_srcdir)/build/xbuild.include

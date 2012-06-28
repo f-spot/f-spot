@@ -1,13 +1,4 @@
-ASSEMBLY = FSpot.Exporters.Folder
-TARGET = library
-LINK = $(REF_FSPOT_EXTENSION_FOLDEREXPORT)
-INSTALL_DIR = $(EXTENSIONS_INSTALL_DIR)
-
-SOURCES =  \
-	FSpot.Exporters.Folder/FolderExport.cs \
-	FSpot.Exporters.Folder/FolderGallery.cs \
-	FSpot.Exporters.Folder/HtmlGallery.cs \
-	FSpot.Exporters.Folder/OriginalGallery.cs
+LINK =
 
 RESOURCES =  \
 	Resources/folder_export.ui \
@@ -17,3 +8,5 @@ RESOURCES =  \
 	Resources/f-spot-simple-white.css
 
 include $(top_srcdir)/build/build.mk
+
+include $(top_srcdir)/build/xbuild.include

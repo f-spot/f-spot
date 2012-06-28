@@ -1,14 +1,4 @@
-ASSEMBLY = FSpot.Exporters.SmugMug
-TARGET = library
-LINK = $(REF_FSPOT_EXTENSION_SMUGMUGEXPORT)
-INSTALL_DIR = $(EXTENSIONS_INSTALL_DIR)
-
-SOURCES =  \
-	FSpot.Exporters.SmugMug/SmugMugAccount.cs \
-	FSpot.Exporters.SmugMug/SmugMugAccountDialog.cs \
-	FSpot.Exporters.SmugMug/SmugMugAccountManager.cs \
-	FSpot.Exporters.SmugMug/SmugMugAddAlbum.cs \
-	FSpot.Exporters.SmugMug/SmugMugExport.cs
+LINK =
 
 RESOURCES =  \
 	Resources/smugmug_add_album_dialog.ui \
@@ -17,3 +7,5 @@ RESOURCES =  \
 	Resources/SmugMugExport.addin.xml
 
 include $(top_srcdir)/build/build.mk
+
+include $(top_srcdir)/build/xbuild.include
