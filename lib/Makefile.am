@@ -5,7 +5,6 @@ SUBDIRS = \
 	gtk-sharp-beans		\
 	Hyena 				\
 	libfspot			\
-	unique-sharp 		\
 	Mono.Google 		\
 	Mono.Tabblo 		\
 	SmugMugNet

@@ -321,9 +321,6 @@ lib/Makefile
 lib/Mono.Google/Makefile
 lib/Mono.Tabblo/Makefile
 lib/SmugMugNet/Makefile
-lib/unique-sharp/generator/Makefile
-lib/unique-sharp/Makefile
-lib/unique-sharp/unique/Makefile
 
 src/AssemblyInfo.cs
 
